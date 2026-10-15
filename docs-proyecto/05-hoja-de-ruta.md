@@ -14,7 +14,8 @@ Isabelle Barnes). Sustituye a Night of the Zealot como contenido inicial.
 - [ ] Elegir nombre del producto (sin "Arkham Horror").
 - [x] Mover el código original fuera del repositorio (`E:\referencia\ArkhamHorror`).
 - [x] Guardar el reglamento en `reglas/` (fuera de git).
-- [ ] Conseguir la guía de campaña de Brethren of Ash (preparación y resoluciones de los escenarios).
+- [x] Conseguir la guía de campaña de Brethren of Ash (preparación y resoluciones de los escenarios).
+- [ ] Conexiones de las localizaciones de Spreading Flames (solo en las cartas físicas).
 - [x] Crear el monorepo, CI (lint + tests) y `docker-compose` con Postgres.
 
 ## Fase 1 · Motor mínimo
@@ -38,7 +39,9 @@ Estado detallado del motor: [08-motor.md](08-motor.md).
 - [ ] Ventanas de tiempo, reacciones (⟲), acciones gratuitas (⚡) y efectos forzados.
 - [ ] Habilidades de investigador y efecto de su signo arcano.
 - [ ] Palabras clave restantes: presa, patrulla, masivo, esquivo, condenado.
-- [ ] Datos de "Spreading Flames" y los 5 mazos iniciales (requiere la guía de campaña).
+- [x] Análisis de "Spreading Flames": [09-spreading-flames.md](09-spreading-flames.md).
+- [x] Bolsas del caos de Brethren of Ash por dificultad.
+- [ ] Datos y comportamiento de las cartas de "Spreading Flames" y los 5 mazos iniciales.
 
 ## Fase 2 · Jugable en navegador (local)
 
