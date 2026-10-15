@@ -9,7 +9,7 @@ vale más que muchos sistemas a medias.
 - [ ] Elegir nombre del producto (sin "Arkham Horror").
 - [x] Mover el código original fuera del repositorio (p. ej. `E:\referencia\ArkhamHorror`).
 - [ ] Guardar los PDF de reglas en `reglas/` (fuera de git).
-- [ ] Crear el monorepo vacío, CI (lint + tests) y `docker-compose` con Postgres.
+- [x] Crear el monorepo vacío, CI (lint + tests) y `docker-compose` con Postgres.
 
 ## Fase 1 · Motor mínimo (sin interfaz)
 

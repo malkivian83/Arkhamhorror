@@ -1,0 +1,7 @@
+packages:
+  - packages/*
+  - apps/*
+
+# Dependencias autorizadas a ejecutar scripts de instalación.
+allowBuilds:
+  esbuild: true

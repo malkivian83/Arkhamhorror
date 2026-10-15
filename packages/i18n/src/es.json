@@ -1,0 +1,22 @@
+{
+  "app": {
+    "title": "Plataforma LCG",
+    "disclaimer": "Proyecto no oficial de aficionados. No producido, avalado ni respaldado por Fantasy Flight Games, ni afiliado a ella."
+  },
+  "home": {
+    "serverStatus": "Estado del servidor",
+    "online": "en línea",
+    "offline": "sin conexión"
+  },
+  "choice": {
+    "nothing": "No hacer nada",
+    "gainResource": "Obtener 1 recurso"
+  },
+  "phase": {
+    "setup": "Preparación",
+    "mythos": "Fase de Mitos",
+    "investigation": "Fase de Investigación",
+    "enemy": "Fase de Enemigos",
+    "upkeep": "Fase de Mantenimiento"
+  }
+}

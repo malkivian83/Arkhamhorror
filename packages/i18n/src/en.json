@@ -1,0 +1,22 @@
+{
+  "app": {
+    "title": "LCG Platform",
+    "disclaimer": "Unofficial fan project. Not produced, endorsed or supported by, or affiliated with Fantasy Flight Games."
+  },
+  "home": {
+    "serverStatus": "Server status",
+    "online": "online",
+    "offline": "offline"
+  },
+  "choice": {
+    "nothing": "Do nothing",
+    "gainResource": "Gain 1 resource"
+  },
+  "phase": {
+    "setup": "Setup",
+    "mythos": "Mythos phase",
+    "investigation": "Investigation phase",
+    "enemy": "Enemy phase",
+    "upkeep": "Upkeep phase"
+  }
+}

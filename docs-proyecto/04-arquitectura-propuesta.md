@@ -4,39 +4,40 @@ Propuesta para un programa propio, escrito desde cero, que reutiliza **ideas**
 del original (motor de mensajes, ventanas, modificadores, cliente sin reglas)
 pero no su código. Stack decidido: TypeScript (ver [07](07-dudas-abiertas.md)).
 
-## 1. Stack recomendado
+## 1. Stack (implantado en el esqueleto, 2026-10-15)
 
 | Capa | Elección | Por qué |
 |---|---|---|
-| Lenguaje | **TypeScript** en todo el proyecto | Un solo lenguaje, tipos compartidos cliente/servidor, mucha gente lo conoce, compila en segundos |
-| Monorepo | pnpm workspaces | Paquetes separados con dependencias claras |
-| Motor | Paquete TS puro, sin dependencias de E/S | Testeable, determinista, ejecutable en servidor y (para pruebas) en navegador |
-| Servidor | Node.js + Fastify + WebSocket (`ws`) | Ligero; HTTP para lobby/mazos, WS para la partida |
-| Base de datos | PostgreSQL + Drizzle ORM | Relacional para usuarios/mazos, JSONB para partidas |
-| Frontend | Vue 3 + Vite + Pinia + vue-i18n | Mismo ecosistema que el original (conocido y probado para este juego) |
-| Tests | Vitest (motor y servidor), Playwright (extremo a extremo) | |
+| Lenguaje | **TypeScript 6.0** en todo el proyecto (7.0 aún no lo soporta typescript-eslint) | Un solo lenguaje, tipos compartidos cliente/servidor, mucha gente lo conoce, compila en segundos |
+| Monorepo | pnpm 12 workspaces, Node 24 | Paquetes separados con dependencias claras |
+| Motor | Paquete TS puro, sin dependencias de E/S (lo vigila una regla de ESLint) | Testeable, determinista, ejecutable en servidor y (para pruebas) en navegador |
+| Servidor | Node.js + Fastify 5 + `@fastify/websocket`, ejecutado con `tsx` | Ligero; HTTP para lobby/mazos, WS para la partida |
+| Base de datos | PostgreSQL 17 (ORM por decidir al implementar la persistencia) | Relacional para usuarios/mazos, JSONB para partidas |
+| Frontend | Vue 3 + Vite 8 + Pinia + vue-router + vue-i18n | Mismo ecosistema que el original (conocido y probado para este juego) |
+| Calidad | ESLint + Prettier + Vitest; Playwright más adelante | |
+| CI | GitHub Actions: format, lint, typecheck, test, build | |
 | Despliegue | Docker Compose en un VPS | Suficiente para un grupo de jugadores |
-
-Alternativa: mantener **Haskell** en el motor si el equipo lo domina; el diseño
-de abajo es el mismo.
 
 ## 2. Estructura del repositorio
 
 ```
 /
 ├─ packages/
-│  ├─ engine/        Motor de reglas puro (estado, mensajes, ventanas, preguntas)
-│  ├─ cards/         Definiciones de cartas: datos (JSON) + comportamiento (TS)
-│  ├─ shared/        Tipos del protocolo cliente/servidor
-│  └─ i18n/          Textos de interfaz EN/ES
+│  ├─ engine/        @lcg/engine  Motor de reglas puro (estado, mensajes, ventanas, preguntas)
+│  ├─ cards/         @lcg/cards   Definiciones de cartas: datos + comportamiento
+│  ├─ shared/        @lcg/shared  Tipos del protocolo cliente/servidor
+│  └─ i18n/          @lcg/i18n    Textos de interfaz EN/ES
 ├─ apps/
-│  ├─ server/        API HTTP + WebSocket + persistencia
-│  └─ web/           Frontend Vue
-├─ data/
-│  └─ cards/         Datos estáticos de cartas por set (en, es)
-├─ docs/             Documentación (estos .md)
-└─ reglas/           PDFs de reglas (fuera de git)
+│  ├─ server/        @lcg/server  API HTTP + WebSocket + persistencia
+│  └─ web/           @lcg/web     Frontend Vue
+├─ data/cards/       (futuro) Datos estáticos de cartas por set (en, es)
+└─ docs-proyecto/    Documentación (estos .md)
+   └─ reglas/        PDFs de reglas (fuera de git)
 ```
+
+Los paquetes exportan directamente su código fuente TypeScript (`exports:
+./src/index.ts`); Vite y `tsx` lo compilan al vuelo, así que no hay paso de
+compilación entre paquetes.
 
 ## 3. El motor
 
