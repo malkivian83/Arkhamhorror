@@ -221,6 +221,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@lcg/cards':
+        specifier: workspace:*
+        version: link:../../packages/cards
       '@lcg/engine':
         specifier: workspace:*
         version: link:../../packages/engine

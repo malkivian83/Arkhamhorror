@@ -52,3 +52,5 @@ export function getCard(code: string): CardDefinition | undefined {
 export function allCards(): CardDefinition[] {
   return [...registry.values()]
 }
+
+export { demoInvestigators, demoScenario } from './demo'

@@ -15,6 +15,13 @@ export default tseslint.config(
   },
   {
     languageOptions: { globals: { ...globals.node, ...globals.browser } },
+    rules: {
+      // Variables con prefijo _ se descartan a propósito (p. ej. al desestructurar).
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_', destructuredArrayIgnorePattern: '^_' },
+      ],
+    },
   },
   {
     // El motor debe ser puro y determinista: sin E/S, reloj ni azar global.

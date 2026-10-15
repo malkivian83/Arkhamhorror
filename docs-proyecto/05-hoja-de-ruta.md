@@ -3,33 +3,48 @@
 Principio: **corte vertical primero**. Un escenario jugable de principio a fin
 vale más que muchos sistemas a medias.
 
+Referencia de reglas: el reglamento de la **nueva caja básica (2026)**, cuya
+campaña es **Brethren of Ash** y cuyo primer escenario es **"Spreading Flames"**
+(investigadores: Daniela Reyes, Joe Diamond, Trish Scarborough, Dexter Drake,
+Isabelle Barnes). Sustituye a Night of the Zealot como contenido inicial.
+
 ## Fase 0 · Decisiones y preparación
 
-- [ ] Resolver las [dudas abiertas](07-dudas-abiertas.md) (licencia, stack, alcance, imágenes).
+- [ ] Resolver las [dudas abiertas](07-dudas-abiertas.md) (alcance, imágenes, textos).
 - [ ] Elegir nombre del producto (sin "Arkham Horror").
-- [x] Mover el código original fuera del repositorio (p. ej. `E:\referencia\ArkhamHorror`).
-- [ ] Guardar los PDF de reglas en `reglas/` (fuera de git).
-- [x] Crear el monorepo vacío, CI (lint + tests) y `docker-compose` con Postgres.
+- [x] Mover el código original fuera del repositorio (`E:\referencia\ArkhamHorror`).
+- [x] Guardar el reglamento en `reglas/` (fuera de git).
+- [ ] Conseguir la guía de campaña de Brethren of Ash (preparación y resoluciones de los escenarios).
+- [x] Crear el monorepo, CI (lint + tests) y `docker-compose` con Postgres.
 
-## Fase 1 · Motor mínimo (sin interfaz)
+## Fase 1 · Motor mínimo
 
-Objetivo: jugar **"The Gathering / La Reunión"** (caja básica) con 1 investigador
-por consola o tests.
+Objetivo: jugar **"Spreading Flames"** con 1–4 investigadores.
+Estado detallado del motor: [08-motor.md](08-motor.md).
 
-- [ ] Estado, cola de mensajes, RNG con semilla, serialización.
-- [ ] Fases: mitos, investigación, enemigos, mantenimiento.
-- [ ] Acciones básicas: investigar, mover, robar, recurso, jugar, combatir, evadir, enfrentarse, activar.
-- [ ] Pruebas de habilidad completas (comprometer cartas, bolsa del caos, modificadores).
-- [ ] Ventanas de tiempo, reacciones y efectos forzados.
-- [ ] Acto/plan, localizaciones ocultas/reveladas, perdición, pistas.
-- [ ] Cartas: los 5 investigadores básicos y sus mazos iniciales + encuentros del escenario 1.
-- [ ] Suite de tests de reglas basada en el *Rules Reference*.
+- [x] Estado, cola de mensajes, RNG con semilla, serialización.
+- [x] Ronda: mitos (salvo ronda 1), investigación, enemigos, mantenimiento.
+- [x] Turnos: el grupo elige el orden; 3 acciones; terminar turno.
+- [x] Acciones básicas: robar, recurso, moverse, investigar, luchar, evadir, enfrentarse.
+- [x] Ataques de oportunidad.
+- [x] Prueba de habilidad: bolsa del caos, símbolos, fallo automático, resultados.
+- [x] Enemigos: aparición, enfrentamiento, cazador, distante, represalia, alerta, victoria.
+- [x] Daño/horror, derrota y eliminación.
+- [x] Plan (perdición) y acto (pistas, en cualquier momento o al final de la ronda).
+- [x] Mantenimiento: preparar, robar, recurso, límite de mano.
+- [ ] Comprometer cartas a pruebas de habilidad (paso 2).
+- [ ] Jugar cartas (apoyos y eventos), recursos, ranuras.
+- [ ] Traiciones en el mazo de encuentros (revelación, peligro, oleada).
+- [ ] Ventanas de tiempo, reacciones (⟲), acciones gratuitas (⚡) y efectos forzados.
+- [ ] Habilidades de investigador y efecto de su signo arcano.
+- [ ] Palabras clave restantes: presa, patrulla, masivo, esquivo, condenado.
+- [ ] Datos de "Spreading Flames" y los 5 mazos iniciales (requiere la guía de campaña).
 
 ## Fase 2 · Jugable en navegador (local)
 
+- [x] Demo jugable en el navegador con un escenario inventado (EN/ES).
 - [ ] Servidor con partida en memoria + WebSocket.
 - [ ] Mesa de juego Vue: zonas, cartas renderizadas, fichas, preguntas.
-- [ ] Interfaz en EN y ES.
 - [ ] Deshacer última acción.
 
 ## Fase 3 · Plataforma
@@ -41,11 +56,11 @@ por consola o tests.
 
 ## Fase 4 · Campaña
 
-- [ ] Night of the Zealot completa (3 escenarios), registro de campaña, experiencia, mejoras de mazo, traumas.
-- [ ] Niveles de dificultad.
+- [ ] Brethren of Ash completa: registro de campaña, experiencia, mejoras de mazo, traumas.
+- [ ] Niveles de dificultad (bolsas del caos).
 
 ## Fase 5 · Crecimiento
 
-- [ ] Más ciclos/campañas, una a una, con sus tests.
+- [ ] Más campañas, una a una, con sus tests.
 - [ ] Editor de cartas propias (homebrew), herramientas de depuración.
 - [ ] Despliegue en servidor propio.

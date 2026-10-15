@@ -15,6 +15,7 @@ tomando como referencia de estudio el proyecto `halogenandtoast/ArkhamHorror`
 | 05 | [Hoja de ruta](05-hoja-de-ruta.md) | Fases e hitos, empezando por un "corte vertical" jugable |
 | 06 | [Convenciones de desarrollo](06-convenciones.md) | Repositorio, ramas, estilo, tests, idiomas (solo EN/ES) |
 | 07 | [Dudas abiertas](07-dudas-abiertas.md) | Decisiones que necesitamos del propietario del proyecto |
+| 08 | [El motor de reglas](08-motor.md) | Cómo funciona, qué reglas están implementadas y qué falta |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

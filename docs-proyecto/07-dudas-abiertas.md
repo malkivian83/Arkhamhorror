@@ -30,7 +30,8 @@ quiere mantenerlo?
 Propuesta: caja básica (Night of the Zealot) y crecer campaña a campaña.
 ¿Hay alguna campaña prioritaria?
 
-> Respuesta:
+> Respuesta: (2026-10-15) el reglamento aportado es el de la **nueva caja básica (2026)**;
+> se empieza por su campaña, **Brethren of Ash** ("Spreading Flames"). Falta la guía de campaña.
 
 ## 5. Imágenes de cartas
 

@@ -6,11 +6,63 @@
   "home": {
     "serverStatus": "Estado del servidor",
     "online": "en línea",
-    "offline": "sin conexión"
+    "offline": "sin conexión",
+    "demo": "Partida de demostración (contenido inventado)",
+    "players": "Investigadores",
+    "start": "Empezar",
+    "restart": "Reiniciar"
+  },
+  "game": {
+    "round": "Ronda {round}",
+    "agenda": "Plan: {name} — perdición {doom}/{threshold}",
+    "act": "Acto: {name} — hacen falta {clues} pistas",
+    "actionsLeft": "Acciones restantes: {n}",
+    "location": "Localización",
+    "shroud": "velo {n}",
+    "clues": "pistas {n}",
+    "unrevealed": "sin revelar",
+    "enemies": "Enemigos",
+    "engagedWith": "enfrentado con {name}",
+    "exhausted": "agotado",
+    "resources": "recursos {n}",
+    "hand": "cartas en mano {n}",
+    "damage": "daño {n}/{max}",
+    "horror": "horror {n}/{max}",
+    "eliminated": "eliminado",
+    "waitingFor": "Decide {name}",
+    "lastTest": "Última prueba: {skill} {value} contra {difficulty} (ficha {token}) — {result}",
+    "success": "éxito",
+    "failure": "fallo",
+    "won": "Escenario ganado (resolución {n})",
+    "lost": "Escenario perdido (sin resolución)"
+  },
+  "skill": {
+    "willpower": "Voluntad",
+    "intellect": "Intelecto",
+    "combat": "Combate",
+    "agility": "Agilidad"
+  },
+  "prompt": {
+    "chooseAction": "Elige una acción",
+    "chooseNextInvestigator": "¿Quién juega el siguiente turno?",
+    "discardDownToHandSize": "Descarta hasta tener 8 cartas",
+    "advanceAct": "¿Gastar pistas para avanzar el acto?"
+  },
+  "action": {
+    "draw": "Robar 1 carta",
+    "resource": "Obtener 1 recurso",
+    "investigate": "Investigar {location}",
+    "move": "Moverse a {location}",
+    "fight": "Luchar contra {enemy}",
+    "evade": "Evadir a {enemy}",
+    "engage": "Enfrentarse a {enemy}",
+    "advanceAct": "Avanzar {act} (gastar {clues} pistas)",
+    "endTurn": "Terminar el turno"
   },
   "choice": {
-    "nothing": "No hacer nada",
-    "gainResource": "Obtener 1 recurso"
+    "investigator": "{name}",
+    "discard": "Descartar {card}",
+    "notNow": "Ahora no"
   },
   "phase": {
     "setup": "Preparación",

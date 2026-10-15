@@ -10,6 +10,7 @@
     "typecheck": "vue-tsc -p tsconfig.json"
   },
   "dependencies": {
+    "@lcg/cards": "workspace:*",
     "@lcg/engine": "workspace:*",
     "@lcg/i18n": "workspace:*",
     "@lcg/shared": "workspace:*",

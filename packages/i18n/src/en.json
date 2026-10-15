@@ -6,11 +6,63 @@
   "home": {
     "serverStatus": "Server status",
     "online": "online",
-    "offline": "offline"
+    "offline": "offline",
+    "demo": "Demo game (invented content)",
+    "players": "Investigators",
+    "start": "Start",
+    "restart": "Restart"
+  },
+  "game": {
+    "round": "Round {round}",
+    "agenda": "Agenda: {name} — doom {doom}/{threshold}",
+    "act": "Act: {name} — {clues} clues needed",
+    "actionsLeft": "Actions left: {n}",
+    "location": "Location",
+    "shroud": "shroud {n}",
+    "clues": "clues {n}",
+    "unrevealed": "unrevealed",
+    "enemies": "Enemies",
+    "engagedWith": "engaged with {name}",
+    "exhausted": "exhausted",
+    "resources": "resources {n}",
+    "hand": "cards in hand {n}",
+    "damage": "damage {n}/{max}",
+    "horror": "horror {n}/{max}",
+    "eliminated": "eliminated",
+    "waitingFor": "{name} decides",
+    "lastTest": "Last test: {skill} {value} vs {difficulty} (token {token}) — {result}",
+    "success": "success",
+    "failure": "failure",
+    "won": "Scenario won (resolution {n})",
+    "lost": "Scenario lost (no resolution)"
+  },
+  "skill": {
+    "willpower": "Willpower",
+    "intellect": "Intellect",
+    "combat": "Combat",
+    "agility": "Agility"
+  },
+  "prompt": {
+    "chooseAction": "Choose an action",
+    "chooseNextInvestigator": "Who takes the next turn?",
+    "discardDownToHandSize": "Discard down to 8 cards",
+    "advanceAct": "Spend clues to advance the act?"
+  },
+  "action": {
+    "draw": "Draw 1 card",
+    "resource": "Gain 1 resource",
+    "investigate": "Investigate {location}",
+    "move": "Move to {location}",
+    "fight": "Fight {enemy}",
+    "evade": "Evade {enemy}",
+    "engage": "Engage {enemy}",
+    "advanceAct": "Advance {act} (spend {clues} clues)",
+    "endTurn": "End turn"
   },
   "choice": {
-    "nothing": "Do nothing",
-    "gainResource": "Gain 1 resource"
+    "investigator": "{name}",
+    "discard": "Discard {card}",
+    "notNow": "Not now"
   },
   "phase": {
     "setup": "Setup",
