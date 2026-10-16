@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {
   playerCardDef,
-  SLOT_CAPACITY,
+  slotCapacity,
   type Asset,
   type GameState,
   type Investigator,
@@ -65,7 +65,11 @@ interface SlotBox {
  */
 const slots = computed(() => {
   const boxes: SlotBox[] = SLOT_ORDER.flatMap((type) =>
-    Array.from({ length: SLOT_CAPACITY[type] }, () => ({ type, asset: null, shared: false })),
+    Array.from({ length: slotCapacity(props.state, i.value.id, type) }, () => ({
+      type,
+      asset: null,
+      shared: false,
+    })),
   )
   const free: Asset[] = []
   for (const a of assets.value) {

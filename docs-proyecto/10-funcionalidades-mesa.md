@@ -66,9 +66,9 @@ Leyenda: ✅ hecho · 🟡 parcial · ⬜ pendiente · ✖ fuera de alcance por 
 
 | Funcionalidad | Referencia | Estado |
 |---|---|---|
-| Registro de campaña (notas, trauma, experiencia) | `CampaignLog*` | ⬜ |
-| Pasar al siguiente escenario | `Campaign`, `ContinueCampaign` | ⬜ |
-| Mejorar el mazo con experiencia | `UpgradeDeck`, `XpBreakdown` | ⬜ |
+| Registro de campaña (notas, trauma, experiencia) | `CampaignLog*` | ✅ pantalla de campaña con escenarios, notas, bolsa del caos, experiencia, trauma, muertos/enloquecidos y apoyos de historia |
+| Pasar al siguiente escenario | `Campaign`, `ContinueCampaign` | 🟡 se guarda el resultado y se prepara el siguiente con trauma y bolsa; faltan los escenarios II y III |
+| Mejorar el mazo con experiencia | `UpgradeDeck`, `XpBreakdown` | ✅ comprar y mejorar cartas según las opciones de cada investigador (las 22 cartas de nivel 1–5 implementadas) |
 | Mazos: crear, listar, importar de ArkhamDB | `NewDeck`, `DeckList`, `ArkhamDbDeck` | ⬜ (hoy, mazos iniciales) |
 | Multijugador en línea: sala, unirse, ocupar asiento, espectador | `MultiplayerLobby`, `ClaimSeat`, `JoinGame` | ⬜ |
 | Repetición de partidas | `ReplayGame` | ⬜ |
@@ -81,6 +81,10 @@ Leyenda: ✅ hecho · 🟡 parcial · ⬜ pendiente · ✖ fuera de alcance por 
 3. **Ver descartes** y **zona de victoria**; carta robada destacada; animación de ficha.
 4. ✅ **Resto de cartas de jugador**, habilidades de investigador y debilidades (ver más abajo).
 5. **Campaña** (registro, experiencia, mejoras) y los escenarios II y III.
+   - 5a ✅ Registro de campaña, experiencia y trauma, pantalla entre escenarios y compra de cartas.
+   - 5b ✅ Las 22 cartas de nivel 1–5 (ver "Cartas de nivel 1–5" más abajo).
+   - 5c Escenario II: Smoke and Mirrors (códex, sospechosos, palabra clave esquivo).
+   - 5d Escenario III: Queen of Ash.
 6. **Mazos** propios e importación.
 7. **Multijugador en línea** con el servidor.
 
@@ -126,3 +130,24 @@ con sus investigadores y debilidades:
   localización puede comprometer 1 carta (reglamento 2026).
 - **Pendiente**: los efectos de campaña de las debilidades (trauma, experiencia),
   que llegarán con la campaña (paso 5).
+
+## Cartas de nivel 1–5 (paso 5b)
+
+Las 22 cartas que se compran con experiencia, en `packages/cards/src/core-2026/upgrades.ts`.
+Mecánicas nuevas del motor que han hecho falta:
+
+- **Permanentes** (Studious, Another Day, Another Dollar, Charisma, Relic Hunter):
+  empiezan en juego fuera del mazo y dan cartas iniciales, recursos o ranuras extra.
+- **Cancelar un ataque** (Counterattack): ventana "cuando un enemigo ataca" antes de
+  resolver el ataque.
+- **Revelar 2 fichas y elegir una** (Mask of Silenus); **superar la prueba por 0**
+  (Scrape By); **devolver a la mano las cartas comprometidas** (On the Brink).
+- **Ataques**: "si este ataque derrota al enemigo" (Decisive Strike, Meat Cleaver),
+  daño extra por margen de éxito y daño por margen de fallo (Winchester Model 12),
+  habilidades de 2 acciones (Sledgehammer).
+- **Buscar cualquier carta** y robar también las debilidades (Mysterious Grimoire);
+  **mirar las primeras y robar varias** (Unbridled Knowledge); **moverse hasta 2
+  conexiones** (Out of Sight); **repetir una investigación** (Old Compass).
+
+Simplificación: Unbridled Knowledge deja en el fondo del mazo, en el mismo orden,
+las cartas que no se roban (la carta deja elegir orden y arriba o abajo).

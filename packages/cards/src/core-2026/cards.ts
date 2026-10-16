@@ -22,13 +22,13 @@ import {
 import { chooseEnemyHere, disengageAndMove } from './investigators'
 import { code, hasUses, mayChoose, name, spendUse } from './player-cards'
 
-const exhaust = (asset: Asset): Message => ({ type: 'ExhaustAsset', asset: asset.id })
-const draw = (investigator: InvestigatorId, amount = 1): Message => ({
+export const exhaust = (asset: Asset): Message => ({ type: 'ExhaustAsset', asset: asset.id })
+export const draw = (investigator: InvestigatorId, amount = 1): Message => ({
   type: 'DrawCards',
   investigator,
   amount,
 })
-const gain = (investigator: InvestigatorId, amount = 1): Message => ({
+export const gain = (investigator: InvestigatorId, amount = 1): Message => ({
   type: 'GainResources',
   investigator,
   amount,
@@ -37,7 +37,7 @@ const locationOf = (state: GameState, investigator: InvestigatorId) =>
   getInvestigator(state, investigator).location
 
 /** Reacción de un apoyo: la decide su controlador. */
-function reaction(
+export function reaction(
   self: Asset,
   label: string,
   then: Message[],
@@ -54,7 +54,7 @@ function reaction(
 }
 
 /** Evento jugado como reacción desde la mano. */
-function playFromHand(
+export function playFromHand(
   investigator: InvestigatorId,
   position: number,
   effect: Message[],
@@ -662,7 +662,7 @@ registerPlayerCard({
 })
 
 /** Evento de evitar contra un enemigo enfrentado contigo (pregunta cuál si hay varios). */
-function evadeEvent(
+export function evadeEvent(
   state: GameState,
   investigator: InvestigatorId,
   build: (enemy: { id: string; evade: number }) => Message,
@@ -686,7 +686,7 @@ function evadeEvent(
     },
   ]
 }
-const hasEngaged = (state: GameState, investigator: InvestigatorId) =>
+export const hasEngaged = (state: GameState, investigator: InvestigatorId) =>
   engagedEnemies(state, investigator).length > 0
 
 // Through the Cracks: Evitar ([agility]) +1 por cada pista tuya (máx. +3); si aciertas,

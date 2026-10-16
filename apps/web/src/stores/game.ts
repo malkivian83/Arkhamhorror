@@ -1,7 +1,15 @@
-import { spreadingFlames, starterInvestigator, STARTER_DECKS, type Difficulty } from '@lcg/cards'
+import {
+  finishScenario,
+  newCampaign,
+  purchase,
+  startScenario,
+  STARTER_DECKS,
+  type Campaign,
+  type Difficulty,
+} from '@lcg/cards'
 import {
   applyInput,
-  createGame,
+  type CardCode,
   type Choice,
   type ChoiceTarget,
   type GameState,
@@ -13,6 +21,7 @@ import { markOf, undoTarget, type Mark, type UndoKind } from '../game/undo'
 
 const STORAGE_KEY = 'lcg:game'
 const HISTORY_KEY = 'lcg:history'
+const CAMPAIGN_KEY = 'lcg:campaign'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
@@ -74,6 +83,24 @@ function loadHistory(state: GameState | null): History | null {
   return { base: state, inputs: [], marks: [markOf(state)] }
 }
 
+function loadCampaign(): Campaign | null {
+  try {
+    const raw = localStorage.getItem(CAMPAIGN_KEY)
+    return raw ? (JSON.parse(raw) as Campaign) : null
+  } catch {
+    return null
+  }
+}
+
+function saveCampaign(campaign: Campaign | null) {
+  try {
+    if (campaign) localStorage.setItem(CAMPAIGN_KEY, JSON.stringify(campaign))
+    else localStorage.removeItem(CAMPAIGN_KEY)
+  } catch {
+    // Sin almacenamiento: la campaña solo dura mientras la pestaña esté abierta.
+  }
+}
+
 function save(state: GameState | null, history: History | null) {
   try {
     if (state) localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
@@ -90,6 +117,8 @@ export const useGameStore = defineStore('game', () => {
   const state = shallowRef<GameState | null>(initial)
   const history = shallowRef<History | null>(loadHistory(initial))
   const error = shallowRef<string | null>(null)
+  /** Campaña en curso: el escenario que se juega es uno de sus escenarios. */
+  const campaign = shallowRef<Campaign | null>(loadCampaign())
 
   /**
    * Estado más reciente. El que se ve (`state`) puede ir un instante por detrás
@@ -129,16 +158,57 @@ export const useGameStore = defineStore('game', () => {
     state.value = next
   }
 
+  function setCampaign(next: Campaign | null) {
+    campaign.value = next
+    saveCampaign(next)
+  }
+
+  function play(game: GameState) {
+    set(game, { base: game, inputs: [], marks: [markOf(game)] })
+  }
+
+  /** Empieza una campaña nueva con su primer escenario. */
   function start(decks: DeckKey[], difficulty: Difficulty) {
     error.value = null
-    const game = createGame({
-      seed: Math.floor(Math.random() * 2 ** 32),
-      difficulty,
-      interactive: true,
-      scenario: spreadingFlames(difficulty),
-      investigators: decks.map((key) => starterInvestigator(key)),
-    })
-    set(game, { base: game, inputs: [], marks: [markOf(game)] })
+    const next = newCampaign(decks, difficulty)
+    setCampaign(next)
+    play(startScenario(next, Math.floor(Math.random() * 2 ** 32)))
+  }
+
+  /** Guarda el resultado del escenario terminado en la campaña y deja la mesa. */
+  function closeScenario() {
+    const game = latest
+    if (!campaign.value || !game?.outcome) return
+    setCampaign(finishScenario(campaign.value, game))
+    set(null, null)
+  }
+
+  /** Empieza el siguiente escenario de la campaña. */
+  function playNext() {
+    if (!campaign.value) return
+    error.value = null
+    play(startScenario(campaign.value, Math.floor(Math.random() * 2 ** 32)))
+  }
+
+  /** Gasta experiencia en una carta para el mazo de un investigador. */
+  function buy(
+    investigator: string,
+    card: CardCode,
+    options: { remove?: CardCode; upgrade?: boolean } = {},
+  ) {
+    if (!campaign.value) return
+    try {
+      setCampaign(purchase(campaign.value, investigator, card, options))
+      error.value = null
+    } catch (e) {
+      error.value = e instanceof Error ? e.message : String(e)
+    }
+  }
+
+  /** Abandona la campaña entera (y el escenario en curso). */
+  function abandonCampaign() {
+    setCampaign(null)
+    set(null, null)
   }
 
   function answer(index: number) {
@@ -215,7 +285,12 @@ export const useGameStore = defineStore('game', () => {
   return {
     state,
     error,
+    campaign,
     start,
+    closeScenario,
+    playNext,
+    buy,
+    abandonCampaign,
     answer,
     answerLabel,
     quit,

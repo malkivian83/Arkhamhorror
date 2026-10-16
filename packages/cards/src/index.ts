@@ -58,16 +58,39 @@ export { BRETHREN_OF_ASH, CHAOS_BAGS, type Difficulty } from './brethren-of-ash/
 export {
   CODES as SPREADING_FLAMES_CODES,
   SPREADING_FLAMES_LAYOUT,
+  DR_ARMITAGE,
   SPREADING_FLAMES,
   spreadingFlames,
 } from './brethren-of-ash/spreading-flames'
 export {
+  activeMembers,
+  canPlayNext,
+  currentScenario,
+  DECK_SIZE,
+  deckSize,
+  finishScenario,
+  isImplemented,
+  newCampaign,
+  purchase,
+  purchaseOptions,
+  removableCards,
+  startScenario,
+  type Campaign,
+  type CampaignInvestigator,
+  type DeckKey,
+  type PurchaseOption,
+  type ScenarioResult,
+} from './campaign'
+export {
   STARTER_DECKS,
   code as coreCode,
+  investigatorSetup,
   playerCards,
+  starterDeck,
   starterInvestigator,
 } from './core-2026/player-cards'
 // Comportamiento de investigadores, cartas y debilidades (se registran al importarlos).
 import './core-2026/investigators'
 import './core-2026/cards'
 import './core-2026/weaknesses'
+import './core-2026/upgrades'

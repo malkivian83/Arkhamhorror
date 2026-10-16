@@ -70,7 +70,9 @@
     "chooseHeal": "What do you heal?",
     "chooseItem": "Choose the Item you play",
     "chooseLocation": "Choose a location",
-    "moveDamageTo": "Which card do you move it to?"
+    "moveDamageTo": "Which card do you move it to?",
+    "chooseTrauma": "Defeated by damage and horror at once: choose the trauma",
+    "chooseToken": "Choose which token to resolve (the other is ignored)"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -123,7 +125,11 @@
     "location": "{location}",
     "moveDamageTo": "To {card}",
     "discardForShroud": "Discard {card}: −1 shroud here until the end of the round",
-    "commitFrom": "{name} commits {card} (+{icons})"
+    "commitFrom": "{name} commits {card} (+{icons})",
+    "physicalTrauma": "Suffer 1 physical trauma",
+    "mentalTrauma": "Suffer 1 mental trauma",
+    "exhaustForDamage": "Exhaust {card}: +{n} damage",
+    "resolveToken": "Resolve the {token} token"
   },
   "phase": {
     "setup": "Setup",
@@ -165,7 +171,11 @@
     "jumpsuit": "Discard Jumpsuit: recover {card}",
     "revealToDraw": "Reveal {card}: draw {n} cards",
     "playCard": "Play {card}",
-    "necronomicon": "Willpower test (5) to discard The Necronomicon"
+    "necronomicon": "Willpower test (5) to discard The Necronomicon",
+    "searchTop": "{card}: search the top {n} cards of your deck",
+    "revealExtraToken": "{card}: reveal 2 tokens and choose one",
+    "retryTest": "{card}: retry the test with −2 shroud",
+    "fightWithHorror": "Fight {enemy} with {card} (+1 horror: +1 damage)"
   },
   "log": {
     "round": "Round {round}",
@@ -360,5 +370,46 @@
   "damageKind": {
     "damage": "damage",
     "horror": "horror"
+  },
+  "campaign": {
+    "title": "Campaign: Brethren of Ash",
+    "new": "New campaign",
+    "open": "View campaign",
+    "continue": "Continue the campaign",
+    "none": "There is no campaign in progress.",
+    "scenarios": "Scenarios",
+    "notes": "Campaign notes",
+    "noNotes": "No notes yet.",
+    "bagUnchanged": "No tokens added: the bag for the chosen difficulty.",
+    "investigators": "Investigators",
+    "xp": "Unspent experience",
+    "trauma": "Trauma",
+    "physical": "physical",
+    "mental": "mental",
+    "deck": "Deck",
+    "deckSize": "{n}/{size} cards",
+    "storyAssets": "Story assets",
+    "killed": "Killed: can no longer continue the campaign.",
+    "insane": "Insane: can no longer continue the campaign.",
+    "upgradeDeck": "Spend experience",
+    "closeShop": "Close",
+    "nothingToBuy": "Not enough experience for any card.",
+    "level": "Level {n}",
+    "upgradeOf": "upgrade of {card}",
+    "remove": "Card to remove…",
+    "buy": "Buy ({xp} XP)",
+    "notImplemented": "Not available yet",
+    "play": "Play {scenario}",
+    "comingSoon": "This scenario is not implemented yet.",
+    "resumeScenario": "Back to the current scenario",
+    "finished": "Campaign finished.",
+    "abandon": "Abandon the campaign",
+    "confirmAbandon": "Abandon the campaign? Its log will be lost.",
+    "confirmReplace": "A campaign is already in progress. Start another and lose the current one?",
+    "scenario": {
+      "spreading-flames": "Spreading Flames",
+      "smoke-and-mirrors": "Smoke and Mirrors",
+      "queen-of-ash": "Queen of Ash"
+    }
   }
 }

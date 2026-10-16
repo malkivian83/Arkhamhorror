@@ -1,7 +1,9 @@
+import { playerCardBehavior } from './content'
 import { EngineError } from './errors'
 import { shuffle, seedRng } from './rng'
 import type {
   Act,
+  CampaignLog,
   Agenda,
   CardCode,
   ChaosToken,
@@ -9,6 +11,7 @@ import type {
   EncounterCard,
   GameState,
   Investigator,
+  InvestigatorId,
   Location,
   LocationCard,
   LocationId,
@@ -50,6 +53,9 @@ export interface InvestigatorSetup {
   sanity: number
   elderSignModifier?: number
   deck: CardCode[]
+  /** En campaña: cada trauma físico/mental empieza el escenario como 1 daño/horror. */
+  physicalTrauma?: number
+  mentalTrauma?: number
 }
 
 export interface NewGameOptions {
@@ -59,6 +65,8 @@ export interface NewGameOptions {
   interactive?: boolean
   scenario: ScenarioDefinition
   investigators: InvestigatorSetup[]
+  /** Registro de campaña del escenario anterior (o uno vacío al empezar). */
+  campaignLog?: CampaignLog
 }
 
 /**
@@ -68,12 +76,29 @@ export interface NewGameOptions {
  *
  * Pendiente: mulligan, debilidades durante la preparación, investigador jefe a elección.
  */
+/** Registro de campaña vacío para estos investigadores. */
+export function emptyCampaignLog(investigators: InvestigatorId[]): CampaignLog {
+  return {
+    notes: [],
+    crossedOut: [],
+    values: {},
+    chaosTokens: [],
+    investigators: Object.fromEntries(
+      investigators.map((id) => [
+        id,
+        { xp: 0, physicalTrauma: 0, mentalTrauma: 0, storyAssets: [] },
+      ]),
+    ),
+  }
+}
+
 export function prepareGame({
   seed,
   scenario,
   investigators,
   difficulty = 'standard',
   interactive = false,
+  campaignLog,
 }: NewGameOptions): GameState {
   if (investigators.length < 1 || investigators.length > 4) {
     throw new EngineError('Una partida admite de 1 a 4 investigadores')
@@ -89,9 +114,17 @@ export function prepareGame({
   }
 
   let rng = seedRng(seed)
+  // Las cartas permanentes no van en el mazo: empiezan en juego.
+  const permanents = (setup: InvestigatorSetup) =>
+    setup.deck.filter((code) => playerCardBehavior(code)?.permanent)
+  const bonus = (setup: InvestigatorSetup, key: 'openingHand' | 'resources') =>
+    permanents(setup).reduce((n, code) => n + (playerCardBehavior(code)?.permanent?.[key] ?? 0), 0)
   const players: Investigator[] = investigators.map((setup) => {
     let deck: CardCode[]
-    ;[deck, rng] = shuffle(setup.deck, rng)
+    ;[deck, rng] = shuffle(
+      setup.deck.filter((code) => !playerCardBehavior(code)?.permanent),
+      rng,
+    )
     return {
       id: setup.id,
       name: setup.name,
@@ -99,8 +132,8 @@ export function prepareGame({
       health: setup.health,
       sanity: setup.sanity,
       elderSignModifier: setup.elderSignModifier ?? 0,
-      damage: 0,
-      horror: 0,
+      damage: setup.physicalTrauma ?? 0,
+      horror: setup.mentalTrauma ?? 0,
       resources: 0,
       clues: 0,
       location: null,
@@ -124,9 +157,19 @@ export function prepareGame({
 
   const setupMessages: Message[] = [
     ...(interactive && scenario.intro ? [{ type: 'Story', entry: scenario.intro } as Message] : []),
-    ...players.flatMap((p): Message[] => [
-      { type: 'GainResources', investigator: p.id, amount: 5 },
-      { type: 'DrawCards', investigator: p.id, amount: 5, opening: true },
+    ...investigators.flatMap((setup): Message[] => [
+      ...permanents(setup).map((code): Message => ({
+        type: 'PutAssetIntoPlay',
+        investigator: setup.id,
+        code,
+      })),
+      { type: 'GainResources', investigator: setup.id, amount: 5 + bonus(setup, 'resources') },
+      {
+        type: 'DrawCards',
+        investigator: setup.id,
+        amount: 5 + bonus(setup, 'openingHand'),
+        opening: true,
+      },
     ]),
     ...players.map((p): Message => ({
       type: 'MoveTo',
@@ -162,6 +205,8 @@ export function prepareGame({
     surgePending: false,
     encounterDiscard: [],
     victoryDisplay: [],
+    victoryPoints: 0,
+    campaignLog: campaignLog ?? emptyCampaignLog(investigators.map((i) => i.id)),
     setAsideLocations: Object.fromEntries((scenario.setAsideLocations ?? []).map((l) => [l.id, l])),
     abilityUses: [],
     assets: {},

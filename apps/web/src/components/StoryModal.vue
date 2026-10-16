@@ -40,6 +40,12 @@ function newGame() {
   game.quit()
   void router.push('/')
 }
+
+/** En campaña: guarda el resultado y pasa al registro de campaña. */
+function toCampaign() {
+  game.closeScenario()
+  void router.push('/campaign')
+}
 </script>
 
 <template>
@@ -82,7 +88,10 @@ function newGame() {
         }}
       </p>
       <div class="options">
-        <button type="button" @click="newGame">{{ t('table.newGame') }}</button>
+        <button v-if="game.campaign" type="button" @click="toCampaign">
+          {{ t('campaign.continue') }}
+        </button>
+        <button v-else type="button" @click="newGame">{{ t('table.newGame') }}</button>
         <button type="button" class="secondary" @click="endDismissed = true">
           {{ t('table.viewTable') }}
         </button>

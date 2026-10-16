@@ -282,8 +282,20 @@ export type SkillTestKind =
       onSuccess?: Message[]
       /** Si se supera por al menos `atLeast`. */
       onSuccessBy?: { atLeast: number; then: Message[] }
+      onFail?: Message[]
     }
-  | { type: 'fight'; enemy: EnemyId; extraDamage?: number; onSuccess?: Message[] }
+  | {
+      type: 'fight'
+      enemy: EnemyId
+      extraDamage?: number
+      onSuccess?: Message[]
+      /** Si este ataque derrota al enemigo. */
+      onDefeat?: Message[]
+      /** +1 daño por cada punto por el que se supera, hasta este máximo (Winchester). */
+      bonusPerSuccess?: number
+      /** Al fallar contra un enemigo enfrentado con otro: 1 daño por punto fallado, hasta este máximo. */
+      failDamagePerPoint?: number
+    }
   | { type: 'evade'; enemy: EnemyId; onSuccess?: Message[]; onFail?: Message[] }
   | {
       /** Prueba exigida por un efecto (traición, plan…). */
@@ -336,6 +348,12 @@ export interface SkillTest {
   tokenOnFailBy: { atLeast: number; then: Message[] }[]
   modifiedSkill: number | null
   succeeded: boolean | null
+  /** Al revelar, se sacan 2 fichas y este investigador elige cuál resolver (Mask of Silenus). */
+  chooseToken?: InvestigatorId
+  /** Fichas sacadas pero ignoradas: vuelven a la bolsa al terminar la prueba. */
+  ignoredTokens?: ChaosToken[]
+  /** La prueba tiene éxito por 0 pase lo que pase (Scrape By). */
+  forcedSuccess?: boolean
 }
 
 // ---------------------------------------------------------------------------
@@ -406,7 +424,30 @@ export type Message =
   | { type: 'SpendUses'; asset: AssetId; amount: number }
   | { type: 'AssignDamage'; investigator: InvestigatorId; damage: number; horror: number }
   | { type: 'DamageAsset'; asset: AssetId; damage: number; horror: number }
-  | { type: 'RevealChaosToken' }
+  /** Revela una ficha; con `token`, resuelve esa ficha ya sacada (e ignora `ignored`). */
+  | { type: 'RevealChaosToken'; token?: ChaosToken; ignored?: ChaosToken }
+  /** La próxima ficha se revela de dos en dos y se elige una (Mask of Silenus). */
+  | { type: 'RevealExtraToken'; investigator: InvestigatorId }
+  /** La prueba en curso tiene éxito por 0 (Scrape By). */
+  | { type: 'ForceSkillTestSuccess' }
+  /** Las demás cartas comprometidas vuelven a la mano de sus dueños (On the Brink). */
+  | { type: 'ReturnCommittedToHand'; except: CardCode }
+  /** Si en la prueba en curso se ha revelado alguna ficha con símbolo. */
+  | { type: 'IfSymbolRevealed'; then: Message[] }
+  /** Si el enemigo ya no está en juego (lo ha derrotado el ataque). */
+  | { type: 'IfEnemyDefeated'; enemy: EnemyId; then: Message[] }
+  /** Elige un enemigo de tu localización al resolverse y le hace daño. */
+  | { type: 'ChooseEnemyToDamage'; investigator: InvestigatorId; amount: number }
+  /** Cancela el ataque de este enemigo que se está resolviendo (Counterattack). */
+  | { type: 'CancelEnemyAttack'; enemy: EnemyId }
+  | {
+      type: 'ResolveEnemyAttack'
+      enemy: EnemyId
+      investigator: InvestigatorId
+      exhaustAfter: boolean
+    }
+  /** Mira las `top` primeras de tu mazo, roba `picks` y el resto va al fondo (Unbridled Knowledge). */
+  | { type: 'ChooseFromTop'; investigator: InvestigatorId; top: number; picks: number }
   | { type: 'ResolveSkillTest' }
   | { type: 'EndSkillTest' }
   | { type: 'EngageEnemy'; enemy: EnemyId; investigator: InvestigatorId }
@@ -491,6 +532,20 @@ export type Message =
   | { type: 'EndScenario'; outcome: ScenarioOutcome; told?: boolean }
   /** Texto de historia para leer; el investigador jefe lo cierra o elige una opción. */
   | { type: 'Story'; entry: StoryEntry; choices?: Choice[] }
+  // ----- Registro de campaña -----
+  | { type: 'RecordNote'; note: string; value?: string }
+  | { type: 'CrossOutNote'; note: string }
+  /** Cada investigador (o solo uno) gana experiencia; con `victory`, más la zona de victoria. */
+  | { type: 'EarnExperience'; amount: number; victory?: boolean; investigator?: InvestigatorId }
+  /** Trauma para cada investigador (o solo uno). */
+  | {
+      type: 'SufferTrauma'
+      physical?: number
+      mental?: number
+      investigator?: InvestigatorId
+    }
+  | { type: 'AddStoryAsset'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'AddChaosTokens'; tokens: ChaosToken[] }
   | { type: 'Ask'; investigator: InvestigatorId; question: Question }
   // ----- Cartas de jugador -----
   /** Ventana de reacciones a `trigger` (una por investigador, hasta que pasen). */
@@ -518,6 +573,10 @@ export type Message =
       traits: string[]
       to: 'hand' | 'play'
       discount?: number
+      /** Cualquier carta, no solo apoyos con esos rasgos (Mysterious Grimoire). */
+      anyCard?: boolean
+      /** Las debilidades buscadas también se roban. */
+      drawWeaknesses?: boolean
     }
   | {
       type: 'TakeFromDeck'
@@ -531,7 +590,7 @@ export type Message =
   | { type: 'SearchEncounterForEnemy'; investigator: InvestigatorId; top: number }
   | { type: 'DisengageAll'; investigator: InvestigatorId }
   /** El investigador elige una localización conectada a la que moverse. */
-  | { type: 'ChooseMove'; investigator: InvestigatorId; revealedOnly?: boolean }
+  | { type: 'ChooseMove'; investigator: InvestigatorId; revealedOnly?: boolean; range?: number }
   | { type: 'AtEndOfTurn'; investigator: InvestigatorId; then: Message[] }
   /** Premonition: sella una ficha al azar de la bolsa. */
   | { type: 'SealToken'; investigator: InvestigatorId; code: CardCode }
@@ -558,6 +617,8 @@ export type Trigger =
   | { type: 'afterEnemyPhaseAttack'; enemy: EnemyId; investigator: InvestigatorId }
   | { type: 'afterDoomPlaced' }
   | { type: 'afterEnemyAttack'; enemy: EnemyId; investigator: InvestigatorId }
+  /** Un enemigo va a atacar (antes de resolver el ataque). */
+  | { type: 'whenEnemyAttacks'; enemy: EnemyId; investigator: InvestigatorId }
   | {
       type: 'afterSkillTest'
       investigator: InvestigatorId
@@ -665,6 +726,32 @@ export interface PlayerInput {
   choice: number
 }
 
+/** Lo que cada investigador lleva de un escenario a otro (registro de campaña). */
+export interface InvestigatorRecord {
+  /** Experiencia sin gastar. */
+  xp: number
+  physicalTrauma: number
+  mentalTrauma: number
+  /** Muerto o enloquecido: no puede seguir en la campaña. */
+  killed?: boolean
+  insane?: boolean
+  /** Apoyos de historia ganados (se añaden al mazo sin contar para su tamaño). */
+  storyAssets: CardCode[]
+}
+
+/** Registro de campaña (guía de campaña, página 15). */
+export interface CampaignLog {
+  /** Notas de campaña, por clave ("universityBurned"…). */
+  notes: string[]
+  /** Notas tachadas: se ignoran el resto de la campaña. */
+  crossedOut: string[]
+  /** Valores con nombre ("harbinger" → nombre del personaje). */
+  values: Record<string, string>
+  /** Fichas añadidas a la bolsa del caos durante la campaña. */
+  chaosTokens: ChaosToken[]
+  investigators: Record<InvestigatorId, InvestigatorRecord>
+}
+
 export type ScenarioOutcome = { type: 'resolution'; resolution: number } | { type: 'noResolution' }
 
 // ---------------------------------------------------------------------------
@@ -706,6 +793,10 @@ export interface GameState {
   /** La carta de encuentros que se está resolviendo ganó oleada. */
   surgePending: boolean
   victoryDisplay: CardCode[]
+  /** Suma de los valores de victoria de las cartas de la zona de victoria. */
+  victoryPoints?: number
+  /** Registro de campaña: llega del escenario anterior y los efectos de historia lo cambian. */
+  campaignLog?: CampaignLog
   /** Localizaciones apartadas que los efectos del escenario pueden poner en juego. */
   setAsideLocations: Record<LocationId, LocationCard>
   abilityUses: AbilityUse[]
@@ -713,6 +804,8 @@ export interface GameState {
   activeTurn?: InvestigatorId | null
   /** Ataques de enemigos (para "si este enemigo te ha atacado esta ronda"). */
   enemyAttacks?: { enemy: EnemyId; investigator: InvestigatorId; round: number }[]
+  /** Ataque cancelado que aún no se ha resuelto. */
+  canceledAttack?: EnemyId | null
   /** Efectos pendientes "al final de tu turno". */
   endOfTurn?: { investigator: InvestigatorId; then: Message[] }[]
   /** Fichas selladas sobre cartas (Premonition). */

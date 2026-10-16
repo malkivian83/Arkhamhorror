@@ -43,9 +43,11 @@ import {
   updateInvestigator,
   updateLocation,
 } from './state'
+import { emptyCampaignLog } from './setup'
 import type {
   Action,
   Asset,
+  CampaignLog,
   ChaosToken,
   Choice,
   LabelParams,
@@ -55,6 +57,8 @@ import type {
   EnemyCard,
   GameState,
   Investigator,
+  InvestigatorId,
+  InvestigatorRecord,
   Message,
   Prey,
   ReactionOption,
@@ -895,7 +899,7 @@ export function handle(state: GameState, message: Message): GameState {
       const full = (def.slots ?? []).find(
         (slot) =>
           slotsUsed(state, message.investigator, slot) + count(def.slots ?? [], slot) >
-          SLOT_CAPACITY[slot],
+          slotCapacity(state, message.investigator, slot),
       )
       if (full) {
         const occupying = Object.values(state.assets).filter(
@@ -1080,12 +1084,85 @@ export function handle(state: GameState, message: Message): GameState {
     case 'CheckDefeat': {
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.eliminated) return state
-      const defeated =
-        investigator.damage >= investigator.health || investigator.horror >= investigator.sanity
-      return defeated
-        ? push(state, { type: 'EliminateInvestigator', investigator: investigator.id })
-        : state
+      const byDamage = investigator.damage >= investigator.health
+      const byHorror = investigator.horror >= investigator.sanity
+      if (!byDamage && !byHorror) return state
+      const eliminate: Message = { type: 'EliminateInvestigator', investigator: investigator.id }
+      // Reglamento, "Trauma": derrotado por daño → 1 trauma físico; por horror → 1 mental.
+      // Si es por ambos a la vez, el jugador elige cuál sufre.
+      if (byDamage && byHorror) {
+        const trauma = (kind: 'physical' | 'mental'): Choice => ({
+          label: `choice.${kind}Trauma`,
+          then: [{ type: 'SufferTrauma', investigator: investigator.id, [kind]: 1 }, eliminate],
+        })
+        return push(state, {
+          type: 'Ask',
+          investigator: investigator.id,
+          question: {
+            kind: 'chooseOne',
+            prompt: 'prompt.chooseTrauma',
+            choices: [trauma('physical'), trauma('mental')],
+          },
+        })
+      }
+      return push(
+        state,
+        {
+          type: 'SufferTrauma',
+          investigator: investigator.id,
+          ...(byDamage ? { physical: 1 } : { mental: 1 }),
+        },
+        eliminate,
+      )
     }
+
+    // ------------------------------------------------------------ Registro de campaña
+    case 'RecordNote':
+      return updateCampaignLog(state, (c) => ({
+        ...c,
+        notes: c.notes.includes(message.note) ? c.notes : [...c.notes, message.note],
+        values:
+          message.value === undefined ? c.values : { ...c.values, [message.note]: message.value },
+      }))
+
+    case 'CrossOutNote':
+      return updateCampaignLog(state, (c) => ({
+        ...c,
+        crossedOut: c.crossedOut.includes(message.note)
+          ? c.crossedOut
+          : [...c.crossedOut, message.note],
+      }))
+
+    case 'EarnExperience': {
+      const amount = message.amount + (message.victory ? (state.victoryPoints ?? 0) : 0)
+      return updateRecords(state, message.investigator, (r) => ({ ...r, xp: r.xp + amount }))
+    }
+
+    case 'SufferTrauma':
+      return updateRecords(state, message.investigator, (r, i) => {
+        const physicalTrauma = r.physicalTrauma + (message.physical ?? 0)
+        const mentalTrauma = r.mentalTrauma + (message.mental ?? 0)
+        // Trauma igual a la salud/cordura impresa: muerto/enloquecido.
+        return {
+          ...r,
+          physicalTrauma,
+          mentalTrauma,
+          ...(physicalTrauma >= i.health ? { killed: true } : {}),
+          ...(mentalTrauma >= i.sanity ? { insane: true } : {}),
+        }
+      })
+
+    case 'AddStoryAsset':
+      return updateRecords(state, message.investigator, (r) => ({
+        ...r,
+        storyAssets: [...r.storyAssets, message.code],
+      }))
+
+    case 'AddChaosTokens':
+      return updateCampaignLog(
+        { ...state, chaosBag: [...state.chaosBag, ...message.tokens] },
+        (c) => ({ ...c, chaosTokens: [...c.chaosTokens, ...message.tokens] }),
+      )
 
     case 'DefeatInvestigator':
       return push(state, { type: 'EliminateInvestigator', investigator: message.investigator })
@@ -1178,10 +1255,54 @@ export function handle(state: GameState, message: Message): GameState {
       const test = state.skillTest
       if (!test) throw new EngineError('No hay prueba de habilidad')
       // Premonition: se resuelve la ficha sellada en lugar de sacar una.
-      const [sealed, ...stillSealed] = state.sealed ?? []
-      if (!sealed && state.chaosBag.length === 0) return state
-      const [index, rng] = sealed ? [-1, state.rng] : nextInt(state.rng, state.chaosBag.length)
-      const token = sealed ? sealed.token : (state.chaosBag[index] as ChaosToken)
+      const [sealed, ...stillSealed] = message.token === undefined ? (state.sealed ?? []) : []
+      // Mask of Silenus: se sacan dos fichas y se elige cuál resolver.
+      if (
+        !sealed &&
+        message.token === undefined &&
+        test.chooseToken &&
+        state.chaosBag.length >= 2
+      ) {
+        const [first, rng1] = nextInt(state.rng, state.chaosBag.length)
+        const rest = state.chaosBag.filter((_, n) => n !== first)
+        const [second, rng2] = nextInt(rng1, rest.length)
+        const a = state.chaosBag[first] as ChaosToken
+        const b = rest[second] as ChaosToken
+        const chooser = test.chooseToken
+        const pick = (token: ChaosToken, ignored: ChaosToken): Choice => ({
+          label: 'choice.resolveToken',
+          params: { token: String(token) },
+          then: [
+            { type: 'RevealChaosToken', token, ignored },
+            ...(typeof token === 'string'
+              ? [{ type: 'TakeDamage', investigator: chooser, damage: 0, horror: 1 } as Message]
+              : []),
+          ],
+        })
+        return push(
+          {
+            ...state,
+            rng: rng2,
+            chaosBag: rest.filter((_, n) => n !== second),
+            skillTest: (({ chooseToken: _used, ...rest }) => rest)(test),
+          },
+          {
+            type: 'Ask',
+            investigator: chooser,
+            question: {
+              kind: 'chooseOne',
+              alwaysAsk: true,
+              prompt: 'prompt.chooseToken',
+              choices: [pick(a, b), pick(b, a)],
+            },
+          },
+        )
+      }
+      const chosen = message.token !== undefined
+      if (!sealed && !chosen && state.chaosBag.length === 0) return state
+      const [index, rng] =
+        sealed || chosen ? [-1, state.rng] : nextInt(state.rng, state.chaosBag.length)
+      const token = message.token ?? (sealed ? sealed.token : (state.chaosBag[index] as ChaosToken))
       const effect = resolveToken(state, token, test.investigator)
       const source = test.source ? state.assets[test.source] : undefined
       const onReveal = source
@@ -1196,9 +1317,12 @@ export function handle(state: GameState, message: Message): GameState {
       const next: GameState = {
         ...unsealed,
         rng,
-        chaosBag: sealed ? state.chaosBag : state.chaosBag.filter((_, n) => n !== index),
+        chaosBag: sealed || chosen ? state.chaosBag : state.chaosBag.filter((_, n) => n !== index),
         skillTest: {
           ...test,
+          ...(message.ignored !== undefined
+            ? { ignoredTokens: [...(test.ignoredTokens ?? []), message.ignored] }
+            : {}),
           tokens: [...test.tokens, token],
           tokenModifier: test.tokenModifier + effect.modifier,
           autoFail: test.autoFail || token === 'autoFail',
@@ -1223,10 +1347,12 @@ export function handle(state: GameState, message: Message): GameState {
       if (!test || test.tokens.length === 0) throw new EngineError('Prueba sin ficha revelada')
       const investigator = getInvestigator(state, test.investigator)
       // RR "Skills and Skill Tests": la ficha de fallo automático deja el valor en 0.
-      const modifiedSkill = test.autoFail
-        ? 0
-        : Math.max(0, skillTestValue(state).total + test.tokenModifier)
-      const succeeded = !test.autoFail && modifiedSkill >= test.difficulty
+      const modifiedSkill = test.forcedSuccess
+        ? test.difficulty
+        : test.autoFail
+          ? 0
+          : Math.max(0, skillTestValue(state).total + test.tokenModifier)
+      const succeeded = !!test.forcedSuccess || (!test.autoFail && modifiedSkill >= test.difficulty)
       const next = log(
         { ...state, skillTest: { ...test, modifiedSkill, succeeded } },
         succeeded ? 'log.testSuccess' : 'log.testFailure',
@@ -1282,7 +1408,7 @@ export function handle(state: GameState, message: Message): GameState {
       // RR paso 8: las fichas reveladas vuelven a la bolsa.
       // Las cartas comprometidas van a la pila de descartes de su dueño.
       const test = state.skillTest
-      const tokens = test?.tokens ?? []
+      const tokens = [...(test?.tokens ?? []), ...(test?.ignoredTokens ?? [])]
       let next: GameState = { ...state, skillTest: null, chaosBag: [...state.chaosBag, ...tokens] }
       const reshuffle: Message[] = []
       for (const c of test?.committed ?? []) {
@@ -1385,16 +1511,135 @@ export function handle(state: GameState, message: Message): GameState {
         : []
       return push(
         next,
+        // Ventana para cancelar el ataque antes de resolverlo (Counterattack).
+        {
+          type: 'Reactions',
+          trigger: { type: 'whenEnemyAttacks', enemy: enemy.id, investigator: investigator.id },
+        },
+        {
+          type: 'ResolveEnemyAttack',
+          enemy: enemy.id,
+          investigator: investigator.id,
+          exhaustAfter: message.exhaustAfter,
+        },
+        ...after,
+      )
+    }
+
+    case 'RevealExtraToken':
+      return state.skillTest
+        ? { ...state, skillTest: { ...state.skillTest, chooseToken: message.investigator } }
+        : state
+
+    case 'ForceSkillTestSuccess':
+      return state.skillTest
+        ? { ...state, skillTest: { ...state.skillTest, forcedSuccess: true } }
+        : state
+
+    case 'ReturnCommittedToHand': {
+      const test = state.skillTest
+      if (!test) return state
+      const back = test.committed.filter((c) => c.code !== message.except && !c.fromDiscard)
+      let next: GameState = {
+        ...state,
+        skillTest: { ...test, committed: test.committed.filter((c) => !back.includes(c)) },
+      }
+      for (const c of back) {
+        next = updateInvestigator(next, c.by, (i) => ({ ...i, hand: [...i.hand, c.code] }))
+      }
+      return next
+    }
+
+    case 'IfSymbolRevealed':
+      return state.skillTest?.tokens.some((t) => typeof t === 'string')
+        ? push(state, ...message.then)
+        : state
+
+    case 'IfEnemyDefeated':
+      return state.enemies[message.enemy] ? state : push(state, ...message.then)
+
+    case 'ChooseFromTop': {
+      const investigator = getInvestigator(state, message.investigator)
+      const top = investigator.deck.slice(0, message.top)
+      if (message.picks <= 0 || top.length === 0) {
+        // El resto de las cartas miradas va al fondo del mazo.
+        return updateInvestigator(state, investigator.id, (i) => ({
+          ...i,
+          deck: [...i.deck.slice(top.length), ...top],
+        }))
+      }
+      return push(state, {
+        type: 'Ask',
+        investigator: investigator.id,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.searchToHand',
+          choices: [...new Set(top)].map((code): Choice => ({
+            label: 'choice.takeCard',
+            params: { card: playerCardDef(code)?.name ?? code },
+            then: [
+              { type: 'TakeFromDeck', investigator: investigator.id, code, to: 'hand' },
+              {
+                type: 'ChooseFromTop',
+                investigator: investigator.id,
+                top: top.length - 1,
+                picks: message.picks - 1,
+              },
+            ],
+          })),
+        },
+      })
+    }
+
+    case 'ChooseEnemyToDamage': {
+      const here = getInvestigator(state, message.investigator).location
+      const enemies = here === null ? [] : enemiesAt(state, here)
+      if (enemies.length === 0) return state
+      return push(state, {
+        type: 'Ask',
+        investigator: message.investigator,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.chooseEnemy',
+          choices: enemies.map((e): Choice => ({
+            label: 'choice.enemy',
+            params: { enemy: e.name },
+            target: { type: 'enemy', id: e.id },
+            then: [
+              {
+                type: 'DamageEnemy',
+                enemy: e.id,
+                amount: message.amount,
+                by: message.investigator,
+              },
+            ],
+          })),
+        },
+      })
+    }
+
+    case 'CancelEnemyAttack':
+      return { ...state, canceledAttack: message.enemy }
+
+    case 'ResolveEnemyAttack': {
+      if (state.canceledAttack === message.enemy) return { ...state, canceledAttack: null }
+      const enemy = findEnemy(state, message.enemy)
+      if (!enemy) return state
+      return push(
+        state,
         {
           type: 'TakeDamage',
-          investigator: investigator.id,
+          investigator: message.investigator,
           damage: enemy.damage,
           horror: enemy.horror,
         },
-        ...after,
         {
           type: 'Forced',
-          trigger: { type: 'afterEnemyAttack', enemy: enemy.id, investigator: investigator.id },
+          trigger: {
+            type: 'afterEnemyAttack',
+            enemy: enemy.id,
+            investigator: message.investigator,
+          },
         },
       )
     }
@@ -1424,7 +1669,11 @@ export function handle(state: GameState, message: Message): GameState {
       const next = enemy.owner
         ? toOwnerDiscard(removed, enemy.owner, enemy.code)
         : enemy.victory !== undefined
-          ? { ...removed, victoryDisplay: [...removed.victoryDisplay, enemy.code] }
+          ? {
+              ...removed,
+              victoryDisplay: [...removed.victoryDisplay, enemy.code],
+              victoryPoints: (removed.victoryPoints ?? 0) + enemy.victory,
+            }
           : { ...removed, encounterDiscard: [...removed.encounterDiscard, enemyCard(enemy)] }
       // RR "Doomed": al ser derrotado (no descartado), 1 perdición en el plan.
       const doomed: Message[] = enemy.keywords.includes('doomed')
@@ -1952,7 +2201,19 @@ export function handle(state: GameState, message: Message): GameState {
       const late = [...new Set(investigator.hand)].filter(
         (code) => playerCardBehavior(code)?.commitAfterReveal && canCommit(test, code),
       )
-      if (late.length === 0) return state
+      // Va a fallar, y no por la ficha de fallo automático.
+      const failing =
+        !test.autoFail &&
+        !test.forcedSuccess &&
+        skillTestValue(state).total + test.tokenModifier < test.difficulty
+      const saves = failing
+        ? [...new Set(investigator.hand)].filter(
+            (code) =>
+              playerCardBehavior(code)?.playWhenFailing &&
+              (playerCardDef(code)?.cost ?? 0) <= investigator.resources,
+          )
+        : []
+      if (late.length === 0 && saves.length === 0) return state
       return push(state, {
         type: 'Ask',
         investigator: investigator.id,
@@ -1969,6 +2230,12 @@ export function handle(state: GameState, message: Message): GameState {
               },
               target: { type: 'hand', code },
               then: [{ type: 'CommitCard', investigator: investigator.id, code }],
+            })),
+            ...saves.map((code): Choice => ({
+              label: 'ability.playCard',
+              params: { card: playerCardDef(code)?.name ?? code },
+              target: { type: 'hand', code },
+              then: [{ type: 'PlayCard', investigator: investigator.id, code }],
             })),
             { label: 'choice.skip', then: [] },
           ],
@@ -2053,8 +2320,25 @@ export function handle(state: GameState, message: Message): GameState {
           shuffleDeck,
         )
       }
+      // Mysterious Grimoire: las debilidades entre las cartas buscadas también se roban.
+      const weaknesses = message.drawWeaknesses
+        ? searched.filter((code) => playerCardDef(code)?.weakness)
+        : []
+      if (weaknesses.length) {
+        const drawn = updateInvestigator(state, investigator.id, (i) => {
+          const deck = [...i.deck]
+          for (const w of weaknesses) deck.splice(deck.indexOf(w), 1)
+          return { ...i, deck, hand: [...i.hand, ...weaknesses] }
+        })
+        return push(drawn, {
+          ...message,
+          drawWeaknesses: false,
+          top: (message.top ?? 0) - weaknesses.length,
+        })
+      }
       const matches = [...new Set(searched)].filter((code) => {
         const def = playerCardDef(code)
+        if (message.anyCard) return !!def && !def.weakness
         if (!def || def.type !== 'asset') return false
         if (!def.traits.some((t) => message.traits.includes(t))) return false
         if (message.to === 'play') {
@@ -2140,7 +2424,7 @@ export function handle(state: GameState, message: Message): GameState {
     case 'ChooseMove': {
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.location === null) return state
-      const options = getLocation(state, investigator.location).connections.filter(
+      const options = withinConnections(state, investigator.location, message.range ?? 1).filter(
         (to) => state.locations[to] && (!message.revealedOnly || state.locations[to]?.revealed),
       )
       if (options.length === 0) return state
@@ -2577,25 +2861,31 @@ function skillTestResults(state: GameState, succeeded: boolean, failBy: number):
               ? kind.onSuccessBy.then
               : []),
           ]
-        : []
+        : (kind.onFail ?? [])
     case 'fight': {
       const enemy = findEnemy(state, kind.enemy)
       if (!enemy) return []
       if (succeeded) {
+        const bonus = Math.min(kind.bonusPerSuccess ?? 0, Math.max(0, margin(state)))
         return [
           {
             type: 'DamageEnemy',
             enemy: enemy.id,
-            amount: 1 + (kind.extraDamage ?? 0),
+            amount: 1 + (kind.extraDamage ?? 0) + bonus,
             by: investigator,
           },
           ...(kind.onSuccess ?? []),
+          ...(kind.onDefeat?.length
+            ? [{ type: 'IfEnemyDefeated', enemy: enemy.id, then: kind.onDefeat } as Message]
+            : []),
         ]
       }
       const results: Message[] = []
       // RR "Fight": al fallar contra un enemigo enfrentado con otro, el daño va a ese investigador.
       if (enemy.engagedWith !== null && enemy.engagedWith !== investigator) {
-        results.push({ type: 'TakeDamage', investigator: enemy.engagedWith, damage: 1, horror: 0 })
+        const damage =
+          kind.failDamagePerPoint !== undefined ? Math.min(kind.failDamagePerPoint, failBy) : 1
+        results.push({ type: 'TakeDamage', investigator: enemy.engagedWith, damage, horror: 0 })
       }
       if (enemy.keywords.includes('retaliate') && !enemy.exhausted) {
         results.push({ type: 'EnemyAttack', enemy: enemy.id, investigator, exhaustAfter: false })
@@ -2621,6 +2911,28 @@ function skillTestResults(state: GameState, succeeded: boolean, failBy: number):
   }
 }
 
+function updateCampaignLog(state: GameState, update: (log: CampaignLog) => CampaignLog): GameState {
+  const current = state.campaignLog ?? emptyCampaignLog(state.investigators.map((i) => i.id))
+  return { ...state, campaignLog: update(current) }
+}
+
+/** Cambia el registro de un investigador o, sin `investigator`, el de todos los de la partida. */
+function updateRecords(
+  state: GameState,
+  investigator: InvestigatorId | undefined,
+  update: (record: InvestigatorRecord, investigator: Investigator) => InvestigatorRecord,
+): GameState {
+  return updateCampaignLog(state, (c) => {
+    const records = { ...c.investigators }
+    for (const i of state.investigators) {
+      if (investigator !== undefined && i.id !== investigator) continue
+      const record = records[i.id] ?? { xp: 0, physicalTrauma: 0, mentalTrauma: 0, storyAssets: [] }
+      records[i.id] = update(record, i)
+    }
+    return { ...c, investigators: records }
+  })
+}
+
 /** Al final de la ronda caducan los efectos "hasta el final de la ronda". */
 function clearRoundModifiers(state: GameState): GameState {
   const locations = Object.fromEntries(
@@ -2640,6 +2952,34 @@ export const SLOT_CAPACITY: Record<SlotType, number> = {
   body: 1,
   ally: 1,
   head: 1,
+}
+
+/** Localizaciones a 1..`range` conexiones de `from` (sin contar `from`). */
+function withinConnections(state: GameState, from: string, range: number): string[] {
+  const seen = new Set([from])
+  let frontier = [from]
+  for (let step = 0; step < range; step++) {
+    frontier = frontier
+      .flatMap((id) => state.locations[id]?.connections ?? [])
+      .filter((id) => !seen.has(id) && state.locations[id])
+    for (const id of frontier) seen.add(id)
+  }
+  seen.delete(from)
+  return [...seen]
+}
+
+/** Ranuras de un tipo que tiene un investigador: las básicas más las de sus cartas permanentes. */
+export function slotCapacity(
+  state: GameState,
+  investigator: InvestigatorId,
+  slot: SlotType,
+): number {
+  return Object.values(state.assets)
+    .filter((a) => a.owner === investigator)
+    .reduce(
+      (total, a) => total + (playerCardBehavior(a.code)?.permanent?.slots?.[slot] ?? 0),
+      SLOT_CAPACITY[slot],
+    )
 }
 
 const count = <T>(items: T[], item: T) => items.filter((x) => x === item).length

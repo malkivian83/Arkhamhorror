@@ -28,6 +28,7 @@ import type {
   TokenEffect,
   Treachery,
   Trigger,
+  SlotType,
 } from './types'
 
 export type ScenarioSymbol = Exclude<ChaosSymbol, 'elderSign' | 'autoFail'>
@@ -186,6 +187,17 @@ export interface PlayerCardBehavior {
   onTokenRevealed?: (state: GameState, token: ChaosToken, self: Asset) => Message[]
   /** Se puede comprometer después de revelar las fichas (Timely Intervention). */
   commitAfterReveal?: boolean
+  /** Evento que se juega cuando vas a fallar una prueba (Scrape By); su efecto es `play`. */
+  playWhenFailing?: boolean
+  /**
+   * Permanente: empieza en juego (fuera del mazo) y da estas ventajas al
+   * empezar la partida: cartas extra en la mano inicial, recursos y ranuras.
+   */
+  permanent?: {
+    openingHand?: number
+    resources?: number
+    slots?: Partial<Record<SlotType, number>>
+  }
   /** Coste adicional al comprometerla. */
   onCommit?: (state: GameState, by: InvestigatorId) => Message[]
   /** Aumenta el tamaño máximo de mano de su controlador. */

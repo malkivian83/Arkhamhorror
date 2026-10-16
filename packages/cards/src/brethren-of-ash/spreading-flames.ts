@@ -20,6 +20,7 @@ import {
   registerAgenda,
   registerEnemy,
   registerLocation,
+  registerPlayerCards,
   registerScenario,
   registerTreachery,
   withinLimit,
@@ -38,6 +39,23 @@ import {
 import { CHAOS_BAGS, type Difficulty } from './campaign'
 
 export const SPREADING_FLAMES = 'spreading-flames'
+
+/** Apoyo de historia Dr. Henry Armitage (lo gana un investigador en la resolución 1). */
+export const DR_ARMITAGE = '12115'
+registerPlayerCards([
+  {
+    code: DR_ARMITAGE,
+    name: 'Dr. Henry Armitage',
+    type: 'asset',
+    class: 'neutral',
+    traits: ['Ally', 'Miskatonic'],
+    unique: true,
+    cost: 3,
+    slots: ['ally'],
+    health: 3,
+    sanity: 3,
+  },
+])
 
 export const CODES = {
   pastCurfew: '12106',
@@ -331,6 +349,15 @@ const PROCEED = {
 const MENTAL_TRAUMA = { key: 'story.effect.mentalTrauma' }
 const xp = (bonus: number) => ({ key: 'story.effect.experience', params: { bonus } })
 
+// Efectos en el registro de campaña (lo que el texto de historia anuncia).
+const record = (key: string): Message => ({ type: 'RecordNote', note: key })
+const experience = (bonus: number, victory = false): Message => ({
+  type: 'EarnExperience',
+  amount: bonus,
+  ...(victory ? { victory } : {}),
+})
+const mentalTrauma: Message = { type: 'SufferTrauma', mental: 1 }
+
 const end = (resolution: number): Message => ({
   type: 'EndScenario',
   outcome: { type: 'resolution', resolution },
@@ -345,6 +372,9 @@ function resolutionStory(state: GameState, outcome: ScenarioOutcome): Message[] 
         type: 'Story',
         entry: entry('noResolution', [note('universityBurned'), MENTAL_TRAUMA, xp(2), PROCEED]),
       },
+      record('universityBurned'),
+      mentalTrauma,
+      experience(2, true),
       { type: 'EndScenario', outcome, told: true },
     ]
   }
@@ -354,7 +384,10 @@ function resolutionStory(state: GameState, outcome: ScenarioOutcome): Message[] 
     choices: state.investigators.map((i) => ({
       label: 'choice.investigator',
       params: { name: i.name },
-      then: [{ type: 'Log', key: 'log.armitageBearer', params: { name: i.name } }],
+      then: [
+        { type: 'AddStoryAsset', investigator: i.id, code: DR_ARMITAGE },
+        { type: 'Log', key: 'log.armitageBearer', params: { name: i.name } },
+      ],
     })),
   }
   return [
@@ -366,6 +399,8 @@ function resolutionStory(state: GameState, outcome: ScenarioOutcome): Message[] 
         xp(3),
       ]),
     },
+    record('defeatedPursuer'),
+    experience(3, true),
     bearer,
     {
       type: 'Story',
@@ -382,6 +417,9 @@ function resolutionStory(state: GameState, outcome: ScenarioOutcome): Message[] 
                 PROCEED,
               ]),
             },
+            record('savedUniversity'),
+            experience(1),
+            { type: 'SufferTrauma', physical: 1 },
             end(2),
           ],
         },
@@ -392,6 +430,8 @@ function resolutionStory(state: GameState, outcome: ScenarioOutcome): Message[] 
               type: 'Story',
               entry: entry('resolution3', [note('universityBurned'), MENTAL_TRAUMA, PROCEED]),
             },
+            record('universityBurned'),
+            mentalTrauma,
             end(3),
           ],
         },

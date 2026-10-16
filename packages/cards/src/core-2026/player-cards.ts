@@ -15,6 +15,7 @@ import {
   type Asset,
   type GameState,
   type InvestigatorId,
+  type CardCode,
   type InvestigatorSetup,
   type Message,
   type PlayerCardDef,
@@ -211,10 +212,26 @@ export const STARTER_DECKS: Record<string, DeckList> = {
 export function starterInvestigator(key: keyof typeof STARTER_DECKS): InvestigatorSetup {
   const list = STARTER_DECKS[key]
   if (!list) throw new Error(`Mazo desconocido: ${key}`)
-  const investigator = def(list.investigator) as PlayerCardDef & {
-    skills: Record<SkillType, number>
-    elderSignModifier?: number
-  }
+  return investigatorSetup(code(list.investigator), starterDeck(key))
+}
+
+/** Lista de cartas del mazo inicial (con sus debilidades). */
+export function starterDeck(key: keyof typeof STARTER_DECKS): CardCode[] {
+  const list = STARTER_DECKS[key]
+  if (!list) throw new Error(`Mazo desconocido: ${key}`)
+  return [
+    ...list.cards.flatMap(([position, copies = 1]) =>
+      Array.from({ length: copies }, () => code(position)),
+    ),
+    ...list.weaknesses.map(code),
+  ]
+}
+
+/** Investigador listo para empezar un escenario con este mazo. */
+export function investigatorSetup(investigatorCode: CardCode, deck: CardCode[]): InvestigatorSetup {
+  const investigator = playerCards.find((c) => c.code === investigatorCode) as
+    (PlayerCardDef & { skills: Record<SkillType, number>; elderSignModifier?: number }) | undefined
+  if (!investigator) throw new Error(`Investigador desconocido: ${investigatorCode}`)
   return {
     id: investigator.code,
     name: investigator.name,
@@ -222,12 +239,7 @@ export function starterInvestigator(key: keyof typeof STARTER_DECKS): Investigat
     health: investigator.health ?? 0,
     sanity: investigator.sanity ?? 0,
     elderSignModifier: investigator.elderSignModifier ?? 0,
-    deck: [
-      ...list.cards.flatMap(([position, copies = 1]) =>
-        Array.from({ length: copies }, () => code(position)),
-      ),
-      ...list.weaknesses.map(code),
-    ],
+    deck: [...deck],
   }
 }
 
@@ -249,6 +261,14 @@ export function attackable(state: GameState, investigator: InvestigatorId) {
 interface FightOptions {
   skill?: SkillType
   tags?: string[]
+  /** Acciones que cuesta (por defecto 1) y sufijo de la clave si el apoyo tiene varias. */
+  actions?: number
+  key?: string
+  /** Campos extra del ataque contra este enemigo (al derrotarlo, daño por margen…). */
+  attack?: (
+    asset: Asset,
+    enemyId: string,
+  ) => { onDefeat?: Message[]; bonusPerSuccess?: number; failDamagePerPoint?: number }
   modifier?: number | ((state: GameState, investigator: InvestigatorId) => number)
   extraDamage?: (state: GameState, investigator: InvestigatorId, enemyId: string) => number
   cost?: Message[]
@@ -266,11 +286,11 @@ export function fightAbility(position: number, options: FightOptions = {}) {
           ? options.modifier(state, investigator)
           : (options.modifier ?? 0)
       return {
-        key: `${self.id}:fight`,
+        key: `${self.id}:fight${options.key ?? ''}`,
         label: 'ability.fightWith',
         params: { card: name(position), enemy: enemy.name },
         target: { type: 'enemy', id: enemy.id },
-        actions: 1,
+        actions: options.actions ?? 1,
         provokes: false,
         then: [
           ...(options.cost ?? []).map((m) => ({ ...m, asset: self.id }) as Message),
@@ -287,6 +307,7 @@ export function fightAbility(position: number, options: FightOptions = {}) {
               enemy: enemy.id,
               extraDamage: options.extraDamage?.(state, investigator, enemy.id) ?? 0,
               onSuccess: options.onSuccess?.(self) ?? [],
+              ...options.attack?.(self, enemy.id),
             },
           },
         ],
@@ -299,6 +320,8 @@ interface InvestigateOptions {
   skills?: SkillType[]
   tags?: string[]
   modifier?: number
+  /** Cambio del velo de tu localización solo para esta investigación (Old Compass: −1). */
+  shroud?: number
   extraClues?: number
   cost?: (asset: Asset) => Message[]
   onSuccess?: Message[]
@@ -324,7 +347,7 @@ export function investigateAbility(position: number, options: InvestigateOptions
           type: 'BeginSkillTest',
           investigator,
           skill,
-          difficulty: shroudOf(state, here),
+          difficulty: Math.max(0, shroudOf(state, here) + (options.shroud ?? 0)),
           modifier: options.modifier ?? 0,
           source: self.id,
           ...(options.tags ? { tags: options.tags } : {}),

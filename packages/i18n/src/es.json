@@ -70,7 +70,9 @@
     "chooseHeal": "¿Qué curas?",
     "chooseItem": "Elige el Objeto que juegas",
     "chooseLocation": "Elige una localización",
-    "moveDamageTo": "¿A qué carta lo mueves?"
+    "moveDamageTo": "¿A qué carta lo mueves?",
+    "chooseTrauma": "Derrotado por daño y horror a la vez: elige el trauma",
+    "chooseToken": "Elige qué ficha resolver (la otra se ignora)"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -123,7 +125,11 @@
     "location": "{location}",
     "moveDamageTo": "A {card}",
     "discardForShroud": "Descartar {card}: −1 velo aquí hasta el final de la ronda",
-    "commitFrom": "{name} compromete {card} (+{icons})"
+    "commitFrom": "{name} compromete {card} (+{icons})",
+    "physicalTrauma": "Sufrir 1 trauma físico",
+    "mentalTrauma": "Sufrir 1 trauma mental",
+    "exhaustForDamage": "Agotar {card}: +{n} daño",
+    "resolveToken": "Resolver la ficha {token}"
   },
   "phase": {
     "setup": "Preparación",
@@ -165,7 +171,11 @@
     "jumpsuit": "Descartar Jumpsuit: recuperar {card}",
     "revealToDraw": "Revelar {card}: robar {n} cartas",
     "playCard": "Jugar {card}",
-    "necronomicon": "Prueba de Voluntad (5) para descartar The Necronomicon"
+    "necronomicon": "Prueba de Voluntad (5) para descartar The Necronomicon",
+    "searchTop": "{card}: buscar entre las {n} primeras de tu mazo",
+    "revealExtraToken": "{card}: revelar 2 fichas y elegir una",
+    "retryTest": "{card}: repetir la prueba con −2 al velo",
+    "fightWithHorror": "Luchar con {card} contra {enemy} (+1 horror: +1 daño)"
   },
   "log": {
     "round": "Ronda {round}",
@@ -360,5 +370,46 @@
   "damageKind": {
     "damage": "daño",
     "horror": "horror"
+  },
+  "campaign": {
+    "title": "Campaña: Brethren of Ash",
+    "new": "Nueva campaña",
+    "open": "Ver la campaña",
+    "continue": "Continuar la campaña",
+    "none": "No hay ninguna campaña en curso.",
+    "scenarios": "Escenarios",
+    "notes": "Notas de campaña",
+    "noNotes": "Aún no hay notas.",
+    "bagUnchanged": "Sin fichas añadidas: la de la dificultad elegida.",
+    "investigators": "Investigadores",
+    "xp": "Experiencia sin gastar",
+    "trauma": "Trauma",
+    "physical": "físico",
+    "mental": "mental",
+    "deck": "Mazo",
+    "deckSize": "{n}/{size} cartas",
+    "storyAssets": "Apoyos de historia",
+    "killed": "Muerto: ya no puede seguir en la campaña.",
+    "insane": "Enloquecido: ya no puede seguir en la campaña.",
+    "upgradeDeck": "Gastar experiencia",
+    "closeShop": "Cerrar",
+    "nothingToBuy": "No tiene experiencia suficiente para ninguna carta.",
+    "level": "Nivel {n}",
+    "upgradeOf": "mejora de {card}",
+    "remove": "Carta que sale…",
+    "buy": "Comprar ({xp} exp.)",
+    "notImplemented": "Aún no disponible",
+    "play": "Jugar {scenario}",
+    "comingSoon": "Este escenario aún no está implementado.",
+    "resumeScenario": "Volver al escenario en curso",
+    "finished": "Campaña terminada.",
+    "abandon": "Abandonar la campaña",
+    "confirmAbandon": "¿Abandonar la campaña? Se perderá su registro.",
+    "confirmReplace": "Ya hay una campaña en curso. ¿Empezar otra y perder la actual?",
+    "scenario": {
+      "spreading-flames": "Spreading Flames",
+      "smoke-and-mirrors": "Smoke and Mirrors",
+      "queen-of-ash": "Queen of Ash"
+    }
   }
 }

@@ -66,8 +66,9 @@ Estado detallado del motor: [08-motor.md](08-motor.md).
 
 ## Fase 4 · Campaña
 
-- [ ] Brethren of Ash completa: registro de campaña, experiencia, mejoras de mazo, traumas.
-- [ ] Niveles de dificultad (bolsas del caos).
+- [x] Registro de campaña, experiencia, traumas y mejoras de mazo (entre escenarios).
+- [ ] Brethren of Ash completa: escenarios II y III y las cartas de nivel 1–5.
+- [x] Niveles de dificultad (bolsas del caos).
 
 ## Fase 5 · Crecimiento
 

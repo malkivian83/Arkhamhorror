@@ -37,11 +37,13 @@ export {
   MAX_HAND_SIZE,
   previewToken,
   SLOT_CAPACITY,
+  slotCapacity,
   skillTestValue,
   successChance,
 } from './handlers'
 export * from './rng'
 export {
+  emptyCampaignLog,
   ENGINE_VERSION,
   type InvestigatorSetup,
   type LocationCard,

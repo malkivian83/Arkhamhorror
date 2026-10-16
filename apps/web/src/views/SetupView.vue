@@ -22,6 +22,7 @@ function toggle(key: DeckKey) {
 }
 
 function start() {
+  if (game.campaign && !window.confirm(t('campaign.confirmReplace'))) return
   game.start(chosen.value, difficulty.value)
   void router.push('/game')
 }
@@ -31,9 +32,12 @@ function start() {
   <section class="setup">
     <h2>Brethren of Ash · Spreading Flames</h2>
 
-    <div v-if="game.state" class="resume">
-      <button type="button" class="primary" @click="router.push('/game')">
+    <div v-if="game.state || game.campaign" class="resume">
+      <button v-if="game.state" type="button" class="primary" @click="router.push('/game')">
         {{ t('setup.continue') }}
+      </button>
+      <button v-if="game.campaign" type="button" @click="router.push('/campaign')">
+        {{ t('campaign.open') }}
       </button>
     </div>
 
@@ -70,7 +74,7 @@ function start() {
     </div>
 
     <button type="button" class="primary start" :disabled="chosen.length === 0" @click="start">
-      {{ t('table.newGame') }}
+      {{ t('campaign.new') }}
     </button>
   </section>
 </template>
