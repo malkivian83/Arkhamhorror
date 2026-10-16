@@ -1,8 +1,17 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { cardImage } from '../game/cards'
+import { cardImage, localScan } from '../game/cards'
+import { localizedCards, localName } from '../game/localized'
 import { zoomed } from '../game/zoom'
+import RenderedCard from './RenderedCard.vue'
 
+/**
+ * Una carta en la mesa. Orden de preferencia:
+ * 1. Escaneo propio en el idioma activo (si están activados).
+ * 2. Imagen oficial de ArkhamDB (no hay imágenes oficiales traducidas de esta caja).
+ * 3. Carta dibujada con los datos traducidos, si la imagen no carga.
+ * 4. Plantilla mínima con el nombre.
+ */
 const props = withDefaults(
   defineProps<{
     code: string
@@ -13,14 +22,22 @@ const props = withDefaults(
     exhausted?: boolean
     /** Color del marco de la plantilla si no hay imagen. */
     color?: string
-    /** Orientación horizontal (plan y acto). */
+    /** Orientación horizontal (plan, acto e investigador). */
     landscape?: boolean
+    /** Sin ampliación al pasar el ratón (la propia ampliación). */
+    noZoom?: boolean
   }>(),
-  { back: false, width: 110, exhausted: false, color: '#5a5f6b', landscape: false },
+  { back: false, width: 110, exhausted: false, color: '#5a5f6b', landscape: false, noZoom: false },
 )
 
-const failed = ref(false)
-const src = computed(() => (failed.value ? null : cardImage(props.code, props.back)))
+const scanFailed = ref(false)
+const imageFailed = ref(false)
+
+const scan = computed(() => (scanFailed.value ? null : localScan(props.code, props.back)))
+const localized = computed(() => localizedCards.value.get(props.code) ?? null)
+const src = computed(() => (imageFailed.value ? null : cardImage(props.code, props.back)))
+const displayName = computed(() => localized.value?.name ?? localName(props.name))
+
 const ratio = computed(() => (props.landscape ? 0.715 : 1.4))
 const style = computed(() => ({
   width: `${props.width}px`,
@@ -29,7 +46,10 @@ const style = computed(() => ({
 }))
 
 function hover(on: boolean) {
-  zoomed.value = on && src.value ? { src: src.value, alt: props.name } : null
+  if (props.noZoom) return
+  zoomed.value = on
+    ? { code: props.code, name: props.name, back: props.back, landscape: props.landscape }
+    : null
 }
 </script>
 
@@ -41,16 +61,24 @@ function hover(on: boolean) {
     @mouseenter="hover(true)"
     @mouseleave="hover(false)"
   >
+    <img v-if="scan" :src="scan" :alt="displayName" draggable="false" @error="scanFailed = true" />
     <img
-      v-if="src"
+      v-else-if="src"
       :src="src"
-      :alt="name"
+      :alt="displayName"
       loading="lazy"
       draggable="false"
-      @error="failed = true"
+      @error="imageFailed = true"
+    />
+    <RenderedCard
+      v-else-if="localized"
+      :card="localized"
+      :back="back"
+      :width="width"
+      :landscape="landscape"
     />
     <div v-else class="template">
-      <span>{{ name }}</span>
+      <span>{{ displayName }}</span>
     </div>
     <slot />
   </div>

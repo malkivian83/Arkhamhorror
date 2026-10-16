@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import CardZoom from '../components/CardZoom.vue'
 import LocationMap from '../components/LocationMap.vue'
 import PlayerArea from '../components/PlayerArea.vue'
 import ScenarioRow from '../components/ScenarioRow.vue'
 import SidePanel from '../components/SidePanel.vue'
-import { zoomed } from '../game/zoom'
+import SkillTestPanel from '../components/SkillTestPanel.vue'
+import { classColor } from '../game/cards'
 import { useGameStore } from '../stores/game'
 
 const game = useGameStore()
@@ -14,13 +16,21 @@ const router = useRouter()
 const { t } = useI18n()
 
 const state = computed(() => game.state)
-/** Primero el investigador que decide; luego el resto en orden de jugadores. */
-const players = computed(() => {
-  const s = state.value
-  if (!s) return []
-  const deciding = s.pending?.investigator
-  return [...s.investigators].sort((a, b) => Number(b.id === deciding) - Number(a.id === deciding))
-})
+
+/** Investigador cuya zona se muestra; sigue al que tiene que decidir. */
+const selected = ref<string | null>(null)
+watch(
+  () => state.value?.pending?.investigator,
+  (deciding) => {
+    if (deciding) selected.value = deciding
+  },
+  { immediate: true },
+)
+const shown = computed(
+  () =>
+    state.value?.investigators.find((i) => i.id === selected.value) ??
+    state.value?.investigators[0],
+)
 </script>
 
 <template>
@@ -29,21 +39,39 @@ const players = computed(() => {
       <ScenarioRow :state="state" />
       <div class="board">
         <LocationMap :state="state" />
+        <SkillTestPanel :state="state" />
       </div>
       <div class="players">
+        <nav v-if="state.investigators.length > 1" class="tabs">
+          <button
+            v-for="i in state.investigators"
+            :key="i.id"
+            type="button"
+            :class="{ active: i.id === shown?.id, deciding: i.id === state.pending?.investigator }"
+            :style="{ '--class': classColor(i.id) }"
+            @click="selected = i.id"
+          >
+            {{ i.name }}
+            <span
+              v-if="i.id === state.pending?.investigator"
+              class="dot"
+              :title="t('table.decides')"
+              >●</span
+            >
+          </button>
+        </nav>
         <PlayerArea
-          v-for="i in players"
-          :key="i.id"
+          v-if="shown"
           :state="state"
-          :investigator="i"
-          :deciding="i.id === state.pending?.investigator"
+          :investigator="shown"
+          :deciding="shown.id === state.pending?.investigator"
         />
       </div>
     </div>
     <SidePanel :state="state" />
 
-    <div v-if="zoomed" class="zoom">
-      <img :src="zoomed.src" :alt="zoomed.alt" />
+    <div class="zoom">
+      <CardZoom />
     </div>
   </div>
   <div v-else class="empty">
@@ -67,16 +95,37 @@ const players = computed(() => {
   overflow-y: auto;
 }
 .board {
+  position: relative;
   flex: 1;
   overflow: auto;
   padding: 18px;
   background:
     radial-gradient(circle at 50% 40%, rgb(255 255 255 / 4%), transparent 60%), var(--felt);
-  min-height: 300px;
+  min-height: 420px;
 }
 .players {
   display: flex;
   flex-direction: column;
+}
+.tabs {
+  display: flex;
+  gap: 2px;
+  padding: 0 8px;
+  background: var(--panel-2);
+}
+.tabs button {
+  border-radius: 6px 6px 0 0;
+  border-bottom: none;
+  border-top: 3px solid var(--class);
+  opacity: 0.7;
+}
+.tabs button.active {
+  opacity: 1;
+  background: var(--panel);
+}
+.dot {
+  color: var(--accent);
+  margin-left: 4px;
 }
 .zoom {
   position: fixed;
@@ -84,11 +133,6 @@ const players = computed(() => {
   top: 64px;
   z-index: 50;
   pointer-events: none;
-}
-.zoom img {
-  width: 300px;
-  border-radius: 12px;
-  box-shadow: 0 8px 28px rgb(0 0 0 / 70%);
 }
 .empty {
   padding: 40px;

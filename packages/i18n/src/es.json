@@ -54,7 +54,9 @@
     "commitCards": "¿Comprometer cartas a la prueba?",
     "freeSlot": "No hay ranura libre: elige un apoyo para descartar",
     "assignDamage": "Asigna 1 daño",
-    "assignHorror": "Asigna 1 horror"
+    "assignHorror": "Asigna 1 horror",
+    "skillTestSucceeded": "La prueba tiene éxito",
+    "skillTestFailed": "La prueba falla"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -91,7 +93,8 @@
     "commit": "Comprometer {card} (+{icons})",
     "revealToken": "Revelar ficha del caos",
     "assignToInvestigator": "A {name}",
-    "assignToAsset": "A {card}"
+    "assignToAsset": "A {card}",
+    "applyResults": "Aplicar resultados"
   },
   "phase": {
     "setup": "Preparación",
@@ -158,7 +161,10 @@
     "difficulty": "Dificultad",
     "skillTest": "Prueba de habilidad",
     "otherChoices": "Otras opciones",
-    "clickHighlighted": "Haz clic en un elemento resaltado de la mesa o elige abajo."
+    "clickHighlighted": "Haz clic en un elemento resaltado de la mesa o elige abajo.",
+    "health": "Salud restante",
+    "sanity": "Cordura restante",
+    "decides": "Debe decidir"
   },
   "difficulty": {
     "easy": "Fácil",
@@ -173,5 +179,18 @@
     "quit": "Abandonar partida",
     "noGame": "No hay ninguna partida en curso.",
     "confirmQuit": "¿Abandonar esta partida? No se podrá recuperar."
+  },
+  "skillTest": {
+    "value": "Valor de habilidad",
+    "difficulty": "Dificultad",
+    "effect": "efecto",
+    "committed": "comprometidas",
+    "assets": "apoyos",
+    "tokens": "fichas",
+    "success": "Éxito",
+    "failure": "Fallo",
+    "commitHint": "Compromete cartas de tu mano (resaltadas) y haz clic en la bolsa para revelar una ficha.",
+    "tokensInBag": "{n} fichas",
+    "showOdds": "Ver probabilidad"
   }
 }

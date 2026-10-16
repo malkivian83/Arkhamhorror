@@ -62,6 +62,7 @@ export const useGameStore = defineStore('game', () => {
       createGame({
         seed: Math.floor(Math.random() * 2 ** 32),
         difficulty,
+        interactive: true,
         scenario: spreadingFlames(difficulty),
         investigators: decks.map((key) => starterInvestigator(key)),
       }),
@@ -77,6 +78,12 @@ export const useGameStore = defineStore('game', () => {
     } catch (e) {
       error.value = e instanceof Error ? e.message : String(e)
     }
+  }
+
+  /** Elige la opción con esta etiqueta, si existe en la pregunta actual. */
+  function answerLabel(label: string) {
+    const index = state.value?.pending?.question.choices.findIndex((c) => c.label === label) ?? -1
+    if (index >= 0) answer(index)
   }
 
   function quit() {
@@ -102,5 +109,5 @@ export const useGameStore = defineStore('game', () => {
         .filter(({ choice }) => !choice.target) ?? [],
   )
 
-  return { state, error, start, answer, quit, choicesByTarget, untargetedChoices }
+  return { state, error, start, answer, answerLabel, quit, choicesByTarget, untargetedChoices }
 })

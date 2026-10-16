@@ -54,7 +54,9 @@
     "commitCards": "Commit cards to the test?",
     "freeSlot": "No free slot: choose an asset to discard",
     "assignDamage": "Assign 1 damage",
-    "assignHorror": "Assign 1 horror"
+    "assignHorror": "Assign 1 horror",
+    "skillTestSucceeded": "The test succeeds",
+    "skillTestFailed": "The test fails"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -91,7 +93,8 @@
     "commit": "Commit {card} (+{icons})",
     "revealToken": "Reveal chaos token",
     "assignToInvestigator": "To {name}",
-    "assignToAsset": "To {card}"
+    "assignToAsset": "To {card}",
+    "applyResults": "Apply results"
   },
   "phase": {
     "setup": "Setup",
@@ -158,7 +161,10 @@
     "difficulty": "Difficulty",
     "skillTest": "Skill test",
     "otherChoices": "Other options",
-    "clickHighlighted": "Click a highlighted element on the table, or choose below."
+    "clickHighlighted": "Click a highlighted element on the table, or choose below.",
+    "health": "Remaining health",
+    "sanity": "Remaining sanity",
+    "decides": "Must decide"
   },
   "difficulty": {
     "easy": "Easy",
@@ -173,5 +179,18 @@
     "quit": "Quit game",
     "noGame": "There is no game in progress.",
     "confirmQuit": "Quit this game? It cannot be recovered."
+  },
+  "skillTest": {
+    "value": "Skill value",
+    "difficulty": "Difficulty",
+    "effect": "effect",
+    "committed": "committed",
+    "assets": "assets",
+    "tokens": "tokens",
+    "success": "Success",
+    "failure": "Failure",
+    "commitHint": "Commit cards from your hand (highlighted) and click the bag to reveal a token.",
+    "tokensInBag": "{n} tokens",
+    "showOdds": "Show odds"
   }
 }

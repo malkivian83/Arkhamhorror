@@ -456,6 +456,8 @@ export type Requirement =
 
 export interface Question {
   kind: 'chooseOne'
+  /** Preguntar aunque solo haya una opción (pausas para que el jugador vea el estado). */
+  alwaysAsk?: boolean
   /** Clave i18n del enunciado. */
   prompt: string
   choices: Choice[]
@@ -483,6 +485,11 @@ export interface GameState {
   engineVersion: number
   scenarioId: string
   difficulty: Difficulty
+  /**
+   * Modo interactivo (la mesa): las pruebas de habilidad se detienen antes de
+   * revelar la ficha y tras conocer el resultado.
+   */
+  interactive: boolean
   rng: RngState
   nextId: number
   round: number

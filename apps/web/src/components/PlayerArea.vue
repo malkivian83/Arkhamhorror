@@ -43,22 +43,28 @@ const color = computed(() => classColor(i.value.id))
       </TableTarget>
 
       <div class="stats">
-        <span class="stat damage" :title="t('game.damage', { n: i.damage, max: i.health })">
-          ♥ {{ i.health - i.damage }}/{{ i.health }}
-        </span>
-        <span class="stat horror" :title="t('game.horror', { n: i.horror, max: i.sanity })">
-          ✦ {{ i.sanity - i.horror }}/{{ i.sanity }}
-        </span>
-        <span class="stat resources" :title="t('table.resources')">◆ {{ i.resources }}</span>
-        <span class="stat clues" :title="t('table.clues')">● {{ i.clues }}</span>
-        <span class="stat actions" :title="t('table.actions')">➤ {{ i.actionsRemaining }}</span>
-        <span class="stat" :title="t('table.deck')">▤ {{ i.deck.length }}</span>
-        <span class="skills">
-          <span :title="t('skill.willpower')">W {{ i.skills.willpower }}</span>
-          <span :title="t('skill.intellect')">I {{ i.skills.intellect }}</span>
-          <span :title="t('skill.combat')">C {{ i.skills.combat }}</span>
-          <span :title="t('skill.agility')">A {{ i.skills.agility }}</span>
-        </span>
+        <div class="tokens">
+          <span class="tok resource" :title="t('table.resources')">{{ i.resources }}</span>
+          <span class="tok clue" :title="t('table.clues')">{{ i.clues }}</span>
+          <span class="tok damage" :title="t('game.damage', { n: i.damage, max: i.health })">{{
+            i.damage
+          }}</span>
+          <span class="tok horror" :title="t('game.horror', { n: i.horror, max: i.sanity })">{{
+            i.horror
+          }}</span>
+        </div>
+        <div class="meta">
+          <span :title="t('table.actions')">➤ {{ i.actionsRemaining }}</span>
+          <span :title="t('table.health')">♥ {{ i.health - i.damage }}/{{ i.health }}</span>
+          <span :title="t('table.sanity')">✦ {{ i.sanity - i.horror }}/{{ i.sanity }}</span>
+          <span :title="t('table.deck')">▤ {{ i.deck.length }}</span>
+        </div>
+        <div class="skills">
+          <span class="ci sk wil" :title="t('skill.willpower')">V</span>{{ i.skills.willpower }}
+          <span class="ci sk int" :title="t('skill.intellect')">I</span>{{ i.skills.intellect }}
+          <span class="ci sk com" :title="t('skill.combat')">C</span>{{ i.skills.combat }}
+          <span class="ci sk agi" :title="t('skill.agility')">A</span>{{ i.skills.agility }}
+        </div>
       </div>
 
       <div v-if="engaged.length || threats.length" class="zone threat">
@@ -153,29 +159,60 @@ h4 {
   flex-wrap: wrap;
 }
 .stats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.tokens {
+  display: flex;
+  gap: 8px;
+}
+.tok {
+  width: 40px;
+  height: 40px;
   display: grid;
-  grid-template-columns: repeat(3, auto);
-  gap: 4px 10px;
+  place-items: center;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: #fff;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 80%);
+  border-radius: 50%;
+  border: 2px solid rgb(255 255 255 / 25%);
+  box-shadow:
+    inset 0 -3px 6px rgb(0 0 0 / 35%),
+    0 2px 5px rgb(0 0 0 / 55%);
+}
+.tok.resource {
+  /* Recursos: ficha hexagonal de latón. */
+  border-radius: 8px;
+  clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0 50%);
+  background: radial-gradient(circle at 40% 35%, #8d6a3f, #4a3420 75%);
+  border: none;
+}
+.tok.clue {
+  background: radial-gradient(circle at 40% 35%, #5f8a4a, #263d1d 75%);
+}
+.tok.damage {
+  background: radial-gradient(circle at 40% 35%, #c2453a, #5c1610 75%);
+}
+.tok.horror {
+  background: radial-gradient(circle at 40% 35%, #4d79c9, #172b57 75%);
+}
+.meta {
+  display: flex;
+  gap: 12px;
   font-weight: 600;
-}
-.stat.damage {
-  color: #ff8a80;
-}
-.stat.horror {
-  color: #82b1ff;
-}
-.stat.resources {
-  color: #ffd54f;
-}
-.stat.clues {
-  color: #4fc3f7;
+  font-size: 0.9rem;
+  opacity: 0.9;
 }
 .skills {
-  grid-column: 1 / -1;
   display: flex;
-  gap: 10px;
-  font-size: 0.8rem;
-  opacity: 0.85;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+}
+.skills .ci {
+  margin-left: 6px;
 }
 .zone .cards {
   display: flex;

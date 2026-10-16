@@ -832,12 +832,13 @@ export function handle(state: GameState, message: Message): GameState {
         const already = test.committed.filter((c) => c.code === code).length
         return def.commitLimit === undefined || already < def.commitLimit
       })
-      if (committable.length === 0) return state
+      if (committable.length === 0 && !state.interactive) return state
       return push(state, {
         type: 'Ask',
         investigator: investigator.id,
         question: {
           kind: 'chooseOne',
+          alwaysAsk: true,
           prompt: 'prompt.commitCards',
           choices: [
             ...committable.map((code): Choice => ({
@@ -1002,26 +1003,9 @@ export function handle(state: GameState, message: Message): GameState {
       if (!test || test.tokens.length === 0) throw new EngineError('Prueba sin ficha revelada')
       const investigator = getInvestigator(state, test.investigator)
       // RR "Skills and Skill Tests": la ficha de fallo automático deja el valor en 0.
-      const icons = test.committed.reduce(
-        (sum, c) => sum + matchingIcons(playerCardDef(c.code)?.icons, test.skill),
-        0,
-      )
-      const passive = Object.values(state.assets)
-        .filter((a) => a.owner === investigator.id)
-        .reduce(
-          (sum, a) => sum + (playerCardBehavior(a.code)?.skillModifier?.(state, a, test) ?? 0),
-          0,
-        )
       const modifiedSkill = test.autoFail
         ? 0
-        : Math.max(
-            0,
-            investigator.skills[test.skill] +
-              test.baseModifier +
-              icons +
-              passive +
-              test.tokenModifier,
-          )
+        : Math.max(0, skillTestValue(state).total + test.tokenModifier)
       const succeeded = !test.autoFail && modifiedSkill >= test.difficulty
       const next = log(
         { ...state, skillTest: { ...test, modifiedSkill, succeeded } },
@@ -1053,12 +1037,25 @@ export function handle(state: GameState, message: Message): GameState {
             c.by,
           ) ?? [],
       )
-      return push(
-        next,
+      const results = [
         ...skillTestResults(next, succeeded, failBy),
         ...committedResults,
         ...tokenResults,
-      )
+      ]
+      // En la mesa, el jugador ve el resultado (paso 6) antes de aplicarlo (paso 7).
+      if (state.interactive) {
+        return push(next, {
+          type: 'Ask',
+          investigator: investigator.id,
+          question: {
+            kind: 'chooseOne',
+            alwaysAsk: true,
+            prompt: succeeded ? 'prompt.skillTestSucceeded' : 'prompt.skillTestFailed',
+            choices: [{ label: 'choice.applyResults', then: results }],
+          },
+        })
+      }
+      return push(next, ...results)
     }
 
     case 'EndSkillTest': {
@@ -1533,7 +1530,11 @@ export function handle(state: GameState, message: Message): GameState {
       )
       const [only] = choices
       if (!only) return state
-      if (choices.length === 1 && message.question.prompt !== 'prompt.chooseAction') {
+      if (
+        choices.length === 1 &&
+        !message.question.alwaysAsk &&
+        message.question.prompt !== 'prompt.chooseAction'
+      ) {
         return push(state, ...only.then)
       }
       return {
@@ -1718,4 +1719,59 @@ function log(state: GameState, key: string, params?: LabelParams): GameState {
     ...state,
     log: [...state.log, { key, round: state.round, ...(params ? { params } : {}) }],
   }
+}
+
+/**
+ * Valor de la prueba en curso antes de las fichas: habilidad base, modificador
+ * del efecto, iconos comprometidos y modificadores constantes de apoyos.
+ */
+export function skillTestValue(state: GameState): {
+  base: number
+  modifier: number
+  icons: number
+  passive: number
+  total: number
+} {
+  const test = state.skillTest
+  if (!test) return { base: 0, modifier: 0, icons: 0, passive: 0, total: 0 }
+  const investigator = getInvestigator(state, test.investigator)
+  const icons = test.committed.reduce(
+    (sum, c) => sum + matchingIcons(playerCardDef(c.code)?.icons, test.skill),
+    0,
+  )
+  const passive = Object.values(state.assets)
+    .filter((a) => a.owner === investigator.id)
+    .reduce((sum, a) => sum + (playerCardBehavior(a.code)?.skillModifier?.(state, a, test) ?? 0), 0)
+  const base = investigator.skills[test.skill]
+  return {
+    base,
+    modifier: test.baseModifier,
+    icons,
+    passive,
+    total: base + test.baseModifier + icons + passive,
+  }
+}
+
+/** Lo que haría cada ficha de la bolsa en la prueba en curso (para mostrar y calcular probabilidades). */
+export function previewToken(
+  state: GameState,
+  token: ChaosToken,
+): TokenEffect & { autoFail: boolean } {
+  const investigator = state.skillTest?.investigator ?? state.investigators[0]?.id ?? ''
+  return { ...resolveToken(state, token, investigator), autoFail: token === 'autoFail' }
+}
+
+/**
+ * Probabilidad de éxito de la prueba en curso al revelar una ficha (las de
+ * "revela otra" cuentan solo con su propio modificador).
+ */
+export function successChance(state: GameState): number | null {
+  const test = state.skillTest
+  if (!test || state.chaosBag.length === 0) return null
+  const value = skillTestValue(state).total
+  const wins = state.chaosBag.filter((token) => {
+    const effect = previewToken(state, token)
+    return !effect.autoFail && Math.max(0, value + effect.modifier) >= test.difficulty
+  }).length
+  return wins / state.chaosBag.length
 }

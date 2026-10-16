@@ -9,3 +9,6 @@ coverage/
 .vscode/
 .idea/
 .claude/
+
+# Escaneos propios de cartas (no se suben)
+apps/web/public/cards/

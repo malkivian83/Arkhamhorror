@@ -1,4 +1,5 @@
 import { playerCardDef } from '@lcg/engine'
+import { ref } from 'vue'
 
 /**
  * Imágenes de las cartas: se cargan de ArkhamDB al vuelo (no se guardan en el
@@ -25,4 +26,15 @@ export const CLASS_COLORS: Record<string, string> = {
 
 export function classColor(code: string): string {
   return CLASS_COLORS[playerCardDef(code)?.class ?? 'neutral'] ?? '#8a8a8a'
+}
+
+/**
+ * Escaneos propios (opcionales) en public/cards/<idioma>/<código>.jpg, carpeta
+ * ignorada por git. Se activan con VITE_LOCAL_SCANS=true en apps/web/.env.local.
+ */
+export const scanLocale = ref('en')
+
+export function localScan(code: string, back = false): string | null {
+  if (import.meta.env.VITE_LOCAL_SCANS !== 'true' || scanLocale.value === 'en') return null
+  return /^\d{5}$/.test(code) ? `/cards/${scanLocale.value}/${code}${back ? 'b' : ''}.jpg` : null
 }

@@ -1,8 +1,21 @@
 <script setup lang="ts">
 import { LOCALES, type Locale } from '@lcg/shared'
+import { watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { scanLocale } from './game/cards'
+import { useCardLocale } from './game/localized'
 
 const { t, locale } = useI18n()
+
+// Datos de las cartas en el idioma activo (en inglés se usan las imágenes oficiales).
+watch(
+  locale,
+  (value) => {
+    scanLocale.value = value
+    void useCardLocale(value)
+  },
+  { immediate: true },
+)
 
 function setLocale(value: Locale) {
   locale.value = value

@@ -1,11 +1,15 @@
 import type { LabelParams } from '@lcg/engine'
 import { useI18n } from 'vue-i18n'
+import { localName } from './localized'
 
 /** Traduce una clave del motor, traduciendo también los parámetros que son claves (habilidad, fase). */
 export function useLabels() {
   const { t } = useI18n()
   return (key: string, params: LabelParams = {}) => {
-    const translated: LabelParams = { ...params }
+    // Los nombres de cartas que guarda el motor están en inglés: se traducen si hay datos.
+    const translated: LabelParams = Object.fromEntries(
+      Object.entries(params).map(([k, v]) => [k, typeof v === 'string' ? localName(v) : v]),
+    )
     if (typeof params.skill === 'string') translated.skill = t(`skill.${params.skill}`)
     if (typeof params.phase === 'string') translated.phase = t(`phase.${params.phase}`)
     return t(key, translated)

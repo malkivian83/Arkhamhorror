@@ -28,7 +28,13 @@ export {
 } from './content'
 export { applyInput, createGame, dispatch } from './engine'
 export { EngineError } from './errors'
-export { ACTIONS_PER_TURN, MAX_HAND_SIZE } from './handlers'
+export {
+  ACTIONS_PER_TURN,
+  MAX_HAND_SIZE,
+  previewToken,
+  skillTestValue,
+  successChance,
+} from './handlers'
 export * from './rng'
 export {
   ENGINE_VERSION,

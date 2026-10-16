@@ -52,6 +52,8 @@ export interface InvestigatorSetup {
 export interface NewGameOptions {
   seed: number
   difficulty?: Difficulty
+  /** Pausas en las pruebas de habilidad para la mesa de juego. */
+  interactive?: boolean
   scenario: ScenarioDefinition
   investigators: InvestigatorSetup[]
 }
@@ -68,6 +70,7 @@ export function prepareGame({
   scenario,
   investigators,
   difficulty = 'standard',
+  interactive = false,
 }: NewGameOptions): GameState {
   if (investigators.length < 1 || investigators.length > 4) {
     throw new EngineError('Una partida admite de 1 a 4 investigadores')
@@ -133,6 +136,7 @@ export function prepareGame({
     engineVersion: ENGINE_VERSION,
     scenarioId: scenario.id,
     difficulty,
+    interactive,
     rng,
     nextId: 1,
     round: 0,
