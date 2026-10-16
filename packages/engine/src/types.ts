@@ -180,6 +180,15 @@ export interface AbilityOption {
   provokes: boolean
   limit?: AbilityLimit
   then: Message[]
+  /** Elemento de la mesa al que se refiere (para elegirlo con un clic). */
+  target?: ChoiceTarget
+}
+
+/** Entrada del registro de partida: clave i18n y parámetros. */
+export interface LogEntry {
+  key: string
+  params?: LabelParams
+  round: number
 }
 
 export interface AbilityUse {
@@ -189,13 +198,54 @@ export interface AbilityUse {
 }
 
 // ---------------------------------------------------------------------------
+// Cartas de jugador
+// ---------------------------------------------------------------------------
+
+export type AssetId = string
+export type SlotType = 'hand' | 'arcane' | 'accessory' | 'body' | 'ally' | 'head'
+export type SkillIcon = SkillType | 'wild'
+
+/** Datos de una carta de jugador (sin texto). */
+export interface PlayerCardDef {
+  code: CardCode
+  name: string
+  type: 'investigator' | 'asset' | 'event' | 'skill' | 'treachery' | 'enemy'
+  class: string
+  traits: string[]
+  cost?: number
+  xp?: number
+  icons?: Partial<Record<SkillIcon, number>>
+  slots?: SlotType[]
+  health?: number
+  sanity?: number
+  /** Palabra clave "Rápido": se juega sin gastar acción. */
+  fast?: boolean
+  uses?: { count: number; type: string }
+  /** "Máximo 1 comprometida por prueba de habilidad". */
+  commitLimit?: number
+  weakness?: string
+  unique?: boolean
+}
+
+export interface Asset {
+  id: AssetId
+  code: CardCode
+  owner: InvestigatorId
+  exhausted: boolean
+  damage: number
+  horror: number
+  /** Usos restantes (munición, cargas, suministros…). */
+  uses: number
+}
+
+// ---------------------------------------------------------------------------
 // Pruebas de habilidad
 // ---------------------------------------------------------------------------
 
 export type SkillTestKind =
-  | { type: 'investigate'; location: LocationId }
-  | { type: 'fight'; enemy: EnemyId }
-  | { type: 'evade'; enemy: EnemyId }
+  | { type: 'investigate'; location: LocationId; extraClues?: number; onSuccess?: Message[] }
+  | { type: 'fight'; enemy: EnemyId; extraDamage?: number; onSuccess?: Message[] }
+  | { type: 'evade'; enemy: EnemyId; onSuccess?: Message[] }
   | {
       /** Prueba exigida por un efecto (traición, plan…). */
       type: 'effect'
@@ -224,6 +274,10 @@ export interface SkillTest {
   difficulty: number
   kind: SkillTestKind
   /** Fichas reveladas (fuera de la bolsa hasta que termina la prueba). */
+  /** Modificador del efecto que inició la prueba (p. ej. "+1 [combat] para este ataque"). */
+  baseModifier: number
+  /** Cartas comprometidas desde la mano. */
+  committed: { code: CardCode; by: InvestigatorId }[]
   tokens: ChaosToken[]
   tokenModifier: number
   autoFail: boolean
@@ -238,6 +292,7 @@ export interface SkillTest {
 // ---------------------------------------------------------------------------
 
 export type Action =
+  | { kind: 'play'; card: CardCode }
   | { kind: 'draw' }
   | { kind: 'resource' }
   | { kind: 'move'; to: LocationId }
@@ -273,7 +328,17 @@ export type Message =
       skill: SkillType
       difficulty: number
       kind: SkillTestKind
+      modifier?: number
     }
+  | { type: 'CommitWindow' }
+  | { type: 'CommitCard'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'PlayCard'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'PutAssetIntoPlay'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'DiscardAsset'; asset: AssetId }
+  | { type: 'ExhaustAsset'; asset: AssetId }
+  | { type: 'SpendUses'; asset: AssetId; amount: number }
+  | { type: 'AssignDamage'; investigator: InvestigatorId; damage: number; horror: number }
+  | { type: 'DamageAsset'; asset: AssetId; damage: number; horror: number }
   | { type: 'RevealChaosToken' }
   | { type: 'ResolveSkillTest' }
   | { type: 'EndSkillTest' }
@@ -286,7 +351,14 @@ export type Message =
   | { type: 'HuntersMove' }
   | { type: 'EnemiesAttack' }
   | { type: 'ReadyAll' }
-  | { type: 'TakeDamage'; investigator: InvestigatorId; damage: number; horror: number }
+  /** `direct`: solo puede asignarse a la carta de investigador. */
+  | {
+      type: 'TakeDamage'
+      investigator: InvestigatorId
+      damage: number
+      horror: number
+      direct?: boolean
+    }
   | { type: 'CheckDefeat'; investigator: InvestigatorId }
   | { type: 'EliminateInvestigator'; investigator: InvestigatorId }
   | { type: 'PlaceDoom'; amount: number }
@@ -318,6 +390,7 @@ export type Message =
       then: Message[]
     }
   | { type: 'CheckActObjective' }
+  | { type: 'Log'; key: string; params?: LabelParams }
   | { type: 'AgendaAdvanced' }
   | { type: 'ActAdvanced' }
   | { type: 'DiscardEnemy'; enemy: EnemyId }
@@ -362,7 +435,19 @@ export interface Choice {
   then: Message[]
   /** La opción solo se ofrece si se cumple (se evalúa al mostrar la pregunta). */
   requires?: Requirement
+  /** Elemento de la mesa al que se refiere (para poder elegirlo con un clic). */
+  target?: ChoiceTarget
 }
+
+export type ChoiceTarget =
+  | { type: 'location'; id: LocationId }
+  | { type: 'enemy'; id: EnemyId }
+  | { type: 'treachery'; id: TreacheryId }
+  | { type: 'asset'; id: AssetId }
+  | { type: 'hand'; code: CardCode }
+  | { type: 'investigator'; id: InvestigatorId }
+  | { type: 'agenda' }
+  | { type: 'act' }
 
 export type Requirement =
   | { type: 'hasClues'; investigator: InvestigatorId }
@@ -426,6 +511,8 @@ export interface GameState {
   /** Localizaciones apartadas que los efectos del escenario pueden poner en juego. */
   setAsideLocations: Record<LocationId, LocationCard>
   abilityUses: AbilityUse[]
+  assets: Record<AssetId, Asset>
+  log: LogEntry[]
   skillTest: SkillTest | null
   /** Pila de mensajes pendientes: el primero es el siguiente en procesarse. */
   queue: Message[]

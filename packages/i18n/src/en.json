@@ -50,7 +50,11 @@
     "chooseSkill": "Choose the skill to test",
     "chooseEffect": "Choose one",
     "reaction": "Use this reaction?",
-    "chooseCardToDiscard": "Choose a card to discard"
+    "chooseCardToDiscard": "Choose a card to discard",
+    "commitCards": "Commit cards to the test?",
+    "freeSlot": "No free slot: choose an asset to discard",
+    "assignDamage": "Assign 1 damage",
+    "assignHorror": "Assign 1 horror"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -61,7 +65,9 @@
     "evade": "Evade {enemy}",
     "engage": "Engage {enemy}",
     "advanceAct": "Advance {act} (spend {clues} clues)",
-    "endTurn": "End turn"
+    "endTurn": "End turn",
+    "play": "Play {card}",
+    "playFast": "Play {card} (fast)"
   },
   "choice": {
     "investigator": "{name}",
@@ -81,7 +87,11 @@
     "loseResource": "Lose 1 resource",
     "takeTwoDamage": "Take 2 damage",
     "horrorToEachHere": "Each investigator at your location takes 1 horror",
-    "skip": "Skip"
+    "skip": "Skip",
+    "commit": "Commit {card} (+{icons})",
+    "revealToken": "Reveal chaos token",
+    "assignToInvestigator": "To {name}",
+    "assignToAsset": "To {card}"
   },
   "phase": {
     "setup": "Setup",
@@ -100,6 +110,59 @@
     "heal": "Heal 1 damage and 1 horror",
     "quadMove": "Move to {location} (fast)",
     "observatoryDraw": "Draw 1 card",
-    "orneDraw": "Draw 3 cards (2 actions)"
+    "orneDraw": "Draw 3 cards (2 actions)",
+    "fightWith": "Fight {enemy} with {card}",
+    "investigateWith": "Investigate with {card} ({skill})"
+  },
+  "log": {
+    "round": "Round {round}",
+    "phase": "{phase}",
+    "action": {
+      "draw": "{name} draws 1 card",
+      "resource": "{name} gains 1 resource",
+      "investigate": "{name} investigates {location}",
+      "move": "{name} moves to {location}",
+      "fight": "{name} attacks {enemy}",
+      "evade": "{name} tries to evade {enemy}",
+      "engage": "{name} engages {enemy}"
+    },
+    "play": "{name} plays {card}",
+    "testSuccess": "{name}: {skill} {value} vs {difficulty} ({tokens}) — success",
+    "testFailure": "{name}: {skill} {value} vs {difficulty} ({tokens}) — failure",
+    "damage": "{name} takes {damage} damage and {horror} horror",
+    "encounter": "{name} draws {card}",
+    "clues": "{name} discovers {amount} clue(s)",
+    "enemyDefeated": "{enemy} is defeated",
+    "agendaAdvanced": "The agenda advances: {name}",
+    "actAdvanced": "The act advances: {name}",
+    "eliminated": "{name} is eliminated",
+    "resigned": "{name} resigns",
+    "end": "End of the scenario ({outcome})"
+  },
+  "table": {
+    "log": "Game log",
+    "hand": "Hand",
+    "inPlay": "In play",
+    "threatArea": "Threat area",
+    "encounterDeck": "Encounter deck",
+    "discard": "Discard",
+    "chaosBag": "Chaos bag",
+    "victory": "Victory display",
+    "doom": "Doom",
+    "clues": "Clues",
+    "resources": "Resources",
+    "actions": "Actions",
+    "deck": "Deck",
+    "newGame": "New game",
+    "investigator": "Investigator",
+    "difficulty": "Difficulty",
+    "skillTest": "Skill test",
+    "otherChoices": "Other options"
+  },
+  "difficulty": {
+    "easy": "Easy",
+    "standard": "Standard",
+    "hard": "Hard",
+    "expert": "Expert"
   }
 }

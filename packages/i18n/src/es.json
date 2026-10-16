@@ -50,7 +50,11 @@
     "chooseSkill": "Elige la habilidad para la prueba",
     "chooseEffect": "Elige una opción",
     "reaction": "¿Usar esta reacción?",
-    "chooseCardToDiscard": "Elige una carta para descartar"
+    "chooseCardToDiscard": "Elige una carta para descartar",
+    "commitCards": "¿Comprometer cartas a la prueba?",
+    "freeSlot": "No hay ranura libre: elige un apoyo para descartar",
+    "assignDamage": "Asigna 1 daño",
+    "assignHorror": "Asigna 1 horror"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -61,7 +65,9 @@
     "evade": "Evadir a {enemy}",
     "engage": "Enfrentarse a {enemy}",
     "advanceAct": "Avanzar {act} (gastar {clues} pistas)",
-    "endTurn": "Terminar el turno"
+    "endTurn": "Terminar el turno",
+    "play": "Jugar {card}",
+    "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
     "investigator": "{name}",
@@ -81,7 +87,11 @@
     "loseResource": "Perder 1 recurso",
     "takeTwoDamage": "Recibir 2 daño",
     "horrorToEachHere": "Cada investigador de tu localización recibe 1 horror",
-    "skip": "Omitir"
+    "skip": "Omitir",
+    "commit": "Comprometer {card} (+{icons})",
+    "revealToken": "Revelar ficha del caos",
+    "assignToInvestigator": "A {name}",
+    "assignToAsset": "A {card}"
   },
   "phase": {
     "setup": "Preparación",
@@ -100,6 +110,59 @@
     "heal": "Curar 1 daño y 1 horror",
     "quadMove": "Moverse a {location} (rápida)",
     "observatoryDraw": "Robar 1 carta",
-    "orneDraw": "Robar 3 cartas (2 acciones)"
+    "orneDraw": "Robar 3 cartas (2 acciones)",
+    "fightWith": "Luchar contra {enemy} con {card}",
+    "investigateWith": "Investigar con {card} ({skill})"
+  },
+  "log": {
+    "round": "Ronda {round}",
+    "phase": "{phase}",
+    "action": {
+      "draw": "{name} roba 1 carta",
+      "resource": "{name} obtiene 1 recurso",
+      "investigate": "{name} investiga {location}",
+      "move": "{name} se mueve a {location}",
+      "fight": "{name} ataca a {enemy}",
+      "evade": "{name} intenta evadir a {enemy}",
+      "engage": "{name} se enfrenta a {enemy}"
+    },
+    "play": "{name} juega {card}",
+    "testSuccess": "{name}: {skill} {value} contra {difficulty} ({tokens}) — éxito",
+    "testFailure": "{name}: {skill} {value} contra {difficulty} ({tokens}) — fallo",
+    "damage": "{name} recibe {damage} daño y {horror} horror",
+    "encounter": "{name} roba {card}",
+    "clues": "{name} descubre {amount} pista(s)",
+    "enemyDefeated": "{enemy} es derrotado",
+    "agendaAdvanced": "Avanza el plan: {name}",
+    "actAdvanced": "Avanza el acto: {name}",
+    "eliminated": "{name} queda eliminado",
+    "resigned": "{name} se retira",
+    "end": "Fin del escenario ({outcome})"
+  },
+  "table": {
+    "log": "Registro de partida",
+    "hand": "Mano",
+    "inPlay": "En juego",
+    "threatArea": "Zona de amenaza",
+    "encounterDeck": "Mazo de encuentros",
+    "discard": "Descartes",
+    "chaosBag": "Bolsa del caos",
+    "victory": "Zona de victoria",
+    "doom": "Perdición",
+    "clues": "Pistas",
+    "resources": "Recursos",
+    "actions": "Acciones",
+    "deck": "Mazo",
+    "newGame": "Nueva partida",
+    "investigator": "Investigador",
+    "difficulty": "Dificultad",
+    "skillTest": "Prueba de habilidad",
+    "otherChoices": "Otras opciones"
+  },
+  "difficulty": {
+    "easy": "Fácil",
+    "standard": "Normal",
+    "hard": "Difícil",
+    "expert": "Experto"
   }
 }

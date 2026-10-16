@@ -1,0 +1,1590 @@
+[
+  {
+    "code": "12001",
+    "position": 1,
+    "name": "Daniela Reyes",
+    "subname": "The Mechanic",
+    "type": "investigator",
+    "class": "guardian",
+    "traits": ["Warden", "Worker"],
+    "unique": true,
+    "skills": {
+      "willpower": 3,
+      "intellect": 2,
+      "combat": 5,
+      "agility": 2
+    },
+    "health": 9,
+    "sanity": 5,
+    "elderSignModifier": 1
+  },
+  {
+    "code": "12002",
+    "position": 2,
+    "name": "Daniela's Wrench",
+    "subname": "New and Improved",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Tool", "Weapon", "Melee"],
+    "unique": true,
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "wild": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "12003",
+    "position": 3,
+    "name": "In Harm's Way",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Flaw"],
+    "weakness": "weakness",
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "12004",
+    "position": 4,
+    "name": "Joe Diamond",
+    "subname": "The Private Investigator",
+    "type": "investigator",
+    "class": "seeker",
+    "traits": ["Detective"],
+    "unique": true,
+    "skills": {
+      "willpower": 2,
+      "intellect": 4,
+      "combat": 4,
+      "agility": 2
+    },
+    "health": 7,
+    "sanity": 7,
+    "elderSignModifier": 1
+  },
+  {
+    "code": "12005",
+    "position": 5,
+    "name": "Detective's Intuition",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12006",
+    "position": 6,
+    "name": "Dead Ends",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Blunder"],
+    "weakness": "weakness",
+    "cost": 5,
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "12007",
+    "position": 7,
+    "name": "Trish Scarborough",
+    "subname": "The Former Spy",
+    "type": "investigator",
+    "class": "rogue",
+    "traits": ["Agency", "Criminal"],
+    "unique": true,
+    "skills": {
+      "willpower": 2,
+      "intellect": 4,
+      "combat": 2,
+      "agility": 4
+    },
+    "health": 8,
+    "sanity": 6,
+    "elderSignModifier": 0
+  },
+  {
+    "code": "12008",
+    "position": 8,
+    "name": "Covert Ops",
+    "subname": "In the Shadows",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent", "Illicit"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12009",
+    "position": 9,
+    "name": "Black Chamber Operative",
+    "type": "enemy",
+    "class": "neutral",
+    "traits": ["Humanoid", "Coterie"],
+    "weakness": "weakness",
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "health": 2
+  },
+  {
+    "code": "12010",
+    "position": 10,
+    "name": "Dexter Drake",
+    "subname": "The Magician",
+    "type": "investigator",
+    "class": "mystic",
+    "traits": ["Performer", "Sorcerer"],
+    "unique": true,
+    "skills": {
+      "willpower": 5,
+      "intellect": 2,
+      "combat": 2,
+      "agility": 3
+    },
+    "health": 6,
+    "sanity": 8,
+    "elderSignModifier": 1
+  },
+  {
+    "code": "12011",
+    "position": 11,
+    "name": "\"For my next trick...\"",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Trick"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12012",
+    "position": 12,
+    "name": "The Necronomicon",
+    "subname": "Drake Translation",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Tome", "Cursed"],
+    "weakness": "weakness",
+    "xp": 0,
+    "icons": {},
+    "slots": ["arcane"]
+  },
+  {
+    "code": "12013",
+    "position": 13,
+    "name": "Isabelle Barnes",
+    "subname": "The Returned",
+    "type": "investigator",
+    "class": "survivor",
+    "traits": ["Chosen", "Hunter"],
+    "unique": true,
+    "skills": {
+      "willpower": 4,
+      "intellect": 2,
+      "combat": 3,
+      "agility": 3
+    },
+    "health": 5,
+    "sanity": 9,
+    "elderSignModifier": 1
+  },
+  {
+    "code": "12014",
+    "position": 14,
+    "name": "Isabelle's Twin .45s",
+    "subname": "Loaded with Vengeance",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Weapon", "Firearm"],
+    "unique": true,
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": ["hand", "hand"],
+    "uses": {
+      "count": 6,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "12015",
+    "position": 15,
+    "name": "Breaking Point",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Hardship"],
+    "weakness": "weakness",
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "12016",
+    "position": 16,
+    "name": "Bodyguard",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 1
+  },
+  {
+    "code": "12017",
+    "position": 17,
+    "name": "Endurance",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12018",
+    "position": 18,
+    "name": "Logan Hastings",
+    "subname": "Bounty Hunter",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Hunter"],
+    "unique": true,
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 1
+  },
+  {
+    "code": "12019",
+    "position": 19,
+    "name": "M1911",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Firearm"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 4,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "12020",
+    "position": 20,
+    "name": "Machete",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Melee"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "12021",
+    "position": 21,
+    "name": "Resilience",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Talent"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": [],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "12022",
+    "position": 22,
+    "name": "Lesson Learned",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Insight", "Spirit"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "combat": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "12023",
+    "position": 23,
+    "name": "Right Tool for the Job",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12024",
+    "position": 24,
+    "name": "Scene of the Crime",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Insight", "Bold"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12025",
+    "position": 25,
+    "name": "Vicious Blow",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12026",
+    "position": 26,
+    "name": "Counterattack",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit", "Tactic"],
+    "cost": 1,
+    "xp": 1,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "12027",
+    "position": 27,
+    "name": "Bodyguard",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally"],
+    "cost": 3,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "wild": 1
+    },
+    "slots": ["ally"],
+    "health": 3,
+    "sanity": 2
+  },
+  {
+    "code": "12028",
+    "position": 28,
+    "name": "Sledgehammer",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Tool", "Weapon", "Melee"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {
+      "combat": 2
+    },
+    "slots": ["hand", "hand"]
+  },
+  {
+    "code": "12029",
+    "position": 29,
+    "name": "Winchester Model 12",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Firearm"],
+    "cost": 4,
+    "xp": 5,
+    "icons": {
+      "combat": 2
+    },
+    "slots": ["hand", "hand"],
+    "uses": {
+      "count": 3,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "12030",
+    "position": 30,
+    "name": "Dorothy Simmons",
+    "subname": "Straight-A Student",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ally", "Miskatonic"],
+    "unique": true,
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 1
+  },
+  {
+    "code": "12031",
+    "position": 31,
+    "name": "Fingerprint Kit",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tool"],
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 3,
+      "type": "supplies"
+    }
+  },
+  {
+    "code": "12032",
+    "position": 32,
+    "name": "Laboratory Assistant",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ally", "Miskatonic", "Science"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 2
+  },
+  {
+    "code": "12033",
+    "position": 33,
+    "name": "Local Map",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 4,
+      "type": "secrets"
+    }
+  },
+  {
+    "code": "12034",
+    "position": 34,
+    "name": "Magnifying Glass",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tool"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"],
+    "fast": true
+  },
+  {
+    "code": "12035",
+    "position": 35,
+    "name": "Sharp Rhetoric",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12036",
+    "position": 36,
+    "name": "Gather Intel",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "12037",
+    "position": 37,
+    "name": "Through the Cracks",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight", "Trick"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12038",
+    "position": 38,
+    "name": "Working a Hunch",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "12039",
+    "position": 39,
+    "name": "Deduction",
+    "type": "skill",
+    "class": "seeker",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12040",
+    "position": 40,
+    "name": "Mysterious Grimoire",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tome"],
+    "cost": 3,
+    "xp": 2,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 4,
+      "type": "secrets"
+    }
+  },
+  {
+    "code": "12041",
+    "position": 41,
+    "name": "Through the Cracks",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight", "Trick"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12042",
+    "position": 42,
+    "name": "Studious",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Talent"],
+    "xp": 3,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "12043",
+    "position": 43,
+    "name": "Unbridled Knowledge",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 5,
+    "icons": {
+      "intellect": 2,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12044",
+    "position": 44,
+    "name": "Lucky Cigarette Case",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Charm"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["accessory"]
+  },
+  {
+    "code": "12045",
+    "position": 45,
+    "name": "M1903 Hammerless",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Weapon", "Firearm"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 4,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "12046",
+    "position": 46,
+    "name": "Olivier Bishop",
+    "subname": "Haughty Art \"Collector\"",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Ally", "Criminal", "Socialite"],
+    "unique": true,
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 1
+  },
+  {
+    "code": "12047",
+    "position": 47,
+    "name": "Silver Tongue",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12048",
+    "position": 48,
+    "name": "Sticky Fingers",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12049",
+    "position": 49,
+    "name": "Thieves' Kit",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Tool", "Illicit"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 6,
+      "type": "supplies"
+    }
+  },
+  {
+    "code": "12050",
+    "position": 50,
+    "name": "Breaking and Entering",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12051",
+    "position": 51,
+    "name": "Paint the Town Red",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Fortune", "Gambit"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12052",
+    "position": 52,
+    "name": "Prestidigitation",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "12053",
+    "position": 53,
+    "name": "Out of Sight",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "12054",
+    "position": 54,
+    "name": "Sticky Fingers",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "agility": 2
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "12055",
+    "position": 55,
+    "name": "Decisive Strike",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Tactic", "Gambit"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12056",
+    "position": 56,
+    "name": "Another Day, Another Dollar",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent"],
+    "xp": 3,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "12057",
+    "position": 57,
+    "name": "Out of Sight",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Practiced", "Expert"],
+    "xp": 3,
+    "icons": {
+      "agility": 3
+    },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "12058",
+    "position": 58,
+    "name": "Cloak of Resonance",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Clothing", "Alchemy"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["body"],
+    "sanity": 3
+  },
+  {
+    "code": "12059",
+    "position": 59,
+    "name": "Cosmic Flame",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 3,
+      "type": "charges"
+    }
+  },
+  {
+    "code": "12060",
+    "position": 60,
+    "name": "Jim Culver",
+    "subname": "Haunted Musician",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Ally", "Performer"],
+    "unique": true,
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "12061",
+    "position": 61,
+    "name": "Lucky Charm",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Charm", "Blessed"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["accessory"],
+    "sanity": 2,
+    "uses": {
+      "count": 4,
+      "type": "charges"
+    }
+  },
+  {
+    "code": "12062",
+    "position": 62,
+    "name": "Second Sight",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 3,
+      "type": "charges"
+    }
+  },
+  {
+    "code": "12063",
+    "position": 63,
+    "name": "Spiritual Intuition",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12064",
+    "position": 64,
+    "name": "Premonition",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Augury"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "12065",
+    "position": 65,
+    "name": "Ward of Protection",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Spirit"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "12066",
+    "position": 66,
+    "name": "Will of the Cosmos",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Insight", "Augury"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12067",
+    "position": 67,
+    "name": "Soul Link",
+    "type": "skill",
+    "class": "mystic",
+    "traits": ["Innate", "Spell"],
+    "xp": 0,
+    "icons": {
+      "wild": 3
+    },
+    "slots": []
+  },
+  {
+    "code": "12068",
+    "position": 68,
+    "name": "Mask of Silenus",
+    "subname": "Face of the Void",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Mask", "Relic", "Cursed"],
+    "unique": true,
+    "cost": 3,
+    "xp": 1,
+    "icons": {
+      "wild": 1
+    },
+    "slots": ["head"],
+    "uses": {
+      "count": 3,
+      "type": "charges"
+    }
+  },
+  {
+    "code": "12069",
+    "position": 69,
+    "name": "Fearless",
+    "type": "skill",
+    "class": "mystic",
+    "traits": ["Innate", "Developed"],
+    "xp": 2,
+    "icons": {
+      "willpower": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "12070",
+    "position": 70,
+    "name": "Augur of Elokoss",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Augury"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12071",
+    "position": 71,
+    "name": "Cosmic Flame",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 5,
+    "icons": {
+      "willpower": 1,
+      "combat": 1,
+      "wild": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 4,
+      "type": "charges"
+    }
+  },
+  {
+    "code": "12072",
+    "position": 72,
+    "name": "Aleksey Saburov",
+    "subname": "Always on the Mend",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Ally"],
+    "unique": true,
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "12073",
+    "position": 73,
+    "name": "Bandages",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": [],
+    "uses": {
+      "count": 3,
+      "type": "supplies"
+    }
+  },
+  {
+    "code": "12074",
+    "position": 74,
+    "name": "Hunter's Instinct",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "uses": {
+      "count": 3,
+      "type": "supplies"
+    }
+  },
+  {
+    "code": "12075",
+    "position": 75,
+    "name": "Jumpsuit",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Clothing"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["body"],
+    "health": 2
+  },
+  {
+    "code": "12076",
+    "position": 76,
+    "name": "Levelheaded",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12077",
+    "position": 77,
+    "name": "Meat Cleaver",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Weapon", "Melee"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "12078",
+    "position": 78,
+    "name": "\"Look what I found!\"",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Fortune"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "12079",
+    "position": 79,
+    "name": "\"Shove off!\"",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Tactic"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12080",
+    "position": 80,
+    "name": "Slippery",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "12081",
+    "position": 81,
+    "name": "Timely Intervention",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Fortune"],
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "12082",
+    "position": 82,
+    "name": "Scrape By",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Fortune"],
+    "cost": 1,
+    "xp": 1,
+    "icons": {
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "12083",
+    "position": 83,
+    "name": "Old Compass",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Tool"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "12084",
+    "position": 84,
+    "name": "On the Brink",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Gambit", "Desperate"],
+    "xp": 2,
+    "icons": {
+      "wild": 2
+    },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "12085",
+    "position": 85,
+    "name": "Meat Cleaver",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Weapon", "Melee"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "combat": 1,
+      "wild": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "12086",
+    "position": 86,
+    "name": "Broken Bottle",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Weapon", "Melee", "Improvised"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "12087",
+    "position": 87,
+    "name": "Fedora",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Apparel", "Headwear"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["head"],
+    "health": 1,
+    "sanity": 1
+  },
+  {
+    "code": "12088",
+    "position": 88,
+    "name": "Hand-Crank Flashlight",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Tool"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "12089",
+    "position": 89,
+    "name": "Emergency Cache",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Supply"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "12090",
+    "position": 90,
+    "name": "Guts",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": {
+      "willpower": 2
+    },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "12091",
+    "position": 91,
+    "name": "Manual Dexterity",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": {
+      "agility": 2
+    },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "12092",
+    "position": 92,
+    "name": "Overpower",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": {
+      "combat": 2
+    },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "12093",
+    "position": 93,
+    "name": "Perception",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "12094",
+    "position": 94,
+    "name": "Unexpected Courage",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": {
+      "wild": 2
+    },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "12095",
+    "position": 95,
+    "name": "Charisma",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Talent"],
+    "xp": 3,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "12096",
+    "position": 96,
+    "name": "Relic Hunter",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Talent"],
+    "xp": 3,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "12097",
+    "position": 97,
+    "name": "Amnesia",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Madness"],
+    "weakness": "basicweakness",
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "12098",
+    "position": 98,
+    "name": "The Gold Bug",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Relic", "Alchemy", "Cursed"],
+    "weakness": "basicweakness",
+    "xp": 0,
+    "icons": {},
+    "slots": ["accessory"]
+  },
+  {
+    "code": "12099",
+    "position": 99,
+    "name": "The Nameless Lurker",
+    "type": "enemy",
+    "class": "neutral",
+    "traits": ["Humanoid", "Monster"],
+    "unique": true,
+    "weakness": "basicweakness",
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "health": 1
+  },
+  {
+    "code": "12100",
+    "position": 100,
+    "name": "Overzealous",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Flaw"],
+    "weakness": "basicweakness",
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "12101",
+    "position": 101,
+    "name": "Paranoia",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Madness"],
+    "weakness": "basicweakness",
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "12102",
+    "position": 102,
+    "name": "Pursued",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Terror"],
+    "weakness": "basicweakness",
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "12103",
+    "position": 103,
+    "name": "Syndicate Obligations",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Pact", "Syndicate"],
+    "weakness": "basicweakness",
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "12104",
+    "position": 104,
+    "name": "Wounded",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Injury"],
+    "weakness": "basicweakness",
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  }
+]

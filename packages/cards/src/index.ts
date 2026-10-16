@@ -60,3 +60,9 @@ export {
   SPREADING_FLAMES,
   spreadingFlames,
 } from './brethren-of-ash/spreading-flames'
+export {
+  STARTER_DECKS,
+  code as coreCode,
+  playerCards,
+  starterInvestigator,
+} from './core-2026/player-cards'

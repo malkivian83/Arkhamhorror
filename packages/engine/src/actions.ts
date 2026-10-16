@@ -1,4 +1,11 @@
-import { actBehavior, agendaBehavior, locationBehavior, treacheryBehavior } from './content'
+import {
+  actBehavior,
+  agendaBehavior,
+  locationBehavior,
+  playerCardBehavior,
+  playerCardDef,
+  treacheryBehavior,
+} from './content'
 import {
   activeInvestigators,
   enemiesAt,
@@ -11,11 +18,32 @@ import type {
   AbilityLimit,
   AbilityOption,
   Action,
+  CardCode,
   Choice,
+  ChoiceTarget,
   GameState,
   Investigator,
   InvestigatorId,
 } from './types'
+
+/**
+ * Cartas de la mano que el investigador puede jugar ahora: apoyos y eventos con
+ * efecto implementado, que pueda pagar y cuyas restricciones se cumplan.
+ * `fast`: true → las rápidas (sin acción); false → las que cuestan una acción.
+ */
+export function playableCards(state: GameState, id: InvestigatorId, fast: boolean): CardCode[] {
+  const investigator = getInvestigator(state, id)
+  if (investigator.eliminated || investigator.location === null) return []
+  return [...new Set(investigator.hand)].filter((code) => {
+    const def = playerCardDef(code)
+    if (!def || (def.fast ?? false) !== fast) return false
+    if (def.type !== 'asset' && def.type !== 'event') return false
+    const behavior = playerCardBehavior(code)
+    if (def.type === 'event' && !behavior?.play) return false
+    if ((def.cost ?? 0) > investigator.resources) return false
+    return behavior?.canPlay?.(state, id) ?? true
+  })
+}
 
 /** Acciones básicas que el investigador puede realizar ahora mismo. */
 export function availableActions(state: GameState, id: InvestigatorId): Action[] {
@@ -26,6 +54,7 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
   const enemiesHere = enemiesAt(state, here)
 
   return [
+    ...playableCards(state, id, false).map((card): Action => ({ kind: 'play', card })),
     { kind: 'draw' },
     { kind: 'resource' },
     { kind: 'investigate' },
@@ -43,27 +72,47 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
   ]
 }
 
-/** Etiqueta i18n y parámetros de una acción, para mostrarla al jugador. */
+/** Etiqueta i18n, parámetros y elemento de la mesa de una acción. */
 export function describeAction(state: GameState, id: InvestigatorId, action: Action): Choice {
   switch (action.kind) {
+    case 'play': {
+      const target: ChoiceTarget = { type: 'hand', code: action.card }
+      return {
+        label: 'action.play',
+        params: { card: playerCardDef(action.card)?.name ?? action.card },
+        target,
+        then: [],
+      }
+    }
     case 'draw':
     case 'resource':
       return { label: `action.${action.kind}`, then: [] }
     case 'investigate': {
       const location = getLocation(state, getInvestigator(state, id).location as string)
-      return { label: 'action.investigate', params: { location: location.name }, then: [] }
+      return {
+        label: 'action.investigate',
+        params: { location: location.name },
+        target: { type: 'location', id: location.id },
+        then: [],
+      }
     }
     case 'move':
       return {
         label: 'action.move',
         params: { location: getLocation(state, action.to).name },
+        target: { type: 'location', id: action.to },
         then: [],
       }
     case 'fight':
     case 'evade':
     case 'engage': {
       const enemy = state.enemies[action.enemy]
-      return { label: `action.${action.kind}`, params: { enemy: enemy?.name ?? '?' }, then: [] }
+      return {
+        label: `action.${action.kind}`,
+        params: { enemy: enemy?.name ?? '?' },
+        target: { type: 'enemy', id: action.enemy },
+        then: [],
+      }
     }
   }
 }
@@ -106,8 +155,9 @@ export function withinLimit(
 
 /**
  * Habilidades activadas disponibles para el investigador: de su localización,
- * del plan y el acto actuales y de las traiciones en su zona de amenaza o en su
- * localización (RR "Activate"). Se filtran por límites y acciones restantes.
+ * del plan y el acto actuales, de las traiciones en su zona de amenaza o en su
+ * localización y de sus apoyos (RR "Activate"). Se filtran por límites y
+ * acciones restantes.
  */
 export function availableAbilities(state: GameState, id: InvestigatorId): AbilityOption[] {
   const investigator = getInvestigator(state, id)
@@ -124,13 +174,36 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
     }
     return false
   })
+  const assets = Object.values(state.assets).filter((a) => a.owner === id)
+  const withTarget = (options: AbilityOption[], target: ChoiceTarget) =>
+    options.map((o) => ({ target, ...o }))
   const options = [
     ...(location.revealed
-      ? (locationBehavior(location.id)?.abilities?.(state, location, id) ?? [])
+      ? withTarget(locationBehavior(location.id)?.abilities?.(state, location, id) ?? [], {
+          type: 'location',
+          id: location.id,
+        })
       : []),
-    ...(agenda ? (agendaBehavior(agenda.code)?.abilities?.(state, agenda, id) ?? []) : []),
-    ...(act ? (actBehavior(act.code)?.abilities?.(state, act, id) ?? []) : []),
-    ...treacheries.flatMap((t) => treacheryBehavior(t.code)?.abilities?.(state, t, id) ?? []),
+    ...(agenda
+      ? withTarget(agendaBehavior(agenda.code)?.abilities?.(state, agenda, id) ?? [], {
+          type: 'agenda',
+        })
+      : []),
+    ...(act
+      ? withTarget(actBehavior(act.code)?.abilities?.(state, act, id) ?? [], { type: 'act' })
+      : []),
+    ...treacheries.flatMap((t) =>
+      withTarget(treacheryBehavior(t.code)?.abilities?.(state, t, id) ?? [], {
+        type: 'treachery',
+        id: t.id,
+      }),
+    ),
+    ...assets.flatMap((a) =>
+      withTarget(playerCardBehavior(a.code)?.abilities?.(state, a, id) ?? [], {
+        type: 'asset',
+        id: a.id,
+      }),
+    ),
   ]
   return options.filter(
     (a) => a.actions <= investigator.actionsRemaining && withinLimit(state, a.key, id, a.limit),

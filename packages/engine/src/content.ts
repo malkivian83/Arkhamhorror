@@ -10,6 +10,7 @@ import type {
   AbilityOption,
   Act,
   Agenda,
+  Asset,
   CardCode,
   ChaosSymbol,
   Enemy,
@@ -17,6 +18,8 @@ import type {
   InvestigatorId,
   Location,
   Message,
+  PlayerCardDef,
+  SkillTest,
   TokenEffect,
   Treachery,
   Trigger,
@@ -132,4 +135,46 @@ export function agendaBehavior(code: CardCode | undefined): AgendaBehavior | und
 
 export function actBehavior(code: CardCode | undefined): ActBehavior | undefined {
   return code === undefined ? undefined : acts.get(code)
+}
+
+// ---------------------------------------------------------------------------
+// Cartas de jugador
+// ---------------------------------------------------------------------------
+
+export interface PlayerCardBehavior {
+  code: CardCode
+  /** Evento: su efecto al jugarlo. */
+  play?: (state: GameState, investigator: InvestigatorId) => Message[]
+  /** Restricción adicional para jugarlo ("solo durante tu turno", "como primera acción"…). */
+  canPlay?: (state: GameState, investigator: InvestigatorId) => boolean
+  /** Habilidades del apoyo en juego, para su controlador. */
+  abilities?: AbilitiesFn<Asset>
+  /** Modificador constante a las pruebas de su controlador. */
+  skillModifier?: (state: GameState, self: Asset, test: SkillTest) => number
+  /** Carta comprometida: efecto según el resultado de la prueba. */
+  afterCommittedTest?: (
+    state: GameState,
+    test: SkillTest,
+    succeeded: boolean,
+    committedBy: InvestigatorId,
+  ) => Message[]
+}
+
+const playerCards = new Map<CardCode, PlayerCardDef>()
+const playerBehaviors = new Map<CardCode, PlayerCardBehavior>()
+
+export function registerPlayerCards(defs: PlayerCardDef[]): void {
+  for (const def of defs) playerCards.set(def.code, def)
+}
+
+export function registerPlayerCard(behavior: PlayerCardBehavior): void {
+  playerBehaviors.set(behavior.code, behavior)
+}
+
+export function playerCardDef(code: CardCode): PlayerCardDef | undefined {
+  return playerCards.get(code)
+}
+
+export function playerCardBehavior(code: CardCode): PlayerCardBehavior | undefined {
+  return playerBehaviors.get(code)
 }

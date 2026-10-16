@@ -156,6 +156,8 @@ export function prepareGame({
     victoryDisplay: [],
     setAsideLocations: Object.fromEntries((scenario.setAsideLocations ?? []).map((l) => [l.id, l])),
     abilityUses: [],
+    assets: {},
+    log: [],
     skillTest: null,
     queue: setupMessages,
     pending: null,
