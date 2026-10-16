@@ -27,6 +27,12 @@ export function getLocation(state: GameState, id: LocationId): Location {
   return location
 }
 
+/** Velo actual de una localización, con los modificadores de la ronda (nunca menos de 0). */
+export function shroudOf(state: GameState, id: LocationId): number {
+  const location = getLocation(state, id)
+  return Math.max(0, location.shroud + (location.shroudModifier ?? 0))
+}
+
 export function getEnemy(state: GameState, id: EnemyId): Enemy {
   const enemy = state.enemies[id]
   if (!enemy) throw new EngineError(`Enemigo desconocido: ${id}`)

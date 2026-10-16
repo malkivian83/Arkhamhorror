@@ -8,6 +8,7 @@ import {
   engagedEnemies,
   getInvestigator,
   getLocation,
+  shroudOf,
   registerPlayerCard,
   registerPlayerCards,
   type AbilityOption,
@@ -310,7 +311,6 @@ export function investigateAbility(position: number, options: InvestigateOptions
     if (options.available && !options.available(self)) return []
     const here = getInvestigator(state, investigator).location
     if (here === null) return []
-    const location = getLocation(state, here)
     return (options.skills ?? ['intellect']).map((skill) => ({
       key: `${self.id}:investigate`,
       label: 'ability.investigateWith',
@@ -324,7 +324,7 @@ export function investigateAbility(position: number, options: InvestigateOptions
           type: 'BeginSkillTest',
           investigator,
           skill,
-          difficulty: location.shroud,
+          difficulty: shroudOf(state, here),
           modifier: options.modifier ?? 0,
           source: self.id,
           ...(options.tags ? { tags: options.tags } : {}),
@@ -578,8 +578,24 @@ registerPlayerCard({
     })(state, self, investigator),
 })
 
-// Hand-Crank Flashlight: Investigar +1 [intellect]. (Pendiente: descartarla para −1 velo.)
-registerPlayerCard({ code: code(88), abilities: investigateAbility(88, { modifier: 1 }) })
+// Hand-Crank Flashlight: Investigar +1 [intellect]. Si tienes éxito, puedes descartarla:
+// el velo de tu localización baja 1 hasta el final de la ronda.
+registerPlayerCard({
+  code: code(88),
+  abilities: (state, self, investigator) => {
+    const here = getInvestigator(state, investigator).location
+    const onSuccess: Message[] =
+      here === null
+        ? []
+        : [
+            mayChoose(investigator, 'choice.discardForShroud', { card: name(88) }, [
+              { type: 'DiscardAsset', asset: self.id },
+              { type: 'ModifyShroud', location: here, amount: -1 },
+            ]),
+          ]
+    return investigateAbility(88, { modifier: 1, onSuccess })(state, self, investigator)
+  },
+})
 
 // ---------------------------------------------------------------------------
 // Eventos

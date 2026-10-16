@@ -121,7 +121,9 @@
     "healDamage": "Heal 1 damage",
     "healHorror": "Heal 1 horror",
     "location": "{location}",
-    "moveDamageTo": "To {card}"
+    "moveDamageTo": "To {card}",
+    "discardForShroud": "Discard {card}: −1 shroud here until the end of the round",
+    "commitFrom": "{name} commits {card} (+{icons})"
   },
   "phase": {
     "setup": "Setup",
@@ -241,7 +243,8 @@
     "damage": "Damage",
     "horror": "Horror",
     "actionsLeft": "{n} actions",
-    "journal": "Case journal"
+    "journal": "Case journal",
+    "shroudUntilEndOfRound": "Shroud changed until the end of the round"
   },
   "difficulty": {
     "easy": "Easy",

@@ -7,6 +7,7 @@ import {
   engagedEnemies,
   getInvestigator,
   getLocation,
+  shroudOf,
   playerCardDef,
   registerPlayerCard,
   type AbilityOption,
@@ -265,7 +266,7 @@ registerPlayerCard({
             type: 'BeginSkillTest',
             investigator,
             skill: 'intellect',
-            difficulty: getLocation(state, to).shroud,
+            difficulty: shroudOf(state, to),
             modifier: 1,
             source: self.id,
             kind: {
@@ -362,7 +363,7 @@ registerPlayerCard({
             type: 'BeginSkillTest',
             investigator,
             skill: 'willpower',
-            difficulty: getLocation(state, here).shroud,
+            difficulty: shroudOf(state, here),
             source: self.id,
             tags: ['spell'],
             kind: {
@@ -718,7 +719,7 @@ registerPlayerCard({
         type: 'BeginSkillTest',
         investigator,
         skill: 'intellect',
-        difficulty: getLocation(state, me.location).shroud,
+        difficulty: shroudOf(state, me.location),
         modifier: me.skills.agility,
         kind: {
           type: 'investigate',

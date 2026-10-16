@@ -63,6 +63,8 @@ export interface Location {
   id: LocationId
   name: string
   shroud: number
+  /** Modificador del velo hasta el final de la ronda (Hand-Crank Flashlight: −1). */
+  shroudModifier?: number
   clueValue: number
   cluesPerInvestigator: boolean
   connections: LocationId[]
@@ -398,6 +400,8 @@ export type Message =
     }
   | { type: 'PutAssetIntoPlay'; investigator: InvestigatorId; code: CardCode }
   | { type: 'DiscardAsset'; asset: AssetId }
+  /** Cambia el velo de una localización hasta el final de la ronda. */
+  | { type: 'ModifyShroud'; location: LocationId; amount: number }
   | { type: 'ExhaustAsset'; asset: AssetId }
   | { type: 'SpendUses'; asset: AssetId; amount: number }
   | { type: 'AssignDamage'; investigator: InvestigatorId; damage: number; horror: number }

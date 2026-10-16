@@ -33,7 +33,7 @@ Estado detallado del motor: [08-motor.md](08-motor.md).
 - [x] Daño/horror, derrota y eliminación.
 - [x] Plan (perdición) y acto (pistas, en cualquier momento o al final de la ronda).
 - [x] Mantenimiento: preparar, robar, recurso, límite de mano.
-- [x] Comprometer cartas a pruebas de habilidad (paso 2) — falta que comprometan otros investigadores.
+- [x] Comprometer cartas a pruebas de habilidad, también otros investigadores de la misma localización (1 carta cada uno).
 - [x] Jugar cartas (apoyos y eventos), recursos, ranuras, usos, asignar daño a apoyos.
 - [x] Traiciones en el mazo de encuentros (revelación, peligro, oleada, colocación).
 - [x] Pruebas exigidas por efectos y efectos de las fichas de escenario.

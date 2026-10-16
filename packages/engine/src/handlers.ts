@@ -38,6 +38,7 @@ import {
   perInvestigator,
   push,
   removeEnemy,
+  shroudOf,
   updateEnemy,
   updateInvestigator,
   updateLocation,
@@ -492,7 +493,7 @@ export function handle(state: GameState, message: Message): GameState {
             type: 'BeginSkillTest',
             investigator: id,
             skill: 'intellect',
-            difficulty: getLocation(state, investigator.location).shroud,
+            difficulty: shroudOf(state, investigator.location),
             kind: { type: 'investigate', location: investigator.location },
           })
         case 'fight': {
@@ -938,6 +939,12 @@ export function handle(state: GameState, message: Message): GameState {
       })
     }
 
+    case 'ModifyShroud':
+      return updateLocation(state, message.location, (l) => ({
+        ...l,
+        shroudModifier: (l.shroudModifier ?? 0) + message.amount,
+      }))
+
     case 'DiscardAsset': {
       const asset = state.assets[message.asset]
       if (!asset) return state
@@ -975,7 +982,22 @@ export function handle(state: GameState, message: Message): GameState {
       const investigator = getInvestigator(state, test.investigator)
       if (investigator.eliminated) return state
       const committable = [...new Set(investigator.hand)].filter((code) => canCommit(test, code))
-      if (committable.length === 0 && testOptions(state, test).length === 0 && !state.interactive) {
+      // Cada otro investigador en la misma localización puede comprometer 1 carta.
+      const helpers = (
+        investigator.location === null ? [] : investigatorsAt(state, investigator.location)
+      )
+        .filter((o) => o.id !== investigator.id && !test.committed.some((c) => c.by === o.id))
+        .flatMap((o) =>
+          [...new Set(o.hand)]
+            .filter((code) => canCommit(test, code))
+            .map((code) => ({ helper: o, code })),
+        )
+      if (
+        committable.length === 0 &&
+        helpers.length === 0 &&
+        testOptions(state, test).length === 0 &&
+        !state.interactive
+      ) {
         return state
       }
       return push(state, {
@@ -995,6 +1017,18 @@ export function handle(state: GameState, message: Message): GameState {
               target: { type: 'hand', code },
               then: [
                 { type: 'CommitCard', investigator: investigator.id, code },
+                { type: 'CommitWindow' },
+              ],
+            })),
+            ...helpers.map(({ helper, code }): Choice => ({
+              label: 'choice.commitFrom',
+              params: {
+                name: helper.name,
+                card: playerCardDef(code)?.name ?? code,
+                icons: matchingIcons(playerCardDef(code)?.icons, test.skill),
+              },
+              then: [
+                { type: 'CommitCard', investigator: helper.id, code },
                 { type: 'CommitWindow' },
               ],
             })),
@@ -1512,6 +1546,7 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'EndOfRound': {
+      state = clearRoundModifiers(state)
       const act = state.acts[state.actIndex]
       return act?.advanceTiming === 'endOfRound'
         ? push(state, { type: 'OfferActAdvance' })
@@ -2584,6 +2619,17 @@ function skillTestResults(state: GameState, succeeded: boolean, failBy: number):
       ]
     }
   }
+}
+
+/** Al final de la ronda caducan los efectos "hasta el final de la ronda". */
+function clearRoundModifiers(state: GameState): GameState {
+  const locations = Object.fromEntries(
+    Object.entries(state.locations).map(([id, l]) => {
+      const { shroudModifier: _expired, ...rest } = l
+      return [id, rest]
+    }),
+  )
+  return { ...state, locations }
 }
 
 /** RR "Equipment Slots": cuántas ranuras de cada tipo tiene un investigador. */

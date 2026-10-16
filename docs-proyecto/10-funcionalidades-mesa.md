@@ -32,7 +32,7 @@ Leyenda: ✅ hecho · 🟡 parcial · ⬜ pendiente · ✖ fuera de alcance por 
 |---|---|---|
 | Panel con pasos ST.1–ST.8 | `SkillTest.vue` | ✅ |
 | Carta origen contra investigador, valor contra dificultad | `SkillTest.vue` | ✅ |
-| Comprometer cartas desde la mano y verlas en el panel | `CommittedSkills` | ✅ (falta que comprometan otros investigadores) |
+| Comprometer cartas desde la mano y verlas en el panel | `CommittedSkills` | ✅ (también otros investigadores de la misma localización, 1 carta cada uno) |
 | Revelar ficha haciendo clic en la bolsa | `ChaosBag` | ✅ |
 | Bolsa con el modificador de cada ficha y probabilidad | `ChaosBagWindow` | ✅ |
 | Resultado y "aplicar resultados" | `SkillTest.vue` | ✅ |
@@ -120,6 +120,9 @@ con sus investigadores y debilidades:
 - **Debilidades**: van en el mazo, se apartan de la mano inicial y se resuelven al
   robarlas (traiciones en la zona de amenaza, Black Chamber Operative enfrentado,
   The Necronomicon bloquea tus apoyos, Dead Ends cancela búsquedas).
-- **Pendiente**: Hand-Crank Flashlight (−1 velo hasta el final de la ronda), los
-  efectos de campaña de las debilidades (trauma, experiencia) y que otros
-  investigadores comprometan cartas.
+- **Hand-Crank Flashlight**: tras investigar con éxito puede descartarse para
+  bajar 1 el velo de la localización hasta el final de la ronda (se ve en el mapa).
+- **Comprometer a la prueba de otro**: cada otro investigador en la misma
+  localización puede comprometer 1 carta (reglamento 2026).
+- **Pendiente**: los efectos de campaña de las debilidades (trauma, experiencia),
+  que llegarán con la campaña (paso 5).

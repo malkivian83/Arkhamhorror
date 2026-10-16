@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { SPREADING_FLAMES_LAYOUT } from '@lcg/cards'
-import type { GameState, Location } from '@lcg/engine'
+import { shroudOf, type GameState, type Location } from '@lcg/engine'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import GameCard from './GameCard.vue'
@@ -103,6 +103,15 @@ const treacheriesAt = (id: string) =>
             :size="34"
             :title="t('table.clues')"
           />
+          <!-- Velo cambiado hasta el final de la ronda (p. ej. Hand-Crank Flashlight). -->
+          <span
+            v-if="l.shroudModifier"
+            class="shroud-mod"
+            :title="t('table.shroudUntilEndOfRound')"
+          >
+            {{ t('game.shroud', { n: shroudOf(state, l.id) }) }}
+            ({{ l.shroudModifier > 0 ? '+' : '−' }}{{ Math.abs(l.shroudModifier) }})
+          </span>
         </GameCard>
       </TableTarget>
 
@@ -231,6 +240,21 @@ const treacheriesAt = (id: string) =>
   color: #fff;
   top: -6px;
   right: -6px;
+}
+.shroud-mod {
+  position: absolute;
+  left: 50%;
+  bottom: 30%;
+  z-index: 2;
+  transform: translateX(-50%);
+  padding: 1px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+  background: var(--eldritch);
+  color: #0c241c;
+  font-family: var(--fell);
+  font-size: 0.8rem;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 60%);
 }
 .loc-clue {
   position: absolute;

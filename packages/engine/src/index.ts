@@ -57,5 +57,6 @@ export {
   investigatorsAt,
   leadInvestigator,
   nearestLocation,
+  shroudOf,
 } from './state'
 export type * from './types'

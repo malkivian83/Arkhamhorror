@@ -121,6 +121,18 @@ describe('habilidades de apoyos', () => {
     expect(Object.values(game.enemies)[0]?.damageTaken).toBe(2)
   })
 
+  it('Hand-Crank Flashlight: tras investigar con éxito, descartarla baja el velo hasta el final de la ronda', () => {
+    let game = during(newGame(), (s) => withBag(0)(withHand([88], 5)(s)))
+    game = choose(game, 'action.play', { card: 'Hand-Crank Flashlight' })
+    game = choose(game, 'ability.investigateWith', { card: 'Hand-Crank Flashlight' })
+    game = choose(game, 'choice.discardForShroud', { card: 'Hand-Crank Flashlight' })
+    expect(game.locations[ROOM]?.shroudModifier).toBe(-1)
+    expect(assets(game)).toHaveLength(0)
+    expect(inv(game).discard).toContain(code(88))
+    game = during(game, (s) => s, { type: 'EndOfRound' })
+    expect(game.locations[ROOM]?.shroudModifier).toBeUndefined()
+  })
+
   it('M1911: gasta munición en cada ataque', () => {
     let game = during(newGame(), (s) => withBag(0)(withHand([19], 5)(s)), {
       type: 'SpawnEnemy',
@@ -151,6 +163,39 @@ describe('comprometer cartas a pruebas', () => {
     expect(Object.values(game.enemies)[0]?.damageTaken).toBe(1)
     expect(inv(game).hand).toHaveLength(1) // robó 1
     expect(inv(game).discard).toEqual([code(92)])
+  })
+
+  it('otro investigador en la misma localización compromete 1 carta como máximo', () => {
+    const JOE = starterInvestigator('joe').id
+    let game = createGame({
+      seed: 5,
+      scenario: spreadingFlames(),
+      investigators: [starterInvestigator('daniela'), starterInvestigator('joe')],
+    })
+    if (game.pending?.question.prompt === 'prompt.chooseNextInvestigator') {
+      game = choose(game, 'choice.investigator', { name: 'Daniela Reyes' })
+    }
+    // Daniela investiga sin cartas; Joe (en la misma localización) tiene Perception y Deduction.
+    game = during(game, (s) =>
+      withBag(0)({
+        ...s,
+        investigators: s.investigators.map((i) => ({
+          ...i,
+          hand: i.id === JOE ? [code(93), code(39)] : [],
+        })),
+      }),
+    )
+    game = choose(game, 'action.investigate')
+    expect(game.pending?.question.prompt).toBe('prompt.commitCards')
+    game = choose(game, 'choice.commitFrom', { name: 'Joe Diamond', card: 'Perception' })
+    // Joe ya ha comprometido una carta: no se le ofrece Deduction y la prueba se resuelve.
+    expect(labels(game)).not.toContain('choice.commitFrom')
+    const joe = getInvestigator(game, JOE)
+    // Perception: si la prueba tiene éxito, quien la comprometió (Joe) roba 1 carta.
+    expect(joe.hand).toHaveLength(2)
+    expect(joe.hand).toContain(code(39))
+    expect(joe.discard).toContain(code(93))
+    expect(inv(game).clues).toBe(1)
   })
 
   it('las cartas sin iconos de la habilidad no se pueden comprometer', () => {

@@ -121,7 +121,9 @@
     "healDamage": "Curar 1 daño",
     "healHorror": "Curar 1 horror",
     "location": "{location}",
-    "moveDamageTo": "A {card}"
+    "moveDamageTo": "A {card}",
+    "discardForShroud": "Descartar {card}: −1 velo aquí hasta el final de la ronda",
+    "commitFrom": "{name} compromete {card} (+{icons})"
   },
   "phase": {
     "setup": "Preparación",
@@ -241,7 +243,8 @@
     "damage": "Daño",
     "horror": "Horror",
     "actionsLeft": "{n} acciones",
-    "journal": "Diario del caso"
+    "journal": "Diario del caso",
+    "shroudUntilEndOfRound": "Velo modificado hasta el final de la ronda"
   },
   "difficulty": {
     "easy": "Fácil",
