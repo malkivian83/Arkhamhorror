@@ -1,14 +1,13 @@
 # 09 · Escenario I: Spreading Flames (Brethren of Ash)
 
 Análisis para implementar el primer escenario de la caja básica de 2026.
-Fuentes: guía de campaña y reglamento (`reglas/`, fuera de git) y, para los
-valores numéricos de las cartas, la base de datos pública ArkhamDB
-(`core_2026`). **No se copia el texto de las cartas**: aquí se describen sus
+Fuentes: guía de campaña y reglamento (`reglas/`, fuera de git), la base de
+datos pública ArkhamDB (`core_2026`) para los valores numéricos y el proyecto
+de referencia (`E:\referencia\ArkhamHorror`) para las conexiones y los valores
+"por investigador". **No se copia el texto de las cartas**: aquí se describen sus
 efectos con palabras propias para saber qué debe soportar el motor.
 
-> ⚠️ Los números de las tablas deben comprobarse con las cartas físicas.
-> Las **conexiones entre localizaciones no están en ninguna fuente digital**:
-> hay que tomarlas de los iconos de las cartas (ver "Datos que faltan").
+> Conviene comprobar los números con las cartas físicas, pero las tres fuentes coinciden.
 
 ## 1. Campaña: bolsa del caos por dificultad
 
@@ -57,16 +56,17 @@ Codificado en `packages/cards/src/brethren-of-ash/campaign.ts`.
 
 ### Localizaciones
 
-| Nombre | Velo | Pistas | Victoria | Habilidad (resumen propio) |
-|---|---|---|---|---|
-| Your Friend's Room | 2 | 2 por inv. | — | Acción: un enemigo de una localización conectada viene y se enfrenta a ti (sin ataques de oportunidad) |
-| Dormitories | 3 | 1 por inv. (?) | — | Acción: curar 1 daño y 1 horror (una vez por partida) |
-| Miskatonic Quad | 1 | 0 | — | Rápida, en tu turno, con 1 o 2 investigadores en la partida: moverse a una conexión (límite de grupo una vez por ronda) |
-| Science Hall | 2 | 1 por inv. (?) | 1 | Forzado: tras descubrir pistas aquí, descartas 1 carta de tu mano |
-| Warren Observatory | 3 | 1 por inv. (?) | — | Reacción: tras descubrir pistas aquí, robas 1 carta (una vez por ronda) |
-| Orne Library | 4 | 1 por inv. (?) | 1 | Acción doble: robar 3 cartas (una vez por partida) |
+| Nombre | Símbolo | Conecta con | Velo | Pistas | Victoria | Habilidad (resumen propio) |
+|---|---|---|---|---|---|---|
+| Your Friend's Room | pica | Dormitories | 2 | 2 por inv. | — | Acción: un enemigo de una localización conectada viene y se enfrenta a ti (sin ataques de oportunidad) |
+| Dormitories | triángulo | Your Friend's Room, Miskatonic Quad | 3 | 1 por inv. | — | Acción: curar 1 daño y 1 horror (una vez por partida) |
+| Miskatonic Quad | cruz | Dormitories, Science Hall, Warren Observatory, Orne Library (y círculo/corazón, de otros escenarios) | 1 | 0 | — | Rápida, en tu turno, con 1 o 2 investigadores en la partida: moverse a una conexión (límite de grupo una vez por ronda) |
+| Science Hall | reloj de arena | Miskatonic Quad | 2 | 1 por inv. | 1 | Forzado: tras descubrir pistas aquí, descartas 1 carta de tu mano |
+| Warren Observatory | cuadrado | Miskatonic Quad | 3 | 1 por inv. | — | Reacción: tras descubrir pistas aquí, robas 1 carta (una vez por ronda) |
+| Orne Library | rombo | Miskatonic Quad | 4 | 1 por inv. | 1 | Acción doble: robar 3 cartas (una vez por partida) |
 
-(?) ArkhamDB no indica si el valor es "por investigador"; comprobar en la carta.
+Mapa: Your Friend's Room — Dormitories — Miskatonic Quad, y el Quad es el centro
+del que salen Science Hall, Warren Observatory y Orne Library.
 
 ### Enemigos
 
@@ -101,7 +101,7 @@ Codificado en `packages/cards/src/brethren-of-ash/campaign.ts`.
 
 ### Apoyo de historia
 
-Dr. Henry Armitage (aliado, salud 3, cordura en la carta): +1 voluntad y +1
+Dr. Henry Armitage (aliado único, salud 3, cordura 3; iconos de voluntad, intelecto y comodín): +1 voluntad y +1
 intelecto; tu primera acción de cada ronda no provoca ataques de oportunidad.
 
 ## 4. Resoluciones (guía, página 4)
@@ -145,10 +145,7 @@ Ordenado de lo más básico a lo más específico:
     (Daniela Reyes, Joe Diamond, Trish Scarborough, Dexter Drake,
     Isabelle Barnes), que también son cartas de este producto.
 
-## 6. Datos que faltan
+## 6. Datos
 
-- **Conexiones entre localizaciones** (iconos en las cartas).
-- Si las pistas de Dormitories, Science Hall, Warren Observatory y Orne
-  Library son "por investigador".
-- Cordura de Dr. Henry Armitage.
-- Confirmar en las cartas los números de las tablas.
+Completos para la preparación del escenario. Faltan, para más adelante, los
+5 mazos iniciales y las cartas de jugador (ver la lista del reglamento, página 24).

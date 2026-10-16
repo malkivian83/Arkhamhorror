@@ -15,7 +15,7 @@ Isabelle Barnes). Sustituye a Night of the Zealot como contenido inicial.
 - [x] Mover el código original fuera del repositorio (`E:\referencia\ArkhamHorror`).
 - [x] Guardar el reglamento en `reglas/` (fuera de git).
 - [x] Conseguir la guía de campaña de Brethren of Ash (preparación y resoluciones de los escenarios).
-- [ ] Conexiones de las localizaciones de Spreading Flames (solo en las cartas físicas).
+- [x] Conexiones de las localizaciones de Spreading Flames (tomadas del proyecto de referencia).
 - [x] Crear el monorepo, CI (lint + tests) y `docker-compose` con Postgres.
 
 ## Fase 1 · Motor mínimo
