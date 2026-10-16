@@ -1,6 +1,6 @@
 # 08 · El motor de reglas (`packages/engine`)
 
-Estado a 2026-10-16. Basado en el reglamento de la caja básica de 2026
+Estado a 2026-10-16 (tarde). Basado en el reglamento de la caja básica de 2026
 (`reglas/`). Las citas "RR" del código remiten a sus secciones.
 
 ## Cómo funciona
@@ -55,7 +55,15 @@ applyInput(estado, {investigator, choice}) ─┤──► run(): procesa la col
 | Traiciones | Revelación, oleada (palabra clave o ganada), peligro (marcado), quedarse en la zona de amenaza o unirse a una localización, descarte |
 | Mazo de encuentros | Robar del descarte ("la copia superior de X"); cartas apartadas |
 | Habilidades forzadas | Tras descubrir pistas, al terminar la fase de investigación, al ser derrotado un enemigo, tras atacar en la fase de enemigos |
-| Efectos varios | Descartar al azar, perder recursos, dejar pistas en la localización |
+| Efectos varios | Descartar al azar, perder recursos, dejar pistas en la localización, curar |
+| Habilidades activadas | De localización, plan, acto, traiciones y apoyos; coste en acciones (0 = rápida), límites por ronda/partida (individual o de grupo); parlamento y retirarse sin ataques de oportunidad |
+| Plan y acto | Efectos del reverso al avanzar; actos con objetivo de condición o de pistas en una localización |
+| Escenario | Localizaciones apartadas que entran y salen del juego, enemigos y traiciones apartados, buscar en el mazo de encuentros |
+| Cartas de jugador | Jugar apoyos y eventos (coste, ranuras, cartas rápidas), habilidades de apoyos con usos y agotamiento, modificadores constantes |
+| Comprometer cartas | El investigador que hace la prueba compromete cartas con iconos de la habilidad o comodín; límite "máx. 1"; efectos según el resultado |
+| Asignar daño | El jugador reparte daño y horror entre su investigador y apoyos con salud/cordura; el daño directo va al investigador |
+| Registro | Entradas con clave i18n y parámetros (rondas, fases, acciones, pruebas, daño, encuentros…) |
+| Mesa | Cada opción puede llevar el elemento de la mesa al que se refiere (`target`) |
 | Fase de enemigos | Cazadores se mueven; los enfrentados atacan y se agotan |
 | Daño/horror y eliminación | Pistas a la localización, enemigos se quedan desenfrentados; sin investigadores → sin resolución |
 | Fase de mitos | 1 perdición, comprobar plan, cada investigador roba un encuentro |
@@ -77,11 +85,9 @@ defecto (se convertirán en preguntas):
 
 ## Pendiente (ver [hoja de ruta](05-hoja-de-ruta.md), fase 1)
 
-Comprometer cartas, jugar cartas y apoyos, habilidades activadas (acciones de
-localizaciones, plan, acto y traiciones; parlamento; retirarse), reacciones,
-efectos al avanzar plan/acto, objetivos de acto con condiciones, poner y quitar
-localizaciones, daño "directo" frente a apoyos, efectos de investigador y
-resoluciones de campaña.
+Que otros investigadores comprometan cartas, ventanas de reacción generales
+(jugar eventos rápidos "cuando…/tras…"), debilidades, habilidades de los
+investigadores, el resto de cartas de jugador, mulligan y resoluciones de campaña.
 
 ## Cómo añadir una regla
 

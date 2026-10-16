@@ -33,26 +33,28 @@ Estado detallado del motor: [08-motor.md](08-motor.md).
 - [x] Daño/horror, derrota y eliminación.
 - [x] Plan (perdición) y acto (pistas, en cualquier momento o al final de la ronda).
 - [x] Mantenimiento: preparar, robar, recurso, límite de mano.
-- [ ] Comprometer cartas a pruebas de habilidad (paso 2).
-- [ ] Jugar cartas (apoyos y eventos), recursos, ranuras.
+- [x] Comprometer cartas a pruebas de habilidad (paso 2) — falta que comprometan otros investigadores.
+- [x] Jugar cartas (apoyos y eventos), recursos, ranuras, usos, asignar daño a apoyos.
 - [x] Traiciones en el mazo de encuentros (revelación, peligro, oleada, colocación).
 - [x] Pruebas exigidas por efectos y efectos de las fichas de escenario.
 - [x] Habilidades forzadas (primeras ventanas).
-- [ ] Habilidades activadas, reacciones (⟲) y acciones rápidas (⚡); parlamento y retirarse.
+- [x] Habilidades activadas y rápidas, con límites; parlamento y retirarse.
+- [ ] Ventanas de reacción generales (eventos "cuando…/tras…").
 - [ ] Habilidades de investigador y efecto de su signo arcano.
 - [x] Palabras clave: presa, condenado.
 - [ ] Palabras clave restantes: patrulla, masivo, esquivo.
 - [x] Análisis de "Spreading Flames": [09-spreading-flames.md](09-spreading-flames.md).
 - [x] Bolsas del caos de Brethren of Ash por dificultad.
 - [x] Cartas de encuentro de "Spreading Flames": datos, revelaciones, forzados y tarjeta de referencia.
-- [ ] "Spreading Flames": efectos de plan y acto, resto de localizaciones y sus habilidades, Dr. Armitage, resoluciones.
-- [ ] Los 5 mazos iniciales y las habilidades de los investigadores.
+- [x] "Spreading Flames": efectos de plan y acto, las 6 localizaciones y sus habilidades. Faltan Dr. Armitage y resoluciones de campaña.
+- [x] Datos de las 104 cartas de jugador (sin texto) y los 5 mazos iniciales.
+- [ ] Efectos de todas las cartas de jugador (hecho un primer lote), debilidades y habilidades de investigador.
 
 ## Fase 2 · Jugable en navegador (local)
 
 - [x] Demo jugable en el navegador con un escenario inventado (EN/ES).
 - [ ] Servidor con partida en memoria + WebSocket.
-- [ ] Mesa de juego Vue: zonas, cartas renderizadas, fichas, preguntas.
+- [x] Mesa de juego: mapa con conexiones, plan/acto/mazos/bolsa, zona de cada investigador, mano jugable, registro, opciones con clic sobre la mesa, imágenes de ArkhamDB al vuelo con plantilla de respaldo, partida guardada en el navegador.
 - [ ] Deshacer última acción.
 
 ## Fase 3 · Plataforma

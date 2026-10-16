@@ -941,3 +941,13 @@ registerLocation({
     },
   ],
 })
+
+/** Posición de cada localización en la mesa (columna, fila), según su mapa. */
+export const SPREADING_FLAMES_LAYOUT: Record<string, [number, number]> = {
+  [CODES.yourFriendsRoom]: [0, 1],
+  [CODES.dormitories]: [1, 1],
+  [CODES.miskatonicQuad]: [2, 1],
+  [CODES.scienceHall]: [2, 0],
+  [CODES.orneLibrary]: [2, 2],
+  [CODES.warrenObservatory]: [3, 1],
+}

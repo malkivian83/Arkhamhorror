@@ -157,12 +157,21 @@
     "investigator": "Investigador",
     "difficulty": "Dificultad",
     "skillTest": "Prueba de habilidad",
-    "otherChoices": "Otras opciones"
+    "otherChoices": "Otras opciones",
+    "clickHighlighted": "Haz clic en un elemento resaltado de la mesa o elige abajo."
   },
   "difficulty": {
     "easy": "Fácil",
     "standard": "Normal",
     "hard": "Difícil",
     "expert": "Experto"
+  },
+  "setup": {
+    "continue": "Continuar la partida guardada",
+    "chooseInvestigators": "Elige de 1 a 4 investigadores",
+    "orderHint": "El orden en que los eliges es el orden de jugadores; el primero es el investigador jefe.",
+    "quit": "Abandonar partida",
+    "noGame": "No hay ninguna partida en curso.",
+    "confirmQuit": "¿Abandonar esta partida? No se podrá recuperar."
   }
 }

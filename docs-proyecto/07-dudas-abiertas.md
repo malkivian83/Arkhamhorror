@@ -38,7 +38,8 @@ Propuesta: caja básica (Night of the Zealot) y crecer campaña a campaña.
 ¿Cartas renderizadas por plantilla (texto + iconos), imágenes que cada usuario
 aporta en local, o ambas?
 
-> Respuesta:
+> Respuesta (2026-10-16): **imágenes de ArkhamDB cargadas al vuelo** por el
+> navegador (no se guardan en el repositorio), con plantilla propia si fallan.
 
 ## 6. Texto de las cartas
 

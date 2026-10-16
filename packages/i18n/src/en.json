@@ -157,12 +157,21 @@
     "investigator": "Investigator",
     "difficulty": "Difficulty",
     "skillTest": "Skill test",
-    "otherChoices": "Other options"
+    "otherChoices": "Other options",
+    "clickHighlighted": "Click a highlighted element on the table, or choose below."
   },
   "difficulty": {
     "easy": "Easy",
     "standard": "Standard",
     "hard": "Hard",
     "expert": "Expert"
+  },
+  "setup": {
+    "continue": "Continue saved game",
+    "chooseInvestigators": "Choose 1 to 4 investigators",
+    "orderHint": "The order you pick is the player order; the first is the lead investigator.",
+    "quit": "Quit game",
+    "noGame": "There is no game in progress.",
+    "confirmQuit": "Quit this game? It cannot be recovered."
   }
 }

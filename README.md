@@ -14,7 +14,7 @@ La planificación y las decisiones están en [docs-proyecto/](docs-proyecto/READ
 | `packages/shared` | Tipos del protocolo cliente/servidor                                 |
 | `packages/i18n`   | Textos de interfaz en inglés y español                               |
 | `apps/server`     | API HTTP + WebSocket (Fastify)                                       |
-| `apps/web`        | Frontend (Vue 3 + Vite + Pinia + vue-i18n)                           |
+| `apps/web`        | Mesa de juego (Vue 3 + Vite + Pinia + vue-i18n)                      |
 
 ## Requisitos
 
@@ -37,6 +37,18 @@ pnpm dev
 
 - Web: http://localhost:5173
 - Servidor: http://localhost:3001/api/health
+
+## Jugar
+
+Con `pnpm dev`, abre http://localhost:5173, elige de 1 a 4 investigadores y la
+dificultad, y empieza "Spreading Flames". Las imágenes de las cartas se cargan
+de ArkhamDB mientras juegas. La partida se guarda en el navegador.
+
+Para regenerar los datos de las cartas de jugador:
+
+```bash
+node scripts/import-core-2026.mjs
+```
 
 ## Comprobaciones (las mismas que la CI)
 
