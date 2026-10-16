@@ -46,7 +46,9 @@
     "chooseAction": "Choose an action",
     "chooseNextInvestigator": "Who takes the next turn?",
     "discardDownToHandSize": "Discard down to 8 cards",
-    "advanceAct": "Spend clues to advance the act?"
+    "advanceAct": "Spend clues to advance the act?",
+    "chooseSkill": "Choose the skill to test",
+    "chooseEffect": "Choose one"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -62,7 +64,21 @@
   "choice": {
     "investigator": "{name}",
     "discard": "Discard {card}",
-    "notNow": "Not now"
+    "notNow": "Not now",
+    "test": {
+      "willpower": "Test Willpower ({difficulty})",
+      "intellect": "Test Intellect ({difficulty})",
+      "combat": "Test Combat ({difficulty})",
+      "agility": "Test Agility ({difficulty})"
+    },
+    "placeDoom": "Place 1 doom on the agenda",
+    "damageHorrorSurge": "Take 1 direct damage and 1 direct horror (surge)",
+    "placeClue": "Place 1 of your clues on your location",
+    "takeHorror": "Take 1 horror",
+    "discardRandom": "Discard 1 card at random",
+    "loseResource": "Lose 1 resource",
+    "takeTwoDamage": "Take 2 damage",
+    "horrorToEachHere": "Each investigator at your location takes 1 horror"
   },
   "phase": {
     "setup": "Setup",

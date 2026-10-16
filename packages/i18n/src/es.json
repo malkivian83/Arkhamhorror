@@ -46,7 +46,9 @@
     "chooseAction": "Elige una acción",
     "chooseNextInvestigator": "¿Quién juega el siguiente turno?",
     "discardDownToHandSize": "Descarta hasta tener 8 cartas",
-    "advanceAct": "¿Gastar pistas para avanzar el acto?"
+    "advanceAct": "¿Gastar pistas para avanzar el acto?",
+    "chooseSkill": "Elige la habilidad para la prueba",
+    "chooseEffect": "Elige una opción"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -62,7 +64,21 @@
   "choice": {
     "investigator": "{name}",
     "discard": "Descartar {card}",
-    "notNow": "Ahora no"
+    "notNow": "Ahora no",
+    "test": {
+      "willpower": "Prueba de Voluntad ({difficulty})",
+      "intellect": "Prueba de Intelecto ({difficulty})",
+      "combat": "Prueba de Combate ({difficulty})",
+      "agility": "Prueba de Agilidad ({difficulty})"
+    },
+    "placeDoom": "Colocar 1 perdición en el plan",
+    "damageHorrorSurge": "Recibir 1 daño y 1 horror directos (oleada)",
+    "placeClue": "Dejar 1 de tus pistas en tu localización",
+    "takeHorror": "Recibir 1 horror",
+    "discardRandom": "Descartar 1 carta al azar",
+    "loseResource": "Perder 1 recurso",
+    "takeTwoDamage": "Recibir 2 daño",
+    "horrorToEachHere": "Cada investigador de tu localización recibe 1 horror"
   },
   "phase": {
     "setup": "Preparación",

@@ -3,7 +3,10 @@ import type { RngState } from './rng'
 export type InvestigatorId = string
 export type LocationId = string
 export type EnemyId = string
+export type TreacheryId = string
 export type CardCode = string
+
+export type Difficulty = 'easy' | 'standard' | 'hard' | 'expert'
 
 export type SkillType = 'willpower' | 'intellect' | 'combat' | 'agility'
 
@@ -59,11 +62,18 @@ export interface Location {
   clues: number
 }
 
-export type EnemyKeyword = 'hunter' | 'aloof' | 'retaliate' | 'alert'
+export type EnemyKeyword = 'hunter' | 'aloof' | 'retaliate' | 'alert' | 'doomed'
+
+/** Prey (presa): a quién prefiere enfrentarse el enemigo. */
+export type Prey =
+  { type: 'lowestSkill'; skill: SkillType } | { type: 'highestSkill'; skill: SkillType }
 
 export interface EnemyCard {
+  kind: 'enemy'
   code: CardCode
   name: string
+  traits?: string[]
+  prey?: Prey
   fight: number
   health: number
   healthPerInvestigator?: boolean
@@ -84,6 +94,29 @@ export interface Enemy extends EnemyCard {
   location: LocationId
   engagedWith: InvestigatorId | null
   exhausted: boolean
+}
+
+export type TreacheryKeyword = 'peril' | 'surge'
+
+export interface TreacheryCard {
+  kind: 'treachery'
+  code: CardCode
+  name: string
+  traits?: string[]
+  keywords: TreacheryKeyword[]
+}
+
+export type EncounterCard = EnemyCard | TreacheryCard
+
+export type TreacheryPlacement =
+  /** Recién robada, resolviendo su revelación. */
+  | { type: 'limbo' }
+  | { type: 'threatArea'; investigator: InvestigatorId }
+  | { type: 'location'; location: LocationId }
+
+export interface Treachery extends TreacheryCard {
+  id: TreacheryId
+  placement: TreacheryPlacement
 }
 
 export interface Agenda {
@@ -110,13 +143,39 @@ export type SkillTestKind =
   | { type: 'investigate'; location: LocationId }
   | { type: 'fight'; enemy: EnemyId }
   | { type: 'evade'; enemy: EnemyId }
+  | {
+      /** Prueba exigida por un efecto (traición, plan…). */
+      type: 'effect'
+      /** Nombre de la carta que la provoca, para mostrarlo. */
+      source: string
+      onSuccess: Message[]
+      onFail: Message[]
+      /** Se repite una vez por cada punto por el que se falla. */
+      onFailEach: Message[]
+    }
+
+/** Lo que aporta una ficha del caos revelada. */
+export interface TokenEffect {
+  modifier: number
+  /** "Revela otra ficha." */
+  revealAnother?: boolean
+  /** Mensajes adicionales si la prueba falla. */
+  onFail?: Message[]
+  /** Mensajes adicionales si la prueba falla por al menos `atLeast`. */
+  onFailBy?: { atLeast: number; then: Message[] }
+}
 
 export interface SkillTest {
   investigator: InvestigatorId
   skill: SkillType
   difficulty: number
   kind: SkillTestKind
-  token: ChaosToken | null
+  /** Fichas reveladas (fuera de la bolsa hasta que termina la prueba). */
+  tokens: ChaosToken[]
+  tokenModifier: number
+  autoFail: boolean
+  tokenOnFail: Message[]
+  tokenOnFailBy: { atLeast: number; then: Message[] }[]
   modifiedSkill: number | null
   succeeded: boolean | null
 }
@@ -183,9 +242,28 @@ export type Message =
   | { type: 'OfferActAdvance' }
   | { type: 'AdvanceAct' }
   | { type: 'DrawEncounterCard'; investigator: InvestigatorId }
+  | { type: 'ResolveEncounterCard'; investigator: InvestigatorId; card: EncounterCard }
+  | { type: 'DrawFromEncounterDiscard'; investigator: InvestigatorId; code: CardCode }
   | { type: 'SpawnEnemy'; card: EnemyCard; location: LocationId; engageWith: InvestigatorId | null }
+  | { type: 'RevealTreachery'; treachery: TreacheryId; investigator: InvestigatorId }
+  | { type: 'AfterRevelation'; treachery: TreacheryId; investigator: InvestigatorId }
+  | { type: 'GainSurge' }
+  | { type: 'PlaceTreachery'; treachery: TreacheryId; placement: TreacheryPlacement }
+  | { type: 'DiscardTreachery'; treachery: TreacheryId }
+  | { type: 'DiscardRandomFromHand'; investigator: InvestigatorId; amount: number }
+  | { type: 'LoseResources'; investigator: InvestigatorId; amount: number }
+  /** El investigador deja pistas suyas en su localización. */
+  | { type: 'PlaceCluesOnLocation'; investigator: InvestigatorId; amount: number }
+  | { type: 'Forced'; trigger: Trigger }
   | { type: 'EndScenario'; outcome: ScenarioOutcome }
   | { type: 'Ask'; investigator: InvestigatorId; question: Question }
+
+/** Momentos en los que se comprueban las habilidades forzadas. */
+export type Trigger =
+  | { type: 'afterDiscoverClues'; investigator: InvestigatorId; location: LocationId }
+  | { type: 'investigationPhaseEnds' }
+  | { type: 'enemyDefeated'; enemy: Enemy }
+  | { type: 'afterEnemyPhaseAttack'; enemy: EnemyId; investigator: InvestigatorId }
 
 /** Parámetros que acompañan a una clave i18n (nombres, cantidades…). */
 export type LabelParams = Record<string, string | number>
@@ -196,7 +274,14 @@ export interface Choice {
   label: string
   params?: LabelParams
   then: Message[]
+  /** La opción solo se ofrece si se cumple (se evalúa al mostrar la pregunta). */
+  requires?: Requirement
 }
+
+export type Requirement =
+  | { type: 'hasClues'; investigator: InvestigatorId }
+  | { type: 'hasCardsInHand'; investigator: InvestigatorId }
+  | { type: 'hasResources'; investigator: InvestigatorId }
 
 export interface Question {
   kind: 'chooseOne'
@@ -226,6 +311,7 @@ export interface GameState {
   /** Versión del motor que creó la partida, para migraciones futuras. */
   engineVersion: number
   scenarioId: string
+  difficulty: Difficulty
   rng: RngState
   nextId: number
   round: number
@@ -243,8 +329,13 @@ export interface GameState {
   actIndex: number
   chaosBag: ChaosToken[]
   tokenValues: ScenarioTokenValues
-  encounterDeck: EnemyCard[]
-  encounterDiscard: EnemyCard[]
+  encounterDeck: EncounterCard[]
+  encounterDiscard: EncounterCard[]
+  /** Cartas apartadas, fuera de juego (para efectos de escenario). */
+  setAside: EncounterCard[]
+  treacheries: Record<TreacheryId, Treachery>
+  /** La carta de encuentros que se está resolviendo ganó oleada. */
+  surgePending: boolean
   victoryDisplay: CardCode[]
   skillTest: SkillTest | null
   /** Pila de mensajes pendientes: el primero es el siguiente en procesarse. */

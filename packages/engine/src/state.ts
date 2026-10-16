@@ -130,3 +130,30 @@ export function nextStepToward(
   }
   return null
 }
+
+/**
+ * La localización más cercana (incluida `from`) que cumple `matches`, por
+ * número de conexiones. Con empate, la primera encontrada (decide el jefe).
+ */
+export function nearestLocation(
+  state: GameState,
+  from: LocationId,
+  matches: (location: LocationId) => boolean,
+): LocationId | null {
+  const visited = new Set<LocationId>([from])
+  let frontier: LocationId[] = [from]
+  while (frontier.length > 0) {
+    const found = frontier.find(matches)
+    if (found !== undefined) return found
+    const next: LocationId[] = []
+    for (const current of frontier) {
+      for (const neighbour of getLocation(state, current).connections) {
+        if (visited.has(neighbour) || !state.locations[neighbour]) continue
+        visited.add(neighbour)
+        next.push(neighbour)
+      }
+    }
+    frontier = next
+  }
+  return null
+}

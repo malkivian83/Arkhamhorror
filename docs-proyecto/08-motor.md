@@ -1,6 +1,6 @@
 # 08 · El motor de reglas (`packages/engine`)
 
-Estado a 2026-10-15. Basado en el reglamento de la caja básica de 2026
+Estado a 2026-10-16. Basado en el reglamento de la caja básica de 2026
 (`reglas/`). Las citas "RR" del código remiten a sus secciones.
 
 ## Cómo funciona
@@ -19,17 +19,22 @@ applyInput(estado, {investigator, choice}) ─┤──► run(): procesa la col
 - **Estado serializable**: `GameState` es JSON plano. Una partida se puede
   guardar como *semilla + lista de decisiones* y reconstruirse.
 - **Preguntas**: cada `Choice` lleva la clave i18n que verá el jugador y los
-  mensajes que se ejecutan al elegirla.
+  mensajes que se ejecutan al elegirla. Una opción puede tener requisitos
+  (`requires`); si solo queda una válida, se aplica sin preguntar.
+- **Contenido registrado**: el comportamiento de escenarios, traiciones y
+  enemigos vive en código (`content.ts`: `registerScenario`, `registerTreachery`,
+  `registerEnemy`) y se busca por código de carta. El estado solo guarda datos.
 
 | Fichero | Contenido |
 |---|---|
 | `types.ts` | Estado, entidades, mensajes, preguntas |
+| `content.ts` | Registro del comportamiento del contenido (fichas de escenario, revelaciones, forzados) |
 | `setup.ts` | `ScenarioDefinition`, `InvestigatorSetup`, preparación |
 | `handlers.ts` | Un caso por mensaje: fases, acciones, pruebas, enemigos, plan/acto |
 | `actions.ts` | Acciones disponibles y avance del acto |
 | `state.ts` | Utilidades de consulta/actualización y camino más corto |
 | `engine.ts` | `createGame`, `applyInput`, `dispatch`, bucle `run` |
-| `testing.ts` | Escenario de prueba y ayudas para tests |
+| `testing.ts` | Escenario de prueba y ayudas para tests (`@lcg/engine/testing`) |
 
 ## Reglas implementadas
 
@@ -41,11 +46,16 @@ applyInput(estado, {investigator, choice}) ─┤──► run(): procesa la col
 | Robar / Recurso / Moverse / Investigar / Luchar / Evadir / Enfrentarse | Mover revela y coloca pistas (con "por investigador") |
 | Mazo vacío al robar | 1 horror y se baraja el descarte |
 | Ataques de oportunidad | Todas las acciones salvo luchar/evadir; no agotan |
-| Prueba de habilidad | Ficha del caos, símbolos de escenario, signo arcano (modificador), fallo automático = 0 |
+| Prueba de habilidad | La ficha sale de la bolsa hasta el final; efectos de símbolo del escenario (modificador variable, "revela otra ficha", consecuencias al fallar o al fallar por N); signo arcano (modificador); fallo automático = 0 |
+| Pruebas por efecto | Exigidas por cartas: elegir habilidad, dificultad calculada, resultados al acertar/fallar y "por cada punto de fallo" |
 | Luchar | 1 daño; fallo contra enemigo enfrentado con otro → ese investigador recibe el daño |
 | Evadir | Agota y rompe el enfrentamiento |
 | Enemigos | Aparecen enfrentados a quien los roba; instrucciones de aparición; se enfrentan al entrar/aparecer/prepararse |
-| Palabras clave | Cazador (camino más corto), distante, represalia, alerta, victoria X |
+| Palabras clave | Cazador (camino más corto), distante, represalia, alerta, condenado, presa (mayor/menor habilidad), victoria X; rasgo Élite |
+| Traiciones | Revelación, oleada (palabra clave o ganada), peligro (marcado), quedarse en la zona de amenaza o unirse a una localización, descarte |
+| Mazo de encuentros | Robar del descarte ("la copia superior de X"); cartas apartadas |
+| Habilidades forzadas | Tras descubrir pistas, al terminar la fase de investigación, al ser derrotado un enemigo, tras atacar en la fase de enemigos |
+| Efectos varios | Descartar al azar, perder recursos, dejar pistas en la localización |
 | Fase de enemigos | Cazadores se mueven; los enfrentados atacan y se agotan |
 | Daño/horror y eliminación | Pistas a la localización, enemigos se quedan desenfrentados; sin investigadores → sin resolución |
 | Fase de mitos | 1 perdición, comprobar plan, cada investigador roba un encuentro |
@@ -67,12 +77,15 @@ defecto (se convertirán en preguntas):
 
 ## Pendiente (ver [hoja de ruta](05-hoja-de-ruta.md), fase 1)
 
-Comprometer cartas, jugar cartas, traiciones, ventanas de tiempo y habilidades,
-efectos de investigador, resto de palabras clave y los datos reales del escenario.
+Comprometer cartas, jugar cartas y apoyos, habilidades activadas (acciones de
+localizaciones, plan, acto y traiciones; parlamento; retirarse), reacciones,
+efectos al avanzar plan/acto, objetivos de acto con condiciones, poner y quitar
+localizaciones, daño "directo" frente a apoyos, efectos de investigador y
+resoluciones de campaña.
 
 ## Cómo añadir una regla
 
 1. Localizar la sección en el reglamento.
-2. Escribir primero el test en `engine.test.ts` (usa `newTestGame`, `during`, `choose`).
+2. Escribir primero el test en `engine.test.ts` o `mechanics.test.ts` (usa `newTestGame`, `during`, `choose`).
 3. Añadir el mensaje a `types.ts` y su caso en `handlers.ts`, citando la sección RR.
 4. `pnpm test` y `pnpm lint`.

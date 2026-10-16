@@ -35,13 +35,18 @@ Estado detallado del motor: [08-motor.md](08-motor.md).
 - [x] Mantenimiento: preparar, robar, recurso, límite de mano.
 - [ ] Comprometer cartas a pruebas de habilidad (paso 2).
 - [ ] Jugar cartas (apoyos y eventos), recursos, ranuras.
-- [ ] Traiciones en el mazo de encuentros (revelación, peligro, oleada).
-- [ ] Ventanas de tiempo, reacciones (⟲), acciones gratuitas (⚡) y efectos forzados.
+- [x] Traiciones en el mazo de encuentros (revelación, peligro, oleada, colocación).
+- [x] Pruebas exigidas por efectos y efectos de las fichas de escenario.
+- [x] Habilidades forzadas (primeras ventanas).
+- [ ] Habilidades activadas, reacciones (⟲) y acciones rápidas (⚡); parlamento y retirarse.
 - [ ] Habilidades de investigador y efecto de su signo arcano.
-- [ ] Palabras clave restantes: presa, patrulla, masivo, esquivo, condenado.
+- [x] Palabras clave: presa, condenado.
+- [ ] Palabras clave restantes: patrulla, masivo, esquivo.
 - [x] Análisis de "Spreading Flames": [09-spreading-flames.md](09-spreading-flames.md).
 - [x] Bolsas del caos de Brethren of Ash por dificultad.
-- [ ] Datos y comportamiento de las cartas de "Spreading Flames" y los 5 mazos iniciales.
+- [x] Cartas de encuentro de "Spreading Flames": datos, revelaciones, forzados y tarjeta de referencia.
+- [ ] "Spreading Flames": efectos de plan y acto, resto de localizaciones y sus habilidades, Dr. Armitage, resoluciones.
+- [ ] Los 5 mazos iniciales y las habilidades de los investigadores.
 
 ## Fase 2 · Jugable en navegador (local)
 

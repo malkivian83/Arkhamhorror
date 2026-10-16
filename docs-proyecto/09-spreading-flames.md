@@ -145,7 +145,22 @@ Ordenado de lo más básico a lo más específico:
     (Daniela Reyes, Joe Diamond, Trish Scarborough, Dexter Drake,
     Isabelle Barnes), que también son cartas de este producto.
 
-## 6. Datos
+## 6. Estado de la implementación (2026-10-16)
+
+Código: `packages/cards/src/brethren-of-ash/spreading-flames.ts` (con tests).
+
+| Parte | Estado |
+|---|---|
+| Bolsa del caos por dificultad | Hecho |
+| Tarjeta de referencia (calavera, tablilla, primigenio; fácil/normal y difícil/experto) | Hecho |
+| Preparación: Your Friend's Room, mazo de 24, apartadas 5 Fire! y Servant of Flame | Hecho |
+| Traiciones: Cosmic Evils, Unspeakable Truths, Forbidden Secrets, Extraplanar Visions, Wild Compulsion, Fire!, Noxious Smoke, Mutated! | Revelaciones y forzados hechos; faltan las acciones para descartar Fire! y Unspeakable Truths |
+| Enemigos: valores, presa, condenado, Élite, forzado de Mutated Experiment | Hecho; falta el forzado de Hellhound (requiere apoyos) |
+| Efectos de plan y acto, objetivos 2–4, parlamento, retirarse | Pendiente |
+| Resto de localizaciones y sus habilidades | Pendiente (entran con el acto 1) |
+| Dr. Henry Armitage, resoluciones y registro de campaña | Pendiente |
+
+## 7. Datos
 
 Completos para la preparación del escenario. Faltan, para más adelante, los
 5 mazos iniciales y las cartas de jugador (ver la lista del reglamento, página 24).

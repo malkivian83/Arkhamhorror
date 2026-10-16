@@ -55,3 +55,8 @@ export function allCards(): CardDefinition[] {
 
 export { demoInvestigators, demoScenario } from './demo'
 export { BRETHREN_OF_ASH, CHAOS_BAGS, type Difficulty } from './brethren-of-ash/campaign'
+export {
+  CODES as SPREADING_FLAMES_CODES,
+  SPREADING_FLAMES,
+  spreadingFlames,
+} from './brethren-of-ash/spreading-flames'

@@ -8,6 +8,7 @@ import type { InvestigatorSetup, ScenarioDefinition } from './setup'
 import type { ChaosToken, EnemyCard, GameState, LabelParams, Message } from './types'
 
 export const ghoul: EnemyCard = {
+  kind: 'enemy',
   code: 'test-ghoul',
   name: 'Ghoul',
   fight: 2,

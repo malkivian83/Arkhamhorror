@@ -7,6 +7,7 @@ import type { EnemyCard, InvestigatorSetup, ScenarioDefinition } from '@lcg/engi
  */
 
 const rat: EnemyCard = {
+  kind: 'enemy',
   code: 'demo-rat',
   name: 'Swarm of Rats',
   fight: 1,
@@ -18,6 +19,7 @@ const rat: EnemyCard = {
 }
 
 const watcher: EnemyCard = {
+  kind: 'enemy',
   code: 'demo-watcher',
   name: 'Hooded Watcher',
   fight: 3,
@@ -30,6 +32,7 @@ const watcher: EnemyCard = {
 }
 
 const shade: EnemyCard = {
+  kind: 'enemy',
   code: 'demo-shade',
   name: 'Restless Shade',
   fight: 2,

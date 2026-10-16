@@ -5,7 +5,8 @@ import type {
   Agenda,
   CardCode,
   ChaosToken,
-  EnemyCard,
+  Difficulty,
+  EncounterCard,
   GameState,
   Investigator,
   Location,
@@ -34,8 +35,11 @@ export interface ScenarioDefinition {
   startingLocation: LocationId
   agendas: Agenda[]
   acts: Act[]
-  encounterDeck: EnemyCard[]
+  encounterDeck: EncounterCard[]
+  /** Cartas apartadas, fuera de juego, que usarán los efectos del escenario. */
+  setAside?: EncounterCard[]
   chaosBag: ChaosToken[]
+  /** Valores fijos de los símbolos (si el escenario no registra `tokenEffect`). */
   tokenValues: ScenarioTokenValues
 }
 
@@ -51,6 +55,7 @@ export interface InvestigatorSetup {
 
 export interface NewGameOptions {
   seed: number
+  difficulty?: Difficulty
   scenario: ScenarioDefinition
   investigators: InvestigatorSetup[]
 }
@@ -62,7 +67,12 @@ export interface NewGameOptions {
  *
  * Pendiente: mulligan, debilidades durante la preparación, investigador jefe a elección.
  */
-export function prepareGame({ seed, scenario, investigators }: NewGameOptions): GameState {
+export function prepareGame({
+  seed,
+  scenario,
+  investigators,
+  difficulty = 'standard',
+}: NewGameOptions): GameState {
   if (investigators.length < 1 || investigators.length > 4) {
     throw new EngineError('Una partida admite de 1 a 4 investigadores')
   }
@@ -125,6 +135,7 @@ export function prepareGame({ seed, scenario, investigators }: NewGameOptions): 
   return {
     engineVersion: ENGINE_VERSION,
     scenarioId: scenario.id,
+    difficulty,
     rng,
     nextId: 1,
     round: 0,
@@ -141,6 +152,9 @@ export function prepareGame({ seed, scenario, investigators }: NewGameOptions): 
     chaosBag: [...scenario.chaosBag],
     tokenValues: { ...scenario.tokenValues },
     encounterDeck,
+    setAside: [...(scenario.setAside ?? [])],
+    treacheries: {},
+    surgePending: false,
     encounterDiscard: [],
     victoryDisplay: [],
     skillTest: null,
