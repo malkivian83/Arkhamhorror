@@ -48,7 +48,9 @@
     "discardDownToHandSize": "Descarta hasta tener 8 cartas",
     "advanceAct": "¿Gastar pistas para avanzar el acto?",
     "chooseSkill": "Elige la habilidad para la prueba",
-    "chooseEffect": "Elige una opción"
+    "chooseEffect": "Elige una opción",
+    "reaction": "¿Usar esta reacción?",
+    "chooseCardToDiscard": "Elige una carta para descartar"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -78,7 +80,8 @@
     "discardRandom": "Descartar 1 carta al azar",
     "loseResource": "Perder 1 recurso",
     "takeTwoDamage": "Recibir 2 daño",
-    "horrorToEachHere": "Cada investigador de tu localización recibe 1 horror"
+    "horrorToEachHere": "Cada investigador de tu localización recibe 1 horror",
+    "skip": "Omitir"
   },
   "phase": {
     "setup": "Preparación",
@@ -86,5 +89,17 @@
     "investigation": "Fase de Investigación",
     "enemy": "Fase de Enemigos",
     "upkeep": "Fase de Mantenimiento"
+  },
+  "ability": {
+    "parleyBystander": "Parlamento: prueba de Intelecto (2) para descartar un Bystander",
+    "discardFire": "Apagar el fuego: prueba de Agilidad (3)",
+    "discardTreachery": "Descartar {card}",
+    "blazeDamage": "Gastar {clues} pistas: {damage} daño a {enemy}",
+    "resign": "Retirarse: huir del campus en llamas",
+    "engageFromConnecting": "Atraer a {enemy} desde {location} y enfrentarte a él",
+    "heal": "Curar 1 daño y 1 horror",
+    "quadMove": "Moverse a {location} (rápida)",
+    "observatoryDraw": "Robar 1 carta",
+    "orneDraw": "Robar 3 cartas (2 acciones)"
   }
 }

@@ -48,7 +48,9 @@
     "discardDownToHandSize": "Discard down to 8 cards",
     "advanceAct": "Spend clues to advance the act?",
     "chooseSkill": "Choose the skill to test",
-    "chooseEffect": "Choose one"
+    "chooseEffect": "Choose one",
+    "reaction": "Use this reaction?",
+    "chooseCardToDiscard": "Choose a card to discard"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -78,7 +80,8 @@
     "discardRandom": "Discard 1 card at random",
     "loseResource": "Lose 1 resource",
     "takeTwoDamage": "Take 2 damage",
-    "horrorToEachHere": "Each investigator at your location takes 1 horror"
+    "horrorToEachHere": "Each investigator at your location takes 1 horror",
+    "skip": "Skip"
   },
   "phase": {
     "setup": "Setup",
@@ -86,5 +89,17 @@
     "investigation": "Investigation phase",
     "enemy": "Enemy phase",
     "upkeep": "Upkeep phase"
+  },
+  "ability": {
+    "parleyBystander": "Parley: test Intellect (2) to discard a Bystander",
+    "discardFire": "Put out the fire: test Agility (3)",
+    "discardTreachery": "Discard {card}",
+    "blazeDamage": "Spend {clues} clues: deal {damage} damage to {enemy}",
+    "resign": "Resign: flee the burning campus",
+    "engageFromConnecting": "Lure {enemy} from {location} and engage it",
+    "heal": "Heal 1 damage and 1 horror",
+    "quadMove": "Move to {location} (fast)",
+    "observatoryDraw": "Draw 1 card",
+    "orneDraw": "Draw 3 cards (2 actions)"
   }
 }

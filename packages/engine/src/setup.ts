@@ -10,6 +10,7 @@ import type {
   GameState,
   Investigator,
   Location,
+  LocationCard,
   LocationId,
   Message,
   ScenarioTokenValues,
@@ -18,20 +19,15 @@ import type {
 
 export const ENGINE_VERSION = 1
 
-export interface LocationCard {
-  id: LocationId
-  name: string
-  shroud: number
-  clueValue: number
-  cluesPerInvestigator: boolean
-  connections: LocationId[]
-}
+export type { LocationCard } from './types'
 
 /** Todo lo necesario para preparar un escenario. */
 export interface ScenarioDefinition {
   id: string
   /** Localizaciones en juego al empezar (sin revelar). */
   locations: LocationCard[]
+  /** Localizaciones apartadas, para efectos del escenario. */
+  setAsideLocations?: LocationCard[]
   startingLocation: LocationId
   agendas: Agenda[]
   acts: Act[]
@@ -105,6 +101,7 @@ export function prepareGame({
       actionsRemaining: 0,
       turnTaken: false,
       eliminated: false,
+      resigned: false,
       deck,
       hand: [],
       discard: [],
@@ -157,6 +154,8 @@ export function prepareGame({
     surgePending: false,
     encounterDiscard: [],
     victoryDisplay: [],
+    setAsideLocations: Object.fromEntries((scenario.setAsideLocations ?? []).map((l) => [l.id, l])),
+    abilityUses: [],
     skillTest: null,
     queue: setupMessages,
     pending: null,

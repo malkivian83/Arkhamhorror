@@ -1,11 +1,20 @@
 import {
+  actContributors,
+  availableAbilities,
   availableActions,
   canAdvanceAct,
   cluesToAdvanceAct,
   describeAction,
   provokesAttacksOfOpportunity,
 } from './actions'
-import { enemyBehavior, scenarioBehavior, treacheryBehavior } from './content'
+import {
+  actBehavior,
+  agendaBehavior,
+  enemyBehavior,
+  locationBehavior,
+  scenarioBehavior,
+  treacheryBehavior,
+} from './content'
 import { EngineError } from './errors'
 import { nextInt, shuffle } from './rng'
 import {
@@ -30,6 +39,9 @@ import {
 import type {
   ChaosToken,
   Choice,
+  EncounterCard,
+  Enemy,
+  EnemyCard,
   GameState,
   Investigator,
   Message,
@@ -78,7 +90,10 @@ export function handle(state: GameState, message: Message): GameState {
       )
 
     case 'PlaceDoom':
-      return { ...state, doom: state.doom + message.amount }
+      return push(
+        { ...state, doom: state.doom + message.amount },
+        { type: 'Forced', trigger: { type: 'afterDoomPlaced' } },
+      )
 
     case 'CheckAgenda': {
       const agenda = state.agendas[state.agendaIndex]
@@ -88,12 +103,19 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'AdvanceAgenda': {
+      // RR "The Mythos Phase": se descarta la perdición, se resuelve el reverso y
+      // la siguiente carta pasa a ser el plan actual.
+      const agenda = state.agendas[state.agendaIndex]
+      const onAdvance = agendaBehavior(agenda?.code)?.onAdvance?.(state) ?? []
+      return push({ ...state, doom: 0 }, ...onAdvance, { type: 'AgendaAdvanced' })
+    }
+
+    case 'AgendaAdvanced': {
       const agendaIndex = state.agendaIndex + 1
-      const next = { ...state, doom: 0, agendaIndex }
       if (agendaIndex >= state.agendas.length) {
-        return push(next, { type: 'EndScenario', outcome: { type: 'noResolution' } })
+        return push(state, { type: 'EndScenario', outcome: { type: 'noResolution' } })
       }
-      return next
+      return { ...state, agendaIndex }
     }
 
     case 'DrawEncounterCard': {
@@ -274,6 +296,7 @@ export function handle(state: GameState, message: Message): GameState {
       if (investigator.eliminated) return state
       const id = investigator.id
       const again: Message = { type: 'PlayerWindow', investigator: id }
+      if (actObjectiveMet(state)) return push(state, { type: 'AdvanceAct' }, again)
       const actions =
         investigator.actionsRemaining > 0
           ? availableActions(state, id).map((action): Choice => {
@@ -292,8 +315,24 @@ export function handle(state: GameState, message: Message): GameState {
               },
             ]
           : []
+      const abilities = availableAbilities(state, id).map((a): Choice => ({
+        label: a.label,
+        ...(a.params ? { params: a.params } : {}),
+        then: [
+          {
+            type: 'UseAbility',
+            investigator: id,
+            key: a.key,
+            actions: a.actions,
+            provokes: a.provokes,
+            ...(a.limit ? { limit: a.limit } : {}),
+            then: a.then,
+          },
+          again,
+        ],
+      }))
       // Sin acciones ni nada gratuito que hacer, el turno termina solo.
-      if (actions.length === 0 && advanceAct.length === 0) {
+      if (actions.length === 0 && advanceAct.length === 0 && abilities.length === 0) {
         return push(state, { type: 'EndTurn', investigator: id })
       }
       return push(state, {
@@ -304,6 +343,7 @@ export function handle(state: GameState, message: Message): GameState {
           prompt: 'prompt.chooseAction',
           choices: [
             ...actions,
+            ...abilities,
             ...advanceAct,
             { label: 'action.endTurn', then: [{ type: 'EndTurn', investigator: id }] },
           ],
@@ -555,6 +595,16 @@ export function handle(state: GameState, message: Message): GameState {
         : state
     }
 
+    case 'DefeatInvestigator':
+      return push(state, { type: 'EliminateInvestigator', investigator: message.investigator })
+
+    case 'Resign':
+      // RR "Resign": deja sus pistas en su localización y sale del escenario.
+      return push(
+        updateInvestigator(state, message.investigator, (i) => ({ ...i, resigned: true })),
+        { type: 'EliminateInvestigator', investigator: message.investigator },
+      )
+
     case 'EliminateInvestigator': {
       // RR "Elimination": pistas y enemigos enfrentados quedan en su localización.
       const investigator = getInvestigator(state, message.investigator)
@@ -581,7 +631,11 @@ export function handle(state: GameState, message: Message): GameState {
       if (activeInvestigators(next).length === 0) {
         return push(next, { type: 'EndScenario', outcome: { type: 'noResolution' } })
       }
-      return here === null ? next : push(next, { type: 'CheckEngagement', location: here })
+      return push(
+        next,
+        ...(here === null ? [] : [{ type: 'CheckEngagement', location: here } as const]),
+        { type: 'CheckActObjective' },
+      )
     }
 
     // ------------------------------------------------------ Prueba de habilidad
@@ -738,24 +792,17 @@ export function handle(state: GameState, message: Message): GameState {
     case 'DefeatEnemy': {
       const enemy = getEnemy(state, message.enemy)
       const removed = removeEnemy(state, enemy.id)
-      const {
-        id: _id,
-        maxHealth: _max,
-        damageTaken: _dmg,
-        location: _loc,
-        engagedWith: _eng,
-        exhausted: _exh,
-        ...card
-      } = enemy
       const next =
         enemy.victory !== undefined
           ? { ...removed, victoryDisplay: [...removed.victoryDisplay, enemy.code] }
-          : { ...removed, encounterDiscard: [...removed.encounterDiscard, card] }
+          : { ...removed, encounterDiscard: [...removed.encounterDiscard, enemyCard(enemy)] }
       // RR "Doomed": al ser derrotado (no descartado), 1 perdición en el plan.
       const doomed: Message[] = enemy.keywords.includes('doomed')
         ? [{ type: 'PlaceDoom', amount: 1 }, { type: 'CheckAgenda' }]
         : []
-      return push(next, { type: 'Forced', trigger: { type: 'enemyDefeated', enemy } }, ...doomed)
+      return push(next, { type: 'Forced', trigger: { type: 'enemyDefeated', enemy } }, ...doomed, {
+        type: 'CheckActObjective',
+      })
     }
 
     case 'EvadeEnemy':
@@ -836,8 +883,13 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'EndOfRound': {
       const act = state.acts[state.actIndex]
-      return act?.advanceTiming === 'endOfRound' ? push(state, { type: 'OfferActAdvance' }) : state
+      return act?.advanceTiming === 'endOfRound'
+        ? push(state, { type: 'OfferActAdvance' })
+        : push(state, { type: 'CheckActObjective' })
     }
+
+    case 'CheckActObjective':
+      return actObjectiveMet(state) ? push(state, { type: 'AdvanceAct' }) : state
 
     // ------------------------------------------------------------ Acto
     case 'OfferActAdvance': {
@@ -863,23 +915,245 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'AdvanceAct': {
+      const act = state.acts[state.actIndex]
+      if (!act) return state
+      let next = state
       let required = cluesToAdvanceAct(state)
-      if (required === null || !canAdvanceAct(state))
-        throw new EngineError('No se puede avanzar el acto')
-      // Pendiente: que el grupo elija cuántas pistas aporta cada uno. Ahora, en orden de jugadores.
+      if (required !== null) {
+        if (!canAdvanceAct(state)) throw new EngineError('No se puede avanzar el acto')
+        // Pendiente: que el grupo elija cuántas pistas aporta cada uno. Ahora, en orden de jugadores.
+        for (const investigator of actContributors(state)) {
+          const spent = Math.min(required, investigator.clues)
+          required -= spent
+          next = updateInvestigator(next, investigator.id, (i) => ({
+            ...i,
+            clues: i.clues - spent,
+          }))
+        }
+      }
+      const onAdvance = actBehavior(act.code)?.onAdvance?.(next) ?? []
+      return push(next, ...onAdvance, { type: 'ActAdvanced' })
+    }
+
+    case 'ActAdvanced': {
+      const actIndex = state.actIndex + 1
+      if (actIndex >= state.acts.length) {
+        return push(state, { type: 'EndScenario', outcome: { type: 'resolution', resolution: 1 } })
+      }
+      return { ...state, actIndex }
+    }
+
+    // ------------------------------------------------------- Habilidades
+    case 'UseAbility': {
+      const investigator = getInvestigator(state, message.investigator)
+      if (investigator.actionsRemaining < message.actions)
+        throw new EngineError('No quedan acciones')
+      const paid = updateInvestigator(
+        {
+          ...state,
+          abilityUses: [
+            ...state.abilityUses,
+            { key: message.key, investigator: investigator.id, round: state.round },
+          ],
+        },
+        investigator.id,
+        (i) => ({ ...i, actionsRemaining: i.actionsRemaining - message.actions }),
+      )
+      // Una habilidad de acción provoca ataques de oportunidad (una vez), salvo parlamento/retirarse.
+      const attacks: Message[] =
+        message.actions > 0 && message.provokes
+          ? engagedEnemies(state, investigator.id)
+              .filter((e) => !e.exhausted)
+              .map((e) => ({
+                type: 'EnemyAttack',
+                enemy: e.id,
+                investigator: investigator.id,
+                exhaustAfter: false,
+              }))
+          : []
+      return push(paid, ...attacks, ...message.then)
+    }
+
+    // ------------------------------------------------ Efectos de escenario
+    case 'DiscardEnemy': {
+      // Descartar no es derrotar: no activa condenado ni "al ser derrotado".
+      const enemy = findEnemy(state, message.enemy)
+      if (!enemy) return state
+      return {
+        ...removeEnemy(state, enemy.id),
+        encounterDiscard: [...state.encounterDiscard, enemyCard(enemy)],
+      }
+    }
+
+    case 'MoveEnemy':
+      if (!findEnemy(state, message.enemy) || !state.locations[message.location]) return state
+      return push(
+        updateEnemy(state, message.enemy, (e) => ({
+          ...e,
+          location: message.location,
+          engagedWith: null,
+        })),
+        { type: 'CheckEngagement', location: message.location },
+      )
+
+    case 'PutLocationIntoPlay': {
+      const card = state.setAsideLocations[message.location]
+      if (!card || state.locations[message.location]) return state
+      const { [message.location]: _taken, ...setAsideLocations } = state.setAsideLocations
+      return {
+        ...state,
+        setAsideLocations,
+        locations: {
+          ...state.locations,
+          [card.id]: { ...card, connections: [...card.connections], revealed: false, clues: 0 },
+        },
+      }
+    }
+
+    case 'RemoveLocation': {
+      // Se descartan sus fichas y vinculadas, y sale del juego.
+      if (!state.locations[message.location]) return state
+      let next = state
+      for (const t of Object.values(state.treacheries)) {
+        if (t.placement.type === 'location' && t.placement.location === message.location) {
+          next = discardTreachery(next, t.id)
+        }
+      }
+      const { [message.location]: _removed, ...locations } = next.locations
+      return { ...next, locations }
+    }
+
+    case 'PlaceCluesOnLocationFromPool':
+      if (!state.locations[message.location]) return state
+      return updateLocation(state, message.location, (l) => ({
+        ...l,
+        clues: l.clues + message.amount,
+      }))
+
+    case 'SpawnSetAsideEnemy': {
+      const index = state.setAside.findIndex((c) => c.code === message.code)
+      const card = state.setAside[index]
+      if (!card || card.kind !== 'enemy' || !state.locations[message.location]) return state
+      return push(
+        { ...state, setAside: state.setAside.filter((_, n) => n !== index) },
+        { type: 'SpawnEnemy', card, location: message.location, engageWith: null },
+      )
+    }
+
+    case 'SetAsideEnemy': {
+      // Busca en juego y en las zonas fuera de juego; se aparta curado.
+      const inPlay = Object.values(state.enemies).find((e) => e.code === message.code)
+      if (inPlay) {
+        return {
+          ...removeEnemy(state, inPlay.id),
+          setAside: [...state.setAside, enemyCard(inPlay)],
+        }
+      }
+      const index = state.encounterDiscard.findIndex((c) => c.code === message.code)
+      const card = state.encounterDiscard[index]
+      if (!card) return state
+      return {
+        ...state,
+        encounterDiscard: state.encounterDiscard.filter((_, n) => n !== index),
+        setAside: [...state.setAside, card],
+      }
+    }
+
+    case 'PlaceSetAsideTreachery': {
+      const index = state.setAside.findIndex((c) => c.code === message.code)
+      const card = state.setAside[index]
+      if (!card || card.kind !== 'treachery') return state
+      const [id, next] = newId(
+        { ...state, setAside: state.setAside.filter((_, n) => n !== index) },
+        'treachery-',
+      )
+      return {
+        ...next,
+        treacheries: {
+          ...next.treacheries,
+          [id]: { ...card, keywords: [...card.keywords], id, placement: message.placement },
+        },
+      }
+    }
+
+    case 'MoveSetAsideToEncounterDiscard': {
+      const limit = message.count ?? Infinity
+      const moved: EncounterCard[] = []
+      const setAside = state.setAside.filter((c) => {
+        if (c.code !== message.code || moved.length >= limit) return true
+        moved.push(c)
+        return false
+      })
+      return { ...state, setAside, encounterDiscard: [...state.encounterDiscard, ...moved] }
+    }
+
+    case 'SpendGroupClues': {
+      // Pendiente: que el grupo elija quién paga. Ahora, en orden de jugadores.
+      let remaining = message.amount
       let next = state
       for (const investigator of activeInvestigators(state)) {
-        const spent = Math.min(required, investigator.clues)
-        required -= spent
+        const spent = Math.min(remaining, investigator.clues)
+        remaining -= spent
         next = updateInvestigator(next, investigator.id, (i) => ({ ...i, clues: i.clues - spent }))
-      }
-      const actIndex = state.actIndex + 1
-      next = { ...next, actIndex }
-      if (actIndex >= state.acts.length) {
-        return push(next, { type: 'EndScenario', outcome: { type: 'resolution', resolution: 1 } })
       }
       return next
     }
+
+    case 'ChooseDiscardFromHand': {
+      const investigator = getInvestigator(state, message.investigator)
+      if (message.amount <= 0 || investigator.hand.length === 0) return state
+      return push(state, {
+        type: 'Ask',
+        investigator: investigator.id,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.chooseCardToDiscard',
+          choices: [...new Set(investigator.hand)].map((card): Choice => ({
+            label: 'choice.discard',
+            params: { card },
+            then: [
+              { type: 'DiscardFromHand', investigator: investigator.id, card },
+              { ...message, amount: message.amount - 1 },
+            ],
+          })),
+        },
+      })
+    }
+
+    case 'SearchAndDrawEncounter': {
+      let deck = state.encounterDeck
+      let discard = state.encounterDiscard
+      const found: EncounterCard[] = []
+      for (let n = 0; n < message.amount; n++) {
+        const fromDeck = deck.findIndex((c) => c.code === message.code)
+        if (fromDeck >= 0) {
+          found.push(deck[fromDeck] as EncounterCard)
+          deck = deck.filter((_, i) => i !== fromDeck)
+          continue
+        }
+        const fromDiscard = discard.findIndex((c) => c.code === message.code)
+        if (fromDiscard < 0) break
+        found.push(discard[fromDiscard] as EncounterCard)
+        discard = discard.filter((_, i) => i !== fromDiscard)
+      }
+      // Se baraja el mazo de encuentros porque se ha buscado en él.
+      const [shuffled, rng] = shuffle(deck, state.rng)
+      return push(
+        { ...state, rng, encounterDeck: shuffled, encounterDiscard: discard },
+        ...found.map((card): Message => ({
+          type: 'ResolveEncounterCard',
+          investigator: message.investigator,
+          card,
+        })),
+      )
+    }
+
+    case 'Heal':
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        damage: Math.max(0, i.damage - message.damage),
+        horror: Math.max(0, i.horror - message.horror),
+      }))
 
     // ------------------------------------------------------------ Varios
     case 'EndScenario':
@@ -936,7 +1210,35 @@ function forcedAbilities(state: GameState, trigger: Trigger): Message[] {
   const fromEnemies = enemies.flatMap(
     (e) => enemyBehavior(e.code)?.forced?.(state, trigger, e) ?? [],
   )
-  return [...fromEnemies, ...fromTreacheries]
+  const agenda = state.agendas[state.agendaIndex]
+  const fromAgenda = agenda
+    ? (agendaBehavior(agenda.code)?.forced?.(state, trigger, agenda) ?? [])
+    : []
+  const fromLocations = Object.values(state.locations).flatMap(
+    (l) => locationBehavior(l.id)?.forced?.(state, trigger, l) ?? [],
+  )
+  return [...fromAgenda, ...fromEnemies, ...fromLocations, ...fromTreacheries]
+}
+
+function actObjectiveMet(state: GameState): boolean {
+  if (state.outcome) return false
+  const act = state.acts[state.actIndex]
+  return (
+    act?.advanceTiming === 'objective' && (actBehavior(act.code)?.objectiveMet?.(state) ?? false)
+  )
+}
+
+function enemyCard(enemy: Enemy): EnemyCard {
+  const {
+    id: _id,
+    maxHealth: _max,
+    damageTaken: _dmg,
+    location: _loc,
+    engagedWith: _eng,
+    exhausted: _exh,
+    ...card
+  } = enemy
+  return card
 }
 
 /** Valor y efectos de una ficha del caos (RR paso 4). */

@@ -46,6 +46,8 @@ export interface Investigator {
   actionsRemaining: number
   turnTaken: boolean
   eliminated: boolean
+  /** Se retiró del escenario (también cuenta como eliminado). */
+  resigned: boolean
   deck: CardCode[]
   hand: CardCode[]
   discard: CardCode[]
@@ -120,19 +122,70 @@ export interface Treachery extends TreacheryCard {
 }
 
 export interface Agenda {
+  /** Código de carta, para buscar su comportamiento (efecto al avanzar, habilidades). */
+  code?: CardCode
   name: string
   doomThreshold: number
 }
 
 export interface Act {
+  code?: CardCode
   name: string
   clueThreshold: number
   cluesPerInvestigator: boolean
   /**
    * `anytime`: los investigadores pueden gastar las pistas durante cualquier turno.
    * `endOfRound`: "Objetivo – Al final de la ronda, los investigadores pueden gastar…".
+   * `objective`: avanza al cumplirse la condición de su comportamiento (`objectiveMet`).
    */
-  advanceTiming: 'anytime' | 'endOfRound'
+  advanceTiming: 'anytime' | 'endOfRound' | 'objective'
+  /** Solo pueden gastar pistas los investigadores en esta localización. */
+  cluesAtLocation?: LocationId
+}
+
+/** Datos de una localización (en juego o apartada). */
+export interface LocationCard {
+  id: LocationId
+  name: string
+  shroud: number
+  clueValue: number
+  cluesPerInvestigator: boolean
+  connections: LocationId[]
+  victory?: number
+}
+
+// ---------------------------------------------------------------------------
+// Habilidades activadas
+// ---------------------------------------------------------------------------
+
+export interface AbilityLimit {
+  per: 'round' | 'game'
+  /** Límite de grupo (compartido por todos los investigadores). */
+  group?: boolean
+}
+
+/**
+ * Una habilidad que un investigador puede activar ahora mismo. La generan los
+ * comportamientos de las cartas (ver content.ts) cada vez que se abre su menú.
+ */
+export interface AbilityOption {
+  /** Identificador único de la habilidad (para los límites de uso). */
+  key: string
+  /** Clave i18n y parámetros de la etiqueta. */
+  label: string
+  params?: LabelParams
+  /** Acciones que cuesta (0 = rápida). */
+  actions: number
+  /** Parlamento y retirarse no provocan ataques de oportunidad. */
+  provokes: boolean
+  limit?: AbilityLimit
+  then: Message[]
+}
+
+export interface AbilityUse {
+  key: string
+  investigator: InvestigatorId
+  round: number
 }
 
 // ---------------------------------------------------------------------------
@@ -255,6 +308,38 @@ export type Message =
   /** El investigador deja pistas suyas en su localización. */
   | { type: 'PlaceCluesOnLocation'; investigator: InvestigatorId; amount: number }
   | { type: 'Forced'; trigger: Trigger }
+  | {
+      type: 'UseAbility'
+      investigator: InvestigatorId
+      key: string
+      actions: number
+      provokes: boolean
+      limit?: AbilityLimit
+      then: Message[]
+    }
+  | { type: 'CheckActObjective' }
+  | { type: 'AgendaAdvanced' }
+  | { type: 'ActAdvanced' }
+  | { type: 'DiscardEnemy'; enemy: EnemyId }
+  | { type: 'MoveEnemy'; enemy: EnemyId; location: LocationId }
+  | { type: 'PutLocationIntoPlay'; location: LocationId }
+  | { type: 'RemoveLocation'; location: LocationId }
+  | { type: 'PlaceCluesOnLocationFromPool'; location: LocationId; amount: number }
+  | { type: 'SpawnSetAsideEnemy'; code: CardCode; location: LocationId }
+  /** Saca un enemigo del juego (curado) y lo vuelve a apartar. */
+  | { type: 'SetAsideEnemy'; code: CardCode }
+  | { type: 'PlaceSetAsideTreachery'; code: CardCode; placement: TreacheryPlacement }
+  /** Mueve copias apartadas al descarte de encuentros (todas, o `count`). */
+  | { type: 'MoveSetAsideToEncounterDiscard'; code: CardCode; count?: number }
+  /** Gastar pistas "como grupo" (de cualquier investigador). */
+  | { type: 'SpendGroupClues'; amount: number }
+  /** El investigador elige y descarta cartas de su mano. */
+  | { type: 'ChooseDiscardFromHand'; investigator: InvestigatorId; amount: number }
+  /** Busca en el mazo y el descarte de encuentros y roba hasta `amount` copias. */
+  | { type: 'SearchAndDrawEncounter'; investigator: InvestigatorId; code: CardCode; amount: number }
+  | { type: 'Heal'; investigator: InvestigatorId; damage: number; horror: number }
+  | { type: 'Resign'; investigator: InvestigatorId }
+  | { type: 'DefeatInvestigator'; investigator: InvestigatorId }
   | { type: 'EndScenario'; outcome: ScenarioOutcome }
   | { type: 'Ask'; investigator: InvestigatorId; question: Question }
 
@@ -264,6 +349,7 @@ export type Trigger =
   | { type: 'investigationPhaseEnds' }
   | { type: 'enemyDefeated'; enemy: Enemy }
   | { type: 'afterEnemyPhaseAttack'; enemy: EnemyId; investigator: InvestigatorId }
+  | { type: 'afterDoomPlaced' }
 
 /** Parámetros que acompañan a una clave i18n (nombres, cantidades…). */
 export type LabelParams = Record<string, string | number>
@@ -337,6 +423,9 @@ export interface GameState {
   /** La carta de encuentros que se está resolviendo ganó oleada. */
   surgePending: boolean
   victoryDisplay: CardCode[]
+  /** Localizaciones apartadas que los efectos del escenario pueden poner en juego. */
+  setAsideLocations: Record<LocationId, LocationCard>
+  abilityUses: AbilityUse[]
   skillTest: SkillTest | null
   /** Pila de mensajes pendientes: el primero es el siguiente en procesarse. */
   queue: Message[]

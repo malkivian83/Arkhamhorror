@@ -1,9 +1,22 @@
-export { availableActions, canAdvanceAct, cluesToAdvanceAct } from './actions'
 export {
+  availableAbilities,
+  availableActions,
+  canAdvanceAct,
+  cluesToAdvanceAct,
+  withinLimit,
+} from './actions'
+export {
+  registerAct,
+  registerAgenda,
   registerEnemy,
+  registerLocation,
   registerScenario,
   registerTreachery,
+  type AbilitiesFn,
+  type ActBehavior,
+  type AgendaBehavior,
   type EnemyBehavior,
+  type LocationBehavior,
   type ScenarioBehavior,
   type ScenarioSymbol,
   type TreacheryBehavior,

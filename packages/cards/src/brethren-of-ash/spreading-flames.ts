@@ -5,20 +5,27 @@
  * Los códigos son los números de carta de la caja (12xxx). Los efectos están
  * implementados a partir de su descripción; no se incluye el texto de las cartas.
  *
- * Pendiente: efectos al avanzar plan y acto, habilidades activadas (parlamento,
- * acciones de localizaciones, descartar Fire! o Unspeakable Truths), el resto de
- * localizaciones (entran con el acto 1), Dr. Henry Armitage y resoluciones.
+ * Pendiente: Dr. Henry Armitage (requiere apoyos en juego), el forzado de
+ * Hellhound, la victoria de las localizaciones y las resoluciones de campaña.
  */
 import {
   activeInvestigators,
   enemiesAt,
   getInvestigator,
+  getLocation,
   investigatorsAt,
+  leadInvestigator,
   nearestLocation,
+  registerAct,
+  registerAgenda,
   registerEnemy,
+  registerLocation,
   registerScenario,
   registerTreachery,
+  withinLimit,
+  type AbilityOption,
   type EnemyCard,
+  type LocationCard,
   type GameState,
   type InvestigatorId,
   type Message,
@@ -31,7 +38,19 @@ import { CHAOS_BAGS, type Difficulty } from './campaign'
 export const SPREADING_FLAMES = 'spreading-flames'
 
 export const CODES = {
+  pastCurfew: '12106',
+  litUp: '12107',
+  wildFlames: '12108',
+  whereTheresSmoke: '12109',
+  escapeTheDorms: '12110',
+  searchingForDrArmitage: '12111',
+  blazeOfGlory: '12112',
   yourFriendsRoom: '12113',
+  miskatonicQuad: '12116',
+  dormitories: '12117',
+  scienceHall: '12118',
+  warrenObservatory: '12119',
+  orneLibrary: '12120',
   servantOfFlame: '12114',
   cantorOfFlame: '12121',
   hellhound: '12122',
@@ -182,50 +201,103 @@ export const encounterDeck = [
   ...copies(mutatedExperiment, 2),
 ]
 
+const location = (card: LocationCard): LocationCard => card
+
+/** Conexiones según los símbolos de las cartas (ver docs-proyecto/09). */
+export const locationCards = {
+  yourFriendsRoom: location({
+    id: CODES.yourFriendsRoom,
+    name: "Your Friend's Room",
+    shroud: 2,
+    clueValue: 2,
+    cluesPerInvestigator: true,
+    connections: [CODES.dormitories],
+  }),
+  dormitories: location({
+    id: CODES.dormitories,
+    name: 'Dormitories',
+    shroud: 3,
+    clueValue: 1,
+    cluesPerInvestigator: true,
+    connections: [CODES.yourFriendsRoom, CODES.miskatonicQuad],
+  }),
+  miskatonicQuad: location({
+    id: CODES.miskatonicQuad,
+    name: 'Miskatonic Quad',
+    shroud: 1,
+    clueValue: 0,
+    cluesPerInvestigator: false,
+    connections: [CODES.dormitories, CODES.scienceHall, CODES.warrenObservatory, CODES.orneLibrary],
+  }),
+  scienceHall: location({
+    id: CODES.scienceHall,
+    name: 'Science Hall',
+    shroud: 2,
+    clueValue: 1,
+    cluesPerInvestigator: true,
+    connections: [CODES.miskatonicQuad],
+    victory: 1,
+  }),
+  warrenObservatory: location({
+    id: CODES.warrenObservatory,
+    name: 'Warren Observatory',
+    shroud: 3,
+    clueValue: 1,
+    cluesPerInvestigator: true,
+    connections: [CODES.miskatonicQuad],
+  }),
+  orneLibrary: location({
+    id: CODES.orneLibrary,
+    name: 'Orne Library',
+    shroud: 4,
+    clueValue: 1,
+    cluesPerInvestigator: true,
+    connections: [CODES.miskatonicQuad],
+    victory: 1,
+  }),
+}
+
 export function spreadingFlames(difficulty: Difficulty = 'standard'): ScenarioDefinition {
+  const { yourFriendsRoom, ...others } = locationCards
   return {
     id: SPREADING_FLAMES,
-    locations: [
-      {
-        id: CODES.yourFriendsRoom,
-        name: "Your Friend's Room",
-        shroud: 2,
-        clueValue: 2,
-        cluesPerInvestigator: true,
-        connections: ['12117'],
-      },
-    ],
+    locations: [yourFriendsRoom],
+    setAsideLocations: Object.values(others),
     startingLocation: CODES.yourFriendsRoom,
     agendas: [
-      { name: 'Past Curfew', doomThreshold: 3 },
-      { name: 'Lit Up', doomThreshold: 5 },
-      { name: 'Wild Flames', doomThreshold: 10 },
+      { code: CODES.pastCurfew, name: 'Past Curfew', doomThreshold: 3 },
+      { code: CODES.litUp, name: 'Lit Up', doomThreshold: 5 },
+      { code: CODES.wildFlames, name: 'Wild Flames', doomThreshold: 10 },
     ],
     acts: [
       {
+        code: CODES.whereTheresSmoke,
         name: "Where There's Smoke…",
         clueThreshold: 2,
         cluesPerInvestigator: true,
         advanceTiming: 'endOfRound',
       },
-      // Los objetivos de los actos 2–4 se implementan con los efectos de avance.
       {
+        code: CODES.escapeTheDorms,
         name: 'Escape the Dorms',
         clueThreshold: 0,
         cluesPerInvestigator: false,
-        advanceTiming: 'endOfRound',
+        advanceTiming: 'objective',
       },
       {
+        code: CODES.searchingForDrArmitage,
         name: 'Searching for Dr. Armitage',
         clueThreshold: 3,
         cluesPerInvestigator: true,
         advanceTiming: 'endOfRound',
+        cluesAtLocation: CODES.orneLibrary,
       },
       {
+        code: CODES.blazeOfGlory,
         name: 'Blaze of Glory',
         clueThreshold: 0,
         cluesPerInvestigator: false,
-        advanceTiming: 'endOfRound',
+        advanceTiming: 'objective',
       },
     ],
     encounterDeck,
@@ -348,6 +420,17 @@ registerTreachery({
 
 registerTreachery({
   code: CODES.unspeakableTruths,
+  // Acción doble: descartarla.
+  abilities: (_state, self) => [
+    {
+      key: `${self.id}:discard`,
+      label: 'ability.discardTreachery',
+      params: { card: 'Unspeakable Truths' },
+      actions: 2,
+      provokes: true,
+      then: [{ type: 'DiscardTreachery', treachery: self.id }],
+    },
+  ],
   // Se queda en tu zona de amenaza (máximo 1 por investigador).
   revelation: (state, investigator, self) => {
     const already = Object.values(state.treacheries).some(
@@ -505,6 +588,20 @@ const hasFire = (state: GameState, location: string) =>
 
 registerTreachery({
   code: CODES.fire,
+  // Acción: agilidad (3); si aciertas, descartas Fire!.
+  abilities: (_state, self, investigator) => [
+    {
+      key: `${self.id}:discard`,
+      label: 'ability.discardFire',
+      actions: 1,
+      provokes: true,
+      then: [
+        effectTest(investigator, 'Fire!', 'agility', 3, {
+          onSuccess: [{ type: 'DiscardTreachery', treachery: self.id }],
+        }),
+      ],
+    },
+  ],
   // Se une a la localización más cercana sin Fire!.
   revelation: (state, investigator, self) => {
     const here = getInvestigator(state, investigator).location
@@ -547,3 +644,300 @@ registerEnemy({
 
 // Hellhound: "tras atacarte en la fase de enemigos, descarta un apoyo que controles".
 // Se implementará cuando existan los apoyos en juego.
+
+// ---------------------------------------------------------------------------
+// Plan
+// ---------------------------------------------------------------------------
+
+/** En orden de jugadores, cada investigador hace una prueba; quien falla sufre `penalty`. */
+const eachInvestigatorTests = (
+  state: GameState,
+  source: string,
+  skill: SkillType,
+  difficulty: number,
+  penalty: (investigator: InvestigatorId) => Message,
+): Message[] =>
+  activeInvestigators(state).map((i) =>
+    effectTest(i.id, source, skill, difficulty, { onFail: [penalty(i.id)] }),
+  )
+
+/** Parlamento de los tres planes: intelecto (2) para descartar un Bystander de tu localización. */
+const parleyBystander = (state: GameState, investigator: InvestigatorId): AbilityOption[] => {
+  const here = getInvestigator(state, investigator).location
+  const bystanders =
+    here === null ? [] : enemiesAt(state, here).filter((e) => e.code === CODES.bystander)
+  const [first] = bystanders
+  if (!first) return []
+  return [
+    {
+      key: 'agenda:parley',
+      label: 'ability.parleyBystander',
+      actions: 1,
+      provokes: false,
+      then: [
+        effectTest(investigator, 'Parley', 'intellect', 2, {
+          onSuccess: [{ type: 'DiscardEnemy', enemy: first.id }],
+        }),
+      ],
+    },
+  ]
+}
+
+registerAgenda({
+  code: CODES.pastCurfew,
+  abilities: (state, _self, investigator) => parleyBystander(state, investigator),
+  onAdvance: (state) =>
+    eachInvestigatorTests(state, 'Past Curfew', 'willpower', 3, (i) => damage(i, 0, 1)),
+})
+
+registerAgenda({
+  code: CODES.litUp,
+  abilities: (state, _self, investigator) => parleyBystander(state, investigator),
+  onAdvance: (state) => [
+    { type: 'MoveSetAsideToEncounterDiscard', code: CODES.fire, count: 4 },
+    ...eachInvestigatorTests(state, 'Lit Up', 'agility', 3, (i) => damage(i, 1)),
+  ],
+})
+
+registerAgenda({
+  code: CODES.wildFlames,
+  abilities: (state, _self, investigator) => parleyBystander(state, investigator),
+  // Forzado: tras colocar perdición, el jefe roba el Fire! superior del descarte.
+  forced: (state, trigger) => {
+    const lead = leadInvestigator(state)
+    return trigger.type === 'afterDoomPlaced' && lead
+      ? [{ type: 'DrawFromEncounterDiscard', investigator: lead.id, code: CODES.fire }]
+      : []
+  },
+  // Todos los que siguen en juego son derrotados (y sufrirán 1 trauma físico).
+  onAdvance: (state) =>
+    activeInvestigators(state).map((i): Message => ({
+      type: 'DefeatInvestigator',
+      investigator: i.id,
+    })),
+})
+
+// ---------------------------------------------------------------------------
+// Acto
+// ---------------------------------------------------------------------------
+
+const discardEachEnemy = (state: GameState): Message[] =>
+  Object.values(state.enemies).map((e): Message => ({ type: 'DiscardEnemy', enemy: e.id }))
+
+registerAct({
+  code: CODES.whereTheresSmoke,
+  onAdvance: (state) => [
+    ...discardEachEnemy(state),
+    { type: 'PutLocationIntoPlay', location: CODES.dormitories },
+    { type: 'PutLocationIntoPlay', location: CODES.miskatonicQuad },
+    { type: 'SpawnSetAsideEnemy', code: CODES.servantOfFlame, location: CODES.dormitories },
+    {
+      type: 'PlaceSetAsideTreachery',
+      code: CODES.fire,
+      placement: { type: 'location', location: CODES.yourFriendsRoom },
+    },
+    { type: 'MoveSetAsideToEncounterDiscard', code: CODES.fire },
+  ],
+})
+
+registerAct({
+  code: CODES.escapeTheDorms,
+  // Objetivo: todos los investigadores no derrotados en Miskatonic Quad.
+  objectiveMet: (state) => {
+    const active = activeInvestigators(state)
+    return active.length > 0 && active.every((i) => i.location === CODES.miskatonicQuad)
+  },
+  onAdvance: (state) => [
+    { type: 'SetAsideEnemy', code: CODES.servantOfFlame },
+    ...discardEachEnemy(state).filter(
+      (m) => m.type !== 'DiscardEnemy' || state.enemies[m.enemy]?.code !== CODES.servantOfFlame,
+    ),
+    { type: 'RemoveLocation', location: CODES.yourFriendsRoom },
+    { type: 'PutLocationIntoPlay', location: CODES.orneLibrary },
+    { type: 'PutLocationIntoPlay', location: CODES.scienceHall },
+    { type: 'PutLocationIntoPlay', location: CODES.warrenObservatory },
+  ],
+})
+
+registerAct({
+  code: CODES.searchingForDrArmitage,
+  // Pendiente: Dr. Henry Armitage entra en juego bajo el control de un investigador.
+  onAdvance: (state) => {
+    const lead = leadInvestigator(state)
+    const perInv = state.startingInvestigatorCount
+    return [
+      { type: 'SpawnSetAsideEnemy', code: CODES.servantOfFlame, location: CODES.miskatonicQuad },
+      { type: 'PlaceCluesOnLocationFromPool', location: CODES.miskatonicQuad, amount: 3 * perInv },
+      ...(lead
+        ? [
+            {
+              type: 'SearchAndDrawEncounter',
+              investigator: lead.id,
+              code: CODES.fire,
+              amount: perInv,
+            } as const,
+          ]
+        : []),
+    ]
+  },
+})
+
+registerAct({
+  code: CODES.blazeOfGlory,
+  // Objetivo: Servant of Flame derrotado.
+  objectiveMet: (state) => state.victoryDisplay.includes(CODES.servantOfFlame),
+  abilities: (state, _self, investigator) => {
+    const perInv = state.startingInvestigatorCount
+    const here = getInvestigator(state, investigator).location
+    const groupClues = activeInvestigators(state).reduce((sum, i) => sum + i.clues, 0)
+    const damageOptions: AbilityOption[] =
+      here === null || groupClues < perInv
+        ? []
+        : enemiesAt(state, here).map((e) => ({
+            key: 'act:blaze',
+            label: 'ability.blazeDamage',
+            params: { enemy: e.name, clues: perInv, damage: perInv },
+            actions: 0,
+            provokes: false,
+            then: [
+              { type: 'SpendGroupClues', amount: perInv },
+              { type: 'DamageEnemy', enemy: e.id, amount: perInv },
+            ],
+          }))
+    return [
+      ...damageOptions,
+      {
+        key: 'act:resign',
+        label: 'ability.resign',
+        actions: 1,
+        provokes: false,
+        then: [{ type: 'Resign', investigator }],
+      },
+    ]
+  },
+})
+
+// ---------------------------------------------------------------------------
+// Localizaciones
+// ---------------------------------------------------------------------------
+
+registerLocation({
+  code: CODES.yourFriendsRoom,
+  // Acción: un enemigo de una localización conectada viene y se enfrenta a ti (sin ataques de oportunidad).
+  abilities: (state, self, investigator) =>
+    self.connections
+      .filter((l) => state.locations[l])
+      .flatMap((l) => enemiesAt(state, l))
+      .map((e) => ({
+        key: `${self.id}:engage`,
+        label: 'ability.engageFromConnecting',
+        params: { enemy: e.name, location: getLocation(state, e.location).name },
+        actions: 1,
+        provokes: false,
+        then: [
+          { type: 'MoveEnemy', enemy: e.id, location: self.id },
+          { type: 'EngageEnemy', enemy: e.id, investigator },
+        ],
+      })),
+})
+
+registerLocation({
+  code: CODES.dormitories,
+  // Acción: curar 1 daño y 1 horror (una vez por partida, por investigador).
+  abilities: (state, self, investigator) => {
+    const i = getInvestigator(state, investigator)
+    if (i.damage === 0 && i.horror === 0) return []
+    return [
+      {
+        key: `${self.id}:heal`,
+        label: 'ability.heal',
+        actions: 1,
+        provokes: true,
+        limit: { per: 'game' },
+        then: [{ type: 'Heal', investigator, damage: 1, horror: 1 }],
+      },
+    ]
+  },
+})
+
+registerLocation({
+  code: CODES.miskatonicQuad,
+  // Rápida, en tu turno, con 1 o 2 investigadores: moverse a una conexión (límite de grupo 1 por ronda).
+  abilities: (state, self, investigator) => {
+    const count = activeInvestigators(state).length
+    if (count < 1 || count > 2) return []
+    return self.connections
+      .filter((l) => state.locations[l])
+      .map((l) => ({
+        key: `${self.id}:move`,
+        label: 'ability.quadMove',
+        params: { location: getLocation(state, l).name },
+        actions: 0,
+        provokes: false,
+        limit: { per: 'round', group: true },
+        then: [{ type: 'MoveTo', investigator, location: l }],
+      }))
+  },
+})
+
+registerLocation({
+  code: CODES.scienceHall,
+  // Forzado: tras descubrir pistas aquí, eliges y descartas 1 carta de tu mano.
+  forced: (_state, trigger, self) =>
+    trigger.type === 'afterDiscoverClues' && trigger.location === self.id
+      ? [{ type: 'ChooseDiscardFromHand', investigator: trigger.investigator, amount: 1 }]
+      : [],
+})
+
+registerLocation({
+  code: CODES.warrenObservatory,
+  // Reacción: tras descubrir pistas aquí, puedes robar 1 carta (límite 1 por ronda).
+  forced: (state, trigger, self) => {
+    if (trigger.type !== 'afterDiscoverClues' || trigger.location !== self.id) return []
+    const key = `${self.id}:draw`
+    const limit = { per: 'round' } as const
+    if (!withinLimit(state, key, trigger.investigator, limit)) return []
+    return [
+      {
+        type: 'Ask',
+        investigator: trigger.investigator,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.reaction',
+          choices: [
+            {
+              label: 'ability.observatoryDraw',
+              then: [
+                {
+                  type: 'UseAbility',
+                  investigator: trigger.investigator,
+                  key,
+                  actions: 0,
+                  provokes: false,
+                  limit,
+                  then: [{ type: 'DrawCards', investigator: trigger.investigator, amount: 1 }],
+                },
+              ],
+            },
+            { label: 'choice.skip', then: [] },
+          ],
+        },
+      },
+    ]
+  },
+})
+
+registerLocation({
+  code: CODES.orneLibrary,
+  // Acción doble: robar 3 cartas (una vez por partida, por investigador).
+  abilities: (_state, self, investigator) => [
+    {
+      key: `${self.id}:draw`,
+      label: 'ability.orneDraw',
+      actions: 2,
+      provokes: true,
+      limit: { per: 'game' },
+      then: [{ type: 'DrawCards', investigator, amount: 3 }],
+    },
+  ],
+})
