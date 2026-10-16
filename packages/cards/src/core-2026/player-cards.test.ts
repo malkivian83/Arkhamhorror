@@ -48,9 +48,9 @@ describe('caja básica 2026: datos', () => {
     ])
   })
 
-  it('cada mazo inicial tiene 30 cartas más su carta exclusiva', () => {
+  it('cada mazo inicial tiene 30 cartas, su carta exclusiva y 2 debilidades', () => {
     for (const key of Object.keys(STARTER_DECKS)) {
-      expect(starterInvestigator(key).deck, key).toHaveLength(31)
+      expect(starterInvestigator(key).deck, key).toHaveLength(33)
     }
   })
 

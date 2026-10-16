@@ -1,0 +1,184 @@
+<script setup lang="ts">
+import type { GameState, LabelParams } from '@lcg/engine'
+import { computed, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
+import { useLabels } from '../game/labels'
+import { storyBody } from '../game/story'
+import { useGameStore } from '../stores/game'
+
+/**
+ * Textos de historia (introducción, resoluciones) en una ventana sobre la mesa,
+ * con sus efectos de campaña y las decisiones; y el aviso de fin del escenario.
+ */
+const props = defineProps<{ state: GameState }>()
+const game = useGameStore()
+const router = useRouter()
+const { t } = useI18n()
+const label = useLabels()
+
+const entry = computed(() => props.state.pending?.question.story ?? null)
+const body = computed(() => (entry.value ? storyBody(entry.value.body) : null))
+
+/** Los parámetros que son claves de texto (notas del registro…) se traducen. */
+const params = (p: LabelParams = {}) =>
+  Object.fromEntries(
+    Object.entries(p).map(([k, v]) => [
+      k,
+      typeof v === 'string' && v.startsWith('story.') ? t(v) : v,
+    ]),
+  )
+
+const endDismissed = ref(false)
+watch(
+  () => props.state.outcome,
+  () => (endDismissed.value = false),
+)
+const ending = computed(() => !entry.value && !!props.state.outcome && !endDismissed.value)
+
+function newGame() {
+  game.quit()
+  void router.push('/')
+}
+</script>
+
+<template>
+  <div v-if="entry && body" class="overlay">
+    <article class="story">
+      <h1>{{ t(entry.title) }}</h1>
+      <div class="body">
+        <p v-for="(paragraph, i) in body.paragraphs" :key="i">{{ paragraph }}</p>
+      </div>
+      <section v-if="entry.effects?.length" class="effects">
+        <h2>{{ t('table.campaignEffects') }}</h2>
+        <ul>
+          <li v-for="(effect, i) in entry.effects" :key="i">
+            {{ t(effect.key, params(effect.params)) }}
+          </li>
+        </ul>
+      </section>
+      <p v-if="!body.official" class="note">{{ t('table.storySummary') }}</p>
+      <div class="options">
+        <button
+          v-for="(choice, i) in state.pending?.question.choices ?? []"
+          :key="i"
+          type="button"
+          @click="game.answer(i)"
+        >
+          {{ label(choice.label, choice.params ?? {}) }}
+        </button>
+      </div>
+    </article>
+  </div>
+
+  <div v-else-if="ending && state.outcome" class="overlay">
+    <article class="story end">
+      <h1>{{ t('table.scenarioOver') }}</h1>
+      <p class="result">
+        {{
+          state.outcome.type === 'resolution'
+            ? t('table.resolutionN', { n: state.outcome.resolution })
+            : t('table.noResolution')
+        }}
+      </p>
+      <div class="options">
+        <button type="button" @click="newGame">{{ t('table.newGame') }}</button>
+        <button type="button" class="secondary" @click="endDismissed = true">
+          {{ t('table.viewTable') }}
+        </button>
+      </div>
+    </article>
+  </div>
+</template>
+
+<style scoped>
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgb(0 0 0 / 65%);
+}
+.story {
+  width: min(640px, 100%);
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  padding: 28px 32px 22px;
+  border-radius: 6px;
+  background: radial-gradient(ellipse at 50% 30%, #efe8dc 0%, #dcd3c3 70%, #c9bda8 100%);
+  color: #2b2118;
+  font-family: Georgia, 'Times New Roman', serif;
+  box-shadow:
+    0 0 0 2px #6b5a3a,
+    0 12px 40px rgb(0 0 0 / 60%);
+}
+h1 {
+  margin: 0 0 14px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #5a1f14;
+  letter-spacing: 0.02em;
+}
+.body p {
+  margin: 0 0 12px;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+.effects {
+  margin: 16px 0 8px;
+  padding: 10px 14px;
+  border-left: 3px solid #6b5a3a;
+  background: rgb(0 0 0 / 6%);
+}
+.effects h2 {
+  margin: 0 0 6px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #5a4630;
+}
+.effects ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.effects li {
+  margin: 4px 0;
+  line-height: 1.4;
+}
+.note {
+  margin: 10px 0 0;
+  font-size: 0.75rem;
+  opacity: 0.6;
+  text-align: right;
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 18px;
+}
+.options button {
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 4px;
+  background: #2f6141;
+  color: #fff;
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.options button:hover {
+  background: #3c7d54;
+}
+.options button.secondary {
+  background: #4a4038;
+}
+.end .result {
+  text-align: center;
+  font-size: 1.2rem;
+}
+</style>

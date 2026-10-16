@@ -7,8 +7,17 @@ import { ref } from 'vue'
  */
 const IMAGE_BASE = 'https://arkhamdb.com/bundles/cards/'
 
+/**
+ * Cartas cuyas imágenes en ArkhamDB tienen las caras al revés: `{código}.jpg` es
+ * la cara sin revelar y `{código}b.jpg` la revelada (localizaciones de Spreading
+ * Flames, salvo la inicial). Comprobado a mano con las imágenes.
+ */
+const SWAPPED_SIDES = new Set(['12116', '12117', '12118', '12119', '12120'])
+
 export function cardImage(code: string, back = false): string | null {
-  return /^\d{5}$/.test(code) ? `${IMAGE_BASE}${code}${back ? 'b' : ''}.jpg` : null
+  if (!/^\d{5}$/.test(code)) return null
+  const suffix = back !== SWAPPED_SIDES.has(code) ? 'b' : ''
+  return `${IMAGE_BASE}${code}${suffix}.jpg`
 }
 
 export function cardName(code: string): string {

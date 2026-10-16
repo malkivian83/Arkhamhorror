@@ -51,6 +51,12 @@ export interface Investigator {
   deck: CardCode[]
   hand: CardCode[]
   discard: CardCode[]
+  /** Perdición sobre la carta de investigador (cuenta para el plan). */
+  doom?: number
+  /** Le queda la acción adicional que solo sirve para evitar (Trish Scarborough). */
+  extraEvade?: boolean
+  /** Ya se ha movido este turno. */
+  movedThisTurn?: boolean
 }
 
 export interface Location {
@@ -68,7 +74,10 @@ export type EnemyKeyword = 'hunter' | 'aloof' | 'retaliate' | 'alert' | 'doomed'
 
 /** Prey (presa): a quién prefiere enfrentarse el enemigo. */
 export type Prey =
-  { type: 'lowestSkill'; skill: SkillType } | { type: 'highestSkill'; skill: SkillType }
+  | { type: 'lowestSkill'; skill: SkillType }
+  | { type: 'highestSkill'; skill: SkillType }
+  /** "Presa (solo X)": solo se enfrenta a ese investigador. */
+  | { type: 'only'; investigator: InvestigatorId }
 
 export interface EnemyCard {
   kind: 'enemy'
@@ -96,6 +105,10 @@ export interface Enemy extends EnemyCard {
   location: LocationId
   engagedWith: InvestigatorId | null
   exhausted: boolean
+  /** Debilidad de un jugador: al salir del juego va a su pila de descartes. */
+  owner?: InvestigatorId
+  /** No se prepara en la próxima fase de mantenimiento. */
+  stayExhausted?: boolean
 }
 
 export type TreacheryKeyword = 'peril' | 'surge'
@@ -119,6 +132,12 @@ export type TreacheryPlacement =
 export interface Treachery extends TreacheryCard {
   id: TreacheryId
   placement: TreacheryPlacement
+  /** Debilidad de un jugador: al descartarse va a su pila de descartes. */
+  owner?: InvestigatorId
+  /** Su efecto de revelación se ha cancelado. */
+  canceled?: boolean
+  /** Fichas (de daño u otras) colocadas sobre la carta. */
+  tokens?: number
 }
 
 export interface Agenda {
@@ -184,6 +203,17 @@ export interface AbilityOption {
   target?: ChoiceTarget
 }
 
+/** Una reacción (o habilidad rápida) que un investigador puede usar ahora. */
+export interface ReactionOption {
+  key: string
+  investigator: InvestigatorId
+  label: string
+  params?: LabelParams
+  limit?: AbilityLimit
+  target?: ChoiceTarget
+  then: Message[]
+}
+
 /** Entrada del registro de partida: clave i18n y parámetros. */
 export interface LogEntry {
   key: string
@@ -243,9 +273,16 @@ export interface Asset {
 // ---------------------------------------------------------------------------
 
 export type SkillTestKind =
-  | { type: 'investigate'; location: LocationId; extraClues?: number; onSuccess?: Message[] }
+  | {
+      type: 'investigate'
+      location: LocationId
+      extraClues?: number
+      onSuccess?: Message[]
+      /** Si se supera por al menos `atLeast`. */
+      onSuccessBy?: { atLeast: number; then: Message[] }
+    }
   | { type: 'fight'; enemy: EnemyId; extraDamage?: number; onSuccess?: Message[] }
-  | { type: 'evade'; enemy: EnemyId; onSuccess?: Message[] }
+  | { type: 'evade'; enemy: EnemyId; onSuccess?: Message[]; onFail?: Message[] }
   | {
       /** Prueba exigida por un efecto (traición, plan…). */
       type: 'effect'
@@ -266,6 +303,12 @@ export interface TokenEffect {
   onFail?: Message[]
   /** Mensajes adicionales si la prueba falla por al menos `atLeast`. */
   onFailBy?: { atLeast: number; then: Message[] }
+  /** Mensajes adicionales si la prueba tiene éxito (signo arcano). */
+  onSuccess?: Message[]
+  /** Se resuelven en cuanto se revela la ficha. */
+  immediate?: Message[]
+  /** Se resuelven cuando la prueba termina. */
+  after?: Message[]
 }
 
 export interface SkillTest {
@@ -276,8 +319,14 @@ export interface SkillTest {
   /** Fichas reveladas (fuera de la bolsa hasta que termina la prueba). */
   /** Modificador del efecto que inició la prueba (p. ej. "+1 [combat] para este ataque"). */
   baseModifier: number
-  /** Cartas comprometidas desde la mano. */
-  committed: { code: CardCode; by: InvestigatorId }[]
+  /** Cartas comprometidas (desde la mano o, con Isabelle, desde la pila de descartes). */
+  committed: { code: CardCode; by: InvestigatorId; fromDiscard?: boolean }[]
+  /** Apoyo cuya habilidad inició la prueba. */
+  source?: AssetId
+  /** Etiquetas de la prueba: "parley", "spell", "scenario"… */
+  tags?: string[]
+  tokenOnSuccess?: Message[]
+  tokenAfter?: Message[]
   tokens: ChaosToken[]
   tokenModifier: number
   autoFail: boolean
@@ -316,12 +365,14 @@ export type Message =
   | { type: 'TakeAction'; investigator: InvestigatorId; action: Action }
   | { type: 'PerformAction'; investigator: InvestigatorId; action: Action }
   | { type: 'GainResources'; investigator: InvestigatorId; amount: number }
-  | { type: 'DrawCards'; investigator: InvestigatorId; amount: number }
+  /** `opening`: mano inicial (las debilidades se apartan y se roba otra). */
+  | { type: 'DrawCards'; investigator: InvestigatorId; amount: number; opening?: boolean }
   | { type: 'DiscardFromHand'; investigator: InvestigatorId; card: CardCode }
   | { type: 'CheckHandSize'; investigator: InvestigatorId }
   | { type: 'MoveTo'; investigator: InvestigatorId; location: LocationId }
   | { type: 'RevealLocation'; location: LocationId }
-  | { type: 'DiscoverClues'; investigator: InvestigatorId; amount: number }
+  /** En su localización o en `location`. */
+  | { type: 'DiscoverClues'; investigator: InvestigatorId; amount: number; location?: LocationId }
   | {
       type: 'BeginSkillTest'
       investigator: InvestigatorId
@@ -329,10 +380,22 @@ export type Message =
       difficulty: number
       kind: SkillTestKind
       modifier?: number
+      source?: AssetId
+      tags?: string[]
     }
   | { type: 'CommitWindow' }
   | { type: 'CommitCard'; investigator: InvestigatorId; code: CardCode }
-  | { type: 'PlayCard'; investigator: InvestigatorId; code: CardCode }
+  /**
+   * Juega una carta de la mano pagando su coste (menos `discount`). `effect`
+   * sustituye al efecto del evento (cuando depende del momento en que se juega).
+   */
+  | {
+      type: 'PlayCard'
+      investigator: InvestigatorId
+      code: CardCode
+      discount?: number
+      effect?: Message[]
+    }
   | { type: 'PutAssetIntoPlay'; investigator: InvestigatorId; code: CardCode }
   | { type: 'DiscardAsset'; asset: AssetId }
   | { type: 'ExhaustAsset'; asset: AssetId }
@@ -345,9 +408,10 @@ export type Message =
   | { type: 'EngageEnemy'; enemy: EnemyId; investigator: InvestigatorId }
   | { type: 'CheckEngagement'; location: LocationId }
   | { type: 'EnemyAttack'; enemy: EnemyId; investigator: InvestigatorId; exhaustAfter: boolean }
-  | { type: 'DamageEnemy'; enemy: EnemyId; amount: number }
-  | { type: 'DefeatEnemy'; enemy: EnemyId }
-  | { type: 'EvadeEnemy'; enemy: EnemyId }
+  | { type: 'DamageEnemy'; enemy: EnemyId; amount: number; by?: InvestigatorId }
+  | { type: 'DefeatEnemy'; enemy: EnemyId; by?: InvestigatorId }
+  | { type: 'EvadeEnemy'; enemy: EnemyId; by?: InvestigatorId }
+  | { type: 'ReadyEnemy'; enemy: EnemyId }
   | { type: 'HuntersMove' }
   | { type: 'EnemiesAttack' }
   | { type: 'ReadyAll' }
@@ -369,7 +433,13 @@ export type Message =
   | { type: 'DrawEncounterCard'; investigator: InvestigatorId }
   | { type: 'ResolveEncounterCard'; investigator: InvestigatorId; card: EncounterCard }
   | { type: 'DrawFromEncounterDiscard'; investigator: InvestigatorId; code: CardCode }
-  | { type: 'SpawnEnemy'; card: EnemyCard; location: LocationId; engageWith: InvestigatorId | null }
+  | {
+      type: 'SpawnEnemy'
+      card: EnemyCard
+      location: LocationId
+      engageWith: InvestigatorId | null
+      owner?: InvestigatorId
+    }
   | { type: 'RevealTreachery'; treachery: TreacheryId; investigator: InvestigatorId }
   | { type: 'AfterRevelation'; treachery: TreacheryId; investigator: InvestigatorId }
   | { type: 'GainSurge' }
@@ -413,16 +483,102 @@ export type Message =
   | { type: 'Heal'; investigator: InvestigatorId; damage: number; horror: number }
   | { type: 'Resign'; investigator: InvestigatorId }
   | { type: 'DefeatInvestigator'; investigator: InvestigatorId }
-  | { type: 'EndScenario'; outcome: ScenarioOutcome }
+  /** Fin del escenario. `told`: los textos de resolución ya se mostraron. */
+  | { type: 'EndScenario'; outcome: ScenarioOutcome; told?: boolean }
+  /** Texto de historia para leer; el investigador jefe lo cierra o elige una opción. */
+  | { type: 'Story'; entry: StoryEntry; choices?: Choice[] }
   | { type: 'Ask'; investigator: InvestigatorId; question: Question }
+  // ----- Cartas de jugador -----
+  /** Ventana de reacciones a `trigger` (una por investigador, hasta que pasen). */
+  | { type: 'Reactions'; trigger: Trigger; used?: string[]; passed?: InvestigatorId[] }
+  | { type: 'SpendResources'; investigator: InvestigatorId; amount: number }
+  /** +N al valor de la prueba en curso. */
+  | { type: 'BoostSkillTest'; amount: number }
+  | { type: 'CommitFromDiscard'; investigator: InvestigatorId; code: CardCode }
+  /** Ventana tras revelar fichas para comprometer cartas que lo permiten. */
+  | { type: 'AfterRevealWindow' }
+  | { type: 'CancelRevelation'; treachery: TreacheryId }
+  | { type: 'PlaceDoomOnInvestigator'; investigator: InvestigatorId; amount: number }
+  | { type: 'HealAsset'; asset: AssetId; damage: number; horror: number }
+  | { type: 'ReturnAssetToHand'; asset: AssetId }
+  /** De la pila de descartes a la mano. */
+  | { type: 'DiscardToHand'; investigator: InvestigatorId; code: CardCode }
+  /**
+   * Busca en el mazo (o en las `top` primeras) un apoyo con alguno de los rasgos
+   * y lo lleva a la mano o lo juega con descuento; luego baraja.
+   */
+  | {
+      type: 'SearchDeck'
+      investigator: InvestigatorId
+      top?: number
+      traits: string[]
+      to: 'hand' | 'play'
+      discount?: number
+    }
+  | {
+      type: 'TakeFromDeck'
+      investigator: InvestigatorId
+      code: CardCode
+      to: 'hand' | 'play'
+      discount?: number
+    }
+  | { type: 'ShuffleDeck'; investigator: InvestigatorId }
+  /** Busca en las primeras cartas del mazo de encuentros un enemigo no Élite y lo roba. */
+  | { type: 'SearchEncounterForEnemy'; investigator: InvestigatorId; top: number }
+  | { type: 'DisengageAll'; investigator: InvestigatorId }
+  /** El investigador elige una localización conectada a la que moverse. */
+  | { type: 'ChooseMove'; investigator: InvestigatorId; revealedOnly?: boolean }
+  | { type: 'AtEndOfTurn'; investigator: InvestigatorId; then: Message[] }
+  /** Premonition: sella una ficha al azar de la bolsa. */
+  | { type: 'SealToken'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'AddTreacheryTokens'; treachery: TreacheryId; amount: number; discardAt?: number }
+  /** Saca una debilidad del juego y la baraja en el mazo de su dueño. */
+  | { type: 'ShuffleTreacheryIntoDeck'; treachery: TreacheryId }
+  /** Una debilidad robada del mazo se resuelve. */
+  | { type: 'ResolveWeakness'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'MoveDamage'; from: DamageHolder; to: DamageHolder; kind: 'damage' | 'horror' }
+  /** El investigador elige uno de sus apoyos con ese rasgo y vuelve a su mano. */
+  | { type: 'ReturnAssetWithTrait'; investigator: InvestigatorId; trait: string }
+  /** Slippery: el enemigo no se prepara en la próxima fase de mantenimiento. */
+  | { type: 'EnemyStaysExhausted'; enemy: EnemyId }
+
+/** Una carta que puede tener daño u horror. */
+export type DamageHolder =
+  { type: 'investigator'; id: InvestigatorId } | { type: 'asset'; id: AssetId }
 
 /** Momentos en los que se comprueban las habilidades forzadas. */
 export type Trigger =
   | { type: 'afterDiscoverClues'; investigator: InvestigatorId; location: LocationId }
   | { type: 'investigationPhaseEnds' }
-  | { type: 'enemyDefeated'; enemy: Enemy }
+  | { type: 'enemyDefeated'; enemy: Enemy; by?: InvestigatorId }
   | { type: 'afterEnemyPhaseAttack'; enemy: EnemyId; investigator: InvestigatorId }
   | { type: 'afterDoomPlaced' }
+  | { type: 'afterEnemyAttack'; enemy: EnemyId; investigator: InvestigatorId }
+  | {
+      type: 'afterSkillTest'
+      investigator: InvestigatorId
+      kind: SkillTestKind['type']
+      succeeded: boolean
+      /** Valor final menos dificultad (negativo si falla). */
+      margin: number
+      enemy?: EnemyId
+      location?: LocationId
+      source?: AssetId
+    }
+  | { type: 'afterPlayAsset'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'afterAssetEntersPlay'; investigator: InvestigatorId; asset: AssetId }
+  | { type: 'afterDrawCard'; investigator: InvestigatorId; card: CardCode }
+  | { type: 'enemyEntersLocation'; enemy: EnemyId; location: LocationId }
+  | { type: 'whenTreacheryDrawn'; investigator: InvestigatorId; treachery: TreacheryId }
+  | { type: 'afterEvade'; investigator: InvestigatorId; enemy: EnemyId }
+  | { type: 'afterTakeDamage'; investigator: InvestigatorId; damage: number; horror: number }
+  | { type: 'afterAssetDamaged'; asset: AssetId; damage: number; horror: number }
+  | { type: 'assetDefeated'; asset: Asset }
+  | { type: 'afterEngage'; investigator: InvestigatorId; enemy: EnemyId }
+  | { type: 'turnBegins'; investigator: InvestigatorId }
+  | { type: 'afterSpendResources'; investigator: InvestigatorId; amount: number }
+  | { type: 'afterMove'; investigator: InvestigatorId; first: boolean }
+  | { type: 'afterDealDamage'; investigator: InvestigatorId; enemy: EnemyId }
 
 /** Parámetros que acompañan a una clave i18n (nombres, cantidades…). */
 export type LabelParams = Record<string, string | number>
@@ -437,6 +593,25 @@ export interface Choice {
   requires?: Requirement
   /** Elemento de la mesa al que se refiere (para poder elegirlo con un clic). */
   target?: ChoiceTarget
+  /** Cómo dibujar la opción como botón de acción sobre la mesa. */
+  display?: ChoiceDisplay
+}
+
+/** Acciones con nombre corto propio en los botones de la mesa. */
+export type ActionName =
+  'investigate' | 'move' | 'fight' | 'evade' | 'engage' | 'draw' | 'resource' | 'play'
+
+/**
+ * Datos para dibujar una opción como botón de acción: si es una acción básica
+ * o la habilidad de una carta, cuántas acciones cuesta y qué habilidad prueba.
+ */
+export interface ChoiceDisplay {
+  kind: 'basic' | 'ability' | 'play'
+  /** Nombre corto de la acción (si no, se usa la etiqueta completa). */
+  action?: ActionName
+  /** Acciones que cuesta (0 = rápida). */
+  actions: number
+  skill?: SkillType
 }
 
 export type ChoiceTarget =
@@ -454,8 +629,20 @@ export type Requirement =
   | { type: 'hasCardsInHand'; investigator: InvestigatorId }
   | { type: 'hasResources'; investigator: InvestigatorId }
 
+/**
+ * Texto de historia (introducción, resolución…): claves i18n del título y del
+ * cuerpo, y los efectos de juego que lo acompañan.
+ */
+export interface StoryEntry {
+  title: string
+  body: string
+  effects?: { key: string; params?: LabelParams }[]
+}
+
 export interface Question {
   kind: 'chooseOne'
+  /** La pregunta es un texto de historia (la mesa lo muestra en una ventana). */
+  story?: StoryEntry
   /** Preguntar aunque solo haya una opción (pausas para que el jugador vea el estado). */
   alwaysAsk?: boolean
   /** Clave i18n del enunciado. */
@@ -518,6 +705,14 @@ export interface GameState {
   /** Localizaciones apartadas que los efectos del escenario pueden poner en juego. */
   setAsideLocations: Record<LocationId, LocationCard>
   abilityUses: AbilityUse[]
+  /** Investigador cuyo turno está en curso. */
+  activeTurn?: InvestigatorId | null
+  /** Ataques de enemigos (para "si este enemigo te ha atacado esta ronda"). */
+  enemyAttacks?: { enemy: EnemyId; investigator: InvestigatorId; round: number }[]
+  /** Efectos pendientes "al final de tu turno". */
+  endOfTurn?: { investigator: InvestigatorId; then: Message[] }[]
+  /** Fichas selladas sobre cartas (Premonition). */
+  sealed?: { token: ChaosToken; investigator: InvestigatorId; code: CardCode }[]
   assets: Record<AssetId, Asset>
   log: LogEntry[]
   skillTest: SkillTest | null

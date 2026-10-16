@@ -3,12 +3,17 @@ import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import CardZoom from '../components/CardZoom.vue'
+import CardPileModal from '../components/CardPileModal.vue'
+import ChoiceModal from '../components/ChoiceModal.vue'
+import DrawSpotlight from '../components/DrawSpotlight.vue'
 import LocationMap from '../components/LocationMap.vue'
 import PlayerArea from '../components/PlayerArea.vue'
 import ScenarioRow from '../components/ScenarioRow.vue'
 import SidePanel from '../components/SidePanel.vue'
 import SkillTestPanel from '../components/SkillTestPanel.vue'
+import StoryModal from '../components/StoryModal.vue'
 import { classColor } from '../game/cards'
+import { useShortcuts } from '../game/shortcuts'
 import { useGameStore } from '../stores/game'
 
 const game = useGameStore()
@@ -16,6 +21,7 @@ const router = useRouter()
 const { t } = useI18n()
 
 const state = computed(() => game.state)
+useShortcuts()
 
 /** Investigador cuya zona se muestra; sigue al que tiene que decidir. */
 const selected = ref<string | null>(null)
@@ -37,7 +43,7 @@ const shown = computed(
   <div v-if="state" class="table">
     <div class="main">
       <ScenarioRow :state="state" />
-      <div class="board">
+      <div class="board playmat sigil" role="region" :aria-label="t('table.board')">
         <LocationMap :state="state" />
         <SkillTestPanel :state="state" />
       </div>
@@ -73,6 +79,10 @@ const shown = computed(
     <div class="zoom">
       <CardZoom />
     </div>
+    <ChoiceModal :state="state" />
+    <StoryModal :state="state" />
+    <CardPileModal />
+    <DrawSpotlight :state="state" />
   </div>
   <div v-else class="empty">
     <p>{{ t('setup.noGame') }}</p>
@@ -98,9 +108,7 @@ const shown = computed(
   position: relative;
   flex: 1;
   overflow: auto;
-  padding: 18px;
-  background:
-    radial-gradient(circle at 50% 40%, rgb(255 255 255 / 4%), transparent 60%), var(--felt);
+  padding: 28px;
   min-height: 420px;
 }
 .players {
@@ -111,7 +119,7 @@ const shown = computed(
   display: flex;
   gap: 2px;
   padding: 0 8px;
-  background: var(--panel-2);
+  background: #121318;
 }
 .tabs button {
   border-radius: 6px 6px 0 0;

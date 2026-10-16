@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { ChaosToken } from '@lcg/engine'
 import { computed } from 'vue'
+import { chaosTokenImage } from '../game/assets'
 
-/** Ficha del caos dibujada (número o símbolo). */
+/** Ficha del caos: imagen real si está disponible; si no, dibujada (número o símbolo). */
 const props = withDefaults(defineProps<{ token: ChaosToken; size?: number }>(), { size: 34 })
 
 const SYMBOLS: Record<string, string> = {
@@ -21,10 +22,21 @@ const label = computed(() =>
     : (SYMBOLS[props.token] ?? props.token),
 )
 const kind = computed(() => (typeof props.token === 'number' ? 'number' : props.token))
+const image = computed(() => chaosTokenImage(props.token))
 </script>
 
 <template>
+  <img
+    v-if="image"
+    class="chaos-image"
+    :src="image"
+    :alt="label"
+    :title="label"
+    :style="{ width: `${size}px`, height: `${size}px` }"
+    draggable="false"
+  />
   <span
+    v-else
     class="chaos-token"
     :class="kind"
     :style="{ width: `${size}px`, height: `${size}px`, fontSize: `${size * 0.42}px` }"
@@ -34,6 +46,11 @@ const kind = computed(() => (typeof props.token === 'number' ? 'number' : props.
 </template>
 
 <style scoped>
+.chaos-image {
+  flex: none;
+  border-radius: 50%;
+  filter: drop-shadow(0 2px 4px rgb(0 0 0 / 55%));
+}
 .chaos-token {
   display: inline-grid;
   place-items: center;

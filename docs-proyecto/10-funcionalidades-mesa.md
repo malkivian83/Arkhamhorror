@@ -15,15 +15,16 @@ Leyenda: ✅ hecho · 🟡 parcial · ⬜ pendiente · ✖ fuera de alcance por 
 | Mapa de localizaciones con conexiones | `Location`, `LocationCell`, `Connections` | ✅ |
 | Fichas de pistas/perdición sobre las cartas | `Token`, `TokenPool` | 🟡 pistas sí; perdición en cartas no |
 | Investigadores, enemigos y traiciones vinculadas en cada localización | `Location`, `Enemy`, `Treachery` | ✅ |
+| Minis de investigador sobre el mapa, que se deslizan al moverse | `Location` (`investigator-mini-mover`) | ✅ recortadas del retrato de la carta oficial (no hay imágenes públicas de las minis) y animadas con View Transitions |
 | Zona del investigador con pestañas | `Player`, `PlayerTabs` | ✅ |
 | Fichas redondas de recursos, pistas, daño y horror | `Resources` | ✅ |
 | Mano jugable resaltada; apoyos en juego; zona de amenaza | `HandCard`, `Asset` | ✅ |
 | Cartas agotadas giradas | `Card` | ✅ |
 | Ampliar carta al pasar el ratón + texto traducido al lado | `CardImage`, `CardDetailsModal` | ✅ |
-| Ver la pila de descartes (encuentros y jugador) | `EncounterDiscard`, `CardListView` | ⬜ |
-| Zona de victoria visible | `VictoryDisplay` | 🟡 solo contador |
+| Ver la pila de descartes (encuentros y jugador) | `EncounterDiscard`, `CardListView` | ✅ clic en el descarte de encuentros o en el del investigador abre todas las cartas; mazos con el reverso oficial (copia local) |
+| Zona de victoria visible | `VictoryDisplay` | ✅ pila con la última carta y contador; clic para verlas todas |
 | Cartas debajo de otras / pilas | `CardsUnderIndicator`, `StackIndicator` | ⬜ |
-| Menú de habilidades sobre cada carta | `AbilitiesMenu`, `AbilityButton` | 🟡 menú al hacer clic si hay varias opciones |
+| Menú de habilidades sobre cada carta | `AbilitiesMenu`, `AbilityButton` | ✅ menú al hacer clic con botones como los de la referencia (acción básica, coste, nombre y color de la habilidad); moverse, jugar y elegir objetivo van directos |
 
 ## Prueba de habilidad
 
@@ -35,17 +36,17 @@ Leyenda: ✅ hecho · 🟡 parcial · ⬜ pendiente · ✖ fuera de alcance por 
 | Revelar ficha haciendo clic en la bolsa | `ChaosBag` | ✅ |
 | Bolsa con el modificador de cada ficha y probabilidad | `ChaosBagWindow` | ✅ |
 | Resultado y "aplicar resultados" | `SkillTest.vue` | ✅ |
-| Animación de la ficha revelada | `ChaosTokenMorph` | ⬜ |
-| "Saltar disparadores" (ocultar ventanas sin efecto) | `SkillTest.vue` | ⬜ (no hay aún ventanas de reacción) |
+| Animación de la ficha revelada | `ChaosTokenMorph` | ✅ la ficha sube de la bolsa girando (sin animación si el sistema pide movimiento reducido) |
+| "Saltar disparadores" (ocultar ventanas sin efecto) | `SkillTest.vue` | ⬜ (ya hay ventanas de reacción; falta la opción de saltarlas) |
 
 ## Preguntas, historia y animaciones
 
 | Funcionalidad | Referencia | Estado |
 |---|---|---|
 | Opciones sobre la mesa y botones laterales | `Question`, `QuestionChoices` | ✅ |
-| Ventana modal para elecciones largas (repartir, elegir cartas, ordenar) | `ChoiceModal`, `PutBackInAnyOrder` | ⬜ |
-| Textos de historia: introducción, resoluciones, códex | `StoryEntry`, `StoryQuestion`, `CodexEntry` | ⬜ |
-| Carta robada destacada (encuentro revelándose) | `Draw`, `DrawSpotlight` | 🟡 se muestra en el panel lateral |
+| Ventana modal para elecciones largas (repartir, elegir cartas, ordenar) | `ChoiceModal`, `PutBackInAnyOrder` | 🟡 ventana central para las elecciones que no se hacen sobre la mesa, con la carta que se resuelve y minimizable; falta ordenar cartas |
+| Textos de historia: introducción, resoluciones, códex | `StoryEntry`, `StoryQuestion`, `CodexEntry` | ✅ introducción y resoluciones de Spreading Flames con efectos de campaña y decisiones (resúmenes propios; textos oficiales opcionales en local, ver abajo); falta el códex |
+| Carta robada destacada (encuentro revelándose) | `Draw`, `DrawSpotlight` | ✅ la carta se da la vuelta en grande en el centro y espera a "De acuerdo" (Intro/Esc); si hay varias, en cola |
 | Avisos (toasts) | `vue-toastification` | ⬜ |
 
 ## Registro, deshacer y herramientas
@@ -55,8 +56,8 @@ Leyenda: ✅ hecho · 🟡 parcial · ⬜ pendiente · ✖ fuera de alcance por 
 | Registro de partida con secciones por ronda/fase | `GameLog`, `LogGroupBlock` | ✅ básico |
 | Iconos y enlaces a cartas en el registro | `LogIcons`, `LogPart` | ⬜ |
 | Chat en el registro | `GameLog` ("Say something…") | ⬜ (con multijugador) |
-| Deshacer: acción, turno, fase, ronda, escenario | `HistoryPanel`, menú "Undo" | ⬜ (el motor lo permite: semilla + decisiones) |
-| Atajos de teclado (robar, recurso, terminar turno, deshacer…) | `Game.vue` | ⬜ |
+| Deshacer: acción, turno, fase, ronda, escenario | `HistoryPanel`, menú "Undo" | ✅ paso, acción, turno y ronda (se repiten las decisiones desde el estado inicial; sobrevive a recargar) |
+| Atajos de teclado (robar, recurso, terminar turno, deshacer…) | `Game.vue` | ✅ D, R, E, 1–9, Intro, U, Ctrl+Z, Ctrl+⇧+Z |
 | Exportar registro / partida | `ExportLogDialog` | ⬜ |
 | Herramientas de depuración | `debug/*` | ⬜ |
 | Reportar fallo | "File Bug" | ✖ (sin servidor propio de incidencias aún) |
@@ -78,7 +79,47 @@ Leyenda: ✅ hecho · 🟡 parcial · ⬜ pendiente · ✖ fuera de alcance por 
 1. **Deshacer** (acción/turno/ronda) y **atajos de teclado**.
 2. **Textos de historia** (introducción y resoluciones del escenario) y **modal** de elecciones.
 3. **Ver descartes** y **zona de victoria**; carta robada destacada; animación de ficha.
-4. **Resto de cartas de jugador**, habilidades de investigador y debilidades.
+4. ✅ **Resto de cartas de jugador**, habilidades de investigador y debilidades (ver más abajo).
 5. **Campaña** (registro, experiencia, mejoras) y los escenarios II y III.
 6. **Mazos** propios e importación.
 7. **Multijugador en línea** con el servidor.
+
+## Textos de historia oficiales (opcional, solo en local)
+
+Los textos de la guía de campaña son de Fantasy Flight Games, así que el
+repositorio solo lleva **resúmenes propios**. Para ver los textos oficiales en
+tu equipo, crea `apps/web/public/local-assets/story/es.json` (y `en.json`),
+carpeta que git ignora, con la clave del cuerpo y el texto (párrafos separados
+por una línea en blanco):
+
+```json
+{
+  "story.spreadingFlames.intro": "Primer párrafo…\n\nSegundo párrafo…",
+  "story.spreadingFlames.resolution1": "…"
+}
+```
+
+Claves de Spreading Flames (con el prefijo `story.spreadingFlames.`): `intro`,
+`noResolution`, `resolution1`, `armitageBearer`, `decide`, `resolution2` y
+`resolution3`. Los textos que estén en el fichero sustituyen al resumen y la
+mesa deja de mostrar la nota de "resumen propio".
+
+## Cartas de jugador (paso 4)
+
+Implementadas todas las cartas de los cinco mazos iniciales de la caja de 2026,
+con sus investigadores y debilidades:
+
+- **Reacciones**: ventana general en el motor (`Reactions`) que pregunta a cada
+  investigador por las reacciones posibles de su investigador, sus apoyos y los
+  eventos de su mano que se juegan "después de…" (Lesson Learned, Gather Intel,
+  "Look what I found!", Ward of Protection).
+- **Investigadores**: habilidad y efecto del signo arcano de Daniela, Joe, Trish
+  (acción adicional de evitar), Dexter e Isabelle (comprometer desde el descarte).
+- **Durante la prueba**: talentos de "gasta 1 recurso: +1/+2" y Timely
+  Intervention (tras revelar la ficha).
+- **Debilidades**: van en el mazo, se apartan de la mano inicial y se resuelven al
+  robarlas (traiciones en la zona de amenaza, Black Chamber Operative enfrentado,
+  The Necronomicon bloquea tus apoyos, Dead Ends cancela búsquedas).
+- **Pendiente**: Hand-Crank Flashlight (−1 velo hasta el final de la ronda), los
+  efectos de campaña de las debilidades (trauma, experiencia) y que otros
+  investigadores comprometan cartas.

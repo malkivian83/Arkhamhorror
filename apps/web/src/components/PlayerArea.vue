@@ -1,15 +1,40 @@
 <script setup lang="ts">
-import { playerCardDef, type GameState, type Investigator } from '@lcg/engine'
+import {
+  playerCardDef,
+  SLOT_CAPACITY,
+  type Asset,
+  type GameState,
+  type Investigator,
+  type SlotType,
+} from '@lcg/engine'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { cardName, classColor } from '../game/cards'
+import { cardBackImage } from '../game/assets'
+import { showPile } from '../game/pile'
 import GameCard from './GameCard.vue'
+import SkillIcon from './SkillIcon.vue'
+import SlotIcon from './SlotIcon.vue'
+import TokenBadge from './TokenBadge.vue'
+
+const SKILLS = ['willpower', 'intellect', 'combat', 'agility'] as const
 import TableTarget from './TableTarget.vue'
 
 const props = defineProps<{ state: GameState; investigator: Investigator; deciding: boolean }>()
 const { t } = useI18n()
 
 const i = computed(() => props.investigator)
+const playerBack = computed(() => cardBackImage('player'))
+const topDiscard = computed(() => i.value.discard.at(-1))
+
+function showDiscard() {
+  showPile({
+    title: 'table.playerDiscard',
+    params: { name: i.value.name },
+    cards: i.value.discard.map((code) => ({ code, name: cardName(code) })),
+    newestFirst: true,
+  })
+}
 const assets = computed(() =>
   Object.values(props.state.assets).filter((a) => a.owner === i.value.id),
 )
@@ -22,6 +47,43 @@ const threats = computed(() =>
   ),
 )
 const color = computed(() => classColor(i.value.id))
+
+/** Orden de las ranuras en el tapete del jugador. */
+const SLOT_ORDER: SlotType[] = ['hand', 'body', 'ally', 'accessory', 'arcane', 'head']
+
+interface SlotBox {
+  type: SlotType
+  asset: Asset | null
+  /** Ranura ocupada por un apoyo que ya se muestra en otra (p. ej. armas a dos manos). */
+  shared: boolean
+}
+
+/**
+ * RR "Equipment Slots": un hueco por cada ranura del investigador; los apoyos
+ * sin ranura van aparte. Si un efecto deja ocupar más ranuras de las normales,
+ * se añaden huecos extra junto a los de su tipo.
+ */
+const slots = computed(() => {
+  const boxes: SlotBox[] = SLOT_ORDER.flatMap((type) =>
+    Array.from({ length: SLOT_CAPACITY[type] }, () => ({ type, asset: null, shared: false })),
+  )
+  const free: Asset[] = []
+  for (const a of assets.value) {
+    const needs = playerCardDef(a.code)?.slots ?? []
+    if (!needs.length) free.push(a)
+    needs.forEach((type, n) => {
+      const box = boxes.find((b) => b.type === type && !b.asset)
+      if (box) {
+        box.asset = a
+        box.shared = n > 0
+      } else {
+        const last = boxes.findLastIndex((b) => b.type === type)
+        boxes.splice(last + 1, 0, { type, asset: a, shared: n > 0 })
+      }
+    })
+  }
+  return { boxes, free }
+})
 </script>
 
 <template>
@@ -29,9 +91,13 @@ const color = computed(() => classColor(i.value.id))
     class="player"
     :class="{ deciding, eliminated: i.eliminated }"
     :style="{ '--class': color }"
+    :aria-label="t('table.investigatorArea', { name: i.name })"
   >
     <header>
       <h3>{{ i.name }}</h3>
+      <span v-if="deciding" class="turn"
+        >{{ t('table.decides') }} · {{ t('table.actionsLeft', { n: i.actionsRemaining }) }}</span
+      >
       <span v-if="i.eliminated" class="tag">{{
         i.resigned ? t('log.resigned', { name: '' }) : t('game.eliminated')
       }}</span>
@@ -43,16 +109,16 @@ const color = computed(() => classColor(i.value.id))
       </TableTarget>
 
       <div class="stats">
-        <div class="tokens">
-          <span class="tok resource" :title="t('table.resources')">{{ i.resources }}</span>
-          <span class="tok clue" :title="t('table.clues')">{{ i.clues }}</span>
-          <span class="tok damage" :title="t('game.damage', { n: i.damage, max: i.health })">{{
-            i.damage
-          }}</span>
-          <span class="tok horror" :title="t('game.horror', { n: i.horror, max: i.sanity })">{{
-            i.horror
-          }}</span>
-        </div>
+        <ul class="tokens">
+          <li><TokenBadge kind="resource" :value="i.resources" />{{ t('table.resources') }}</li>
+          <li><TokenBadge kind="clue" :value="i.clues" />{{ t('table.clues') }}</li>
+          <li :title="t('game.damage', { n: i.damage, max: i.health })">
+            <TokenBadge kind="damage" :value="i.damage" />{{ t('table.damage') }}
+          </li>
+          <li :title="t('game.horror', { n: i.horror, max: i.sanity })">
+            <TokenBadge kind="horror" :value="i.horror" />{{ t('table.horror') }}
+          </li>
+        </ul>
         <div class="meta">
           <span :title="t('table.actions')">➤ {{ i.actionsRemaining }}</span>
           <span :title="t('table.health')">♥ {{ i.health - i.damage }}/{{ i.health }}</span>
@@ -60,15 +126,48 @@ const color = computed(() => classColor(i.value.id))
           <span :title="t('table.deck')">▤ {{ i.deck.length }}</span>
         </div>
         <div class="skills">
-          <span class="ci sk wil" :title="t('skill.willpower')">V</span>{{ i.skills.willpower }}
-          <span class="ci sk int" :title="t('skill.intellect')">I</span>{{ i.skills.intellect }}
-          <span class="ci sk com" :title="t('skill.combat')">C</span>{{ i.skills.combat }}
-          <span class="ci sk agi" :title="t('skill.agility')">A</span>{{ i.skills.agility }}
+          <template v-for="skill in SKILLS" :key="skill">
+            <SkillIcon :skill="skill" :title="t(`skill.${skill}`)" />{{ i.skills[skill] }}
+          </template>
         </div>
       </div>
 
-      <div v-if="engaged.length || threats.length" class="zone threat">
-        <h4>{{ t('table.threatArea') }}</h4>
+      <div class="piles">
+        <div class="pile mat-slot" :title="t('table.deck')">
+          <span class="mat-label">{{ t('table.deck') }}</span>
+          <div
+            class="player-back"
+            :class="{ official: playerBack }"
+            :style="
+              playerBack
+                ? { backgroundImage: `url(${playerBack})` }
+                : { '--depth': Math.min(i.deck.length, 6) }
+            "
+          >
+            <strong>{{ i.deck.length }}</strong>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="pile mat-slot discard"
+          :title="t('table.viewPile')"
+          @click="showDiscard"
+        >
+          <span class="mat-label">{{ t('table.discard') }}</span>
+          <GameCard
+            v-if="topDiscard"
+            :code="topDiscard"
+            :name="cardName(topDiscard)"
+            :width="72"
+            :color="classColor(topDiscard)"
+          />
+          <div v-else class="player-back empty" />
+          <span v-if="i.discard.length" class="count">{{ i.discard.length }}</span>
+        </button>
+      </div>
+
+      <div v-if="engaged.length || threats.length" class="zone threat mat-slot">
+        <h4 class="mat-label">{{ t('table.threatArea') }}</h4>
         <div class="cards">
           <TableTarget v-for="e in engaged" :key="e.id" :target="`enemy:${e.id}`">
             <GameCard
@@ -78,7 +177,13 @@ const color = computed(() => classColor(i.value.id))
               :exhausted="e.exhausted"
               color="#7a2c2c"
             >
-              <span v-if="e.damageTaken > 0" class="token damage">{{ e.damageTaken }}</span>
+              <TokenBadge
+                v-if="e.damageTaken > 0"
+                class="corner tr"
+                kind="damage"
+                :value="e.damageTaken"
+                :size="26"
+              />
             </GameCard>
           </TableTarget>
           <TableTarget v-for="tr in threats" :key="tr.id" :target="`treachery:${tr.id}`">
@@ -87,10 +192,57 @@ const color = computed(() => classColor(i.value.id))
         </div>
       </div>
 
-      <div class="zone">
-        <h4>{{ t('table.inPlay') }}</h4>
-        <div class="cards">
-          <TableTarget v-for="a in assets" :key="a.id" :target="`asset:${a.id}`">
+      <div class="zone play mat-slot">
+        <h4 class="mat-label">{{ t('table.inPlay') }}</h4>
+        <div class="slots">
+          <div
+            v-for="(box, n) in slots.boxes"
+            :key="n"
+            class="slot"
+            :class="{ filled: box.asset, shared: box.shared }"
+            :title="t(`slot.${box.type}`)"
+          >
+            <TableTarget v-if="box.asset && !box.shared" :target="`asset:${box.asset.id}`">
+              <GameCard
+                :code="box.asset.code"
+                :name="cardName(box.asset.code)"
+                :width="78"
+                :exhausted="box.asset.exhausted"
+                :color="classColor(box.asset.code)"
+              >
+                <TokenBadge
+                  v-if="playerCardDef(box.asset.code)?.uses"
+                  class="corner tl"
+                  kind="resource"
+                  :value="box.asset.uses"
+                  :size="26"
+                />
+                <TokenBadge
+                  v-if="box.asset.damage"
+                  class="corner tr"
+                  kind="damage"
+                  :value="box.asset.damage"
+                  :size="26"
+                />
+                <TokenBadge
+                  v-if="box.asset.horror"
+                  class="corner br"
+                  kind="horror"
+                  :value="box.asset.horror"
+                  :size="26"
+                />
+              </GameCard>
+            </TableTarget>
+            <template v-else>
+              <SlotIcon :type="box.type" />
+              <span class="slot-name">{{
+                box.asset ? cardName(box.asset.code) : t(`slot.${box.type}`)
+              }}</span>
+            </template>
+          </div>
+        </div>
+        <div v-if="slots.free.length" class="cards free">
+          <TableTarget v-for="a in slots.free" :key="a.id" :target="`asset:${a.id}`">
             <GameCard
               :code="a.code"
               :name="cardName(a.code)"
@@ -98,9 +250,27 @@ const color = computed(() => classColor(i.value.id))
               :exhausted="a.exhausted"
               :color="classColor(a.code)"
             >
-              <span v-if="playerCardDef(a.code)?.uses" class="token uses">{{ a.uses }}</span>
-              <span v-if="a.damage" class="token damage">{{ a.damage }}</span>
-              <span v-if="a.horror" class="token horror">{{ a.horror }}</span>
+              <TokenBadge
+                v-if="playerCardDef(a.code)?.uses"
+                class="corner tl"
+                kind="resource"
+                :value="a.uses"
+                :size="26"
+              />
+              <TokenBadge
+                v-if="a.damage"
+                class="corner tr"
+                kind="damage"
+                :value="a.damage"
+                :size="26"
+              />
+              <TokenBadge
+                v-if="a.horror"
+                class="corner br"
+                kind="horror"
+                :value="a.horror"
+                :size="26"
+              />
             </GameCard>
           </TableTarget>
         </div>
@@ -108,9 +278,14 @@ const color = computed(() => classColor(i.value.id))
     </div>
 
     <div class="zone hand">
-      <h4>{{ t('table.hand') }} ({{ i.hand.length }})</h4>
+      <h4 class="mat-label">{{ t('table.hand') }} ({{ i.hand.length }})</h4>
       <div class="cards">
-        <TableTarget v-for="(code, n) in i.hand" :key="`${code}-${n}`" :target="`hand:${code}`">
+        <TableTarget
+          v-for="(code, n) in i.hand"
+          :key="`${code}-${n}`"
+          :target="`hand:${code}`"
+          class="in-hand"
+        >
           <GameCard :code="code" :name="cardName(code)" :width="92" :color="classColor(code)" />
         </TableTarget>
       </div>
@@ -119,13 +294,101 @@ const color = computed(() => classColor(i.value.id))
 </template>
 
 <style scoped>
+.piles {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.pile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.player-back {
+  /* Reverso de jugador dibujado: cuero con sello dorado (si no hay reverso oficial). */
+  position: relative;
+  width: 72px;
+  height: 100px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  border: 2px solid #8a6a3a;
+  background:
+    radial-gradient(circle, rgb(201 162 39 / 25%), transparent 65%),
+    linear-gradient(160deg, #3e2a18, #1a1009);
+  box-shadow:
+    1px 1px 0 #4a3420,
+    calc(var(--depth, 0) * 1px) calc(var(--depth, 0) * 1px) 0 #24170c,
+    0 6px 14px rgb(0 0 0 / 60%);
+}
+.player-back::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  background: #e0c48a;
+  opacity: 0.35;
+  mask: var(--tex-sigil) center / contain no-repeat;
+}
+.player-back.official {
+  background-size: cover;
+  background-position: center;
+  border-color: #222;
+}
+.player-back.official::before {
+  display: none;
+}
+.player-back strong {
+  position: relative;
+  font-family: var(--display);
+  font-size: 1.6rem;
+  text-shadow: 0 2px 4px #000;
+}
+.player-back.empty {
+  background: transparent;
+  border: 1px dashed color-mix(in srgb, var(--trim) 40%, transparent);
+  box-shadow: none;
+}
+.player-back.empty::before {
+  opacity: 0.08;
+  background: var(--trim);
+}
+.discard {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.discard:hover {
+  filter: brightness(1.15);
+}
+.count {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  z-index: 2;
+  min-width: 22px;
+  padding: 1px 6px;
+  border-radius: 11px;
+  background: #111;
+  border: 1px solid var(--border);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
 .player {
-  border-top: 3px solid var(--class);
-  background: var(--panel);
-  padding: 8px 12px 12px;
+  /* Escritorio del investigador: madera oscura con un filo de latón y el tono de su clase. */
+  --trim: var(--brass);
+  border-top: 3px solid var(--brass-dark);
+  padding: 12px 20px 20px;
+  background: var(--tex-wood), linear-gradient(180deg, #3a2616, #24170d);
+  box-shadow:
+    inset 0 50px 60px -45px color-mix(in srgb, var(--class) 40%, transparent),
+    inset 0 0 40px rgb(0 0 0 / 60%);
 }
 .player.deciding {
-  box-shadow: inset 0 3px 0 var(--accent);
+  border-top-color: var(--brass);
 }
 .player.eliminated {
   opacity: 0.5;
@@ -136,15 +399,27 @@ header {
   gap: 10px;
 }
 h3 {
-  margin: 0 0 6px;
-  font-size: 1rem;
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  color: var(--brass);
+  text-shadow: 0 1px 3px rgb(0 0 0 / 80%);
 }
 h4 {
-  margin: 0 0 4px;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  opacity: 0.7;
+  margin: 0 0 6px;
+}
+.turn {
+  margin-bottom: 8px;
+  padding: 1px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--brass);
+  color: var(--brass);
+  font-family: var(--fell);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 10px var(--accent-glow);
+  }
 }
 .tag {
   font-size: 0.75rem;
@@ -165,7 +440,19 @@ h4 {
 }
 .tokens {
   display: flex;
-  gap: 8px;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tokens li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--fell);
+  font-size: 0.78rem;
+  color: #e6d6b0;
 }
 .tok {
   width: 40px;
@@ -190,7 +477,7 @@ h4 {
   border: none;
 }
 .tok.clue {
-  background: radial-gradient(circle at 40% 35%, #5f8a4a, #263d1d 75%);
+  background: radial-gradient(circle at 40% 35%, #5fb89a, #1d4d3e 75%);
 }
 .tok.damage {
   background: radial-gradient(circle at 40% 35%, #c2453a, #5c1610 75%);
@@ -214,14 +501,102 @@ h4 {
 .skills .ci {
   margin-left: 6px;
 }
+.zone.mat-slot {
+  padding: 8px 12px 14px;
+  min-width: 140px;
+  min-height: 150px;
+}
+.zone.mat-slot > h4 {
+  position: static;
+  transform: none;
+  background: none;
+  padding: 0;
+}
+.zone.threat {
+  border-color: rgb(200 60 50 / 55%);
+  background: rgb(90 10 10 / 25%);
+}
 .zone .cards {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
   align-items: center;
 }
+.slots {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.slot {
+  position: relative;
+  width: 90px;
+  height: 120px;
+  border-radius: 3px;
+  border: 1px solid var(--brass-dark);
+  background: rgb(0 0 0 / 30%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #d8c49a;
+}
+.slot::before,
+.slot::after {
+  /* Esquinas art déco del marco de latón. */
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--brass);
+  pointer-events: none;
+}
+.slot::before {
+  top: 3px;
+  left: 3px;
+  border-right: 0;
+  border-bottom: 0;
+}
+.slot::after {
+  right: 3px;
+  bottom: 3px;
+  border-left: 0;
+  border-top: 0;
+}
+.slot.filled {
+  border-color: var(--brass);
+}
+.slot.shared {
+  border-style: dashed;
+}
+.slot-name {
+  max-width: 80px;
+  font-family: var(--fell);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.free {
+  margin-top: 8px;
+}
 .hand {
-  margin-top: 10px;
+  margin-top: 14px;
+}
+.hand .cards {
+  gap: 10px;
+}
+.in-hand {
+  transition: transform 0.15s ease;
+}
+.in-hand:hover {
+  transform: translateY(-10px);
+  z-index: 2;
+}
+.in-hand :deep(img) {
+  box-shadow: 0 6px 14px rgb(0 0 0 / 60%);
 }
 .token {
   position: absolute;
@@ -249,5 +624,21 @@ h4 {
   bottom: -6px;
   right: -6px;
   background: #1e4fb3;
+}
+.corner {
+  position: absolute;
+  z-index: 2;
+}
+.corner.tl {
+  top: -8px;
+  left: -8px;
+}
+.corner.tr {
+  top: -8px;
+  right: -8px;
+}
+.corner.br {
+  bottom: -8px;
+  right: -8px;
 }
 </style>

@@ -7,6 +7,13 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': { target: 'http://localhost:3001', ws: true },
+      // Fuente de símbolos de ArkhamDB: su servidor no permite cargarla desde
+      // otros sitios, así que se sirve a través de nuestro origen.
+      '/ext/arkhamdb': {
+        target: 'https://arkhamdb.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/ext\/arkhamdb/, ''),
+      },
     },
   },
 })

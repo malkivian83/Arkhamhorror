@@ -38,6 +38,7 @@ export function playableCards(state: GameState, id: InvestigatorId, fast: boolea
     const def = playerCardDef(code)
     if (!def || (def.fast ?? false) !== fast) return false
     if (def.type !== 'asset' && def.type !== 'event') return false
+    if (def.type === 'asset' && assetsBlocked(state, id)) return false
     const behavior = playerCardBehavior(code)
     if (def.type === 'event' && !behavior?.play) return false
     if ((def.cost ?? 0) > investigator.resources) return false
@@ -52,6 +53,17 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
   const here = investigator.location
   const location = getLocation(state, here)
   const enemiesHere = enemiesAt(state, here)
+
+  // Sin acciones normales, solo la adicional de evitar (Trish Scarborough).
+  if (investigator.actionsRemaining <= 0) {
+    if (!investigator.extraEvade) return []
+    return [
+      ...playableCards(state, id, false)
+        .filter((card) => playerCardBehavior(card)?.evadeAction)
+        .map((card): Action => ({ kind: 'play', card })),
+      ...engagedEnemies(state, id).map((e): Action => ({ kind: 'evade', enemy: e.id })),
+    ]
+  }
 
   return [
     ...playableCards(state, id, false).map((card): Action => ({ kind: 'play', card })),
@@ -81,18 +93,24 @@ export function describeAction(state: GameState, id: InvestigatorId, action: Act
         label: 'action.play',
         params: { card: playerCardDef(action.card)?.name ?? action.card },
         target,
+        display: { kind: 'play', action: 'play', actions: 1 },
         then: [],
       }
     }
     case 'draw':
     case 'resource':
-      return { label: `action.${action.kind}`, then: [] }
+      return {
+        label: `action.${action.kind}`,
+        display: { kind: 'basic', action: action.kind, actions: 1 },
+        then: [],
+      }
     case 'investigate': {
       const location = getLocation(state, getInvestigator(state, id).location as string)
       return {
         label: 'action.investigate',
         params: { location: location.name },
         target: { type: 'location', id: location.id },
+        display: { kind: 'basic', action: 'investigate', actions: 1, skill: 'intellect' },
         then: [],
       }
     }
@@ -101,6 +119,7 @@ export function describeAction(state: GameState, id: InvestigatorId, action: Act
         label: 'action.move',
         params: { location: getLocation(state, action.to).name },
         target: { type: 'location', id: action.to },
+        display: { kind: 'basic', action: 'move', actions: 1 },
         then: [],
       }
     case 'fight':
@@ -111,6 +130,13 @@ export function describeAction(state: GameState, id: InvestigatorId, action: Act
         label: `action.${action.kind}`,
         params: { enemy: enemy?.name ?? '?' },
         target: { type: 'enemy', id: action.enemy },
+        display: {
+          kind: 'basic',
+          action: action.kind,
+          actions: 1,
+          ...(action.kind === 'fight' ? { skill: 'combat' as const } : {}),
+          ...(action.kind === 'evade' ? { skill: 'agility' as const } : {}),
+        },
         then: [],
       }
     }
@@ -174,7 +200,10 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
     }
     return false
   })
-  const assets = Object.values(state.assets).filter((a) => a.owner === id)
+  // The Necronomicon: no se pueden usar las habilidades de los propios apoyos.
+  const assets = assetsBlocked(state, id)
+    ? []
+    : Object.values(state.assets).filter((a) => a.owner === id)
   const withTarget = (options: AbilityOption[], target: ChoiceTarget) =>
     options.map((o) => ({ target, ...o }))
   const options = [
@@ -212,5 +241,19 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
 
 /** Las acciones que no provocan ataques de oportunidad. */
 export function provokesAttacksOfOpportunity(action: Action): boolean {
+  if (action.kind === 'play') {
+    const behavior = playerCardBehavior(action.card)
+    return !behavior?.evadeAction && !behavior?.noAttacksOfOpportunity
+  }
   return action.kind !== 'fight' && action.kind !== 'evade'
+}
+
+/** Una debilidad en su zona de amenaza le impide jugar o usar apoyos (The Necronomicon). */
+export function assetsBlocked(state: GameState, investigator: string): boolean {
+  return Object.values(state.treacheries).some(
+    (t) =>
+      t.placement.type === 'threatArea' &&
+      t.placement.investigator === investigator &&
+      !!treacheryBehavior(t.code)?.blocksAssets,
+  )
 }

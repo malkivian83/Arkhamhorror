@@ -15,6 +15,7 @@ import type {
   Message,
   ScenarioTokenValues,
   SkillType,
+  StoryEntry,
 } from './types'
 
 export const ENGINE_VERSION = 1
@@ -24,6 +25,8 @@ export type { LocationCard } from './types'
 /** Todo lo necesario para preparar un escenario. */
 export interface ScenarioDefinition {
   id: string
+  /** Introducción que se lee antes de empezar (solo en la mesa). */
+  intro?: StoryEntry
   /** Localizaciones en juego al empezar (sin revelar). */
   locations: LocationCard[]
   /** Localizaciones apartadas, para efectos del escenario. */
@@ -120,9 +123,10 @@ export function prepareGame({
   }
 
   const setupMessages: Message[] = [
+    ...(interactive && scenario.intro ? [{ type: 'Story', entry: scenario.intro } as Message] : []),
     ...players.flatMap((p): Message[] => [
       { type: 'GainResources', investigator: p.id, amount: 5 },
-      { type: 'DrawCards', investigator: p.id, amount: 5 },
+      { type: 'DrawCards', investigator: p.id, amount: 5, opening: true },
     ]),
     ...players.map((p): Message => ({
       type: 'MoveTo',

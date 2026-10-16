@@ -7,6 +7,7 @@ import { localName } from '../game/localized'
 import { useGameStore } from '../stores/game'
 import ChaosTokenView from './ChaosTokenView.vue'
 import GameCard from './GameCard.vue'
+import SkillIcon from './SkillIcon.vue'
 
 /**
  * Panel de la prueba de habilidad (RR "Skill Test Timing"): pasos ST.1–ST.8,
@@ -105,7 +106,9 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
 
         <span class="value" :title="t('skillTest.value')">{{ shownValue }}</span>
         <div class="vs">
-          <span class="skill">{{ t(`skill.${test.skill}`) }}</span>
+          <span class="skill"
+            ><SkillIcon :skill="test.skill" /> {{ t(`skill.${test.skill}`) }}</span
+          >
           <span>VS</span>
         </div>
         <span class="difficulty" :title="t('skillTest.difficulty')">{{ test.difficulty }}</span>
@@ -148,7 +151,14 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
 
       <div class="reveal">
         <template v-if="test.tokens.length">
-          <ChaosTokenView v-for="(token, n) in test.tokens" :key="n" :token="token" :size="76" />
+          <span
+            v-for="(token, n) in test.tokens"
+            :key="n"
+            class="drawn-token"
+            :style="{ animationDelay: `${n * 0.35}s` }"
+          >
+            <ChaosTokenView :token="token" :size="76" />
+          </span>
         </template>
         <button
           v-else
@@ -383,5 +393,28 @@ footer {
   padding: 2px 10px;
   border-radius: 12px;
   font-size: 0.75rem;
+}
+/* La ficha sale de la bolsa: sube, gira y se asienta. */
+.drawn-token {
+  display: inline-block;
+  animation: token-draw 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+@keyframes token-draw {
+  0% {
+    opacity: 0;
+    transform: translateY(70px) scale(0.3) rotateY(0deg);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-12px) scale(1.15) rotateY(540deg);
+  }
+  100% {
+    transform: translateY(0) scale(1) rotateY(720deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .drawn-token {
+    animation: none;
+  }
 }
 </style>

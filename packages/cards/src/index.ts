@@ -67,3 +67,7 @@ export {
   playerCards,
   starterInvestigator,
 } from './core-2026/player-cards'
+// Comportamiento de investigadores, cartas y debilidades (se registran al importarlos).
+import './core-2026/investigators'
+import './core-2026/cards'
+import './core-2026/weaknesses'

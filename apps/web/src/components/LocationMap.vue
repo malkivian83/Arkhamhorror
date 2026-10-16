@@ -3,8 +3,9 @@ import { SPREADING_FLAMES_LAYOUT } from '@lcg/cards'
 import type { GameState, Location } from '@lcg/engine'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { classColor, cardImage } from '../game/cards'
 import GameCard from './GameCard.vue'
+import InvestigatorMini from './InvestigatorMini.vue'
+import TokenBadge from './TokenBadge.vue'
 import TableTarget from './TableTarget.vue'
 
 const props = defineProps<{ state: GameState }>()
@@ -13,6 +14,7 @@ const { t } = useI18n()
 const CELL_W = 190
 const CELL_H = 250
 const CARD_W = 120
+const MINI_W = 50
 
 /** Posiciones: las del escenario o, si no hay, por distancia a la primera localización. */
 const positions = computed(() => {
@@ -37,9 +39,16 @@ const size = computed(() => {
   return { width: cols * CELL_W, height: rows * CELL_H }
 })
 
-const center = (id: string) => {
+/** Chincheta en lo alto de la carta; el hilo cuelga un poco entre dos chinchetas. */
+const pin = (id: string) => {
   const [c, r] = positions.value.get(id) ?? [0, 0]
-  return { x: c * CELL_W + CELL_W / 2, y: r * CELL_H + CELL_H / 2 - 10 }
+  return { x: c * CELL_W + CELL_W / 2, y: r * CELL_H + 8 + 6 }
+}
+function string(from: string, to: string) {
+  const a = pin(from)
+  const b = pin(to)
+  const sag = Math.min(40, Math.hypot(b.x - a.x, b.y - a.y) / 6)
+  return `M${a.x} ${a.y}Q${(a.x + b.x) / 2} ${(a.y + b.y) / 2 + sag} ${b.x} ${b.y}`
 }
 
 const edges = computed(() => {
@@ -70,14 +79,8 @@ const treacheriesAt = (id: string) =>
 <template>
   <div class="map" :style="{ width: `${size.width}px`, height: `${size.height}px` }">
     <svg class="edges" :width="size.width" :height="size.height">
-      <line
-        v-for="e in edges"
-        :key="`${e.from}-${e.to}`"
-        :x1="center(e.from).x"
-        :y1="center(e.from).y"
-        :x2="center(e.to).x"
-        :y2="center(e.to).y"
-      />
+      <!-- Hilo rojo de investigador entre chinchetas, algo combado. -->
+      <path v-for="e in edges" :key="`${e.from}-${e.to}`" :d="string(e.from, e.to)" />
     </svg>
 
     <div
@@ -91,22 +94,28 @@ const treacheriesAt = (id: string) =>
     >
       <TableTarget :target="`location:${l.id}`">
         <GameCard :code="l.id" :name="l.name" :back="!l.revealed" :width="CARD_W">
-          <span v-if="l.revealed && l.clues > 0" class="token clue" :title="t('table.clues')">
-            {{ l.clues }}
-          </span>
-          <div class="investigators">
-            <span
-              v-for="i in investigatorsAt(l.id)"
-              :key="i.id"
-              class="pawn"
-              :style="{ background: classColor(i.id) }"
-              :title="i.name"
-            >
-              <img v-if="cardImage(i.id)" :src="cardImage(i.id) ?? ''" :alt="i.name" />
-            </span>
-          </div>
+          <span class="pin" aria-hidden="true" />
+          <TokenBadge
+            v-if="l.revealed && l.clues > 0"
+            class="loc-clue"
+            kind="clue"
+            :value="l.clues"
+            :size="34"
+            :title="t('table.clues')"
+          />
         </GameCard>
       </TableTarget>
+
+      <!-- Minis de los investigadores, a la izquierda de la localización. -->
+      <div class="investigators">
+        <TableTarget
+          v-for="i in investigatorsAt(l.id)"
+          :key="i.id"
+          :target="`investigator:${i.id}`"
+        >
+          <InvestigatorMini :code="i.id" :name="i.name" :width="MINI_W" />
+        </TableTarget>
+      </div>
 
       <div class="attachments">
         <TableTarget v-for="tr in treacheriesAt(l.id)" :key="tr.id" :target="`treachery:${tr.id}`">
@@ -124,7 +133,13 @@ const treacheriesAt = (id: string) =>
             :exhausted="e.exhausted"
             color="#7a2c2c"
           >
-            <span v-if="e.damageTaken > 0" class="token damage">{{ e.damageTaken }}</span>
+            <TokenBadge
+              v-if="e.damageTaken > 0"
+              class="enemy-damage"
+              kind="damage"
+              :value="e.damageTaken"
+              :size="24"
+            />
           </GameCard>
         </TableTarget>
       </div>
@@ -142,10 +157,29 @@ const treacheriesAt = (id: string) =>
   inset: 0;
   pointer-events: none;
 }
-.edges line {
-  stroke: var(--line);
-  stroke-width: 4;
-  stroke-dasharray: 8 6;
+.edges {
+  z-index: 2;
+}
+.edges path {
+  fill: none;
+  stroke: #b02a22;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 3px 2px rgb(0 0 0 / 70%));
+}
+.location :deep(.game-card img) {
+  box-shadow: 0 10px 18px rgb(0 0 0 / 65%);
+}
+.pin {
+  position: absolute;
+  z-index: 3;
+  top: -7px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ff7a6a, #b02a22 55%, #5a0e0a);
+  box-shadow: 0 3px 3px rgb(0 0 0 / 70%);
 }
 .location {
   position: absolute;
@@ -161,23 +195,18 @@ const treacheriesAt = (id: string) =>
 }
 .investigators {
   position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
+  z-index: 4;
+  top: 18px;
+  left: -34px;
   display: flex;
-  gap: 2px;
+  flex-direction: column;
 }
-.pawn {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  overflow: hidden;
-  box-shadow: 0 1px 4px rgb(0 0 0 / 60%);
+/* Varias minis se solapan en columna, como en la mesa del ejemplo. */
+.investigators > * + * {
+  margin-top: -44px;
 }
-.pawn img {
-  width: 180%;
-  margin: -12% 0 0 -40%;
+.investigators > *:hover {
+  z-index: 1;
 }
 .token {
   position: absolute;
@@ -193,13 +222,26 @@ const treacheriesAt = (id: string) =>
   box-shadow: 0 1px 4px rgb(0 0 0 / 60%);
 }
 .token.clue {
-  background: #2e8bb8;
-  color: #fff;
+  background: radial-gradient(circle at 35% 30%, #9fe0c8, #2f7a62);
+  color: #06261c;
+  border: 1px solid #0c3a2c;
 }
 .token.damage {
   background: #b3261e;
   color: #fff;
   top: -6px;
   right: -6px;
+}
+.loc-clue {
+  position: absolute;
+  top: 6px;
+  right: -10px;
+  z-index: 2;
+}
+.enemy-damage {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  z-index: 2;
 }
 </style>

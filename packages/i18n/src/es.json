@@ -49,14 +49,28 @@
     "advanceAct": "¿Gastar pistas para avanzar el acto?",
     "chooseSkill": "Elige la habilidad para la prueba",
     "chooseEffect": "Elige una opción",
-    "reaction": "¿Usar esta reacción?",
+    "reaction": "¿Usar una reacción?",
     "chooseCardToDiscard": "Elige una carta para descartar",
     "commitCards": "¿Comprometer cartas a la prueba?",
     "freeSlot": "No hay ranura libre: elige un apoyo para descartar",
     "assignDamage": "Asigna 1 daño",
     "assignHorror": "Asigna 1 horror",
     "skillTestSucceeded": "La prueba tiene éxito",
-    "skillTestFailed": "La prueba falla"
+    "skillTestFailed": "La prueba falla",
+    "story": "Historia",
+    "commitAfterReveal": "¿Comprometer una carta tras revelar la ficha?",
+    "searchToPlay": "Elige el apoyo que juegas",
+    "searchToHand": "Elige la carta que añades a tu mano",
+    "chooseMove": "¿A dónde te mueves?",
+    "returnAsset": "Elige el apoyo que vuelve a tu mano",
+    "optional": "¿Quieres hacerlo?",
+    "elderSignDamage": "Signo arcano: elige el enemigo al que haces 1 daño",
+    "chooseEnemy": "Elige un enemigo",
+    "autoEvade": "¿Evitas automáticamente a un enemigo?",
+    "chooseHeal": "¿Qué curas?",
+    "chooseItem": "Elige el Objeto que juegas",
+    "chooseLocation": "Elige una localización",
+    "moveDamageTo": "¿A qué carta lo mueves?"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -94,7 +108,20 @@
     "revealToken": "Revelar ficha del caos",
     "assignToInvestigator": "A {name}",
     "assignToAsset": "A {card}",
-    "applyResults": "Aplicar resultados"
+    "applyResults": "Aplicar resultados",
+    "continue": "Continuar",
+    "takeCard": "Tomar {card}",
+    "returnToHand": "Devolver {card} a la mano",
+    "enemy": "{enemy}",
+    "disengageAndMove": "Desenfrentarte y moverte",
+    "spendChargeForDamage": "Gastar 1 carga: +1 daño",
+    "discardForDamage": "Descartar {card}: +1 daño",
+    "exhaustToMove": "Agotar {card} para moverte allí",
+    "spendChargeForClue": "Gastar 1 carga: 1 pista más",
+    "healDamage": "Curar 1 daño",
+    "healHorror": "Curar 1 horror",
+    "location": "{location}",
+    "moveDamageTo": "A {card}"
   },
   "phase": {
     "setup": "Preparación",
@@ -115,7 +142,28 @@
     "observatoryDraw": "Robar 1 carta",
     "orneDraw": "Robar 3 cartas (2 acciones)",
     "fightWith": "Luchar contra {enemy} con {card}",
-    "investigateWith": "Investigar con {card} ({skill})"
+    "investigateWith": "Investigar con {card} ({skill})",
+    "wrenchProvoke": "Provocar a {enemy} (se enfrenta a ti y ataca)",
+    "twinSecond": "Segundo disparo contra {enemy} (Agilidad +1, +1 daño)",
+    "danielaFight": "Luchar contra {enemy} (Daniela)",
+    "drawCards": "Robar {n} carta(s)",
+    "dexterReturn": "Devolver {card} a tu mano",
+    "dexterPlay": "Jugar {card}",
+    "isabelleCommit": "Recibir 1 horror: comprometer {card} desde el descarte",
+    "pump": "{card}: gastar 1 recurso (+{amount} {skill})",
+    "damageEnemyHere": "{card}: 1 daño a un enemigo de tu localización",
+    "gainResource": "{card}: ganar 1 recurso",
+    "moveWith": "{card}: moverte a {location}",
+    "healAsset": "{card}: curar 1 {kind}",
+    "investigateConnecting": "{card}: investigar {location}",
+    "moveConnecting": "{card}: moverte a una localización conectada",
+    "luckyCharm": "Lucky Charm: mover 1 {kind} de {from}",
+    "bandages": "Bandages: curar 1 daño a {target}",
+    "returnFromDiscard": "Hunter's Instinct: recuperar {target}",
+    "jumpsuit": "Descartar Jumpsuit: recuperar {card}",
+    "revealToDraw": "Revelar {card}: robar {n} cartas",
+    "playCard": "Jugar {card}",
+    "necronomicon": "Prueba de Voluntad (5) para descartar The Necronomicon"
   },
   "log": {
     "round": "Ronda {round}",
@@ -140,7 +188,11 @@
     "actAdvanced": "Avanza el acto: {name}",
     "eliminated": "{name} queda eliminado",
     "resigned": "{name} se retira",
-    "end": "Fin del escenario ({outcome})"
+    "end": "Fin del escenario ({outcome})",
+    "armitageBearer": "{name} será el portador del Dr. Henry Armitage",
+    "searchCanceled": "{name} encuentra {card}: la búsqueda se cancela",
+    "sealed": "{name} sella una ficha ({token})",
+    "weakness": "{name} roba su debilidad {card}"
   },
   "table": {
     "log": "Registro de partida",
@@ -164,7 +216,32 @@
     "clickHighlighted": "Haz clic en un elemento resaltado de la mesa o elige abajo.",
     "health": "Salud restante",
     "sanity": "Cordura restante",
-    "decides": "Debe decidir"
+    "decides": "Debe decidir",
+    "basicAction": "Acción básica",
+    "campaignEffects": "Efectos de campaña",
+    "storySummary": "Resumen propio del texto de la guía de campaña.",
+    "scenarioOver": "Fin del escenario",
+    "resolutionN": "Resolución {n}",
+    "noResolution": "Sin resolución",
+    "viewTable": "Ver la mesa",
+    "choose": "Elige",
+    "encounterDiscard": "Descartes de encuentros",
+    "playerDiscard": "Descartes de {name}",
+    "viewPile": "Ver todas las cartas",
+    "emptyPile": "No hay cartas.",
+    "close": "Cerrar",
+    "drawnBy": "{name} roba",
+    "ok": "De acuerdo",
+    "agenda": "Plan",
+    "act": "Acto",
+    "scenario": "Expediente del escenario",
+    "board": "Mapa de lugares",
+    "investigatorArea": "Zona de {name}",
+    "options": "{n} opciones",
+    "damage": "Daño",
+    "horror": "Horror",
+    "actionsLeft": "{n} acciones",
+    "journal": "Diario del caso"
   },
   "difficulty": {
     "easy": "Fácil",
@@ -192,5 +269,93 @@
     "commitHint": "Compromete cartas de tu mano (resaltadas) y haz clic en la bolsa para revelar una ficha.",
     "tokensInBag": "{n} fichas",
     "showOdds": "Ver probabilidad"
+  },
+  "undo": {
+    "title": "Deshacer",
+    "step": "Paso",
+    "action": "Acción",
+    "turn": "Turno",
+    "round": "Ronda",
+    "hint": {
+      "step": "Deshacer la última decisión",
+      "action": "Volver al comienzo de la acción",
+      "turn": "Volver al comienzo del turno",
+      "round": "Volver al comienzo de la ronda"
+    }
+  },
+  "shortcuts": {
+    "title": "Atajos de teclado",
+    "option": "Elegir la opción con ese número",
+    "enter": "Intro",
+    "confirm": "Revelar ficha / aplicar resultados / única opción"
+  },
+  "actionShort": {
+    "investigate": "Investigar",
+    "move": "Moverse",
+    "fight": "Luchar",
+    "evade": "Evitar",
+    "engage": "Enfrentarse",
+    "draw": "Robar",
+    "resource": "Recurso",
+    "play": "Jugar"
+  },
+  "story": {
+    "spreadingFlames": {
+      "introTitle": "Escenario I: Spreading Flames",
+      "intro": "Una ola de incendios y de extraños «accidentes» tiene en vilo a Arkham, y se han visto figuras encapuchadas cerca de cada suceso.\n\nVuestro amigo está convencido de que son los culpables y os ha citado en su habitación de la residencia de la Universidad Miskatonic. Al llegar, la habitación está vacía y el edificio, demasiado silencioso…",
+      "noResolutionTitle": "Sin resolución",
+      "noResolution": "Despertáis en el borde del campus, con los ojos irritados por el humo, mientras la universidad arde edificio tras edificio.\n\nEntre el caos encontráis al Dr. Henry Armitage, conmocionado ante las ruinas de la biblioteca. Quedan demasiadas preguntas: ¿quién os perseguía y qué buscaban los encapuchados?",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "Decenas de estudiantes se organizan para combatir el incendio. El Dr. Armitage os pone una mano en el hombro: si queréis encontrar a vuestro amigo y a quien se lo llevó, hay que irse ya, y os lo explicará todo por el camino.\n\nPodéis quedaros a ayudar, pero os costará un tiempo precioso.",
+      "armitageBearerTitle": "Dr. Henry Armitage",
+      "armitageBearer": "Elegid qué investigador será el portador del Dr. Henry Armitage. Este apoyo de historia se añade a su mazo sin seguir las reglas de construcción y no cuenta para el tamaño del mazo.",
+      "decideTitle": "¿Qué hacéis?",
+      "decide": "Los investigadores deben decidir.",
+      "stay": "¡Quedarse a luchar contra el fuego! (Resolución 2)",
+      "go": "«No hay tiempo. Tenemos que irnos». (Resolución 3)",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "Codo con codo con los demás, contenéis las llamas hasta que llegan los bomberos de Arkham. Con la situación bajo control, corréis a reuniros con el Dr. Armitage.",
+      "resolution3Title": "Resolución 3",
+      "resolution3": "Huis del campus con el Dr. Armitage y dejáis la universidad a su suerte, entre el aullido de las sirenas, camino de su apartamento."
+    },
+    "effect": {
+      "record": "Anotad en el registro de campaña: {note}.",
+      "mentalTrauma": "Cada investigador sufre 1 trauma mental.",
+      "experience": "Cada investigador gana experiencia igual al valor de victoria de las cartas de la zona de victoria, más {bonus} de bonificación.",
+      "armitage": "Un investigador pasa a ser el portador del Dr. Henry Armitage.",
+      "bonusAndPhysicalTrauma": "Cada investigador gana 1 de experiencia adicional y sufre 1 trauma físico.",
+      "proceed": "Continuad con {scenario}."
+    },
+    "note": {
+      "universityBurned": "la Universidad Miskatonic ardió",
+      "defeatedPursuer": "los investigadores derrotaron a su perseguidor enmascarado",
+      "savedUniversity": "los investigadores salvaron la Universidad Miskatonic"
+    },
+    "scenario": {
+      "smokeAndMirrors": "el Escenario II: Smoke and Mirrors"
+    }
+  },
+  "playmat": {
+    "label": "Tapete",
+    "arkham": "Mapa de Arkham",
+    "ritual": "Ritual carmesí",
+    "abyss": "Abismo marino",
+    "library": "Biblioteca Miskatonic",
+    "veil": "Más allá del velo",
+    "ash": "Ceniza y brasas"
+  },
+  "slot": {
+    "label": "Ranuras",
+    "hand": "Mano",
+    "arcane": "Arcano",
+    "accessory": "Accesorio",
+    "body": "Cuerpo",
+    "ally": "Aliado",
+    "head": "Cabeza",
+    "free": "Sin ranura"
+  },
+  "damageKind": {
+    "damage": "daño",
+    "horror": "horror"
   }
 }

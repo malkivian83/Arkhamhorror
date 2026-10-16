@@ -12,3 +12,4 @@ coverage/
 
 # Escaneos propios de cartas (no se suben)
 apps/web/public/cards/
+apps/web/public/local-assets/

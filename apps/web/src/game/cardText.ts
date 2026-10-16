@@ -1,32 +1,51 @@
+import { ICON_GLYPHS } from './assets'
+
 /**
  * Convierte el texto de carta de ArkhamDB (con marcas como [action], <b>,
  * [[Rasgo]]) en HTML seguro: se escapa todo y solo se reintroducen las marcas
- * conocidas.
+ * conocidas. Los símbolos usan la fuente oficial si está disponible y, si no,
+ * una letra de respaldo.
  */
-const ICONS: Record<string, string> = {
-  action: '<span class="ci act" title="acción">➤</span>',
-  fast: '<span class="ci fast" title="rápida">ϟ</span>',
-  free: '<span class="ci fast" title="rápida">ϟ</span>',
-  reaction: '<span class="ci react" title="reacción">⟲</span>',
-  willpower: '<span class="ci sk wil">V</span>',
-  intellect: '<span class="ci sk int">I</span>',
-  combat: '<span class="ci sk com">C</span>',
-  agility: '<span class="ci sk agi">A</span>',
-  wild: '<span class="ci sk wild">?</span>',
-  skull: '<span class="ci tok">☠</span>',
-  cultist: '<span class="ci tok">⚉</span>',
-  tablet: '<span class="ci tok">▤</span>',
-  elder_thing: '<span class="ci tok">✷</span>',
-  elder_sign: '<span class="ci tok">✪</span>',
-  auto_fail: '<span class="ci tok">⊗</span>',
-  per_investigator: '<span class="ci per" title="por investigador">/inv</span>',
-  bless: '<span class="ci tok">✚</span>',
-  curse: '<span class="ci tok">✖</span>',
-  guardian: '<span class="ci cls">Guardián</span>',
-  seeker: '<span class="ci cls">Buscador</span>',
-  rogue: '<span class="ci cls">Rebelde</span>',
-  mystic: '<span class="ci cls">Místico</span>',
-  survivor: '<span class="ci cls">Superviviente</span>',
+const FALLBACK: Record<string, [cls: string, text: string]> = {
+  action: ['act', '➤'],
+  fast: ['fast', 'ϟ'],
+  free: ['fast', 'ϟ'],
+  reaction: ['react', '⟲'],
+  willpower: ['sk wil', 'V'],
+  intellect: ['sk int', 'I'],
+  combat: ['sk com', 'C'],
+  agility: ['sk agi', 'A'],
+  wild: ['sk wild', '?'],
+  skull: ['tok', '☠'],
+  cultist: ['tok', '⚉'],
+  tablet: ['tok', '▤'],
+  elder_thing: ['tok', '✷'],
+  elder_sign: ['tok', '✪'],
+  auto_fail: ['tok', '⊗'],
+  bless: ['tok', '✚'],
+  curse: ['tok', '✖'],
+  frost: ['tok', '❄'],
+  per_investigator: ['per', '/inv'],
+}
+
+const PER_INVESTIGATOR_GLYPH = 'u'
+
+/** HTML de un icono: glifo oficial + letra de respaldo (el CSS muestra uno de los dos). */
+export function iconHtml(name: string): string | null {
+  const fallback = FALLBACK[name]
+  if (!fallback) return null
+  const glyph = name === 'per_investigator' ? PER_INVESTIGATOR_GLYPH : ICON_GLYPHS[name]
+  const [cls, text] = fallback
+  const official = glyph && name !== 'wild' ? `<i class="ahi">${glyph}</i>` : ''
+  return `<span class="ci ${cls}">${official}<b class="fb">${text}</b></span>`
+}
+
+const CLASSES: Record<string, string> = {
+  guardian: 'Guardián',
+  seeker: 'Buscador',
+  rogue: 'Rebelde',
+  mystic: 'Místico',
+  survivor: 'Superviviente',
 }
 
 const escape = (text: string) =>
@@ -37,6 +56,9 @@ export function cardTextHtml(text: string | undefined): string {
   return escape(text)
     .replace(/&lt;(\/?)(b|i|em|strong)&gt;/g, '<$1$2>')
     .replace(/\[\[([^\]]+)\]\]/g, '<i>$1</i>')
-    .replace(/\[([a-z_]+)\]/g, (match, name: string) => ICONS[name] ?? match)
+    .replace(/\[([a-z_]+)\]/g, (match, name: string) => {
+      if (CLASSES[name]) return `<span class="ci cls">${CLASSES[name]}</span>`
+      return iconHtml(name) ?? match
+    })
     .replace(/\n/g, '<br>')
 }

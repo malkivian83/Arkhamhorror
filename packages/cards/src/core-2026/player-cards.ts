@@ -27,7 +27,7 @@ registerPlayerCards(playerCards)
 /** Código de carta a partir del número de colección de la caja (p. ej. 20 → "12020"). */
 export const code = (position: number) => `12${String(position).padStart(3, '0')}`
 
-const def = (position: number): PlayerCardDef => {
+export const def = (position: number): PlayerCardDef => {
   const found = playerCards.find((c) => c.code === code(position))
   if (!found) throw new Error(`Carta desconocida: ${position}`)
   return found
@@ -206,10 +206,7 @@ export const STARTER_DECKS: Record<string, DeckList> = {
   },
 }
 
-/**
- * Investigador listo para `createGame` con su mazo inicial. Las debilidades aún
- * no se incluyen (su revelación está pendiente).
- */
+/** Investigador listo para `createGame` con su mazo inicial y sus debilidades. */
 export function starterInvestigator(key: keyof typeof STARTER_DECKS): InvestigatorSetup {
   const list = STARTER_DECKS[key]
   if (!list) throw new Error(`Mazo desconocido: ${key}`)
@@ -224,9 +221,12 @@ export function starterInvestigator(key: keyof typeof STARTER_DECKS): Investigat
     health: investigator.health ?? 0,
     sanity: investigator.sanity ?? 0,
     elderSignModifier: investigator.elderSignModifier ?? 0,
-    deck: list.cards.flatMap(([position, copies = 1]) =>
-      Array.from({ length: copies }, () => code(position)),
-    ),
+    deck: [
+      ...list.cards.flatMap(([position, copies = 1]) =>
+        Array.from({ length: copies }, () => code(position)),
+      ),
+      ...list.weaknesses.map(code),
+    ],
   }
 }
 
@@ -234,10 +234,10 @@ export function starterInvestigator(key: keyof typeof STARTER_DECKS): Investigat
 // Ayudas para escribir cartas
 // ---------------------------------------------------------------------------
 
-const name = (position: number) => def(position).name
+export const name = (position: number) => def(position).name
 
 /** Enemigos a los que el investigador puede atacar en su localización. */
-function attackable(state: GameState, investigator: InvestigatorId) {
+export function attackable(state: GameState, investigator: InvestigatorId) {
   const here = getInvestigator(state, investigator).location
   if (here === null) return []
   return enemiesAt(state, here).filter(
@@ -247,6 +247,7 @@ function attackable(state: GameState, investigator: InvestigatorId) {
 
 interface FightOptions {
   skill?: SkillType
+  tags?: string[]
   modifier?: number | ((state: GameState, investigator: InvestigatorId) => number)
   extraDamage?: (state: GameState, investigator: InvestigatorId, enemyId: string) => number
   cost?: Message[]
@@ -255,7 +256,7 @@ interface FightOptions {
 }
 
 /** Habilidad "[acción]: Luchar" de un apoyo, una opción por enemigo atacable. */
-function fightAbility(position: number, options: FightOptions = {}) {
+export function fightAbility(position: number, options: FightOptions = {}) {
   return (state: GameState, self: Asset, investigator: InvestigatorId): AbilityOption[] => {
     if (options.available && !options.available(self)) return []
     return attackable(state, investigator).map((enemy) => {
@@ -278,6 +279,8 @@ function fightAbility(position: number, options: FightOptions = {}) {
             skill: options.skill ?? 'combat',
             difficulty: enemy.fight,
             modifier,
+            source: self.id,
+            ...(options.tags ? { tags: options.tags } : {}),
             kind: {
               type: 'fight',
               enemy: enemy.id,
@@ -293,6 +296,7 @@ function fightAbility(position: number, options: FightOptions = {}) {
 
 interface InvestigateOptions {
   skills?: SkillType[]
+  tags?: string[]
   modifier?: number
   extraClues?: number
   cost?: (asset: Asset) => Message[]
@@ -301,7 +305,7 @@ interface InvestigateOptions {
 }
 
 /** Habilidad "[acción]: Investigar" de un apoyo. Provoca ataques de oportunidad. */
-function investigateAbility(position: number, options: InvestigateOptions = {}) {
+export function investigateAbility(position: number, options: InvestigateOptions = {}) {
   return (state: GameState, self: Asset, investigator: InvestigatorId): AbilityOption[] => {
     if (options.available && !options.available(self)) return []
     const here = getInvestigator(state, investigator).location
@@ -322,6 +326,8 @@ function investigateAbility(position: number, options: InvestigateOptions = {}) 
           skill,
           difficulty: location.shroud,
           modifier: options.modifier ?? 0,
+          source: self.id,
+          ...(options.tags ? { tags: options.tags } : {}),
           kind: {
             type: 'investigate',
             location: here,
@@ -334,17 +340,74 @@ function investigateAbility(position: number, options: InvestigateOptions = {}) 
   }
 }
 
-const spendUse = (asset: Asset): Message => ({ type: 'SpendUses', asset: asset.id, amount: 1 })
-const hasUses = (asset: Asset) => asset.uses > 0
+export const spendUse = (asset: Asset): Message => ({
+  type: 'SpendUses',
+  asset: asset.id,
+  amount: 1,
+})
+export const hasUses = (asset: Asset) => asset.uses > 0
+
+/** "Si tienes éxito, puedes…": pregunta opcional al investigador. */
+export function mayChoose(
+  investigator: InvestigatorId,
+  label: string,
+  params: Record<string, string | number>,
+  then: Message[],
+): Message {
+  return {
+    type: 'Ask',
+    investigator,
+    question: {
+      kind: 'chooseOne',
+      prompt: 'prompt.optional',
+      choices: [
+        { label, params, then },
+        { label: 'choice.skip', then: [] },
+      ],
+    },
+  }
+}
 
 // ---------------------------------------------------------------------------
 // Armas
 // ---------------------------------------------------------------------------
 
-// Daniela's Wrench: Luchar con +2 [combat]. (Pendiente: su habilidad rápida y el +1 daño.)
-registerPlayerCard({ code: code(2), abilities: fightAbility(2, { modifier: 2 }) })
+// Daniela's Wrench: [rápida] agótala: un enemigo de tu localización se enfrenta a ti
+// y ataca. [acción]: Luchar +2 [combat]; +1 daño si ese enemigo te ha atacado esta ronda.
+registerPlayerCard({
+  code: code(2),
+  abilities: (state, self, investigator) => {
+    const attackedMe = (enemy: string) =>
+      (state.enemyAttacks ?? []).some(
+        (a) => a.enemy === enemy && a.investigator === investigator && a.round === state.round,
+      )
+    const fights = fightAbility(2, {
+      modifier: 2,
+      extraDamage: (_s, _i, enemy) => (attackedMe(enemy) ? 1 : 0),
+    })(state, self, investigator)
+    const here = getInvestigator(state, investigator).location
+    const provoke: AbilityOption[] =
+      self.exhausted || here === null
+        ? []
+        : enemiesAt(state, here).map((enemy) => ({
+            key: `${self.id}:provoke`,
+            label: 'ability.wrenchProvoke',
+            params: { enemy: enemy.name },
+            target: { type: 'enemy', id: enemy.id },
+            actions: 0,
+            provokes: false,
+            then: [
+              { type: 'ExhaustAsset', asset: self.id },
+              { type: 'EngageEnemy', enemy: enemy.id, investigator },
+              { type: 'EnemyAttack', enemy: enemy.id, investigator, exhaustAfter: false },
+            ],
+          }))
+    return [...fights, ...provoke]
+  },
+})
 
-// Isabelle's Twin .45s: gasta 1 munición: Luchar +1 [combat], +1 daño. (Pendiente: segunda reacción.)
+// Isabelle's Twin .45s: gasta 1 munición: Luchar +1 [combat], +1 daño. Después,
+// [reacción] gasta 1 munición y agótalas: Luchar ([agility]) +1 [agility], +1 daño.
 registerPlayerCard({
   code: code(14),
   abilities: (state, self, investigator) =>
@@ -354,6 +417,33 @@ registerPlayerCard({
       available: hasUses,
       cost: [spendUse(self)],
     })(state, self, investigator),
+  reactions: (state, trigger, self) => {
+    if (trigger.type !== 'afterSkillTest' || trigger.source !== self.id) return []
+    if (trigger.kind !== 'fight' || self.exhausted || self.uses <= 0 || state.skillTest) return []
+    const enemy = trigger.enemy ? state.enemies[trigger.enemy] : undefined
+    const here = getInvestigator(state, self.owner).location
+    if (!enemy || enemy.location !== here) return []
+    return [
+      {
+        key: `${self.id}:second`,
+        investigator: self.owner,
+        label: 'ability.twinSecond',
+        params: { enemy: enemy.name },
+        then: [
+          spendUse(self),
+          { type: 'ExhaustAsset', asset: self.id },
+          {
+            type: 'BeginSkillTest',
+            investigator: self.owner,
+            skill: 'agility',
+            difficulty: enemy.fight,
+            modifier: 1,
+            kind: { type: 'fight', enemy: enemy.id, extraDamage: 1 },
+          },
+        ],
+      },
+    ]
+  },
 })
 
 // M1911: gasta 1 munición: Luchar +1 [combat], +1 daño.
@@ -392,16 +482,37 @@ registerPlayerCard({
     })(state, self, investigator),
 })
 
-// Cosmic Flame: Luchar ([willpower]); si aciertas, gasta 1 carga para +1 daño.
-// (Simplificado: la carga se gasta siempre que queden. Pendiente: efecto de la calavera.)
+// Cosmic Flame: Luchar ([willpower]); si aciertas, puedes gastar 1 carga para +1 daño.
+// Si revelas una calavera, retira 1 carga (si no puedes, 1 daño y descártala).
 registerPlayerCard({
   code: code(59),
   abilities: (state, self, investigator) =>
-    fightAbility(59, {
-      skill: 'willpower',
-      onSuccess: (asset) => (asset.uses > 0 ? [spendUse(asset)] : []),
-      extraDamage: () => (self.uses > 0 ? 1 : 0),
-    })(state, self, investigator),
+    attackable(state, investigator).flatMap((enemy) =>
+      fightAbility(59, {
+        skill: 'willpower',
+        tags: ['spell'],
+        onSuccess: (asset) =>
+          asset.uses > 0
+            ? [
+                mayChoose(investigator, 'choice.spendChargeForDamage', {}, [
+                  spendUse(asset),
+                  { type: 'DamageEnemy', enemy: enemy.id, amount: 1, by: investigator },
+                ]),
+              ]
+            : [],
+      })(state, self, investigator).filter(
+        (a) => a.target?.type === 'enemy' && a.target.id === enemy.id,
+      ),
+    ),
+  onTokenRevealed: (_state, token, self) =>
+    token !== 'skull'
+      ? []
+      : self.uses > 0
+        ? [spendUse(self)]
+        : [
+            { type: 'TakeDamage', investigator: self.owner, damage: 1, horror: 0, direct: true },
+            { type: 'DiscardAsset', asset: self.id },
+          ],
 })
 
 // Meat Cleaver: Luchar +1 [combat] (+2 con 3 o menos de cordura restante).
@@ -415,8 +526,24 @@ registerPlayerCard({
   }),
 })
 
-// Broken Bottle: Luchar +1 [combat]. (Pendiente: descartarla para +1 daño.)
-registerPlayerCard({ code: code(86), abilities: fightAbility(86, { modifier: 1 }) })
+// Broken Bottle: Luchar +1 [combat]. Si aciertas, puedes descartarla para +1 daño.
+registerPlayerCard({
+  code: code(86),
+  abilities: (state, self, investigator) =>
+    attackable(state, investigator).flatMap((enemy) =>
+      fightAbility(86, {
+        modifier: 1,
+        onSuccess: (asset) => [
+          mayChoose(investigator, 'choice.discardForDamage', { card: name(86) }, [
+            { type: 'DiscardAsset', asset: asset.id },
+            { type: 'DamageEnemy', enemy: enemy.id, amount: 1, by: investigator },
+          ]),
+        ],
+      })(state, self, investigator).filter(
+        (a) => a.target?.type === 'enemy' && a.target.id === enemy.id,
+      ),
+    ),
+})
 
 // ---------------------------------------------------------------------------
 // Herramientas de investigación
@@ -459,9 +586,10 @@ registerPlayerCard({ code: code(88), abilities: investigateAbility(88, { modifie
 // ---------------------------------------------------------------------------
 
 // Scene of the Crime: solo como primera acción; descubre 1 pista (2 si hay un enemigo).
-// (Pendiente: no debería provocar ataques de oportunidad.)
+// No provoca ataques de oportunidad.
 registerPlayerCard({
   code: code(24),
+  noAttacksOfOpportunity: true,
   canPlay: (state, investigator) => getInvestigator(state, investigator).actionsRemaining === 3,
   play: (state, investigator) => {
     const here = getInvestigator(state, investigator).location
@@ -500,7 +628,7 @@ registerPlayerCard({
   code: code(25),
   afterCommittedTest: (_state, test, succeeded) =>
     succeeded && test.kind.type === 'fight'
-      ? [{ type: 'DamageEnemy', enemy: test.kind.enemy, amount: 1 }]
+      ? [{ type: 'DamageEnemy', enemy: test.kind.enemy, amount: 1, by: test.investigator }]
       : [],
 })
 
@@ -509,7 +637,14 @@ registerPlayerCard({
   code: code(39),
   afterCommittedTest: (_state, test, succeeded) =>
     succeeded && test.kind.type === 'investigate'
-      ? [{ type: 'DiscoverClues', investigator: test.investigator, amount: 1 }]
+      ? [
+          {
+            type: 'DiscoverClues',
+            investigator: test.investigator,
+            amount: 1,
+            location: test.kind.location,
+          },
+        ]
       : [],
 })
 

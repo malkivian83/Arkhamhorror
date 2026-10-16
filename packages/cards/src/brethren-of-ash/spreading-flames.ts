@@ -30,7 +30,9 @@ import {
   type InvestigatorId,
   type Message,
   type ScenarioDefinition,
+  type ScenarioOutcome,
   type SkillType,
+  type StoryEntry,
   type TreacheryCard,
 } from '@lcg/engine'
 import { CHAOS_BAGS, type Difficulty } from './campaign'
@@ -261,6 +263,7 @@ export function spreadingFlames(difficulty: Difficulty = 'standard'): ScenarioDe
   const { yourFriendsRoom, ...others } = locationCards
   return {
     id: SPREADING_FLAMES,
+    intro: { title: 'story.spreadingFlames.introTitle', body: 'story.spreadingFlames.intro' },
     locations: [yourFriendsRoom],
     setAsideLocations: Object.values(others),
     startingLocation: CODES.yourFriendsRoom,
@@ -311,8 +314,95 @@ export function spreadingFlames(difficulty: Difficulty = 'standard'): ScenarioDe
 // Tarjeta de referencia: efectos de las fichas
 // ---------------------------------------------------------------------------
 
+/** Texto de resolución con sus efectos de campaña (guía de campaña, página 4). */
+const entry = (key: string, effects: StoryEntry['effects'] = []): StoryEntry => ({
+  title: `story.spreadingFlames.${key}Title`,
+  body: `story.spreadingFlames.${key}`,
+  effects,
+})
+const note = (key: string) => ({
+  key: 'story.effect.record',
+  params: { note: `story.note.${key}` },
+})
+const PROCEED = {
+  key: 'story.effect.proceed',
+  params: { scenario: 'story.scenario.smokeAndMirrors' },
+}
+const MENTAL_TRAUMA = { key: 'story.effect.mentalTrauma' }
+const xp = (bonus: number) => ({ key: 'story.effect.experience', params: { bonus } })
+
+const end = (resolution: number): Message => ({
+  type: 'EndScenario',
+  outcome: { type: 'resolution', resolution },
+  told: true,
+})
+
+/** Resoluciones de Spreading Flames, con las decisiones que pide la guía. */
+function resolutionStory(state: GameState, outcome: ScenarioOutcome): Message[] {
+  if (outcome.type === 'noResolution') {
+    return [
+      {
+        type: 'Story',
+        entry: entry('noResolution', [note('universityBurned'), MENTAL_TRAUMA, xp(2), PROCEED]),
+      },
+      { type: 'EndScenario', outcome, told: true },
+    ]
+  }
+  const bearer: Message = {
+    type: 'Story',
+    entry: entry('armitageBearer'),
+    choices: state.investigators.map((i) => ({
+      label: 'choice.investigator',
+      params: { name: i.name },
+      then: [{ type: 'Log', key: 'log.armitageBearer', params: { name: i.name } }],
+    })),
+  }
+  return [
+    {
+      type: 'Story',
+      entry: entry('resolution1', [
+        note('defeatedPursuer'),
+        { key: 'story.effect.armitage' },
+        xp(3),
+      ]),
+    },
+    bearer,
+    {
+      type: 'Story',
+      entry: entry('decide'),
+      choices: [
+        {
+          label: 'story.spreadingFlames.stay',
+          then: [
+            {
+              type: 'Story',
+              entry: entry('resolution2', [
+                note('savedUniversity'),
+                { key: 'story.effect.bonusAndPhysicalTrauma' },
+                PROCEED,
+              ]),
+            },
+            end(2),
+          ],
+        },
+        {
+          label: 'story.spreadingFlames.go',
+          then: [
+            {
+              type: 'Story',
+              entry: entry('resolution3', [note('universityBurned'), MENTAL_TRAUMA, PROCEED]),
+            },
+            end(3),
+          ],
+        },
+      ],
+    },
+  ]
+}
+
 registerScenario({
   id: SPREADING_FLAMES,
+  resolution: resolutionStory,
   tokenEffect: (state, token, investigator) => {
     const hard = state.difficulty === 'hard' || state.difficulty === 'expert'
     const actNumber = state.actIndex + 1

@@ -49,14 +49,28 @@
     "advanceAct": "Spend clues to advance the act?",
     "chooseSkill": "Choose the skill to test",
     "chooseEffect": "Choose one",
-    "reaction": "Use this reaction?",
+    "reaction": "Use a reaction?",
     "chooseCardToDiscard": "Choose a card to discard",
     "commitCards": "Commit cards to the test?",
     "freeSlot": "No free slot: choose an asset to discard",
     "assignDamage": "Assign 1 damage",
     "assignHorror": "Assign 1 horror",
     "skillTestSucceeded": "The test succeeds",
-    "skillTestFailed": "The test fails"
+    "skillTestFailed": "The test fails",
+    "story": "Story",
+    "commitAfterReveal": "Commit a card after revealing the token?",
+    "searchToPlay": "Choose the asset you play",
+    "searchToHand": "Choose the card you add to your hand",
+    "chooseMove": "Where do you move?",
+    "returnAsset": "Choose the asset that returns to your hand",
+    "optional": "Do you want to do it?",
+    "elderSignDamage": "Elder sign: choose the enemy you deal 1 damage to",
+    "chooseEnemy": "Choose an enemy",
+    "autoEvade": "Automatically evade an enemy?",
+    "chooseHeal": "What do you heal?",
+    "chooseItem": "Choose the Item you play",
+    "chooseLocation": "Choose a location",
+    "moveDamageTo": "Which card do you move it to?"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -94,7 +108,20 @@
     "revealToken": "Reveal chaos token",
     "assignToInvestigator": "To {name}",
     "assignToAsset": "To {card}",
-    "applyResults": "Apply results"
+    "applyResults": "Apply results",
+    "continue": "Continue",
+    "takeCard": "Take {card}",
+    "returnToHand": "Return {card} to hand",
+    "enemy": "{enemy}",
+    "disengageAndMove": "Disengage and move",
+    "spendChargeForDamage": "Spend 1 charge: +1 damage",
+    "discardForDamage": "Discard {card}: +1 damage",
+    "exhaustToMove": "Exhaust {card} to move there",
+    "spendChargeForClue": "Spend 1 charge: 1 more clue",
+    "healDamage": "Heal 1 damage",
+    "healHorror": "Heal 1 horror",
+    "location": "{location}",
+    "moveDamageTo": "To {card}"
   },
   "phase": {
     "setup": "Setup",
@@ -115,7 +142,28 @@
     "observatoryDraw": "Draw 1 card",
     "orneDraw": "Draw 3 cards (2 actions)",
     "fightWith": "Fight {enemy} with {card}",
-    "investigateWith": "Investigate with {card} ({skill})"
+    "investigateWith": "Investigate with {card} ({skill})",
+    "wrenchProvoke": "Provoke {enemy} (it engages you and attacks)",
+    "twinSecond": "Second shot at {enemy} (Agility +1, +1 damage)",
+    "danielaFight": "Fight {enemy} (Daniela)",
+    "drawCards": "Draw {n} card(s)",
+    "dexterReturn": "Return {card} to your hand",
+    "dexterPlay": "Play {card}",
+    "isabelleCommit": "Take 1 horror: commit {card} from your discard",
+    "pump": "{card}: spend 1 resource (+{amount} {skill})",
+    "damageEnemyHere": "{card}: 1 damage to an enemy at your location",
+    "gainResource": "{card}: gain 1 resource",
+    "moveWith": "{card}: move to {location}",
+    "healAsset": "{card}: heal 1 {kind}",
+    "investigateConnecting": "{card}: investigate {location}",
+    "moveConnecting": "{card}: move to a connecting location",
+    "luckyCharm": "Lucky Charm: move 1 {kind} from {from}",
+    "bandages": "Bandages: heal 1 damage from {target}",
+    "returnFromDiscard": "Hunter's Instinct: recover {target}",
+    "jumpsuit": "Discard Jumpsuit: recover {card}",
+    "revealToDraw": "Reveal {card}: draw {n} cards",
+    "playCard": "Play {card}",
+    "necronomicon": "Willpower test (5) to discard The Necronomicon"
   },
   "log": {
     "round": "Round {round}",
@@ -140,7 +188,11 @@
     "actAdvanced": "The act advances: {name}",
     "eliminated": "{name} is eliminated",
     "resigned": "{name} resigns",
-    "end": "End of the scenario ({outcome})"
+    "end": "End of the scenario ({outcome})",
+    "armitageBearer": "{name} will be the bearer of Dr. Henry Armitage",
+    "searchCanceled": "{name} finds {card}: the search is canceled",
+    "sealed": "{name} seals a token ({token})",
+    "weakness": "{name} draws their weakness {card}"
   },
   "table": {
     "log": "Game log",
@@ -164,7 +216,32 @@
     "clickHighlighted": "Click a highlighted element on the table, or choose below.",
     "health": "Remaining health",
     "sanity": "Remaining sanity",
-    "decides": "Must decide"
+    "decides": "Must decide",
+    "basicAction": "Basic action",
+    "campaignEffects": "Campaign effects",
+    "storySummary": "Our own summary of the campaign guide text.",
+    "scenarioOver": "Scenario over",
+    "resolutionN": "Resolution {n}",
+    "noResolution": "No resolution",
+    "viewTable": "View the table",
+    "choose": "Choose",
+    "encounterDiscard": "Encounter discard",
+    "playerDiscard": "{name}'s discard",
+    "viewPile": "View all cards",
+    "emptyPile": "No cards.",
+    "close": "Close",
+    "drawnBy": "{name} draws",
+    "ok": "OK",
+    "agenda": "Agenda",
+    "act": "Act",
+    "scenario": "Scenario file",
+    "board": "Location map",
+    "investigatorArea": "{name}'s area",
+    "options": "{n} options",
+    "damage": "Damage",
+    "horror": "Horror",
+    "actionsLeft": "{n} actions",
+    "journal": "Case journal"
   },
   "difficulty": {
     "easy": "Easy",
@@ -192,5 +269,93 @@
     "commitHint": "Commit cards from your hand (highlighted) and click the bag to reveal a token.",
     "tokensInBag": "{n} tokens",
     "showOdds": "Show odds"
+  },
+  "undo": {
+    "title": "Undo",
+    "step": "Step",
+    "action": "Action",
+    "turn": "Turn",
+    "round": "Round",
+    "hint": {
+      "step": "Undo the last decision",
+      "action": "Back to the start of the action",
+      "turn": "Back to the start of the turn",
+      "round": "Back to the start of the round"
+    }
+  },
+  "shortcuts": {
+    "title": "Keyboard shortcuts",
+    "option": "Pick the option with that number",
+    "enter": "Enter",
+    "confirm": "Reveal token / apply results / only option"
+  },
+  "actionShort": {
+    "investigate": "Investigate",
+    "move": "Move",
+    "fight": "Fight",
+    "evade": "Evade",
+    "engage": "Engage",
+    "draw": "Draw",
+    "resource": "Resource",
+    "play": "Play"
+  },
+  "story": {
+    "spreadingFlames": {
+      "introTitle": "Scenario I: Spreading Flames",
+      "intro": "A wave of fires and strange \"accidents\" has Arkham on edge, and hooded figures have been seen near every one of them.\n\nYour friend is sure they are to blame and asked you to meet at their dorm room at Miskatonic University. When you arrive, the room is empty and the building far too quiet…",
+      "noResolutionTitle": "No resolution",
+      "noResolution": "You come to at the edge of campus, eyes stinging from the smoke, as the university burns building after building.\n\nIn the chaos you find Dr. Henry Armitage, stunned before the ruins of the library. Too many questions remain: who was chasing you, and what did the hooded figures want?",
+      "resolution1Title": "Resolution 1",
+      "resolution1": "Dozens of students band together to fight the blaze. Dr. Armitage puts a hand on your shoulder: if you want to find your friend and whoever took them, you must leave now, and he will explain everything on the way.\n\nYou could stay and help, but it would cost you precious time.",
+      "armitageBearerTitle": "Dr. Henry Armitage",
+      "armitageBearer": "Choose which investigator becomes the bearer of Dr. Henry Armitage. This story asset is added to their deck ignoring deckbuilding rules and does not count toward deck size.",
+      "decideTitle": "What do you do?",
+      "decide": "The investigators must decide.",
+      "stay": "Stay and fight the fire! (Resolution 2)",
+      "go": "\"There's no time. We have to go.\" (Resolution 3)",
+      "resolution2Title": "Resolution 2",
+      "resolution2": "Working side by side with the others, you hold back the flames until the Arkham Fire Department arrives. With things under control, you hurry to meet Dr. Armitage.",
+      "resolution3Title": "Resolution 3",
+      "resolution3": "You flee the campus with Dr. Armitage and leave the university to its fate, sirens wailing behind you on the way to his apartment."
+    },
+    "effect": {
+      "record": "In your campaign log, record {note}.",
+      "mentalTrauma": "Each investigator suffers 1 mental trauma.",
+      "experience": "Each investigator earns experience equal to the victory value of the cards in the victory display, plus {bonus} bonus experience.",
+      "armitage": "An investigator becomes the bearer of Dr. Henry Armitage.",
+      "bonusAndPhysicalTrauma": "Each investigator earns 1 bonus experience and suffers 1 physical trauma.",
+      "proceed": "Proceed to {scenario}."
+    },
+    "note": {
+      "universityBurned": "Miskatonic University burned",
+      "defeatedPursuer": "the investigators defeated their masked pursuer",
+      "savedUniversity": "the investigators saved Miskatonic University"
+    },
+    "scenario": {
+      "smokeAndMirrors": "Scenario II: Smoke and Mirrors"
+    }
+  },
+  "playmat": {
+    "label": "Playmat",
+    "arkham": "Map of Arkham",
+    "ritual": "Crimson ritual",
+    "abyss": "Abyssal depths",
+    "library": "Miskatonic library",
+    "veil": "Beyond the veil",
+    "ash": "Ash and embers"
+  },
+  "slot": {
+    "label": "Slots",
+    "hand": "Hand",
+    "arcane": "Arcane",
+    "accessory": "Accessory",
+    "body": "Body",
+    "ally": "Ally",
+    "head": "Head",
+    "free": "No slot"
+  },
+  "damageKind": {
+    "damage": "damage",
+    "horror": "horror"
   }
 }

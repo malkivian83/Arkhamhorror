@@ -158,7 +158,8 @@ Código: `packages/cards/src/brethren-of-ash/spreading-flames.ts` (con tests).
 | Enemigos: valores, presa, condenado, Élite, forzado de Mutated Experiment | Hecho; falta el forzado de Hellhound (requiere apoyos) |
 | Efectos de plan y acto, objetivos 2–4, parlamento, retirarse | Pendiente |
 | Resto de localizaciones y sus habilidades | Pendiente (entran con el acto 1) |
-| Dr. Henry Armitage, resoluciones y registro de campaña | Pendiente |
+| Introducción y resoluciones (textos, efectos y decisiones de la guía) | Hecho en la mesa; los efectos aún no se guardan en un registro de campaña |
+| Dr. Henry Armitage y registro de campaña | Pendiente (paso 5: campaña) |
 
 ## 7. Datos
 

@@ -12,6 +12,9 @@ export function useLabels() {
     )
     if (typeof params.skill === 'string') translated.skill = t(`skill.${params.skill}`)
     if (typeof params.phase === 'string') translated.phase = t(`phase.${params.phase}`)
+    if (params.kind === 'damage' || params.kind === 'horror') {
+      translated.kind = t(`damageKind.${params.kind}`)
+    }
     return t(key, translated)
   }
 }

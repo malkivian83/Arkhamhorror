@@ -13,12 +13,17 @@ import type {
   Asset,
   CardCode,
   ChaosSymbol,
+  ChaosToken,
   Enemy,
+  EnemyCard,
   GameState,
+  Investigator,
   InvestigatorId,
   Location,
   Message,
   PlayerCardDef,
+  ReactionOption,
+  ScenarioOutcome,
   SkillTest,
   TokenEffect,
   Treachery,
@@ -42,6 +47,11 @@ export interface ScenarioBehavior {
     token: ScenarioSymbol,
     investigator: InvestigatorId,
   ) => TokenEffect
+  /**
+   * Textos y decisiones de la resolución (solo en la mesa). Deben terminar con
+   * `EndScenario` marcado como `told`, que puede cambiar la resolución final.
+   */
+  resolution?: (state: GameState, outcome: ScenarioOutcome) => Message[]
 }
 
 export interface TreacheryBehavior {
@@ -51,6 +61,8 @@ export interface TreacheryBehavior {
   /** Habilidades forzadas mientras está en juego. */
   forced?: (state: GameState, trigger: Trigger, self: Treachery) => Message[]
   abilities?: AbilitiesFn<Treachery>
+  /** En la zona de amenaza: su dueño no puede jugar apoyos ni usar los de sus apoyos (The Necronomicon). */
+  blocksAssets?: boolean
 }
 
 export interface EnemyBehavior {
@@ -158,6 +170,60 @@ export interface PlayerCardBehavior {
     succeeded: boolean,
     committedBy: InvestigatorId,
   ) => Message[]
+  /** Reacciones del apoyo en juego (las decide su controlador). */
+  reactions?: (state: GameState, trigger: Trigger, self: Asset) => ReactionOption[]
+  /** Eventos que se juegan como reacción desde la mano ("Juégala después de…"). */
+  handReactions?: (
+    state: GameState,
+    trigger: Trigger,
+    investigator: InvestigatorId,
+  ) => ReactionOption[]
+  /** Habilidades forzadas del apoyo en juego. */
+  forced?: (state: GameState, trigger: Trigger, self: Asset) => Message[]
+  /** Habilidades rápidas durante una prueba de su controlador, antes de revelar fichas. */
+  testOptions?: (state: GameState, test: SkillTest, self: Asset) => ReactionOption[]
+  /** Efecto al revelar una ficha en una prueba iniciada por este apoyo. */
+  onTokenRevealed?: (state: GameState, token: ChaosToken, self: Asset) => Message[]
+  /** Se puede comprometer después de revelar las fichas (Timely Intervention). */
+  commitAfterReveal?: boolean
+  /** Coste adicional al comprometerla. */
+  onCommit?: (state: GameState, by: InvestigatorId) => Message[]
+  /** Aumenta el tamaño máximo de mano de su controlador. */
+  handSize?: number
+  /** Puede recibir el daño de otros investigadores de su localización (Bodyguard). */
+  soaksForOthers?: boolean
+  /** Se descarta al quedarse sin usos. */
+  discardWhenEmpty?: boolean
+  /** Su acción es de evitar (cuenta como tal) o no provoca ataques de oportunidad. */
+  evadeAction?: boolean
+  noAttacksOfOpportunity?: boolean
+  /** Debilidad que cancela las búsquedas en el mazo (Dead Ends). */
+  cancelsSearch?: boolean
+  /** Debilidad de tipo enemigo: sus valores, para que aparezca al robarla. */
+  enemy?: EnemyCard
+}
+
+/**
+ * Comportamiento de una carta de investigador: efecto del signo arcano,
+ * reacciones, habilidades durante sus pruebas y acciones adicionales.
+ */
+export interface InvestigatorBehavior {
+  code: CardCode
+  elderSign?: (state: GameState, self: Investigator) => TokenEffect
+  reactions?: (state: GameState, trigger: Trigger, self: Investigator) => ReactionOption[]
+  testOptions?: (state: GameState, test: SkillTest, self: Investigator) => ReactionOption[]
+  /** Una acción adicional cada turno que solo sirve para evitar. */
+  extraEvadeAction?: boolean
+}
+
+const investigatorBehaviors = new Map<CardCode, InvestigatorBehavior>()
+
+export function registerInvestigator(behavior: InvestigatorBehavior): void {
+  investigatorBehaviors.set(behavior.code, behavior)
+}
+
+export function investigatorBehavior(code: CardCode): InvestigatorBehavior | undefined {
+  return investigatorBehaviors.get(code)
 }
 
 const playerCards = new Map<CardCode, PlayerCardDef>()

@@ -1,26 +1,74 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useLabels } from '../game/labels'
 import { useGameStore } from '../stores/game'
+import ActionButton from './ActionButton.vue'
 
 /**
  * Envuelve un elemento de la mesa. Si la pregunta actual tiene opciones sobre
- * él, se resalta; con una sola opción, un clic la elige; con varias, se abre
- * un menú.
+ * él, se resalta. Al pulsarlo se abre el menú de acciones; si solo hay una
+ * opción que no es una acción con prueba (moverse, jugar una carta, elegir un
+ * objetivo), se elige directamente.
  */
 const props = defineProps<{ target: string }>()
 const game = useGameStore()
-const label = useLabels()
 const open = ref(false)
 const root = ref<HTMLElement | null>(null)
+const menu = ref<HTMLElement | null>(null)
+const position = ref<Record<string, string>>({})
 
 const options = computed(() => game.choicesByTarget.get(props.target) ?? [])
 
-function click() {
+const label = useLabels()
+const { t } = useI18n()
+/** Acción corta de las habilidades de carta más comunes (sin nombre de carta ni lugar). */
+const SHORT_ABILITY: Record<string, string> = {
+  'ability.fightWith': 'fight',
+  'ability.investigateWith': 'investigate',
+}
+
+/** Rótulo visible de lo que se puede hacer: solo la acción ("Investigar"), no el lugar. */
+const hint = computed(() => {
+  const [first] = options.value
+  if (!first) return null
+  if (options.value.length > 1) return t('table.options', { n: options.value.length })
+  const { choice } = first
+  const action = choice.display?.action ?? SHORT_ABILITY[choice.label]
+  return action ? t(`actionShort.${action}`) : label(choice.label, choice.params ?? {})
+})
+
+/** Una única opción que no necesita menú. */
+const direct = computed(() => {
+  if (options.value.length !== 1) return null
   const [only] = options.value
-  if (!only) return
-  if (options.value.length === 1) game.answer(only.index)
-  else open.value = !open.value
+  const action = only!.choice.display?.action
+  return !only!.choice.display || action === 'move' || action === 'play' ? only! : null
+})
+
+/** Coloca el menú encima del elemento (o debajo, si no cabe), dentro de la ventana. */
+function place() {
+  const rect = root.value?.getBoundingClientRect()
+  if (!rect) return
+  const width = menu.value?.offsetWidth ?? 180
+  const height = menu.value?.offsetHeight ?? 40
+  const margin = 8
+  const left = Math.min(Math.max(rect.left, margin), window.innerWidth - width - margin)
+  position.value =
+    rect.top - height - margin > 0
+      ? { left: `${left}px`, bottom: `${window.innerHeight - rect.top + 4}px` }
+      : { left: `${left}px`, top: `${rect.bottom + 4}px` }
+}
+
+async function click() {
+  if (direct.value) return game.answer(direct.value.index)
+  if (!options.value.length) return
+  open.value = !open.value
+  if (open.value) {
+    place()
+    await nextTick()
+    place()
+  }
 }
 
 function pick(index: number) {
@@ -28,23 +76,57 @@ function pick(index: number) {
   game.answer(index)
 }
 
+// La pregunta cambió: el menú abierto ya no vale.
+watch(options, () => (open.value = false))
+
 function outside(event: MouseEvent) {
-  if (root.value && !root.value.contains(event.target as Node)) open.value = false
+  const node = event.target as Node
+  if (root.value?.contains(node) || menu.value?.contains(node)) return
+  open.value = false
+}
+function escape(event: KeyboardEvent) {
+  if (event.key === 'Escape') open.value = false
+}
+function reposition() {
+  if (open.value) place()
 }
 document.addEventListener('click', outside)
-onBeforeUnmount(() => document.removeEventListener('click', outside))
+document.addEventListener('keydown', escape)
+window.addEventListener('resize', reposition)
+window.addEventListener('scroll', reposition, true)
+onBeforeUnmount(() => {
+  document.removeEventListener('click', outside)
+  document.removeEventListener('keydown', escape)
+  window.removeEventListener('resize', reposition)
+  window.removeEventListener('scroll', reposition, true)
+})
 </script>
 
 <template>
-  <div ref="root" class="table-target" :class="{ active: options.length > 0 }" @click.stop="click">
+  <div
+    ref="root"
+    class="table-target"
+    :class="{ active: options.length > 0, open }"
+    :role="options.length ? 'button' : undefined"
+    :tabindex="options.length ? 0 : undefined"
+    :aria-label="hint ?? undefined"
+    :aria-expanded="options.length && !direct ? open : undefined"
+    @click.stop="click"
+    @keydown.enter.prevent.stop="click"
+    @keydown.space.prevent.stop="click"
+  >
     <slot />
-    <ul v-if="open && options.length > 1" class="menu" @click.stop>
-      <li v-for="o in options" :key="o.index">
-        <button type="button" @click="pick(o.index)">
-          {{ label(o.choice.label, o.choice.params ?? {}) }}
-        </button>
-      </li>
-    </ul>
+    <span v-if="hint && !open" class="hint" aria-hidden="true">▶ {{ hint }}</span>
+    <Teleport to="body">
+      <div v-if="open && options.length" ref="menu" class="abilities" :style="position">
+        <ActionButton
+          v-for="o in options"
+          :key="o.index"
+          :choice="o.choice"
+          @click.stop="pick(o.index)"
+        />
+      </div>
+    </Teleport>
   </div>
 </template>
 
@@ -56,26 +138,45 @@ onBeforeUnmount(() => document.removeEventListener('click', outside))
 }
 .table-target.active {
   cursor: pointer;
-  outline: 3px solid var(--accent);
-  outline-offset: 2px;
-  box-shadow: 0 0 14px var(--accent-glow);
+  outline: 2px dashed var(--eldritch);
+  outline-offset: 3px;
+  box-shadow: 0 0 16px rgb(127 184 164 / 45%);
 }
-.menu {
+.table-target.active:focus-visible {
+  outline: 2px solid #fff;
+  box-shadow: 0 0 0 6px #111;
+}
+.hint {
   position: absolute;
-  z-index: 30;
-  top: calc(100% + 6px);
-  left: 0;
-  list-style: none;
-  margin: 0;
-  padding: 4px;
-  background: var(--panel);
-  border: 1px solid var(--accent);
-  border-radius: 6px;
-  min-width: 220px;
-  box-shadow: 0 6px 18px rgb(0 0 0 / 50%);
+  z-index: 4;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(100% + 12px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 1px 7px;
+  border-radius: 3px;
+  background: var(--eldritch);
+  color: #0c241c;
+  font-family: var(--fell);
+  font-size: 0.8rem;
+  pointer-events: none;
 }
-.menu button {
-  width: 100%;
-  text-align: left;
+.table-target.open {
+  outline-color: #ff00ff;
+  box-shadow: 0 0 14px rgb(255 0 255 / 50%);
+}
+.abilities {
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 3px;
+  border-radius: 7px;
+  background: rgb(0 0 0 / 80%);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 50%);
 }
 </style>

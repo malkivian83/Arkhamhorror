@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { cardImage, CLASS_COLORS } from '../game/cards'
 import { cardTextHtml } from '../game/cardText'
 import type { LocalizedCard } from '../game/localized'
+import SkillIcon from './SkillIcon.vue'
 
 /**
  * Carta dibujada con nuestra plantilla a partir de los datos traducidos: la
@@ -47,15 +48,14 @@ const flavor = computed(() => (props.back ? props.card.back_flavor : props.card.
 const icons = computed(() =>
   (
     [
-      ['wil', props.card.skill_willpower],
-      ['int', props.card.skill_intellect],
-      ['com', props.card.skill_combat],
-      ['agi', props.card.skill_agility],
+      ['willpower', props.card.skill_willpower],
+      ['intellect', props.card.skill_intellect],
+      ['combat', props.card.skill_combat],
+      ['agility', props.card.skill_agility],
       ['wild', props.card.skill_wild],
     ] as const
   ).flatMap(([kind, n]) => Array.from({ length: n ?? 0 }, () => kind)),
 )
-const LETTER: Record<string, string> = { wil: 'V', int: 'I', com: 'C', agi: 'A', wild: '?' }
 const per = (yes: boolean | undefined) => (yes ? '/inv' : '')
 </script>
 
@@ -85,9 +85,7 @@ const per = (yes: boolean | undefined) => (yes ? '/inv' : '')
       </header>
 
       <div v-if="icons.length && !back" class="icons">
-        <span v-for="(kind, n) in icons" :key="n" class="ci sk" :class="kind">{{
-          LETTER[kind]
-        }}</span>
+        <SkillIcon v-for="(skill, n) in icons" :key="n" :skill="skill" />
       </div>
 
       <section class="body">
