@@ -1,6 +1,7 @@
 import {
   actBehavior,
   agendaBehavior,
+  enemyBehavior,
   locationBehavior,
   playerCardBehavior,
   playerCardDef,
@@ -65,7 +66,7 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
     ]
   }
 
-  return [
+  const actions: Action[] = [
     ...playableCards(state, id, false).map((card): Action => ({ kind: 'play', card })),
     { kind: 'draw' },
     { kind: 'resource' },
@@ -82,6 +83,29 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
       .filter((e) => e.engagedWith !== id)
       .map((e): Action => ({ kind: 'engage', enemy: e.id })),
   ]
+  return actions.filter((a) => actionCost(state, id, a) <= investigator.actionsRemaining)
+}
+
+/** Acciones que cuesta una acción básica, con costes adicionales (Waterfront, Arcane Lock). */
+export function actionCost(state: GameState, id: InvestigatorId, action: Action): number {
+  const here = getInvestigator(state, id).location
+  if (here === null) return 1
+  if (action.kind === 'investigate') {
+    return 1 + (getLocation(state, here).investigateExtraActions ?? 0)
+  }
+  if (action.kind === 'move') return 1 + moveCost(state, here) + moveCost(state, action.to)
+  return 1
+}
+
+/** Coste adicional de entrar o salir de una localización por las traiciones unidas a ella. */
+function moveCost(state: GameState, location: string): number {
+  return Object.values(state.treacheries).reduce(
+    (sum, t) =>
+      t.placement.type === 'location' && t.placement.location === location
+        ? sum + (treacheryBehavior(t.code)?.moveCost ?? 0)
+        : sum,
+    0,
+  )
 }
 
 /** Etiqueta i18n, parámetros y elemento de la mesa de una acción. */
@@ -225,6 +249,12 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
       withTarget(treacheryBehavior(t.code)?.abilities?.(state, t, id) ?? [], {
         type: 'treachery',
         id: t.id,
+      }),
+    ),
+    ...enemiesAt(state, here).flatMap((e) =>
+      withTarget(enemyBehavior(e.code)?.abilities?.(state, e, id) ?? [], {
+        type: 'enemy',
+        id: e.id,
       }),
     ),
     ...assets.flatMap((a) =>

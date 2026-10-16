@@ -67,7 +67,7 @@ Leyenda: ✅ hecho · 🟡 parcial · ⬜ pendiente · ✖ fuera de alcance por 
 | Funcionalidad | Referencia | Estado |
 |---|---|---|
 | Registro de campaña (notas, trauma, experiencia) | `CampaignLog*` | ✅ pantalla de campaña con escenarios, notas, bolsa del caos, experiencia, trauma, muertos/enloquecidos y apoyos de historia |
-| Pasar al siguiente escenario | `Campaign`, `ContinueCampaign` | 🟡 se guarda el resultado y se prepara el siguiente con trauma y bolsa; faltan los escenarios II y III |
+| Pasar al siguiente escenario | `Campaign`, `ContinueCampaign` | 🟡 se guarda el resultado y se prepara el siguiente con trauma, bolsa, apoyos de historia y debilidades ganadas; falta el escenario III |
 | Mejorar el mazo con experiencia | `UpgradeDeck`, `XpBreakdown` | ✅ comprar y mejorar cartas según las opciones de cada investigador (las 22 cartas de nivel 1–5 implementadas) |
 | Mazos: crear, listar, importar de ArkhamDB | `NewDeck`, `DeckList`, `ArkhamDbDeck` | ⬜ (hoy, mazos iniciales) |
 | Multijugador en línea: sala, unirse, ocupar asiento, espectador | `MultiplayerLobby`, `ClaimSeat`, `JoinGame` | ⬜ |
@@ -83,7 +83,7 @@ Leyenda: ✅ hecho · 🟡 parcial · ⬜ pendiente · ✖ fuera de alcance por 
 5. **Campaña** (registro, experiencia, mejoras) y los escenarios II y III.
    - 5a ✅ Registro de campaña, experiencia y trauma, pantalla entre escenarios y compra de cartas.
    - 5b ✅ Las 22 cartas de nivel 1–5 (ver "Cartas de nivel 1–5" más abajo).
-   - 5c Escenario II: Smoke and Mirrors (códex, sospechosos, palabra clave esquivo).
+   - 5c ✅ Escenario II: Smoke and Mirrors (códex, sospechosos, esquivo): ver [11-smoke-and-mirrors.md](11-smoke-and-mirrors.md).
    - 5d Escenario III: Queen of Ash.
 6. **Mazos** propios e importación.
 7. **Multijugador en línea** con el servidor.

@@ -18,7 +18,8 @@ import {
   type ScenarioOutcome,
 } from '@lcg/engine'
 import { BRETHREN_OF_ASH, type Difficulty } from './brethren-of-ash/campaign'
-import { spreadingFlames } from './brethren-of-ash/spreading-flames'
+import { smokeAndMirrors } from './brethren-of-ash/smoke-and-mirrors'
+import { DR_ARMITAGE, spreadingFlames } from './brethren-of-ash/spreading-flames'
 import {
   code,
   investigatorSetup,
@@ -57,9 +58,20 @@ export interface Campaign {
   results: ScenarioResult[]
 }
 
+interface ScenarioEntry {
+  build: (campaign: Campaign, seed: number, players: number) => ScenarioDefinition
+  /** Apoyos de historia que el escenario pone en juego en vez de barajarlos en el mazo. */
+  storyAssetsInPlay?: CardCode[]
+}
+
 /** Escenarios de Brethren of Ash que ya se pueden jugar. */
-const SCENARIOS: Record<string, (difficulty: Difficulty) => ScenarioDefinition> = {
-  'spreading-flames': spreadingFlames,
+const SCENARIOS: Record<string, ScenarioEntry> = {
+  'spreading-flames': { build: (c) => spreadingFlames(c.difficulty) },
+  'smoke-and-mirrors': {
+    build: (c, seed, players) =>
+      smokeAndMirrors({ difficulty: c.difficulty, log: c.log, seed, players }),
+    storyAssetsInPlay: [DR_ARMITAGE],
+  },
 }
 
 export function newCampaign(decks: DeckKey[], difficulty: Difficulty): Campaign {
@@ -100,9 +112,10 @@ export function canPlayNext(campaign: Campaign): boolean {
 /** Prepara el escenario que toca con el estado de la campaña (trauma, bolsa del caos). */
 export function startScenario(campaign: Campaign, seed: number, interactive = true): GameState {
   const id = currentScenario(campaign)
-  const build = id ? SCENARIOS[id] : undefined
-  if (!build) throw new Error(`Escenario no disponible: ${id}`)
-  const scenario = build(campaign.difficulty)
+  const entry = id ? SCENARIOS[id] : undefined
+  if (!entry) throw new Error(`Escenario no disponible: ${id}`)
+  const members = activeMembers(campaign)
+  const scenario = entry.build(campaign, seed, members.length)
   return createGame({
     seed,
     difficulty: campaign.difficulty,
@@ -110,10 +123,15 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
     campaignLog: campaign.log,
     // Reglamento: en campaña, la bolsa del caos sigue como acabó el escenario anterior.
     scenario: { ...scenario, chaosBag: [...scenario.chaosBag, ...campaign.log.chaosTokens] },
-    investigators: activeMembers(campaign).map((i) => {
+    investigators: members.map((i) => {
       const record = campaign.log.investigators[i.id]
+      // Los apoyos de historia y debilidades ganados van en el mazo (salvo los que el
+      // escenario pone en juego).
+      const earned = (record?.storyAssets ?? []).filter(
+        (code) => !entry.storyAssetsInPlay?.includes(code),
+      )
       return {
-        ...investigatorSetup(i.id, i.deck),
+        ...investigatorSetup(i.id, [...i.deck, ...earned]),
         physicalTrauma: record?.physicalTrauma ?? 0,
         mentalTrauma: record?.mentalTrauma ?? 0,
       }

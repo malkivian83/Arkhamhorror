@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SPREADING_FLAMES_LAYOUT } from '@lcg/cards'
+import { SMOKE_AND_MIRRORS_LAYOUT, SPREADING_FLAMES_LAYOUT } from '@lcg/cards'
 import { shroudOf, type GameState, type Location } from '@lcg/engine'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -16,13 +16,20 @@ const CELL_H = 250
 const CARD_W = 120
 const MINI_W = 50
 
+/** Colocación de las localizaciones de cada escenario. */
+const LAYOUTS: Record<string, Record<string, [number, number]>> = {
+  'spreading-flames': SPREADING_FLAMES_LAYOUT,
+  'smoke-and-mirrors': SMOKE_AND_MIRRORS_LAYOUT,
+}
+const layout = computed(() => LAYOUTS[props.state.scenarioId] ?? {})
+
 /** Posiciones: las del escenario o, si no hay, por distancia a la primera localización. */
 const positions = computed(() => {
   const locations = Object.values(props.state.locations)
   const result = new Map<string, [number, number]>()
   const fallback: Location[] = []
   for (const l of locations) {
-    const p = SPREADING_FLAMES_LAYOUT[l.id]
+    const p = layout.value[l.id]
     if (p) result.set(l.id, p)
     else fallback.push(l)
   }
@@ -95,6 +102,13 @@ const treacheriesAt = (id: string) =>
       <TableTarget :target="`location:${l.id}`">
         <GameCard :code="l.id" :name="l.name" :back="!l.revealed" :width="CARD_W">
           <span class="pin" aria-hidden="true" />
+          <!-- Carta de encuentro boca abajo debajo de la localización (Smoke and Mirrors). -->
+          <span
+            v-if="l.beneath?.length"
+            class="beneath"
+            :title="t('table.cardBeneath')"
+            :aria-label="t('table.cardBeneath')"
+          />
           <TokenBadge
             v-if="l.revealed && l.clues > 0"
             class="loc-clue"
@@ -167,7 +181,8 @@ const treacheriesAt = (id: string) =>
   pointer-events: none;
 }
 .edges {
-  z-index: 2;
+  /* El hilo pasa por debajo de las cartas; solo las chinchetas quedan encima. */
+  z-index: 0;
 }
 .edges path {
   fill: none;
@@ -192,6 +207,7 @@ const treacheriesAt = (id: string) =>
 }
 .location {
   position: absolute;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -255,6 +271,19 @@ const treacheriesAt = (id: string) =>
   font-family: var(--fell);
   font-size: 0.8rem;
   box-shadow: 0 2px 6px rgb(0 0 0 / 60%);
+}
+.beneath {
+  position: absolute;
+  left: -12px;
+  bottom: 18px;
+  z-index: 2;
+  width: 26px;
+  height: 36px;
+  border-radius: 3px;
+  border: 1px solid #3d6b5e;
+  background: repeating-linear-gradient(45deg, #1f3a33 0 4px, #183029 4px 8px);
+  box-shadow: 0 2px 5px rgb(0 0 0 / 70%);
+  transform: rotate(-8deg);
 }
 .loc-clue {
   position: absolute;

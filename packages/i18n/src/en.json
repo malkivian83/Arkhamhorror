@@ -72,7 +72,10 @@
     "chooseLocation": "Choose a location",
     "moveDamageTo": "Which card do you move it to?",
     "chooseTrauma": "Defeated by damage and horror at once: choose the trauma",
-    "chooseToken": "Choose which token to resolve (the other is ignored)"
+    "chooseToken": "Choose which token to resolve (the other is ignored)",
+    "topEncounter": "Top card of the encounter deck",
+    "whoDraws": "Who draws?",
+    "chooseEnemyDestination": "Where does the enemy move?"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -129,7 +132,11 @@
     "physicalTrauma": "Suffer 1 physical trauma",
     "mentalTrauma": "Suffer 1 mental trauma",
     "exhaustForDamage": "Exhaust {card}: +{n} damage",
-    "resolveToken": "Resolve the {token} token"
+    "resolveToken": "Resolve the {token} token",
+    "defeatEnemy": "Defeat {enemy}",
+    "loseAction": "Lose 1 action",
+    "healHorrorOf": "Heal 1 horror from {name}",
+    "healDamageOf": "Heal 1 damage from {name}"
   },
   "phase": {
     "setup": "Setup",
@@ -175,7 +182,19 @@
     "searchTop": "{card}: search the top {n} cards of your deck",
     "revealExtraToken": "{card}: reveal 2 tokens and choose one",
     "retryTest": "{card}: retry the test with −2 shroud",
-    "fightWithHorror": "Fight {enemy} with {card} (+1 horror: +1 damage)"
+    "fightWithHorror": "Fight {enemy} with {card} (+1 horror: +1 damage)",
+    "drawBeneath": "Spend {clues} clues as a group: draw the card beneath your location",
+    "codex": "{enemy} codex",
+    "parleyPay": "Parley with {enemy}: spend {resources} resources",
+    "parleyTest": "Parley with {enemy} ({skill})",
+    "breakLock": "Break the Arcane Lock (willpower or intellect 4)",
+    "hospitalHeal": "Heal up to 2 damage among investigators here",
+    "shoppeSearch": "Search the top 9 cards of your deck for a Spell or Ritual asset",
+    "northsideClue": "Spend 5 resources: discover 1 clue at {location}",
+    "easttownAlly": "Search your deck for an ally and play it",
+    "southsideDraw": "Investigators here draw 3 cards between them",
+    "frenchHillCharge": "Discard 1 card: 1 charge or secret on {card}",
+    "playFromDiscard": "Play {card} from your discard pile (−2 cost)"
   },
   "log": {
     "round": "Round {round}",
@@ -204,7 +223,8 @@
     "armitageBearer": "{name} will be the bearer of Dr. Henry Armitage",
     "searchCanceled": "{name} finds {card}: the search is canceled",
     "sealed": "{name} seals a token ({token})",
-    "weakness": "{name} draws their weakness {card}"
+    "weakness": "{name} draws their weakness {card}",
+    "underAct": "{enemy} is placed beneath the act"
   },
   "table": {
     "log": "Game log",
@@ -254,7 +274,8 @@
     "horror": "Horror",
     "actionsLeft": "{n} actions",
     "journal": "Case journal",
-    "shroudUntilEndOfRound": "Shroud changed until the end of the round"
+    "shroudUntilEndOfRound": "Shroud changed until the end of the round",
+    "cardBeneath": "There is a facedown card beneath this location"
   },
   "difficulty": {
     "easy": "Easy",
@@ -337,15 +358,51 @@
       "experience": "Each investigator earns experience equal to the victory value of the cards in the victory display, plus {bonus} bonus experience.",
       "armitage": "An investigator becomes the bearer of Dr. Henry Armitage.",
       "bonusAndPhysicalTrauma": "Each investigator earns 1 bonus experience and suffers 1 physical trauma.",
-      "proceed": "Proceed to {scenario}."
+      "proceed": "Proceed to {scenario}.",
+      "harbinger": "The harbinger of Elokoss is revealed: {name}. Record it in the campaign log.",
+      "bonusXp": "Each investigator earns {n} bonus experience."
     },
     "note": {
       "universityBurned": "Miskatonic University burned",
       "defeatedPursuer": "the investigators defeated their masked pursuer",
-      "savedUniversity": "the investigators saved Miskatonic University"
+      "savedUniversity": "the investigators saved Miskatonic University",
+      "harbinger": "the harbinger of Elokoss is",
+      "discoveredWhereabouts": "the investigators discovered the cult's whereabouts",
+      "failedSearch": "the investigators failed in their search",
+      "killedServant": "the investigators killed the Servant of Flame",
+      "scouredArkham": "the investigators scoured Arkham for answers",
+      "stirredUpTrouble": "the investigators stirred up trouble",
+      "servantEscaped": "the Servant of Flame escaped"
     },
     "scenario": {
-      "smokeAndMirrors": "Scenario II: Smoke and Mirrors"
+      "smokeAndMirrors": "Scenario II: Smoke and Mirrors",
+      "queenOfAsh": "Scenario III: Queen of Ash"
+    },
+    "smokeAndMirrors": {
+      "introTitle": "Scenario II: Smoke and Mirrors",
+      "intro": "You follow Dr. Armitage to his apartment while black smoke hides the moon. He tells you several students vanished after attending \"exclusive\" meetings of a group calling itself the Brethren of Ash, and that your friend left him a list of attendees before disappearing.\n\nYou decide to question the suspects and meet at Velma's Diner in Easttown before midnight. Armitage advises a light touch over brute force, but you may have no choice.",
+      "codex1Title": "Codex 1: David Renfield",
+      "codex1": "After a chase you find the haughty eschatologist hiding in a bookshop. He went to the meeting out of academic curiosity: the Brethren of Ash worship an ancient fire deity called Elokoss and obey a queen.",
+      "codex2Title": "Codex 2: Cornelia Akely",
+      "codex2": "The garage foreman finally invites you to sit. She went because coworkers talked about a \"glorious rebirth\" for followers; those three coworkers have not shown up for weeks.",
+      "codex3Title": "Codex 3: Naomi O'Bannion",
+      "codex3": "The crime boss laughs at the mention of the cult. Two of her men caught a pair of them snooping around one of her joints and something was very wrong with them, but she will not tell you where.",
+      "codex4Title": "Codex 4: Sgt. Earl Monroe",
+      "codex4": "The officer relents: the cultists insisted the missing went willingly, took him to a meeting near the docks and paid him to keep quiet. They all had strange, hypnotized eyes.",
+      "codex5Title": "Codex 5: Abigail Foreman",
+      "codex5": "The librarian is searching for her missing roommate and found a book of sacrifices and impossible symbols written in Akkadian. Translating it would take weeks.",
+      "codex6Title": "Codex 6: Margaret Liu",
+      "codex6": "After her show, the singer tells you two men in hideous robes accosted her a week ago, a hand with an eye on their hoods. Her bodyguard scared them off.",
+      "codexServantTitle": "Codex: Servant of Flame",
+      "codexServant": "Your nemesis lies unconscious at your feet; the flames around them have died and the mask will not come off. Perhaps it would be better to finish them here and now… The investigators must decide.",
+      "finishThem": "They are too dangerous to leave alive (victory display; each investigator draws 3 cards).",
+      "holdThem": "Hold them for questioning later (beneath the act; each investigator gains 1 clue).",
+      "noResolutionTitle": "No resolution",
+      "noResolution": "On the way to Velma's Diner you go over what you learned: plenty of leads, few results. You can only hope Dr. Armitage fared better.",
+      "resolution1Title": "Resolution 1",
+      "resolution1": "In the cab to Easttown it becomes clear: despite their efforts to hide, you have found the real culprit. You hope it is enough to save your friend.",
+      "resolution2Title": "Resolution 2",
+      "resolution2": "You stop by the hideout where you left your unconscious nemesis. It smells of smoke and the handcuffs are smashed, not melted: someone helped them escape."
     }
   },
   "playmat": {

@@ -72,7 +72,10 @@
     "chooseLocation": "Elige una localización",
     "moveDamageTo": "¿A qué carta lo mueves?",
     "chooseTrauma": "Derrotado por daño y horror a la vez: elige el trauma",
-    "chooseToken": "Elige qué ficha resolver (la otra se ignora)"
+    "chooseToken": "Elige qué ficha resolver (la otra se ignora)",
+    "topEncounter": "Carta superior del mazo de encuentros",
+    "whoDraws": "¿Quién roba?",
+    "chooseEnemyDestination": "¿A dónde se mueve el enemigo?"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -129,7 +132,11 @@
     "physicalTrauma": "Sufrir 1 trauma físico",
     "mentalTrauma": "Sufrir 1 trauma mental",
     "exhaustForDamage": "Agotar {card}: +{n} daño",
-    "resolveToken": "Resolver la ficha {token}"
+    "resolveToken": "Resolver la ficha {token}",
+    "defeatEnemy": "Derrotar a {enemy}",
+    "loseAction": "Perder 1 acción",
+    "healHorrorOf": "Curar 1 horror a {name}",
+    "healDamageOf": "Curar 1 daño a {name}"
   },
   "phase": {
     "setup": "Preparación",
@@ -175,7 +182,19 @@
     "searchTop": "{card}: buscar entre las {n} primeras de tu mazo",
     "revealExtraToken": "{card}: revelar 2 fichas y elegir una",
     "retryTest": "{card}: repetir la prueba con −2 al velo",
-    "fightWithHorror": "Luchar con {card} contra {enemy} (+1 horror: +1 daño)"
+    "fightWithHorror": "Luchar con {card} contra {enemy} (+1 horror: +1 daño)",
+    "drawBeneath": "Gastar {clues} pistas en grupo: robar la carta de debajo de tu localización",
+    "codex": "Códex de {enemy}",
+    "parleyPay": "Parlamento con {enemy}: gastar {resources} recursos",
+    "parleyTest": "Parlamento con {enemy} ({skill})",
+    "breakLock": "Romper el Arcane Lock (voluntad o intelecto 4)",
+    "hospitalHeal": "Curar hasta 2 daño entre los investigadores de aquí",
+    "shoppeSearch": "Buscar un apoyo Spell o Ritual entre las 9 primeras de tu mazo",
+    "northsideClue": "Gastar 5 recursos: descubrir 1 pista en {location}",
+    "easttownAlly": "Buscar un aliado en tu mazo y jugarlo",
+    "southsideDraw": "Los investigadores de aquí roban 3 cartas entre todos",
+    "frenchHillCharge": "Descartar 1 carta: 1 carga o secreto en {card}",
+    "playFromDiscard": "Jugar {card} de tu pila de descartes (−2 al coste)"
   },
   "log": {
     "round": "Ronda {round}",
@@ -204,7 +223,8 @@
     "armitageBearer": "{name} será el portador del Dr. Henry Armitage",
     "searchCanceled": "{name} encuentra {card}: la búsqueda se cancela",
     "sealed": "{name} sella una ficha ({token})",
-    "weakness": "{name} roba su debilidad {card}"
+    "weakness": "{name} roba su debilidad {card}",
+    "underAct": "{enemy} queda debajo del acto"
   },
   "table": {
     "log": "Registro de partida",
@@ -254,7 +274,8 @@
     "horror": "Horror",
     "actionsLeft": "{n} acciones",
     "journal": "Diario del caso",
-    "shroudUntilEndOfRound": "Velo modificado hasta el final de la ronda"
+    "shroudUntilEndOfRound": "Velo modificado hasta el final de la ronda",
+    "cardBeneath": "Hay una carta boca abajo debajo de esta localización"
   },
   "difficulty": {
     "easy": "Fácil",
@@ -337,15 +358,51 @@
       "experience": "Cada investigador gana experiencia igual al valor de victoria de las cartas de la zona de victoria, más {bonus} de bonificación.",
       "armitage": "Un investigador pasa a ser el portador del Dr. Henry Armitage.",
       "bonusAndPhysicalTrauma": "Cada investigador gana 1 de experiencia adicional y sufre 1 trauma físico.",
-      "proceed": "Continuad con {scenario}."
+      "proceed": "Continuad con {scenario}.",
+      "harbinger": "Se revela el heraldo de Elokoss: {name}. Anotadlo en el registro de campaña.",
+      "bonusXp": "Cada investigador gana {n} de experiencia adicional."
     },
     "note": {
       "universityBurned": "la Universidad Miskatonic ardió",
       "defeatedPursuer": "los investigadores derrotaron a su perseguidor enmascarado",
-      "savedUniversity": "los investigadores salvaron la Universidad Miskatonic"
+      "savedUniversity": "los investigadores salvaron la Universidad Miskatonic",
+      "harbinger": "el heraldo de Elokoss es",
+      "discoveredWhereabouts": "los investigadores descubrieron el paradero de la secta",
+      "failedSearch": "los investigadores fracasaron en su búsqueda",
+      "killedServant": "los investigadores mataron al Servant of Flame",
+      "scouredArkham": "los investigadores recorrieron Arkham en busca de respuestas",
+      "stirredUpTrouble": "los investigadores armaron un buen lío",
+      "servantEscaped": "el Servant of Flame escapó"
     },
     "scenario": {
-      "smokeAndMirrors": "el Escenario II: Smoke and Mirrors"
+      "smokeAndMirrors": "el Escenario II: Smoke and Mirrors",
+      "queenOfAsh": "el Escenario III: Queen of Ash"
+    },
+    "smokeAndMirrors": {
+      "introTitle": "Escenario II: Smoke and Mirrors",
+      "intro": "Seguís al Dr. Armitage hasta su apartamento mientras una cortina de humo negro tapa la luna. Os cuenta que varios estudiantes han desaparecido tras asistir a unas reuniones «exclusivas» de un grupo que se hace llamar los Hermanos de la Ceniza, y que vuestro amigo le dejó una lista de asistentes antes de esfumarse.\n\nDecidís interrogar a los sospechosos y reuniros en el Velma's Diner de Easttown antes de medianoche. Armitage os aconseja mano izquierda en lugar de fuerza bruta, pero quizá no haya otra opción.",
+      "codex1Title": "Códex 1: David Renfield",
+      "codex1": "Tras una persecución, encontráis al estirado escatólogo escondido en una librería. Asistió a la reunión por curiosidad académica: los Hermanos de la Ceniza adoran a una antigua deidad del fuego llamada Elokoss y obedecen a una reina.",
+      "codex2Title": "Códex 2: Cornelia Akely",
+      "codex2": "La capataz del garaje acaba invitándoos a sentaros. Fue porque unos compañeros de la fábrica le hablaron de un «glorioso renacer» para los seguidores; esos tres compañeros llevan semanas sin aparecer por el trabajo.",
+      "codex3Title": "Códex 3: Naomi O'Bannion",
+      "codex3": "La jefa del sindicato del crimen se ríe al oír hablar de la secta. Dos de sus hombres pillaron a un par de ellos husmeando en uno de sus locales y había algo muy raro en ellos, pero no piensa contaros dónde.",
+      "codex4Title": "Códex 4: Sgt. Earl Monroe",
+      "codex4": "El policía acaba cediendo: los de la secta le aseguraron que los desaparecidos se fueron por voluntad propia, lo llevaron a una de sus reuniones cerca de los muelles y le pagaron por callar. Todos tenían una mirada extraña, como hipnotizada.",
+      "codex5Title": "Códex 5: Abigail Foreman",
+      "codex5": "La bibliotecaria busca a su compañera de piso desaparecida y ha encontrado un libro con dibujos de sacrificios y símbolos imposibles, escrito en acadio. Traducirlo llevaría semanas.",
+      "codex6Title": "Códex 6: Margaret Liu",
+      "codex6": "Tras la actuación, la cantante os cuenta que dos hombres con túnicas horribles intentaron abordarla hace una semana; llevaban en la capucha el símbolo de una mano con un ojo. Su guardaespaldas los espantó.",
+      "codexServantTitle": "Códex: Servant of Flame",
+      "codexServant": "Vuestro enemigo yace inconsciente a vuestros pies; el fuego que lo envolvía se ha apagado y no conseguís quitarle la máscara. Quizá sería mejor acabar con él aquí y ahora… Los investigadores deben decidir.",
+      "finishThem": "Es demasiado peligroso para dejarlo con vida (zona de victoria; cada investigador roba 3 cartas).",
+      "holdThem": "Retenerlo para interrogarlo más tarde (debajo del acto; cada investigador gana 1 pista).",
+      "noResolutionTitle": "Sin resolución",
+      "noResolution": "De camino al Velma's Diner repasáis lo averiguado: muchas pistas y pocos resultados. Solo os queda confiar en que el Dr. Armitage haya tenido más suerte.",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "En el taxi hacia Easttown lo veis claro: pese a sus intentos de ocultarse, habéis descubierto al verdadero culpable. Ojalá baste para salvar a vuestro amigo.",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "Pasáis por el escondite donde habíais dejado a vuestro enemigo inconsciente. Huele a humo y las esposas están destrozadas, no fundidas: alguien le ayudó a escapar."
     }
   },
   "playmat": {

@@ -56,6 +56,8 @@ export interface ScenarioBehavior {
 }
 
 export interface TreacheryBehavior {
+  /** Acciones adicionales para entrar o salir de la localización a la que está unida (Arcane Lock). */
+  moveCost?: number
   code: CardCode
   /** Mensajes de su revelación. Si no la coloca en juego, se descarta al terminar. */
   revelation: (state: GameState, investigator: InvestigatorId, self: Treachery) => Message[]
@@ -69,6 +71,12 @@ export interface TreacheryBehavior {
 export interface EnemyBehavior {
   code: CardCode
   forced?: (state: GameState, trigger: Trigger, self: Enemy) => Message[]
+  /** Habilidades del enemigo para los investigadores de su localización (parlamento…). */
+  abilities?: AbilitiesFn<Enemy>
+  /** Reacciones que el enemigo ofrece a los investigadores (códex). */
+  reactions?: (state: GameState, trigger: Trigger, self: Enemy) => ReactionOption[]
+  /** Modificador a las habilidades de los investigadores de su localización (Whippoorwill). */
+  skillModifier?: (state: GameState, self: Enemy, test: SkillTest) => number
 }
 
 export interface LocationBehavior {

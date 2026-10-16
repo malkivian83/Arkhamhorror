@@ -38,6 +38,7 @@ export {
   previewToken,
   SLOT_CAPACITY,
   slotCapacity,
+  victoryTotal,
   skillTestValue,
   successChance,
 } from './handlers'

@@ -63,6 +63,10 @@ export interface Location {
   id: LocationId
   name: string
   shroud: number
+  victory?: number
+  investigateExtraActions?: number
+  /** Cartas de encuentro boca abajo debajo de la localización. */
+  beneath?: EncounterCard[]
   /** Modificador del velo hasta el final de la ronda (Hand-Crank Flashlight: −1). */
   shroudModifier?: number
   clueValue: number
@@ -72,7 +76,7 @@ export interface Location {
   clues: number
 }
 
-export type EnemyKeyword = 'hunter' | 'aloof' | 'retaliate' | 'alert' | 'doomed'
+export type EnemyKeyword = 'hunter' | 'aloof' | 'retaliate' | 'alert' | 'doomed' | 'elusive'
 
 /** Prey (presa): a quién prefiere enfrentarse el enemigo. */
 export type Prey =
@@ -80,6 +84,7 @@ export type Prey =
   | { type: 'highestSkill'; skill: SkillType }
   /** "Presa (solo X)": solo se enfrenta a ese investigador. */
   | { type: 'only'; investigator: InvestigatorId }
+  | { type: 'mostResources' }
 
 export interface EnemyCard {
   kind: 'enemy'
@@ -101,6 +106,10 @@ export interface EnemyCard {
 }
 
 export interface Enemy extends EnemyCard {
+  /** Perdición sobre el enemigo (cuenta para el plan). */
+  doom?: number
+  /** Recursos puestos como "pistas" del códex (Smoke and Mirrors). */
+  leads?: number
   id: EnemyId
   maxHealth: number
   damageTaken: number
@@ -166,6 +175,10 @@ export interface Act {
 
 /** Datos de una localización (en juego o apartada). */
 export interface LocationCard {
+  /** Acciones adicionales que cuesta investigar aquí (Waterfront District). */
+  investigateExtraActions?: number
+  /** Cartas de encuentro boca abajo debajo de la localización (Smoke and Mirrors). */
+  beneath?: EncounterCard[]
   id: LocationId
   name: string
   shroud: number
@@ -260,6 +273,8 @@ export interface PlayerCardDef {
 }
 
 export interface Asset {
+  /** No ocupa ranura (Dr. Henry Armitage en Smoke and Mirrors). */
+  noSlot?: boolean
   id: AssetId
   code: CardCode
   owner: InvestigatorId
@@ -416,7 +431,7 @@ export type Message =
       discount?: number
       effect?: Message[]
     }
-  | { type: 'PutAssetIntoPlay'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'PutAssetIntoPlay'; investigator: InvestigatorId; code: CardCode; noSlot?: boolean }
   | { type: 'DiscardAsset'; asset: AssetId }
   /** Cambia el velo de una localización hasta el final de la ronda. */
   | { type: 'ModifyShroud'; location: LocationId; amount: number }
@@ -436,6 +451,34 @@ export type Message =
   | { type: 'IfSymbolRevealed'; then: Message[] }
   /** Si el enemigo ya no está en juego (lo ha derrotado el ataque). */
   | { type: 'IfEnemyDefeated'; enemy: EnemyId; then: Message[] }
+  // ----- Smoke and Mirrors -----
+  | { type: 'PlaceDoomOnEnemy'; enemy: EnemyId; amount: number }
+  /** Pistas (pruebas) sobre un enemigo: recursos de la reserva como "pistas" del códex. */
+  | { type: 'AddLead'; enemy: EnemyId }
+  /** El enemigo sale del juego y queda debajo del acto. */
+  | { type: 'PlaceUnderAct'; enemy: EnemyId }
+  /** Roba la carta boca abajo de debajo de una localización. */
+  | { type: 'DrawBeneath'; investigator: InvestigatorId; location: LocationId }
+  /** Esquivo: tras atacar o ser atacado estando preparado, se aleja y se agota. */
+  | { type: 'ElusiveRetreat'; enemy: EnemyId; exhaust?: boolean }
+  /** Si el enemigo tiene al menos `atLeast` pistas del códex. */
+  | {
+      type: 'IfEnemyLeads'
+      enemy: EnemyId
+      atLeast: number
+      then: Message[]
+      otherwise?: Message[]
+    }
+  | { type: 'DiscardTopEncounter' }
+  /** Pistas de la reserva (no de una localización). */
+  | { type: 'GainClues'; investigator: InvestigatorId; amount: number }
+  /** Una carta de la zona de victoria pasa a estar debajo del acto. */
+  | { type: 'VictoryToUnderAct'; code: CardCode; victory: number }
+  /** El enemigo se mueve una vez hacia la localización; si se enfrenta, ataca. */
+  | { type: 'HuntOnce'; enemy: EnemyId; toward: LocationId }
+  | { type: 'AddUses'; asset: AssetId; amount: number }
+  | { type: 'AttackIfEngaged'; enemy: EnemyId }
+  | { type: 'LoseActions'; investigator: InvestigatorId; amount: number }
   /** Elige un enemigo de tu localización al resolverse y le hace daño. */
   | { type: 'ChooseEnemyToDamage'; investigator: InvestigatorId; amount: number }
   /** Cancela el ataque de este enemigo que se está resolviendo (Counterattack). */
@@ -577,6 +620,8 @@ export type Message =
       anyCard?: boolean
       /** Las debilidades buscadas también se roban. */
       drawWeaknesses?: boolean
+      /** Si no se encuentra nada, roba estas cartas (Ye Olde Magick Shoppe). */
+      orDraw?: number
     }
   | {
       type: 'TakeFromDeck'
@@ -641,6 +686,7 @@ export type Trigger =
   | { type: 'assetDefeated'; asset: Asset }
   | { type: 'afterEngage'; investigator: InvestigatorId; enemy: EnemyId }
   | { type: 'turnBegins'; investigator: InvestigatorId }
+  | { type: 'turnEnds'; investigator: InvestigatorId }
   | { type: 'afterSpendResources'; investigator: InvestigatorId; amount: number }
   | { type: 'afterMove'; investigator: InvestigatorId; first: boolean }
   | { type: 'afterDealDamage'; investigator: InvestigatorId; enemy: EnemyId }
@@ -793,6 +839,8 @@ export interface GameState {
   /** La carta de encuentros que se está resolviendo ganó oleada. */
   surgePending: boolean
   victoryDisplay: CardCode[]
+  /** Cartas de enemigo puestas debajo del acto (sospechosos interrogados). */
+  underAct?: CardCode[]
   /** Suma de los valores de victoria de las cartas de la zona de victoria. */
   victoryPoints?: number
   /** Registro de campaña: llega del escenario anterior y los efectos de historia lo cambian. */

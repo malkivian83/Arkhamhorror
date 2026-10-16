@@ -18,6 +18,7 @@ tomando como referencia de estudio el proyecto `halogenandtoast/ArkhamHorror`
 | 08 | [El motor de reglas](08-motor.md) | Cómo funciona, qué reglas están implementadas y qué falta |
 | 09 | [Spreading Flames](09-spreading-flames.md) | Análisis del primer escenario: cartas, mecánicas necesarias y datos que faltan |
 | 10 | [Funcionalidades de la mesa](10-funcionalidades-mesa.md) | Comparación con el proyecto de referencia y orden de trabajo |
+| 11 | [Smoke and Mirrors](11-smoke-and-mirrors.md) | Escenario II: preparación, sospechosos y códex, reglas nuevas y resoluciones |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

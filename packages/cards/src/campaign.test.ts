@@ -34,8 +34,8 @@ describe('campaña: registro', () => {
     expect(next.log.investigators[DANIELA]).toMatchObject({ xp: 2, mentalTrauma: 1 })
     expect(next.results[0]?.xp[DANIELA]).toBe(2)
     expect(next.scenarioIndex).toBe(1)
-    // Smoke and Mirrors aún no está disponible.
-    expect(canPlayNext(next)).toBe(false)
+    // Toca Smoke and Mirrors.
+    expect(canPlayNext(next)).toBe(true)
   })
 
   it('resolución 1 → 2: Armitage, experiencia y trauma físico', () => {

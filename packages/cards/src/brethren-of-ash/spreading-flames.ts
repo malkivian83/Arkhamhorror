@@ -20,6 +20,7 @@ import {
   registerAgenda,
   registerEnemy,
   registerLocation,
+  registerPlayerCard,
   registerPlayerCards,
   registerScenario,
   registerTreachery,
@@ -56,6 +57,13 @@ registerPlayerCards([
     sanity: 3,
   },
 ])
+// +1 [willpower] y +1 [intellect]. (Pendiente: su primera acción de cada ronda no provoca
+// ataques de oportunidad.)
+registerPlayerCard({
+  code: DR_ARMITAGE,
+  skillModifier: (_state, _self, test) =>
+    test.skill === 'willpower' || test.skill === 'intellect' ? 1 : 0,
+})
 
 export const CODES = {
   pastCurfew: '12106',
@@ -204,7 +212,7 @@ const mutated = treachery({
   keywords: [],
 })
 
-const copies = <T>(card: T, n: number): T[] => Array.from({ length: n }, () => ({ ...card }))
+export const copies = <T>(card: T, n: number): T[] => Array.from({ length: n }, () => ({ ...card }))
 
 /** Mazo de encuentros tras apartar Fire!, Servant of Flame y Dr. Armitage (24 cartas). */
 export const encounterDeck = [
@@ -471,7 +479,7 @@ registerScenario({
 // Comportamiento de las cartas de encuentro
 // ---------------------------------------------------------------------------
 
-function effectTest(
+export function effectTest(
   investigator: InvestigatorId,
   source: string,
   skill: SkillType,
@@ -494,7 +502,7 @@ function effectTest(
 }
 
 /** "Prueba X o Y": el investigador elige la habilidad. */
-function chooseSkillTest(
+export function chooseSkillTest(
   investigator: InvestigatorId,
   source: string,
   skills: SkillType[],
@@ -516,7 +524,7 @@ function chooseSkillTest(
   }
 }
 
-const damage = (investigator: InvestigatorId, amount: number, horror = 0): Message => ({
+export const damage = (investigator: InvestigatorId, amount: number, horror = 0): Message => ({
   type: 'TakeDamage',
   investigator,
   damage: amount,

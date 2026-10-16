@@ -67,7 +67,9 @@ Estado detallado del motor: [08-motor.md](08-motor.md).
 ## Fase 4 · Campaña
 
 - [x] Registro de campaña, experiencia, traumas y mejoras de mazo (entre escenarios).
-- [ ] Brethren of Ash completa: escenarios II y III y las cartas de nivel 1–5.
+- [x] Cartas de nivel 1–5 de la caja básica.
+- [x] Escenario II: Smoke and Mirrors ([11-smoke-and-mirrors.md](11-smoke-and-mirrors.md)).
+- [ ] Escenario III: Queen of Ash.
 - [x] Niveles de dificultad (bolsas del caos).
 
 ## Fase 5 · Crecimiento

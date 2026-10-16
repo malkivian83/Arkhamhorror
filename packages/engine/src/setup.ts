@@ -43,6 +43,8 @@ export interface ScenarioDefinition {
   chaosBag: ChaosToken[]
   /** Valores fijos de los símbolos (si el escenario no registra `tokenEffect`). */
   tokenValues: ScenarioTokenValues
+  /** Pasos de preparación tras colocar a los investigadores (perdición inicial, apoyos…). */
+  setup?: Message[]
 }
 
 export interface InvestigatorSetup {
@@ -176,6 +178,7 @@ export function prepareGame({
       investigator: p.id,
       location: scenario.startingLocation,
     })),
+    ...(scenario.setup ?? []),
     { type: 'Round' },
   ]
 
