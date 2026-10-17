@@ -150,7 +150,10 @@ describe('Queen of Ash: Elokoss y el plan', () => {
 
 describe('Queen of Ash: resolución y campaña', () => {
   it('resolución 1: victoria, experiencia +5, trauma 2/2 y campaña ganada', () => {
-    const campaign = { ...newCampaign(['daniela'], 'standard'), scenarioIndex: 2 }
+    const campaign = {
+      ...newCampaign('brethren-of-ash', ['daniela'], 'standard'),
+      scenarioIndex: 2,
+    }
     let game = startScenario(campaign, 4)
     // Introducciones (1 y 3).
     game = choose(choose(game, 'choice.continue'), 'choice.continue')
@@ -171,7 +174,10 @@ describe('Queen of Ash: resolución y campaña', () => {
   })
 
   it('sin resolución: Elokoss renace y todos mueren', () => {
-    const campaign = { ...newCampaign(['daniela'], 'standard'), scenarioIndex: 2 }
+    const campaign = {
+      ...newCampaign('brethren-of-ash', ['daniela'], 'standard'),
+      scenarioIndex: 2,
+    }
     let game = choose(choose(startScenario(campaign, 4), 'choice.continue'), 'choice.continue')
     game = during(game, (s) => s, { type: 'EndScenario', outcome: { type: 'noResolution' } })
     game = choose(game, 'choice.continue')

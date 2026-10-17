@@ -64,22 +64,30 @@ export {
   CODES as SMOKE_AND_MIRRORS_CODES,
   eliteCount,
   SMOKE_AND_MIRRORS,
-  SMOKE_AND_MIRRORS_LAYOUT,
   smokeAndMirrors,
 } from './brethren-of-ash/smoke-and-mirrors'
 export {
   CODES as SPREADING_FLAMES_CODES,
-  SPREADING_FLAMES_LAYOUT,
   DR_ARMITAGE,
   SPREADING_FLAMES,
   spreadingFlames,
 } from './brethren-of-ash/spreading-flames'
+export {
+  allCampaigns,
+  campaignDefinition,
+  registerCampaign,
+  type CampaignDefinition,
+  type CampaignScenario,
+  type ScenarioContext,
+} from './campaign-definition'
+export * from './scenario-helpers'
 export {
   activeMembers,
   canPlayNext,
   currentScenario,
   DECK_SIZE,
   deckSize,
+  deckSizeOf,
   finishScenario,
   isImplemented,
   newCampaign,

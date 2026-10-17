@@ -480,7 +480,7 @@
     "horror": "horror"
   },
   "campaign": {
-    "title": "Campaign: Brethren of Ash",
+    "title": "Campaign: {name}",
     "new": "New campaign",
     "open": "View campaign",
     "continue": "Continue the campaign",
@@ -518,6 +518,10 @@
       "spreading-flames": "Spreading Flames",
       "smoke-and-mirrors": "Smoke and Mirrors",
       "queen-of-ash": "Queen of Ash"
-    }
+    },
+    "names": {
+      "brethren-of-ash": "Brethren of Ash"
+    },
+    "choose": "Choose the campaign"
   }
 }

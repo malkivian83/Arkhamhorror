@@ -274,9 +274,19 @@ export type SlotType = 'hand' | 'arcane' | 'accessory' | 'body' | 'ally' | 'head
 export type SkillIcon = SkillType | 'wild'
 
 /** Datos de una carta de jugador (sin texto). */
+/** Opción de construcción de mazo del reverso de un investigador. */
+export interface DeckOption {
+  classes: string[]
+  maxLevel: number
+}
+
 export interface PlayerCardDef {
   code: CardCode
   name: string
+  /** Investigadores: tamaño del mazo, opciones de construcción y cartas exclusivas. */
+  deckSize?: number
+  deckOptions?: DeckOption[]
+  signatures?: CardCode[]
   type: 'investigator' | 'asset' | 'event' | 'skill' | 'treachery' | 'enemy'
   class: string
   traits: string[]

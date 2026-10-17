@@ -168,9 +168,9 @@ export const useGameStore = defineStore('game', () => {
   }
 
   /** Empieza una campaña nueva con su primer escenario. */
-  function start(decks: DeckKey[], difficulty: Difficulty) {
+  function start(campaignId: string, decks: DeckKey[], difficulty: Difficulty) {
     error.value = null
-    const next = newCampaign(decks, difficulty)
+    const next = newCampaign(campaignId, decks, difficulty)
     setCampaign(next)
     play(startScenario(next, Math.floor(Math.random() * 2 ** 32)))
   }

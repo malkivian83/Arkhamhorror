@@ -50,3 +50,20 @@ describe('Brethren of Ash: partidas al azar', () => {
     })
   }
 })
+
+describe('Brethren of Ash: datos de los escenarios', () => {
+  const log = emptyCampaignLog([...TEAM])
+  const all: [string, ScenarioDefinition][] = [
+    ['Spreading Flames', spreadingFlames('standard')],
+    ['Smoke and Mirrors', smokeAndMirrors({ log, seed: 1, players: 3 })],
+    ['Queen of Ash', queenOfAsh({ log, seed: 1, investigators: [...TEAM] })],
+  ]
+  for (const [name, scenario] of all) {
+    it(`${name}: cada localización tiene su posición en la mesa`, () => {
+      const missing = [...scenario.locations, ...(scenario.setAsideLocations ?? [])]
+        .filter((l) => !l.position)
+        .map((l) => l.name)
+      expect(missing).toEqual([])
+    })
+  }
+})

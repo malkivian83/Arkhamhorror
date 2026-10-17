@@ -28,7 +28,6 @@ import {
   registerTreachery,
   seedRng,
   shuffle,
-  type AbilityOption,
   type CampaignLog,
   type Choice,
   type Enemy,
@@ -41,10 +40,21 @@ import {
   type ScenarioDefinition,
   type ScenarioOutcome,
   type StoryEntry,
-  type TreacheryCard,
 } from '@lcg/engine'
 import { CHAOS_BAGS, type Difficulty } from './campaign'
-import { chooseSkillTest, copies, damage, DR_ARMITAGE, effectTest } from './spreading-flames'
+import {
+  chooseSkillTest,
+  copies,
+  damage,
+  effectTest,
+  enemy,
+  noteEffect,
+  recordNote,
+  resignAbility,
+  storyEntries,
+  treachery,
+} from '../scenario-helpers'
+import { DR_ARMITAGE } from './spreading-flames'
 
 export const SMOKE_AND_MIRRORS = 'smoke-and-mirrors'
 
@@ -88,12 +98,6 @@ export const CODES = {
 // ---------------------------------------------------------------------------
 // Datos de las cartas
 // ---------------------------------------------------------------------------
-
-const enemy = (card: Omit<EnemyCard, 'kind'>): EnemyCard => ({ kind: 'enemy', ...card })
-const treachery = (card: Omit<TreacheryCard, 'kind'>): TreacheryCard => ({
-  kind: 'treachery',
-  ...card,
-})
 
 export const servantOnTheRun = enemy({
   code: CODES.servantOfFlame,
@@ -305,6 +309,7 @@ const location = (card: LocationCard): LocationCard => card
 const LOCATIONS = {
   northside: location({
     id: CODES.northside,
+    position: [0, 0],
     name: 'Northside',
     shroud: 3,
     clueValue: 2,
@@ -313,6 +318,7 @@ const LOCATIONS = {
   }),
   downtownBank: location({
     id: CODES.downtownBank,
+    position: [1, 0],
     name: 'Downtown',
     shroud: 4,
     clueValue: 2,
@@ -322,6 +328,7 @@ const LOCATIONS = {
   }),
   downtownSanatorium: location({
     id: CODES.downtownSanatorium,
+    position: [1, 0],
     name: 'Downtown',
     shroud: 4,
     clueValue: 2,
@@ -331,6 +338,7 @@ const LOCATIONS = {
   }),
   easttown: location({
     id: CODES.easttown,
+    position: [2, 0],
     name: 'Easttown',
     shroud: 2,
     clueValue: 1,
@@ -339,6 +347,7 @@ const LOCATIONS = {
   }),
   merchantDistrict: location({
     id: CODES.merchantDistrict,
+    position: [1, 1],
     name: 'Merchant District',
     shroud: 3,
     clueValue: 1,
@@ -347,6 +356,7 @@ const LOCATIONS = {
   }),
   waterfrontDistrict: location({
     id: CODES.waterfrontDistrict,
+    position: [2, 1],
     name: 'Waterfront District',
     shroud: 1,
     clueValue: 1,
@@ -357,6 +367,7 @@ const LOCATIONS = {
   }),
   universityInFlames: location({
     id: CODES.universityInFlames,
+    position: [0, 1],
     name: 'Miskatonic University',
     shroud: 4,
     clueValue: 1,
@@ -366,6 +377,7 @@ const LOCATIONS = {
   }),
   universityQuietCampus: location({
     id: CODES.universityQuietCampus,
+    position: [0, 1],
     name: 'Miskatonic University',
     shroud: 2,
     clueValue: 1,
@@ -375,6 +387,7 @@ const LOCATIONS = {
   }),
   uptownHospital: location({
     id: CODES.uptownHospital,
+    position: [0, 2],
     name: 'Uptown',
     shroud: 2,
     clueValue: 2,
@@ -383,6 +396,7 @@ const LOCATIONS = {
   }),
   uptownShoppe: location({
     id: CODES.uptownShoppe,
+    position: [0, 2],
     name: 'Uptown',
     shroud: 3,
     clueValue: 2,
@@ -391,6 +405,7 @@ const LOCATIONS = {
   }),
   southside: location({
     id: CODES.southside,
+    position: [1, 2],
     name: 'Southside',
     shroud: 2,
     clueValue: 2,
@@ -399,6 +414,7 @@ const LOCATIONS = {
   }),
   frenchHill: location({
     id: CODES.frenchHill,
+    position: [2, 2],
     name: 'French Hill',
     shroud: 4,
     clueValue: 2,
@@ -406,22 +422,6 @@ const LOCATIONS = {
     connections: [CODES.southside],
     victory: 1,
   }),
-}
-
-/** Posición en la mesa (columna, fila), según la colocación sugerida de la guía. */
-export const SMOKE_AND_MIRRORS_LAYOUT: Record<string, [number, number]> = {
-  [CODES.northside]: [0, 0],
-  [CODES.downtownBank]: [1, 0],
-  [CODES.downtownSanatorium]: [1, 0],
-  [CODES.easttown]: [2, 0],
-  [CODES.universityInFlames]: [0, 1],
-  [CODES.universityQuietCampus]: [0, 1],
-  [CODES.merchantDistrict]: [1, 1],
-  [CODES.waterfrontDistrict]: [2, 1],
-  [CODES.uptownHospital]: [0, 2],
-  [CODES.uptownShoppe]: [0, 2],
-  [CODES.southside]: [1, 2],
-  [CODES.frenchHill]: [2, 2],
 }
 
 export interface SmokeAndMirrorsOptions {
@@ -581,17 +581,9 @@ registerScenario({
 // Plan y acto
 // ---------------------------------------------------------------------------
 
-const resign = (investigator: InvestigatorId): AbilityOption => ({
-  key: 'agenda:resign',
-  label: 'ability.resign',
-  actions: 1,
-  provokes: false,
-  then: [{ type: 'Resign', investigator }],
-})
-
 registerAgenda({
   code: CODES.arkhamAlive,
-  abilities: (_state, _self, investigator) => [resign(investigator)],
+  abilities: (_state, _self, investigator) => [resignAbility(investigator, 'agenda:resign')],
   // Cada investigador recibe una Mark of Elokoss apartada y pasa a ser su portador.
   onAdvance: (state) =>
     activeInvestigators(state).flatMap((i): Message[] => [
@@ -602,7 +594,7 @@ registerAgenda({
 
 registerAgenda({
   code: CODES.emergentEvils,
-  abilities: (_state, _self, investigator) => [resign(investigator)],
+  abilities: (_state, _self, investigator) => [resignAbility(investigator, 'agenda:resign')],
   // Todos se retiran.
   onAdvance: (state) =>
     activeInvestigators(state).map((i): Message => ({ type: 'Resign', investigator: i.id })),
@@ -1453,20 +1445,9 @@ registerLocation({
 // Resoluciones (guía de campaña, página 10)
 // ---------------------------------------------------------------------------
 
-const entry = (key: string, effects: StoryEntry['effects'] = []): StoryEntry => ({
-  title: `story.smokeAndMirrors.${key}Title`,
-  body: `story.smokeAndMirrors.${key}`,
-  effects,
-})
-const note = (key: string) => ({
-  key: 'story.effect.record',
-  params: { note: `story.note.${key}` },
-})
-const record = (key: string, value?: string): Message => ({
-  type: 'RecordNote',
-  note: key,
-  ...(value !== undefined ? { value } : {}),
-})
+const entry = storyEntries('smokeAndMirrors')
+const note = noteEffect
+const record = recordNote
 const PROCEED = { key: 'story.effect.proceed', params: { scenario: 'story.scenario.queenOfAsh' } }
 
 /** El heraldo de Elokoss: el sospechoso apartado al principio. */

@@ -23,7 +23,31 @@ import {
 } from '@lcg/engine'
 import data from '../data/core-2026.json'
 
-export const playerCards = data as PlayerCardDef[]
+/**
+ * Reverso de cada investigador (datos públicos de ArkhamDB): tamaño del mazo,
+ * opciones de construcción y cartas exclusivas (las dos que lo siguen en la caja).
+ */
+const DECKBUILDING: Record<number, Pick<PlayerCardDef, 'deckSize' | 'deckOptions'>> = {
+  1: { deckSize: 30, deckOptions: [option(['guardian', 'neutral'], 5), option(['survivor'], 2)] },
+  4: { deckSize: 30, deckOptions: [option(['seeker', 'neutral'], 5), option(['guardian'], 2)] },
+  7: { deckSize: 30, deckOptions: [option(['rogue', 'neutral'], 5), option(['seeker'], 2)] },
+  10: { deckSize: 30, deckOptions: [option(['mystic', 'neutral'], 5), option(['rogue'], 2)] },
+  13: { deckSize: 30, deckOptions: [option(['survivor', 'neutral'], 5), option(['mystic'], 2)] },
+}
+function option(classes: string[], maxLevel: number) {
+  return { classes, maxLevel }
+}
+function boxCode(position: number) {
+  return `12${String(position).padStart(3, '0')}`
+}
+
+export const playerCards: PlayerCardDef[] = (data as PlayerCardDef[]).map((card) => {
+  const position = Number(card.code.slice(2))
+  const rules = DECKBUILDING[position]
+  return rules
+    ? { ...card, ...rules, signatures: [boxCode(position + 1), boxCode(position + 2)] }
+    : card
+})
 registerPlayerCards(playerCards)
 
 /** Código de carta a partir del número de colección de la caja (p. ej. 20 → "12020"). */

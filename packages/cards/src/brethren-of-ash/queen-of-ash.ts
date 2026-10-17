@@ -23,7 +23,6 @@ import {
   registerTreachery,
   seedRng,
   shuffle,
-  type AbilityOption,
   type CampaignLog,
   type ChaosToken,
   type Choice,
@@ -35,17 +34,25 @@ import {
   type Message,
   type ScenarioDefinition,
   type ScenarioOutcome,
-  type StoryEntry,
   type TreacheryCard,
 } from '@lcg/engine'
 import { CHAOS_BAGS, type Difficulty } from './campaign'
 import {
-  cantorOfFlame,
   chooseSkillTest,
   copies,
-  cosmicEvils,
   damage,
   effectTest,
+  endScenario,
+  enemy,
+  noteEffect,
+  recordNote,
+  resignAbility,
+  storyEntries,
+  treachery,
+} from '../scenario-helpers'
+import {
+  cantorOfFlame,
+  cosmicEvils,
   extraplanarVisions,
   fire,
   hellhound,
@@ -89,12 +96,6 @@ export const CODES = {
 // ---------------------------------------------------------------------------
 // Datos de las cartas
 // ---------------------------------------------------------------------------
-
-const enemy = (card: Omit<EnemyCard, 'kind'>): EnemyCard => ({ kind: 'enemy', ...card })
-const treachery = (card: Omit<TreacheryCard, 'kind'>): TreacheryCard => ({
-  kind: 'treachery',
-  ...card,
-})
 
 /** Elokoss tiene 5 de salud más 5 por investigador. */
 const elokossHealth = (players: number) => 5 + 5 * players
@@ -970,17 +971,9 @@ registerTreachery({
 // Localizaciones
 // ---------------------------------------------------------------------------
 
-const resign = (investigator: InvestigatorId): AbilityOption => ({
-  key: 'culvert:resign',
-  label: 'ability.resign',
-  actions: 1,
-  provokes: false,
-  then: [{ type: 'Resign', investigator }],
-})
-
 registerLocation({
   code: CODES.sewerCulvert,
-  abilities: (_state, _self, investigator) => [resign(investigator)],
+  abilities: (_state, _self, investigator) => [resignAbility(investigator, 'culvert:resign')],
 })
 
 const enteredHere = (state: GameState, investigator: InvestigatorId, location: string) =>
@@ -1092,17 +1085,10 @@ registerLocation({
 // Resoluciones (guía de campaña, páginas 13 y 14)
 // ---------------------------------------------------------------------------
 
-const entry = (key: string, effects: StoryEntry['effects'] = []): StoryEntry => ({
-  title: `story.queenOfAsh.${key}Title`,
-  body: `story.queenOfAsh.${key}`,
-  effects,
-})
-const note = (key: string) => ({
-  key: 'story.effect.record',
-  params: { note: `story.note.${key}` },
-})
-const record = (key: string): Message => ({ type: 'RecordNote', note: key })
-const end = (outcome: ScenarioOutcome): Message => ({ type: 'EndScenario', outcome, told: true })
+const entry = storyEntries('queenOfAsh')
+const note = noteEffect
+const record = recordNote
+const end = endScenario
 const trauma = (physical: number, mental: number): Message => ({
   type: 'SufferTrauma',
   physical,

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { STARTER_DECKS, starterInvestigator, type Difficulty } from '@lcg/cards'
+import { allCampaigns, STARTER_DECKS, starterInvestigator, type Difficulty } from '@lcg/cards'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
@@ -14,6 +14,8 @@ const game = useGameStore()
 const decks = Object.keys(STARTER_DECKS) as DeckKey[]
 const chosen = ref<DeckKey[]>(['joe'])
 const difficulty = ref<Difficulty>('standard')
+const campaigns = allCampaigns()
+const campaignId = ref(campaigns[0]?.id ?? '')
 const difficulties: Difficulty[] = ['easy', 'standard', 'hard', 'expert']
 
 function toggle(key: DeckKey) {
@@ -23,14 +25,21 @@ function toggle(key: DeckKey) {
 
 function start() {
   if (game.campaign && !window.confirm(t('campaign.confirmReplace'))) return
-  game.start(chosen.value, difficulty.value)
+  game.start(campaignId.value, chosen.value, difficulty.value)
   void router.push('/game')
 }
 </script>
 
 <template>
   <section class="setup">
-    <h2>Brethren of Ash · Spreading Flames</h2>
+    <h2>{{ t('campaign.new') }}</h2>
+    <div class="campaigns" role="radiogroup" :aria-label="t('campaign.choose')">
+      <label v-for="c in campaigns" :key="c.id">
+        <input v-model="campaignId" type="radio" :value="c.id" />
+        {{ t(c.name) }}
+        <small>({{ c.scenarios.map((s) => t(`campaign.scenario.${s.id}`)).join(' · ') }})</small>
+      </label>
+    </div>
 
     <div v-if="game.state || game.campaign" class="resume">
       <button v-if="game.state" type="button" class="primary" @click="router.push('/game')">
@@ -121,6 +130,17 @@ function start() {
 .hint {
   font-size: 0.85rem;
   opacity: 0.75;
+}
+.campaigns {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+  font-family: var(--fell);
+}
+.campaigns small {
+  color: #a89a7c;
+  font-style: italic;
 }
 .difficulties {
   display: flex;

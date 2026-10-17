@@ -1,4 +1,4 @@
-import type { ChaosToken } from '@lcg/engine'
+import type { ChaosToken, Difficulty } from '@lcg/engine'
 
 /** Campaña de la caja básica de 2026. Fuente: guía de campaña, página 2. */
 export const BRETHREN_OF_ASH = {
@@ -6,7 +6,7 @@ export const BRETHREN_OF_ASH = {
   scenarios: ['spreading-flames', 'smoke-and-mirrors', 'queen-of-ash'],
 } as const
 
-export type Difficulty = 'easy' | 'standard' | 'hard' | 'expert'
+export type { Difficulty }
 
 /** Las seis fichas con símbolo, comunes a todas las dificultades de esta campaña. */
 const SYMBOLS: ChaosToken[] = ['skull', 'skull', 'tablet', 'elderThing', 'autoFail', 'elderSign']

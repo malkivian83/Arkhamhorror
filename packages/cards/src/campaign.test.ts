@@ -27,7 +27,7 @@ const finish = (
 
 describe('campaña: registro', () => {
   it('sin resolución: universidad quemada, 1 trauma mental y 2 de experiencia', () => {
-    const campaign = newCampaign(['daniela'], 'standard')
+    const campaign = newCampaign('brethren-of-ash', ['daniela'], 'standard')
     const game = choose(endScenario(campaign, { type: 'noResolution' }), 'choice.continue')
     const next = finishScenario(campaign, game)
     expect(next.log.notes).toEqual(['universityBurned'])
@@ -39,7 +39,7 @@ describe('campaña: registro', () => {
   })
 
   it('resolución 1 → 2: Armitage, experiencia y trauma físico', () => {
-    const campaign = newCampaign(['daniela'], 'standard')
+    const campaign = newCampaign('brethren-of-ash', ['daniela'], 'standard')
     let game = endScenario(campaign, { type: 'resolution', resolution: 1 })
     game = choose(game, 'choice.continue')
     game = choose(game, 'choice.investigator')
@@ -55,7 +55,7 @@ describe('campaña: registro', () => {
   })
 
   it('el trauma se lleva al siguiente escenario como daño y horror', () => {
-    const campaign = newCampaign(['daniela'], 'standard')
+    const campaign = newCampaign('brethren-of-ash', ['daniela'], 'standard')
     const hurt: Campaign = {
       ...campaign,
       log: {
@@ -70,7 +70,7 @@ describe('campaña: registro', () => {
   })
 
   it('las fichas añadidas a la bolsa siguen en los escenarios siguientes', () => {
-    const campaign = newCampaign(['daniela'], 'easy')
+    const campaign = newCampaign('brethren-of-ash', ['daniela'], 'easy')
     const bag = startScenario(campaign, 3).chaosBag.length
     const more: Campaign = { ...campaign, log: { ...campaign.log, chaosTokens: ['cultist'] } }
     expect(startScenario(more, 3).chaosBag).toHaveLength(bag + 1)
@@ -89,7 +89,7 @@ describe('campaña: registro', () => {
 
 describe('campaña: mejorar el mazo', () => {
   const withXp = (xp: number): Campaign => {
-    const campaign = newCampaign(['daniela'], 'standard')
+    const campaign = newCampaign('brethren-of-ash', ['daniela'], 'standard')
     const record = campaign.log.investigators[DANIELA]!
     return {
       ...campaign,

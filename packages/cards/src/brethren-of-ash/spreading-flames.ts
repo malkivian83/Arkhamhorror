@@ -26,7 +26,6 @@ import {
   registerTreachery,
   withinLimit,
   type AbilityOption,
-  type EnemyCard,
   type LocationCard,
   type GameState,
   type InvestigatorId,
@@ -34,9 +33,21 @@ import {
   type ScenarioDefinition,
   type ScenarioOutcome,
   type SkillType,
-  type StoryEntry,
-  type TreacheryCard,
 } from '@lcg/engine'
+import {
+  chooseSkillTest,
+  copies,
+  damage,
+  earnExperience,
+  effectTest,
+  endScenario,
+  enemy,
+  noteEffect,
+  recordNote,
+  resolution,
+  storyEntries,
+  treachery,
+} from '../scenario-helpers'
 import { CHAOS_BAGS, type Difficulty } from './campaign'
 
 export const SPREADING_FLAMES = 'spreading-flames'
@@ -97,12 +108,6 @@ export const CODES = {
 // ---------------------------------------------------------------------------
 // Datos de las cartas
 // ---------------------------------------------------------------------------
-
-const enemy = (card: Omit<EnemyCard, 'kind'>): EnemyCard => ({ kind: 'enemy', ...card })
-const treachery = (card: Omit<TreacheryCard, 'kind'>): TreacheryCard => ({
-  kind: 'treachery',
-  ...card,
-})
 
 export const servantOfFlame = enemy({
   code: CODES.servantOfFlame,
@@ -212,8 +217,6 @@ const mutated = treachery({
   keywords: [],
 })
 
-export const copies = <T>(card: T, n: number): T[] => Array.from({ length: n }, () => ({ ...card }))
-
 /** Mazo de encuentros tras apartar Fire!, Servant of Flame y Dr. Armitage (24 cartas). */
 export const encounterDeck = [
   ...copies(cantorOfFlame, 2),
@@ -235,6 +238,7 @@ const location = (card: LocationCard): LocationCard => card
 export const locationCards = {
   yourFriendsRoom: location({
     id: CODES.yourFriendsRoom,
+    position: [0, 1],
     name: "Your Friend's Room",
     shroud: 2,
     clueValue: 2,
@@ -243,6 +247,7 @@ export const locationCards = {
   }),
   dormitories: location({
     id: CODES.dormitories,
+    position: [1, 1],
     name: 'Dormitories',
     shroud: 3,
     clueValue: 1,
@@ -251,6 +256,7 @@ export const locationCards = {
   }),
   miskatonicQuad: location({
     id: CODES.miskatonicQuad,
+    position: [2, 1],
     name: 'Miskatonic Quad',
     shroud: 1,
     clueValue: 0,
@@ -259,6 +265,7 @@ export const locationCards = {
   }),
   scienceHall: location({
     id: CODES.scienceHall,
+    position: [2, 0],
     name: 'Science Hall',
     shroud: 2,
     clueValue: 1,
@@ -268,6 +275,7 @@ export const locationCards = {
   }),
   warrenObservatory: location({
     id: CODES.warrenObservatory,
+    position: [3, 1],
     name: 'Warren Observatory',
     shroud: 3,
     clueValue: 1,
@@ -276,6 +284,7 @@ export const locationCards = {
   }),
   orneLibrary: location({
     id: CODES.orneLibrary,
+    position: [2, 2],
     name: 'Orne Library',
     shroud: 4,
     clueValue: 1,
@@ -341,15 +350,8 @@ export function spreadingFlames(difficulty: Difficulty = 'standard'): ScenarioDe
 // ---------------------------------------------------------------------------
 
 /** Texto de resolución con sus efectos de campaña (guía de campaña, página 4). */
-const entry = (key: string, effects: StoryEntry['effects'] = []): StoryEntry => ({
-  title: `story.spreadingFlames.${key}Title`,
-  body: `story.spreadingFlames.${key}`,
-  effects,
-})
-const note = (key: string) => ({
-  key: 'story.effect.record',
-  params: { note: `story.note.${key}` },
-})
+const entry = storyEntries('spreadingFlames')
+const note = noteEffect
 const PROCEED = {
   key: 'story.effect.proceed',
   params: { scenario: 'story.scenario.smokeAndMirrors' },
@@ -358,19 +360,11 @@ const MENTAL_TRAUMA = { key: 'story.effect.mentalTrauma' }
 const xp = (bonus: number) => ({ key: 'story.effect.experience', params: { bonus } })
 
 // Efectos en el registro de campaña (lo que el texto de historia anuncia).
-const record = (key: string): Message => ({ type: 'RecordNote', note: key })
-const experience = (bonus: number, victory = false): Message => ({
-  type: 'EarnExperience',
-  amount: bonus,
-  ...(victory ? { victory } : {}),
-})
+const record = recordNote
+const experience = earnExperience
 const mentalTrauma: Message = { type: 'SufferTrauma', mental: 1 }
 
-const end = (resolution: number): Message => ({
-  type: 'EndScenario',
-  outcome: { type: 'resolution', resolution },
-  told: true,
-})
+const end = (n: number): Message => endScenario(resolution(n))
 
 /** Resoluciones de Spreading Flames, con las decisiones que pide la guía. */
 function resolutionStory(state: GameState, outcome: ScenarioOutcome): Message[] {
@@ -478,58 +472,6 @@ registerScenario({
 // ---------------------------------------------------------------------------
 // Comportamiento de las cartas de encuentro
 // ---------------------------------------------------------------------------
-
-export function effectTest(
-  investigator: InvestigatorId,
-  source: string,
-  skill: SkillType,
-  difficulty: number,
-  results: { onSuccess?: Message[]; onFail?: Message[]; onFailEach?: Message[] },
-): Message {
-  return {
-    type: 'BeginSkillTest',
-    investigator,
-    skill,
-    difficulty,
-    kind: {
-      type: 'effect',
-      source,
-      onSuccess: results.onSuccess ?? [],
-      onFail: results.onFail ?? [],
-      onFailEach: results.onFailEach ?? [],
-    },
-  }
-}
-
-/** "Prueba X o Y": el investigador elige la habilidad. */
-export function chooseSkillTest(
-  investigator: InvestigatorId,
-  source: string,
-  skills: SkillType[],
-  difficulty: number,
-  results: Parameters<typeof effectTest>[4],
-): Message {
-  return {
-    type: 'Ask',
-    investigator,
-    question: {
-      kind: 'chooseOne',
-      prompt: 'prompt.chooseSkill',
-      choices: skills.map((skill) => ({
-        label: `choice.test.${skill}`,
-        params: { difficulty },
-        then: [effectTest(investigator, source, skill, difficulty, results)],
-      })),
-    },
-  }
-}
-
-export const damage = (investigator: InvestigatorId, amount: number, horror = 0): Message => ({
-  type: 'TakeDamage',
-  investigator,
-  damage: amount,
-  horror,
-})
 
 registerTreachery({
   code: CODES.cosmicEvils,
@@ -1079,13 +1021,3 @@ registerLocation({
     },
   ],
 })
-
-/** Posición de cada localización en la mesa (columna, fila), según su mapa. */
-export const SPREADING_FLAMES_LAYOUT: Record<string, [number, number]> = {
-  [CODES.yourFriendsRoom]: [0, 1],
-  [CODES.dormitories]: [1, 1],
-  [CODES.miskatonicQuad]: [2, 1],
-  [CODES.scienceHall]: [2, 0],
-  [CODES.orneLibrary]: [2, 2],
-  [CODES.warrenObservatory]: [3, 1],
-}

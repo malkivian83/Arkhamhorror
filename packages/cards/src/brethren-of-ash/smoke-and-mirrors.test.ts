@@ -49,7 +49,7 @@ describe('Smoke and Mirrors: preparación', () => {
   })
 
   it('desde la campaña: Quiet Campus, +1 perdición y Armitage en juego sin ranura', () => {
-    const campaign = newCampaign(['daniela'], 'standard')
+    const campaign = newCampaign('brethren-of-ash', ['daniela'], 'standard')
     const record = campaign.log.investigators[DANIELA]!
     const after: Campaign = {
       ...campaign,
@@ -147,7 +147,10 @@ describe('Smoke and Mirrors: reglas nuevas', () => {
 
 describe('Smoke and Mirrors: resolución', () => {
   it('resolución 1: paradero de la secta, heraldo y experiencia por los interrogados', () => {
-    const campaign = { ...newCampaign(['daniela'], 'standard'), scenarioIndex: 1 }
+    const campaign = {
+      ...newCampaign('brethren-of-ash', ['daniela'], 'standard'),
+      scenarioIndex: 1,
+    }
     let game = choose(startScenario(campaign, 4), 'choice.continue')
     const three = suspects.slice(0, 3).map((s) => s.code)
     game = during(game, (s) => ({ ...s, underAct: three }), {

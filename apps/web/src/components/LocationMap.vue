@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { SMOKE_AND_MIRRORS_LAYOUT, SPREADING_FLAMES_LAYOUT } from '@lcg/cards'
 import { shroudOf, type GameState, type Location } from '@lcg/engine'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -16,20 +15,13 @@ const CELL_H = 250
 const CARD_W = 120
 const MINI_W = 50
 
-/** Colocación de las localizaciones de cada escenario. */
-const LAYOUTS: Record<string, Record<string, [number, number]>> = {
-  'spreading-flames': SPREADING_FLAMES_LAYOUT,
-  'smoke-and-mirrors': SMOKE_AND_MIRRORS_LAYOUT,
-}
-const layout = computed(() => LAYOUTS[props.state.scenarioId] ?? {})
-
 /** Posiciones: las del escenario o, si no hay, por distancia a la primera localización. */
 const positions = computed(() => {
   const locations = Object.values(props.state.locations)
   const result = new Map<string, [number, number]>()
   const fallback: Location[] = []
   for (const l of locations) {
-    const p = l.position ?? layout.value[l.id]
+    const p = l.position
     if (p) result.set(l.id, p)
     else fallback.push(l)
   }
