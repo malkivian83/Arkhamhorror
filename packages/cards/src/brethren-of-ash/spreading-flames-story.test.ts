@@ -1,6 +1,7 @@
 import {
   applyInput,
   createGame,
+  dispatch,
   getInvestigator,
   type GameState,
   type InvestigatorSetup,
@@ -8,7 +9,7 @@ import {
 } from '@lcg/engine'
 import { choose, during, keep, labels, testInvestigator, withBag } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
-import { CODES, servantOfFlame, spreadingFlames } from './spreading-flames'
+import { CODES, DR_ARMITAGE, hellhound, servantOfFlame, spreadingFlames } from './spreading-flames'
 
 const inv = (s: GameState, id = 'a') => getInvestigator(s, id)
 const enemies = (s: GameState) => Object.values(s.enemies)
@@ -148,11 +149,18 @@ describe('Spreading Flames: actos', () => {
     game = during(game, at(CODES.orneLibrary, { clues: 3 }))
     game = choose(game, 'action.endTurn')
     game = choose(game, 'action.advanceAct')
+    // Hay un Fire! en el descarte: el jefe elige buscar solo ahí o también en el mazo.
+    game = choose(game, 'choice.fireFromDiscard')
     expect(game.actIndex).toBe(3)
     expect(enemies(game).find((e) => e.code === CODES.servantOfFlame)?.location).toBe(
       CODES.miskatonicQuad,
     )
     expect(game.locations[CODES.miskatonicQuad]?.clues).toBe(3)
+    // El Dr. Henry Armitage entra en juego bajo su control, sin ocupar ranura de aliado.
+    expect(Object.values(game.assets).find((a) => a.code === DR_ARMITAGE)).toMatchObject({
+      owner: 'a',
+      noSlot: true,
+    })
   })
 
   it('acto 4: gastar pistas para dañar y, al derrotar a Servant of Flame, resolución 1', () => {
@@ -233,5 +241,46 @@ describe('Spreading Flames: localizaciones y traiciones activables', () => {
     })
     game = choose(game, 'ability.discardFire')
     expect(fires(game)).toHaveLength(0)
+  })
+})
+
+describe('Spreading Flames: Dr. Henry Armitage y Hellhound', () => {
+  const withArmitage: Message = {
+    type: 'PutAssetIntoPlay',
+    investigator: 'a',
+    code: DR_ARMITAGE,
+    noSlot: true,
+  }
+
+  it('Armitage: la primera acción del turno no provoca ataques de oportunidad', () => {
+    let game = during(newGame(), keep, withArmitage, {
+      type: 'SpawnEnemy',
+      card: servantOfFlame,
+      location: CODES.yourFriendsRoom,
+      engageWith: 'a',
+    })
+    game = choose(game, 'action.resource')
+    expect(game.pending?.question.prompt).toBe('prompt.chooseAction')
+    // La segunda sí: hay que repartir el daño del ataque.
+    game = choose(game, 'action.resource')
+    expect(game.pending?.question.prompt).toBe('prompt.assignDamage')
+  })
+
+  it('Hellhound: tras atacarte en la fase de enemigos, descartas un apoyo', () => {
+    let game = during(newGame(), keep, withArmitage, {
+      type: 'SpawnEnemy',
+      card: hellhound,
+      location: CODES.yourFriendsRoom,
+      engageWith: 'a',
+    })
+    game = dispatch({ ...game, pending: null }, { type: 'EnemyPhase' })
+    // Reparte el daño del ataque y, después, descarta un apoyo.
+    const assigning = ['prompt.assignDamage', 'prompt.assignHorror']
+    for (let n = 0; n < 5 && assigning.includes(game.pending?.question.prompt ?? ''); n++) {
+      game = applyInput(game, { investigator: 'a', choice: 0 })
+    }
+    // Su único apoyo (Armitage, que sobrevive al ataque) se descarta.
+    expect(Object.values(game.assets)).toHaveLength(0)
+    expect(inv(game).discard).toContain(DR_ARMITAGE)
   })
 })

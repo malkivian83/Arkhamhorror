@@ -59,6 +59,13 @@ export interface Investigator {
   extraEvade?: boolean
   /** Ya se ha movido este turno. */
   movedThisTurn?: boolean
+  /** Acciones realizadas en este turno. */
+  actionsTaken?: number
+  /**
+   * Cartas apartadas durante la mano inicial: debilidades robadas y las que se
+   * cambian en el mulligan. Vuelven al mazo al terminar el mulligan.
+   */
+  setAsideOpening?: CardCode[]
 }
 
 export interface Location {
@@ -437,8 +444,20 @@ export type Message =
   | { type: 'TakeAction'; investigator: InvestigatorId; action: Action }
   | { type: 'PerformAction'; investigator: InvestigatorId; action: Action }
   | { type: 'GainResources'; investigator: InvestigatorId; amount: number }
-  /** `opening`: mano inicial (las debilidades se apartan y se roba otra). */
-  | { type: 'DrawCards'; investigator: InvestigatorId; amount: number; opening?: boolean }
+  | { type: 'DrawCards'; investigator: InvestigatorId; amount: number }
+  // ----- Inicio de la partida (reglamento, "Setup", pasos de los investigadores) -----
+  /** El grupo elige al investigador jefe. */
+  | { type: 'ChooseLead' }
+  | { type: 'SetLead'; investigator: InvestigatorId }
+  /** Mano inicial: las debilidades se apartan y se roba otra en su lugar. */
+  | { type: 'DrawOpeningHand'; investigator: InvestigatorId; amount: number }
+  /** Cada investigador hace su mulligan, en orden de jugadores (empezando por el jefe). */
+  | { type: 'InvestigatorsMulligan' }
+  /** Mulligan: el investigador aparta las cartas que quiera de su mano inicial (una vez). */
+  | { type: 'Mulligan'; investigator: InvestigatorId; count?: number }
+  | { type: 'MulliganCard'; investigator: InvestigatorId; card: CardCode; count: number }
+  /** Roba tantas cartas como apartó y baraja las apartadas en el mazo. */
+  | { type: 'FinishMulligan'; investigator: InvestigatorId; count: number }
   | { type: 'DiscardFromHand'; investigator: InvestigatorId; card: CardCode }
   | { type: 'CheckHandSize'; investigator: InvestigatorId }
   | { type: 'MoveTo'; investigator: InvestigatorId; location: LocationId }
@@ -553,6 +572,10 @@ export type Message =
   | { type: 'EngageEnemy'; enemy: EnemyId; investigator: InvestigatorId }
   | { type: 'CheckEngagement'; location: LocationId }
   | { type: 'EnemyAttack'; enemy: EnemyId; investigator: InvestigatorId; exhaustAfter: boolean }
+  /** Fase de enemigos: el investigador elige en qué orden le atacan los que quedan. */
+  | { type: 'AttacksAgainst'; investigator: InvestigatorId; enemies: EnemyId[] }
+  /** El jefe elige quién gasta la siguiente pista hasta reunir `amount` (acto, grupo). */
+  | { type: 'PayGroupClues'; amount: number; from: InvestigatorId[] }
   | { type: 'DamageEnemy'; enemy: EnemyId; amount: number; by?: InvestigatorId }
   | { type: 'DefeatEnemy'; enemy: EnemyId; by?: InvestigatorId }
   | { type: 'EvadeEnemy'; enemy: EnemyId; by?: InvestigatorId }
@@ -574,7 +597,9 @@ export type Message =
   | { type: 'CheckAgenda' }
   | { type: 'AdvanceAgenda' }
   | { type: 'OfferActAdvance' }
-  | { type: 'AdvanceAct' }
+  /** `paid`: las pistas ya se han pagado. */
+  | { type: 'AdvanceAct'; paid?: boolean }
+  | { type: 'SpendClues'; investigator: InvestigatorId; amount: number }
   | { type: 'DrawEncounterCard'; investigator: InvestigatorId }
   | { type: 'ResolveEncounterCard'; investigator: InvestigatorId; card: EncounterCard }
   | { type: 'DrawFromEncounterDiscard'; investigator: InvestigatorId; code: CardCode }
@@ -628,7 +653,14 @@ export type Message =
   /** El investigador elige y descarta cartas de su mano. */
   | { type: 'ChooseDiscardFromHand'; investigator: InvestigatorId; amount: number }
   /** Busca en el mazo y el descarte de encuentros y roba hasta `amount` copias. */
-  | { type: 'SearchAndDrawEncounter'; investigator: InvestigatorId; code: CardCode; amount: number }
+  /** `fromDiscard`: busca solo en la pila de descartes de encuentros. */
+  | {
+      type: 'SearchAndDrawEncounter'
+      investigator: InvestigatorId
+      code: CardCode
+      amount: number
+      fromDiscard?: boolean
+    }
   | { type: 'Heal'; investigator: InvestigatorId; damage: number; horror: number }
   | { type: 'Resign'; investigator: InvestigatorId }
   | { type: 'DefeatInvestigator'; investigator: InvestigatorId }
@@ -725,8 +757,13 @@ export type Trigger =
   | { type: 'afterEnemyAttack'; enemy: EnemyId; investigator: InvestigatorId }
   /** Un enemigo va a atacar (antes de resolver el ataque). */
   | { type: 'whenEnemyAttacks'; enemy: EnemyId; investigator: InvestigatorId }
+  /**
+   * `afterSkillTest`: ya se sabe si la prueba tiene éxito, antes de aplicar sus
+   * resultados (paso 6: "después de tener éxito / fallar"). `skillTestEnded`: la
+   * prueba ha terminado (paso 8: "después de esta prueba").
+   */
   | {
-      type: 'afterSkillTest'
+      type: 'afterSkillTest' | 'skillTestEnded'
       investigator: InvestigatorId
       kind: SkillTestKind['type']
       succeeded: boolean
@@ -818,8 +855,11 @@ export interface Question {
   story?: StoryEntry
   /** Preguntar aunque solo haya una opción (pausas para que el jugador vea el estado). */
   alwaysAsk?: boolean
+  /** Es el mulligan de la mano inicial (la mesa lo muestra sobre la mano). */
+  mulligan?: boolean
   /** Clave i18n del enunciado. */
   prompt: string
+  promptParams?: LabelParams
   choices: Choice[]
 }
 

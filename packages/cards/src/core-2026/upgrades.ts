@@ -428,7 +428,7 @@ registerPlayerCard({
   abilities: investigateAbility(83, { shroud: -1 }),
   reactions: (state, trigger, self) => {
     if (
-      trigger.type !== 'afterSkillTest' ||
+      trigger.type !== 'skillTestEnded' ||
       trigger.source !== self.id ||
       trigger.kind !== 'investigate' ||
       trigger.succeeded ||

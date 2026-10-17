@@ -45,7 +45,8 @@ Leyenda: ✅ hecho · 🟡 parcial · ⬜ pendiente · ✖ fuera de alcance por 
 |---|---|---|
 | Opciones sobre la mesa y botones laterales | `Question`, `QuestionChoices` | ✅ |
 | Ventana modal para elecciones largas (repartir, elegir cartas, ordenar) | `ChoiceModal`, `PutBackInAnyOrder` | 🟡 ventana central para las elecciones que no se hacen sobre la mesa, con la carta que se resuelve y minimizable; falta ordenar cartas |
-| Textos de historia: introducción, resoluciones, códex | `StoryEntry`, `StoryQuestion`, `CodexEntry` | ✅ introducción y resoluciones de Spreading Flames con efectos de campaña y decisiones (resúmenes propios; textos oficiales opcionales en local, ver abajo); falta el códex |
+| Textos de historia: prólogo, introducción, preparación, resoluciones, códex | `StoryEntry`, `StoryQuestion`, `CodexEntry` | ✅ los tres escenarios, con efectos de campaña y decisiones; resúmenes propios y textos oficiales en local (ver abajo), con botón para alternar |
+| Inicio de partida: elegir jefe y mulligan | `ChooseLeadInvestigator`, `InvestigatorMulligan` | ✅ el jefe se elige al empezar; el mulligan se hace sobre la mano (cartas resaltadas) con "Quedarme con esta mano" / "Robar N cartas nuevas y terminar" |
 | Carta robada destacada (encuentro revelándose) | `Draw`, `DrawSpotlight` | ✅ la carta se da la vuelta en grande en el centro y espera a "De acuerdo" (Intro/Esc); si hay varias, en cola |
 | Avisos (toasts) | `vue-toastification` | ⬜ |
 
@@ -92,9 +93,19 @@ Leyenda: ✅ hecho · 🟡 parcial · ⬜ pendiente · ✖ fuera de alcance por 
 
 Los textos de la guía de campaña son de Fantasy Flight Games, así que el
 repositorio solo lleva **resúmenes propios**. Para ver los textos oficiales en
-tu equipo, crea `apps/web/public/local-assets/story/es.json` (y `en.json`),
-carpeta que git ignora, con la clave del cuerpo y el texto (párrafos separados
-por una línea en blanco):
+tu equipo:
+
+```bash
+node scripts/import-story-texts.mjs E:/referencia/ArkhamHorror
+```
+
+genera `apps/web/public/local-assets/story/en.json` (carpeta que git ignora) con el
+prólogo, las introducciones, los pasos de preparación, los códex y las resoluciones
+de Brethren of Ash. En español, la mesa muestra el texto oficial en inglés si no hay
+traducción, con un botón para pasar al resumen propio. También se puede escribir a
+mano un `es.json` con la clave del cuerpo y el texto (párrafos separados por una
+línea en blanco; "» " marca una instrucción, "• " un punto de lista, `*negrita*` y
+`_cursiva_`):
 
 ```json
 {
@@ -103,9 +114,7 @@ por una línea en blanco):
 }
 ```
 
-Claves de Spreading Flames (con el prefijo `story.spreadingFlames.`): `intro`,
-`noResolution`, `resolution1`, `armitageBearer`, `decide`, `resolution2` y
-`resolution3`. Los textos que estén en el fichero sustituyen al resumen y la
+Las claves son las de los textos de historia de los ficheros de idioma (`story.*`). Los textos que estén en el fichero sustituyen al resumen y la
 mesa deja de mostrar la nota de "resumen propio".
 
 ## Cartas de jugador (paso 4)

@@ -465,7 +465,7 @@ registerPlayerCard({
       cost: [spendUse(self)],
     })(state, self, investigator),
   reactions: (state, trigger, self) => {
-    if (trigger.type !== 'afterSkillTest' || trigger.source !== self.id) return []
+    if (trigger.type !== 'skillTestEnded' || trigger.source !== self.id) return []
     if (trigger.kind !== 'fight' || self.exhausted || self.uses <= 0 || state.skillTest) return []
     const enemy = trigger.enemy ? state.enemies[trigger.enemy] : undefined
     const here = getInvestigator(state, self.owner).location

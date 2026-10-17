@@ -71,23 +71,54 @@ applyInput(estado, {investigator, choice}) ─┤──► run(): procesa la col
 | Acto | Gastar pistas en cualquier turno o "al final de la ronda" (objetivo); el último → resolución 1 |
 | Mantenimiento | Preparar todo, robar 1, +1 recurso, descartar hasta 8 |
 
-## Simplificaciones conocidas
+## Inicio de la partida
 
-Decisiones que el reglamento deja al grupo o al jefe y que ahora se toman por
-defecto (se convertirán en preguntas):
+Sigue el orden del reglamento ("Setup") y del proyecto de referencia
+(`prepareGame` en `setup.ts`):
 
-- Con varios investigadores en la localización, un enemigo se enfrenta al primero en orden de jugadores.
-- Empates de camino del cazador: primera conexión listada.
-- Al avanzar el acto, las pistas se pagan en orden de jugadores.
-- Orden de ataques cuando un investigador está enfrentado a varios enemigos: orden de aparición.
-- No hay mulligan ni debilidades en la preparación.
-- El final del escenario usa solo "resolución 1" (acto) o "sin resolución" (plan / todos eliminados).
+1. **Prólogo** de la campaña (solo en su primer escenario).
+2. **Elegir jefe** (`ChooseLead`): con varios investigadores, el grupo lo elige y
+   pasa a ser el primero en orden de jugadores (`SetLead`).
+3. **Introducción** del escenario (una o varias partes, según el registro).
+4. **Investigadores**: apoyos permanentes en juego, 5 recursos (más bonificaciones) y
+   **mano inicial** (`DrawOpeningHand`): las debilidades se apartan y se roba otra.
+5. **Mulligan** (`InvestigatorsMulligan`), en orden de jugadores: cada uno aparta las
+   cartas que quiera de una en una, roba otras tantas (apartando también las
+   debilidades) y las apartadas se barajan en el mazo.
+6. **Pasos de preparación** de la guía (texto), colocación en la localización inicial
+   y efectos de preparación del escenario; empieza la ronda 1.
 
-## Pendiente (ver [hoja de ruta](05-hoja-de-ruta.md), fase 1)
+Fuera de la mesa (tests, partidas automáticas) no hay textos, el jefe es el primero
+y nadie cambia cartas.
 
-Que otros investigadores comprometan cartas, ventanas de reacción generales
-(jugar eventos rápidos "cuando…/tras…"), debilidades, habilidades de los
-investigadores, el resto de cartas de jugador, mulligan y resoluciones de campaña.
+## Decisiones del jefe (FAQ 1.5)
+
+Lo que el reglamento deja "a elección del jefe" se pregunta en la mesa; fuera de
+ella se resuelve en orden de jugadores:
+
+- Con quién se enfrenta un enemigo si varios investigadores cumplen igual su presa.
+- Por dónde va un cazador con varios caminos igual de cortos (`huntingSteps`, que
+  también tiene en cuenta la presa entre los investigadores más cercanos).
+- Quién gasta cada pista al avanzar el acto o al pagar "como grupo"
+  (`PayGroupClues`); si solo hay una forma de pagar, se paga sin preguntar.
+- En la fase de enemigos, cada investigador elige en qué orden le atacan sus
+  enemigos (`AttacksAgainst`); los masivos atacan a cada investigador en orden de
+  jugadores, que el jefe encabeza.
+
+## Pruebas de habilidad (FAQ, orden de resolución)
+
+- Paso 6: "después de tener éxito / fallar (por X)" (`afterSkillTest`) se resuelve
+  **antes** de aplicar los resultados (paso 7).
+- Paso 8: lo que ocurre "después de esta prueba" (`skillTestEnded`), como el segundo
+  disparo de Twin .45s o repetir con Old Compass.
+- El fallo automático prevalece sobre el éxito automático.
+- Una prueba que empieza durante otra espera a que esta termine.
+
+## Permanentes
+
+No cuentan para el tamaño del mazo, empiezan en juego, no pueden abandonarlo (ni
+descartarse, ni volver a la mano, ni hacer sitio en una ranura) y, una vez
+compradas, no se pueden quitar del mazo.
 
 ## Cómo añadir una regla
 

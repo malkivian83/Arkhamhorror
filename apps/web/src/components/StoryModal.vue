@@ -4,7 +4,7 @@ import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useLabels } from '../game/labels'
-import { storyBody } from '../game/story'
+import { storyBody, toggleOfficial } from '../game/story'
 import { useGameStore } from '../stores/game'
 
 /**
@@ -53,7 +53,13 @@ function toCampaign() {
     <article class="story">
       <h1>{{ t(entry.title) }}</h1>
       <div class="body">
-        <p v-for="(paragraph, i) in body.paragraphs" :key="i">{{ paragraph }}</p>
+        <p v-for="(paragraph, i) in body.paragraphs" :key="i" :class="paragraph.kind">
+          <template v-for="(span, j) in paragraph.spans" :key="j">
+            <b v-if="span.bold">{{ span.text }}</b>
+            <i v-else-if="span.italic" class="em">{{ span.text }}</i>
+            <template v-else>{{ span.text }}</template>
+          </template>
+        </p>
       </div>
       <section v-if="entry.effects?.length" class="effects">
         <h2>{{ t('table.campaignEffects') }}</h2>
@@ -63,7 +69,12 @@ function toCampaign() {
           </li>
         </ul>
       </section>
-      <p v-if="!body.official" class="note">{{ t('table.storySummary') }}</p>
+      <p class="note">
+        <template v-if="!body.official">{{ t('table.storySummary') }}</template>
+        <button v-if="body.officialLocale" type="button" class="toggle" @click="toggleOfficial">
+          {{ body.official ? t('table.summaryText') : t('table.officialText') }}
+        </button>
+      </p>
       <div class="options">
         <button
           v-for="(choice, i) in state.pending?.question.choices ?? []"
@@ -157,11 +168,46 @@ h1 {
   margin: 4px 0;
   line-height: 1.4;
 }
+.body p.instruction {
+  font-style: normal;
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+  padding-left: 12px;
+  border-left: 3px solid #6b5a3a;
+}
+.body p.item {
+  font-style: normal;
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+  padding-left: 18px;
+  text-indent: -12px;
+}
+.body p.item::before {
+  content: '• ';
+}
+.body i.em {
+  font-style: italic;
+}
+.body p.text i.em {
+  font-style: normal;
+}
 .note {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
   margin: 10px 0 0;
   font-size: 0.75rem;
-  opacity: 0.6;
-  text-align: right;
+  color: #5a4630;
+}
+.note .toggle {
+  padding: 2px 8px;
+  border: 1px solid #6b5a3a;
+  border-radius: 3px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
 }
 .options {
   display: flex;

@@ -1,3 +1,4 @@
+import { treacheryBehavior } from './content'
 import { EngineError } from './errors'
 import type {
   Enemy,
@@ -8,6 +9,7 @@ import type {
   Location,
   LocationId,
   Message,
+  Prey,
 } from './types'
 
 /** Inserta mensajes delante de la cola (se procesan antes que lo ya encolado). */
@@ -30,7 +32,10 @@ export function getLocation(state: GameState, id: LocationId): Location {
 /** Velo actual de una localización, con los modificadores de la ronda (nunca menos de 0). */
 export function shroudOf(state: GameState, id: LocationId): number {
   const location = getLocation(state, id)
-  return Math.max(0, location.shroud + (location.shroudModifier ?? 0))
+  const attached = Object.values(state.treacheries)
+    .filter((t) => t.placement.type === 'location' && t.placement.location === id)
+    .reduce((sum, t) => sum + (treacheryBehavior(t.code)?.shroudModifier ?? 0), 0)
+  return Math.max(0, location.shroud + (location.shroudModifier ?? 0) + attached)
 }
 
 /**
@@ -158,6 +163,67 @@ export function nextStepToward(
     frontier = next
   }
   return null
+}
+
+/** Distancia (en conexiones) desde `from` a cada localización a la que se puede llegar. */
+export function distancesFrom(state: GameState, from: LocationId): Map<LocationId, number> {
+  const distances = new Map<LocationId, number>([[from, 0]])
+  let frontier: LocationId[] = [from]
+  while (frontier.length > 0) {
+    const next: LocationId[] = []
+    for (const current of frontier) {
+      for (const neighbour of state.locations[current]?.connections ?? []) {
+        if (distances.has(neighbour) || !state.locations[neighbour]) continue
+        distances.set(neighbour, (distances.get(current) ?? 0) + 1)
+        next.push(neighbour)
+      }
+    }
+    frontier = next
+  }
+  return distances
+}
+
+/**
+ * Los candidatos que mejor cumplen la presa de un enemigo (todos si no tiene
+ * presa). Si quedan varios empatados, decide el jefe.
+ */
+export function bestByPrey(candidates: Investigator[], prey: Prey | undefined): Investigator[] {
+  if (!prey || candidates.length === 0) return candidates
+  if (prey.type === 'only') return candidates.filter((i) => i.id === prey.investigator)
+  const value = (i: Investigator) =>
+    prey.type === 'mostResources'
+      ? i.resources
+      : prey.type === 'highestSkill'
+        ? i.skills[prey.skill]
+        : -i.skills[prey.skill]
+  const best = Math.max(...candidates.map(value))
+  return candidates.filter((i) => value(i) === best)
+}
+
+/**
+ * Reglamento, "Hunter": localizaciones conectadas a las que puede moverse un
+ * cazador por el camino más corto hacia el investigador más cercano (el que
+ * mejor cumpla su presa, si hay varios a la misma distancia). Vacío si ya hay un
+ * investigador en su localización o no puede llegar a ninguno. Con varias
+ * opciones, decide el jefe.
+ */
+export function huntingSteps(state: GameState, enemy: Enemy): LocationId[] {
+  const distances = distancesFrom(state, enemy.location)
+  const reachable = activeInvestigators(state).filter(
+    (i) => i.location !== null && distances.has(i.location),
+  )
+  if (reachable.length === 0) return []
+  const distance = (i: Investigator) => distances.get(i.location as LocationId) ?? 0
+  const nearest = Math.min(...reachable.map(distance))
+  if (nearest === 0) return []
+  const closest = reachable.filter((i) => distance(i) === nearest)
+  const preferred = bestByPrey(closest, enemy.prey)
+  const targets = new Set((preferred.length ? preferred : closest).map((i) => i.location))
+  return (state.locations[enemy.location]?.connections ?? []).filter((step) => {
+    if (!state.locations[step]) return false
+    const fromStep = distancesFrom(state, step)
+    return [...targets].some((t) => fromStep.get(t as LocationId) === nearest - 1)
+  })
 }
 
 /**

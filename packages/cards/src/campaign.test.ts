@@ -1,9 +1,10 @@
 import { createGame, type GameState } from '@lcg/engine'
-import { choose, during, testInvestigator } from '@lcg/engine/testing'
+import { choose, during, testInvestigator, throughSetup } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { DR_ARMITAGE, spreadingFlames } from './brethren-of-ash/spreading-flames'
 import {
   canPlayNext,
+  deckSize,
   finishScenario,
   newCampaign,
   purchase,
@@ -18,7 +19,7 @@ const DANIELA = code(1)
 
 /** Juega Spreading Flames hasta la pregunta de la primera historia de resolución. */
 function endScenario(campaign: Campaign, outcome: Parameters<typeof finish>[1]): GameState {
-  return finish(choose(startScenario(campaign, 11), 'choice.continue'), outcome)
+  return finish(throughSetup(startScenario(campaign, 11)), outcome)
 }
 const finish = (
   s: GameState,
@@ -119,6 +120,16 @@ describe('campaña: mejorar el mazo', () => {
     expect(deck).toContain(code(80))
     expect(deck).toHaveLength(campaign.investigators[0]!.deck.length)
     expect(next.log.investigators[DANIELA]?.xp).toBe(1)
+  })
+
+  it('las permanentes no ocupan sitio en el mazo y no se pueden quitar', () => {
+    // Charisma (95): permanente neutral de nivel 3.
+    const campaign = withXp(3)
+    const option = purchaseOptions(campaign, DANIELA).find((o) => o.code === code(95))
+    expect(option?.needsRemoval).toBe(false)
+    const next = purchase(campaign, DANIELA, code(95))
+    expect(deckSize(next.investigators[0]!.deck)).toBe(deckSize(campaign.investigators[0]!.deck))
+    expect(removableCards(next, DANIELA)).not.toContain(code(95))
   })
 
   it('todas las cartas de nivel 1–5 ya funcionan en el motor', () => {

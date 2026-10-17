@@ -13,6 +13,7 @@ import {
   activeInvestigators,
   enemiesAt,
   getInvestigator,
+  isPermanent,
   nearestLocation,
   playerCardDef,
   registerAct,
@@ -365,7 +366,14 @@ export function queenOfAsh(options: QueenOfAshOptions = {}): ScenarioDefinition 
 
   return {
     id: QUEEN_OF_ASH,
-    intro: { title: 'story.queenOfAsh.intro1Title', body: 'story.queenOfAsh.intro1' },
+    // Introducción 1 y, según el registro, la 2 o la 3.
+    intro: [
+      { title: 'story.queenOfAsh.intro1Title', body: 'story.queenOfAsh.intro1' },
+      discovered
+        ? { title: 'story.queenOfAsh.intro2Title', body: 'story.queenOfAsh.intro2' }
+        : { title: 'story.queenOfAsh.intro3Title', body: 'story.queenOfAsh.intro3' },
+    ],
+    setupInstructions: { title: 'story.queenOfAsh.setupTitle', body: 'story.queenOfAsh.setup' },
     locations: [LOCATIONS.undergroundCistern, ...tunnels, LOCATIONS.sewerCulvert],
     setAsideLocations: [LOCATIONS.sluiceControl],
     startingLocation: CODES.sewerCulvert,
@@ -409,12 +417,6 @@ export function queenOfAsh(options: QueenOfAshOptions = {}): ScenarioDefinition 
     tokenValues: {},
     setup: [
       { type: 'AddChaosTokens', tokens: ADDED_TOKENS[difficulty] },
-      {
-        type: 'Story',
-        entry: discovered
-          ? { title: 'story.queenOfAsh.intro2Title', body: 'story.queenOfAsh.intro2' }
-          : { title: 'story.queenOfAsh.intro3Title', body: 'story.queenOfAsh.intro3' },
-      },
       ...(discovered ? [] : [{ type: 'PlaceDoom', amount: 1 } as Message]),
       ...(scoured
         ? investigators.map((id): Message => ({ type: 'GainClues', investigator: id, amount: 1 }))
@@ -849,7 +851,10 @@ registerTreachery({
   // [agility] (3). Si fallas: 1 horror y descartas un apoyo tuyo (que no sea de historia).
   revelation: (state, investigator) => {
     const mine = Object.values(state.assets).filter(
-      (a) => a.owner === investigator && !(playerCardDef(a.code)?.traits ?? []).includes('Story'),
+      (a) =>
+        a.owner === investigator &&
+        !isPermanent(a.code) &&
+        !(playerCardDef(a.code)?.traits ?? []).includes('Story'),
     )
     return [
       effectTest(investigator, 'Putrid Vapors', 'agility', 3, {

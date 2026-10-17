@@ -77,7 +77,15 @@
     "topEncounter": "Top card of the encounter deck",
     "whoDraws": "Who draws?",
     "chooseEnemyDestination": "Where does the enemy move?",
-    "chooseCardType": "Choose a card type"
+    "chooseCardType": "Choose a card type",
+    "chooseLead": "Choose the lead investigator",
+    "mulligan": "Mulligan: set aside any cards from your opening hand you want to replace (once)",
+    "chooseEngaged": "Who does {enemy} engage?",
+    "chooseHunterPath": "Which way does {enemy} go?",
+    "chooseAttackOrder": "Choose which enemy attacks you first",
+    "whoPaysClue": "Who spends the next clue? ({n} left)",
+    "armitageControl": "Who takes control of Dr. Henry Armitage?",
+    "searchFire": "Where do you search for Fire!?"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -146,7 +154,15 @@
     },
     "twoDirectDamage": "Take 2 direct damage",
     "twoDirectHorror": "Take 2 direct horror",
-    "doomOnAsset": "1 doom on {card}"
+    "doomOnAsset": "1 doom on {card}",
+    "keepHand": "Keep this hand",
+    "mulliganDone": "Draw 1 new card and finish | Draw {n} new cards and finish",
+    "mulliganCard": "Replace {card}",
+    "moveEnemyTo": "{enemy} moves to {location}",
+    "attackFirst": "{enemy} attacks first",
+    "investigatorPaysClue": "{name} spends 1 clue (has {clues})",
+    "fireFromDiscard": "Only the encounter discard pile",
+    "fireFromBoth": "The encounter deck and discard pile"
   },
   "phase": {
     "setup": "Setup",
@@ -238,7 +254,8 @@
     "sealed": "{name} seals a token ({token})",
     "weakness": "{name} draws their weakness {card}",
     "underAct": "{enemy} is placed beneath the act",
-    "enemyImmune": "{enemy} cannot be damaged (there is fire at its location)"
+    "enemyImmune": "{enemy} cannot be damaged (there is fire at its location)",
+    "lead": "{name} is the lead investigator"
   },
   "table": {
     "log": "Game log",
@@ -289,7 +306,10 @@
     "actionsLeft": "{n} actions",
     "journal": "Case journal",
     "shroudUntilEndOfRound": "Shroud changed until the end of the round",
-    "cardBeneath": "There is a facedown card beneath this location"
+    "cardBeneath": "There is a facedown card beneath this location",
+    "officialText": "Official text",
+    "summaryText": "Summary",
+    "mulliganHint": "Click the cards in your hand you want to replace."
   },
   "difficulty": {
     "easy": "Easy",
@@ -300,7 +320,7 @@
   "setup": {
     "continue": "Continue saved game",
     "chooseInvestigators": "Choose 1 to 4 investigators",
-    "orderHint": "The order you pick is the player order; the first is the lead investigator.",
+    "orderHint": "The order you pick is the player order. At the start of each scenario you choose the lead investigator, who then goes first.",
     "quit": "Quit game",
     "noGame": "There is no game in progress.",
     "confirmQuit": "Quit this game? It cannot be recovered."
@@ -364,7 +384,9 @@
       "resolution2Title": "Resolution 2",
       "resolution2": "Working side by side with the others, you hold back the flames until the Arkham Fire Department arrives. With things under control, you hurry to meet Dr. Armitage.",
       "resolution3Title": "Resolution 3",
-      "resolution3": "You flee the campus with Dr. Armitage and leave the university to its fate, sirens wailing behind you on the way to his apartment."
+      "resolution3": "You flee the campus with Dr. Armitage and leave the university to its fate, sirens wailing behind you on the way to his apartment.",
+      "setupTitle": "Setup",
+      "setup": "Gather the scenario's encounter sets.\n\nPut Your Friend's Room into play and set the other campus locations aside. Each investigator begins at Your Friend's Room.\n\nSet aside, out of play, the 5 copies of Fire!, the Dr. Henry Armitage story asset and the Servant of Flame enemy.\n\nShuffle the remaining encounter cards to build the encounter deck."
     },
     "effect": {
       "record": "In your campaign log, record {note}.",
@@ -429,7 +451,15 @@
       "resolution1Title": "Resolution 1",
       "resolution1": "In the cab to Easttown it becomes clear: despite their efforts to hide, you have found the real culprit. You hope it is enough to save your friend.",
       "resolution2Title": "Resolution 2",
-      "resolution2": "You stop by the hideout where you left your unconscious nemesis. It smells of smoke and the handcuffs are smashed, not melted: someone helped them escape."
+      "resolution2": "You stop by the hideout where you left your unconscious nemesis. It smells of smoke and the handcuffs are smashed, not melted: someone helped them escape.",
+      "setupTitle": "Setup",
+      "setup": "Choose one of the two Downtown versions and one of the two Uptown versions at random; remove the others. Put Northside, Easttown, Merchant District, Waterfront District, Southside and French Hill into play.\n\nMiskatonic University enters on its In Flames side if the university burned, or Quiet Campus if the investigators saved it (then place 1 doom on the agenda). Each investigator begins there.\n\nSet one suspect (People of Arkham) aside at random without looking; shuffle the rest with the Servant of Flame and deal them facedown beneath Northside, Downtown, Southside, French Hill, Uptown and Waterfront District.\n\nPlace 1 doom on the agenda per investigator. The bearer of Dr. Henry Armitage puts him into play (he takes no ally slot). Set the Mark of Elokoss copies aside and shuffle the rest as the encounter deck.",
+      "codex1Attempt": "The haughty Mr. Renfield tries to send you off politely, but at the words \"Brethren of Ash\" he bolts down the street, faster than he looks.",
+      "codex2Attempt": "Cornelia Akely, on the night shift at a run-down garage, greets you with a cigarette; the moment you mention the cult, her face hardens and she points to the door.",
+      "codex3Attempt": "The O'Bannion boss has no interest in your questions, though she will happily get rid of any trouble for you… for a price. More palms will need greasing.",
+      "codex4Attempt": "At the mention of the cult, the officer pulls his nightstick and suggests you poke your nose elsewhere. You brace for a fight.",
+      "codex5Attempt": "The librarian waves your questions away while pulling more books off the shelf. Perhaps the only way to get her attention is to help her find what she is looking for.",
+      "codex6Attempt": "Margaret Liu, one of the best-known singers in town, is lost in her performance. You will have to get creative to catch her attention."
     },
     "queenOfAsh": {
       "intro1Title": "Scenario III: Queen of Ash",
@@ -454,7 +484,13 @@
       "resolution2Title": "Resolution 2",
       "resolution2": "Dr. Armitage chants inhuman words from a tome taken from a cultist and the burning tree crumbles to ash. The cultists are freed from her sway, your friend among them, without a trace of the mark. Even so, for months the faintest smell of smoke will set your pulse racing.",
       "resolution3Title": "Resolution 3",
-      "resolution3": "The old sluice gate screeches open and a torrent floods the tunnels. You do not try to run: you did what had to be done. As the water rises, you think of your friend, of Armitage and of all who drowned to stop an ancient evil."
+      "resolution3": "The old sluice gate screeches open and a torrent floods the tunnels. You do not try to run: you did what had to be done. As the water rises, you think of your friend, of Armitage and of all who drowned to stop an ancient evil.",
+      "setupTitle": "Setup",
+      "setup": "Put Underground Cistern into play. Shuffle the sewer locations and put them into play unrevealed, without knowing which is which; set Sluice Control aside. Each investigator begins at Sewer Culvert.\n\nCheck the campaign log: if the investigators scoured Arkham for answers, each begins with 1 clue; if they stirred up trouble, 1 cultist per investigator enters play, each at a different tunnel; if they killed the Servant of Flame, remove it from the game (otherwise set it aside).\n\nWith 3 or 4 players, place 1 doom on the agenda. Set aside the Fire! copies, the Collector reward and the Elokoss, Queen's Knight and Herald of Flame enemies. The rest forms the encounter deck."
+    },
+    "brethrenOfAsh": {
+      "prologueTitle": "Prologue: A Glorious Rebirth",
+      "prologue": "Arkham has never been an ordinary city: every week the paper reports another gruesome crime or disappearance, and even the most skeptical cannot deny that something is wrong.\n\nStill, people prefer to look away. Six months after the great flood the city rebuilds and boasts of progress, but among the ashes of the recent fires some whisper that someone, or something, wishes to be reborn."
     }
   },
   "playmat": {

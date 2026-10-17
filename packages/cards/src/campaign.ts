@@ -8,6 +8,7 @@
 import {
   createGame,
   emptyCampaignLog,
+  isPermanent,
   playerCardBehavior,
   type CampaignLog,
   type CardCode,
@@ -116,6 +117,7 @@ export function canPlayNext(campaign: Campaign): boolean {
 export function startScenario(campaign: Campaign, seed: number, interactive = true): GameState {
   const entry = scenarioEntry(campaign)
   if (!entry?.build) throw new Error(`Escenario no disponible: ${entry?.id ?? '—'}`)
+  const definition = campaignDefinition(campaign.id)
   const members = activeMembers(campaign)
   const scenario = entry.build({
     difficulty: campaign.difficulty,
@@ -128,8 +130,14 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
     difficulty: campaign.difficulty,
     interactive,
     campaignLog: campaign.log,
-    // Reglamento: en campaña, la bolsa del caos sigue como acabó el escenario anterior.
-    scenario: { ...scenario, chaosBag: [...scenario.chaosBag, ...campaign.log.chaosTokens] },
+    scenario: {
+      ...scenario,
+      ...(campaign.scenarioIndex === 0 && definition.prologue
+        ? { prologue: definition.prologue }
+        : {}),
+      // Reglamento: en campaña, la bolsa del caos sigue como acabó el escenario anterior.
+      chaosBag: [...scenario.chaosBag, ...campaign.log.chaosTokens],
+    },
     investigators: members.map((i) => {
       const record = campaign.log.investigators[i.id]
       // Los apoyos de historia y debilidades ganados van en el mazo (salvo los que el
@@ -189,8 +197,9 @@ export function isImplemented(card: CardCode): boolean {
   return STARTER_CARDS.has(card) || playerCardBehavior(card) !== undefined
 }
 
-/** Cuenta para el tamaño del mazo (ni las debilidades ni las cartas exclusivas obligatorias). */
-const countsForSize = (card: CardCode) => !byCode(card)?.weakness && !isSignature(card)
+/** Cuenta para el tamaño del mazo (ni debilidades, ni exclusivas, ni permanentes). */
+const countsForSize = (card: CardCode) =>
+  !byCode(card)?.weakness && !isSignature(card) && !isPermanent(card)
 
 /** Cartas del mazo que cuentan para su tamaño. */
 export const deckSize = (deck: CardCode[]) => deck.filter(countsForSize).length
@@ -240,18 +249,29 @@ export function purchaseOptions(
       }
       const copies = deck.filter((c) => byCode(c)?.name === card.name)
       // Mejora: una copia de menor nivel del mismo título pasa a la nueva versión.
-      const lower = copies.find((c) => level(c) < base.level)
+      const lower = copies.find((c) => level(c) < base.level && !isPermanent(c))
       const upgrade: PurchaseOption[] = lower
         ? [{ ...base, cost: base.level - level(lower), replaces: lower, needsRemoval: false }]
         : []
       // Carta nueva: como máximo 2 copias por título; cuesta al menos 1 experiencia.
       const add: PurchaseOption[] =
-        copies.length < 2 ? [{ ...base, cost: Math.max(1, base.level), needsRemoval: full }] : []
+        copies.length < 2
+          ? [
+              {
+                ...base,
+                cost: Math.max(1, base.level),
+                needsRemoval: full && !isPermanent(card.code),
+              },
+            ]
+          : []
       return [...upgrade, ...add].filter((o) => o.cost <= xp)
     })
 }
 
-/** Cartas que se pueden quitar del mazo para hacer sitio (ni debilidades ni exclusivas). */
+/**
+ * Cartas que se pueden quitar del mazo para hacer sitio: las que cuentan para su
+ * tamaño (las permanentes no se pueden quitar una vez añadidas, FAQ).
+ */
 export function removableCards(campaign: Campaign, investigator: InvestigatorId): CardCode[] {
   const { deck } = member(campaign, investigator)
   return [...new Set(deck.filter(countsForSize))]

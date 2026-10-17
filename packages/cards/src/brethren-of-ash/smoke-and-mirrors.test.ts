@@ -3,10 +3,11 @@ import {
   availableActions,
   createGame,
   getInvestigator,
+  shroudOf,
   type EnemyCard,
   type GameState,
 } from '@lcg/engine'
-import { choose, during, labels, withBag } from '@lcg/engine/testing'
+import { choose, during, labels, throughSetup, withBag } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { finishScenario, newCampaign, startScenario, type Campaign } from '../campaign'
 import { code, starterInvestigator } from '../core-2026/player-cards'
@@ -151,7 +152,7 @@ describe('Smoke and Mirrors: resolución', () => {
       ...newCampaign('brethren-of-ash', ['daniela'], 'standard'),
       scenarioIndex: 1,
     }
-    let game = choose(startScenario(campaign, 4), 'choice.continue')
+    let game = throughSetup(startScenario(campaign, 4))
     const three = suspects.slice(0, 3).map((s) => s.code)
     game = during(game, (s) => ({ ...s, underAct: three }), {
       type: 'EndScenario',
@@ -181,5 +182,23 @@ describe('Smoke and Mirrors: robustez', () => {
       }
       expect(game.outcome !== null || game.pending !== null).toBe(true)
     }
+  })
+})
+
+describe('Smoke and Mirrors: Flash Flood', () => {
+  it('se une a tu localización (+4 al velo) y se descarta al final de la ronda', () => {
+    let game = newGame()
+    const before = shroudOf(game, here(game))
+    game = during(game, (s) => s, {
+      type: 'ResolveEncounterCard',
+      investigator: DANIELA,
+      card: { kind: 'treachery', code: CODES.flashFlood, name: 'Flash Flood', keywords: [] },
+    })
+    const flood = Object.values(game.treacheries).find((t) => t.code === CODES.flashFlood)
+    expect(flood?.placement).toEqual({ type: 'location', location: here(game) })
+    expect(shroudOf(game, here(game))).toBe(before + 4)
+    game = during(game, (s) => s, { type: 'Forced', trigger: { type: 'roundEnds' } })
+    expect(Object.values(game.treacheries).some((t) => t.code === CODES.flashFlood)).toBe(false)
+    expect(shroudOf(game, here(game))).toBe(before)
   })
 })

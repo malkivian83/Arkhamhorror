@@ -3,15 +3,21 @@
  * exigidas por efectos, habilidades habituales y textos de resolución con sus
  * efectos de campaña. Las comparten todos los escenarios de todas las campañas.
  */
-import type {
-  AbilityOption,
-  EnemyCard,
-  InvestigatorId,
-  Message,
-  ScenarioOutcome,
-  SkillType,
-  StoryEntry,
-  TreacheryCard,
+import {
+  isPermanent,
+  playerCardDef,
+  type AbilityOption,
+  type Asset,
+  type Choice,
+  type EnemyCard,
+  type GameState,
+  type InvestigatorId,
+  type LocationId,
+  type Message,
+  type ScenarioOutcome,
+  type SkillType,
+  type StoryEntry,
+  type TreacheryCard,
 } from '@lcg/engine'
 
 // ---------------------------------------------------------------------------
@@ -24,6 +30,58 @@ export const treachery = (card: Omit<TreacheryCard, 'kind'>): TreacheryCard => (
   kind: 'treachery',
   ...card,
 })
+
+/** Apoyos en juego en una localización (los de los investigadores que están en ella). */
+export function assetsAt(state: GameState, location: LocationId): Asset[] {
+  const here = new Set(
+    state.investigators.filter((i) => !i.eliminated && i.location === location).map((i) => i.id),
+  )
+  return Object.values(state.assets).filter((a) => here.has(a.owner))
+}
+
+/** Apoyos con salud de una localización ("cartas con salud" que no son investigadores). */
+export const assetsWithHealthAt = (state: GameState, location: LocationId): Asset[] =>
+  assetsAt(state, location).filter((a) => (playerCardDef(a.code)?.health ?? 0) > 0)
+
+/** Aliados de una localización. */
+export const alliesAt = (state: GameState, location: LocationId): Asset[] =>
+  assetsAt(state, location).filter((a) => (playerCardDef(a.code)?.traits ?? []).includes('Ally'))
+
+/** 1 daño a cada apoyo con salud de la localización. */
+export const damageAssetsAt = (state: GameState, location: LocationId, amount = 1): Message[] =>
+  assetsWithHealthAt(state, location).map((a): Message => ({
+    type: 'DamageAsset',
+    asset: a.id,
+    damage: amount,
+    horror: 0,
+  }))
+
+/** El investigador elige y descarta uno de sus apoyos (que no sea permanente ni de historia). */
+export function chooseAssetToDiscard(state: GameState, investigator: InvestigatorId): Message[] {
+  const mine = Object.values(state.assets).filter(
+    (a) =>
+      a.owner === investigator &&
+      !isPermanent(a.code) &&
+      !(playerCardDef(a.code)?.traits ?? []).includes('Story'),
+  )
+  if (mine.length === 0) return []
+  return [
+    {
+      type: 'Ask',
+      investigator,
+      question: {
+        kind: 'chooseOne',
+        prompt: 'prompt.chooseCardToDiscard',
+        choices: mine.map((a): Choice => ({
+          label: 'choice.discard',
+          params: { card: playerCardDef(a.code)?.name ?? a.code },
+          target: { type: 'asset', id: a.id },
+          then: [{ type: 'DiscardAsset', asset: a.id }],
+        })),
+      },
+    },
+  ]
+}
 
 /** `n` copias independientes de una carta (para mazos de encuentros). */
 export const copies = <T>(card: T, n: number): T[] => Array.from({ length: n }, () => ({ ...card }))

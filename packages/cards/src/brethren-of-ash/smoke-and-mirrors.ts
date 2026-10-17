@@ -43,9 +43,11 @@ import {
 } from '@lcg/engine'
 import { CHAOS_BAGS, type Difficulty } from './campaign'
 import {
+  alliesAt,
   chooseSkillTest,
   copies,
   damage,
+  damageAssetsAt,
   effectTest,
   enemy,
   noteEffect,
@@ -496,6 +498,10 @@ export function smokeAndMirrors(options: SmokeAndMirrorsOptions = {}): ScenarioD
   return {
     id: SMOKE_AND_MIRRORS,
     intro: { title: 'story.smokeAndMirrors.introTitle', body: 'story.smokeAndMirrors.intro' },
+    setupInstructions: {
+      title: 'story.smokeAndMirrors.setupTitle',
+      body: 'story.smokeAndMirrors.setup',
+    },
     locations,
     startingLocation: university.id,
     agendas: [
@@ -642,7 +648,13 @@ const codexEntry = (n: string): StoryEntry => ({
  * por investigador, queda interrogado (debajo del acto).
  */
 function codex(state: GameState, self: Enemy, n: string, effect: Message[]): Message[] {
+  // Cada intento tiene su texto; al reunir las pistas necesarias se lee el final.
+  const attempt: StoryEntry = {
+    title: `story.smokeAndMirrors.codex${n}Title`,
+    body: `story.smokeAndMirrors.codex${n}Attempt`,
+  }
   return [
+    ...(state.interactive ? [{ type: 'Story', entry: attempt } as Message] : []),
     ...effect,
     { type: 'AddLead', enemy: self.id },
     {
@@ -1016,11 +1028,22 @@ registerTreachery({
 
 registerTreachery({
   code: CODES.flashFlood,
-  // Tu localización tiene +4 al velo hasta el final de la ronda.
-  revelation: (state, investigator) => {
+  // Se une a tu localización: +4 a su velo. Forzado al final de la ronda: se descarta.
+  shroudModifier: 4,
+  revelation: (state, investigator, self) => {
     const here = getInvestigator(state, investigator).location
-    return here === null ? [] : [{ type: 'ModifyShroud', location: here, amount: 4 }]
+    return here === null
+      ? []
+      : [
+          {
+            type: 'PlaceTreachery',
+            treachery: self.id,
+            placement: { type: 'location', location: here },
+          },
+        ]
   },
+  forced: (_state, trigger, self) =>
+    trigger.type === 'roundEnds' ? [{ type: 'DiscardTreachery', treachery: self.id }] : [],
 })
 
 registerTreachery({
@@ -1176,13 +1199,14 @@ registerLocation({
 })
 
 // Downtown (Arkham Sanatorium): tras descubrir pistas aquí, puedes curar 1 horror a
-// un investigador de esta localización.
+// un investigador o un aliado de esta localización.
 registerLocation({
   code: CODES.downtownSanatorium,
   forced: (state, trigger, self) => {
     if (trigger.type !== 'afterDiscoverClues' || trigger.location !== self.id) return []
     const hurt = investigatorsAt(state, self.id).filter((i) => i.horror > 0)
-    if (hurt.length === 0) return []
+    const allies = alliesAt(state, self.id).filter((a) => a.horror > 0)
+    if (hurt.length === 0 && allies.length === 0) return []
     return [
       {
         type: 'Ask',
@@ -1196,6 +1220,12 @@ registerLocation({
               params: { name: i.name },
               then: [{ type: 'Heal', investigator: i.id, damage: 0, horror: 1 }],
             })),
+            ...allies.map((a): Choice => ({
+              label: 'choice.healHorrorOf',
+              params: { name: playerCardDef(a.code)?.name ?? a.code },
+              target: { type: 'asset', id: a.id },
+              then: [{ type: 'HealAsset', asset: a.id, damage: 0, horror: 1 }],
+            })),
             { label: 'choice.skip', then: [] },
           ],
         },
@@ -1204,13 +1234,14 @@ registerLocation({
   },
 })
 
-// Uptown (St. Mary's Hospital): acción: cura hasta 2 daño entre los investigadores de
-// aquí (una vez por partida).
+// Uptown (St. Mary's Hospital): acción: cura hasta 2 daño entre los investigadores y
+// aliados de aquí (una vez por partida cada investigador).
 registerLocation({
   code: CODES.uptownHospital,
   abilities: (state, self, investigator) => {
     const hurt = investigatorsAt(state, self.id).filter((i) => i.damage > 0)
-    if (hurt.length === 0) return []
+    const allies = alliesAt(state, self.id).filter((a) => a.damage > 0)
+    if (hurt.length === 0 && allies.length === 0) return []
     const healOne = (): Message => ({
       type: 'Ask',
       investigator,
@@ -1223,6 +1254,12 @@ registerLocation({
             params: { name: i.name },
             then: [{ type: 'Heal', investigator: i.id, damage: 1, horror: 0 }],
           })),
+          ...allies.map((a): Choice => ({
+            label: 'choice.healDamageOf',
+            params: { name: playerCardDef(a.code)?.name ?? a.code },
+            target: { type: 'asset', id: a.id },
+            then: [{ type: 'HealAsset', asset: a.id, damage: 1, horror: 0 }],
+          })),
           { label: 'choice.skip', then: [] },
         ],
       },
@@ -1233,7 +1270,7 @@ registerLocation({
         label: 'ability.hospitalHeal',
         actions: 1,
         provokes: true,
-        limit: { per: 'game', group: true },
+        limit: { per: 'game' },
         then: [healOne(), healOne()],
       },
     ]
@@ -1396,18 +1433,21 @@ registerLocation({
 })
 
 // Miskatonic University (In Flames): al terminar la fase de investigación, 1 daño directo
-// a cada investigador de aquí.
+// a cada investigador de aquí y 1 daño a cada apoyo con salud de aquí.
 registerLocation({
   code: CODES.universityInFlames,
   forced: (state, trigger, self) =>
     trigger.type === 'investigationPhaseEnds'
-      ? investigatorsAt(state, self.id).map((i): Message => ({
-          type: 'TakeDamage',
-          investigator: i.id,
-          damage: 1,
-          horror: 0,
-          direct: true,
-        }))
+      ? [
+          ...investigatorsAt(state, self.id).map((i): Message => ({
+            type: 'TakeDamage',
+            investigator: i.id,
+            damage: 1,
+            horror: 0,
+            direct: true,
+          })),
+          ...damageAssetsAt(state, self.id),
+        ]
       : [],
 })
 

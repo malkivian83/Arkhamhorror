@@ -9,6 +9,7 @@ registerCampaign({
   id: BRETHREN_OF_ASH.id,
   name: 'campaign.names.brethren-of-ash',
   chaosBags: CHAOS_BAGS,
+  prologue: { title: 'story.brethrenOfAsh.prologueTitle', body: 'story.brethrenOfAsh.prologue' },
   scenarios: [
     { id: 'spreading-flames', build: ({ difficulty }) => spreadingFlames(difficulty) },
     {

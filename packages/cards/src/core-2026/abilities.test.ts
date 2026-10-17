@@ -39,6 +39,43 @@ const set =
   })
 const prompt = (s: GameState) => s.pending?.question.prompt
 
+describe('inicio de la partida', () => {
+  const interactive = (deck: string[]) =>
+    createGame({
+      seed: 3,
+      interactive: true,
+      scenario: testScenario({ chaosBag: [0] }),
+      investigators: [testInvestigator('a', { deck })],
+    })
+
+  it('mulligan: aparta cartas, roba otras tantas y las baraja en el mazo', () => {
+    let s = interactive(filler(20))
+    expect(prompt(s)).toBe('prompt.mulligan')
+    const [first, second] = me(s).hand as [string, string]
+    s = choose(s, 'choice.mulliganCard', { card: first })
+    s = choose(s, 'choice.mulliganCard', { card: second })
+    expect(me(s).hand).toHaveLength(3)
+    s = choose(s, 'choice.mulliganDone', { n: 2 })
+    expect(prompt(s)).toBe('prompt.chooseAction')
+    expect(me(s).hand).toHaveLength(5)
+    expect(me(s).hand).not.toContain(first)
+    expect(me(s).deck).toContain(first)
+    expect(me(s).deck).toHaveLength(15)
+    expect(me(s).setAsideOpening).toBeUndefined()
+  })
+
+  it('las debilidades robadas en el mulligan también se apartan', () => {
+    let s = interactive([code(101), ...filler(20)])
+    const hand = me(s).hand
+    expect(hand).not.toContain(code(101))
+    // Al apartar toda la mano, el mulligan termina solo.
+    for (const card of hand) s = choose(s, 'choice.mulliganCard', { card })
+    expect(me(s).hand).toHaveLength(5)
+    expect(me(s).hand).not.toContain(code(101))
+    expect(me(s).deck).toContain(code(101))
+  })
+})
+
 describe('debilidades', () => {
   it('las de la mano inicial se apartan y se barajan en el mazo', () => {
     const s = game('a', { deck: [code(101), ...filler(20)] })
@@ -114,6 +151,9 @@ describe('investigadores', () => {
       investigator: code(4),
       action: { kind: 'investigate' },
     })
+    // Su reacción (paso 6) se ofrece antes de aplicar el signo arcano (paso 7).
+    expect(labels(s)).toContain('ability.drawCards')
+    s = choose(s, 'choice.skip')
     expect(me(s).resources).toBe(resources + 1)
   })
 

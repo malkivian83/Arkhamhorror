@@ -58,6 +58,8 @@ export interface ScenarioBehavior {
 export interface TreacheryBehavior {
   /** Acciones adicionales para entrar o salir de la localización a la que está unida (Arcane Lock). */
   moveCost?: number
+  /** Modificador al velo de la localización a la que está unida (Flash Flood). */
+  shroudModifier?: number
   code: CardCode
   /** Mensajes de su revelación. Si no la coloca en juego, se descarta al terminar. */
   revelation: (state: GameState, investigator: InvestigatorId, self: Treachery) => Message[]
@@ -220,6 +222,8 @@ export interface PlayerCardBehavior {
   /** Su acción es de evitar (cuenta como tal) o no provoca ataques de oportunidad. */
   evadeAction?: boolean
   noAttacksOfOpportunity?: boolean
+  /** Mientras está en juego, la primera acción de cada turno de su dueño no provoca ataques de oportunidad. */
+  firstActionSafe?: boolean
   /** Debilidad que cancela las búsquedas en el mazo (Dead Ends). */
   cancelsSearch?: boolean
   /** Debilidad de tipo enemigo: sus valores, para que aparezca al robarla. */
@@ -267,3 +271,6 @@ export function playerCardDef(code: CardCode): PlayerCardDef | undefined {
 export function playerCardBehavior(code: CardCode): PlayerCardBehavior | undefined {
   return playerBehaviors.get(code)
 }
+
+/** Permanente: no cuenta para el tamaño del mazo, no se quita de él y no abandona el juego. */
+export const isPermanent = (code: CardCode) => !!playerBehaviors.get(code)?.permanent

@@ -6,7 +6,7 @@ import {
   getInvestigator,
   type GameState,
 } from '@lcg/engine'
-import { choose, during } from '@lcg/engine/testing'
+import { choose, during, throughSetup } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { finishScenario, newCampaign, startScenario } from '../campaign'
 import { code, starterInvestigator } from '../core-2026/player-cards'
@@ -154,9 +154,8 @@ describe('Queen of Ash: resolución y campaña', () => {
       ...newCampaign('brethren-of-ash', ['daniela'], 'standard'),
       scenarioIndex: 2,
     }
-    let game = startScenario(campaign, 4)
-    // Introducciones (1 y 3).
-    game = choose(choose(game, 'choice.continue'), 'choice.continue')
+    // Introducciones (1 y 3), mulligan y preparación.
+    let game = throughSetup(startScenario(campaign, 4))
     game = during(game, (s) => s, {
       type: 'EndScenario',
       outcome: { type: 'resolution', resolution: 1 },
@@ -178,7 +177,7 @@ describe('Queen of Ash: resolución y campaña', () => {
       ...newCampaign('brethren-of-ash', ['daniela'], 'standard'),
       scenarioIndex: 2,
     }
-    let game = choose(choose(startScenario(campaign, 4), 'choice.continue'), 'choice.continue')
+    let game = throughSetup(startScenario(campaign, 4))
     game = during(game, (s) => s, { type: 'EndScenario', outcome: { type: 'noResolution' } })
     game = choose(game, 'choice.continue')
     const log = finishScenario(campaign, game).log

@@ -5,8 +5,6 @@
  * Los códigos son los números de carta de la caja (12xxx). Los efectos están
  * implementados a partir de su descripción; no se incluye el texto de las cartas.
  *
- * Pendiente: Dr. Henry Armitage (requiere apoyos en juego), el forzado de
- * Hellhound, la victoria de las localizaciones y las resoluciones de campaña.
  */
 import {
   activeInvestigators,
@@ -35,9 +33,11 @@ import {
   type SkillType,
 } from '@lcg/engine'
 import {
+  chooseAssetToDiscard,
   chooseSkillTest,
   copies,
   damage,
+  damageAssetsAt,
   earnExperience,
   effectTest,
   endScenario,
@@ -68,10 +68,11 @@ registerPlayerCards([
     sanity: 3,
   },
 ])
-// +1 [willpower] y +1 [intellect]. (Pendiente: su primera acción de cada ronda no provoca
-// ataques de oportunidad.)
+// +1 [willpower] y +1 [intellect]; la primera acción de cada turno de su portador no
+// provoca ataques de oportunidad.
 registerPlayerCard({
   code: DR_ARMITAGE,
+  firstActionSafe: true,
   skillModifier: (_state, _self, test) =>
     test.skill === 'willpower' || test.skill === 'intellect' ? 1 : 0,
 })
@@ -299,6 +300,10 @@ export function spreadingFlames(difficulty: Difficulty = 'standard'): ScenarioDe
   return {
     id: SPREADING_FLAMES,
     intro: { title: 'story.spreadingFlames.introTitle', body: 'story.spreadingFlames.intro' },
+    setupInstructions: {
+      title: 'story.spreadingFlames.setupTitle',
+      body: 'story.spreadingFlames.setup',
+    },
     locations: [yourFriendsRoom],
     setAsideLocations: Object.values(others),
     startingLocation: CODES.yourFriendsRoom,
@@ -698,12 +703,13 @@ registerTreachery({
         ]
   },
   // Forzado al terminar la fase de investigación: 1 daño directo a cada carta no
-  // Élite con salud en esa localización (investigadores y enemigos; apoyos, pendiente).
+  // Élite con salud en esa localización (investigadores, apoyos y enemigos).
   forced: (state, trigger, self) => {
     if (trigger.type !== 'investigationPhaseEnds' || self.placement.type !== 'location') return []
     const location = self.placement.location
     return [
       ...investigatorsAt(state, location).map((i) => damage(i.id, 1)),
+      ...damageAssetsAt(state, location),
       ...enemiesAt(state, location)
         .filter((e) => !(e.traits ?? []).includes('Elite'))
         .map((e): Message => ({ type: 'DamageEnemy', enemy: e.id, amount: 1 })),
@@ -722,8 +728,14 @@ registerEnemy({
       : [],
 })
 
-// Hellhound: "tras atacarte en la fase de enemigos, descarta un apoyo que controles".
-// Se implementará cuando existan los apoyos en juego.
+// Hellhound: forzado tras atacarte en la fase de enemigos: descarta un apoyo que controles.
+registerEnemy({
+  code: CODES.hellhound,
+  forced: (state, trigger, self) =>
+    trigger.type === 'afterEnemyPhaseAttack' && trigger.enemy === self.id
+      ? chooseAssetToDiscard(state, trigger.investigator)
+      : [],
+})
 
 // ---------------------------------------------------------------------------
 // Plan
@@ -841,23 +853,53 @@ registerAct({
 
 registerAct({
   code: CODES.searchingForDrArmitage,
-  // Pendiente: Dr. Henry Armitage entra en juego bajo el control de un investigador.
+  // El jefe elige quién toma el control del Dr. Henry Armitage (no ocupa ranura de
+  // aliado); el Servant of Flame aparece en el patio con pistas; el jefe roba 1 Fire!
+  // por investigador, del descarte o buscando también en el mazo.
   onAdvance: (state) => {
     const lead = leadInvestigator(state)
+    if (!lead) return []
     const perInv = state.startingInvestigatorCount
+    const search = (fromDiscard: boolean): Message => ({
+      type: 'SearchAndDrawEncounter',
+      investigator: lead.id,
+      code: CODES.fire,
+      amount: perInv,
+      ...(fromDiscard ? { fromDiscard } : {}),
+    })
+    const firesInDiscard = state.encounterDiscard.filter((c) => c.code === CODES.fire).length
     return [
+      {
+        type: 'Ask',
+        investigator: lead.id,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.armitageControl',
+          choices: activeInvestigators(state).map((i) => ({
+            label: 'choice.investigator',
+            params: { name: i.name },
+            then: [
+              { type: 'PutAssetIntoPlay', investigator: i.id, code: DR_ARMITAGE, noSlot: true },
+            ],
+          })),
+        },
+      },
       { type: 'SpawnSetAsideEnemy', code: CODES.servantOfFlame, location: CODES.miskatonicQuad },
       { type: 'PlaceCluesOnLocationFromPool', location: CODES.miskatonicQuad, amount: 3 * perInv },
-      ...(lead
-        ? [
-            {
-              type: 'SearchAndDrawEncounter',
-              investigator: lead.id,
-              code: CODES.fire,
-              amount: perInv,
-            } as const,
-          ]
-        : []),
+      firesInDiscard >= perInv
+        ? {
+            type: 'Ask',
+            investigator: lead.id,
+            question: {
+              kind: 'chooseOne',
+              prompt: 'prompt.searchFire',
+              choices: [
+                { label: 'choice.fireFromDiscard', then: [search(true)] },
+                { label: 'choice.fireFromBoth', then: [search(false)] },
+              ],
+            },
+          }
+        : search(false),
     ]
   },
 })

@@ -3,7 +3,7 @@
  * reglas de construcción (reglamento, "Deck Customization") e importación desde
  * ArkhamDB.
  */
-import { nextInt, seedRng, type CardCode, type PlayerCardDef } from '@lcg/engine'
+import { isPermanent, nextInt, seedRng, type CardCode, type PlayerCardDef } from '@lcg/engine'
 import { isImplemented } from './campaign'
 import { playerCards, starterDeck, STARTER_DECKS } from './core-2026/player-cards'
 
@@ -26,8 +26,10 @@ const SIGNATURES = new Set(playerCards.flatMap((c) => c.signatures ?? []))
 const isWeakness = (code: CardCode) => !!byCode(code)?.weakness
 const isBasicWeakness = (code: CardCode) => byCode(code)?.weakness === 'basicweakness'
 
-/** Cartas "normales": las que cuentan para el tamaño del mazo. */
+/** Cartas que el jugador elige (ni exclusivas ni debilidades). */
 export const isStandard = (code: CardCode) => !isWeakness(code) && !SIGNATURES.has(code)
+/** Cuentan para el tamaño del mazo: las elegidas que no son permanentes. */
+const countsForSize = (code: CardCode) => isStandard(code) && !isPermanent(code)
 
 /** Cartas que este investigador puede incluir según sus opciones de construcción. */
 export function cardPool(investigator: CardCode): PlayerCardDef[] {
@@ -111,7 +113,7 @@ export function validateDeck(deck: DeckList, campaignStart = true): DeckCheck {
     }
   }
 
-  const size = deck.cards.filter(isStandard).length
+  const size = deck.cards.filter(countsForSize).length
   const required = investigator.deckSize ?? 30
   if (size !== required) {
     problems.push({ key: 'deck.problem.size', params: { n: size, size: required } })

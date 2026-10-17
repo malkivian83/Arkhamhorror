@@ -109,6 +109,21 @@ export function choose(state: GameState, label: string, params: LabelParams = {}
   return applyInput(state, { investigator: pending.investigator, choice: index })
 }
 
+/** Preguntas de la preparación que `throughSetup` contesta por defecto. */
+const SETUP_PROMPTS = new Set(['prompt.story', 'prompt.mulligan', 'prompt.chooseLead'])
+
+/**
+ * En la mesa: lee los textos de la preparación, deja de jefe al primero y se
+ * queda con la mano inicial, hasta el primer menú de acciones.
+ */
+export function throughSetup(state: GameState): GameState {
+  let s = state
+  while (s.pending && SETUP_PROMPTS.has(s.pending.question.prompt)) {
+    s = applyInput(s, { investigator: s.pending.investigator, choice: 0 })
+  }
+  return s
+}
+
 export function labels(state: GameState): string[] {
   return state.pending?.question.choices.map((c) => c.label) ?? []
 }

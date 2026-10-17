@@ -77,7 +77,9 @@ watch(
     </div>
 
     <div v-else-if="state.pending" class="question" aria-live="polite">
-      <p class="prompt">{{ t(state.pending.question.prompt) }}</p>
+      <p class="prompt">
+        {{ label(state.pending.question.prompt, state.pending.question.promptParams ?? {}) }}
+      </p>
       <p class="who">{{ t('game.waitingFor', { name: decider }) }}</p>
       <p v-if="game.choicesByTarget.size" class="hint">↖ {{ t('table.clickHighlighted') }}</p>
       <div class="buttons">

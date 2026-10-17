@@ -74,12 +74,11 @@ con 1 por investigador, queda interrogado y pasa **debajo del acto**.
   Flame estaba debajo del acto → **resolución 2**: "el Servant of Flame escapó" y 1
   de experiencia adicional.
 
-## Simplificaciones
+## Detalles
 
-- **Flash Flood** se aplica como +4 al velo de tu localización hasta el final de la
-  ronda (equivale a unirse y descartarse al acabar la ronda).
-- **Dr. Henry Armitage**: da +1 [willpower] y +1 [intellect]; falta que la primera
-  acción de cada ronda no provoque ataques de oportunidad.
-- Los efectos que dañan "cartas de jugador con salud" (University in Flames) solo
-  afectan a investigadores, como Fire! en el escenario I.
-- St. Mary's Hospital y el Sanatorium curan a investigadores, no a aliados.
+- **Flash Flood** se une a tu localización (+4 a su velo) y se descarta al final de
+  la ronda.
+- **University in Flames** daña también a los apoyos con salud de la localización.
+- **St. Mary's Hospital** (una vez por partida cada investigador) y el **Sanatorium**
+  curan a investigadores y aliados.
+- Cada intento de un **códex** muestra su texto; al reunir las pistas, el final.

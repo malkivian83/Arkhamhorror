@@ -10,6 +10,7 @@ import type {
   Difficulty,
   InvestigatorId,
   ScenarioDefinition,
+  StoryEntry,
 } from '@lcg/engine'
 
 /** Lo que necesita un escenario para prepararse dentro de una campaña. */
@@ -34,6 +35,8 @@ export interface CampaignDefinition {
   id: string
   /** Clave i18n del nombre de la campaña. */
   name: string
+  /** Prólogo que se lee al empezar la campaña (antes del primer escenario). */
+  prologue?: StoryEntry
   scenarios: CampaignScenario[]
   /** Bolsa del caos inicial por dificultad (guía de campaña). */
   chaosBags: Record<Difficulty, ChaosToken[]>

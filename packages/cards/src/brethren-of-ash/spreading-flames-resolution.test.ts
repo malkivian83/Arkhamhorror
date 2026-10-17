@@ -1,5 +1,5 @@
 import { createGame, type GameState, type ScenarioOutcome } from '@lcg/engine'
-import { choose, during, testInvestigator } from '@lcg/engine/testing'
+import { choose, during, testInvestigator, throughSetup } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { spreadingFlames } from './spreading-flames'
 
@@ -16,7 +16,7 @@ const story = (s: GameState) => s.pending?.question.story?.title
 
 /** Partida en la mesa, ya leída la introducción, en el menú de acciones. */
 function started(): GameState {
-  return choose(newGame(true), 'choice.continue')
+  return throughSetup(newGame(true))
 }
 
 const finish = (s: GameState, outcome: ScenarioOutcome) =>

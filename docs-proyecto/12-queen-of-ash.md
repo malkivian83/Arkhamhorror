@@ -68,11 +68,11 @@ Foreman (robar 3) o Margaret Liu (curar 3 horror), para cada investigador.
 
 ## Simplificaciones
 
-- La recompensa **Collector** se anota, pero aún no se puede añadir a los mazos.
+- La recompensa **Collector** se anota, pero aún no se puede añadir a los mazos
+  (es para mazos nuevos: la campaña termina en este escenario).
 - **Masivo** se aplica como se describe arriba; no se modelan los casos raros de
   enfrentamiento con efectos de cartas.
-- Los efectos de agua y fuego que afectan a "cartas con salud" solo dañan a
-  investigadores.
+- Fire! daña también a los apoyos con salud (como en el escenario I).
 - Los túneles se colocan en fila según el orden barajado; sin revelar, todos se ven
   iguales.
 
