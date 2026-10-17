@@ -191,4 +191,3 @@ En `packages/cards/src/decks.ts` (lógica) y la pantalla `apps/web/src/views/Dec
   pasarán al servidor.
 - Al empezar una campaña, cada investigador juega con su mazo inicial o con uno de
   sus mazos propios válidos.
-

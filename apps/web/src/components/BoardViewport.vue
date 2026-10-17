@@ -336,7 +336,7 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 8px;
-  padding: 12px 16px 0;
+  padding: 6px 12px;
   color: var(--parch);
 }
 .viewport-title {
@@ -359,10 +359,14 @@ onBeforeUnmount(() => {
   border-color: #657e70;
 }
 .viewport-pan {
+  position: absolute;
+  z-index: 5;
+  left: 8px;
+  bottom: 8px;
   display: flex;
   justify-content: center;
   gap: 4px;
-  padding: 0 12px 10px;
+  padding: 0;
 }
 .viewport-pan button {
   min-width: 44px;
@@ -378,7 +382,12 @@ onBeforeUnmount(() => {
   font-variant-numeric: tabular-nums;
 }
 .viewport-help {
-  margin: 6px 16px 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
   color: #d3dfd6;
   font-size: 0.75rem;
 }
@@ -400,6 +409,20 @@ onBeforeUnmount(() => {
   margin-top: 4px;
   clip-path: none;
 }
+.board-viewport:has(.viewport-surface:focus-visible) .viewport-help {
+  z-index: 6;
+  left: 8px;
+  right: 8px;
+  top: 62px;
+  width: auto;
+  height: auto;
+  padding: 6px 8px;
+  background: #14251f;
+  border: 1px solid #657e70;
+  border-radius: 4px;
+  clip-path: none;
+  pointer-events: none;
+}
 .viewport-surface {
   position: relative;
   flex: 1;
@@ -420,19 +443,25 @@ onBeforeUnmount(() => {
 }
 .viewport-content {
   width: max-content;
-  padding: 40px;
+  padding: 24px;
   transform-origin: 0 0;
 }
 @media (max-width: 600px) {
   .viewport-toolbar {
-    padding: 12px 12px 0;
+    padding: 4px 8px;
     justify-content: center;
   }
   .viewport-title {
     display: none;
   }
-  .viewport-help {
-    margin: 8px 12px 0;
+  .viewport-controls {
+    gap: 3px;
+  }
+  .viewport-controls button {
+    padding: 6px 8px;
+  }
+  .viewport-pan {
+    gap: 3px;
   }
 }
 @media (pointer: coarse) {

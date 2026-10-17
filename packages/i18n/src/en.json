@@ -2,7 +2,9 @@
   "app": {
     "title": "LCG Platform",
     "disclaimer": "Unofficial fan project. Not produced, endorsed or supported by, or affiliated with Fantasy Flight Games.",
-    "sections": "Sections"
+    "sections": "Sections",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "home": {
     "serverStatus": "Server status",
@@ -102,6 +104,7 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "finishMulligan": "Confirm opening hand (replacements: {n})",
     "investigator": "{name}",
     "discard": "Discard {card}",
     "notNow": "Not now",
@@ -229,6 +232,7 @@
     "openSluice": "Open the sluice gate (agility or combat 5)"
   },
   "log": {
+    "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
     "round": "Round {round}",
     "phase": "{phase}",
     "action": {
@@ -263,6 +267,8 @@
   "table": {
     "log": "Game log",
     "hand": "Hand",
+    "viewHand": "Enlarge hand",
+    "caseControls": "Decisions and journal",
     "inPlay": "In play",
     "threatArea": "Threat area",
     "encounterDeck": "Encounter deck",

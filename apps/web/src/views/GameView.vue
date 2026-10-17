@@ -26,6 +26,12 @@ useShortcuts()
 
 /** Investigador cuya zona se muestra; sigue al que tiene que decidir. */
 const selected = ref<string | null>(null)
+const showCase = ref(false)
+const caseButton = ref<HTMLButtonElement | null>(null)
+function closeCase() {
+  showCase.value = false
+  caseButton.value?.focus()
+}
 watch(
   () => state.value?.pending?.investigator,
   (deciding) => {
@@ -42,42 +48,55 @@ const shown = computed(
 
 <template>
   <div v-if="state" class="table">
-    <div class="main">
-      <ScenarioRow :state="state" />
-      <BoardViewport :reset-key="state.scenarioId" class="board playmat sigil">
-        <LocationMap :state="state" />
-        <template #overlay>
-          <SkillTestPanel :state="state" />
-        </template>
-      </BoardViewport>
-      <div class="players">
-        <nav v-if="state.investigators.length > 1" class="tabs">
-          <button
-            v-for="i in state.investigators"
-            :key="i.id"
-            type="button"
-            :class="{ active: i.id === shown?.id, deciding: i.id === state.pending?.investigator }"
-            :style="{ '--class': classColor(i.id) }"
-            @click="selected = i.id"
+    <ScenarioRow :state="state" />
+    <BoardViewport :reset-key="state.scenarioId" class="board playmat sigil">
+      <LocationMap :state="state" />
+      <template #overlay>
+        <SkillTestPanel :state="state" />
+      </template>
+    </BoardViewport>
+    <div class="players">
+      <button
+        ref="caseButton"
+        type="button"
+        class="case-toggle"
+        :aria-expanded="showCase"
+        :aria-label="showCase ? t('table.close') : t('table.caseControls')"
+        :title="t('table.caseControls')"
+        aria-controls="case-panel"
+        @click="showCase = !showCase"
+      >
+        {{ showCase ? t('table.close') : t('table.actions') }}
+      </button>
+      <nav v-if="state.investigators.length > 1" class="tabs">
+        <button
+          v-for="i in state.investigators"
+          :key="i.id"
+          type="button"
+          :class="{ active: i.id === shown?.id, deciding: i.id === state.pending?.investigator }"
+          :style="{ '--class': classColor(i.id) }"
+          @click="selected = i.id"
+        >
+          {{ i.name }}
+          <span v-if="i.id === state.pending?.investigator" class="dot" :title="t('table.decides')"
+            >●</span
           >
-            {{ i.name }}
-            <span
-              v-if="i.id === state.pending?.investigator"
-              class="dot"
-              :title="t('table.decides')"
-              >●</span
-            >
-          </button>
-        </nav>
-        <PlayerArea
-          v-if="shown"
-          :state="state"
-          :investigator="shown"
-          :deciding="shown.id === state.pending?.investigator"
-        />
-      </div>
+        </button>
+      </nav>
+      <PlayerArea
+        v-if="shown"
+        :state="state"
+        :investigator="shown"
+        :deciding="shown.id === state.pending?.investigator"
+      />
     </div>
-    <SidePanel :state="state" />
+    <SidePanel
+      id="case-panel"
+      :state="state"
+      class="case-panel"
+      :class="{ visible: showCase }"
+      @keydown.esc.prevent.stop="closeCase"
+    />
 
     <div class="zoom">
       <CardZoom />
@@ -97,36 +116,51 @@ const shown = computed(
 
 <style scoped>
 .table {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
-  height: calc(100vh - 52px);
-  height: calc(100dvh - 52px);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
 }
-.main {
+.table > :first-child {
+  grid-column: 1;
+  grid-row: 1;
+}
+.board {
+  grid-column: 1;
+  grid-row: 2;
+  min-height: 0;
+}
+.players {
+  position: relative;
+  grid-column: 1;
+  grid-row: 3;
   display: flex;
   flex-direction: column;
   min-width: 0;
+  z-index: 10;
+}
+.case-panel {
+  grid-column: 2;
+  grid-row: 1 / -1;
   overflow-y: auto;
-  scrollbar-width: none;
 }
-.main::-webkit-scrollbar {
+.case-toggle {
   display: none;
-}
-.board {
-  flex: 1 0 420px;
-  min-height: 420px;
-}
-.players {
-  display: flex;
-  flex-direction: column;
 }
 .tabs {
   display: flex;
   gap: 2px;
   padding: 0 8px;
   background: #121318;
+  overflow-x: auto;
 }
 .tabs button {
+  flex: none;
+  min-height: 44px;
   border-radius: 6px 6px 0 0;
   border-bottom: none;
   border-top: 3px solid var(--class);
@@ -154,15 +188,35 @@ const shown = computed(
 @media (max-width: 900px) {
   .table {
     grid-template-columns: 1fr;
-    height: auto;
   }
   .zoom {
     display: none;
   }
-  .board {
-    flex: none;
-    height: clamp(360px, 65svh, 600px);
-    min-height: 360px;
+  .case-panel {
+    display: none;
+    grid-column: 1;
+    grid-row: 1 / 3;
+    z-index: 20;
+    border-left: 0;
+    padding-bottom: 54px;
+  }
+  .case-panel.visible {
+    display: flex;
+  }
+  .case-toggle {
+    position: absolute;
+    display: block;
+    right: 8px;
+    bottom: calc(100% + 8px);
+    min-height: 44px;
+    z-index: 30;
+    color: var(--parch-ink);
+    background: var(--parch);
+    border-color: var(--brass);
+    box-shadow: 0 2px 8px #0008;
+  }
+  .players {
+    z-index: 30;
   }
 }
 </style>

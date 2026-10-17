@@ -49,7 +49,7 @@ const sortedBag = computed(() =>
         <GameCard
           :code="agenda.code ?? ''"
           :name="agenda.name"
-          :width="150"
+          :width="88"
           landscape
           color="#7a2c2c"
         >
@@ -67,7 +67,7 @@ const sortedBag = computed(() =>
     <TableTarget v-if="act" target="act">
       <div class="slot folder">
         <span class="folder-tab">{{ t('table.act') }}</span>
-        <GameCard :code="act.code ?? ''" :name="act.name" :width="150" landscape color="#2c5a7a">
+        <GameCard :code="act.code ?? ''" :name="act.name" :width="88" landscape color="#2c5a7a">
           <TokenBadge
             v-if="actClues !== null"
             class="badge-token"
@@ -102,7 +102,7 @@ const sortedBag = computed(() =>
       @click="showDiscard"
     >
       <span class="folder-tab">{{ t('table.discard') }}</span>
-      <GameCard v-if="topDiscard" :code="topDiscard.code" :name="topDiscard.name" :width="72" />
+      <GameCard v-if="topDiscard" :code="topDiscard.code" :name="topDiscard.name" :width="40" />
       <div v-else class="card-back empty"></div>
       <span v-if="state.encounterDiscard.length" class="count">{{
         state.encounterDiscard.length
@@ -111,7 +111,7 @@ const sortedBag = computed(() =>
 
     <button type="button" class="bag" :aria-pressed="showBag" @click="showBag = !showBag">
       <span class="bag-icon" />
-      {{ t('table.chaosBag') }} ({{ state.chaosBag.length }})
+      <span>{{ t('table.chaosBag') }} ({{ state.chaosBag.length }})</span>
     </button>
     <div v-if="showBag" class="bag-tokens">
       <ChaosTokenView v-for="(token, i) in sortedBag" :key="i" :token="token" :size="30" />
@@ -134,7 +134,7 @@ const sortedBag = computed(() =>
       @click="showVictory"
     >
       <span class="folder-tab">{{ t('table.victory') }}</span>
-      <GameCard v-if="topVictory" :code="topVictory" :name="topVictory" :width="72" />
+      <GameCard v-if="topVictory" :code="topVictory" :name="topVictory" :width="40" />
       <div v-else class="card-back empty"></div>
       <span v-if="state.victoryDisplay.length" class="count">{{
         state.victoryDisplay.length
@@ -148,9 +148,12 @@ const sortedBag = computed(() =>
   /* Expediente del caso: carpetas de papel sobre la mesa de madera. */
   display: flex;
   align-items: flex-end;
-  gap: 16px;
-  flex-wrap: wrap;
-  padding: 20px 22px 12px;
+  gap: 10px;
+  flex-wrap: nowrap;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 10px 10px 6px 58px;
   background: var(--tex-wood), linear-gradient(180deg, #2e2317, #1f170e);
   border-bottom: 2px solid #000;
 }
@@ -159,8 +162,8 @@ const sortedBag = computed(() =>
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 8px 8px 6px;
+  gap: 3px;
+  padding: 4px 6px;
   border-radius: 2px 10px 2px 2px;
   background: linear-gradient(180deg, var(--parch), var(--parch-dark));
   box-shadow: 0 4px 10px rgb(0 0 0 / 55%);
@@ -182,11 +185,12 @@ button.folder {
 }
 .folder-tab {
   font-family: var(--fell);
-  font-size: 0.78rem;
+  font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #4a3214;
   white-space: nowrap;
+  line-height: 1.2;
 }
 .slot {
   position: relative;
@@ -194,8 +198,8 @@ button.folder {
 .card-back {
   /* Reverso de encuentro dibujado: sello sobre tela oscura, con grosor de mazo. */
   position: relative;
-  width: 72px;
-  height: 100px;
+  width: 40px;
+  height: 56px;
   border-radius: 6px;
   background:
     radial-gradient(circle at 50% 50%, rgb(90 160 135 / 40%), transparent 65%),
@@ -228,7 +232,7 @@ button.folder {
 .card-back strong {
   position: relative;
   font-family: var(--display);
-  font-size: 1.6rem;
+  font-size: 1.1rem;
   text-shadow: 0 2px 4px #000;
 }
 .card-back.empty {
@@ -249,7 +253,7 @@ button.folder {
   background: linear-gradient(180deg, #3a2a20, #1f150f);
   border-color: color-mix(in srgb, var(--trim) 50%, transparent);
   font-family: var(--fell);
-  font-size: 1rem;
+  font-size: 0.85rem;
   align-self: center;
 }
 .bag-icon {
@@ -283,7 +287,7 @@ button.folder {
   filter: brightness(1.15);
 }
 .pile.folder {
-  padding: 8px 8px 6px;
+  padding: 4px 6px;
   background: linear-gradient(180deg, var(--parch), var(--parch-dark));
   color: var(--parch-ink);
 }
@@ -311,5 +315,47 @@ button.folder {
 }
 .card-back.official::before {
   display: none;
+}
+.scenario-row > * {
+  flex: none;
+}
+.scenario-row::-webkit-scrollbar {
+  display: none;
+}
+@media (max-width: 600px) {
+  .scenario-row {
+    gap: 8px;
+    padding: 10px 8px 6px 58px;
+  }
+  .folder,
+  .pile.folder {
+    gap: 3px;
+    padding: 4px;
+  }
+  .folder-tab {
+    font-size: 0.58rem;
+    letter-spacing: 0.02em;
+  }
+  .folder :deep(.game-card) {
+    width: 76px !important;
+    height: 54px !important;
+  }
+  .card-back,
+  .pile :deep(.game-card) {
+    width: 34px !important;
+    height: 48px !important;
+  }
+  .badge-token {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 11px !important;
+    right: -4px;
+    bottom: -5px;
+  }
+  .bag {
+    min-height: 44px;
+    padding: 6px 8px;
+    font-size: 0.7rem;
+  }
 }
 </style>

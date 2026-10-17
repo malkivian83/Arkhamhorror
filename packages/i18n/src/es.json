@@ -2,7 +2,9 @@
   "app": {
     "title": "Plataforma LCG",
     "disclaimer": "Proyecto no oficial de aficionados. No producido, avalado ni respaldado por Fantasy Flight Games, ni afiliado a ella.",
-    "sections": "Secciones"
+    "sections": "Secciones",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
   },
   "home": {
     "serverStatus": "Estado del servidor",
@@ -102,6 +104,7 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "finishMulligan": "Confirmar mano inicial (cambios: {n})",
     "investigator": "{name}",
     "discard": "Descartar {card}",
     "notNow": "Ahora no",
@@ -229,6 +232,7 @@
     "openSluice": "Abrir la compuerta (agilidad o combate 5)"
   },
   "log": {
+    "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
     "round": "Ronda {round}",
     "phase": "{phase}",
     "action": {
@@ -263,6 +267,8 @@
   "table": {
     "log": "Registro de partida",
     "hand": "Mano",
+    "viewHand": "Ampliar mano",
+    "caseControls": "Decisiones y diario",
     "inPlay": "En juego",
     "threatArea": "Zona de amenaza",
     "encounterDeck": "Mazo de encuentros",

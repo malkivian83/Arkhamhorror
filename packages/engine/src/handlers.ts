@@ -691,7 +691,7 @@ export function handle(state: GameState, message: Message): GameState {
       const count = message.count ?? 0
       const finish: Message = { type: 'FinishMulligan', investigator: investigator.id, count }
       const options = [...new Set(investigator.hand)]
-      if (!state.interactive || options.length === 0) return push(state, finish)
+      if (!state.interactive) return push(state, finish)
       return push(state, {
         type: 'Ask',
         investigator: investigator.id,

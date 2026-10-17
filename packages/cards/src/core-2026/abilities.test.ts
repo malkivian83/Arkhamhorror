@@ -68,8 +68,9 @@ describe('inicio de la partida', () => {
     let s = interactive([code(101), ...filler(20)])
     const hand = me(s).hand
     expect(hand).not.toContain(code(101))
-    // Al apartar toda la mano, el mulligan termina solo.
+    // Incluso con la mano vacía, el jugador confirma antes de robar los reemplazos.
     for (const card of hand) s = choose(s, 'choice.mulliganCard', { card })
+    s = choose(s, 'choice.mulliganDone', { n: hand.length })
     expect(me(s).hand).toHaveLength(5)
     expect(me(s).hand).not.toContain(code(101))
     expect(me(s).deck).toContain(code(101))
