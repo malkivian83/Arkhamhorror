@@ -2,6 +2,7 @@
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import BoardViewport from '../components/BoardViewport.vue'
 import CardZoom from '../components/CardZoom.vue'
 import CardPileModal from '../components/CardPileModal.vue'
 import ChoiceModal from '../components/ChoiceModal.vue'
@@ -43,10 +44,12 @@ const shown = computed(
   <div v-if="state" class="table">
     <div class="main">
       <ScenarioRow :state="state" />
-      <div class="board playmat sigil" role="region" :aria-label="t('table.board')">
+      <BoardViewport :reset-key="state.scenarioId" class="board playmat sigil">
         <LocationMap :state="state" />
-        <SkillTestPanel :state="state" />
-      </div>
+        <template #overlay>
+          <SkillTestPanel :state="state" />
+        </template>
+      </BoardViewport>
       <div class="players">
         <nav v-if="state.investigators.length > 1" class="tabs">
           <button
@@ -97,18 +100,20 @@ const shown = computed(
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
   height: calc(100vh - 52px);
+  height: calc(100dvh - 52px);
 }
 .main {
   display: flex;
   flex-direction: column;
   min-width: 0;
   overflow-y: auto;
+  scrollbar-width: none;
+}
+.main::-webkit-scrollbar {
+  display: none;
 }
 .board {
-  position: relative;
-  flex: 1;
-  overflow: auto;
-  padding: 28px;
+  flex: 1 0 420px;
   min-height: 420px;
 }
 .players {
@@ -153,6 +158,11 @@ const shown = computed(
   }
   .zoom {
     display: none;
+  }
+  .board {
+    flex: none;
+    height: clamp(360px, 65svh, 600px);
+    min-height: 360px;
   }
 }
 </style>

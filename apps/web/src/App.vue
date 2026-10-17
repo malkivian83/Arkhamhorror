@@ -267,4 +267,51 @@ button[aria-pressed='true'] {
   display: flex;
   gap: 4px;
 }
+@media (max-width: 600px) {
+  .topbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    height: auto;
+    gap: 8px;
+    padding: 8px 12px;
+  }
+  .brand {
+    font-size: clamp(0.75rem, 3.7vw, 1.1rem);
+  }
+  .disclaimer {
+    display: none;
+  }
+  .topbar nav:not(.sections) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .topbar nav button {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 6px 8px;
+  }
+  .topbar .sections {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    gap: 14px;
+  }
+  .topbar .sections a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .topbar .picker {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    width: max-content;
+    max-width: 100%;
+  }
+  .topbar .current {
+    min-height: 44px;
+  }
+  .topbar .picker .menu {
+    left: 0;
+    right: auto;
+  }
+}
 </style>
