@@ -1,5 +1,6 @@
 import { ref, watch, type Ref } from 'vue'
 import { i18n } from '../i18n'
+import { iconParts } from './cardText'
 
 /**
  * Textos de historia. Por defecto la mesa muestra un resumen propio (en los
@@ -69,6 +70,8 @@ export interface StorySpan {
   text: string
   bold?: boolean
   italic?: boolean
+  /** Icono oficial ([skull], [action]…) en lugar de texto. */
+  icon?: string
 }
 
 export interface StoryParagraph {
@@ -84,7 +87,10 @@ export interface StoryBody {
   officialLocale: string | null
 }
 
-/** Separa *negrita* y _cursiva_ en trozos (sin HTML: el texto se pinta tal cual). */
+/**
+ * Separa *negrita*, _cursiva_ e [iconos] en trozos (sin HTML: el texto se pinta
+ * tal cual y los iconos con el símbolo oficial).
+ */
 function spans(text: string): StorySpan[] {
   const out: StorySpan[] = []
   let bold = false
@@ -95,8 +101,14 @@ function spans(text: string): StorySpan[] {
       out.push({ text: current, ...(bold ? { bold } : {}), ...(italic ? { italic } : {}) })
     current = ''
   }
-  for (const char of text) {
-    if (char === '*') {
+  for (let n = 0; n < text.length; n++) {
+    const char = text[n]!
+    const icon = char === '[' ? /^\[([a-z_]+)\]/.exec(text.slice(n)) : null
+    if (icon && iconParts(icon[1]!)) {
+      flush()
+      out.push({ text: '', icon: icon[1]! })
+      n += icon[0].length - 1
+    } else if (char === '*') {
       flush()
       bold = !bold
     } else if (char === '_') {

@@ -30,14 +30,23 @@ const FALLBACK: Record<string, [cls: string, text: string]> = {
 
 const PER_INVESTIGATOR_GLYPH = 'u'
 
-/** HTML de un icono: glifo oficial + letra de respaldo (el CSS muestra uno de los dos). */
-export function iconHtml(name: string): string | null {
+/** Partes de un icono: clase, glifo de la fuente oficial (si lo hay) y letra de respaldo. */
+export function iconParts(
+  name: string,
+): { cls: string; glyph: string | null; text: string } | null {
   const fallback = FALLBACK[name]
   if (!fallback) return null
   const glyph = name === 'per_investigator' ? PER_INVESTIGATOR_GLYPH : ICON_GLYPHS[name]
   const [cls, text] = fallback
-  const official = glyph && name !== 'wild' ? `<i class="ahi">${glyph}</i>` : ''
-  return `<span class="ci ${cls}">${official}<b class="fb">${text}</b></span>`
+  return { cls, glyph: glyph && name !== 'wild' ? glyph : null, text }
+}
+
+/** HTML de un icono: glifo oficial + letra de respaldo (el CSS muestra uno de los dos). */
+export function iconHtml(name: string): string | null {
+  const parts = iconParts(name)
+  if (!parts) return null
+  const official = parts.glyph ? `<i class="ahi">${parts.glyph}</i>` : ''
+  return `<span class="ci ${parts.cls}">${official}<b class="fb">${parts.text}</b></span>`
 }
 
 const CLASSES: Record<string, string> = {

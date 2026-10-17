@@ -53,13 +53,27 @@ function links(text) {
   })
 }
 
+/** Iconos de la referencia → marca [icono] que la mesa dibuja con el símbolo oficial. */
 const TOKENS = {
-  skull: 'Skull',
-  cultist: 'Cultist',
-  tablet: 'Tablet',
-  elderThing: 'Elder Thing',
-  elderSign: 'Elder Sign',
-  autoFail: 'Auto-fail',
+  skull: 'skull',
+  cultist: 'cultist',
+  tablet: 'tablet',
+  elderThing: 'elder_thing',
+  elderSign: 'elder_sign',
+  autoFail: 'auto_fail',
+  bless: 'bless',
+  curse: 'curse',
+  frost: 'frost',
+  action: 'action',
+  reaction: 'reaction',
+  fast: 'fast',
+  free: 'free',
+  willpower: 'willpower',
+  intellect: 'intellect',
+  combat: 'combat',
+  agility: 'agility',
+  wild: 'wild',
+  perPlayer: 'per_investigator',
   codex: '',
 }
 
@@ -67,8 +81,14 @@ const TOKENS = {
 function toText(html) {
   const decoded = links(html)
     .replace(/\{'\{'\}(\w+)\{'\}'\}/g, '{$1}')
-    .replace(/\{perPlayer\}/g, ' per investigator')
-    .replace(/\{(\w+)\}/g, (_, name) => (name in TOKENS ? `[${TOKENS[name]}]` : `{${name}}`))
+    .replace(/\{(\w+)\}/g, (_, name) =>
+      name in TOKENS ? (TOKENS[name] ? `[${TOKENS[name]}]` : '') : `{${name}}`,
+    )
+    // Iconos como <span class="skull-icon"></span>.
+    .replace(/<span class=['"]([a-z-]+)-icon['"]><\/span>/g, (_, name) => {
+      const key = name.replace(/-(\w)/g, (_m, c) => c.toUpperCase())
+      return TOKENS[key] ? `[${TOKENS[key]}]` : ''
+    })
   const blocks = decoded
     // Conjuntos de encuentros: solo sus nombres.
     .replace(/<section[^>]*encounter-sets[^>]*>([\s\S]*?)<\/section>/g, (_, inner) => {

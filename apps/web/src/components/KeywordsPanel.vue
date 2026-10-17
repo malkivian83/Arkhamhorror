@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import StoryIcon from './StoryIcon.vue'
 import { scenarioKeywords } from '@lcg/cards'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -30,7 +31,8 @@ const switchable = computed(() => entries.value.some((e) => e.body.officialLocal
         <dd>
           <p v-for="(paragraph, i) in entry.body.paragraphs" :key="i" :class="paragraph.kind">
             <template v-for="(span, j) in paragraph.spans" :key="j">
-              <b v-if="span.bold">{{ span.text }}</b>
+              <StoryIcon v-if="span.icon" :name="span.icon" />
+              <b v-else-if="span.bold">{{ span.text }}</b>
               <i v-else-if="span.italic">{{ span.text }}</i>
               <template v-else>{{ span.text }}</template>
             </template>

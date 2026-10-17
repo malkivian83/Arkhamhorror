@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import StoryIcon from './StoryIcon.vue'
 import type { GameState, LabelParams } from '@lcg/engine'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -55,7 +56,8 @@ function toCampaign() {
       <div class="body">
         <p v-for="(paragraph, i) in body.paragraphs" :key="i" :class="paragraph.kind">
           <template v-for="(span, j) in paragraph.spans" :key="j">
-            <b v-if="span.bold">{{ span.text }}</b>
+            <StoryIcon v-if="span.icon" :name="span.icon" />
+            <b v-else-if="span.bold">{{ span.text }}</b>
             <i v-else-if="span.italic" class="em">{{ span.text }}</i>
             <template v-else>{{ span.text }}</template>
           </template>
