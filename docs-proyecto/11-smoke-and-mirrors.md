@@ -1,7 +1,7 @@
 # 11 · Escenario II: Smoke and Mirrors (Brethren of Ash)
 
 Implementado en `packages/cards/src/brethren-of-ash/smoke-and-mirrors.ts`.
-Fuentes: guía de campaña (`reglas/`, fuera de git), datos públicos de ArkhamDB
+Fuentes: guía de campaña (`reglas/`), datos públicos de ArkhamDB
 (`core_2026`) para los valores y el proyecto de referencia para las conexiones
 (símbolos de las localizaciones). **No se copia el texto de las cartas ni de la
 guía**: los efectos se describen con palabras propias y los textos de historia

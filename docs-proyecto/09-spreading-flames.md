@@ -1,7 +1,7 @@
 # 09 · Escenario I: Spreading Flames (Brethren of Ash)
 
 Análisis para implementar el primer escenario de la caja básica de 2026.
-Fuentes: guía de campaña y reglamento (`reglas/`, fuera de git), la base de
+Fuentes: guía de campaña y reglamento (`reglas/`), la base de
 datos pública ArkhamDB (`core_2026`) para los valores numéricos y el proyecto
 de referencia (`E:\referencia\ArkhamHorror`) para las conexiones y los valores
 "por investigador". **No se copia el texto de las cartas**: aquí se describen sus
