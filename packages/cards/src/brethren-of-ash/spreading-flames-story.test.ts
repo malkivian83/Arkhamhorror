@@ -1,12 +1,19 @@
 import {
   applyInput,
-  createGame,
   getInvestigator,
   type GameState,
   type InvestigatorSetup,
   type Message,
 } from '@lcg/engine'
-import { choose, during, keep, labels, testInvestigator, withBag } from '@lcg/engine/testing'
+import {
+  createTestGame,
+  choose,
+  during,
+  keep,
+  labels,
+  testInvestigator,
+  withBag,
+} from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { CODES, servantOfFlame, spreadingFlames } from './spreading-flames'
 
@@ -15,7 +22,7 @@ const enemies = (s: GameState) => Object.values(s.enemies)
 const fires = (s: GameState) => Object.values(s.treacheries).filter((t) => t.code === CODES.fire)
 
 function newGame(players = ['a'], investigator: Partial<InvestigatorSetup> = {}): GameState {
-  return createGame({
+  return createTestGame({
     seed: 11,
     scenario: spreadingFlames('standard'),
     investigators: players.map((id) => testInvestigator(id, investigator)),

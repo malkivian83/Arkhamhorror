@@ -40,7 +40,7 @@ applyInput(estado, {investigator, choice}) ─┤──► run(): procesa la col
 
 | Regla (RR) | Notas |
 |---|---|
-| Preparación | 5 recursos, 5 cartas, investigadores en la localización inicial (se revela) |
+| Preparación | 5 recursos, 5 cartas (más bonificaciones de permanentes); mulligan de 0 a todas las cartas, una vez por investigador y en orden; debilidades apartadas sin resolver; investigadores en la localización inicial (se revela) |
 | Secuencia de ronda | Sin fase de mitos en la ronda 1 |
 | Fase de investigación | El jefe elige quién juega cada turno; 3 acciones; fin de turno manual o automático |
 | Robar / Recurso / Moverse / Investigar / Luchar / Evadir / Enfrentarse | Mover revela y coloca pistas (con "por investigador") |
@@ -80,14 +80,13 @@ defecto (se convertirán en preguntas):
 - Empates de camino del cazador: primera conexión listada.
 - Al avanzar el acto, las pistas se pagan en orden de jugadores.
 - Orden de ataques cuando un investigador está enfrentado a varios enemigos: orden de aparición.
-- No hay mulligan ni debilidades en la preparación.
 - El final del escenario usa solo "resolución 1" (acto) o "sin resolución" (plan / todos eliminados).
 
 ## Pendiente (ver [hoja de ruta](05-hoja-de-ruta.md), fase 1)
 
 Que otros investigadores comprometan cartas, ventanas de reacción generales
 (jugar eventos rápidos "cuando…/tras…"), debilidades, habilidades de los
-investigadores, el resto de cartas de jugador, mulligan y resoluciones de campaña.
+investigadores, el resto de cartas de jugador y resoluciones de campaña.
 
 ## Cómo añadir una regla
 

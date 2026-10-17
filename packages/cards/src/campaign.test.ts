@@ -1,5 +1,11 @@
-import { createGame, type GameState } from '@lcg/engine'
-import { choose, during, testInvestigator } from '@lcg/engine/testing'
+import { type GameState } from '@lcg/engine'
+import {
+  createTestGame,
+  keepOpeningHands,
+  choose,
+  during,
+  testInvestigator,
+} from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { DR_ARMITAGE, spreadingFlames } from './brethren-of-ash/spreading-flames'
 import {
@@ -18,7 +24,7 @@ const DANIELA = code(1)
 
 /** Juega Spreading Flames hasta la pregunta de la primera historia de resolución. */
 function endScenario(campaign: Campaign, outcome: Parameters<typeof finish>[1]): GameState {
-  return finish(choose(startScenario(campaign, 11), 'choice.continue'), outcome)
+  return finish(keepOpeningHands(choose(startScenario(campaign, 11), 'choice.continue')), outcome)
 }
 const finish = (
   s: GameState,
@@ -77,7 +83,7 @@ describe('campaña: registro', () => {
   })
 
   it('derrotado por daño: 1 trauma físico; trauma igual a la salud: muerto', () => {
-    let game = createGame({
+    let game = createTestGame({
       seed: 1,
       scenario: spreadingFlames('standard'),
       investigators: [testInvestigator('a', { health: 1 })],

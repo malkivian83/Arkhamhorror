@@ -71,13 +71,6 @@ export interface NewGameOptions {
   campaignLog?: CampaignLog
 }
 
-/**
- * Prepara la partida según "Setting Up a Game" del reglamento: recursos
- * iniciales, mano inicial, mazos de plan/acto/encuentros y colocación de los
- * investigadores en la localización inicial (que se revela al entrar).
- *
- * Pendiente: mulligan, debilidades durante la preparación, investigador jefe a elección.
- */
 /** Registro de campaña vacío para estos investigadores. */
 export function emptyCampaignLog(investigators: InvestigatorId[]): CampaignLog {
   return {
@@ -94,6 +87,13 @@ export function emptyCampaignLog(investigators: InvestigatorId[]): CampaignLog {
   }
 }
 
+/**
+ * Prepara la partida según "Setting Up a Game" del reglamento: recursos
+ * iniciales, mano inicial, mazos de plan/acto/encuentros y colocación de los
+ * investigadores en la localización inicial (que se revela al entrar).
+ * Cada investigador resuelve su mulligan antes de continuar la preparación.
+ * Pendiente: investigador jefe a elección.
+ */
 export function prepareGame({
   seed,
   scenario,

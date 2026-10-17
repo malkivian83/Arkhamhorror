@@ -4,7 +4,7 @@
  */
 import { applyInput, createGame, dispatch } from './engine'
 import { EngineError } from './errors'
-import type { InvestigatorSetup, ScenarioDefinition } from './setup'
+import type { InvestigatorSetup, NewGameOptions, ScenarioDefinition } from './setup'
 import type { ChaosToken, EnemyCard, GameState, LabelParams, Message } from './types'
 
 export const ghoul: EnemyCard = {
@@ -86,11 +86,25 @@ export function newTestGame(
   } = {},
 ): GameState {
   const players = options.players ?? ['a']
-  return createGame({
+  return createTestGame({
     seed: 1,
     scenario: testScenario(options.scenario),
     investigators: players.map((id) => testInvestigator(id, options.investigator)),
   })
+}
+
+/** Conserva las manos iniciales para las pruebas que empiezan tras la preparación. */
+export function keepOpeningHands(state: GameState): GameState {
+  let next = state
+  while (next.pending?.question.prompt === 'prompt.mulligan') {
+    next = choose(next, 'choice.finishMulligan')
+  }
+  return next
+}
+
+/** Partida de prueba que renuncia explícitamente a cambiar la mano inicial. */
+export function createTestGame(options: NewGameOptions): GameState {
+  return keepOpeningHands(createGame(options))
 }
 
 /** Elige la opción de la pregunta pendiente cuya etiqueta (y parámetros) coinciden. */

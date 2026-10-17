@@ -1,11 +1,12 @@
+import { getInvestigator, slotCapacity, type EnemyCard, type GameState } from '@lcg/engine'
 import {
-  createGame,
-  getInvestigator,
-  slotCapacity,
-  type EnemyCard,
-  type GameState,
-} from '@lcg/engine'
-import { choose, during, labels, testInvestigator, withBag } from '@lcg/engine/testing'
+  createTestGame,
+  choose,
+  during,
+  labels,
+  testInvestigator,
+  withBag,
+} from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { CODES, spreadingFlames } from '../brethren-of-ash/spreading-flames'
 import '../index'
@@ -29,7 +30,7 @@ const cultist: EnemyCard = {
 }
 
 function newGame(): GameState {
-  return createGame({
+  return createTestGame({
     seed: 5,
     scenario: spreadingFlames(),
     investigators: [starterInvestigator('daniela')],
@@ -52,7 +53,7 @@ const spawn = (engageWith: string | null = null) =>
 
 describe('cartas permanentes', () => {
   it('Studious, Another Day, Another Dollar y Charisma empiezan en juego y dan su ventaja', () => {
-    const game = createGame({
+    const game = createTestGame({
       seed: 2,
       scenario: spreadingFlames(),
       investigators: [

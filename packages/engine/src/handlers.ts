@@ -49,6 +49,7 @@ import type {
   Action,
   Asset,
   CampaignLog,
+  CardCode,
   ChaosToken,
   Choice,
   LabelParams,
@@ -546,9 +547,18 @@ export function handle(state: GameState, message: Message): GameState {
       }))
 
     case 'DrawCards': {
-      if (message.amount <= 0) return state
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.eliminated) return state
+      if (message.opening) {
+        const opening = drawOpeningCards(state, investigator.id, message.amount)
+        return push(opening.state, {
+          type: 'Mulligan',
+          investigator: investigator.id,
+          setAside: opening.setAside,
+          redraw: 0,
+        })
+      }
+      if (message.amount <= 0) return state
       if (investigator.deck.length === 0) {
         // RR "Draw": con el mazo vacío, 1 horror y se baraja la pila de descartes.
         const [deck, rng] = shuffle(investigator.discard, state.rng)
@@ -567,15 +577,6 @@ export function handle(state: GameState, message: Message): GameState {
       }
       const [card, ...deck] = investigator.deck as [string, ...string[]]
       const more: Message[] = message.amount > 1 ? [{ ...message, amount: message.amount - 1 }] : []
-      if (message.opening && playerCardDef(card)?.weakness) {
-        // RR "Setup": las debilidades de la mano inicial se apartan, se roba otra
-        // y después se barajan de nuevo en el mazo.
-        const rest = updateInvestigator(state, investigator.id, (i) => ({
-          ...i,
-          deck: [...deck, card],
-        }))
-        return push(rest, message, { type: 'ShuffleDeck', investigator: investigator.id })
-      }
       if (resolvesWhenDrawn(card)) {
         const removed = updateInvestigator(state, investigator.id, (i) => ({ ...i, deck }))
         return push(
@@ -589,15 +590,70 @@ export function handle(state: GameState, message: Message): GameState {
         deck,
         hand: [...i.hand, card],
       }))
-      const after: Message[] = message.opening
-        ? []
-        : [
+      return push(
+        drawn,
+        {
+          type: 'Forced',
+          trigger: { type: 'afterDrawCard', investigator: investigator.id, card },
+        },
+        ...more,
+      )
+    }
+
+    case 'Mulligan': {
+      // RR "Mulligan": elegir cualquier número de cartas antes de robar reemplazos.
+      // Se guardan en el mensaje, fuera del mazo y del descarte, también al guardar la partida.
+      const investigator = getInvestigator(state, message.investigator)
+      let next = state
+      let { setAside, redraw } = message
+      if (message.card !== undefined) {
+        const index = investigator.hand.indexOf(message.card)
+        if (index < 0) throw new EngineError('La carta del mulligan no está en la mano')
+        next = updateInvestigator(state, investigator.id, (i) => ({
+          ...i,
+          hand: i.hand.filter((_, n) => n !== index),
+        }))
+        setAside = [...setAside, message.card]
+        redraw += 1
+      }
+      return push(next, {
+        type: 'Ask',
+        investigator: investigator.id,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.mulligan',
+          alwaysAsk: true,
+          choices: [
             {
-              type: 'Forced',
-              trigger: { type: 'afterDrawCard', investigator: investigator.id, card },
+              label: 'choice.finishMulligan',
+              params: { n: redraw },
+              then: [{ type: 'FinishMulligan', investigator: investigator.id, setAside, redraw }],
             },
-          ]
-      return push(drawn, ...after, ...more)
+            ...[...new Set(getInvestigator(next, investigator.id).hand)].map((card): Choice => ({
+              label: 'choice.mulliganCard',
+              params: { card: playerCardDef(card)?.name ?? card },
+              target: { type: 'hand', code: card },
+              then: [{ type: 'Mulligan', investigator: investigator.id, setAside, redraw, card }],
+            })),
+          ],
+        },
+      })
+    }
+
+    case 'FinishMulligan': {
+      // Las apartadas no pueden volver a salir en el robo de reemplazo.
+      const drawn = drawOpeningCards(state, message.investigator, message.redraw)
+      const returned = [...message.setAside, ...drawn.setAside]
+      let next = drawn.state
+      if (returned.length > 0) {
+        const investigator = getInvestigator(next, message.investigator)
+        const [deck, rng] = shuffle([...investigator.deck, ...returned], next.rng)
+        next = updateInvestigator({ ...next, rng }, investigator.id, (i) => ({ ...i, deck }))
+      }
+      return log(next, 'log.mulligan', {
+        name: getInvestigator(next, message.investigator).name,
+        n: message.redraw,
+      })
     }
 
     case 'DiscardFromHand':
@@ -2812,6 +2868,28 @@ export function handle(state: GameState, message: Message): GameState {
 // ---------------------------------------------------------------------------
 // Cartas de jugador: reacciones, ventanas de prueba y debilidades
 // ---------------------------------------------------------------------------
+
+/** RR "Setting Up a Game": apartar debilidades sin revelarlas ni resolver efectos de robo. */
+function drawOpeningCards(state: GameState, id: InvestigatorId, amount: number) {
+  const investigator = getInvestigator(state, id)
+  const hand = [...investigator.hand]
+  const setAside: CardCode[] = []
+  let drawn = 0
+  let consumed = 0
+  // Un mazo insuficiente no vuelve a robar sus debilidades en un bucle.
+  while (drawn < amount && consumed < investigator.deck.length) {
+    const card = investigator.deck[consumed++]!
+    if (playerCardDef(card)?.weakness) setAside.push(card)
+    else {
+      hand.push(card)
+      drawn += 1
+    }
+  }
+  return {
+    state: updateInvestigator(state, id, (i) => ({ ...i, hand, deck: i.deck.slice(consumed) })),
+    setAside,
+  }
+}
 
 /** Perdición total en juego: la del plan y la de las cartas de jugador. */
 function totalDoom(state: GameState): number {

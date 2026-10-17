@@ -2,12 +2,14 @@
 import { LOCALES, type Locale } from '@lcg/shared'
 import { watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
 import PlaymatPicker from './components/PlaymatPicker.vue'
 import { scanLocale } from './game/cards'
 import { useCardLocale } from './game/localized'
 import './game/playmats'
 
 const { t, locale } = useI18n()
+const route = useRoute()
 
 // Datos de las cartas en el idioma activo (en inglés se usan las imágenes oficiales).
 watch(
@@ -46,7 +48,7 @@ function setLocale(value: Locale) {
       </button>
     </nav>
   </header>
-  <main>
+  <main :class="{ 'game-shell': route.name === 'game' }">
     <RouterView />
   </main>
 </template>
@@ -104,6 +106,16 @@ body {
   font-family: system-ui, 'Segoe UI', sans-serif;
   background: var(--bg);
   color: var(--ink);
+}
+#app:has(> .game-shell) {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+.game-shell {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 h1,
 h2,
@@ -218,6 +230,7 @@ button[aria-pressed='true'] {
   color: var(--accent);
 }
 .topbar {
+  flex: none;
   height: 52px;
   display: flex;
   align-items: center;
@@ -248,5 +261,45 @@ button[aria-pressed='true'] {
 .topbar nav {
   display: flex;
   gap: 4px;
+}
+@media (max-width: 600px) {
+  .topbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 44px auto;
+    height: auto;
+    gap: 8px;
+    padding: 8px 12px;
+  }
+  .brand {
+    font-size: clamp(0.58rem, 2.6vw, 0.85rem);
+  }
+  .disclaimer {
+    display: none;
+  }
+  .topbar nav {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .topbar nav button {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 6px 8px;
+  }
+  .topbar .picker {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .topbar .current {
+    justify-content: center;
+    width: 44px;
+    min-height: 44px;
+    padding: 0;
+    font-size: 0;
+    gap: 0;
+  }
+  .topbar .picker .menu {
+    left: auto;
+    right: 0;
+  }
 }
 </style>

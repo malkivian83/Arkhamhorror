@@ -1,5 +1,5 @@
-import { createGame, getInvestigator, type EnemyCard, type GameState } from '@lcg/engine'
-import { choose, during, labels, withBag } from '@lcg/engine/testing'
+import { getInvestigator, type EnemyCard, type GameState } from '@lcg/engine'
+import { createTestGame, choose, during, labels, withBag } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { CODES, spreadingFlames } from '../brethren-of-ash/spreading-flames'
 import { code, playerCards, STARTER_DECKS, starterInvestigator } from './player-cards'
@@ -10,7 +10,7 @@ const assets = (s: GameState) => Object.values(s.assets)
 const ROOM = CODES.yourFriendsRoom
 
 function newGame(): GameState {
-  return createGame({
+  return createTestGame({
     seed: 5,
     scenario: spreadingFlames(),
     investigators: [starterInvestigator('daniela')],
@@ -167,7 +167,7 @@ describe('comprometer cartas a pruebas', () => {
 
   it('otro investigador en la misma localización compromete 1 carta como máximo', () => {
     const JOE = starterInvestigator('joe').id
-    let game = createGame({
+    let game = createTestGame({
       seed: 5,
       scenario: spreadingFlames(),
       investigators: [starterInvestigator('daniela'), starterInvestigator('joe')],

@@ -1,0 +1,2723 @@
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&amp;family=IM+Fell+English:ital@0;1&amp;family=Special+Elite&amp;display=swap"
+/>
+<style id="ah-live-assets">
+  #arkham-mobile-design .ah-phone {
+    --ah-investigator: url("https://arkhamdb.com/bundles/cards/12004.jpg");
+    --ah-agenda: url("https://arkhamdb.com/bundles/cards/12106.jpg");
+    --ah-act: url("https://arkhamdb.com/bundles/cards/12109.jpg");
+    --ah-room-card: url("https://arkhamdb.com/bundles/cards/12113.jpg");
+    --ah-hand-0: url("https://arkhamdb.com/bundles/cards/12089.jpg");
+    --ah-hand-1: url("https://arkhamdb.com/bundles/cards/12016.jpg");
+    --ah-hand-2: url("https://arkhamdb.com/bundles/cards/12087.jpg");
+    --ah-hand-3: url("https://arkhamdb.com/bundles/cards/12022.jpg");
+    --ah-hand-4: url("https://arkhamdb.com/bundles/cards/12005.jpg");
+    --ah-wood-texture: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMTIwIj48ZmlsdGVyIGlkPSJ3Ij48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC4wMDQgMC4xMiIgbnVtT2N0YXZlcz0iMyIgc2VlZD0iNyIvPjxmZUNvbG9yTWF0cml4IHZhbHVlcz0iMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMC41NSAwIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI3cpIi8+PC9zdmc+Cg==");
+    --ah-felt-texture: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44NSIgbnVtT2N0YXZlcz0iMyIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjxmZUNvbG9yTWF0cml4IHZhbHVlcz0iMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMC40NSAwIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIi8+PC9zdmc+Cg==");
+    --ah-sigil-texture: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEuMiI+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI5OCIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iOTAiLz48cGF0aCBkPSJNMTAwLjAgOC4wTDEwMC4wIDMuME0xMjAuNSAxMC4zTDEyMS42IDUuNE0xMzkuOSAxNy4xTDE0Mi4xIDEyLjZNMTU3LjQgMjguMUwxNjAuNSAyNC4yTTE3MS45IDQyLjZMMTc1LjggMzkuNU0xODIuOSA2MC4xTDE4Ny40IDU3LjlNMTg5LjcgNzkuNUwxOTQuNiA3OC40TTE5Mi4wIDEwMC4wTDE5Ny4wIDEwMC4wTTE4OS43IDEyMC41TDE5NC42IDEyMS42TTE4Mi45IDEzOS45TDE4Ny40IDE0Mi4xTTE3MS45IDE1Ny40TDE3NS44IDE2MC41TTE1Ny40IDE3MS45TDE2MC41IDE3NS44TTEzOS45IDE4Mi45TDE0Mi4xIDE4Ny40TTEyMC41IDE4OS43TDEyMS42IDE5NC42TTEwMC4wIDE5Mi4wTDEwMC4wIDE5Ny4wTTc5LjUgMTg5LjdMNzguNCAxOTQuNk02MC4xIDE4Mi45TDU3LjkgMTg3LjRNNDIuNiAxNzEuOUwzOS41IDE3NS44TTI4LjEgMTU3LjRMMjQuMiAxNjAuNU0xNy4xIDEzOS45TDEyLjYgMTQyLjFNMTAuMyAxMjAuNUw1LjQgMTIxLjZNOC4wIDEwMC4wTDMuMCAxMDAuME0xMC4zIDc5LjVMNS40IDc4LjRNMTcuMSA2MC4xTDEyLjYgNTcuOU0yOC4xIDQyLjZMMjQuMiAzOS41TTQyLjYgMjguMUwzOS41IDI0LjJNNjAuMSAxNy4xTDU3LjkgMTIuNk03OS41IDEwLjNMNzguNCA1LjQiLz48cG9seWdvbiBwb2ludHM9IjEwMC4wLDE0LjAgMTM3LjMsMTc3LjUgMzIuOCw0Ni40IDE4My44LDExOS4xIDE2LjIsMTE5LjEgMTY3LjIsNDYuNCA2Mi43LDE3Ny41Ii8+PGNpcmNsZSBjeD0iMTAwLjAiIGN5PSIxNC4wIiByPSI1Ii8+PGNpcmNsZSBjeD0iMTY3LjIiIGN5PSI0Ni40IiByPSI1Ii8+PGNpcmNsZSBjeD0iMTgzLjgiIGN5PSIxMTkuMSIgcj0iNSIvPjxjaXJjbGUgY3g9IjEzNy4zIiBjeT0iMTc3LjUiIHI9IjUiLz48Y2lyY2xlIGN4PSI2Mi43IiBjeT0iMTc3LjUiIHI9IjUiLz48Y2lyY2xlIGN4PSIxNi4yIiBjeT0iMTE5LjEiIHI9IjUiLz48Y2lyY2xlIGN4PSIzMi44IiBjeT0iNDYuNCIgcj0iNSIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iMzQiLz48cGF0aCBkPSJNNzYgMTAwUTEwMCA4MCAxMjQgMTAwUTEwMCAxMjAgNzYgMTAwWiIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNiIgZmlsbD0id2hpdGUiLz48L3N2Zz4K");
+    --ah-arkham-map-texture: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNTAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBzbGljZSI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDhlY2RmIiBzdHJva2Utb3BhY2l0eT0iMC4wNyIgc3Ryb2tlLXdpZHRoPSIxLjIiPjxwYXRoIGQ9Ik0wIDcwSDgwME0wIDE2MEg4MDBNMCAyNTBIODAwTTAgMzQwSDgwME0wIDQzMEg4MDBNOTAgMFY1MDBNMjEwIDBWNTAwTTMzMCAwVjUwME00NzAgMFY1MDBNNTkwIDBWNTAwTTcxMCAwVjUwMCIvPjxwYXRoIGQ9Ik0wIDIwTDgwMCA0ODBNMCA0ODBMMzYwIDI2ME01MjAgMEw4MDAgMjAwIiBzdHJva2Utd2lkdGg9IjIiLz48cmVjdCB4PSIyMTUiIHk9Ijc1IiB3aWR0aD0iMTEwIiBoZWlnaHQ9IjgwIi8+PHJlY3QgeD0iNDc1IiB5PSIyNTUiIHdpZHRoPSIxMTAiIGhlaWdodD0iODAiLz48Y2lyY2xlIGN4PSI0MDAiIGN5PSIyNTAiIHI9IjQwIi8+PC9nPjxwYXRoIGQ9Ik0tMjAgMzgwQzEyMCAzMzAgMjAwIDQzMCAzNjAgMzkwUzYwMCAyOTAgODIwIDM0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2ZiMGNjIiBzdHJva2Utb3BhY2l0eT0iMC4xMyIgc3Ryb2tlLXdpZHRoPSIyMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHRleHQgeD0iNDAiIHk9IjQ3MCIgZm9udC1mYW1pbHk9IklNIEZlbGwgRW5nbGlzaCwgR2VvcmdpYSwgc2VyaWYiIGZvbnQtc3R5bGU9Iml0YWxpYyIgZm9udC1zaXplPSIyMCIgZmlsbD0iI2Q4ZWNkZiIgZmlsbC1vcGFjaXR5PSIwLjE4Ij5Sw61vIE1pc2thdG9uaWM8L3RleHQ+PHRleHQgeD0iNjEwIiB5PSI2MCIgZm9udC1mYW1pbHk9IklNIEZlbGwgRW5nbGlzaCwgR2VvcmdpYSwgc2VyaWYiIGZvbnQtc3R5bGU9Iml0YWxpYyIgZm9udC1zaXplPSIxNiIgZmlsbD0iI2Q4ZWNkZiIgZmlsbC1vcGFjaXR5PSIwLjE1Ij5BcmtoYW0sIE1hc3MuPC90ZXh0Pjwvc3ZnPgo=");
+  }
+</style>
+<style>
+  #arkham-mobile-design [data-phone] {
+    width: min(390px, 100%);
+    min-width: 0;
+  }
+  #arkham-mobile-design .ah-stage {
+    display: grid;
+    place-items: center;
+    min-height: 824px;
+    padding: 24px 12px 32px;
+  }
+  #arkham-mobile-design .ah-phone {
+    --ah-bg: light-dark(#f4efe3, #101b17);
+    --ah-panel: light-dark(#fff9eb, #18271f);
+    --ah-text: light-dark(#28251b, #eee5d0);
+    --ah-muted: light-dark(#625f4e, #b4c1af);
+    --ah-line: light-dark(#c6bea6, #3c4c3c);
+    --ah-gold: light-dark(#77561a, #d5b476);
+    --ah-green: light-dark(#285f48, #9fd8ba);
+    --ah-pressed: light-dark(#d7e7d9, #2b4a3b);
+    --ah-felt: light-dark(#d5e2d5, #142b21);
+    --ah-felt-line: light-dark(#a4bba8, #304b37);
+    --ah-paper: light-dark(#f2e4c2, #e9d8ad);
+    --ah-ink: #302416;
+    --ah-red: light-dark(#9c3f33, #f0a497);
+    --ah-shadow: light-dark(#3b3a2522, #00000070);
+    width: min(390px, 100%);
+    height: 760px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--ah-line);
+    border-radius: 25px;
+    overflow: clip;
+    background: var(--ah-bg);
+    color: var(--ah-text);
+    font:
+      15px/1.4 system-ui,
+      "Segoe UI",
+      sans-serif;
+    box-shadow: 0 18px 50px var(--ah-shadow);
+    isolation: isolate;
+  }
+  #arkham-mobile-design .ah-phone * {
+    box-sizing: border-box;
+  }
+  #arkham-mobile-design .ah-phone button {
+    font: inherit;
+    color: inherit;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    touch-action: manipulation;
+  }
+  #arkham-mobile-design .ah-phone button:disabled {
+    opacity: 0.45;
+  }
+  #arkham-mobile-design .ah-phone button:focus-visible {
+    outline: 3px solid var(--ah-gold);
+    outline-offset: -3px;
+  }
+  #arkham-mobile-design .ah-phone [hidden] {
+    display: none !important;
+  }
+  #arkham-mobile-design .ah-phone svg {
+    width: 19px;
+    height: 19px;
+    flex: none;
+    stroke-width: 1.7;
+  }
+  #arkham-mobile-design .ah-phone h2,
+  #arkham-mobile-design .ah-phone h3,
+  #arkham-mobile-design .ah-phone p {
+    margin: 0;
+  }
+  #arkham-mobile-design .ah-phone strong {
+    font-weight: 650;
+  }
+  #arkham-mobile-design .ah-phone small {
+    font-size: 12px;
+  }
+  #arkham-mobile-design .ah-header {
+    padding: 14px 12px 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ah-panel);
+  }
+  #arkham-mobile-design .ah-brand {
+    flex: 1;
+    min-width: 0;
+  }
+  #arkham-mobile-design .ah-wordmark {
+    font:
+      600 17px/1.2 Georgia,
+      serif;
+    color: var(--ah-gold);
+    letter-spacing: 2px;
+  }
+  #arkham-mobile-design .ah-phase {
+    display: block;
+    color: var(--ah-muted);
+    margin-top: 4px;
+    font-size: 12px;
+  }
+  #arkham-mobile-design .ah-icon {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    flex: none;
+    border-radius: 12px;
+  }
+  #arkham-mobile-design .ah-icon:hover {
+    background: var(--ah-pressed);
+  }
+  #arkham-mobile-design .ah-investigator {
+    margin: 0 12px 10px;
+    padding: 10px 12px !important;
+    border: 1px solid var(--ah-line) !important;
+    border-radius: 13px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    text-align: left;
+    background: var(--ah-panel) !important;
+  }
+  #arkham-mobile-design .ah-avatar {
+    display: grid;
+    place-items: center;
+    width: 39px;
+    height: 43px;
+    flex: none;
+    border-radius: 7px;
+    background: var(--ah-pressed);
+    color: var(--ah-gold);
+    font:
+      600 18px Georgia,
+      serif;
+  }
+  #arkham-mobile-design .ah-investigator-text {
+    flex: 1;
+    min-width: 0;
+  }
+  #arkham-mobile-design .ah-investigator-name {
+    display: block;
+    font-size: 14px;
+  }
+  #arkham-mobile-design .ah-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+    color: var(--ah-muted);
+    font-size: 12px;
+  }
+  #arkham-mobile-design .ah-stats span {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    white-space: nowrap;
+  }
+  #arkham-mobile-design .ah-stats svg {
+    width: 13px;
+    height: 13px;
+  }
+  #arkham-mobile-design .ah-actions-left {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--ah-green);
+  }
+  #arkham-mobile-design .ah-action-dots {
+    letter-spacing: 3px;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+  #arkham-mobile-design .ah-case-strip {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--ah-line);
+    border-bottom: 1px solid var(--ah-line);
+    background: var(--ah-panel);
+  }
+  #arkham-mobile-design .ah-case-strip button {
+    flex: 1;
+    min-height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+  }
+  #arkham-mobile-design .ah-case-strip button + button {
+    border-left: 1px solid var(--ah-line);
+  }
+  #arkham-mobile-design .ah-case-strip svg {
+    width: 15px;
+    height: 15px;
+    color: var(--ah-gold);
+  }
+  #arkham-mobile-design .ah-map {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    overflow: clip;
+    background:
+      radial-gradient(ellipse at 50% 50%, transparent 10%, var(--ah-bg) 135%),
+      repeating-linear-gradient(
+        0deg,
+        transparent 0 63px,
+        var(--ah-felt-line) 64px 65px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent 0 63px,
+        var(--ah-felt-line) 64px 65px
+      ),
+      var(--ah-felt);
+  }
+  #arkham-mobile-design .ah-map::before {
+    content: "";
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    border: 1px solid var(--ah-gold);
+    opacity: 0.16;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  #arkham-mobile-design .ah-map::after {
+    content: "";
+    position: absolute;
+    width: 245px;
+    height: 245px;
+    border: 1px solid var(--ah-gold);
+    opacity: 0.14;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    pointer-events: none;
+  }
+  #arkham-mobile-design .ah-map-world {
+    position: absolute;
+    width: 390px;
+    height: 390px;
+    transform-origin: 0 0;
+    z-index: 1;
+  }
+  #arkham-mobile-design .ah-map-caption {
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    right: 58px;
+    font-size: 11px;
+    color: var(--ah-muted);
+    z-index: 2;
+    pointer-events: none;
+  }
+  #arkham-mobile-design .ah-zoom {
+    position: absolute;
+    top: 9px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--ah-line);
+    border-radius: 12px;
+    background: var(--ah-panel);
+    z-index: 3;
+    overflow: hidden;
+  }
+  #arkham-mobile-design .ah-zoom button {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+  }
+  #arkham-mobile-design .ah-zoom button + button {
+    border-top: 1px solid var(--ah-line);
+  }
+  #arkham-mobile-design .ah-thread {
+    position: absolute;
+    height: 2px;
+    background: var(--ah-red);
+    opacity: 0.6;
+    transform-origin: left;
+    pointer-events: none;
+  }
+  #arkham-mobile-design .ah-thread-one {
+    left: 120px;
+    top: 130px;
+    width: 148px;
+  }
+  #arkham-mobile-design .ah-thread-two {
+    left: 268px;
+    top: 130px;
+    width: 155px;
+    transform: rotate(90deg);
+  }
+  #arkham-mobile-design .ah-location {
+    position: absolute;
+    width: 112px;
+    padding: 5px !important;
+    background: var(--ah-paper) !important;
+    color: var(--ah-ink) !important;
+    border: 2px solid transparent !important;
+    border-radius: 7px;
+    box-shadow: 0 5px 12px var(--ah-shadow);
+    text-align: center;
+  }
+  #arkham-mobile-design .ah-location[aria-pressed="true"] {
+    border-color: var(--ah-green) !important;
+    outline: 3px solid var(--ah-green);
+    outline-offset: 3px;
+  }
+  #arkham-mobile-design .ah-room {
+    left: 61px;
+    top: 61px;
+  }
+  #arkham-mobile-design .ah-dorm {
+    left: 221px;
+    top: 61px;
+  }
+  #arkham-mobile-design .ah-quad {
+    left: 221px;
+    top: 250px;
+  }
+  #arkham-mobile-design .ah-loc-art {
+    height: 69px;
+    display: grid;
+    place-items: center;
+    color: #e7d7aa;
+    background:
+      repeating-linear-gradient(90deg, transparent 0 24px, #151f183b 25px 29px),
+      linear-gradient(145deg, #967241, #354638 70%);
+    border-radius: 3px;
+    position: relative;
+  }
+  #arkham-mobile-design .ah-loc-art svg {
+    width: 35px;
+    height: 35px;
+    opacity: 0.8;
+  }
+  #arkham-mobile-design .ah-dorm .ah-loc-art {
+    background: repeating-linear-gradient(
+      45deg,
+      #263a2e 0 5px,
+      #314637 5px 7px
+    );
+  }
+  #arkham-mobile-design .ah-quad .ah-loc-art {
+    height: 55px;
+    background: linear-gradient(165deg, #6a7b64, #304c40);
+  }
+  #arkham-mobile-design .ah-loc-name {
+    display: block;
+    font:
+      600 14px/1.15 Georgia,
+      serif;
+    padding: 7px 0 3px;
+  }
+  #arkham-mobile-design .ah-loc-type {
+    display: block;
+    font-size: 12px;
+    opacity: 0.85;
+  }
+  #arkham-mobile-design .ah-mini {
+    position: absolute;
+    top: 27px;
+    left: -16px;
+    display: grid;
+    place-items: center;
+    width: 29px;
+    height: 38px;
+    font:
+      600 13px Georgia,
+      serif;
+    border: 2px solid var(--ah-paper);
+    border-radius: 5px;
+    background: #314b57;
+    color: #f2e5bd;
+    box-shadow: 0 2px 6px #0006;
+  }
+  #arkham-mobile-design .ah-clues {
+    position: absolute;
+    right: -10px;
+    top: 19px;
+    min-width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #285a3e;
+    color: #fff5d8;
+    border: 2px solid var(--ah-paper);
+    font-size: 14px;
+  }
+  #arkham-mobile-design .ah-you {
+    position: absolute;
+    left: 56px;
+    top: 38px;
+    color: var(--ah-green);
+    font-size: 12px;
+  }
+  #arkham-mobile-design .ah-pan {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 3px;
+    z-index: 3;
+    background: var(--ah-panel);
+    border-radius: 11px;
+  }
+  #arkham-mobile-design .ah-pan button {
+    width: 44px;
+    height: 44px;
+  }
+  #arkham-mobile-design .ah-map.dragging {
+    cursor: grabbing;
+  }
+  #arkham-mobile-design .ah-action-dock {
+    padding: 10px 12px 12px;
+    border-top: 1px solid var(--ah-line);
+    background: var(--ah-panel);
+  }
+  #arkham-mobile-design .ah-dock-label {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 7px;
+    font-size: 12px;
+    color: var(--ah-muted);
+  }
+  #arkham-mobile-design .ah-dock-label strong {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: var(--ah-text);
+    font-size: 12px;
+  }
+  #arkham-mobile-design .ah-dock-actions {
+    display: flex;
+    gap: 8px;
+  }
+  #arkham-mobile-design .ah-primary {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 14px !important;
+    border-radius: 11px;
+    background: var(--ah-green) !important;
+    color: var(--ah-bg) !important;
+    font-weight: 650 !important;
+  }
+  #arkham-mobile-design .ah-secondary {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 12px !important;
+    border: 1px solid var(--ah-line) !important;
+    border-radius: 11px;
+    background: var(--ah-panel) !important;
+  }
+  #arkham-mobile-design .ah-dock-actions .ah-primary {
+    flex: 1;
+  }
+  #arkham-mobile-design .ah-dock-actions .ah-secondary {
+    width: 48px;
+    padding: 0 !important;
+  }
+  #arkham-mobile-design .ah-nav {
+    display: flex;
+    padding: 4px 6px 12px;
+    border-top: 1px solid var(--ah-line);
+    background: var(--ah-panel);
+    z-index: 12;
+  }
+  #arkham-mobile-design .ah-nav button {
+    flex: 1;
+    min-width: 0;
+    min-height: 57px;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 11px;
+    position: relative;
+    color: var(--ah-muted);
+  }
+  #arkham-mobile-design .ah-nav button[aria-pressed="true"] {
+    color: var(--ah-green);
+    background: var(--ah-pressed);
+  }
+  #arkham-mobile-design .ah-nav-badge {
+    position: absolute;
+    top: 3px;
+    margin-left: 27px;
+    min-width: 15px;
+    padding: 0 3px;
+    font-size: 11px;
+    border-radius: 5px;
+    background: var(--ah-gold);
+    color: var(--ah-bg);
+  }
+  #arkham-mobile-design .ah-scrim {
+    position: absolute;
+    inset: 0 0 74px;
+    background: #0005;
+    z-index: 8;
+  }
+  #arkham-mobile-design .ah-sheet {
+    position: absolute;
+    bottom: 74px;
+    left: 0;
+    right: 0;
+    max-height: calc(100% - 82px);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--ah-line);
+    border-radius: 22px 22px 0 0;
+    background: var(--ah-panel);
+    box-shadow: 0 -10px 32px var(--ah-shadow);
+    z-index: 10;
+  }
+  #arkham-mobile-design .ah-handle {
+    width: 34px;
+    height: 4px;
+    background: var(--ah-line);
+    border-radius: 4px;
+    margin: 9px auto 0;
+    flex: none;
+  }
+  #arkham-mobile-design .ah-sheet-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px 8px 18px;
+    border-bottom: 1px solid var(--ah-line);
+  }
+  #arkham-mobile-design .ah-sheet-heading {
+    flex: 1;
+  }
+  #arkham-mobile-design .ah-sheet-heading h2 {
+    font:
+      600 20px/1.2 Georgia,
+      serif;
+    color: var(--ah-gold);
+  }
+  #arkham-mobile-design .ah-sheet-subtitle {
+    color: var(--ah-muted);
+    font-size: 12px;
+    margin-top: 3px !important;
+  }
+  #arkham-mobile-design .ah-sheet-content {
+    padding: 16px;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  #arkham-mobile-design .ah-sheet-content > * + * {
+    margin-top: 12px;
+  }
+  #arkham-mobile-design .ah-hand-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  #arkham-mobile-design .ah-hand-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    min-height: 70px;
+    padding: 8px 10px !important;
+    border: 1px solid var(--ah-line) !important;
+    border-radius: 12px;
+  }
+  #arkham-mobile-design .ah-card-stamp {
+    width: 43px;
+    height: 54px;
+    display: grid;
+    place-items: center;
+    border-radius: 4px;
+    background: var(--ah-paper);
+    color: var(--ah-ink);
+    flex: none;
+  }
+  #arkham-mobile-design .ah-card-stamp svg {
+    width: 23px;
+    height: 23px;
+  }
+  #arkham-mobile-design .ah-card-label {
+    flex: 1;
+    min-width: 0;
+    font-size: 14px;
+  }
+  #arkham-mobile-design .ah-card-label small {
+    display: block;
+    margin-top: 3px;
+    color: var(--ah-muted);
+  }
+  #arkham-mobile-design .ah-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  #arkham-mobile-design .ah-spread {
+    justify-content: space-between;
+  }
+  #arkham-mobile-design .ah-full {
+    width: 100%;
+  }
+  #arkham-mobile-design .ah-info {
+    padding: 14px;
+    border: 1px solid var(--ah-line);
+    border-radius: 12px;
+  }
+  #arkham-mobile-design .ah-info h3 {
+    font:
+      600 17px Georgia,
+      serif;
+    color: var(--ah-gold);
+    margin-bottom: 7px;
+  }
+  #arkham-mobile-design .ah-info p {
+    font-size: 14px;
+  }
+  #arkham-mobile-design .ah-info small {
+    color: var(--ah-muted);
+  }
+  #arkham-mobile-design .ah-info-count {
+    color: var(--ah-green);
+    font-weight: 650;
+    white-space: nowrap;
+  }
+  #arkham-mobile-design .ah-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  #arkham-mobile-design .ah-stat-cell {
+    padding: 12px;
+    background: var(--ah-bg);
+    border-radius: 10px;
+    font-size: 12px;
+    color: var(--ah-muted);
+  }
+  #arkham-mobile-design .ah-stat-cell strong {
+    color: var(--ah-text);
+    display: block;
+    font-size: 20px;
+    margin-top: 3px;
+  }
+  #arkham-mobile-design .ah-sheet-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  #arkham-mobile-design .ah-menu-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 52px;
+    text-align: left;
+    padding: 10px 12px !important;
+    border: 1px solid var(--ah-line) !important;
+    border-radius: 11px;
+  }
+  #arkham-mobile-design .ah-menu-item span {
+    flex: 1;
+  }
+  #arkham-mobile-design .ah-log {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  #arkham-mobile-design .ah-log li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--ah-line);
+    font-size: 14px;
+  }
+  #arkham-mobile-design .ah-log small {
+    display: block;
+    color: var(--ah-muted);
+    margin-bottom: 3px;
+  }
+  #arkham-mobile-design .ah-detail-card {
+    width: min(210px, 100%);
+    margin: 0 auto;
+    background: var(--ah-paper);
+    color: var(--ah-ink);
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  #arkham-mobile-design .ah-detail-card .ah-loc-art {
+    height: 90px;
+    margin: 10px 0;
+  }
+  #arkham-mobile-design .ah-detail-card h3 {
+    font:
+      600 20px Georgia,
+      serif;
+  }
+  #arkham-mobile-design .ah-detail-card p {
+    font:
+      15px/1.45 Georgia,
+      serif;
+  }
+  #arkham-mobile-design .ah-detail-card small {
+    font-size: 12px;
+  }
+  #arkham-mobile-design .ah-duel {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 12px;
+    padding: 18px 0;
+  }
+  #arkham-mobile-design .ah-duel strong {
+    display: grid;
+    place-items: center;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: var(--ah-pressed);
+    font-size: 30px;
+    color: var(--ah-green);
+  }
+  #arkham-mobile-design .ah-duel small {
+    display: block;
+    text-align: center;
+    margin-top: 7px;
+  }
+  #arkham-mobile-design .ah-token {
+    margin: 12px auto;
+    width: 80px;
+    height: 80px;
+    display: grid;
+    place-items: center;
+    border: 3px solid var(--ah-gold);
+    border-radius: 50%;
+    background: var(--ah-bg);
+    font:
+      600 29px Georgia,
+      serif;
+    color: var(--ah-gold);
+  }
+  #arkham-mobile-design .ah-result {
+    text-align: center;
+    color: var(--ah-green);
+  }
+  #arkham-mobile-design .ah-toast {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 181px;
+    background: var(--ah-panel);
+    border: 1px solid var(--ah-green);
+    border-radius: 12px;
+    padding: 12px;
+    z-index: 6;
+    font-size: 13px;
+    text-align: center;
+    pointer-events: none;
+  }
+  #arkham-mobile-design .ah-hand-peek {
+    background: var(--ah-panel);
+    border-top: 1px solid var(--ah-line);
+    padding: 10px 12px;
+  }
+  #arkham-mobile-design .ah-peek-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: var(--ah-muted);
+    font-size: 12px;
+  }
+  #arkham-mobile-design .ah-peek-title button {
+    min-height: 44px;
+    padding: 0 6px;
+  }
+  #arkham-mobile-design .ah-peek-card span {
+    overflow-wrap: anywhere;
+  }
+  #arkham-mobile-design .ah-peek-cards {
+    display: flex;
+    gap: 6px;
+  }
+  #arkham-mobile-design .ah-peek-card {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: var(--ah-paper) !important;
+    color: var(--ah-ink) !important;
+    border-radius: 6px;
+    padding: 8px 5px !important;
+    min-height: 75px;
+    font-size: 11px !important;
+  }
+  #arkham-mobile-design .ah-peek-card svg {
+    width: 21px;
+    height: 21px;
+  }
+  #arkham-mobile-design .ah-phone.ah-large {
+    font-size: 17px;
+  }
+  #arkham-mobile-design .ah-large .ah-card-label,
+  #arkham-mobile-design .ah-large .ah-info p,
+  #arkham-mobile-design .ah-large .ah-log li {
+    font-size: 16px;
+  }
+  #arkham-mobile-design .ah-large .ah-nav button {
+    font-size: 12px;
+  }
+  #arkham-mobile-design .ah-large .ah-sheet-subtitle,
+  #arkham-mobile-design .ah-large .ah-phase {
+    font-size: 14px;
+  }
+  #arkham-mobile-design .ah-compact .ah-investigator {
+    padding: 7px 10px !important;
+    margin-bottom: 8px;
+  }
+  #arkham-mobile-design .ah-compact .ah-case-strip {
+    display: none;
+  }
+  #arkham-mobile-design .ah-compact .ah-map-caption {
+    right: 58px;
+  }
+  @media (max-width: 420px) {
+    #arkham-mobile-design .ah-stage {
+      padding: 18px 0 28px;
+      min-height: 808px;
+    }
+    #arkham-mobile-design .ah-phone {
+      border-radius: 17px;
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    #arkham-mobile-design .ah-sheet {
+      animation: ah-sheet-up 0.17s ease-out;
+    }
+    @keyframes ah-sheet-up {
+      from {
+        transform: translateY(25px);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+  }
+</style>
+
+<style id="ah-arkham-refresh">
+  #arkham-mobile-design .ah-phone {
+    color-scheme: dark;
+    --ah-bg: #0e1915;
+    --ah-panel: #1b241d;
+    --ah-text: #ecdfbd;
+    --ah-muted: #c1b58f;
+    --ah-line: #675837;
+    --ah-gold: #d2ac66;
+    --ah-green: #9dcab4;
+    --ah-pressed: #294539;
+    --ah-paper: #e8d9b7;
+    --ah-ink: #302216;
+    --ah-red: #a83b2e;
+    font-family: "IM Fell English", Georgia, serif;
+    border-color: #756040;
+    border-radius: 20px;
+    background: var(--ah-felt-texture), #0e1915;
+  }
+  #arkham-mobile-design .ah-header {
+    padding: 12px 10px 10px 15px;
+    background: var(--ah-wood-texture), linear-gradient(#2a2117, #17150f);
+    border-bottom: 3px double #8a6a3c;
+  }
+  #arkham-mobile-design .ah-wordmark {
+    font:
+      700 17px/1.25 "Cinzel Decorative",
+      Georgia,
+      serif;
+    letter-spacing: 0.035em;
+    color: #dbc28b;
+    text-shadow: 0 2px 2px #000;
+  }
+  #arkham-mobile-design .ah-edition {
+    font:
+      11px/1.4 "IM Fell English",
+      Georgia,
+      serif;
+    letter-spacing: 0.18em;
+    color: #b79b65;
+  }
+  #arkham-mobile-design .ah-phase {
+    margin-top: 4px;
+    font:
+      11px/1.5 "Special Elite",
+      "Courier New",
+      monospace;
+    color: #d3c4a5;
+  }
+  #arkham-mobile-design .ah-icon {
+    border-radius: 3px;
+    color: #d1ba8a;
+  }
+  #arkham-mobile-design .ah-investigator {
+    margin: 0;
+    border: 0 !important;
+    border-bottom: 1px solid #6b5935 !important;
+    border-radius: 0;
+    padding: 9px 13px !important;
+    background:
+      var(--ah-wood-texture), linear-gradient(100deg, #3a291b, #201b13) !important;
+    box-shadow: inset 0 3px 12px #0005;
+    gap: 10px;
+  }
+  #arkham-mobile-design .ah-avatar {
+    width: 39px;
+    height: 55px;
+    border: 2px solid #d3c2a0;
+    border-radius: 3px;
+    background-image: var(--ah-investigator);
+    background-repeat: no-repeat;
+    background-size: 105px auto;
+    background-position: -10px -11px;
+    box-shadow: 1px 3px 7px #0009;
+  }
+  #arkham-mobile-design .ah-investigator-name {
+    font:
+      700 16px/1.2 "IM Fell English",
+      Georgia,
+      serif;
+    color: #ebd49e;
+  }
+  #arkham-mobile-design .ah-stats {
+    font:
+      12px/1.4 system-ui,
+      sans-serif;
+    gap: 8px;
+    margin-top: 6px;
+    color: #e1d2af;
+  }
+  #arkham-mobile-design .ah-stats span:nth-child(1) svg {
+    color: #efa58c;
+  }
+  #arkham-mobile-design .ah-stats span:nth-child(2) svg {
+    color: #a7bfe6;
+  }
+  #arkham-mobile-design .ah-stats span:nth-child(3) svg {
+    color: #e3bc76;
+  }
+  #arkham-mobile-design .ah-stats span:nth-child(4) svg {
+    color: #a6d1ad;
+  }
+  #arkham-mobile-design .ah-actions-left {
+    color: #e7cb8d;
+  }
+  #arkham-mobile-design .ah-action-dots {
+    letter-spacing: 1px;
+  }
+  #arkham-mobile-design .ah-case-strip {
+    border-top: 0;
+    border-bottom: 2px solid #102017;
+    background: var(--ah-wood-texture), #221a12;
+    padding: 6px 12px 7px;
+    gap: 8px;
+  }
+  #arkham-mobile-design .ah-case-strip button {
+    min-height: 44px;
+    border-radius: 3px 7px 3px 3px;
+    background: linear-gradient(#eaddbc, #cabb91);
+    color: #382819;
+    font:
+      14px "IM Fell English",
+      Georgia,
+      serif;
+    border: 1px solid #a58a54;
+    box-shadow: 1px 2px 3px #0008;
+  }
+  #arkham-mobile-design .ah-case-strip button + button {
+    border-left: 1px solid #a58a54;
+  }
+  #arkham-mobile-design .ah-case-strip svg {
+    color: #6e4928;
+  }
+  #arkham-mobile-design .ah-map {
+    background:
+      var(--ah-felt-texture),
+      var(--ah-arkham-map-texture) center/cover,
+      radial-gradient(ellipse at 50% 50%, #294a37, #0c1d15 100%);
+    box-shadow: inset 0 0 50px #0009;
+  }
+  #arkham-mobile-design .ah-map::before {
+    width: 285px;
+    height: 285px;
+    border: 0;
+    border-radius: 0;
+    background: #c3a34b;
+    mask: var(--ah-sigil-texture) center/contain no-repeat;
+    opacity: 0.16;
+  }
+  #arkham-mobile-design .ah-map::after {
+    inset: 6px;
+    width: auto;
+    height: auto;
+    transform: none;
+    border: 1px dashed #947b3c;
+    border-radius: 9px;
+    opacity: 0.3;
+  }
+  #arkham-mobile-design .ah-map-world {
+    height: 290px;
+  }
+  #arkham-mobile-design .ah-map-caption {
+    font:
+      11px/1.3 "IM Fell English",
+      Georgia,
+      serif;
+    width: 110px;
+    color: #c3cbb8;
+    top: 9px;
+  }
+  #arkham-mobile-design .ah-zoom {
+    border-color: #887447;
+    border-radius: 3px;
+    top: 11px;
+    right: 11px;
+    background: var(--ah-wood-texture), #1d241a;
+  }
+  #arkham-mobile-design .ah-zoom button + button {
+    border-color: #665936;
+  }
+  #arkham-mobile-design .ah-room {
+    width: 116px;
+    height: 164px;
+    padding: 0 !important;
+    left: 137px;
+    top: 64px;
+    background-image: var(--ah-room-card) !important;
+    background-size: 100% 100% !important;
+    border: 0 !important;
+    border-radius: 6px;
+    box-shadow: 2px 7px 13px #000c;
+  }
+  #arkham-mobile-design .ah-room > .ah-loc-art,
+  #arkham-mobile-design .ah-room > .ah-loc-type {
+    visibility: hidden;
+  }
+  #arkham-mobile-design .ah-room > .ah-loc-name {
+    position: absolute;
+    top: 169px;
+    left: -22px;
+    right: -22px;
+    padding: 0;
+    color: #eee0b5;
+    font:
+      14px/1.15 "IM Fell English",
+      Georgia,
+      serif;
+    text-shadow: 0 1px 3px #000;
+  }
+  #arkham-mobile-design .ah-room > .ah-loc-name br {
+    display: none;
+  }
+  #arkham-mobile-design .ah-room[aria-pressed="true"] {
+    outline: 1.5px dashed #a7cab7;
+    outline-offset: 4px;
+  }
+  #arkham-mobile-design .ah-room::after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: calc(50% - 5px);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 30% 25%,
+      #ed8069,
+      #9b251d 60%,
+      #45120d
+    );
+    box-shadow: 0 2px 3px #0009;
+  }
+  #arkham-mobile-design .ah-dorm,
+  #arkham-mobile-design .ah-quad,
+  #arkham-mobile-design .ah-thread {
+    display: none;
+  }
+  #arkham-mobile-design .ah-you {
+    left: 139px;
+    top: 38px;
+    color: #9ecab3;
+    font-size: 12px;
+  }
+  #arkham-mobile-design .ah-mini {
+    width: 31px;
+    height: 44px;
+    left: -20px;
+    top: 22px;
+    border-width: 1.5px;
+    font-size: 0;
+    background-image: var(--ah-investigator);
+    background-size: 82px auto;
+    background-position: -8px -8px;
+    border-radius: 3px;
+  }
+  #arkham-mobile-design .ah-clues {
+    top: 15px;
+    width: 28px;
+    height: 28px;
+    right: -8px;
+    background: radial-gradient(
+      circle at 32% 25%,
+      #9cac68,
+      #416131 55%,
+      #192c19
+    );
+    color: #fff5d4;
+    border: 2px solid #b7ae86;
+    box-shadow: 0 2px 3px #000b;
+  }
+  #arkham-mobile-design .ah-hand-peek {
+    display: block;
+    padding: 6px 12px 9px;
+    background: var(--ah-wood-texture), linear-gradient(#35271a, #23190f);
+    border-top: 3px double #8a6d3a;
+    box-shadow: 0 -4px 12px #0005;
+    z-index: 4;
+  }
+  #arkham-mobile-design .ah-peek-title {
+    min-height: 30px;
+    margin-bottom: 4px;
+    color: #dec798;
+    font:
+      12px "IM Fell English",
+      Georgia,
+      serif;
+    letter-spacing: 0.02em;
+  }
+  #arkham-mobile-design .ah-peek-title > span {
+    text-transform: uppercase;
+  }
+  #arkham-mobile-design .ah-peek-title button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-height: 44px;
+    padding: 0 3px;
+    font-size: 12px;
+  }
+  #arkham-mobile-design .ah-peek-title button svg {
+    width: 13px;
+    height: 13px;
+  }
+  #arkham-mobile-design .ah-peek-cards {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 6px;
+    align-items: start;
+  }
+  #arkham-mobile-design .ah-peek-card {
+    display: block;
+    min-height: 0;
+    padding: 0 !important;
+    background: none !important;
+    color: #e9d8b6 !important;
+    border-radius: 3px;
+    position: relative;
+  }
+  #arkham-mobile-design .ah-card-scan {
+    display: block;
+    width: 100%;
+    aspect-ratio: 5/7;
+    border-radius: 4px;
+    background-image: var(--ah-scan);
+    background-size: 100% 100%;
+    background-position: center;
+    box-shadow: 1px 4px 6px #0009;
+  }
+  #arkham-mobile-design [data-card="0"],
+  #arkham-mobile-design [data-scan-index="0"] {
+    --ah-scan: var(--ah-hand-0);
+  }
+  #arkham-mobile-design [data-card="1"],
+  #arkham-mobile-design [data-scan-index="1"] {
+    --ah-scan: var(--ah-hand-1);
+  }
+  #arkham-mobile-design [data-card="2"],
+  #arkham-mobile-design [data-scan-index="2"] {
+    --ah-scan: var(--ah-hand-2);
+  }
+  #arkham-mobile-design [data-card="3"],
+  #arkham-mobile-design [data-scan-index="3"] {
+    --ah-scan: var(--ah-hand-3);
+  }
+  #arkham-mobile-design [data-card="4"],
+  #arkham-mobile-design [data-scan-index="4"] {
+    --ah-scan: var(--ah-hand-4);
+  }
+  #arkham-mobile-design .ah-peek-name {
+    display: block;
+    font:
+      11px/1.2 "IM Fell English",
+      Georgia,
+      serif;
+    margin-top: 5px;
+    overflow-wrap: normal !important;
+  }
+  #arkham-mobile-design .ah-action-dock {
+    padding: 7px 12px 9px;
+    background: var(--ah-wood-texture), #1e1c14;
+    border-top: 1px solid #6b5834;
+  }
+  #arkham-mobile-design .ah-dock-label {
+    font:
+      12px "IM Fell English",
+      Georgia,
+      serif;
+    gap: 4px;
+    margin-bottom: 5px;
+  }
+  #arkham-mobile-design .ah-dock-label strong {
+    color: #e7d5ac;
+  }
+  #arkham-mobile-design .ah-primary {
+    min-height: 44px;
+    border: 1px solid #d1b785 !important;
+    border-radius: 3px;
+    background: linear-gradient(#d4bd88, #b39961) !important;
+    color: #231c12 !important;
+    font-family: "IM Fell English", Georgia, serif !important;
+    font-size: 17px !important;
+    box-shadow:
+      inset 0 1px 0 #eadbbb,
+      0 2px 5px #0008;
+  }
+  #arkham-mobile-design .ah-secondary {
+    border-radius: 3px;
+    border-color: #8f7749 !important;
+    background: #20281f !important;
+  }
+  #arkham-mobile-design .ah-nav {
+    padding: 4px 7px 9px;
+    gap: 3px;
+    border-top: 3px double #8a6d3a;
+    background: var(--ah-wood-texture), #18160f;
+  }
+  #arkham-mobile-design .ah-nav button {
+    min-height: 52px;
+    border-radius: 2px;
+    color: #c8b68c;
+    font:
+      12px/1.1 "IM Fell English",
+      Georgia,
+      serif;
+    gap: 5px;
+  }
+  #arkham-mobile-design .ah-nav button svg {
+    width: 18px;
+    height: 18px;
+  }
+  #arkham-mobile-design .ah-nav button[aria-pressed="true"] {
+    color: #f2dfb2;
+    background: linear-gradient(#5b4728, #2d2819);
+    box-shadow: inset 0 2px 0 #d7b26a;
+  }
+  #arkham-mobile-design .ah-nav-badge {
+    background: #c4a265;
+    color: #20180d;
+    border-radius: 50%;
+    min-width: 16px;
+    height: 16px;
+    font:
+      11px/16px system-ui,
+      sans-serif;
+    top: 1px;
+  }
+  #arkham-mobile-design .ah-sheet {
+    border-color: #b39863;
+    border-radius: 8px 8px 0 0;
+    background: linear-gradient(105deg, #e3d0a6, #f0e3c3 18%, #e4d1a8);
+    color: #352619;
+    box-shadow: 0 -8px 30px #000a;
+  }
+  #arkham-mobile-design .ah-sheet-header {
+    border-bottom: 3px double #9c804a;
+    background: linear-gradient(#eee0bc, #dec99c);
+  }
+  #arkham-mobile-design .ah-handle {
+    background: #9e8452;
+    height: 3px;
+  }
+  #arkham-mobile-design .ah-sheet-heading h2 {
+    color: #51391b;
+    font-family: "IM Fell English", Georgia, serif;
+  }
+  #arkham-mobile-design .ah-sheet-subtitle {
+    color: #6a5030;
+    font-family: "IM Fell English", Georgia, serif;
+    font-size: 13px;
+  }
+  #arkham-mobile-design .ah-sheet .ah-icon {
+    color: #594025;
+  }
+  #arkham-mobile-design .ah-hand-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 12px;
+  }
+  #arkham-mobile-design .ah-hand-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    border: 0 !important;
+    padding: 0 !important;
+    border-radius: 2px;
+    text-align: left;
+  }
+  #arkham-mobile-design .ah-card-stamp {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5/7;
+    border-radius: 5px;
+    background-image: var(--ah-scan);
+    background-size: 100% 100%;
+    box-shadow: 1px 4px 6px #33201477;
+  }
+  #arkham-mobile-design .ah-card-stamp svg,
+  #arkham-mobile-design .ah-hand-card > svg {
+    display: none;
+  }
+  #arkham-mobile-design .ah-card-label {
+    font:
+      15px/1.15 "IM Fell English",
+      Georgia,
+      serif;
+    color: #3e2a16;
+  }
+  #arkham-mobile-design .ah-card-label small {
+    color: #705738;
+    font-size: 12px;
+  }
+  #arkham-mobile-design .ah-detail-card {
+    width: min(245px, 100%);
+    padding: 0;
+    background: transparent;
+    color: #302216;
+  }
+  #arkham-mobile-design .ah-detail-scan {
+    display: block;
+    width: 100%;
+    aspect-ratio: 5/7;
+    background-image: var(--ah-scan);
+    background-size: 100% 100%;
+    border-radius: 8px;
+    box-shadow: 1px 5px 12px #33201488;
+    margin-top: 10px;
+  }
+  #arkham-mobile-design .ah-detail-card .ah-loc-art {
+    display: none;
+  }
+  #arkham-mobile-design .ah-detail-card p {
+    margin-top: 12px;
+    font-size: 17px;
+  }
+  #arkham-mobile-design .ah-info {
+    border-radius: 3px;
+    border-color: #ad925f;
+    background: #e8d8b0;
+  }
+  #arkham-mobile-design .ah-info h3 {
+    color: #5b3d1a;
+  }
+  #arkham-mobile-design .ah-info small {
+    color: #6f5432;
+  }
+  #arkham-mobile-design .ah-info-count {
+    color: #45603a;
+  }
+  #arkham-mobile-design .ah-stat-cell {
+    background: #d8c39b;
+    color: #684c2d;
+    border-radius: 3px;
+  }
+  #arkham-mobile-design .ah-stat-cell strong {
+    color: #382615;
+  }
+  #arkham-mobile-design .ah-sheet .ah-secondary {
+    background: #dcca9f !important;
+    color: #3d2a17;
+    border-color: #a18450 !important;
+  }
+  #arkham-mobile-design .ah-menu-item {
+    border-color: #af9566 !important;
+    border-radius: 3px;
+  }
+  #arkham-mobile-design .ah-log li {
+    border-color: #bba477;
+    font-family: "Special Elite", "Courier New", monospace;
+    font-size: 13px;
+  }
+  #arkham-mobile-design .ah-log small {
+    color: #70522f;
+  }
+  #arkham-mobile-design .ah-scenario-scan {
+    width: 100%;
+    aspect-ratio: 10/7;
+    background-size: 100% 100%;
+    border-radius: 7px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 8px #3a271a55;
+  }
+  #arkham-mobile-design .ah-agenda-scan {
+    background-image: var(--ah-agenda);
+  }
+  #arkham-mobile-design .ah-act-scan {
+    background-image: var(--ah-act);
+  }
+  #arkham-mobile-design .ah-investigator-scan {
+    background-image: var(--ah-investigator);
+  }
+  #arkham-mobile-design .ah-duel strong {
+    background: #d6c295;
+    color: #3d5e38;
+  }
+  #arkham-mobile-design .ah-result {
+    color: #3c643b;
+  }
+  #arkham-mobile-design .ah-token {
+    background: #303329;
+    color: #ead7a6;
+  }
+  #arkham-mobile-design .ah-toast {
+    bottom: 160px;
+    background: #efe1bd;
+    border-color: #ac8b4c;
+    color: #402e1a;
+    border-radius: 3px;
+  }
+  @media (max-width: 360px) {
+    #arkham-mobile-design .ah-wordmark {
+      font-size: 15px;
+    }
+    #arkham-mobile-design .ah-edition {
+      letter-spacing: 0.09em;
+    }
+    #arkham-mobile-design .ah-stats {
+      gap: 5px;
+    }
+    #arkham-mobile-design .ah-peek-cards {
+      gap: 4px;
+    }
+    #arkham-mobile-design .ah-hand-peek {
+      padding-left: 9px;
+      padding-right: 9px;
+    }
+    #arkham-mobile-design .ah-peek-name {
+      font-size: 11px;
+    }
+  }
+</style>
+
+<div
+  id="arkham-mobile-design"
+  class="viz-dotted-background"
+  aria-label="Mesa móvil de Arkham Horror"
+  data-previous-label="Anterior"
+  data-next-label="Siguiente"
+>
+  <section
+    class="ah-stage"
+    data-variant="Mesa y paneles"
+    aria-label="Mesa y paneles, propuesta recomendada"
+  >
+    <div data-phone="panels"></div>
+  </section>
+</div>
+
+<template id="ah-mobile-template">
+  <div class="ah-phone" aria-label="Mesa de Arkham en móvil">
+    <header class="ah-header">
+      <div class="ah-brand">
+        <div class="ah-wordmark">Arkham Horror</div>
+        <div class="ah-edition">EL JUEGO DE CARTAS</div>
+        <small class="ah-phase">Ronda 1 · Investigación</small>
+      </div>
+      <button
+        type="button"
+        class="ah-icon cursor-interaction"
+        data-action="undo"
+        aria-label="Deshacer la última acción"
+      >
+        <i data-lucide="undo-2" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        class="ah-icon cursor-interaction"
+        data-open="menu"
+        aria-label="Abrir menú de la partida"
+      >
+        <i data-lucide="ellipsis" aria-hidden="true"></i>
+      </button>
+    </header>
+    <button
+      type="button"
+      class="ah-investigator cursor-interaction"
+      data-open="equipment"
+      aria-label="Ver a Joe Diamond y su equipo"
+    >
+      <span class="ah-avatar" aria-hidden="true"></span>
+      <span class="ah-investigator-text"
+        ><strong class="ah-investigator-name">Joe Diamond</strong
+        ><span class="ah-stats"
+          ><span aria-label="Salud 7 de 7"
+            ><i data-lucide="heart" aria-hidden="true"></i>7/7</span
+          ><span aria-label="Cordura 7 de 7"
+            ><i data-lucide="brain" aria-hidden="true"></i>7/7</span
+          ><span aria-label="Recursos"
+            ><i data-lucide="coins" aria-hidden="true"></i
+            ><b data-resources>5</b></span
+          ><span aria-label="Pistas"
+            ><i data-lucide="search" aria-hidden="true"></i
+            ><b data-clues>0</b></span
+          ></span
+        ></span
+      >
+      <span class="ah-actions-left"
+        ><span class="ah-action-dots" data-dots aria-hidden="true">●●●</span
+        ><span data-action-count>3 acciones</span></span
+      >
+    </button>
+    <div class="ah-case-strip" aria-label="Estado del escenario">
+      <button type="button" class="cursor-interaction" data-open="case">
+        <i data-lucide="flame" aria-hidden="true"></i>Plan
+        <strong>0/3</strong></button
+      ><button type="button" class="cursor-interaction" data-open="case">
+        <i data-lucide="book-open" aria-hidden="true"></i>Acto
+        <strong>2 pistas</strong>
+      </button>
+    </div>
+    <div
+      class="ah-map"
+      aria-label="Mapa de lugares. Arrastra para mover el mapa."
+    >
+      <span class="ah-map-caption">Arrastra y pellizca</span>
+      <div class="ah-zoom" role="group" aria-label="Controles del mapa">
+        <button
+          type="button"
+          class="cursor-interaction"
+          data-action="zoom-in"
+          aria-label="Acercar"
+        >
+          <i data-lucide="plus" aria-hidden="true"></i>
+        </button>
+        <button
+          type="button"
+          class="cursor-interaction"
+          data-action="zoom-out"
+          aria-label="Alejar"
+        >
+          <i data-lucide="minus" aria-hidden="true"></i>
+        </button>
+        <button
+          type="button"
+          class="cursor-interaction"
+          data-action="fit"
+          aria-label="Centrar el mapa"
+        >
+          <i data-lucide="scan" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="ah-map-world">
+        <div class="ah-thread ah-thread-one"></div>
+        <div class="ah-thread ah-thread-two"></div>
+        <span class="ah-you">Estás aquí</span>
+        <button
+          type="button"
+          class="ah-location ah-room cursor-interaction"
+          data-location="room"
+          aria-label="Habitación de tu amigo. Tu localización. 2 pistas."
+          aria-pressed="true"
+        >
+          <span class="ah-loc-art"
+            ><i data-lucide="door-open" aria-hidden="true"></i></span
+          ><span class="ah-loc-name">Habitación<br />de tu amigo</span
+          ><span class="ah-loc-type">Velo 2</span
+          ><span class="ah-mini" aria-hidden="true">JD</span
+          ><span class="ah-clues" data-room-clues aria-hidden="true">2</span>
+        </button>
+        <button
+          type="button"
+          class="ah-location ah-dorm cursor-interaction"
+          data-location="dorm"
+          aria-label="Dormitorios. Sin revelar."
+          aria-pressed="false"
+        >
+          <span class="ah-loc-art"
+            ><i data-lucide="building-2" aria-hidden="true"></i></span
+          ><span class="ah-loc-name">Dormitorios</span
+          ><span class="ah-loc-type">Sin revelar</span>
+        </button>
+        <button
+          type="button"
+          class="ah-location ah-quad cursor-interaction"
+          data-location="quad"
+          aria-label="Patio de Miskatonic. Sin revelar."
+          aria-pressed="false"
+        >
+          <span class="ah-loc-art"
+            ><i data-lucide="landmark" aria-hidden="true"></i></span
+          ><span class="ah-loc-name">Patio de<br />Miskatonic</span>
+        </button>
+      </div>
+      <div class="ah-pan" role="group" aria-label="Desplazar sin gestos" hidden>
+        <button
+          type="button"
+          class="cursor-interaction"
+          data-pan="left"
+          aria-label="Mirar a la izquierda"
+        >
+          ←</button
+        ><button
+          type="button"
+          class="cursor-interaction"
+          data-pan="up"
+          aria-label="Mirar arriba"
+        >
+          ↑</button
+        ><button
+          type="button"
+          class="cursor-interaction"
+          data-pan="down"
+          aria-label="Mirar abajo"
+        >
+          ↓</button
+        ><button
+          type="button"
+          class="cursor-interaction"
+          data-pan="right"
+          aria-label="Mirar a la derecha"
+        >
+          →
+        </button>
+      </div>
+    </div>
+    <div class="ah-hand-peek">
+      <div class="ah-peek-title">
+        <span>Tu mano · <b data-hand-count>5</b> cartas</span
+        ><button type="button" class="cursor-interaction" data-open="hand">
+          Ampliar mano <i data-lucide="chevron-up" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="ah-peek-cards">
+        <button
+          type="button"
+          class="ah-peek-card cursor-interaction"
+          data-card="0"
+        >
+          <span class="ah-card-scan" aria-hidden="true"></span
+          ><span class="ah-peek-name">Alijo</span></button
+        ><button
+          type="button"
+          class="ah-peek-card cursor-interaction"
+          data-card="1"
+        >
+          <span class="ah-card-scan" aria-hidden="true"></span
+          ><span class="ah-peek-name">Guardaesp.</span></button
+        ><button
+          type="button"
+          class="ah-peek-card cursor-interaction"
+          data-card="2"
+        >
+          <span class="ah-card-scan" aria-hidden="true"></span
+          ><span class="ah-peek-name">Sombrero</span>
+        </button>
+        <button
+          type="button"
+          class="ah-peek-card cursor-interaction"
+          data-card="3"
+          aria-label="Ver Lección aprendida"
+        >
+          <span class="ah-card-scan" aria-hidden="true"></span
+          ><span class="ah-peek-name">Lección</span>
+        </button>
+        <button
+          type="button"
+          class="ah-peek-card cursor-interaction"
+          data-card="4"
+          aria-label="Ver Intuición de detective"
+        >
+          <span class="ah-card-scan" aria-hidden="true"></span
+          ><span class="ah-peek-name">Intuición</span>
+        </button>
+      </div>
+    </div>
+    <div class="ah-action-dock">
+      <div class="ah-dock-label">
+        <strong>Habitación de tu amigo</strong
+        ><span data-dock-hint>Tu turno</span>
+      </div>
+      <div class="ah-dock-actions">
+        <button
+          type="button"
+          class="ah-primary cursor-interaction"
+          data-open="test"
+        >
+          <i data-lucide="search" aria-hidden="true"></i
+          ><span>Investigar</span></button
+        ><button
+          type="button"
+          class="ah-secondary cursor-interaction"
+          data-open="actions"
+          aria-label="Otras acciones"
+        >
+          <i data-lucide="list" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <nav class="ah-nav" aria-label="Navegación de la partida">
+      <button
+        type="button"
+        class="cursor-interaction"
+        data-tab="map"
+        aria-pressed="true"
+      >
+        <i data-lucide="map" aria-hidden="true"></i><span>Mapa</span></button
+      ><button
+        type="button"
+        class="cursor-interaction"
+        data-tab="hand"
+        aria-pressed="false"
+      >
+        <i data-lucide="hand" aria-hidden="true"></i><span>Mano</span
+        ><span class="ah-nav-badge" data-hand-count>5</span></button
+      ><button
+        type="button"
+        class="cursor-interaction"
+        data-tab="equipment"
+        aria-pressed="false"
+      >
+        <i data-lucide="user-round" aria-hidden="true"></i
+        ><span>Equipo</span></button
+      ><button
+        type="button"
+        class="cursor-interaction"
+        data-tab="case"
+        aria-pressed="false"
+        aria-label="Escenario, plan y acto"
+      >
+        <i data-lucide="layers" aria-hidden="true"></i><span>Caso</span></button
+      ><button
+        type="button"
+        class="cursor-interaction"
+        data-tab="journal"
+        aria-pressed="false"
+      >
+        <i data-lucide="notebook-pen" aria-hidden="true"></i><span>Diario</span>
+      </button>
+    </nav>
+    <button
+      type="button"
+      class="ah-scrim"
+      data-action="close"
+      aria-label="Volver al mapa"
+      hidden
+    ></button>
+    <section class="ah-sheet" role="dialog" aria-modal="false" hidden>
+      <div class="ah-handle" aria-hidden="true"></div>
+      <div class="ah-sheet-header">
+        <div class="ah-sheet-heading">
+          <h2 data-sheet-title></h2>
+          <p class="ah-sheet-subtitle" data-sheet-subtitle></p>
+        </div>
+        <button
+          type="button"
+          class="ah-icon cursor-interaction"
+          data-action="close"
+          aria-label="Cerrar panel"
+        >
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="ah-sheet-content"></div>
+    </section>
+    <div class="ah-toast" role="status" aria-live="polite" hidden></div>
+  </div>
+</template>
+
+<template id="ah-hand-panel"
+  ><div class="ah-hand-list">
+    <button type="button" class="ah-hand-card cursor-interaction" data-card="0">
+      <span class="ah-card-stamp"
+        ><i data-lucide="coins" aria-hidden="true"></i></span
+      ><span class="ah-card-label"
+        >Alijo de emergencia<small>Evento · Coste 0</small></span
+      ><i data-lucide="chevron-right" aria-hidden="true"></i></button
+    ><button
+      type="button"
+      class="ah-hand-card cursor-interaction"
+      data-card="1"
+    >
+      <span class="ah-card-stamp"
+        ><i data-lucide="shield" aria-hidden="true"></i></span
+      ><span class="ah-card-label">Guardaespaldas<small>Apoyo</small></span
+      ><i data-lucide="chevron-right" aria-hidden="true"></i></button
+    ><button
+      type="button"
+      class="ah-hand-card cursor-interaction"
+      data-card="2"
+    >
+      <span class="ah-card-stamp"
+        ><i data-lucide="user-round" aria-hidden="true"></i></span
+      ><span class="ah-card-label">Sombrero de fieltro<small>Apoyo</small></span
+      ><i data-lucide="chevron-right" aria-hidden="true"></i></button
+    ><button
+      type="button"
+      class="ah-hand-card cursor-interaction"
+      data-card="3"
+    >
+      <span class="ah-card-stamp"
+        ><i data-lucide="book-open" aria-hidden="true"></i></span
+      ><span class="ah-card-label"
+        >Lección aprendida<small>En tu mano</small></span
+      ><i data-lucide="chevron-right" aria-hidden="true"></i></button
+    ><button
+      type="button"
+      class="ah-hand-card cursor-interaction"
+      data-card="4"
+    >
+      <span class="ah-card-stamp"
+        ><i data-lucide="search" aria-hidden="true"></i></span
+      ><span class="ah-card-label"
+        >Intuición de detective<small>En tu mano</small></span
+      ><i data-lucide="chevron-right" aria-hidden="true"></i>
+    </button></div
+></template>
+<template id="ah-equipment-panel"
+  ><div
+    class="ah-scenario-scan ah-investigator-scan"
+    role="img"
+    aria-label="Carta de Joe Diamond"
+  ></div>
+  <div class="ah-stat-grid">
+    <div class="ah-stat-cell">Salud<strong>7 / 7</strong></div>
+    <div class="ah-stat-cell">Cordura<strong>7 / 7</strong></div>
+    <div class="ah-stat-cell">Recursos<strong data-resources>5</strong></div>
+    <div class="ah-stat-cell">Pistas<strong data-clues>0</strong></div>
+  </div>
+  <div class="ah-info">
+    <h3>Habilidades</h3>
+    <div class="ah-row ah-spread"><span>Voluntad</span><strong>2</strong></div>
+    <div class="ah-row ah-spread"><span>Intelecto</span><strong>4</strong></div>
+    <div class="ah-row ah-spread"><span>Combate</span><strong>4</strong></div>
+    <div class="ah-row ah-spread"><span>Agilidad</span><strong>2</strong></div>
+  </div>
+  <div class="ah-info">
+    <h3>En juego</h3>
+    <p>Aún no tienes apoyos en juego.</p>
+  </div>
+  <button
+    type="button"
+    class="ah-secondary ah-full cursor-interaction"
+    data-open="hand"
+  >
+    Ver mi mano
+  </button></template
+>
+<template id="ah-case-panel"
+  ><div class="ah-info">
+    <div
+      class="ah-scenario-scan ah-agenda-scan"
+      role="img"
+      aria-label="Plan Horas intempestivas"
+    ></div>
+    <div class="ah-row ah-spread">
+      <h3>Plan · Horas intempestivas</h3>
+      <span class="ah-info-count">0/3</span>
+    </div>
+    <p>Perdición</p>
+  </div>
+  <div class="ah-info">
+    <div
+      class="ah-scenario-scan ah-act-scan"
+      role="img"
+      aria-label="Acto Donde hay humo"
+    ></div>
+    <div class="ah-row ah-spread">
+      <h3>Acto · Donde hay humo…</h3>
+      <span class="ah-info-count">2 pistas</span>
+    </div>
+    <p>Pistas necesarias para avanzar</p>
+  </div>
+  <div class="ah-stat-grid">
+    <div class="ah-stat-cell">Encuentros<strong>24</strong></div>
+    <div class="ah-stat-cell">Descartes<strong>0</strong></div>
+  </div>
+  <button type="button" class="ah-menu-item cursor-interaction" data-open="bag">
+    <i data-lucide="circle-dot" aria-hidden="true"></i
+    ><span>Bolsa del caos</span><small>16 fichas</small>
+  </button>
+  <div class="ah-info">
+    <h3>Victoria</h3>
+    <p>No hay cartas en la zona de victoria.</p>
+  </div></template
+>
+<template id="ah-actions-panel"
+  ><div class="ah-sheet-menu">
+    <button
+      type="button"
+      class="ah-menu-item cursor-interaction"
+      data-open="test"
+    >
+      <i data-lucide="search" aria-hidden="true"></i><span>Investigar</span
+      ><small>1 acción</small></button
+    ><button
+      type="button"
+      class="ah-menu-item cursor-interaction"
+      data-action="draw"
+    >
+      <i data-lucide="copy-plus" aria-hidden="true"></i
+      ><span>Robar una carta</span><small>1 acción</small></button
+    ><button
+      type="button"
+      class="ah-menu-item cursor-interaction"
+      data-action="resource"
+    >
+      <i data-lucide="coins" aria-hidden="true"></i
+      ><span>Obtener un recurso</span><small>1 acción</small></button
+    ><button
+      type="button"
+      class="ah-menu-item cursor-interaction"
+      data-open="end"
+    >
+      <i data-lucide="check" aria-hidden="true"></i
+      ><span>Terminar el turno</span>
+    </button>
+  </div></template
+>
+<template id="ah-journal-panel"
+  ><ol class="ah-log">
+    <li>
+      <small>Ronda 1 · Investigación</small>Joe Diamond confirma su mano
+      inicial.
+    </li>
+    <li><small>Ronda 1 · Preparación</small>Comienza Spreading Flames.</li>
+  </ol></template
+>
+<template id="ah-test-panel"
+  ><div class="ah-row ah-spread">
+    <span>Intelecto</span><small>Habitación de tu amigo</small>
+  </div>
+  <div class="ah-duel">
+    <div><strong>4</strong><small>Tu valor</small></div>
+    <span>contra</span>
+    <div><strong>2</strong><small>Velo</small></div>
+  </div>
+  <button
+    type="button"
+    class="ah-secondary ah-full cursor-interaction"
+    data-open="commit"
+  >
+    Comprometer cartas</button
+  ><button
+    type="button"
+    class="ah-primary ah-full cursor-interaction"
+    data-action="reveal"
+  >
+    <i data-lucide="circle-dot" aria-hidden="true"></i>Revelar ficha del caos
+  </button></template
+>
+<template id="ah-result-panel"
+  ><div class="ah-token">−1</div>
+  <div class="ah-result">
+    <h3>Éxito</h3>
+    <p>Intelecto 3 contra velo 2</p>
+  </div>
+  <button
+    type="button"
+    class="ah-primary ah-full cursor-interaction"
+    data-action="resolve"
+  >
+    Aplicar resultado · descubrir 1 pista
+  </button></template
+>
+<template id="ah-card-panel"
+  ><div class="ah-detail-card">
+    <small data-card-type>EVENTO · COSTE 0</small>
+    <h3 data-card-name>Alijo de emergencia</h3>
+    <div class="ah-detail-scan" role="img" aria-label="Carta ampliada"></div>
+    <p data-card-text>Obtén 3 recursos.</p>
+  </div>
+  <button
+    type="button"
+    class="ah-primary ah-full cursor-interaction"
+    data-action="play"
+  >
+    Jugar · 1 acción</button
+  ><button
+    type="button"
+    class="ah-secondary ah-full cursor-interaction"
+    data-open="hand"
+  >
+    Volver a la mano
+  </button></template
+>
+<template id="ah-location-panel"
+  ><div class="ah-info">
+    <h3 data-location-name>Habitación de tu amigo</h3>
+    <p>Lugar · Miskatonic</p>
+    <div class="ah-row ah-spread" style="margin-top: 12px">
+      <span>Velo <strong>2</strong></span
+      ><span>Pistas <strong data-room-clues>2</strong></span>
+    </div>
+  </div>
+  <button
+    type="button"
+    class="ah-primary ah-full cursor-interaction"
+    data-open="test"
+  >
+    <i data-lucide="search" aria-hidden="true"></i>Investigar · 1 acción</button
+  ><button
+    type="button"
+    class="ah-secondary ah-full cursor-interaction"
+    data-action="close"
+  >
+    Volver al mapa
+  </button></template
+>
+<template id="ah-move-panel"
+  ><div class="ah-info">
+    <h3 data-location-name>Dormitorios</h3>
+    <p>Lugar sin revelar</p>
+  </div>
+  <button
+    type="button"
+    class="ah-primary ah-full cursor-interaction"
+    data-action="move"
+  >
+    <i data-lucide="footprints" aria-hidden="true"></i>Moverme aquí · 1 acción</button
+  ><button
+    type="button"
+    class="ah-secondary ah-full cursor-interaction"
+    data-action="close"
+  >
+    Seguir mirando el mapa
+  </button></template
+>
+<template id="ah-menu-panel"
+  ><div class="ah-sheet-menu">
+    <button
+      type="button"
+      class="ah-menu-item cursor-interaction"
+      data-action="undo"
+    >
+      <i data-lucide="undo-2" aria-hidden="true"></i
+      ><span>Deshacer última acción</span></button
+    ><button
+      type="button"
+      class="ah-menu-item cursor-interaction"
+      data-action="large-text"
+    >
+      <i data-lucide="type" aria-hidden="true"></i
+      ><span>Cambiar tamaño del texto</span></button
+    ><button
+      type="button"
+      class="ah-menu-item cursor-interaction"
+      data-action="pan-controls"
+    >
+      <i data-lucide="move" aria-hidden="true"></i
+      ><span>Botones para mover el mapa</span></button
+    ><button
+      type="button"
+      class="ah-menu-item cursor-interaction"
+      data-open="journal"
+    >
+      <i data-lucide="notebook-pen" aria-hidden="true"></i
+      ><span>Registro de la partida</span>
+    </button>
+  </div></template
+>
+<template id="ah-end-panel"
+  ><div class="ah-info">
+    <h3>Terminar el turno</h3>
+    <p data-end-description>Te quedan 3 acciones.</p>
+  </div>
+  <button
+    type="button"
+    class="ah-primary ah-full cursor-interaction"
+    data-action="end"
+  >
+    Terminar turno</button
+  ><button
+    type="button"
+    class="ah-secondary ah-full cursor-interaction"
+    data-action="close"
+  >
+    Seguir jugando
+  </button></template
+>
+<template id="ah-bag-panel"
+  ><div class="ah-info">
+    <h3>Bolsa del caos · Normal</h3>
+    <p>+1 · 0 · 0 · −1 · −1 · −1 · −2 · −2 · −3 · −4</p>
+    <p style="margin-top: 10px">Símbolos: 6 fichas</p>
+  </div>
+  <button
+    type="button"
+    class="ah-secondary ah-full cursor-interaction"
+    data-open="case"
+  >
+    Volver al escenario
+  </button></template
+>
+
+<script>
+  (() => {
+    const root = document.getElementById("arkham-mobile-design");
+    if (!root) return;
+    const template = document.getElementById("ah-mobile-template");
+    const names = [
+      "Alijo de emergencia",
+      "Guardaespaldas",
+      "Sombrero de fieltro",
+      "Lección aprendida",
+      "Intuición de detective",
+    ];
+    const labels = {
+      hand: ["Tu mano", "5 cartas · toca una para verla"],
+      equipment: ["Joe Diamond", "Investigador y cartas en juego"],
+      case: ["El caso", "Spreading Flames"],
+      journal: ["Diario del caso", "Ronda 1 · Investigación"],
+      actions: ["Tus acciones", "Joe Diamond"],
+      test: ["Investigar", "Prueba de Intelecto"],
+      result: ["Resultado", "Ficha del caos"],
+      card: ["Carta de tu mano", "Leer antes de jugar"],
+      location: ["Tu localización", "Joe Diamond"],
+      move: ["Explorar un lugar", "Elige cuándo moverte"],
+      menu: ["Partida", "Opciones de la mesa"],
+      end: ["Final de turno", "Confirma para continuar"],
+      bag: ["Bolsa del caos", "Contenido de la bolsa"],
+      commit: ["Comprometer cartas", "Elige una carta de tu mano"],
+    };
+    const controllers = [];
+    let saved = window.openai?.widgetState?.privateContent?.screens || {};
+    const icons = () => {
+      if (globalThis.lucide)
+        lucide.createIcons({ attrs: { width: 19, height: 19 } });
+    };
+    function save() {
+      const screens = {};
+      for (const c of controllers)
+        screens[c.variant] = {
+          panel: c.state.panel,
+          card: c.state.card,
+          largeText: c.state.largeText,
+          panControls: c.state.panControls,
+        };
+      const active = controllers.find(
+        (c) => !c.phone.closest("[data-variant]").hidden,
+      );
+      window.openai
+        ?.setWidgetState?.({
+          modelContent: {
+            propuesta:
+              active?.variant === "hand" ? "Mano a la vista" : "Mesa y paneles",
+            panel: active?.state.panel || "map",
+          },
+          privateContent: { screens },
+        })
+        ?.catch(() => {});
+    }
+    for (const mount of root.querySelectorAll("[data-phone]")) {
+      const variant = mount.dataset.phone;
+      mount.append(template.content.cloneNode(true));
+      const phone = mount.querySelector(".ah-phone");
+      const state = {
+        panel: "map",
+        largeText: false,
+        panControls: false,
+        ...saved[variant],
+        actions: 3,
+        resources: 5,
+        clues: 0,
+        roomClues: 2,
+        handCount: 5,
+        card:
+          Number.isInteger(saved[variant]?.card) &&
+          saved[variant].card >= 0 &&
+          saved[variant].card < names.length
+            ? saved[variant].card
+            : 0,
+        location: "room",
+        committed: false,
+        testStage: null,
+        played: false,
+        log: [],
+      };
+      const surface = phone.querySelector(".ah-map");
+      const world = phone.querySelector(".ah-map-world");
+      const sheet = phone.querySelector(".ah-sheet");
+      const body = phone.querySelector(".ah-sheet-content");
+      let view = { x: 0, y: 0, scale: 1 };
+      let autoFit = true;
+      let gesture = null;
+      const pointers = new Map();
+      let moved = false;
+      let toastTimer;
+      let lastTrigger = null;
+      let history = [];
+      if (variant === "hand") {
+        phone.classList.add("ah-compact");
+        phone.querySelector(".ah-hand-peek").hidden = false;
+      }
+      function applyView() {
+        world.style.transform = `translate(${view.x}px,${view.y}px) scale(${view.scale})`;
+      }
+      function fit() {
+        autoFit = true;
+        view = {
+          x: (surface.clientWidth - 390) / 2,
+          y: (surface.clientHeight - 290) / 2,
+          scale: 1,
+        };
+        if (surface.clientWidth < 350) {
+          view.scale = 0.86;
+          view.x = (surface.clientWidth - 390 * 0.86) / 2;
+          view.y = (surface.clientHeight - 290 * 0.86) / 2;
+        }
+        applyView();
+      }
+      function zoom(factor, anchor) {
+        autoFit = false;
+        const p = anchor || {
+          x: surface.clientWidth / 2,
+          y: surface.clientHeight / 2,
+        };
+        const next = Math.max(0.8, Math.min(1.8, view.scale * factor));
+        const r = next / view.scale;
+        view = {
+          scale: next,
+          x: p.x - (p.x - view.x) * r,
+          y: p.y - (p.y - view.y) * r,
+        };
+        applyView();
+      }
+      function settings() {
+        phone.classList.toggle("ah-large", state.largeText);
+        phone.querySelector(".ah-pan").hidden = !state.panControls;
+      }
+      function update() {
+        phone.querySelectorAll("[data-card]").forEach((el) => {
+          const index = Number(el.dataset.card);
+          el.setAttribute(
+            "aria-label",
+            `${state.panel === "commit" ? "Comprometer" : "Ver"} ${names[index]}`,
+          );
+        });
+        phone
+          .querySelectorAll("[data-resources]")
+          .forEach((el) => (el.textContent = String(state.resources)));
+        phone
+          .querySelectorAll("[data-clues]")
+          .forEach((el) => (el.textContent = String(state.clues)));
+        phone
+          .querySelectorAll("[data-room-clues]")
+          .forEach((el) => (el.textContent = String(state.roomClues)));
+        phone
+          .querySelectorAll("[data-hand-count]")
+          .forEach((el) => (el.textContent = String(state.handCount)));
+        phone.querySelector("[data-action-count]").textContent =
+          `${state.actions} ${state.actions === 1 ? "acción" : "acciones"}`;
+        phone.querySelector("[data-dots]").textContent =
+          "●".repeat(state.actions) + "○".repeat(3 - state.actions);
+        phone.querySelector("[data-dock-hint]").textContent = state.testStage
+          ? "Prueba pendiente"
+          : state.actions
+            ? "Tu turno"
+            : "Sin acciones";
+        const primary = phone.querySelector(".ah-dock-actions .ah-primary");
+        primary.dataset.open = state.testStage || "test";
+        primary.querySelector("span").textContent = state.testStage
+          ? "Continuar prueba"
+          : "Investigar";
+        primary.disabled = !state.actions && !state.testStage;
+        phone.querySelector(".ah-dock-actions .ah-secondary").disabled =
+          !state.actions || !!state.testStage;
+        phone
+          .querySelector('[data-location="room"]')
+          .setAttribute(
+            "aria-label",
+            `Habitación de tu amigo. Tu localización. ${state.roomClues} pistas.`,
+          );
+        const currentTab = ["hand", "card", "commit"].includes(state.panel)
+          ? "hand"
+          : ["case", "bag"].includes(state.panel)
+            ? "case"
+            : ["equipment", "journal"].includes(state.panel)
+              ? state.panel
+              : "map";
+        phone
+          .querySelectorAll("[data-tab]")
+          .forEach((el) =>
+            el.setAttribute(
+              "aria-pressed",
+              String(el.dataset.tab === currentTab),
+            ),
+          );
+        if (state.played)
+          phone
+            .querySelectorAll('[data-card="0"]')
+            .forEach((el) => (el.hidden = true));
+        else
+          phone
+            .querySelectorAll('[data-card="0"]')
+            .forEach((el) => (el.hidden = false));
+        settings();
+      }
+      function toast(message) {
+        const node = phone.querySelector(".ah-toast");
+        clearTimeout(toastTimer);
+        node.textContent = message;
+        node.hidden = false;
+        toastTimer = setTimeout(() => (node.hidden = true), 2600);
+      }
+      function snapshot() {
+        history.push({
+          actions: state.actions,
+          resources: state.resources,
+          clues: state.clues,
+          roomClues: state.roomClues,
+          handCount: state.handCount,
+          played: state.played,
+          location: state.location,
+          log: [...state.log],
+        });
+      }
+      function open(panel, trigger, persist = true) {
+        if (panel === "map") {
+          close(persist);
+          return;
+        }
+        if (trigger) lastTrigger = trigger;
+        if (panel === "test" || panel === "result") state.testStage = panel;
+        state.panel = panel;
+        sheet.hidden = false;
+        phone.querySelector(".ah-scrim").hidden = false;
+        phone.querySelector(".ah-sheet-content").scrollTop = 0;
+        const label = labels[panel] || labels.hand;
+        phone.querySelector("[data-sheet-title]").textContent = label[0];
+        phone.querySelector("[data-sheet-subtitle]").textContent =
+          panel === "hand"
+            ? `${state.handCount} cartas · toca una para verla`
+            : label[1];
+        const title = phone.querySelector("[data-sheet-title]");
+        title.id = `ah-${variant}-sheet-title`;
+        sheet.setAttribute("aria-labelledby", title.id);
+        body.replaceChildren(
+          document
+            .getElementById(`ah-${panel === "commit" ? "hand" : panel}-panel`)
+            .content.cloneNode(true),
+        );
+        if (panel === "card") {
+          body.querySelector(".ah-detail-card").dataset.scanIndex = String(
+            state.card,
+          );
+          body
+            .querySelector(".ah-detail-scan")
+            .setAttribute("aria-label", names[state.card]);
+          body.querySelector("[data-card-name]").textContent =
+            names[state.card];
+          if (state.card !== 0) {
+            body.querySelector("[data-card-type]").textContent = "EN TU MANO";
+            body.querySelector("[data-card-text]").hidden = true;
+            body.querySelector('[data-action="play"]').hidden = true;
+          }
+        }
+        if (panel === "move")
+          body.querySelector("[data-location-name]").textContent =
+            state.location === "dorm" ? "Dormitorios" : "Patio de Miskatonic";
+        if (panel === "journal") {
+          const list = body.querySelector(".ah-log");
+          for (const message of [...state.log].reverse()) {
+            const li = document.createElement("li");
+            li.textContent = message;
+            list.prepend(li);
+          }
+        }
+        if (panel === "end")
+          body.querySelector("[data-end-description]").textContent =
+            `Te quedan ${state.actions} ${state.actions === 1 ? "acción" : "acciones"}.`;
+        if (panel === "test" && state.committed) {
+          body.querySelector(".ah-duel strong").textContent = "5";
+          body.querySelector('[data-open="commit"]').textContent =
+            "1 carta comprometida · cambiar";
+        }
+        update();
+        icons();
+        if (persist) save();
+        if (trigger) {
+          requestAnimationFrame(() => {
+            sheet
+              .querySelector('[data-action="close"]')
+              .focus({ preventScroll: true });
+          });
+        }
+      }
+      function close(persist = true) {
+        state.panel = "map";
+        sheet.hidden = true;
+        phone.querySelector(".ah-scrim").hidden = true;
+        update();
+        if (persist) save();
+      }
+      function consume(message) {
+        if (!state.actions) {
+          toast("No quedan acciones.");
+          return false;
+        }
+        snapshot();
+        state.actions -= 1;
+        state.log.push(message);
+        return true;
+      }
+      phone.addEventListener(
+        "click",
+        (event) => {
+          if (moved && event.detail > 0) {
+            event.preventDefault();
+            event.stopPropagation();
+            return;
+          }
+          const button = event.target.closest("button");
+          if (!button || button.disabled) return;
+          const {
+            tab,
+            open: panel,
+            action,
+            card,
+            location,
+            pan,
+          } = button.dataset;
+          if (tab) {
+            if (state.panel === tab) close();
+            else open(tab, button);
+            return;
+          }
+          if (panel) {
+            open(panel, button);
+            return;
+          }
+          if (card !== undefined) {
+            if (state.panel === "commit") {
+              state.committed = true;
+              open("test");
+              return;
+            }
+            state.card = Number(card);
+            open("card", button);
+            return;
+          }
+          if (location) {
+            state.location = location;
+            open(location === "room" ? "location" : "move", button);
+            return;
+          }
+          if (pan) {
+            autoFit = false;
+            view.x += pan === "left" ? 55 : pan === "right" ? -55 : 0;
+            view.y += pan === "up" ? 55 : pan === "down" ? -55 : 0;
+            applyView();
+            save();
+            return;
+          }
+          if (action === "close") {
+            close();
+            if (lastTrigger?.isConnected)
+              lastTrigger.focus({ preventScroll: true });
+          }
+          if (action === "zoom-in") zoom(1.2);
+          if (action === "zoom-out") zoom(1 / 1.2);
+          if (action === "fit") fit();
+          if (action === "large-text") {
+            state.largeText = !state.largeText;
+            settings();
+            toast(state.largeText ? "Texto ampliado" : "Texto normal");
+          }
+          if (action === "pan-controls") {
+            state.panControls = !state.panControls;
+            settings();
+            close();
+          }
+          if (
+            action === "resource" &&
+            consume("Joe Diamond obtiene 1 recurso.")
+          ) {
+            state.resources += 1;
+            close();
+            toast("+1 recurso");
+          }
+          if (action === "draw" && consume("Joe Diamond roba una carta.")) {
+            state.handCount += 1;
+            close();
+            toast("Carta robada · abre tu mano");
+          }
+          if (
+            action === "play" &&
+            consume("Joe Diamond juega Alijo de emergencia.")
+          ) {
+            state.resources += 3;
+            state.handCount -= 1;
+            state.played = true;
+            close();
+            toast("Alijo de emergencia · +3 recursos");
+          }
+          if (action === "reveal") {
+            open("result");
+            if (state.committed)
+              body.querySelector(".ah-result p").textContent =
+                "Intelecto 4 contra velo 2";
+          }
+          if (
+            action === "resolve" &&
+            consume("Joe Diamond investiga y descubre 1 pista.")
+          ) {
+            state.clues += 1;
+            state.roomClues = Math.max(0, state.roomClues - 1);
+            state.committed = false;
+            state.testStage = null;
+            close();
+            toast("Has descubierto 1 pista");
+          }
+          if (
+            action === "move" &&
+            consume("Joe Diamond se mueve a otra localización.")
+          ) {
+            close();
+            toast("Investigador desplazado");
+          }
+          if (action === "end") {
+            snapshot();
+            state.actions = 0;
+            state.log.push("Joe Diamond termina su turno.");
+            close();
+            toast("Turno terminado");
+          }
+          if (action === "undo") {
+            const previous = history.pop();
+            if (previous) {
+              Object.assign(state, previous);
+              close();
+              toast("Última acción deshecha");
+            } else toast("No hay acciones que deshacer.");
+          }
+          update();
+          save();
+        },
+        true,
+      );
+      function local(event) {
+        const rect = surface.getBoundingClientRect();
+        return { x: event.clientX - rect.left, y: event.clientY - rect.top };
+      }
+      function shape() {
+        const [a, b] = [...pointers.values()];
+        if (!a) return null;
+        return b
+          ? {
+              x: (a.x + b.x) / 2,
+              y: (a.y + b.y) / 2,
+              d: Math.hypot(a.x - b.x, a.y - b.y),
+            }
+          : { ...a, d: 0 };
+      }
+      function baseline() {
+        const p = shape();
+        gesture = p ? { ...p, view: { ...view } } : null;
+      }
+      surface.style.touchAction = "none";
+      surface.addEventListener("pointerdown", (event) => {
+        if (event.target.closest(".ah-zoom,.ah-pan")) return;
+        if (event.pointerType === "mouse" && event.button !== 0) return;
+        if (!pointers.size) moved = false;
+        pointers.set(event.pointerId, local(event));
+        baseline();
+      });
+      surface.addEventListener("pointermove", (event) => {
+        if (!pointers.has(event.pointerId) || !gesture) return;
+        pointers.set(event.pointerId, local(event));
+        const p = shape();
+        if (
+          !moved &&
+          pointers.size === 1 &&
+          Math.hypot(p.x - gesture.x, p.y - gesture.y) < 7
+        )
+          return;
+        moved = true;
+        autoFit = false;
+        surface.classList.add("dragging");
+        surface.setPointerCapture(event.pointerId);
+        const scale = Math.max(
+          0.8,
+          Math.min(1.8, gesture.view.scale * (gesture.d ? p.d / gesture.d : 1)),
+        );
+        const r = scale / gesture.view.scale;
+        view = {
+          scale,
+          x: p.x - (gesture.x - gesture.view.x) * r,
+          y: p.y - (gesture.y - gesture.view.y) * r,
+        };
+        applyView();
+      });
+      const end = (event) => {
+        pointers.delete(event.pointerId);
+        baseline();
+        if (!pointers.size) {
+          surface.classList.remove("dragging");
+          setTimeout(() => (moved = false), 200);
+        }
+      };
+      surface.addEventListener("pointerup", end);
+      surface.addEventListener("pointercancel", end);
+      phone.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          close();
+          lastTrigger?.focus({ preventScroll: true });
+        }
+      });
+      const resize = new ResizeObserver(() => {
+        if (autoFit && surface.clientWidth) fit();
+      });
+      resize.observe(surface);
+      settings();
+      update();
+      phone.setAttribute(
+        "aria-label",
+        variant === "hand" ? "Mano a la vista" : "Mesa y paneles",
+      );
+      const controller = { variant, phone, state, open, settings };
+      controllers.push(controller);
+      if (state.panel !== "map" && labels[state.panel])
+        open(state.panel, undefined, false);
+      else fit();
+      if (globalThis.Tweak) {
+        const tweak = new Tweak({
+          container: phone,
+          onChange: () => {
+            settings();
+            save();
+          },
+        });
+        tweak.addToggle(state, "largeText", { label: "Texto grande" });
+        tweak.addToggle(state, "panControls", {
+          label: "Desplazar con botones",
+        });
+      }
+    }
+    window.addEventListener("openai:set_globals", (event) => {
+      const screens =
+        event.detail?.globals?.widgetState?.privateContent?.screens;
+      if (!screens) return;
+      for (const c of controllers) {
+        const value = screens[c.variant];
+        if (!value) continue;
+        c.state.largeText = !!value.largeText;
+        c.state.panControls = !!value.panControls;
+        c.settings();
+        if (
+          value.panel &&
+          value.panel !== c.state.panel &&
+          (value.panel === "map" || labels[value.panel])
+        ) {
+          c.open(value.panel, undefined, false);
+        }
+      }
+    });
+    icons();
+  })();
+</script>

@@ -1,11 +1,6 @@
+import { dispatch, playableCards, type GameState, type InvestigatorSetup } from '@lcg/engine'
 import {
-  createGame,
-  dispatch,
-  playableCards,
-  type GameState,
-  type InvestigatorSetup,
-} from '@lcg/engine'
-import {
+  createTestGame,
   choose,
   during,
   ghoul,
@@ -23,7 +18,7 @@ import { code } from './player-cards'
 const filler = (n: number) => Array.from({ length: n }, (_, i) => `filler-${i}`)
 
 function game(id: string, setup: Partial<InvestigatorSetup> = {}): GameState {
-  return createGame({
+  return createTestGame({
     seed: 3,
     scenario: testScenario({ chaosBag: [0] }),
     investigators: [testInvestigator(id, { deck: filler(20), ...setup })],

@@ -1,12 +1,18 @@
 import {
   applyInput,
   availableActions,
-  createGame,
   getInvestigator,
   type EnemyCard,
   type GameState,
 } from '@lcg/engine'
-import { choose, during, labels, withBag } from '@lcg/engine/testing'
+import {
+  createTestGame,
+  keepOpeningHands,
+  choose,
+  during,
+  labels,
+  withBag,
+} from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { finishScenario, newCampaign, startScenario, type Campaign } from '../campaign'
 import { code, starterInvestigator } from '../core-2026/player-cards'
@@ -20,7 +26,7 @@ const enemies = (s: GameState) => Object.values(s.enemies)
 const suspect = (c: string) => suspects.find((s) => s.code === c)!
 
 function newGame(options: Parameters<typeof smokeAndMirrors>[0] = {}): GameState {
-  return createGame({
+  return createTestGame({
     seed: 7,
     scenario: smokeAndMirrors({ players: 1, seed: 3, ...options }),
     investigators: [starterInvestigator('daniela')],
@@ -60,7 +66,7 @@ describe('Smoke and Mirrors: preparación', () => {
         investigators: { [DANIELA]: { ...record, storyAssets: [DR_ARMITAGE] } },
       },
     }
-    const game = startScenario(after, 5, false)
+    const game = keepOpeningHands(startScenario(after, 5, false))
     expect(here(game)).toBe(CODES.universityQuietCampus)
     expect(game.doom).toBe(2)
     const armitage = Object.values(game.assets).find((a) => a.code === DR_ARMITAGE)
@@ -148,7 +154,7 @@ describe('Smoke and Mirrors: reglas nuevas', () => {
 describe('Smoke and Mirrors: resolución', () => {
   it('resolución 1: paradero de la secta, heraldo y experiencia por los interrogados', () => {
     const campaign = { ...newCampaign(['daniela'], 'standard'), scenarioIndex: 1 }
-    let game = choose(startScenario(campaign, 4), 'choice.continue')
+    let game = keepOpeningHands(choose(startScenario(campaign, 4), 'choice.continue'))
     const three = suspects.slice(0, 3).map((s) => s.code)
     game = during(game, (s) => ({ ...s, underAct: three }), {
       type: 'EndScenario',
@@ -167,7 +173,7 @@ describe('Smoke and Mirrors: resolución', () => {
 describe('Smoke and Mirrors: robustez', () => {
   it('varias rondas eligiendo siempre la primera opción no rompen el motor', () => {
     for (const seed of [1, 2, 3, 4, 5, 6]) {
-      let game = createGame({
+      let game = createTestGame({
         seed,
         difficulty: 'expert',
         scenario: smokeAndMirrors({ difficulty: 'expert', players: 2, seed }),

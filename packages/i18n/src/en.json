@@ -43,6 +43,7 @@
     "agility": "Agility"
   },
   "prompt": {
+    "mulligan": "Mulligan: set aside any cards you want to replace, then confirm",
     "chooseAction": "Choose an action",
     "chooseNextInvestigator": "Who takes the next turn?",
     "discardDownToHandSize": "Discard down to 8 cards",
@@ -91,6 +92,8 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "mulliganCard": "Set aside {card}",
+    "finishMulligan": "Confirm opening hand (replacements: {n})",
     "investigator": "{name}",
     "discard": "Discard {card}",
     "notNow": "Not now",
@@ -197,6 +200,7 @@
     "playFromDiscard": "Play {card} from your discard pile (−2 cost)"
   },
   "log": {
+    "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
     "round": "Round {round}",
     "phase": "{phase}",
     "action": {
@@ -229,6 +233,8 @@
   "table": {
     "log": "Game log",
     "hand": "Hand",
+    "viewHand": "Enlarge hand",
+    "caseControls": "Decisions and journal",
     "inPlay": "In play",
     "threatArea": "Threat area",
     "encounterDeck": "Encounter deck",
@@ -268,6 +274,22 @@
     "act": "Act",
     "scenario": "Scenario file",
     "board": "Location map",
+    "navigation": "Map controls",
+    "panMap": "Pan the map without dragging",
+    "pan": {
+      "left": "Look left",
+      "up": "Look up",
+      "down": "Look down",
+      "right": "Look right"
+    },
+    "zoomIn": "Zoom in on the map",
+    "zoomOut": "Zoom out of the map",
+    "zoomLevel": "Map zoom level",
+    "fitMap": "Fit map",
+    "actualSize": "Center the map at 100%",
+    "mouseNavigation": "Drag to move · Scroll to zoom in or out",
+    "touchNavigation": "Drag with one finger · Pinch with two to zoom",
+    "keyboardNavigation": "Keyboard: arrows to move, + and − to zoom, Home or 0 to fit the map.",
     "investigatorArea": "{name}'s area",
     "options": "{n} options",
     "damage": "Damage",

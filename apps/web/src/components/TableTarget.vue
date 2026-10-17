@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
+import { computed, inject, nextTick, onBeforeUnmount, ref, watch, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useLabels } from '../game/labels'
+import { BOARD_VIEW_KEY, type ViewTransform } from '../game/viewport'
 import { useGameStore } from '../stores/game'
 import ActionButton from './ActionButton.vue'
 
@@ -90,6 +91,9 @@ function escape(event: KeyboardEvent) {
 function reposition() {
   if (open.value) place()
 }
+// El menú flotante sigue a su carta al arrastrar, ampliar o ajustar el mapa.
+const boardView = inject<Readonly<Ref<ViewTransform>> | null>(BOARD_VIEW_KEY, null)
+if (boardView) watch(boardView, reposition, { flush: 'post' })
 document.addEventListener('click', outside)
 document.addEventListener('keydown', escape)
 window.addEventListener('resize', reposition)

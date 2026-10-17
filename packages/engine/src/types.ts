@@ -400,8 +400,22 @@ export type Message =
   | { type: 'TakeAction'; investigator: InvestigatorId; action: Action }
   | { type: 'PerformAction'; investigator: InvestigatorId; action: Action }
   | { type: 'GainResources'; investigator: InvestigatorId; amount: number }
-  /** `opening`: mano inicial (las debilidades se apartan y se roba otra). */
+  /** `opening`: mano inicial sin debilidades, seguida de la oportunidad de mulligan. */
   | { type: 'DrawCards'; investigator: InvestigatorId; amount: number; opening?: boolean }
+  /** Las cartas apartadas quedan fuera del mazo hasta terminar el mulligan. */
+  | {
+      type: 'Mulligan'
+      investigator: InvestigatorId
+      setAside: CardCode[]
+      redraw: number
+      card?: CardCode
+    }
+  | {
+      type: 'FinishMulligan'
+      investigator: InvestigatorId
+      setAside: CardCode[]
+      redraw: number
+    }
   | { type: 'DiscardFromHand'; investigator: InvestigatorId; card: CardCode }
   | { type: 'CheckHandSize'; investigator: InvestigatorId }
   | { type: 'MoveTo'; investigator: InvestigatorId; location: LocationId }

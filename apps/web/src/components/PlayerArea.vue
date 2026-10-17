@@ -27,6 +27,13 @@ const i = computed(() => props.investigator)
 const playerBack = computed(() => cardBackImage('player'))
 const topDiscard = computed(() => i.value.discard.at(-1))
 
+function showHand() {
+  showPile({
+    title: 'table.hand',
+    cards: i.value.hand.map((code) => ({ code, name: cardName(code) })),
+  })
+}
+
 function showDiscard() {
   showPile({
     title: 'table.playerDiscard',
@@ -99,43 +106,80 @@ const slots = computed(() => {
   >
     <header>
       <h3>{{ i.name }}</h3>
-      <span v-if="deciding" class="turn"
-        >{{ t('table.decides') }} · {{ t('table.actionsLeft', { n: i.actionsRemaining }) }}</span
-      >
+      <span v-if="deciding" class="turn">
+        {{ t('table.decides') }}
+        <template v-if="state.phase !== 'setup'">
+          · {{ t('table.actionsLeft', { n: i.actionsRemaining }) }}
+        </template>
+      </span>
       <span v-if="i.eliminated" class="tag">{{
         i.resigned ? t('log.resigned', { name: '' }) : t('game.eliminated')
       }}</span>
     </header>
 
-    <div class="row">
-      <TableTarget :target="`investigator:${i.id}`">
-        <GameCard :code="i.id" :name="i.name" :width="150" landscape :color="color" />
-      </TableTarget>
+    <div class="player-desk">
+      <div class="identity">
+        <TableTarget class="investigator-card" :target="`investigator:${i.id}`">
+          <GameCard :code="i.id" :name="i.name" :width="110" landscape :color="color" />
+        </TableTarget>
 
-      <div class="stats">
-        <ul class="tokens">
-          <li><TokenBadge kind="resource" :value="i.resources" />{{ t('table.resources') }}</li>
-          <li><TokenBadge kind="clue" :value="i.clues" />{{ t('table.clues') }}</li>
-          <li :title="t('game.damage', { n: i.damage, max: i.health })">
-            <TokenBadge kind="damage" :value="i.damage" />{{ t('table.damage') }}
-          </li>
-          <li :title="t('game.horror', { n: i.horror, max: i.sanity })">
-            <TokenBadge kind="horror" :value="i.horror" />{{ t('table.horror') }}
-          </li>
-        </ul>
-        <div class="meta">
-          <span :title="t('table.actions')">➤ {{ i.actionsRemaining }}</span>
-          <span :title="t('table.health')">♥ {{ i.health - i.damage }}/{{ i.health }}</span>
-          <span :title="t('table.sanity')">✦ {{ i.sanity - i.horror }}/{{ i.sanity }}</span>
-          <span :title="t('table.deck')">▤ {{ i.deck.length }}</span>
-        </div>
-        <div class="skills">
-          <template v-for="skill in SKILLS" :key="skill">
-            <SkillIcon :skill="skill" :title="t(`skill.${skill}`)" />{{ i.skills[skill] }}
-          </template>
+        <div class="stats">
+          <ul class="tokens">
+            <li>
+              <TokenBadge kind="resource" :value="i.resources" :size="28" /><span
+                class="token-label"
+                >{{ t('table.resources') }}</span
+              >
+            </li>
+            <li>
+              <TokenBadge kind="clue" :value="i.clues" :size="28" /><span class="token-label">{{
+                t('table.clues')
+              }}</span>
+            </li>
+            <li :title="t('game.damage', { n: i.damage, max: i.health })">
+              <TokenBadge kind="damage" :value="i.damage" :size="28" /><span class="token-label">{{
+                t('table.damage')
+              }}</span>
+            </li>
+            <li :title="t('game.horror', { n: i.horror, max: i.sanity })">
+              <TokenBadge kind="horror" :value="i.horror" :size="28" /><span class="token-label">{{
+                t('table.horror')
+              }}</span>
+            </li>
+          </ul>
+          <div class="meta">
+            <span :title="t('table.actions')">➤ {{ i.actionsRemaining }}</span>
+            <span :title="t('table.health')">♥ {{ i.health - i.damage }}/{{ i.health }}</span>
+            <span :title="t('table.sanity')">✦ {{ i.sanity - i.horror }}/{{ i.sanity }}</span>
+            <span :title="t('table.deck')">▤ {{ i.deck.length }}</span>
+          </div>
+          <div class="skills">
+            <template v-for="skill in SKILLS" :key="skill">
+              <SkillIcon :skill="skill" :title="t(`skill.${skill}`)" />{{ i.skills[skill] }}
+            </template>
+          </div>
         </div>
       </div>
-
+      <div class="zone hand" :style="{ '--hand-count': Math.max(1, i.hand.length) }">
+        <div class="hand-heading">
+          <h4 class="mat-label">{{ t('table.hand') }} ({{ i.hand.length }})</h4>
+          <button type="button" class="view-hand" @click="showHand">
+            {{ t('table.viewHand') }}
+          </button>
+        </div>
+        <div class="cards">
+          <TableTarget
+            v-for="(code, n) in i.hand"
+            :key="`${code}-${n}`"
+            :target="deciding ? `hand:${code}` : ''"
+            class="in-hand"
+          >
+            <GameCard :code="code" :name="cardName(code)" :width="96" :color="classColor(code)" />
+          </TableTarget>
+        </div>
+      </div>
+    </div>
+    <div class="equipment-row">
       <div class="piles">
         <div class="pile mat-slot" :title="t('table.deck')">
           <span class="mat-label">{{ t('table.deck') }}</span>
@@ -162,7 +206,7 @@ const slots = computed(() => {
             v-if="topDiscard"
             :code="topDiscard"
             :name="cardName(topDiscard)"
-            :width="72"
+            :width="48"
             :color="classColor(topDiscard)"
           />
           <div v-else class="player-back empty" />
@@ -177,7 +221,7 @@ const slots = computed(() => {
             <GameCard
               :code="e.code"
               :name="e.name"
-              :width="78"
+              :width="42"
               :exhausted="e.exhausted"
               color="#7a2c2c"
             >
@@ -191,7 +235,7 @@ const slots = computed(() => {
             </GameCard>
           </TableTarget>
           <TableTarget v-for="tr in threats" :key="tr.id" :target="`treachery:${tr.id}`">
-            <GameCard :code="tr.code" :name="tr.name" :width="78" color="#b5462f" />
+            <GameCard :code="tr.code" :name="tr.name" :width="42" color="#b5462f" />
           </TableTarget>
         </div>
       </div>
@@ -210,7 +254,7 @@ const slots = computed(() => {
               <GameCard
                 :code="box.asset.code"
                 :name="cardName(box.asset.code)"
-                :width="78"
+                :width="42"
                 :exhausted="box.asset.exhausted"
                 :color="classColor(box.asset.code)"
               >
@@ -250,7 +294,7 @@ const slots = computed(() => {
             <GameCard
               :code="a.code"
               :name="cardName(a.code)"
-              :width="78"
+              :width="42"
               :exhausted="a.exhausted"
               :color="classColor(a.code)"
             >
@@ -280,20 +324,6 @@ const slots = computed(() => {
         </div>
       </div>
     </div>
-
-    <div class="zone hand">
-      <h4 class="mat-label">{{ t('table.hand') }} ({{ i.hand.length }})</h4>
-      <div class="cards">
-        <TableTarget
-          v-for="(code, n) in i.hand"
-          :key="`${code}-${n}`"
-          :target="`hand:${code}`"
-          class="in-hand"
-        >
-          <GameCard :code="code" :name="cardName(code)" :width="92" :color="classColor(code)" />
-        </TableTarget>
-      </div>
-    </div>
   </section>
 </template>
 
@@ -313,8 +343,8 @@ const slots = computed(() => {
 .player-back {
   /* Reverso de jugador dibujado: cuero con sello dorado (si no hay reverso oficial). */
   position: relative;
-  width: 72px;
-  height: 100px;
+  width: 48px;
+  height: 67px;
   border-radius: 6px;
   display: grid;
   place-items: center;
@@ -346,7 +376,7 @@ const slots = computed(() => {
 .player-back strong {
   position: relative;
   font-family: var(--display);
-  font-size: 1.6rem;
+  font-size: 1.1rem;
   text-shadow: 0 2px 4px #000;
 }
 .player-back.empty {
@@ -385,7 +415,7 @@ const slots = computed(() => {
   /* Escritorio del investigador: madera oscura con un filo de latón y el tono de su clase. */
   --trim: var(--brass);
   border-top: 3px solid var(--brass-dark);
-  padding: 12px 20px 20px;
+  padding: 6px 12px max(8px, env(safe-area-inset-bottom));
   background: var(--tex-wood), linear-gradient(180deg, #3a2616, #24170d);
   box-shadow:
     inset 0 50px 60px -45px color-mix(in srgb, var(--class) 40%, transparent),
@@ -506,9 +536,9 @@ h4 {
   margin-left: 6px;
 }
 .zone.mat-slot {
-  padding: 8px 12px 14px;
-  min-width: 140px;
-  min-height: 150px;
+  padding: 4px 8px;
+  min-width: 0;
+  min-height: 0;
 }
 .zone.mat-slot > h4 {
   position: static;
@@ -533,8 +563,8 @@ h4 {
 }
 .slot {
   position: relative;
-  width: 90px;
-  height: 120px;
+  width: 54px;
+  height: 64px;
   border-radius: 3px;
   border: 1px solid var(--brass-dark);
   background: rgb(0 0 0 / 30%);
@@ -574,10 +604,10 @@ h4 {
   border-style: dashed;
 }
 .slot-name {
-  max-width: 80px;
+  max-width: 54px;
   font-family: var(--fell);
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
+  font-size: 0.65rem;
+  letter-spacing: 0.02em;
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -644,5 +674,250 @@ h4 {
 .corner.br {
   bottom: -8px;
   right: -8px;
+}
+.player {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 6px;
+  min-width: 0;
+}
+header {
+  grid-row: 1;
+  flex-wrap: wrap;
+}
+h3,
+.turn {
+  margin-bottom: 0;
+}
+.player-desk {
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+  align-items: start;
+  gap: 16px;
+  min-width: 0;
+}
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 24px;
+}
+.stats {
+  gap: 4px;
+  min-width: 0;
+}
+.tokens {
+  gap: 6px;
+}
+.tokens li {
+  font-size: 0.65rem;
+}
+.meta {
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 0.72rem;
+}
+.skills {
+  font-size: 0.75rem;
+}
+.equipment-row {
+  grid-row: 2;
+  display: flex;
+  align-items: start;
+  gap: 12px;
+  min-width: 0;
+  max-height: 104px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 6px 2px;
+  scrollbar-width: none;
+}
+.equipment-row::-webkit-scrollbar {
+  display: none;
+}
+.zone.play {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 4px 8px;
+}
+.zone.play > h4 {
+  grid-column: 1 / -1;
+  margin: 0;
+  line-height: 1.2;
+  font-size: 0.7rem;
+}
+.zone.play > .free {
+  margin: 0;
+}
+.equipment-row > * {
+  flex: none;
+}
+.equipment-row .cards,
+.slots {
+  flex-wrap: nowrap;
+  gap: 6px;
+}
+.piles {
+  gap: 8px;
+}
+.slot {
+  flex: none;
+}
+.slot :deep(.slot-icon) {
+  width: 26px;
+  height: 26px;
+}
+.hand {
+  min-width: 0;
+  margin: 0;
+}
+.hand-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.hand-heading h4 {
+  margin: 0;
+}
+.view-hand {
+  min-height: 32px;
+  padding: 2px 8px;
+  font-family: var(--fell);
+  font-size: 0.8rem;
+  color: var(--parch);
+  background: #21190e;
+  border-color: var(--brass-dark);
+}
+.hand .cards {
+  display: grid;
+  grid-template-columns: repeat(var(--hand-count), minmax(0, 1fr));
+  align-items: start;
+  gap: 8px;
+  max-width: calc(var(--hand-count) * 92px);
+  padding: 8px 4px 4px;
+}
+.in-hand {
+  min-width: 0;
+}
+.in-hand :deep(.game-card) {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 5 / 7;
+}
+.in-hand :deep(.hint) {
+  display: none;
+}
+@media (max-width: 1100px) {
+  .player-desk {
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: 10px;
+  }
+  .identity {
+    gap: 8px;
+  }
+  .token-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+}
+@media (max-width: 600px) {
+  .player {
+    gap: 4px;
+    padding: 6px 8px max(6px, env(safe-area-inset-bottom));
+  }
+  header {
+    gap: 6px;
+    min-height: 24px;
+  }
+  h3 {
+    font-size: 0.82rem;
+  }
+  .turn {
+    font-size: 0.72rem;
+    padding: 1px 6px;
+  }
+  .equipment-row {
+    max-height: 56px;
+    padding: 4px 2px;
+    gap: 8px;
+  }
+  .zone.mat-slot {
+    padding: 0 4px;
+  }
+  .equipment-row h4,
+  .slot-name {
+    display: none;
+  }
+  .slot {
+    width: 40px;
+    height: 44px;
+  }
+  .equipment-row :deep(.game-card),
+  .player-back {
+    width: 30px !important;
+    height: 42px !important;
+  }
+  .player-back strong {
+    font-size: 0.85rem;
+  }
+  .piles .mat-label {
+    display: none;
+  }
+  .player-desk {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .identity {
+    padding-top: 0;
+    gap: 8px;
+  }
+  .investigator-card :deep(.game-card) {
+    width: 62px !important;
+    height: 44px !important;
+  }
+  .stats {
+    flex: 1;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3px 8px;
+  }
+  .tokens {
+    gap: 3px;
+  }
+  .tokens :deep(.token-badge) {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 12px !important;
+  }
+  .meta {
+    grid-row: 2;
+    grid-column: 1 / -1;
+  }
+  .skills {
+    gap: 2px;
+    font-size: 0.7rem;
+  }
+  .skills :deep(.ci) {
+    margin-left: 2px;
+    width: 13px;
+    height: 13px;
+  }
+  .hand-heading h4 {
+    font-size: 0.7rem;
+  }
+  .view-hand {
+    min-height: 44px;
+    margin-top: -8px;
+  }
+  .hand .cards {
+    gap: 4px;
+    max-width: calc(var(--hand-count) * 82px);
+    padding-top: 4px;
+  }
 }
 </style>
