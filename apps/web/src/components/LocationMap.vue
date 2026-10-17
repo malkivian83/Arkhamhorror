@@ -33,15 +33,20 @@ const positions = computed(() => {
 
 const size = computed(() => {
   const all = [...positions.value.values()]
-  const cols = Math.max(1, ...all.map(([c]) => c + 1))
-  const rows = Math.max(1, ...all.map(([, r]) => r + 1))
-  return { width: cols * CELL_W, height: rows * CELL_H }
+  const left = all.length ? Math.min(...all.map(([c]) => c)) : 0
+  const top = all.length ? Math.min(...all.map(([, r]) => r)) : 0
+  const cols = Math.max(1, ...all.map(([c]) => c - left + 1))
+  const rows = Math.max(1, ...all.map(([, r]) => r - top + 1))
+  return { width: cols * CELL_W, height: rows * CELL_H, left, top }
 })
 
 /** Chincheta en lo alto de la carta; el hilo cuelga un poco entre dos chinchetas. */
 const pin = (id: string) => {
   const [c, r] = positions.value.get(id) ?? [0, 0]
-  return { x: c * CELL_W + CELL_W / 2, y: r * CELL_H + 8 + 6 }
+  return {
+    x: (c - size.value.left) * CELL_W + CELL_W / 2,
+    y: (r - size.value.top) * CELL_H + 8 + 6,
+  }
 }
 function string(from: string, to: string) {
   const a = pin(from)
@@ -87,8 +92,8 @@ const treacheriesAt = (id: string) =>
       :key="l.id"
       class="location"
       :style="{
-        left: `${(positions.get(l.id)?.[0] ?? 0) * CELL_W + (CELL_W - CARD_W) / 2}px`,
-        top: `${(positions.get(l.id)?.[1] ?? 0) * CELL_H + 8}px`,
+        left: `${((positions.get(l.id)?.[0] ?? 0) - size.left) * CELL_W + (CELL_W - CARD_W) / 2}px`,
+        top: `${((positions.get(l.id)?.[1] ?? 0) - size.top) * CELL_H + 8}px`,
       }"
     >
       <TableTarget :target="`location:${l.id}`">

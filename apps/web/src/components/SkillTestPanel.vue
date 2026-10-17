@@ -417,4 +417,29 @@ footer {
     animation: none;
   }
 }
+@media (max-width: 900px) {
+  .skill-test {
+    left: 50%;
+    top: 12px;
+    max-height: calc(100dvh - 24px);
+  }
+}
+@media (max-width: 600px) {
+  .duel,
+  .committed,
+  .result {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  header {
+    min-height: 52px;
+    padding-right: 52px;
+  }
+  .min {
+    width: 44px;
+    height: 44px;
+    top: 4px;
+    right: 4px;
+  }
+}
 </style>

@@ -21,6 +21,7 @@ tomando como referencia de estudio el proyecto `halogenandtoast/ArkhamHorror`
 | 11 | [Smoke and Mirrors](11-smoke-and-mirrors.md) | Escenario II: preparación, sospechosos y códex, reglas nuevas y resoluciones |
 | 12 | [Queen of Ash](12-queen-of-ash.md) | Escenario III: alcantarillas, Elokoss, conexiones que cambian y resoluciones |
 | 13 | [Añadir campañas](13-anadir-campanas.md) | Piezas genéricas para nuevas campañas, escenarios y cartas |
+| 14 | [Propuesta de mesa móvil](diseno-movil/README.md) | Mano visible, navegación inferior y paneles sobre el mapa |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas
