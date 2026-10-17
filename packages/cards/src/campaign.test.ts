@@ -1,15 +1,10 @@
-import { type GameState } from '@lcg/engine'
-import {
-  createTestGame,
-  keepOpeningHands,
-  choose,
-  during,
-  testInvestigator,
-} from '@lcg/engine/testing'
+import { createGame, type GameState } from '@lcg/engine'
+import { choose, during, testInvestigator, throughSetup } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { DR_ARMITAGE, spreadingFlames } from './brethren-of-ash/spreading-flames'
 import {
   canPlayNext,
+  deckSize,
   finishScenario,
   newCampaign,
   purchase,
@@ -24,7 +19,7 @@ const DANIELA = code(1)
 
 /** Juega Spreading Flames hasta la pregunta de la primera historia de resolución. */
 function endScenario(campaign: Campaign, outcome: Parameters<typeof finish>[1]): GameState {
-  return finish(keepOpeningHands(choose(startScenario(campaign, 11), 'choice.continue')), outcome)
+  return finish(throughSetup(startScenario(campaign, 11)), outcome)
 }
 const finish = (
   s: GameState,
@@ -33,7 +28,7 @@ const finish = (
 
 describe('campaña: registro', () => {
   it('sin resolución: universidad quemada, 1 trauma mental y 2 de experiencia', () => {
-    const campaign = newCampaign(['daniela'], 'standard')
+    const campaign = newCampaign('brethren-of-ash', ['daniela'], 'standard')
     const game = choose(endScenario(campaign, { type: 'noResolution' }), 'choice.continue')
     const next = finishScenario(campaign, game)
     expect(next.log.notes).toEqual(['universityBurned'])
@@ -45,7 +40,7 @@ describe('campaña: registro', () => {
   })
 
   it('resolución 1 → 2: Armitage, experiencia y trauma físico', () => {
-    const campaign = newCampaign(['daniela'], 'standard')
+    const campaign = newCampaign('brethren-of-ash', ['daniela'], 'standard')
     let game = endScenario(campaign, { type: 'resolution', resolution: 1 })
     game = choose(game, 'choice.continue')
     game = choose(game, 'choice.investigator')
@@ -61,7 +56,7 @@ describe('campaña: registro', () => {
   })
 
   it('el trauma se lleva al siguiente escenario como daño y horror', () => {
-    const campaign = newCampaign(['daniela'], 'standard')
+    const campaign = newCampaign('brethren-of-ash', ['daniela'], 'standard')
     const hurt: Campaign = {
       ...campaign,
       log: {
@@ -76,14 +71,14 @@ describe('campaña: registro', () => {
   })
 
   it('las fichas añadidas a la bolsa siguen en los escenarios siguientes', () => {
-    const campaign = newCampaign(['daniela'], 'easy')
+    const campaign = newCampaign('brethren-of-ash', ['daniela'], 'easy')
     const bag = startScenario(campaign, 3).chaosBag.length
     const more: Campaign = { ...campaign, log: { ...campaign.log, chaosTokens: ['cultist'] } }
     expect(startScenario(more, 3).chaosBag).toHaveLength(bag + 1)
   })
 
   it('derrotado por daño: 1 trauma físico; trauma igual a la salud: muerto', () => {
-    let game = createTestGame({
+    let game = createGame({
       seed: 1,
       scenario: spreadingFlames('standard'),
       investigators: [testInvestigator('a', { health: 1 })],
@@ -95,7 +90,7 @@ describe('campaña: registro', () => {
 
 describe('campaña: mejorar el mazo', () => {
   const withXp = (xp: number): Campaign => {
-    const campaign = newCampaign(['daniela'], 'standard')
+    const campaign = newCampaign('brethren-of-ash', ['daniela'], 'standard')
     const record = campaign.log.investigators[DANIELA]!
     return {
       ...campaign,
@@ -125,6 +120,16 @@ describe('campaña: mejorar el mazo', () => {
     expect(deck).toContain(code(80))
     expect(deck).toHaveLength(campaign.investigators[0]!.deck.length)
     expect(next.log.investigators[DANIELA]?.xp).toBe(1)
+  })
+
+  it('las permanentes no ocupan sitio en el mazo y no se pueden quitar', () => {
+    // Charisma (95): permanente neutral de nivel 3.
+    const campaign = withXp(3)
+    const option = purchaseOptions(campaign, DANIELA).find((o) => o.code === code(95))
+    expect(option?.needsRemoval).toBe(false)
+    const next = purchase(campaign, DANIELA, code(95))
+    expect(deckSize(next.investigators[0]!.deck)).toBe(deckSize(campaign.investigators[0]!.deck))
+    expect(removableCards(next, DANIELA)).not.toContain(code(95))
   })
 
   it('todas las cartas de nivel 1–5 ya funcionan en el motor', () => {

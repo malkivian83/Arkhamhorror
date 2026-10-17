@@ -1,18 +1,13 @@
 import {
   applyInput,
   availableActions,
+  createGame,
   getInvestigator,
+  shroudOf,
   type EnemyCard,
   type GameState,
 } from '@lcg/engine'
-import {
-  createTestGame,
-  keepOpeningHands,
-  choose,
-  during,
-  labels,
-  withBag,
-} from '@lcg/engine/testing'
+import { choose, during, labels, throughSetup, withBag } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { finishScenario, newCampaign, startScenario, type Campaign } from '../campaign'
 import { code, starterInvestigator } from '../core-2026/player-cards'
@@ -26,7 +21,7 @@ const enemies = (s: GameState) => Object.values(s.enemies)
 const suspect = (c: string) => suspects.find((s) => s.code === c)!
 
 function newGame(options: Parameters<typeof smokeAndMirrors>[0] = {}): GameState {
-  return createTestGame({
+  return createGame({
     seed: 7,
     scenario: smokeAndMirrors({ players: 1, seed: 3, ...options }),
     investigators: [starterInvestigator('daniela')],
@@ -55,7 +50,7 @@ describe('Smoke and Mirrors: preparación', () => {
   })
 
   it('desde la campaña: Quiet Campus, +1 perdición y Armitage en juego sin ranura', () => {
-    const campaign = newCampaign(['daniela'], 'standard')
+    const campaign = newCampaign('brethren-of-ash', ['daniela'], 'standard')
     const record = campaign.log.investigators[DANIELA]!
     const after: Campaign = {
       ...campaign,
@@ -66,7 +61,7 @@ describe('Smoke and Mirrors: preparación', () => {
         investigators: { [DANIELA]: { ...record, storyAssets: [DR_ARMITAGE] } },
       },
     }
-    const game = keepOpeningHands(startScenario(after, 5, false))
+    const game = startScenario(after, 5, false)
     expect(here(game)).toBe(CODES.universityQuietCampus)
     expect(game.doom).toBe(2)
     const armitage = Object.values(game.assets).find((a) => a.code === DR_ARMITAGE)
@@ -153,8 +148,11 @@ describe('Smoke and Mirrors: reglas nuevas', () => {
 
 describe('Smoke and Mirrors: resolución', () => {
   it('resolución 1: paradero de la secta, heraldo y experiencia por los interrogados', () => {
-    const campaign = { ...newCampaign(['daniela'], 'standard'), scenarioIndex: 1 }
-    let game = keepOpeningHands(choose(startScenario(campaign, 4), 'choice.continue'))
+    const campaign = {
+      ...newCampaign('brethren-of-ash', ['daniela'], 'standard'),
+      scenarioIndex: 1,
+    }
+    let game = throughSetup(startScenario(campaign, 4))
     const three = suspects.slice(0, 3).map((s) => s.code)
     game = during(game, (s) => ({ ...s, underAct: three }), {
       type: 'EndScenario',
@@ -173,7 +171,7 @@ describe('Smoke and Mirrors: resolución', () => {
 describe('Smoke and Mirrors: robustez', () => {
   it('varias rondas eligiendo siempre la primera opción no rompen el motor', () => {
     for (const seed of [1, 2, 3, 4, 5, 6]) {
-      let game = createTestGame({
+      let game = createGame({
         seed,
         difficulty: 'expert',
         scenario: smokeAndMirrors({ difficulty: 'expert', players: 2, seed }),
@@ -184,5 +182,23 @@ describe('Smoke and Mirrors: robustez', () => {
       }
       expect(game.outcome !== null || game.pending !== null).toBe(true)
     }
+  })
+})
+
+describe('Smoke and Mirrors: Flash Flood', () => {
+  it('se une a tu localización (+4 al velo) y se descarta al final de la ronda', () => {
+    let game = newGame()
+    const before = shroudOf(game, here(game))
+    game = during(game, (s) => s, {
+      type: 'ResolveEncounterCard',
+      investigator: DANIELA,
+      card: { kind: 'treachery', code: CODES.flashFlood, name: 'Flash Flood', keywords: [] },
+    })
+    const flood = Object.values(game.treacheries).find((t) => t.code === CODES.flashFlood)
+    expect(flood?.placement).toEqual({ type: 'location', location: here(game) })
+    expect(shroudOf(game, here(game))).toBe(before + 4)
+    game = during(game, (s) => s, { type: 'Forced', trigger: { type: 'roundEnds' } })
+    expect(Object.values(game.treacheries).some((t) => t.code === CODES.flashFlood)).toBe(false)
+    expect(shroudOf(game, here(game))).toBe(before)
   })
 })

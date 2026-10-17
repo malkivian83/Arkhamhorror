@@ -1,5 +1,6 @@
 import { playerCardBehavior } from './content'
 import { EngineError } from './errors'
+import { recomputeConnections } from './state'
 import { shuffle, seedRng } from './rng'
 import type {
   Act,
@@ -28,8 +29,12 @@ export type { LocationCard } from './types'
 /** Todo lo necesario para preparar un escenario. */
 export interface ScenarioDefinition {
   id: string
-  /** Introducción que se lee antes de empezar (solo en la mesa). */
-  intro?: StoryEntry
+  /** Prólogo de la campaña (solo en su primer escenario). */
+  prologue?: StoryEntry
+  /** Introducción que se lee antes de empezar, en una o varias partes (solo en la mesa). */
+  intro?: StoryEntry | StoryEntry[]
+  /** Pasos de preparación de la guía, que la mesa muestra antes de empezar. */
+  setupInstructions?: StoryEntry
   /** Localizaciones en juego al empezar (sin revelar). */
   locations: LocationCard[]
   /** Localizaciones apartadas, para efectos del escenario. */
@@ -88,11 +93,10 @@ export function emptyCampaignLog(investigators: InvestigatorId[]): CampaignLog {
 }
 
 /**
- * Prepara la partida según "Setting Up a Game" del reglamento: recursos
- * iniciales, mano inicial, mazos de plan/acto/encuentros y colocación de los
- * investigadores en la localización inicial (que se revela al entrar).
- * Cada investigador resuelve su mulligan antes de continuar la preparación.
- * Pendiente: investigador jefe a elección.
+ * Prepara la partida según "Setup" del reglamento, en el orden de la guía:
+ * prólogo, elegir jefe, introducción, investigadores (apoyos permanentes,
+ * recursos, mano inicial sin debilidades), mulligan, pasos de preparación del
+ * escenario y colocación en la localización inicial (que se revela al entrar).
  */
 export function prepareGame({
   seed,
@@ -157,8 +161,14 @@ export function prepareGame({
     locations[card.id] = { ...card, connections: [...card.connections], revealed: false, clues: 0 }
   }
 
+  const story = (entries: StoryEntry | StoryEntry[] | undefined): Message[] =>
+    interactive && entries
+      ? [entries].flat().map((entry): Message => ({ type: 'Story', entry }))
+      : []
   const setupMessages: Message[] = [
-    ...(interactive && scenario.intro ? [{ type: 'Story', entry: scenario.intro } as Message] : []),
+    ...story(scenario.prologue),
+    { type: 'ChooseLead' },
+    ...story(scenario.intro),
     ...investigators.flatMap((setup): Message[] => [
       ...permanents(setup).map((code): Message => ({
         type: 'PutAssetIntoPlay',
@@ -167,12 +177,13 @@ export function prepareGame({
       })),
       { type: 'GainResources', investigator: setup.id, amount: 5 + bonus(setup, 'resources') },
       {
-        type: 'DrawCards',
+        type: 'DrawOpeningHand',
         investigator: setup.id,
         amount: 5 + bonus(setup, 'openingHand'),
-        opening: true,
       },
     ]),
+    { type: 'InvestigatorsMulligan' },
+    ...story(scenario.setupInstructions),
     ...players.map((p): Message => ({
       type: 'MoveTo',
       investigator: p.id,
@@ -182,7 +193,7 @@ export function prepareGame({
     { type: 'Round' },
   ]
 
-  return {
+  return recomputeConnections({
     engineVersion: ENGINE_VERSION,
     scenarioId: scenario.id,
     difficulty,
@@ -218,5 +229,5 @@ export function prepareGame({
     queue: setupMessages,
     pending: null,
     outcome: null,
-  }
+  })
 }

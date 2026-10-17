@@ -23,33 +23,43 @@ registerPlayerCard({ code: permanent, permanent: { openingHand: 1 } })
 const me = (state: GameState) => state.investigators[0]!
 const prompt = (state: GameState) => state.pending?.question.prompt
 const cards = (state: GameState) =>
-  [...me(state).hand, ...me(state).deck, ...me(state).discard].sort()
-const finish = (state: GameState) => choose(state, 'choice.finishMulligan')
+  [
+    ...me(state).hand,
+    ...me(state).deck,
+    ...me(state).discard,
+    ...(me(state).setAsideOpening ?? []),
+  ].sort()
+const finish = (state: GameState) => choose(state, state.pending!.question.choices[0]!.label)
 const replace = (state: GameState, card: string) => choose(state, 'choice.mulliganCard', { card })
 
 function start(players = ['a']) {
-  return createGame({
+  const state = createGame({
     seed: 7,
+    interactive: true,
     scenario: testScenario(),
     investigators: players.map((id) => testInvestigator(id)),
   })
+  return prompt(state) === 'prompt.chooseLead'
+    ? choose(state, 'choice.investigator', { name: players[0]!.toUpperCase() })
+    : state
 }
 
 /** Orden conocido para comprobar qué cartas se apartan antes de cada robo. */
 function opening(deck: string[]) {
   const state = prepareGame({
     seed: 7,
+    interactive: true,
     scenario: testScenario(),
     investigators: [testInvestigator('a')],
   })
   return dispatch(
     { ...state, queue: [], investigators: [{ ...me(state), deck }] },
     {
-      type: 'DrawCards',
+      type: 'DrawOpeningHand',
       investigator: 'a',
       amount: 5,
-      opening: true,
     },
+    { type: 'Mulligan', investigator: 'a' },
   )
 }
 
@@ -161,6 +171,7 @@ describe('mulligan inicial (RR "Mulligan")', () => {
     const investigator = testInvestigator('a')
     const state = createGame({
       seed: 7,
+      interactive: true,
       scenario: testScenario(),
       investigators: [{ ...investigator, deck: [...investigator.deck, permanent] }],
     })

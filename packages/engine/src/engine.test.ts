@@ -4,7 +4,6 @@ import { EngineError } from './errors'
 import { shuffle } from './rng'
 import { getInvestigator } from './state'
 import {
-  createTestGame,
   choose,
   during,
   ghoul,
@@ -157,7 +156,7 @@ describe('pruebas de habilidad (RR "Skills and Skill Tests")', () => {
     expect(inv(skull).clues).toBe(1) // 3 - 1 = 2 ≥ 2
     const tablet = choose(during(newTestGame(), withBag('tablet')), 'action.investigate')
     expect(inv(tablet).clues).toBe(0) // 3 - 3 = 0 < 2
-    const elder = createTestGame({
+    const elder = createGame({
       seed: 1,
       scenario: testScenario({ chaosBag: ['elderSign'] }),
       investigators: [

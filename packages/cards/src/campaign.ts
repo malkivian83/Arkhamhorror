@@ -8,18 +8,19 @@
 import {
   createGame,
   emptyCampaignLog,
+  isPermanent,
   playerCardBehavior,
+  playerCardDef,
   type CampaignLog,
   type CardCode,
+  type Difficulty,
   type GameState,
   type InvestigatorId,
   type PlayerCardDef,
-  type ScenarioDefinition,
   type ScenarioOutcome,
 } from '@lcg/engine'
-import { BRETHREN_OF_ASH, type Difficulty } from './brethren-of-ash/campaign'
-import { smokeAndMirrors } from './brethren-of-ash/smoke-and-mirrors'
-import { DR_ARMITAGE, spreadingFlames } from './brethren-of-ash/spreading-flames'
+import { campaignDefinition, type CampaignScenario } from './campaign-definition'
+import { withRandomBasicWeakness } from './decks'
 import {
   code,
   investigatorSetup,
@@ -27,6 +28,8 @@ import {
   starterDeck,
   STARTER_DECKS,
 } from './core-2026/player-cards'
+// Campañas registradas.
+import './brethren-of-ash/definition'
 // Comportamiento de las cartas: hace falta para saber cuáles se pueden comprar.
 import './core-2026/cards'
 import './core-2026/investigators'
@@ -49,39 +52,37 @@ export interface ScenarioResult {
 }
 
 export interface Campaign {
-  id: typeof BRETHREN_OF_ASH.id
+  /** Id de la definición de campaña. */
+  id: string
   difficulty: Difficulty
-  /** Escenario que toca jugar (índice en BRETHREN_OF_ASH.scenarios). */
+  /** Escenario que toca jugar (índice en los escenarios de la definición). */
   scenarioIndex: number
   investigators: CampaignInvestigator[]
   log: CampaignLog
   results: ScenarioResult[]
 }
 
-interface ScenarioEntry {
-  build: (campaign: Campaign, seed: number, players: number) => ScenarioDefinition
-  /** Apoyos de historia que el escenario pone en juego en vez de barajarlos en el mazo. */
-  storyAssetsInPlay?: CardCode[]
-}
+/** Un investigador con su mazo: un mazo inicial de la caja o una lista propia. */
+export type CampaignMember = DeckKey | { investigator: CardCode; cards: CardCode[] }
 
-/** Escenarios de Brethren of Ash que ya se pueden jugar. */
-const SCENARIOS: Record<string, ScenarioEntry> = {
-  'spreading-flames': { build: (c) => spreadingFlames(c.difficulty) },
-  'smoke-and-mirrors': {
-    build: (c, seed, players) =>
-      smokeAndMirrors({ difficulty: c.difficulty, log: c.log, seed, players }),
-    storyAssetsInPlay: [DR_ARMITAGE],
-  },
-}
-
-export function newCampaign(decks: DeckKey[], difficulty: Difficulty): Campaign {
-  const investigators = decks.map((key) => {
-    const list = STARTER_DECKS[key]
-    if (!list) throw new Error(`Mazo desconocido: ${key}`)
-    return { id: code(list.investigator), deck: starterDeck(key) }
+export function newCampaign(
+  campaignId: string,
+  members: CampaignMember[],
+  difficulty: Difficulty,
+  seed = 1,
+): Campaign {
+  campaignDefinition(campaignId)
+  const investigators = members.map((member, n) => {
+    if (typeof member !== 'string') {
+      // Un mazo propio sin debilidad básica recibe una al azar (reglamento).
+      return { id: member.investigator, deck: withRandomBasicWeakness(member.cards, seed + n) }
+    }
+    const list = STARTER_DECKS[member]
+    if (!list) throw new Error(`Mazo desconocido: ${member}`)
+    return { id: code(list.investigator), deck: starterDeck(member) }
   })
   return {
-    id: BRETHREN_OF_ASH.id,
+    id: campaignId,
     difficulty,
     scenarioIndex: 0,
     investigators,
@@ -90,9 +91,14 @@ export function newCampaign(decks: DeckKey[], difficulty: Difficulty): Campaign 
   }
 }
 
+/** Escenario que toca jugar, o null si la campaña ha terminado. */
+function scenarioEntry(campaign: Campaign): CampaignScenario | null {
+  return campaignDefinition(campaign.id).scenarios[campaign.scenarioIndex] ?? null
+}
+
 /** Id del escenario que toca jugar, o null si la campaña ha terminado. */
 export function currentScenario(campaign: Campaign): string | null {
-  return BRETHREN_OF_ASH.scenarios[campaign.scenarioIndex] ?? null
+  return scenarioEntry(campaign)?.id ?? null
 }
 
 /** Investigadores que siguen en la campaña (ni muertos ni enloquecidos). */
@@ -105,24 +111,34 @@ export function activeMembers(campaign: Campaign): CampaignInvestigator[] {
 
 /** El escenario que toca ya se puede jugar. */
 export function canPlayNext(campaign: Campaign): boolean {
-  const id = currentScenario(campaign)
-  return id !== null && id in SCENARIOS && activeMembers(campaign).length > 0
+  return !!scenarioEntry(campaign)?.build && activeMembers(campaign).length > 0
 }
 
 /** Prepara el escenario que toca con el estado de la campaña (trauma, bolsa del caos). */
 export function startScenario(campaign: Campaign, seed: number, interactive = true): GameState {
-  const id = currentScenario(campaign)
-  const entry = id ? SCENARIOS[id] : undefined
-  if (!entry) throw new Error(`Escenario no disponible: ${id}`)
+  const entry = scenarioEntry(campaign)
+  if (!entry?.build) throw new Error(`Escenario no disponible: ${entry?.id ?? '—'}`)
+  const definition = campaignDefinition(campaign.id)
   const members = activeMembers(campaign)
-  const scenario = entry.build(campaign, seed, members.length)
+  const scenario = entry.build({
+    difficulty: campaign.difficulty,
+    log: campaign.log,
+    seed,
+    investigators: members.map((i) => i.id),
+  })
   return createGame({
     seed,
     difficulty: campaign.difficulty,
     interactive,
     campaignLog: campaign.log,
-    // Reglamento: en campaña, la bolsa del caos sigue como acabó el escenario anterior.
-    scenario: { ...scenario, chaosBag: [...scenario.chaosBag, ...campaign.log.chaosTokens] },
+    scenario: {
+      ...scenario,
+      ...(campaign.scenarioIndex === 0 && definition.prologue
+        ? { prologue: definition.prologue }
+        : {}),
+      // Reglamento: en campaña, la bolsa del caos sigue como acabó el escenario anterior.
+      chaosBag: [...scenario.chaosBag, ...campaign.log.chaosTokens],
+    },
     investigators: members.map((i) => {
       const record = campaign.log.investigators[i.id]
       // Los apoyos de historia y debilidades ganados van en el mazo (salvo los que el
@@ -142,7 +158,14 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
 /** Cierra el escenario terminado: guarda su registro y pasa al siguiente. */
 export function finishScenario(campaign: Campaign, game: GameState): Campaign {
   if (!game.outcome) throw new Error('El escenario aún no ha terminado')
-  const log = game.campaignLog ?? campaign.log
+  const played = game.campaignLog ?? campaign.log
+  // La experiencia no baja de 0 (Dead Ends puede restar más de lo ganado).
+  const log = {
+    ...played,
+    investigators: Object.fromEntries(
+      Object.entries(played.investigators).map(([id, r]) => [id, { ...r, xp: Math.max(0, r.xp) }]),
+    ),
+  }
   const xp = Object.fromEntries(
     campaign.investigators.map((i) => [
       i.id,
@@ -161,46 +184,17 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
 // Mejorar el mazo con experiencia
 // ---------------------------------------------------------------------------
 
-/** Tamaño del mazo de los investigadores de la caja básica (sin contar debilidades). */
+/** Tamaño del mazo si la carta del investigador no lo indica (sin contar debilidades). */
 export const DECK_SIZE = 30
 
-interface DeckOption {
-  classes: string[]
-  maxLevel: number
-}
+/** Tamaño del mazo de un investigador (más lo que añaden sus cartas, como Collector). */
+export const deckSizeOf = (investigator: InvestigatorId, deck: CardCode[] = []) =>
+  (byCode(investigator)?.deckSize ?? DECK_SIZE) +
+  [...new Set(deck)].reduce((n, code) => n + (playerCardDef(code)?.deckSizeBonus ?? 0), 0)
 
-/** Opciones de construcción del reverso de cada investigador (datos públicos de ArkhamDB). */
-const DECK_OPTIONS: Record<CardCode, DeckOption[]> = {
-  '12001': [
-    { classes: ['guardian', 'neutral'], maxLevel: 5 },
-    { classes: ['survivor'], maxLevel: 2 },
-  ],
-  '12004': [
-    { classes: ['seeker', 'neutral'], maxLevel: 5 },
-    { classes: ['guardian'], maxLevel: 2 },
-  ],
-  '12007': [
-    { classes: ['rogue', 'neutral'], maxLevel: 5 },
-    { classes: ['seeker'], maxLevel: 2 },
-  ],
-  '12010': [
-    { classes: ['mystic', 'neutral'], maxLevel: 5 },
-    { classes: ['rogue'], maxLevel: 2 },
-  ],
-  '12013': [
-    { classes: ['survivor', 'neutral'], maxLevel: 5 },
-    { classes: ['mystic'], maxLevel: 2 },
-  ],
-}
-
-/** Cartas exclusivas (y su debilidad): las dos que siguen a cada investigador en la caja. */
-function isSignature(card: CardCode): boolean {
-  const position = Number(card.slice(2))
-  return Object.keys(DECK_OPTIONS).some((i) => {
-    const p = Number(i.slice(2))
-    return position === p + 1 || position === p + 2
-  })
-}
+/** Cartas exclusivas (y debilidades exclusivas) de cualquier investigador. */
+const SIGNATURES = new Set(playerCards.flatMap((c) => c.signatures ?? []))
+const isSignature = (card: CardCode) => SIGNATURES.has(card)
 
 const byCode = (card: CardCode): PlayerCardDef | undefined =>
   playerCards.find((c) => c.code === card)
@@ -212,8 +206,9 @@ export function isImplemented(card: CardCode): boolean {
   return STARTER_CARDS.has(card) || playerCardBehavior(card) !== undefined
 }
 
-/** Cuenta para el tamaño del mazo (ni las debilidades ni las cartas exclusivas obligatorias). */
-const countsForSize = (card: CardCode) => !byCode(card)?.weakness && !isSignature(card)
+/** Cuenta para el tamaño del mazo (ni debilidades, ni exclusivas, ni permanentes). */
+const countsForSize = (card: CardCode) =>
+  !byCode(card)?.weakness && !isSignature(card) && !isPermanent(card)
 
 /** Cartas del mazo que cuentan para su tamaño. */
 export const deckSize = (deck: CardCode[]) => deck.filter(countsForSize).length
@@ -244,13 +239,14 @@ export function purchaseOptions(
 ): PurchaseOption[] {
   const { deck } = member(campaign, investigator)
   const xp = campaign.log.investigators[investigator]?.xp ?? 0
-  const options = DECK_OPTIONS[investigator] ?? []
-  const full = deckSize(deck) >= DECK_SIZE
+  const options = byCode(investigator)?.deckOptions ?? []
+  const full = deckSize(deck) >= deckSizeOf(investigator, deck)
   return playerCards
     .filter(
       (card) =>
         card.type !== 'investigator' &&
         !card.weakness &&
+        !card.reward &&
         !isSignature(card.code) &&
         options.some((o) => o.classes.includes(card.class) && (card.xp ?? 0) <= o.maxLevel),
     )
@@ -263,18 +259,29 @@ export function purchaseOptions(
       }
       const copies = deck.filter((c) => byCode(c)?.name === card.name)
       // Mejora: una copia de menor nivel del mismo título pasa a la nueva versión.
-      const lower = copies.find((c) => level(c) < base.level)
+      const lower = copies.find((c) => level(c) < base.level && !isPermanent(c))
       const upgrade: PurchaseOption[] = lower
         ? [{ ...base, cost: base.level - level(lower), replaces: lower, needsRemoval: false }]
         : []
       // Carta nueva: como máximo 2 copias por título; cuesta al menos 1 experiencia.
       const add: PurchaseOption[] =
-        copies.length < 2 ? [{ ...base, cost: Math.max(1, base.level), needsRemoval: full }] : []
+        copies.length < 2
+          ? [
+              {
+                ...base,
+                cost: Math.max(1, base.level),
+                needsRemoval: full && !isPermanent(card.code),
+              },
+            ]
+          : []
       return [...upgrade, ...add].filter((o) => o.cost <= xp)
     })
 }
 
-/** Cartas que se pueden quitar del mazo para hacer sitio (ni debilidades ni exclusivas). */
+/**
+ * Cartas que se pueden quitar del mazo para hacer sitio: las que cuentan para su
+ * tamaño (las permanentes no se pueden quitar una vez añadidas, FAQ).
+ */
 export function removableCards(campaign: Campaign, investigator: InvestigatorId): CardCode[] {
   const { deck } = member(campaign, investigator)
   return [...new Set(deck.filter(countsForSize))]

@@ -45,7 +45,7 @@ watch(question, () => (minimized.value = false))
       <section class="choice">
         <header>
           <div>
-            <h2>{{ t(question.prompt) }}</h2>
+            <h2>{{ label(question.prompt, question.promptParams ?? {}) }}</h2>
             <small>{{ t('game.waitingFor', { name: decider }) }}</small>
           </div>
           <button type="button" class="min" :title="t('table.viewTable')" @click="minimized = true">
@@ -75,7 +75,7 @@ watch(question, () => (minimized.value = false))
       </section>
     </div>
     <button v-else type="button" class="restore" @click="minimized = false">
-      {{ t('table.choose') }}: {{ t(question.prompt) }}
+      {{ t('table.choose') }}: {{ label(question.prompt, question.promptParams ?? {}) }}
     </button>
   </template>
 </template>

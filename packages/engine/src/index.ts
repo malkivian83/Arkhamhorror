@@ -16,6 +16,8 @@ export {
   registerPlayerCard,
   registerPlayerCards,
   playerCardBehavior,
+  allPlayerCardDefs,
+  isPermanent,
   playerCardDef,
   registerScenario,
   registerTreachery,

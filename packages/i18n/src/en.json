@@ -1,7 +1,10 @@
 {
   "app": {
     "title": "LCG Platform",
-    "disclaimer": "Unofficial fan project. Not produced, endorsed or supported by, or affiliated with Fantasy Flight Games."
+    "disclaimer": "Unofficial fan project. Not produced, endorsed or supported by, or affiliated with Fantasy Flight Games.",
+    "sections": "Sections",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "home": {
     "serverStatus": "Server status",
@@ -43,7 +46,6 @@
     "agility": "Agility"
   },
   "prompt": {
-    "mulligan": "Mulligan: set aside any cards you want to replace, then confirm",
     "chooseAction": "Choose an action",
     "chooseNextInvestigator": "Who takes the next turn?",
     "discardDownToHandSize": "Discard down to 8 cards",
@@ -76,7 +78,17 @@
     "chooseToken": "Choose which token to resolve (the other is ignored)",
     "topEncounter": "Top card of the encounter deck",
     "whoDraws": "Who draws?",
-    "chooseEnemyDestination": "Where does the enemy move?"
+    "chooseEnemyDestination": "Where does the enemy move?",
+    "chooseCardType": "Choose a card type",
+    "chooseLead": "Choose the lead investigator",
+    "mulligan": "Mulligan: set aside any cards from your opening hand you want to replace (once)",
+    "chooseEngaged": "Who does {enemy} engage?",
+    "chooseHunterPath": "Which way does {enemy} go?",
+    "chooseAttackOrder": "Choose which enemy attacks you first",
+    "whoPaysClue": "Who spends the next clue? ({n} left)",
+    "armitageControl": "Who takes control of Dr. Henry Armitage?",
+    "searchFire": "Where do you search for Fire!?",
+    "arrangeCards": "Place the cards you looked at on top or bottom of your deck"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -92,7 +104,6 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
-    "mulliganCard": "Set aside {card}",
     "finishMulligan": "Confirm opening hand (replacements: {n})",
     "investigator": "{name}",
     "discard": "Discard {card}",
@@ -139,7 +150,25 @@
     "defeatEnemy": "Defeat {enemy}",
     "loseAction": "Lose 1 action",
     "healHorrorOf": "Heal 1 horror from {name}",
-    "healDamageOf": "Heal 1 damage from {name}"
+    "healDamageOf": "Heal 1 damage from {name}",
+    "cardType": {
+      "asset": "Assets",
+      "event": "Events",
+      "skill": "Skills"
+    },
+    "twoDirectDamage": "Take 2 direct damage",
+    "twoDirectHorror": "Take 2 direct horror",
+    "doomOnAsset": "1 doom on {card}",
+    "keepHand": "Keep this hand",
+    "mulliganDone": "Draw 1 new card and finish | Draw {n} new cards and finish",
+    "mulliganCard": "Replace {card}",
+    "moveEnemyTo": "{enemy} moves to {location}",
+    "attackFirst": "{enemy} attacks first",
+    "investigatorPaysClue": "{name} spends 1 clue (has {clues})",
+    "fireFromDiscard": "Only the encounter discard pile",
+    "fireFromBoth": "The encounter deck and discard pile",
+    "placeOnTop": "{card} on top of your deck",
+    "placeOnBottom": "{card} on the bottom of your deck"
   },
   "phase": {
     "setup": "Setup",
@@ -197,7 +226,10 @@
     "easttownAlly": "Search your deck for an ally and play it",
     "southsideDraw": "Investigators here draw 3 cards between them",
     "frenchHillCharge": "Discard 1 card: 1 charge or secret on {card}",
-    "playFromDiscard": "Play {card} from your discard pile (−2 cost)"
+    "playFromDiscard": "Play {card} from your discard pile (−2 cost)",
+    "extinguish": "Spend {clues} clues as a group: discard the Fire! at your location",
+    "weakenElokoss": "Spend {clues} clues: place 1 clue on Elokoss ({have}/5)",
+    "openSluice": "Open the sluice gate (agility or combat 5)"
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -228,7 +260,9 @@
     "searchCanceled": "{name} finds {card}: the search is canceled",
     "sealed": "{name} seals a token ({token})",
     "weakness": "{name} draws their weakness {card}",
-    "underAct": "{enemy} is placed beneath the act"
+    "underAct": "{enemy} is placed beneath the act",
+    "enemyImmune": "{enemy} cannot be damaged (there is fire at its location)",
+    "lead": "{name} is the lead investigator"
   },
   "table": {
     "log": "Game log",
@@ -297,7 +331,10 @@
     "actionsLeft": "{n} actions",
     "journal": "Case journal",
     "shroudUntilEndOfRound": "Shroud changed until the end of the round",
-    "cardBeneath": "There is a facedown card beneath this location"
+    "cardBeneath": "There is a facedown card beneath this location",
+    "officialText": "Official text",
+    "summaryText": "Summary",
+    "mulliganHint": "Click the cards in your hand you want to replace."
   },
   "difficulty": {
     "easy": "Easy",
@@ -308,7 +345,7 @@
   "setup": {
     "continue": "Continue saved game",
     "chooseInvestigators": "Choose 1 to 4 investigators",
-    "orderHint": "The order you pick is the player order; the first is the lead investigator.",
+    "orderHint": "The order you pick is the player order. At the start of each scenario you choose the lead investigator, who then goes first.",
     "quit": "Quit game",
     "noGame": "There is no game in progress.",
     "confirmQuit": "Quit this game? It cannot be recovered."
@@ -372,7 +409,9 @@
       "resolution2Title": "Resolution 2",
       "resolution2": "Working side by side with the others, you hold back the flames until the Arkham Fire Department arrives. With things under control, you hurry to meet Dr. Armitage.",
       "resolution3Title": "Resolution 3",
-      "resolution3": "You flee the campus with Dr. Armitage and leave the university to its fate, sirens wailing behind you on the way to his apartment."
+      "resolution3": "You flee the campus with Dr. Armitage and leave the university to its fate, sirens wailing behind you on the way to his apartment.",
+      "setupTitle": "Setup",
+      "setup": "Gather the scenario's encounter sets.\n\nPut Your Friend's Room into play and set the other campus locations aside. Each investigator begins at Your Friend's Room.\n\nSet aside, out of play, the 5 copies of Fire!, the Dr. Henry Armitage story asset and the Servant of Flame enemy.\n\nShuffle the remaining encounter cards to build the encounter deck."
     },
     "effect": {
       "record": "In your campaign log, record {note}.",
@@ -382,7 +421,14 @@
       "bonusAndPhysicalTrauma": "Each investigator earns 1 bonus experience and suffers 1 physical trauma.",
       "proceed": "Proceed to {scenario}.",
       "harbinger": "The harbinger of Elokoss is revealed: {name}. Record it in the campaign log.",
-      "bonusXp": "Each investigator earns {n} bonus experience."
+      "bonusXp": "Each investigator earns {n} bonus experience.",
+      "allKilled": "Each investigator is killed.",
+      "campaignLost": "The investigators lose the campaign.",
+      "campaignWon": "The investigators win the campaign!",
+      "collector": "The investigators earn the Collector reward card: they can include it when building new decks.",
+      "traumaBoth": "Each investigator suffers {n} physical and {n} mental trauma.",
+      "killedUnlessResigned": "Each investigator who did not resign is killed.",
+      "escapedRewards": "Those who resigned earn the victory display experience plus 3 and suffer 3 mental trauma."
     },
     "note": {
       "universityBurned": "Miskatonic University burned",
@@ -394,7 +440,13 @@
       "killedServant": "the investigators killed the Servant of Flame",
       "scouredArkham": "the investigators scoured Arkham for answers",
       "stirredUpTrouble": "the investigators stirred up trouble",
-      "servantEscaped": "the Servant of Flame escaped"
+      "servantEscaped": "the Servant of Flame escaped",
+      "elokossReborn": "Elokoss was reborn",
+      "campaignLost": "the investigators lost the campaign",
+      "defeatedElokoss": "the investigators defeated Elokoss and the Brethren of Ash",
+      "campaignWon": "the investigators won the campaign",
+      "stoppedRebirth": "the investigators stopped Elokoss's glorious rebirth",
+      "floodedRitual": "the investigators flooded the Brethren of Ash's summoning ritual"
     },
     "scenario": {
       "smokeAndMirrors": "Scenario II: Smoke and Mirrors",
@@ -424,7 +476,46 @@
       "resolution1Title": "Resolution 1",
       "resolution1": "In the cab to Easttown it becomes clear: despite their efforts to hide, you have found the real culprit. You hope it is enough to save your friend.",
       "resolution2Title": "Resolution 2",
-      "resolution2": "You stop by the hideout where you left your unconscious nemesis. It smells of smoke and the handcuffs are smashed, not melted: someone helped them escape."
+      "resolution2": "You stop by the hideout where you left your unconscious nemesis. It smells of smoke and the handcuffs are smashed, not melted: someone helped them escape.",
+      "setupTitle": "Setup",
+      "setup": "Choose one of the two Downtown versions and one of the two Uptown versions at random; remove the others. Put Northside, Easttown, Merchant District, Waterfront District, Southside and French Hill into play.\n\nMiskatonic University enters on its In Flames side if the university burned, or Quiet Campus if the investigators saved it (then place 1 doom on the agenda). Each investigator begins there.\n\nSet one suspect (People of Arkham) aside at random without looking; shuffle the rest with the Servant of Flame and deal them facedown beneath Northside, Downtown, Southside, French Hill, Uptown and Waterfront District.\n\nPlace 1 doom on the agenda per investigator. The bearer of Dr. Henry Armitage puts him into play (he takes no ally slot). Set the Mark of Elokoss copies aside and shuffle the rest as the encounter deck.",
+      "codex1Attempt": "The haughty Mr. Renfield tries to send you off politely, but at the words \"Brethren of Ash\" he bolts down the street, faster than he looks.",
+      "codex2Attempt": "Cornelia Akely, on the night shift at a run-down garage, greets you with a cigarette; the moment you mention the cult, her face hardens and she points to the door.",
+      "codex3Attempt": "The O'Bannion boss has no interest in your questions, though she will happily get rid of any trouble for you… for a price. More palms will need greasing.",
+      "codex4Attempt": "At the mention of the cult, the officer pulls his nightstick and suggests you poke your nose elsewhere. You brace for a fight.",
+      "codex5Attempt": "The librarian waves your questions away while pulling more books off the shelf. Perhaps the only way to get her attention is to help her find what she is looking for.",
+      "codex6Attempt": "Margaret Liu, one of the best-known singers in town, is lost in her performance. You will have to get creative to catch her attention."
+    },
+    "queenOfAsh": {
+      "intro1Title": "Scenario III: Queen of Ash",
+      "intro1": "At Velma's Diner, over two slices of apple pie, Dr. Armitage explains what he has learned: the Brethren of Ash are not conspirators but thralls of an ancient goddess they call Elokoss. A mark on the skin singles out her own, who do not even know they are under her sway.\n\nYour pursuer, the Servant of Flame, heralds her return and gathers sacrifices for a rebirth that, according to prophecy, will happen tonight.",
+      "intro2Title": "The sewers",
+      "intro2": "You search the Servant of Flame's home: an invitation to a secret meeting, muddy boots, bootlegging records from the Waterfront and a photo of three candlelit faces. Everything points to the Arkham sewers. You go down to find your friend.",
+      "intro3Title": "The sewers",
+      "intro3": "After hours poring over your few clues, Armitage concludes that the ritual is taking place in the Arkham sewers. It is your only lead, and time is short: the agenda starts with 1 doom.",
+      "codexTitle": "Codex: Servant of Flame",
+      "codex": {
+        "DavidRenfield": "Unmasked, David Renfield refuses your help: he welcomed her willingly. He dies laughing weakly. Each investigator may search their deck for a Tome or Spell card and play it, ignoring its cost.",
+        "CorneliaAkely": "Cornelia Akely stares at her bloody hands, dazed: she thought it was all a nightmare. Seeing your wounds, she offers to help. Each investigator heals 3 damage.",
+        "NaomiOBannion": "Naomi O'Bannion wakes up furious and demands to know what kind of party this is. As you help her up, she pays you well for the rescue. Each investigator gains 5 resources.",
+        "SgtEarlMonroe": "Sergeant Monroe, terrified, remembers nothing and stares at his blood-spattered clothes. Each investigator may search their deck for a Weapon asset and play it, ignoring its cost.",
+        "AbigailForeman": "Abigail Foreman squeezes your hands: Elokoss must not awaken. Before passing out she hands you a crumpled note. Each investigator draws 3 cards.",
+        "MargaretLiu": "Margaret Liu gets up remarkably calm amid the chaos and you point her to the exit. Each investigator heals 3 horror."
+      },
+      "noResolutionTitle": "No resolution",
+      "noResolution": "Dr. Armitage barely escapes the sewers. By dawn an unquenchable fire rages through Easttown for three days; those who fled speak of ghastly faces in the flames. Of his companions, and of the Brethren of Ash, no trace remains.",
+      "resolution1Title": "Resolution 1",
+      "resolution1": "Against all odds, the vessel of Elokoss has been destroyed. Among the waking cultists you find your friend, frightened but unharmed. Leading them out, you notice a faint mark on their neck, still visible: it may wake again someday.",
+      "resolution2Title": "Resolution 2",
+      "resolution2": "Dr. Armitage chants inhuman words from a tome taken from a cultist and the burning tree crumbles to ash. The cultists are freed from her sway, your friend among them, without a trace of the mark. Even so, for months the faintest smell of smoke will set your pulse racing.",
+      "resolution3Title": "Resolution 3",
+      "resolution3": "The old sluice gate screeches open and a torrent floods the tunnels. You do not try to run: you did what had to be done. As the water rises, you think of your friend, of Armitage and of all who drowned to stop an ancient evil.",
+      "setupTitle": "Setup",
+      "setup": "Put Underground Cistern into play. Shuffle the sewer locations and put them into play unrevealed, without knowing which is which; set Sluice Control aside. Each investigator begins at Sewer Culvert.\n\nCheck the campaign log: if the investigators scoured Arkham for answers, each begins with 1 clue; if they stirred up trouble, 1 cultist per investigator enters play, each at a different tunnel; if they killed the Servant of Flame, remove it from the game (otherwise set it aside).\n\nWith 3 or 4 players, place 1 doom on the agenda. Set aside the Fire! copies, the Collector reward and the Elokoss, Queen's Knight and Herald of Flame enemies. The rest forms the encounter deck."
+    },
+    "brethrenOfAsh": {
+      "prologueTitle": "Prologue: A Glorious Rebirth",
+      "prologue": "Arkham has never been an ordinary city: every week the paper reports another gruesome crime or disappearance, and even the most skeptical cannot deny that something is wrong.\n\nStill, people prefer to look away. Six months after the great flood the city rebuilds and boasts of progress, but among the ashes of the recent fires some whisper that someone, or something, wishes to be reborn."
     }
   },
   "playmat": {
@@ -451,7 +542,7 @@
     "horror": "horror"
   },
   "campaign": {
-    "title": "Campaign: Brethren of Ash",
+    "title": "Campaign: {name}",
     "new": "New campaign",
     "open": "View campaign",
     "continue": "Continue the campaign",
@@ -489,6 +580,122 @@
       "spreading-flames": "Spreading Flames",
       "smoke-and-mirrors": "Smoke and Mirrors",
       "queen-of-ash": "Queen of Ash"
+    },
+    "names": {
+      "brethren-of-ash": "Brethren of Ash"
+    },
+    "choose": "Choose the campaign"
+  },
+  "class": {
+    "guardian": "Guardian",
+    "seeker": "Seeker",
+    "rogue": "Rogue",
+    "mystic": "Mystic",
+    "survivor": "Survivor",
+    "neutral": "Neutral"
+  },
+  "decks": {
+    "title": "Decks",
+    "new": "New deck",
+    "fromStarter": "Start from their starter deck",
+    "create": "Create deck",
+    "newName": "{name}'s deck",
+    "none": "You have no decks yet.",
+    "problems": "1 problem | {n} problems",
+    "valid": "Valid",
+    "delete": "Delete {name}",
+    "confirmDelete": "Delete the deck \"{name}\"?",
+    "name": "Deck name",
+    "size": "{n}/{size} cards",
+    "basicWeakness": "No basic weakness: a random one will be added when the campaign starts.",
+    "ready": "The deck follows the deckbuilding rules.",
+    "unimplemented": "No in-game effect yet: {cards}.",
+    "contents": "Contents",
+    "required": "Signatures and weaknesses",
+    "pool": "Available cards",
+    "search": "Search",
+    "class": "Class",
+    "type": "Type",
+    "allClasses": "All classes",
+    "allTypes": "All types",
+    "levelZero": "Level 0 only",
+    "addCard": "Add {card}",
+    "removeCard": "Remove {card}",
+    "pick": "Choose or create a deck to edit it.",
+    "choose": "Decks",
+    "starter": "Starter deck",
+    "manage": "Create or import decks",
+    "import": {
+      "title": "Import from ArkhamDB",
+      "placeholder": "Deck link or number",
+      "action": "Import",
+      "loading": "Importing…",
+      "done": "Imported: {name}.",
+      "partial": "Imported. {n} cards are not from this box and were removed.",
+      "badLink": "That is not an ArkhamDB deck link.",
+      "notFound": "Deck not found (private decks must be shared).",
+      "network": "Could not reach ArkhamDB.",
+      "investigator": "That investigator is not available yet."
+    }
+  },
+  "deck": {
+    "problem": {
+      "unknownInvestigator": "Unknown investigator.",
+      "size": "It has {n} cards and must have {size} (not counting signatures or weaknesses).",
+      "notAllowed": "{card} is not among their deckbuilding options.",
+      "tooManyCopies": "{n} copies of {card}: 2 at most.",
+      "missingSignature": "Their signature card {card} is missing.",
+      "otherSignature": "{card} belongs to another investigator.",
+      "levelAtStart": "{card} has a level: only level 0 is allowed when the campaign starts.",
+      "unknownCard": "Unknown card: {card}.",
+      "rewardNotEarned": "Reward not earned: {card}"
+    }
+  },
+  "keywords": {
+    "title": "Keywords and concepts",
+    "doomed": {
+      "title": "Doomed",
+      "body": "When a doomed enemy is defeated (by an investigator or an effect), place 1 doom on the agenda, which can make it advance. Discarding it does not count as defeating it."
+    },
+    "hunter": {
+      "title": "Hunter",
+      "body": "At the start of the enemy phase, each ready, unengaged hunter moves one location along the shortest path toward the nearest investigator. It does not move if an investigator is already at its location. On a tie, its prey decides, otherwise the lead."
+    },
+    "peril": {
+      "title": "Peril",
+      "body": "While you resolve a card with peril, you cannot confer with the group and nobody else can play cards, trigger abilities or commit cards to your tests."
+    },
+    "prey": {
+      "title": "Prey",
+      "body": "Some enemies pursue a specific investigator: among several at the same distance (or at its location), they choose the one who best fits their prey."
+    },
+    "retaliate": {
+      "title": "Retaliate",
+      "body": "If you fail a test while attacking a ready enemy with retaliate, it attacks you after results are applied (engaged with you or not). It does not exhaust for this."
+    },
+    "surge": {
+      "title": "Surge",
+      "body": "After you draw and resolve an encounter card with surge, draw and resolve another one."
+    },
+    "codex": {
+      "title": "The codex",
+      "body": "Some cards refer to a numbered codex entry. When triggered, its text is read and its instructions resolved; the table shows it in a window."
+    },
+    "alert": {
+      "title": "Alert",
+      "body": "If you fail a test while evading an enemy with alert, it attacks you after results are applied. It does not exhaust for this."
+    },
+    "aloof": {
+      "title": "Aloof",
+      "body": "An aloof enemy does not automatically engage investigators at its location; you must engage it with an action (or an effect)."
+    },
+    "elusive": {
+      "title": "Elusive",
+      "body": "After an elusive enemy is attacked (and not defeated) or evaded, it moves away to a connecting location, without investigators if possible, and disengages."
+    },
+    "massive": {
+      "title": "Massive",
+      "body": "A ready massive enemy counts as engaged with each investigator at its location, attacks all of them in the enemy phase and only exhausts after all its attacks. It cannot be placed in a threat area."
     }
   }
 }

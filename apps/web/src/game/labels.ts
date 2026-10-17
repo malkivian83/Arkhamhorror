@@ -15,6 +15,7 @@ export function useLabels() {
     if (params.kind === 'damage' || params.kind === 'horror') {
       translated.kind = t(`damageKind.${params.kind}`)
     }
-    return t(key, translated)
+    // Con un número {n}, los textos con "singular | plural" eligen su forma.
+    return typeof params.n === 'number' ? t(key, translated, params.n) : t(key, translated)
   }
 }

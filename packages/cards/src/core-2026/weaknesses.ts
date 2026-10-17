@@ -45,9 +45,12 @@ const damage = (investigator: string, amount = 1, direct = false): Message => ({
 })
 
 // In Harm's Way (Daniela): en tu zona de amenaza. Forzado: después de hacer daño a un
-// enemigo, recibe 1 daño y pon 1 daño aquí; con 3 o más, descártala.
+// enemigo, recibe 1 daño y pon 1 daño aquí; con 3 o más, descártala. Si sigue en
+// juego al terminar la partida, sufres 1 trauma físico.
 registerTreachery({
   code: code(3),
+  whenGameEnds: (_state, self) =>
+    self.owner ? [{ type: 'SufferTrauma', investigator: self.owner, physical: 1 }] : [],
   revelation: (_state, investigator, self) => [toThreatArea(self, investigator)],
   forced: (_state, trigger, self) =>
     trigger.type === 'afterDealDamage' && trigger.investigator === self.owner
@@ -59,8 +62,15 @@ registerTreachery({
 })
 
 // Dead Ends (Joe): si al buscar en tu mazo está entre las cartas buscadas, la robas y
-// la búsqueda se cancela (el resto de su texto afecta a la campaña).
-registerPlayerCard({ code: code(6), cancelsSearch: true })
+// la búsqueda se cancela. Si está en tu mano al terminar la partida (o al ser eliminado),
+// ganas 2 de experiencia menos.
+registerPlayerCard({
+  code: code(6),
+  cancelsSearch: true,
+  whenGameEndsInHand: (_state, owner) => [
+    { type: 'EarnExperience', investigator: owner, amount: -2 },
+  ],
+})
 
 // Black Chamber Operative (Trish): enemigo, cazador, presa (solo Trish). Forzado:
 // después de evitarlo, deja 1 de tus pistas en tu localización; si no puedes, se

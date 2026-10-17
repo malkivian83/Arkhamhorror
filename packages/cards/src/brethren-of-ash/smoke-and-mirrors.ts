@@ -28,7 +28,6 @@ import {
   registerTreachery,
   seedRng,
   shuffle,
-  type AbilityOption,
   type CampaignLog,
   type Choice,
   type Enemy,
@@ -41,10 +40,23 @@ import {
   type ScenarioDefinition,
   type ScenarioOutcome,
   type StoryEntry,
-  type TreacheryCard,
 } from '@lcg/engine'
 import { CHAOS_BAGS, type Difficulty } from './campaign'
-import { chooseSkillTest, copies, damage, DR_ARMITAGE, effectTest } from './spreading-flames'
+import {
+  alliesAt,
+  chooseSkillTest,
+  copies,
+  damage,
+  damageAssetsAt,
+  effectTest,
+  enemy,
+  noteEffect,
+  recordNote,
+  resignAbility,
+  storyEntries,
+  treachery,
+} from '../scenario-helpers'
+import { DR_ARMITAGE } from './spreading-flames'
 
 export const SMOKE_AND_MIRRORS = 'smoke-and-mirrors'
 
@@ -88,12 +100,6 @@ export const CODES = {
 // ---------------------------------------------------------------------------
 // Datos de las cartas
 // ---------------------------------------------------------------------------
-
-const enemy = (card: Omit<EnemyCard, 'kind'>): EnemyCard => ({ kind: 'enemy', ...card })
-const treachery = (card: Omit<TreacheryCard, 'kind'>): TreacheryCard => ({
-  kind: 'treachery',
-  ...card,
-})
 
 export const servantOnTheRun = enemy({
   code: CODES.servantOfFlame,
@@ -305,6 +311,7 @@ const location = (card: LocationCard): LocationCard => card
 const LOCATIONS = {
   northside: location({
     id: CODES.northside,
+    position: [0, 0],
     name: 'Northside',
     shroud: 3,
     clueValue: 2,
@@ -313,6 +320,7 @@ const LOCATIONS = {
   }),
   downtownBank: location({
     id: CODES.downtownBank,
+    position: [1, 0],
     name: 'Downtown',
     shroud: 4,
     clueValue: 2,
@@ -322,6 +330,7 @@ const LOCATIONS = {
   }),
   downtownSanatorium: location({
     id: CODES.downtownSanatorium,
+    position: [1, 0],
     name: 'Downtown',
     shroud: 4,
     clueValue: 2,
@@ -331,6 +340,7 @@ const LOCATIONS = {
   }),
   easttown: location({
     id: CODES.easttown,
+    position: [2, 0],
     name: 'Easttown',
     shroud: 2,
     clueValue: 1,
@@ -339,6 +349,7 @@ const LOCATIONS = {
   }),
   merchantDistrict: location({
     id: CODES.merchantDistrict,
+    position: [1, 1],
     name: 'Merchant District',
     shroud: 3,
     clueValue: 1,
@@ -347,6 +358,7 @@ const LOCATIONS = {
   }),
   waterfrontDistrict: location({
     id: CODES.waterfrontDistrict,
+    position: [2, 1],
     name: 'Waterfront District',
     shroud: 1,
     clueValue: 1,
@@ -357,6 +369,7 @@ const LOCATIONS = {
   }),
   universityInFlames: location({
     id: CODES.universityInFlames,
+    position: [0, 1],
     name: 'Miskatonic University',
     shroud: 4,
     clueValue: 1,
@@ -366,6 +379,7 @@ const LOCATIONS = {
   }),
   universityQuietCampus: location({
     id: CODES.universityQuietCampus,
+    position: [0, 1],
     name: 'Miskatonic University',
     shroud: 2,
     clueValue: 1,
@@ -375,6 +389,7 @@ const LOCATIONS = {
   }),
   uptownHospital: location({
     id: CODES.uptownHospital,
+    position: [0, 2],
     name: 'Uptown',
     shroud: 2,
     clueValue: 2,
@@ -383,6 +398,7 @@ const LOCATIONS = {
   }),
   uptownShoppe: location({
     id: CODES.uptownShoppe,
+    position: [0, 2],
     name: 'Uptown',
     shroud: 3,
     clueValue: 2,
@@ -391,6 +407,7 @@ const LOCATIONS = {
   }),
   southside: location({
     id: CODES.southside,
+    position: [1, 2],
     name: 'Southside',
     shroud: 2,
     clueValue: 2,
@@ -399,6 +416,7 @@ const LOCATIONS = {
   }),
   frenchHill: location({
     id: CODES.frenchHill,
+    position: [2, 2],
     name: 'French Hill',
     shroud: 4,
     clueValue: 2,
@@ -406,22 +424,6 @@ const LOCATIONS = {
     connections: [CODES.southside],
     victory: 1,
   }),
-}
-
-/** Posición en la mesa (columna, fila), según la colocación sugerida de la guía. */
-export const SMOKE_AND_MIRRORS_LAYOUT: Record<string, [number, number]> = {
-  [CODES.northside]: [0, 0],
-  [CODES.downtownBank]: [1, 0],
-  [CODES.downtownSanatorium]: [1, 0],
-  [CODES.easttown]: [2, 0],
-  [CODES.universityInFlames]: [0, 1],
-  [CODES.universityQuietCampus]: [0, 1],
-  [CODES.merchantDistrict]: [1, 1],
-  [CODES.waterfrontDistrict]: [2, 1],
-  [CODES.uptownHospital]: [0, 2],
-  [CODES.uptownShoppe]: [0, 2],
-  [CODES.southside]: [1, 2],
-  [CODES.frenchHill]: [2, 2],
 }
 
 export interface SmokeAndMirrorsOptions {
@@ -496,6 +498,10 @@ export function smokeAndMirrors(options: SmokeAndMirrorsOptions = {}): ScenarioD
   return {
     id: SMOKE_AND_MIRRORS,
     intro: { title: 'story.smokeAndMirrors.introTitle', body: 'story.smokeAndMirrors.intro' },
+    setupInstructions: {
+      title: 'story.smokeAndMirrors.setupTitle',
+      body: 'story.smokeAndMirrors.setup',
+    },
     locations,
     startingLocation: university.id,
     agendas: [
@@ -581,17 +587,9 @@ registerScenario({
 // Plan y acto
 // ---------------------------------------------------------------------------
 
-const resign = (investigator: InvestigatorId): AbilityOption => ({
-  key: 'agenda:resign',
-  label: 'ability.resign',
-  actions: 1,
-  provokes: false,
-  then: [{ type: 'Resign', investigator }],
-})
-
 registerAgenda({
   code: CODES.arkhamAlive,
-  abilities: (_state, _self, investigator) => [resign(investigator)],
+  abilities: (_state, _self, investigator) => [resignAbility(investigator, 'agenda:resign')],
   // Cada investigador recibe una Mark of Elokoss apartada y pasa a ser su portador.
   onAdvance: (state) =>
     activeInvestigators(state).flatMap((i): Message[] => [
@@ -602,7 +600,7 @@ registerAgenda({
 
 registerAgenda({
   code: CODES.emergentEvils,
-  abilities: (_state, _self, investigator) => [resign(investigator)],
+  abilities: (_state, _self, investigator) => [resignAbility(investigator, 'agenda:resign')],
   // Todos se retiran.
   onAdvance: (state) =>
     activeInvestigators(state).map((i): Message => ({ type: 'Resign', investigator: i.id })),
@@ -650,7 +648,13 @@ const codexEntry = (n: string): StoryEntry => ({
  * por investigador, queda interrogado (debajo del acto).
  */
 function codex(state: GameState, self: Enemy, n: string, effect: Message[]): Message[] {
+  // Cada intento tiene su texto; al reunir las pistas necesarias se lee el final.
+  const attempt: StoryEntry = {
+    title: `story.smokeAndMirrors.codex${n}Title`,
+    body: `story.smokeAndMirrors.codex${n}Attempt`,
+  }
   return [
+    ...(state.interactive ? [{ type: 'Story', entry: attempt } as Message] : []),
     ...effect,
     { type: 'AddLead', enemy: self.id },
     {
@@ -1024,11 +1028,22 @@ registerTreachery({
 
 registerTreachery({
   code: CODES.flashFlood,
-  // Tu localización tiene +4 al velo hasta el final de la ronda.
-  revelation: (state, investigator) => {
+  // Se une a tu localización: +4 a su velo. Forzado al final de la ronda: se descarta.
+  shroudModifier: 4,
+  revelation: (state, investigator, self) => {
     const here = getInvestigator(state, investigator).location
-    return here === null ? [] : [{ type: 'ModifyShroud', location: here, amount: 4 }]
+    return here === null
+      ? []
+      : [
+          {
+            type: 'PlaceTreachery',
+            treachery: self.id,
+            placement: { type: 'location', location: here },
+          },
+        ]
   },
+  forced: (_state, trigger, self) =>
+    trigger.type === 'roundEnds' ? [{ type: 'DiscardTreachery', treachery: self.id }] : [],
 })
 
 registerTreachery({
@@ -1184,13 +1199,14 @@ registerLocation({
 })
 
 // Downtown (Arkham Sanatorium): tras descubrir pistas aquí, puedes curar 1 horror a
-// un investigador de esta localización.
+// un investigador o un aliado de esta localización.
 registerLocation({
   code: CODES.downtownSanatorium,
   forced: (state, trigger, self) => {
     if (trigger.type !== 'afterDiscoverClues' || trigger.location !== self.id) return []
     const hurt = investigatorsAt(state, self.id).filter((i) => i.horror > 0)
-    if (hurt.length === 0) return []
+    const allies = alliesAt(state, self.id).filter((a) => a.horror > 0)
+    if (hurt.length === 0 && allies.length === 0) return []
     return [
       {
         type: 'Ask',
@@ -1204,6 +1220,12 @@ registerLocation({
               params: { name: i.name },
               then: [{ type: 'Heal', investigator: i.id, damage: 0, horror: 1 }],
             })),
+            ...allies.map((a): Choice => ({
+              label: 'choice.healHorrorOf',
+              params: { name: playerCardDef(a.code)?.name ?? a.code },
+              target: { type: 'asset', id: a.id },
+              then: [{ type: 'HealAsset', asset: a.id, damage: 0, horror: 1 }],
+            })),
             { label: 'choice.skip', then: [] },
           ],
         },
@@ -1212,13 +1234,14 @@ registerLocation({
   },
 })
 
-// Uptown (St. Mary's Hospital): acción: cura hasta 2 daño entre los investigadores de
-// aquí (una vez por partida).
+// Uptown (St. Mary's Hospital): acción: cura hasta 2 daño entre los investigadores y
+// aliados de aquí (una vez por partida cada investigador).
 registerLocation({
   code: CODES.uptownHospital,
   abilities: (state, self, investigator) => {
     const hurt = investigatorsAt(state, self.id).filter((i) => i.damage > 0)
-    if (hurt.length === 0) return []
+    const allies = alliesAt(state, self.id).filter((a) => a.damage > 0)
+    if (hurt.length === 0 && allies.length === 0) return []
     const healOne = (): Message => ({
       type: 'Ask',
       investigator,
@@ -1231,6 +1254,12 @@ registerLocation({
             params: { name: i.name },
             then: [{ type: 'Heal', investigator: i.id, damage: 1, horror: 0 }],
           })),
+          ...allies.map((a): Choice => ({
+            label: 'choice.healDamageOf',
+            params: { name: playerCardDef(a.code)?.name ?? a.code },
+            target: { type: 'asset', id: a.id },
+            then: [{ type: 'HealAsset', asset: a.id, damage: 1, horror: 0 }],
+          })),
           { label: 'choice.skip', then: [] },
         ],
       },
@@ -1241,7 +1270,7 @@ registerLocation({
         label: 'ability.hospitalHeal',
         actions: 1,
         provokes: true,
-        limit: { per: 'game', group: true },
+        limit: { per: 'game' },
         then: [healOne(), healOne()],
       },
     ]
@@ -1404,18 +1433,21 @@ registerLocation({
 })
 
 // Miskatonic University (In Flames): al terminar la fase de investigación, 1 daño directo
-// a cada investigador de aquí.
+// a cada investigador de aquí y 1 daño a cada apoyo con salud de aquí.
 registerLocation({
   code: CODES.universityInFlames,
   forced: (state, trigger, self) =>
     trigger.type === 'investigationPhaseEnds'
-      ? investigatorsAt(state, self.id).map((i): Message => ({
-          type: 'TakeDamage',
-          investigator: i.id,
-          damage: 1,
-          horror: 0,
-          direct: true,
-        }))
+      ? [
+          ...investigatorsAt(state, self.id).map((i): Message => ({
+            type: 'TakeDamage',
+            investigator: i.id,
+            damage: 1,
+            horror: 0,
+            direct: true,
+          })),
+          ...damageAssetsAt(state, self.id),
+        ]
       : [],
 })
 
@@ -1453,20 +1485,9 @@ registerLocation({
 // Resoluciones (guía de campaña, página 10)
 // ---------------------------------------------------------------------------
 
-const entry = (key: string, effects: StoryEntry['effects'] = []): StoryEntry => ({
-  title: `story.smokeAndMirrors.${key}Title`,
-  body: `story.smokeAndMirrors.${key}`,
-  effects,
-})
-const note = (key: string) => ({
-  key: 'story.effect.record',
-  params: { note: `story.note.${key}` },
-})
-const record = (key: string, value?: string): Message => ({
-  type: 'RecordNote',
-  note: key,
-  ...(value !== undefined ? { value } : {}),
-})
+const entry = storyEntries('smokeAndMirrors')
+const note = noteEffect
+const record = recordNote
 const PROCEED = { key: 'story.effect.proceed', params: { scenario: 'story.scenario.queenOfAsh' } }
 
 /** El heraldo de Elokoss: el sospechoso apartado al principio. */

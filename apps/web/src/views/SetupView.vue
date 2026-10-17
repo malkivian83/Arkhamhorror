@@ -1,19 +1,37 @@
 <script setup lang="ts">
-import { STARTER_DECKS, starterInvestigator, type Difficulty } from '@lcg/cards'
+import {
+  allCampaigns,
+  STARTER_DECKS,
+  starterInvestigator,
+  type CampaignMember,
+  type Difficulty,
+} from '@lcg/cards'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import GameCard from '../components/GameCard.vue'
 import { classColor } from '../game/cards'
+import { useDecksStore } from '../stores/decks'
 import { useGameStore, type DeckKey } from '../stores/game'
 
 const { t } = useI18n()
 const router = useRouter()
 const game = useGameStore()
+const deckStore = useDecksStore()
+
+/** Mazo elegido por investigador: '' es el mazo inicial; si no, el id de un mazo propio. */
+const deckFor = ref<Record<string, string>>({})
+/** Mazos propios válidos de un investigador. */
+const validDecks = (key: DeckKey) =>
+  deckStore.decks.filter(
+    (d) => d.investigator === starterInvestigator(key).id && !deckStore.check(d).problems.length,
+  )
 
 const decks = Object.keys(STARTER_DECKS) as DeckKey[]
 const chosen = ref<DeckKey[]>(['joe'])
 const difficulty = ref<Difficulty>('standard')
+const campaigns = allCampaigns()
+const campaignId = ref(campaigns[0]?.id ?? '')
 const difficulties: Difficulty[] = ['easy', 'standard', 'hard', 'expert']
 
 function toggle(key: DeckKey) {
@@ -23,14 +41,25 @@ function toggle(key: DeckKey) {
 
 function start() {
   if (game.campaign && !window.confirm(t('campaign.confirmReplace'))) return
-  game.start(chosen.value, difficulty.value)
+  const members = chosen.value.map((key): CampaignMember => {
+    const own = deckStore.decks.find((d) => d.id === deckFor.value[key])
+    return own ? { investigator: own.investigator, cards: own.cards } : key
+  })
+  game.start(campaignId.value, members, difficulty.value)
   void router.push('/game')
 }
 </script>
 
 <template>
   <section class="setup">
-    <h2>Brethren of Ash · Spreading Flames</h2>
+    <h2>{{ t('campaign.new') }}</h2>
+    <div class="campaigns" role="radiogroup" :aria-label="t('campaign.choose')">
+      <label v-for="c in campaigns" :key="c.id">
+        <input v-model="campaignId" type="radio" :value="c.id" />
+        {{ t(c.name) }}
+        <small>({{ c.scenarios.map((s) => t(`campaign.scenario.${s.id}`)).join(' · ') }})</small>
+      </label>
+    </div>
 
     <div v-if="game.state || game.campaign" class="resume">
       <button v-if="game.state" type="button" class="primary" @click="router.push('/game')">
@@ -64,6 +93,18 @@ function start() {
       </button>
     </div>
     <p class="hint">{{ t('setup.orderHint') }}</p>
+
+    <div v-if="chosen.length" class="deck-choice">
+      <h3>{{ t('decks.choose') }}</h3>
+      <label v-for="key in chosen" :key="key">
+        {{ starterInvestigator(key).name }}
+        <select v-model="deckFor[key]">
+          <option :value="undefined">{{ t('decks.starter') }}</option>
+          <option v-for="d in validDecks(key)" :key="d.id" :value="d.id">{{ d.name }}</option>
+        </select>
+      </label>
+      <RouterLink to="/decks" class="manage">{{ t('decks.manage') }}</RouterLink>
+    </div>
 
     <h3>{{ t('table.difficulty') }}</h3>
     <div class="difficulties">
@@ -121,6 +162,40 @@ function start() {
 .hint {
   font-size: 0.85rem;
   opacity: 0.75;
+}
+.deck-choice {
+  display: grid;
+  gap: 6px;
+  max-width: 420px;
+}
+.deck-choice label {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+.deck-choice select {
+  font: inherit;
+  color: var(--ink);
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 6px;
+}
+.manage {
+  color: var(--brass);
+  font-size: 0.9rem;
+}
+.campaigns {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+  font-family: var(--fell);
+}
+.campaigns small {
+  color: #a89a7c;
+  font-style: italic;
 }
 .difficulties {
   display: flex;

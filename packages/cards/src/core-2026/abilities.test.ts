@@ -1,6 +1,11 @@
-import { dispatch, playableCards, type GameState, type InvestigatorSetup } from '@lcg/engine'
 import {
-  createTestGame,
+  createGame,
+  dispatch,
+  playableCards,
+  type GameState,
+  type InvestigatorSetup,
+} from '@lcg/engine'
+import {
   choose,
   during,
   ghoul,
@@ -18,7 +23,7 @@ import { code } from './player-cards'
 const filler = (n: number) => Array.from({ length: n }, (_, i) => `filler-${i}`)
 
 function game(id: string, setup: Partial<InvestigatorSetup> = {}): GameState {
-  return createTestGame({
+  return createGame({
     seed: 3,
     scenario: testScenario({ chaosBag: [0] }),
     investigators: [testInvestigator(id, { deck: filler(20), ...setup })],
@@ -33,6 +38,44 @@ const set =
     investigators: s.investigators.map((i, n) => (n === 0 ? { ...i, ...patch } : i)),
   })
 const prompt = (s: GameState) => s.pending?.question.prompt
+
+describe('inicio de la partida', () => {
+  const interactive = (deck: string[]) =>
+    createGame({
+      seed: 3,
+      interactive: true,
+      scenario: testScenario({ chaosBag: [0] }),
+      investigators: [testInvestigator('a', { deck })],
+    })
+
+  it('mulligan: aparta cartas, roba otras tantas y las baraja en el mazo', () => {
+    let s = interactive(filler(20))
+    expect(prompt(s)).toBe('prompt.mulligan')
+    const [first, second] = me(s).hand as [string, string]
+    s = choose(s, 'choice.mulliganCard', { card: first })
+    s = choose(s, 'choice.mulliganCard', { card: second })
+    expect(me(s).hand).toHaveLength(3)
+    s = choose(s, 'choice.mulliganDone', { n: 2 })
+    expect(prompt(s)).toBe('prompt.chooseAction')
+    expect(me(s).hand).toHaveLength(5)
+    expect(me(s).hand).not.toContain(first)
+    expect(me(s).deck).toContain(first)
+    expect(me(s).deck).toHaveLength(15)
+    expect(me(s).setAsideOpening).toBeUndefined()
+  })
+
+  it('las debilidades robadas en el mulligan también se apartan', () => {
+    let s = interactive([code(101), ...filler(20)])
+    const hand = me(s).hand
+    expect(hand).not.toContain(code(101))
+    // Incluso con la mano vacía, el jugador confirma antes de robar los reemplazos.
+    for (const card of hand) s = choose(s, 'choice.mulliganCard', { card })
+    s = choose(s, 'choice.mulliganDone', { n: hand.length })
+    expect(me(s).hand).toHaveLength(5)
+    expect(me(s).hand).not.toContain(code(101))
+    expect(me(s).deck).toContain(code(101))
+  })
+})
 
 describe('debilidades', () => {
   it('las de la mano inicial se apartan y se barajan en el mazo', () => {
@@ -109,6 +152,9 @@ describe('investigadores', () => {
       investigator: code(4),
       action: { kind: 'investigate' },
     })
+    // Su reacción (paso 6) se ofrece antes de aplicar el signo arcano (paso 7).
+    expect(labels(s)).toContain('ability.drawCards')
+    s = choose(s, 'choice.skip')
     expect(me(s).resources).toBe(resources + 1)
   })
 
@@ -187,5 +233,29 @@ describe('cartas de jugador', () => {
     expect(prompt(s)).toBe('prompt.reaction')
     s = choose(s, 'ability.drawCards')
     expect(me(s).hand.length).toBe(hand + 2)
+  })
+})
+
+describe('debilidades: efectos de campaña al terminar la partida', () => {
+  const end = { type: 'EndScenario', outcome: { type: 'noResolution' } } as const
+  const record = (s: GameState) => s.campaignLog!.investigators.a!
+
+  it("In Harm's Way en juego al terminar: 1 trauma físico", () => {
+    let s = game('a')
+    s = during(s, set({ deck: [code(3)] }), { type: 'DrawCards', investigator: 'a', amount: 1 })
+    s = dispatch({ ...s, pending: null }, end)
+    expect(record(s).physicalTrauma).toBe(1)
+  })
+
+  it('Dead Ends en la mano al terminar o al ser eliminado: 2 de experiencia menos', () => {
+    let s = game('a')
+    s = dispatch(
+      { ...set({ hand: [code(6)] })(s), pending: null },
+      {
+        type: 'EliminateInvestigator',
+        investigator: 'a',
+      },
+    )
+    expect(record(s).xp).toBe(-2)
   })
 })

@@ -4,7 +4,7 @@
  */
 import { applyInput, createGame, dispatch } from './engine'
 import { EngineError } from './errors'
-import type { InvestigatorSetup, NewGameOptions, ScenarioDefinition } from './setup'
+import type { InvestigatorSetup, ScenarioDefinition } from './setup'
 import type { ChaosToken, EnemyCard, GameState, LabelParams, Message } from './types'
 
 export const ghoul: EnemyCard = {
@@ -86,25 +86,11 @@ export function newTestGame(
   } = {},
 ): GameState {
   const players = options.players ?? ['a']
-  return createTestGame({
+  return createGame({
     seed: 1,
     scenario: testScenario(options.scenario),
     investigators: players.map((id) => testInvestigator(id, options.investigator)),
   })
-}
-
-/** Conserva las manos iniciales para las pruebas que empiezan tras la preparación. */
-export function keepOpeningHands(state: GameState): GameState {
-  let next = state
-  while (next.pending?.question.prompt === 'prompt.mulligan') {
-    next = choose(next, 'choice.finishMulligan')
-  }
-  return next
-}
-
-/** Partida de prueba que renuncia explícitamente a cambiar la mano inicial. */
-export function createTestGame(options: NewGameOptions): GameState {
-  return keepOpeningHands(createGame(options))
 }
 
 /** Elige la opción de la pregunta pendiente cuya etiqueta (y parámetros) coinciden. */
@@ -121,6 +107,21 @@ export function choose(state: GameState, label: string, params: LabelParams = {}
     throw new EngineError(`Opción ${label} no disponible. Hay: ${options.join(', ')}`)
   }
   return applyInput(state, { investigator: pending.investigator, choice: index })
+}
+
+/** Preguntas de la preparación que `throughSetup` contesta por defecto. */
+const SETUP_PROMPTS = new Set(['prompt.story', 'prompt.mulligan', 'prompt.chooseLead'])
+
+/**
+ * En la mesa: lee los textos de la preparación, deja de jefe al primero y se
+ * queda con la mano inicial, hasta el primer menú de acciones.
+ */
+export function throughSetup(state: GameState): GameState {
+  let s = state
+  while (s.pending && SETUP_PROMPTS.has(s.pending.question.prompt)) {
+    s = applyInput(s, { investigator: s.pending.investigator, choice: 0 })
+  }
+  return s
 }
 
 export function labels(state: GameState): string[] {

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import {
-  BRETHREN_OF_ASH,
+  campaignDefinition,
   canPlayNext,
   currentScenario,
-  DECK_SIZE,
   deckSize,
+  deckSizeOf,
   purchaseOptions,
   removableCards,
   type PurchaseOption,
@@ -28,6 +28,9 @@ const router = useRouter()
 const game = useGameStore()
 
 const campaign = computed(() => game.campaign)
+const definition = computed(() => (campaign.value ? campaignDefinition(campaign.value.id) : null))
+/** Números romanos de los escenarios. */
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
 const next = computed(() => (campaign.value ? currentScenario(campaign.value) : null))
 const playable = computed(() => !!campaign.value && canPlayNext(campaign.value))
 
@@ -74,7 +77,7 @@ function abandon() {
 <template>
   <section v-if="campaign" class="campaign">
     <header class="head">
-      <h1>{{ t('campaign.title') }}</h1>
+      <h1>{{ t('campaign.title', { name: definition ? t(definition.name) : '' }) }}</h1>
       <p class="sub">{{ t(`difficulty.${campaign.difficulty}`) }}</p>
     </header>
 
@@ -83,11 +86,11 @@ function abandon() {
         <h2>{{ t('campaign.scenarios') }}</h2>
         <ol class="scenarios">
           <li
-            v-for="(id, n) in BRETHREN_OF_ASH.scenarios"
+            v-for="({ id }, n) in definition?.scenarios ?? []"
             :key="id"
             :class="{ done: n < campaign.scenarioIndex, current: id === next }"
           >
-            <span class="numeral">{{ ['I', 'II', 'III'][n] }}</span>
+            <span class="numeral">{{ ROMAN[n] }}</span>
             <span class="title">{{ scenarioName(id) }}</span>
             <span v-if="campaign.results[n]" class="outcome">
               {{
@@ -155,7 +158,7 @@ function abandon() {
                 {{
                   t('campaign.deckSize', {
                     n: deckSize(i.deck),
-                    size: DECK_SIZE,
+                    size: deckSizeOf(i.id, i.deck),
                   })
                 }}
               </dd>

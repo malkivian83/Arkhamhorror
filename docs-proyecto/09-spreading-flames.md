@@ -154,12 +154,12 @@ Código: `packages/cards/src/brethren-of-ash/spreading-flames.ts` (con tests).
 | Bolsa del caos por dificultad | Hecho |
 | Tarjeta de referencia (calavera, tablilla, primigenio; fácil/normal y difícil/experto) | Hecho |
 | Preparación: Your Friend's Room, mazo de 24, apartadas 5 Fire! y Servant of Flame | Hecho |
-| Traiciones: Cosmic Evils, Unspeakable Truths, Forbidden Secrets, Extraplanar Visions, Wild Compulsion, Fire!, Noxious Smoke, Mutated! | Revelaciones y forzados hechos; faltan las acciones para descartar Fire! y Unspeakable Truths |
-| Enemigos: valores, presa, condenado, Élite, forzado de Mutated Experiment | Hecho; falta el forzado de Hellhound (requiere apoyos) |
-| Efectos de plan y acto, objetivos 2–4, parlamento, retirarse | Pendiente |
-| Resto de localizaciones y sus habilidades | Pendiente (entran con el acto 1) |
-| Introducción y resoluciones (textos, efectos y decisiones de la guía) | Hecho en la mesa; los efectos aún no se guardan en un registro de campaña |
-| Dr. Henry Armitage y registro de campaña | Pendiente (paso 5: campaña) |
+| Traiciones: Cosmic Evils, Unspeakable Truths, Forbidden Secrets, Extraplanar Visions, Wild Compulsion, Fire!, Noxious Smoke, Mutated! | Hecho (Fire! también daña a los apoyos con salud) |
+| Enemigos: valores, presa, condenado, Élite, forzados de Mutated Experiment y Hellhound | Hecho |
+| Efectos de plan y acto, objetivos 2–4, parlamento, retirarse | Hecho |
+| Resto de localizaciones y sus habilidades | Hecho |
+| Prólogo, introducción, pasos de preparación y resoluciones | Hecho, con efectos en el registro de campaña |
+| Dr. Henry Armitage | Hecho: al avanzar el acto 3 el jefe elige quién lo controla (sin ocupar ranura); +1 [willpower] y +1 [intellect] y la primera acción de cada turno no provoca ataques de oportunidad. En el acto 3 el jefe también elige si busca los Fire! solo en el descarte |
 
 ## 7. Datos
 

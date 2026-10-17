@@ -1,10 +1,6 @@
 /**
  * Cartas de nivel 1–5 de la caja básica de 2026: las que se compran con
  * experiencia durante la campaña. Los efectos se describen con palabras propias.
- *
- * Simplificaciones: Unbridled Knowledge deja las cartas que no se roban en el
- * fondo del mazo en el mismo orden (el original deja elegir orden y si van
- * arriba o abajo).
  */
 import {
   getInvestigator,
@@ -219,7 +215,7 @@ registerPlayerCard({
 registerPlayerCard({ code: code(42), permanent: { openingHand: 1 } })
 
 // Unbridled Knowledge (5): mira las 5 primeras cartas de tu mazo (8 si controlas
-// 2 o más pistas) y roba 3; el resto va al fondo del mazo.
+// 2 o más pistas) y roba 3; el resto lo colocas arriba o abajo del mazo, en el orden que quieras.
 registerPlayerCard({
   code: code(43),
   play: (state, investigator) => [
@@ -228,6 +224,7 @@ registerPlayerCard({
       investigator,
       top: getInvestigator(state, investigator).clues >= 2 ? 8 : 5,
       picks: 3,
+      arrange: true,
     },
   ],
 })
@@ -428,7 +425,7 @@ registerPlayerCard({
   abilities: investigateAbility(83, { shroud: -1 }),
   reactions: (state, trigger, self) => {
     if (
-      trigger.type !== 'afterSkillTest' ||
+      trigger.type !== 'skillTestEnded' ||
       trigger.source !== self.id ||
       trigger.kind !== 'investigate' ||
       trigger.succeeded ||

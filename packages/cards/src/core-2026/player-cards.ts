@@ -23,7 +23,31 @@ import {
 } from '@lcg/engine'
 import data from '../data/core-2026.json'
 
-export const playerCards = data as PlayerCardDef[]
+/**
+ * Reverso de cada investigador (datos públicos de ArkhamDB): tamaño del mazo,
+ * opciones de construcción y cartas exclusivas (las dos que lo siguen en la caja).
+ */
+const DECKBUILDING: Record<number, Pick<PlayerCardDef, 'deckSize' | 'deckOptions'>> = {
+  1: { deckSize: 30, deckOptions: [option(['guardian', 'neutral'], 5), option(['survivor'], 2)] },
+  4: { deckSize: 30, deckOptions: [option(['seeker', 'neutral'], 5), option(['guardian'], 2)] },
+  7: { deckSize: 30, deckOptions: [option(['rogue', 'neutral'], 5), option(['seeker'], 2)] },
+  10: { deckSize: 30, deckOptions: [option(['mystic', 'neutral'], 5), option(['rogue'], 2)] },
+  13: { deckSize: 30, deckOptions: [option(['survivor', 'neutral'], 5), option(['mystic'], 2)] },
+}
+function option(classes: string[], maxLevel: number) {
+  return { classes, maxLevel }
+}
+function boxCode(position: number) {
+  return `12${String(position).padStart(3, '0')}`
+}
+
+export const playerCards: PlayerCardDef[] = (data as PlayerCardDef[]).map((card) => {
+  const position = Number(card.code.slice(2))
+  const rules = DECKBUILDING[position]
+  return rules
+    ? { ...card, ...rules, signatures: [boxCode(position + 1), boxCode(position + 2)] }
+    : card
+})
 registerPlayerCards(playerCards)
 
 /** Código de carta a partir del número de colección de la caja (p. ej. 20 → "12020"). */
@@ -339,7 +363,9 @@ export function investigateAbility(position: number, options: InvestigateOptions
       label: 'ability.investigateWith',
       params: { card: name(position), skill },
       target: { type: 'location', id: here },
-      actions: 1,
+      // FAQ 1.6: los costes adicionales de investigar la localización (Waterfront) también
+      // se pagan al investigar con una carta.
+      actions: 1 + (getLocation(state, here).investigateExtraActions ?? 0),
       provokes: true,
       then: [
         ...(options.cost?.(self) ?? []),
@@ -441,7 +467,7 @@ registerPlayerCard({
       cost: [spendUse(self)],
     })(state, self, investigator),
   reactions: (state, trigger, self) => {
-    if (trigger.type !== 'afterSkillTest' || trigger.source !== self.id) return []
+    if (trigger.type !== 'skillTestEnded' || trigger.source !== self.id) return []
     if (trigger.kind !== 'fight' || self.exhausted || self.uses <= 0 || state.skillTest) return []
     const enemy = trigger.enemy ? state.enemies[trigger.enemy] : undefined
     const here = getInvestigator(state, self.owner).location
@@ -629,7 +655,10 @@ registerPlayerCard({
 registerPlayerCard({
   code: code(24),
   noAttacksOfOpportunity: true,
-  canPlay: (state, investigator) => getInvestigator(state, investigator).actionsRemaining === 3,
+  // FAQ 2.18: solo como acción de tu turno (nunca rápida ni fuera de turno), y la primera.
+  canPlay: (state, investigator) =>
+    state.activeTurn === investigator &&
+    (getInvestigator(state, investigator).actionsTaken ?? 0) === 0,
   play: (state, investigator) => {
     const here = getInvestigator(state, investigator).location
     const enemyHere = here !== null && enemiesAt(state, here).length > 0

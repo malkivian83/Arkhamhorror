@@ -45,7 +45,8 @@ Leyenda: ✅ hecho · 🟡 parcial · ⬜ pendiente · ✖ fuera de alcance por 
 |---|---|---|
 | Opciones sobre la mesa y botones laterales | `Question`, `QuestionChoices` | ✅ |
 | Ventana modal para elecciones largas (repartir, elegir cartas, ordenar) | `ChoiceModal`, `PutBackInAnyOrder` | 🟡 ventana central para las elecciones que no se hacen sobre la mesa, con la carta que se resuelve y minimizable; falta ordenar cartas |
-| Textos de historia: introducción, resoluciones, códex | `StoryEntry`, `StoryQuestion`, `CodexEntry` | ✅ introducción y resoluciones de Spreading Flames con efectos de campaña y decisiones (resúmenes propios; textos oficiales opcionales en local, ver abajo); falta el códex |
+| Textos de historia: prólogo, introducción, preparación, resoluciones, códex | `StoryEntry`, `StoryQuestion`, `CodexEntry` | ✅ los tres escenarios, con efectos de campaña y decisiones; resúmenes propios y textos oficiales en local (ver abajo), con botón para alternar |
+| Inicio de partida: elegir jefe y mulligan | `ChooseLeadInvestigator`, `InvestigatorMulligan` | ✅ el jefe se elige al empezar; el mulligan se hace sobre la mano (cartas resaltadas) con "Quedarme con esta mano" / "Robar N cartas nuevas y terminar" |
 | Carta robada destacada (encuentro revelándose) | `Draw`, `DrawSpotlight` | ✅ la carta se da la vuelta en grande en el centro y espera a "De acuerdo" (Intro/Esc); si hay varias, en cola |
 | Avisos (toasts) | `vue-toastification` | ⬜ |
 
@@ -67,9 +68,9 @@ Leyenda: ✅ hecho · 🟡 parcial · ⬜ pendiente · ✖ fuera de alcance por 
 | Funcionalidad | Referencia | Estado |
 |---|---|---|
 | Registro de campaña (notas, trauma, experiencia) | `CampaignLog*` | ✅ pantalla de campaña con escenarios, notas, bolsa del caos, experiencia, trauma, muertos/enloquecidos y apoyos de historia |
-| Pasar al siguiente escenario | `Campaign`, `ContinueCampaign` | 🟡 se guarda el resultado y se prepara el siguiente con trauma, bolsa, apoyos de historia y debilidades ganadas; falta el escenario III |
+| Pasar al siguiente escenario | `Campaign`, `ContinueCampaign` | ✅ se guarda el resultado y se prepara el siguiente con trauma, bolsa, apoyos de historia y debilidades ganadas; campaña completa (ganada o perdida) |
 | Mejorar el mazo con experiencia | `UpgradeDeck`, `XpBreakdown` | ✅ comprar y mejorar cartas según las opciones de cada investigador (las 22 cartas de nivel 1–5 implementadas) |
-| Mazos: crear, listar, importar de ArkhamDB | `NewDeck`, `DeckList`, `ArkhamDbDeck` | ⬜ (hoy, mazos iniciales) |
+| Mazos: crear, listar, importar de ArkhamDB | `NewDeck`, `DeckList`, `ArkhamDbDeck` | ✅ pantalla «Mazos»: crear (vacío o desde el inicial), editar con el catálogo permitido y validación, importar de ArkhamDB y elegir mazo al empezar la campaña |
 | Multijugador en línea: sala, unirse, ocupar asiento, espectador | `MultiplayerLobby`, `ClaimSeat`, `JoinGame` | ⬜ |
 | Repetición de partidas | `ReplayGame` | ⬜ |
 | Logros, tarot, cartas propias, mercado | varios | ✖ |
@@ -84,17 +85,27 @@ Leyenda: ✅ hecho · 🟡 parcial · ⬜ pendiente · ✖ fuera de alcance por 
    - 5a ✅ Registro de campaña, experiencia y trauma, pantalla entre escenarios y compra de cartas.
    - 5b ✅ Las 22 cartas de nivel 1–5 (ver "Cartas de nivel 1–5" más abajo).
    - 5c ✅ Escenario II: Smoke and Mirrors (códex, sospechosos, esquivo): ver [11-smoke-and-mirrors.md](11-smoke-and-mirrors.md).
-   - 5d Escenario III: Queen of Ash.
-6. **Mazos** propios e importación.
+   - 5d ✅ Escenario III: Queen of Ash: ver [12-queen-of-ash.md](12-queen-of-ash.md).
+6. ✅ **Mazos** propios e importación (ver "Mazos propios" más abajo).
 7. **Multijugador en línea** con el servidor.
 
 ## Textos de historia oficiales (opcional, solo en local)
 
 Los textos de la guía de campaña son de Fantasy Flight Games, así que el
 repositorio solo lleva **resúmenes propios**. Para ver los textos oficiales en
-tu equipo, crea `apps/web/public/local-assets/story/es.json` (y `en.json`),
-carpeta que git ignora, con la clave del cuerpo y el texto (párrafos separados
-por una línea en blanco):
+tu equipo:
+
+```bash
+node scripts/import-story-texts.mjs E:/referencia/ArkhamHorror
+```
+
+genera `apps/web/public/local-assets/story/en.json` (carpeta que git ignora) con el
+prólogo, las introducciones, los pasos de preparación, los códex y las resoluciones
+de Brethren of Ash. En español, la mesa muestra el texto oficial en inglés si no hay
+traducción, con un botón para pasar al resumen propio. También se puede escribir a
+mano un `es.json` con la clave del cuerpo y el texto (párrafos separados por una
+línea en blanco; "» " marca una instrucción, "• " un punto de lista, `*negrita*` y
+`_cursiva_`):
 
 ```json
 {
@@ -103,9 +114,7 @@ por una línea en blanco):
 }
 ```
 
-Claves de Spreading Flames (con el prefijo `story.spreadingFlames.`): `intro`,
-`noResolution`, `resolution1`, `armitageBearer`, `decide`, `resolution2` y
-`resolution3`. Los textos que estén en el fichero sustituyen al resumen y la
+Las claves son las de los textos de historia de los ficheros de idioma (`story.*`). Los textos que estén en el fichero sustituyen al resumen y la
 mesa deja de mostrar la nota de "resumen propio".
 
 ## Cartas de jugador (paso 4)
@@ -128,8 +137,9 @@ con sus investigadores y debilidades:
   bajar 1 el velo de la localización hasta el final de la ronda (se ve en el mapa).
 - **Comprometer a la prueba de otro**: cada otro investigador en la misma
   localización puede comprometer 1 carta (reglamento 2026).
-- **Pendiente**: los efectos de campaña de las debilidades (trauma, experiencia),
-  que llegarán con la campaña (paso 5).
+- **Efectos de campaña de las debilidades** al terminar la partida (o al ser
+  eliminado, según la fe de erratas): In Harm's Way en juego → 1 trauma físico;
+  Dead Ends en la mano → 2 de experiencia menos (la experiencia no baja de 0).
 
 ## Cartas de nivel 1–5 (paso 5b)
 
@@ -149,5 +159,34 @@ Mecánicas nuevas del motor que han hecho falta:
   **mirar las primeras y robar varias** (Unbridled Knowledge); **moverse hasta 2
   conexiones** (Out of Sight); **repetir una investigación** (Old Compass).
 
-Simplificación: Unbridled Knowledge deja en el fondo del mazo, en el mismo orden,
-las cartas que no se roban (la carta deja elegir orden y arriba o abajo).
+Unbridled Knowledge: las cartas que no se roban se colocan una a una arriba o al
+fondo del mazo, en el orden que elija el jugador (`ArrangeCards`).
+
+Otras reglas de la FAQ aplicadas a las cartas: Scene of the Crime solo se juega como
+primera acción de tu turno (2.18); los costes adicionales de investigar de una
+localización (Waterfront District) también se pagan al investigar con una carta (1.6).
+
+## Panel de palabras clave y conceptos
+
+Como en la referencia, el panel lateral de la mesa tiene «Palabras clave y
+conceptos» con las que explica la guía de cada escenario (`keywords` en la definición
+de la campaña): resumen propio o, con los textos locales, el oficial.
+
+## Mazos propios (paso 6)
+
+En `packages/cards/src/decks.ts` (lógica) y la pantalla `apps/web/src/views/DecksView.vue`:
+
+- **Validación** según el reglamento ("Deck Customization"): 30 cartas sin contar
+  exclusivas ni debilidades, opciones de construcción del investigador (clase y
+  nivel máximo), como mucho 2 copias por título, exclusivas obligatorias y no las de
+  otro investigador, y solo nivel 0 al empezar una campaña. Avisa de las cartas que
+  aún no tienen efecto en el motor.
+- **Debilidad básica**: si el mazo no tiene ninguna, se añade una al azar al empezar
+  la campaña (los mazos iniciales ya traen la suya).
+- **Importar de ArkhamDB** por enlace o número, como mazo publicado o privado
+  compartido (su API permite llamarla desde el navegador). Las cartas que no son de
+  esta caja se quitan y se avisa; luego se completa el mazo en el editor.
+- Los mazos se guardan en el navegador (`lcg:decks`); con cuentas de usuario
+  pasarán al servidor.
+- Al empezar una campaña, cada investigador juega con su mazo inicial o con uno de
+  sus mazos propios válidos.

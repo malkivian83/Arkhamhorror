@@ -10,7 +10,7 @@ import {
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { cardName, classColor } from '../game/cards'
-import { cardBackImage } from '../game/assets'
+import { cardBackImage, ICON_GLYPHS, tokenImage } from '../game/assets'
 import { showPile } from '../game/pile'
 import GameCard from './GameCard.vue'
 import SkillIcon from './SkillIcon.vue'
@@ -148,9 +148,30 @@ const slots = computed(() => {
             </li>
           </ul>
           <div class="meta">
-            <span :title="t('table.actions')">➤ {{ i.actionsRemaining }}</span>
-            <span :title="t('table.health')">♥ {{ i.health - i.damage }}/{{ i.health }}</span>
-            <span :title="t('table.sanity')">✦ {{ i.sanity - i.horror }}/{{ i.sanity }}</span>
+            <span :title="t('table.actions')"
+              ><i class="ahi">{{ ICON_GLYPHS.action }}</i
+              ><b class="fb">➤</b> {{ i.actionsRemaining }}</span
+            >
+            <span :title="t('table.health')">
+              <img
+                v-if="tokenImage('damage')"
+                class="stat-token"
+                :src="tokenImage('damage')!"
+                alt=""
+              />
+              <template v-else>♥</template>
+              {{ i.health - i.damage }}/{{ i.health }}
+            </span>
+            <span :title="t('table.sanity')">
+              <img
+                v-if="tokenImage('horror')"
+                class="stat-token"
+                :src="tokenImage('horror')!"
+                alt=""
+              />
+              <template v-else>✦</template>
+              {{ i.sanity - i.horror }}/{{ i.sanity }}
+            </span>
             <span :title="t('table.deck')">▤ {{ i.deck.length }}</span>
           </div>
           <div class="skills">
@@ -328,6 +349,12 @@ const slots = computed(() => {
 </template>
 
 <style scoped>
+.stat-token {
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.2em;
+  object-fit: contain;
+}
 .piles {
   display: flex;
   gap: 10px;

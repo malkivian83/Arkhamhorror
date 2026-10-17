@@ -1,7 +1,10 @@
 {
   "app": {
     "title": "Plataforma LCG",
-    "disclaimer": "Proyecto no oficial de aficionados. No producido, avalado ni respaldado por Fantasy Flight Games, ni afiliado a ella."
+    "disclaimer": "Proyecto no oficial de aficionados. No producido, avalado ni respaldado por Fantasy Flight Games, ni afiliado a ella.",
+    "sections": "Secciones",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
   },
   "home": {
     "serverStatus": "Estado del servidor",
@@ -43,7 +46,6 @@
     "agility": "Agilidad"
   },
   "prompt": {
-    "mulligan": "Mulligan: aparta las cartas que quieras cambiar y confirma",
     "chooseAction": "Elige una acción",
     "chooseNextInvestigator": "¿Quién juega el siguiente turno?",
     "discardDownToHandSize": "Descarta hasta tener 8 cartas",
@@ -76,7 +78,17 @@
     "chooseToken": "Elige qué ficha resolver (la otra se ignora)",
     "topEncounter": "Carta superior del mazo de encuentros",
     "whoDraws": "¿Quién roba?",
-    "chooseEnemyDestination": "¿A dónde se mueve el enemigo?"
+    "chooseEnemyDestination": "¿A dónde se mueve el enemigo?",
+    "chooseCardType": "Elige un tipo de carta",
+    "chooseLead": "Elegid al investigador jefe",
+    "mulligan": "Mulligan: aparta las cartas de tu mano inicial que quieras cambiar (una sola vez)",
+    "chooseEngaged": "¿Con quién se enfrenta {enemy}?",
+    "chooseHunterPath": "¿Por dónde avanza {enemy}?",
+    "chooseAttackOrder": "Elige qué enemigo te ataca primero",
+    "whoPaysClue": "¿Quién gasta la siguiente pista? (faltan {n})",
+    "armitageControl": "¿Quién toma el control del Dr. Henry Armitage?",
+    "searchFire": "¿Dónde buscáis las cartas de Fire!?",
+    "arrangeCards": "Coloca las cartas que has mirado arriba o abajo de tu mazo"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -92,7 +104,6 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
-    "mulliganCard": "Apartar {card}",
     "finishMulligan": "Confirmar mano inicial (cambios: {n})",
     "investigator": "{name}",
     "discard": "Descartar {card}",
@@ -139,7 +150,25 @@
     "defeatEnemy": "Derrotar a {enemy}",
     "loseAction": "Perder 1 acción",
     "healHorrorOf": "Curar 1 horror a {name}",
-    "healDamageOf": "Curar 1 daño a {name}"
+    "healDamageOf": "Curar 1 daño a {name}",
+    "cardType": {
+      "asset": "Apoyos",
+      "event": "Eventos",
+      "skill": "Habilidades"
+    },
+    "twoDirectDamage": "Recibir 2 daño directo",
+    "twoDirectHorror": "Recibir 2 horror directo",
+    "doomOnAsset": "1 perdición en {card}",
+    "keepHand": "Quedarme con esta mano",
+    "mulliganDone": "Robar 1 carta nueva y terminar | Robar {n} cartas nuevas y terminar",
+    "mulliganCard": "Cambiar {card}",
+    "moveEnemyTo": "{enemy} se mueve a {location}",
+    "attackFirst": "{enemy} ataca primero",
+    "investigatorPaysClue": "{name} gasta 1 pista (tiene {clues})",
+    "fireFromDiscard": "Solo en la pila de descartes de encuentros",
+    "fireFromBoth": "En el mazo y en la pila de descartes de encuentros",
+    "placeOnTop": "{card} arriba del mazo",
+    "placeOnBottom": "{card} al fondo del mazo"
   },
   "phase": {
     "setup": "Preparación",
@@ -197,7 +226,10 @@
     "easttownAlly": "Buscar un aliado en tu mazo y jugarlo",
     "southsideDraw": "Los investigadores de aquí roban 3 cartas entre todos",
     "frenchHillCharge": "Descartar 1 carta: 1 carga o secreto en {card}",
-    "playFromDiscard": "Jugar {card} de tu pila de descartes (−2 al coste)"
+    "playFromDiscard": "Jugar {card} de tu pila de descartes (−2 al coste)",
+    "extinguish": "Gastar {clues} pistas en grupo: descartar el Fire! de tu localización",
+    "weakenElokoss": "Gastar {clues} pistas: poner 1 pista sobre Elokoss ({have}/5)",
+    "openSluice": "Abrir la compuerta (agilidad o combate 5)"
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -228,7 +260,9 @@
     "searchCanceled": "{name} encuentra {card}: la búsqueda se cancela",
     "sealed": "{name} sella una ficha ({token})",
     "weakness": "{name} roba su debilidad {card}",
-    "underAct": "{enemy} queda debajo del acto"
+    "underAct": "{enemy} queda debajo del acto",
+    "enemyImmune": "{enemy} no puede recibir daño (hay fuego en su localización)",
+    "lead": "{name} es el investigador jefe"
   },
   "table": {
     "log": "Registro de partida",
@@ -297,7 +331,10 @@
     "actionsLeft": "{n} acciones",
     "journal": "Diario del caso",
     "shroudUntilEndOfRound": "Velo modificado hasta el final de la ronda",
-    "cardBeneath": "Hay una carta boca abajo debajo de esta localización"
+    "cardBeneath": "Hay una carta boca abajo debajo de esta localización",
+    "officialText": "Texto oficial (inglés)",
+    "summaryText": "Resumen en español",
+    "mulliganHint": "Haz clic en las cartas de tu mano que quieras cambiar."
   },
   "difficulty": {
     "easy": "Fácil",
@@ -308,7 +345,7 @@
   "setup": {
     "continue": "Continuar la partida guardada",
     "chooseInvestigators": "Elige de 1 a 4 investigadores",
-    "orderHint": "El orden en que los eliges es el orden de jugadores; el primero es el investigador jefe.",
+    "orderHint": "El orden en que los eliges es el orden de jugadores. Al empezar cada escenario elegiréis al investigador jefe, que pasa a ser el primero.",
     "quit": "Abandonar partida",
     "noGame": "No hay ninguna partida en curso.",
     "confirmQuit": "¿Abandonar esta partida? No se podrá recuperar."
@@ -372,7 +409,9 @@
       "resolution2Title": "Resolución 2",
       "resolution2": "Codo con codo con los demás, contenéis las llamas hasta que llegan los bomberos de Arkham. Con la situación bajo control, corréis a reuniros con el Dr. Armitage.",
       "resolution3Title": "Resolución 3",
-      "resolution3": "Huis del campus con el Dr. Armitage y dejáis la universidad a su suerte, entre el aullido de las sirenas, camino de su apartamento."
+      "resolution3": "Huis del campus con el Dr. Armitage y dejáis la universidad a su suerte, entre el aullido de las sirenas, camino de su apartamento.",
+      "setupTitle": "Preparación",
+      "setup": "Se reúnen los conjuntos de encuentros del escenario.\n\nYour Friend's Room entra en juego; las demás localizaciones del campus se apartan. Cada investigador empieza en Your Friend's Room.\n\nSe apartan, fuera del juego, las 5 copias de Fire!, el apoyo de historia Dr. Henry Armitage y el enemigo Servant of Flame.\n\nEl resto de cartas de encuentro se baraja para formar el mazo de encuentros."
     },
     "effect": {
       "record": "Anotad en el registro de campaña: {note}.",
@@ -382,7 +421,14 @@
       "bonusAndPhysicalTrauma": "Cada investigador gana 1 de experiencia adicional y sufre 1 trauma físico.",
       "proceed": "Continuad con {scenario}.",
       "harbinger": "Se revela el heraldo de Elokoss: {name}. Anotadlo en el registro de campaña.",
-      "bonusXp": "Cada investigador gana {n} de experiencia adicional."
+      "bonusXp": "Cada investigador gana {n} de experiencia adicional.",
+      "allKilled": "Todos los investigadores mueren.",
+      "campaignLost": "Los investigadores pierden la campaña.",
+      "campaignWon": "¡Los investigadores ganan la campaña!",
+      "collector": "Los investigadores ganan la carta de recompensa Collector: podrán incluirla al crear mazos nuevos.",
+      "traumaBoth": "Cada investigador sufre {n} trauma físico y {n} trauma mental.",
+      "killedUnlessResigned": "Mueren los investigadores que no se retiraron.",
+      "escapedRewards": "Los que se retiraron ganan la experiencia de la zona de victoria más 3 y sufren 3 trauma mental."
     },
     "note": {
       "universityBurned": "la Universidad Miskatonic ardió",
@@ -394,7 +440,13 @@
       "killedServant": "los investigadores mataron al Servant of Flame",
       "scouredArkham": "los investigadores recorrieron Arkham en busca de respuestas",
       "stirredUpTrouble": "los investigadores armaron un buen lío",
-      "servantEscaped": "el Servant of Flame escapó"
+      "servantEscaped": "el Servant of Flame escapó",
+      "elokossReborn": "Elokoss renació",
+      "campaignLost": "los investigadores perdieron la campaña",
+      "defeatedElokoss": "los investigadores derrotaron a Elokoss y a los Hermanos de la Ceniza",
+      "campaignWon": "los investigadores ganaron la campaña",
+      "stoppedRebirth": "los investigadores impidieron el glorioso renacer de Elokoss",
+      "floodedRitual": "los investigadores inundaron el ritual de invocación de los Hermanos de la Ceniza"
     },
     "scenario": {
       "smokeAndMirrors": "el Escenario II: Smoke and Mirrors",
@@ -424,7 +476,46 @@
       "resolution1Title": "Resolución 1",
       "resolution1": "En el taxi hacia Easttown lo veis claro: pese a sus intentos de ocultarse, habéis descubierto al verdadero culpable. Ojalá baste para salvar a vuestro amigo.",
       "resolution2Title": "Resolución 2",
-      "resolution2": "Pasáis por el escondite donde habíais dejado a vuestro enemigo inconsciente. Huele a humo y las esposas están destrozadas, no fundidas: alguien le ayudó a escapar."
+      "resolution2": "Pasáis por el escondite donde habíais dejado a vuestro enemigo inconsciente. Huele a humo y las esposas están destrozadas, no fundidas: alguien le ayudó a escapar.",
+      "setupTitle": "Preparación",
+      "setup": "Se elige al azar una de las dos versiones de Downtown y una de las dos de Uptown; las otras se retiran. Entran en juego Northside, Easttown, Merchant District, Waterfront District, Southside y French Hill.\n\nMiskatonic University entra por su cara In Flames si la universidad ardió, o por Quiet Campus si los investigadores la salvaron (en ese caso, 1 perdición en el plan). Cada investigador empieza allí.\n\nDe los sospechosos (People of Arkham) se aparta uno al azar sin mirarlo; el resto se baraja con el Servant of Flame y se reparte boca abajo bajo Northside, Downtown, Southside, French Hill, Uptown y Waterfront District.\n\nSe pone 1 perdición en el plan por cada investigador. El portador del Dr. Henry Armitage lo pone en juego (no ocupa ranura de aliado). Se apartan las copias de Mark of Elokoss y el resto se baraja como mazo de encuentros.",
+      "codex1Attempt": "El estirado Sr. Renfield intenta despacharos con educación, pero al oír «Hermanos de la Ceniza» sale corriendo calle abajo, más rápido de lo que parecía.",
+      "codex2Attempt": "Cornelia Akely, en el turno de noche de un garaje destartalado, os recibe con un cigarrillo; en cuanto mencionáis a la secta, se le endurece el gesto y os señala la puerta.",
+      "codex3Attempt": "A la jefa de los O'Bannion no le interesan vuestras preguntas, aunque está dispuesta a quitaros de en medio cualquier problema… a cambio de algo. Hará falta untar más manos.",
+      "codex4Attempt": "Al oír hablar de la secta, el policía saca la porra y os aconseja que metáis las narices en otra parte. Os preparáis para pelear.",
+      "codex5Attempt": "La bibliotecaria aparta vuestras preguntas mientras saca más libros de la estantería. Quizá la única forma de llamar su atención sea ayudarla a encontrar lo que busca.",
+      "codex6Attempt": "Margaret Liu, una de las cantantes más conocidas de la ciudad, está absorta en su actuación. Tendréis que ingeniároslas para llamar su atención."
+    },
+    "queenOfAsh": {
+      "intro1Title": "Escenario III: Queen of Ash",
+      "intro1": "En el Velma's Diner, entre dos porciones de tarta de manzana, el Dr. Armitage os explica lo que ha averiguado: los Hermanos de la Ceniza no son conspiradores, sino siervos de una antigua diosa a la que llaman Elokoss. Una marca en la piel señala a los suyos, que ni siquiera saben que están bajo su influjo.\n\nVuestro perseguidor, el Servant of Flame, es el heraldo de su regreso y reúne sacrificios para un renacer que, según la profecía, ocurrirá esta misma noche.",
+      "intro2Title": "Las alcantarillas",
+      "intro2": "Registráis la casa del Servant of Flame: una invitación a una reunión secreta, unas botas embarradas, cuentas de contrabando en el Waterfront y una foto de tres rostros a la luz de las velas. Todo apunta a las alcantarillas de Arkham. Bajáis a buscar a vuestro amigo.",
+      "intro3Title": "Las alcantarillas",
+      "intro3": "Tras horas repasando las pocas pistas que tenéis, Armitage deduce que el ritual se celebra en las alcantarillas de Arkham. Es la única pista que os queda, y el tiempo apremia: el plan empieza con 1 perdición.",
+      "codexTitle": "Códex: Servant of Flame",
+      "codex": {
+        "DavidRenfield": "Al quitarle la máscara, David Renfield se niega a que lo ayudéis: se entregó a ella de buen grado. Muere riendo débilmente. Cada investigador puede buscar en su mazo una carta Tome o Spell y jugarla sin pagar su coste.",
+        "CorneliaAkely": "Cornelia Akely mira sus manos ensangrentadas, aturdida: creía que todo era una pesadilla. Al ver vuestras heridas, se ofrece a ayudaros. Cada investigador cura 3 daño.",
+        "NaomiOBannion": "Naomi O'Bannion despierta furiosa y exige saber qué clase de fiesta es esta. Mientras la ayudáis a levantarse, os paga bien por el rescate. Cada investigador gana 5 recursos.",
+        "SgtEarlMonroe": "El sargento Monroe, aterrado, no recuerda nada y mira su ropa manchada de sangre. Cada investigador puede buscar en su mazo un apoyo Weapon y jugarlo sin pagar su coste.",
+        "AbigailForeman": "Abigail Foreman os aprieta las manos: hay que impedir que Elokoss despierte. Antes de desmayarse os da una nota arrugada. Cada investigador roba 3 cartas.",
+        "MargaretLiu": "Margaret Liu se levanta sorprendentemente tranquila en medio del caos y le indicáis la salida. Cada investigador cura 3 horror."
+      },
+      "noResolutionTitle": "Sin resolución",
+      "noResolution": "El Dr. Armitage escapa a duras penas de las alcantarillas. Al amanecer, un fuego imparable arrasa Easttown durante tres días; quienes huyeron hablan de rostros espantosos entre las llamas. De sus compañeros, y de los Hermanos de la Ceniza, no queda rastro.",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "Contra todo pronóstico, el recipiente de Elokoss ha sido destruido. Entre los sectarios que despiertan encontráis a vuestro amigo, asustado pero ileso. Al sacarlo de allí veis en su cuello una marca ya muy tenue, pero todavía visible: quizá algún día vuelva a despertar.",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "El Dr. Armitage recita unas palabras inhumanas de un tomo arrebatado a un sectario y el árbol en llamas se deshace en ceniza. Los sectarios quedan libres del influjo, y vuestro amigo con ellos, sin rastro de la marca. Aun así, durante meses el menor olor a humo os acelerará el pulso.",
+      "resolution3Title": "Resolución 3",
+      "resolution3": "La vieja compuerta se abre con un chirrido y un torrente de agua inunda los túneles. No intentáis huir: hicisteis lo que había que hacer. Mientras el agua sube, pensáis en vuestro amigo, en Armitage y en todos los que se han ahogado para detener a un mal antiguo.",
+      "setupTitle": "Preparación",
+      "setup": "Underground Cistern entra en juego. Las localizaciones de las alcantarillas se barajan y entran sin revelar, sin saber cuál es cuál; Sluice Control se aparta. Cada investigador empieza en Sewer Culvert.\n\nSegún el registro de campaña: si recorrieron Arkham en busca de respuestas, cada investigador empieza con 1 pista; si armaron un buen lío, entra 1 sectario por investigador, cada uno en un túnel distinto; si mataron al Servant of Flame, se retira del juego (si no, se aparta).\n\nCon 3 o 4 jugadores, 1 perdición en el plan. Se apartan las copias de Fire!, la recompensa Collector y los enemigos Elokoss, Queen's Knight y Herald of Flame. El resto forma el mazo de encuentros."
+    },
+    "brethrenOfAsh": {
+      "prologueTitle": "Prólogo: un glorioso renacer",
+      "prologue": "Arkham nunca ha sido una ciudad normal: cada semana el periódico trae otro crimen atroz o otra desaparición, y ni los más escépticos pueden negar que algo va mal.\n\nAun así, la gente prefiere mirar hacia otro lado. Seis meses después de la gran inundación la ciudad se reconstruye y presume de progreso, pero entre las cenizas de los últimos incendios algunos susurran que alguien, o algo, quiere renacer."
     }
   },
   "playmat": {
@@ -451,7 +542,7 @@
     "horror": "horror"
   },
   "campaign": {
-    "title": "Campaña: Brethren of Ash",
+    "title": "Campaña: {name}",
     "new": "Nueva campaña",
     "open": "Ver la campaña",
     "continue": "Continuar la campaña",
@@ -489,6 +580,122 @@
       "spreading-flames": "Spreading Flames",
       "smoke-and-mirrors": "Smoke and Mirrors",
       "queen-of-ash": "Queen of Ash"
+    },
+    "names": {
+      "brethren-of-ash": "Brethren of Ash"
+    },
+    "choose": "Elige la campaña"
+  },
+  "class": {
+    "guardian": "Guardián",
+    "seeker": "Buscador",
+    "rogue": "Rebelde",
+    "mystic": "Místico",
+    "survivor": "Superviviente",
+    "neutral": "Neutral"
+  },
+  "decks": {
+    "title": "Mazos",
+    "new": "Nuevo mazo",
+    "fromStarter": "Empezar desde su mazo inicial",
+    "create": "Crear mazo",
+    "newName": "Mazo de {name}",
+    "none": "Aún no tienes mazos propios.",
+    "problems": "1 problema | {n} problemas",
+    "valid": "Válido",
+    "delete": "Borrar {name}",
+    "confirmDelete": "¿Borrar el mazo «{name}»?",
+    "name": "Nombre del mazo",
+    "size": "{n}/{size} cartas",
+    "basicWeakness": "Sin debilidad básica: al empezar la campaña se añadirá una al azar.",
+    "ready": "El mazo cumple las reglas de construcción.",
+    "unimplemented": "Aún sin efecto en el juego: {cards}.",
+    "contents": "Contenido",
+    "required": "Exclusivas y debilidades",
+    "pool": "Cartas disponibles",
+    "search": "Buscar",
+    "class": "Clase",
+    "type": "Tipo",
+    "allClasses": "Todas las clases",
+    "allTypes": "Todos los tipos",
+    "levelZero": "Solo nivel 0",
+    "addCard": "Añadir {card}",
+    "removeCard": "Quitar {card}",
+    "pick": "Elige o crea un mazo para editarlo.",
+    "choose": "Mazos",
+    "starter": "Mazo inicial",
+    "manage": "Crear o importar mazos",
+    "import": {
+      "title": "Importar de ArkhamDB",
+      "placeholder": "Enlace o número del mazo",
+      "action": "Importar",
+      "loading": "Importando…",
+      "done": "Importado: {name}.",
+      "partial": "Importado. {n} cartas no son de esta caja y se han quitado.",
+      "badLink": "No es un enlace de mazo de ArkhamDB.",
+      "notFound": "No se encontró ese mazo (los privados deben estar compartidos).",
+      "network": "No se pudo conectar con ArkhamDB.",
+      "investigator": "Ese investigador aún no está disponible."
+    }
+  },
+  "deck": {
+    "problem": {
+      "unknownInvestigator": "Investigador desconocido.",
+      "size": "Tiene {n} cartas y deben ser {size} (sin contar exclusivas ni debilidades).",
+      "notAllowed": "{card} no está entre sus opciones de construcción.",
+      "tooManyCopies": "{n} copias de {card}: como mucho 2.",
+      "missingSignature": "Falta su carta exclusiva {card}.",
+      "otherSignature": "{card} es exclusiva de otro investigador.",
+      "levelAtStart": "{card} tiene nivel: al empezar la campaña solo se admite nivel 0.",
+      "unknownCard": "Carta desconocida: {card}.",
+      "rewardNotEarned": "Recompensa no ganada: {card}"
+    }
+  },
+  "keywords": {
+    "title": "Palabras clave y conceptos",
+    "doomed": {
+      "title": "Condenado",
+      "body": "Cuando se derrota a un enemigo condenado (por un investigador o por un efecto), se pone 1 perdición en el plan, lo que puede hacerlo avanzar. Descartarlo no cuenta como derrotarlo."
+    },
+    "hunter": {
+      "title": "Cazador",
+      "body": "Al empezar la fase de enemigos, cada cazador preparado y no enfrentado avanza una localización por el camino más corto hacia el investigador más cercano. Si ya hay un investigador en su localización, no se mueve. Con empate, decide su presa o, si no, el jefe."
+    },
+    "peril": {
+      "title": "Peligro",
+      "body": "Mientras resuelves una carta con peligro, no puedes consultar al resto del grupo y nadie más puede jugar cartas, activar habilidades ni comprometer cartas a tus pruebas."
+    },
+    "prey": {
+      "title": "Presa",
+      "body": "Algunos enemigos persiguen a un investigador concreto: entre varios a la misma distancia (o en su localización), eligen al que mejor cumple lo que indica su presa."
+    },
+    "retaliate": {
+      "title": "Represalia",
+      "body": "Si fallas una prueba al atacar a un enemigo preparado con represalia, después de aplicar los resultados te ataca (esté o no enfrentado contigo). No se agota por ello."
+    },
+    "surge": {
+      "title": "Oleada",
+      "body": "Después de robar y resolver una carta de encuentro con oleada, robas y resuelves otra."
+    },
+    "codex": {
+      "title": "El códex",
+      "body": "Algunas cartas remiten a una entrada numerada del códex. Al activarla, se lee su texto y se resuelven sus instrucciones; la mesa lo muestra en una ventana."
+    },
+    "alert": {
+      "title": "Alerta",
+      "body": "Si fallas una prueba al evitar a un enemigo con alerta, después de aplicar los resultados te ataca. No se agota por ello."
+    },
+    "aloof": {
+      "title": "Distante",
+      "body": "Un enemigo distante no se enfrenta automáticamente a los investigadores de su localización; hay que enfrentarse a él con una acción (o un efecto)."
+    },
+    "elusive": {
+      "title": "Escurridizo",
+      "body": "Después de que un enemigo escurridizo sea atacado (y no derrotado) o evitado, se aleja a una localización conectada, si puede sin investigadores, y deja de estar enfrentado."
+    },
+    "massive": {
+      "title": "Masivo",
+      "body": "Un enemigo masivo preparado cuenta como enfrentado a cada investigador de su localización, ataca a todos ellos en la fase de enemigos y no se agota hasta terminar sus ataques. No se puede colocar en una zona de amenaza."
     }
   }
 }

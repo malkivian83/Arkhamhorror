@@ -1,7 +1,19 @@
 import { describe, expect, it } from 'vitest'
 import { registerEnemy, registerScenario, registerTreachery } from './content'
 import { getInvestigator } from './state'
-import { choose, during, ghoul, keep, newTestGame, spawnAt, withBag } from './testing'
+import { createGame } from './engine'
+import {
+  choose,
+  during,
+  ghoul,
+  keep,
+  newTestGame,
+  spawnAt,
+  testInvestigator,
+  testScenario,
+  throughSetup,
+  withBag,
+} from './testing'
 import type { EncounterCard, GameState, Message, TreacheryCard } from './types'
 
 const inv = (s: GameState, id = 'a') => getInvestigator(s, id)
@@ -245,5 +257,105 @@ describe('enemigos: condenado, presa y forzados', () => {
       spawnAt('A', { ...ghoul, prey: { type: 'lowestSkill', skill: 'agility' } }),
     )
     expect(Object.values(game.enemies)[0]?.engagedWith).toBe('b')
+  })
+})
+
+describe('inicio de la partida', () => {
+  const table = () =>
+    createGame({
+      seed: 1,
+      interactive: true,
+      scenario: testScenario(),
+      investigators: [testInvestigator('a'), testInvestigator('b'), testInvestigator('c')],
+    })
+
+  it('el grupo elige jefe y pasa a ser el primero en orden de jugadores', () => {
+    let s = table()
+    expect(s.pending?.question.prompt).toBe('prompt.chooseLead')
+    s = choose(s, 'choice.investigator', { name: 'B' })
+    expect(s.investigators.map((i) => i.id)).toEqual(['b', 'c', 'a'])
+    // Después, cada uno decide su mulligan, empezando por el jefe.
+    expect(s.pending?.question.prompt).toBe('prompt.mulligan')
+    expect(s.pending?.investigator).toBe('b')
+  })
+
+  it('sin la mesa no hay preguntas de preparación', () => {
+    const s = newTestGame({ players: ['a', 'b'] })
+    expect(s.pending?.question.prompt).not.toBe('prompt.chooseLead')
+    expect(throughSetup(table()).pending?.question.prompt).toBe('prompt.chooseNextInvestigator')
+  })
+})
+
+describe('decisiones del jefe (FAQ 1.5)', () => {
+  const table = (scenario = testScenario()) => {
+    const s = throughSetup(
+      createGame({
+        seed: 1,
+        interactive: true,
+        scenario,
+        investigators: [testInvestigator('a'), testInvestigator('b'), testInvestigator('c')],
+      }),
+    )
+    return choose(s, 'choice.investigator', { name: 'A' })
+  }
+  const prompt = (s: GameState) => s.pending?.question.prompt
+
+  it('con varios investigadores en la localización, el jefe elige con quién se enfrenta', () => {
+    let s = during(table(), keep, spawnAt('A'))
+    expect(prompt(s)).toBe('prompt.chooseEngaged')
+    s = choose(s, 'choice.investigator', { name: 'C' })
+    expect(Object.values(s.enemies)[0]?.engagedWith).toBe('c')
+  })
+
+  it('cada investigador elige en qué orden le atacan sus enemigos', () => {
+    let s = during(
+      table(),
+      keep,
+      spawnAt('A', { ...ghoul, name: 'Uno' }, 'a'),
+      spawnAt('A', { ...ghoul, name: 'Dos' }, 'a'),
+      { type: 'EnemiesAttack' },
+    )
+    expect(prompt(s)).toBe('prompt.chooseAttackOrder')
+    s = choose(s, 'choice.attackFirst', { enemy: 'Dos' })
+    expect(Object.values(s.enemies).find((e) => e.name === 'Dos')?.exhausted).toBe(true)
+  })
+
+  it('el jefe elige quién paga las pistas del acto', () => {
+    const withClues = (s: GameState): GameState => ({
+      ...s,
+      investigators: s.investigators.map((i) => ({ ...i, clues: 3 })),
+    })
+    let s = during(table(), withClues, { type: 'AdvanceAct' })
+    expect(prompt(s)).toBe('prompt.whoPaysClue')
+    // 6 pistas (2 por investigador): 3 de A y 3 de B.
+    for (let n = 0; n < 3; n++) s = choose(s, 'choice.investigatorPaysClue', { name: 'A' })
+    for (let n = 0; n < 3; n++) s = choose(s, 'choice.investigatorPaysClue', { name: 'B' })
+    expect(s.investigators.map((i) => i.clues)).toEqual([0, 0, 3])
+    expect(s.log.some((entry) => entry.key === 'log.actAdvanced')).toBe(true)
+  })
+
+  it('un cazador con dos caminos igual de cortos: el jefe elige por dónde va', () => {
+    const room = (id: string, connections: string[]) => ({
+      id,
+      name: `Room ${id}`,
+      shroud: 1,
+      clueValue: 0,
+      cluesPerInvestigator: false,
+      connections,
+    })
+    const scenario = testScenario({
+      locations: [
+        room('A', ['B', 'C']),
+        room('B', ['A', 'D']),
+        room('C', ['A', 'D']),
+        room('D', ['B', 'C']),
+      ],
+    })
+    let s = during(table(scenario), keep, spawnAt('D', { ...ghoul, keywords: ['hunter'] }), {
+      type: 'HuntersMove',
+    })
+    expect(prompt(s)).toBe('prompt.chooseHunterPath')
+    s = choose(s, 'choice.moveEnemyTo', { enemy: ghoul.name, location: 'Room C' })
+    expect(Object.values(s.enemies)[0]?.location).toBe('C')
   })
 })

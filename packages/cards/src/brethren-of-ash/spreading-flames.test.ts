@@ -1,19 +1,13 @@
 import {
   applyInput,
+  createGame,
   getInvestigator,
   type EncounterCard,
   type GameState,
   type InvestigatorSetup,
   type Message,
 } from '@lcg/engine'
-import {
-  createTestGame,
-  choose,
-  during,
-  keep,
-  testInvestigator,
-  withBag,
-} from '@lcg/engine/testing'
+import { choose, during, keep, testInvestigator, withBag } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import type { Difficulty } from './campaign'
 import { CODES, encounterDeck, fire, servantOfFlame, spreadingFlames } from './spreading-flames'
@@ -39,7 +33,7 @@ function newGame(
   } = {},
 ): GameState {
   const difficulty = options.difficulty ?? 'standard'
-  return createTestGame({
+  return createGame({
     seed: 7,
     difficulty,
     scenario: spreadingFlames(difficulty),
@@ -234,7 +228,7 @@ describe('Spreading Flames: enemigos', () => {
 describe('Spreading Flames: robustez', () => {
   it('varias rondas eligiendo siempre la primera opción no rompen el motor', () => {
     for (const seed of [1, 2, 3, 4, 5]) {
-      let game = createTestGame({
+      let game = createGame({
         seed,
         scenario: spreadingFlames('expert'),
         difficulty: 'expert',

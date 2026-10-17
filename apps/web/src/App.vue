@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { LOCALES, type Locale } from '@lcg/shared'
-import { watch } from 'vue'
+import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import PlaymatPicker from './components/PlaymatPicker.vue'
@@ -10,6 +10,13 @@ import './game/playmats'
 
 const { t, locale } = useI18n()
 const route = useRoute()
+const gameMenu = ref<HTMLDialogElement>()
+const menuButton = ref<HTMLButtonElement>()
+function closeMenu() {
+  gameMenu.value?.close()
+  menuButton.value?.focus()
+}
+watch(() => route.fullPath, closeMenu)
 
 // Datos de las cartas en el idioma activo (en inglés se usan las imágenes oficiales).
 watch(
@@ -32,9 +39,64 @@ function setLocale(value: Locale) {
 </script>
 
 <template>
-  <header class="topbar">
+  <template v-if="route.name === 'game'">
+    <button
+      ref="menuButton"
+      class="game-menu-toggle"
+      type="button"
+      :aria-label="t('app.openMenu')"
+      aria-haspopup="dialog"
+      aria-controls="game-menu"
+      @click="gameMenu?.showModal()"
+    >
+      ☰
+    </button>
+    <dialog
+      id="game-menu"
+      ref="gameMenu"
+      class="game-menu"
+      :aria-label="t('app.sections')"
+      @click="$event.target === gameMenu && closeMenu()"
+      @close="menuButton?.focus()"
+    >
+      <div class="game-menu-content">
+        <button
+          type="button"
+          class="menu-close"
+          :aria-label="t('app.closeMenu')"
+          autofocus
+          @click="closeMenu"
+        >
+          ✕
+        </button>
+        <RouterLink to="/" class="brand">{{ t('app.title') }}</RouterLink>
+        <nav class="sections" :aria-label="t('app.sections')">
+          <RouterLink to="/">{{ t('campaign.new') }}</RouterLink>
+          <RouterLink to="/decks">{{ t('decks.title') }}</RouterLink>
+        </nav>
+        <PlaymatPicker />
+        <nav class="menu-languages">
+          <button
+            v-for="l in LOCALES"
+            :key="l"
+            type="button"
+            :aria-pressed="locale === l"
+            @click="setLocale(l)"
+          >
+            {{ l.toUpperCase() }}
+          </button>
+        </nav>
+        <p class="menu-disclaimer">{{ t('app.disclaimer') }}</p>
+      </div>
+    </dialog>
+  </template>
+  <header v-else class="topbar">
     <RouterLink to="/" class="brand">{{ t('app.title') }}</RouterLink>
     <span class="disclaimer">{{ t('app.disclaimer') }}</span>
+    <nav class="sections" :aria-label="t('app.sections')">
+      <RouterLink to="/">{{ t('campaign.new') }}</RouterLink>
+      <RouterLink to="/decks">{{ t('decks.title') }}</RouterLink>
+    </nav>
     <PlaymatPicker />
     <nav>
       <button
@@ -116,6 +178,90 @@ body {
   flex: 1;
   min-height: 0;
   overflow: hidden;
+}
+.game-menu-toggle {
+  position: fixed;
+  z-index: 45;
+  top: 12px;
+  left: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: var(--brass);
+  background: #1f170e;
+  border-color: var(--brass-dark);
+  font-size: 1.35rem;
+}
+.game-menu {
+  position: fixed;
+  inset: 0 auto 0 0;
+  margin: 0;
+  width: min(340px, 90vw);
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  padding: 0;
+  color: var(--ink);
+  background: #1c1811;
+  border: 0;
+  border-right: 2px solid var(--brass-dark);
+  box-shadow: 12px 0 40px #0008;
+}
+.game-menu[open] {
+  animation: menu-enter 160ms ease-out;
+}
+@keyframes menu-enter {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.game-menu::backdrop {
+  background: #0009;
+}
+.game-menu-content {
+  min-height: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.menu-close {
+  align-self: flex-end;
+}
+.game-menu button,
+.game-menu .sections a {
+  min-height: 44px;
+}
+.game-menu .brand {
+  font-size: 1rem;
+  white-space: normal;
+}
+.game-menu .sections {
+  flex-direction: column;
+  gap: 8px;
+}
+.game-menu .sections a {
+  display: flex;
+  align-items: center;
+}
+.game-menu .picker .menu {
+  left: 0;
+  right: auto;
+  min-width: 0;
+  width: 100%;
+}
+.menu-languages {
+  display: flex;
+  gap: 8px;
+}
+.menu-disclaimer {
+  margin-top: auto;
+  color: #b8aa8c;
+  font-family: var(--fell);
+  font-size: 0.85rem;
 }
 h1,
 h2,
@@ -258,6 +404,20 @@ button[aria-pressed='true'] {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.sections {
+  display: flex;
+  gap: 14px;
+  font-family: var(--fell);
+}
+.sections a {
+  color: #d8c49a;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.sections a.router-link-exact-active {
+  color: var(--brass);
+  border-bottom: 1px solid var(--brass);
+}
 .topbar nav {
   display: flex;
   gap: 4px;
@@ -276,7 +436,7 @@ button[aria-pressed='true'] {
   .disclaimer {
     display: none;
   }
-  .topbar nav {
+  .topbar nav:not(.sections) {
     grid-column: 3;
     grid-row: 1;
   }
@@ -284,6 +444,16 @@ button[aria-pressed='true'] {
     min-width: 44px;
     min-height: 44px;
     padding: 6px 8px;
+  }
+  .topbar .sections {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    gap: 14px;
+  }
+  .topbar .sections a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
   }
   .topbar .picker {
     grid-column: 2;

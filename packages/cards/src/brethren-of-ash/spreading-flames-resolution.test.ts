@@ -1,16 +1,10 @@
-import { type GameState, type ScenarioOutcome } from '@lcg/engine'
-import {
-  createTestGame,
-  keepOpeningHands,
-  choose,
-  during,
-  testInvestigator,
-} from '@lcg/engine/testing'
+import { createGame, type GameState, type ScenarioOutcome } from '@lcg/engine'
+import { choose, during, testInvestigator, throughSetup } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { spreadingFlames } from './spreading-flames'
 
 function newGame(interactive: boolean): GameState {
-  return createTestGame({
+  return createGame({
     seed: 11,
     interactive,
     scenario: spreadingFlames('standard'),
@@ -22,7 +16,7 @@ const story = (s: GameState) => s.pending?.question.story?.title
 
 /** Partida en la mesa, ya leída la introducción, en el menú de acciones. */
 function started(): GameState {
-  return keepOpeningHands(choose(newGame(true), 'choice.continue'))
+  return throughSetup(newGame(true))
 }
 
 const finish = (s: GameState, outcome: ScenarioOutcome) =>
