@@ -262,7 +262,29 @@
     "weakness": "{name} roba su debilidad {card}",
     "underAct": "{enemy} queda debajo del acto",
     "enemyImmune": "{enemy} no puede recibir daño (hay fuego en su localización)",
-    "lead": "{name} es el investigador jefe"
+    "lead": "{name} es el investigador jefe",
+    "step": {
+      "mythosBegins": "1.1 · Empieza la fase de mitos",
+      "placeDoom": "1.2 · Se coloca 1 perdición en el plan",
+      "checkDoom": "1.3 · Se comprueba el umbral de perdición",
+      "drawEncounter": "1.4 · Cada investigador roba una carta de encuentro",
+      "mythosEnds": "1.5 · Termina la fase de mitos",
+      "investigationBegins": "2.1 · Empieza la fase de investigación",
+      "turnBegins": "2.2 · Empieza el turno de {name}",
+      "takeActions": "2.2.1 · {name} realiza sus acciones",
+      "turnEnds": "2.2.2 · Termina el turno de {name}",
+      "investigationEnds": "2.3 · Termina la fase de investigación",
+      "enemyBegins": "3.1 · Empieza la fase de enemigos",
+      "huntersMove": "3.2 · Los enemigos cazadores se mueven",
+      "resolveAttacks": "3.3 · Los enemigos enfrentados atacan",
+      "enemyEnds": "3.4 · Termina la fase de enemigos",
+      "upkeepBegins": "4.1 · Empieza la fase de mantenimiento",
+      "resetActions": "4.2 · Se reinician las acciones",
+      "readyExhausted": "4.3 · Se preparan las cartas agotadas",
+      "drawAndGainResource": "4.4 · Cada investigador roba 1 carta y gana 1 recurso",
+      "checkHandSize": "4.5 · Se comprueba el tamaño de mano (máximo 8)",
+      "upkeepEnds": "4.6 · Termina la fase de mantenimiento (y la ronda)"
+    }
   },
   "table": {
     "log": "Registro de partida",
@@ -696,6 +718,90 @@
     "massive": {
       "title": "Masivo",
       "body": "Un enemigo masivo preparado cuenta como enfrentado a cada investigador de su localización, ataca a todos ellos en la fase de enemigos y no se agota hasta terminar sus ataques. No se puede colocar en una zona de amenaza."
+    }
+  },
+  "phaseStep": {
+    "tracker": "Pasos de la ronda",
+    "window": "Ventana de jugador",
+    "mythosBegins": {
+      "n": "1.1",
+      "text": "Empieza la fase de mitos"
+    },
+    "placeDoom": {
+      "n": "1.2",
+      "text": "Se coloca 1 perdición en el plan"
+    },
+    "checkDoom": {
+      "n": "1.3",
+      "text": "Se comprueba el umbral de perdición"
+    },
+    "drawEncounter": {
+      "n": "1.4",
+      "text": "Cada investigador roba una carta de encuentro"
+    },
+    "mythosEnds": {
+      "n": "1.5",
+      "text": "Termina la fase de mitos"
+    },
+    "investigationBegins": {
+      "n": "2.1",
+      "text": "Empieza la fase de investigación"
+    },
+    "turnBegins": {
+      "n": "2.2",
+      "text": "Empieza el turno del siguiente investigador"
+    },
+    "takeActions": {
+      "n": "2.2.1",
+      "text": "El investigador realiza sus acciones"
+    },
+    "turnEnds": {
+      "n": "2.2.2",
+      "text": "Termina el turno del investigador"
+    },
+    "investigationEnds": {
+      "n": "2.3",
+      "text": "Termina la fase de investigación"
+    },
+    "enemyBegins": {
+      "n": "3.1",
+      "text": "Empieza la fase de enemigos"
+    },
+    "huntersMove": {
+      "n": "3.2",
+      "text": "Los enemigos cazadores se mueven"
+    },
+    "resolveAttacks": {
+      "n": "3.3",
+      "text": "Los enemigos enfrentados atacan"
+    },
+    "enemyEnds": {
+      "n": "3.4",
+      "text": "Termina la fase de enemigos"
+    },
+    "upkeepBegins": {
+      "n": "4.1",
+      "text": "Empieza la fase de mantenimiento"
+    },
+    "resetActions": {
+      "n": "4.2",
+      "text": "Se reinician las acciones"
+    },
+    "readyExhausted": {
+      "n": "4.3",
+      "text": "Se preparan las cartas agotadas"
+    },
+    "drawAndGainResource": {
+      "n": "4.4",
+      "text": "Cada investigador roba 1 carta y gana 1 recurso"
+    },
+    "checkHandSize": {
+      "n": "4.5",
+      "text": "Se comprueba el tamaño de mano (máximo 8)"
+    },
+    "upkeepEnds": {
+      "n": "4.6",
+      "text": "Termina la fase de mantenimiento (y la ronda)"
     }
   }
 }

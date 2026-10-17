@@ -262,7 +262,29 @@
     "weakness": "{name} draws their weakness {card}",
     "underAct": "{enemy} is placed beneath the act",
     "enemyImmune": "{enemy} cannot be damaged (there is fire at its location)",
-    "lead": "{name} is the lead investigator"
+    "lead": "{name} is the lead investigator",
+    "step": {
+      "mythosBegins": "1.1 · Mythos phase begins",
+      "placeDoom": "1.2 · Place 1 doom on the agenda",
+      "checkDoom": "1.3 · Check the doom threshold",
+      "drawEncounter": "1.4 · Each investigator draws an encounter card",
+      "mythosEnds": "1.5 · Mythos phase ends",
+      "investigationBegins": "2.1 · Investigation phase begins",
+      "turnBegins": "2.2 · {name}'s turn begins",
+      "takeActions": "2.2.1 · {name} takes actions",
+      "turnEnds": "2.2.2 · {name}'s turn ends",
+      "investigationEnds": "2.3 · Investigation phase ends",
+      "enemyBegins": "3.1 · Enemy phase begins",
+      "huntersMove": "3.2 · Hunter enemies move",
+      "resolveAttacks": "3.3 · Engaged enemies attack",
+      "enemyEnds": "3.4 · Enemy phase ends",
+      "upkeepBegins": "4.1 · Upkeep phase begins",
+      "resetActions": "4.2 · Reset actions",
+      "readyExhausted": "4.3 · Ready exhausted cards",
+      "drawAndGainResource": "4.4 · Each investigator draws 1 card and gains 1 resource",
+      "checkHandSize": "4.5 · Check hand size (8 maximum)",
+      "upkeepEnds": "4.6 · Upkeep phase ends (and the round)"
+    }
   },
   "table": {
     "log": "Game log",
@@ -696,6 +718,90 @@
     "massive": {
       "title": "Massive",
       "body": "A ready massive enemy counts as engaged with each investigator at its location, attacks all of them in the enemy phase and only exhausts after all its attacks. It cannot be placed in a threat area."
+    }
+  },
+  "phaseStep": {
+    "tracker": "Round steps",
+    "window": "Player window",
+    "mythosBegins": {
+      "n": "1.1",
+      "text": "Mythos phase begins"
+    },
+    "placeDoom": {
+      "n": "1.2",
+      "text": "Place 1 doom on the agenda"
+    },
+    "checkDoom": {
+      "n": "1.3",
+      "text": "Check the doom threshold"
+    },
+    "drawEncounter": {
+      "n": "1.4",
+      "text": "Each investigator draws an encounter card"
+    },
+    "mythosEnds": {
+      "n": "1.5",
+      "text": "Mythos phase ends"
+    },
+    "investigationBegins": {
+      "n": "2.1",
+      "text": "Investigation phase begins"
+    },
+    "turnBegins": {
+      "n": "2.2",
+      "text": "Next investigator's turn begins"
+    },
+    "takeActions": {
+      "n": "2.2.1",
+      "text": "Investigator takes actions"
+    },
+    "turnEnds": {
+      "n": "2.2.2",
+      "text": "Investigator's turn ends"
+    },
+    "investigationEnds": {
+      "n": "2.3",
+      "text": "Investigation phase ends"
+    },
+    "enemyBegins": {
+      "n": "3.1",
+      "text": "Enemy phase begins"
+    },
+    "huntersMove": {
+      "n": "3.2",
+      "text": "Hunter enemies move"
+    },
+    "resolveAttacks": {
+      "n": "3.3",
+      "text": "Engaged enemies attack"
+    },
+    "enemyEnds": {
+      "n": "3.4",
+      "text": "Enemy phase ends"
+    },
+    "upkeepBegins": {
+      "n": "4.1",
+      "text": "Upkeep phase begins"
+    },
+    "resetActions": {
+      "n": "4.2",
+      "text": "Reset actions"
+    },
+    "readyExhausted": {
+      "n": "4.3",
+      "text": "Ready exhausted cards"
+    },
+    "drawAndGainResource": {
+      "n": "4.4",
+      "text": "Each investigator draws 1 card and gains 1 resource"
+    },
+    "checkHandSize": {
+      "n": "4.5",
+      "text": "Check hand size (8 maximum)"
+    },
+    "upkeepEnds": {
+      "n": "4.6",
+      "text": "Upkeep phase ends (and the round)"
     }
   }
 }

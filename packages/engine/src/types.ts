@@ -446,10 +446,38 @@ export type Action =
   | { kind: 'evade'; enemy: EnemyId }
   | { kind: 'engage'; enemy: EnemyId }
 
+/**
+ * Pasos de las fases (reglamento, "Round Structure"): 1.x mitos, 2.x investigación,
+ * 3.x enemigos y 4.x mantenimiento.
+ */
+export type PhaseStep =
+  | 'mythosBegins'
+  | 'placeDoom'
+  | 'checkDoom'
+  | 'drawEncounter'
+  | 'mythosEnds'
+  | 'investigationBegins'
+  | 'turnBegins'
+  | 'takeActions'
+  | 'turnEnds'
+  | 'investigationEnds'
+  | 'enemyBegins'
+  | 'huntersMove'
+  | 'resolveAttacks'
+  | 'enemyEnds'
+  | 'upkeepBegins'
+  | 'resetActions'
+  | 'readyExhausted'
+  | 'drawAndGainResource'
+  | 'checkHandSize'
+  | 'upkeepEnds'
+
 /** Todo lo que puede ocurrir en la partida. */
 export type Message =
   | { type: 'Round' }
   | { type: 'MythosPhase' }
+  /** Empieza un paso de fase: la mesa lo resalta y queda en el registro. */
+  | { type: 'Step'; step: PhaseStep; investigator?: InvestigatorId }
   | { type: 'InvestigationPhase' }
   | { type: 'EnemyPhase' }
   | { type: 'UpkeepPhase' }
@@ -955,6 +983,8 @@ export interface GameState {
   nextId: number
   round: number
   phase: Phase
+  /** Paso de la fase en curso (para la mesa). */
+  phaseStep?: PhaseStep
   /** Orden de jugadores; el primero no eliminado es el investigador jefe. */
   investigators: Investigator[]
   /** Investigadores que empezaron el escenario (para valores "por investigador"). */

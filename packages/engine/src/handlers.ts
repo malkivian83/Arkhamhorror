@@ -106,13 +106,25 @@ export function handle(state: GameState, message: Message): GameState {
       // RR "The Mythos Phase": perdición, comprobar plan, cada investigador roba un encuentro.
       return push(
         log({ ...state, phase: 'mythos' }, 'log.phase', { phase: 'mythos' }),
+        { type: 'Step', step: 'mythosBegins' },
+        { type: 'Step', step: 'placeDoom' },
         { type: 'PlaceDoom', amount: 1 },
+        { type: 'Step', step: 'checkDoom' },
         { type: 'CheckAgenda' },
+        { type: 'Step', step: 'drawEncounter' },
         ...activeInvestigators(state).map((i): Message => ({
           type: 'DrawEncounterCard',
           investigator: i.id,
         })),
+        { type: 'Step', step: 'mythosEnds' },
       )
+
+    case 'Step':
+      return log({ ...state, phaseStep: message.step }, `log.step.${message.step}`, {
+        ...(message.investigator
+          ? { name: getInvestigator(state, message.investigator).name }
+          : {}),
+      })
 
     case 'PlaceDoom':
       if (state.doomBecomesDamage) return push(state, ...doomAsDamage(state, message.amount))
@@ -344,7 +356,9 @@ export function handle(state: GameState, message: Message): GameState {
           'log.phase',
           { phase: 'investigation' },
         ),
+        { type: 'Step', step: 'investigationBegins' },
         { type: 'ChooseNextTurn' },
+        { type: 'Step', step: 'investigationEnds' },
         { type: 'Forced', trigger: { type: 'investigationPhaseEnds' } },
       )
 
@@ -387,7 +401,9 @@ export function handle(state: GameState, message: Message): GameState {
             extraEvade: investigatorBehavior(i.id)?.extraEvadeAction ?? false,
           }),
         ),
+        { type: 'Step', step: 'turnBegins', investigator: message.investigator },
         { type: 'Forced', trigger: { type: 'turnBegins', investigator: message.investigator } },
+        { type: 'Step', step: 'takeActions', investigator: message.investigator },
         { type: 'PlayerWindow', investigator: message.investigator },
       )
 
@@ -478,10 +494,12 @@ export function handle(state: GameState, message: Message): GameState {
         message.investigator,
         (i) => ({ ...i, actionsRemaining: 0, extraEvade: false }),
       )
-      return push(next, ...pending.flatMap((e) => e.then), {
-        type: 'Forced',
-        trigger: { type: 'turnEnds', investigator: message.investigator },
-      })
+      return push(
+        next,
+        { type: 'Step', step: 'turnEnds', investigator: message.investigator },
+        ...pending.flatMap((e) => e.then),
+        { type: 'Forced', trigger: { type: 'turnEnds', investigator: message.investigator } },
+      )
     }
 
     case 'TakeAction': {
@@ -2273,8 +2291,12 @@ export function handle(state: GameState, message: Message): GameState {
     case 'EnemyPhase':
       return push(
         log({ ...state, phase: 'enemy' }, 'log.phase', { phase: 'enemy' }),
+        { type: 'Step', step: 'enemyBegins' },
+        { type: 'Step', step: 'huntersMove' },
         { type: 'HuntersMove' },
+        { type: 'Step', step: 'resolveAttacks' },
         { type: 'EnemiesAttack' },
+        { type: 'Step', step: 'enemyEnds' },
       )
 
     case 'HuntersMove': {
@@ -2384,15 +2406,21 @@ export function handle(state: GameState, message: Message): GameState {
     case 'UpkeepPhase':
       return push(
         log({ ...state, phase: 'upkeep' }, 'log.phase', { phase: 'upkeep' }),
+        { type: 'Step', step: 'upkeepBegins' },
+        { type: 'Step', step: 'resetActions' },
+        { type: 'Step', step: 'readyExhausted' },
         { type: 'ReadyAll' },
+        { type: 'Step', step: 'drawAndGainResource' },
         ...activeInvestigators(state).flatMap((i): Message[] => [
           { type: 'DrawCards', investigator: i.id, amount: 1 },
           { type: 'GainResources', investigator: i.id, amount: 1 },
         ]),
+        { type: 'Step', step: 'checkHandSize' },
         ...activeInvestigators(state).map((i): Message => ({
           type: 'CheckHandSize',
           investigator: i.id,
         })),
+        { type: 'Step', step: 'upkeepEnds' },
       )
 
     case 'ReadyAll': {

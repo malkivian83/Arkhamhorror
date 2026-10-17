@@ -105,9 +105,12 @@ function toText(html) {
     .replace(/<[^>]+>/g, '')
     .replace(/&nbsp;/g, ' ')
     .replace(/&amp;/g, '&')
+    .replace(/&ldquo;/g, '“')
+    .replace(/&rdquo;/g, '”')
     .split(/\n\s*\n/)
     .map((p) => p.replace(/\s+/g, ' ').trim())
-    .filter((p) => p && p !== '»' && p !== '•')
+    // La experiencia ganada la muestra la mesa con sus efectos.
+    .filter((p) => p && p !== '»' && p !== '•' && !p.includes('{xp}'))
   return blocks.join('\n\n')
 }
 
