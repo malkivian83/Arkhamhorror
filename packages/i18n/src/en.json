@@ -85,7 +85,8 @@
     "chooseAttackOrder": "Choose which enemy attacks you first",
     "whoPaysClue": "Who spends the next clue? ({n} left)",
     "armitageControl": "Who takes control of Dr. Henry Armitage?",
-    "searchFire": "Where do you search for Fire!?"
+    "searchFire": "Where do you search for Fire!?",
+    "arrangeCards": "Place the cards you looked at on top or bottom of your deck"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -162,7 +163,9 @@
     "attackFirst": "{enemy} attacks first",
     "investigatorPaysClue": "{name} spends 1 clue (has {clues})",
     "fireFromDiscard": "Only the encounter discard pile",
-    "fireFromBoth": "The encounter deck and discard pile"
+    "fireFromBoth": "The encounter deck and discard pile",
+    "placeOnTop": "{card} on top of your deck",
+    "placeOnBottom": "{card} on the bottom of your deck"
   },
   "phase": {
     "setup": "Setup",
@@ -400,7 +403,7 @@
       "allKilled": "Each investigator is killed.",
       "campaignLost": "The investigators lose the campaign.",
       "campaignWon": "The investigators win the campaign!",
-      "collector": "The investigators earn the Collector reward card (it cannot be added to decks yet).",
+      "collector": "The investigators earn the Collector reward card: they can include it when building new decks.",
       "traumaBoth": "Each investigator suffers {n} physical and {n} mental trauma.",
       "killedUnlessResigned": "Each investigator who did not resign is killed.",
       "escapedRewards": "Those who resigned earn the victory display experience plus 3 and suffer 3 mental trauma."
@@ -622,7 +625,55 @@
       "missingSignature": "Their signature card {card} is missing.",
       "otherSignature": "{card} belongs to another investigator.",
       "levelAtStart": "{card} has a level: only level 0 is allowed when the campaign starts.",
-      "unknownCard": "Unknown card: {card}."
+      "unknownCard": "Unknown card: {card}.",
+      "rewardNotEarned": "Reward not earned: {card}"
+    }
+  },
+  "keywords": {
+    "title": "Keywords and concepts",
+    "doomed": {
+      "title": "Doomed",
+      "body": "When a doomed enemy is defeated (by an investigator or an effect), place 1 doom on the agenda, which can make it advance. Discarding it does not count as defeating it."
+    },
+    "hunter": {
+      "title": "Hunter",
+      "body": "At the start of the enemy phase, each ready, unengaged hunter moves one location along the shortest path toward the nearest investigator. It does not move if an investigator is already at its location. On a tie, its prey decides, otherwise the lead."
+    },
+    "peril": {
+      "title": "Peril",
+      "body": "While you resolve a card with peril, you cannot confer with the group and nobody else can play cards, trigger abilities or commit cards to your tests."
+    },
+    "prey": {
+      "title": "Prey",
+      "body": "Some enemies pursue a specific investigator: among several at the same distance (or at its location), they choose the one who best fits their prey."
+    },
+    "retaliate": {
+      "title": "Retaliate",
+      "body": "If you fail a test while attacking a ready enemy with retaliate, it attacks you after results are applied (engaged with you or not). It does not exhaust for this."
+    },
+    "surge": {
+      "title": "Surge",
+      "body": "After you draw and resolve an encounter card with surge, draw and resolve another one."
+    },
+    "codex": {
+      "title": "The codex",
+      "body": "Some cards refer to a numbered codex entry. When triggered, its text is read and its instructions resolved; the table shows it in a window."
+    },
+    "alert": {
+      "title": "Alert",
+      "body": "If you fail a test while evading an enemy with alert, it attacks you after results are applied. It does not exhaust for this."
+    },
+    "aloof": {
+      "title": "Aloof",
+      "body": "An aloof enemy does not automatically engage investigators at its location; you must engage it with an action (or an effect)."
+    },
+    "elusive": {
+      "title": "Elusive",
+      "body": "After an elusive enemy is attacked (and not defeated) or evaded, it moves away to a connecting location, without investigators if possible, and disengages."
+    },
+    "massive": {
+      "title": "Massive",
+      "body": "A ready massive enemy counts as engaged with each investigator at its location, attacks all of them in the enemy phase and only exhausts after all its attacks. It cannot be placed in a threat area."
     }
   }
 }

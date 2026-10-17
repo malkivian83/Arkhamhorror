@@ -20,6 +20,8 @@ import {
   registerAgenda,
   registerEnemy,
   registerLocation,
+  registerPlayerCard,
+  registerPlayerCards,
   registerScenario,
   registerTreachery,
   seedRng,
@@ -93,6 +95,27 @@ export const CODES = {
   dissonance: '12194',
   torment: '12195',
 } as const
+
+/**
+ * Collector: recompensa permanente. Se incluye al crear un mazo nuevo (si se ha
+ * ganado): +5 al tamaño del mazo y permite 1 apoyo Relic o Charm de cualquier
+ * clase de nivel 0–3.
+ */
+export const COLLECTOR = '12181'
+registerPlayerCards([
+  {
+    code: COLLECTOR,
+    name: 'Collector',
+    type: 'asset',
+    class: 'neutral',
+    traits: ['Talent'],
+    reward: true,
+    deckLimit: 1,
+    deckSizeBonus: 5,
+    extraDeckOption: { type: 'asset', traits: ['Relic', 'Charm'], maxLevel: 3, count: 1 },
+  },
+])
+registerPlayerCard({ code: COLLECTOR, permanent: {} })
 
 // ---------------------------------------------------------------------------
 // Datos de las cartas
@@ -1137,6 +1160,7 @@ function resolutionStory(state: GameState, outcome: ScenarioOutcome): Message[] 
         },
         record('defeatedElokoss'),
         record('campaignWon'),
+        { type: 'EarnReward', code: COLLECTOR },
         victory(5),
         trauma(2, 2),
         end(outcome),
@@ -1155,6 +1179,7 @@ function resolutionStory(state: GameState, outcome: ScenarioOutcome): Message[] 
         },
         record('stoppedRebirth'),
         record('campaignWon'),
+        { type: 'EarnReward', code: COLLECTOR },
         victory(5),
         trauma(2, 2),
         end(outcome),

@@ -7,6 +7,7 @@ import { useLabels } from '../game/labels'
 import type { UndoKind } from '../game/undo'
 import { useGameStore } from '../stores/game'
 import GameCard from './GameCard.vue'
+import KeywordsPanel from './KeywordsPanel.vue'
 
 const props = defineProps<{ state: GameState }>()
 const game = useGameStore()
@@ -106,6 +107,8 @@ watch(
       </details>
       <p v-if="game.error" class="error">{{ game.error }}</p>
     </div>
+
+    <KeywordsPanel :scenario-id="state.scenarioId" />
 
     <details class="keys">
       <summary>⌨ {{ t('shortcuts.title') }}</summary>

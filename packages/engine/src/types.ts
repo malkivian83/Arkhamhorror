@@ -287,6 +287,16 @@ export interface DeckOption {
   maxLevel: number
 }
 
+/** Opción de construcción que añade una carta (Collector: "un apoyo Relic o Charm…"). */
+export interface ExtraDeckOption {
+  type: PlayerCardDef['type']
+  /** Debe tener alguno de estos rasgos. */
+  traits: string[]
+  maxLevel: number
+  /** Cuántas cartas permite. */
+  count: number
+}
+
 export interface PlayerCardDef {
   code: CardCode
   name: string
@@ -310,6 +320,13 @@ export interface PlayerCardDef {
   commitLimit?: number
   weakness?: string
   unique?: boolean
+  /** Recompensa: solo si se ha ganado y solo al crear el mazo. */
+  reward?: boolean
+  /** Máximo de copias en un mazo (2 si no se indica). */
+  deckLimit?: number
+  /** Cartas de mazo adicionales (Collector: +5). */
+  deckSizeBonus?: number
+  extraDeckOption?: ExtraDeckOption
 }
 
 export interface Asset {
@@ -566,7 +583,13 @@ export type Message =
       exhaustAfter: boolean
     }
   /** Mira las `top` primeras de tu mazo, roba `picks` y el resto va al fondo (Unbridled Knowledge). */
-  | { type: 'ChooseFromTop'; investigator: InvestigatorId; top: number; picks: number }
+  | {
+      type: 'ChooseFromTop'
+      investigator: InvestigatorId
+      top: number
+      picks: number
+      arrange?: boolean
+    }
   | { type: 'ResolveSkillTest' }
   | { type: 'EndSkillTest' }
   | { type: 'EngageEnemy'; enemy: EnemyId; investigator: InvestigatorId }
@@ -592,7 +615,7 @@ export type Message =
       direct?: boolean
     }
   | { type: 'CheckDefeat'; investigator: InvestigatorId }
-  | { type: 'EliminateInvestigator'; investigator: InvestigatorId }
+  | { type: 'EliminateInvestigator'; investigator: InvestigatorId; weaknessesDone?: boolean }
   | { type: 'PlaceDoom'; amount: number }
   | { type: 'CheckAgenda' }
   | { type: 'AdvanceAgenda' }
@@ -665,7 +688,13 @@ export type Message =
   | { type: 'Resign'; investigator: InvestigatorId }
   | { type: 'DefeatInvestigator'; investigator: InvestigatorId }
   /** Fin del escenario. `told`: los textos de resolución ya se mostraron. */
-  | { type: 'EndScenario'; outcome: ScenarioOutcome; told?: boolean }
+  | {
+      type: 'EndScenario'
+      outcome: ScenarioOutcome
+      told?: boolean
+      /** Ya se aplicaron los efectos de "cuando termine la partida" de las debilidades. */
+      weaknessesDone?: boolean
+    }
   /** Texto de historia para leer; el investigador jefe lo cierra o elige una opción. */
   | { type: 'Story'; entry: StoryEntry; choices?: Choice[] }
   // ----- Registro de campaña -----
@@ -682,6 +711,7 @@ export type Message =
     }
   | { type: 'AddStoryAsset'; investigator: InvestigatorId; code: CardCode }
   | { type: 'AddChaosTokens'; tokens: ChaosToken[] }
+  | { type: 'EarnReward'; code: CardCode }
   | { type: 'Ask'; investigator: InvestigatorId; question: Question }
   // ----- Cartas de jugador -----
   /** Ventana de reacciones a `trigger` (una por investigador, hasta que pasen). */
@@ -737,6 +767,9 @@ export type Message =
   | { type: 'ShuffleTreacheryIntoDeck'; treachery: TreacheryId }
   /** Una debilidad robada del mazo se resuelve. */
   | { type: 'ResolveWeakness'; investigator: InvestigatorId; code: CardCode }
+  /** El investigador coloca una a una las cartas miradas arriba o abajo de su mazo. */
+  | { type: 'ArrangeCards'; investigator: InvestigatorId; cards: CardCode[] }
+  | { type: 'PlaceOnDeck'; investigator: InvestigatorId; code: CardCode; where: 'top' | 'bottom' }
   | { type: 'MoveDamage'; from: DamageHolder; to: DamageHolder; kind: 'damage' | 'horror' }
   /** El investigador elige uno de sus apoyos con ese rasgo y vuelve a su mano. */
   | { type: 'ReturnAssetWithTrait'; investigator: InvestigatorId; trait: string }
@@ -898,6 +931,8 @@ export interface CampaignLog {
   /** Fichas añadidas a la bolsa del caos durante la campaña. */
   chaosTokens: ChaosToken[]
   investigators: Record<InvestigatorId, InvestigatorRecord>
+  /** Cartas de recompensa ganadas (se pueden incluir al crear mazos nuevos). */
+  rewards?: CardCode[]
 }
 
 export type ScenarioOutcome = { type: 'resolution'; resolution: number } | { type: 'noResolution' }

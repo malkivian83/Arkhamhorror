@@ -137,8 +137,9 @@ con sus investigadores y debilidades:
   bajar 1 el velo de la localización hasta el final de la ronda (se ve en el mapa).
 - **Comprometer a la prueba de otro**: cada otro investigador en la misma
   localización puede comprometer 1 carta (reglamento 2026).
-- **Pendiente**: los efectos de campaña de las debilidades (trauma, experiencia),
-  que llegarán con la campaña (paso 5).
+- **Efectos de campaña de las debilidades** al terminar la partida (o al ser
+  eliminado, según la fe de erratas): In Harm's Way en juego → 1 trauma físico;
+  Dead Ends en la mano → 2 de experiencia menos (la experiencia no baja de 0).
 
 ## Cartas de nivel 1–5 (paso 5b)
 
@@ -158,8 +159,18 @@ Mecánicas nuevas del motor que han hecho falta:
   **mirar las primeras y robar varias** (Unbridled Knowledge); **moverse hasta 2
   conexiones** (Out of Sight); **repetir una investigación** (Old Compass).
 
-Simplificación: Unbridled Knowledge deja en el fondo del mazo, en el mismo orden,
-las cartas que no se roban (la carta deja elegir orden y arriba o abajo).
+Unbridled Knowledge: las cartas que no se roban se colocan una a una arriba o al
+fondo del mazo, en el orden que elija el jugador (`ArrangeCards`).
+
+Otras reglas de la FAQ aplicadas a las cartas: Scene of the Crime solo se juega como
+primera acción de tu turno (2.18); los costes adicionales de investigar de una
+localización (Waterfront District) también se pagan al investigar con una carta (1.6).
+
+## Panel de palabras clave y conceptos
+
+Como en la referencia, el panel lateral de la mesa tiene «Palabras clave y
+conceptos» con las que explica la guía de cada escenario (`keywords` en la definición
+de la campaña): resumen propio o, con los textos locales, el oficial.
 
 ## Mazos propios (paso 6)
 

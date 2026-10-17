@@ -3,7 +3,16 @@
  * reglas de construcción (reglamento, "Deck Customization") e importación desde
  * ArkhamDB.
  */
-import { isPermanent, nextInt, seedRng, type CardCode, type PlayerCardDef } from '@lcg/engine'
+import {
+  allPlayerCardDefs,
+  isPermanent,
+  nextInt,
+  playerCardDef,
+  seedRng,
+  type CardCode,
+  type ExtraDeckOption,
+  type PlayerCardDef,
+} from '@lcg/engine'
 import { isImplemented } from './campaign'
 import { playerCards, starterDeck, STARTER_DECKS } from './core-2026/player-cards'
 
@@ -16,7 +25,7 @@ export interface DeckList {
 }
 
 const byCode = (code: CardCode): PlayerCardDef | undefined =>
-  playerCards.find((c) => c.code === code)
+  playerCards.find((c) => c.code === code) ?? playerCardDef(code)
 
 /** Investigadores con reglas de construcción (los que se pueden elegir). */
 export const investigatorCards = () =>
@@ -31,15 +40,60 @@ export const isStandard = (code: CardCode) => !isWeakness(code) && !SIGNATURES.h
 /** Cuentan para el tamaño del mazo: las elegidas que no son permanentes. */
 const countsForSize = (code: CardCode) => isStandard(code) && !isPermanent(code)
 
-/** Cartas que este investigador puede incluir según sus opciones de construcción. */
-export function cardPool(investigator: CardCode): PlayerCardDef[] {
+/** Lo que amplía las cartas permitidas: recompensas ganadas y cartas ya en el mazo. */
+export interface PoolExtras {
+  /** Cartas de recompensa ganadas en campañas. */
+  rewards?: CardCode[]
+  /** Cartas del mazo (las que dan opciones de construcción adicionales, como Collector). */
+  deck?: CardCode[]
+}
+
+/** Opciones de construcción adicionales que dan las cartas del mazo. */
+const extraOptions = (deck: CardCode[]): ExtraDeckOption[] =>
+  [...new Set(deck)].flatMap((code) => {
+    const option = byCode(code)?.extraDeckOption
+    return option ? [option] : []
+  })
+
+const matchesExtra = (card: PlayerCardDef, option: ExtraDeckOption) =>
+  card.type === option.type &&
+  (card.xp ?? 0) <= option.maxLevel &&
+  card.traits.some((t) => option.traits.includes(t))
+
+/** Permitida por las opciones de clase y nivel del investigador. */
+function byClass(investigator: CardCode, card: PlayerCardDef): boolean {
   const options = byCode(investigator)?.deckOptions ?? []
-  return playerCards.filter(
-    (card) =>
-      card.type !== 'investigator' &&
-      isStandard(card.code) &&
-      options.some((o) => o.classes.includes(card.class) && (card.xp ?? 0) <= o.maxLevel),
+  return (
+    card.type !== 'investigator' &&
+    isStandard(card.code) &&
+    !card.reward &&
+    options.some((o) => o.classes.includes(card.class) && (card.xp ?? 0) <= o.maxLevel)
   )
+}
+
+/**
+ * Cartas que este investigador puede incluir: las de sus opciones de construcción,
+ * las recompensas ganadas y las que permiten las opciones adicionales del mazo.
+ */
+export function cardPool(investigator: CardCode, extras: PoolExtras = {}): PlayerCardDef[] {
+  const options = extraOptions(extras.deck ?? [])
+  const rewards = new Set(extras.rewards ?? [])
+  const all = [
+    ...playerCards,
+    ...allPlayerCardDefs().filter((c) => !playerCards.some((p) => p.code === c.code)),
+  ]
+  return all.filter(
+    (card) =>
+      byClass(investigator, card) ||
+      (card.reward && rewards.has(card.code)) ||
+      (isStandard(card.code) && !card.reward && options.some((o) => matchesExtra(card, o))),
+  )
+}
+
+/** Cartas de mazo que pide el investigador más las que añaden sus cartas (Collector). */
+export function requiredDeckSize(investigator: CardCode, deck: CardCode[] = []): number {
+  const bonus = [...new Set(deck)].reduce((n, code) => n + (byCode(code)?.deckSizeBonus ?? 0), 0)
+  return (byCode(investigator)?.deckSize ?? 30) + bonus
 }
 
 export type DeckProblem =
@@ -51,6 +105,7 @@ export type DeckProblem =
   | { key: 'deck.problem.otherSignature'; params: { card: string } }
   | { key: 'deck.problem.levelAtStart'; params: { card: string } }
   | { key: 'deck.problem.unknownCard'; params: { card: string } }
+  | { key: 'deck.problem.rewardNotEarned'; params: { card: string } }
 
 export interface DeckCheck {
   /** Errores: el mazo no se puede usar. */
@@ -65,9 +120,13 @@ export interface DeckCheck {
 
 /**
  * Comprueba un mazo con las reglas de construcción. `campaignStart`: al empezar
- * una campaña solo se admiten cartas de nivel 0.
+ * una campaña solo se admiten cartas de nivel 0. `rewards`: recompensas ganadas.
  */
-export function validateDeck(deck: DeckList, campaignStart = true): DeckCheck {
+export function validateDeck(
+  deck: DeckList,
+  campaignStart = true,
+  rewards: CardCode[] = [],
+): DeckCheck {
   const investigator = byCode(deck.investigator)
   if (!investigator?.deckOptions) {
     return {
@@ -79,8 +138,16 @@ export function validateDeck(deck: DeckList, campaignStart = true): DeckCheck {
   }
   const problems: DeckProblem[] = []
   const name = (code: CardCode) => byCode(code)?.name ?? code
-  const allowed = new Set(cardPool(deck.investigator).map((c) => c.code))
   const own = new Set(investigator.signatures ?? [])
+  // Opciones adicionales (Collector): cuántas cartas fuera de clase puede llevar.
+  let extraSlots = extraOptions(deck.cards).reduce((n, o) => n + o.count, 0)
+  const extraFor = (card: PlayerCardDef) => {
+    const options = extraOptions(deck.cards)
+    const copies = deck.cards.filter((c) => c === card.code).length
+    if (!options.some((o) => matchesExtra(card, o)) || copies > extraSlots) return false
+    extraSlots -= copies
+    return true
+  }
 
   for (const code of new Set(deck.cards)) {
     const card = byCode(code)
@@ -90,21 +157,28 @@ export function validateDeck(deck: DeckList, campaignStart = true): DeckCheck {
     }
     if (SIGNATURES.has(code) && !own.has(code)) {
       problems.push({ key: 'deck.problem.otherSignature', params: { card: card.name } })
-    } else if (isStandard(code) && !allowed.has(code)) {
+    } else if (card.reward) {
+      if (!rewards.includes(code)) {
+        problems.push({ key: 'deck.problem.rewardNotEarned', params: { card: card.name } })
+      }
+    } else if (isStandard(code) && !byClass(deck.investigator, card) && !extraFor(card)) {
       problems.push({ key: 'deck.problem.notAllowed', params: { card: card.name } })
     } else if (campaignStart && isStandard(code) && (card.xp ?? 0) > 0) {
       problems.push({ key: 'deck.problem.levelAtStart', params: { card: card.name } })
     }
   }
 
-  // Máximo 2 copias por título (cuentan juntas las versiones de distinto nivel).
-  const perTitle = new Map<string, number>()
+  // Máximo 2 copias por título (o el límite de la carta); cuentan juntas las
+  // versiones de distinto nivel.
+  const perTitle = new Map<string, { n: number; limit: number }>()
   for (const code of deck.cards.filter(isStandard)) {
     const title = name(code)
-    perTitle.set(title, (perTitle.get(title) ?? 0) + 1)
+    const limit = byCode(code)?.deckLimit ?? 2
+    const seen = perTitle.get(title)
+    perTitle.set(title, { n: (seen?.n ?? 0) + 1, limit: Math.min(seen?.limit ?? limit, limit) })
   }
-  for (const [title, n] of perTitle) {
-    if (n > 2) problems.push({ key: 'deck.problem.tooManyCopies', params: { card: title, n } })
+  for (const [title, { n, limit }] of perTitle) {
+    if (n > limit) problems.push({ key: 'deck.problem.tooManyCopies', params: { card: title, n } })
   }
 
   for (const signature of own) {
@@ -114,7 +188,7 @@ export function validateDeck(deck: DeckList, campaignStart = true): DeckCheck {
   }
 
   const size = deck.cards.filter(countsForSize).length
-  const required = investigator.deckSize ?? 30
+  const required = requiredDeckSize(deck.investigator, deck.cards)
   if (size !== required) {
     problems.push({ key: 'deck.problem.size', params: { n: size, size: required } })
   }

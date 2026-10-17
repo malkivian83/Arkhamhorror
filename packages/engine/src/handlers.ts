@@ -55,6 +55,7 @@ import type {
   Action,
   Asset,
   CampaignLog,
+  CardCode,
   ChaosToken,
   Choice,
   LabelParams,
@@ -1334,6 +1335,13 @@ export function handle(state: GameState, message: Message): GameState {
         storyAssets: [...r.storyAssets, message.code],
       }))
 
+    case 'EarnReward':
+      return updateCampaignLog(state, (c) =>
+        c.rewards?.includes(message.code)
+          ? c
+          : { ...c, rewards: [...(c.rewards ?? []), message.code] },
+      )
+
     case 'AddChaosTokens':
       return updateCampaignLog(
         { ...state, chaosBag: [...state.chaosBag, ...message.tokens] },
@@ -1354,6 +1362,12 @@ export function handle(state: GameState, message: Message): GameState {
       // RR "Elimination": pistas y enemigos enfrentados quedan en su localización.
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.eliminated) return state
+      // FAQ (fe de erratas, "Eliminación", paso 0): para sus debilidades la partida ha
+      // terminado; se resuelven sus efectos de "cuando termine la partida".
+      if (!message.weaknessesDone) {
+        const effects = gameEndEffects(state, [investigator.id])
+        if (effects.length) return push(state, ...effects, { ...message, weaknessesDone: true })
+      }
       let next = state
       const here = investigator.location
       if (here !== null && investigator.clues > 0) {
@@ -1771,7 +1785,16 @@ export function handle(state: GameState, message: Message): GameState {
       const investigator = getInvestigator(state, message.investigator)
       const top = investigator.deck.slice(0, message.top)
       if (message.picks <= 0 || top.length === 0) {
-        // El resto de las cartas miradas va al fondo del mazo.
+        // El resto de las cartas miradas: las coloca el jugador o van al fondo del mazo.
+        if (message.arrange && top.length > 0) {
+          return push(
+            updateInvestigator(state, investigator.id, (i) => ({
+              ...i,
+              deck: i.deck.slice(top.length),
+            })),
+            { type: 'ArrangeCards', investigator: investigator.id, cards: top },
+          )
+        }
         return updateInvestigator(state, investigator.id, (i) => ({
           ...i,
           deck: [...i.deck.slice(top.length), ...top],
@@ -1793,12 +1816,50 @@ export function handle(state: GameState, message: Message): GameState {
                 investigator: investigator.id,
                 top: top.length - 1,
                 picks: message.picks - 1,
+                ...(message.arrange ? { arrange: true } : {}),
               },
             ],
           })),
         },
       })
     }
+
+    case 'ArrangeCards': {
+      // Cada carta colocada arriba queda encima de las anteriores; abajo, debajo.
+      const [only] = message.cards
+      if (only === undefined) return state
+      const place = (code: CardCode, where: 'top' | 'bottom'): Message[] => {
+        const at = message.cards.indexOf(code)
+        return [
+          { type: 'PlaceOnDeck', investigator: message.investigator, code, where },
+          {
+            ...message,
+            cards: [...message.cards.slice(0, at), ...message.cards.slice(at + 1)],
+          },
+        ]
+      }
+      return push(state, {
+        type: 'Ask',
+        investigator: message.investigator,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.arrangeCards',
+          choices: [...new Set(message.cards)].flatMap((code): Choice[] => {
+            const card = playerCardDef(code)?.name ?? code
+            return [
+              { label: 'choice.placeOnTop', params: { card }, then: place(code, 'top') },
+              { label: 'choice.placeOnBottom', params: { card }, then: place(code, 'bottom') },
+            ]
+          }),
+        },
+      })
+    }
+
+    case 'PlaceOnDeck':
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        deck: message.where === 'top' ? [message.code, ...i.deck] : [...i.deck, message.code],
+      }))
 
     case 'PlaceDoomOnEnemy':
       if (state.doomBecomesDamage) return push(state, ...doomAsDamage(state, message.amount))
@@ -2684,6 +2745,19 @@ export function handle(state: GameState, message: Message): GameState {
         : undefined
       // Primero los textos de resolución; el escenario ya no sigue.
       if (story?.length) return push({ ...state, queue: [], pending: null }, ...story)
+      if (!message.weaknessesDone) {
+        const effects = gameEndEffects(
+          state,
+          activeInvestigators(state).map((i) => i.id),
+        )
+        if (effects.length) {
+          return push({ ...state, queue: [], pending: null }, ...effects, {
+            ...message,
+            told: true,
+            weaknessesDone: true,
+          })
+        }
+      }
       return log({ ...state, outcome: message.outcome, queue: [], pending: null }, 'log.end', {
         outcome: message.outcome.type === 'resolution' ? `R${message.outcome.resolution}` : '—',
       })
@@ -3585,6 +3659,21 @@ function opportunityAttacks(state: GameState, investigator: Investigator): Messa
       investigator: investigator.id,
       exhaustAfter: false,
     }))
+}
+
+/**
+ * Efectos de campaña de las debilidades al terminar la partida para estos
+ * investigadores: las que siguen en su zona de amenaza y las que tienen en la mano.
+ */
+function gameEndEffects(state: GameState, investigators: InvestigatorId[]): Message[] {
+  return investigators.flatMap((id) => [
+    ...Object.values(state.treacheries)
+      .filter((t) => t.placement.type === 'threatArea' && t.placement.investigator === id)
+      .flatMap((t) => treacheryBehavior(t.code)?.whenGameEnds?.(state, t) ?? []),
+    ...[...new Set(getInvestigator(state, id).hand)].flatMap(
+      (code) => playerCardBehavior(code)?.whenGameEndsInHand?.(state, id) ?? [],
+    ),
+  ])
 }
 
 /** Disparador con los datos de una prueba ya resuelta (pasos 6 y 8). */

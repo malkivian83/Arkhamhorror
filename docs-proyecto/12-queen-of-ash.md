@@ -68,8 +68,10 @@ Foreman (robar 3) o Margaret Liu (curar 3 horror), para cada investigador.
 
 ## Simplificaciones
 
-- La recompensa **Collector** se anota, pero aún no se puede añadir a los mazos
-  (es para mazos nuevos: la campaña termina en este escenario).
+- La recompensa **Collector** (resoluciones 1 y 2) queda guardada en el navegador y
+  se puede incluir al crear mazos nuevos: permanente, +5 al tamaño del mazo y 1 apoyo
+  Relic o Charm de nivel 0–3 de cualquier clase; un mazo que la lleve sin haberla
+  ganado no es válido.
 - **Masivo** se aplica como se describe arriba; no se modelan los casos raros de
   enfrentamiento con efectos de cartas.
 - Fire! daña también a los apoyos con salud (como en el escenario I).

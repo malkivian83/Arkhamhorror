@@ -3,7 +3,6 @@ import {
   allCampaigns,
   STARTER_DECKS,
   starterInvestigator,
-  validateDeck,
   type CampaignMember,
   type Difficulty,
 } from '@lcg/cards'
@@ -25,7 +24,7 @@ const deckFor = ref<Record<string, string>>({})
 /** Mazos propios válidos de un investigador. */
 const validDecks = (key: DeckKey) =>
   deckStore.decks.filter(
-    (d) => d.investigator === starterInvestigator(key).id && !validateDeck(d).problems.length,
+    (d) => d.investigator === starterInvestigator(key).id && !deckStore.check(d).problems.length,
   )
 
 const decks = Object.keys(STARTER_DECKS) as DeckKey[]

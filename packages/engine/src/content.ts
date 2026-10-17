@@ -60,6 +60,8 @@ export interface TreacheryBehavior {
   moveCost?: number
   /** Modificador al velo de la localización a la que está unida (Flash Flood). */
   shroudModifier?: number
+  /** Efecto de campaña si sigue en juego cuando termina la partida (o su dueño es eliminado). */
+  whenGameEnds?: (state: GameState, self: Treachery) => Message[]
   code: CardCode
   /** Mensajes de su revelación. Si no la coloca en juego, se descarta al terminar. */
   revelation: (state: GameState, investigator: InvestigatorId, self: Treachery) => Message[]
@@ -222,6 +224,8 @@ export interface PlayerCardBehavior {
   /** Su acción es de evitar (cuenta como tal) o no provoca ataques de oportunidad. */
   evadeAction?: boolean
   noAttacksOfOpportunity?: boolean
+  /** Efecto de campaña si está en la mano de su dueño cuando termina la partida o es eliminado. */
+  whenGameEndsInHand?: (state: GameState, owner: InvestigatorId) => Message[]
   /** Mientras está en juego, la primera acción de cada turno de su dueño no provoca ataques de oportunidad. */
   firstActionSafe?: boolean
   /** Debilidad que cancela las búsquedas en el mazo (Dead Ends). */
@@ -262,6 +266,11 @@ export function registerPlayerCards(defs: PlayerCardDef[]): void {
 
 export function registerPlayerCard(behavior: PlayerCardBehavior): void {
   playerBehaviors.set(behavior.code, behavior)
+}
+
+/** Todas las cartas de jugador registradas (las de la caja y las de campaña). */
+export function allPlayerCardDefs(): PlayerCardDef[] {
+  return [...playerCards.values()]
 }
 
 export function playerCardDef(code: CardCode): PlayerCardDef | undefined {

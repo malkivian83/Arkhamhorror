@@ -10,6 +10,7 @@ import {
   emptyCampaignLog,
   isPermanent,
   playerCardBehavior,
+  playerCardDef,
   type CampaignLog,
   type CardCode,
   type Difficulty,
@@ -157,7 +158,14 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
 /** Cierra el escenario terminado: guarda su registro y pasa al siguiente. */
 export function finishScenario(campaign: Campaign, game: GameState): Campaign {
   if (!game.outcome) throw new Error('El escenario aún no ha terminado')
-  const log = game.campaignLog ?? campaign.log
+  const played = game.campaignLog ?? campaign.log
+  // La experiencia no baja de 0 (Dead Ends puede restar más de lo ganado).
+  const log = {
+    ...played,
+    investigators: Object.fromEntries(
+      Object.entries(played.investigators).map(([id, r]) => [id, { ...r, xp: Math.max(0, r.xp) }]),
+    ),
+  }
   const xp = Object.fromEntries(
     campaign.investigators.map((i) => [
       i.id,
@@ -179,9 +187,10 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
 /** Tamaño del mazo si la carta del investigador no lo indica (sin contar debilidades). */
 export const DECK_SIZE = 30
 
-/** Tamaño del mazo de un investigador. */
-export const deckSizeOf = (investigator: InvestigatorId) =>
-  byCode(investigator)?.deckSize ?? DECK_SIZE
+/** Tamaño del mazo de un investigador (más lo que añaden sus cartas, como Collector). */
+export const deckSizeOf = (investigator: InvestigatorId, deck: CardCode[] = []) =>
+  (byCode(investigator)?.deckSize ?? DECK_SIZE) +
+  [...new Set(deck)].reduce((n, code) => n + (playerCardDef(code)?.deckSizeBonus ?? 0), 0)
 
 /** Cartas exclusivas (y debilidades exclusivas) de cualquier investigador. */
 const SIGNATURES = new Set(playerCards.flatMap((c) => c.signatures ?? []))
@@ -231,12 +240,13 @@ export function purchaseOptions(
   const { deck } = member(campaign, investigator)
   const xp = campaign.log.investigators[investigator]?.xp ?? 0
   const options = byCode(investigator)?.deckOptions ?? []
-  const full = deckSize(deck) >= deckSizeOf(investigator)
+  const full = deckSize(deck) >= deckSizeOf(investigator, deck)
   return playerCards
     .filter(
       (card) =>
         card.type !== 'investigator' &&
         !card.weakness &&
+        !card.reward &&
         !isSignature(card.code) &&
         options.some((o) => o.classes.includes(card.class) && (card.xp ?? 0) <= o.maxLevel),
     )

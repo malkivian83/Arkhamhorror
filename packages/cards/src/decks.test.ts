@@ -11,6 +11,7 @@ import {
   withRandomBasicWeakness,
   type DeckList,
 } from './decks'
+import { COLLECTOR } from './brethren-of-ash/queen-of-ash'
 import './index'
 
 const DANIELA = code(1)
@@ -109,5 +110,34 @@ describe('mazos: ArkhamDB', () => {
     expect(unknown).toEqual(['01016'])
     const other = deckFromArkhamDb({ name: 'Roland', investigator_code: '01001', slots: {} }, 'id')
     expect(other.deck).toBeNull()
+  })
+})
+
+describe('mazos: recompensa Collector', () => {
+  const relicOrCharm = () =>
+    cardPool(DANIELA, { deck: [COLLECTOR] }).find(
+      (c) => !cardPool(DANIELA).some((own) => own.code === c.code),
+    )
+
+  it('solo se puede incluir si se ha ganado', () => {
+    const deck = { ...daniela(), cards: [...daniela().cards, COLLECTOR] }
+    expect(keys(deck)).toContain('deck.problem.rewardNotEarned')
+    expect(validateDeck(deck, true, [COLLECTOR]).problems.map((p) => p.key)).not.toContain(
+      'deck.problem.rewardNotEarned',
+    )
+    expect(cardPool(DANIELA, { rewards: [COLLECTOR] }).some((c) => c.code === COLLECTOR)).toBe(true)
+  })
+
+  it('+5 al tamaño del mazo y 1 apoyo Relic o Charm de otra clase', () => {
+    const extra = relicOrCharm()
+    expect(extra?.traits.some((t) => t === 'Relic' || t === 'Charm')).toBe(true)
+    const base = { ...daniela(), cards: [...daniela().cards, COLLECTOR] }
+    expect(validateDeck(base, true, [COLLECTOR]).problems).toEqual([
+      { key: 'deck.problem.size', params: { n: 30, size: 35 } },
+    ])
+    const two = { ...base, cards: [...base.cards, extra!.code, extra!.code] }
+    expect(validateDeck(two, false, [COLLECTOR]).problems.map((p) => p.key)).toContain(
+      'deck.problem.notAllowed',
+    )
   })
 })

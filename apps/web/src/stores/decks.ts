@@ -1,8 +1,25 @@
-import { arkhamDbDeckId, deckFromArkhamDb, type ArkhamDbDeck, type DeckList } from '@lcg/cards'
+import {
+  arkhamDbDeckId,
+  deckFromArkhamDb,
+  validateDeck,
+  type ArkhamDbDeck,
+  type DeckList,
+} from '@lcg/cards'
+import type { CardCode } from '@lcg/engine'
 import { defineStore } from 'pinia'
 import { shallowRef } from 'vue'
 
 const STORAGE_KEY = 'lcg:decks'
+const REWARDS_KEY = 'lcg:rewards'
+
+function loadRewards(): CardCode[] {
+  try {
+    const raw = localStorage.getItem(REWARDS_KEY)
+    return raw ? (JSON.parse(raw) as CardCode[]) : []
+  } catch {
+    return []
+  }
+}
 
 function load(): DeckList[] {
   try {
@@ -24,6 +41,22 @@ export type ImportResult =
 /** Mazos propios del jugador, guardados en el navegador. */
 export const useDecksStore = defineStore('decks', () => {
   const decks = shallowRef<DeckList[]>(load())
+  /** Cartas de recompensa ganadas en campañas (Collector…), para mazos nuevos. */
+  const rewards = shallowRef<CardCode[]>(loadRewards())
+
+  function addRewards(codes: CardCode[]) {
+    const next = [...new Set([...rewards.value, ...codes])]
+    if (next.length === rewards.value.length) return
+    rewards.value = next
+    try {
+      localStorage.setItem(REWARDS_KEY, JSON.stringify(next))
+    } catch {
+      // Sin almacenamiento: duran lo que la pestaña.
+    }
+  }
+
+  /** Comprueba un mazo para empezar una campaña, con las recompensas ganadas. */
+  const check = (deck: DeckList) => validateDeck(deck, true, rewards.value)
 
   function persist(next: DeckList[]) {
     decks.value = next
@@ -72,5 +105,5 @@ export const useDecksStore = defineStore('decks', () => {
     return { ok: true, deck, unknown }
   }
 
-  return { decks, save, remove, importFromArkhamDb }
+  return { decks, rewards, addRewards, check, save, remove, importFromArkhamDb }
 })

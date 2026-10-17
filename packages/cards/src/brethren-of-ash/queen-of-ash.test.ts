@@ -11,7 +11,7 @@ import { describe, expect, it } from 'vitest'
 import { finishScenario, newCampaign, startScenario } from '../campaign'
 import { code, starterInvestigator } from '../core-2026/player-cards'
 import '../index'
-import { CODES, elokossFaintEmbers, queenOfAsh, servantSacrifice } from './queen-of-ash'
+import { COLLECTOR, CODES, elokossFaintEmbers, queenOfAsh, servantSacrifice } from './queen-of-ash'
 import { CODES as SF } from './spreading-flames'
 
 const DANIELA = code(1)
@@ -164,6 +164,8 @@ describe('Queen of Ash: resolución y campaña', () => {
     expect(game.outcome).toEqual({ type: 'resolution', resolution: 1 })
     const next = finishScenario(campaign, game)
     expect(next.log.notes).toEqual(expect.arrayContaining(['defeatedElokoss', 'campaignWon']))
+    // Recompensa para mazos nuevos.
+    expect(next.log.rewards).toEqual([COLLECTOR])
     expect(next.log.investigators[DANIELA]).toMatchObject({
       xp: 5,
       physicalTrauma: 2,

@@ -19,6 +19,7 @@ import {
 import { defineStore } from 'pinia'
 import { computed, nextTick, shallowRef } from 'vue'
 import { markOf, undoTarget, type Mark, type UndoKind } from '../game/undo'
+import { useDecksStore } from './decks'
 
 const STORAGE_KEY = 'lcg:game'
 const HISTORY_KEY = 'lcg:history'
@@ -180,7 +181,10 @@ export const useGameStore = defineStore('game', () => {
   function closeScenario() {
     const game = latest
     if (!campaign.value || !game?.outcome) return
-    setCampaign(finishScenario(campaign.value, game))
+    const next = finishScenario(campaign.value, game)
+    // Las recompensas ganadas quedan disponibles para mazos nuevos.
+    useDecksStore().addRewards(next.log.rewards ?? [])
+    setCampaign(next)
     set(null, null)
   }
 

@@ -85,7 +85,8 @@
     "chooseAttackOrder": "Elige qué enemigo te ataca primero",
     "whoPaysClue": "¿Quién gasta la siguiente pista? (faltan {n})",
     "armitageControl": "¿Quién toma el control del Dr. Henry Armitage?",
-    "searchFire": "¿Dónde buscáis las cartas de Fire!?"
+    "searchFire": "¿Dónde buscáis las cartas de Fire!?",
+    "arrangeCards": "Coloca las cartas que has mirado arriba o abajo de tu mazo"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -162,7 +163,9 @@
     "attackFirst": "{enemy} ataca primero",
     "investigatorPaysClue": "{name} gasta 1 pista (tiene {clues})",
     "fireFromDiscard": "Solo en la pila de descartes de encuentros",
-    "fireFromBoth": "En el mazo y en la pila de descartes de encuentros"
+    "fireFromBoth": "En el mazo y en la pila de descartes de encuentros",
+    "placeOnTop": "{card} arriba del mazo",
+    "placeOnBottom": "{card} al fondo del mazo"
   },
   "phase": {
     "setup": "Preparación",
@@ -400,7 +403,7 @@
       "allKilled": "Todos los investigadores mueren.",
       "campaignLost": "Los investigadores pierden la campaña.",
       "campaignWon": "¡Los investigadores ganan la campaña!",
-      "collector": "Los investigadores ganan la carta de recompensa Collector (aún no se puede añadir a los mazos).",
+      "collector": "Los investigadores ganan la carta de recompensa Collector: podrán incluirla al crear mazos nuevos.",
       "traumaBoth": "Cada investigador sufre {n} trauma físico y {n} trauma mental.",
       "killedUnlessResigned": "Mueren los investigadores que no se retiraron.",
       "escapedRewards": "Los que se retiraron ganan la experiencia de la zona de victoria más 3 y sufren 3 trauma mental."
@@ -622,7 +625,55 @@
       "missingSignature": "Falta su carta exclusiva {card}.",
       "otherSignature": "{card} es exclusiva de otro investigador.",
       "levelAtStart": "{card} tiene nivel: al empezar la campaña solo se admite nivel 0.",
-      "unknownCard": "Carta desconocida: {card}."
+      "unknownCard": "Carta desconocida: {card}.",
+      "rewardNotEarned": "Recompensa no ganada: {card}"
+    }
+  },
+  "keywords": {
+    "title": "Palabras clave y conceptos",
+    "doomed": {
+      "title": "Condenado",
+      "body": "Cuando se derrota a un enemigo condenado (por un investigador o por un efecto), se pone 1 perdición en el plan, lo que puede hacerlo avanzar. Descartarlo no cuenta como derrotarlo."
+    },
+    "hunter": {
+      "title": "Cazador",
+      "body": "Al empezar la fase de enemigos, cada cazador preparado y no enfrentado avanza una localización por el camino más corto hacia el investigador más cercano. Si ya hay un investigador en su localización, no se mueve. Con empate, decide su presa o, si no, el jefe."
+    },
+    "peril": {
+      "title": "Peligro",
+      "body": "Mientras resuelves una carta con peligro, no puedes consultar al resto del grupo y nadie más puede jugar cartas, activar habilidades ni comprometer cartas a tus pruebas."
+    },
+    "prey": {
+      "title": "Presa",
+      "body": "Algunos enemigos persiguen a un investigador concreto: entre varios a la misma distancia (o en su localización), eligen al que mejor cumple lo que indica su presa."
+    },
+    "retaliate": {
+      "title": "Represalia",
+      "body": "Si fallas una prueba al atacar a un enemigo preparado con represalia, después de aplicar los resultados te ataca (esté o no enfrentado contigo). No se agota por ello."
+    },
+    "surge": {
+      "title": "Oleada",
+      "body": "Después de robar y resolver una carta de encuentro con oleada, robas y resuelves otra."
+    },
+    "codex": {
+      "title": "El códex",
+      "body": "Algunas cartas remiten a una entrada numerada del códex. Al activarla, se lee su texto y se resuelven sus instrucciones; la mesa lo muestra en una ventana."
+    },
+    "alert": {
+      "title": "Alerta",
+      "body": "Si fallas una prueba al evitar a un enemigo con alerta, después de aplicar los resultados te ataca. No se agota por ello."
+    },
+    "aloof": {
+      "title": "Distante",
+      "body": "Un enemigo distante no se enfrenta automáticamente a los investigadores de su localización; hay que enfrentarse a él con una acción (o un efecto)."
+    },
+    "elusive": {
+      "title": "Escurridizo",
+      "body": "Después de que un enemigo escurridizo sea atacado (y no derrotado) o evitado, se aleja a una localización conectada, si puede sin investigadores, y deja de estar enfrentado."
+    },
+    "massive": {
+      "title": "Masivo",
+      "body": "Un enemigo masivo preparado cuenta como enfrentado a cada investigador de su localización, ataca a todos ellos en la fase de enemigos y no se agota hasta terminar sus ataques. No se puede colocar en una zona de amenaza."
     }
   }
 }

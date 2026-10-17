@@ -363,7 +363,9 @@ export function investigateAbility(position: number, options: InvestigateOptions
       label: 'ability.investigateWith',
       params: { card: name(position), skill },
       target: { type: 'location', id: here },
-      actions: 1,
+      // FAQ 1.6: los costes adicionales de investigar la localización (Waterfront) también
+      // se pagan al investigar con una carta.
+      actions: 1 + (getLocation(state, here).investigateExtraActions ?? 0),
       provokes: true,
       then: [
         ...(options.cost?.(self) ?? []),
@@ -653,7 +655,10 @@ registerPlayerCard({
 registerPlayerCard({
   code: code(24),
   noAttacksOfOpportunity: true,
-  canPlay: (state, investigator) => getInvestigator(state, investigator).actionsRemaining === 3,
+  // FAQ 2.18: solo como acción de tu turno (nunca rápida ni fuera de turno), y la primera.
+  canPlay: (state, investigator) =>
+    state.activeTurn === investigator &&
+    (getInvestigator(state, investigator).actionsTaken ?? 0) === 0,
   play: (state, investigator) => {
     const here = getInvestigator(state, investigator).location
     const enemyHere = here !== null && enemiesAt(state, here).length > 0

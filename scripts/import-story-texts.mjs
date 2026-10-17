@@ -110,6 +110,9 @@ const setupSteps = (scenario) => {
     .join('\n\n')
 }
 
+/** Título de la guía → clave de las palabras clave en los ficheros de idioma. */
+const KEYWORDS = { 'The Codex': 'codex' }
+
 const SUSPECTS = [
   'davidRenfield',
   'corneliaAkely',
@@ -178,6 +181,15 @@ const texts = {
       `story.queenOfAsh.${r}`,
       join2('queenOfAsh', [`resolutions.${r}.body`]),
     ]),
+  ),
+  // Palabras clave y conceptos de la guía (por su título en inglés).
+  ...Object.fromEntries(
+    Object.values(brethren)
+      .flatMap((file) => file.keywordsAndConcepts?.entries ?? [])
+      .map((entry) => [
+        `keywords.${KEYWORDS[entry.title] ?? entry.title.toLowerCase()}.body`,
+        toText(entry.body),
+      ]),
   ),
 }
 

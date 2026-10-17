@@ -8,7 +8,6 @@ import {
   playerCards,
   STARTER_DECKS,
   starterDeckList,
-  validateDeck,
   type DeckList,
   type DeckProblem,
 } from '@lcg/cards'
@@ -32,8 +31,10 @@ const def = (code: string) => playerCards.find((c) => c.code === code)
 // ------------------------------------------------------------- Lista y creación
 const selectedId = ref<string | null>(store.decks[0]?.id ?? null)
 const selected = computed(() => store.decks.find((d) => d.id === selectedId.value) ?? null)
-const check = computed(() => (selected.value ? validateDeck(selected.value) : null))
-const size = computed(() => (selected.value ? deckSizeOf(selected.value.investigator) : 30))
+const check = computed(() => (selected.value ? store.check(selected.value) : null))
+const size = computed(() =>
+  selected.value ? deckSizeOf(selected.value.investigator, selected.value.cards) : 30,
+)
 
 /** Texto de un problema, con el nombre de la carta traducido. */
 function problemText(p: DeckProblem): string {
@@ -128,7 +129,10 @@ const levelZero = ref(true)
 const pool = computed(() => {
   if (!selected.value) return []
   const text = search.value.trim().toLowerCase()
-  return cardPool(selected.value.investigator)
+  return cardPool(selected.value.investigator, {
+    rewards: store.rewards,
+    deck: selected.value.cards,
+  })
     .filter(
       (c) =>
         (!classFilter.value || c.class === classFilter.value) &&
@@ -139,7 +143,16 @@ const pool = computed(() => {
     .sort((a, b) => (a.xp ?? 0) - (b.xp ?? 0) || name(a.code).localeCompare(name(b.code)))
 })
 const poolClasses = computed(() =>
-  selected.value ? [...new Set(cardPool(selected.value.investigator).map((c) => c.class))] : [],
+  selected.value
+    ? [
+        ...new Set(
+          cardPool(selected.value.investigator, {
+            rewards: store.rewards,
+            deck: selected.value.cards,
+          }).map((c) => c.class),
+        ),
+      ]
+    : [],
 )
 /** Copias por título (2 como máximo, sumando niveles). */
 const titleCount = (code: string) => {
@@ -200,13 +213,13 @@ const titleCount = (code: string) => {
             <button type="button" class="pick" @click="selectedId = d.id">
               <strong>{{ d.name }}</strong>
               <small>{{ name(d.investigator) }}</small>
-              <span class="status" :class="{ ok: !validateDeck(d).problems.length }">
+              <span class="status" :class="{ ok: !store.check(d).problems.length }">
                 {{
-                  validateDeck(d).problems.length
+                  store.check(d).problems.length
                     ? t(
                         'decks.problems',
-                        { n: validateDeck(d).problems.length },
-                        validateDeck(d).problems.length,
+                        { n: store.check(d).problems.length },
+                        store.check(d).problems.length,
                       )
                     : t('decks.valid')
                 }}

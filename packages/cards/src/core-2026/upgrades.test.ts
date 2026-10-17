@@ -9,7 +9,9 @@ import { choose, during, labels, testInvestigator, withBag } from '@lcg/engine/t
 import { describe, expect, it } from 'vitest'
 import { CODES, spreadingFlames } from '../brethren-of-ash/spreading-flames'
 import '../index'
-import { code, starterInvestigator } from './player-cards'
+import { code, def as cardDef, starterInvestigator } from './player-cards'
+
+const def = (n: number) => cardDef(n).name
 
 const DANIELA = code(1)
 const ROOM = CODES.yourFriendsRoom
@@ -148,5 +150,39 @@ describe('reacciones y pruebas', () => {
     expect(inv(game).hand).toContain(code(93))
     expect(inv(game).discard).toEqual([code(84)])
     expect(inv(game).deck).toHaveLength(deck - 1) // roba 1
+  })
+})
+
+describe('pendientes de la FAQ y de la caja', () => {
+  it('Unbridled Knowledge: roba 3 y coloca el resto arriba o abajo, en el orden que quieras', () => {
+    let game = during(newGame(), (s) => ({
+      ...withHand([43])(s),
+      investigators: s.investigators.map((i) => ({
+        ...i,
+        hand: [code(43)],
+        resources: 10,
+        deck: [code(16), code(17), code(18), code(19), code(20), code(21), code(22)],
+      })),
+    }))
+    game = choose(game, 'action.play', { card: 'Unbridled Knowledge' })
+    for (const n of [16, 17, 18]) game = choose(game, 'choice.takeCard', { card: def(n) })
+    expect(game.pending?.question.prompt).toBe('prompt.arrangeCards')
+    game = choose(game, 'choice.placeOnBottom', { card: def(19) })
+    game = choose(game, 'choice.placeOnTop', { card: def(20) })
+    expect(inv(game).deck).toEqual([code(20), code(21), code(22), code(19)])
+  })
+
+  it('Scene of the Crime: solo como primera acción del turno', () => {
+    let game = during(newGame(), withHand([24]))
+    expect(labels(game)).toContain('action.play')
+    game = during(game, (s) => ({
+      ...s,
+      investigators: s.investigators.map((i) => ({ ...i, actionsTaken: 1 })),
+    }))
+    expect(
+      game.pending?.question.choices.some(
+        (c) => c.label === 'action.play' && c.params?.card === def(24),
+      ),
+    ).toBe(false)
   })
 })

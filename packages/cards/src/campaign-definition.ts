@@ -29,6 +29,8 @@ export interface CampaignScenario {
   build?: (context: ScenarioContext) => ScenarioDefinition
   /** Apoyos de historia que el escenario pone en juego en vez de barajarlos en el mazo. */
   storyAssetsInPlay?: CardCode[]
+  /** Palabras clave y conceptos que explica la guía (claves i18n `keywords.<clave>`). */
+  keywords?: string[]
 }
 
 export interface CampaignDefinition {
@@ -56,4 +58,13 @@ export function campaignDefinition(id: string): CampaignDefinition {
 
 export function allCampaigns(): CampaignDefinition[] {
   return [...campaigns.values()]
+}
+
+/** Palabras clave y conceptos de un escenario, busque en la campaña que sea. */
+export function scenarioKeywords(scenarioId: string): string[] {
+  for (const campaign of campaigns.values()) {
+    const found = campaign.scenarios.find((s) => s.id === scenarioId)
+    if (found) return found.keywords ?? []
+  }
+  return []
 }

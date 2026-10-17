@@ -75,6 +75,7 @@ export {
 export {
   allCampaigns,
   campaignDefinition,
+  scenarioKeywords,
   registerCampaign,
   type CampaignDefinition,
   type CampaignScenario,

@@ -158,7 +158,7 @@ function abandon() {
                 {{
                   t('campaign.deckSize', {
                     n: deckSize(i.deck),
-                    size: deckSizeOf(i.id),
+                    size: deckSizeOf(i.id, i.deck),
                   })
                 }}
               </dd>

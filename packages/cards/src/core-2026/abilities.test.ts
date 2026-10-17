@@ -234,3 +234,27 @@ describe('cartas de jugador', () => {
     expect(me(s).hand.length).toBe(hand + 2)
   })
 })
+
+describe('debilidades: efectos de campaña al terminar la partida', () => {
+  const end = { type: 'EndScenario', outcome: { type: 'noResolution' } } as const
+  const record = (s: GameState) => s.campaignLog!.investigators.a!
+
+  it("In Harm's Way en juego al terminar: 1 trauma físico", () => {
+    let s = game('a')
+    s = during(s, set({ deck: [code(3)] }), { type: 'DrawCards', investigator: 'a', amount: 1 })
+    s = dispatch({ ...s, pending: null }, end)
+    expect(record(s).physicalTrauma).toBe(1)
+  })
+
+  it('Dead Ends en la mano al terminar o al ser eliminado: 2 de experiencia menos', () => {
+    let s = game('a')
+    s = dispatch(
+      { ...set({ hand: [code(6)] })(s), pending: null },
+      {
+        type: 'EliminateInvestigator',
+        investigator: 'a',
+      },
+    )
+    expect(record(s).xp).toBe(-2)
+  })
+})
