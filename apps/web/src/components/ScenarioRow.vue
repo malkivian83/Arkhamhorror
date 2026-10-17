@@ -19,6 +19,7 @@ const topDiscard = computed(() => props.state.encounterDiscard.at(-1))
 const actClues = computed(() => cluesToAdvanceAct(props.state))
 const encounterBack = computed(() => cardBackImage('encounter'))
 const topVictory = computed(() => props.state.victoryDisplay.at(-1))
+const stories = computed(() => Object.values(props.state.stories ?? {}))
 
 function showDiscard() {
   showPile({
@@ -79,6 +80,36 @@ const sortedBag = computed(() =>
         </GameCard>
       </div>
     </TableTarget>
+
+    <!-- Cartas de Historia en juego (facción aliada y rival en La gala). -->
+    <TableTarget v-for="s in stories" :key="s.code" :target="`story:${s.code}`">
+      <div class="slot folder">
+        <span class="folder-tab">{{ t('table.story') }}</span>
+        <GameCard :code="s.code" :name="s.name" :width="62" color="#6b4a8a">
+          <TokenBadge
+            v-if="s.clues > 0"
+            class="badge-token"
+            kind="clue"
+            :value="s.clues"
+            :size="28"
+            :title="t('table.clues')"
+          />
+        </GameCard>
+      </div>
+    </TableTarget>
+
+    <!-- Mazos propios del escenario (mazo de Invitados). -->
+    <div
+      v-for="(cards, name) in state.scenarioDecks ?? {}"
+      :key="name"
+      class="slot deck folder"
+      :title="t(`table.scenarioDeck.${name}`)"
+    >
+      <span class="folder-tab">{{ t(`table.scenarioDeck.${name}`) }}</span>
+      <div class="card-back" :style="{ '--depth': Math.min(cards.length, 6) }">
+        <strong>{{ cards.length }}</strong>
+      </div>
+    </div>
 
     <div class="slot deck folder" :title="t('table.encounterDeck')">
       <span class="folder-tab">{{ t('table.deck') }}</span>

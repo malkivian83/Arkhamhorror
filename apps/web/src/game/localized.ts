@@ -42,10 +42,15 @@ export interface LocalizedCard {
   victory?: number
 }
 
-const SOURCES: Record<string, string> = {
-  es: 'https://es.arkhamdb.com/api/public/cards/core_2026.json',
+/** Paquetes de cada idioma: caja básica 2026 y La gala del ecuador del invierno (con sus encuentros). */
+const SOURCES: Record<string, string[]> = {
+  es: [
+    'https://es.arkhamdb.com/api/public/cards/core_2026.json',
+    'https://es.arkhamdb.com/api/public/cards/tmg.json?encounter=1',
+  ],
 }
-const CACHE_PREFIX = 'lcg:cards:'
+// v2: incluye La gala del ecuador del invierno.
+const CACHE_PREFIX = 'lcg:cards:v2:'
 const CACHE_HOURS = 24
 
 /** Cartas del idioma activo por código. Vacío para inglés (se usan las imágenes). */
@@ -83,8 +88,8 @@ function apply(cards: LocalizedCard[]) {
 
 /** Activa el idioma: descarga sus datos si hace falta. Si falla, se sigue en inglés. */
 export async function useCardLocale(locale: string): Promise<void> {
-  const source = SOURCES[locale]
-  if (!source) {
+  const sources = SOURCES[locale]
+  if (!sources) {
     apply([])
     return
   }
@@ -95,9 +100,14 @@ export async function useCardLocale(locale: string): Promise<void> {
     return
   }
   try {
-    const response = await fetch(source)
-    if (!response.ok) throw new Error(String(response.status))
-    const cards = (await response.json()) as LocalizedCard[]
+    const packs = await Promise.all(
+      sources.map(async (source) => {
+        const response = await fetch(source)
+        if (!response.ok) throw new Error(String(response.status))
+        return (await response.json()) as LocalizedCard[]
+      }),
+    )
+    const cards = packs.flat()
     loaded.set(locale, cards)
     writeCache(locale, cards)
     apply(cards)

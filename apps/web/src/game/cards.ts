@@ -29,7 +29,15 @@ const SWAPPED_SIDES = new Set([
   '12187',
 ])
 
+/**
+ * Caras traseras de cartas de dos caras que ArkhamDB no tiene (La gala: Líderes como
+ * enemigo, El Exangüe desatado, cartas de Historia rival, La Lámpara): se usan las del
+ * servidor de imágenes del proyecto de referencia.
+ */
+const REFERENCE_IMAGES = 'https://assets.arkhamhorror.app/img/arkham/cards/'
+
 export function cardImage(code: string, back = false): string | null {
+  if (/^\d{5}b$/.test(code)) return `${REFERENCE_IMAGES}${code}.avif`
   if (!/^\d{5}$/.test(code)) return null
   const suffix = back !== SWAPPED_SIDES.has(code) ? 'b' : ''
   return `${IMAGE_BASE}${code}${suffix}.jpg`

@@ -38,6 +38,9 @@ export function targetKey(target: ChoiceTarget): string {
       return `${target.type}:${target.id}`
     case 'hand':
       return `hand:${target.code}`
+    case 'story':
+    case 'placed':
+      return `${target.type}:${target.id}`
     case 'agenda':
     case 'act':
       return target.type

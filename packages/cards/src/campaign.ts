@@ -30,6 +30,7 @@ import {
 } from './core-2026/player-cards'
 // Campañas registradas.
 import './brethren-of-ash/definition'
+import './midwinter-gala/definition'
 // Comportamiento de las cartas: hace falta para saber cuáles se pueden comprar.
 import './core-2026/cards'
 import './core-2026/investigators'

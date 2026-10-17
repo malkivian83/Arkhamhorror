@@ -73,6 +73,9 @@ Estado detallado del motor: [08-motor.md](08-motor.md).
 - [x] Recompensa Collector en los mazos.
 - [x] Niveles de dificultad (bolsas del caos).
 
+- [x] Escenario independiente: La gala del ecuador del invierno ([14-la-gala.md](14-la-gala.md)).
+- [x] Pasos de las fases en pantalla y textos oficiales en español.
+
 ## Fase 5 · Crecimiento
 
 - [ ] Más campañas, una a una, con sus tests.

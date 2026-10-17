@@ -74,6 +74,12 @@ const TOKENS = {
   agility: 'agility',
   wild: 'wild',
   perPlayer: 'per_investigator',
+  // Iconos de clase: el nombre de la facción ya va en el texto.
+  guardian: '',
+  seeker: '',
+  rogue: '',
+  mystic: '',
+  survivor: '',
   codex: '',
 }
 
@@ -104,6 +110,8 @@ function toText(html) {
     .replace(/<p[^>]*>/g, '\n\n')
     .replace(/<[^>]+>/g, '')
     .replace(/&nbsp;/g, ' ')
+    // Paréntesis que quedan vacíos al quitar los iconos de clase.
+    .replace(/ \(\)/g, '')
     .replace(/&amp;/g, '&')
     .replace(/&ldquo;/g, '“')
     .replace(/&rdquo;/g, '”')
@@ -131,6 +139,47 @@ const setupSteps = (scenario) => {
   return [...Object.values(own), ...shared.map((k) => common[k])]
     .map((step) => `• ${toText(step)}`)
     .join('\n\n')
+}
+
+/** Textos de La gala del ecuador del invierno (locales/en/standalone/theMidwinterGala.json). */
+function galaTexts() {
+  const file = join(locales, 'standalone/theMidwinterGala.json')
+  if (!existsSync(file)) return {}
+  const gala = load('standalone/theMidwinterGala.json')
+  const g = (path) => get(gala, path)
+  const text = (...paths) =>
+    paths
+      .map(g)
+      .filter((v) => typeof v === 'string')
+      .map(toText)
+      .join('\n\n')
+  const FACTION_KEYS = {
+    foundation: 'theFoundation',
+    miskatonic: 'miskatonicUniversity',
+    syndicate: 'theSyndicate',
+    lodge: 'theSilverTwilightLodge',
+    kingsport: 'localsOfKingsport',
+  }
+  const out = {
+    'story.midwinterGala.intro1': text('intro.flavor'),
+    'story.midwinterGala.intro2': text('intro.body'),
+    'story.midwinterGala.contact': text('intro.guestChoice'),
+    'story.midwinterGala.setup': Object.values(gala.setup ?? {})
+      .map((step) => `• ${toText(step)}`)
+      .join('\n\n'),
+    'story.midwinterGala.noResolution': text('resolutions.noResolution.body'),
+  }
+  for (const [ours, theirs] of Object.entries(FACTION_KEYS)) {
+    out[`story.midwinterGala.faction.${ours}`] = text(`intro.${theirs}`)
+    out[`story.midwinterGala.interlude.${ours}`] = text(
+      'theFabledJewel.body',
+      `theFabledJewel.${theirs}`,
+    )
+  }
+  for (let n = 1; n <= 7; n++) {
+    out[`story.midwinterGala.resolution${n}`] = text(`resolutions.resolution${n}.body`)
+  }
+  return out
 }
 
 /** Título de la guía → clave de las palabras clave en los ficheros de idioma. */
@@ -205,6 +254,8 @@ const texts = {
       join2('queenOfAsh', [`resolutions.${r}.body`]),
     ]),
   ),
+  // La gala del ecuador del invierno (escenario independiente).
+  ...galaTexts(),
   // Palabras clave y conceptos de la guía (por su título en inglés).
   ...Object.fromEntries(
     Object.values(brethren)

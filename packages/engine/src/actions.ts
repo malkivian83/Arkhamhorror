@@ -5,6 +5,8 @@ import {
   locationBehavior,
   playerCardBehavior,
   playerCardDef,
+  scenarioBehavior,
+  storyBehavior,
   treacheryBehavior,
 } from './content'
 import {
@@ -14,6 +16,7 @@ import {
   getInvestigator,
   getLocation,
   perInvestigator,
+  placedLocation,
 } from './state'
 import type {
   AbilityLimit,
@@ -72,7 +75,7 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
     { kind: 'draw' },
     { kind: 'resource' },
     { kind: 'investigate' },
-    ...location.connections
+    ...(leavingBlocked(state, here) ? [] : location.connections)
       .filter((to) => state.locations[to] && canAffordEntry(state, to))
       .map((to): Action => ({ kind: 'move', to })),
     // Un enemigo distante (aloof) no enfrentado no puede ser atacado.
@@ -116,6 +119,16 @@ export function actionCost(state: GameState, id: InvestigatorId, action: Action)
 }
 
 /** Coste adicional de entrar o salir de una localización por las traiciones unidas a ella. */
+/** Una traición unida impide salir de la localización (Secret Door). */
+export function leavingBlocked(state: GameState, location: string): boolean {
+  return Object.values(state.treacheries).some(
+    (t) =>
+      t.placement.type === 'location' &&
+      t.placement.location === location &&
+      treacheryBehavior(t.code)?.blocksLeaving,
+  )
+}
+
 function moveCost(state: GameState, location: string): number {
   return Object.values(state.treacheries).reduce(
     (sum, t) =>
@@ -202,6 +215,7 @@ export function actContributors(state: GameState): Investigator[] {
 export function canAdvanceAct(state: GameState): boolean {
   const required = cluesToAdvanceAct(state)
   if (required === null) return false
+  if (scenarioBehavior(state.scenarioId)?.actAdvanceAllowed?.(state) === false) return false
   const available = actContributors(state).reduce((sum, i) => sum + i.clues, 0)
   return available >= required
 }
@@ -281,6 +295,23 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
         id: a.id,
       }),
     ),
+    // Cartas de Historia: cualquier investigador puede usar sus habilidades.
+    ...Object.values(state.stories ?? {}).flatMap((s) =>
+      withTarget(storyBehavior(s.code)?.abilities?.(state, s, id) ?? [], {
+        type: 'story',
+        id: s.code,
+      }),
+    ),
+    // Apoyos sin dueño en tu localización (o vinculados a un enemigo de ella).
+    ...Object.values(state.placedAssets ?? {})
+      .filter((p) => !p.faceDown && placedLocation(state, p) === here)
+      .flatMap((p) =>
+        withTarget(playerCardBehavior(p.code)?.placedAbilities?.(state, p, id) ?? [], {
+          type: 'placed',
+          id: p.id,
+        }),
+      ),
+    ...(scenarioBehavior(state.scenarioId)?.abilities?.(state, null, id) ?? []),
   ]
   return options.filter(
     (a) => a.actions <= investigator.actionsRemaining && withinLimit(state, a.key, id, a.limit),

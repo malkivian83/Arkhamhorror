@@ -2,6 +2,7 @@
 import { shroudOf, type GameState, type Location } from '@lcg/engine'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { cardBackImage } from '../game/assets'
 import GameCard from './GameCard.vue'
 import InvestigatorMini from './InvestigatorMini.vue'
 import TokenBadge from './TokenBadge.vue'
@@ -74,6 +75,17 @@ const investigatorsAt = (id: string) =>
   props.state.investigators.filter((i) => !i.eliminated && i.location === id)
 const enemiesAt = (id: string) =>
   Object.values(props.state.enemies).filter((e) => e.location === id)
+/** Apoyos sin dueño en la localización (Invitados, Joya…). */
+const placedAt = (id: string) =>
+  Object.values(props.state.placedAssets ?? {}).filter(
+    (p) => p.placement.type === 'location' && p.placement.location === id,
+  )
+/** Apoyos vinculados a un enemigo (La Lámpara Mortecina, la Joya). */
+const attachedTo = (enemy: string) =>
+  Object.values(props.state.placedAssets ?? {}).filter(
+    (p) => p.placement.type === 'enemy' && p.placement.enemy === enemy,
+  )
+const playerBack = computed(() => cardBackImage('player'))
 const treacheriesAt = (id: string) =>
   Object.values(props.state.treacheries).filter(
     (tr) => tr.placement.type === 'location' && tr.placement.location === id,
@@ -138,6 +150,39 @@ const treacheriesAt = (id: string) =>
       </div>
 
       <div class="attachments">
+        <TableTarget v-for="p in placedAt(l.id)" :key="p.id" :target="`placed:${p.id}`">
+          <!-- Un Invitado hechizado está boca abajo. -->
+          <div
+            v-if="p.faceDown"
+            class="spellbound"
+            :title="t('table.spellbound')"
+            :style="playerBack ? { backgroundImage: `url(${playerBack})` } : {}"
+          />
+          <GameCard
+            v-else
+            :code="p.code"
+            :name="p.name"
+            :width="54"
+            :exhausted="p.exhausted"
+            color="#3f6b4a"
+          >
+            <TokenBadge
+              v-if="p.damage > 0"
+              class="enemy-damage"
+              kind="damage"
+              :value="p.damage"
+              :size="20"
+            />
+            <TokenBadge
+              v-if="p.horror > 0"
+              class="placed-horror"
+              kind="horror"
+              :value="p.horror"
+              :size="20"
+            />
+            <TokenBadge v-if="p.doom" class="placed-doom" kind="doom" :value="p.doom" :size="20" />
+          </GameCard>
+        </TableTarget>
         <TableTarget v-for="tr in treacheriesAt(l.id)" :key="tr.id" :target="`treachery:${tr.id}`">
           <GameCard :code="tr.code" :name="tr.name" :width="54" color="#b5462f" />
         </TableTarget>
@@ -161,6 +206,24 @@ const treacheriesAt = (id: string) =>
               :size="24"
             />
           </GameCard>
+          <TableTarget v-for="p in attachedTo(e.id)" :key="p.id" :target="`placed:${p.id}`">
+            <GameCard :code="p.code" :name="p.name" :width="40" class="attached" color="#3f6b4a">
+              <TokenBadge
+                v-if="p.damage > 0"
+                class="enemy-damage"
+                kind="damage"
+                :value="p.damage"
+                :size="16"
+              />
+              <TokenBadge
+                v-if="p.doom"
+                class="placed-doom"
+                kind="doom"
+                :value="p.doom"
+                :size="16"
+              />
+            </GameCard>
+          </TableTarget>
         </TableTarget>
       </div>
     </div>
@@ -171,6 +234,29 @@ const treacheriesAt = (id: string) =>
 .map {
   position: relative;
   margin: 0 auto;
+}
+.spellbound {
+  width: 54px;
+  height: 76px;
+  border-radius: 4px;
+  background: #2a2f3a center / cover;
+  box-shadow:
+    0 0 0 2px #8a5cc4,
+    0 4px 8px rgb(0 0 0 / 60%);
+}
+.attached {
+  margin-top: -18px;
+  margin-left: 14px;
+}
+.placed-horror {
+  position: absolute;
+  right: -6px;
+  bottom: 14px;
+}
+.placed-doom {
+  position: absolute;
+  left: -6px;
+  bottom: -4px;
 }
 .edges {
   position: absolute;
