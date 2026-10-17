@@ -12,7 +12,22 @@ const IMAGE_BASE = 'https://arkhamdb.com/bundles/cards/'
  * la cara sin revelar y `{código}b.jpg` la revelada (localizaciones de Spreading
  * Flames, salvo la inicial). Comprobado a mano con las imágenes.
  */
-const SWAPPED_SIDES = new Set(['12116', '12117', '12118', '12119', '12120'])
+const SWAPPED_SIDES = new Set([
+  // Spreading Flames
+  '12116',
+  '12117',
+  '12118',
+  '12119',
+  '12120',
+  // Queen of Ash: cisterna, compuerta y túneles
+  '12174',
+  '12175',
+  '12183',
+  '12184',
+  '12185',
+  '12186',
+  '12187',
+])
 
 export function cardImage(code: string, back = false): string | null {
   if (!/^\d{5}$/.test(code)) return null

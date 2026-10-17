@@ -56,6 +56,11 @@ export function allCards(): CardDefinition[] {
 export { demoInvestigators, demoScenario } from './demo'
 export { BRETHREN_OF_ASH, CHAOS_BAGS, type Difficulty } from './brethren-of-ash/campaign'
 export {
+  CODES as QUEEN_OF_ASH_CODES,
+  QUEEN_OF_ASH,
+  queenOfAsh,
+} from './brethren-of-ash/queen-of-ash'
+export {
   CODES as SMOKE_AND_MIRRORS_CODES,
   eliteCount,
   SMOKE_AND_MIRRORS,

@@ -29,7 +29,7 @@ const positions = computed(() => {
   const result = new Map<string, [number, number]>()
   const fallback: Location[] = []
   for (const l of locations) {
-    const p = layout.value[l.id]
+    const p = l.position ?? layout.value[l.id]
     if (p) result.set(l.id, p)
     else fallback.push(l)
   }

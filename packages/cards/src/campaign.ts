@@ -18,6 +18,7 @@ import {
   type ScenarioOutcome,
 } from '@lcg/engine'
 import { BRETHREN_OF_ASH, type Difficulty } from './brethren-of-ash/campaign'
+import { queenOfAsh } from './brethren-of-ash/queen-of-ash'
 import { smokeAndMirrors } from './brethren-of-ash/smoke-and-mirrors'
 import { DR_ARMITAGE, spreadingFlames } from './brethren-of-ash/spreading-flames'
 import {
@@ -71,6 +72,15 @@ const SCENARIOS: Record<string, ScenarioEntry> = {
     build: (c, seed, players) =>
       smokeAndMirrors({ difficulty: c.difficulty, log: c.log, seed, players }),
     storyAssetsInPlay: [DR_ARMITAGE],
+  },
+  'queen-of-ash': {
+    build: (c, seed) =>
+      queenOfAsh({
+        difficulty: c.difficulty,
+        log: c.log,
+        seed,
+        investigators: activeMembers(c).map((i) => i.id),
+      }),
   },
 }
 

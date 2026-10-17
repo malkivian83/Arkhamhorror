@@ -40,6 +40,7 @@ export function playableCards(state: GameState, id: InvestigatorId, fast: boolea
     if (!def || (def.fast ?? false) !== fast) return false
     if (def.type !== 'asset' && def.type !== 'event') return false
     if (def.type === 'asset' && assetsBlocked(state, id)) return false
+    if (typeBlocked(investigator, def.type, state.round)) return false
     const behavior = playerCardBehavior(code)
     if (def.type === 'event' && !behavior?.play) return false
     if ((def.cost ?? 0) > investigator.resources) return false
@@ -72,18 +73,35 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
     { kind: 'resource' },
     { kind: 'investigate' },
     ...location.connections
-      .filter((to) => state.locations[to])
+      .filter((to) => state.locations[to] && canAffordEntry(state, to))
       .map((to): Action => ({ kind: 'move', to })),
     // Un enemigo distante (aloof) no enfrentado no puede ser atacado.
     ...enemiesHere
       .filter((e) => e.engagedWith !== null || !e.keywords.includes('aloof'))
       .map((e): Action => ({ kind: 'fight', enemy: e.id })),
     ...engagedEnemies(state, id).map((e): Action => ({ kind: 'evade', enemy: e.id })),
+    // Un enemigo masivo cuenta como enfrentado con todos los de su localización.
     ...enemiesHere
-      .filter((e) => e.engagedWith !== id)
+      .filter((e) => e.keywords.includes('massive') && !e.exhausted)
+      .map((e): Action => ({ kind: 'evade', enemy: e.id })),
+    ...enemiesHere
+      .filter((e) => e.engagedWith !== id && !e.keywords.includes('massive'))
       .map((e): Action => ({ kind: 'engage', enemy: e.id })),
   ]
   return actions.filter((a) => actionCost(state, id, a) <= investigator.actionsRemaining)
+}
+
+/** Pistas en grupo que cuesta entrar en una localización sin revelar (0 si no tiene coste). */
+export function entryCost(state: GameState, location: string): number {
+  const l = state.locations[location]
+  if (!l || l.revealed || !l.enterCost) return 0
+  return l.enterCost * state.startingInvestigatorCount
+}
+
+/** El grupo tiene pistas suficientes para entrar. */
+export function canAffordEntry(state: GameState, location: string): boolean {
+  const cost = entryCost(state, location)
+  return cost === 0 || activeInvestigators(state).reduce((sum, i) => sum + i.clues, 0) >= cost
 }
 
 /** Acciones que cuesta una acción básica, con costes adicionales (Waterfront, Arcane Lock). */
@@ -276,6 +294,11 @@ export function provokesAttacksOfOpportunity(action: Action): boolean {
     return !behavior?.evadeAction && !behavior?.noAttacksOfOpportunity
   }
   return action.kind !== 'fight' && action.kind !== 'evade'
+}
+
+/** Languor: no puede jugar ni comprometer cartas de este tipo esta ronda. */
+export function typeBlocked(investigator: Investigator, cardType: string, round: number): boolean {
+  return (investigator.blockedTypes ?? []).some((b) => b.cardType === cardType && b.round === round)
 }
 
 /** Una debilidad en su zona de amenaza le impide jugar o usar apoyos (The Necronomicon). */

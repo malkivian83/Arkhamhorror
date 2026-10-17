@@ -75,7 +75,8 @@
     "chooseToken": "Elige qué ficha resolver (la otra se ignora)",
     "topEncounter": "Carta superior del mazo de encuentros",
     "whoDraws": "¿Quién roba?",
-    "chooseEnemyDestination": "¿A dónde se mueve el enemigo?"
+    "chooseEnemyDestination": "¿A dónde se mueve el enemigo?",
+    "chooseCardType": "Elige un tipo de carta"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -136,7 +137,15 @@
     "defeatEnemy": "Derrotar a {enemy}",
     "loseAction": "Perder 1 acción",
     "healHorrorOf": "Curar 1 horror a {name}",
-    "healDamageOf": "Curar 1 daño a {name}"
+    "healDamageOf": "Curar 1 daño a {name}",
+    "cardType": {
+      "asset": "Apoyos",
+      "event": "Eventos",
+      "skill": "Habilidades"
+    },
+    "twoDirectDamage": "Recibir 2 daño directo",
+    "twoDirectHorror": "Recibir 2 horror directo",
+    "doomOnAsset": "1 perdición en {card}"
   },
   "phase": {
     "setup": "Preparación",
@@ -194,7 +203,10 @@
     "easttownAlly": "Buscar un aliado en tu mazo y jugarlo",
     "southsideDraw": "Los investigadores de aquí roban 3 cartas entre todos",
     "frenchHillCharge": "Descartar 1 carta: 1 carga o secreto en {card}",
-    "playFromDiscard": "Jugar {card} de tu pila de descartes (−2 al coste)"
+    "playFromDiscard": "Jugar {card} de tu pila de descartes (−2 al coste)",
+    "extinguish": "Gastar {clues} pistas en grupo: descartar el Fire! de tu localización",
+    "weakenElokoss": "Gastar {clues} pistas: poner 1 pista sobre Elokoss ({have}/5)",
+    "openSluice": "Abrir la compuerta (agilidad o combate 5)"
   },
   "log": {
     "round": "Ronda {round}",
@@ -224,7 +236,8 @@
     "searchCanceled": "{name} encuentra {card}: la búsqueda se cancela",
     "sealed": "{name} sella una ficha ({token})",
     "weakness": "{name} roba su debilidad {card}",
-    "underAct": "{enemy} queda debajo del acto"
+    "underAct": "{enemy} queda debajo del acto",
+    "enemyImmune": "{enemy} no puede recibir daño (hay fuego en su localización)"
   },
   "table": {
     "log": "Registro de partida",
@@ -360,7 +373,14 @@
       "bonusAndPhysicalTrauma": "Cada investigador gana 1 de experiencia adicional y sufre 1 trauma físico.",
       "proceed": "Continuad con {scenario}.",
       "harbinger": "Se revela el heraldo de Elokoss: {name}. Anotadlo en el registro de campaña.",
-      "bonusXp": "Cada investigador gana {n} de experiencia adicional."
+      "bonusXp": "Cada investigador gana {n} de experiencia adicional.",
+      "allKilled": "Todos los investigadores mueren.",
+      "campaignLost": "Los investigadores pierden la campaña.",
+      "campaignWon": "¡Los investigadores ganan la campaña!",
+      "collector": "Los investigadores ganan la carta de recompensa Collector (aún no se puede añadir a los mazos).",
+      "traumaBoth": "Cada investigador sufre {n} trauma físico y {n} trauma mental.",
+      "killedUnlessResigned": "Mueren los investigadores que no se retiraron.",
+      "escapedRewards": "Los que se retiraron ganan la experiencia de la zona de victoria más 3 y sufren 3 trauma mental."
     },
     "note": {
       "universityBurned": "la Universidad Miskatonic ardió",
@@ -372,7 +392,13 @@
       "killedServant": "los investigadores mataron al Servant of Flame",
       "scouredArkham": "los investigadores recorrieron Arkham en busca de respuestas",
       "stirredUpTrouble": "los investigadores armaron un buen lío",
-      "servantEscaped": "el Servant of Flame escapó"
+      "servantEscaped": "el Servant of Flame escapó",
+      "elokossReborn": "Elokoss renació",
+      "campaignLost": "los investigadores perdieron la campaña",
+      "defeatedElokoss": "los investigadores derrotaron a Elokoss y a los Hermanos de la Ceniza",
+      "campaignWon": "los investigadores ganaron la campaña",
+      "stoppedRebirth": "los investigadores impidieron el glorioso renacer de Elokoss",
+      "floodedRitual": "los investigadores inundaron el ritual de invocación de los Hermanos de la Ceniza"
     },
     "scenario": {
       "smokeAndMirrors": "el Escenario II: Smoke and Mirrors",
@@ -403,6 +429,31 @@
       "resolution1": "En el taxi hacia Easttown lo veis claro: pese a sus intentos de ocultarse, habéis descubierto al verdadero culpable. Ojalá baste para salvar a vuestro amigo.",
       "resolution2Title": "Resolución 2",
       "resolution2": "Pasáis por el escondite donde habíais dejado a vuestro enemigo inconsciente. Huele a humo y las esposas están destrozadas, no fundidas: alguien le ayudó a escapar."
+    },
+    "queenOfAsh": {
+      "intro1Title": "Escenario III: Queen of Ash",
+      "intro1": "En el Velma's Diner, entre dos porciones de tarta de manzana, el Dr. Armitage os explica lo que ha averiguado: los Hermanos de la Ceniza no son conspiradores, sino siervos de una antigua diosa a la que llaman Elokoss. Una marca en la piel señala a los suyos, que ni siquiera saben que están bajo su influjo.\n\nVuestro perseguidor, el Servant of Flame, es el heraldo de su regreso y reúne sacrificios para un renacer que, según la profecía, ocurrirá esta misma noche.",
+      "intro2Title": "Las alcantarillas",
+      "intro2": "Registráis la casa del Servant of Flame: una invitación a una reunión secreta, unas botas embarradas, cuentas de contrabando en el Waterfront y una foto de tres rostros a la luz de las velas. Todo apunta a las alcantarillas de Arkham. Bajáis a buscar a vuestro amigo.",
+      "intro3Title": "Las alcantarillas",
+      "intro3": "Tras horas repasando las pocas pistas que tenéis, Armitage deduce que el ritual se celebra en las alcantarillas de Arkham. Es la única pista que os queda, y el tiempo apremia: el plan empieza con 1 perdición.",
+      "codexTitle": "Códex: Servant of Flame",
+      "codex": {
+        "DavidRenfield": "Al quitarle la máscara, David Renfield se niega a que lo ayudéis: se entregó a ella de buen grado. Muere riendo débilmente. Cada investigador puede buscar en su mazo una carta Tome o Spell y jugarla sin pagar su coste.",
+        "CorneliaAkely": "Cornelia Akely mira sus manos ensangrentadas, aturdida: creía que todo era una pesadilla. Al ver vuestras heridas, se ofrece a ayudaros. Cada investigador cura 3 daño.",
+        "NaomiOBannion": "Naomi O'Bannion despierta furiosa y exige saber qué clase de fiesta es esta. Mientras la ayudáis a levantarse, os paga bien por el rescate. Cada investigador gana 5 recursos.",
+        "SgtEarlMonroe": "El sargento Monroe, aterrado, no recuerda nada y mira su ropa manchada de sangre. Cada investigador puede buscar en su mazo un apoyo Weapon y jugarlo sin pagar su coste.",
+        "AbigailForeman": "Abigail Foreman os aprieta las manos: hay que impedir que Elokoss despierte. Antes de desmayarse os da una nota arrugada. Cada investigador roba 3 cartas.",
+        "MargaretLiu": "Margaret Liu se levanta sorprendentemente tranquila en medio del caos y le indicáis la salida. Cada investigador cura 3 horror."
+      },
+      "noResolutionTitle": "Sin resolución",
+      "noResolution": "El Dr. Armitage escapa a duras penas de las alcantarillas. Al amanecer, un fuego imparable arrasa Easttown durante tres días; quienes huyeron hablan de rostros espantosos entre las llamas. De sus compañeros, y de los Hermanos de la Ceniza, no queda rastro.",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "Contra todo pronóstico, el recipiente de Elokoss ha sido destruido. Entre los sectarios que despiertan encontráis a vuestro amigo, asustado pero ileso. Al sacarlo de allí veis en su cuello una marca ya muy tenue, pero todavía visible: quizá algún día vuelva a despertar.",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "El Dr. Armitage recita unas palabras inhumanas de un tomo arrebatado a un sectario y el árbol en llamas se deshace en ceniza. Los sectarios quedan libres del influjo, y vuestro amigo con ellos, sin rastro de la marca. Aun así, durante meses el menor olor a humo os acelerará el pulso.",
+      "resolution3Title": "Resolución 3",
+      "resolution3": "La vieja compuerta se abre con un chirrido y un torrente de agua inunda los túneles. No intentáis huir: hicisteis lo que había que hacer. Mientras el agua sube, pensáis en vuestro amigo, en Armitage y en todos los que se han ahogado para detener a un mal antiguo."
     }
   },
   "playmat": {

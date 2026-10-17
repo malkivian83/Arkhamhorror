@@ -88,6 +88,8 @@ export interface LocationBehavior {
 
 export interface AgendaBehavior {
   code: CardCode
+  /** Enemigos que no pueden recibir daño mientras este plan está en juego. */
+  enemyImmune?: (state: GameState, enemy: Enemy) => boolean
   abilities?: AbilitiesFn<Agenda>
   forced?: (state: GameState, trigger: Trigger, self: Agenda) => Message[]
   /** Instrucciones del reverso al avanzar. */
@@ -97,6 +99,7 @@ export interface AgendaBehavior {
 export interface ActBehavior {
   code: CardCode
   abilities?: AbilitiesFn<Act>
+  forced?: (state: GameState, trigger: Trigger, self: Act) => Message[]
   /** Para actos con objetivo de condición (`advanceTiming: 'objective'`). */
   objectiveMet?: (state: GameState) => boolean
   /** Instrucciones del reverso al avanzar. */

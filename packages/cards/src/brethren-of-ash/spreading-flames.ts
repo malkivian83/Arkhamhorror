@@ -119,7 +119,7 @@ export const servantOfFlame = enemy({
   victory: 2,
 })
 
-const cantorOfFlame = enemy({
+export const cantorOfFlame = enemy({
   code: CODES.cantorOfFlame,
   name: 'Cantor of Flame',
   traits: ['Humanoid', 'Cultist'],
@@ -131,7 +131,7 @@ const cantorOfFlame = enemy({
   keywords: ['retaliate'],
 })
 
-const hellhound = enemy({
+export const hellhound = enemy({
   code: CODES.hellhound,
   name: 'Hellhound',
   traits: ['Creature', 'Monster'],
@@ -169,7 +169,7 @@ const mutatedExperiment = enemy({
 
 export const fire = treachery({ code: CODES.fire, name: 'Fire!', traits: ['Hazard'], keywords: [] })
 
-const cosmicEvils = treachery({
+export const cosmicEvils = treachery({
   code: CODES.cosmicEvils,
   name: 'Cosmic Evils',
   traits: ['Omen'],
@@ -187,19 +187,19 @@ const forbiddenSecrets = treachery({
   traits: ['Pact'],
   keywords: [],
 })
-const extraplanarVisions = treachery({
+export const extraplanarVisions = treachery({
   code: CODES.extraplanarVisions,
   name: 'Extraplanar Visions',
   traits: ['Power'],
   keywords: [],
 })
-const wildCompulsion = treachery({
+export const wildCompulsion = treachery({
   code: CODES.wildCompulsion,
   name: 'Wild Compulsion',
   traits: ['Madness', 'Bane'],
   keywords: [],
 })
-const noxiousSmoke = treachery({
+export const noxiousSmoke = treachery({
   code: CODES.noxiousSmoke,
   name: 'Noxious Smoke',
   traits: ['Hazard'],

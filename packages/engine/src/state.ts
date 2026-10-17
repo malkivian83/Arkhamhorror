@@ -33,6 +33,29 @@ export function shroudOf(state: GameState, id: LocationId): number {
   return Math.max(0, location.shroud + (location.shroudModifier ?? 0))
 }
 
+/**
+ * Conexiones de las localizaciones con símbolo: una localización conecta con las
+ * que muestran alguno de sus símbolos de conexión (según la cara que esté a la vista).
+ */
+export function recomputeConnections(state: GameState): GameState {
+  const face = (l: Location) =>
+    !l.revealed && l.unrevealed ? l.unrevealed : { symbol: l.symbol, connectsTo: l.connectsTo }
+  const all = Object.values(state.locations)
+  if (!all.some((l) => l.symbol !== undefined)) return state
+  const locations = { ...state.locations }
+  for (const l of all) {
+    if (l.symbol === undefined) continue
+    const mine = face(l).connectsTo ?? []
+    locations[l.id] = {
+      ...l,
+      connections: all
+        .filter((o) => o.id !== l.id && mine.includes(face(o).symbol ?? ''))
+        .map((o) => o.id),
+    }
+  }
+  return { ...state, locations }
+}
+
 export function getEnemy(state: GameState, id: EnemyId): Enemy {
   const enemy = state.enemies[id]
   if (!enemy) throw new EngineError(`Enemigo desconocido: ${id}`)

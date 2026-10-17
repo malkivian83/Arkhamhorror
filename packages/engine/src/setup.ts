@@ -1,5 +1,6 @@
 import { playerCardBehavior } from './content'
 import { EngineError } from './errors'
+import { recomputeConnections } from './state'
 import { shuffle, seedRng } from './rng'
 import type {
   Act,
@@ -182,7 +183,7 @@ export function prepareGame({
     { type: 'Round' },
   ]
 
-  return {
+  return recomputeConnections({
     engineVersion: ENGINE_VERSION,
     scenarioId: scenario.id,
     difficulty,
@@ -218,5 +219,5 @@ export function prepareGame({
     queue: setupMessages,
     pending: null,
     outcome: null,
-  }
+  })
 }

@@ -69,7 +69,8 @@ Estado detallado del motor: [08-motor.md](08-motor.md).
 - [x] Registro de campaña, experiencia, traumas y mejoras de mazo (entre escenarios).
 - [x] Cartas de nivel 1–5 de la caja básica.
 - [x] Escenario II: Smoke and Mirrors ([11-smoke-and-mirrors.md](11-smoke-and-mirrors.md)).
-- [ ] Escenario III: Queen of Ash.
+- [x] Escenario III: Queen of Ash ([12-queen-of-ash.md](12-queen-of-ash.md)). Brethren of Ash completa.
+- [ ] Recompensa Collector en los mazos.
 - [x] Niveles de dificultad (bolsas del caos).
 
 ## Fase 5 · Crecimiento

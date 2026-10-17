@@ -31,6 +31,8 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  /** Tipos de carta que no puede jugar ni comprometer en esta ronda (Languor). */
+  blockedTypes?: { cardType: string; round: number }[]
   id: InvestigatorId
   name: string
   skills: Record<SkillType, number>
@@ -64,6 +66,11 @@ export interface Location {
   name: string
   shroud: number
   victory?: number
+  position?: [number, number]
+  symbol?: string
+  connectsTo?: string[]
+  unrevealed?: { symbol: string; connectsTo: string[] }
+  enterCost?: number
   investigateExtraActions?: number
   /** Cartas de encuentro boca abajo debajo de la localización. */
   beneath?: EncounterCard[]
@@ -76,7 +83,8 @@ export interface Location {
   clues: number
 }
 
-export type EnemyKeyword = 'hunter' | 'aloof' | 'retaliate' | 'alert' | 'doomed' | 'elusive'
+export type EnemyKeyword =
+  'hunter' | 'aloof' | 'retaliate' | 'alert' | 'doomed' | 'elusive' | 'massive'
 
 /** Prey (presa): a quién prefiere enfrentarse el enemigo. */
 export type Prey =
@@ -87,6 +95,10 @@ export type Prey =
   | { type: 'mostResources' }
 
 export interface EnemyCard {
+  /** Entra en juego con esta perdición (Zealot). */
+  startingDoom?: number
+  /** No hace ataques de oportunidad. */
+  noOpportunityAttacks?: boolean
   kind: 'enemy'
   code: CardCode
   name: string
@@ -106,6 +118,8 @@ export interface EnemyCard {
 }
 
 export interface Enemy extends EnemyCard {
+  /** Investigadores a los que no atacará esta ronda. */
+  spares?: { investigator: InvestigatorId; round: number }[]
   /** Perdición sobre el enemigo (cuenta para el plan). */
   doom?: number
   /** Recursos puestos como "pistas" del códex (Smoke and Mirrors). */
@@ -175,6 +189,15 @@ export interface Act {
 
 /** Datos de una localización (en juego o apartada). */
 export interface LocationCard {
+  /** Posición en la mesa (columna, fila). */
+  position?: [number, number]
+  /** Símbolo y conexiones por símbolo (si se dan, las conexiones se calculan con ellos). */
+  symbol?: string
+  connectsTo?: string[]
+  /** Símbolo y conexiones de la cara sin revelar, si son distintos. */
+  unrevealed?: { symbol: string; connectsTo: string[] }
+  /** Mientras no está revelada, entrar cuesta estas pistas por investigador, en grupo. */
+  enterCost?: number
   /** Acciones adicionales que cuesta investigar aquí (Waterfront District). */
   investigateExtraActions?: number
   /** Cartas de encuentro boca abajo debajo de la localización (Smoke and Mirrors). */
@@ -273,6 +296,8 @@ export interface PlayerCardDef {
 }
 
 export interface Asset {
+  /** Perdición sobre el apoyo (cuenta para el plan). */
+  doom?: number
   /** No ocupa ranura (Dr. Henry Armitage en Smoke and Mirrors). */
   noSlot?: boolean
   id: AssetId
@@ -326,6 +351,8 @@ export type SkillTestKind =
 /** Lo que aporta una ficha del caos revelada. */
 export interface TokenEffect {
   modifier: number
+  /** La ficha cuenta como fallo automático (Queen of Ash, difícil, en el lugar del ritual). */
+  autoFail?: boolean
   /** "Revela otra ficha." */
   revealAnother?: boolean
   /** Mensajes adicionales si la prueba falla. */
@@ -475,9 +502,29 @@ export type Message =
   /** Una carta de la zona de victoria pasa a estar debajo del acto. */
   | { type: 'VictoryToUnderAct'; code: CardCode; victory: number }
   /** El enemigo se mueve una vez hacia la localización; si se enfrenta, ataca. */
-  | { type: 'HuntOnce'; enemy: EnemyId; toward: LocationId }
+  | { type: 'HuntOnce'; enemy: EnemyId; toward: LocationId; attack?: boolean }
   | { type: 'AddUses'; asset: AssetId; amount: number }
   | { type: 'AttackIfEngaged'; enemy: EnemyId }
+  // ----- Queen of Ash -----
+  | { type: 'HealEnemy'; enemy: EnemyId; amount: number }
+  | { type: 'ExhaustEnemy'; enemy: EnemyId }
+  | { type: 'PlaceDoomOnAsset'; asset: AssetId; amount: number }
+  | { type: 'SetDoomBecomesDamage' }
+  /** El enemigo no atacará a este investigador durante el resto de la ronda. */
+  | { type: 'SpareInvestigator'; enemy: EnemyId; investigator: InvestigatorId }
+  /** No puede jugar ni comprometer cartas de este tipo durante el resto de la ronda. */
+  | { type: 'BlockCardType'; investigator: InvestigatorId; cardType: string }
+  /** Descarta de la mano las cartas (no debilidades) de un tipo: todas o una a elegir. */
+  | { type: 'DiscardCardsOfType'; investigator: InvestigatorId; cardType: string; all: boolean }
+  /** Muertos para la campaña (los que no se retiraron, con `exceptResigned`). */
+  | { type: 'KillInvestigators'; exceptResigned?: boolean }
+  /** Cambia la carta de un enemigo (otra cara), conservando daño y posición. */
+  | { type: 'FlipEnemy'; enemy: EnemyId; card: EnemyCard }
+  | { type: 'SetAct'; index: number }
+  /** Descarta del mazo de encuentros hasta descartar un enemigo, y lo roba. */
+  | { type: 'DiscardUntilEnemy'; investigator: InvestigatorId }
+  /** Busca en el mazo y el descarte de encuentros un enemigo con el rasgo y lo roba. */
+  | { type: 'SearchEncounterForTrait'; investigator: InvestigatorId; trait: string }
   | { type: 'LoseActions'; investigator: InvestigatorId; amount: number }
   /** Elige un enemigo de tu localización al resolverse y le hace daño. */
   | { type: 'ChooseEnemyToDamage'; investigator: InvestigatorId; amount: number }
@@ -562,6 +609,10 @@ export type Message =
   | { type: 'PlaceSetAsideTreachery'; code: CardCode; placement: TreacheryPlacement }
   /** Mueve copias apartadas al descarte de encuentros (todas, o `count`). */
   | { type: 'MoveSetAsideToEncounterDiscard'; code: CardCode; count?: number }
+  /** Baraja en el mazo de encuentros las cartas apartadas con estos códigos. */
+  | { type: 'ShuffleSetAsideIntoEncounter'; codes: CardCode[] }
+  /** Descarta las primeras cartas del mazo de un investigador. */
+  | { type: 'MillDeck'; investigator: InvestigatorId; amount: number }
   /** Gastar pistas "como grupo" (de cualquier investigador). */
   | { type: 'SpendGroupClues'; amount: number }
   /** El investigador elige y descarta cartas de su mano. */
@@ -687,6 +738,7 @@ export type Trigger =
   | { type: 'afterEngage'; investigator: InvestigatorId; enemy: EnemyId }
   | { type: 'turnBegins'; investigator: InvestigatorId }
   | { type: 'turnEnds'; investigator: InvestigatorId }
+  | { type: 'roundEnds' }
   | { type: 'afterSpendResources'; investigator: InvestigatorId; amount: number }
   | { type: 'afterMove'; investigator: InvestigatorId; first: boolean }
   | { type: 'afterDealDamage'; investigator: InvestigatorId; enemy: EnemyId }
@@ -852,6 +904,8 @@ export interface GameState {
   activeTurn?: InvestigatorId | null
   /** Ataques de enemigos (para "si este enemigo te ha atacado esta ronda"). */
   enemyAttacks?: { enemy: EnemyId; investigator: InvestigatorId; round: number }[]
+  /** La perdición que se colocaría pasa a ser 1 daño directo a cada investigador. */
+  doomBecomesDamage?: boolean
   /** Ataque cancelado que aún no se ha resuelto. */
   canceledAttack?: EnemyId | null
   /** Efectos pendientes "al final de tu turno". */
