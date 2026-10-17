@@ -5,6 +5,7 @@ import {
   startScenario,
   STARTER_DECKS,
   type Campaign,
+  type CampaignMember,
   type Difficulty,
 } from '@lcg/cards'
 import {
@@ -168,9 +169,9 @@ export const useGameStore = defineStore('game', () => {
   }
 
   /** Empieza una campaña nueva con su primer escenario. */
-  function start(campaignId: string, decks: DeckKey[], difficulty: Difficulty) {
+  function start(campaignId: string, members: CampaignMember[], difficulty: Difficulty) {
     error.value = null
-    const next = newCampaign(campaignId, decks, difficulty)
+    const next = newCampaign(campaignId, members, difficulty, Math.floor(Math.random() * 2 ** 31))
     setCampaign(next)
     play(startScenario(next, Math.floor(Math.random() * 2 ** 32)))
   }

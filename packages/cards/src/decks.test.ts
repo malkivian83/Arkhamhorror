@@ -1,0 +1,113 @@
+import { describe, expect, it } from 'vitest'
+import { newCampaign } from './campaign'
+import { code, STARTER_DECKS } from './core-2026/player-cards'
+import {
+  arkhamDbDeckId,
+  cardPool,
+  deckFromArkhamDb,
+  emptyDeck,
+  starterDeckList,
+  validateDeck,
+  withRandomBasicWeakness,
+  type DeckList,
+} from './decks'
+import './index'
+
+const DANIELA = code(1)
+const keys = (deck: DeckList, campaignStart = true) =>
+  validateDeck(deck, campaignStart).problems.map((p) => p.key)
+const daniela = () => starterDeckList('daniela', 'd', 'Daniela')
+const without = (cards: string[], card: string) => {
+  const i = cards.indexOf(card)
+  return [...cards.slice(0, i), ...cards.slice(i + 1)]
+}
+
+describe('mazos: validación', () => {
+  it('los cinco mazos iniciales son válidos y ya llevan debilidad básica', () => {
+    for (const key of Object.keys(STARTER_DECKS)) {
+      const check = validateDeck(starterDeckList(key, key, key))
+      expect(check.problems).toEqual([])
+      expect(check.needsBasicWeakness).toBe(false)
+      expect(check.size).toBe(30)
+    }
+  })
+
+  it('tamaño: 30 cartas sin contar exclusivas ni debilidades', () => {
+    const deck = daniela()
+    expect(keys({ ...deck, cards: without(deck.cards, code(20)) })).toEqual(['deck.problem.size'])
+  })
+
+  it('cartas fuera de sus opciones, de otro investigador o de nivel > 0 al empezar', () => {
+    const base = without(daniela().cards, code(20))
+    // Deduction (buscador) no está entre las opciones de Daniela.
+    expect(keys({ ...daniela(), cards: [...base, code(39)] })).toEqual(['deck.problem.notAllowed'])
+    // Detective's Intuition es exclusiva de Joe.
+    expect(keys({ ...daniela(), cards: [...base, code(5)] })).toEqual([
+      'deck.problem.otherSignature',
+      'deck.problem.size',
+    ])
+    // Counterattack (nivel 1): no al empezar la campaña, sí después.
+    const leveled = { ...daniela(), cards: [...base, code(26)] }
+    expect(keys(leveled)).toEqual(['deck.problem.levelAtStart'])
+    expect(keys(leveled, false)).toEqual([])
+  })
+
+  it('como mucho 2 copias por título y las exclusivas son obligatorias', () => {
+    const base = without(daniela().cards, code(19))
+    expect(keys({ ...daniela(), cards: [...base, code(20), code(20)] })).toContain(
+      'deck.problem.tooManyCopies',
+    )
+    expect(keys({ ...daniela(), cards: without(daniela().cards, code(2)) })).toEqual([
+      'deck.problem.missingSignature',
+    ])
+  })
+
+  it('el mazo vacío lleva las exclusivas y el catálogo respeta las opciones', () => {
+    expect(emptyDeck(DANIELA, 'x', 'x').cards).toEqual([code(2), code(3)])
+    const pool = cardPool(DANIELA)
+    expect(pool.every((c) => ['guardian', 'neutral', 'survivor'].includes(c.class))).toBe(true)
+    expect(pool.some((c) => c.class === 'survivor' && (c.xp ?? 0) > 2)).toBe(false)
+  })
+})
+
+describe('mazos: debilidad básica al azar', () => {
+  it('se añade una si falta, siempre la misma con la misma semilla', () => {
+    const cards = without(daniela().cards, code(104))
+    const a = withRandomBasicWeakness(cards, 7)
+    expect(a).toHaveLength(cards.length + 1)
+    expect(withRandomBasicWeakness(cards, 7)).toEqual(a)
+    expect(withRandomBasicWeakness(daniela().cards, 7)).toEqual(daniela().cards)
+  })
+
+  it('una campaña con mazo propio recibe la debilidad al empezar', () => {
+    const cards = without(daniela().cards, code(104))
+    const campaign = newCampaign('brethren-of-ash', [{ investigator: DANIELA, cards }], 'easy', 3)
+    expect(campaign.investigators[0]!.deck).toHaveLength(cards.length + 1)
+  })
+})
+
+describe('mazos: ArkhamDB', () => {
+  it('reconoce enlaces de mazos publicados y privados', () => {
+    expect(arkhamDbDeckId('https://arkhamdb.com/decklist/view/12345/joe-1.0')).toEqual({
+      kind: 'decklist',
+      id: '12345',
+    })
+    expect(arkhamDbDeckId('https://arkhamdb.com/deck/view/678')).toEqual({
+      kind: 'deck',
+      id: '678',
+    })
+    expect(arkhamDbDeckId(' 999 ')).toEqual({ kind: 'decklist', id: '999' })
+    expect(arkhamDbDeckId('no es un mazo')).toBeNull()
+  })
+
+  it('convierte las cartas y separa las que no son de esta caja', () => {
+    const { deck, unknown } = deckFromArkhamDb(
+      { name: 'Mazo', investigator_code: DANIELA, slots: { [code(20)]: 2, '01016': 1 } },
+      'id',
+    )
+    expect(deck?.cards).toEqual([code(20), code(20)])
+    expect(unknown).toEqual(['01016'])
+    const other = deckFromArkhamDb({ name: 'Roland', investigator_code: '01001', slots: {} }, 'id')
+    expect(other.deck).toBeNull()
+  })
+})

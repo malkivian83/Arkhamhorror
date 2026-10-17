@@ -61,8 +61,8 @@ Estado detallado del motor: [08-motor.md](08-motor.md).
 
 - [ ] Cuentas, mazos, lobby, partidas persistentes (event sourcing + instantáneas).
 - [ ] Multijugador 1–4 jugadores, reconexión, espectador.
-- [ ] Constructor de mazos con validación de reglas de construcción.
-- [ ] Importar mazo desde ArkhamDB (si sus condiciones lo permiten).
+- [x] Constructor de mazos con validación de reglas de construcción (en el navegador).
+- [x] Importar mazo desde ArkhamDB (API pública, mazos publicados o compartidos).
 
 ## Fase 4 · Campaña
 

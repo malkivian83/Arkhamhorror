@@ -18,6 +18,7 @@ import {
   type ScenarioOutcome,
 } from '@lcg/engine'
 import { campaignDefinition, type CampaignScenario } from './campaign-definition'
+import { withRandomBasicWeakness } from './decks'
 import {
   code,
   investigatorSetup,
@@ -59,16 +60,24 @@ export interface Campaign {
   results: ScenarioResult[]
 }
 
+/** Un investigador con su mazo: un mazo inicial de la caja o una lista propia. */
+export type CampaignMember = DeckKey | { investigator: CardCode; cards: CardCode[] }
+
 export function newCampaign(
   campaignId: string,
-  decks: DeckKey[],
+  members: CampaignMember[],
   difficulty: Difficulty,
+  seed = 1,
 ): Campaign {
   campaignDefinition(campaignId)
-  const investigators = decks.map((key) => {
-    const list = STARTER_DECKS[key]
-    if (!list) throw new Error(`Mazo desconocido: ${key}`)
-    return { id: code(list.investigator), deck: starterDeck(key) }
+  const investigators = members.map((member, n) => {
+    if (typeof member !== 'string') {
+      // Un mazo propio sin debilidad básica recibe una al azar (reglamento).
+      return { id: member.investigator, deck: withRandomBasicWeakness(member.cards, seed + n) }
+    }
+    const list = STARTER_DECKS[member]
+    if (!list) throw new Error(`Mazo desconocido: ${member}`)
+    return { id: code(list.investigator), deck: starterDeck(member) }
   })
   return {
     id: campaignId,

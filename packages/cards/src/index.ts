@@ -81,6 +81,7 @@ export {
   type ScenarioContext,
 } from './campaign-definition'
 export * from './scenario-helpers'
+export * from './decks'
 export {
   activeMembers,
   canPlayNext,
@@ -97,6 +98,7 @@ export {
   startScenario,
   type Campaign,
   type CampaignInvestigator,
+  type CampaignMember,
   type DeckKey,
   type PurchaseOption,
   type ScenarioResult,

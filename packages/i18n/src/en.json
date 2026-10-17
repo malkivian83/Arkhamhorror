@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "LCG Platform",
-    "disclaimer": "Unofficial fan project. Not produced, endorsed or supported by, or affiliated with Fantasy Flight Games."
+    "disclaimer": "Unofficial fan project. Not produced, endorsed or supported by, or affiliated with Fantasy Flight Games.",
+    "sections": "Sections"
   },
   "home": {
     "serverStatus": "Server status",
@@ -523,5 +524,69 @@
       "brethren-of-ash": "Brethren of Ash"
     },
     "choose": "Choose the campaign"
+  },
+  "class": {
+    "guardian": "Guardian",
+    "seeker": "Seeker",
+    "rogue": "Rogue",
+    "mystic": "Mystic",
+    "survivor": "Survivor",
+    "neutral": "Neutral"
+  },
+  "decks": {
+    "title": "Decks",
+    "new": "New deck",
+    "fromStarter": "Start from their starter deck",
+    "create": "Create deck",
+    "newName": "{name}'s deck",
+    "none": "You have no decks yet.",
+    "problems": "1 problem | {n} problems",
+    "valid": "Valid",
+    "delete": "Delete {name}",
+    "confirmDelete": "Delete the deck \"{name}\"?",
+    "name": "Deck name",
+    "size": "{n}/{size} cards",
+    "basicWeakness": "No basic weakness: a random one will be added when the campaign starts.",
+    "ready": "The deck follows the deckbuilding rules.",
+    "unimplemented": "No in-game effect yet: {cards}.",
+    "contents": "Contents",
+    "required": "Signatures and weaknesses",
+    "pool": "Available cards",
+    "search": "Search",
+    "class": "Class",
+    "type": "Type",
+    "allClasses": "All classes",
+    "allTypes": "All types",
+    "levelZero": "Level 0 only",
+    "addCard": "Add {card}",
+    "removeCard": "Remove {card}",
+    "pick": "Choose or create a deck to edit it.",
+    "choose": "Decks",
+    "starter": "Starter deck",
+    "manage": "Create or import decks",
+    "import": {
+      "title": "Import from ArkhamDB",
+      "placeholder": "Deck link or number",
+      "action": "Import",
+      "loading": "Importing…",
+      "done": "Imported: {name}.",
+      "partial": "Imported. {n} cards are not from this box and were removed.",
+      "badLink": "That is not an ArkhamDB deck link.",
+      "notFound": "Deck not found (private decks must be shared).",
+      "network": "Could not reach ArkhamDB.",
+      "investigator": "That investigator is not available yet."
+    }
+  },
+  "deck": {
+    "problem": {
+      "unknownInvestigator": "Unknown investigator.",
+      "size": "It has {n} cards and must have {size} (not counting signatures or weaknesses).",
+      "notAllowed": "{card} is not among their deckbuilding options.",
+      "tooManyCopies": "{n} copies of {card}: 2 at most.",
+      "missingSignature": "Their signature card {card} is missing.",
+      "otherSignature": "{card} belongs to another investigator.",
+      "levelAtStart": "{card} has a level: only level 0 is allowed when the campaign starts.",
+      "unknownCard": "Unknown card: {card}."
+    }
   }
 }

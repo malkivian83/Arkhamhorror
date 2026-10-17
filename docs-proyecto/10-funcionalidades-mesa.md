@@ -69,7 +69,7 @@ Leyenda: ✅ hecho · 🟡 parcial · ⬜ pendiente · ✖ fuera de alcance por 
 | Registro de campaña (notas, trauma, experiencia) | `CampaignLog*` | ✅ pantalla de campaña con escenarios, notas, bolsa del caos, experiencia, trauma, muertos/enloquecidos y apoyos de historia |
 | Pasar al siguiente escenario | `Campaign`, `ContinueCampaign` | ✅ se guarda el resultado y se prepara el siguiente con trauma, bolsa, apoyos de historia y debilidades ganadas; campaña completa (ganada o perdida) |
 | Mejorar el mazo con experiencia | `UpgradeDeck`, `XpBreakdown` | ✅ comprar y mejorar cartas según las opciones de cada investigador (las 22 cartas de nivel 1–5 implementadas) |
-| Mazos: crear, listar, importar de ArkhamDB | `NewDeck`, `DeckList`, `ArkhamDbDeck` | ⬜ (hoy, mazos iniciales) |
+| Mazos: crear, listar, importar de ArkhamDB | `NewDeck`, `DeckList`, `ArkhamDbDeck` | ✅ pantalla «Mazos»: crear (vacío o desde el inicial), editar con el catálogo permitido y validación, importar de ArkhamDB y elegir mazo al empezar la campaña |
 | Multijugador en línea: sala, unirse, ocupar asiento, espectador | `MultiplayerLobby`, `ClaimSeat`, `JoinGame` | ⬜ |
 | Repetición de partidas | `ReplayGame` | ⬜ |
 | Logros, tarot, cartas propias, mercado | varios | ✖ |
@@ -85,7 +85,7 @@ Leyenda: ✅ hecho · 🟡 parcial · ⬜ pendiente · ✖ fuera de alcance por 
    - 5b ✅ Las 22 cartas de nivel 1–5 (ver "Cartas de nivel 1–5" más abajo).
    - 5c ✅ Escenario II: Smoke and Mirrors (códex, sospechosos, esquivo): ver [11-smoke-and-mirrors.md](11-smoke-and-mirrors.md).
    - 5d ✅ Escenario III: Queen of Ash: ver [12-queen-of-ash.md](12-queen-of-ash.md).
-6. **Mazos** propios e importación.
+6. ✅ **Mazos** propios e importación (ver "Mazos propios" más abajo).
 7. **Multijugador en línea** con el servidor.
 
 ## Textos de historia oficiales (opcional, solo en local)
@@ -151,3 +151,23 @@ Mecánicas nuevas del motor que han hecho falta:
 
 Simplificación: Unbridled Knowledge deja en el fondo del mazo, en el mismo orden,
 las cartas que no se roban (la carta deja elegir orden y arriba o abajo).
+
+## Mazos propios (paso 6)
+
+En `packages/cards/src/decks.ts` (lógica) y la pantalla `apps/web/src/views/DecksView.vue`:
+
+- **Validación** según el reglamento ("Deck Customization"): 30 cartas sin contar
+  exclusivas ni debilidades, opciones de construcción del investigador (clase y
+  nivel máximo), como mucho 2 copias por título, exclusivas obligatorias y no las de
+  otro investigador, y solo nivel 0 al empezar una campaña. Avisa de las cartas que
+  aún no tienen efecto en el motor.
+- **Debilidad básica**: si el mazo no tiene ninguna, se añade una al azar al empezar
+  la campaña (los mazos iniciales ya traen la suya).
+- **Importar de ArkhamDB** por enlace o número, como mazo publicado o privado
+  compartido (su API permite llamarla desde el navegador). Las cartas que no son de
+  esta caja se quitan y se avisa; luego se completa el mazo en el editor.
+- Los mazos se guardan en el navegador (`lcg:decks`); con cuentas de usuario
+  pasarán al servidor.
+- Al empezar una campaña, cada investigador juega con su mazo inicial o con uno de
+  sus mazos propios válidos.
+

@@ -33,6 +33,10 @@ function setLocale(value: Locale) {
   <header class="topbar">
     <RouterLink to="/" class="brand">{{ t('app.title') }}</RouterLink>
     <span class="disclaimer">{{ t('app.disclaimer') }}</span>
+    <nav class="sections" :aria-label="t('app.sections')">
+      <RouterLink to="/">{{ t('campaign.new') }}</RouterLink>
+      <RouterLink to="/decks">{{ t('decks.title') }}</RouterLink>
+    </nav>
     <PlaymatPicker />
     <nav>
       <button
@@ -244,6 +248,20 @@ button[aria-pressed='true'] {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.sections {
+  display: flex;
+  gap: 14px;
+  font-family: var(--fell);
+}
+.sections a {
+  color: #d8c49a;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.sections a.router-link-exact-active {
+  color: var(--brass);
+  border-bottom: 1px solid var(--brass);
 }
 .topbar nav {
   display: flex;

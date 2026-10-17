@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "Plataforma LCG",
-    "disclaimer": "Proyecto no oficial de aficionados. No producido, avalado ni respaldado por Fantasy Flight Games, ni afiliado a ella."
+    "disclaimer": "Proyecto no oficial de aficionados. No producido, avalado ni respaldado por Fantasy Flight Games, ni afiliado a ella.",
+    "sections": "Secciones"
   },
   "home": {
     "serverStatus": "Estado del servidor",
@@ -523,5 +524,69 @@
       "brethren-of-ash": "Brethren of Ash"
     },
     "choose": "Elige la campaña"
+  },
+  "class": {
+    "guardian": "Guardián",
+    "seeker": "Buscador",
+    "rogue": "Rebelde",
+    "mystic": "Místico",
+    "survivor": "Superviviente",
+    "neutral": "Neutral"
+  },
+  "decks": {
+    "title": "Mazos",
+    "new": "Nuevo mazo",
+    "fromStarter": "Empezar desde su mazo inicial",
+    "create": "Crear mazo",
+    "newName": "Mazo de {name}",
+    "none": "Aún no tienes mazos propios.",
+    "problems": "1 problema | {n} problemas",
+    "valid": "Válido",
+    "delete": "Borrar {name}",
+    "confirmDelete": "¿Borrar el mazo «{name}»?",
+    "name": "Nombre del mazo",
+    "size": "{n}/{size} cartas",
+    "basicWeakness": "Sin debilidad básica: al empezar la campaña se añadirá una al azar.",
+    "ready": "El mazo cumple las reglas de construcción.",
+    "unimplemented": "Aún sin efecto en el juego: {cards}.",
+    "contents": "Contenido",
+    "required": "Exclusivas y debilidades",
+    "pool": "Cartas disponibles",
+    "search": "Buscar",
+    "class": "Clase",
+    "type": "Tipo",
+    "allClasses": "Todas las clases",
+    "allTypes": "Todos los tipos",
+    "levelZero": "Solo nivel 0",
+    "addCard": "Añadir {card}",
+    "removeCard": "Quitar {card}",
+    "pick": "Elige o crea un mazo para editarlo.",
+    "choose": "Mazos",
+    "starter": "Mazo inicial",
+    "manage": "Crear o importar mazos",
+    "import": {
+      "title": "Importar de ArkhamDB",
+      "placeholder": "Enlace o número del mazo",
+      "action": "Importar",
+      "loading": "Importando…",
+      "done": "Importado: {name}.",
+      "partial": "Importado. {n} cartas no son de esta caja y se han quitado.",
+      "badLink": "No es un enlace de mazo de ArkhamDB.",
+      "notFound": "No se encontró ese mazo (los privados deben estar compartidos).",
+      "network": "No se pudo conectar con ArkhamDB.",
+      "investigator": "Ese investigador aún no está disponible."
+    }
+  },
+  "deck": {
+    "problem": {
+      "unknownInvestigator": "Investigador desconocido.",
+      "size": "Tiene {n} cartas y deben ser {size} (sin contar exclusivas ni debilidades).",
+      "notAllowed": "{card} no está entre sus opciones de construcción.",
+      "tooManyCopies": "{n} copias de {card}: como mucho 2.",
+      "missingSignature": "Falta su carta exclusiva {card}.",
+      "otherSignature": "{card} es exclusiva de otro investigador.",
+      "levelAtStart": "{card} tiene nivel: al empezar la campaña solo se admite nivel 0.",
+      "unknownCard": "Carta desconocida: {card}."
+    }
   }
 }
