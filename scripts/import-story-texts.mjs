@@ -2,11 +2,11 @@
 /**
  * Genera los textos oficiales de historia (prólogo, introducciones, preparación,
  * códex y resoluciones) a partir de la copia local del proyecto de referencia, en
- * apps/web/public/local-assets/story/en.json, carpeta IGNORADA por git.
+ * apps/web/public/local-assets/story/en.json.
  *
- * Son textos de las guías de campaña de Fantasy Flight Games: se usan solo en tu
- * máquina y no se suben al repositorio. Sin ellos, la mesa muestra los resúmenes
- * propios de los ficheros de idioma.
+ * Son textos de las guías de campaña de Fantasy Flight Games. El repositorio es
+ * privado y de uso personal, así que van incluidos; el script sirve para
+ * regenerarlos. Sin ellos, la mesa muestra los resúmenes de los ficheros de idioma.
  *
  * Formato de salida (lo entiende apps/web/src/game/story.ts): párrafos separados
  * por una línea en blanco; "» " al principio marca una instrucción de juego y

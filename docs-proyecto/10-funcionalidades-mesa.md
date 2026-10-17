@@ -89,17 +89,18 @@ Leyenda: ✅ hecho · 🟡 parcial · ⬜ pendiente · ✖ fuera de alcance por 
 6. ✅ **Mazos** propios e importación (ver "Mazos propios" más abajo).
 7. **Multijugador en línea** con el servidor.
 
-## Textos de historia oficiales (opcional, solo en local)
+## Textos de historia oficiales
 
-Los textos de la guía de campaña son de Fantasy Flight Games, así que el
-repositorio solo lleva **resúmenes propios**. Para ver los textos oficiales en
-tu equipo:
+El repositorio es privado y de uso personal, así que incluye los textos oficiales
+de la guía (y las fichas y reversos oficiales) en `apps/web/public/local-assets/`.
+Los ficheros de idioma llevan además **resúmenes propios**, que se usan si faltan.
+Para regenerarlos:
 
 ```bash
 node scripts/import-story-texts.mjs E:/referencia/ArkhamHorror
 ```
 
-genera `apps/web/public/local-assets/story/en.json` (carpeta que git ignora) con el
+genera `apps/web/public/local-assets/story/en.json` con el
 prólogo, las introducciones, los pasos de preparación, los códex y las resoluciones
 de Brethren of Ash. En español, la mesa muestra el texto oficial en inglés si no hay
 traducción, con un botón para pasar al resumen propio. También se puede escribir a

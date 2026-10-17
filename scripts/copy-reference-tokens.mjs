@@ -2,11 +2,11 @@
 /**
  * Copia las imágenes de fichas (bolsa del caos, recursos, pistas, daño, horror,
  * perdición) y los reversos de carta desde la copia local del proyecto de referencia a
- * apps/web/public/local-assets/, carpeta IGNORADA por git.
+ * apps/web/public/local-assets/.
  *
- * Esas imágenes son material de Fantasy Flight Games sin licencia para
- * redistribuirlas: se usan solo en tu máquina y no se suben al repositorio.
- * Si no están, la mesa dibuja las fichas por su cuenta.
+ * Son material de Fantasy Flight Games. El repositorio es privado y de uso
+ * personal, así que van incluidas; el script sirve para actualizarlas. Si
+ * faltan, la mesa dibuja las fichas por su cuenta.
  *
  * Uso: node scripts/copy-reference-tokens.mjs [ruta-del-proyecto-de-referencia]
  */
