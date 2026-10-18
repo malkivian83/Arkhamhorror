@@ -275,7 +275,6 @@ export const bloodlessMan = enemy({
   damage: 1,
   horror: 1,
   keywords: ['aloof'],
-  victory: 1,
 })
 
 export const bloodlessManUnleashed = enemy({
@@ -315,7 +314,7 @@ export const rookieCop = enemy({
   evade: 2,
   damage: 1,
   horror: 0,
-  keywords: ['aloof', 'hunter'],
+  keywords: ['surge', 'aloof', 'hunter'],
 })
 
 /** Enemigo de un Líder rival (cara trasera de su Apoyo). No puede recibir daño. */

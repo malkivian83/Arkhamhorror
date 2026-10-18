@@ -45,6 +45,8 @@ export type AbilitiesFn<Self> = (
 
 export interface ScenarioBehavior {
   id: string
+  /** Incompatible deterministic rule changes are versioned per scenario. */
+  rulesVersion?: number
   /** Efecto de las fichas de escenario (tarjeta de referencia). */
   tokenEffect?: (
     state: GameState,
@@ -121,6 +123,8 @@ export interface TreacheryBehavior {
 
 export interface EnemyBehavior {
   code: CardCode
+  /** Assign this kind of attack damage to assets with the trait before other targets. */
+  assignFirst?: Partial<Record<'damage' | 'horror', string>>
   forced?: (state: GameState, trigger: Trigger, self: Enemy) => Message[]
   /** Habilidades del enemigo para los investigadores de su localización (parlamento…). */
   abilities?: AbilitiesFn<Enemy>

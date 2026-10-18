@@ -4,14 +4,16 @@
  */
 import {
   getInvestigator,
+  distancesFrom,
   investigatorsAt,
   playerCardDef,
+  isPermanent,
   push,
   registerEnemy,
   registerTreachery,
+  shuffle,
   type Choice,
   type Enemy,
-  type EnemyCard,
   type GameState,
   type InvestigatorId,
   type Message,
@@ -218,17 +220,26 @@ function specific(state: GameState, key: string, data: Data): GameState {
         : state
       return push(without, { type: 'ScenarioSpecific', key: 'jewelIntoEncounter' })
     }
-    case 'jewelIntoEncounter':
+    case 'jewelIntoEncounter': {
+      const [encounterDeck, rng] = shuffle(
+        [
+          ...state.encounterDeck,
+          {
+            kind: 'treachery' as const,
+            code: CODES.jewelOfSarnath,
+            name: 'Jewel of Sarnath',
+            traits: ['Item', 'Relic'],
+            keywords: [],
+          },
+        ],
+        state.rng,
+      )
       return {
         ...state,
-        encounterDeck: shuffleIn(state, {
-          kind: 'treachery',
-          code: CODES.jewelOfSarnath,
-          name: 'Jewel of Sarnath',
-          traits: ['Item', 'Relic'],
-          keywords: [],
-        }),
+        encounterDeck,
+        rng,
       }
+    }
     // La Lámpara Mortecina: tomar el control y darle la vuelta (Aura seductora).
     case 'takeLantern': {
       const { placed } = lantern(state)
@@ -289,14 +300,62 @@ function specific(state: GameState, key: string, data: Data): GameState {
       return push(
         state,
         { type: 'ReadyEnemy', enemy: enemy.id },
-        ...(enemy.location === here
-          ? []
-          : [{ type: 'MoveEnemy', enemy: enemy.id, location: here } as Message]),
-        { type: 'EngageEnemy', enemy: enemy.id, investigator },
-        ...(data.attack
-          ? [{ type: 'EnemyAttack', enemy: enemy.id, investigator, exhaustAfter: false } as Message]
-          : []),
+        {
+          type: 'ScenarioSpecific',
+          key: 'pursueInvestigator',
+          data: { ...data, destination: here, steps: 0 },
+        },
       )
+    }
+    case 'pursueInvestigator': {
+      const enemy = state.enemies[data.enemy as string]
+      const destination = data.destination as string
+      if (!enemy || getInvestigator(state, investigator).eliminated) return state
+      if (enemy.location === destination) {
+        if (getInvestigator(state, investigator).location !== destination) return state
+        return push(
+          state,
+          { type: 'EngageEnemy', enemy: enemy.id, investigator },
+          ...(data.attack
+            ? [{ type: 'EnemyAttack' as const, enemy: enemy.id, investigator, exhaustAfter: false }]
+            : []),
+        )
+      }
+      const distance = distancesFrom(state, enemy.location).get(destination)
+      if (distance === undefined || Number(data.steps) >= Object.keys(state.locations).length)
+        return push(state, {
+          type: 'Log',
+          key: 'log.gala.couldNotReach',
+          params: { enemy: enemy.name },
+        })
+      const paths = (state.locations[enemy.location]?.connections ?? []).filter(
+        (next) =>
+          state.locations[next] && distancesFrom(state, next).get(destination) === distance - 1,
+      )
+      if (!paths.length) return state
+      const step = (location: string): Message[] => [
+        { type: 'MoveEnemy', enemy: enemy.id, location },
+        {
+          type: 'ScenarioSpecific',
+          key: 'pursueInvestigator',
+          data: { ...data, steps: Number(data.steps) + 1 },
+        },
+      ]
+      return paths.length === 1
+        ? push(state, ...step(paths[0]!))
+        : push(
+            state,
+            ask(
+              investigator,
+              'prompt.chooseLocation',
+              paths.map((location) => ({
+                label: 'choice.location',
+                params: { location: state.locations[location]!.name },
+                target: { type: 'location', id: location },
+                then: step(location),
+              })),
+            ),
+          )
     }
     // El Exangüe derrotado: queda (Desatado), agotado y con como mucho 3 daños por investigador.
     case 'unleashedAfterDefeat': {
@@ -358,12 +417,18 @@ function specific(state: GameState, key: string, data: Data): GameState {
       if (!asset) return state
       const owner = getInvestigator(state, asset.owner)
       const { [asset.id]: _gone, ...assets } = state.assets
-      const deck = [...owner.deck]
-      const at = deck.length === 0 ? 0 : (state.round * 5 + deck.length) % (deck.length + 1)
-      deck.splice(at, 0, asset.code)
+      if (
+        isPermanent(asset.code) ||
+        playerCardDef(asset.code)?.story ||
+        isGuest(asset.code) ||
+        asset.code.startsWith('710')
+      )
+        return state
+      const [deck, rng] = shuffle([...owner.deck, asset.code], state.rng)
       const milled = deck.slice(0, 3)
       const next = {
         ...state,
+        rng,
         assets,
         investigators: state.investigators.map((i) =>
           i.id === owner.id ? { ...i, deck: deck.slice(3), discard: [...i.discard, ...milled] } : i,
@@ -374,14 +439,6 @@ function specific(state: GameState, key: string, data: Data): GameState {
     default:
       return state
   }
-}
-
-/** Añade una carta al mazo de encuentros en una posición al azar (determinista). */
-function shuffleIn(state: GameState, card: EnemyCard | GameState['encounterDeck'][number]) {
-  const deck = [...state.encounterDeck]
-  const at = deck.length === 0 ? 0 : (state.round * 7 + deck.length) % (deck.length + 1)
-  deck.splice(at, 0, card)
-  return deck
 }
 
 /** Curar 1 horror (o daño u horror) de un investigador o Invitado de la localización. */
@@ -548,6 +605,16 @@ extendGala({ specific, skillModifier })
 /** Localizaciones con algún Invitado (destino del Exangüe errante). */
 const withGuests = (state: GameState) =>
   MANOR.filter((l) => state.locations[l] && guestCountAt(state, l) > 0)
+
+registerEnemy({
+  code: CODES.enragedGug,
+  assignFirst: { horror: 'Guest' },
+})
+
+registerEnemy({
+  code: CODES.moonBeast,
+  assignFirst: { damage: 'Guest' },
+})
 
 registerEnemy({
   code: CODES.bloodlessMan,
@@ -775,44 +842,36 @@ registerTreachery({
       (e.traits ?? []).includes('Monster'),
     )
     if (monsters.length === 0) return [{ type: 'GainSurge' }]
-    const nearest = nearestEnemy(state, investigator, monsters)
-    return nearest
-      ? [
-          {
-            type: 'ScenarioSpecific',
-            key: 'comeForYou',
-            data: { investigator, enemy: nearest.id, attack: true },
-          },
+    const nearest = nearestEnemies(state, investigator, monsters)
+    const pursue = (enemy: Enemy): Message => ({
+      type: 'ScenarioSpecific',
+      key: 'comeForYou',
+      data: { investigator, enemy: enemy.id, attack: true },
+    })
+    return nearest.length === 1
+      ? [pursue(nearest[0]!)]
+      : [
+          ask(
+            investigator,
+            'prompt.chooseEnemy',
+            nearest.map((enemy) => ({
+              label: 'choice.enemy',
+              params: { enemy: enemy.name },
+              target: { type: 'enemy', id: enemy.id },
+              then: [pursue(enemy)],
+            })),
+          ),
         ]
-      : []
   },
 })
 
 /** El enemigo más cercano al investigador (por número de conexiones). */
-function nearestEnemy(
-  state: GameState,
-  investigator: InvestigatorId,
-  enemies: Enemy[],
-): Enemy | undefined {
+function nearestEnemies(state: GameState, investigator: InvestigatorId, enemies: Enemy[]): Enemy[] {
   const here = getInvestigator(state, investigator).location
-  if (!here) return enemies[0]
-  const distance = (from: string): number => {
-    const seen = new Map<string, number>([[from, 0]])
-    let frontier = [from]
-    while (frontier.length) {
-      const next: string[] = []
-      for (const l of frontier) {
-        for (const c of state.locations[l]?.connections ?? []) {
-          if (seen.has(c)) continue
-          seen.set(c, (seen.get(l) ?? 0) + 1)
-          next.push(c)
-        }
-      }
-      frontier = next
-    }
-    return seen.get(here) ?? 99
-  }
-  return [...enemies].sort((a, b) => distance(a.location) - distance(b.location))[0]
+  if (!here) return []
+  const distance = (enemy: Enemy) => distancesFrom(state, enemy.location).get(here) ?? Infinity
+  const nearest = Math.min(...enemies.map(distance))
+  return enemies.filter((enemy) => distance(enemy) === nearest)
 }
 
 registerTreachery({
@@ -917,7 +976,12 @@ registerTreachery({
   // si sale otra copia, 2 horrores.
   revelation: (state, investigator) => {
     const mine = Object.values(state.assets).filter(
-      (a) => a.owner === investigator && !isGuest(a.code) && !a.code.startsWith('710'),
+      (a) =>
+        a.owner === investigator &&
+        !isPermanent(a.code) &&
+        !playerCardDef(a.code)?.story &&
+        !isGuest(a.code) &&
+        !a.code.startsWith('710'),
     )
     if (mine.length === 0) return []
     return [

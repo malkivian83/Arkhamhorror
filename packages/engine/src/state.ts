@@ -13,6 +13,10 @@ import type {
   Prey,
 } from './types'
 
+/** A repeated turn in the same round has a distinct event position; no new state field is needed. */
+export const turnStartedAt = (state: GameState): number =>
+  state.log.findLastIndex((entry) => entry.key === 'log.step.turnBegins')
+
 /** Inserta mensajes delante de la cola (se procesan antes que lo ya encolado). */
 export function push(state: GameState, ...messages: Message[]): GameState {
   return { ...state, queue: [...messages, ...state.queue] }

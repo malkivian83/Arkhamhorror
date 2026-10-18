@@ -9,6 +9,7 @@ import {
   push,
   registerPlayerCard,
   shroudOf,
+  shuffle,
   type AbilityOption,
   type Asset,
   type Choice,
@@ -53,9 +54,10 @@ function fightAt(
       label,
       params: { enemy: e.name },
       actions: 1,
-      provokes: true,
+      provokes: false,
       target: { type: 'enemy', id: e.id },
-      then: [...extraCost, ...build(e.id, e.fight)],
+      costs: extraCost,
+      then: build(e.id, e.fight),
     }))
 }
 
@@ -140,8 +142,8 @@ registerPlayerCard({
             actions: 1,
             provokes: true,
             target: { type: 'enemy', id: e.id },
+            costs: [{ type: 'SpendResources', investigator, amount: 1 }],
             then: [
-              { type: 'SpendResources', investigator, amount: 1 },
               { type: 'HealAsset', asset: a.id, damage: 1, horror: 0 },
               { type: 'DamageEnemy', enemy: e.id, amount: 1, by: investigator },
             ],
@@ -249,8 +251,8 @@ registerPlayerCard({
         actions: 1,
         provokes: true,
         target: { type: 'location', id: me.location },
+        costs: [exhaust(self)],
         then: [
-          exhaust(self),
           {
             type: 'BeginSkillTest',
             investigator,
@@ -439,7 +441,6 @@ registerPlayerCard({
       `${self.id}:fight`,
       'ability.gala.novaFight',
       (enemy, fight) => [
-        exhaust(self),
         {
           type: 'BeginSkillTest',
           investigator,
@@ -450,6 +451,7 @@ registerPlayerCard({
           kind: { type: 'fight', enemy, extraDamage: 1 },
         },
       ],
+      [exhaust(self)],
     )
   },
   reactions: (_state, trigger, self) =>
@@ -515,8 +517,6 @@ registerPlayerCard({
           `${self.id}:fight`,
           'ability.gala.sarahFight',
           (enemy, fight) => [
-            exhaust(self),
-            ...(n > 0 ? [{ type: 'SpendResources', investigator, amount: n } as Message] : []),
             {
               type: 'BeginSkillTest',
               investigator,
@@ -526,6 +526,10 @@ registerPlayerCard({
               modifier: me.skills.willpower,
               kind: { type: 'fight', enemy, extraDamage: n },
             },
+          ],
+          [
+            exhaust(self),
+            ...(n > 0 ? [{ type: 'SpendResources', investigator, amount: n } as Message] : []),
           ],
         ).map((o) => ({ ...o, params: { ...o.params, n } })),
       )
@@ -987,15 +991,8 @@ function specific(state: GameState, key: string, data: Data): GameState {
       }
     }
     case 'shuffleEncounter': {
-      const deck = [...state.encounterDeck]
-      // Barajado determinista con la semilla de la partida.
-      let seed = state.round * 31 + deck.length
-      for (let i = deck.length - 1; i > 0; i--) {
-        seed = (seed * 1103515245 + 12345) % 2147483648
-        const j = seed % (i + 1)
-        ;[deck[i], deck[j]] = [deck[j]!, deck[i]!]
-      }
-      return { ...state, encounterDeck: deck }
+      const [encounterDeck, rng] = shuffle(state.encounterDeck, state.rng)
+      return { ...state, encounterDeck, rng }
     }
     default:
       return state

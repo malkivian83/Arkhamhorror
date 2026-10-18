@@ -8,6 +8,11 @@ criterio de cierre aplicado a Brethren.** Hay diferencias de reglas confirmadas,
 elecciones sustituidas por decisiones automáticas y falta aceptación de victorias
 por las cinco facciones. No conviene presentarla como contenido terminado.
 
+**Actualización de fase 1:** corregidos G01, G03, G06, G07, G08, G12, G13,
+G15 y G16. Son **9 de los 21 trabajos**; quedan 12 y la aceptación de las
+fases posteriores. La tabla inferior conserva el diagnóstico inicial; esta
+actualización y el apartado de fase 1 identifican qué defectos ya no están.
+
 ## Alcance y método
 
 Juego local, uno a cuatro investigadores, EN/ES. Se compararon preparación,
@@ -21,8 +26,11 @@ con dos caras en la misma fila. «Presente» indica que existe una definición;
 no equivale a un contrato de reglas aprobado. Las caras de Líderes rivales,
 Historia Rival, Lámpara y Exangüe deben probarse individualmente al cerrar cada fila.
 
-La evidencia ejecutable está en [auditoria-gala.json](evidencias/auditoria-gala.json)
-y se regenera con:
+La evidencia inicial se conserva sin modificar en
+[auditoria-gala.json](evidencias/auditoria-gala.json). El script evoluciona con
+las correcciones y ahora escribe una comprobación separada en
+[gala-fase-1.json](evidencias/gala-fase-1.json), sin sobrescribir esa fotografía
+histórica:
 
 ```powershell
 node scripts/audit-gala.mjs
@@ -132,11 +140,11 @@ del programa original.
    documentación de límites y etiqueta estable propia de Gala. No marcar una
    facción cerrada solo porque alcance un estado terminal sin resolución.
 
-El siguiente trabajo de implementación recomendado es la fase 1. La ampliación
+Tras completar la fase 1, el siguiente bloque de implementación es la fase 2. La ampliación
 de contenido debe apoyarse en esta auditoría y conservar la etiqueta de Brethren
 como referencia de regresión.
 
-## Controles de esta entrega
+## Controles de la entrega inicial de auditoría
 
 Las correcciones de presentación solicitadas durante la auditoría no alteran
 reglas de Gala. La suite completa supera **466 pruebas en 35 archivos**; tipos
@@ -144,3 +152,49 @@ web, lint, formato y build correctos. Las siete sondas de auditoría son
 comprobaciones separadas y no se suman a esas 466 pruebas. El build contiene
 653,72 kB de JavaScript (199,67 kB comprimido). Se validaron los 62 códigos de la
 matriz y los enlaces locales de los documentos 17 y 18.
+
+## Fase 1 completada: reglas transversales
+
+Base anterior a los cambios: `f476627` (`brethren-of-ash-local-v1.0.1`). El
+siguiente bloque de implementación es la **fase 2: habilidades y decisiones**.
+
+| Trabajo cerrado | Comportamiento corregido |
+|---|---|
+| G01 | Callahan, Nova y Sarah combaten sin ataques de oportunidad. Agotamiento y recursos se pagan antes de resolver la habilidad. |
+| G03 | Dormitorio permite un uso por turno, incluso si se reponen acciones. Un turno adicional en la misma ronda abre un uso nuevo. Conserva el ataque remoto y el daño adicional por pista. |
+| G06 | Rookie Cop tiene Oleada al robarlo, después de aparecer. Aparecer por efecto no activa esa palabra clave. La cara silenciosa de El Exangüe carece de Victoria; la desatada mantiene Victoria 1. |
+| G07 | La eliminación y la retirada resuelven las salidas especiales antes de perder la localización: Invitados hechizados, Líder retirado, Lámpara colocada y Joya barajada. También funciona con el último investigador, sin duplicar cartas. |
+| G08 | El horror se paga solo al entrar sin revelar, tanto por acción como por efecto. Se paga antes del desplazamiento y del ataque de oportunidad; una reentrada no vuelve a cobrarlo. |
+| G12 | Gug prioriza horror y Bestia lunar daño sobre Invitados con capacidad restante. Al agotarse esa capacidad vuelven a estar disponibles los otros destinos de asignación. |
+| G13 | Emboscada y Atrapado mueven paso a paso por conexiones, con ventanas intermedias. Se eligen monstruos y caminos mínimos empatados; no se teletransporta ni se ataca sin alcanzar al investigador. |
+| G15 | Archibald, Mya y el pago de pistas del Sindicato pagan sus costes antes del ataque y una sola vez. |
+| G16 | Los tres barajados usan el RNG del motor y se reproducen exactamente. Pushed baraja el mazo completo, descarta tres y aplica su horror; no permite permanentes ni apoyos de historia. |
+
+### Pruebas y límites
+
+- [phase-one.test.ts](../packages/cards/src/midwinter-gala/phase-one.test.ts):
+  **38 regresiones** de las reglas anteriores, con mesas dirigidas.
+- [gala-phase-one-session.test.ts](../apps/web/src/game/gala-phase-one-session.test.ts):
+  guardado, reproducción y deshacer del límite por turno y de la asignación
+  obligatoria, con investigadores y cartas registrados.
+- [session.test.ts](../apps/web/src/game/session.test.ts): dos pruebas nuevas
+  de compatibilidad por escenario y conservación del archivo anterior.
+- [gala-fase-1.json](evidencias/gala-fase-1.json): se repiten las **320
+  preparaciones** y los **40 recorridos legales de derrota**, ahora con **1.697
+  decisiones**, validando guardado y reproducción de su estado completo.
+  Las sondas G01, G03, G06 y G07 pasan a corregidas; G02, G04 y G05 siguen pendientes.
+
+Suite completa: **508 pruebas en 37 archivos**, incluidos los recorridos
+enlazados de Brethren. Tipos de los seis proyectos, lint, formato y compilación
+web correctos. JavaScript: 655,59 kB, 200,04 kB comprimido; se mantienen los avisos
+conocidos de fuente y tamaño. Las simulaciones pasivas no acreditan victorias
+de Gala ni sustituyen la aceptación visual de las fases posteriores.
+
+### Compatibilidad de partidas
+
+Las partidas nuevas de Gala llevan `scenarioRulesVersion: 2`. Una mesa anterior
+sin esa revisión se identifica como incompatible antes de reproducir su
+historial; el archivo original se conserva. **No se convierte automáticamente
+una partida activa de Gala anterior a estas reglas.** Es necesario comenzar una
+nueva mesa con esta versión. La revisión global de formato y la compatibilidad
+de Brethren se mantienen; las pruebas conservan sus guardados y recorridos.

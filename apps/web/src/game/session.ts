@@ -3,6 +3,7 @@ import {
   applyInput,
   ENGINE_VERSION,
   playerCardDef,
+  scenarioBehavior,
   type GameState,
   type PlayerInput,
 } from '@lcg/engine'
@@ -70,6 +71,9 @@ function jsonTree(value: unknown, depth = 0): void {
 function game(value: unknown): asserts value is GameState {
   if (!object(value)) fail()
   if (value.engineVersion !== ENGINE_VERSION) fail('incompatible')
+  const rulesVersion = scenarioBehavior(String(value.scenarioId))?.rulesVersion
+  if (rulesVersion !== undefined && value.scenarioRulesVersion !== rulesVersion)
+    fail('incompatible')
   if (value.interactive === false) fail('incompatible')
   if (
     !allCampaigns().some((c) => c.scenarios.some((s) => s.id === value.scenarioId)) ||

@@ -35,6 +35,27 @@ function initial(): Session {
 const encode = (data: Session) => JSON.stringify(data)
 
 describe('guardado de campaña y mesa', () => {
+  it('rechaza una Gala anterior al cambio de reglas y conserva intacto el archivo original', () => {
+    const campaign = newCampaign('the-midwinter-gala', ['joe'], 'standard')
+    const state = startScenario(campaign, 3)
+    expect(state.scenarioRulesVersion).toBe(2)
+    const current = session(state, { base: state, inputs: [], marks: [markOf(state)] }, campaign)
+    expect(decodeSession(encode(current))).toEqual(current)
+    const old = JSON.parse(encode(current)) as Session
+    delete old.state!.scenarioRulesVersion
+    delete old.history!.base.scenarioRulesVersion
+    const raw = encode(old)
+    expect(() => decodeSession(raw)).toThrow('incompatible')
+    const storage = new MemoryStorage()
+    storage.setItem(SESSION_KEY, raw)
+    expect(readSession(storage).issue).toBe('incompatible')
+    expect(storage.getItem(SESSION_KEY)).toBe(raw)
+  })
+  it('el cambio de reglas de Gala no impone una versión nueva a Brethren', () => {
+    const data = initial()
+    expect(data.state?.scenarioRulesVersion).toBeUndefined()
+    expect(decodeSession(encode(data))).toEqual(data)
+  })
   it('acepta la resolución 6 de La Gala y rechaza resoluciones fuera de su contenido', () => {
     const campaign = newCampaign('the-midwinter-gala', ['joe'], 'standard')
     const state = {

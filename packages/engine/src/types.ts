@@ -78,7 +78,7 @@ export interface Location {
   connectsTo?: string[]
   unrevealed?: { symbol: string; connectsTo: string[] }
   enterCost?: number
-  /** Coste adicional de entrar: recibir este horror (Lantern Chamber). */
+  /** Coste adicional de entrar sin revelar: recibir este horror (Lantern Chamber). */
   enterHorror?: number
   /** Conexiones que no salen de los símbolos (colocadas por un efecto), en ambos sentidos. */
   extraConnections?: LocationId[]
@@ -95,7 +95,7 @@ export interface Location {
 }
 
 export type EnemyKeyword =
-  'hunter' | 'aloof' | 'retaliate' | 'alert' | 'doomed' | 'elusive' | 'massive'
+  'hunter' | 'aloof' | 'retaliate' | 'alert' | 'doomed' | 'elusive' | 'massive' | 'surge'
 
 /** Prey (presa): a quién prefiere enfrentarse el enemigo. */
 export type Prey =
@@ -212,7 +212,7 @@ export interface LocationCard {
   enterCost?: number
   /** Acciones adicionales que cuesta investigar aquí (Waterfront District). */
   investigateExtraActions?: number
-  /** Coste adicional de entrar: recibir este horror (Lantern Chamber). */
+  /** Coste adicional de entrar sin revelar: recibir este horror (Lantern Chamber). */
   enterHorror?: number
   /** Cartas de encuentro boca abajo debajo de la localización (Smoke and Mirrors). */
   beneath?: EncounterCard[]
@@ -230,7 +230,7 @@ export interface LocationCard {
 // ---------------------------------------------------------------------------
 
 export interface AbilityLimit {
-  per: 'round' | 'game'
+  per: 'turn' | 'round' | 'game'
   /** Límite de grupo (compartido por todos los investigadores). */
   group?: boolean
 }
@@ -280,6 +280,8 @@ export interface AbilityUse {
   key: string
   investigator: InvestigatorId
   round: number
+  /** Position of the latest turn-begins event, for per-turn limits. */
+  turn?: number
 }
 
 // ---------------------------------------------------------------------------
@@ -615,7 +617,13 @@ export type Message =
   | { type: 'ModifyShroud'; location: LocationId; amount: number }
   | { type: 'ExhaustAsset'; asset: AssetId }
   | { type: 'SpendUses'; asset: AssetId; amount: number }
-  | { type: 'AssignDamage'; investigator: InvestigatorId; damage: number; horror: number }
+  | {
+      type: 'AssignDamage'
+      investigator: InvestigatorId
+      damage: number
+      horror: number
+      assignFirst?: Partial<Record<'damage' | 'horror', string>>
+    }
   | { type: 'DamageAsset'; asset: AssetId; damage: number; horror: number }
   /** Revela una ficha; con `token`, resuelve esa ficha ya sacada (e ignora `ignored`). */
   | { type: 'RevealChaosToken'; token?: ChaosToken; ignored?: ChaosToken }
@@ -719,9 +727,15 @@ export type Message =
       damage: number
       horror: number
       direct?: boolean
+      assignFirst?: Partial<Record<'damage' | 'horror', string>>
     }
   | { type: 'CheckDefeat'; investigator: InvestigatorId }
-  | { type: 'EliminateInvestigator'; investigator: InvestigatorId; weaknessesDone?: boolean }
+  | {
+      type: 'EliminateInvestigator'
+      investigator: InvestigatorId
+      weaknessesDone?: boolean
+      assetsDone?: boolean
+    }
   | { type: 'PlaceDoom'; amount: number }
   | { type: 'CheckAgenda' }
   | { type: 'AdvanceAgenda' }
@@ -1080,6 +1094,7 @@ export interface GameState {
   /** Versión del motor que creó la partida, para migraciones futuras. */
   engineVersion: number
   scenarioId: string
+  scenarioRulesVersion?: number
   difficulty: Difficulty
   /**
    * Modo interactivo (la mesa): las pruebas de habilidad se detienen antes de

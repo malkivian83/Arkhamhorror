@@ -50,6 +50,7 @@ import {
   recomputeConnections,
   removeEnemy,
   shroudOf,
+  turnStartedAt,
   updateEnemy,
   updateInvestigator,
   updateLocation,
@@ -259,15 +260,26 @@ export function handle(state: GameState, message: Message): GameState {
         )
       }
       const next = state
+      const after: Message[] = card.keywords.includes('surge')
+        ? [{ type: 'DrawEncounterCard', investigator: investigator.id }]
+        : []
       if (card.spawnAt !== undefined) {
         // RR "Enemy": si no se pueden cumplir las instrucciones de aparición, se descarta.
         if (!state.locations[card.spawnAt]) {
-          return { ...next, encounterDiscard: [...next.encounterDiscard, card] }
+          return push({ ...next, encounterDiscard: [...next.encounterDiscard, card] }, ...after)
         }
-        return push(next, { type: 'SpawnEnemy', card, location: card.spawnAt, engageWith: null })
+        return push(
+          next,
+          { type: 'SpawnEnemy', card, location: card.spawnAt, engageWith: null },
+          ...after,
+        )
       }
       const engageWith = card.keywords.includes('aloof') ? null : investigator.id
-      return push(next, { type: 'SpawnEnemy', card, location: investigator.location, engageWith })
+      return push(
+        next,
+        { type: 'SpawnEnemy', card, location: investigator.location, engageWith },
+        ...after,
+      )
     }
 
     case 'SpawnEnemy': {
@@ -547,20 +559,14 @@ export function handle(state: GameState, message: Message): GameState {
         })
       }
       if (message.action.kind === 'move') {
-        const entry = entryCost(state, message.action.to)
         if (!canAffordEntry(state, message.action.to))
           throw new EngineError('No hay pistas suficientes para entrar')
-        return push(
-          paid,
-          ...(entry ? [{ type: 'SpendGroupClues', amount: entry } as Message] : []),
-          ...attacks,
-          {
-            type: 'PerformAction',
-            investigator: investigator.id,
-            action: message.action,
-            entryPaid: true,
-          },
-        )
+        return push(paid, ...entryCosts(state, investigator.id, message.action.to), ...attacks, {
+          type: 'PerformAction',
+          investigator: investigator.id,
+          action: message.action,
+          entryPaid: true,
+        })
       }
       return push(paid, ...attacks, {
         type: 'PerformAction',
@@ -1041,15 +1047,14 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'MoveTo': {
+      if (getInvestigator(state, message.investigator).eliminated) return state
       getLocation(state, message.location)
-      const cost = message.entryPaid ? 0 : entryCost(state, message.location)
-      if (cost > 0) {
+      const costs = message.entryPaid
+        ? []
+        : entryCosts(state, message.investigator, message.location)
+      if (costs.length > 0) {
         if (!canAffordEntry(state, message.location)) return state
-        return push(
-          state,
-          { type: 'SpendGroupClues', amount: cost },
-          { ...message, entryPaid: true },
-        )
+        return push(state, ...costs, { ...message, entryPaid: true })
       }
       // Los enemigos enfrentados acompañan al investigador.
       const first = !getInvestigator(state, message.investigator).movedThisTurn
@@ -1065,20 +1070,8 @@ export function handle(state: GameState, message: Message): GameState {
       const reveal: Message[] = getLocation(next, message.location).revealed
         ? []
         : [{ type: 'RevealLocation', location: message.location }]
-      // Coste adicional de entrar (Lantern Chamber): se paga al entrar.
-      const enterHorror = getLocation(state, message.location).enterHorror ?? 0
       return push(
         next,
-        ...(enterHorror > 0
-          ? [
-              {
-                type: 'TakeDamage',
-                investigator: message.investigator,
-                damage: 0,
-                horror: enterHorror,
-              } as Message,
-            ]
-          : []),
         ...reveal,
         { type: 'CheckEngagement', location: message.location },
         {
@@ -1171,6 +1164,7 @@ export function handle(state: GameState, message: Message): GameState {
           investigator: message.investigator,
           damage: message.damage,
           horror: message.horror,
+          ...(message.assignFirst ? { assignFirst: message.assignFirst } : {}),
         })
       }
       if (message.damage === 0 && message.horror === 0) return state
@@ -1207,8 +1201,14 @@ export function handle(state: GameState, message: Message): GameState {
         investigator,
         damage: kind === 'damage' ? damage - 1 : damage,
         horror: kind === 'horror' ? horror - 1 : horror,
+        ...(message.assignFirst ? { assignFirst: message.assignFirst } : {}),
       }
-      const options = soakers(state, investigator, kind)
+      const available = soakers(state, investigator, kind)
+      const trait = message.assignFirst?.[kind]
+      const mandatory = trait
+        ? available.filter((a) => playerCardDef(a.code)?.traits.includes(trait))
+        : []
+      const options = mandatory.length ? mandatory : available
       const toInvestigator: Message = {
         type: 'TakeDamage',
         investigator,
@@ -1227,12 +1227,16 @@ export function handle(state: GameState, message: Message): GameState {
           kind: 'chooseOne',
           prompt: kind === 'damage' ? 'prompt.assignDamage' : 'prompt.assignHorror',
           choices: [
-            {
-              label: 'choice.assignToInvestigator',
-              params: { name: getInvestigator(state, investigator).name },
-              target: { type: 'investigator', id: investigator },
-              then: [toInvestigator, rest],
-            },
+            ...(mandatory.length
+              ? []
+              : [
+                  {
+                    label: 'choice.assignToInvestigator',
+                    params: { name: getInvestigator(state, investigator).name },
+                    target: { type: 'investigator' as const, id: investigator },
+                    then: [toInvestigator, rest],
+                  },
+                ]),
             ...options.map((a): Choice => ({
               label: 'choice.assignToAsset',
               params: { card: playerCardDef(a.code)?.name ?? a.code },
@@ -1706,6 +1710,14 @@ export function handle(state: GameState, message: Message): GameState {
       if (!message.weaknessesDone) {
         const effects = gameEndEffects(state, [investigator.id])
         if (effects.length) return push(state, ...effects, { ...message, weaknessesDone: true })
+      }
+      if (!message.assetsDone) {
+        const effects = Object.values(state.assets)
+          .filter((asset) => asset.owner === investigator.id)
+          .flatMap(
+            (asset) => scenarioBehavior(state.scenarioId)?.assetLeavesPlay?.(state, asset) ?? [],
+          )
+        if (effects.length) return push(state, ...effects, { ...message, assetsDone: true })
       }
       let next = state
       const here = investigator.location
@@ -2529,6 +2541,9 @@ export function handle(state: GameState, message: Message): GameState {
           investigator: message.investigator,
           damage: enemy.damage,
           horror: enemy.horror,
+          ...(enemyBehavior(enemy.code)?.assignFirst
+            ? { assignFirst: enemyBehavior(enemy.code)!.assignFirst }
+            : {}),
         },
         ...elusive,
         {
@@ -2863,7 +2878,12 @@ export function handle(state: GameState, message: Message): GameState {
           ...state,
           abilityUses: [
             ...state.abilityUses,
-            { key: message.key, investigator: investigator.id, round: state.round },
+            {
+              key: message.key,
+              investigator: investigator.id,
+              round: state.round,
+              ...(message.limit?.per === 'turn' ? { turn: turnStartedAt(state) } : {}),
+            },
           ],
         },
         investigator.id,
@@ -4282,6 +4302,21 @@ function soakers(state: GameState, investigator: string, kind: 'damage' | 'horro
       ? def?.health !== undefined && a.damage < def.health
       : def?.sanity !== undefined && a.horror < def.sanity
   })
+}
+
+/** Additional costs for entering an unrevealed location, including effect movement. */
+function entryCosts(
+  state: GameState,
+  investigator: InvestigatorId,
+  location: LocationId,
+): Message[] {
+  const clues = entryCost(state, location)
+  const place = getLocation(state, location)
+  const horror = place.revealed ? 0 : (place.enterHorror ?? 0)
+  return [
+    ...(clues ? [{ type: 'SpendGroupClues' as const, amount: clues }] : []),
+    ...(horror ? [{ type: 'TakeDamage' as const, investigator, damage: 0, horror }] : []),
+  ]
 }
 
 function log(state: GameState, key: string, params?: LabelParams): GameState {

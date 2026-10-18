@@ -398,6 +398,7 @@
       "nothingToHeal": "Nothing to heal",
       "olney": "{card} is discarded",
       "removed": "{card} is removed from the game",
+      "couldNotReach": "{enemy} cannot reach the investigator through the current connections",
       "rivalDefeated": "The rival faction ({name}) is defeated",
       "spellbound": "{card} becomes spellbound"
     }

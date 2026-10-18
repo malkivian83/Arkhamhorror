@@ -398,6 +398,7 @@
       "nothingToHeal": "No hay nada que curar",
       "olney": "Se descarta {card}",
       "removed": "{card} se retira de la partida",
+      "couldNotReach": "{enemy} no puede llegar al investigador por las conexiones actuales",
       "rivalDefeated": "La facción rival ({name}) queda derrotada",
       "spellbound": "{card} queda hechizado"
     }
