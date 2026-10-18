@@ -32,6 +32,7 @@ import {
   type SessionIssue,
 } from '../game/session'
 import { useDecksStore } from './decks'
+import { choiceTarget } from '../game/choiceTarget'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
@@ -300,8 +301,9 @@ export const useGameStore = defineStore('game', () => {
   const choicesByTarget = computed(() => {
     const map = new Map<string, IndexedChoice[]>()
     state.value?.pending?.question.choices.forEach((choice, index) => {
-      if (!choice.target) return
-      const key = targetKey(choice.target)
+      const target = choiceTarget(state.value!, choice)
+      if (!target) return
+      const key = targetKey(target)
       map.set(key, [...(map.get(key) ?? []), { index, choice }])
     })
     return map
@@ -312,7 +314,7 @@ export const useGameStore = defineStore('game', () => {
     () =>
       state.value?.pending?.question.choices
         .map((choice, index) => ({ index, choice }))
-        .filter(({ choice }) => !choice.target) ?? [],
+        .filter(({ choice }) => !choiceTarget(state.value!, choice)) ?? [],
   )
 
   return {

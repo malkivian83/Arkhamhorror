@@ -3,6 +3,7 @@ import { ref, useId } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { localizedCards, localName } from '../game/localized'
 import GameCard from './GameCard.vue'
+import CardTranslation from './CardTranslation.vue'
 
 /** Consulta del mazo; abrir o girar una carta nunca responde a una pregunta del motor. */
 const props = defineProps<{
@@ -15,9 +16,11 @@ const dialog = ref<HTMLDialogElement>()
 const trigger = ref<HTMLButtonElement>()
 const titleId = useId()
 const flipped = ref(new Set<number>())
+const enlarged = ref<number | null>(null)
 
 function open() {
   flipped.value = new Set()
+  enlarged.value = null
   dialog.value?.showModal()
 }
 
@@ -84,7 +87,24 @@ function nameOf(card: { code?: string; name: string }) {
           ✕
         </button>
       </header>
-      <ol class="cards">
+      <section v-if="enlarged !== null && cards[enlarged]" class="enlarged">
+        <button type="button" @click="enlarged = null">{{ t('table.backToDeck') }}</button>
+        <div class="detail">
+          <GameCard
+            :code="cards[enlarged]!.code ?? ''"
+            :name="cards[enlarged]!.name"
+            :width="560"
+            landscape
+            :back="flipped.has(enlarged)"
+            no-zoom
+          />
+          <CardTranslation :code="cards[enlarged]!.code ?? ''" :back="flipped.has(enlarged)" />
+        </div>
+        <button type="button" @click="flip(enlarged)">
+          {{ t(flipped.has(enlarged) ? 'table.viewCardFront' : 'table.viewCardBack') }}
+        </button>
+      </section>
+      <ol v-else class="cards">
         <li
           v-for="(card, index) in cards"
           :key="`${index}:${card.code ?? card.name}`"
@@ -96,7 +116,12 @@ function nameOf(card: { code?: string; name: string }) {
             <span>{{ index + 1 }} / {{ cards.length }}</span>
             <strong>{{ t(`table.deckStatus.${status(index)}`) }}</strong>
           </div>
-          <div class="card-face">
+          <button
+            type="button"
+            class="card-face"
+            :aria-label="t('table.enlargeCard', { name: nameOf(card) })"
+            @click="enlarged = index"
+          >
             <GameCard
               :code="card.code ?? ''"
               :name="card.name"
@@ -105,7 +130,10 @@ function nameOf(card: { code?: string; name: string }) {
               :back="flipped.has(index)"
               no-zoom
             />
-          </div>
+          </button>
+          <button type="button" class="enlarge" @click="enlarged = index">
+            {{ t('table.enlarge') }}
+          </button>
           <p class="name">{{ nameOf(card) }}</p>
           <button
             v-if="card.code"
@@ -231,6 +259,43 @@ header p {
 .card-face {
   display: grid;
   justify-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.enlarged {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
+  padding: 20px;
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+}
+.detail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  min-width: 0;
+}
+.detail :deep(.game-card) {
+  width: min(560px, 100%) !important;
+  min-width: 0;
+  max-width: 100%;
+  height: auto !important;
+  aspect-ratio: 1 / 0.715;
+}
+.detail :deep(.translation) {
+  min-width: 0;
+  max-width: 100%;
+}
+.enlarge {
+  width: 100%;
+  margin-top: 8px;
 }
 .name {
   margin: 12px 0;

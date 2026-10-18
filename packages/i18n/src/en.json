@@ -403,6 +403,17 @@
     }
   },
   "table": {
+    "enlarge": "Enlarge card",
+    "enlargeCard": "Enlarge {name}",
+    "backToDeck": "Back to deck",
+    "agendaAdvances": "Agenda advances",
+    "actAdvances": "Act advances",
+    "resolveBack": "Read the reverse and its advancement instructions.",
+    "transitionEffects": "What happened before the next decision",
+    "transitionArrivals": "Cards that entered play",
+    "nextScenarioCard": "Next card in the deck",
+    "transitionContinue": "Accept to continue with pending effects, tests and decisions.",
+    "accept": "Accept",
     "log": "Game log",
     "hand": "Hand",
     "viewHand": "Enlarge hand",
@@ -507,6 +518,7 @@
     "confirmQuit": "Quit this game? It cannot be recovered."
   },
   "skillTest": {
+    "availableAbilities": "Assets and abilities available before revealing",
     "value": "Skill value",
     "difficulty": "Difficulty",
     "effect": "effect",

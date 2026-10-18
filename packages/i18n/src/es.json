@@ -403,6 +403,17 @@
     }
   },
   "table": {
+    "enlarge": "Ampliar carta",
+    "enlargeCard": "Ampliar {name}",
+    "backToDeck": "Volver al mazo",
+    "agendaAdvances": "Avanza el plan",
+    "actAdvances": "Avanza el acto",
+    "resolveBack": "Consulta el reverso y las instrucciones del avance.",
+    "transitionEffects": "Lo ocurrido hasta la siguiente decisión",
+    "transitionArrivals": "Cartas que han entrado en la mesa",
+    "nextScenarioCard": "Siguiente carta del mazo",
+    "transitionContinue": "Acepta para continuar con los efectos, pruebas y decisiones pendientes.",
+    "accept": "Aceptar",
     "log": "Registro de partida",
     "hand": "Mano",
     "viewHand": "Ampliar mano",
@@ -507,6 +518,7 @@
     "confirmQuit": "¿Abandonar esta partida? No se podrá recuperar."
   },
   "skillTest": {
+    "availableAbilities": "Apoyos y habilidades disponibles antes de revelar",
     "value": "Valor de habilidad",
     "difficulty": "Dificultad",
     "effect": "efecto",

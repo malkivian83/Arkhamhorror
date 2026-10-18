@@ -21,6 +21,7 @@ export function useShortcuts() {
   const game = useGameStore()
 
   function onKey(event: KeyboardEvent) {
+    if (document.querySelector('dialog[open]')) return
     if (typing(event.target) || event.altKey) return
     const key = event.key.toLowerCase()
 

@@ -5,6 +5,7 @@ import { useI18n } from 'vue-i18n'
 import { useLabels } from '../game/labels'
 import { useGameStore } from '../stores/game'
 import GameCard from './GameCard.vue'
+import CardTranslation from './CardTranslation.vue'
 
 /**
  * Elecciones que no se hacen sobre la mesa (efectos de traiciones, elegir
@@ -53,13 +54,10 @@ watch(question, () => (minimized.value = false))
           </button>
         </header>
         <div v-if="resolving.length" class="cards">
-          <GameCard
-            v-for="tr in resolving"
-            :key="tr.id"
-            :code="tr.code"
-            :name="tr.name"
-            :width="170"
-          />
+          <div v-for="tr in resolving" :key="tr.id" class="card-details">
+            <GameCard :code="tr.code" :name="tr.name" :width="170" no-zoom />
+            <CardTranslation :code="tr.code" />
+          </div>
         </div>
         <div class="options">
           <button
@@ -127,6 +125,22 @@ small {
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+.card-details {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.card-details :deep(.translation) {
+  min-width: 0;
+}
+@media (max-width: 650px) {
+  .card-details {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .options button {
   text-align: left;

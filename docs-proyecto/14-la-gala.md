@@ -1,5 +1,10 @@
 # La gala del ecuador del invierno (escenario independiente)
 
+**Estado de cierre (18/10/2026):** consultar la
+[auditoría específica](18-auditoria-cierre-la-gala.md), con 320 preparaciones,
+40 recorridos de derrota y diferencias de reglas verificadas. Este documento
+describe la implementación inicial; su lista de pendientes no era exhaustiva.
+
 Escenario independiente de 2024 (pack `tmg` en ArkhamDB, cartas 71001–71062), con su
 propio conjunto de encuentros. Código en `packages/cards/src/midwinter-gala/`:
 
@@ -59,7 +64,8 @@ del servidor del proyecto de referencia.
 
 - Special Agent Callahan: falta su reacción "tras activar una habilidad de [acción]
   de un Aliado o Arma".
-- Delores Gadling: falta ignorar los ataques de oportunidad de Humanoides no Élite.
+- Delores Gadling: falta ignorar los ataques de oportunidad de Humanoides; la
+  referencia consultada no limita esa capacidad a no Élite.
 - Thomas Olney: falta su segunda habilidad (descartar la carta superior de tu mazo y
   comprometerla).
 - Lucas Tetlow: si el Objeto es un Tomo, aún no ofrece jugarlo.

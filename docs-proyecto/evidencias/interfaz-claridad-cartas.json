@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-18",
+  "baseline": "939dbb31ae8989e59f6f5ef31a4a5eb6b80b8e5a",
+  "origin": "http://127.0.0.1:5181",
+  "userSessionUntouched": true,
+  "physicalDevice": false,
+  "tests": { "passed": 466, "files": 35, "newPresentationRegressions": 5 },
+  "physicalCheck": "Diferida por decisión del usuario: no dispone de teléfono para probar",
+  "checks": [
+    "Evasión: investigador y valor verde a la izquierda, enemigo y dificultad roja a la derecha, con rótulos explícitos",
+    "Aguante: botón visible y apoyo resaltado; usarlo suma 2 Agilidad y consume 1 recurso",
+    "Secretos prohibidos: carta robada y traducción española visibles a la vez antes de cerrar De acuerdo",
+    "Mazo de planes: ampliar carta, girar al reverso y leer traducción sin avanzar el escenario",
+    "Avance de plan: reverso grande y traducido, siguiente carta, Aceptar y continuación de la prueba de Voluntad pendiente",
+    "Avance de acto: reverso grande, Sirviente y Lugares nuevos, siguiente carta y Aceptar",
+    "Ventana 390x640: consulta y giro de acto ampliado; se corrigió un desbordamiento horizontal detectado al probar"
+  ],
+  "fixtures": {
+    "generator": "scripts/prepare-presentation-ui.mjs",
+    "endurance": "Mesa dirigida; no se presenta como recorrido legal completo",
+    "agendaActDraw": "Prefijos de las grabaciones legales duo-normal-spreading-flames-286 y equipo-normal-spreading-flames-278, importados por los controles normales"
+  },
+  "presentation": "Aceptar bloquea la interacción con la mesa hasta reconocer el aviso. Es una confirmación de presentación: no añade decisiones del motor, modifica la partida ni cambia los historiales de aceptación. Los efectos automáticos procesados hasta la siguiente decisión se resumen en el aviso; las decisiones pendientes se resuelven después.",
+  "screenshots": [
+    "aguante-evasion-corregida.png",
+    "plan-ampliado-traduccion.png",
+    "secretos-prohibidos-traduccion.png",
+    "avance-plan-aceptar.png",
+    "avance-acto-aceptar.png",
+    "acto-ampliado-movil.png"
+  ],
+  "screenshotLocation": "Artefactos locales de esta conversación; no incluidos en el repositorio"
+}

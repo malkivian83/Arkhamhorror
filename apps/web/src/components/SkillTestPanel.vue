@@ -36,6 +36,13 @@ const intermediateQuestion = computed(() =>
 )
 watch(prompt, () => (minimized.value = false))
 const committing = computed(() => prompt.value === 'prompt.commitCards')
+const testAbilities = computed(() =>
+  committing.value
+    ? (question.value?.choices.flatMap((choice, index) =>
+        choice.then.some((message) => message.type === 'UseAbility') ? [{ choice, index }] : [],
+      ) ?? [])
+    : [],
+)
 const resolved = computed(
   () => test.value?.succeeded !== null && test.value?.succeeded !== undefined,
 )
@@ -115,25 +122,6 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
 
       <div class="duel">
         <GameCard
-          v-if="source && source.code"
-          class="source-card"
-          :code="source.code"
-          :name="source.name"
-          :back="source.back"
-          :width="70"
-        />
-        <span v-else-if="source" class="source-name">{{ localName(source.name) }}</span>
-
-        <span class="value" :title="t('skillTest.value')">{{ shownValue }}</span>
-        <div class="vs">
-          <span class="skill"
-            ><SkillIcon :skill="test.skill" /> {{ t(`skill.${test.skill}`) }}</span
-          >
-          <span>VS</span>
-        </div>
-        <span class="difficulty" :title="t('skillTest.difficulty')">{{ test.difficulty }}</span>
-
-        <GameCard
           v-if="investigator"
           class="investigator-card"
           :code="investigator.id"
@@ -142,6 +130,29 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
           :color="classColor(investigator.id)"
           landscape
         />
+        <div class="number-block">
+          <span class="number-label">{{ t('skillTest.value') }}</span>
+          <span class="value" :title="t('skillTest.value')">{{ shownValue }}</span>
+        </div>
+        <div class="vs">
+          <span class="skill"
+            ><SkillIcon :skill="test.skill" /> {{ t(`skill.${test.skill}`) }}</span
+          >
+          <span>VS</span>
+        </div>
+        <div class="number-block">
+          <span class="number-label">{{ t('skillTest.difficulty') }}</span>
+          <span class="difficulty" :title="t('skillTest.difficulty')">{{ test.difficulty }}</span>
+        </div>
+        <GameCard
+          v-if="source && source.code"
+          class="source-card"
+          :code="source.code"
+          :name="source.name"
+          :back="source.back"
+          :width="70"
+        />
+        <span v-else-if="source" class="source-name">{{ localName(source.name) }}</span>
       </div>
 
       <p class="breakdown">
@@ -199,6 +210,17 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
           <small>{{ t('choice.revealToken') }}</small>
         </button>
       </div>
+      <section v-if="testAbilities.length" class="test-abilities">
+        <h4>{{ t('skillTest.availableAbilities') }}</h4>
+        <button
+          v-for="option in testAbilities"
+          :key="option.index"
+          type="button"
+          @click="game.answer(option.index)"
+        >
+          {{ label(option.choice.label, option.choice.params ?? {}) }}
+        </button>
+      </section>
 
       <div v-if="resolved" class="result" :class="test.succeeded ? 'success' : 'failure'">
         <strong>{{ test.succeeded ? t('skillTest.success') : t('skillTest.failure') }}</strong>
@@ -343,6 +365,28 @@ h3 {
 }
 .value {
   background: #2f6f2f;
+}
+.number-block {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+}
+.number-label {
+  font-size: 0.65rem;
+  text-align: center;
+}
+.test-abilities {
+  padding: 8px 12px;
+  display: grid;
+  gap: 8px;
+}
+.test-abilities h4 {
+  margin: 0;
+  font-size: 0.85rem;
+}
+.test-abilities button {
+  text-align: left;
+  min-height: 44px;
 }
 .difficulty {
   background: #8e1c1c;
