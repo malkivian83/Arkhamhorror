@@ -69,9 +69,13 @@ del servidor del proyecto de referencia.
 - Thomas Olney: falta su segunda habilidad (descartar la carta superior de tu mazo y
   comprometerla).
 - Lucas Tetlow: si el Objeto es un Tomo, aún no ofrece jugarlo.
-- Emboscada violenta y Atrapado: el enemigo va directo a tu localización (no paso a paso).
-- Gug furioso y Bestia lunar: no obligan aún a asignar horror/daño a tus Invitados.
 - Los textos de los reversos de plan (Se desata el caos, calma, despedida) usan
   resúmenes propios.
 - La Resolución 1 (añadir un Invitado al mazo) solo tiene sentido en campaña; el
   modo historia secundaria no está implementado.
+
+La fase 1 de la auditoría ya corrige el movimiento por conexiones de Emboscada y
+Atrapado, la asignación prioritaria de Gug/Bestia lunar, combate, costes, salidas
+por eliminación, primera entrada a Sala de la Lámpara y RNG. Las mesas nuevas
+usan reglas de escenario versión 2; no se migran automáticamente mesas activas
+de Gala anteriores. Brethren conserva su compatibilidad.

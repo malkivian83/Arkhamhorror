@@ -1,4 +1,4 @@
-import { playerCardBehavior } from './content'
+import { playerCardBehavior, scenarioBehavior } from './content'
 import { EngineError } from './errors'
 import { recomputeConnections } from './state'
 import { shuffle, seedRng } from './rng'
@@ -193,9 +193,11 @@ export function prepareGame({
     { type: 'Round' },
   ]
 
+  const rulesVersion = scenarioBehavior(scenario.id)?.rulesVersion
   return recomputeConnections({
     engineVersion: ENGINE_VERSION,
     scenarioId: scenario.id,
+    ...(rulesVersion !== undefined ? { scenarioRulesVersion: rulesVersion } : {}),
     difficulty,
     interactive,
     rng,

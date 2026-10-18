@@ -175,10 +175,8 @@ registerStory({
         params: { n: cost },
         actions: 1,
         provokes: true,
-        then: [
-          { type: 'SpendClues', investigator, amount: cost },
-          { type: 'ScenarioSpecific', key: 'lookMystery', data: { investigator } },
-        ],
+        costs: [{ type: 'SpendClues', investigator, amount: cost }],
+        then: [{ type: 'ScenarioSpecific', key: 'lookMystery', data: { investigator } }],
       })
     }
     // Durante tu turno, con 1 o menos pistas por investigador en la localización: roba el misterio.

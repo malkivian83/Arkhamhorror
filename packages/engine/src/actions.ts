@@ -17,6 +17,7 @@ import {
   getLocation,
   perInvestigator,
   placedLocation,
+  turnStartedAt,
 } from './state'
 import type {
   AbilityLimit,
@@ -227,7 +228,8 @@ export function withinLimit(
     (u) =>
       u.key === key &&
       (limit.group || u.investigator === investigator) &&
-      (limit.per === 'game' || u.round === state.round),
+      (limit.per === 'game' ||
+        (u.round === state.round && (limit.per !== 'turn' || u.turn === turnStartedAt(state)))),
   )
 }
 

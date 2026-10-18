@@ -1,4 +1,4 @@
-// Local evidence for an audit, not a certificate of rule correctness.
+// Current phase-one verification; preserves the original audit snapshot.
 import { createServer } from '../apps/web/node_modules/vite/dist/node/index.js'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { createHash } from 'node:crypto'
@@ -227,7 +227,7 @@ try {
   )
   observe(
     'G06',
-    { rookieKeywords: defs.rookieCop.keywords, silentVictory: defs.bloodlessMan.victory },
+    { rookieKeywords: defs.rookieCop.keywords, silentVictory: defs.bloodlessMan.victory ?? null },
     'Rookie Cop tiene Oleada; la cara silenciosa de El Exangüe no tiene Victoria impresa',
     !defs.rookieCop.keywords.includes('surge') && defs.bloodlessMan.victory === 1,
   )
@@ -252,6 +252,25 @@ try {
     'Al eliminar al controlador, el Invitado que abandona el juego queda hechizado en su localización',
     !Object.values(eliminated.placedAssets).some((a) => a.code === guest.code && a.faceDown),
   )
+  const repaired = new Set(['G01', 'G03', 'G06', 'G07', 'G08', 'G12', 'G13', 'G15', 'G16'])
+  const fixedChecks = {
+    G01:
+      !option.provokes &&
+      fight.pending?.question.prompt === 'prompt.commitCards' &&
+      fight.assets[nova.id]?.exhausted,
+    G03: bedroom?.limit?.per === 'turn' && !bedroom.provokes,
+    G06: defs.rookieCop.keywords.includes('surge') && defs.bloodlessMan.victory === undefined,
+    G07:
+      !Object.values(eliminated.assets).some((a) => a.code === guest.code) &&
+      Object.values(eliminated.placedAssets).some((a) => a.code === guest.code && a.faceDown),
+  }
+  for (const probe of probes) {
+    probe.defectPresent = probe.confirmed
+    probe.status = repaired.has(probe.id) ? 'fixed' : 'pending'
+    if (repaired.has(probe.id) ? !fixedChecks[probe.id] : !probe.confirmed)
+      throw new Error(`Audit result changed unexpectedly: ${probe.id}`)
+    delete probe.confirmed
+  }
   const referencePaths = [
     'Scenario/Scenarios/TheMidwinterGala.hs',
     'Location/Cards/TheMidwinterGala/LanternChamber.hs',
@@ -269,7 +288,10 @@ try {
   }
   const report = {
     date: '2026-10-18',
-    baseline: '939dbb31ae8989e59f6f5ef31a4a5eb6b80b8e5a',
+    baseline: 'f476627ea1d1fdcbe299ce6b75b53f2c383d4a42',
+    stage: 'phase-one',
+    scenarioRulesVersion: engine.scenarioBehavior(defs.MIDWINTER_GALA).rulesVersion,
+    repaired: [...repaired],
     scope:
       'Auditoría local: preparación, derrota pasiva, guardado/replay y sondas dirigidas. Sin certificación de victorias.',
     setupCases,
@@ -280,7 +302,7 @@ try {
   }
   await mkdir('docs-proyecto/evidencias', { recursive: true })
   await writeFile(
-    'docs-proyecto/evidencias/auditoria-gala.json',
+    'docs-proyecto/evidencias/gala-fase-1.json',
     JSON.stringify(report, null, 2) + '\n',
   )
   const inventory = new Map()
@@ -304,7 +326,7 @@ try {
     71010: 'G09',
     71012: 'G03',
     71017: 'G10;G15;G16',
-    71018: 'G05',
+    71018: 'G01;G05',
     71020: 'G06',
     71024: 'G11',
     71031: 'G01',
@@ -332,13 +354,17 @@ try {
   const rows = [['codigo', 'nombre', 'tipo', 'estado', 'hallazgos', 'aceptacion_pendiente']]
   for (const card of [...inventory.values()].sort((a, b) => a.code.localeCompare(b.code))) {
     const issues = findings[card.code] ?? ''
+    const pending = issues.split(';').filter((id) => id && !repaired.has(id))
+    const fixed = issues.split(';').filter((id) => repaired.has(id))
     rows.push([
       card.code,
       card.name,
       card.type,
-      issues
-        ? 'Diferencia o comprobación prioritaria'
-        : 'Presente; sin contrato individual de cierre',
+      pending.length
+        ? `Pendiente: ${pending.join(';')}; corregido: ${fixed.join(';') || '—'}`
+        : fixed.length
+          ? 'Correcciones de fase 1 verificadas; pendiente contrato completo'
+          : 'Presente; sin contrato individual de cierre',
       issues,
       'Contrato individual EN/ES, efectos y guardado/reanudación; ver auditoría 18',
     ])
@@ -357,7 +383,6 @@ try {
       probes,
     }),
   )
-  if (probes.some((p) => !p.confirmed)) throw new Error('Audit probe changed: re-evaluate finding')
 } finally {
   await server.close()
 }

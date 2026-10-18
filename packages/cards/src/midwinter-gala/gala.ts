@@ -402,7 +402,6 @@ function setupBloodlessMan(state: GameState): GameState {
         damage: 1,
         horror: 1,
         keywords: ['aloof'],
-        victory: 1,
       },
       location: CODES.lanternChamber,
       engageWith: null,
@@ -594,6 +593,7 @@ function placeJewel(state: GameState, data: Data): GameState {
 
 const galaBehavior: ScenarioBehavior = {
   id: MIDWINTER_GALA,
+  rulesVersion: 2,
   tokenEffect: (state, token, investigator) => {
     const hard = state.difficulty === 'hard' || state.difficulty === 'expert'
     const here = getInvestigator(state, investigator).location
@@ -1098,11 +1098,12 @@ registerLocation({
       .filter((e) => SECOND_FLOOR.includes(e.location))
       .flatMap((e) =>
         (['combat', 'agility'] as SkillType[]).map((skill): AbilityOption => ({
-          key: `${self.id}:fight:${state.round}:${state.activeTurn ?? ''}`,
+          key: `${self.id}:fight`,
           label: 'ability.gala.bedroomFight',
           params: { enemy: e.name, skill },
           actions: 1,
-          provokes: true,
+          provokes: false,
+          limit: { per: 'turn' },
           target: { type: 'enemy', id: e.id },
           then: [
             {
