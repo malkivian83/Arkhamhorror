@@ -1,0 +1,2040 @@
+{
+  "scope": "campaign",
+  "campaign": {
+    "id": "brethren-of-ash",
+    "difficulty": "standard",
+    "scenarioIndex": 0,
+    "investigators": [
+      {
+        "id": "12004",
+        "deck": [
+          "12030",
+          "12031",
+          "12032",
+          "12033",
+          "12034",
+          "12035",
+          "12016",
+          "12017",
+          "12018",
+          "12019",
+          "12020",
+          "12021",
+          "12087",
+          "12087",
+          "12088",
+          "12088",
+          "12005",
+          "12036",
+          "12037",
+          "12038",
+          "12022",
+          "12023",
+          "12024",
+          "12089",
+          "12089",
+          "12039",
+          "12025",
+          "12093",
+          "12093",
+          "12092",
+          "12092",
+          "12006",
+          "12100"
+        ]
+      },
+      {
+        "id": "12007",
+        "deck": [
+          "12008",
+          "12044",
+          "12045",
+          "12046",
+          "12047",
+          "12048",
+          "12049",
+          "12030",
+          "12031",
+          "12032",
+          "12033",
+          "12034",
+          "12035",
+          "12086",
+          "12086",
+          "12088",
+          "12088",
+          "12050",
+          "12051",
+          "12052",
+          "12036",
+          "12037",
+          "12038",
+          "12089",
+          "12089",
+          "12053",
+          "12039",
+          "12091",
+          "12091",
+          "12093",
+          "12093",
+          "12009",
+          "12103"
+        ]
+      }
+    ],
+    "log": {
+      "notes": [],
+      "crossedOut": [],
+      "values": {},
+      "chaosTokens": [],
+      "investigators": {
+        "12004": {
+          "xp": 0,
+          "physicalTrauma": 0,
+          "mentalTrauma": 0,
+          "storyAssets": []
+        },
+        "12007": {
+          "xp": 0,
+          "physicalTrauma": 0,
+          "mentalTrauma": 0,
+          "storyAssets": []
+        }
+      }
+    },
+    "results": []
+  },
+  "seed": 286,
+  "purchases": [],
+  "inputs": [
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 5
+    },
+    {
+      "investigator": "12007",
+      "choice": 1
+    },
+    {
+      "investigator": "12007",
+      "choice": 3
+    },
+    {
+      "investigator": "12007",
+      "choice": 3
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 3
+    },
+    {
+      "investigator": "12007",
+      "choice": 3
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 1
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 5
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 5
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 2
+    },
+    {
+      "investigator": "12007",
+      "choice": 4
+    },
+    {
+      "investigator": "12007",
+      "choice": 4
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 4
+    },
+    {
+      "investigator": "12007",
+      "choice": 4
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 4
+    },
+    {
+      "investigator": "12004",
+      "choice": 10
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 12
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 2
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 5
+    },
+    {
+      "investigator": "12007",
+      "choice": 6
+    },
+    {
+      "investigator": "12007",
+      "choice": 7
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 10
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 10
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 10
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 11
+    },
+    {
+      "investigator": "12007",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 11
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 11
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 1
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 12
+    },
+    {
+      "investigator": "12007",
+      "choice": 7
+    },
+    {
+      "investigator": "12007",
+      "choice": 1
+    },
+    {
+      "investigator": "12007",
+      "choice": 1
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 1
+    },
+    {
+      "investigator": "12007",
+      "choice": 1
+    },
+    {
+      "investigator": "12007",
+      "choice": 8
+    },
+    {
+      "investigator": "12007",
+      "choice": 5
+    },
+    {
+      "investigator": "12007",
+      "choice": 12
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 11
+    },
+    {
+      "investigator": "12007",
+      "choice": 7
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 2
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 4
+    },
+    {
+      "investigator": "12007",
+      "choice": 12
+    },
+    {
+      "investigator": "12007",
+      "choice": 8
+    },
+    {
+      "investigator": "12007",
+      "choice": 9
+    },
+    {
+      "investigator": "12007",
+      "choice": 11
+    },
+    {
+      "investigator": "12007",
+      "choice": 2
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 10
+    },
+    {
+      "investigator": "12007",
+      "choice": 1
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 6
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 1
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 11
+    },
+    {
+      "investigator": "12007",
+      "choice": 8
+    },
+    {
+      "investigator": "12007",
+      "choice": 7
+    },
+    {
+      "investigator": "12007",
+      "choice": 9
+    },
+    {
+      "investigator": "12007",
+      "choice": 4
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 15
+    },
+    {
+      "investigator": "12007",
+      "choice": 3
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 14
+    },
+    {
+      "investigator": "12007",
+      "choice": 3
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 7
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 7
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 6
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 12
+    },
+    {
+      "investigator": "12007",
+      "choice": 3
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 12
+    },
+    {
+      "investigator": "12007",
+      "choice": 3
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 6
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 1
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 5
+    },
+    {
+      "investigator": "12007",
+      "choice": 9
+    },
+    {
+      "investigator": "12007",
+      "choice": 5
+    },
+    {
+      "investigator": "12007",
+      "choice": 8
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 1
+    },
+    {
+      "investigator": "12007",
+      "choice": 1
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    }
+  ],
+  "transcript": [
+    {
+      "prompt": "prompt.story",
+      "label": "choice.continue",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseLead",
+      "label": "choice.investigator",
+      "params": {
+        "name": "Joe Diamond"
+      }
+    },
+    {
+      "prompt": "prompt.story",
+      "label": "choice.continue",
+      "params": null
+    },
+    {
+      "prompt": "prompt.mulligan",
+      "label": "choice.keepHand",
+      "params": {
+        "n": 0
+      }
+    },
+    {
+      "prompt": "prompt.mulligan",
+      "label": "choice.keepHand",
+      "params": {
+        "n": 0
+      }
+    },
+    {
+      "prompt": "prompt.story",
+      "label": "choice.continue",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseNextInvestigator",
+      "label": "choice.investigator",
+      "params": {
+        "name": "Joe Diamond"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.play",
+      "params": {
+        "card": "Emergency Cache"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.play",
+      "params": {
+        "card": "Logan Hastings"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.play",
+      "params": {
+        "card": "Laboratory Assistant"
+      }
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "ability.drawCards",
+      "params": {
+        "card": "Laboratory Assistant",
+        "n": 2
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.playFast",
+      "params": {
+        "card": "Magnifying Glass"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.play",
+      "params": {
+        "card": "Emergency Cache"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Your Friend's Room"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Your Friend's Room"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseSkill",
+      "label": "choice.test.agility",
+      "params": {
+        "difficulty": 3
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Manual Dexterity",
+        "icons": 2
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseNextInvestigator",
+      "label": "choice.investigator",
+      "params": {
+        "name": "Joe Diamond"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.play",
+      "params": {
+        "card": "Machete"
+      }
+    },
+    {
+      "prompt": "prompt.assignDamage",
+      "label": "choice.assignToAsset",
+      "params": {
+        "card": "Laboratory Assistant"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "Machete",
+        "enemy": "Hellhound"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "Machete",
+        "enemy": "Hellhound"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.play",
+      "params": {
+        "card": "Dorothy Simmons"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Your Friend's Room"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Your Friend's Room"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "ability.gainResource",
+      "params": {
+        "card": "Dorothy Simmons"
+      }
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.advanceAct",
+      "label": "action.advanceAct",
+      "params": {
+        "act": "Where There's Smoke…",
+        "clues": 4
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseEffect",
+      "label": "choice.takeTwoDamage",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseNextInvestigator",
+      "label": "choice.investigator",
+      "params": {
+        "name": "Joe Diamond"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Dormitories"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "Machete",
+        "enemy": "Servant of Flame"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Overpower",
+        "icons": 2
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "ability.revealToDraw",
+      "params": {
+        "card": "Detective's Intuition",
+        "n": 2
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "Machete",
+        "enemy": "Servant of Flame"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Overpower",
+        "icons": 2
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.playFast",
+      "params": {
+        "card": "Magnifying Glass"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Dormitories"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Miskatonic Quad"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.endTurn",
+      "params": null
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Detective's Intuition",
+        "icons": 2
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Sharp Rhetoric",
+        "icons": 1
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseEffect",
+      "label": "choice.placeDoom",
+      "params": null
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "ability.playCard",
+      "params": {
+        "card": "Gather Intel"
+      }
+    },
+    {
+      "prompt": "prompt.chooseNextInvestigator",
+      "label": "choice.investigator",
+      "params": {
+        "name": "Joe Diamond"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "Machete",
+        "enemy": "Servant of Flame"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Bodyguard",
+        "icons": 1
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "Machete",
+        "enemy": "Servant of Flame"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "Machete",
+        "enemy": "Servant of Flame"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.endTurn",
+      "params": null
+    },
+    {
+      "prompt": "prompt.assignDamage",
+      "label": "choice.assignToAsset",
+      "params": {
+        "card": "Dorothy Simmons"
+      }
+    },
+    {
+      "prompt": "prompt.chooseNextInvestigator",
+      "label": "choice.investigator",
+      "params": {
+        "name": "Joe Diamond"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "Machete",
+        "enemy": "Mutated Experiment"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "Machete",
+        "enemy": "Mutated Experiment"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.play",
+      "params": {
+        "card": "Laboratory Assistant"
+      }
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "ability.drawCards",
+      "params": {
+        "card": "Laboratory Assistant",
+        "n": 2
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.quadMove",
+      "params": {
+        "location": "Dormitories"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Dormitories"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Deduction",
+        "icons": 1
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.assignHorror",
+      "label": "choice.assignToAsset",
+      "params": {
+        "card": "Laboratory Assistant"
+      }
+    },
+    {
+      "prompt": "prompt.assignHorror",
+      "label": "choice.assignToAsset",
+      "params": {
+        "card": "Laboratory Assistant"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Miskatonic Quad"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.play",
+      "params": {
+        "card": "Emergency Cache"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.fight",
+      "params": {
+        "enemy": "Bystander"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Broken Bottle",
+        "icons": 1
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.quadMove",
+      "params": {
+        "location": "Dormitories"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Miskatonic Quad"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Manual Dexterity",
+        "icons": 2
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseEffect",
+      "label": "choice.placeDoom",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.play",
+      "params": {
+        "card": "Thieves' Kit"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.quadMove",
+      "params": {
+        "location": "Dormitories"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Miskatonic Quad"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Science Hall"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.investigateWith",
+      "params": {
+        "card": "Thieves' Kit",
+        "skill": "intellect"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseCardToDiscard",
+      "label": "choice.discard",
+      "params": {
+        "card": "12088"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.investigateWith",
+      "params": {
+        "card": "Thieves' Kit",
+        "skill": "intellect"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseCardToDiscard",
+      "label": "choice.discard",
+      "params": {
+        "card": "12051"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Miskatonic Quad"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.quadMove",
+      "params": {
+        "location": "Dormitories"
+      }
+    },
+    {
+      "prompt": "prompt.chooseSkill",
+      "label": "choice.test.intellect",
+      "params": {
+        "difficulty": 5
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Perception",
+        "icons": 2
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Fingerprint Kit",
+        "icons": 1
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.optional",
+      "label": "choice.disengageAndMove",
+      "params": {}
+    },
+    {
+      "prompt": "prompt.chooseMove",
+      "label": "action.move",
+      "params": {
+        "location": "Miskatonic Quad"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.quadMove",
+      "params": {
+        "location": "Dormitories"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.heal",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Miskatonic Quad"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Warren Observatory"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.play",
+      "params": {
+        "card": "M1903 Hammerless"
+      }
+    },
+    {
+      "prompt": "prompt.freeSlot",
+      "label": "choice.discard",
+      "params": {
+        "card": "Magnifying Glass"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "M1903 Hammerless",
+        "enemy": "Bystander"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "M1903 Hammerless",
+        "enemy": "Bystander"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Lucky Cigarette Case",
+        "icons": 1
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseEffect",
+      "label": "choice.discardRandom",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseEffect",
+      "label": "choice.discardRandom",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseEffect",
+      "label": "choice.discardRandom",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.investigateWith",
+      "params": {
+        "card": "Thieves' Kit",
+        "skill": "intellect"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "ability.observatoryDraw",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.investigateWith",
+      "params": {
+        "card": "Thieves' Kit",
+        "skill": "intellect"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.investigateWith",
+      "params": {
+        "card": "Thieves' Kit",
+        "skill": "intellect"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "M1903 Hammerless",
+        "enemy": "Cantor of Flame"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "M1903 Hammerless",
+        "enemy": "Cantor of Flame"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.investigateWith",
+      "params": {
+        "card": "Thieves' Kit",
+        "skill": "intellect"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "ability.observatoryDraw",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseSkill",
+      "label": "choice.test.intellect",
+      "params": {
+        "difficulty": 5
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Covert Ops",
+        "icons": 2
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Miskatonic Quad"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.quadMove",
+      "params": {
+        "location": "Dormitories"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Miskatonic Quad"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Orne Library"
+      }
+    },
+    {
+      "prompt": "prompt.advanceAct",
+      "label": "action.advanceAct",
+      "params": {
+        "act": "Searching for Dr. Armitage",
+        "clues": 6
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseEffect",
+      "label": "choice.takeTwoDamage",
+      "params": null
+    },
+    {
+      "prompt": "prompt.assignDamage",
+      "label": "choice.assignToAsset",
+      "params": {
+        "card": "Dr. Henry Armitage"
+      }
+    },
+    {
+      "prompt": "prompt.assignDamage",
+      "label": "choice.assignToAsset",
+      "params": {
+        "card": "Dr. Henry Armitage"
+      }
+    },
+    {
+      "prompt": "prompt.story",
+      "label": "choice.continue",
+      "params": null
+    },
+    {
+      "prompt": "prompt.story",
+      "label": "choice.investigator",
+      "params": {
+        "name": "Joe Diamond"
+      }
+    },
+    {
+      "prompt": "prompt.story",
+      "label": "story.spreadingFlames.stay",
+      "params": null
+    },
+    {
+      "prompt": "prompt.story",
+      "label": "choice.continue",
+      "params": null
+    }
+  ],
+  "outcome": {
+    "type": "resolution",
+    "resolution": 2
+  },
+  "log": {
+    "notes": [
+      "defeatedPursuer",
+      "savedUniversity"
+    ],
+    "crossedOut": [],
+    "values": {},
+    "chaosTokens": [],
+    "investigators": {
+      "12004": {
+        "xp": 7,
+        "physicalTrauma": 2,
+        "mentalTrauma": 0,
+        "storyAssets": [
+          "12115"
+        ]
+      },
+      "12007": {
+        "xp": 7,
+        "physicalTrauma": 1,
+        "mentalTrauma": 0,
+        "storyAssets": []
+      }
+    }
+  }
+}

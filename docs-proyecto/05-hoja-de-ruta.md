@@ -8,11 +8,13 @@ campaña es **Brethren of Ash** y cuyo primer escenario es **"Spreading Flames"*
 (investigadores: Daniela Reyes, Joe Diamond, Trish Scarborough, Dexter Drake,
 Isabelle Barnes). Sustituye a Night of the Zealot como contenido inicial.
 
+**Estado actualizado el 18/10/2026:** motor, mesa local y los tres escenarios implementados; cierre técnico y aceptación ampliada en la [auditoría 16](16-auditoria-cierre-brethren-of-ash.md). Se han reproducido campañas completas con dos equipos en normal. La comprobación en teléfono físico sigue sin realizarse; las pruebas móviles disponibles usan una ventana de 390×640. Las decisiones de nombre y publicación de la fase 0 no bloquean el juego local.
+
 ## Fase 0 · Decisiones y preparación
 
 - [ ] Resolver las [dudas abiertas](07-dudas-abiertas.md) (alcance, imágenes, textos).
 - [ ] Elegir nombre del producto (sin "Arkham Horror").
-- [x] Mover el código original fuera del repositorio (`E:\referencia\ArkhamHorror`).
+- [x] Mover el código original fuera del repositorio (copia actual: `D:\referencia\ArkhamHorror-main`).
 - [x] Guardar el reglamento en `reglas/` (incluido en git: repositorio privado).
 - [x] Conseguir la guía de campaña de Brethren of Ash (preparación y resoluciones de los escenarios).
 - [x] Conexiones de las localizaciones de Spreading Flames (tomadas del proyecto de referencia).
@@ -39,28 +41,28 @@ Estado detallado del motor: [08-motor.md](08-motor.md).
 - [x] Pruebas exigidas por efectos y efectos de las fichas de escenario.
 - [x] Habilidades forzadas (primeras ventanas).
 - [x] Habilidades activadas y rápidas, con límites; parlamento y retirarse.
-- [ ] Ventanas de reacción generales (eventos "cuando…/tras…").
-- [ ] Habilidades de investigador y efecto de su signo arcano.
+- [x] Ventanas de reacción necesarias para las cartas del contenido actual (eventos "cuando…/tras…").
+- [x] Habilidades de los cinco investigadores y efectos completos de su signo arcano.
 - [x] Palabras clave: presa, condenado.
-- [ ] Palabras clave restantes: patrulla, masivo, esquivo.
+- [x] Patrulla, Masivo y Esquivo para el contenido implementado; regresiones de enfrentamiento implícito de Masivo.
 - [x] Análisis de "Spreading Flames": [09-spreading-flames.md](09-spreading-flames.md).
 - [x] Bolsas del caos de Brethren of Ash por dificultad.
 - [x] Cartas de encuentro de "Spreading Flames": datos, revelaciones, forzados y tarjeta de referencia.
-- [x] "Spreading Flames": efectos de plan y acto, las 6 localizaciones y sus habilidades. Faltan Dr. Armitage y resoluciones de campaña.
+- [x] "Spreading Flames": planes, actos, localizaciones, Dr. Armitage y resoluciones de campaña.
 - [x] Datos de las 104 cartas de jugador (sin texto) y los 5 mazos iniciales.
-- [ ] Efectos de todas las cartas de jugador (hecho un primer lote), debilidades y habilidades de investigador.
+- [x] Efectos de las 104 cartas de jugador, debilidades y habilidades de investigador; contratos principales y regresiones dirigidas, con los límites de cobertura de la auditoría.
 
 ## Fase 2 · Jugable en navegador (local)
 
 - [x] Demo jugable en el navegador con un escenario inventado (EN/ES).
-- [ ] Servidor con partida en memoria + WebSocket.
+- Fuera del alcance local: servidor de partidas y WebSocket.
 - [x] Mesa de juego: mapa con conexiones, plan/acto/mazos/bolsa, zona de cada investigador, mano jugable, registro, opciones con clic sobre la mesa, imágenes de ArkhamDB al vuelo con plantilla de respaldo, partida guardada en el navegador.
-- [ ] Deshacer última acción.
+- [x] Deshacer paso, acción, turno y ronda, también después de recargar.
+- [x] Guardado validado, copia previa, importación/exportación y diagnóstico local.
 
 ## Fase 3 · Plataforma
 
-- [ ] Cuentas, mazos, lobby, partidas persistentes (event sourcing + instantáneas).
-- [ ] Multijugador 1–4 jugadores, reconexión, espectador.
+- Fuera del alcance solicitado: cuentas, lobby, multijugador online, reconexión y espectador.
 - [x] Constructor de mazos con validación de reglas de construcción (en el navegador).
 - [x] Importar mazo desde ArkhamDB (API pública, mazos publicados o compartidos).
 

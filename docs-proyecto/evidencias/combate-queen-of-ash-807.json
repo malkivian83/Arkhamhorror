@@ -1,0 +1,904 @@
+{
+  "scope": "isolated-continuation",
+  "campaign": {
+    "id": "brethren-of-ash",
+    "difficulty": "easy",
+    "scenarioIndex": 2,
+    "investigators": [
+      {
+        "id": "12004",
+        "deck": [
+          "12019",
+          "12019",
+          "12020",
+          "12020",
+          "12031",
+          "12031",
+          "12034",
+          "12034",
+          "12030",
+          "12030",
+          "12089",
+          "12089",
+          "12039",
+          "12039",
+          "12093",
+          "12093",
+          "12092",
+          "12092",
+          "12091",
+          "12091",
+          "12090",
+          "12090",
+          "12094",
+          "12094",
+          "12038",
+          "12038",
+          "12022",
+          "12022",
+          "12005",
+          "12006",
+          "12101",
+          "12027",
+          "12027",
+          "12095"
+        ]
+      }
+    ],
+    "log": {
+      "notes": [
+        "discoveredWhereabouts",
+        "harbinger",
+        "killedServant"
+      ],
+      "crossedOut": [],
+      "values": {
+        "harbinger": "Cornelia Akely"
+      },
+      "chaosTokens": [
+        "cultist",
+        "cultist"
+      ],
+      "investigators": {
+        "12004": {
+          "xp": 0,
+          "physicalTrauma": 0,
+          "mentalTrauma": 0,
+          "storyAssets": [
+            "12137"
+          ]
+        }
+      }
+    },
+    "results": [
+      {
+        "scenario": "smoke-and-mirrors",
+        "outcome": {
+          "type": "resolution",
+          "resolution": 1
+        },
+        "xp": {
+          "12004": 7
+        },
+        "experience": [
+          {
+            "investigator": "12004",
+            "bonus": 5,
+            "victory": 4,
+            "amount": 9
+          },
+          {
+            "investigator": "12004",
+            "bonus": -2,
+            "victory": 0,
+            "amount": -2
+          }
+        ]
+      }
+    ]
+  },
+  "seed": 807,
+  "purchases": [
+    {
+      "investigator": "12004",
+      "code": "12027",
+      "options": {
+        "upgrade": true
+      }
+    },
+    {
+      "investigator": "12004",
+      "code": "12027",
+      "options": {
+        "upgrade": true
+      }
+    },
+    {
+      "investigator": "12004",
+      "code": "12095",
+      "options": {}
+    }
+  ],
+  "inputs": [
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 2
+    },
+    {
+      "investigator": "12004",
+      "choice": 4
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 2
+    },
+    {
+      "investigator": "12004",
+      "choice": 2
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 3
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 12
+    },
+    {
+      "investigator": "12004",
+      "choice": 2
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 8
+    },
+    {
+      "investigator": "12004",
+      "choice": 7
+    },
+    {
+      "investigator": "12004",
+      "choice": 2
+    },
+    {
+      "investigator": "12004",
+      "choice": 2
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 3
+    },
+    {
+      "investigator": "12004",
+      "choice": 5
+    },
+    {
+      "investigator": "12004",
+      "choice": 2
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 5
+    },
+    {
+      "investigator": "12004",
+      "choice": 3
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 10
+    },
+    {
+      "investigator": "12004",
+      "choice": 10
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 10
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 9
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 12
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 12
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    }
+  ],
+  "transcript": [
+    {
+      "prompt": "prompt.story",
+      "label": "choice.continue",
+      "params": null
+    },
+    {
+      "prompt": "prompt.story",
+      "label": "choice.continue",
+      "params": null
+    },
+    {
+      "prompt": "prompt.mulligan",
+      "label": "choice.keepHand",
+      "params": {
+        "n": 0
+      }
+    },
+    {
+      "prompt": "prompt.story",
+      "label": "choice.continue",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.play",
+      "params": {
+        "card": "Bodyguard"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Sewer Tunnels"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Unexpected Courage",
+        "icons": 2
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseEffect",
+      "label": "choice.doomOnAsset",
+      "params": {
+        "card": "Charisma"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.play",
+      "params": {
+        "card": "Machete"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Sewer Tunnels"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "ability.drawCards",
+      "params": {
+        "n": 1
+      }
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Sewer Culvert"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "Machete",
+        "enemy": "Cantor of Flame"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.playFast",
+      "params": {
+        "card": "Magnifying Glass"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Sewer Tunnels"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Sewer Tunnels"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "ability.drawCards",
+      "params": {
+        "n": 1
+      }
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseCardToDiscard",
+      "label": "choice.discard",
+      "params": {
+        "card": "12030"
+      }
+    },
+    {
+      "prompt": "prompt.chooseSkill",
+      "label": "choice.test.willpower",
+      "params": {
+        "difficulty": 3
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Unexpected Courage",
+        "icons": 2
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Sewer Culvert"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Sewer Tunnels"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Sewer Tunnels"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Perception",
+        "icons": 2
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "ability.drawCards",
+      "params": {
+        "n": 1
+      }
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.assignHorror",
+      "label": "choice.assignToAsset",
+      "params": {
+        "card": "Bodyguard"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.discardTreachery",
+      "params": {
+        "card": "Mark of Elokoss"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Underground Cistern"
+      }
+    },
+    {
+      "prompt": "prompt.assignDamage",
+      "label": "choice.assignToAsset",
+      "params": {
+        "card": "Bodyguard"
+      }
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "ability.damageEnemyHere",
+      "params": {
+        "card": "Bodyguard"
+      }
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "ability.playCard",
+      "params": {
+        "card": "Lesson Learned"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Guts",
+        "icons": 2
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Bodyguard",
+        "icons": 1
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Detective's Intuition",
+        "icons": 2
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.extinguish",
+      "params": {
+        "clues": 1
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "Machete",
+        "enemy": "Elokoss"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Overpower",
+        "icons": 2
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "Machete",
+        "enemy": "Elokoss"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Overpower",
+        "icons": 2
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "Machete",
+        "enemy": "Elokoss"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Machete",
+        "icons": 1
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "Machete",
+        "enemy": "Elokoss"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.fightWith",
+      "params": {
+        "card": "Machete",
+        "enemy": "Elokoss"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.story",
+      "label": "choice.continue",
+      "params": null
+    }
+  ],
+  "outcome": {
+    "type": "resolution",
+    "resolution": 1
+  },
+  "log": {
+    "notes": [
+      "discoveredWhereabouts",
+      "harbinger",
+      "killedServant",
+      "defeatedElokoss",
+      "campaignWon"
+    ],
+    "crossedOut": [],
+    "values": {
+      "harbinger": "Cornelia Akely"
+    },
+    "chaosTokens": [
+      "cultist",
+      "cultist",
+      "elderThing"
+    ],
+    "investigators": {
+      "12004": {
+        "xp": 10,
+        "physicalTrauma": 2,
+        "mentalTrauma": 2,
+        "storyAssets": [
+          "12137"
+        ]
+      }
+    },
+    "rewards": [
+      "12181"
+    ]
+  }
+}

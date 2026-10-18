@@ -154,7 +154,15 @@ export function enemiesAt(state: GameState, location: LocationId): Enemy[] {
 }
 
 export function engagedEnemies(state: GameState, investigator: InvestigatorId): Enemy[] {
-  return Object.values(state.enemies).filter((e) => e.engagedWith === investigator)
+  const owner = getInvestigator(state, investigator)
+  if (owner.eliminated || owner.location === null) return []
+  // RR Massive: a ready enemy is engaged with every investigator at its location;
+  // it stays at that location instead of entering any investigator's threat area.
+  return Object.values(state.enemies).filter((e) =>
+    e.keywords.includes('massive')
+      ? !e.exhausted && e.location === owner.location
+      : e.engagedWith === investigator,
+  )
 }
 
 /** Valor "por investigador": usa los investigadores que empezaron el escenario. */

@@ -1,0 +1,2020 @@
+{
+  "date": "2026-10-18",
+  "scope": "Campaña Joe–Trish en normal, decisiones mediante controles visibles",
+  "testOrigin": "http://127.0.0.1:5181",
+  "userOriginUntouched": "http://localhost:5173",
+  "preparationsImportedBetweenScenarios": true,
+  "nextScenarioButtonsCheckedBeforeImport": true,
+  "decisions": 328,
+  "mobile": {
+    "width": 390,
+    "height": 640,
+    "decisions": 44,
+    "physicalDevice": false
+  },
+  "reloads": {
+    "duringScenarios": true,
+    "betweenScenarios": true
+  },
+  "finalNotes": [
+    "savedUniversity",
+    "failedSearch",
+    "floodedRitual",
+    "campaignWon"
+  ],
+  "finalOutcomes": [
+    "R2",
+    "noResolution",
+    "R3"
+  ],
+  "languages": {
+    "gameplay": "en",
+    "finalCampaign": "es"
+  },
+  "screenshots": [
+    "aceptacion-campana-completa.png",
+    "aceptacion-queen-movil-final.png"
+  ],
+  "scenarios": [
+    {
+      "index": 0,
+      "decisions": [
+        {
+          "step": 0,
+          "prompt": "prompt.story",
+          "label": "choice.continue"
+        },
+        {
+          "step": 1,
+          "prompt": "prompt.chooseLead",
+          "label": "choice.investigator"
+        },
+        {
+          "step": 2,
+          "prompt": "prompt.story",
+          "label": "choice.continue"
+        },
+        {
+          "step": 3,
+          "prompt": "prompt.mulligan",
+          "label": "choice.keepHand"
+        },
+        {
+          "step": 4,
+          "prompt": "prompt.mulligan",
+          "label": "choice.keepHand"
+        },
+        {
+          "step": 5,
+          "prompt": "prompt.story",
+          "label": "choice.continue"
+        },
+        {
+          "step": 6,
+          "prompt": "prompt.chooseNextInvestigator",
+          "label": "choice.investigator"
+        },
+        {
+          "step": 7,
+          "prompt": "prompt.chooseAction",
+          "label": "action.play"
+        },
+        {
+          "step": 8,
+          "prompt": "prompt.chooseAction",
+          "label": "action.play"
+        },
+        {
+          "step": 9,
+          "prompt": "prompt.chooseAction",
+          "label": "action.play"
+        },
+        {
+          "step": 10,
+          "prompt": "prompt.reaction",
+          "label": "ability.drawCards"
+        },
+        {
+          "step": 11,
+          "prompt": "prompt.chooseAction",
+          "label": "action.playFast"
+        },
+        {
+          "step": 12,
+          "prompt": "prompt.chooseAction",
+          "label": "action.play"
+        },
+        {
+          "step": 13,
+          "prompt": "prompt.chooseAction",
+          "label": "action.investigate"
+        },
+        {
+          "step": 14,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken"
+        },
+        {
+          "step": 15,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults"
+        },
+        {
+          "step": 16,
+          "prompt": "prompt.chooseAction",
+          "label": "action.investigate"
+        },
+        {
+          "step": 17,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken"
+        },
+        {
+          "step": 18,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults"
+        },
+        {
+          "step": 19,
+          "prompt": "prompt.chooseSkill",
+          "label": "choice.test.agility"
+        },
+        {
+          "step": 20,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit"
+        },
+        {
+          "step": 21,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken"
+        },
+        {
+          "step": 22,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults"
+        },
+        {
+          "step": 23,
+          "prompt": "prompt.chooseNextInvestigator",
+          "label": "choice.investigator"
+        },
+        {
+          "step": 24,
+          "prompt": "prompt.chooseAction",
+          "label": "action.play"
+        },
+        {
+          "step": 25,
+          "prompt": "prompt.assignDamage",
+          "label": "choice.assignToAsset"
+        },
+        {
+          "step": 26,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.fightWith"
+        },
+        {
+          "step": 27,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken"
+        },
+        {
+          "step": 28,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults"
+        },
+        {
+          "step": 29,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.fightWith"
+        },
+        {
+          "step": 30,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken"
+        },
+        {
+          "step": 31,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults"
+        },
+        {
+          "step": 32,
+          "prompt": "prompt.chooseAction",
+          "label": "action.play"
+        },
+        {
+          "step": 33,
+          "prompt": "prompt.chooseAction",
+          "label": "action.investigate"
+        },
+        {
+          "step": 34,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken"
+        },
+        {
+          "step": 35,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults"
+        },
+        {
+          "step": 36,
+          "prompt": "prompt.chooseAction",
+          "label": "action.investigate"
+        },
+        {
+          "step": 37,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken"
+        },
+        {
+          "step": 38,
+          "prompt": "prompt.reaction",
+          "label": "ability.gainResource"
+        },
+        {
+          "step": 39,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults"
+        },
+        {
+          "step": 40,
+          "prompt": "prompt.advanceAct",
+          "label": "action.advanceAct"
+        },
+        {
+          "step": 41,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken"
+        },
+        {
+          "step": 42,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults"
+        },
+        {
+          "step": 43,
+          "prompt": "prompt.chooseEffect",
+          "label": "choice.takeTwoDamage"
+        },
+        {
+          "step": 44,
+          "prompt": "prompt.chooseNextInvestigator",
+          "label": "choice.investigator"
+        },
+        {
+          "step": 45,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move"
+        },
+        {
+          "step": 46,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.fightWith"
+        },
+        {
+          "step": 47,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit"
+        },
+        {
+          "step": 48,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken"
+        },
+        {
+          "step": 49,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults"
+        },
+        {
+          "step": 50,
+          "prompt": "prompt.reaction",
+          "label": "ability.revealToDraw"
+        },
+        {
+          "step": 51,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.fightWith",
+          "button": "Fight Servant of Flame with Machete"
+        },
+        {
+          "step": 52,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Overpower (+2)"
+        },
+        {
+          "step": 53,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 54,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 55,
+          "prompt": "prompt.chooseAction",
+          "label": "action.playFast",
+          "button": "Play Magnifying Glass (fast)"
+        },
+        {
+          "step": 56,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Dormitories"
+        },
+        {
+          "step": 57,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Miskatonic Quad"
+        },
+        {
+          "step": 58,
+          "prompt": "prompt.chooseAction",
+          "label": "action.endTurn",
+          "button": "3 End turn"
+        },
+        {
+          "step": 59,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Detective's Intuition (+2)"
+        },
+        {
+          "step": 60,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 61,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 62,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Sharp Rhetoric (+1)"
+        },
+        {
+          "step": 63,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 64,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 65,
+          "prompt": "prompt.chooseEffect",
+          "label": "choice.placeDoom",
+          "button": "1 Place 1 doom on the agenda"
+        },
+        {
+          "step": 66,
+          "prompt": "prompt.reaction",
+          "label": "ability.playCard",
+          "button": "Play Gather Intel"
+        },
+        {
+          "step": 67,
+          "prompt": "prompt.chooseNextInvestigator",
+          "label": "choice.investigator",
+          "button": "1 Joe Diamond"
+        },
+        {
+          "step": 68,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.fightWith",
+          "button": "Fight Servant of Flame with Machete"
+        },
+        {
+          "step": 69,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Bodyguard (+1)"
+        },
+        {
+          "step": 70,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 71,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 72,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.fightWith",
+          "button": "Fight Servant of Flame with Machete"
+        },
+        {
+          "step": 73,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 74,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 75,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.fightWith",
+          "button": "Fight Servant of Flame with Machete"
+        },
+        {
+          "step": 76,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 77,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 78,
+          "prompt": "prompt.chooseAction",
+          "label": "action.endTurn",
+          "button": "3 End turn"
+        },
+        {
+          "step": 79,
+          "prompt": "prompt.assignDamage",
+          "label": "choice.assignToAsset",
+          "button": "To Dorothy Simmons"
+        },
+        {
+          "step": 80,
+          "prompt": "prompt.chooseNextInvestigator",
+          "label": "choice.investigator",
+          "button": "1 Joe Diamond"
+        },
+        {
+          "step": 81,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.fightWith",
+          "button": "Fight Mutated Experiment with Machete"
+        },
+        {
+          "step": 82,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 83,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 84,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.fightWith",
+          "button": "Fight Mutated Experiment with Machete"
+        },
+        {
+          "step": 85,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 86,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 87,
+          "prompt": "prompt.chooseAction",
+          "label": "action.play",
+          "button": "Play Laboratory Assistant"
+        },
+        {
+          "step": 88,
+          "prompt": "prompt.reaction",
+          "label": "ability.drawCards",
+          "button": "1 Draw 2 card(s)"
+        },
+        {
+          "step": 89,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.quadMove",
+          "button": "Move to Dormitories (fast)"
+        },
+        {
+          "step": 90,
+          "prompt": "prompt.chooseAction",
+          "label": "action.investigate",
+          "button": "Investigate Dormitories"
+        },
+        {
+          "step": 91,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Deduction (+1)"
+        },
+        {
+          "step": 92,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 93,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 94,
+          "prompt": "prompt.assignHorror",
+          "label": "choice.assignToAsset",
+          "button": "To Laboratory Assistant"
+        },
+        {
+          "step": 95,
+          "prompt": "prompt.assignHorror",
+          "label": "choice.assignToAsset",
+          "button": "To Laboratory Assistant"
+        },
+        {
+          "step": 96,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Miskatonic Quad"
+        },
+        {
+          "step": 97,
+          "prompt": "prompt.chooseAction",
+          "label": "action.play",
+          "button": "Play Emergency Cache"
+        },
+        {
+          "step": 98,
+          "prompt": "prompt.chooseAction",
+          "label": "action.fight",
+          "button": "Fight Bystander"
+        },
+        {
+          "step": 99,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Broken Bottle (+1)"
+        },
+        {
+          "step": 100,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 101,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 102,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.quadMove",
+          "button": "Move to Dormitories (fast)"
+        },
+        {
+          "step": 103,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Miskatonic Quad"
+        },
+        {
+          "step": 104,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Manual Dexterity (+2)"
+        },
+        {
+          "step": 105,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 106,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 107,
+          "prompt": "prompt.chooseEffect",
+          "label": "choice.placeDoom",
+          "button": "1 Place 1 doom on the agenda"
+        },
+        {
+          "step": 108,
+          "prompt": "prompt.chooseAction",
+          "label": "action.play",
+          "button": "Play Thieves' Kit"
+        },
+        {
+          "step": 109,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.quadMove",
+          "button": "Move to Dormitories (fast)"
+        },
+        {
+          "step": 110,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Miskatonic Quad"
+        },
+        {
+          "step": 111,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Science Hall"
+        },
+        {
+          "step": 112,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.investigateWith",
+          "button": "Investigate with Thieves' Kit (Intellect)"
+        },
+        {
+          "step": 113,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 114,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 115,
+          "prompt": "prompt.chooseCardToDiscard",
+          "label": "choice.discard",
+          "button": "1 Discard 12088"
+        },
+        {
+          "step": 116,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.investigateWith",
+          "button": "Investigate with Thieves' Kit (Intellect)"
+        },
+        {
+          "step": 117,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 118,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 119,
+          "prompt": "prompt.chooseCardToDiscard",
+          "label": "choice.discard",
+          "button": "1 Discard 12051"
+        },
+        {
+          "step": 120,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Miskatonic Quad"
+        },
+        {
+          "step": 121,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.quadMove",
+          "button": "Move to Dormitories (fast)"
+        },
+        {
+          "step": 122,
+          "prompt": "prompt.chooseSkill",
+          "label": "choice.test.intellect",
+          "button": "2 Test Intellect (5)"
+        },
+        {
+          "step": 123,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Perception (+2)"
+        },
+        {
+          "step": 124,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Fingerprint Kit (+1)"
+        },
+        {
+          "step": 125,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 126,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 127,
+          "prompt": "prompt.optional",
+          "label": "choice.disengageAndMove",
+          "button": "1 Disengage and move"
+        },
+        {
+          "step": 128,
+          "prompt": "prompt.chooseMove",
+          "label": "action.move",
+          "button": "Move to Miskatonic Quad"
+        },
+        {
+          "step": 129,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.quadMove",
+          "button": "Move to Dormitories (fast)"
+        },
+        {
+          "step": 130,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.heal",
+          "button": "Heal 1 damage and 1 horror"
+        },
+        {
+          "step": 131,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Miskatonic Quad"
+        },
+        {
+          "step": 132,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Warren Observatory"
+        },
+        {
+          "step": 133,
+          "prompt": "prompt.chooseAction",
+          "label": "action.play",
+          "button": "Play M1903 Hammerless"
+        },
+        {
+          "step": 134,
+          "prompt": "prompt.freeSlot",
+          "label": "choice.discard",
+          "button": "Discard Magnifying Glass"
+        },
+        {
+          "step": 135,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.fightWith",
+          "button": "Fight Bystander with M1903 Hammerless"
+        },
+        {
+          "step": 136,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 137,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 138,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.fightWith",
+          "button": "Fight Bystander with M1903 Hammerless"
+        },
+        {
+          "step": 139,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 140,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 141,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Lucky Cigarette Case (+1)"
+        },
+        {
+          "step": 142,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 143,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 144,
+          "prompt": "prompt.chooseEffect",
+          "label": "choice.discardRandom",
+          "button": "1 Discard 1 card at random"
+        },
+        {
+          "step": 145,
+          "prompt": "prompt.chooseEffect",
+          "label": "choice.discardRandom",
+          "button": "1 Discard 1 card at random"
+        },
+        {
+          "step": 146,
+          "prompt": "prompt.chooseEffect",
+          "label": "choice.discardRandom",
+          "button": "1 Discard 1 card at random"
+        },
+        {
+          "step": 147,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.investigateWith",
+          "button": "Investigate with Thieves' Kit (Intellect)"
+        },
+        {
+          "step": 148,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 149,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 150,
+          "prompt": "prompt.reaction",
+          "label": "ability.observatoryDraw",
+          "button": "1 Draw 1 card"
+        },
+        {
+          "step": 151,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.investigateWith",
+          "button": "Investigate with Thieves' Kit (Intellect)"
+        },
+        {
+          "step": 152,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 153,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 154,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.investigateWith",
+          "button": "Investigate with Thieves' Kit (Intellect)"
+        },
+        {
+          "step": 155,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 156,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 157,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.fightWith",
+          "button": "Fight Cantor of Flame with M1903 Hammerless"
+        },
+        {
+          "step": 158,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 159,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 160,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.fightWith",
+          "button": "Fight Cantor of Flame with M1903 Hammerless"
+        },
+        {
+          "step": 161,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 162,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 163,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.investigateWith",
+          "button": "Investigate with Thieves' Kit (Intellect)"
+        },
+        {
+          "step": 164,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 165,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 166,
+          "prompt": "prompt.reaction",
+          "label": "ability.observatoryDraw",
+          "button": "1 Draw 1 card"
+        },
+        {
+          "step": 167,
+          "prompt": "prompt.chooseSkill",
+          "label": "choice.test.intellect",
+          "button": "2 Test Intellect (5)"
+        },
+        {
+          "step": 168,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Covert Ops (+2)"
+        },
+        {
+          "step": 169,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 170,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 171,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Miskatonic Quad"
+        },
+        {
+          "step": 172,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.quadMove",
+          "button": "Move to Dormitories (fast)"
+        },
+        {
+          "step": 173,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Miskatonic Quad"
+        },
+        {
+          "step": 174,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Orne Library"
+        },
+        {
+          "step": 175,
+          "prompt": "prompt.advanceAct",
+          "label": "action.advanceAct",
+          "button": "1 Advance Searching for Dr. Armitage (spend 6 clues)"
+        },
+        {
+          "step": 176,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 177,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 178,
+          "prompt": "prompt.chooseEffect",
+          "label": "choice.takeTwoDamage",
+          "button": "1 Take 2 damage"
+        },
+        {
+          "step": 179,
+          "prompt": "prompt.assignDamage",
+          "label": "choice.assignToAsset",
+          "button": "To Dr. Henry Armitage"
+        },
+        {
+          "step": 180,
+          "prompt": "prompt.assignDamage",
+          "label": "choice.assignToAsset",
+          "button": "To Dr. Henry Armitage"
+        },
+        {
+          "step": 181,
+          "prompt": "prompt.story",
+          "label": "choice.continue",
+          "button": "Continue"
+        },
+        {
+          "step": 182,
+          "prompt": "prompt.story",
+          "label": "choice.investigator",
+          "button": "Joe Diamond"
+        },
+        {
+          "step": 183,
+          "prompt": "prompt.story",
+          "label": "story.spreadingFlames.stay",
+          "button": "Stay and fight the fire! (Resolution 2)"
+        },
+        {
+          "step": 184,
+          "prompt": "prompt.story",
+          "label": "choice.continue",
+          "button": "Continue"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "decisions": [
+        {
+          "step": 0,
+          "prompt": "prompt.chooseLead",
+          "label": "choice.investigator",
+          "button": "1 Joe Diamond"
+        },
+        {
+          "step": 1,
+          "prompt": "prompt.story",
+          "label": "choice.continue",
+          "button": "Continue"
+        },
+        {
+          "step": 2,
+          "prompt": "prompt.mulligan",
+          "label": "choice.keepHand",
+          "button": "1 Keep this hand"
+        },
+        {
+          "step": 3,
+          "prompt": "prompt.mulligan",
+          "label": "choice.keepHand",
+          "button": "1 Keep this hand"
+        },
+        {
+          "step": 4,
+          "prompt": "prompt.story",
+          "label": "choice.continue",
+          "button": "Continue"
+        },
+        {
+          "step": 5,
+          "prompt": "prompt.chooseNextInvestigator",
+          "label": "choice.investigator",
+          "button": "1 Joe Diamond"
+        },
+        {
+          "step": 6,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.resign",
+          "button": "Resign from the scenario"
+        },
+        {
+          "step": 7,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.resign",
+          "button": "Resign from the scenario"
+        },
+        {
+          "step": 8,
+          "prompt": "prompt.story",
+          "label": "choice.continue",
+          "button": "Continue"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "decisions": [
+        {
+          "step": 0,
+          "prompt": "prompt.chooseLead",
+          "label": "choice.investigator",
+          "button": "1 Joe Diamond"
+        },
+        {
+          "step": 1,
+          "prompt": "prompt.story",
+          "label": "choice.continue",
+          "button": "Continue"
+        },
+        {
+          "step": 2,
+          "prompt": "prompt.story",
+          "label": "choice.continue",
+          "button": "Continue"
+        },
+        {
+          "step": 3,
+          "prompt": "prompt.mulligan",
+          "label": "choice.keepHand",
+          "button": "1 Keep this hand"
+        },
+        {
+          "step": 4,
+          "prompt": "prompt.mulligan",
+          "label": "choice.keepHand",
+          "button": "1 Keep this hand"
+        },
+        {
+          "step": 5,
+          "prompt": "prompt.story",
+          "label": "choice.continue",
+          "button": "Continue"
+        },
+        {
+          "step": 6,
+          "prompt": "prompt.chooseNextInvestigator",
+          "label": "choice.investigator",
+          "button": "1 Joe Diamond"
+        },
+        {
+          "step": 7,
+          "prompt": "prompt.chooseAction",
+          "label": "action.play",
+          "button": "Play Dr. Henry Armitage"
+        },
+        {
+          "step": 8,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Sewer Tunnels"
+        },
+        {
+          "step": 9,
+          "prompt": "prompt.chooseAction",
+          "label": "action.playFast",
+          "button": "Play Working a Hunch (fast)"
+        },
+        {
+          "step": 10,
+          "prompt": "prompt.chooseAction",
+          "label": "action.playFast",
+          "button": "Play Magnifying Glass (fast)"
+        },
+        {
+          "step": 11,
+          "prompt": "prompt.chooseAction",
+          "label": "action.play",
+          "button": "Play Laboratory Assistant"
+        },
+        {
+          "step": 12,
+          "prompt": "prompt.reaction",
+          "label": "ability.drawCards",
+          "button": "1 Draw 2 card(s)"
+        },
+        {
+          "step": 13,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Sewer Tunnels"
+        },
+        {
+          "step": 14,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Resilience (+1)"
+        },
+        {
+          "step": 15,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "2 Reveal chaos token"
+        },
+        {
+          "step": 16,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 17,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Lucky Cigarette Case (+1)"
+        },
+        {
+          "step": 18,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 19,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 20,
+          "prompt": "prompt.chooseCardType",
+          "label": "choice.cardType.asset",
+          "button": "1 Assets"
+        },
+        {
+          "step": 21,
+          "prompt": "prompt.chooseNextInvestigator",
+          "label": "choice.investigator",
+          "button": "1 Joe Diamond"
+        },
+        {
+          "step": 22,
+          "prompt": "prompt.chooseAction",
+          "label": "action.investigate",
+          "button": "Investigate Sewer Tunnels"
+        },
+        {
+          "step": 23,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "3 Reveal chaos token"
+        },
+        {
+          "step": 24,
+          "prompt": "prompt.reaction",
+          "label": "ability.drawCards",
+          "button": "1 Draw 1 card(s)"
+        },
+        {
+          "step": 25,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 26,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Sewer Culvert"
+        },
+        {
+          "step": 27,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Sewer Tunnels"
+        },
+        {
+          "step": 28,
+          "prompt": "prompt.chooseCardToDiscard",
+          "label": "choice.discard",
+          "button": "1 Discard 12037"
+        },
+        {
+          "step": 29,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Sewer Culvert"
+        },
+        {
+          "step": 30,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Sewer Tunnels"
+        },
+        {
+          "step": 31,
+          "prompt": "prompt.chooseAction",
+          "label": "action.investigate",
+          "button": "Investigate Sewer Tunnels"
+        },
+        {
+          "step": 32,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "4 Reveal chaos token"
+        },
+        {
+          "step": 33,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 34,
+          "prompt": "prompt.chooseCardToDiscard",
+          "label": "choice.discard",
+          "button": "1 Discard 12091"
+        },
+        {
+          "step": 35,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Sharp Rhetoric (+1)"
+        },
+        {
+          "step": 36,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 37,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 38,
+          "prompt": "prompt.chooseEffect",
+          "label": "choice.discardRandom",
+          "button": "1 Discard 1 card at random"
+        },
+        {
+          "step": 39,
+          "prompt": "prompt.chooseEffect",
+          "label": "choice.discardRandom",
+          "button": "1 Discard 1 card at random"
+        },
+        {
+          "step": 40,
+          "prompt": "prompt.chooseNextInvestigator",
+          "label": "choice.investigator",
+          "button": "1 Joe Diamond"
+        },
+        {
+          "step": 41,
+          "prompt": "prompt.chooseAction",
+          "label": "action.investigate",
+          "button": "Investigate Sewer Tunnels"
+        },
+        {
+          "step": 42,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "4 Reveal chaos token"
+        },
+        {
+          "step": 43,
+          "prompt": "prompt.reaction",
+          "label": "ability.drawCards",
+          "button": "1 Draw 1 card(s)"
+        },
+        {
+          "step": 44,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 45,
+          "prompt": "prompt.chooseAction",
+          "label": "action.play",
+          "button": "Play Hand-Crank Flashlight"
+        },
+        {
+          "step": 46,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Sewer Culvert"
+        },
+        {
+          "step": 47,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Sewer Culvert"
+        },
+        {
+          "step": 48,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Sewer Tunnels"
+        },
+        {
+          "step": 49,
+          "prompt": "prompt.chooseAction",
+          "label": "action.investigate",
+          "button": "Investigate Sewer Tunnels"
+        },
+        {
+          "step": 50,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Breaking and Entering (+1)"
+        },
+        {
+          "step": 51,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 52,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 53,
+          "prompt": "prompt.assignHorror",
+          "label": "choice.assignToAsset",
+          "button": "To Laboratory Assistant"
+        },
+        {
+          "step": 54,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 55,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 56,
+          "prompt": "prompt.chooseEffect",
+          "label": "choice.placeDoom",
+          "button": "1 Place 1 doom on the agenda"
+        },
+        {
+          "step": 57,
+          "prompt": "prompt.chooseNextInvestigator",
+          "label": "choice.investigator",
+          "button": "1 Joe Diamond"
+        },
+        {
+          "step": 58,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Sewer Tunnels"
+        },
+        {
+          "step": 59,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.investigateWith",
+          "button": "Investigate with Hand-Crank Flashlight (Intellect)"
+        },
+        {
+          "step": 60,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "4 Reveal chaos token"
+        },
+        {
+          "step": 61,
+          "prompt": "prompt.reaction",
+          "label": "ability.drawCards",
+          "button": "1 Draw 1 card(s)"
+        },
+        {
+          "step": 62,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 63,
+          "prompt": "prompt.optional",
+          "label": "choice.discardForShroud",
+          "button": "1 Discard Hand-Crank Flashlight: −1 shroud here until the end of the round"
+        },
+        {
+          "step": 64,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Sewer Culvert"
+        },
+        {
+          "step": 65,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Sewer Culvert"
+        },
+        {
+          "step": 66,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Sewer Tunnels"
+        },
+        {
+          "step": 67,
+          "prompt": "prompt.reaction",
+          "label": "ability.playCard",
+          "button": "Play Gather Intel"
+        },
+        {
+          "step": 68,
+          "prompt": "prompt.chooseAction",
+          "label": "action.play",
+          "button": "Play Emergency Cache"
+        },
+        {
+          "step": 69,
+          "prompt": "prompt.assignDamage",
+          "label": "choice.assignToAsset",
+          "button": "To Laboratory Assistant"
+        },
+        {
+          "step": 70,
+          "prompt": "prompt.chooseAction",
+          "label": "action.endTurn",
+          "button": "1 End turn"
+        },
+        {
+          "step": 71,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 72,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 73,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Prestidigitation (+1)"
+        },
+        {
+          "step": 74,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 75,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 76,
+          "prompt": "prompt.chooseSkill",
+          "label": "choice.test.willpower",
+          "button": "1 Test Willpower (3)"
+        },
+        {
+          "step": 77,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 78,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 79,
+          "prompt": "prompt.assignDamage",
+          "label": "choice.assignToAsset",
+          "button": "To Dr. Henry Armitage"
+        },
+        {
+          "step": 80,
+          "prompt": "prompt.assignDamage",
+          "label": "choice.assignToAsset",
+          "button": "To Dr. Henry Armitage"
+        },
+        {
+          "step": 81,
+          "prompt": "prompt.chooseNextInvestigator",
+          "label": "choice.investigator",
+          "button": "1 Joe Diamond"
+        },
+        {
+          "step": 82,
+          "prompt": "prompt.chooseAction",
+          "label": "action.play",
+          "button": "Play Machete"
+        },
+        {
+          "step": 83,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Sewer Tunnels"
+        },
+        {
+          "step": 84,
+          "prompt": "prompt.chooseAction",
+          "label": "action.investigate",
+          "button": "Investigate Sewer Tunnels"
+        },
+        {
+          "step": 85,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "4 Reveal chaos token"
+        },
+        {
+          "step": 86,
+          "prompt": "prompt.reaction",
+          "label": "ability.drawCards",
+          "button": "1 Draw 1 card(s)"
+        },
+        {
+          "step": 87,
+          "prompt": "prompt.chooseEffect",
+          "label": "choice.placeDoom",
+          "button": "1 Place 1 doom on the agenda"
+        },
+        {
+          "step": 88,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "1 Apply results"
+        },
+        {
+          "step": 89,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "1 Reveal chaos token"
+        },
+        {
+          "step": 90,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "Apply results",
+          "mobile": true
+        },
+        {
+          "step": 91,
+          "prompt": "prompt.chooseAction",
+          "label": "action.investigate",
+          "button": "Investigate Sewer Tunnels",
+          "mobile": true
+        },
+        {
+          "step": 92,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "Reveal chaos token",
+          "mobile": true
+        },
+        {
+          "step": 93,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "Apply results",
+          "mobile": true
+        },
+        {
+          "step": 94,
+          "prompt": "prompt.chooseAction",
+          "label": "action.fight",
+          "button": "Fight Hellhound",
+          "mobile": true
+        },
+        {
+          "step": 95,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "Reveal chaos token",
+          "mobile": true
+        },
+        {
+          "step": 96,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "Apply results",
+          "mobile": true
+        },
+        {
+          "step": 97,
+          "prompt": "prompt.chooseAction",
+          "label": "action.fight",
+          "button": "Fight Hellhound",
+          "mobile": true
+        },
+        {
+          "step": 98,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "Reveal chaos token",
+          "mobile": true
+        },
+        {
+          "step": 99,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "Apply results",
+          "mobile": true
+        },
+        {
+          "step": 100,
+          "prompt": "prompt.chooseAction",
+          "label": "action.endTurn",
+          "button": "End turn",
+          "mobile": true
+        },
+        {
+          "step": 101,
+          "prompt": "prompt.chooseEngaged",
+          "label": "choice.investigator",
+          "button": "Joe Diamond",
+          "mobile": true
+        },
+        {
+          "step": 102,
+          "prompt": "prompt.assignDamage",
+          "label": "choice.assignToAsset",
+          "button": "To Dr. Henry Armitage",
+          "mobile": true
+        },
+        {
+          "step": 103,
+          "prompt": "prompt.chooseNextInvestigator",
+          "label": "choice.investigator",
+          "button": "Joe Diamond",
+          "mobile": true
+        },
+        {
+          "step": 104,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.fightWith",
+          "button": "Fight Hellhound with Machete",
+          "mobile": true
+        },
+        {
+          "step": 105,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "Reveal chaos token",
+          "mobile": true
+        },
+        {
+          "step": 106,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "Apply results",
+          "mobile": true
+        },
+        {
+          "step": 107,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.fightWith",
+          "button": "Fight Hellhound with Machete",
+          "mobile": true
+        },
+        {
+          "step": 108,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "Reveal chaos token",
+          "mobile": true
+        },
+        {
+          "step": 109,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "Apply results",
+          "mobile": true
+        },
+        {
+          "step": 110,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.fightWith",
+          "button": "Fight Hellhound with Machete",
+          "mobile": true
+        },
+        {
+          "step": 111,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "Reveal chaos token",
+          "mobile": true
+        },
+        {
+          "step": 112,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "Apply results",
+          "mobile": true
+        },
+        {
+          "step": 113,
+          "prompt": "prompt.chooseAction",
+          "label": "action.fight",
+          "button": "Fight Hellhound",
+          "mobile": true
+        },
+        {
+          "step": 114,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "Reveal chaos token",
+          "mobile": true
+        },
+        {
+          "step": 115,
+          "prompt": "prompt.skillTestFailed",
+          "label": "choice.applyResults",
+          "button": "Apply results",
+          "mobile": true
+        },
+        {
+          "step": 116,
+          "prompt": "prompt.chooseAction",
+          "label": "action.fight",
+          "button": "Fight Hellhound",
+          "mobile": true
+        },
+        {
+          "step": 117,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "Reveal chaos token",
+          "mobile": true
+        },
+        {
+          "step": 118,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "Apply results",
+          "mobile": true
+        },
+        {
+          "step": 119,
+          "prompt": "prompt.optional",
+          "label": "choice.disengageAndMove",
+          "button": "Disengage and move",
+          "mobile": true
+        },
+        {
+          "step": 120,
+          "prompt": "prompt.chooseMove",
+          "label": "action.move",
+          "button": "Move to Underground Cistern",
+          "mobile": true
+        },
+        {
+          "step": 121,
+          "prompt": "prompt.whoPaysClue",
+          "label": "choice.investigatorPaysClue",
+          "button": "Joe Diamond spends 1 clue (has 5)",
+          "mobile": true
+        },
+        {
+          "step": 122,
+          "prompt": "prompt.whoPaysClue",
+          "label": "choice.investigatorPaysClue",
+          "button": "Joe Diamond spends 1 clue (has 4)",
+          "mobile": true
+        },
+        {
+          "step": 123,
+          "prompt": "prompt.whoPaysClue",
+          "label": "choice.investigatorPaysClue",
+          "button": "Joe Diamond spends 1 clue (has 3)",
+          "mobile": true
+        },
+        {
+          "step": 124,
+          "prompt": "prompt.whoPaysClue",
+          "label": "choice.investigatorPaysClue",
+          "button": "Joe Diamond spends 1 clue (has 2)",
+          "mobile": true
+        },
+        {
+          "step": 125,
+          "prompt": "prompt.whoPaysClue",
+          "label": "choice.investigatorPaysClue",
+          "button": "Joe Diamond spends 1 clue (has 1)",
+          "mobile": true
+        },
+        {
+          "step": 126,
+          "prompt": "prompt.chooseAction",
+          "label": "action.move",
+          "button": "Move to Sluice Control",
+          "mobile": true
+        },
+        {
+          "step": 127,
+          "prompt": "prompt.chooseAction",
+          "label": "ability.openSluice",
+          "button": "Open the sluice gate (agility or combat 5)",
+          "mobile": true
+        },
+        {
+          "step": 128,
+          "prompt": "prompt.chooseSkill",
+          "label": "choice.test.agility",
+          "button": "Test Agility (5)",
+          "mobile": true
+        },
+        {
+          "step": 129,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Manual Dexterity (+2)",
+          "mobile": true
+        },
+        {
+          "step": 130,
+          "prompt": "prompt.commitCards",
+          "label": "choice.commit",
+          "button": "Commit Out of Sight (+1)",
+          "mobile": true
+        },
+        {
+          "step": 131,
+          "prompt": "prompt.commitCards",
+          "label": "choice.revealToken",
+          "button": "Reveal chaos token",
+          "mobile": true
+        },
+        {
+          "step": 132,
+          "prompt": "prompt.skillTestSucceeded",
+          "label": "choice.applyResults",
+          "button": "Apply results",
+          "mobile": true
+        },
+        {
+          "step": 133,
+          "prompt": "prompt.story",
+          "label": "choice.continue",
+          "button": "Continue",
+          "mobile": true
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Preparaciones importadas para fijar semillas; no es una campaña con todas las semillas elegidas al azar por la UI.",
+    "La ventana móvil no sustituye una prueba en teléfono físico."
+  ]
+}

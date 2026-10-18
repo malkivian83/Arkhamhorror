@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-18",
+  "baselineCommit": "571d7ec",
+  "scope": "Aceptación ampliada de Brethren of Ash; solo juego local",
+  "tests": {
+    "passed": 461,
+    "files": 34,
+    "newRuleRegressions": 15,
+    "newPlaythroughTests": 5
+  },
+  "recordings": {
+    "new": 9,
+    "legalDecisions": 1052,
+    "fullStandardCampaigns": 2,
+    "isolatedSmokeSixObjectives": true,
+    "queenResolutions": [
+      1,
+      2,
+      3
+    ]
+  },
+  "interface": {
+    "decisions": 328,
+    "mobileDecisions": 44,
+    "mobileViewport": [
+      390,
+      640
+    ],
+    "physicalDevice": false,
+    "userSessionUntouched": true
+  },
+  "checks": {
+    "typesEngine": true,
+    "typesCards": true,
+    "typesWeb": true,
+    "typesServer": true,
+    "typesShared": true,
+    "typesI18n": true,
+    "eslint": true,
+    "prettier": true,
+    "productionBuild": true,
+    "gitDiffWhitespace": true
+  },
+  "build": {
+    "javascriptKB": 646.68,
+    "gzipKB": 197.74,
+    "warnings": [
+      "Fuente de iconos resuelta en ejecución",
+      "Paquete JavaScript superior a 500 kB"
+    ]
+  },
+  "pendingExternal": [
+    "Comprobación en teléfono físico: no se detecta ningún dispositivo conectado"
+  ],
+  "limitations": "Smoke 433 parte de preparación aislada; Queen 807 continúa ese fragmento. Dos campañas en normal enlazan los tres escenarios. No se afirma cobertura exhaustiva de combinaciones."
+}

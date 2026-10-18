@@ -1,6 +1,6 @@
 # 08 · El motor de reglas (`packages/engine`)
 
-Estado a 2026-10-16 (tarde). Basado en el reglamento de la caja básica de 2026
+Estado actualizado a 2026-10-18. Basado en el reglamento de la caja básica de 2026
 (`reglas/`). Las citas "RR" del código remiten a sus secciones.
 
 ## Cómo funciona
@@ -52,6 +52,8 @@ applyInput(estado, {investigator, choice}) ─┤──► run(): procesa la col
 | Evadir | Agota y rompe el enfrentamiento |
 | Enemigos | Aparecen enfrentados a quien los roba; instrucciones de aparición; se enfrentan al entrar/aparecer/prepararse |
 | Palabras clave | Cazador (camino más corto), distante, represalia, alerta, condenado, presa (mayor/menor habilidad), victoria X; rasgo Élite |
+| Masivo, Esquivo y Patrulla | Enfrentamiento implícito de Masivo preparado con todos los investigadores de su lugar; no sigue a quien se mueve; consulta común para eventos y Machete; ataques sin duplicar. Retirada de Esquivo antes de las reacciones al ataque y movimiento de Patrulla. |
+| Costes y movimiento por efectos | Costes declarados de habilidades antes de ataques de oportunidad; juego desde descarte con descuento; pistas de entrada exigidas también a movimientos gratuitos. |
 | Traiciones | Revelación, oleada (palabra clave o ganada), peligro (marcado), quedarse en la zona de amenaza o unirse a una localización, descarte |
 | Mazo de encuentros | Robar del descarte ("la copia superior de X"); cartas apartadas |
 | Habilidades forzadas | Tras descubrir pistas, al terminar la fase de investigación, al ser derrotado un enemigo, tras atacar en la fase de enemigos |

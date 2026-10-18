@@ -74,8 +74,10 @@ Foreman (robar 3) o Margaret Liu (curar 3 horror), para cada investigador.
   se puede incluir al crear mazos nuevos: permanente, +5 al tamaño del mazo y 1 apoyo
   Relic o Charm de nivel 0–3 de cualquier clase; un mazo que la lleve sin haberla
   ganado no es válido.
-- **Masivo** se aplica como se describe arriba; no se modelan los casos raros de
-  enfrentamiento con efectos de cartas.
+- **Masivo** usa ahora la misma consulta de enfrentamiento que Machete y los eventos
+  de evasión: preparado cuenta con todos los investigadores del lugar; agotado no;
+  no sigue a quien se mueve ni duplica sus ataques. Estos casos tienen regresiones
+  específicas en `acceptance-rules.test.ts`.
 - Fire! daña también a los apoyos con salud (como en el escenario I).
 - Los túneles se colocan en fila según el orden barajado; sin revelar, todos se ven
   iguales.

@@ -1,0 +1,280 @@
+{
+  "scope": "campaign",
+  "campaign": {
+    "id": "brethren-of-ash",
+    "difficulty": "standard",
+    "scenarioIndex": 1,
+    "investigators": [
+      {
+        "id": "12004",
+        "deck": [
+          "12019",
+          "12019",
+          "12020",
+          "12020",
+          "12031",
+          "12031",
+          "12034",
+          "12034",
+          "12030",
+          "12030",
+          "12016",
+          "12016",
+          "12089",
+          "12089",
+          "12039",
+          "12039",
+          "12093",
+          "12093",
+          "12092",
+          "12092",
+          "12091",
+          "12091",
+          "12090",
+          "12090",
+          "12094",
+          "12094",
+          "12038",
+          "12038",
+          "12022",
+          "12022",
+          "12005",
+          "12006",
+          "12101"
+        ]
+      },
+      {
+        "id": "12001",
+        "deck": [
+          "12020",
+          "12020",
+          "12018",
+          "12018",
+          "12021",
+          "12021",
+          "12017",
+          "12017",
+          "12072",
+          "12072",
+          "12016",
+          "12016",
+          "12089",
+          "12089",
+          "12092",
+          "12092",
+          "12090",
+          "12090",
+          "12094",
+          "12094",
+          "12093",
+          "12093",
+          "12091",
+          "12091",
+          "12088",
+          "12088",
+          "12022",
+          "12022",
+          "12077",
+          "12077",
+          "12002",
+          "12003",
+          "12101"
+        ]
+      }
+    ],
+    "log": {
+      "notes": [
+        "defeatedPursuer",
+        "savedUniversity"
+      ],
+      "crossedOut": [],
+      "values": {},
+      "chaosTokens": [],
+      "investigators": {
+        "12001": {
+          "xp": 7,
+          "physicalTrauma": 1,
+          "mentalTrauma": 0,
+          "storyAssets": []
+        },
+        "12004": {
+          "xp": 7,
+          "physicalTrauma": 1,
+          "mentalTrauma": 1,
+          "storyAssets": [
+            "12115"
+          ]
+        }
+      }
+    },
+    "results": [
+      {
+        "scenario": "spreading-flames",
+        "outcome": {
+          "type": "resolution",
+          "resolution": 2
+        },
+        "xp": {
+          "12001": 7,
+          "12004": 7
+        },
+        "experience": [
+          {
+            "investigator": "12004",
+            "bonus": 3,
+            "victory": 3,
+            "amount": 6
+          },
+          {
+            "investigator": "12001",
+            "bonus": 3,
+            "victory": 3,
+            "amount": 6
+          },
+          {
+            "investigator": "12004",
+            "bonus": 1,
+            "victory": 0,
+            "amount": 1
+          },
+          {
+            "investigator": "12001",
+            "bonus": 1,
+            "victory": 0,
+            "amount": 1
+          }
+        ]
+      }
+    ]
+  },
+  "seed": 1,
+  "purchases": [],
+  "inputs": [
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12001",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 9
+    },
+    {
+      "investigator": "12001",
+      "choice": 7
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    }
+  ],
+  "transcript": [
+    {
+      "prompt": "prompt.chooseLead",
+      "label": "choice.investigator",
+      "params": {
+        "name": "Joe Diamond"
+      }
+    },
+    {
+      "prompt": "prompt.story",
+      "label": "choice.continue",
+      "params": null
+    },
+    {
+      "prompt": "prompt.mulligan",
+      "label": "choice.keepHand",
+      "params": {
+        "n": 0
+      }
+    },
+    {
+      "prompt": "prompt.mulligan",
+      "label": "choice.keepHand",
+      "params": {
+        "n": 0
+      }
+    },
+    {
+      "prompt": "prompt.story",
+      "label": "choice.continue",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseNextInvestigator",
+      "label": "choice.investigator",
+      "params": {
+        "name": "Joe Diamond"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.resign",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.resign",
+      "params": null
+    },
+    {
+      "prompt": "prompt.story",
+      "label": "choice.continue",
+      "params": null
+    }
+  ],
+  "outcome": {
+    "type": "noResolution"
+  },
+  "log": {
+    "notes": [
+      "defeatedPursuer",
+      "savedUniversity",
+      "failedSearch",
+      "harbinger"
+    ],
+    "crossedOut": [],
+    "values": {
+      "harbinger": "Naomi O'Bannion"
+    },
+    "chaosTokens": [
+      "cultist",
+      "cultist"
+    ],
+    "investigators": {
+      "12001": {
+        "xp": 7,
+        "physicalTrauma": 1,
+        "mentalTrauma": 0,
+        "storyAssets": []
+      },
+      "12004": {
+        "xp": 7,
+        "physicalTrauma": 1,
+        "mentalTrauma": 1,
+        "storyAssets": [
+          "12115"
+        ]
+      }
+    }
+  }
+}

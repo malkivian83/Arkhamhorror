@@ -52,7 +52,7 @@ Los archivos conservan campaña inicial, semilla, entradas, etiquetas elegidas, 
 
 [playthrough.test.ts](../packages/cards/src/brethren-of-ash/playthrough.test.ts) comprueba cada pregunta y elección, enlaza las tres partidas sin modificar sus estados y verifica el resultado final. Añade bifurcaciones jugadas de marcharse tras vencer y retirarse antes de vencer en Spreading, además de campañas de derrota con uno, dos, tres y cuatro investigadores en experto.
 
-**Distinción de evidencia:** estos recorridos emplean únicamente `startScenario`, `applyInput` y `finishScenario`. Las pruebas de resoluciones preparan estados finales deliberadamente para comprobar ramas concretas; no se contabilizan como partidas completas. No se presenta una victoria jugada de seis sospechosos en Smoke ni una partida completa de cada resolución de Queen como si se hubiese realizado.
+**Distinción de evidencia:** estos recorridos emplean únicamente `startScenario`, `applyInput` y `finishScenario`. Las pruebas de resoluciones preparan estados finales deliberadamente para comprobar ramas concretas; no se contabilizan como partidas completas. La ampliación de la sección 10 incorpora después un Smoke con sus seis objetivos resueltos y recorridos completos de Queen R1 y R2, distinguiendo las preparaciones aisladas de las campañas enlazadas.
 
 ## 4. Correcciones encontradas durante el cierre
 
@@ -135,12 +135,12 @@ La partida que existía antes de las pruebas se exportó y **se restauró con el
 
 ## 8. Límites de la versión evaluada
 
-- Las grabaciones de victoria usan Joe y dificultad fácil. Las matrices de preparación y los recorridos de derrota amplían equipos/dificultades, pero no acreditan una victoria con cada combinación.
+- Además de Joe en fácil, se acreditan campañas completas de Joe–Trish y Joe–Daniela en normal. No se acredita una victoria con cada combinación de equipo y dificultad.
 - Los contratos de las 104 cartas verifican su comportamiento principal según tipo, junto a pruebas específicas de efectos. No son una medición de cobertura de todas sus ramas ni un certificado de cada cruce entre cartas.
-- La interfaz se comprueba mediante sesiones dirigidas. Los recorridos íntegros se reproducen en el motor; no se han pulsado en el navegador todas las decisiones de todas las resoluciones. La pantalla móvil es una ventana de 390×640, no un ensayo en un teléfono físico.
+- La interfaz combina sesiones dirigidas con un recorrido de campaña en normal descrito en la sección 10. No se han pulsado todas las resoluciones desde la interfaz. La pantalla móvil es una ventana de 390×640, no un ensayo en un teléfono físico.
 - La alternativa sin red conserva datos y opciones mecánicas. No distribuye todas las ilustraciones ni todos los textos oficiales traducidos; algunas cartas usan datos y ayuda local en lugar de su texto completo. La carga inicial de la aplicación sigue necesitando el servidor local; no se entrega una instalación PWA.
 - La probabilidad mostrada es una estimación de una ficha y no modela las fichas adicionales ni las reacciones posteriores.
-- Se mantienen las simplificaciones de casos inusuales de enfrentamiento con Masivo descritas en el documento 12; no se afirma haber verificado todos los cruces posibles con cartas.
+- Se han corregido y probado los casos de Masivo con Machete, eventos de evasión, movimiento, agotamiento y ataques. Esto no equivale a enumerar todos los cruces posibles entre cartas.
 - Se conserva la copia legible inmediatamente anterior, no un archivo ilimitado de sesiones. Conviene exportar la campaña para trasladarla de equipo o conservar hitos.
 - La referencia se revisó como código y datos locales; no se utilizó su servicio online ni se incorporó multijugador.
 
@@ -151,3 +151,42 @@ Con estas condiciones documentadas, la campaña queda como base de regresión pa
 El 18/10/2026 se integró el cierre con `origin/main` en la revisión `56ab394`, que incorpora La gala del ecuador del invierno, los pasos de fase y textos adicionales. Se conservaron ambos trabajos y se adaptó la validación de sesiones para admitir el escenario independiente y sus seis resoluciones. Las pruebas añadidas verifican el guardado y la restauración de sus Invitados e historial, así como las imágenes de sus segundas caras.
 
 La versión integrada supera **441 pruebas en 32 archivos**, los controles de tipos de los seis proyectos, lint, formato y compilación web. El paquete JavaScript pasa a 645,95 kB, 197,52 kB comprimido. Estos controles de integración complementan la aceptación de Brethren of Ash anterior; no amplían la auditoría funcional de cierre a La Gala.
+
+## 10. Aceptación ampliada de los trabajos pendientes
+
+Revisión del 18/10/2026 posterior al merge `571d7ec`. Las grabaciones nuevas contienen **1.052 decisiones** y se verifican en [extended-playthrough.test.ts](../packages/cards/src/brethren-of-ash/extended-playthrough.test.ts). Las correcciones de reglas tienen **15 regresiones específicas** en [acceptance-rules.test.ts](../packages/cards/src/core-2026/acceptance-rules.test.ts).
+
+| Comprobación pendiente | Evidencia nueva | Resultado |
+|---|---|---|
+| Smoke con los seis objetivos | [Semilla 433](evidencias/smoke-and-mirrors-433.json), Joe con mazo propio de nivel 0, fácil; 159 decisiones. Servant derrotado y cinco habitantes interrogados. El sexto habitante es el heraldo apartado, no un séptimo objetivo. | R1; seis Élite resueltos, sin cartas bajo localizaciones. |
+| Queen por combate | [Semilla 807](evidencias/combate-queen-of-ash-807.json), 72 decisiones; continúa ese Smoke y compra dos Bodyguard de nivel 2 y Charisma con los 7 XP ganados. | R1, Elokoss derrotado y Collector ganado. |
+| Queen por pistas | [Semilla 955](evidencias/queen-of-ash-955.json), 91 decisiones; continúa el Smoke de semilla 1 de la campaña original. | R2, cinco pistas sobre Elokoss y Collector ganado. |
+| Campaña en normal con Joe–Trish | Spreading [286](evidencias/duo-normal-spreading-flames-286.json), Smoke [1](evidencias/duo-normal-smoke-and-mirrors-1.json), Queen [23](evidencias/duo-normal-queen-of-ash-23.json); mazos iniciales, 328 decisiones. | Tres escenarios enlazados, R2 → sin resolución → R3; campaña ganada. |
+| Campaña en normal con Joe–Daniela | Spreading [278](evidencias/equipo-normal-spreading-flames-278.json), Smoke [1](evidencias/equipo-normal-smoke-and-mirrors-1.json), Queen [20](evidencias/equipo-normal-queen-of-ash-20.json); mazos propios de nivel 0 validados, 402 decisiones. | Tres escenarios enlazados, R2 → sin resolución → R3; campaña ganada. |
+
+**Alcance de las grabaciones:** Smoke 433 empieza en una preparación aislada del segundo escenario con registro vacío; no se atribuye a un Spreading anterior que no se haya jugado. Queen 807 prolonga ese recorrido aislado. Sus archivos llevan `scope: isolated-scenario` e `isolated-continuation`. Las otras dos campañas parten de `newCampaign`, validan los mazos y comparan la campaña completa antes de cada escenario, sin editar estados, bolsas, resultados ni registros. Las retiradas de Smoke y el sacrificio de los investigadores en Queen R3 son finales legales; estas pruebas no se presentan como una victoria con supervivientes en todos los escenarios.
+
+### Reglas corregidas durante la aceptación
+
+- **Masivo:** consulta común de enfrentamiento implícito para Machete y eventos de evasión; solo cuenta mientras está preparado y en la misma localización. No entra en una zona de amenaza ni acompaña al investigador al moverse. Se prueban ataques sin duplicar, agotamiento, otro enemigo enfrentado y desaparición del atacante antes de terminar la fase.
+- **Bodyguard:** un apoyo derrotado sale del juego antes de su reacción. Su último estado permite reaccionar, pero ya no puede recibir más daño ni volver a disparar su derrota durante una cadena con In Harm's Way. Una derrota de enemigo ya resuelta no concede victoria dos veces ni rompe la cola.
+- **Costes de habilidades:** usos y agotamiento de investigaciones, secreto de Local Map, pistas para robar bajo una localización, pago de Northside y descarte de French Hill se pagan antes de ataques de oportunidad. La universidad paga el apoyo del descarte con su descuento antes del ataque y resuelve la carta después. French Hill no ofrece descartar una mano formada solo por debilidades.
+- **Movimiento por efectos:** entrar en una localización sin revelar exige sus pistas también con movimiento gratuito, incluido el signo arcano de Trish. Si no se pueden pagar, no se ofrece el destino. El movimiento normal paga antes del ataque de oportunidad y no cobra de nuevo al ejecutar el desplazamiento. Una localización ya revelada no vuelve a cobrar ese coste.
+
+El ensayo inicial de Queen con Joe–Trish descubrió la entrada gratuita indebida a la cisterna. Esa grabación se descartó y se sustituyó por la semilla 23, reproducida después de corregir la regla. No se conserva como evidencia de aceptación un recorrido que aprovechaba el fallo.
+
+### Aceptación en la interfaz
+
+Se pulsaron las **328 decisiones** de la campaña Joe–Trish en normal: 185 de Spreading, 9 de Smoke y 134 de Queen. Las últimas **44 decisiones de Queen** se ejecutaron en la ventana móvil de **390×640**. Se comprobaron recargas durante los escenarios y en el registro, paso al escenario siguiente, pagos, reacciones, cierre de los tres resultados y nota final de campaña ganada en español.
+
+Para hacer el ensayo reproducible se importaron, mediante la interfaz normal, preparaciones de la misma campaña entre escenarios. Antes se comprobó el botón que inicia el siguiente escenario; la importación fija después su semilla de aceptación. No se afirma que todas las semillas de esta prueba procedieran del generador aleatorio de la interfaz. Dentro de cada escenario se usaron únicamente sus controles visibles, sin invocar el almacén ni escribir el almacenamiento desde la automatización.
+
+La instancia de pruebas utilizó otro puerto y otro origen, separados de la partida del propietario en `localhost:5173`. El [acta de interfaz ampliada](evidencias/interfaz-aceptacion-ampliada.json) registra el recorrido y sus límites. Las capturas se conservan como artefactos locales de la sesión, fuera del repositorio.
+
+### Dictamen y comprobación física pendiente
+
+Las tareas de código, recorridos y aceptación automatizable quedan completadas dentro de este alcance. El acta final de esta ampliación está en [verificacion-aceptacion-ampliada.json](evidencias/verificacion-aceptacion-ampliada.json). La hoja de ruta y las notas de Masivo se han actualizado para retirar pendientes que ya estaban implementados.
+
+Controles finales: **461 pruebas aprobadas en 34 archivos**, tipos de los seis proyectos, lint, formato, compilación web y `git diff --check`, sin errores. Se comprobaron los 31 enlaces locales de esta auditoría. JavaScript de 646,68 kB y 197,74 kB comprimido; se mantienen los avisos conocidos de tamaño y fuente resuelta en ejecución.
+
+**La comprobación en teléfono físico sigue pendiente.** La consulta de dispositivos conectados no encontró ninguno. La ventana de 390×640 prueba el comportamiento adaptable, pero no acredita pantalla táctil, teclado virtual ni navegador de un teléfono real. Para cerrarla hacen falta un dispositivo y las cinco comprobaciones siguientes: abrir una campaña importada, mover y ampliar el mapa con gestos, jugar una carta y resolver una prueba, consultar ambas caras de plan/acto, y recargar y volver al registro conservando el resultado. No se marca esa prueba como realizada.

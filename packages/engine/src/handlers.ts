@@ -7,6 +7,7 @@ import {
   availableActions,
   assetsBlocked,
   canAdvanceAct,
+  canAffordEntry,
   cluesToAdvanceAct,
   describeAction,
   playableCards,
@@ -283,7 +284,7 @@ export function handle(state: GameState, message: Message): GameState {
             maxHealth: perInvestigator(withId, card.health, card.healthPerInvestigator ?? false),
             damageTaken: 0,
             location: message.location,
-            engagedWith: message.engageWith,
+            engagedWith: card.keywords.includes('massive') ? null : message.engageWith,
             exhausted: false,
             ...(message.owner ? { owner: message.owner } : {}),
           },
@@ -464,6 +465,8 @@ export function handle(state: GameState, message: Message): GameState {
             actions: a.actions,
             provokes: a.provokes,
             ...(a.limit ? { limit: a.limit } : {}),
+            ...(a.costs ? { costs: a.costs } : {}),
+            ...(a.playFromDiscard ? { playFromDiscard: a.playFromDiscard } : {}),
             then: a.then,
           },
           again,
@@ -543,6 +546,22 @@ export function handle(state: GameState, message: Message): GameState {
           before: attacks,
         })
       }
+      if (message.action.kind === 'move') {
+        const entry = entryCost(state, message.action.to)
+        if (!canAffordEntry(state, message.action.to))
+          throw new EngineError('No hay pistas suficientes para entrar')
+        return push(
+          paid,
+          ...(entry ? [{ type: 'SpendGroupClues', amount: entry } as Message] : []),
+          ...attacks,
+          {
+            type: 'PerformAction',
+            investigator: investigator.id,
+            action: message.action,
+            entryPaid: true,
+          },
+        )
+      }
       return push(paid, ...attacks, {
         type: 'PerformAction',
         investigator: investigator.id,
@@ -569,12 +588,12 @@ export function handle(state: GameState, message: Message): GameState {
         case 'resource':
           return push(state, { type: 'GainResources', investigator: id, amount: 1, basic: true })
         case 'move': {
-          const cost = entryCost(state, action.to)
-          return push(
-            state,
-            ...(cost ? [{ type: 'SpendGroupClues', amount: cost } as Message] : []),
-            { type: 'MoveTo', investigator: id, location: action.to },
-          )
+          return push(state, {
+            type: 'MoveTo',
+            investigator: id,
+            location: action.to,
+            ...(message.entryPaid ? { entryPaid: true } : {}),
+          })
         }
         case 'investigate':
           return push(state, {
@@ -1023,6 +1042,15 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'MoveTo': {
       getLocation(state, message.location)
+      const cost = message.entryPaid ? 0 : entryCost(state, message.location)
+      if (cost > 0) {
+        if (!canAffordEntry(state, message.location)) return state
+        return push(
+          state,
+          { type: 'SpendGroupClues', amount: cost },
+          { ...message, entryPaid: true },
+        )
+      }
       // Los enemigos enfrentados acompañan al investigador.
       const first = !getInvestigator(state, message.investigator).movedThisTurn
       let next = updateInvestigator(state, message.investigator, (i) => ({
@@ -1031,6 +1059,7 @@ export function handle(state: GameState, message: Message): GameState {
         movedThisTurn: true,
       }))
       for (const enemy of engagedEnemies(next, message.investigator)) {
+        if (enemy.keywords.includes('massive')) continue
         next = updateEnemy(next, enemy.id, (e) => ({ ...e, location: message.location }))
       }
       const reveal: Message[] = getLocation(next, message.location).revealed
@@ -1248,12 +1277,10 @@ export function handle(state: GameState, message: Message): GameState {
         },
       ]
       return defeated
-        ? push(
-            next,
-            ...after,
-            { type: 'Forced', trigger: { type: 'assetDefeated', asset: damaged } },
-            { type: 'DiscardAsset', asset: asset.id },
-          )
+        ? push(next, { type: 'DiscardAsset', asset: asset.id }, ...after, {
+            type: 'Forced',
+            trigger: { type: 'assetDefeated', asset: damaged },
+          })
         : push(next, ...after)
     }
 
@@ -1951,6 +1978,7 @@ export function handle(state: GameState, message: Message): GameState {
     case 'EngageEnemy': {
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.location === null || !findEnemy(state, message.enemy)) return state
+      if (getEnemy(state, message.enemy).keywords.includes('massive')) return state
       return push(
         updateEnemy(state, message.enemy, (e) => ({
           ...e,
@@ -2269,6 +2297,7 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'ExhaustEnemy':
+      if (!findEnemy(state, message.enemy)) return state
       return updateEnemy(state, message.enemy, (e) => ({ ...e, exhausted: true }))
 
     case 'ShuffleSetAsideIntoEncounter': {
@@ -2552,7 +2581,8 @@ export function handle(state: GameState, message: Message): GameState {
       )
 
     case 'DefeatEnemy': {
-      const enemy = getEnemy(state, message.enemy)
+      const enemy = findEnemy(state, message.enemy)
+      if (!enemy) return state
       const instead = enemyBehavior(enemy.code)?.wouldBeDefeated?.(state, enemy)
       if (instead) return push(state, ...instead)
       const removed = log(removeEnemy(dropAttached(state, enemy), enemy.id), 'log.enemyDefeated', {
@@ -2676,12 +2706,7 @@ export function handle(state: GameState, message: Message): GameState {
         ...activeInvestigators(state).map((i): Message => ({
           type: 'AttacksAgainst',
           investigator: i.id,
-          enemies: [
-            ...engagedEnemies(state, i.id),
-            ...(i.location === null
-              ? []
-              : enemiesAt(state, i.location).filter((e) => e.keywords.includes('massive'))),
-          ].map((e) => e.id),
+          enemies: engagedEnemies(state, i.id).map((e) => e.id),
         })),
         ...Object.values(state.enemies)
           .filter((e) => e.keywords.includes('massive') && !e.exhausted)
@@ -2851,7 +2876,25 @@ export function handle(state: GameState, message: Message): GameState {
       // Una habilidad de acción provoca ataques de oportunidad (una vez), salvo parlamento/retirarse.
       const attacks =
         message.actions > 0 && message.provokes ? opportunityAttacks(state, investigator) : []
-      return push(paid, ...attacks, ...message.then)
+      if (message.playFromDiscard)
+        return push(
+          paid,
+          ...(message.costs ?? []),
+          {
+            type: 'DiscardToHand',
+            investigator: investigator.id,
+            code: message.playFromDiscard.code,
+          },
+          {
+            type: 'PlayCard',
+            investigator: investigator.id,
+            code: message.playFromDiscard.code,
+            discount: message.playFromDiscard.discount,
+            before: attacks,
+          },
+          ...message.then,
+        )
+      return push(paid, ...(message.costs ?? []), ...attacks, ...message.then)
     }
 
     // ------------------------------------------------ Efectos de escenario
@@ -3458,7 +3501,10 @@ export function handle(state: GameState, message: Message): GameState {
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.location === null) return state
       const options = withinConnections(state, investigator.location, message.range ?? 1).filter(
-        (to) => state.locations[to] && (!message.revealedOnly || state.locations[to]?.revealed),
+        (to) =>
+          state.locations[to] &&
+          canAffordEntry(state, to) &&
+          (!message.revealedOnly || state.locations[to]?.revealed),
       )
       if (options.length === 0) return state
       return push(state, {
@@ -4091,11 +4137,7 @@ function opportunityAttacks(state: GameState, investigator: Investigator): Messa
       (a) => a.owner === investigator.id && playerCardBehavior(a.code)?.firstActionSafe,
     )
   if (safe) return []
-  const massive =
-    investigator.location === null
-      ? []
-      : enemiesAt(state, investigator.location).filter((e) => e.keywords.includes('massive'))
-  return [...engagedEnemies(state, investigator.id), ...massive]
+  return engagedEnemies(state, investigator.id)
     .filter((e) => !e.exhausted && !e.noOpportunityAttacks)
     .map((e) => ({
       type: 'EnemyAttack',

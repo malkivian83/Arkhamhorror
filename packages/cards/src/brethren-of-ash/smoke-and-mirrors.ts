@@ -622,10 +622,8 @@ registerAct({
         params: { clues: cost },
         actions: 1,
         provokes: true,
-        then: [
-          { type: 'SpendGroupClues', amount: cost },
-          { type: 'DrawBeneath', investigator, location: here },
-        ],
+        costs: [{ type: 'SpendGroupClues', amount: cost }],
+        then: [{ type: 'DrawBeneath', investigator, location: here }],
       },
     ]
   },
@@ -1316,10 +1314,8 @@ registerLocation({
         actions: 1,
         provokes: true,
         limit: { per: 'round' },
-        then: [
-          { type: 'SpendResources', investigator, amount: 5 },
-          { type: 'DiscoverClues', investigator, amount: 1, location: l.id },
-        ],
+        costs: [{ type: 'SpendResources', investigator, amount: 5 }],
+        then: [{ type: 'DiscoverClues', investigator, amount: 1, location: l.id }],
       }))
   },
 })
@@ -1411,7 +1407,8 @@ registerLocation({
 registerLocation({
   code: CODES.frenchHill,
   abilities: (state, self, investigator) => {
-    if (getInvestigator(state, investigator).hand.length === 0) return []
+    if (!getInvestigator(state, investigator).hand.some((c) => !playerCardDef(c)?.weakness))
+      return []
     return Object.values(state.assets)
       .filter((a) => {
         const uses = playerCardDef(a.code)?.uses?.type
@@ -1424,10 +1421,8 @@ registerLocation({
         actions: 1,
         provokes: true,
         limit: { per: 'round' },
-        then: [
-          { type: 'ChooseDiscardFromHand', investigator, amount: 1 },
-          { type: 'AddUses', asset: a.id, amount: 1 },
-        ],
+        costs: [{ type: 'ChooseDiscardFromHand', investigator, amount: 1 }],
+        then: [{ type: 'AddUses', asset: a.id, amount: 1 }],
       }))
   },
 })
@@ -1473,10 +1468,8 @@ registerLocation({
         actions: 1,
         provokes: true,
         limit: { per: 'game' },
-        then: [
-          { type: 'DiscardToHand', investigator, code },
-          { type: 'PlayCard', investigator, code, discount: 2 },
-        ],
+        playFromDiscard: { code, discount: 2 },
+        then: [],
       }))
   },
 })
