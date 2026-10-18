@@ -5,6 +5,7 @@
  */
 import {
   getInvestigator,
+  effectiveVitals,
   registerEnemy,
   registerPlayerCard,
   registerTreachery,
@@ -153,7 +154,7 @@ registerTreachery({
   code: code(15),
   revelation: (state, investigator) => {
     const me = getInvestigator(state, investigator)
-    const sanity = me.sanity - me.horror
+    const sanity = effectiveVitals(state, me).sanity - me.horror
     const amount = 1 + (sanity <= 6 ? 1 : 0) + (sanity <= 3 ? 1 : 0)
     return [damage(investigator, amount, true)]
   },
@@ -215,4 +216,62 @@ registerTreachery({
       ? [damage(trigger.investigator)]
       : [],
   abilities: discardForTwoActions(104),
+})
+
+// Core 2026: Amnesia leaves one card; weaknesses cannot be voluntarily discarded.
+registerTreachery({
+  code: code(97),
+  revelation: (state, investigator) => [
+    {
+      type: 'ChooseDiscardFromHand',
+      investigator,
+      amount: Math.max(0, getInvestigator(state, investigator).hand.length - 1),
+    },
+  ],
+})
+
+// The Gold Bug occupies the threat area. Its continuous penalty does not change
+// printed health/sanity used to determine death or insanity from trauma.
+registerTreachery({
+  code: code(98),
+  healthModifier: -1,
+  sanityModifier: -1,
+  cannotDiscard: true,
+  revelation: (_state, investigator, self) => [
+    toThreatArea(self, investigator),
+    { type: 'CheckDefeat', investigator },
+  ],
+  abilities: (_state, self) => [
+    {
+      key: `${self.id}:shuffle`,
+      label: 'ability.shuffleGoldBug',
+      actions: 1,
+      provokes: true,
+      then: [{ type: 'ShuffleTreacheryIntoDeck', treachery: self.id }],
+    },
+  ],
+})
+
+registerPlayerCard({
+  code: code(99),
+  enemy: {
+    kind: 'enemy',
+    code: code(99),
+    name: name(99),
+    traits: ['Humanoid', 'Monster'],
+    fight: 2,
+    health: 1,
+    evade: 2,
+    damage: 0,
+    horror: 2,
+    keywords: ['aloof'],
+    spawnFarthestEmpty: true,
+  },
+})
+registerEnemy({
+  code: code(99),
+  forced: (_state, trigger, self) =>
+    trigger.type === 'investigationPhaseEnds' && !self.exhausted && !self.doom
+      ? [{ type: 'PlaceDoomOnEnemy', enemy: self.id, amount: 1 }]
+      : [],
 })

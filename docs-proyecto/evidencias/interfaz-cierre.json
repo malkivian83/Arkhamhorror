@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-18",
+  "desktopViewport": [
+    1280,
+    720
+  ],
+  "mobileViewport": [
+    390,
+    640
+  ],
+  "desktop": [
+    {
+      "scenario": 0,
+      "language": "es",
+      "decisions": true,
+      "hand": true,
+      "error": false
+    },
+    {
+      "scenario": 1,
+      "language": "es",
+      "decisions": true,
+      "hand": true,
+      "error": false
+    },
+    {
+      "scenario": 2,
+      "language": "es",
+      "decisions": true,
+      "hand": true,
+      "error": false
+    },
+    {
+      "scenario": 0,
+      "language": "en",
+      "decisions": true,
+      "hand": true,
+      "error": false
+    },
+    {
+      "scenario": 1,
+      "language": "en",
+      "decisions": true,
+      "hand": true,
+      "error": false
+    },
+    {
+      "scenario": 2,
+      "language": "en",
+      "decisions": true,
+      "hand": true,
+      "error": false
+    }
+  ],
+  "mobile": [
+    {
+      "scenario": 0,
+      "language": "es",
+      "viewer": true,
+      "decisions": true,
+      "undo": true
+    },
+    {
+      "scenario": 1,
+      "language": "es",
+      "viewer": true,
+      "decisions": true,
+      "undo": true
+    },
+    {
+      "scenario": 2,
+      "language": "es",
+      "viewer": true,
+      "decisions": true,
+      "undo": true
+    },
+    {
+      "scenario": 0,
+      "language": "en",
+      "viewer": true,
+      "decisions": true,
+      "undo": true
+    },
+    {
+      "scenario": 1,
+      "language": "en",
+      "viewer": true,
+      "decisions": true,
+      "undo": true
+    },
+    {
+      "scenario": 2,
+      "language": "en",
+      "viewer": true,
+      "decisions": true,
+      "undo": true
+    }
+  ],
+  "scope": "Desktop: render, resource action, reload and undo. Mobile: render, act viewer, decisions drawer and undo controls. Mouse and keyboard automation; mobile viewport in same-origin iframe, no physical touch device."
+}

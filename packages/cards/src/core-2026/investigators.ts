@@ -5,6 +5,7 @@
 import {
   enemiesAt,
   getInvestigator,
+  isPermanent,
   playerCardBehavior,
   playerCardDef,
   registerInvestigator,
@@ -72,7 +73,15 @@ registerInvestigator({
     if (trigger.type !== 'afterEnemyAttack' || state.skillTest || self.location === null) return []
     const enemy = state.enemies[trigger.enemy]
     const attacked = getInvestigator(state, trigger.investigator)
-    if (!enemy || enemy.location !== self.location || attacked.location !== self.location) return []
+    if (!enemy || (trigger.location ?? attacked.location) !== self.location) return []
+    // The attack happened here even if Elusive has already moved the enemy.
+    const fightView =
+      enemy.location === self.location
+        ? state
+        : {
+            ...state,
+            enemies: { ...state.enemies, [enemy.id]: { ...enemy, location: self.location } },
+          }
     const key = 'daniela'
     const basic: ReactionOption = {
       key,
@@ -95,10 +104,12 @@ registerInvestigator({
     const weapons = Object.values(state.assets)
       .filter((a) => a.owner === self.id)
       .flatMap((a) =>
-        (playerCardBehavior(a.code)?.abilities?.(state, a, self.id) ?? [])
+        (playerCardBehavior(a.code)?.abilities?.(fightView, a, self.id) ?? [])
           .filter(
             (o) =>
-              o.key.endsWith(':fight') && o.target?.type === 'enemy' && o.target.id === enemy.id,
+              o.then.some((m) => m.type === 'BeginSkillTest' && m.kind.type === 'fight') &&
+              o.target?.type === 'enemy' &&
+              o.target.id === enemy.id,
           )
           .map((o): ReactionOption => ({
             key,
@@ -165,14 +176,20 @@ registerInvestigator({
 // apoyo tuyo o juega otro apoyo de tu mano pagando su coste (límite 1 por ronda).
 // Signo arcano: +1; puedes devolver a la mano de su dueño un apoyo de tu localización.
 // ---------------------------------------------------------------------------
-const isStory = (code: string) => (playerCardDef(code)?.traits ?? []).includes('Story')
+const isStory = (code: string) => !!playerCardDef(code)?.story
 
 registerInvestigator({
   code: code(10),
   reactions: (state, trigger, self) => {
     if (trigger.type !== 'afterPlayAsset' || trigger.investigator !== self.id) return []
     const returnOptions = Object.values(state.assets)
-      .filter((a) => a.owner === self.id && a.code !== trigger.code && !isStory(a.code))
+      .filter(
+        (a) =>
+          a.owner === self.id &&
+          a.code !== trigger.code &&
+          !isStory(a.code) &&
+          !isPermanent(a.code),
+      )
       .map((a): ReactionOption => ({
         key: 'dexter',
         investigator: self.id,
@@ -200,7 +217,10 @@ registerInvestigator({
   },
   elderSign: (state, self) => {
     const assets = Object.values(state.assets).filter(
-      (a) => !isStory(a.code) && getInvestigator(state, a.owner).location === self.location,
+      (a) =>
+        !isStory(a.code) &&
+        !isPermanent(a.code) &&
+        getInvestigator(state, a.owner).location === self.location,
     )
     if (assets.length === 0) return { modifier: 1 }
     return {

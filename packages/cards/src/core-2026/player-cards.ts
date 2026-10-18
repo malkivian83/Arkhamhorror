@@ -5,6 +5,7 @@
  */
 import {
   enemiesAt,
+  effectiveVitals,
   engagedEnemies,
   getInvestigator,
   getLocation,
@@ -311,7 +312,7 @@ export function fightAbility(position: number, options: FightOptions = {}) {
           : (options.modifier ?? 0)
       return {
         key: `${self.id}:fight${options.key ?? ''}`,
-        label: 'ability.fightWith',
+        label: (options.actions ?? 1) > 1 ? 'ability.heavyFightWith' : 'ability.fightWith',
         params: { card: name(position), enemy: enemy.name },
         target: { type: 'enemy', id: enemy.id },
         actions: options.actions ?? 1,
@@ -570,7 +571,7 @@ registerPlayerCard({
   abilities: fightAbility(77, {
     modifier: (state, investigator) => {
       const i = getInvestigator(state, investigator)
-      return i.sanity - i.horror <= 3 ? 2 : 1
+      return effectiveVitals(state, i).sanity - i.horror <= 3 ? 2 : 1
     },
   }),
 })
@@ -720,3 +721,6 @@ registerPlayerCard({
 for (const position of [90, 91, 92, 93]) {
   registerPlayerCard({ code: code(position), afterCommittedTest: drawOnSuccess() })
 }
+
+// Printed soak and skill icons are resolved by the generic engine rules.
+for (const position of [21, 87, 94]) registerPlayerCard({ code: code(position) })

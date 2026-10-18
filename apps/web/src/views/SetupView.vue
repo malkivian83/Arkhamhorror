@@ -10,6 +10,7 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import GameCard from '../components/GameCard.vue'
+import SessionTools from '../components/SessionTools.vue'
 import { classColor } from '../game/cards'
 import { useDecksStore } from '../stores/decks'
 import { useGameStore, type DeckKey } from '../stores/game'
@@ -52,6 +53,7 @@ function start() {
 
 <template>
   <section class="setup">
+    <SessionTools />
     <h2>{{ t('campaign.new') }}</h2>
     <div class="campaigns" role="radiogroup" :aria-label="t('campaign.choose')">
       <label v-for="c in campaigns" :key="c.id">

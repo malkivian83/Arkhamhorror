@@ -36,7 +36,8 @@ const isWeakness = (code: CardCode) => !!byCode(code)?.weakness
 const isBasicWeakness = (code: CardCode) => byCode(code)?.weakness === 'basicweakness'
 
 /** Cartas que el jugador elige (ni exclusivas ni debilidades). */
-export const isStandard = (code: CardCode) => !isWeakness(code) && !SIGNATURES.has(code)
+export const isStandard = (code: CardCode) =>
+  !isWeakness(code) && !SIGNATURES.has(code) && !byCode(code)?.story
 /** Cuentan para el tamaño del mazo: las elegidas que no son permanentes. */
 const countsForSize = (code: CardCode) => isStandard(code) && !isPermanent(code)
 

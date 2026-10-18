@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { previewToken, skillTestValue, successChance, type GameState } from '@lcg/engine'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { classColor } from '../game/cards'
 import { localName } from '../game/localized'
+import { useLabels } from '../game/labels'
 import { useGameStore } from '../stores/game'
 import ChaosTokenView from './ChaosTokenView.vue'
 import GameCard from './GameCard.vue'
@@ -17,11 +18,23 @@ import SkillIcon from './SkillIcon.vue'
 const props = defineProps<{ state: GameState }>()
 const game = useGameStore()
 const { t } = useI18n()
+const label = useLabels()
 const minimized = ref(false)
 const showOdds = ref(false)
 
 const test = computed(() => props.state.skillTest)
 const prompt = computed(() => props.state.pending?.question.prompt)
+const question = computed(() => props.state.pending?.question)
+const canApplyResults = computed(() =>
+  question.value?.choices.some((choice) => choice.label === 'choice.applyResults'),
+)
+// Reacciones y elecciones intermedias también se resuelven dentro de la prueba.
+const intermediateQuestion = computed(() =>
+  question.value && !committing.value && !canApplyResults.value && !question.value.story
+    ? question.value
+    : null,
+)
+watch(prompt, () => (minimized.value = false))
 const committing = computed(() => prompt.value === 'prompt.commitCards')
 const resolved = computed(
   () => test.value?.succeeded !== null && test.value?.succeeded !== undefined,
@@ -30,7 +43,7 @@ const resolved = computed(
 /** Paso actual del diagrama de temporización del reglamento. */
 const step = computed(() => {
   if (committing.value) return 2
-  if (resolved.value) return 7
+  if (resolved.value) return canApplyResults.value ? 7 : 6
   return 3
 })
 const steps = [1, 2, 3, 4, 5, 6, 7, 8]
@@ -79,10 +92,16 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
 </script>
 
 <template>
-  <section v-if="test" class="skill-test" :class="{ minimized }">
+  <section v-if="test" class="skill-test" :class="{ minimized }" :aria-label="t('table.skillTest')">
     <header>
       <h3>{{ t('table.skillTest') }}</h3>
-      <button type="button" class="min" @click="minimized = !minimized">
+      <button
+        type="button"
+        class="min"
+        :aria-label="t(minimized ? 'skillTest.expand' : 'skillTest.minimize')"
+        :aria-expanded="!minimized"
+        @click="minimized = !minimized"
+      >
         {{ minimized ? '+' : '—' }}
       </button>
     </header>
@@ -97,6 +116,7 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
       <div class="duel">
         <GameCard
           v-if="source && source.code"
+          class="source-card"
           :code="source.code"
           :name="source.name"
           :back="source.back"
@@ -115,6 +135,7 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
 
         <GameCard
           v-if="investigator"
+          class="investigator-card"
           :code="investigator.id"
           :name="investigator.name"
           :width="70"
@@ -138,6 +159,12 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
           · {{ t('skillTest.tokens') }} {{ fmt(test.tokenModifier) }}</template
         >
       </p>
+
+      <ul v-if="value.sources.length" class="modifier-sources">
+        <li v-for="(sourceEntry, n) in value.sources" :key="n">
+          {{ localName(sourceEntry.name) }}: {{ fmt(sourceEntry.amount) }}
+        </li>
+      </ul>
 
       <div v-if="test.committed.length" class="committed">
         <GameCard
@@ -176,10 +203,27 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
       <div v-if="resolved" class="result" :class="test.succeeded ? 'success' : 'failure'">
         <strong>{{ test.succeeded ? t('skillTest.success') : t('skillTest.failure') }}</strong>
         <span>{{ test.modifiedSkill }} / {{ test.difficulty }}</span>
-        <button type="button" class="primary" @click="game.answerLabel('choice.applyResults')">
+        <button
+          v-if="canApplyResults"
+          type="button"
+          class="primary"
+          @click="game.answerLabel('choice.applyResults')"
+        >
           {{ t('choice.applyResults') }}
         </button>
       </div>
+      <div v-if="intermediateQuestion" class="pending-choice" aria-live="polite">
+        <p>{{ label(intermediateQuestion.prompt, intermediateQuestion.promptParams ?? {}) }}</p>
+        <button
+          v-for="(choice, index) in intermediateQuestion.choices"
+          :key="index"
+          type="button"
+          @click="game.answer(index)"
+        >
+          {{ label(choice.label, choice.params ?? {}) }}
+        </button>
+      </div>
+      <p v-if="game.error" class="error" role="alert">{{ game.error }}</p>
       <p v-else-if="committing" class="hint">{{ t('skillTest.commitHint') }}</p>
 
       <footer>
@@ -193,10 +237,17 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
         </div>
         <div class="footer-row">
           <span>{{ t('skillTest.tokensInBag', { n: state.chaosBag.length }) }}</span>
-          <button v-if="!resolved" type="button" class="odds" @click="showOdds = !showOdds">
+          <button
+            v-if="!resolved"
+            type="button"
+            class="odds"
+            :title="t('skillTest.oddsHint')"
+            @click="showOdds = !showOdds"
+          >
             {{ showOdds && odds !== null ? `${Math.round(odds * 100)}%` : t('skillTest.showOdds') }}
           </button>
         </div>
+        <p v-if="showOdds && !resolved" class="odds-hint">{{ t('skillTest.oddsHint') }}</p>
       </footer>
     </template>
   </section>
@@ -204,14 +255,17 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
 
 <style scoped>
 .skill-test {
-  /* Flota sobre la mesa, centrado en la zona de juego (sin el panel lateral). */
-  position: fixed;
-  top: 64px;
-  left: calc((100vw - 340px) / 2);
-  transform: translateX(-50%);
-  max-height: calc(100vh - 80px);
+  /* Dentro del área superior de la mesa: nunca queda detrás de la mano. */
+  position: relative;
+  grid-column: 1;
+  grid-row: 1 / 3;
+  align-self: start;
+  justify-self: center;
+  margin: 8px 0;
+  min-height: 0;
+  max-height: calc(100% - 16px);
   overflow-y: auto;
-  z-index: 20;
+  z-index: 40;
   width: min(580px, calc(100% - 32px));
   border-radius: 14px;
   background: #26302b;
@@ -219,8 +273,11 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
   box-shadow: 0 10px 30px rgb(0 0 0 / 60%);
 }
 header {
-  position: relative;
-  padding: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  padding: 12px 52px 12px 12px;
+  min-height: 48px;
   text-align: center;
   background: #1d2521;
 }
@@ -233,10 +290,10 @@ h3 {
 .min {
   position: absolute;
   right: 8px;
-  top: 5px;
+  top: 2px;
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
+  width: 44px;
+  height: 44px;
   padding: 0;
 }
 .steps {
@@ -265,8 +322,8 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 22px;
-  padding: 14px;
+  gap: 12px;
+  padding: 8px;
   background: #1f2824;
 }
 .source-name {
@@ -316,8 +373,8 @@ h3 {
   display: flex;
   justify-content: center;
   gap: 10px;
-  padding: 14px;
-  min-height: 104px;
+  padding: 8px;
+  min-height: 86px;
   align-items: center;
 }
 .bag-button {
@@ -341,6 +398,11 @@ h3 {
   line-height: 1.1;
 }
 .result {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  background: #26302b;
+  flex-wrap: wrap;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -352,6 +414,25 @@ h3 {
 }
 .result.failure strong {
   color: #ff8a80;
+}
+.pending-choice {
+  display: grid;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #1d2521;
+}
+.pending-choice p {
+  margin: 0;
+  line-height: 1.4;
+}
+.pending-choice button {
+  min-height: 44px;
+  white-space: normal;
+}
+.error {
+  color: #ffb4a9;
+  padding: 8px 12px;
+  overflow-wrap: anywhere;
 }
 .hint {
   margin: 0 12px 8px;
@@ -419,15 +500,45 @@ footer {
 }
 @media (max-width: 900px) {
   .skill-test {
-    left: 50%;
-    top: 12px;
-    max-height: calc(100dvh - 24px);
+    width: calc(100% - 16px);
   }
 }
 @media (max-width: 600px) {
-  .duel,
+  .duel {
+    gap: 4px;
+    flex-wrap: nowrap;
+    padding: 8px 4px;
+  }
+  .duel .source-card {
+    width: 48px !important;
+    height: 67px !important;
+    flex: none;
+  }
+  .duel .investigator-card {
+    width: 48px !important;
+    height: 34px !important;
+    flex: none;
+  }
+  .value,
+  .difficulty {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+    flex: none;
+  }
+  .vs {
+    min-width: 0;
+  }
+  .skill {
+    font-size: 0.65rem;
+  }
   .committed,
   .result {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    background: #26302b;
+    flex-wrap: wrap;
     flex-wrap: wrap;
     gap: 8px;
   }

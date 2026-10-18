@@ -70,6 +70,9 @@ export interface TreacheryBehavior {
   abilities?: AbilitiesFn<Treachery>
   /** En la zona de amenaza: su dueño no puede jugar apoyos ni usar los de sus apoyos (The Necronomicon). */
   blocksAssets?: boolean
+  healthModifier?: number
+  sanityModifier?: number
+  cannotDiscard?: boolean
 }
 
 export interface EnemyBehavior {

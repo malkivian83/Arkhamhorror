@@ -29,6 +29,8 @@ import { EngineError } from './errors'
 import { nextInt, shuffle } from './rng'
 import {
   activeInvestigators,
+  effectiveVitals,
+  distancesFrom,
   bestByPrey,
   enemiesAt,
   engagedEnemies,
@@ -321,6 +323,8 @@ export function handle(state: GameState, message: Message): GameState {
       }
 
     case 'DiscardTreachery':
+      if (treacheryBehavior(state.treacheries[message.treachery]?.code ?? '')?.cannotDiscard)
+        return state
       return state.treacheries[message.treachery]
         ? discardTreachery(state, message.treachery)
         : state
@@ -502,6 +506,16 @@ export function handle(state: GameState, message: Message): GameState {
       const attacks = provokesAttacksOfOpportunity(message.action)
         ? opportunityAttacks(state, investigator)
         : []
+      // RR, initiating abilities step 2 / attacks of opportunity: resource costs
+      // are paid before enemies attack. Reactions cannot spend those resources twice.
+      if (message.action.kind === 'play') {
+        return push(paid, {
+          type: 'PlayCard',
+          investigator: investigator.id,
+          code: message.action.card,
+          before: attacks,
+        })
+      }
       return push(paid, ...attacks, {
         type: 'PerformAction',
         investigator: investigator.id,
@@ -1044,11 +1058,25 @@ export function handle(state: GameState, message: Message): GameState {
               },
             ]
           : []
+      return push(paid, ...spent, ...(message.before ?? []), {
+        type: 'ResolvePlayedCard',
+        investigator: investigator.id,
+        code: message.code,
+        ...(message.effect ? { effect: message.effect } : {}),
+      })
+    }
+
+    case 'ResolvePlayedCard': {
+      const investigator = getInvestigator(state, message.investigator)
+      const def = playerCardDef(message.code)
+      if (!def) return state
+      if (investigator.eliminated) {
+        return def.type === 'asset' ? toOwnerDiscard(state, investigator.id, message.code) : state
+      }
       if (def.type === 'asset') {
         return push(
-          paid,
+          state,
           { type: 'PutAssetIntoPlay', investigator: investigator.id, code: message.code },
-          ...spent,
           {
             type: 'Forced',
             trigger: { type: 'afterPlayAsset', investigator: investigator.id, code: message.code },
@@ -1056,8 +1084,8 @@ export function handle(state: GameState, message: Message): GameState {
         )
       }
       const effect =
-        message.effect ?? playerCardBehavior(message.code)?.play?.(paid, investigator.id) ?? []
-      return push(paid, ...spent, ...effect)
+        message.effect ?? playerCardBehavior(message.code)?.play?.(state, investigator.id) ?? []
+      return push(state, ...effect)
     }
 
     case 'PutAssetIntoPlay': {
@@ -1261,8 +1289,9 @@ export function handle(state: GameState, message: Message): GameState {
     case 'CheckDefeat': {
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.eliminated) return state
-      const byDamage = investigator.damage >= investigator.health
-      const byHorror = investigator.horror >= investigator.sanity
+      const vitals = effectiveVitals(state, investigator)
+      const byDamage = investigator.damage >= vitals.health
+      const byHorror = investigator.horror >= vitals.sanity
       if (!byDamage && !byHorror) return state
       const eliminate: Message = { type: 'EliminateInvestigator', investigator: investigator.id }
       // Reglamento, "Trauma": derrotado por daño → 1 trauma físico; por horror → 1 mental.
@@ -1311,8 +1340,30 @@ export function handle(state: GameState, message: Message): GameState {
       }))
 
     case 'EarnExperience': {
-      const amount = message.amount + (message.victory ? victoryTotal(state) : 0)
-      return updateRecords(state, message.investigator, (r) => ({ ...r, xp: r.xp + amount }))
+      const victory = message.victory ? victoryTotal(state) : 0
+      const amount = message.amount + victory
+      let next = updateRecords(state, message.investigator, (r) => ({ ...r, xp: r.xp + amount }))
+      for (const i of state.investigators.filter(
+        (i) => !message.investigator || i.id === message.investigator,
+      )) {
+        next = log(
+          {
+            ...next,
+            experience: [
+              ...(next.experience ?? []),
+              { investigator: i.id, bonus: message.amount, victory, amount },
+            ],
+          },
+          'log.experience',
+          {
+            name: i.name,
+            bonus: message.amount,
+            victory,
+            amount,
+          },
+        )
+      }
+      return next
     }
 
     case 'SufferTrauma':
@@ -1344,7 +1395,11 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'AddChaosTokens':
       return updateCampaignLog(
-        { ...state, chaosBag: [...state.chaosBag, ...message.tokens] },
+        log(
+          { ...state, chaosBag: [...state.chaosBag, ...message.tokens] },
+          'log.chaosTokensAdded',
+          { n: message.tokens.length, scenario: state.scenarioId },
+        ),
         (c) => ({ ...c, chaosTokens: [...c.chaosTokens, ...message.tokens] }),
       )
 
@@ -2189,16 +2244,16 @@ export function handle(state: GameState, message: Message): GameState {
           damage: enemy.damage,
           horror: enemy.horror,
         },
+        ...elusive,
         {
           type: 'Forced',
           trigger: {
             type: 'afterEnemyAttack',
             enemy: enemy.id,
             investigator: message.investigator,
+            location: enemy.location,
           },
         },
-        // Esquivo: una vez resuelto el ataque.
-        ...elusive,
       )
     }
 
@@ -2225,6 +2280,17 @@ export function handle(state: GameState, message: Message): GameState {
         : push(next, ...dealt)
     }
 
+    case 'DefeatAllEnemiesWithoutWindows':
+      return push(
+        state,
+        ...Object.keys(state.enemies).map((enemy): Message => ({
+          type: 'DefeatEnemy',
+          enemy,
+          by: message.by,
+          withoutWindows: true,
+        })),
+      )
+
     case 'DefeatEnemy': {
       const enemy = getEnemy(state, message.enemy)
       const removed = log(removeEnemy(state, enemy.id), 'log.enemyDefeated', { enemy: enemy.name })
@@ -2237,6 +2303,9 @@ export function handle(state: GameState, message: Message): GameState {
               victoryPoints: (removed.victoryPoints ?? 0) + enemy.victory,
             }
           : { ...removed, encounterDiscard: [...removed.encounterDiscard, enemyCard(enemy)] }
+      // Sluice Control defeats all enemies as part of its final resolution, without
+      // opening reactions or changing the ending through Elokoss's objective.
+      if (message.withoutWindows) return next
       // RR "Doomed": al ser derrotado (no descartado), 1 perdición en el plan.
       const doomed: Message[] = enemy.keywords.includes('doomed')
         ? [{ type: 'PlaceDoom', amount: 1 }, { type: 'CheckAgenda' }]
@@ -3207,6 +3276,46 @@ export function handle(state: GameState, message: Message): GameState {
       if (enemy) {
         if (investigator.location === null)
           return toOwnerDiscard(named, investigator.id, message.code)
+        if (enemy.spawnFarthestEmpty) {
+          const distances = distancesFrom(state, investigator.location)
+          const empty = Object.values(state.locations).filter(
+            (l) =>
+              distances.has(l.id) &&
+              !state.investigators.some((i) => !i.eliminated && i.location === l.id) &&
+              !Object.values(state.enemies).some((e) => e.location === l.id),
+          )
+          const farthest = Math.max(...empty.map((l) => distances.get(l.id)!))
+          const places = empty.filter((l) => distances.get(l.id) === farthest)
+          if (!places.length) return toOwnerDiscard(named, investigator.id, message.code)
+          const spawn = (location: string): Message => ({
+            type: 'SpawnEnemy',
+            card: enemy,
+            location,
+            engageWith: null,
+            owner: investigator.id,
+          })
+          return push(
+            named,
+            ...(places.length === 1 || !state.interactive
+              ? [spawn(places[0]!.id)]
+              : [
+                  {
+                    type: 'Ask',
+                    investigator: leadInvestigator(state)!.id,
+                    question: {
+                      kind: 'chooseOne',
+                      prompt: 'prompt.chooseLocation',
+                      choices: places.map((l) => ({
+                        label: 'choice.location',
+                        params: { location: l.name },
+                        target: { type: 'location', id: l.id },
+                        then: [spawn(l.id)],
+                      })),
+                    },
+                  } as Message,
+                ]),
+          )
+        }
         return push(named, {
           type: 'SpawnEnemy',
           card: enemy,
@@ -3811,10 +3920,11 @@ export function skillTestValue(state: GameState): {
   modifier: number
   icons: number
   passive: number
+  sources: { name: string; amount: number }[]
   total: number
 } {
   const test = state.skillTest
-  if (!test) return { base: 0, modifier: 0, icons: 0, passive: 0, total: 0 }
+  if (!test) return { base: 0, modifier: 0, icons: 0, passive: 0, sources: [], total: 0 }
   const investigator = getInvestigator(state, test.investigator)
   const icons = test.committed.reduce(
     (sum, c) => sum + matchingIcons(playerCardDef(c.code)?.icons, test.skill),
@@ -3831,11 +3941,26 @@ export function skillTestValue(state: GameState): {
           0,
         )
   const base = investigator.skills[test.skill]
+  const sources = [
+    ...Object.values(state.assets)
+      .filter((a) => a.owner === investigator.id)
+      .map((a) => ({
+        name: playerCardDef(a.code)?.name ?? a.code,
+        amount: playerCardBehavior(a.code)?.skillModifier?.(state, a, test) ?? 0,
+      })),
+    ...(investigator.location === null
+      ? []
+      : enemiesAt(state, investigator.location).map((e) => ({
+          name: e.name,
+          amount: enemyBehavior(e.code)?.skillModifier?.(state, e, test) ?? 0,
+        }))),
+  ].filter((s) => s.amount !== 0)
   return {
     base,
     modifier: test.baseModifier,
     icons,
     passive: passive + auras,
+    sources,
     total: base + test.baseModifier + icons + passive + auras,
   }
 }

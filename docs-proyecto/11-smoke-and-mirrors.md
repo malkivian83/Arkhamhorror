@@ -1,5 +1,7 @@
 # 11 · Escenario II: Smoke and Mirrors (Brethren of Ash)
 
+> Cierre revisado el 18/10/2026: variantes de preparación, seis códices con 1/2/4 investigadores, resoluciones y continuidad ampliadas en la [auditoría de cierre](16-auditoria-cierre-brethren-of-ash.md).
+
 Implementado en `packages/cards/src/brethren-of-ash/smoke-and-mirrors.ts`.
 Fuentes: guía de campaña (`reglas/`, fuera de git), datos públicos de ArkhamDB
 (`core_2026`) para los valores y el proyecto de referencia para las conexiones

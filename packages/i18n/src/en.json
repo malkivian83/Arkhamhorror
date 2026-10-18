@@ -182,7 +182,7 @@
     "discardFire": "Put out the fire: test Agility (3)",
     "discardTreachery": "Discard {card}",
     "blazeDamage": "Spend {clues} clues: deal {damage} damage to {enemy}",
-    "resign": "Resign: flee the burning campus",
+    "resign": "Resign from the scenario",
     "engageFromConnecting": "Lure {enemy} from {location} and engage it",
     "heal": "Heal 1 damage and 1 horror",
     "quadMove": "Move to {location} (fast)",
@@ -229,7 +229,10 @@
     "playFromDiscard": "Play {card} from your discard pile (−2 cost)",
     "extinguish": "Spend {clues} clues as a group: discard the Fire! at your location",
     "weakenElokoss": "Spend {clues} clues: place 1 clue on Elokoss ({have}/5)",
-    "openSluice": "Open the sluice gate (agility or combat 5)"
+    "openSluice": "Open the sluice gate (agility or combat 5)",
+    "codexSearch": "Search and play a codex card",
+    "shuffleGoldBug": "Shuffle The Gold Bug into the deck",
+    "heavyFightWith": "Heavy attack with {card}: fight {enemy}"
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -262,7 +265,9 @@
     "weakness": "{name} draws their weakness {card}",
     "underAct": "{enemy} is placed beneath the act",
     "enemyImmune": "{enemy} cannot be damaged (there is fire at its location)",
-    "lead": "{name} is the lead investigator"
+    "lead": "{name} is the lead investigator",
+    "experience": "{name}: {bonus} bonus/penalty + {victory} victory = {amount} XP.",
+    "chaosTokensAdded": "{scenario} adds {n} token(s) to the campaign bag."
   },
   "table": {
     "log": "Game log",
@@ -306,6 +311,19 @@
     "ok": "OK",
     "agenda": "Agenda",
     "act": "Act",
+    "agendaDeck": "Agenda deck",
+    "actDeck": "Act deck",
+    "viewScenarioDeck": "{deck} {current} of {total}: view all cards in the deck",
+    "scenarioDeckHelp": "Cards in advancement order. The active card is highlighted. You can inspect upcoming cards and their backs without advancing the scenario.",
+    "deckStatus": {
+      "previous": "Previous",
+      "current": "Active",
+      "upcoming": "Upcoming"
+    },
+    "viewCardFront": "View front",
+    "viewCardBack": "View back",
+    "viewCardFrontNamed": "View the front of {name}",
+    "viewCardBackNamed": "View the back of {name}",
     "scenario": "Scenario file",
     "board": "Location map",
     "navigation": "Map controls",
@@ -361,7 +379,10 @@
     "failure": "Failure",
     "commitHint": "Commit cards from your hand (highlighted) and click the bag to reveal a token.",
     "tokensInBag": "{n} tokens",
-    "showOdds": "Show odds"
+    "showOdds": "Estimate odds",
+    "expand": "Expand skill test",
+    "minimize": "Minimize skill test",
+    "oddsHint": "Single-token estimate; excludes additional tokens and later reactions."
   },
   "undo": {
     "title": "Undo",
@@ -584,7 +605,8 @@
     "names": {
       "brethren-of-ash": "Brethren of Ash"
     },
-    "choose": "Choose the campaign"
+    "choose": "Choose the campaign",
+    "xpBreakdown": "Experience breakdown"
   },
   "class": {
     "guardian": "Guardian",
@@ -697,5 +719,83 @@
       "title": "Massive",
       "body": "A ready massive enemy counts as engaged with each investigator at its location, attacks all of them in the enemy phase and only exhausts after all its attacks. It cannot be placed in a threat area."
     }
+  },
+  "session": {
+    "title": "Save and recovery",
+    "help": "Export the campaign, current table and undo history together. Diagnostic files include your decks and decisions; they are downloaded locally.",
+    "export": "Export campaign",
+    "import": "Import campaign",
+    "recover": "Restore previous save",
+    "diagnostic": "Export diagnostic",
+    "confirmImport": "Replace the current campaign with this file? A copy of the previous save will remain available.",
+    "confirmRecover": "Restore the previous readable save? Current progress will be replaced.",
+    "imported": "Campaign imported. You can continue playing.",
+    "recoveredNotice": "Previous save restored.",
+    "readFailed": "The file could not be read. Choose a campaign JSON file smaller than 20 MB.",
+    "issue": {
+      "unavailable": "Saving failed. Your game remains open, but progress may be lost on reload. Export a campaign copy now.",
+      "invalid": "The save is invalid or damaged. Your existing files have been preserved. Import a valid copy or restore the previous save.",
+      "incompatible": "This save needs a different game or content version. It has been preserved without changes.",
+      "recovered": "The latest save is unreadable. The previous readable save has been recovered; some recent decisions may be missing.",
+      "historyReset": "The campaign was recovered, but the old undo history was inconsistent. Undo starts from the recovered table."
+    },
+    "investigators": "investigator(s)",
+    "cancel": "Cancel",
+    "replace": "Import this save",
+    "pasteTitle": "Import from text",
+    "pasteLabel": "Paste the campaign JSON",
+    "preview": "Validate and preview"
+  },
+  "offlineCard": {
+    "help": "Local data. Abilities and costs are available in the table choices; also consult the keyword reference.",
+    "types": {
+      "investigator": "Investigator",
+      "asset": "Asset",
+      "event": "Event",
+      "skill": "Skill",
+      "treachery": "Treachery",
+      "enemy": "Enemy",
+      "location": "Location",
+      "agenda": "Agenda",
+      "act": "Act"
+    },
+    "summary": {
+      "12001": "After an enemy attacks at your location, fight once per round. Elder sign: deal one damage locally.",
+      "12004": "A successful investigation can draw one card per round. Elder sign success grants a card and a resource.",
+      "12007": "One extra action each turn may only evade. Elder sign can disengage and move.",
+      "12010": "After playing an asset, return another asset or play another affordable asset, once per round.",
+      "12013": "Once per round, take direct horror to commit a skill from discard; shuffle it back after the test.",
+      "12097": "Discard cards of your choice until one remains; weaknesses cannot be voluntarily discarded.",
+      "12098": "In your threat area: maximum health and sanity each decrease by one. Its action shuffles it into the deck.",
+      "12099": "Aloof. Spawns at a farthest empty location. At investigation end, gains doom if ready and without doom.",
+      "12106": "Threshold 3. Investigators can parley with Bystanders. Advancing tests willpower; failure causes horror.",
+      "12107": "Threshold 5. Advancing moves Fire cards into the discard and tests agility against damage.",
+      "12108": "Threshold 10. Doom draws discarded Fire. Advancing defeats the remaining investigators.",
+      "12109": "At round end, spend two clues per investigator to leave the first stage.",
+      "12110": "Advance when every remaining investigator reaches Miskatonic Quad.",
+      "12111": "At round end, investigators at Orne Library can pay three clues per investigator.",
+      "12112": "Group clues can damage a local enemy. You may resign. Defeating the Servant advances the act.",
+      "12134": "Threshold 10. You may resign. Advancing gives each investigator Mark of Elokoss.",
+      "12135": "Threshold 8. You may resign. Advancing makes all remaining investigators resign.",
+      "12136": "Spend two group clues per investigator to reveal a card beneath your location. Resolve six Elite enemies to finish.",
+      "12169": "Threshold 6. Advancing brings the Servant into play and tests willpower against direct horror.",
+      "12170": "Threshold 10. Advancing reveals the Mother of Flame and changes future doom into direct damage.",
+      "12171": "Final stage: future doom becomes direct damage. Defeat Elokoss to finish.",
+      "12172": "Entering the cistern costs three group clues per investigator and advances the act.",
+      "12173": "Group clues extinguish local Fire. Defeat Elokoss to finish; ready Cultists move toward the cistern.",
+      "12175": "Pay one group clue per investigator to enter unrevealed. Passing the valve test defeats every enemy and kills investigators who did not resign.",
+      "12179": "Massive, retaliate. Cannot move or attack by opportunity. Pay clues yourself to place leads; five stop the rebirth.",
+      "12179b": "Massive hunter. After evading her, she readies but spares that investigator for the round."
+    },
+    "backSummary": {
+      "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
+      "12110": "The campus opens up and the Servant is set aside temporarily.",
+      "12111": "Choose Armitage’s bearer; the Servant returns to the Quad with clues. Draw Fire.",
+      "12112": "Resolve the encounter with Armitage, then decide whether to stay and save the university.",
+      "12136": "Record the herald and the fate of the Servant; experience depends on resolved Elite enemies.",
+      "12172": "Elokoss appears, Fire enters the encounter deck and Sluice Control becomes available.",
+      "12173": "Defeating Elokoss leads to resolution one."
+    },
+    "victory": "Victory {n}"
   }
 }

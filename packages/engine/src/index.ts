@@ -8,6 +8,12 @@ export {
 } from './actions'
 export {
   registerAct,
+  actBehavior,
+  agendaBehavior,
+  enemyBehavior,
+  locationBehavior,
+  scenarioBehavior,
+  treacheryBehavior,
   registerAgenda,
   registerEnemy,
   registerInvestigator,
@@ -55,6 +61,7 @@ export {
 } from './setup'
 export {
   activeInvestigators,
+  effectiveVitals,
   enemiesAt,
   engagedEnemies,
   getInvestigator,

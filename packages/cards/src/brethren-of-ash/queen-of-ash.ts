@@ -640,8 +640,8 @@ registerEnemy({
   // Rápida: gastar 1 pista por investigador para poner 1 pista sobre Elokoss; con 5, resolución 2.
   abilities: (state, self, investigator) => {
     const cost = state.startingInvestigatorCount
-    const group = activeInvestigators(state).reduce((sum, i) => sum + i.clues, 0)
-    if (group < cost || getInvestigator(state, investigator).location !== self.location) return []
+    const payer = getInvestigator(state, investigator)
+    if (payer.clues < cost || payer.location !== self.location) return []
     return [
       {
         key: `${self.id}:clue`,
@@ -650,7 +650,7 @@ registerEnemy({
         actions: 0,
         provokes: false,
         then: [
-          { type: 'SpendGroupClues', amount: cost },
+          { type: 'SpendClues', investigator, amount: cost },
           { type: 'AddLead', enemy: self.id },
           {
             type: 'IfEnemyLeads',
@@ -714,14 +714,66 @@ registerEnemy({
 // Servant of Flame (A Willing Sacrifice): al ser derrotado, códex Φ según quién era el heraldo.
 const HARBINGER_EFFECTS: Record<string, (i: InvestigatorId) => Message[]> = {
   'David Renfield': (i) => [
-    { type: 'SearchDeck', investigator: i, traits: ['Tome', 'Spell'], to: 'play', discount: 99 },
+    {
+      type: 'Ask',
+      investigator: i,
+      question: {
+        kind: 'chooseOne',
+        prompt: 'prompt.optional',
+        choices: [
+          {
+            label: 'ability.codexSearch',
+            then: [
+              {
+                type: 'SearchDeck',
+                investigator: i,
+                traits: ['Tome', 'Spell'],
+                to: 'play',
+                discount: 99,
+              },
+            ],
+          },
+          { label: 'choice.skip', then: [] },
+        ],
+      },
+    },
   ],
   'Cornelia Akely': (i) => [{ type: 'Heal', investigator: i, damage: 3, horror: 0 }],
   "Naomi O'Bannion": (i) => [{ type: 'GainResources', investigator: i, amount: 5 }],
   'Sgt. Earl Monroe': (i) => [
-    { type: 'SearchDeck', investigator: i, traits: ['Weapon'], to: 'play', discount: 99 },
+    {
+      type: 'Ask',
+      investigator: i,
+      question: {
+        kind: 'chooseOne',
+        prompt: 'prompt.optional',
+        choices: [
+          {
+            label: 'ability.codexSearch',
+            then: [
+              { type: 'SearchDeck', investigator: i, traits: ['Weapon'], to: 'play', discount: 99 },
+            ],
+          },
+          { label: 'choice.skip', then: [] },
+        ],
+      },
+    },
   ],
-  'Abigail Foreman': (i) => [{ type: 'DrawCards', investigator: i, amount: 3 }],
+  'Abigail Foreman': (i) => [
+    {
+      type: 'Ask',
+      investigator: i,
+      question: {
+        kind: 'chooseOne',
+        prompt: 'prompt.optional',
+        choices: [0, 1, 2, 3].map((n) => ({
+          label: 'ability.drawCards',
+          params: { n },
+          then: [{ type: 'DrawCards', investigator: i, amount: n }],
+        })),
+      },
+    },
+  ],
   'Margaret Liu': (i) => [{ type: 'Heal', investigator: i, damage: 0, horror: 3 }],
 }
 
@@ -1102,7 +1154,10 @@ registerLocation({
       provokes: true,
       then: [
         chooseSkillTest(investigator, 'Sluice Control', ['agility', 'combat'], 5, {
-          onSuccess: [{ type: 'EndScenario', outcome: { type: 'resolution', resolution: 3 } }],
+          onSuccess: [
+            { type: 'DefeatAllEnemiesWithoutWindows', by: investigator },
+            { type: 'EndScenario', outcome: { type: 'resolution', resolution: 3 } },
+          ],
         }),
       ],
     },

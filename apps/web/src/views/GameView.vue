@@ -51,23 +51,9 @@ const shown = computed(
     <ScenarioRow :state="state" />
     <BoardViewport :reset-key="state.scenarioId" class="board playmat sigil">
       <LocationMap :state="state" />
-      <template #overlay>
-        <SkillTestPanel :state="state" />
-      </template>
     </BoardViewport>
+    <SkillTestPanel :state="state" />
     <div class="players">
-      <button
-        ref="caseButton"
-        type="button"
-        class="case-toggle"
-        :aria-expanded="showCase"
-        :aria-label="showCase ? t('table.close') : t('table.caseControls')"
-        :title="t('table.caseControls')"
-        aria-controls="case-panel"
-        @click="showCase = !showCase"
-      >
-        {{ showCase ? t('table.close') : t('table.actions') }}
-      </button>
       <nav v-if="state.investigators.length > 1" class="tabs">
         <button
           v-for="i in state.investigators"
@@ -88,7 +74,22 @@ const shown = computed(
         :state="state"
         :investigator="shown"
         :deciding="shown.id === state.pending?.investigator"
-      />
+      >
+        <template #controls>
+          <button
+            ref="caseButton"
+            type="button"
+            class="case-toggle"
+            :aria-expanded="showCase"
+            :aria-label="showCase ? t('table.close') : t('table.caseControls')"
+            :title="t('table.caseControls')"
+            aria-controls="case-panel"
+            @click="showCase = !showCase"
+          >
+            {{ showCase ? t('table.close') : t('table.actions') }}
+          </button>
+        </template>
+      </PlayerArea>
     </div>
     <SidePanel
       id="case-panel"
@@ -204,11 +205,11 @@ const shown = computed(
     display: flex;
   }
   .case-toggle {
-    position: absolute;
     display: block;
-    right: 8px;
-    bottom: calc(100% + 8px);
-    min-height: 44px;
+    margin-left: auto;
+    min-height: 32px;
+    padding: 2px 6px;
+    font-size: 0.7rem;
     z-index: 30;
     color: var(--parch-ink);
     background: var(--parch);

@@ -131,6 +131,31 @@ describe('debilidades', () => {
 })
 
 describe('investigadores', () => {
+  it.each(['ability.drawCards', 'choice.skip'])(
+    'Joe interactivo: resuelve %s antes de aplicar el resultado y termina la prueba',
+    (reaction) => {
+      let s = during(game(code(4)), (state) => ({ ...state, interactive: true, chaosBag: [0] }), {
+        type: 'TakeAction',
+        investigator: code(4),
+        action: { kind: 'investigate' },
+      })
+      s = choose(s, 'choice.revealToken')
+      expect(s.skillTest?.succeeded).toBe(true)
+      expect(prompt(s)).toBe('prompt.reaction')
+      expect(labels(s)).not.toContain('choice.applyResults')
+      const clues = me(s).clues
+      const hand = me(s).hand.length
+      s = choose(s, reaction)
+      expect(labels(s)).toContain('choice.applyResults')
+      expect(me(s).clues).toBe(clues)
+      expect(me(s).hand.length).toBe(hand + (reaction === 'ability.drawCards' ? 1 : 0))
+      s = choose(s, 'choice.applyResults')
+      expect(s.skillTest).toBeNull()
+      expect(me(s).clues).toBe(clues + 1)
+      expect(prompt(s)).toBe('prompt.chooseAction')
+    },
+  )
+
   it('Joe Diamond: tras investigar con éxito puede robar 1 carta', () => {
     let s = game(code(4))
     s = during(s, withBag(0), {

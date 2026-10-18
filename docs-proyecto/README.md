@@ -2,7 +2,7 @@
 
 Plataforma web propia para jugar a **Arkham Horror: El Juego de Cartas (LCG)**,
 tomando como referencia de estudio el proyecto `halogenandtoast/ArkhamHorror`
-(código público en GitHub pero **sin licencia**; copia local en `E:\referencia\ArkhamHorror`, fuera de este repositorio).
+(código público en GitHub pero **sin licencia**; copia local actual en `D:\referencia\ArkhamHorror-main`, fuera de este repositorio).
 
 > Estos documentos son el punto de partida del desarrollo. Léelos en orden.
 
@@ -22,6 +22,8 @@ tomando como referencia de estudio el proyecto `halogenandtoast/ArkhamHorror`
 | 12 | [Queen of Ash](12-queen-of-ash.md) | Escenario III: alcantarillas, Elokoss, conexiones que cambian y resoluciones |
 | 13 | [Añadir campañas](13-anadir-campanas.md) | Piezas genéricas para nuevas campañas, escenarios y cartas |
 | 14 | [Propuesta de mesa móvil](diseno-movil/README.md) | Mano visible, navegación inferior y paneles sobre el mapa |
+| 15 | [Auditoría funcional de la referencia — 17/10/2026](15-auditoria-referencia-2026-10-17.md) | Ingeniería inversa, 110 oportunidades, inventario de contenido y prioridades para juego local; [backlog CSV](15-backlog-referencia-2026-10-17.csv) |
+| 16 | [Auditoría de cierre de Brethren of Ash](16-auditoria-cierre-brethren-of-ash.md) | Cierre local, 2.856 preparaciones, 104 contratos, recorridos reproducibles, recuperación y 12 comprobaciones de interfaz; [matriz de cartas](16-matriz-cartas-cierre.csv) |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

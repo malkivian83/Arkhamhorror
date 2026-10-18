@@ -11,6 +11,8 @@ import {
   isPermanent,
   playerCardBehavior,
   playerCardDef,
+  treacheryBehavior,
+  investigatorBehavior,
   type CampaignLog,
   type CardCode,
   type Difficulty,
@@ -18,6 +20,7 @@ import {
   type InvestigatorId,
   type PlayerCardDef,
   type ScenarioOutcome,
+  type ExperienceGain,
 } from '@lcg/engine'
 import { campaignDefinition, type CampaignScenario } from './campaign-definition'
 import { withRandomBasicWeakness } from './decks'
@@ -49,6 +52,7 @@ export interface ScenarioResult {
   outcome: ScenarioOutcome
   /** Experiencia ganada en el escenario por cada investigador. */
   xp: Record<InvestigatorId, number>
+  experience?: ExperienceGain[]
 }
 
 export interface Campaign {
@@ -72,6 +76,8 @@ export function newCampaign(
   seed = 1,
 ): Campaign {
   campaignDefinition(campaignId)
+  if (members.length < 1 || members.length > 4)
+    throw new Error('La campaña necesita de 1 a 4 investigadores')
   const investigators = members.map((member, n) => {
     if (typeof member !== 'string') {
       // Un mazo propio sin debilidad básica recibe una al azar (reglamento).
@@ -81,6 +87,12 @@ export function newCampaign(
     if (!list) throw new Error(`Mazo desconocido: ${member}`)
     return { id: code(list.investigator), deck: starterDeck(member) }
   })
+  if (new Set(investigators.map((i) => i.id)).size !== investigators.length)
+    throw new Error('Un investigador no puede repetirse')
+  if (
+    investigators.some((i) => !playerCardDef(i.id) || i.deck.some((code) => !playerCardDef(code)))
+  )
+    throw new Error('Contenido de mazo desconocido')
   return {
     id: campaignId,
     difficulty,
@@ -120,6 +132,7 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
   if (!entry?.build) throw new Error(`Escenario no disponible: ${entry?.id ?? '—'}`)
   const definition = campaignDefinition(campaign.id)
   const members = activeMembers(campaign)
+  if (!members.length) throw new Error('No quedan investigadores que puedan continuar')
   const scenario = entry.build({
     difficulty: campaign.difficulty,
     log: campaign.log,
@@ -158,6 +171,8 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
 /** Cierra el escenario terminado: guarda su registro y pasa al siguiente. */
 export function finishScenario(campaign: Campaign, game: GameState): Campaign {
   if (!game.outcome) throw new Error('El escenario aún no ha terminado')
+  if (game.scenarioId !== currentScenario(campaign) || game.difficulty !== campaign.difficulty)
+    throw new Error('El resultado no pertenece al escenario actual de esta campaña')
   const played = game.campaignLog ?? campaign.log
   // La experiencia no baja de 0 (Dead Ends puede restar más de lo ganado).
   const log = {
@@ -176,7 +191,15 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
     ...campaign,
     scenarioIndex: campaign.scenarioIndex + 1,
     log,
-    results: [...campaign.results, { scenario: game.scenarioId, outcome: game.outcome, xp }],
+    results: [
+      ...campaign.results,
+      {
+        scenario: game.scenarioId,
+        outcome: game.outcome,
+        xp,
+        ...(game.experience ? { experience: game.experience } : {}),
+      },
+    ],
   }
 }
 
@@ -200,10 +223,9 @@ const byCode = (card: CardCode): PlayerCardDef | undefined =>
   playerCards.find((c) => c.code === card)
 const level = (card: CardCode) => byCode(card)?.xp ?? 0
 
-/** Cartas que ya funcionan en el motor: las de los mazos iniciales y las que tienen comportamiento. */
-const STARTER_CARDS = new Set(Object.keys(STARTER_DECKS).flatMap((key) => starterDeck(key)))
+/** Content with a registered implementation, including cards with printed data only. */
 export function isImplemented(card: CardCode): boolean {
-  return STARTER_CARDS.has(card) || playerCardBehavior(card) !== undefined
+  return !!(playerCardBehavior(card) || treacheryBehavior(card) || investigatorBehavior(card))
 }
 
 /** Cuenta para el tamaño del mazo (ni debilidades, ni exclusivas, ni permanentes). */

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { cardImage, localScan } from '../game/cards'
+import { computed, ref, watch } from 'vue'
+import { cardImage, localScan, scanLocale } from '../game/cards'
 import { localizedCards, localName } from '../game/localized'
 import { zoomed } from '../game/zoom'
 import RenderedCard from './RenderedCard.vue'
@@ -32,6 +32,13 @@ const props = withDefaults(
 
 const scanFailed = ref(false)
 const imageFailed = ref(false)
+watch(
+  () => [props.code, props.back, scanLocale.value],
+  () => {
+    scanFailed.value = false
+    imageFailed.value = false
+  },
+)
 
 const scan = computed(() => (scanFailed.value ? null : localScan(props.code, props.back)))
 const localized = computed(() => localizedCards.value.get(props.code) ?? null)

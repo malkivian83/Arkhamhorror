@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { cardImage, CLASS_COLORS } from '../game/cards'
 import { cardTextHtml } from '../game/cardText'
 import type { LocalizedCard } from '../game/localized'
@@ -16,6 +17,7 @@ const props = withDefaults(
 )
 
 const BASE_W = 300
+const { t } = useI18n()
 const base = computed(() => (props.landscape ? { w: 420, h: 300 } : { w: BASE_W, h: 420 }))
 const scale = computed(() => props.width / base.value.w)
 
@@ -100,32 +102,36 @@ const per = (yes: boolean | undefined) => (yes ? '/inv' : '')
 
       <footer v-if="!back">
         <template v-if="card.type_code === 'enemy'">
-          <span title="combate">⚔ {{ card.enemy_fight ?? '–' }}</span>
-          <span title="salud"
+          <span :title="t('skill.combat')">⚔ {{ card.enemy_fight ?? '–' }}</span>
+          <span :title="t('table.health')"
             >♥ {{ card.health ?? '–' }}{{ per(card.health_per_investigator) }}</span
           >
-          <span title="evasión">⇆ {{ card.enemy_evade ?? '–' }}</span>
-          <span class="dmg" title="daño / horror">
+          <span :title="t('skill.agility')">⇆ {{ card.enemy_evade ?? '–' }}</span>
+          <span class="dmg" :title="`${t('table.damage')} / ${t('table.horror')}`">
             {{ '■'.repeat(card.enemy_damage ?? 0) }}<b>{{ '■'.repeat(card.enemy_horror ?? 0) }}</b>
           </span>
         </template>
         <template v-else-if="card.type_code === 'location'">
-          <span title="velo">◎ {{ card.shroud ?? '–' }}</span>
-          <span title="pistas"
+          <span :title="t('game.shroud', { n: card.shroud ?? '–' })"
+            >◎ {{ card.shroud ?? '–' }}</span
+          >
+          <span :title="t('table.clues')"
             >● {{ card.clues ?? 0 }}{{ per(!card.clues_fixed && (card.clues ?? 0) > 0) }}</span
           >
         </template>
         <template v-else-if="card.type_code === 'agenda'">
-          <span title="perdición">☠ {{ card.doom ?? '–' }}</span>
+          <span :title="t('table.doom')">☠ {{ card.doom ?? '–' }}</span>
         </template>
         <template v-else-if="card.type_code === 'act'">
-          <span v-if="card.clues" title="pistas">● {{ card.clues }}/inv</span>
+          <span v-if="card.clues" :title="t('table.clues')">● {{ card.clues }}/inv</span>
         </template>
         <template v-else-if="card.health || card.sanity">
-          <span v-if="card.health" title="salud">♥ {{ card.health }}</span>
-          <span v-if="card.sanity" title="cordura">✦ {{ card.sanity }}</span>
+          <span v-if="card.health" :title="t('table.health')">♥ {{ card.health }}</span>
+          <span v-if="card.sanity" :title="t('table.sanity')">✦ {{ card.sanity }}</span>
         </template>
-        <span v-if="card.victory" class="victory">Victoria {{ card.victory }}</span>
+        <span v-if="card.victory" class="victory">{{
+          t('offlineCard.victory', { n: card.victory })
+        }}</span>
       </footer>
     </div>
   </div>

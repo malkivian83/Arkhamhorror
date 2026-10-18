@@ -122,6 +122,7 @@ export interface EnemyCard {
   victory?: number
   /** Instrucciones de aparición: localización concreta. Sin ellas aparece enfrentado a quien lo robó. */
   spawnAt?: LocationId
+  spawnFarthestEmpty?: boolean
 }
 
 export interface Enemy extends EnemyCard {
@@ -322,6 +323,8 @@ export interface PlayerCardDef {
   unique?: boolean
   /** Recompensa: solo si se ha ganado y solo al crear el mazo. */
   reward?: boolean
+  /** Story status is independent of printed traits. */
+  story?: boolean
   /** Máximo de copias en un mazo (2 si no se indica). */
   deckLimit?: number
   /** Cartas de mazo adicionales (Collector: +5). */
@@ -503,7 +506,10 @@ export type Message =
       code: CardCode
       discount?: number
       effect?: Message[]
+      /** Messages between paying the card cost and resolving it (attacks of opportunity). */
+      before?: Message[]
     }
+  | { type: 'ResolvePlayedCard'; investigator: InvestigatorId; code: CardCode; effect?: Message[] }
   | { type: 'PutAssetIntoPlay'; investigator: InvestigatorId; code: CardCode; noSlot?: boolean }
   | { type: 'DiscardAsset'; asset: AssetId }
   /** Cambia el velo de una localización hasta el final de la ronda. */
@@ -600,7 +606,8 @@ export type Message =
   /** El jefe elige quién gasta la siguiente pista hasta reunir `amount` (acto, grupo). */
   | { type: 'PayGroupClues'; amount: number; from: InvestigatorId[] }
   | { type: 'DamageEnemy'; enemy: EnemyId; amount: number; by?: InvestigatorId }
-  | { type: 'DefeatEnemy'; enemy: EnemyId; by?: InvestigatorId }
+  | { type: 'DefeatEnemy'; enemy: EnemyId; by?: InvestigatorId; withoutWindows?: boolean }
+  | { type: 'DefeatAllEnemiesWithoutWindows'; by: InvestigatorId }
   | { type: 'EvadeEnemy'; enemy: EnemyId; by?: InvestigatorId }
   | { type: 'ReadyEnemy'; enemy: EnemyId }
   | { type: 'HuntersMove' }
@@ -787,7 +794,12 @@ export type Trigger =
   | { type: 'enemyDefeated'; enemy: Enemy; by?: InvestigatorId }
   | { type: 'afterEnemyPhaseAttack'; enemy: EnemyId; investigator: InvestigatorId }
   | { type: 'afterDoomPlaced' }
-  | { type: 'afterEnemyAttack'; enemy: EnemyId; investigator: InvestigatorId }
+  | {
+      type: 'afterEnemyAttack'
+      enemy: EnemyId
+      investigator: InvestigatorId
+      location?: LocationId
+    }
   /** Un enemigo va a atacar (antes de resolver el ataque). */
   | { type: 'whenEnemyAttacks'; enemy: EnemyId; investigator: InvestigatorId }
   /**
@@ -937,6 +949,13 @@ export interface CampaignLog {
 
 export type ScenarioOutcome = { type: 'resolution'; resolution: number } | { type: 'noResolution' }
 
+export interface ExperienceGain {
+  investigator: InvestigatorId
+  bonus: number
+  victory: number
+  amount: number
+}
+
 // ---------------------------------------------------------------------------
 // Estado
 // ---------------------------------------------------------------------------
@@ -982,6 +1001,8 @@ export interface GameState {
   victoryPoints?: number
   /** Registro de campaña: llega del escenario anterior y los efectos de historia lo cambian. */
   campaignLog?: CampaignLog
+  /** Breakdown of experience effects, including penalties, for the campaign journal. */
+  experience?: ExperienceGain[]
   /** Localizaciones apartadas que los efectos del escenario pueden poner en juego. */
   setAsideLocations: Record<LocationId, LocationCard>
   abilityUses: AbilityUse[]

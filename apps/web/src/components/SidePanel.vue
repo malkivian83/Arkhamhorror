@@ -8,6 +8,7 @@ import type { UndoKind } from '../game/undo'
 import { useGameStore } from '../stores/game'
 import GameCard from './GameCard.vue'
 import KeywordsPanel from './KeywordsPanel.vue'
+import SessionTools from './SessionTools.vue'
 
 const props = defineProps<{ state: GameState }>()
 const game = useGameStore()
@@ -105,10 +106,10 @@ watch(
           {{ label(choice.label, choice.params ?? {}) }}
         </button>
       </details>
-      <p v-if="game.error" class="error">{{ game.error }}</p>
     </div>
 
     <KeywordsPanel :scenario-id="state.scenarioId" />
+    <SessionTools />
 
     <details class="keys">
       <summary>⌨ {{ t('shortcuts.title') }}</summary>
