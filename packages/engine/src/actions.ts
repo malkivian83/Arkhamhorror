@@ -83,10 +83,6 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
       .filter((e) => e.engagedWith !== null || !e.keywords.includes('aloof'))
       .map((e): Action => ({ kind: 'fight', enemy: e.id })),
     ...engagedEnemies(state, id).map((e): Action => ({ kind: 'evade', enemy: e.id })),
-    // Un enemigo masivo cuenta como enfrentado con todos los de su localización.
-    ...enemiesHere
-      .filter((e) => e.keywords.includes('massive') && !e.exhausted)
-      .map((e): Action => ({ kind: 'evade', enemy: e.id })),
     ...enemiesHere
       .filter((e) => e.engagedWith !== id && !e.keywords.includes('massive'))
       .map((e): Action => ({ kind: 'engage', enemy: e.id })),

@@ -368,8 +368,8 @@ export function investigateAbility(position: number, options: InvestigateOptions
       // se pagan al investigar con una carta.
       actions: 1 + (getLocation(state, here).investigateExtraActions ?? 0),
       provokes: true,
+      costs: options.cost?.(self) ?? [],
       then: [
-        ...(options.cost?.(self) ?? []),
         {
           type: 'BeginSkillTest',
           investigator,

@@ -250,6 +250,9 @@ export interface AbilityOption {
   /** Parlamento y retirarse no provocan ataques de oportunidad. */
   provokes: boolean
   limit?: AbilityLimit
+  /** Non-action costs are paid before attacks of opportunity and effects. */
+  costs?: Message[]
+  playFromDiscard?: { code: CardCode; discount: number }
   then: Message[]
   /** Elemento de la mesa al que se refiere (para elegirlo con un clic). */
   target?: ChoiceTarget
@@ -523,7 +526,7 @@ export type Message =
   | { type: 'PlayerWindow'; investigator: InvestigatorId }
   | { type: 'EndTurn'; investigator: InvestigatorId }
   | { type: 'TakeAction'; investigator: InvestigatorId; action: Action }
-  | { type: 'PerformAction'; investigator: InvestigatorId; action: Action }
+  | { type: 'PerformAction'; investigator: InvestigatorId; action: Action; entryPaid?: boolean }
   /** `basic`: la acción de recurso o el mantenimiento (no es el efecto de una carta). */
   | { type: 'GainResources'; investigator: InvestigatorId; amount: number; basic?: boolean }
   | { type: 'DrawCards'; investigator: InvestigatorId; amount: number }
@@ -542,7 +545,7 @@ export type Message =
   | { type: 'FinishMulligan'; investigator: InvestigatorId; count: number }
   | { type: 'DiscardFromHand'; investigator: InvestigatorId; card: CardCode }
   | { type: 'CheckHandSize'; investigator: InvestigatorId }
-  | { type: 'MoveTo'; investigator: InvestigatorId; location: LocationId }
+  | { type: 'MoveTo'; investigator: InvestigatorId; location: LocationId; entryPaid?: boolean }
   | { type: 'RevealLocation'; location: LocationId }
   /** En su localización o en `location`. */
   | { type: 'DiscoverClues'; investigator: InvestigatorId; amount: number; location?: LocationId }
@@ -753,6 +756,8 @@ export type Message =
       actions: number
       provokes: boolean
       limit?: AbilityLimit
+      costs?: Message[]
+      playFromDiscard?: { code: CardCode; discount: number }
       then: Message[]
     }
   | { type: 'CheckActObjective' }

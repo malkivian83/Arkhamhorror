@@ -260,8 +260,8 @@ registerPlayerCard({
         target: { type: 'location', id: to },
         actions: 1,
         provokes: true,
+        costs: [spendUse(self)],
         then: [
-          spendUse(self),
           {
             type: 'BeginSkillTest',
             investigator,
