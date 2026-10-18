@@ -63,23 +63,91 @@ function specific(state: GameState, key: string, data: Data): GameState {
       return push(state, healChoice(state, investigator, 'horror', true))
     case 'drink':
       return push(state, healChoice(state, investigator, 'either', false, data.location as string))
+    case 'chooseMystery': {
+      const location = state.locations[data.location as string]
+      const cards = location?.beneath ?? []
+      if (!location || !location.revealed || location.clues > perInv(state, 1) || !cards.length)
+        return state
+      return push(
+        state,
+        ask(
+          investigator,
+          'prompt.gala.drawMystery',
+          cards.map((card, index) => ({
+            label: 'choice.card',
+            params: { card: card.name },
+            then: [
+              {
+                type: 'ScenarioSpecific',
+                key: 'drawMysteryCard',
+                data: { investigator, location: location.id, index },
+              },
+            ],
+          })),
+        ),
+      )
+    }
+    case 'drawMysteryCard': {
+      const location = state.locations[data.location as string]
+      const index = Number(data.index)
+      const card = location?.beneath?.[index]
+      if (!location || !card) return state
+      return push(
+        {
+          ...state,
+          locations: {
+            ...state.locations,
+            [location.id]: {
+              ...location,
+              beneath: location.beneath!.filter((_, n) => n !== index),
+            },
+          },
+        },
+        { type: 'ResolveEncounterCard', investigator, card },
+      )
+    }
     case 'dance': {
       const location = data.location as string
       const ready = [
         ...controlledGuestsAt(state, location)
           .filter((a) => !a.exhausted)
-          .map((a): Message[] => [
-            { type: 'ExhaustAsset', asset: a.id },
-            { type: 'HealAsset', asset: a.id, damage: 0, horror: 1 },
-          ]),
+          .map((a) => ({ id: a.id, name: playerCardDef(a.code)?.name ?? a.code, placed: false })),
         ...placedGuestsAt(state, location)
           .filter((p) => !p.exhausted)
-          .map((p): Message[] => [
-            { type: 'ScenarioSpecific', key: 'exhaustPlaced', data: { placed: p.id } },
-            { type: 'ScenarioSpecific', key: 'healPlaced', data: { placed: p.id, horror: 1 } },
-          ]),
+          .map((p) => ({ id: p.id, name: p.name, placed: true })),
       ]
-      return push(state, ...ready.slice(0, 2).flat())
+      if (!ready.length) return state
+      const first = data.first as string | undefined
+      const heal = (id: string, placed: boolean): Message =>
+        placed
+          ? { type: 'ScenarioSpecific', key: 'healPlaced', data: { placed: id, horror: 1 } }
+          : { type: 'HealAsset', asset: id, damage: 0, horror: 1 }
+      return push(
+        state,
+        ask(
+          investigator,
+          'prompt.gala.danceGuest',
+          ready.map((a) => ({
+            label: 'choice.card',
+            params: { card: a.name },
+            target: { type: a.placed ? 'placed' : 'asset', id: a.id },
+            then: [
+              a.placed
+                ? { type: 'ScenarioSpecific', key: 'exhaustPlaced', data: { placed: a.id } }
+                : { type: 'ExhaustAsset', asset: a.id },
+              ...(first
+                ? [heal(first, Boolean(data.firstPlaced)), heal(a.id, a.placed)]
+                : [
+                    {
+                      type: 'ScenarioSpecific',
+                      key: 'dance',
+                      data: { investigator, location, first: a.id, firstPlaced: a.placed },
+                    } as Message,
+                  ]),
+            ],
+          })),
+        ),
+      )
     }
     case 'exhaustPlaced': {
       const p = state.placedAssets?.[data.placed as string]
@@ -104,7 +172,7 @@ function specific(state: GameState, key: string, data: Data): GameState {
         },
       }
     }
-    // Sala de la Lámpara: si aciertas la carta, se cancela y descubres 1 pista.
+    // La pista ya se descubrió al activar. Acertar descarta sin resolver el encuentro.
     case 'lanternGuess': {
       const [top, ...rest] = state.encounterDeck
       if (!top) return state
@@ -112,7 +180,6 @@ function specific(state: GameState, key: string, data: Data): GameState {
         return push(
           { ...state, encounterDeck: rest, encounterDiscard: [...state.encounterDiscard, top] },
           { type: 'Log', key: 'log.gala.guessed', params: { card: top.name } },
-          { type: 'DiscoverClues', investigator, amount: 1, location: CODES.lanternChamber },
         )
       }
       return push(
@@ -1016,14 +1083,26 @@ registerTreachery({
       )
       .map((l) => ({ l, n: investigatorsAt(state, l).length }))
       .sort((a, b) => b.n - a.n)
-    const target = occupied[0]?.l ?? getInvestigator(state, investigator).location
-    return target
+    const most = occupied[0]?.n
+    const tied = occupied.filter((x) => x.n === most)
+    return tied.length
       ? [
-          {
-            type: 'PlaceTreachery',
-            treachery: self.id,
-            placement: { type: 'location', location: target },
-          },
+          ask(
+            investigator,
+            'prompt.chooseLocation',
+            tied.map(({ l }) => ({
+              label: 'choice.location',
+              params: { location: state.locations[l]!.name },
+              target: { type: 'location', id: l },
+              then: [
+                {
+                  type: 'PlaceTreachery',
+                  treachery: self.id,
+                  placement: { type: 'location', location: l },
+                },
+              ],
+            })),
+          ),
         ]
       : []
   },
@@ -1078,7 +1157,11 @@ registerTreachery({
         ]
       : [],
   abilities: (state, self, investigator) => {
-    if (self.placement.type !== 'threatArea' || self.placement.investigator !== investigator)
+    if (
+      self.placement.type !== 'threatArea' ||
+      getInvestigator(state, self.placement.investigator).location !==
+        getInvestigator(state, investigator).location
+    )
       return []
     const here = getInvestigator(state, investigator).location
     return investigatorsAt(state, here ?? '').map((i) => ({

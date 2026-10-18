@@ -293,6 +293,12 @@ export interface PlayerCardBehavior {
   /** Su acción es de evitar (cuenta como tal) o no provoca ataques de oportunidad. */
   evadeAction?: boolean
   noAttacksOfOpportunity?: boolean
+  /** Enemy-specific protection while this asset is controlled (Delores Gadling). */
+  ignoresOpportunityAttacks?: (state: GameState, self: Asset, enemy: Enemy) => boolean
+  /** Test options also usable during another investigator's test at this location. */
+  helpsOtherTests?: boolean
+  /** Subscribe to action-ability completion without changing other games' queued messages. */
+  observesActionAbilities?: boolean
   /** Efecto de campaña si está en la mano de su dueño cuando termina la partida o es eliminado. */
   whenGameEndsInHand?: (state: GameState, owner: InvestigatorId) => Message[]
   /** Mientras está en juego, la primera acción de cada turno de su dueño no provoca ataques de oportunidad. */

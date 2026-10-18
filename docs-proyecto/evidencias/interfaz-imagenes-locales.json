@@ -1,0 +1,168 @@
+{
+  "date": "2026-10-18",
+  "origin": "http://127.0.0.1:5181",
+  "fixture": "ui-endurance, mesa dirigida de Brethren",
+  "scope": "Verificación DOM de imágenes visibles y activación de Aguante (+2 Agilidad, -1 recurso), no prueba física",
+  "images": [
+    {
+      "loaded": true,
+      "name": "Horas intempestivas",
+      "src": "/local-assets/cards/es/12106.avif"
+    },
+    {
+      "loaded": true,
+      "name": "Donde hay humo…",
+      "src": "/local-assets/cards/es/12109.avif"
+    },
+    {
+      "loaded": true,
+      "name": "Habitación de tu amigo",
+      "src": "/local-assets/cards/es/12113.avif"
+    },
+    {
+      "loaded": true,
+      "name": "Joe Diamond",
+      "src": "/local-assets/cards/es/12004.avif"
+    },
+    {
+      "loaded": true,
+      "name": "Sabueso infernal",
+      "src": "/local-assets/cards/es/12122.avif"
+    },
+    {
+      "loaded": true,
+      "name": "+1",
+      "src": "/local-assets/chaos/plus1.png"
+    },
+    {
+      "loaded": true,
+      "name": "0",
+      "src": "/local-assets/chaos/0.png"
+    },
+    {
+      "loaded": true,
+      "name": "0",
+      "src": "/local-assets/chaos/0.png"
+    },
+    {
+      "loaded": true,
+      "name": "-1",
+      "src": "/local-assets/chaos/minus1.png"
+    },
+    {
+      "loaded": true,
+      "name": "-1",
+      "src": "/local-assets/chaos/minus1.png"
+    },
+    {
+      "loaded": true,
+      "name": "-1",
+      "src": "/local-assets/chaos/minus1.png"
+    },
+    {
+      "loaded": true,
+      "name": "-2",
+      "src": "/local-assets/chaos/minus2.png"
+    },
+    {
+      "loaded": true,
+      "name": "-2",
+      "src": "/local-assets/chaos/minus2.png"
+    },
+    {
+      "loaded": true,
+      "name": "-3",
+      "src": "/local-assets/chaos/minus3.png"
+    },
+    {
+      "loaded": true,
+      "name": "-4",
+      "src": "/local-assets/chaos/minus4.png"
+    },
+    {
+      "loaded": true,
+      "name": "✪",
+      "src": "/local-assets/chaos/elderSign.png"
+    },
+    {
+      "loaded": true,
+      "name": "⊗",
+      "src": "/local-assets/chaos/autoFail.png"
+    },
+    {
+      "loaded": true,
+      "name": "☠",
+      "src": "/local-assets/chaos/skull.png"
+    },
+    {
+      "loaded": true,
+      "name": "☠",
+      "src": "/local-assets/chaos/skull.png"
+    },
+    {
+      "loaded": true,
+      "name": "▤",
+      "src": "/local-assets/chaos/tablet.png"
+    },
+    {
+      "loaded": true,
+      "name": "✷",
+      "src": "/local-assets/chaos/elderThing.png"
+    },
+    {
+      "loaded": true,
+      "name": "Joe Diamond",
+      "src": "/local-assets/cards/es/12004.avif"
+    },
+    {
+      "loaded": true,
+      "name": "",
+      "src": "/local-assets/tokens/damage.png"
+    },
+    {
+      "loaded": true,
+      "name": "",
+      "src": "/local-assets/tokens/horror.png"
+    },
+    {
+      "loaded": true,
+      "name": "Percepción",
+      "src": "/local-assets/cards/es/12093.avif"
+    },
+    {
+      "loaded": true,
+      "name": "Siguiendo una corazonada",
+      "src": "/local-assets/cards/es/12038.avif"
+    },
+    {
+      "loaded": true,
+      "name": "Machete",
+      "src": "/local-assets/cards/es/12020.avif"
+    },
+    {
+      "loaded": true,
+      "name": "Deducción",
+      "src": "/local-assets/cards/es/12039.avif"
+    },
+    {
+      "loaded": true,
+      "name": "Linterna de manivela",
+      "src": "/local-assets/cards/es/12088.avif"
+    },
+    {
+      "loaded": true,
+      "name": "Sabueso infernal",
+      "src": "/local-assets/cards/es/12122.avif"
+    },
+    {
+      "loaded": true,
+      "name": "Aguante",
+      "src": "/local-assets/cards/es/12017.avif"
+    },
+    {
+      "loaded": true,
+      "name": "Aguante",
+      "src": "/local-assets/cards/es/12017.avif"
+    }
+  ]
+}

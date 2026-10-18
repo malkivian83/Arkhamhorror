@@ -2,6 +2,7 @@ import {
   actContributors,
   actionCost,
   entryCost,
+  leavingBlocked,
   typeBlocked,
   availableAbilities,
   availableActions,
@@ -270,15 +271,27 @@ export function handle(state: GameState, message: Message): GameState {
         }
         return push(
           next,
-          { type: 'SpawnEnemy', card, location: card.spawnAt, engageWith: null },
-          ...after,
+          {
+            type: 'SpawnEnemy',
+            card,
+            location: card.spawnAt,
+            engageWith: null,
+            ...(message.exhaustAfterDraw ? { exhaustAfterSpawn: true, after } : {}),
+          },
+          ...(message.exhaustAfterDraw ? [] : after),
         )
       }
       const engageWith = card.keywords.includes('aloof') ? null : investigator.id
       return push(
         next,
-        { type: 'SpawnEnemy', card, location: investigator.location, engageWith },
-        ...after,
+        {
+          type: 'SpawnEnemy',
+          card,
+          location: investigator.location,
+          engageWith,
+          ...(message.exhaustAfterDraw ? { exhaustAfterSpawn: true, after } : {}),
+        },
+        ...(message.exhaustAfterDraw ? [] : after),
       )
     }
 
@@ -312,6 +325,8 @@ export function handle(state: GameState, message: Message): GameState {
           type: 'Forced',
           trigger: { type: 'enemyEntersLocation', enemy: id, location: message.location },
         },
+        ...(message.after ?? []),
+        ...(message.exhaustAfterSpawn ? [{ type: 'ExhaustEnemy', enemy: id } as Message] : []),
       )
     }
 
@@ -1047,7 +1062,9 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'MoveTo': {
-      if (getInvestigator(state, message.investigator).eliminated) return state
+      const mover = getInvestigator(state, message.investigator)
+      if (mover.eliminated || (mover.location && leavingBlocked(state, mover.location)))
+        return state
       getLocation(state, message.location)
       const costs = message.entryPaid
         ? []
@@ -1547,16 +1564,32 @@ export function handle(state: GameState, message: Message): GameState {
       })
     }
 
+    case 'DiscardTopAndCommit': {
+      const investigator = getInvestigator(state, message.investigator)
+      const [code, ...deck] = investigator.deck
+      if (!code || investigator.eliminated) return state
+      const next = updateInvestigator(state, investigator.id, (i) => ({
+        ...i,
+        deck,
+        discard: [...i.discard, code],
+      }))
+      return canCommitFrom(next, investigator.id, code)
+        ? push(next, { type: 'CommitCard', investigator: investigator.id, code, from: 'discard' })
+        : next
+    }
+
     case 'CommitCard': {
       const test = state.skillTest
       const investigator = getInvestigator(state, message.investigator)
-      const index = investigator.hand.indexOf(message.code)
+      const zone = message.from === 'discard' ? 'discard' : 'hand'
+      const index = investigator[zone].indexOf(message.code)
       if (!test || index < 0) return state
+      if (message.from && !canCommitFrom(state, investigator.id, message.code)) return state
       return push(
         {
           ...updateInvestigator(state, investigator.id, (i) => ({
             ...i,
-            hand: i.hand.filter((_, n) => n !== index),
+            [zone]: i[zone].filter((_, n) => n !== index),
           })),
           skillTest: {
             ...test,
@@ -2871,6 +2904,27 @@ export function handle(state: GameState, message: Message): GameState {
     // ------------------------------------------------------- Habilidades
     case 'UseAbility': {
       const investigator = getInvestigator(state, message.investigator)
+      const watching = Object.values(state.assets).some(
+        (a) => a.owner === investigator.id && playerCardBehavior(a.code)?.observesActionAbilities,
+      )
+      const source =
+        message.actions > 0 && watching
+          ? Object.values(state.assets).find(
+              (a) => a.owner === investigator.id && message.key.startsWith(`${a.id}:`),
+            )
+          : undefined
+      const after: Message[] = source
+        ? [
+            {
+              type: 'Forced',
+              trigger: {
+                type: 'afterActionAbility',
+                investigator: investigator.id,
+                code: source.code,
+              },
+            },
+          ]
+        : []
       if (investigator.actionsRemaining < message.actions)
         throw new EngineError('No quedan acciones')
       const paid = updateInvestigator(
@@ -2913,8 +2967,9 @@ export function handle(state: GameState, message: Message): GameState {
             before: attacks,
           },
           ...message.then,
+          ...after,
         )
-      return push(paid, ...(message.costs ?? []), ...attacks, ...message.then)
+      return push(paid, ...(message.costs ?? []), ...attacks, ...message.then, ...after)
     }
 
     // ------------------------------------------------ Efectos de escenario
@@ -3519,7 +3574,8 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'ChooseMove': {
       const investigator = getInvestigator(state, message.investigator)
-      if (investigator.location === null) return state
+      if (investigator.location === null || leavingBlocked(state, investigator.location))
+        return state
       const options = withinConnections(state, investigator.location, message.range ?? 1).filter(
         (to) =>
           state.locations[to] &&
@@ -3823,6 +3879,21 @@ function canCommit(test: SkillTest, code: string): boolean {
   return def.commitLimit === undefined || already < def.commitLimit
 }
 
+/** Full eligibility for an effect committing from a zone other than the hand. */
+function canCommitFrom(state: GameState, id: string, code: string): boolean {
+  const test = state.skillTest
+  const investigator = getInvestigator(state, id)
+  if (!test || investigator.eliminated || !canCommit(test, code)) return false
+  if (scenarioBehavior(state.scenarioId)?.cannotCommit?.(state, id)) return false
+  if (typeBlocked(investigator, playerCardDef(code)?.type ?? '', state.round)) return false
+  return (
+    id === test.investigator ||
+    (investigator.location !== null &&
+      investigator.location === getInvestigator(state, test.investigator).location &&
+      !test.committed.some((c) => c.by === id))
+  )
+}
+
 /** Margen de la prueba en curso (valor final menos dificultad). */
 function margin(state: GameState): number {
   const test = state.skillTest
@@ -3833,11 +3904,16 @@ function margin(state: GameState): number {
 function testOptions(state: GameState, test: SkillTest): ReactionOption[] {
   const investigator = getInvestigator(state, test.investigator)
   const own = investigatorBehavior(investigator.id)?.testOptions?.(state, test, investigator) ?? []
-  const assets = assetsBlocked(state, investigator.id)
-    ? []
-    : Object.values(state.assets)
-        .filter((a) => a.owner === investigator.id)
-        .flatMap((a) => playerCardBehavior(a.code)?.testOptions?.(state, test, a) ?? [])
+  const assets = Object.values(state.assets)
+    .filter(
+      (a) =>
+        !assetsBlocked(state, a.owner) &&
+        (a.owner === investigator.id ||
+          (playerCardBehavior(a.code)?.helpsOtherTests &&
+            getInvestigator(state, a.owner).location === investigator.location &&
+            !getInvestigator(state, a.owner).eliminated)),
+    )
+    .flatMap((a) => playerCardBehavior(a.code)?.testOptions?.(state, test, a) ?? [])
   return [...own, ...assets].filter((o) => withinLimit(state, o.key, o.investigator, o.limit))
 }
 
@@ -4159,6 +4235,14 @@ function opportunityAttacks(state: GameState, investigator: Investigator): Messa
   if (safe) return []
   return engagedEnemies(state, investigator.id)
     .filter((e) => !e.exhausted && !e.noOpportunityAttacks)
+    .filter(
+      (e) =>
+        !Object.values(state.assets).some(
+          (a) =>
+            a.owner === investigator.id &&
+            playerCardBehavior(a.code)?.ignoresOpportunityAttacks?.(state, a, e),
+        ),
+    )
     .map((e) => ({
       type: 'EnemyAttack',
       enemy: e.id,

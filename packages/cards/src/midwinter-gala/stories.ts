@@ -164,11 +164,10 @@ registerStory({
     const here = me.location
     const location = here ? state.locations[here] : undefined
     const mysteries = location?.beneath?.length ?? 0
-    if (!location || mysteries === 0) return []
     const options: AbilityOption[] = []
     const cost = perInv(state, 1)
-    // Gasta 1 pista por investigador: mira un misterio bajo tu localización.
-    if (me.clues >= cost) {
+    // Gasta 1 pista por investigador: mira las cartas bajo tu localización.
+    if (location && mysteries > 0 && me.clues >= cost) {
       options.push({
         key: `${self.code}:look`,
         label: 'ability.gala.lookMystery',
@@ -180,14 +179,25 @@ registerStory({
       })
     }
     // Durante tu turno, con 1 o menos pistas por investigador en la localización: roba el misterio.
-    if (state.activeTurn === investigator && location.clues <= perInv(state, 1)) {
-      options.push({
-        key: `${self.code}:draw`,
-        label: 'ability.gala.drawMystery',
-        actions: 0,
-        provokes: false,
-        then: [{ type: 'DrawBeneath', investigator, location: location.id }],
-      })
+    if (state.activeTurn === investigator) {
+      for (const eligible of Object.values(state.locations).filter(
+        (l) => l.revealed && (l.beneath?.length ?? 0) > 0 && l.clues <= perInv(state, 1),
+      ))
+        options.push({
+          key: `${self.code}:draw`,
+          label: 'ability.gala.drawMystery',
+          params: { location: eligible.name },
+          target: { type: 'location', id: eligible.id },
+          actions: 0,
+          provokes: false,
+          then: [
+            {
+              type: 'ScenarioSpecific',
+              key: 'chooseMystery',
+              data: { investigator, location: eligible.id },
+            },
+          ],
+        })
     }
     return options
   },
@@ -357,8 +367,8 @@ function specific(state: GameState, key: string, data: Data): GameState {
     // Sindicato: mirar un misterio (solo lo ve quien mira).
     case 'lookMystery': {
       const here = getInvestigator(state, investigator).location
-      const card = here ? state.locations[here]?.beneath?.[0] : undefined
-      if (!card) return state
+      const cards = here ? (state.locations[here]?.beneath ?? []) : []
+      if (!cards.length) return state
       return push(state, {
         type: 'Ask',
         investigator,
@@ -366,7 +376,7 @@ function specific(state: GameState, key: string, data: Data): GameState {
           kind: 'chooseOne',
           alwaysAsk: true,
           prompt: 'prompt.gala.mystery',
-          promptParams: { card: card.name },
+          promptParams: { card: cards.map((c) => c.name).join(', ') },
           choices: [{ label: 'choice.continue', then: [] }],
         },
       })

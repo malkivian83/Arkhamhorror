@@ -50,6 +50,7 @@ import {
   MANOR,
   MIDWINTER_GALA,
   MONSTERS,
+  NAMING_NAMES,
   RIVAL_LEADERS,
   RIVAL_TREACHERIES,
   rookieCop,
@@ -593,7 +594,7 @@ function placeJewel(state: GameState, data: Data): GameState {
 
 const galaBehavior: ScenarioBehavior = {
   id: MIDWINTER_GALA,
-  rulesVersion: 2,
+  rulesVersion: 3,
   tokenEffect: (state, token, investigator) => {
     const hard = state.difficulty === 'hard' || state.difficulty === 'expert'
     const here = getInvestigator(state, investigator).location
@@ -966,26 +967,23 @@ registerLocation({
   code: CODES.lanternChamber,
   abilities: (state, self, investigator) => {
     const options: AbilityOption[] = []
-    // Durante tu turno: nombra una carta y roba la superior de encuentros; si acertaste,
-    // se cancela y descubres 1 pista aquí (una vez por turno).
-    if (state.activeTurn === investigator && state.encounterDeck.length > 0) {
-      const names = [
-        ...new Set([...state.encounterDeck, ...state.encounterDiscard].map((c) => c.name)),
-      ].sort()
+    // Una pista al activar; acertar evita resolver la carta (una vez por turno).
+    if (state.activeTurn === investigator) {
       options.push({
-        key: `${self.id}:guess:${state.round}`,
+        key: `${self.id}:guess`,
         label: 'ability.gala.nameACard',
         actions: 0,
         provokes: false,
-        limit: { per: 'round' },
+        limit: { per: 'turn' },
         then: [
+          { type: 'DiscoverClues', investigator, amount: 1, location: self.id },
           {
             type: 'Ask',
             investigator,
             question: {
               kind: 'chooseOne',
               prompt: 'prompt.gala.nameACard',
-              choices: names.map((name) => ({
+              choices: NAMING_NAMES.map((name) => ({
                 label: 'choice.gala.namedCard',
                 params: { card: name },
                 then: [
@@ -1046,7 +1044,7 @@ registerLocation({
 registerLocation({
   code: CODES.ballroom,
   // Negociar: agota 2 Invitados de aquí y cura 1 horror de cada uno.
-  abilities: (state, self) => {
+  abilities: (state, self, investigator) => {
     const ready = [
       ...controlledGuestsAt(state, self.id)
         .filter((a) => !a.exhausted)
@@ -1055,14 +1053,16 @@ registerLocation({
         .filter((p) => !p.exhausted)
         .map((p) => ({ placed: p.id })),
     ]
-    if (ready.length < 2) return []
+    if (ready.length === 0) return []
     return [
       {
         key: `${self.id}:dance`,
         label: 'ability.gala.dance',
         actions: 1,
         provokes: false,
-        then: [{ type: 'ScenarioSpecific', key: 'dance', data: { location: self.id } }],
+        then: [
+          { type: 'ScenarioSpecific', key: 'dance', data: { investigator, location: self.id } },
+        ],
       },
     ]
   },

@@ -4,14 +4,16 @@
 etiqueta `brethren-of-ash-local-v1.0.0`.
 
 **Dictamen: La Gala está integrada y puede jugarse, pero todavía no cumple el
-criterio de cierre aplicado a Brethren.** Hay diferencias de reglas confirmadas,
-elecciones sustituidas por decisiones automáticas y falta aceptación de victorias
-por las cinco facciones. No conviene presentarla como contenido terminado.
+criterio de cierre aplicado a Brethren.** Las diferencias de reglas detectadas
+ya se han corregido; quedan la aceptación individual del contenido, el respaldo
+EN/ES y las victorias por las cinco facciones. No conviene presentarla como
+contenido terminado.
 
-**Actualización de fase 1:** corregidos G01, G03, G06, G07, G08, G12, G13,
-G15 y G16. Son **9 de los 21 trabajos**; quedan 12 y la aceptación de las
-fases posteriores. La tabla inferior conserva el diagnóstico inicial; esta
-actualización y el apartado de fase 1 identifican qué defectos ya no están.
+**Actualización de fases 1–2:** corregidos G01–G16 y G19–G21: **19 de los
+21 trabajos**. Quedan G17 (aceptación de contenido y victorias) y G18 (respaldo
+local EN/ES), más las puertas visuales y de publicación de las fases posteriores.
+La tabla inferior conserva el diagnóstico inicial; los apartados de entrega
+indican qué defectos ya no están.
 
 ## Alcance y método
 
@@ -29,6 +31,7 @@ Historia Rival, Lámpara y Exangüe deben probarse individualmente al cerrar cad
 La evidencia inicial se conserva sin modificar en
 [auditoria-gala.json](evidencias/auditoria-gala.json). El script evoluciona con
 las correcciones y ahora escribe una comprobación separada en
+[gala-fase-2.json](evidencias/gala-fase-2.json); también se conserva
 [gala-fase-1.json](evidencias/gala-fase-1.json), sin sobrescribir esa fotografía
 histórica:
 
@@ -36,7 +39,7 @@ histórica:
 node scripts/audit-gala.mjs
 ```
 
-El script lee cinco archivos de referencia para conservar sus SHA-256. La copia
+El script lee catorce archivos de referencia para conservar sus SHA-256. La copia
 de `D:\referencia\ArkhamHorror-main` no tiene metadatos Git disponibles; no se le
 atribuye una revisión remota inventada. Las conclusiones de lectura se apoyan en
 los manejadores locales indicados más abajo. El script de auditoría no pertenece
@@ -140,7 +143,7 @@ del programa original.
    documentación de límites y etiqueta estable propia de Gala. No marcar una
    facción cerrada solo porque alcance un estado terminal sin resolución.
 
-Tras completar la fase 1, el siguiente bloque de implementación es la fase 2. La ampliación
+Tras completar las fases 1 y 2, el siguiente bloque es la fase 3: contenido y persistencia. La ampliación
 de contenido debe apoyarse en esta auditoría y conservar la etiqueta de Brethren
 como referencia de regresión.
 
@@ -198,3 +201,86 @@ historial; el archivo original se conserva. **No se convierte automáticamente
 una partida activa de Gala anterior a estas reglas.** Es necesario comenzar una
 nueva mesa con esta versión. La revisión global de formato y la compatibilidad
 de Brethren se mantienen; las pruebas conservan sus guardados y recorridos.
+
+## Fase 2: habilidades y decisiones
+
+Base anterior: `5a655e6`. Se contrastaron los manejadores de referencia de
+Callahan, Delores, Olney, Prudence, Lucas, Archibald, Baile, Sala de la Lámpara,
+Sindicato, Puerta secreta y Órdenes violentas. Sus SHA-256 se conservan en
+[gala-fase-2.json](evidencias/gala-fase-2.json).
+
+| Trabajo corregido | Comportamiento |
+|---|---|
+| G02, G19 | La Sala descubre una pista al activar, aciertes o no y aun con mazo vacío. Límite real por turno. Nombres y rasgos proceden del catálogo público implementado y no del mazo/descarte secreto ni del Rival elegido. |
+| G04 | Prudence descarta hasta dos no Élite entre las cuatro cartas originales y permite ordenar las restantes desde arriba. Nunca muestra la quinta por descartar una de las cuatro. |
+| G05 | Callahan puede agotarse tras una habilidad de acción de Aliado/Arma para infligir un daño no de ataque aquí, sin ofrecer enemigos inmunes. Delores evita ataques de oportunidad de Humanoides, incluidos Élite; no evita ataques normales. Olney descarta la carta superior propia y la compromete si es válida, también a la prueba de otro investigador de su Lugar. Respeta iconos, límite de ayuda, tipos bloqueados y William Bain. |
+| G09 | Baile permite elegir entre Invitados preparados controlados o colocados. Agota al primero y luego al segundo; cura únicamente si hay pareja. Con uno solo lo agota sin curar, siguiendo la secuencia del manejador de referencia. |
+| G10 | Archibald permite elegir enemigo entre nueve, resuelve el robo normal con aparición/Oleada y agota la instancia recién aparecida. Baraja también sin enemigo y no concede recursos en ese caso. |
+| G11 | Lucas permite elegir Objeto, usa el robo normal, concede los beneficios de Reliquia/Tomo/Herramienta, permite pagar o rechazar el Tomo sin acción y solo ofrece Lugares conectados con pistas. Dead Ends cancela la búsqueda. |
+| G14 | Puerta secreta pregunta en empates y bloquea tanto el movimiento básico como el movimiento por efecto hasta retirarla. |
+| G20 | El Sindicato permite robar la carta elegida de cualquier Lugar revelado elegible con cartas debajo y hasta una pista por investigador. Mirar pagando pistas muestra todas las cartas bajo tu Lugar. |
+| G21 | Otro investigador en el mismo Lugar puede resolver la acción de Órdenes violentas. El forzado de final de turno sigue correspondiendo al amenazado. |
+
+Pruebas dirigidas: [phase-two.test.ts](../packages/cards/src/midwinter-gala/phase-two.test.ts).
+Persistencia: [gala-phase-two-session.test.ts](../apps/web/src/game/gala-phase-two-session.test.ts)
+comprueba guardado, reproducción del estado completo y deshacer cada decisión de
+Prudence, Archibald, Lucas, Baile, Misterios y Olney usando cartas registradas.
+Son mesas preparadas para aislar ventanas; no se cuentan como victorias legales.
+
+La auditoría repetida mantiene **320 preparaciones y 40 derrotas legales**,
+ahora con **1.700 decisiones**, guardado y reproducción completa. Las siete
+sondas iniciales están corregidas. Esto no certifica victorias ni las 62 cartas.
+
+Las nuevas mesas de Gala usan **`scenarioRulesVersion: 3`**. Se rechazan las
+mesas anteriores, incluida la revisión 2, conservando el archivo original para
+exportarlo. Debe empezarse una mesa nueva de Gala. Brethren conserva su revisión
+y sus guardados; la nueva ventana de Callahan solo se encola cuando hay un
+observador que la utiliza.
+
+## Imágenes almacenadas por nuestra aplicación
+
+El usuario exige que las cartas se almacenen y sirvan desde nuestra web. Las
+imágenes se importan en `apps/web/public/local-assets/cards/`, con un manifiesto
+local; las peticiones de imagen durante la partida usan rutas de nuestro origen.
+La versión española disponible tiene prioridad y puede caer a la inglesa local
+y a la plantilla traducida si falta el archivo. No se enlazan imágenes externas
+durante la partida ni se cambia la partida al cambiar el idioma.
+
+La copia de referencia contiene 353 imágenes de recursos, pero no las cartas
+`10128`, `12017` o `71008` ni una carpeta local de cartas españolas. Su
+`frontend/src/digests/es.json` aporta 3.557 rutas; está desactualizado para los
+códigos nuevos. [imagenes-espanolas.json](evidencias/imagenes-espanolas.json)
+registra 508 peticiones HEAD: 238 recursos españoles de nuestro contenido
+responden como imagen. Los 124 candidatos de Gala (62 códigos y reversos) no
+están disponibles en español. `10128` también está disponible y se incluye
+por petición del usuario.
+
+[sync-card-images.mjs](../scripts/sync-card-images.mjs) realiza la importación
+previa a la compilación. [imagenes-locales.json](evidencias/imagenes-locales.json)
+inventaría los archivos copiados, tamaños, SHA-256 y ausencias. Las cartas que
+no tienen imagen siguen disponibles mediante su presentación de texto; el
+respaldo mecánico completo de Gala se cierra en G18.
+
+Entrega de imágenes: **566 archivos locales** (239 ES y 327 EN), **96.649.419
+bytes**. Incluye `10128` y todas las caras principales de las cartas registradas,
+más los 62 códigos base de Gala. Hay 183 candidatos sin archivo remoto, todos
+reversos que no estaban disponibles; no se presentan como imágenes descargadas.
+Las huellas de los 566 archivos se verifican con:
+
+```powershell
+node scripts/verify-card-images.mjs
+```
+
+CI ejecuta esa comprobación y la prueba de cobertura del manifiesto. El
+compilado incluye los archivos sin acudir a servicios externos para imágenes.
+[interfaz-imagenes-locales.json](evidencias/interfaz-imagenes-locales.json)
+registra 32 imágenes visibles cargadas, cero externas y cero fallos en la mesa
+de Aguante. Se activó la carta en evasión: +2 Agilidad y un recurso gastado.
+Se leyó también el escaneo local de Baile para comprobar «agotar dos; después
+curar», coherente con la secuencia de la referencia.
+
+Validación de entrega: **560 pruebas en 40 archivos**, tipos de los seis
+proyectos, lint, formato, compilación y comprobación de integridad de imágenes.
+JavaScript de la web: 687,26 kB (205,52 kB comprimido), más los archivos estáticos
+de cartas. Se conservan los avisos conocidos de fuente y tamaño del bundle.
+La aceptación física de teléfono sigue diferida por decisión del usuario.

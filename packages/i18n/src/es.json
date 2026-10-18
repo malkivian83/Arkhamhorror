@@ -108,7 +108,13 @@
       "sensed": "Percibes la Joya: era {card}",
       "spellbindGuest": "Elige qué Invitado queda hechizado",
       "takeJewel": "¿Tomas el control de la Joya de Sarnath?",
-      "toolClue": "¿Dónde descubres la pista?"
+      "toolClue": "¿Dónde descubres la pista?",
+      "danceGuest": "Elige un Invitado preparado para bailar",
+      "searchEnemy": "Elige un enemigo entre las 9 cartas buscadas",
+      "searchItem": "Elige un apoyo Objeto entre las 9 cartas buscadas",
+      "playTome": "¿Juegas el Tomo pagando su coste?",
+      "orderEncounter": "Elige la siguiente carta desde la parte superior del mazo",
+      "drawMystery": "Elige qué carta robas de debajo del Lugar"
     }
   },
   "action": {
@@ -215,7 +221,8 @@
       "takeJewel": "Tomar la Joya",
       "trait": "{trait}",
       "unspell": "Liberar a {card}"
-    }
+    },
+    "card": "{card}"
   },
   "phase": {
     "setup": "Preparación",
@@ -299,7 +306,7 @@
       "claire": "Claire Wilson: +1 a esta prueba",
       "convinceDeclan": "Convencer a Declan Pearce ({n} pistas)",
       "dance": "Salón de baile: sacar a bailar a 2 Invitados",
-      "drawMystery": "Robar el misterio de aquí",
+      "drawMystery": "Robar un misterio de {location}",
       "elizabeth": "Elizabeth Conrad: {name} se mueve",
       "exhaustEnemy": "Salón: agotar a {enemy}",
       "fashionablyLate": "Vestíbulo: llega un Invitado ({n} recursos)",
@@ -329,7 +336,9 @@
       "takeJewel": "Tomar la Joya de Sarnath",
       "takeLantern": "Tomar La Lámpara Mortecina ([combat] o [agility] 3)",
       "unspell": "Liberar a {card}",
-      "violentCommands": "Órdenes violentas: 2 daños a {name}"
+      "violentCommands": "Órdenes violentas: 2 daños a {name}",
+      "callahanShot": "Callahan: agotar para infligir 1 daño a {enemy}",
+      "olneyCommit": "Olney: descartar la carta superior y comprometerla si es válida"
     }
   },
   "log": {

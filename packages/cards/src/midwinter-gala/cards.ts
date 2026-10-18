@@ -440,6 +440,22 @@ export const encounterDeck = (): (EnemyCard | TreacheryCard)[] => [
 // Localizaciones
 // ---------------------------------------------------------------------------
 
+/** Public printed catalogue, independent of the contents of any hidden zone. */
+export const NAMING_CARDS = [
+  ...encounterDeck(),
+  ...MONSTERS,
+  rookieCop,
+  bloodlessMan,
+  bloodlessManUnleashed,
+  declanPearce,
+  ...Object.values(RIVAL_LEADERS),
+  ...Object.values(RIVAL_TREACHERIES),
+  viciousAmbush,
+  jewelCard,
+]
+export const NAMING_NAMES = [...new Set(NAMING_CARDS.map((c) => c.name))].sort()
+export const NAMING_TRAITS = [...new Set(NAMING_CARDS.flatMap((c) => c.traits ?? []))].sort()
+
 const GROUND_BACK = { symbol: 'moon', connectsTo: [] }
 const SECOND_BACK = { symbol: 'heart', connectsTo: [] }
 

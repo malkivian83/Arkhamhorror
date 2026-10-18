@@ -1,4 +1,4 @@
-// Current phase-one verification; preserves the original audit snapshot.
+// Current phase-two verification; preserves the original audit snapshot.
 import { createServer } from '../apps/web/node_modules/vite/dist/node/index.js'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { createHash } from 'node:crypto'
@@ -138,29 +138,24 @@ try {
     'Combatir no provoca ataque de oportunidad; agotar Nova es coste previo',
     option.provokes && !fight.assets[nova.id]?.exhausted,
   )
-  let chamber = testing.during(
-    base,
-    (s) => ({
-      ...s,
-      investigators: s.investigators.map((i) => ({ ...i, location: defs.CODES.lanternChamber })),
-      locations: {
-        ...s.locations,
-        [defs.CODES.lanternChamber]: {
-          ...s.locations[defs.CODES.lanternChamber],
-          revealed: true,
-          clues: 2,
-        },
+  let chamber = testing.during(base, (s) => ({
+    ...s,
+    investigators: s.investigators.map((i) => ({ ...i, location: defs.CODES.lanternChamber })),
+    encounterDeck: [{ kind: 'treachery', code: 'audit-chamber', name: 'Unlisted', keywords: [] }],
+    locations: {
+      ...s.locations,
+      [defs.CODES.lanternChamber]: {
+        ...s.locations[defs.CODES.lanternChamber],
+        revealed: true,
+        clues: 2,
       },
-    }),
-    {
-      type: 'ScenarioSpecific',
-      key: 'lanternGuess',
-      data: { investigator: id, name: '__incorrect__' },
     },
-  )
+  }))
   const chamberAbility = engine
-    .locationBehavior(defs.CODES.lanternChamber)
-    .abilities(base, base.locations[defs.CODES.lanternChamber], id)[0]
+    .availableAbilities(chamber, id)
+    .find((a) => a.label === 'ability.gala.nameACard')
+  chamber = testing.choose(chamber, 'ability.gala.nameACard')
+  chamber = engine.applyInput(chamber, { investigator: id, choice: 0 })
   observe(
     'G02',
     {
@@ -218,7 +213,7 @@ try {
     'G05',
     {
       callahanReaction: !!engine.playerCardBehavior('71018').reactions,
-      deloresAoOHook: !!engine.playerCardBehavior('71041').firstActionSafe,
+      deloresAoOHook: !!engine.playerCardBehavior('71041').ignoresOpportunityAttacks,
       olneyTestOptions: !!engine.playerCardBehavior('71042').testOptions,
     },
     'Faltan reacción de Callahan, exención por Humanoide de Delores y compromiso de Olney',
@@ -252,13 +247,25 @@ try {
     'Al eliminar al controlador, el Invitado que abandona el juego queda hechizado en su localización',
     !Object.values(eliminated.placedAssets).some((a) => a.code === guest.code && a.faceDown),
   )
-  const repaired = new Set(['G01', 'G03', 'G06', 'G07', 'G08', 'G12', 'G13', 'G15', 'G16'])
+  const repaired = new Set(
+    Array.from({ length: 21 }, (_, n) => `G${String(n + 1).padStart(2, '0')}`).filter(
+      (id) => !['G17', 'G18'].includes(id),
+    ),
+  )
   const fixedChecks = {
     G01:
       !option.provokes &&
       fight.pending?.question.prompt === 'prompt.commitCards' &&
       fight.assets[nova.id]?.exhausted,
+    G02:
+      chamberAbility.limit.per === 'turn' &&
+      chamber.investigators.find((i) => i.id === id).clues === 1,
     G03: bedroom?.limit?.per === 'turn' && !bedroom.provokes,
+    G04: !shown.includes('Audit 5'),
+    G05:
+      !!engine.playerCardBehavior('71018').reactions &&
+      !!engine.playerCardBehavior('71041').ignoresOpportunityAttacks &&
+      !!engine.playerCardBehavior('71042').testOptions,
     G06: defs.rookieCop.keywords.includes('surge') && defs.bloodlessMan.victory === undefined,
     G07:
       !Object.values(eliminated.assets).some((a) => a.code === guest.code) &&
@@ -277,6 +284,15 @@ try {
     'Location/Cards/TheMidwinterGala/BedroomTheMidwinterGala.hs',
     'Enemy/CardDefs/TheMidwinterGala.hs',
     'Asset/Assets/PrudenceDouglas.hs',
+    'Asset/Assets/SpecialAgentCallahan.hs',
+    'Asset/Assets/DeloresGadling.hs',
+    'Asset/Assets/ThomasOlney.hs',
+    'Asset/Assets/ArchibaldHudson.hs',
+    'Asset/Assets/LucasTetlow.hs',
+    'Location/Cards/TheMidwinterGala/BallroomTheMidwinterGala.hs',
+    'Story/Cards/TheMidwinterGala/TheSyndicateAllied.hs',
+    'Treachery/Cards/ReturnToTheDunwichLegacy/SecretDoors/SecretDoor.hs',
+    'Treachery/Cards/ReturnToTheDunwichLegacy/ErraticFear/ViolentCommands.hs',
   ]
   const reference = []
   for (const path of referencePaths) {
@@ -288,8 +304,8 @@ try {
   }
   const report = {
     date: '2026-10-18',
-    baseline: 'f476627ea1d1fdcbe299ce6b75b53f2c383d4a42',
-    stage: 'phase-one',
+    baseline: '5a655e6fd36fec77a70d0c93c20f79706ead3fb6',
+    stage: 'phase-two',
     scenarioRulesVersion: engine.scenarioBehavior(defs.MIDWINTER_GALA).rulesVersion,
     repaired: [...repaired],
     scope:
@@ -302,7 +318,7 @@ try {
   }
   await mkdir('docs-proyecto/evidencias', { recursive: true })
   await writeFile(
-    'docs-proyecto/evidencias/gala-fase-1.json',
+    'docs-proyecto/evidencias/gala-fase-2.json',
     JSON.stringify(report, null, 2) + '\n',
   )
   const inventory = new Map()
@@ -322,7 +338,7 @@ try {
   put(defs.CODES.bloodlessMan, 'The Bloodless Man', 'enemigo (dos caras)')
   put(defs.CODES.paleLantern, 'The Pale Lantern', 'apoyo (dos caras)')
   const findings = {
-    71008: 'G02;G08',
+    71008: 'G02;G08;G19',
     71010: 'G09',
     71012: 'G03',
     71017: 'G10;G15;G16',
@@ -363,7 +379,7 @@ try {
       pending.length
         ? `Pendiente: ${pending.join(';')}; corregido: ${fixed.join(';') || '—'}`
         : fixed.length
-          ? 'Correcciones de fase 1 verificadas; pendiente contrato completo'
+          ? 'Correcciones de fases 1–2 verificadas; pendiente contrato completo'
           : 'Presente; sin contrato individual de cierre',
       issues,
       'Contrato individual EN/ES, efectos y guardado/reanudación; ver auditoría 18',

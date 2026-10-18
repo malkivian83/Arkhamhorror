@@ -1,11 +1,12 @@
 import { playerCardDef } from '@lcg/engine'
 import { ref } from 'vue'
+import imageManifest from './cardImageManifest.json'
 
 /**
- * Imágenes de las cartas: se cargan de ArkhamDB al vuelo (no se guardan en el
- * repositorio). Solo para códigos oficiales de 5 dígitos; el resto usa plantilla.
+ * Imágenes almacenadas con la web. Solo se solicitan rutas de nuestro origen;
+ * el importador de assets se ejecuta antes de publicar, nunca durante la partida.
  */
-const IMAGE_BASE = 'https://arkhamdb.com/bundles/cards/'
+const LOCAL_IMAGES = imageManifest as Record<'en' | 'es', Record<string, string>>
 
 /**
  * Cartas cuyas imágenes en ArkhamDB tienen las caras al revés: `{código}.jpg` es
@@ -29,21 +30,21 @@ const SWAPPED_SIDES = new Set([
   '12187',
 ])
 
-/**
- * Caras traseras de cartas de dos caras que ArkhamDB no tiene (La gala: Líderes como
- * enemigo, El Exangüe desatado, cartas de Historia rival, La Lámpara): se usan las del
- * servidor de imágenes del proyecto de referencia.
- */
-const REFERENCE_IMAGES = 'https://assets.arkhamhorror.app/img/arkham/cards/'
-
-export function cardImage(code: string, back = false): string | null {
+/** Spanish image, then English image, both from our local asset inventory. */
+export function cardImages(code: string, back = false, locale = scanLocale.value): string[] {
   const match = /^(\d{5})(b)?$/.exec(code)
-  if (!match) return null
+  if (!match) return []
   const base = match[1]!
-  if (base.startsWith('71') && match[2] && !back) return `${REFERENCE_IMAGES}${code}.avif`
   const side = match[2] ? !back : back
   const suffix = side !== SWAPPED_SIDES.has(base) ? 'b' : ''
-  return `${IMAGE_BASE}${base}${suffix}.jpg`
+  const art = `${base}${suffix}`
+  const localized = locale === 'es' ? LOCAL_IMAGES.es[art] : undefined
+  const english = LOCAL_IMAGES.en[art]
+  return [localized, english].filter((path): path is string => Boolean(path))
+}
+
+export function cardImage(code: string, back = false): string | null {
+  return cardImages(code, back)[0] ?? null
 }
 
 export function cardName(code: string): string {

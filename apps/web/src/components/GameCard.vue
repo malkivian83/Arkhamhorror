@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { cardImage, localScan, scanLocale } from '../game/cards'
+import { cardImages, localScan, scanLocale } from '../game/cards'
 import { localizedCards, localName } from '../game/localized'
 import { zoomed } from '../game/zoom'
 import RenderedCard from './RenderedCard.vue'
@@ -8,8 +8,8 @@ import RenderedCard from './RenderedCard.vue'
 /**
  * Una carta en la mesa. Orden de preferencia:
  * 1. Escaneo propio en el idioma activo (si están activados).
- * 2. Imagen oficial de ArkhamDB (no hay imágenes oficiales traducidas de esta caja).
- * 3. Carta dibujada con los datos traducidos, si la imagen no carga.
+ * 2. Imagen española almacenada con nuestra web, si existe.
+ * 3. Imagen inglesa y carta dibujada con los datos traducidos si falla.
  * 4. Plantilla mínima con el nombre.
  */
 const props = withDefaults(
@@ -31,18 +31,18 @@ const props = withDefaults(
 )
 
 const scanFailed = ref(false)
-const imageFailed = ref(false)
+const imageIndex = ref(0)
 watch(
   () => [props.code, props.back, scanLocale.value],
   () => {
     scanFailed.value = false
-    imageFailed.value = false
+    imageIndex.value = 0
   },
 )
 
 const scan = computed(() => (scanFailed.value ? null : localScan(props.code, props.back)))
 const localized = computed(() => localizedCards.value.get(props.code) ?? null)
-const src = computed(() => (imageFailed.value ? null : cardImage(props.code, props.back)))
+const src = computed(() => cardImages(props.code, props.back)[imageIndex.value] ?? null)
 const displayName = computed(() => localized.value?.name ?? localName(props.name))
 
 const ratio = computed(() => (props.landscape ? 0.715 : 1.4))
@@ -75,7 +75,7 @@ function hover(on: boolean) {
       :alt="displayName"
       loading="lazy"
       draggable="false"
-      @error="imageFailed = true"
+      @error="imageIndex++"
     />
     <RenderedCard
       v-else-if="localized"
