@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-18",
+  "engineVersion": 1,
+  "saveFormat": "lcg-session/1",
+  "scope": "Juego local de Brethren of Ash; sin multijugador online",
+  "tests": {
+    "passed": 435,
+    "files": 31
+  },
+  "preparations": 2856,
+  "individualCardContracts": 104,
+  "catalogCards": 193,
+  "interfaceCases": 12,
+  "checks": {
+    "webTypes": true,
+    "cardsTypes": true,
+    "engineTypes": true,
+    "serverTypes": true,
+    "sharedTypes": true,
+    "i18nTypes": true,
+    "eslint": true,
+    "prettier": true,
+    "productionBuild": true,
+    "diagnosticCli": true,
+    "gitDiffWhitespace": true
+  },
+  "buildWarnings": [
+    "La fuente de iconos se resuelve en ejecución",
+    "JavaScript de 540,51 kB sin comprimir; 168,66 kB gzip"
+  ],
+  "limits": "Los contratos principales no certifican todas las interacciones. La prueba móvil usa una ventana 390x640, no un dispositivo físico. Véase el documento 16.",
+  "formattedFiles": 49
+}

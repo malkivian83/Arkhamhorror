@@ -18,12 +18,7 @@ import {
   type SkillType,
 } from '@lcg/engine'
 import { chooseSkillTest, damage, effectTest } from '../scenario-helpers'
-import {
-  bloodlessManUnleashed,
-  CODES,
-  isGuest,
-  MANOR,
-} from './cards'
+import { bloodlessManUnleashed, CODES, isGuest, MANOR } from './cards'
 import { extendGala, shroudHere } from './gala'
 import {
   agendaNumber,

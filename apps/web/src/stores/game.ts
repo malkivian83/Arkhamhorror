@@ -18,12 +18,20 @@ import {
 } from '@lcg/engine'
 import { defineStore } from 'pinia'
 import { computed, nextTick, shallowRef } from 'vue'
-import { markOf, undoTarget, type Mark, type UndoKind } from '../game/undo'
+import { markOf, undoTarget, type UndoKind } from '../game/undo'
+import {
+  BACKUP_KEY,
+  RECOVERY_KEY,
+  decodeSession,
+  readSession,
+  replay,
+  session,
+  SessionError,
+  writeSession,
+  type History,
+  type SessionIssue,
+} from '../game/session'
 import { useDecksStore } from './decks'
-
-const STORAGE_KEY = 'lcg:game'
-const HISTORY_KEY = 'lcg:history'
-const CAMPAIGN_KEY = 'lcg:campaign'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
@@ -57,73 +65,31 @@ export interface IndexedChoice {
  * así que basta con el estado inicial y las decisiones; deshacer es repetirlas
  * todas menos las últimas.
  */
-interface History {
-  base: GameState
-  inputs: PlayerInput[]
-  marks: Mark[]
-}
-
-function load(): GameState | null {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return null
-    // En la mesa las pruebas siempre son interactivas (también en partidas guardadas antes).
-    return { ...(JSON.parse(raw) as GameState), interactive: true }
-  } catch {
-    return null
-  }
-}
-
-function loadHistory(state: GameState | null): History | null {
-  if (!state) return null
-  try {
-    const raw = localStorage.getItem(HISTORY_KEY)
-    const history = raw ? (JSON.parse(raw) as History) : null
-    if (history && history.marks.length === history.inputs.length + 1) {
-      return { ...history, base: { ...history.base, interactive: true } }
-    }
-  } catch {
-    // Historial ilegible: se empieza uno nuevo desde el estado guardado.
-  }
-  return { base: state, inputs: [], marks: [markOf(state)] }
-}
-
-function loadCampaign(): Campaign | null {
-  try {
-    const raw = localStorage.getItem(CAMPAIGN_KEY)
-    return raw ? (JSON.parse(raw) as Campaign) : null
-  } catch {
-    return null
-  }
-}
-
-function saveCampaign(campaign: Campaign | null) {
-  try {
-    if (campaign) localStorage.setItem(CAMPAIGN_KEY, JSON.stringify(campaign))
-    else localStorage.removeItem(CAMPAIGN_KEY)
-  } catch {
-    // Sin almacenamiento: la campaña solo dura mientras la pestaña esté abierta.
-  }
-}
-
-function save(state: GameState | null, history: History | null) {
-  try {
-    if (state) localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
-    else localStorage.removeItem(STORAGE_KEY)
-    if (history) localStorage.setItem(HISTORY_KEY, JSON.stringify(history))
-    else localStorage.removeItem(HISTORY_KEY)
-  } catch {
-    // Sin almacenamiento: la partida solo dura mientras la pestaña esté abierta.
-  }
-}
-
 export const useGameStore = defineStore('game', () => {
-  const initial = load()
-  const state = shallowRef<GameState | null>(initial)
-  const history = shallowRef<History | null>(loadHistory(initial))
+  const loaded = (() => {
+    try {
+      return readSession(localStorage)
+    } catch {
+      return { data: session(null, null, null), issue: 'unavailable' as const }
+    }
+  })()
+  const state = shallowRef<GameState | null>(loaded.data.state)
+  const history = shallowRef<History | null>(loaded.data.history)
+  const storageIssue = shallowRef<SessionIssue | null>(loaded.issue ?? null)
   const error = shallowRef<string | null>(null)
   /** Campaña en curso: el escenario que se juega es uno de sus escenarios. */
-  const campaign = shallowRef<Campaign | null>(loadCampaign())
+  const campaign = shallowRef<Campaign | null>(loaded.data.campaign)
+  if (campaign.value?.log.rewards?.length) useDecksStore().addRewards(campaign.value.log.rewards)
+  const failedInput = shallowRef<PlayerInput | null>(null)
+
+  function persist() {
+    try {
+      writeSession(localStorage, session(latest, history.value, campaign.value))
+      storageIssue.value = null
+    } catch (e) {
+      storageIssue.value = e instanceof SessionError ? e.reason : 'unavailable'
+    }
+  }
 
   /**
    * Estado más reciente. El que se ve (`state`) puede ir un instante por detrás
@@ -135,7 +101,7 @@ export const useGameStore = defineStore('game', () => {
     const previous = latest
     latest = next
     history.value = nextHistory
-    save(next, nextHistory)
+    persist()
     // Si algún investigador cambia de localización, su mini se desliza hasta
     // la nueva (transición de vista del navegador, como en el ejemplo).
     const moved =
@@ -165,7 +131,6 @@ export const useGameStore = defineStore('game', () => {
 
   function setCampaign(next: Campaign | null) {
     campaign.value = next
-    saveCampaign(next)
   }
 
   function play(game: GameState) {
@@ -176,8 +141,9 @@ export const useGameStore = defineStore('game', () => {
   function start(campaignId: string, members: CampaignMember[], difficulty: Difficulty) {
     error.value = null
     const next = newCampaign(campaignId, members, difficulty, Math.floor(Math.random() * 2 ** 31))
+    const prepared = startScenario(next, Math.floor(Math.random() * 2 ** 32))
     setCampaign(next)
-    play(startScenario(next, Math.floor(Math.random() * 2 ** 32)))
+    play(prepared)
   }
 
   /** Guarda el resultado del escenario terminado en la campaña y deja la mesa. */
@@ -193,7 +159,7 @@ export const useGameStore = defineStore('game', () => {
 
   /** Empieza el siguiente escenario de la campaña. */
   function playNext() {
-    if (!campaign.value) return
+    if (!campaign.value || latest) return
     error.value = null
     play(startScenario(campaign.value, Math.floor(Math.random() * 2 ** 32)))
   }
@@ -204,9 +170,10 @@ export const useGameStore = defineStore('game', () => {
     card: CardCode,
     options: { remove?: CardCode; upgrade?: boolean } = {},
   ) {
-    if (!campaign.value) return
+    if (!campaign.value || latest) return
     try {
       setCampaign(purchase(campaign.value, investigator, card, options))
+      persist()
       error.value = null
     } catch (e) {
       error.value = e instanceof Error ? e.message : String(e)
@@ -225,6 +192,7 @@ export const useGameStore = defineStore('game', () => {
     const input = { investigator: current.pending.investigator, choice: index }
     try {
       const next = applyInput(current, input)
+      failedInput.value = null
       const h = history.value
       set(
         next,
@@ -232,6 +200,7 @@ export const useGameStore = defineStore('game', () => {
       )
       error.value = null
     } catch (e) {
+      failedInput.value = input
       error.value = e instanceof Error ? e.message : String(e)
     }
   }
@@ -263,12 +232,68 @@ export const useGameStore = defineStore('game', () => {
     if (!h || target === null) return
     const inputs = h.inputs.slice(0, target)
     try {
-      const replayed = inputs.reduce((s, input) => applyInput(s, input), h.base)
-      set(replayed, { base: h.base, inputs, marks: h.marks.slice(0, target + 1) })
+      const restored = replay(h.base, inputs)
+      set(restored.state, restored.history)
       error.value = null
     } catch (e) {
       error.value = e instanceof Error ? e.message : String(e)
     }
+  }
+
+  function exportSession() {
+    return JSON.stringify(session(latest, history.value, campaign.value))
+  }
+
+  /** Import is validated and persisted before replacing the visible session. */
+  function importSession(raw: string): boolean {
+    try {
+      const data = decodeSession(raw)
+      writeSession(localStorage, data)
+      if (data.campaign?.log.rewards?.length) useDecksStore().addRewards(data.campaign.log.rewards)
+      campaign.value = data.campaign
+      latest = data.state
+      history.value = data.history
+      state.value = data.state
+      error.value = null
+      storageIssue.value = null
+      return true
+    } catch (e) {
+      storageIssue.value = e instanceof SessionError ? e.reason : 'invalid'
+      return false
+    }
+  }
+
+  function restoreBackup(): boolean {
+    try {
+      const raw = localStorage.getItem(BACKUP_KEY)
+      if (!raw) throw new SessionError('invalid')
+      return importSession(raw)
+    } catch {
+      storageIssue.value = 'invalid'
+      return false
+    }
+  }
+
+  function diagnostic() {
+    let preservedSave: string | null = null
+    try {
+      preservedSave = localStorage.getItem(RECOVERY_KEY)
+    } catch {
+      /* Storage warning is already visible. */
+    }
+    return JSON.stringify(
+      {
+        format: 'lcg-diagnostic',
+        version: 1,
+        session: JSON.parse(exportSession()),
+        error: error.value,
+        storageIssue: storageIssue.value,
+        failedInput: failedInput.value,
+        preservedSave,
+      },
+      null,
+      2,
+    )
   }
 
   /** Opciones de la pregunta actual agrupadas por el elemento de la mesa al que se refieren. */
@@ -293,6 +318,7 @@ export const useGameStore = defineStore('game', () => {
   return {
     state,
     error,
+    storageIssue,
     campaign,
     start,
     closeScenario,
@@ -306,5 +332,9 @@ export const useGameStore = defineStore('game', () => {
     undoTargets,
     choicesByTarget,
     untargetedChoices,
+    exportSession,
+    importSession,
+    restoreBackup,
+    diagnostic,
   }
 })

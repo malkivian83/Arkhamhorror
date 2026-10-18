@@ -15,7 +15,10 @@ const REWARDS_KEY = 'lcg:rewards'
 function loadRewards(): CardCode[] {
   try {
     const raw = localStorage.getItem(REWARDS_KEY)
-    return raw ? (JSON.parse(raw) as CardCode[]) : []
+    const parsed: unknown = raw ? JSON.parse(raw) : []
+    return Array.isArray(parsed)
+      ? parsed.filter((code): code is CardCode => typeof code === 'string')
+      : []
   } catch {
     return []
   }

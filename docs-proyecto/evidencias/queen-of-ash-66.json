@@ -1,0 +1,796 @@
+{
+  "campaign": {
+    "id": "brethren-of-ash",
+    "difficulty": "easy",
+    "scenarioIndex": 2,
+    "investigators": [
+      {
+        "id": "12004",
+        "deck": [
+          "12030",
+          "12031",
+          "12032",
+          "12033",
+          "12034",
+          "12035",
+          "12016",
+          "12017",
+          "12018",
+          "12019",
+          "12020",
+          "12021",
+          "12087",
+          "12087",
+          "12088",
+          "12088",
+          "12005",
+          "12036",
+          "12037",
+          "12038",
+          "12022",
+          "12023",
+          "12024",
+          "12089",
+          "12089",
+          "12039",
+          "12025",
+          "12093",
+          "12093",
+          "12092",
+          "12092",
+          "12006",
+          "12100"
+        ]
+      }
+    ],
+    "log": {
+      "notes": [
+        "defeatedPursuer",
+        "savedUniversity",
+        "failedSearch",
+        "harbinger"
+      ],
+      "crossedOut": [],
+      "values": {
+        "harbinger": "Naomi O'Bannion"
+      },
+      "chaosTokens": [
+        "cultist",
+        "cultist"
+      ],
+      "investigators": {
+        "12004": {
+          "xp": 7,
+          "physicalTrauma": 1,
+          "mentalTrauma": 0,
+          "storyAssets": [
+            "12115"
+          ]
+        }
+      }
+    },
+    "results": [
+      {
+        "scenario": "spreading-flames",
+        "outcome": {
+          "type": "resolution",
+          "resolution": 2
+        },
+        "xp": {
+          "12004": 7
+        },
+        "experience": [
+          {
+            "investigator": "12004",
+            "bonus": 3,
+            "victory": 3,
+            "amount": 6
+          },
+          {
+            "investigator": "12004",
+            "bonus": 1,
+            "victory": 0,
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "scenario": "smoke-and-mirrors",
+        "outcome": {
+          "type": "noResolution"
+        },
+        "xp": {
+          "12004": 0
+        },
+        "experience": [
+          {
+            "investigator": "12004",
+            "bonus": 0,
+            "victory": 0,
+            "amount": 0
+          }
+        ]
+      }
+    ]
+  },
+  "seed": 66,
+  "inputs": [
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 4
+    },
+    {
+      "investigator": "12004",
+      "choice": 6
+    },
+    {
+      "investigator": "12004",
+      "choice": 3
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 5
+    },
+    {
+      "investigator": "12004",
+      "choice": 3
+    },
+    {
+      "investigator": "12004",
+      "choice": 2
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 4
+    },
+    {
+      "investigator": "12004",
+      "choice": 8
+    },
+    {
+      "investigator": "12004",
+      "choice": 3
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 3
+    },
+    {
+      "investigator": "12004",
+      "choice": 2
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 4
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 4
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 4
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 4
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 6
+    },
+    {
+      "investigator": "12004",
+      "choice": 1
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
+    }
+  ],
+  "transcript": [
+    {
+      "prompt": "prompt.story",
+      "label": "choice.continue",
+      "params": null
+    },
+    {
+      "prompt": "prompt.story",
+      "label": "choice.continue",
+      "params": null
+    },
+    {
+      "prompt": "prompt.mulligan",
+      "label": "choice.keepHand",
+      "params": {
+        "n": 0
+      }
+    },
+    {
+      "prompt": "prompt.story",
+      "label": "choice.continue",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.play",
+      "params": {
+        "card": "Dr. Henry Armitage"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Sewer Tunnels"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.playFast",
+      "params": {
+        "card": "Working a Hunch"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Sewer Culvert"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Sharp Rhetoric",
+        "icons": 1
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Sewer Tunnels"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Sewer Tunnels"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "ability.drawCards",
+      "params": {
+        "n": 1
+      }
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Through the Cracks",
+        "icons": 1
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Local Map",
+        "icons": 1
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.assignHorror",
+      "label": "choice.assignToAsset",
+      "params": {
+        "card": "Dr. Henry Armitage"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Sewer Culvert"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Sewer Tunnels"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Sewer Tunnels"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Lesson Learned",
+        "icons": 1
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "ability.drawCards",
+      "params": {
+        "n": 1
+      }
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseCardToDiscard",
+      "label": "choice.discard",
+      "params": {
+        "card": "12088"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "M1911",
+        "icons": 1
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Underground Cistern"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Underground Cistern"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Perception",
+        "icons": 2
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "ability.drawCards",
+      "params": {
+        "n": 1
+      }
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Sluice Control"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Resilience",
+        "icons": 1
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseEffect",
+      "label": "choice.discardRandom",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseEffect",
+      "label": "choice.discardRandom",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseEffect",
+      "label": "choice.discardRandom",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.openSluice",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseSkill",
+      "label": "choice.test.combat",
+      "params": {
+        "difficulty": 5
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.openSluice",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseSkill",
+      "label": "choice.test.combat",
+      "params": {
+        "difficulty": 5
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.openSluice",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseSkill",
+      "label": "choice.test.combat",
+      "params": {
+        "difficulty": 5
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.openSluice",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseSkill",
+      "label": "choice.test.combat",
+      "params": {
+        "difficulty": 5
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.story",
+      "label": "choice.continue",
+      "params": null
+    }
+  ],
+  "outcome": {
+    "type": "resolution",
+    "resolution": 3
+  },
+  "log": {
+    "notes": [
+      "defeatedPursuer",
+      "savedUniversity",
+      "failedSearch",
+      "harbinger",
+      "floodedRitual",
+      "campaignWon"
+    ],
+    "crossedOut": [],
+    "values": {
+      "harbinger": "Naomi O'Bannion"
+    },
+    "chaosTokens": [
+      "cultist",
+      "cultist",
+      "elderThing"
+    ],
+    "investigators": {
+      "12004": {
+        "xp": 7,
+        "physicalTrauma": 1,
+        "mentalTrauma": 0,
+        "storyAssets": [
+          "12115"
+        ],
+        "killed": true
+      }
+    }
+  }
+}

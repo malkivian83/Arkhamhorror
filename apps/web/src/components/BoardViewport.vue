@@ -21,6 +21,7 @@ const content = ref<HTMLElement | null>(null)
 const view = ref<ViewTransform>({ x: 0, y: 0, scale: 1 })
 provide(BOARD_VIEW_KEY, readonly(view))
 const dragging = ref(false)
+const pointerFocused = ref(false)
 const percent = computed(() => `${Math.round(view.value.scale * 100)}%`)
 const transform = computed(
   () => `translate(${view.value.x}px, ${view.value.y}px) scale(${view.value.scale})`,
@@ -106,6 +107,7 @@ function beginGesture() {
 
 function pointerDown(event: PointerEvent) {
   if (event.pointerType === 'mouse' && event.button !== 0) return
+  pointerFocused.value = true
   clearTimeout(clickTimer)
   if (!pointers.size) {
     suppressClick = false
@@ -168,6 +170,7 @@ function wheel(event: WheelEvent) {
 }
 
 function keydown(event: KeyboardEvent) {
+  pointerFocused.value = false
   if (event.target !== surface.value || event.ctrlKey || event.metaKey || event.altKey) return
   const step = event.shiftKey ? 120 : 48
   const moves: Record<string, Point> = {
@@ -234,6 +237,25 @@ onBeforeUnmount(() => {
   <section class="board-viewport" :aria-label="t('table.board')">
     <div class="viewport-toolbar" role="group" :aria-label="t('table.navigation')">
       <span class="viewport-title">{{ t('table.board') }}</span>
+      <div class="viewport-pan" role="group" :aria-label="t('table.panMap')">
+        <button
+          v-for="(offset, direction) in {
+            left: [64, 0],
+            up: [0, 64],
+            down: [0, -64],
+            right: [-64, 0],
+          }"
+          :key="direction"
+          type="button"
+          :aria-label="t(`table.pan.${direction}`)"
+          :title="t(`table.pan.${direction}`)"
+          @click="apply({ ...view, x: view.x + offset[0]!, y: view.y + offset[1]! })"
+        >
+          <span aria-hidden="true">{{
+            { left: '←', up: '↑', down: '↓', right: '→' }[direction]
+          }}</span>
+        </button>
+      </div>
       <div class="viewport-controls">
         <button
           type="button"
@@ -275,7 +297,7 @@ onBeforeUnmount(() => {
     <div
       ref="surface"
       class="viewport-surface"
-      :class="{ dragging }"
+      :class="{ dragging, 'pointer-focused': pointerFocused }"
       role="region"
       tabindex="0"
       :aria-label="t('table.board')"
@@ -293,30 +315,12 @@ onBeforeUnmount(() => {
       @click.capture="cancelClick"
       @dragstart.prevent
       @keydown="keydown"
+      @blur="pointerFocused = false"
       @focusin="revealFocused"
     >
       <div ref="content" class="viewport-content" :style="{ transform }">
         <slot />
       </div>
-    </div>
-    <div class="viewport-pan" role="group" :aria-label="t('table.panMap')">
-      <button
-        v-for="(offset, direction) in {
-          left: [64, 0],
-          up: [0, 64],
-          down: [0, -64],
-          right: [-64, 0],
-        }"
-        :key="direction"
-        type="button"
-        :aria-label="t(`table.pan.${direction}`)"
-        :title="t(`table.pan.${direction}`)"
-        @click="apply({ ...view, x: view.x + offset[0]!, y: view.y + offset[1]! })"
-      >
-        <span aria-hidden="true">{{
-          { left: '←', up: '↑', down: '↓', right: '→' }[direction]
-        }}</span>
-      </button>
     </div>
     <slot name="overlay" />
   </section>
@@ -335,13 +339,14 @@ onBeforeUnmount(() => {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 8px;
-  padding: 6px 12px;
+  gap: 6px;
+  padding: 3px 8px;
+  order: 2;
+  flex: none;
   color: var(--parch);
 }
 .viewport-title {
-  font-family: var(--fell);
-  font-size: 0.95rem;
+  display: none;
 }
 .viewport-controls {
   display: flex;
@@ -352,33 +357,31 @@ onBeforeUnmount(() => {
   max-width: 100%;
 }
 .viewport-controls button {
-  min-width: 44px;
-  min-height: 44px;
-  padding: 6px 10px;
+  min-width: 26px;
+  min-height: 26px;
+  padding: 2px 6px;
+  font-size: 0.7rem;
   background: #14251f;
   border-color: #657e70;
 }
 .viewport-pan {
-  position: absolute;
-  z-index: 5;
-  left: 8px;
-  bottom: 8px;
   display: flex;
   justify-content: center;
   gap: 4px;
   padding: 0;
 }
 .viewport-pan button {
-  min-width: 44px;
-  min-height: 44px;
-  padding: 6px 10px;
+  min-width: 26px;
+  min-height: 26px;
+  padding: 2px 6px;
+  font-size: 0.7rem;
   background: #14251f;
   border-color: #657e70;
 }
 .viewport-controls output {
-  min-width: 52px;
+  min-width: 36px;
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.65rem;
   font-variant-numeric: tabular-nums;
 }
 .viewport-help {
@@ -401,28 +404,6 @@ onBeforeUnmount(() => {
   overflow: hidden;
   clip-path: inset(50%);
 }
-.board-viewport:has(.viewport-surface:focus-visible) .keyboard-help {
-  position: static;
-  display: block;
-  width: auto;
-  height: auto;
-  margin-top: 4px;
-  clip-path: none;
-}
-.board-viewport:has(.viewport-surface:focus-visible) .viewport-help {
-  z-index: 6;
-  left: 8px;
-  right: 8px;
-  top: 62px;
-  width: auto;
-  height: auto;
-  padding: 6px 8px;
-  background: #14251f;
-  border: 1px solid #657e70;
-  border-radius: 4px;
-  clip-path: none;
-  pointer-events: none;
-}
 .viewport-surface {
   position: relative;
   flex: 1;
@@ -436,6 +417,9 @@ onBeforeUnmount(() => {
 .viewport-surface:focus-visible {
   outline-offset: -6px;
   box-shadow: none;
+}
+.viewport-surface.pointer-focused:focus-visible {
+  outline: none;
 }
 .viewport-surface.dragging,
 .viewport-surface.dragging :deep(*) {
@@ -458,13 +442,17 @@ onBeforeUnmount(() => {
     gap: 3px;
   }
   .viewport-controls button {
-    padding: 6px 8px;
+    padding: 2px 5px;
   }
   .viewport-pan {
-    gap: 3px;
+    display: none;
   }
 }
 @media (pointer: coarse) {
+  .viewport-controls button {
+    min-width: 32px;
+    min-height: 32px;
+  }
   .mouse-help {
     display: none;
   }

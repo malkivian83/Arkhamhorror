@@ -1,4 +1,5 @@
 import { shallowRef } from 'vue'
+import { fallbackCards } from './fallbackCards'
 
 /**
  * Datos de las cartas en otro idioma (nombre, tipo, rasgos, texto…), cargados
@@ -53,7 +54,7 @@ const SOURCES: Record<string, string[]> = {
 const CACHE_PREFIX = 'lcg:cards:v2:'
 const CACHE_HOURS = 24
 
-/** Cartas del idioma activo por código. Vacío para inglés (se usan las imágenes). */
+/** Bundled alternatives plus any available translated card data. */
 export const localizedCards = shallowRef(new Map<string, LocalizedCard>())
 /** Nombre inglés → nombre traducido, para traducir los nombres que guarda el motor. */
 export const localizedNames = shallowRef(new Map<string, string>())
@@ -65,7 +66,9 @@ function readCache(locale: string): LocalizedCard[] | null {
     const raw = localStorage.getItem(CACHE_PREFIX + locale)
     if (!raw) return null
     const { at, cards } = JSON.parse(raw) as { at: number; cards: LocalizedCard[] }
-    return Date.now() - at < CACHE_HOURS * 3600_000 ? cards : null
+    return Number.isFinite(at) && Array.isArray(cards) && Date.now() - at < CACHE_HOURS * 3600_000
+      ? cards
+      : null
   } catch {
     return null
   }
@@ -79,43 +82,61 @@ function writeCache(locale: string, cards: LocalizedCard[]) {
   }
 }
 
-function apply(cards: LocalizedCard[]) {
-  localizedCards.value = new Map(cards.map((c) => [c.code, c]))
+function apply(cards: LocalizedCard[], locale: string) {
+  const merged = new Map(fallbackCards(locale).map((c) => [c.code, c]))
+  cards
+    .filter(
+      (c) =>
+        c &&
+        typeof c.code === 'string' &&
+        typeof c.name === 'string' &&
+        typeof c.type_code === 'string',
+    )
+    .forEach((c) => merged.set(c.code, c))
+  localizedCards.value = merged
   localizedNames.value = new Map(
-    cards.filter((c) => c.real_name && c.name).map((c) => [c.real_name, c.name]),
+    [...merged.values()]
+      .filter((c) => c.real_name && c.name)
+      .map((c) => [normalizeName(c.real_name), c.name]),
   )
 }
 
 /** Activa el idioma: descarga sus datos si hace falta. Si falla, se sigue en inglés. */
+let activeLocale = 'en'
 export async function useCardLocale(locale: string): Promise<void> {
+  activeLocale = locale
+  apply([], locale)
   const sources = SOURCES[locale]
   if (!sources) {
-    apply([])
     return
   }
   const cached = loaded.get(locale) ?? readCache(locale)
   if (cached) {
     loaded.set(locale, cached)
-    apply(cached)
+    apply(cached, locale)
     return
   }
   try {
     const packs = await Promise.all(
       sources.map(async (source) => {
-        const response = await fetch(source)
+        const response = await fetch(source, { signal: AbortSignal.timeout(5000) })
         if (!response.ok) throw new Error(String(response.status))
-        return (await response.json()) as LocalizedCard[]
+        const pack = (await response.json()) as LocalizedCard[]
+        if (!Array.isArray(pack)) throw new Error('Invalid card data')
+        return pack
       }),
     )
     const cards = packs.flat()
     loaded.set(locale, cards)
     writeCache(locale, cards)
-    apply(cards)
+    if (activeLocale === locale) apply(cards, locale)
   } catch {
-    apply([])
+    if (activeLocale === locale) apply([], locale)
   }
 }
 
 export function localName(name: string): string {
-  return localizedNames.value.get(name) ?? name
+  return localizedNames.value.get(normalizeName(name)) ?? name
 }
+
+const normalizeName = (name: string) => name.normalize('NFKC').replace(/[‘’]/g, "'")

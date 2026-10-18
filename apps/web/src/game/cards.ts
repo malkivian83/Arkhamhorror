@@ -37,10 +37,13 @@ const SWAPPED_SIDES = new Set([
 const REFERENCE_IMAGES = 'https://assets.arkhamhorror.app/img/arkham/cards/'
 
 export function cardImage(code: string, back = false): string | null {
-  if (/^\d{5}b$/.test(code)) return `${REFERENCE_IMAGES}${code}.avif`
-  if (!/^\d{5}$/.test(code)) return null
-  const suffix = back !== SWAPPED_SIDES.has(code) ? 'b' : ''
-  return `${IMAGE_BASE}${code}${suffix}.jpg`
+  const match = /^(\d{5})(b)?$/.exec(code)
+  if (!match) return null
+  const base = match[1]!
+  if (base.startsWith('71') && match[2] && !back) return `${REFERENCE_IMAGES}${code}.avif`
+  const side = match[2] ? !back : back
+  const suffix = side !== SWAPPED_SIDES.has(base) ? 'b' : ''
+  return `${IMAGE_BASE}${base}${suffix}.jpg`
 }
 
 export function cardName(code: string): string {

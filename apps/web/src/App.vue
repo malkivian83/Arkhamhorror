@@ -7,9 +7,11 @@ import PlaymatPicker from './components/PlaymatPicker.vue'
 import { scanLocale } from './game/cards'
 import { useCardLocale } from './game/localized'
 import './game/playmats'
+import { useGameStore } from './stores/game'
 
 const { t, locale } = useI18n()
 const route = useRoute()
+const game = useGameStore()
 const gameMenu = ref<HTMLDialogElement>()
 const menuButton = ref<HTMLButtonElement>()
 function closeMenu() {
@@ -111,11 +113,24 @@ function setLocale(value: Locale) {
     </nav>
   </header>
   <main :class="{ 'game-shell': route.name === 'game' }">
+    <div v-if="game.storageIssue || game.error" class="session-warning" role="alert">
+      <p v-if="game.storageIssue">{{ t(`session.issue.${game.storageIssue}`) }}</p>
+      <p v-if="game.error">{{ game.error }}</p>
+    </div>
     <RouterView />
   </main>
 </template>
 
 <style>
+.session-warning {
+  padding: 10px 18px;
+  color: #451907;
+  background: #f4d6a0;
+  border: 2px solid #ab5224;
+}
+.session-warning p {
+  margin: 2px 0;
+}
 /* Símbolos oficiales (fuente de ArkhamDB vía proxy). */
 @font-face {
   font-family: 'arkham-icons';

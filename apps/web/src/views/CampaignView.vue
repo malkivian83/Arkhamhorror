@@ -14,6 +14,7 @@ import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import ChaosTokenView from '../components/ChaosTokenView.vue'
 import GameCard from '../components/GameCard.vue'
+import SessionTools from '../components/SessionTools.vue'
 import { cardName, classColor } from '../game/cards'
 import { localName } from '../game/localized'
 import { useGameStore } from '../stores/game'
@@ -80,6 +81,7 @@ function abandon() {
       <h1>{{ t('campaign.title', { name: definition ? t(definition.name) : '' }) }}</h1>
       <p class="sub">{{ t(`difficulty.${campaign.difficulty}`) }}</p>
     </header>
+    <SessionTools />
 
     <div class="grid">
       <section class="page" :aria-label="t('campaign.scenarios')">
@@ -99,6 +101,19 @@ function abandon() {
                   : t('table.noResolution')
               }}
             </span>
+            <details v-if="campaign.results[n]?.experience?.length" class="xp-details">
+              <summary>{{ t('campaign.xpBreakdown') }}</summary>
+              <p v-for="(gain, k) in campaign.results[n]!.experience" :key="k">
+                {{
+                  t('log.experience', {
+                    name: name(gain.investigator),
+                    bonus: gain.bonus,
+                    victory: gain.victory,
+                    amount: gain.amount,
+                  })
+                }}
+              </p>
+            </details>
           </li>
         </ol>
 
@@ -179,6 +194,7 @@ function abandon() {
               v-else
               type="button"
               :aria-expanded="shopping === i.id"
+              :disabled="!!game.state"
               @click="shopping = shopping === i.id ? null : i.id"
             >
               {{ shopping === i.id ? t('campaign.closeShop') : t('campaign.upgradeDeck') }}

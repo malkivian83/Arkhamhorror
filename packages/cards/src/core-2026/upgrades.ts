@@ -4,6 +4,7 @@
  */
 import {
   getInvestigator,
+  effectiveVitals,
   playerCardDef,
   registerPlayerCard,
   shroudOf,
@@ -463,7 +464,7 @@ registerPlayerCard({
 // para +1 daño.
 const cleaverModifier = (state: GameState, investigator: InvestigatorId) => {
   const i = getInvestigator(state, investigator)
-  return i.sanity - i.horror <= 3 ? 3 : 2
+  return effectiveVitals(state, i).sanity - i.horror <= 3 ? 3 : 2
 }
 registerPlayerCard({
   code: code(85),

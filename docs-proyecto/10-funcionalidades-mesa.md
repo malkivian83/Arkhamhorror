@@ -1,5 +1,9 @@
 # 10 · Funcionalidades de la mesa (comparación con el proyecto de referencia)
 
+> Inventario histórico. La comparación actualizada del código, con el multijugador
+> online excluido por decisión del propietario, está en la
+> [auditoría del 17/10/2026](15-auditoria-referencia-2026-10-17.md).
+
 Objetivo del propietario: que la mesa se comporte de forma similar al proyecto
 de referencia "en casi todo". Este documento enumera lo que hace la referencia
 (revisado en `E:\referencia\ArkhamHorror\frontend\src\arkham`) y el estado en

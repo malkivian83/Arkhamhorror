@@ -1,5 +1,7 @@
 # 12 · Escenario III: Queen of Ash (Brethren of Ash)
 
+> Cierre revisado el 18/10/2026: pago individual de Elokoss, derrota de enemigos al abrir la compuerta, códices opcionales, antecedentes y recorrido completo comprobados en la [auditoría de cierre](16-auditoria-cierre-brethren-of-ash.md). Se mantienen los límites de alcance indicados allí y las simplificaciones descritas en este documento.
+
 Implementado en `packages/cards/src/brethren-of-ash/queen-of-ash.ts`. Mismas fuentes
 y criterios que los escenarios anteriores: valores de ArkhamDB, símbolos de las
 localizaciones del proyecto de referencia, efectos descritos con palabras propias y

@@ -1,9 +1,11 @@
 # 09 · Escenario I: Spreading Flames (Brethren of Ash)
 
+> Estado actualizado el 18/10/2026: escenario, cinco mazos iniciales y cartas de jugador disponibles. La evidencia de aceptación y los límites de la versión están en la [auditoría de cierre](16-auditoria-cierre-brethren-of-ash.md).
+
 Análisis para implementar el primer escenario de la caja básica de 2026.
 Fuentes: guía de campaña y reglamento (`reglas/`), la base de
 datos pública ArkhamDB (`core_2026`) para los valores numéricos y el proyecto
-de referencia (`E:\referencia\ArkhamHorror`) para las conexiones y los valores
+de referencia (`D:\referencia\ArkhamHorror-main`) para las conexiones y los valores
 "por investigador". **No se copia el texto de las cartas**: aquí se describen sus
 efectos con palabras propias para saber qué debe soportar el motor.
 
@@ -163,5 +165,6 @@ Código: `packages/cards/src/brethren-of-ash/spreading-flames.ts` (con tests).
 
 ## 7. Datos
 
-Completos para la preparación del escenario. Faltan, para más adelante, los
-5 mazos iniciales y las cartas de jugador (ver la lista del reglamento, página 24).
+Completos para la preparación del escenario. Están disponibles los cinco mazos
+iniciales y las 104 cartas de jugador de la caja, incluidas sus mejoras. La matriz
+individual y las pruebas de cierre están enlazadas en el documento 16.

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   playerCardDef,
+  effectiveVitals,
   slotCapacity,
   type Asset,
   type GameState,
@@ -104,80 +105,88 @@ const slots = computed(() => {
     :style="{ '--class': color }"
     :aria-label="t('table.investigatorArea', { name: i.name })"
   >
-    <header>
-      <h3>{{ i.name }}</h3>
-      <span v-if="deciding" class="turn">
-        {{ t('table.decides') }}
-        <template v-if="state.phase !== 'setup'">
-          · {{ t('table.actionsLeft', { n: i.actionsRemaining }) }}
-        </template>
-      </span>
-      <span v-if="i.eliminated" class="tag">{{
-        i.resigned ? t('log.resigned', { name: '' }) : t('game.eliminated')
-      }}</span>
-    </header>
-
     <div class="player-desk">
-      <div class="identity">
-        <TableTarget class="investigator-card" :target="`investigator:${i.id}`">
-          <GameCard :code="i.id" :name="i.name" :width="110" landscape :color="color" />
-        </TableTarget>
-
-        <div class="stats">
-          <ul class="tokens">
-            <li>
-              <TokenBadge kind="resource" :value="i.resources" :size="28" /><span
-                class="token-label"
-                >{{ t('table.resources') }}</span
-              >
-            </li>
-            <li>
-              <TokenBadge kind="clue" :value="i.clues" :size="28" /><span class="token-label">{{
-                t('table.clues')
-              }}</span>
-            </li>
-            <li :title="t('game.damage', { n: i.damage, max: i.health })">
-              <TokenBadge kind="damage" :value="i.damage" :size="28" /><span class="token-label">{{
-                t('table.damage')
-              }}</span>
-            </li>
-            <li :title="t('game.horror', { n: i.horror, max: i.sanity })">
-              <TokenBadge kind="horror" :value="i.horror" :size="28" /><span class="token-label">{{
-                t('table.horror')
-              }}</span>
-            </li>
-          </ul>
-          <div class="meta">
-            <span :title="t('table.actions')"
-              ><i class="ahi">{{ ICON_GLYPHS.action }}</i
-              ><b class="fb">➤</b> {{ i.actionsRemaining }}</span
-            >
-            <span :title="t('table.health')">
-              <img
-                v-if="tokenImage('damage')"
-                class="stat-token"
-                :src="tokenImage('damage')!"
-                alt=""
-              />
-              <template v-else>♥</template>
-              {{ i.health - i.damage }}/{{ i.health }}
-            </span>
-            <span :title="t('table.sanity')">
-              <img
-                v-if="tokenImage('horror')"
-                class="stat-token"
-                :src="tokenImage('horror')!"
-                alt=""
-              />
-              <template v-else>✦</template>
-              {{ i.sanity - i.horror }}/{{ i.sanity }}
-            </span>
-            <span :title="t('table.deck')">▤ {{ i.deck.length }}</span>
-          </div>
-          <div class="skills">
-            <template v-for="skill in SKILLS" :key="skill">
-              <SkillIcon :skill="skill" :title="t(`skill.${skill}`)" />{{ i.skills[skill] }}
+      <div class="investigator-summary">
+        <header>
+          <h3>{{ i.name }}</h3>
+          <span v-if="deciding" class="turn">
+            {{ t('table.decides') }}
+            <template v-if="state.phase !== 'setup'">
+              · {{ t('table.actionsLeft', { n: i.actionsRemaining }) }}
             </template>
+          </span>
+          <span v-if="i.eliminated" class="tag">{{
+            i.resigned ? t('log.resigned', { name: '' }) : t('game.eliminated')
+          }}</span>
+          <slot name="controls" />
+        </header>
+        <div class="identity">
+          <TableTarget class="investigator-card" :target="`investigator:${i.id}`">
+            <GameCard :code="i.id" :name="i.name" :width="110" landscape :color="color" />
+          </TableTarget>
+
+          <div class="stats">
+            <ul class="tokens">
+              <li>
+                <TokenBadge kind="resource" :value="i.resources" :size="28" /><span
+                  class="token-label"
+                  >{{ t('table.resources') }}</span
+                >
+              </li>
+              <li>
+                <TokenBadge kind="clue" :value="i.clues" :size="28" /><span class="token-label">{{
+                  t('table.clues')
+                }}</span>
+              </li>
+              <li :title="t('game.damage', { n: i.damage, max: effectiveVitals(state, i).health })">
+                <TokenBadge kind="damage" :value="i.damage" :size="28" /><span
+                  class="token-label"
+                  >{{ t('table.damage') }}</span
+                >
+              </li>
+              <li :title="t('game.horror', { n: i.horror, max: effectiveVitals(state, i).sanity })">
+                <TokenBadge kind="horror" :value="i.horror" :size="28" /><span
+                  class="token-label"
+                  >{{ t('table.horror') }}</span
+                >
+              </li>
+            </ul>
+            <div class="meta">
+              <span :title="t('table.actions')"
+                ><i class="ahi">{{ ICON_GLYPHS.action }}</i
+                ><b class="fb">➤</b> {{ i.actionsRemaining }}</span
+              >
+              <span :title="t('table.health')">
+                <img
+                  v-if="tokenImage('damage')"
+                  class="stat-token"
+                  :src="tokenImage('damage')!"
+                  alt=""
+                />
+                <template v-else>♥</template>
+                {{ effectiveVitals(state, i).health - i.damage }}/{{
+                  effectiveVitals(state, i).health
+                }}
+              </span>
+              <span :title="t('table.sanity')">
+                <img
+                  v-if="tokenImage('horror')"
+                  class="stat-token"
+                  :src="tokenImage('horror')!"
+                  alt=""
+                />
+                <template v-else>✦</template>
+                {{ effectiveVitals(state, i).sanity - i.horror }}/{{
+                  effectiveVitals(state, i).sanity
+                }}
+              </span>
+              <span :title="t('table.deck')">▤ {{ i.deck.length }}</span>
+            </div>
+            <div class="skills">
+              <span v-for="skill in SKILLS" :key="skill" class="skill-stat">
+                <SkillIcon :skill="skill" :title="t(`skill.${skill}`)" />{{ i.skills[skill] }}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -704,20 +713,67 @@ h4 {
 }
 .player {
   display: grid;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto auto;
   gap: 6px;
   min-width: 0;
 }
-header {
-  grid-row: 1;
-  flex-wrap: wrap;
+.investigator-summary {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
 }
+header {
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  align-items: baseline;
+}
+header h3 {
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+}
+header .turn {
+  font-size: 0.75rem;
+  padding: 0;
+  border: 0;
+  animation: none;
+}
+.piles .mat-label {
+  position: static;
+  transform: none;
+  padding: 0;
+  background: none;
+  font-size: 0.6rem;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+.piles .pile {
+  padding: 4px;
+  min-width: 60px;
+}
+.slot-name {
+  max-width: 100%;
+  font-size: 0.58rem;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  line-height: 1.1;
+}
+.skill-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  white-space: nowrap;
+}
+.meta > span {
+  white-space: nowrap;
+}
+
 h3,
 .turn {
   margin-bottom: 0;
 }
 .player-desk {
-  grid-row: 3;
+  grid-row: 2;
   display: grid;
   grid-template-columns: 290px minmax(0, 1fr);
   align-items: start;
@@ -728,7 +784,7 @@ h3,
   display: flex;
   align-items: center;
   gap: 12px;
-  padding-top: 24px;
+  padding-top: 0;
 }
 .stats {
   gap: 4px;
@@ -749,12 +805,12 @@ h3,
   font-size: 0.75rem;
 }
 .equipment-row {
-  grid-row: 2;
+  grid-row: 1;
   display: flex;
   align-items: start;
   gap: 12px;
   min-width: 0;
-  max-height: 104px;
+  max-height: 116px;
   overflow-x: auto;
   overflow-y: hidden;
   padding: 6px 2px;

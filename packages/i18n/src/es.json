@@ -229,7 +229,7 @@
     "discardFire": "Apagar el fuego: prueba de Agilidad (3)",
     "discardTreachery": "Descartar {card}",
     "blazeDamage": "Gastar {clues} pistas: {damage} daño a {enemy}",
-    "resign": "Retirarse: huir del campus en llamas",
+    "resign": "Retirarse del escenario",
     "engageFromConnecting": "Atraer a {enemy} desde {location} y enfrentarte a él",
     "heal": "Curar 1 daño y 1 horror",
     "quadMove": "Moverse a {location} (rápida)",
@@ -277,6 +277,9 @@
     "extinguish": "Gastar {clues} pistas en grupo: descartar el Fire! de tu localización",
     "weakenElokoss": "Gastar {clues} pistas: poner 1 pista sobre Elokoss ({have}/5)",
     "openSluice": "Abrir la compuerta (agilidad o combate 5)",
+    "codexSearch": "Buscar y jugar una carta del códex",
+    "shuffleGoldBug": "Barajar The Gold Bug en el mazo",
+    "heavyFightWith": "Ataque pesado con {card}: luchar contra {enemy}",
     "gala": {
       "archibaldHunt": "Archibald Hudson: busca un enemigo y gana 3 recursos",
       "arseneDraw": "Arsène Renard: antigüedad por 1 carta",
@@ -361,6 +364,8 @@
     "underAct": "{enemy} queda debajo del acto",
     "enemyImmune": "{enemy} no puede recibir daño (hay fuego en su localización)",
     "lead": "{name} es el investigador jefe",
+    "experience": "{name}: {bonus} de bonificación/penalización + {victory} de victoria = {amount} XP.",
+    "chaosTokensAdded": "{scenario} añade {n} ficha(s) a la bolsa de campaña.",
     "step": {
       "mythosBegins": "1.1 · Empieza la fase de mitos",
       "placeDoom": "1.2 · Se coloca 1 perdición en el plan",
@@ -439,6 +444,19 @@
     "ok": "De acuerdo",
     "agenda": "Plan",
     "act": "Acto",
+    "agendaDeck": "Mazo de planes",
+    "actDeck": "Mazo de actos",
+    "viewScenarioDeck": "{deck} {current} de {total}: ver todas las cartas del mazo",
+    "scenarioDeckHelp": "Cartas en orden de avance. La carta activa está resaltada. Puedes consultar las siguientes y sus reversos sin avanzar el escenario.",
+    "deckStatus": {
+      "previous": "Anterior",
+      "current": "Activa",
+      "upcoming": "Siguiente"
+    },
+    "viewCardFront": "Ver anverso",
+    "viewCardBack": "Ver reverso",
+    "viewCardFrontNamed": "Ver el anverso de {name}",
+    "viewCardBackNamed": "Ver el reverso de {name}",
     "scenario": "Expediente del escenario",
     "board": "Mapa de lugares",
     "navigation": "Controles del mapa",
@@ -499,7 +517,10 @@
     "failure": "Fallo",
     "commitHint": "Compromete cartas de tu mano (resaltadas) y haz clic en la bolsa para revelar una ficha.",
     "tokensInBag": "{n} fichas",
-    "showOdds": "Ver probabilidad"
+    "showOdds": "Estimar probabilidades",
+    "expand": "Ampliar prueba de habilidad",
+    "minimize": "Minimizar prueba de habilidad",
+    "oddsHint": "Estimación para una sola ficha, sin fichas adicionales ni reacciones posteriores."
   },
   "undo": {
     "title": "Deshacer",
@@ -804,6 +825,7 @@
       "the-midwinter-gala": "La gala del ecuador del invierno"
     },
     "choose": "Elige la campaña",
+    "xpBreakdown": "Desglose de experiencia",
     "standalone": "Escenario independiente"
   },
   "class": {
@@ -1017,5 +1039,83 @@
       "n": "4.6",
       "text": "Termina la fase de mantenimiento (y la ronda)"
     }
+  },
+  "session": {
+    "title": "Guardado y recuperación",
+    "help": "Exporta juntos la campaña, la mesa actual y el historial para deshacer. El diagnóstico incluye tus mazos y decisiones; se descarga en tu equipo.",
+    "export": "Exportar campaña",
+    "import": "Importar campaña",
+    "recover": "Recuperar guardado anterior",
+    "diagnostic": "Exportar diagnóstico",
+    "confirmImport": "¿Sustituir la campaña actual por este archivo? Se conservará una copia del guardado anterior.",
+    "confirmRecover": "¿Recuperar el guardado anterior legible? Se sustituirá el progreso actual.",
+    "imported": "Campaña importada. Ya puedes continuar.",
+    "recoveredNotice": "Guardado anterior recuperado.",
+    "readFailed": "No se pudo leer el archivo. Elige un JSON de campaña de menos de 20 MB.",
+    "issue": {
+      "unavailable": "No se pudo guardar. La partida sigue abierta, pero podrías perder progreso al recargar. Exporta una copia de la campaña.",
+      "invalid": "El guardado es inválido o está dañado. Se han conservado tus archivos. Importa una copia válida o recupera el guardado anterior.",
+      "incompatible": "Este guardado necesita otra versión del juego o del contenido. Se ha conservado sin cambios.",
+      "recovered": "El último guardado es ilegible. Se ha recuperado el anterior; pueden faltar algunas decisiones recientes.",
+      "historyReset": "Se ha recuperado la campaña, pero el historial anterior era incoherente. Deshacer empieza desde la mesa recuperada."
+    },
+    "investigators": "investigador(es)",
+    "cancel": "Cancelar",
+    "replace": "Importar este guardado",
+    "pasteTitle": "Importar desde texto",
+    "pasteLabel": "Pega el JSON de la campaña",
+    "preview": "Validar y previsualizar"
+  },
+  "offlineCard": {
+    "help": "Datos locales. Las habilidades y sus costes aparecen en las opciones de la mesa; consulta también las palabras clave.",
+    "types": {
+      "investigator": "Investigador",
+      "asset": "Apoyo",
+      "event": "Evento",
+      "skill": "Habilidad",
+      "treachery": "Traición",
+      "enemy": "Enemigo",
+      "location": "Lugar",
+      "agenda": "Plan",
+      "act": "Acto"
+    },
+    "summary": {
+      "12001": "Tras un ataque en tu localización, lucha una vez por ronda. Signo arcano: un daño a un enemigo de allí.",
+      "12004": "Investigar con éxito permite robar una carta por ronda. El signo arcano con éxito da una carta y un recurso.",
+      "12007": "Una acción adicional por turno solo sirve para evitar. El signo arcano permite desenfrentarse y moverse.",
+      "12010": "Después de jugar un apoyo, devuelve otro apoyo o juega otro que puedas pagar, una vez por ronda.",
+      "12013": "Una vez por ronda, recibe horror directo para comprometer una habilidad del descarte; vuelve al mazo tras la prueba.",
+      "12097": "Descarta cartas elegidas hasta quedarte con una; las debilidades no se descartan voluntariamente.",
+      "12098": "En tu zona de amenaza: salud y cordura máximas se reducen en uno. Su acción la baraja en el mazo.",
+      "12099": "Distante. Aparece en una localización vacía más lejana. Al acabar investigación, gana perdición si está preparado y sin perdición.",
+      "12106": "Umbral 3. Permite parlamentar con Bystanders. Al avanzar se prueba voluntad; fallar causa horror.",
+      "12107": "Umbral 5. Al avanzar, añade cartas Fire al descarte y prueba agilidad para evitar daño.",
+      "12108": "Umbral 10. Colocar perdición roba Fire del descarte. Al avanzar derrota a los investigadores restantes.",
+      "12109": "Al final de la ronda, gasta dos pistas por investigador para abandonar la primera etapa.",
+      "12110": "Avanza cuando todos los investigadores que siguen en juego llegan a Miskatonic Quad.",
+      "12111": "Al final de la ronda, los investigadores en Orne Library pueden pagar tres pistas por investigador.",
+      "12112": "Las pistas del grupo permiten dañar a un enemigo local. Puedes retirarte. Derrotar al Servant avanza el acto.",
+      "12134": "Umbral 10. Puedes retirarte. Al avanzar, cada investigador recibe Mark of Elokoss.",
+      "12135": "Umbral 8. Puedes retirarte. Al avanzar se retiran todos los investigadores restantes.",
+      "12136": "Gasta dos pistas por investigador en grupo para revelar la carta bajo tu localización. Resuelve seis enemigos Élite para terminar.",
+      "12169": "Umbral 6. Al avanzar aparece el Servant y se prueba voluntad para evitar horror directo.",
+      "12170": "Umbral 10. Al avanzar aparece Mother of Flame y la futura perdición se convierte en daño directo.",
+      "12171": "Etapa final: la futura perdición se convierte en daño directo. Derrota a Elokoss para terminar.",
+      "12172": "Entrar en la cisterna cuesta tres pistas por investigador en grupo y avanza el acto.",
+      "12173": "Las pistas del grupo apagan Fire de tu localización. Derrota a Elokoss; los Sectarios preparados van hacia la cisterna.",
+      "12175": "Entrar sin revelar cuesta una pista por investigador en grupo. Superar la prueba de la válvula derrota a todos los enemigos y mata a quienes no se retiraron.",
+      "12179": "Masivo, represalia. No se mueve ni ataca por oportunidad. Paga tus pistas para colocar pruebas; cinco detienen el renacimiento.",
+      "12179b": "Cazador masivo. Tras evitarla se prepara, pero no ataca a ese investigador durante la ronda."
+    },
+    "backSummary": {
+      "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
+      "12110": "Se abre el campus y el Servant queda apartado temporalmente.",
+      "12111": "Elige el portador de Armitage; el Servant vuelve al patio con pistas. Roba Fire.",
+      "12112": "Resuelve el encuentro con Armitage y decide si te quedas para salvar la universidad.",
+      "12136": "Registra el heraldo y el destino del Servant; la experiencia depende de los Élite resueltos.",
+      "12172": "Aparece Elokoss, Fire entra en los encuentros y queda disponible Sluice Control.",
+      "12173": "Derrotar a Elokoss conduce a la resolución uno."
+    },
+    "victory": "Victoria {n}"
   }
 }

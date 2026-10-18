@@ -58,6 +58,7 @@ registerPlayerCards([
   {
     code: DR_ARMITAGE,
     name: 'Dr. Henry Armitage',
+    story: true,
     type: 'asset',
     class: 'neutral',
     traits: ['Ally', 'Miskatonic'],

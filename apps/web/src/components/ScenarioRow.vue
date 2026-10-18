@@ -6,6 +6,7 @@ import { cardBackImage } from '../game/assets'
 import { showPile } from '../game/pile'
 import ChaosTokenView from './ChaosTokenView.vue'
 import GameCard from './GameCard.vue'
+import ScenarioDeckViewer from './ScenarioDeckViewer.vue'
 import TokenBadge from './TokenBadge.vue'
 import TableTarget from './TableTarget.vue'
 
@@ -44,9 +45,9 @@ const sortedBag = computed(() =>
 
 <template>
   <div class="scenario-row" role="region" :aria-label="t('table.scenario')">
-    <TableTarget v-if="agenda" target="agenda">
-      <div class="slot folder">
-        <span class="folder-tab">{{ t('table.agenda') }}</span>
+    <div v-if="agenda" class="slot folder">
+      <ScenarioDeckViewer kind="agenda" :cards="state.agendas" :active-index="state.agendaIndex" />
+      <TableTarget target="agenda">
         <GameCard
           :code="agenda.code ?? ''"
           :name="agenda.name"
@@ -62,12 +63,12 @@ const sortedBag = computed(() =>
             :title="t('table.doom')"
           />
         </GameCard>
-      </div>
-    </TableTarget>
+      </TableTarget>
+    </div>
 
-    <TableTarget v-if="act" target="act">
-      <div class="slot folder">
-        <span class="folder-tab">{{ t('table.act') }}</span>
+    <div v-if="act" class="slot folder">
+      <ScenarioDeckViewer kind="act" :cards="state.acts" :active-index="state.actIndex" />
+      <TableTarget target="act">
         <GameCard :code="act.code ?? ''" :name="act.name" :width="88" landscape color="#2c5a7a">
           <TokenBadge
             v-if="actClues !== null"
@@ -78,8 +79,8 @@ const sortedBag = computed(() =>
             :title="t('table.clues')"
           />
         </GameCard>
-      </div>
-    </TableTarget>
+      </TableTarget>
+    </div>
 
     <!-- Cartas de Historia en juego (facción aliada y rival en La gala). -->
     <TableTarget v-for="s in stories" :key="s.code" :target="`story:${s.code}`">

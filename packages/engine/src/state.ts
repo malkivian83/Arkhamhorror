@@ -30,6 +30,28 @@ export function getLocation(state: GameState, id: LocationId): Location {
   return location
 }
 
+/** Printed health/sanity plus continuous modifiers; trauma still uses printed values. */
+export function effectiveVitals(
+  state: GameState,
+  investigator: Investigator,
+): { health: number; sanity: number } {
+  const attached = Object.values(state.treacheries).filter(
+    (t) => t.placement.type === 'threatArea' && t.placement.investigator === investigator.id,
+  )
+  return {
+    health: Math.max(
+      0,
+      investigator.health +
+        attached.reduce((n, t) => n + (treacheryBehavior(t.code)?.healthModifier ?? 0), 0),
+    ),
+    sanity: Math.max(
+      0,
+      investigator.sanity +
+        attached.reduce((n, t) => n + (treacheryBehavior(t.code)?.sanityModifier ?? 0), 0),
+    ),
+  }
+}
+
 /** Velo actual de una localización, con los modificadores de la ronda (nunca menos de 0). */
 export function shroudOf(state: GameState, id: LocationId): number {
   const location = getLocation(state, id)
