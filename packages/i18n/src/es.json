@@ -88,7 +88,28 @@
     "whoPaysClue": "¿Quién gasta la siguiente pista? (faltan {n})",
     "armitageControl": "¿Quién toma el control del Dr. Henry Armitage?",
     "searchFire": "¿Dónde buscáis las cartas de Fire!?",
-    "arrangeCards": "Coloca las cartas que has mirado arriba o abajo de tu mazo"
+    "arrangeCards": "Coloca las cartas que has mirado arriba o abajo de tu mazo",
+    "gala": {
+      "bedroomBonus": "¿Gastas 1 pista para +2 de daño?",
+      "chooseSpellbound": "Elige una carta hechizada para darle la vuelta",
+      "coldChoice": "Frío inexplicable: elige qué pierdes",
+      "damageOrHorror": "¿Daño u horror?",
+      "fumes": "Gases nocivos: ¿huir o aguantar la respiración?",
+      "heal": "¿A quién curas?",
+      "jewelMove": "¿Qué ficha de la Joya mueves y a qué enemigo?",
+      "jewelToken": "La Joya de Sarnath",
+      "loseGuest": "El Exangüe se lleva a uno de tus Invitados",
+      "mystery": "El misterio es: {card}",
+      "nameACard": "Nombra una carta del mazo de encuentros",
+      "nameTrait": "Nombra un rasgo",
+      "objective": "¿Completáis el objetivo de vuestra facción? (cuesta {n} pistas en grupo)",
+      "prudence": "Prudence Douglas: descarta hasta 2 cartas que no sean Élite",
+      "pushedAsset": "Elige un apoyo para barajarlo en tu mazo",
+      "sensed": "Percibes la Joya: era {card}",
+      "spellbindGuest": "Elige qué Invitado queda hechizado",
+      "takeJewel": "¿Tomas el control de la Joya de Sarnath?",
+      "toolClue": "¿Dónde descubres la pista?"
+    }
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -168,7 +189,33 @@
     "fireFromDiscard": "Solo en la pila de descartes de encuentros",
     "fireFromBoth": "En el mazo y en la pila de descartes de encuentros",
     "placeOnTop": "{card} arriba del mazo",
-    "placeOnBottom": "{card} al fondo del mazo"
+    "placeOnBottom": "{card} al fondo del mazo",
+    "takeDamage": "Recibir {n} daño",
+    "heal": {
+      "damage": "Curar 1 daño de {name}",
+      "horror": "Curar 1 horror de {name}"
+    },
+    "gala": {
+      "completeObjective": "Sí, gastar {n} pistas y terminar la fiesta",
+      "discardFromHand": "Descartar una carta de la mano",
+      "drawIt": "Robarla",
+      "flee": "Huir ([agility] 3)",
+      "holdBreath": "Aguantar la respiración ([combat] 3)",
+      "jewelDamage": "Poner 1 daño en la Joya",
+      "jewelMove": "Mover 1 {kind} a {enemy}",
+      "jewelRemove": "Quitar 1 {kind} de la Joya",
+      "keepRest": "Dejar el resto",
+      "leaveDiscarded": "Dejarla en el descarte",
+      "namedCard": "{card}",
+      "notYet": "Todavía no",
+      "pushedAsset": "{card}",
+      "removeGuest": "Perder a {card}",
+      "spellbindGuest": "{card}",
+      "spendClueDamage": "Gastar 1 pista: +2 de daño",
+      "takeJewel": "Tomar la Joya",
+      "trait": "{trait}",
+      "unspell": "Liberar a {card}"
+    }
   },
   "phase": {
     "setup": "Preparación",
@@ -232,7 +279,58 @@
     "openSluice": "Abrir la compuerta (agilidad o combate 5)",
     "codexSearch": "Buscar y jugar una carta del códex",
     "shuffleGoldBug": "Barajar The Gold Bug en el mazo",
-    "heavyFightWith": "Ataque pesado con {card}: luchar contra {enemy}"
+    "heavyFightWith": "Ataque pesado con {card}: luchar contra {enemy}",
+    "gala": {
+      "archibaldHunt": "Archibald Hudson: busca un enemigo y gana 3 recursos",
+      "arseneDraw": "Arsène Renard: antigüedad por 1 carta",
+      "arseneGain": "Arsène Renard: antigüedad por 2 recursos",
+      "arsenePlant": "Arsène Renard: 1 antigüedad en cada localización",
+      "artGallery": "Galería de arte: 2 pistas aquí y 2 recursos",
+      "bain": "William Bain: llega un Invitado al Vestíbulo ({n} recursos)",
+      "bedroomFight": "Dormitorio: combatir contra {enemy} ({skill})",
+      "breakLantern": "Romper el aura de La Lámpara",
+      "breakSpell": "Sala de la Lámpara: romper un hechizo ([willpower] 4)",
+      "bribeDiscard": "Sobornar a {enemy} para que se vaya (3 recursos)",
+      "bribeEvade": "Sobornar a {enemy} para evitarlo (1 recurso)",
+      "buyDrink": "Bar: invitar a una copa (1 recurso)",
+      "callahanFight": "Special Agent Callahan: combatir contra {enemy} (−1 dificultad)",
+      "carl": "Carl Sanford: {card} a la zona de victoria y robar 1",
+      "channelJewel": "Joya de Sarnath: mover una ficha a un enemigo",
+      "claire": "Claire Wilson: +1 a esta prueba",
+      "convinceDeclan": "Convencer a Declan Pearce ({n} pistas)",
+      "dance": "Salón de baile: sacar a bailar a 2 Invitados",
+      "drawMystery": "Robar el misterio de aquí",
+      "elizabeth": "Elizabeth Conrad: {name} se mueve",
+      "exhaustEnemy": "Salón: agotar a {enemy}",
+      "fashionablyLate": "Vestíbulo: llega un Invitado ({n} recursos)",
+      "giveGuest": "Dar {card} a {name}",
+      "horacio": "Horacio Martinez: agotar a {enemy}",
+      "johnny": "Johnny Valone: robar 1 y ganar 1 recurso",
+      "lookMystery": "Mirar el misterio de aquí ({n} pistas)",
+      "lucas": "Lucas Tetlow: buscar un Objeto",
+      "miranda": "Miranda Keeper: antigüedad y +2 a la siguiente prueba",
+      "moveDamage": "Archibald Hudson: 1 daño de {card} a {enemy}",
+      "myaInvestigate": "Dr. Mya Badry: investigar con {n} de [intellect]",
+      "nameACard": "Sala de la Lámpara: nombrar una carta",
+      "novaFight": "Nova Malone: combatir contra {enemy}",
+      "olney": "Thomas Olney: nombrar un rasgo",
+      "parleyGuest": "Negociar con {card} ({skill} 3)",
+      "parleyRival": "Negociar con {enemy}",
+      "prudence": "Prudence Douglas: mirar las 4 primeras de encuentros",
+      "purgeJewel": "Purificar la Joya ([combat] o [agility] 3)",
+      "rally": "Valeriya Antonova: +{n} a tu siguiente prueba",
+      "rallyGuest": "Valeriya Antonova: preparar a {card} y +{n} a tu siguiente prueba",
+      "raymond": "Raymond Loggins: cancelar {card}",
+      "sarahFight": "Sarah Van Shaw: combatir contra {enemy} (+{n} daño)",
+      "secretDoor": "Buscar la salida de la Puerta secreta",
+      "sellAntiquity": "Miranda Keeper: vender una antigüedad (+2 recursos)",
+      "senseJewel": "Logia: percibir la Joya",
+      "studyJewel": "Biblioteca: estudiar la Joya ([intellect] 3)",
+      "takeJewel": "Tomar la Joya de Sarnath",
+      "takeLantern": "Tomar La Lámpara Mortecina ([combat] o [agility] 3)",
+      "unspell": "Liberar a {card}",
+      "violentCommands": "Órdenes violentas: 2 daños a {name}"
+    }
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -267,7 +365,42 @@
     "enemyImmune": "{enemy} no puede recibir daño (hay fuego en su localización)",
     "lead": "{name} es el investigador jefe",
     "experience": "{name}: {bonus} de bonificación/penalización + {victory} de victoria = {amount} XP.",
-    "chaosTokensAdded": "{scenario} añade {n} ficha(s) a la bolsa de campaña."
+    "chaosTokensAdded": "{scenario} añade {n} ficha(s) a la bolsa de campaña.",
+    "step": {
+      "mythosBegins": "1.1 · Empieza la fase de mitos",
+      "placeDoom": "1.2 · Se coloca 1 perdición en el plan",
+      "checkDoom": "1.3 · Se comprueba el umbral de perdición",
+      "drawEncounter": "1.4 · Cada investigador roba una carta de encuentro",
+      "mythosEnds": "1.5 · Termina la fase de mitos",
+      "investigationBegins": "2.1 · Empieza la fase de investigación",
+      "turnBegins": "2.2 · Empieza el turno de {name}",
+      "takeActions": "2.2.1 · {name} realiza sus acciones",
+      "turnEnds": "2.2.2 · Termina el turno de {name}",
+      "investigationEnds": "2.3 · Termina la fase de investigación",
+      "enemyBegins": "3.1 · Empieza la fase de enemigos",
+      "huntersMove": "3.2 · Los enemigos cazadores se mueven",
+      "resolveAttacks": "3.3 · Los enemigos enfrentados atacan",
+      "enemyEnds": "3.4 · Termina la fase de enemigos",
+      "upkeepBegins": "4.1 · Empieza la fase de mantenimiento",
+      "resetActions": "4.2 · Se reinician las acciones",
+      "readyExhausted": "4.3 · Se preparan las cartas agotadas",
+      "drawAndGainResource": "4.4 · Cada investigador roba 1 carta y gana 1 recurso",
+      "checkHandSize": "4.5 · Se comprueba el tamaño de mano (máximo 8)",
+      "upkeepEnds": "4.6 · Termina la fase de mantenimiento (y la ronda)"
+    },
+    "cannotPay": "{name} ya no puede pagar {card}: no se juega",
+    "storyEnters": "Entra en juego la carta de Historia {name}",
+    "gala": {
+      "eventCancelled": "Ward of Preservation cancela el evento",
+      "guessed": "¡Acierto! {card} se cancela y se descarta",
+      "missed": "Fallo: era {card}",
+      "guestArrives": "Llega un Invitado: {card}",
+      "nothingToHeal": "No hay nada que curar",
+      "olney": "Se descarta {card}",
+      "removed": "{card} se retira de la partida",
+      "rivalDefeated": "La facción rival ({name}) queda derrotada",
+      "spellbound": "{card} queda hechizado"
+    }
   },
   "table": {
     "log": "Registro de partida",
@@ -352,7 +485,12 @@
     "cardBeneath": "Hay una carta boca abajo debajo de esta localización",
     "officialText": "Texto oficial (inglés)",
     "summaryText": "Resumen en español",
-    "mulliganHint": "Haz clic en las cartas de tu mano que quieras cambiar."
+    "mulliganHint": "Haz clic en las cartas de tu mano que quieras cambiar.",
+    "story": "Historia",
+    "spellbound": "Invitado hechizado (boca abajo)",
+    "scenarioDeck": {
+      "guests": "Invitados"
+    }
   },
   "difficulty": {
     "easy": "Fácil",
@@ -537,6 +675,85 @@
     "brethrenOfAsh": {
       "prologueTitle": "Prólogo: un glorioso renacer",
       "prologue": "Arkham nunca ha sido una ciudad normal: cada semana el periódico trae otro crimen atroz o otra desaparición, y ni los más escépticos pueden negar que algo va mal.\n\nAun así, la gente prefiere mirar hacia otro lado. Seis meses después de la gran inundación la ciudad se reconstruye y presume de progreso, pero entre las cenizas de los últimos incendios algunos susurran que alguien, o algo, quiere renacer."
+    },
+    "midwinterGala": {
+      "intro1Title": "La gala del ecuador del invierno",
+      "intro1": "Una noche helada de invierno, el misterioso Club de la Lámpara te ha invitado a una fiesta en su vieja mansión de Kingsport. Te dan una máscara de color hueso y te unes a la élite de Nueva Inglaterra entre cuadros oníricos y esculturas inquietantes.",
+      "intro2Title": "La Joya de Sarnath",
+      "intro2": "Declan Pearce, nomarca del club, presenta la atracción de la noche: la Joya de Sarnath, una gema que dicen capaz de cumplir deseos. Entre los invitados notas la mirada de un personaje enmascarado, alto y silencioso. Tu invitación llegó con una nota que prometía una recompensa si ayudabas a conseguir la Joya; por fin encuentras a tu contacto.",
+      "contactTitle": "¿Quién es tu contacto misterioso?",
+      "contact": "Elegid qué facción pidió vuestra ayuda: será vuestra facción aliada y marcará vuestro objetivo. Otra facción, al azar, será vuestra rival.",
+      "contactChoice": {
+        "foundation": "Una agente seria con traje a medida: la Fundación",
+        "miskatonic": "El decano Caldwell Philips: la Universidad Miskatonic",
+        "syndicate": "Un hombre de negocios con puro: el Sindicato",
+        "lodge": "Carl Sanford: la Logia del Crepúsculo de Plata",
+        "kingsport": "Un capitán con barba y abrigo gastado: los Lugareños de Kingsport"
+      },
+      "faction": {
+        "foundationTitle": "La Fundación",
+        "foundation": "La agente Valeriya Antonova investiga desapariciones en nombre de «las autoridades» y sospecha del Club de la Lámpara y de Declan Pearce. Cree que la Joya puede ser el origen de fenómenos muy extraños.",
+        "miskatonicTitle": "Universidad Miskatonic",
+        "miskatonic": "El decano Caldwell Philips quiere estudiar la antigua gema, desaparecida de un monasterio tibetano en el siglo XII. Si hubiera forma de examinarla más a fondo…",
+        "syndicateTitle": "El Sindicato",
+        "syndicate": "Johnny Valone te propone un negocio: nadie sospechará de ti, así que eres perfecto para hacerte con la Joya. La recompensa será generosa.",
+        "lodgeTitle": "La Logia del Crepúsculo de Plata",
+        "lodge": "Carl Sanford quiere la Joya para la colección de la Logia y sospecha que aquí pasa algo más. A cambio, te promete conocimiento y riqueza.",
+        "kingsportTitle": "Lugareños de Kingsport",
+        "kingsport": "El capitán William Bain te señala al personaje silencioso del rincón: le llaman «el Exangüe» y estará detrás de lo que planee el club. La Joya no puede traer nada bueno en sus manos."
+      },
+      "setupTitle": "Preparación",
+      "setup": "Cada investigador empieza en el Vestíbulo. El Líder de vuestra facción entra en juego bajo vuestro control; sus Invitados y otros del mazo de Invitados esperan en las salas de la planta baja. El Exangüe aguarda, agotado, en la Sala de la Lámpara con La Lámpara Mortecina. Los monstruos, Declan Pearce y la Joya de Sarnath se apartan.",
+      "interlude": {
+        "foundationTitle": "Interludio: la Joya fabulosa",
+        "foundation": "Declan Pearce aparece, agotado, en la Sala de la Lámpara. La Joya está vinculada al Exangüe (o a la Sala de la Lámpara si él no está en juego).",
+        "miskatonicTitle": "Interludio: la Joya fabulosa",
+        "miskatonic": "Declan Pearce aparece en la sala del primer piso más a la derecha con la Joya vinculada. No podrá recibir daño ni abandonar el juego mientras la tenga.",
+        "syndicateTitle": "Interludio: la Joya fabulosa",
+        "syndicate": "La Joya, Declan Pearce y la carta superior de encuentros se esconden, barajados, bajo las salas del primer piso como «misterios».",
+        "lodgeTitle": "Interludio: la Joya fabulosa",
+        "lodge": "La Joya y Declan Pearce se barajan con 7 cartas de encuentros y van al fondo del mazo de encuentros.",
+        "kingsportTitle": "Interludio: la Joya fabulosa",
+        "kingsport": "Declan Pearce aparece, agotado, en la Sala de la Lámpara con la Joya vinculada, que tiene daño y perdición. Llega un nuevo Invitado al Vestíbulo."
+      },
+      "mayhemTitle": "Se desata el caos",
+      "mayhem": "El Exangüe avanza hacia ti, se tambalea y cae. Su traje se rasga y de él brotan tentáculos y fauces: ahora es una abominación.",
+      "calmTitle": "Un momento de calma",
+      "calm": "El alboroto se apaga un instante. Cada investigador puede curar 1 horror de un investigador o Invitado de su localización.",
+      "goodbyeTitle": "Una despedida de Kingsport",
+      "goodbye": "La fiesta se convierte en una masacre. Todos los investigadores son derrotados y sufren 1 trauma mental.",
+      "noResolutionTitle": "Sin resolución",
+      "noResolution": "Despiertas helado sobre la nieve, frente a la mansión vacía. No recuerdas cómo escapaste, pero nunca olvidarás esta gala.",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "Ves la silueta de tu contacto recortada contra la luna, frente a la mansión. Habéis conseguido la Joya de Sarnath.",
+      "resolution2Title": "Resolución 2: la Fundación",
+      "resolution2": "La agente Antonova informará a sus superiores; de momento te deja la Joya, pero volverá a por ella. Te preguntas si no serás su conejillo de Indias.",
+      "resolution3Title": "Resolución 3: la Universidad",
+      "resolution3": "El decano está encantado con la gema, pero prefiere no guardarla en el campus. Te pide que se la lleves a su despacho la semana que viene.",
+      "resolution4Title": "Resolución 4: el Sindicato",
+      "resolution4": "Tras lo visto esta noche, Valone no quiere ni acercar la Joya a Arkham: te la deja como recuerdo, con un fajo de billetes por salvarle el pellejo.",
+      "resolution5Title": "Resolución 5: la Logia",
+      "resolution5": "Sanford grita a sus adláteres; tú te guardas la Joya y te escabulles. Crees que estará más segura contigo que con la Logia.",
+      "resolution6Title": "Resolución 6: Kingsport",
+      "resolution6": "El capitán Bain te pone la Joya en la mano: dice que puede hacer el bien en manos como las tuyas. Cuando alzas la vista, ha desaparecido.",
+      "resolution7Title": "Resolución 7",
+      "resolution7": "Desde el taxi ves el rostro del Exangüe mirándote desde una ventana. Kingsport, ciudad de nieblas y leyendas: ahora entiendes por qué.",
+      "score": {
+        "total": "Puntuación total: {n}",
+        "manorsWithNoClues": "Localizaciones de la mansión sin pistas: {points}",
+        "guestAssetsControlled": "Invitados controlados: {points}",
+        "noSpellboundInPlay": "Ninguna carta hechizada: {points}",
+        "agenda1Or2": "Plan 1 o 2 en juego: {points}",
+        "bloodlessManInVictory": "El Exangüe en la zona de victoria: {points}",
+        "paleLanternInVictory": "La Lámpara Mortecina en la zona de victoria: {points}",
+        "declanPearceInVictory": "Declan Pearce en la zona de victoria: {points}",
+        "rivalInVictory": "Facción rival derrotada: {points}",
+        "damageBonus": "Poco daño: {points}",
+        "horrorBonus": "Poco horror: {points}",
+        "hardMode": "Dificultad difícil: {points}",
+        "expertMode": "Dificultad experto: {points}",
+        "factionBonus": "Puntos de vuestra facción: {points}"
+      }
     }
   },
   "playmat": {
@@ -600,13 +817,16 @@
     "scenario": {
       "spreading-flames": "Spreading Flames",
       "smoke-and-mirrors": "Smoke and Mirrors",
-      "queen-of-ash": "Queen of Ash"
+      "queen-of-ash": "Queen of Ash",
+      "the-midwinter-gala": "Escenario independiente"
     },
     "names": {
-      "brethren-of-ash": "Brethren of Ash"
+      "brethren-of-ash": "Brethren of Ash",
+      "the-midwinter-gala": "La gala del ecuador del invierno"
     },
     "choose": "Elige la campaña",
-    "xpBreakdown": "Desglose de experiencia"
+    "xpBreakdown": "Desglose de experiencia",
+    "standalone": "Escenario independiente"
   },
   "class": {
     "guardian": "Guardián",
@@ -718,6 +938,106 @@
     "massive": {
       "title": "Masivo",
       "body": "Un enemigo masivo preparado cuenta como enfrentado a cada investigador de su localización, ataca a todos ellos en la fase de enemigos y no se agota hasta terminar sus ataques. No se puede colocar en una zona de amenaza."
+    },
+    "patrol": {
+      "title": "Errante",
+      "body": "En la fase de enemigos (paso 3.2), cada enemigo errante preparado y no enfrentado se mueve una localización por el camino más corto hacia su destino (El Exangüe: la localización más cercana con un Invitado). Con varios destinos, decide el jefe."
+    },
+    "guests": {
+      "title": "Invitados",
+      "body": "Los Invitados son apoyos de historia que esperan en las localizaciones. Negocia con ellos (prueba de uno de sus iconos, dificultad 3) para tomar su control; no ocupan ranura de aliado. Sus habilidades solo las puede usar quien los controla."
+    },
+    "spellbound": {
+      "title": "Hechizado",
+      "body": "Un Invitado hechizado se pone boca abajo en su localización, sin dueño y sin daño ni horror. Si fuera a quedar hechizado un Líder, se retira de la partida. Al darle la vuelta se prepara y deja de estar hechizado."
+    },
+    "score": {
+      "title": "Puntuación",
+      "body": "Al final de la partida se suman puntos por tareas: localizaciones de la mansión sin pistas, Invitados controlados, ninguna carta hechizada, terminar en el plan 1 o 2, enemigos importantes en la zona de victoria, poco daño u horror, la dificultad y los puntos de tu facción. Cada 10 puntos dan 1 de experiencia (máximo 5)."
+    }
+  },
+  "phaseStep": {
+    "tracker": "Pasos de la ronda",
+    "window": "Ventana de jugador",
+    "mythosBegins": {
+      "n": "1.1",
+      "text": "Empieza la fase de mitos"
+    },
+    "placeDoom": {
+      "n": "1.2",
+      "text": "Se coloca 1 perdición en el plan"
+    },
+    "checkDoom": {
+      "n": "1.3",
+      "text": "Se comprueba el umbral de perdición"
+    },
+    "drawEncounter": {
+      "n": "1.4",
+      "text": "Cada investigador roba una carta de encuentro"
+    },
+    "mythosEnds": {
+      "n": "1.5",
+      "text": "Termina la fase de mitos"
+    },
+    "investigationBegins": {
+      "n": "2.1",
+      "text": "Empieza la fase de investigación"
+    },
+    "turnBegins": {
+      "n": "2.2",
+      "text": "Empieza el turno del siguiente investigador"
+    },
+    "takeActions": {
+      "n": "2.2.1",
+      "text": "El investigador realiza sus acciones"
+    },
+    "turnEnds": {
+      "n": "2.2.2",
+      "text": "Termina el turno del investigador"
+    },
+    "investigationEnds": {
+      "n": "2.3",
+      "text": "Termina la fase de investigación"
+    },
+    "enemyBegins": {
+      "n": "3.1",
+      "text": "Empieza la fase de enemigos"
+    },
+    "huntersMove": {
+      "n": "3.2",
+      "text": "Los enemigos cazadores se mueven"
+    },
+    "resolveAttacks": {
+      "n": "3.3",
+      "text": "Los enemigos enfrentados atacan"
+    },
+    "enemyEnds": {
+      "n": "3.4",
+      "text": "Termina la fase de enemigos"
+    },
+    "upkeepBegins": {
+      "n": "4.1",
+      "text": "Empieza la fase de mantenimiento"
+    },
+    "resetActions": {
+      "n": "4.2",
+      "text": "Se reinician las acciones"
+    },
+    "readyExhausted": {
+      "n": "4.3",
+      "text": "Se preparan las cartas agotadas"
+    },
+    "drawAndGainResource": {
+      "n": "4.4",
+      "text": "Cada investigador roba 1 carta y gana 1 recurso"
+    },
+    "checkHandSize": {
+      "n": "4.5",
+      "text": "Se comprueba el tamaño de mano (máximo 8)"
+    },
+    "upkeepEnds": {
+      "n": "4.6",
+      "text": "Termina la fase de mantenimiento (y la ronda)"
     }
   },
   "session": {

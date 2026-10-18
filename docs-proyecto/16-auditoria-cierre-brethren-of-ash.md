@@ -145,3 +145,9 @@ La partida que existía antes de las pruebas se exportó y **se restauró con el
 - La referencia se revisó como código y datos locales; no se utilizó su servicio online ni se incorporó multijugador.
 
 Con estas condiciones documentadas, la campaña queda como base de regresión para mantener el contenido actual y añadir después otro paquete sin perder estas garantías.
+
+## 9. Integración con la versión remota
+
+El 18/10/2026 se integró el cierre con `origin/main` en la revisión `56ab394`, que incorpora La gala del ecuador del invierno, los pasos de fase y textos adicionales. Se conservaron ambos trabajos y se adaptó la validación de sesiones para admitir el escenario independiente y sus seis resoluciones. Las pruebas añadidas verifican el guardado y la restauración de sus Invitados e historial, así como las imágenes de sus segundas caras.
+
+La versión integrada supera **441 pruebas en 32 archivos**, los controles de tipos de los seis proyectos, lint, formato y compilación web. El paquete JavaScript pasa a 645,95 kB, 197,52 kB comprimido. Estos controles de integración complementan la aceptación de Brethren of Ash anterior; no amplían la auditoría funcional de cierre a La Gala.

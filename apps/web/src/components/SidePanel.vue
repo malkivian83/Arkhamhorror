@@ -9,6 +9,7 @@ import { useGameStore } from '../stores/game'
 import GameCard from './GameCard.vue'
 import KeywordsPanel from './KeywordsPanel.vue'
 import SessionTools from './SessionTools.vue'
+import PhaseTracker from './PhaseTracker.vue'
 
 const props = defineProps<{ state: GameState }>()
 const game = useGameStore()
@@ -51,6 +52,7 @@ watch(
       <span>{{ t(`phase.${state.phase}`) }}</span>
       <button type="button" class="quit" :title="t('setup.quit')" @click="quit">✕</button>
     </div>
+    <PhaseTracker :state="state" />
 
     <div class="undo">
       <span>↶ {{ t('undo.title') }}</span>
@@ -140,7 +142,10 @@ watch(
       <li
         v-for="(entry, n) in entries"
         :key="n"
-        :class="{ heading: entry.key === 'log.round' || entry.key === 'log.phase' }"
+        :class="{
+          heading: entry.key === 'log.round' || entry.key === 'log.phase',
+          step: entry.key.startsWith('log.step.'),
+        }"
       >
         {{ label(entry.key, entry.params ?? {}) }}
       </li>
@@ -285,6 +290,14 @@ h4 {
 }
 .log li.heading::before {
   content: '';
+}
+/* Pasos de fase: más discretos que el resto de entradas. */
+.log li.step {
+  font-size: 0.78rem;
+  color: #6b5a3a;
+}
+.log li.step::before {
+  content: '▸ ';
 }
 .undo {
   display: flex;

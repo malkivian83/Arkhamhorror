@@ -3,7 +3,7 @@
 > Estado actualizado el 18/10/2026: escenario, cinco mazos iniciales y cartas de jugador disponibles. La evidencia de aceptación y los límites de la versión están en la [auditoría de cierre](16-auditoria-cierre-brethren-of-ash.md).
 
 Análisis para implementar el primer escenario de la caja básica de 2026.
-Fuentes: guía de campaña y reglamento (`reglas/`, fuera de git), la base de
+Fuentes: guía de campaña y reglamento (`reglas/`), la base de
 datos pública ArkhamDB (`core_2026`) para los valores numéricos y el proyecto
 de referencia (`D:\referencia\ArkhamHorror-main`) para las conexiones y los valores
 "por investigador". **No se copia el texto de las cartas**: aquí se describen sus

@@ -1,4 +1,4 @@
-import { treacheryBehavior } from './content'
+import { scenarioBehavior, treacheryBehavior } from './content'
 import { EngineError } from './errors'
 import type {
   Enemy,
@@ -9,6 +9,7 @@ import type {
   Location,
   LocationId,
   Message,
+  PlacedAsset,
   Prey,
 } from './types'
 
@@ -57,7 +58,8 @@ export function shroudOf(state: GameState, id: LocationId): number {
   const attached = Object.values(state.treacheries)
     .filter((t) => t.placement.type === 'location' && t.placement.location === id)
     .reduce((sum, t) => sum + (treacheryBehavior(t.code)?.shroudModifier ?? 0), 0)
-  return Math.max(0, location.shroud + (location.shroudModifier ?? 0) + attached)
+  const scenario = scenarioBehavior(state.scenarioId)?.shroudModifier?.(state, location) ?? 0
+  return Math.max(0, location.shroud + (location.shroudModifier ?? 0) + attached + scenario)
 }
 
 /**
@@ -68,19 +70,27 @@ export function recomputeConnections(state: GameState): GameState {
   const face = (l: Location) =>
     !l.revealed && l.unrevealed ? l.unrevealed : { symbol: l.symbol, connectsTo: l.connectsTo }
   const all = Object.values(state.locations)
-  if (!all.some((l) => l.symbol !== undefined)) return state
+  if (!all.some((l) => l.symbol !== undefined || l.extraConnections?.length)) return state
   const locations = { ...state.locations }
   for (const l of all) {
-    if (l.symbol === undefined) continue
-    const mine = face(l).connectsTo ?? []
-    locations[l.id] = {
-      ...l,
-      connections: all
-        .filter((o) => o.id !== l.id && mine.includes(face(o).symbol ?? ''))
-        .map((o) => o.id),
-    }
+    const bySymbol =
+      l.symbol === undefined
+        ? l.connections
+        : all
+            .filter(
+              (o) => o.id !== l.id && (face(l).connectsTo ?? []).includes(face(o).symbol ?? ''),
+            )
+            .map((o) => o.id)
+    const extra = (l.extraConnections ?? []).filter((id) => state.locations[id])
+    locations[l.id] = { ...l, connections: [...new Set([...bySymbol, ...extra])] }
   }
   return { ...state, locations }
+}
+
+/** Localización de un apoyo sin dueño (la del enemigo al que está vinculado, si es el caso). */
+export function placedLocation(state: GameState, placed: PlacedAsset): LocationId | null {
+  if (placed.placement.type === 'location') return placed.placement.location
+  return state.enemies[placed.placement.enemy]?.location ?? null
 }
 
 export function getEnemy(state: GameState, id: EnemyId): Enemy {

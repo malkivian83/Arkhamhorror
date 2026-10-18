@@ -13,7 +13,7 @@ Isabelle Barnes). Sustituye a Night of the Zealot como contenido inicial.
 - [ ] Resolver las [dudas abiertas](07-dudas-abiertas.md) (alcance, imágenes, textos).
 - [ ] Elegir nombre del producto (sin "Arkham Horror").
 - [x] Mover el código original fuera del repositorio (`E:\referencia\ArkhamHorror`).
-- [x] Guardar el reglamento en `reglas/` (fuera de git).
+- [x] Guardar el reglamento en `reglas/` (incluido en git: repositorio privado).
 - [x] Conseguir la guía de campaña de Brethren of Ash (preparación y resoluciones de los escenarios).
 - [x] Conexiones de las localizaciones de Spreading Flames (tomadas del proyecto de referencia).
 - [x] Crear el monorepo, CI (lint + tests) y `docker-compose` con Postgres.
@@ -72,6 +72,9 @@ Estado detallado del motor: [08-motor.md](08-motor.md).
 - [x] Escenario III: Queen of Ash ([12-queen-of-ash.md](12-queen-of-ash.md)). Brethren of Ash completa.
 - [x] Recompensa Collector en los mazos.
 - [x] Niveles de dificultad (bolsas del caos).
+
+- [x] Escenario independiente: La gala del ecuador del invierno ([14-la-gala.md](14-la-gala.md)).
+- [x] Pasos de las fases en pantalla y textos oficiales en español.
 
 ## Fase 5 · Crecimiento
 

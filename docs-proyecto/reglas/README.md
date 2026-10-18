@@ -1,7 +1,8 @@
 # Reglas del juego (PDF)
 
-Coloca aquí los PDF oficiales. **No se suben a git** (ver `.gitignore` de esta
-carpeta): son material con derechos de Fantasy Flight Games.
+PDF oficiales del juego (reglamentos, guías de campaña y FAQ). El repositorio es
+privado y de uso personal, así que **se suben a git** para poder consultarlos al
+desarrollar en cualquier equipo.
 
 ## Qué PDF son útiles (en inglés y en español si los tienes)
 

@@ -1,4 +1,4 @@
-import { campaignDefinition, startScenario, type Campaign } from '@lcg/cards'
+import { allCampaigns, campaignDefinition, startScenario, type Campaign } from '@lcg/cards'
 import {
   applyInput,
   ENGINE_VERSION,
@@ -72,7 +72,7 @@ function game(value: unknown): asserts value is GameState {
   if (value.engineVersion !== ENGINE_VERSION) fail('incompatible')
   if (value.interactive === false) fail('incompatible')
   if (
-    !['spreading-flames', 'smoke-and-mirrors', 'queen-of-ash'].includes(String(value.scenarioId)) ||
+    !allCampaigns().some((c) => c.scenarios.some((s) => s.id === value.scenarioId)) ||
     !difficulties.includes(String(value.difficulty)) ||
     typeof value.interactive !== 'boolean' ||
     !integer(value.rng) ||
@@ -252,7 +252,7 @@ function game(value: unknown): asserts value is GameState {
     value.outcome.type === 'resolution' &&
     (!integer(value.outcome.resolution) ||
       value.outcome.resolution < 1 ||
-      value.outcome.resolution > 3)
+      value.outcome.resolution > (value.scenarioId === 'the-midwinter-gala' ? 6 : 3))
   )
     fail()
   if (value.skillTest !== null) {

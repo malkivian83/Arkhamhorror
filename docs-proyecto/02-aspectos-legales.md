@@ -62,5 +62,6 @@ este mismo proyecto, OCTGN), pero es tolerancia, no permiso. Pautas:
 ## 4. Los PDF de reglas
 
 Son material con derechos de FFG. Para uso interno de desarrollo son útiles y
-razonables; guardarlos **fuera de git** (ver [reglas/](reglas/README.md)) y no
-copiar su texto literal dentro de la aplicación publicada.
+razonables. Decisión (2026-10-17): como el repositorio es privado y de uso personal,
+se guardan **en git** (ver [reglas/](reglas/README.md)), igual que las fichas y los
+textos oficiales. Si algún día se publica la aplicación, habría que retirarlos.

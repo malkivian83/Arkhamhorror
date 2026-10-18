@@ -21,6 +21,7 @@ tomando como referencia de estudio el proyecto `halogenandtoast/ArkhamHorror`
 | 11 | [Smoke and Mirrors](11-smoke-and-mirrors.md) | Escenario II: preparación, sospechosos y códex, reglas nuevas y resoluciones |
 | 12 | [Queen of Ash](12-queen-of-ash.md) | Escenario III: alcantarillas, Elokoss, conexiones que cambian y resoluciones |
 | 13 | [Añadir campañas](13-anadir-campanas.md) | Piezas genéricas para nuevas campañas, escenarios y cartas |
+| 14 | [La gala del ecuador del invierno](14-la-gala.md) | Escenario independiente: facciones, Invitados, Joya y puntuación |
 | 14 | [Propuesta de mesa móvil](diseno-movil/README.md) | Mano visible, navegación inferior y paneles sobre el mapa |
 | 15 | [Auditoría funcional de la referencia — 17/10/2026](15-auditoria-referencia-2026-10-17.md) | Ingeniería inversa, 110 oportunidades, inventario de contenido y prioridades para juego local; [backlog CSV](15-backlog-referencia-2026-10-17.csv) |
 | 16 | [Auditoría de cierre de Brethren of Ash](16-auditoria-cierre-brethren-of-ash.md) | Cierre local, 2.856 preparaciones, 104 contratos, recorridos reproducibles, recuperación y 12 comprobaciones de interfaz; [matriz de cartas](16-matriz-cartas-cierre.csv) |

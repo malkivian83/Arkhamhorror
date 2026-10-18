@@ -35,6 +35,37 @@ function initial(): Session {
 const encode = (data: Session) => JSON.stringify(data)
 
 describe('guardado de campaña y mesa', () => {
+  it('acepta la resolución 6 de La Gala y rechaza resoluciones fuera de su contenido', () => {
+    const campaign = newCampaign('the-midwinter-gala', ['joe'], 'standard')
+    const state = {
+      ...startScenario(campaign, 3),
+      pending: null,
+      queue: [],
+      outcome: { type: 'resolution' as const, resolution: 6 },
+    }
+    const data = session(state, { base: state, inputs: [], marks: [markOf(state)] }, campaign)
+    expect(decodeSession(encode(data))).toEqual(data)
+    data.state!.outcome = { type: 'resolution', resolution: 7 }
+    expect(() => decodeSession(encode(data))).toThrow()
+  })
+  it('guarda y restaura La Gala con sus cartas de Historia, Invitados e historial', () => {
+    const campaign = newCampaign('the-midwinter-gala', ['joe'], 'standard')
+    const base = startScenario(campaign, 3)
+    const inputs: PlayerInput[] = []
+    const marks = [markOf(base)]
+    let state = base
+    for (let step = 0; step < 10 && !Object.keys(state.placedAssets ?? {}).length; step++) {
+      const input = { investigator: state.pending!.investigator, choice: 0 }
+      inputs.push(input)
+      state = applyInput(state, input)
+      marks.push(markOf(state))
+    }
+    const data = session(state, { base, inputs, marks }, campaign)
+    expect(Object.keys(state.placedAssets ?? {}).length).toBeGreaterThan(0)
+    const storage = new MemoryStorage()
+    writeSession(storage, data)
+    expect(readSession(storage)).toEqual({ data })
+  })
   it('un diagnóstico reproduce una entrada fallida sin acceder a servicios externos', () => {
     const data = initial()
     const result = reproduceDiagnostic(

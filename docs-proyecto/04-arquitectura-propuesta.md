@@ -32,7 +32,7 @@ pero no su código. Stack decidido: TypeScript (ver [07](07-dudas-abiertas.md)).
 │  └─ web/           @lcg/web     Frontend Vue
 ├─ data/cards/       (futuro) Datos estáticos de cartas por set (en, es)
 └─ docs-proyecto/    Documentación (estos .md)
-   └─ reglas/        PDFs de reglas (fuera de git)
+   └─ reglas/        PDFs de reglas, guías y FAQ
 ```
 
 Los paquetes exportan directamente su código fuente TypeScript (`exports:

@@ -3,7 +3,7 @@
 > Cierre revisado el 18/10/2026: variantes de preparación, seis códices con 1/2/4 investigadores, resoluciones y continuidad ampliadas en la [auditoría de cierre](16-auditoria-cierre-brethren-of-ash.md).
 
 Implementado en `packages/cards/src/brethren-of-ash/smoke-and-mirrors.ts`.
-Fuentes: guía de campaña (`reglas/`, fuera de git), datos públicos de ArkhamDB
+Fuentes: guía de campaña (`reglas/`), datos públicos de ArkhamDB
 (`core_2026`) para los valores y el proyecto de referencia para las conexiones
 (símbolos de las localizaciones). **No se copia el texto de las cartas ni de la
 guía**: los efectos se describen con palabras propias y los textos de historia

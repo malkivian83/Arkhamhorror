@@ -20,8 +20,11 @@ import type {
   Investigator,
   InvestigatorId,
   Location,
+  LocationId,
   Message,
+  PlacedAsset,
   PlayerCardDef,
+  StoryCardInPlay,
   ReactionOption,
   ScenarioOutcome,
   SkillTest,
@@ -53,6 +56,45 @@ export interface ScenarioBehavior {
    * `EndScenario` marcado como `told`, que puede cambiar la resolución final.
    */
   resolution?: (state: GameState, outcome: ScenarioOutcome) => Message[]
+  /** Mensajes propios del escenario (`ScenarioSpecific`): devuelve el estado nuevo. */
+  specific?: (
+    state: GameState,
+    key: string,
+    data: Record<string, string | number | boolean>,
+  ) => GameState
+  /**
+   * Un apoyo controlado va a abandonar el juego (descartado o derrotado). Si devuelve
+   * mensajes, se resuelven en su lugar (Invitados que quedan hechizados).
+   */
+  assetLeavesPlay?: (state: GameState, asset: Asset) => Message[] | null
+  /** Habilidades del escenario para cualquier investigador (tarjeta de escenario). */
+  abilities?: AbilitiesFn<null>
+  /** Modificador a la prueba en curso por efectos del escenario (traiciones, enemigos, lugares). */
+  skillModifier?: (state: GameState, test: SkillTest) => number
+  /** El enemigo no puede recibir daño. */
+  enemyImmune?: (state: GameState, enemy: Enemy) => boolean
+  /** Modificador al combate/evasión de un enemigo (Savage Shantak). */
+  enemyStat?: (state: GameState, enemy: Enemy, stat: 'fight' | 'evade') => number
+  /** Modificador al velo de una localización (Parlor). */
+  shroudModifier?: (state: GameState, location: Location) => number
+  /** El acto solo se puede avanzar pagando pistas si se cumple (Meet and Greet). */
+  actAdvanceAllowed?: (state: GameState) => boolean
+  /** El investigador no puede comprometer cartas (William Bain rival). */
+  cannotCommit?: (state: GameState, investigator: InvestigatorId) => boolean
+  /** Al jugar un evento: si devuelve mensajes, sus efectos se cancelan y se resuelven estos. */
+  eventPlayed?: (state: GameState, investigator: InvestigatorId, code: CardCode) => Message[] | null
+  /** Acciones de cada investigador en su turno (Declan Pearce: 1 menos). */
+  actionsModifier?: (state: GameState, investigator: InvestigatorId) => number
+  forced?: (state: GameState, trigger: Trigger) => Message[]
+}
+
+/** Carta de Historia en juego: habilidades para cualquier investigador y forzados. */
+export interface StoryBehavior {
+  code: CardCode
+  abilities?: AbilitiesFn<StoryCardInPlay>
+  forced?: (state: GameState, trigger: Trigger, self: StoryCardInPlay) => Message[]
+  /** Texto de "Preparación" al entrar en juego. */
+  onEnter?: (state: GameState, self: StoryCardInPlay) => Message[]
 }
 
 export interface TreacheryBehavior {
@@ -73,6 +115,8 @@ export interface TreacheryBehavior {
   healthModifier?: number
   sanityModifier?: number
   cannotDiscard?: boolean
+  /** Unida a una localización: los investigadores no pueden salir de ella (Secret Door). */
+  blocksLeaving?: boolean
 }
 
 export interface EnemyBehavior {
@@ -84,6 +128,10 @@ export interface EnemyBehavior {
   reactions?: (state: GameState, trigger: Trigger, self: Enemy) => ReactionOption[]
   /** Modificador a las habilidades de los investigadores de su localización (Whippoorwill). */
   skillModifier?: (state: GameState, self: Enemy, test: SkillTest) => number
+  /** Errante: localizaciones hacia las que se mueve en el paso 3.2 (vacío si ninguna). */
+  patrol?: (state: GameState, self: Enemy) => LocationId[]
+  /** Al ir a ser derrotado: si devuelve mensajes, se resuelven en su lugar (no se derrota). */
+  wouldBeDefeated?: (state: GameState, self: Enemy) => Message[] | null
 }
 
 export interface LocationBehavior {
@@ -114,6 +162,15 @@ export interface ActBehavior {
 }
 
 const scenarios = new Map<string, ScenarioBehavior>()
+const stories = new Map<CardCode, StoryBehavior>()
+
+export function registerStory(behavior: StoryBehavior): void {
+  stories.set(behavior.code, behavior)
+}
+
+export function storyBehavior(code: CardCode): StoryBehavior | undefined {
+  return stories.get(code)
+}
 const treacheries = new Map<CardCode, TreacheryBehavior>()
 const enemies = new Map<CardCode, EnemyBehavior>()
 const locations = new Map<CardCode, LocationBehavior>()
@@ -173,6 +230,11 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Ranuras adicionales mientras está en juego (Carl Sanford: +1 arcana). */
+  extraSlots?: Partial<Record<SlotType, number>>
+  /** Sin dueño (colocado en una localización o enemigo): habilidades para quien esté allí. */
+  placedAbilities?: AbilitiesFn<PlacedAsset>
+  placedForced?: (state: GameState, trigger: Trigger, self: PlacedAsset) => Message[]
   code: CardCode
   /** Evento: su efecto al jugarlo. */
   play?: (state: GameState, investigator: InvestigatorId) => Message[]

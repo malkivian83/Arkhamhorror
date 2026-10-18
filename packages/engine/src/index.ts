@@ -22,6 +22,8 @@ export {
   registerPlayerCard,
   registerPlayerCards,
   playerCardBehavior,
+  registerStory,
+  storyBehavior,
   allPlayerCardDefs,
   isPermanent,
   playerCardDef,
@@ -69,6 +71,10 @@ export {
   investigatorsAt,
   leadInvestigator,
   nearestLocation,
+  placedLocation,
+  push,
   shroudOf,
+  updateInvestigator,
+  distancesFrom,
 } from './state'
 export type * from './types'

@@ -78,6 +78,10 @@ export interface Location {
   connectsTo?: string[]
   unrevealed?: { symbol: string; connectsTo: string[] }
   enterCost?: number
+  /** Coste adicional de entrar: recibir este horror (Lantern Chamber). */
+  enterHorror?: number
+  /** Conexiones que no salen de los símbolos (colocadas por un efecto), en ambos sentidos. */
+  extraConnections?: LocationId[]
   investigateExtraActions?: number
   /** Cartas de encuentro boca abajo debajo de la localización. */
   beneath?: EncounterCard[]
@@ -208,6 +212,8 @@ export interface LocationCard {
   enterCost?: number
   /** Acciones adicionales que cuesta investigar aquí (Waterfront District). */
   investigateExtraActions?: number
+  /** Coste adicional de entrar: recibir este horror (Lantern Chamber). */
+  enterHorror?: number
   /** Cartas de encuentro boca abajo debajo de la localización (Smoke and Mirrors). */
   beneath?: EncounterCard[]
   id: LocationId
@@ -332,6 +338,33 @@ export interface PlayerCardDef {
   extraDeckOption?: ExtraDeckOption
 }
 
+/** Dónde está un apoyo sin dueño. */
+export type AssetPlacement =
+  { type: 'location'; location: LocationId } | { type: 'enemy'; enemy: EnemyId }
+
+export type PlacedAssetId = string
+
+/** Apoyo sin dueño en juego: en una localización o vinculado a un enemigo. */
+export interface PlacedAsset {
+  id: PlacedAssetId
+  code: CardCode
+  name: string
+  placement: AssetPlacement
+  /** Boca abajo (Invitado hechizado). */
+  faceDown?: boolean
+  exhausted: boolean
+  damage: number
+  horror: number
+  doom?: number
+}
+
+/** Carta de Historia en juego junto al acto (facción aliada, rival…). */
+export interface StoryCardInPlay {
+  code: CardCode
+  name: string
+  clues: number
+}
+
 export interface Asset {
   /** Perdición sobre el apoyo (cuenta para el plan). */
   doom?: number
@@ -449,10 +482,38 @@ export type Action =
   | { kind: 'evade'; enemy: EnemyId }
   | { kind: 'engage'; enemy: EnemyId }
 
+/**
+ * Pasos de las fases (reglamento, "Round Structure"): 1.x mitos, 2.x investigación,
+ * 3.x enemigos y 4.x mantenimiento.
+ */
+export type PhaseStep =
+  | 'mythosBegins'
+  | 'placeDoom'
+  | 'checkDoom'
+  | 'drawEncounter'
+  | 'mythosEnds'
+  | 'investigationBegins'
+  | 'turnBegins'
+  | 'takeActions'
+  | 'turnEnds'
+  | 'investigationEnds'
+  | 'enemyBegins'
+  | 'huntersMove'
+  | 'resolveAttacks'
+  | 'enemyEnds'
+  | 'upkeepBegins'
+  | 'resetActions'
+  | 'readyExhausted'
+  | 'drawAndGainResource'
+  | 'checkHandSize'
+  | 'upkeepEnds'
+
 /** Todo lo que puede ocurrir en la partida. */
 export type Message =
   | { type: 'Round' }
   | { type: 'MythosPhase' }
+  /** Empieza un paso de fase: la mesa lo resalta y queda en el registro. */
+  | { type: 'Step'; step: PhaseStep; investigator?: InvestigatorId }
   | { type: 'InvestigationPhase' }
   | { type: 'EnemyPhase' }
   | { type: 'UpkeepPhase' }
@@ -463,7 +524,8 @@ export type Message =
   | { type: 'EndTurn'; investigator: InvestigatorId }
   | { type: 'TakeAction'; investigator: InvestigatorId; action: Action }
   | { type: 'PerformAction'; investigator: InvestigatorId; action: Action }
-  | { type: 'GainResources'; investigator: InvestigatorId; amount: number }
+  /** `basic`: la acción de recurso o el mantenimiento (no es el efecto de una carta). */
+  | { type: 'GainResources'; investigator: InvestigatorId; amount: number; basic?: boolean }
   | { type: 'DrawCards'; investigator: InvestigatorId; amount: number }
   // ----- Inicio de la partida (reglamento, "Setup", pasos de los investigadores) -----
   /** El grupo elige al investigador jefe. */
@@ -510,7 +572,41 @@ export type Message =
       before?: Message[]
     }
   | { type: 'ResolvePlayedCard'; investigator: InvestigatorId; code: CardCode; effect?: Message[] }
-  | { type: 'PutAssetIntoPlay'; investigator: InvestigatorId; code: CardCode; noSlot?: boolean }
+  | {
+      type: 'PutAssetIntoPlay'
+      investigator: InvestigatorId
+      code: CardCode
+      noSlot?: boolean
+      /** Fichas con las que entra (al tomar el control de un apoyo colocado). */
+      tokens?: Partial<Pick<Asset, 'damage' | 'horror' | 'doom' | 'uses' | 'exhausted'>>
+    }
+  // ----- Cartas de Historia en juego y apoyos colocados -----
+  | { type: 'PutStoryIntoPlay'; code: CardCode; name: string }
+  | { type: 'RemoveStory'; code: CardCode }
+  | { type: 'PlaceCluesOnStory'; code: CardCode; investigator: InvestigatorId; amount: number }
+  /** Apoyo sin dueño en una localización o vinculado a un enemigo (Invitados, Joya…). */
+  | {
+      type: 'PlaceAsset'
+      code: CardCode
+      name: string
+      placement: AssetPlacement
+      faceDown?: boolean
+      exhausted?: boolean
+      damage?: number
+      horror?: number
+      doom?: number
+    }
+  | { type: 'MovePlacedAsset'; placed: PlacedAssetId; placement: AssetPlacement }
+  | { type: 'TakeControlOfPlaced'; placed: PlacedAssetId; investigator: InvestigatorId }
+  /** Un apoyo controlado deja de tener dueño y queda colocado (boca abajo si `faceDown`). */
+  | { type: 'ReleaseAsset'; asset: AssetId; placement: AssetPlacement; faceDown?: boolean }
+  | { type: 'FlipPlacedAsset'; placed: PlacedAssetId }
+  | { type: 'RemovePlacedAsset'; placed: PlacedAssetId }
+  | { type: 'DamagePlacedAsset'; placed: PlacedAssetId; damage: number; horror: number }
+  /** Pasa una carta del mazo de escenario a otra zona (lo resuelve el escenario). */
+  | { type: 'ScenarioSpecific'; key: string; data?: Record<string, string | number | boolean> }
+  | { type: 'SetScenarioMeta'; key: string; value: string | number }
+  | { type: 'ConnectLocations'; a: LocationId; b: LocationId }
   | { type: 'DiscardAsset'; asset: AssetId }
   /** Cambia el velo de una localización hasta el final de la ronda. */
   | { type: 'ModifyShroud'; location: LocationId; amount: number }
@@ -789,7 +885,18 @@ export type DamageHolder =
 
 /** Momentos en los que se comprueban las habilidades forzadas. */
 export type Trigger =
-  | { type: 'afterDiscoverClues'; investigator: InvestigatorId; location: LocationId }
+  | {
+      type: 'afterDiscoverClues'
+      investigator: InvestigatorId
+      location: LocationId
+      amount?: number
+      /** No quedan pistas en la localización. */
+      last?: boolean
+    }
+  /** Tras comprometer cartas a una prueba (`by` las compromete, `tester` hace la prueba). */
+  | { type: 'afterCommit'; by: InvestigatorId; tester: InvestigatorId }
+  /** Tras ganar recursos por el efecto de una carta. */
+  | { type: 'afterGainResources'; investigator: InvestigatorId; amount: number }
   | { type: 'investigationPhaseEnds' }
   | { type: 'enemyDefeated'; enemy: Enemy; by?: InvestigatorId }
   | { type: 'afterEnemyPhaseAttack'; enemy: EnemyId; investigator: InvestigatorId }
@@ -826,11 +933,13 @@ export type Trigger =
   | { type: 'afterEvade'; investigator: InvestigatorId; enemy: EnemyId }
   | { type: 'afterTakeDamage'; investigator: InvestigatorId; damage: number; horror: number }
   | { type: 'afterAssetDamaged'; asset: AssetId; damage: number; horror: number }
+  | { type: 'afterTakeControlOfPlaced'; investigator: InvestigatorId; code: CardCode }
   | { type: 'assetDefeated'; asset: Asset }
   | { type: 'afterEngage'; investigator: InvestigatorId; enemy: EnemyId }
   | { type: 'turnBegins'; investigator: InvestigatorId }
   | { type: 'turnEnds'; investigator: InvestigatorId }
   | { type: 'roundEnds' }
+  | { type: 'enemyPhaseEnds' }
   | { type: 'afterSpendResources'; investigator: InvestigatorId; amount: number }
   | { type: 'afterMove'; investigator: InvestigatorId; first: boolean }
   | { type: 'afterDealDamage'; investigator: InvestigatorId; enemy: EnemyId }
@@ -878,6 +987,8 @@ export type ChoiceTarget =
   | { type: 'investigator'; id: InvestigatorId }
   | { type: 'agenda' }
   | { type: 'act' }
+  | { type: 'story'; id: string }
+  | { type: 'placed'; id: PlacedAssetId }
 
 export type Requirement =
   | { type: 'hasClues'; investigator: InvestigatorId }
@@ -974,6 +1085,8 @@ export interface GameState {
   nextId: number
   round: number
   phase: Phase
+  /** Paso de la fase en curso (para la mesa). */
+  phaseStep?: PhaseStep
   /** Orden de jugadores; el primero no eliminado es el investigador jefe. */
   investigators: Investigator[]
   /** Investigadores que empezaron el escenario (para valores "por investigador"). */
@@ -1019,6 +1132,14 @@ export interface GameState {
   /** Fichas selladas sobre cartas (Premonition). */
   sealed?: { token: ChaosToken; investigator: InvestigatorId; code: CardCode }[]
   assets: Record<AssetId, Asset>
+  /** Apoyos sin dueño (Invitados en localizaciones, reliquias vinculadas a enemigos). */
+  placedAssets?: Record<PlacedAssetId, PlacedAsset>
+  /** Cartas de Historia en juego, por código. */
+  stories?: Record<CardCode, StoryCardInPlay>
+  /** Mazos propios del escenario (p. ej. el mazo de Invitados), por nombre. */
+  scenarioDecks?: Record<string, CardCode[]>
+  /** Datos del escenario (facción aliada, puntuación…). */
+  scenarioMeta?: Record<string, string | number>
   log: LogEntry[]
   skillTest: SkillTest | null
   /** Pila de mensajes pendientes: el primero es el siguiente en procesarse. */

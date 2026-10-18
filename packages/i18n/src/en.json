@@ -88,7 +88,28 @@
     "whoPaysClue": "Who spends the next clue? ({n} left)",
     "armitageControl": "Who takes control of Dr. Henry Armitage?",
     "searchFire": "Where do you search for Fire!?",
-    "arrangeCards": "Place the cards you looked at on top or bottom of your deck"
+    "arrangeCards": "Place the cards you looked at on top or bottom of your deck",
+    "gala": {
+      "bedroomBonus": "Spend 1 clue for +2 damage?",
+      "chooseSpellbound": "Choose a spellbound card to flip",
+      "coldChoice": "Inexplicable Cold: choose what you lose",
+      "damageOrHorror": "Damage or horror?",
+      "fumes": "Noxious Fumes: flee or hold your breath?",
+      "heal": "Who do you heal?",
+      "jewelMove": "Which token on the Jewel do you move, and to which enemy?",
+      "jewelToken": "The Jewel of Sarnath",
+      "loseGuest": "The Bloodless Man takes one of your guests",
+      "mystery": "The mystery is: {card}",
+      "nameACard": "Name a card from the encounter deck",
+      "nameTrait": "Name a trait",
+      "objective": "Complete your faction objective? (costs {n} clues as a group)",
+      "prudence": "Prudence Douglas: discard up to 2 non-Elite cards",
+      "pushedAsset": "Choose an asset to shuffle into your deck",
+      "sensed": "You sense the Jewel: it was {card}",
+      "spellbindGuest": "Choose which guest becomes spellbound",
+      "takeJewel": "Take control of the Jewel of Sarnath?",
+      "toolClue": "Where do you discover the clue?"
+    }
   },
   "action": {
     "draw": "Draw 1 card",
@@ -168,7 +189,33 @@
     "fireFromDiscard": "Only the encounter discard pile",
     "fireFromBoth": "The encounter deck and discard pile",
     "placeOnTop": "{card} on top of your deck",
-    "placeOnBottom": "{card} on the bottom of your deck"
+    "placeOnBottom": "{card} on the bottom of your deck",
+    "takeDamage": "Take {n} damage",
+    "heal": {
+      "damage": "Heal 1 damage from {name}",
+      "horror": "Heal 1 horror from {name}"
+    },
+    "gala": {
+      "completeObjective": "Yes, spend {n} clues and end the party",
+      "discardFromHand": "Discard a card from hand",
+      "drawIt": "Draw it",
+      "flee": "Flee ([agility] 3)",
+      "holdBreath": "Hold your breath ([combat] 3)",
+      "jewelDamage": "Place 1 damage on the Jewel",
+      "jewelMove": "Move 1 {kind} to {enemy}",
+      "jewelRemove": "Remove 1 {kind} from the Jewel",
+      "keepRest": "Keep the rest",
+      "leaveDiscarded": "Leave it discarded",
+      "namedCard": "{card}",
+      "notYet": "Not yet",
+      "pushedAsset": "{card}",
+      "removeGuest": "Lose {card}",
+      "spellbindGuest": "{card}",
+      "spendClueDamage": "Spend 1 clue: +2 damage",
+      "takeJewel": "Take the Jewel",
+      "trait": "{trait}",
+      "unspell": "Free {card}"
+    }
   },
   "phase": {
     "setup": "Setup",
@@ -232,7 +279,58 @@
     "openSluice": "Open the sluice gate (agility or combat 5)",
     "codexSearch": "Search and play a codex card",
     "shuffleGoldBug": "Shuffle The Gold Bug into the deck",
-    "heavyFightWith": "Heavy attack with {card}: fight {enemy}"
+    "heavyFightWith": "Heavy attack with {card}: fight {enemy}",
+    "gala": {
+      "archibaldHunt": "Archibald Hudson: search for an enemy and gain 3 resources",
+      "arseneDraw": "Arsène Renard: antiquity for 1 card",
+      "arseneGain": "Arsène Renard: antiquity for 2 resources",
+      "arsenePlant": "Arsène Renard: 1 antiquity on each location",
+      "artGallery": "Art Gallery: 2 clues here and 2 resources",
+      "bain": "William Bain: a guest arrives at the Lobby ({n} resources)",
+      "bedroomFight": "Bedroom: fight {enemy} ({skill})",
+      "breakLantern": "Break the Lantern's aura",
+      "breakSpell": "Lantern Chamber: break a spell ([willpower] 4)",
+      "bribeDiscard": "Bribe {enemy} to leave (3 resources)",
+      "bribeEvade": "Bribe {enemy} to evade it (1 resource)",
+      "buyDrink": "Barroom: buy a drink (1 resource)",
+      "callahanFight": "Special Agent Callahan: fight {enemy} (−1 difficulty)",
+      "carl": "Carl Sanford: {card} to the victory display and draw 1",
+      "channelJewel": "Jewel of Sarnath: move a token to an enemy",
+      "claire": "Claire Wilson: +1 to this test",
+      "convinceDeclan": "Convince Declan Pearce ({n} clues)",
+      "dance": "Ballroom: ask 2 guests to dance",
+      "drawMystery": "Draw the mystery here",
+      "elizabeth": "Elizabeth Conrad: {name} moves",
+      "exhaustEnemy": "Parlor: exhaust {enemy}",
+      "fashionablyLate": "Lobby: a guest arrives ({n} resources)",
+      "giveGuest": "Give {card} to {name}",
+      "horacio": "Horacio Martinez: exhaust {enemy}",
+      "johnny": "Johnny Valone: draw 1 and gain 1 resource",
+      "lookMystery": "Look at the mystery here ({n} clues)",
+      "lucas": "Lucas Tetlow: search for an Item",
+      "miranda": "Miranda Keeper: antiquity and +2 to your next test",
+      "moveDamage": "Archibald Hudson: 1 damage from {card} to {enemy}",
+      "myaInvestigate": "Dr. Mya Badry: investigate with {n} [intellect]",
+      "nameACard": "Lantern Chamber: name a card",
+      "novaFight": "Nova Malone: fight {enemy}",
+      "olney": "Thomas Olney: name a trait",
+      "parleyGuest": "Parley with {card} ({skill} 3)",
+      "parleyRival": "Parley with {enemy}",
+      "prudence": "Prudence Douglas: look at the top 4 encounter cards",
+      "purgeJewel": "Purge the Jewel ([combat] or [agility] 3)",
+      "rally": "Valeriya Antonova: +{n} to your next test",
+      "rallyGuest": "Valeriya Antonova: ready {card} and +{n} to your next test",
+      "raymond": "Raymond Loggins: cancel {card}",
+      "sarahFight": "Sarah Van Shaw: fight {enemy} (+{n} damage)",
+      "secretDoor": "Search for the way out of the Secret Door",
+      "sellAntiquity": "Miranda Keeper: sell an antiquity (+2 resources)",
+      "senseJewel": "Lodge: sense the Jewel",
+      "studyJewel": "Library: study the Jewel ([intellect] 3)",
+      "takeJewel": "Take the Jewel of Sarnath",
+      "takeLantern": "Take The Pale Lantern ([combat] or [agility] 3)",
+      "unspell": "Free {card}",
+      "violentCommands": "Violent Commands: 2 damage to {name}"
+    }
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -267,7 +365,42 @@
     "enemyImmune": "{enemy} cannot be damaged (there is fire at its location)",
     "lead": "{name} is the lead investigator",
     "experience": "{name}: {bonus} bonus/penalty + {victory} victory = {amount} XP.",
-    "chaosTokensAdded": "{scenario} adds {n} token(s) to the campaign bag."
+    "chaosTokensAdded": "{scenario} adds {n} token(s) to the campaign bag.",
+    "step": {
+      "mythosBegins": "1.1 · Mythos phase begins",
+      "placeDoom": "1.2 · Place 1 doom on the agenda",
+      "checkDoom": "1.3 · Check the doom threshold",
+      "drawEncounter": "1.4 · Each investigator draws an encounter card",
+      "mythosEnds": "1.5 · Mythos phase ends",
+      "investigationBegins": "2.1 · Investigation phase begins",
+      "turnBegins": "2.2 · {name}'s turn begins",
+      "takeActions": "2.2.1 · {name} takes actions",
+      "turnEnds": "2.2.2 · {name}'s turn ends",
+      "investigationEnds": "2.3 · Investigation phase ends",
+      "enemyBegins": "3.1 · Enemy phase begins",
+      "huntersMove": "3.2 · Hunter enemies move",
+      "resolveAttacks": "3.3 · Engaged enemies attack",
+      "enemyEnds": "3.4 · Enemy phase ends",
+      "upkeepBegins": "4.1 · Upkeep phase begins",
+      "resetActions": "4.2 · Reset actions",
+      "readyExhausted": "4.3 · Ready exhausted cards",
+      "drawAndGainResource": "4.4 · Each investigator draws 1 card and gains 1 resource",
+      "checkHandSize": "4.5 · Check hand size (8 maximum)",
+      "upkeepEnds": "4.6 · Upkeep phase ends (and the round)"
+    },
+    "cannotPay": "{name} can no longer pay for {card}: it is not played",
+    "storyEnters": "The story card {name} enters play",
+    "gala": {
+      "eventCancelled": "Ward of Preservation cancels the event",
+      "guessed": "Correct! {card} is cancelled and discarded",
+      "missed": "Wrong: it was {card}",
+      "guestArrives": "A guest arrives: {card}",
+      "nothingToHeal": "Nothing to heal",
+      "olney": "{card} is discarded",
+      "removed": "{card} is removed from the game",
+      "rivalDefeated": "The rival faction ({name}) is defeated",
+      "spellbound": "{card} becomes spellbound"
+    }
   },
   "table": {
     "log": "Game log",
@@ -352,7 +485,12 @@
     "cardBeneath": "There is a facedown card beneath this location",
     "officialText": "Official text",
     "summaryText": "Summary",
-    "mulliganHint": "Click the cards in your hand you want to replace."
+    "mulliganHint": "Click the cards in your hand you want to replace.",
+    "story": "Story",
+    "spellbound": "Spellbound guest (facedown)",
+    "scenarioDeck": {
+      "guests": "Guests"
+    }
   },
   "difficulty": {
     "easy": "Easy",
@@ -537,6 +675,85 @@
     "brethrenOfAsh": {
       "prologueTitle": "Prologue: A Glorious Rebirth",
       "prologue": "Arkham has never been an ordinary city: every week the paper reports another gruesome crime or disappearance, and even the most skeptical cannot deny that something is wrong.\n\nStill, people prefer to look away. Six months after the great flood the city rebuilds and boasts of progress, but among the ashes of the recent fires some whisper that someone, or something, wishes to be reborn."
+    },
+    "midwinterGala": {
+      "intro1Title": "The Midwinter Gala",
+      "intro1": "On a freezing winter night, the mysterious Lantern Club has invited you to a party at its old Kingsport manor. You are handed a bone-white mask and join New England’s elite among dreamlike paintings and unsettling sculptures.",
+      "intro2Title": "The Jewel of Sarnath",
+      "intro2": "Declan Pearce, the club’s nomarch, presents the night’s attraction: the Jewel of Sarnath, a gem said to grant wishes. Among the guests you notice the gaze of a tall, silent masked figure. Your invitation came with a note promising a reward for helping obtain the Jewel; at last you find your contact.",
+      "contactTitle": "Who is your mysterious contact?",
+      "contact": "Choose which faction asked for your help: it is your allied faction and sets your objective. Another faction, chosen at random, becomes your rival.",
+      "contactChoice": {
+        "foundation": "A stern agent in a tailored suit: the Foundation",
+        "miskatonic": "Dean Caldwell Philips: Miskatonic University",
+        "syndicate": "A businessman with a cigar: the Syndicate",
+        "lodge": "Carl Sanford: the Silver Twilight Lodge",
+        "kingsport": "A bearded captain in a worn coat: the Locals of Kingsport"
+      },
+      "faction": {
+        "foundationTitle": "The Foundation",
+        "foundation": "Agent Valeriya Antonova investigates disappearances on behalf of “the authorities” and suspects the Lantern Club and Declan Pearce. She believes the Jewel may be the source of very strange phenomena.",
+        "miskatonicTitle": "Miskatonic University",
+        "miskatonic": "Dean Caldwell Philips wants to study the ancient gem, which vanished from a Tibetan monastery in the 12th century. If only there were a way to examine it more closely…",
+        "syndicateTitle": "The Syndicate",
+        "syndicate": "Johnny Valone offers you a deal: nobody will suspect you, so you are perfect to get the Jewel. The reward will be generous.",
+        "lodgeTitle": "Silver Twilight Lodge",
+        "lodge": "Carl Sanford wants the Jewel for the Lodge’s collection and suspects there is more going on here. In return he promises knowledge and wealth.",
+        "kingsportTitle": "Locals of Kingsport",
+        "kingsport": "Captain William Bain points at the silent figure in the corner: they call him “the Bloodless Man”, and he must be behind whatever the club is planning. The Jewel can bring nothing good in their hands."
+      },
+      "setupTitle": "Setup",
+      "setup": "Each investigator begins at the Lobby. Your faction’s Leader enters play under your control; its guests and others from the guest deck wait in the ground-floor rooms. The Bloodless Man waits, exhausted, in the Lantern Chamber with The Pale Lantern. The monsters, Declan Pearce and the Jewel of Sarnath are set aside.",
+      "interlude": {
+        "foundationTitle": "Interlude: The Fabled Jewel",
+        "foundation": "Declan Pearce appears, exhausted, in the Lantern Chamber. The Jewel is attached to the Bloodless Man (or to the Lantern Chamber if he is not in play).",
+        "miskatonicTitle": "Interlude: The Fabled Jewel",
+        "miskatonic": "Declan Pearce appears at the rightmost second-floor room with the Jewel attached. He cannot be damaged or leave play while he holds it.",
+        "syndicateTitle": "Interlude: The Fabled Jewel",
+        "syndicate": "The Jewel, Declan Pearce and the top encounter card are shuffled and hidden beneath the second-floor rooms as “mysteries”.",
+        "lodgeTitle": "Interlude: The Fabled Jewel",
+        "lodge": "The Jewel and Declan Pearce are shuffled with 7 encounter cards and placed on the bottom of the encounter deck.",
+        "kingsportTitle": "Interlude: The Fabled Jewel",
+        "kingsport": "Declan Pearce appears, exhausted, in the Lantern Chamber with the Jewel attached, bearing damage and doom. A new guest arrives at the Lobby."
+      },
+      "mayhemTitle": "Mayhem Ensues",
+      "mayhem": "The Bloodless Man strides toward you, staggers and falls. His suit tears open and tentacles and fangs burst out: he is now an abomination.",
+      "calmTitle": "A moment of calm",
+      "calm": "The clamor quiets for a moment. Each investigator may heal 1 horror from an investigator or guest at their location.",
+      "goodbyeTitle": "A Kingsport Goodbye",
+      "goodbye": "The party turns into a massacre. Each investigator is defeated and suffers 1 mental trauma.",
+      "noResolutionTitle": "No Resolution",
+      "noResolution": "You wake up frozen in the snow outside the empty manor. You don’t remember how you escaped, but you will never forget this gala.",
+      "resolution1Title": "Resolution 1",
+      "resolution1": "You see your contact’s silhouette against the moon in front of the manor. You got the Jewel of Sarnath.",
+      "resolution2Title": "Resolution 2: The Foundation",
+      "resolution2": "Agent Antonova will report to her superiors; for now she leaves you the Jewel, but she will be back for it. You wonder whether you are her guinea pig.",
+      "resolution3Title": "Resolution 3: The University",
+      "resolution3": "The dean is delighted with the gem but would rather not keep it on campus. He asks you to bring it to his office next week.",
+      "resolution4Title": "Resolution 4: The Syndicate",
+      "resolution4": "After tonight, Valone won’t take the Jewel anywhere near Arkham: he leaves it to you as a keepsake, with a wad of cash for saving his skin.",
+      "resolution5Title": "Resolution 5: The Lodge",
+      "resolution5": "Sanford shouts at his underlings; you pocket the Jewel and slip away. You think it is safer with you than with the Lodge.",
+      "resolution6Title": "Resolution 6: Kingsport",
+      "resolution6": "Captain Bain puts the Jewel in your hand: he says it can do good in hands like yours. When you look up, he is gone.",
+      "resolution7Title": "Resolution 7",
+      "resolution7": "From the cab you see the Bloodless Man’s face staring at you from a window. Kingsport, city of fog and legend: now you understand why.",
+      "score": {
+        "total": "Total score: {n}",
+        "manorsWithNoClues": "Manor locations with no clues: {points}",
+        "guestAssetsControlled": "Guests controlled: {points}",
+        "noSpellboundInPlay": "No spellbound cards: {points}",
+        "agenda1Or2": "Agenda 1 or 2 in play: {points}",
+        "bloodlessManInVictory": "The Bloodless Man in the victory display: {points}",
+        "paleLanternInVictory": "The Pale Lantern in the victory display: {points}",
+        "declanPearceInVictory": "Declan Pearce in the victory display: {points}",
+        "rivalInVictory": "Rival faction defeated: {points}",
+        "damageBonus": "Little damage: {points}",
+        "horrorBonus": "Little horror: {points}",
+        "hardMode": "Hard difficulty: {points}",
+        "expertMode": "Expert difficulty: {points}",
+        "factionBonus": "Your faction points: {points}"
+      }
     }
   },
   "playmat": {
@@ -600,13 +817,16 @@
     "scenario": {
       "spreading-flames": "Spreading Flames",
       "smoke-and-mirrors": "Smoke and Mirrors",
-      "queen-of-ash": "Queen of Ash"
+      "queen-of-ash": "Queen of Ash",
+      "the-midwinter-gala": "Standalone scenario"
     },
     "names": {
-      "brethren-of-ash": "Brethren of Ash"
+      "brethren-of-ash": "Brethren of Ash",
+      "the-midwinter-gala": "The Midwinter Gala"
     },
     "choose": "Choose the campaign",
-    "xpBreakdown": "Experience breakdown"
+    "xpBreakdown": "Experience breakdown",
+    "standalone": "Standalone scenario"
   },
   "class": {
     "guardian": "Guardian",
@@ -718,6 +938,106 @@
     "massive": {
       "title": "Massive",
       "body": "A ready massive enemy counts as engaged with each investigator at its location, attacks all of them in the enemy phase and only exhausts after all its attacks. It cannot be placed in a threat area."
+    },
+    "patrol": {
+      "title": "Patrol",
+      "body": "In the enemy phase (step 3.2), each ready, unengaged patrol enemy moves one location along the shortest path toward its destination (The Bloodless Man: the nearest location with a guest). With several destinations, the lead decides."
+    },
+    "guests": {
+      "title": "Guests",
+      "body": "Guests are story assets waiting at locations. Parley with them (a test of one of their icons, difficulty 3) to take control; they take no ally slot. Only their controller can use their abilities."
+    },
+    "spellbound": {
+      "title": "Spellbound",
+      "body": "A spellbound guest is placed facedown at its location, with no controller and no damage or horror. A Leader that would become spellbound is removed from the game instead. Flipping it faceup readies it and ends the spell."
+    },
+    "score": {
+      "title": "Score",
+      "body": "At the end of the game you score tasks: manor locations with no clues, guests controlled, no spellbound cards, ending on agenda 1 or 2, key enemies in the victory display, little damage or horror, difficulty and your faction points. Every 10 points give 1 experience (5 at most)."
+    }
+  },
+  "phaseStep": {
+    "tracker": "Round steps",
+    "window": "Player window",
+    "mythosBegins": {
+      "n": "1.1",
+      "text": "Mythos phase begins"
+    },
+    "placeDoom": {
+      "n": "1.2",
+      "text": "Place 1 doom on the agenda"
+    },
+    "checkDoom": {
+      "n": "1.3",
+      "text": "Check the doom threshold"
+    },
+    "drawEncounter": {
+      "n": "1.4",
+      "text": "Each investigator draws an encounter card"
+    },
+    "mythosEnds": {
+      "n": "1.5",
+      "text": "Mythos phase ends"
+    },
+    "investigationBegins": {
+      "n": "2.1",
+      "text": "Investigation phase begins"
+    },
+    "turnBegins": {
+      "n": "2.2",
+      "text": "Next investigator's turn begins"
+    },
+    "takeActions": {
+      "n": "2.2.1",
+      "text": "Investigator takes actions"
+    },
+    "turnEnds": {
+      "n": "2.2.2",
+      "text": "Investigator's turn ends"
+    },
+    "investigationEnds": {
+      "n": "2.3",
+      "text": "Investigation phase ends"
+    },
+    "enemyBegins": {
+      "n": "3.1",
+      "text": "Enemy phase begins"
+    },
+    "huntersMove": {
+      "n": "3.2",
+      "text": "Hunter enemies move"
+    },
+    "resolveAttacks": {
+      "n": "3.3",
+      "text": "Engaged enemies attack"
+    },
+    "enemyEnds": {
+      "n": "3.4",
+      "text": "Enemy phase ends"
+    },
+    "upkeepBegins": {
+      "n": "4.1",
+      "text": "Upkeep phase begins"
+    },
+    "resetActions": {
+      "n": "4.2",
+      "text": "Reset actions"
+    },
+    "readyExhausted": {
+      "n": "4.3",
+      "text": "Ready exhausted cards"
+    },
+    "drawAndGainResource": {
+      "n": "4.4",
+      "text": "Each investigator draws 1 card and gains 1 resource"
+    },
+    "checkHandSize": {
+      "n": "4.5",
+      "text": "Check hand size (8 maximum)"
+    },
+    "upkeepEnds": {
+      "n": "4.6",
+      "text": "Upkeep phase ends (and the round)"
     }
   },
   "session": {

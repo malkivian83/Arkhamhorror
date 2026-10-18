@@ -37,6 +37,8 @@ export interface CampaignDefinition {
   id: string
   /** Clave i18n del nombre de la campaña. */
   name: string
+  /** Escenario independiente (una sola partida, sin campaña). */
+  standalone?: boolean
   /** Prólogo que se lee al empezar la campaña (antes del primer escenario). */
   prologue?: StoryEntry
   scenarios: CampaignScenario[]

@@ -42,19 +42,19 @@ describe('recursos de cartas sin red', () => {
     expect(localizedCards.value.has('12179')).toBe(true)
   })
   it('una descarga ES tardía no pisa un cambio posterior a EN', async () => {
-    let resolve!: (value: unknown) => void
+    const responses: ((value: unknown) => void)[] = []
     vi.stubGlobal(
       'fetch',
       vi.fn().mockImplementation(
         () =>
           new Promise((done) => {
-            resolve = done
+            responses.push(done)
           }),
       ),
     )
     const spanish = useCardLocale('es')
     await useCardLocale('en')
-    resolve({
+    const response = {
       ok: true,
       json: async () => [
         {
@@ -64,12 +64,17 @@ describe('recursos de cartas sin red', () => {
           type_code: 'investigator',
         },
       ],
-    })
+    }
+    responses.forEach((resolve) => resolve(response))
     await spanish
     expect(localizedCards.value.get('12004')?.name).toBe('Joe Diamond')
   })
   it('Mother of Flame usa el reverso de Elokoss al mostrar su código de segunda cara', () => {
     expect(cardImage('12179b')).toContain('12179b.jpg')
     expect(cardImage('12179b', true)).toContain('12179.jpg')
+  })
+  it('las segundas caras de La Gala conservan el servidor de imágenes de referencia', () => {
+    expect(cardImage('71045b')).toBe('https://assets.arkhamhorror.app/img/arkham/cards/71045b.avif')
+    expect(cardImage('71045b', true)).toContain('71045.jpg')
   })
 })
