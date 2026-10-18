@@ -10,6 +10,7 @@ import DrawSpotlight from '../components/DrawSpotlight.vue'
 import LocationMap from '../components/LocationMap.vue'
 import PlayerArea from '../components/PlayerArea.vue'
 import ScenarioRow from '../components/ScenarioRow.vue'
+import ScenarioTransition from '../components/ScenarioTransition.vue'
 import SidePanel from '../components/SidePanel.vue'
 import SkillTestPanel from '../components/SkillTestPanel.vue'
 import StoryModal from '../components/StoryModal.vue'
@@ -106,6 +107,7 @@ const shown = computed(
     <StoryModal :state="state" />
     <CardPileModal />
     <DrawSpotlight :state="state" />
+    <ScenarioTransition :state="state" />
   </div>
   <div v-else class="empty">
     <p>{{ t('setup.noGame') }}</p>
@@ -179,7 +181,7 @@ const shown = computed(
   position: fixed;
   right: 356px;
   top: 64px;
-  z-index: 50;
+  z-index: 1100;
   pointer-events: none;
 }
 .empty {

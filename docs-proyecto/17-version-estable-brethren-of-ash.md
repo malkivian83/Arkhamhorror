@@ -1,6 +1,18 @@
 # Brethren of Ash: base estable de juego local
 
-Fecha: 18/10/2026. Etiqueta de Git prevista: `brethren-of-ash-local-v1.0.0`.
+Fecha: 18/10/2026. Etiqueta publicada: `brethren-of-ash-local-v1.0.0`,
+commit `939dbb31ae8989e59f6f5ef31a4a5eb6b80b8e5a`.
+
+La [PR #3](https://github.com/malkivian83/Arkhamhorror/pull/3) se fusionó con CI
+aprobada y se descargó en `main`. La prueba física permanece diferida por
+decisión del propietario, que no dispone de un teléfono para realizarla.
+
+La actualización `brethren-of-ash-local-v1.0.1` incorpora las correcciones de
+presentación posteriores: valores junto a su carta correspondiente, Aguante
+visible en evasiones, traducciones en avisos, ampliación de planes/actos y
+confirmaciones de avance. Conserva los historiales y reglas de la base anterior.
+Su [acta de interfaz](evidencias/interfaz-claridad-cartas.json) distingue los
+prefijos legales de las mesas dirigidas usadas para probar un apoyo.
 
 Esta referencia fija el cierre técnico de Brethren of Ash para conservarlo antes
 de ampliar La Gala. Incluye los tres escenarios, consulta de planes y actos por

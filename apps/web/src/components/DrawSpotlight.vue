@@ -5,6 +5,7 @@ import { useI18n } from 'vue-i18n'
 import { cardBackImage } from '../game/assets'
 import { localName } from '../game/localized'
 import GameCard from './GameCard.vue'
+import CardTranslation from './CardTranslation.vue'
 
 /**
  * Carta de encuentro recién robada, en grande en el centro: se da la vuelta
@@ -50,6 +51,7 @@ function dismiss() {
 }
 function key(event: KeyboardEvent) {
   if (!current.value) return
+  if (document.querySelector('dialog[open]')) return
   if (event.key === 'Escape' || event.key === 'Enter' || event.key === ' ') {
     event.preventDefault()
     event.stopImmediatePropagation()
@@ -65,14 +67,17 @@ onBeforeUnmount(() => window.removeEventListener('keydown', key, true))
   <div v-if="current" class="overlay" @click.self="dismiss">
     <div class="spotlight">
       <p class="who">{{ t('table.drawnBy', { name: current.name }) }}</p>
-      <div :key="`${current.code}-${queue.length}`" class="flipper">
-        <div class="face front">
-          <GameCard :code="current.code" :name="current.card" :width="280" no-zoom />
+      <div class="card-details">
+        <div :key="`${current.code}-${queue.length}`" class="flipper">
+          <div class="face front">
+            <GameCard :code="current.code" :name="current.card" :width="280" no-zoom />
+          </div>
+          <div class="face back">
+            <img v-if="back" :src="back" alt="" draggable="false" />
+            <div v-else class="drawn-back" />
+          </div>
         </div>
-        <div class="face back">
-          <img v-if="back" :src="back" alt="" draggable="false" />
-          <div v-else class="drawn-back" />
-        </div>
+        <CardTranslation :code="current.code" />
       </div>
       <p class="name">{{ localName(current.card) }}</p>
       <button type="button" class="primary" @click="dismiss">
@@ -98,6 +103,23 @@ onBeforeUnmount(() => window.removeEventListener('keydown', key, true))
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  max-height: calc(100dvh - 24px);
+  overflow: auto;
+  padding: 12px;
+}
+.card-details {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+@media (max-width: 650px) {
+  .card-details {
+    flex-direction: column;
+    align-items: center;
+  }
+  .flipper {
+    flex: none;
+  }
 }
 .who,
 .name {
