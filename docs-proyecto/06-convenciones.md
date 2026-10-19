@@ -12,7 +12,8 @@
 
 - Una rama por tarea: `feat/…`, `fix/…`, `docs/…`, `chore/…`.
 - Commits pequeños, mensaje en imperativo ("Añadir prueba de habilidad").
-- Pull request a `main` con CI en verde.
+- Pull request a `main` con CI en verde; al fusionarla se borra la rama.
+- Reglas de ramas para agentes de IA: [AGENTS.md](../AGENTS.md).
 
 ## Código
 
