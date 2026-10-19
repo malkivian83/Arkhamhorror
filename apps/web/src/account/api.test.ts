@@ -18,7 +18,7 @@ const a = {
   verified: true,
   role: 'user' as const,
 }
-it('conserva solo el perfil público para recuperar la copia local sin red', async () => {
+it('carga la cuenta solo del servidor y no recuerda el perfil en el navegador', async () => {
   vi.stubGlobal(
     'fetch',
     vi
@@ -31,14 +31,15 @@ it('conserva solo el perfil público para recuperar la copia local sin red', asy
   )
   const first = await import('./api')
   await first.loadAccount()
-  expect(values.get('lcg:last-account')).not.toContain('private-csrf')
+  expect(first.account.value.user?.id).toBe('a')
+  expect(values.size).toBe(0)
+  values.set('lcg:last-account', JSON.stringify({ user: a, google: true }))
   vi.resetModules()
   vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new TypeError('offline')))
   const offline = await import('./api')
   await offline.loadAccount()
-  expect(offline.account.value.user?.id).toBe('a')
-  expect(offline.accountOffline.value).toBe(true)
-  expect(offline.account.value.csrf).toBeNull()
+  expect(offline.account.value.user).toBeNull()
+  expect(offline.account.value.enabled).toBe(false)
 })
 it('no reanuda una cola con otra identidad cuando vuelve la conexión', async () => {
   vi.stubGlobal(
@@ -53,11 +54,10 @@ it('no reanuda una cola con otra identidad cuando vuelve la conexión', async ()
   )
   const api = await import('./api')
   api.account.value = { user: a, csrf: null, enabled: true, google: true }
-  api.accountOffline.value = true
   await expect(api.recoverAccountSession()).rejects.toMatchObject({ code: 'account_changed' })
   expect(api.account.value.user?.id).toBe('a')
 })
-it('una sesión expirada elimina el perfil recordado sin adoptar una identidad local', async () => {
+it('una sesión expirada no adopta el perfil antiguo del navegador', async () => {
   values.set('lcg:last-account', JSON.stringify({ user: a, google: true }))
   vi.stubGlobal(
     'fetch',
@@ -70,5 +70,5 @@ it('una sesión expirada elimina el perfil recordado sin adoptar una identidad l
   const api = await import('./api')
   await api.loadAccount()
   expect(api.account.value.user).toBeNull()
-  expect(values.has('lcg:last-account')).toBe(false)
+  expect(api.account.value.csrf).toBeNull()
 })

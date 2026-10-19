@@ -1,15 +1,12 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { account, api, ApiError } from '../account/api'
 import {
   activateCampaign,
   documents,
-  recoveries,
   editMetadata,
-  flush,
-  importGuest,
   refreshLibrary,
   resolveConflict,
   saveDocument,
@@ -33,19 +30,15 @@ const campaigns = computed(() =>
   ),
 )
 const conflicts = computed(() => documents.value.filter((d) => d.conflict))
-const importing = ref(false)
 const displayName = (name: string) =>
   te(`campaign.names.${name}`) ? t(`campaign.names.${name}`) : name
 const confirm = (message: string) => window.confirm(message)
-const guestCounts = computed(() => {
-  try {
-    return {
-      decks: JSON.parse(localStorage.getItem('lcg:decks') ?? '[]').length,
-      campaign: localStorage.getItem('lcg:session:v1') ? 1 : 0,
-    }
-  } catch {
-    return { decks: 0, campaign: 0 }
-  }
+onMounted(() => {
+  if (account.value.user)
+    void run(async () => {
+      await refreshLibrary()
+      useDecksStore().reload()
+    })
 })
 async function run(action: () => Promise<unknown>) {
   busy.value = true
@@ -115,34 +108,11 @@ async function restore(id: string) {
     <template v-if="account.user">
       <div class="sync-bar">
         <p role="status">{{ t(`account.sync.${syncStatus}`) }}</p>
-        <button
-          type="button"
-          :disabled="busy"
-          @click="
-            run(async () => {
-              await flush()
-              await refreshLibrary()
-              useDecksStore().reload()
-            })
-          "
-        >
-          {{ t('library.refresh') }}
-        </button>
       </div>
       <p v-if="error || syncError" class="error" role="alert">
         {{ t(`account.errors.${error || syncError}`) }}
       </p>
       <p v-if="notice" role="status">{{ t(`library.${notice}`) }}</p>
-      <details v-if="recoveries.length" class="import-panel">
-        <summary>{{ t('library.otherTabs') }}</summary>
-        <p>{{ t('library.otherTabsHelp') }}</p>
-        <div v-for="copy in recoveries" :key="copy.key">
-          <p>{{ copy.name }}</p>
-          <button type="button" @click="download(copy.payload, 'arkham-pending-copy.json')">
-            {{ t('session.export') }}
-          </button>
-        </div>
-      </details>
       <div v-for="conflict in conflicts" :key="conflict.id" class="conflict">
         <h2>{{ t('library.conflictTitle') }}: {{ conflict.name }}</h2>
         <p>{{ t('library.conflictHelp') }}</p>
@@ -223,29 +193,9 @@ async function restore(id: string) {
         </article>
       </div>
       <RouterLink class="link-button" to="/decks">{{ t('decks.manage') }}</RouterLink>
-      <details class="import-panel" :open="importing">
-        <summary @click.prevent="importing = !importing">{{ t('library.importGuest') }}</summary>
-        <p>{{ t('library.importHelp', guestCounts) }}</p>
-        <p>{{ t('library.importPrivacy') }}</p>
-        <button
-          type="button"
-          :disabled="busy"
-          @click="
-            run(async () => {
-              await importGuest()
-              useDecksStore().reload()
-              notice = 'imported'
-            })
-          "
-        >
-          {{ t('library.confirmImport') }}
-        </button>
-      </details>
       <button
         type="button"
-        @click="
-          download({ format: 'lcg-local-library', version: 1, documents }, 'arkham-library.json')
-        "
+        @click="download({ format: 'lcg-library', version: 1, documents }, 'arkham-library.json')"
       >
         {{ t('library.exportAll') }}
       </button>

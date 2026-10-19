@@ -17,7 +17,6 @@ const email = ref(''),
   busy = ref(false)
 const notice = ref(''),
   failure = ref('')
-const clearLocal = ref(false)
 watch(
   () => route.hash,
   (hash) => {
@@ -79,7 +78,6 @@ async function submit() {
       password.value = ''
       mode.value = 'login'
       await stopLibrary()
-      localStorage.removeItem('lcg:last-account')
       location.assign('/account#password=changed')
     } else {
       await api(
@@ -107,8 +105,7 @@ async function logout() {
   busy.value = true
   try {
     await api('/auth/logout', 'POST')
-    await stopLibrary(clearLocal.value)
-    localStorage.removeItem('lcg:last-account')
+    await stopLibrary()
     location.assign('/')
   } catch (error) {
     failure.value = error instanceof ApiError ? error.code : 'internal'
@@ -121,8 +118,7 @@ async function removeAccount() {
   failure.value = ''
   try {
     await api('/me', 'DELETE', { password: password.value })
-    await stopLibrary(true)
-    localStorage.removeItem('lcg:last-account')
+    await stopLibrary()
     location.assign('/')
   } catch (error) {
     failure.value = error instanceof ApiError ? error.code : 'internal'
@@ -152,10 +148,6 @@ async function removeAccount() {
         {{ t('account.passwordLink') }}
       </button>
       <hr />
-      <label class="check"
-        ><input v-model="clearLocal" type="checkbox" />{{ t('account.clearLocal') }}</label
-      >
-      <p class="hint">{{ t('account.localPrivacy') }}</p>
       <button type="button" :disabled="busy" @click="logout">{{ t('account.logout') }}</button>
       <details class="danger">
         <summary>{{ t('account.deleteAccount') }}</summary>

@@ -7,12 +7,12 @@ Fecha: 19 de octubre de 2026. Continúa el [informe de diseño](21-cuentas-y-gua
 - Registro abierto, verificación de correo, reenvío, acceso y recuperación de contraseña.
 - Google mediante OpenID Connect y vinculación explícita a cuentas existentes.
 - Sesiones revocables con cookie HttpOnly, CSRF, comprobación de origen y límites de peticiones.
-- Invitado separado de las cuentas; importación explícita de sus datos sin borrar los originales.
+- Invitado disponible solo durante la página abierta, sin persistencia ni importación de datos antiguos.
 - Mazos y recompensas privados, múltiples campañas, nombre, archivo, exportación y eliminación.
 - Guardados completos con historial y lecturas pendientes; cinco revisiones recuperables como otra aventura.
-- Cola persistente en IndexedDB, copia de trabajo local, reintentos idempotentes y conflictos explícitos.
-- Separación por cuenta y pestaña; exportación de pendientes de otras pestañas.
-- Cierre de sesión con borrado local opcional; eliminación de cuenta confirmando contraseña.
+- Guardado automático solo en el servidor. Estado de trabajo y reintentos idempotentes solo en memoria, con conflictos explícitos.
+- Cada página carga la biblioteca del servidor; no hay copias persistentes ni recuperación entre pestañas.
+- Cierre de sesión que descarta el estado en memoria; eliminación de cuenta confirmando contraseña.
 - Español e inglés, móvil y controles de teclado.
 
 El motor sigue en el navegador. El servidor valida estructura, contenido y versiones, pero no reproduce historiales arbitrarios en el bucle HTTP. La web sí verifica el historial al abrir una partida. No se certifican resultados competitivos.
@@ -24,12 +24,12 @@ El motor sigue en el navegador. El servidor valida estructura, contenido y versi
 | `packages/saves` | Formato, validadores, historial y presentación de avances compartidos, sin Vue |
 | `apps/server/src/accounts` | MySQL, acceso, Google, correo y API de biblioteca |
 | `apps/server/migrations/001_accounts.sql` | Usuarios, sesiones, tokens, identidades, documentos, operaciones, revisiones y estados OAuth |
-| `apps/web/src/account` | HTTP, almacenamiento por cuenta, IndexedDB y sincronización |
+| `apps/web/src/account` | HTTP, estado en memoria y guardado automático en servidor |
 | `AccountView.vue` y `LibraryView.vue` | Cuenta y biblioteca |
 
 Una tabla `documents` distingue `deck`, `campaign` y `rewards`, evitando tres implementaciones de persistencia. Cada documento tiene propietario, UUID y revisión. Las operaciones idempotentes y las revisiones históricas se confirman en la misma transacción InnoDB.
 
-El cliente envía el identificador de cuenta esperado. Si otra pestaña cambia la cookie de usuario, el servidor rechaza el acceso hasta recargar. El perfil público recordado permite abrir copias locales sin conexión; no concede autorización remota.
+El cliente envía el identificador de cuenta esperado. Si otra pestaña cambia la cookie de usuario, el servidor rechaza el acceso hasta recargar. La cuenta se obtiene siempre del servidor; no se recuerda un perfil para acceder sin conexión. Al arrancar se eliminan los guardados antiguos del navegador (localStorage, identificador de pestaña e IndexedDB). No hay botón de sincronización ni importación de invitado. Los cambios no confirmados por el servidor se pierden al cerrar o recargar; las preferencias visuales y la cookie de sesión siguen disponibles.
 
 ## Desarrollo local
 
@@ -107,7 +107,7 @@ Cada aventura tiene UUID propio. Editar un mazo de la biblioteca no modifica una
 
 Límites iniciales: 500 documentos activos y 150 MB de JSON por cuenta, incluyendo revisiones; paquetes individuales inferiores a 20 MB; cinco versiones recientes por campaña. El borrado conserva una tumba para evitar resurrecciones desde dispositivos atrasados, pero libera el paquete y sus revisiones. Las operaciones idempotentes conservan su registro para reconocer reintentos.
 
-La copia local permite reintentar tras cortes, siempre que la aplicación pueda cargarse. No se añade una PWA. Al cerrar sesión se puede borrar el almacenamiento de la cuenta; conservarlo ayuda a recuperar trabajo, pero no protege frente a otra persona con acceso al perfil del navegador. IndexedDB no se cifra al cerrar sesión.
+Los reintentos tras cortes solo existen mientras la página sigue abierta. Recargar o cerrar descarta lo que el servidor no haya confirmado. No se añade una PWA ni una copia de partidas en el dispositivo.
 
 Antes de abrir al público: fijar retención y privacidad, programar limpieza de sesiones/tokens/estados OAuth vencidos, configurar copias externas y ensayar una restauración en el VPS. Después de restaurar, revocar las sesiones y tokens restaurados antes de reabrir el servicio. No borrar campañas por su fecha de último acceso.
 
@@ -115,7 +115,7 @@ Antes de abrir al público: fijar retención y privacidad, programar limpieza de
 
 CI incorpora un MySQL 8.4 real. Para pruebas locales, crear una base exclusivamente de pruebas y definir `MYSQL_TEST_URL` antes de `pnpm test`. La suite borra sus usuarios y rechaza nombres que no terminen en `_test`; no apuntarla nunca a datos reales.
 
-Pruebas añadidas: verificación y caducidad, sesiones, CSRF, recuperación, aislamiento, concurrencia, idempotencia, revisiones, Google simulado, SMTP local y cola IndexedDB. Revisado en navegador: registro, enlace de verificación, acceso, campaña en MySQL y recuperación desde otra pestaña, y mazo visible en ambas.
+Pruebas añadidas: verificación y caducidad, sesiones, CSRF, recuperación, aislamiento, concurrencia, idempotencia, revisiones, Google simulado, SMTP local y guardado online sin persistencia en el navegador. Revisado en navegador: registro, enlace de verificación, acceso, campaña en MySQL y recuperación desde otra pestaña, y mazo visible en ambas.
 
 El correo de la revisión manual usa un adaptador local de prueba. El transporte SMTP se prueba aparte contra un servidor local de la suite. Google se prueba con el proveedor simulado; esto no equivale a validar el cliente OAuth del propietario.
 

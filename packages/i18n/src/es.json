@@ -592,7 +592,7 @@
     "deckFor": "Mazo de {name}",
     "emptyTeam": "Elige al menos un investigador para comenzar.",
     "begin": "Comenzar aventura",
-    "localSave": "Tu progreso se guarda automáticamente en este navegador.",
+    "localSave": "Inicia sesión para guardar el progreso online. Como invitado, se pierde al recargar o cerrar.",
     "footer": "En Arkham, nada es lo que parece.",
     "descriptions": {
       "brethren-of-ash": "Un incendio, una ciudad inquieta y un misterio que se extiende entre las cenizas. Tres escenarios, una historia conectada.",
@@ -1228,7 +1228,7 @@
     "linkGoogle": "Vincular mi cuenta de Google",
     "logout": "Cerrar sesión",
     "guest": "Continuar como invitado",
-    "guestHint": "Como invitado, el progreso se guarda en este navegador.",
+    "guestHint": "Como invitado, el progreso se pierde al recargar o cerrar la página.",
     "passwordHint": "Usa entre 12 y 128 caracteres. Puedes pegar una contraseña de tu gestor.",
     "forgot": "He olvidado mi contraseña",
     "resend": "Reenviar verificación",
@@ -1237,10 +1237,8 @@
     "verified": "Correo verificado. Ya puedes iniciar sesión.",
     "passwordChanged": "Contraseña actualizada. Inicia sesión de nuevo.",
     "verifyHelp": "Confirma la verificación de tu correo para activar tu cuenta.",
-    "saveHint": "El progreso se conserva en este dispositivo y se sincroniza con tu cuenta. Consulta el estado del guardado.",
-    "pendingLogout": "Quedan cambios sin guardar en el servidor. Se conservarán en este dispositivo salvo que elijas borrarlos. ¿Cerrar sesión?",
-    "clearLocal": "Borrar de este dispositivo los datos de mi cuenta al salir",
-    "localPrivacy": "Conservar una copia permite recuperar cambios pendientes. Otra persona con acceso a este perfil del navegador podría acceder a esa copia.",
+    "saveHint": "El progreso se guarda automáticamente en tu cuenta. Necesitas conexión a Internet.",
+    "pendingLogout": "Quedan cambios sin guardar en el servidor y se perderán al salir. ¿Cerrar sesión?",
     "passwordHelp": "Para cambiar o establecer tu contraseña, confirma el enlace que enviaremos a tu correo. También sirve para las cuentas creadas con Google.",
     "passwordLink": "Enviar enlace para cambiar contraseña",
     "deleteAccount": "Eliminar mi cuenta",
@@ -1263,17 +1261,15 @@
       "reset": "Guardar contraseña"
     },
     "sync": {
-      "local": "Guardado en este dispositivo",
-      "pending": "Cambios pendientes de sincronizar",
+      "pending": "Guardando en tu cuenta…",
       "saving": "Guardando en tu cuenta…",
       "saved": "Guardado en tu cuenta",
-      "offline": "Sin conexión · copia local conservada",
+      "offline": "Sin conexión · cambios sin guardar",
       "conflict": "Hay versiones en conflicto · revisar",
-      "error": "No se ha podido sincronizar · revisar"
+      "error": "No se ha podido guardar"
     },
     "errors": {
-      "network": "No se ha podido conectar. Tu copia local se conserva.",
-      "storage": "No se ha podido guardar la copia local. Exporta tu partida antes de cerrar.",
+      "network": "No se ha podido conectar con el servidor. Los cambios sin guardar se perderán al cerrar o recargar.",
       "internal": "El servicio no ha podido completar la operación. Inténtalo de nuevo.",
       "invalid": "Revisa los datos introducidos.",
       "invalid_credentials": "Correo o contraseña incorrectos.",
@@ -1282,7 +1278,7 @@
       "mail_unavailable": "No se ha podido enviar el correo. Inténtalo más tarde.",
       "origin": "La solicitud no procede del sitio configurado.",
       "csrf": "La sesión ha cambiado. Recarga la página antes de reintentar.",
-      "unauthorized": "Tu sesión ha caducado. Vuelve a entrar; los cambios locales se conservan.",
+      "unauthorized": "Tu sesión ha caducado. Vuelve a entrar.",
       "conflict": "Hay una versión más reciente en el servidor. Revisa el conflicto.",
       "operation_reused": "La operación de guardado no coincide con la anterior. Exporta tu copia y revisa el conflicto.",
       "quota": "Has alcanzado el límite de almacenamiento. Exporta tus datos y revisa tu biblioteca.",
@@ -1295,12 +1291,11 @@
       "google_cancelled": "Se ha cancelado el acceso con Google.",
       "google_link_required": "Ya existe una cuenta con este correo o una vinculación distinta. Entra por tu método habitual y vincula Google desde Mi cuenta.",
       "reauthenticate": "Confirma tu contraseña para eliminar la cuenta.",
-      "account_changed": "La cuenta ha cambiado o la sesión ha caducado. Recarga y vuelve a entrar. Los datos locales se mantienen separados."
+      "account_changed": "La cuenta ha cambiado o la sesión ha caducado. Recarga y vuelve a entrar."
     }
   },
   "library": {
-    "subtitle": "Todas tus aventuras en un mismo lugar. Los guardados pendientes se conservan en este dispositivo.",
-    "refresh": "Sincronizar",
+    "subtitle": "Todas tus aventuras en un mismo lugar, guardadas online en tu cuenta.",
     "campaigns": "Tus campañas",
     "showArchived": "Mostrar archivadas",
     "empty": "Todavía no tienes aventuras guardadas en tu cuenta.",
@@ -1315,19 +1310,12 @@
     "revisionPrompt": "Revisiones disponibles: {revisions}. Escribe el número que quieres recuperar como una copia nueva.",
     "restored": "Versión recuperada como una aventura nueva.",
     "conflictTitle": "Cambios en otro dispositivo",
-    "conflictHelp": "Tu copia y la del servidor han cambiado por separado. Puedes conservar ambas creando una copia de tu versión local. Después, abre la aventura que quieras continuar.",
+    "conflictHelp": "La versión del servidor ha cambiado desde que abriste la aventura. Puedes guardar tus cambios como otra aventura o usar la versión del servidor.",
     "keepCopy": "Conservar mi versión como copia",
     "useRemote": "Descartar mis cambios y usar el servidor",
-    "discardConfirm": "¿Descartar los cambios locales de este elemento y conservar la versión del servidor?",
-    "importGuest": "Importar mis datos de invitado",
-    "importHelp": "Se han encontrado {decks} mazos y {campaign} guardados de invitado en este navegador.",
-    "importPrivacy": "Confirma que son tuyos y quieres añadirlos a esta cuenta. Los originales se conservan y repetir la importación no duplica elementos.",
-    "confirmImport": "Añadir a mi cuenta",
-    "imported": "Importación preparada. Consulta el estado de sincronización antes de cerrar.",
-    "exportAll": "Exportar mi biblioteca local",
+    "discardConfirm": "¿Descartar los cambios sin guardar de este elemento y usar la versión del servidor?",
+    "exportAll": "Exportar mi biblioteca",
     "guestHelp": "Inicia sesión para guardar tus mazos y campañas en tu cuenta.",
-    "otherTabs": "Guardados pendientes en otras pestañas",
-    "otherTabsHelp": "Hay copias locales pendientes de otras pestañas o sesiones de este navegador. Puedes exportarlas como respaldo sin modificar la partida original.",
     "copyName": "{name} (copia)"
   }
 }
