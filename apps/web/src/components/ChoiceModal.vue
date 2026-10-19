@@ -4,8 +4,7 @@ import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useLabels } from '../game/labels'
 import { useGameStore } from '../stores/game'
-import GameCard from './GameCard.vue'
-import CardTranslation from './CardTranslation.vue'
+import CardDetails from './CardDetails.vue'
 
 /**
  * Elecciones que no se hacen sobre la mesa (efectos de traiciones, elegir
@@ -55,8 +54,7 @@ watch(question, () => (minimized.value = false))
         </header>
         <div v-if="resolving.length" class="cards">
           <div v-for="tr in resolving" :key="tr.id" class="card-details">
-            <GameCard :code="tr.code" :name="tr.name" :width="170" no-zoom />
-            <CardTranslation :code="tr.code" />
+            <CardDetails :code="tr.code" :name="tr.name" :width="170" no-zoom />
           </div>
         </div>
         <div class="options">

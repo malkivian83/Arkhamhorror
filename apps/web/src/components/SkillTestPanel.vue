@@ -9,6 +9,7 @@ import { useGameStore } from '../stores/game'
 import ChaosTokenView from './ChaosTokenView.vue'
 import GameCard from './GameCard.vue'
 import SkillIcon from './SkillIcon.vue'
+import ScenarioSymbol from './ScenarioSymbol.vue'
 
 /**
  * Panel de la prueba de habilidad (RR "Skill Test Timing"): pasos ST.1–ST.8,
@@ -54,6 +55,11 @@ const step = computed(() => {
   return 3
 })
 const steps = [1, 2, 3, 4, 5, 6, 7, 8]
+const stageLabel = computed(() =>
+  t(
+    `skillTest.${committing.value ? 'commit' : resolved.value ? (canApplyResults.value ? 'apply' : 'compare') : 'reveal'}`,
+  ),
+)
 
 const investigator = computed(() =>
   props.state.investigators.find((i) => i.id === test.value?.investigator),
@@ -101,6 +107,7 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
 <template>
   <section v-if="test" class="skill-test" :class="{ minimized }" :aria-label="t('table.skillTest')">
     <header>
+      <img src="/local-assets/home/icon-decks.webp" alt="" width="36" height="36" />
       <h3>{{ t('table.skillTest') }}</h3>
       <button
         type="button"
@@ -114,9 +121,18 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
     </header>
 
     <template v-if="!minimized">
-      <ol class="steps">
-        <li v-for="n in steps" :key="n" :class="{ current: n === step, done: n < step }">
-          ST.{{ n }}
+      <div class="progress-copy">
+        <strong>{{ stageLabel }}</strong
+        ><span>{{ t('skillTest.progress', { n: step }) }}</span>
+      </div>
+      <ol class="steps" :aria-label="t('skillTest.progress', { n: step })">
+        <li
+          v-for="n in steps"
+          :key="n"
+          :class="{ current: n === step, done: n < step }"
+          :aria-current="n === step ? 'step' : undefined"
+        >
+          <span class="sr-only">ST.{{ n }}</span>
         </li>
       </ol>
 
@@ -138,7 +154,7 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
           <span class="skill"
             ><SkillIcon :skill="test.skill" /> {{ t(`skill.${test.skill}`) }}</span
           >
-          <span>VS</span>
+          <span aria-hidden="true">→</span>
         </div>
         <div class="number-block">
           <span class="number-label">{{ t('skillTest.difficulty') }}</span>
@@ -206,8 +222,8 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
           :title="t('choice.revealToken')"
           @click="game.answerLabel('choice.revealToken')"
         >
-          <span>◉</span>
-          <small>{{ t('choice.revealToken') }}</small>
+          <ScenarioSymbol kind="bag" />
+          <span>{{ t('choice.revealToken') }}</span>
         </button>
       </div>
       <section v-if="testAbilities.length" class="test-abilities">
@@ -223,7 +239,10 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
       </section>
 
       <div v-if="resolved" class="result" :class="test.succeeded ? 'success' : 'failure'">
-        <strong>{{ test.succeeded ? t('skillTest.success') : t('skillTest.failure') }}</strong>
+        <strong
+          ><span aria-hidden="true">{{ test.succeeded ? '✓' : '×' }}</span>
+          {{ test.succeeded ? t('skillTest.success') : t('skillTest.failure') }}</strong
+        >
         <span>{{ test.modifiedSkill }} / {{ test.difficulty }}</span>
         <button
           v-if="canApplyResults"
@@ -249,20 +268,26 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
       <p v-else-if="committing" class="hint">{{ t('skillTest.commitHint') }}</p>
 
       <footer>
-        <div class="bag">
-          <span v-for="(b, n) in bag" :key="n" class="bag-token">
-            <small v-if="typeof b.token !== 'number'" class="mod">{{
-              b.effect.autoFail ? '✗' : fmt(b.effect.modifier)
-            }}</small>
-            <ChaosTokenView :token="b.token" :size="30" />
-          </span>
-        </div>
+        <details class="bag-details">
+          <summary>
+            <ScenarioSymbol kind="bag" />{{ t('table.chaosBag') }} ·
+            {{ t('skillTest.tokensInBag', { n: state.chaosBag.length }) }}
+          </summary>
+          <div class="bag">
+            <span v-for="(b, n) in bag" :key="n" class="bag-token">
+              <small v-if="typeof b.token !== 'number'" class="mod">{{
+                b.effect.autoFail ? '✗' : fmt(b.effect.modifier)
+              }}</small>
+              <ChaosTokenView :token="b.token" :size="30" />
+            </span>
+          </div>
+        </details>
         <div class="footer-row">
-          <span>{{ t('skillTest.tokensInBag', { n: state.chaosBag.length }) }}</span>
           <button
             v-if="!resolved"
             type="button"
             class="odds"
+            :aria-expanded="showOdds"
             :title="t('skillTest.oddsHint')"
             @click="showOdds = !showOdds"
           >
@@ -277,223 +302,324 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
 
 <style scoped>
 .skill-test {
-  /* Dentro del área superior de la mesa: nunca queda detrás de la mano. */
+  --accent: #e5aa8d;
+  --ink: #f4efe7;
+  --panel-2: #303037;
+  --border: #807574;
   position: relative;
-  grid-column: 1;
+  grid-column: 1 / -2;
   grid-row: 1 / 3;
   align-self: start;
   justify-self: center;
-  margin: 8px 0;
+  margin: 12px 0;
   min-height: 0;
-  max-height: calc(100% - 16px);
+  max-height: calc(100% - 24px);
   overflow-y: auto;
+  overscroll-behavior: contain;
   z-index: 40;
-  width: min(580px, calc(100% - 32px));
-  border-radius: 14px;
-  background: #26302b;
-  border: 1px solid #6b7a70;
-  box-shadow: 0 10px 30px rgb(0 0 0 / 60%);
+  width: min(560px, calc(100% - 32px));
+  border-radius: 5px;
+  background: #19191d;
+  color: var(--ink);
+  border: 1px solid var(--border);
+  box-shadow: 0 16px 48px #0009;
+  font:
+    400 0.9375rem/1.5 'Source Sans 3',
+    system-ui,
+    sans-serif;
 }
 header {
   position: sticky;
   top: 0;
   z-index: 3;
-  padding: 12px 52px 12px 12px;
-  min-height: 48px;
-  text-align: center;
-  background: #1d2521;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #25252b;
+  border-bottom: 1px solid #62585b;
+}
+header img {
+  object-fit: contain;
+  flex: none;
 }
 h3 {
+  flex: 1;
   margin: 0;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-size: 0.95rem;
+  font:
+    700 1rem/1.5 'Libre Baskerville',
+    Georgia,
+    serif;
+  letter-spacing: 0;
+}
+button {
+  min-height: 44px;
+  border-radius: 3px;
+  color: var(--ink);
+  background: #303037;
+  border-color: var(--border);
+}
+button.primary {
+  background: var(--accent);
+  color: #19191d;
+  border-color: var(--accent);
+}
+button:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: #37303a;
+}
+button.primary:hover:not(:disabled) {
+  background: #f0c2a8;
 }
 .min {
-  position: absolute;
-  right: 8px;
-  top: 2px;
-  border-radius: 50%;
+  flex: none;
   width: 44px;
   height: 44px;
   padding: 0;
 }
+.progress-copy {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  padding: 14px 20px 8px;
+  font-size: 0.8125rem;
+}
+.progress-copy strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+.progress-copy > span {
+  color: #c3bbb4;
+  font-size: 0.75rem;
+}
 .steps {
   display: flex;
+  gap: 4px;
   list-style: none;
   margin: 0;
-  padding: 0;
-  background: #33403a;
+  padding: 0 20px 16px;
 }
 .steps li {
   flex: 1;
-  text-align: center;
-  padding: 4px 0;
-  font-size: 0.8rem;
-  opacity: 0.6;
+  height: 4px;
+  background: #4b4246;
+  border-radius: 2px;
 }
 .steps li.done {
-  opacity: 0.85;
+  background: #ad806b;
 }
 .steps li.current {
-  background: #a42fa0;
-  opacity: 1;
-  font-weight: 700;
+  background: #f4efe7;
+  box-shadow: 0 0 0 1px #e5aa8d;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 .duel {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 8px;
-  background: #1f2824;
+  gap: 14px;
+  padding: 16px;
+  margin: 0 20px;
+  background: #25252b;
+  border: 1px solid #62585b;
+  border-radius: 4px;
 }
 .source-name {
-  max-width: 120px;
-  font-style: italic;
-}
-.value,
-.difficulty {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: #fff;
-}
-.value {
-  background: #2f6f2f;
+  max-width: 110px;
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
 }
 .number-block {
-  display: grid;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 4px;
 }
 .number-label {
-  font-size: 0.65rem;
+  color: #d0c7c1;
+  font-size: 0.6875rem;
   text-align: center;
 }
+.value,
+.difficulty {
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.value {
+  color: #f4efe7;
+}
+.difficulty {
+  color: #e5aa8d;
+}
+.vs {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  color: #c3bbb4;
+}
+.vs > span:last-child {
+  color: #e5aa8d;
+  font-size: 1.25rem;
+}
+.skill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+}
+.breakdown {
+  margin: 10px 20px 0;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: #c3bbb4;
+}
+.modifier-sources {
+  padding: 0 24px 0 40px;
+  margin: 8px 0;
+  font-size: 0.8125rem;
+  color: #c3bbb4;
+}
+.committed {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 20px 0;
+}
+.reveal {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 16px 20px;
+  min-height: 80px;
+  align-items: center;
+}
+.bag-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 56px;
+  background: #e5aa8d;
+  color: #19191d;
+  border: 1px solid #e5aa8d;
+  font-weight: 600;
+}
+.bag-button :deep(.scenario-symbol) {
+  color: currentColor;
+  width: 28px;
+  height: 28px;
+}
+.bag-button:hover:not(:disabled) {
+  background: #f0c2a8;
+}
 .test-abilities {
-  padding: 8px 12px;
+  padding: 8px 20px 16px;
   display: grid;
   gap: 8px;
 }
 .test-abilities h4 {
   margin: 0;
-  font-size: 0.85rem;
+  color: #c3bbb4;
+  font-size: 0.8125rem;
+  font-weight: 600;
 }
 .test-abilities button {
   text-align: left;
-  min-height: 44px;
-}
-.difficulty {
-  background: #8e1c1c;
-}
-.vs {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-weight: 700;
-}
-.skill {
-  font-size: 0.75rem;
-  opacity: 0.85;
-}
-.breakdown {
-  margin: 6px 12px 0;
-  text-align: center;
-  font-size: 0.8rem;
-  opacity: 0.8;
-}
-.committed {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  margin-top: 8px;
-}
-.reveal {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  padding: 8px;
-  min-height: 86px;
-  align-items: center;
-}
-.bag-button {
-  width: 92px;
-  height: 92px;
-  border-radius: 50%;
-  border: 4px solid #d24bd2;
-  background: radial-gradient(circle at 35% 30%, #4a3b55, #1c1522 70%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  box-shadow: 0 0 16px rgb(210 75 210 / 50%);
-}
-.bag-button span {
-  font-size: 1.8rem;
-}
-.bag-button small {
-  font-size: 0.65rem;
-  line-height: 1.1;
 }
 .result {
-  position: sticky;
-  bottom: 0;
-  z-index: 2;
-  background: #26302b;
-  flex-wrap: wrap;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  padding: 8px;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 20px;
+  background: #25252b;
+  border-block: 1px solid #62585b;
 }
 .result.success strong {
-  color: #7fd67f;
+  color: #a8d8c0;
 }
 .result.failure strong {
-  color: #ff8a80;
+  color: #ffb4a9;
+}
+.result strong > span {
+  font-size: 1.25rem;
 }
 .pending-choice {
   display: grid;
   gap: 8px;
-  padding: 8px 12px;
-  background: #1d2521;
+  padding: 14px 20px;
+  background: #25252b;
 }
 .pending-choice p {
   margin: 0;
-  line-height: 1.4;
 }
 .pending-choice button {
-  min-height: 44px;
   white-space: normal;
 }
 .error {
   color: #ffb4a9;
-  padding: 8px 12px;
+  padding: 8px 20px;
   overflow-wrap: anywhere;
 }
 .hint {
-  margin: 0 12px 8px;
+  margin: 0 20px 16px;
+  color: #c3bbb4;
+  font-size: 0.8125rem;
   text-align: center;
-  font-size: 0.8rem;
-  opacity: 0.8;
 }
 footer {
-  padding: 8px 10px;
-  background: #1d2521;
+  padding: 8px 20px 16px;
+  border-top: 1px solid #62585b;
+}
+.bag-details summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  cursor: pointer;
+  list-style: none;
+  color: #d0c7c1;
+  font-size: 0.8125rem;
+}
+.bag-details summary::-webkit-details-marker {
+  display: none;
+}
+.bag-details summary::after {
+  content: '+';
+  margin-left: auto;
+  color: #e5aa8d;
+  font-size: 1.25rem;
+}
+.bag-details[open] summary::after {
+  content: '−';
+}
+.bag-details summary :deep(.scenario-symbol) {
+  width: 20px;
+  height: 20px;
 }
 .bag {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 6px;
   justify-content: center;
   align-items: flex-end;
+  padding: 12px 0;
 }
 .bag-token {
   display: flex;
@@ -501,40 +627,39 @@ footer {
   align-items: center;
 }
 .mod {
-  font-size: 0.65rem;
+  color: #f4efe7;
+  font-size: 0.6875rem;
   padding: 0 4px;
-  border-radius: 6px;
-  background: #11161a;
+  border-radius: 3px;
+  background: #303037;
 }
 .footer-row {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  gap: 12px;
   margin-top: 6px;
-  font-size: 0.8rem;
 }
 .odds {
-  padding: 2px 10px;
-  border-radius: 12px;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
+  width: 100%;
 }
-/* La ficha sale de la bolsa: sube, gira y se asienta. */
+.odds-hint {
+  color: #c3bbb4;
+  font-size: 0.8125rem;
+  margin-bottom: 0;
+}
 .drawn-token {
   display: inline-block;
-  animation: token-draw 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+  animation: token-draw 0.4s ease-out both;
 }
 @keyframes token-draw {
-  0% {
+  from {
     opacity: 0;
-    transform: translateY(70px) scale(0.3) rotateY(0deg);
+    transform: translateY(12px) scale(0.8);
   }
-  60% {
+  to {
     opacity: 1;
-    transform: translateY(-12px) scale(1.15) rotateY(540deg);
-  }
-  100% {
-    transform: translateY(0) scale(1) rotateY(720deg);
+    transform: none;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -544,57 +669,62 @@ footer {
 }
 @media (max-width: 900px) {
   .skill-test {
-    width: calc(100% - 16px);
+    grid-column: 1 / -1;
+    width: min(560px, calc(100% - 24px));
+    margin-top: 72px;
+    max-height: calc(100% - 84px);
   }
 }
 @media (max-width: 600px) {
-  .duel {
-    gap: 4px;
-    flex-wrap: nowrap;
-    padding: 8px 4px;
+  header {
+    padding: 8px 10px;
+    gap: 8px;
   }
-  .duel .source-card {
-    width: 48px !important;
-    height: 67px !important;
-    flex: none;
+  header img {
+    width: 28px;
+    height: 28px;
+  }
+  h3 {
+    font-size: 0.9375rem;
+  }
+  .progress-copy {
+    padding-inline: 14px;
+  }
+  .steps {
+    padding-inline: 14px;
+  }
+  .duel {
+    margin-inline: 14px;
+    padding: 12px 8px;
+    gap: 8px;
+    flex-wrap: wrap;
   }
   .duel .investigator-card {
     width: 48px !important;
     height: 34px !important;
-    flex: none;
+  }
+  .duel .source-card {
+    width: 44px !important;
+    height: 62px !important;
+  }
+  .skill {
+    font-size: 0.6875rem;
+  }
+  .number-label {
+    max-width: 60px;
   }
   .value,
   .difficulty {
-    width: 32px;
-    height: 32px;
-    font-size: 1rem;
-    flex: none;
+    font-size: 1.625rem;
   }
-  .vs {
-    min-width: 0;
+  .reveal,
+  .test-abilities,
+  .pending-choice,
+  footer {
+    padding-inline: 14px;
   }
-  .skill {
-    font-size: 0.65rem;
-  }
-  .committed,
-  .result {
-    position: sticky;
-    bottom: 0;
-    z-index: 2;
-    background: #26302b;
-    flex-wrap: wrap;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  header {
-    min-height: 52px;
-    padding-right: 52px;
-  }
-  .min {
-    width: 44px;
-    height: 44px;
-    top: 4px;
-    right: 4px;
+  .hint {
+    margin-inline: 14px;
   }
 }
 </style>

@@ -12,6 +12,7 @@ const game = useGameStore()
 const { t } = useI18n()
 const label = useLabels()
 const title = useId()
+const imageLanguages = ref<Record<string, string>>({})
 const dialog = ref<HTMLDialogElement>()
 const accept = ref<HTMLButtonElement>()
 const current = computed(() => game.advanceReview[0])
@@ -90,10 +91,15 @@ onBeforeUnmount(() => dialog.value?.close())
               landscape
               back
               no-zoom
+              @image-language="imageLanguages[`${current.card.code}:back`] = $event"
             />
             <figcaption>{{ t('table.resolveBack') }}</figcaption>
           </figure>
-          <CardTranslation :code="current.card.code" back />
+          <CardTranslation
+            :code="current.card.code"
+            back
+            :image-language="imageLanguages[`${current.card.code}:back`]"
+          />
         </section>
         <div v-else class="origin">
           <GameCard
@@ -122,6 +128,7 @@ onBeforeUnmount(() => dialog.value?.close())
               :landscape="!!card.landscape"
               :back="!!card.back"
               no-zoom
+              @image-language="imageLanguages[`${card.code}:${!!card.back}`] = $event"
             />
             <figcaption>
               {{
@@ -142,7 +149,11 @@ onBeforeUnmount(() => dialog.value?.close())
             <p v-if="card.exhausted !== undefined" class="placement">
               {{ t(`table.advanceReview.${card.exhausted ? 'exhausted' : 'ready'}`) }}
             </p>
-            <CardTranslation v-if="current.cards.length <= 2 && !card.back" :code="card.code" />
+            <CardTranslation
+              v-if="current.cards.length <= 2 && !card.back"
+              :code="card.code"
+              :image-language="imageLanguages[`${card.code}:${!!card.back}`]"
+            />
           </figure>
         </section>
         <ol v-if="current.effects.length" class="effects">

@@ -41,6 +41,8 @@ export interface LocalizedCard {
   enemy_damage?: number
   enemy_horror?: number
   victory?: number
+  /** Editorial FAQ associated with this card; never inferred from its rules text. */
+  faq?: { question: string; answer: string; source?: string }[]
 }
 
 /** Paquetes de cada idioma: caja básica 2026 y La gala del ecuador del invierno (con sus encuentros). */

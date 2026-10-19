@@ -1,25 +1,18 @@
 <script setup lang="ts">
-import { cluesToAdvanceAct, type GameState } from '@lcg/engine'
-import { computed, ref } from 'vue'
+import type { GameState } from '@lcg/engine'
+import { computed, ref, useId } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { cardBackImage } from '../game/assets'
+import { localizedCards, localName } from '../game/localized'
 import { showPile } from '../game/pile'
 import ChaosTokenView from './ChaosTokenView.vue'
-import GameCard from './GameCard.vue'
-import ScenarioDeckViewer from './ScenarioDeckViewer.vue'
-import TokenBadge from './TokenBadge.vue'
+import ScenarioSymbol from './ScenarioSymbol.vue'
 import TableTarget from './TableTarget.vue'
 
 const props = defineProps<{ state: GameState }>()
 const { t } = useI18n()
-const showBag = ref(false)
-
-const agenda = computed(() => props.state.agendas[props.state.agendaIndex])
-const act = computed(() => props.state.acts[props.state.actIndex])
-const topDiscard = computed(() => props.state.encounterDiscard.at(-1))
-const actClues = computed(() => cluesToAdvanceAct(props.state))
-const encounterBack = computed(() => cardBackImage('encounter'))
-const topVictory = computed(() => props.state.victoryDisplay.at(-1))
+const bagDialog = ref<HTMLDialogElement>()
+const bagButton = ref<HTMLButtonElement>()
+const bagId = useId()
 const stories = computed(() => Object.values(props.state.stories ?? {}))
 
 function showDiscard() {
@@ -35,7 +28,12 @@ function showVictory() {
     cards: props.state.victoryDisplay.map((code) => ({ code, name: code })),
   })
 }
-
+function storyName(story: { code: string; name: string }) {
+  return localizedCards.value.get(story.code)?.name ?? localName(story.name)
+}
+function showStory(story: { code: string; name: string }) {
+  showPile({ title: 'table.story', cards: [{ code: story.code, name: story.name }] })
+}
 const sortedBag = computed(() =>
   [...props.state.chaosBag].sort((a, b) =>
     typeof a === 'number' && typeof b === 'number' ? b - a : typeof a === 'number' ? -1 : 1,
@@ -45,349 +43,317 @@ const sortedBag = computed(() =>
 
 <template>
   <div class="scenario-row" role="region" :aria-label="t('table.scenario')">
-    <div v-if="agenda" class="slot folder">
-      <ScenarioDeckViewer kind="agenda" :cards="state.agendas" :active-index="state.agendaIndex" />
-      <TableTarget target="agenda">
-        <GameCard
-          :code="agenda.code ?? ''"
-          :name="agenda.name"
-          :width="88"
-          landscape
-          color="#7a2c2c"
-        >
-          <TokenBadge
-            class="badge-token"
-            kind="doom"
-            :value="`${state.doom}/${agenda.doomThreshold}`"
-            :size="40"
-            :title="t('table.doom')"
-          />
-        </GameCard>
-      </TableTarget>
+    <div class="scenario-stat encounter-deck" role="group" :aria-label="t('table.encounterDeck')">
+      <img src="/local-assets/home/icon-decks.webp" alt="" width="28" height="28" />
+      <span class="stat-copy"
+        ><span class="stat-label">{{ t('table.deck') }}</span
+        ><strong class="stat-number">{{ state.encounterDeck.length }}</strong></span
+      >
     </div>
+    <button
+      type="button"
+      class="scenario-stat discard"
+      :aria-label="`${t('table.encounterDiscard')}: ${state.encounterDiscard.length}`"
+      @click="showDiscard"
+    >
+      <ScenarioSymbol kind="discard" />
+      <span class="stat-copy"
+        ><span class="stat-label full-label">{{ t('table.discard') }}</span
+        ><span class="stat-label short-label">{{ t('table.discardShort') }}</span
+        ><strong class="stat-number">{{ state.encounterDiscard.length }}</strong></span
+      >
+    </button>
+    <button
+      ref="bagButton"
+      type="button"
+      class="scenario-stat bag"
+      :aria-label="`${t('table.chaosBag')}: ${state.chaosBag.length}`"
+      aria-haspopup="dialog"
+      :aria-controls="bagId"
+      @click="bagDialog?.showModal()"
+    >
+      <ScenarioSymbol kind="bag" />
+      <span class="stat-copy"
+        ><span class="stat-label full-label">{{ t('table.chaosBag') }}</span
+        ><span class="stat-label short-label">{{ t('table.chaosShort') }}</span
+        ><strong class="stat-number">{{ state.chaosBag.length }}</strong></span
+      >
+    </button>
+    <button
+      type="button"
+      class="scenario-stat victory"
+      :aria-label="`${t('table.victory')}: ${state.victoryDisplay.length}`"
+      @click="showVictory"
+    >
+      <ScenarioSymbol kind="victory" />
+      <span class="stat-copy"
+        ><span class="stat-label full-label">{{ t('table.victory') }}</span
+        ><span class="stat-label short-label">{{ t('table.victoryShort') }}</span
+        ><strong class="stat-number">{{ state.victoryDisplay.length }}</strong></span
+      >
+    </button>
 
-    <div v-if="act" class="slot folder">
-      <ScenarioDeckViewer kind="act" :cards="state.acts" :active-index="state.actIndex" />
-      <TableTarget target="act">
-        <GameCard :code="act.code ?? ''" :name="act.name" :width="88" landscape color="#2c5a7a">
-          <TokenBadge
-            v-if="actClues !== null"
-            class="badge-token"
-            kind="clue"
-            :value="actClues"
-            :size="36"
-            :title="t('table.clues')"
-          />
-        </GameCard>
-      </TableTarget>
+    <div v-for="story in stories" :key="story.code" class="story-cluster">
+      <button
+        type="button"
+        class="story-view"
+        :aria-label="t('table.enlargeCard', { name: storyName(story) })"
+        :title="storyName(story)"
+        @click="showStory(story)"
+      >
+        <img src="/local-assets/home/icon-campaign.webp" alt="" width="26" height="26" /><span>{{
+          storyName(story)
+        }}</span>
+      </button>
+      <TableTarget :target="`story:${story.code}`"
+        ><span class="story-clues"
+          >{{ t('table.clues') }} <strong>{{ story.clues }}</strong></span
+        ></TableTarget
+      >
     </div>
-
-    <!-- Cartas de Historia en juego (facción aliada y rival en La gala). -->
-    <TableTarget v-for="s in stories" :key="s.code" :target="`story:${s.code}`">
-      <div class="slot folder">
-        <span class="folder-tab">{{ t('table.story') }}</span>
-        <GameCard :code="s.code" :name="s.name" :width="62" color="#6b4a8a">
-          <TokenBadge
-            v-if="s.clues > 0"
-            class="badge-token"
-            kind="clue"
-            :value="s.clues"
-            :size="28"
-            :title="t('table.clues')"
-          />
-        </GameCard>
-      </div>
-    </TableTarget>
-
-    <!-- Mazos propios del escenario (mazo de Invitados). -->
     <div
       v-for="(cards, name) in state.scenarioDecks ?? {}"
       :key="name"
-      class="slot deck folder"
-      :title="t(`table.scenarioDeck.${name}`)"
+      class="scenario-stat extra-deck"
+      role="group"
+      :aria-label="t(`table.scenarioDeck.${name}`)"
     >
-      <span class="folder-tab">{{ t(`table.scenarioDeck.${name}`) }}</span>
-      <div class="card-back" :style="{ '--depth': Math.min(cards.length, 6) }">
-        <strong>{{ cards.length }}</strong>
-      </div>
-    </div>
-
-    <div class="slot deck folder" :title="t('table.encounterDeck')">
-      <span class="folder-tab">{{ t('table.deck') }}</span>
-      <div
-        class="card-back"
-        :class="{ official: encounterBack }"
-        :style="
-          encounterBack
-            ? { backgroundImage: `url(${encounterBack})` }
-            : { '--depth': Math.min(state.encounterDeck.length, 6) }
-        "
+      <img src="/local-assets/home/icon-decks.webp" alt="" width="28" height="28" /><span
+        class="stat-copy"
+        ><span class="stat-label">{{ t(`table.scenarioDeck.${name}`) }}</span
+        ><strong class="stat-number">{{ cards.length }}</strong></span
       >
-        <strong>{{ state.encounterDeck.length }}</strong>
-      </div>
     </div>
-
-    <button
-      type="button"
-      class="slot pile folder"
-      :title="t('table.viewPile')"
-      @click="showDiscard"
-    >
-      <span class="folder-tab">{{ t('table.discard') }}</span>
-      <GameCard v-if="topDiscard" :code="topDiscard.code" :name="topDiscard.name" :width="40" />
-      <div v-else class="card-back empty"></div>
-      <span v-if="state.encounterDiscard.length" class="count">{{
-        state.encounterDiscard.length
-      }}</span>
-    </button>
-
-    <button type="button" class="bag" :aria-pressed="showBag" @click="showBag = !showBag">
-      <span class="bag-icon" />
-      <span>{{ t('table.chaosBag') }} ({{ state.chaosBag.length }})</span>
-    </button>
-    <div v-if="showBag" class="bag-tokens">
-      <ChaosTokenView v-for="(token, i) in sortedBag" :key="i" :token="token" :size="30" />
-    </div>
-
-    <div v-if="state.skillTest" class="test">
-      <strong>{{ t('table.skillTest') }}</strong>
-      <ChaosTokenView
+    <div v-if="state.skillTest" class="test" :aria-label="t('table.skillTest')">
+      <span>{{ t('table.skillTest') }}</span
+      ><ChaosTokenView
         v-for="(token, i) in state.skillTest.tokens"
         :key="i"
         :token="token"
-        :size="28"
+        :size="24"
       />
     </div>
 
-    <button
-      type="button"
-      class="slot pile victory folder"
-      :title="t('table.viewPile')"
-      @click="showVictory"
-    >
-      <span class="folder-tab">{{ t('table.victory') }}</span>
-      <GameCard v-if="topVictory" :code="topVictory" :name="topVictory" :width="40" />
-      <div v-else class="card-back empty"></div>
-      <span v-if="state.victoryDisplay.length" class="count">{{
-        state.victoryDisplay.length
-      }}</span>
-    </button>
+    <Teleport to="body">
+      <dialog
+        :id="bagId"
+        ref="bagDialog"
+        class="bag-dialog"
+        :aria-label="t('table.chaosBag')"
+        @close="bagButton?.focus()"
+        @click="$event.target === bagDialog && bagDialog.close()"
+        @keydown.stop
+      >
+        <header>
+          <h2>
+            {{ t('table.chaosBag') }} <span>({{ state.chaosBag.length }})</span>
+          </h2>
+          <button
+            type="button"
+            class="close-bag"
+            :aria-label="t('table.close')"
+            autofocus
+            @click="bagDialog?.close()"
+          >
+            ✕
+          </button>
+        </header>
+        <div class="bag-tokens">
+          <ChaosTokenView v-for="(token, i) in sortedBag" :key="i" :token="token" :size="42" />
+        </div>
+      </dialog>
+    </Teleport>
   </div>
 </template>
 
 <style scoped>
 .scenario-row {
-  /* Expediente del caso: carpetas de papel sobre la mesa de madera. */
+  --accent: #e5aa8d;
   display: flex;
-  align-items: flex-end;
-  gap: 10px;
-  flex-wrap: nowrap;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
   min-width: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-  padding: 10px 10px 6px 58px;
-  background: var(--tex-wood), linear-gradient(180deg, #2e2317, #1f170e);
-  border-bottom: 2px solid #000;
+  padding: 8px;
+  color: #f4efe7;
+  background: #19191d;
+  border-bottom: 1px solid #62585b;
+  font-family: 'Source Sans 3', system-ui, sans-serif;
 }
-.folder {
-  position: relative;
+.scenario-stat {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 5px 10px;
+  border: 1px solid #62585b;
+  border-radius: 3px;
+  background: #25252b;
+  color: #f4efe7;
+}
+.scenario-stat img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.stat-copy {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  padding: 4px 6px;
-  border-radius: 2px 10px 2px 2px;
-  background: linear-gradient(180deg, var(--parch), var(--parch-dark));
-  box-shadow: 0 4px 10px rgb(0 0 0 / 55%);
+  gap: 1px;
 }
-button.folder {
-  border: 0;
-  cursor: pointer;
-}
-.folder::before {
-  /* Pestaña de la carpeta. */
-  content: '';
-  position: absolute;
-  top: -8px;
-  left: 8px;
-  width: 44px;
-  height: 9px;
-  border-radius: 5px 5px 0 0;
-  background: var(--parch);
-}
-.folder-tab {
-  font-family: var(--fell);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #4a3214;
-  white-space: nowrap;
+.stat-label {
+  color: #d0c7c1;
+  font-size: 0.75rem;
   line-height: 1.2;
 }
-.slot {
-  position: relative;
+.stat-number {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
 }
-.card-back {
-  /* Reverso de encuentro dibujado: sello sobre tela oscura, con grosor de mazo. */
-  position: relative;
-  width: 40px;
-  height: 56px;
-  border-radius: 6px;
-  background:
-    radial-gradient(circle at 50% 50%, rgb(90 160 135 / 40%), transparent 65%),
-    repeating-linear-gradient(45deg, #1f3a33 0 5px, #183029 5px 10px);
-  border: 2px solid #3d6b5e;
-  display: grid;
-  place-items: center;
-  box-shadow:
-    1px 1px 0 #2a4a40,
-    2px 2px 0 #18302a,
-    calc(var(--depth, 0) * 1px) calc(var(--depth, 0) * 1px) 0 #0e1d19,
-    0 6px 14px rgb(0 0 0 / 60%);
-}
-.card-back::before {
-  content: '';
-  position: absolute;
-  inset: 8px;
-  background: #bfe6d6;
-  opacity: 0.35;
-  mask: var(--tex-sigil) center / contain no-repeat;
-}
-.card-back.official {
-  background-size: cover;
-  background-position: center;
-  border-color: #222;
-  text-shadow:
-    0 1px 4px #000,
-    0 0 2px #000;
-}
-.card-back strong {
-  position: relative;
-  font-family: var(--display);
-  font-size: 1.1rem;
-  text-shadow: 0 2px 4px #000;
-}
-.card-back.empty {
-  background: transparent;
-  border: 1px dashed #8a6c3c;
-  box-shadow: none;
-}
-.card-back.empty::before {
-  opacity: 0.12;
-  background: #6e5631;
-}
-.bag {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, #3a2a20, #1f150f);
-  border-color: color-mix(in srgb, var(--trim) 50%, transparent);
-  font-family: var(--fell);
-  font-size: 0.85rem;
-  align-self: center;
-}
-.bag-icon {
-  /* Bolsa de tela cerrada con cordón. */
-  width: 18px;
-  height: 20px;
-  border-radius: 40% 40% 50% 50% / 30% 30% 70% 70%;
-  background: radial-gradient(circle at 40% 60%, #8a5a3a, #3a2214);
-  box-shadow: inset 0 3px 0 -1px var(--trim);
-}
-.bag-tokens,
-.test {
-  display: flex;
-  gap: 4px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.test {
-  padding: 4px 10px;
-  border-radius: 8px;
-  background: rgb(201 162 39 / 15%);
-  border: 1px solid var(--accent);
-}
-.pile {
-  padding: 0;
-  border: 0;
-  background: none;
-  cursor: pointer;
-}
-.pile:hover {
-  filter: brightness(1.15);
-}
-.pile.folder {
-  padding: 4px 6px;
-  background: linear-gradient(180deg, var(--parch), var(--parch-dark));
-  color: var(--parch-ink);
-}
-.count {
-  position: absolute;
-  right: -6px;
-  bottom: -6px;
-  z-index: 2;
-  min-width: 22px;
-  padding: 1px 6px;
-  border-radius: 11px;
-  background: #111;
-  border: 1px solid var(--border);
-  font-size: 0.75rem;
-  font-weight: 700;
+.short-label {
+  display: none;
 }
 .victory {
   margin-left: auto;
 }
-.badge-token {
-  position: absolute;
-  bottom: -10px;
-  right: -10px;
-  z-index: 2;
+.story-cluster {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 4px;
+  border: 1px solid #62585b;
+  border-radius: 3px;
+  background: #25252b;
 }
-.card-back.official::before {
-  display: none;
+.story-view {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 3px;
+  border: 0;
+  background: transparent;
+  color: #f4efe7;
+  font-size: 0.75rem;
 }
-.scenario-row > * {
-  flex: none;
+.story-view img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
 }
-.scenario-row::-webkit-scrollbar {
-  display: none;
+.story-view > span {
+  max-width: 115px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-@media (max-width: 600px) {
+.story-clues {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  padding: 5px;
+  color: #d0c7c1;
+  font-size: 0.75rem;
+}
+.test {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  padding: 6px;
+  border: 1px solid #e5aa8d;
+  border-radius: 3px;
+  color: #f4efe7;
+  font-size: 0.75rem;
+}
+.bag-dialog {
+  width: min(480px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 20px;
+  background: #19191d;
+  color: #f4efe7;
+  border: 1px solid #807574;
+  border-radius: 6px;
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+}
+.bag-dialog::backdrop {
+  background: #000a;
+}
+.bag-dialog header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.bag-dialog h2 {
+  font:
+    700 1.125rem/1.4 'Libre Baskerville',
+    Georgia,
+    serif;
+  letter-spacing: 0;
+  margin: 0;
+}
+.bag-dialog h2 span {
+  color: #c3bbb4;
+}
+.close-bag {
+  min-width: 44px;
+  min-height: 44px;
+  color: #e5aa8d;
+  background: #25252b;
+  border-color: #807574;
+}
+.bag-tokens {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+@media (max-width: 680px) {
   .scenario-row {
-    gap: 8px;
-    padding: 10px 8px 6px 58px;
+    gap: 5px;
+    padding: 6px;
   }
-  .folder,
-  .pile.folder {
+  .scenario-stat {
+    flex: 1 0 48px;
+    min-width: 0;
+    flex-direction: column;
+    gap: 2px;
+    padding: 4px 2px;
+  }
+  .scenario-stat img,
+  .scenario-stat :deep(.scenario-symbol) {
+    width: 22px;
+    height: 22px;
+  }
+  .stat-copy {
+    flex-direction: row;
+    align-items: baseline;
     gap: 3px;
-    padding: 4px;
   }
-  .folder-tab {
-    font-size: 0.58rem;
-    letter-spacing: 0.02em;
+  .stat-label {
+    font-size: 0.6875rem;
   }
-  .folder :deep(.game-card) {
-    width: 76px !important;
-    height: 54px !important;
+  .stat-number {
+    font-size: 0.75rem;
   }
-  .card-back,
-  .pile :deep(.game-card) {
-    width: 34px !important;
-    height: 48px !important;
+  .full-label {
+    display: none;
   }
-  .badge-token {
-    width: 26px !important;
-    height: 26px !important;
-    font-size: 11px !important;
-    right: -4px;
-    bottom: -5px;
+  .short-label {
+    display: inline;
   }
-  .bag {
-    min-height: 44px;
-    padding: 6px 8px;
-    font-size: 0.7rem;
+  .victory {
+    margin-left: 0;
   }
 }
 </style>

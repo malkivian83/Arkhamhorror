@@ -473,6 +473,12 @@
     "agendaDeck": "Mazo de planes",
     "actDeck": "Mazo de actos",
     "viewScenarioDeck": "{deck} {current} de {total}: ver todas las cartas del mazo",
+    "cardFaq": "Preguntas frecuentes",
+    "faqSource": "Consultar la fuente",
+    "scenarioProgress": "Plan y acto del escenario",
+    "discardShort": "Desc.",
+    "chaosShort": "Caos",
+    "victoryShort": "Vic.",
     "scenarioDeckHelp": "Cartas en orden de avance. La carta activa está resaltada. Puedes consultar las siguientes y sus reversos sin avanzar el escenario.",
     "deckStatus": {
       "previous": "Anterior",
@@ -600,6 +606,12 @@
     }
   },
   "skillTest": {
+    "progress": "Paso {n} de 8",
+    "prepare": "Preparar la prueba",
+    "commit": "Comprometer cartas",
+    "reveal": "Revelar y resolver fichas",
+    "compare": "Comprobar el resultado",
+    "apply": "Aplicar el resultado",
     "availableAbilities": "Apoyos y habilidades disponibles antes de revelar",
     "value": "Valor de habilidad",
     "difficulty": "Dificultad",

@@ -241,9 +241,10 @@ body {
   width: 44px;
   height: 44px;
   padding: 0;
-  color: var(--brass);
-  background: #1f170e;
-  border-color: var(--brass-dark);
+  color: #e5aa8d;
+  background: #121216;
+  border-color: #807574;
+  border-radius: 3px;
   font-size: 1.35rem;
 }
 .game-menu {

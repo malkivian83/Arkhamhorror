@@ -10,6 +10,7 @@ import DrawSpotlight from '../components/DrawSpotlight.vue'
 import LocationMap from '../components/LocationMap.vue'
 import PlayerArea from '../components/PlayerArea.vue'
 import ScenarioRow from '../components/ScenarioRow.vue'
+import ScenarioRail from '../components/ScenarioRail.vue'
 import ScenarioTransition from '../components/ScenarioTransition.vue'
 import SidePanel from '../components/SidePanel.vue'
 import SkillTestPanel from '../components/SkillTestPanel.vue'
@@ -51,7 +52,8 @@ const shown = computed(
 
 <template>
   <div v-if="state" class="table">
-    <ScenarioRow :state="state" />
+    <ScenarioRail :state="state" />
+    <ScenarioRow :state="state" class="scenario-toolbar" />
     <BoardViewport :reset-key="state.scenarioId" class="board playmat sigil">
       <LocationMap :state="state" />
     </BoardViewport>
@@ -123,25 +125,29 @@ const shown = computed(
 .table {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 340px;
+  grid-template-columns: 76px minmax(0, 1fr) 340px;
   grid-template-rows: auto minmax(0, 1fr) auto;
   height: 100%;
   min-height: 0;
   min-width: 0;
   overflow: hidden;
 }
-.table > :first-child {
+.scenario-rail {
   grid-column: 1;
+  grid-row: 1 / 3;
+}
+.scenario-toolbar {
+  grid-column: 2;
   grid-row: 1;
 }
 .board {
-  grid-column: 1;
+  grid-column: 2;
   grid-row: 2;
   min-height: 0;
 }
 .players {
   position: relative;
-  grid-column: 1;
+  grid-column: 1 / 3;
   grid-row: 3;
   display: flex;
   flex-direction: column;
@@ -149,7 +155,7 @@ const shown = computed(
   z-index: 10;
 }
 .case-panel {
-  grid-column: 2;
+  grid-column: 3;
   grid-row: 1 / -1;
   overflow-y: auto;
 }
@@ -192,14 +198,14 @@ const shown = computed(
 }
 @media (max-width: 900px) {
   .table {
-    grid-template-columns: 1fr;
+    grid-template-columns: 64px minmax(0, 1fr);
   }
   .zoom {
     display: none;
   }
   .case-panel {
     display: none;
-    grid-column: 1;
+    grid-column: 1 / -1;
     grid-row: 1 / 3;
     z-index: 20;
     border-left: 0;

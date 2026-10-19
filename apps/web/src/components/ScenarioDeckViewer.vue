@@ -3,13 +3,14 @@ import { ref, useId } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { localizedCards, localName } from '../game/localized'
 import GameCard from './GameCard.vue'
-import CardTranslation from './CardTranslation.vue'
+import CardDetails from './CardDetails.vue'
 
 /** Consulta del mazo; abrir o girar una carta nunca responde a una pregunta del motor. */
 const props = defineProps<{
   kind: 'agenda' | 'act'
   cards: readonly { code?: string; name: string }[]
   activeIndex: number
+  compact?: boolean
 }>()
 const { t } = useI18n()
 const dialog = ref<HTMLDialogElement>()
@@ -53,6 +54,7 @@ function nameOf(card: { code?: string; name: string }) {
     ref="trigger"
     type="button"
     class="deck-trigger"
+    :class="{ compact }"
     aria-haspopup="dialog"
     :aria-label="
       t('table.viewScenarioDeck', {
@@ -64,8 +66,18 @@ function nameOf(card: { code?: string; name: string }) {
     :title="t('table.viewPile')"
     @click.stop="open"
   >
-    <span class="stack-icon" aria-hidden="true">▱</span>
-    {{ t(`table.${kind}`) }} {{ activeIndex + 1 }} / {{ cards.length }}
+    <img
+      v-if="compact"
+      :src="`/local-assets/home/icon-${kind === 'agenda' ? 'campaign' : 'investigators'}.webp`"
+      alt=""
+      width="28"
+      height="28"
+    />
+    <span v-else class="stack-icon" aria-hidden="true">▱</span>
+    <span class="deck-caption"
+      ><span>{{ t(`table.${kind}`) }}</span>
+      <span class="deck-stage">{{ activeIndex + 1 }}/{{ cards.length }}</span></span
+    >
   </button>
 
   <Teleport to="body">
@@ -90,7 +102,7 @@ function nameOf(card: { code?: string; name: string }) {
       <section v-if="enlarged !== null && cards[enlarged]" class="enlarged">
         <button type="button" @click="enlarged = null">{{ t('table.backToDeck') }}</button>
         <div class="detail">
-          <GameCard
+          <CardDetails
             :code="cards[enlarged]!.code ?? ''"
             :name="cards[enlarged]!.name"
             :width="560"
@@ -98,7 +110,6 @@ function nameOf(card: { code?: string; name: string }) {
             :back="flipped.has(enlarged)"
             no-zoom
           />
-          <CardTranslation :code="cards[enlarged]!.code ?? ''" :back="flipped.has(enlarged)" />
         </div>
         <button type="button" @click="flip(enlarged)">
           {{ t(flipped.has(enlarged) ? 'table.viewCardFront' : 'table.viewCardBack') }}
@@ -184,7 +195,43 @@ function nameOf(card: { code?: string; name: string }) {
 .stack-icon {
   font-size: 1.1rem;
 }
+.deck-trigger.compact {
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: 5px 2px;
+  gap: 5px;
+  border-radius: 3px;
+  background: #25252b;
+  color: #f4efe7;
+  font:
+    400 0.75rem/1.2 'Source Sans 3',
+    system-ui,
+    sans-serif;
+  letter-spacing: 0;
+}
+.deck-trigger.compact:hover {
+  background: #37303a;
+}
+.compact img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+.compact .deck-caption {
+  display: grid;
+  gap: 3px;
+  text-align: left;
+}
+.compact .deck-stage {
+  color: #e5aa8d;
+  font-size: 0.6875rem;
+  font-variant-numeric: tabular-nums;
+}
 .scenario-deck {
+  --accent: #e5aa8d;
+  --border: #807574;
+  --muted: #c3bbb4;
   width: min(960px, calc(100vw - 32px));
   max-width: none;
   max-height: calc(100dvh - 32px);
@@ -192,8 +239,9 @@ function nameOf(card: { code?: string; name: string }) {
   overflow: auto;
   border: 1px solid var(--border);
   border-radius: 12px;
-  background: var(--bg);
-  color: var(--text);
+  background: #19191d;
+  color: #f4efe7;
+  font-family: 'Source Sans 3', system-ui, sans-serif;
   box-shadow: 0 16px 56px #0009;
 }
 .scenario-deck::backdrop {
@@ -306,6 +354,17 @@ header p {
 .flip {
   width: 100%;
   min-height: 44px;
+}
+@media (max-width: 900px) {
+  .deck-trigger.compact {
+    gap: 3px;
+    padding-inline: 0;
+    font-size: 0.6875rem;
+  }
+  .compact img {
+    width: 22px;
+    height: 22px;
+  }
 }
 @media (max-width: 600px) {
   .deck-trigger {
