@@ -36,7 +36,13 @@ export async function packagePlesk(source, destination, revision) {
         (!basename(path).startsWith('.env') || basename(path) === '.env.example'),
     })
   }
-  await cp(join(source, 'apps/web/dist'), join(destination, 'public'), { recursive: true })
+  const webRoot = join(source, 'apps/web/dist')
+  const apacheConfig = await readFile(join(webRoot, '.htaccess'), 'utf8')
+  if (/^\s*RewriteRule\b.*\bindex\.html\b/im.test(apacheConfig))
+    throw new Error(
+      'A legacy Apache SPA rewrite would hide API routes. Rebuild the web with the Passenger configuration.',
+    )
+  await cp(webRoot, join(destination, 'public'), { recursive: true })
   await writeFile(
     join(destination, '.gitignore'),
     '.env\n.env.*\n!.env.example\nnode_modules/\n**/node_modules/\ntmp/\n',

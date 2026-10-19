@@ -45,7 +45,8 @@ Solo después de completar esos pasos escribe `tmp/restart.txt`, el mecanismo de
 - **Falta `public/index.html`:** se ha desplegado el paquete antiguo o una carpeta incorrecta. Revisar que estén `app.cjs`, `tools` y `public` juntos.
 - **Sin permiso de conexión MySQL:** comprobar usuario, contraseña, base y permisos en Plesk. Desde el VPS se usa `127.0.0.1`; que el puerto no sea accesible desde Internet no impide esa conexión local.
 - **Error al instalar paquetes:** el usuario de la suscripción necesita acceso HTTPS al registro npm y permiso de escritura en la aplicación y su caché. Si no aparece Node.js 24 con npm en el panel, debe habilitarlo el proveedor o administrador de Plesk.
-- **Web responde pero `/api` no:** comprobar que Node.js está habilitado, `app.cjs` es el archivo de inicio y la raíz de documentos termina en `/public`.
+- **Web responde pero `/api` devuelve HTML:** eliminar las reglas antiguas de SPA que reescriban `/api` a `index.html`, tanto en `public/.htaccess` como en directivas adicionales de nginx si las hubiera. Las rutas las gestiona Node/Passenger. Comprobar además que Node.js está habilitado, `app.cjs` es el archivo de inicio y la raíz de documentos termina en `/public`.
+- **Dominio preferido y origen:** la dirección final del navegador debe coincidir exactamente con `APP_ORIGIN`. Si Plesk redirige a `www.arkham-online.es`, usar ese origen en el `.env` o cambiar el dominio preferido a la variante sin `www`. Reiniciar la aplicación después de editar el `.env`.
 - **Credenciales Google incompletas:** rellenar ambas o dejar ambas vacías. Su retorno será `https://arkham-online.es/api/auth/google/callback`.
 
 El paquete excluye `.env`, pruebas, cachés y archivos locales. Las pruebas de base de datos solo usan bases aisladas terminadas en `_test`. Para construir un ZIP local se utiliza `pnpm build:plesk` y se comprime el contenido de `dist/plesk`. La carpeta de salida debe estar vacía antes de una nueva construcción.
