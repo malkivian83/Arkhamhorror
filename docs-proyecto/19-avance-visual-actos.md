@@ -41,10 +41,11 @@ El mismo recorrido se aplica a los planes.
 
 ## Comprobación
 
-Regresiones específicas en `advanceReview.test.ts` (12 casos) y
+Regresiones específicas en `advanceReview.test.ts` (13 casos) y
 `stores/advanceReview.test.ts` (4 casos): pago, interrupción y continuación del
 reverso, dos avances seguidos, cartas ocultas, destinos, guardado, importación,
-recarga, deshacer, bloqueo de respuestas y aceptación sin efectos duplicados.
+recarga, deshacer, bloqueo de respuestas, aceptación sin efectos duplicados y
+conservación del aviso de los encuentros robados después del avance.
 
 La comprobación de interfaz utilizó importaciones normales del programa:
 
@@ -63,9 +64,9 @@ carpeta de salida. Las capturas se conservan en
 Esta entrega mejora la presentación y no cierra G17/G18 de La Gala. La prueba
 en un teléfono físico continúa pendiente por decisión del usuario.
 
-Validación final: **573 pruebas en 42 archivos**, tipos de los seis proyectos,
+Validación final: **574 pruebas en 42 archivos**, tipos de los seis proyectos,
 lint, formato, compilación web e integridad de las 566 imágenes locales.
-El JavaScript compilado ocupa 695,23 kB (208,00 kB comprimido). Continúan los
+El JavaScript compilado ocupa aproximadamente 695 kB (208 kB comprimido). Continúan los
 avisos de compilación ya existentes sobre la fuente de iconos y el tamaño del
 bundle. La revisión visual queda registrada en
 [comprobacion.json](evidencias/avance-actos/comprobacion.json).

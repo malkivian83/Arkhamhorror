@@ -230,6 +230,20 @@ export function resumedAdvanceReview(state: GameState | null): AdvanceFrame[] {
   return [frame(c, c.started ? 'reverse' : 'payment'), ...collector.finish(state)]
 }
 
+/** Draws outside the advance still need their usual spotlight after the review. */
+export function unreviewedEncounterDraws(log: GameState['log'], frames: AdvanceFrame[]) {
+  const reviewed = frames.flatMap((f) =>
+    f.effects.filter((e) => e.key === 'log.encounter').map((e) => e.params?.code),
+  )
+  return log.filter((event) => {
+    if (event.key !== 'log.encounter' || typeof event.params?.code !== 'string') return false
+    const n = reviewed.indexOf(event.params.code)
+    if (n < 0) return true
+    reviewed.splice(n, 1)
+    return false
+  })
+}
+
 /** Bounded presentation data; no messages, callbacks or engine state are imported here. */
 export function validAdvanceReview(value: unknown): value is AdvanceFrame[] {
   const object = (v: unknown): v is Record<string, unknown> =>

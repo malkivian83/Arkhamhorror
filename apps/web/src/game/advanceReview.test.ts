@@ -2,7 +2,12 @@ import { applyInput, createGame, registerAct, type GameState, type Message } fro
 import { during, testInvestigator, testScenario, throughSetup } from '@lcg/engine/testing'
 import { newCampaign, startScenario } from '@lcg/cards'
 import { describe, expect, it } from 'vitest'
-import { createAdvanceReview, resumedAdvanceReview, validAdvanceReview } from './advanceReview'
+import {
+  createAdvanceReview,
+  resumedAdvanceReview,
+  unreviewedEncounterDraws,
+  validAdvanceReview,
+} from './advanceReview'
 import { decodeSession, replay, session } from './session'
 import { markOf } from './undo'
 
@@ -79,6 +84,18 @@ function reviewed(s: GameState, label: string) {
 }
 
 describe('avance visual con aceptación, independiente de las reglas', () => {
+  it('conserva el aviso de robos posteriores al avance sin duplicar los revisados', () => {
+    const { frames } = reviewed(table(), 'action.advanceAct')
+    const advancedDraw = { key: 'log.encounter', params: { code: 'A' }, round: 1 }
+    const followingDraw = { key: 'log.encounter', params: { code: 'B' }, round: 2 }
+    frames[0]!.effects.push(advancedDraw)
+    // Incluso otra copia de la misma carta, robada después, conserva su aviso.
+    const followingCopy = { ...advancedDraw, round: 2 }
+    expect(unreviewedEncounterDraws([advancedDraw, followingDraw, followingCopy], frames)).toEqual([
+      followingDraw,
+      followingCopy,
+    ])
+  })
   it('conserva el orden de un plan seguido de un acto dentro de una misma decisión', () => {
     const s = table()
     const initial: GameState = {
