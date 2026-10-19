@@ -36,10 +36,18 @@ export function cardImages(code: string, back = false, locale = scanLocale.value
   if (!match) return []
   const base = match[1]!
   const side = match[2] ? !back : back
-  const suffix = side !== SWAPPED_SIDES.has(base) ? 'b' : ''
-  const art = `${base}${suffix}`
-  const localized = locale === 'es' ? LOCAL_IMAGES.es[art] : undefined
-  const english = LOCAL_IMAGES.en[art]
+  /**
+   * Las caras al revés solo afectan a las imágenes de ArkhamDB (.jpg). Las del
+   * proyecto de referencia (.avif) siguen la norma: `{código}` es la cara revelada y
+   * `{código}b` la otra.
+   */
+  const pick = (images: Record<string, string>): string | undefined => {
+    const normal = images[`${base}${side ? 'b' : ''}`]
+    if (!SWAPPED_SIDES.has(base) || !normal || !normal.endsWith('.jpg')) return normal
+    return images[`${base}${side ? '' : 'b'}`]
+  }
+  const localized = locale === 'es' ? pick(LOCAL_IMAGES.es) : undefined
+  const english = pick(LOCAL_IMAGES.en)
   return [localized, english].filter((path): path is string => Boolean(path))
 }
 

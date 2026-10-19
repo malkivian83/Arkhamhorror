@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url'
 import { fallbackCards } from './fallbackCards'
 
 describe('imágenes españolas de referencia y alternativas', () => {
-  it('cada original tiene una miniatura local independiente, incluidas las caras invertidas', () => {
+  it('cada original tiene una miniatura local independiente, también las dos caras', () => {
     for (const paths of Object.values(manifest))
       for (const original of Object.values(paths)) {
         const thumbnail = cardThumbnail(original)
@@ -17,7 +17,7 @@ describe('imágenes españolas de referencia y alternativas', () => {
         ).toBe(true)
       }
     expect(cardThumbnail(cardImages('12116', false, 'es')[0]!)).toBe(
-      '/local-assets/cards/es/thumbs/12116b.webp',
+      '/local-assets/cards/es/thumbs/12116.webp',
     )
     expect(cardThumbnail('/cards/es/12017.jpg')).toBeNull()
     expect(cardThumbnail('https://example.com/12017.jpg')).toBeNull()
@@ -52,9 +52,11 @@ describe('imágenes españolas de referencia y alternativas', () => {
     expect(cardImages('71008', false, 'es')).toEqual(['/local-assets/cards/en/71008.avif'])
     expect(cardImages('71045b', false, 'es')).toEqual(['/local-assets/cards/en/71045b.avif'])
   })
-  it('respeta las caras invertidas de Brethren y los códigos de segunda cara', () => {
-    expect(cardImages('12116', false, 'es')[0]).toContain('/local-assets/cards/es/12116b.avif')
-    expect(cardImages('12116', true, 'es')[0]).toContain('/local-assets/cards/es/12116.avif')
+  it('las imágenes .avif no se invierten: {código} es la cara revelada y {código}b la otra', () => {
+    // Patio principal de Miskatonic: revelada con texto, sin revelar solo con la ilustración.
+    expect(cardImages('12116', false, 'es')[0]).toBe('/local-assets/cards/es/12116.avif')
+    expect(cardImages('12116', true, 'es')[0]).toBe('/local-assets/cards/es/12116b.avif')
+    expect(cardImages('12183', true, 'en')[0]).toBe('/local-assets/cards/en/12183b.avif')
     expect(cardImages('12179b', true, 'es')[0]).toContain('/local-assets/cards/es/12179.avif')
     expect(cardImages('invalid', false, 'es')).toEqual([])
   })
