@@ -190,7 +190,7 @@ const slots = computed(() => {
           </div>
         </div>
       </div>
-      <div class="zone hand" :style="{ '--hand-count': Math.max(1, i.hand.length) }">
+      <div class="zone hand">
         <div class="hand-heading">
           <h4 class="mat-label">{{ t('table.hand') }} ({{ i.hand.length }})</h4>
           <button type="button" class="view-hand" @click="showHand">
@@ -204,7 +204,13 @@ const slots = computed(() => {
             :target="deciding ? `hand:${code}` : ''"
             class="in-hand"
           >
-            <GameCard :code="code" :name="cardName(code)" :width="96" :color="classColor(code)" />
+            <GameCard
+              :code="code"
+              :name="cardName(code)"
+              :width="80"
+              :color="classColor(code)"
+              thumbnail
+            />
           </TableTarget>
         </div>
       </div>
@@ -662,7 +668,7 @@ h4 {
   transition: transform 0.15s ease;
 }
 .in-hand:hover {
-  transform: translateY(-10px);
+  transform: translateY(-4px);
   z-index: 2;
 }
 .in-hand :deep(img) {
@@ -874,20 +880,15 @@ h3,
   border-color: var(--brass-dark);
 }
 .hand .cards {
-  display: grid;
-  grid-template-columns: repeat(var(--hand-count), minmax(0, 1fr));
+  display: flex;
+  flex-wrap: nowrap;
   align-items: start;
   gap: 8px;
-  max-width: calc(var(--hand-count) * 92px);
-  padding: 8px 4px 4px;
+  overflow-x: auto;
+  padding: 8px 4px;
 }
 .in-hand {
-  min-width: 0;
-}
-.in-hand :deep(.game-card) {
-  width: 100% !important;
-  height: auto !important;
-  aspect-ratio: 5 / 7;
+  flex: 0 0 80px;
 }
 .in-hand :deep(.hint) {
   display: none;
@@ -999,7 +1000,6 @@ h3,
   }
   .hand .cards {
     gap: 4px;
-    max-width: calc(var(--hand-count) * 82px);
     padding-top: 4px;
   }
 }

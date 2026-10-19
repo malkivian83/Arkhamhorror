@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { cardImages, localScan, scanLocale } from '../game/cards'
+import { cardImages, cardThumbnail, localScan, scanLocale } from '../game/cards'
 import { localizedCards, localName } from '../game/localized'
 import { zoomed } from '../game/zoom'
 import RenderedCard from './RenderedCard.vue'
@@ -26,23 +26,37 @@ const props = withDefaults(
     landscape?: boolean
     /** Sin ampliación al pasar el ratón (la propia ampliación). */
     noZoom?: boolean
+    /** Miniatura local; la vista ampliada conserva el original. */
+    thumbnail?: boolean
   }>(),
   { back: false, width: 110, exhausted: false, color: '#5a5f6b', landscape: false, noZoom: false },
 )
 
 const scanFailed = ref(false)
 const imageIndex = ref(0)
+const thumbnailFailed = ref(false)
 watch(
   () => [props.code, props.back, scanLocale.value],
   () => {
     scanFailed.value = false
     imageIndex.value = 0
+    thumbnailFailed.value = false
   },
 )
 
 const scan = computed(() => (scanFailed.value ? null : localScan(props.code, props.back)))
 const localized = computed(() => localizedCards.value.get(props.code) ?? null)
 const src = computed(() => cardImages(props.code, props.back)[imageIndex.value] ?? null)
+const thumbnailSrc = computed(() =>
+  props.thumbnail && !thumbnailFailed.value && src.value ? cardThumbnail(src.value) : null,
+)
+function imageFailed() {
+  if (thumbnailSrc.value) thumbnailFailed.value = true
+  else {
+    imageIndex.value++
+    thumbnailFailed.value = false
+  }
+}
 const displayName = computed(() => localized.value?.name ?? localName(props.name))
 
 const ratio = computed(() => (props.landscape ? 0.715 : 1.4))
@@ -71,11 +85,11 @@ function hover(on: boolean) {
     <img v-if="scan" :src="scan" :alt="displayName" draggable="false" @error="scanFailed = true" />
     <img
       v-else-if="src"
-      :src="src"
+      :src="thumbnailSrc ?? src"
       :alt="displayName"
       loading="lazy"
       draggable="false"
-      @error="imageIndex++"
+      @error="imageFailed"
     />
     <RenderedCard
       v-else-if="localized"
