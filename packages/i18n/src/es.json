@@ -511,6 +511,36 @@
     "spellbound": "Invitado hechizado (boca abajo)",
     "scenarioDeck": {
       "guests": "Invitados"
+    },
+    "advanceReview": {
+      "payment": "Pago de pistas",
+      "reverse": "El acto se gira: lee su reverso",
+      "entered": "Estas cartas entran en juego",
+      "left": "Estas cartas salen de la mesa",
+      "changed": "Estas cartas cambian",
+      "effects": "Se aplican los efectos del avance",
+      "atLocation": "En: {location}",
+      "attachedTo": "Vinculada a: {name}",
+      "controlledBy": "Bajo el control de: {name}",
+      "exhausted": "Agotada",
+      "ready": "Preparada",
+      "next": "El siguiente acto ya está activo",
+      "decision": "El avance espera una decisión",
+      "finished": "El acto ha terminado",
+      "remaining": "Queda 1 pantalla por aceptar | Quedan {n} pantallas por aceptar",
+      "automatic": "El sistema aplica las reglas automáticamente. No tienes que mover cartas ni repetir estos efectos.",
+      "automaticPause": "Acepta esta pantalla para resolver la decisión pendiente en la mesa.",
+      "continue": "Siguiente paso",
+      "return": "Continuar en la mesa",
+      "unrevealed": "Lugar sin revelar",
+      "cluesChange": "{name}: pistas {before} → {after}",
+      "resourcesChange": "{name}: recursos {before} → {after}",
+      "damageChange": "{name}: daño {before} → {after}",
+      "horrorChange": "{name}: horror {before} → {after}",
+      "moved": "{name} se mueve a {location}",
+      "agendaReverse": "El plan se gira: lee su reverso",
+      "agendaNext": "El siguiente plan ya está activo",
+      "agendaFinished": "El plan ha terminado"
     }
   },
   "difficulty": {

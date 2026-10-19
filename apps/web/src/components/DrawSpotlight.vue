@@ -6,6 +6,7 @@ import { cardBackImage } from '../game/assets'
 import { localName } from '../game/localized'
 import GameCard from './GameCard.vue'
 import CardTranslation from './CardTranslation.vue'
+import { useGameStore } from '../stores/game'
 
 /**
  * Carta de encuentro recién robada, en grande en el centro: se da la vuelta
@@ -14,6 +15,7 @@ import CardTranslation from './CardTranslation.vue'
  */
 const props = defineProps<{ state: GameState }>()
 const { t } = useI18n()
+const game = useGameStore()
 
 interface Drawn {
   code: string
@@ -33,6 +35,7 @@ watch(
       if (before !== undefined && length < before) queue.value = []
       return
     }
+    if (game.advanceReview.length) return
     const drawn = props.state.log
       .slice(before)
       .filter((e) => e.key === 'log.encounter' && typeof e.params?.code === 'string')

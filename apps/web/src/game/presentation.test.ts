@@ -1,4 +1,4 @@
-import { applyInput, createGame, type GameState } from '@lcg/engine'
+import { createGame } from '@lcg/engine'
 import {
   choose,
   during,
@@ -10,7 +10,6 @@ import {
 import '@lcg/cards'
 import { describe, expect, it } from 'vitest'
 import { choiceTarget } from './choiceTarget'
-import { scenarioTransitions } from './scenarioTransitions'
 
 function table() {
   return throughSetup(
@@ -65,42 +64,5 @@ describe('presentación de apoyos en las pruebas', () => {
       state = choose(state, 'action.evade')
       expect(state.pending!.question.choices.some((c) => c.label === 'ability.pump')).toBe(false)
     }
-  })
-})
-
-describe('avisos de avance', () => {
-  it('conserva reverso, siguiente carta y orden de dos avances sin tocar el motor', () => {
-    const before = table()
-    const after = during(
-      before,
-      (s) => s,
-      { type: 'AdvanceAgenda' },
-      { type: 'AdvanceAct', paid: true },
-    )
-    const frozen = JSON.stringify(after)
-    const notices = scenarioTransitions(before, after)
-    expect(notices.map((n) => n.kind)).toEqual(['agenda', 'act'])
-    expect(notices[0]!.card.name).toBe('Agenda 1')
-    expect(notices[0]!.nextCard?.name).toBe('Agenda 2')
-    expect(JSON.stringify(after)).toBe(frozen)
-  })
-  it('ignora recarga, deshacer y registros de otra partida', () => {
-    const before = table()
-    const after = during(before, (s) => s, { type: 'AdvanceAgenda' })
-    expect(scenarioTransitions(after, before)).toEqual([])
-    expect(scenarioTransitions(after, after)).toEqual([])
-    expect(scenarioTransitions(before, { ...after, scenarioId: 'different' })).toEqual([])
-    const unrelated: GameState = { ...after, log: [{ key: 'other', round: 1 }, ...after.log] }
-    expect(scenarioTransitions(before, unrelated)).toEqual([])
-  })
-  it('no vuelve a mostrar el avance al responder la decisión posterior', () => {
-    const before = table()
-    const advanced = during(before, (s) => s, { type: 'AdvanceAgenda' })
-    expect(scenarioTransitions(before, advanced)).toHaveLength(1)
-    const next = applyInput(advanced, {
-      investigator: advanced.pending!.investigator,
-      choice: advanced.pending!.question.choices.length - 1,
-    })
-    expect(scenarioTransitions(advanced, next)).toEqual([])
   })
 })

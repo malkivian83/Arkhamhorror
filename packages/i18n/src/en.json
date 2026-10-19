@@ -511,6 +511,36 @@
     "spellbound": "Spellbound guest (facedown)",
     "scenarioDeck": {
       "guests": "Guests"
+    },
+    "advanceReview": {
+      "payment": "Clue payment",
+      "reverse": "The act flips: read its reverse",
+      "entered": "These cards enter play",
+      "left": "These cards leave the table",
+      "changed": "These cards change",
+      "effects": "The advance has these effects",
+      "atLocation": "At: {location}",
+      "attachedTo": "Attached to: {name}",
+      "controlledBy": "Controlled by: {name}",
+      "exhausted": "Exhausted",
+      "ready": "Ready",
+      "next": "The next act is now active",
+      "decision": "Advancement is waiting for a decision",
+      "finished": "The act has finished",
+      "remaining": "1 screen left to accept | {n} screens left to accept",
+      "automatic": "The system applies the rules automatically. You do not need to move cards or repeat these effects.",
+      "automaticPause": "Accept this screen to resolve the pending decision on the table.",
+      "continue": "Next step",
+      "return": "Continue on the table",
+      "unrevealed": "Unrevealed location",
+      "cluesChange": "{name}: clues {before} → {after}",
+      "resourcesChange": "{name}: resources {before} → {after}",
+      "damageChange": "{name}: damage {before} → {after}",
+      "horrorChange": "{name}: horror {before} → {after}",
+      "moved": "{name} moves to {location}",
+      "agendaReverse": "The agenda flips: read its reverse",
+      "agendaNext": "The next agenda is now active",
+      "agendaFinished": "The agenda has finished"
     }
   },
   "difficulty": {
