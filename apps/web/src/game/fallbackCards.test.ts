@@ -70,11 +70,11 @@ describe('recursos de cartas sin red', () => {
     expect(localizedCards.value.get('12004')?.name).toBe('Joe Diamond')
   })
   it('Mother of Flame usa el reverso de Elokoss al mostrar su código de segunda cara', () => {
-    expect(cardImage('12179b')).toContain('12179b.jpg')
-    expect(cardImage('12179b', true)).toContain('12179.jpg')
+    expect(cardImage('12179b')).toBe('/local-assets/cards/en/12179b.avif')
+    expect(cardImage('12179b', true)).toBe('/local-assets/cards/en/12179.avif')
   })
-  it('las segundas caras de La Gala conservan el servidor de imágenes de referencia', () => {
-    expect(cardImage('71045b')).toBe('https://assets.arkhamhorror.app/img/arkham/cards/71045b.avif')
-    expect(cardImage('71045b', true)).toContain('71045.jpg')
+  it('las segundas caras de La Gala se sirven desde nuestro almacenamiento local', () => {
+    expect(cardImage('71045b')).toBe('/local-assets/cards/en/71045b.avif')
+    expect(cardImage('71045b', true)).toBe('/local-assets/cards/en/71045.avif')
   })
 })

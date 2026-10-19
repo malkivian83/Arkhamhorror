@@ -4,10 +4,15 @@
  */
 import {
   getInvestigator,
+  allPlayerCardDefs,
+  agendaBehavior,
+  playableCards,
   investigatorsAt,
   playerCardDef,
+  playerCardBehavior,
   push,
   registerPlayerCard,
+  scenarioBehavior,
   shroudOf,
   shuffle,
   type AbilityOption,
@@ -19,7 +24,7 @@ import {
   type PlacedAsset,
   type SkillType,
 } from '@lcg/engine'
-import { CODES, isGuest } from './cards'
+import { CODES, isGuest, NAMING_TRAITS } from './cards'
 import { extendGala } from './gala'
 import { bloodlessMan, guestCountAt, perInv, spellbound } from './helpers'
 
@@ -157,6 +162,7 @@ registerPlayerCard({
 
 registerPlayerCard({
   code: '71018',
+  observesActionAbilities: true,
   // Special Agent Callahan: Combatir; la dificultad baja en 1.
   abilities: (state, self, investigator) =>
     fightAt(
@@ -175,6 +181,32 @@ registerPlayerCard({
         },
       ],
     ),
+  reactions: (state, trigger, self) => {
+    if (
+      trigger.type !== 'afterActionAbility' ||
+      trigger.investigator !== self.owner ||
+      self.exhausted
+    )
+      return []
+    const traits = playerCardDef(trigger.code)?.traits ?? []
+    if (!traits.includes('Ally') && !traits.includes('Weapon')) return []
+    const here = getInvestigator(state, self.owner).location
+    return Object.values(state.enemies)
+      .filter(
+        (e) =>
+          e.location === here &&
+          !agendaBehavior(state.agendas[state.agendaIndex]?.code)?.enemyImmune?.(state, e) &&
+          !scenarioBehavior(state.scenarioId)?.enemyImmune?.(state, e),
+      )
+      .map((e) => ({
+        key: `${self.id}:shoot`,
+        investigator: self.owner,
+        label: 'ability.gala.callahanShot',
+        params: { enemy: e.name },
+        target: { type: 'enemy', id: e.id },
+        then: [exhaust(self), { type: 'DamageEnemy', enemy: e.id, amount: 1, by: self.owner }],
+      }))
+  },
 })
 
 registerPlayerCard({
@@ -604,6 +636,7 @@ registerPlayerCard({
 
 registerPlayerCard({
   code: '71041',
+  ignoresOpportunityAttacks: (_state, _self, enemy) => (enemy.traits ?? []).includes('Humanoid'),
   // Delores Gadling: al investigar o negociar, +1 [intellect] por cada enemigo Humanoide de tu localización.
   skillModifier: (state, self, test) => {
     if (test.investigator !== self.owner || test.skill !== 'intellect') return 0
@@ -617,14 +650,24 @@ registerPlayerCard({
 
 registerPlayerCard({
   code: '71042',
+  helpsOtherTests: true,
+  testOptions: (state, _test, self) =>
+    self.exhausted || getInvestigator(state, self.owner).eliminated
+      ? []
+      : [
+          {
+            key: `${self.id}:commitTop`,
+            investigator: self.owner,
+            label: 'ability.gala.olneyCommit',
+            then: [exhaust(self), { type: 'DiscardTopAndCommit', investigator: self.owner }],
+          },
+        ],
   // Thomas Olney: nombra un rasgo y agótalo: descarta la carta superior de encuentros; si lo
   // tiene, gana 2 recursos.
   abilities: (state, self, investigator) => {
-    if (self.exhausted || state.encounterDeck.length === 0) return []
+    if (self.exhausted) return []
     const traits = [
-      ...new Set(
-        [...state.encounterDeck, ...state.encounterDiscard].flatMap((c) => c.traits ?? []),
-      ),
+      ...new Set([...NAMING_TRAITS, ...allPlayerCardDefs().flatMap((c) => c.traits)]),
     ].sort()
     return [
       {
@@ -839,82 +882,163 @@ function specific(state: GameState, key: string, data: Data): GameState {
       return { ...state, scenarioMeta: { ...(state.scenarioMeta ?? {}), [k]: n } }
     }
     case 'archibald': {
-      const top = state.encounterDeck.slice(0, 9)
-      const index = top.findIndex((c) => c.kind === 'enemy')
-      const found = top[index]
-      const here = getInvestigator(state, investigator).location
-      if (index < 0 || !here) return state
-      if (!found || found.kind !== 'enemy') return state
-      const card = found
-      const deck = state.encounterDeck.filter((_, n) => n !== index)
+      const found = state.encounterDeck
+        .slice(0, 9)
+        .map((card, index) => ({ card, index }))
+        .filter(({ card }) => card.kind === 'enemy')
+      if (!found.length) return push(state, { type: 'ScenarioSpecific', key: 'shuffleEncounter' })
       return push(
-        { ...state, encounterDeck: deck },
+        state,
+        ask(
+          investigator,
+          'prompt.gala.searchEnemy',
+          found.map(({ card, index }) => ({
+            label: 'choice.card',
+            params: { card: card.name },
+            then: [
+              { type: 'ScenarioSpecific', key: 'archibaldDraw', data: { investigator, index } },
+            ],
+          })),
+        ),
+      )
+    }
+    case 'archibaldDraw': {
+      const index = Number(data.index)
+      const card = state.encounterDeck[index]
+      if (!card || card.kind !== 'enemy' || index >= 9) return state
+      return push(
+        { ...state, encounterDeck: state.encounterDeck.filter((_, n) => n !== index) },
         { type: 'ScenarioSpecific', key: 'shuffleEncounter' },
-        { type: 'SpawnEnemy', card, location: here, engageWith: investigator },
-        {
-          type: 'ScenarioSpecific',
-          key: 'exhaustSpawned',
-          data: { code: card.code, location: here },
-        },
+        { type: 'ResolveEncounterCard', investigator, card, exhaustAfterDraw: true },
         { type: 'GainResources', investigator, amount: 3 },
       )
     }
-    case 'exhaustSpawned': {
-      const e = Object.values(state.enemies).find(
-        (x) => x.code === data.code && x.location === data.location && !x.exhausted,
-      )
-      return e
-        ? { ...state, enemies: { ...state.enemies, [e.id]: { ...e, exhausted: true } } }
-        : state
-    }
     case 'lucas': {
+      const top = getInvestigator(state, investigator).deck.slice(0, 9)
+      // Let the shared search pipeline resolve Dead Ends and its mandatory draw.
+      if (top.some((code) => playerCardBehavior(code)?.cancelsSearch))
+        return push(state, {
+          type: 'SearchDeck',
+          investigator,
+          top: 9,
+          traits: ['Item'],
+          to: 'hand',
+        })
+      const found = top
+        .map((code, index) => ({ code, index }))
+        .filter(({ code }) => {
+          const def = playerCardDef(code)
+          return def?.type === 'asset' && def.traits.includes('Item')
+        })
+      if (!found.length) return push(state, { type: 'ShuffleDeck', investigator })
+      return push(
+        state,
+        ask(
+          investigator,
+          'prompt.gala.searchItem',
+          found.map(({ code, index }) => ({
+            label: 'choice.card',
+            params: { card: playerCardDef(code)?.name ?? code },
+            then: [{ type: 'ScenarioSpecific', key: 'lucasDraw', data: { investigator, index } }],
+          })),
+        ),
+      )
+    }
+    case 'lucasDraw': {
       const me = getInvestigator(state, investigator)
-      const top = me.deck.slice(0, 9)
-      const index = top.findIndex((c) => {
-        const def = playerCardDef(c)
-        return def?.type === 'asset' && def.traits.includes('Item')
-      })
-      if (index < 0) return push(state, { type: 'ShuffleDeck', investigator })
-      const code = top[index]!
-      const traits = playerCardDef(code)?.traits ?? []
-      const here = me.location
-      const connected = here ? (state.locations[here]?.connections ?? []) : []
+      const index = Number(data.index)
+      const code = me.deck[index]
+      if (!code || index >= 9) return state
+      // Put the selected instance on top, then use the normal draw pipeline.
+      const deck = [code, ...me.deck.filter((_, n) => n !== index)]
       return push(
         {
           ...state,
           investigators: state.investigators.map((i) =>
-            i.id === investigator
-              ? { ...i, deck: i.deck.filter((_, n) => n !== index), hand: [...i.hand, code] }
-              : i,
+            i.id === investigator ? { ...i, deck } : i,
           ),
         },
-        ...(traits.includes('Relic')
-          ? [{ type: 'GainResources', investigator, amount: 2 } as Message]
-          : []),
-        ...(traits.includes('Tool') && connected.length
-          ? [
-              ask(
-                investigator,
-                'prompt.gala.toolClue',
-                connected.map((l) => ({
-                  label: 'choice.location',
-                  params: { location: state.locations[l]?.name ?? l },
-                  target: { type: 'location', id: l },
-                  then: [
-                    { type: 'DiscoverClues', investigator, amount: 1, location: l } as Message,
-                  ],
-                })),
-              ),
-            ]
-          : []),
+        { type: 'DrawCards', investigator, amount: 1 },
+        { type: 'ScenarioSpecific', key: 'lucasBenefits', data: { investigator, code } },
         { type: 'ShuffleDeck', investigator },
       )
     }
+    case 'lucasBenefits': {
+      const code = data.code as string
+      const traits = playerCardDef(code)?.traits ?? []
+      return push(
+        state,
+        ...(traits.includes('Relic')
+          ? [{ type: 'GainResources', investigator, amount: 2 } as Message]
+          : []),
+        ...(traits.includes('Tome')
+          ? [
+              {
+                type: 'ScenarioSpecific',
+                key: 'lucasTome',
+                data: { investigator, code },
+              } as Message,
+            ]
+          : []),
+        ...(traits.includes('Tool')
+          ? [{ type: 'ScenarioSpecific', key: 'lucasTool', data: { investigator } } as Message]
+          : []),
+      )
+    }
+    case 'lucasTome': {
+      const code = data.code as string
+      if (
+        ![
+          ...playableCards(state, investigator, true),
+          ...playableCards(state, investigator, false),
+        ].includes(code)
+      )
+        return state
+      return push(
+        state,
+        ask(investigator, 'prompt.gala.playTome', [
+          {
+            label: 'action.play',
+            params: { card: playerCardDef(code)?.name ?? code },
+            then: [{ type: 'PlayCard', investigator, code }],
+          },
+          { label: 'choice.skip', then: [] },
+        ]),
+      )
+    }
+    case 'lucasTool': {
+      const here = getInvestigator(state, investigator).location
+      const connected = (here ? (state.locations[here]?.connections ?? []) : []).filter(
+        (l) => (state.locations[l]?.clues ?? 0) > 0,
+      )
+      return connected.length
+        ? push(
+            state,
+            ask(
+              investigator,
+              'prompt.gala.toolClue',
+              connected.map((l) => ({
+                label: 'choice.location',
+                params: { location: state.locations[l]!.name },
+                target: { type: 'location', id: l },
+                then: [{ type: 'DiscoverClues', investigator, amount: 1, location: l }],
+              })),
+            ),
+          )
+        : state
+    }
     case 'prudence': {
+      // Keep the original look boundary: removing one card must not expose a fifth.
+      const count = Number(data.count ?? Math.min(4, state.encounterDeck.length))
       const left = Number(data.left)
-      const top = state.encounterDeck.slice(0, 4).map((c, n) => ({ c, n }))
+      const top = state.encounterDeck.slice(0, count).map((c, n) => ({ c, n }))
       const discardable = top.filter(({ c }) => !(c.traits ?? []).includes('Elite'))
-      if (left <= 0 || discardable.length === 0) return state
+      const reorder: Message = {
+        type: 'ScenarioSpecific',
+        key: 'prudenceOrder',
+        data: { investigator, count, ordered: 0 },
+      }
+      if (left <= 0 || !discardable.length) return push(state, reorder)
       return push(
         state,
         ask(investigator, 'prompt.gala.prudence', [
@@ -925,18 +1049,19 @@ function specific(state: GameState, key: string, data: Data): GameState {
               {
                 type: 'ScenarioSpecific',
                 key: 'prudenceDiscard',
-                data: { investigator, index: n, left },
+                data: { investigator, index: n, left, count },
               } as Message,
             ],
           })),
-          { label: 'choice.gala.keepRest', then: [] },
+          { label: 'choice.gala.keepRest', then: [reorder] },
         ]),
       )
     }
     case 'prudenceDiscard': {
       const index = Number(data.index)
+      const count = Number(data.count)
       const card = state.encounterDeck[index]
-      if (!card) return state
+      if (!card || index >= count || (card.traits ?? []).includes('Elite')) return state
       return push(
         {
           ...state,
@@ -946,7 +1071,47 @@ function specific(state: GameState, key: string, data: Data): GameState {
         {
           type: 'ScenarioSpecific',
           key: 'prudence',
-          data: { investigator, left: Number(data.left) - 1 },
+          data: { investigator, left: Number(data.left) - 1, count: count - 1 },
+        },
+      )
+    }
+    case 'prudenceOrder': {
+      const count = Number(data.count)
+      const ordered = Number(data.ordered)
+      if (count - ordered <= 1) return state
+      return push(
+        state,
+        ask(
+          investigator,
+          'prompt.gala.orderEncounter',
+          state.encounterDeck.slice(ordered, count).map((card, n) => ({
+            label: 'choice.card',
+            params: { card: card.name },
+            then: [
+              {
+                type: 'ScenarioSpecific',
+                key: 'prudencePlace',
+                data: { investigator, count, ordered, index: ordered + n },
+              },
+            ],
+          })),
+        ),
+      )
+    }
+    case 'prudencePlace': {
+      const index = Number(data.index),
+        ordered = Number(data.ordered),
+        count = Number(data.count)
+      const card = state.encounterDeck[index]
+      if (!card || index < ordered || index >= count) return state
+      const deck = state.encounterDeck.filter((_, n) => n !== index)
+      deck.splice(ordered, 0, card)
+      return push(
+        { ...state, encounterDeck: deck },
+        {
+          type: 'ScenarioSpecific',
+          key: 'prudenceOrder',
+          data: { investigator, count, ordered: ordered + 1 },
         },
       )
     }

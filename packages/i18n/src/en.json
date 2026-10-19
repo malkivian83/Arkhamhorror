@@ -108,7 +108,13 @@
       "sensed": "You sense the Jewel: it was {card}",
       "spellbindGuest": "Choose which guest becomes spellbound",
       "takeJewel": "Take control of the Jewel of Sarnath?",
-      "toolClue": "Where do you discover the clue?"
+      "toolClue": "Where do you discover the clue?",
+      "danceGuest": "Choose a ready Guest to dance",
+      "searchEnemy": "Choose an enemy among the 9 searched cards",
+      "searchItem": "Choose an Item asset among the 9 searched cards",
+      "playTome": "Play the Tome paying its cost?",
+      "orderEncounter": "Choose the next card from the top of the deck",
+      "drawMystery": "Choose a card to draw from beneath the location"
     }
   },
   "action": {
@@ -215,7 +221,8 @@
       "takeJewel": "Take the Jewel",
       "trait": "{trait}",
       "unspell": "Free {card}"
-    }
+    },
+    "card": "{card}"
   },
   "phase": {
     "setup": "Setup",
@@ -299,7 +306,7 @@
       "claire": "Claire Wilson: +1 to this test",
       "convinceDeclan": "Convince Declan Pearce ({n} clues)",
       "dance": "Ballroom: ask 2 guests to dance",
-      "drawMystery": "Draw the mystery here",
+      "drawMystery": "Draw a mystery from {location}",
       "elizabeth": "Elizabeth Conrad: {name} moves",
       "exhaustEnemy": "Parlor: exhaust {enemy}",
       "fashionablyLate": "Lobby: a guest arrives ({n} resources)",
@@ -329,7 +336,9 @@
       "takeJewel": "Take the Jewel of Sarnath",
       "takeLantern": "Take The Pale Lantern ([combat] or [agility] 3)",
       "unspell": "Free {card}",
-      "violentCommands": "Violent Commands: 2 damage to {name}"
+      "violentCommands": "Violent Commands: 2 damage to {name}",
+      "callahanShot": "Callahan: exhaust to deal 1 damage to {enemy}",
+      "olneyCommit": "Olney: discard the top card and commit it if eligible"
     }
   },
   "log": {

@@ -562,7 +562,8 @@ export type Message =
       tags?: string[]
     }
   | { type: 'CommitWindow' }
-  | { type: 'CommitCard'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'CommitCard'; investigator: InvestigatorId; code: CardCode; from?: 'discard' }
+  | { type: 'DiscardTopAndCommit'; investigator: InvestigatorId }
   /**
    * Juega una carta de la mano pagando su coste (menos `discount`). `effect`
    * sustituye al efecto del evento (cuando depende del momento en que se juega).
@@ -744,7 +745,12 @@ export type Message =
   | { type: 'AdvanceAct'; paid?: boolean }
   | { type: 'SpendClues'; investigator: InvestigatorId; amount: number }
   | { type: 'DrawEncounterCard'; investigator: InvestigatorId }
-  | { type: 'ResolveEncounterCard'; investigator: InvestigatorId; card: EncounterCard }
+  | {
+      type: 'ResolveEncounterCard'
+      investigator: InvestigatorId
+      card: EncounterCard
+      exhaustAfterDraw?: boolean
+    }
   | { type: 'DrawFromEncounterDiscard'; investigator: InvestigatorId; code: CardCode }
   | {
       type: 'SpawnEnemy'
@@ -752,6 +758,8 @@ export type Message =
       location: LocationId
       engageWith: InvestigatorId | null
       owner?: InvestigatorId
+      exhaustAfterSpawn?: boolean
+      after?: Message[]
     }
   | { type: 'RevealTreachery'; treachery: TreacheryId; investigator: InvestigatorId }
   | { type: 'AfterRevelation'; treachery: TreacheryId; investigator: InvestigatorId }
@@ -945,6 +953,7 @@ export type Trigger =
       source?: AssetId
     }
   | { type: 'afterPlayAsset'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'afterActionAbility'; investigator: InvestigatorId; code: CardCode }
   | { type: 'afterAssetEntersPlay'; investigator: InvestigatorId; asset: AssetId }
   | { type: 'afterDrawCard'; investigator: InvestigatorId; card: CardCode }
   | { type: 'enemyEntersLocation'; enemy: EnemyId; location: LocationId }
