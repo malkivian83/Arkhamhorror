@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url'
 import { fallbackCards } from './fallbackCards'
 
 describe('imágenes españolas de referencia y alternativas', () => {
-  it('cada original tiene una miniatura local independiente, incluidas las caras invertidas', () => {
+  it('cada original tiene una miniatura local independiente, también las dos caras', () => {
     for (const paths of Object.values(manifest))
       for (const original of Object.values(paths)) {
         const thumbnail = cardThumbnail(original)
@@ -17,7 +17,7 @@ describe('imágenes españolas de referencia y alternativas', () => {
         ).toBe(true)
       }
     expect(cardThumbnail(cardImages('12116', false, 'es')[0]!)).toBe(
-      '/local-assets/cards/es/thumbs/12116b.webp',
+      '/local-assets/cards/es/thumbs/12116.webp',
     )
     expect(cardThumbnail('/cards/es/12017.jpg')).toBeNull()
     expect(cardThumbnail('https://example.com/12017.jpg')).toBeNull()
