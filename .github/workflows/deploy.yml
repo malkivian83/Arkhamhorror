@@ -1,0 +1,59 @@
+name: Deploy
+
+# Cuando la CI pasa en main, construye la web y deja el resultado en la rama
+# `deploy`, de la que tira Plesk. El servidor no necesita Node ni pnpm.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @lcg/web build
+      - name: Publicar en la rama deploy
+        env:
+          SOURCE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+          # Se añade un commit encima de la rama (sin forzar) para que Plesk
+          # siempre pueda hacer un pull normal.
+          if git ls-remote --exit-code --heads origin deploy > /dev/null; then
+            git fetch --depth 1 origin deploy
+            git worktree add --detach "$RUNNER_TEMP/publish" FETCH_HEAD
+          else
+            git worktree add --detach "$RUNNER_TEMP/publish"
+            git -C "$RUNNER_TEMP/publish" checkout --orphan deploy
+          fi
+
+          cd "$RUNNER_TEMP/publish"
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -a "$GITHUB_WORKSPACE/apps/web/dist/." .
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'Sin cambios que desplegar.'
+            exit 0
+          fi
+          git commit -q -m "Desplegar ${SOURCE_SHA::7}"
+          git push origin HEAD:refs/heads/deploy
