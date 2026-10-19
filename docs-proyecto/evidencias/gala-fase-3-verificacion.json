@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-19",
+  "scope": "Verificación del árbol de trabajo local compartido; no equivale a CI publicada ni aceptación visual de Gala.",
+  "tests": {
+    "command": "pnpm exec vitest run --maxWorkers=2",
+    "success": true,
+    "files": 56,
+    "passed": 871,
+    "failed": 0,
+    "skipped": 15,
+    "skipReason": "MYSQL_TEST_URL no configurado para una base aislada; 15 pruebas de accounts.mysql.test.ts omitidas.",
+    "execution": "Fuera del aislamiento para permitir sockets locales SMTP; dos trabajadores para evitar el timeout por carga de web.test.ts."
+  },
+  "checks": [
+    {
+      "command": "pnpm typecheck",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm lint",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm format:check",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm build",
+      "result": "passed",
+      "warnings": [
+        "Fuente arkham-icons pendiente de resolución en ejecución",
+        "Bundle de JavaScript superior a 500 kB"
+      ]
+    },
+    {
+      "command": "node scripts/verify-card-images.mjs",
+      "result": "passed",
+      "images": 566,
+      "thumbnails": 566
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  ],
+  "acceptance": {
+    "individualContracts": 62,
+    "phaseThreeTests": 348,
+    "persistenceCases": 17,
+    "setupCases": 320,
+    "passiveDefeats": 40,
+    "passiveDecisions": 1700,
+    "fullLegalVictories": 0,
+    "visualAcceptance": "pending",
+    "physicalPhone": "deferred"
+  },
+  "remaining": [
+    "Fase 4: victorias legales completas e interfaz EN/ES",
+    "Fase 5: publicación estable y CI de la entrega"
+  ]
+}

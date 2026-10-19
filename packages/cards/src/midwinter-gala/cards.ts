@@ -163,6 +163,10 @@ const guest = (
   unique: true,
   // Los Invitados no ocupan ranura de aliado durante este escenario.
   slots: [],
+  // RR "Uses": placed Guests enter play before anybody takes their control.
+  ...(code === '71029' ? { uses: { count: 3, type: 'supply' } } : {}),
+  ...(code === '71035' ? { uses: { count: 3, type: 'portent' } } : {}),
+  ...(code === '71037' ? { uses: { count: 4, type: 'truth' } } : {}),
 })
 
 export const GUEST_DEFS: PlayerCardDef[] = [

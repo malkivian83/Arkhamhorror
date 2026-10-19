@@ -113,6 +113,7 @@
       "sensed": "You sense the Jewel: it was {card}",
       "spellbindGuest": "Choose which guest becomes spellbound",
       "takeJewel": "Take control of the Jewel of Sarnath?",
+      "rewardGuest": "You may add one controlled single-sided Guest to your story assets. It does not count toward deck size.",
       "toolClue": "Where do you discover the clue?",
       "danceGuest": "Choose a ready Guest to dance",
       "searchEnemy": "Choose an enemy among the 9 searched cards",
@@ -224,6 +225,7 @@
       "spellbindGuest": "{card}",
       "spendClueDamage": "Spend 1 clue: +2 damage",
       "takeJewel": "Take the Jewel",
+      "keepGuest": "Keep {card} as a story asset",
       "trait": "{trait}",
       "unspell": "Free {card}"
     },
@@ -820,7 +822,7 @@
         "lodgeTitle": "Interlude: The Fabled Jewel",
         "lodge": "The Jewel and Declan Pearce are shuffled with 7 encounter cards and placed on the bottom of the encounter deck.",
         "kingsportTitle": "Interlude: The Fabled Jewel",
-        "kingsport": "Declan Pearce appears, exhausted, in the Lantern Chamber with the Jewel attached, bearing damage and doom. A new guest arrives at the Lobby."
+        "kingsport": "Declan Pearce appears ready in the Lantern Chamber with the Jewel attached, bearing damage and doom. A new guest arrives at the Lobby."
       },
       "mayhemTitle": "Mayhem Ensues",
       "mayhem": "The Bloodless Man strides toward you, staggers and falls. His suit tears open and tentacles and fangs burst out: he is now an abomination.",
@@ -1183,7 +1185,9 @@
       "enemy": "Enemy",
       "location": "Location",
       "agenda": "Agenda",
-      "act": "Act"
+      "act": "Act",
+      "story": "Story",
+      "scenario": "Scenario"
     },
     "summary": {
       "12001": "After an enemy attacks at your location, fight once per round. Elder sign: deal one damage locally.",

@@ -103,6 +103,9 @@ function abandon() {
                   : t('table.noResolution')
               }}
             </span>
+            <span v-if="campaign.results[n]?.score !== undefined" class="outcome">
+              {{ t('story.midwinterGala.score.total', { n: campaign.results[n]!.score }) }}
+            </span>
             <details v-if="campaign.results[n]?.experience?.length" class="xp-details">
               <summary>{{ t('campaign.xpBreakdown') }}</summary>
               <p v-for="(gain, k) in campaign.results[n]!.experience" :key="k">

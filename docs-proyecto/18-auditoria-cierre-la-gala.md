@@ -3,17 +3,18 @@
 18/10/2026. Base de código: `939dbb31ae8989e59f6f5ef31a4a5eb6b80b8e5a`,
 etiqueta `brethren-of-ash-local-v1.0.0`.
 
-**Dictamen: La Gala está integrada y puede jugarse, pero todavía no cumple el
-criterio de cierre aplicado a Brethren.** Las diferencias de reglas detectadas
-ya se han corregido; quedan la aceptación individual del contenido, el respaldo
-EN/ES y las victorias por las cinco facciones. No conviene presentarla como
-contenido terminado.
+**Dictamen actualizado el 19/10/2026: La Gala es jugable y tiene las fases 1–3
+completadas, pero todavía no cumple el cierre aplicado a Brethren.** Se han
+verificado contratos principales de los 62 códigos y sus caras, respaldo EN/ES,
+interludios, puntuación y persistencia especial. Quedan las victorias legales
+completas por las cinco facciones, la aceptación visual y la publicación estable.
 
-**Actualización de fases 1–2:** corregidos G01–G16 y G19–G21: **19 de los
-21 trabajos**. Quedan G17 (aceptación de contenido y victorias) y G18 (respaldo
-local EN/ES), más las puertas visuales y de publicación de las fases posteriores.
-La tabla inferior conserva el diagnóstico inicial; los apartados de entrega
-indican qué defectos ya no están.
+**Actualización de fases 1–3:** corregidos G01–G16 y G19–G21 y cerrado G18:
+**20 de los 21 trabajos**. De G17 se han cubierto los contratos de contenido,
+interludios, objetivos, puntuación y finales con mesas dirigidas; permanecen
+pendientes sus victorias completas. La cuenta de trabajos no mide un porcentaje
+de finalización. La tabla de hallazgos conserva el diagnóstico inicial; los
+apartados de entrega y la matriz registran la aceptación actual.
 
 ## Alcance y método
 
@@ -23,20 +24,22 @@ con el código de la referencia local. No se utilizó su servicio online ni se
 introdujo multijugador. El modo historia secundaria dentro de otra campaña queda
 fuera de este primer cierre del escenario independiente.
 
-La [matriz de 62 códigos base](18-matriz-la-gala.csv) incluye también las cartas
-con dos caras en la misma fila. «Presente» indica que existe una definición;
-no equivale a un contrato de reglas aprobado. Las caras de Líderes rivales,
-Historia Rival, Lámpara y Exangüe deben probarse individualmente al cerrar cada fila.
+La [matriz de 62 códigos base](18-matriz-la-gala.csv) incluye las cartas con dos
+caras en la misma fila. Desde la fase 3, cada fila enlaza pruebas ejecutadas del
+efecto principal y respaldo EN/ES; las caras de Líderes rivales, Historia Rival,
+Lámpara y Exangüe se incluyen en esa aceptación. Esto no certifica cada interacción
+posible ni convierte las mesas dirigidas en partidas completas.
 
 La evidencia inicial se conserva sin modificar en
-[auditoria-gala.json](evidencias/auditoria-gala.json). El script evoluciona con
-las correcciones y ahora escribe una comprobación separada en
-[gala-fase-2.json](evidencias/gala-fase-2.json); también se conserva
-[gala-fase-1.json](evidencias/gala-fase-1.json), sin sobrescribir esa fotografía
-histórica:
+[auditoria-gala.json](evidencias/auditoria-gala.json). También se conservan
+[gala-fase-1.json](evidencias/gala-fase-1.json) y
+[gala-fase-2.json](evidencias/gala-fase-2.json). La comprobación de preparación y
+derrota pasiva con las reglas actuales escribe
+[gala-fase-3-recorridos.json](evidencias/gala-fase-3-recorridos.json), sin
+sobrescribir esas fotografías históricas ni la matriz de aceptación:
 
 ```powershell
-node scripts/audit-gala.mjs
+node scripts/audit-gala.mjs --phase-three
 ```
 
 El script lee catorce archivos de referencia para conservar sus SHA-256. La copia
@@ -143,9 +146,9 @@ del programa original.
    documentación de límites y etiqueta estable propia de Gala. No marcar una
    facción cerrada solo porque alcance un estado terminal sin resolución.
 
-Tras completar las fases 1 y 2, el siguiente bloque es la fase 3: contenido y persistencia. La ampliación
-de contenido debe apoyarse en esta auditoría y conservar la etiqueta de Brethren
-como referencia de regresión.
+Las fases 1–3 están completadas dentro de sus alcances. El siguiente bloque es
+la fase 4: victorias legales completas e interfaz. La ampliación de contenido
+debe conservar la etiqueta de Brethren como referencia de regresión.
 
 ## Controles de la entrega inicial de auditoría
 
@@ -284,3 +287,99 @@ proyectos, lint, formato, compilación y comprobación de integridad de imágene
 JavaScript de la web: 687,26 kB (205,52 kB comprimido), más los archivos estáticos
 de cartas. Se conservan los avisos conocidos de fuente y tamaño del bundle.
 La aceptación física de teléfono sigue diferida por decisión del usuario.
+
+## Fase 3 completada: contratos de contenido y persistencia
+
+Entrega del 19/10/2026. Evidencia reproducible:
+[gala-fase-3.json](evidencias/gala-fase-3.json), con **348 pruebas en nueve
+archivos**, contratos principales asociados a los **62 códigos base**, respaldo
+EN/ES y **17 casos de persistencia** (ventanas especiales y finales). La
+[matriz](18-matriz-la-gala.csv) identifica las pruebas de cada fila. El recuento
+incluye las regresiones anteriores de fases 1–2; no se presenta como 348 pruebas
+nuevas ni como una enumeración de todas las interacciones.
+
+```powershell
+node scripts/audit-gala-content.mjs
+node scripts/audit-gala.mjs --phase-three
+```
+
+El primer script ejecuta las pruebas, exige un contrato principal y respaldo en
+ambos idiomas por código, actualiza la matriz y registra las huellas de los dos
+PDF y 74 archivos de referencia. El segundo vuelve a ejecutar **320
+preparaciones y 40 derrotas legales**, con **1.700 decisiones**, guardado y
+reproducción del estado completo. No son victorias. Las pruebas generales y los
+controles de CI se verifican por separado; este acta no certifica el VPS.
+
+### Fuentes y correcciones nuevas
+
+Se consultó el reglamento español `AHC80_Rulebook_ES.pdf`: reglas de Invitados y
+hechizado (pp. 3–4), preparación e interludios (pp. 11–14), resoluciones y XP
+(pp. 15–19) y las trece tareas de puntuación (p. 24). La FAQ v2.5A (p. 23) no
+recoge erratas de Gala. Se contrastaron los manejadores de cartas y el escenario
+de la referencia local; sus huellas permiten identificar la copia consultada.
+
+| Hallazgo nuevo | Corrección y regresión |
+| --- | --- |
+| Interludio de Kingsport | Declan entra **preparado**. La p. 14 del PDF no ordena agotarlo; la referencia local sí lo hacía. Se sigue el PDF, con cuatro pruebas para 1–4 investigadores. Fundación mantiene su agotamiento explícito. |
+| Usos de Invitados | Miranda entra con 3 suministros, Prudence con 3 presagios y Raymond con 4 verdades. Los usos, incluso cero, se conservan al hechizar, volver boca arriba y tomar control. Antes faltaban sus usos iniciales y podían reponerse al cambiar de zona. |
+| Carl Sanford | Reacciona a la cancelación con Raymond o Ward of Protection. La Traición se obtiene desde descartes una sola vez y pasa a victoria sin duplicarse. Oleada sigue resolviéndose; rechazar la reacción conserva el descarte. |
+| Recompensa R1 | Cada investigador puede conservar un Invitado de una cara controlado por cualquiera. No se ofrecen Líderes ni se concede dos veces la misma carta. Se registra como Apoyo de historia, separado del tamaño del mazo. La puntuación se calcula antes de retirar estas recompensas. |
+| Registro final | La puntuación se conserva en el resultado de la aventura y aparece en la pantalla de campaña. Guardar una aventura terminada conserva puntuación, XP, traumas y recompensas; se rechaza una puntuación importada inválida. |
+
+### Cobertura de aceptación
+
+- [phase-three.test.ts](../packages/cards/src/midwinter-gala/phase-three.test.ts):
+  cinco interludios con 1–4 investigadores, veinte parejas de facciones, trece
+  tareas de puntuación, umbrales 9/10 a 49/50 de XP y finales dirigidos
+  R1 → R2–R6 → R7. R7 sigue siendo una lectura de puntuación, no un resultado terminal.
+- [content-acceptance.test.ts](../packages/cards/src/midwinter-gala/content-acceptance.test.ts):
+  contratos adicionales de Invitados, caras Rival, Lugares, planes, enemigos y
+  traiciones, incluidos límites, costes, éxito y fallo de las ramas indicadas.
+- [carl-sanford.test.ts](../packages/cards/src/midwinter-gala/carl-sanford.test.ts):
+  cancelación, Oleada, ausencia de duplicados, usos iniciales y conservación de fichas.
+- [gala-phase-three-session.test.ts](../apps/web/src/game/gala-phase-three-session.test.ts):
+  guardar/reanudar, reproducción y deshacer cada decisión de negociación,
+  hechizado, recuperación, Joya controlada/vinculada/bajo cartas/al salir,
+  Lámpara al romperse o salir, Rival, Carl, recompensa R1 y los cinco finales.
+  Emplea investigadores y cartas registrados en mesas dirigidas.
+- [gala-fallback.test.ts](../apps/web/src/game/gala-fallback.test.ts):
+  datos y resúmenes propios para 62 códigos EN/ES, doce pares de caras mecánicas,
+  reversos de planes/actos/Lugares, fallo de red, JSON inválido, datos parciales,
+  imagen ausente y respuesta ES tardía después de cambiar a EN. Los resúmenes
+  locales no son una transcripción íntegra del texto oficial.
+
+**G18 queda cerrado dentro de ese contrato de respaldo.** La aceptación visual
+de esos recursos sigue siendo una puerta de fase 4. **G17 continúa abierto por
+las victorias legales completas**: las mesas dirigidas acreditan reglas y
+persistencia, no la posibilidad de ganar con cada facción en una partida completa.
+
+### Compatibilidad y siguiente bloque
+
+Las mesas nuevas de Gala usan **`scenarioRulesVersion: 4`**. Se rechazan las
+revisiones anteriores, incluida la 3, conservando el archivo original para
+exportarlo; es necesario empezar una mesa nueva. Brethren conserva su revisión
+y sus guardados. Los resultados de aventuras terminadas sin el nuevo campo
+opcional de puntuación siguen siendo legibles; no se inventa retrospectivamente
+una puntuación ausente.
+
+El siguiente bloque es la **fase 4**: una victoria legal completa por facción,
+dos equipos en normal y comprobación visible EN/ES en escritorio y 390×640,
+incluidos avisos, ampliaciones, recompensas y puntuación final. Después queda
+la fase 5 de publicación estable. El teléfono físico permanece diferido y jugar
+Gala como historia secundaria dentro de otra campaña sigue fuera de este cierre.
+
+### Verificación general de esta entrega
+
+[Acta de verificación](evidencias/gala-fase-3-verificacion.json): **871 pruebas
+aprobadas en 56 archivos**, con 15 pruebas MySQL omitidas porque no se configuró
+una base aislada mediante `MYSQL_TEST_URL`. Se ejecutó la suite con dos
+trabajadores para evitar el timeout por carga de la prueba de rutas web; las
+pruebas SMTP requieren sockets locales y se verificaron fuera del aislamiento.
+Tipos de los siete proyectos, lint, formato y compilación correctos.
+Se comprobaron las 566 imágenes y 566 miniaturas, los enlaces locales de la
+documentación modificada y la ausencia de errores de espacios en el diff.
+Permanecen los avisos conocidos de fuente y tamaño del bundle.
+
+Esta verificación corresponde al árbol de trabajo compartido, incluidos los
+cambios de interfaz presentes durante la ejecución. No es un acta de aceptación
+visual de Gala ni una CI publicada. No se han creado commits, push ni PR.

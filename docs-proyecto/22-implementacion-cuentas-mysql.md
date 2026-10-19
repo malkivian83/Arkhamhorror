@@ -119,4 +119,15 @@ Pruebas añadidas: verificación y caducidad, sesiones, CSRF, recuperación, ais
 
 El correo de la revisión manual usa un adaptador local de prueba. El transporte SMTP se prueba aparte contra un servidor local de la suite. Google se prueba con el proveedor simulado; esto no equivale a validar el cliente OAuth del propietario.
 
-Pendiente externo: dominio y configuración del VPS/MySQL, SMTP real, cliente Google y políticas operativas. No se ha desplegado en el VPS ni probado Google o correo real del propietario.
+Actualización documental del 19/10/2026: el repositorio ya incorpora el dominio
+`arkham-online.es`, el paquete completo de web/API para Plesk y las correcciones
+de rutas API. La instalación y sus comprobaciones se describen en la
+[guía 23](23-despliegue-plesk.md). La presencia de estos cambios acredita la
+implementación del despliegue; no certifica por sí sola la operación del VPS.
+
+Falta registrar la aceptación operativa de producción: `/api/health`,
+`/api/ready`, acceso y biblioteca, sincronización entre dispositivos, correo
+real de verificación y recuperación, Google con el cliente del propietario si
+se habilita, políticas de retención, copias externas y ensayo de restauración.
+Las pruebas locales y de CI descritas arriba conservan su alcance; no sustituyen
+esas comprobaciones en el servicio publicado.

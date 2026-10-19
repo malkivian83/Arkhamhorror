@@ -346,9 +346,24 @@ export function handle(state: GameState, message: Message): GameState {
       // Si la revelación no la puso en juego, va a la pila de descartes.
       if (treachery?.placement.type === 'limbo') next = discardTreachery(next, treachery.id)
       const surge = state.surgePending || (treachery?.keywords.includes('surge') ?? false)
-      return surge
-        ? push(next, { type: 'DrawEncounterCard', investigator: message.investigator })
-        : next
+      return push(
+        next,
+        ...(treachery?.canceled
+          ? [
+              {
+                type: 'Forced' as const,
+                trigger: {
+                  type: 'afterCancelRevelation' as const,
+                  card: treachery.code,
+                  weakness: !!treachery.owner,
+                },
+              },
+            ]
+          : []),
+        ...(surge
+          ? [{ type: 'DrawEncounterCard' as const, investigator: message.investigator }]
+          : []),
+      )
     }
 
     case 'GainSurge':
@@ -788,6 +803,9 @@ export function handle(state: GameState, message: Message): GameState {
         exhausted: !!message.exhausted,
         damage: message.damage ?? 0,
         horror: message.horror ?? 0,
+        ...((message.uses ?? playerCardDef(message.code)?.uses?.count) !== undefined
+          ? { uses: message.uses ?? playerCardDef(message.code)!.uses!.count }
+          : {}),
         ...(message.doom ? { doom: message.doom } : {}),
         ...(message.faceDown ? { faceDown: true } : {}),
       }
@@ -863,6 +881,7 @@ export function handle(state: GameState, message: Message): GameState {
             damage: placed.damage,
             horror: placed.horror,
             exhausted: placed.exhausted,
+            ...(placed.uses !== undefined ? { uses: placed.uses } : {}),
             ...(placed.doom ? { doom: placed.doom } : {}),
           },
         },
@@ -892,6 +911,7 @@ export function handle(state: GameState, message: Message): GameState {
         // Al quedar hechizado se retira todo el daño y horror.
         damage: faceDown ? 0 : asset.damage,
         horror: faceDown ? 0 : asset.horror,
+        ...(playerCardDef(asset.code)?.uses || asset.uses > 0 ? { uses: asset.uses } : {}),
         ...(asset.doom ? { doom: asset.doom } : {}),
         ...(faceDown ? { faceDown: true } : {}),
       }

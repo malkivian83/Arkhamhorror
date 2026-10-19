@@ -1,7 +1,8 @@
 # 21 · Cuentas de usuario, mazos y campañas en MySQL
 
 **Fecha:** 19 de octubre de 2026.  
-**Estado:** informe previo a implementación. No se han programado cuentas, API de persistencia ni migraciones.  
+**Estado:** informe histórico previo a implementación. Las cuentas, API de persistencia y migraciones ya están implementadas; el estado vigente y sus límites están en el [documento 22](22-implementacion-cuentas-mysql.md), y el despliegue en la [guía 23](23-despliegue-plesk.md). Las tablas siguientes conservan el diagnóstico anterior al desarrollo.
+
 **Decisión del propietario:** despliegue en un VPS y base de datos **MySQL**.  
 **Decisiones confirmadas (19/10/2026):** registro abierto con verificación de correo; acceso con correo y contraseña y con Google; modo invitado disponible.
 
@@ -15,7 +16,7 @@ Se conserva el juego como invitado por decisión del propietario. La exportació
 
 El acceso incluirá correo y contraseña con verificación y recuperación por correo, además de Google mediante OpenID Connect. Ambos métodos accederán a la misma biblioteca cuando se vinculen de forma autenticada. Ninguno requiere usar cuentas o servicios de autenticación del proyecto de referencia.
 
-## 2. Estado real del proyecto
+## 2. Estado del proyecto antes de implementar cuentas
 
 | Pieza revisada | Estado | Trabajo necesario |
 | --- | --- | --- |

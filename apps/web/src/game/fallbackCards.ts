@@ -1,4 +1,12 @@
-import { spreadingFlames, smokeAndMirrors, queenOfAsh } from '@lcg/cards'
+import {
+  spreadingFlames,
+  smokeAndMirrors,
+  queenOfAsh,
+  midwinterGala,
+  GALA_BLOODLESS_MAN,
+  GALA_BLOODLESS_MAN_UNLEASHED,
+  GALA_FACTION_CARDS,
+} from '@lcg/cards'
 import { allPlayerCardDefs, type EncounterCard, type LocationCard } from '@lcg/engine'
 import { messages } from '@lcg/i18n'
 import type { LocalizedCard } from './localized'
@@ -17,8 +25,12 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     cards.set(card.code, {
       ...card,
       type_name: types[card.type_code as keyof typeof types] ?? card.type_code,
-      text: summaries[card.code] ?? language.offlineCard.help,
-      back_text: backSummaries[card.code] ?? summaries[card.code] ?? language.offlineCard.help,
+      text: draft.text ?? summaries[card.code] ?? language.offlineCard.help,
+      back_text:
+        draft.back_text ??
+        backSummaries[card.code] ??
+        summaries[card.code] ??
+        language.offlineCard.help,
     })
   }
   allPlayerCardDefs().forEach((d) =>
@@ -76,6 +88,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   const scenarios = [
     spreadingFlames(),
     queenOfAsh(),
+    midwinterGala({ players: 1 }),
     ...Array.from({ length: 12 }, (_, seed) =>
       smokeAndMirrors({
         seed,
@@ -119,5 +132,52 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   }
   const elokoss = cards.get('12179')
   if (elokoss) put({ ...elokoss, code: '12179b', type_code: 'enemy' })
+
+  // The Bloodless Man starts in play, outside the scenario's encounter/set-aside lists.
+  encounter(GALA_BLOODLESS_MAN)
+  encounter(GALA_BLOODLESS_MAN_UNLEASHED)
+  const jewel = allPlayerCardDefs().find((d) => d.code === '71052')!
+  // This is an asset with an encounter revelation, not a threat-area treachery.
+  put({ ...cards.get(jewel.code)!, type_code: 'asset', faction_code: 'neutral' })
+  for (const faction of Object.values(GALA_FACTION_CARDS)) {
+    for (const code of [faction.story, `${faction.story}b`])
+      put({
+        code,
+        name: faction.storyName,
+        real_name: faction.storyName,
+        type_code: 'story',
+        faction_code: faction.className,
+      })
+  }
+  put({
+    code: '71001',
+    name: 'The Midwinter Gala',
+    real_name: 'The Midwinter Gala',
+    type_code: 'scenario',
+  })
+  const catalogue = language.galaCards as Record<
+    string,
+    { name: string; summary: string; backName?: string; backSummary?: string }
+  >
+  // Keep both mechanical faces, and make a back-face code reverse to the front text.
+  for (const [code, text] of Object.entries(catalogue)) {
+    const front = cards.get(code)!
+    put({
+      ...front,
+      name: text.name,
+      text: text.summary,
+      back_name: text.backName ?? text.name,
+      back_text: text.backSummary ?? text.summary,
+    })
+    const back = cards.get(`${code}b`)
+    if (back)
+      put({
+        ...back,
+        name: text.backName ?? text.name,
+        text: text.backSummary ?? text.summary,
+        back_name: text.name,
+        back_text: text.summary,
+      })
+  }
   return [...cards.values()]
 }

@@ -1,0 +1,282 @@
+{
+  "71001": {
+    "name": "The Midwinter Gala",
+    "summary": "Guests do not use ally slots. Skull: minus the agenda number (one worse on hard/expert). Cultist: minus Guests here, capped at 5; on hard/expert count story assets instead. Tablet: -2, or -4 in a Private room (-3/-5 on hard/expert). Elder Thing: -3 (-4 on hard/expert); take 1 horror if you fail or the Bloodless Man is here, only once."
+  },
+  "71002": {
+    "name": "Masked Revelers",
+    "summary": "Lantern Club enemies cannot take damage. Single-sided Guests leaving play become spellbound instead; Leaders are removed.",
+    "backSummary": "Shuffle the set-aside Monsters, both Vicious Ambush cards and the encounter discard pile into the encounter deck. Continue with Unexpected Guests."
+  },
+  "71003": {
+    "name": "Unexpected Guests",
+    "summary": "Single-sided Guests leaving play become spellbound instead; Leaders are removed.",
+    "backSummary": "If the silent Bloodless Man is in play, flip him to Unleashed. Otherwise each investigator may heal 1 horror from an investigator or Guest at their location."
+  },
+  "71004": {
+    "name": "A Killer Party",
+    "summary": "Single-sided Guests leaving play become spellbound instead; Leaders are removed.",
+    "backSummary": "Each investigator is defeated and suffers 1 mental trauma. Proceed to the no-resolution ending and final scoring."
+  },
+  "71005": {
+    "name": "Meet and Greet",
+    "summary": "Parley with a Guest here that you do not control: test one of its printed skills (3) to take control. An action can give your Guest to another investigator here. Spend 3 clues per investigator to advance only during agenda 2 or 3 and while each remaining investigator controls a Guest.",
+    "backSummary": "Put the three second-floor rooms into play in random order, connect the leftmost to the Lobby, resolve the Rival story and read the allied faction's Jewel interlude. Advance to Finding the Jewel."
+  },
+  "71006": {
+    "name": "Finding the Jewel",
+    "summary": "Parley with Guests as before. Your allied story gives the conditions for completing the objective at the end of the round.",
+    "backSummary": "Proceed to resolution 1, your allied faction's resolution, then resolution 7 for scoring and experience."
+  },
+  "71007": {
+    "name": "Lobby",
+    "summary": "During agenda 2 or 3, spend 1 resource per investigator to place the top Guest here. Group limit once per round.",
+    "backSummary": "Starting location. Ground-floor Manor connected to the ground-floor rooms and Lantern Chamber; the act later connects it to the leftmost second-floor room."
+  },
+  "71008": {
+    "name": "Lantern Chamber",
+    "summary": "During your turn, name an encounter card and discover 1 clue here, then discard the top encounter card if guessed correctly, or draw it otherwise. Once per turn. With no clues here, an action tests willpower (4) to turn a spellbound card faceup.",
+    "backSummary": "Private basement Manor. Entering while unrevealed costs 1 horror; later entries do not pay it again."
+  },
+  "71009": {
+    "name": "Art Gallery",
+    "summary": "Action: place 2 clues from the pool here and gain 2 resources. Group limit once per round.",
+    "backSummary": "Unrevealed ground-floor Manor room. Reveal it on entry."
+  },
+  "71010": {
+    "name": "Ballroom",
+    "summary": "Parley: exhaust two ready Guests here, then heal 1 horror from each. Choose the Guests; with only one available, exhaust it without healing.",
+    "backSummary": "Unrevealed ground-floor Manor room. Reveal it on entry."
+  },
+  "71011": {
+    "name": "Barroom",
+    "summary": "Spend 1 resource to heal 1 damage or horror from an investigator or Guest here. Group limit once per round.",
+    "backSummary": "Unrevealed ground-floor Manor room. Reveal it on entry."
+  },
+  "71012": {
+    "name": "Bedroom",
+    "summary": "Action, once per turn: fight an enemy in any second-floor room using combat or agility. After success, you may spend 1 clue for 2 additional damage.",
+    "backSummary": "Unrevealed second-floor Manor room. It enters play after the first act advances."
+  },
+  "71013": {
+    "name": "Library",
+    "summary": "Gain +1 skill while parleying here. If the Jewel is here, test intellect (3) to place 1 damage on it or remove 1 damage/doom. Group limit once per game.",
+    "backSummary": "Unrevealed second-floor Manor room. It enters play after the first act advances."
+  },
+  "71014": {
+    "name": "Parlor",
+    "summary": "Shroud is reduced by Guests here, to a minimum of 1. If you control the Jewel, exhaust a ready enemy anywhere. Group limit once per game.",
+    "backSummary": "Unrevealed second-floor Manor room. It enters play after the first act advances."
+  },
+  "71015": {
+    "name": "The Foundation",
+    "summary": "If the Jewel is here and the Bloodless Man is out of play, an action takes the Jewel and places 1 damage on it. At round end, control the Jewel and spend 2 clues per investigator to finish. Faction score: 4 points with no non-weakness enemies in play, 2 with one, otherwise 0.",
+    "backSummary": "Rival: shuffle Rookie Cop into the encounter deck and spawn rival Valeriya at the lead investigator. Parley combat (3), placing 1 of your clues here on success. With 1 clue per investigator, place the story and rival Leader in victory and remove their Rival card."
+  },
+  "71016": {
+    "name": "Valeriya Antonova",
+    "summary": "+1 combat. Action, exhaust: ready another Guest here and gain a bonus to your next test this round equal to Guests here. A Leader leaving play is removed.",
+    "backName": "Valeriya Antonova — Rival",
+    "backSummary": "Cannot take damage. Aloof, Hunter. Your skills are reduced by 1 here if you control an exhausted Guest. At round end exhaust Guests here. The Rival story provides a combat (3) parley."
+  },
+  "71017": {
+    "name": "Archibald Hudson",
+    "summary": "During your turn exhaust to search the top 9 encounter cards for an enemy; draw it, shuffle, exhaust it and gain 3 resources. Action, spend 1 resource: move 1 damage from an asset here to a non-Elite enemy here."
+  },
+  "71018": {
+    "name": "Special Agent Callahan",
+    "summary": "Action: fight with the enemy's fight reduced by 1. After you use an Ally or Weapon action ability, exhaust Callahan to deal 1 damage to an enemy here."
+  },
+  "71019": {
+    "name": "Horacio Martinez",
+    "summary": "May receive damage for other investigators here. After a non-Elite enemy attacks you, exhaust Horacio to exhaust that enemy and prevent it readying this round."
+  },
+  "71020": {
+    "name": "Rookie Cop",
+    "summary": "Surge, Aloof, Hunter. After an investigator here attacks another enemy, deal 1 damage to that investigator."
+  },
+  "71021": {
+    "name": "Miskatonic University",
+    "summary": "Parley with Declan here: place 1 or 2 of your clues on him. At 3 clues per investigator, take his Jewel and place him in victory; he is immune to damage while holding it. At round end, controlling the Jewel completes the objective. Score 1 point per 2 cards per investigator in the group's hands, maximum 4.",
+    "backSummary": "Rival: shuffle Confusion into the encounter deck and spawn rival Caldwell at the lead investigator. Parley intellect (3), placing 1 of your clues here on success. At 1 clue per investigator, defeat the Rival story and remove its Rival card."
+  },
+  "71022": {
+    "name": "Caldwell Philips",
+    "summary": "+1 intellect. After you discover clues, exhaust to draw that many cards, maximum 3. A Leader leaving play is removed.",
+    "backName": "Caldwell Philips — Rival",
+    "backSummary": "Cannot take damage. Aloof, Hunter. An investigator ending their turn here discards 1 non-weakness card. The Rival story provides an intellect (3) parley."
+  },
+  "71023": {
+    "name": "Dr. Mya Badry",
+    "summary": "+2 hand size. Action, exhaust: investigate with base intellect equal to the number of cards in your hand."
+  },
+  "71024": {
+    "name": "Lucas Tetlow",
+    "summary": "After the last clue here is discovered, exhaust to search the top 9 cards of your deck for an Item asset and draw it. Relic: gain 2 resources. Tome: you may play it, paying its cost, without an action. Tool: discover 1 clue at a connected location."
+  },
+  "71025": {
+    "name": "Elizabeth Conrad",
+    "summary": "After you draw a card during your turn, exhaust: an investigator here may move to a connected location."
+  },
+  "71026": {
+    "name": "Confusion",
+    "summary": "Surge. Place 2 of your clues at your location. Take 1 horror for each clue you cannot place."
+  },
+  "71027": {
+    "name": "The Syndicate",
+    "summary": "Action, spend 1 clue per investigator: look at mysteries under your location. During your turn you may draw a mystery under a revealed location with at most 1 clue per investigator. At round end control the Jewel in the Lobby and spend 4 clues per investigator to finish. Score 1 point per 3 resources per investigator, maximum 4.",
+    "backSummary": "Rival: shuffle Cold Streak into the encounter deck and spawn rival Johnny at the lead investigator. Parley agility (3), placing 1 of your clues here on success. At 1 clue per investigator, defeat the Rival story and remove its Rival card."
+  },
+  "71028": {
+    "name": "Johnny Valone",
+    "summary": "+1 agility. After gaining resources from an effect, exhaust to draw 1 card and gain 1 resource. A Leader leaving play is removed.",
+    "backName": "Johnny Valone — Rival",
+    "backSummary": "Cannot take damage. Aloof, Hunter. An investigator ending their turn here loses 2 resources. The Rival story provides an agility (3) parley."
+  },
+  "71029": {
+    "name": "Miranda Keeper",
+    "summary": "3 supplies. Spend 1 supply to place an antiquity here and gain +2 to your next test this round. After succeeding by 2 or more, remove an antiquity here to gain 2 resources."
+  },
+  "71030": {
+    "name": "Arsène Renard",
+    "summary": "Once per game as a group, place an antiquity at each location. With an exhausted enemy here, remove an antiquity here to draw 1 card or gain 2 resources."
+  },
+  "71031": {
+    "name": "Nova Malone",
+    "summary": "Action, exhaust: fight with base combat equal to your resources (maximum 7) and +1 damage. After defeating an enemy, gain 1 resource, once per round."
+  },
+  "71032": {
+    "name": "Cold Streak",
+    "summary": "Surge. Lose 4 resources; for each missing resource, choose 1 damage or 1 horror."
+  },
+  "71033": {
+    "name": "Silver Twilight Lodge",
+    "summary": "Action, twice per round as a group: discard the top encounter card; you may draw it. At round end control the Jewel and spend 5 clues per investigator to finish. Score 1 point per treachery without victory points in victory, maximum 4.",
+    "backSummary": "Rival: shuffle Ward of Preservation into the encounter deck and spawn rival Carl at the lead investigator. Parley willpower (3), placing 1 of your clues here on success. At 1 clue per investigator, defeat the Rival story and remove its Rival card."
+  },
+  "71034": {
+    "name": "Carl Sanford",
+    "summary": "+1 willpower and an extra arcane slot. After a non-weakness treachery's effect is cancelled, exhaust to place that treachery in victory and draw 1 card. A Leader leaving play is removed.",
+    "backName": "Carl Sanford — Rival",
+    "backSummary": "Cannot take damage. Aloof, Hunter. Investigators here have -1 willpower. The Rival story provides a willpower (3) parley."
+  },
+  "71035": {
+    "name": "Prudence Douglas",
+    "summary": "3 portents. During your turn, exhaust and spend 1 portent: look at the top 4 encounter cards, discard up to 2 non-Elite cards and put the others back in any order."
+  },
+  "71036": {
+    "name": "Sarah Van Shaw",
+    "summary": "Action, exhaust and spend up to 2 resources: fight adding your willpower to combat, with +1 damage per resource spent."
+  },
+  "71037": {
+    "name": "Raymond Loggins",
+    "summary": "4 truths. When you draw a non-weakness treachery, spend 1 truth to cancel its revelation, discard it and take 1 horror."
+  },
+  "71038": {
+    "name": "Ward of Preservation",
+    "summary": "Surge. Put in your threat area. When you play an event, cancel its effects, take 1 horror and discard this treachery."
+  },
+  "71039": {
+    "name": "Locals of Kingsport",
+    "summary": "Action, combat or agility (3): remove 1 damage or doom from the Jewel placed here; you may take it. At round end control the token-free Jewel and spend 3 clues per investigator to finish. Score 4 minus the number of cards in the Guest deck, minimum 0.",
+    "backSummary": "Rival: shuffle Unlucky into the encounter deck and spawn rival William at the lead investigator. Parley with any skill (4), placing 1 of your clues here on success. At 1 clue per investigator, defeat the Rival story and remove its Rival card."
+  },
+  "71040": {
+    "name": "William Bain",
+    "summary": "+1 to your skills while cards are committed to your test. After you commit a card, exhaust and spend 1 resource per investigator to place the top Guest in the Lobby. A Leader leaving play is removed.",
+    "backName": "William Bain — Rival",
+    "backSummary": "Cannot take damage. Aloof, Hunter. Investigators here cannot commit cards to tests. The Rival story provides a parley using any skill (4)."
+  },
+  "71041": {
+    "name": "Delores Gadling",
+    "summary": "Humanoid enemies do not make opportunity attacks against you. While investigating or parleying with intellect, gain +1 intellect per Humanoid enemy here."
+  },
+  "71042": {
+    "name": "Thomas Olney",
+    "summary": "Exhaust and name a trait: discard the top encounter card and gain 2 resources if it has that trait. During a test here, exhaust to discard the top card of your deck and commit it if eligible, respecting assistance restrictions."
+  },
+  "71043": {
+    "name": "Claire Wilson",
+    "summary": "After you commit a card to your own test, exhaust to gain +1 to that test."
+  },
+  "71044": {
+    "name": "Unlucky",
+    "summary": "Surge. Put in your threat area: -2 to your skills. Discard at round end."
+  },
+  "71045": {
+    "name": "The Bloodless Man",
+    "summary": "Silent Lurker: Aloof; patrols towards Guests. If ready at investigation phase end, deal 1 horror to investigators and Guests here; with the Lantern attached, those Guests become spellbound. Instead of defeat, flip, exhaust and retain at most 3 damage per investigator.",
+    "backName": "The Bloodless Man — Unleashed",
+    "backSummary": "Hunter, Massive. After attacking an investigator, remove a Guest they control from the game. Victory 1."
+  },
+  "71046": {
+    "name": "The Pale Lantern",
+    "summary": "Hypnotic Glow: if the Bloodless Man has damage or is in victory, test combat or agility (3) to take the Lantern and flip it.",
+    "backName": "The Pale Lantern — Beguiling Aura",
+    "backSummary": "Action: turn a spellbound card here faceup. Action, exhaust: test combat or agility (2) to place 1 damage on the Lantern. At 3 damage place it in victory and turn all spellbound cards faceup. Leaving play returns its Glow side to your location."
+  },
+  "71047": {
+    "name": "Enraged Gug",
+    "summary": "Alert, Hunter. Horror from its attacks must be assigned to Guests first, while they have capacity."
+  },
+  "71048": {
+    "name": "Abhorrent Moon-Beast",
+    "summary": "Hunter, Retaliate. Damage from its attacks must be assigned to Guests first, while they have capacity."
+  },
+  "71049": {
+    "name": "Savage Shantak",
+    "summary": "Hunter. +1 fight and evade for each Guest at its location."
+  },
+  "71050": {
+    "name": "Vicious Ambush",
+    "summary": "With no Monster in play, gain surge. Otherwise the nearest Monster readies, moves to you along connections, engages and attacks. Choose tied Monsters and shortest paths."
+  },
+  "71051": {
+    "name": "Declan Pearce",
+    "summary": "Hunter; 2 health plus 2 per investigator. You have one fewer action while engaged with him. If ready at enemy phase end, heal 1 damage from each enemy."
+  },
+  "71052": {
+    "name": "Jewel of Sarnath",
+    "summary": "Revelation: take control with 3 damage and 1 doom. Exhaust, test willpower or agility (1): move 1 of its damage/doom to an enemy here. When leaving play, shuffle it into the encounter deck."
+  },
+  "71053": {
+    "name": "Lantern Club Member",
+    "summary": "During agenda 1, parley and spend 1 resource to automatically evade it, or 3 resources to discard it. Lantern Club immunity applies during agenda 1."
+  },
+  "71054": {
+    "name": "Bleeding Walls",
+    "summary": "Test willpower against your location's shroud. On failure, lose 1 action and take 1 horror."
+  },
+  "71055": {
+    "name": "Entrap",
+    "summary": "Test agility (3). On failure, if the Bloodless Man is here spellbind one of your Guests; if elsewhere he moves to you; if absent gain surge."
+  },
+  "71056": {
+    "name": "Inexplicable Cold",
+    "summary": "Test agility (4). For each point of failure choose to discard an asset in play, discard a card from hand, or take 1 damage."
+  },
+  "71057": {
+    "name": "Mind Extraction",
+    "summary": "Test willpower against 1 plus the agenda number. On failure take 2 horror. Afterwards, if the Bloodless Man is in play and an investigator controls the Lantern, reattach it to him."
+  },
+  "71058": {
+    "name": "Noxious Fumes",
+    "summary": "Each investigator here chooses agility (3), moving to a connected location on success or taking 2 damage on failure; or combat (3), taking 1 damage per point of failure."
+  },
+  "71059": {
+    "name": "Pushed into the Beyond",
+    "summary": "Shuffle one of your non-story, non-permanent assets into your deck, then discard its top 3 cards. If a copy is discarded, take 2 horror."
+  },
+  "71060": {
+    "name": "Secret Door",
+    "summary": "Attach to a Manor with the most investigators and no Secret Door, choosing ties. Investigators cannot leave. Action, test willpower or intellect (3) to discard it."
+  },
+  "71061": {
+    "name": "Terror Gate",
+    "summary": "Test willpower (2), +2 difficulty with a Rival enemy in play. On failure: Foundation takes 2 damage; Miskatonic discards 2 cards; Syndicate loses 3 resources; Lodge takes 2 horror; Kingsport loses 1 action."
+  },
+  "71062": {
+    "name": "Violent Commands",
+    "summary": "Put in your threat area. At your turn's end, test willpower (3), taking 1 horror on failure. An investigator here may use an action to deal 2 damage to an investigator here and discard this treachery."
+  }
+}

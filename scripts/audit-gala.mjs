@@ -1,4 +1,4 @@
-// Current phase-two verification; preserves the original audit snapshot.
+// --phase-three preserves phase-one/two snapshots and the reviewed content matrix.
 import { createServer } from '../apps/web/node_modules/vite/dist/node/index.js'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { createHash } from 'node:crypto'
@@ -98,7 +98,7 @@ try {
         if (!state.outcome) throw new Error(`Nonterminal game ${faction}/${difficulty}/${players}`)
         const data = session(state, { base, inputs, marks }, campaign)
         decodeSession(JSON.stringify(data))
-        const replayed = inputs.reduce(engine.applyInput, base)
+        const replayed = inputs.reduce((state, input) => engine.applyInput(state, input), base)
         if (hash(replayed) !== hash(state)) throw new Error('Replay mismatch')
         games.push({
           faction,
@@ -303,9 +303,11 @@ try {
     reference.push({ path, sha256: createHash('sha256').update(contents).digest('hex') })
   }
   const report = {
-    date: '2026-10-18',
-    baseline: '5a655e6fd36fec77a70d0c93c20f79706ead3fb6',
-    stage: 'phase-two',
+    date: process.argv.includes('--phase-three') ? '2026-10-19' : '2026-10-18',
+    baseline: process.argv.includes('--phase-three')
+      ? 'working-tree'
+      : '5a655e6fd36fec77a70d0c93c20f79706ead3fb6',
+    stage: process.argv.includes('--phase-three') ? 'phase-three-passive-regression' : 'phase-two',
     scenarioRulesVersion: engine.scenarioBehavior(defs.MIDWINTER_GALA).rulesVersion,
     repaired: [...repaired],
     scope:
@@ -318,87 +320,103 @@ try {
   }
   await mkdir('docs-proyecto/evidencias', { recursive: true })
   await writeFile(
-    'docs-proyecto/evidencias/gala-fase-2.json',
+    process.argv.includes('--phase-three')
+      ? 'docs-proyecto/evidencias/gala-fase-3-recorridos.json'
+      : 'docs-proyecto/evidencias/gala-fase-2.json',
     JSON.stringify(report, null, 2) + '\n',
   )
-  const inventory = new Map()
-  const put = (code, name, type) => inventory.set(code, { code, name, type })
-  put(defs.CODES.scenario, 'The Midwinter Gala', 'referencia')
-  const definition = gala.midwinterGala({ players: 1 })
-  definition.agendas.forEach((c) => put(c.code, c.name, 'plan'))
-  definition.acts.forEach((c) => put(c.code, c.name, 'acto'))
-  Object.values(defs.LOCATIONS).forEach((c) => put(c.id, c.name, 'lugar'))
-  defs.GUEST_DEFS.forEach((c) => put(c.code, c.name, 'invitado/líder'))
-  Object.values(defs.FACTION_CARDS).forEach((c) =>
-    put(c.story, c.storyName, 'historia (Aliado/Rival)'),
-  )
-  ;[...definition.encounterDeck, ...definition.setAside].forEach((c) => {
-    if (/^\d{5}$/.test(c.code)) put(c.code, c.name, c.kind)
-  })
-  put(defs.CODES.bloodlessMan, 'The Bloodless Man', 'enemigo (dos caras)')
-  put(defs.CODES.paleLantern, 'The Pale Lantern', 'apoyo (dos caras)')
-  const findings = {
-    71008: 'G02;G08;G19',
-    71010: 'G09',
-    71012: 'G03',
-    71017: 'G10;G15;G16',
-    71018: 'G01;G05',
-    71020: 'G06',
-    71024: 'G11',
-    71031: 'G01',
-    71035: 'G04',
-    71036: 'G01',
-    71041: 'G05',
-    71042: 'G05;G19',
-    71045: 'G06',
-    71047: 'G12',
-    71048: 'G12',
-    71050: 'G13',
-    71055: 'G13',
-    71059: 'G16',
-    71060: 'G14',
-    71062: 'G21',
-    71027: 'G15;G20',
-    71052: 'G07;G16',
-    71046: 'G07',
-    71015: 'G17',
-    71021: 'G17',
-    71033: 'G17',
-    71039: 'G17',
+  if (process.argv.includes('--phase-three')) {
+    console.log(
+      JSON.stringify({
+        setupCases,
+        games: games.length,
+        decisions: games.reduce((n, g) => n + g.inputs.length, 0),
+        scenarioRulesVersion: report.scenarioRulesVersion,
+      }),
+    )
+    // The phase-three matrix records individual test contracts, not presence alone.
+    // Its evidence is maintained separately from this passive policy.
   }
-  const quote = (v) => `"${String(v).replaceAll('"', '""')}"`
-  const rows = [['codigo', 'nombre', 'tipo', 'estado', 'hallazgos', 'aceptacion_pendiente']]
-  for (const card of [...inventory.values()].sort((a, b) => a.code.localeCompare(b.code))) {
-    const issues = findings[card.code] ?? ''
-    const pending = issues.split(';').filter((id) => id && !repaired.has(id))
-    const fixed = issues.split(';').filter((id) => repaired.has(id))
-    rows.push([
-      card.code,
-      card.name,
-      card.type,
-      pending.length
-        ? `Pendiente: ${pending.join(';')}; corregido: ${fixed.join(';') || '—'}`
-        : fixed.length
-          ? 'Correcciones de fases 1–2 verificadas; pendiente contrato completo'
-          : 'Presente; sin contrato individual de cierre',
-      issues,
-      'Contrato individual EN/ES, efectos y guardado/reanudación; ver auditoría 18',
-    ])
+  if (!process.argv.includes('--phase-three')) {
+    const inventory = new Map()
+    const put = (code, name, type) => inventory.set(code, { code, name, type })
+    put(defs.CODES.scenario, 'The Midwinter Gala', 'referencia')
+    const definition = gala.midwinterGala({ players: 1 })
+    definition.agendas.forEach((c) => put(c.code, c.name, 'plan'))
+    definition.acts.forEach((c) => put(c.code, c.name, 'acto'))
+    Object.values(defs.LOCATIONS).forEach((c) => put(c.id, c.name, 'lugar'))
+    defs.GUEST_DEFS.forEach((c) => put(c.code, c.name, 'invitado/líder'))
+    Object.values(defs.FACTION_CARDS).forEach((c) =>
+      put(c.story, c.storyName, 'historia (Aliado/Rival)'),
+    )
+    ;[...definition.encounterDeck, ...definition.setAside].forEach((c) => {
+      if (/^\d{5}$/.test(c.code)) put(c.code, c.name, c.kind)
+    })
+    put(defs.CODES.bloodlessMan, 'The Bloodless Man', 'enemigo (dos caras)')
+    put(defs.CODES.paleLantern, 'The Pale Lantern', 'apoyo (dos caras)')
+    const findings = {
+      71008: 'G02;G08;G19',
+      71010: 'G09',
+      71012: 'G03',
+      71017: 'G10;G15;G16',
+      71018: 'G01;G05',
+      71020: 'G06',
+      71024: 'G11',
+      71031: 'G01',
+      71035: 'G04',
+      71036: 'G01',
+      71041: 'G05',
+      71042: 'G05;G19',
+      71045: 'G06',
+      71047: 'G12',
+      71048: 'G12',
+      71050: 'G13',
+      71055: 'G13',
+      71059: 'G16',
+      71060: 'G14',
+      71062: 'G21',
+      71027: 'G15;G20',
+      71052: 'G07;G16',
+      71046: 'G07',
+      71015: 'G17',
+      71021: 'G17',
+      71033: 'G17',
+      71039: 'G17',
+    }
+    const quote = (v) => `"${String(v).replaceAll('"', '""')}"`
+    const rows = [['codigo', 'nombre', 'tipo', 'estado', 'hallazgos', 'aceptacion_pendiente']]
+    for (const card of [...inventory.values()].sort((a, b) => a.code.localeCompare(b.code))) {
+      const issues = findings[card.code] ?? ''
+      const pending = issues.split(';').filter((id) => id && !repaired.has(id))
+      const fixed = issues.split(';').filter((id) => repaired.has(id))
+      rows.push([
+        card.code,
+        card.name,
+        card.type,
+        pending.length
+          ? `Pendiente: ${pending.join(';')}; corregido: ${fixed.join(';') || '—'}`
+          : fixed.length
+            ? 'Correcciones de fases 1–2 verificadas; pendiente contrato completo'
+            : 'Presente; sin contrato individual de cierre',
+        issues,
+        'Contrato individual EN/ES, efectos y guardado/reanudación; ver auditoría 18',
+      ])
+    }
+    if (inventory.size !== 62) throw new Error(`Incomplete inventory: ${inventory.size}`)
+    await writeFile(
+      'docs-proyecto/18-matriz-la-gala.csv',
+      rows.map((row) => row.map(quote).join(',')).join('\n') + '\n',
+    )
+    console.log(
+      JSON.stringify({
+        setupCases,
+        games: games.length,
+        decisions: games.reduce((n, g) => n + g.inputs.length, 0),
+        resolutions: [...new Set(games.map((g) => JSON.stringify(g.outcome)))],
+        probes,
+      }),
+    )
   }
-  if (inventory.size !== 62) throw new Error(`Incomplete inventory: ${inventory.size}`)
-  await writeFile(
-    'docs-proyecto/18-matriz-la-gala.csv',
-    rows.map((row) => row.map(quote).join(',')).join('\n') + '\n',
-  )
-  console.log(
-    JSON.stringify({
-      setupCases,
-      games: games.length,
-      decisions: games.reduce((n, g) => n + g.inputs.length, 0),
-      resolutions: [...new Set(games.map((g) => JSON.stringify(g.outcome)))],
-      probes,
-    }),
-  )
 } finally {
   await server.close()
 }

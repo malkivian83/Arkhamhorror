@@ -4,7 +4,19 @@ Plataforma web propia para jugar a **Arkham Horror: El Juego de Cartas (LCG)**,
 tomando como referencia de estudio el proyecto `halogenandtoast/ArkhamHorror`
 (código público en GitHub pero **sin licencia**; copia local actual en `D:\referencia\ArkhamHorror-main`, fuera de este repositorio).
 
-> Estos documentos son el punto de partida del desarrollo. Léelos en orden.
+**Estado revisado el 19/10/2026:** el producto se presenta como **Arkham Online**.
+Para conocer el trabajo actual, empezar por la [hoja de ruta](05-hoja-de-ruta.md).
+Los informes iniciales se conservan como antecedentes y no son un inventario
+vigente de pendientes.
+
+- **Brethren of Ash:** cierre técnico local de los tres escenarios; queda la
+  comprobación en teléfono físico. Ver documentos 16–17.
+- **La Gala:** fases 1–3 completadas; G18 cerrado y G17 pendiente de victorias
+  completas. Siguiente bloque: partidas completas e interfaz, seguido de publicación estable.
+  Ver documento 18.
+- **Plataforma:** cuentas y biblioteca privada con MySQL implementadas;
+  despliegue completo para Plesk preparado. Ver documentos 22–23 para alcance,
+  límites y comprobaciones de producción pendientes.
 
 | # | Documento | Contenido |
 |---|---|---|
@@ -14,7 +26,7 @@ tomando como referencia de estudio el proyecto `halogenandtoast/ArkhamHorror`
 | 04 | [Arquitectura propuesta](04-arquitectura-propuesta.md) | Cómo construir nuestro propio programa |
 | 05 | [Hoja de ruta](05-hoja-de-ruta.md) | Fases e hitos, empezando por un "corte vertical" jugable |
 | 06 | [Convenciones de desarrollo](06-convenciones.md) | Repositorio, ramas, estilo, tests, idiomas (solo EN/ES) |
-| 07 | [Dudas abiertas](07-dudas-abiertas.md) | Decisiones que necesitamos del propietario del proyecto |
+| 07 | [Decisiones y cuestiones abiertas](07-dudas-abiertas.md) | Registro actualizado de decisiones, estado observado y cuestiones aún abiertas |
 | 08 | [El motor de reglas](08-motor.md) | Cómo funciona, qué reglas están implementadas y qué falta |
 | 09 | [Spreading Flames](09-spreading-flames.md) | Análisis del primer escenario: cartas, mecánicas necesarias y datos que faltan |
 | 10 | [Funcionalidades de la mesa](10-funcionalidades-mesa.md) | Comparación con el proyecto de referencia y orden de trabajo |
@@ -26,10 +38,10 @@ tomando como referencia de estudio el proyecto `halogenandtoast/ArkhamHorror`
 | 15 | [Auditoría funcional de la referencia — 17/10/2026](15-auditoria-referencia-2026-10-17.md) | Ingeniería inversa, 110 oportunidades, inventario de contenido y prioridades para juego local; [backlog CSV](15-backlog-referencia-2026-10-17.csv) |
 | 16 | [Auditoría de cierre de Brethren of Ash](16-auditoria-cierre-brethren-of-ash.md) | Cierre local y aceptación ampliada: dos campañas en normal, Smoke completo, Queen R1/R2/R3, Masivo, costes y recorrido de interfaz; prueba en teléfono físico pendiente. [Matriz de cartas](16-matriz-cartas-cierre.csv). |
 | 17 | [Base estable de Brethren of Ash](17-version-estable-brethren-of-ash.md) | Evidencia conservada, etiqueta de versión y protocolo pendiente para teléfono físico. |
-| 18 | [Auditoría de cierre de La Gala](18-auditoria-cierre-la-gala.md) | Fases 1–2 completadas: 19 de 21 trabajos; quedan aceptación de contenido y respaldo EN/ES. [Matriz de 62 códigos](18-matriz-la-gala.csv). |
+| 18 | [Auditoría de cierre de La Gala](18-auditoria-cierre-la-gala.md) | Fases 1–3 completadas: 20 de 21 trabajos; contratos principales de 62 códigos, respaldo EN/ES y persistencia especial. Pendientes victorias completas, interfaz y publicación. [Matriz](18-matriz-la-gala.csv). |
 | 19 | [Avance visual de actos y planes](19-avance-visual-actos.md) | Cartas y efectos automáticos por pasos, aceptación obligatoria, guardado de la lectura y comprobación en Brethren y La Gala. |
 | 20 | [Miniaturas nítidas de la mano](20-miniaturas-mano.md) | Miniaturas locales a tamaño estable, ampliación con el original y generación reproducible. |
-| 21 | [Cuentas y guardado en servidor](21-cuentas-y-guardado-en-servidor.md) | Informe previo: cuentas, bibliotecas privadas de mazos y campañas, sincronización y migración en VPS con MySQL. |
+| 21 | [Cuentas y guardado en servidor](21-cuentas-y-guardado-en-servidor.md) | Informe histórico de diseño previo a la implementación del documento 22. |
 | 22 | [Implementación de cuentas y MySQL](22-implementacion-cuentas-mysql.md) | Registro, Google, bibliotecas privadas, sincronización, desarrollo local, despliegue y límites pendientes. |
 | 23 | [Despliegue completo desde Plesk](23-despliegue-plesk.md) | Web y API, pnpm automático, migraciones, administrador y reinicio desde el panel, sin SSH. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
@@ -37,6 +49,7 @@ tomando como referencia de estudio el proyecto `halogenandtoast/ArkhamHorror`
 ## Decisiones ya tomadas
 
 - Repositorio propio: `github.com/malkivian83/Arkhamhorror` (privado).
-- No se trabaja contra el repositorio original ni se usan sus servicios
-  (CDN, API, OAuth, despliegues, bases de datos).
+- La referencia se consulta desde una copia externa al repositorio, siguiendo
+  las [convenciones vigentes](06-convenciones.md).
+  La aplicación sirve sus propias imágenes y usa su propia API, cuentas y base de datos.
 - Idiomas soportados: **solo inglés y español**.

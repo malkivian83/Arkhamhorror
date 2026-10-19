@@ -343,6 +343,7 @@ function campaign(value: unknown): asserts value is Campaign {
       !object(r.xp)
     )
       fail()
+    if (r.score !== undefined && (!integer(r.score) || r.score < 0)) fail()
   })
   // Validate investigators and deck codes through the same content registry used by play.
   const records = value.log.investigators
