@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { cardTextHtml } from '../game/cardText'
 import { localizedCards } from '../game/localized'
 
-const props = defineProps<{ code: string; back?: boolean }>()
+const props = defineProps<{ code: string; back?: boolean; imageLanguage?: string | undefined }>()
+const { t } = useI18n()
 const card = computed(() => localizedCards.value.get(props.code))
 const name = computed(() =>
   props.back && card.value?.type_code !== 'location'
@@ -12,19 +14,44 @@ const name = computed(() =>
 )
 const text = computed(() => cardTextHtml(props.back ? card.value?.back_text : card.value?.text))
 const flavor = computed(() => (props.back ? card.value?.back_flavor : card.value?.flavor) ?? '')
+const transcribe = computed(() => props.imageLanguage !== 'es')
+const faqs = computed(() =>
+  (Array.isArray(card.value?.faq) ? card.value.faq : []).filter(
+    (entry) => entry && typeof entry.question === 'string' && typeof entry.answer === 'string',
+  ),
+)
+const sourceUrl = (source: string | undefined) =>
+  source && /^https:\/\//i.test(source) ? source : undefined
 </script>
 
 <template>
-  <aside v-if="card" class="translation">
-    <h3>{{ name }}</h3>
-    <p v-if="card.subname && !back" class="subname">{{ card.subname }}</p>
-    <p class="meta">
-      {{ card.type_name }}<template v-if="card.slot"> · {{ card.slot }}</template>
-    </p>
-    <p v-if="card.traits && !back" class="traits">{{ card.traits }}</p>
-    <!-- eslint-disable-next-line vue/no-v-html -- texto saneado en cardTextHtml -->
-    <div v-if="text" class="text" v-html="text" />
-    <p v-if="flavor" class="flavor">{{ flavor }}</p>
+  <aside v-if="card && (transcribe || faqs.length)" class="translation">
+    <template v-if="transcribe">
+      <h3>{{ name }}</h3>
+      <p v-if="card.subname && !back" class="subname">{{ card.subname }}</p>
+      <p class="meta">
+        {{ card.type_name }}<template v-if="card.slot"> · {{ card.slot }}</template>
+      </p>
+      <p v-if="card.traits && !back" class="traits">{{ card.traits }}</p>
+      <!-- eslint-disable-next-line vue/no-v-html -- texto saneado en cardTextHtml -->
+      <div v-if="text" class="text" v-html="text" />
+      <p v-if="flavor" class="flavor">{{ flavor }}</p>
+    </template>
+    <section v-if="faqs.length" class="card-faq" :aria-label="t('table.cardFaq')">
+      <h3>{{ t('table.cardFaq') }}</h3>
+      <article v-for="(entry, index) in faqs" :key="index">
+        <h4>{{ entry.question }}</h4>
+        <!-- eslint-disable-next-line vue/no-v-html -- sanitized by cardTextHtml -->
+        <div class="text" v-html="cardTextHtml(entry.answer)" />
+        <a
+          v-if="sourceUrl(entry.source)"
+          :href="sourceUrl(entry.source)"
+          target="_blank"
+          rel="noopener noreferrer"
+          >{{ t('table.faqSource') }}</a
+        >
+      </article>
+    </section>
   </aside>
 </template>
 
@@ -50,6 +77,23 @@ h3 {
 .traits,
 .flavor {
   font-style: italic;
+}
+.card-faq {
+  margin-top: 16px;
+}
+.card-faq:first-child {
+  margin-top: 0;
+}
+.card-faq h4 {
+  margin: 14px 0 8px;
+  font-size: 1rem;
+}
+.card-faq a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #623c26;
+  text-underline-offset: 3px;
 }
 .meta {
   margin: 8px 0;

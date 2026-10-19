@@ -17,6 +17,7 @@ import { unreviewedEncounterDraws } from '../game/advanceReview'
 const props = defineProps<{ state: GameState }>()
 const emit = defineEmits<{ dismissed: [code: string, source: DOMRect | undefined] }>()
 const face = ref<HTMLElement | null>(null)
+const imageLanguage = ref('unknown')
 const { t } = useI18n()
 const game = useGameStore()
 
@@ -75,14 +76,20 @@ onBeforeUnmount(() => window.removeEventListener('keydown', key, true))
       <div class="card-details">
         <div :key="`${current.code}-${queue.length}`" class="flipper">
           <div ref="face" class="face front">
-            <GameCard :code="current.code" :name="current.card" :width="280" no-zoom />
+            <GameCard
+              :code="current.code"
+              :name="current.card"
+              :width="280"
+              no-zoom
+              @image-language="imageLanguage = $event"
+            />
           </div>
           <div class="face back">
             <img v-if="back" :src="back" alt="" draggable="false" />
             <div v-else class="drawn-back" />
           </div>
         </div>
-        <CardTranslation :code="current.code" />
+        <CardTranslation :code="current.code" :image-language="imageLanguage" />
       </div>
       <p class="name">{{ localName(current.card) }}</p>
       <button type="button" class="primary" @click="dismiss">

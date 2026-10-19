@@ -4,6 +4,7 @@ import { cardImages, cardThumbnail, localScan, scanLocale } from '../game/cards'
 import { localizedCards, localName } from '../game/localized'
 import { zoomed } from '../game/zoom'
 import RenderedCard from './RenderedCard.vue'
+const emit = defineEmits<{ imageLanguage: [language: string] }>()
 
 /**
  * Una carta en la mesa. Orden de preferencia:
@@ -58,6 +59,13 @@ function imageFailed() {
   }
 }
 const displayName = computed(() => localized.value?.name ?? localName(props.name))
+// Follow the face actually displayed, including failed Spanish scans and English fallbacks.
+const imageLanguage = computed(() => {
+  if (scan.value) return scanLocale.value
+  if (src.value) return /\/cards\/(es|en)\//.exec(src.value)?.[1] ?? 'unknown'
+  return localized.value ? scanLocale.value : 'unknown'
+})
+watch(imageLanguage, (language) => emit('imageLanguage', language), { immediate: true })
 
 const ratio = computed(() => (props.landscape ? 0.715 : 1.4))
 const style = computed(() => ({

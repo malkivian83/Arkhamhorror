@@ -473,6 +473,12 @@
     "agendaDeck": "Agenda deck",
     "actDeck": "Act deck",
     "viewScenarioDeck": "{deck} {current} of {total}: view all cards in the deck",
+    "cardFaq": "Frequently asked questions",
+    "faqSource": "Read the source",
+    "scenarioProgress": "Scenario agenda and act",
+    "discardShort": "Disc.",
+    "chaosShort": "Chaos",
+    "victoryShort": "Vic.",
     "scenarioDeckHelp": "Cards in advancement order. The active card is highlighted. You can inspect upcoming cards and their backs without advancing the scenario.",
     "deckStatus": {
       "previous": "Previous",
@@ -600,6 +606,12 @@
     }
   },
   "skillTest": {
+    "progress": "Step {n} of 8",
+    "prepare": "Prepare the test",
+    "commit": "Commit cards",
+    "reveal": "Reveal and resolve tokens",
+    "compare": "Check the result",
+    "apply": "Apply the result",
     "availableAbilities": "Assets and abilities available before revealing",
     "value": "Skill value",
     "difficulty": "Difficulty",
