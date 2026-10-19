@@ -1,16 +1,8 @@
-# Configuración para servir la web en Apache (Plesk).
+# Cabeceras para los archivos públicos de Apache (Plesk).
+# Las rutas de Vue y de /api las gestiona Node.js/Passenger.
+# No redirigir rutas desconocidas a index.html: ocultaría las respuestas de la API.
 # La fuente de ArkhamDB (/ext/arkhamdb) se sirve con un proxy de nginx,
 # que se configura aparte en el panel de Plesk.
-
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-
-  # Rutas de la SPA: lo que no sea un archivo o carpeta real va a index.html.
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ index.html [L]
-</IfModule>
 
 <IfModule mod_headers.c>
   # index.html siempre fresco para que se vea cada nuevo despliegue.
