@@ -12,6 +12,7 @@ La planificación y las decisiones están en [docs-proyecto/](docs-proyecto/READ
 | `packages/engine` | Motor de reglas puro y determinista (sin E/S, RNG con semilla)       |
 | `packages/cards`  | Definiciones de cartas (datos EN/ES y, más adelante, comportamiento) |
 | `packages/shared` | Tipos del protocolo cliente/servidor                                 |
+| `packages/saves`  | Formato y validación compartida de guardados                         |
 | `packages/i18n`   | Textos de interfaz en inglés y español                               |
 | `apps/server`     | API HTTP + WebSocket (Fastify)                                       |
 | `apps/web`        | Mesa de juego (Vue 3 + Vite + Pinia + vue-i18n)                      |
@@ -23,7 +24,7 @@ La planificación y las decisiones están en [docs-proyecto/](docs-proyecto/READ
   ```bash
   npm install -g pnpm@12.11.2
   ```
-- Docker (solo para la base de datos; aún no se usa)
+- Docker para MySQL y el buzón de correo de desarrollo (opcional para jugar como invitado)
 
 ## Puesta en marcha
 
@@ -79,5 +80,13 @@ cp .env.example .env
 ```
 
 ```bash
-docker compose up -d db
+docker compose up -d db mail
 ```
+
+```bash
+pnpm --filter @lcg/server db:migrate
+```
+
+El registro, Google y las bibliotecas privadas se configuran siguiendo la
+[guía de cuentas y MySQL](docs-proyecto/22-implementacion-cuentas-mysql.md).
+La web conserva el modo invitado cuando no se configura el servicio de cuentas.

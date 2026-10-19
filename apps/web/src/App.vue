@@ -8,6 +8,8 @@ import { scanLocale } from './game/cards'
 import { useCardLocale } from './game/localized'
 import './game/playmats'
 import { useGameStore } from './stores/game'
+import { account } from './account/api'
+import { syncStatus } from './account/library'
 
 const { t, locale } = useI18n()
 const route = useRoute()
@@ -75,6 +77,10 @@ function setLocale(value: Locale) {
         <nav class="sections" :aria-label="t('app.sections')">
           <RouterLink to="/">{{ t('campaign.new') }}</RouterLink>
           <RouterLink to="/decks">{{ t('decks.title') }}</RouterLink>
+          <RouterLink to="/library">{{ t('account.library') }}</RouterLink>
+          <RouterLink to="/account">{{
+            account.user ? t('account.profile') : t('account.login')
+          }}</RouterLink>
         </nav>
         <PlaymatPicker />
         <nav class="menu-languages">
@@ -98,6 +104,10 @@ function setLocale(value: Locale) {
     <nav class="sections" :aria-label="t('app.sections')">
       <RouterLink to="/">{{ t('campaign.new') }}</RouterLink>
       <RouterLink to="/decks">{{ t('decks.title') }}</RouterLink>
+      <RouterLink to="/library">{{ t('account.library') }}</RouterLink>
+      <RouterLink to="/account">{{
+        account.user ? t('account.profile') : t('account.login')
+      }}</RouterLink>
     </nav>
     <PlaymatPicker />
     <nav>
@@ -113,6 +123,13 @@ function setLocale(value: Locale) {
     </nav>
   </header>
   <main :class="{ 'game-shell': route.name === 'game' }">
+    <RouterLink
+      v-if="account.user"
+      to="/library"
+      class="account-sync"
+      :aria-label="t(`account.sync.${syncStatus}`)"
+      ><span role="status">{{ t(`account.sync.${syncStatus}`) }}</span></RouterLink
+    >
     <div v-if="game.storageIssue || game.error" class="session-warning" role="alert">
       <p v-if="game.storageIssue">{{ t(`session.issue.${game.storageIssue}`) }}</p>
       <p v-if="game.error">{{ game.error }}</p>
@@ -122,6 +139,36 @@ function setLocale(value: Locale) {
 </template>
 
 <style>
+.account-sync {
+  display: block;
+  background: #1a2924;
+  color: #e7d4ac;
+  padding: 8px 16px;
+  min-height: 36px;
+  font-size: 0.78rem;
+  text-align: right;
+  text-underline-offset: 3px;
+}
+.topbar .sections {
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.topbar .sections a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+@media (min-width: 601px) and (max-width: 1100px) {
+  .topbar {
+    height: auto;
+    min-height: 52px;
+    flex-wrap: wrap;
+    padding: 8px 16px;
+  }
+  .topbar .disclaimer {
+    display: none;
+  }
+}
 .session-warning {
   padding: 10px 18px;
   color: #451907;

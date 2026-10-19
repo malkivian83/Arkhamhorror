@@ -1,3 +1,4 @@
+import { accountStorage, notifyLocalChange } from '../account/storage'
 import {
   arkhamDbDeckId,
   deckFromArkhamDb,
@@ -14,7 +15,7 @@ const REWARDS_KEY = 'lcg:rewards'
 
 function loadRewards(): CardCode[] {
   try {
-    const raw = localStorage.getItem(REWARDS_KEY)
+    const raw = accountStorage.getItem(REWARDS_KEY)
     const parsed: unknown = raw ? JSON.parse(raw) : []
     return Array.isArray(parsed)
       ? parsed.filter((code): code is CardCode => typeof code === 'string')
@@ -26,7 +27,7 @@ function loadRewards(): CardCode[] {
 
 function load(): DeckList[] {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY)
+    const raw = accountStorage.getItem(STORAGE_KEY)
     return raw ? (JSON.parse(raw) as DeckList[]) : []
   } catch {
     return []
@@ -52,7 +53,8 @@ export const useDecksStore = defineStore('decks', () => {
     if (next.length === rewards.value.length) return
     rewards.value = next
     try {
-      localStorage.setItem(REWARDS_KEY, JSON.stringify(next))
+      accountStorage.setItem(REWARDS_KEY, JSON.stringify(next))
+      notifyLocalChange('rewards', JSON.stringify(next))
     } catch {
       // Sin almacenamiento: duran lo que la pestaña.
     }
@@ -64,7 +66,8 @@ export const useDecksStore = defineStore('decks', () => {
   function persist(next: DeckList[]) {
     decks.value = next
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
+      accountStorage.setItem(STORAGE_KEY, JSON.stringify(next))
+      notifyLocalChange('decks', JSON.stringify(next))
     } catch {
       // Sin almacenamiento: los mazos solo duran mientras la pestaña esté abierta.
     }
@@ -108,5 +111,9 @@ export const useDecksStore = defineStore('decks', () => {
     return { ok: true, deck, unknown }
   }
 
-  return { decks, rewards, addRewards, check, save, remove, importFromArkhamDb }
+  function reload() {
+    decks.value = load()
+    rewards.value = loadRewards()
+  }
+  return { decks, rewards, addRewards, check, save, remove, importFromArkhamDb, reload }
 })

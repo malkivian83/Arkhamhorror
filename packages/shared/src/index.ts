@@ -1,4 +1,12 @@
 import type { GameState, PlayerInput } from '@lcg/engine'
+export type {
+  AccountUser,
+  AuthStatus,
+  DocumentKind,
+  CloudMetadata,
+  CloudDocument,
+  DocumentWrite,
+} from './accounts'
 
 /** Mensajes del cliente al servidor por WebSocket. */
 export type ClientMessage =

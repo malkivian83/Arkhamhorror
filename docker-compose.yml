@@ -1,22 +1,32 @@
-# Servicios de apoyo para desarrollo local. Copia .env.example a .env antes.
+# Local development. Production must use its own credentials and private networks.
 services:
   db:
-    image: postgres:17-alpine
+    image: mysql:8.4
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-lcg}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Define POSTGRES_PASSWORD en .env}
-      POSTGRES_DB: ${POSTGRES_DB:-lcg}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Define MYSQL_ROOT_PASSWORD en .env}
+      MYSQL_USER: ${MYSQL_USER:-lcg}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Define MYSQL_PASSWORD en .env}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-lcg}
+    command: ['--max-allowed-packet=32M']
     ports:
-      # Solo accesible desde esta máquina.
-      - '127.0.0.1:5432:5432'
+      - '127.0.0.1:3306:3306'
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - mysqldata:/var/lib/mysql
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"']
+      test:
+        [
+          'CMD-SHELL',
+          'MYSQL_PWD="$$MYSQL_ROOT_PASSWORD" mysqladmin ping -h 127.0.0.1 -uroot --silent',
+        ]
       interval: 5s
       timeout: 5s
-      retries: 10
+      retries: 20
+  mail:
+    image: axllent/mailpit:v1.31.6
+    ports:
+      - '127.0.0.1:1025:1025'
+      - '127.0.0.1:8025:8025'
 
 volumes:
-  pgdata:
+  mysqldata:

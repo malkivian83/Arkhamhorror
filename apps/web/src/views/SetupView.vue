@@ -15,6 +15,7 @@ import SkillIcon from '../components/SkillIcon.vue'
 import { classColor } from '../game/cards'
 import { useDecksStore } from '../stores/decks'
 import { useGameStore, type DeckKey } from '../stores/game'
+import { account } from '../account/api'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -249,7 +250,7 @@ function start() {
           >
             {{ t('setup.begin') }} <span aria-hidden="true">→</span>
           </button>
-          <p class="save-note">{{ t('setup.localSave') }}</p>
+          <p class="save-note">{{ account.user ? t('account.saveHint') : t('setup.localSave') }}</p>
         </aside>
       </form>
       <div class="setup-tools"><SessionTools /></div>
