@@ -1,4 +1,3 @@
-import { IDBFactory } from 'fake-indexeddb'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { CloudDocument, DocumentWrite } from '@lcg/shared'
 import { newCampaign } from '@lcg/cards'
@@ -60,7 +59,11 @@ beforeEach(async () => {
   loseResponse = false
   vi.stubGlobal('localStorage', storage)
   vi.stubGlobal('sessionStorage', tabStorage)
-  vi.stubGlobal('indexedDB', new IDBFactory())
+  vi.stubGlobal('indexedDB', {
+    open: vi.fn(() => {
+      throw new Error('No local database allowed')
+    }),
+  })
   vi.stubGlobal('window', new EventTarget())
   vi.stubGlobal(
     'fetch',
@@ -108,7 +111,35 @@ afterEach(async () => {
   vi.unstubAllGlobals()
 })
 
-describe('cola duradera de la biblioteca', () => {
+describe('guardado online de la biblioteca', () => {
+  it('guarda automáticamente en el servidor sin pulsar ningún botón', async () => {
+    await library.trackGame(JSON.stringify(game()))
+    await vi.advanceTimersByTimeAsync(800)
+    expect(remote.size).toBe(1)
+    expect(library.syncStatus.value).toBe('saved')
+    expect(storage.data.size).toBe(0)
+  })
+  it('consulta la versión actual del servidor antes de abrir una aventura', async () => {
+    const id = await library.saveDocument('campaign', 'Adventure', game())
+    await library.flush()
+    const updated = { ...game(), campaign: { ...game().campaign!, name: 'Updated' } }
+    remote.get(id!)!.payload = updated
+    remote.get(id!)!.revision++
+    const load = vi.fn(() => true)
+    expect(await library.activateCampaign(id!, load)).toBe(true)
+    expect(load).toHaveBeenCalledWith(JSON.stringify(updated))
+  })
+  it('no permite escribir con una biblioteca que no ha podido cargar del servidor', async () => {
+    await library.stopLibrary()
+    vi.resetModules()
+    disconnect = true
+    await boot()
+    await expect(library.saveDocument('campaign', 'Adventure', game())).rejects.toMatchObject({
+      code: 'network',
+    })
+    expect(library.documents.value).toEqual([])
+    expect(remote.size).toBe(0)
+  })
   it.each(['{"revision":', '{}', 'null'])(
     'conserva la operación si la confirmación del servidor es inválida: %s',
     async (acknowledgement) => {
@@ -148,7 +179,7 @@ describe('cola duradera de la biblioteca', () => {
     await boot()
     expect(scoped.accountStorage.getItem('active-save')).toBeNull()
     expect(scoped.accountStorage.getItem('lcg:session:v1')).toBeNull()
-    expect(library.documents.value[0]!.deleted).toBe(true)
+    expect(library.documents.value).toEqual([])
   })
   it('actualiza la copia de mazos y recompensas al refrescar cambios remotos', async () => {
     const deck = { id: 'deck-a', name: 'Remote deck', investigator: '12004', cards: ['12005'] }
@@ -178,15 +209,16 @@ describe('cola duradera de la biblioteca', () => {
     expect(await library.resolveConflict(documentId, false)).toBe(true)
     expect(scoped.accountStorage.getItem('active-save')).toBeNull()
   })
-  it('separa invitado, cuentas y pestañas sin adoptar los datos de otra identidad', () => {
-    storage.setItem('lcg:decks', 'guest')
+  it('no lee ni escribe datos de juego del navegador y separa identidades', () => {
+    storage.setItem('lcg:decks', 'old guest data')
+    expect(scoped.accountStorage.getItem('lcg:decks')).not.toBe('old guest data')
     scoped.accountStorage.setItem('lcg:decks', 'private A')
     scoped.setStorageUser('user-b')
     expect(scoped.accountStorage.getItem('lcg:decks')).toBeNull()
     scoped.setStorageUser(null)
-    expect(scoped.accountStorage.getItem('lcg:decks')).toBe('guest')
-    scoped.setStorageUser('user-a')
-    expect(scoped.accountStorage.getItem('lcg:decks')).toBe('private A')
+    expect(scoped.accountStorage.getItem('lcg:decks')).toBeNull()
+    expect([...storage.data]).toEqual([['lcg:decks', 'old guest data']])
+    expect(tabStorage.data.size).toBe(0)
   })
   it('guarda varias campañas con identificadores independientes', async () => {
     const first = await library.saveDocument('campaign', 'First', game())
@@ -196,16 +228,14 @@ describe('cola duradera de la biblioteca', () => {
     expect(remote.size).toBe(2)
     expect(library.syncStatus.value).toBe('saved')
   })
-  it('persiste la operación antes de enviar y repite el mismo identificador al perder la respuesta', async () => {
+  it('repite en memoria el mismo identificador al perder la respuesta', async () => {
     const documentId = await library.saveDocument('campaign', 'Adventure', game())
     loseResponse = true
     await library.flush()
     expect(library.syncStatus.value).toBe('offline')
     const original = library.documents.value[0]!.operation!
     expect(remote.get(documentId!)?.revision).toBe(1)
-    await library.stopLibrary()
-    vi.resetModules()
-    await boot()
+    await library.flush()
     expect(writes.at(-1)!.operationId).toBe(original.operationId)
     expect(remote.get(documentId!)?.revision).toBe(1)
     expect(library.documents.value[0]!.operation).toBeNull()
@@ -254,38 +284,30 @@ describe('cola duradera de la biblioteca', () => {
     expect([...remote.values()].map((d) => d.name)).toContain('Remote')
     expect([...remote.values()].map((d) => d.name)).toContain('Local (copy)')
   })
-  it('recupera cambios pendientes al reiniciar sin conexión y no los mezcla con los del servidor', async () => {
-    await library.saveDocument('campaign', 'Offline adventure', game())
+  it('pierde cambios sin guardar al recargar y conserva solo lo que llegó al servidor', async () => {
+    await library.saveDocument('campaign', 'Saved online', game())
+    await library.flush()
+    disconnect = true
+    await library.saveDocument('campaign', 'Unsaved adventure', game())
+    await library.flush()
+    expect(library.syncStatus.value).toBe('offline')
+    await library.stopLibrary()
+    vi.resetModules()
+    disconnect = false
+    await boot()
+    expect(library.documents.value.map((d) => d.name)).toEqual(['Saved online'])
+    expect(storage.data.size).toBe(0)
+    expect(tabStorage.data.size).toBe(0)
+  })
+  it('no recupera partidas sin conexión al recargar', async () => {
+    await library.saveDocument('campaign', 'Unsaved', game())
     disconnect = true
     await library.flush()
     await library.stopLibrary()
     vi.resetModules()
     await boot()
-    expect(library.documents.value[0]!.name).toBe('Offline adventure')
-    expect(library.documents.value[0]!.operation).not.toBeNull()
-    disconnect = false
-    await library.flush()
-    expect(remote.size).toBe(1)
-  })
-  it('importa invitado con confirmación externa y correspondencia estable sin borrar originales', async () => {
-    const raw = JSON.stringify(game())
-    storage.setItem('lcg:session:v1', raw)
-    storage.setItem(
-      'lcg:decks',
-      JSON.stringify([
-        { id: 'guest-deck', name: 'Guest deck', investigator: '12004', cards: ['12005'] },
-      ]),
-    )
-    storage.setItem('lcg:rewards', JSON.stringify(['12181']))
-    await library.importGuest()
-    await library.flush()
-    const count = remote.size
-    await library.importGuest()
-    await library.flush()
-    expect(remote.size).toBe(count)
-    expect(count).toBe(3)
-    expect(storage.getItem('lcg:session:v1')).toBe(raw)
-    expect([...remote.values()].find((d) => d.kind === 'rewards')?.payload).toEqual(['12181'])
+    expect(library.documents.value).toEqual([])
+    expect(library.syncStatus.value).toBe('offline')
   })
   it('no crea varias aventuras si llegan acciones seguidas y asigna otra al empezar de nuevo', async () => {
     await Promise.all([

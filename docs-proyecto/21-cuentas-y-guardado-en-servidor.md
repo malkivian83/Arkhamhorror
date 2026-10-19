@@ -5,6 +5,8 @@
 **Decisión del propietario:** despliegue en un VPS y base de datos **MySQL**.  
 **Decisiones confirmadas (19/10/2026):** registro abierto con verificación de correo; acceso con correo y contraseña y con Google; modo invitado disponible.
 
+**Actualización de alcance (19/10/2026):** el guardado vigente es exclusivamente online. Las propuestas históricas de copias locales, uso sin conexión e importación de invitado de este informe quedan sustituidas por el documento 22.
+
 ## 1. Propuesta
 
 Añadir una cuenta con una biblioteca privada de mazos y campañas, accesible desde distintos dispositivos. Mantener el motor ejecutándose en el navegador y guardar en el servidor los progresos completos. Esto cubre el objetivo solicitado sin convertirlo en un proyecto de multijugador.

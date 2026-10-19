@@ -1,3 +1,4 @@
+import { accountStorage } from '../account/storage'
 import { newCampaign } from '@lcg/cards'
 import { createPinia, setActivePinia } from 'pinia'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -7,6 +8,7 @@ import { useGameStore } from './game'
 
 let values: Map<string, string>
 beforeEach(() => {
+  accountStorage.clear()
   values = new Map()
   vi.stubGlobal('localStorage', {
     getItem: (key: string) => values.get(key) ?? null,
@@ -26,12 +28,12 @@ describe('recuperación de recompensas junto con la campaña', () => {
     expect(useDecksStore().rewards).toContain('12181')
   })
   it('recargar una campaña también reconstruye la recompensa si falta la clave auxiliar', () => {
-    values.set(SESSION_KEY, JSON.stringify(rewarded()))
+    accountStorage.setItem(SESSION_KEY, JSON.stringify(rewarded()))
     expect(useGameStore().campaign?.log.rewards).toContain('12181')
     expect(useDecksStore().rewards).toContain('12181')
   })
   it('una clave auxiliar de recompensas dañada no impide recuperar la campaña', () => {
-    values.set('lcg:rewards', '{}')
+    accountStorage.setItem('lcg:rewards', '{}')
     expect(useGameStore().importSession(JSON.stringify(rewarded()))).toBe(true)
     expect(useDecksStore().rewards).toEqual(['12181'])
   })

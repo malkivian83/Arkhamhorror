@@ -1,42 +1,28 @@
 import { shallowRef } from 'vue'
 import type { CloudDocument, CloudMetadata, DocumentKind, DocumentWrite } from '@lcg/shared'
-import { canonical, decodeSession, SESSION_KEY } from '@lcg/saves'
+import { decodeSession, SESSION_KEY } from '@lcg/saves'
 import type { DeckList } from '@lcg/cards'
 import { account, api, ApiError, recoverAccountSession } from './api'
-import { LibraryCache } from './cache'
-import { accountStorage, onLocalChange, storageClient } from './storage'
+import { accountStorage, onLocalChange } from './storage'
 
-export interface CachedDocument extends CloudDocument {
-  key: string
-  owner: string
-  client: string
+export interface LibraryDocument extends CloudDocument {
   dirty: boolean
   operation: DocumentWrite | null
   conflict: boolean
 }
-export const documents = shallowRef<CachedDocument[]>([])
-export const recoveries = shallowRef<CachedDocument[]>([])
-export const syncStatus = shallowRef('local')
+export const documents = shallowRef<LibraryDocument[]>([])
+export const syncStatus = shallowRef('saving')
 export const syncError = shallowRef('')
-const cache = new LibraryCache<CachedDocument>()
-const records = new Map<string, CachedDocument>()
+const records = new Map<string, LibraryDocument>()
 let running = false,
-  stopped = false
+  stopped = false,
+  loaded = false
 let flushing: Promise<void> | undefined
 let timer: ReturnType<typeof setTimeout> | undefined
-let durable = Promise.resolve()
+let unsubscribe: (() => void) | undefined
 const clone = <T>(value: T): T => JSON.parse(JSON.stringify(value)) as T
 const refresh = () => {
   documents.value = [...records.values()].map(clone)
-}
-function persist(record: CachedDocument) {
-  const snapshot = clone(record)
-  const write = durable.then(() => cache.put(snapshot))
-  durable = write.catch(() => {
-    syncStatus.value = 'error'
-    syncError.value = 'storage'
-  })
-  return write
 }
 function schedule() {
   if (stopped) return
@@ -49,14 +35,14 @@ function pending() {
   return [...records.values()].some((d) => d.dirty || d.operation)
 }
 
-/** One outbox operation stays immutable until acknowledged; edits made in flight form the next one. */
+/** Keep in-flight writes stable in memory until the server acknowledges them. */
 export function flush(): Promise<void> {
   return (flushing ??= runFlush().finally(() => {
     flushing = undefined
   }))
 }
 async function runFlush() {
-  if (running || stopped || !account.value.user) return
+  if (running || stopped || !account.value.user || !pending()) return
   running = true
   try {
     await recoverAccountSession()
@@ -75,7 +61,6 @@ async function runFlush() {
         }
         record.dirty = false
       }
-      await persist(record)
       const sent = record.operation
       try {
         const result = await api<{ revision: number }>(`/library/${record.id}`, 'PUT', sent)
@@ -83,11 +68,9 @@ async function runFlush() {
         if (stopped) return
         record.revision = result.revision
         record.operation = null
-        await persist(record)
       } catch (error) {
         if (error instanceof ApiError && error.status === 409) {
           record.conflict = true
-          await persist(record)
           continue
         }
         throw error
@@ -101,7 +84,7 @@ async function runFlush() {
     syncError.value = ''
     if (pending() && syncStatus.value !== 'conflict') schedule()
   } catch (error) {
-    syncError.value = error instanceof ApiError ? error.code : 'storage'
+    syncError.value = error instanceof ApiError ? error.code : 'internal'
     syncStatus.value = syncError.value === 'network' ? 'offline' : 'error'
     if (syncStatus.value === 'offline') {
       clearTimeout(timer)
@@ -123,14 +106,12 @@ export async function saveDocument(
 ) {
   const owner = account.value.user?.id
   if (!owner || stopped) return
+  if (!loaded) throw new ApiError('network', 0)
   const documentId = id ?? crypto.randomUUID()
   let record = records.get(documentId)
   if (!record) {
     record = {
       id: documentId,
-      key: `${owner}:${storageClient()}:${documentId}`,
-      owner,
-      client: storageClient(),
       kind,
       name,
       payload,
@@ -151,7 +132,6 @@ export async function saveDocument(
   }
   refresh()
   syncStatus.value = record.conflict ? 'conflict' : 'pending'
-  await persist(record)
   schedule()
   return documentId
 }
@@ -175,6 +155,7 @@ export async function trackGame(raw: string) {
   await saveDocument('campaign', name ?? value.campaign?.id ?? value.state.scenarioId, value, id)
 }
 async function trackDecks(raw: string) {
+  if (!loaded) throw new ApiError('network', 0)
   const decks = JSON.parse(raw) as DeckList[]
   const owned = [...records.values()].filter((d) => d.kind === 'deck' && !d.deleted)
   for (const deck of decks) {
@@ -193,7 +174,7 @@ export async function editMetadata(
   const record = records.get(id)
   if (!record) return
   Object.assign(record, change, { dirty: true, updatedAt: Date.now() })
-  await persist(record)
+  syncStatus.value = record.conflict ? 'conflict' : 'pending'
   refresh()
   schedule()
   const wasActive = change.deleted && activeId() === id
@@ -211,32 +192,30 @@ export async function refreshLibrary(initial = false) {
     if (local && local.revision === remote.revision) continue
     if (!initial && local && activeId() === remote.id) {
       local.conflict = true
-      await persist(local)
       syncStatus.value = 'conflict'
       continue
     }
     if (remote.deleted) {
       if (local) {
         Object.assign(local, remote)
-        await persist(local)
       }
       continue
     }
     const doc = await api<CloudDocument>(`/library/${remote.id}`)
     const latest = records.get(doc.id)
     if (latest?.dirty || latest?.operation || latest?.conflict) continue
-    const record: CachedDocument = {
+    const record: LibraryDocument = {
       ...doc,
-      key: `${account.value.user!.id}:${storageClient()}:${doc.id}`,
-      client: storageClient(),
-      owner: account.value.user!.id,
       dirty: false,
       operation: null,
       conflict: false,
     }
     records.set(doc.id, record)
-    await persist(record)
   }
+  loaded = true
+  syncError.value = ''
+  if ([...records.values()].some((d) => d.conflict)) syncStatus.value = 'conflict'
+  else if (!pending()) syncStatus.value = 'saved'
   restoreWorkingDecks()
   refresh()
 }
@@ -260,7 +239,6 @@ export async function resolveConflict(id: string, keepLocal: boolean, copyName?:
   record.operation = null
   record.dirty = false
   record.conflict = false
-  await persist(record)
   refresh()
   // The working copy is not silently overwritten. Reopen the desired campaign from the library.
   const wasActive = activeId() === id
@@ -273,58 +251,14 @@ export async function resolveConflict(id: string, keepLocal: boolean, copyName?:
   return wasActive
 }
 export async function activateCampaign(id: string, load: (raw: string) => boolean) {
+  await flush()
+  await refreshLibrary()
   const record = records.get(id)
   if (!record || record.deleted || record.conflict) return false
   const raw = JSON.stringify(record.payload)
   decodeSession(raw)
   accountStorage.setItem('active-save', id)
   return load(raw)
-}
-export async function importGuest() {
-  const rawDecks = localStorage.getItem('lcg:decks') ?? '[]'
-  const rawGame = localStorage.getItem(SESSION_KEY)
-  if (rawGame) decodeSession(rawGame)
-  // Stable mapping makes interrupted imports resumable across reloads.
-  const importKey = `lcg:user:${account.value.user!.id}:guest-import`
-  const mappings: Record<string, string> = JSON.parse(localStorage.getItem(importKey) ?? '{}')
-  const map = (key: string) => {
-    const id = (mappings[key] ??= crypto.randomUUID())
-    localStorage.setItem(importKey, JSON.stringify(mappings))
-    return id
-  }
-  for (const deck of JSON.parse(rawDecks) as DeckList[]) {
-    if (
-      !deck ||
-      typeof deck.id !== 'string' ||
-      !Array.isArray(deck.cards) ||
-      typeof deck.name !== 'string'
-    )
-      throw new Error('invalid')
-    const id = map(`deck:${deck.id}`)
-    if (!records.has(id)) await saveDocument('deck', deck.name, deck, id)
-  }
-  if (rawGame && (JSON.parse(rawGame).state || JSON.parse(rawGame).campaign)) {
-    const id = map('campaign')
-    if (!records.has(id))
-      await saveDocument(
-        'campaign',
-        JSON.parse(rawGame).campaign?.id ?? 'Imported campaign',
-        JSON.parse(rawGame),
-        id,
-      )
-  }
-  const rewards = JSON.parse(localStorage.getItem('lcg:rewards') ?? '[]')
-  if (Array.isArray(rewards)) {
-    const existing = [...records.values()].find((d) => d.kind === 'rewards')
-    await saveDocument(
-      'rewards',
-      'Rewards',
-      [...new Set([...((existing?.payload as string[]) ?? []), ...rewards])],
-      existing?.id,
-    )
-  }
-  await flush()
-  restoreWorkingDecks()
 }
 function restoreWorkingDecks() {
   const live = [...records.values()].filter((d) => !d.deleted)
@@ -340,9 +274,10 @@ function restoreWorkingDecks() {
   )
 }
 export async function initializeLibrary() {
-  const owner = account.value.user?.id
-  if (!owner) return
-  onLocalChange((kind, raw) => {
+  if (!account.value.user) return
+  stopped = false
+  unsubscribe?.()
+  unsubscribe = onLocalChange((kind, raw) => {
     const task =
       kind === 'game'
         ? trackGame(raw)
@@ -354,65 +289,28 @@ export async function initializeLibrary() {
               JSON.parse(raw),
               [...records.values()].find((d) => d.kind === 'rewards')?.id,
             )
-    void task.catch(() => {
-      syncStatus.value = 'error'
-      syncError.value = 'storage'
+    void task.catch((error) => {
+      syncError.value = error instanceof ApiError ? error.code : 'internal'
+      syncStatus.value = syncError.value === 'network' ? 'offline' : 'error'
     })
   })
-  window.addEventListener('online', () => {
-    void flush()
-  })
   try {
-    for (const record of await cache.all())
-      if (record.owner === owner) {
-        if (record.client === storageClient()) records.set(record.id, record)
-        else if (record.dirty || record.operation || record.conflict)
-          recoveries.value = [...recoveries.value, record]
-      }
-    // A tab can close after its synchronous save but before IndexedDB commits.
-    // Recover that working copy before fetching remote versions; conflicts stay explicit.
-    const workingId = activeId(),
-      workingRaw = accountStorage.getItem(SESSION_KEY)
-    if (
-      workingId &&
-      workingRaw &&
-      canonical(records.get(workingId)?.payload) !== canonical(JSON.parse(workingRaw))
-    ) {
-      decodeSession(workingRaw)
-      await trackGame(workingRaw)
-    }
-    refresh()
-    try {
-      await refreshLibrary(true)
-    } catch {
-      syncStatus.value = 'offline'
-      syncError.value = 'network'
-    }
-    restoreWorkingDecks()
-    const active = records.get(activeId() ?? '')
-    if (active && !active.conflict && !active.deleted)
-      accountStorage.setItem(SESSION_KEY, JSON.stringify(active.payload))
-    else if (active?.deleted && !active.conflict) {
-      newAdventure()
-      accountStorage.removeItem(SESSION_KEY)
-    }
-    refresh()
-    void flush()
-  } catch {
-    refresh()
-    syncStatus.value = 'error'
-    syncError.value = 'storage'
+    await refreshLibrary(true)
+    syncStatus.value = 'saved'
+    syncError.value = ''
+  } catch (error) {
+    syncStatus.value = 'offline'
+    syncError.value = error instanceof ApiError ? error.code : 'internal'
   }
 }
-export async function stopLibrary(clearLocal = false) {
+export async function stopLibrary() {
   stopped = true
   clearTimeout(timer)
+  unsubscribe?.()
+  unsubscribe = undefined
   await flushing
-  await durable
-  if (clearLocal && account.value.user) {
-    const owner = account.value.user.id
-    await cache.clearOwner(owner)
-    for (const key of Object.keys(localStorage))
-      if (key.startsWith(`lcg:user:${owner}:`)) localStorage.removeItem(key)
-  }
+  loaded = false
+  records.clear()
+  accountStorage.clear()
+  refresh()
 }

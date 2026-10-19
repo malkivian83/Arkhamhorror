@@ -1,3 +1,4 @@
+import { accountStorage } from '../account/storage'
 import { newCampaign, startScenario } from '@lcg/cards'
 import { during, throughSetup } from '@lcg/engine/testing'
 import { createPinia, setActivePinia } from 'pinia'
@@ -8,6 +9,7 @@ import { useGameStore } from './game'
 
 let values: Map<string, string>
 beforeEach(() => {
+  accountStorage.clear()
   values = new Map()
   vi.stubGlobal('localStorage', {
     getItem: (key: string) => values.get(key) ?? null,
@@ -63,7 +65,7 @@ describe('aceptación obligatoria del recorrido de avance', () => {
       game.acceptAdvance()
       expect(game.advanceReview).toHaveLength(remaining - 1)
       expect(JSON.stringify(game.state)).toBe(frozen)
-      const saved = decodeSession(values.get(SESSION_KEY)!)
+      const saved = decodeSession(accountStorage.getItem(SESSION_KEY)!)
       expect(JSON.stringify(saved.history)).toBe(history)
       expect(saved.advanceReview).toHaveLength(remaining - 1)
     }
