@@ -29,6 +29,7 @@ tomando como referencia de estudio el proyecto `halogenandtoast/ArkhamHorror`
 | 18 | [Auditoría de cierre de La Gala](18-auditoria-cierre-la-gala.md) | Fases 1–2 completadas: 19 de 21 trabajos; quedan aceptación de contenido y respaldo EN/ES. [Matriz de 62 códigos](18-matriz-la-gala.csv). |
 | 19 | [Avance visual de actos y planes](19-avance-visual-actos.md) | Cartas y efectos automáticos por pasos, aceptación obligatoria, guardado de la lectura y comprobación en Brethren y La Gala. |
 | 20 | [Miniaturas nítidas de la mano](20-miniaturas-mano.md) | Miniaturas locales a tamaño estable, ampliación con el original y generación reproducible. |
+| 21 | [Cuentas y guardado en servidor](21-cuentas-y-guardado-en-servidor.md) | Informe previo: cuentas, bibliotecas privadas de mazos y campañas, sincronización y migración en VPS con MySQL. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas
