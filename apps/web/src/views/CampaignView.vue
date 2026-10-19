@@ -15,6 +15,7 @@ import { useRouter } from 'vue-router'
 import ChaosTokenView from '../components/ChaosTokenView.vue'
 import GameCard from '../components/GameCard.vue'
 import SessionTools from '../components/SessionTools.vue'
+import SitePage from '../components/SitePage.vue'
 import { cardName, classColor } from '../game/cards'
 import { localName } from '../game/localized'
 import { useGameStore } from '../stores/game'
@@ -76,11 +77,12 @@ function abandon() {
 </script>
 
 <template>
-  <section v-if="campaign" class="campaign">
-    <header class="head">
-      <h1>{{ t('campaign.title', { name: definition ? t(definition.name) : '' }) }}</h1>
-      <p class="sub">{{ t(`difficulty.${campaign.difficulty}`) }}</p>
-    </header>
+  <SitePage
+    v-if="campaign"
+    :title="t('campaign.title', { name: definition ? t(definition.name) : '' })"
+    :subtitle="t(`difficulty.${campaign.difficulty}`)"
+    icon="campaign"
+  >
     <SessionTools />
 
     <div class="grid">
@@ -252,32 +254,20 @@ function abandon() {
       <p v-else class="finished">{{ t('campaign.finished') }}</p>
       <button type="button" class="abandon" @click="abandon">{{ t('campaign.abandon') }}</button>
     </footer>
-  </section>
+  </SitePage>
 
-  <section v-else class="campaign empty-campaign">
-    <p>{{ t('campaign.none') }}</p>
-    <button type="button" class="primary" @click="router.push('/')">
-      {{ t('table.newGame') }}
-    </button>
-  </section>
+  <SitePage v-else :title="t('campaign.new')" icon="campaign">
+    <div class="empty-campaign">
+      <img src="/local-assets/home/icon-campaign.webp" alt="" width="64" height="64" />
+      <p>{{ t('campaign.none') }}</p>
+      <button type="button" class="primary" @click="router.push('/')">
+        {{ t('table.newGame') }}
+      </button>
+    </div>
+  </SitePage>
 </template>
 
 <style scoped>
-.campaign {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 16px 40px;
-}
-.head h1 {
-  margin: 0;
-  color: var(--brass);
-}
-.sub {
-  margin: 4px 0 18px;
-  font-family: var(--fell);
-  font-style: italic;
-  color: #bfae86;
-}
 .grid {
   display: grid;
   grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
@@ -285,18 +275,16 @@ function abandon() {
   align-items: start;
 }
 .page {
-  /* Hoja del registro de campaña: papel pautado. */
   padding: 16px 18px;
-  color: var(--parch-ink);
-  background:
-    repeating-linear-gradient(transparent 0 23px, rgb(90 62 28 / 20%) 23px 24px), var(--parch);
-  border-left: 4px double #6e5631;
-  box-shadow: 0 8px 20px rgb(0 0 0 / 45%);
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
 }
 .page h2 {
   margin: 14px 0 6px;
   font-size: 0.95rem;
-  color: #5a3e1c;
+  color: var(--ink);
 }
 .page h2:first-child {
   margin-top: 0;
@@ -314,7 +302,8 @@ function abandon() {
   display: flex;
   gap: 8px;
   align-items: baseline;
-  opacity: 0.6;
+  flex-wrap: wrap;
+  color: var(--muted);
 }
 .scenarios li.done,
 .scenarios li.current {
@@ -331,21 +320,21 @@ function abandon() {
   margin-left: auto;
   font-family: var(--fell);
   font-style: italic;
-  color: #7a3a14;
+  color: var(--accent);
 }
 .notes li::before {
   content: '— ';
-  color: #8a6c3c;
+  color: var(--muted);
 }
 .notes li.crossed {
   text-decoration: line-through;
-  color: #8a6c3c;
+  color: var(--muted);
 }
 .empty {
   margin: 0;
   font-family: var(--fell);
   font-style: italic;
-  color: #6e5631;
+  color: var(--muted);
 }
 .tokens {
   display: flex;
@@ -361,9 +350,10 @@ function abandon() {
   grid-template-columns: auto minmax(0, 1fr);
   gap: 14px;
   padding: 14px;
+  background: var(--panel);
+  border: 1px solid var(--line);
   border-top: 3px solid var(--class);
-  background: var(--tex-wood), linear-gradient(180deg, #3a2616, #24170d);
-  box-shadow: inset 0 0 30px rgb(0 0 0 / 55%);
+  border-radius: 4px;
 }
 .investigator.out {
   filter: grayscale(0.8);
@@ -379,10 +369,10 @@ function abandon() {
   gap: 2px 12px;
   margin: 0 0 10px;
   font-family: var(--fell);
-  color: #e6d6b0;
+  color: var(--ink);
 }
 .record dt {
-  color: #bfae86;
+  color: var(--muted);
 }
 .record dd {
   margin: 0;
@@ -395,7 +385,7 @@ function abandon() {
 .fate {
   margin: 0;
   font-family: var(--display);
-  color: #e0574a;
+  color: #ffb4a9;
 }
 .shop {
   grid-column: 1 / -1;
@@ -416,10 +406,10 @@ function abandon() {
   gap: 10px;
   flex-wrap: wrap;
   font-family: var(--fell);
-  color: #efe6d0;
+  color: var(--ink);
 }
 .shop li.pending {
-  color: #a89a7c;
+  color: var(--muted);
 }
 .card-name {
   flex: 1;
@@ -427,7 +417,7 @@ function abandon() {
 }
 .card-name small {
   display: block;
-  color: #bfae86;
+  color: var(--muted);
   font-style: italic;
 }
 .pips {
@@ -446,7 +436,7 @@ function abandon() {
 .soon {
   font-family: var(--fell);
   font-style: italic;
-  color: #a89a7c;
+  color: var(--muted);
 }
 .error {
   color: #ff8a80;
@@ -455,6 +445,7 @@ function abandon() {
   display: flex;
   align-items: center;
   gap: 14px;
+  flex-wrap: wrap;
   margin-top: 22px;
 }
 .actions .primary {
@@ -469,7 +460,28 @@ function abandon() {
   color: var(--brass);
 }
 .empty-campaign {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  padding: 40px 24px;
   text-align: center;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.empty-campaign p {
+  margin: 0;
+  color: var(--muted);
+}
+.empty-campaign img {
+  object-fit: contain;
+}
+.record,
+.investigator {
+  min-width: 0;
+}
+.record dd {
+  overflow-wrap: anywhere;
 }
 @media (max-width: 800px) {
   .grid,

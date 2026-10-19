@@ -16,6 +16,7 @@ import {
 import { useGameStore } from '../stores/game'
 import { useDecksStore } from '../stores/decks'
 import { decodeSession, session } from '@lcg/saves'
+import SitePage from '../components/SitePage.vue'
 
 const { t, te } = useI18n(),
   router = useRouter(),
@@ -96,15 +97,10 @@ async function restore(id: string) {
 </script>
 
 <template>
-  <section class="library-page" aria-labelledby="library-title">
-    <header>
-      <div>
-        <p class="eyebrow">ARKHAM HORROR</p>
-        <h1 id="library-title">{{ t('account.library') }}</h1>
-        <p>{{ t('library.subtitle') }}</p>
-      </div>
-      <RouterLink to="/" class="link-button">{{ t('campaign.new') }} →</RouterLink>
-    </header>
+  <SitePage :title="t('account.library')" :subtitle="t('library.subtitle')" icon="campaign">
+    <template #actions>
+      <RouterLink to="/" class="link-button primary">{{ t('campaign.new') }} →</RouterLink>
+    </template>
     <template v-if="account.user">
       <div class="sync-bar">
         <p role="status">{{ t(`account.sync.${syncStatus}`) }}</p>
@@ -148,7 +144,10 @@ async function restore(id: string) {
           ><input v-model="showArchived" type="checkbox" /> {{ t('library.showArchived') }}</label
         >
       </div>
-      <p v-if="!campaigns.length" class="empty">{{ t('library.empty') }}</p>
+      <div v-if="!campaigns.length" class="empty">
+        <img src="/local-assets/home/icon-campaign.webp" alt="" width="48" height="48" />
+        <p>{{ t('library.empty') }}</p>
+      </div>
       <div class="campaign-library">
         <article v-for="doc in campaigns" :key="doc.id" class="campaign-entry">
           <h3>{{ displayName(doc.name) }}</h3>
@@ -192,65 +191,46 @@ async function restore(id: string) {
           </div>
         </article>
       </div>
-      <RouterLink class="link-button" to="/decks">{{ t('decks.manage') }}</RouterLink>
-      <button
-        type="button"
-        @click="download({ format: 'lcg-library', version: 1, documents }, 'arkham-library.json')"
-      >
-        {{ t('library.exportAll') }}
-      </button>
+      <footer class="library-actions">
+        <RouterLink class="link-button" to="/decks">{{ t('decks.manage') }}</RouterLink>
+        <button
+          type="button"
+          @click="download({ format: 'lcg-library', version: 1, documents }, 'arkham-library.json')"
+        >
+          {{ t('library.exportAll') }}
+        </button>
+      </footer>
     </template>
-    <template v-else
-      ><p>{{ t('library.guestHelp') }}</p>
-      <RouterLink class="link-button" to="/account">{{ t('account.login') }}</RouterLink></template
-    >
-  </section>
+    <div v-else class="empty guest-library">
+      <img src="/local-assets/home/icon-investigators.webp" alt="" width="48" height="48" />
+      <p>{{ t('library.guestHelp') }}</p>
+      <RouterLink class="link-button" to="/account">{{ t('account.login') }}</RouterLink>
+    </div>
+  </SitePage>
 </template>
 
 <style scoped>
-.library-page {
-  max-width: 1120px;
-  margin: 32px auto;
-  padding: 24px;
-  color: #eeeadd;
-}
-.library-page > header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  border-bottom: 1px solid #69715c;
-  padding-bottom: 24px;
-}
-.eyebrow {
-  color: #d6bd81;
-  letter-spacing: 0.2em;
-  font-size: 0.75rem;
-}
-h1 {
-  font: 400 2.6rem var(--fell);
-  margin: 12px 0;
-}
-h2,
-h3 {
-  font-family: var(--fell);
-  font-weight: 400;
-}
 p {
-  line-height: 1.65;
-  color: #c0cbbf;
+  line-height: 1.6;
+  color: var(--muted);
 }
-.link-button {
+.sync-bar {
+  margin: 0 0 20px;
+  font-size: 0.875rem;
+}
+.sync-bar p {
+  margin: 0;
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
-  padding: 10px 14px;
-  border: 1px solid #899078;
-  border-radius: 5px;
-  color: #e7d4ac;
-  text-decoration: none;
+  gap: 8px;
 }
-.sync-bar,
+.sync-bar p::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
 .library-heading {
   display: flex;
   align-items: center;
@@ -258,81 +238,101 @@ p {
   gap: 16px;
   margin: 20px 0;
 }
+.library-heading h2 {
+  margin: 0;
+}
+.library-heading label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+}
 .campaign-library {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 }
 .campaign-entry,
-.conflict,
-.import-panel {
-  border: 1px solid #69715c;
+.conflict {
+  min-width: 0;
+  border: 1px solid var(--line);
   padding: 24px;
-  background: #1a2924;
-  border-radius: 7px;
+  background: var(--panel);
+  border-radius: 4px;
   margin-bottom: 20px;
 }
 .campaign-entry h3 {
-  font-size: 1.5rem;
   margin: 0 0 8px;
+  overflow-wrap: anywhere;
 }
 .campaign-entry p {
-  font-size: 0.8rem;
+  font-size: 0.875rem;
 }
-.entry-actions {
+.entry-actions,
+.library-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
-button,
-summary {
-  min-height: 44px;
-}
-summary {
-  cursor: pointer;
-  align-content: center;
+.library-actions {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
 }
 .error,
 .conflict {
-  border: 1px solid #d6a286;
+  border: 1px solid #df9f8d;
   padding: 18px;
-  background: #382a22;
+  background: #38282b;
 }
 .error {
-  color: #ffe0d8;
+  color: #ffd8cd;
 }
 .conflict button {
   margin: 4px;
 }
-.import-panel {
-  margin-top: 28px;
-}
 .empty {
+  display: flex;
+  align-items: center;
+  gap: 20px;
   padding: 32px;
-  border: 1px dashed #69715c;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
 }
-.library-heading input {
-  width: 20px;
-  height: 20px;
-  vertical-align: middle;
+.empty p {
+  margin: 0;
+}
+.empty img {
+  object-fit: contain;
+  flex: none;
+}
+.guest-library {
+  flex-wrap: wrap;
+}
+.guest-library p {
+  flex: 1;
+  min-width: min(240px, 100%);
 }
 @media (max-width: 700px) {
-  .library-page {
-    padding: 16px;
-    margin: 16px auto;
-  }
   .campaign-library {
     grid-template-columns: 1fr;
   }
-  .library-page > header {
-    align-items: flex-start;
-    flex-direction: column;
-  }
   .library-heading {
     flex-wrap: wrap;
+    gap: 8px;
   }
   .campaign-entry {
     padding: 18px;
+  }
+  .empty {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 12px;
+  }
+  .library-actions {
+    flex-direction: column;
   }
 }
 </style>

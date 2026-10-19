@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router'
 import { account, api, ApiError } from '../account/api'
 import { documents, flush, stopLibrary } from '../account/library'
 import type { AuthStatus } from '@lcg/shared'
+import SitePage from '../components/SitePage.vue'
 
 const { t, locale } = useI18n()
 const route = useRoute()
@@ -128,123 +129,120 @@ async function removeAccount() {
 </script>
 
 <template>
-  <section class="account-page" aria-labelledby="account-title">
-    <p class="eyebrow">ARKHAM HORROR</p>
-    <h1 id="account-title">{{ account.user ? t('account.profile') : t('account.title') }}</h1>
-    <p class="intro">{{ t('account.subtitle') }}</p>
-    <p v-if="!account.enabled" role="status" class="notice">{{ t('account.unavailable') }}</p>
-    <p v-if="failure" role="alert" class="error">{{ t(`account.errors.${failure}`) }}</p>
-    <p v-if="notice" role="status" class="notice">{{ t(`account.${notice}`) }}</p>
+  <SitePage
+    class="account-layout"
+    :title="account.user ? t('account.profile') : t('account.title')"
+    :subtitle="t('account.subtitle')"
+    icon="investigators"
+  >
+    <div class="account-page">
+      <p v-if="!account.enabled" role="status" class="notice">{{ t('account.unavailable') }}</p>
+      <p v-if="failure" role="alert" class="error">{{ t(`account.errors.${failure}`) }}</p>
+      <p v-if="notice" role="status" class="notice">{{ t(`account.${notice}`) }}</p>
 
-    <template v-if="account.user && !tokenFlow">
-      <h2>{{ account.user.name }}</h2>
-      <p>{{ account.user.email }}</p>
-      <RouterLink class="link-button" to="/library">{{ t('account.library') }}</RouterLink>
-      <a v-if="account.google" class="link-button" href="/api/auth/google?link=1">{{
-        t('account.linkGoogle')
-      }}</a>
-      <p class="hint">{{ t('account.passwordHelp') }}</p>
-      <button type="button" :disabled="busy" @click="requestPasswordChange">
-        {{ t('account.passwordLink') }}
-      </button>
-      <hr />
-      <button type="button" :disabled="busy" @click="logout">{{ t('account.logout') }}</button>
-      <details class="danger">
-        <summary>{{ t('account.deleteAccount') }}</summary>
-        <p>{{ t('account.deleteHelp') }}</p>
-        <label
-          >{{ t('account.password')
-          }}<input
-            v-model="password"
-            type="password"
-            autocomplete="current-password"
-            maxlength="128"
-        /></label>
-        <button type="button" :disabled="busy || !password" @click="removeAccount">
-          {{ t('account.deleteAccount') }}
+      <template v-if="account.user && !tokenFlow">
+        <h2>{{ account.user.name }}</h2>
+        <p>{{ account.user.email }}</p>
+        <RouterLink class="link-button" to="/library">{{ t('account.library') }}</RouterLink>
+        <a v-if="account.google" class="link-button" href="/api/auth/google?link=1">{{
+          t('account.linkGoogle')
+        }}</a>
+        <p class="hint">{{ t('account.passwordHelp') }}</p>
+        <button type="button" :disabled="busy" @click="requestPasswordChange">
+          {{ t('account.passwordLink') }}
         </button>
-      </details>
-    </template>
+        <hr />
+        <button type="button" :disabled="busy" @click="logout">{{ t('account.logout') }}</button>
+        <details class="danger">
+          <summary>{{ t('account.deleteAccount') }}</summary>
+          <p>{{ t('account.deleteHelp') }}</p>
+          <label
+            >{{ t('account.password')
+            }}<input
+              v-model="password"
+              type="password"
+              autocomplete="current-password"
+              maxlength="128"
+          /></label>
+          <button type="button" :disabled="busy || !password" @click="removeAccount">
+            {{ t('account.deleteAccount') }}
+          </button>
+        </details>
+      </template>
 
-    <template v-else>
-      <nav class="account-tabs" :aria-label="t('account.options')">
-        <button type="button" :aria-pressed="mode === 'login'" @click="chooseMode('login')">
-          {{ t('account.login') }}
-        </button>
-        <button type="button" :aria-pressed="mode === 'register'" @click="chooseMode('register')">
-          {{ t('account.register') }}
-        </button>
-      </nav>
-      <h2>{{ t(`account.modes.${mode}`) }}</h2>
-      <form :aria-busy="busy" @submit.prevent="submit">
-        <label v-if="mode === 'register'"
-          >{{ t('account.name')
-          }}<input v-model="name" autocomplete="nickname" required maxlength="100"
-        /></label>
-        <label v-if="!['verify', 'reset'].includes(mode)"
-          >{{ t('account.email')
-          }}<input v-model="email" type="email" autocomplete="email" required maxlength="254"
-        /></label>
-        <label v-if="['login', 'register', 'reset'].includes(mode)"
-          >{{ t('account.password')
-          }}<input
-            v-model="password"
-            type="password"
-            :autocomplete="mode === 'login' ? 'current-password' : 'new-password'"
-            :minlength="mode === 'login' ? 1 : 12"
-            maxlength="128"
-            required
-            :aria-describedby="mode === 'login' ? undefined : 'password-hint'"
-        /></label>
-        <p v-if="['register', 'reset'].includes(mode)" id="password-hint" class="hint">
-          {{ t('account.passwordHint') }}
-        </p>
-        <p v-if="mode === 'verify'" class="hint">{{ t('account.verifyHelp') }}</p>
-        <button type="submit" class="primary" :disabled="busy || !account.enabled">
-          {{ busy ? t('account.working') : t(`account.actions.${mode}`) }}
-        </button>
-      </form>
-      <a
-        v-if="account.google && ['login', 'register'].includes(mode)"
-        class="link-button google"
-        href="/api/auth/google"
-        >{{ t('account.google') }}</a
-      >
-      <div class="secondary-actions">
-        <button type="button" @click="mode = 'forgot'">{{ t('account.forgot') }}</button>
-        <button type="button" @click="mode = 'resend'">{{ t('account.resend') }}</button>
-      </div>
-      <RouterLink to="/" class="guest-link">{{ t('account.guest') }} →</RouterLink>
-      <p class="hint">{{ t('account.guestHint') }}</p>
-    </template>
-  </section>
+      <template v-else>
+        <nav class="account-tabs" :aria-label="t('account.options')">
+          <button type="button" :aria-pressed="mode === 'login'" @click="chooseMode('login')">
+            {{ t('account.login') }}
+          </button>
+          <button type="button" :aria-pressed="mode === 'register'" @click="chooseMode('register')">
+            {{ t('account.register') }}
+          </button>
+        </nav>
+        <h2>{{ t(`account.modes.${mode}`) }}</h2>
+        <form :aria-busy="busy" @submit.prevent="submit">
+          <label v-if="mode === 'register'"
+            >{{ t('account.name')
+            }}<input v-model="name" autocomplete="nickname" required maxlength="100"
+          /></label>
+          <label v-if="!['verify', 'reset'].includes(mode)"
+            >{{ t('account.email')
+            }}<input v-model="email" type="email" autocomplete="email" required maxlength="254"
+          /></label>
+          <label v-if="['login', 'register', 'reset'].includes(mode)"
+            >{{ t('account.password')
+            }}<input
+              v-model="password"
+              type="password"
+              :autocomplete="mode === 'login' ? 'current-password' : 'new-password'"
+              :minlength="mode === 'login' ? 1 : 12"
+              maxlength="128"
+              required
+              :aria-describedby="mode === 'login' ? undefined : 'password-hint'"
+          /></label>
+          <p v-if="['register', 'reset'].includes(mode)" id="password-hint" class="hint">
+            {{ t('account.passwordHint') }}
+          </p>
+          <p v-if="mode === 'verify'" class="hint">{{ t('account.verifyHelp') }}</p>
+          <button type="submit" class="primary" :disabled="busy || !account.enabled">
+            {{ busy ? t('account.working') : t(`account.actions.${mode}`) }}
+          </button>
+        </form>
+        <a
+          v-if="account.google && ['login', 'register'].includes(mode)"
+          class="link-button google"
+          href="/api/auth/google"
+          >{{ t('account.google') }}</a
+        >
+        <div class="secondary-actions">
+          <button type="button" @click="mode = 'forgot'">{{ t('account.forgot') }}</button>
+          <button type="button" @click="mode = 'resend'">{{ t('account.resend') }}</button>
+        </div>
+        <RouterLink to="/" class="guest-link">{{ t('account.guest') }} →</RouterLink>
+        <p class="hint">{{ t('account.guestHint') }}</p>
+      </template>
+    </div>
+  </SitePage>
 </template>
 
 <style scoped>
+.account-layout {
+  max-width: 960px;
+}
 .account-page {
-  max-width: 580px;
-  margin: 40px auto;
+  max-width: 560px;
+  margin: 0 auto;
   padding: 32px;
-  background: #1a2924;
-  border: 1px solid #69715c;
-  border-top: 3px solid #d6bd81;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
   border-radius: 8px;
-}
-.eyebrow {
-  color: #d6bd81;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-}
-h1 {
-  font: 400 2.4rem var(--fell);
-  margin: 16px 0;
 }
 h2 {
   font: 400 1.5rem var(--fell);
 }
-.intro,
 .hint {
-  color: #c0cbbf;
+  color: var(--muted);
   line-height: 1.65;
 }
 .hint {
@@ -266,8 +264,8 @@ input:not([type='checkbox']) {
   font: inherit;
   padding: 12px;
   color: #f6f0e2;
-  background: #101b19;
-  border: 1px solid #88917b;
+  background: #19191d;
+  border: 1px solid var(--border);
   border-radius: 5px;
   min-height: 46px;
 }
@@ -290,22 +288,22 @@ button,
   align-items: center;
   justify-content: center;
   padding: 12px;
-  border: 1px solid #899078;
+  border: 1px solid var(--border);
   border-radius: 5px;
-  color: #e7d4ac;
+  color: var(--accent);
   text-decoration: none;
   margin: 16px 0;
 }
 .guest-link {
-  color: #e7d4ac;
+  color: var(--accent);
   text-underline-offset: 5px;
 }
 .notice,
 .error {
   padding: 14px;
   line-height: 1.6;
-  border: 1px solid #a4b698;
-  background: #233c2a;
+  border: 1px solid var(--border);
+  background: #303037;
 }
 .error {
   border-color: #e0a496;
@@ -323,7 +321,7 @@ button,
 }
 hr {
   border: 0;
-  border-top: 1px solid #69715c;
+  border-top: 1px solid var(--line);
   margin: 24px 0;
 }
 .danger {
@@ -337,7 +335,8 @@ hr {
 }
 @media (max-width: 600px) {
   .account-page {
-    margin: 20px 12px;
+    margin: 0;
+    max-width: none;
     padding: 24px 18px;
   }
 }

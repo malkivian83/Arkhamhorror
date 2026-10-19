@@ -14,6 +14,7 @@ import {
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import GameCard from '../components/GameCard.vue'
+import SitePage from '../components/SitePage.vue'
 import { cardName, classColor } from '../game/cards'
 import { localName } from '../game/localized'
 import { newDeckId, useDecksStore } from '../stores/decks'
@@ -162,11 +163,7 @@ const titleCount = (code: string) => {
 </script>
 
 <template>
-  <section class="decks">
-    <header class="head">
-      <h1>{{ t('decks.title') }}</h1>
-    </header>
-
+  <SitePage :title="t('decks.title')" icon="decks">
     <div class="layout">
       <aside class="side">
         <section class="box">
@@ -350,22 +347,14 @@ const titleCount = (code: string) => {
         </div>
       </section>
       <section v-else class="editor empty">
+        <img src="/local-assets/home/icon-decks.webp" alt="" width="64" height="64" />
         <p>{{ t('decks.pick') }}</p>
       </section>
     </div>
-  </section>
+  </SitePage>
 </template>
 
 <style scoped>
-.decks {
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 24px 16px 40px;
-}
-.head h1 {
-  margin: 0 0 16px;
-  color: var(--brass);
-}
 .layout {
   display: grid;
   grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
@@ -419,7 +408,7 @@ select {
 .message {
   margin: 0;
   font-size: 0.85rem;
-  color: #bfae86;
+  color: var(--muted);
 }
 .list {
   list-style: none;
@@ -440,7 +429,7 @@ select {
 .list .empty {
   border: none;
   padding: 8px;
-  color: #a89a7c;
+  color: var(--muted);
   font-style: italic;
 }
 .pick {
@@ -452,11 +441,11 @@ select {
   background: none;
 }
 .pick small {
-  color: #a89a7c;
+  color: var(--muted);
 }
 .status {
   font-size: 0.75rem;
-  color: #e0574a;
+  color: #ffb4a9;
 }
 .status.ok {
   color: var(--eldritch);
@@ -464,7 +453,7 @@ select {
 .delete {
   border: none;
   background: none;
-  color: #a89a7c;
+  color: var(--muted);
 }
 .editor {
   padding: 14px;
@@ -473,8 +462,40 @@ select {
   border-radius: 8px;
 }
 .editor.empty {
-  color: #a89a7c;
-  font-style: italic;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  min-height: 300px;
+  padding: 32px;
+  text-align: center;
+  color: var(--muted);
+}
+.editor.empty img {
+  object-fit: contain;
+}
+.summary > div {
+  min-width: 0;
+  width: 100%;
+}
+.side,
+.editor,
+.contents,
+.pool {
+  min-width: 0;
+}
+.card-name,
+.pick strong {
+  overflow-wrap: anywhere;
+}
+.filters select {
+  flex: 1;
+  min-width: 0;
+}
+.check {
+  min-height: 44px;
+}
+.box form {
+  flex-wrap: wrap;
 }
 .summary {
   display: flex;
@@ -495,7 +516,7 @@ select {
 }
 .size {
   margin: 8px 0 4px;
-  color: #e0574a;
+  color: #ffb4a9;
 }
 .size.ok,
 .valid {
@@ -504,13 +525,13 @@ select {
 .note {
   margin: 4px 0;
   font-size: 0.85rem;
-  color: #bfae86;
+  color: var(--muted);
   font-style: italic;
 }
 .problems {
   margin: 4px 0;
   padding-left: 18px;
-  color: #ff8a80;
+  color: #ffb4a9;
   font-size: 0.85rem;
 }
 .columns {
@@ -531,7 +552,7 @@ select {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 2px 4px;
+  padding: 4px 0;
   border-bottom: 1px solid var(--border);
 }
 .contents li button,
@@ -541,7 +562,7 @@ select {
 .group h3 {
   margin: 10px 0 4px;
   font-size: 0.8rem;
-  color: #bfae86;
+  color: var(--muted);
 }
 .card-name {
   flex: 1;
