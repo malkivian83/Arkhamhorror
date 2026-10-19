@@ -40,3 +40,5 @@ jobs:
       - run: pnpm test
       - run: node scripts/verify-card-images.mjs
       - run: pnpm build
+      - run: node scripts/package-plesk.mjs
+      - run: node scripts/verify-plesk.mjs

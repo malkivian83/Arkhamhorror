@@ -31,6 +31,7 @@ tomando como referencia de estudio el proyecto `halogenandtoast/ArkhamHorror`
 | 20 | [Miniaturas nítidas de la mano](20-miniaturas-mano.md) | Miniaturas locales a tamaño estable, ampliación con el original y generación reproducible. |
 | 21 | [Cuentas y guardado en servidor](21-cuentas-y-guardado-en-servidor.md) | Informe previo: cuentas, bibliotecas privadas de mazos y campañas, sincronización y migración en VPS con MySQL. |
 | 22 | [Implementación de cuentas y MySQL](22-implementacion-cuentas-mysql.md) | Registro, Google, bibliotecas privadas, sincronización, desarrollo local, despliegue y límites pendientes. |
+| 23 | [Despliegue completo desde Plesk](23-despliegue-plesk.md) | Web y API, pnpm automático, migraciones, administrador y reinicio desde el panel, sin SSH. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas
