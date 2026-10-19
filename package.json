@@ -9,6 +9,8 @@
   "scripts": {
     "dev": "pnpm --parallel --filter ./apps/* dev",
     "build": "pnpm -r build",
+    "build:plesk": "pnpm --filter @lcg/web build && node scripts/package-plesk.mjs",
+    "deploy:plesk": "node tools/deploy-plesk.mjs",
     "typecheck": "pnpm -r typecheck",
     "lint": "eslint .",
     "test": "vitest run",

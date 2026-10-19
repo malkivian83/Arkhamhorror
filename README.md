@@ -90,3 +90,6 @@ pnpm --filter @lcg/server db:migrate
 El registro, Google y las bibliotecas privadas se configuran siguiendo la
 [guía de cuentas y MySQL](docs-proyecto/22-implementacion-cuentas-mysql.md).
 La web conserva el modo invitado cuando no se configura el servicio de cuentas.
+
+Para publicar web y API desde el panel, seguir la
+[guía de despliegue completo en Plesk, sin SSH](docs-proyecto/23-despliegue-plesk.md).

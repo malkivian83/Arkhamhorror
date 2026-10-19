@@ -14,8 +14,8 @@ export function accountConfig(env = process.env): AccountConfig | undefined {
   const production = env.NODE_ENV === 'production'
   if (production && (!origin.startsWith('https://') || !env.SMTP_URL || !env.MAIL_FROM))
     throw new Error('Production accounts require HTTPS, SMTP_URL and MAIL_FROM')
-  if (production && (!env.GOOGLE_CLIENT_ID || !env.GOOGLE_CLIENT_SECRET))
-    throw new Error('Production accounts require GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET')
+  if (!!env.GOOGLE_CLIENT_ID !== !!env.GOOGLE_CLIENT_SECRET)
+    throw new Error('GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET must be configured together')
   return {
     databaseUrl: env.DATABASE_URL,
     origin,

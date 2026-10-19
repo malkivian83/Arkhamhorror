@@ -24,6 +24,11 @@ export default tseslint.config(
     },
   },
   {
+    // Passenger's startup files use CommonJS to preserve its server hook.
+    files: ['app.cjs', 'tools/run-deploy.cjs'],
+    rules: { '@typescript-eslint/no-require-imports': 'off' },
+  },
+  {
     // El motor debe ser puro y determinista: sin E/S, reloj ni azar global.
     files: ['packages/engine/src/**/*.ts'],
     rules: {

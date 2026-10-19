@@ -9,11 +9,12 @@ import { authentication } from './accounts/auth'
 import { library } from './accounts/library'
 import { mailer, type SendMail } from './accounts/mail'
 import { ApiError } from './accounts/security'
+import { serveWeb } from './web'
 
 export const SERVER_VERSION = '0.0.0'
 
 export async function buildApp(
-  options: { config?: AccountConfig; db?: Database; sendMail?: SendMail } = {},
+  options: { config?: AccountConfig; db?: Database; sendMail?: SendMail; webRoot?: string } = {},
 ) {
   const app = Fastify({
     trustProxy: ['127.0.0.1', '::1'],
@@ -35,7 +36,11 @@ export async function buildApp(
           },
   })
   await app.register(cookie)
-  await app.register(rateLimit, { max: 300, timeWindow: '1 minute' })
+  await app.register(rateLimit, {
+    max: 300,
+    timeWindow: '1 minute',
+    allowList: (request) => !request.url.startsWith('/api/'),
+  })
   app.setErrorHandler((error, req, reply) => {
     if (error instanceof ApiError) return reply.code(error.statusCode).send({ code: error.code })
     const status =
@@ -98,5 +103,6 @@ export async function buildApp(
     })
   })
 
+  if (options.webRoot) await serveWeb(app, options.webRoot)
   return app
 }

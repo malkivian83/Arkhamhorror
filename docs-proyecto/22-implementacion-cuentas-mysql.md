@@ -79,11 +79,11 @@ La migración `002_account_roles.sql` añade los privilegios sin modificar la mi
 | `API_PROXY_TARGET` | Solo desarrollo: destino de la API para Vite |
 | `MYSQL_TEST_URL` | Base de pruebas aislada, con nombre terminado en `_test` |
 
-En producción se exige HTTPS, SMTP/remitente y credenciales de Google. Guardar secretos en el VPS, nunca en GitHub ni en capturas. Codificar los caracteres reservados en las contraseñas incluidas en URL.
+En producción se exige HTTPS y SMTP/remitente. Google es opcional mientras no se configure; sus dos credenciales deben proporcionarse juntas. Guardar secretos en el VPS, nunca en GitHub ni en capturas. Codificar los caracteres reservados en las contraseñas incluidas en URL.
 
 El proxy inverso sirve `apps/web/dist`, resuelve las rutas SPA a `index.html` y reenvía `/api` a Fastify bajo el mismo origen. Configurar el límite HTTP de guardados en 20 MB y MySQL con paquetes de al menos 32 MB. La base permanece privada. Si está en otra máquina, configurar además el transporte y los accesos adecuados.
 
-El despliegue actual de GitHub genera una rama `deploy` con archivos estáticos para Plesk. Ese workflow no instala ni arranca la API. Mantenerlo intacto y preparar en el VPS un checkout del código del servidor fuera de la raíz pública, con Node 24, dependencias, migraciones y un proceso supervisado mediante Plesk o systemd. Configurar el proxy `/api` en nginx/Plesk antes de habilitar cuentas. Fastify confía en el proxy de loopback para obtener la IP real y aplicar los límites; si el proxy está en otra red, revisar esa lista explícitamente sin confiar en cualquier origen.
+El workflow genera automáticamente `deploy` con el paquete completo para Plesk: raíz privada con API y herramientas, y `public/` con la web compilada. Node 24 y Passenger sirven API y rutas de la web bajo el mismo dominio. El script de despliegue instala las dependencias de producción con pnpm, aplica migraciones, provisiona el administrador y solicita el reinicio. La [guía del panel de Plesk](23-despliegue-plesk.md) describe la primera activación y las siguientes publicaciones sin SSH. Fastify confía en el proxy de loopback para obtener la IP real y aplicar los límites; si el proxy está en otra red, revisar esa lista explícitamente sin confiar en cualquier origen.
 
 Publicación: copia recuperable, instalación con lockfile, comprobaciones, migración explícita, compilación, reinicio y pruebas de `/api/health`, `/api/ready`, correo y acceso. El volumen persistente no sustituye a una copia externa. Ante un fallo, recuperar el servicio anterior sin borrar los datos.
 
