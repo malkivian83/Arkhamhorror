@@ -555,7 +555,39 @@
     "orderHint": "El orden en que los eliges es el orden de jugadores. Al empezar cada escenario elegiréis al investigador jefe, que pasa a ser el primero.",
     "quit": "Abandonar partida",
     "noGame": "No hay ninguna partida en curso.",
-    "confirmQuit": "¿Abandonar esta partida? No se podrá recuperar."
+    "confirmQuit": "¿Abandonar esta partida? No se podrá recuperar.",
+    "eyebrow": "Arkham Horror · El juego de cartas",
+    "title": "Toda historia empieza con un misterio.",
+    "subtitle": "Elige tu aventura, reúne a tus investigadores y adéntrate en lo desconocido.",
+    "savedAdventure": "Tu aventura te está esperando",
+    "campaignHint": "Escoge el misterio al que quieres enfrentarte.",
+    "campaignLabel": "Campaña",
+    "scenarioCount": "{n} escenario | {n} escenarios",
+    "selected": "Aventura seleccionada",
+    "selectAdventure": "Elegir aventura",
+    "chapters": "Escenarios de la campaña",
+    "teamTitle": "Reúne a tu equipo",
+    "teamCount": "{n} de 4 elegidos",
+    "teamLimit": "Equipo completo. Deselecciona a un investigador para elegir a otro.",
+    "difficultyHint": "Decide cuánto quieres tentar a la suerte.",
+    "difficultyNotes": {
+      "easy": "Para descubrir la historia",
+      "standard": "El desafío original",
+      "hard": "Para investigadores veteranos",
+      "expert": "Al borde de lo imposible"
+    },
+    "caseFile": "Expediente de investigación",
+    "preparation": "Antes de partir",
+    "yourTeam": "Tu equipo",
+    "deckFor": "Mazo de {name}",
+    "emptyTeam": "Elige al menos un investigador para comenzar.",
+    "begin": "Comenzar aventura",
+    "localSave": "Tu progreso se guarda automáticamente en este navegador.",
+    "footer": "En Arkham, nada es lo que parece.",
+    "descriptions": {
+      "brethren-of-ash": "Un incendio, una ciudad inquieta y un misterio que se extiende entre las cenizas. Tres escenarios, una historia conectada.",
+      "the-midwinter-gala": "Una noche de lujo y secretos. Acepta la invitación y descubre qué se esconde tras las máscaras de la gala."
+    }
   },
   "skillTest": {
     "availableAbilities": "Apoyos y habilidades disponibles antes de revelar",
