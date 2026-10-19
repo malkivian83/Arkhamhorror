@@ -32,7 +32,14 @@ async function boot() {
   scoped = await import('./storage')
   library = await import('./library')
   apiModule.account.value = {
-    user: { id: 'user-a', email: 'a@example.com', name: 'A', locale: 'es', verified: true },
+    user: {
+      id: 'user-a',
+      email: 'a@example.com',
+      name: 'A',
+      locale: 'es',
+      verified: true,
+      role: 'user',
+    },
     csrf: 'csrf',
     enabled: true,
     google: true,
@@ -102,6 +109,63 @@ afterEach(async () => {
 })
 
 describe('cola duradera de la biblioteca', () => {
+  it.each(['{"revision":', '{}', 'null'])(
+    'conserva la operación si la confirmación del servidor es inválida: %s',
+    async (acknowledgement) => {
+      const originalFetch = fetch
+      let truncate = true
+      vi.stubGlobal(
+        'fetch',
+        vi.fn(async (url: string, options: RequestInit) => {
+          const response = await originalFetch(url, options)
+          if (options.method === 'PUT' && truncate) {
+            truncate = false
+            return new Response(acknowledgement)
+          }
+          return response
+        }),
+      )
+      const id = await library.saveDocument('campaign', 'Adventure', game())
+      await library.flush()
+      expect(remote.get(id!)?.revision).toBe(1)
+      expect(library.documents.value[0]!.operation).not.toBeNull()
+      expect(library.documents.value[0]!.revision).toBe(0)
+      await library.flush()
+      expect(remote.get(id!)?.revision).toBe(1)
+      expect(library.documents.value[0]!.operation).toBeNull()
+    },
+  )
+  it('retira la partida activa si se ha borrado desde otro dispositivo antes de recargar', async () => {
+    const raw = JSON.stringify(game())
+    await library.trackGame(raw)
+    scoped.accountStorage.setItem('lcg:session:v1', raw)
+    await library.flush()
+    const doc = remote.get(library.documents.value[0]!.id)!
+    doc.deleted = true
+    doc.revision++
+    await library.stopLibrary()
+    vi.resetModules()
+    await boot()
+    expect(scoped.accountStorage.getItem('active-save')).toBeNull()
+    expect(scoped.accountStorage.getItem('lcg:session:v1')).toBeNull()
+    expect(library.documents.value[0]!.deleted).toBe(true)
+  })
+  it('actualiza la copia de mazos y recompensas al refrescar cambios remotos', async () => {
+    const deck = { id: 'deck-a', name: 'Remote deck', investigator: '12004', cards: ['12005'] }
+    const id = await library.saveDocument('deck', deck.name, deck)
+    await library.saveDocument('rewards', 'Rewards', ['12181'])
+    await library.flush()
+    const doc = remote.get(id!)!
+    doc.payload = { ...deck, name: 'Updated remotely' }
+    doc.revision++
+    await library.refreshLibrary()
+    expect(JSON.parse(scoped.accountStorage.getItem('lcg:decks')!)[0].name).toBe('Updated remotely')
+    expect(JSON.parse(scoped.accountStorage.getItem('lcg:rewards')!)).toEqual(['12181'])
+    doc.deleted = true
+    doc.revision++
+    await library.refreshLibrary()
+    expect(JSON.parse(scoped.accountStorage.getItem('lcg:decks')!)).toEqual([])
+  })
   it('no adelanta la revisión base de una partida abierta al refrescar una versión remota', async () => {
     await library.trackGame(JSON.stringify(game()))
     await library.flush()

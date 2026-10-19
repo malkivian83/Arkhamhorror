@@ -4,6 +4,7 @@ export interface AccountUser {
   name: string
   locale: string
   verified: boolean
+  role: 'user' | 'admin'
 }
 export interface AuthStatus {
   user: AccountUser | null

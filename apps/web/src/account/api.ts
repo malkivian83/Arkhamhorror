@@ -33,7 +33,13 @@ export async function api<T>(path: string, method = 'GET', body?: unknown): Prom
   } catch {
     throw new ApiError('network', 0)
   }
-  const data = await response.json().catch(() => ({}))
+  let data
+  try {
+    data = await response.json()
+  } catch {
+    // A truncated acknowledgement must leave the durable operation pending for retry.
+    throw new ApiError(response.ok ? 'network' : 'internal', response.ok ? 0 : response.status)
+  }
   if (!response.ok)
     throw new ApiError(typeof data.code === 'string' ? data.code : 'internal', response.status)
   return data as T

@@ -46,6 +46,25 @@ Sin `DATABASE_URL`, sigue disponible el juego como invitado y se indica que las 
 
 Las migraciones son un paso explícito de instalación. La API no ejecuta DDL durante las peticiones. `MIGRATION_DATABASE_URL` permite usar credenciales de migración distintas de las de ejecución.
 
+## Base compartida entre local y el VPS
+
+Para usar los mismos usuarios, mazos y campañas, configurar `DATABASE_URL` en el `.env` local con el host del VPS, el nombre de la base y su usuario. En el VPS se mantiene la misma base, aunque el host de conexión puede ser `127.0.0.1`. No ejecutar `docker compose up db` para este modo: crearía una instancia distinta. El backend local mantiene `APP_ORIGIN=http://localhost:5173` y el VPS usa el origen HTTPS público. Sus cookies de sesión son independientes, pero los documentos y cuentas son compartidos.
+
+El puerto MySQL debe ser accesible desde el equipo local, directamente con acceso restringido a su IP o mediante un túnel SSH. El dominio de la web solo sirve como host de MySQL si resuelve directamente al servidor de bases de datos. `localhost` en Plesk identifica el propio VPS. La captura del proveedor utiliza MariaDB 10.11: las cuotas se calculan con `OCTET_LENGTH`, compatible también con MySQL, y la CI configura pruebas para ambos motores. MariaDB conserva JSON como texto validado ([documentación oficial](https://mariadb.com/docs/server/reference/data-types/string-data-types/json)).
+
+## Administrador inicial
+
+Definir `ADMIN_EMAIL`, `ADMIN_PASSWORD` y opcionalmente `ADMIN_NAME` en el `.env` privado. No se incluyen credenciales reales en semillas, migraciones ni ejemplos versionados. Después de las migraciones:
+
+```bash
+pnpm --filter @lcg/server db:migrate
+pnpm --filter @lcg/server admin:provision
+```
+
+El segundo comando crea una cuenta verificada con contraseña Argon2id y rol `admin`. Si ya existe una cuenta normal con ese correo, conserva sus documentos, establece la contraseña indicada y revoca sesiones y enlaces pendientes al promoverla. Si ya es administradora, no restablece su contraseña. El registro público siempre produce cuentas normales: no acepta privilegios del navegador. El rol se obtiene de la base y se devuelve en acceso y perfil. Esto prepara la identidad administrativa; no añade todavía un panel de administración ni acceso a documentos ajenos.
+
+La migración `002_account_roles.sql` añade los privilegios sin modificar la migración ya aplicada `001`. No ejecutar las pruebas contra la base compartida: `MYSQL_TEST_URL` debe seguir apuntando a una base aislada terminada en `_test` y queda vacío en la configuración local compartida.
+
 ## Configuración del VPS
 
 | Variable | Uso |

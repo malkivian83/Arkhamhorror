@@ -21,6 +21,7 @@ export interface User {
   name: string
   locale: string
   verified: number
+  role?: 'user' | 'admin'
   password_hash?: string | null
 }
 export const publicUser = (u: User) => ({
@@ -29,6 +30,7 @@ export const publicUser = (u: User) => ({
   name: u.name,
   locale: u.locale,
   verified: !!u.verified,
+  role: u.role ?? 'user',
 })
 const DAY = 86400000
 export const authSchema = {
@@ -73,7 +75,7 @@ export function authentication(
     const raw = req.cookies[cookieName]
     if (!raw || raw.length > 128) return null
     const [user] = await db.rows<User>(
-      'SELECT u.id, u.email, u.name, u.locale, u.verified FROM auth_sessions s JOIN users u ON u.id = s.user_id WHERE s.token_hash = ? AND s.expires_at > ? AND s.last_used_at > ?',
+      "SELECT u.id, u.email, u.name, u.locale, u.verified, COALESCE(r.role, 'user') AS role FROM auth_sessions s JOIN users u ON u.id = s.user_id LEFT JOIN account_roles r ON r.user_id = u.id WHERE s.token_hash = ? AND s.expires_at > ? AND s.last_used_at > ?",
       [digest(raw), Date.now(), Date.now() - 7 * DAY],
     )
     if (!user) return null
@@ -104,13 +106,17 @@ export function authentication(
       )
   }
   async function session(user: User, reply: FastifyReply) {
+    const [role] = await db.rows<{ role: 'admin' }>(
+      'SELECT role FROM account_roles WHERE user_id = ?',
+      [user.id],
+    )
     const raw = token()
     await db.exec(
       'INSERT INTO auth_sessions (token_hash, user_id, expires_at, last_used_at) VALUES (?, ?, ?, ?)',
       [digest(raw), user.id, Date.now() + 30 * DAY, Date.now()],
     )
     reply.setCookie(cookieName, raw, { ...cookieOptions, maxAge: 30 * 86400 })
-    return { user: publicUser(user), csrf: csrfFor(raw) }
+    return { user: publicUser({ ...user, role: role?.role ?? 'user' }), csrf: csrfFor(raw) }
   }
   async function issue(user: User, purpose: 'verify' | 'reset') {
     const raw = token()

@@ -204,11 +204,11 @@ export function library(
           )
         }
         const [documentBytes] = await tx.rows<{ bytes: number }>(
-          'SELECT COALESCE(SUM(JSON_STORAGE_SIZE(payload)), 0) AS bytes FROM documents WHERE owner_id = ?',
+          'SELECT COALESCE(SUM(OCTET_LENGTH(payload)), 0) AS bytes FROM documents WHERE owner_id = ?',
           [user.id],
         )
         const [revisionBytes] = await tx.rows<{ bytes: number }>(
-          'SELECT COALESCE(SUM(JSON_STORAGE_SIZE(payload)), 0) AS bytes FROM document_revisions WHERE owner_id = ?',
+          'SELECT COALESCE(SUM(OCTET_LENGTH(payload)), 0) AS bytes FROM document_revisions WHERE owner_id = ?',
           [user.id],
         )
         requireValue(

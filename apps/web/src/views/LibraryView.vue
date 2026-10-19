@@ -122,6 +122,7 @@ async function restore(id: string) {
             run(async () => {
               await flush()
               await refreshLibrary()
+              useDecksStore().reload()
             })
           "
         >

@@ -79,6 +79,7 @@ async function runFlush() {
       const sent = record.operation
       try {
         const result = await api<{ revision: number }>(`/library/${record.id}`, 'PUT', sent)
+        if (result?.revision !== sent.revision + 1) throw new ApiError('network', 0)
         if (stopped) return
         record.revision = result.revision
         record.operation = null
@@ -236,6 +237,7 @@ export async function refreshLibrary(initial = false) {
     records.set(doc.id, record)
     await persist(record)
   }
+  restoreWorkingDecks()
   refresh()
 }
 export async function resolveConflict(id: string, keepLocal: boolean, copyName?: string) {
@@ -390,6 +392,10 @@ export async function initializeLibrary() {
     const active = records.get(activeId() ?? '')
     if (active && !active.conflict && !active.deleted)
       accountStorage.setItem(SESSION_KEY, JSON.stringify(active.payload))
+    else if (active?.deleted && !active.conflict) {
+      newAdventure()
+      accountStorage.removeItem(SESSION_KEY)
+    }
     refresh()
     void flush()
   } catch {

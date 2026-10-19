@@ -7,6 +7,8 @@ import { session } from '@lcg/saves'
 import { buildApp } from '../app'
 import { database, migrate } from './database'
 import type { AccountMail } from './mail'
+import { provisionAdmin } from './admin'
+import { hashPassword, verifyPassword } from './security'
 
 const url = process.env.MYSQL_TEST_URL
 describe.skipIf(!url)('cuentas y bibliotecas con MySQL real', () => {
@@ -106,6 +108,68 @@ describe.skipIf(!url)('cuentas y bibliotecas con MySQL real', () => {
     if (app) await app.close()
     if (db) await db.close()
     vi.restoreAllMocks()
+  })
+
+  it('crea un administrador verificado y no restablece su contraseña al repetir el aprovisionamiento', async () => {
+    const address = 'admin@example.test'
+    await provisionAdmin(db.db, { email: address, password })
+    const login = await post('/auth/login', { email: address, password })
+    expect(login.statusCode).toBe(200)
+    expect(login.json().user).toMatchObject({ role: 'admin', verified: true })
+    const me = await app.inject({ url: '/api/auth/me', headers: { cookie: cookieOf(login) } })
+    expect(me.json().user.role).toBe('admin')
+    const changed = await hashPassword('a different long password')
+    await db.db.exec('UPDATE users SET password_hash = ? WHERE email = ?', [changed, address])
+    await provisionAdmin(db.db, { email: address, password })
+    const [stored] = await db.db.rows<{ password_hash: string }>(
+      'SELECT password_hash FROM users WHERE email = ?',
+      [address],
+    )
+    expect(await verifyPassword(stored!.password_hash, 'a different long password')).toBe(true)
+    expect((await db.db.rows('SELECT user_id FROM account_roles')).length).toBe(1)
+  })
+
+  it('promueve una cuenta existente sin perder sus documentos y revoca credenciales anteriores', async () => {
+    const existing = await user('existing@example.test')
+    const id = randomUUID()
+    expect((await put(id, write(), existing)).statusCode).toBe(200)
+    await provisionAdmin(db.db, { email: existing.address, password: 'new administrator password' })
+    expect(
+      (await app.inject({ url: '/api/library', headers: { cookie: existing.cookie } })).statusCode,
+    ).toBe(401)
+    const login = await post('/auth/login', {
+      email: existing.address,
+      password: 'new administrator password',
+    })
+    expect(login.json().user.role).toBe('admin')
+    const saved = await app.inject({
+      url: `/api/library/${id}`,
+      headers: { cookie: cookieOf(login) },
+    })
+    expect(saved.statusCode).toBe(200)
+  })
+
+  it('el registro público no permite elegir un rol administrador', async () => {
+    const response = await post('/auth/register', {
+      email: 'normal@example.test',
+      password,
+      name: 'Normal',
+      role: 'admin',
+    })
+    // Fastify may remove unknown properties; either way no privileged role is persisted.
+    expect([200, 400]).toContain(response.statusCode)
+    expect(await db.db.rows('SELECT user_id FROM account_roles')).toEqual([])
+    const normal = await user()
+    const login = await post('/auth/login', { email: normal.address, password })
+    expect(login.json().user.role).toBe('user')
+  })
+
+  it('aplica las migraciones numeradas de forma repetible sin cambiar la primera', async () => {
+    await migrate(db.db)
+    const versions = await db.db.rows<{ version: number }>(
+      'SELECT version FROM schema_migrations ORDER BY version',
+    )
+    expect(versions.map((v) => v.version)).toEqual([1, 2])
   })
 
   it('exige verificar correo; el enlace es de un uso y no inicia sesión automáticamente', async () => {

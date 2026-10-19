@@ -6,7 +6,7 @@ import {
   type RowDataPacket,
 } from 'mysql2/promise'
 import { createHash } from 'node:crypto'
-import { readFile } from 'node:fs/promises'
+import { readFile, readdir } from 'node:fs/promises'
 
 export class Database {
   constructor(readonly connection: Pool | PoolConnection) {}
@@ -58,25 +58,33 @@ export async function migrate(db: Database) {
     await connection.query(
       'CREATE TABLE IF NOT EXISTS schema_migrations (version INT PRIMARY KEY, checksum CHAR(64) NOT NULL) ENGINE=InnoDB',
     )
-    const source = (
-      await readFile(new URL('../../migrations/001_accounts.sql', import.meta.url), 'utf8')
-    ).replace(/\r\n/g, '\n')
-    const checksum = createHash('sha256').update(source).digest('hex')
-    const [rows] = await connection.query<RowDataPacket[]>(
-      'SELECT checksum FROM schema_migrations WHERE version = 1',
-    )
-    if (rows.length) {
-      if (rows[0]?.checksum !== checksum) throw new Error('Applied migration was changed')
-      return
+    const directory = new URL('../../migrations/', import.meta.url)
+    const files = (await readdir(directory))
+      .filter((file) => /^\d{3}_[a-z_]+\.sql$/.test(file))
+      .sort()
+    for (const file of files) {
+      const version = Number(file.slice(0, 3))
+      const source = (await readFile(new URL(file, directory), 'utf8')).replace(/\r\n/g, '\n')
+      const checksum = createHash('sha256').update(source).digest('hex')
+      const [rows] = await connection.execute<RowDataPacket[]>(
+        'SELECT checksum FROM schema_migrations WHERE version = ?',
+        [version],
+      )
+      if (rows.length) {
+        if (rows[0]?.checksum !== checksum)
+          throw new Error(`Applied migration ${version} was changed`)
+        continue
+      }
+      for (const statement of source
+        .split(';')
+        .map((s) => s.trim())
+        .filter(Boolean))
+        await connection.query(statement)
+      await connection.execute('INSERT INTO schema_migrations (version, checksum) VALUES (?, ?)', [
+        version,
+        checksum,
+      ])
     }
-    for (const statement of source
-      .split(';')
-      .map((s) => s.trim())
-      .filter(Boolean))
-      await connection.query(statement)
-    await connection.execute('INSERT INTO schema_migrations (version, checksum) VALUES (1, ?)', [
-      checksum,
-    ])
   } finally {
     await connection.query("SELECT RELEASE_LOCK('lcg_schema_migration')")
     connection.release()

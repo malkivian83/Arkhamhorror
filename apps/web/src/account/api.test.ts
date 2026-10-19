@@ -10,7 +10,14 @@ beforeEach(() => {
   })
 })
 afterEach(() => vi.unstubAllGlobals())
-const a = { id: 'a', email: 'a@example.com', name: 'A', locale: 'es', verified: true }
+const a = {
+  id: 'a',
+  email: 'a@example.com',
+  name: 'A',
+  locale: 'es',
+  verified: true,
+  role: 'user' as const,
+}
 it('conserva solo el perfil público para recuperar la copia local sin red', async () => {
   vi.stubGlobal(
     'fetch',
