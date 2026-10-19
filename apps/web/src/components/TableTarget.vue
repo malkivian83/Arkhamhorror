@@ -110,6 +110,7 @@ onBeforeUnmount(() => {
   <div
     ref="root"
     class="table-target"
+    :data-table-target="target"
     :class="{ active: options.length > 0, open }"
     :role="options.length ? 'button' : undefined"
     :tabindex="options.length ? 0 : undefined"

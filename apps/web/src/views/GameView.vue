@@ -16,6 +16,7 @@ import SkillTestPanel from '../components/SkillTestPanel.vue'
 import StoryModal from '../components/StoryModal.vue'
 import { classColor } from '../game/cards'
 import { useShortcuts } from '../game/shortcuts'
+import { useEnemyArrival } from '../game/enemyArrival'
 import { useGameStore } from '../stores/game'
 
 const game = useGameStore()
@@ -23,6 +24,7 @@ const router = useRouter()
 const { t } = useI18n()
 
 const state = computed(() => game.state)
+const { finishDraw } = useEnemyArrival(state)
 useShortcuts()
 
 /** Investigador cuya zona se muestra; sigue al que tiene que decidir. */
@@ -106,7 +108,7 @@ const shown = computed(
     <ChoiceModal :state="state" />
     <StoryModal :state="state" />
     <CardPileModal />
-    <DrawSpotlight :state="state" />
+    <DrawSpotlight :state="state" @dismissed="finishDraw" />
     <ScenarioTransition />
   </div>
   <div v-else class="empty">
