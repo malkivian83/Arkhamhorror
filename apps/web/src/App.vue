@@ -4,6 +4,7 @@ import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import PlaymatPicker from './components/PlaymatPicker.vue'
+import SiteHeader from './components/SiteHeader.vue'
 import { scanLocale } from './game/cards'
 import { useCardLocale } from './game/localized'
 import './game/playmats'
@@ -26,6 +27,7 @@ watch(() => route.fullPath, closeMenu)
 watch(
   locale,
   (value) => {
+    document.documentElement.lang = value
     scanLocale.value = value
     void useCardLocale(value)
   },
@@ -73,7 +75,15 @@ function setLocale(value: Locale) {
         >
           ✕
         </button>
-        <RouterLink to="/" class="brand">{{ t('app.title') }}</RouterLink>
+        <RouterLink to="/" class="brand">
+          <img
+            class="menu-brand-logo"
+            src="/local-assets/home/arkham-online-lcg.webp"
+            :alt="t('app.logo')"
+            width="900"
+            height="245"
+          />
+        </RouterLink>
         <nav class="sections" :aria-label="t('app.sections')">
           <RouterLink to="/">{{ t('campaign.new') }}</RouterLink>
           <RouterLink to="/decks">{{ t('decks.title') }}</RouterLink>
@@ -98,30 +108,7 @@ function setLocale(value: Locale) {
       </div>
     </dialog>
   </template>
-  <header v-else class="topbar">
-    <RouterLink to="/" class="brand">{{ t('app.title') }}</RouterLink>
-    <span class="disclaimer">{{ t('app.disclaimer') }}</span>
-    <nav class="sections" :aria-label="t('app.sections')">
-      <RouterLink to="/">{{ t('campaign.new') }}</RouterLink>
-      <RouterLink to="/decks">{{ t('decks.title') }}</RouterLink>
-      <RouterLink to="/library">{{ t('account.library') }}</RouterLink>
-      <RouterLink to="/account">{{
-        account.user ? t('account.profile') : t('account.login')
-      }}</RouterLink>
-    </nav>
-    <PlaymatPicker />
-    <nav>
-      <button
-        v-for="l in LOCALES"
-        :key="l"
-        type="button"
-        :aria-pressed="locale === l"
-        @click="setLocale(l)"
-      >
-        {{ l.toUpperCase() }}
-      </button>
-    </nav>
-  </header>
+  <SiteHeader v-else />
   <main :class="{ 'game-shell': route.name === 'game' }">
     <RouterLink
       v-if="account.user"
@@ -139,10 +126,15 @@ function setLocale(value: Locale) {
 </template>
 
 <style>
+.menu-brand-logo {
+  display: block;
+  width: min(100%, 250px);
+  height: auto;
+}
 .account-sync {
   display: block;
-  background: #1a2924;
-  color: #e7d4ac;
+  background: #25252b;
+  color: #e5aa8d;
   padding: 8px 16px;
   min-height: 36px;
   font-size: 0.78rem;
