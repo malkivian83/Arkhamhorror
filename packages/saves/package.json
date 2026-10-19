@@ -1,0 +1,19 @@
+{
+  "name": "@lcg/saves",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/session.ts",
+    "./session": "./src/session.ts",
+    "./undo": "./src/undo.ts",
+    "./advanceReview": "./src/advanceReview.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@lcg/cards": "workspace:*",
+    "@lcg/engine": "workspace:*"
+  }
+}

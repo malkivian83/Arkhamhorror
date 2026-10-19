@@ -1,0 +1,360 @@
+/**
+ * Registro del comportamiento del contenido (escenarios, localizaciones, plan,
+ * acto, traiciones, enemigos…).
+ *
+ * El estado de la partida solo guarda datos (códigos de carta, id de escenario);
+ * el comportamiento vive en código registrado aquí, de modo que el estado sigue
+ * siendo JSON y una partida se reconstruye con el mismo contenido cargado.
+ */
+import type {
+  AbilityOption,
+  Act,
+  Agenda,
+  Asset,
+  CardCode,
+  ChaosSymbol,
+  ChaosToken,
+  Enemy,
+  EnemyCard,
+  GameState,
+  Investigator,
+  InvestigatorId,
+  Location,
+  LocationId,
+  Message,
+  PlacedAsset,
+  PlayerCardDef,
+  StoryCardInPlay,
+  ReactionOption,
+  ScenarioOutcome,
+  SkillTest,
+  TokenEffect,
+  Treachery,
+  Trigger,
+  SlotType,
+} from './types'
+
+export type ScenarioSymbol = Exclude<ChaosSymbol, 'elderSign' | 'autoFail'>
+
+/** Habilidades que `investigator` puede activar en esta carta ahora mismo. */
+export type AbilitiesFn<Self> = (
+  state: GameState,
+  self: Self,
+  investigator: InvestigatorId,
+) => AbilityOption[]
+
+export interface ScenarioBehavior {
+  id: string
+  /** Incompatible deterministic rule changes are versioned per scenario. */
+  rulesVersion?: number
+  /** Efecto de las fichas de escenario (tarjeta de referencia). */
+  tokenEffect?: (
+    state: GameState,
+    token: ScenarioSymbol,
+    investigator: InvestigatorId,
+  ) => TokenEffect
+  /**
+   * Textos y decisiones de la resolución (solo en la mesa). Deben terminar con
+   * `EndScenario` marcado como `told`, que puede cambiar la resolución final.
+   */
+  resolution?: (state: GameState, outcome: ScenarioOutcome) => Message[]
+  /** Mensajes propios del escenario (`ScenarioSpecific`): devuelve el estado nuevo. */
+  specific?: (
+    state: GameState,
+    key: string,
+    data: Record<string, string | number | boolean>,
+  ) => GameState
+  /**
+   * Un apoyo controlado va a abandonar el juego (descartado o derrotado). Si devuelve
+   * mensajes, se resuelven en su lugar (Invitados que quedan hechizados).
+   */
+  assetLeavesPlay?: (state: GameState, asset: Asset) => Message[] | null
+  /** Habilidades del escenario para cualquier investigador (tarjeta de escenario). */
+  abilities?: AbilitiesFn<null>
+  /** Modificador a la prueba en curso por efectos del escenario (traiciones, enemigos, lugares). */
+  skillModifier?: (state: GameState, test: SkillTest) => number
+  /** El enemigo no puede recibir daño. */
+  enemyImmune?: (state: GameState, enemy: Enemy) => boolean
+  /** Modificador al combate/evasión de un enemigo (Savage Shantak). */
+  enemyStat?: (state: GameState, enemy: Enemy, stat: 'fight' | 'evade') => number
+  /** Modificador al velo de una localización (Parlor). */
+  shroudModifier?: (state: GameState, location: Location) => number
+  /** El acto solo se puede avanzar pagando pistas si se cumple (Meet and Greet). */
+  actAdvanceAllowed?: (state: GameState) => boolean
+  /** El investigador no puede comprometer cartas (William Bain rival). */
+  cannotCommit?: (state: GameState, investigator: InvestigatorId) => boolean
+  /** Al jugar un evento: si devuelve mensajes, sus efectos se cancelan y se resuelven estos. */
+  eventPlayed?: (state: GameState, investigator: InvestigatorId, code: CardCode) => Message[] | null
+  /** Acciones de cada investigador en su turno (Declan Pearce: 1 menos). */
+  actionsModifier?: (state: GameState, investigator: InvestigatorId) => number
+  forced?: (state: GameState, trigger: Trigger) => Message[]
+}
+
+/** Carta de Historia en juego: habilidades para cualquier investigador y forzados. */
+export interface StoryBehavior {
+  code: CardCode
+  abilities?: AbilitiesFn<StoryCardInPlay>
+  forced?: (state: GameState, trigger: Trigger, self: StoryCardInPlay) => Message[]
+  /** Texto de "Preparación" al entrar en juego. */
+  onEnter?: (state: GameState, self: StoryCardInPlay) => Message[]
+}
+
+export interface TreacheryBehavior {
+  /** Acciones adicionales para entrar o salir de la localización a la que está unida (Arcane Lock). */
+  moveCost?: number
+  /** Modificador al velo de la localización a la que está unida (Flash Flood). */
+  shroudModifier?: number
+  /** Efecto de campaña si sigue en juego cuando termina la partida (o su dueño es eliminado). */
+  whenGameEnds?: (state: GameState, self: Treachery) => Message[]
+  code: CardCode
+  /** Mensajes de su revelación. Si no la coloca en juego, se descarta al terminar. */
+  revelation: (state: GameState, investigator: InvestigatorId, self: Treachery) => Message[]
+  /** Habilidades forzadas mientras está en juego. */
+  forced?: (state: GameState, trigger: Trigger, self: Treachery) => Message[]
+  abilities?: AbilitiesFn<Treachery>
+  /** En la zona de amenaza: su dueño no puede jugar apoyos ni usar los de sus apoyos (The Necronomicon). */
+  blocksAssets?: boolean
+  healthModifier?: number
+  sanityModifier?: number
+  cannotDiscard?: boolean
+  /** Unida a una localización: los investigadores no pueden salir de ella (Secret Door). */
+  blocksLeaving?: boolean
+}
+
+export interface EnemyBehavior {
+  code: CardCode
+  /** Assign this kind of attack damage to assets with the trait before other targets. */
+  assignFirst?: Partial<Record<'damage' | 'horror', string>>
+  forced?: (state: GameState, trigger: Trigger, self: Enemy) => Message[]
+  /** Habilidades del enemigo para los investigadores de su localización (parlamento…). */
+  abilities?: AbilitiesFn<Enemy>
+  /** Reacciones que el enemigo ofrece a los investigadores (códex). */
+  reactions?: (state: GameState, trigger: Trigger, self: Enemy) => ReactionOption[]
+  /** Modificador a las habilidades de los investigadores de su localización (Whippoorwill). */
+  skillModifier?: (state: GameState, self: Enemy, test: SkillTest) => number
+  /** Errante: localizaciones hacia las que se mueve en el paso 3.2 (vacío si ninguna). */
+  patrol?: (state: GameState, self: Enemy) => LocationId[]
+  /** Al ir a ser derrotado: si devuelve mensajes, se resuelven en su lugar (no se derrota). */
+  wouldBeDefeated?: (state: GameState, self: Enemy) => Message[] | null
+}
+
+export interface LocationBehavior {
+  code: CardCode
+  /** Solo se ofrecen a investigadores en la localización (ya revelada). */
+  abilities?: AbilitiesFn<Location>
+  forced?: (state: GameState, trigger: Trigger, self: Location) => Message[]
+}
+
+export interface AgendaBehavior {
+  code: CardCode
+  /** Enemigos que no pueden recibir daño mientras este plan está en juego. */
+  enemyImmune?: (state: GameState, enemy: Enemy) => boolean
+  abilities?: AbilitiesFn<Agenda>
+  forced?: (state: GameState, trigger: Trigger, self: Agenda) => Message[]
+  /** Instrucciones del reverso al avanzar. */
+  onAdvance?: (state: GameState) => Message[]
+}
+
+export interface ActBehavior {
+  code: CardCode
+  abilities?: AbilitiesFn<Act>
+  forced?: (state: GameState, trigger: Trigger, self: Act) => Message[]
+  /** Para actos con objetivo de condición (`advanceTiming: 'objective'`). */
+  objectiveMet?: (state: GameState) => boolean
+  /** Instrucciones del reverso al avanzar. */
+  onAdvance?: (state: GameState) => Message[]
+}
+
+const scenarios = new Map<string, ScenarioBehavior>()
+const stories = new Map<CardCode, StoryBehavior>()
+
+export function registerStory(behavior: StoryBehavior): void {
+  stories.set(behavior.code, behavior)
+}
+
+export function storyBehavior(code: CardCode): StoryBehavior | undefined {
+  return stories.get(code)
+}
+const treacheries = new Map<CardCode, TreacheryBehavior>()
+const enemies = new Map<CardCode, EnemyBehavior>()
+const locations = new Map<CardCode, LocationBehavior>()
+const agendas = new Map<CardCode, AgendaBehavior>()
+const acts = new Map<CardCode, ActBehavior>()
+
+export function registerScenario(behavior: ScenarioBehavior): void {
+  scenarios.set(behavior.id, behavior)
+}
+
+export function registerTreachery(behavior: TreacheryBehavior): void {
+  treacheries.set(behavior.code, behavior)
+}
+
+export function registerEnemy(behavior: EnemyBehavior): void {
+  enemies.set(behavior.code, behavior)
+}
+
+export function registerLocation(behavior: LocationBehavior): void {
+  locations.set(behavior.code, behavior)
+}
+
+export function registerAgenda(behavior: AgendaBehavior): void {
+  agendas.set(behavior.code, behavior)
+}
+
+export function registerAct(behavior: ActBehavior): void {
+  acts.set(behavior.code, behavior)
+}
+
+export function scenarioBehavior(id: string): ScenarioBehavior | undefined {
+  return scenarios.get(id)
+}
+
+export function treacheryBehavior(code: CardCode): TreacheryBehavior | undefined {
+  return treacheries.get(code)
+}
+
+export function enemyBehavior(code: CardCode): EnemyBehavior | undefined {
+  return enemies.get(code)
+}
+
+export function locationBehavior(code: CardCode): LocationBehavior | undefined {
+  return locations.get(code)
+}
+
+export function agendaBehavior(code: CardCode | undefined): AgendaBehavior | undefined {
+  return code === undefined ? undefined : agendas.get(code)
+}
+
+export function actBehavior(code: CardCode | undefined): ActBehavior | undefined {
+  return code === undefined ? undefined : acts.get(code)
+}
+
+// ---------------------------------------------------------------------------
+// Cartas de jugador
+// ---------------------------------------------------------------------------
+
+export interface PlayerCardBehavior {
+  /** Ranuras adicionales mientras está en juego (Carl Sanford: +1 arcana). */
+  extraSlots?: Partial<Record<SlotType, number>>
+  /** Sin dueño (colocado en una localización o enemigo): habilidades para quien esté allí. */
+  placedAbilities?: AbilitiesFn<PlacedAsset>
+  placedForced?: (state: GameState, trigger: Trigger, self: PlacedAsset) => Message[]
+  code: CardCode
+  /** Evento: su efecto al jugarlo. */
+  play?: (state: GameState, investigator: InvestigatorId) => Message[]
+  /** Restricción adicional para jugarlo ("solo durante tu turno", "como primera acción"…). */
+  canPlay?: (state: GameState, investigator: InvestigatorId) => boolean
+  /** Habilidades del apoyo en juego, para su controlador. */
+  abilities?: AbilitiesFn<Asset>
+  /** Modificador constante a las pruebas de su controlador. */
+  skillModifier?: (state: GameState, self: Asset, test: SkillTest) => number
+  /** Carta comprometida: efecto según el resultado de la prueba. */
+  afterCommittedTest?: (
+    state: GameState,
+    test: SkillTest,
+    succeeded: boolean,
+    committedBy: InvestigatorId,
+  ) => Message[]
+  /** Reacciones del apoyo en juego (las decide su controlador). */
+  reactions?: (state: GameState, trigger: Trigger, self: Asset) => ReactionOption[]
+  /** Eventos que se juegan como reacción desde la mano ("Juégala después de…"). */
+  handReactions?: (
+    state: GameState,
+    trigger: Trigger,
+    investigator: InvestigatorId,
+  ) => ReactionOption[]
+  /** Habilidades forzadas del apoyo en juego. */
+  forced?: (state: GameState, trigger: Trigger, self: Asset) => Message[]
+  /** Habilidades rápidas durante una prueba de su controlador, antes de revelar fichas. */
+  testOptions?: (state: GameState, test: SkillTest, self: Asset) => ReactionOption[]
+  /** Efecto al revelar una ficha en una prueba iniciada por este apoyo. */
+  onTokenRevealed?: (state: GameState, token: ChaosToken, self: Asset) => Message[]
+  /** Se puede comprometer después de revelar las fichas (Timely Intervention). */
+  commitAfterReveal?: boolean
+  /** Evento que se juega cuando vas a fallar una prueba (Scrape By); su efecto es `play`. */
+  playWhenFailing?: boolean
+  /**
+   * Permanente: empieza en juego (fuera del mazo) y da estas ventajas al
+   * empezar la partida: cartas extra en la mano inicial, recursos y ranuras.
+   */
+  permanent?: {
+    openingHand?: number
+    resources?: number
+    slots?: Partial<Record<SlotType, number>>
+  }
+  /** Coste adicional al comprometerla. */
+  onCommit?: (state: GameState, by: InvestigatorId) => Message[]
+  /** Aumenta el tamaño máximo de mano de su controlador. */
+  handSize?: number
+  /** Puede recibir el daño de otros investigadores de su localización (Bodyguard). */
+  soaksForOthers?: boolean
+  /** Se descarta al quedarse sin usos. */
+  discardWhenEmpty?: boolean
+  /** Su acción es de evitar (cuenta como tal) o no provoca ataques de oportunidad. */
+  evadeAction?: boolean
+  noAttacksOfOpportunity?: boolean
+  /** Enemy-specific protection while this asset is controlled (Delores Gadling). */
+  ignoresOpportunityAttacks?: (state: GameState, self: Asset, enemy: Enemy) => boolean
+  /** Test options also usable during another investigator's test at this location. */
+  helpsOtherTests?: boolean
+  /** Subscribe to action-ability completion without changing other games' queued messages. */
+  observesActionAbilities?: boolean
+  /** Efecto de campaña si está en la mano de su dueño cuando termina la partida o es eliminado. */
+  whenGameEndsInHand?: (state: GameState, owner: InvestigatorId) => Message[]
+  /** Mientras está en juego, la primera acción de cada turno de su dueño no provoca ataques de oportunidad. */
+  firstActionSafe?: boolean
+  /** Debilidad que cancela las búsquedas en el mazo (Dead Ends). */
+  cancelsSearch?: boolean
+  /** Debilidad de tipo enemigo: sus valores, para que aparezca al robarla. */
+  enemy?: EnemyCard
+}
+
+/**
+ * Comportamiento de una carta de investigador: efecto del signo arcano,
+ * reacciones, habilidades durante sus pruebas y acciones adicionales.
+ */
+export interface InvestigatorBehavior {
+  code: CardCode
+  elderSign?: (state: GameState, self: Investigator) => TokenEffect
+  reactions?: (state: GameState, trigger: Trigger, self: Investigator) => ReactionOption[]
+  testOptions?: (state: GameState, test: SkillTest, self: Investigator) => ReactionOption[]
+  /** Una acción adicional cada turno que solo sirve para evitar. */
+  extraEvadeAction?: boolean
+}
+
+const investigatorBehaviors = new Map<CardCode, InvestigatorBehavior>()
+
+export function registerInvestigator(behavior: InvestigatorBehavior): void {
+  investigatorBehaviors.set(behavior.code, behavior)
+}
+
+export function investigatorBehavior(code: CardCode): InvestigatorBehavior | undefined {
+  return investigatorBehaviors.get(code)
+}
+
+const playerCards = new Map<CardCode, PlayerCardDef>()
+const playerBehaviors = new Map<CardCode, PlayerCardBehavior>()
+
+export function registerPlayerCards(defs: PlayerCardDef[]): void {
+  for (const def of defs) playerCards.set(def.code, def)
+}
+
+export function registerPlayerCard(behavior: PlayerCardBehavior): void {
+  playerBehaviors.set(behavior.code, behavior)
+}
+
+/** Todas las cartas de jugador registradas (las de la caja y las de campaña). */
+export function allPlayerCardDefs(): PlayerCardDef[] {
+  return [...playerCards.values()]
+}
+
+export function playerCardDef(code: CardCode): PlayerCardDef | undefined {
+  return playerCards.get(code)
+}
+
+export function playerCardBehavior(code: CardCode): PlayerCardBehavior | undefined {
+  return playerBehaviors.get(code)
+}
+
+/** Permanente: no cuenta para el tamaño del mazo, no se quita de él y no abandona el juego. */
+export const isPermanent = (code: CardCode) => !!playerBehaviors.get(code)?.permanent
