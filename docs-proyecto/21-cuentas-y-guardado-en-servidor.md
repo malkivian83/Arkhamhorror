@@ -3,15 +3,15 @@
 **Fecha:** 19 de octubre de 2026.  
 **Estado:** informe previo a implementación. No se han programado cuentas, API de persistencia ni migraciones.  
 **Decisión del propietario:** despliegue en un VPS y base de datos **MySQL**.  
-**Pendiente:** registro abierto o por invitación; correo y contraseña, Google o ambos.
+**Decisiones confirmadas (19/10/2026):** registro abierto con verificación de correo; acceso con correo y contraseña y con Google; modo invitado disponible.
 
 ## 1. Propuesta
 
 Añadir una cuenta con una biblioteca privada de mazos y campañas, accesible desde distintos dispositivos. Mantener el motor ejecutándose en el navegador y guardar en el servidor los progresos completos. Esto cubre el objetivo solicitado sin convertirlo en un proyecto de multijugador.
 
-Conservar el juego como invitado y la exportación a archivo como respaldo es una **recomendación pendiente de confirmar**. El primer inicio de sesión ofrecería importar los datos locales, con vista previa y sin sobrescribir la biblioteca de la cuenta.
+Se conserva el juego como invitado por decisión del propietario. La exportación a archivo seguirá sirviendo como respaldo. El primer inicio de sesión ofrecerá importar los datos locales, con vista previa y sin sobrescribir la biblioteca de la cuenta.
 
-Para el acceso, propongo inicialmente correo y contraseña con verificación y recuperación por correo, sujeto a la elección del propietario. Si se elige Google, habrá que incorporar OpenID Connect y revisar su documentación oficial antes de implementar ese flujo. Ninguna opción requiere usar cuentas o servicios de autenticación del proyecto de referencia.
+El acceso incluirá correo y contraseña con verificación y recuperación por correo, además de Google mediante OpenID Connect. Ambos métodos accederán a la misma biblioteca cuando se vinculen de forma autenticada. Ninguno requiere usar cuentas o servicios de autenticación del proyecto de referencia.
 
 ## 2. Estado real del proyecto
 
@@ -32,7 +32,7 @@ La arquitectura de [04](04-arquitectura-propuesta.md) describe un servidor de ju
 
 ## 3. Alcance de la primera versión
 
-- Crear cuenta, verificar correo, iniciar y cerrar sesión, recuperar contraseña y consultar el perfil, si se confirma el acceso con contraseña.
+- Crear cuenta mediante registro abierto, verificar correo, iniciar y cerrar sesión con contraseña o Google, recuperar contraseña y consultar el perfil.
 - Biblioteca privada de múltiples mazos: crear, editar, renombrar, duplicar y eliminar. Mantener la importación existente de ArkhamDB.
 - Biblioteca privada de campañas y escenarios independientes: nueva aventura, continuar, renombrar, archivar y eliminar.
 - Guardar la campaña entre escenarios y la partida dentro de un escenario: decisiones, experiencia, trauma, mazos de campaña, bolsa, estado de mesa e historial.
@@ -69,7 +69,8 @@ Identificadores UUID, fechas UTC con precisión suficiente y claves foráneas co
 | Tabla | Datos principales |
 | --- | --- |
 | `users` | `id`, correo original y normalizado único, nombre visible, idioma, estado de verificación, fechas |
-| `password_credentials` | `user_id`, hash de contraseña y fecha de cambio; solo si hay acceso con contraseña |
+| `password_credentials` | `user_id`, hash de contraseña y fecha de cambio; opcional por usuario si se registra únicamente con Google |
+| `auth_identities` | `user_id`, proveedor, emisor y sujeto; restricción única por emisor y sujeto para el acceso con Google |
 | `auth_sessions` | Hash de token opaco, usuario, creación, último uso, caducidad y revocación |
 | `account_tokens` | Hash, usuario, propósito de verificación o recuperación, vencimiento y consumo |
 | `decks` | `id`, `owner_id`, nombre, investigador, lista de cartas JSON, origen, `revision`, fechas y borrado lógico |
@@ -100,13 +101,18 @@ Toda consulta o modificación de un mazo o campaña filtrará por el usuario aut
 
 Aplicar límites de peticiones a acceso, registro, recuperación, importación y guardados; ocultar cookies, tokens y contraseñas en logs; limitar tamaños y profundidades JSON. Validar entradas y respuestas con esquemas de Fastify para no devolver campos privados por accidente. [Validación y serialización en Fastify](https://fastify.dev/docs/latest/Reference/Validation-and-Serialization/).
 
-Si se decide Google, añadir una tabla de identidades por emisor y sujeto; la vinculación de identidades exigirá prueba de control y no se resolverá únicamente porque coincida el correo. El flujo completo se detallará después de elegirlo.
+El acceso con Google usará un flujo de código de autorización en el servidor, `state` y `nonce`, validación del ID token y su firma, emisor, destinatario y vencimiento. La identidad se reconoce por emisor y `sub`, no por el correo. Solicitar únicamente los permisos de identidad necesarios. Configurar cliente OAuth y URI de retorno exacta para cada entorno. [OpenID Connect de Google](https://developers.google.com/identity/openid-connect/openid-connect).
+
+Política propuesta para cumplir la verificación también con Google: aceptar `email_verified` solo después de validar el token y comprobar que el proveedor es autoridad sobre ese correo; si no se cumple, enviar nuestra propia verificación antes de habilitar el guardado remoto. El acceso con contraseña siempre exige completar el enlace de verificación de la aplicación. Mientras tanto se puede seguir jugando como invitado.
+
+No unir cuentas automáticamente porque coincida el correo. Ante una cuenta existente, pedir acceso por su método actual y vincular Google desde el perfil con autenticación reciente. Una cuenta creada solo con Google podrá establecer contraseña mediante verificación del correo; no se le generará una contraseña interna. Impedir desvincular el último método de acceso. Probar altas concurrentes y conflictos de vinculación sin duplicar bibliotecas.
 
 ## 7. API HTTP prevista
 
 | Grupo | Operaciones |
 | --- | --- |
 | Cuenta con contraseña | `POST /api/auth/register`, `/login`, `/logout`, `/verify-email`, `/resend-verification`, `/forgot-password`, `/reset-password`; `GET /api/auth/me` |
+| Google | Inicio y retorno en `GET /api/auth/google` y `/api/auth/google/callback`; vinculación desde una sesión autenticada y desvinculación con reautenticación |
 | Perfil | `PATCH /api/me`, `POST /api/me/change-password`, `GET /api/me/export`, `DELETE /api/me` |
 | Mazos | `GET/POST /api/decks`; `GET/PATCH/DELETE /api/decks/:id` |
 | Campañas | `GET/POST /api/campaigns`; `GET/PATCH/DELETE /api/campaigns/:id` |
@@ -173,7 +179,7 @@ Las fases se entregarán en PR pequeñas. Primero base y pruebas, después integ
 ## 12. Pruebas necesarias
 
 - Integración contra MySQL real de la versión elegida, no únicamente mocks: restricciones, transacciones, revisiones concurrentes e idempotencia.
-- Registro duplicado, correo sin verificar, enlaces consumidos o vencidos, recuperación y revocación; accesos Google si se eligen.
+- Registro duplicado, correo sin verificar, enlaces consumidos o vencidos, recuperación y revocación; acceso Google, tokens inválidos, cancelación, vinculación y conservación de la misma biblioteca.
 - Usuario A intentando todos los accesos por ID a mazos, campañas y revisiones de B.
 - Dos sesiones guardando sobre la misma revisión: una confirma y la otra recibe conflicto.
 - Migración de datos válidos, corruptos, recompensas, guardados entre escenarios y paquetes incompatibles.
@@ -195,13 +201,13 @@ Presupuesto y capacidad dependen del VPS y de los usuarios: medir tamaño real d
 
 Para borrar una cuenta: reautenticar, revocar sesiones, eliminar datos activos y pendientes de envío, y documentar cuándo caducan sus copias de respaldo. Antes de abrir registros hay que definir responsable, política de privacidad y retención aplicable al despliegue; este informe no es un análisis jurídico.
 
-## 14. Decisiones pendientes
+## 14. Decisiones confirmadas y datos pendientes
 
-1. **Registro abierto con verificación o solo por invitación.** Define el flujo de altas y el control de abuso.
-2. **Correo y contraseña, Google o ambos.** Recomendación inicial: correo y contraseña con verificación y recuperación; Google puede incorporarse después si interesa.
-3. **Invitado.** Recomiendo conservarlo y ofrecer cuenta para sincronizar, sin exigir registro para probar el juego.
+1. **Confirmado: registro abierto con verificación de correo.** Incorporar límites de altas y reenvíos.
+2. **Confirmado: correo y contraseña y Google.** Ambos se incluyen en la primera versión; vinculación segura para compartir cuenta y biblioteca.
+3. **Confirmado: modo invitado.** No se exige registro para probar el juego; la cuenta permite sincronizar.
 4. **Datos del VPS.** Dominio, sistema operativo, recursos y versión/ubicación de MySQL; confirmar si hay servicios existentes. Se pueden facilitar después, sin enviar contraseñas en el chat.
 5. **Correo transaccional.** Disponibilidad de SMTP o elección de proveedor para altas y recuperación; no contratarlo todavía.
 6. **Retención y uso previsto.** Usuarios aproximados, política de revisiones y pérdida de datos admisible ante desastre.
 
-Se puede cerrar el diseño sin credenciales. Para comenzar la implementación hace falta resolver, como mínimo, las elecciones de registro y acceso. El VPS y MySQL ya están confirmados.
+Las decisiones funcionales de registro, acceso y modo invitado están cerradas. Quedan datos de despliegue y operación: dominio, MySQL disponible, correo transaccional, configuración de Google y retención. Se pueden concretar sin enviar secretos al chat. Este documento sigue siendo un informe previo; las respuestas no implican que se haya implementado el sistema.
