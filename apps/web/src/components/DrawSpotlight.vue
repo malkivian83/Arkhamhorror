@@ -15,6 +15,8 @@ import { unreviewedEncounterDraws } from '../game/advanceReview'
  * la ha resuelto); si se roban varias, salen una detrás de otra.
  */
 const props = defineProps<{ state: GameState }>()
+const emit = defineEmits<{ dismissed: [code: string, source: DOMRect | undefined] }>()
+const face = ref<HTMLElement | null>(null)
 const { t } = useI18n()
 const game = useGameStore()
 
@@ -49,6 +51,7 @@ watch(
 )
 
 function dismiss() {
+  if (current.value) emit('dismissed', current.value.code, face.value?.getBoundingClientRect())
   queue.value = queue.value.slice(1)
 }
 function key(event: KeyboardEvent) {
@@ -71,7 +74,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', key, true))
       <p class="who">{{ t('table.drawnBy', { name: current.name }) }}</p>
       <div class="card-details">
         <div :key="`${current.code}-${queue.length}`" class="flipper">
-          <div class="face front">
+          <div ref="face" class="face front">
             <GameCard :code="current.code" :name="current.card" :width="280" no-zoom />
           </div>
           <div class="face back">
