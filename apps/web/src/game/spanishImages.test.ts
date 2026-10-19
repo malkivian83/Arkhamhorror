@@ -1,11 +1,27 @@
 import { describe, expect, it } from 'vitest'
-import { cardImages } from './cards'
+import { cardImages, cardThumbnail } from './cards'
 import manifest from './cardImageManifest.json'
 import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { fallbackCards } from './fallbackCards'
 
 describe('imágenes españolas de referencia y alternativas', () => {
+  it('cada original tiene una miniatura local independiente, incluidas las caras invertidas', () => {
+    for (const paths of Object.values(manifest))
+      for (const original of Object.values(paths)) {
+        const thumbnail = cardThumbnail(original)
+        expect(thumbnail).toMatch(/^\/local-assets\/cards\/(en|es)\/thumbs\/\d{5}b?\.webp$/)
+        expect(thumbnail).not.toBe(original)
+        expect(
+          existsSync(fileURLToPath(new URL(`../../public${thumbnail}`, import.meta.url))),
+        ).toBe(true)
+      }
+    expect(cardThumbnail(cardImages('12116', false, 'es')[0]!)).toBe(
+      '/local-assets/cards/es/thumbs/12116b.webp',
+    )
+    expect(cardThumbnail('/cards/es/12017.jpg')).toBeNull()
+    expect(cardThumbnail('https://example.com/12017.jpg')).toBeNull()
+  })
   it('el manifiesto solo contiene archivos presentes que se sirven desde nuestra web', () => {
     for (const paths of Object.values(manifest))
       for (const path of Object.values(paths)) {

@@ -47,6 +47,13 @@ export function cardImage(code: string, back = false): string | null {
   return cardImages(code, back)[0] ?? null
 }
 
+/** Locally generated 192px image for small cards; the zoom always uses the original. */
+export function cardThumbnail(original: string): string | null {
+  return /^\/local-assets\/cards\/(en|es)\/\d{5}b?\.(avif|jpg)$/.test(original)
+    ? original.replace(/\/(\d{5}b?)\.(avif|jpg)$/, '/thumbs/$1.webp')
+    : null
+}
+
 export function cardName(code: string): string {
   return playerCardDef(code)?.name ?? code
 }

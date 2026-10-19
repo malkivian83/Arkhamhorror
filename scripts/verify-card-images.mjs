@@ -30,3 +30,24 @@ console.log(
     bytes: inventory.files.reduce((n, f) => n + f.bytes, 0),
   }),
 )
+const thumbnails = JSON.parse(
+  await readFile('docs-proyecto/evidencias/miniaturas-cartas.json', 'utf8'),
+)
+const thumbnailPaths = new Set()
+for (const file of thumbnails.files) {
+  const expected = file.source.replace(/\/(\d{5}b?)\.(avif|jpg)$/, '/thumbs/$1.webp')
+  if (!seen.has(file.source) || file.path !== expected || thumbnailPaths.has(file.path))
+    throw new Error(`Invalid thumbnail: ${file.path}`)
+  const original = await readFile(`apps/web/public${file.source}`)
+  const bytes = await readFile(`apps/web/public${file.path}`)
+  if (
+    createHash('sha256').update(original).digest('hex') !== file.sourceSha256 ||
+    createHash('sha256').update(bytes).digest('hex') !== file.sha256 ||
+    bytes.subarray(0, 4).toString() !== 'RIFF' ||
+    bytes.subarray(8, 12).toString() !== 'WEBP'
+  )
+    throw new Error(`Damaged or outdated thumbnail: ${file.path}`)
+  thumbnailPaths.add(file.path)
+}
+if (thumbnailPaths.size !== seen.size) throw new Error('Incomplete thumbnail inventory')
+console.log(JSON.stringify({ thumbnails: thumbnailPaths.size }))
