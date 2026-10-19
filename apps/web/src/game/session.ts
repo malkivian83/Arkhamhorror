@@ -8,6 +8,7 @@ import {
   type PlayerInput,
 } from '@lcg/engine'
 import { markOf, type Mark } from './undo'
+import { validAdvanceReview, type AdvanceFrame } from './advanceReview'
 
 export const SESSION_KEY = 'lcg:session:v1'
 export const BACKUP_KEY = 'lcg:session:backup:v1'
@@ -30,6 +31,8 @@ export interface Session {
   state: GameState | null
   history: History | null
   campaign: Campaign | null
+  /** Optional visual acknowledgements. They never change engine inputs or rules. */
+  advanceReview?: AdvanceFrame[]
 }
 
 export type StoragePort = Pick<Storage, 'getItem' | 'setItem'>
@@ -397,8 +400,17 @@ export function session(
   state: GameState | null,
   history: History | null,
   campaign: Campaign | null,
+  advanceReview?: AdvanceFrame[],
 ): Session {
-  return { format: 'lcg-session', version: 1, content: CONTENT_VERSION, state, history, campaign }
+  return {
+    format: 'lcg-session',
+    version: 1,
+    content: CONTENT_VERSION,
+    state,
+    history,
+    campaign,
+    ...(advanceReview !== undefined ? { advanceReview } : {}),
+  }
 }
 
 export function decodeSession(raw: string): Session {
@@ -412,6 +424,12 @@ export function decodeSession(raw: string): Session {
   jsonTree(value)
   if (!object(value) || value.format !== 'lcg-session') fail()
   if (value.version !== 1 || value.content !== CONTENT_VERSION) fail('incompatible')
+  if (
+    value.advanceReview !== undefined &&
+    (!validAdvanceReview(value.advanceReview) ||
+      (value.state === null && value.advanceReview.length > 0))
+  )
+    fail()
   if (value.campaign !== null) campaign(value.campaign)
   if (value.state === null) {
     if (value.history !== null) fail()

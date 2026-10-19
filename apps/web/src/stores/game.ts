@@ -33,6 +33,7 @@ import {
 } from '../game/session'
 import { useDecksStore } from './decks'
 import { choiceTarget } from '../game/choiceTarget'
+import { createAdvanceReview, resumedAdvanceReview, type AdvanceFrame } from '../game/advanceReview'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
@@ -76,6 +77,9 @@ export const useGameStore = defineStore('game', () => {
   })()
   const state = shallowRef<GameState | null>(loaded.data.state)
   const history = shallowRef<History | null>(loaded.data.history)
+  const advanceReview = shallowRef<AdvanceFrame[]>(
+    loaded.data.advanceReview ?? resumedAdvanceReview(loaded.data.state),
+  )
   const storageIssue = shallowRef<SessionIssue | null>(loaded.issue ?? null)
   const error = shallowRef<string | null>(null)
   /** Campaña en curso: el escenario que se juega es uno de sus escenarios. */
@@ -85,7 +89,10 @@ export const useGameStore = defineStore('game', () => {
 
   function persist() {
     try {
-      writeSession(localStorage, session(latest, history.value, campaign.value))
+      writeSession(
+        localStorage,
+        session(latest, history.value, campaign.value, advanceReview.value),
+      )
       storageIssue.value = null
     } catch (e) {
       storageIssue.value = e instanceof SessionError ? e.reason : 'unavailable'
@@ -98,10 +105,11 @@ export const useGameStore = defineStore('game', () => {
    */
   let latest = state.value
 
-  function set(next: GameState | null, nextHistory: History | null) {
+  function set(next: GameState | null, nextHistory: History | null, review: AdvanceFrame[] = []) {
     const previous = latest
     latest = next
     history.value = nextHistory
+    advanceReview.value = review
     persist()
     // Si algún investigador cambia de localización, su mini se desliza hasta
     // la nueva (transición de vista del navegador, como en el ejemplo).
@@ -150,7 +158,7 @@ export const useGameStore = defineStore('game', () => {
   /** Guarda el resultado del escenario terminado en la campaña y deja la mesa. */
   function closeScenario() {
     const game = latest
-    if (!campaign.value || !game?.outcome) return
+    if (advanceReview.value.length || !campaign.value || !game?.outcome) return
     const next = finishScenario(campaign.value, game)
     // Las recompensas ganadas quedan disponibles para mazos nuevos.
     useDecksStore().addRewards(next.log.rewards ?? [])
@@ -189,15 +197,17 @@ export const useGameStore = defineStore('game', () => {
 
   function answer(index: number) {
     const current = latest
-    if (!current?.pending) return
+    if (advanceReview.value.length || !current?.pending) return
     const input = { investigator: current.pending.investigator, choice: index }
     try {
-      const next = applyInput(current, input)
+      const review = createAdvanceReview(current)
+      const next = applyInput(current, input, review.observe)
       failedInput.value = null
       const h = history.value
       set(
         next,
         h && { base: h.base, inputs: [...h.inputs, input], marks: [...h.marks, markOf(next)] },
+        review.finish(next),
       )
       error.value = null
     } catch (e) {
@@ -242,7 +252,13 @@ export const useGameStore = defineStore('game', () => {
   }
 
   function exportSession() {
-    return JSON.stringify(session(latest, history.value, campaign.value))
+    return JSON.stringify(session(latest, history.value, campaign.value, advanceReview.value))
+  }
+
+  function acceptAdvance() {
+    if (!advanceReview.value.length) return
+    advanceReview.value = advanceReview.value.slice(1)
+    persist()
   }
 
   /** Import is validated and persisted before replacing the visible session. */
@@ -254,6 +270,7 @@ export const useGameStore = defineStore('game', () => {
       campaign.value = data.campaign
       latest = data.state
       history.value = data.history
+      advanceReview.value = data.advanceReview ?? resumedAdvanceReview(data.state)
       state.value = data.state
       error.value = null
       storageIssue.value = null
@@ -322,6 +339,8 @@ export const useGameStore = defineStore('game', () => {
     error,
     storageIssue,
     campaign,
+    advanceReview,
+    acceptAdvance,
     start,
     closeScenario,
     playNext,

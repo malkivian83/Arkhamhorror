@@ -1,106 +1,177 @@
 <script setup lang="ts">
-import type { GameState } from '@lcg/engine'
-import { computed, onBeforeUnmount, ref, useId, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useGameStore } from '../stores/game'
 import { useLabels } from '../game/labels'
 import { localName } from '../game/localized'
-import { scenarioTransitions, type ScenarioTransition } from '../game/scenarioTransitions'
 import { zoomed } from '../game/zoom'
 import CardTranslation from './CardTranslation.vue'
 import GameCard from './GameCard.vue'
 
-const props = defineProps<{ state: GameState }>()
+const game = useGameStore()
 const { t } = useI18n()
 const label = useLabels()
 const title = useId()
 const dialog = ref<HTMLDialogElement>()
-const queue = ref<ScenarioTransition[]>([])
-const current = computed(() => queue.value[0])
+const accept = ref<HTMLButtonElement>()
+const current = computed(() => game.advanceReview[0])
+const stageTitle = computed(() => {
+  const f = current.value
+  if (!f) return ''
+  const special =
+    f.kind === 'agenda'
+      ? { reverse: 'agendaReverse', next: 'agendaNext', finished: 'agendaFinished' }
+      : {}
+  return t(`table.advanceReview.${special[f.stage as keyof typeof special] ?? f.stage}`)
+})
 let previousFocus: HTMLElement | null = null
-watch(
-  () => props.state,
-  (after, before) => {
-    if (!before) return
-    if (after.scenarioId !== before.scenarioId || after.log.length < before.log.length)
-      queue.value = []
-    queue.value.push(...scenarioTransitions(before, after))
-  },
-)
-watch(
-  current,
-  (notice) => {
-    if (notice) {
-      zoomed.value = null
-      if (!dialog.value?.open) {
-        previousFocus =
-          document.activeElement instanceof HTMLElement ? document.activeElement : null
-        dialog.value?.showModal()
-      }
-    } else {
-      dialog.value?.close()
-      if (previousFocus?.isConnected) previousFocus.focus()
+function syncDialog() {
+  if (current.value) {
+    zoomed.value = null
+    if (dialog.value && !dialog.value.open) {
+      previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null
+      dialog.value.showModal()
     }
-  },
-  { flush: 'post' },
-)
+    accept.value?.focus()
+    dialog.value?.scrollTo({ top: 0 })
+  } else {
+    dialog.value?.close()
+    if (previousFocus?.isConnected) previousFocus.focus()
+  }
+}
+watch(current, syncDialog, { flush: 'post' })
+onMounted(syncDialog)
 onBeforeUnmount(() => dialog.value?.close())
-const acknowledge = () => queue.value.shift()
 </script>
 
 <template>
   <Teleport to="body">
-    <dialog ref="dialog" class="transition" :aria-labelledby="title" @cancel.prevent @keydown.stop>
+    <dialog
+      ref="dialog"
+      class="transition"
+      :aria-labelledby="title"
+      @cancel.prevent
+      @close="syncDialog"
+      @keydown.stop
+      @keydown.esc.prevent
+    >
       <template v-if="current">
-        <h2 :id="title">
-          {{ t(`table.${current.kind}Advances`) }}: {{ localName(current.card.name) }}
-        </h2>
-        <p>{{ t('table.resolveBack') }}</p>
-        <div class="detail">
-          <GameCard
-            :code="current.card.code"
-            :name="current.card.name"
-            :width="520"
-            landscape
-            back
-            no-zoom
-          />
-          <CardTranslation :code="current.card.code" back />
-        </div>
-        <section v-if="current.effects.length" class="effects">
-          <h3>{{ t('table.transitionEffects') }}</h3>
-          <ol>
-            <li v-for="(event, n) in current.effects" :key="n">
-              {{ label(event.key, event.params ?? {}) }}
-            </li>
-          </ol>
-        </section>
-        <section v-if="current.arrivals.length">
-          <h3>{{ t('table.transitionArrivals') }}</h3>
-          <div class="arrivals">
-            <figure v-for="(card, n) in current.arrivals" :key="n">
-              <GameCard :code="card.code" :name="card.name" :width="140" no-zoom />
-              <figcaption>{{ localName(card.name) }}</figcaption>
-            </figure>
-          </div>
-        </section>
-        <section v-if="current.nextCard">
-          <h3>{{ t('table.nextScenarioCard') }}</h3>
-          <div class="detail">
+        <header>
+          <p class="eyebrow">
+            {{ t(`table.${current.kind}`) }} · {{ localName(current.card.name) }}
+          </p>
+          <h2 :id="title">{{ stageTitle }}</h2>
+          <p class="remaining">
+            {{
+              t(
+                'table.advanceReview.remaining',
+                { n: game.advanceReview.length },
+                game.advanceReview.length,
+              )
+            }}
+          </p>
+        </header>
+        <section v-if="current.stage === 'reverse'" class="faces">
+          <figure>
             <GameCard
-              :code="current.nextCard.code"
-              :name="current.nextCard.name"
-              :width="400"
+              :code="current.card.code"
+              :name="current.card.name"
+              :width="360"
               landscape
               no-zoom
             />
-            <CardTranslation :code="current.nextCard.code" />
-          </div>
+            <figcaption>{{ t('table.viewCardFront') }}</figcaption>
+          </figure>
+          <figure>
+            <GameCard
+              :code="current.card.code"
+              :name="current.card.name"
+              :width="480"
+              landscape
+              back
+              no-zoom
+            />
+            <figcaption>{{ t('table.resolveBack') }}</figcaption>
+          </figure>
+          <CardTranslation :code="current.card.code" back />
         </section>
-        <p>{{ t('table.transitionContinue') }}</p>
+        <div v-else class="origin">
+          <GameCard
+            :code="current.card.code"
+            :name="current.card.name"
+            :width="160"
+            landscape
+            :back="current.stage !== 'payment'"
+            no-zoom
+          />
+        </div>
+        <section
+          v-if="current.cards.length"
+          :key="`${current.card.code}-${current.stage}-${game.advanceReview.length}`"
+          class="cards"
+        >
+          <figure
+            v-for="(card, n) in current.cards"
+            :key="n"
+            :style="{ '--card-ratio': card.landscape ? '1 / .715' : '1 / 1.4' }"
+          >
+            <GameCard
+              :code="card.code"
+              :name="card.name"
+              :width="card.landscape ? 440 : 260"
+              :landscape="!!card.landscape"
+              :back="!!card.back"
+              no-zoom
+            />
+            <figcaption>
+              {{
+                card.back && !card.landscape
+                  ? t('table.advanceReview.unrevealed')
+                  : localName(card.name)
+              }}
+            </figcaption>
+            <p v-if="card.location" class="placement">
+              {{ label('table.advanceReview.atLocation', { location: card.location }) }}
+            </p>
+            <p v-if="card.attachedTo" class="placement">
+              {{ label('table.advanceReview.attachedTo', { name: card.attachedTo }) }}
+            </p>
+            <p v-if="card.controlledBy" class="placement">
+              {{ label('table.advanceReview.controlledBy', { name: card.controlledBy }) }}
+            </p>
+            <p v-if="card.exhausted !== undefined" class="placement">
+              {{ t(`table.advanceReview.${card.exhausted ? 'exhausted' : 'ready'}`) }}
+            </p>
+            <CardTranslation v-if="current.cards.length <= 2 && !card.back" :code="card.code" />
+          </figure>
+        </section>
+        <ol v-if="current.effects.length" class="effects">
+          <li v-for="(event, n) in current.effects" :key="n">
+            {{ label(event.key, event.params ?? {}) }}
+          </li>
+        </ol>
+        <section v-if="current.decision" class="decision">
+          <p>{{ t('table.advanceReview.automaticPause') }}</p>
+          <h3>{{ label(current.decision.prompt, current.decision.params ?? {}) }}</h3>
+          <p>{{ t('game.waitingFor', { name: current.decision.name }) }}</p>
+        </section>
+        <p class="automatic">{{ t('table.advanceReview.automatic') }}</p>
         <footer>
-          <button type="button" class="primary" autofocus @click="acknowledge">
-            {{ t('table.accept')
-            }}<template v-if="queue.length > 1"> ({{ queue.length }})</template>
+          <button
+            ref="accept"
+            type="button"
+            class="primary"
+            autofocus
+            @click="game.acceptAdvance()"
+          >
+            {{ t('table.accept') }} ·
+            {{
+              t(
+                game.advanceReview.length > 1
+                  ? 'table.advanceReview.continue'
+                  : 'table.advanceReview.return',
+              )
+            }}
           </button>
         </footer>
       </template>
@@ -110,7 +181,7 @@ const acknowledge = () => queue.value.shift()
 
 <style scoped>
 .transition {
-  width: min(960px, calc(100vw - 24px));
+  width: min(1060px, calc(100vw - 24px));
   max-width: none;
   max-height: calc(100dvh - 24px);
   box-sizing: border-box;
@@ -122,50 +193,94 @@ const acknowledge = () => queue.value.shift()
   border-radius: 12px;
 }
 .transition::backdrop {
-  background: rgb(0 0 0 / 78%);
+  background: rgb(0 0 0 / 90%);
 }
-h2,
+header,
 h3,
-p {
+p,
+figcaption {
   text-align: center;
 }
-.detail,
-.arrivals {
+h2 {
+  margin: 8px 0;
+}
+.eyebrow {
+  color: var(--accent);
+  margin: 0;
+}
+.remaining {
+  opacity: 0.7;
+  font-size: 0.85rem;
+}
+.faces,
+.cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 16px;
-}
-.detail :deep(.game-card) {
-  width: min(520px, 100%) !important;
+  gap: 20px;
   min-width: 0;
-  max-width: 100%;
-  height: auto !important;
-  aspect-ratio: 1 / 0.715;
-}
-.detail {
-  min-width: 0;
-  width: 100%;
-}
-.detail :deep(.translation) {
-  min-width: 0;
-  max-width: 100%;
-}
-.effects {
-  max-width: 700px;
-  margin: 20px auto;
-}
-.effects li {
-  margin: 8px 0;
 }
 figure {
   margin: 0;
-  width: 140px;
+  min-width: 0;
+  max-width: 100%;
 }
 figcaption {
-  text-align: center;
-  margin-top: 6px;
+  margin: 8px 0;
+  font-weight: bold;
+}
+.origin {
+  display: flex;
+  justify-content: center;
+  margin: 12px;
+  opacity: 0.8;
+}
+.placement {
+  margin: 0;
+  color: var(--accent);
+}
+.cards {
+  animation: arrive 0.25s ease-out;
+}
+.cards figure {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+.faces :deep(.game-card),
+.cards :deep(.game-card) {
+  max-width: 100%;
+}
+.faces :deep(.game-card img),
+.cards :deep(.game-card img) {
+  object-fit: contain;
+}
+.faces :deep(.translation),
+.cards :deep(.translation) {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.effects {
+  max-width: 760px;
+  margin: 20px auto;
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+.effects li {
+  margin: 10px 0;
+}
+.decision {
+  margin: 20px auto;
+  max-width: 760px;
+  padding: 16px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+}
+.automatic {
+  opacity: 0.7;
+  font-size: 0.85rem;
 }
 footer {
   position: sticky;
@@ -175,7 +290,48 @@ footer {
   background: var(--bg);
 }
 footer button {
-  min-height: 44px;
-  min-width: 180px;
+  min-height: 48px;
+  min-width: min(260px, 100%);
+  max-width: 100%;
+}
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cards {
+    animation: none;
+  }
+}
+@media (max-width: 650px) {
+  .transition {
+    padding: 12px;
+  }
+  .faces :deep(.game-card),
+  .cards :deep(.game-card) {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: var(--card-ratio, 1 / 1.4);
+  }
+  .faces figure {
+    --card-ratio: 1 / 0.715;
+    width: 100%;
+  }
+  .cards figure {
+    width: 100%;
+  }
+  .cards :deep(.game-card) {
+    max-width: 280px;
+  }
+  footer {
+    bottom: -12px;
+    padding: 8px 0;
+  }
 }
 </style>

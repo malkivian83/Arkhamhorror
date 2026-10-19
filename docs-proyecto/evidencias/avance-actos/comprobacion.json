@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-19",
+  "brethren": {
+    "scope": "Legal prefix: duo-normal-spreading-flames-286, 40 inputs",
+    "stages": [
+      "payment",
+      "reverse",
+      "entered",
+      "entered",
+      "entered",
+      "entered",
+      "next"
+    ],
+    "reloadPreservedReverse": true,
+    "escapeCannotDismiss": true,
+    "enemyLocation": "Residencia",
+    "fireLocation": "Habitación de tu amigo",
+    "localImages": [
+      "/local-assets/cards/es/12109b.avif",
+      "/local-assets/cards/es/12110.avif"
+    ],
+    "followingMythosDraw": "¡Mutado!: aviso visible después de aceptar el nuevo acto"
+  },
+  "gala": {
+    "scope": "Directed table with registered cards; not a legal campaign recording",
+    "beforeStoryAct": 1,
+    "afterStoryAct": 2,
+    "mobileViewport": [
+      390,
+      640
+    ],
+    "story": "Interludio: la Joya fabulosa",
+    "newCardsAfterStory": [
+      "La Fundación",
+      "Declan Pearce",
+      "Joya de Sarnath"
+    ]
+  },
+  "physicalPhone": "Deferred by user; not tested"
+}

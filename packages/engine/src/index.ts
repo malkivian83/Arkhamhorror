@@ -40,7 +40,7 @@ export {
   type ScenarioSymbol,
   type TreacheryBehavior,
 } from './content'
-export { applyInput, createGame, dispatch } from './engine'
+export { applyInput, createGame, dispatch, type EngineObserver } from './engine'
 export { EngineError } from './errors'
 export {
   ACTIONS_PER_TURN,

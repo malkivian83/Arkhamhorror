@@ -26,7 +26,8 @@ tomando como referencia de estudio el proyecto `halogenandtoast/ArkhamHorror`
 | 15 | [Auditoría funcional de la referencia — 17/10/2026](15-auditoria-referencia-2026-10-17.md) | Ingeniería inversa, 110 oportunidades, inventario de contenido y prioridades para juego local; [backlog CSV](15-backlog-referencia-2026-10-17.csv) |
 | 16 | [Auditoría de cierre de Brethren of Ash](16-auditoria-cierre-brethren-of-ash.md) | Cierre local y aceptación ampliada: dos campañas en normal, Smoke completo, Queen R1/R2/R3, Masivo, costes y recorrido de interfaz; prueba en teléfono físico pendiente. [Matriz de cartas](16-matriz-cartas-cierre.csv). |
 | 17 | [Base estable de Brethren of Ash](17-version-estable-brethren-of-ash.md) | Evidencia conservada, etiqueta de versión y protocolo pendiente para teléfono físico. |
-| 18 | [Auditoría de cierre de La Gala](18-auditoria-cierre-la-gala.md) | Fase 1 completada: 9 de 21 trabajos, 38 regresiones de reglas, 320 preparaciones y 40 derrotas reproducibles. [Matriz de 62 códigos](18-matriz-la-gala.csv). |
+| 18 | [Auditoría de cierre de La Gala](18-auditoria-cierre-la-gala.md) | Fases 1–2 completadas: 19 de 21 trabajos; quedan aceptación de contenido y respaldo EN/ES. [Matriz de 62 códigos](18-matriz-la-gala.csv). |
+| 19 | [Avance visual de actos y planes](19-avance-visual-actos.md) | Cartas y efectos automáticos por pasos, aceptación obligatoria, guardado de la lectura y comprobación en Brethren y La Gala. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

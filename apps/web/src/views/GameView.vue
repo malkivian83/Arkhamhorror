@@ -107,7 +107,7 @@ const shown = computed(
     <StoryModal :state="state" />
     <CardPileModal />
     <DrawSpotlight :state="state" />
-    <ScenarioTransition :state="state" />
+    <ScenarioTransition />
   </div>
   <div v-else class="empty">
     <p>{{ t('setup.noGame') }}</p>
