@@ -1,3 +1,5 @@
+import { accountStorage, notifyLocalChange } from '../account/storage'
+import { newAdventure } from '../account/library'
 import {
   finishScenario,
   newCampaign,
@@ -70,7 +72,7 @@ export interface IndexedChoice {
 export const useGameStore = defineStore('game', () => {
   const loaded = (() => {
     try {
-      return readSession(localStorage)
+      return readSession(accountStorage)
     } catch {
       return { data: session(null, null, null), issue: 'unavailable' as const }
     }
@@ -90,10 +92,11 @@ export const useGameStore = defineStore('game', () => {
   function persist() {
     try {
       writeSession(
-        localStorage,
+        accountStorage,
         session(latest, history.value, campaign.value, advanceReview.value),
       )
       storageIssue.value = null
+      notifyLocalChange('game', exportSession())
     } catch (e) {
       storageIssue.value = e instanceof SessionError ? e.reason : 'unavailable'
     }
@@ -149,6 +152,7 @@ export const useGameStore = defineStore('game', () => {
   /** Empieza una campaña nueva con su primer escenario. */
   function start(campaignId: string, members: CampaignMember[], difficulty: Difficulty) {
     error.value = null
+    newAdventure()
     const next = newCampaign(campaignId, members, difficulty, Math.floor(Math.random() * 2 ** 31))
     const prepared = startScenario(next, Math.floor(Math.random() * 2 ** 32))
     setCampaign(next)
@@ -265,13 +269,14 @@ export const useGameStore = defineStore('game', () => {
   function importSession(raw: string): boolean {
     try {
       const data = decodeSession(raw)
-      writeSession(localStorage, data)
+      writeSession(accountStorage, data)
       if (data.campaign?.log.rewards?.length) useDecksStore().addRewards(data.campaign.log.rewards)
       campaign.value = data.campaign
       latest = data.state
       history.value = data.history
       advanceReview.value = data.advanceReview ?? resumedAdvanceReview(data.state)
       state.value = data.state
+      notifyLocalChange('game', exportSession())
       error.value = null
       storageIssue.value = null
       return true
@@ -283,7 +288,7 @@ export const useGameStore = defineStore('game', () => {
 
   function restoreBackup(): boolean {
     try {
-      const raw = localStorage.getItem(BACKUP_KEY)
+      const raw = accountStorage.getItem(BACKUP_KEY)
       if (!raw) throw new SessionError('invalid')
       return importSession(raw)
     } catch {
@@ -295,7 +300,7 @@ export const useGameStore = defineStore('game', () => {
   function diagnostic() {
     let preservedSave: string | null = null
     try {
-      preservedSave = localStorage.getItem(RECOVERY_KEY)
+      preservedSave = accountStorage.getItem(RECOVERY_KEY)
     } catch {
       /* Storage warning is already visible. */
     }

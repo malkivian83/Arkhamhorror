@@ -4,4 +4,5 @@ packages:
 
 # Dependencias autorizadas a ejecutar scripts de instalación.
 allowBuilds:
+  argon2: true
   esbuild: true

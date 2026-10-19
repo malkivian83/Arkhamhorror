@@ -3,10 +3,14 @@ import CampaignView from './views/CampaignView.vue'
 import DecksView from './views/DecksView.vue'
 import GameView from './views/GameView.vue'
 import SetupView from './views/SetupView.vue'
+import AccountView from './views/AccountView.vue'
+import LibraryView from './views/LibraryView.vue'
 
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
+    { path: '/account', name: 'account', component: AccountView },
+    { path: '/library', name: 'library', component: LibraryView },
     { path: '/', name: 'setup', component: SetupView },
     { path: '/game', name: 'game', component: GameView },
     { path: '/campaign', name: 'campaign', component: CampaignView },
