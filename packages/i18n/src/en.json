@@ -555,7 +555,39 @@
     "orderHint": "The order you pick is the player order. At the start of each scenario you choose the lead investigator, who then goes first.",
     "quit": "Quit game",
     "noGame": "There is no game in progress.",
-    "confirmQuit": "Quit this game? It cannot be recovered."
+    "confirmQuit": "Quit this game? It cannot be recovered.",
+    "eyebrow": "Arkham Horror · The Card Game",
+    "title": "Every story begins with a mystery.",
+    "subtitle": "Choose your adventure, gather your investigators, and step into the unknown.",
+    "savedAdventure": "Your adventure is waiting",
+    "campaignHint": "Choose the mystery you want to face.",
+    "campaignLabel": "Campaign",
+    "scenarioCount": "{n} scenario | {n} scenarios",
+    "selected": "Adventure selected",
+    "selectAdventure": "Choose adventure",
+    "chapters": "Campaign scenarios",
+    "teamTitle": "Gather your team",
+    "teamCount": "{n} of 4 selected",
+    "teamLimit": "Your team is full. Deselect an investigator to choose another.",
+    "difficultyHint": "Decide how far you want to push your luck.",
+    "difficultyNotes": {
+      "easy": "Discover the story",
+      "standard": "The original challenge",
+      "hard": "For veteran investigators",
+      "expert": "On the edge of impossible"
+    },
+    "caseFile": "Investigation dossier",
+    "preparation": "Before you leave",
+    "yourTeam": "Your team",
+    "deckFor": "Deck for {name}",
+    "emptyTeam": "Choose at least one investigator to begin.",
+    "begin": "Begin adventure",
+    "localSave": "Your progress is saved automatically in this browser.",
+    "footer": "In Arkham, nothing is quite what it seems.",
+    "descriptions": {
+      "brethren-of-ash": "A fire, a restless city, and a mystery spreading through the ashes. Three scenarios, one connected story.",
+      "the-midwinter-gala": "A night of luxury and secrets. Accept the invitation and discover what hides behind the masks at the gala."
+    }
   },
   "skillTest": {
     "availableAbilities": "Assets and abilities available before revealing",
