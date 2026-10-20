@@ -365,7 +365,8 @@
     "pilotIdentify": "Identify the solution",
     "pilotCourage": "Heal horror from {name} and test their willpower",
     "pilotAxe": "Spend a resource for +2 combat",
-    "pilotCandle": "Ritual Candles: +1 skill"
+    "pilotCandle": "Ritual Candles: +1 skill",
+    "followupClue": "Art Student: discover a clue"
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -1279,7 +1280,10 @@
       "02036": "Attack with +1 combat. After success, you may spend another action for extra damage.",
       "02107": "Attack using intellect; add damage equal to your clues, up to three.",
       "02111": "Each investigator draws an encounter in player order. Then place this event in victory for one point.",
-      "02113": "After an attack fails by at most two against an enemy engaged with you, deal its damage to another enemy here."
+      "02113": "After an attack fails by at most two against an enemy engaged with you, deal its damage to another enemy here.",
+      "02035": "Adds one willpower and one agility. After your turn ends, you may heal one horror from Peter.",
+      "02149": "After entering play, you may discover one clue at your location.",
+      "02194": "Gain three resources, then draw one card."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -1315,7 +1319,10 @@
       "02036": "Kukri",
       "02107": "\"I've got a plan!\"",
       "02111": "Delve Too Deep",
-      "02113": "Oops!"
+      "02113": "Oops!",
+      "02035": "Peter Sylvestre",
+      "02149": "Art Student",
+      "02194": "Emergency Cache"
     }
   },
   "account": {

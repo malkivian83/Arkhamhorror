@@ -1,0 +1,40 @@
+[
+  {
+    "code": "02035",
+    "name": "Peter Sylvestre",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Ally", "Miskatonic"],
+    "unique": true,
+    "cost": 3,
+    "xp": 2,
+    "icons": { "willpower": 1 },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 3
+  },
+  {
+    "code": "02149",
+    "name": "Art Student",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ally", "Miskatonic"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "intellect": 1 },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 2
+  },
+  {
+    "code": "02194",
+    "name": "Emergency Cache",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Supply"],
+    "cost": 0,
+    "xp": 2,
+    "icons": {},
+    "slots": []
+  }
+]

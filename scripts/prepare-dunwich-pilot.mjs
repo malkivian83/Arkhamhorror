@@ -5,8 +5,10 @@ import { approvedDefinition } from './cards-import/approved.mjs'
 import { sha256 } from './cards-import/snapshots.mjs'
 
 const path = (relative) => fileURLToPath(new URL(relative, import.meta.url))
+const batch = process.argv[2] ?? 'dunwich-pilot'
+if (!/^[a-z][a-z0-9-]*$/.test(batch)) throw new Error('Invalid batch name')
 const approvals = JSON.parse(
-  await readFile(path('../packages/cards/src/dunwich-pilot/approvals.json'), 'utf8'),
+  await readFile(path(`../packages/cards/src/${batch}/approvals.json`), 'utf8'),
 )
 if (!/^[a-f0-9]{16}$/.test(approvals.sourceBundle)) throw new Error('Invalid source bundle')
 const source = path(`../packages/cards/src/catalog/imports/${approvals.sourceBundle}/`)
@@ -21,7 +23,7 @@ const output = approvals.cards.map((approval) => {
   if (!card) throw new Error(`Missing card: ${approval.code}`)
   return approvedDefinition(card, approval)
 })
-const outputPath = path('../packages/cards/src/data/dunwich-pilot.json')
+const outputPath = path(`../packages/cards/src/data/${batch}.json`)
 await writeFile(
   outputPath,
   await format(JSON.stringify(output), {

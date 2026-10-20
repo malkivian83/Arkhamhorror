@@ -125,4 +125,6 @@ import './core-2026/cards'
 import './core-2026/weaknesses'
 import './core-2026/upgrades'
 import './dunwich-pilot'
-export { RENDERED_PLAYER_CARD_CODES } from './dunwich-pilot'
+import { RENDERED_PLAYER_CARD_CODES as pilotCodes } from './dunwich-pilot'
+import { FOLLOWUP_RENDERED_CODES } from './dunwich-followup'
+export const RENDERED_PLAYER_CARD_CODES = [...pilotCodes, ...FOLLOWUP_RENDERED_CODES]

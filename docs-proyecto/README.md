@@ -48,6 +48,7 @@ vigente de pendientes.
 | 25 | [Primera importación del inventario de jugador](25-primer-inventario-cartas-jugador.md) | 1.983 registros, 86 paquetes, piloto de 104 cartas sin diferencias, herramienta reproducible y matriz de bloqueos; activación jugable pendiente. |
 | 26 | [Primer lote jugable de cartas de jugador](26-primer-lote-jugable-cartas-jugador.md) | Siete cartas con comportamiento y pruebas, presentación EN/ES y mazos importados completos; [matriz de las 24 preseleccionadas](26-matriz-piloto-jugador.csv). |
 | 27 | [Cierre del piloto de cartas de jugador](27-cierre-piloto-cartas-jugador.md) | 24 cartas verificadas; 17 añadidas, mecánicas nuevas y 1.855 registros restantes. |
+| 28 | [Segundo lote de cartas de jugador](28-segundo-lote-cartas-jugador.md) | Tres incorporaciones, mejoras con experiencia y manifiesto separado; 1.852 registros restantes. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

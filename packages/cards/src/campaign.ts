@@ -44,6 +44,7 @@ import './core-2026/investigators'
 import './core-2026/upgrades'
 import './core-2026/weaknesses'
 import './dunwich-pilot'
+import './dunwich-followup'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
