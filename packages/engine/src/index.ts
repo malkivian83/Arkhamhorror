@@ -41,6 +41,7 @@ export {
   type TreacheryBehavior,
 } from './content'
 export { applyInput, createGame, dispatch, type EngineObserver } from './engine'
+export { BOONS } from './types'
 export { EngineError } from './errors'
 export {
   ACTIONS_PER_TURN,

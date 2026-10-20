@@ -7,12 +7,15 @@
  */
 import {
   createGame,
+  shuffle,
+  seedRng,
   emptyCampaignLog,
   isPermanent,
   playerCardBehavior,
   playerCardDef,
   treacheryBehavior,
   investigatorBehavior,
+  type Boon,
   type CampaignLog,
   type CardCode,
   type Difficulty,
@@ -59,6 +62,8 @@ export interface ScenarioResult {
 }
 
 export interface Campaign {
+  boons?: Boon[]
+  weaknessChoices?: Record<string, CardCode[]>
   /** Id de la definición de campaña. */
   id: string
   difficulty: Difficulty
@@ -77,10 +82,14 @@ export function newCampaign(
   members: CampaignMember[],
   difficulty: Difficulty,
   seed = 1,
+  boons: Boon[] = [],
 ): Campaign {
   campaignDefinition(campaignId)
+  if (campaignDefinition(campaignId).standalone)
+    boons = boons.filter((b) => b !== 'ancients' && b !== 'persephone')
   if (members.length < 1 || members.length > 4)
     throw new Error('La campaña necesita de 1 a 4 investigadores')
+  const weaknessChoices: Record<string, CardCode[]> = {}
   const investigators = members.map((member, n) => {
     if (typeof member !== 'string') {
       // Un mazo propio sin debilidad básica recibe una al azar (reglamento).
@@ -90,18 +99,40 @@ export function newCampaign(
     if (!list) throw new Error(`Mazo desconocido: ${member}`)
     return { id: code(list.investigator), deck: starterDeck(member) }
   })
+  if (boons.includes('morrigan')) {
+    for (const [n, i] of investigators.entries()) {
+      const member = members[n]!
+      if (
+        typeof member !== 'string' &&
+        member.cards.some((c) => playerCardDef(c)?.weakness === 'basicweakness')
+      )
+        continue
+      i.deck = i.deck.filter((c) => playerCardDef(c)?.weakness !== 'basicweakness')
+      const [pool] = shuffle(
+        playerCards.filter((c) => c.weakness === 'basicweakness').map((c) => c.code),
+        seedRng(seed + n),
+      )
+      weaknessChoices[i.id] = pool.slice(0, 3)
+    }
+  }
   if (new Set(investigators.map((i) => i.id)).size !== investigators.length)
     throw new Error('Un investigador no puede repetirse')
   if (
     investigators.some((i) => !playerCardDef(i.id) || i.deck.some((code) => !playerCardDef(code)))
   )
     throw new Error('Contenido de mazo desconocido')
+  const log = emptyCampaignLog(investigators.map((i) => i.id))
+  if (boons.includes('ancients') && !campaignDefinition(campaignId).standalone) {
+    for (const record of Object.values(log.investigators)) record.xp = 5
+  }
   return {
+    ...(boons.length ? { boons: [...new Set(boons)] } : {}),
+    ...(Object.keys(weaknessChoices).length ? { weaknessChoices } : {}),
     id: campaignId,
     difficulty,
     scenarioIndex: 0,
     investigators,
-    log: emptyCampaignLog(investigators.map((i) => i.id)),
+    log,
     results: [],
   }
 }
@@ -146,6 +177,12 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
     seed,
     difficulty: campaign.difficulty,
     interactive,
+    boons: campaign.boons ?? [],
+    weaknessChoices: Object.fromEntries(
+      Object.entries(campaign.weaknessChoices ?? {}).filter(
+        ([id]) => !campaign.log.values['boonWeakness:' + id],
+      ),
+    ),
     campaignLog: campaign.log,
     scenario: {
       ...scenario,
@@ -163,7 +200,13 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
         (code) => !entry.storyAssetsInPlay?.includes(code),
       )
       return {
-        ...investigatorSetup(i.id, [...i.deck, ...earned]),
+        ...investigatorSetup(i.id, [
+          ...i.deck,
+          ...earned,
+          ...(campaign.log.values['boonWeakness:' + i.id]
+            ? [campaign.log.values['boonWeakness:' + i.id]!]
+            : []),
+        ]),
         physicalTrauma: record?.physicalTrauma ?? 0,
         mentalTrauma: record?.mentalTrauma ?? 0,
       }

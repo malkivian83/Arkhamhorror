@@ -439,6 +439,83 @@ export function handle(state: GameState, message: Message): GameState {
       })
     }
 
+    case 'BoonAcceptAutofail': {
+      const index = state.chaosBag.indexOf('autoFail')
+      return push(
+        { ...state, chaosBag: state.chaosBag.filter((_, n) => n !== index) },
+        { type: 'RevealChaosToken', token: 'autoFail' },
+      )
+    }
+    case 'BoonMorrigan':
+      return push(state, {
+        type: 'Ask',
+        investigator: message.investigator,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'boons.morriganPrompt',
+          choices: message.candidates.map((card) => ({
+            label: 'choice.card',
+            params: { card: playerCardDef(card)?.name ?? card },
+            then: [
+              {
+                type: 'BoonWeakness',
+                investigator: message.investigator,
+                candidates: message.candidates.filter((c) => c !== card),
+              },
+            ],
+          })),
+        },
+      })
+    case 'BoonWeakness': {
+      const [index, rng] = nextInt(state.rng, message.candidates.length)
+      const card = message.candidates[index]!
+      const [deck, shuffledRng] = shuffle(
+        [...getInvestigator(state, message.investigator).deck, card],
+        rng,
+      )
+      return updateCampaignLog(
+        updateInvestigator({ ...state, rng: shuffledRng }, message.investigator, (i) => ({
+          ...i,
+          deck,
+        })),
+        (c) => ({ ...c, values: { ...c.values, ['boonWeakness:' + message.investigator]: card } }),
+      )
+    }
+    case 'BoonDestiny': {
+      const i = getInvestigator(state, message.investigator)
+      const cards = [...new Set(i.deck)]
+      if (!cards.length) return state
+      return push(state, {
+        type: 'Ask',
+        investigator: i.id,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'boons.destinyPrompt',
+          choices: cards.map((card) => ({
+            label: 'choice.card',
+            params: { card: playerCardDef(card)?.name ?? card },
+            target: { type: 'hand', code: card },
+            then: [{ type: 'BoonKeepCard', investigator: i.id, card }],
+          })),
+        },
+      })
+    }
+    case 'BoonKeepCard':
+      return updateInvestigator(state, message.investigator, (i) => {
+        const deck = [...i.deck]
+        const index = deck.indexOf(message.card)
+        if (index < 0) return i
+        deck.splice(index, 1)
+        return { ...i, deck, hand: [...i.hand, message.card] }
+      })
+    case 'BoonOsiris':
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        damage: 0,
+        horror: 0,
+        osirisUsed: true,
+        osirisProtected: true,
+      }))
     case 'BeginTurn':
       return push(
         updateInvestigator(
@@ -447,6 +524,8 @@ export function handle(state: GameState, message: Message): GameState {
           (i) => ({
             ...i,
             turnTaken: true,
+            ...(state.boons?.includes('hermes') ? { extraMove: true } : {}),
+            ...(i.osirisProtected ? { osirisProtected: false } : {}),
             actionsRemaining: Math.max(
               0,
               ACTIONS_PER_TURN +
@@ -563,15 +642,20 @@ export function handle(state: GameState, message: Message): GameState {
     case 'TakeAction': {
       const investigator = getInvestigator(state, message.investigator)
       // La acción adicional de evitar (Trish) se gasta antes que las normales.
+      const useMove = !!investigator.extraMove && message.action.kind === 'move'
       const useExtra = !!investigator.extraEvade && isEvadeAction(message.action)
-      if (!useExtra && investigator.actionsRemaining <= 0) {
+      if (!useExtra && !useMove && investigator.actionsRemaining <= 0) {
         throw new EngineError('No quedan acciones')
       }
       const cost = actionCost(state, investigator.id, message.action)
       const paid = updateInvestigator(state, investigator.id, (i) => ({
         ...(useExtra
           ? { ...i, extraEvade: false }
-          : { ...i, actionsRemaining: Math.max(0, i.actionsRemaining - cost) }),
+          : {
+              ...i,
+              ...(useMove ? { extraMove: false } : {}),
+              actionsRemaining: Math.max(0, i.actionsRemaining - cost + (useMove ? 1 : 0)),
+            }),
         actionsTaken: (i.actionsTaken ?? 0) + 1,
       }))
       // RR "Attack of Opportunity": tras pagar el coste y antes de resolver la acción.
@@ -1189,6 +1273,8 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'TakeDamage': {
+      if (getInvestigator(state, message.investigator).osirisProtected && message.damage > 0)
+        return push(state, { ...message, damage: 0 })
       // RR "Damage and Horror": si hay apoyos que puedan recibirlo, el jugador asigna.
       const canSoak =
         !message.direct &&
@@ -1634,7 +1720,7 @@ export function handle(state: GameState, message: Message): GameState {
       const byDamage = investigator.damage >= vitals.health
       const byHorror = investigator.horror >= vitals.sanity
       if (!byDamage && !byHorror) return state
-      const eliminate: Message = { type: 'EliminateInvestigator', investigator: investigator.id }
+      const eliminate: Message = { type: 'DefeatInvestigator', investigator: investigator.id }
       // Reglamento, "Trauma": derrotado por daño → 1 trauma físico; por horror → 1 mental.
       // Si es por ambos a la vez, el jugador elige cuál sufre.
       if (byDamage && byHorror) {
@@ -1744,8 +1830,23 @@ export function handle(state: GameState, message: Message): GameState {
         (c) => ({ ...c, chaosTokens: [...c.chaosTokens, ...message.tokens] }),
       )
 
-    case 'DefeatInvestigator':
-      return push(state, { type: 'EliminateInvestigator', investigator: message.investigator })
+    case 'DefeatInvestigator': {
+      const i = getInvestigator(state, message.investigator)
+      const next = state.boons?.includes('persephone')
+        ? updateCampaignLog(state, (c) => ({
+            ...c,
+            investigators: {
+              ...c.investigators,
+              [i.id]: { ...c.investigators[i.id]!, xp: (c.investigators[i.id]?.xp ?? 0) + 3 },
+            },
+          }))
+        : state
+      return push(next, {
+        type:
+          state.boons?.includes('osiris') && !i.osirisUsed ? 'BoonOsiris' : 'EliminateInvestigator',
+        investigator: i.id,
+      })
+    }
 
     case 'Resign':
       // RR "Resign": deja sus pistas en su localización y sale del escenario.
@@ -1904,6 +2005,44 @@ export function handle(state: GameState, message: Message): GameState {
       const [index, rng] =
         sealed || chosen ? [-1, state.rng] : nextInt(state.rng, state.chaosBag.length)
       const token = message.token ?? (sealed ? sealed.token : (state.chaosBag[index] as ChaosToken))
+      if (
+        token === 'autoFail' &&
+        state.boons?.includes('athena') &&
+        !state.athenaUsed?.includes(test.investigator)
+      ) {
+        const next: GameState = {
+          ...state,
+          rng,
+          athenaUsed: [...(state.athenaUsed ?? []), test.investigator],
+          chaosBag: sealed || chosen ? [...state.chaosBag, token] : state.chaosBag,
+          ...(sealed
+            ? {
+                sealed: stillSealed,
+                investigators: state.investigators.map((i) =>
+                  i.id === sealed.investigator ? { ...i, discard: [...i.discard, sealed.code] } : i,
+                ),
+              }
+            : {}),
+          skillTest: {
+            ...test,
+            ...(message.ignored !== undefined
+              ? { ignoredTokens: [...(test.ignoredTokens ?? []), message.ignored] }
+              : {}),
+          },
+        }
+        return push(next, {
+          type: 'Ask',
+          investigator: test.investigator,
+          question: {
+            kind: 'chooseOne',
+            prompt: 'boons.athenaPrompt',
+            choices: [
+              { label: 'boons.redraw', then: [{ type: 'RevealChaosToken' }] },
+              { label: 'boons.keep', then: [{ type: 'BoonAcceptAutofail' }] },
+            ],
+          },
+        })
+      }
       const effect = resolveToken(state, token, test.investigator)
       const source = test.source ? state.assets[test.source] : undefined
       const onReveal = source

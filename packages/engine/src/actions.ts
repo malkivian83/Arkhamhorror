@@ -61,7 +61,7 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
   const enemiesHere = enemiesAt(state, here)
 
   // Sin acciones normales, solo la adicional de evitar (Trish Scarborough).
-  if (investigator.actionsRemaining <= 0) {
+  if (investigator.actionsRemaining <= 0 && !investigator.extraMove) {
     if (!investigator.extraEvade) return []
     return [
       ...playableCards(state, id, false)
@@ -88,7 +88,11 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
       .filter((e) => e.engagedWith !== id && !e.keywords.includes('massive'))
       .map((e): Action => ({ kind: 'engage', enemy: e.id })),
   ]
-  return actions.filter((a) => actionCost(state, id, a) <= investigator.actionsRemaining)
+  return actions.filter(
+    (a) =>
+      actionCost(state, id, a) <=
+      investigator.actionsRemaining + (a.kind === 'move' && investigator.extraMove ? 1 : 0),
+  )
 }
 
 /** Pistas en grupo que cuesta entrar en una localización sin revelar (0 si no tiene coste). */
