@@ -14,6 +14,8 @@ import {
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import GameCard from '../components/GameCard.vue'
+import ClassIcon from '../components/ClassIcon.vue'
+import SlotIcon from '../components/SlotIcon.vue'
 import SitePage from '../components/SitePage.vue'
 import { cardName, classColor } from '../game/cards'
 import { localName } from '../game/localized'
@@ -117,6 +119,20 @@ const contents = computed(() => {
     groups: TYPES.map((type) => ({
       type,
       cards: unique.filter((c) => isStandard(c) && def(c)?.type === type),
+      sections: (type === 'asset'
+        ? (['hand', 'accessory', 'body', 'ally', 'arcane', 'head', 'free'] as const)
+        : ([null] as const)
+      )
+        .map((slot) => ({
+          slot,
+          cards: unique.filter(
+            (c) =>
+              isStandard(c) &&
+              def(c)?.type === type &&
+              (slot === null || (def(c)?.slots?.[0] ?? 'free') === slot),
+          ),
+        }))
+        .filter((section) => section.cards.length),
     })).filter((g) => g.cards.length),
     fixed: unique.filter((c) => !isStandard(c)),
   }
@@ -267,36 +283,52 @@ const titleCount = (code: string) => {
           <section class="contents" :aria-label="t('decks.contents')">
             <h2>{{ t('decks.contents') }}</h2>
             <div v-for="g in contents.groups" :key="g.type" class="group">
-              <h3>{{ t(`choice.cardType.${g.type}`) }}</h3>
-              <ul>
-                <li v-for="c in g.cards" :key="c">
-                  <span class="qty">{{ count(c) }}×</span>
-                  <span class="card-name" :style="{ '--class': classColor(c) }">{{ name(c) }}</span>
-                  <span v-if="def(c)?.xp" class="level">{{ '•'.repeat(def(c)?.xp ?? 0) }}</span>
-                  <button
-                    type="button"
-                    :aria-label="t('decks.removeCard', { card: name(c) })"
-                    @click="removeOne(c)"
-                  >
-                    −
-                  </button>
-                  <button
-                    type="button"
-                    :disabled="titleCount(c) >= 2"
-                    :aria-label="t('decks.addCard', { card: name(c) })"
-                    @click="add(c)"
-                  >
-                    +
-                  </button>
-                </li>
-              </ul>
+              <h3>
+                {{ t(`choice.cardType.${g.type}`) }} ({{
+                  g.cards.reduce((total, c) => total + count(c), 0)
+                }})
+              </h3>
+              <div v-for="section in g.sections" :key="section.slot ?? g.type" class="slot-section">
+                <h4 v-if="section.slot">
+                  <SlotIcon v-if="section.slot !== 'free'" :type="section.slot" />
+                  {{ t(`slot.${section.slot}`) }}
+                </h4>
+                <ul>
+                  <li v-for="c in section.cards" :key="c">
+                    <span class="qty">{{ count(c) }}×</span>
+                    <ClassIcon :faction="def(c)?.class ?? 'neutral'" />
+                    <span class="card-name" :style="{ '--class': classColor(c) }">{{
+                      name(c)
+                    }}</span>
+                    <span v-if="def(c)?.unique" class="marker" aria-hidden="true">◆</span>
+                    <span v-if="def(c)?.xp" class="level">{{ '•'.repeat(def(c)?.xp ?? 0) }}</span>
+                    <button
+                      type="button"
+                      :aria-label="t('decks.removeCard', { card: name(c) })"
+                      @click="removeOne(c)"
+                    >
+                      −
+                    </button>
+                    <button
+                      type="button"
+                      :disabled="titleCount(c) >= 2"
+                      :aria-label="t('decks.addCard', { card: name(c) })"
+                      @click="add(c)"
+                    >
+                      +
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
             <div class="group">
               <h3>{{ t('decks.required') }}</h3>
               <ul>
                 <li v-for="c in contents.fixed" :key="c">
                   <span class="qty">{{ count(c) }}×</span>
+                  <ClassIcon :faction="def(c)?.class ?? 'neutral'" />
                   <span class="card-name">{{ name(c) }}</span>
+                  <span class="marker" aria-hidden="true">★</span>
                 </li>
               </ul>
             </div>
@@ -328,6 +360,7 @@ const titleCount = (code: string) => {
             </div>
             <ul>
               <li v-for="c in pool" :key="c.code">
+                <ClassIcon :faction="c.class" />
                 <span class="card-name" :style="{ '--class': classColor(c.code) }">{{
                   name(c.code)
                 }}</span>
@@ -566,8 +599,7 @@ select {
 }
 .card-name {
   flex: 1;
-  border-left: 3px solid var(--class, transparent);
-  padding-left: 6px;
+  color: var(--class, var(--ink));
 }
 .qty {
   min-width: 2ch;
@@ -595,5 +627,42 @@ select {
   .summary {
     flex-direction: column;
   }
+}
+.slot-section h4 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0 2px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+.slot-section h4 :deep(.slot-icon) {
+  width: 16px;
+  height: 16px;
+}
+.group h3 {
+  font-size: 0.95rem;
+  color: var(--ink);
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 6px;
+}
+.contents li {
+  border-bottom: none;
+}
+.contents li:hover,
+.pool li:hover,
+.contents li:focus-within {
+  background: var(--panel-2);
+}
+.contents li button,
+.pool li button {
+  min-width: 28px;
+  min-height: 32px;
+}
+.marker {
+  color: var(--brass);
 }
 </style>
