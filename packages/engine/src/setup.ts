@@ -113,7 +113,7 @@ export function prepareGame({
     throw new EngineError('Cada jugador debe usar un investigador distinto')
   }
   if (!scenario.locations.some((l) => l.id === scenario.startingLocation)) {
-    throw new EngineError('La localización inicial no está en juego')
+    throw new EngineError('El Lugar inicial no está en juego')
   }
   if (scenario.agendas.length === 0 || scenario.acts.length === 0) {
     throw new EngineError('El escenario necesita al menos un plan y un acto')
