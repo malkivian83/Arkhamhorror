@@ -31,11 +31,16 @@ import type {
   InvestigatorId,
 } from './types'
 
-/**
- * Cartas de la mano que el investigador puede jugar ahora: apoyos y eventos con
- * efecto implementado, que pueda pagar y cuyas restricciones se cumplan.
- * `fast`: true → las rápidas (sin acción); false → las que cuestan una acción.
- */
+/** RR: Unique. The shared canonical title applies across controllers and printings. */
+export function uniqueAssetInPlay(state: GameState, code: CardCode): boolean {
+  const def = playerCardDef(code)
+  return (
+    !!def?.unique &&
+    Object.values(state.assets).some((asset) => playerCardDef(asset.code)?.name === def.name)
+  )
+}
+
+/** Playable assets/events matching the requested fast or action window. */
 export function playableCards(state: GameState, id: InvestigatorId, fast: boolean): CardCode[] {
   const investigator = getInvestigator(state, id)
   if (investigator.eliminated || investigator.location === null) return []
@@ -44,6 +49,7 @@ export function playableCards(state: GameState, id: InvestigatorId, fast: boolea
     if (!def || (def.fast ?? false) !== fast) return false
     if (def.type !== 'asset' && def.type !== 'event') return false
     if (def.type === 'asset' && assetsBlocked(state, id)) return false
+    if (def.type === 'asset' && uniqueAssetInPlay(state, code)) return false
     if (typeBlocked(investigator, def.type, state.round)) return false
     const behavior = playerCardBehavior(code)
     if (def.type === 'event' && !behavior?.play) return false
@@ -112,7 +118,10 @@ export function canAffordEntry(state: GameState, location: string): boolean {
 export function actionCost(state: GameState, id: InvestigatorId, action: Action): number {
   const here = getInvestigator(state, id).location
   if (here === null) return 1
-  if (action.kind === 'investigate') {
+  if (
+    action.kind === 'investigate' ||
+    (action.kind === 'play' && playerCardBehavior(action.card)?.investigateAction)
+  ) {
     return 1 + (getLocation(state, here).investigateExtraActions ?? 0)
   }
   if (action.kind === 'move') return 1 + moveCost(state, here) + moveCost(state, action.to)

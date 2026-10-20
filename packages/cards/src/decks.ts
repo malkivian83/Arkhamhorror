@@ -85,9 +85,10 @@ export function cardPool(investigator: CardCode, extras: PoolExtras = {}): Playe
   ]
   return all.filter(
     (card) =>
-      byClass(investigator, card) ||
-      (card.reward && rewards.has(card.code)) ||
-      (isStandard(card.code) && !card.reward && options.some((o) => matchesExtra(card, o))),
+      isImplemented(card.code) &&
+      (byClass(investigator, card) ||
+        (card.reward && rewards.has(card.code)) ||
+        (isStandard(card.code) && !card.reward && options.some((o) => matchesExtra(card, o)))),
   )
 }
 
@@ -98,6 +99,7 @@ export function requiredDeckSize(investigator: CardCode, deck: CardCode[] = []):
 }
 
 export type DeckProblem =
+  | { key: 'deck.problem.unimplemented'; params: { card: string } }
   | { key: 'deck.problem.unknownInvestigator' }
   | { key: 'deck.problem.size'; params: { n: number; size: number } }
   | { key: 'deck.problem.notAllowed'; params: { card: string } }
@@ -111,7 +113,7 @@ export type DeckProblem =
 export interface DeckCheck {
   /** Errores: el mazo no se puede usar. */
   problems: DeckProblem[]
-  /** Cartas que aún no funcionan en el motor (se pueden llevar, pero no tendrán efecto). */
+  /** Cartas pendientes: se conservan en la lista, pero bloquean el inicio. */
   unimplemented: CardCode[]
   /** Falta la debilidad básica: se añadirá una al azar al empezar la campaña. */
   needsBasicWeakness: boolean
@@ -129,7 +131,7 @@ export function validateDeck(
   rewards: CardCode[] = [],
 ): DeckCheck {
   const investigator = byCode(deck.investigator)
-  if (!investigator?.deckOptions) {
+  if (!investigator?.deckOptions || !isImplemented(investigator.code)) {
     return {
       problems: [{ key: 'deck.problem.unknownInvestigator' }],
       unimplemented: [],
@@ -155,6 +157,9 @@ export function validateDeck(
     if (!card) {
       problems.push({ key: 'deck.problem.unknownCard', params: { card: code } })
       continue
+    }
+    if (!isImplemented(code)) {
+      problems.push({ key: 'deck.problem.unimplemented', params: { card: card.name } })
     }
     if (SIGNATURES.has(code) && !own.has(code)) {
       problems.push({ key: 'deck.problem.otherSignature', params: { card: card.name } })
@@ -247,24 +252,32 @@ export function arkhamDbDeckId(input: string): { kind: 'decklist' | 'deck'; id: 
 }
 
 /**
- * Convierte un mazo de ArkhamDB. Las cartas que no son de esta caja se devuelven
- * aparte (`unknown`), igual que un investigador que no está disponible.
+ * Conserva todos los códigos y cantidades. `unknown` informa de las definiciones
+ * pendientes, sin recortar el mazo ni sustituir ediciones.
  */
 export function deckFromArkhamDb(
   data: ArkhamDbDeck,
   id: string,
-): { deck: DeckList | null; unknown: string[] } {
+): { deck: DeckList; unknown: string[] } {
+  if (
+    !data ||
+    typeof data.name !== 'string' ||
+    typeof data.investigator_code !== 'string' ||
+    !data.slots ||
+    typeof data.slots !== 'object' ||
+    Array.isArray(data.slots)
+  )
+    throw new Error('Invalid ArkhamDB deck')
   const unknown: string[] = []
   const cards: CardCode[] = []
   for (const [code, count] of Object.entries(data.slots)) {
-    if (!byCode(code)) {
-      unknown.push(code)
-      continue
-    }
+    if (!Number.isSafeInteger(count) || count < 0 || count > 1000 || cards.length + count > 1000)
+      throw new Error(`Invalid ArkhamDB quantity: ${code}`)
+    if (count > 0 && !byCode(code)) unknown.push(code)
     for (let n = 0; n < count; n++) cards.push(code)
   }
   if (!byCode(data.investigator_code)?.deckOptions) {
-    return { deck: null, unknown: [data.investigator_code, ...unknown] }
+    unknown.unshift(data.investigator_code)
   }
   return { deck: { id, name: data.name, investigator: data.investigator_code, cards }, unknown }
 }

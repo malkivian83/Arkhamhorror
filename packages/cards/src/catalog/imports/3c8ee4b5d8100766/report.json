@@ -1,0 +1,896 @@
+{
+  "byClassification": {
+    "basic-weakness": 77,
+    "bonded": 22,
+    "dependency": 5,
+    "investigator": 103,
+    "restricted-review": 4,
+    "signature": 128,
+    "standard-candidate": 1530,
+    "weakness": 114
+  },
+  "byPack": [
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "and",
+      "spanishTextDifferent": 34,
+      "total": 34
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "aof",
+      "spanishTextDifferent": 3,
+      "total": 3
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "aon",
+      "spanishTextDifferent": 3,
+      "total": 3
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "apot",
+      "spanishTextDifferent": 11,
+      "total": 11
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "bad",
+      "spanishTextDifferent": 3,
+      "total": 3
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 4,
+      "pack": "bbt",
+      "spanishTextDifferent": 12,
+      "total": 12
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 4,
+      "pack": "blbe",
+      "spanishTextDifferent": 6,
+      "total": 7
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "bob",
+      "spanishTextDifferent": 3,
+      "total": 3
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "bota",
+      "spanishTextDifferent": 11,
+      "total": 11
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "bsr",
+      "spanishTextDifferent": 11,
+      "total": 11
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "btb",
+      "spanishTextDifferent": 8,
+      "total": 8
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "car",
+      "spanishTextDifferent": 32,
+      "total": 32
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 6,
+      "pack": "core",
+      "spanishTextDifferent": 102,
+      "total": 105
+    },
+    {
+      "localBehaviors": 104,
+      "localDefinitions": 104,
+      "modelBlocked": 0,
+      "pack": "core_2026",
+      "spanishTextDifferent": 102,
+      "total": 104
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "dca",
+      "spanishTextDifferent": 12,
+      "total": 12
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "def",
+      "spanishTextDifferent": 11,
+      "total": 11
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "dre",
+      "spanishTextDifferent": 1,
+      "total": 3
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "dsm",
+      "spanishTextDifferent": 11,
+      "total": 11
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 6,
+      "pack": "dwl",
+      "spanishTextDifferent": 39,
+      "total": 39
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "enc",
+      "spanishTextDifferent": 0,
+      "total": 7
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 55,
+      "pack": "eoep",
+      "spanishTextDifferent": 137,
+      "total": 137
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "eotp",
+      "spanishTextDifferent": 13,
+      "total": 14
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "fgg",
+      "spanishTextDifferent": 11,
+      "total": 11
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 35,
+      "pack": "fhvp",
+      "spanishTextDifferent": 140,
+      "total": 140
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "har",
+      "spanishTextDifferent": 33,
+      "total": 33
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "hfa",
+      "spanishTextDifferent": 0,
+      "total": 3
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "hhg",
+      "spanishTextDifferent": 9,
+      "total": 9
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "hote",
+      "spanishTextDifferent": 13,
+      "total": 13
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "hoth",
+      "spanishTextDifferent": 1,
+      "total": 3
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "icc",
+      "spanishTextDifferent": 11,
+      "total": 11
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "iotv",
+      "spanishTextDifferent": 1,
+      "total": 3
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "itd",
+      "spanishTextDifferent": 15,
+      "total": 15
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "itm",
+      "spanishTextDifferent": 10,
+      "total": 10
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "jac",
+      "spanishTextDifferent": 32,
+      "total": 32
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "lif",
+      "spanishTextDifferent": 11,
+      "total": 11
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "litas",
+      "spanishTextDifferent": 12,
+      "total": 12
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "lod",
+      "spanishTextDifferent": 13,
+      "total": 13
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 2,
+      "pack": "ltr",
+      "spanishTextDifferent": 6,
+      "total": 6
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "mar",
+      "spanishTextDifferent": 33,
+      "total": 33
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "mig",
+      "spanishTextDifferent": 32,
+      "total": 32
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "nat",
+      "spanishTextDifferent": 32,
+      "total": 32
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "otr",
+      "spanishTextDifferent": 3,
+      "total": 3
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 2,
+      "pack": "pap",
+      "spanishTextDifferent": 1,
+      "total": 3
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 3,
+      "pack": "pnr",
+      "spanishTextDifferent": 13,
+      "total": 13
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "promo",
+      "spanishTextDifferent": 2,
+      "total": 3
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 4,
+      "pack": "ptc",
+      "spanishTextDifferent": 43,
+      "total": 43
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "ptr",
+      "spanishTextDifferent": 0,
+      "total": 3
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 5,
+      "pack": "rcore",
+      "spanishTextDifferent": 113,
+      "total": 116
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "rod",
+      "spanishTextDifferent": 3,
+      "total": 3
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "rop",
+      "spanishTextDifferent": 1,
+      "total": 3
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "rtdwl",
+      "spanishTextDifferent": 11,
+      "total": 11
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "rtnotz",
+      "spanishTextDifferent": 10,
+      "total": 10
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "rtptc",
+      "spanishTextDifferent": 13,
+      "total": 13
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "rtr",
+      "spanishTextDifferent": 4,
+      "total": 4
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 9,
+      "pack": "rttcu",
+      "spanishTextDifferent": 15,
+      "total": 15
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "rttfa",
+      "spanishTextDifferent": 15,
+      "total": 15
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 2,
+      "pack": "sfk",
+      "spanishTextDifferent": 9,
+      "total": 9
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "sha",
+      "spanishTextDifferent": 10,
+      "total": 10
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "ste",
+      "spanishTextDifferent": 31,
+      "total": 31
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "tbb",
+      "spanishTextDifferent": 12,
+      "total": 12
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "tcoa",
+      "spanishTextDifferent": 8,
+      "total": 8
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 11,
+      "pack": "tcu",
+      "spanishTextDifferent": 42,
+      "total": 42
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 8,
+      "pack": "tdcp",
+      "spanishTextDifferent": 130,
+      "total": 130
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 19,
+      "pack": "tde",
+      "spanishTextDifferent": 39,
+      "total": 39
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "tdg",
+      "spanishTextDifferent": 0,
+      "total": 3
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "tdor",
+      "spanishTextDifferent": 1,
+      "total": 2
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "tdoy",
+      "spanishTextDifferent": 12,
+      "total": 12
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "tece",
+      "spanishTextDifferent": 12,
+      "total": 12
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 4,
+      "pack": "tfa",
+      "spanishTextDifferent": 42,
+      "total": 42
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "tftbw",
+      "spanishTextDifferent": 1,
+      "total": 3
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 3,
+      "pack": "tic",
+      "spanishTextDifferent": 40,
+      "total": 40
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "tmm",
+      "spanishTextDifferent": 13,
+      "total": 13
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "tof",
+      "spanishTextDifferent": 10,
+      "total": 10
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "tom",
+      "spanishTextDifferent": 32,
+      "total": 32
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 1,
+      "pack": "tpm",
+      "spanishTextDifferent": 12,
+      "total": 12
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "tsh",
+      "spanishTextDifferent": 13,
+      "total": 13
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 22,
+      "pack": "tskp",
+      "spanishTextDifferent": 128,
+      "total": 128
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 5,
+      "pack": "tsn",
+      "spanishTextDifferent": 11,
+      "total": 11
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "tuo",
+      "spanishTextDifferent": 12,
+      "total": 12
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "uad",
+      "spanishTextDifferent": 9,
+      "total": 9
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "uau",
+      "spanishTextDifferent": 11,
+      "total": 11
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "wda",
+      "spanishTextDifferent": 14,
+      "total": 14
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 4,
+      "pack": "wgd",
+      "spanishTextDifferent": 10,
+      "total": 10
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "win",
+      "spanishTextDifferent": 32,
+      "total": 32
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 2,
+      "pack": "woc",
+      "spanishTextDifferent": 10,
+      "total": 10
+    },
+    {
+      "localBehaviors": 0,
+      "localDefinitions": 0,
+      "modelBlocked": 0,
+      "pack": "wos",
+      "spanishTextDifferent": 10,
+      "total": 10
+    }
+  ],
+  "byType": {
+    "asset": 964,
+    "enemy": 33,
+    "event": 569,
+    "investigator": 105,
+    "location": 2,
+    "skill": 185,
+    "story": 3,
+    "treachery": 122
+  },
+  "corePilot": {
+    "added": [],
+    "changed": [],
+    "count": 104,
+    "missing": []
+  },
+  "localOnly": [
+    "12115",
+    "12137",
+    "12181",
+    "71016",
+    "71017",
+    "71018",
+    "71019",
+    "71022",
+    "71023",
+    "71024",
+    "71025",
+    "71028",
+    "71029",
+    "71030",
+    "71031",
+    "71034",
+    "71035",
+    "71036",
+    "71037",
+    "71040",
+    "71041",
+    "71042",
+    "71043",
+    "71046",
+    "71046b",
+    "71052"
+  ],
+  "notes": [
+    "All source rows are inventoried; model-blocked rows remain in the catalog and are never registered in the engine.",
+    "Different Spanish text is a heuristic, not proof of translation quality; advertised images have not been downloaded or verified.",
+    "Reference comparison uses only its partial cards.json, not its complete behavioral definitions.",
+    "A registered local behavior is an observation, not verification or activation of the imported record.",
+    "Complex source rules and original prose remain exclusively in the external snapshots."
+  ],
+  "referenceJsonOnly": [
+    "03065b",
+    "03066b",
+    "03067b",
+    "03068b",
+    "03069b",
+    "03076b",
+    "03077b",
+    "03078b",
+    "03079b",
+    "03080b",
+    "03325b",
+    "03326b",
+    "03326d",
+    "03327b",
+    "03327d",
+    "03327f",
+    "03328b",
+    "03328d",
+    "03328f",
+    "03329b",
+    "03329d",
+    "03330b",
+    "03331b",
+    "04325b",
+    "04326b",
+    "06127b",
+    "06128b",
+    "06129b",
+    "06130b",
+    "06131b",
+    "06132b",
+    "06133b",
+    "06134b",
+    "06135b",
+    "06136b",
+    "06137b",
+    "06138b",
+    "06139b",
+    "06140b",
+    "06141b",
+    "06142b",
+    "06143b",
+    "06214b",
+    "06254b",
+    "06255b",
+    "06256b",
+    "06257b",
+    "06258b",
+    "06259b",
+    "06260b",
+    "06261b",
+    "06262b",
+    "06263b",
+    "06264b",
+    "06265b",
+    "60336",
+    "83022b",
+    "83023b",
+    "83024b",
+    "83025b",
+    "83026b",
+    "83027b",
+    "83031b",
+    "83032b",
+    "83033b",
+    "83034b",
+    "83035b",
+    "83036b"
+  ],
+  "relationIssues": [
+    {
+      "code": "03009",
+      "reason": "embedded-face-conflict",
+      "target": "03009b"
+    },
+    {
+      "code": "06015a",
+      "reason": "embedded-face-conflict",
+      "target": "06015b"
+    },
+    {
+      "code": "08011a",
+      "reason": "embedded-face-conflict",
+      "target": "08011b"
+    },
+    {
+      "code": "08012a",
+      "reason": "embedded-face-conflict",
+      "target": "08012b"
+    },
+    {
+      "code": "08013a",
+      "reason": "embedded-face-conflict",
+      "target": "08013b"
+    },
+    {
+      "code": "08014a",
+      "reason": "embedded-face-conflict",
+      "target": "08014b"
+    },
+    {
+      "code": "10005",
+      "reason": "embedded-face-conflict",
+      "target": "10005b"
+    },
+    {
+      "code": "11068a",
+      "reason": "embedded-face-conflict",
+      "target": "11068b"
+    },
+    {
+      "code": "89002",
+      "reason": "embedded-face-conflict",
+      "target": "89002b"
+    },
+    {
+      "code": "89005",
+      "reason": "embedded-face-conflict",
+      "target": "89005b"
+    },
+    {
+      "code": "90052",
+      "reason": "embedded-face-conflict",
+      "target": "90052b"
+    }
+  ],
+  "schemaVersion": 1,
+  "spanishOnly": [],
+  "totals": {
+    "excluded": 0,
+    "imported": 1983,
+    "localBehaviors": 104,
+    "localDefinitions": 104,
+    "newlyActivated": 0,
+    "packsAvailable": 115,
+    "packsWithPlayerCards": 86,
+    "quarantined": 237,
+    "referenceJsonMatches": 747,
+    "sourceEnglish": 1983,
+    "sourceSpanish": 1983,
+    "spanishTextDifferent": 1943
+  }
+}

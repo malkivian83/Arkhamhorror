@@ -41,6 +41,8 @@ export {
   type TreacheryBehavior,
 } from './content'
 export { applyInput, createGame, dispatch, type EngineObserver } from './engine'
+export { attackDamage } from './combat'
+export { canAffordEntry, leavingBlocked } from './actions'
 export { BOONS } from './types'
 export { EngineError } from './errors'
 export {

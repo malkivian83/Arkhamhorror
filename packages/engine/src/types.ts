@@ -388,6 +388,7 @@ export interface StoryCardInPlay {
 }
 
 export interface Asset {
+  originalOwner?: InvestigatorId
   /** Perdición sobre el apoyo (cuenta para el plan). */
   doom?: number
   /** No ocupa ranura (Dr. Henry Armitage en Smoke and Mirrors). */
@@ -411,6 +412,7 @@ export type SkillTestKind =
       type: 'investigate'
       location: LocationId
       extraClues?: number
+      replaceClue?: boolean
       onSuccess?: Message[]
       /** Si se supera por al menos `atLeast`. */
       onSuccessBy?: { atLeast: number; then: Message[] }
@@ -427,6 +429,8 @@ export type SkillTestKind =
       bonusPerSuccess?: number
       /** Al fallar contra un enemigo enfrentado con otro: 1 daño por punto fallado, hasta este máximo. */
       failDamagePerPoint?: number
+      damageIfNoResources?: number
+      damageFromClues?: number
     }
   | { type: 'evade'; enemy: EnemyId; onSuccess?: Message[]; onFail?: Message[] }
   | {
@@ -460,6 +464,8 @@ export interface TokenEffect {
 }
 
 export interface SkillTest {
+  resultRepetitions?: number
+  abilityCounts?: Record<string, number>
   investigator: InvestigatorId
   skill: SkillType
   difficulty: number
@@ -532,6 +538,27 @@ export type PhaseStep =
 
 /** Todo lo que puede ocurrir en la partida. */
 export type Message =
+  | {
+      type: 'PlayerCardEffect'
+      code: CardCode
+      investigator: InvestigatorId
+      step: string
+      data?: Record<string, string | number | boolean>
+    }
+  | { type: 'ApplySkillTestResults'; prepared?: boolean }
+  | {
+      type: 'ModifySkillTest'
+      difficultyFactor?: number
+      resultRepetitions?: number
+      extraDamage?: number
+      use?: string
+      after?: Message[]
+    }
+  | { type: 'SpendAdditionalAction'; investigator: InvestigatorId; then: Message[] }
+  | { type: 'EndCurrentTurn'; investigator: InvestigatorId }
+  | { type: 'TransferResources'; from: InvestigatorId; to: InvestigatorId; amount: number }
+  | { type: 'TransferAssets'; transfers: { asset: AssetId; to: InvestigatorId }[] }
+  | { type: 'EventToVictory'; investigator: InvestigatorId; code: CardCode; points: number }
   | { type: 'BoonMorrigan'; investigator: InvestigatorId; candidates: CardCode[] }
   | { type: 'BoonWeakness'; investigator: InvestigatorId; candidates: CardCode[] }
   | { type: 'BoonAcceptAutofail' }
@@ -783,6 +810,7 @@ export type Message =
       engageWith: InvestigatorId | null
       owner?: InvestigatorId
       exhaustAfterSpawn?: boolean
+      windowResolved?: boolean
       after?: Message[]
     }
   | { type: 'RevealTreachery'; treachery: TreacheryId; investigator: InvestigatorId }
@@ -936,6 +964,8 @@ export type DamageHolder =
 
 /** Momentos en los que se comprueban las habilidades forzadas. */
 export type Trigger =
+  | { type: 'beforeEnemySpawns'; location: LocationId; card: EnemyCard }
+  | { type: 'afterRevealChaosToken'; investigator: InvestigatorId; token: ChaosToken }
   | {
       type: 'afterDiscoverClues'
       investigator: InvestigatorId
