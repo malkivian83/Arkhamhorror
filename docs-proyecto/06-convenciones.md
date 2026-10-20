@@ -10,10 +10,11 @@
 
 ## Ramas y commits
 
-- Una rama por tarea: `feat/…`, `fix/…`, `docs/…`, `chore/…`.
+- Se sube siempre directamente a `main`, sin ramas de trabajo ni pull requests.
 - Commits pequeños, mensaje en imperativo ("Añadir prueba de habilidad").
-- Pull request a `main` con CI en verde; al fusionarla se borra la rama.
-- Reglas de ramas para agentes de IA: [AGENTS.md](../AGENTS.md).
+- Antes de subir, las comprobaciones de la CI en verde: lo que llega a `main`
+  se despliega solo.
+- Reglas para agentes de IA: [AGENTS.md](../AGENTS.md).
 
 ## Código
 

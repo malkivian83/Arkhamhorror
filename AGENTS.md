@@ -4,24 +4,18 @@ Este archivo lo leen Codex, Claude Code y otros agentes. Las convenciones
 generales del proyecto están en
 [docs-proyecto/06-convenciones.md](docs-proyecto/06-convenciones.md).
 
-## Ramas: las mínimas
+## Siempre a `main`
 
-El repositorio debe tener solo `main`, `deploy` y las ramas con una PR abierta.
+Los cambios se suben siempre directamente a `main`, sin ramas de trabajo ni PR.
 
-- **Antes de crear una rama**, mira si ya hay una PR abierta para esa tarea
-  (`gh pr list`). Si existe, trabaja en su rama.
-- **Una rama por tarea, no por paso.** Las correcciones, los ajustes tras una
-  revisión y los arreglos de CI van en la misma rama y la misma PR.
-- **No crees ramas para explorar o probar.** Para eso usa el árbol de trabajo
-  local o una carpeta temporal, sin subirlas a GitHub.
-- **No subas una rama sin abrir su PR.** Cada rama remota debe tener una PR
-  abierta; si no va a tenerla, no la subas.
-- **Al fusionar la PR, borra la rama** remota y la local
-  (`gh pr merge --delete-branch`).
-- **Si una rama ya está fusionada en `main`**, bórrala en vez de reutilizarla.
-  Lo está si `git rev-list --count origin/main..<rama>` da 0. La siguiente
-  tarea parte de `main` actualizado.
-- Nombres: `feat/…`, `fix/…`, `docs/…`, `chore/…`, cortos y en minúsculas.
+- **Trabaja en `main`.** Haz los commits ahí y súbelos con `git push origin main`.
+- **Trae lo último antes de empezar y antes de subir** (`git pull --rebase`).
+- **No crees ramas**, ni locales ni remotas. Para explorar o probar, usa el
+  árbol de trabajo local o una carpeta temporal.
+- **Pasa las comprobaciones de la CI antes de subir.** Todo lo que llega a
+  `main` se despliega solo cuando pasa la CI, así que antes de cada push
+  ejecuta `pnpm format:check`, `pnpm lint`, `pnpm typecheck`, `pnpm test` y,
+  si tocas la web o el servidor, `pnpm build`.
 
 ## Rama `deploy`
 
@@ -31,6 +25,4 @@ merges, ni la borres, ni la uses como base de otra rama.
 
 ## Commits y push
 
-- No hagas commit, push ni PR sin que la persona usuaria lo pida.
-- Todo lo que llega a `main` se despliega solo cuando pasa la CI, así que no
-  hagas push directo a `main`: usa siempre una PR.
+- No hagas commit ni push sin que la persona usuaria lo pida.
