@@ -44,6 +44,10 @@ vigente de pendientes.
 | 21 | [Cuentas y guardado en servidor](21-cuentas-y-guardado-en-servidor.md) | Informe histórico de diseño previo a la implementación del documento 22. |
 | 22 | [Implementación de cuentas y MySQL](22-implementacion-cuentas-mysql.md) | Registro, Google, bibliotecas privadas, sincronización, desarrollo local, despliegue y límites pendientes. |
 | 23 | [Despliegue completo desde Plesk](23-despliegue-plesk.md) | Web y API, pnpm automático, migraciones, administrador y reinicio desde el panel, sin SSH. |
+| 24 | [Importación masiva de cartas de jugador](24-importacion-masiva-cartas-jugador.md) | Comparación de fuentes, estudio de la referencia y ArkhamDB, proceso reproducible, límites del motor y plan de activación por lotes verificados. |
+| 25 | [Primera importación del inventario de jugador](25-primer-inventario-cartas-jugador.md) | 1.983 registros, 86 paquetes, piloto de 104 cartas sin diferencias, herramienta reproducible y matriz de bloqueos; activación jugable pendiente. |
+| 26 | [Primer lote jugable de cartas de jugador](26-primer-lote-jugable-cartas-jugador.md) | Siete cartas con comportamiento y pruebas, presentación EN/ES y mazos importados completos; [matriz de las 24 preseleccionadas](26-matriz-piloto-jugador.csv). |
+| 27 | [Cierre del piloto de cartas de jugador](27-cierre-piloto-cartas-jugador.md) | 24 cartas verificadas; 17 añadidas, mecánicas nuevas y 1.855 registros restantes. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

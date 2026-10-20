@@ -1,0 +1,32 @@
+import { registerPlayerCards, type PlayerCardDef } from '@lcg/engine'
+import definitions from '../data/dunwich-pilot.json'
+import approvals from './approvals.json'
+import './laboratory-assistant'
+import './clarity-of-mind'
+import './peter-sylvestre'
+import './emergency-aid'
+import './contraband'
+import './smoking-pipe'
+import './painkillers'
+import './blackjack'
+import './taunt'
+import './teamwork'
+import './strange-solution'
+import './shortcut'
+import './seeking-answers'
+import './liquid-courage'
+import './think-on-your-feet'
+import './double-or-nothing'
+import './rite-of-seeking'
+import './ritual-candles'
+import './fire-axe'
+import './bait-and-switch'
+import './kukri'
+import './ive-got-a-plan'
+import './delve-too-deep'
+import './oops'
+
+registerPlayerCards(definitions as PlayerCardDef[])
+
+/** Reviewed cards presented with local data and summaries, without imported scans. */
+export const RENDERED_PLAYER_CARD_CODES = approvals.cards.map((card) => card.code)

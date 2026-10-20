@@ -101,15 +101,16 @@ describe('mazos: ArkhamDB', () => {
     expect(arkhamDbDeckId('no es un mazo')).toBeNull()
   })
 
-  it('convierte las cartas y separa las que no son de esta caja', () => {
+  it('conserva todas las cartas e informa de los códigos todavía desconocidos', () => {
     const { deck, unknown } = deckFromArkhamDb(
       { name: 'Mazo', investigator_code: DANIELA, slots: { [code(20)]: 2, '01016': 1 } },
       'id',
     )
-    expect(deck?.cards).toEqual([code(20), code(20)])
+    expect(deck.cards).toEqual([code(20), code(20), '01016'])
     expect(unknown).toEqual(['01016'])
     const other = deckFromArkhamDb({ name: 'Roland', investigator_code: '01001', slots: {} }, 'id')
-    expect(other.deck).toBeNull()
+    expect(other.deck.investigator).toBe('01001')
+    expect(other.unknown).toEqual(['01001'])
   })
 })
 

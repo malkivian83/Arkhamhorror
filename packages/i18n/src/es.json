@@ -121,7 +121,8 @@
       "playTome": "¿Juegas el Tomo pagando su coste?",
       "orderEncounter": "Elige la siguiente carta desde la parte superior del mazo",
       "drawMystery": "Elige qué carta robas de debajo del Lugar"
-    }
+    },
+    "pilotTarget": "Elige quién recibe el efecto"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -229,7 +230,18 @@
       "trait": "{trait}",
       "unspell": "Liberar a {card}"
     },
-    "card": "{card}"
+    "card": "{card}",
+    "pilotHealDamage": "Curar {n} daño de {name}",
+    "pilotDoubleUses": "Duplicar los usos de {card}",
+    "pilotDone": "Terminar",
+    "pilotAgree": "Aceptar",
+    "pilotGiveResources": "Dar {n} recursos de {from} a {to}",
+    "pilotGiveAsset": "Dar {card} de {from} a {to}",
+    "pilotExchange": "Intercambiar {first} y {second}",
+    "pilotMove": "Mover a {name} a {location}",
+    "pilotMoveEnemy": "Mover a {enemy} a {location}",
+    "pilotClue": "Obtener una pista de {location}",
+    "pilotKukri": "Gastar otra acción para infligir daño adicional"
   },
   "phase": {
     "setup": "Preparación",
@@ -346,7 +358,14 @@
       "violentCommands": "Órdenes violentas: 2 daños a {name}",
       "callahanShot": "Callahan: agotar para infligir 1 daño a {enemy}",
       "olneyCommit": "Olney: descartar la carta superior y comprometerla si es válida"
-    }
+    },
+    "pilotHealHorror": "{card}: curar 1 horror a {name}",
+    "pilotPipe": "Pipa: recibir daño y curar horror",
+    "pilotPainkillers": "Analgésicos: recibir horror y curar daño",
+    "pilotIdentify": "Identificar la solución",
+    "pilotCourage": "Curar horror a {name} y probar su voluntad",
+    "pilotAxe": "Gastar un recurso para +2 a combate",
+    "pilotCandle": "Velas rituales: +1 a habilidad"
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -730,7 +749,8 @@
       "defeatedElokoss": "los investigadores derrotaron a Elokoss y a los Hermanos de la Ceniza",
       "campaignWon": "los investigadores ganaron la campaña",
       "stoppedRebirth": "los investigadores impidieron el glorioso renacer de Elokoss",
-      "floodedRitual": "los investigadores inundaron el ritual de invocación de los Hermanos de la Ceniza"
+      "floodedRitual": "los investigadores inundaron el ritual de invocación de los Hermanos de la Ceniza",
+      "identifiedSolution": "Se ha identificado la solución"
     },
     "scenario": {
       "smokeAndMirrors": "el Escenario II: Smoke and Mirrors",
@@ -976,7 +996,7 @@
     "size": "{n}/{size} cartas",
     "basicWeakness": "Sin debilidad básica: al empezar la campaña se añadirá una al azar.",
     "ready": "El mazo cumple las reglas de construcción.",
-    "unimplemented": "Aún sin efecto en el juego: {cards}.",
+    "unimplemented": "Cartas pendientes que impiden iniciar la partida: {cards}.",
     "contents": "Contenido",
     "required": "Exclusivas y debilidades",
     "pool": "Cartas disponibles",
@@ -998,12 +1018,14 @@
       "action": "Importar",
       "loading": "Importando…",
       "done": "Importado: {name}.",
-      "partial": "Importado. {n} cartas no son de esta caja y se han quitado.",
+      "partial": "Mazo conservado completo. Hay {n} códigos pendientes; no podrás iniciar una partida hasta resolverlos.",
       "badLink": "No es un enlace de mazo de ArkhamDB.",
       "notFound": "No se encontró ese mazo (los privados deben estar compartidos).",
       "network": "No se pudo conectar con ArkhamDB.",
-      "investigator": "Ese investigador aún no está disponible."
-    }
+      "investigator": "Ese investigador aún no está disponible.",
+      "invalidData": "El mazo recibido tiene un formato o cantidades no válidos."
+    },
+    "pendingCards": "Cartas pendientes"
   },
   "deck": {
     "problem": {
@@ -1015,7 +1037,8 @@
       "otherSignature": "{card} es exclusiva de otro investigador.",
       "levelAtStart": "{card} tiene nivel: al empezar la campaña solo se admite nivel 0.",
       "unknownCard": "Carta desconocida: {card}.",
-      "rewardNotEarned": "Recompensa no ganada: {card}"
+      "rewardNotEarned": "Recompensa no ganada: {card}",
+      "unimplemented": "{card} aún no está implementada. No se puede iniciar la partida con ella."
     }
   },
   "keywords": {
@@ -1232,7 +1255,31 @@
       "12173": "Las pistas del grupo apagan Fire de tu Lugar. Derrota a Elokoss; los Sectarios preparados van hacia la cisterna.",
       "12175": "Entrar sin revelar cuesta una pista por investigador en grupo. Superar la prueba de la válvula derrota a todos los enemigos y mata a quienes no desistieron.",
       "12179": "Descomunal, represalia. No se mueve ni ataca por oportunidad. Paga tus pistas para colocar pruebas; cinco detienen el renacimiento.",
-      "12179b": "Cazador descomunal. Tras evitarla se prepara, pero no ataca a ese investigador durante la ronda."
+      "12179b": "Cazador descomunal. Tras evitarla se prepara, pero no ataca a ese investigador durante la ronda.",
+      "02020": "Amplía tu límite de mano en dos. Al entrar, puedes robar dos cartas.",
+      "02030": "Consume una acción y una carga para quitar un horror a alguien de tu Lugar. Empieza con tres cargas.",
+      "02033": "Aporta un punto de agilidad. Al terminar tu turno, puedes quitarle un horror a Peter.",
+      "02105": "Recupera hasta dos puntos de salud de un investigador cercano o de uno de sus aliados.",
+      "02109": "Aumenta al doble la munición o los suministros que le quedan a un apoyo cercano.",
+      "02116": "Sin acción: consume un suministro, agota la Pipa y recibe un daño antes de recuperar un punto de cordura.",
+      "02117": "Sin acción: consume un suministro, agota los Analgésicos y recibe un horror antes de recuperar un punto de salud.",
+      "02016": "Ataca con +1 a combate. Un ataque fallido no daña a otro investigador.",
+      "02017": "Rápido durante tu turno: enfréntate a los enemigos que elijas de tu Lugar.",
+      "02018": "Los investigadores reunidos pueden acordar intercambiar recursos y apoyos Objeto o Aliado.",
+      "02021": "Gasta una acción para probar intelecto (4). Si tienes éxito, descarta este apoyo, roba dos cartas y registra la identificación.",
+      "02022": "Rápido durante tu turno: mueve a un investigador de aquí a un Lugar conectado.",
+      "02023": "Investiga aquí; con éxito, obtén una pista de un Lugar conectado en su lugar.",
+      "02024": "Gasta una acción y un suministro para curar horror aquí. El paciente prueba voluntad (2): cura otro horror con éxito o descarta al azar con fracaso.",
+      "02025": "Antes de que aparezca un enemigo aquí, muévete a un Lugar conectado.",
+      "02026": "Asigna como máximo una por prueba. Duplica la dificultad y, con éxito, sus efectos. Usa las reglas originales sin tabú opcional.",
+      "02028": "Gasta una acción y una carga para investigar con voluntad y obtener dos pistas. Ciertos símbolos terminan tu turno tras la prueba.",
+      "02029": "Tras revelar calavera, sectario, tablilla o antiguo en tu prueba, puedes sumar +1 a tu habilidad.",
+      "02032": "Ataca y gasta hasta tres recursos para sumar +2 a combate por recurso. Inflige daño adicional si al resolver no tienes recursos.",
+      "02034": "Evita sin ataques de oportunidad. Con éxito, mueve al objetivo no Élite a un Lugar conectado.",
+      "02036": "Ataca con +1 a combate. Tras tener éxito, puedes gastar otra acción para infligir daño adicional.",
+      "02107": "Ataca con intelecto; añade daño igual a tus pistas, hasta un máximo de tres.",
+      "02111": "Cada investigador roba un encuentro en orden. Después, coloca este evento en victoria por un punto.",
+      "02113": "Tras fallar por hasta dos un ataque contra un enemigo enfrentado contigo, inflige su daño a otro enemigo de aquí."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -1243,7 +1290,33 @@
       "12172": "Aparece Elokoss, Fire entra en los encuentros y queda disponible Sluice Control.",
       "12173": "Derrotar a Elokoss conduce a la resolución uno."
     },
-    "victory": "Victoria {n}"
+    "victory": "Victoria {n}",
+    "names": {
+      "02020": "Ayudante de laboratorio",
+      "02030": "Claridad mental",
+      "02033": "Peter Sylvestre",
+      "02105": "Cura de urgencia",
+      "02109": "Contrabando",
+      "02116": "Pipa",
+      "02117": "Analgésicos",
+      "02016": "Cachiporra",
+      "02017": "Provocación",
+      "02018": "Trabajo en equipo",
+      "02021": "Solución extraña",
+      "02022": "Atajo",
+      "02023": "Buscando respuestas",
+      "02024": "Coraje líquido",
+      "02025": "Improvisar sobre la marcha",
+      "02026": "Doble o nada",
+      "02028": "Rito de búsqueda",
+      "02029": "Velas rituales",
+      "02032": "Hacha de bombero",
+      "02034": "Reclamo",
+      "02036": "Kukri",
+      "02107": "\"¡Tengo un plan!\"",
+      "02111": "Ahondar demasiado",
+      "02113": "¡Ups!"
+    }
   },
   "account": {
     "title": "Tu cuenta de Arkham",

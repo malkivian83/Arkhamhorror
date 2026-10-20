@@ -7,6 +7,7 @@
     "node": ">=24"
   },
   "scripts": {
+    "cards:import": "node scripts/import-player-cards.mjs",
     "dev": "pnpm --parallel --filter ./apps/* dev",
     "build": "pnpm -r build",
     "build:plesk": "pnpm --filter @lcg/web build && node scripts/package-plesk.mjs",

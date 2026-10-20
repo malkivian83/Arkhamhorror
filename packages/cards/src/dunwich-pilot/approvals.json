@@ -1,0 +1,176 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "cards": [
+    {
+      "code": "02016",
+      "status": "verified",
+      "module": "blackjack",
+      "test": "blackjack.test.ts"
+    },
+    {
+      "code": "02017",
+      "status": "verified",
+      "module": "taunt",
+      "test": "taunt.test.ts",
+      "fast": true
+    },
+    {
+      "code": "02018",
+      "status": "verified",
+      "module": "teamwork",
+      "test": "teamwork.test.ts"
+    },
+    {
+      "code": "02020",
+      "status": "verified",
+      "module": "laboratory-assistant",
+      "test": "laboratory-assistant.test.ts"
+    },
+    {
+      "code": "02021",
+      "status": "verified",
+      "module": "strange-solution",
+      "test": "strange-solution.test.ts"
+    },
+    {
+      "code": "02022",
+      "status": "verified",
+      "module": "shortcut",
+      "test": "shortcut.test.ts",
+      "fast": true
+    },
+    {
+      "code": "02023",
+      "status": "verified",
+      "module": "seeking-answers",
+      "test": "seeking-answers.test.ts"
+    },
+    {
+      "code": "02024",
+      "status": "verified",
+      "module": "liquid-courage",
+      "test": "liquid-courage.test.ts",
+      "uses": {
+        "count": 4,
+        "type": "supplies"
+      }
+    },
+    {
+      "code": "02025",
+      "status": "verified",
+      "module": "think-on-your-feet",
+      "test": "think-on-your-feet.test.ts",
+      "fast": true
+    },
+    {
+      "code": "02026",
+      "status": "verified",
+      "module": "double-or-nothing",
+      "test": "double-or-nothing.test.ts",
+      "commitLimit": 1
+    },
+    {
+      "code": "02028",
+      "status": "verified",
+      "module": "rite-of-seeking",
+      "test": "rite-of-seeking.test.ts",
+      "uses": {
+        "count": 3,
+        "type": "charges"
+      }
+    },
+    {
+      "code": "02029",
+      "status": "verified",
+      "module": "ritual-candles",
+      "test": "ritual-candles.test.ts"
+    },
+    {
+      "code": "02030",
+      "status": "verified",
+      "module": "clarity-of-mind",
+      "test": "clarity-of-mind.test.ts",
+      "uses": {
+        "count": 3,
+        "type": "charges"
+      }
+    },
+    {
+      "code": "02032",
+      "status": "verified",
+      "module": "fire-axe",
+      "test": "fire-axe.test.ts"
+    },
+    {
+      "code": "02033",
+      "status": "verified",
+      "module": "peter-sylvestre",
+      "test": "peter-sylvestre.test.ts"
+    },
+    {
+      "code": "02034",
+      "status": "verified",
+      "module": "bait-and-switch",
+      "test": "bait-and-switch.test.ts"
+    },
+    {
+      "code": "02036",
+      "status": "verified",
+      "module": "kukri",
+      "test": "kukri.test.ts"
+    },
+    {
+      "code": "02105",
+      "status": "verified",
+      "module": "emergency-aid",
+      "test": "emergency-aid.test.ts"
+    },
+    {
+      "code": "02107",
+      "status": "verified",
+      "module": "ive-got-a-plan",
+      "test": "ive-got-a-plan.test.ts"
+    },
+    {
+      "code": "02109",
+      "status": "verified",
+      "module": "contraband",
+      "test": "contraband.test.ts"
+    },
+    {
+      "code": "02111",
+      "status": "verified",
+      "module": "delve-too-deep",
+      "test": "delve-too-deep.test.ts"
+    },
+    {
+      "code": "02113",
+      "status": "verified",
+      "module": "oops",
+      "test": "oops.test.ts",
+      "fast": true
+    },
+    {
+      "code": "02116",
+      "status": "verified",
+      "module": "smoking-pipe",
+      "test": "smoking-pipe.test.ts",
+      "uses": {
+        "count": 3,
+        "type": "supplies"
+      }
+    },
+    {
+      "code": "02117",
+      "status": "verified",
+      "module": "painkillers",
+      "test": "painkillers.test.ts",
+      "uses": {
+        "count": 3,
+        "type": "supplies"
+      }
+    }
+  ]
+}

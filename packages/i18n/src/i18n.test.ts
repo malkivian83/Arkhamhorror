@@ -13,9 +13,12 @@ describe('i18n', () => {
   })
 
   it('ningún texto está vacío', () => {
+    const check = (value: unknown): void => {
+      if (typeof value === 'string') expect(value.trim()).not.toBe('')
+      else if (value && typeof value === 'object') Object.values(value).forEach(check)
+    }
     for (const locale of [messages.en, messages.es]) {
-      const flat = JSON.stringify(locale)
-      expect(flat).not.toContain('""')
+      check(locale)
     }
   })
 })

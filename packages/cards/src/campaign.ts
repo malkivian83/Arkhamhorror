@@ -6,6 +6,7 @@
  * campaña, "Earning and Spending Experience").
  */
 import {
+  allPlayerCardDefs,
   createGame,
   shuffle,
   seedRng,
@@ -42,6 +43,7 @@ import './core-2026/cards'
 import './core-2026/investigators'
 import './core-2026/upgrades'
 import './core-2026/weaknesses'
+import './dunwich-pilot'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
@@ -121,6 +123,7 @@ export function newCampaign(
     investigators.some((i) => !playerCardDef(i.id) || i.deck.some((code) => !playerCardDef(code)))
   )
     throw new Error('Contenido de mazo desconocido')
+  for (const investigator of investigators) assertAvailable(investigator.id, investigator.deck)
   const log = emptyCampaignLog(investigators.map((i) => i.id))
   if (boons.includes('ancients') && !campaignDefinition(campaignId).standalone) {
     for (const record of Object.values(log.investigators)) record.xp = 5
@@ -167,6 +170,7 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
   const definition = campaignDefinition(campaign.id)
   const members = activeMembers(campaign)
   if (!members.length) throw new Error('No quedan investigadores que puedan continuar')
+  for (const investigator of members) assertAvailable(investigator.id, investigator.deck)
   const scenario = entry.build({
     difficulty: campaign.difficulty,
     log: campaign.log,
@@ -266,13 +270,19 @@ export const deckSizeOf = (investigator: InvestigatorId, deck: CardCode[] = []) 
 const SIGNATURES = new Set(playerCards.flatMap((c) => c.signatures ?? []))
 const isSignature = (card: CardCode) => SIGNATURES.has(card)
 
-const byCode = (card: CardCode): PlayerCardDef | undefined =>
-  playerCards.find((c) => c.code === card)
+const byCode = (card: CardCode): PlayerCardDef | undefined => playerCardDef(card)
 const level = (card: CardCode) => byCode(card)?.xp ?? 0
 
 /** Content with a registered implementation, including cards with printed data only. */
 export function isImplemented(card: CardCode): boolean {
   return !!(playerCardBehavior(card) || treacheryBehavior(card) || investigatorBehavior(card))
+}
+
+function assertAvailable(investigator: CardCode, cards: CardCode[]): void {
+  const pending = [investigator, ...cards].filter(
+    (code) => !playerCardDef(code) || !isImplemented(code),
+  )
+  if (pending.length) throw new Error(`Cartas no disponibles: ${[...new Set(pending)].join(', ')}`)
 }
 
 /** Cuenta para el tamaño del mazo (ni debilidades, ni exclusivas, ni permanentes). */
@@ -310,12 +320,14 @@ export function purchaseOptions(
   const xp = campaign.log.investigators[investigator]?.xp ?? 0
   const options = byCode(investigator)?.deckOptions ?? []
   const full = deckSize(deck) >= deckSizeOf(investigator, deck)
-  return playerCards
+  return allPlayerCardDefs()
     .filter(
       (card) =>
-        card.type !== 'investigator' &&
+        ['asset', 'event', 'skill'].includes(card.type) &&
         !card.weakness &&
         !card.reward &&
+        !card.story &&
+        isImplemented(card.code) &&
         !isSignature(card.code) &&
         options.some((o) => o.classes.includes(card.class) && (card.xp ?? 0) <= o.maxLevel),
     )

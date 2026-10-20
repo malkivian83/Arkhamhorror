@@ -4,6 +4,7 @@ import manifest from './cardImageManifest.json'
 import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { fallbackCards } from './fallbackCards'
+import { RENDERED_PLAYER_CARD_CODES } from '@lcg/cards'
 
 describe('imágenes españolas de referencia y alternativas', () => {
   it('cada original tiene una miniatura local independiente, también las dos caras', () => {
@@ -31,12 +32,22 @@ describe('imágenes españolas de referencia y alternativas', () => {
         )
       }
   })
-  it('incluye todas las cartas principales de nuestro contenido y los 62 códigos de Gala', () => {
+  it('cubre cada carta con imagen local o presentación renderizada aprobada', () => {
     const codes = new Set(fallbackCards('en').map((c) => c.code))
+    const rendered = new Set(RENDERED_PLAYER_CARD_CODES)
     for (let n = 1; n <= 62; n++) codes.add(`71${String(n).padStart(3, '0')}`)
-    for (const code of codes)
-      if (/^\d{5}b?$/.test(code))
+    for (const code of codes) {
+      if (rendered.has(code)) {
+        for (const locale of ['en', 'es']) {
+          const card = fallbackCards(locale).find((card) => card.code === code)!
+          expect(card.name, code).toBeTruthy()
+          expect(card.text, code).toBeTruthy()
+          if (card.type_code === 'skill') expect(card.cost, code).toBeUndefined()
+          else expect(card.cost, code).toBeTypeOf('number')
+        }
+      } else if (/^\d{5}b?$/.test(code))
         expect(cardImages(code, false, 'en').length, code).toBeGreaterThan(0)
+    }
   })
   it.each(['10128', '12017'])(
     'prefiere el recurso español disponible de %s y conserva el inglés',

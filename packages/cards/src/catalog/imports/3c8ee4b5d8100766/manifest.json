@@ -1,0 +1,52 @@
+{
+  "baselineSha256": "6906e56507dfbc48673546cbfdf8a5e87a6dcc284675a43e740f9cdf82b9c1f8",
+  "files": {
+    "catalog.json": "245097709cf63445099416cfe7ff99986a0d2585de066c63d1761187a1b95929",
+    "coverage.csv": "1bfb6562940eca2b2c08cf98e57370e44b28996a566bf142c197322ef7e01e98",
+    "report.json": "5d966093b5d68e538890f6e69e050d7e4f24ac7baa6302a4fa931f5c7f92766e"
+  },
+  "id": "3c8ee4b5d8100766",
+  "importerVersion": 1,
+  "reference": {
+    "records": 815,
+    "scope": "partial-reference-json-only",
+    "sha256": "e9b3b9fe405f5fdda3fb3f131c7dd26e563b2c102083cc21335f1faface81ca8"
+  },
+  "runtimeSha256": "bf3e953df380849a2d779e42c0a2b822b5c42cca82ed9022a885e47d6369bf96",
+  "scope": "inventory-only-not-registered",
+  "sources": {
+    "en": {
+      "headers": {
+        "cache-control": "max-age=600, public",
+        "etag": null,
+        "last-modified": "Mon, 12 Oct 2026 11:12:09 GMT"
+      },
+      "retrievedAt": "2026-10-20T16:49:07.335Z",
+      "sha256": "36bdf57ced256a33c3145b1562eea5f8ea6146d38e6a600cb04e27d43ef5749e",
+      "status": 200,
+      "url": "https://arkhamdb.com/api/public/cards/"
+    },
+    "es": {
+      "headers": {
+        "cache-control": "max-age=600, public",
+        "etag": null,
+        "last-modified": "Mon, 12 Oct 2026 11:12:36 GMT"
+      },
+      "retrievedAt": "2026-10-20T16:49:07.958Z",
+      "sha256": "a0c6718cee586d37c71c542132b79fed82dda49c8a388d75a7cf8b13baf5cf2c",
+      "status": 200,
+      "url": "https://es.arkhamdb.com/api/public/cards/"
+    },
+    "packs": {
+      "headers": {
+        "cache-control": "max-age=600, public",
+        "etag": null,
+        "last-modified": "Mon, 12 Oct 2026 11:11:14 GMT"
+      },
+      "retrievedAt": "2026-10-20T16:49:08.958Z",
+      "sha256": "0e7b1205c3f06455c5d3ad3cfb51a19831ec0fba67927cd0b1ce05b354f9674d",
+      "status": 200,
+      "url": "https://arkhamdb.com/api/public/packs/"
+    }
+  }
+}

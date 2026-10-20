@@ -1,3 +1,5 @@
 pnpm-lock.yaml
 dist
 docs-proyecto
+# Generated inventory bundles are verified by their manifests, not rewritten by formatters.
+packages/cards/src/catalog/imports/

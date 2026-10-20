@@ -10,7 +10,13 @@ const root = 'apps/web/public/local-assets/cards'
 const manifestPath = 'apps/web/src/game/cardImageManifest.json'
 try {
   const { fallbackCards } = await server.ssrLoadModule('/apps/web/src/game/fallbackCards.ts')
-  const codes = new Set(fallbackCards('en').map((c) => c.code.replace(/b$/, '')))
+  const { RENDERED_PLAYER_CARD_CODES } = await server.ssrLoadModule('/packages/cards/src/index.ts')
+  const rendered = new Set(RENDERED_PLAYER_CARD_CODES)
+  const codes = new Set(
+    fallbackCards('en')
+      .filter((card) => !rendered.has(card.code))
+      .map((c) => c.code.replace(/b$/, '')),
+  )
   for (let n = 1; n <= 62; n++) codes.add(`71${String(n).padStart(3, '0')}`)
   codes.add('10128')
   const spanish = JSON.parse(

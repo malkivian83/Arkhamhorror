@@ -5,12 +5,12 @@ import {
   emptyDeck,
   investigatorCards,
   isStandard,
-  playerCards,
   STARTER_DECKS,
   starterDeckList,
   type DeckList,
   type DeckProblem,
 } from '@lcg/cards'
+import { playerCardDef } from '@lcg/engine'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import GameCard from '../components/GameCard.vue'
@@ -29,7 +29,7 @@ const { t } = useI18n()
 const store = useDecksStore()
 
 const name = (code: string) => localName(cardName(code))
-const def = (code: string) => playerCards.find((c) => c.code === code)
+const def = playerCardDef
 
 // ------------------------------------------------------------- Lista y creación
 const selectedId = ref<string | null>(store.decks[0]?.id ?? null)
@@ -113,7 +113,7 @@ const TYPES = ['asset', 'event', 'skill'] as const
 /** Contenido del mazo agrupado por tipo; aparte, exclusivas y debilidades. */
 const contents = computed(() => {
   const deck = selected.value
-  if (!deck) return { groups: [], fixed: [] }
+  if (!deck) return { groups: [], fixed: [], unknown: [] }
   const unique = [...new Set(deck.cards)].sort((a, b) => name(a).localeCompare(name(b)))
   return {
     groups: TYPES.map((type) => ({
@@ -135,6 +135,7 @@ const contents = computed(() => {
         .filter((section) => section.cards.length),
     })).filter((g) => g.cards.length),
     fixed: unique.filter((c) => !isStandard(c)),
+    unknown: unique.filter((c) => !def(c)),
   }
 })
 
@@ -282,6 +283,22 @@ const titleCount = (code: string) => {
         <div class="columns">
           <section class="contents" :aria-label="t('decks.contents')">
             <h2>{{ t('decks.contents') }}</h2>
+            <div v-if="contents.unknown.length" class="group">
+              <h3>{{ t('decks.pendingCards') }}</h3>
+              <ul>
+                <li v-for="c in contents.unknown" :key="c">
+                  <span class="qty">{{ count(c) }}×</span>
+                  <span class="card-name">{{ c }}</span>
+                  <button
+                    type="button"
+                    :aria-label="t('decks.removeCard', { card: c })"
+                    @click="removeOne(c)"
+                  >
+                    −
+                  </button>
+                </li>
+              </ul>
+            </div>
             <div v-for="g in contents.groups" :key="g.type" class="group">
               <h3>
                 {{ t(`choice.cardType.${g.type}`) }} ({{

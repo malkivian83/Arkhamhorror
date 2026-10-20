@@ -11,6 +11,17 @@ import { localizedCards, useCardLocale } from './localized'
 
 afterEach(() => vi.unstubAllGlobals())
 describe('recursos de cartas sin red', () => {
+  it('presenta las siete cartas del piloto en EN/ES sin imágenes ni peticiones externas', () => {
+    const spanish = new Map(fallbackCards('es').map((card) => [card.code, card]))
+    const english = new Map(fallbackCards('en').map((card) => [card.code, card]))
+    expect(spanish.get('02105')?.name).toBe('Cura de urgencia')
+    expect(english.get('02105')?.name).toBe('Emergency Aid')
+    for (const code of ['02020', '02030', '02033', '02105', '02109', '02116', '02117']) {
+      expect(spanish.get(code)?.text).toBeTruthy()
+      expect(english.get(code)?.text).toBeTruthy()
+      expect(spanish.get(code)?.cost).toBe(english.get(code)?.cost)
+    }
+  })
   for (const locale of ['en', 'es'])
     it(`${locale}: datos locales para todas las cartas de la campaña`, () => {
       const cards = new Map(fallbackCards(locale).map((c) => [c.code, c]))

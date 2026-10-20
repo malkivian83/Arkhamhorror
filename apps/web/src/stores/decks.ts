@@ -40,7 +40,7 @@ export const newDeckId = () =>
 
 export type ImportResult =
   | { ok: true; deck: DeckList; unknown: string[] }
-  | { ok: false; error: 'badLink' | 'notFound' | 'network' | 'investigator'; unknown?: string[] }
+  | { ok: false; error: 'badLink' | 'notFound' | 'network' | 'invalidData'; unknown?: string[] }
 
 /** Mazos propios del jugador, guardados en el navegador. */
 export const useDecksStore = defineStore('decks', () => {
@@ -105,10 +105,13 @@ export const useDecksStore = defineStore('decks', () => {
       return { ok: false, error: 'network' }
     }
     if (!data) return { ok: false, error: 'notFound' }
-    const { deck, unknown } = deckFromArkhamDb(data, newDeckId())
-    if (!deck) return { ok: false, error: 'investigator', unknown }
-    save(deck)
-    return { ok: true, deck, unknown }
+    try {
+      const { deck, unknown } = deckFromArkhamDb(data, newDeckId())
+      save(deck)
+      return { ok: true, deck, unknown }
+    } catch {
+      return { ok: false, error: 'invalidData' }
+    }
   }
 
   function reload() {

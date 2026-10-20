@@ -234,6 +234,14 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Pure, serializable continuations for delayed decisions and effects. */
+  effect?: (
+    state: GameState,
+    investigator: InvestigatorId,
+    step: string,
+    data: Record<string, string | number | boolean>,
+  ) => Message[]
+  beforeResults?: (state: GameState, test: SkillTest, self: Asset) => Message[]
   /** Ranuras adicionales mientras está en juego (Carl Sanford: +1 arcana). */
   extraSlots?: Partial<Record<SlotType, number>>
   /** Sin dueño (colocado en una localización o enemigo): habilidades para quien esté allí. */
@@ -293,6 +301,7 @@ export interface PlayerCardBehavior {
   /** Su acción es de evitar (cuenta como tal) o no provoca ataques de oportunidad. */
   evadeAction?: boolean
   noAttacksOfOpportunity?: boolean
+  investigateAction?: boolean
   /** Enemy-specific protection while this asset is controlled (Delores Gadling). */
   ignoresOpportunityAttacks?: (state: GameState, self: Asset, enemy: Enemy) => boolean
   /** Test options also usable during another investigator's test at this location. */

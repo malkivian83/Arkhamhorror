@@ -1,6 +1,7 @@
 node_modules/
 dist/
 coverage/
+.card-import-tmp/
 *.log
 .env
 .env.*

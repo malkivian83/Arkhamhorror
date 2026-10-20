@@ -121,7 +121,8 @@
       "playTome": "Play the Tome paying its cost?",
       "orderEncounter": "Choose the next card from the top of the deck",
       "drawMystery": "Choose a card to draw from beneath the location"
-    }
+    },
+    "pilotTarget": "Choose the target of this effect"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -229,7 +230,18 @@
       "trait": "{trait}",
       "unspell": "Free {card}"
     },
-    "card": "{card}"
+    "card": "{card}",
+    "pilotHealDamage": "Heal {n} damage from {name}",
+    "pilotDoubleUses": "Double the uses on {card}",
+    "pilotDone": "Finish",
+    "pilotAgree": "Agree",
+    "pilotGiveResources": "Give {n} resources from {from} to {to}",
+    "pilotGiveAsset": "Give {card} from {from} to {to}",
+    "pilotExchange": "Exchange {first} and {second}",
+    "pilotMove": "Move {name} to {location}",
+    "pilotMoveEnemy": "Move {enemy} to {location}",
+    "pilotClue": "Take a clue from {location}",
+    "pilotKukri": "Spend another action for extra damage"
   },
   "phase": {
     "setup": "Setup",
@@ -346,7 +358,14 @@
       "violentCommands": "Violent Commands: 2 damage to {name}",
       "callahanShot": "Callahan: exhaust to deal 1 damage to {enemy}",
       "olneyCommit": "Olney: discard the top card and commit it if eligible"
-    }
+    },
+    "pilotHealHorror": "{card}: heal 1 horror from {name}",
+    "pilotPipe": "Smoking Pipe: take damage and heal horror",
+    "pilotPainkillers": "Painkillers: take horror and heal damage",
+    "pilotIdentify": "Identify the solution",
+    "pilotCourage": "Heal horror from {name} and test their willpower",
+    "pilotAxe": "Spend a resource for +2 combat",
+    "pilotCandle": "Ritual Candles: +1 skill"
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -730,7 +749,8 @@
       "defeatedElokoss": "the investigators defeated Elokoss and the Brethren of Ash",
       "campaignWon": "the investigators won the campaign",
       "stoppedRebirth": "the investigators stopped Elokoss's glorious rebirth",
-      "floodedRitual": "the investigators flooded the Brethren of Ash's summoning ritual"
+      "floodedRitual": "the investigators flooded the Brethren of Ash's summoning ritual",
+      "identifiedSolution": "The solution has been identified"
     },
     "scenario": {
       "smokeAndMirrors": "Scenario II: Smoke and Mirrors",
@@ -976,7 +996,7 @@
     "size": "{n}/{size} cards",
     "basicWeakness": "No basic weakness: a random one will be added when the campaign starts.",
     "ready": "The deck follows the deckbuilding rules.",
-    "unimplemented": "No in-game effect yet: {cards}.",
+    "unimplemented": "Pending cards prevent starting the game: {cards}.",
     "contents": "Contents",
     "required": "Signatures and weaknesses",
     "pool": "Available cards",
@@ -998,12 +1018,14 @@
       "action": "Import",
       "loading": "Importing…",
       "done": "Imported: {name}.",
-      "partial": "Imported. {n} cards are not from this box and were removed.",
+      "partial": "Full deck preserved. {n} codes are pending; resolve them before starting a game.",
       "badLink": "That is not an ArkhamDB deck link.",
       "notFound": "Deck not found (private decks must be shared).",
       "network": "Could not reach ArkhamDB.",
-      "investigator": "That investigator is not available yet."
-    }
+      "investigator": "That investigator is not available yet.",
+      "invalidData": "The received deck has an invalid format or quantities."
+    },
+    "pendingCards": "Pending cards"
   },
   "deck": {
     "problem": {
@@ -1015,7 +1037,8 @@
       "otherSignature": "{card} belongs to another investigator.",
       "levelAtStart": "{card} has a level: only level 0 is allowed when the campaign starts.",
       "unknownCard": "Unknown card: {card}.",
-      "rewardNotEarned": "Reward not earned: {card}"
+      "rewardNotEarned": "Reward not earned: {card}",
+      "unimplemented": "{card} is not implemented yet. A game cannot start with this card."
     }
   },
   "keywords": {
@@ -1232,7 +1255,31 @@
       "12173": "Group clues extinguish local Fire. Defeat Elokoss to finish; ready Cultists move toward the cistern.",
       "12175": "Pay one group clue per investigator to enter unrevealed. Passing the valve test defeats every enemy and kills investigators who did not resign.",
       "12179": "Massive, retaliate. Cannot move or attack by opportunity. Pay clues yourself to place leads; five stop the rebirth.",
-      "12179b": "Massive hunter. After evading her, she readies but spares that investigator for the round."
+      "12179b": "Massive hunter. After evading her, she readies but spares that investigator for the round.",
+      "02020": "Raises your hand limit by two. On entering play, you may draw two cards.",
+      "02030": "Use an action and a charge to remove one horror from someone at your location. Starts with three charges.",
+      "02033": "Adds one agility. When your turn ends, you may remove one horror from Peter.",
+      "02105": "Restore up to two health to a nearby investigator or one of their allies.",
+      "02109": "Increase a nearby asset’s remaining ammo or supplies to twice their current quantity.",
+      "02116": "Without an action: use a supply, exhaust the Pipe and take damage before recovering one sanity.",
+      "02117": "Without an action: use a supply, exhaust the Painkillers and take horror before recovering one health.",
+      "02016": "Attack with +1 combat. A failed attack does not harm another investigator.",
+      "02017": "Fast during your turn: engage any number of enemies at your location.",
+      "02018": "Investigators together may agree to transfer resources and Item or Ally assets.",
+      "02021": "Spend an action to test intellect (4). Success discards this asset, draws two cards and records identification.",
+      "02022": "Fast during your turn: move an investigator here to a connecting location.",
+      "02023": "Investigate here; success takes a clue from a connecting location instead.",
+      "02024": "Spend an action and a supply to heal horror here. The patient tests willpower (2): heal again on success, randomly discard on failure.",
+      "02025": "Before an enemy appears here, move to a connecting location.",
+      "02026": "Commit at most one per test. Double difficulty; on success, resolve success effects twice. Uses original rules without optional taboo.",
+      "02028": "Spend an action and a charge to investigate using willpower for two clues. Certain symbols end your turn after the test.",
+      "02029": "After revealing a skull, cultist, tablet or elder thing during your test, you may add +1 skill.",
+      "02032": "Attack; spend up to three resources for +2 combat each. Deal extra damage if you have no resources when resolving.",
+      "02034": "Evade without opportunity attacks. On success, move a non-Elite target to a connecting location.",
+      "02036": "Attack with +1 combat. After success, you may spend another action for extra damage.",
+      "02107": "Attack using intellect; add damage equal to your clues, up to three.",
+      "02111": "Each investigator draws an encounter in player order. Then place this event in victory for one point.",
+      "02113": "After an attack fails by at most two against an enemy engaged with you, deal its damage to another enemy here."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -1243,7 +1290,33 @@
       "12172": "Elokoss appears, Fire enters the encounter deck and Sluice Control becomes available.",
       "12173": "Defeating Elokoss leads to resolution one."
     },
-    "victory": "Victory {n}"
+    "victory": "Victory {n}",
+    "names": {
+      "02020": "Laboratory Assistant",
+      "02030": "Clarity of Mind",
+      "02033": "Peter Sylvestre",
+      "02105": "Emergency Aid",
+      "02109": "Contraband",
+      "02116": "Smoking Pipe",
+      "02117": "Painkillers",
+      "02016": "Blackjack",
+      "02017": "Taunt",
+      "02018": "Teamwork",
+      "02021": "Strange Solution",
+      "02022": "Shortcut",
+      "02023": "Seeking Answers",
+      "02024": "Liquid Courage",
+      "02025": "Think on Your Feet",
+      "02026": "Double or Nothing",
+      "02028": "Rite of Seeking",
+      "02029": "Ritual Candles",
+      "02032": "Fire Axe",
+      "02034": "Bait and Switch",
+      "02036": "Kukri",
+      "02107": "\"I've got a plan!\"",
+      "02111": "Delve Too Deep",
+      "02113": "Oops!"
+    }
   },
   "account": {
     "title": "Your Arkham account",
