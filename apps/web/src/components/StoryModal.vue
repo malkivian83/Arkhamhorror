@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import StoryIcon from './StoryIcon.vue'
+import StoryNarration from './StoryNarration.vue'
 import type { GameState, LabelParams } from '@lcg/engine'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -53,6 +54,7 @@ function toCampaign() {
   <div v-if="entry && body" class="overlay">
     <article class="story">
       <h1>{{ t(entry.title) }}</h1>
+      <StoryNarration v-if="body.narration" :key="body.narration" :src="body.narration" />
       <div class="body">
         <p v-for="(paragraph, i) in body.paragraphs" :key="i" :class="paragraph.kind">
           <template v-for="(span, j) in paragraph.spans" :key="j">

@@ -1,6 +1,7 @@
 import { ref, watch, type Ref } from 'vue'
 import { i18n } from '../i18n'
 import { iconParts } from './cardText'
+import { storyNarration } from './narration'
 
 /**
  * Textos de historia. Por defecto la mesa muestra un resumen propio (en los
@@ -85,6 +86,8 @@ export interface StoryBody {
   official: boolean
   /** Hay texto oficial, pero en otro idioma: se puede alternar con el resumen. */
   officialLocale: string | null
+  /** Narración grabada del texto oficial en el idioma de la mesa. */
+  narration: string | null
 }
 
 /**
@@ -143,5 +146,6 @@ export function storyBody(key: string): StoryBody {
       .map(paragraph),
     official: text !== undefined,
     officialLocale: own === undefined && english !== undefined ? 'en' : null,
+    narration: own !== undefined ? storyNarration(key, current) : null,
   }
 }
