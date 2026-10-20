@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import type { GameState } from '@lcg/engine'
+import { cluesToAdvanceAct, type GameState } from '@lcg/engine'
 import { computed, ref, useId } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { localizedCards, localName } from '../game/localized'
 import { showPile } from '../game/pile'
 import ChaosTokenView from './ChaosTokenView.vue'
+import GameCard from './GameCard.vue'
+import ScenarioDeckViewer from './ScenarioDeckViewer.vue'
 import ScenarioSymbol from './ScenarioSymbol.vue'
 import TableTarget from './TableTarget.vue'
+import TokenBadge from './TokenBadge.vue'
 
 const props = defineProps<{ state: GameState }>()
 const { t } = useI18n()
@@ -14,6 +17,9 @@ const bagDialog = ref<HTMLDialogElement>()
 const bagButton = ref<HTMLButtonElement>()
 const bagId = useId()
 const stories = computed(() => Object.values(props.state.stories ?? {}))
+const agenda = computed(() => props.state.agendas[props.state.agendaIndex])
+const act = computed(() => props.state.acts[props.state.actIndex])
+const actClues = computed(() => cluesToAdvanceAct(props.state))
 
 function showDiscard() {
   showPile({
@@ -43,6 +49,65 @@ const sortedBag = computed(() =>
 
 <template>
   <div class="scenario-row" role="region" :aria-label="t('table.scenario')">
+    <!-- Plan y acto: cada mazo con su contador, agrupados; en escritorio, con la carta a la vista. -->
+    <div
+      v-if="agenda"
+      class="scenario-group agenda-group"
+      role="group"
+      :aria-label="t('table.agenda')"
+    >
+      <ScenarioDeckViewer
+        kind="agenda"
+        :cards="state.agendas"
+        :active-index="state.agendaIndex"
+        compact
+      />
+      <TableTarget target="agenda" class="group-target">
+        <GameCard
+          class="group-card"
+          :code="agenda.code ?? ''"
+          :name="agenda.name"
+          :width="72"
+          landscape
+          thumbnail
+          color="#7a2c2c"
+        />
+        <span class="group-metric">
+          <span class="metric-value"
+            ><TokenBadge kind="doom" value="" :size="20" aria-hidden="true" /><strong
+              >{{ state.doom }}/{{ agenda.doomThreshold }}</strong
+            ></span
+          >
+          <span class="stat-label">{{ t('table.doom') }}</span>
+        </span>
+      </TableTarget>
+    </div>
+    <div v-if="act" class="scenario-group act-group" role="group" :aria-label="t('table.act')">
+      <ScenarioDeckViewer kind="act" :cards="state.acts" :active-index="state.actIndex" compact />
+      <TableTarget target="act" class="group-target">
+        <GameCard
+          class="group-card"
+          :code="act.code ?? ''"
+          :name="act.name"
+          :width="72"
+          landscape
+          thumbnail
+          color="#2c5a7a"
+        />
+        <span v-if="actClues !== null" class="group-metric">
+          <span class="metric-value"
+            ><TokenBadge kind="clue" value="" :size="20" aria-hidden="true" /><strong>{{
+              actClues
+            }}</strong></span
+          >
+          <span class="stat-label">{{ t('table.clues') }}</span>
+        </span>
+        <span v-else class="group-metric"
+          ><span class="stat-label">{{ t('table.actions') }}</span></span
+        >
+      </TableTarget>
+    </div>
+
     <div class="scenario-stat encounter-deck" role="group" :aria-label="t('table.encounterDeck')">
       <img src="/local-assets/home/icon-decks.webp" alt="" width="28" height="28" />
       <span class="stat-copy"
@@ -169,16 +234,90 @@ const sortedBag = computed(() =>
 <style scoped>
 .scenario-row {
   --accent: #e5aa8d;
+  --eldritch: #e5aa8d;
+  position: relative;
+  z-index: 12;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
   min-width: 0;
-  padding: 8px;
+  /* A la izquierda queda el botón fijo del menú. */
+  padding: 8px 8px 8px 58px;
   color: #f4efe7;
   background: #19191d;
   border-bottom: 1px solid #62585b;
   font-family: 'Source Sans 3', system-ui, sans-serif;
+}
+.scenario-group {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 4px;
+  border: 1px solid var(--group-border);
+  border-radius: 6px;
+  background: var(--group-bg);
+}
+.agenda-group {
+  --group-bg: linear-gradient(180deg, #43262a, #2d1a1d);
+  --group-border: #8c4b4f;
+}
+.act-group {
+  --group-bg: linear-gradient(180deg, #213640, #18262d);
+  --group-border: #4f7c8a;
+}
+.scenario-group :deep(.deck-trigger.compact) {
+  width: auto;
+  padding: 5px 10px 5px 6px;
+  background: rgb(0 0 0 / 30%);
+}
+.scenario-group :deep(.deck-trigger.compact:hover) {
+  background: rgb(0 0 0 / 50%);
+}
+.scenario-group .group-target {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 4px;
+}
+/* El aviso de acción va debajo: encima no hay sitio en la barra. */
+.group-target :deep(.hint) {
+  top: auto;
+  bottom: -30px;
+  max-width: none;
+  font:
+    600 0.75rem/1.4 'Source Sans 3',
+    system-ui,
+    sans-serif;
+}
+.group-card {
+  flex: none;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 55%);
+}
+.group-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 56px;
+  min-height: 44px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background: rgb(0 0 0 / 30%);
+}
+.metric-value {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.metric-value strong {
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
 .scenario-stat {
   flex: 0 0 auto;
@@ -318,10 +457,46 @@ const sortedBag = computed(() =>
   flex-wrap: wrap;
   gap: 10px;
 }
+/* En escritorios estrechos, rótulos cortos para que la barra quepa en una línea. */
+@media (max-width: 1400px) {
+  .scenario-row {
+    gap: 6px;
+  }
+  .scenario-stat {
+    gap: 6px;
+    padding-inline: 8px;
+  }
+  .full-label {
+    display: none;
+  }
+  .short-label {
+    display: inline;
+  }
+}
+/* La carta del plan y del acto solo cabe en escritorio. */
+@media (max-width: 1180px) {
+  .group-card {
+    display: none;
+  }
+}
 @media (max-width: 680px) {
   .scenario-row {
     gap: 5px;
-    padding: 6px;
+    padding: 6px 6px 6px 56px;
+  }
+  .scenario-group {
+    flex: 1 1 calc(50% - 3px);
+    gap: 4px;
+    padding: 3px;
+  }
+  .scenario-group > :deep(.deck-trigger.compact),
+  .scenario-group .group-target,
+  .group-metric {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .group-metric {
+    padding-inline: 2px;
   }
   .scenario-stat {
     flex: 1 0 48px;

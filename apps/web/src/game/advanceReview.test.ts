@@ -7,6 +7,7 @@ import {
   resumedAdvanceReview,
   unreviewedEncounterDraws,
   validAdvanceReview,
+  type AdvanceFrame,
 } from './advanceReview'
 import { decodeSession, replay, session } from './session'
 import { markOf } from './undo'
@@ -186,6 +187,60 @@ describe('avance visual con aceptación, independiente de las reglas', () => {
         .flatMap((f) => f.cards)
         .some((card) => card.code === '71035'),
     ).toBe(false)
+  })
+})
+
+describe('preparación del escenario', () => {
+  /** Contesta la preparación como en la mesa, recogiendo las pantallas de cada respuesta. */
+  function setUp(scenario = testScenario()) {
+    let s = createGame({
+      seed: 7,
+      interactive: true,
+      scenario,
+      investigators: [testInvestigator('a')],
+    })
+    const frames: AdvanceFrame[] = []
+    while (s.phase === 'setup') {
+      const collector = createAdvanceReview(s)
+      s = applyInput(s, { investigator: s.pending!.investigator, choice: 0 }, collector.observe)
+      frames.push(...collector.finish(s))
+    }
+    return { state: s, frames }
+  }
+  it('abre el plan y el acto iniciales con los pasos automáticos ya aplicados', () => {
+    const { state, frames } = setUp(
+      testScenario({
+        setupInstructions: { title: 'review.setupTitle', body: 'review.setup' },
+        setup: [
+          { type: 'PlaceDoom', amount: 2 },
+          { type: 'AddChaosTokens', tokens: ['cultist'] },
+          { type: 'PutAssetIntoPlay', investigator: 'a', code: '12017' },
+        ],
+      }),
+    )
+    expect(frames).toHaveLength(1)
+    const [setup] = frames
+    expect(setup!.stage).toBe('setup')
+    expect(setup!.cards).toEqual([
+      expect.objectContaining({ name: state.agendas[0]!.name, deck: 'agenda', landscape: true }),
+      expect.objectContaining({ name: state.acts[0]!.name, deck: 'act', landscape: true }),
+    ])
+    expect(setup!.cards.some((c) => c.back)).toBe(false)
+    expect(setup!.effects.map((e) => e.key)).toEqual([
+      'table.advanceReview.startsAt',
+      'table.advanceReview.revealed',
+      'table.advanceReview.enteredControlled',
+      'table.advanceReview.doomChange',
+      'log.chaosTokensAdded',
+    ])
+    expect(setup!.effects[0]!.params).toEqual({ name: 'A', location: 'Room A' })
+    expect(setup!.effects[1]!.params).toEqual({ location: 'Room A', n: 2 })
+    expect(setup!.effects[3]!.params).toEqual({ before: 0, after: 2 })
+    expect(validAdvanceReview(frames)).toBe(true)
+  })
+  it('no vuelve a mostrarse en las rondas siguientes', () => {
+    const { state } = setUp()
+    expect(reviewed(state, 'action.resource').frames).toEqual([])
   })
 })
 

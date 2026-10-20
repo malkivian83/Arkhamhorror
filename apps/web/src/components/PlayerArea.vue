@@ -11,7 +11,7 @@ import {
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { cardName, classColor } from '../game/cards'
-import { cardBackImage, ICON_GLYPHS, tokenImage } from '../game/assets'
+import { cardBackImage, ICON_GLYPHS, tokenImage, type TokenKind } from '../game/assets'
 import { showPile } from '../game/pile'
 import GameCard from './GameCard.vue'
 import SkillIcon from './SkillIcon.vue'
@@ -55,6 +55,25 @@ const threats = computed(() =>
   ),
 )
 const color = computed(() => classColor(i.value.id))
+const tokens = computed((): { kind: TokenKind; value: number; label: string; title?: string }[] => {
+  const vitals = effectiveVitals(props.state, i.value)
+  return [
+    { kind: 'resource', value: i.value.resources, label: 'table.resources' },
+    { kind: 'clue', value: i.value.clues, label: 'table.clues' },
+    {
+      kind: 'damage',
+      value: i.value.damage,
+      label: 'table.damage',
+      title: t('game.damage', { n: i.value.damage, max: vitals.health }),
+    },
+    {
+      kind: 'horror',
+      value: i.value.horror,
+      label: 'table.horror',
+      title: t('game.horror', { n: i.value.horror, max: vitals.sanity }),
+    },
+  ]
+})
 
 /** Orden de las ranuras en el tapete del jugador. */
 const SLOT_ORDER: SlotType[] = ['hand', 'body', 'ally', 'accessory', 'arcane', 'head']
@@ -126,29 +145,15 @@ const slots = computed(() => {
           </TableTarget>
 
           <div class="stats">
+            <!-- El número va en una pastilla oscura junto a la ficha: sobre la imagen no se leía. -->
             <ul class="tokens">
-              <li>
-                <TokenBadge kind="resource" :value="i.resources" :size="28" /><span
-                  class="token-label"
-                  >{{ t('table.resources') }}</span
-                >
-              </li>
-              <li>
-                <TokenBadge kind="clue" :value="i.clues" :size="28" /><span class="token-label">{{
-                  t('table.clues')
-                }}</span>
-              </li>
-              <li :title="t('game.damage', { n: i.damage, max: effectiveVitals(state, i).health })">
-                <TokenBadge kind="damage" :value="i.damage" :size="28" /><span
-                  class="token-label"
-                  >{{ t('table.damage') }}</span
-                >
-              </li>
-              <li :title="t('game.horror', { n: i.horror, max: effectiveVitals(state, i).sanity })">
-                <TokenBadge kind="horror" :value="i.horror" :size="28" /><span
-                  class="token-label"
-                  >{{ t('table.horror') }}</span
-                >
+              <li v-for="token in tokens" :key="token.kind" :title="token.title">
+                <span class="token-icon"
+                  ><TokenBadge :kind="token.kind" value="" :size="26" aria-hidden="true" /><strong
+                    class="token-count"
+                    >{{ token.value }}</strong
+                  ></span
+                ><span class="token-label">{{ t(token.label) }}</span>
               </li>
             </ul>
             <div class="meta">
@@ -793,14 +798,48 @@ h3,
   padding-top: 0;
 }
 .stats {
+  flex: 1;
   gap: 4px;
   min-width: 0;
 }
 .tokens {
-  gap: 6px;
+  justify-content: space-between;
+  gap: 4px;
 }
 .tokens li {
-  font-size: 0.65rem;
+  gap: 2px;
+}
+.token-icon {
+  position: relative;
+  display: block;
+  margin-right: 8px;
+}
+.token-count {
+  position: absolute;
+  right: -9px;
+  bottom: -3px;
+  min-width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  padding: 0 4px;
+  border: 1px solid #807574;
+  border-radius: 9px;
+  background: #121216;
+  color: #fff;
+  font:
+    700 0.75rem/16px 'Source Sans 3',
+    system-ui,
+    sans-serif;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.token-label {
+  color: #d0c7c1;
+  font:
+    600 0.625rem/1.2 'Source Sans 3',
+    system-ui,
+    sans-serif;
+  white-space: nowrap;
 }
 .meta {
   gap: 6px;

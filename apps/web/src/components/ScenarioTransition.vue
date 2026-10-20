@@ -59,7 +59,12 @@ onBeforeUnmount(() => dialog.value?.close())
       <template v-if="current">
         <header>
           <p class="eyebrow">
-            {{ t(`table.${current.kind}`) }} · {{ localName(current.card.name) }}
+            <template v-if="current.stage === 'setup'">{{
+              t('table.advanceReview.setupEyebrow')
+            }}</template>
+            <template v-else
+              >{{ t(`table.${current.kind}`) }} · {{ localName(current.card.name) }}</template
+            >
           </p>
           <h2 :id="title">{{ stageTitle }}</h2>
           <p class="remaining">
@@ -101,7 +106,7 @@ onBeforeUnmount(() => dialog.value?.close())
             :image-language="imageLanguages[`${current.card.code}:back`]"
           />
         </section>
-        <div v-else class="origin">
+        <div v-else-if="current.stage !== 'setup'" class="origin">
           <GameCard
             :code="current.card.code"
             :name="current.card.name"
@@ -131,6 +136,7 @@ onBeforeUnmount(() => dialog.value?.close())
               @image-language="imageLanguages[`${card.code}:${!!card.back}`] = $event"
             />
             <figcaption>
+              <span v-if="card.deck" class="deck-label">{{ t(`table.${card.deck}`) }}</span>
               {{
                 card.back && !card.landscape
                   ? t('table.advanceReview.unrevealed')
@@ -166,7 +172,6 @@ onBeforeUnmount(() => dialog.value?.close())
           <h3>{{ label(current.decision.prompt, current.decision.params ?? {}) }}</h3>
           <p>{{ t('game.waitingFor', { name: current.decision.name }) }}</p>
         </section>
-        <p class="automatic">{{ t('table.advanceReview.automatic') }}</p>
         <footer>
           <button
             ref="accept"
@@ -273,9 +278,21 @@ figcaption {
   max-width: 100%;
   box-sizing: border-box;
 }
+.deck-label {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--accent);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+/* La lista queda centrada como el resto de la pantalla; sus líneas, alineadas entre sí. */
 .effects {
-  max-width: 760px;
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: min(760px, 100%);
   margin: 20px auto;
+  padding-left: 1.6em;
   font-size: 1.15rem;
   line-height: 1.5;
 }
@@ -288,10 +305,6 @@ figcaption {
   padding: 16px;
   border: 1px solid var(--accent);
   border-radius: 8px;
-}
-.automatic {
-  opacity: 0.7;
-  font-size: 0.85rem;
 }
 footer {
   position: sticky;
