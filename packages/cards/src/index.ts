@@ -127,4 +127,9 @@ import './core-2026/upgrades'
 import './dunwich-pilot'
 import { RENDERED_PLAYER_CARD_CODES as pilotCodes } from './dunwich-pilot'
 import { FOLLOWUP_RENDERED_CODES } from './dunwich-followup'
-export const RENDERED_PLAYER_CARD_CODES = [...pilotCodes, ...FOLLOWUP_RENDERED_CODES]
+import { SUPPORT_RENDERED_CODES } from './dunwich-support'
+export const RENDERED_PLAYER_CARD_CODES = [
+  ...pilotCodes,
+  ...FOLLOWUP_RENDERED_CODES,
+  ...SUPPORT_RENDERED_CODES,
+]

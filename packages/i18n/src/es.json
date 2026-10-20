@@ -1283,7 +1283,12 @@
       "02113": "Tras fallar por hasta dos un ataque contra un enemigo enfrentado contigo, inflige su daño a otro enemigo de aquí.",
       "02035": "Suma uno a voluntad y agilidad. Tras terminar tu turno, puedes curar un horror de Peter.",
       "02149": "Tras entrar en juego, puedes descubrir una pista en tu Lugar.",
-      "02194": "Obtén tres recursos y después roba una carta."
+      "02194": "Obtén tres recursos y después roba una carta.",
+      "02148": "Elige a otro investigador de aquí; ambos robáis dos cartas y obtenéis dos recursos.",
+      "02150": "Al investigar con éxito, descubre una pista adicional, o dos si superas la dificultad por al menos dos.",
+      "02186": "Requiere una pista en tu Lugar. Roba tres cartas.",
+      "02268": "Con éxito, cura un horror de quien asignó esta habilidad; cura dos si superas la dificultad por al menos dos.",
+      "02273": "Requiere que no haya enemigos en tu Lugar. Cura tres puntos de horror y roba una carta."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -1322,7 +1327,12 @@
       "02113": "¡Ups!",
       "02035": "Peter Sylvestre",
       "02149": "Estudiante de Bellas Artes",
-      "02194": "Alijo de emergencia"
+      "02194": "Alijo de emergencia",
+      "02148": "Resistir juntos",
+      "02150": "Deducción",
+      "02186": "Bocetos absurdos",
+      "02268": "Intrépido",
+      "02273": "Un respiro momentáneo"
     }
   },
   "account": {

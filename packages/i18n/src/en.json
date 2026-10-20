@@ -1283,7 +1283,12 @@
       "02113": "After an attack fails by at most two against an enemy engaged with you, deal its damage to another enemy here.",
       "02035": "Adds one willpower and one agility. After your turn ends, you may heal one horror from Peter.",
       "02149": "After entering play, you may discover one clue at your location.",
-      "02194": "Gain three resources, then draw one card."
+      "02194": "Gain three resources, then draw one card.",
+      "02148": "Choose another investigator here; each of you draws two cards and gains two resources.",
+      "02150": "On a successful investigation, discover one extra clue, or two extra clues if you succeed by at least two.",
+      "02186": "Requires a clue on your location. Draw three cards.",
+      "02268": "On success, heal one horror from the investigator who committed this skill; heal two if you succeed by at least two.",
+      "02273": "Requires no enemies at your location. Heal three horror and draw one card."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -1322,7 +1327,12 @@
       "02113": "Oops!",
       "02035": "Peter Sylvestre",
       "02149": "Art Student",
-      "02194": "Emergency Cache"
+      "02194": "Emergency Cache",
+      "02148": "Stand Together",
+      "02150": "Deduction",
+      "02186": "Preposterous Sketches",
+      "02268": "Fearless",
+      "02273": "Moment of Respite"
     }
   },
   "account": {

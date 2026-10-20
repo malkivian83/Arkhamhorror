@@ -1,0 +1,37 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "cards": [
+    {
+      "code": "02148",
+      "module": "stand-together",
+      "test": "stand-together.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "02150",
+      "module": "deduction-2",
+      "test": "deduction-2.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "02186",
+      "module": "preposterous-sketches",
+      "test": "preposterous-sketches.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "02268",
+      "module": "fearless-2",
+      "test": "fearless-2.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "02273",
+      "module": "moment-of-respite",
+      "test": "moment-of-respite.test.ts",
+      "status": "verified"
+    }
+  ]
+}

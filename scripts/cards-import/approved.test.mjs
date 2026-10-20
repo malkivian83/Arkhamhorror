@@ -5,7 +5,7 @@ import { approvedDefinition } from './approved.mjs'
 const read = async (relative) =>
   JSON.parse(await readFile(new URL(relative, import.meta.url), 'utf8'))
 describe('reviewed inventory conversion', () => {
-  it.each(['dunwich-pilot', 'dunwich-followup'])(
+  it.each(['dunwich-pilot', 'dunwich-followup', 'dunwich-support'])(
     'reproduces approved data and module/test evidence for %s',
     async (batch) => {
       const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
