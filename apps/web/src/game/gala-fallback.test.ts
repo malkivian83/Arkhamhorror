@@ -76,7 +76,7 @@ describe('G18: respaldo completo de La Gala, EN/ES', () => {
       vi.fn().mockResolvedValue({ ok: true, json: async () => ({ invalid: true }) }),
     )
     await useCardLocale('es')
-    expect(localizedCards.value.get('71045b')!.text).toContain('Masivo')
+    expect(localizedCards.value.get('71045b')!.text).toContain('Descomunal')
     const { cardImages } = await import('./cards')
     // Missing scan: text remains independently available, no network request for an image.
     expect(cardImages('71062', true, 'es')).toEqual([])
@@ -98,7 +98,7 @@ describe('G18: respaldo completo de La Gala, EN/ES', () => {
     await useCardLocale('es')
     expect(localizedCards.value.get('71045')).toMatchObject({ enemy_fight: 4, health: 3 })
     expect(localizedCards.value.get('71045')!.text).toContain('Acechador')
-    expect(localizedCards.value.get('71045')!.back_text).toContain('Masivo')
+    expect(localizedCards.value.get('71045')!.back_text).toContain('Descomunal')
   })
   it('un cambio de idioma conserva las dos caras y una respuesta ES tardía no pisa EN', async () => {
     vi.resetModules()

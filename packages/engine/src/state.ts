@@ -30,7 +30,7 @@ export function getInvestigator(state: GameState, id: InvestigatorId): Investiga
 
 export function getLocation(state: GameState, id: LocationId): Location {
   const location = state.locations[id]
-  if (!location) throw new EngineError(`Localización desconocida: ${id}`)
+  if (!location) throw new EngineError(`Lugar desconocido: ${id}`)
   return location
 }
 

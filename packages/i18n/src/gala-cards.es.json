@@ -1,7 +1,7 @@
 {
   "71001": {
     "name": "La gala del ecuador del invierno",
-    "summary": "Los Invitados no ocupan espacio de aliado. Calavera: menos el número del plan (uno peor en difícil/experto). Sectario: menos los Invitados aquí, máximo 5; en difícil/experto cuenta los Apoyos de historia. Tablilla: -2, o -4 en Lugar Privado (-3/-5 en difícil/experto). Cosa antigua: -3 (-4 en difícil/experto); recibe 1 horror si fallas o El Exangüe está aquí, una sola vez."
+    "summary": "Los Invitados no ocupan espacio de aliado. Calavera: menos el número del plan (uno peor en difícil/experto). Sectario: menos los Invitados aquí, máximo 5; en difícil/experto cuenta los Apoyos de historia. Tablilla: -2, o -4 en Lugar Privado (-3/-5 en difícil/experto). Cosa antigua: -3 (-4 en difícil/experto); recibe 1 horror si fracasas o El Exangüe está aquí, una sola vez."
   },
   "71002": {
     "name": "Juerguistas enmascarados",
@@ -77,7 +77,7 @@
     "name": "Valeriya Antonova",
     "summary": "+1 combate. Acción, agotar: prepara a otro Invitado de aquí y obtén una bonificación a tu próxima prueba de esta ronda igual a los Invitados de aquí. Un Líder que abandona el juego se retira.",
     "backName": "Valeriya Antonova — Rival",
-    "backSummary": "No puede recibir daño. Distante y Cazador. -1 a tus habilidades aquí si controlas un Invitado agotado. Al final de la ronda agota a los Invitados de aquí. La Historia Rival permite negociar con combate (3)."
+    "backSummary": "No puede recibir daño. Indiferente y Cazador. -1 a tus habilidades aquí si controlas un Invitado agotado. Al final de la ronda agota a los Invitados de aquí. La Historia Rival permite negociar con combate (3)."
   },
   "71017": {
     "name": "Archibald Hudson",
@@ -93,7 +93,7 @@
   },
   "71020": {
     "name": "Policía novato",
-    "summary": "Oleada, Distante y Cazador. Tras atacar a otro enemigo un investigador de aquí, ese investigador recibe 1 daño."
+    "summary": "Oleada, Indiferente y Cazador. Tras atacar a otro enemigo un investigador de aquí, ese investigador recibe 1 daño."
   },
   "71021": {
     "name": "Universidad Miskatonic",
@@ -104,7 +104,7 @@
     "name": "Caldwell Philips",
     "summary": "+1 intelecto. Tras descubrir pistas, agota para robar esa cantidad de cartas, máximo 3. Un Líder que abandona el juego se retira.",
     "backName": "Caldwell Philips — Rival",
-    "backSummary": "No puede recibir daño. Distante y Cazador. Al terminar su turno aquí, un investigador descarta 1 carta que no sea Debilidad. La Historia Rival permite negociar con intelecto (3)."
+    "backSummary": "No puede recibir daño. Indiferente y Cazador. Al terminar su turno aquí, un investigador descarta 1 carta que no sea Debilidad. La Historia Rival permite negociar con intelecto (3)."
   },
   "71023": {
     "name": "Dra. Mya Badry",
@@ -131,7 +131,7 @@
     "name": "Johnny Valone",
     "summary": "+1 agilidad. Tras ganar recursos mediante un efecto, agota para robar 1 carta y ganar 1 recurso. Un Líder que abandona el juego se retira.",
     "backName": "Johnny Valone — Rival",
-    "backSummary": "No puede recibir daño. Distante y Cazador. Al terminar su turno aquí, un investigador pierde 2 recursos. La Historia Rival permite negociar con agilidad (3)."
+    "backSummary": "No puede recibir daño. Indiferente y Cazador. Al terminar su turno aquí, un investigador pierde 2 recursos. La Historia Rival permite negociar con agilidad (3)."
   },
   "71029": {
     "name": "Miranda Keeper",
@@ -158,7 +158,7 @@
     "name": "Carl Sanford",
     "summary": "+1 voluntad y un espacio arcano adicional. Tras cancelarse el efecto de una Traición que no sea Debilidad, agota para ponerla en victoria y robar 1 carta. Un Líder que abandona el juego se retira.",
     "backName": "Carl Sanford — Rival",
-    "backSummary": "No puede recibir daño. Distante y Cazador. Los investigadores de aquí tienen -1 voluntad. La Historia Rival permite negociar con voluntad (3)."
+    "backSummary": "No puede recibir daño. Indiferente y Cazador. Los investigadores de aquí tienen -1 voluntad. La Historia Rival permite negociar con voluntad (3)."
   },
   "71035": {
     "name": "Prudence Douglas",
@@ -185,7 +185,7 @@
     "name": "William Bain",
     "summary": "+1 a tus habilidades mientras haya cartas comprometidas a tu prueba. Tras comprometer una carta, agota y gasta 1 recurso por investigador para poner el primer Invitado en el Vestíbulo. Un Líder que abandona el juego se retira.",
     "backName": "William Bain — Rival",
-    "backSummary": "No puede recibir daño. Distante y Cazador. Los investigadores de aquí no pueden comprometer cartas. La Historia Rival permite negociar con cualquier habilidad (4)."
+    "backSummary": "No puede recibir daño. Indiferente y Cazador. Los investigadores de aquí no pueden comprometer cartas. La Historia Rival permite negociar con cualquier habilidad (4)."
   },
   "71041": {
     "name": "Delores Gadling",
@@ -205,9 +205,9 @@
   },
   "71045": {
     "name": "El Exangüe",
-    "summary": "Acechador silencioso: Distante, Errante hacia los Invitados. Preparado al terminar Investigación, inflige 1 horror a investigadores e Invitados de aquí; con la Lámpara vinculada, esos Invitados quedan hechizados. En vez de ser derrotado, se da la vuelta, se agota y conserva hasta 3 daños por investigador.",
+    "summary": "Acechador silencioso: Indiferente, Errante hacia los Invitados. Preparado al terminar Investigación, inflige 1 horror a investigadores e Invitados de aquí; con la Lámpara vinculada, esos Invitados quedan hechizados. En vez de ser derrotado, se da la vuelta, se agota y conserva hasta 3 daños por investigador.",
     "backName": "El Exangüe — Desatado",
-    "backSummary": "Cazador y Masivo. Tras atacar a un investigador, retira de la partida un Invitado que controle. Victoria 1."
+    "backSummary": "Cazador y Descomunal. Tras atacar a un investigador, retira de la partida un Invitado que controle. Victoria 1."
   },
   "71046": {
     "name": "La Lámpara Mortecina",
@@ -245,23 +245,23 @@
   },
   "71054": {
     "name": "Paredes sangrantes",
-    "summary": "Prueba de voluntad contra el velo de tu Lugar. Si fallas, pierde 1 acción y recibe 1 horror."
+    "summary": "Prueba de voluntad contra el velo de tu Lugar. Si fracasas, pierde 1 acción y recibe 1 horror."
   },
   "71055": {
     "name": "Atrapado",
-    "summary": "Agilidad (3). Si fallas y El Exangüe está aquí, hechiza a un Invitado tuyo; si está en otro Lugar, viene hasta ti; si no está en juego, gana Oleada."
+    "summary": "Agilidad (3). Si fracasas y El Exangüe está aquí, hechiza a un Invitado tuyo; si está en otro Lugar, viene hasta ti; si no está en juego, gana Oleada."
   },
   "71056": {
     "name": "Frío inexplicable",
-    "summary": "Agilidad (4). Por cada punto de fallo, elige descartar un Apoyo en juego, descartar una carta de la mano o recibir 1 daño."
+    "summary": "Agilidad (4). Por cada punto por el que fracases, elige descartar un Apoyo en juego, descartar una carta de la mano o recibir 1 daño."
   },
   "71057": {
     "name": "Extracción mental",
-    "summary": "Voluntad contra 1 más el número del plan. Si fallas, recibe 2 horrores. Después, si El Exangüe está en juego y alguien controla la Lámpara, vuelve a vinculársela."
+    "summary": "Voluntad contra 1 más el número del plan. Si fracasas, recibe 2 horrores. Después, si El Exangüe está en juego y alguien controla la Lámpara, vuelve a vinculársela."
   },
   "71058": {
     "name": "Vapores nocivos",
-    "summary": "Cada investigador de aquí elige agilidad (3), moviéndose a un Lugar conectado si acierta o recibiendo 2 daños si falla; o combate (3), recibiendo 1 daño por cada punto de fallo."
+    "summary": "Cada investigador de aquí elige agilidad (3), moviéndose a un Lugar conectado si acierta o recibiendo 2 daños si fracasa; o combate (3), recibiendo 1 daño por cada punto por el que fracase."
   },
   "71059": {
     "name": "Empujado al más allá",
@@ -273,7 +273,7 @@
   },
   "71061": {
     "name": "Portal del terror",
-    "summary": "Voluntad (2), +2 de dificultad si hay un enemigo Rival en juego. Al fallar: Fundación recibe 2 daños; Miskatonic descarta 2 cartas; Sindicato pierde 3 recursos; Logia recibe 2 horrores; Kingsport pierde 1 acción."
+    "summary": "Voluntad (2), +2 de dificultad si hay un enemigo Rival en juego. Al fracasar: Fundación recibe 2 daños; Miskatonic descarta 2 cartas; Sindicato pierde 3 recursos; Logia recibe 2 horrores; Kingsport pierde 1 acción."
   },
   "71062": {
     "name": "Órdenes violentas",

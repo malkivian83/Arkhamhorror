@@ -25,7 +25,7 @@
     "agenda": "Plan: {name} — perdición {doom}/{threshold}",
     "act": "Acto: {name} — hacen falta {clues} pistas",
     "actionsLeft": "Acciones restantes: {n}",
-    "location": "Localización",
+    "location": "Lugar",
     "shroud": "velo {n}",
     "clues": "pistas {n}",
     "unrevealed": "sin revelar",
@@ -40,7 +40,7 @@
     "waitingFor": "Decide {name}",
     "lastTest": "Última prueba: {skill} {value} contra {difficulty} (ficha {token}) — {result}",
     "success": "éxito",
-    "failure": "fallo",
+    "failure": "fracaso",
     "won": "Escenario ganado (resolución {n})",
     "lost": "Escenario perdido (sin resolución)"
   },
@@ -64,7 +64,7 @@
     "assignDamage": "Asigna 1 daño",
     "assignHorror": "Asigna 1 horror",
     "skillTestSucceeded": "La prueba tiene éxito",
-    "skillTestFailed": "La prueba falla",
+    "skillTestFailed": "La prueba fracasa",
     "story": "Historia",
     "commitAfterReveal": "¿Comprometer una carta tras revelar la ficha?",
     "searchToPlay": "Elige el apoyo que juegas",
@@ -77,7 +77,7 @@
     "autoEvade": "¿Evitas automáticamente a un enemigo?",
     "chooseHeal": "¿Qué curas?",
     "chooseItem": "Elige el Objeto que juegas",
-    "chooseLocation": "Elige una localización",
+    "chooseLocation": "Elige un Lugar",
     "moveDamageTo": "¿A qué carta lo mueves?",
     "chooseTrauma": "Derrotado por daño y horror a la vez: elige el trauma",
     "chooseToken": "Elige qué ficha resolver (la otra se ignora)",
@@ -128,7 +128,7 @@
     "resource": "Obtener 1 recurso",
     "investigate": "Investigar {location}",
     "move": "Moverse a {location}",
-    "fight": "Luchar contra {enemy}",
+    "fight": "Combatir a {enemy}",
     "evade": "Evadir a {enemy}",
     "engage": "Enfrentarse a {enemy}",
     "advanceAct": "Avanzar {act} (gastar {clues} pistas)",
@@ -149,12 +149,12 @@
     },
     "placeDoom": "Colocar 1 perdición en el plan",
     "damageHorrorSurge": "Recibir 1 daño y 1 horror directos (oleada)",
-    "placeClue": "Dejar 1 de tus pistas en tu localización",
+    "placeClue": "Dejar 1 de tus pistas en tu Lugar",
     "takeHorror": "Recibir 1 horror",
     "discardRandom": "Descartar 1 carta al azar",
     "loseResource": "Perder 1 recurso",
     "takeTwoDamage": "Recibir 2 daño",
-    "horrorToEachHere": "Cada investigador de tu localización recibe 1 horror",
+    "horrorToEachHere": "Cada investigador de tu Lugar recibe 1 horror",
     "skip": "Omitir",
     "commit": "Comprometer {card} (+{icons})",
     "revealToken": "Revelar ficha del caos",
@@ -239,32 +239,32 @@
     "upkeep": "Fase de Mantenimiento"
   },
   "ability": {
-    "parleyBystander": "Parlamento: prueba de Intelecto (2) para descartar un Bystander",
+    "parleyBystander": "Negociar: prueba de Intelecto (2) para descartar un Enemigo Transeúnte",
     "discardFire": "Apagar el fuego: prueba de Agilidad (3)",
     "discardTreachery": "Descartar {card}",
     "blazeDamage": "Gastar {clues} pistas: {damage} daño a {enemy}",
-    "resign": "Retirarse del escenario",
+    "resign": "Desistir",
     "engageFromConnecting": "Atraer a {enemy} desde {location} y enfrentarte a él",
     "heal": "Curar 1 daño y 1 horror",
     "quadMove": "Moverse a {location} (rápida)",
     "observatoryDraw": "Robar 1 carta",
     "orneDraw": "Robar 3 cartas (2 acciones)",
-    "fightWith": "Luchar contra {enemy} con {card}",
+    "fightWith": "Combatir a {enemy} con {card}",
     "investigateWith": "Investigar con {card} ({skill})",
     "wrenchProvoke": "Provocar a {enemy} (se enfrenta a ti y ataca)",
     "twinSecond": "Segundo disparo contra {enemy} (Agilidad +1, +1 daño)",
-    "danielaFight": "Luchar contra {enemy} (Daniela)",
+    "danielaFight": "Combatir a {enemy} (Daniela)",
     "drawCards": "Robar {n} carta(s)",
     "dexterReturn": "Devolver {card} a tu mano",
     "dexterPlay": "Jugar {card}",
     "isabelleCommit": "Recibir 1 horror: comprometer {card} desde el descarte",
     "pump": "{card}: gastar 1 recurso (+{amount} {skill})",
-    "damageEnemyHere": "{card}: 1 daño a un enemigo de tu localización",
+    "damageEnemyHere": "{card}: 1 daño a un enemigo de tu Lugar",
     "gainResource": "{card}: ganar 1 recurso",
     "moveWith": "{card}: moverte a {location}",
     "healAsset": "{card}: curar 1 {kind}",
     "investigateConnecting": "{card}: investigar {location}",
-    "moveConnecting": "{card}: moverte a una localización conectada",
+    "moveConnecting": "{card}: moverte a un Lugar conectado",
     "luckyCharm": "Lucky Charm: mover 1 {kind} de {from}",
     "bandages": "Bandages: curar 1 daño a {target}",
     "returnFromDiscard": "Hunter's Instinct: recuperar {target}",
@@ -275,11 +275,11 @@
     "searchTop": "{card}: buscar entre las {n} primeras de tu mazo",
     "revealExtraToken": "{card}: revelar 2 fichas y elegir una",
     "retryTest": "{card}: repetir la prueba con −2 al velo",
-    "fightWithHorror": "Luchar con {card} contra {enemy} (+1 horror: +1 daño)",
-    "drawBeneath": "Gastar {clues} pistas en grupo: robar la carta de debajo de tu localización",
+    "fightWithHorror": "Combatir a {enemy} con {card} (+1 horror: +1 daño)",
+    "drawBeneath": "Gastar {clues} pistas en grupo: robar la carta de debajo de tu Lugar",
     "codex": "Códex de {enemy}",
-    "parleyPay": "Parlamento con {enemy}: gastar {resources} recursos",
-    "parleyTest": "Parlamento con {enemy} ({skill})",
+    "parleyPay": "Negociar con {enemy}: gastar {resources} recursos",
+    "parleyTest": "Negociar con {enemy} ({skill})",
     "breakLock": "Romper el Arcane Lock (voluntad o intelecto 4)",
     "hospitalHeal": "Curar hasta 2 daño entre los investigadores de aquí",
     "shoppeSearch": "Buscar un apoyo Spell o Ritual entre las 9 primeras de tu mazo",
@@ -288,17 +288,17 @@
     "southsideDraw": "Los investigadores de aquí roban 3 cartas entre todos",
     "frenchHillCharge": "Descartar 1 carta: 1 carga o secreto en {card}",
     "playFromDiscard": "Jugar {card} de tu pila de descartes (−2 al coste)",
-    "extinguish": "Gastar {clues} pistas en grupo: descartar el Fire! de tu localización",
+    "extinguish": "Gastar {clues} pistas en grupo: descartar el Fire! de tu Lugar",
     "weakenElokoss": "Gastar {clues} pistas: poner 1 pista sobre Elokoss ({have}/5)",
     "openSluice": "Abrir la compuerta (agilidad o combate 5)",
     "codexSearch": "Buscar y jugar una carta del códex",
     "shuffleGoldBug": "Barajar The Gold Bug en el mazo",
-    "heavyFightWith": "Ataque pesado con {card}: luchar contra {enemy}",
+    "heavyFightWith": "Ataque pesado con {card}: combatir a {enemy}",
     "gala": {
       "archibaldHunt": "Archibald Hudson: busca un enemigo y gana 3 recursos",
       "arseneDraw": "Arsène Renard: antigüedad por 1 carta",
       "arseneGain": "Arsène Renard: antigüedad por 2 recursos",
-      "arsenePlant": "Arsène Renard: 1 antigüedad en cada localización",
+      "arsenePlant": "Arsène Renard: 1 antigüedad en cada Lugar",
       "artGallery": "Galería de arte: 2 pistas aquí y 2 recursos",
       "bain": "William Bain: llega un Invitado al Vestíbulo ({n} recursos)",
       "bedroomFight": "Dormitorio: combatir contra {enemy} ({skill})",
@@ -363,7 +363,7 @@
     },
     "play": "{name} juega {card}",
     "testSuccess": "{name}: {skill} {value} contra {difficulty} ({tokens}) — éxito",
-    "testFailure": "{name}: {skill} {value} contra {difficulty} ({tokens}) — fallo",
+    "testFailure": "{name}: {skill} {value} contra {difficulty} ({tokens}) — fracaso",
     "damage": "{name} recibe {damage} daño y {horror} horror",
     "encounter": "{name} roba {card}",
     "clues": "{name} descubre {amount} pista(s)",
@@ -371,14 +371,14 @@
     "agendaAdvanced": "Avanza el plan: {name}",
     "actAdvanced": "Avanza el acto: {name}",
     "eliminated": "{name} queda eliminado",
-    "resigned": "{name} se retira",
+    "resigned": "{name} desiste",
     "end": "Fin del escenario ({outcome})",
     "armitageBearer": "{name} será el portador del Dr. Henry Armitage",
     "searchCanceled": "{name} encuentra {card}: la búsqueda se cancela",
     "sealed": "{name} sella una ficha ({token})",
     "weakness": "{name} roba su debilidad {card}",
     "underAct": "{enemy} queda debajo del acto",
-    "enemyImmune": "{enemy} no puede recibir daño (hay fuego en su localización)",
+    "enemyImmune": "{enemy} no puede recibir daño (hay fuego en su Lugar)",
     "lead": "{name} es el investigador jefe",
     "experience": "{name}: {bonus} de bonificación/penalización + {victory} de victoria = {amount} XP.",
     "chaosTokensAdded": "{scenario} añade {n} ficha(s) a la bolsa de campaña.",
@@ -518,7 +518,7 @@
     "actionsLeft": "{n} acciones",
     "journal": "Diario del caso",
     "shroudUntilEndOfRound": "Velo modificado hasta el final de la ronda",
-    "cardBeneath": "Hay una carta boca abajo debajo de esta localización",
+    "cardBeneath": "Hay una carta boca abajo debajo de este Lugar",
     "officialText": "Texto oficial (inglés)",
     "summaryText": "Resumen en español",
     "mulliganHint": "Haz clic en las cartas de tu mano que quieras cambiar.",
@@ -639,7 +639,7 @@
     "assets": "apoyos",
     "tokens": "fichas",
     "success": "Éxito",
-    "failure": "Fallo",
+    "failure": "Fracaso",
     "commitHint": "Compromete cartas de tu mano (resaltadas) y haz clic en la bolsa para revelar una ficha.",
     "tokensInBag": "{n} fichas",
     "showOdds": "Estimar probabilidades",
@@ -669,7 +669,7 @@
   "actionShort": {
     "investigate": "Investigar",
     "move": "Moverse",
-    "fight": "Luchar",
+    "fight": "Combatir",
     "evade": "Evitar",
     "engage": "Enfrentarse",
     "draw": "Robar",
@@ -695,7 +695,7 @@
       "resolution3Title": "Resolución 3",
       "resolution3": "Huis del campus con el Dr. Armitage y dejáis la universidad a su suerte, entre el aullido de las sirenas, camino de su apartamento.",
       "setupTitle": "Preparación",
-      "setup": "Se reúnen los conjuntos de encuentros del escenario.\n\nYour Friend's Room entra en juego; las demás localizaciones del campus se apartan. Cada investigador empieza en Your Friend's Room.\n\nSe apartan, fuera del juego, las 5 copias de Fire!, el apoyo de historia Dr. Henry Armitage y el enemigo Servant of Flame.\n\nEl resto de cartas de encuentro se baraja para formar el mazo de encuentros."
+      "setup": "Se reúnen los conjuntos de encuentros del escenario.\n\nYour Friend's Room entra en juego; los demás Lugares del campus se apartan. Cada investigador empieza en Your Friend's Room.\n\nSe apartan, fuera del juego, las 5 copias de Fire!, el apoyo de historia Dr. Henry Armitage y el enemigo Servant of Flame.\n\nEl resto de cartas de encuentro se baraja para formar el mazo de encuentros."
     },
     "effect": {
       "record": "Anotad en el registro de campaña: {note}.",
@@ -711,8 +711,8 @@
       "campaignWon": "¡Los investigadores ganan la campaña!",
       "collector": "Los investigadores ganan la carta de recompensa Collector: podrán incluirla al crear mazos nuevos.",
       "traumaBoth": "Cada investigador sufre {n} trauma físico y {n} trauma mental.",
-      "killedUnlessResigned": "Mueren los investigadores que no se retiraron.",
-      "escapedRewards": "Los que se retiraron ganan la experiencia de la zona de victoria más 3 y sufren 3 trauma mental."
+      "killedUnlessResigned": "Mueren los investigadores que no desistieron.",
+      "escapedRewards": "Los que desistieron ganan la experiencia de la zona de victoria más 3 y sufren 3 trauma mental."
     },
     "note": {
       "universityBurned": "la Universidad Miskatonic ardió",
@@ -795,7 +795,7 @@
       "resolution3Title": "Resolución 3",
       "resolution3": "La vieja compuerta se abre con un chirrido y un torrente de agua inunda los túneles. No intentáis huir: hicisteis lo que había que hacer. Mientras el agua sube, pensáis en vuestro amigo, en Armitage y en todos los que se han ahogado para detener a un mal antiguo.",
       "setupTitle": "Preparación",
-      "setup": "Underground Cistern entra en juego. Las localizaciones de las alcantarillas se barajan y entran sin revelar, sin saber cuál es cuál; Sluice Control se aparta. Cada investigador empieza en Sewer Culvert.\n\nSegún el registro de campaña: si recorrieron Arkham en busca de respuestas, cada investigador empieza con 1 pista; si armaron un buen lío, entra 1 sectario por investigador, cada uno en un túnel distinto; si mataron al Servant of Flame, se retira del juego (si no, se aparta).\n\nCon 3 o 4 jugadores, 1 perdición en el plan. Se apartan las copias de Fire!, la recompensa Collector y los enemigos Elokoss, Queen's Knight y Herald of Flame. El resto forma el mazo de encuentros."
+      "setup": "Underground Cistern entra en juego. Los Lugares de las alcantarillas se barajan y entran sin revelar, sin saber cuál es cuál; Sluice Control se aparta. Cada investigador empieza en Sewer Culvert.\n\nSegún el registro de campaña: si recorrieron Arkham en busca de respuestas, cada investigador empieza con 1 pista; si armaron un buen lío, entra 1 sectario por investigador, cada uno en un túnel distinto; si mataron al Servant of Flame, se retira del juego (si no, se aparta).\n\nCon 3 o 4 jugadores, 1 perdición en el plan. Se apartan las copias de Fire!, la recompensa Collector y los enemigos Elokoss, Queen's Knight y Herald of Flame. El resto forma el mazo de encuentros."
     },
     "brethrenOfAsh": {
       "prologueTitle": "Prólogo: un glorioso renacer",
@@ -844,7 +844,7 @@
       "mayhemTitle": "Se desata el caos",
       "mayhem": "El Exangüe avanza hacia ti, se tambalea y cae. Su traje se rasga y de él brotan tentáculos y fauces: ahora es una abominación.",
       "calmTitle": "Un momento de calma",
-      "calm": "El alboroto se apaga un instante. Cada investigador puede curar 1 horror de un investigador o Invitado de su localización.",
+      "calm": "El alboroto se apaga un instante. Cada investigador puede curar 1 horror de un investigador o Invitado de su Lugar.",
       "goodbyeTitle": "Una despedida de Kingsport",
       "goodbye": "La fiesta se convierte en una masacre. Todos los investigadores son derrotados y sufren 1 trauma mental.",
       "noResolutionTitle": "Sin resolución",
@@ -865,7 +865,7 @@
       "resolution7": "Desde el taxi ves el rostro del Exangüe mirándote desde una ventana. Kingsport, ciudad de nieblas y leyendas: ahora entiendes por qué.",
       "score": {
         "total": "Puntuación total: {n}",
-        "manorsWithNoClues": "Localizaciones de la mansión sin pistas: {points}",
+        "manorsWithNoClues": "Lugares de la mansión sin pistas: {points}",
         "guestAssetsControlled": "Invitados controlados: {points}",
         "noSpellboundInPlay": "Ninguna carta hechizada: {points}",
         "agenda1Or2": "Plan 1 o 2 en juego: {points}",
@@ -1026,7 +1026,7 @@
     },
     "hunter": {
       "title": "Cazador",
-      "body": "Al empezar la fase de enemigos, cada cazador preparado y no enfrentado avanza una localización por el camino más corto hacia el investigador más cercano. Si ya hay un investigador en su localización, no se mueve. Con empate, decide su presa o, si no, el jefe."
+      "body": "Al empezar la fase de enemigos, cada cazador preparado y no enfrentado avanza un Lugar por el camino más corto hacia el investigador más cercano. Si ya hay un investigador en su Lugar, no se mueve. Con empate, decide su presa o, si no, el jefe."
     },
     "peril": {
       "title": "Peligro",
@@ -1034,11 +1034,11 @@
     },
     "prey": {
       "title": "Presa",
-      "body": "Algunos enemigos persiguen a un investigador concreto: entre varios a la misma distancia (o en su localización), eligen al que mejor cumple lo que indica su presa."
+      "body": "Algunos enemigos persiguen a un investigador concreto: entre varios a la misma distancia (o en su Lugar), eligen al que mejor cumple lo que indica su presa."
     },
     "retaliate": {
       "title": "Represalia",
-      "body": "Si fallas una prueba al atacar a un enemigo preparado con represalia, después de aplicar los resultados te ataca (esté o no enfrentado contigo). No se agota por ello."
+      "body": "Si fracasas en una prueba al atacar a un enemigo preparado con represalia, después de aplicar los resultados te ataca (esté o no enfrentado contigo). No se agota por ello."
     },
     "surge": {
       "title": "Oleada",
@@ -1050,35 +1050,35 @@
     },
     "alert": {
       "title": "Alerta",
-      "body": "Si fallas una prueba al evitar a un enemigo con alerta, después de aplicar los resultados te ataca. No se agota por ello."
+      "body": "Si fracasas en una prueba al evitar a un enemigo con alerta, después de aplicar los resultados te ataca. No se agota por ello."
     },
     "aloof": {
-      "title": "Distante",
-      "body": "Un enemigo distante no se enfrenta automáticamente a los investigadores de su localización; hay que enfrentarse a él con una acción (o un efecto)."
+      "title": "Indiferente",
+      "body": "Un enemigo indiferente no se enfrenta automáticamente a los investigadores de su Lugar; hay que enfrentarse a él con una acción (o un efecto)."
     },
     "elusive": {
       "title": "Escurridizo",
-      "body": "Después de que un enemigo escurridizo sea atacado (y no derrotado) o evitado, se aleja a una localización conectada, si puede sin investigadores, y deja de estar enfrentado."
+      "body": "Después de que un enemigo escurridizo sea atacado (y no derrotado) o evitado, se aleja a un Lugar conectado, si puede sin investigadores, y deja de estar enfrentado."
     },
     "massive": {
-      "title": "Masivo",
-      "body": "Un enemigo masivo preparado cuenta como enfrentado a cada investigador de su localización, ataca a todos ellos en la fase de enemigos y no se agota hasta terminar sus ataques. No se puede colocar en una zona de amenaza."
+      "title": "Descomunal",
+      "body": "Un enemigo descomunal preparado cuenta como enfrentado a cada investigador de su Lugar, ataca a todos ellos en la fase de enemigos y no se agota hasta terminar sus ataques. No se puede colocar en una zona de amenaza."
     },
     "patrol": {
       "title": "Errante",
-      "body": "En la fase de enemigos (paso 3.2), cada enemigo errante preparado y no enfrentado se mueve una localización por el camino más corto hacia su destino (El Exangüe: la localización más cercana con un Invitado). Con varios destinos, decide el jefe."
+      "body": "En la fase de enemigos (paso 3.2), cada enemigo errante preparado y no enfrentado se mueve un Lugar por el camino más corto hacia su destino (El Exangüe: el Lugar más cercano con un Invitado). Con varios destinos, decide el jefe."
     },
     "guests": {
       "title": "Invitados",
-      "body": "Los Invitados son apoyos de historia que esperan en las localizaciones. Negocia con ellos (prueba de uno de sus iconos, dificultad 3) para tomar su control; no ocupan ranura de aliado. Sus habilidades solo las puede usar quien los controla."
+      "body": "Los Invitados son apoyos de historia que esperan en los Lugares. Negocia con ellos (prueba de uno de sus iconos, dificultad 3) para tomar su control; no ocupan ranura de aliado. Sus habilidades solo las puede usar quien los controla."
     },
     "spellbound": {
       "title": "Hechizado",
-      "body": "Un Invitado hechizado se pone boca abajo en su localización, sin dueño y sin daño ni horror. Si fuera a quedar hechizado un Líder, se retira de la partida. Al darle la vuelta se prepara y deja de estar hechizado."
+      "body": "Un Invitado hechizado se pone boca abajo en su Lugar, sin dueño y sin daño ni horror. Si fuera a quedar hechizado un Líder, se retira de la partida. Al darle la vuelta se prepara y deja de estar hechizado."
     },
     "score": {
       "title": "Puntuación",
-      "body": "Al final de la partida se suman puntos por tareas: localizaciones de la mansión sin pistas, Invitados controlados, ninguna carta hechizada, terminar en el plan 1 o 2, enemigos importantes en la zona de victoria, poco daño u horror, la dificultad y los puntos de tu facción. Cada 10 puntos dan 1 de experiencia (máximo 5)."
+      "body": "Al final de la partida se suman puntos por tareas: Lugares de la mansión sin pistas, Invitados controlados, ninguna carta hechizada, terminar en el plan 1 o 2, enemigos importantes en la zona de victoria, poco daño u horror, la dificultad y los puntos de tu facción. Cada 10 puntos dan 1 de experiencia (máximo 5)."
     }
   },
   "phaseStep": {
@@ -1207,32 +1207,32 @@
       "scenario": "Escenario"
     },
     "summary": {
-      "12001": "Tras un ataque en tu localización, lucha una vez por ronda. Signo arcano: un daño a un enemigo de allí.",
+      "12001": "Tras un ataque en tu Lugar, combate una vez por ronda. Signo arcano: un daño a un enemigo de allí.",
       "12004": "Investigar con éxito permite robar una carta por ronda. El signo arcano con éxito da una carta y un recurso.",
       "12007": "Una acción adicional por turno solo sirve para evitar. El signo arcano permite desenfrentarse y moverse.",
       "12010": "Después de jugar un apoyo, devuelve otro apoyo o juega otro que puedas pagar, una vez por ronda.",
       "12013": "Una vez por ronda, recibe horror directo para comprometer una habilidad del descarte; vuelve al mazo tras la prueba.",
       "12097": "Descarta cartas elegidas hasta quedarte con una; las debilidades no se descartan voluntariamente.",
       "12098": "En tu zona de amenaza: salud y cordura máximas se reducen en uno. Su acción la baraja en el mazo.",
-      "12099": "Distante. Aparece en una localización vacía más lejana. Al acabar investigación, gana perdición si está preparado y sin perdición.",
-      "12106": "Umbral 3. Permite parlamentar con Bystanders. Al avanzar se prueba voluntad; fallar causa horror.",
+      "12099": "Indiferente. Aparece en el Lugar vacío más lejano. Al acabar investigación, gana perdición si está preparado y sin perdición.",
+      "12106": "Umbral 3. Permite negociar con Transeúntes. Al avanzar se prueba voluntad; fracasar causa horror.",
       "12107": "Umbral 5. Al avanzar, añade cartas Fire al descarte y prueba agilidad para evitar daño.",
       "12108": "Umbral 10. Colocar perdición roba Fire del descarte. Al avanzar derrota a los investigadores restantes.",
       "12109": "Al final de la ronda, gasta dos pistas por investigador para abandonar la primera etapa.",
       "12110": "Avanza cuando todos los investigadores que siguen en juego llegan a Miskatonic Quad.",
       "12111": "Al final de la ronda, los investigadores en Orne Library pueden pagar tres pistas por investigador.",
-      "12112": "Las pistas del grupo permiten dañar a un enemigo local. Puedes retirarte. Derrotar al Servant avanza el acto.",
-      "12134": "Umbral 10. Puedes retirarte. Al avanzar, cada investigador recibe Mark of Elokoss.",
-      "12135": "Umbral 8. Puedes retirarte. Al avanzar se retiran todos los investigadores restantes.",
-      "12136": "Gasta dos pistas por investigador en grupo para revelar la carta bajo tu localización. Resuelve seis enemigos Élite para terminar.",
+      "12112": "Las pistas del grupo permiten dañar a un enemigo local. Puedes desistir. Derrotar al Servant avanza el acto.",
+      "12134": "Umbral 10. Puedes desistir. Al avanzar, cada investigador recibe Mark of Elokoss.",
+      "12135": "Umbral 8. Puedes desistir. Al avanzar desisten todos los investigadores restantes.",
+      "12136": "Gasta dos pistas por investigador en grupo para revelar la carta bajo tu Lugar. Resuelve seis enemigos Élite para terminar.",
       "12169": "Umbral 6. Al avanzar aparece el Servant y se prueba voluntad para evitar horror directo.",
       "12170": "Umbral 10. Al avanzar aparece Mother of Flame y la futura perdición se convierte en daño directo.",
       "12171": "Etapa final: la futura perdición se convierte en daño directo. Derrota a Elokoss para terminar.",
       "12172": "Entrar en la cisterna cuesta tres pistas por investigador en grupo y avanza el acto.",
-      "12173": "Las pistas del grupo apagan Fire de tu localización. Derrota a Elokoss; los Sectarios preparados van hacia la cisterna.",
-      "12175": "Entrar sin revelar cuesta una pista por investigador en grupo. Superar la prueba de la válvula derrota a todos los enemigos y mata a quienes no se retiraron.",
-      "12179": "Masivo, represalia. No se mueve ni ataca por oportunidad. Paga tus pistas para colocar pruebas; cinco detienen el renacimiento.",
-      "12179b": "Cazador masivo. Tras evitarla se prepara, pero no ataca a ese investigador durante la ronda."
+      "12173": "Las pistas del grupo apagan Fire de tu Lugar. Derrota a Elokoss; los Sectarios preparados van hacia la cisterna.",
+      "12175": "Entrar sin revelar cuesta una pista por investigador en grupo. Superar la prueba de la válvula derrota a todos los enemigos y mata a quienes no desistieron.",
+      "12179": "Descomunal, represalia. No se mueve ni ataca por oportunidad. Paga tus pistas para colocar pruebas; cinco detienen el renacimiento.",
+      "12179b": "Cazador descomunal. Tras evitarla se prepara, pero no ataca a ese investigador durante la ronda."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
