@@ -6,6 +6,8 @@
 const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
   'story.brethrenOfAsh.prologue': { es: 'brethren-of-ash-prologue.mp3' },
   'story.spreadingFlames.intro': { es: 'spreading-flames-intro.mp3' },
+  'story.spreadingFlames.noResolution': { es: 'spreading-flames-no-resolution.mp3' },
+  'story.smokeAndMirrors.intro': { es: 'smoke-and-mirrors-intro.mp3' },
 }
 
 /** Ruta de la narración de un texto en un idioma, si está grabada. */
