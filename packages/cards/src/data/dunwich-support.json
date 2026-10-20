@@ -1,0 +1,55 @@
+[
+  {
+    "code": "02148",
+    "name": "Stand Together",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit"],
+    "cost": 0,
+    "xp": 3,
+    "icons": { "willpower": 2 },
+    "slots": []
+  },
+  {
+    "code": "02150",
+    "name": "Deduction",
+    "type": "skill",
+    "class": "seeker",
+    "traits": ["Practiced", "Expert"],
+    "xp": 2,
+    "icons": { "intellect": 2 },
+    "slots": []
+  },
+  {
+    "code": "02186",
+    "name": "Preposterous Sketches",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "02268",
+    "name": "Fearless",
+    "type": "skill",
+    "class": "mystic",
+    "traits": ["Innate", "Developed"],
+    "xp": 2,
+    "icons": { "willpower": 2 },
+    "slots": []
+  },
+  {
+    "code": "02273",
+    "name": "Moment of Respite",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Spirit"],
+    "cost": 3,
+    "xp": 3,
+    "icons": { "willpower": 2 },
+    "slots": []
+  }
+]
