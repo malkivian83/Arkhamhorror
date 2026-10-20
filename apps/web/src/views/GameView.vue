@@ -3,11 +3,13 @@ import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import BoardViewport from '../components/BoardViewport.vue'
+import CardInspector from '../components/CardInspector.vue'
 import CardZoom from '../components/CardZoom.vue'
 import CardPileModal from '../components/CardPileModal.vue'
 import ChoiceModal from '../components/ChoiceModal.vue'
 import DrawSpotlight from '../components/DrawSpotlight.vue'
 import LocationMap from '../components/LocationMap.vue'
+import MulliganNotice from '../components/MulliganNotice.vue'
 import PlayerArea from '../components/PlayerArea.vue'
 import ScenarioRow from '../components/ScenarioRow.vue'
 import ScenarioTransition from '../components/ScenarioTransition.vue'
@@ -110,6 +112,8 @@ const shown = computed(
     <CardPileModal />
     <DrawSpotlight :state="state" @dismissed="finishDraw" />
     <ScenarioTransition />
+    <MulliganNotice :state="state" />
+    <CardInspector />
   </div>
   <div v-else class="empty">
     <p>{{ t('setup.noGame') }}</p>

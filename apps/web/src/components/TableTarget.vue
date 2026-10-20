@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed, inject, nextTick, onBeforeUnmount, ref, watch, type Ref } from 'vue'
+import { computed, inject, nextTick, onBeforeUnmount, provide, ref, watch, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { inspected, noHover, TABLE_CARD, type InspectedCard } from '../game/inspect'
 import { useLabels } from '../game/labels'
 import { BOARD_VIEW_KEY, type ViewTransform } from '../game/viewport'
 import { useGameStore } from '../stores/game'
@@ -61,7 +62,19 @@ function place() {
       : { left: `${left}px`, top: `${rect.bottom + 4}px` }
 }
 
+/** Cartas que muestra este elemento; la primera es la suya (las anidadas tienen su propio elemento). */
+const cards: (() => InspectedCard)[] = []
+provide(TABLE_CARD, (card) => {
+  cards.push(card)
+  return () => cards.splice(cards.indexOf(card), 1)
+})
 async function click() {
+  // Sin ratón: la carta se abre ampliada con sus opciones; elegir es un segundo toque.
+  if (noHover.value && cards[0]) {
+    open.value = false
+    inspected.value = { card: cards[0](), target: props.target }
+    return
+  }
   if (direct.value) return game.answer(direct.value.index)
   if (!options.value.length) return
   open.value = !open.value

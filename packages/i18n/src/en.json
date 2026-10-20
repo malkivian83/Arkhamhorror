@@ -520,6 +520,12 @@
     "officialText": "Official text",
     "summaryText": "Summary",
     "mulliganHint": "Click the cards in your hand you want to replace.",
+    "mulliganNotice": {
+      "title": "Mulligan: your opening hand",
+      "body": "Before you begin you can replace the cards in your opening hand that you do not want. Tap the cards in your hand you want to return to your deck and, when you confirm, you draw that many new cards.",
+      "once": "You can only do this once, at the start of the scenario. If you like your hand, keep it.",
+      "choose": "Choose cards to replace"
+    },
     "story": "Story",
     "spellbound": "Spellbound guest (facedown)",
     "scenarioDeck": {

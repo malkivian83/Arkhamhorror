@@ -520,6 +520,12 @@
     "officialText": "Texto oficial (inglés)",
     "summaryText": "Resumen en español",
     "mulliganHint": "Haz clic en las cartas de tu mano que quieras cambiar.",
+    "mulliganNotice": {
+      "title": "Mulligan: tu mano inicial",
+      "body": "Antes de empezar puedes cambiar las cartas de tu mano inicial que no te convengan. Pulsa en tu mano las que quieras devolver al mazo y, al confirmar, robarás otras tantas.",
+      "once": "Solo se puede hacer una vez, al empezar el escenario. Si te gusta tu mano, quédatela.",
+      "choose": "Elegir cartas para cambiar"
+    },
     "story": "Historia",
     "spellbound": "Invitado hechizado (boca abajo)",
     "scenarioDeck": {

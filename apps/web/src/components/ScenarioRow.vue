@@ -479,28 +479,35 @@ const sortedBag = computed(() =>
     display: none;
   }
 }
+/* En móvil, una sola línea que se desplaza de lado. */
 @media (max-width: 680px) {
   .scenario-row {
+    flex-wrap: nowrap;
     gap: 5px;
     padding: 6px 6px 6px 56px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+  .scenario-row::-webkit-scrollbar {
+    display: none;
+  }
+  .scenario-row > * {
+    flex: none;
   }
   .scenario-group {
-    flex: 1 1 calc(50% - 3px);
     gap: 4px;
     padding: 3px;
   }
-  .scenario-group > :deep(.deck-trigger.compact),
-  .scenario-group .group-target,
   .group-metric {
-    flex: 1 1 0;
-    min-width: 0;
+    padding-inline: 6px;
   }
-  .group-metric {
-    padding-inline: 2px;
+  /* El recuadro sigue marcando lo que se puede usar; el rótulo no cabe en la barra. */
+  .group-target :deep(.hint) {
+    display: none;
   }
   .scenario-stat {
-    flex: 1 0 48px;
-    min-width: 0;
+    min-width: 52px;
     flex-direction: column;
     gap: 2px;
     padding: 4px 2px;

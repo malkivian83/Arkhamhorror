@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, inject, onBeforeUnmount, ref, watch } from 'vue'
 import { cardImages, cardThumbnail, localScan, scanLocale } from '../game/cards'
+import { noHover, TABLE_CARD } from '../game/inspect'
 import { localizedCards, localName } from '../game/localized'
 import { zoomed } from '../game/zoom'
 import RenderedCard from './RenderedCard.vue'
@@ -75,11 +76,21 @@ const style = computed(() => ({
 }))
 
 function hover(on: boolean) {
-  if (props.noZoom) return
+  // Sin ratón, el toque abre la carta ampliada (ver TableTarget) en vez de la ampliación lateral.
+  if (props.noZoom || noHover.value) return
   zoomed.value = on
     ? { code: props.code, name: props.name, back: props.back, landscape: props.landscape }
     : null
 }
+// La carta queda registrada en su elemento de la mesa, que la abre al tocarlo.
+const register = props.noZoom ? null : inject(TABLE_CARD, null)
+const unregister = register?.(() => ({
+  code: props.code,
+  name: props.name,
+  back: props.back,
+  landscape: props.landscape,
+}))
+if (unregister) onBeforeUnmount(unregister)
 </script>
 
 <template>
