@@ -222,8 +222,8 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
           :title="t('choice.revealToken')"
           @click="game.answerLabel('choice.revealToken')"
         >
-          <ScenarioSymbol kind="bag" />
-          <span>{{ t('choice.revealToken') }}</span>
+          <span class="bag-medallion"><ScenarioSymbol kind="bag" /></span>
+          <span class="bag-label">{{ t('choice.revealToken') }}</span>
         </button>
       </div>
       <section v-if="testAbilities.length" class="test-abilities">
@@ -239,18 +239,23 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
       </section>
 
       <div v-if="resolved" class="result" :class="test.succeeded ? 'success' : 'failure'">
-        <strong
-          ><span aria-hidden="true">{{ test.succeeded ? '✓' : '×' }}</span>
-          {{ test.succeeded ? t('skillTest.success') : t('skillTest.failure') }}</strong
-        >
-        <span>{{ test.modifiedSkill }} / {{ test.difficulty }}</span>
+        <span class="verdict">
+          <strong
+            ><span aria-hidden="true">{{ test.succeeded ? '✓' : '×' }}</span>
+            {{ test.succeeded ? t('skillTest.success') : t('skillTest.failure') }}</strong
+          >
+          <span class="score">{{ test.modifiedSkill }} / {{ test.difficulty }}</span>
+        </span>
         <button
           v-if="canApplyResults"
           type="button"
-          class="primary"
+          class="apply"
           @click="game.answerLabel('choice.applyResults')"
         >
           {{ t('choice.applyResults') }}
+          <svg class="apply-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
         </button>
       </div>
       <div v-if="intermediateQuestion" class="pending-choice" aria-live="polite">
@@ -259,6 +264,7 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
           v-for="(choice, index) in intermediateQuestion.choices"
           :key="index"
           type="button"
+          :class="choice.label === 'choice.skip' ? 'skip' : 'take'"
           @click="game.answer(index)"
         >
           {{ label(choice.label, choice.params ?? {}) }}
@@ -359,17 +365,9 @@ button {
   background: #303037;
   border-color: var(--border);
 }
-button.primary {
-  background: var(--accent);
-  color: #19191d;
-  border-color: var(--accent);
-}
 button:hover:not(:disabled) {
   border-color: var(--accent);
   background: #37303a;
-}
-button.primary:hover:not(:disabled) {
-  background: #f0c2a8;
 }
 .min {
   flex: none;
@@ -507,25 +505,88 @@ button.primary:hover:not(:disabled) {
   min-height: 80px;
   align-items: center;
 }
+/* Revelar: la bolsa en un medallón de ficha, sobre una placa con filo de cobre. */
 .bag-button {
-  display: inline-flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: center;
   gap: 12px;
   width: 100%;
-  min-height: 56px;
-  background: #e5aa8d;
-  color: #19191d;
+  min-height: 64px;
+  padding: 8px;
   border: 1px solid #e5aa8d;
-  font-weight: 600;
+  border-radius: 32px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(229 170 141 / 22%), transparent 70%),
+    linear-gradient(180deg, #3a2b2a, #211a1c);
+  color: #f6dccb;
+  box-shadow:
+    inset 0 1px 0 rgb(255 230 210 / 18%),
+    inset 0 0 0 3px #19191d,
+    inset 0 0 0 4px rgb(229 170 141 / 35%),
+    0 4px 14px rgb(0 0 0 / 50%);
+}
+.bag-button:not(:disabled) {
+  animation: bag-call 2.4s ease-in-out infinite;
+}
+/* Hueco del ancho del medallón para que el texto quede centrado. */
+.bag-button::after {
+  content: '';
+  width: 48px;
+}
+.bag-medallion {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #e5aa8d;
+  background: radial-gradient(circle at 40% 35%, #4a3631, #19191d 75%);
+  box-shadow:
+    inset 0 -3px 6px rgb(0 0 0 / 55%),
+    0 2px 6px rgb(0 0 0 / 50%);
+  color: #e5aa8d;
+  transition: transform 0.2s ease;
 }
 .bag-button :deep(.scenario-symbol) {
-  color: currentColor;
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
+}
+.bag-label {
+  font:
+    700 1.0625rem/1.25 'Libre Baskerville',
+    Georgia,
+    serif;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 60%);
 }
 .bag-button:hover:not(:disabled) {
-  background: #f0c2a8;
+  color: #fff1e6;
+  border-color: #f0c2a8;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(229 170 141 / 34%), transparent 70%),
+    linear-gradient(180deg, #46332f, #271e20);
+}
+.bag-button:hover:not(:disabled) .bag-medallion {
+  animation: bag-shake 0.5s ease-in-out;
+}
+@keyframes bag-call {
+  50% {
+    box-shadow:
+      inset 0 1px 0 rgb(255 230 210 / 18%),
+      inset 0 0 0 3px #19191d,
+      inset 0 0 0 4px rgb(229 170 141 / 35%),
+      0 4px 14px rgb(0 0 0 / 50%),
+      0 0 18px rgb(229 170 141 / 40%);
+  }
+}
+@keyframes bag-shake {
+  25% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(8deg);
+  }
 }
 .test-abilities {
   padding: 8px 20px 16px;
@@ -551,14 +612,81 @@ button.primary:hover:not(:disabled) {
   background: #25252b;
   border-block: 1px solid #62585b;
 }
-.result.success strong {
+/* Veredicto como un sello: verde si se supera, rojo lacre si no. */
+.verdict {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 4px 14px;
+  border: 1px solid;
+  border-radius: 999px;
+}
+.verdict strong {
+  font:
+    700 0.9375rem/1.4 'Libre Baskerville',
+    Georgia,
+    serif;
+}
+.verdict strong > span {
+  font-size: 1.1rem;
+}
+.score {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.success .verdict {
   color: #a8d8c0;
+  border-color: rgb(168 216 192 / 55%);
+  background: rgb(80 150 120 / 14%);
 }
-.result.failure strong {
+.failure .verdict {
   color: #ffb4a9;
+  border-color: rgb(255 180 169 / 55%);
+  background: rgb(160 60 50 / 18%);
 }
-.result strong > span {
-  font-size: 1.25rem;
+/* Aplicar: placa compacta con filo de cobre, como el botón de la bolsa. */
+.apply {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 4px 14px;
+  border: 1px solid #e5aa8d;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(229 170 141 / 20%), transparent 70%),
+    linear-gradient(180deg, #3a2b2a, #211a1c);
+  color: #f6dccb;
+  font:
+    700 0.875rem/1.2 'Libre Baskerville',
+    Georgia,
+    serif;
+  box-shadow:
+    inset 0 1px 0 rgb(255 230 210 / 18%),
+    0 3px 10px rgb(0 0 0 / 45%);
+}
+.apply:hover:not(:disabled) {
+  color: #fff1e6;
+  border-color: #f0c2a8;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(229 170 141 / 32%), transparent 70%),
+    linear-gradient(180deg, #46332f, #271e20);
+  box-shadow:
+    inset 0 1px 0 rgb(255 230 210 / 18%),
+    0 3px 10px rgb(0 0 0 / 45%),
+    0 0 14px rgb(229 170 141 / 30%);
+}
+.apply-icon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.15s ease;
+}
+.apply:hover .apply-icon {
+  transform: translateX(3px);
 }
 .pending-choice {
   display: grid;
@@ -568,9 +696,53 @@ button.primary:hover:not(:disabled) {
 }
 .pending-choice p {
   margin: 0;
+  color: #e5aa8d;
+  font-weight: 600;
 }
 .pending-choice button {
   white-space: normal;
+}
+/* Lo que se puede hacer destaca; omitir queda en segundo plano. */
+.pending-choice button.take {
+  min-height: 50px;
+  padding: 8px 16px;
+  border: 1px solid #e5aa8d;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(229 170 141 / 20%), transparent 70%),
+    linear-gradient(180deg, #3a2b2a, #211a1c);
+  color: #f6dccb;
+  font:
+    700 0.9375rem/1.3 'Libre Baskerville',
+    Georgia,
+    serif;
+  box-shadow:
+    inset 0 1px 0 rgb(255 230 210 / 18%),
+    0 3px 10px rgb(0 0 0 / 45%);
+}
+.pending-choice button.take:hover:not(:disabled) {
+  color: #fff1e6;
+  border-color: #f0c2a8;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(229 170 141 / 32%), transparent 70%),
+    linear-gradient(180deg, #46332f, #271e20);
+  box-shadow:
+    inset 0 1px 0 rgb(255 230 210 / 18%),
+    0 3px 10px rgb(0 0 0 / 45%),
+    0 0 14px rgb(229 170 141 / 30%);
+}
+.pending-choice button.skip {
+  justify-self: center;
+  min-width: 140px;
+  min-height: 40px;
+  border-color: #4b4246;
+  background: transparent;
+  color: #c3bbb4;
+  font-size: 0.875rem;
+}
+.pending-choice button.skip:hover:not(:disabled) {
+  color: var(--ink);
+  border-color: #807574;
+  background: #25252b;
 }
 .error {
   color: #ffb4a9;
@@ -725,6 +897,23 @@ footer {
   }
   .hint {
     margin-inline: 14px;
+  }
+  .bag-button {
+    min-height: 54px;
+    gap: 8px;
+    padding: 6px;
+  }
+  .bag-medallion,
+  .bag-button::after {
+    width: 40px;
+    height: 40px;
+  }
+  .bag-button :deep(.scenario-symbol) {
+    width: 22px;
+    height: 22px;
+  }
+  .bag-label {
+    font-size: 0.9375rem;
   }
 }
 </style>
