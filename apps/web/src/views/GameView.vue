@@ -101,6 +101,7 @@ const shown = computed(
       :state="state"
       class="case-panel"
       :class="{ visible: showCase }"
+      @close="closeCase"
       @keydown.esc.prevent.stop="closeCase"
     />
 

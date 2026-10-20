@@ -1041,5 +1041,10 @@ h3,
     gap: 4px;
     padding-top: 4px;
   }
+  /* Solo la mitad superior (nombre e ilustración): al tocarla se abre entera. */
+  .in-hand {
+    height: 56px;
+    overflow: hidden;
+  }
 }
 </style>

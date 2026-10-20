@@ -240,4 +240,36 @@ h1 {
   text-align: center;
   font-size: 1.2rem;
 }
+@media (max-width: 600px) {
+  .overlay {
+    padding: 10px;
+  }
+  .story {
+    max-height: calc(100vh - 20px);
+    padding: 18px 18px 16px;
+  }
+  h1 {
+    margin-bottom: 10px;
+    font-size: 1.15rem;
+  }
+  .body p {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+  .body p.instruction,
+  .body p.item,
+  .effects li {
+    font-size: 0.85rem;
+  }
+  .effects h2 {
+    font-size: 0.75rem;
+  }
+  .options button {
+    font-size: 0.9rem;
+  }
+  .end .result {
+    font-size: 1.05rem;
+  }
+}
 </style>

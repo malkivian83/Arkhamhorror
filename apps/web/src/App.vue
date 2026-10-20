@@ -2,7 +2,7 @@
 import { LOCALES, type Locale } from '@lcg/shared'
 import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import PlaymatPicker from './components/PlaymatPicker.vue'
 import SiteHeader from './components/SiteHeader.vue'
 import { scanLocale } from './game/cards'
@@ -14,6 +14,7 @@ import { syncStatus } from './account/library'
 
 const { t, locale } = useI18n()
 const route = useRoute()
+const router = useRouter()
 const game = useGameStore()
 const gameMenu = ref<HTMLDialogElement>()
 const menuButton = ref<HTMLButtonElement>()
@@ -22,6 +23,12 @@ function closeMenu() {
   menuButton.value?.focus()
 }
 watch(() => route.fullPath, closeMenu)
+
+function quit() {
+  if (!window.confirm(t('setup.confirmQuit'))) return
+  game.quit()
+  void router.push('/')
+}
 
 // Datos de las cartas en el idioma activo (en inglés se usan las imágenes oficiales).
 watch(
@@ -92,6 +99,7 @@ function setLocale(value: Locale) {
             account.user ? t('account.profile') : t('account.login')
           }}</RouterLink>
         </nav>
+        <button type="button" class="menu-quit" @click="quit">{{ t('setup.quit') }}</button>
         <PlaymatPicker />
         <nav class="menu-languages">
           <button
@@ -285,6 +293,10 @@ body {
 }
 .menu-close {
   align-self: flex-end;
+}
+.menu-quit {
+  align-self: flex-start;
+  font-family: var(--fell);
 }
 .game-menu button,
 .game-menu .sections a {

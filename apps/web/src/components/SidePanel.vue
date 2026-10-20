@@ -2,7 +2,6 @@
 import type { GameState } from '@lcg/engine'
 import { computed, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRouter } from 'vue-router'
 import { useLabels } from '../game/labels'
 import type { UndoKind } from '../game/undo'
 import { useGameStore } from '../stores/game'
@@ -12,6 +11,7 @@ import SessionTools from './SessionTools.vue'
 import PhaseTracker from './PhaseTracker.vue'
 
 const props = defineProps<{ state: GameState }>()
+const emit = defineEmits<{ close: [] }>()
 const game = useGameStore()
 const { t } = useI18n()
 const label = useLabels()
@@ -22,19 +22,12 @@ const decider = computed(
     props.state.investigators.find((i) => i.id === props.state.pending?.investigator)?.name ?? '',
 )
 const entries = computed(() => props.state.log.slice(-120))
-const router = useRouter()
 /** Cartas de encuentro que se están resolviendo ahora mismo. */
 const resolving = computed(() =>
   Object.values(props.state.treacheries).filter((tr) => tr.placement.type === 'limbo'),
 )
 
 const UNDO_KINDS: UndoKind[] = ['step', 'action', 'turn', 'round']
-
-function quit() {
-  if (!window.confirm(t('setup.confirmQuit'))) return
-  game.quit()
-  void router.push('/')
-}
 
 watch(
   () => props.state.log.length,
@@ -50,7 +43,9 @@ watch(
     <div class="phase">
       <strong>{{ t('game.round', { round: state.round }) }}</strong>
       <span>{{ t(`phase.${state.phase}`) }}</span>
-      <button type="button" class="quit" :title="t('setup.quit')" @click="quit">✕</button>
+      <button type="button" class="close" :aria-label="t('table.close')" @click="emit('close')">
+        ✕
+      </button>
     </div>
     <PhaseTracker :state="state" />
 
@@ -182,9 +177,16 @@ watch(
   justify-content: center;
   gap: 8px;
 }
-.quit {
+.close {
+  display: none;
   padding: 0 8px;
   margin-left: 8px;
+}
+/* Solo cuando el diario se abre encima de la mesa (ver GameView). */
+@media (max-width: 900px) {
+  .close {
+    display: inline-block;
+  }
 }
 .phase {
   display: flex;
