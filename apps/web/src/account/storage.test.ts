@@ -1,5 +1,5 @@
 import { afterEach, expect, it, vi } from 'vitest'
-import { accountStorage, discardLegacySaves } from './storage'
+import { accountStorage, discardLegacySaves, setStorageUser } from './storage'
 
 afterEach(() => {
   accountStorage.clear()
@@ -37,6 +37,31 @@ it('elimina los guardados antiguos sin borrar preferencias ni escribir nuevos da
   ])
   expect(removeItem).toHaveBeenCalledWith('lcg:client')
   expect(deleteDatabase).toHaveBeenCalledWith('lcg-account-library')
+})
+
+it('la partida de invitado sobrevive a recargar la pestaña y no la de una cuenta', async () => {
+  const tab = new Map<string, string>()
+  vi.stubGlobal('sessionStorage', {
+    get length() {
+      return tab.size
+    },
+    key: (index: number) => [...tab.keys()][index] ?? null,
+    getItem: (key: string) => tab.get(key) ?? null,
+    setItem: (key: string, value: string) => tab.set(key, value),
+    removeItem: (key: string) => tab.delete(key),
+  })
+  setStorageUser(null)
+  accountStorage.setItem('lcg:session:v1', 'guest game')
+  vi.resetModules()
+  const reloaded = await import('./storage')
+  reloaded.setStorageUser(null)
+  expect(reloaded.accountStorage.getItem('lcg:session:v1')).toBe('guest game')
+  reloaded.setStorageUser('user-a')
+  reloaded.accountStorage.setItem('lcg:session:v1', 'account game')
+  expect([...tab.values()]).toEqual(['guest game'])
+  reloaded.setStorageUser(null)
+  reloaded.accountStorage.clear()
+  expect(tab.size).toBe(0)
 })
 
 it('el estado de juego funciona en memoria con el almacenamiento del navegador bloqueado', () => {

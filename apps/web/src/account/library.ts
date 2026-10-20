@@ -1,9 +1,9 @@
 import { shallowRef } from 'vue'
 import type { CloudDocument, CloudMetadata, DocumentKind, DocumentWrite } from '@lcg/shared'
-import { decodeSession, SESSION_KEY } from '@lcg/saves'
+import { canonical, decodeSession, SESSION_KEY } from '@lcg/saves'
 import type { DeckList } from '@lcg/cards'
 import { account, api, ApiError, recoverAccountSession } from './api'
-import { accountStorage, onLocalChange } from './storage'
+import { accountStorage, onLocalChange, tabStorage } from './storage'
 
 export interface LibraryDocument extends CloudDocument {
   dirty: boolean
@@ -138,8 +138,32 @@ export async function saveDocument(
 function activeId() {
   return accountStorage.getItem('active-save')
 }
+/**
+ * The open adventure is remembered in this tab so a reload reopens it. `base` is
+ * the server revision the copy builds on: while the server has not gone past it,
+ * the copy holds changes that may not have arrived yet.
+ */
+interface TabAdventure {
+  id: string
+  base: number
+  payload: unknown
+}
+const tabKey = () => `lcg:active-adventure:${account.value.user?.id}`
+function rememberAdventure(record: LibraryDocument) {
+  const base = record.operation ? record.operation.revision + 1 : record.revision
+  const value: TabAdventure = { id: record.id, base, payload: record.payload }
+  tabStorage((storage) => {
+    try {
+      storage.setItem(tabKey(), JSON.stringify(value))
+    } catch {
+      // Full: the reload reopens the server copy, without the latest changes.
+      storage.setItem(tabKey(), JSON.stringify({ id: record.id, base: -1, payload: null }))
+    }
+  })
+}
 export function newAdventure() {
   accountStorage.removeItem('active-save')
+  tabStorage((storage) => storage.removeItem(tabKey()))
 }
 export async function trackGame(raw: string) {
   const value = JSON.parse(raw)
@@ -153,6 +177,8 @@ export async function trackGame(raw: string) {
   const id = current ?? crypto.randomUUID()
   accountStorage.setItem('active-save', id)
   await saveDocument('campaign', name ?? value.campaign?.id ?? value.state.scenarioId, value, id)
+  const record = records.get(id)
+  if (record && activeId() === id) rememberAdventure(record)
 }
 async function trackDecks(raw: string) {
   if (!loaded) throw new ApiError('network', 0)
@@ -179,7 +205,7 @@ export async function editMetadata(
   schedule()
   const wasActive = change.deleted && activeId() === id
   if (wasActive) {
-    accountStorage.removeItem('active-save')
+    newAdventure()
     accountStorage.removeItem(SESSION_KEY)
   }
   return !!wasActive
@@ -243,7 +269,7 @@ export async function resolveConflict(id: string, keepLocal: boolean, copyName?:
   // The working copy is not silently overwritten. Reopen the desired campaign from the library.
   const wasActive = activeId() === id
   if (wasActive) {
-    accountStorage.removeItem('active-save')
+    newAdventure()
     accountStorage.removeItem(SESSION_KEY)
   }
   restoreWorkingDecks()
@@ -258,7 +284,34 @@ export async function activateCampaign(id: string, load: (raw: string) => boolea
   const raw = JSON.stringify(record.payload)
   decodeSession(raw)
   accountStorage.setItem('active-save', id)
+  rememberAdventure(record)
   return load(raw)
+}
+/** Reopen the adventure this tab had open, keeping changes the server may have missed. */
+async function reopenAdventure() {
+  const saved = tabStorage((storage) => {
+    const raw = storage.getItem(tabKey())
+    return raw ? (JSON.parse(raw) as TabAdventure) : null
+  })
+  if (!saved) return
+  const record = records.get(saved.id)
+  if (!record || record.deleted) {
+    newAdventure()
+    return
+  }
+  const local =
+    saved.base >= record.revision && canonical(saved.payload) !== canonical(record.payload)
+  const payload = local ? saved.payload : record.payload
+  try {
+    const raw = JSON.stringify(payload)
+    decodeSession(raw)
+    accountStorage.setItem('active-save', record.id)
+    accountStorage.setItem(SESSION_KEY, raw)
+    if (local) await saveDocument('campaign', record.name, payload, record.id)
+  } catch {
+    accountStorage.removeItem(SESSION_KEY)
+    newAdventure()
+  }
 }
 function restoreWorkingDecks() {
   const live = [...records.values()].filter((d) => !d.deleted)
@@ -298,6 +351,7 @@ export async function initializeLibrary() {
     await refreshLibrary(true)
     syncStatus.value = 'saved'
     syncError.value = ''
+    await reopenAdventure()
   } catch (error) {
     syncStatus.value = 'offline'
     syncError.value = error instanceof ApiError ? error.code : 'internal'
@@ -309,6 +363,7 @@ export async function stopLibrary() {
   unsubscribe?.()
   unsubscribe = undefined
   await flushing
+  newAdventure()
   loaded = false
   records.clear()
   accountStorage.clear()

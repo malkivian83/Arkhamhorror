@@ -309,6 +309,45 @@ describe('guardado online de la biblioteca', () => {
     expect(library.documents.value).toEqual([])
     expect(library.syncStatus.value).toBe('offline')
   })
+  it('al recargar reabre la aventura de la pestaña con los cambios que no llegaron al servidor', async () => {
+    const first = game()
+    await library.trackGame(JSON.stringify(first))
+    await library.flush()
+    const id = library.documents.value[0]!.id
+    const later = { ...first, campaign: { ...first.campaign!, name: 'Later' } }
+    await library.trackGame(JSON.stringify(later))
+    // Recarga antes de que salga la escritura pendiente.
+    vi.resetModules()
+    vi.clearAllTimers()
+    await boot()
+    expect(scoped.accountStorage.getItem('active-save')).toBe(id)
+    expect(JSON.parse(scoped.accountStorage.getItem('lcg:session:v1')!).campaign.name).toBe('Later')
+    await library.flush()
+    expect((remote.get(id)!.payload as typeof later).campaign.name).toBe('Later')
+    expect(storage.data.size).toBe(0)
+  })
+  it('al recargar prefiere la versión de otro dispositivo si el servidor ya avanzó', async () => {
+    await library.trackGame(JSON.stringify(game()))
+    await library.flush()
+    const id = library.documents.value[0]!.id
+    const remoteGame = { ...game(), campaign: { ...game().campaign!, name: 'Remote' } }
+    remote.get(id)!.payload = remoteGame
+    remote.get(id)!.revision++
+    vi.resetModules()
+    await boot()
+    expect(JSON.parse(scoped.accountStorage.getItem('lcg:session:v1')!).campaign.name).toBe(
+      'Remote',
+    )
+  })
+  it('al cerrar sesión o empezar de nuevo la pestaña olvida la aventura', async () => {
+    await library.trackGame(JSON.stringify(game()))
+    expect(tabStorage.data.size).toBe(1)
+    library.newAdventure()
+    expect(tabStorage.data.size).toBe(0)
+    await library.trackGame(JSON.stringify(game()))
+    await library.stopLibrary()
+    expect(tabStorage.data.size).toBe(0)
+  })
   it('no crea varias aventuras si llegan acciones seguidas y asigna otra al empezar de nuevo', async () => {
     await Promise.all([
       library.trackGame(JSON.stringify(game())),

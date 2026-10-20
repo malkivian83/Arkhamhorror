@@ -7,11 +7,11 @@ Fecha: 19 de octubre de 2026. Continúa el [informe de diseño](21-cuentas-y-gua
 - Registro abierto, verificación de correo, reenvío, acceso y recuperación de contraseña.
 - Google mediante OpenID Connect y vinculación explícita a cuentas existentes.
 - Sesiones revocables con cookie HttpOnly, CSRF, comprobación de origen y límites de peticiones.
-- Invitado disponible solo durante la página abierta, sin persistencia ni importación de datos antiguos.
+- Invitado sin cuenta: su partida se copia en `sessionStorage` de la pestaña, así que sobrevive a recargar pero no a cerrarla. Sin importación de datos antiguos.
 - Mazos y recompensas privados, múltiples campañas, nombre, archivo, exportación y eliminación.
 - Guardados completos con historial y lecturas pendientes; cinco revisiones recuperables como otra aventura.
 - Guardado automático solo en el servidor. Estado de trabajo y reintentos idempotentes solo en memoria, con conflictos explícitos.
-- Cada página carga la biblioteca del servidor; no hay copias persistentes ni recuperación entre pestañas.
+- Cada página carga la biblioteca del servidor. La pestaña recuerda la aventura abierta y la reabre al recargar; no hay copias en `localStorage` ni recuperación entre pestañas.
 - Cierre de sesión que descarta el estado en memoria; eliminación de cuenta confirmando contraseña.
 - Español e inglés, móvil y controles de teclado.
 
@@ -29,7 +29,7 @@ El motor sigue en el navegador. El servidor valida estructura, contenido y versi
 
 Una tabla `documents` distingue `deck`, `campaign` y `rewards`, evitando tres implementaciones de persistencia. Cada documento tiene propietario, UUID y revisión. Las operaciones idempotentes y las revisiones históricas se confirman en la misma transacción InnoDB.
 
-El cliente envía el identificador de cuenta esperado. Si otra pestaña cambia la cookie de usuario, el servidor rechaza el acceso hasta recargar. La cuenta se obtiene siempre del servidor; no se recuerda un perfil para acceder sin conexión. Al arrancar se eliminan los guardados antiguos del navegador (localStorage, identificador de pestaña e IndexedDB). No hay botón de sincronización ni importación de invitado. Los cambios no confirmados por el servidor se pierden al cerrar o recargar; las preferencias visuales y la cookie de sesión siguen disponibles.
+El cliente envía el identificador de cuenta esperado. Si otra pestaña cambia la cookie de usuario, el servidor rechaza el acceso hasta recargar. La cuenta se obtiene siempre del servidor; no se recuerda un perfil para acceder sin conexión. Al arrancar se eliminan los guardados antiguos del navegador (localStorage, identificador de pestaña e IndexedDB). No hay botón de sincronización ni importación de invitado. Al recargar, la pestaña reabre la aventura que tenía abierta con los cambios que aún no hubiera confirmado el servidor, salvo que el servidor ya tenga una revisión posterior (por ejemplo, de otro dispositivo), que entonces gana. Al cerrar la pestaña se pierde lo no confirmado; las preferencias visuales y la cookie de sesión siguen disponibles.
 
 ## Desarrollo local
 
@@ -107,7 +107,7 @@ Cada aventura tiene UUID propio. Editar un mazo de la biblioteca no modifica una
 
 Límites iniciales: 500 documentos activos y 150 MB de JSON por cuenta, incluyendo revisiones; paquetes individuales inferiores a 20 MB; cinco versiones recientes por campaña. El borrado conserva una tumba para evitar resurrecciones desde dispositivos atrasados, pero libera el paquete y sus revisiones. Las operaciones idempotentes conservan su registro para reconocer reintentos.
 
-Los reintentos tras cortes solo existen mientras la página sigue abierta. Recargar o cerrar descarta lo que el servidor no haya confirmado. No se añade una PWA ni una copia de partidas en el dispositivo.
+Los reintentos tras cortes solo existen mientras la pestaña sigue abierta: recargar conserva la aventura abierta (copia en `sessionStorage`), cerrar descarta lo que el servidor no haya confirmado. No se añade una PWA ni una copia de partidas en `localStorage` o IndexedDB.
 
 Antes de abrir al público: fijar retención y privacidad, programar limpieza de sesiones/tokens/estados OAuth vencidos, configurar copias externas y ensayar una restauración en el VPS. Después de restaurar, revocar las sesiones y tokens restaurados antes de reabrir el servicio. No borrar campañas por su fecha de último acceso.
 
@@ -115,7 +115,7 @@ Antes de abrir al público: fijar retención y privacidad, programar limpieza de
 
 CI incorpora un MySQL 8.4 real. Para pruebas locales, crear una base exclusivamente de pruebas y definir `MYSQL_TEST_URL` antes de `pnpm test`. La suite borra sus usuarios y rechaza nombres que no terminen en `_test`; no apuntarla nunca a datos reales.
 
-Pruebas añadidas: verificación y caducidad, sesiones, CSRF, recuperación, aislamiento, concurrencia, idempotencia, revisiones, Google simulado, SMTP local y guardado online sin persistencia en el navegador. Revisado en navegador: registro, enlace de verificación, acceso, campaña en MySQL y recuperación desde otra pestaña, y mazo visible en ambas.
+Pruebas añadidas: verificación y caducidad, sesiones, CSRF, recuperación, aislamiento, concurrencia, idempotencia, revisiones, Google simulado, SMTP local y guardado online con reapertura de la aventura al recargar. Revisado en navegador: registro, enlace de verificación, acceso, campaña en MySQL y recuperación desde otra pestaña, y mazo visible en ambas.
 
 El correo de la revisión manual usa un adaptador local de prueba. El transporte SMTP se prueba aparte contra un servidor local de la suite. Google se prueba con el proveedor simulado; esto no equivale a validar el cliente OAuth del propietario.
 
