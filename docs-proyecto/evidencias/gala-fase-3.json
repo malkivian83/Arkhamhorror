@@ -1,0 +1,2215 @@
+{
+  "date": "2026-10-19",
+  "stage": "phase-three-content-and-persistence",
+  "scenarioRulesVersion": 4,
+  "scope": "Contratos principales dirigidos de 62 códigos y caras mecánicas; EN/ES; ventanas especiales de guardado/replay/deshacer. No certifica todas las interacciones, victorias completas ni aceptación visual.",
+  "testFiles": 9,
+  "testsPassed": 348,
+  "contracts": [
+    {
+      "code": "71001",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "71001 y planes: referencia, cambios de fase y derrota 71001 usa número de plan, Invitados y Lugar Privado para los símbolos",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "71001 y planes: referencia, cambios de fase y derrota 71002 protege a los miembros del Club y añade siete cartas apartadas al avanzar",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "71001 y planes: referencia, cambios de fase y derrota 71003 transforma al Exangüe si sigue silencioso",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "71001 y planes: referencia, cambios de fase y derrota 71003 sin el Acechador permite curar un horror",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "71001 y planes: referencia, cambios de fase y derrota 71004 derrota a todos y añade trauma mental antes de puntuar",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "71001 y planes: referencia, cambios de fase y derrota 71038 cancela el Evento jugado sin devolver costes, causa horror y se descarta",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71001 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71001 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71002",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "71001 y planes: referencia, cambios de fase y derrota 71002 protege a los miembros del Club y añade siete cartas apartadas al avanzar",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71002 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71002 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71003",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "71001 y planes: referencia, cambios de fase y derrota 71003 transforma al Exangüe si sigue silencioso",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "71001 y planes: referencia, cambios de fase y derrota 71003 sin el Acechador permite curar un horror",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71003 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71003 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71004",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "71001 y planes: referencia, cambios de fase y derrota 71004 derrota a todos y añade trauma mental antes de puntuar",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71004 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71004 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71005",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "71005: restricciones del primer acto exige un Invitado de cada investigador además de pistas y el segundo plan",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Caras y ramas adicionales de cierre 71005 dar un Invitado cambia de controlador y conserva sus usos",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71005 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71005 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71006",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-three.test.ts",
+          "name": "Gala fase 3: objetivos, finales y registro foundation: objetivo de fin de ronda y secuencia R1 → facción → R7",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-three.test.ts",
+          "name": "Gala fase 3: objetivos, finales y registro miskatonic: objetivo de fin de ronda y secuencia R1 → facción → R7",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-three.test.ts",
+          "name": "Gala fase 3: objetivos, finales y registro syndicate: objetivo de fin de ronda y secuencia R1 → facción → R7",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-three.test.ts",
+          "name": "Gala fase 3: objetivos, finales y registro lodge: objetivo de fin de ronda y secuencia R1 → facción → R7",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-three.test.ts",
+          "name": "Gala fase 3: objetivos, finales y registro kingsport: objetivo de fin de ronda y secuencia R1 → facción → R7",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71006 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71006 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71007",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Lugares: objetivos, pistas y curación 71007 Vestíbulo paga por investigador, trae un Invitado y limita al grupo por ronda",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71007 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71007 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71008",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G02 y G19: predicción pública y límite por turno descubre una pista aunque el nombre sea Card 1",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G02 y G19: predicción pública y límite por turno descubre una pista aunque el nombre sea wrong",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G02 y G19: predicción pública y límite por turno descubre una pista aunque el nombre sea empty",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G02 y G19: predicción pública y límite por turno las opciones de nombres y rasgos no cambian al cambiar mazo, descarte o Rival",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71008 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71008 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71009",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Lugares: objetivos, pistas y curación 71009 Galería añade dos pistas de la reserva y dos recursos, una vez por ronda",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71009 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71009 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71010",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G09: Baile elige dos entre Invitados controlados y colocados, y solo los elegidos se curan",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G09: Baile con un único Invitado lo agota y no cura sin segundo bailarín, como la referencia",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71010 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71010 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71011",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Lugares: objetivos, pistas y curación 71011 Bar cura al Invitado elegido, consume recurso y no se repite en la ronda",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71011 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71011 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71012",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-one.test.ts",
+          "name": "G03: dormitorio aplica daño adicional, cobra una pista y limita por turno, incluso si se reponen acciones",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-one.test.ts",
+          "name": "G03: dormitorio permite atacar desde dormitorio a otra sala del primer piso",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71012 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71012 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71013",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Lugares: objetivos, pistas y curación 71013 Biblioteca elimina perdición de la Joya y no permite repetir su habilidad",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71013 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71013 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71014",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Lugares: objetivos, pistas y curación 71014 Salón reduce velo hasta uno y permite agotar un enemigo remoto con la Joya",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71014 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71014 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71015",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Historias Aliado: adquisición de la Joya y límites 71015 Fundación toma la Joya de su Lugar y añade un daño",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71015 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71015 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71016",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Invitados: contratos principales adicionales 71016 Valeriya prepara otro Invitado y su bonificación se consume tras la siguiente prueba",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Caras y ramas adicionales de cierre 71016b Valeriya agota Invitados aquí y penaliza al controlador de uno agotado",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71016 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71016 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71017",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G10: Archibald busca, roba y agota la instancia correcta termina de resolver Oleada antes de agotar el enemigo buscado",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G10: Archibald busca, roba y agota la instancia correcta elige entre enemigos, respeta aparición y Oleada, y no agota una copia anterior",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G10: Archibald busca, roba y agota la instancia correcta sin enemigo baraja y no concede recursos",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71017 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71017 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71018",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G05: habilidades de Invitados y ventanas del motor Callahan ofrece el daño después de terminar su acción de combate y se agota al aceptarlo",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G05: habilidades de Invitados y ventanas del motor Callahan no reacciona a acciones básicas ni habilidades rápidas",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G05: habilidades de Invitados y ventanas del motor Callahan también reacciona al combate de un Arma",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71018 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71018 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71019",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Invitados: contratos principales adicionales 71019 Horacio agota un enemigo no Élite que acaba de atacar y lo mantiene agotado",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71019 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71019 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71020",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Enemigos: transformación y efectos principales 71020 Policía daña tras atacar a otro enemigo, pero no tras ser él el objetivo",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71020 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71020 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71021",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Historias Aliado: adquisición de la Joya y límites 71021 Universidad protege a Declan hasta pagar tres pistas por investigador",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71021 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71021 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71022",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Invitados: contratos principales adicionales 71022 Caldwell roba hasta tres cartas tras descubrir pistas y no reacciona agotado",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Caras y ramas adicionales de cierre 71022b Caldwell exige descartar al terminar el turno de un investigador aquí",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71022 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71022 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71023",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Invitados: contratos principales adicionales 71023 Mya usa el número de cartas en mano como intelecto base, pagando agotamiento",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71023 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71023 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71024",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G11: Lucas y los rasgos del Objeto elegido elige Objeto; una Reliquia da recursos y pasa por el robo normal",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G11: Lucas y los rasgos del Objeto elegido ofrece pagar el Tomo y permite rechazarlo (true)",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G11: Lucas y los rasgos del Objeto elegido ofrece pagar el Tomo y permite rechazarlo (false)",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G11: Lucas y los rasgos del Objeto elegido no ofrece jugar un Tomo impagable",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G11: Lucas y los rasgos del Objeto elegido Herramienta solo permite destinos conectados con pistas",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G11: Lucas y los rasgos del Objeto elegido sin Objetos baraja sin robar",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G11: Lucas y los rasgos del Objeto elegido Dead Ends cancela la búsqueda de Lucas antes de elegir un Objeto",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71024 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71024 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71025",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Invitados: contratos principales adicionales 71025 Elizabeth permite mover a otro investigador tras robar durante tu turno",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71025 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71025 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71026",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Traiciones: contratos adicionales 71026 Confusión con 0 pistas paga solo las disponibles y su horror restante",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Traiciones: contratos adicionales 71026 Confusión con 1 pistas paga solo las disponibles y su horror restante",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Traiciones: contratos adicionales 71026 Confusión con 2 pistas paga solo las disponibles y su horror restante",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71026 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71026 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71027",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G20: Misterios del Sindicato roba una carta elegida de otro Lugar revelado, con el umbral por investigador",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G20: Misterios del Sindicato respeta el turno y el máximo de pistas",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71027 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71027 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71028",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Invitados: contratos principales adicionales 71028 Johnny reacciona a recursos de un efecto una sola vez, sin recursión",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Caras y ramas adicionales de cierre 71028b Johnny quita dos recursos al terminar un turno aquí",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71028 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71028 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71029",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Invitados: contratos principales adicionales 71029 Miranda gasta suministro, coloca antigüedad y la vende tras éxito por dos",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71029 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71029 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71030",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Invitados: contratos principales adicionales 71030 Arsène coloca antigüedades una vez por partida y las cambia por recursos",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71030 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71030 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71031",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Caras y ramas adicionales de cierre 71031 Nova gana un recurso por derrotar y limita su reacción por ronda",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71031 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71031 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71032",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Traiciones: contratos adicionales 71032 Mala racha permite elegir daño u horror por los recursos que faltan",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71032 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71032 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71033",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Historias Aliado: adquisición de la Joya y límites 71033 Logia permite rechazar la carta descartada y limita dos usos por ronda",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71033 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71033 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71034",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/carl-sanford.test.ts",
+          "name": "71034: Carl Sanford, RR \"Cancel\", \"Revelation\", \"Surge\", \"Victory Display\" Miranda, Prudence y Raymond entran con sus usos impresos",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/carl-sanford.test.ts",
+          "name": "71034: Carl Sanford, RR \"Cancel\", \"Revelation\", \"Surge\", \"Victory Display\" hechizar, volver boca arriba y negociar conserva 0 usos y las demás fichas",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/carl-sanford.test.ts",
+          "name": "71034: Carl Sanford, RR \"Cancel\", \"Revelation\", \"Surge\", \"Victory Display\" hechizar, volver boca arriba y negociar conserva 1 usos y las demás fichas",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/carl-sanford.test.ts",
+          "name": "71034: Carl Sanford, RR \"Cancel\", \"Revelation\", \"Surge\", \"Victory Display\" hechizar, volver boca arriba y negociar conserva 3 usos y las demás fichas",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/carl-sanford.test.ts",
+          "name": "71034: Carl Sanford, RR \"Cancel\", \"Revelation\", \"Surge\", \"Victory Display\" la cancelación mediante Raymond permite reclamar una sola copia y conserva Oleada",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/carl-sanford.test.ts",
+          "name": "71034: Carl Sanford, RR \"Cancel\", \"Revelation\", \"Surge\", \"Victory Display\" la cancelación mediante Ward permite reclamar una sola copia y conserva Oleada",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/carl-sanford.test.ts",
+          "name": "71034: Carl Sanford, RR \"Cancel\", \"Revelation\", \"Surge\", \"Victory Display\" rechazar a Carl conserva la Traición en descartes y no roba carta",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71034 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71034 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71035",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G04: Prudence conserva y reordena exactamente las cuatro cartas vistas no muestra la quinta tras descartar y devuelve las restantes en el orden elegido",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G04: Prudence conserva y reordena exactamente las cuatro cartas vistas permite no descartar con 0 cartas y conserva el resto del mazo",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G04: Prudence conserva y reordena exactamente las cuatro cartas vistas permite no descartar con 1 cartas y conserva el resto del mazo",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G04: Prudence conserva y reordena exactamente las cuatro cartas vistas permite no descartar con 2 cartas y conserva el resto del mazo",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G04: Prudence conserva y reordena exactamente las cuatro cartas vistas permite no descartar con 4 cartas y conserva el resto del mazo",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71035 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71035 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71036",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-one.test.ts",
+          "name": "G01: combate y costes 71036 combate sin ataque de oportunidad contra ready",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-one.test.ts",
+          "name": "G01: combate y costes 71036 combate sin ataque de oportunidad contra exhausted",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-one.test.ts",
+          "name": "G01: combate y costes 71036 combate sin ataque de oportunidad contra massive",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71036 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71036 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71037",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/carl-sanford.test.ts",
+          "name": "71034: Carl Sanford, RR \"Cancel\", \"Revelation\", \"Surge\", \"Victory Display\" la cancelación mediante Raymond permite reclamar una sola copia y conserva Oleada",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71037 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71037 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71038",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "71001 y planes: referencia, cambios de fase y derrota 71038 cancela el Evento jugado sin devolver costes, causa horror y se descarta",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71038 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71038 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71039",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Historias Aliado: adquisición de la Joya y límites 71039 Kingsport retira la ficha elegida y permite rechazar o tomar la Joya",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71039 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71039 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71040",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Invitados: contratos principales adicionales 71040 y 71043 Bain y Claire modifican una prueba comprometida y llaman un Invitado",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71040 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71040 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71041",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G05: habilidades de Invitados y ventanas del motor Delores evita ataques de oportunidad de Humanoides (Élite: false)",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G05: habilidades de Invitados y ventanas del motor Delores evita ataques de oportunidad de Humanoides (Élite: true)",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G05: habilidades de Invitados y ventanas del motor Delores no evita el ataque normal ni los de oportunidad de Monstruos",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71041 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71041 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71042",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G05: habilidades de Invitados y ventanas del motor Olney compromete desde su propio mazo a la prueba de a",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G05: habilidades de Invitados y ventanas del motor Olney compromete desde su propio mazo a la prueba de b",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G05: habilidades de Invitados y ventanas del motor Olney respeta la restricción wrong-icon",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G05: habilidades de Invitados y ventanas del motor Olney respeta la restricción empty",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G05: habilidades de Invitados y ventanas del motor Olney respeta la restricción already-helped",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G05: habilidades de Invitados y ventanas del motor Olney respeta la restricción blocked",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G05: habilidades de Invitados y ventanas del motor no ofrece Olney desde otra localización",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G05: habilidades de Invitados y ventanas del motor Olney descarta sin comprometer cuando William Bain lo impide",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71042 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71042 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71043",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Invitados: contratos principales adicionales 71040 y 71043 Bain y Claire modifican una prueba comprometida y llaman un Invitado",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71043 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71043 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71044",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Traiciones: contratos adicionales 71044 Mala suerte reduce todas las habilidades y se descarta al final de ronda",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71044 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71044 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71045",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Enemigos: transformación y efectos principales 71045 transforma al Acechador derrotado y conserva como máximo 3 daños por investigador",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Enemigos: transformación y efectos principales 71045b retira de la partida al Invitado elegido tras atacar",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Caras y ramas adicionales de cierre 71045 listo con la Lámpara hechiza Invitados y causa horror al terminar Investigación",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71045 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71045 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71046",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Caras y ramas adicionales de cierre 71046 tomar la Lámpara la transforma en Aura y conserva su daño",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71046 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71046 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71047",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-one.test.ts",
+          "name": "G12: asignación prioritaria a Invitados Gug obliga a agotar la capacidad de horror de todos los Invitados antes de otros destinos",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-one.test.ts",
+          "name": "G12: asignación prioritaria a Invitados Enraged Gug solo prioriza su tipo impreso de daño",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71047 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71047 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71048",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-one.test.ts",
+          "name": "G12: asignación prioritaria a Invitados Abhorrent Moon-Beast solo prioriza su tipo impreso de daño",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71048 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71048 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71049",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Caras y ramas adicionales de cierre 71049 Shantak suma Invitados al combate y a la evasión",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71049 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71049 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71050",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Caras y ramas adicionales de cierre 71050 Emboscada sin Monstruos gana Oleada y roba otro encuentro",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71050 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71050 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71051",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Enemigos: transformación y efectos principales 71051 Declan cura a todos los enemigos solo si está preparado al terminar Enemigos",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71051 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71051 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71052",
+      "primary": [
+        {
+          "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+          "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales jewelControlled conserva cada decisión y su estado completo",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71052 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71052 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71053",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Enemigos: transformación y efectos principales 71053 soborno por 3 recursos descarta al Miembro durante el plan 1",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71053 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71053 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71054",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Traiciones: contratos adicionales 71054 Paredes sangrantes usa el velo y solo penaliza al fallar",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71054 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71054 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71055",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Caras y ramas adicionales de cierre 71055 Atrapado hechiza al Invitado al fallar con El Exangüe aquí",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71055 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71055 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71056",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Traiciones: contratos adicionales 71056 Frío inexplicable aplica una elección por punto de fallo",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71056 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71056 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71057",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Traiciones: contratos adicionales 71057 Extracción mental devuelve la Lámpara al Exangüe incluso con éxito",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71057 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71057 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71058",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Traiciones: contratos adicionales 71058 Vapores nocivos permite aguantar la respiración y aplica daño por margen",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Caras y ramas adicionales de cierre 71058 huir con success mueve o causa dos daños",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Caras y ramas adicionales de cierre 71058 huir con fail mueve o causa dos daños",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71058 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71058 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71059",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-one.test.ts",
+          "name": "G16: barajados del motor Pushed baraja el mazo entero, descarta tres y conserva el RNG y el horror correctos",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-one.test.ts",
+          "name": "G16: barajados del motor Pushed no ofrece 12115 (historia, permanente o reliquia del escenario)",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-one.test.ts",
+          "name": "G16: barajados del motor Pushed no ofrece 12095 (historia, permanente o reliquia del escenario)",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-one.test.ts",
+          "name": "G16: barajados del motor Pushed no ofrece 71018 (historia, permanente o reliquia del escenario)",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-one.test.ts",
+          "name": "G16: barajados del motor Pushed no ofrece 71046b (historia, permanente o reliquia del escenario)",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-one.test.ts",
+          "name": "G16: barajados del motor Pushed no ofrece 71052 (historia, permanente o reliquia del escenario)",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71059 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71059 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71060",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G14 y G21: traiciones compartidas Puerta secreta pregunta el empate y bloquea acciones y movimiento por efecto hasta descartarla",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71060 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71060 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71061",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Traiciones: contratos adicionales 71061 Portal aplica el castigo de foundation al fallar",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Traiciones: contratos adicionales 71061 Portal aplica el castigo de miskatonic al fallar",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Traiciones: contratos adicionales 71061 Portal aplica el castigo de syndicate al fallar",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Traiciones: contratos adicionales 71061 Portal aplica el castigo de lodge al fallar",
+          "status": "passed"
+        },
+        {
+          "file": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+          "name": "Traiciones: contratos adicionales 71061 Portal aplica el castigo de kingsport al fallar",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71061 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71061 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "code": "71062",
+      "primary": [
+        {
+          "file": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+          "name": "G14 y G21: traiciones compartidas otro investigador del mismo Lugar puede quitar Órdenes violentas; a distancia no",
+          "status": "passed"
+        }
+      ],
+      "fallback": [
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES en: 71062 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        },
+        {
+          "file": "apps/web/src/game/gala-fallback.test.ts",
+          "name": "G18: respaldo completo de La Gala, EN/ES es: 71062 tiene nombre y resumen específicos sin red",
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "persistence": [
+    {
+      "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales reward conserva cada decisión y su estado completo",
+      "status": "passed"
+    },
+    {
+      "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales negotiate conserva cada decisión y su estado completo",
+      "status": "passed"
+    },
+    {
+      "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales spellbind conserva cada decisión y su estado completo",
+      "status": "passed"
+    },
+    {
+      "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales unspell conserva cada decisión y su estado completo",
+      "status": "passed"
+    },
+    {
+      "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales jewelControlled conserva cada decisión y su estado completo",
+      "status": "passed"
+    },
+    {
+      "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales jewelEnemy conserva cada decisión y su estado completo",
+      "status": "passed"
+    },
+    {
+      "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales jewelMystery conserva cada decisión y su estado completo",
+      "status": "passed"
+    },
+    {
+      "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales jewelLeaves conserva cada decisión y su estado completo",
+      "status": "passed"
+    },
+    {
+      "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales lanternBreak conserva cada decisión y su estado completo",
+      "status": "passed"
+    },
+    {
+      "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales lanternLeaves conserva cada decisión y su estado completo",
+      "status": "passed"
+    },
+    {
+      "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales rival conserva cada decisión y su estado completo",
+      "status": "passed"
+    },
+    {
+      "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales carl conserva cada decisión y su estado completo",
+      "status": "passed"
+    },
+    {
+      "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales foundation conserva lecturas finales, experiencia y registro",
+      "status": "passed"
+    },
+    {
+      "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales miskatonic conserva lecturas finales, experiencia y registro",
+      "status": "passed"
+    },
+    {
+      "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales syndicate conserva lecturas finales, experiencia y registro",
+      "status": "passed"
+    },
+    {
+      "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales lodge conserva lecturas finales, experiencia y registro",
+      "status": "passed"
+    },
+    {
+      "file": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "name": "Gala fase 3: guardar, reanudar y deshacer ventanas especiales kingsport conserva lecturas finales, experiencia y registro",
+      "status": "passed"
+    }
+  ],
+  "pdfs": [
+    {
+      "path": "docs-proyecto/reglas/AHC80_Rulebook_ES.pdf",
+      "pages": [
+        3,
+        4,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        19,
+        24
+      ],
+      "sha256": "8ac766d2a66b74ac9401b8d65fd999b42f7073749f3a08121d80af3e78af22db"
+    },
+    {
+      "path": "docs-proyecto/reglas/FAQ v2.5A.pdf",
+      "pages": [
+        23
+      ],
+      "sha256": "967171651be96d6e4c2afa7ef0eec89be5d0a6134e203ff965f24415634576c4"
+    }
+  ],
+  "referenceRoot": "D:/referencia/ArkhamHorror-main/backend/arkham-api/library/Arkham",
+  "sources": [
+    {
+      "path": "Act/Cards/TheMidwinterGala/FindingTheJewel.hs",
+      "sha256": "3ca1c7940e89e55d53005f0dbf311bd0300ec69f3f3e18109e6f01013af7c46f"
+    },
+    {
+      "path": "Act/Cards/TheMidwinterGala/MeetAndGreet.hs",
+      "sha256": "133ffbc2bfb21ca37fabcc0f98b25ea81b53d7b7e477a898cb880e9ff1830687"
+    },
+    {
+      "path": "Agenda/Cards/TheMidwinterGala/AKillerParty.hs",
+      "sha256": "37bba36b0c2d95cfe0543ede74cf2ac87183c38272ff49998c7abc623a9fc782"
+    },
+    {
+      "path": "Agenda/Cards/TheMidwinterGala/MaskedRevelers.hs",
+      "sha256": "fbb9612fe65ce4a027b5f29e2c5fef13b4d62775bff492bdacac88158e4ec585"
+    },
+    {
+      "path": "Agenda/Cards/TheMidwinterGala/UnexpectedGuests.hs",
+      "sha256": "b6fd256671d4666c106051173aee0a748fae18fd025445feb33458e18efbbc6a"
+    },
+    {
+      "path": "Asset/Assets/ArchibaldHudson.hs",
+      "sha256": "30ca16ab5e13d3261859b7e77bc9d964005838be25148b96e2a13d2161bd2a8a"
+    },
+    {
+      "path": "Asset/Assets/ArseneRenard.hs",
+      "sha256": "efed94ec7e4881553fa180150e2d3ee48fec86e3dc8cc5e538a2ee3e2dc0039d"
+    },
+    {
+      "path": "Asset/Assets/CaldwellPhilipsEnthralledByLegends.hs",
+      "sha256": "7ebdbe1f1719d96e87a8fe155125f42c03d140d2219441ecd7d0d5f30a83ebee"
+    },
+    {
+      "path": "Asset/Assets/CarlSanfordLustingForPower.hs",
+      "sha256": "d89b317e590502d244547c5195ae9af175c7db58cd8d9a5f0a4ca1fbee301fd8"
+    },
+    {
+      "path": "Asset/Assets/ClaireWilson.hs",
+      "sha256": "eb1a81546e89037998b3b9ef8c6468c32a1ca033d08f5d2bde7dc354b71794db"
+    },
+    {
+      "path": "Asset/Assets/DeloresGadling.hs",
+      "sha256": "a4324d5a48ff54c0d2b41067e45a4ad6f7b602b1034d5b50865943505d1b9b59"
+    },
+    {
+      "path": "Asset/Assets/DrMyaBadry.hs",
+      "sha256": "4799058c2aa82e7faa4b8126aba82ca9d86c5016901026df0ed429e924035a1c"
+    },
+    {
+      "path": "Asset/Assets/ElizabethConrad.hs",
+      "sha256": "e01df78e71aab8bc1f45f32e81e836ac34af7d5f1b06466c641697deff95579b"
+    },
+    {
+      "path": "Asset/Assets/HoracioMartinez.hs",
+      "sha256": "3218ce8472c96b8ca44b2125cd43e049b12f03a77975e1e757dea40b8ead2b89"
+    },
+    {
+      "path": "Asset/Assets/JewelOfSarnath.hs",
+      "sha256": "d8186281edf0be311590cdb559425acdda85f6658fddcb5b7e1bb148ddccd13a"
+    },
+    {
+      "path": "Asset/Assets/JohnnyValoneReadyToMakeADeal.hs",
+      "sha256": "c70af1073b0871272bec822acd963e223cb51ac22148c1c00fd517d69833e74d"
+    },
+    {
+      "path": "Asset/Assets/LucasTetlow.hs",
+      "sha256": "033487f72f0d8cc1399a0c90fd57ebaa3f080dc2d8e2d3474f8fc1b7f831c6ec"
+    },
+    {
+      "path": "Asset/Assets/MirandaKeeper.hs",
+      "sha256": "9457cfc8962b19cdfa6d7556f1204576cfab6731259b545120b75a5f755c61cb"
+    },
+    {
+      "path": "Asset/Assets/NovaMalone.hs",
+      "sha256": "edb93fbfb54a5370a3761cffb8bc9adec45068790d2ad2e02334f77a9cdfbee6"
+    },
+    {
+      "path": "Asset/Assets/PrudenceDouglas.hs",
+      "sha256": "29f04583647078233629075ac08bd2455ec01e4c2af6edc387f6c65854a815cb"
+    },
+    {
+      "path": "Asset/Assets/RaymondLoggins.hs",
+      "sha256": "4a36470ee5d956c595c84472f0031282d8561091f00913427eada0daf2034547"
+    },
+    {
+      "path": "Asset/Assets/SarahVanShaw.hs",
+      "sha256": "5ce7c21dd4e342a775f1c4f51b2bcdb38eb5f890a2a2d178940011a74e865ce7"
+    },
+    {
+      "path": "Asset/Assets/SpecialAgentCallahan.hs",
+      "sha256": "c09eeb6feb612f029c2b58af83605c17baf38742f44b565e33d29c6c607f2fb7"
+    },
+    {
+      "path": "Asset/Assets/ThePaleLanternBeguilingAura.hs",
+      "sha256": "9135fb6e5e0c72a6baea63570e547a522985bec436cbbadd4162ef9a69a08a85"
+    },
+    {
+      "path": "Asset/Assets/ThePaleLanternHypnoticGlow.hs",
+      "sha256": "20a29fe66c0092ae89b821301cb2e6f5f5c60e3d085b735934b9d553f6700d22"
+    },
+    {
+      "path": "Asset/Assets/ThomasOlney.hs",
+      "sha256": "e85a5a92a32eea1845bc5fd9b4080edf10446e0533c787598b368119c3e3480a"
+    },
+    {
+      "path": "Asset/Assets/ValeriyaAntonovaWantsOutOfHere.hs",
+      "sha256": "f598886f7c3e49f78be15e4224f2b092da003816b076e6babbba05b364204d17"
+    },
+    {
+      "path": "Asset/Assets/WilliamBainLookingForThoseLost.hs",
+      "sha256": "adca6116fa9c4d1eae54156f7d3f566418943135b85f1eeb21a8a6ecc61e7508"
+    },
+    {
+      "path": "Enemy/Cards/TheMidwinterGala/AbhorrentMoonBeast.hs",
+      "sha256": "4e43fd4b73649c05d441b378ac245cc39800e92f9bb6542a58def1768a778491"
+    },
+    {
+      "path": "Enemy/Cards/TheMidwinterGala/CaldwellPhilipsCompelledByDreams.hs",
+      "sha256": "500bc7eb261a5d663c9a1d207dc10f2f8a9186213be6787ad6a6c1d56acd12e5"
+    },
+    {
+      "path": "Enemy/Cards/TheMidwinterGala/CarlSanfordIntimidatingPresence.hs",
+      "sha256": "b3f11e88d46b81bf3a809ed0be57b09d0e208922e0399c7c24728152e7560667"
+    },
+    {
+      "path": "Enemy/Cards/TheMidwinterGala/DeclanPearce.hs",
+      "sha256": "319e251cb169c6e2f74ea14232e3ce32ce32a870493941be56347b8ac30be4a1"
+    },
+    {
+      "path": "Enemy/Cards/TheMidwinterGala/EnragedGug.hs",
+      "sha256": "b18559a91ef8390db3bd626489559f7ce8e3e923331b3a4b41ecb55f4c36c8df"
+    },
+    {
+      "path": "Enemy/Cards/TheMidwinterGala/JohnnyValoneHereToCollect.hs",
+      "sha256": "db487a0baebd5e5773929cb7d23ebdebda4eb951e76168d8906707574aab85d1"
+    },
+    {
+      "path": "Enemy/Cards/TheMidwinterGala/LanternClubMember.hs",
+      "sha256": "2e9b5e161c265b864f5bc05d31d9767c24656c5b168c66cc38bc48f37debf917"
+    },
+    {
+      "path": "Enemy/Cards/TheMidwinterGala/RookieCop.hs",
+      "sha256": "8c26a9bac40adb0eb904f927e43f99038edbec3efeb7d19922d1182fc3b072df"
+    },
+    {
+      "path": "Enemy/Cards/TheMidwinterGala/SavageShantak.hs",
+      "sha256": "a592861d9e745aa3beae16d80336500abbcadd4e9097dd9000af970cd7893ab8"
+    },
+    {
+      "path": "Enemy/Cards/TheMidwinterGala/TheBloodlessMan.hs",
+      "sha256": "968bff120bf7c234571f2640f0894c2a68348dc334c3b3938ac650ad704c602d"
+    },
+    {
+      "path": "Enemy/Cards/TheMidwinterGala/TheBloodlessManUnleashed.hs",
+      "sha256": "ae44982e35c767c82a096b091d377decd2f5e37ebff406496d9bcc8e7e0c405e"
+    },
+    {
+      "path": "Enemy/Cards/TheMidwinterGala/ValeriyaAntonovaDontMessWithHer.hs",
+      "sha256": "e97b3a8b721d8205c0dc251e7427355ee787a733c25317f18cc143ece3d73ecf"
+    },
+    {
+      "path": "Enemy/Cards/TheMidwinterGala/WilliamBainDefiantToTheLast.hs",
+      "sha256": "9f283cbe10807ce7091106e9136caf331e72001081273f296f7a07ce1404f473"
+    },
+    {
+      "path": "Location/Cards/TheMidwinterGala/ArtGalleryTheMidwinterGala.hs",
+      "sha256": "65091fadf91c758e09aca5aa8f57c4bb2bf961bb53f73b21f6ad97648780d819"
+    },
+    {
+      "path": "Location/Cards/TheMidwinterGala/BallroomTheMidwinterGala.hs",
+      "sha256": "990df81351054e04fea20f5a4b898ca36ae95e8787b5ae7c973a29e9652796da"
+    },
+    {
+      "path": "Location/Cards/TheMidwinterGala/Barroom.hs",
+      "sha256": "b811f47ab4003c4fea711981a19af57378b34092d496a106a2ac4aef4e28aacf"
+    },
+    {
+      "path": "Location/Cards/TheMidwinterGala/BedroomTheMidwinterGala.hs",
+      "sha256": "ef5c06d6b6e1d4dc7c78a03799b7a8148dda74be93b442e076626f7f799327f6"
+    },
+    {
+      "path": "Location/Cards/TheMidwinterGala/LanternChamber.hs",
+      "sha256": "297b180c4c5f80c85f2b494d0ef2dba44d934abc91898235d78fcf53be97e870"
+    },
+    {
+      "path": "Location/Cards/TheMidwinterGala/LibraryTheMidwinterGala.hs",
+      "sha256": "cfaced2dd3070d175afe5a27176cdde9f2f9ebee50f5b95c56bd8afc4cd27db8"
+    },
+    {
+      "path": "Location/Cards/TheMidwinterGala/Lobby.hs",
+      "sha256": "afbc2449d9128443a74ddc8927d886c985ad8429979ab2eba347284f95d004bb"
+    },
+    {
+      "path": "Location/Cards/TheMidwinterGala/ParlorTheMidwinterGala.hs",
+      "sha256": "4a8c2c1a0c9bdd4c7b98cffb4c178ff9ffb99369ae7005f79231fedda9156559"
+    },
+    {
+      "path": "Scenario/Scenarios/TheMidwinterGala.hs",
+      "sha256": "3935f2785032f4de7e6f7f8b96dc254d4809682b741dfd5771caa31f7ca8bac8"
+    },
+    {
+      "path": "Story/Cards/TheMidwinterGala/LocalsOfKingsportAllied.hs",
+      "sha256": "1bb3c888d7eefba0fdf571e3855ec6ba7cff68408dfa50192c2f496053300b17"
+    },
+    {
+      "path": "Story/Cards/TheMidwinterGala/LocalsOfKingsportRival.hs",
+      "sha256": "eb57bc8e28323e9f957f7c19c4d23139cd3cc8c07338e7b59fc16e6bc97b93b9"
+    },
+    {
+      "path": "Story/Cards/TheMidwinterGala/MiskatonicUniversityAllied.hs",
+      "sha256": "69d54729323bd86bce54ce6ff727dc33ff6ec2bf5c77c06c966c143db1ac69f8"
+    },
+    {
+      "path": "Story/Cards/TheMidwinterGala/MiskatonicUniversityRival.hs",
+      "sha256": "7e06f9cddc5ee83d8fc8ee3f126318c778b97483847426deb2d8fa2aff866079"
+    },
+    {
+      "path": "Story/Cards/TheMidwinterGala/SilverTwilightLodgeAllied.hs",
+      "sha256": "d4dabcaf510265bc59cfb11c7a8b55d36544c03d3b9b8fa8e6205f76fed28e5b"
+    },
+    {
+      "path": "Story/Cards/TheMidwinterGala/SilverTwilightLodgeRival.hs",
+      "sha256": "be710272d8bab86885507d80272db535ace3100efb9f8bd8739629a5463f07c3"
+    },
+    {
+      "path": "Story/Cards/TheMidwinterGala/TheFoundationAllied.hs",
+      "sha256": "6076b8c0c511f6436f7251fd2bbc56eeb7aa5a88cdf5ef03838d69b13235a0e5"
+    },
+    {
+      "path": "Story/Cards/TheMidwinterGala/TheFoundationRival.hs",
+      "sha256": "b8875f6645c87955518b6ce4004cb6bc97071baa813b76341c78fde238aa9d5a"
+    },
+    {
+      "path": "Story/Cards/TheMidwinterGala/TheSyndicateAllied.hs",
+      "sha256": "8923080897bca099f2e47f9d2389beb7d95b58a2f520f83909f46fe1c58f8581"
+    },
+    {
+      "path": "Story/Cards/TheMidwinterGala/TheSyndicateRival.hs",
+      "sha256": "e5e3038073b11d1192fe957c77a258174e460a73e13301ec202272dfd74e781f"
+    },
+    {
+      "path": "Treachery/Cards/TheMidwinterGala/BleedingWalls.hs",
+      "sha256": "fe15b8022fa0c98b51226336e228c38463faf88b4c2650b8fa20b498bfa3352d"
+    },
+    {
+      "path": "Treachery/Cards/TheMidwinterGala/ColdStreak.hs",
+      "sha256": "3e86014d6c616cef3e9fbbe061e579803ef0cee8f4af0a9563c09695e04ace50"
+    },
+    {
+      "path": "Treachery/Cards/TheMidwinterGala/Confusion.hs",
+      "sha256": "a9ddf20e612d4dcf92781e5136a16c011e962faebaa8895230d22a6d79299b43"
+    },
+    {
+      "path": "Treachery/Cards/TheMidwinterGala/Entrap.hs",
+      "sha256": "eb6f1ccfa70870be484279f36ee49151b405f8653ea8d122a9a646cba054f251"
+    },
+    {
+      "path": "Treachery/Cards/TheMidwinterGala/InexplicableCold.hs",
+      "sha256": "bdc3be97c1e67115055e062ec43a7ee000fe0da0b0bdd9fe70d6b3098d14559e"
+    },
+    {
+      "path": "Treachery/Cards/TheMidwinterGala/MindExtraction.hs",
+      "sha256": "92d17f9d77a9a17fbc450eaaa2a14761aab6e19f5bc43c62cf1439c3e21e7c63"
+    },
+    {
+      "path": "Treachery/Cards/TheMidwinterGala/NoxiousFumes.hs",
+      "sha256": "4c67a03ce1b7ce45044d43fe683f4f226304ce6fa60de870df20264a0c5c3ea8"
+    },
+    {
+      "path": "Treachery/Cards/TheMidwinterGala/PushedIntoTheBeyond.hs",
+      "sha256": "fc5fa4bc91f585fc7ea836d4d5c32049d2fe20f9526cd8ad74396ad069395b89"
+    },
+    {
+      "path": "Treachery/Cards/TheMidwinterGala/SecretDoor.hs",
+      "sha256": "723bb5ca172156e7cb67ef1fd6700f543de2532a1ccd9292e17c27f1020ba12f"
+    },
+    {
+      "path": "Treachery/Cards/TheMidwinterGala/TerrorGate.hs",
+      "sha256": "d864d76cd2aa7d0549bbcc19848f6fdeff9a05b9e01b8f59ebce96b14ffc7933"
+    },
+    {
+      "path": "Treachery/Cards/TheMidwinterGala/Unlucky.hs",
+      "sha256": "1099918038aacbe0e5444656207a1595238f5d2c104df2041067429e46ac8179"
+    },
+    {
+      "path": "Treachery/Cards/TheMidwinterGala/ViciousAmbush.hs",
+      "sha256": "8d139d50f14152a00d469c1f3f9a51aa8d113710fc0eee593e7c0561b7538d35"
+    },
+    {
+      "path": "Treachery/Cards/TheMidwinterGala/ViolentCommands.hs",
+      "sha256": "3ad3b6fcc7f436ddbf71e70c81da590e59b2480ae90a8cd1a12a5c70d804a658"
+    },
+    {
+      "path": "Treachery/Cards/TheMidwinterGala/WardOfPreservation.hs",
+      "sha256": "cd689fc27e2d6c97060c16033f1a3ce8734b9567320c193516c8d28955b00d0e"
+    }
+  ],
+  "implementation": [
+    {
+      "path": "packages/cards/src/midwinter-gala/phase-one.test.ts",
+      "sha256": "cd624594e2adadb77c931599ddfa73330f844e2335fd9c2ca73bc9d5d6042df2"
+    },
+    {
+      "path": "packages/cards/src/midwinter-gala/phase-two.test.ts",
+      "sha256": "e5a52d433ae44c877550ee61b4295883a2a30637dda06bd113d6963ab1f5b0e7"
+    },
+    {
+      "path": "packages/cards/src/midwinter-gala/phase-three.test.ts",
+      "sha256": "5e9088a9ddac03c770c715336eee04abf28fdedf03742eb5ce83cf03526306dd"
+    },
+    {
+      "path": "packages/cards/src/midwinter-gala/content-acceptance.test.ts",
+      "sha256": "3c154861c15aee4dc1594d0609f73fc9bffbb0b05cc6f3aa5c058a114123a337"
+    },
+    {
+      "path": "packages/cards/src/midwinter-gala/carl-sanford.test.ts",
+      "sha256": "d51ca52de3549e4f2dc670b10995bad60d7af792d1a036b8aa9ebbdff89674e5"
+    },
+    {
+      "path": "apps/web/src/game/gala-phase-one-session.test.ts",
+      "sha256": "68b0ec636f1fb3f62ccb34585eebe8b8052796baefebb13d7265585a8367bf42"
+    },
+    {
+      "path": "apps/web/src/game/gala-phase-two-session.test.ts",
+      "sha256": "3ce689f7085757fe61f4e2c74ae283c0ffa2cbf552ddd08cdd7acb2a78fa57af"
+    },
+    {
+      "path": "apps/web/src/game/gala-phase-three-session.test.ts",
+      "sha256": "9a87f553b8b4d1cd5609ac1f524880aaea61b904eeab9f2e24d3b5a45d88902e"
+    },
+    {
+      "path": "apps/web/src/game/gala-fallback.test.ts",
+      "sha256": "6b5248d7d3585c42def581c716728ca44ff511941365a0ffd8f49e37dedec70c"
+    },
+    {
+      "path": "packages/cards/src/midwinter-gala/cards.ts",
+      "sha256": "342a218ff0818d4f916100771628f46bf4bf8b851bd58006e1c67f2d999a5691"
+    },
+    {
+      "path": "packages/cards/src/midwinter-gala/gala.ts",
+      "sha256": "a76046aa1276b8b040e2006611203b3f0c510b480f923b55796a34f7f3949236"
+    },
+    {
+      "path": "packages/cards/src/midwinter-gala/guests.ts",
+      "sha256": "2baf5b149cbbaa44a9de66b5792aa0694316cad58ad4aa2372739d619b8d1131"
+    },
+    {
+      "path": "packages/cards/src/campaign.ts",
+      "sha256": "8eb87c43544a8ed9f5057fda3a98ef859400be44fb0a5015c3e07db1919e5799"
+    },
+    {
+      "path": "packages/engine/src/handlers.ts",
+      "sha256": "a387603ad1f6d30995003128cf57638cad477e4ee139e66e918faaccfc970b62"
+    },
+    {
+      "path": "packages/engine/src/types.ts",
+      "sha256": "050b44a85cf28152449696bc1491bd5e0fca1e0d640ef4e2cdb46bee626d182e"
+    },
+    {
+      "path": "packages/saves/src/session.ts",
+      "sha256": "e87ff69772a01cf1313685be5b5f8e890ebed28cde1505cc448f5dc127adf42d"
+    },
+    {
+      "path": "apps/web/src/game/fallbackCards.ts",
+      "sha256": "a641d7f1a68cd14c30ff43d2252eb1492d8853606717e0b1ff0d9f4ec5b8ea14"
+    },
+    {
+      "path": "apps/web/src/game/localized.ts",
+      "sha256": "c08f720686d47712303848da5e2f652e5cfdb72f83a7b261a1add4bb3a1d5fa4"
+    },
+    {
+      "path": "packages/i18n/src/gala-cards.en.json",
+      "sha256": "ad8144672b0b346d935adfa9620a4ebf11c4b3eb0c1a7955f8f2e94dde503f44"
+    },
+    {
+      "path": "packages/i18n/src/gala-cards.es.json",
+      "sha256": "6715b60e955f32d66047c0efe4e952329a457a1fd6746c93fa4212a9222ca835"
+    }
+  ],
+  "fixes": [
+    "Declan preparado en interludio de Kingsport (PDF ES p. 14; la referencia lo agota)",
+    "Usos iniciales de Miranda, Prudence y Raymond y conservación al hechizar/cambiar control",
+    "Carl tras cancelación con Raymond o Ward, sin duplicar la Traición y conservando Oleada",
+    "Catálogo local completo EN/ES y respuestas remotas parciales que preservan datos locales",
+    "Recompensa de Invitados de R1 y conservación de la puntuación al cerrar la aventura"
+  ],
+  "remaining": [
+    "G17: cinco victorias legales completas y dos equipos en normal",
+    "Fase 4: aceptación visual EN/ES en escritorio y 390×640",
+    "Fase 5: CI completa de la entrega y versión estable de Gala",
+    "Teléfono físico diferido; historia secundaria fuera del alcance actual"
+  ]
+}

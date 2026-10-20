@@ -1,0 +1,282 @@
+{
+  "71001": {
+    "name": "La gala del ecuador del invierno",
+    "summary": "Los Invitados no ocupan espacio de aliado. Calavera: menos el número del plan (uno peor en difícil/experto). Sectario: menos los Invitados aquí, máximo 5; en difícil/experto cuenta los Apoyos de historia. Tablilla: -2, o -4 en Lugar Privado (-3/-5 en difícil/experto). Cosa antigua: -3 (-4 en difícil/experto); recibe 1 horror si fallas o El Exangüe está aquí, una sola vez."
+  },
+  "71002": {
+    "name": "Juerguistas enmascarados",
+    "summary": "Los enemigos del Club de la Lámpara no pueden recibir daño. Los Invitados de una cara que abandonen el juego quedan hechizados; los Líderes se retiran.",
+    "backSummary": "Baraja los Monstruos apartados, ambas Emboscadas violentas y los descartes de Encuentros en el mazo de Encuentros. Continúa con Invitados inesperados."
+  },
+  "71003": {
+    "name": "Invitados inesperados",
+    "summary": "Los Invitados de una cara que abandonen el juego quedan hechizados; los Líderes se retiran.",
+    "backSummary": "Si El Exangüe silencioso está en juego, dale la vuelta a Desatado. En caso contrario, cada investigador puede curar 1 horror de un investigador o Invitado de su Lugar."
+  },
+  "71004": {
+    "name": "Una fiesta de muerte",
+    "summary": "Los Invitados de una cara que abandonen el juego quedan hechizados; los Líderes se retiran.",
+    "backSummary": "Todos los investigadores son derrotados y sufren 1 trauma mental. Continúa con el final sin resolución y la puntuación."
+  },
+  "71005": {
+    "name": "Conocer y saludar",
+    "summary": "Negocia con un Invitado de aquí que no controles: prueba de uno de sus iconos (3) para tomar su control. Una acción permite dar tu Invitado a otro investigador de aquí. Gasta 3 pistas por investigador para avanzar solo durante el plan 2 o 3 y si cada investigador restante controla un Invitado.",
+    "backSummary": "Pon en juego las tres salas del primer piso en orden aleatorio y conecta la izquierda al Vestíbulo. Resuelve la Historia Rival y el interludio de la Joya de tu facción aliada. Avanza a Encontrar la Joya."
+  },
+  "71006": {
+    "name": "Encontrar la Joya",
+    "summary": "Sigue negociando con Invitados. La Historia Aliado indica cómo completar el objetivo al final de la ronda.",
+    "backSummary": "Pasa a la resolución 1, después a la de tu facción aliada y finalmente a la resolución 7 para calcular puntuación y experiencia."
+  },
+  "71007": {
+    "name": "Vestíbulo",
+    "summary": "Durante el plan 2 o 3, gasta 1 recurso por investigador para poner aquí la primera carta del mazo de Invitados. Límite de una vez por ronda para el grupo.",
+    "backSummary": "Lugar inicial, Mansión de la planta baja. Conecta con las salas de la planta baja y la Sala de la Lámpara; el acto añade la conexión a la sala izquierda del primer piso."
+  },
+  "71008": {
+    "name": "Sala de la Lámpara",
+    "summary": "Durante tu turno, nombra una carta de Encuentro y descubre 1 pista aquí; descarta la primera carta si aciertas o róbala si fallas. Una vez por turno. Sin pistas aquí, una acción de voluntad (4) permite poner boca arriba una carta hechizada.",
+    "backSummary": "Mansión Privada del sótano. Entrar sin revelar cuesta 1 horror; las entradas posteriores no repiten ese coste."
+  },
+  "71009": {
+    "name": "Galería de arte",
+    "summary": "Acción: coloca aquí 2 pistas de la reserva y gana 2 recursos. Límite de una vez por ronda para el grupo.",
+    "backSummary": "Sala de la planta baja de la Mansión sin revelar. Revélala al entrar."
+  },
+  "71010": {
+    "name": "Salón de baile",
+    "summary": "Negociar: elige y agota dos Invitados preparados de aquí; después cura 1 horror a cada uno. Si solo hay uno, lo agotas sin curar.",
+    "backSummary": "Sala de la planta baja de la Mansión sin revelar. Revélala al entrar."
+  },
+  "71011": {
+    "name": "Bar",
+    "summary": "Gasta 1 recurso para curar 1 daño o 1 horror a un investigador o Invitado de aquí. Límite de una vez por ronda para el grupo.",
+    "backSummary": "Sala de la planta baja de la Mansión sin revelar. Revélala al entrar."
+  },
+  "71012": {
+    "name": "Dormitorio",
+    "summary": "Acción, una vez por turno: combate contra un enemigo en cualquier sala del primer piso con combate o agilidad. Si aciertas, puedes gastar 1 pista para infligir 2 daños adicionales.",
+    "backSummary": "Sala del primer piso de la Mansión sin revelar. Entra en juego al avanzar el primer acto."
+  },
+  "71013": {
+    "name": "Biblioteca",
+    "summary": "+1 a tu habilidad al negociar aquí. Si la Joya está aquí, prueba de intelecto (3) para ponerle 1 daño o quitarle 1 daño o perdición. Una vez por partida para el grupo.",
+    "backSummary": "Sala del primer piso de la Mansión sin revelar. Entra en juego al avanzar el primer acto."
+  },
+  "71014": {
+    "name": "Salón",
+    "summary": "Reduce el velo por los Invitados de aquí, hasta un mínimo de 1. Si controlas la Joya, agota un enemigo preparado de cualquier Lugar. Una vez por partida para el grupo.",
+    "backSummary": "Sala del primer piso de la Mansión sin revelar. Entra en juego al avanzar el primer acto."
+  },
+  "71015": {
+    "name": "La Fundación",
+    "summary": "Si la Joya está aquí y El Exangüe no está en juego, una acción permite tomarla y ponerle 1 daño. Al final de la ronda, controla la Joya y gasta 2 pistas por investigador para terminar. Puntuación de facción: 4 sin enemigos que no sean Debilidad en juego, 2 con uno y 0 con más.",
+    "backSummary": "Rival: baraja Policía novato en Encuentros y haz aparecer a Valeriya rival junto al jefe. Negociar con combate (3) coloca 1 de tus pistas aquí si aciertas. Con 1 pista por investigador, la Historia y el Líder van a victoria y se retira su carta Rival."
+  },
+  "71016": {
+    "name": "Valeriya Antonova",
+    "summary": "+1 combate. Acción, agotar: prepara a otro Invitado de aquí y obtén una bonificación a tu próxima prueba de esta ronda igual a los Invitados de aquí. Un Líder que abandona el juego se retira.",
+    "backName": "Valeriya Antonova — Rival",
+    "backSummary": "No puede recibir daño. Distante y Cazador. -1 a tus habilidades aquí si controlas un Invitado agotado. Al final de la ronda agota a los Invitados de aquí. La Historia Rival permite negociar con combate (3)."
+  },
+  "71017": {
+    "name": "Archibald Hudson",
+    "summary": "Durante tu turno, agota para buscar un enemigo entre las 9 primeras de Encuentros; róbalo, baraja, agótalo y gana 3 recursos. Acción, gastar 1 recurso: mueve 1 daño de un Apoyo de aquí a un enemigo no Élite de aquí."
+  },
+  "71018": {
+    "name": "Agente especial Callahan",
+    "summary": "Acción: combate reduciendo en 1 el combate del enemigo. Tras usar una capacidad de acción de Aliado o Arma, agota a Callahan para infligir 1 daño a un enemigo de aquí."
+  },
+  "71019": {
+    "name": "Horacio Martinez",
+    "summary": "Puede recibir daño de otros investigadores de aquí. Tras atacarte un enemigo no Élite, agota a Horacio para agotar al enemigo e impedir que se prepare esta ronda."
+  },
+  "71020": {
+    "name": "Policía novato",
+    "summary": "Oleada, Distante y Cazador. Tras atacar a otro enemigo un investigador de aquí, ese investigador recibe 1 daño."
+  },
+  "71021": {
+    "name": "Universidad Miskatonic",
+    "summary": "Negocia con Declan aquí para ponerle 1 o 2 de tus pistas. Con 3 por investigador, toma su Joya y ponlo en victoria; es inmune al daño mientras la tenga. Controlar la Joya al final de la ronda completa el objetivo. Puntúa 1 por cada 2 cartas por investigador en las manos del grupo, máximo 4.",
+    "backSummary": "Rival: baraja Confusión en Encuentros y haz aparecer a Caldwell rival junto al jefe. Negociar con intelecto (3) coloca 1 de tus pistas aquí si aciertas. Con 1 pista por investigador se supera la Historia Rival y se retira su carta Rival."
+  },
+  "71022": {
+    "name": "Caldwell Philips",
+    "summary": "+1 intelecto. Tras descubrir pistas, agota para robar esa cantidad de cartas, máximo 3. Un Líder que abandona el juego se retira.",
+    "backName": "Caldwell Philips — Rival",
+    "backSummary": "No puede recibir daño. Distante y Cazador. Al terminar su turno aquí, un investigador descarta 1 carta que no sea Debilidad. La Historia Rival permite negociar con intelecto (3)."
+  },
+  "71023": {
+    "name": "Dra. Mya Badry",
+    "summary": "+2 al tamaño de mano. Acción, agotar: investiga con intelecto base igual a las cartas de tu mano."
+  },
+  "71024": {
+    "name": "Lucas Tetlow",
+    "summary": "Tras descubrir la última pista de aquí, agota para buscar un Apoyo Objeto entre las 9 primeras de tu mazo y robarlo. Reliquia: gana 2 recursos. Tomo: puedes jugarlo pagando su coste, sin acción. Herramienta: descubre 1 pista en un Lugar conectado."
+  },
+  "71025": {
+    "name": "Elizabeth Conrad",
+    "summary": "Tras robar una carta durante tu turno, agota: un investigador de aquí puede moverse a un Lugar conectado."
+  },
+  "71026": {
+    "name": "Confusión",
+    "summary": "Oleada. Coloca 2 de tus pistas en tu Lugar. Recibe 1 horror por cada pista que no puedas colocar."
+  },
+  "71027": {
+    "name": "El Sindicato",
+    "summary": "Acción, gastar 1 pista por investigador: mira los misterios bajo tu Lugar. Durante tu turno puedes robar un misterio de un Lugar revelado con hasta 1 pista por investigador. Al final de la ronda controla la Joya en el Vestíbulo y gasta 4 pistas por investigador para terminar. Puntúa 1 por cada 3 recursos por investigador, máximo 4.",
+    "backSummary": "Rival: baraja Mala racha en Encuentros y haz aparecer a Johnny rival junto al jefe. Negociar con agilidad (3) coloca 1 de tus pistas aquí si aciertas. Con 1 pista por investigador se supera la Historia Rival y se retira su carta Rival."
+  },
+  "71028": {
+    "name": "Johnny Valone",
+    "summary": "+1 agilidad. Tras ganar recursos mediante un efecto, agota para robar 1 carta y ganar 1 recurso. Un Líder que abandona el juego se retira.",
+    "backName": "Johnny Valone — Rival",
+    "backSummary": "No puede recibir daño. Distante y Cazador. Al terminar su turno aquí, un investigador pierde 2 recursos. La Historia Rival permite negociar con agilidad (3)."
+  },
+  "71029": {
+    "name": "Miranda Keeper",
+    "summary": "3 suministros. Gasta 1 para poner aquí una antigüedad y obtener +2 a tu próxima prueba de esta ronda. Tras superar una prueba por 2 o más, retira una antigüedad de aquí para ganar 2 recursos."
+  },
+  "71030": {
+    "name": "Arsène Renard",
+    "summary": "Una vez por partida para el grupo, coloca una antigüedad en cada Lugar. Con un enemigo agotado aquí, retira una antigüedad de aquí para robar 1 carta o ganar 2 recursos."
+  },
+  "71031": {
+    "name": "Nova Malone",
+    "summary": "Acción, agotar: combate con combate base igual a tus recursos, máximo 7, y +1 daño. Tras derrotar a un enemigo, gana 1 recurso, una vez por ronda."
+  },
+  "71032": {
+    "name": "Mala racha",
+    "summary": "Oleada. Pierde 4 recursos; por cada recurso que falte, elige recibir 1 daño o 1 horror."
+  },
+  "71033": {
+    "name": "Logia del Crepúsculo de Plata",
+    "summary": "Acción, dos veces por ronda para el grupo: descarta la primera carta de Encuentros; puedes robarla. Al final de la ronda controla la Joya y gasta 5 pistas por investigador para terminar. Puntúa 1 por cada Traición sin Victoria en la zona de victoria, máximo 4.",
+    "backSummary": "Rival: baraja Sello de preservación en Encuentros y haz aparecer a Carl rival junto al jefe. Negociar con voluntad (3) coloca 1 de tus pistas aquí si aciertas. Con 1 pista por investigador se supera la Historia Rival y se retira su carta Rival."
+  },
+  "71034": {
+    "name": "Carl Sanford",
+    "summary": "+1 voluntad y un espacio arcano adicional. Tras cancelarse el efecto de una Traición que no sea Debilidad, agota para ponerla en victoria y robar 1 carta. Un Líder que abandona el juego se retira.",
+    "backName": "Carl Sanford — Rival",
+    "backSummary": "No puede recibir daño. Distante y Cazador. Los investigadores de aquí tienen -1 voluntad. La Historia Rival permite negociar con voluntad (3)."
+  },
+  "71035": {
+    "name": "Prudence Douglas",
+    "summary": "3 presagios. Durante tu turno, agota y gasta 1 presagio: mira las 4 primeras de Encuentros, descarta hasta 2 no Élite y devuelve las demás en el orden que elijas."
+  },
+  "71036": {
+    "name": "Sarah Van Shaw",
+    "summary": "Acción, agotar y gastar hasta 2 recursos: combate sumando tu voluntad al combate y obtén +1 daño por recurso gastado."
+  },
+  "71037": {
+    "name": "Raymond Loggins",
+    "summary": "4 verdades. Al robar una Traición que no sea Debilidad, gasta 1 verdad para cancelar su Revelación, descartarla y recibir 1 horror."
+  },
+  "71038": {
+    "name": "Sello de preservación",
+    "summary": "Oleada. Ponla en tu zona de amenaza. Al jugar un Evento, cancela sus efectos, recibe 1 horror y descarta esta Traición."
+  },
+  "71039": {
+    "name": "Lugareños de Kingsport",
+    "summary": "Acción, combate o agilidad (3): retira 1 daño o perdición de la Joya colocada aquí; puedes tomarla. Al final de la ronda controla la Joya sin fichas y gasta 3 pistas por investigador para terminar. Puntúa 4 menos las cartas del mazo de Invitados, mínimo 0.",
+    "backSummary": "Rival: baraja Mala suerte en Encuentros y haz aparecer a William rival junto al jefe. Negociar con cualquier habilidad (4) coloca 1 de tus pistas aquí si aciertas. Con 1 pista por investigador se supera la Historia Rival y se retira su carta Rival."
+  },
+  "71040": {
+    "name": "William Bain",
+    "summary": "+1 a tus habilidades mientras haya cartas comprometidas a tu prueba. Tras comprometer una carta, agota y gasta 1 recurso por investigador para poner el primer Invitado en el Vestíbulo. Un Líder que abandona el juego se retira.",
+    "backName": "William Bain — Rival",
+    "backSummary": "No puede recibir daño. Distante y Cazador. Los investigadores de aquí no pueden comprometer cartas. La Historia Rival permite negociar con cualquier habilidad (4)."
+  },
+  "71041": {
+    "name": "Delores Gadling",
+    "summary": "Los enemigos Humanoide no te hacen ataques de oportunidad. Al investigar o negociar con intelecto, +1 intelecto por cada enemigo Humanoide de aquí."
+  },
+  "71042": {
+    "name": "Thomas Olney",
+    "summary": "Agota y nombra un rasgo: descarta la primera carta de Encuentros y gana 2 recursos si tiene ese rasgo. Durante una prueba aquí, agota para descartar la primera carta de tu mazo y comprometerla si es válida, respetando las restricciones de ayuda."
+  },
+  "71043": {
+    "name": "Claire Wilson",
+    "summary": "Tras comprometer una carta a tu propia prueba, agota para obtener +1 a esa prueba."
+  },
+  "71044": {
+    "name": "Mala suerte",
+    "summary": "Oleada. Ponla en tu zona de amenaza: -2 a tus habilidades. Descártala al final de la ronda."
+  },
+  "71045": {
+    "name": "El Exangüe",
+    "summary": "Acechador silencioso: Distante, Errante hacia los Invitados. Preparado al terminar Investigación, inflige 1 horror a investigadores e Invitados de aquí; con la Lámpara vinculada, esos Invitados quedan hechizados. En vez de ser derrotado, se da la vuelta, se agota y conserva hasta 3 daños por investigador.",
+    "backName": "El Exangüe — Desatado",
+    "backSummary": "Cazador y Masivo. Tras atacar a un investigador, retira de la partida un Invitado que controle. Victoria 1."
+  },
+  "71046": {
+    "name": "La Lámpara Mortecina",
+    "summary": "Resplandor hipnótico: si El Exangüe tiene daño o está en victoria, prueba de combate o agilidad (3) para tomar la Lámpara y darle la vuelta.",
+    "backName": "La Lámpara Mortecina — Aura seductora",
+    "backSummary": "Acción: pon boca arriba una carta hechizada de aquí. Acción, agotar: prueba de combate o agilidad (2) para poner 1 daño en la Lámpara. Con 3 daños va a victoria y se ponen boca arriba todas las cartas hechizadas. Al abandonar el juego vuelve como Resplandor a tu Lugar."
+  },
+  "71047": {
+    "name": "Gug enfurecido",
+    "summary": "Alerta y Cazador. El horror de sus ataques se asigna primero a los Invitados mientras tengan capacidad."
+  },
+  "71048": {
+    "name": "Bestia lunar aborrecible",
+    "summary": "Cazador y Represalia. El daño de sus ataques se asigna primero a los Invitados mientras tengan capacidad."
+  },
+  "71049": {
+    "name": "Shantak salvaje",
+    "summary": "Cazador. +1 combate y evasión por cada Invitado de su Lugar."
+  },
+  "71050": {
+    "name": "Emboscada violenta",
+    "summary": "Sin Monstruos en juego, gana Oleada. Si hay, el más cercano se prepara, avanza por las conexiones hasta ti, se enfrenta y ataca. Elige los empates de Monstruo y de ruta mínima."
+  },
+  "71051": {
+    "name": "Declan Pearce",
+    "summary": "Cazador; 2 de salud más 2 por investigador. Tienes una acción menos mientras esté enfrentado contigo. Preparado al terminar Enemigos, cura 1 daño a cada enemigo."
+  },
+  "71052": {
+    "name": "Joya de Sarnath",
+    "summary": "Revelación: toma su control con 3 daños y 1 perdición. Agota, voluntad o agilidad (1): mueve 1 de sus daños o perdiciones a un enemigo de aquí. Al abandonar el juego, barájala en el mazo de Encuentros."
+  },
+  "71053": {
+    "name": "Miembro del Club de la Lámpara",
+    "summary": "Durante el plan 1, negocia y gasta 1 recurso para evitarlo automáticamente o 3 para descartarlo. Durante ese plan le protege la inmunidad del Club de la Lámpara."
+  },
+  "71054": {
+    "name": "Paredes sangrantes",
+    "summary": "Prueba de voluntad contra el velo de tu Lugar. Si fallas, pierde 1 acción y recibe 1 horror."
+  },
+  "71055": {
+    "name": "Atrapado",
+    "summary": "Agilidad (3). Si fallas y El Exangüe está aquí, hechiza a un Invitado tuyo; si está en otro Lugar, viene hasta ti; si no está en juego, gana Oleada."
+  },
+  "71056": {
+    "name": "Frío inexplicable",
+    "summary": "Agilidad (4). Por cada punto de fallo, elige descartar un Apoyo en juego, descartar una carta de la mano o recibir 1 daño."
+  },
+  "71057": {
+    "name": "Extracción mental",
+    "summary": "Voluntad contra 1 más el número del plan. Si fallas, recibe 2 horrores. Después, si El Exangüe está en juego y alguien controla la Lámpara, vuelve a vinculársela."
+  },
+  "71058": {
+    "name": "Vapores nocivos",
+    "summary": "Cada investigador de aquí elige agilidad (3), moviéndose a un Lugar conectado si acierta o recibiendo 2 daños si falla; o combate (3), recibiendo 1 daño por cada punto de fallo."
+  },
+  "71059": {
+    "name": "Empujado al más allá",
+    "summary": "Baraja en tu mazo un Apoyo tuyo que no sea de historia ni Permanente y descarta las 3 primeras cartas. Si se descarta una copia, recibe 2 horrores."
+  },
+  "71060": {
+    "name": "Puerta secreta",
+    "summary": "Vincula a una Mansión con más investigadores y sin otra Puerta secreta; elige los empates. No se puede salir. Acción, voluntad o intelecto (3) para descartarla."
+  },
+  "71061": {
+    "name": "Portal del terror",
+    "summary": "Voluntad (2), +2 de dificultad si hay un enemigo Rival en juego. Al fallar: Fundación recibe 2 daños; Miskatonic descarta 2 cartas; Sindicato pierde 3 recursos; Logia recibe 2 horrores; Kingsport pierde 1 acción."
+  },
+  "71062": {
+    "name": "Órdenes violentas",
+    "summary": "Ponla en tu zona de amenaza. Al terminar tu turno, voluntad (3) o recibe 1 horror. Un investigador de aquí puede gastar una acción para infligir 2 daños a un investigador de aquí y descartar esta Traición."
+  }
+}

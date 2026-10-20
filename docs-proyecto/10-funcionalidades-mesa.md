@@ -1,8 +1,12 @@
 # 10 · Funcionalidades de la mesa (comparación con el proyecto de referencia)
 
-> Inventario histórico. La comparación actualizada del código, con el multijugador
-> online excluido por decisión del propietario, está en la
-> [auditoría del 17/10/2026](15-auditoria-referencia-2026-10-17.md).
+> Inventario histórico; sus casillas conservan el estado de aquella comparación.
+> Para el estado vigente al 19/10/2026, consultar la [hoja de ruta](05-hoja-de-ruta.md),
+> el cierre de [Brethren](16-auditoria-cierre-brethren-of-ash.md), la auditoría de
+> [Gala](18-auditoria-cierre-la-gala.md) y la implementación de
+> [cuentas y bibliotecas](22-implementacion-cuentas-mysql.md).
+> La [auditoría del 17/10/2026](15-auditoria-referencia-2026-10-17.md) conserva
+> la comparación con la referencia de esa fecha. El multijugador online sigue excluido.
 
 Objetivo del propietario: que la mesa se comporte de forma similar al proyecto
 de referencia "en casi todo". Este documento enumera lo que hace la referencia

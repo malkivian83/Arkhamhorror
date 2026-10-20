@@ -2,9 +2,9 @@ import { shallowRef } from 'vue'
 import { fallbackCards } from './fallbackCards'
 
 /**
- * Datos de las cartas en otro idioma (nombre, tipo, rasgos, texto…), cargados
- * de ArkhamDB al vuelo. No se guardan en el repositorio: solo en memoria y, como
- * comodidad, en el almacenamiento del navegador.
+ * Catálogo local EN/ES, completado con datos de ArkhamDB cuando están disponibles.
+ * Las respuestas remotas se conservan en memoria y en la caché del navegador;
+ * los datos y resúmenes de respaldo forman parte de la aplicación.
  */
 export interface LocalizedCard {
   code: string
@@ -94,16 +94,27 @@ function apply(cards: LocalizedCard[], locale: string) {
         typeof c.name === 'string' &&
         typeof c.type_code === 'string',
     )
-    .forEach((c) => merged.set(c.code, c))
+    .forEach((c) => {
+      // Partial API responses must not erase local mechanics or the other face.
+      const available = Object.fromEntries(
+        Object.entries(c).filter(
+          ([, value]) => value !== undefined && value !== null && value !== '',
+        ),
+      )
+      merged.set(c.code, { ...merged.get(c.code), ...available } as LocalizedCard)
+    })
   localizedCards.value = merged
   localizedNames.value = new Map(
     [...merged.values()]
       .filter((c) => c.real_name && c.name)
+      // A rival/unleashed face may share its English name with the front.
+      // Keep the neutral front name for engine logs; explicit back views use back_name.
+      .sort((a, b) => Number(b.code.endsWith('b')) - Number(a.code.endsWith('b')))
       .map((c) => [normalizeName(c.real_name), c.name]),
   )
 }
 
-/** Activa el idioma: descarga sus datos si hace falta. Si falla, se sigue en inglés. */
+/** Activa el idioma sobre el catálogo local; los datos remotos disponibles lo completan. */
 let activeLocale = 'en'
 export async function useCardLocale(locale: string): Promise<void> {
   activeLocale = locale

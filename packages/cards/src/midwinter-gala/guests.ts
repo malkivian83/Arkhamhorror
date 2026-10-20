@@ -510,6 +510,25 @@ registerPlayerCard({
   // traición que no sea Debilidad, agótalo: esa traición va a la zona de victoria y robas 1.
   skillModifier: plus('willpower'),
   extraSlots: { arcane: 1 },
+  reactions: (state, trigger, self) =>
+    trigger.type === 'afterCancelRevelation' &&
+    !trigger.weakness &&
+    !self.exhausted &&
+    state.encounterDiscard.some((c) => c.code === trigger.card)
+      ? [
+          {
+            key: `${self.id}:claim`,
+            investigator: self.owner,
+            label: 'ability.gala.carl',
+            params: { card: state.encounterDiscard.find((c) => c.code === trigger.card)!.name },
+            then: [
+              exhaust(self),
+              { type: 'ScenarioSpecific', key: 'toVictory', data: { code: trigger.card } },
+              { type: 'DrawCards', investigator: self.owner, amount: 1 },
+            ],
+          },
+        ]
+      : [],
 })
 
 registerPlayerCard({
@@ -591,11 +610,6 @@ registerPlayerCard({
           { type: 'SpendUses', asset: self.id, amount: 1 },
           { type: 'CancelRevelation', treachery: treachery.id },
           { type: 'TakeDamage', investigator: self.owner, damage: 0, horror: 1 },
-          {
-            type: 'ScenarioSpecific',
-            key: 'carlSanford',
-            data: { code: treachery.code, name: treachery.name },
-          },
         ],
       },
     ]
@@ -1125,33 +1139,13 @@ function specific(state: GameState, key: string, data: Data): GameState {
         ...(hit ? [{ type: 'GainResources', investigator, amount: 2 } as Message] : []),
       )
     }
-    // Carl Sanford: tras cancelarse una Revelación, puede llevarla a la zona de victoria y robar 1.
-    case 'carlSanford': {
-      const carl = Object.values(state.assets).find((a) => a.code === '71034' && !a.exhausted)
-      if (!carl) return state
-      return push(
-        state,
-        ask(carl.owner, 'prompt.reaction', [
-          {
-            label: 'ability.gala.carl',
-            params: { card: data.name as string },
-            then: [
-              { type: 'ExhaustAsset', asset: carl.id },
-              { type: 'ScenarioSpecific', key: 'toVictory', data: { code: data.code as string } },
-              { type: 'DrawCards', investigator: carl.owner, amount: 1 },
-            ],
-          },
-          { label: 'choice.skip', then: [] },
-        ]),
-      )
-    }
     case 'toVictory': {
       const code = data.code as string
       const index = state.encounterDiscard.findIndex((c) => c.code === code)
+      if (index < 0) return state
       return {
         ...state,
-        encounterDiscard:
-          index < 0 ? state.encounterDiscard : state.encounterDiscard.filter((_, n) => n !== index),
+        encounterDiscard: state.encounterDiscard.filter((_, n) => n !== index),
         victoryDisplay: [...state.victoryDisplay, code],
       }
     }

@@ -54,6 +54,8 @@ export interface ScenarioResult {
   /** Experiencia ganada en el escenario por cada investigador. */
   xp: Record<InvestigatorId, number>
   experience?: ExperienceGain[]
+  /** Final scenario score, when that scenario awards points. */
+  score?: number
 }
 
 export interface Campaign {
@@ -199,6 +201,7 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
         outcome: game.outcome,
         xp,
         ...(game.experience ? { experience: game.experience } : {}),
+        ...(typeof game.scenarioMeta?.score === 'number' ? { score: game.scenarioMeta.score } : {}),
       },
     ],
   }

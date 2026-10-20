@@ -113,6 +113,7 @@
       "sensed": "Percibes la Joya: era {card}",
       "spellbindGuest": "Elige qué Invitado queda hechizado",
       "takeJewel": "¿Tomas el control de la Joya de Sarnath?",
+      "rewardGuest": "Puedes añadir un Invitado de una sola cara controlado a tus Apoyos de historia. No cuenta para el tamaño de mazo.",
       "toolClue": "¿Dónde descubres la pista?",
       "danceGuest": "Elige un Invitado preparado para bailar",
       "searchEnemy": "Elige un enemigo entre las 9 cartas buscadas",
@@ -224,6 +225,7 @@
       "spellbindGuest": "{card}",
       "spendClueDamage": "Gastar 1 pista: +2 de daño",
       "takeJewel": "Tomar la Joya",
+      "keepGuest": "Conservar a {card} como Apoyo de historia",
       "trait": "{trait}",
       "unspell": "Liberar a {card}"
     },
@@ -837,7 +839,7 @@
         "lodgeTitle": "Interludio: la Joya fabulosa",
         "lodge": "La Joya y Declan Pearce se barajan con 7 cartas de encuentros y van al fondo del mazo de encuentros.",
         "kingsportTitle": "Interludio: la Joya fabulosa",
-        "kingsport": "Declan Pearce aparece, agotado, en la Sala de la Lámpara con la Joya vinculada, que tiene daño y perdición. Llega un nuevo Invitado al Vestíbulo."
+        "kingsport": "Declan Pearce aparece preparado en la Sala de la Lámpara con la Joya vinculada, que tiene daño y perdición. Llega un nuevo Invitado al Vestíbulo."
       },
       "mayhemTitle": "Se desata el caos",
       "mayhem": "El Exangüe avanza hacia ti, se tambalea y cae. Su traje se rasga y de él brotan tentáculos y fauces: ahora es una abominación.",
@@ -1200,7 +1202,9 @@
       "enemy": "Enemigo",
       "location": "Lugar",
       "agenda": "Plan",
-      "act": "Acto"
+      "act": "Acto",
+      "story": "Historia",
+      "scenario": "Escenario"
     },
     "summary": {
       "12001": "Tras un ataque en tu localización, lucha una vez por ronda. Signo arcano: un daño a un enemigo de allí.",

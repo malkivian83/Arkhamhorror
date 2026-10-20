@@ -1,9 +1,14 @@
 # La gala del ecuador del invierno (escenario independiente)
 
-**Estado de cierre (18/10/2026):** consultar la
-[auditoría específica](18-auditoria-cierre-la-gala.md), con 320 preparaciones,
-40 recorridos de derrota y diferencias de reglas verificadas. Este documento
-describe la implementación inicial; su lista de pendientes no era exhaustiva.
+**Estado revisado el 19/10/2026:** escenario implementado y jugable, con las
+fases 1–3 completadas (20 de 21 trabajos de auditoría). Se verifican los contratos
+principales de los 62 códigos y caras, el respaldo EN/ES y la persistencia especial.
+Quedan G17 (victorias completas por las cinco facciones), aceptación visual
+y publicación estable. Las 320 preparaciones, los 40 recorridos de derrota y
+las mesas dirigidas de fase 3 no acreditan victorias. El siguiente bloque es la
+fase 4: partidas completas e interfaz. Consultar la [auditoría específica](18-auditoria-cierre-la-gala.md)
+para los criterios vigentes; el resto de este documento describe la
+implementación inicial y su lista de pendientes no es exhaustiva.
 
 Escenario independiente de 2024 (pack `tmg` en ArkhamDB, cartas 71001–71062), con su
 propio conjunto de encuentros. Código en `packages/cards/src/midwinter-gala/`:

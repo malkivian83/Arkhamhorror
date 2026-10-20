@@ -1,21 +1,29 @@
-# Plataforma LCG
+# Arkham Online
 
 Plataforma web propia para jugar a Arkham Horror: El Juego de Cartas.
 Proyecto no oficial de aficionados, sin afiliación con Fantasy Flight Games.
 
 La planificación y las decisiones están en [docs-proyecto/](docs-proyecto/README.md).
 
+Estado revisado el 19/10/2026:
+
+- **Brethren of Ash:** los tres escenarios completos, con cierre técnico para juego local de 1–4 investigadores. Pendiente la comprobación en teléfono físico.
+- **La gala del ecuador del invierno:** fases 1–3 completadas: contratos principales de 62 cartas, respaldo EN/ES y persistencia especial. Pendientes victorias por las cinco facciones, aceptación visual y cierre estable.
+- **Plataforma:** cuentas, bibliotecas privadas y sincronización con MySQL implementadas; paquete de web y API para Plesk disponible. La aceptación operativa de producción se documenta por separado.
+
+El detalle y el siguiente bloque de trabajo están en la [hoja de ruta](docs-proyecto/05-hoja-de-ruta.md).
+
 ## Estructura
 
-| Carpeta           | Contenido                                                            |
-| ----------------- | -------------------------------------------------------------------- |
-| `packages/engine` | Motor de reglas puro y determinista (sin E/S, RNG con semilla)       |
-| `packages/cards`  | Definiciones de cartas (datos EN/ES y, más adelante, comportamiento) |
-| `packages/shared` | Tipos del protocolo cliente/servidor                                 |
-| `packages/saves`  | Formato y validación compartida de guardados                         |
-| `packages/i18n`   | Textos de interfaz en inglés y español                               |
-| `apps/server`     | API HTTP + WebSocket (Fastify)                                       |
-| `apps/web`        | Mesa de juego (Vue 3 + Vite + Pinia + vue-i18n)                      |
+| Carpeta           | Contenido                                                      |
+| ----------------- | -------------------------------------------------------------- |
+| `packages/engine` | Motor de reglas puro y determinista (sin E/S, RNG con semilla) |
+| `packages/cards`  | Cartas, comportamientos, investigadores, campañas y escenarios |
+| `packages/shared` | Tipos del protocolo cliente/servidor                           |
+| `packages/saves`  | Formato y validación compartida de guardados                   |
+| `packages/i18n`   | Textos de interfaz en inglés y español                         |
+| `apps/server`     | API HTTP + WebSocket (Fastify)                                 |
+| `apps/web`        | Mesa de juego (Vue 3 + Vite + Pinia + vue-i18n)                |
 
 ## Requisitos
 
@@ -41,9 +49,12 @@ pnpm dev
 
 ## Jugar
 
-Con `pnpm dev`, abre http://localhost:5173, elige de 1 a 4 investigadores y la
-dificultad, y empieza "Spreading Flames". Las imágenes de las cartas se cargan
-de ArkhamDB mientras juegas. La partida se guarda en el navegador.
+Con `pnpm dev`, abre http://localhost:5173, elige la campaña Brethren of Ash o el
+escenario independiente La Gala, de 1 a 4 investigadores y la dificultad.
+Las imágenes de las cartas se sirven desde los archivos incluidos en nuestra web.
+El modo invitado guarda en el navegador; con una cuenta y la API configurada,
+la biblioteca privada permite sincronizar mazos y campañas entre dispositivos.
+El motor de juego se ejecuta en el navegador; no hay multijugador online.
 
 Para regenerar los datos de las cartas de jugador:
 

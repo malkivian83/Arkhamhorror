@@ -286,7 +286,7 @@ describe('guardado e historial del avance visual', () => {
     const decoded = decodeSession(JSON.stringify(save))
     expect(decoded.advanceReview).toEqual(frames.slice(1))
     expect(replay(decoded.history!.base, decoded.history!.inputs).state).toEqual(state)
-    expect(state.scenarioRulesVersion).toBe(3)
+    expect(state.scenarioRulesVersion).toBe(4)
     expect(
       decodeSession(JSON.stringify(session(state, history, null))).advanceReview,
     ).toBeUndefined()

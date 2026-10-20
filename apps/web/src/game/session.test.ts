@@ -35,12 +35,12 @@ function initial(): Session {
 const encode = (data: Session) => JSON.stringify(data)
 
 describe('guardado de campaña y mesa', () => {
-  it.each([undefined, 2])(
+  it.each([undefined, 2, 3])(
     'rechaza una Gala anterior (revisión %s) y conserva intacto el archivo original',
     (version) => {
       const campaign = newCampaign('the-midwinter-gala', ['joe'], 'standard')
       const state = startScenario(campaign, 3)
-      expect(state.scenarioRulesVersion).toBe(3)
+      expect(state.scenarioRulesVersion).toBe(4)
       const current = session(state, { base: state, inputs: [], marks: [markOf(state)] }, campaign)
       expect(decodeSession(encode(current))).toEqual(current)
       const old = JSON.parse(encode(current)) as Session
