@@ -151,3 +151,21 @@ describe('campaña: mejorar el mazo', () => {
     expect(next.log.investigators[DANIELA]?.xp).toBe(0)
   })
 })
+
+// FAQ: "Ultimatums and Boons", Ancients and campaign persistence.
+describe('campaign boons', () => {
+  it('grants initial experience and keeps the selected boons for scenarios', () => {
+    const c = newCampaign('brethren-of-ash', ['daniela'], 'standard', 1, ['ancients', 'hades'])
+    expect(c.log.investigators[DANIELA]!.xp).toBe(5)
+    const game = throughSetup(startScenario(c, 2))
+    expect(game.boons).toEqual(['ancients', 'hades'])
+    expect(game.investigators[0]!.resources).toBe(7)
+  })
+  it('stores three deterministic Morrigan candidates without adding a fourth weakness', () => {
+    const c = newCampaign('brethren-of-ash', ['daniela'], 'standard', 3, ['morrigan'])
+    expect(c.weaknessChoices![DANIELA]).toHaveLength(3)
+    expect(c.weaknessChoices).toEqual(
+      newCampaign('brethren-of-ash', ['daniela'], 'standard', 3, ['morrigan']).weaknessChoices,
+    )
+  })
+})

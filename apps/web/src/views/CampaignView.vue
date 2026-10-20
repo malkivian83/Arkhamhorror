@@ -84,6 +84,12 @@ function abandon() {
     icon="campaign"
   >
     <SessionTools />
+    <section v-if="campaign.boons?.length" class="page">
+      <h2>{{ t('boons.title') }}</h2>
+      <ul>
+        <li v-for="boon in campaign.boons" :key="boon">{{ t('boons.' + boon + '.name') }}</li>
+      </ul>
+    </section>
 
     <div class="grid">
       <section class="page" :aria-label="t('campaign.scenarios')">

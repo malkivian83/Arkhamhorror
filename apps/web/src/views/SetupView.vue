@@ -6,7 +6,7 @@ import {
   type CampaignMember,
   type Difficulty,
 } from '@lcg/cards'
-import { playerCardDef } from '@lcg/engine'
+import { BOONS, playerCardDef, type Boon } from '@lcg/engine'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
@@ -32,6 +32,7 @@ const investigators = Object.keys(STARTER_DECKS).map((key) => ({
 }))
 const chosen = ref<DeckKey[]>(['joe'])
 const difficulty = ref<Difficulty>('standard')
+const boons = ref<Boon[]>([])
 const campaigns = allCampaigns()
 const campaignId = ref(campaigns[0]?.id ?? '')
 const selectedCampaign = computed(() => campaigns.find((c) => c.id === campaignId.value))
@@ -61,8 +62,8 @@ function start() {
     const own = validDecks(key).find((d) => d.id === deckFor.value[key])
     return own ? { investigator: own.investigator, cards: own.cards } : key
   })
-  game.start(campaignId.value, members, difficulty.value)
-  void router.push('/game')
+  game.start(campaignId.value, members, difficulty.value, boons.value)
+  void router.push(game.state ? '/game' : '/campaign')
 }
 </script>
 
@@ -230,6 +231,24 @@ function start() {
             >
           </details>
         </fieldset>
+        <fieldset class="boons">
+          <legend>{{ t('boons.title') }}</legend>
+          <p>{{ t('boons.help') }}</p>
+          <label v-for="boon in BOONS" :key="boon" class="boon-option">
+            <input
+              v-model="boons"
+              type="checkbox"
+              :value="boon"
+              :disabled="
+                (boon === 'ancients' || boon === 'persephone') && selectedCampaign?.standalone
+              "
+            />
+            <span
+              ><strong>{{ t('boons.' + boon + '.name') }}</strong
+              ><br />{{ t('boons.' + boon + '.description') }}</span
+            >
+          </label>
+        </fieldset>
         <div class="start-bar">
           <img
             class="archive-art"
@@ -265,6 +284,15 @@ function start() {
 </template>
 
 <style scoped>
+.boons {
+  flex-basis: 100%;
+}
+.boon-option {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.7rem;
+  align-items: start;
+}
 .setup-page {
   --ink: #f4efe7;
   --accent: #e5aa8d;

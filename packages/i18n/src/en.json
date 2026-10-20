@@ -1350,5 +1350,50 @@
     "exportAll": "Export my library",
     "guestHelp": "Sign in to save decks and campaigns to your account.",
     "copyName": "{name} (copy)"
+  },
+  "boons": {
+    "title": "Boons",
+    "help": "Optional benefits agreed by the whole group. Saved for this adventure.",
+    "destinyPrompt": "Choose a card for your opening hand",
+    "athenaPrompt": "Cancel this first autofail token?",
+    "redraw": "Return it and draw again",
+    "keep": "Resolve the autofail",
+    "ancients": {
+      "name": "Boon of the Ancients",
+      "description": "Campaigns: start with 5 extra experience."
+    },
+    "athena": {
+      "name": "Boon of Athena",
+      "description": "Once per game, you may replace the first autofail you draw."
+    },
+    "destiny": {
+      "name": "Boon of Destiny",
+      "description": "Choose one opening card from your deck; your starting hand size stays the same."
+    },
+    "hades": {
+      "name": "Boon of Hades",
+      "description": "Start each scenario with 2 extra resources."
+    },
+    "hermes": {
+      "name": "Boon of Hermes",
+      "description": "Gain one extra action each turn for movement only."
+    },
+    "thoth": {
+      "name": "Boon of Thoth",
+      "description": "Draw one extra card in your opening hand."
+    },
+    "osiris": {
+      "name": "Boon of Osiris",
+      "description": "Your first defeat each scenario gives trauma, then heals you. Damage is prevented until your next turn."
+    },
+    "persephone": {
+      "name": "Boon of Persephone",
+      "description": "Campaigns: gain 3 extra experience when defeated."
+    },
+    "morrigan": {
+      "name": "Boon of the Morrígan",
+      "description": "When assigning a random basic weakness, reject one of three candidates and receive one of the other two at random."
+    },
+    "morriganPrompt": "Choose the weakness to exclude"
   }
 }

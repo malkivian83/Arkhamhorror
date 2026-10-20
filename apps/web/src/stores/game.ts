@@ -150,10 +150,26 @@ export const useGameStore = defineStore('game', () => {
   }
 
   /** Empieza una campaña nueva con su primer escenario. */
-  function start(campaignId: string, members: CampaignMember[], difficulty: Difficulty) {
+  function start(
+    campaignId: string,
+    members: CampaignMember[],
+    difficulty: Difficulty,
+    boons: import('@lcg/engine').Boon[] = [],
+  ) {
     error.value = null
     newAdventure()
-    const next = newCampaign(campaignId, members, difficulty, Math.floor(Math.random() * 2 ** 31))
+    const next = newCampaign(
+      campaignId,
+      members,
+      difficulty,
+      Math.floor(Math.random() * 2 ** 31),
+      boons,
+    )
+    if (boons.includes('ancients') && Object.values(next.log.investigators).some((i) => i.xp > 0)) {
+      setCampaign(next)
+      set(null, null)
+      return
+    }
     const prepared = startScenario(next, Math.floor(Math.random() * 2 ** 32))
     setCampaign(next)
     play(prepared)

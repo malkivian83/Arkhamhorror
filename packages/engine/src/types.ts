@@ -1,5 +1,17 @@
 import type { RngState } from './rng'
 
+export const BOONS = [
+  'ancients',
+  'athena',
+  'destiny',
+  'hades',
+  'hermes',
+  'thoth',
+  'osiris',
+  'morrigan',
+  'persephone',
+] as const
+export type Boon = (typeof BOONS)[number]
 export type InvestigatorId = string
 export type LocationId = string
 export type EnemyId = string
@@ -57,6 +69,9 @@ export interface Investigator {
   doom?: number
   /** Le queda la acción adicional que solo sirve para evitar (Trish Scarborough). */
   extraEvade?: boolean
+  extraMove?: boolean
+  osirisUsed?: boolean
+  osirisProtected?: boolean
   /** Ya se ha movido este turno. */
   movedThisTurn?: boolean
   /** Acciones realizadas en este turno. */
@@ -517,6 +532,12 @@ export type PhaseStep =
 
 /** Todo lo que puede ocurrir en la partida. */
 export type Message =
+  | { type: 'BoonMorrigan'; investigator: InvestigatorId; candidates: CardCode[] }
+  | { type: 'BoonWeakness'; investigator: InvestigatorId; candidates: CardCode[] }
+  | { type: 'BoonAcceptAutofail' }
+  | { type: 'BoonDestiny'; investigator: InvestigatorId }
+  | { type: 'BoonKeepCard'; investigator: InvestigatorId; card: CardCode }
+  | { type: 'BoonOsiris'; investigator: InvestigatorId }
   | { type: 'Round' }
   | { type: 'MythosPhase' }
   /** Empieza un paso de fase: la mesa lo resalta y queda en el registro. */
@@ -1105,6 +1126,8 @@ export interface ExperienceGain {
 
 export interface GameState {
   /** Versión del motor que creó la partida, para migraciones futuras. */
+  boons?: Boon[]
+  athenaUsed?: InvestigatorId[]
   engineVersion: number
   scenarioId: string
   scenarioRulesVersion?: number

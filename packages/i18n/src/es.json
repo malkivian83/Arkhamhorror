@@ -1350,5 +1350,50 @@
     "exportAll": "Exportar mi biblioteca",
     "guestHelp": "Inicia sesión para guardar tus mazos y campañas en tu cuenta.",
     "copyName": "{name} (copia)"
+  },
+  "boons": {
+    "title": "Bendiciones",
+    "help": "Ayudas opcionales que debe acordar todo el grupo. Se guardan para esta aventura.",
+    "destinyPrompt": "Elige una carta para tu mano inicial",
+    "athenaPrompt": "¿Cancelar esta primera ficha de fracaso automático?",
+    "redraw": "Devolverla y sacar otra",
+    "keep": "Resolver el fracaso automático",
+    "ancients": {
+      "name": "Bendición de los Antiguos",
+      "description": "En campaña: empiezas con 5 puntos de experiencia adicionales."
+    },
+    "athena": {
+      "name": "Bendición de Atenea",
+      "description": "Una vez por partida, puedes sustituir la primera ficha de fracaso automático que saques."
+    },
+    "destiny": {
+      "name": "Bendición del Destino",
+      "description": "Elige una carta del mazo para tu mano inicial, sin aumentar su tamaño."
+    },
+    "hades": {
+      "name": "Bendición de Hades",
+      "description": "Empiezas cada escenario con 2 recursos adicionales."
+    },
+    "hermes": {
+      "name": "Bendición de Hermes",
+      "description": "Cada turno tienes una acción adicional para moverte."
+    },
+    "thoth": {
+      "name": "Bendición de Thoth",
+      "description": "Tu mano inicial tiene una carta adicional."
+    },
+    "osiris": {
+      "name": "Bendición de Osiris",
+      "description": "Tu primera derrota de cada escenario causa trauma y luego te cura. No recibes daño hasta tu próximo turno."
+    },
+    "persephone": {
+      "name": "Bendición de Perséfone",
+      "description": "En campaña: ganas 3 puntos de experiencia adicionales al ser derrotado."
+    },
+    "morrigan": {
+      "name": "Bendición de la Morrígan",
+      "description": "Al asignar tu debilidad básica aleatoria, excluyes una de tres candidatas y recibes una de las otras dos al azar."
+    },
+    "morriganPrompt": "Elige la debilidad que quieres excluir"
   }
 }

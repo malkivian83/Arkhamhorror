@@ -3,6 +3,7 @@ import { EngineError } from './errors'
 import { recomputeConnections } from './state'
 import { shuffle, seedRng } from './rng'
 import type {
+  Boon,
   Act,
   CampaignLog,
   Agenda,
@@ -66,6 +67,8 @@ export interface InvestigatorSetup {
 }
 
 export interface NewGameOptions {
+  boons?: Boon[]
+  weaknessChoices?: Record<string, CardCode[]>
   seed: number
   difficulty?: Difficulty
   /** Pausas en las pruebas de habilidad para la mesa de juego. */
@@ -105,6 +108,8 @@ export function prepareGame({
   difficulty = 'standard',
   interactive = false,
   campaignLog,
+  boons = [],
+  weaknessChoices = {},
 }: NewGameOptions): GameState {
   if (investigators.length < 1 || investigators.length > 4) {
     throw new EngineError('Una partida admite de 1 a 4 investigadores')
@@ -175,11 +180,31 @@ export function prepareGame({
         investigator: setup.id,
         code,
       })),
-      { type: 'GainResources', investigator: setup.id, amount: 5 + bonus(setup, 'resources') },
+      ...(weaknessChoices[setup.id]
+        ? [
+            {
+              type: 'BoonMorrigan',
+              investigator: setup.id,
+              candidates: weaknessChoices[setup.id]!,
+            } as Message,
+          ]
+        : []),
+      ...(boons.includes('destiny')
+        ? [{ type: 'BoonDestiny', investigator: setup.id } as Message]
+        : []),
+      {
+        type: 'GainResources',
+        investigator: setup.id,
+        amount: 5 + bonus(setup, 'resources') + (boons.includes('hades') ? 2 : 0),
+      },
       {
         type: 'DrawOpeningHand',
         investigator: setup.id,
-        amount: 5 + bonus(setup, 'openingHand'),
+        amount:
+          5 +
+          bonus(setup, 'openingHand') +
+          (boons.includes('thoth') ? 1 : 0) -
+          (boons.includes('destiny') ? 1 : 0),
       },
     ]),
     { type: 'InvestigatorsMulligan' },
@@ -195,6 +220,7 @@ export function prepareGame({
 
   const rulesVersion = scenarioBehavior(scenario.id)?.rulesVersion
   return recomputeConnections({
+    ...(boons.length ? { boons: [...new Set(boons)] } : {}),
     engineVersion: ENGINE_VERSION,
     scenarioId: scenario.id,
     ...(rulesVersion !== undefined ? { scenarioRulesVersion: rulesVersion } : {}),
