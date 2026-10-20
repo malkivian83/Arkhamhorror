@@ -198,8 +198,14 @@ const slots = computed(() => {
       <div class="zone hand">
         <div class="hand-heading">
           <h4 class="mat-label">{{ t('table.hand') }} ({{ i.hand.length }})</h4>
-          <button type="button" class="view-hand" @click="showHand">
-            {{ t('table.viewHand') }}
+          <button
+            type="button"
+            class="view-hand"
+            :aria-label="t('table.viewHand')"
+            :title="t('table.viewHand')"
+            @click="showHand"
+          >
+            <SlotIcon type="hand" />
           </button>
         </div>
         <div class="cards">
@@ -910,13 +916,18 @@ h3,
   margin: 0;
 }
 .view-hand {
+  display: grid;
+  place-items: center;
+  width: 32px;
   min-height: 32px;
-  padding: 2px 8px;
-  font-family: var(--fell);
-  font-size: 0.8rem;
+  padding: 0;
   color: var(--parch);
   background: #21190e;
   border-color: var(--brass-dark);
+}
+.view-hand :deep(.slot-icon) {
+  width: 20px;
+  height: 20px;
 }
 .hand .cards {
   display: flex;
@@ -1034,8 +1045,13 @@ h3,
     font-size: 0.7rem;
   }
   .view-hand {
+    width: 44px;
     min-height: 44px;
     margin-top: -8px;
+  }
+  .view-hand :deep(.slot-icon) {
+    width: 24px;
+    height: 24px;
   }
   .hand .cards {
     gap: 4px;

@@ -99,19 +99,25 @@ function setLocale(value: Locale) {
             account.user ? t('account.profile') : t('account.login')
           }}</RouterLink>
         </nav>
+        <div class="menu-group">
+          <span class="menu-label">{{ t('app.playmat') }}</span>
+          <PlaymatPicker />
+        </div>
+        <div class="menu-group">
+          <span class="menu-label">{{ t('app.language') }}</span>
+          <div class="menu-languages" role="group" :aria-label="t('app.language')">
+            <button
+              v-for="l in LOCALES"
+              :key="l"
+              type="button"
+              :aria-pressed="locale === l"
+              @click="setLocale(l)"
+            >
+              {{ l.toUpperCase() }}
+            </button>
+          </div>
+        </div>
         <button type="button" class="menu-quit" @click="quit">{{ t('setup.quit') }}</button>
-        <PlaymatPicker />
-        <nav class="menu-languages">
-          <button
-            v-for="l in LOCALES"
-            :key="l"
-            type="button"
-            :aria-pressed="locale === l"
-            @click="setLocale(l)"
-          >
-            {{ l.toUpperCase() }}
-          </button>
-        </nav>
         <p class="menu-disclaimer">{{ t('app.disclaimer') }}</p>
       </div>
     </dialog>
@@ -293,14 +299,91 @@ body {
 }
 .menu-close {
   align-self: flex-end;
-}
-.menu-quit {
-  align-self: flex-start;
-  font-family: var(--fell);
+  width: 44px;
+  padding: 0;
 }
 .game-menu button,
 .game-menu .sections a {
   min-height: 44px;
+}
+/* Botones del menú: placas de madera con filo de latón, como el escritorio del jugador. */
+.game-menu button {
+  font-family: var(--fell);
+  font-size: 1rem;
+  color: var(--parch);
+  background: linear-gradient(180deg, #33281a, #1f170d);
+  border: 1px solid var(--brass-dark);
+  border-radius: 3px;
+  box-shadow:
+    inset 0 1px 0 rgb(232 220 188 / 10%),
+    0 2px 6px rgb(0 0 0 / 45%);
+}
+.game-menu button:hover:not(:disabled) {
+  color: #f6ecd2;
+  background: linear-gradient(180deg, #3f3120, #271d11);
+  border-color: var(--brass);
+}
+.menu-group {
+  display: grid;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid rgb(200 162 90 / 25%);
+}
+.menu-label {
+  font-family: var(--fell);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #b8aa8c;
+}
+.game-menu .picker .current {
+  width: 100%;
+  gap: 10px;
+  padding: 6px 12px;
+}
+.game-menu .picker ul.menu {
+  background: #1c1811;
+  border-color: var(--brass-dark);
+  border-radius: 3px;
+}
+.game-menu .picker ul.menu button {
+  box-shadow: none;
+}
+/* Idioma: selector partido, con el idioma activo en latón. */
+.game-menu .menu-languages {
+  display: flex;
+  justify-self: start;
+  border: 1px solid var(--brass-dark);
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 45%);
+}
+.game-menu .menu-languages button {
+  min-width: 64px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  letter-spacing: 0.1em;
+}
+.game-menu .menu-languages button + button {
+  border-left: 1px solid var(--brass-dark);
+}
+.game-menu .menu-languages button[aria-pressed='true'] {
+  color: #1c1811;
+  background: linear-gradient(180deg, #e0bf7c, var(--brass));
+  font-weight: 700;
+}
+/* Abandonar: la única acción destructiva, en lacre y apartada abajo. */
+.game-menu .menu-quit {
+  margin-top: auto;
+  color: #f3d9cc;
+  background: linear-gradient(180deg, #5c241a, #3b140e);
+  border-color: #9a3a2a;
+}
+.game-menu .menu-quit:hover:not(:disabled) {
+  color: #fff0e8;
+  background: linear-gradient(180deg, #70301f, #4a1a12);
+  border-color: #c4583f;
 }
 .game-menu .brand {
   font-size: 1rem;
@@ -320,12 +403,8 @@ body {
   min-width: 0;
   width: 100%;
 }
-.menu-languages {
-  display: flex;
-  gap: 8px;
-}
 .menu-disclaimer {
-  margin-top: auto;
+  margin: 0;
   color: #b8aa8c;
   font-family: var(--fell);
   font-size: 0.85rem;
