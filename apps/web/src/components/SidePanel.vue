@@ -202,12 +202,30 @@ watch(
   font-size: 0.95rem;
 }
 .question {
-  /* La decisión llega como un telegrama. */
+  /* Telegrama en papel verde envejecido, distinto del diario. */
   padding: 10px;
-  background: #f3ead2;
-  border: 1px solid #6e5631;
-  box-shadow: 2px 3px 0 rgb(60 40 15 / 25%);
+  color: #263b32;
+  background: linear-gradient(135deg, #e0e7d5, #c5d2bd);
+  border: 1px solid #65765b;
+  border-left: 4px solid #456451;
+  box-shadow:
+    inset 0 0 0 2px rgb(245 240 216 / 45%),
+    2px 3px 0 rgb(40 55 35 / 25%);
   font-family: var(--type);
+}
+.question button {
+  color: #263b32;
+  background: #e9e5ce;
+  border-color: #75816a;
+}
+.question button:hover:not(:disabled) {
+  background: #f5efd9;
+  border-color: #456451;
+}
+.question button:focus-visible,
+.all summary:focus-visible {
+  outline: 2px solid #456451;
+  outline-offset: 2px;
 }
 .prompt {
   margin: 0;
@@ -217,13 +235,13 @@ watch(
 }
 .prompt::after {
   content: ' STOP';
-  color: #7a5a2a;
+  color: #52664c;
 }
 .who,
 .hint {
   margin: 4px 0;
   font-size: 0.8rem;
-  color: #5a3e1c;
+  color: #3e5546;
 }
 .buttons {
   display: flex;

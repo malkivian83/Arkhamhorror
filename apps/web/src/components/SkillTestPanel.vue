@@ -142,7 +142,7 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
           class="investigator-card"
           :code="investigator.id"
           :name="investigator.name"
-          :width="70"
+          :width="52"
           :color="classColor(investigator.id)"
           landscape
         />
@@ -166,7 +166,7 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
           :code="source.code"
           :name="source.name"
           :back="source.back"
-          :width="70"
+          :width="52"
         />
         <span v-else-if="source" class="source-name">{{ localName(source.name) }}</span>
       </div>
@@ -211,7 +211,7 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
             class="drawn-token"
             :style="{ animationDelay: `${n * 0.35}s` }"
           >
-            <ChaosTokenView :token="token" :size="76" />
+            <ChaosTokenView :token="token" :size="52" />
           </span>
         </template>
         <button
@@ -288,7 +288,7 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
             </span>
           </div>
         </details>
-        <div class="footer-row">
+        <div v-if="!resolved" class="footer-row">
           <button
             v-if="!resolved"
             type="button"
@@ -341,7 +341,7 @@ header {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 14px;
+  padding: 6px 14px;
   background: #25252b;
   border-bottom: 1px solid #62585b;
 }
@@ -381,7 +381,7 @@ button:hover:not(:disabled) {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 4px 12px;
-  padding: 14px 20px 8px;
+  padding: 6px 16px 4px;
   font-size: 0.8125rem;
 }
 .progress-copy strong {
@@ -397,7 +397,7 @@ button:hover:not(:disabled) {
   gap: 4px;
   list-style: none;
   margin: 0;
-  padding: 0 20px 16px;
+  padding: 0 16px 8px;
 }
 .steps li {
   flex: 1;
@@ -425,9 +425,9 @@ button:hover:not(:disabled) {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  padding: 16px;
-  margin: 0 20px;
+  gap: 10px;
+  padding: 8px;
+  margin: 0 16px;
   background: #25252b;
   border: 1px solid #62585b;
   border-radius: 4px;
@@ -478,7 +478,7 @@ button:hover:not(:disabled) {
   font-size: 0.75rem;
 }
 .breakdown {
-  margin: 10px 20px 0;
+  margin: 6px 16px 0;
   text-align: center;
   font-size: 0.8125rem;
   color: #c3bbb4;
@@ -494,15 +494,15 @@ button:hover:not(:disabled) {
   justify-content: center;
   flex-wrap: wrap;
   gap: 6px;
-  margin: 12px 20px 0;
+  margin: 6px 16px 0;
 }
 .reveal {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
-  padding: 16px 20px;
-  min-height: 80px;
+  padding: 8px 16px;
+  min-height: 0;
   align-items: center;
 }
 /* Revelar: la bolsa en un medallón de ficha, sobre una placa con filo de cobre. */
@@ -589,7 +589,7 @@ button:hover:not(:disabled) {
   }
 }
 .test-abilities {
-  padding: 8px 20px 16px;
+  padding: 4px 16px 6px;
   display: grid;
   gap: 8px;
 }
@@ -608,7 +608,7 @@ button:hover:not(:disabled) {
   justify-content: center;
   flex-wrap: wrap;
   gap: 12px;
-  padding: 14px 20px;
+  padding: 8px 16px;
   background: #25252b;
   border-block: 1px solid #62585b;
 }
@@ -690,11 +690,13 @@ button:hover:not(:disabled) {
 }
 .pending-choice {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
   gap: 8px;
-  padding: 14px 20px;
+  padding: 8px 16px;
   background: #25252b;
 }
 .pending-choice p {
+  grid-column: 1 / -1;
   margin: 0;
   color: #e5aa8d;
   font-weight: 600;
@@ -704,8 +706,8 @@ button:hover:not(:disabled) {
 }
 /* Lo que se puede hacer destaca; omitir queda en segundo plano. */
 .pending-choice button.take {
-  min-height: 50px;
-  padding: 8px 16px;
+  min-height: 44px;
+  padding: 6px 12px;
   border: 1px solid #e5aa8d;
   background:
     radial-gradient(ellipse at 50% 0%, rgb(229 170 141 / 20%), transparent 70%),
@@ -731,9 +733,8 @@ button:hover:not(:disabled) {
     0 0 14px rgb(229 170 141 / 30%);
 }
 .pending-choice button.skip {
-  justify-self: center;
-  min-width: 140px;
-  min-height: 40px;
+  min-width: 0;
+  min-height: 44px;
   border-color: #4b4246;
   background: transparent;
   color: #c3bbb4;
@@ -756,7 +757,7 @@ button:hover:not(:disabled) {
   text-align: center;
 }
 footer {
-  padding: 8px 20px 16px;
+  padding: 4px 16px 6px;
   border-top: 1px solid #62585b;
 }
 .bag-details summary {
@@ -867,7 +868,7 @@ footer {
   }
   .duel {
     margin-inline: 14px;
-    padding: 12px 8px;
+    padding: 8px;
     gap: 8px;
     flex-wrap: wrap;
   }
