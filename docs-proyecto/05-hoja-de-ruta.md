@@ -8,18 +8,18 @@ campaña es **Brethren of Ash** y cuyo primer escenario es **"Spreading Flames"*
 (investigadores: Daniela Reyes, Joe Diamond, Trish Scarborough, Dexter Drake,
 Isabelle Barnes). Sustituye a Night of the Zealot como contenido inicial.
 
-**Estado actualizado el 19/10/2026:** Arkham Online cuenta con motor y mesa local,
+**Estado actualizado el 20/10/2026:** Arkham Online cuenta con motor y mesa local,
 la campaña Brethren of Ash con cierre técnico, La Gala jugable con aceptación
 pendiente, cuentas y bibliotecas privadas con MySQL, y herramientas de despliegue
 de web y API en Plesk. Implementación y aceptación se distinguen en la tabla.
 
-| Área | Estado y evidencia |
-| --- | --- |
-| Brethren of Ash | Tres escenarios cerrados para juego local; dos campañas completas con equipos distintos en normal. Ver [auditoría 16](16-auditoria-cierre-brethren-of-ash.md) y [base estable](17-version-estable-brethren-of-ash.md). |
-| La Gala | Fases 1–3 completadas, 20 de 21 trabajos: G18 cerrado y G17 pendiente de victorias completas. Contratos principales de 62 códigos, caras y persistencia especial verificados. Faltan las partidas e interfaz de fase 4 y la publicación de fase 5. Ver [auditoría 18](18-auditoria-cierre-la-gala.md). La cuenta de trabajos no representa un porcentaje de finalización. |
-| Cuentas y guardado remoto | Implementados con biblioteca privada, revisiones y sincronización. Ver [documento 22](22-implementacion-cuentas-mysql.md). No equivalen a multijugador online. |
-| Despliegue | Workflow y paquete completo para Plesk implementados, incluidas correcciones de rutas API. Ver [guía 23](23-despliegue-plesk.md). La verificación operativa del servidor se registra por separado. |
-| Teléfono físico | Pendiente y diferido por el propietario; las comprobaciones adaptables disponibles usan una ventana de 390×640. |
+| Área                      | Estado y evidencia                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Brethren of Ash           | Tres escenarios cerrados para juego local; dos campañas completas con equipos distintos en normal. Ver [auditoría 16](16-auditoria-cierre-brethren-of-ash.md) y [base estable](17-version-estable-brethren-of-ash.md).                                                                                                                                                                                                                                              |
+| La Gala                   | Fases 1–3 completadas y G17 cerrado con siete victorias completas reproducibles en normal: cinco facciones y dos equipos de dos investigadores. Contratos principales de 62 códigos, caras y persistencia especial verificados. Quedan la aceptación visual de fase 4 y la publicación estable de fase 5. Ver [auditoría 18](18-auditoria-cierre-la-gala.md). Cerrar los 21 trabajos no equivale a cerrar la aceptación visual ni acredita todas las interacciones. |
+| Cuentas y guardado remoto | Implementados con biblioteca privada, revisiones y sincronización. Ver [documento 22](22-implementacion-cuentas-mysql.md). No equivalen a multijugador online.                                                                                                                                                                                                                                                                                                      |
+| Despliegue                | Workflow y paquete completo para Plesk implementados, incluidas correcciones de rutas API. Ver [guía 23](23-despliegue-plesk.md). La verificación operativa del servidor se registra por separado.                                                                                                                                                                                                                                                                  |
+| Teléfono físico           | Pendiente y diferido por el propietario; las comprobaciones adaptables disponibles usan una ventana de 390×640.                                                                                                                                                                                                                                                                                                                                                     |
 
 ## Fase 0 · Decisiones y preparación
 
@@ -91,7 +91,7 @@ Estado detallado del motor: [08-motor.md](08-motor.md).
 - [x] Implementación del escenario independiente: La gala del ecuador del invierno ([14-la-gala.md](14-la-gala.md)), con fases 1–3 completadas.
 - [x] Contratos principales de los 62 códigos y caras, cinco interludios, veinte parejas de facciones, trece tareas de puntuación, umbrales de XP, recompensas R1 y persistencia en ventanas especiales. Son mesas dirigidas, sin afirmar exhaustividad ni victorias completas.
 - [x] Respaldo completo de datos y resúmenes de Gala EN/ES, con fallo de carga, respuesta parcial, cambio de idioma y recursos ausentes (G18). Las imágenes locales ya estaban incorporadas.
-- [ ] Partidas completas de La Gala: una victoria legal por cada facción y dos equipos en normal (parte restante de G17).
+- [x] Partidas completas de La Gala: una victoria legal por cada facción y dos equipos de dos investigadores en normal (G17). Siete grabaciones reproducidas por `gala-playthrough.test.ts`, con mazos válidos, decisiones legales, finales, guardado y deshacer.
 - [ ] Aceptación visual de Gala EN/ES en escritorio y ventana móvil, comprobaciones finales y etiqueta estable propia. El modo historia secundaria dentro de otra campaña queda fuera de este cierre.
 - [x] Pasos de las fases en pantalla y textos oficiales en español.
 
@@ -104,9 +104,10 @@ Estado detallado del motor: [08-motor.md](08-motor.md).
 
 ## Siguiente bloque de desarrollo
 
-La prioridad es la **fase 4 de La Gala: partidas completas e interfaz**.
-La fase 3 de contenido y persistencia queda verificada dentro de su alcance de
-contratos principales; las mesas dirigidas no sustituyen victorias legales.
+La prioridad es completar la **aceptación visual de la fase 4 de La Gala**:
+recorridos EN/ES en escritorio y ventana de 390×640, avisos, ampliaciones,
+recompensas y puntuación final. Las siete victorias legales completas ya tienen
+regresión automática; no sustituyen una comprobación visible de la interfaz.
 Después sigue el cierre de publicación de la fase 5. Los criterios concretos están en la
 [auditoría de Gala](18-auditoria-cierre-la-gala.md#fases-y-puertas-de-cierre).
 Las pruebas en teléfono físico siguen abiertas por separado; no bloquean el

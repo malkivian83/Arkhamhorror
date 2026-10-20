@@ -3,18 +3,18 @@
 18/10/2026. Base de código: `939dbb31ae8989e59f6f5ef31a4a5eb6b80b8e5a`,
 etiqueta `brethren-of-ash-local-v1.0.0`.
 
-**Dictamen actualizado el 19/10/2026: La Gala es jugable y tiene las fases 1–3
-completadas, pero todavía no cumple el cierre aplicado a Brethren.** Se han
-verificado contratos principales de los 62 códigos y sus caras, respaldo EN/ES,
-interludios, puntuación y persistencia especial. Quedan las victorias legales
-completas por las cinco facciones, la aceptación visual y la publicación estable.
+**Dictamen actualizado el 20/10/2026: La Gala es jugable, tiene las fases 1–3
+completadas y siete victorias completas reproducibles en normal.** G17 queda
+cerrado: una victoria por cada una de las cinco facciones y dos equipos de dos
+investigadores. Quedan la aceptación visual de fase 4 y la publicación estable
+de fase 5 para cumplir el cierre aplicado a Brethren.
 
-**Actualización de fases 1–3:** corregidos G01–G16 y G19–G21 y cerrado G18:
-**20 de los 21 trabajos**. De G17 se han cubierto los contratos de contenido,
-interludios, objetivos, puntuación y finales con mesas dirigidas; permanecen
-pendientes sus victorias completas. La cuenta de trabajos no mide un porcentaje
-de finalización. La tabla de hallazgos conserva el diagnóstico inicial; los
-apartados de entrega y la matriz registran la aceptación actual.
+**Los 21 trabajos de auditoría están cerrados dentro de sus contratos.** Se
+verifican los contratos principales de los 62 códigos y caras, respaldo EN/ES,
+interludios, puntuación, persistencia especial y victorias completas. Esto no
+certifica todas las interacciones ni la interfaz. La tabla de hallazgos conserva
+el diagnóstico inicial; los apartados de entrega, la matriz y la sección
+«Fase 4: victorias completas» registran la aceptación actual.
 
 ## Alcance y método
 
@@ -51,13 +51,14 @@ se corrijan, en lugar de mantener esos defectos como comportamiento esperado.
 
 ## Lo que sí se ha verificado
 
-| Área | Evidencia | Límite |
-|---|---|---|
-| Preparación | **320 casos**: 20 parejas ordenadas Aliado/Rival × 4 dificultades × 4 tamaños de equipo. Se comprueban seis Invitados distribuidos dos por sala, seis en el mazo, Líder aliado, 23 encuentros y tamaño de bolsa. | No prueba todas las permutaciones de salas ni el efecto de cada carta. |
-| Partidas legales | **40 recorridos**, cinco facciones × cuatro dificultades × uno/dos investigadores, **1.602 decisiones**; estado terminal en todos. | Política pasiva que termina turnos: **los 40 son sin resolución**, no victorias. |
-| Persistencia | Se validan las 40 sesiones completas con mesa/campaña/historial y se reproducen sus entradas, comparando el hash del estado completo. | No acredita cada ventana de Joya, hechizo, Rival o resolución victoriosa. |
-| Reglas dirigidas | Siete sondas G01–G07 reproducen diferencias de la base. | Usan mesas preparadas para aislar reglas; no son recorridos legales completos. |
-| Base anterior | Las pruebas generales conservan el cierre de Brethren y las pruebas existentes de La Gala. | La prueba aleatoria anterior solo exigía un final o una decisión pendiente; no certificaba acabar ganando. |
+| Área                             | Evidencia                                                                                                                                                                                                                      | Límite                                                                                                                 |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| Preparación                      | **320 casos**: 20 parejas ordenadas Aliado/Rival × 4 dificultades × 4 tamaños de equipo. Se comprueban seis Invitados distribuidos dos por sala, seis en el mazo, Líder aliado, 23 encuentros y tamaño de bolsa.               | No prueba todas las permutaciones de salas ni el efecto de cada carta.                                                 |
+| Partidas legales                 | **40 recorridos**, cinco facciones × cuatro dificultades × uno/dos investigadores, **1.602 decisiones**; estado terminal en todos.                                                                                             | Política pasiva que termina turnos: **los 40 son sin resolución**, no victorias.                                       |
+| Victorias completas (20/10/2026) | **Siete grabaciones, 1.041 decisiones** en normal: una por facción y dos equipos de dos investigadores. `gala-playthrough.test.ts` reproduce preparaciones, mazos válidos, decisiones, finales, registro, guardado y deshacer. | Recorridos automáticos del motor; no acreditan aceptación visual, juego en todas las dificultades ni cada interacción. |
+| Persistencia                     | Se validan las 40 sesiones completas con mesa/campaña/historial y se reproducen sus entradas, comparando el hash del estado completo.                                                                                          | No acredita cada ventana de Joya, hechizo, Rival o resolución victoriosa.                                              |
+| Reglas dirigidas                 | Siete sondas G01–G07 reproducen diferencias de la base.                                                                                                                                                                        | Usan mesas preparadas para aislar reglas; no son recorridos legales completos.                                         |
+| Base anterior                    | Las pruebas generales conservan el cierre de Brethren y las pruebas existentes de La Gala.                                                                                                                                     | La prueba aleatoria anterior solo exigía un final o una decisión pendiente; no certificaba acabar ganando.             |
 
 Las bolsas y el desglose principal de trece tareas de puntuación coinciden por
 lectura con la referencia. Hay que probar umbrales, duplicados y zonas después
@@ -69,29 +70,29 @@ P1 afecta reglas, resultados o información de la partida. P2 completa eleccione
 y aceptación. «Sonda» significa reproducción ejecutada; «lectura» señala una
 diferencia localizada que necesita su regresión al implementarla.
 
-| ID | Prioridad / evidencia | Diferencia y condición de aceptación |
-|---|---|---|
-| G01 | P1 · sonda | `fightAt` marca el combate de Callahan, Nova y Sarah como provocador. Nova recibe un ataque antes de agotarse. Combatir debe evitar el ataque de oportunidad y pagar agotamiento/recursos como costes. Probar enemigo preparado, agotado y Masivo. |
-| G02 | P1 · sonda + referencia | Sala de la Lámpara descubre pista solo si aciertas y limita por ronda. La referencia descubre una pista al activar la habilidad también al errar y usa límite por turno. Probar acierto, fallo, mazo vacío y segundo turno en la misma ronda. |
-| G03 | P1 · sonda | Dormitorio tiene un identificador que contiene el turno, pero **carece de `limit`** y provoca ataques. Añadir el límite real por turno y la excepción de combate; probar ataque remoto y daño adicional con pista. |
-| G04 | P1 · sonda | Prudence vuelve a mirar las cuatro primeras tras descartar: aparece la quinta carta original como segunda elección. Mantener el conjunto de cuatro visto inicialmente y permitir reordenar las restantes, sin ampliar la búsqueda. |
-| G05 | P1 · sonda + lectura | Faltan la reacción de Callahan tras habilidad de acción de Aliado/Arma, ignorar ataques de oportunidad de Humanoides con Delores y la segunda habilidad de Olney para comprometer la carta superior. El documento 14 restringía Delores a no Élite: la referencia consultada no contiene esa restricción. Contrastar la carta al implementarla. |
-| G06 | P1 · sonda + datos | Rookie Cop carece de Oleada. La cara silenciosa de El Exangüe tiene `victory: 1`, aunque la referencia solo da Victoria a la cara desatada. Revisar tanto definición como enemigo creado en preparación y la transición entre caras. |
-| G07 | P1 · sonda | `EliminateInvestigator` filtra sus apoyos directamente. Un Invitado controlado desaparece sin quedar hechizado; también se omiten las salidas especiales de Joya/Lámpara. Tramitar esas salidas conservando la localización anterior y evitar reacciones recursivas. |
-| G08 | P1 · lectura | `enterHorror` cobra al entrar siempre; la Sala de la Lámpara de referencia aplica el coste al entrar sin revelar. Probar primera entrada, reentrada y movimiento por efecto; revisar la misma semántica en los demás Lugares Privados. |
-| G09 | P2 · lectura | Baile agota los dos primeros Invitados del estado. Pedir al jugador qué Invitados agotar y conservar la elección al guardar; comprobar los requisitos con uno/dos disponibles contra el texto de carta. |
-| G10 | P2 · lectura | Archibald encuentra automáticamente el primer enemigo de las nueve cartas. Ofrecer la elección entre enemigos encontrados y resolver su robo normal antes de agotarlo; comprobar ausencia de objetivos. |
-| G11 | P2 · lectura | Lucas toma automáticamente el primer Objeto, no ofrece jugar un Tomo y presenta destinos de Herramienta sin filtrar pistas. Permitir elegir Objeto, aplicar sus rasgos y pagar el Tomo; ofrecer solo destinos válidos. |
-| G12 | P1 · lectura | Gug y Bestia lunar no imponen la asignación prioritaria de horror/daño a Invitados. Añadir estrategia de asignación y probar capacidad restante, varios Invitados y hechizo por derrota. |
-| G13 | P1 · lectura | Emboscada y Atrapado usan `comeForYou`, que teletransporta al enemigo. Resolver desplazamiento por conexiones, interacciones en el camino y desempates del más cercano mediante elección. |
-| G14 | P2 · lectura | Puerta secreta escoge el primer Lugar empatado por investigadores. Preguntar el destino entre todos los empatados admisibles y comprobar salida bloqueada, retirada de la traición y movilidad por efectos. |
-| G15 | P1 · lectura | La pista para mirar Misterio del Sindicato y el recurso de Archibald siguen dentro de `then`; Mya también agota dentro del efecto. Mover costes al canal previo a ataques de oportunidad y probar que el pago no se repite. |
-| G16 | P1 · lectura | `pushed`, `shuffleIn` y `shuffleEncounter` usan fórmulas de ronda/tamaño en lugar del RNG del motor; Pushed inserta sin barajar todo el mazo. Unificar con `shuffle`/RNG, mantener repetibilidad y verificar permanentes/apoyos de historia no elegibles. |
-| G17 | P2 · aceptación | Faltan victorias completas de las cinco facciones, sus interludios y objetivos. Probar R1 narrativa → R2–R6 de facción → R7 narrativa de puntuación, umbrales de XP y registro final. R7 no es un séptimo resultado terminal del modelo actual; rechazarlo en el importador no demuestra un fallo por sí solo. |
-| G18 | P2 · lectura | El respaldo local de cartas recorre los tres escenarios de Brethren; solo recoge las cartas de jugador registradas de Gala. Añadir datos/resúmenes EN/ES de los 62 códigos y caras, y probar fallo de red, cambio de idioma y recursos ausentes. |
-| G19 | P1 · lectura | Las opciones para nombrar carta/rasgo se construyen a partir del mazo y descarte actuales. Revelan información sobre contenido oculto. Ofrecer un catálogo independiente de la composición u orden secreto; no exponer cartas mirando el estado interno. |
-| G20 | P1 · lectura | El robo rápido de Misterios del Sindicato se limita a tu Lugar. La referencia permite elegir entre los Lugares revelados elegibles con cartas debajo, durante tu turno. Probar otro Lugar, varias cartas y el umbral por investigador. |
-| G21 | P2 · lectura | Órdenes violentas solo permite la acción al investigador amenazado. La referencia no limita esa acción al propietario; el motor ya admite habilidades de traiciones de otro investigador en tu Lugar. Permitir ayuda desde el mismo Lugar y mantener el forzado solo para su dueño. |
+| ID  | Prioridad / evidencia   | Diferencia y condición de aceptación                                                                                                                                                                                                                                                                                                            |
+| --- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| G01 | P1 · sonda              | `fightAt` marca el combate de Callahan, Nova y Sarah como provocador. Nova recibe un ataque antes de agotarse. Combatir debe evitar el ataque de oportunidad y pagar agotamiento/recursos como costes. Probar enemigo preparado, agotado y Masivo.                                                                                              |
+| G02 | P1 · sonda + referencia | Sala de la Lámpara descubre pista solo si aciertas y limita por ronda. La referencia descubre una pista al activar la habilidad también al errar y usa límite por turno. Probar acierto, fallo, mazo vacío y segundo turno en la misma ronda.                                                                                                   |
+| G03 | P1 · sonda              | Dormitorio tiene un identificador que contiene el turno, pero **carece de `limit`** y provoca ataques. Añadir el límite real por turno y la excepción de combate; probar ataque remoto y daño adicional con pista.                                                                                                                              |
+| G04 | P1 · sonda              | Prudence vuelve a mirar las cuatro primeras tras descartar: aparece la quinta carta original como segunda elección. Mantener el conjunto de cuatro visto inicialmente y permitir reordenar las restantes, sin ampliar la búsqueda.                                                                                                              |
+| G05 | P1 · sonda + lectura    | Faltan la reacción de Callahan tras habilidad de acción de Aliado/Arma, ignorar ataques de oportunidad de Humanoides con Delores y la segunda habilidad de Olney para comprometer la carta superior. El documento 14 restringía Delores a no Élite: la referencia consultada no contiene esa restricción. Contrastar la carta al implementarla. |
+| G06 | P1 · sonda + datos      | Rookie Cop carece de Oleada. La cara silenciosa de El Exangüe tiene `victory: 1`, aunque la referencia solo da Victoria a la cara desatada. Revisar tanto definición como enemigo creado en preparación y la transición entre caras.                                                                                                            |
+| G07 | P1 · sonda              | `EliminateInvestigator` filtra sus apoyos directamente. Un Invitado controlado desaparece sin quedar hechizado; también se omiten las salidas especiales de Joya/Lámpara. Tramitar esas salidas conservando la localización anterior y evitar reacciones recursivas.                                                                            |
+| G08 | P1 · lectura            | `enterHorror` cobra al entrar siempre; la Sala de la Lámpara de referencia aplica el coste al entrar sin revelar. Probar primera entrada, reentrada y movimiento por efecto; revisar la misma semántica en los demás Lugares Privados.                                                                                                          |
+| G09 | P2 · lectura            | Baile agota los dos primeros Invitados del estado. Pedir al jugador qué Invitados agotar y conservar la elección al guardar; comprobar los requisitos con uno/dos disponibles contra el texto de carta.                                                                                                                                         |
+| G10 | P2 · lectura            | Archibald encuentra automáticamente el primer enemigo de las nueve cartas. Ofrecer la elección entre enemigos encontrados y resolver su robo normal antes de agotarlo; comprobar ausencia de objetivos.                                                                                                                                         |
+| G11 | P2 · lectura            | Lucas toma automáticamente el primer Objeto, no ofrece jugar un Tomo y presenta destinos de Herramienta sin filtrar pistas. Permitir elegir Objeto, aplicar sus rasgos y pagar el Tomo; ofrecer solo destinos válidos.                                                                                                                          |
+| G12 | P1 · lectura            | Gug y Bestia lunar no imponen la asignación prioritaria de horror/daño a Invitados. Añadir estrategia de asignación y probar capacidad restante, varios Invitados y hechizo por derrota.                                                                                                                                                        |
+| G13 | P1 · lectura            | Emboscada y Atrapado usan `comeForYou`, que teletransporta al enemigo. Resolver desplazamiento por conexiones, interacciones en el camino y desempates del más cercano mediante elección.                                                                                                                                                       |
+| G14 | P2 · lectura            | Puerta secreta escoge el primer Lugar empatado por investigadores. Preguntar el destino entre todos los empatados admisibles y comprobar salida bloqueada, retirada de la traición y movilidad por efectos.                                                                                                                                     |
+| G15 | P1 · lectura            | La pista para mirar Misterio del Sindicato y el recurso de Archibald siguen dentro de `then`; Mya también agota dentro del efecto. Mover costes al canal previo a ataques de oportunidad y probar que el pago no se repite.                                                                                                                     |
+| G16 | P1 · lectura            | `pushed`, `shuffleIn` y `shuffleEncounter` usan fórmulas de ronda/tamaño en lugar del RNG del motor; Pushed inserta sin barajar todo el mazo. Unificar con `shuffle`/RNG, mantener repetibilidad y verificar permanentes/apoyos de historia no elegibles.                                                                                       |
+| G17 | P2 · aceptación         | Faltan victorias completas de las cinco facciones, sus interludios y objetivos. Probar R1 narrativa → R2–R6 de facción → R7 narrativa de puntuación, umbrales de XP y registro final. R7 no es un séptimo resultado terminal del modelo actual; rechazarlo en el importador no demuestra un fallo por sí solo.                                  |
+| G18 | P2 · lectura            | El respaldo local de cartas recorre los tres escenarios de Brethren; solo recoge las cartas de jugador registradas de Gala. Añadir datos/resúmenes EN/ES de los 62 códigos y caras, y probar fallo de red, cambio de idioma y recursos ausentes.                                                                                                |
+| G19 | P1 · lectura            | Las opciones para nombrar carta/rasgo se construyen a partir del mazo y descarte actuales. Revelan información sobre contenido oculto. Ofrecer un catálogo independiente de la composición u orden secreto; no exponer cartas mirando el estado interno.                                                                                        |
+| G20 | P1 · lectura            | El robo rápido de Misterios del Sindicato se limita a tu Lugar. La referencia permite elegir entre los Lugares revelados elegibles con cartas debajo, durante tu turno. Probar otro Lugar, varias cartas y el umbral por investigador.                                                                                                          |
+| G21 | P2 · lectura            | Órdenes violentas solo permite la acción al investigador amenazado. La referencia no limita esa acción al propietario; el motor ya admite habilidades de traiciones de otro investigador en tu Lugar. Permitir ayuda desde el mismo Lugar y mantener el forzado solo para su dueño.                                                             |
 
 Los puntos G17 y G18 son trabajos de aceptación y de respaldo, no una afirmación
 de que todos sus caminos estén rotos. El resto no se considera arreglado por
@@ -112,15 +113,15 @@ En nuestro código:
 La raíz de los manejadores de referencia es
 `D:\referencia\ArkhamHorror-main\backend\arkham-api\library\Arkham`:
 
-| Área | Archivos relativos de referencia |
-|---|---|
-| Preparación/puntuación | `Scenario/Scenarios/TheMidwinterGala.hs` |
-| Planes/actos | `Agenda/Cards/TheMidwinterGala/` y `Act/Cards/TheMidwinterGala/` |
-| Sala y dormitorio | `Location/Cards/TheMidwinterGala/LanternChamber.hs`, `BedroomTheMidwinterGala.hs` |
+| Área                     | Archivos relativos de referencia                                                                                                                                                |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Preparación/puntuación   | `Scenario/Scenarios/TheMidwinterGala.hs`                                                                                                                                        |
+| Planes/actos             | `Agenda/Cards/TheMidwinterGala/` y `Act/Cards/TheMidwinterGala/`                                                                                                                |
+| Sala y dormitorio        | `Location/Cards/TheMidwinterGala/LanternChamber.hs`, `BedroomTheMidwinterGala.hs`                                                                                               |
 | Habilidades de Invitados | `Asset/Assets/SpecialAgentCallahan.hs`, `DeloresGadling.hs`, `ThomasOlney.hs`, `PrudenceDouglas.hs`, `ArchibaldHudson.hs`, `LucasTetlow.hs`, `NovaMalone.hs`, `SarahVanShaw.hs` |
-| Daño prioritario | `Enemy/Cards/TheMidwinterGala/EnragedGug.hs`, `AbhorrentMoonBeast.hs` |
-| Sindicato | `Story/Cards/TheMidwinterGala/TheSyndicateAllied.hs` |
-| Traiciones reutilizadas | `Treachery/Cards/ReturnToTheDunwichLegacy/SecretDoors/SecretDoor.hs`, `ErraticFear/ViolentCommands.hs`, `Treachery/Cards/TheDunwichLegacy/TheBeyond/PushedIntoTheBeyond.hs` |
+| Daño prioritario         | `Enemy/Cards/TheMidwinterGala/EnragedGug.hs`, `AbhorrentMoonBeast.hs`                                                                                                           |
+| Sindicato                | `Story/Cards/TheMidwinterGala/TheSyndicateAllied.hs`                                                                                                                            |
+| Traiciones reutilizadas  | `Treachery/Cards/ReturnToTheDunwichLegacy/SecretDoors/SecretDoor.hs`, `ErraticFear/ViolentCommands.hs`, `Treachery/Cards/TheDunwichLegacy/TheBeyond/PushedIntoTheBeyond.hs`     |
 
 Se trata de evidencia de implementación de referencia. Ante discrepancia con
 texto de carta o errata, comprobar esa regla antes de reproducir una decisión
@@ -146,8 +147,8 @@ del programa original.
    documentación de límites y etiqueta estable propia de Gala. No marcar una
    facción cerrada solo porque alcance un estado terminal sin resolución.
 
-Las fases 1–3 están completadas dentro de sus alcances. El siguiente bloque es
-la fase 4: victorias legales completas e interfaz. La ampliación de contenido
+Las fases 1–3 y las siete victorias legales de fase 4 están completadas dentro
+de sus alcances. El siguiente bloque es la aceptación visual de fase 4. La ampliación de contenido
 debe conservar la etiqueta de Brethren como referencia de regresión.
 
 ## Controles de la entrega inicial de auditoría
@@ -164,17 +165,17 @@ matriz y los enlaces locales de los documentos 17 y 18.
 Base anterior a los cambios: `f476627` (`brethren-of-ash-local-v1.0.1`). El
 siguiente bloque de implementación es la **fase 2: habilidades y decisiones**.
 
-| Trabajo cerrado | Comportamiento corregido |
-|---|---|
-| G01 | Callahan, Nova y Sarah combaten sin ataques de oportunidad. Agotamiento y recursos se pagan antes de resolver la habilidad. |
-| G03 | Dormitorio permite un uso por turno, incluso si se reponen acciones. Un turno adicional en la misma ronda abre un uso nuevo. Conserva el ataque remoto y el daño adicional por pista. |
-| G06 | Rookie Cop tiene Oleada al robarlo, después de aparecer. Aparecer por efecto no activa esa palabra clave. La cara silenciosa de El Exangüe carece de Victoria; la desatada mantiene Victoria 1. |
-| G07 | La eliminación y la retirada resuelven las salidas especiales antes de perder la localización: Invitados hechizados, Líder retirado, Lámpara colocada y Joya barajada. También funciona con el último investigador, sin duplicar cartas. |
-| G08 | El horror se paga solo al entrar sin revelar, tanto por acción como por efecto. Se paga antes del desplazamiento y del ataque de oportunidad; una reentrada no vuelve a cobrarlo. |
-| G12 | Gug prioriza horror y Bestia lunar daño sobre Invitados con capacidad restante. Al agotarse esa capacidad vuelven a estar disponibles los otros destinos de asignación. |
-| G13 | Emboscada y Atrapado mueven paso a paso por conexiones, con ventanas intermedias. Se eligen monstruos y caminos mínimos empatados; no se teletransporta ni se ataca sin alcanzar al investigador. |
-| G15 | Archibald, Mya y el pago de pistas del Sindicato pagan sus costes antes del ataque y una sola vez. |
-| G16 | Los tres barajados usan el RNG del motor y se reproducen exactamente. Pushed baraja el mazo completo, descarta tres y aplica su horror; no permite permanentes ni apoyos de historia. |
+| Trabajo cerrado | Comportamiento corregido                                                                                                                                                                                                                 |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| G01             | Callahan, Nova y Sarah combaten sin ataques de oportunidad. Agotamiento y recursos se pagan antes de resolver la habilidad.                                                                                                              |
+| G03             | Dormitorio permite un uso por turno, incluso si se reponen acciones. Un turno adicional en la misma ronda abre un uso nuevo. Conserva el ataque remoto y el daño adicional por pista.                                                    |
+| G06             | Rookie Cop tiene Oleada al robarlo, después de aparecer. Aparecer por efecto no activa esa palabra clave. La cara silenciosa de El Exangüe carece de Victoria; la desatada mantiene Victoria 1.                                          |
+| G07             | La eliminación y la retirada resuelven las salidas especiales antes de perder la localización: Invitados hechizados, Líder retirado, Lámpara colocada y Joya barajada. También funciona con el último investigador, sin duplicar cartas. |
+| G08             | El horror se paga solo al entrar sin revelar, tanto por acción como por efecto. Se paga antes del desplazamiento y del ataque de oportunidad; una reentrada no vuelve a cobrarlo.                                                        |
+| G12             | Gug prioriza horror y Bestia lunar daño sobre Invitados con capacidad restante. Al agotarse esa capacidad vuelven a estar disponibles los otros destinos de asignación.                                                                  |
+| G13             | Emboscada y Atrapado mueven paso a paso por conexiones, con ventanas intermedias. Se eligen monstruos y caminos mínimos empatados; no se teletransporta ni se ataca sin alcanzar al investigador.                                        |
+| G15             | Archibald, Mya y el pago de pistas del Sindicato pagan sus costes antes del ataque y una sola vez.                                                                                                                                       |
+| G16             | Los tres barajados usan el RNG del motor y se reproducen exactamente. Pushed baraja el mazo completo, descarta tres y aplica su horror; no permite permanentes ni apoyos de historia.                                                    |
 
 ### Pruebas y límites
 
@@ -212,17 +213,17 @@ Callahan, Delores, Olney, Prudence, Lucas, Archibald, Baile, Sala de la Lámpara
 Sindicato, Puerta secreta y Órdenes violentas. Sus SHA-256 se conservan en
 [gala-fase-2.json](evidencias/gala-fase-2.json).
 
-| Trabajo corregido | Comportamiento |
-|---|---|
-| G02, G19 | La Sala descubre una pista al activar, aciertes o no y aun con mazo vacío. Límite real por turno. Nombres y rasgos proceden del catálogo público implementado y no del mazo/descarte secreto ni del Rival elegido. |
-| G04 | Prudence descarta hasta dos no Élite entre las cuatro cartas originales y permite ordenar las restantes desde arriba. Nunca muestra la quinta por descartar una de las cuatro. |
-| G05 | Callahan puede agotarse tras una habilidad de acción de Aliado/Arma para infligir un daño no de ataque aquí, sin ofrecer enemigos inmunes. Delores evita ataques de oportunidad de Humanoides, incluidos Élite; no evita ataques normales. Olney descarta la carta superior propia y la compromete si es válida, también a la prueba de otro investigador de su Lugar. Respeta iconos, límite de ayuda, tipos bloqueados y William Bain. |
-| G09 | Baile permite elegir entre Invitados preparados controlados o colocados. Agota al primero y luego al segundo; cura únicamente si hay pareja. Con uno solo lo agota sin curar, siguiendo la secuencia del manejador de referencia. |
-| G10 | Archibald permite elegir enemigo entre nueve, resuelve el robo normal con aparición/Oleada y agota la instancia recién aparecida. Baraja también sin enemigo y no concede recursos en ese caso. |
-| G11 | Lucas permite elegir Objeto, usa el robo normal, concede los beneficios de Reliquia/Tomo/Herramienta, permite pagar o rechazar el Tomo sin acción y solo ofrece Lugares conectados con pistas. Dead Ends cancela la búsqueda. |
-| G14 | Puerta secreta pregunta en empates y bloquea tanto el movimiento básico como el movimiento por efecto hasta retirarla. |
-| G20 | El Sindicato permite robar la carta elegida de cualquier Lugar revelado elegible con cartas debajo y hasta una pista por investigador. Mirar pagando pistas muestra todas las cartas bajo tu Lugar. |
-| G21 | Otro investigador en el mismo Lugar puede resolver la acción de Órdenes violentas. El forzado de final de turno sigue correspondiendo al amenazado. |
+| Trabajo corregido | Comportamiento                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| G02, G19          | La Sala descubre una pista al activar, aciertes o no y aun con mazo vacío. Límite real por turno. Nombres y rasgos proceden del catálogo público implementado y no del mazo/descarte secreto ni del Rival elegido.                                                                                                                                                                                                                       |
+| G04               | Prudence descarta hasta dos no Élite entre las cuatro cartas originales y permite ordenar las restantes desde arriba. Nunca muestra la quinta por descartar una de las cuatro.                                                                                                                                                                                                                                                           |
+| G05               | Callahan puede agotarse tras una habilidad de acción de Aliado/Arma para infligir un daño no de ataque aquí, sin ofrecer enemigos inmunes. Delores evita ataques de oportunidad de Humanoides, incluidos Élite; no evita ataques normales. Olney descarta la carta superior propia y la compromete si es válida, también a la prueba de otro investigador de su Lugar. Respeta iconos, límite de ayuda, tipos bloqueados y William Bain. |
+| G09               | Baile permite elegir entre Invitados preparados controlados o colocados. Agota al primero y luego al segundo; cura únicamente si hay pareja. Con uno solo lo agota sin curar, siguiendo la secuencia del manejador de referencia.                                                                                                                                                                                                        |
+| G10               | Archibald permite elegir enemigo entre nueve, resuelve el robo normal con aparición/Oleada y agota la instancia recién aparecida. Baraja también sin enemigo y no concede recursos en ese caso.                                                                                                                                                                                                                                          |
+| G11               | Lucas permite elegir Objeto, usa el robo normal, concede los beneficios de Reliquia/Tomo/Herramienta, permite pagar o rechazar el Tomo sin acción y solo ofrece Lugares conectados con pistas. Dead Ends cancela la búsqueda.                                                                                                                                                                                                            |
+| G14               | Puerta secreta pregunta en empates y bloquea tanto el movimiento básico como el movimiento por efecto hasta retirarla.                                                                                                                                                                                                                                                                                                                   |
+| G20               | El Sindicato permite robar la carta elegida de cualquier Lugar revelado elegible con cartas debajo y hasta una pista por investigador. Mirar pagando pistas muestra todas las cartas bajo tu Lugar.                                                                                                                                                                                                                                      |
+| G21               | Otro investigador en el mismo Lugar puede resolver la acción de Órdenes violentas. El forzado de final de turno sigue correspondiendo al amenazado.                                                                                                                                                                                                                                                                                      |
 
 Pruebas dirigidas: [phase-two.test.ts](../packages/cards/src/midwinter-gala/phase-two.test.ts).
 Persistencia: [gala-phase-two-session.test.ts](../apps/web/src/game/gala-phase-two-session.test.ts)
@@ -318,13 +319,13 @@ hechizado (pp. 3–4), preparación e interludios (pp. 11–14), resoluciones y 
 recoge erratas de Gala. Se contrastaron los manejadores de cartas y el escenario
 de la referencia local; sus huellas permiten identificar la copia consultada.
 
-| Hallazgo nuevo | Corrección y regresión |
-| --- | --- |
-| Interludio de Kingsport | Declan entra **preparado**. La p. 14 del PDF no ordena agotarlo; la referencia local sí lo hacía. Se sigue el PDF, con cuatro pruebas para 1–4 investigadores. Fundación mantiene su agotamiento explícito. |
-| Usos de Invitados | Miranda entra con 3 suministros, Prudence con 3 presagios y Raymond con 4 verdades. Los usos, incluso cero, se conservan al hechizar, volver boca arriba y tomar control. Antes faltaban sus usos iniciales y podían reponerse al cambiar de zona. |
-| Carl Sanford | Reacciona a la cancelación con Raymond o Ward of Protection. La Traición se obtiene desde descartes una sola vez y pasa a victoria sin duplicarse. Oleada sigue resolviéndose; rechazar la reacción conserva el descarte. |
-| Recompensa R1 | Cada investigador puede conservar un Invitado de una cara controlado por cualquiera. No se ofrecen Líderes ni se concede dos veces la misma carta. Se registra como Apoyo de historia, separado del tamaño del mazo. La puntuación se calcula antes de retirar estas recompensas. |
-| Registro final | La puntuación se conserva en el resultado de la aventura y aparece en la pantalla de campaña. Guardar una aventura terminada conserva puntuación, XP, traumas y recompensas; se rechaza una puntuación importada inválida. |
+| Hallazgo nuevo          | Corrección y regresión                                                                                                                                                                                                                                                            |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Interludio de Kingsport | Declan entra **preparado**. La p. 14 del PDF no ordena agotarlo; la referencia local sí lo hacía. Se sigue el PDF, con cuatro pruebas para 1–4 investigadores. Fundación mantiene su agotamiento explícito.                                                                       |
+| Usos de Invitados       | Miranda entra con 3 suministros, Prudence con 3 presagios y Raymond con 4 verdades. Los usos, incluso cero, se conservan al hechizar, volver boca arriba y tomar control. Antes faltaban sus usos iniciales y podían reponerse al cambiar de zona.                                |
+| Carl Sanford            | Reacciona a la cancelación con Raymond o Ward of Protection. La Traición se obtiene desde descartes una sola vez y pasa a victoria sin duplicarse. Oleada sigue resolviéndose; rechazar la reacción conserva el descarte.                                                         |
+| Recompensa R1           | Cada investigador puede conservar un Invitado de una cara controlado por cualquiera. No se ofrecen Líderes ni se concede dos veces la misma carta. Se registra como Apoyo de historia, separado del tamaño del mazo. La puntuación se calcula antes de retirar estas recompensas. |
+| Registro final          | La puntuación se conserva en el resultado de la aventura y aparece en la pantalla de campaña. Guardar una aventura terminada conserva puntuación, XP, traumas y recompensas; se rechaza una puntuación importada inválida.                                                        |
 
 ### Cobertura de aceptación
 
@@ -348,10 +349,11 @@ de la referencia local; sus huellas permiten identificar la copia consultada.
   imagen ausente y respuesta ES tardía después de cambiar a EN. Los resúmenes
   locales no son una transcripción íntegra del texto oficial.
 
-**G18 queda cerrado dentro de ese contrato de respaldo.** La aceptación visual
-de esos recursos sigue siendo una puerta de fase 4. **G17 continúa abierto por
-las victorias legales completas**: las mesas dirigidas acreditan reglas y
-persistencia, no la posibilidad de ganar con cada facción en una partida completa.
+**G18 quedó cerrado dentro de ese contrato de respaldo.** La aceptación visual
+de esos recursos sigue siendo una puerta de fase 4. Al terminar la fase 3, G17
+seguía abierto por las victorias legales completas; se cierra con las siete
+grabaciones de la fase 4 documentadas más abajo. Las mesas dirigidas de fase 3
+siguen siendo evidencia de reglas y persistencia, distinta de esas partidas.
 
 ### Compatibilidad y siguiente bloque
 
@@ -362,9 +364,9 @@ y sus guardados. Los resultados de aventuras terminadas sin el nuevo campo
 opcional de puntuación siguen siendo legibles; no se inventa retrospectivamente
 una puntuación ausente.
 
-El siguiente bloque es la **fase 4**: una victoria legal completa por facción,
-dos equipos en normal y comprobación visible EN/ES en escritorio y 390×640,
-incluidos avisos, ampliaciones, recompensas y puntuación final. Después queda
+Tras las siete victorias completas, queda la **aceptación visual de fase 4**:
+comprobación visible EN/ES en escritorio y 390×640, incluidos avisos,
+ampliaciones, recompensas y puntuación final. Después queda
 la fase 5 de publicación estable. El teléfono físico permanece diferido y jugar
 Gala como historia secundaria dentro de otra campaña sigue fuera de este cierre.
 
@@ -383,3 +385,75 @@ Permanecen los avisos conocidos de fuente y tamaño del bundle.
 Esta verificación corresponde al árbol de trabajo compartido, incluidos los
 cambios de interfaz presentes durante la ejecución. No es un acta de aceptación
 visual de Gala ni una CI publicada. No se han creado commits, push ni PR.
+
+## Fase 4: victorias completas (20/10/2026)
+
+**G17 cerrado.** Se conservan siete partidas completas en dificultad normal
+(`standard`), una por facción y dos equipos distintos de dos investigadores.
+Las grabaciones contienen campaña inicial, semilla, entradas, transcripción de
+decisiones, resolución y registro final. Las 1.041 decisiones se vuelven a aplicar
+desde `startScenario`, sin modificar el estado ni la bolsa para forzar éxitos.
+
+| Facción aliada       | Investigadores (códigos) | Semilla | Decisiones | Final | Grabación                                                  |
+| -------------------- | ------------------------ | ------- | ---------- | ----- | ---------------------------------------------------------- |
+| Fundación            | 12004                    | 136     | 89         | R2    | [Fundación](evidencias/gala-foundation-136.json)           |
+| Miskatonic           | 12007                    | 4       | 121        | R3    | [Miskatonic individual](evidencias/gala-miskatonic-4.json) |
+| Sindicato            | 12007                    | 19      | 110        | R4    | [Sindicato](evidencias/gala-syndicate-19.json)             |
+| Logia                | 12007                    | 57      | 151        | R5    | [Logia](evidencias/gala-lodge-57.json)                     |
+| Kingsport            | 12004                    | 130     | 113        | R6    | [Kingsport](evidencias/gala-kingsport-130.json)            |
+| Miskatonic, equipo 1 | 12004 y 12007            | 121     | 246        | R3    | [Primer equipo](evidencias/gala-miskatonic-121.json)       |
+| Miskatonic, equipo 2 | 12007 y 12010            | 131     | 211        | R3    | [Segundo equipo](evidencias/gala-miskatonic-131.json)      |
+
+La regresión [gala-playthrough.test.ts](../apps/web/src/game/gala-playthrough.test.ts)
+comprueba en cada partida:
+
+- Campaña recreada mediante `newCampaign` y mazos sin problemas de validación.
+- Investigador que decide, pregunta, opción y parámetros de cada entrada.
+- Resolución de facción esperada, registro final, segundo acto y objetivo de la Joya.
+- Resultado con puntuación al cerrar la aventura mediante `finishScenario`.
+- Guardado y carga del estado completo en el avance de acto, preguntas propias
+  de Gala y final; deshacer paso, acción, turno y ronda cuando hay destino
+  disponible, y volver a reproducir hasta el mismo estado.
+- Conservación de la campaña terminada al serializar y cargar.
+
+Para reproducir las siete partidas sin generar nuevas grabaciones:
+
+```powershell
+pnpm exec vitest run apps/web/src/game/gala-playthrough.test.ts
+```
+
+El generador exploratorio [play-gala.mjs](../scripts/play-gala.mjs) busca
+recorridos usando elecciones del motor y semillas; no forma parte de la suite
+de regresión ni representa una partida humana o una aceptación de interfaz.
+Por ejemplo, `node scripts/play-gala.mjs miskatonic 4 1 trish` vuelve a generar
+la grabación individual de Miskatonic. La regresión usa los JSON conservados,
+no depende de que la estrategia del generador siga encontrando victorias.
+
+### Lo que sigue pendiente
+
+- Recorridos visibles EN/ES en escritorio y 390×640: interludios, avisos de
+  avance, ampliaciones, elecciones, recompensas y puntuación final.
+- Comprobación del despliegue y publicación estable propia de Gala después
+  de esa aceptación. Subir las regresiones no cierra estas dos puertas.
+- El teléfono físico continúa diferido y el modo historia secundaria dentro
+  de otra campaña permanece fuera del alcance.
+
+Las siete victorias no prueban todas las dificultades, todas las parejas
+Aliado/Rival ni todas las interacciones de las 62 cartas. Las preparaciones,
+derrotas y mesas dirigidas anteriores complementan esta evidencia y conservan
+sus límites originales.
+
+### Verificación de esta entrega
+
+Se validó una copia temporal de `main` con únicamente los archivos de esta
+entrega, sin incorporar los cambios del motor y de CI de otra sesión activa.
+Formato, lint, tipos de los siete proyectos y build correctos. La suite completa
+aprueba **889 pruebas en 58 archivos**; se omiten 15 pruebas MySQL al no configurar
+`MYSQL_TEST_URL` (un archivo omitido). Incluye las siete regresiones nuevas.
+Las pruebas SMTP se ejecutaron con acceso a sockets locales.
+
+Se comprobó además el comando de generación de Miskatonic, los enlaces locales
+de los documentos actualizados, las 62 filas únicas de la matriz y las 1.041
+entradas con sus transcripciones. Permanecen los avisos conocidos de fuente y
+tamaño del bundle. Esta comprobación local no acredita la CI remota, el
+despliegue ni la aceptación visual pendiente.
