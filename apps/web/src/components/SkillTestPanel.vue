@@ -267,6 +267,14 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
           :class="choice.label === 'choice.skip' ? 'skip' : 'take'"
           @click="game.answer(index)"
         >
+          <svg
+            v-if="choice.label === 'choice.skip'"
+            class="skip-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="m5 6 6 6-6 6m8-12 6 6-6 6" />
+          </svg>
           {{ label(choice.label, choice.params ?? {}) }}
         </button>
       </div>
@@ -675,7 +683,9 @@ button:hover:not(:disabled) {
     0 3px 10px rgb(0 0 0 / 45%),
     0 0 14px rgb(229 170 141 / 30%);
 }
-.apply-icon {
+.apply-icon,
+.skip-icon {
+  flex: none;
   width: 16px;
   height: 16px;
   fill: none;
@@ -689,20 +699,24 @@ button:hover:not(:disabled) {
   transform: translateX(3px);
 }
 .pending-choice {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
   padding: 8px 16px;
   background: #25252b;
 }
 .pending-choice p {
-  grid-column: 1 / -1;
+  flex-basis: 100%;
   margin: 0;
   color: #e5aa8d;
   font-weight: 600;
 }
 .pending-choice button {
+  flex: 1 1 180px;
+  min-width: 0;
   white-space: normal;
+  overflow-wrap: anywhere;
 }
 /* Lo que se puede hacer destaca; omitir queda en segundo plano. */
 .pending-choice button.take {
@@ -733,12 +747,20 @@ button:hover:not(:disabled) {
     0 0 14px rgb(229 170 141 / 30%);
 }
 .pending-choice button.skip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   min-width: 0;
   min-height: 44px;
   border-color: #4b4246;
   background: transparent;
   color: #c3bbb4;
   font-size: 0.875rem;
+}
+.pending-choice button.skip:not(:only-of-type) {
+  flex: 0 0 auto;
+  padding: 6px 12px;
 }
 .pending-choice button.skip:hover:not(:disabled) {
   color: var(--ink);
