@@ -361,6 +361,8 @@ export interface PlacedAsset {
   damage: number
   horror: number
   doom?: number
+  /** Uses survive control changes and spellbinding, including zero. */
+  uses?: number
 }
 
 /** Carta de Historia en juego junto al acto (facción aliada, rival…). */
@@ -601,6 +603,7 @@ export type Message =
       damage?: number
       horror?: number
       doom?: number
+      uses?: number
     }
   | { type: 'MovePlacedAsset'; placed: PlacedAssetId; placement: AssetPlacement }
   | { type: 'TakeControlOfPlaced'; placed: PlacedAssetId; investigator: InvestigatorId }
@@ -958,6 +961,7 @@ export type Trigger =
   | { type: 'afterDrawCard'; investigator: InvestigatorId; card: CardCode }
   | { type: 'enemyEntersLocation'; enemy: EnemyId; location: LocationId }
   | { type: 'whenTreacheryDrawn'; investigator: InvestigatorId; treachery: TreacheryId }
+  | { type: 'afterCancelRevelation'; card: CardCode; weakness: boolean }
   | { type: 'afterEvade'; investigator: InvestigatorId; enemy: EnemyId }
   | { type: 'afterTakeDamage'; investigator: InvestigatorId; damage: number; horror: number }
   | { type: 'afterAssetDamaged'; asset: AssetId; damage: number; horror: number }

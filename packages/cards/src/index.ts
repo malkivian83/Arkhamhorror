@@ -54,6 +54,13 @@ export function allCards(): CardDefinition[] {
 }
 
 export { demoInvestigators, demoScenario } from './demo'
+export { midwinterGala } from './midwinter-gala/gala'
+export {
+  bloodlessMan as GALA_BLOODLESS_MAN,
+  bloodlessManUnleashed as GALA_BLOODLESS_MAN_UNLEASHED,
+  CODES as MIDWINTER_GALA_CODES,
+  FACTION_CARDS as GALA_FACTION_CARDS,
+} from './midwinter-gala/cards'
 export { BRETHREN_OF_ASH, CHAOS_BAGS, type Difficulty } from './brethren-of-ash/campaign'
 export {
   CODES as QUEEN_OF_ASH_CODES,

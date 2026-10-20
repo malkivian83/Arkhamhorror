@@ -506,7 +506,8 @@ function interlude(state: GameState): GameState {
       return push(
         state,
         ...enterStory,
-        ...declanAt(CODES.lanternChamber, true),
+        // AHC80 ES p. 14: only the Foundation interlude exhausts Declan.
+        ...declanAt(CODES.lanternChamber, false),
         jewelOn('declan', { damage: perInv(state, 1), doom: 1 }),
         ...(lead
           ? [
@@ -594,7 +595,7 @@ function placeJewel(state: GameState, data: Data): GameState {
 
 const galaBehavior: ScenarioBehavior = {
   id: MIDWINTER_GALA,
-  rulesVersion: 3,
+  rulesVersion: 4,
   tokenEffect: (state, token, investigator) => {
     const hard = state.difficulty === 'hard' || state.difficulty === 'expert'
     const here = getInvestigator(state, investigator).location
@@ -662,6 +663,44 @@ const galaBehavior: ScenarioBehavior = {
           ...state,
           assets: { ...state.assets, [asset.id]: { ...asset, owner: data.investigator as string } },
         }
+      }
+      // AHC80 ES p. 15, R1. Score is calculated before reward Guests leave play.
+      case 'chooseGuestReward': {
+        const investigator = data.investigator as string
+        const guests = Object.values(state.assets).filter((a) => isSingleSidedGuest(a.code))
+        if (!guests.length) return state
+        return push(state, {
+          type: 'Ask',
+          investigator,
+          question: {
+            kind: 'chooseOne',
+            prompt: 'prompt.gala.rewardGuest',
+            choices: [
+              ...guests.map((a): Choice => ({
+                label: 'choice.gala.keepGuest',
+                params: { card: playerCardDef(a.code)!.name },
+                target: { type: 'asset', id: a.id },
+                then: [
+                  {
+                    type: 'ScenarioSpecific',
+                    key: 'claimGuestReward',
+                    data: { investigator, asset: a.id },
+                  },
+                ],
+              })),
+              { label: 'choice.skip', then: [] },
+            ],
+          },
+        })
+      }
+      case 'claimGuestReward': {
+        const asset = state.assets[data.asset as string]
+        if (!asset || !isSingleSidedGuest(asset.code)) return state
+        return push(removeAsset(state, asset), {
+          type: 'AddStoryAsset',
+          investigator: data.investigator as string,
+          code: asset.code,
+        })
       }
       case 'shuffleDiscardIntoEncounter': {
         const [deck, rng] = shuffle([...state.encounterDeck, ...state.encounterDiscard], state.rng)
@@ -1312,6 +1351,11 @@ function resolutionStory(state: GameState, outcome: ScenarioOutcome): Message[] 
   const a = ally(state)
   return [
     { type: 'Story', entry: story('resolution1') },
+    ...state.investigators.map((i): Message => ({
+      type: 'ScenarioSpecific',
+      key: 'chooseGuestReward',
+      data: { investigator: i.id },
+    })),
     ...(a
       ? [{ type: 'Story', entry: story(`resolution${FACTION_RESOLUTION[a]}`) } as Message]
       : []),
