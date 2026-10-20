@@ -14,7 +14,7 @@ describe('narraciones de los textos de historia', () => {
   })
   it('no ofrece la grabación española en otro idioma ni en textos sin grabar', () => {
     expect(storyNarration('story.brethrenOfAsh.prologue', 'en')).toBeNull()
-    expect(storyNarration('story.queenOfAsh.resolution1', 'es')).toBeNull()
+    expect(storyNarration('story.queenOfAsh.setup', 'es')).toBeNull()
   })
   it('cada narración es un fichero presente que se sirve desde nuestra web', () => {
     expect(allNarrations().length).toBeGreaterThan(0)
