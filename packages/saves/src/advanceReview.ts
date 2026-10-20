@@ -9,11 +9,14 @@ export interface ReviewCard {
   attachedTo?: string
   controlledBy?: string
   exhausted?: boolean
+  /** Carta de plan o de acto, para rotularla en la preparación. */
+  deck?: 'act' | 'agenda'
 }
 export interface AdvanceFrame {
   kind: 'act' | 'agenda'
   card: ReviewCard
   stage:
+    | 'setup'
     | 'payment'
     | 'reverse'
     | 'entered'
@@ -110,13 +113,115 @@ function visibleCards(s: GameState): Map<string, ReviewCard> {
   return cards
 }
 
+/** Cambios de fichas y de localización de cada investigador entre dos estados. */
+function investigatorEffects(
+  before: GameState,
+  after: GameState,
+  movedKey = 'table.advanceReview.moved',
+): AdvanceFrame['effects'] {
+  const effects: AdvanceFrame['effects'] = []
+  for (const inv of after.investigators) {
+    const old = before.investigators.find((i) => i.id === inv.id)
+    if (!old) continue
+    for (const stat of ['clues', 'resources', 'damage', 'horror'] as const)
+      if (old[stat] !== inv[stat])
+        effects.push({
+          key: `table.advanceReview.${stat}Change`,
+          params: { name: inv.name, before: old[stat], after: inv[stat] },
+        })
+    if (old.location !== inv.location)
+      effects.push({
+        key: movedKey,
+        params: {
+          name: inv.name,
+          location: inv.location ? (after.locations[inv.location]?.name ?? inv.location) : '—',
+        },
+      })
+  }
+  return effects
+}
+
+const IGNORED_EVENTS = ['log.actAdvanced', 'log.agendaAdvanced', 'log.round', 'log.phase']
+
+/**
+ * Preparación ya aplicada al empezar el escenario: el plan y el acto iniciales,
+ * abiertos, con los pasos automáticos que han dejado la mesa lista.
+ */
+function setupFrame(start: GameState, end: GameState): AdvanceFrame | null {
+  const front = (card: { code?: string; name: string }, deck: 'act' | 'agenda'): ReviewCard => ({
+    code: card.code ?? '',
+    name: card.name,
+    landscape: true,
+    deck,
+  })
+  const agenda = end.agendas[end.agendaIndex],
+    act = end.acts[end.actIndex]
+  const cards = [agenda && front(agenda, 'agenda'), act && front(act, 'act')].filter(
+    (c): c is ReviewCard => !!c,
+  )
+  if (!cards.length) return null
+  const starts = 'table.advanceReview.startsAt'
+  const people = investigatorEffects(start, end, starts)
+  const effects = people.filter((e) => e.key === starts)
+  for (const l of Object.values(end.locations)) {
+    const old = start.locations[l.id]
+    if (l.revealed && !old?.revealed)
+      effects.push({
+        key: 'table.advanceReview.revealed',
+        params: { location: l.name, n: l.clues },
+      })
+    else if (!old)
+      effects.push({ key: 'table.advanceReview.locationEntered', params: { location: l.name } })
+  }
+  const oldCards = visibleCards(start)
+  for (const [id, card] of visibleCards(end)) {
+    if (oldCards.has(id) || id.startsWith('location:')) continue
+    const place = card.location
+      ? { key: 'enteredAt', params: { location: card.location } }
+      : card.controlledBy
+        ? { key: 'enteredControlled', params: { name: card.controlledBy } }
+        : card.attachedTo
+          ? { key: 'enteredAttached', params: { name: card.attachedTo } }
+          : { key: 'enteredPlay', params: {} }
+    effects.push({
+      key: `table.advanceReview.${place.key}`,
+      params: { card: card.name, ...place.params },
+    })
+  }
+  if (end.doom !== start.doom)
+    effects.push({
+      key: 'table.advanceReview.doomChange',
+      params: { before: start.doom, after: end.doom },
+    })
+  effects.push(
+    ...end.log
+      .slice(start.log.length)
+      .filter(
+        (e) =>
+          !e.key.startsWith('log.step.') && e.key !== 'log.lead' && !IGNORED_EVENTS.includes(e.key),
+      )
+      .map((e) => ({ key: e.key, ...(e.params ? { params: e.params } : {}) })),
+    ...people.filter((e) => e.key !== starts),
+  )
+  return { kind: cards[0]!.deck!, card: cards[0]!, stage: 'setup', cards, effects }
+}
+
 /** Collect actual automatic engine changes, in order, without adding rule decisions. */
 export function createAdvanceReview(initial: GameState) {
   const frames: AdvanceFrame[] = []
   const stack: Context[] = []
   const resumed = pendingContext(initial)
   if (resumed) stack.push(resumed)
+  // La preparación automática va de la colocación de los investigadores a la primera ronda.
+  let setupStart: GameState | null = null
   const observe: EngineObserver = (before, message, after) => {
+    if (before.phase === 'setup' && before.round === 0) {
+      if (message.type === 'MoveTo') setupStart ??= before
+      if (message.type === 'Round') {
+        const setup = setupFrame(setupStart ?? initial, before)
+        if (setup) frames.push(setup)
+      }
+    }
     const advancing =
       message.type === 'AdvanceAct' ? 'act' : message.type === 'AdvanceAgenda' ? 'agenda' : null
     if (advancing) {
@@ -144,31 +249,12 @@ export function createAdvanceReview(initial: GameState) {
     if (left.length) frames.push(frame(c, 'left', left))
     if (entered.length) frames.push(frame(c, 'entered', entered))
     if (changed.length) frames.push(frame(c, 'changed', changed))
-    const effects: AdvanceFrame['effects'] = events
-      .filter(
-        (e) =>
-          !e.key.startsWith('log.step.') &&
-          !['log.actAdvanced', 'log.agendaAdvanced', 'log.round', 'log.phase'].includes(e.key),
-      )
-      .map((e) => ({ key: e.key, ...(e.params ? { params: e.params } : {}) }))
-    for (const inv of after.investigators) {
-      const old = before.investigators.find((i) => i.id === inv.id)
-      if (!old) continue
-      for (const stat of ['clues', 'resources', 'damage', 'horror'] as const)
-        if (old[stat] !== inv[stat])
-          effects.push({
-            key: `table.advanceReview.${stat}Change`,
-            params: { name: inv.name, before: old[stat], after: inv[stat] },
-          })
-      if (old.location !== inv.location)
-        effects.push({
-          key: 'table.advanceReview.moved',
-          params: {
-            name: inv.name,
-            location: inv.location ? (after.locations[inv.location]?.name ?? inv.location) : '—',
-          },
-        })
-    }
+    const effects: AdvanceFrame['effects'] = [
+      ...events
+        .filter((e) => !e.key.startsWith('log.step.') && !IGNORED_EVENTS.includes(e.key))
+        .map((e) => ({ key: e.key, ...(e.params ? { params: e.params } : {}) })),
+      ...investigatorEffects(before, after),
+    ]
     // The card drawn is visible even if its revelation immediately discards it.
     const drawn = events
       .filter((e) => e.key === 'log.encounter' && typeof e.params?.code === 'string')
@@ -259,7 +345,8 @@ export function validAdvanceReview(value: unknown): value is AdvanceFrame[] {
     [v.location, v.attachedTo, v.controlledBy].every((x) => x === undefined || text(x)) &&
     (v.exhausted === undefined || typeof v.exhausted === 'boolean') &&
     (v.back === undefined || typeof v.back === 'boolean') &&
-    (v.landscape === undefined || typeof v.landscape === 'boolean')
+    (v.landscape === undefined || typeof v.landscape === 'boolean') &&
+    (v.deck === undefined || v.deck === 'act' || v.deck === 'agenda')
   return (
     Array.isArray(value) &&
     value.length <= 250 &&
@@ -269,6 +356,7 @@ export function validAdvanceReview(value: unknown): value is AdvanceFrame[] {
         ['act', 'agenda'].includes(String(f.kind)) &&
         card(f.card) &&
         [
+          'setup',
           'payment',
           'reverse',
           'entered',
