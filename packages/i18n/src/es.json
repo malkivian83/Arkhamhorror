@@ -456,7 +456,9 @@
     "equipmentMedical": "{card}: probar intelecto para curar a {name}",
     "equipmentHeal": "{card}: curar 1 daño a {name}",
     "reactiveSearch": "{card}: buscar tras fallar",
-    "reactiveShovel": "{card}: descartar para descubrir 1 pista"
+    "reactiveShovel": "{card}: descartar para descubrir 1 pista",
+    "combatAmmo": "{card}: gastar {n} municiones para atacar a {enemy}",
+    "combatReload": "{card}: recargar 1 flecha"
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -1552,6 +1554,7 @@
       "60126": "Como máximo una carta de este título por prueba. Con éxito, quien la asignó roba una carta, o dos si el margen es al menos dos.",
       "60155": "Ataca con bonificación a combate y daño adicional, gastando munición.",
       "60169": "Al asignar esta habilidad, un ataque exitoso inflige un punto de daño adicional.",
+      "60171": "4 municiones. Acción y 1 munición: ataca con +2 de combate y +1 daño, ignorando Represalia en ese ataque.",
       "60212": "Amplía tu límite de mano en dos. Al entrar, puedes robar dos cartas.",
       "60218": "Requiere una pista en tu Lugar. Roba tres cartas.",
       "60219": "Al asignar esta habilidad, una investigación exitosa descubre una pista adicional.",
@@ -1568,6 +1571,7 @@
       "60457": "Añade 1 de voluntad mientras lo controlas.",
       "60459": "Ataca con voluntad. Tras el éxito, puedes gastar una carga para añadir daño. Una calavera retira una carga; si no quedan, recibe daño y descarta.",
       "60460": "Investiga con voluntad. Tras el éxito, puedes gastar una carga para añadir una pista. Un sectario retira una carga; si no quedan, recibe horror y descarta.",
+      "60505": "2 municiones. Acción y 1 munición: ataca con +2 de combate y +1 daño. Recupera 1 munición si falla el ataque.",
       "60517": "Tras fallar una investigación por hasta dos, juega este evento para descubrir dos pistas allí.",
       "60518": "Tras fallar por hasta dos un ataque contra un enemigo enfrentado contigo, inflige su daño a otro enemigo de aquí.",
       "12179b": "Cazador descomunal. Tras evitarla se prepara, pero no ataca a ese investigador durante la ronda.",
@@ -1702,7 +1706,13 @@
       "03021": "Puede absorber daño infligido a otros investigadores en tu lugar.",
       "05109": "Puede absorber horror infligido a otros investigadores en tu lugar.",
       "03037": "Acción: ataca con 2 de combate adicional, o descarta este apoyo para descubrir 1 pista en tu lugar.",
-      "03039": "Al tener éxito, devuelve a la mano de quien la asignó una carta Superviviente de su descarte que no tenga el mismo nombre que esta habilidad."
+      "03039": "Al tener éxito, devuelve a la mano de quien la asignó una carta Superviviente de su descarte que no tenga el mismo nombre que esta habilidad.",
+      "03190": "4 municiones. Acción y 1 munición: ataca con +2 de combate y +1 daño, ignorando Represalia en ese ataque.",
+      "02226": "3 municiones. Acción y 1 munición: ataca con +3 de combate y +2 daños. No puede atacar a un enemigo enfrentado a ti.",
+      "04204": "Admite como máximo 1 munición. Acción y 1 munición: ataca usando agilidad con +2 de agilidad y +2 daños. Otra acción recarga una flecha.",
+      "04229": "8 municiones. Acción y 1–5 municiones: obtén combate adicional igual a la munición gastada; el daño estándar equivale a esa cantidad.",
+      "03110": "Acción: ataca con +1 daño. El objetivo obtiene Represalia solo durante ese ataque.",
+      "06280": "Durante tu turno, agota este apoyo para atacar con +2 de combate sin gastar acción. Al objetivo debe quedarle exactamente 1 de salud."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -1728,6 +1738,7 @@
       "60126": "Dominar",
       "60155": "M1911",
       "60169": "Golpe brutal",
+      "60171": "M1911",
       "60212": "Ayudante de laboratorio",
       "60218": "Bocetos absurdos",
       "60219": "Deducción",
@@ -1744,6 +1755,7 @@
       "60457": "Piedra de sangre",
       "60459": "Llama cósmica",
       "60460": "Vista arcana",
+      "60505": "Derringer del .18",
       "60517": "\"¡Mira lo que he encontrado!\"",
       "60518": "¡Ups!",
       "02020": "Ayudante de laboratorio",
@@ -1877,7 +1889,13 @@
       "03021": "Temple de acero",
       "05109": "Algo por lo que luchar",
       "03037": "Pala de sepulturero",
-      "03039": "Habilidoso"
+      "03039": "Habilidoso",
+      "03190": "Automática del .45",
+      "02226": "Springfield M1903",
+      "04204": "Arco ornamentado",
+      "04229": "M1918 BAR",
+      "03110": "Puño americano",
+      "06280": "Cable estrangulador"
     }
   },
   "account": {

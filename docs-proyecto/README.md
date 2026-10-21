@@ -56,6 +56,7 @@ vigente de pendientes.
 | 33 | [Asesinato en el hotel Excelsior](33-asesinato-excelsior.md) | Escenario independiente: Indicios, La verdad, las diez versiones de El verdadero culpable y lo nuevo del motor |
 | 34 | [Séptimo lote: equipo y efectos directos](34-septimo-lote-equipo-y-efectos-directos.md) | 32 registros, armas y curación, búsquedas y corrección del daño al fallar; 1.726 pendientes. |
 | 35 | [Octavo lote: reacciones y protección](35-octavo-lote-reacciones-y-proteccion.md) | Diez cartas o mejoras nuevas, cero reediciones; 82 novedades distintas acumuladas. |
+| 36 | [Noveno lote: herramientas de combate](36-noveno-lote-herramientas-de-combate.md) | Ocho cartas o mejoras distintas, Represalia, munición y recarga; 90 novedades acumuladas. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

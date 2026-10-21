@@ -456,7 +456,9 @@
     "equipmentMedical": "{card}: test intellect to heal {name}",
     "equipmentHeal": "{card}: heal 1 damage from {name}",
     "reactiveSearch": "{card}: search after failure",
-    "reactiveShovel": "{card}: discard to discover 1 clue"
+    "reactiveShovel": "{card}: discard to discover 1 clue",
+    "combatAmmo": "{card}: spend {n} ammo to attack {enemy}",
+    "combatReload": "{card}: reload 1 arrow"
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -1552,6 +1554,7 @@
       "60126": "At most one of this title per test. On success, its owner draws a card, or two if the margin is at least two.",
       "60155": "Attack with a combat bonus and extra damage, spending ammunition.",
       "60169": "A successful attack deals one extra damage when this skill is committed.",
+      "60171": "4 ammo. Action and 1 ammo: attack with +2 combat and +1 damage, ignoring retaliate for this attack.",
       "60212": "Raises your hand limit by two. On entering play, you may draw two cards.",
       "60218": "Requires a clue on your location. Draw three cards.",
       "60219": "A successful investigation discovers one extra clue when this skill is committed.",
@@ -1568,6 +1571,7 @@
       "60457": "Adds 1 willpower while controlled.",
       "60459": "Attack using willpower. After success, you may spend a charge for extra damage. A skull removes a charge; if empty, take damage and discard.",
       "60460": "Investigate using willpower. After success, you may spend a charge for an extra clue. A cultist removes a charge; if empty, take horror and discard.",
+      "60505": "2 ammo. Action and 1 ammo: attack with +2 combat and +1 damage. Restore 1 ammo if the attack fails.",
       "60517": "After failing an investigation by at most two, play this event to discover two clues there.",
       "60518": "After an attack fails by at most two against an enemy engaged with you, deal its damage to another enemy here.",
       "12179b": "Massive hunter. After evading her, she readies but spares that investigator for the round.",
@@ -1702,7 +1706,13 @@
       "03021": "May absorb damage dealt to other investigators at your location.",
       "05109": "May absorb horror dealt to other investigators at your location.",
       "03037": "Action: attack with 2 additional combat, or discard this asset to discover 1 clue at your location.",
-      "03039": "On success, return a Survivor card other than Resourceful from the committing investigator’s discard pile to their hand."
+      "03039": "On success, return a Survivor card other than Resourceful from the committing investigator’s discard pile to their hand.",
+      "03190": "4 ammo. Action and 1 ammo: attack with +2 combat and +1 damage, ignoring retaliate for this attack.",
+      "02226": "3 ammo. Action and 1 ammo: attack with +3 combat and +2 damage. Cannot target an enemy engaged with you.",
+      "04204": "Holds at most 1 ammo. Action and 1 ammo: attack using agility with +2 agility and +2 damage. Another action reloads one arrow.",
+      "04229": "8 ammo. Action and 1–5 ammo: gain combat equal to ammo spent; standard attack damage equals that amount.",
+      "03110": "Action: attack with +1 damage. The target has retaliate for this attack only.",
+      "06280": "During your turn, exhaust to attack with +2 combat and no action cost. The target must have exactly 1 remaining health."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -1728,6 +1738,7 @@
       "60126": "Overpower",
       "60155": "M1911",
       "60169": "Vicious Blow",
+      "60171": "M1911",
       "60212": "Laboratory Assistant",
       "60218": "Preposterous Sketches",
       "60219": "Deduction",
@@ -1744,6 +1755,7 @@
       "60457": "Bloodstone",
       "60459": "Cosmic Flame",
       "60460": "Second Sight",
+      "60505": ".18 Derringer",
       "60517": "\"Look what I found!\"",
       "60518": "Oops!",
       "02020": "Laboratory Assistant",
@@ -1877,7 +1889,13 @@
       "03021": "True Grit",
       "05109": "Something Worth Fighting For",
       "03037": "Gravedigger's Shovel",
-      "03039": "Resourceful"
+      "03039": "Resourceful",
+      "03190": ".45 Automatic",
+      "02226": "Springfield M1903",
+      "04204": "Ornate Bow",
+      "04229": "M1918 BAR",
+      "03110": "Knuckleduster",
+      "06280": "Garrote Wire"
     }
   },
   "account": {

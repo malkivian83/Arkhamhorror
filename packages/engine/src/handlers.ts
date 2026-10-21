@@ -3096,7 +3096,16 @@ export function handle(state: GameState, message: Message): GameState {
       if (!asset) return state
       return {
         ...state,
-        assets: { ...state.assets, [asset.id]: { ...asset, uses: asset.uses + message.amount } },
+        assets: {
+          ...state.assets,
+          [asset.id]: {
+            ...asset,
+            uses: Math.min(
+              playerCardBehavior(asset.code)?.maxUses ?? Infinity,
+              asset.uses + message.amount,
+            ),
+          },
+        },
       }
     }
 
@@ -4897,7 +4906,16 @@ function skillTestResults(state: GameState, succeeded: boolean, failBy: number):
             : attackDamage(state, test)
         results.push({ type: 'TakeDamage', investigator: enemy.engagedWith, damage, horror: 0 })
       }
-      if (enemy.keywords.includes('retaliate') && !enemy.exhausted) {
+      results.push(...(kind.onFail ?? []))
+      if (
+        !kind.ignoreRetaliate &&
+        !enemy.exhausted &&
+        enemyHasKeyword(
+          state,
+          kind.forceRetaliate ? { ...enemy, keywords: [...enemy.keywords, 'retaliate'] } : enemy,
+          'retaliate',
+        )
+      ) {
         results.push({ type: 'EnemyAttack', enemy: enemy.id, investigator, exhaustAfter: false })
       }
       if (enemy.keywords.includes('elusive') && !enemy.exhausted) {
