@@ -1755,7 +1755,7 @@ export function handle(state: GameState, message: Message): GameState {
                 label: 'choice.commitFromDiscard',
                 params: {
                   card: playerCardDef(code)?.name ?? code,
-                  icons: matchingIcons(playerCardDef(code)?.icons, test.skill),
+                  icons: commitIcons(state, test, code, investigator.id),
                 },
                 then: [
                   {
@@ -1831,7 +1831,7 @@ export function handle(state: GameState, message: Message): GameState {
               label: 'choice.commit',
               params: {
                 card: playerCardDef(code)?.name ?? code,
-                icons: matchingIcons(playerCardDef(code)?.icons, test.skill),
+                icons: commitIcons(state, test, code, investigator.id),
               },
               target: { type: 'hand', code },
               then: [
@@ -1844,7 +1844,7 @@ export function handle(state: GameState, message: Message): GameState {
               params: {
                 name: helper.name,
                 card: playerCardDef(code)?.name ?? code,
-                icons: matchingIcons(playerCardDef(code)?.icons, test.skill),
+                icons: commitIcons(state, test, code, helper.id),
               },
               then: [
                 { type: 'CommitCard', investigator: helper.id, code },
@@ -3967,7 +3967,7 @@ export function handle(state: GameState, message: Message): GameState {
               label: 'choice.commit',
               params: {
                 card: playerCardDef(code)?.name ?? code,
-                icons: matchingIcons(playerCardDef(code)?.icons, test.skill),
+                icons: commitIcons(state, test, code, investigator.id),
               },
               target: { type: 'hand', code },
               then: [{ type: 'CommitCard', investigator: investigator.id, code }],
@@ -4580,7 +4580,7 @@ function withinCommitTitleLimit(test: SkillTest, code: string): boolean {
 
 function canCommit(state: GameState, test: SkillTest, code: string, by: string): boolean {
   const def = playerCardDef(code)
-  if (!def || matchingIcons(def.icons, test.skill) === 0) return false
+  if (!def || commitIcons(state, test, code, by) === 0) return false
   return (
     withinCommitTitleLimit(test, code) &&
     (playerCardBehavior(code)?.canCommit?.(state, test, by) ?? true)
@@ -5179,6 +5179,13 @@ function slotsUsed(state: GameState, investigator: string, slot: SlotType): numb
     .reduce((sum, a) => sum + count(playerCardDef(a.code)?.slots ?? [], slot), 0)
 }
 
+function commitIcons(state: GameState, test: SkillTest, code: string, by: string): number {
+  return (
+    matchingIcons(playerCardDef(code)?.icons, test.skill) +
+    matchingIcons(playerCardBehavior(code)?.additionalIcons?.(state, test, by), test.skill)
+  )
+}
+
 /** Iconos que cuentan para la prueba: los de la habilidad más los comodín. */
 function matchingIcons(icons: Partial<Record<string, number>> | undefined, skill: string): number {
   return (icons?.[skill] ?? 0) + (icons?.wild ?? 0)
@@ -5265,10 +5272,7 @@ export function skillTestValue(state: GameState): {
   const test = state.skillTest
   if (!test) return { base: 0, modifier: 0, icons: 0, passive: 0, sources: [], total: 0 }
   const investigator = getInvestigator(state, test.investigator)
-  const icons = test.committed.reduce(
-    (sum, c) => sum + matchingIcons(playerCardDef(c.code)?.icons, test.skill),
-    0,
-  )
+  const icons = test.committed.reduce((sum, c) => sum + commitIcons(state, test, c.code, c.by), 0)
   const passive = Object.values(state.assets)
     .filter((a) => a.owner === investigator.id)
     .reduce((sum, a) => sum + (playerCardBehavior(a.code)?.skillModifier?.(state, a, test) ?? 0), 0)

@@ -1,0 +1,15 @@
+import { registerPlayerCards, type PlayerCardDef } from '@lcg/engine'
+import data from '../data/variable-icons.json'
+import approvals from './approvals.json'
+import './card-05022'
+import './card-05026'
+import './card-05030'
+import './card-05034'
+import './card-05038'
+import './card-02260'
+import './card-51010'
+import './card-10051'
+import './card-10130'
+import './card-60572'
+registerPlayerCards(data as PlayerCardDef[])
+export const VARIABLE_RENDERED_CODES = approvals.cards.map((c) => c.code)

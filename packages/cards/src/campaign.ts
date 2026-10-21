@@ -55,6 +55,7 @@ import './classic-equipment'
 import './reactive-support'
 import './combat-tools'
 import './conditional-commit'
+import './variable-icons'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
