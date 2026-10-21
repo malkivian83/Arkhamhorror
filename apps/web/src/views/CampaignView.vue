@@ -13,6 +13,7 @@ import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import ChaosTokenView from '../components/ChaosTokenView.vue'
+import DisclosureIcon from '../components/DisclosureIcon.vue'
 import GameCard from '../components/GameCard.vue'
 import SessionTools from '../components/SessionTools.vue'
 import SitePage from '../components/SitePage.vue'
@@ -92,7 +93,7 @@ function abandon() {
         ><span class="boons-count">{{
           t('setup.boonsCount', { n: campaign.boons.length }, campaign.boons.length)
         }}</span
-        ><span aria-hidden="true">⌄</span>
+        ><DisclosureIcon />
       </summary>
       <ul class="boons-list">
         <li v-for="boon in campaign.boons" :key="boon">
@@ -537,6 +538,9 @@ function abandon() {
 }
 .active-boons summary::-webkit-details-marker {
   display: none;
+}
+.active-boons summary .disclosure-icon {
+  color: var(--accent);
 }
 .boons-count {
   color: var(--accent);

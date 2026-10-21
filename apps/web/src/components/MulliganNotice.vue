@@ -48,10 +48,12 @@ onMounted(sync)
         <p>{{ t('table.mulliganNotice.body') }}</p>
         <p class="once">{{ t('table.mulliganNotice.once') }}</p>
         <footer>
-          <button type="button" class="primary" autofocus @click="dismiss">
+          <button type="button" class="table-action" autofocus @click="dismiss">
             {{ t('table.mulliganNotice.choose') }}
           </button>
-          <button type="button" @click="keep">{{ t('choice.keepHand') }}</button>
+          <button type="button" class="table-action secondary" @click="keep">
+            {{ t('choice.keepHand') }}
+          </button>
         </footer>
       </template>
     </dialog>

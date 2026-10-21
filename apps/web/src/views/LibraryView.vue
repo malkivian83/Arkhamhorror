@@ -15,9 +15,11 @@ import {
 } from '../account/library'
 import { useGameStore } from '../stores/game'
 import { useDecksStore } from '../stores/decks'
-import { decodeSession, session } from '@lcg/saves'
+import { campaignDefinition, currentScenario } from '@lcg/cards'
+import { decodeSession, session, type Session } from '@lcg/saves'
 import SitePage from '../components/SitePage.vue'
 import SiteAction from '../components/SiteAction.vue'
+import DisclosureIcon from '../components/DisclosureIcon.vue'
 
 const { t, te } = useI18n(),
   router = useRouter(),
@@ -34,6 +36,35 @@ const campaigns = computed(() =>
 const conflicts = computed(() => documents.value.filter((d) => d.conflict))
 const displayName = (name: string) =>
   te(`campaign.names.${name}`) ? t(`campaign.names.${name}`) : name
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
+/** Portada de la campaña y escenario en curso (el de la partida abierta o el siguiente). */
+function progress(payload: unknown) {
+  const saved = payload as Partial<Session> | null
+  const campaign = saved?.campaign ?? null
+  let scenario = ''
+  try {
+    const scenarioId = saved?.state?.scenarioId ?? (campaign ? currentScenario(campaign) : null)
+    // En una campaña de un solo escenario, el título ya lo dice todo.
+    if (
+      campaign &&
+      scenarioId &&
+      te(`campaign.scenario.${scenarioId}`) &&
+      campaignDefinition(campaign.id).scenarios.length > 1
+    )
+      scenario = t('library.scenario', {
+        n: ROMAN[campaign.scenarioIndex] ?? campaign.scenarioIndex + 1,
+        name: t(`campaign.scenario.${scenarioId}`),
+      })
+  } catch {
+    // Campaña desconocida para esta versión: se muestra sin escenario.
+  }
+  // Sin portada (partida suelta o campaña sin arte) queda el fondo genérico de debajo.
+  const art = campaign ? `url('/local-assets/setup/${campaign.id}.jpg')` : 'none'
+  return { art, scenario }
+}
+const progressById = computed(
+  () => new Map(campaigns.value.map((d) => [d.id, progress(d.payload)] as const)),
+)
 const confirm = (message: string) => window.confirm(message)
 onMounted(() => {
   if (account.value.user)
@@ -153,29 +184,40 @@ async function restore(id: string) {
       </div>
       <div class="campaign-library">
         <article v-for="doc in campaigns" :key="doc.id" class="campaign-entry">
-          <div class="entry-heading">
+          <div class="entry-heading" :style="{ '--entry-art': progressById.get(doc.id)?.art }">
             <p class="entry-label">
               {{ t('setup.campaignLabel')
               }}<span v-if="doc.archived"> · {{ t('library.archived') }}</span>
             </p>
             <h3>{{ displayName(doc.name) }}</h3>
+            <p v-if="progressById.get(doc.id)?.scenario" class="entry-scenario">
+              {{ progressById.get(doc.id)?.scenario }}
+            </p>
           </div>
           <div class="entry-body">
-            <p>
-              {{ t('library.revision', { n: doc.revision }) }} ·
-              {{ new Date(doc.updatedAt).toLocaleString() }}
-            </p>
-            <p v-if="doc.dirty || doc.operation">{{ t('account.sync.pending') }}</p>
-            <div class="entry-actions">
+            <div class="entry-status">
+              <p>
+                {{ t('library.revision', { n: doc.revision }) }} ·
+                {{ new Date(doc.updatedAt).toLocaleString() }}
+                <span v-if="doc.dirty || doc.operation" class="entry-pending">{{
+                  t('account.sync.pending')
+                }}</span>
+              </p>
               <SiteAction
+                class="entry-open"
                 icon="→"
                 :disabled="busy || doc.conflict"
                 @click="run(() => open(doc.id))"
               >
                 {{ t('library.open') }}
               </SiteAction>
+            </div>
+            <div class="entry-actions">
               <details class="entry-options">
-                <summary>{{ t('library.manage') }} <span aria-hidden="true">⌄</span></summary>
+                <summary>
+                  {{ t('library.manage') }}
+                  <DisclosureIcon class="entry-chevron" />
+                </summary>
                 <div class="management-actions">
                   <button
                     type="button"
@@ -305,12 +347,55 @@ p {
   margin: 0;
   align-self: start;
 }
+/* Cabecera con la portada de la campaña, oscurecida abajo para leer el texto. */
 .entry-heading {
-  padding: 40px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 170px;
+  padding: 24px 22px 18px;
   background:
-    linear-gradient(90deg, #202025e6, #202025bb),
+    linear-gradient(0deg, #202025f5 8%, #20202599 55%, #2020251a),
+    var(--entry-art) center 50% / cover,
     url('/local-assets/home/occult-archive.webp') center 35% / cover;
   border-bottom: 1px solid var(--border);
+  text-shadow: 0 1px 3px #000c;
+}
+.entry-heading .entry-scenario {
+  margin: 6px 0 0;
+  color: #eadfcd;
+  font-size: 0.875rem;
+}
+.entry-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.entry-status p {
+  margin: 0;
+}
+.entry-pending {
+  display: block;
+  color: var(--accent);
+}
+.entry-status .entry-open {
+  flex: none;
+  font-size: 0.875rem;
+}
+@media (pointer: fine) {
+  .entry-status .entry-open {
+    min-height: 36px;
+  }
+}
+.entry-open :deep(.site-action-symbol) {
+  min-width: 32px;
+  padding: 4px 8px;
+  font-size: 1rem;
+}
+.entry-open :deep(.site-action-label) {
+  padding: 6px 14px;
 }
 .entry-heading h3 {
   font-size: 1.25rem;
@@ -349,14 +434,27 @@ p {
 .entry-options > summary::-webkit-details-marker {
   display: none;
 }
+.entry-options > summary:hover {
+  color: var(--ink);
+}
+.entry-chevron {
+  color: var(--accent);
+}
 .management-actions {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
   padding-top: 12px;
 }
-.management-actions button {
-  font-size: 0.875rem;
+.campaign-entry .management-actions button {
+  padding: 4px 10px;
+  font-size: 0.8125rem;
+}
+/* Con ratón, botones compactos; en pantallas táctiles se quedan en 44 px. */
+@media (pointer: fine) {
+  .campaign-entry .management-actions button {
+    min-height: 36px;
+  }
 }
 .management-actions .delete-action {
   background: #ae4236;

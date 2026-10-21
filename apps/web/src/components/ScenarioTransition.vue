@@ -176,7 +176,7 @@ onBeforeUnmount(() => dialog.value?.close())
           <button
             ref="accept"
             type="button"
-            class="primary"
+            class="table-action"
             autofocus
             @click="game.acceptAdvance()"
           >

@@ -84,6 +84,7 @@ function toCampaign() {
           v-for="(choice, i) in state.pending?.question.choices ?? []"
           :key="i"
           type="button"
+          class="table-action"
           @click="game.answer(i)"
         >
           {{ label(choice.label, choice.params ?? {}) }}
@@ -103,11 +104,13 @@ function toCampaign() {
         }}
       </p>
       <div class="options">
-        <button v-if="game.campaign" type="button" @click="toCampaign">
+        <button v-if="game.campaign" type="button" class="table-action" @click="toCampaign">
           {{ t('campaign.continue') }}
         </button>
-        <button v-else type="button" @click="newGame">{{ t('table.newGame') }}</button>
-        <button type="button" class="secondary" @click="endDismissed = true">
+        <button v-else type="button" class="table-action" @click="newGame">
+          {{ t('table.newGame') }}
+        </button>
+        <button type="button" class="table-action secondary" @click="endDismissed = true">
           {{ t('table.viewTable') }}
         </button>
       </div>
@@ -218,23 +221,6 @@ h1 {
   flex-direction: column;
   gap: 8px;
   margin-top: 18px;
-}
-.options button {
-  padding: 10px 14px;
-  border: 0;
-  border-radius: 4px;
-  background: #2f6141;
-  color: #fff;
-  font-family: system-ui, sans-serif;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-.options button:hover {
-  background: #3c7d54;
-}
-.options button.secondary {
-  background: #4a4038;
 }
 .end .result {
   text-align: center;

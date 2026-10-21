@@ -13,6 +13,7 @@ import {
 import { playerCardDef } from '@lcg/engine'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import DisclosureIcon from '../components/DisclosureIcon.vue'
 import GameCard from '../components/GameCard.vue'
 import ClassIcon from '../components/ClassIcon.vue'
 import SlotIcon from '../components/SlotIcon.vue'
@@ -227,7 +228,7 @@ const titleCount = (code: string) => {
         <details class="box deck-tool" :open="!selected">
           <summary>
             <span>{{ t('decks.new') }}</span
-            ><span class="disclosure" aria-hidden="true">⌄</span>
+            ><DisclosureIcon class="disclosure" />
           </summary>
           <div class="tool-body">
             <label>
@@ -249,7 +250,7 @@ const titleCount = (code: string) => {
         <details class="box deck-tool">
           <summary>
             <span>{{ t('decks.import.title') }}</span
-            ><span class="disclosure" aria-hidden="true">⌄</span>
+            ><DisclosureIcon class="disclosure" />
           </summary>
           <div class="tool-body">
             <form @submit.prevent="importDeck">
@@ -590,9 +591,6 @@ const titleCount = (code: string) => {
 .disclosure {
   margin-left: auto;
   color: var(--accent);
-}
-.deck-tool[open] .disclosure {
-  transform: rotate(180deg);
 }
 .tool-body {
   display: grid;

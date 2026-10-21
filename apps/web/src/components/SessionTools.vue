@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { nextTick, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import DisclosureIcon from './DisclosureIcon.vue'
 import { useGameStore } from '../stores/game'
 import { decodeSession, SessionError, type Session } from '../game/session'
 
@@ -64,7 +65,7 @@ function recover() {
 
 <template>
   <details class="session-tools">
-    <summary>{{ t('session.title') }}</summary>
+    <summary>{{ t('session.title') }}<DisclosureIcon /></summary>
     <p>{{ t('session.help') }}</p>
     <div class="session-buttons">
       <button
@@ -82,7 +83,7 @@ function recover() {
     </div>
     <input ref="file" type="file" accept=".json,application/json" hidden @change="load" />
     <details class="paste-import">
-      <summary>{{ t('session.pasteTitle') }}</summary>
+      <summary>{{ t('session.pasteTitle') }}<DisclosureIcon /></summary>
       <label>
         {{ t('session.pasteLabel') }}
         <textarea v-model="pasted" rows="4" spellcheck="false" :maxlength="20000000" />
@@ -126,6 +127,18 @@ function recover() {
 }
 .session-tools p {
   max-width: 60ch;
+}
+.session-tools summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 44px;
+  list-style: none;
+  cursor: pointer;
+}
+.session-tools summary::-webkit-details-marker {
+  display: none;
 }
 .session-buttons {
   display: flex;

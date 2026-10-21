@@ -92,7 +92,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', key, true))
         <CardTranslation :code="current.code" :image-language="imageLanguage" />
       </div>
       <p class="name">{{ localName(current.card) }}</p>
-      <button type="button" class="primary" @click="dismiss">
+      <button type="button" class="table-action" @click="dismiss">
         {{ t('table.ok') }}<template v-if="queue.length > 1"> ({{ queue.length - 1 }})</template>
       </button>
     </div>

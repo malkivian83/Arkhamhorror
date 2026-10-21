@@ -10,6 +10,7 @@ import { BOONS, playerCardDef, type Boon } from '@lcg/engine'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import DisclosureIcon from '../components/DisclosureIcon.vue'
 import SessionTools from '../components/SessionTools.vue'
 import SiteAction from '../components/SiteAction.vue'
 import SkillIcon from '../components/SkillIcon.vue'
@@ -207,7 +208,7 @@ function start() {
                   width="28"
                   height="28"
                 /><span>{{ t('setup.teamDecks') }}</span
-                ><span class="disclosure" aria-hidden="true">⌄</span>
+                ><DisclosureIcon class="disclosure" />
               </summary>
               <p class="order-hint">{{ t('setup.orderHint') }}</p>
               <ol class="team-roster">
@@ -252,7 +253,7 @@ function start() {
               <span class="boons-count" role="status">{{
                 t('setup.boonsCount', { n: activeBoons.length }, activeBoons.length)
               }}</span>
-              <span class="disclosure" aria-hidden="true">⌄</span>
+              <DisclosureIcon class="disclosure" />
             </summary>
             <fieldset class="boons" aria-describedby="boons-help">
               <legend class="visually-hidden">{{ t('boons.title') }}</legend>
@@ -395,9 +396,6 @@ function start() {
 }
 .boons-panel > summary .disclosure {
   margin-left: 0;
-}
-.boons-panel[open] > summary .disclosure {
-  transform: rotate(180deg);
 }
 .boons-grid {
   display: grid;
@@ -753,11 +751,7 @@ h1 {
 }
 .disclosure {
   color: var(--accent);
-  font-size: 1.1rem;
   margin-left: auto;
-}
-.team-decks[open] .disclosure {
-  transform: rotate(180deg);
 }
 .order-hint {
   max-width: 75ch;

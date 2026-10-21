@@ -118,7 +118,7 @@ const shown = computed(
   </div>
   <div v-else class="empty">
     <p>{{ t('setup.noGame') }}</p>
-    <button type="button" class="primary" @click="router.push('/')">
+    <button type="button" class="table-action" @click="router.push('/')">
       {{ t('table.newGame') }}
     </button>
   </div>

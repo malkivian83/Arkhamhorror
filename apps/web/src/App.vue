@@ -409,13 +409,8 @@ body {
 .game-menu .session-tools > summary::-webkit-details-marker {
   display: none;
 }
-.game-menu .session-tools > summary::after {
-  content: '▸';
+.game-menu .session-tools > summary .disclosure-icon {
   color: var(--brass);
-  transition: transform 120ms ease-out;
-}
-.game-menu .session-tools[open] > summary::after {
-  transform: rotate(90deg);
 }
 .game-menu .session-tools > summary:hover {
   color: #f6ecd2;
@@ -477,6 +472,16 @@ body {
   color: #b8aa8c;
   font-family: var(--fell);
   font-size: 0.85rem;
+}
+/* Flecha de los desplegables (DisclosureIcon). */
+.disclosure-icon {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  transition: transform 140ms ease-out;
+}
+details[open] > summary .disclosure-icon {
+  transform: rotate(180deg);
 }
 h1,
 h2,
@@ -589,6 +594,60 @@ button.primary {
 button[aria-pressed='true'] {
   border-color: var(--accent);
   color: var(--accent);
+}
+/*
+ * Botones de acción de la mesa (historia, mulligan, avance de acto...): el
+ * mismo cobre y pergamino que SiteAction en la web; `.secondary`, en madera.
+ */
+.table-action {
+  --action-top: #f1d6a0;
+  --action-bottom: #c59154;
+  --action-edge: #aa6b39;
+  --action-ink: #302014;
+  --action-shine: #fff3cc;
+  min-height: 44px;
+  padding: 10px 20px;
+  color: var(--action-ink);
+  background: linear-gradient(180deg, var(--action-top), var(--action-bottom));
+  border: 1px solid var(--action-edge);
+  border-radius: 7px;
+  box-shadow:
+    inset 0 1px 0 var(--action-shine),
+    inset 0 0 0 3px rgb(64 29 12 / 14%),
+    0 3px 0 #24160f,
+    0 5px 12px #0005;
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-shadow: 0 1px 0 rgb(255 244 212 / 30%);
+  transition:
+    filter 140ms ease,
+    box-shadow 140ms ease,
+    translate 140ms ease;
+}
+.table-action.secondary {
+  --action-top: #493426;
+  --action-bottom: #2d211b;
+  --action-edge: #b48355;
+  --action-ink: #f3dfbc;
+  --action-shine: #bd8a5966;
+  text-shadow: 0 1px 2px #0008;
+}
+.table-action:hover:not(:disabled) {
+  border-color: var(--action-edge);
+  filter: brightness(1.1);
+  translate: 0 -1px;
+}
+.table-action:active:not(:disabled) {
+  translate: 0 2px;
+  box-shadow:
+    inset 0 2px 5px #23100855,
+    inset 0 0 0 3px rgb(64 29 12 / 14%),
+    0 1px 0 #24160f;
+}
+.table-action:disabled {
+  opacity: 0.55;
+  filter: saturate(0.35);
 }
 .topbar {
   flex: none;

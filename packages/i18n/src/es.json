@@ -1612,6 +1612,7 @@
   },
   "library": {
     "manage": "Gestionar aventura",
+    "scenario": "Escenario {n}: {name}",
     "archived": "Archivada",
     "subtitle": "Todas tus aventuras en un mismo lugar, guardadas online en tu cuenta.",
     "campaigns": "Tus campañas",
