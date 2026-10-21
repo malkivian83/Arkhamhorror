@@ -13,7 +13,7 @@ import { allPlayerCardDefs, type EncounterCard, type LocationCard } from '@lcg/e
 import { excelsiorCards, messages } from '@lcg/i18n'
 import type { LocalizedCard } from './localized'
 
-/** Bundled mechanical data and our own short summaries; no remote images or card prose. */
+/** Bundled mechanical data, official text where available and local summaries. */
 export function fallbackCards(locale: string): LocalizedCard[] {
   const language = locale === 'es' ? messages.es : messages.en
   const types = language.offlineCard.types

@@ -1,0 +1,13 @@
+# 45 · Habilidades de evasión y movimiento
+
+Se incorporan 01081 y 02235 (Instinto de supervivencia, niveles 0 y 2), y 60317 (Ágil): **3 códigos, 3 cartas o niveles distintos, 0 reediciones**. El grupo es pequeño porque introduce una diferencia de momento de resolución y movimiento encadenado; no se añaden impresiones para completar una cifra.
+
+Instinto de supervivencia beneficia al investigador que evita, incluso si otra persona compromete la carta. El nivel cero permite desenganchar los demás enemigos sin agotarlos; el nivel dos los evita automáticamente. Desenganchar/evitar y moverse son decisiones independientes. Ágil beneficia a quien compromete la carta, con hasta tres movimientos según el margen de éxito, después de cerrar la prueba y descartar las cartas comprometidas. El nuevo punto `afterCommittedTestEnds` conserva esa diferencia respecto a los efectos de resultado existentes.
+
+Las continuaciones son serializables y vuelven a consultar las conexiones tras cada movimiento, respetando salida bloqueada, costes de entrada y restricciones del escenario. Reutilizan MoveTo para revelar lugares y resolver sus efectos. Son movimientos sin acción y sin ataques de oportunidad; Ágil conserva los enemigos enfrentados que deban acompañar al investigador.
+
+Reglas contrastadas con los textos EN/ES del inventario congelado y los módulos SurvivalInstinct, SurvivalInstinct2 y Nimble de la aplicación de referencia. Los textos oficiales y nombres EN/ES quedan disponibles sin conexión. Se añaden seis escaneos oficiales desde el CDN identificado por la referencia y seis miniaturas selectivas, sin modificar registros históricos. No cambia la presentación de las cartas.
+
+Evidencias: 19 pruebas del lote cubren pruebas reales con actor y committer distintos, éxito/fallo, diferencia entre desenganchar y evitar, decisiones opcionales, cierre de prueba previo a Ágil, margen cero y máximo tres, conexiones recalculadas, destinos prohibidos, persistencia JSON y compra/uso en escenario. La prueba de unicidad compara códigos y familias con todos los lotes previos; la integración comprueba una sola entrada de compra por código. Los controles globales de presentación cubren EN/ES y catálogo.
+
+Acumulado: **322 códigos / 241 familias canónicas**. Sobre los 104 originales: **218 códigos añadidos = 137 registros distintos + 81 reediciones**; los registros distintos incluyen el investigador Pete y sus dos cartas exclusivas. Restan **1661 códigos históricos**, incluidas reediciones; no equivalen a 1661 cartas distintas. El inventario inmutable y sus huellas se conservan. Estado de publicación y bloqueos únicamente en [continuación](continuacion-importacion.md).

@@ -1,0 +1,32 @@
+[
+  {
+    "code": "01081",
+    "name": "Survival Instinct",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "agility": 1 },
+    "slots": []
+  },
+  {
+    "code": "02235",
+    "name": "Survival Instinct",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate", "Developed"],
+    "xp": 2,
+    "icons": { "agility": 2 },
+    "slots": []
+  },
+  {
+    "code": "60317",
+    "name": "Nimble",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "agility": 1 },
+    "slots": []
+  }
+]

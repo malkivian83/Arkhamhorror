@@ -2689,10 +2689,24 @@ export function handle(state: GameState, message: Message): GameState {
         )
       }
       if (!test || test.succeeded === null) return push(next, ...reshuffle)
-      return push(next, ...reshuffle, ...(test.tokenAfter ?? []), {
-        type: 'Forced',
-        trigger: skillTestTrigger(test, 'skillTestEnded'),
-      })
+      return push(
+        next,
+        ...reshuffle,
+        ...(test.tokenAfter ?? []),
+        {
+          type: 'Forced',
+          trigger: skillTestTrigger(test, 'skillTestEnded'),
+        },
+        ...test.committed.flatMap(
+          (c) =>
+            playerCardBehavior(c.code)?.afterCommittedTestEnds?.(
+              next,
+              test,
+              !!test.succeeded,
+              c.by,
+            ) ?? [],
+        ),
+      )
     }
 
     // --------------------------------------------------------------- Enemigos

@@ -65,6 +65,7 @@ vigente de pendientes.
 | 42 | [Decimoquinto lote: resultados distribuidos](42-decimoquinto-lote-resultados-distribuidos.md) | Dos cartas o niveles distintos, distribución opcional de usos y evasión adicional; 128 novedades acumuladas. |
 | 43 | [Decimosexto lote: habilidades de acciones básicas](43-decimosexto-lote-habilidades-de-acciones-basicas.md) | Tres cartas distintas, iconos y resultados adicionales solo en acciones básicas; 131 novedades acumuladas. |
 | 44 | [Pete, Duke y su debilidad](44-investigador-ashcan-pete.md) | Sexto investigador, mazo inicial, reglas completas y recursos oficiales EN/ES de la referencia. |
+| 45 | [Habilidades de evasión y movimiento](45-habilidades-de-movimiento.md) | Instinto de supervivencia 0/2 y Ágil; tres niveles distintos, movimiento opcional y momento de cierre de prueba. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

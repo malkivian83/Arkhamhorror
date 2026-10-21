@@ -5814,6 +5814,42 @@
       "sourceSha256": "41770e6d3a925c89e5637dad1171825e003f8f2c78e1a8068a09fc6506600ac9",
       "path": "/local-assets/cards/es/thumbs/02015.webp",
       "sha256": "294a0a5389ebb6df0ae985ba6db27affa00a82e4b2437fc92f2427025ab4afc8"
+    },
+    {
+      "source": "/local-assets/cards/en/60317.avif",
+      "sourceSha256": "261336268c34b821294fc5e6b18851b5e20ab7ed6bd7b7f46eebd8199e38eb3b",
+      "path": "/local-assets/cards/en/thumbs/60317.webp",
+      "sha256": "7dccd1bc19d8b6fc979088ed0b20a39d6d10370e21773a7bb7d4fd55f3a8851a"
+    },
+    {
+      "source": "/local-assets/cards/en/01081.avif",
+      "sourceSha256": "87dfa959f7796cf461a60b95bc35794e841522be14918345473c2feff54cac00",
+      "path": "/local-assets/cards/en/thumbs/01081.webp",
+      "sha256": "7a26b8e64a5c9ff5e5da123d47ecdc1518ce59ac065a53703916ca880ee37322"
+    },
+    {
+      "source": "/local-assets/cards/en/02235.avif",
+      "sourceSha256": "141124ef0cafe18f74a2b46eccbefceb7a8adbd0577d35f3229acc55d9d2633d",
+      "path": "/local-assets/cards/en/thumbs/02235.webp",
+      "sha256": "11fa8702689a0e5a2c2feed4e6ce995b847354d68fd1dbdf0c65916cc3cdea18"
+    },
+    {
+      "source": "/local-assets/cards/es/60317.avif",
+      "sourceSha256": "9e3e4fb65ee0cce27b836d4ca679c12c7ad038fd80962b7bd96eb3e47f9a5c80",
+      "path": "/local-assets/cards/es/thumbs/60317.webp",
+      "sha256": "12b24b1c239516d599c646508d57c97e32013ad7a7456b7df1388ae0647846d2"
+    },
+    {
+      "source": "/local-assets/cards/es/01081.avif",
+      "sourceSha256": "2f948406a5448f553387e3ed0eff44414f86ababcf129e141a01bbc72d68d32c",
+      "path": "/local-assets/cards/es/thumbs/01081.webp",
+      "sha256": "85e3ec4fbd995966fe95b91359083a9e37e4062ea75b2ec20c02e3848b3fc684"
+    },
+    {
+      "source": "/local-assets/cards/es/02235.avif",
+      "sourceSha256": "899fe87f9dfbda3f9746b6bf0d8cfc8c63c994d8c25092abed058c3a0861b663",
+      "path": "/local-assets/cards/es/thumbs/02235.webp",
+      "sha256": "a381096b0cf477b2e339459c8901911e19f074e054727b44a7c1bb0159cf9813"
     }
   ]
 }
