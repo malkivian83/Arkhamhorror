@@ -4107,6 +4107,7 @@ export function handle(state: GameState, message: Message): GameState {
                 investigator: investigator.id,
                 code,
                 to: message.to,
+                ...(message.drawFound ? { drawFound: true } : {}),
                 ...(message.discount ? { discount: message.discount } : {}),
               },
               shuffleDeck,
@@ -4125,7 +4126,13 @@ export function handle(state: GameState, message: Message): GameState {
         deck: i.deck.filter((_, n) => n !== index),
         hand: [...i.hand, message.code],
       }))
-      if (message.to === 'hand') return taken
+      if (message.to === 'hand')
+        return message.drawFound
+          ? push(taken, {
+              type: 'Forced',
+              trigger: { type: 'afterDrawCard', investigator: investigator.id, card: message.code },
+            })
+          : taken
       return push(taken, {
         type: 'PlayCard',
         investigator: investigator.id,

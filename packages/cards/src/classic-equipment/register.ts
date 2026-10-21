@@ -125,6 +125,7 @@ export function registerEquipment(code: string): void {
                       top: 6,
                       traits: [],
                       anyCard: true,
+                      drawFound: true,
                       to: 'hand',
                     },
                   ],

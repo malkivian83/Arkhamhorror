@@ -47,6 +47,7 @@ export function registerReactiveSupport(code: string): void {
                           top: -t.margin,
                           traits: [],
                           anyCard: true,
+                          drawFound: true,
                           to: 'hand' as const,
                         },
                       ]

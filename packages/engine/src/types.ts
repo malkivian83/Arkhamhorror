@@ -981,6 +981,8 @@ export type Message =
       discount?: number
       /** Cualquier carta, no solo apoyos con esos rasgos (Mysterious Grimoire). */
       anyCard?: boolean
+      /** The chosen card is drawn, rather than merely added to the hand. */
+      drawFound?: boolean
       /** Las debilidades buscadas también se roban. */
       drawWeaknesses?: boolean
       /** Si no se encuentra nada, roba estas cartas (Ye Olde Magick Shoppe). */
@@ -991,6 +993,7 @@ export type Message =
       investigator: InvestigatorId
       code: CardCode
       to: 'hand' | 'play'
+      drawFound?: boolean
       discount?: number
     }
   | { type: 'ShuffleDeck'; investigator: InvestigatorId }
