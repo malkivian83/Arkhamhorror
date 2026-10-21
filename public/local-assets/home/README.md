@@ -1,6 +1,6 @@
 # Identidad de Arkham Online
 
-Recursos originales generados con image_gen el 19 de octubre de 2026 para la propuesta aprobada de la página de preparación. No proceden de FFG ni del proyecto de referencia. Se sirven desde el propio sitio en WebP, sin dependencias de imágenes externas.
+Recursos originales generados con image_gen el 19 de octubre de 2026 (el medallón de bendiciones, el 21) para la propuesta aprobada de la página de preparación. No proceden de FFG ni del proyecto de referencia. Se sirven desde el propio sitio en WebP, sin dependencias de imágenes externas.
 
 | Archivo                   | Uso                                                       |
 | ------------------------- | --------------------------------------------------------- |
@@ -10,6 +10,7 @@ Recursos originales generados con image_gen el 19 de octubre de 2026 para la pro
 | `icon-campaign.webp`      | Expediente con sello para la campaña                      |
 | `icon-investigators.webp` | Lupa con ojo para el equipo                               |
 | `icon-decks.webp`         | Cartas para los mazos del equipo                          |
+| `icon-boons.webp`         | Medallón con estrella para las bendiciones                |
 
 El logotipo tiene texto alternativo. Las ilustraciones e iconos que acompañan a etiquetas visibles son decorativos y llevan `alt=""`. Los iconos conservan el canal alfa; los textos, la selección y las acciones no dependen de ellos ni únicamente del color.
 
@@ -17,4 +18,4 @@ El logotipo tiene texto alternativo. Las ilustraciones e iconos que acompañan a
 
 Paleta carbón, cobre y marfil, con títulos de imprenta y detalles de grabado de los años veinte. La cabecera muestra R'lyeh y una silueta de Cthulhu. El archivo abandonado y las imágenes pequeñas mantienen la misma ambientación. La composición deja espacio oscuro para los textos y evita incorporar texto dentro de las ilustraciones.
 
-Los originales PNG y los prompts de exploración se conservaron fuera de los fuentes publicados. El repositorio incluye únicamente las seis versiones optimizadas que consume la web.
+Los originales PNG y los prompts de exploración se conservaron fuera de los fuentes publicados. El repositorio incluye únicamente las siete versiones optimizadas que consume la web.
