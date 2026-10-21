@@ -289,6 +289,8 @@ export interface PlayerCardBehavior {
   commitWithoutIcons?: boolean
   /** Damage added by a committed card to the attack itself, before defeat checks. */
   committedAttackDamage?: (state: GameState, test: SkillTest, by: InvestigatorId) => number
+  /** Clues added to the successful investigation result, before discovery triggers. */
+  committedInvestigationClues?: (state: GameState, test: SkillTest, by: InvestigatorId) => number
   /** Additional icons on this card, evaluated both in hand and while committed. */
   additionalIcons?: (
     state: GameState,

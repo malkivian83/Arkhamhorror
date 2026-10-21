@@ -1755,7 +1755,10 @@
       "02299": "En un ataque exitoso, añade 1 daño al propio ataque, o 2 si el margen de éxito es al menos 2.",
       "06235": "Gana iconos de voluntad y comodín al ayudar a otro investigador. Si tiene éxito, ganas 2 recursos y el otro investigador también gana 2 si le ayudaste.",
       "06111": "Solo se compromete a un ataque o evasión contra un enemigo. Este gana Alerta y Represalia durante la prueba. Tras terminar, robas 1 carta.",
-      "09112": "Se compromete sin iconos coincidentes; máximo una copia. Mientras esté comprometida, reduce la dificultad en 2, hasta un mínimo de 0."
+      "09112": "Se compromete sin iconos coincidentes; máximo una copia. Mientras esté comprometida, reduce la dificultad en 2, hasta un mínimo de 0.",
+      "06166": "Durante un ataque básico, añade dos iconos de combate. Con éxito por al menos dos, ese ataque inflige dos daños adicionales. Máximo una comprometida por prueba.",
+      "06204": "Durante una investigación básica, añade dos iconos de intelecto. Con éxito por al menos dos, descubre una pista adicional. Máximo una comprometida por prueba.",
+      "06246": "Durante una evasión básica, añade dos iconos de agilidad. Con éxito por al menos dos, permite evitar automáticamente a otro enemigo en tu lugar. Máximo una comprometida por prueba."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -1976,7 +1979,10 @@
       "02299": "Golpe brutal",
       "06235": "Liderazgo",
       "06111": "Osadía",
-      "09112": "Audacia"
+      "09112": "Audacia",
+      "06166": "Fuerza bruta",
+      "06204": "Visión aguda",
+      "06246": "Retirada rauda"
     }
   },
   "account": {

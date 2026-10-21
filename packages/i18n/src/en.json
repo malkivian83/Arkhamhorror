@@ -1755,7 +1755,10 @@
       "02299": "On a successful attack, adds 1 damage to that attack, or 2 if the success margin is at least 2.",
       "06235": "Gains willpower and wild icons when helping another investigator. On success, you gain 2 resources, and the other investigator also gains 2 if you helped.",
       "06111": "Commit only to an attack or evasion against an enemy. It gains alert and retaliate for this test. After the test ends, you draw 1 card.",
-      "09112": "May commit without matching icons; at most one copy. While committed, reduces test difficulty by 2, to a minimum of 0."
+      "09112": "May commit without matching icons; at most one copy. While committed, reduces test difficulty by 2, to a minimum of 0.",
+      "06166": "During a basic fight, adds two combat icons. Success by at least two adds two damage to that attack. Maximum one committed per test.",
+      "06204": "During a basic investigation, adds two intellect icons. Success by at least two discovers one extra clue. Maximum one committed per test.",
+      "06246": "During a basic evasion, adds two agility icons. Success by at least two allows automatically evading another enemy at your location. Maximum one committed per test."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -1976,7 +1979,10 @@
       "02299": "Vicious Blow",
       "06235": "Leadership",
       "06111": "Daring",
-      "09112": "Gumption"
+      "09112": "Gumption",
+      "06166": "Brute Force",
+      "06204": "Sharp Vision",
+      "06246": "Expeditious Retreat"
     }
   },
   "account": {
