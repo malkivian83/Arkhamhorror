@@ -1,0 +1,96 @@
+[
+  {
+    "code": "03190",
+    "name": ".45 Automatic",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Firearm"],
+    "cost": 4,
+    "xp": 2,
+    "icons": { "combat": 1, "agility": 1 },
+    "slots": ["hand"],
+    "uses": { "count": 4, "type": "ammo" }
+  },
+  {
+    "code": "60171",
+    "name": "M1911",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Firearm"],
+    "cost": 3,
+    "xp": 2,
+    "icons": { "combat": 1, "agility": 1 },
+    "slots": ["hand"],
+    "uses": { "count": 4, "type": "ammo" }
+  },
+  {
+    "code": "02226",
+    "name": "Springfield M1903",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Firearm"],
+    "cost": 4,
+    "xp": 4,
+    "icons": { "combat": 1, "agility": 1 },
+    "slots": ["hand", "hand"],
+    "uses": { "count": 3, "type": "ammo" }
+  },
+  {
+    "code": "04204",
+    "name": "Ornate Bow",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Relic", "Weapon", "Ranged"],
+    "cost": 4,
+    "xp": 3,
+    "icons": { "combat": 1, "agility": 1 },
+    "slots": ["hand", "hand"],
+    "uses": { "count": 1, "type": "ammo" }
+  },
+  {
+    "code": "04229",
+    "name": "M1918 BAR",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Firearm"],
+    "cost": 5,
+    "xp": 4,
+    "icons": { "combat": 2 },
+    "slots": ["hand", "hand"],
+    "uses": { "count": 8, "type": "ammo" }
+  },
+  {
+    "code": "60505",
+    "name": ".18 Derringer",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Weapon", "Firearm", "Illicit"],
+    "cost": 3,
+    "xp": 0,
+    "icons": { "combat": 1 },
+    "slots": ["hand"],
+    "uses": { "count": 2, "type": "ammo" }
+  },
+  {
+    "code": "03110",
+    "name": "Knuckleduster",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Weapon", "Melee", "Illicit"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "combat": 1 },
+    "slots": ["hand"]
+  },
+  {
+    "code": "06280",
+    "name": "Garrote Wire",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Weapon"],
+    "cost": 2,
+    "xp": 2,
+    "icons": { "combat": 1 },
+    "slots": ["accessory"]
+  }
+]

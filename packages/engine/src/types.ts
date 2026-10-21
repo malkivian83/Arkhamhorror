@@ -433,6 +433,10 @@ export type SkillTestKind =
   | {
       type: 'fight'
       enemy: EnemyId
+      /** Keywords granted or ignored only for this attack. */
+      ignoreRetaliate?: boolean
+      forceRetaliate?: boolean
+      onFail?: Message[]
       extraDamage?: number
       /** Si tiene éxito no inflige daño, solo `onSuccess` (Tomo de rituales, v. IV). */
       noDamage?: boolean
