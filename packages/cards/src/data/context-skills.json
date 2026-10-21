@@ -1,0 +1,94 @@
+[
+  {
+    "code": "60168",
+    "name": "Armed to the Teeth",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "willpower": 1, "combat": 1, "agility": 1 },
+    "slots": []
+  },
+  {
+    "code": "60369",
+    "name": "Easy Street",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Favor"],
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "03272",
+    "name": "\"Not without a fight!\"",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "willpower": 1, "combat": 1, "agility": 1 },
+    "slots": []
+  },
+  {
+    "code": "11057",
+    "name": "Crack Shot",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "wild": 3 },
+    "slots": []
+  },
+  {
+    "code": "60467",
+    "name": "Blood Curse",
+    "type": "skill",
+    "class": "mystic",
+    "traits": ["Spell", "Cursed"],
+    "xp": 0,
+    "icons": { "wild": 4 },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "60468",
+    "name": "Cosmic Guidance",
+    "type": "skill",
+    "class": "mystic",
+    "traits": ["Augury"],
+    "xp": 0,
+    "icons": { "willpower": 1 },
+    "slots": []
+  },
+  {
+    "code": "60370",
+    "name": "Out the Door",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Gambit"],
+    "xp": 0,
+    "icons": { "agility": 1, "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "60373",
+    "name": "Out the Door",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Gambit"],
+    "xp": 1,
+    "icons": { "agility": 1, "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "60568",
+    "name": "Do-or-Die",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Fortune"],
+    "xp": 0,
+    "icons": { "willpower": 1, "intellect": 1, "agility": 1 },
+    "slots": []
+  }
+]

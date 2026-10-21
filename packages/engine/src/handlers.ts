@@ -1910,6 +1910,7 @@ export function handle(state: GameState, message: Message): GameState {
               {
                 code: message.code,
                 by: investigator.id,
+                ...(message.shuffleAfter ? { fromDiscard: true } : {}),
                 ...(message.toDeckBottom ? { toDeckBottom: true } : {}),
               },
             ],
@@ -3910,24 +3911,16 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'CommitFromDiscard': {
       const test = state.skillTest
-      const investigator = getInvestigator(state, message.investigator)
-      const index = investigator.discard.lastIndexOf(message.code)
-      if (!test || index < 0 || !canCommit(state, test, message.code, investigator.id)) return state
       // Habitación 245: solo puede comprometerse la carta superior (y la comprometida antes no).
-      if (test.commitRule) return state
-      return {
-        ...updateInvestigator(state, investigator.id, (i) => ({
-          ...i,
-          discard: i.discard.filter((_, n) => n !== index),
-        })),
-        skillTest: {
-          ...test,
-          committed: [
-            ...test.committed,
-            { code: message.code, by: investigator.id, fromDiscard: true },
-          ],
-        },
-      }
+      if (!test || test.commitRule) return state
+      // Share eligibility, onCommit effects and afterCommit triggers with hand commitments.
+      return push(state, {
+        type: 'CommitCard',
+        investigator: message.investigator,
+        code: message.code,
+        from: 'discard',
+        shuffleAfter: true,
+      })
     }
 
     case 'AfterRevealWindow': {
@@ -4588,7 +4581,7 @@ function canCommit(state: GameState, test: SkillTest, code: string, by: string):
 }
 
 /** Full eligibility for an effect committing from a zone other than the hand. */
-function canCommitFrom(state: GameState, id: string, code: string): boolean {
+export function canCommitFrom(state: GameState, id: string, code: string): boolean {
   const test = state.skillTest
   const investigator = getInvestigator(state, id)
   if (!test || investigator.eliminated || !canCommit(state, test, code, id)) return false
