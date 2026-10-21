@@ -5,7 +5,6 @@
  */
 import {
   enemiesAt,
-  effectiveVitals,
   engagedEnemies,
   getInvestigator,
   getLocation,
@@ -563,17 +562,6 @@ registerPlayerCard({
             { type: 'TakeDamage', investigator: self.owner, damage: 1, horror: 0, direct: true },
             { type: 'DiscardAsset', asset: self.id },
           ],
-})
-
-// Meat Cleaver: Luchar +1 [combat] (+2 con 3 o menos de cordura restante).
-registerPlayerCard({
-  code: code(77),
-  abilities: fightAbility(77, {
-    modifier: (state, investigator) => {
-      const i = getInvestigator(state, investigator)
-      return effectiveVitals(state, i).sanity - i.horror <= 3 ? 2 : 1
-    },
-  }),
 })
 
 // Broken Bottle: Luchar +1 [combat]. Si aciertas, puedes descartarla para +1 daño.

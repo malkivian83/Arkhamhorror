@@ -42,12 +42,14 @@ import './midwinter-gala/definition'
 import './core-2026/cards'
 import './core-2026/investigators'
 import './core-2026/upgrades'
+import './core-2026/meat-cleaver'
 import './core-2026/weaknesses'
 import './dunwich-pilot'
 import './dunwich-followup'
 import './dunwich-support'
 import './reprints-wave-1'
 import './reprints-wave-2'
+import './classic-foundations'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 

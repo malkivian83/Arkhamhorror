@@ -124,16 +124,19 @@ import './core-2026/investigators'
 import './core-2026/cards'
 import './core-2026/weaknesses'
 import './core-2026/upgrades'
+import './core-2026/meat-cleaver'
 import './dunwich-pilot'
 import { RENDERED_PLAYER_CARD_CODES as pilotCodes } from './dunwich-pilot'
 import { FOLLOWUP_RENDERED_CODES } from './dunwich-followup'
 import { SUPPORT_RENDERED_CODES } from './dunwich-support'
 import { REPRINT_RENDERED_CODES } from './reprints-wave-1'
 import { SECOND_REPRINT_RENDERED_CODES } from './reprints-wave-2'
+import { CLASSIC_RENDERED_CODES } from './classic-foundations'
 export const RENDERED_PLAYER_CARD_CODES = [
   ...pilotCodes,
   ...FOLLOWUP_RENDERED_CODES,
   ...SUPPORT_RENDERED_CODES,
   ...REPRINT_RENDERED_CODES,
   ...SECOND_REPRINT_RENDERED_CODES,
+  ...CLASSIC_RENDERED_CODES,
 ]
