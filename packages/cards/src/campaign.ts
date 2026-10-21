@@ -57,6 +57,7 @@ import './combat-tools'
 import './conditional-commit'
 import './variable-icons'
 import './context-skills'
+import './result-skills'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
