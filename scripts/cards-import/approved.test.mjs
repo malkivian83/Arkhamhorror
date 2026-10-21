@@ -15,6 +15,7 @@ describe('reviewed inventory conversion', () => {
     'classic-equipment',
     'reactive-support',
     'combat-tools',
+    'conditional-commit',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(

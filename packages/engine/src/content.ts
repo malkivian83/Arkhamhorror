@@ -283,6 +283,9 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Additional printed restriction, evaluated for the investigator committing this card. */
+  canCommit?: (state: GameState, test: SkillTest, by: InvestigatorId) => boolean
+
   /** Pure, serializable continuations for delayed decisions and effects. */
   effect?: (
     state: GameState,

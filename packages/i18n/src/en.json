@@ -1712,7 +1712,13 @@
       "04204": "Holds at most 1 ammo. Action and 1 ammo: attack using agility with +2 agility and +2 damage. Another action reloads one arrow.",
       "04229": "8 ammo. Action and 1–5 ammo: gain combat equal to ammo spent; standard attack damage equals that amount.",
       "03110": "Action: attack with +1 damage. The target has retaliate for this attack only.",
-      "06280": "During your turn, exhaust to attack with +2 combat and no action cost. The target must have exactly 1 remaining health."
+      "06280": "During your turn, exhaust to attack with +2 combat and no action cost. The target must have exactly 1 remaining health.",
+      "03116": "Commit only with 3 or less remaining sanity. Four matching icons; at most one copy per test.",
+      "03117": "Commit only with 3 or less remaining sanity. Four matching icons; at most one copy per test.",
+      "03118": "Commit only with 3 or less remaining sanity. Four matching icons; at most one copy per test.",
+      "03119": "Commit only with 3 or less remaining sanity. Four matching icons; at most one copy per test.",
+      "02227": "Three wild icons. Commit only while there is a clue at your location.",
+      "02192": "Three wild icons. Only your own test, with difficulty at least 2 above your base skill."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -1895,7 +1901,13 @@
       "04204": "Ornate Bow",
       "04229": "M1918 BAR",
       "03110": "Knuckleduster",
-      "06280": "Garrote Wire"
+      "06280": "Garrote Wire",
+      "03116": "Say Your Prayers",
+      "03117": "Desperate Search",
+      "03118": "Reckless Assault",
+      "03119": "Run For Your Life",
+      "02227": "Inquiring Mind",
+      "02192": "Rise to the Occasion"
     }
   },
   "account": {

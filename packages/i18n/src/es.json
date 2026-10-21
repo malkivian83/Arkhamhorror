@@ -1712,7 +1712,13 @@
       "04204": "Admite como máximo 1 munición. Acción y 1 munición: ataca usando agilidad con +2 de agilidad y +2 daños. Otra acción recarga una flecha.",
       "04229": "8 municiones. Acción y 1–5 municiones: obtén combate adicional igual a la munición gastada; el daño estándar equivale a esa cantidad.",
       "03110": "Acción: ataca con +1 daño. El objetivo obtiene Represalia solo durante ese ataque.",
-      "06280": "Durante tu turno, agota este apoyo para atacar con +2 de combate sin gastar acción. Al objetivo debe quedarle exactamente 1 de salud."
+      "06280": "Durante tu turno, agota este apoyo para atacar con +2 de combate sin gastar acción. Al objetivo debe quedarle exactamente 1 de salud.",
+      "03116": "Solo se compromete con 3 o menos de cordura restante. Cuatro iconos coincidentes; máximo una copia por prueba.",
+      "03117": "Solo se compromete con 3 o menos de cordura restante. Cuatro iconos coincidentes; máximo una copia por prueba.",
+      "03118": "Solo se compromete con 3 o menos de cordura restante. Cuatro iconos coincidentes; máximo una copia por prueba.",
+      "03119": "Solo se compromete con 3 o menos de cordura restante. Cuatro iconos coincidentes; máximo una copia por prueba.",
+      "02227": "Tres iconos comodín. Solo se compromete si hay una pista en tu localización.",
+      "02192": "Tres iconos comodín. Solo en tu propia prueba, con dificultad al menos 2 superior a tu habilidad básica."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -1895,7 +1901,13 @@
       "04204": "Arco ornamentado",
       "04229": "M1918 BAR",
       "03110": "Puño americano",
-      "06280": "Cable estrangulador"
+      "06280": "Cable estrangulador",
+      "03116": "Reza lo que sepas",
+      "03117": "Búsqueda desesperada",
+      "03118": "Asalto temerario",
+      "03119": "Huid corriendo",
+      "02227": "Mente inquisitiva",
+      "02192": "Estar a la altura"
     }
   },
   "account": {
