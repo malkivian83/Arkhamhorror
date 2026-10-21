@@ -7,6 +7,7 @@ const portable = new Set([
   'play',
   'canPlay',
   'afterCommittedTest',
+  'committedAttackDamage',
   'reactions',
   'handSize',
   'skillModifier',

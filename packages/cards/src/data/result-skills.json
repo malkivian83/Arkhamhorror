@@ -1,0 +1,63 @@
+[
+  {
+    "code": "03231",
+    "name": "Eureka!",
+    "type": "skill",
+    "class": "seeker",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "willpower": 1, "intellect": 1, "agility": 1 },
+    "slots": []
+  },
+  {
+    "code": "03228",
+    "name": "Inspiring Presence",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "willpower": 1, "intellect": 1, "combat": 1 },
+    "slots": []
+  },
+  {
+    "code": "11029",
+    "name": "Inspiring Presence",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Innate", "Developed"],
+    "xp": 2,
+    "icons": { "willpower": 1, "intellect": 1, "combat": 1, "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "04112",
+    "name": "Stunning Blow",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "combat": 1 },
+    "slots": []
+  },
+  {
+    "code": "04157",
+    "name": "Enraptured",
+    "type": "skill",
+    "class": "mystic",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "04201",
+    "name": "Take Heart",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "commitLimit": 1
+  }
+]

@@ -1701,6 +1701,19 @@ export function handle(state: GameState, message: Message): GameState {
       )
     }
 
+    case 'ReadyAsset': {
+      const asset = state.assets[message.asset]
+      if (asset)
+        return { ...state, assets: { ...state.assets, [asset.id]: { ...asset, exhausted: false } } }
+      const placed = state.placedAssets?.[message.asset]
+      return placed
+        ? {
+            ...state,
+            placedAssets: { ...state.placedAssets, [placed.id]: { ...placed, exhausted: false } },
+          }
+        : state
+    }
+
     case 'ExhaustAsset':
       if (!state.assets[message.asset]) return state
       return {
@@ -3997,7 +4010,21 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'HealAsset': {
       const asset = state.assets[message.asset]
-      if (!asset) return state
+      if (!asset) {
+        const placed = state.placedAssets?.[message.asset]
+        if (!placed) return state
+        return {
+          ...state,
+          placedAssets: {
+            ...state.placedAssets,
+            [placed.id]: {
+              ...placed,
+              damage: Math.max(0, placed.damage - message.damage),
+              horror: Math.max(0, placed.horror - message.horror),
+            },
+          },
+        }
+      }
       return {
         ...state,
         assets: {
@@ -4573,7 +4600,11 @@ function withinCommitTitleLimit(test: SkillTest, code: string): boolean {
 
 function canCommit(state: GameState, test: SkillTest, code: string, by: string): boolean {
   const def = playerCardDef(code)
-  if (!def || commitIcons(state, test, code, by) === 0) return false
+  if (
+    !def ||
+    (commitIcons(state, test, code, by) === 0 && !playerCardBehavior(code)?.commitWithoutIcons)
+  )
+    return false
   return (
     withinCommitTitleLimit(test, code) &&
     (playerCardBehavior(code)?.canCommit?.(state, test, by) ?? true)

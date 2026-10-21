@@ -717,6 +717,7 @@ export type Message =
   /** Cambia el velo de una localización hasta el final de la ronda. */
   | { type: 'ModifyShroud'; location: LocationId; amount: number }
   | { type: 'ExhaustAsset'; asset: AssetId }
+  | { type: 'ReadyAsset'; asset: AssetId }
   | { type: 'SpendUses'; asset: AssetId; amount: number }
   | {
       type: 'AssignDamage'

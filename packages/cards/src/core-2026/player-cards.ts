@@ -684,10 +684,7 @@ const drawOnSuccess =
 // Vicious Blow: si la prueba tiene éxito durante un ataque, +1 daño.
 registerPlayerCard({
   code: code(25),
-  afterCommittedTest: (_state, test, succeeded) =>
-    succeeded && test.kind.type === 'fight'
-      ? [{ type: 'DamageEnemy', enemy: test.kind.enemy, amount: 1, by: test.investigator }]
-      : [],
+  committedAttackDamage: () => 1,
 })
 
 // Deduction: si la prueba tiene éxito investigando, descubre 1 pista más.

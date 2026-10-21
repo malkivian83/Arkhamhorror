@@ -290,7 +290,11 @@
     "equipmentDamage": "Infligir 2 daños a {enemy}",
     "equipmentAttack": "Atacar a {enemy}",
     "equipmentInvestigator": "Elegir a {name}",
-    "reactiveRecover": "Devolver {card} a tu mano"
+    "reactiveRecover": "Devolver {card} a tu mano",
+    "resultUses": "Añadir 1 carga o secreto a {card}",
+    "resultAllyDamage": "Preparar {card} y curarle 1 daño",
+    "resultAllyHorror": "Preparar {card} y curarle 1 horror",
+    "resultAllyBoth": "Preparar {card} y curarle 1 daño y 1 horror"
   },
   "phase": {
     "setup": "Preparación",
@@ -1517,6 +1521,7 @@
     "summary": {
       "10051": "Añade un comodín si controlas un apoyo Ciencia o Herramienta; dos con al menos 3 de esos apoyos.",
       "10130": "Añade tres comodines durante una prueba de negociar.",
+      "11029": "Si tiene éxito, prepara un Aliado en tu localización y cúrale tanto 1 daño como 1 horror.",
       "11057": "Solo se compromete a una prueba de un apoyo Arma de fuego o A distancia que controlas.",
       "12001": "Tras un ataque en tu Lugar, combate una vez por ronda. Signo arcano: un daño a un enemigo de allí.",
       "12004": "Investigar con éxito permite robar una carta por ronda. El signo arcano con éxito da una carta y un recurso.",
@@ -1737,7 +1742,12 @@
       "05034": "Añade un comodín con al menos 3 de perdición en juego; dos con al menos 6.",
       "05038": "Añade dos iconos de combate y agilidad si controlas como máximo 1 apoyo Objeto, o uno de cada tipo con 2 Objetos.",
       "02260": "Al comprometerla a la prueba de otro investigador, añade un icono de voluntad y un comodín.",
-      "03272": "Solo se compromete si estás enfrentado. Añade iconos de voluntad, combate y agilidad por cada enemigo enfrentado contigo."
+      "03272": "Solo se compromete si estás enfrentado. Añade iconos de voluntad, combate y agilidad por cada enemigo enfrentado contigo.",
+      "03231": "Si tiene éxito, el investigador que realiza la prueba busca entre sus 3 primeras cartas, roba una válida y baraja.",
+      "03228": "Si tiene éxito, prepara un Aliado en tu localización y cúrale 1 daño o 1 horror.",
+      "04112": "Tras un ataque exitoso, evita automáticamente al enemigo atacado si sigue en juego.",
+      "04157": "Tras una investigación exitosa, añade 1 carga o secreto a un apoyo que controlas.",
+      "04201": "Se puede comprometer sin iconos coincidentes; máximo una copia por prueba. Si falla, el investigador que la realiza roba 2 cartas y gana 2 recursos."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -1752,6 +1762,7 @@
     "names": {
       "10051": "Bien financiado",
       "10130": "Elegante",
+      "11029": "Presencia inspiradora",
       "11057": "Puntería certera",
       "50001": "Entrenamiento físico",
       "50003": "Hiperconsciencia",
@@ -1945,7 +1956,12 @@
       "05034": "Profetizar",
       "05038": "Buena forma física",
       "02260": "Liderazgo",
-      "03272": "\"¡No sin pelear!\""
+      "03272": "\"¡No sin pelear!\"",
+      "03231": "¡Eureka!",
+      "03228": "Presencia inspiradora",
+      "04112": "Golpe aturdidor",
+      "04157": "Embelesado",
+      "04201": "Encontrar consuelo"
     }
   },
   "account": {

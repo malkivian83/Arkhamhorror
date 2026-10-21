@@ -290,7 +290,11 @@
     "equipmentDamage": "Deal 2 damage to {enemy}",
     "equipmentAttack": "Attack {enemy}",
     "equipmentInvestigator": "Choose {name}",
-    "reactiveRecover": "Return {card} to your hand"
+    "reactiveRecover": "Return {card} to your hand",
+    "resultUses": "Add 1 charge or secret to {card}",
+    "resultAllyDamage": "Ready {card} and heal 1 damage",
+    "resultAllyHorror": "Ready {card} and heal 1 horror",
+    "resultAllyBoth": "Ready {card} and heal 1 damage and 1 horror"
   },
   "phase": {
     "setup": "Setup",
@@ -1517,6 +1521,7 @@
     "summary": {
       "10051": "One extra wild icon while controlling a Science or Tool asset; two extra with at least 3 such assets.",
       "10130": "Adds three wild icons during a parley test.",
+      "11029": "On success, ready an Ally at your location and heal both 1 damage and 1 horror from it.",
       "11057": "Commit only to a test from a Firearm or Ranged asset you control.",
       "12001": "After an enemy attacks at your location, fight once per round. Elder sign: deal one damage locally.",
       "12004": "A successful investigation can draw one card per round. Elder sign success grants a card and a resource.",
@@ -1737,7 +1742,12 @@
       "05034": "One extra wild icon with at least 3 doom in play; two extra with at least 6.",
       "05038": "Two extra combat and agility icons while controlling at most 1 Item asset, or one extra of each with 2 Items.",
       "02260": "When committed to another investigator’s test, adds a willpower and a wild icon.",
-      "03272": "Commit only while engaged. Adds willpower, combat and agility icons for each enemy engaged with you."
+      "03272": "Commit only while engaged. Adds willpower, combat and agility icons for each enemy engaged with you.",
+      "03231": "On success, the investigator performing the test searches their top 3 cards, draws one eligible card and shuffles.",
+      "03228": "On success, ready an Ally at your location and heal either 1 damage or 1 horror from it.",
+      "04112": "On a successful attack, automatically evade the attacked enemy if it remains in play.",
+      "04157": "On a successful investigation, add 1 charge or secret to an asset you control.",
+      "04201": "May commit without matching icons; at most one copy per test. On failure, the investigator performing the test draws 2 cards and gains 2 resources."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -1752,6 +1762,7 @@
     "names": {
       "10051": "Well-Funded",
       "10130": "Well-Dressed",
+      "11029": "Inspiring Presence",
       "11057": "Crack Shot",
       "50001": "Physical Training",
       "50003": "Hyperawareness",
@@ -1945,7 +1956,12 @@
       "05034": "Prophesy",
       "05038": "Able Bodied",
       "02260": "Leadership",
-      "03272": "\"Not without a fight!\""
+      "03272": "\"Not without a fight!\"",
+      "03231": "Eureka!",
+      "03228": "Inspiring Presence",
+      "04112": "Stunning Blow",
+      "04157": "Enraptured",
+      "04201": "Take Heart"
     }
   },
   "account": {

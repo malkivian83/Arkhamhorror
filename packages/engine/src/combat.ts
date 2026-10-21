@@ -1,4 +1,5 @@
 import { getInvestigator } from './state'
+import { playerCardBehavior } from './content'
 import type { GameState, SkillTest } from './types'
 
 /** RR: Fight. Conditional damage is evaluated at resolution. */
@@ -10,6 +11,13 @@ export function attackDamage(state: GameState, test: SkillTest): number {
   return (
     1 +
     (kind.extraDamage ?? 0) +
+    (test.succeeded
+      ? test.committed.reduce(
+          (sum, c) =>
+            sum + (playerCardBehavior(c.code)?.committedAttackDamage?.(state, test, c.by) ?? 0),
+          0,
+        )
+      : 0) +
     (test.succeeded && kind.damageIfSuccessBy && margin >= kind.damageIfSuccessBy.atLeast
       ? kind.damageIfSuccessBy.amount
       : 0) +

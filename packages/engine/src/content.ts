@@ -283,6 +283,10 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Printed permission to commit without matching icons (e.g. Take Heart). */
+  commitWithoutIcons?: boolean
+  /** Damage added by a committed card to the attack itself, before defeat checks. */
+  committedAttackDamage?: (state: GameState, test: SkillTest, by: InvestigatorId) => number
   /** Additional icons on this card, evaluated both in hand and while committed. */
   additionalIcons?: (
     state: GameState,
