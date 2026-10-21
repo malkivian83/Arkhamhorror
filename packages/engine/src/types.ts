@@ -339,7 +339,10 @@ export interface PlayerCardDef {
   name: string
   /** Investigadores: tamaño del mazo, opciones de construcción y cartas exclusivas. */
   deckSize?: number
+  skills?: Record<SkillType, number>
+  elderSignModifier?: number
   deckOptions?: DeckOption[]
+  offClassLevelZeroLimit?: number
   signatures?: CardCode[]
   type: 'investigator' | 'asset' | 'event' | 'skill' | 'treachery' | 'enemy'
   class: string
@@ -486,6 +489,8 @@ export interface TokenEffect {
 }
 
 export interface SkillTest {
+  /** Replacement base value before modifiers and committed icons. */
+  baseSkill?: number
   /** True only for the standard fight, evade or investigate action. */
   basicAction?: boolean
   /** Preserve the unmodified difficulty so factors precede committed additive modifiers. */
@@ -617,6 +622,7 @@ export type Message =
   | { type: 'ChooseNextTurn' }
   | { type: 'BeginTurn'; investigator: InvestigatorId }
   | { type: 'PlayerWindow'; investigator: InvestigatorId }
+  | { type: 'InvestigatorFastWindow' }
   | { type: 'EndTurn'; investigator: InvestigatorId }
   | { type: 'TakeAction'; investigator: InvestigatorId; action: Action }
   | { type: 'PerformAction'; investigator: InvestigatorId; action: Action; entryPaid?: boolean }
@@ -651,6 +657,7 @@ export type Message =
   | { type: 'DiscoverClues'; investigator: InvestigatorId; amount: number; location?: LocationId }
   | {
       type: 'BeginSkillTest'
+      baseSkill?: number
       basicAction?: boolean
       investigator: InvestigatorId
       skill: SkillType

@@ -18,6 +18,15 @@ import type {
 export const turnStartedAt = (state: GameState): number =>
   state.log.findLastIndex((entry) => entry.key === 'log.step.turnBegins')
 
+/** RR: Cannot overrides all ready effects, including upkeep. */
+export const assetsCannotReady = (state: GameState, owner: InvestigatorId): boolean =>
+  Object.values(state.treacheries).some(
+    (t) =>
+      t.placement.type === 'threatArea' &&
+      t.placement.investigator === owner &&
+      treacheryBehavior(t.code)?.blocksAssetReady,
+  )
+
 /** Inserta mensajes delante de la cola (se procesan antes que lo ya encolado). */
 export function push(state: GameState, ...messages: Message[]): GameState {
   return { ...state, queue: [...messages, ...state.queue] }

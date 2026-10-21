@@ -42,6 +42,7 @@ export {
 } from './content'
 export { applyInput, createGame, dispatch, type EngineObserver } from './engine'
 export { attackDamage } from './combat'
+export { assetsCannotReady } from './state'
 export { canAffordEntry, canEnter, leavingBlocked, parleyCosts } from './actions'
 export { BOONS } from './types'
 export { EngineError } from './errors'

@@ -30,9 +30,9 @@ const byCode = (code: CardCode): PlayerCardDef | undefined =>
 
 /** Investigadores con reglas de construcción (los que se pueden elegir). */
 export const investigatorCards = () =>
-  playerCards.filter((c) => c.type === 'investigator' && c.deckOptions)
+  allPlayerCardDefs().filter((c) => c.type === 'investigator' && c.deckOptions)
 
-const SIGNATURES = new Set(playerCards.flatMap((c) => c.signatures ?? []))
+const SIGNATURES = new Set(allPlayerCardDefs().flatMap((c) => c.signatures ?? []))
 const isWeakness = (code: CardCode) => !!byCode(code)?.weakness
 const isBasicWeakness = (code: CardCode) => byCode(code)?.weakness === 'basicweakness'
 
@@ -69,7 +69,8 @@ function byClass(investigator: CardCode, card: PlayerCardDef): boolean {
     card.type !== 'investigator' &&
     isStandard(card.code) &&
     !card.reward &&
-    options.some((o) => o.classes.includes(card.class) && (card.xp ?? 0) <= o.maxLevel)
+    (options.some((o) => o.classes.includes(card.class) && (card.xp ?? 0) <= o.maxLevel) ||
+      (!!byCode(investigator)?.offClassLevelZeroLimit && (card.xp ?? 0) === 0))
   )
 }
 
@@ -106,6 +107,7 @@ export type DeckProblem =
   | { key: 'deck.problem.unknownInvestigator' }
   | { key: 'deck.problem.size'; params: { n: number; size: number } }
   | { key: 'deck.problem.notAllowed'; params: { card: string } }
+  | { key: 'deck.problem.offClassLimit'; params: { n: number } }
   | { key: 'deck.problem.tooManyCopies'; params: { card: string; n: number } }
   | { key: 'deck.problem.missingSignature'; params: { card: string } }
   | { key: 'deck.problem.otherSignature'; params: { card: string } }
@@ -147,6 +149,22 @@ export function validateDeck(
   const own = new Set(investigator.signatures ?? [])
   // Opciones adicionales (Collector): cuántas cartas fuera de clase puede llevar.
   let extraSlots = extraOptions(deck.cards).reduce((n, o) => n + o.count, 0)
+  const offClass = investigator.offClassLevelZeroLimit
+  if (offClass !== undefined) {
+    const count = deck.cards.filter((code) => {
+      const c = byCode(code)
+      return (
+        c &&
+        isStandard(code) &&
+        !c.reward &&
+        !investigator.deckOptions!.some(
+          (o) => o.classes.includes(c.class) && (c.xp ?? 0) <= o.maxLevel,
+        )
+      )
+    }).length
+    if (count > offClass)
+      problems.push({ key: 'deck.problem.offClassLimit', params: { n: offClass } })
+  }
   const extraFor = (card: PlayerCardDef) => {
     const options = extraOptions(deck.cards)
     const copies = deck.cards.filter((c) => c === card.code).length
@@ -193,6 +211,13 @@ export function validateDeck(
   for (const signature of own) {
     if (!deck.cards.includes(signature)) {
       problems.push({ key: 'deck.problem.missingSignature', params: { card: name(signature) } })
+    } else {
+      const copies = deck.cards.filter((c) => c === signature).length
+      if (copies > (byCode(signature)?.deckLimit ?? 1))
+        problems.push({
+          key: 'deck.problem.tooManyCopies',
+          params: { card: name(signature), n: copies },
+        })
     }
   }
 
@@ -230,7 +255,7 @@ export function starterDeckList(key: string, id: string, name: string): DeckList
   return {
     id,
     name,
-    investigator: `12${String(list.investigator).padStart(3, '0')}`,
+    investigator: list.investigatorCode ?? `12${String(list.investigator).padStart(3, '0')}`,
     cards: starterDeck(key),
   }
 }

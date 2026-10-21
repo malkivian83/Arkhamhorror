@@ -12,6 +12,7 @@ import {
   shroudOf,
   registerPlayerCard,
   registerPlayerCards,
+  playerCardDef,
   type AbilityOption,
   type Asset,
   type GameState,
@@ -23,6 +24,7 @@ import {
   type SkillType,
 } from '@lcg/engine'
 import data from '../data/core-2026.json'
+import pete from '../data/ashcan-pete.json'
 
 /**
  * Reverso de cada investigador (datos públicos de ArkhamDB): tamaño del mazo,
@@ -49,7 +51,7 @@ export const playerCards: PlayerCardDef[] = (data as PlayerCardDef[]).map((card)
     ? { ...card, ...rules, signatures: [boxCode(position + 1), boxCode(position + 2)] }
     : card
 })
-registerPlayerCards(playerCards)
+registerPlayerCards([...playerCards, ...(pete as PlayerCardDef[])])
 
 /** Código de carta a partir del número de colección de la caja (p. ej. 20 → "12020"). */
 export const code = (position: number) => `12${String(position).padStart(3, '0')}`
@@ -66,11 +68,41 @@ export const def = (position: number): PlayerCardDef => {
 
 type DeckList = {
   investigator: number
+  investigatorCode?: string
+  cardCodes?: string[]
   cards: [position: number, copies?: number][]
   weaknesses: number[]
 }
 
 export const STARTER_DECKS: Record<string, DeckList> = {
+  pete: {
+    investigator: 5,
+    investigatorCode: '02005',
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      '02014',
+      '02015',
+      '12102',
+      ...[
+        '01072',
+        '03114',
+        '01075',
+        '02032',
+        '02033',
+        '03039',
+        '04112',
+        '04201',
+        '02155',
+        '01087',
+        '12089',
+        '12090',
+        '12091',
+        '12092',
+        '12094',
+      ].flatMap((c) => [c, c]),
+    ],
+  },
   daniela: {
     investigator: 1,
     cards: [
@@ -237,13 +269,14 @@ export const STARTER_DECKS: Record<string, DeckList> = {
 export function starterInvestigator(key: keyof typeof STARTER_DECKS): InvestigatorSetup {
   const list = STARTER_DECKS[key]
   if (!list) throw new Error(`Mazo desconocido: ${key}`)
-  return investigatorSetup(code(list.investigator), starterDeck(key))
+  return investigatorSetup(list.investigatorCode ?? code(list.investigator), starterDeck(key))
 }
 
 /** Lista de cartas del mazo inicial (con sus debilidades). */
 export function starterDeck(key: keyof typeof STARTER_DECKS): CardCode[] {
   const list = STARTER_DECKS[key]
   if (!list) throw new Error(`Mazo desconocido: ${key}`)
+  if (list.cardCodes) return [...list.cardCodes]
   return [
     ...list.cards.flatMap(([position, copies = 1]) =>
       Array.from({ length: copies }, () => code(position)),
@@ -254,7 +287,7 @@ export function starterDeck(key: keyof typeof STARTER_DECKS): CardCode[] {
 
 /** Investigador listo para empezar un escenario con este mazo. */
 export function investigatorSetup(investigatorCode: CardCode, deck: CardCode[]): InvestigatorSetup {
-  const investigator = playerCards.find((c) => c.code === investigatorCode) as
+  const investigator = playerCardDef(investigatorCode) as
     (PlayerCardDef & { skills: Record<SkillType, number>; elderSignModifier?: number }) | undefined
   if (!investigator) throw new Error(`Investigador desconocido: ${investigatorCode}`)
   return {

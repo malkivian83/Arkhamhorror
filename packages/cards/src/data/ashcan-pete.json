@@ -1,0 +1,51 @@
+[
+  {
+    "code": "02005",
+    "name": "\"Ashcan\" Pete",
+    "type": "investigator",
+    "class": "survivor",
+    "traits": ["Drifter"],
+    "deckLimit": 1,
+    "health": 6,
+    "sanity": 5,
+    "unique": true,
+    "skills": {
+      "willpower": 4,
+      "intellect": 2,
+      "combat": 2,
+      "agility": 3
+    },
+    "elderSignModifier": 2,
+    "deckSize": 30,
+    "deckOptions": [
+      {
+        "classes": ["survivor", "neutral"],
+        "maxLevel": 5
+      }
+    ],
+    "offClassLevelZeroLimit": 5,
+    "signatures": ["02014", "02015"]
+  },
+  {
+    "code": "02014",
+    "name": "Duke",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Ally", "Creature"],
+    "deckLimit": 1,
+    "health": 2,
+    "sanity": 3,
+    "cost": 2,
+    "unique": true,
+    "slots": []
+  },
+  {
+    "code": "02015",
+    "name": "Wracked by Nightmares",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Madness"],
+    "deckLimit": 1,
+    "weakness": "weakness"
+  }
+]

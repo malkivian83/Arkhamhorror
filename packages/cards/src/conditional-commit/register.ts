@@ -14,7 +14,10 @@ export function registerConditionalCommit(code: string): void {
         return (
           investigator.location !== null && (s.locations[investigator.location]?.clues ?? 0) > 0
         )
-      return by === test.investigator && test.difficulty >= investigator.skills[test.skill] + 2
+      return (
+        by === test.investigator &&
+        test.difficulty >= (test.baseSkill ?? investigator.skills[test.skill]) + 2
+      )
     },
   })
 }
