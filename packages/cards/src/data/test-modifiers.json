@@ -1,0 +1,53 @@
+[
+  {
+    "code": "02299",
+    "name": "Vicious Blow",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Practiced", "Expert"],
+    "xp": 2,
+    "icons": { "combat": 2 },
+    "slots": []
+  },
+  {
+    "code": "06235",
+    "name": "Leadership",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Practiced"],
+    "xp": 2,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "60167",
+    "name": "Adapt and Overcome",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "combat": 1, "agility": 1, "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "06111",
+    "name": "Daring",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "wild": 3 },
+    "slots": []
+  },
+  {
+    "code": "09112",
+    "name": "Gumption",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate"],
+    "xp": 1,
+    "icons": {},
+    "slots": [],
+    "commitLimit": 1
+  }
+]

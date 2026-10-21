@@ -58,6 +58,7 @@ import './conditional-commit'
 import './variable-icons'
 import './context-skills'
 import './result-skills'
+import './test-modifiers'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 

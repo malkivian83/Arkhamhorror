@@ -1916,7 +1916,7 @@ export function handle(state: GameState, message: Message): GameState {
             ...i,
             [zone]: i[zone].filter((_, n) => n !== index),
           })),
-          skillTest: {
+          skillTest: withCommittedDifficulty({
             ...test,
             committed: [
               ...test.committed,
@@ -1927,7 +1927,7 @@ export function handle(state: GameState, message: Message): GameState {
                 ...(message.toDeckBottom ? { toDeckBottom: true } : {}),
               },
             ],
-          },
+          }),
         },
         ...(playerCardBehavior(message.code)?.onCommit?.(state, investigator.id) ?? []),
         {
@@ -2416,9 +2416,26 @@ export function handle(state: GameState, message: Message): GameState {
       if (!test) return state
       return {
         ...state,
-        skillTest: {
+        skillTest: withCommittedDifficulty({
           ...test,
-          difficulty: test.difficulty * (message.difficultyFactor ?? 1),
+          difficultyFactor: (test.difficultyFactor ?? 1) * (message.difficultyFactor ?? 1),
+          ...(message.ignoredEnemyKeywords
+            ? {
+                ignoredEnemyKeywords: [
+                  ...new Set([
+                    ...(test.ignoredEnemyKeywords ?? []),
+                    ...message.ignoredEnemyKeywords,
+                  ]),
+                ],
+              }
+            : {}),
+          ...(message.addedEnemyKeywords
+            ? {
+                addedEnemyKeywords: [
+                  ...new Set([...(test.addedEnemyKeywords ?? []), ...message.addedEnemyKeywords]),
+                ],
+              }
+            : {}),
           ...(message.resultRepetitions ? { resultRepetitions: message.resultRepetitions } : {}),
           ...(message.use
             ? {
@@ -2440,7 +2457,7 @@ export function handle(state: GameState, message: Message): GameState {
                 },
               }
             : {}),
-        },
+        }),
       }
     }
 
@@ -2740,7 +2757,10 @@ export function handle(state: GameState, message: Message): GameState {
       const back = test.committed.filter((c) => c.code !== message.except && !c.fromDiscard)
       let next: GameState = {
         ...state,
-        skillTest: { ...test, committed: test.committed.filter((c) => !back.includes(c)) },
+        skillTest: withCommittedDifficulty({
+          ...test,
+          committed: test.committed.filter((c) => !back.includes(c)),
+        }),
       }
       for (const c of back) {
         next = updateInvestigator(next, c.by, (i) => ({ ...i, hand: [...i.hand, c.code] }))
@@ -4598,6 +4618,37 @@ function withinCommitTitleLimit(test: SkillTest, code: string): boolean {
   return limits.length === 0 || same.length < Math.min(...limits)
 }
 
+function withCommittedDifficulty(test: SkillTest): SkillTest {
+  if (test.succeeded !== null) return test
+  const base = test.baseDifficulty ?? test.difficulty
+  const offset = test.committed.reduce(
+    (sum, c) => sum + (playerCardBehavior(c.code)?.committedDifficulty ?? 0),
+    0,
+  )
+  return {
+    ...test,
+    baseDifficulty: base,
+    difficulty: Math.max(0, base * (test.difficultyFactor ?? 1) + offset),
+  }
+}
+
+function testEnemyHasKeyword(
+  state: GameState,
+  test: SkillTest,
+  enemy: Enemy,
+  keyword: 'alert' | 'retaliate',
+): boolean {
+  if (keyword === 'retaliate' && test.kind.type === 'fight' && test.kind.ignoreRetaliate)
+    return false
+  if (test.ignoredEnemyKeywords?.includes(keyword)) return false
+  const added = keyword === 'retaliate' && test.kind.type === 'fight' && test.kind.forceRetaliate
+  return enemyHasKeyword(
+    state,
+    added ? { ...enemy, keywords: [...enemy.keywords, keyword] } : enemy,
+    keyword,
+  )
+}
+
 function canCommit(state: GameState, test: SkillTest, code: string, by: string): boolean {
   const def = playerCardDef(code)
   if (
@@ -4936,15 +4987,7 @@ function skillTestResults(state: GameState, succeeded: boolean, failBy: number):
         results.push({ type: 'TakeDamage', investigator: enemy.engagedWith, damage, horror: 0 })
       }
       results.push(...(kind.onFail ?? []))
-      if (
-        !kind.ignoreRetaliate &&
-        !enemy.exhausted &&
-        enemyHasKeyword(
-          state,
-          kind.forceRetaliate ? { ...enemy, keywords: [...enemy.keywords, 'retaliate'] } : enemy,
-          'retaliate',
-        )
-      ) {
+      if (!enemy.exhausted && testEnemyHasKeyword(state, test, enemy, 'retaliate')) {
         results.push({ type: 'EnemyAttack', enemy: enemy.id, investigator, exhaustAfter: false })
       }
       if (enemy.keywords.includes('elusive') && !enemy.exhausted) {
@@ -4962,7 +5005,7 @@ function skillTestResults(state: GameState, succeeded: boolean, failBy: number):
         ]
       }
       return [
-        ...(enemy.keywords.includes('alert') && !enemy.exhausted
+        ...(testEnemyHasKeyword(state, test, enemy, 'alert') && !enemy.exhausted
           ? [{ type: 'EnemyAttack', enemy: enemy.id, investigator, exhaustAfter: false } as const]
           : []),
         ...(kind.onFail ?? []),

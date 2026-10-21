@@ -147,6 +147,7 @@ import { CONDITIONAL_RENDERED_CODES } from './conditional-commit'
 import { VARIABLE_RENDERED_CODES } from './variable-icons'
 import { CONTEXT_RENDERED_CODES } from './context-skills'
 import { RESULT_RENDERED_CODES } from './result-skills'
+import { TEST_MODIFIER_RENDERED_CODES } from './test-modifiers'
 export const RENDERED_PLAYER_CARD_CODES = [
   ...pilotCodes,
   ...FOLLOWUP_RENDERED_CODES,
@@ -161,4 +162,5 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...VARIABLE_RENDERED_CODES,
   ...CONTEXT_RENDERED_CODES,
   ...RESULT_RENDERED_CODES,
+  ...TEST_MODIFIER_RENDERED_CODES,
 ]
