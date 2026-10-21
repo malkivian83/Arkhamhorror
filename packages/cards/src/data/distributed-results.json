@@ -1,0 +1,23 @@
+[
+  {
+    "code": "11077",
+    "name": "Enraptured",
+    "type": "skill",
+    "class": "mystic",
+    "traits": ["Practiced", "Expert"],
+    "xp": 2,
+    "icons": { "intellect": 1, "wild": 1 },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "10076",
+    "name": "Lightfooted",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Practiced", "Trick"],
+    "xp": 0,
+    "icons": { "agility": 1 },
+    "slots": []
+  }
+]
