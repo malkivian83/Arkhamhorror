@@ -1562,6 +1562,7 @@
       "60119": "A successful attack deals one extra damage when this skill is committed.",
       "60126": "At most one of this title per test. On success, its owner draws a card, or two if the margin is at least two.",
       "60155": "Attack with a combat bonus and extra damage, spending ammunition.",
+      "60167": "Commit only to an attack or evasion test. The investigator performing the test ignores alert and retaliate during it.",
       "60168": "Adds two wild icons in a test initiated by an Item asset you control.",
       "60169": "A successful attack deals one extra damage when this skill is committed.",
       "60171": "4 ammo. Action and 1 ammo: attack with +2 combat and +1 damage, ignoring retaliate for this attack.",
@@ -1747,7 +1748,11 @@
       "03228": "On success, ready an Ally at your location and heal either 1 damage or 1 horror from it.",
       "04112": "On a successful attack, automatically evade the attacked enemy if it remains in play.",
       "04157": "On a successful investigation, add 1 charge or secret to an asset you control.",
-      "04201": "May commit without matching icons; at most one copy per test. On failure, the investigator performing the test draws 2 cards and gains 2 resources."
+      "04201": "May commit without matching icons; at most one copy per test. On failure, the investigator performing the test draws 2 cards and gains 2 resources.",
+      "02299": "On a successful attack, adds 1 damage to that attack, or 2 if the success margin is at least 2.",
+      "06235": "Gains willpower and wild icons when helping another investigator. On success, you gain 2 resources, and the other investigator also gains 2 if you helped.",
+      "06111": "Commit only to an attack or evasion against an enemy. It gains alert and retaliate for this test. After the test ends, you draw 1 card.",
+      "09112": "May commit without matching icons; at most one copy. While committed, reduces test difficulty by 2, to a minimum of 0."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -1777,6 +1782,7 @@
       "60119": "Vicious Blow",
       "60126": "Overpower",
       "60155": "M1911",
+      "60167": "Adapt and Overcome",
       "60168": "Armed to the Teeth",
       "60169": "Vicious Blow",
       "60171": "M1911",
@@ -1961,7 +1967,11 @@
       "03228": "Inspiring Presence",
       "04112": "Stunning Blow",
       "04157": "Enraptured",
-      "04201": "Take Heart"
+      "04201": "Take Heart",
+      "02299": "Vicious Blow",
+      "06235": "Leadership",
+      "06111": "Daring",
+      "09112": "Gumption"
     }
   },
   "account": {

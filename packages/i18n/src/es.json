@@ -1562,6 +1562,7 @@
       "60119": "Al asignar esta habilidad, un ataque exitoso inflige un punto de daño adicional.",
       "60126": "Como máximo una carta de este título por prueba. Con éxito, quien la asignó roba una carta, o dos si el margen es al menos dos.",
       "60155": "Ataca con bonificación a combate y daño adicional, gastando munición.",
+      "60167": "Solo se compromete a un ataque o evasión. Quien realiza la prueba ignora Alerta y Represalia durante ella.",
       "60168": "Añade dos comodines en una prueba iniciada por un apoyo Objeto que controlas.",
       "60169": "Al asignar esta habilidad, un ataque exitoso inflige un punto de daño adicional.",
       "60171": "4 municiones. Acción y 1 munición: ataca con +2 de combate y +1 daño, ignorando Represalia en ese ataque.",
@@ -1747,7 +1748,11 @@
       "03228": "Si tiene éxito, prepara un Aliado en tu localización y cúrale 1 daño o 1 horror.",
       "04112": "Tras un ataque exitoso, evita automáticamente al enemigo atacado si sigue en juego.",
       "04157": "Tras una investigación exitosa, añade 1 carga o secreto a un apoyo que controlas.",
-      "04201": "Se puede comprometer sin iconos coincidentes; máximo una copia por prueba. Si falla, el investigador que la realiza roba 2 cartas y gana 2 recursos."
+      "04201": "Se puede comprometer sin iconos coincidentes; máximo una copia por prueba. Si falla, el investigador que la realiza roba 2 cartas y gana 2 recursos.",
+      "02299": "En un ataque exitoso, añade 1 daño al propio ataque, o 2 si el margen de éxito es al menos 2.",
+      "06235": "Gana iconos de voluntad y comodín al ayudar a otro investigador. Si tiene éxito, ganas 2 recursos y el otro investigador también gana 2 si le ayudaste.",
+      "06111": "Solo se compromete a un ataque o evasión contra un enemigo. Este gana Alerta y Represalia durante la prueba. Tras terminar, robas 1 carta.",
+      "09112": "Se compromete sin iconos coincidentes; máximo una copia. Mientras esté comprometida, reduce la dificultad en 2, hasta un mínimo de 0."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -1777,6 +1782,7 @@
       "60119": "Golpe brutal",
       "60126": "Dominar",
       "60155": "M1911",
+      "60167": "Adaptarse y vencer",
       "60168": "Armado hasta los dientes",
       "60169": "Golpe brutal",
       "60171": "M1911",
@@ -1961,7 +1967,11 @@
       "03228": "Presencia inspiradora",
       "04112": "Golpe aturdidor",
       "04157": "Embelesado",
-      "04201": "Encontrar consuelo"
+      "04201": "Encontrar consuelo",
+      "02299": "Golpe brutal",
+      "06235": "Liderazgo",
+      "06111": "Osadía",
+      "09112": "Audacia"
     }
   },
   "account": {

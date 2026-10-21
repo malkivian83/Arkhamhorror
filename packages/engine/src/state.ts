@@ -110,8 +110,14 @@ function attachedModifiers(state: GameState, enemy: EnemyId) {
 
 /** Palabras clave que tiene ahora el enemigo (sin las que le quitan sus vinculadas). */
 export function enemyHasKeyword(state: GameState, enemy: Enemy, keyword: EnemyKeyword): boolean {
+  const test = state.skillTest
+  const target =
+    test &&
+    (test.kind.type === 'fight' || test.kind.type === 'evade') &&
+    test.kind.enemy === enemy.id
+  const added = target && test.addedEnemyKeywords?.includes(keyword)
   return (
-    enemy.keywords.includes(keyword) &&
+    (enemy.keywords.includes(keyword) || !!added) &&
     !attachedModifiers(state, enemy.id).some((m) => m.loses?.includes(keyword))
   )
 }

@@ -486,6 +486,11 @@ export interface TokenEffect {
 }
 
 export interface SkillTest {
+  /** Preserve the unmodified difficulty so factors precede committed additive modifiers. */
+  baseDifficulty?: number
+  difficultyFactor?: number
+  ignoredEnemyKeywords?: EnemyKeyword[]
+  addedEnemyKeywords?: EnemyKeyword[]
   resultRepetitions?: number
   abilityCounts?: Record<string, number>
   investigator: InvestigatorId
@@ -578,6 +583,8 @@ export type Message =
   | { type: 'ApplySkillTestResults'; prepared?: boolean }
   | {
       type: 'ModifySkillTest'
+      ignoredEnemyKeywords?: EnemyKeyword[]
+      addedEnemyKeywords?: EnemyKeyword[]
       difficultyFactor?: number
       resultRepetitions?: number
       extraDamage?: number
