@@ -1,0 +1,255 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "equivalence": {
+    "sourceSnapshotSha256": "36bdf57ced256a33c3145b1562eea5f8ea6146d38e6a600cb04e27d43ef5749e",
+    "method": "canonical-mechanical-fields-v1"
+  },
+  "cards": [
+    {
+      "code": "60212",
+      "status": "verified",
+      "module": "card-60212",
+      "test": "card-60212.test.ts",
+      "behaviorSource": "02020",
+      "equivalenceSha256": "fdc0063ff20b032af17f96820ee2f9ab6a052a2c180756a7d112e615e16668b1"
+    },
+    {
+      "code": "60405",
+      "status": "verified",
+      "module": "card-60405",
+      "test": "card-60405.test.ts",
+      "behaviorSource": "02029",
+      "equivalenceSha256": "07d7e5759763f372ab61d3fa27c38ec292d297091619d994e8e78a32d4880b4c"
+    },
+    {
+      "code": "60275",
+      "status": "verified",
+      "module": "card-60275",
+      "test": "card-60275.test.ts",
+      "behaviorSource": "02150",
+      "equivalenceSha256": "d19db9692fb9fe6bcd9ded6e4c3e14baa11569b819cf802c5e80a81881435c2e"
+    },
+    {
+      "code": "60218",
+      "status": "verified",
+      "module": "card-60218",
+      "test": "card-60218.test.ts",
+      "behaviorSource": "02186",
+      "equivalenceSha256": "ef790466fe025dab78bd8e3c03d19bd58cd16d57d213e19998334df6d19f7848"
+    },
+    {
+      "code": "60263",
+      "status": "verified",
+      "module": "card-60263",
+      "test": "card-60263.test.ts",
+      "behaviorSource": "02186",
+      "equivalenceSha256": "ef790466fe025dab78bd8e3c03d19bd58cd16d57d213e19998334df6d19f7848"
+    },
+    {
+      "code": "01693",
+      "status": "verified",
+      "module": "card-01693",
+      "test": "card-01693.test.ts",
+      "behaviorSource": "02194",
+      "equivalenceSha256": "57a0253e8d61371069cc449afe420cf407f66be233d2676d25a5215afeb70adb"
+    },
+    {
+      "code": "01025",
+      "status": "verified",
+      "module": "card-01025",
+      "test": "card-01025.test.ts",
+      "behaviorSource": "12025",
+      "equivalenceSha256": "ac9a500a9098f80b8e8b319f68679925e52bc729400fb9b4edc263d03a939c62"
+    },
+    {
+      "code": "60119",
+      "status": "verified",
+      "module": "card-60119",
+      "test": "card-60119.test.ts",
+      "behaviorSource": "12025",
+      "equivalenceSha256": "ac9a500a9098f80b8e8b319f68679925e52bc729400fb9b4edc263d03a939c62"
+    },
+    {
+      "code": "01525",
+      "status": "verified",
+      "module": "card-01525",
+      "test": "card-01525.test.ts",
+      "behaviorSource": "12025",
+      "equivalenceSha256": "ac9a500a9098f80b8e8b319f68679925e52bc729400fb9b4edc263d03a939c62"
+    },
+    {
+      "code": "60169",
+      "status": "verified",
+      "module": "card-60169",
+      "test": "card-60169.test.ts",
+      "behaviorSource": "12025",
+      "equivalenceSha256": "ac9a500a9098f80b8e8b319f68679925e52bc729400fb9b4edc263d03a939c62"
+    },
+    {
+      "code": "01030",
+      "status": "verified",
+      "module": "card-01030",
+      "test": "card-01030.test.ts",
+      "behaviorSource": "12034",
+      "equivalenceSha256": "ba0c870f843162afbe4cf53658e0f759bcf21bf81364ba18b2d9c96f1895b7cf",
+      "fast": true
+    },
+    {
+      "code": "01530",
+      "status": "verified",
+      "module": "card-01530",
+      "test": "card-01530.test.ts",
+      "behaviorSource": "12034",
+      "equivalenceSha256": "ba0c870f843162afbe4cf53658e0f759bcf21bf81364ba18b2d9c96f1895b7cf",
+      "fast": true
+    },
+    {
+      "code": "01037",
+      "status": "verified",
+      "module": "card-01037",
+      "test": "card-01037.test.ts",
+      "behaviorSource": "12038",
+      "equivalenceSha256": "150a022bc4e2bc72e1df6a0472680e46f83f6afe942ea1f8ba10f769f06d4de7",
+      "fast": true
+    },
+    {
+      "code": "01537",
+      "status": "verified",
+      "module": "card-01537",
+      "test": "card-01537.test.ts",
+      "behaviorSource": "12038",
+      "equivalenceSha256": "150a022bc4e2bc72e1df6a0472680e46f83f6afe942ea1f8ba10f769f06d4de7",
+      "fast": true
+    },
+    {
+      "code": "01039",
+      "status": "verified",
+      "module": "card-01039",
+      "test": "card-01039.test.ts",
+      "behaviorSource": "12039",
+      "equivalenceSha256": "e9646f3fe8ba288ec475e7820fb5ea44d3cbc1a2b89b46c066d23dd9a5fd648b"
+    },
+    {
+      "code": "60219",
+      "status": "verified",
+      "module": "card-60219",
+      "test": "card-60219.test.ts",
+      "behaviorSource": "12039",
+      "equivalenceSha256": "e9646f3fe8ba288ec475e7820fb5ea44d3cbc1a2b89b46c066d23dd9a5fd648b"
+    },
+    {
+      "code": "01539",
+      "status": "verified",
+      "module": "card-01539",
+      "test": "card-01539.test.ts",
+      "behaviorSource": "12039",
+      "equivalenceSha256": "e9646f3fe8ba288ec475e7820fb5ea44d3cbc1a2b89b46c066d23dd9a5fd648b"
+    },
+    {
+      "code": "60267",
+      "status": "verified",
+      "module": "card-60267",
+      "test": "card-60267.test.ts",
+      "behaviorSource": "12039",
+      "equivalenceSha256": "e9646f3fe8ba288ec475e7820fb5ea44d3cbc1a2b89b46c066d23dd9a5fd648b"
+    },
+    {
+      "code": "01088",
+      "status": "verified",
+      "module": "card-01088",
+      "test": "card-01088.test.ts",
+      "behaviorSource": "12089",
+      "equivalenceSha256": "f760bc8757e2b7ff226f707af9e3952746db0d75c9b33f90a96f01eb2d55fe49"
+    },
+    {
+      "code": "01588",
+      "status": "verified",
+      "module": "card-01588",
+      "test": "card-01588.test.ts",
+      "behaviorSource": "12089",
+      "equivalenceSha256": "f760bc8757e2b7ff226f707af9e3952746db0d75c9b33f90a96f01eb2d55fe49"
+    },
+    {
+      "code": "01089",
+      "status": "verified",
+      "module": "card-01089",
+      "test": "card-01089.test.ts",
+      "behaviorSource": "12090",
+      "equivalenceSha256": "934404e3208e9e7d9b0d6f27077c5d53c79359053182dca86a6fe0cf81176d74"
+    },
+    {
+      "code": "01589",
+      "status": "verified",
+      "module": "card-01589",
+      "test": "card-01589.test.ts",
+      "behaviorSource": "12090",
+      "equivalenceSha256": "934404e3208e9e7d9b0d6f27077c5d53c79359053182dca86a6fe0cf81176d74"
+    },
+    {
+      "code": "01092",
+      "status": "verified",
+      "module": "card-01092",
+      "test": "card-01092.test.ts",
+      "behaviorSource": "12091",
+      "equivalenceSha256": "bea21d8c0e149b8eeba452a5af924360285d82264073732871ab923ef0035047"
+    },
+    {
+      "code": "01592",
+      "status": "verified",
+      "module": "card-01592",
+      "test": "card-01592.test.ts",
+      "behaviorSource": "12091",
+      "equivalenceSha256": "bea21d8c0e149b8eeba452a5af924360285d82264073732871ab923ef0035047"
+    },
+    {
+      "code": "01091",
+      "status": "verified",
+      "module": "card-01091",
+      "test": "card-01091.test.ts",
+      "behaviorSource": "12092",
+      "equivalenceSha256": "210a9a0bac3f8fc87631ffba818847836284883ef7b535e1b7b3ee77bef9efad"
+    },
+    {
+      "code": "01591",
+      "status": "verified",
+      "module": "card-01591",
+      "test": "card-01591.test.ts",
+      "behaviorSource": "12092",
+      "equivalenceSha256": "210a9a0bac3f8fc87631ffba818847836284883ef7b535e1b7b3ee77bef9efad"
+    },
+    {
+      "code": "01090",
+      "status": "verified",
+      "module": "card-01090",
+      "test": "card-01090.test.ts",
+      "behaviorSource": "12093",
+      "equivalenceSha256": "ced57c874488b9d18b9b39b36165e0986fa995f5a6bfc8de20c4628a751cc909"
+    },
+    {
+      "code": "01590",
+      "status": "verified",
+      "module": "card-01590",
+      "test": "card-01590.test.ts",
+      "behaviorSource": "12093",
+      "equivalenceSha256": "ced57c874488b9d18b9b39b36165e0986fa995f5a6bfc8de20c4628a751cc909"
+    },
+    {
+      "code": "01093",
+      "status": "verified",
+      "module": "card-01093",
+      "test": "card-01093.test.ts",
+      "behaviorSource": "12094",
+      "equivalenceSha256": "c9da8b789cf4cc79e017534fb5552d624864ef0e505761b16dc733b48423f8a6"
+    },
+    {
+      "code": "01593",
+      "status": "verified",
+      "module": "card-01593",
+      "test": "card-01593.test.ts",
+      "behaviorSource": "12094",
+      "equivalenceSha256": "c9da8b789cf4cc79e017534fb5552d624864ef0e505761b16dc733b48423f8a6"
+    }
+  ]
+}

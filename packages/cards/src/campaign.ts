@@ -46,6 +46,7 @@ import './core-2026/weaknesses'
 import './dunwich-pilot'
 import './dunwich-followup'
 import './dunwich-support'
+import './reprints-wave-1'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
