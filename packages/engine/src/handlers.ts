@@ -1707,7 +1707,7 @@ export function handle(state: GameState, message: Message): GameState {
       const investigator = getInvestigator(state, message.investigator)
       const zone = message.from === 'discard' ? 'discard' : 'hand'
       const index = investigator[zone].indexOf(message.code)
-      if (!test || index < 0) return state
+      if (!test || index < 0 || !withinCommitTitleLimit(test, message.code)) return state
       if (message.from && !canCommitFrom(state, investigator.id, message.code)) return state
       return push(
         {
@@ -4229,11 +4229,21 @@ function handSize(state: GameState, investigator: string): number {
     .reduce((size, a) => size + (playerCardBehavior(a.code)?.handSize ?? 0), MAX_HAND_SIZE)
 }
 
+// RR: Max. An explicit maximum applies to the canonical title, across all editions.
+function withinCommitTitleLimit(test: SkillTest, code: string): boolean {
+  const def = playerCardDef(code)
+  if (!def) return true
+  const same = test.committed.map((c) => playerCardDef(c.code)).filter((c) => c?.name === def.name)
+  const limits = [def.commitLimit, ...same.map((c) => c?.commitLimit)].filter(
+    (limit): limit is number => limit !== undefined,
+  )
+  return limits.length === 0 || same.length < Math.min(...limits)
+}
+
 function canCommit(test: SkillTest, code: string): boolean {
   const def = playerCardDef(code)
   if (!def || matchingIcons(def.icons, test.skill) === 0) return false
-  const already = test.committed.filter((c) => c.code === code).length
-  return def.commitLimit === undefined || already < def.commitLimit
+  return withinCommitTitleLimit(test, code)
 }
 
 /** Full eligibility for an effect committing from a zone other than the hand. */

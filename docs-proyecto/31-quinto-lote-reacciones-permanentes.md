@@ -1,5 +1,7 @@
 # 31 · Quinto lote: reacciones, apoyos con usos y permanentes
 
+> Actualización: el [sexto lote](32-sexto-lote-fundamentos-clasicos.md) completa Meat Cleaver e incorpora la reedición aplazada.
+
 21/10/2026. Continuación del [cuarto lote](30-cuarto-lote-reediciones.md), cuya
 CI y despliegue se han verificado antes de empezar. Se incorporan **25 registros**
 con reglas equivalentes a comportamientos propios revisados.
