@@ -51,6 +51,7 @@ vigente de pendientes.
 | 28 | [Segundo lote de cartas de jugador](28-segundo-lote-cartas-jugador.md) | Tres incorporaciones, mejoras con experiencia y manifiesto separado; 1.852 registros restantes. |
 | 29 | [Tercer lote de cartas de jugador](29-tercer-lote-cartas-jugador.md) | Cinco cartas de robo, recursos, pistas y curación; 32 incorporadas y 1.847 registros restantes. |
 | 30 | [Cuarto lote: reediciones verificadas](30-cuarto-lote-reediciones.md) | 30 códigos, equivalencia mecánica auditada, 62 incorporados y 1.817 pendientes. |
+| 31 | [Quinto lote: reacciones y permanentes](31-quinto-lote-reacciones-permanentes.md) | 25 reediciones con usos, identidad de eventos y permanentes; 87 incorporados y 1.792 pendientes. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

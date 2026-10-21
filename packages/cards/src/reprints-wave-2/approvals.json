@@ -1,0 +1,248 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "equivalence": {
+    "sourceSnapshotSha256": "36bdf57ced256a33c3145b1562eea5f8ea6146d38e6a600cb04e27d43ef5749e",
+    "method": "canonical-mechanical-fields-v1"
+  },
+  "cards": [
+    {
+      "code": "60155",
+      "status": "verified",
+      "module": "card-60155",
+      "test": "card-60155.test.ts",
+      "behaviorSource": "12019",
+      "equivalenceSha256": "47c9632d83381486eb9f24974e7f6480c968f513ee6c80fc4927b5c3478b1c63",
+      "uses": {
+        "count": 4,
+        "type": "ammo"
+      }
+    },
+    {
+      "code": "01020",
+      "status": "verified",
+      "module": "card-01020",
+      "test": "card-01020.test.ts",
+      "behaviorSource": "12020",
+      "equivalenceSha256": "eb89f85d59bf564d812d3c5582b956d701b6dd9dc8c7c37aa519e2c87744ab9c"
+    },
+    {
+      "code": "01520",
+      "status": "verified",
+      "module": "card-01520",
+      "test": "card-01520.test.ts",
+      "behaviorSource": "12020",
+      "equivalenceSha256": "eb89f85d59bf564d812d3c5582b956d701b6dd9dc8c7c37aa519e2c87744ab9c"
+    },
+    {
+      "code": "04103",
+      "status": "verified",
+      "module": "card-04103",
+      "test": "card-04103.test.ts",
+      "behaviorSource": "12024",
+      "equivalenceSha256": "b5cf72776c85e65f952f2a90aa7122920f534423adb56d5ad92c5f1f9d4d7e6a"
+    },
+    {
+      "code": "05024",
+      "status": "verified",
+      "module": "card-05024",
+      "test": "card-05024.test.ts",
+      "behaviorSource": "12031",
+      "equivalenceSha256": "eb65ec36e447d6731b5e476f343c2bcd31d7e0642fa72e5699d50d604c164683",
+      "uses": {
+        "count": 3,
+        "type": "supplies"
+      }
+    },
+    {
+      "code": "05276",
+      "status": "verified",
+      "module": "card-05276",
+      "test": "card-05276.test.ts",
+      "behaviorSource": "12042",
+      "equivalenceSha256": "9de6af68086099efcb567d596f456f5acb5138f36c509855de9b1664ed7f7775",
+      "adapter": "equivalent-permanent-v1"
+    },
+    {
+      "code": "04107",
+      "status": "verified",
+      "module": "card-04107",
+      "test": "card-04107.test.ts",
+      "behaviorSource": "12044",
+      "equivalenceSha256": "8b23db9b990a9cd0ab64ea1aaf1bd08e3db2db3e704774aaf800aae2eacf16de"
+    },
+    {
+      "code": "60308",
+      "status": "verified",
+      "module": "card-60308",
+      "test": "card-60308.test.ts",
+      "behaviorSource": "12044",
+      "equivalenceSha256": "8b23db9b990a9cd0ab64ea1aaf1bd08e3db2db3e704774aaf800aae2eacf16de"
+    },
+    {
+      "code": "09064",
+      "status": "verified",
+      "module": "card-09064",
+      "test": "card-09064.test.ts",
+      "behaviorSource": "12049",
+      "equivalenceSha256": "3abf7d5c718cd76ab16147b1385789e12333e4b62d6508ec82955f8f27076692",
+      "uses": {
+        "count": 6,
+        "type": "supplies"
+      }
+    },
+    {
+      "code": "07114",
+      "status": "verified",
+      "module": "card-07114",
+      "test": "card-07114.test.ts",
+      "behaviorSource": "12050",
+      "equivalenceSha256": "ea0ff2d8ecbcf4290d5605b549c005c7d924eb3bf2f1fc52fedb2fa2f783cc7a"
+    },
+    {
+      "code": "05278",
+      "status": "verified",
+      "module": "card-05278",
+      "test": "card-05278.test.ts",
+      "behaviorSource": "12056",
+      "equivalenceSha256": "cfcc165925c00b042d2b0abdab44cbe637d87dade28c26005ff3d937bf1db577",
+      "adapter": "equivalent-permanent-v1"
+    },
+    {
+      "code": "60459",
+      "status": "verified",
+      "module": "card-60459",
+      "test": "card-60459.test.ts",
+      "behaviorSource": "12059",
+      "equivalenceSha256": "a80999fca36ea0fb8f48b3d8666bc8ea545222f10107e286050375baf78d396f",
+      "uses": {
+        "count": 3,
+        "type": "charges"
+      }
+    },
+    {
+      "code": "60460",
+      "status": "verified",
+      "module": "card-60460",
+      "test": "card-60460.test.ts",
+      "behaviorSource": "12062",
+      "equivalenceSha256": "a6db3d204063848ddb2876097af64b3a5d1677963c19314215d169fb1ad050b7",
+      "uses": {
+        "count": 3,
+        "type": "charges"
+      }
+    },
+    {
+      "code": "04199",
+      "status": "verified",
+      "module": "card-04199",
+      "test": "card-04199.test.ts",
+      "behaviorSource": "12064",
+      "equivalenceSha256": "21d0f3317ee1702a8b3fd600858da329e2292c08ecb397d4ba8fd0678a13460d",
+      "fast": true
+    },
+    {
+      "code": "01065",
+      "status": "verified",
+      "module": "card-01065",
+      "test": "card-01065.test.ts",
+      "behaviorSource": "12065",
+      "equivalenceSha256": "561472aed8a763435344955ef5e2b4aa998410e28a7046b961a15b27b8c7a851",
+      "fast": true
+    },
+    {
+      "code": "01565",
+      "status": "verified",
+      "module": "card-01565",
+      "test": "card-01565.test.ts",
+      "behaviorSource": "12065",
+      "equivalenceSha256": "561472aed8a763435344955ef5e2b4aa998410e28a7046b961a15b27b8c7a851",
+      "fast": true
+    },
+    {
+      "code": "08073",
+      "status": "verified",
+      "module": "card-08073",
+      "test": "card-08073.test.ts",
+      "behaviorSource": "12073",
+      "equivalenceSha256": "6d1af0cb9a427890508675c998ada2b16372bfdb55738b28c40c54041a0e3b2f",
+      "uses": {
+        "count": 3,
+        "type": "supplies"
+      }
+    },
+    {
+      "code": "01079",
+      "status": "verified",
+      "module": "card-01079",
+      "test": "card-01079.test.ts",
+      "behaviorSource": "12078",
+      "equivalenceSha256": "f0e09d65a84ea477e537dc21ad7c9e878346a729a7173e48fce02ad455c35051",
+      "fast": true
+    },
+    {
+      "code": "60517",
+      "status": "verified",
+      "module": "card-60517",
+      "test": "card-60517.test.ts",
+      "behaviorSource": "12078",
+      "equivalenceSha256": "f0e09d65a84ea477e537dc21ad7c9e878346a729a7173e48fce02ad455c35051",
+      "fast": true
+    },
+    {
+      "code": "01579",
+      "status": "verified",
+      "module": "card-01579",
+      "test": "card-01579.test.ts",
+      "behaviorSource": "12078",
+      "equivalenceSha256": "f0e09d65a84ea477e537dc21ad7c9e878346a729a7173e48fce02ad455c35051",
+      "fast": true
+    },
+    {
+      "code": "02158",
+      "status": "verified",
+      "module": "card-02158",
+      "test": "card-02158.test.ts",
+      "behaviorSource": "12095",
+      "equivalenceSha256": "d74d7965d2b99834c352a16510482819a0a54ce00ae6d932984276e2c36b6d9c",
+      "adapter": "equivalent-permanent-v1"
+    },
+    {
+      "code": "01694",
+      "status": "verified",
+      "module": "card-01694",
+      "test": "card-01694.test.ts",
+      "behaviorSource": "12095",
+      "equivalenceSha256": "d74d7965d2b99834c352a16510482819a0a54ce00ae6d932984276e2c36b6d9c",
+      "adapter": "equivalent-permanent-v1"
+    },
+    {
+      "code": "02157",
+      "status": "verified",
+      "module": "card-02157",
+      "test": "card-02157.test.ts",
+      "behaviorSource": "12096",
+      "equivalenceSha256": "3bda6203ff9960dffdd4551a5c53e569b1687303b153931313a82f9ee83224e6",
+      "adapter": "equivalent-permanent-v1"
+    },
+    {
+      "code": "01695",
+      "status": "verified",
+      "module": "card-01695",
+      "test": "card-01695.test.ts",
+      "behaviorSource": "12096",
+      "equivalenceSha256": "3bda6203ff9960dffdd4551a5c53e569b1687303b153931313a82f9ee83224e6",
+      "adapter": "equivalent-permanent-v1"
+    },
+    {
+      "code": "60518",
+      "status": "verified",
+      "module": "card-60518",
+      "test": "card-60518.test.ts",
+      "behaviorSource": "02113",
+      "equivalenceSha256": "6eaa2dfe77ac50d86e204ca7078b834d5130683619d04296900345485355aaab",
+      "fast": true
+    }
+  ]
+}

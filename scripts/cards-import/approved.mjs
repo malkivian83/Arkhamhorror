@@ -9,7 +9,15 @@ export function approvedDefinition(card, approval) {
     !['asset', 'event', 'skill'].includes(card.type)
   )
     throw new Error(`Unsupported pool eligibility: ${card.code}`)
-  if (['permanent', 'exceptional', 'myriad', 'exile'].some((key) => card.flags[key]))
+  const permanentReprint =
+    card.flags.permanent &&
+    approval.adapter === 'equivalent-permanent-v1' &&
+    /^[0-9]{5}$/.test(approval.behaviorSource ?? '') &&
+    /^[a-f0-9]{64}$/.test(approval.equivalenceSha256 ?? '')
+  if (
+    (card.flags.permanent && !permanentReprint) ||
+    ['exceptional', 'myriad', 'exile'].some((key) => card.flags[key])
+  )
     throw new Error(`Keyword requires a dedicated adapter: ${card.code}`)
   const numeric = (key) => {
     const number = card.numbers[key]

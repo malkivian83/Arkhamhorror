@@ -5,6 +5,7 @@ import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { fallbackCards } from './fallbackCards'
 import { RENDERED_PLAYER_CARD_CODES } from '@lcg/cards'
+import { isPermanent } from '@lcg/engine'
 
 describe('imágenes españolas de referencia y alternativas', () => {
   it('cada original tiene una miniatura local independiente, también las dos caras', () => {
@@ -42,7 +43,8 @@ describe('imágenes españolas de referencia y alternativas', () => {
           const card = fallbackCards(locale).find((card) => card.code === code)!
           expect(card.name, code).toBeTruthy()
           expect(card.text, code).toBeTruthy()
-          if (card.type_code === 'skill') expect(card.cost, code).toBeUndefined()
+          if (card.type_code === 'skill' || isPermanent(code))
+            expect(card.cost, code).toBeUndefined()
           else expect(card.cost, code).toBeTypeOf('number')
         }
       } else if (/^\d{5}b?$/.test(code))
