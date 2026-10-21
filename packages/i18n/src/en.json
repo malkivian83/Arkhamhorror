@@ -9,7 +9,8 @@
     "disclaimer": "Unofficial fan project. Not produced, endorsed or supported by, or affiliated with Fantasy Flight Games.",
     "sections": "Sections",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "preferences": "Preferences"
   },
   "home": {
     "serverStatus": "Server status",

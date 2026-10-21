@@ -9,7 +9,8 @@
     "disclaimer": "Proyecto no oficial de aficionados. No producido, avalado ni respaldado por Fantasy Flight Games, ni afiliado a ella.",
     "sections": "Secciones",
     "openMenu": "Abrir menú",
-    "closeMenu": "Cerrar menú"
+    "closeMenu": "Cerrar menú",
+    "preferences": "Preferencias"
   },
   "home": {
     "serverStatus": "Estado del servidor",
