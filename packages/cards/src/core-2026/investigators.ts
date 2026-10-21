@@ -3,6 +3,7 @@
  * signo arcano.
  */
 import {
+  canCommitFrom,
   enemiesAt,
   getInvestigator,
   isPermanent,
@@ -256,12 +257,11 @@ registerInvestigator({
 // ---------------------------------------------------------------------------
 registerInvestigator({
   code: code(13),
-  testOptions: (_state, test, self) =>
+  testOptions: (state, _test, self) =>
     [...new Set(self.discard)]
       .filter((c) => {
         const def = playerCardDef(c)
-        if (def?.type !== 'skill') return false
-        return (def.icons?.[test.skill] ?? 0) + (def.icons?.wild ?? 0) > 0
+        return def?.type === 'skill' && canCommitFrom(state, self.id, c)
       })
       .map((c): ReactionOption => ({
         key: 'isabelle',

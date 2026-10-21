@@ -53,6 +53,7 @@ export {
   slotCapacity,
   victoryTotal,
   skillTestValue,
+  canCommitFrom,
   successChance,
 } from './handlers'
 export * from './rng'

@@ -655,6 +655,8 @@ export type Message =
   | { type: 'CommitWindow' }
   | {
       type: 'CommitCard'
+      /** Isabelle: shuffle the committed card into its owner's deck after the test. */
+      shuffleAfter?: boolean
       investigator: InvestigatorId
       code: CardCode
       from?: 'discard'
