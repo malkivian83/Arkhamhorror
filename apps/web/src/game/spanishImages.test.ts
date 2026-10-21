@@ -8,6 +8,48 @@ import { RENDERED_PLAYER_CARD_CODES } from '@lcg/cards'
 import { isPermanent } from '@lcg/engine'
 
 describe('imágenes españolas de referencia y alternativas', () => {
+  it.each([
+    '01033',
+    '01046',
+    '01075',
+    '02155',
+    '02192',
+    '02226',
+    '02227',
+    '03021',
+    '03037',
+    '03039',
+    '03110',
+    '03116',
+    '03117',
+    '03118',
+    '03119',
+    '03190',
+    '04204',
+    '04229',
+    '05109',
+    '06280',
+    '50010',
+    '51003',
+    '60171',
+    '60505',
+  ])('muestra la imagen española de %s antes que la alternativa inglesa', (code) => {
+    expect(cardImages(code, false, 'es')).toEqual([
+      `/local-assets/cards/es/${code}.avif`,
+      `/local-assets/cards/en/${code}.avif`,
+    ])
+    expect(cardImages(code, false, 'en')).toEqual([`/local-assets/cards/en/${code}.avif`])
+  })
+
+  it('conserva el idioma real y las dos orientaciones del reverso de Dexter de 2026', () => {
+    const back = ['/local-assets/cards/en/12010b.jpg']
+    expect(cardImages('12010', true, 'es')).toEqual(back)
+    expect(cardImages('12010b', false, 'es')).toEqual(back)
+    expect(cardImages('12010', true, 'en')).toEqual(back)
+    expect(cardImages('12010b', true, 'es')[0]).toBe('/local-assets/cards/es/12010.avif')
+    expect(manifest.es).not.toHaveProperty('12010b')
+  })
+
   it('cada original tiene una miniatura local independiente, también las dos caras', () => {
     for (const paths of Object.values(manifest))
       for (const original of Object.values(paths)) {

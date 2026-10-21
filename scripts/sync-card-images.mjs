@@ -33,6 +33,8 @@ try {
   } catch {
     /* First import. */
   }
+  // Conserva las imágenes españolas incorporadas después de la auditoría histórica.
+  for (const art of Object.keys(old.es)) availableSpanish.add(art)
   const tasks = [...codes]
     .filter((c) => /^\d{5}$/.test(c))
     .flatMap((code) => [code, `${code}b`])
