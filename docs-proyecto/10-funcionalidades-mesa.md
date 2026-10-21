@@ -183,7 +183,17 @@ de la campaña): resumen propio o, con los textos locales, el oficial.
 
 ## Mazos propios (paso 6)
 
-En `packages/cards/src/decks.ts` (lógica) y la pantalla `apps/web/src/views/DecksView.vue`:
+En `packages/cards/src/decks.ts` (lógica), `apps/web/src/views/DecksView.vue`
+(listado) y `apps/web/src/views/DeckEditorView.vue` (editor individual):
+
+- **Listado en `/decks`**: cada mazo muestra investigador, clase, habilidades,
+  salud y cordura, tamaño, experiencia de las cartas, coste medio y distribución
+  por tipos y clases. El contenido se puede desplegar con sus cantidades, costes
+  y niveles; exclusivas, debilidades y códigos pendientes se muestran aparte.
+- **Edición en `/decks/:id`**: crear un mazo abre su editor; el nombre y los cambios
+  de cartas se guardan automáticamente. Se puede volver al listado o recargar
+  directamente la URL. Un identificador inexistente muestra un aviso y el enlace
+  al listado.
 
 - **Validación** según el reglamento ("Deck Customization"): 30 cartas sin contar
   exclusivas ni debilidades, opciones de construcción del investigador (clase y

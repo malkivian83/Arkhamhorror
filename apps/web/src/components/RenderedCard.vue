@@ -5,6 +5,7 @@ import { cardImage, CLASS_COLORS } from '../game/cards'
 import { cardTextHtml } from '../game/cardText'
 import type { LocalizedCard } from '../game/localized'
 import SkillIcon from './SkillIcon.vue'
+import CardTypeIcon from './CardTypeIcon.vue'
 
 /**
  * Carta dibujada con nuestra plantilla a partir de los datos traducidos: la
@@ -20,6 +21,17 @@ const BASE_W = 300
 const { t } = useI18n()
 const base = computed(() => (props.landscape ? { w: 420, h: 300 } : { w: BASE_W, h: 420 }))
 const scale = computed(() => props.width / base.value.w)
+const cardType = computed(() => {
+  const type = props.card.type_code
+  return type === 'asset' ||
+    type === 'event' ||
+    type === 'skill' ||
+    type === 'investigator' ||
+    type === 'enemy' ||
+    type === 'treachery'
+    ? type
+    : null
+})
 
 const ENCOUNTER_COLORS: Record<string, string> = {
   enemy: '#7a2c2c',
@@ -92,6 +104,7 @@ const per = (yes: boolean | undefined) => (yes ? '/inv' : '')
 
       <section class="body">
         <p class="type">
+          <CardTypeIcon v-if="cardType" :type="cardType" />
           {{ card.type_name }}<template v-if="card.slot"> · {{ card.slot }}</template>
         </p>
         <p v-if="card.traits && !back" class="traits">{{ card.traits }}</p>
@@ -231,6 +244,11 @@ header {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   opacity: 0.75;
+}
+.type :deep(.card-type-icon) {
+  width: 14px;
+  height: 14px;
+  margin-right: 3px;
 }
 .traits {
   margin: 2px 0 4px;

@@ -1225,7 +1225,7 @@
   },
   "decks": {
     "title": "Mazos",
-    "subtitle": "Prepara tu equipo, ajusta tus cartas y encuentra tu próxima estrategia.",
+    "subtitle": "Compara tus investigadores y sus cartas. Elige un mazo para seguir preparándolo.",
     "yourDecks": "Tus mazos",
     "editorViews": "Vistas del editor de mazos",
     "new": "Nuevo mazo",
@@ -1235,6 +1235,7 @@
     "none": "Aún no tienes mazos propios.",
     "problems": "1 problema | {n} problemas",
     "valid": "Válido",
+    "invalid": "No válido",
     "delete": "Borrar {name}",
     "confirmDelete": "¿Borrar el mazo «{name}»?",
     "name": "Nombre del mazo",
@@ -1270,7 +1271,28 @@
       "investigator": "Ese investigador aún no está disponible.",
       "invalidData": "El mazo recibido tiene un formato o cantidades no válidos."
     },
-    "pendingCards": "Cartas pendientes"
+    "pendingCards": "Cartas pendientes",
+    "listHelp": "Consulta sus cartas o abre un mazo para editarlo.",
+    "emptyHelp": "Crea tu primer mazo o importa uno de ArkhamDB para empezar a prepararlo.",
+    "edit": "Editar mazo",
+    "editNamed": "Editar {name}",
+    "backToList": "Todos los mazos",
+    "editorSubtitle": "Ajusta el contenido de este mazo. Los cambios se guardan automáticamente.",
+    "notFound": "Mazo no encontrado",
+    "notFoundHelp": "Este mazo no está disponible. Vuelve al listado para elegir otro o crear uno nuevo.",
+    "health": "Salud {n}",
+    "sanity": "Cordura {n}",
+    "deckCards": "Cartas de mazo",
+    "experience": "Exp. en cartas",
+    "averageCost": "Coste medio",
+    "averageCostHelp": "Coste medio de apoyos y eventos, contando sus copias. Excluye costes X, permanentes, exclusivas y debilidades.",
+    "fixedCount": "+{n} exclusivas y debilidades",
+    "pendingCount": "{n} pendientes",
+    "deleteAction": "Borrar",
+    "viewCards": "Ver las {n} cartas",
+    "noCards": "Este mazo todavía no tiene cartas.",
+    "otherCards": "Otras cartas y debilidades",
+    "cardCost": "Coste en recursos"
   },
   "deck": {
     "problem": {

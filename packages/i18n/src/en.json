@@ -1225,7 +1225,7 @@
   },
   "decks": {
     "title": "Decks",
-    "subtitle": "Prepare your team, refine your cards and find your next strategy.",
+    "subtitle": "Compare your investigators and their cards. Choose a deck to keep building it.",
     "yourDecks": "Your decks",
     "editorViews": "Deck editor views",
     "new": "New deck",
@@ -1235,6 +1235,7 @@
     "none": "You have no decks yet.",
     "problems": "1 problem | {n} problems",
     "valid": "Valid",
+    "invalid": "Invalid",
     "delete": "Delete {name}",
     "confirmDelete": "Delete the deck \"{name}\"?",
     "name": "Deck name",
@@ -1270,7 +1271,28 @@
       "investigator": "That investigator is not available yet.",
       "invalidData": "The received deck has an invalid format or quantities."
     },
-    "pendingCards": "Pending cards"
+    "pendingCards": "Pending cards",
+    "listHelp": "Browse the cards or open a deck to edit it.",
+    "emptyHelp": "Create your first deck or import one from ArkhamDB to start building.",
+    "edit": "Edit deck",
+    "editNamed": "Edit {name}",
+    "backToList": "All decks",
+    "editorSubtitle": "Adjust this deck’s contents. Changes are saved automatically.",
+    "notFound": "Deck not found",
+    "notFoundHelp": "This deck is unavailable. Return to the list to choose another or create a new one.",
+    "health": "Health {n}",
+    "sanity": "Sanity {n}",
+    "deckCards": "Deck cards",
+    "experience": "Card XP",
+    "averageCost": "Average cost",
+    "averageCostHelp": "Average asset and event cost, counting copies. Excludes X costs, permanents, signature cards and weaknesses.",
+    "fixedCount": "+{n} signatures & weaknesses",
+    "pendingCount": "{n} pending",
+    "deleteAction": "Delete",
+    "viewCards": "View all {n} cards",
+    "noCards": "This deck has no cards yet.",
+    "otherCards": "Other cards & weaknesses",
+    "cardCost": "Resource cost"
   },
   "deck": {
     "problem": {

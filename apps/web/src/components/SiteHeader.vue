@@ -54,7 +54,13 @@ watch(
         />
       </RouterLink>
       <nav class="site-links" :aria-label="t('app.sections')">
-        <RouterLink v-for="s in sections" :key="s.to" :to="s.to">{{ t(s.label) }}</RouterLink>
+        <RouterLink
+          v-for="s in sections"
+          :key="s.to"
+          :to="s.to"
+          :class="{ 'router-link-exact-active': s.to === '/decks' && route.name === 'deck-editor' }"
+          >{{ t(s.label) }}</RouterLink
+        >
       </nav>
       <div class="header-actions">
         <details
@@ -137,7 +143,15 @@ watch(
           </button>
         </div>
         <nav class="drawer-links" :aria-label="t('app.sections')">
-          <RouterLink v-for="s in sections" :key="s.to" :to="s.to">{{ t(s.label) }}</RouterLink>
+          <RouterLink
+            v-for="s in sections"
+            :key="s.to"
+            :to="s.to"
+            :class="{
+              'router-link-exact-active': s.to === '/decks' && route.name === 'deck-editor',
+            }"
+            >{{ t(s.label) }}</RouterLink
+          >
         </nav>
         <RouterLink to="/account" class="drawer-account">
           {{ account.user ? t('account.profile') : t('account.login') }}
