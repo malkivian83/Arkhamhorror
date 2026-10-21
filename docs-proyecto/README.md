@@ -50,6 +50,7 @@ vigente de pendientes.
 | 27 | [Cierre del piloto de cartas de jugador](27-cierre-piloto-cartas-jugador.md) | 24 cartas verificadas; 17 añadidas, mecánicas nuevas y 1.855 registros restantes. |
 | 28 | [Segundo lote de cartas de jugador](28-segundo-lote-cartas-jugador.md) | Tres incorporaciones, mejoras con experiencia y manifiesto separado; 1.852 registros restantes. |
 | 29 | [Tercer lote de cartas de jugador](29-tercer-lote-cartas-jugador.md) | Cinco cartas de robo, recursos, pistas y curación; 32 incorporadas y 1.847 registros restantes. |
+| 30 | [Cuarto lote: reediciones verificadas](30-cuarto-lote-reediciones.md) | 30 códigos, equivalencia mecánica auditada, 62 incorporados y 1.817 pendientes. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

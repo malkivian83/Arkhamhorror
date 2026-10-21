@@ -1,0 +1,319 @@
+[
+  {
+    "code": "60212",
+    "name": "Laboratory Assistant",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ally", "Miskatonic", "Science"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "intellect": 1 },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 2
+  },
+  {
+    "code": "60405",
+    "name": "Ritual Candles",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "willpower": 1 },
+    "slots": ["hand"]
+  },
+  {
+    "code": "60275",
+    "name": "Deduction",
+    "type": "skill",
+    "class": "seeker",
+    "traits": ["Practiced", "Expert"],
+    "xp": 2,
+    "icons": { "intellect": 2 },
+    "slots": []
+  },
+  {
+    "code": "60218",
+    "name": "Preposterous Sketches",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "60263",
+    "name": "Preposterous Sketches",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "01693",
+    "name": "Emergency Cache",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Supply"],
+    "cost": 0,
+    "xp": 2,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "01025",
+    "name": "Vicious Blow",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "combat": 1 },
+    "slots": []
+  },
+  {
+    "code": "60119",
+    "name": "Vicious Blow",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "combat": 1 },
+    "slots": []
+  },
+  {
+    "code": "01525",
+    "name": "Vicious Blow",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "combat": 1 },
+    "slots": []
+  },
+  {
+    "code": "60169",
+    "name": "Vicious Blow",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "combat": 1 },
+    "slots": []
+  },
+  {
+    "code": "01030",
+    "name": "Magnifying Glass",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tool"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "intellect": 1 },
+    "slots": ["hand"],
+    "fast": true
+  },
+  {
+    "code": "01530",
+    "name": "Magnifying Glass",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tool"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "intellect": 1 },
+    "slots": ["hand"],
+    "fast": true
+  },
+  {
+    "code": "01037",
+    "name": "Working a Hunch",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "intellect": 2 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "01537",
+    "name": "Working a Hunch",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "intellect": 2 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "01039",
+    "name": "Deduction",
+    "type": "skill",
+    "class": "seeker",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "60219",
+    "name": "Deduction",
+    "type": "skill",
+    "class": "seeker",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "01539",
+    "name": "Deduction",
+    "type": "skill",
+    "class": "seeker",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "60267",
+    "name": "Deduction",
+    "type": "skill",
+    "class": "seeker",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "01088",
+    "name": "Emergency Cache",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Supply"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "01588",
+    "name": "Emergency Cache",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Supply"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "01089",
+    "name": "Guts",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "willpower": 2 },
+    "slots": []
+  },
+  {
+    "code": "01589",
+    "name": "Guts",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "willpower": 2 },
+    "slots": []
+  },
+  {
+    "code": "01092",
+    "name": "Manual Dexterity",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "agility": 2 },
+    "slots": []
+  },
+  {
+    "code": "01592",
+    "name": "Manual Dexterity",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "agility": 2 },
+    "slots": []
+  },
+  {
+    "code": "01091",
+    "name": "Overpower",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "combat": 2 },
+    "slots": []
+  },
+  {
+    "code": "01591",
+    "name": "Overpower",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "combat": 2 },
+    "slots": []
+  },
+  {
+    "code": "01090",
+    "name": "Perception",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "intellect": 2 },
+    "slots": []
+  },
+  {
+    "code": "01590",
+    "name": "Perception",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "intellect": 2 },
+    "slots": []
+  },
+  {
+    "code": "01093",
+    "name": "Unexpected Courage",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "wild": 2 },
+    "slots": []
+  },
+  {
+    "code": "01593",
+    "name": "Unexpected Courage",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "wild": 2 },
+    "slots": []
+  }
+]
