@@ -140,6 +140,7 @@ import { SUPPORT_RENDERED_CODES } from './dunwich-support'
 import { REPRINT_RENDERED_CODES } from './reprints-wave-1'
 import { SECOND_REPRINT_RENDERED_CODES } from './reprints-wave-2'
 import { CLASSIC_RENDERED_CODES } from './classic-foundations'
+import { EQUIPMENT_RENDERED_CODES } from './classic-equipment'
 export const RENDERED_PLAYER_CARD_CODES = [
   ...pilotCodes,
   ...FOLLOWUP_RENDERED_CODES,
@@ -147,4 +148,5 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...REPRINT_RENDERED_CODES,
   ...SECOND_REPRINT_RENDERED_CODES,
   ...CLASSIC_RENDERED_CODES,
+  ...EQUIPMENT_RENDERED_CODES,
 ]

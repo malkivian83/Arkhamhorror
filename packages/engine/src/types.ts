@@ -445,6 +445,8 @@ export type SkillTestKind =
       failDamagePerPoint?: number
       damageIfNoResources?: number
       damageFromClues?: number
+      /** Extra damage only when the successful attack reaches this margin. */
+      damageIfSuccessBy?: { atLeast: number; amount: number }
     }
   | { type: 'evade'; enemy: EnemyId; onSuccess?: Message[]; onFail?: Message[] }
   | {

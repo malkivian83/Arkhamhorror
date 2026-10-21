@@ -10,6 +10,9 @@ export function attackDamage(state: GameState, test: SkillTest): number {
   return (
     1 +
     (kind.extraDamage ?? 0) +
+    (test.succeeded && kind.damageIfSuccessBy && margin >= kind.damageIfSuccessBy.atLeast
+      ? kind.damageIfSuccessBy.amount
+      : 0) +
     Math.min(kind.bonusPerSuccess ?? 0, margin) +
     (investigator.resources === 0 ? (kind.damageIfNoResources ?? 0) : 0) +
     Math.min(investigator.clues, kind.damageFromClues ?? 0)

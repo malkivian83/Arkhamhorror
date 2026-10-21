@@ -4885,7 +4885,9 @@ function skillTestResults(state: GameState, succeeded: boolean, failBy: number):
       // RR "Fight": al fallar contra un enemigo enfrentado con otro, el daño va a ese investigador.
       if (enemy.engagedWith !== null && enemy.engagedWith !== investigator) {
         const damage =
-          kind.failDamagePerPoint !== undefined ? Math.min(kind.failDamagePerPoint, failBy) : 1
+          kind.failDamagePerPoint !== undefined
+            ? Math.min(kind.failDamagePerPoint, failBy)
+            : attackDamage(state, test)
         results.push({ type: 'TakeDamage', investigator: enemy.engagedWith, damage, horror: 0 })
       }
       if (enemy.keywords.includes('retaliate') && !enemy.exhausted) {

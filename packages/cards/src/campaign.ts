@@ -51,6 +51,7 @@ import './dunwich-support'
 import './reprints-wave-1'
 import './reprints-wave-2'
 import './classic-foundations'
+import './classic-equipment'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
