@@ -68,7 +68,7 @@ function setLocale(value: Locale) {
   gap: 10px;
 }
 .preference-label {
-  color: #c3bbb4;
+  color: var(--site-muted);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -77,21 +77,21 @@ function setLocale(value: Locale) {
 .preferences button {
   min-height: 44px;
   color: var(--ink);
-  background: #1c1c21;
-  border: 1px solid #4a4347;
+  background: var(--site-control);
+  border: 1px solid var(--site-border);
   border-radius: 3px;
   font: inherit;
   font-size: 0.875rem;
 }
 .preferences button:hover:not(:disabled) {
-  background: #37303a;
+  background: var(--site-panel-hover);
   border-color: var(--accent);
 }
 /* Idioma: selector partido con el idioma activo relleno. */
 .languages {
   display: flex;
   justify-self: start;
-  border: 1px solid #4a4347;
+  border: 1px solid var(--site-border);
   border-radius: 3px;
   overflow: hidden;
 }
@@ -103,10 +103,10 @@ function setLocale(value: Locale) {
   letter-spacing: 0.08em;
 }
 .languages button + button {
-  border-left: 1px solid #4a4347;
+  border-left: 1px solid var(--site-border);
 }
 .languages button[aria-pressed='true'] {
-  color: #19191d;
+  color: var(--site-on-accent);
   background: var(--accent);
 }
 .playmats {
@@ -137,8 +137,8 @@ function setLocale(value: Locale) {
 .preferences-note {
   margin: 0;
   padding-top: 16px;
-  border-top: 1px solid #3c3539;
-  color: #a39b95;
+  border-top: 1px solid var(--site-line);
+  color: var(--site-faint);
   font-size: 0.75rem;
   line-height: 1.5;
 }

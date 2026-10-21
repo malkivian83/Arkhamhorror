@@ -447,7 +447,7 @@ p {
   }
 }
 .management-actions .delete-action {
-  background: #ae4236;
+  background: var(--site-danger);
   grid-column: 1 / -1;
 }
 .campaign-entry h3 {
@@ -469,9 +469,9 @@ p {
 }
 .error,
 .conflict {
-  border: 1px solid #df9f8d;
+  border: 1px solid var(--site-error-border);
   padding: 18px;
-  background: #38282b;
+  background: var(--site-error-bg);
 }
 .error {
   color: #ffd8cd;
@@ -503,7 +503,7 @@ p {
   padding: 48px 24px;
   min-height: 330px;
   background:
-    linear-gradient(0deg, #202025, #202025e0),
+    linear-gradient(0deg, var(--site-panel-sunken), #202025e0),
     url('/local-assets/home/occult-archive.webp') center / cover;
 }
 .guest-library h2 {

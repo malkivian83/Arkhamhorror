@@ -572,7 +572,7 @@ const titleCount = (code: string) => {
 .box {
   padding: 0;
   margin-bottom: 12px;
-  background: #202025;
+  background: var(--site-panel-sunken);
   border: 1px solid var(--border);
   border-radius: 10px;
 }
@@ -706,7 +706,7 @@ select {
 }
 .status {
   font-size: 0.75rem;
-  color: #ffb4a9;
+  color: var(--site-error-ink);
 }
 .status.ok {
   color: var(--eldritch);
@@ -724,7 +724,7 @@ select {
   margin: 4px;
 }
 .list .delete:hover {
-  color: #ffb4a9;
+  color: var(--site-error-ink);
   background: #51231e;
 }
 .editor {
@@ -741,7 +741,7 @@ select {
   border: 1px solid var(--border);
   border-radius: 10px;
   background:
-    linear-gradient(0deg, #202025, #202025d9),
+    linear-gradient(0deg, var(--site-panel-sunken), #202025d9),
     url('/local-assets/home/occult-archive.webp') center / cover;
 }
 .editor.empty img {
@@ -794,7 +794,7 @@ select {
 }
 .size {
   margin: 8px 0 4px;
-  color: #ffb4a9;
+  color: var(--site-error-ink);
 }
 .size.ok,
 .valid {
@@ -809,7 +809,7 @@ select {
 .problems {
   margin: 4px 0;
   padding-left: 18px;
-  color: #ffb4a9;
+  color: var(--site-error-ink);
   font-size: 0.85rem;
 }
 .columns {
@@ -823,7 +823,7 @@ select {
 .contents,
 .pool {
   padding: 18px;
-  background: #202025;
+  background: var(--site-panel-sunken);
   border: 1px solid var(--border);
   border-radius: 10px;
 }

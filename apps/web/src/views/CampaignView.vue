@@ -343,7 +343,7 @@ function abandon() {
   padding-left: 12px;
   border: 1px solid #947361;
   border-radius: 7px;
-  background: #37303a;
+  background: var(--site-panel-hover);
   color: var(--ink);
 }
 .scenarios li.done .numeral {
@@ -447,12 +447,12 @@ function abandon() {
 .fate {
   margin: 0;
   font-family: var(--display);
-  color: #ffb4a9;
+  color: var(--site-error-ink);
 }
 .shop {
   grid-column: 1 / -1;
   padding: 16px;
-  background: #19191d;
+  background: var(--site-bg);
   border: 1px solid var(--border);
   border-radius: 7px;
 }
@@ -513,7 +513,7 @@ function abandon() {
   flex-wrap: wrap;
   margin-top: 22px;
   padding: 22px;
-  background: #202025;
+  background: var(--site-panel-sunken);
   border: 1px solid var(--border);
   border-radius: 10px;
 }
@@ -532,7 +532,7 @@ function abandon() {
 .active-boons {
   padding: 0 20px;
   margin-bottom: 24px;
-  background: #202025;
+  background: var(--site-panel-sunken);
 }
 .active-boons summary {
   display: flex;

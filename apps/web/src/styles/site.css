@@ -19,9 +19,28 @@
   --site-ink-soft: #d0c7c1;
   --site-muted: #c3bbb4;
   --site-faint: #a39b95;
+  --site-panel-raised: #303037;
+  --site-panel-hover: #37303a;
+  --site-control: #1c1c21;
+  --site-outline: #807574;
   --site-accent: #e5aa8d;
   --site-accent-hover: #f0c2a8;
   --site-on-accent: #19191d;
+  --site-danger: #ae4236;
+  --site-error-ink: #ffb4a9;
+  --site-error-bg: #38282b;
+  --site-error-border: #df9f8d;
+
+  /* Acabados de botón: cobre y pergamino (principal) y madera (secundario). */
+  --site-copper-top: #f1d6a0;
+  --site-copper-bottom: #c59154;
+  --site-copper-edge: #aa6b39;
+  --site-copper-ink: #302014;
+  --site-copper-shine: #fff3cc;
+  --site-wood-top: #493426;
+  --site-wood-bottom: #2d211b;
+  --site-wood-edge: #b48355;
+  --site-wood-ink: #f3dfbc;
 
   --site-display: 'Libre Baskerville', Georgia, serif;
   --site-body: 'Source Sans 3', system-ui, sans-serif;
@@ -152,7 +171,7 @@
   min-height: 40px;
   padding: 0 14px;
   color: var(--site-ink-soft);
-  background: #1c1c21;
+  background: var(--site-control);
   border: 1px solid var(--site-border);
   border-radius: 999px;
   font: 600 0.875rem var(--site-body);

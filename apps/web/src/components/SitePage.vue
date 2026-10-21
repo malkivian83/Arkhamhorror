@@ -40,30 +40,31 @@ const { t } = useI18n()
 </template>
 
 <style scoped>
-/* Theme confined to these pages: the game table keeps its own presentation. */
+/*
+ * Tema de las páginas del sitio. Los nombres cortos (--panel, --accent...) son
+ * los que usan las vistas y los componentes compartidos con la mesa; aquí
+ * apuntan a los tokens de styles/site.css.
+ */
 .site-surface {
-  --bg: #19191d;
-  --panel: #25252b;
-  --panel-2: #2c2b31;
-  --ink: #f4efe7;
-  --accent: #e5aa8d;
+  --bg: var(--site-bg);
+  --panel: var(--site-panel);
+  --panel-2: var(--site-panel-raised);
+  --ink: var(--site-ink);
+  --accent: var(--site-accent);
   --accent-glow: #e5aa8d66;
-  --border: #494248;
-  --line: #494248;
-  --muted: #bdb4b1;
-  --brass: #e5aa8d;
-  --brass-dark: #807574;
+  --border: var(--site-border);
+  --line: var(--site-border);
+  --muted: var(--site-muted);
+  --brass: var(--site-accent);
+  --brass-dark: var(--site-outline);
   --eldritch: #a8d8c0;
-  --display: 'Libre Baskerville', Georgia, serif;
-  --fell: 'Source Sans 3', system-ui, sans-serif;
-  --type: 'Source Sans 3', system-ui, sans-serif;
+  --display: var(--site-display);
+  --fell: var(--site-body);
+  --type: var(--site-body);
   min-height: calc(100dvh - 94px);
   background: var(--bg);
   color: var(--ink);
-  font:
-    400 1rem/1.5 'Source Sans 3',
-    system-ui,
-    sans-serif;
+  font: 400 1rem/1.5 var(--site-body);
 }
 .site-page {
   width: min(1180px, 100%);
@@ -71,10 +72,7 @@ const { t } = useI18n()
   margin: 0 auto;
   padding: 0 36px 28px;
   color: var(--ink);
-  font:
-    400 1rem/1.6 'Source Sans 3',
-    system-ui,
-    sans-serif;
+  font: 400 1rem/1.6 var(--site-body);
 }
 .page-heading {
   position: relative;
@@ -119,7 +117,7 @@ h1 {
 .page-title > p:not(.page-eyebrow) {
   max-width: 64ch;
   margin: 8px 0 0;
-  color: #d0c7c1;
+  color: var(--site-ink-soft);
   line-height: 1.5;
 }
 .page-eyebrow {
@@ -168,12 +166,8 @@ h1 {
   min-height: 44px;
   font: inherit;
 }
-.site-page :deep(button),
+.site-page :deep(button:not(.ui-plain)),
 .site-page :deep(.link-button) {
-  border: 0;
-  border-radius: 4px;
-  color: #fff;
-  background: #555;
   padding: 8px 14px;
   overflow-wrap: anywhere;
 }
@@ -184,25 +178,6 @@ h1 {
   text-decoration: none;
   text-align: center;
 }
-.site-page :deep(button:hover:not(:disabled)),
-.site-page :deep(.link-button:hover) {
-  filter: brightness(1.18);
-}
-.site-page :deep(button.primary),
-.site-page :deep(.link-button.primary) {
-  color: #fff;
-  background: #14854d;
-  font-weight: 600;
-}
-.site-page :deep(button.primary:hover:not(:disabled)),
-.site-page :deep(.link-button.primary:hover) {
-  background: #14854d;
-}
-.site-page :deep(button[aria-pressed='true']) {
-  color: #fff;
-  background: #7c3c85;
-  box-shadow: inset 0 -2px rgb(255 255 255 / 24%);
-}
 .site-page :deep(input:not([type='checkbox'])),
 .site-page :deep(select),
 .site-page :deep(textarea) {
@@ -211,12 +186,12 @@ h1 {
   border: 1px solid var(--border);
   border-radius: 6px;
   color: var(--ink);
-  background: #19191d;
+  background: var(--site-bg);
   padding: 8px 10px;
   font: inherit;
 }
 .site-page :deep(input::placeholder) {
-  color: #c3bbb4;
+  color: var(--site-muted);
   opacity: 1;
 }
 .site-page :deep(input[type='checkbox']) {
@@ -230,9 +205,9 @@ h1 {
   text-underline-offset: 4px;
 }
 .site-page :deep(:focus-visible) {
-  outline: 2px solid #f4efe7;
+  outline: 2px solid var(--site-ink);
   outline-offset: 3px;
-  box-shadow: 0 0 0 5px #19191d;
+  box-shadow: 0 0 0 5px var(--site-bg);
 }
 @media (max-width: 680px) {
   .site-surface {

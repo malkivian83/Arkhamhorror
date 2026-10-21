@@ -577,11 +577,11 @@ button[aria-pressed='true'] {
  * mismo cobre y pergamino que SiteAction en la web; `.secondary`, en madera.
  */
 .table-action {
-  --action-top: #f1d6a0;
-  --action-bottom: #c59154;
-  --action-edge: #aa6b39;
-  --action-ink: #302014;
-  --action-shine: #fff3cc;
+  --action-top: var(--site-copper-top);
+  --action-bottom: var(--site-copper-bottom);
+  --action-edge: var(--site-copper-edge);
+  --action-ink: var(--site-copper-ink);
+  --action-shine: var(--site-copper-shine);
   min-height: 44px;
   padding: 10px 20px;
   color: var(--action-ink);
@@ -603,10 +603,10 @@ button[aria-pressed='true'] {
     translate 140ms ease;
 }
 .table-action.secondary {
-  --action-top: #493426;
-  --action-bottom: #2d211b;
-  --action-edge: #b48355;
-  --action-ink: #f3dfbc;
+  --action-top: var(--site-wood-top);
+  --action-bottom: var(--site-wood-bottom);
+  --action-edge: var(--site-wood-edge);
+  --action-ink: var(--site-wood-ink);
   --action-shine: #bd8a5966;
   text-shadow: 0 1px 2px #0008;
 }

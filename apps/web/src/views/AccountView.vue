@@ -289,7 +289,7 @@ h2 {
   border-radius: 10px;
   overflow: hidden;
   background:
-    linear-gradient(0deg, #202025 14%, #20202599 65%, #20202530),
+    linear-gradient(0deg, var(--site-panel-sunken) 14%, #20202599 65%, #20202530),
     url('/local-assets/home/occult-archive.webp') 65% top / cover;
 }
 .context-copy {
@@ -351,7 +351,7 @@ input:not([type='checkbox']) {
   font: inherit;
   padding: 12px;
   color: #f6f0e2;
-  background: #19191d;
+  background: var(--site-bg);
   border: 1px solid var(--border);
   border-radius: 5px;
   min-height: 46px;
@@ -374,7 +374,7 @@ button,
   flex-wrap: nowrap;
   gap: 4px;
   padding: 4px;
-  background: #19191d;
+  background: var(--site-bg);
   border: 1px solid var(--border);
   border-radius: 8px;
 }
@@ -418,7 +418,7 @@ button,
   padding: 14px;
   line-height: 1.6;
   border: 1px solid var(--border);
-  background: #303037;
+  background: var(--site-panel-raised);
   border-radius: 7px;
   margin: 0 0 24px;
 }
@@ -453,7 +453,7 @@ hr {
   color: #ffb8a5;
 }
 .danger button {
-  background: #ae4236;
+  background: var(--site-danger);
   color: #fff;
 }
 @media (max-width: 800px) {

@@ -1,7 +1,7 @@
 /* Solo las pantallas del sitio. La mesa y su menú conservan sus estilos. */
 #app:not(:has(> .game-shell)) {
-  --button-copper: #b48355;
-  --button-cream: #f3dfbc;
+  --button-copper: var(--site-wood-edge);
+  --button-cream: var(--site-wood-ink);
 }
 
 #app:not(:has(> .game-shell))
@@ -12,7 +12,7 @@
   ) {
   min-height: 44px;
   color: var(--button-cream);
-  background: linear-gradient(180deg, #493426, #2d211b);
+  background: linear-gradient(180deg, var(--site-wood-top), var(--site-wood-bottom));
   border: 1px solid var(--button-copper);
   border-radius: 6px;
   box-shadow:
@@ -60,8 +60,8 @@
 
 #app:not(:has(> .game-shell))
   button:not(.site-action, .investigator-card, .pick, .delete, .ui-plain)[aria-pressed='true'] {
-  color: #302014;
-  background: linear-gradient(180deg, #f1d6a0, #c59154);
+  color: var(--site-copper-ink);
+  background: linear-gradient(180deg, var(--site-copper-top), var(--site-copper-bottom));
   border-color: #eac18c;
   text-shadow: 0 1px 0 #fff3cc66;
   box-shadow:
