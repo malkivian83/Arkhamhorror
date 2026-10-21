@@ -330,6 +330,8 @@ export interface PlayerCardBehavior {
     succeeded: boolean,
     committedBy: InvestigatorId,
   ) => Message[]
+  /** Carta comprometida: después del paso 8, con la prueba ya cerrada. */
+  afterCommittedTestEnds?: PlayerCardBehavior['afterCommittedTest']
   /** Reacciones del apoyo en juego (las decide su controlador). */
   reactions?: (state: GameState, trigger: Trigger, self: Asset) => ReactionOption[]
   /** Eventos que se juegan como reacción desde la mano ("Juégala después de…"). */

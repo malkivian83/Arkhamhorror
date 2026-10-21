@@ -150,6 +150,7 @@ import { RESULT_RENDERED_CODES } from './result-skills'
 import { TEST_MODIFIER_RENDERED_CODES } from './test-modifiers'
 import { DISTRIBUTED_RESULT_RENDERED_CODES } from './distributed-results'
 import { BASIC_ACTION_SKILL_RENDERED_CODES } from './basic-action-skills'
+import { MOVEMENT_SKILL_RENDERED_CODES } from './movement-skills'
 import { PETE_RENDERED_CODES } from './ashcan-pete'
 export const RENDERED_PLAYER_CARD_CODES = [
   ...pilotCodes,
@@ -169,4 +170,5 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...DISTRIBUTED_RESULT_RENDERED_CODES,
   ...BASIC_ACTION_SKILL_RENDERED_CODES,
   ...PETE_RENDERED_CODES,
+  ...MOVEMENT_SKILL_RENDERED_CODES,
 ]
