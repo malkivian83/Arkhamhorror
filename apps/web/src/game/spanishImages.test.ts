@@ -61,6 +61,11 @@ describe('imágenes españolas de referencia y alternativas', () => {
       expect(cardImages(code, false, 'en')).toEqual([`/local-assets/cards/en/${code}.avif`])
     },
   )
+  it('una reimpresión sin imagen propia usa la de otra impresión de la carta', () => {
+    for (const reprint of ['01039', '01539', '60219', '60267'])
+      expect(cardImages(reprint, false, 'es')).toEqual(cardImages('12039', false, 'es'))
+    expect(cardImages('12039', false, 'es').length).toBeGreaterThan(0)
+  })
   it('no solicita traducciones ausentes de Gala ni pierde su segunda cara especial', () => {
     expect(cardImages('71008', false, 'es')).toEqual(['/local-assets/cards/en/71008.avif'])
     expect(cardImages('71045b', false, 'es')).toEqual(['/local-assets/cards/en/71045b.avif'])

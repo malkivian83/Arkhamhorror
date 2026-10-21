@@ -5,6 +5,7 @@ import {
   currentScenario,
   deckSize,
   deckSizeOf,
+  onePrintingEach,
   purchaseOptions,
   removableCards,
   type PurchaseOption,
@@ -46,9 +47,12 @@ const shopping = ref<string | null>(null)
 /** Carta que sale del mazo para hacer sitio, por opción de compra. */
 const removal = ref<Record<string, string>>({})
 
-/** Primero las cartas que ya funcionan; después, por nivel y nombre. */
+/** Una impresión por carta; primero las que ya funcionan, después por nivel y nombre. */
 const options = computed(() =>
-  (campaign.value && shopping.value ? purchaseOptions(campaign.value, shopping.value) : []).sort(
+  onePrintingEach(
+    campaign.value && shopping.value ? purchaseOptions(campaign.value, shopping.value) : [],
+    (o) => (o.replaces ? 'upgrade' : 'new'),
+  ).sort(
     (a, b) =>
       Number(b.implemented) - Number(a.implemented) ||
       a.level - b.level ||

@@ -43,3 +43,16 @@ describe('saved inventory bundles', () => {
     }
   })
 })
+
+describe('reprints list', () => {
+  it('matches every duplicateOf relation of the imported catalogs', async () => {
+    const duplicates = JSON.parse(await readFile(join(root, '../../data/duplicates.json'), 'utf8'))
+    for (const id of (await readdir(root)).filter((name) => /^[a-f0-9]{16}$/.test(name))) {
+      const catalog = JSON.parse(await readFile(join(root, id, 'catalog.json'), 'utf8'))
+      for (const card of catalog.cards) {
+        const original = card.relations?.duplicateOf
+        if (original) expect(duplicates[card.code]).toBe(original)
+      }
+    }
+  })
+})

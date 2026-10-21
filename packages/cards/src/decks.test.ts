@@ -6,12 +6,14 @@ import {
   cardPool,
   deckFromArkhamDb,
   emptyDeck,
+  investigatorCards,
   starterDeckList,
   validateDeck,
   withRandomBasicWeakness,
   type DeckList,
 } from './decks'
 import { COLLECTOR } from './brethren-of-ash/queen-of-ash'
+import { printingsOf, reprintSource } from './reprints'
 import './index'
 
 const DANIELA = code(1)
@@ -68,6 +70,21 @@ describe('mazos: validación', () => {
     const pool = cardPool(DANIELA)
     expect(pool.every((c) => ['guardian', 'neutral', 'survivor'].includes(c.class))).toBe(true)
     expect(pool.some((c) => c.class === 'survivor' && (c.xp ?? 0) > 2)).toBe(false)
+  })
+
+  it('el catálogo muestra una sola impresión de cada carta', () => {
+    const deductions = cardPool(code(4)).filter((c) => c.name === 'Deduction' && !c.xp)
+    expect(deductions.map((c) => c.code)).toEqual([code(39)])
+    for (const investigator of investigatorCards()) {
+      const titles = cardPool(investigator.code).map((c) => `${c.name}|${c.xp ?? 0}|${c.class}`)
+      expect(titles.filter((t, i) => titles.indexOf(t) !== i)).toEqual([])
+    }
+  })
+
+  it('las reimpresiones llevan a la carta original', () => {
+    expect(reprintSource('01539')).toBe('01039')
+    expect(reprintSource(code(39))).toBe('01039')
+    expect(printingsOf('60219')).toEqual(expect.arrayContaining(['01039', code(39), '01539']))
   })
 })
 

@@ -97,7 +97,8 @@ describe('pilot availability and lossless deck import', () => {
   })
   it('offers approved cards and counts reprinted titles together', () => {
     expect(cardPool('12001').some((card) => card.code === '02116')).toBe(true)
-    expect(cardPool('12004').some((card) => card.code === '02020')).toBe(true)
+    const assistants = cardPool('12004').filter((card) => card.name === 'Laboratory Assistant')
+    expect(assistants.map((card) => card.code)).toEqual(['12032'])
     const joe = starterDeckList('joe', 'j', 'J')
     expect(playerCardDef('12032')!.name).toBe(playerCardDef('02020')!.name)
     const deck = { ...joe, cards: [...joe.cards, '02020', '02020'] }

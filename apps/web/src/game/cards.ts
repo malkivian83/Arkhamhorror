@@ -1,3 +1,4 @@
+import { printingsOf } from '@lcg/cards'
 import { playerCardDef } from '@lcg/engine'
 import { ref } from 'vue'
 import imageManifest from './cardImageManifest.json'
@@ -48,7 +49,15 @@ export function cardImages(code: string, back = false, locale = scanLocale.value
   }
   const localized = locale === 'es' ? pick(LOCAL_IMAGES.es) : undefined
   const english = pick(LOCAL_IMAGES.en)
-  return [localized, english].filter((path): path is string => Boolean(path))
+  const images = [localized, english].filter((path): path is string => Boolean(path))
+  if (images.length) return images
+  // Una reimpresión sin imagen propia usa la de otra impresión de la misma carta.
+  for (const printing of printingsOf(base)) {
+    if (printing === base) continue
+    const shared = [LOCAL_IMAGES.es, LOCAL_IMAGES.en].some((m) => m[printing])
+    if (shared) return cardImages(`${printing}${match[2] ?? ''}`, back, locale)
+  }
+  return []
 }
 
 export function cardImage(code: string, back = false): string | null {
