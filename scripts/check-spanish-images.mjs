@@ -2,7 +2,8 @@
 import { createServer } from '../apps/web/node_modules/vite/dist/node/index.js'
 import { createHash } from 'node:crypto'
 import { readFile, writeFile } from 'node:fs/promises'
-const cataloguePath = 'D:/referencia/ArkhamHorror-main/frontend/src/digests/es.json'
+const cataloguePath =
+  process.env.REFERENCE_ES_DIGEST ?? 'D:/referencia/ArkhamHorror-main/frontend/src/digests/es.json'
 const server = await createServer({
   configFile: false,
   server: { middlewareMode: true, hmr: false },
