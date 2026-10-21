@@ -14,8 +14,10 @@ import type {
   CardCode,
   ChaosSymbol,
   ChaosToken,
+  DamageSource,
   Enemy,
   EnemyCard,
+  EnemyKeyword,
   GameState,
   Investigator,
   InvestigatorId,
@@ -68,7 +70,12 @@ export interface ScenarioBehavior {
    * Un apoyo controlado va a abandonar el juego (descartado o derrotado). Si devuelve
    * mensajes, se resuelven en su lugar (Invitados que quedan hechizados).
    */
-  assetLeavesPlay?: (state: GameState, asset: Asset) => Message[] | null
+  assetLeavesPlay?: (
+    state: GameState,
+    asset: Asset,
+    /** Por qué: descartado, o su dueño ha sido derrotado o se ha retirado. */
+    reason: 'discard' | 'defeated' | 'resigned',
+  ) => Message[] | null
   /** Habilidades del escenario para cualquier investigador (tarjeta de escenario). */
   abilities?: AbilitiesFn<null>
   /** Modificador a la prueba en curso por efectos del escenario (traiciones, enemigos, lugares). */
@@ -88,6 +95,20 @@ export interface ScenarioBehavior {
   /** Acciones de cada investigador en su turno (Declan Pearce: 1 menos). */
   actionsModifier?: (state: GameState, investigator: InvestigatorId) => number
   forced?: (state: GameState, trigger: Trigger) => Message[]
+  /** Reacciones de las cartas del escenario (localizaciones, plan, acto) para los investigadores. */
+  reactions?: (state: GameState, trigger: Trigger) => ReactionOption[]
+  /** El investigador puede entrar en `to` desde `from` (Habitación 212 cerrada con llave). */
+  canEnter?: (
+    state: GameState,
+    investigator: InvestigatorId,
+    from: LocationId | null,
+    to: LocationId,
+  ) => boolean
+  /**
+   * Al intentar moverse: si devuelve mensajes, se resuelven en su lugar (el escenario
+   * vuelve a mandar el movimiento con `checked` si sigue adelante). Vestíbulo.
+   */
+  beforeMove?: (state: GameState, move: Extract<Message, { type: 'MoveTo' }>) => Message[] | null
 }
 
 /** Carta de Historia en juego: habilidades para cualquier investigador y forzados. */
@@ -109,6 +130,11 @@ export interface TreacheryBehavior {
   code: CardCode
   /** Mensajes de su revelación. Si no la coloca en juego, se descarta al terminar. */
   revelation: (state: GameState, investigator: InvestigatorId, self: Treachery) => Message[]
+  /**
+   * En la zona de amenaza: coste adicional para que su investigador negocie (¿Qué has
+   * hecho?). `null` si no puede pagarlo.
+   */
+  parleyCost?: (state: GameState, investigator: InvestigatorId) => Message[] | null
   /** Habilidades forzadas mientras está en juego. */
   forced?: (state: GameState, trigger: Trigger, self: Treachery) => Message[]
   abilities?: AbilitiesFn<Treachery>
@@ -119,6 +145,8 @@ export interface TreacheryBehavior {
   cannotDiscard?: boolean
   /** Unida a una localización: los investigadores no pueden salir de ella (Secret Door). */
   blocksLeaving?: boolean
+  /** Vinculada a un enemigo: cambia sus valores y le quita palabras clave (Llevado a la locura). */
+  attachedEnemy?: { fight?: number; evade?: number; health?: number; loses?: EnemyKeyword[] }
 }
 
 export interface EnemyBehavior {
@@ -132,10 +160,29 @@ export interface EnemyBehavior {
   reactions?: (state: GameState, trigger: Trigger, self: Enemy) => ReactionOption[]
   /** Modificador a las habilidades de los investigadores de su localización (Whippoorwill). */
   skillModifier?: (state: GameState, self: Enemy, test: SkillTest) => number
-  /** Errante: localizaciones hacia las que se mueve en el paso 3.2 (vacío si ninguna). */
-  patrol?: (state: GameState, self: Enemy) => LocationId[]
+  /**
+   * Errante: localizaciones hacia las que se mueve en el paso 3.2 (vacío si ninguna).
+   * `null`: ahora no tiene Errante (y, si lo tiene, resuelve Cazador).
+   */
+  patrol?: (state: GameState, self: Enemy) => LocationId[] | null
+  /** Ahora no tiene Cazador aunque esté impreso (Seguridad del hotel con Clientes en juego). */
+  losesHunter?: (state: GameState, self: Enemy) => boolean
   /** Al ir a ser derrotado: si devuelve mensajes, se resuelven en su lugar (no se derrota). */
   wouldBeDefeated?: (state: GameState, self: Enemy) => Message[] | null
+  /**
+   * Instrucción de aparición variable ("Lugar más cercano con…"): localizaciones
+   * posibles para el investigador que lo roba. Vacío: no puede aparecer y se descarta.
+   */
+  spawn?: (state: GameState, investigator: InvestigatorId) => LocationId[]
+  /** Gana Oleada (Clientas del hotel con el Director en juego). */
+  surge?: (state: GameState) => boolean
+  /** Cuando fuese a recibir daño: el daño que recibe en realidad y efectos añadidos. */
+  damageTaken?: (
+    state: GameState,
+    self: Enemy,
+    amount: number,
+    source: DamageSource,
+  ) => { amount: number; then?: Message[] }
 }
 
 export interface LocationBehavior {
@@ -153,6 +200,8 @@ export interface AgendaBehavior {
   forced?: (state: GameState, trigger: Trigger, self: Agenda) => Message[]
   /** Instrucciones del reverso al avanzar. */
   onAdvance?: (state: GameState) => Message[]
+  /** Instrucciones del reverso que se resuelven con el plan siguiente ya en juego. */
+  afterAdvance?: (state: GameState) => Message[]
 }
 
 export interface ActBehavior {
@@ -296,6 +345,13 @@ export interface PlayerCardBehavior {
   handSize?: number
   /** Puede recibir el daño de otros investigadores de su localización (Bodyguard). */
   soaksForOthers?: boolean
+  /**
+   * Puede recibir el daño y el horror de cualquier investigador de su localización,
+   * aunque no tenga dueño (Sargento Monroe).
+   */
+  soaksAtLocation?: boolean
+  /** Sin dueño: reacciones para los investigadores (las decide quien las active). */
+  placedReactions?: (state: GameState, trigger: Trigger, self: PlacedAsset) => ReactionOption[]
   /** Se descarta al quedarse sin usos. */
   discardWhenEmpty?: boolean
   /** Su acción es de evitar (cuenta como tal) o no provoca ataques de oportunidad. */

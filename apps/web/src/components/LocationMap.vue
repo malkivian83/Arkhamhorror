@@ -86,6 +86,10 @@ const attachedTo = (enemy: string) =>
     (p) => p.placement.type === 'enemy' && p.placement.enemy === enemy,
   )
 const playerBack = computed(() => cardBackImage('player'))
+const treacheriesOn = (enemy: string) =>
+  Object.values(props.state.treacheries).filter(
+    (tr) => tr.placement.type === 'enemy' && tr.placement.enemy === enemy,
+  )
 const treacheriesAt = (id: string) =>
   Object.values(props.state.treacheries).filter(
     (tr) => tr.placement.type === 'location' && tr.placement.location === id,
@@ -184,7 +188,24 @@ const treacheriesAt = (id: string) =>
           </GameCard>
         </TableTarget>
         <TableTarget v-for="tr in treacheriesAt(l.id)" :key="tr.id" :target="`treachery:${tr.id}`">
-          <GameCard :code="tr.code" :name="tr.name" :width="54" color="#b5462f" />
+          <GameCard :code="tr.code" :name="tr.name" :width="54" color="#b5462f">
+            <!-- Fichas sobre la traición (Cerebro extraído). -->
+            <TokenBadge
+              v-if="tr.horror"
+              class="placed-horror"
+              kind="horror"
+              :value="tr.horror"
+              :size="20"
+            />
+            <TokenBadge
+              v-if="tr.clues"
+              class="placed-doom"
+              kind="clue"
+              :value="tr.clues"
+              :size="20"
+              :title="t('table.clues')"
+            />
+          </GameCard>
         </TableTarget>
         <TableTarget
           v-for="e in enemiesAt(l.id).filter((x) => !x.engagedWith)"
@@ -205,6 +226,15 @@ const treacheriesAt = (id: string) =>
               :value="e.damageTaken"
               :size="24"
             />
+            <TokenBadge v-if="e.doom" class="placed-doom" kind="doom" :value="e.doom" :size="22" />
+            <TokenBadge
+              v-if="e.clues"
+              class="placed-horror"
+              kind="clue"
+              :value="e.clues"
+              :size="22"
+              :title="t('table.clues')"
+            />
           </GameCard>
           <TableTarget v-for="p in attachedTo(e.id)" :key="p.id" :target="`placed:${p.id}`">
             <GameCard :code="p.code" :name="p.name" :width="40" class="attached" color="#3f6b4a">
@@ -223,6 +253,20 @@ const treacheriesAt = (id: string) =>
                 :size="16"
               />
             </GameCard>
+          </TableTarget>
+          <!-- Traiciones vinculadas al enemigo (Llevado a la locura). -->
+          <TableTarget
+            v-for="tr in treacheriesOn(e.id)"
+            :key="tr.id"
+            :target="`treachery:${tr.id}`"
+          >
+            <GameCard
+              :code="tr.code"
+              :name="tr.name"
+              :width="40"
+              class="attached"
+              color="#b5462f"
+            />
           </TableTarget>
         </TableTarget>
       </div>

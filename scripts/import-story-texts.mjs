@@ -105,6 +105,7 @@ function toText(html) {
     .replace(/<\/?(i|em)>/g, '_')
     .replace(/<h\d[^>]*>[\s\S]*?<\/h\d>/g, '')
     .replace(/<hr\s*\/?>/g, '\n\n')
+    .replace(/<br\s*\/?>/g, '\n\n')
     .replace(/<li[^>]*>/g, '\n\n• ')
     .replace(/<p class=['"][^'"]*basic[^'"]*['"]>/g, '\n\n» ')
     .replace(/<p[^>]*>/g, '\n\n')
@@ -182,6 +183,91 @@ function galaTexts() {
   return out
 }
 
+/**
+ * Textos de Asesinato en el hotel Excelsior (locales/en/standalone/murderAtTheExcelsiorHotel.json)
+ * y los reversos de sus planes y actos (public/cards_en.json de la referencia).
+ */
+function excelsiorTexts() {
+  const file = join(locales, 'standalone/murderAtTheExcelsiorHotel.json')
+  const cardsFile = join(reference, 'frontend/public/cards_en.json')
+  if (!existsSync(file) || !existsSync(cardsFile)) return {}
+  const hotel = load('standalone/murderAtTheExcelsiorHotel.json')
+  const g = (path) => get(hotel, path)
+  const text = (...paths) =>
+    paths
+      .map(g)
+      .filter((v) => typeof v === 'string')
+      .map(toText)
+      .join('\n\n')
+  const list = (...paths) =>
+    paths
+      .map(g)
+      .filter((v) => typeof v === 'string')
+      .map((v) => `• ${toText(v)}`)
+      .join('\n\n')
+  const cards = JSON.parse(readFileSync(cardsFile, 'utf8'))
+  // Los reversos de las cartas separan los párrafos con saltos de línea.
+  const back = (code) =>
+    (cards.find((c) => c.code === code)?.back_text ?? '')
+      .replace(/\n/g, '<p>')
+      // Rasgos ([[Lead]]) en cursiva.
+      .replace(/\[\[([^\]]+)\]\]/g, '<i>$1</i>')
+  const VERSIONS = [
+    'alienDeviceAndTimeWornLocket',
+    'alienDeviceAndSinisterSolution',
+    'alienDeviceAndManagersKey',
+    'alienDeviceAndTomeOfRituals',
+    'timeWornLocketAndSinisterSolution',
+    'timeWornLocketAndManagersKey',
+    'timeWornLocketAndTomeOfRituals',
+    'sinisterSolutionAndManagersKey',
+    'sinisterSolutionAndTomeOfRituals',
+    'managersKeyAndTomeOfRituals',
+  ]
+  const out = {
+    'story.excelsior.intro1': text('intro.intro1'),
+    'story.excelsior.intro2': text('intro.intro2'),
+    'story.excelsior.intro3': text('intro.intro3'),
+    'story.excelsior.intro4': text('intro.intro4'),
+    'story.excelsior.setup': Object.entries(hotel.setup ?? {})
+      .flatMap(([key, step]) =>
+        key === 'begin' && typeof common.shuffleRemainder === 'string'
+          ? [common.shuffleRemainder, step]
+          : [step],
+      )
+      .map((step) => `• ${toText(step)}`)
+      .join('\n\n'),
+    'story.excelsior.murderBack': toText(back('84002')),
+    'story.excelsior.specialInvestigationBack': toText(back('84003')),
+    'story.excelsior.whatHappenedBack': toText(back('84004')),
+    'story.excelsior.truth1': text('interlude.theTruth1'),
+    'story.excelsior.truth2': [
+      text('interlude.theTruth2'),
+      list('interlude.nothingToHide', 'interlude.evidence', 'interlude.innocent'),
+    ].join('\n\n'),
+    'story.excelsior.truth3': [
+      text('interlude.theTruth3'),
+      list('interlude.coveredUp', 'interlude.innocent'),
+    ].join('\n\n'),
+    'story.excelsior.truth4': text('interlude.theTruth4'),
+    'story.excelsior.truth5': text('interlude.theTruth5'),
+    'story.excelsior.truth6': text('interlude.theTruth6'),
+    'story.excelsior.truth7': text('interlude.theTruth7'),
+    'story.excelsior.noResolution': text('resolutions.noResolution.body'),
+    'story.excelsior.noResolutionResigned': text('resolutions.noResolutionResigned.body'),
+  }
+  for (let n = 1; n <= 3; n++) {
+    out[`story.excelsior.resolution${n}`] = text(`resolutions.resolution${n}.body`)
+  }
+  VERSIONS.forEach((key, n) => {
+    const [doom, objective] = back(String(84043 + n)).split(/<hr\s*\/?>/)
+    out[`story.excelsior.culprit${n + 1}`] = text(`interlude.${key}`)
+    out[`story.excelsior.culpritDoom${n + 1}`] = toText(doom ?? '')
+    out[`story.excelsior.culpritObjective${n + 1}`] = toText(objective ?? '')
+  })
+  return out
+}
+
 /** Título de la guía → clave de las palabras clave en los ficheros de idioma. */
 const KEYWORDS = { 'The Codex': 'codex' }
 
@@ -256,6 +342,8 @@ const texts = {
   ),
   // La gala del ecuador del invierno (escenario independiente).
   ...galaTexts(),
+  // Asesinato en el hotel Excelsior (escenario independiente).
+  ...excelsiorTexts(),
   // Palabras clave y conceptos de la guía (por su título en inglés).
   ...Object.fromEntries(
     Object.values(brethren)

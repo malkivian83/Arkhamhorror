@@ -34,13 +34,20 @@ describe('imágenes españolas de referencia y alternativas', () => {
       }
   })
   it('cubre cada carta con imagen local o presentación renderizada aprobada', () => {
-    const codes = new Set(fallbackCards('en').map((c) => c.code))
+    // El catálogo se calcula una vez por idioma (construirlo por carta es lento).
+    const catalogue = Object.fromEntries(
+      ['en', 'es'].map((locale) => [
+        locale,
+        new Map(fallbackCards(locale).map((c) => [c.code, c])),
+      ]),
+    )
+    const codes = new Set(catalogue.en!.keys())
     const rendered = new Set(RENDERED_PLAYER_CARD_CODES)
     for (let n = 1; n <= 62; n++) codes.add(`71${String(n).padStart(3, '0')}`)
     for (const code of codes) {
       if (rendered.has(code)) {
         for (const locale of ['en', 'es']) {
-          const card = fallbackCards(locale).find((card) => card.code === code)!
+          const card = catalogue[locale]!.get(code)!
           expect(card.name, code).toBeTruthy()
           expect(card.text, code).toBeTruthy()
           if (card.type_code === 'skill' || isPermanent(code))

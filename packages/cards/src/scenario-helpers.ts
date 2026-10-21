@@ -96,7 +96,12 @@ export function effectTest(
   source: string,
   skill: SkillType,
   difficulty: number,
-  results: { onSuccess?: Message[]; onFail?: Message[]; onFailEach?: Message[] },
+  results: {
+    onSuccess?: Message[]
+    onFail?: Message[]
+    onFailEach?: Message[]
+    onSuccessEach?: Message[]
+  },
 ): Message {
   return {
     type: 'BeginSkillTest',
@@ -109,6 +114,7 @@ export function effectTest(
       onSuccess: results.onSuccess ?? [],
       onFail: results.onFail ?? [],
       onFailEach: results.onFailEach ?? [],
+      ...(results.onSuccessEach ? { onSuccessEach: results.onSuccessEach } : {}),
     },
   }
 }

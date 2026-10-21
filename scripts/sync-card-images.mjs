@@ -18,6 +18,8 @@ try {
       .map((c) => c.code.replace(/b$/, '')),
   )
   for (let n = 1; n <= 62; n++) codes.add(`71${String(n).padStart(3, '0')}`)
+  // Asesinato en el hotel Excelsior.
+  for (let n = 1; n <= 52; n++) codes.add(`84${String(n).padStart(3, '0')}`)
   codes.add('10128')
   const spanish = JSON.parse(
     await readFile('docs-proyecto/evidencias/imagenes-espanolas.json', 'utf8'),

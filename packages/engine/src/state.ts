@@ -3,6 +3,7 @@ import { EngineError } from './errors'
 import type {
   Enemy,
   EnemyId,
+  EnemyKeyword,
   GameState,
   Investigator,
   InvestigatorId,
@@ -95,6 +96,36 @@ export function recomputeConnections(state: GameState): GameState {
 export function placedLocation(state: GameState, placed: PlacedAsset): LocationId | null {
   if (placed.placement.type === 'location') return placed.placement.location
   return state.enemies[placed.placement.enemy]?.location ?? null
+}
+
+/** Modificadores de las traiciones vinculadas a un enemigo (Llevado a la locura). */
+function attachedModifiers(state: GameState, enemy: EnemyId) {
+  return Object.values(state.treacheries)
+    .filter((t) => t.placement.type === 'enemy' && t.placement.enemy === enemy)
+    .flatMap((t) => {
+      const modifiers = treacheryBehavior(t.code)?.attachedEnemy
+      return modifiers ? [modifiers] : []
+    })
+}
+
+/** Palabras clave que tiene ahora el enemigo (sin las que le quitan sus vinculadas). */
+export function enemyHasKeyword(state: GameState, enemy: Enemy, keyword: EnemyKeyword): boolean {
+  return (
+    enemy.keywords.includes(keyword) &&
+    !attachedModifiers(state, enemy.id).some((m) => m.loses?.includes(keyword))
+  )
+}
+
+/** Combate o evasión del enemigo con sus vinculadas (sin los modificadores de escenario). */
+export function attachedStat(state: GameState, enemy: EnemyId, stat: 'fight' | 'evade'): number {
+  return attachedModifiers(state, enemy).reduce((n, m) => n + (m[stat] ?? 0), 0)
+}
+
+/** Salud máxima del enemigo con sus vinculadas. */
+export function enemyMaxHealth(state: GameState, enemy: Enemy): number {
+  return (
+    enemy.maxHealth + attachedModifiers(state, enemy.id).reduce((n, m) => n + (m.health ?? 0), 0)
+  )
 }
 
 export function getEnemy(state: GameState, id: EnemyId): Enemy {
@@ -237,9 +268,11 @@ export function bestByPrey(candidates: Investigator[], prey: Prey | undefined): 
   const value = (i: Investigator) =>
     prey.type === 'mostResources'
       ? i.resources
-      : prey.type === 'highestSkill'
-        ? i.skills[prey.skill]
-        : -i.skills[prey.skill]
+      : prey.type === 'mostClues'
+        ? i.clues
+        : prey.type === 'highestSkill'
+          ? i.skills[prey.skill]
+          : -i.skills[prey.skill]
   const best = Math.max(...candidates.map(value))
   return candidates.filter((i) => value(i) === best)
 }

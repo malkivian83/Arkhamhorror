@@ -53,6 +53,7 @@ vigente de pendientes.
 | 30 | [Cuarto lote: reediciones verificadas](30-cuarto-lote-reediciones.md) | 30 códigos, equivalencia mecánica auditada, 62 incorporados y 1.817 pendientes. |
 | 31 | [Quinto lote: reacciones y permanentes](31-quinto-lote-reacciones-permanentes.md) | 25 reediciones con usos, identidad de eventos y permanentes; 87 incorporados y 1.792 pendientes. |
 | 32 | [Sexto lote: fundamentos clásicos](32-sexto-lote-fundamentos-clasicos.md) | 34 registros, talentos y herramientas, Meat Cleaver completo y máximos por título; 1.758 pendientes. |
+| 33 | [Asesinato en el hotel Excelsior](33-asesinato-excelsior.md) | Escenario independiente: Indicios, La verdad, las diez versiones de El verdadero culpable y lo nuevo del motor |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

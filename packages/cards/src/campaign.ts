@@ -38,6 +38,7 @@ import {
 // Campañas registradas.
 import './brethren-of-ash/definition'
 import './midwinter-gala/definition'
+import './excelsior/definition'
 // Comportamiento de las cartas: hace falta para saber cuáles se pueden comprar.
 import './core-2026/cards'
 import './core-2026/investigators'
@@ -236,6 +237,15 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
     investigators: Object.fromEntries(
       Object.entries(played.investigators).map(([id, r]) => [id, { ...r, xp: Math.max(0, r.xp) }]),
     ),
+  }
+  // "Volver a jugar" (Asesinato en el hotel Excelsior, R2 y R3): el mismo escenario
+  // vuelve a la preparación; solo se conserva lo anotado (el trauma) y no se gana
+  // experiencia ni se cuenta como resultado.
+  if (game.scenarioMeta?.replay === 1) {
+    return {
+      ...campaign,
+      log: { ...log, values: { ...log.values, [`replayed:${game.scenarioId}`]: '1' } },
+    }
   }
   const xp = Object.fromEntries(
     campaign.investigators.map((i) => [

@@ -106,7 +106,9 @@ function visibleCards(s: GameState): Map<string, ReviewCard> {
         name: t.name,
         ...(t.placement.type === 'location'
           ? { location: locationName(t.placement.location) }
-          : { attachedTo: investigatorName(t.placement.investigator) }),
+          : t.placement.type === 'enemy'
+            ? { attachedTo: s.enemies[t.placement.enemy]?.name ?? t.placement.enemy }
+            : { attachedTo: investigatorName(t.placement.investigator) }),
       })
   for (const c of Object.values(s.stories ?? {}))
     cards.set(`story:${c.code}`, { code: c.code, name: c.name })

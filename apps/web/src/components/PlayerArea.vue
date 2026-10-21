@@ -51,7 +51,11 @@ const engaged = computed(() =>
 )
 const threats = computed(() =>
   Object.values(props.state.treacheries).filter(
-    (tr) => tr.placement.type === 'threatArea' && tr.placement.investigator === i.value.id,
+    (tr) =>
+      (tr.placement.type === 'threatArea' && tr.placement.investigator === i.value.id) ||
+      // Vinculadas a un enemigo enfrentado contigo (Llevado a la locura).
+      (tr.placement.type === 'enemy' &&
+        props.state.enemies[tr.placement.enemy]?.engagedWith === i.value.id),
   ),
 )
 const color = computed(() => classColor(i.value.id))
@@ -279,6 +283,15 @@ const slots = computed(() => {
                 :value="e.damageTaken"
                 :size="26"
               />
+              <TokenBadge v-if="e.doom" class="corner bl" kind="doom" :value="e.doom" :size="26" />
+              <TokenBadge
+                v-if="e.clues"
+                class="corner br"
+                kind="clue"
+                :value="e.clues"
+                :size="26"
+                :title="t('table.clues')"
+              />
             </GameCard>
           </TableTarget>
           <TableTarget v-for="tr in threats" :key="tr.id" :target="`treachery:${tr.id}`">
@@ -326,6 +339,14 @@ const slots = computed(() => {
                   :value="box.asset.horror"
                   :size="26"
                 />
+                <TokenBadge
+                  v-if="box.asset.clues"
+                  class="corner bl"
+                  kind="clue"
+                  :value="box.asset.clues"
+                  :size="26"
+                  :title="t('table.clues')"
+                />
               </GameCard>
             </TableTarget>
             <template v-else>
@@ -365,6 +386,14 @@ const slots = computed(() => {
                 kind="horror"
                 :value="a.horror"
                 :size="26"
+              />
+              <TokenBadge
+                v-if="a.clues"
+                class="corner bl"
+                kind="clue"
+                :value="a.clues"
+                :size="26"
+                :title="t('table.clues')"
               />
             </GameCard>
           </TableTarget>
@@ -727,6 +756,10 @@ h4 {
 .corner.br {
   bottom: -8px;
   right: -8px;
+}
+.corner.bl {
+  bottom: -8px;
+  left: -8px;
 }
 .player {
   display: grid;

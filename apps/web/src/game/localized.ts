@@ -45,15 +45,19 @@ export interface LocalizedCard {
   faq?: { question: string; answer: string; source?: string }[]
 }
 
-/** Paquetes de cada idioma: caja básica 2026 y La gala del ecuador del invierno (con sus encuentros). */
+/**
+ * Paquetes de cada idioma: caja básica 2026, La gala del ecuador del invierno y
+ * Asesinato en el hotel Excelsior (con sus encuentros).
+ */
 const SOURCES: Record<string, string[]> = {
   es: [
     'https://es.arkhamdb.com/api/public/cards/core_2026.json',
     'https://es.arkhamdb.com/api/public/cards/tmg.json?encounter=1',
+    'https://es.arkhamdb.com/api/public/cards/hotel.json?encounter=1',
   ],
 }
-// v2: incluye La gala del ecuador del invierno.
-const CACHE_PREFIX = 'lcg:cards:v2:'
+// v3: incluye Asesinato en el hotel Excelsior.
+const CACHE_PREFIX = 'lcg:cards:v3:'
 const CACHE_HOURS = 24
 
 /** Bundled alternatives plus any available translated card data. */
@@ -129,23 +133,23 @@ export async function useCardLocale(locale: string): Promise<void> {
     apply(cached, locale)
     return
   }
-  try {
-    const packs = await Promise.all(
-      sources.map(async (source) => {
-        const response = await fetch(source, { signal: AbortSignal.timeout(5000) })
-        if (!response.ok) throw new Error(String(response.status))
-        const pack = (await response.json()) as LocalizedCard[]
-        if (!Array.isArray(pack)) throw new Error('Invalid card data')
-        return pack
-      }),
-    )
-    const cards = packs.flat()
+  // Cada paquete por separado: si uno falla, los demás siguen sirviendo.
+  const packs = await Promise.allSettled(
+    sources.map(async (source) => {
+      const response = await fetch(source, { signal: AbortSignal.timeout(5000) })
+      if (!response.ok) throw new Error(String(response.status))
+      const pack = (await response.json()) as LocalizedCard[]
+      if (!Array.isArray(pack)) throw new Error('Invalid card data')
+      return pack
+    }),
+  )
+  const cards = packs.flatMap((p) => (p.status === 'fulfilled' ? p.value : []))
+  // Solo se guarda en caché una respuesta completa; si falta algún paquete se reintenta.
+  if (packs.every((p) => p.status === 'fulfilled')) {
     loaded.set(locale, cards)
     writeCache(locale, cards)
-    if (activeLocale === locale) apply(cards, locale)
-  } catch {
-    if (activeLocale === locale) apply([], locale)
   }
+  if (activeLocale === locale) apply(cards, locale)
 }
 
 export function localName(name: string): string {

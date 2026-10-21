@@ -3,12 +3,14 @@ import {
   smokeAndMirrors,
   queenOfAsh,
   midwinterGala,
+  murderAtTheExcelsiorHotel,
+  EXCELSIOR_TRUE_CULPRIT,
   GALA_BLOODLESS_MAN,
   GALA_BLOODLESS_MAN_UNLEASHED,
   GALA_FACTION_CARDS,
 } from '@lcg/cards'
 import { allPlayerCardDefs, type EncounterCard, type LocationCard } from '@lcg/engine'
-import { messages } from '@lcg/i18n'
+import { excelsiorCards, messages } from '@lcg/i18n'
 import type { LocalizedCard } from './localized'
 
 /** Bundled mechanical data and our own short summaries; no remote images or card prose. */
@@ -90,6 +92,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     spreadingFlames(),
     queenOfAsh(),
     midwinterGala({ players: 1 }),
+    murderAtTheExcelsiorHotel({ players: 1 }),
     ...Array.from({ length: 12 }, (_, seed) =>
       smokeAndMirrors({
         seed,
@@ -156,6 +159,36 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     real_name: 'The Midwinter Gala',
     type_code: 'scenario',
   })
+  // Asesinato en el hotel Excelsior: El verdadero culpable (plan y acto a la vez),
+  // la carta de escenario y los textos oficiales del catálogo local.
+  const roman = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
+  EXCELSIOR_TRUE_CULPRIT.forEach((code, n) =>
+    put({
+      code,
+      name: `The True Culprit (v. ${roman[n]})`,
+      real_name: `The True Culprit (v. ${roman[n]})`,
+      type_code: 'agenda',
+    }),
+  )
+  put({
+    code: '84001',
+    name: 'Murder at the Excelsior Hotel',
+    real_name: 'Murder at the Excelsior Hotel',
+    type_code: 'scenario',
+  })
+  for (const [code, text] of Object.entries(excelsiorCards[locale === 'es' ? 'es' : 'en'])) {
+    const card = cards.get(code)
+    if (!card) continue
+    put({
+      ...card,
+      name: text.name,
+      subname: text.subname,
+      traits: text.traits ?? card.traits,
+      text: text.text,
+      back_name: text.backName ?? card.back_name,
+      back_text: text.backText ?? card.back_text,
+    })
+  }
   const catalogue = language.galaCards as Record<
     string,
     { name: string; summary: string; backName?: string; backSummary?: string }

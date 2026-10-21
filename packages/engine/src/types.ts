@@ -119,6 +119,7 @@ export type Prey =
   /** "Presa (solo X)": solo se enfrenta a ese investigador. */
   | { type: 'only'; investigator: InvestigatorId }
   | { type: 'mostResources' }
+  | { type: 'mostClues' }
 
 export interface EnemyCard {
   /** Entra en juego con esta perdición (Zealot). */
@@ -151,6 +152,8 @@ export interface Enemy extends EnemyCard {
   doom?: number
   /** Recursos puestos como "pistas" del códex (Smoke and Mirrors). */
   leads?: number
+  /** Pistas sobre el enemigo (Agente de Arkham, Espectro vengativo). */
+  clues?: number
   id: EnemyId
   maxHealth: number
   damageTaken: number
@@ -180,6 +183,8 @@ export type TreacheryPlacement =
   | { type: 'limbo' }
   | { type: 'threatArea'; investigator: InvestigatorId }
   | { type: 'location'; location: LocationId }
+  /** Vinculada a un enemigo: se descarta cuando el enemigo abandona el juego. */
+  | { type: 'enemy'; enemy: EnemyId }
 
 export interface Treachery extends TreacheryCard {
   id: TreacheryId
@@ -190,6 +195,9 @@ export interface Treachery extends TreacheryCard {
   canceled?: boolean
   /** Fichas (de daño u otras) colocadas sobre la carta. */
   tokens?: number
+  /** Pistas y horror sobre la carta (Cerebro extraído). */
+  clues?: number
+  horror?: number
 }
 
 export interface Agenda {
@@ -264,6 +272,8 @@ export interface AbilityOption {
   actions: number
   /** Parlamento y retirarse no provocan ataques de oportunidad. */
   provokes: boolean
+  /** Es una habilidad de negociar (costes adicionales como ¿Qué has hecho?). */
+  parley?: boolean
   limit?: AbilityLimit
   /** Non-action costs are paid before attacks of opportunity and effects. */
   costs?: Message[]
@@ -401,6 +411,8 @@ export interface Asset {
   horror: number
   /** Usos restantes (munición, cargas, suministros…). */
   uses: number
+  /** Pistas sobre el apoyo (Apoyos Indicio de Asesinato en el hotel Excelsior). */
+  clues?: number
 }
 
 // ---------------------------------------------------------------------------
@@ -422,6 +434,8 @@ export type SkillTestKind =
       type: 'fight'
       enemy: EnemyId
       extraDamage?: number
+      /** Si tiene éxito no inflige daño, solo `onSuccess` (Tomo de rituales, v. IV). */
+      noDamage?: boolean
       onSuccess?: Message[]
       /** Si este ataque derrota al enemigo. */
       onDefeat?: Message[]
@@ -442,6 +456,8 @@ export type SkillTestKind =
       onFail: Message[]
       /** Se repite una vez por cada punto por el que se falla. */
       onFailEach: Message[]
+      /** Se repite una vez por cada punto por el que se supera (antes de `onSuccess`). */
+      onSuccessEach?: Message[]
     }
 
 /** Lo que aporta una ficha del caos revelada. */
@@ -474,7 +490,13 @@ export interface SkillTest {
   /** Modificador del efecto que inició la prueba (p. ej. "+1 [combat] para este ataque"). */
   baseModifier: number
   /** Cartas comprometidas (desde la mano o, con Isabelle, desde la pila de descartes). */
-  committed: { code: CardCode; by: InvestigatorId; fromDiscard?: boolean }[]
+  committed: {
+    code: CardCode
+    by: InvestigatorId
+    fromDiscard?: boolean
+    /** Tras la prueba va al fondo del mazo de su dueño (Habitación 245). */
+    toDeckBottom?: boolean
+  }[]
   /** Apoyo cuya habilidad inició la prueba. */
   source?: AssetId
   /** Etiquetas de la prueba: "parley", "spell", "scenario"… */
@@ -494,6 +516,8 @@ export interface SkillTest {
   ignoredTokens?: ChaosToken[]
   /** La prueba tiene éxito por 0 pase lo que pase (Scrape By). */
   forcedSuccess?: boolean
+  /** Solo se puede comprometer la carta superior de la pila de descartes (Habitación 245). */
+  commitRule?: 'discardTop'
 }
 
 // ---------------------------------------------------------------------------
@@ -553,6 +577,8 @@ export type Message =
       extraDamage?: number
       use?: string
       after?: Message[]
+      /** Investigar con éxito no descubre pistas (Pruebas incriminatorias). */
+      replaceClue?: boolean
     }
   | { type: 'SpendAdditionalAction'; investigator: InvestigatorId; then: Message[] }
   | { type: 'EndCurrentTurn'; investigator: InvestigatorId }
@@ -597,7 +623,14 @@ export type Message =
   | { type: 'FinishMulligan'; investigator: InvestigatorId; count: number }
   | { type: 'DiscardFromHand'; investigator: InvestigatorId; card: CardCode }
   | { type: 'CheckHandSize'; investigator: InvestigatorId }
-  | { type: 'MoveTo'; investigator: InvestigatorId; location: LocationId; entryPaid?: boolean }
+  /** `checked`: el escenario ya resolvió lo que ocurre al intentar moverse (Vestíbulo). */
+  | {
+      type: 'MoveTo'
+      investigator: InvestigatorId
+      location: LocationId
+      entryPaid?: boolean
+      checked?: boolean
+    }
   | { type: 'RevealLocation'; location: LocationId }
   /** En su localización o en `location`. */
   | { type: 'DiscoverClues'; investigator: InvestigatorId; amount: number; location?: LocationId }
@@ -610,9 +643,17 @@ export type Message =
       modifier?: number
       source?: AssetId
       tags?: string[]
+      /** Solo se puede comprometer la carta superior de la pila de descartes (Habitación 245). */
+      commitRule?: 'discardTop'
     }
   | { type: 'CommitWindow' }
-  | { type: 'CommitCard'; investigator: InvestigatorId; code: CardCode; from?: 'discard' }
+  | {
+      type: 'CommitCard'
+      investigator: InvestigatorId
+      code: CardCode
+      from?: 'discard'
+      toDeckBottom?: boolean
+    }
   | { type: 'DiscardTopAndCommit'; investigator: InvestigatorId }
   /**
    * Juega una carta de la mano pagando su coste (menos `discount`). `effect`
@@ -675,6 +716,10 @@ export type Message =
       damage: number
       horror: number
       assignFirst?: Partial<Record<'damage' | 'horror', string>>
+      /** Enemigo cuyo ataque inflige el daño (Vagabundo dimensional). */
+      enemy?: EnemyId
+      /** Lo ya asignado a apoyos, para la ventana de "tras infligirle daño u horror". */
+      dealt?: DamageDealt[]
     }
   | { type: 'DamageAsset'; asset: AssetId; damage: number; horror: number }
   /** Revela una ficha; con `token`, resuelve esa ficha ya sacada (e ignora `ignored`). */
@@ -764,12 +809,20 @@ export type Message =
   | { type: 'AttacksAgainst'; investigator: InvestigatorId; enemies: EnemyId[] }
   /** El jefe elige quién gasta la siguiente pista hasta reunir `amount` (acto, grupo). */
   | { type: 'PayGroupClues'; amount: number; from: InvestigatorId[] }
-  | { type: 'DamageEnemy'; enemy: EnemyId; amount: number; by?: InvestigatorId }
+  | {
+      type: 'DamageEnemy'
+      enemy: EnemyId
+      amount: number
+      by?: InvestigatorId
+      /** Origen del daño, para las cartas que lo reducen (Espectro vengativo). */
+      source?: DamageSource
+    }
   | { type: 'DefeatEnemy'; enemy: EnemyId; by?: InvestigatorId; withoutWindows?: boolean }
   | { type: 'DefeatAllEnemiesWithoutWindows'; by: InvestigatorId }
   | { type: 'EvadeEnemy'; enemy: EnemyId; by?: InvestigatorId }
   | { type: 'ReadyEnemy'; enemy: EnemyId }
-  | { type: 'HuntersMove' }
+  /** Con `enemies`, solo esos enemigos resuelven Cazador y Errante (Sr. Trombly). */
+  | { type: 'HuntersMove'; enemies?: EnemyId[] }
   | { type: 'EnemiesAttack' }
   | { type: 'ReadyAll' }
   /** `direct`: solo puede asignarse a la carta de investigador. */
@@ -780,6 +833,9 @@ export type Message =
       horror: number
       direct?: boolean
       assignFirst?: Partial<Record<'damage' | 'horror', string>>
+      /** Enemigo cuyo ataque inflige el daño. */
+      enemy?: EnemyId
+      dealt?: DamageDealt[]
     }
   | { type: 'CheckDefeat'; investigator: InvestigatorId }
   | {
@@ -945,8 +1001,8 @@ export type Message =
   /** Premonition: sella una ficha al azar de la bolsa. */
   | { type: 'SealToken'; investigator: InvestigatorId; code: CardCode }
   | { type: 'AddTreacheryTokens'; treachery: TreacheryId; amount: number; discardAt?: number }
-  /** Saca una debilidad del juego y la baraja en el mazo de su dueño. */
-  | { type: 'ShuffleTreacheryIntoDeck'; treachery: TreacheryId }
+  /** Saca una debilidad del juego y la baraja en el mazo de su dueño (o de `investigator`). */
+  | { type: 'ShuffleTreacheryIntoDeck'; treachery: TreacheryId; investigator?: InvestigatorId }
   /** Una debilidad robada del mazo se resuelve. */
   | { type: 'ResolveWeakness'; investigator: InvestigatorId; code: CardCode }
   /** El investigador coloca una a una las cartas miradas arriba o abajo de su mazo. */
@@ -957,10 +1013,56 @@ export type Message =
   | { type: 'ReturnAssetWithTrait'; investigator: InvestigatorId; trait: string }
   /** Slippery: el enemigo no se prepara en la próxima fase de mantenimiento. */
   | { type: 'EnemyStaysExhausted'; enemy: EnemyId }
+  // ----- Asesinato en el hotel Excelsior -----
+  /** Mueve pistas entre cartas (o desde/hacia la reserva de fichas). */
+  | { type: 'MoveClues'; from: ClueHolder; to: ClueHolder; amount: number }
+  /** Retira perdición del plan o de un enemigo. */
+  | {
+      type: 'RemoveDoom'
+      target: { type: 'agenda' } | { type: 'enemy'; id: EnemyId }
+      amount: number
+    }
+  /** "Retira toda la perdición del juego." */
+  | { type: 'RemoveAllDoom' }
+  /** Derrota al enemigo si ya tiene tanto daño como salud (al perder una vinculada). */
+  | { type: 'CheckEnemyDefeat'; enemy: EnemyId }
+  /** Colocación inicial: el jefe en `lead` y los demás en `others`. */
+  | { type: 'PlaceAtStart'; lead: LocationId; others: LocationId }
+  /** El enemigo abandona el juego y va a la zona de victoria (sin ser derrotado). */
+  | { type: 'EnemyToVictory'; enemy: EnemyId }
+  /** El enemigo se retira de la partida (no va a ninguna pila). */
+  | { type: 'RemoveEnemyFromGame'; enemy: EnemyId }
 
 /** Una carta que puede tener daño u horror. */
 export type DamageHolder =
   { type: 'investigator'; id: InvestigatorId } | { type: 'asset'; id: AssetId }
+
+/** Daño u horror asignado a un apoyo durante una misma asignación. */
+export interface DamageDealt {
+  asset?: AssetId
+  placed?: PlacedAssetId
+  damage: number
+  horror: number
+}
+
+/** De dónde viene el daño a un enemigo. */
+export interface DamageSource {
+  /** Daño de un ataque (prueba de combate). */
+  attack?: boolean
+  /** Rasgos de la carta que lo inflige ("Spell", "Relic"…). */
+  traits?: string[]
+  /** Lo inflige una carta de Encuentro. */
+  encounter?: boolean
+}
+
+/** Cartas que pueden tener pistas (`pool` es la reserva de fichas). */
+export type ClueHolder =
+  | { type: 'investigator'; id: InvestigatorId }
+  | { type: 'asset'; id: AssetId }
+  | { type: 'location'; id: LocationId }
+  | { type: 'enemy'; id: EnemyId }
+  | { type: 'treachery'; id: TreacheryId }
+  | { type: 'pool' }
 
 /** Momentos en los que se comprueban las habilidades forzadas. */
 export type Trigger =
@@ -1014,8 +1116,22 @@ export type Trigger =
   | { type: 'whenTreacheryDrawn'; investigator: InvestigatorId; treachery: TreacheryId }
   | { type: 'afterCancelRevelation'; card: CardCode; weakness: boolean }
   | { type: 'afterEvade'; investigator: InvestigatorId; enemy: EnemyId }
-  | { type: 'afterTakeDamage'; investigator: InvestigatorId; damage: number; horror: number }
+  | {
+      type: 'afterTakeDamage'
+      investigator: InvestigatorId
+      damage: number
+      horror: number
+      /** Enemigo cuyo ataque lo ha infligido. */
+      enemy?: EnemyId
+    }
   | { type: 'afterAssetDamaged'; asset: AssetId; damage: number; horror: number }
+  /** Al terminar de asignar daño y horror: lo que ha recibido cada apoyo (con o sin dueño). */
+  | { type: 'afterDamageAssigned'; investigator: InvestigatorId; dealt: DamageDealt[] }
+  /** Un investigador ha sido derrotado (no cuenta retirarse). */
+  | { type: 'investigatorDefeated'; investigator: InvestigatorId }
+  | { type: 'enemyPhaseBegins' }
+  /** Un enemigo acaba de entrar en juego (tras enfrentarse, si le toca). */
+  | { type: 'enemySpawned'; enemy: EnemyId; location: LocationId }
   | { type: 'afterTakeControlOfPlaced'; investigator: InvestigatorId; code: CardCode }
   | { type: 'assetDefeated'; asset: Asset }
   | { type: 'afterEngage'; investigator: InvestigatorId; enemy: EnemyId }
