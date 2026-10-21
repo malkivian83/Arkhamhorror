@@ -89,7 +89,13 @@ function abandon() {
   >
     <details v-if="campaign.boons?.length" class="page active-boons">
       <summary>
-        <span>{{ t('boons.title') }}</span
+        <img
+          class="boons-icon"
+          src="/local-assets/home/icon-boons.webp"
+          alt=""
+          width="28"
+          height="28"
+        /><span>{{ t('boons.title') }}</span
         ><span class="boons-count">{{
           t('setup.boonsCount', { n: campaign.boons.length }, campaign.boons.length)
         }}</span
@@ -538,6 +544,11 @@ function abandon() {
 }
 .active-boons summary::-webkit-details-marker {
   display: none;
+}
+.boons-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 .active-boons summary .disclosure-icon {
   color: var(--accent);

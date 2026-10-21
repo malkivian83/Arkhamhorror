@@ -246,6 +246,13 @@ function start() {
           </fieldset>
           <details class="boons-panel">
             <summary>
+              <img
+                class="deck-icon"
+                src="/local-assets/home/icon-boons.webp"
+                alt=""
+                width="28"
+                height="28"
+              />
               <span class="boons-heading"
                 ><span class="optional-label">{{ t('setup.optional') }}</span
                 ><span>{{ t('boons.title') }}</span></span
