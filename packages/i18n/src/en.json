@@ -1515,6 +1515,8 @@
       "scenario": "Scenario"
     },
     "summary": {
+      "10051": "One extra wild icon while controlling a Science or Tool asset; two extra with at least 3 such assets.",
+      "10130": "Adds three wild icons during a parley test.",
       "12001": "After an enemy attacks at your location, fight once per round. Elder sign: deal one damage locally.",
       "12004": "A successful investigation can draw one card per round. Elder sign success grants a card and a resource.",
       "12007": "One extra action each turn may only evade. Elder sign can disengage and move.",
@@ -1549,6 +1551,7 @@
       "50009": "During a willpower or agility test, spend one resource for each additional skill point.",
       "50010": "After you fail a test, exhaust to search as many top cards as the failure margin, draw one eligible card and shuffle.",
       "51003": "Requires a clue at your location. Draw 3 cards.",
+      "51010": "Only your own test with difficulty above base skill. Adds wild icons equal to the difference, up to 3.",
       "60108": "During a willpower or combat test, spend one resource for each additional skill point.",
       "60119": "A successful attack deals one extra damage when this skill is committed.",
       "60126": "At most one of this title per test. On success, its owner draws a card, or two if the margin is at least two.",
@@ -1574,6 +1577,7 @@
       "60505": "2 ammo. Action and 1 ammo: attack with +2 combat and +1 damage. Restore 1 ammo if the attack fails.",
       "60517": "After failing an investigation by at most two, play this event to discover two clues there.",
       "60518": "After an attack fails by at most two against an enemy engaged with you, deal its damage to another enemy here.",
+      "60572": "Adds a wild icon for every 2 damage on you, rounded up.",
       "12179b": "Massive hunter. After evading her, she readies but spares that investigator for the round.",
       "02020": "Raises your hand limit by two. On entering play, you may draw two cards.",
       "02030": "Use an action and a charge to remove one horror from someone at your location. Starts with three charges.",
@@ -1718,7 +1722,13 @@
       "03118": "Commit only with 3 or less remaining sanity. Four matching icons; at most one copy per test.",
       "03119": "Commit only with 3 or less remaining sanity. Four matching icons; at most one copy per test.",
       "02227": "Three wild icons. Commit only while there is a clue at your location.",
-      "02192": "Three wild icons. Only your own test, with difficulty at least 2 above your base skill."
+      "02192": "Three wild icons. Only your own test, with difficulty at least 2 above your base skill.",
+      "05022": "Extra willpower and combat icons with at least 5 total remaining health and sanity; two extra of each with at least 10.",
+      "05026": "Extra willpower and intellect icons with at least 4 cards in hand; two extra of each with at least 7. Counts the current hand after commitment.",
+      "05030": "Extra intellect and agility icons with at least 5 resources; two extra of each with at least 10.",
+      "05034": "One extra wild icon with at least 3 doom in play; two extra with at least 6.",
+      "05038": "Two extra combat and agility icons while controlling at most 1 Item asset, or one extra of each with 2 Items.",
+      "02260": "When committed to another investigator’s test, adds a willpower and a wild icon."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -1731,6 +1741,8 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "10051": "Well-Funded",
+      "10130": "Well-Dressed",
       "50001": "Physical Training",
       "50003": "Hyperawareness",
       "50005": "Hard Knocks",
@@ -1739,6 +1751,7 @@
       "50009": "Dig Deep",
       "50010": "Rabbit's Foot",
       "51003": "Preposterous Sketches",
+      "51010": "Rise to the Occasion",
       "60108": "Physical Training",
       "60119": "Vicious Blow",
       "60126": "Overpower",
@@ -1764,6 +1777,7 @@
       "60505": ".18 Derringer",
       "60517": "\"Look what I found!\"",
       "60518": "Oops!",
+      "60572": "Rough",
       "02020": "Laboratory Assistant",
       "02030": "Clarity of Mind",
       "02033": "Peter Sylvestre",
@@ -1907,7 +1921,13 @@
       "03118": "Reckless Assault",
       "03119": "Run For Your Life",
       "02227": "Inquiring Mind",
-      "02192": "Rise to the Occasion"
+      "02192": "Rise to the Occasion",
+      "05022": "Steadfast",
+      "05026": "Curiosity",
+      "05030": "Cunning",
+      "05034": "Prophesy",
+      "05038": "Able Bodied",
+      "02260": "Leadership"
     }
   },
   "account": {

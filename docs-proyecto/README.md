@@ -58,6 +58,7 @@ vigente de pendientes.
 | 35 | [Octavo lote: reacciones y protección](35-octavo-lote-reacciones-y-proteccion.md) | Diez cartas o mejoras nuevas, cero reediciones; 82 novedades distintas acumuladas. |
 | 36 | [Noveno lote: herramientas de combate](36-noveno-lote-herramientas-de-combate.md) | Ocho cartas o mejoras distintas, Represalia, munición y recarga; 90 novedades acumuladas. |
 | 37 | [Décimo lote: compromiso condicionado](37-decimo-lote-compromiso-condicionado.md) | Seis habilidades distintas, restricciones propias y compartidas; 96 novedades acumuladas. |
+| 38 | [Undécimo lote: iconos variables](38-undecimo-lote-iconos-variables.md) | Diez cartas o niveles distintos, iconos según el estado y presentación coherente; 106 novedades acumuladas. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

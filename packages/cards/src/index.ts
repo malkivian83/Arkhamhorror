@@ -144,6 +144,7 @@ import { EQUIPMENT_RENDERED_CODES } from './classic-equipment'
 import { REACTIVE_RENDERED_CODES } from './reactive-support'
 import { COMBAT_RENDERED_CODES } from './combat-tools'
 import { CONDITIONAL_RENDERED_CODES } from './conditional-commit'
+import { VARIABLE_RENDERED_CODES } from './variable-icons'
 export const RENDERED_PLAYER_CARD_CODES = [
   ...pilotCodes,
   ...FOLLOWUP_RENDERED_CODES,
@@ -155,4 +156,5 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...REACTIVE_RENDERED_CODES,
   ...COMBAT_RENDERED_CODES,
   ...CONDITIONAL_RENDERED_CODES,
+  ...VARIABLE_RENDERED_CODES,
 ]

@@ -1,0 +1,102 @@
+[
+  {
+    "code": "05022",
+    "name": "Steadfast",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "willpower": 1, "combat": 1 },
+    "slots": []
+  },
+  {
+    "code": "05026",
+    "name": "Curiosity",
+    "type": "skill",
+    "class": "seeker",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "05030",
+    "name": "Cunning",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "intellect": 1, "agility": 1 },
+    "slots": []
+  },
+  {
+    "code": "05034",
+    "name": "Prophesy",
+    "type": "skill",
+    "class": "mystic",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "05038",
+    "name": "Able Bodied",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "combat": 1, "agility": 1 },
+    "slots": []
+  },
+  {
+    "code": "02260",
+    "name": "Leadership",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "51010",
+    "name": "Rise to the Occasion",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate"],
+    "xp": 3,
+    "icons": { "wild": 2 },
+    "slots": []
+  },
+  {
+    "code": "10051",
+    "name": "Well-Funded",
+    "type": "skill",
+    "class": "seeker",
+    "traits": ["Fortune"],
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "10130",
+    "name": "Well-Dressed",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Practiced", "Fortune"],
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "60572",
+    "name": "Rough",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate"],
+    "xp": 1,
+    "icons": { "combat": 1, "wild": 1 },
+    "slots": []
+  }
+]

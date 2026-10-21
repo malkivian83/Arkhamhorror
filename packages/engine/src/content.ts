@@ -283,6 +283,12 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Additional icons on this card, evaluated both in hand and while committed. */
+  additionalIcons?: (
+    state: GameState,
+    test: SkillTest,
+    by: InvestigatorId,
+  ) => PlayerCardDef['icons']
   /** Additional printed restriction, evaluated for the investigator committing this card. */
   canCommit?: (state: GameState, test: SkillTest, by: InvestigatorId) => boolean
 

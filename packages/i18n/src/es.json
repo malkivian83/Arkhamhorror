@@ -1515,6 +1515,8 @@
       "scenario": "Escenario"
     },
     "summary": {
+      "10051": "Añade un comodín si controlas un apoyo Ciencia o Herramienta; dos con al menos 3 de esos apoyos.",
+      "10130": "Añade tres comodines durante una prueba de negociar.",
       "12001": "Tras un ataque en tu Lugar, combate una vez por ronda. Signo arcano: un daño a un enemigo de allí.",
       "12004": "Investigar con éxito permite robar una carta por ronda. El signo arcano con éxito da una carta y un recurso.",
       "12007": "Una acción adicional por turno solo sirve para evitar. El signo arcano permite desenfrentarse y moverse.",
@@ -1549,6 +1551,7 @@
       "50009": "Durante una prueba de voluntad o agilidad, gasta un recurso por cada punto adicional de habilidad.",
       "50010": "Tras fallar una prueba, agota este apoyo para buscar entre tantas primeras cartas como el margen de fallo, robar una válida y barajar.",
       "51003": "Requiere una pista en tu lugar. Roba 3 cartas.",
+      "51010": "Solo en tu propia prueba con dificultad superior a tu habilidad básica. Añade tantos comodines como la diferencia, hasta 3.",
       "60108": "Durante una prueba de voluntad o combate, gasta un recurso por cada punto adicional de habilidad.",
       "60119": "Al asignar esta habilidad, un ataque exitoso inflige un punto de daño adicional.",
       "60126": "Como máximo una carta de este título por prueba. Con éxito, quien la asignó roba una carta, o dos si el margen es al menos dos.",
@@ -1574,6 +1577,7 @@
       "60505": "2 municiones. Acción y 1 munición: ataca con +2 de combate y +1 daño. Recupera 1 munición si falla el ataque.",
       "60517": "Tras fallar una investigación por hasta dos, juega este evento para descubrir dos pistas allí.",
       "60518": "Tras fallar por hasta dos un ataque contra un enemigo enfrentado contigo, inflige su daño a otro enemigo de aquí.",
+      "60572": "Añade un comodín por cada 2 de daño que tengas, redondeando hacia arriba.",
       "12179b": "Cazador descomunal. Tras evitarla se prepara, pero no ataca a ese investigador durante la ronda.",
       "02020": "Amplía tu límite de mano en dos. Al entrar, puedes robar dos cartas.",
       "02030": "Consume una acción y una carga para quitar un horror a alguien de tu Lugar. Empieza con tres cargas.",
@@ -1718,7 +1722,13 @@
       "03118": "Solo se compromete con 3 o menos de cordura restante. Cuatro iconos coincidentes; máximo una copia por prueba.",
       "03119": "Solo se compromete con 3 o menos de cordura restante. Cuatro iconos coincidentes; máximo una copia por prueba.",
       "02227": "Tres iconos comodín. Solo se compromete si hay una pista en tu localización.",
-      "02192": "Tres iconos comodín. Solo en tu propia prueba, con dificultad al menos 2 superior a tu habilidad básica."
+      "02192": "Tres iconos comodín. Solo en tu propia prueba, con dificultad al menos 2 superior a tu habilidad básica.",
+      "05022": "Añade iconos de voluntad y combate con al menos 5 de salud y cordura restantes en total; dos de cada tipo con al menos 10.",
+      "05026": "Añade iconos de voluntad e intelecto con al menos 4 cartas en mano; dos de cada tipo con al menos 7. Cuenta la mano actual tras comprometerla.",
+      "05030": "Añade iconos de intelecto y agilidad con al menos 5 recursos; dos de cada tipo con al menos 10.",
+      "05034": "Añade un comodín con al menos 3 de perdición en juego; dos con al menos 6.",
+      "05038": "Añade dos iconos de combate y agilidad si controlas como máximo 1 apoyo Objeto, o uno de cada tipo con 2 Objetos.",
+      "02260": "Al comprometerla a la prueba de otro investigador, añade un icono de voluntad y un comodín."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -1731,6 +1741,8 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "10051": "Bien financiado",
+      "10130": "Elegante",
       "50001": "Entrenamiento físico",
       "50003": "Hiperconsciencia",
       "50005": "Curtido en la vida",
@@ -1739,6 +1751,7 @@
       "50009": "Fuerzas de flaqueza",
       "50010": "Pata de conejo",
       "51003": "Bocetos absurdos",
+      "51010": "Estar a la altura",
       "60108": "Entrenamiento físico",
       "60119": "Golpe brutal",
       "60126": "Dominar",
@@ -1764,6 +1777,7 @@
       "60505": "Derringer del .18",
       "60517": "\"¡Mira lo que he encontrado!\"",
       "60518": "¡Ups!",
+      "60572": "Agreste",
       "02020": "Ayudante de laboratorio",
       "02030": "Claridad mental",
       "02033": "Peter Sylvestre",
@@ -1907,7 +1921,13 @@
       "03118": "Asalto temerario",
       "03119": "Huid corriendo",
       "02227": "Mente inquisitiva",
-      "02192": "Estar a la altura"
+      "02192": "Estar a la altura",
+      "05022": "Inquebrantable",
+      "05026": "Curiosidad",
+      "05030": "Ingenio",
+      "05034": "Profetizar",
+      "05038": "Buena forma física",
+      "02260": "Liderazgo"
     }
   },
   "account": {
