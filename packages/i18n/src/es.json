@@ -289,7 +289,8 @@
     "commitFromDiscard": "Comprometer {card} desde tu pila de descartes (+{icons})",
     "equipmentDamage": "Infligir 2 daños a {enemy}",
     "equipmentAttack": "Atacar a {enemy}",
-    "equipmentInvestigator": "Elegir a {name}"
+    "equipmentInvestigator": "Elegir a {name}",
+    "reactiveRecover": "Devolver {card} a tu mano"
   },
   "phase": {
     "setup": "Preparación",
@@ -453,7 +454,9 @@
       "locketCancel": "Guardapelo desgastado: retirar 2 pistas para cancelar el ataque a {name}"
     },
     "equipmentMedical": "{card}: probar intelecto para curar a {name}",
-    "equipmentHeal": "{card}: curar 1 daño a {name}"
+    "equipmentHeal": "{card}: curar 1 daño a {name}",
+    "reactiveSearch": "{card}: buscar tras fallar",
+    "reactiveShovel": "{card}: descartar para descubrir 1 pista"
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -1520,6 +1523,8 @@
       "50006": "Gana 10 recursos.",
       "50007": "Durante una prueba de voluntad o intelecto, gasta un recurso por cada punto adicional de habilidad.",
       "50009": "Durante una prueba de voluntad o agilidad, gasta un recurso por cada punto adicional de habilidad.",
+      "50010": "Tras fallar una prueba, agota este apoyo para buscar entre tantas primeras cartas como el margen de fallo, robar una válida y barajar.",
+      "51003": "Requiere una pista en tu lugar. Roba 3 cartas.",
       "60108": "Durante una prueba de voluntad o combate, gasta un recurso por cada punto adicional de habilidad.",
       "60119": "Al asignar esta habilidad, un ataque exitoso inflige un punto de daño adicional.",
       "60126": "Como máximo una carta de este título por prueba. Con éxito, quien la asignó roba una carta, o dos si el margen es al menos dos.",
@@ -1667,7 +1672,15 @@
       "02184": "Busca un apoyo Arma entre las 9 primeras cartas de tu mazo, añádelo a tu mano y baraja.",
       "03026": "Un investigador en tu lugar busca entre sus 6 primeras cartas, roba una carta válida y baraja.",
       "01051": "Ataca usando agilidad e inflige 2 daños adicionales.",
-      "01551": "Ataca usando agilidad e inflige 2 daños adicionales."
+      "01551": "Ataca usando agilidad e inflige 2 daños adicionales.",
+      "01033": "Añade 1 de intelecto. Tras cada investigación con éxito, puedes ganar 1 recurso. Usa las reglas originales sin tabú opcional.",
+      "01075": "Tras fallar una prueba, agota este apoyo para robar 1 carta.",
+      "01046": "Tras evitar a un enemigo, agota este apoyo para robar 1 carta.",
+      "02155": "Añade 2 de intelecto al investigar si no tienes pistas.",
+      "03021": "Puede absorber daño infligido a otros investigadores en tu lugar.",
+      "05109": "Puede absorber horror infligido a otros investigadores en tu lugar.",
+      "03037": "Acción: ataca con 2 de combate adicional, o descarta este apoyo para descubrir 1 pista en tu lugar.",
+      "03039": "Al tener éxito, devuelve a la mano de quien la asignó una carta Superviviente de su descarte que no tenga el mismo nombre que esta habilidad."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -1686,6 +1699,8 @@
       "50006": "Buena racha",
       "50007": "Estudios arcanos",
       "50009": "Fuerzas de flaqueza",
+      "50010": "Pata de conejo",
+      "51003": "Bocetos absurdos",
       "60108": "Entrenamiento físico",
       "60119": "Golpe brutal",
       "60126": "Dominar",
@@ -1832,7 +1847,15 @@
       "02184": "Preparado para lo peor",
       "03026": "Búsqueda concienzuda",
       "01051": "Puñalada por la espalda",
-      "01551": "Puñalada por la espalda"
+      "01551": "Puñalada por la espalda",
+      "01033": "Dr. Milan Christopher",
+      "01075": "Pata de conejo",
+      "01046": "Carterista",
+      "02155": "Periódico",
+      "03021": "Temple de acero",
+      "05109": "Algo por lo que luchar",
+      "03037": "Pala de sepulturero",
+      "03039": "Habilidoso"
     }
   },
   "account": {

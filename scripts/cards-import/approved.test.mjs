@@ -13,6 +13,7 @@ describe('reviewed inventory conversion', () => {
     'reprints-wave-2',
     'classic-foundations',
     'classic-equipment',
+    'reactive-support',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(

@@ -289,7 +289,8 @@
     "commitFromDiscard": "Commit {card} from your discard pile (+{icons})",
     "equipmentDamage": "Deal 2 damage to {enemy}",
     "equipmentAttack": "Attack {enemy}",
-    "equipmentInvestigator": "Choose {name}"
+    "equipmentInvestigator": "Choose {name}",
+    "reactiveRecover": "Return {card} to your hand"
   },
   "phase": {
     "setup": "Setup",
@@ -453,7 +454,9 @@
       "locketCancel": "Time-Worn Locket: remove 2 clues to cancel the attack on {name}"
     },
     "equipmentMedical": "{card}: test intellect to heal {name}",
-    "equipmentHeal": "{card}: heal 1 damage from {name}"
+    "equipmentHeal": "{card}: heal 1 damage from {name}",
+    "reactiveSearch": "{card}: search after failure",
+    "reactiveShovel": "{card}: discard to discover 1 clue"
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -1520,6 +1523,8 @@
       "50006": "Gain 10 resources.",
       "50007": "During a willpower or intellect test, spend one resource for each additional skill point.",
       "50009": "During a willpower or agility test, spend one resource for each additional skill point.",
+      "50010": "After you fail a test, exhaust to search as many top cards as the failure margin, draw one eligible card and shuffle.",
+      "51003": "Requires a clue at your location. Draw 3 cards.",
       "60108": "During a willpower or combat test, spend one resource for each additional skill point.",
       "60119": "A successful attack deals one extra damage when this skill is committed.",
       "60126": "At most one of this title per test. On success, its owner draws a card, or two if the margin is at least two.",
@@ -1667,7 +1672,15 @@
       "02184": "Search the top 9 cards of your deck for a Weapon asset, add it to your hand, then shuffle.",
       "03026": "An investigator at your location searches their top 6 cards, draws one eligible card, then shuffles.",
       "01051": "Attack using agility, dealing 2 additional damage.",
-      "01551": "Attack using agility, dealing 2 additional damage."
+      "01551": "Attack using agility, dealing 2 additional damage.",
+      "01033": "Adds 1 intellect. After each successful investigation, you may gain 1 resource. Uses the original rules without optional taboo.",
+      "01075": "After you fail a test, exhaust to draw 1 card.",
+      "01046": "After you evade an enemy, exhaust to draw 1 card.",
+      "02155": "Adds 2 intellect while investigating if you have no clues.",
+      "03021": "May absorb damage dealt to other investigators at your location.",
+      "05109": "May absorb horror dealt to other investigators at your location.",
+      "03037": "Action: attack with 2 additional combat, or discard this asset to discover 1 clue at your location.",
+      "03039": "On success, return a Survivor card other than Resourceful from the committing investigator’s discard pile to their hand."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -1686,6 +1699,8 @@
       "50006": "Hot Streak",
       "50007": "Arcane Studies",
       "50009": "Dig Deep",
+      "50010": "Rabbit's Foot",
+      "51003": "Preposterous Sketches",
       "60108": "Physical Training",
       "60119": "Vicious Blow",
       "60126": "Overpower",
@@ -1832,7 +1847,15 @@
       "02184": "Prepared for the Worst",
       "03026": "No Stone Unturned",
       "01051": "Backstab",
-      "01551": "Backstab"
+      "01551": "Backstab",
+      "01033": "Dr. Milan Christopher",
+      "01075": "Rabbit's Foot",
+      "01046": "Pickpocketing",
+      "02155": "Newspaper",
+      "03021": "True Grit",
+      "05109": "Something Worth Fighting For",
+      "03037": "Gravedigger's Shovel",
+      "03039": "Resourceful"
     }
   },
   "account": {

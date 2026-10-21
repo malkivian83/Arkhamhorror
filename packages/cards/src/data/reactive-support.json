@@ -1,0 +1,116 @@
+[
+  {
+    "code": "01033",
+    "name": "Dr. Milan Christopher",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ally", "Miskatonic"],
+    "unique": true,
+    "cost": 4,
+    "xp": 0,
+    "icons": { "intellect": 1 },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 2
+  },
+  {
+    "code": "01075",
+    "name": "Rabbit's Foot",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Charm"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": ["accessory"]
+  },
+  {
+    "code": "01046",
+    "name": "Pickpocketing",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent", "Illicit"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "agility": 1 },
+    "slots": []
+  },
+  {
+    "code": "02155",
+    "name": "Newspaper",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "intellect": 1 },
+    "slots": ["hand"]
+  },
+  {
+    "code": "03021",
+    "name": "True Grit",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Talent"],
+    "cost": 3,
+    "xp": 0,
+    "icons": { "willpower": 1 },
+    "slots": [],
+    "health": 3
+  },
+  {
+    "code": "05109",
+    "name": "Something Worth Fighting For",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Talent"],
+    "cost": 3,
+    "xp": 0,
+    "icons": { "willpower": 1 },
+    "slots": [],
+    "sanity": 3
+  },
+  {
+    "code": "03037",
+    "name": "Gravedigger's Shovel",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Tool", "Weapon", "Melee"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "combat": 1 },
+    "slots": ["hand"]
+  },
+  {
+    "code": "51003",
+    "name": "Preposterous Sketches",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 0,
+    "xp": 2,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "50010",
+    "name": "Rabbit's Foot",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Charm"],
+    "cost": 1,
+    "xp": 3,
+    "icons": { "wild": 1 },
+    "slots": ["accessory"]
+  },
+  {
+    "code": "03039",
+    "name": "Resourceful",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "intellect": 1, "combat": 1, "agility": 1 },
+    "slots": []
+  }
+]
