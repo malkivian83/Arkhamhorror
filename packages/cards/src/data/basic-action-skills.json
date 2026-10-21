@@ -1,0 +1,35 @@
+[
+  {
+    "code": "06166",
+    "name": "Brute Force",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate", "Developed"],
+    "xp": 1,
+    "icons": { "combat": 1 },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "06204",
+    "name": "Sharp Vision",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate", "Developed"],
+    "xp": 1,
+    "icons": { "intellect": 1 },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "06246",
+    "name": "Expeditious Retreat",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate", "Developed"],
+    "xp": 1,
+    "icons": { "agility": 1 },
+    "slots": [],
+    "commitLimit": 1
+  }
+]

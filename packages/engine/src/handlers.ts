@@ -787,6 +787,7 @@ export function handle(state: GameState, message: Message): GameState {
         case 'investigate':
           return push(state, {
             type: 'BeginSkillTest',
+            basicAction: true,
             investigator: id,
             skill: 'intellect',
             difficulty: shroudOf(state, investigator.location),
@@ -797,6 +798,7 @@ export function handle(state: GameState, message: Message): GameState {
           if (!enemy) return state
           return push(state, {
             type: 'BeginSkillTest',
+            basicAction: true,
             investigator: id,
             skill: 'combat',
             difficulty: enemy.fight,
@@ -808,6 +810,7 @@ export function handle(state: GameState, message: Message): GameState {
           if (!enemy) return state
           return push(state, {
             type: 'BeginSkillTest',
+            basicAction: true,
             investigator: id,
             skill: 'agility',
             difficulty: enemy.evade,
@@ -2167,6 +2170,7 @@ export function handle(state: GameState, message: Message): GameState {
         {
           ...state,
           skillTest: {
+            ...(message.basicAction ? { basicAction: true } : {}),
             investigator: message.investigator,
             skill: message.skill,
             difficulty: Math.max(0, message.difficulty + enemyStatBonus(state, message.kind)),
@@ -4942,7 +4946,19 @@ function skillTestResults(state: GameState, succeeded: boolean, failBy: number):
                   {
                     type: 'DiscoverClues',
                     investigator,
-                    amount: 1 + (kind.extraClues ?? 0),
+                    amount:
+                      1 +
+                      (kind.extraClues ?? 0) +
+                      test.committed.reduce(
+                        (sum, c) =>
+                          sum +
+                          (playerCardBehavior(c.code)?.committedInvestigationClues?.(
+                            state,
+                            test,
+                            c.by,
+                          ) ?? 0),
+                        0,
+                      ),
                     location: kind.location,
                   } as Message,
                 ]),

@@ -60,6 +60,7 @@ import './context-skills'
 import './result-skills'
 import './test-modifiers'
 import './distributed-results'
+import './basic-action-skills'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 

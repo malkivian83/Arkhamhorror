@@ -486,6 +486,8 @@ export interface TokenEffect {
 }
 
 export interface SkillTest {
+  /** True only for the standard fight, evade or investigate action. */
+  basicAction?: boolean
   /** Preserve the unmodified difficulty so factors precede committed additive modifiers. */
   baseDifficulty?: number
   difficultyFactor?: number
@@ -649,6 +651,7 @@ export type Message =
   | { type: 'DiscoverClues'; investigator: InvestigatorId; amount: number; location?: LocationId }
   | {
       type: 'BeginSkillTest'
+      basicAction?: boolean
       investigator: InvestigatorId
       skill: SkillType
       difficulty: number
