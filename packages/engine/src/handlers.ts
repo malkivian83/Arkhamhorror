@@ -1791,7 +1791,7 @@ export function handle(state: GameState, message: Message): GameState {
       }
       const committable = [...new Set(noCommit(investigator.id) ? [] : investigator.hand)].filter(
         (code) =>
-          canCommit(test, code) &&
+          canCommit(state, test, code, investigator.id) &&
           !typeBlocked(investigator, playerCardDef(code)?.type ?? '', state.round),
       )
       // Cada otro investigador en la misma localización puede comprometer 1 carta.
@@ -1808,7 +1808,7 @@ export function handle(state: GameState, message: Message): GameState {
         )
         .flatMap((o) =>
           [...new Set(o.hand)]
-            .filter((code) => canCommit(test, code))
+            .filter((code) => canCommit(state, test, code, o.id))
             .map((code) => ({ helper: o, code })),
         )
       if (
@@ -1895,7 +1895,7 @@ export function handle(state: GameState, message: Message): GameState {
         zone === 'discard'
           ? investigator.discard.lastIndexOf(message.code)
           : investigator.hand.indexOf(message.code)
-      if (!test || index < 0 || !withinCommitTitleLimit(test, message.code)) return state
+      if (!test || index < 0 || !canCommit(state, test, message.code, investigator.id)) return state
       if (message.from && !canCommitFrom(state, investigator.id, message.code)) return state
       return push(
         {
@@ -3912,7 +3912,7 @@ export function handle(state: GameState, message: Message): GameState {
       const test = state.skillTest
       const investigator = getInvestigator(state, message.investigator)
       const index = investigator.discard.lastIndexOf(message.code)
-      if (!test || index < 0) return state
+      if (!test || index < 0 || !canCommit(state, test, message.code, investigator.id)) return state
       // Habitación 245: solo puede comprometerse la carta superior (y la comprometida antes no).
       if (test.commitRule) return state
       return {
@@ -3938,7 +3938,9 @@ export function handle(state: GameState, message: Message): GameState {
       const late = test.commitRule
         ? []
         : [...new Set(investigator.hand)].filter(
-            (code) => playerCardBehavior(code)?.commitAfterReveal && canCommit(test, code),
+            (code) =>
+              playerCardBehavior(code)?.commitAfterReveal &&
+              canCommit(state, test, code, investigator.id),
           )
       // Va a fallar, y no por la ficha de fallo automático.
       const failing =
@@ -4576,17 +4578,20 @@ function withinCommitTitleLimit(test: SkillTest, code: string): boolean {
   return limits.length === 0 || same.length < Math.min(...limits)
 }
 
-function canCommit(test: SkillTest, code: string): boolean {
+function canCommit(state: GameState, test: SkillTest, code: string, by: string): boolean {
   const def = playerCardDef(code)
   if (!def || matchingIcons(def.icons, test.skill) === 0) return false
-  return withinCommitTitleLimit(test, code)
+  return (
+    withinCommitTitleLimit(test, code) &&
+    (playerCardBehavior(code)?.canCommit?.(state, test, by) ?? true)
+  )
 }
 
 /** Full eligibility for an effect committing from a zone other than the hand. */
 function canCommitFrom(state: GameState, id: string, code: string): boolean {
   const test = state.skillTest
   const investigator = getInvestigator(state, id)
-  if (!test || investigator.eliminated || !canCommit(test, code)) return false
+  if (!test || investigator.eliminated || !canCommit(state, test, code, id)) return false
   if (scenarioBehavior(state.scenarioId)?.cannotCommit?.(state, id)) return false
   if (typeBlocked(investigator, playerCardDef(code)?.type ?? '', state.round)) return false
   return (

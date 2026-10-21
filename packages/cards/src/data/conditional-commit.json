@@ -1,0 +1,66 @@
+[
+  {
+    "code": "03116",
+    "name": "Say Your Prayers",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Desperate"],
+    "xp": 0,
+    "icons": { "willpower": 4 },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "03117",
+    "name": "Desperate Search",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Desperate"],
+    "xp": 0,
+    "icons": { "intellect": 4 },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "03118",
+    "name": "Reckless Assault",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Desperate"],
+    "xp": 0,
+    "icons": { "combat": 4 },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "03119",
+    "name": "Run For Your Life",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Desperate"],
+    "xp": 0,
+    "icons": { "agility": 4 },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "02227",
+    "name": "Inquiring Mind",
+    "type": "skill",
+    "class": "seeker",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "wild": 3 },
+    "slots": []
+  },
+  {
+    "code": "02192",
+    "name": "Rise to the Occasion",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "wild": 3 },
+    "slots": []
+  }
+]
