@@ -57,3 +57,9 @@ Los cambios locales ajenos a la importación se conservan y se excluyen del comm
 Dos pruebas reprodujeron que el robo de una carta encontrada no abría la ventana posterior de robo. Se añade una marca serializable drawFound a SearchDeck y TakeFromDeck. Rabbit’s Foot de nivel tres y No Stone Unturned de nivel cero la utilizan para emitir afterDrawCard al tomar la carta elegida. Prepared for the Worst sigue añadiendo a la mano sin emitir ese disparador. La marca es opcional y conserva la conducta de las búsquedas existentes que no la solicitan. Esta corrección no incorpora otro código ni otra reedición.
 
 La corrección pasa de nuevo formato, lint, tipos, compilación y la suite completa: **1.573 pruebas correctas y 15 omitidas**. Las dos regresiones fallaron antes de introducir la marca y pasan después. La subida inicial b2b6ed8 pasó CI y despliegue antes de subir esta corrección.
+
+## Resolución secuencial de Resourceful
+
+Otra regresión reprodujo que, al asignar dos copias a una prueba, la segunda ofrecía las opciones del descarte anterior a la primera recuperación. Cada copia encola ahora una continuación serializable que consulta el descarte cuando le toca resolverse. La prueba recupera dos cartas distintas, comprueba que ninguna opción queda obsoleta y conserva ambas habilidades en el descarte tras terminar la prueba. La regresión falló antes de la corrección y pasa después. No se añaden códigos ni reediciones.
+
+Tras la corrección secuencial se repitieron las cinco comprobaciones: todas correctas, con **1.574 pruebas correctas y 15 omitidas**. El recuento de cartas continúa en diez novedades distintas, sin reediciones nuevas.
