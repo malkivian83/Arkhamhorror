@@ -245,6 +245,7 @@ const relic = (code: string, name: string): PlayerCardDef => ({
   class: 'neutral',
   traits: ['Item', 'Relic'],
   unique: true,
+  story: true,
   slots: [],
 })
 

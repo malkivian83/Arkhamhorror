@@ -15,6 +15,7 @@ import {
 } from '@lcg/engine'
 import { isImplemented } from './campaign'
 import { playerCards, starterDeck, STARTER_DECKS } from './core-2026/player-cards'
+import { onePrintingEach } from './reprints'
 
 export interface DeckList {
   id: string
@@ -83,12 +84,14 @@ export function cardPool(investigator: CardCode, extras: PoolExtras = {}): Playe
     ...playerCards,
     ...allPlayerCardDefs().filter((c) => !playerCards.some((p) => p.code === c.code)),
   ]
-  return all.filter(
-    (card) =>
-      isImplemented(card.code) &&
-      (byClass(investigator, card) ||
-        (card.reward && rewards.has(card.code)) ||
-        (isStandard(card.code) && !card.reward && options.some((o) => matchesExtra(card, o)))),
+  return onePrintingEach(
+    all.filter(
+      (card) =>
+        isImplemented(card.code) &&
+        (byClass(investigator, card) ||
+          (card.reward && rewards.has(card.code)) ||
+          (isStandard(card.code) && !card.reward && options.some((o) => matchesExtra(card, o)))),
+    ),
   )
 }
 

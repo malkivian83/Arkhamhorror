@@ -90,6 +90,7 @@ export {
 } from './campaign-definition'
 export * from './scenario-helpers'
 export * from './decks'
+export { onePrintingEach, printingsOf, reprintSource } from './reprints'
 export {
   activeMembers,
   canPlayNext,
