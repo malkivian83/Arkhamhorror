@@ -5,7 +5,7 @@ import { cardTextHtml } from '../game/cardText'
 import { localizedCards } from '../game/localized'
 
 const props = defineProps<{ code: string; back?: boolean; imageLanguage?: string | undefined }>()
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const card = computed(() => localizedCards.value.get(props.code))
 const name = computed(() =>
   props.back && card.value?.type_code !== 'location'
@@ -14,7 +14,7 @@ const name = computed(() =>
 )
 const text = computed(() => cardTextHtml(props.back ? card.value?.back_text : card.value?.text))
 const flavor = computed(() => (props.back ? card.value?.back_flavor : card.value?.flavor) ?? '')
-const transcribe = computed(() => props.imageLanguage !== 'es')
+const transcribe = computed(() => locale.value === 'es' && props.imageLanguage !== 'es')
 const faqs = computed(() =>
   (Array.isArray(card.value?.faq) ? card.value.faq : []).filter(
     (entry) => entry && typeof entry.question === 'string' && typeof entry.answer === 'string',

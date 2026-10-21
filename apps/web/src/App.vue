@@ -157,6 +157,11 @@ function setLocale(value: Locale) {
   text-align: right;
   text-underline-offset: 3px;
 }
+@media (max-width: 680px) {
+  .account-sync {
+    display: none;
+  }
+}
 .topbar .sections {
   gap: 14px;
   flex-wrap: wrap;
