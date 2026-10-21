@@ -1,0 +1,88 @@
+/* Solo las pantallas del sitio. La mesa y su menú conservan sus estilos. */
+#app:not(:has(> .game-shell)) {
+  --button-copper: #b48355;
+  --button-cream: #f3dfbc;
+}
+
+#app:not(:has(> .game-shell))
+  :is(button:not(.site-action, .investigator-card), .link-button, .site-menu > summary) {
+  min-height: 44px;
+  color: var(--button-cream);
+  background: linear-gradient(180deg, #493426, #2d211b);
+  border: 1px solid var(--button-copper);
+  border-radius: 6px;
+  box-shadow:
+    inset 0 1px 0 #e9b98255,
+    inset 0 0 0 2px #1b100c44,
+    0 2px 0 #21150f,
+    0 3px 8px #0003;
+  text-shadow: 0 1px 2px #0008;
+  text-decoration: none;
+  transition:
+    filter 140ms ease,
+    box-shadow 140ms ease;
+}
+
+#app:not(:has(> .game-shell)) .site-menu > summary {
+  padding: 8px 14px;
+}
+
+#app:not(:has(> .game-shell))
+  :is(button:not(.site-action, .investigator-card), .link-button, .site-menu > summary):hover:not(
+    :disabled
+  ) {
+  border-color: #f1c38a;
+  filter: brightness(1.12);
+}
+
+#app:not(:has(> .game-shell))
+  :is(button:not(.site-action, .investigator-card), .link-button, .site-menu > summary):active:not(
+    :disabled
+  ) {
+  box-shadow:
+    inset 0 2px 5px #160d0999,
+    0 1px 0 #21150f;
+}
+
+#app:not(:has(> .game-shell))
+  :is(button:not(.site-action), .link-button, .site-menu > summary):focus-visible {
+  outline: 2px solid #fff0cd;
+  outline-offset: 4px;
+}
+
+#app:not(:has(> .game-shell)) button:not(.site-action, .investigator-card)[aria-pressed='true'] {
+  color: #302014;
+  background: linear-gradient(180deg, #f1d6a0, #c59154);
+  border-color: #eac18c;
+  text-shadow: 0 1px 0 #fff3cc66;
+  box-shadow:
+    inset 0 1px 0 #fff3cc,
+    inset 0 0 0 2px #64391333,
+    0 2px 0 #24160f;
+}
+
+/* Los enlaces auxiliares y las filas de mazos siguen siendo ligeros. */
+#app:not(:has(> .game-shell)) :is(.secondary-actions button, button.pick) {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+#app:not(:has(> .game-shell)) .secondary-actions button:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+#app:not(:has(> .game-shell)) :is(.danger button, button.delete, button.delete-action) {
+  color: #ffead9;
+  background: linear-gradient(180deg, #78372c, #49211b);
+  border-color: #bd7b5b;
+}
+
+#app:not(:has(> .game-shell)) button:not(.site-action):disabled {
+  opacity: 0.5;
+  filter: saturate(0.35);
+  box-shadow: none;
+  cursor: not-allowed;
+}
