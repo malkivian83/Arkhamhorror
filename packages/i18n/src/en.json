@@ -651,7 +651,28 @@
     "descriptions": {
       "brethren-of-ash": "A fire, a restless city, and a mystery spreading through the ashes. Three scenarios, one connected story.",
       "the-midwinter-gala": "A night of luxury and secrets. Accept the invitation and discover what hides behind the masks at the gala."
-    }
+    },
+    "continueTitle": "Continue where you left off",
+    "chooseStory": "Choose the story",
+    "available": "{n} available | {n} available",
+    "searchCampaign": "Search campaigns…",
+    "storyType": "Story type",
+    "typeAll": "All",
+    "typeCampaigns": "Campaigns",
+    "typeStandalone": "Standalone",
+    "noStories": "No story matches your search.",
+    "railPrevious": "Show previous",
+    "railNext": "Show more",
+    "searchInvestigator": "Search investigators…",
+    "classFilter": "Class",
+    "allClasses": "All",
+    "sortBy": "Sort",
+    "sortClass": "By class",
+    "sortName": "A–Z",
+    "noInvestigators": "No investigator matches your search.",
+    "decksSummary": "Starter deck for everyone | 1 with a custom deck | {n} with custom decks",
+    "emptySlot": "Empty slot",
+    "standaloneTag": "Standalone"
   },
   "skillTest": {
     "progress": "Step {n} of 8",

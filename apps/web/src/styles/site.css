@@ -1,0 +1,505 @@
+/*
+ * Hoja de estilos de las pantallas del sitio (no de la mesa de juego).
+ *
+ * Tokens: colores, tipografía, radios y sombras de la web, con el prefijo
+ * --site-. Componentes: clases ui-* reutilizables. Los botones genéricos los
+ * viste site-buttons.css; un botón con diseño propio lleva .ui-plain para
+ * quedar fuera de ese acabado.
+ */
+:root {
+  --site-bg: #19191d;
+  --site-bg-deep: #121216;
+  --site-panel: #25252b;
+  --site-panel-sunken: #1f1f24;
+  --site-panel-selected: #2c2427;
+  --site-line: #3c3539;
+  --site-border: #4a4347;
+  --site-border-strong: #61585c;
+  --site-ink: #f4efe7;
+  --site-ink-soft: #d0c7c1;
+  --site-muted: #c3bbb4;
+  --site-faint: #a39b95;
+  --site-accent: #e5aa8d;
+  --site-accent-hover: #f0c2a8;
+  --site-on-accent: #19191d;
+
+  --site-display: 'Libre Baskerville', Georgia, serif;
+  --site-body: 'Source Sans 3', system-ui, sans-serif;
+
+  --site-radius-sm: 4px;
+  --site-radius: 8px;
+  --site-radius-lg: 10px;
+  --site-shadow: 0 6px 16px #0006;
+  --site-shadow-lift: 0 16px 40px #0007;
+  --site-ring: 0 0 0 3px var(--site-accent);
+
+  /* Colores de clase, aclarados para leerse sobre fondo oscuro. */
+  --class-guardian: #5c9ee0;
+  --class-seeker: #f0a35e;
+  --class-rogue: #5fb86a;
+  --class-mystic: #9d8cf0;
+  --class-survivor: #e2737a;
+  --class-neutral: #b5b0aa;
+}
+
+.ui-plain {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+.ui-eyebrow {
+  margin: 0;
+  color: var(--site-accent);
+  font: 700 0.8125rem/1.4 var(--site-body);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ui-label {
+  margin: 0;
+  color: var(--site-muted);
+  font: 700 0.75rem/1.4 var(--site-body);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Encabezado de paso: número en una medalla, título y dato a la derecha. */
+.ui-step-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+}
+.ui-step-heading > h2 {
+  margin: 0;
+  font: 700 clamp(1.3rem, 2.4vw, 1.625rem) / 1.3 var(--site-display);
+}
+.ui-step-number {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--site-on-accent);
+  background: var(--site-accent);
+  font-weight: 700;
+}
+.ui-step-meta {
+  color: var(--site-muted);
+  font-size: 0.9375rem;
+}
+.ui-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Campos de texto y desplegables. */
+.ui-field {
+  min-height: 44px;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0 14px;
+  color: var(--site-ink);
+  background: var(--site-bg-deep);
+  border: 1px solid var(--site-border);
+  border-radius: var(--site-radius-sm);
+  font: 400 1rem var(--site-body);
+}
+.ui-field::placeholder {
+  color: var(--site-faint);
+  opacity: 1;
+}
+.ui-field:hover {
+  border-color: var(--site-border-strong);
+}
+.ui-inline-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--site-ink-soft);
+  font-size: 0.875rem;
+}
+
+/* Chips de filtro (botones con aria-pressed). */
+.ui-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.ui-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  min-height: 40px;
+  padding: 0 14px;
+  color: var(--site-ink-soft);
+  background: #1c1c21;
+  border: 1px solid var(--site-border);
+  border-radius: 999px;
+  font: 600 0.875rem var(--site-body);
+  cursor: pointer;
+}
+.ui-chip:hover {
+  border-color: var(--site-border-strong);
+  color: var(--site-ink);
+}
+.ui-chip[aria-pressed='true'] {
+  color: var(--site-ink);
+  background: var(--site-panel-selected);
+  border-color: var(--site-accent);
+}
+.ui-chip-count {
+  color: var(--site-muted);
+  font-weight: 400;
+}
+.ui-dot {
+  width: 10px;
+  height: 10px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--dot, var(--class-neutral));
+}
+
+/* Control segmentado: una sola opción activa, rellena de acento. */
+.ui-segmented {
+  display: flex;
+  border: 1px solid var(--site-border);
+  border-radius: var(--site-radius-sm);
+  overflow: hidden;
+}
+.ui-segmented > button {
+  min-height: 42px;
+  padding: 0 16px;
+  color: var(--site-ink-soft);
+  background: transparent;
+  border: 0;
+  font: 600 0.875rem var(--site-body);
+  text-align: center;
+  cursor: pointer;
+}
+.ui-segmented > button + button {
+  border-left: 1px solid var(--site-border);
+}
+.ui-segmented > button[aria-pressed='true'] {
+  color: var(--site-on-accent);
+  background: var(--site-accent);
+}
+
+.ui-panel {
+  background: var(--site-panel);
+  border: 1px solid var(--site-line);
+  border-radius: var(--site-radius-lg);
+}
+
+/* Carril horizontal con desplazamiento por pasos (portadas). */
+.ui-rail {
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 6px 4px 10px;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--site-border) transparent;
+}
+.ui-rail > * {
+  scroll-snap-align: start;
+}
+
+/* Tarjeta de portada (campañas): la imagen manda, el texto debajo. */
+.ui-cover-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 224px;
+  flex: none;
+  color: var(--site-ink);
+  cursor: pointer;
+}
+.ui-cover-card input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.ui-cover {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--site-radius-lg);
+  overflow: hidden;
+  background: var(--site-panel-sunken);
+  box-shadow: var(--site-shadow);
+  transition: box-shadow 140ms ease;
+}
+.ui-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+.ui-cover::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 40%;
+  background: linear-gradient(0deg, #000c, transparent);
+}
+.ui-cover-tag {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  z-index: 1;
+  padding: 3px 8px;
+  color: var(--site-accent);
+  background: #19191dcc;
+  border-radius: var(--site-radius-sm);
+  font: 700 0.6875rem var(--site-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.ui-cover-card:hover .ui-cover img {
+  transform: scale(1.03);
+}
+.ui-cover-card.selected .ui-cover {
+  box-shadow:
+    var(--site-ring),
+    0 12px 28px #0008;
+}
+.ui-cover-card:has(:focus-visible) .ui-cover {
+  outline: 2px solid var(--site-ink);
+  outline-offset: 5px;
+}
+.ui-card-title {
+  font: 700 1rem/1.3 var(--site-display);
+}
+.ui-card-meta {
+  margin-top: -4px;
+  color: var(--site-muted);
+  font-size: 0.875rem;
+}
+
+/* Marca de selección: círculo de acento con un número o un visto. */
+.ui-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: var(--site-on-accent);
+  background: var(--site-accent);
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+/* Rejilla de retratos (investigadores). */
+.ui-portrait-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: 22px 20px;
+}
+.ui-portrait-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  color: var(--site-ink);
+}
+.ui-portrait {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--site-radius);
+  overflow: hidden;
+  background: var(--site-panel-sunken);
+  box-shadow: var(--site-shadow);
+}
+.ui-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+.ui-portrait::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 4px;
+  background: var(--dot, var(--class-neutral));
+}
+.ui-portrait-card[aria-pressed='true'] {
+  color: var(--site-ink);
+}
+.ui-portrait-card[aria-pressed='true'] .ui-portrait {
+  box-shadow:
+    var(--site-ring),
+    0 12px 28px #0008;
+}
+.ui-portrait-card[aria-disabled='true'] {
+  opacity: 0.55;
+}
+.ui-portrait-card:focus-visible {
+  outline: none;
+}
+.ui-portrait-card:focus-visible .ui-portrait {
+  outline: 2px solid var(--site-ink);
+  outline-offset: 5px;
+}
+.ui-portrait-name {
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.ui-portrait-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: -4px;
+  color: var(--site-muted);
+  font-size: 0.8125rem;
+}
+.ui-portrait-meta .ui-dot {
+  width: 8px;
+  height: 8px;
+}
+
+/* Fila desplegable (details/summary) con icono, título y resumen. */
+.ui-disclosure {
+  background: var(--site-panel);
+  border: 1px solid var(--site-line);
+  border-radius: var(--site-radius-lg);
+}
+.ui-disclosure > summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 72px;
+  padding: 0 22px;
+  list-style: none;
+  cursor: pointer;
+}
+.ui-disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+.ui-disclosure > summary > img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex: none;
+}
+.ui-disclosure > summary .disclosure-icon {
+  color: var(--site-accent);
+}
+.ui-disclosure-title {
+  flex: 1;
+  display: grid;
+  font-weight: 600;
+}
+.ui-disclosure-title > small {
+  color: var(--site-muted);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+.ui-disclosure-body {
+  padding: 0 22px 22px;
+}
+
+/* Barra fija al pie con el resumen y la acción principal. */
+.ui-dock {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  background: #121216f2;
+  border-top: 1px solid var(--site-border);
+  box-shadow: 0 -12px 32px #0008;
+  backdrop-filter: blur(6px);
+}
+
+/* Hueco del equipo en la barra: retrato o marco discontinuo. */
+.ui-slot {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex: none;
+  box-sizing: border-box;
+  border: 1px dashed var(--site-border-strong);
+  border-radius: var(--site-radius);
+  overflow: hidden;
+  color: var(--site-faint);
+}
+.ui-slot.filled {
+  border: 2px solid var(--site-accent);
+}
+.ui-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+@media (max-width: 700px) {
+  .ui-cover-card {
+    width: min(200px, 56vw);
+  }
+  .ui-portrait-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px 12px;
+  }
+  .ui-portrait-name {
+    font-size: 0.875rem;
+  }
+  .ui-slot {
+    width: 38px;
+    height: 38px;
+  }
+  .ui-disclosure > summary {
+    min-height: 60px;
+    padding: 0 16px;
+  }
+  .ui-disclosure-body {
+    padding: 0 16px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-cover img {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .ui-cover-card.selected .ui-cover,
+  .ui-portrait-card[aria-pressed='true'] .ui-portrait,
+  .ui-chip[aria-pressed='true'] {
+    outline: 3px solid Highlight;
+  }
+}

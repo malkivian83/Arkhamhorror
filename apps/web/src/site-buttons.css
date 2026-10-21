@@ -6,7 +6,7 @@
 
 #app:not(:has(> .game-shell))
   :is(
-    button:not(.site-action, .investigator-card, .pick, .delete),
+    button:not(.site-action, .investigator-card, .pick, .delete, .ui-plain),
     .link-button,
     .site-menu > summary
   ) {
@@ -33,7 +33,7 @@
 
 #app:not(:has(> .game-shell))
   :is(
-    button:not(.site-action, .investigator-card, .pick, .delete),
+    button:not(.site-action, .investigator-card, .pick, .delete, .ui-plain),
     .link-button,
     .site-menu > summary
   ):hover:not(:disabled) {
@@ -43,7 +43,7 @@
 
 #app:not(:has(> .game-shell))
   :is(
-    button:not(.site-action, .investigator-card, .pick, .delete),
+    button:not(.site-action, .investigator-card, .pick, .delete, .ui-plain),
     .link-button,
     .site-menu > summary
   ):active:not(:disabled) {
@@ -53,13 +53,13 @@
 }
 
 #app:not(:has(> .game-shell))
-  :is(button:not(.site-action), .link-button, .site-menu > summary):focus-visible {
+  :is(button:not(.site-action, .ui-plain), .link-button, .site-menu > summary):focus-visible {
   outline: 2px solid #fff0cd;
   outline-offset: 4px;
 }
 
 #app:not(:has(> .game-shell))
-  button:not(.site-action, .investigator-card, .pick, .delete)[aria-pressed='true'] {
+  button:not(.site-action, .investigator-card, .pick, .delete, .ui-plain)[aria-pressed='true'] {
   color: #302014;
   background: linear-gradient(180deg, #f1d6a0, #c59154);
   border-color: #eac18c;

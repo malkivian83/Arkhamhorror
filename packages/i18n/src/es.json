@@ -651,7 +651,28 @@
     "descriptions": {
       "brethren-of-ash": "Un incendio, una ciudad inquieta y un misterio que se extiende entre las cenizas. Tres escenarios, una historia conectada.",
       "the-midwinter-gala": "Una noche de lujo y secretos. Acepta la invitación y descubre qué se esconde tras las máscaras de la gala."
-    }
+    },
+    "continueTitle": "Continuar donde lo dejaste",
+    "chooseStory": "Elige la historia",
+    "available": "{n} disponible | {n} disponibles",
+    "searchCampaign": "Buscar campaña…",
+    "storyType": "Tipo de historia",
+    "typeAll": "Todas",
+    "typeCampaigns": "Campañas",
+    "typeStandalone": "Independientes",
+    "noStories": "Ninguna historia coincide con la búsqueda.",
+    "railPrevious": "Ver las anteriores",
+    "railNext": "Ver más",
+    "searchInvestigator": "Buscar investigador…",
+    "classFilter": "Clase",
+    "allClasses": "Todas",
+    "sortBy": "Ordenar",
+    "sortClass": "Por clase",
+    "sortName": "A–Z",
+    "noInvestigators": "Ningún investigador coincide con la búsqueda.",
+    "decksSummary": "Mazo inicial para todos | 1 con mazo propio | {n} con mazos propios",
+    "emptySlot": "Hueco libre",
+    "standaloneTag": "Independiente"
   },
   "skillTest": {
     "progress": "Paso {n} de 8",

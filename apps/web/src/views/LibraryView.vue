@@ -15,11 +15,12 @@ import {
 } from '../account/library'
 import { useGameStore } from '../stores/game'
 import { useDecksStore } from '../stores/decks'
-import { campaignDefinition, currentScenario } from '@lcg/cards'
+import { currentScenario } from '@lcg/cards'
 import { decodeSession, session, type Session } from '@lcg/saves'
 import SitePage from '../components/SitePage.vue'
 import SiteAction from '../components/SiteAction.vue'
 import DisclosureIcon from '../components/DisclosureIcon.vue'
+import { campaignCover, scenarioLabel } from '../game/campaignProgress'
 
 const { t, te } = useI18n(),
   router = useRouter(),
@@ -36,30 +37,19 @@ const campaigns = computed(() =>
 const conflicts = computed(() => documents.value.filter((d) => d.conflict))
 const displayName = (name: string) =>
   te(`campaign.names.${name}`) ? t(`campaign.names.${name}`) : name
-const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
 /** Portada de la campaña y escenario en curso (el de la partida abierta o el siguiente). */
 function progress(payload: unknown) {
   const saved = payload as Partial<Session> | null
   const campaign = saved?.campaign ?? null
   let scenario = ''
   try {
-    const scenarioId = saved?.state?.scenarioId ?? (campaign ? currentScenario(campaign) : null)
-    // En una campaña de un solo escenario, el título ya lo dice todo.
-    if (
-      campaign &&
-      scenarioId &&
-      te(`campaign.scenario.${scenarioId}`) &&
-      campaignDefinition(campaign.id).scenarios.length > 1
-    )
-      scenario = t('library.scenario', {
-        n: ROMAN[campaign.scenarioIndex] ?? campaign.scenarioIndex + 1,
-        name: t(`campaign.scenario.${scenarioId}`),
-      })
+    if (campaign)
+      scenario = scenarioLabel(campaign, saved?.state?.scenarioId ?? currentScenario(campaign))
   } catch {
     // Campaña desconocida para esta versión: se muestra sin escenario.
   }
   // Sin portada (partida suelta o campaña sin arte) queda el fondo genérico de debajo.
-  const art = campaign ? `url('/local-assets/setup/${campaign.id}.jpg')` : 'none'
+  const art = campaign ? `url('${campaignCover(campaign.id)}')` : 'none'
   return { art, scenario }
 }
 const progressById = computed(
