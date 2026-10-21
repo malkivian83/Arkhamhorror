@@ -62,6 +62,7 @@ vigente de pendientes.
 | 39 | [Duodécimo lote: habilidades de contexto](39-duodecimo-lote-habilidades-de-contexto.md) | Nueve cartas o niveles distintos, origen, enfrentamiento, resultado e interacción con Isabelle; 115 novedades acumuladas. |
 | 40 | [Decimotercer lote: efectos de resultado](40-decimotercer-lote-efectos-de-resultado.md) | Seis cartas o niveles distintos, búsqueda, preparación, curación, evasión y compromiso sin iconos; 121 novedades acumuladas. |
 | 41 | [Decimocuarto lote: modificadores de pruebas](41-decimocuarto-lote-modificadores-de-pruebas.md) | Cinco cartas o niveles distintos, dificultad, Alerta y Represalia temporales; 126 novedades acumuladas. |
+| 42 | [Decimoquinto lote: resultados distribuidos](42-decimoquinto-lote-resultados-distribuidos.md) | Dos cartas o niveles distintos, distribución opcional de usos y evasión adicional; 128 novedades acumuladas. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

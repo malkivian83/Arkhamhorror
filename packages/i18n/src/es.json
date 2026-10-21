@@ -294,7 +294,8 @@
     "resultUses": "Añadir 1 carga o secreto a {card}",
     "resultAllyDamage": "Preparar {card} y curarle 1 daño",
     "resultAllyHorror": "Preparar {card} y curarle 1 horror",
-    "resultAllyBoth": "Preparar {card} y curarle 1 daño y 1 horror"
+    "resultAllyBoth": "Preparar {card} y curarle 1 daño y 1 horror",
+    "distributedEvade": "Evitar automáticamente a {enemy}"
   },
   "phase": {
     "setup": "Preparación",
@@ -1520,9 +1521,11 @@
     },
     "summary": {
       "10051": "Añade un comodín si controlas un apoyo Ciencia o Herramienta; dos con al menos 3 de esos apoyos.",
+      "10076": "Tras una evasión con éxito, puedes evitar automáticamente a otro enemigo en tu lugar.",
       "10130": "Añade tres comodines durante una prueba de negociar.",
       "11029": "Si tiene éxito, prepara un Aliado en tu localización y cúrale tanto 1 daño como 1 horror.",
       "11057": "Solo se compromete a una prueba de un apoyo Arma de fuego o A distancia que controlas.",
+      "11077": "Tras investigar con éxito, reparte hasta tres cargas o secretos entre apoyos controlados por investigadores en tu lugar. Máximo una comprometida por prueba.",
       "12001": "Tras un ataque en tu Lugar, combate una vez por ronda. Signo arcano: un daño a un enemigo de allí.",
       "12004": "Investigar con éxito permite robar una carta por ronda. El signo arcano con éxito da una carta y un recurso.",
       "12007": "Una acción adicional por turno solo sirve para evitar. El signo arcano permite desenfrentarse y moverse.",
@@ -1766,9 +1769,11 @@
     "victory": "Victoria {n}",
     "names": {
       "10051": "Bien financiado",
+      "10076": "Pies ligeros",
       "10130": "Elegante",
       "11029": "Presencia inspiradora",
       "11057": "Puntería certera",
+      "11077": "Embelesado",
       "50001": "Entrenamiento físico",
       "50003": "Hiperconsciencia",
       "50005": "Curtido en la vida",
