@@ -107,8 +107,10 @@ export function registerReactiveSupport(code: string): void {
   else if (family === 'resourceful')
     registerPlayerCard({
       code,
-      afterCommittedTest: (s, _t, success, by) =>
-        success
+      afterCommittedTest: (_s, _t, success, by) =>
+        success ? [{ type: 'PlayerCardEffect', code, investigator: by, step: 'recover' }] : [],
+      effect: (s, by, step) =>
+        step === 'recover'
           ? ask(
               by,
               [...new Set(getInvestigator(s, by).discard)]
