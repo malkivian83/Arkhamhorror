@@ -52,6 +52,7 @@ import './reprints-wave-1'
 import './reprints-wave-2'
 import './classic-foundations'
 import './classic-equipment'
+import './reactive-support'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 

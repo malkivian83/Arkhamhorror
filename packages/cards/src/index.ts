@@ -141,6 +141,7 @@ import { REPRINT_RENDERED_CODES } from './reprints-wave-1'
 import { SECOND_REPRINT_RENDERED_CODES } from './reprints-wave-2'
 import { CLASSIC_RENDERED_CODES } from './classic-foundations'
 import { EQUIPMENT_RENDERED_CODES } from './classic-equipment'
+import { REACTIVE_RENDERED_CODES } from './reactive-support'
 export const RENDERED_PLAYER_CARD_CODES = [
   ...pilotCodes,
   ...FOLLOWUP_RENDERED_CODES,
@@ -149,4 +150,5 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...SECOND_REPRINT_RENDERED_CODES,
   ...CLASSIC_RENDERED_CODES,
   ...EQUIPMENT_RENDERED_CODES,
+  ...REACTIVE_RENDERED_CODES,
 ]

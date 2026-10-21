@@ -1,0 +1,15 @@
+import { registerPlayerCards, type PlayerCardDef } from '@lcg/engine'
+import data from '../data/reactive-support.json'
+import approvals from './approvals.json'
+import './card-01033'
+import './card-01075'
+import './card-01046'
+import './card-02155'
+import './card-03021'
+import './card-05109'
+import './card-03037'
+import './card-51003'
+import './card-50010'
+import './card-03039'
+registerPlayerCards(data as PlayerCardDef[])
+export const REACTIVE_RENDERED_CODES = approvals.cards.map((c) => c.code)
