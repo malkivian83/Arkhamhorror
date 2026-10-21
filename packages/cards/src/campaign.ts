@@ -47,6 +47,7 @@ import './dunwich-pilot'
 import './dunwich-followup'
 import './dunwich-support'
 import './reprints-wave-1'
+import './reprints-wave-2'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
