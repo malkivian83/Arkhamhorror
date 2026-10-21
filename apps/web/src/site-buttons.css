@@ -5,7 +5,11 @@
 }
 
 #app:not(:has(> .game-shell))
-  :is(button:not(.site-action, .investigator-card), .link-button, .site-menu > summary) {
+  :is(
+    button:not(.site-action, .investigator-card, .pick, .delete),
+    .link-button,
+    .site-menu > summary
+  ) {
   min-height: 44px;
   color: var(--button-cream);
   background: linear-gradient(180deg, #493426, #2d211b);
@@ -28,17 +32,21 @@
 }
 
 #app:not(:has(> .game-shell))
-  :is(button:not(.site-action, .investigator-card), .link-button, .site-menu > summary):hover:not(
-    :disabled
-  ) {
+  :is(
+    button:not(.site-action, .investigator-card, .pick, .delete),
+    .link-button,
+    .site-menu > summary
+  ):hover:not(:disabled) {
   border-color: #f1c38a;
   filter: brightness(1.12);
 }
 
 #app:not(:has(> .game-shell))
-  :is(button:not(.site-action, .investigator-card), .link-button, .site-menu > summary):active:not(
-    :disabled
-  ) {
+  :is(
+    button:not(.site-action, .investigator-card, .pick, .delete),
+    .link-button,
+    .site-menu > summary
+  ):active:not(:disabled) {
   box-shadow:
     inset 0 2px 5px #160d0999,
     0 1px 0 #21150f;
@@ -50,7 +58,8 @@
   outline-offset: 4px;
 }
 
-#app:not(:has(> .game-shell)) button:not(.site-action, .investigator-card)[aria-pressed='true'] {
+#app:not(:has(> .game-shell))
+  button:not(.site-action, .investigator-card, .pick, .delete)[aria-pressed='true'] {
   color: #302014;
   background: linear-gradient(180deg, #f1d6a0, #c59154);
   border-color: #eac18c;
@@ -61,8 +70,8 @@
     0 2px 0 #24160f;
 }
 
-/* Los enlaces auxiliares y las filas de mazos siguen siendo ligeros. */
-#app:not(:has(> .game-shell)) :is(.secondary-actions button, button.pick) {
+/* Los enlaces auxiliares conservan su presentación de enlace. */
+#app:not(:has(> .game-shell)) .secondary-actions button {
   background: transparent;
   border-color: transparent;
   box-shadow: none;
@@ -74,7 +83,7 @@
   text-underline-offset: 4px;
 }
 
-#app:not(:has(> .game-shell)) :is(.danger button, button.delete, button.delete-action) {
+#app:not(:has(> .game-shell)) :is(.danger button, button.delete-action) {
   color: #ffead9;
   background: linear-gradient(180deg, #78372c, #49211b);
   border-color: #bd7b5b;

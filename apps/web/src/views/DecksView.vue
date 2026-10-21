@@ -671,8 +671,9 @@ select {
   border-radius: 8px;
 }
 .list li.active {
-  border-color: var(--accent);
-  box-shadow: inset 0 -2px var(--accent);
+  border-color: #b48355;
+  border-left-color: var(--class);
+  background: #302923;
 }
 .list .empty {
   border: none;
@@ -686,14 +687,21 @@ select {
   gap: 2px;
   text-align: left;
   border: none;
+  border-radius: 6px 0 0 6px;
   background: none;
+  color: var(--ink);
+  box-shadow: none;
+  text-shadow: none;
   min-width: 0;
   padding: 14px 12px;
 }
 .list .pick[aria-pressed='true'] {
   color: var(--ink);
-  background: #37303a;
+  background: none;
   box-shadow: none;
+}
+.list button.pick:hover {
+  background: rgb(243 223 188 / 5%);
 }
 .pick small {
   color: var(--muted);
@@ -707,14 +715,19 @@ select {
 }
 .list button.delete {
   border: none;
+  border-radius: 4px;
   background: none;
   color: var(--muted);
+  box-shadow: none;
+  text-shadow: none;
   align-self: start;
   min-width: 44px;
+  min-height: 44px;
+  margin: 4px;
 }
 .list .delete:hover {
-  color: #fff;
-  background: #ae4236;
+  color: #ffb4a9;
+  background: #51231e;
 }
 .editor {
   padding: 0;
