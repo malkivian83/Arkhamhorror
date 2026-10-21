@@ -11,7 +11,6 @@ import { useCardLocale } from './game/localized'
 import './game/playmats'
 import { useGameStore } from './stores/game'
 import { account } from './account/api'
-import { syncStatus } from './account/library'
 
 const { t, locale } = useI18n()
 const route = useRoute()
@@ -126,13 +125,6 @@ function setLocale(value: Locale) {
   </template>
   <SiteHeader v-else />
   <main :class="{ 'game-shell': route.name === 'game' }">
-    <RouterLink
-      v-if="account.user"
-      to="/library"
-      class="account-sync"
-      :aria-label="t(`account.sync.${syncStatus}`)"
-      ><span role="status">{{ t(`account.sync.${syncStatus}`) }}</span></RouterLink
-    >
     <div v-if="game.storageIssue || game.error" class="session-warning" role="alert">
       <p v-if="game.storageIssue">{{ t(`session.issue.${game.storageIssue}`) }}</p>
       <p v-if="game.error">{{ game.error }}</p>
@@ -146,21 +138,6 @@ function setLocale(value: Locale) {
   display: block;
   width: min(100%, 250px);
   height: auto;
-}
-.account-sync {
-  display: block;
-  background: #25252b;
-  color: #e5aa8d;
-  padding: 8px 16px;
-  min-height: 36px;
-  font-size: 0.78rem;
-  text-align: right;
-  text-underline-offset: 3px;
-}
-@media (max-width: 680px) {
-  .account-sync {
-    display: none;
-  }
 }
 .topbar .sections {
   gap: 14px;
