@@ -1,5 +1,7 @@
 # 32 · Sexto lote: fundamentos clásicos y habilidades de nivel dos
 
+Recuento histórico de esta entrega. La continuación se documenta en el [séptimo lote](34-septimo-lote-equipo-y-efectos-directos.md).
+
 21/10/2026. Se ha verificado la CI y el despliegue del [quinto lote](31-quinto-lote-reacciones-permanentes.md) antes de empezar.
 Este lote incorpora **34 registros** por familias mecánicas y corrige el
 comportamiento ya existente de Meat Cleaver en la caja de 2026.

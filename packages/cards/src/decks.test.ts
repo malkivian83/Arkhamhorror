@@ -120,11 +120,15 @@ describe('mazos: ArkhamDB', () => {
 
   it('conserva todas las cartas e informa de los códigos todavía desconocidos', () => {
     const { deck, unknown } = deckFromArkhamDb(
-      { name: 'Mazo', investigator_code: DANIELA, slots: { [code(20)]: 2, '01016': 1 } },
+      {
+        name: 'Mazo',
+        investigator_code: DANIELA,
+        slots: { [code(20)]: 2, '01016': 1, '99999': 1 },
+      },
       'id',
     )
-    expect(deck.cards).toEqual([code(20), code(20), '01016'])
-    expect(unknown).toEqual(['01016'])
+    expect(deck.cards.toSorted()).toEqual([code(20), code(20), '01016', '99999'].toSorted())
+    expect(unknown).toEqual(['99999'])
     const other = deckFromArkhamDb({ name: 'Roland', investigator_code: '01001', slots: {} }, 'id')
     expect(other.deck.investigator).toBe('01001')
     expect(other.unknown).toEqual(['01001'])
