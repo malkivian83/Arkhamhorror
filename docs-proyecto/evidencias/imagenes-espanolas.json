@@ -1,9 +1,21 @@
 {
-  "checkedAt": "2026-10-21T10:19:36.650Z",
+  "checkedAt": "2026-10-21T11:02:48.106Z",
   "referenceCatalogue": "frontend/src/digests/es.json",
   "referenceCatalogueSha256": "6d1466a64a97b4f9399d0823b767f94f40e7f8103d0531dcc1d283001d488fff",
   "method": "HEAD; only HTTP 200 image/* is available; no image files copied",
   "results": [
+    {
+      "code": "01016",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 57191
+    },
+    {
+      "code": "01016b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
     {
       "code": "01017",
       "status": 200,
@@ -77,6 +89,18 @@
       "bytes": 0
     },
     {
+      "code": "01035",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 84675
+    },
+    {
+      "code": "01035b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
       "code": "01037",
       "status": 200,
       "type": "image/avif",
@@ -101,6 +125,42 @@
       "bytes": 0
     },
     {
+      "code": "01043",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 59226
+    },
+    {
+      "code": "01043b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01044",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 53933
+    },
+    {
+      "code": "01044b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01047",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 66742
+    },
+    {
+      "code": "01047b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
       "code": "01049",
       "status": 200,
       "type": "image/avif",
@@ -108,6 +168,42 @@
     },
     {
       "code": "01049b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01051",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 70239
+    },
+    {
+      "code": "01051b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01052",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 71944
+    },
+    {
+      "code": "01052b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01057",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 66525
+    },
+    {
+      "code": "01057b",
       "status": 404,
       "type": "application/xml",
       "bytes": 0
@@ -293,6 +389,42 @@
       "bytes": 0
     },
     {
+      "code": "01094",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 73685
+    },
+    {
+      "code": "01094b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01095",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 91866
+    },
+    {
+      "code": "01095b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01516",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01516b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
       "code": "01517",
       "status": 404,
       "type": "application/xml",
@@ -365,6 +497,18 @@
       "bytes": 0
     },
     {
+      "code": "01535",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01535b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
       "code": "01537",
       "status": 404,
       "type": "application/xml",
@@ -389,6 +533,42 @@
       "bytes": 0
     },
     {
+      "code": "01543",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01543b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01544",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01544b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01547",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01547b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
       "code": "01549",
       "status": 404,
       "type": "application/xml",
@@ -396,6 +576,42 @@
     },
     {
       "code": "01549b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01551",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01551b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01552",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01552b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01557",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01557b",
       "status": 404,
       "type": "application/xml",
       "bytes": 0
@@ -576,6 +792,30 @@
     },
     {
       "code": "01593b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01594",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01594b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01595",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "01595b",
       "status": 404,
       "type": "application/xml",
       "bytes": 0
@@ -953,6 +1193,18 @@
       "bytes": 0
     },
     {
+      "code": "02152",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 62583
+    },
+    {
+      "code": "02152b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
       "code": "02157",
       "status": 200,
       "type": "image/avif",
@@ -972,6 +1224,18 @@
     },
     {
       "code": "02158b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "02184",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 56798
+    },
+    {
+      "code": "02184b",
       "status": 404,
       "type": "application/xml",
       "bytes": 0
@@ -1025,6 +1289,42 @@
       "bytes": 0
     },
     {
+      "code": "02301",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 42613
+    },
+    {
+      "code": "02301b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "03020",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 57558
+    },
+    {
+      "code": "03020b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "03026",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 61429
+    },
+    {
+      "code": "03026b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
       "code": "03114",
       "status": 200,
       "type": "image/avif",
@@ -1032,6 +1332,18 @@
     },
     {
       "code": "03114b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "03152",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 83398
+    },
+    {
+      "code": "03152b",
       "status": 404,
       "type": "application/xml",
       "bytes": 0
@@ -1068,6 +1380,18 @@
     },
     {
       "code": "04199b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "04203",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 71264
+    },
+    {
+      "code": "04203b",
       "status": 404,
       "type": "application/xml",
       "bytes": 0
@@ -1116,6 +1440,18 @@
     },
     {
       "code": "05278b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "06163",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 65808
+    },
+    {
+      "code": "06163b",
       "status": 404,
       "type": "application/xml",
       "bytes": 0
@@ -3497,6 +3833,18 @@
       "bytes": 0
     },
     {
+      "code": "50006",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 63784
+    },
+    {
+      "code": "50006b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
       "code": "50007",
       "status": 200,
       "type": "image/avif",
@@ -3665,6 +4013,18 @@
       "bytes": 0
     },
     {
+      "code": "60307",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 219004
+    },
+    {
+      "code": "60307b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
       "code": "60308",
       "status": 200,
       "type": "image/avif",
@@ -3672,6 +4032,18 @@
     },
     {
       "code": "60308b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "60310",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 51713
+    },
+    {
+      "code": "60310b",
       "status": 404,
       "type": "application/xml",
       "bytes": 0
@@ -3708,6 +4080,18 @@
     },
     {
       "code": "60424b",
+      "status": 404,
+      "type": "application/xml",
+      "bytes": 0
+    },
+    {
+      "code": "60457",
+      "status": 200,
+      "type": "image/avif",
+      "bytes": 164906
+    },
+    {
+      "code": "60457b",
       "status": 404,
       "type": "application/xml",
       "bytes": 0
