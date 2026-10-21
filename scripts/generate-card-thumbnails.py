@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import argparse
 from pathlib import Path
 
 from PIL import Image, ImageFilter, ImageOps
@@ -9,9 +10,16 @@ from PIL import Image, ImageFilter, ImageOps
 root = Path(__file__).resolve().parents[1]
 public = root / 'apps/web/public'
 manifest = json.loads((root / 'apps/web/src/game/cardImageManifest.json').read_text())
-files = []
+parser = argparse.ArgumentParser()
+parser.add_argument('--codes', nargs='+', help='Update only these art codes; preserve other thumbnails and hashes')
+selected = parser.parse_args().codes
+inventory_path = root / 'docs-proyecto/evidencias/miniaturas-cartas.json'
+files = [] if not selected else [f for f in json.loads(inventory_path.read_text())['files']
+                                if Path(f['source']).stem not in selected]
 for language, cards in manifest.items():
     for art, source in cards.items():
+        if selected and art not in selected:
+            continue
         destination = f'/local-assets/cards/{language}/thumbs/{art}.webp'
         target = public / destination.lstrip('/')
         target.parent.mkdir(parents=True, exist_ok=True)

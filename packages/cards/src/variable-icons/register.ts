@@ -9,7 +9,8 @@ export function registerVariableIcons(code: string): void {
     ...(entry.family === 'rise'
       ? {
           canCommit: (s, t, by) =>
-            by === t.investigator && t.difficulty > getInvestigator(s, by).skills[t.skill],
+            by === t.investigator &&
+            t.difficulty > (t.baseSkill ?? getInvestigator(s, by).skills[t.skill]),
         }
       : {}),
     additionalIcons: (s, t, by) => {
@@ -49,7 +50,9 @@ export function registerVariableIcons(code: string): void {
         case 'leadership':
           return by !== t.investigator ? { willpower: 1, wild: 1 } : {}
         case 'rise':
-          return { wild: Math.min(3, Math.max(0, t.difficulty - i.skills[t.skill])) }
+          return {
+            wild: Math.min(3, Math.max(0, t.difficulty - (t.baseSkill ?? i.skills[t.skill]))),
+          }
         case 'funded':
           return {
             wild: tier(

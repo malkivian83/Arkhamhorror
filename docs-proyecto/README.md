@@ -64,6 +64,7 @@ vigente de pendientes.
 | 41 | [Decimocuarto lote: modificadores de pruebas](41-decimocuarto-lote-modificadores-de-pruebas.md) | Cinco cartas o niveles distintos, dificultad, Alerta y Represalia temporales; 126 novedades acumuladas. |
 | 42 | [Decimoquinto lote: resultados distribuidos](42-decimoquinto-lote-resultados-distribuidos.md) | Dos cartas o niveles distintos, distribución opcional de usos y evasión adicional; 128 novedades acumuladas. |
 | 43 | [Decimosexto lote: habilidades de acciones básicas](43-decimosexto-lote-habilidades-de-acciones-basicas.md) | Tres cartas distintas, iconos y resultados adicionales solo en acciones básicas; 131 novedades acumuladas. |
+| 44 | [Pete, Duke y su debilidad](44-investigador-ashcan-pete.md) | Sexto investigador, mazo inicial, reglas completas y recursos oficiales EN/ES de la referencia. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

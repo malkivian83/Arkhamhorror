@@ -1,4 +1,4 @@
-import { playerCardBehavior, scenarioBehavior } from './content'
+import { investigatorBehavior, playerCardBehavior, scenarioBehavior } from './content'
 import { EngineError } from './errors'
 import { recomputeConnections } from './state'
 import { shuffle, seedRng } from './rng'
@@ -135,7 +135,11 @@ export function prepareGame({
   const players: Investigator[] = investigators.map((setup) => {
     let deck: CardCode[]
     ;[deck, rng] = shuffle(
-      setup.deck.filter((code) => !playerCardBehavior(code)?.permanent),
+      setup.deck.filter(
+        (code) =>
+          !playerCardBehavior(code)?.permanent &&
+          !investigatorBehavior(setup.id)?.startingAssets?.includes(code),
+      ),
       rng,
     )
     return {
@@ -177,6 +181,11 @@ export function prepareGame({
     { type: 'ChooseLead' },
     ...story(scenario.intro),
     ...investigators.flatMap((setup): Message[] => [
+      ...(investigatorBehavior(setup.id)?.startingAssets ?? []).map((code): Message => ({
+        type: 'PutAssetIntoPlay',
+        investigator: setup.id,
+        code,
+      })),
       ...permanents(setup).map((code): Message => ({
         type: 'PutAssetIntoPlay',
         investigator: setup.id,

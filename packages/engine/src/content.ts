@@ -140,6 +140,7 @@ export interface TreacheryBehavior {
   abilities?: AbilitiesFn<Treachery>
   /** En la zona de amenaza: su dueño no puede jugar apoyos ni usar los de sus apoyos (The Necronomicon). */
   blocksAssets?: boolean
+  blocksAssetReady?: boolean
   healthModifier?: number
   sanityModifier?: number
   cannotDiscard?: boolean
@@ -399,6 +400,8 @@ export interface PlayerCardBehavior {
  */
 export interface InvestigatorBehavior {
   code: CardCode
+  startingAssets?: CardCode[]
+  fastOptions?: (state: GameState, self: Investigator) => ReactionOption[]
   elderSign?: (state: GameState, self: Investigator) => TokenEffect
   reactions?: (state: GameState, trigger: Trigger, self: Investigator) => ReactionOption[]
   testOptions?: (state: GameState, test: SkillTest, self: Investigator) => ReactionOption[]

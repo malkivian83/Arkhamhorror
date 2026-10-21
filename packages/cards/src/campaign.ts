@@ -61,6 +61,7 @@ import './result-skills'
 import './test-modifiers'
 import './distributed-results'
 import './basic-action-skills'
+import './ashcan-pete'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
@@ -116,7 +117,7 @@ export function newCampaign(
     }
     const list = STARTER_DECKS[member]
     if (!list) throw new Error(`Mazo desconocido: ${member}`)
-    return { id: code(list.investigator), deck: starterDeck(member) }
+    return { id: list.investigatorCode ?? code(list.investigator), deck: starterDeck(member) }
   })
   if (boons.includes('morrigan')) {
     for (const [n, i] of investigators.entries()) {
@@ -293,7 +294,7 @@ export const deckSizeOf = (investigator: InvestigatorId, deck: CardCode[] = []) 
   [...new Set(deck)].reduce((n, code) => n + (playerCardDef(code)?.deckSizeBonus ?? 0), 0)
 
 /** Cartas exclusivas (y debilidades exclusivas) de cualquier investigador. */
-const SIGNATURES = new Set(playerCards.flatMap((c) => c.signatures ?? []))
+const SIGNATURES = new Set(allPlayerCardDefs().flatMap((c) => c.signatures ?? []))
 const isSignature = (card: CardCode) => SIGNATURES.has(card)
 
 const byCode = (card: CardCode): PlayerCardDef | undefined => playerCardDef(card)
@@ -355,7 +356,8 @@ export function purchaseOptions(
         !card.story &&
         isImplemented(card.code) &&
         !isSignature(card.code) &&
-        options.some((o) => o.classes.includes(card.class) && (card.xp ?? 0) <= o.maxLevel),
+        (options.some((o) => o.classes.includes(card.class) && (card.xp ?? 0) <= o.maxLevel) ||
+          (!!byCode(investigator)?.offClassLevelZeroLimit && (card.xp ?? 0) === 0)),
     )
     .flatMap((card): PurchaseOption[] => {
       const base = {
@@ -416,6 +418,22 @@ export function purchase(
   const deck = [...member(campaign, investigator).deck]
   if (out) deck.splice(deck.indexOf(out), 1)
   deck.push(card)
+  const offClassLimit = byCode(investigator)?.offClassLevelZeroLimit
+  if (
+    offClassLimit !== undefined &&
+    deck.filter((c) => {
+      const d = byCode(c)
+      return (
+        d &&
+        countsForSize(c) &&
+        !d.reward &&
+        !byCode(investigator)!.deckOptions!.some(
+          (o) => o.classes.includes(d.class) && level(c) <= o.maxLevel,
+        )
+      )
+    }).length > offClassLimit
+  )
+    throw new Error(`Máximo ${offClassLimit} cartas de otras clases`)
   const record = campaign.log.investigators[investigator]
   if (!record) throw new Error(`Sin registro de campaña: ${investigator}`)
   return {

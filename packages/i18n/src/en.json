@@ -144,7 +144,8 @@
       "meal": "Restaurant: take 1 horror to heal 3 damage?",
       "solutionMeddler": "Remove 2 clues from the Sinister Solution?"
     },
-    "chooseSpawnLocation": "Where does {enemy} spawn?"
+    "chooseSpawnLocation": "Where does {enemy} spawn?",
+    "investigatorFast": "Free triggered ability window"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -295,7 +296,9 @@
     "resultAllyDamage": "Ready {card} and heal 1 damage",
     "resultAllyHorror": "Ready {card} and heal 1 horror",
     "resultAllyBoth": "Ready {card} and heal 1 damage and 1 horror",
-    "distributedEvade": "Automatically evade {enemy}"
+    "distributedEvade": "Automatically evade {enemy}",
+    "peteReadyAsset": "Ready {card}",
+    "peteInvestigate": "Investigate at {location} with Duke"
   },
   "phase": {
     "setup": "Setup",
@@ -463,7 +466,8 @@
     "reactiveSearch": "{card}: search after failure",
     "reactiveShovel": "{card}: discard to discover 1 clue",
     "combatAmmo": "{card}: spend {n} ammo to attack {enemy}",
-    "combatReload": "{card}: reload 1 arrow"
+    "combatReload": "{card}: reload 1 arrow",
+    "peteReady": "Pete: discard a card to ready an asset"
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -1312,7 +1316,8 @@
       "levelAtStart": "{card} has a level: only level 0 is allowed when the campaign starts.",
       "unknownCard": "Unknown card: {card}.",
       "rewardNotEarned": "Reward not earned: {card}",
-      "unimplemented": "{card} is not implemented yet. A game cannot start with this card."
+      "unimplemented": "{card} is not implemented yet. A game cannot start with this card.",
+      "offClassLimit": "At most {n} level 0 cards from other classes."
     }
   },
   "keywords": {
@@ -1758,7 +1763,10 @@
       "09112": "May commit without matching icons; at most one copy. While committed, reduces test difficulty by 2, to a minimum of 0.",
       "06166": "During a basic fight, adds two combat icons. Success by at least two adds two damage to that attack. Maximum one committed per test.",
       "06204": "During a basic investigation, adds two intellect icons. Success by at least two discovers one extra clue. Maximum one committed per test.",
-      "06246": "During a basic evasion, adds two agility icons. Success by at least two allows automatically evading another enemy at your location. Maximum one committed per test."
+      "06246": "During a basic evasion, adds two agility icons. Success by at least two allows automatically evading another enemy at your location. Maximum one committed per test.",
+      "02005": "Starts with Duke in play. Once per round, discard a card from hand to ready an asset you control. Elder sign: +2 and ready Duke.",
+      "02014": "Exhaust Duke and spend an action to fight at base combat 4 with one extra damage, or investigate at base intellect 4 with an optional move to a connecting location first.",
+      "02015": "On revelation, exhaust your assets and place this in your threat area. Your assets cannot ready until this weakness is discarded with its two-action ability."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -1767,7 +1775,8 @@
       "12112": "Resolve the encounter with Armitage, then decide whether to stay and save the university.",
       "12136": "Record the herald and the fate of the Servant; experience depends on resolved Elite enemies.",
       "12172": "Elokoss appears, Fire enters the encounter deck and Sluice Control becomes available.",
-      "12173": "Defeating Elokoss leads to resolution one."
+      "12173": "Defeating Elokoss leads to resolution one.",
+      "02005": "30-card deck: Survivor and Neutral level 0–5, plus up to five level 0 cards from other classes. Requires Duke, Wracked by Nightmares and a random basic weakness."
     },
     "victory": "Victory {n}",
     "names": {
@@ -1982,7 +1991,10 @@
       "09112": "Gumption",
       "06166": "Brute Force",
       "06204": "Sharp Vision",
-      "06246": "Expeditious Retreat"
+      "06246": "Expeditious Retreat",
+      "02005": "\"Ashcan\" Pete",
+      "02014": "Duke",
+      "02015": "Wracked by Nightmares"
     }
   },
   "account": {

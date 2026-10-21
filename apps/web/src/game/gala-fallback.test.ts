@@ -110,9 +110,9 @@ describe('G18: respaldo completo de La Gala, EN/ES', () => {
     )
     const spanish = useCardLocale('es')
     expect(localizedCards.value.get('71046b')!.text).toContain('hechizada')
-    await useCardLocale('en')
+    const english = useCardLocale('en')
     responses.forEach((resolve) => resolve({ ok: true, json: async () => [] }))
-    await spanish
+    await Promise.all([spanish, english])
     expect(localizedCards.value.get('71008')!.name).toBe('Lantern Chamber')
     expect(localizedCards.value.get('71046b')!.text).toContain('spellbound')
   })

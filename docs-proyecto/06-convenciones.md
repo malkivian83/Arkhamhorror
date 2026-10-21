@@ -3,8 +3,11 @@
 ## Repositorio
 
 - Remoto: `https://github.com/malkivian83/Arkhamhorror.git` (privado), rama principal `main`.
-- **Prohibido** subir código, imágenes o textos copiados del proyecto original
-  o de FFG. El código de referencia vive fuera del repositorio.
+- Prioriza los nombres, textos, reglas e ilustraciones oficiales disponibles
+  para las cartas e investigadores. Conserva su idioma, edición y procedencia.
+  Usa resúmenes o presentación propia cuando falte el recurso oficial.
+- El código de referencia vive fuera del repositorio; el comportamiento del
+  motor se implementa y prueba en este proyecto.
 - Los PDF de reglas van en `reglas/` y están ignorados por git.
 - Secretos solo en `.env` (ignorado); se documentan en `.env.example` sin valores.
 

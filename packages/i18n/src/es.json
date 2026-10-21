@@ -144,7 +144,8 @@
       "meal": "Restaurante: ¿recibes 1 horror para curarte 3 daños?",
       "solutionMeddler": "¿Retiras 2 pistas de la Solución siniestra?"
     },
-    "chooseSpawnLocation": "¿Dónde aparece {enemy}?"
+    "chooseSpawnLocation": "¿Dónde aparece {enemy}?",
+    "investigatorFast": "Ventana de habilidades gratuitas"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -295,7 +296,9 @@
     "resultAllyDamage": "Preparar {card} y curarle 1 daño",
     "resultAllyHorror": "Preparar {card} y curarle 1 horror",
     "resultAllyBoth": "Preparar {card} y curarle 1 daño y 1 horror",
-    "distributedEvade": "Evitar automáticamente a {enemy}"
+    "distributedEvade": "Evitar automáticamente a {enemy}",
+    "peteReadyAsset": "Preparar {card}",
+    "peteInvestigate": "Investigar en {location} con Duke"
   },
   "phase": {
     "setup": "Preparación",
@@ -463,7 +466,8 @@
     "reactiveSearch": "{card}: buscar tras fallar",
     "reactiveShovel": "{card}: descartar para descubrir 1 pista",
     "combatAmmo": "{card}: gastar {n} municiones para atacar a {enemy}",
-    "combatReload": "{card}: recargar 1 flecha"
+    "combatReload": "{card}: recargar 1 flecha",
+    "peteReady": "Pete: descartar una carta para preparar un apoyo"
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -1312,7 +1316,8 @@
       "levelAtStart": "{card} tiene nivel: al empezar la campaña solo se admite nivel 0.",
       "unknownCard": "Carta desconocida: {card}.",
       "rewardNotEarned": "Recompensa no ganada: {card}",
-      "unimplemented": "{card} aún no está implementada. No se puede iniciar la partida con ella."
+      "unimplemented": "{card} aún no está implementada. No se puede iniciar la partida con ella.",
+      "offClassLimit": "Máximo {n} cartas de otras clases de nivel 0."
     }
   },
   "keywords": {
@@ -1758,7 +1763,10 @@
       "09112": "Se compromete sin iconos coincidentes; máximo una copia. Mientras esté comprometida, reduce la dificultad en 2, hasta un mínimo de 0.",
       "06166": "Durante un ataque básico, añade dos iconos de combate. Con éxito por al menos dos, ese ataque inflige dos daños adicionales. Máximo una comprometida por prueba.",
       "06204": "Durante una investigación básica, añade dos iconos de intelecto. Con éxito por al menos dos, descubre una pista adicional. Máximo una comprometida por prueba.",
-      "06246": "Durante una evasión básica, añade dos iconos de agilidad. Con éxito por al menos dos, permite evitar automáticamente a otro enemigo en tu lugar. Máximo una comprometida por prueba."
+      "06246": "Durante una evasión básica, añade dos iconos de agilidad. Con éxito por al menos dos, permite evitar automáticamente a otro enemigo en tu lugar. Máximo una comprometida por prueba.",
+      "02005": "Comienza con Duke en juego. Una vez por ronda, descarta una carta de la mano para preparar un apoyo propio. Signo arcano: +2 y prepara a Duke.",
+      "02014": "Agota a Duke y gasta una acción para atacar con combate base 4 y un daño adicional, o investigar con intelecto base 4, con movimiento previo opcional a un lugar conectado.",
+      "02015": "Al robarla, agota todos tus apoyos y colócala en tu zona de amenaza. Tus apoyos no pueden prepararse hasta descartarla mediante una habilidad de dos acciones."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -1767,7 +1775,8 @@
       "12112": "Resuelve el encuentro con Armitage y decide si te quedas para salvar la universidad.",
       "12136": "Registra el heraldo y el destino del Servant; la experiencia depende de los Élite resueltos.",
       "12172": "Aparece Elokoss, Fire entra en los encuentros y queda disponible Sluice Control.",
-      "12173": "Derrotar a Elokoss conduce a la resolución uno."
+      "12173": "Derrotar a Elokoss conduce a la resolución uno.",
+      "02005": "Mazo de 30 cartas: Superviviente y neutral de nivel 0–5, más hasta cinco cartas de nivel 0 de otras clases. Requiere Duke, Roto por las pesadillas y una debilidad básica aleatoria."
     },
     "victory": "Victoria {n}",
     "names": {
@@ -1982,7 +1991,10 @@
       "09112": "Audacia",
       "06166": "Fuerza bruta",
       "06204": "Visión aguda",
-      "06246": "Retirada rauda"
+      "06246": "Retirada rauda",
+      "02005": "Pete \"Cubo de Basura\"",
+      "02014": "Duke",
+      "02015": "Roto por las pesadillas"
     }
   },
   "account": {

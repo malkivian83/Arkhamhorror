@@ -50,14 +50,16 @@ export interface LocalizedCard {
  * Asesinato en el hotel Excelsior (con sus encuentros).
  */
 const SOURCES: Record<string, string[]> = {
+  en: ['https://arkhamdb.com/api/public/cards/dwl.json'],
   es: [
     'https://es.arkhamdb.com/api/public/cards/core_2026.json',
     'https://es.arkhamdb.com/api/public/cards/tmg.json?encounter=1',
     'https://es.arkhamdb.com/api/public/cards/hotel.json?encounter=1',
+    'https://es.arkhamdb.com/api/public/cards/dwl.json',
   ],
 }
-// v3: incluye Asesinato en el hotel Excelsior.
-const CACHE_PREFIX = 'lcg:cards:v3:'
+// v4: includes the original Pete cards in EN/ES.
+const CACHE_PREFIX = 'lcg:cards:v4:'
 const CACHE_HOURS = 24
 
 /** Bundled alternatives plus any available translated card data. */
@@ -140,7 +142,9 @@ export async function useCardLocale(locale: string): Promise<void> {
       if (!response.ok) throw new Error(String(response.status))
       const pack = (await response.json()) as LocalizedCard[]
       if (!Array.isArray(pack)) throw new Error('Invalid card data')
-      return pack
+      return source.endsWith('/dwl.json')
+        ? pack.filter((c) => ['02005', '02014', '02015'].includes(c.code))
+        : pack
     }),
   )
   const cards = packs.flatMap((p) => (p.status === 'fulfilled' ? p.value : []))

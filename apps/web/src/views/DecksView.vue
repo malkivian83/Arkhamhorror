@@ -28,7 +28,9 @@ const fromStarter = ref(true)
 function create() {
   const id = newDeckId()
   const starter = Object.entries(STARTER_DECKS).find(
-    ([, list]) => `12${String(list.investigator).padStart(3, '0')}` === newInvestigator.value,
+    ([, list]) =>
+      (list.investigatorCode ?? `12${String(list.investigator).padStart(3, '0')}`) ===
+      newInvestigator.value,
   )?.[0]
   const title = t('decks.newName', { name: name(newInvestigator.value) })
   const deck =

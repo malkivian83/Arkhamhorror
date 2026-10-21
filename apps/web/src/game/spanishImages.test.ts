@@ -92,7 +92,10 @@ describe('imágenes españolas de referencia y alternativas', () => {
           const card = catalogue[locale]!.get(code)!
           expect(card.name, code).toBeTruthy()
           expect(card.text, code).toBeTruthy()
-          if (card.type_code === 'skill' || isPermanent(code))
+          if (
+            ['skill', 'investigator', 'treachery', 'enemy'].includes(card.type_code) ||
+            isPermanent(code)
+          )
             expect(card.cost, code).toBeUndefined()
           else expect(card.cost, code).toBeTypeOf('number')
         }

@@ -35,6 +35,7 @@ import { attackDamage } from './combat'
 import { nextInt, shuffle } from './rng'
 import {
   activeInvestigators,
+  assetsCannotReady,
   effectiveVitals,
   bestByPrey,
   distancesFrom,
@@ -139,12 +140,56 @@ export function handle(state: GameState, message: Message): GameState {
         { type: 'Step', step: 'mythosEnds' },
       )
 
-    case 'Step':
-      return log({ ...state, phaseStep: message.step }, `log.step.${message.step}`, {
+    case 'Step': {
+      const next = log({ ...state, phaseStep: message.step }, `log.step.${message.step}`, {
         ...(message.investigator
           ? { name: getInvestigator(state, message.investigator).name }
           : {}),
       })
+      return [
+        'mythosEnds',
+        'enemyBegins',
+        'resolveAttacks',
+        'enemyEnds',
+        'upkeepBegins',
+        'upkeepEnds',
+      ].includes(message.step)
+        ? push(next, { type: 'InvestigatorFastWindow' })
+        : next
+    }
+
+    case 'InvestigatorFastWindow': {
+      const options = fastInvestigatorOptions(state)
+      if (!options.length) return state
+      return push(state, {
+        type: 'Ask',
+        investigator: options[0]!.investigator,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.investigatorFast',
+          alwaysAsk: true,
+          choices: [
+            ...options.map((o): Choice => ({
+              label: o.label,
+              ...(o.params ? { params: o.params } : {}),
+              then: [
+                {
+                  type: 'UseAbility',
+                  investigator: o.investigator,
+                  key: o.key,
+                  actions: 0,
+                  provokes: false,
+                  ...(o.limit ? { limit: o.limit } : {}),
+                  then: o.then,
+                },
+                { type: 'InvestigatorFastWindow' },
+              ],
+            })),
+            { label: 'choice.skip', then: [] },
+          ],
+        },
+      })
+    }
 
     case 'PlaceDoom':
       if (state.doomBecomesDamage) return push(state, ...doomAsDamage(state, message.amount))
@@ -642,26 +687,44 @@ export function handle(state: GameState, message: Message): GameState {
         display: { kind: 'play', action: 'play', actions: 0 },
         then: [{ type: 'PlayCard', investigator: id, code }, again],
       }))
-      const abilities = availableAbilities(state, id).map((a): Choice => ({
-        label: a.label,
-        ...(a.params ? { params: a.params } : {}),
-        ...(a.target ? { target: a.target } : {}),
-        display: { kind: 'ability', actions: a.actions, ...abilitySkill(a.then) },
-        then: [
-          {
-            type: 'UseAbility',
-            investigator: id,
-            key: a.key,
-            actions: a.actions,
-            provokes: a.provokes,
-            ...(a.limit ? { limit: a.limit } : {}),
-            ...(a.costs ? { costs: a.costs } : {}),
-            ...(a.playFromDiscard ? { playFromDiscard: a.playFromDiscard } : {}),
-            then: a.then,
-          },
-          again,
-        ],
-      }))
+      const abilities: Choice[] = [
+        ...fastInvestigatorOptions(state).map((o): Choice => ({
+          label: o.label,
+          ...(o.params ? { params: o.params } : {}),
+          then: [
+            {
+              type: 'UseAbility',
+              investigator: o.investigator,
+              key: o.key,
+              actions: 0,
+              provokes: false,
+              ...(o.limit ? { limit: o.limit } : {}),
+              then: o.then,
+            },
+            again,
+          ],
+        })),
+        ...availableAbilities(state, id).map((a): Choice => ({
+          label: a.label,
+          ...(a.params ? { params: a.params } : {}),
+          ...(a.target ? { target: a.target } : {}),
+          display: { kind: 'ability', actions: a.actions, ...abilitySkill(a.then) },
+          then: [
+            {
+              type: 'UseAbility',
+              investigator: id,
+              key: a.key,
+              actions: a.actions,
+              provokes: a.provokes,
+              ...(a.limit ? { limit: a.limit } : {}),
+              ...(a.costs ? { costs: a.costs } : {}),
+              ...(a.playFromDiscard ? { playFromDiscard: a.playFromDiscard } : {}),
+              then: a.then,
+            },
+            again,
+          ],
+        })),
+      ]
       // Sin acciones ni nada gratuito que hacer, el turno termina solo.
       if (
         actions.length === 0 &&
@@ -1706,6 +1769,7 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'ReadyAsset': {
       const asset = state.assets[message.asset]
+      if (asset && assetsCannotReady(state, asset.owner)) return state
       if (asset)
         return { ...state, assets: { ...state.assets, [asset.id]: { ...asset, exhausted: false } } }
       const placed = state.placedAssets?.[message.asset]
@@ -2170,6 +2234,7 @@ export function handle(state: GameState, message: Message): GameState {
         {
           ...state,
           skillTest: {
+            ...(message.baseSkill !== undefined ? { baseSkill: message.baseSkill } : {}),
             ...(message.basicAction ? { basicAction: true } : {}),
             investigator: message.investigator,
             skill: message.skill,
@@ -3460,7 +3525,10 @@ export function handle(state: GameState, message: Message): GameState {
         }),
       )
       const assets = Object.fromEntries(
-        Object.entries(state.assets).map(([id, a]) => [id, { ...a, exhausted: false }]),
+        Object.entries(state.assets).map(([id, a]) => [
+          id,
+          assetsCannotReady(state, a.owner) ? a : { ...a, exhausted: false },
+        ]),
       )
       const occupied = [
         ...new Set(activeInvestigators(state).flatMap((i) => (i.location ? [i.location] : []))),
@@ -4688,6 +4756,12 @@ function margin(state: GameState): number {
 }
 
 /** Habilidades rápidas que el investigador que hace la prueba puede usar antes de revelar. */
+function fastInvestigatorOptions(state: GameState): ReactionOption[] {
+  return activeInvestigators(state)
+    .flatMap((i) => investigatorBehavior(i.id)?.fastOptions?.(state, i) ?? [])
+    .filter((o) => withinLimit(state, o.key, o.investigator, o.limit))
+}
+
 function testOptions(state: GameState, test: SkillTest): ReactionOption[] {
   const investigator = getInvestigator(state, test.investigator)
   const own = investigatorBehavior(investigator.id)?.testOptions?.(state, test, investigator) ?? []
@@ -4701,7 +4775,9 @@ function testOptions(state: GameState, test: SkillTest): ReactionOption[] {
             !getInvestigator(state, a.owner).eliminated)),
     )
     .flatMap((a) => playerCardBehavior(a.code)?.testOptions?.(state, test, a) ?? [])
-  return [...own, ...assets].filter((o) => withinLimit(state, o.key, o.investigator, o.limit))
+  return [...own, ...assets, ...fastInvestigatorOptions(state)].filter((o) =>
+    withinLimit(state, o.key, o.investigator, o.limit),
+  )
 }
 
 /**
@@ -5366,7 +5442,7 @@ export function skillTestValue(state: GameState): {
           (sum, e) => sum + (enemyBehavior(e.code)?.skillModifier?.(state, e, test) ?? 0),
           0,
         )
-  const base = investigator.skills[test.skill]
+  const base = test.baseSkill ?? investigator.skills[test.skill]
   const scenario = scenarioBehavior(state.scenarioId)?.skillModifier?.(state, test) ?? 0
   const sources = [
     ...Object.values(state.assets)

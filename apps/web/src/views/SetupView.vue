@@ -19,6 +19,7 @@ import { campaignCover, scenarioLabel } from '../game/campaignProgress'
 import { useDecksStore } from '../stores/decks'
 import { useGameStore, type DeckKey } from '../stores/game'
 import { account } from '../account/api'
+import { localName } from '../game/localized'
 
 /**
  * Portada «Vitrina»: la historia en un carril de portadas, el equipo en una
@@ -153,13 +154,13 @@ const visibleInvestigators = computed(() => {
     .filter(
       (i) =>
         (classFilter.value === 'all' || i.faction === classFilter.value) &&
-        (!query || normalize(i.name).includes(query)),
+        (!query || normalize(i.name + ' ' + localName(i.name)).includes(query)),
     )
     .sort((a, b) =>
       sortBy.value === 'class'
         ? CLASS_ORDER.indexOf(a.faction) - CLASS_ORDER.indexOf(b.faction) ||
-          a.name.localeCompare(b.name)
-        : a.name.localeCompare(b.name),
+          localName(a.name).localeCompare(localName(b.name))
+        : localName(a.name).localeCompare(localName(b.name)),
     )
 })
 const classColor = (faction: string) => `var(--class-${faction})`
@@ -418,7 +419,7 @@ function start() {
                   chosen.indexOf(inv.key) + 1
                 }}</span>
               </span>
-              <span class="ui-portrait-name">{{ inv.name }}</span>
+              <span class="ui-portrait-name">{{ localName(inv.name) }}</span>
               <span class="ui-portrait-meta"
                 ><span class="ui-dot" :style="{ '--dot': classColor(inv.faction) }" />{{
                   t(`class.${inv.faction}`)
@@ -547,7 +548,13 @@ function start() {
               class="ui-slot"
               :class="{ filled: slot }"
             >
-              <img v-if="slot" :src="portrait(slot.id)" :alt="slot.name" width="52" height="52" />
+              <img
+                v-if="slot"
+                :src="portrait(slot.id)"
+                :alt="localName(slot.name)"
+                width="52"
+                height="52"
+              />
               <span v-else class="visually-hidden">{{ t('setup.emptySlot') }}</span>
             </span>
             <span class="dock-count">{{ chosen.length }}/4</span>

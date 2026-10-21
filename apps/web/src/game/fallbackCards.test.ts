@@ -6,11 +6,36 @@ import {
 } from '@lcg/cards'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { fallbackCards } from './fallbackCards'
-import { cardImage } from './cards'
+import { cardImage, cardImages } from './cards'
 import { localizedCards, useCardLocale } from './localized'
 
 afterEach(() => vi.unstubAllGlobals())
 describe('recursos de cartas sin red', () => {
+  it('serves the reference application scans for Pete, both sides, Duke and the weakness in EN/ES', () => {
+    for (const language of ['en', 'es'])
+      for (const code of ['02005', '02014', '02015'])
+        expect(cardImages(code, false, language)[0]).toBe(
+          `/local-assets/cards/${language}/${code}.avif`,
+        )
+    expect(cardImages('02005', true, 'es')[0]).toBe('/local-assets/cards/es/02005b.avif')
+    expect(cardImages('02005', true, 'en')[0]).toBe('/local-assets/cards/en/02005b.avif')
+  })
+  it('renders Pete, Duke and his weakness in both languages, including investigator stats and deck rules', () => {
+    for (const locale of ['en', 'es']) {
+      const cards = new Map(fallbackCards(locale).map((c) => [c.code, c]))
+      const pete = cards.get('02005')!
+      expect(pete.type_code).toBe('investigator')
+      expect(pete.skill_willpower).toBe(4)
+      expect(pete.skill_combat).toBe(2)
+      expect(pete.health).toBe(6)
+      expect(pete.sanity).toBe(5)
+      expect(pete.text).toContain('Duke')
+      expect(pete.back_text).toContain('30')
+      expect(cards.get('02014')!.health).toBe(2)
+      expect(cards.get('02014')!.sanity).toBe(3)
+      expect(cards.get('02015')!.text).toBeTruthy()
+    }
+  })
   it('presenta las siete cartas del piloto en EN/ES sin imágenes ni peticiones externas', () => {
     const spanish = new Map(fallbackCards('es').map((card) => [card.code, card]))
     const english = new Map(fallbackCards('en').map((card) => [card.code, card]))
@@ -64,7 +89,7 @@ describe('recursos de cartas sin red', () => {
       ),
     )
     const spanish = useCardLocale('es')
-    await useCardLocale('en')
+    const english = useCardLocale('en')
     const response = {
       ok: true,
       json: async () => [
@@ -77,7 +102,7 @@ describe('recursos de cartas sin red', () => {
       ],
     }
     responses.forEach((resolve) => resolve(response))
-    await spanish
+    await Promise.all([spanish, english])
     expect(localizedCards.value.get('12004')?.name).toBe('Joe Diamond')
   })
   it('Mother of Flame usa el reverso de Elokoss al mostrar su código de segunda cara', () => {
