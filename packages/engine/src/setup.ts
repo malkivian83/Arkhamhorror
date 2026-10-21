@@ -41,6 +41,8 @@ export interface ScenarioDefinition {
   /** Localizaciones apartadas, para efectos del escenario. */
   setAsideLocations?: LocationCard[]
   startingLocation: LocationId
+  /** El investigador jefe empieza aquí y los demás en `startingLocation` (Excelsior). */
+  leadStartingLocation?: LocationId
   agendas: Agenda[]
   acts: Act[]
   encounterDeck: EncounterCard[]
@@ -209,11 +211,19 @@ export function prepareGame({
     ]),
     { type: 'InvestigatorsMulligan' },
     ...story(scenario.setupInstructions),
-    ...players.map((p): Message => ({
-      type: 'MoveTo',
-      investigator: p.id,
-      location: scenario.startingLocation,
-    })),
+    ...(scenario.leadStartingLocation
+      ? [
+          {
+            type: 'PlaceAtStart',
+            lead: scenario.leadStartingLocation,
+            others: scenario.startingLocation,
+          } as Message,
+        ]
+      : players.map((p): Message => ({
+          type: 'MoveTo',
+          investigator: p.id,
+          location: scenario.startingLocation,
+        }))),
     ...(scenario.setup ?? []),
     { type: 'Round' },
   ]

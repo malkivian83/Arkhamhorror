@@ -12,6 +12,7 @@ import {
 import {
   activeInvestigators,
   enemiesAt,
+  enemyHasKeyword,
   engagedEnemies,
   getInvestigator,
   getLocation,
@@ -29,6 +30,7 @@ import type {
   GameState,
   Investigator,
   InvestigatorId,
+  Message,
 } from './types'
 
 /** RR: Unique. The shared canonical title applies across controllers and printings. */
@@ -83,11 +85,11 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
     { kind: 'resource' },
     { kind: 'investigate' },
     ...(leavingBlocked(state, here) ? [] : location.connections)
-      .filter((to) => state.locations[to] && canAffordEntry(state, to))
+      .filter((to) => state.locations[to] && canAffordEntry(state, to) && canEnter(state, id, to))
       .map((to): Action => ({ kind: 'move', to })),
     // Un enemigo distante (aloof) no enfrentado no puede ser atacado.
     ...enemiesHere
-      .filter((e) => e.engagedWith !== null || !e.keywords.includes('aloof'))
+      .filter((e) => e.engagedWith !== null || !enemyHasKeyword(state, e, 'aloof'))
       .map((e): Action => ({ kind: 'fight', enemy: e.id })),
     ...engagedEnemies(state, id).map((e): Action => ({ kind: 'evade', enemy: e.id })),
     ...enemiesHere
@@ -99,6 +101,12 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
       actionCost(state, id, a) <=
       investigator.actionsRemaining + (a.kind === 'move' && investigator.extraMove ? 1 : 0),
   )
+}
+
+/** El escenario deja entrar al investigador en `to` desde donde está (Habitación 212, Despacho). */
+export function canEnter(state: GameState, id: InvestigatorId, to: string): boolean {
+  const from = getInvestigator(state, id).location
+  return scenarioBehavior(state.scenarioId)?.canEnter?.(state, id, from, to) ?? true
 }
 
 /** Pistas en grupo que cuesta entrar en una localización sin revelar (0 si no tiene coste). */
@@ -265,6 +273,7 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
     if (p.type === 'threatArea') {
       return p.investigator === id || getInvestigator(state, p.investigator).location === here
     }
+    if (p.type === 'enemy') return state.enemies[p.enemy]?.location === here
     return false
   })
   // The Necronomicon: no se pueden usar las habilidades de los propios apoyos.
@@ -324,9 +333,32 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
       ),
     ...(scenarioBehavior(state.scenarioId)?.abilities?.(state, null, id) ?? []),
   ]
-  return options.filter(
-    (a) => a.actions <= investigator.actionsRemaining && withinLimit(state, a.key, id, a.limit),
-  )
+  return options
+    .filter(
+      (a) => a.actions <= investigator.actionsRemaining && withinLimit(state, a.key, id, a.limit),
+    )
+    .flatMap((a) => {
+      if (!a.parley) return [a]
+      const extra = parleyCosts(state, id)
+      return extra ? [{ ...a, costs: [...(a.costs ?? []), ...extra] }] : []
+    })
+}
+
+/**
+ * Costes adicionales para negociar de las cartas de la zona de amenaza del
+ * investigador (¿Qué has hecho?). `null` si alguno no se puede pagar.
+ */
+export function parleyCosts(state: GameState, id: InvestigatorId): Message[] | null {
+  const costs: Message[] = []
+  for (const t of Object.values(state.treacheries)) {
+    if (t.placement.type !== 'threatArea' || t.placement.investigator !== id) continue
+    const cost = treacheryBehavior(t.code)?.parleyCost
+    if (!cost) continue
+    const messages = cost(state, id)
+    if (!messages) return null
+    costs.push(...messages)
+  }
+  return costs
 }
 
 /** Las acciones que no provocan ataques de oportunidad. */

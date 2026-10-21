@@ -55,6 +55,13 @@ export function allCards(): CardDefinition[] {
 
 export { demoInvestigators, demoScenario } from './demo'
 export { midwinterGala } from './midwinter-gala/gala'
+export { murderAtTheExcelsiorHotel } from './excelsior/excelsior'
+export {
+  CODES as EXCELSIOR_CODES,
+  EXCELSIOR,
+  LEADS as EXCELSIOR_LEADS,
+  TRUE_CULPRIT as EXCELSIOR_TRUE_CULPRIT,
+} from './excelsior/cards'
 export {
   bloodlessMan as GALA_BLOODLESS_MAN,
   bloodlessManUnleashed as GALA_BLOODLESS_MAN_UNLEASHED,

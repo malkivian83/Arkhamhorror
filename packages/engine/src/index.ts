@@ -42,7 +42,7 @@ export {
 } from './content'
 export { applyInput, createGame, dispatch, type EngineObserver } from './engine'
 export { attackDamage } from './combat'
-export { canAffordEntry, leavingBlocked } from './actions'
+export { canAffordEntry, canEnter, leavingBlocked, parleyCosts } from './actions'
 export { BOONS } from './types'
 export { EngineError } from './errors'
 export {
@@ -66,14 +66,18 @@ export {
 } from './setup'
 export {
   activeInvestigators,
+  attachedStat,
   effectiveVitals,
   enemiesAt,
+  enemyHasKeyword,
+  enemyMaxHealth,
   engagedEnemies,
   getInvestigator,
   getLocation,
   investigatorsAt,
   leadInvestigator,
   nearestLocation,
+  nextStepToward,
   placedLocation,
   push,
   shroudOf,
