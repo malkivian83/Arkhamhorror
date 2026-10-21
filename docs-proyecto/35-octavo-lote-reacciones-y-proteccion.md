@@ -51,3 +51,9 @@ La fuente permanece en 3c8ee4b5d8100766, con instantánea inglesa SHA-256 36bdf5
 pnpm format:check, pnpm lint, pnpm typecheck, pnpm test y pnpm build correctos. Suite completa: **1.571 pruebas correctas y 15 omitidas**. Se verifica además la integridad de 912 imágenes y miniaturas existentes; este lote no añade escaneos. Permanecen los avisos anteriores de fuente externa y tamaño de paquete web. La prueba de familias nuevas no depende de APIs de Node en el paquete de cartas: importa los JSON revisados.
 
 Los cambios locales ajenos a la importación se conservan y se excluyen del commit. La automatización continúa activa.
+
+## Interacción de búsquedas y robo
+
+Dos pruebas reprodujeron que el robo de una carta encontrada no abría la ventana posterior de robo. Se añade una marca serializable drawFound a SearchDeck y TakeFromDeck. Rabbit’s Foot de nivel tres y No Stone Unturned de nivel cero la utilizan para emitir afterDrawCard al tomar la carta elegida. Prepared for the Worst sigue añadiendo a la mano sin emitir ese disparador. La marca es opcional y conserva la conducta de las búsquedas existentes que no la solicitan. Esta corrección no incorpora otro código ni otra reedición.
+
+La corrección pasa de nuevo formato, lint, tipos, compilación y la suite completa: **1.573 pruebas correctas y 15 omitidas**. Las dos regresiones fallaron antes de introducir la marca y pasan después. La subida inicial b2b6ed8 pasó CI y despliegue antes de subir esta corrección.
