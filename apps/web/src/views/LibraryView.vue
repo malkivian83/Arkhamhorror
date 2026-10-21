@@ -17,6 +17,7 @@ import { useGameStore } from '../stores/game'
 import { useDecksStore } from '../stores/decks'
 import { decodeSession, session } from '@lcg/saves'
 import SitePage from '../components/SitePage.vue'
+import SiteAction from '../components/SiteAction.vue'
 
 const { t, te } = useI18n(),
   router = useRouter(),
@@ -99,7 +100,7 @@ async function restore(id: string) {
 <template>
   <SitePage :title="t('account.library')" :subtitle="t('library.subtitle')" icon="campaign">
     <template #actions>
-      <RouterLink to="/" class="link-button primary">{{ t('campaign.new') }} →</RouterLink>
+      <SiteAction to="/" icon="+">{{ t('campaign.new') }}</SiteAction>
     </template>
     <template v-if="account.user">
       <div class="sync-bar">
@@ -139,7 +140,9 @@ async function restore(id: string) {
         </button>
       </div>
       <div class="library-heading">
-        <h2>{{ t('library.campaigns') }}</h2>
+        <h2>
+          {{ t('library.campaigns') }} <span class="library-count">{{ campaigns.length }}</span>
+        </h2>
         <label
           ><input v-model="showArchived" type="checkbox" /> {{ t('library.showArchived') }}</label
         >
@@ -150,44 +153,65 @@ async function restore(id: string) {
       </div>
       <div class="campaign-library">
         <article v-for="doc in campaigns" :key="doc.id" class="campaign-entry">
-          <h3>{{ displayName(doc.name) }}</h3>
-          <p>
-            {{ t('library.revision', { n: doc.revision }) }} ·
-            {{ new Date(doc.updatedAt).toLocaleString() }}
-          </p>
-          <p v-if="doc.dirty || doc.operation">{{ t('account.sync.pending') }}</p>
-          <div class="entry-actions">
-            <button
-              type="button"
-              class="primary"
-              :disabled="busy || doc.conflict"
-              @click="run(() => open(doc.id))"
-            >
-              {{ t('library.open') }}
-            </button>
-            <button type="button" :disabled="busy" @click="run(() => rename(doc.id, doc.name))">
-              {{ t('library.rename') }}
-            </button>
-            <button
-              type="button"
-              :disabled="busy"
-              @click="run(() => editMetadata(doc.id, { archived: !doc.archived }))"
-            >
-              {{ doc.archived ? t('library.unarchive') : t('library.archive') }}
-            </button>
-            <button type="button" @click="download(doc.payload, 'arkham-campaign.json')">
-              {{ t('session.export') }}
-            </button>
-            <button
-              type="button"
-              :disabled="busy || !doc.revision"
-              @click="run(() => restore(doc.id))"
-            >
-              {{ t('library.restore') }}
-            </button>
-            <button type="button" :disabled="busy" @click="run(() => deleteCampaign(doc.id))">
-              {{ t('library.delete') }}
-            </button>
+          <div class="entry-heading">
+            <p class="entry-label">
+              {{ t('setup.campaignLabel')
+              }}<span v-if="doc.archived"> · {{ t('library.archived') }}</span>
+            </p>
+            <h3>{{ displayName(doc.name) }}</h3>
+          </div>
+          <div class="entry-body">
+            <p>
+              {{ t('library.revision', { n: doc.revision }) }} ·
+              {{ new Date(doc.updatedAt).toLocaleString() }}
+            </p>
+            <p v-if="doc.dirty || doc.operation">{{ t('account.sync.pending') }}</p>
+            <div class="entry-actions">
+              <SiteAction
+                icon="→"
+                :disabled="busy || doc.conflict"
+                @click="run(() => open(doc.id))"
+              >
+                {{ t('library.open') }}
+              </SiteAction>
+              <details class="entry-options">
+                <summary>{{ t('library.manage') }} <span aria-hidden="true">⌄</span></summary>
+                <div class="management-actions">
+                  <button
+                    type="button"
+                    :disabled="busy"
+                    @click="run(() => rename(doc.id, doc.name))"
+                  >
+                    {{ t('library.rename') }}
+                  </button>
+                  <button
+                    type="button"
+                    :disabled="busy"
+                    @click="run(() => editMetadata(doc.id, { archived: !doc.archived }))"
+                  >
+                    {{ doc.archived ? t('library.unarchive') : t('library.archive') }}
+                  </button>
+                  <button type="button" @click="download(doc.payload, 'arkham-campaign.json')">
+                    {{ t('session.export') }}
+                  </button>
+                  <button
+                    type="button"
+                    :disabled="busy || !doc.revision"
+                    @click="run(() => restore(doc.id))"
+                  >
+                    {{ t('library.restore') }}
+                  </button>
+                  <button
+                    type="button"
+                    class="delete-action"
+                    :disabled="busy"
+                    @click="run(() => deleteCampaign(doc.id))"
+                  >
+                    {{ t('library.delete') }}
+                  </button>
+                </div>
+              </details>
+            </div>
           </div>
         </article>
       </div>
@@ -202,9 +226,13 @@ async function restore(id: string) {
       </footer>
     </template>
     <div v-else class="empty guest-library">
-      <img src="/local-assets/home/icon-investigators.webp" alt="" width="48" height="48" />
+      <img src="/local-assets/home/icon-investigators.webp" alt="" width="64" height="64" />
+      <h2>{{ t('account.archiveTitle') }}</h2>
       <p>{{ t('library.guestHelp') }}</p>
-      <RouterLink class="link-button" to="/account">{{ t('account.login') }}</RouterLink>
+      <div class="guest-actions">
+        <SiteAction to="/account" icon="→">{{ t('account.login') }}</SiteAction
+        ><SiteAction to="/decks" icon="▤" variant="secondary">{{ t('decks.title') }}</SiteAction>
+      </div>
     </div>
   </SitePage>
 </template>
@@ -240,6 +268,16 @@ p {
 }
 .library-heading h2 {
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.library-count {
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 3px 10px;
+  font: 600 0.8125rem/1.4 var(--fell);
 }
 .library-heading label {
   display: flex;
@@ -258,8 +296,71 @@ p {
   border: 1px solid var(--line);
   padding: 24px;
   background: var(--panel);
-  border-radius: 4px;
+  border-radius: 10px;
   margin-bottom: 20px;
+}
+.campaign-entry {
+  padding: 0;
+  overflow: hidden;
+  margin: 0;
+  align-self: start;
+}
+.entry-heading {
+  padding: 40px 22px 20px;
+  background:
+    linear-gradient(90deg, #202025e6, #202025bb),
+    url('/local-assets/home/occult-archive.webp') center 35% / cover;
+  border-bottom: 1px solid var(--border);
+}
+.entry-heading h3 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+.entry-heading .entry-label {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.entry-body {
+  padding: 20px 22px;
+}
+.entry-body > p:first-child {
+  margin-top: 0;
+}
+.entry-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+}
+.entry-options > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+  color: var(--muted);
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.875rem;
+}
+.entry-options > summary::-webkit-details-marker {
+  display: none;
+}
+.management-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding-top: 12px;
+}
+.management-actions button {
+  font-size: 0.875rem;
+}
+.management-actions .delete-action {
+  background: #ae4236;
+  grid-column: 1 / -1;
 }
 .campaign-entry h3 {
   margin: 0 0 8px;
@@ -268,7 +369,6 @@ p {
 .campaign-entry p {
   font-size: 0.875rem;
 }
-.entry-actions,
 .library-actions {
   display: flex;
   flex-wrap: wrap;
@@ -298,7 +398,7 @@ p {
   padding: 32px;
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 10px;
 }
 .empty p {
   margin: 0;
@@ -308,7 +408,25 @@ p {
   flex: none;
 }
 .guest-library {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 16px;
+  padding: 48px 24px;
+  min-height: 330px;
+  background:
+    linear-gradient(0deg, #202025, #202025e0),
+    url('/local-assets/home/occult-archive.webp') center / cover;
+}
+.guest-library h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.guest-actions {
+  display: flex;
+  justify-content: center;
   flex-wrap: wrap;
+  gap: 12px;
 }
 .guest-library p {
   flex: 1;
@@ -323,7 +441,7 @@ p {
     gap: 8px;
   }
   .campaign-entry {
-    padding: 18px;
+    padding: 0;
   }
   .empty {
     flex-direction: column;
@@ -333,6 +451,18 @@ p {
   }
   .library-actions {
     flex-direction: column;
+  }
+  .guest-library {
+    align-items: center;
+    padding: 32px 20px;
+  }
+  .guest-actions {
+    display: grid;
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .entry-body {
+    padding: 18px;
   }
 }
 </style>

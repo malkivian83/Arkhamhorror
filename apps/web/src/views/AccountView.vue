@@ -6,6 +6,7 @@ import { account, api, ApiError } from '../account/api'
 import { documents, flush, stopLibrary } from '../account/library'
 import type { AuthStatus } from '@lcg/shared'
 import SitePage from '../components/SitePage.vue'
+import SiteAction from '../components/SiteAction.vue'
 
 const { t, locale } = useI18n()
 const route = useRoute()
@@ -135,111 +136,197 @@ async function removeAccount() {
     :subtitle="t('account.subtitle')"
     icon="investigators"
   >
-    <div class="account-page">
-      <p v-if="!account.enabled" role="status" class="notice">{{ t('account.unavailable') }}</p>
-      <p v-if="failure" role="alert" class="error">{{ t(`account.errors.${failure}`) }}</p>
-      <p v-if="notice" role="status" class="notice">{{ t(`account.${notice}`) }}</p>
+    <div class="account-columns">
+      <div class="account-page">
+        <p v-if="!account.enabled" role="status" class="notice">{{ t('account.unavailable') }}</p>
+        <p v-if="failure" role="alert" class="error">{{ t(`account.errors.${failure}`) }}</p>
+        <p v-if="notice" role="status" class="notice">{{ t(`account.${notice}`) }}</p>
 
-      <template v-if="account.user && !tokenFlow">
-        <h2>{{ account.user.name }}</h2>
-        <p>{{ account.user.email }}</p>
-        <RouterLink class="link-button" to="/library">{{ t('account.library') }}</RouterLink>
-        <a v-if="account.google" class="link-button" href="/api/auth/google?link=1">{{
-          t('account.linkGoogle')
-        }}</a>
-        <p class="hint">{{ t('account.passwordHelp') }}</p>
-        <button type="button" :disabled="busy" @click="requestPasswordChange">
-          {{ t('account.passwordLink') }}
-        </button>
-        <hr />
-        <button type="button" :disabled="busy" @click="logout">{{ t('account.logout') }}</button>
-        <details class="danger">
-          <summary>{{ t('account.deleteAccount') }}</summary>
-          <p>{{ t('account.deleteHelp') }}</p>
-          <label
-            >{{ t('account.password')
-            }}<input
-              v-model="password"
-              type="password"
-              autocomplete="current-password"
-              maxlength="128"
-          /></label>
-          <button type="button" :disabled="busy || !password" @click="removeAccount">
-            {{ t('account.deleteAccount') }}
+        <template v-if="account.user && !tokenFlow">
+          <h2>{{ account.user.name }}</h2>
+          <p>{{ account.user.email }}</p>
+          <RouterLink class="link-button" to="/library">{{ t('account.library') }}</RouterLink>
+          <a v-if="account.google" class="link-button" href="/api/auth/google?link=1">{{
+            t('account.linkGoogle')
+          }}</a>
+          <p class="hint">{{ t('account.passwordHelp') }}</p>
+          <button type="button" :disabled="busy" @click="requestPasswordChange">
+            {{ t('account.passwordLink') }}
           </button>
-        </details>
-      </template>
+          <hr />
+          <button type="button" :disabled="busy" @click="logout">{{ t('account.logout') }}</button>
+          <details class="danger">
+            <summary>{{ t('account.deleteAccount') }}</summary>
+            <p>{{ t('account.deleteHelp') }}</p>
+            <label
+              >{{ t('account.password')
+              }}<input
+                v-model="password"
+                type="password"
+                autocomplete="current-password"
+                maxlength="128"
+            /></label>
+            <button type="button" :disabled="busy || !password" @click="removeAccount">
+              {{ t('account.deleteAccount') }}
+            </button>
+          </details>
+        </template>
 
-      <template v-else>
-        <nav class="account-tabs" :aria-label="t('account.options')">
-          <button type="button" :aria-pressed="mode === 'login'" @click="chooseMode('login')">
-            {{ t('account.login') }}
-          </button>
-          <button type="button" :aria-pressed="mode === 'register'" @click="chooseMode('register')">
-            {{ t('account.register') }}
-          </button>
-        </nav>
-        <h2>{{ t(`account.modes.${mode}`) }}</h2>
-        <form :aria-busy="busy" @submit.prevent="submit">
-          <label v-if="mode === 'register'"
-            >{{ t('account.name')
-            }}<input v-model="name" autocomplete="nickname" required maxlength="100"
-          /></label>
-          <label v-if="!['verify', 'reset'].includes(mode)"
-            >{{ t('account.email')
-            }}<input v-model="email" type="email" autocomplete="email" required maxlength="254"
-          /></label>
-          <label v-if="['login', 'register', 'reset'].includes(mode)"
-            >{{ t('account.password')
-            }}<input
-              v-model="password"
-              type="password"
-              :autocomplete="mode === 'login' ? 'current-password' : 'new-password'"
-              :minlength="mode === 'login' ? 1 : 12"
-              maxlength="128"
-              required
-              :aria-describedby="mode === 'login' ? undefined : 'password-hint'"
-          /></label>
-          <p v-if="['register', 'reset'].includes(mode)" id="password-hint" class="hint">
-            {{ t('account.passwordHint') }}
-          </p>
-          <p v-if="mode === 'verify'" class="hint">{{ t('account.verifyHelp') }}</p>
-          <button type="submit" class="primary" :disabled="busy || !account.enabled">
-            {{ busy ? t('account.working') : t(`account.actions.${mode}`) }}
-          </button>
-        </form>
-        <a
-          v-if="account.google && ['login', 'register'].includes(mode)"
-          class="link-button google"
-          href="/api/auth/google"
-          >{{ t('account.google') }}</a
-        >
-        <div class="secondary-actions">
-          <button type="button" @click="mode = 'forgot'">{{ t('account.forgot') }}</button>
-          <button type="button" @click="mode = 'resend'">{{ t('account.resend') }}</button>
+        <template v-else>
+          <nav class="account-tabs" :aria-label="t('account.options')">
+            <button type="button" :aria-pressed="mode === 'login'" @click="chooseMode('login')">
+              {{ t('account.login') }}
+            </button>
+            <button
+              type="button"
+              :aria-pressed="mode === 'register'"
+              @click="chooseMode('register')"
+            >
+              {{ t('account.register') }}
+            </button>
+          </nav>
+          <h2>{{ t(`account.modes.${mode}`) }}</h2>
+          <form :aria-busy="busy" @submit.prevent="submit">
+            <label v-if="mode === 'register'"
+              >{{ t('account.name')
+              }}<input v-model="name" autocomplete="nickname" required maxlength="100"
+            /></label>
+            <label v-if="!['verify', 'reset'].includes(mode)"
+              >{{ t('account.email')
+              }}<input v-model="email" type="email" autocomplete="email" required maxlength="254"
+            /></label>
+            <label v-if="['login', 'register', 'reset'].includes(mode)"
+              >{{ t('account.password')
+              }}<input
+                v-model="password"
+                type="password"
+                :autocomplete="mode === 'login' ? 'current-password' : 'new-password'"
+                :minlength="mode === 'login' ? 1 : 12"
+                maxlength="128"
+                required
+                :aria-describedby="mode === 'login' ? undefined : 'password-hint'"
+            /></label>
+            <p v-if="['register', 'reset'].includes(mode)" id="password-hint" class="hint">
+              {{ t('account.passwordHint') }}
+            </p>
+            <p v-if="mode === 'verify'" class="hint">{{ t('account.verifyHelp') }}</p>
+            <SiteAction type="submit" icon="→" :disabled="busy || !account.enabled">
+              {{ busy ? t('account.working') : t(`account.actions.${mode}`) }}
+            </SiteAction>
+          </form>
+          <a
+            v-if="account.google && ['login', 'register'].includes(mode)"
+            class="link-button google"
+            href="/api/auth/google"
+            >{{ t('account.google') }}</a
+          >
+          <div class="secondary-actions">
+            <button type="button" @click="mode = 'forgot'">{{ t('account.forgot') }}</button>
+            <button type="button" @click="mode = 'resend'">{{ t('account.resend') }}</button>
+          </div>
+          <RouterLink to="/" class="guest-link">{{ t('account.guest') }} →</RouterLink>
+          <p class="hint">{{ t('account.guestHint') }}</p>
+        </template>
+      </div>
+      <aside class="account-context">
+        <div class="context-copy">
+          <p class="context-eyebrow">{{ t('setup.eyebrow') }}</p>
+          <h2>{{ t('account.archiveTitle') }}</h2>
+          <p>{{ t('account.archiveHelp') }}</p>
+          <nav :aria-label="t('app.sections')">
+            <RouterLink to="/" class="context-link"
+              ><img
+                src="/local-assets/home/icon-campaign.webp"
+                alt=""
+                width="32"
+                height="32"
+              /><span>{{ t('campaign.new') }}</span
+              ><span aria-hidden="true">↗</span></RouterLink
+            >
+            <RouterLink to="/decks" class="context-link"
+              ><img
+                src="/local-assets/home/icon-decks.webp"
+                alt=""
+                width="32"
+                height="32"
+              /><span>{{ t('decks.manage') }}</span
+              ><span aria-hidden="true">↗</span></RouterLink
+            >
+          </nav>
         </div>
-        <RouterLink to="/" class="guest-link">{{ t('account.guest') }} →</RouterLink>
-        <p class="hint">{{ t('account.guestHint') }}</p>
-      </template>
+      </aside>
     </div>
   </SitePage>
 </template>
 
 <style scoped>
-.account-layout {
-  max-width: 960px;
+.account-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+  gap: 32px;
+  align-items: start;
 }
 .account-page {
-  max-width: 560px;
-  margin: 0 auto;
+  min-width: 0;
   padding: 32px;
   background: var(--panel);
   border: 1px solid var(--line);
-  border-top: 3px solid var(--accent);
-  border-radius: 8px;
+  border-radius: 10px;
 }
 h2 {
-  font: 400 1.5rem var(--fell);
+  font: 700 1.375rem/1.4 var(--display);
+  margin: 0 0 24px;
+  overflow-wrap: anywhere;
+}
+.account-context {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  min-height: 460px;
+  display: flex;
+  align-items: end;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background:
+    linear-gradient(0deg, #202025 14%, #20202599 65%, #20202530),
+    url('/local-assets/home/occult-archive.webp') 65% top / cover;
+}
+.context-copy {
+  width: 100%;
+  padding: 28px;
+}
+.context-eyebrow {
+  font-size: 0.6875rem;
+  color: var(--accent);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.context-copy h2 {
+  margin-bottom: 12px;
+}
+.context-copy > p:not(.context-eyebrow) {
+  color: var(--muted);
+  margin: 0 0 24px;
+}
+.context-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-block: 14px;
+  border-top: 1px solid var(--border);
+  text-decoration: none;
+  min-height: 56px;
+}
+.context-link > span:last-child {
+  margin-left: auto;
+}
+.context-link:hover {
+  text-decoration: underline;
+}
+.context-link img {
+  object-fit: contain;
+  flex: none;
 }
 .hint {
   color: var(--muted);
@@ -281,7 +368,35 @@ button,
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  margin: 24px 0;
+  margin: 0 0 24px;
+}
+.account-tabs {
+  flex-wrap: nowrap;
+  gap: 4px;
+  padding: 4px;
+  background: #19191d;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.account-tabs button {
+  flex: 1;
+  border-color: transparent;
+  background: transparent;
+}
+.secondary-actions {
+  gap: 0;
+  flex-direction: column;
+  align-items: start;
+  padding-top: 16px;
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.secondary-actions button {
+  padding-inline: 0;
+  color: var(--accent);
+  border-color: transparent;
+  background: transparent;
+  font-size: 0.875rem;
 }
 .link-button {
   display: flex;
@@ -304,6 +419,8 @@ button,
   line-height: 1.6;
   border: 1px solid var(--border);
   background: #303037;
+  border-radius: 7px;
+  margin: 0 0 24px;
 }
 .error {
   border-color: #e0a496;
@@ -326,6 +443,8 @@ hr {
 }
 .danger {
   margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid #704b48;
 }
 .danger summary {
   cursor: pointer;
@@ -333,11 +452,27 @@ hr {
   align-content: center;
   color: #ffb8a5;
 }
+.danger button {
+  background: #ae4236;
+  color: #fff;
+}
+@media (max-width: 800px) {
+  .account-columns {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .account-context {
+    min-height: 270px;
+  }
+}
 @media (max-width: 600px) {
   .account-page {
     margin: 0;
     max-width: none;
-    padding: 24px 18px;
+    padding: 22px 18px;
+  }
+  .context-copy {
+    padding: 22px 18px;
   }
 }
 </style>

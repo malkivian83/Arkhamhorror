@@ -633,6 +633,9 @@
     },
     "caseFile": "Investigation dossier",
     "preparation": "Before you leave",
+    "optional": "Optional",
+    "boonsCount": "None active | {n} active | {n} active",
+    "campaignOnly": "Campaign only",
     "yourTeam": "Your team",
     "deckFor": "Deck for {name}",
     "emptyTeam": "Choose at least one investigator to begin.",
@@ -984,6 +987,9 @@
   },
   "decks": {
     "title": "Decks",
+    "subtitle": "Prepare your team, refine your cards and find your next strategy.",
+    "yourDecks": "Your decks",
+    "editorViews": "Deck editor views",
     "new": "New deck",
     "fromStarter": "Start from their starter deck",
     "create": "Create deck",
@@ -1339,6 +1345,8 @@
     "title": "Your Arkham account",
     "profile": "My account",
     "subtitle": "Your decks and adventures, on another device too.",
+    "archiveTitle": "Your next story starts here.",
+    "archiveHelp": "Prepare your decks and choose an adventure. With an account, you can return to your investigations from another device.",
     "unavailable": "Accounts are currently unavailable. You can keep playing as a guest.",
     "library": "My library",
     "login": "Sign in",
@@ -1418,6 +1426,8 @@
     }
   },
   "library": {
+    "manage": "Manage adventure",
+    "archived": "Archived",
     "subtitle": "All your adventures in one place, saved online to your account.",
     "campaigns": "Your campaigns",
     "showArchived": "Show archived",

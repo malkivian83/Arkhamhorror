@@ -633,6 +633,9 @@
     },
     "caseFile": "Expediente de investigación",
     "preparation": "Antes de partir",
+    "optional": "Opcional",
+    "boonsCount": "Sin activar | {n} activa | {n} activas",
+    "campaignOnly": "Solo en campaña",
     "yourTeam": "Tu equipo",
     "deckFor": "Mazo de {name}",
     "emptyTeam": "Elige al menos un investigador para comenzar.",
@@ -984,6 +987,9 @@
   },
   "decks": {
     "title": "Mazos",
+    "subtitle": "Prepara tu equipo, ajusta tus cartas y encuentra tu próxima estrategia.",
+    "yourDecks": "Tus mazos",
+    "editorViews": "Vistas del editor de mazos",
     "new": "Nuevo mazo",
     "fromStarter": "Empezar desde su mazo inicial",
     "create": "Crear mazo",
@@ -1339,6 +1345,8 @@
     "title": "Tu cuenta de Arkham",
     "profile": "Mi cuenta",
     "subtitle": "Tus mazos y tus aventuras, también en otro dispositivo.",
+    "archiveTitle": "Tu próxima historia empieza aquí.",
+    "archiveHelp": "Prepara tus mazos y elige una aventura. Con tu cuenta, podrás retomar tus investigaciones desde otro dispositivo.",
     "unavailable": "El servicio de cuentas no está disponible. Puedes seguir jugando como invitado.",
     "library": "Mi biblioteca",
     "login": "Entrar",
@@ -1418,6 +1426,8 @@
     }
   },
   "library": {
+    "manage": "Gestionar aventura",
+    "archived": "Archivada",
     "subtitle": "Todas tus aventuras en un mismo lugar, guardadas online en tu cuenta.",
     "campaigns": "Tus campañas",
     "showArchived": "Mostrar archivadas",

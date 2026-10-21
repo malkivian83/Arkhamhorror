@@ -105,7 +105,7 @@ watch(
   font-family: 'Source Sans 3', system-ui, sans-serif;
 }
 .header-content {
-  max-width: 1068px;
+  max-width: 1180px;
   min-height: 94px;
   margin: auto;
   padding: 16px 36px;
@@ -194,6 +194,17 @@ watch(
 .menu-languages button {
   min-width: 44px;
   min-height: 44px;
+  color: #fff;
+  background: #555;
+  border: 0;
+  border-radius: 4px;
+}
+.menu-languages button[aria-pressed='true'] {
+  background: #7c3c85;
+  color: #fff;
+}
+.menu-languages button:hover:not(:disabled) {
+  filter: brightness(1.18);
 }
 .playmat-preference :deep(.current) {
   width: 100%;

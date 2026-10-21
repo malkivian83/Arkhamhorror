@@ -11,6 +11,7 @@ import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import SessionTools from '../components/SessionTools.vue'
+import SiteAction from '../components/SiteAction.vue'
 import SkillIcon from '../components/SkillIcon.vue'
 import { useDecksStore } from '../stores/decks'
 import { useGameStore, type DeckKey } from '../stores/game'
@@ -40,6 +41,14 @@ const difficulties: Difficulty[] = ['easy', 'standard', 'hard', 'expert']
 const skills = ['willpower', 'intellect', 'combat', 'agility'] as const
 const portrait = (id: string) => `/local-assets/setup/${id}.jpg`
 const teamNotice = ref('')
+const campaignOnlyBoon = (boon: Boon) => boon === 'ancients' || boon === 'persephone'
+const activeBoons = computed<Boon[]>({
+  get: () =>
+    boons.value.filter((boon) => !selectedCampaign.value?.standalone || !campaignOnlyBoon(boon)),
+  set: (value) => {
+    boons.value = value
+  },
+})
 const teamSummary = computed(() => {
   const first = chosen.value[0]
   if (!first) return t('setup.emptyTeam')
@@ -62,7 +71,7 @@ function start() {
     const own = validDecks(key).find((d) => d.id === deckFor.value[key])
     return own ? { investigator: own.investigator, cards: own.cards } : key
   })
-  game.start(campaignId.value, members, difficulty.value, boons.value)
+  game.start(campaignId.value, members, difficulty.value, activeBoons.value)
   void router.push(game.state ? '/game' : '/campaign')
 }
 </script>
@@ -94,188 +103,240 @@ function start() {
         </div>
       </header>
       <form class="setup-form" @submit.prevent="start">
-        <fieldset class="setup-section">
-          <legend>
-            <img
-              class="section-icon"
-              src="/local-assets/home/icon-campaign.webp"
-              alt=""
-              width="36"
-              height="36"
-            />{{ t('campaign.choose') }}
-          </legend>
-          <div class="campaign-grid">
-            <label
-              v-for="c in campaigns"
-              :key="c.id"
-              class="campaign-card"
-              :class="{ selected: campaignId === c.id }"
-            >
-              <input
-                v-model="campaignId"
-                type="radio"
-                name="campaign"
-                :value="c.id"
-                :aria-label="t(c.name)"
-                :aria-describedby="`campaign-${c.id}`"
-              />
+        <div class="setup-main">
+          <fieldset class="setup-section">
+            <legend>
               <img
-                class="campaign-art"
-                :src="`/local-assets/setup/${c.id}.jpg`"
+                class="section-icon"
+                src="/local-assets/home/icon-campaign.webp"
                 alt=""
-                width="600"
-                height="360"
-              />
-              <span class="campaign-copy">
-                <span :id="`campaign-${c.id}`" class="campaign-meta">{{
-                  c.standalone
-                    ? t('campaign.standalone')
-                    : `${t('setup.campaignLabel')} · ${t('setup.scenarioCount', { n: c.scenarios.length }, c.scenarios.length)}`
-                }}</span>
-                <span class="campaign-name">{{ t(c.name) }}</span>
-                <span class="campaign-selection">{{
-                  campaignId === c.id ? t('setup.selected') : t('setup.selectAdventure')
-                }}</span>
-              </span>
-            </label>
-          </div>
-        </fieldset>
+                width="36"
+                height="36"
+              />{{ t('campaign.choose') }}
+            </legend>
+            <p class="section-help">{{ t('setup.campaignHint') }}</p>
+            <div class="campaign-grid">
+              <label
+                v-for="c in campaigns"
+                :key="c.id"
+                class="campaign-card"
+                :class="{ selected: campaignId === c.id }"
+              >
+                <input
+                  v-model="campaignId"
+                  type="radio"
+                  name="campaign"
+                  :value="c.id"
+                  :aria-label="t(c.name)"
+                  :aria-describedby="`campaign-${c.id}`"
+                />
+                <img
+                  class="campaign-art"
+                  :src="`/local-assets/setup/${c.id}.jpg`"
+                  alt=""
+                  width="600"
+                  height="360"
+                />
+                <span class="campaign-copy">
+                  <span :id="`campaign-${c.id}`" class="campaign-meta">{{
+                    c.standalone
+                      ? t('campaign.standalone')
+                      : `${t('setup.campaignLabel')} · ${t('setup.scenarioCount', { n: c.scenarios.length }, c.scenarios.length)}`
+                  }}</span>
+                  <span class="campaign-name">{{ t(c.name) }}</span>
+                  <span class="campaign-description">{{ t(`setup.descriptions.${c.id}`) }}</span>
+                  <span class="campaign-selection">{{
+                    campaignId === c.id ? t('setup.selected') : t('setup.selectAdventure')
+                  }}</span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
 
-        <fieldset class="setup-section" aria-describedby="team-help team-status">
-          <legend>
-            <img
-              class="section-icon"
-              src="/local-assets/home/icon-investigators.webp"
-              alt=""
-              width="36"
-              height="36"
-            />{{ t('setup.teamTitle') }}
-          </legend>
-          <div class="section-heading">
-            <p id="team-help">{{ t('setup.chooseInvestigators') }}</p>
-            <span id="team-status" role="status">{{
-              t('setup.teamCount', { n: chosen.length })
-            }}</span>
-          </div>
-          <div class="investigator-grid">
-            <button
-              v-for="inv in investigators"
-              :key="inv.key"
-              type="button"
-              class="investigator-card"
-              :class="{ selected: chosen.includes(inv.key) }"
-              :aria-pressed="chosen.includes(inv.key)"
-              :aria-disabled="!chosen.includes(inv.key) && chosen.length >= 4"
-              :aria-describedby="chosen.length >= 4 ? 'team-limit' : undefined"
-              @click="toggle(inv.key)"
-            >
-              <span class="portrait-frame"
-                ><img :src="portrait(inv.id)" alt="" width="240" height="300" /><span
-                  v-if="chosen.includes(inv.key)"
-                  class="selection-mark"
-                  aria-hidden="true"
-                  >✓</span
-                ></span
-              >
-              <span class="investigator-info"
-                ><strong>{{ inv.name }}</strong
-                ><span>{{ t(`class.${inv.faction}`) }}</span></span
-              >
-            </button>
-          </div>
-          <p id="team-limit" class="team-notice" role="status">
-            {{ teamNotice || (chosen.length >= 4 ? t('setup.teamLimit') : '') }}
-          </p>
-          <details class="team-decks">
-            <summary>
+          <fieldset class="setup-section" aria-describedby="team-help team-status">
+            <legend>
               <img
-                class="deck-icon"
-                src="/local-assets/home/icon-decks.webp"
+                class="section-icon"
+                src="/local-assets/home/icon-investigators.webp"
                 alt=""
-                width="28"
-                height="28"
-              /><span>{{ t('setup.teamDecks') }}</span
-              ><span class="disclosure" aria-hidden="true">⌄</span>
-            </summary>
-            <p class="order-hint">{{ t('setup.orderHint') }}</p>
-            <ol class="team-roster">
-              <li v-for="(key, index) in chosen" :key="key">
-                <div class="roster-investigator">
-                  <strong>{{ index + 1 }}. {{ starterInvestigator(key).name }}</strong
-                  ><span class="investigator-skills"
-                    ><span
-                      v-for="skill in skills"
-                      :key="skill"
-                      :aria-label="`${t(`skill.${skill}`)}: ${starterInvestigator(key).skills[skill]}`"
-                      ><SkillIcon :skill="skill" aria-hidden="true" /><b aria-hidden="true">{{
-                        starterInvestigator(key).skills[skill]
-                      }}</b></span
-                    ></span
-                  >
-                </div>
-                <label v-if="validDecks(key).length" class="deck-choice"
-                  ><span>{{ t('setup.deckFor', { name: starterInvestigator(key).name }) }}</span
-                  ><select v-model="deckFor[key]">
-                    <option :value="undefined">{{ t('decks.starter') }}</option>
-                    <option v-for="deck in validDecks(key)" :key="deck.id" :value="deck.id">
-                      {{ deck.name }}
-                    </option>
-                  </select></label
+                width="36"
+                height="36"
+              />{{ t('setup.teamTitle') }}
+            </legend>
+            <div class="section-heading">
+              <p id="team-help">{{ t('setup.chooseInvestigators') }}</p>
+              <span id="team-status" role="status">{{
+                t('setup.teamCount', { n: chosen.length })
+              }}</span>
+            </div>
+            <div class="investigator-grid">
+              <button
+                v-for="inv in investigators"
+                :key="inv.key"
+                type="button"
+                class="investigator-card"
+                :class="{ selected: chosen.includes(inv.key) }"
+                :aria-pressed="chosen.includes(inv.key)"
+                :aria-disabled="!chosen.includes(inv.key) && chosen.length >= 4"
+                :aria-describedby="chosen.length >= 4 ? 'team-limit' : undefined"
+                @click="toggle(inv.key)"
+              >
+                <span class="portrait-frame"
+                  ><img :src="portrait(inv.id)" alt="" width="240" height="300" /><span
+                    v-if="chosen.includes(inv.key)"
+                    class="selection-mark"
+                    aria-hidden="true"
+                    >✓</span
+                  ></span
                 >
-                <span v-else class="starter-deck">{{ t('decks.starter') }}</span>
-              </li>
-            </ol>
-            <p v-if="!chosen.length">{{ t('setup.emptyTeam') }}</p>
-            <RouterLink to="/decks" class="manage-decks"
-              >{{ t('decks.manage') }} <span aria-hidden="true">↗</span></RouterLink
-            >
+                <span class="investigator-info"
+                  ><strong>{{ inv.name }}</strong
+                  ><span>{{ t(`class.${inv.faction}`) }}</span></span
+                >
+              </button>
+            </div>
+            <p id="team-limit" class="team-notice" role="status">
+              {{ teamNotice || (chosen.length >= 4 ? t('setup.teamLimit') : '') }}
+            </p>
+            <details class="team-decks">
+              <summary>
+                <img
+                  class="deck-icon"
+                  src="/local-assets/home/icon-decks.webp"
+                  alt=""
+                  width="28"
+                  height="28"
+                /><span>{{ t('setup.teamDecks') }}</span
+                ><span class="disclosure" aria-hidden="true">⌄</span>
+              </summary>
+              <p class="order-hint">{{ t('setup.orderHint') }}</p>
+              <ol class="team-roster">
+                <li v-for="(key, index) in chosen" :key="key">
+                  <div class="roster-investigator">
+                    <strong>{{ index + 1 }}. {{ starterInvestigator(key).name }}</strong
+                    ><span class="investigator-skills"
+                      ><span
+                        v-for="skill in skills"
+                        :key="skill"
+                        :aria-label="`${t(`skill.${skill}`)}: ${starterInvestigator(key).skills[skill]}`"
+                        ><SkillIcon :skill="skill" aria-hidden="true" /><b aria-hidden="true">{{
+                          starterInvestigator(key).skills[skill]
+                        }}</b></span
+                      ></span
+                    >
+                  </div>
+                  <label v-if="validDecks(key).length" class="deck-choice"
+                    ><span>{{ t('setup.deckFor', { name: starterInvestigator(key).name }) }}</span
+                    ><select v-model="deckFor[key]">
+                      <option :value="undefined">{{ t('decks.starter') }}</option>
+                      <option v-for="deck in validDecks(key)" :key="deck.id" :value="deck.id">
+                        {{ deck.name }}
+                      </option>
+                    </select></label
+                  >
+                  <span v-else class="starter-deck">{{ t('decks.starter') }}</span>
+                </li>
+              </ol>
+              <p v-if="!chosen.length">{{ t('setup.emptyTeam') }}</p>
+              <RouterLink to="/decks" class="manage-decks"
+                >{{ t('decks.manage') }} <span aria-hidden="true">↗</span></RouterLink
+              >
+            </details>
+          </fieldset>
+          <details class="boons-panel">
+            <summary>
+              <span class="boons-heading"
+                ><span class="optional-label">{{ t('setup.optional') }}</span
+                ><span>{{ t('boons.title') }}</span></span
+              >
+              <span class="boons-count" role="status">{{
+                t('setup.boonsCount', { n: activeBoons.length }, activeBoons.length)
+              }}</span>
+              <span class="disclosure" aria-hidden="true">⌄</span>
+            </summary>
+            <fieldset class="boons" aria-describedby="boons-help">
+              <legend class="visually-hidden">{{ t('boons.title') }}</legend>
+              <p id="boons-help">{{ t('boons.help') }}</p>
+              <div class="boons-grid">
+                <label
+                  v-for="boon in BOONS"
+                  :key="boon"
+                  class="boon-option"
+                  :class="{
+                    selected: activeBoons.includes(boon),
+                    unavailable: campaignOnlyBoon(boon) && selectedCampaign?.standalone,
+                  }"
+                >
+                  <input
+                    v-model="activeBoons"
+                    type="checkbox"
+                    :value="boon"
+                    :disabled="campaignOnlyBoon(boon) && selectedCampaign?.standalone"
+                  />
+                  <span class="boon-copy">
+                    <strong>{{ t('boons.' + boon + '.name') }}</strong>
+                    <span>{{ t('boons.' + boon + '.description') }}</span>
+                    <small v-if="campaignOnlyBoon(boon)" class="campaign-only">{{
+                      t('setup.campaignOnly')
+                    }}</small>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
           </details>
-        </fieldset>
-        <fieldset class="boons">
-          <legend>{{ t('boons.title') }}</legend>
-          <p>{{ t('boons.help') }}</p>
-          <label v-for="boon in BOONS" :key="boon" class="boon-option">
-            <input
-              v-model="boons"
-              type="checkbox"
-              :value="boon"
-              :disabled="
-                (boon === 'ancients' || boon === 'persephone') && selectedCampaign?.standalone
-              "
-            />
-            <span
-              ><strong>{{ t('boons.' + boon + '.name') }}</strong
-              ><br />{{ t('boons.' + boon + '.description') }}</span
-            >
-          </label>
-        </fieldset>
-        <div class="start-bar">
-          <img
-            class="archive-art"
-            src="/local-assets/home/occult-archive.webp"
-            alt=""
-            width="1000"
-            height="500"
-            loading="lazy"
-          />
-          <div class="difficulty-choice">
-            <label for="setup-difficulty">{{ t('table.difficulty') }}</label>
-            <select id="setup-difficulty" v-model="difficulty" aria-describedby="difficulty-note">
-              <option v-for="d in difficulties" :key="d" :value="d">
-                {{ t(`difficulty.${d}`) }}
-              </option>
-            </select>
-            <span id="difficulty-note" class="visually-hidden">{{
-              t(`setup.difficultyNotes.${difficulty}`)
-            }}</span>
-          </div>
-          <p class="team-summary">{{ teamSummary }}</p>
-          <button type="submit" class="start" :disabled="!chosen.length || !selectedCampaign">
-            {{ t(selectedCampaign?.standalone ? 'setup.beginScenario' : 'setup.beginCampaign') }}
-            <span aria-hidden="true">→</span>
-          </button>
         </div>
-        <p class="save-note">{{ account.user ? t('account.saveHint') : t('setup.localSave') }}</p>
+        <aside class="preparation" aria-labelledby="preparation-title">
+          <div class="preparation-heading">
+            <p class="eyebrow">{{ t('setup.caseFile') }}</p>
+            <h2 id="preparation-title">{{ t('setup.preparation') }}</h2>
+          </div>
+          <div class="adventure-summary">
+            <img
+              v-if="selectedCampaign"
+              :src="`/local-assets/setup/${selectedCampaign.id}.jpg`"
+              alt=""
+              width="600"
+              height="360"
+            />
+            <span>{{ selectedCampaign ? t(selectedCampaign.name) : '' }}</span>
+          </div>
+          <div class="preparation-body">
+            <div class="difficulty-choice">
+              <label for="setup-difficulty">{{ t('table.difficulty') }}</label>
+              <select id="setup-difficulty" v-model="difficulty" aria-describedby="difficulty-note">
+                <option v-for="d in difficulties" :key="d" :value="d">
+                  {{ t(`difficulty.${d}`) }}
+                </option>
+              </select>
+              <span id="difficulty-note">{{ t(`setup.difficultyNotes.${difficulty}`) }}</span>
+            </div>
+            <div class="team-review">
+              <p class="review-label">{{ t('setup.yourTeam') }}</p>
+              <div v-if="chosen.length" class="team-portraits" aria-hidden="true">
+                <img
+                  v-for="key in chosen"
+                  :key="key"
+                  :src="portrait(starterInvestigator(key).id)"
+                  alt=""
+                  width="48"
+                  height="48"
+                />
+              </div>
+              <p class="team-summary" role="status">{{ teamSummary }}</p>
+            </div>
+            <SiteAction
+              type="submit"
+              icon="→"
+              class="start"
+              :disabled="!chosen.length || !selectedCampaign"
+            >
+              {{ t(selectedCampaign?.standalone ? 'setup.beginScenario' : 'setup.beginCampaign') }}
+            </SiteAction>
+            <p class="save-note">
+              {{ account.user ? t('account.saveHint') : t('setup.localSave') }}
+            </p>
+          </div>
+        </aside>
       </form>
       <div class="setup-tools"><SessionTools /></div>
       <footer class="setup-footer">{{ t('app.disclaimer') }}</footer>
@@ -285,21 +346,117 @@ function start() {
 
 <style scoped>
 .boons {
-  flex-basis: 100%;
+  border: 0;
+  min-width: 0;
+  margin: 0;
+  padding: 0 20px 20px;
+}
+.boons > p {
+  color: var(--muted);
+  font-size: 0.875rem;
+  margin: 0 0 16px;
+  max-width: 65ch;
+}
+.boons-panel {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #202025;
+}
+.boons-panel > summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 84px;
+  padding: 16px 20px;
+  cursor: pointer;
+  list-style: none;
+}
+.boons-panel > summary::-webkit-details-marker {
+  display: none;
+}
+.boons-heading {
+  display: grid;
+  gap: 3px;
+  font: 700 1.125rem/1.4 var(--heading);
+}
+.optional-label {
+  color: var(--muted);
+  font:
+    600 0.6875rem/1.5 'Source Sans 3',
+    system-ui,
+    sans-serif;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.boons-count {
+  margin-left: auto;
+  color: var(--accent);
+  font-size: 0.8125rem;
+}
+.boons-panel > summary .disclosure {
+  margin-left: 0;
+}
+.boons-panel[open] > summary .disclosure {
+  transform: rotate(180deg);
+}
+.boons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
 }
 .boon-option {
   display: flex;
-  gap: 0.75rem;
-  padding: 0.7rem;
+  gap: 12px;
+  padding: 15px;
   align-items: start;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--panel);
+  cursor: pointer;
+}
+.boon-option.selected {
+  border-color: var(--accent);
+  background: #342b2a;
+}
+.boon-option.unavailable {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.boon-option input {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
+  accent-color: var(--accent);
+}
+.boon-copy {
+  display: grid;
+  gap: 6px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.boon-copy > span {
+  color: var(--muted);
+}
+.boon-copy strong {
+  font-size: 0.9375rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+.campaign-only {
+  justify-self: start;
+  color: var(--accent);
+  font-size: 0.6875rem;
+  border-bottom: 1px solid #73564a;
 }
 .setup-page {
   --ink: #f4efe7;
   --accent: #e5aa8d;
   --panel: #25252b;
-  --panel-2: #25252b;
-  --border: #807574;
-  --muted: #c3bbb4;
+  --panel-2: #2c2b31;
+  --border: #494248;
+  --muted: #bdb4b1;
   --heading: 'Libre Baskerville', Georgia, serif;
   min-height: calc(100dvh - 94px);
   background: #19191d;
@@ -310,16 +467,25 @@ function start() {
     sans-serif;
 }
 .setup {
-  max-width: 1068px;
+  max-width: 1180px;
   margin: auto;
-  padding: 0 36px 20px;
+  padding: 0 36px 28px;
+}
+.setup-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  align-items: start;
+  gap: 32px;
+}
+.setup-main {
+  min-width: 0;
 }
 .setup-intro {
   position: relative;
   isolation: isolate;
-  min-height: 230px;
-  margin: 0 -36px 28px;
-  padding: 34px 36px;
+  min-height: 270px;
+  margin: 0 -36px 36px;
+  padding: 44px 36px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -356,7 +522,7 @@ function start() {
   text-transform: uppercase;
 }
 h1 {
-  font: 700 clamp(1.75rem, 3.4vw, 2.25rem)/1.25 var(--heading);
+  font: 700 clamp(1.75rem, 3.4vw, 2.75rem)/1.25 var(--heading);
   letter-spacing: -0.03em;
   margin: 0 0 10px;
   color: #fff7ed;
@@ -385,7 +551,7 @@ h1 {
 }
 .setup-section {
   padding: 0;
-  margin: 0 0 28px;
+  margin: 0 0 32px;
   border: 0;
   min-width: 0;
 }
@@ -394,8 +560,8 @@ h1 {
   align-items: center;
   gap: 12px;
   padding: 0;
-  margin-bottom: 16px;
-  font: 700 1.375rem/1.35 var(--heading);
+  margin-bottom: 12px;
+  font: 700 1.25rem/1.35 var(--heading);
   letter-spacing: 0;
   max-width: 100%;
 }
@@ -404,6 +570,11 @@ h1 {
   width: 36px;
   height: 36px;
   object-fit: contain;
+}
+.section-help {
+  margin: -3px 0 16px;
+  color: var(--muted);
+  font-size: 0.875rem;
 }
 .campaign-grid {
   display: grid;
@@ -416,7 +587,7 @@ h1 {
   min-width: 0;
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 3px;
+  border-radius: 9px;
   overflow: hidden;
   cursor: pointer;
 }
@@ -437,14 +608,14 @@ h1 {
 .campaign-art {
   display: block;
   width: 100%;
-  height: 126px;
+  height: 145px;
   object-fit: cover;
   object-position: center 46%;
 }
 .campaign-copy {
   display: grid;
-  gap: 5px;
-  padding: 14px 17px 16px;
+  gap: 9px;
+  padding: 17px;
 }
 .campaign-meta {
   color: var(--muted);
@@ -453,11 +624,17 @@ h1 {
   letter-spacing: 0.035em;
 }
 .campaign-name {
-  font: 700 1.375rem/1.3 var(--heading);
+  font: 700 1.1875rem/1.4 var(--heading);
+}
+.campaign-description {
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 .campaign-selection {
   color: var(--muted);
   font-size: 0.8125rem;
+  padding-top: 4px;
 }
 .selected .campaign-selection {
   color: var(--accent);
@@ -477,17 +654,23 @@ h1 {
 }
 #team-status {
   white-space: nowrap;
+  padding: 4px 9px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--accent);
+  font-size: 0.75rem;
 }
 .investigator-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 12px;
+  gap: 10px;
 }
 .investigator-card {
   text-align: left;
   padding: 0;
   min-width: 0;
-  border-radius: 3px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
   background: var(--panel);
   overflow: hidden;
 }
@@ -547,7 +730,8 @@ h1 {
   margin: 0;
 }
 .team-decks {
-  margin-top: 12px;
+  margin-top: 16px;
+  border-block: 1px solid var(--border);
   font-size: 0.875rem;
 }
 .team-decks > summary {
@@ -555,6 +739,7 @@ h1 {
   align-items: center;
   gap: 12px;
   min-height: 44px;
+  padding-block: 8px;
   cursor: pointer;
   list-style: none;
 }
@@ -569,6 +754,7 @@ h1 {
 .disclosure {
   color: var(--accent);
   font-size: 1.1rem;
+  margin-left: auto;
 }
 .team-decks[open] .disclosure {
   transform: rotate(180deg);
@@ -631,79 +817,124 @@ h1 {
   background: var(--panel);
   color: var(--ink);
   border: 1px solid var(--border);
-  border-radius: 3px;
+  border-radius: 6px;
   padding: 9px 12px;
   min-height: 44px;
   max-width: 100%;
   font: inherit;
 }
-.start-bar {
+.preparation {
+  position: sticky;
+  top: 24px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #202025;
+  min-width: 0;
+}
+.preparation-heading {
+  padding: 22px 20px 18px;
+}
+.preparation-heading .eyebrow {
+  font-size: 0.625rem;
+  letter-spacing: 0.09em;
+}
+.preparation h2 {
+  margin: 0;
+  font: 700 1.375rem/1.4 var(--heading);
+  letter-spacing: -0.02em;
+}
+.adventure-summary {
   position: relative;
   isolation: isolate;
   display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 24px 20px;
+  align-items: end;
+  min-height: 130px;
+  padding: 18px 20px;
   border-block: 1px solid var(--border);
-  overflow: hidden;
+  background: #19191d;
 }
-.archive-art {
-  pointer-events: none;
+.adventure-summary img {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: right 62%;
-  opacity: 0.3;
-  mask-image: linear-gradient(90deg, transparent, #000 70%);
+}
+.adventure-summary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(0deg, #19191df5, #19191d20);
+}
+.adventure-summary > span {
+  font: 700 1.0625rem/1.4 var(--heading);
+  text-shadow: 0 1px 5px #000;
+}
+.preparation-body {
+  padding: 20px;
+}
+.team-review {
+  margin: 20px 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.review-label {
+  margin: 0 0 10px;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+.team-portraits {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.team-portraits img {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #947361;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 20%;
 }
 .difficulty-choice {
   display: grid;
   gap: 6px;
-  min-width: 140px;
+  min-width: 0;
   color: var(--muted);
   font-size: 0.8125rem;
 }
 .difficulty-choice select {
   color: var(--ink);
   font-size: 0.9375rem;
+  width: 100%;
+}
+#difficulty-note {
+  color: var(--muted);
+  font-size: 0.8125rem;
 }
 .team-summary {
-  flex: 1;
   min-width: 0;
   overflow-wrap: anywhere;
   color: var(--muted);
   font-size: 0.875rem;
-  margin: 19px 0 0;
+  margin: 0;
 }
 .start {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
+  width: 100%;
   min-height: 48px;
-  padding: 12px 20px;
-  border-radius: 3px;
-  border: 1px solid var(--accent);
-  color: #261b1c;
-  background: var(--accent);
   font-size: 0.9375rem;
-  font-weight: 600;
-  margin-left: auto;
-  flex-shrink: 0;
-}
-.start:hover:not(:disabled) {
-  background: #f1bd9e;
 }
 .save-note {
   color: var(--muted);
   margin: 12px 0 0;
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
 }
 .setup-tools {
-  margin-top: 18px;
+  margin-top: 32px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
 }
 .setup-tools :deep(.session-tools) {
   padding: 0;
@@ -718,6 +949,13 @@ h1 {
 }
 .setup-tools :deep(button) {
   min-height: 44px;
+  border: 0;
+  border-radius: 4px;
+  background: #555;
+  color: #fff;
+}
+.setup-tools :deep(button:hover:not(:disabled)) {
+  filter: brightness(1.18);
 }
 .setup-footer {
   color: var(--muted);
@@ -738,6 +976,89 @@ h1 {
   outline: 3px solid #fff;
   outline-offset: 3px;
 }
+.boon-option:has(:focus-visible) {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+@media (hover: hover) {
+  .campaign-card:hover,
+  .investigator-card:hover:not([aria-disabled='true']),
+  .boon-option:hover:not(.unavailable) {
+    border-color: var(--accent);
+    background: #302b30;
+  }
+  .boons-panel > summary:hover {
+    background: #2a272c;
+    border-radius: 10px;
+  }
+}
+@media (max-width: 1000px) {
+  .setup-form {
+    grid-template-columns: minmax(0, 1fr) 270px;
+    gap: 24px;
+  }
+  .investigator-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .campaign-grid,
+  .boons-grid {
+    grid-template-columns: 1fr;
+  }
+  .campaign-card {
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr);
+  }
+  .campaign-art {
+    height: 100%;
+    min-height: 150px;
+  }
+  .campaign-copy {
+    padding-right: 34px;
+  }
+}
+@media (max-width: 800px) {
+  .setup-form {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .preparation {
+    position: static;
+  }
+  .preparation-body {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .team-review {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .start,
+  .save-note {
+    grid-column: 1 / -1;
+  }
+  .save-note {
+    margin-top: -8px;
+  }
+  .campaign-grid,
+  .boons-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .campaign-card {
+    display: block;
+  }
+  .campaign-art {
+    height: 145px;
+    min-height: 0;
+  }
+  .campaign-copy {
+    padding: 16px;
+  }
+  .investigator-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
 @media (max-width: 680px) {
   .setup-page {
     min-height: calc(100dvh - 82px);
@@ -746,7 +1067,8 @@ h1 {
     padding: 0 20px 20px;
   }
   .setup-intro {
-    margin: 0 -20px 25px;
+    min-height: 230px;
+    margin: 0 -20px 28px;
     padding: 27px 20px;
   }
   .mythos-art {
@@ -774,19 +1096,19 @@ h1 {
   }
   .campaign-card {
     display: grid;
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 96px minmax(0, 1fr);
   }
   .campaign-art {
-    width: 100px;
+    width: 96px;
     height: 100%;
-    min-height: 120px;
+    min-height: 132px;
     object-position: center;
   }
   .campaign-card input {
     right: 10px;
     top: 12px;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
   }
   .campaign-copy {
     padding: 14px 32px 14px 14px;
@@ -794,6 +1116,9 @@ h1 {
   }
   .campaign-name {
     font-size: 1.1875rem;
+  }
+  .campaign-description {
+    display: none;
   }
   .campaign-meta {
     font-size: 0.6875rem;
@@ -815,17 +1140,7 @@ h1 {
     font-size: 0.8125rem;
     gap: 8px;
   }
-  .start-bar {
-    flex-wrap: wrap;
-    padding: 20px 0;
-    gap: 15px;
-  }
-  .difficulty-choice {
-    flex: 1;
-    min-width: 115px;
-  }
   .team-summary {
-    flex: 1;
     font-size: 0.8125rem;
   }
   .start {
@@ -834,6 +1149,40 @@ h1 {
     min-height: 50px;
   }
   .setup select {
+    font-size: 1rem;
+  }
+  .boons-grid {
+    grid-template-columns: 1fr;
+  }
+  .boons-panel > summary {
+    padding-inline: 16px;
+  }
+  .boons {
+    padding: 0 14px 14px;
+  }
+  .boon-option {
+    padding: 14px;
+  }
+  .preparation-body {
+    gap: 18px 16px;
+    padding: 18px 16px;
+  }
+  .preparation-heading {
+    padding: 18px 16px 16px;
+  }
+  .adventure-summary {
+    min-height: 110px;
+    padding-inline: 16px;
+  }
+  .team-portraits {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .team-portraits img {
+    width: 34px;
+    height: 34px;
+  }
+  .boons-heading {
     font-size: 1rem;
   }
 }
@@ -860,10 +1209,17 @@ h1 {
   .campaign-art {
     width: 78px;
   }
+  .section-heading {
+    flex-wrap: wrap;
+  }
+  .preparation-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 @media (forced-colors: active) {
   .campaign-card.selected,
-  .investigator-card.selected {
+  .investigator-card.selected,
+  .boon-option.selected {
     outline: 3px solid Highlight;
   }
 }

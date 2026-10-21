@@ -11,15 +11,18 @@ import {
   type DeckProblem,
 } from '@lcg/cards'
 import { playerCardDef } from '@lcg/engine'
-import { computed, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import GameCard from '../components/GameCard.vue'
 import ClassIcon from '../components/ClassIcon.vue'
 import SlotIcon from '../components/SlotIcon.vue'
 import SitePage from '../components/SitePage.vue'
+import SiteAction from '../components/SiteAction.vue'
+import CardDetails from '../components/CardDetails.vue'
 import { cardName, classColor } from '../game/cards'
 import { localName } from '../game/localized'
 import { newDeckId, useDecksStore } from '../stores/decks'
+import { noHover, type InspectedCard } from '../game/inspect'
 
 /**
  * Mazos propios: crear (vacío o desde un mazo inicial), importar de ArkhamDB y
@@ -30,10 +33,44 @@ const store = useDecksStore()
 
 const name = (code: string) => localName(cardName(code))
 const def = playerCardDef
+const preview = ref<InspectedCard | null>(null)
+const previewElement = ref<HTMLElement>()
+const previewWidth = ref(300)
+const previewPosition = ref({ left: '16px', top: '16px' })
+
+async function showPreview(code: string, event: MouseEvent | FocusEvent, landscape = false) {
+  if (event.type === 'mouseenter' && noHover.value) return
+  const anchor = (event.currentTarget as HTMLElement).getBoundingClientRect()
+  const card: InspectedCard = { code, name: name(code), back: false, landscape }
+  previewWidth.value = Math.min(landscape ? 420 : 300, window.innerWidth - 32)
+  preview.value = card
+  await nextTick()
+  if (preview.value?.code !== code || !previewElement.value) return
+  const { width, height } = previewElement.value.getBoundingClientRect()
+  const right = anchor.right + 16
+  const left = right + width <= window.innerWidth - 16 ? right : anchor.left - width - 16
+  previewPosition.value = {
+    left: `${Math.max(16, Math.min(left, window.innerWidth - width - 16))}px`,
+    top: `${Math.max(16, Math.min(anchor.top, window.innerHeight - height - 16))}px`,
+  }
+}
+
+function hidePreview() {
+  preview.value = null
+}
+onMounted(() => {
+  window.addEventListener('scroll', hidePreview, true)
+  window.addEventListener('resize', hidePreview)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', hidePreview, true)
+  window.removeEventListener('resize', hidePreview)
+})
 
 // ------------------------------------------------------------- Lista y creación
 const selectedId = ref<string | null>(store.decks[0]?.id ?? null)
 const selected = computed(() => store.decks.find((d) => d.id === selectedId.value) ?? null)
+const editorTab = ref<'contents' | 'pool'>('contents')
 const check = computed(() => (selected.value ? store.check(selected.value) : null))
 const size = computed(() =>
   selected.value ? deckSizeOf(selected.value.investigator, selected.value.cards) : 30,
@@ -144,6 +181,7 @@ const classFilter = ref('')
 const typeFilter = ref('')
 const search = ref('')
 const levelZero = ref(true)
+watch([selectedId, editorTab, classFilter, typeFilter, search, levelZero], hidePreview)
 const pool = computed(() => {
   if (!selected.value) return []
   const text = search.value.trim().toLowerCase()
@@ -180,42 +218,63 @@ const titleCount = (code: string) => {
 </script>
 
 <template>
-  <SitePage :title="t('decks.title')" icon="decks">
+  <SitePage :title="t('decks.title')" :subtitle="t('decks.subtitle')" icon="decks">
+    <template #actions
+      ><SiteAction to="/" icon="→">{{ t('setup.begin') }}</SiteAction></template
+    >
     <div class="layout">
       <aside class="side">
-        <section class="box">
-          <h2>{{ t('decks.new') }}</h2>
-          <label>
-            {{ t('table.investigator') }}
-            <select v-model="newInvestigator">
-              <option v-for="i in investigators" :key="i.code" :value="i.code">
-                {{ name(i.code) }}
-              </option>
-            </select>
-          </label>
-          <label class="check">
-            <input v-model="fromStarter" type="checkbox" />
-            {{ t('decks.fromStarter') }}
-          </label>
-          <button type="button" class="primary" @click="create">{{ t('decks.create') }}</button>
-        </section>
+        <details class="box deck-tool" :open="!selected">
+          <summary>
+            <span>{{ t('decks.new') }}</span
+            ><span class="disclosure" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="tool-body">
+            <label>
+              {{ t('table.investigator') }}
+              <select v-model="newInvestigator">
+                <option v-for="i in investigators" :key="i.code" :value="i.code">
+                  {{ name(i.code) }}
+                </option>
+              </select>
+            </label>
+            <label class="check">
+              <input v-model="fromStarter" type="checkbox" />
+              {{ t('decks.fromStarter') }}
+            </label>
+            <SiteAction icon="+" @click="create">{{ t('decks.create') }}</SiteAction>
+          </div>
+        </details>
 
-        <section class="box">
-          <h2>{{ t('decks.import.title') }}</h2>
-          <form @submit.prevent="importDeck">
-            <input
-              v-model="importInput"
-              type="text"
-              :placeholder="t('decks.import.placeholder')"
-              :aria-label="t('decks.import.title')"
-            />
-            <button type="submit" :disabled="importing || !importInput.trim()">
-              {{ importing ? t('decks.import.loading') : t('decks.import.action') }}
-            </button>
-          </form>
-          <p v-if="importMessage" class="message" role="status">{{ importMessage }}</p>
-        </section>
+        <details class="box deck-tool">
+          <summary>
+            <span>{{ t('decks.import.title') }}</span
+            ><span class="disclosure" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="tool-body">
+            <form @submit.prevent="importDeck">
+              <input
+                v-model="importInput"
+                type="text"
+                :placeholder="t('decks.import.placeholder')"
+                :aria-label="t('decks.import.title')"
+              />
+              <SiteAction
+                type="submit"
+                icon="↓"
+                variant="secondary"
+                :disabled="importing || !importInput.trim()"
+              >
+                {{ importing ? t('decks.import.loading') : t('decks.import.action') }}
+              </SiteAction>
+            </form>
+            <p v-if="importMessage" class="message" role="status">{{ importMessage }}</p>
+          </div>
+        </details>
 
+        <h2 class="deck-list-heading">
+          {{ t('decks.yourDecks') }}<span>{{ store.decks.length }}</span>
+        </h2>
         <ul class="list" :aria-label="t('decks.title')">
           <li v-if="!store.decks.length" class="empty">{{ t('decks.none') }}</li>
           <li
@@ -224,7 +283,12 @@ const titleCount = (code: string) => {
             :class="{ active: d.id === selectedId }"
             :style="{ '--class': classColor(d.investigator) }"
           >
-            <button type="button" class="pick" @click="selectedId = d.id">
+            <button
+              type="button"
+              class="pick"
+              :aria-pressed="selectedId === d.id"
+              @click="selectedId = d.id"
+            >
               <strong>{{ d.name }}</strong>
               <small>{{ name(d.investigator) }}</small>
               <span class="status" :class="{ ok: !store.check(d).problems.length }">
@@ -258,6 +322,9 @@ const titleCount = (code: string) => {
             :name="name(selected.investigator)"
             :width="170"
             landscape
+            no-zoom
+            @mouseenter="showPreview(selected.investigator, $event, true)"
+            @mouseleave="hidePreview"
           />
           <div>
             <input
@@ -280,8 +347,26 @@ const titleCount = (code: string) => {
           </div>
         </div>
 
-        <div class="columns">
-          <section class="contents" :aria-label="t('decks.contents')">
+        <nav class="editor-navigation" :aria-label="t('decks.editorViews')">
+          <button
+            type="button"
+            :aria-pressed="editorTab === 'contents'"
+            aria-controls="deck-contents"
+            @click="editorTab = 'contents'"
+          >
+            {{ t('decks.contents') }}
+          </button>
+          <button
+            type="button"
+            :aria-pressed="editorTab === 'pool'"
+            aria-controls="deck-pool"
+            @click="editorTab = 'pool'"
+          >
+            {{ t('decks.pool') }}
+          </button>
+        </nav>
+        <div class="columns" :class="{ 'show-pool': editorTab === 'pool' }">
+          <section id="deck-contents" class="contents" :aria-label="t('decks.contents')">
             <h2>{{ t('decks.contents') }}</h2>
             <div v-if="contents.unknown.length" class="group">
               <h3>{{ t('decks.pendingCards') }}</h3>
@@ -314,9 +399,17 @@ const titleCount = (code: string) => {
                   <li v-for="c in section.cards" :key="c">
                     <span class="qty">{{ count(c) }}×</span>
                     <ClassIcon :faction="def(c)?.class ?? 'neutral'" />
-                    <span class="card-name" :style="{ '--class': classColor(c) }">{{
-                      name(c)
-                    }}</span>
+                    <span
+                      class="card-name preview-trigger"
+                      :style="{ '--class': classColor(c) }"
+                      tabindex="0"
+                      @mouseenter="showPreview(c, $event)"
+                      @mouseleave="hidePreview"
+                      @focus="showPreview(c, $event)"
+                      @blur="hidePreview"
+                      @keydown.esc="hidePreview"
+                      >{{ name(c) }}</span
+                    >
                     <span v-if="def(c)?.unique" class="marker" aria-hidden="true">◆</span>
                     <span v-if="def(c)?.xp" class="level">{{ '•'.repeat(def(c)?.xp ?? 0) }}</span>
                     <button
@@ -344,14 +437,23 @@ const titleCount = (code: string) => {
                 <li v-for="c in contents.fixed" :key="c">
                   <span class="qty">{{ count(c) }}×</span>
                   <ClassIcon :faction="def(c)?.class ?? 'neutral'" />
-                  <span class="card-name">{{ name(c) }}</span>
+                  <span
+                    class="card-name preview-trigger"
+                    tabindex="0"
+                    @mouseenter="showPreview(c, $event)"
+                    @mouseleave="hidePreview"
+                    @focus="showPreview(c, $event)"
+                    @blur="hidePreview"
+                    @keydown.esc="hidePreview"
+                    >{{ name(c) }}</span
+                  >
                   <span class="marker" aria-hidden="true">★</span>
                 </li>
               </ul>
             </div>
           </section>
 
-          <section class="pool" :aria-label="t('decks.pool')">
+          <section id="deck-pool" class="pool" :aria-label="t('decks.pool')">
             <h2>{{ t('decks.pool') }}</h2>
             <div class="filters">
               <input
@@ -378,9 +480,17 @@ const titleCount = (code: string) => {
             <ul>
               <li v-for="c in pool" :key="c.code">
                 <ClassIcon :faction="c.class" />
-                <span class="card-name" :style="{ '--class': classColor(c.code) }">{{
-                  name(c.code)
-                }}</span>
+                <span
+                  class="card-name preview-trigger"
+                  :style="{ '--class': classColor(c.code) }"
+                  tabindex="0"
+                  @mouseenter="showPreview(c.code, $event)"
+                  @mouseleave="hidePreview"
+                  @focus="showPreview(c.code, $event)"
+                  @blur="hidePreview"
+                  @keydown.esc="hidePreview"
+                  >{{ name(c.code) }}</span
+                >
                 <span v-if="c.xp" class="level">{{ '•'.repeat(c.xp) }}</span>
                 <span class="qty">{{ count(c.code) || '' }}</span>
                 <button
@@ -402,23 +512,108 @@ const titleCount = (code: string) => {
       </section>
     </div>
   </SitePage>
+  <Teleport to="body">
+    <div
+      v-if="preview"
+      ref="previewElement"
+      class="deck-card-preview"
+      :style="previewPosition"
+      role="tooltip"
+      :aria-label="preview.name"
+    >
+      <CardDetails
+        :key="preview.code"
+        :code="preview.code"
+        :name="preview.name"
+        :landscape="preview.landscape"
+        :width="previewWidth"
+        no-zoom
+      />
+    </div>
+  </Teleport>
 </template>
 
 <style scoped>
+.preview-trigger {
+  cursor: zoom-in;
+}
+.preview-trigger:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.deck-card-preview {
+  position: fixed;
+  z-index: 1100;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 10px;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100dvh - 32px);
+  pointer-events: none;
+}
+.deck-card-preview :deep(.game-card) {
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgb(0 0 0 / 70%);
+}
+.deck-card-preview :deep(.translation) {
+  flex: 0 1 340px;
+  min-width: 0;
+}
 .layout {
   display: grid;
-  grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
-  gap: 18px;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 28px;
   align-items: start;
 }
 .box {
-  display: grid;
-  gap: 8px;
-  padding: 12px;
+  padding: 0;
   margin-bottom: 12px;
-  background: var(--panel);
+  background: #202025;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
+}
+.deck-tool > summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+}
+.deck-tool > summary::-webkit-details-marker {
+  display: none;
+}
+.disclosure {
+  margin-left: auto;
+  color: var(--accent);
+}
+.deck-tool[open] .disclosure {
+  transform: rotate(180deg);
+}
+.tool-body {
+  display: grid;
+  gap: 14px;
+  padding: 0 16px 18px;
+}
+.tool-body > button {
+  width: 100%;
+}
+.deck-list-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 28px 0 14px;
+}
+.deck-list-heading > span {
+  font: 600 0.8125rem/1.4 var(--fell);
+  color: var(--accent);
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
 }
 .box h2,
 .contents h2,
@@ -433,8 +628,8 @@ const titleCount = (code: string) => {
   font-size: 0.85rem;
 }
 .box form {
-  display: flex;
-  gap: 6px;
+  display: grid;
+  gap: 12px;
 }
 .box form input {
   flex: 1;
@@ -465,16 +660,19 @@ select {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 6px;
+  gap: 10px;
 }
 .list li {
   display: flex;
+  min-width: 0;
+  border: 1px solid var(--border);
   border-left: 4px solid var(--class);
   background: var(--panel);
-  border-radius: 0 6px 6px 0;
+  border-radius: 8px;
 }
 .list li.active {
-  outline: 1px solid var(--brass);
+  border-color: var(--accent);
+  box-shadow: inset 0 -2px var(--accent);
 }
 .list .empty {
   border: none;
@@ -482,13 +680,20 @@ select {
   color: var(--muted);
   font-style: italic;
 }
-.pick {
+.list button.pick {
   flex: 1;
   display: grid;
   gap: 2px;
   text-align: left;
   border: none;
   background: none;
+  min-width: 0;
+  padding: 14px 12px;
+}
+.list .pick[aria-pressed='true'] {
+  color: var(--ink);
+  background: #37303a;
+  box-shadow: none;
 }
 .pick small {
   color: var(--muted);
@@ -500,25 +705,33 @@ select {
 .status.ok {
   color: var(--eldritch);
 }
-.delete {
+.list button.delete {
   border: none;
   background: none;
   color: var(--muted);
+  align-self: start;
+  min-width: 44px;
+}
+.list .delete:hover {
+  color: #fff;
+  background: #ae4236;
 }
 .editor {
-  padding: 14px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  padding: 0;
 }
 .editor.empty {
   display: grid;
   justify-items: center;
   align-content: center;
-  min-height: 300px;
+  min-height: 400px;
   padding: 32px;
   text-align: center;
   color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background:
+    linear-gradient(0deg, #202025, #202025d9),
+    url('/local-assets/home/occult-archive.webp') center / cover;
 }
 .editor.empty img {
   object-fit: contain;
@@ -551,7 +764,11 @@ select {
   display: flex;
   gap: 16px;
   align-items: flex-start;
-  margin-bottom: 14px;
+  margin-bottom: 24px;
+  padding: 22px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
 }
 .deck-name {
   font: inherit;
@@ -587,7 +804,20 @@ select {
 .columns {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 18px;
+  gap: 20px;
+}
+.editor-navigation {
+  display: none;
+}
+.contents,
+.pool {
+  padding: 18px;
+  background: #202025;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.columns h2 {
+  margin-bottom: 18px;
 }
 .contents ul,
 .pool ul {
@@ -616,7 +846,7 @@ select {
 }
 .card-name {
   flex: 1;
-  color: var(--class, var(--ink));
+  color: var(--ink);
 }
 .qty {
   min-width: 2ch;
@@ -627,22 +857,85 @@ select {
   letter-spacing: 1px;
 }
 .filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin: 8px 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0;
 }
 .filters input[type='search'] {
-  flex: 1;
-  min-width: 120px;
+  width: 100%;
+  min-width: 0;
+  grid-column: 1 / -1;
 }
-@media (max-width: 900px) {
-  .layout,
+.filters .check {
+  grid-column: 1 / -1;
+  font-size: 0.875rem;
+}
+@media (max-width: 1100px) {
   .columns {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .summary {
-    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 900px) {
+  .editor-navigation {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .editor-navigation button {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.875rem;
+  }
+  .columns.show-pool .contents,
+  .columns:not(.show-pool) .pool {
+    display: none;
+  }
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .side {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 12px;
+  }
+  .side .box {
+    margin: 0;
+  }
+  .deck-list-heading,
+  .list {
+    grid-column: 1 / -1;
+  }
+  .deck-list-heading {
+    margin: 8px 0 0;
+  }
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .summary {
+    flex-wrap: nowrap;
+  }
+}
+@media (max-width: 600px) {
+  .side,
+  .list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .summary {
+    flex-wrap: wrap;
+    padding: 18px;
+  }
+  .contents,
+  .pool {
+    padding: 14px;
+  }
+  .editor.empty {
+    min-height: 240px;
   }
 }
 .slot-section h4 {
@@ -676,8 +969,9 @@ select {
 }
 .contents li button,
 .pool li button {
-  min-width: 28px;
-  min-height: 32px;
+  flex: none;
+  min-width: 44px;
+  min-height: 44px;
 }
 .marker {
   color: var(--brass);

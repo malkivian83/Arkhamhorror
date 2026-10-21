@@ -16,6 +16,7 @@ import ChaosTokenView from '../components/ChaosTokenView.vue'
 import GameCard from '../components/GameCard.vue'
 import SessionTools from '../components/SessionTools.vue'
 import SitePage from '../components/SitePage.vue'
+import SiteAction from '../components/SiteAction.vue'
 import { cardName, classColor } from '../game/cards'
 import { localName } from '../game/localized'
 import { useGameStore } from '../stores/game'
@@ -81,15 +82,25 @@ function abandon() {
     v-if="campaign"
     :title="t('campaign.title', { name: definition ? t(definition.name) : '' })"
     :subtitle="t(`difficulty.${campaign.difficulty}`)"
+    :art="`/local-assets/setup/${campaign.id}.jpg`"
+    :eyebrow="t('setup.caseFile')"
     icon="campaign"
   >
-    <SessionTools />
-    <section v-if="campaign.boons?.length" class="page">
-      <h2>{{ t('boons.title') }}</h2>
-      <ul>
-        <li v-for="boon in campaign.boons" :key="boon">{{ t('boons.' + boon + '.name') }}</li>
+    <details v-if="campaign.boons?.length" class="page active-boons">
+      <summary>
+        <span>{{ t('boons.title') }}</span
+        ><span class="boons-count">{{
+          t('setup.boonsCount', { n: campaign.boons.length }, campaign.boons.length)
+        }}</span
+        ><span aria-hidden="true">⌄</span>
+      </summary>
+      <ul class="boons-list">
+        <li v-for="boon in campaign.boons" :key="boon">
+          <strong>{{ t('boons.' + boon + '.name') }}</strong
+          ><span>{{ t('boons.' + boon + '.description') }}</span>
+        </li>
       </ul>
-    </section>
+    </details>
 
     <div class="grid">
       <section class="page" :aria-label="t('campaign.scenarios')">
@@ -251,27 +262,30 @@ function abandon() {
     </div>
 
     <footer class="actions">
-      <button v-if="game.state" type="button" class="primary" @click="router.push('/game')">
+      <SiteAction v-if="game.state" icon="→" @click="router.push('/game')">
         {{ t('campaign.resumeScenario') }}
-      </button>
+      </SiteAction>
       <template v-else-if="next">
-        <button type="button" class="primary" :disabled="!playable" @click="playNext">
+        <SiteAction icon="→" :disabled="!playable" @click="playNext">
           {{ t('campaign.play', { scenario: scenarioName(next) }) }}
-        </button>
+        </SiteAction>
         <span v-if="!playable" class="soon">{{ t('campaign.comingSoon') }}</span>
       </template>
       <p v-else class="finished">{{ t('campaign.finished') }}</p>
-      <button type="button" class="abandon" @click="abandon">{{ t('campaign.abandon') }}</button>
+      <SiteAction icon="×" variant="danger" class="abandon" @click="abandon">{{
+        t('campaign.abandon')
+      }}</SiteAction>
     </footer>
+    <div class="campaign-tools"><SessionTools /></div>
   </SitePage>
 
   <SitePage v-else :title="t('campaign.new')" icon="campaign">
     <div class="empty-campaign">
       <img src="/local-assets/home/icon-campaign.webp" alt="" width="64" height="64" />
       <p>{{ t('campaign.none') }}</p>
-      <button type="button" class="primary" @click="router.push('/')">
+      <SiteAction icon="+" to="/">
         {{ t('table.newGame') }}
-      </button>
+      </SiteAction>
     </div>
   </SitePage>
 </template>
@@ -280,18 +294,18 @@ function abandon() {
 .grid {
   display: grid;
   grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
-  gap: 20px;
+  gap: 28px;
   align-items: start;
 }
 .page {
-  padding: 16px 18px;
+  padding: 22px;
   color: var(--ink);
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 10px;
 }
 .page h2 {
-  margin: 14px 0 6px;
+  margin: 28px 0 14px;
   font-size: 0.95rem;
   color: var(--ink);
 }
@@ -309,10 +323,25 @@ function abandon() {
 }
 .scenarios li {
   display: flex;
-  gap: 8px;
-  align-items: baseline;
+  gap: 8px 12px;
+  align-items: center;
   flex-wrap: wrap;
   color: var(--muted);
+  border-left: 1px solid var(--border);
+  padding: 12px;
+  margin-left: 14px;
+}
+.scenarios li.current {
+  margin-left: 0;
+  padding-left: 12px;
+  border: 1px solid #947361;
+  border-radius: 7px;
+  background: #37303a;
+  color: var(--ink);
+}
+.scenarios li.done .numeral {
+  color: var(--eldritch);
+  border-color: #527563;
 }
 .scenarios li.done,
 .scenarios li.current {
@@ -324,6 +353,22 @@ function abandon() {
 .numeral {
   font-family: var(--display);
   min-width: 2em;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--accent);
+  font-size: 0.75rem;
+}
+.scenarios .title {
+  flex: 1;
+  min-width: 100px;
+  overflow-wrap: anywhere;
+}
+.xp-details {
+  flex-basis: 100%;
 }
 .outcome {
   margin-left: auto;
@@ -352,17 +397,17 @@ function abandon() {
 }
 .investigators {
   display: grid;
-  gap: 14px;
+  gap: 20px;
 }
 .investigator {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: 14px;
-  padding: 14px;
+  gap: 20px;
+  padding: 22px;
   background: var(--panel);
   border: 1px solid var(--line);
   border-top: 3px solid var(--class);
-  border-radius: 4px;
+  border-radius: 10px;
 }
 .investigator.out {
   filter: grayscale(0.8);
@@ -374,9 +419,10 @@ function abandon() {
 }
 .record dl {
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 2px 12px;
-  margin: 0 0 10px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8px 12px;
+  margin: 14px 0 18px;
+  font-size: 0.875rem;
   font-family: var(--fell);
   color: var(--ink);
 }
@@ -398,9 +444,10 @@ function abandon() {
 }
 .shop {
   grid-column: 1 / -1;
-  padding: 10px;
-  background: rgb(0 0 0 / 30%);
-  border: 1px solid var(--brass-dark);
+  padding: 16px;
+  background: #19191d;
+  border: 1px solid var(--border);
+  border-radius: 7px;
 }
 .shop ul {
   margin: 0;
@@ -416,6 +463,8 @@ function abandon() {
   flex-wrap: wrap;
   font-family: var(--fell);
   color: var(--ink);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
 }
 .shop li.pending {
   color: var(--muted);
@@ -456,6 +505,63 @@ function abandon() {
   gap: 14px;
   flex-wrap: wrap;
   margin-top: 22px;
+  padding: 22px;
+  background: #202025;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.campaign-tools {
+  margin-top: 24px;
+}
+.campaign-tools :deep(.session-tools) {
+  border: 0;
+  padding: 0;
+  color: var(--muted);
+}
+.campaign-tools :deep(summary) {
+  cursor: pointer;
+  align-content: center;
+}
+.active-boons {
+  padding: 0 20px;
+  margin-bottom: 24px;
+  background: #202025;
+}
+.active-boons summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-block: 14px;
+  list-style: none;
+  cursor: pointer;
+}
+.active-boons summary::-webkit-details-marker {
+  display: none;
+}
+.boons-count {
+  color: var(--accent);
+  margin-left: auto;
+  font-size: 0.8125rem;
+}
+.boons-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  list-style: none;
+  padding: 0 0 20px;
+  margin: 0;
+}
+.boons-list li {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--panel);
+  font-size: 0.875rem;
+}
+.boons-list li > span {
+  color: var(--muted);
 }
 .actions .primary {
   font-size: 1.05rem;
@@ -476,7 +582,9 @@ function abandon() {
   text-align: center;
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 10px;
+  min-height: 280px;
+  align-content: center;
 }
 .empty-campaign p {
   margin: 0;
@@ -492,10 +600,28 @@ function abandon() {
 .record dd {
   overflow-wrap: anywhere;
 }
-@media (max-width: 800px) {
-  .grid,
+@media (max-width: 1050px) {
   .investigator {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 800px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+}
+@media (max-width: 600px) {
+  .page,
+  .investigator,
+  .actions {
+    padding: 18px;
+  }
+  .actions > button {
+    width: 100%;
+  }
+  .boons-list {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 </style>
