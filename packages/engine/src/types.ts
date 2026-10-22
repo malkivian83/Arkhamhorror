@@ -462,6 +462,10 @@ export type SkillTestKind =
       damageFromClues?: number
       /** Extra damage only when the successful attack reaches this margin. */
       damageIfSuccessBy?: { atLeast: number; amount: number }
+      /** Instead of the standard damage, 1 per point succeeded by (minimum 1). */
+      damagePerSuccess?: { max: number }
+      /** Extra damage if any of these tokens was revealed during the attack. */
+      damageIfTokens?: { tokens: ChaosToken[]; amount: number }
     }
   | { type: 'evade'; enemy: EnemyId; onSuccess?: Message[]; onFail?: Message[] }
   | {
@@ -779,6 +783,18 @@ export type Message =
   | { type: 'ReturnCommittedToHand'; except: CardCode }
   /** Si en la prueba en curso se ha revelado alguna ficha con símbolo. */
   | { type: 'IfSymbolRevealed'; then: Message[] }
+  /**
+   * Condition on the current test: margin (negative when failed) and revealed tokens.
+   * Every given condition must hold.
+   */
+  | {
+      type: 'IfTestResult'
+      atLeast?: number
+      below?: number
+      exactly?: number
+      tokens?: ChaosToken[]
+      then: Message[]
+    }
   /** Si el enemigo ya no está en juego (lo ha derrotado el ataque). */
   | { type: 'IfEnemyDefeated'; enemy: EnemyId; then: Message[] }
   // ----- Smoke and Mirrors -----
@@ -1022,6 +1038,8 @@ export type Message =
       /** Limit 1 copy of this title per asset. */
       limitPerAsset?: boolean
     }
+  /** The asset leaves play without going to a discard pile. */
+  | { type: 'RemoveAssetFromGame'; asset: AssetId }
   | { type: 'ExhaustUpgrade'; asset: AssetId; index: number }
   /** The attached event goes to its owner's discard pile. */
   | { type: 'DiscardUpgrade'; asset: AssetId; index: number }

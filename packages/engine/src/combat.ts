@@ -9,9 +9,14 @@ export function attackDamage(state: GameState, test: SkillTest): number {
   const investigator = getInvestigator(state, test.investigator),
     kind = test.kind
   const margin = Math.max(0, (test.modifiedSkill ?? 0) - test.difficulty)
+  // Shotgun: "instead of its standard damage" replaces only the base 1.
+  const base = kind.damagePerSuccess ? Math.min(kind.damagePerSuccess.max, Math.max(1, margin)) : 1
   return (
-    1 +
+    base +
     (kind.extraDamage ?? 0) +
+    (kind.damageIfTokens && test.tokens.some((t) => kind.damageIfTokens!.tokens.includes(t))
+      ? kind.damageIfTokens.amount
+      : 0) +
     (test.succeeded
       ? test.committed.reduce(
           (sum, c) =>

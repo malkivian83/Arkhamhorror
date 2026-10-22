@@ -1,0 +1,763 @@
+[
+  {
+    "code": "01060",
+    "name": "Shrivelling",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 4,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "01560",
+    "name": "Shrivelling",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 4,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "02154",
+    "name": "Shrivelling",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 4,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "02306",
+    "name": "Shrivelling",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 5,
+    "icons": {
+      "willpower": 1,
+      "combat": 2
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 4,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "60407",
+    "name": "Azure Flame",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 4,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "60425",
+    "name": "Azure Flame",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 4,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "60430",
+    "name": "Azure Flame",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 5,
+    "icons": {
+      "willpower": 1,
+      "combat": 2
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 4,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "02112",
+    "name": "Song of the Dead",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell", "Song"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 5,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "60408",
+    "name": "Clairvoyance",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 3,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "60426",
+    "name": "Clairvoyance",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 4,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 3,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "60431",
+    "name": "Clairvoyance",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 4,
+    "xp": 5,
+    "icons": {
+      "willpower": 1,
+      "intellect": 2
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 3,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "60409",
+    "name": "Ineffable Truth",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 3,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "60427",
+    "name": "Ineffable Truth",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 3,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "60432",
+    "name": "Ineffable Truth",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 5,
+    "icons": {
+      "willpower": 1,
+      "agility": 2
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 3,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "52006",
+    "name": "Suggestion",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 1,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 3,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "01074",
+    "name": "Baseball Bat",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Weapon", "Melee"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["hand", "hand"]
+  },
+  {
+    "code": "01574",
+    "name": "Baseball Bat",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Weapon", "Melee"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["hand", "hand"]
+  },
+  {
+    "code": "06195",
+    "name": ".35 Winchester",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Firearm"],
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["hand", "hand"],
+    "uses": {
+      "count": 5,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "01029",
+    "name": "Shotgun",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Firearm"],
+    "cost": 5,
+    "xp": 4,
+    "icons": {
+      "combat": 2
+    },
+    "slots": ["hand", "hand"],
+    "uses": {
+      "count": 2,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "01529",
+    "name": "Shotgun",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Firearm"],
+    "cost": 5,
+    "xp": 4,
+    "icons": {
+      "combat": 2
+    },
+    "slots": ["hand", "hand"],
+    "uses": {
+      "count": 2,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "06327",
+    "name": "Sawed-Off Shotgun",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Weapon", "Firearm", "Illicit"],
+    "cost": 3,
+    "xp": 5,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 2,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "04268",
+    "name": "Colt Vest Pocket",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Weapon", "Firearm", "Illicit"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 5,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "53006",
+    "name": "Colt Vest Pocket",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Weapon", "Firearm", "Illicit"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 5,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "05186",
+    "name": ".45 Thompson",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Firearm", "Illicit"],
+    "cost": 6,
+    "xp": 3,
+    "icons": {
+      "combat": 2
+    },
+    "slots": ["hand", "hand"],
+    "uses": {
+      "count": 5,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "07025",
+    "name": ".25 Automatic",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Weapon", "Firearm", "Illicit"],
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 4,
+      "type": "ammo"
+    },
+    "fast": true
+  },
+  {
+    "code": "11021",
+    "name": "Crowbar",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Tool", "Melee"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "combat": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "11050",
+    "name": "Luger P08",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Weapon", "Firearm", "Illicit"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 2,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "60306",
+    "name": "Mauser C96",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Weapon", "Firearm", "Illicit"],
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 5,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "60321",
+    "name": "Mauser C96",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Weapon", "Firearm", "Illicit"],
+    "cost": 3,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 5,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "08060",
+    "name": "Dragon Pole",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Weapon", "Melee"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["hand", "hand"]
+  },
+  {
+    "code": "01045",
+    "name": "Burglary",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent", "Illicit"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "01545",
+    "name": "Burglary",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent", "Illicit"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "06200",
+    "name": "Burglary",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent", "Illicit"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "60305",
+    "name": "Lockpicks",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Tool", "Illicit"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "60361",
+    "name": "Lockpicks",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Tool", "Illicit"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "03031",
+    "name": "Lockpicks",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Tool", "Illicit"],
+    "cost": 3,
+    "xp": 1,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 3,
+      "type": "supply"
+    }
+  },
+  {
+    "code": "01687",
+    "name": "Lockpicks",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Tool", "Illicit"],
+    "cost": 3,
+    "xp": 1,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 3,
+      "type": "supply"
+    }
+  },
+  {
+    "code": "60372",
+    "name": "Lockpicks",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Tool", "Illicit"],
+    "cost": 3,
+    "xp": 1,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 3,
+      "type": "supply"
+    }
+  },
+  {
+    "code": "03036",
+    "name": "Lantern",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Tool"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "52009",
+    "name": "Lantern",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Tool"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "60507",
+    "name": "Old Keyring",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Tool"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 2,
+      "type": "key"
+    }
+  },
+  {
+    "code": "09117",
+    "name": "Old Keyring",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Tool"],
+    "cost": 1,
+    "xp": 3,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 3,
+      "type": "key"
+    }
+  },
+  {
+    "code": "09044",
+    "name": "Grim Memoir",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tome"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 4,
+      "type": "secret"
+    }
+  },
+  {
+    "code": "04194",
+    "name": "Otherworldly Compass",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Relic"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "11036",
+    "name": "Forensic Kit",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tool", "Science"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 4,
+      "type": "supply"
+    }
+  },
+  {
+    "code": "10040",
+    "name": "Chemistry Set",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tool", "Science"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["accessory"]
+  },
+  {
+    "code": "09062",
+    "name": "Disguise",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent", "Trick", "Illicit"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": [],
+    "uses": {
+      "count": 4,
+      "type": "supply"
+    }
+  }
+]
