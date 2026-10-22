@@ -1,0 +1,26 @@
+[
+  {
+    "code": "01023",
+    "name": "Dodge",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "willpower": 1, "agility": 1 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "01080",
+    "name": "Lucky!",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Fortune"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "fast": true
+  }
+]
