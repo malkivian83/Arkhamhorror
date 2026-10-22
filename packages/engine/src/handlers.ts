@@ -1671,14 +1671,12 @@ export function handle(state: GameState, message: Message): GameState {
         return def.type === 'asset' ? toOwnerDiscard(state, investigator.id, message.code) : state
       }
       if (def.type === 'asset') {
-        return push(
-          state,
-          { type: 'PutAssetIntoPlay', investigator: investigator.id, code: message.code },
-          {
-            type: 'Forced',
-            trigger: { type: 'afterPlayAsset', investigator: investigator.id, code: message.code },
-          },
-        )
+        return push(state, {
+          type: 'PutAssetIntoPlay',
+          investigator: investigator.id,
+          code: message.code,
+          played: true,
+        })
       }
       // Ward of Preservation: el escenario puede cancelar los efectos del evento.
       const cancelled = scenarioBehavior(state.scenarioId)?.eventPlayed?.(
@@ -1743,10 +1741,26 @@ export function handle(state: GameState, message: Message): GameState {
           },
         },
       }
-      return push(placed, {
-        type: 'Forced',
-        trigger: { type: 'afterAssetEntersPlay', investigator: message.investigator, asset: id },
-      })
+      return push(
+        placed,
+        {
+          type: 'Forced',
+          trigger: { type: 'afterAssetEntersPlay', investigator: message.investigator, asset: id },
+        },
+        ...(message.played
+          ? [
+              {
+                type: 'Forced' as const,
+                trigger: {
+                  type: 'afterPlayAsset' as const,
+                  investigator: message.investigator,
+                  code: message.code,
+                  asset: id,
+                },
+              },
+            ]
+          : []),
+      )
     }
 
     case 'ModifyShroud':
@@ -4209,9 +4223,10 @@ export function handle(state: GameState, message: Message): GameState {
       const matches = [...new Set(searched)].filter((code) => {
         const def = playerCardDef(code)
         if (message.anyCard) return !!def && !def.weakness
-        if (!def || def.type !== 'asset') return false
+        if (!def || (!message.anyType && def.type !== 'asset')) return false
         if (!def.traits.some((t) => message.traits.includes(t))) return false
         if (message.to === 'play') {
+          if (def.type !== 'asset') return false
           const cost = Math.max(0, (def.cost ?? 0) - (message.discount ?? 0))
           if (cost > investigator.resources || assetsBlocked(state, investigator.id)) return false
         }
@@ -4238,21 +4253,24 @@ export function handle(state: GameState, message: Message): GameState {
         question: {
           kind: 'chooseOne',
           prompt: message.to === 'play' ? 'prompt.searchToPlay' : 'prompt.searchToHand',
-          choices: matches.map((code): Choice => ({
-            label: 'choice.takeCard',
-            params: { card: playerCardDef(code)?.name ?? code },
-            then: [
-              {
-                type: 'TakeFromDeck',
-                investigator: investigator.id,
-                code,
-                to: message.to,
-                ...(message.drawFound ? { drawFound: true } : {}),
-                ...(message.discount ? { discount: message.discount } : {}),
-              },
-              shuffleDeck,
-            ],
-          })),
+          choices: [
+            ...matches.map((code): Choice => ({
+              label: 'choice.takeCard',
+              params: { card: playerCardDef(code)?.name ?? code },
+              then: [
+                {
+                  type: 'TakeFromDeck',
+                  investigator: investigator.id,
+                  code,
+                  to: message.to,
+                  ...(message.drawFound ? { drawFound: true } : {}),
+                  ...(message.discount ? { discount: message.discount } : {}),
+                },
+                shuffleDeck,
+              ],
+            })),
+            ...(message.optional ? [{ label: 'choice.skip', then: [shuffleDeck] }] : []),
+          ],
         },
       })
     }

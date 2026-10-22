@@ -1,0 +1,8 @@
+# Protective Vest: búsqueda por rasgo entre tipos
+
+- Lote `search-assets`: 60159, Protective Vest (0). **1 código, 1 carta/nivel nuevo, 0 reediciones**. Se limita a la nueva dependencia de búsqueda; no incorpora impresiones para ampliar la cifra.
+- `SearchDeck.anyType` permite buscar rasgos entre apoyos y eventos. La búsqueda de Vest ofrece Firearm o Upgrade entre las seis primeras cartas, permite no encontrar y baraja; añade a la mano sin disparar efectos de robo. Los filtros anteriores siguen buscando apoyos por defecto y la búsqueda para jugar conserva ese límite.
+- La ventana `afterPlayAsset` incluye la instancia creada. Solo reacciona el chaleco recién jugado, después de resolver la ranura; ponerlo directamente en juego no cuenta como jugarlo. Se conserva `code` para las reacciones existentes.
+- Nueve pruebas de reglas cubren búsqueda, límite, duplicados, declinar, no encontrar, barajado, añadir frente a robar, instancia/controlador, ranura y salud; integración de compra/inicio de escenario y unicidad entre lotes. Los eventos de Mejora sintéticos de las pruebas no se registran en el catálogo jugable.
+- EN/ES mediante infraestructura existente: dos imágenes y dos miniaturas; revisión representativa de la imagen española confirma nombre, icono de reacción y texto. Inventarios previos conservados con sus huellas. Fuente: [Chaleco protector](https://es.arkhamdb.com/card/60159).
+- No se habilita Protective Vest (4): falta ranura adicional restringida a Firearm. Leather Coat (1) sigue pendiente del exilio por derrota. Los 17 eventos de rasgo Upgrade encontrados en el inventario requieren revisión propia; que Vest pueda encontrarlos no implementa sus efectos.

@@ -1828,7 +1828,8 @@
       "01081": "Si esta prueba de habilidad tiene éxito durante un intento de evitar, el investigador que evita puede dejar de estar enfrentado automáticamente a cada uno de los demás Enemigos enfrentados a él, y puede moverse a un lugar conectado.",
       "02235": "Si esta prueba tiene éxito durante un intento de evitar, el investigador que evita puede evitar automáticamente a cada uno de los demás Enemigos enfrentados a él, y puede moverse a un Lugar conectado.",
       "01023": "Rápido. Juégala cuando un enemigo ataque a un investigador que esté en tu Lugar. Cancela ese ataque.",
-      "01080": "Rápido. Juégala cuando fueras a fallar una prueba de habilidad. Recibes +2 a tu valor de habilidad para esa prueba."
+      "01080": "Rápido. Juégala cuando fueras a fallar una prueba de habilidad. Recibes +2 a tu valor de habilidad para esa prueba.",
+      "60159": "Cuerpo. 2 de salud. Después de jugarlo, puedes buscar entre las 6 primeras cartas de tu mazo una carta Arma de fuego o Mejora, añadirla a tu mano y barajar."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -2064,7 +2065,8 @@
       "01081": "Instinto de supervivencia",
       "02235": "Instinto de supervivencia",
       "01023": "Esquivar",
-      "01080": "¡Qué suerte!"
+      "01080": "¡Qué suerte!",
+      "60159": "Chaleco protector"
     }
   },
   "account": {
