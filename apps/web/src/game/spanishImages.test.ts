@@ -32,6 +32,7 @@ describe('imágenes españolas de referencia y alternativas', () => {
     '50010',
     '51003',
     '60171',
+    '60167',
     '60505',
   ])('muestra la imagen española de %s antes que la alternativa inglesa', (code) => {
     expect(cardImages(code, false, 'es')).toEqual([
@@ -75,7 +76,7 @@ describe('imágenes españolas de referencia y alternativas', () => {
         )
       }
   })
-  it('cubre cada carta con imagen local o presentación renderizada aprobada', () => {
+  it('cubre cada carta con imagen local y conserva los datos de la presentación renderizada', () => {
     // El catálogo se calcula una vez por idioma (construirlo por carta es lento).
     const catalogue = Object.fromEntries(
       ['en', 'es'].map((locale) => [
@@ -87,6 +88,9 @@ describe('imágenes españolas de referencia y alternativas', () => {
     const rendered = new Set(RENDERED_PLAYER_CARD_CODES)
     for (let n = 1; n <= 62; n++) codes.add(`71${String(n).padStart(3, '0')}`)
     for (const code of codes) {
+      if (/^\d{5}b?$/.test(code))
+        for (const locale of ['en', 'es'])
+          expect(cardImages(code, false, locale).length, `${locale}/${code}`).toBeGreaterThan(0)
       if (rendered.has(code)) {
         for (const locale of ['en', 'es']) {
           const card = catalogue[locale]!.get(code)!
@@ -99,8 +103,7 @@ describe('imágenes españolas de referencia y alternativas', () => {
             expect(card.cost, code).toBeUndefined()
           else expect(card.cost, code).toBeTypeOf('number')
         }
-      } else if (/^\d{5}b?$/.test(code))
-        expect(cardImages(code, false, 'en').length, code).toBeGreaterThan(0)
+      }
     }
   })
   it.each(['10128', '12017'])(
