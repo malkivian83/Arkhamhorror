@@ -5016,6 +5016,22 @@ export function handle(state: GameState, message: Message): GameState {
     case 'RemoveDoom': {
       if (message.target.type === 'agenda')
         return { ...state, doom: Math.max(0, state.doom - message.amount) }
+      if (message.target.type === 'asset') {
+        const asset = state.assets[message.target.id]
+        if (!asset) return state
+        return {
+          ...state,
+          assets: {
+            ...state.assets,
+            [asset.id]: { ...asset, doom: Math.max(0, (asset.doom ?? 0) - message.amount) },
+          },
+        }
+      }
+      if (message.target.type === 'investigator')
+        return updateInvestigator(state, message.target.id, (i) => ({
+          ...i,
+          doom: Math.max(0, (i.doom ?? 0) - message.amount),
+        }))
       if (!findEnemy(state, message.target.id)) return state
       return updateEnemy(state, message.target.id, (e) => ({
         ...e,

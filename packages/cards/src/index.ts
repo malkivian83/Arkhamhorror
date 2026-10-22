@@ -169,7 +169,9 @@ import { STARTER_ACTION_RENDERED_CODES } from './starter-actions'
 import { SIMPLE_ASSET_RENDERED_CODES } from './simple-assets'
 import { SUPPORT_ALLY_RENDERED_CODES } from './support-allies'
 import { SKILL_TRICK_RENDERED_CODES } from './skill-tricks'
+import { DIRECT_EFFECT_RENDERED_CODES } from './direct-effects'
 export const RENDERED_PLAYER_CARD_CODES = [
+  ...DIRECT_EFFECT_RENDERED_CODES,
   ...SKILL_TRICK_RENDERED_CODES,
   ...SUPPORT_ALLY_RENDERED_CODES,
   ...SIMPLE_ASSET_RENDERED_CODES,

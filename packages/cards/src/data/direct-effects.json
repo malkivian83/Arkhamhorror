@@ -1,0 +1,189 @@
+[
+  {
+    "code": "01026",
+    "name": "Extra Ammunition",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Supply"],
+    "cost": 2,
+    "xp": 1,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "01526",
+    "name": "Extra Ammunition",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Supply"],
+    "cost": 2,
+    "xp": 1,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "06161",
+    "name": "Swift Reload",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Tactic", "Trick"],
+    "cost": 3,
+    "xp": 2,
+    "icons": {
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "08063",
+    "name": "Winds of Power",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spirit"],
+    "cost": 2,
+    "xp": 1,
+    "icons": {
+      "willpower": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "04152",
+    "name": "Truth from Fiction",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "02225",
+    "name": "\"If it bleeds...\"",
+    "type": "event",
+    "class": "guardian",
+    "traits": [],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "03229",
+    "name": "Mano a Mano",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit", "Bold"],
+    "cost": 0,
+    "xp": 1,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "04269",
+    "name": "Coup de Grâce",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Tactic", "Fated"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "04233",
+    "name": "Pay Day",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Illicit", "Fated"],
+    "cost": 0,
+    "xp": 1,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "04234",
+    "name": "Sacrifice",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Ritual"],
+    "cost": 0,
+    "xp": 1,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "02267",
+    "name": "Moonlight Ritual",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Insight"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "03237",
+    "name": "Waylay",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Tactic"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "agility": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "04027",
+    "name": "Eavesdrop",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Insight", "Trick"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "08061",
+    "name": "Meditative Trance",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Insight", "Spirit"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": []
+  }
+]

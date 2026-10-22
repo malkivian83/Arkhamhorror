@@ -1135,10 +1135,14 @@ export type Message =
   // ----- Asesinato en el hotel Excelsior -----
   /** Mueve pistas entre cartas (o desde/hacia la reserva de fichas). */
   | { type: 'MoveClues'; from: ClueHolder; to: ClueHolder; amount: number }
-  /** Retira perdición del plan o de un enemigo. */
+  /** Retira perdición del plan, de un enemigo, de un apoyo o de un investigador. */
   | {
       type: 'RemoveDoom'
-      target: { type: 'agenda' } | { type: 'enemy'; id: EnemyId }
+      target:
+        | { type: 'agenda' }
+        | { type: 'enemy'; id: EnemyId }
+        | { type: 'asset'; id: AssetId }
+        | { type: 'investigator'; id: InvestigatorId }
       amount: number
     }
   /** "Retira toda la perdición del juego." */
