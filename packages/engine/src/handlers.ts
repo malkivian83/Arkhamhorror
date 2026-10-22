@@ -30,6 +30,7 @@ import {
   storyBehavior,
   treacheryBehavior,
 } from './content'
+import { assetVitals, resolvingSkillBonus } from './asset-upgrades'
 import { EngineError } from './errors'
 import { attackDamage } from './combat'
 import { nextInt, shuffle } from './rng'
@@ -1589,7 +1590,7 @@ export function handle(state: GameState, message: Message): GameState {
     case 'DamageAsset': {
       const asset = state.assets[message.asset]
       if (!asset) return state
-      const def = playerCardDef(asset.code)
+      const def = assetVitals(asset)
       const damaged = {
         ...asset,
         damage: asset.damage + message.damage,
@@ -3632,6 +3633,42 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     // ------------------------------------------------------- Habilidades
+    case 'BeginAssetAbility':
+      return { ...state, resolvingAssets: [...(state.resolvingAssets ?? []), message.asset] }
+    case 'EndAssetAbility': {
+      const remaining = [...(state.resolvingAssets ?? [])]
+      const index = remaining.lastIndexOf(message.asset)
+      if (index >= 0) remaining.splice(index, 1)
+      if (remaining.length) return { ...state, resolvingAssets: remaining }
+      const { resolvingAssets: _done, ...rest } = state
+      return rest
+    }
+    case 'AttachEventToAsset': {
+      const asset = state.assets[message.asset]
+      const owner = getInvestigator(state, message.investigator)
+      const index = owner.discard.lastIndexOf(message.code)
+      if (
+        !asset ||
+        asset.owner !== owner.id ||
+        index < 0 ||
+        !playerCardDef(asset.code)?.traits.includes(message.trait)
+      )
+        return state
+      return updateInvestigator(
+        {
+          ...state,
+          assets: {
+            ...state.assets,
+            [asset.id]: {
+              ...asset,
+              upgrades: [...(asset.upgrades ?? []), { code: message.code, owner: owner.id }],
+            },
+          },
+        },
+        owner.id,
+        (i) => ({ ...i, discard: i.discard.filter((_, n) => n !== index) }),
+      )
+    }
     case 'UseAbility': {
       const investigator = getInvestigator(state, message.investigator)
       const watching = Object.values(state.assets).some(
@@ -3699,7 +3736,16 @@ export function handle(state: GameState, message: Message): GameState {
           ...message.then,
           ...after,
         )
-      return push(paid, ...(message.costs ?? []), ...attacks, ...message.then, ...after)
+      const host = Object.values(state.assets).find((a) => message.key.startsWith(`${a.id}:`))
+      return push(
+        paid,
+        ...(message.costs ?? []),
+        ...attacks,
+        ...(host ? [{ type: 'BeginAssetAbility' as const, asset: host.id }] : []),
+        ...message.then,
+        ...(host ? [{ type: 'EndAssetAbility' as const, asset: host.id }] : []),
+        ...after,
+      )
     }
 
     // ------------------------------------------------ Efectos de escenario
@@ -5401,7 +5447,7 @@ function soakers(state: GameState, investigator: string, kind: 'damage' | 'horro
         other.location === here
       if (!guards) return false
     }
-    const def = playerCardDef(a.code)
+    const def = assetVitals(a)
     return kind === 'damage'
       ? def?.health !== undefined && a.damage < def.health
       : def?.sanity !== undefined && a.horror < def.sanity
@@ -5479,6 +5525,7 @@ export function skillTestValue(state: GameState): {
         )
   const base = test.baseSkill ?? investigator.skills[test.skill]
   const scenario = scenarioBehavior(state.scenarioId)?.skillModifier?.(state, test) ?? 0
+  const resolving = resolvingSkillBonus(state, investigator.id)
   const sources = [
     ...Object.values(state.assets)
       .filter((a) => a.owner === investigator.id)
@@ -5498,8 +5545,8 @@ export function skillTestValue(state: GameState): {
     modifier: test.baseModifier,
     icons,
     sources,
-    passive: passive + auras + scenario,
-    total: base + test.baseModifier + icons + passive + auras + scenario,
+    passive: passive + auras + scenario + resolving,
+    total: base + test.baseModifier + icons + passive + auras + scenario + resolving,
   }
 }
 

@@ -1,0 +1,9 @@
+# Trusted y Reliable: eventos vinculados a apoyos
+
+- `attached-upgrades`: 04019 Trusted (0) y 04020 Reliable (1). **2 códigos, 2 cartas/niveles nuevos, 0 reediciones**. El tamaño responde a la nueva vinculación y a sus conexiones con daño, descarte, control y resolución de habilidades.
+- Las mejoras quedan sobre la instancia elegida y conservan propietario. Se descartan al salir el apoyo, también al volver a la mano; los cambios de control conservan la propiedad. Estado y resolución son serializables. Ambas cartas exigen turno propio y un apoyo controlado con el rasgo correspondiente.
+- Trusted suma salud y cordura, admite varias copias y no convierte un guion en valor numérico. Asignación, derrota, Lucky Charm y Mark of Elokoss usan la capacidad modificada.
+- Reliable suma +1 por copia durante la resolución de la habilidad activada del apoyo, no después. El contexto admite habilidades anidadas sin multiplicar el efecto constante por invocación. Cubre las cuatro habilidades, el descarte del apoyo como coste y la vinculación durante una resolución en curso. Integración con Machete: bono presente durante la prueba y retirado al terminar.
+- 24 pruebas del lote: reglas, interacciones, compra/inicio de escenario y unicidad histórica. La mesa muestra las mejoras por apoyo, permite abrirlas con el visor de pilas existente y muestra la salud/cordura modificadas. Revisión representativa EN/ES en navegador, incluida apertura de dos Trusted sobre el mismo aliado.
+- Cuatro imágenes y cuatro miniaturas EN/ES añadidas. Comprobación automática de entradas históricas y huellas intactas y ausencia de rutas duplicadas. Inventario fuente inmutable.
+- Reglas: [Trusted](https://arkhamdb.com/card/04019), [Reliable](https://arkhamdb.com/card/04020), [control de vinculadas, FAQ 1.14](https://arkhamdb.com/rules#Control_of_Attachments).

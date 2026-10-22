@@ -284,6 +284,10 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Continuous modifiers while this event is attached to an asset. */
+  attachedVitals?: { health?: number; sanity?: number }
+  /** Bonus to each skill while resolving a triggered ability of the host asset. */
+  attachedResolvingSkills?: number
   /** Additive difficulty modifier while this card is committed. */
   committedDifficulty?: number
   /** Printed permission to commit without matching icons (e.g. Take Heart). */

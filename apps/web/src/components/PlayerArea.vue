@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   playerCardDef,
+  assetVitals,
   effectiveVitals,
   slotCapacity,
   type Asset,
@@ -35,6 +36,13 @@ function showHand() {
   })
 }
 
+function showUpgrades(asset: Asset) {
+  showPile({
+    title: 'table.assetUpgrades',
+    params: { card: cardName(asset.code) },
+    cards: (asset.upgrades ?? []).map((u) => ({ code: u.code, name: cardName(u.code) })),
+  })
+}
 function showDiscard() {
   showPile({
     title: 'table.playerDiscard',
@@ -302,6 +310,23 @@ const slots = computed(() => {
 
       <div class="zone play mat-slot">
         <h4 class="mat-label">{{ t('table.inPlay') }}</h4>
+        <div
+          v-for="asset in assets.filter((a) => a.upgrades?.length)"
+          :key="asset.id"
+          class="asset-upgrades"
+        >
+          <button type="button" @click="showUpgrades(asset)">
+            {{ t('table.assetUpgrades', { card: cardName(asset.code) }) }} ({{
+              asset.upgrades!.length
+            }})
+          </button>
+          <span v-if="assetVitals(asset).health !== undefined" :title="t('table.health')"
+            >♥ {{ assetVitals(asset).health }}</span
+          >
+          <span v-if="assetVitals(asset).sanity !== undefined" :title="t('table.sanity')"
+            >✦ {{ assetVitals(asset).sanity }}</span
+          >
+        </div>
         <div class="slots">
           <div
             v-for="(box, n) in slots.boxes"
@@ -404,6 +429,21 @@ const slots = computed(() => {
 </template>
 
 <style scoped>
+.asset-upgrades {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  margin-bottom: 0.3rem;
+}
+.asset-upgrades button {
+  color: inherit;
+  background: #ffffff10;
+  border: 1px solid #ffffff30;
+  border-radius: 4px;
+  padding: 0.2rem 0.4rem;
+  cursor: pointer;
+}
 .stat-token {
   width: 1.1em;
   height: 1.1em;

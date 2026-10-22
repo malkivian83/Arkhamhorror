@@ -401,6 +401,8 @@ export interface StoryCardInPlay {
 }
 
 export interface Asset {
+  /** Player events attached to this instance; owner is retained on control changes. */
+  upgrades?: { code: CardCode; owner: InvestigatorId }[]
   originalOwner?: InvestigatorId
   /** Perdición sobre el apoyo (cuenta para el plan). */
   doom?: number
@@ -990,6 +992,15 @@ export type Message =
   | { type: 'AfterRevealWindow' }
   | { type: 'CancelRevelation'; treachery: TreacheryId }
   | { type: 'PlaceDoomOnInvestigator'; investigator: InvestigatorId; amount: number }
+  | { type: 'BeginAssetAbility'; asset: AssetId }
+  | { type: 'EndAssetAbility'; asset: AssetId }
+  | {
+      type: 'AttachEventToAsset'
+      asset: AssetId
+      investigator: InvestigatorId
+      code: CardCode
+      trait: string
+    }
   | { type: 'HealAsset'; asset: AssetId; damage: number; horror: number }
   | { type: 'ReturnAssetToHand'; asset: AssetId }
   /** De la pila de descartes a la mano. */
@@ -1369,6 +1380,8 @@ export interface GameState {
   /** Fichas selladas sobre cartas (Premonition). */
   sealed?: { token: ChaosToken; investigator: InvestigatorId; code: CardCode }[]
   assets: Record<AssetId, Asset>
+  /** Nested triggered abilities currently resolving, outermost first. */
+  resolvingAssets?: AssetId[]
   /** Apoyos sin dueño (Invitados en localizaciones, reliquias vinculadas a enemigos). */
   placedAssets?: Record<PlacedAssetId, PlacedAsset>
   /** Cartas de Historia en juego, por código. */

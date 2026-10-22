@@ -352,7 +352,8 @@
     "peteReadyAsset": "Ready {card}",
     "peteInvestigate": "Investigate at {location} with Duke",
     "survivalDisengage": "Disengage from the other enemies",
-    "survivalEvade": "Evade the other enemies"
+    "survivalEvade": "Evade the other enemies",
+    "attachUpgrade": "Attach to {card}"
   },
   "phase": {
     "setup": "Setup",
@@ -761,7 +762,8 @@
       "agendaReverse": "The agenda flips: read its reverse",
       "agendaNext": "The next agenda is now active",
       "agendaFinished": "The agenda has finished"
-    }
+    },
+    "assetUpgrades": "Upgrades on {card}"
   },
   "difficulty": {
     "easy": "Easy",
@@ -1829,7 +1831,9 @@
       "02235": "If this test is successful during an evasion attempt, the evading investigator may immediately evade each other enemy engaged with him or her, and may move to a connecting location.",
       "01023": "Fast. Play when an enemy attacks an investigator at your location. Cancel that attack.",
       "01080": "Fast. Play when you would fail a skill test. Get +2 to your skill value for that test.",
-      "60159": "Body. 2 health. After you play it, you may search the top 6 cards of your deck for a Firearm or Upgrade card, add it to your hand, and shuffle."
+      "60159": "Body. 2 health. After you play it, you may search the top 6 cards of your deck for a Firearm or Upgrade card, add it to your hand, and shuffle.",
+      "04019": "Fast. Your turn only. Attach to an Ally asset you control. It gets +1 health and +1 sanity.",
+      "04020": "Fast. Your turn only. Attach to an Item asset you control. While resolving a triggered ability on it, you get +1 to each skill."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -2066,7 +2070,9 @@
       "02235": "Survival Instinct",
       "01023": "Dodge",
       "01080": "Lucky!",
-      "60159": "Protective Vest"
+      "60159": "Protective Vest",
+      "04019": "Trusted",
+      "04020": "Reliable"
     }
   },
   "account": {

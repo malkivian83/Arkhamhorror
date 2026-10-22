@@ -11,6 +11,7 @@
  * texto de las cartas.
  */
 import {
+  assetVitals,
   activeInvestigators,
   enemiesAt,
   getInvestigator,
@@ -935,7 +936,7 @@ registerTreachery({
     }
     const investigator = trigger.investigator
     const soaks = Object.values(state.assets).filter(
-      (a) => a.owner === investigator && (playerCardDef(a.code)?.health ?? 0) > a.damage,
+      (a) => a.owner === investigator && (assetVitals(a).health ?? 0) > a.damage,
     )
     if (soaks.length === 0) return [damage(investigator, 1)]
     return [
