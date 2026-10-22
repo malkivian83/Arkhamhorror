@@ -1,0 +1,25 @@
+# Eventos con acciones básicas: Combatir, Investigar y Evitar
+
+- Lote `basic-events`: **34 códigos / 29 cartas-niveles nuevos / 5 reediciones** (01566, 01569, 01578, 60312 y 60314). Continúa la mecánica del documento 54 con eventos cuyo efecto es «Combatir.», «Investigar.» o «Evitar.» y con cuatro apoyos que reutilizan `registerBasicAsset`.
+- Cartas:
+  - Evitar: Blinding Light (0, 2), Cunning Distraction, Slip Away (0, 2), Sneak By, Bum's Rush y «Catch!».
+  - Combatir: Monster Slayer (0, 5), Cheap Shot (0, 2), Sweeping Kick, Blood Eclipse (1, 3), Spectral Razor (0, 2), One-Two Punch (0) y Act of Desperation.
+  - Investigar: Pilfer (0, 3), Burning the Midnight Oil, Deciphered Reality, Unearth the Ancients (0) y Unconventional Method.
+  - Apoyos: Mists of R'lyeh (0, 2, 4) y Enchanted Blade (Místico).
+- Ayuda común `registerBasicEvent`: prueba contra un enemigo elegido o en tu Lugar, habilidad y modificadores, daño extra, efecto «al empezar la acción», dificultad propia, y efectos al tener éxito, al fallar o en ambos casos. Los eventos de Combatir y Evitar no provocan ataques de oportunidad; los de Investigar sí. Las cartas con costes adicionales reutilizan las mismas piezas (`basicTest`, `testChoices`).
+- Motor: `PutAssetIntoPlay` admite poner en juego desde la mano sin jugar la carta (Unearth the Ancients). Las capacidades de apoyos aceptan etiqueta propia para distinguir opciones con distinto coste (cargas de Enchanted Blade).
+- Decisiones de reglas:
+  - «Vuelve a tu mano al final de tu turno» se aplica al terminar el turno (Cheap Shot 2, Slip Away 2, Pilfer 3, Spectral Razor 2).
+  - One-Two Punch ofrece el segundo ataque cuando termina el primero, y solo si el enemigo sigue en juego.
+  - Spectral Razor permite enfrentarse antes al enemigo; un enemigo aloof no enfrentado solo puede atacarse así.
+  - Blood Eclipse 3 deja elegir de 0 a 3 de daño.
+  - En Act of Desperation, «Catch!» y Unconventional Method, el Objeto debe ocupar una mano; X es su coste impreso y el efecto adicional exige que estuviera en juego.
+  - Unearth the Ancients usa el coste impreso como dificultad y, si es una Reliquia, roba una carta.
+  - Deciphered Reality descubre una pista de cada Lugar revelado en lugar de la habitual.
+  - Si solo hay una opción, la elección se resuelve directamente.
+- Excluidos: Improvised Weapon, Winging It e Impromptu Barrier (jugar desde la pila de descartes); Read the Signs (ignorar efectos del Lugar); Gang Up (clases de las cartas controladas); Toe to Toe y One-Two Punch 5 (éxito automático); Counterpunch y Quick Getaway (reacciones a ataques enemigos); Storm of Spirits y Followed; eventos que se vinculan a enemigos o Lugares; Ethereal Form, Testing Sprint y Flurry of Blows; Enchanted Blade (Guardián), porque el daño adicional se elige tras el éxito.
+- 85 pruebas del lote: 49 de reglas (evitar, combatir, investigar y descarte de Objeto), 34 de compra e inicio de escenario y 2 de unicidad frente a todos los lotes anteriores, incluido `basic-abilities`.
+- Presentación EN/ES: nombres y rasgos oficiales, resúmenes por impresión y etiquetas nuevas (cantidad, carta, enfrentarse y atacar, mover enemigo, volver a combatir, descartar de juego o de la mano, combatir gastando cargas). 34 imágenes inglesas y 31 españolas con miniaturas. Las tres reediciones sin escaneo español usan la inglesa. 1249 imágenes verificadas.
+- Revisión en la web local con una partida real (Pete y Act of Desperation): pregunta «Elige una carta» con «Descartar Machete de la mano» y «Descartar Automática del .45 de juego», e imagen de la carta. Sin capturas: la ventana no estaba visible.
+- Validación local antes de subir: formato, lint (excluido `.card-import-tmp/**`), tipos, build, suite completa (2409 pruebas correctas, 17 omitidas) y verificación de imágenes, todo correcto. CI y Deploy no se consultan.
+- Reglas: páginas de cada código del lote en ArkhamDB, p. ej. [Blinding Light](https://arkhamdb.com/card/01066), [Cheap Shot](https://arkhamdb.com/card/03194), [Act of Desperation](https://arkhamdb.com/card/05037) y [Unearth the Ancients](https://arkhamdb.com/card/04024).

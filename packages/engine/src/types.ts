@@ -724,6 +724,8 @@ export type Message =
       noSlot?: boolean
       /** Played normally: open the after-play window for this exact instance. */
       played?: boolean
+      /** Take the card from its controller's hand first ("put into play from your hand"). */
+      fromHand?: boolean
       /** Fichas con las que entra (al tomar el control de un apoyo colocado). */
       tokens?: Partial<Pick<Asset, 'damage' | 'horror' | 'doom' | 'uses' | 'exhausted'>>
     }

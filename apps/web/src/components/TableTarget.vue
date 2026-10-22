@@ -28,6 +28,7 @@ const { t } = useI18n()
 const SHORT_ABILITY: Record<string, string> = {
   'ability.fightWith': 'fight',
   'ability.fightWithSkill': 'fight',
+  'ability.fightWithCharges': 'fight',
   'ability.evadeWith': 'evade',
   'ability.investigateWith': 'investigate',
 }

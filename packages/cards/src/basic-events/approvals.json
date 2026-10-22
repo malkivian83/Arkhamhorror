@@ -1,0 +1,262 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "sourceSnapshotSha256": "36bdf57ced256a33c3145b1562eea5f8ea6146d38e6a600cb04e27d43ef5749e",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "cards": [
+    {
+      "code": "01066",
+      "family": "blinding-light",
+      "module": "card-01066",
+      "test": "evasion.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01566",
+      "family": "blinding-light",
+      "module": "card-01066",
+      "test": "evasion.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01069",
+      "family": "blinding-light-2",
+      "module": "card-01066",
+      "test": "evasion.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01569",
+      "family": "blinding-light-2",
+      "module": "card-01066",
+      "test": "evasion.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01078",
+      "family": "cunning-distraction",
+      "module": "card-01078",
+      "test": "evasion.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01578",
+      "family": "cunning-distraction",
+      "module": "card-01078",
+      "test": "evasion.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04232",
+      "family": "slip-away",
+      "module": "card-04232",
+      "test": "evasion.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60314",
+      "family": "slip-away",
+      "module": "card-04232",
+      "test": "evasion.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60324",
+      "family": "slip-away-2",
+      "module": "card-04232",
+      "test": "evasion.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60316",
+      "family": "sneak-by",
+      "module": "card-60214",
+      "test": "evasion.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "11055",
+      "family": "bums-rush",
+      "module": "card-11055",
+      "test": "evasion.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "11086",
+      "family": "catch",
+      "module": "card-05037",
+      "test": "discard-item.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04029",
+      "family": "mists-of-rlyeh",
+      "module": "card-04029",
+      "test": "evasion.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "53007",
+      "family": "mists-of-rlyeh-2",
+      "module": "card-04029",
+      "test": "evasion.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 5,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "04271",
+      "family": "mists-of-rlyeh-4",
+      "module": "card-04029",
+      "test": "evasion.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 5,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "02300",
+      "family": "monster-slayer-5",
+      "module": "card-02300",
+      "test": "fights.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60116",
+      "family": "monster-slayer",
+      "module": "card-02300",
+      "test": "fights.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "03194",
+      "family": "cheap-shot",
+      "module": "card-03194",
+      "test": "fights.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60312",
+      "family": "cheap-shot",
+      "module": "card-03194",
+      "test": "fights.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60323",
+      "family": "cheap-shot-2",
+      "module": "card-03194",
+      "test": "fights.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "08023",
+      "family": "sweeping-kick",
+      "module": "card-08023",
+      "test": "fights.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "53001",
+      "family": "blood-eclipse-1",
+      "module": "card-53001",
+      "test": "fights.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04266",
+      "family": "blood-eclipse-3",
+      "module": "card-53001",
+      "test": "fights.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "06201",
+      "family": "spectral-razor",
+      "module": "card-06201",
+      "test": "fights.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "10102",
+      "family": "spectral-razor-2",
+      "module": "card-06201",
+      "test": "fights.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60117",
+      "family": "one-two-punch",
+      "module": "card-60117",
+      "test": "fights.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "05037",
+      "family": "act-of-desperation",
+      "module": "card-05037",
+      "test": "discard-item.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "05193",
+      "family": "enchanted-blade-mystic",
+      "module": "card-05193",
+      "test": "fights.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "60315",
+      "family": "pilfer",
+      "module": "card-60315",
+      "test": "investigations.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60328",
+      "family": "pilfer-3",
+      "module": "card-60315",
+      "test": "investigations.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60214",
+      "family": "burning-the-midnight-oil",
+      "module": "card-60214",
+      "test": "investigations.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "02303",
+      "family": "deciphered-reality",
+      "module": "card-02303",
+      "test": "investigations.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04024",
+      "family": "unearth-the-ancients",
+      "module": "card-04024",
+      "test": "investigations.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "11087",
+      "family": "unconventional-method",
+      "module": "card-05037",
+      "test": "discard-item.test.ts",
+      "status": "verified"
+    }
+  ]
+}
