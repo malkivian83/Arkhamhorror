@@ -1,0 +1,78 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "sourceSnapshotSha256": "36bdf57ced256a33c3145b1562eea5f8ea6146d38e6a600cb04e27d43ef5749e",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "cards": [
+    {
+      "code": "06118",
+      "family": "allies",
+      "module": "card-06118",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "05151",
+      "family": "allies",
+      "module": "card-05151",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01055",
+      "family": "allies",
+      "module": "card-01055",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01555",
+      "family": "allies",
+      "module": "card-01555",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "06281",
+      "family": "allies",
+      "module": "card-06281",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "02106",
+      "family": "allies",
+      "module": "card-02106",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "03198",
+      "family": "allies",
+      "module": "card-03198",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04017",
+      "family": "knives",
+      "module": "card-04017",
+      "test": "items.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "03147",
+      "family": "knives",
+      "module": "card-03147",
+      "test": "items.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "08035",
+      "family": "knives",
+      "module": "card-08035",
+      "test": "items.test.ts",
+      "status": "verified"
+    }
+  ]
+}

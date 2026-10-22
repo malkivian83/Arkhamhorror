@@ -74,6 +74,7 @@ vigente de pendientes.
 | 62 | [Ranuras restringidas por rasgo](62-ranuras-restringidas.md) | Bandolier 2, Sign Magick, Arcane Enlightenment, Familiar Spirit y Scientific Studies Grant; ranuras con varios rasgos. |
 | 63 | [Eventos de acción básica de inicio](63-eventos-de-accion-basica-de-inicio.md) | 19 eventos distintos y 2 reediciones: combate, investigación y evasión con bono, reacciones rápidas y curación repartida. |
 | 64 | [Apoyos sencillos](64-apoyos-sencillos-de-nivel.md) | 12 apoyos distintos y 4 reediciones: herramientas y armas con usos, aliados con bonos y capacidades rápidas. |
+| 65 | [Aliados y objetos de apoyo](65-aliados-y-objetos-de-apoyo.md) | 9 apoyos distintos y 1 reedición con reacciones y bonos; daño al entrar en juego y enfrentarse sin ataques de oportunidad. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

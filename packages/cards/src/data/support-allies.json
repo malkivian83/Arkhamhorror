@@ -1,0 +1,154 @@
+[
+  {
+    "code": "06118",
+    "name": "Jessica Hyde",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Ally", "Wayfarer", "Cursed"],
+    "unique": true,
+    "cost": 3,
+    "xp": 1,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["ally"],
+    "health": 3,
+    "sanity": 1
+  },
+  {
+    "code": "05151",
+    "name": "Alice Luxley",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Detective", "Police"],
+    "unique": true,
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "01055",
+    "name": "Cat Burglar",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Ally", "Criminal"],
+    "cost": 4,
+    "xp": 1,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "01555",
+    "name": "Cat Burglar",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Ally", "Criminal"],
+    "cost": 4,
+    "xp": 1,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "06281",
+    "name": "Delilah O'Rourke",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Ally", "Criminal", "Syndicate"],
+    "unique": true,
+    "cost": 3,
+    "xp": 3,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": ["ally"],
+    "health": 3,
+    "sanity": 2
+  },
+  {
+    "code": "02106",
+    "name": "Brother Xavier",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally"],
+    "unique": true,
+    "cost": 5,
+    "xp": 1,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["ally"],
+    "health": 3,
+    "sanity": 3
+  },
+  {
+    "code": "03198",
+    "name": "Madame Labranche",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Ally", "Patron"],
+    "unique": true,
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "04017",
+    "name": "Survival Knife",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Melee"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "03147",
+    "name": "Trench Knife",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Melee"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "08035",
+    "name": "Hiking Boots",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Clothing", "Footwear"],
+    "cost": 2,
+    "xp": 1,
+    "icons": {
+      "agility": 1
+    },
+    "slots": []
+  }
+]

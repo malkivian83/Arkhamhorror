@@ -1,0 +1,15 @@
+import { registerPlayerCards, type PlayerCardDef } from '@lcg/engine'
+import data from '../data/support-allies.json'
+import approvals from './approvals.json'
+import './card-06118'
+import './card-05151'
+import './card-01055'
+import './card-01555'
+import './card-06281'
+import './card-02106'
+import './card-03198'
+import './card-04017'
+import './card-03147'
+import './card-08035'
+registerPlayerCards(data as PlayerCardDef[])
+export const SUPPORT_ALLY_RENDERED_CODES = approvals.cards.map((c) => c.code)
