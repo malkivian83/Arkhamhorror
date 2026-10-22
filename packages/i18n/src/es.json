@@ -226,6 +226,7 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "phaseSkill": "{name}: +2 {skill} hasta el final de la fase",
     "finishMulligan": "Confirmar mano inicial (cambios: {n})",
     "investigator": "{name}",
     "discard": "Descartar {card}",
@@ -389,6 +390,8 @@
     "upkeep": "Fase de Mantenimiento"
   },
   "ability": {
+    "phaseKeenEye": "{card}: gastar {n} recursos para +1 {skill} hasta el final de la fase",
+    "phaseEncyclopedia": "{card}: dar +2 a una habilidad hasta el final de la fase",
     "parleyBystander": "Negociar: prueba de Intelecto (2) para descartar un Enemigo Transeúnte",
     "discardFire": "Apagar el fuego: prueba de Agilidad (3)",
     "discardTreachery": "Descartar {card}",
@@ -1779,6 +1782,9 @@
       "09062": "Talento. Truco. Ilegal."
     },
     "summary": {
+      "01042": "[action] Agota la Enciclopedia: Elige un investigador que esté en tu Lugar. Ese investigador recibe +2 a una habilidad de tu elección hasta el final de la fase.",
+      "60208": "Usos (5 secretos).\n[action] Agota la Enciclopedia y gasta 1 secreto: Elige un investigador que esté en tu Lugar. Ese investigador recibe +2 a una habilidad de tu elección hasta el final de la fase.",
+      "07152": "[free] Gasta 2 recursos: Recibes +1 [intellect] hasta el final de la fase.\n[free] Gasta 2 recursos: Recibes +1 [combat] hasta el final de la fase.",
       "08125": "Permanente. Límite de 1 por mazo. Adquiérela al crear el mazo: sufre 2 traumas físicos y/o mentales en total y gana 3 puntos de experiencia.",
       "10051": "Añade un comodín si controlas un apoyo Ciencia o Herramienta; dos con al menos 3 de esos apoyos.",
       "10076": "Tras una evasión con éxito, puedes evitar automáticamente a otro enemigo en tu lugar.",
@@ -2178,6 +2184,9 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "01042": "Enciclopedia",
+      "60208": "Enciclopedia",
+      "07152": "Ojo de lince",
       "08125": "En el meollo",
       "10051": "Bien financiado",
       "10076": "Pies ligeros",

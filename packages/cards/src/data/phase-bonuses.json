@@ -1,0 +1,36 @@
+[
+  {
+    "code": "01042",
+    "name": "Encyclopedia",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tome"],
+    "cost": 2,
+    "xp": 2,
+    "icons": { "wild": 1 },
+    "slots": ["hand"]
+  },
+  {
+    "code": "60208",
+    "name": "Encyclopedia",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tome"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": ["hand"],
+    "uses": { "type": "secrets", "count": 5 }
+  },
+  {
+    "code": "07152",
+    "name": "Keen Eye",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "intellect": 1, "combat": 1 },
+    "slots": []
+  }
+]

@@ -226,6 +226,7 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "phaseSkill": "{name}: +2 {skill} until the end of the phase",
     "finishMulligan": "Confirm opening hand (replacements: {n})",
     "investigator": "{name}",
     "discard": "Discard {card}",
@@ -389,6 +390,8 @@
     "upkeep": "Upkeep phase"
   },
   "ability": {
+    "phaseKeenEye": "{card}: spend {n} resources for +1 {skill} until the end of the phase",
+    "phaseEncyclopedia": "{card}: grant +2 to a skill until the end of the phase",
     "parleyBystander": "Parley: test Intellect (2) to discard a Bystander",
     "discardFire": "Put out the fire: test Agility (3)",
     "discardTreachery": "Discard {card}",
@@ -1779,6 +1782,9 @@
       "09062": "Talent. Trick. Illicit."
     },
     "summary": {
+      "01042": "[action] Exhaust Encyclopedia: Choose an investigator at your location. That investigator gets +2 to a skill of your choice until the end of the phase.",
+      "60208": "Uses (5 secrets).\n[action] Exhaust Encyclopedia and spend 1 secret: Choose an investigator at your location. That investigator gets +2 to a skill of your choice until the end of the phase.",
+      "07152": "[fast] Spend 2 resources: You get +1 [intellect] until the end of the phase.\n[fast] Spend 2 resources: You get +1 [combat] until the end of the phase.",
       "08125": "Permanent. Limit 1 per deck. Purchase at deck creation: suffer 2 total physical and/or mental trauma and gain 3 experience.",
       "10051": "One extra wild icon while controlling a Science or Tool asset; two extra with at least 3 such assets.",
       "10076": "After a successful evasion, you may automatically evade a different enemy at your location.",
@@ -2178,6 +2184,9 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "01042": "Encyclopedia",
+      "60208": "Encyclopedia",
+      "07152": "Keen Eye",
       "08125": "In the Thick of It",
       "10051": "Well-Funded",
       "10076": "Lightfooted",

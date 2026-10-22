@@ -7878,6 +7878,42 @@
       "sourceSha256": "6a8a524738d368a8b01657edc9d5e4c0914681e5085205fbb7250eb39f440260",
       "path": "/local-assets/cards/es/thumbs/04018.webp",
       "sha256": "ff9988e417dc8d3349c1586d4985a46c935d82c0dbbf3ee546503d97812422c2"
+    },
+    {
+      "source": "/local-assets/cards/en/60208.avif",
+      "sourceSha256": "a22976ac8fb38e521cb598aaae225ce7204b49f8ac84d3e88b7ed75d27a0491d",
+      "path": "/local-assets/cards/en/thumbs/60208.webp",
+      "sha256": "81c40fa2f60e6e42c088f8aa4568e7ca86e2386be812e8463f69f52d8356b915"
+    },
+    {
+      "source": "/local-assets/cards/en/01042.avif",
+      "sourceSha256": "3fbfc282810121f09647326cec94545412a9f973acbbd621c83b3956a85b5403",
+      "path": "/local-assets/cards/en/thumbs/01042.webp",
+      "sha256": "4e60df0f07cb4f5a3cadd54db7e3b9641d0caac532d8b1af3885e89d01ba3219"
+    },
+    {
+      "source": "/local-assets/cards/en/07152.avif",
+      "sourceSha256": "750d80fdf5f69b822cede0a2aa6ec2a3ba6ee38d9bdf96896d0bf4da7daf1ff4",
+      "path": "/local-assets/cards/en/thumbs/07152.webp",
+      "sha256": "9828d0ee11c8e4c16de5e2d1a2ddaac5f9bc1ec0c6f0ccc9915c7cb7a408d92b"
+    },
+    {
+      "source": "/local-assets/cards/es/60208.avif",
+      "sourceSha256": "46f86c32d8d425a17ab3f70b73c210dda1bf23007362e3184174140099ae055e",
+      "path": "/local-assets/cards/es/thumbs/60208.webp",
+      "sha256": "95de941caa2d4574c3e66bad127fba16e10bd0f9206bf1f00e4f92f24b779f8f"
+    },
+    {
+      "source": "/local-assets/cards/es/01042.avif",
+      "sourceSha256": "65fbc618d7f283d2df9955dc40aff4e65d3b12eec8033d410b8db0b539a4079b",
+      "path": "/local-assets/cards/es/thumbs/01042.webp",
+      "sha256": "186ee0cf868fa23344915df50fc76ba7a7a279b114de814808edbb6ea256d05b"
+    },
+    {
+      "source": "/local-assets/cards/es/07152.avif",
+      "sourceSha256": "60bc19fc8e86c19ea0e03ae33e07c961af1be1ea64ffc80de3f2cbac9d912988",
+      "path": "/local-assets/cards/es/thumbs/07152.webp",
+      "sha256": "66dba9a12ab990807e3ddc06b68758c012de1fee99bca2296b75c3d964c97248"
     }
   ]
 }
