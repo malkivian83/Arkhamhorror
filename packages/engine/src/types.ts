@@ -43,6 +43,14 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  /** Bonuses with a phase boundary; printed skills remain unchanged. */
+  phaseSkillBonuses?: {
+    skill: SkillType
+    amount: number
+    code: CardCode
+    phase: Phase
+    round: number
+  }[]
   /** Tipos de carta que no puede jugar ni comprometer en esta ronda (Languor). */
   blockedTypes?: { cardType: string; round: number }[]
   id: InvestigatorId
@@ -594,6 +602,13 @@ export type PhaseStep =
 
 /** Todo lo que puede ocurrir en la partida. */
 export type Message =
+  | {
+      type: 'PhaseSkillBonus'
+      investigator: InvestigatorId
+      skill: SkillType
+      amount: number
+      code: CardCode
+    }
   | {
       type: 'PlayerCardEffect'
       code: CardCode

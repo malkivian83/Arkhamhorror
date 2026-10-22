@@ -4410,6 +4410,23 @@ export function handle(state: GameState, message: Message): GameState {
       )
     }
 
+    case 'PhaseSkillBonus':
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        phaseSkillBonuses: [
+          ...(i.phaseSkillBonuses ?? []).filter(
+            (b) => b.round === state.round && b.phase === state.phase,
+          ),
+          {
+            skill: message.skill,
+            amount: message.amount,
+            code: message.code,
+            phase: state.phase,
+            round: state.round,
+          },
+        ],
+      }))
+
     case 'BoostSkillTest':
       if (!state.skillTest) return state
       return {
@@ -5173,9 +5190,13 @@ function margin(state: GameState): number {
 
 /** Habilidades rápidas que el investigador que hace la prueba puede usar antes de revelar. */
 function fastInvestigatorOptions(state: GameState): ReactionOption[] {
-  return activeInvestigators(state)
-    .flatMap((i) => investigatorBehavior(i.id)?.fastOptions?.(state, i) ?? [])
-    .filter((o) => withinLimit(state, o.key, o.investigator, o.limit))
+  const active = activeInvestigators(state)
+  return [
+    ...active.flatMap((i) => investigatorBehavior(i.id)?.fastOptions?.(state, i) ?? []),
+    ...Object.values(state.assets)
+      .filter((a) => active.some((i) => i.id === a.owner) && !assetsBlocked(state, a.owner))
+      .flatMap((a) => playerCardBehavior(a.code)?.fastOptions?.(state, a) ?? []),
+  ].filter((o) => withinLimit(state, o.key, o.investigator, o.limit))
 }
 
 function testOptions(state: GameState, test: SkillTest): ReactionOption[] {
@@ -5862,7 +5883,12 @@ export function skillTestValue(state: GameState): {
   const scenario = scenarioBehavior(state.scenarioId)?.skillModifier?.(state, test) ?? 0
   const resolving =
     resolvingSkillBonus(state, investigator.id) + attachedAttackSkillBonus(state, test)
+  const phaseSources = (investigator.phaseSkillBonuses ?? [])
+    .filter((b) => b.phase === state.phase && b.round === state.round && b.skill === test.skill)
+    .map((b) => ({ name: playerCardDef(b.code)?.name ?? b.code, amount: b.amount }))
+  const phaseBonus = phaseSources.reduce((sum, b) => sum + b.amount, 0)
   const sources = [
+    ...phaseSources,
     ...Object.values(state.assets)
       .filter((a) => a.owner === investigator.id)
       .map((a) => ({
@@ -5881,8 +5907,8 @@ export function skillTestValue(state: GameState): {
     modifier: test.baseModifier,
     icons,
     sources,
-    passive: passive + auras + scenario + resolving,
-    total: base + test.baseModifier + icons + passive + auras + scenario + resolving,
+    passive: passive + auras + scenario + resolving + phaseBonus,
+    total: base + test.baseModifier + icons + passive + auras + scenario + resolving + phaseBonus,
   }
 }
 

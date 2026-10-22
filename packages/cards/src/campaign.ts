@@ -1,3 +1,4 @@
+import './phase-bonuses'
 import './movement-skills'
 import './reactive-events'
 import './direct-events'
