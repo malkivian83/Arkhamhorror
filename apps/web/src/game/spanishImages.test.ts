@@ -5,7 +5,7 @@ import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { fallbackCards } from './fallbackCards'
 import { RENDERED_PLAYER_CARD_CODES } from '@lcg/cards'
-import { isPermanent } from '@lcg/engine'
+import { isPermanent, playerCardBehavior } from '@lcg/engine'
 
 describe('imágenes españolas de referencia y alternativas', () => {
   it.each([
@@ -98,7 +98,8 @@ describe('imágenes españolas de referencia y alternativas', () => {
           expect(card.text, code).toBeTruthy()
           if (
             ['skill', 'investigator', 'treachery', 'enemy'].includes(card.type_code) ||
-            isPermanent(code)
+            isPermanent(code) ||
+            playerCardBehavior(code)?.dilemma
           )
             expect(card.cost, code).toBeUndefined()
           else expect(card.cost, code).toBeTypeOf('number')

@@ -40,6 +40,7 @@ const begin = (
   kind,
 })
 const options = (s: GameState) => s.pending?.question.choices.map((c) => c.label) ?? []
+const resolveTest = (s: GameState) => choose(choose(s, 'choice.revealToken'), 'choice.applyResults')
 
 // RR Additional Actions, Equipment Slots: continuous actions are spent before ordinary ones.
 describe('Leo De Luca and Lone Wolf', () => {
@@ -151,7 +152,7 @@ describe('Ice Pick and Wolf Mask', () => {
     expect(skillTestValue(s).total).toBe(initial + 2)
     expect(s.assets['10023']?.uses).toBe(1)
     expect(options(s)).not.toContain('ability.survivorMaskBoost')
-    s = choose(s, 'choice.revealToken')
+    s = resolveTest(s)
     s = dispatch(s, {
       type: 'Forced',
       trigger: { type: 'afterEngage', investigator: 'a', enemy: 'any' },
@@ -178,7 +179,7 @@ describe('Track Shoes arrival window', () => {
     expect(Object.values(s.enemies)[0]?.engagedWith).toBeNull()
     s = choose(s, 'ability.survivorShoesMove')
     expect(skillTestValue(s).total).toBe(me(s).skills.agility + 1)
-    s = choose(s, 'choice.revealToken')
+    s = resolveTest(s)
     s = choose(s, 'choice.pilotMove', { location: 'Room C' })
     expect(me(s).location).toBe('C')
     expect(Object.values(s.enemies)[0]).toMatchObject({ location: 'B', engagedWith: null })
@@ -188,7 +189,7 @@ describe('Track Shoes arrival window', () => {
       { ...prepared(), chaosBag: ['autoFail'] },
       { type: 'MoveTo', investigator: 'a', location: 'B' },
     )
-    s = choose(choose(s, 'ability.survivorShoesMove'), 'choice.revealToken')
+    s = resolveTest(choose(s, 'ability.survivorShoesMove'))
     expect(me(s).location).toBe('B')
     expect(Object.values(s.enemies)[0]?.engagedWith).toBe('a')
     expect(playableCards(patch({ hand: ['05036'] })(s), 'a', false)).not.toContain('05036')
@@ -201,12 +202,12 @@ describe('Track Shoes arrival window', () => {
       onFail: [],
       onFailEach: [],
     }
-    let s = choose(dispatch(prepared(), begin(effect)), 'choice.revealToken')
+    let s = resolveTest(dispatch(prepared(), begin(effect)))
     expect(s.skillTest).toBeNull()
     expect(Object.values(s.enemies)[0]?.engagedWith).toBeNull()
     s = choose(JSON.parse(JSON.stringify(s)) as GameState, 'ability.survivorShoesMove')
     expect(s.skillTest?.skill).toBe('agility')
-    s = choose(choose(s, 'choice.revealToken'), 'choice.pilotMove', { location: 'Room C' })
+    s = choose(resolveTest(s), 'choice.pilotMove', { location: 'Room C' })
     expect(me(s).location).toBe('C')
     expect(Object.values(s.enemies)[0]?.engagedWith).toBeNull()
   })
@@ -227,7 +228,7 @@ describe('Track Shoes arrival window', () => {
       then: ability.then,
     })
     s = choose(s, 'choice.peteInvestigate', { location: 'Room B' })
-    s = choose(choose(s, 'ability.survivorShoesMove'), 'choice.revealToken')
+    s = resolveTest(choose(s, 'ability.survivorShoesMove'))
     s = choose(s, 'choice.pilotMove', { location: 'Room C' })
     expect(s.skillTest?.kind).toEqual({ type: 'investigate', location: 'C' })
     expect(s.skillTest?.source).toBe('02014')
@@ -258,7 +259,7 @@ describe('Long Shot', () => {
       ).toBe(false)
       s = choose(s, 'choice.commitFrom', { card: 'Long Shot' })
       expect(skillTestValue(s).icons).toBe(0)
-      s = choose(s, 'choice.revealToken')
+      s = resolveTest(s)
       expect(s.enemies[enemy.id]?.damageTaken).toBe(kind === 'fight' ? 2 : 1)
       expect(me(s).discard).toContain('10116')
     },
@@ -268,7 +269,7 @@ describe('Long Shot', () => {
     s = dispatch(s, spawnAt('A', { ...ghoul, health: 5 }, 'a'))
     const enemy = Object.values(s.enemies)[0]!
     s = dispatch({ ...s, chaosBag: ['autoFail'] }, begin({ type: 'evade', enemy: enemy.id }))
-    s = choose(choose(s, 'choice.commit', { card: 'Long Shot' }), 'choice.revealToken')
+    s = resolveTest(choose(s, 'choice.commit', { card: 'Long Shot' }))
     expect(s.enemies[enemy.id]?.damageTaken).toBe(0)
     const unrelated = dispatch(patch({ hand: ['10116'] })(bare()), begin())
     expect(canCommitFrom(unrelated, 'a', '10116')).toBe(false)
