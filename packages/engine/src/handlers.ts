@@ -1656,6 +1656,7 @@ export function handle(state: GameState, message: Message): GameState {
                 type: 'afterDamageAssigned',
                 investigator: message.investigator,
                 dealt: message.dealt,
+                ...(message.enemy ? { enemy: message.enemy } : {}),
               },
             },
           ]
@@ -1695,7 +1696,12 @@ export function handle(state: GameState, message: Message): GameState {
         return dealt.length
           ? push(state, {
               type: 'Forced',
-              trigger: { type: 'afterDamageAssigned', investigator, dealt },
+              trigger: {
+                type: 'afterDamageAssigned',
+                investigator,
+                dealt,
+                ...(message.enemy ? { enemy: message.enemy } : {}),
+              },
             })
           : state
       }
@@ -2771,6 +2777,9 @@ export function handle(state: GameState, message: Message): GameState {
               }
             : {}),
           ...(message.after ? { tokenAfter: [...(test.tokenAfter ?? []), ...message.after] } : {}),
+          ...(message.onSuccess
+            ? { tokenOnSuccess: [...(test.tokenOnSuccess ?? []), ...message.onSuccess] }
+            : {}),
           ...(message.replaceClue && test.kind.type === 'investigate'
             ? { kind: { ...test.kind, replaceClue: true } }
             : {}),
@@ -3541,6 +3550,8 @@ export function handle(state: GameState, message: Message): GameState {
           investigator: message.investigator,
           damage: enemy.damage,
           horror: enemy.horror,
+          // The attacking enemy travels with the damage (Guard Dog, Dimensional Shambler).
+          enemy: enemy.id,
           ...(enemyBehavior(enemy.code)?.assignFirst
             ? { assignFirst: enemyBehavior(enemy.code)!.assignFirst }
             : {}),

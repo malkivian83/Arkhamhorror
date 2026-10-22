@@ -1,0 +1,26 @@
+# Apoyos con capacidades sencillas: bonos, aliados y utilidades
+
+- Lote `asset-utilities`: **35 códigos / 29 cartas-niveles nuevos / 6 reediciones** (01518, 01528, 01576, 01521, 01570 y 01532). Reúne apoyos cuyas capacidades encajan en las piezas existentes del motor: opciones durante una prueba, capacidades rápidas o de acción, efectos obligados y reacciones.
+- Cartas:
+  - Bonos durante la prueba: Streetwise, Scrapper, High Roller (2), Cornered (2), Well Connected, Quick Study (2), Well Prepared (2) y Police Dog (0, 1).
+  - Aliados: Beat Cop (0, 2), Hired Muscle (1), Treasure Hunter (1), Field Agent (2), Stray Cat, Mysterious Raven, Guard Dog y Psychology Student.
+  - Utilidades: Offering Bowl, Canteen (2), Scroll of Prophecies, Feed the Mind, Book of Shadows (1, 3), Pathfinder (1), Loner, Esoteric Atlas (2), Research Librarian y Venturer.
+- Motor:
+  - `ModifySkillTest` admite efectos «si tienes éxito» añadidos durante la prueba (High Roller).
+  - El disparador de daño asignado lleva el enemigo atacante y el ataque enemigo indica qué enemigo inflige el daño (Guard Dog). Esto corrige además el Dimensional Shambler de Excelsior, cuyo efecto tras dañar con su ataque no llegaba a activarse; sus pruebas siguen pasando.
+- Decisiones de reglas:
+  - Streetwise y Scrapper solo dan su bono si la prueba es de esa habilidad, y pueden repetirse mientras haya recursos.
+  - Cornered se limita a una vez por prueba mediante el contador de usos de la prueba.
+  - Well Prepared suma los iconos coincidentes más los comodín del apoyo elegido.
+  - Police Dog ayuda a otros investigadores de tu Lugar en ataques e investigaciones.
+  - Hired Muscle y Treasure Hunter cobran al final de la ronda, tras el mantenimiento; sin recursos se descartan.
+  - Loner solo ofrece Lugares conectados sin investigadores.
+  - Venturer solo repone apoyos que usan suministros o munición.
+  - Psychology Student puede curar a investigadores o aliados de tu Lugar con horror.
+  - Como el resto de capacidades rápidas del motor, las de apoyos se ofrecen en tu turno (Beat Cop, Stray Cat, Offering Bowl…); las de la prueba, mientras está abierta.
+- Excluidos por falta de soporte: ranuras restringidas a ciertos rasgos (Bandolier, Sign Magick, Familiar Spirit, Arcane Enlightenment, Scientific Studies Grant), efectos «hasta el final de la fase» (Encyclopedia, Keen Eye), reducciones de coste al jugar (Robes of Endless Night, Ceremonial Robes, Fence), jugar desde la pila de descartes (Improvised Shield, Profane Idol) y otras reacciones aún no modeladas (Lab Coat, Try and Try Again, Armor of Ardennes, Obfuscation, Hunting Dog, Safeguard).
+- 75 pruebas del lote: 38 de reglas (bonos, aliados y utilidades), 35 de compra e inicio de escenario y 2 de unicidad frente a todos los lotes anteriores.
+- Presentación EN/ES: nombres y rasgos oficiales, resúmenes por impresión y etiquetas nuevas de capacidades y elecciones. 35 imágenes inglesas y 29 españolas con miniaturas; las seis reediciones sin escaneo español usan la inglesa. 1313 imágenes verificadas.
+- Revisión en la web local con una partida real (Trish): «Licenciado en las calles: gastar 2 recurso(s) para +2 Agilidad» durante una prueba de Agilidad, con su imagen, y la capacidad de descartar al Policía de ronda para dañar a un enemigo. Sin capturas: la ventana no estaba visible.
+- Validación local antes de subir: formato, lint (excluido `.card-import-tmp/**`), tipos, build, suite completa (2485 pruebas correctas, 17 omitidas) y verificación de imágenes, todo correcto. CI y Deploy no se consultan.
+- Reglas: páginas de cada código del lote en ArkhamDB, p. ej. [Streetwise](https://arkhamdb.com/card/60311), [Beat Cop](https://arkhamdb.com/card/01018), [Guard Dog](https://arkhamdb.com/card/01021) y [High Roller](https://arkhamdb.com/card/04156).

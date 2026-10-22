@@ -1,0 +1,277 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "sourceSnapshotSha256": "36bdf57ced256a33c3145b1562eea5f8ea6146d38e6a600cb04e27d43ef5749e",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "cards": [
+    {
+      "code": "60311",
+      "family": "streetwise",
+      "module": "boosts",
+      "test": "boosts.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60511",
+      "family": "scrapper",
+      "module": "boosts",
+      "test": "boosts.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04156",
+      "family": "high-roller",
+      "module": "boosts",
+      "test": "boosts.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04160",
+      "family": "cornered",
+      "module": "boosts",
+      "test": "boosts.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "05028",
+      "family": "well-connected",
+      "module": "boosts",
+      "test": "boosts.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04154",
+      "family": "quick-study",
+      "module": "boosts",
+      "test": "boosts.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04151",
+      "family": "well-prepared",
+      "module": "boosts",
+      "test": "boosts.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60156",
+      "family": "police-dog",
+      "module": "boosts",
+      "test": "boosts.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60170",
+      "family": "police-dog-1",
+      "module": "boosts",
+      "test": "boosts.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01018",
+      "family": "beat-cop",
+      "module": "allies",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01518",
+      "family": "beat-cop",
+      "module": "allies",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01028",
+      "family": "beat-cop-2",
+      "module": "allies",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01528",
+      "family": "beat-cop-2",
+      "module": "allies",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "02027",
+      "family": "hired-muscle",
+      "module": "allies",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04025",
+      "family": "treasure-hunter",
+      "module": "allies",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "09033",
+      "family": "field-agent",
+      "module": "allies",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01076",
+      "family": "stray-cat",
+      "module": "allies",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01576",
+      "family": "stray-cat",
+      "module": "allies",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60509",
+      "family": "mysterious-raven",
+      "module": "allies",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01021",
+      "family": "guard-dog",
+      "module": "allies",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01521",
+      "family": "guard-dog",
+      "module": "allies",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60258",
+      "family": "psychology-student",
+      "module": "allies",
+      "test": "allies.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60456",
+      "family": "offering-bowl",
+      "module": "items",
+      "test": "items.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "offering"
+      }
+    },
+    {
+      "code": "60573",
+      "family": "canteen",
+      "module": "items",
+      "test": "items.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "supply"
+      }
+    },
+    {
+      "code": "06116",
+      "family": "scroll-of-prophecies",
+      "module": "items",
+      "test": "items.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "secret"
+      }
+    },
+    {
+      "code": "60209",
+      "family": "feed-the-mind",
+      "module": "items",
+      "test": "items.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "secret"
+      }
+    },
+    {
+      "code": "01070",
+      "family": "book-of-shadows",
+      "module": "items",
+      "test": "items.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01570",
+      "family": "book-of-shadows",
+      "module": "items",
+      "test": "items.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "03154",
+      "family": "book-of-shadows-1",
+      "module": "items",
+      "test": "items.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "02108",
+      "family": "pathfinder",
+      "module": "items",
+      "test": "items.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60557",
+      "family": "loner",
+      "module": "items",
+      "test": "items.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60222",
+      "family": "esoteric-atlas",
+      "module": "items",
+      "test": "items.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "secret"
+      }
+    },
+    {
+      "code": "01032",
+      "family": "research-librarian",
+      "module": "items",
+      "test": "items.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01532",
+      "family": "research-librarian",
+      "module": "items",
+      "test": "items.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04018",
+      "family": "venturer",
+      "module": "items",
+      "test": "items.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "supply"
+      }
+    }
+  ]
+}

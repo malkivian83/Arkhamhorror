@@ -159,6 +159,7 @@ import { PETE_RENDERED_CODES } from './ashcan-pete'
 import { SURVIVOR_DECK_RENDERED_CODES } from './survivor-deck'
 import { BASIC_ABILITY_RENDERED_CODES } from './basic-abilities'
 import { BASIC_EVENT_RENDERED_CODES } from './basic-events'
+import { ASSET_UTILITY_RENDERED_CODES } from './asset-utilities'
 export const RENDERED_PLAYER_CARD_CODES = [
   ...pilotCodes,
   ...FOLLOWUP_RENDERED_CODES,
@@ -185,4 +186,5 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...ATTACHED_UPGRADE_RENDERED_CODES,
   ...BASIC_ABILITY_RENDERED_CODES,
   ...BASIC_EVENT_RENDERED_CODES,
+  ...ASSET_UTILITY_RENDERED_CODES,
 ]
