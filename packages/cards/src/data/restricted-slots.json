@@ -1,0 +1,73 @@
+[
+  {
+    "code": "51001",
+    "name": "Bandolier",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": ["body"],
+    "health": 1
+  },
+  {
+    "code": "05112",
+    "name": "Sign Magick",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Ritual", "Talent"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["hand"],
+    "fast": true
+  },
+  {
+    "code": "60205",
+    "name": "Arcane Enlightenment",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ritual"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 2
+    },
+    "slots": ["arcane"]
+  },
+  {
+    "code": "60410",
+    "name": "Familiar Spirit",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Ally", "Creature", "Summon"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 1
+  },
+  {
+    "code": "11044",
+    "name": "Scientific Studies Grant",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Grant"],
+    "cost": 3,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": []
+  }
+]

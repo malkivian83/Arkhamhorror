@@ -5822,12 +5822,12 @@ export function slotCapacity(
 
 const count = <T>(items: T[], item: T) => items.filter((x) => x === item).length
 
-/** Additional slots of a type that only assets with a trait may use (Bandolier). */
+/** Additional slots of a type that only assets with one of the traits may use (Bandolier). */
 export function restrictedSlotCapacity(
   state: GameState,
   investigator: InvestigatorId,
   slot: SlotType,
-): { trait: string; count: number }[] {
+): { trait: string | string[]; count: number }[] {
   return Object.values(state.assets)
     .filter((a) => a.owner === investigator)
     .flatMap((a) => playerCardBehavior(a.code)?.restrictedSlots ?? [])
@@ -5862,7 +5862,7 @@ function slotsFit(
   const place = (n: number, generic: number): boolean => {
     if (n === units.length) return true
     for (const [k, r] of restricted.entries()) {
-      if (!free[k] || !units[n]!.includes(r.trait)) continue
+      if (!free[k] || ![r.trait].flat().some((t) => units[n]!.includes(t))) continue
       free[k]!--
       const placed = place(n + 1, generic)
       free[k]!++

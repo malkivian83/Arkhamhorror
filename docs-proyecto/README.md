@@ -71,6 +71,7 @@ vigente de pendientes.
 | 59 | [Guía: importar una lista de ArkhamDB](59-guia-importar-lista-arkhamdb.md) | Diagnóstico con check-decklist, alcance, datos, motor, presentación, imágenes y pruebas para subir un investigador y sus cartas. |
 | 60 | [Jenny Barnes y la lista Campaign-Breaker](60-investigador-jenny-barnes.md) | Lista 1179 jugable: seis códigos nuevos, coste X, ranuras restringidas por rasgo y daño simultáneo. |
 | 61 | [Eventos encadenados](61-eventos-encadenados.md) | Drawn to the Flame, Emergency Cache 3 y Glory; encuentro y luego pistas, reparto de suministros y reacción tras derrotar. |
+| 62 | [Ranuras restringidas por rasgo](62-ranuras-restringidas.md) | Bandolier 2, Sign Magick, Arcane Enlightenment, Familiar Spirit y Scientific Studies Grant; ranuras con varios rasgos. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

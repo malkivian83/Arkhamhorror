@@ -1,3 +1,4 @@
+import './restricted-slots'
 import './sequenced-events'
 import './permanent-talents'
 import './phase-bonuses'
