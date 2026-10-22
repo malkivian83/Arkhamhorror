@@ -1,0 +1,36 @@
+[
+  {
+    "code": "01064",
+    "name": "Drawn to the Flame",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Insight"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "03239",
+    "name": "Emergency Cache",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Supply"],
+    "cost": 0,
+    "xp": 3,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "60115",
+    "name": "Glory",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "intellect": 2 },
+    "slots": [],
+    "fast": true
+  }
+]

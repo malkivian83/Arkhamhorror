@@ -33,6 +33,7 @@ describe('reviewed inventory conversion', () => {
     'asset-utilities',
     'phase-bonuses',
     'permanent-talents',
+    'sequenced-events',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(

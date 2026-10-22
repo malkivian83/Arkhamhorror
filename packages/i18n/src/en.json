@@ -228,6 +228,7 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "eventResources": "Gain {n} resources",
     "phaseSkill": "{name}: +2 {skill} until the end of the phase",
     "finishMulligan": "Confirm opening hand (replacements: {n})",
     "investigator": "{name}",
@@ -1790,6 +1791,9 @@
       "09062": "Talent. Trick. Illicit."
     },
     "summary": {
+      "01064": "Draw the top card of the encounter deck. Then, discover 2 clues at your location.",
+      "03239": "Gain 4 resources or place 4 supply tokens among assets controlled by investigators at your location, or any combination thereof.",
+      "60115": "Fast. Play after you defeat an enemy.\nDraw 2 cards.",
       "02185": "Permanent.\n[fast] Spend 2 resources: You get +1 [intellect] until the end of the phase.\n[fast] Spend 2 resources: You get +1 [combat] until the end of the phase.",
       "02191": "Permanent.\n[fast] Add 1 doom to Blood Pact: You get +3 [willpower] for this skill test. (Limit once per test.)\n[fast] Add 1 doom to Blood Pact: You get +3 [combat] for this skill test. (Limit once per test.)",
       "02187": "Permanent.\nWhile you have 5 or more cards in your hand, Higher Education gains:\n\"[fast] Spend 1 resource: You get +2 [willpower] for this skill test.\n[fast] Spend 1 resource: You get +2 [intellect] for this skill test.\"",
@@ -2204,6 +2208,9 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "01064": "Drawn to the Flame",
+      "03239": "Emergency Cache",
+      "60115": "Glory",
       "02185": "Keen Eye",
       "02191": "Blood Pact",
       "02187": "Higher Education",

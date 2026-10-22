@@ -70,6 +70,7 @@ vigente de pendientes.
 | 58 | [Talentos permanentes](58-talentos-permanentes.md) | Cinco niveles nuevos con costes y límites revisados, compra y preparación de permanentes. |
 | 59 | [Guía: importar una lista de ArkhamDB](59-guia-importar-lista-arkhamdb.md) | Diagnóstico con check-decklist, alcance, datos, motor, presentación, imágenes y pruebas para subir un investigador y sus cartas. |
 | 60 | [Jenny Barnes y la lista Campaign-Breaker](60-investigador-jenny-barnes.md) | Lista 1179 jugable: seis códigos nuevos, coste X, ranuras restringidas por rasgo y daño simultáneo. |
+| 61 | [Eventos encadenados](61-eventos-encadenados.md) | Drawn to the Flame, Emergency Cache 3 y Glory; encuentro y luego pistas, reparto de suministros y reacción tras derrotar. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

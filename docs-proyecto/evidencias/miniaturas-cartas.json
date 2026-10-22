@@ -8058,6 +8058,42 @@
       "sourceSha256": "6902295efc8f5631ff98aaceea8f116a8057b60b1812e72587ff7559e5a8b989",
       "path": "/local-assets/cards/es/thumbs/02147.webp",
       "sha256": "b52f8758f842a5717d6d03e730c62fa6d7fcec53e0dbd2b7f6f74d5adb22a901"
+    },
+    {
+      "source": "/local-assets/cards/en/60115.avif",
+      "sourceSha256": "cd39a53cabbe5da3b0e37408a514842308de76ae5e9d845d583513d93920efd8",
+      "path": "/local-assets/cards/en/thumbs/60115.webp",
+      "sha256": "45c2a7f5d98e3dc01789617551eaabadac2e1acadd873755f730019d71ee8dc4"
+    },
+    {
+      "source": "/local-assets/cards/en/01064.avif",
+      "sourceSha256": "84e34a052115270dc39de62b95bd103c2814e29d89dfc293d32fb92e7b0c1bc2",
+      "path": "/local-assets/cards/en/thumbs/01064.webp",
+      "sha256": "28329aceffaf8dd1d8b64116f1a2ab7c8aa324cd40ed759d5329f2bd0e09f8c7"
+    },
+    {
+      "source": "/local-assets/cards/en/03239.avif",
+      "sourceSha256": "f5cca4e411d86d58e94f83b89fa0200906b6a4730cddd4f84f58c45664f2eac8",
+      "path": "/local-assets/cards/en/thumbs/03239.webp",
+      "sha256": "488102ddc7c1e5e2be26e0893eb333eb41c6dfa1e0334659da5a1264e54c44b9"
+    },
+    {
+      "source": "/local-assets/cards/es/60115.avif",
+      "sourceSha256": "26aa9cd80ae6e560ea4ccd46e45e22ae8bd623316894733268cc833043c47a89",
+      "path": "/local-assets/cards/es/thumbs/60115.webp",
+      "sha256": "7f25bff534f5a326fdb341fad8068d4ea8a78e47548599bd022c0208c20ab2d7"
+    },
+    {
+      "source": "/local-assets/cards/es/01064.avif",
+      "sourceSha256": "a09cc8399df8b1aa175ca5c4d9b231284751036b232353600a9ccfd9a4a1e6a1",
+      "path": "/local-assets/cards/es/thumbs/01064.webp",
+      "sha256": "ac739210c382952f80850a29cf3a953d521f7f25f999f9ef8dd2d59a4af8711b"
+    },
+    {
+      "source": "/local-assets/cards/es/03239.avif",
+      "sourceSha256": "681082a071df28fe7e8bff3f355cfd7c9c4c89293534a845f1e327992577ddea",
+      "path": "/local-assets/cards/es/thumbs/03239.webp",
+      "sha256": "37c100d97e297e5503f8128283e0f69200f6094a7d17cf8fdbdb6500320c7a04"
     }
   ]
 }
