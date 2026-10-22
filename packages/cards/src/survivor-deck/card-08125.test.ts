@@ -65,7 +65,7 @@ describe('decklist 54484 and In the Thick of It', () => {
       })
       const game = startScenario(campaign, 9, false)
       expect(game.investigators[0]).toMatchObject({ damage: physical, horror: 2 - physical })
-      expect(startScenario(campaign, 10, false).campaignLog.investigators[member.id]).toMatchObject(
+      expect(startScenario(campaign, 10, false).campaignLog?.investigators[member.id]).toMatchObject(
         {
           xp: 0,
           physicalTrauma: physical,

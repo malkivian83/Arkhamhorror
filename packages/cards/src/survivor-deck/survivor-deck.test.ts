@@ -223,7 +223,7 @@ describe('Track Shoes arrival window', () => {
       key: ability.key,
       actions: ability.actions,
       provokes: ability.provokes,
-      costs: ability.costs,
+      ...(ability.costs ? { costs: ability.costs } : {}),
       then: ability.then,
     })
     s = choose(s, 'choice.peteInvestigate', { location: 'Room B' })
