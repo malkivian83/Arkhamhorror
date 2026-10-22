@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onBeforeUnmount, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, ref, watch } from 'vue'
+import { canAdminister } from '@lcg/shared'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { account } from '../account/api'
@@ -16,11 +17,12 @@ const preferencesButton = ref<HTMLElement>()
 const drawer = ref<HTMLDialogElement>()
 const drawerButton = ref<HTMLButtonElement>()
 
-const sections = [
+const sections = computed(() => [
   { to: '/', label: 'app.newGame' },
   { to: '/decks', label: 'decks.title' },
   { to: '/library', label: 'account.library' },
-]
+  ...(canAdminister(account.value.user) ? [{ to: '/admin', label: 'admin.title' }] : []),
+])
 
 function closePreferences(restoreFocus = false) {
   if (preferences.value) preferences.value.open = false

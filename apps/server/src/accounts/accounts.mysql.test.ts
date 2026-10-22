@@ -169,7 +169,64 @@ describe.skipIf(!url)('cuentas y bibliotecas con MySQL real', () => {
     const versions = await db.db.rows<{ version: number }>(
       'SELECT version FROM schema_migrations ORDER BY version',
     )
-    expect(versions.map((v) => v.version)).toEqual([1, 2])
+    expect(versions.map((v) => v.version)).toEqual([1, 2, 3])
+  })
+
+  it('restringe el panel y consulta usuarios, sesiones y logs reales sin secretos', async () => {
+    const ordinary = await user()
+    expect((await app.inject('/api/admin/overview')).statusCode).toBe(401)
+    expect(
+      (await app.inject({ url: '/api/admin/users', headers: { cookie: ordinary.cookie } }))
+        .statusCode,
+    ).toBe(403)
+    await provisionAdmin(db.db, { email: 'malkivian@gmail.com', password })
+    const login = await post('/auth/login', { email: 'malkivian@gmail.com', password })
+    const headers = { cookie: cookieOf(login) }
+    await post('/auth/login', { email: ordinary.address, password: 'incorrect' })
+    const summary = await app.inject({ url: '/api/admin/overview', headers })
+    expect(summary.statusCode).toBe(200)
+    expect(summary.json()).toMatchObject({ users: 2, verified: 2, sessions: 2, failedMail: 0 })
+    const users = await app.inject({
+      url: `/api/admin/users?search=${encodeURIComponent(ordinary.address)}`,
+      headers,
+    })
+    expect(users.json().items).toHaveLength(1)
+    expect(users.json().items[0]).toMatchObject({ email: ordinary.address, sessions: 1 })
+    expect(Number(users.json().items[0].last_access)).toBeGreaterThan(0)
+    expect(users.body).not.toContain('password_hash')
+    const accesses = await app.inject({ url: '/api/admin/access', headers })
+    expect(accesses.json().items).toHaveLength(3)
+    expect(accesses.json().items).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ email: ordinary.address, status: 'failed' }),
+      ]),
+    )
+    const mail = await app.inject({ url: '/api/admin/mail', headers })
+    expect(mail.json().items).toEqual([
+      expect.objectContaining({ kind: 'mail_verify', status: 'success' }),
+    ])
+    expect(mail.body).not.toContain(tokenFrom(mails[0]!))
+    await db.db.exec('DELETE FROM account_roles')
+    expect((await app.inject({ url: '/api/admin/overview', headers })).statusCode).toBe(403)
+  })
+
+  it('registra fallos de correo y retira el token que no pudo enviarse', async () => {
+    const normal = await user()
+    await app.close()
+    app = await buildApp({
+      db: db.db,
+      config: { databaseUrl: url!, origin, production: false },
+      sendMail: async () => {
+        throw new Error('SMTP secret must not be logged')
+      },
+    })
+    expect((await post('/auth/forgot-password', { email: normal.address })).statusCode).toBe(503)
+    expect(
+      await db.db.rows("SELECT status FROM account_activity WHERE kind = 'mail_reset'"),
+    ).toEqual([{ status: 'failed' }])
+    expect(
+      await db.db.rows("SELECT token_hash FROM account_tokens WHERE purpose = 'reset'"),
+    ).toEqual([])
   })
 
   it('exige verificar correo; el enlace es de un uso y no inicia sesión automáticamente', async () => {

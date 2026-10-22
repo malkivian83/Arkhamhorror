@@ -4,6 +4,7 @@ import { randomUUID } from 'node:crypto'
 import type { Database } from './database'
 import type { AccountConfig } from './config'
 import type { SendMail } from './mail'
+import { recordActivity } from './activity'
 import {
   ApiError,
   csrfFor,
@@ -105,16 +106,19 @@ export function authentication(
         403,
       )
   }
-  async function session(user: User, reply: FastifyReply) {
+  async function session(user: User, reply: FastifyReply, kind: 'login_password' | 'login_google') {
     const [role] = await db.rows<{ role: 'admin' }>(
       'SELECT role FROM account_roles WHERE user_id = ?',
       [user.id],
     )
     const raw = token()
-    await db.exec(
-      'INSERT INTO auth_sessions (token_hash, user_id, expires_at, last_used_at) VALUES (?, ?, ?, ?)',
-      [digest(raw), user.id, Date.now() + 30 * DAY, Date.now()],
-    )
+    await db.transaction(async (tx) => {
+      await tx.exec(
+        'INSERT INTO auth_sessions (token_hash, user_id, expires_at, last_used_at) VALUES (?, ?, ?, ?)',
+        [digest(raw), user.id, Date.now() + 30 * DAY, Date.now()],
+      )
+      await recordActivity(tx, user.id, kind, 'success')
+    })
     reply.setCookie(cookieName, raw, { ...cookieOptions, maxAge: 30 * 86400 })
     return { user: publicUser({ ...user, role: role?.role ?? 'user' }), csrf: csrfFor(raw) }
   }
@@ -129,6 +133,12 @@ export function authentication(
     // Fragment prevents tokens appearing in proxy request logs or Referer headers.
     link.hash = new URLSearchParams({ action: purpose, token: raw }).toString()
     const spanish = user.locale !== 'en'
+    const activityId = await recordActivity(
+      db,
+      user.id,
+      purpose === 'verify' ? 'mail_verify' : 'mail_reset',
+      'pending',
+    )
     try {
       await sendMail({
         to: user.email,
@@ -143,9 +153,11 @@ export function authentication(
         text: `${spanish ? 'Abre este enlace para continuar' : 'Open this link to continue'}:\n${link.href}\n\n${spanish ? 'Si no lo has solicitado, ignora este correo.' : 'If you did not request this, ignore this email.'}`,
       })
     } catch {
+      await db.exec("UPDATE account_activity SET status = 'failed' WHERE id = ?", [activityId])
       await db.exec('DELETE FROM account_tokens WHERE token_hash = ?', [hash])
       throw new ApiError('mail_unavailable', 503)
     }
+    await db.exec("UPDATE account_activity SET status = 'success' WHERE id = ?", [activityId])
   }
   async function consume(
     raw: string,
@@ -228,13 +240,15 @@ export function authentication(
       ])
       const encoded = user?.password_hash ?? (await dummyHash)
       const valid = await verifyPassword(encoded, req.body.password)
+      if (user && (!user.password_hash || !valid || !user.verified))
+        await recordActivity(db, user.id, 'login_password', 'failed')
       requireValue(user && user.password_hash && valid, 'invalid_credentials', 401)
       requireValue(user.verified, 'verification_required', 403)
       if (req.cookies[cookieName])
         await db.exec('DELETE FROM auth_sessions WHERE token_hash = ?', [
           digest(req.cookies[cookieName]!),
         ])
-      return session(user, reply)
+      return session(user, reply, 'login_password')
     },
   )
   const dummyHash = hashPassword(token())
@@ -417,7 +431,7 @@ export function authentication(
           await issue(user, 'verify')
           throw new ApiError('verification_required', 403)
         }
-        await session(user, reply)
+        await session(user, reply, 'login_google')
         reply.clearCookie('lcg-oauth', cookieOptions)
         return reply.redirect(`${config.origin}/account#google=ok`)
       } catch (error) {

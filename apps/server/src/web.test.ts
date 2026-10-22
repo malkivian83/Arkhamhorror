@@ -18,7 +18,7 @@ it('sirve las rutas de Vue y los recursos públicos sin exponer archivos privado
   await writeFile(join(webRoot, 'index.html'), '<html>Arkham test</html>')
   await writeFile(join(webRoot, 'style.css'), 'body {color: red}')
   app = await buildApp({ webRoot })
-  for (const path of ['/', '/account', '/library', '/game', '/campaign', '/decks']) {
+  for (const path of ['/', '/account', '/library', '/admin', '/game', '/campaign', '/decks']) {
     const response = await app.inject(path)
     expect(response.statusCode, `${path}: ${response.body}`).toBe(200)
     expect(response.body).toContain('Arkham test')

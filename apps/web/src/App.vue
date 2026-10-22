@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LOCALES, type Locale } from '@lcg/shared'
+import { LOCALES, canAdminister, type Locale } from '@lcg/shared'
 import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
@@ -95,6 +95,9 @@ function setLocale(value: Locale) {
           <RouterLink to="/">{{ t('campaign.new') }}</RouterLink>
           <RouterLink to="/decks">{{ t('decks.title') }}</RouterLink>
           <RouterLink to="/library">{{ t('account.library') }}</RouterLink>
+          <RouterLink v-if="canAdminister(account.user)" to="/admin">{{
+            t('admin.title')
+          }}</RouterLink>
           <RouterLink to="/account">{{
             account.user ? t('account.profile') : t('account.login')
           }}</RouterLink>
