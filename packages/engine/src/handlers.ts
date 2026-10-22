@@ -799,9 +799,17 @@ export function handle(state: GameState, message: Message): GameState {
         actionsTaken: (i.actionsTaken ?? 0) + 1,
       }))
       // RR "Attack of Opportunity": tras pagar el coste y antes de resolver la acción.
-      const attacks = provokesAttacksOfOpportunity(message.action)
-        ? opportunityAttacks(state, investigator)
-        : []
+      // Trench Knife: engage actions of its controller do not provoke.
+      const quietEngage =
+        message.action.kind === 'engage' &&
+        Object.values(state.assets).some(
+          (a) =>
+            a.owner === investigator.id && playerCardBehavior(a.code)?.engageWithoutOpportunity,
+        )
+      const attacks =
+        !quietEngage && provokesAttacksOfOpportunity(message.action)
+          ? opportunityAttacks(state, investigator)
+          : []
       // RR, initiating abilities step 2 / attacks of opportunity: resource costs
       // are paid before enemies attack. Reactions cannot spend those resources twice.
       if (message.action.kind === 'play') {
@@ -1996,6 +2004,7 @@ export function handle(state: GameState, message: Message): GameState {
             damage: 0,
             horror: 0,
             uses: def.uses?.count ?? 0,
+            ...playerCardBehavior(message.code)?.entersPlayWith,
             ...noSlot,
             ...message.tokens,
           },

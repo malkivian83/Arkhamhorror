@@ -354,6 +354,10 @@ export interface PlayerCardBehavior {
   extraSlots?: Partial<Record<SlotType, number>>
   /** Additional slots that only assets with one of the traits may use (Bandolier: Weapon hand). */
   restrictedSlots?: { slot: SlotType; count: number; trait: string | string[] }[]
+  /** Damage or horror printed as already on the asset when it enters play (Jessica Hyde). */
+  entersPlayWith?: { damage?: number; horror?: number }
+  /** Engage actions of its controller do not provoke attacks of opportunity (Trench Knife). */
+  engageWithoutOpportunity?: boolean
   /** Printed cost X: chosen when paying; an asset enters play with X uses. */
   costX?: boolean
   /** Sin dueño (colocado en una localización o enemigo): habilidades para quien esté allí. */

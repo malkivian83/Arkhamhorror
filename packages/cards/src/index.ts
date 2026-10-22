@@ -167,7 +167,9 @@ import { SEQUENCED_EVENT_RENDERED_CODES } from './sequenced-events'
 import { RESTRICTED_SLOT_RENDERED_CODES } from './restricted-slots'
 import { STARTER_ACTION_RENDERED_CODES } from './starter-actions'
 import { SIMPLE_ASSET_RENDERED_CODES } from './simple-assets'
+import { SUPPORT_ALLY_RENDERED_CODES } from './support-allies'
 export const RENDERED_PLAYER_CARD_CODES = [
+  ...SUPPORT_ALLY_RENDERED_CODES,
   ...SIMPLE_ASSET_RENDERED_CODES,
   ...STARTER_ACTION_RENDERED_CODES,
   ...RESTRICTED_SLOT_RENDERED_CODES,
