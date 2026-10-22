@@ -6534,6 +6534,42 @@
       "sourceSha256": "05e813ac7542dd213ae81d76f7bb9148b02169e08214eb0c942962c8250d36d7",
       "path": "/local-assets/cards/es/thumbs/60163.webp",
       "sha256": "ef069389fb74a87d87f49c34f615f6b3f2b9af566a969b69c5873ef9fa61f7b2"
+    },
+    {
+      "source": "/local-assets/cards/en/05152.avif",
+      "sourceSha256": "809609e123fa5f1fa57e287a9aa5ced1128a159aed20507c1767cdc4871cdd5e",
+      "path": "/local-assets/cards/en/thumbs/05152.webp",
+      "sha256": "c3b99be0fcd8bb6ae649f0eed2402065c160950cbb001b36dd3c9e3fed527933"
+    },
+    {
+      "source": "/local-assets/cards/en/10028.avif",
+      "sourceSha256": "59defc469495e56af01ab7b3df986b06626995fa5fc61d344b07c7b2ce93887f",
+      "path": "/local-assets/cards/en/thumbs/10028.webp",
+      "sha256": "8bcc78aeb5a756e52b613c13a617b68ea396f520a8f0fc1d8cccb535bd9c87d0"
+    },
+    {
+      "source": "/local-assets/cards/en/10054.avif",
+      "sourceSha256": "72b8dc1a55764cede3953952d8a8645c69a24f92d35e9854b5de4a5e715117e9",
+      "path": "/local-assets/cards/en/thumbs/10054.webp",
+      "sha256": "0a27ada42f1675bef826cf21cc65fb257c86b58f699fa4dd0206f74be36e84df"
+    },
+    {
+      "source": "/local-assets/cards/es/05152.avif",
+      "sourceSha256": "2f1f61178117fe99569cfed19a75d26b8f48c9387ae0bb3d44ce34ababad177e",
+      "path": "/local-assets/cards/es/thumbs/05152.webp",
+      "sha256": "4494ea29bc4f68deeb5005f63ac45a3575fd6be21f40475d282c30f494ee7eb0"
+    },
+    {
+      "source": "/local-assets/cards/es/10028.avif",
+      "sourceSha256": "bae46220a3969cce2c99a7118fef8752522daaf5a84c1991fe8389959f393a6b",
+      "path": "/local-assets/cards/es/thumbs/10028.webp",
+      "sha256": "6d89fb229d68810e380acc56c240051fb0c47f9047adb782c722e8aef542dee3"
+    },
+    {
+      "source": "/local-assets/cards/es/10054.avif",
+      "sourceSha256": "9471ffbf25b6fdf767bea4fd17f6889973fefa767fd9633929545a31ff9089e0",
+      "path": "/local-assets/cards/es/thumbs/10054.webp",
+      "sha256": "55f1ed83862d8c025b3819724453fb2240e43f5f0883d10d973590bf32d60de7"
     }
   ]
 }

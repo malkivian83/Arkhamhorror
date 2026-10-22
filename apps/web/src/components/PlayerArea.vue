@@ -4,6 +4,7 @@ import {
   assetVitals,
   effectiveVitals,
   slotCapacity,
+  assetSlots,
   type Asset,
   type GameState,
   type Investigator,
@@ -112,7 +113,7 @@ const slots = computed(() => {
   )
   const free: Asset[] = []
   for (const a of assets.value) {
-    const needs = playerCardDef(a.code)?.slots ?? []
+    const needs = assetSlots(a)
     if (!needs.length) free.push(a)
     needs.forEach((type, n) => {
       const box = boxes.find((b) => b.type === type && !b.asset)

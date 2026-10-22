@@ -30,7 +30,12 @@ import {
   storyBehavior,
   treacheryBehavior,
 } from './content'
-import { assetVitals, attachedAttackSkillBonus, resolvingSkillBonus } from './asset-upgrades'
+import {
+  assetSlots,
+  assetVitals,
+  attachedAttackSkillBonus,
+  resolvingSkillBonus,
+} from './asset-upgrades'
 import { EngineError } from './errors'
 import { attackDamage } from './combat'
 import { nextInt, shuffle } from './rng'
@@ -1930,7 +1935,7 @@ export function handle(state: GameState, message: Message): GameState {
           (a) =>
             a.owner === message.investigator &&
             !isPermanent(a.code) &&
-            (playerCardDef(a.code)?.slots ?? []).includes(full),
+            assetSlots(a).includes(full),
         )
         return push(state, {
           type: 'Ask',
@@ -5703,7 +5708,7 @@ const count = <T>(items: T[], item: T) => items.filter((x) => x === item).length
 function slotsUsed(state: GameState, investigator: string, slot: SlotType): number {
   return Object.values(state.assets)
     .filter((a) => a.owner === investigator && !a.noSlot)
-    .reduce((sum, a) => sum + count(playerCardDef(a.code)?.slots ?? [], slot), 0)
+    .reduce((sum, a) => sum + count(assetSlots(a), slot), 0)
 }
 
 function commitIcons(state: GameState, test: SkillTest, code: string, by: string): number {

@@ -43,6 +43,7 @@ export {
 } from './content'
 export { applyInput, createGame, dispatch, type EngineObserver } from './engine'
 export {
+  assetSlots,
   assetVitals,
   attachedAttackDamageBonus,
   attachedAttackSkillBonus,

@@ -51,6 +51,29 @@
       "test": "card-60163.test.ts",
       "status": "verified",
       "fast": true
+    },
+    {
+      "code": "05152",
+      "family": "well-maintained",
+      "module": "card-05152",
+      "test": "card-05152.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "10028",
+      "family": "tinker",
+      "module": "card-10028",
+      "test": "card-10028.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "10054",
+      "family": "fine-tuning",
+      "module": "card-10054",
+      "test": "card-10054.test.ts",
+      "status": "verified"
     }
   ]
 }

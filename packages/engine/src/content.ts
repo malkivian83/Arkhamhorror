@@ -12,6 +12,7 @@ import type {
   Agenda,
   Asset,
   CardCode,
+  Choice,
   ChaosSymbol,
   ChaosToken,
   DamageSource,
@@ -305,6 +306,16 @@ export interface PlayerCardBehavior {
   attachedAttackSkill?: number
   /** Extra damage dealt to Monster enemies by successful attacks with the host asset. */
   attachedMonsterDamage?: number
+  /** Hand/accessory slots the host stops taking up while attached (Tinker). */
+  attachedSlotReduction?: number
+  /** Optional reaction after the host asset is discarded; the attachment has left play too. */
+  afterHostDiscarded?: (
+    state: GameState,
+    host: Asset,
+    self: { code: CardCode; owner: InvestigatorId },
+  ) => Choice | null
+  /** Optional reaction after the host asset exhausts (index in host.upgrades). */
+  afterHostExhausted?: (state: GameState, host: Asset, index: number) => Choice | null
   /** Triggered abilities printed on this event while it is attached (index in host.upgrades). */
   attachedAbilities?: (
     state: GameState,
