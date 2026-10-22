@@ -1823,7 +1823,9 @@
       "02014": "Exhaust Duke and spend an action to fight at base combat 4 with one extra damage, or investigate at base intellect 4 with an optional move to a connecting location first.",
       "02015": "On revelation, exhaust your assets and place this in your threat area. Your assets cannot ready until this weakness is discarded with its two-action ability.",
       "01081": "If this skill test is successful during an evasion attempt, the evading investigator may immediately disengage from each other enemy engaged with him or her, and may move to a connecting location.",
-      "02235": "If this test is successful during an evasion attempt, the evading investigator may immediately evade each other enemy engaged with him or her, and may move to a connecting location."
+      "02235": "If this test is successful during an evasion attempt, the evading investigator may immediately evade each other enemy engaged with him or her, and may move to a connecting location.",
+      "01023": "Fast. Play when an enemy attacks an investigator at your location. Cancel that attack.",
+      "01080": "Fast. Play when you would fail a skill test. Get +2 to your skill value for that test."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -2054,7 +2056,9 @@
       "02014": "Duke",
       "02015": "Wracked by Nightmares",
       "01081": "Survival Instinct",
-      "02235": "Survival Instinct"
+      "02235": "Survival Instinct",
+      "01023": "Dodge",
+      "01080": "Lucky!"
     }
   },
   "account": {

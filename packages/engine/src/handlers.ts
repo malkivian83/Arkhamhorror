@@ -2795,18 +2795,6 @@ export function handle(state: GameState, message: Message): GameState {
         ? updateEnemy(attacked, enemy.id, (e) => ({ ...e, exhausted: true }))
         : attacked
       // Solo los ataques de la fase de enemigos agotan al atacante.
-      const after: Message[] = message.exhaustAfter
-        ? [
-            {
-              type: 'Forced',
-              trigger: {
-                type: 'afterEnemyPhaseAttack',
-                enemy: enemy.id,
-                investigator: investigator.id,
-              },
-            },
-          ]
-        : []
       return push(
         next,
         // Ventana para cancelar el ataque antes de resolverlo (Counterattack).
@@ -2820,7 +2808,6 @@ export function handle(state: GameState, message: Message): GameState {
           investigator: investigator.id,
           exhaustAfter: message.exhaustAfter,
         },
-        ...after,
       )
     }
 
@@ -3290,6 +3277,18 @@ export function handle(state: GameState, message: Message): GameState {
             location: enemy.location,
           },
         },
+        ...(message.exhaustAfter
+          ? [
+              {
+                type: 'Forced' as const,
+                trigger: {
+                  type: 'afterEnemyPhaseAttack' as const,
+                  enemy: enemy.id,
+                  investigator: message.investigator,
+                },
+              },
+            ]
+          : []),
       )
     }
 
@@ -4058,11 +4057,12 @@ export function handle(state: GameState, message: Message): GameState {
       const failing =
         !test.autoFail &&
         !test.forcedSuccess &&
-        skillTestValue(state).total + test.tokenModifier < test.difficulty
+        Math.max(0, skillTestValue(state).total + test.tokenModifier) < test.difficulty
       const saves = failing
         ? [...new Set(investigator.hand)].filter(
             (code) =>
               playerCardBehavior(code)?.playWhenFailing &&
+              !typeBlocked(investigator, 'event', state.round) &&
               (playerCardDef(code)?.cost ?? 0) <= investigator.resources,
           )
         : []
@@ -4088,7 +4088,10 @@ export function handle(state: GameState, message: Message): GameState {
               label: 'ability.playCard',
               params: { card: playerCardDef(code)?.name ?? code },
               target: { type: 'hand', code },
-              then: [{ type: 'PlayCard', investigator: investigator.id, code }],
+              then: [
+                { type: 'PlayCard', investigator: investigator.id, code },
+                { type: 'AfterRevealWindow' },
+              ],
             })),
             { label: 'choice.skip', then: [] },
           ],

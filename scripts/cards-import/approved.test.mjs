@@ -23,6 +23,7 @@ describe('reviewed inventory conversion', () => {
     'distributed-results',
     'basic-action-skills',
     'movement-skills',
+    'reactive-events',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(
