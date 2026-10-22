@@ -139,46 +139,65 @@ function activeId() {
   return accountStorage.getItem('active-save')
 }
 /**
- * The open adventure is remembered in this tab so a reload reopens it. `base` is
- * the server revision the copy builds on: while the server has not gone past it,
- * the copy holds changes that may not have arrived yet.
+ * The open adventure is remembered in this tab so a reload reopens it, but it only
+ * reaches the library when the player saves it. `id` is the library entry it was
+ * opened from or saved to, and `base` the server revision the copy builds on: while
+ * the server has not gone past it, the copy holds changes that were not saved.
  */
 interface TabAdventure {
-  id: string
+  id: string | null
   base: number
   payload: unknown
 }
+/** The open adventure has changes that are not in the library. */
+export const unsavedGame = shallowRef(false)
 const tabKey = () => `lcg:active-adventure:${account.value.user?.id}`
-function rememberAdventure(record: LibraryDocument) {
-  const base = record.operation ? record.operation.revision + 1 : record.revision
-  const value: TabAdventure = { id: record.id, base, payload: record.payload }
+function rememberAdventure(id: string | null, base: number, payload: unknown) {
+  const value: TabAdventure = { id, base, payload }
   tabStorage((storage) => {
     try {
       storage.setItem(tabKey(), JSON.stringify(value))
     } catch {
-      // Full: the reload reopens the server copy, without the latest changes.
-      storage.setItem(tabKey(), JSON.stringify({ id: record.id, base: -1, payload: null }))
+      // Full: the reload reopens the library copy, without the latest changes.
+      storage.setItem(tabKey(), JSON.stringify({ id, base: -1, payload: null }))
     }
   })
 }
+const baseRevision = (record: LibraryDocument) =>
+  record.operation ? record.operation.revision + 1 : record.revision
 export function newAdventure() {
   accountStorage.removeItem('active-save')
   tabStorage((storage) => storage.removeItem(tabKey()))
+  unsavedGame.value = false
 }
-export async function trackGame(raw: string) {
+const isEmpty = (value: { campaign?: unknown; state?: unknown }) => !value.campaign && !value.state
+/** Keep the open adventure in this tab; the library only changes with `saveGame`. */
+export function trackGame(raw: string) {
   const value = JSON.parse(raw)
-  if (!value.campaign && !value.state) {
+  if (isEmpty(value)) {
     newAdventure()
     return
   }
-  const current = activeId()
-  const name = current ? records.get(current)?.name : undefined
-  // Assign before the async write so rapid changes cannot create duplicate campaigns.
-  const id = current ?? crypto.randomUUID()
+  const id = activeId()
+  const record = id ? records.get(id) : undefined
+  unsavedGame.value = !record || canonical(record.payload) !== canonical(value)
+  rememberAdventure(id, record ? baseRevision(record) : -1, value)
+}
+/** Save the open adventure to the library, as a new entry the first time. */
+export async function saveGame(raw: string) {
+  const value = JSON.parse(raw)
+  if (isEmpty(value)) return
+  // Assign before the async write so repeated saves cannot create duplicate entries.
+  const id = activeId() ?? crypto.randomUUID()
   accountStorage.setItem('active-save', id)
-  await saveDocument('campaign', name ?? value.campaign?.id ?? value.state.scenarioId, value, id)
+  const name = records.get(id)?.name ?? value.campaign?.id ?? value.state.scenarioId
+  await saveDocument('campaign', name, value, id)
   const record = records.get(id)
-  if (record && activeId() === id) rememberAdventure(record)
+  if (record && activeId() === id) {
+    rememberAdventure(id, baseRevision(record), value)
+    unsavedGame.value = false
+  }
+  await flush()
 }
 async function trackDecks(raw: string) {
   if (!loaded) throw new ApiError('network', 0)
@@ -284,30 +303,33 @@ export async function activateCampaign(id: string, load: (raw: string) => boolea
   const raw = JSON.stringify(record.payload)
   decodeSession(raw)
   accountStorage.setItem('active-save', id)
-  rememberAdventure(record)
+  rememberAdventure(id, record.revision, record.payload)
+  unsavedGame.value = false
   return load(raw)
 }
-/** Reopen the adventure this tab had open, keeping changes the server may have missed. */
-async function reopenAdventure() {
+/** Reopen the adventure this tab had open, keeping the changes that were not saved. */
+function reopenAdventure() {
   const saved = tabStorage((storage) => {
     const raw = storage.getItem(tabKey())
     return raw ? (JSON.parse(raw) as TabAdventure) : null
   })
   if (!saved) return
-  const record = records.get(saved.id)
-  if (!record || record.deleted) {
+  const record = saved.id ? records.get(saved.id) : undefined
+  if ((saved.id && (!record || record.deleted)) || (!record && saved.payload == null)) {
     newAdventure()
     return
   }
   const local =
-    saved.base >= record.revision && canonical(saved.payload) !== canonical(record.payload)
-  const payload = local ? saved.payload : record.payload
+    saved.payload != null &&
+    (!record ||
+      (saved.base >= record.revision && canonical(saved.payload) !== canonical(record.payload)))
+  const payload = local ? saved.payload : record!.payload
   try {
     const raw = JSON.stringify(payload)
     decodeSession(raw)
-    accountStorage.setItem('active-save', record.id)
+    if (record) accountStorage.setItem('active-save', record.id)
     accountStorage.setItem(SESSION_KEY, raw)
-    if (local) await saveDocument('campaign', record.name, payload, record.id)
+    unsavedGame.value = local
   } catch {
     accountStorage.removeItem(SESSION_KEY)
     newAdventure()
@@ -331,17 +353,19 @@ export async function initializeLibrary() {
   stopped = false
   unsubscribe?.()
   unsubscribe = onLocalChange((kind, raw) => {
+    if (kind === 'game') {
+      trackGame(raw)
+      return
+    }
     const task =
-      kind === 'game'
-        ? trackGame(raw)
-        : kind === 'decks'
-          ? trackDecks(raw)
-          : saveDocument(
-              'rewards',
-              'Rewards',
-              JSON.parse(raw),
-              [...records.values()].find((d) => d.kind === 'rewards')?.id,
-            )
+      kind === 'decks'
+        ? trackDecks(raw)
+        : saveDocument(
+            'rewards',
+            'Rewards',
+            JSON.parse(raw),
+            [...records.values()].find((d) => d.kind === 'rewards')?.id,
+          )
     void task.catch((error) => {
       syncError.value = error instanceof ApiError ? error.code : 'internal'
       syncStatus.value = syncError.value === 'network' ? 'offline' : 'error'
@@ -351,7 +375,7 @@ export async function initializeLibrary() {
     await refreshLibrary(true)
     syncStatus.value = 'saved'
     syncError.value = ''
-    await reopenAdventure()
+    reopenAdventure()
   } catch (error) {
     syncStatus.value = 'offline'
     syncError.value = error instanceof ApiError ? error.code : 'internal'

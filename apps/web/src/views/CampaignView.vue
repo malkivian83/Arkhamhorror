@@ -16,7 +16,7 @@ import { useRouter } from 'vue-router'
 import ChaosTokenView from '../components/ChaosTokenView.vue'
 import DisclosureIcon from '../components/DisclosureIcon.vue'
 import GameCard from '../components/GameCard.vue'
-import SessionTools from '../components/SessionTools.vue'
+import SaveGame from '../components/SaveGame.vue'
 import SitePage from '../components/SitePage.vue'
 import SiteAction from '../components/SiteAction.vue'
 import { cardName, classColor } from '../game/cards'
@@ -287,7 +287,7 @@ function abandon() {
         t('campaign.abandon')
       }}</SiteAction>
     </footer>
-    <div class="campaign-tools"><SessionTools /></div>
+    <div class="campaign-tools"><SaveGame /></div>
   </SitePage>
 
   <SitePage v-else :title="t('campaign.new')" icon="campaign">
@@ -523,15 +523,6 @@ function abandon() {
 }
 .campaign-tools {
   margin-top: 24px;
-}
-.campaign-tools :deep(.session-tools) {
-  border: 0;
-  padding: 0;
-  color: var(--muted);
-}
-.campaign-tools :deep(summary) {
-  cursor: pointer;
-  align-content: center;
 }
 .active-boons {
   padding: 0 20px;

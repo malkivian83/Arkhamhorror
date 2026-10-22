@@ -16,14 +16,11 @@ import {
   type Choice,
   type ChoiceTarget,
   type GameState,
-  type PlayerInput,
 } from '@lcg/engine'
 import { defineStore } from 'pinia'
 import { computed, nextTick, shallowRef } from 'vue'
 import { markOf, undoTarget, type UndoKind } from '../game/undo'
 import {
-  BACKUP_KEY,
-  RECOVERY_KEY,
   decodeSession,
   readSession,
   replay,
@@ -87,7 +84,6 @@ export const useGameStore = defineStore('game', () => {
   /** Campaña en curso: el escenario que se juega es uno de sus escenarios. */
   const campaign = shallowRef<Campaign | null>(loaded.data.campaign)
   if (campaign.value?.log.rewards?.length) useDecksStore().addRewards(campaign.value.log.rewards)
-  const failedInput = shallowRef<PlayerInput | null>(null)
 
   function persist() {
     try {
@@ -224,7 +220,6 @@ export const useGameStore = defineStore('game', () => {
     try {
       const review = createAdvanceReview(current)
       const next = applyInput(current, input, review.observe)
-      failedInput.value = null
       const h = history.value
       set(
         next,
@@ -233,7 +228,6 @@ export const useGameStore = defineStore('game', () => {
       )
       error.value = null
     } catch (e) {
-      failedInput.value = input
       error.value = e instanceof Error ? e.message : String(e)
     }
   }
@@ -304,39 +298,6 @@ export const useGameStore = defineStore('game', () => {
     }
   }
 
-  function restoreBackup(): boolean {
-    try {
-      const raw = accountStorage.getItem(BACKUP_KEY)
-      if (!raw) throw new SessionError('invalid')
-      return importSession(raw)
-    } catch {
-      storageIssue.value = 'invalid'
-      return false
-    }
-  }
-
-  function diagnostic() {
-    let preservedSave: string | null = null
-    try {
-      preservedSave = accountStorage.getItem(RECOVERY_KEY)
-    } catch {
-      /* Storage warning is already visible. */
-    }
-    return JSON.stringify(
-      {
-        format: 'lcg-diagnostic',
-        version: 1,
-        session: JSON.parse(exportSession()),
-        error: error.value,
-        storageIssue: storageIssue.value,
-        failedInput: failedInput.value,
-        preservedSave,
-      },
-      null,
-      2,
-    )
-  }
-
   /** Opciones de la pregunta actual agrupadas por el elemento de la mesa al que se refieren. */
   const choicesByTarget = computed(() => {
     const map = new Map<string, IndexedChoice[]>()
@@ -378,7 +339,5 @@ export const useGameStore = defineStore('game', () => {
     untargetedChoices,
     exportSession,
     importSession,
-    restoreBackup,
-    diagnostic,
   }
 })

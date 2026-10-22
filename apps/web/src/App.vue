@@ -4,7 +4,7 @@ import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import PlaymatPicker from './components/PlaymatPicker.vue'
-import SessionTools from './components/SessionTools.vue'
+import SaveGame from './components/SaveGame.vue'
 import SiteHeader from './components/SiteHeader.vue'
 import { scanLocale } from './game/cards'
 import { useCardLocale } from './game/localized'
@@ -120,7 +120,7 @@ function setLocale(value: Locale) {
             </button>
           </div>
         </div>
-        <SessionTools />
+        <SaveGame />
         <button type="button" class="menu-quit" @click="quit">{{ t('setup.quit') }}</button>
         <p class="menu-disclaimer">{{ t('app.disclaimer') }}</p>
       </div>
@@ -360,62 +360,15 @@ body {
   background: linear-gradient(180deg, #e0bf7c, var(--brass));
   font-weight: 700;
 }
-/* Guardado y recuperación: submenú plegable dentro del menú de partida. */
-.game-menu details.session-tools {
+/* Guardar partida: separado del resto de opciones del menú. */
+.game-menu .save-game {
   margin: 0;
   padding: 16px 0 0;
-  border: 0;
   border-top: 1px solid rgb(200 162 90 / 25%);
-  border-radius: 0;
 }
-.game-menu .session-tools > summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 44px;
-  padding: 6px 12px;
-  font-family: var(--fell);
-  font-size: 1rem;
-  color: var(--parch);
-  background: linear-gradient(180deg, #33281a, #1f170d);
-  border: 1px solid var(--brass-dark);
-  border-radius: 3px;
-  box-shadow:
-    inset 0 1px 0 rgb(232 220 188 / 10%),
-    0 2px 6px rgb(0 0 0 / 45%);
-  cursor: pointer;
-  list-style: none;
-}
-.game-menu .session-tools > summary::-webkit-details-marker {
-  display: none;
-}
-.game-menu .session-tools > summary .disclosure-icon {
-  color: var(--brass);
-}
-.game-menu .session-tools > summary:hover {
-  color: #f6ecd2;
-  border-color: var(--brass);
-}
-.game-menu .session-tools > :not(summary, dialog) {
-  margin-left: 12px;
-  padding-left: 12px;
-  border-left: 1px solid rgb(200 162 90 / 30%);
-}
-.game-menu .session-tools > p {
-  margin-top: 12px;
+.game-menu .save-game p {
   color: #b8aa8c;
   font-size: 0.85rem;
-}
-.game-menu .session-tools .session-buttons {
-  display: grid;
-}
-.game-menu .session-tools .paste-import summary {
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  font-family: var(--fell);
-  color: #d8c49a;
-  cursor: pointer;
 }
 /* Abandonar: la única acción destructiva, en lacre y apartada abajo. */
 .game-menu .menu-quit {

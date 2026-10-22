@@ -12,7 +12,6 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import DisclosureIcon from '../components/DisclosureIcon.vue'
-import SessionTools from '../components/SessionTools.vue'
 import SiteAction from '../components/SiteAction.vue'
 import SiteFooter from '../components/SiteFooter.vue'
 import SkillIcon from '../components/SkillIcon.vue'
@@ -605,7 +604,6 @@ function start() {
         </div>
       </div>
     </form>
-    <div class="setup-tools"><SessionTools /></div>
     <SiteFooter class="setup-footer" />
   </div>
 </template>
@@ -1018,24 +1016,11 @@ h1 {
   min-height: 52px;
 }
 
-.setup-tools,
 .setup-footer {
   max-width: 1312px;
   margin: auto;
   padding: 0 64px;
   box-sizing: border-box;
-}
-.setup-tools {
-  padding-top: 24px;
-}
-.setup-tools :deep(.session-tools) {
-  margin: 0;
-  padding: 12px 0 0;
-  color: var(--site-muted);
-  background: transparent;
-  border: 0;
-  border-top: 1px solid var(--site-line);
-  border-radius: 0;
 }
 .setup-footer {
   padding-block: 18px 28px;
@@ -1048,7 +1033,6 @@ h1 {
   .hero-content,
   .setup-content,
   .dock-content,
-  .setup-tools,
   .setup-footer {
     padding-inline: 32px;
   }
@@ -1198,7 +1182,6 @@ h1 {
     flex-basis: 100%;
     min-height: 50px;
   }
-  .setup-tools,
   .setup-footer {
     padding-inline: 16px;
   }

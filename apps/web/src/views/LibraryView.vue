@@ -2,21 +2,19 @@
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import { account, api, ApiError } from '../account/api'
+import { account, ApiError } from '../account/api'
 import {
   activateCampaign,
   documents,
   editMetadata,
   refreshLibrary,
   resolveConflict,
-  saveDocument,
   syncError,
-  syncStatus,
 } from '../account/library'
 import { useGameStore } from '../stores/game'
 import { useDecksStore } from '../stores/decks'
 import { currentScenario } from '@lcg/cards'
-import { decodeSession, session, type Session } from '@lcg/saves'
+import { session, type Session } from '@lcg/saves'
 import SitePage from '../components/SitePage.vue'
 import SiteAction from '../components/SiteAction.vue'
 import DisclosureIcon from '../components/DisclosureIcon.vue'
@@ -27,8 +25,7 @@ const { t, te } = useI18n(),
   game = useGameStore()
 const showArchived = ref(false),
   busy = ref(false),
-  error = ref(''),
-  notice = ref('')
+  error = ref('')
 const campaigns = computed(() =>
   documents.value.filter(
     (d) => d.kind === 'campaign' && !d.deleted && (showArchived.value || !d.archived),
@@ -66,7 +63,6 @@ onMounted(() => {
 async function run(action: () => Promise<unknown>) {
   busy.value = true
   error.value = ''
-  notice.value = ''
   try {
     await action()
   } catch (e) {
@@ -94,28 +90,6 @@ async function rename(id: string, current: string) {
   const name = window.prompt(t('library.rename'), current)
   if (name?.trim()) await editMetadata(id, { name: name.trim().slice(0, 160) })
 }
-function download(value: unknown, name: string) {
-  const url = URL.createObjectURL(
-    new Blob([JSON.stringify(value, null, 2)], { type: 'application/json' }),
-  )
-  const a = document.createElement('a')
-  a.href = url
-  a.download = name
-  a.click()
-  setTimeout(() => URL.revokeObjectURL(url), 1000)
-}
-async function restore(id: string) {
-  const result = await api<{ revisions: { revision: number }[] }>(`/library/${id}/revisions`)
-  const revision = window.prompt(
-    t('library.revisionPrompt', { revisions: result.revisions.map((r) => r.revision).join(', ') }),
-  )
-  if (!revision || !result.revisions.some((r) => r.revision === Number(revision))) return
-  const resultSave = await api<{ payload: unknown }>(`/library/${id}/revisions/${revision}`)
-  decodeSession(JSON.stringify(resultSave.payload))
-  const doc = documents.value.find((d) => d.id === id)!
-  await saveDocument('campaign', doc.name, resultSave.payload)
-  notice.value = 'restored'
-}
 </script>
 
 <template>
@@ -124,13 +98,9 @@ async function restore(id: string) {
       <SiteAction to="/" icon="+">{{ t('campaign.new') }}</SiteAction>
     </template>
     <template v-if="account.user">
-      <div class="sync-bar">
-        <p role="status">{{ t(`account.sync.${syncStatus}`) }}</p>
-      </div>
       <p v-if="error || syncError" class="error" role="alert">
         {{ t(`account.errors.${error || syncError}`) }}
       </p>
-      <p v-if="notice" role="status">{{ t(`library.${notice}`) }}</p>
       <div v-for="conflict in conflicts" :key="conflict.id" class="conflict">
         <h2>{{ t('library.conflictTitle') }}: {{ conflict.name }}</h2>
         <p>{{ t('library.conflictHelp') }}</p>
@@ -155,9 +125,6 @@ async function restore(id: string) {
           @click="run(() => handleConflict(conflict.id, false))"
         >
           {{ t('library.useRemote') }}
-        </button>
-        <button type="button" @click="download(conflict.payload, 'arkham-local-copy.json')">
-          {{ t('session.export') }}
         </button>
       </div>
       <div class="library-heading">
@@ -223,16 +190,6 @@ async function restore(id: string) {
                   >
                     {{ doc.archived ? t('library.unarchive') : t('library.archive') }}
                   </button>
-                  <button type="button" @click="download(doc.payload, 'arkham-campaign.json')">
-                    {{ t('session.export') }}
-                  </button>
-                  <button
-                    type="button"
-                    :disabled="busy || !doc.revision"
-                    @click="run(() => restore(doc.id))"
-                  >
-                    {{ t('library.restore') }}
-                  </button>
                   <button
                     type="button"
                     class="delete-action"
@@ -249,12 +206,6 @@ async function restore(id: string) {
       </div>
       <footer class="library-actions">
         <RouterLink class="link-button" to="/decks">{{ t('decks.manage') }}</RouterLink>
-        <button
-          type="button"
-          @click="download({ format: 'lcg-library', version: 1, documents }, 'arkham-library.json')"
-        >
-          {{ t('library.exportAll') }}
-        </button>
       </footer>
     </template>
     <div v-else class="empty guest-library">
@@ -273,23 +224,6 @@ async function restore(id: string) {
 p {
   line-height: 1.6;
   color: var(--muted);
-}
-.sync-bar {
-  margin: 0 0 20px;
-  font-size: 0.875rem;
-}
-.sync-bar p {
-  margin: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-.sync-bar p::before {
-  content: '';
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: currentColor;
 }
 .library-heading {
   display: flex;
