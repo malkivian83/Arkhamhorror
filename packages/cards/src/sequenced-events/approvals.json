@@ -1,0 +1,30 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "sourceSnapshotSha256": "36bdf57ced256a33c3145b1562eea5f8ea6146d38e6a600cb04e27d43ef5749e",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "cards": [
+    {
+      "code": "01064",
+      "family": "encounter",
+      "module": "card-01064",
+      "test": "card-01064.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "03239",
+      "family": "supplies",
+      "module": "card-03239",
+      "test": "card-03239.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60115",
+      "family": "defeat",
+      "module": "card-60115",
+      "test": "card-60115.test.ts",
+      "status": "verified",
+      "fast": true
+    }
+  ]
+}
