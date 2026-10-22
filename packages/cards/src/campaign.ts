@@ -1,3 +1,4 @@
+import './direct-effects'
 import './skill-tricks'
 import './support-allies'
 import './simple-assets'

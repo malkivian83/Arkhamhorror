@@ -1,0 +1,108 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "sourceSnapshotSha256": "36bdf57ced256a33c3145b1562eea5f8ea6146d38e6a600cb04e27d43ef5749e",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "cards": [
+    {
+      "code": "01026",
+      "family": "ammo",
+      "module": "card-01026",
+      "test": "tokens.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01526",
+      "family": "ammo",
+      "module": "card-01526",
+      "test": "tokens.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "06161",
+      "family": "ammo",
+      "module": "card-06161",
+      "test": "tokens.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "08063",
+      "family": "charges",
+      "module": "card-08063",
+      "test": "tokens.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04152",
+      "family": "charges",
+      "module": "card-04152",
+      "test": "tokens.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "02225",
+      "family": "reaction",
+      "module": "card-02225",
+      "test": "effects.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "03229",
+      "family": "damage",
+      "module": "card-03229",
+      "test": "effects.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04269",
+      "family": "damage",
+      "module": "card-04269",
+      "test": "effects.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04233",
+      "family": "resources",
+      "module": "card-04233",
+      "test": "effects.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04234",
+      "family": "resources",
+      "module": "card-04234",
+      "test": "effects.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "02267",
+      "family": "doom",
+      "module": "card-02267",
+      "test": "effects.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "03237",
+      "family": "tests",
+      "module": "card-03237",
+      "test": "effects.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04027",
+      "family": "tests",
+      "module": "card-04027",
+      "test": "effects.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "08061",
+      "family": "healing",
+      "module": "card-08061",
+      "test": "effects.test.ts",
+      "status": "verified"
+    }
+  ]
+}
