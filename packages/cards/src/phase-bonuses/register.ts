@@ -10,9 +10,10 @@ import { ask, continuation } from '../dunwich-pilot/effects'
 // RR: Lasting Effects, Activate. The bonus survives its source leaving play;
 // it changes only tests of the selected skill within this phase and round.
 export function registerPhaseAsset(code: string): void {
-  if (code === '07152') {
+  if (code === '07152' || code === '02185') {
     registerPlayerCard({
       code,
+      ...(code === '02185' ? { permanent: {} } : {}),
       fastOptions: (s, a) =>
         getInvestigator(s, a.owner).resources < 2
           ? []

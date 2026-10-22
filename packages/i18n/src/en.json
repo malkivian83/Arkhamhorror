@@ -390,6 +390,7 @@
     "upkeep": "Upkeep phase"
   },
   "ability": {
+    "permanentPact": "{card}: add 1 doom for +3 {skill} in this test",
     "phaseKeenEye": "{card}: spend {n} resources for +1 {skill} until the end of the phase",
     "phaseEncyclopedia": "{card}: grant +2 to a skill until the end of the phase",
     "parleyBystander": "Parley: test Intellect (2) to discard a Bystander",
@@ -1782,6 +1783,11 @@
       "09062": "Talent. Trick. Illicit."
     },
     "summary": {
+      "02185": "Permanent.\n[fast] Spend 2 resources: You get +1 [intellect] until the end of the phase.\n[fast] Spend 2 resources: You get +1 [combat] until the end of the phase.",
+      "02191": "Permanent.\n[fast] Add 1 doom to Blood Pact: You get +3 [willpower] for this skill test. (Limit once per test.)\n[fast] Add 1 doom to Blood Pact: You get +3 [combat] for this skill test. (Limit once per test.)",
+      "02187": "Permanent.\nWhile you have 5 or more cards in your hand, Higher Education gains:\n\"[fast] Spend 1 resource: You get +2 [willpower] for this skill test.\n[fast] Spend 1 resource: You get +2 [intellect] for this skill test.\"",
+      "02189": "Permanent.\n[fast] Spend 2 resources: You get +3 [intellect] for this skill test.\n[fast] Spend 2 resources: You get +3 [agility] for this skill test.",
+      "02193": "Permanent.\n[fast] Spend 1 resource: You get +1 [combat] for this skill test.\n[fast] Spend 1 resource: You get +1 [agility] for this skill test.",
       "01042": "[action] Exhaust Encyclopedia: Choose an investigator at your location. That investigator gets +2 to a skill of your choice until the end of the phase.",
       "60208": "Uses (5 secrets).\n[action] Exhaust Encyclopedia and spend 1 secret: Choose an investigator at your location. That investigator gets +2 to a skill of your choice until the end of the phase.",
       "07152": "[fast] Spend 2 resources: You get +1 [intellect] until the end of the phase.\n[fast] Spend 2 resources: You get +1 [combat] until the end of the phase.",
@@ -2184,6 +2190,11 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "02185": "Keen Eye",
+      "02191": "Blood Pact",
+      "02187": "Higher Education",
+      "02189": "Streetwise",
+      "02193": "Scrapper",
       "01042": "Encyclopedia",
       "60208": "Encyclopedia",
       "07152": "Keen Eye",

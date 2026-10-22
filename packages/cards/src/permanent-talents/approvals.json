@@ -1,0 +1,48 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "sourceSnapshotSha256": "36bdf57ced256a33c3145b1562eea5f8ea6146d38e6a600cb04e27d43ef5749e",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "cards": [
+    {
+      "code": "02185",
+      "family": "phase",
+      "module": "card-02185",
+      "test": "card-02185.test.ts",
+      "status": "verified",
+      "adapter": "reviewed-talent-permanent-v1"
+    },
+    {
+      "code": "02187",
+      "family": "test",
+      "module": "card-02187",
+      "test": "card-02187.test.ts",
+      "status": "verified",
+      "adapter": "reviewed-talent-permanent-v1"
+    },
+    {
+      "code": "02189",
+      "family": "test",
+      "module": "card-02189",
+      "test": "card-02189.test.ts",
+      "status": "verified",
+      "adapter": "reviewed-talent-permanent-v1"
+    },
+    {
+      "code": "02191",
+      "family": "test",
+      "module": "card-02191",
+      "test": "card-02191.test.ts",
+      "status": "verified",
+      "adapter": "reviewed-talent-permanent-v1"
+    },
+    {
+      "code": "02193",
+      "family": "test",
+      "module": "card-02193",
+      "test": "card-02193.test.ts",
+      "status": "verified",
+      "adapter": "reviewed-talent-permanent-v1"
+    }
+  ]
+}

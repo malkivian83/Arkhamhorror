@@ -67,6 +67,7 @@ vigente de pendientes.
 | 44 | [Pete, Duke y su debilidad](44-investigador-ashcan-pete.md) | Sexto investigador, mazo inicial, reglas completas y recursos oficiales EN/ES de la referencia. |
 | 45 | [Habilidades de evasión y movimiento](45-habilidades-de-movimiento.md) | Instinto de supervivencia 0/2 y Ágil; tres niveles distintos, movimiento opcional y momento de cierre de prueba. |
 | 57 | [Bonos hasta el final de fase](57-bonos-hasta-final-de-fase.md) | Encyclopedia 0/2 y Keen Eye 0; duración por fase y ronda, acumulación y ventanas rápidas compartidas. |
+| 58 | [Talentos permanentes](58-talentos-permanentes.md) | Cinco niveles nuevos con costes y límites revisados, compra y preparación de permanentes. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

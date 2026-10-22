@@ -27,8 +27,13 @@ export function approvedDefinition(card, approval) {
     approval.adapter === 'equivalent-permanent-v1' &&
     /^[0-9]{5}$/.test(approval.behaviorSource ?? '') &&
     /^[a-f0-9]{64}$/.test(approval.equivalenceSha256 ?? '')
+  const talentPermanent =
+    card.flags.permanent &&
+    approval.adapter === 'reviewed-talent-permanent-v1' &&
+    ['02185', '02187', '02189', '02191', '02193'].includes(card.code) &&
+    card.deckLimit === 2
   if (
-    (card.flags.permanent && !permanentReprint && !creationPermanent) ||
+    (card.flags.permanent && !permanentReprint && !creationPermanent && !talentPermanent) ||
     ['exceptional', 'myriad', 'exile'].some((key) => card.flags[key])
   )
     throw new Error(`Keyword requires a dedicated adapter: ${card.code}`)

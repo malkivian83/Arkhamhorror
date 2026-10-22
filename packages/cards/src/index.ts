@@ -161,7 +161,9 @@ import { BASIC_ABILITY_RENDERED_CODES } from './basic-abilities'
 import { BASIC_EVENT_RENDERED_CODES } from './basic-events'
 import { ASSET_UTILITY_RENDERED_CODES } from './asset-utilities'
 import { PHASE_BONUS_RENDERED_CODES } from './phase-bonuses'
+import { PERMANENT_TALENT_RENDERED_CODES } from './permanent-talents'
 export const RENDERED_PLAYER_CARD_CODES = [
+  ...PERMANENT_TALENT_RENDERED_CODES,
   ...PHASE_BONUS_RENDERED_CODES,
   ...pilotCodes,
   ...FOLLOWUP_RENDERED_CODES,

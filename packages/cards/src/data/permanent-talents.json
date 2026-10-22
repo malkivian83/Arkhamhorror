@@ -1,0 +1,52 @@
+[
+  {
+    "code": "02185",
+    "name": "Keen Eye",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Talent"],
+    "xp": 3,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "02187",
+    "name": "Higher Education",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Talent"],
+    "xp": 3,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "02189",
+    "name": "Streetwise",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent"],
+    "xp": 3,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "02191",
+    "name": "Blood Pact",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell", "Pact"],
+    "xp": 3,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "02193",
+    "name": "Scrapper",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Talent"],
+    "xp": 3,
+    "icons": {},
+    "slots": []
+  }
+]
