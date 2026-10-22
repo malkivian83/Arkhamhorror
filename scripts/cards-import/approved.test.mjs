@@ -27,6 +27,7 @@ describe('reviewed inventory conversion', () => {
     'direct-events',
     'search-assets',
     'attached-upgrades',
+    'survivor-deck',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(
@@ -84,5 +85,25 @@ describe('reviewed inventory conversion', () => {
         manifest.cards.find((c) => c.code === '02158'),
       ).code,
     ).toBe('02158')
+  })
+  it('restricts creation-permanent and dual-faction adapters to their reviewed cards', async () => {
+    const { cards } = await read(
+      '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
+    )
+    const reviewed = await read('../../packages/cards/src/survivor-deck/approvals.json')
+    for (const code of ['08071', '08125', '08105']) {
+      const card = cards.find((c) => c.code === code)
+      const approval = reviewed.cards.find((c) => c.code === code)
+      expect(approvedDefinition(card, approval).code).toBe(code)
+      expect(() => approvedDefinition(card, { ...approval, adapter: undefined })).toThrow()
+    }
+    const unrelated = cards.find((c) => c.code === '02158')
+    expect(() =>
+      approvedDefinition(unrelated, {
+        code: unrelated.code,
+        status: 'verified',
+        adapter: 'reviewed-creation-permanent-v1',
+      }),
+    ).toThrow('dedicated adapter')
   })
 })

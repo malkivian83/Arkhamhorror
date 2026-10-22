@@ -68,7 +68,11 @@ describe('mazos: validación', () => {
   it('el mazo vacío lleva las exclusivas y el catálogo respeta las opciones', () => {
     expect(emptyDeck(DANIELA, 'x', 'x').cards).toEqual([code(2), code(3)])
     const pool = cardPool(DANIELA)
-    expect(pool.every((c) => ['guardian', 'neutral', 'survivor'].includes(c.class))).toBe(true)
+    expect(
+      pool.every((c) =>
+        (c.classes ?? [c.class]).some((f) => ['guardian', 'neutral', 'survivor'].includes(f)),
+      ),
+    ).toBe(true)
     expect(pool.some((c) => c.class === 'survivor' && (c.xp ?? 0) > 2)).toBe(false)
   })
 
@@ -95,6 +99,8 @@ describe('mazos: debilidad básica al azar', () => {
     expect(a).toHaveLength(cards.length + 1)
     expect(withRandomBasicWeakness(cards, 7)).toEqual(a)
     expect(withRandomBasicWeakness(daniela().cards, 7)).toEqual(daniela().cards)
+    expect(withRandomBasicWeakness([...cards, '01000'], 7)).toEqual(a)
+    expect(withRandomBasicWeakness([...daniela().cards, '01000'], 7)).toEqual(daniela().cards)
   })
 
   it('una campaña con mazo propio recibe la debilidad al empezar', () => {

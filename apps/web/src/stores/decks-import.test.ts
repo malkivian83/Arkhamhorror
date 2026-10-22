@@ -60,4 +60,20 @@ describe('ArkhamDB deck persistence', () => {
     expect(await store.importFromArkhamDb('123')).toEqual({ ok: false, error: 'invalidData' })
     expect(store.decks).toEqual([])
   })
+  it('migrates the random-basic-weakness placeholder out of already saved decks', () => {
+    accountStorage.setItem(
+      'lcg:decks',
+      JSON.stringify([
+        {
+          id: 'old',
+          name: 'Old import',
+          investigator: '02005',
+          cards: ['01000', '02014', '02015'],
+        },
+      ]),
+    )
+    const store = useDecksStore()
+    expect(store.decks[0]!.cards).toEqual(['02014', '02015'])
+    expect(store.check(store.decks[0]!).needsBasicWeakness).toBe(true)
+  })
 })

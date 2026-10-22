@@ -2,6 +2,7 @@ import { accountStorage, notifyLocalChange } from '../account/storage'
 import {
   arkhamDbDeckId,
   deckFromArkhamDb,
+  RANDOM_BASIC_WEAKNESS,
   validateDeck,
   type ArkhamDbDeck,
   type DeckList,
@@ -28,7 +29,12 @@ function loadRewards(): CardCode[] {
 function load(): DeckList[] {
   try {
     const raw = accountStorage.getItem(STORAGE_KEY)
-    return raw ? (JSON.parse(raw) as DeckList[]) : []
+    return raw
+      ? (JSON.parse(raw) as DeckList[]).map((deck) => ({
+          ...deck,
+          cards: deck.cards.filter((code) => code !== RANDOM_BASIC_WEAKNESS),
+        }))
+      : []
   } catch {
     return []
   }

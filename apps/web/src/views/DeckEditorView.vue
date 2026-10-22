@@ -149,7 +149,7 @@ const pool = computed(() => {
   })
     .filter(
       (c) =>
-        (!classFilter.value || c.class === classFilter.value) &&
+        (!classFilter.value || (c.classes ?? [c.class]).includes(classFilter.value)) &&
         (!typeFilter.value || c.type === typeFilter.value) &&
         (!levelZero.value || (c.xp ?? 0) === 0) &&
         (!text || name(c.code).toLowerCase().includes(text) || c.name.toLowerCase().includes(text)),
@@ -163,7 +163,7 @@ const poolClasses = computed(() =>
           cardPool(selected.value.investigator, {
             rewards: store.rewards,
             deck: selected.value.cards,
-          }).map((c) => c.class),
+          }).flatMap((c) => c.classes ?? [c.class]),
         ),
       ]
     : [],
@@ -363,7 +363,11 @@ const titleCount = (code: string) => {
             </div>
             <ul>
               <li v-for="c in pool" :key="c.code">
-                <ClassIcon :faction="c.class" />
+                <ClassIcon
+                  v-for="faction in c.classes ?? [c.class]"
+                  :key="faction"
+                  :faction="faction"
+                />
                 <span
                   class="card-name preview-trigger"
                   :style="{ '--class': classColor(c.code) }"

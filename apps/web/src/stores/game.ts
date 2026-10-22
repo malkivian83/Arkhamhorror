@@ -165,7 +165,7 @@ export const useGameStore = defineStore('game', () => {
       boons,
       useDecksStore().rewards,
     )
-    if (boons.includes('ancients') && Object.values(next.log.investigators).some((i) => i.xp > 0)) {
+    if (Object.values(next.log.investigators).some((i) => i.xp > 0)) {
       newAdventure()
       setCampaign(next)
       set(null, null)

@@ -197,7 +197,9 @@
       "solutionMeddler": "¿Retiras 2 pistas de la Solución siniestra?"
     },
     "chooseSpawnLocation": "¿Dónde aparece {enemy}?",
-    "investigatorFast": "Ventana de habilidades gratuitas"
+    "investigatorFast": "Ventana de habilidades gratuitas",
+    "playerRevelationOrder": "Elige la siguiente revelación de carta de jugador",
+    "immediateAction": "Realiza una acción como si fuera tu turno"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -353,7 +355,9 @@
     "peteInvestigate": "Investigar en {location} con Duke",
     "survivalDisengage": "Dejar de estar enfrentado a los demás enemigos",
     "survivalEvade": "Evitar a los demás enemigos",
-    "attachUpgrade": "Vincular a {card}"
+    "attachUpgrade": "Vincular a {card}",
+    "crossroadsAction": "{name}: realiza una acción y descarta 1 carta al azar",
+    "crossroadsCards": "{name}: pierde 1 acción en el próximo turno y roba 3 cartas ahora"
   },
   "phase": {
     "setup": "Preparación",
@@ -522,7 +526,11 @@
     "reactiveShovel": "{card}: descartar para descubrir 1 pista",
     "combatAmmo": "{card}: gastar {n} municiones para atacar a {enemy}",
     "combatReload": "{card}: recargar 1 flecha",
-    "peteReady": "Pete: descartar una carta para preparar un apoyo"
+    "peteReady": "Pete: descartar una carta para preparar un apoyo",
+    "survivorWolfResource": "Lobo solitario: obtén 1 recurso",
+    "survivorShoesMove": "Zapatos de atletismo: agota y prueba agilidad (3)",
+    "survivorIcePick": "Picahielos: agota para +1 a la habilidad",
+    "survivorMaskBoost": "Máscara de lobo: gasta 1 ofrenda para +2 a la habilidad"
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -772,6 +780,8 @@
     "expert": "Experto"
   },
   "setup": {
+    "inTheThickOfItTrauma": "En el meollo: elige tus dos traumas iniciales",
+    "startingTraumaChoice": "{physical} trauma físico / {mental} trauma mental",
     "continue": "Continuar la partida guardada",
     "chooseInvestigators": "Elige de 1 a 4 investigadores",
     "orderHint": "El orden en que los eliges es el orden de jugadores. Al empezar cada escenario elegiréis al investigador jefe, que pasa a ser el primero.",
@@ -1366,7 +1376,7 @@
   "deck": {
     "problem": {
       "unknownInvestigator": "Investigador desconocido.",
-      "size": "Tiene {n} cartas y deben ser {size} (sin contar exclusivas ni debilidades).",
+      "size": "Tiene {n} cartas y deben ser {size} (sin contar exclusivas, debilidades ni permanentes).",
       "notAllowed": "{card} no está entre sus opciones de construcción.",
       "tooManyCopies": "{n} copias de {card}: como mucho 2.",
       "missingSignature": "Falta su carta exclusiva {card}.",
@@ -1582,7 +1592,20 @@
       "story": "Historia",
       "scenario": "Escenario"
     },
+    "traits": {
+      "01048": "Aliado. Criminal.",
+      "02188": "Talento.",
+      "05036": "Objeto. Ropa. Calzado.",
+      "06165": "Fortuna.",
+      "08071": "Talento.",
+      "08105": "Objeto. Herramienta. Cuerpo a cuerpo.",
+      "08125": "Maldición.",
+      "09109": "Dilema. Perspicacia.",
+      "10023": "Objeto. Talismán. Máscara.",
+      "10116": "Experimentado."
+    },
     "summary": {
+      "08125": "Permanente. Límite de 1 por mazo. Adquiérela al crear el mazo: sufre 2 traumas físicos y/o mentales en total y gana 3 puntos de experiencia.",
       "10051": "Añade un comodín si controlas un apoyo Ciencia o Herramienta; dos con al menos 3 de esos apoyos.",
       "10076": "Tras una evasión con éxito, puedes evitar automáticamente a otro enemigo en tu lugar.",
       "10130": "Añade tres comodines durante una prueba de negociar.",
@@ -1835,7 +1858,16 @@
       "01080": "Rápido. Juégala cuando fueras a fallar una prueba de habilidad. Recibes +2 a tu valor de habilidad para esa prueba.",
       "60159": "Cuerpo. 2 de salud. Después de jugarlo, puedes buscar entre las 6 primeras cartas de tu mazo una carta Arma de fuego o Mejora, añadirla a tu mano y barajar.",
       "04019": "Rápido. Solo durante tu turno. Vincula a un apoyo Aliado que controles. Recibe +1 de salud y +1 de cordura.",
-      "04020": "Rápido. Solo durante tu turno. Vincula a un apoyo Objeto que controles. Al resolver una capacidad activada del apoyo vinculado, recibes +1 a cada una de tus habilidades."
+      "04020": "Rápido. Solo durante tu turno. Vincula a un apoyo Objeto que controles. Al resolver una capacidad activada del apoyo vinculado, recibes +1 a cada una de tus habilidades.",
+      "01048": "Durante tu turno puedes realizar una acción adicional. Aliado único con 2 de salud y 2 de cordura.",
+      "02188": "Límite de 1 por investigador. Al comenzar tu turno puedes obtener 1 recurso si no hay otros investigadores en tu Lugar.",
+      "05036": "Límite de 1 Calzado por investigador. +1 [agility]. Tras moverte, antes del enfrentamiento de Enemigos, agótalos para probar [agility] (3); si tienes éxito, muévete a un Lugar conectado.",
+      "06165": "Devuelve a tu mano una carta de nivel 0 de tu pila de descartes. No admite cartas sin nivel, incluidas las exclusivas.",
+      "08071": "Permanente; límite de 1 por mazo; solo se compra al crear el mazo. Al comenzar tu primer turno descarta las 10 primeras cartas de tu mazo, sin robarlas.",
+      "08105": "Rápido. Buscador/Superviviente, nivel 1. Durante tu prueba de combatir o investigar, agótalo para recibir +1 a tu valor de habilidad en esa prueba.",
+      "09109": "Revelación; máximo de 2 Dilema por ronda para todo el grupo. Elige un investigador: realiza una acción inmediata como si fuera su turno y después descarta una carta al azar; o pierde una acción en su próximo turno y roba 3 cartas ahora.",
+      "10023": "Límite de 1 Máscara por investigador. Comienza con 2 ofrendas; repone 1 al enfrentarte a un Enemigo, hasta 2. Una vez por prueba, gasta 1 para recibir +2 [combat] o +2 [agility] en esa prueba.",
+      "10116": "Sin iconos de habilidad. Se asigna a combatir o evitar contra un Enemigo de tu Lugar o de uno conectado. Con éxito, le inflige 1 punto de daño por separado."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -1849,6 +1881,7 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "08125": "En el meollo",
       "10051": "Bien financiado",
       "10076": "Pies ligeros",
       "10130": "Elegante",
@@ -2074,7 +2107,16 @@
       "01080": "¡Qué suerte!",
       "60159": "Chaleco protector",
       "04019": "De confianza",
-      "04020": "Fiable"
+      "04020": "Fiable",
+      "01048": "Leo De Luca",
+      "02188": "Lobo solitario",
+      "05036": "Zapatos de atletismo",
+      "06165": "Reaprovechamiento",
+      "08071": "Suministros escasos",
+      "08105": "Picahielos",
+      "09109": "En una encrucijada",
+      "10023": "Máscara de lobo",
+      "10116": "Asalto a distancia"
     }
   },
   "account": {

@@ -31,10 +31,15 @@ const router = useRouter()
 const game = useGameStore()
 const deckStore = useDecksStore()
 const deckFor = ref<Record<string, string>>({})
+const startingPhysicalTrauma = ref<Record<string, number>>(
+  Object.fromEntries(Object.keys(STARTER_DECKS).map((key) => [key, 0])),
+)
 const validDecks = (key: DeckKey) =>
   deckStore.decks.filter(
     (d) => d.investigator === starterInvestigator(key).id && !deckStore.check(d).problems.length,
   )
+const selectedDeckFor = (key: DeckKey) =>
+  validDecks(key).find((deck) => deck.id === deckFor.value[key])
 const investigators = Object.keys(STARTER_DECKS).map((key) => ({
   key: key as DeckKey,
   ...starterInvestigator(key),
@@ -176,8 +181,16 @@ function start() {
   if (!chosen.value.length || !selectedCampaign.value) return
   if (game.campaign && !window.confirm(t('campaign.confirmReplace'))) return
   const members = chosen.value.map((key): CampaignMember => {
-    const own = validDecks(key).find((d) => d.id === deckFor.value[key])
-    return own ? { investigator: own.investigator, cards: own.cards } : key
+    const own = selectedDeckFor(key)
+    if (!own) return key
+    const physical = startingPhysicalTrauma.value[key] ?? 0
+    return {
+      investigator: own.investigator,
+      cards: own.cards,
+      ...(own.cards.includes('08125')
+        ? { startingTrauma: { physical, mental: 2 - physical } }
+        : {}),
+    }
   })
   game.start(campaignId.value, members, difficulty.value, activeBoons.value)
   void router.push(game.state ? '/game' : '/campaign')
@@ -472,6 +485,14 @@ function start() {
                     </select></label
                   >
                   <span v-else class="starter-deck">{{ t('decks.starter') }}</span>
+                  <label v-if="selectedDeckFor(key)?.cards.includes('08125')" class="deck-choice">
+                    <span>{{ t('setup.inTheThickOfItTrauma') }}</span>
+                    <select v-model.number="startingPhysicalTrauma[key]" class="ui-field">
+                      <option v-for="physical in [0, 1, 2]" :key="physical" :value="physical">
+                        {{ t('setup.startingTraumaChoice', { physical, mental: 2 - physical }) }}
+                      </option>
+                    </select>
+                  </label>
                 </li>
               </ol>
               <p v-if="!chosen.length">{{ t('setup.emptyTeam') }}</p>

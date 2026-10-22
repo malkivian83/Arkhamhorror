@@ -3,6 +3,7 @@ import './reactive-events'
 import './direct-events'
 import './search-assets'
 import './attached-upgrades'
+import './survivor-deck'
 /**
  * Partida de campaña: lo que dura entre escenarios. El registro de campaña lo
  * escribe el motor durante cada escenario (notas, experiencia, trauma…); aquí
@@ -33,6 +34,11 @@ import {
 } from '@lcg/engine'
 import { campaignDefinition, type CampaignScenario } from './campaign-definition'
 import { validateDeck, withRandomBasicWeakness } from './decks'
+import {
+  IN_THE_THICK_OF_IT,
+  startingExperience,
+  startingExperienceSpent,
+} from './survivor-deck/card-08125'
 import {
   code,
   investigatorSetup,
@@ -100,7 +106,14 @@ export interface Campaign {
 }
 
 /** Un investigador con su mazo: un mazo inicial de la caja o una lista propia. */
-export type CampaignMember = DeckKey | { investigator: CardCode; cards: CardCode[] }
+export type CampaignMember =
+  | DeckKey
+  | {
+      investigator: CardCode
+      cards: CardCode[]
+      /** Chosen when creating a deck with In the Thick of It; totals exactly two. */
+      startingTrauma?: { physical: number; mental: number }
+    }
 
 export function newCampaign(
   campaignId: string,
@@ -149,9 +162,27 @@ export function newCampaign(
     throw new Error('Contenido de mazo desconocido')
   for (const investigator of investigators) assertDeck(investigator, true, rewards)
   const log = emptyCampaignLog(investigators.map((i) => i.id))
+  for (const [n, investigator] of investigators.entries()) {
+    if (!investigator.deck.includes(IN_THE_THICK_OF_IT)) continue
+    const source = members[n]!
+    const trauma = typeof source === 'string' ? undefined : source.startingTrauma
+    if (
+      !trauma ||
+      !Number.isInteger(trauma.physical) ||
+      !Number.isInteger(trauma.mental) ||
+      trauma.physical < 0 ||
+      trauma.mental < 0 ||
+      trauma.physical + trauma.mental !== 2
+    )
+      throw new Error('In the Thick of It requires a choice of two physical and/or mental trauma')
+    const record = log.investigators[investigator.id]!
+    record.physicalTrauma += trauma.physical
+    record.mentalTrauma += trauma.mental
+    record.xp += startingExperience(investigator.deck) - startingExperienceSpent(investigator.deck)
+  }
   if (rewards.length) log.rewards = [...new Set(rewards)]
   if (boons.includes('ancients') && !campaignDefinition(campaignId).standalone) {
-    for (const record of Object.values(log.investigators)) record.xp = 5
+    for (const record of Object.values(log.investigators)) record.xp += 5
   }
   return {
     ...(boons.length ? { boons: [...new Set(boons)] } : {}),
@@ -353,7 +384,7 @@ function assertDeck(
 
 /** Cuenta para el tamaño del mazo (ni debilidades, ni exclusivas, ni permanentes). */
 const countsForSize = (card: CardCode) =>
-  !byCode(card)?.weakness && !isSignature(card) && !isPermanent(card)
+  card !== '01000' && !byCode(card)?.weakness && !isSignature(card) && !isPermanent(card)
 
 /** Cartas del mazo que cuentan para su tamaño. */
 export const deckSize = (deck: CardCode[]) => deck.filter(countsForSize).length
@@ -393,9 +424,14 @@ export function purchaseOptions(
         !card.weakness &&
         !card.reward &&
         !card.story &&
+        ![IN_THE_THICK_OF_IT, '08071'].includes(card.code) &&
         isImplemented(card.code) &&
         !isSignature(card.code) &&
-        (options.some((o) => o.classes.includes(card.class) && (card.xp ?? 0) <= o.maxLevel) ||
+        (options.some(
+          (o) =>
+            (card.classes ?? [card.class]).some((f) => o.classes.includes(f)) &&
+            (card.xp ?? 0) <= o.maxLevel,
+        ) ||
           (!!byCode(investigator)?.offClassLevelZeroLimit && (card.xp ?? 0) === 0)),
     )
     .flatMap((card): PurchaseOption[] => {
@@ -413,7 +449,7 @@ export function purchaseOptions(
         : []
       // Carta nueva: como máximo 2 copias por título; cuesta al menos 1 experiencia.
       const add: PurchaseOption[] =
-        copies.length < 2
+        copies.length < (card.deckLimit ?? 2)
           ? [
               {
                 ...base,
@@ -467,7 +503,8 @@ export function purchase(
         countsForSize(c) &&
         !d.reward &&
         !byCode(investigator)!.deckOptions!.some(
-          (o) => o.classes.includes(d.class) && level(c) <= o.maxLevel,
+          (o) =>
+            (d.classes ?? [d.class]).some((f) => o.classes.includes(f)) && level(c) <= o.maxLevel,
         )
       )
     }).length > offClassLimit

@@ -1,0 +1,86 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "sourceSnapshotSha256": "36bdf57ced256a33c3145b1562eea5f8ea6146d38e6a600cb04e27d43ef5749e",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "cards": [
+    {
+      "code": "01048",
+      "family": "additional-action",
+      "module": "card-01048",
+      "test": "survivor-deck.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "02188",
+      "family": "lone-wolf",
+      "module": "card-02188",
+      "test": "survivor-deck.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "05036",
+      "family": "track-shoes",
+      "module": "card-05036",
+      "test": "survivor-deck.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "06165",
+      "family": "scrounge",
+      "module": "card-06165",
+      "test": "survivor-deck.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "08071",
+      "family": "short-supply",
+      "module": "card-08071",
+      "test": "survivor-deck.test.ts",
+      "status": "verified",
+      "adapter": "reviewed-creation-permanent-v1"
+    },
+    {
+      "code": "08105",
+      "family": "ice-pick",
+      "module": "card-08105",
+      "test": "survivor-deck.test.ts",
+      "status": "verified",
+      "adapter": "reviewed-dual-faction-v1",
+      "fast": true
+    },
+    {
+      "code": "08125",
+      "family": "starting-trauma",
+      "module": "card-08125",
+      "test": "card-08125.test.ts",
+      "status": "verified",
+      "adapter": "reviewed-creation-permanent-v1"
+    },
+    {
+      "code": "09109",
+      "family": "dilemma",
+      "module": "card-09109",
+      "test": "survivor-deck.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "10023",
+      "family": "wolf-mask",
+      "module": "card-10023",
+      "test": "survivor-deck.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 2,
+        "type": "offering"
+      }
+    },
+    {
+      "code": "10116",
+      "family": "long-shot",
+      "module": "card-10116",
+      "test": "survivor-deck.test.ts",
+      "status": "verified"
+    }
+  ]
+}

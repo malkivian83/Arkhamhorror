@@ -19,6 +19,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   const types = language.offlineCard.types
   const summaries = language.offlineCard.summary as Record<string, string>
   const names = language.offlineCard.names as Record<string, string>
+  const traits = language.offlineCard.traits as Record<string, string>
   const backSummaries = language.offlineCard.backSummary as Record<string, string>
   const cards = new Map<string, LocalizedCard>()
   function put(draft: { [K in keyof LocalizedCard]: LocalizedCard[K] | undefined }) {
@@ -45,7 +46,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
       faction_code: d.class,
       cost: d.cost,
       xp: d.xp,
-      traits: d.traits.join('. '),
+      traits: traits[d.code] ?? d.traits.join('. '),
       health: d.health,
       sanity: d.sanity,
       slot: d.slots?.join(', '),

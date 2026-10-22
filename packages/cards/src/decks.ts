@@ -16,6 +16,7 @@ import {
 import { isImplemented } from './campaign'
 import { playerCards, starterDeck, STARTER_DECKS } from './core-2026/player-cards'
 import { onePrintingEach } from './reprints'
+import { startingExperience, startingExperienceSpent } from './survivor-deck/card-08125'
 
 export interface DeckList {
   id: string
@@ -35,10 +36,15 @@ export const investigatorCards = () =>
 const SIGNATURES = new Set(allPlayerCardDefs().flatMap((c) => c.signatures ?? []))
 const isWeakness = (code: CardCode) => !!byCode(code)?.weakness
 const isBasicWeakness = (code: CardCode) => byCode(code)?.weakness === 'basicweakness'
+/** ArkhamDB placeholder, replaced by an actual weakness when starting a campaign. */
+export const RANDOM_BASIC_WEAKNESS = '01000'
 
 /** Cartas que el jugador elige (ni exclusivas ni debilidades). */
 export const isStandard = (code: CardCode) =>
-  !isWeakness(code) && !SIGNATURES.has(code) && !byCode(code)?.story
+  code !== RANDOM_BASIC_WEAKNESS &&
+  !isWeakness(code) &&
+  !SIGNATURES.has(code) &&
+  !byCode(code)?.story
 /** Cuentan para el tamaño del mazo: las elegidas que no son permanentes. */
 const countsForSize = (code: CardCode) => isStandard(code) && !isPermanent(code)
 
@@ -69,7 +75,11 @@ function byClass(investigator: CardCode, card: PlayerCardDef): boolean {
     card.type !== 'investigator' &&
     isStandard(card.code) &&
     !card.reward &&
-    (options.some((o) => o.classes.includes(card.class) && (card.xp ?? 0) <= o.maxLevel) ||
+    (options.some(
+      (o) =>
+        (card.classes ?? [card.class]).some((f) => o.classes.includes(f)) &&
+        (card.xp ?? 0) <= o.maxLevel,
+    ) ||
       (!!byCode(investigator)?.offClassLevelZeroLimit && (card.xp ?? 0) === 0))
   )
 }
@@ -128,7 +138,8 @@ export interface DeckCheck {
 
 /**
  * Comprueba un mazo con las reglas de construcción. `campaignStart`: al empezar
- * una campaña solo se admiten cartas de nivel 0. `rewards`: recompensas ganadas.
+ * una campaña los niveles deben caber en la experiencia inicial concedida.
+ * `rewards`: recompensas ganadas.
  */
 export function validateDeck(
   deck: DeckList,
@@ -145,6 +156,8 @@ export function validateDeck(
     }
   }
   const problems: DeckProblem[] = []
+  const overStartingBudget =
+    campaignStart && startingExperienceSpent(deck.cards) > startingExperience(deck.cards)
   const name = (code: CardCode) => byCode(code)?.name ?? code
   const own = new Set(investigator.signatures ?? [])
   // Opciones adicionales (Collector): cuántas cartas fuera de clase puede llevar.
@@ -158,7 +171,9 @@ export function validateDeck(
         isStandard(code) &&
         !c.reward &&
         !investigator.deckOptions!.some(
-          (o) => o.classes.includes(c.class) && (c.xp ?? 0) <= o.maxLevel,
+          (o) =>
+            (c.classes ?? [c.class]).some((f) => o.classes.includes(f)) &&
+            (c.xp ?? 0) <= o.maxLevel,
         )
       )
     }).length
@@ -174,6 +189,7 @@ export function validateDeck(
   }
 
   for (const code of new Set(deck.cards)) {
+    if (code === RANDOM_BASIC_WEAKNESS) continue
     const card = byCode(code)
     if (!card) {
       problems.push({ key: 'deck.problem.unknownCard', params: { card: code } })
@@ -190,7 +206,7 @@ export function validateDeck(
       }
     } else if (isStandard(code) && !byClass(deck.investigator, card) && !extraFor(card)) {
       problems.push({ key: 'deck.problem.notAllowed', params: { card: card.name } })
-    } else if (campaignStart && isStandard(code) && (card.xp ?? 0) > 0) {
+    } else if (overStartingBudget && isStandard(code) && (card.xp ?? 0) > 0) {
       problems.push({ key: 'deck.problem.levelAtStart', params: { card: card.name } })
     }
   }
@@ -237,6 +253,7 @@ export function validateDeck(
 
 /** Añade una debilidad básica al azar si el mazo no tiene ninguna (reglamento). */
 export function withRandomBasicWeakness(cards: CardCode[], seed: number): CardCode[] {
+  cards = cards.filter((code) => code !== RANDOM_BASIC_WEAKNESS)
   if (cards.some(isBasicWeakness)) return cards
   const pool = playerCards.filter((c) => c.weakness === 'basicweakness')
   const [index] = nextInt(seedRng(seed), pool.length)
@@ -280,8 +297,8 @@ export function arkhamDbDeckId(input: string): { kind: 'decklist' | 'deck'; id: 
 }
 
 /**
- * Conserva todos los códigos y cantidades. `unknown` informa de las definiciones
- * pendientes, sin recortar el mazo ni sustituir ediciones.
+ * Conserva códigos y cantidades, salvo el marcador de debilidad aleatoria.
+ * `unknown` informa de las definiciones pendientes sin sustituir ediciones.
  */
 export function deckFromArkhamDb(
   data: ArkhamDbDeck,
@@ -301,6 +318,7 @@ export function deckFromArkhamDb(
   for (const [code, count] of Object.entries(data.slots)) {
     if (!Number.isSafeInteger(count) || count < 0 || count > 1000 || cards.length + count > 1000)
       throw new Error(`Invalid ArkhamDB quantity: ${code}`)
+    if (code === RANDOM_BASIC_WEAKNESS) continue
     if (count > 0 && !byCode(code)) unknown.push(code)
     for (let n = 0; n < count; n++) cards.push(code)
   }

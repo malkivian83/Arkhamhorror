@@ -2,20 +2,33 @@
 export function approvedDefinition(card, approval) {
   if (approval.code !== card.code || approval.status !== 'verified')
     throw new Error(`Card is not approved: ${card.code}`)
-  if (card.modelIssues.length || card.factions.length !== 1 || card.slots.unknown.length)
+  const reviewedDualFaction =
+    approval.adapter === 'reviewed-dual-faction-v1' &&
+    card.code === '08105' &&
+    card.factions.join(',') === 'seeker,survivor'
+  if (
+    card.modelIssues.some((issue) => !reviewedDualFaction || issue !== 'unsupported-factions') ||
+    (!reviewedDualFaction && card.factions.length !== 1) ||
+    card.slots.unknown.length
+  )
     throw new Error(`Unsupported card model: ${card.code}`)
   if (
     card.classification !== 'standard-candidate' ||
     !['asset', 'event', 'skill'].includes(card.type)
   )
     throw new Error(`Unsupported pool eligibility: ${card.code}`)
+  const creationPermanent =
+    card.flags.permanent &&
+    approval.adapter === 'reviewed-creation-permanent-v1' &&
+    ['08071', '08125'].includes(card.code) &&
+    card.deckLimit === 1
   const permanentReprint =
     card.flags.permanent &&
     approval.adapter === 'equivalent-permanent-v1' &&
     /^[0-9]{5}$/.test(approval.behaviorSource ?? '') &&
     /^[a-f0-9]{64}$/.test(approval.equivalenceSha256 ?? '')
   if (
-    (card.flags.permanent && !permanentReprint) ||
+    (card.flags.permanent && !permanentReprint && !creationPermanent) ||
     ['exceptional', 'myriad', 'exile'].some((key) => card.flags[key])
   )
     throw new Error(`Keyword requires a dedicated adapter: ${card.code}`)
@@ -33,6 +46,8 @@ export function approvedDefinition(card, approval) {
     name: card.name,
     type: card.type,
     class: card.factions[0],
+    ...(reviewedDualFaction ? { classes: card.factions } : {}),
+    ...(creationPermanent ? { deckLimit: 1 } : {}),
     traits: card.traits,
     ...(card.flags.is_unique ? { unique: true } : {}),
     ...(cost !== undefined ? { cost } : {}),

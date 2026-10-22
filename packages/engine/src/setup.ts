@@ -234,6 +234,9 @@ export function prepareGame({
           location: scenario.startingLocation,
         }))),
     ...(scenario.setup ?? []),
+    ...(players.some((i) => i.deck.some((code) => !!playerCardBehavior(code)?.revelation))
+      ? [{ type: 'ResolveOpeningRevelations' } as Message]
+      : []),
     { type: 'Round' },
   ]
 

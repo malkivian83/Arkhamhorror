@@ -1,0 +1,15 @@
+import { registerPlayerCards, type PlayerCardDef } from '@lcg/engine'
+import data from '../data/survivor-deck.json'
+import approvals from './approvals.json'
+import './card-01048'
+import './card-02188'
+import './card-05036'
+import './card-06165'
+import './card-08071'
+import './card-08105'
+import './card-08125'
+import './card-09109'
+import './card-10023'
+import './card-10116'
+registerPlayerCards(data as PlayerCardDef[])
+export const SURVIVOR_DECK_RENDERED_CODES = approvals.cards.map((c) => c.code)

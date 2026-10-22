@@ -1,7 +1,9 @@
 {
   "en": {
+    "10023": "/local-assets/cards/en/10023.avif",
     "10051": "/local-assets/cards/en/10051.avif",
     "10076": "/local-assets/cards/en/10076.avif",
+    "10116": "/local-assets/cards/en/10116.avif",
     "10128": "/local-assets/cards/en/10128.avif",
     "10130": "/local-assets/cards/en/10130.avif",
     "11029": "/local-assets/cards/en/11029.avif",
@@ -631,11 +633,21 @@
     "06204": "/local-assets/cards/en/06204.avif",
     "06246": "/local-assets/cards/en/06246.avif",
     "04019": "/local-assets/cards/en/04019.avif",
-    "04020": "/local-assets/cards/en/04020.avif"
+    "04020": "/local-assets/cards/en/04020.avif",
+    "01048": "/local-assets/cards/en/01048.avif",
+    "02188": "/local-assets/cards/en/02188.avif",
+    "05036": "/local-assets/cards/en/05036.avif",
+    "06165": "/local-assets/cards/en/06165.avif",
+    "08071": "/local-assets/cards/en/08071.avif",
+    "08105": "/local-assets/cards/en/08105.avif",
+    "08125": "/local-assets/cards/en/08125.avif",
+    "09109": "/local-assets/cards/en/09109.avif"
   },
   "es": {
+    "10023": "/local-assets/cards/es/10023.avif",
     "10051": "/local-assets/cards/es/10051.avif",
     "10076": "/local-assets/cards/es/10076.avif",
+    "10116": "/local-assets/cards/es/10116.avif",
     "10128": "/local-assets/cards/es/10128.avif",
     "10130": "/local-assets/cards/es/10130.avif",
     "11029": "/local-assets/cards/es/11029.avif",
@@ -1062,6 +1074,14 @@
     "06204": "/local-assets/cards/es/06204.avif",
     "06246": "/local-assets/cards/es/06246.avif",
     "04019": "/local-assets/cards/es/04019.avif",
-    "04020": "/local-assets/cards/es/04020.avif"
+    "04020": "/local-assets/cards/es/04020.avif",
+    "01048": "/local-assets/cards/es/01048.avif",
+    "02188": "/local-assets/cards/es/02188.avif",
+    "05036": "/local-assets/cards/es/05036.avif",
+    "06165": "/local-assets/cards/es/06165.avif",
+    "08071": "/local-assets/cards/es/08071.avif",
+    "08105": "/local-assets/cards/es/08105.avif",
+    "08125": "/local-assets/cards/es/08125.avif",
+    "09109": "/local-assets/cards/es/09109.avif"
   }
 }
