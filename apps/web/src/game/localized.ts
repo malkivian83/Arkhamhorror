@@ -58,8 +58,10 @@ const SOURCES: Record<string, string[]> = {
     'https://es.arkhamdb.com/api/public/cards/dwl.json',
   ],
 }
-// v4: includes the original Pete cards in EN/ES.
-const CACHE_PREFIX = 'lcg:cards:v4:'
+// v5: includes the original Pete and Jenny Barnes cards in EN/ES.
+const CACHE_PREFIX = 'lcg:cards:v5:'
+/** Dunwich investigators enabled so far; the rest of that pack stays hidden. */
+const DUNWICH_CODES = ['02005', '02014', '02015', '02003', '02010', '02011']
 const CACHE_HOURS = 24
 
 /** Bundled alternatives plus any available translated card data. */
@@ -143,7 +145,7 @@ export async function useCardLocale(locale: string): Promise<void> {
       const pack = (await response.json()) as LocalizedCard[]
       if (!Array.isArray(pack)) throw new Error('Invalid card data')
       return source.endsWith('/dwl.json')
-        ? pack.filter((c) => ['02005', '02014', '02015'].includes(c.code))
+        ? pack.filter((c) => DUNWICH_CODES.includes(c.code))
         : pack
     }),
   )

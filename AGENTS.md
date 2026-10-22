@@ -69,6 +69,9 @@ los documentos necesarios para la tarea; evita reconstruir todo el historial.
   [25 · Primer inventario](docs-proyecto/25-primer-inventario-cartas-jugador.md).
   Son documentos históricos: contrasta el estado vigente con los manifiestos,
   el inventario y la documentación del último lote.
+- Para subir un investigador o una lista concreta de ArkhamDB, sigue la
+  [guía 59](docs-proyecto/59-guia-importar-lista-arkhamdb.md) y empieza con
+  `node scripts/check-decklist.mjs <enlace>`.
 - Prioriza cartas y niveles de mejora distintos aún no jugables frente a
   impresiones adicionales. Agrupa por mecánicas compartidas; busca lotes de
   30–50 cartas cuando sea viable, sin forzar el tamaño ni rellenarlo con reediciones.

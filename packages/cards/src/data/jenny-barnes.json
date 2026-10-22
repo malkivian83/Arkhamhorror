@@ -1,0 +1,97 @@
+[
+  {
+    "code": "02003",
+    "name": "Jenny Barnes",
+    "type": "investigator",
+    "class": "rogue",
+    "traits": ["Drifter"],
+    "deckLimit": 1,
+    "health": 8,
+    "sanity": 7,
+    "unique": true,
+    "skills": {
+      "willpower": 3,
+      "intellect": 3,
+      "combat": 3,
+      "agility": 3
+    },
+    "deckSize": 30,
+    "deckOptions": [
+      {
+        "classes": ["rogue", "neutral"],
+        "maxLevel": 5
+      }
+    ],
+    "offClassLevelZeroLimit": 5,
+    "signatures": ["02010", "02011"]
+  },
+  {
+    "code": "02010",
+    "name": "Jenny's Twin .45s",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Weapon", "Firearm"],
+    "deckLimit": 1,
+    "unique": true,
+    "icons": {
+      "agility": 2,
+      "wild": 1
+    },
+    "slots": ["hand", "hand"],
+    "uses": {
+      "count": 0,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "02011",
+    "name": "Searching for Izzie",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Task"],
+    "deckLimit": 1,
+    "weakness": "weakness"
+  },
+  {
+    "code": "01024",
+    "name": "Dynamite Blast",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 5,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "01050",
+    "name": "Elusive",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Tactic"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "02147",
+    "name": "Bandolier",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["body"],
+    "health": 1
+  }
+]

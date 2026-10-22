@@ -68,6 +68,8 @@ vigente de pendientes.
 | 45 | [Habilidades de evasión y movimiento](45-habilidades-de-movimiento.md) | Instinto de supervivencia 0/2 y Ágil; tres niveles distintos, movimiento opcional y momento de cierre de prueba. |
 | 57 | [Bonos hasta el final de fase](57-bonos-hasta-final-de-fase.md) | Encyclopedia 0/2 y Keen Eye 0; duración por fase y ronda, acumulación y ventanas rápidas compartidas. |
 | 58 | [Talentos permanentes](58-talentos-permanentes.md) | Cinco niveles nuevos con costes y límites revisados, compra y preparación de permanentes. |
+| 59 | [Guía: importar una lista de ArkhamDB](59-guia-importar-lista-arkhamdb.md) | Diagnóstico con check-decklist, alcance, datos, motor, presentación, imágenes y pruebas para subir un investigador y sus cartas. |
+| 60 | [Jenny Barnes y la lista Campaign-Breaker](60-investigador-jenny-barnes.md) | Lista 1179 jugable: seis códigos nuevos, coste X, ranuras restringidas por rasgo y daño simultáneo. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

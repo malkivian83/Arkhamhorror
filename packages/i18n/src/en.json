@@ -210,7 +210,8 @@
     "immediateAction": "Take one action as if it were your turn",
     "chooseAmount": "Choose an amount",
     "chooseCard": "Choose a card",
-    "upkeepCost": "{card}: pay 1 resource or discard it"
+    "upkeepCost": "{card}: pay 1 resource or discard it",
+    "chooseX": "Choose X: the resources you pay"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -380,7 +381,11 @@
     "fightAgain": "Fight {enemy} again",
     "discardFromPlay": "Discard {card} from play",
     "discardFromHand": "Discard {card} from hand",
-    "payResource": "Pay 1 resource"
+    "payResource": "Pay 1 resource",
+    "payX": "Pay {n} (X = {n})",
+    "attachToLocation": "Attach to {location}",
+    "moveTo": "Move to {location}",
+    "dynamiteLocation": "Blast {location}"
   },
   "phase": {
     "setup": "Setup",
@@ -586,7 +591,8 @@
     "moveWithCard": "{card}: move",
     "moveTo": "{card}: move to {location}",
     "searchDeck": "{card}: search your deck",
-    "placeUse": "{card}: place 1 use on {asset}"
+    "placeUse": "{card}: place 1 use on {asset}",
+    "searchingForIzzie": "Searching for Izzie: investigate to discard it"
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -2176,7 +2182,13 @@
       "09117": "Uses (3 keys); discard it without keys. Action: investigate at -2 shroud; on success remove 1 key and, if the difficulty was 0, discover 1 additional clue.",
       "09044": "Uses (4 secrets). Action, spend 1 secret: investigate at +2; if you succeed by 2, you may draw 1 card.",
       "04194": "Action, exhaust: investigate at -X shroud, X revealed locations connected to yours.",
-      "09062": "Uses (4 supplies). Action, spend 1 supply: evade at +2; a non-Elite evaded enemy does not ready in the next upkeep phase."
+      "09062": "Uses (4 supplies). Action, spend 1 supply: evade at +2; a non-Elite evaded enemy does not ready in the next upkeep phase.",
+      "02003": "You collect 1 additional resource during each upkeep phase.\n[elder_sign] effect: +1 for each resource you have.",
+      "02010": "Jenny Barnes deck only. Uses (X ammo).\n[action] Spend 1 ammo: Fight. You get +2 [combat] for this attack. This attack deals +1 damage.",
+      "02011": "Revelation - Attach Searching for Izzie to the location farthest from you.\n[action][action]: Investigate. If you succeed, instead of discovering clues, discard Searching for Izzie.\nForced - When the game ends, if Searching for Izzie is in play: Jenny Barnes suffers 1 mental trauma.",
+      "01024": "Choose either your location or a connecting location. Deal 3 damage to each enemy and to each investigator at the chosen location.",
+      "01050": "Fast. Play only during your turn.\nDisengage from each enemy engaged with you and move to a revealed location with no enemies.",
+      "02147": "You have 1 additional hand slot, which can only be used to hold a Weapon asset."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -2186,7 +2198,8 @@
       "12136": "Record the herald and the fate of the Servant; experience depends on resolved Elite enemies.",
       "12172": "Elokoss appears, Fire enters the encounter deck and Sluice Control becomes available.",
       "12173": "Defeating Elokoss leads to resolution one.",
-      "02005": "30-card deck: Survivor and Neutral level 0–5, plus up to five level 0 cards from other classes. Requires Duke, Wracked by Nightmares and a random basic weakness."
+      "02005": "30-card deck: Survivor and Neutral level 0–5, plus up to five level 0 cards from other classes. Requires Duke, Wracked by Nightmares and a random basic weakness.",
+      "02003": "30-card deck: Rogue and Neutral level 0–5, plus up to five level 0 cards from other classes. Requires Jenny's Twin .45s, Searching for Izzie and a random basic weakness."
     },
     "victory": "Victory {n}",
     "names": {
@@ -2556,7 +2569,13 @@
       "09117": "Old Keyring",
       "09044": "Grim Memoir",
       "04194": "Otherworldly Compass",
-      "09062": "Disguise"
+      "09062": "Disguise",
+      "02003": "Jenny Barnes",
+      "02010": "Jenny's Twin .45s",
+      "02011": "Searching for Izzie",
+      "01024": "Dynamite Blast",
+      "01050": "Elusive",
+      "02147": "Bandolier"
     }
   },
   "account": {

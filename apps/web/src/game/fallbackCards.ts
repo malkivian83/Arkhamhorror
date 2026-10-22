@@ -9,7 +9,12 @@ import {
   GALA_BLOODLESS_MAN_UNLEASHED,
   GALA_FACTION_CARDS,
 } from '@lcg/cards'
-import { allPlayerCardDefs, type EncounterCard, type LocationCard } from '@lcg/engine'
+import {
+  allPlayerCardDefs,
+  playerCardBehavior,
+  type EncounterCard,
+  type LocationCard,
+} from '@lcg/engine'
 import { excelsiorCards, messages } from '@lcg/i18n'
 import type { LocalizedCard } from './localized'
 
@@ -44,7 +49,8 @@ export function fallbackCards(locale: string): LocalizedCard[] {
       real_name: d.name,
       type_code: d.type,
       faction_code: d.class,
-      cost: d.cost,
+      // A printed X uses the ArkhamDB encoding (-2); RenderedCard shows it as X.
+      cost: d.cost ?? (playerCardBehavior(d.code)?.costX ? -2 : undefined),
       xp: d.xp,
       traits: traits[d.code] ?? d.traits.join('. '),
       health: d.health,

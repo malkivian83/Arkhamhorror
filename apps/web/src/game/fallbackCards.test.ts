@@ -36,6 +36,28 @@ describe('recursos de cartas sin red', () => {
       expect(cards.get('02015')!.text).toBeTruthy()
     }
   })
+  it('presents Jenny Barnes and the decklist 1179 cards with official scans, X cost and EN/ES names', () => {
+    for (const language of ['en', 'es']) {
+      for (const code of ['02003', '02010', '02011', '01024', '01050', '02147'])
+        expect(cardImages(code, false, language)[0]).toBe(
+          `/local-assets/cards/${language}/${code}.avif`,
+        )
+      expect(cardImages('02003', true, language)[0]).toBe(
+        `/local-assets/cards/${language}/02003b.avif`,
+      )
+      const cards = new Map(fallbackCards(language).map((c) => [c.code, c]))
+      const jenny = cards.get('02003')!
+      expect([jenny.skill_willpower, jenny.skill_agility, jenny.health, jenny.sanity]).toEqual([
+        3, 3, 8, 7,
+      ])
+      expect(jenny.back_text).toContain('30')
+      expect(cards.get('02010')!.cost).toBe(-2)
+    }
+    const spanish = new Map(fallbackCards('es').map((c) => [c.code, c]))
+    expect(spanish.get('02010')!.name).toBe('.45 gemelas de Jenny')
+    expect(spanish.get('02147')!.name).toBe('Bandolera')
+    expect(spanish.get('02011')!.text).toContain('Izzie')
+  })
   it('presenta las siete cartas del piloto en EN/ES sin imágenes ni peticiones externas', () => {
     const spanish = new Map(fallbackCards('es').map((card) => [card.code, card]))
     const english = new Map(fallbackCards('en').map((card) => [card.code, card]))

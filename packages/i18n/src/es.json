@@ -210,7 +210,8 @@
     "immediateAction": "Realiza una acción como si fuera tu turno",
     "chooseAmount": "Elige una cantidad",
     "chooseCard": "Elige una carta",
-    "upkeepCost": "{card}: paga 1 recurso o descártalo"
+    "upkeepCost": "{card}: paga 1 recurso o descártalo",
+    "chooseX": "Elige X: los recursos que pagas"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -380,7 +381,11 @@
     "fightAgain": "Volver a combatir contra {enemy}",
     "discardFromPlay": "Descartar {card} de juego",
     "discardFromHand": "Descartar {card} de la mano",
-    "payResource": "Pagar 1 recurso"
+    "payResource": "Pagar 1 recurso",
+    "payX": "Paga {n} (X = {n})",
+    "attachToLocation": "Vincular a {location}",
+    "moveTo": "Moverte a {location}",
+    "dynamiteLocation": "Hacer estallar {location}"
   },
   "phase": {
     "setup": "Preparación",
@@ -586,7 +591,8 @@
     "moveWithCard": "{card}: moverte",
     "moveTo": "{card}: moverte a {location}",
     "searchDeck": "{card}: buscar en tu mazo",
-    "placeUse": "{card}: colocar 1 uso en {asset}"
+    "placeUse": "{card}: colocar 1 uso en {asset}",
+    "searchingForIzzie": "Buscando a Izzie: investiga para descartarla"
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -2176,7 +2182,13 @@
       "09117": "Usos (3 llaves); se descarta sin llaves. Acción: investiga con −2 al velo; si tienes éxito, retira 1 llave y, si la dificultad era 0, descubres 1 pista adicional.",
       "09044": "Usos (4 secretos). Acción, gasta 1 secreto: investiga con +2; con éxito por 2 o más, puedes robar 1 carta.",
       "04194": "Acción, agótala: investiga con −X al velo, X es el número de Lugares revelados conectados al tuyo.",
-      "09062": "Usos (4 suministros). Acción, gasta 1 suministro: evita con +2; un enemigo evitado que no sea Élite no se prepara en la siguiente fase de mantenimiento."
+      "09062": "Usos (4 suministros). Acción, gasta 1 suministro: evita con +2; un enemigo evitado que no sea Élite no se prepara en la siguiente fase de mantenimiento.",
+      "02003": "Obtienes 1 recurso adicional durante cada fase de Mantenimiento.\nEfecto [elder_sign]: +1 por cada recurso que tengas.",
+      "02010": "Sólo para el mazo de Jenny Barnes. Usos (X municiones).\n[action] Gasta 1 munición: Combatir. Recibe +2 [combat] para este ataque. Este ataque inflige +1 de daño.",
+      "02011": "Revelación - Vincula Buscando a Izzie al Lugar más alejado de ti.\n[action][action]: Investigar. Si tienes éxito, en lugar de descubrir pistas, descarta Buscando a Izzie.\nObligado - Si Buscando a Izzie está en juego cuando termine la partida: Sufres 1 trauma mental.",
+      "01024": "Elige tu Lugar o un Lugar conectado. Inflige 3 puntos de daño a cada Enemigo e Investigador que esté en el Lugar elegido.",
+      "01050": "Rápido. Juega esta carta sólo durante tu turno.\nDeja de estar enfrentado a cada Enemigo enfrentado a ti y muévete a un Lugar revelado que no tenga Enemigos.",
+      "02147": "Tienes 1 espacio de mano adicional que sólo puede usarse para un Apoyo Arma."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -2186,7 +2198,8 @@
       "12136": "Registra el heraldo y el destino del Servant; la experiencia depende de los Élite resueltos.",
       "12172": "Aparece Elokoss, Fire entra en los encuentros y queda disponible Sluice Control.",
       "12173": "Derrotar a Elokoss conduce a la resolución uno.",
-      "02005": "Mazo de 30 cartas: Superviviente y neutral de nivel 0–5, más hasta cinco cartas de nivel 0 de otras clases. Requiere Duke, Roto por las pesadillas y una debilidad básica aleatoria."
+      "02005": "Mazo de 30 cartas: Superviviente y neutral de nivel 0–5, más hasta cinco cartas de nivel 0 de otras clases. Requiere Duke, Roto por las pesadillas y una debilidad básica aleatoria.",
+      "02003": "Mazo de 30 cartas: Rebelde y neutral de nivel 0–5, más hasta cinco cartas de nivel 0 de otras clases. Requiere .45 gemelas de Jenny, Buscando a Izzie y una debilidad básica aleatoria."
     },
     "victory": "Victoria {n}",
     "names": {
@@ -2556,7 +2569,13 @@
       "09117": "Llavero viejo",
       "09044": "Memorias siniestras",
       "04194": "Brújula de otro mundo",
-      "09062": "Disfraz"
+      "09062": "Disfraz",
+      "02003": "Jenny Barnes",
+      "02010": ".45 gemelas de Jenny",
+      "02011": "Buscando a Izzie",
+      "01024": "Explosión de dinamita",
+      "01050": "Escurridizo",
+      "02147": "Bandolera"
     }
   },
   "account": {

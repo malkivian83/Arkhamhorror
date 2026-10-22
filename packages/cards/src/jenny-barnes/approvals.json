@@ -1,0 +1,48 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "sourceSnapshotSha256": "36bdf57ced256a33c3145b1562eea5f8ea6146d38e6a600cb04e27d43ef5749e",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "decklist": "https://arkhamdb.com/decklist/view/1179/jenny-campaign-breaker-barnes-1.0",
+  "cards": [
+    {
+      "code": "02003",
+      "module": "card-02003",
+      "test": "card-02003.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "02010",
+      "module": "card-02010",
+      "test": "card-02010.test.ts",
+      "status": "verified",
+      "adapter": "reviewed-cost-x-v1",
+      "uses": { "count": 0, "type": "ammo" }
+    },
+    {
+      "code": "02011",
+      "module": "card-02011",
+      "test": "card-02011.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01024",
+      "module": "card-01024",
+      "test": "card-01024.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01050",
+      "module": "card-01050",
+      "test": "card-01050.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "02147",
+      "module": "card-02147",
+      "test": "card-02147.test.ts",
+      "status": "verified"
+    }
+  ]
+}

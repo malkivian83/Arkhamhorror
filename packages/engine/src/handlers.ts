@@ -1844,7 +1844,22 @@ export function handle(state: GameState, message: Message): GameState {
       const index = investigator.hand.indexOf(message.code)
       if (!def || index < 0) return state
       if (def.type === 'asset' && uniqueAssetInPlay(state, message.code)) return state
-      const cost = Math.max(0, (def.cost ?? 0) - (message.discount ?? 0))
+      // RR "X": the value is chosen while paying the cost, up to the resources available.
+      if (playerCardBehavior(message.code)?.costX && message.x === undefined)
+        return push(state, {
+          type: 'Ask',
+          investigator: investigator.id,
+          question: {
+            kind: 'chooseOne',
+            prompt: 'prompt.chooseX',
+            choices: Array.from({ length: investigator.resources + 1 }, (_, x) => ({
+              label: 'choice.payX',
+              params: { n: x, card: def.name },
+              then: [{ ...message, x }],
+            })),
+          },
+        })
+      const cost = message.x ?? Math.max(0, (def.cost ?? 0) - (message.discount ?? 0))
       // Si al resolverse ya no se puede pagar (p. ej. se gastaron recursos en una reacción al
       // ataque de oportunidad), la carta no se juega.
       if (cost > investigator.resources) {
@@ -1879,6 +1894,7 @@ export function handle(state: GameState, message: Message): GameState {
         investigator: investigator.id,
         code: message.code,
         ...(message.effect ? { effect: message.effect } : {}),
+        ...(message.x !== undefined ? { x: message.x } : {}),
       })
     }
 
@@ -1895,6 +1911,7 @@ export function handle(state: GameState, message: Message): GameState {
           investigator: investigator.id,
           code: message.code,
           played: true,
+          ...(message.x !== undefined ? { tokens: { uses: message.x } } : {}),
         })
       }
       // Ward of Preservation: el escenario puede cancelar los efectos del evento.
@@ -1946,17 +1963,10 @@ export function handle(state: GameState, message: Message): GameState {
       )
         return state
       const full = (message.noSlot ? [] : (def.slots ?? [])).find(
-        (slot) =>
-          slotsUsed(state, message.investigator, slot) + count(def.slots ?? [], slot) >
-          slotCapacity(state, message.investigator, slot),
+        (slot) => !slotsFit(state, message.investigator, slot, message.code),
       )
       if (full) {
-        const occupying = Object.values(state.assets).filter(
-          (a) =>
-            a.owner === message.investigator &&
-            !isPermanent(a.code) &&
-            assetSlots(a).includes(full),
-        )
+        const occupying = slotOccupants(state, message.investigator, full, message.code)
         return push(state, {
           type: 'Ask',
           investigator: message.investigator,
@@ -2026,9 +2036,39 @@ export function handle(state: GameState, message: Message): GameState {
       const instead = scenarioBehavior(state.scenarioId)?.assetLeavesPlay?.(state, asset, 'discard')
       if (instead) return push(state, ...instead)
       const { [asset.id]: _gone, ...assets } = state.assets
-      return updateInvestigator({ ...state, assets }, asset.originalOwner ?? asset.owner, (i) =>
-        i.eliminated ? i : { ...i, discard: [...i.discard, asset.code] },
+      const discarded = updateInvestigator(
+        { ...state, assets },
+        asset.originalOwner ?? asset.owner,
+        (i) => (i.eliminated ? i : { ...i, discard: [...i.discard, asset.code] }),
       )
+      const behavior = playerCardBehavior(asset.code)
+      // Losing slots can leave other assets without room (Bandolier).
+      return behavior?.restrictedSlots || behavior?.extraSlots
+        ? push(discarded, { type: 'CheckSlots', investigator: asset.owner })
+        : discarded
+    }
+
+    case 'CheckSlots': {
+      const slot = (Object.keys(SLOT_CAPACITY) as SlotType[]).find(
+        (type) => !slotsFit(state, message.investigator, type),
+      )
+      if (!slot) return state
+      const occupying = slotOccupants(state, message.investigator, slot)
+      if (!occupying.length) return state
+      return push(state, {
+        type: 'Ask',
+        investigator: message.investigator,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.freeSlot',
+          choices: occupying.map((a): Choice => ({
+            label: 'choice.discard',
+            params: { card: playerCardDef(a.code)?.name ?? a.code },
+            target: { type: 'asset', id: a.id },
+            then: [{ type: 'DiscardAsset', asset: a.id }, message],
+          })),
+        },
+      })
     }
 
     case 'ReadyAsset': {
@@ -2898,8 +2938,7 @@ export function handle(state: GameState, message: Message): GameState {
         transfers.flatMap((t) => [t.to, state.assets[t.asset]!.owner]),
       )) {
         for (const slot of Object.keys(SLOT_CAPACITY) as SlotType[]) {
-          if (slotsUsed(proposed, recipient, slot) <= slotCapacity(proposed, recipient, slot))
-            continue
+          if (slotsFit(proposed, recipient, slot)) continue
           const occupying = Object.values(state.assets).filter(
             (a) =>
               a.owner === recipient &&
@@ -3612,7 +3651,7 @@ export function handle(state: GameState, message: Message): GameState {
             },
           ]
         : []
-      return damageTaken >= enemyMaxHealth(state, enemy)
+      return damageTaken >= enemyMaxHealth(state, enemy) && !message.deferDefeat
         ? push(next, ...dealt, { type: 'DefeatEnemy', enemy: enemy.id, ...(by ? { by } : {}) })
         : push(next, ...dealt)
     }
@@ -3807,7 +3846,12 @@ export function handle(state: GameState, message: Message): GameState {
         { type: 'Step', step: 'drawAndGainResource' },
         ...activeInvestigators(state).flatMap((i): Message[] => [
           { type: 'DrawCards', investigator: i.id, amount: 1 },
-          { type: 'GainResources', investigator: i.id, amount: 1, basic: true },
+          {
+            type: 'GainResources',
+            investigator: i.id,
+            amount: 1 + (investigatorBehavior(i.id)?.upkeepResources ?? 0),
+            basic: true,
+          },
         ]),
         { type: 'Step', step: 'checkHandSize' },
         ...activeInvestigators(state).map((i): Message => ({
@@ -5015,7 +5059,11 @@ export function handle(state: GameState, message: Message): GameState {
     case 'CheckEnemyDefeat': {
       const enemy = findEnemy(state, message.enemy)
       if (!enemy || enemy.damageTaken < enemyMaxHealth(state, enemy)) return state
-      return push(state, { type: 'DefeatEnemy', enemy: enemy.id })
+      return push(state, {
+        type: 'DefeatEnemy',
+        enemy: enemy.id,
+        ...(message.by ? { by: message.by } : {}),
+      })
     }
 
     case 'PlaceAtStart': {
@@ -5668,12 +5716,17 @@ function opportunityAttacks(state: GameState, investigator: Investigator): Messa
 
 /**
  * Efectos de campaña de las debilidades al terminar la partida para estos
- * investigadores: las que siguen en su zona de amenaza y las que tienen en la mano.
+ * investigadores: las que siguen en su zona de amenaza, sus debilidades vinculadas en
+ * otro lugar (Buscando a Izzie) y las que tienen en la mano.
  */
 function gameEndEffects(state: GameState, investigators: InvestigatorId[]): Message[] {
   return investigators.flatMap((id) => [
     ...Object.values(state.treacheries)
-      .filter((t) => t.placement.type === 'threatArea' && t.placement.investigator === id)
+      .filter((t) =>
+        t.placement.type === 'threatArea'
+          ? t.placement.investigator === id
+          : t.placement.type !== 'limbo' && t.owner === id,
+      )
       .flatMap((t) => treacheryBehavior(t.code)?.whenGameEnds?.(state, t) ?? []),
     ...[...new Set(getInvestigator(state, id).hand)].flatMap(
       (code) => playerCardBehavior(code)?.whenGameEndsInHand?.(state, id) ?? [],
@@ -5769,10 +5822,76 @@ export function slotCapacity(
 
 const count = <T>(items: T[], item: T) => items.filter((x) => x === item).length
 
-function slotsUsed(state: GameState, investigator: string, slot: SlotType): number {
+/** Additional slots of a type that only assets with a trait may use (Bandolier). */
+export function restrictedSlotCapacity(
+  state: GameState,
+  investigator: InvestigatorId,
+  slot: SlotType,
+): { trait: string; count: number }[] {
   return Object.values(state.assets)
+    .filter((a) => a.owner === investigator)
+    .flatMap((a) => playerCardBehavior(a.code)?.restrictedSlots ?? [])
+    .filter((r) => r.slot === slot)
+    .map(({ trait, count }) => ({ trait, count }))
+}
+
+/**
+ * RR "Equipment Slots": every slot unit of the investigator's assets (plus the
+ * card about to enter play) fits a generic slot or a restricted one whose trait
+ * the asset has.
+ */
+function slotsFit(
+  state: GameState,
+  investigator: InvestigatorId,
+  slot: SlotType,
+  adding?: CardCode,
+): boolean {
+  const units = Object.values(state.assets)
     .filter((a) => a.owner === investigator && !a.noSlot)
-    .reduce((sum, a) => sum + count(assetSlots(a), slot), 0)
+    .flatMap((a) =>
+      assetSlots(a)
+        .filter((s) => s === slot)
+        .map(() => playerCardDef(a.code)?.traits ?? []),
+    )
+  if (adding) {
+    const def = playerCardDef(adding)
+    for (let n = count(def?.slots ?? [], slot); n > 0; n--) units.push(def?.traits ?? [])
+  }
+  const restricted = restrictedSlotCapacity(state, investigator, slot)
+  const free = restricted.map((r) => r.count)
+  const place = (n: number, generic: number): boolean => {
+    if (n === units.length) return true
+    for (const [k, r] of restricted.entries()) {
+      if (!free[k] || !units[n]!.includes(r.trait)) continue
+      free[k]!--
+      const placed = place(n + 1, generic)
+      free[k]!++
+      if (placed) return true
+    }
+    return generic > 0 && place(n + 1, generic - 1)
+  }
+  return place(0, slotCapacity(state, investigator, slot))
+}
+
+/**
+ * Assets to offer when a slot overflows. With restricted slots (Bandolier), only
+ * those whose discard makes room, when any does; otherwise every occupant, as before.
+ */
+function slotOccupants(
+  state: GameState,
+  investigator: InvestigatorId,
+  slot: SlotType,
+  adding?: CardCode,
+): Asset[] {
+  const occupying = Object.values(state.assets).filter(
+    (a) => a.owner === investigator && !isPermanent(a.code) && assetSlots(a).includes(slot),
+  )
+  if (!restrictedSlotCapacity(state, investigator, slot).length) return occupying
+  const freeing = occupying.filter((a) => {
+    const { [a.id]: _gone, ...assets } = state.assets
+    return slotsFit({ ...state, assets }, investigator, slot, adding)
+  })
+  return freeing.length ? freeing : occupying
 }
 
 function commitIcons(state: GameState, test: SkillTest, code: string, by: string): number {

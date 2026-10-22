@@ -60,6 +60,7 @@ export {
   previewToken,
   SLOT_CAPACITY,
   slotCapacity,
+  restrictedSlotCapacity,
   victoryTotal,
   skillTestValue,
   canCommitFrom,

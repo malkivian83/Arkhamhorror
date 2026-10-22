@@ -88,8 +88,9 @@ const per = (yes: boolean | undefined) => (yes ? '/inv' : '')
       <div class="art" :style="art ? { backgroundImage: `url(${art})` } : {}" />
 
       <header>
+        <!-- ArkhamDB encodes a printed X cost as a negative number. -->
         <span v-if="!back && card.cost !== undefined && card.cost !== null" class="cost">{{
-          card.cost
+          card.cost < 0 ? 'X' : card.cost
         }}</span>
         <div class="names">
           <strong>{{ title }}</strong>

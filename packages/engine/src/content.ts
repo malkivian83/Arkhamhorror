@@ -352,6 +352,10 @@ export interface PlayerCardBehavior {
   beforeResults?: (state: GameState, test: SkillTest, self: Asset) => Message[]
   /** Ranuras adicionales mientras está en juego (Carl Sanford: +1 arcana). */
   extraSlots?: Partial<Record<SlotType, number>>
+  /** Additional slots that only assets with the trait may use (Bandolier: Weapon hand). */
+  restrictedSlots?: { slot: SlotType; count: number; trait: string }[]
+  /** Printed cost X: chosen when paying; an asset enters play with X uses. */
+  costX?: boolean
   /** Sin dueño (colocado en una localización o enemigo): habilidades para quien esté allí. */
   placedAbilities?: AbilitiesFn<PlacedAsset>
   placedForced?: (state: GameState, trigger: Trigger, self: PlacedAsset) => Message[]
@@ -450,6 +454,8 @@ export interface InvestigatorBehavior {
   testOptions?: (state: GameState, test: SkillTest, self: Investigator) => ReactionOption[]
   /** Una acción adicional cada turno que solo sirve para evitar. */
   extraEvadeAction?: boolean
+  /** Additional resources collected in the upkeep phase (Jenny Barnes). */
+  upkeepResources?: number
 }
 
 const investigatorBehaviors = new Map<CardCode, InvestigatorBehavior>()
