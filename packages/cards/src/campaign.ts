@@ -1,5 +1,6 @@
 import './movement-skills'
 import './reactive-events'
+import './direct-events'
 /**
  * Partida de campaña: lo que dura entre escenarios. El registro de campaña lo
  * escribe el motor durante cada escenario (notas, experiencia, trauma…); aquí
