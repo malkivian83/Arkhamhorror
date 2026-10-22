@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { cardPool, deckSizeOf, isStandard, type DeckProblem } from '@lcg/cards'
 import { playerCardDef } from '@lcg/engine'
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import GameCard from '../components/GameCard.vue'
 import ClassIcon from '../components/ClassIcon.vue'
@@ -27,6 +27,19 @@ const preview = ref<InspectedCard | null>(null)
 const previewElement = ref<HTMLElement>()
 const previewWidth = ref(300)
 const previewPosition = ref({ left: '16px', top: '16px' })
+const investigatorDialog = ref<HTMLDialogElement>()
+const investigatorTitleId = useId()
+const investigatorWidth = ref(640)
+
+function resizePreviews() {
+  hidePreview()
+  investigatorWidth.value = Math.min(640, window.innerWidth - 66)
+}
+
+function showInvestigatorBack() {
+  resizePreviews()
+  investigatorDialog.value?.showModal()
+}
 
 async function showPreview(code: string, event: MouseEvent | FocusEvent, landscape = false) {
   if (event.type === 'mouseenter' && noHover.value) return
@@ -50,15 +63,16 @@ function hidePreview() {
 }
 onMounted(() => {
   window.addEventListener('scroll', hidePreview, true)
-  window.addEventListener('resize', hidePreview)
+  window.addEventListener('resize', resizePreviews)
 })
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', hidePreview, true)
-  window.removeEventListener('resize', hidePreview)
+  window.removeEventListener('resize', resizePreviews)
 })
 
 const selectedId = computed(() => String(route.params.id ?? ''))
 const selected = computed(() => store.decks.find((d) => d.id === selectedId.value) ?? null)
+watch(selectedId, () => investigatorDialog.value?.close())
 const editorTab = ref<'contents' | 'pool'>('contents')
 const check = computed(() => (selected.value ? store.check(selected.value) : null))
 const size = computed(() =>
@@ -173,15 +187,20 @@ const titleCount = (code: string) => {
     <div class="layout">
       <section v-if="selected && check" class="editor">
         <div class="summary">
-          <GameCard
-            :code="selected.investigator"
-            :name="name(selected.investigator)"
-            :width="170"
-            landscape
-            no-zoom
-            @mouseenter="showPreview(selected.investigator, $event, true)"
-            @mouseleave="hidePreview"
-          />
+          <div class="investigator-reference">
+            <GameCard
+              :code="selected.investigator"
+              :name="name(selected.investigator)"
+              :width="170"
+              landscape
+              no-zoom
+              @mouseenter="showPreview(selected.investigator, $event, true)"
+              @mouseleave="hidePreview"
+            />
+            <button type="button" aria-haspopup="dialog" @click="showInvestigatorBack">
+              {{ t('decks.viewInvestigatorBack') }}
+            </button>
+          </div>
           <div>
             <input
               class="deck-name"
@@ -379,6 +398,35 @@ const titleCount = (code: string) => {
     </div>
   </SitePage>
   <Teleport to="body">
+    <dialog
+      v-if="selected"
+      ref="investigatorDialog"
+      class="investigator-back"
+      :aria-labelledby="investigatorTitleId"
+      @click="$event.target === investigatorDialog && investigatorDialog.close()"
+      @keydown.stop
+    >
+      <header>
+        <div>
+          <h2 :id="investigatorTitleId">{{ t('decks.deckbuildingRules') }}</h2>
+          <p>{{ name(selected.investigator) }}</p>
+        </div>
+        <button type="button" :aria-label="t('table.close')" @click="investigatorDialog?.close()">
+          ✕
+        </button>
+      </header>
+      <div class="investigator-back-face">
+        <CardDetails
+          :key="selected.investigator"
+          :code="selected.investigator"
+          :name="name(selected.investigator)"
+          :width="investigatorWidth"
+          back
+          landscape
+          no-zoom
+        />
+      </div>
+    </dialog>
     <div
       v-if="preview"
       ref="previewElement"
@@ -400,6 +448,56 @@ const titleCount = (code: string) => {
 </template>
 
 <style scoped>
+.summary > .investigator-reference {
+  display: grid;
+  gap: 10px;
+  flex: 0 0 170px;
+  width: 170px;
+}
+.investigator-back {
+  box-sizing: border-box;
+  width: min(674px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 16px;
+  overflow-y: auto;
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.investigator-back::backdrop {
+  background: rgb(0 0 0 / 75%);
+}
+.investigator-back header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.investigator-back h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+.investigator-back header p {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+.investigator-back header button {
+  flex: none;
+}
+.investigator-back-face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.investigator-back-face :deep(.translation) {
+  width: 100%;
+  max-height: none;
+}
 .preview-trigger {
   cursor: zoom-in;
 }

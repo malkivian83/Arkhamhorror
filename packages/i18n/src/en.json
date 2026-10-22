@@ -1295,6 +1295,8 @@
     "subtitle": "Compare your investigators and their cards. Choose a deck to keep building it.",
     "yourDecks": "Your decks",
     "editorViews": "Deck editor views",
+    "viewInvestigatorBack": "View reverse side",
+    "deckbuildingRules": "Deckbuilding requirements",
     "new": "New deck",
     "fromStarter": "Start from their starter deck",
     "create": "Create deck",
