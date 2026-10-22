@@ -1,0 +1,26 @@
+[
+  {
+    "code": "04019",
+    "name": "Trusted",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Upgrade"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "willpower": 1 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "04020",
+    "name": "Reliable",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Upgrade"],
+    "cost": 1,
+    "xp": 1,
+    "icons": { "intellect": 1 },
+    "slots": [],
+    "fast": true
+  }
+]

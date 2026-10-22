@@ -41,6 +41,7 @@ export {
   type TreacheryBehavior,
 } from './content'
 export { applyInput, createGame, dispatch, type EngineObserver } from './engine'
+export { assetVitals, resolvingSkillBonus } from './asset-upgrades'
 export { attackDamage } from './combat'
 export { assetsCannotReady } from './state'
 export { canAffordEntry, canEnter, leavingBlocked, parleyCosts } from './actions'

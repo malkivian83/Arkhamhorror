@@ -1,3 +1,4 @@
+import { discardOrphanedUpgrades } from './asset-upgrades'
 import { EngineError } from './errors'
 import { handle } from './handlers'
 import { prepareGame, type NewGameOptions } from './setup'
@@ -43,7 +44,7 @@ function run(initial: GameState, observer?: EngineObserver): GameState {
     if (steps >= MAX_STEPS) throw new EngineError('Demasiados mensajes: posible bucle')
     const [message, ...rest] = state.queue as [Message, ...Message[]]
     const before = state
-    state = handle({ ...state, queue: rest }, message)
+    state = discardOrphanedUpgrades(before, handle({ ...state, queue: rest }, message))
     observer?.(before, message, state)
   }
   return state

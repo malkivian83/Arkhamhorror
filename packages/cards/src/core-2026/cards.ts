@@ -4,6 +4,7 @@
  * de prueba o de búsqueda.
  */
 import {
+  assetVitals,
   engagedEnemies,
   getInvestigator,
   getLocation,
@@ -427,7 +428,7 @@ registerPlayerCard({
       ...Object.values(state.assets)
         .filter((a) => {
           if (a.owner !== investigator) return false
-          const def = playerCardDef(a.code)
+          const def = assetVitals(a)
           return kind === 'damage'
             ? def?.health !== undefined && a.damage < def.health
             : def?.sanity !== undefined && a.horror < def.sanity

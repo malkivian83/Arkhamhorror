@@ -154,6 +154,7 @@ import { MOVEMENT_SKILL_RENDERED_CODES } from './movement-skills'
 import { REACTIVE_EVENT_RENDERED_CODES } from './reactive-events'
 import { DIRECT_EVENT_RENDERED_CODES } from './direct-events'
 import { SEARCH_ASSET_RENDERED_CODES } from './search-assets'
+import { ATTACHED_UPGRADE_RENDERED_CODES } from './attached-upgrades'
 import { PETE_RENDERED_CODES } from './ashcan-pete'
 export const RENDERED_PLAYER_CARD_CODES = [
   ...pilotCodes,
@@ -177,4 +178,5 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...REACTIVE_EVENT_RENDERED_CODES,
   ...DIRECT_EVENT_RENDERED_CODES,
   ...SEARCH_ASSET_RENDERED_CODES,
+  ...ATTACHED_UPGRADE_RENDERED_CODES,
 ]
