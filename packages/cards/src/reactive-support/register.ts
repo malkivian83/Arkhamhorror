@@ -116,7 +116,11 @@ export function registerReactiveSupport(code: string): void {
               [...new Set(getInvestigator(s, by).discard)]
                 .filter((c) => {
                   const d = playerCardDef(c)
-                  return d?.class === 'survivor' && d.name !== playerCardDef(code)!.name
+                  return (
+                    !!d &&
+                    (d.classes ?? [d.class]).includes('survivor') &&
+                    d.name !== playerCardDef(code)!.name
+                  )
                 })
                 .map((c) => ({
                   label: 'choice.reactiveRecover',

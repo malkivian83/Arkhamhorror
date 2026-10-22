@@ -284,6 +284,19 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Continuous additional actions, consumed before ordinary actions (Leo De Luca). */
+  additionalTurnActions?: number
+  /** Printed maximum of one asset with this trait per investigator. */
+  limitTrait?: string
+  limitTitle?: boolean
+  /** Opens the printed reaction window after moving, before enemy engagement. */
+  reactsBeforeEngagement?: boolean
+  /** A player-card revelation, resolved from hand after weaknesses in the draw batch. */
+  revelation?: (state: GameState, investigator: InvestigatorId) => Message[]
+  /** Dilemma cards share their printed maximum across the group each round. */
+  dilemma?: boolean
+  /** Permission for a helper to commit from a different location. */
+  commitFromLocation?: (state: GameState, test: SkillTest, by: InvestigatorId) => boolean
   /** Continuous modifiers while this event is attached to an asset. */
   attachedVitals?: { health?: number; sanity?: number }
   /** Bonus to each skill while resolving a triggered ability of the host asset. */

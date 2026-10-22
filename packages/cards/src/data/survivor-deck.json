@@ -1,0 +1,130 @@
+[
+  {
+    "code": "01048",
+    "name": "Leo De Luca",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Ally", "Criminal"],
+    "unique": true,
+    "cost": 6,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "02188",
+    "name": "Lone Wolf",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "05036",
+    "name": "Track Shoes",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Clothing", "Footwear"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "06165",
+    "name": "Scrounge for Supplies",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Fortune"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "08071",
+    "name": "Short Supply",
+    "type": "asset",
+    "class": "survivor",
+    "deckLimit": 1,
+    "traits": ["Talent"],
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "08105",
+    "name": "Ice Pick",
+    "type": "asset",
+    "class": "seeker",
+    "classes": ["seeker", "survivor"],
+    "traits": ["Item", "Tool", "Melee"],
+    "cost": 1,
+    "xp": 1,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["hand"],
+    "fast": true
+  },
+  {
+    "code": "08125",
+    "name": "In the Thick of It",
+    "type": "asset",
+    "class": "neutral",
+    "deckLimit": 1,
+    "traits": ["Curse"],
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "09109",
+    "name": "At a Crossroads",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Dilemma", "Insight"],
+    "xp": 1,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "10023",
+    "name": "Wolf Mask",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Charm", "Mask"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "uses": {
+      "count": 2,
+      "type": "offering"
+    }
+  },
+  {
+    "code": "10116",
+    "name": "Long Shot",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  }
+]

@@ -58,6 +58,8 @@ export interface Investigator {
   clues: number
   location: LocationId | null
   actionsRemaining: number
+  /** Delayed action loss during the next turn (At a Crossroads). */
+  nextTurnActionLoss?: number
   turnTaken: boolean
   eliminated: boolean
   /** Se retiró del escenario (también cuenta como eliminado). */
@@ -346,6 +348,8 @@ export interface PlayerCardDef {
   signatures?: CardCode[]
   type: 'investigator' | 'asset' | 'event' | 'skill' | 'treachery' | 'enemy'
   class: string
+  /** Printed factions for multiclass cards; class remains the primary faction. */
+  classes?: string[]
   traits: string[]
   cost?: number
   xp?: number
@@ -491,6 +495,8 @@ export interface TokenEffect {
 }
 
 export interface SkillTest {
+  /** Complete deferred windows/effects, in order, after this test ends. */
+  afterEnd?: Message[]
   /** Replacement base value before modifiers and committed icons. */
   baseSkill?: number
   /** True only for the standard fight, evade or investigate action. */
@@ -630,7 +636,16 @@ export type Message =
   | { type: 'PerformAction'; investigator: InvestigatorId; action: Action; entryPaid?: boolean }
   /** `basic`: la acción de recurso o el mantenimiento (no es el efecto de una carta). */
   | { type: 'GainResources'; investigator: InvestigatorId; amount: number; basic?: boolean }
-  | { type: 'DrawCards'; investigator: InvestigatorId; amount: number }
+  | { type: 'DrawCards'; investigator: InvestigatorId; amount: number; revelations?: CardCode[] }
+  | { type: 'ResolveDrawnRevelations'; investigator: InvestigatorId; cards: CardCode[] }
+  | { type: 'ResolvePlayerRevelation'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'DiscardResolvedRevelation'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'ResolveOpeningRevelations' }
+  | { type: 'AfterCurrentSkillTest'; then: Message[] }
+  | { type: 'TakeImmediateAction'; investigator: InvestigatorId }
+  | { type: 'ImmediateActionWindow'; investigator: InvestigatorId }
+  | { type: 'RestoreImmediateAction' }
+  | { type: 'LoseNextTurnActions'; investigator: InvestigatorId; amount: number }
   // ----- Inicio de la partida (reglamento, "Setup", pasos de los investigadores) -----
   /** El grupo elige al investigador jefe. */
   | { type: 'ChooseLead' }
@@ -1187,6 +1202,7 @@ export type Trigger =
   | { type: 'enemyPhaseEnds' }
   | { type: 'afterSpendResources'; investigator: InvestigatorId; amount: number }
   | { type: 'afterMove'; investigator: InvestigatorId; first: boolean }
+  | { type: 'beforeMoveEngagement'; investigator: InvestigatorId }
   | { type: 'afterDealDamage'; investigator: InvestigatorId; enemy: EnemyId }
 
 /** Parámetros que acompañan a una clave i18n (nombres, cantidades…). */
@@ -1369,6 +1385,20 @@ export interface GameState {
   abilityUses: AbilityUse[]
   /** Investigador cuyo turno está en curso. */
   activeTurn?: InvestigatorId | null
+  /** Remaining continuous bonus actions, tracked by physical asset instance. */
+  turnActionGrants?: { asset: AssetId; remaining: number }[]
+  /** Saved turn context while taking an action as if it were another investigator's turn. */
+  immediateActions?: {
+    investigator: InvestigatorId
+    activeTurn: InvestigatorId | null
+    actionsRemaining: number
+    actionsTaken?: number
+    movedThisTurn?: boolean
+    extraMove?: boolean
+    extraEvade?: boolean
+    turnActionGrants?: { asset: AssetId; remaining: number }[]
+  }[]
+  dilemmasResolved?: { round: number; count: number }
   /** Ataques de enemigos (para "si este enemigo te ha atacado esta ronda"). */
   enemyAttacks?: { enemy: EnemyId; investigator: InvestigatorId; round: number }[]
   /** La perdición que se colocaría pasa a ser 1 daño directo a cada investigador. */

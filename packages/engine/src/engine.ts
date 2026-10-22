@@ -1,3 +1,4 @@
+import { synchronizeTurnActions } from './turn-actions'
 import { discardOrphanedUpgrades } from './asset-upgrades'
 import { EngineError } from './errors'
 import { handle } from './handlers'
@@ -44,7 +45,11 @@ function run(initial: GameState, observer?: EngineObserver): GameState {
     if (steps >= MAX_STEPS) throw new EngineError('Demasiados mensajes: posible bucle')
     const [message, ...rest] = state.queue as [Message, ...Message[]]
     const before = state
-    state = discardOrphanedUpgrades(before, handle({ ...state, queue: rest }, message))
+    state = synchronizeTurnActions(
+      before,
+      discardOrphanedUpgrades(before, handle({ ...state, queue: rest }, message)),
+      message,
+    )
     observer?.(before, message, state)
   }
   return state
