@@ -59,6 +59,14 @@
     "language": "Idioma",
     "playmat": "Tapete de juego",
     "disclaimer": "Proyecto no oficial de aficionados. No producido, avalado ni respaldado por Fantasy Flight Games, ni afiliado a ella.",
+    "copyright": {
+      "title": "Aviso de copyright",
+      "rights": "Arkham Horror: The Card Game y todos sus elementos (nombres, textos de reglas y cartas, ilustraciones, logotipos y símbolos) son marcas y obras protegidas por derechos de autor de Fantasy Flight Games y de sus respectivos titulares. Todos los derechos pertenecen a sus propietarios; este sitio no reclama ninguna titularidad sobre ellos.",
+      "nonProfit": "Este sitio es un proyecto de aficionados, gratuito y sin ánimo de lucro, creado exclusivamente para uso personal y no comercial. No vende contenido, no incluye publicidad ni solicita donaciones, y no pretende sustituir al producto original: se recomienda adquirir los productos oficiales.",
+      "fairUse": "El material de terceros se utiliza de buena fe, con fines de entretenimiento, estudio y comentario, en el marco de las excepciones de cita y uso legítimo (fair use) que resulten aplicables.",
+      "takedown": "Si eres titular de derechos y consideras que algún contenido no debería mostrarse aquí, comunícalo a la persona responsable del sitio y se retirará sin demora.",
+      "warranty": "El software se ofrece «tal cual», sin garantías de ningún tipo, y su uso es responsabilidad de cada persona usuaria."
+    },
     "sections": "Secciones",
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú",

@@ -14,6 +14,7 @@ import { useRouter } from 'vue-router'
 import DisclosureIcon from '../components/DisclosureIcon.vue'
 import SessionTools from '../components/SessionTools.vue'
 import SiteAction from '../components/SiteAction.vue'
+import SiteFooter from '../components/SiteFooter.vue'
 import SkillIcon from '../components/SkillIcon.vue'
 import { campaignCover, scenarioLabel } from '../game/campaignProgress'
 import { useDecksStore } from '../stores/decks'
@@ -605,7 +606,7 @@ function start() {
       </div>
     </form>
     <div class="setup-tools"><SessionTools /></div>
-    <footer class="setup-footer">{{ t('app.disclaimer') }}</footer>
+    <SiteFooter class="setup-footer" />
   </div>
 </template>
 

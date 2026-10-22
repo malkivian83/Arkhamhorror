@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import SiteFooter from './SiteFooter.vue'
 
 withDefaults(
   defineProps<{
@@ -34,7 +35,7 @@ const { t } = useI18n()
         <div v-if="$slots.actions" class="page-actions"><slot name="actions" /></div>
       </header>
       <div class="page-content"><slot /></div>
-      <footer class="page-footer">{{ t('app.disclaimer') }}</footer>
+      <SiteFooter class="page-footer" />
     </section>
   </div>
 </template>
