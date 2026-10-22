@@ -10,7 +10,12 @@ import { ask } from '../dunwich-pilot/effects'
 interface UpgradeOptions {
   behavior?: Pick<
     PlayerCardBehavior,
-    'attachedVitals' | 'attachedResolvingSkills' | 'attachedAttackSkill' | 'attachedMonsterDamage'
+    | 'attachedVitals'
+    | 'attachedResolvingSkills'
+    | 'attachedAttackSkill'
+    | 'attachedMonsterDamage'
+    | 'attachedAbilities'
+    | 'effect'
   >
   /** Host controlled by any investigator at your location instead of by you. */
   atLocation?: boolean

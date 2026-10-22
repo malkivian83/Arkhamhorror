@@ -55,5 +55,33 @@
     },
     "slots": [],
     "fast": true
+  },
+  {
+    "code": "60162",
+    "name": "Custom Grip",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Upgrade"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60163",
+    "name": "Iron Sights",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Item", "Upgrade"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
   }
 ]

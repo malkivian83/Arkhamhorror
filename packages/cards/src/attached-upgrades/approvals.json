@@ -35,6 +35,22 @@
       "test": "card-60172.test.ts",
       "status": "verified",
       "fast": true
+    },
+    {
+      "code": "60162",
+      "family": "custom-grip",
+      "module": "card-60162",
+      "test": "card-60162.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60163",
+      "family": "iron-sights",
+      "module": "card-60163",
+      "test": "card-60163.test.ts",
+      "status": "verified",
+      "fast": true
     }
   ]
 }

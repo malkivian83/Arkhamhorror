@@ -406,7 +406,9 @@ export interface StoryCardInPlay {
 
 export interface Asset {
   /** Player events attached to this instance; owner is retained on control changes. */
-  upgrades?: { code: CardCode; owner: InvestigatorId }[]
+  upgrades?: { code: CardCode; owner: InvestigatorId; exhausted?: boolean }[]
+  /** Skill bonus for the next fight using this asset this turn (Iron Sights). */
+  nextFightBonus?: number
   originalOwner?: InvestigatorId
   /** Perdición sobre el apoyo (cuenta para el plan). */
   doom?: number
@@ -1020,6 +1022,11 @@ export type Message =
       /** Limit 1 copy of this title per asset. */
       limitPerAsset?: boolean
     }
+  | { type: 'ExhaustUpgrade'; asset: AssetId; index: number }
+  /** The attached event goes to its owner's discard pile. */
+  | { type: 'DiscardUpgrade'; asset: AssetId; index: number }
+  | { type: 'PrimeNextFight'; asset: AssetId; amount: number }
+  | { type: 'ClearNextFight'; asset: AssetId }
   | { type: 'HealAsset'; asset: AssetId; damage: number; horror: number }
   | { type: 'ReturnAssetToHand'; asset: AssetId }
   /** De la pila de descartes a la mano. */
