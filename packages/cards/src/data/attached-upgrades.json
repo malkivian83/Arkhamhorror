@@ -83,5 +83,48 @@
     },
     "slots": [],
     "fast": true
+  },
+  {
+    "code": "05152",
+    "name": "Well-Maintained",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Upgrade"],
+    "cost": 0,
+    "xp": 1,
+    "icons": {
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "10028",
+    "name": "Tinker",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Insight", "Upgrade"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "10054",
+    "name": "Fine Tuning",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight", "Upgrade"],
+    "cost": 2,
+    "xp": 1,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
   }
 ]

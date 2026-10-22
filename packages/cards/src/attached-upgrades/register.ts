@@ -15,6 +15,9 @@ interface UpgradeOptions {
     | 'attachedAttackSkill'
     | 'attachedMonsterDamage'
     | 'attachedAbilities'
+    | 'attachedSlotReduction'
+    | 'afterHostDiscarded'
+    | 'afterHostExhausted'
     | 'effect'
   >
   /** Host controlled by any investigator at your location instead of by you. */
@@ -24,7 +27,14 @@ interface UpgradeOptions {
   ammo?: number
 }
 
-export function registerUpgrade(code: string, trait: string, options: UpgradeOptions = {}) {
+export function registerUpgrade(
+  code: string,
+  traits: string | string[],
+  options: UpgradeOptions = {},
+) {
+  const allowed = [traits].flat()
+  const hostTrait = (assetCode: string) =>
+    allowed.find((t) => playerCardDef(assetCode)?.traits.includes(t))
   const { atLocation = false, limitPerAsset = false, ammo = 0 } = options
   const targets = (s: GameState, by: string) => {
     const here = s.investigators.find((i) => i.id === by)?.location ?? null
@@ -36,7 +46,7 @@ export function registerUpgrade(code: string, trait: string, options: UpgradeOpt
           ? !controller.eliminated && here !== null && controller.location === here
           : a.owner === by) &&
         !(limitPerAsset && a.upgrades?.some((u) => u.code === code)) &&
-        playerCardDef(a.code)?.traits.includes(trait)
+        hostTrait(a.code) !== undefined
       )
     })
   }
@@ -58,7 +68,7 @@ export function registerUpgrade(code: string, trait: string, options: UpgradeOpt
               asset: a.id,
               investigator: by,
               code,
-              trait,
+              trait: hostTrait(a.code)!,
               ...(atLocation ? { atLocation } : {}),
               ...(limitPerAsset ? { limitPerAsset } : {}),
             },
