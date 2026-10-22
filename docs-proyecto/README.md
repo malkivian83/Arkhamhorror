@@ -72,6 +72,7 @@ vigente de pendientes.
 | 60 | [Jenny Barnes y la lista Campaign-Breaker](60-investigador-jenny-barnes.md) | Lista 1179 jugable: seis códigos nuevos, coste X, ranuras restringidas por rasgo y daño simultáneo. |
 | 61 | [Eventos encadenados](61-eventos-encadenados.md) | Drawn to the Flame, Emergency Cache 3 y Glory; encuentro y luego pistas, reparto de suministros y reacción tras derrotar. |
 | 62 | [Ranuras restringidas por rasgo](62-ranuras-restringidas.md) | Bandolier 2, Sign Magick, Arcane Enlightenment, Familiar Spirit y Scientific Studies Grant; ranuras con varios rasgos. |
+| 63 | [Eventos de acción básica de inicio](63-eventos-de-accion-basica-de-inicio.md) | 19 eventos distintos y 2 reediciones: combate, investigación y evasión con bono, reacciones rápidas y curación repartida. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 
 ## Decisiones ya tomadas

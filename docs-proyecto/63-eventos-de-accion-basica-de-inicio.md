@@ -1,0 +1,17 @@
+# 63 · Eventos de acción básica de los mazos de inicio
+
+Lote `starter-actions`: **21 códigos = 19 cartas o niveles distintos nuevos + 2 reediciones** (01522 Evidence! y 01685 Seeking Answers 2, de la Caja básica revisada). Casi todos son eventos de los mazos de inicio de investigador que combaten, investigan o evitan con un bono y un efecto adicional. Reutilizan `registerBasicEvent` del documento 55 (acciones básicas, sin ataques de oportunidad en combates y evasiones), `returnAtEndOfTurn`, `EnemyStaysExhausted`, `IfTestResult`, `ChooseMove` y las reacciones desde la mano de Glory (documento 61). No hay cambios en el motor.
+
+- **Combate.** Caustic Reaction 0/2 (intelecto; +1 o +2 de daño con 2 o más pistas), A Sudden Fall 0/2 (+2, o agilidad más combate; daño extra contra un enemigo agotado), Backstab 3 (agilidad, +2 de daño; con éxito por 2 vuelve a la mano al final del turno), Consume Life (voluntad, +1 de daño; si derrota al enemigo, cura 1 de daño a un investigador o Aliado del Lugar) e «I've got a plan!» 2 (intelecto +2, +1 de daño por pista hasta +3).
+- **Investigación.** Stakeout 0/3 (+2/+3; con éxito cura 1 horror, o 1 pista adicional y 2 horrores), Clean Sweep 0/2 (+2 y movimiento opcional si descubre la última pista del Lugar; agilidad más intelecto y movimiento opcional tras cualquier resultado) y Seeking Answers 2 (en lugar de la pista normal, 2 pistas en total entre tu Lugar y los conectados, de una en una).
+- **Evasión.** Unflappable 0/1 (+2 y cura 1 horror con 2 o más pistas; +3 y cura 2 horrores entre las cartas que controlas) y Quick Exit 0/2 (+2 y, con éxito por 2, un enemigo no Élite no se prepara en el siguiente mantenimiento; con voluntad añadida, con cualquier éxito).
+- **Reacciones rápidas.** Evidence! descubre 1 pista tras derrotar tú a un enemigo; Lesson Learned 2 descubre 2 tras recibir daño (no solo horror) del ataque de un enemigo. No se ofrecen por derrotas o daños ajenos ni en ventanas rápidas ordinarias.
+- **Curación.** Infuse Life cura 3 daños, de uno en uno, entre investigadores y Apoyos Aliado de tu Lugar; no se puede jugar sin nada que curar.
+
+Las curaciones y pistas «entre» varias cartas se reparten punto a punto; cuando solo queda una opción válida, se aplica sin preguntar.
+
+Referencia revisada: textos oficiales EN/ES de la instantánea congelada de ArkhamDB y conversión reproducible. Nombres y resúmenes EN/ES; 38 escaneos oficiales y 38 miniaturas selectivas de las 19 cartas originales, revisados visualmente. Las dos reediciones usan las imágenes de su impresión original (01022 y 60227), como otras reimpresiones; 01522 no tiene escaneo español propio. Sin cambios de presentación.
+
+Evidencias: 24 pruebas en archivos compartidos por tipo de acción (combate, investigación, evasión, reacciones y curación) que comprueban habilidad, valor total, daño, márgenes, condiciones de pistas y de enemigo agotado o Élite, retorno a la mano, movimiento, reparto de curación y de pistas y las ventanas de reacción; 5 de compra e inicio de escenario por clase y 1 de unicidad frente a todos los lotes publicados.
+
+Acumulado: **506 códigos / 405 familias canónicas**. Sobre los 104 históricos: **402 códigos añadidos = 301 registros distintos + 101 reediciones**; pendientes históricos, **1477 códigos**, incluidas reediciones. Inventarios y huellas congelados conservados. Publicación y siguientes grupos en el [resumen único](continuacion-importacion.md).

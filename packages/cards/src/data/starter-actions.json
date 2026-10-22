@@ -1,0 +1,296 @@
+[
+  {
+    "code": "60166",
+    "name": "Stakeout",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "60179",
+    "name": "Stakeout",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60261",
+    "name": "Caustic Reaction",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Tactic", "Science"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60273",
+    "name": "Caustic Reaction",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Tactic", "Science"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "intellect": 1,
+      "combat": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "60262",
+    "name": "Unflappable",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60271",
+    "name": "Unflappable",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 2,
+    "xp": 1,
+    "icons": {
+      "intellect": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60367",
+    "name": "A Sudden Fall",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Tactic", "Trick"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60378",
+    "name": "A Sudden Fall",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Tactic", "Trick"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "combat": 2,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60364",
+    "name": "Clean Sweep",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Tactic", "Trick"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60376",
+    "name": "Clean Sweep",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Tactic", "Trick"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "intellect": 2,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60366",
+    "name": "Quick Exit",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Tactic", "Trick"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60377",
+    "name": "Quick Exit",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Tactic", "Trick"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "willpower": 2,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60329",
+    "name": "Backstab",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Tactic"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60462",
+    "name": "Consume Life",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60225",
+    "name": "\"I've got a plan!\"",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight", "Tactic"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "intellect": 2,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "01022",
+    "name": "Evidence!",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "01522",
+    "name": "Evidence!",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60124",
+    "name": "Lesson Learned",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Insight", "Spirit"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "intellect": 2
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60464",
+    "name": "Infuse Life",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60227",
+    "name": "Seeking Answers",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "intellect": 1,
+      "agility": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "01685",
+    "name": "Seeking Answers",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "intellect": 1,
+      "agility": 2
+    },
+    "slots": []
+  }
+]
