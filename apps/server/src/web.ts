@@ -2,7 +2,7 @@ import fastifyStatic from '@fastify/static'
 import type { FastifyInstance } from 'fastify'
 import { basename } from 'node:path'
 
-const pages = new Set(['/', '/account', '/library', '/game', '/campaign', '/decks'])
+const pages = new Set(['/', '/account', '/library', '/admin', '/game', '/campaign', '/decks'])
 
 /** Only public assets and known client-side pages are served. API misses stay JSON. */
 export async function serveWeb(app: FastifyInstance, root: string) {
