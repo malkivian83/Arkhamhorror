@@ -1,0 +1,523 @@
+[
+  {
+    "code": "60311",
+    "name": "Streetwise",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60511",
+    "name": "Scrapper",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "04156",
+    "name": "High Roller",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "intellect": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "04160",
+    "name": "Cornered",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "05028",
+    "name": "Well Connected",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Condition"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "04154",
+    "name": "Quick Study",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "04151",
+    "name": "Well Prepared",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "60156",
+    "name": "Police Dog",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Creature", "Police"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 1
+  },
+  {
+    "code": "60170",
+    "name": "Police Dog",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Creature", "Police"],
+    "cost": 3,
+    "xp": 1,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 1
+  },
+  {
+    "code": "01018",
+    "name": "Beat Cop",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Police"],
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "01518",
+    "name": "Beat Cop",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Police"],
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "01028",
+    "name": "Beat Cop",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Police"],
+    "cost": 4,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": ["ally"],
+    "health": 3,
+    "sanity": 2
+  },
+  {
+    "code": "01528",
+    "name": "Beat Cop",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Police"],
+    "cost": 4,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": ["ally"],
+    "health": 3,
+    "sanity": 2
+  },
+  {
+    "code": "02027",
+    "name": "Hired Muscle",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Ally", "Criminal"],
+    "cost": 1,
+    "xp": 1,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["ally"],
+    "health": 3,
+    "sanity": 1
+  },
+  {
+    "code": "04025",
+    "name": "Treasure Hunter",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Ally", "Wayfarer"],
+    "cost": 1,
+    "xp": 1,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "09033",
+    "name": "Field Agent",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Agency"],
+    "cost": 4,
+    "xp": 2,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "01076",
+    "name": "Stray Cat",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Ally", "Creature"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["ally"],
+    "health": 1
+  },
+  {
+    "code": "01576",
+    "name": "Stray Cat",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Ally", "Creature"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["ally"],
+    "health": 1
+  },
+  {
+    "code": "60509",
+    "name": "Mysterious Raven",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Ally", "Creature"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["ally"],
+    "sanity": 1
+  },
+  {
+    "code": "01021",
+    "name": "Guard Dog",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Creature"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["ally"],
+    "health": 3,
+    "sanity": 1
+  },
+  {
+    "code": "01521",
+    "name": "Guard Dog",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Creature"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["ally"],
+    "health": 3,
+    "sanity": 1
+  },
+  {
+    "code": "60258",
+    "name": "Psychology Student",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ally", "Miskatonic"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 1
+  },
+  {
+    "code": "60456",
+    "name": "Offering Bowl",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Occult"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": [],
+    "uses": {
+      "count": 3,
+      "type": "offering"
+    }
+  },
+  {
+    "code": "60573",
+    "name": "Canteen",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["accessory"],
+    "uses": {
+      "count": 3,
+      "type": "supply"
+    }
+  },
+  {
+    "code": "06116",
+    "name": "Scroll of Prophecies",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Tome"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 4,
+      "type": "secret"
+    }
+  },
+  {
+    "code": "60209",
+    "name": "Feed the Mind",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 3,
+      "type": "secret"
+    }
+  },
+  {
+    "code": "01070",
+    "name": "Book of Shadows",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Tome"],
+    "cost": 4,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "01570",
+    "name": "Book of Shadows",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Tome"],
+    "cost": 4,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "03154",
+    "name": "Book of Shadows",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Tome"],
+    "cost": 3,
+    "xp": 1,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "02108",
+    "name": "Pathfinder",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Talent"],
+    "cost": 3,
+    "xp": 1,
+    "icons": {
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60557",
+    "name": "Loner",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Condition"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60222",
+    "name": "Esoteric Atlas",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tome"],
+    "cost": 3,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 4,
+      "type": "secret"
+    }
+  },
+  {
+    "code": "01032",
+    "name": "Research Librarian",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ally", "Miskatonic"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 1
+  },
+  {
+    "code": "01532",
+    "name": "Research Librarian",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ally", "Miskatonic"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 1
+  },
+  {
+    "code": "04018",
+    "name": "Venturer",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Wayfarer"],
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2,
+    "uses": {
+      "count": 3,
+      "type": "supply"
+    }
+  }
+]

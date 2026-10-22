@@ -611,6 +611,8 @@ export type Message =
       extraDamage?: number
       use?: string
       after?: Message[]
+      /** Resolved with the results if the test succeeds (High Roller). */
+      onSuccess?: Message[]
       /** Investigar con éxito no descubre pistas (Pruebas incriminatorias). */
       replaceClue?: boolean
     }
@@ -1218,7 +1220,13 @@ export type Trigger =
     }
   | { type: 'afterAssetDamaged'; asset: AssetId; damage: number; horror: number }
   /** Al terminar de asignar daño y horror: lo que ha recibido cada apoyo (con o sin dueño). */
-  | { type: 'afterDamageAssigned'; investigator: InvestigatorId; dealt: DamageDealt[] }
+  | {
+      type: 'afterDamageAssigned'
+      investigator: InvestigatorId
+      dealt: DamageDealt[]
+      /** Attacking enemy, when the damage comes from an enemy attack (Guard Dog). */
+      enemy?: EnemyId
+    }
   /** Un investigador ha sido derrotado (no cuenta retirarse). */
   | { type: 'investigatorDefeated'; investigator: InvestigatorId }
   | { type: 'enemyPhaseBegins' }
