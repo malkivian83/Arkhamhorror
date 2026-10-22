@@ -1,0 +1,153 @@
+[
+  {
+    "code": "08024",
+    "name": "Defensive Stance",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Practiced", "Expert"],
+    "xp": 1,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "08037",
+    "name": "Survey the Area",
+    "type": "skill",
+    "class": "seeker",
+    "traits": ["Practiced", "Expert"],
+    "xp": 1,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "08065",
+    "name": "Occult Theory",
+    "type": "skill",
+    "class": "mystic",
+    "traits": ["Practiced", "Expert"],
+    "xp": 1,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "08078",
+    "name": "Dauntless Spirit",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate", "Developed"],
+    "xp": 1,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "08052",
+    "name": "Savant",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Innate", "Developed"],
+    "xp": 1,
+    "icons": {
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60180",
+    "name": "Indomitable",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Innate", "Developed"],
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "combat": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "09070",
+    "name": "Calculated Risk",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Gambit", "Fated"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "01053",
+    "name": "Opportunist",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "01553",
+    "name": "Opportunist",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60319",
+    "name": "Opportunist",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "02231",
+    "name": "Opportunist",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Innate", "Developed"],
+    "xp": 2,
+    "icons": {
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60526",
+    "name": "Unexpected Courage",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate", "Developed"],
+    "xp": 2,
+    "icons": {
+      "wild": 2
+    },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "60569",
+    "name": "On the Brink",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Gambit", "Desperate"],
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": [],
+    "commitLimit": 1
+  }
+]

@@ -1,3 +1,4 @@
+import './skill-tricks'
 import './support-allies'
 import './simple-assets'
 import './starter-actions'

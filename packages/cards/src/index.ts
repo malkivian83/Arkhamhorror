@@ -168,7 +168,9 @@ import { RESTRICTED_SLOT_RENDERED_CODES } from './restricted-slots'
 import { STARTER_ACTION_RENDERED_CODES } from './starter-actions'
 import { SIMPLE_ASSET_RENDERED_CODES } from './simple-assets'
 import { SUPPORT_ALLY_RENDERED_CODES } from './support-allies'
+import { SKILL_TRICK_RENDERED_CODES } from './skill-tricks'
 export const RENDERED_PLAYER_CARD_CODES = [
+  ...SKILL_TRICK_RENDERED_CODES,
   ...SUPPORT_ALLY_RENDERED_CODES,
   ...SIMPLE_ASSET_RENDERED_CODES,
   ...STARTER_ACTION_RENDERED_CODES,
