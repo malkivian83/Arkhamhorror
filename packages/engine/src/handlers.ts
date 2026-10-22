@@ -2904,6 +2904,13 @@ export function handle(state: GameState, message: Message): GameState {
       const test = state.skillTest
       const tokens = [...(test?.tokens ?? []), ...(test?.ignoredTokens ?? [])]
       let next: GameState = { ...state, skillTest: null, chaosBag: [...state.chaosBag, ...tokens] }
+      // Iron Sights: the bonus is used by the next fight with that asset, success or not.
+      const primed =
+        test?.kind.type === 'fight' && test.source ? next.assets[test.source] : undefined
+      if (primed?.nextFightBonus) {
+        const { nextFightBonus: _used, ...rest } = primed
+        next = { ...next, assets: { ...next.assets, [primed.id]: rest } }
+      }
       const reshuffle: Message[] = []
       for (const c of test?.committed ?? []) {
         // Habitación 245: va al fondo del mazo de su dueño.
@@ -3779,7 +3786,15 @@ export function handle(state: GameState, message: Message): GameState {
       const assets = Object.fromEntries(
         Object.entries(state.assets).map(([id, a]) => [
           id,
-          assetsCannotReady(state, a.owner) ? a : { ...a, exhausted: false },
+          assetsCannotReady(state, a.owner)
+            ? a
+            : {
+                ...a,
+                exhausted: false,
+                ...(a.upgrades
+                  ? { upgrades: a.upgrades.map(({ exhausted: _ready, ...u }) => u) }
+                  : {}),
+              },
         ]),
       )
       const occupied = [
@@ -3857,6 +3872,45 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     // ------------------------------------------------------- Habilidades
+    case 'ExhaustUpgrade':
+    case 'DiscardUpgrade': {
+      const asset = state.assets[message.asset]
+      const upgrade = asset?.upgrades?.[message.index]
+      if (!asset || !upgrade) return state
+      if (message.type === 'ExhaustUpgrade') {
+        const upgrades = asset.upgrades!.map((u, n) =>
+          n === message.index ? { ...u, exhausted: true } : u,
+        )
+        return { ...state, assets: { ...state.assets, [asset.id]: { ...asset, upgrades } } }
+      }
+      const upgrades = asset.upgrades!.filter((_, n) => n !== message.index)
+      const { upgrades: _all, ...bare } = asset
+      return updateInvestigator(
+        {
+          ...state,
+          assets: { ...state.assets, [asset.id]: upgrades.length ? { ...asset, upgrades } : bare },
+        },
+        upgrade.owner,
+        (i) => (i.eliminated ? i : { ...i, discard: [...i.discard, upgrade.code] }),
+      )
+    }
+    case 'PrimeNextFight': {
+      const asset = state.assets[message.asset]
+      if (!asset) return state
+      return {
+        ...state,
+        assets: {
+          ...state.assets,
+          [asset.id]: { ...asset, nextFightBonus: (asset.nextFightBonus ?? 0) + message.amount },
+        },
+      }
+    }
+    case 'ClearNextFight': {
+      const asset = state.assets[message.asset]
+      if (!asset?.nextFightBonus) return state
+      const { nextFightBonus: _expired, ...rest } = asset
+      return { ...state, assets: { ...state.assets, [asset.id]: rest } }
+    }
     case 'BeginAssetAbility':
       return { ...state, resolvingAssets: [...(state.resolvingAssets ?? []), message.asset] }
     case 'EndAssetAbility': {

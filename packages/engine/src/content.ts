@@ -305,6 +305,13 @@ export interface PlayerCardBehavior {
   attachedAttackSkill?: number
   /** Extra damage dealt to Monster enemies by successful attacks with the host asset. */
   attachedMonsterDamage?: number
+  /** Triggered abilities printed on this event while it is attached (index in host.upgrades). */
+  attachedAbilities?: (
+    state: GameState,
+    host: Asset,
+    index: number,
+    investigator: InvestigatorId,
+  ) => AbilityOption[]
   /** Additive difficulty modifier while this card is committed. */
   committedDifficulty?: number
   /** Printed permission to commit without matching icons (e.g. Take Heart). */

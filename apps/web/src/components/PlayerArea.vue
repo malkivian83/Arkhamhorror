@@ -326,6 +326,14 @@ const slots = computed(() => {
           <span v-if="assetVitals(asset).sanity !== undefined" :title="t('table.sanity')"
             >✦ {{ assetVitals(asset).sanity }}</span
           >
+          <span v-if="asset.upgrades!.some((u) => u.exhausted)">{{
+            t('table.exhaustedUpgrades', {
+              count: asset.upgrades!.filter((u) => u.exhausted).length,
+            })
+          }}</span>
+          <span v-if="asset.nextFightBonus">{{
+            t('table.nextFightBonus', { amount: asset.nextFightBonus })
+          }}</span>
         </div>
         <div class="slots">
           <div

@@ -378,6 +378,8 @@
     "observatoryDraw": "Draw 1 card",
     "orneDraw": "Draw 3 cards (2 actions)",
     "fightWith": "Fight {enemy} with {card}",
+    "ironSights": "Iron Sights: +3 to your next fight with {card}",
+    "customGrip": "Custom Grip: return {card} to your hand",
     "investigateWith": "Investigate with {card} ({skill})",
     "wrenchProvoke": "Provoke {enemy} (it engages you and attacks)",
     "twinSecond": "Second shot at {enemy} (Agility +1, +1 damage)",
@@ -771,7 +773,9 @@
       "agendaNext": "The next agenda is now active",
       "agendaFinished": "The agenda has finished"
     },
-    "assetUpgrades": "Upgrades on {card}"
+    "assetUpgrades": "Upgrades on {card}",
+    "exhaustedUpgrades": "{count} exhausted",
+    "nextFightBonus": "+{amount} next fight"
   },
   "difficulty": {
     "easy": "Easy",
@@ -1601,6 +1605,8 @@
       "08105": "Item. Tool. Melee.",
       "60172": "Item. Upgrade.",
       "04193": "Upgrade. Supply. Blessed.",
+      "60162": "Upgrade.",
+      "60163": "Item. Upgrade.",
       "08125": "Curse.",
       "09109": "Dilemma. Insight.",
       "10023": "Item. Charm. Mask.",
@@ -1863,6 +1869,8 @@
       "04020": "Fast. Your turn only. Attach to an Item asset you control. While resolving a triggered ability on it, you get +1 to each skill.",
       "60172": "Fast. Your turn only. Attach to a Firearm asset you control. You get +1 skill value while attacking with it.",
       "04193": "Fast. Your turn only. Attach to a Firearm asset controlled by an investigator at your location and place 2 ammo on it. Limit 1 per asset. Its attacks deal +1 damage against Monster enemies.",
+      "60162": "Fast. Your turn only. Attach to a Firearm asset you control. Fast, during your turn but not during an action: discard it to return the asset to your hand; you may then play a Firearm asset from your hand, paying its cost.",
+      "60163": "Fast. Your turn only. Attach to a Firearm asset you control. Action, exhaust: +3 skill value the next time you fight with the asset this turn. Does not provoke attacks of opportunity.",
       "01048": "During your turn, you may take one additional action. Unique ally with 2 health and 2 sanity.",
       "02188": "Limit 1 per investigator. At the beginning of your turn, you may gain 1 resource if no other investigator is at your location.",
       "05036": "Limit 1 Footwear per investigator. +1 [agility]. After moving, before enemies engage, exhaust to test [agility] (3); on success, move to a connecting location.",
@@ -2114,6 +2122,8 @@
       "04020": "Reliable",
       "60172": "Extended Barrel",
       "04193": "Custom Ammunition",
+      "60162": "Custom Grip",
+      "60163": "Iron Sights",
       "01048": "Leo De Luca",
       "02188": "Lone Wolf",
       "05036": "Track Shoes",

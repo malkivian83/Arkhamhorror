@@ -5,6 +5,7 @@ export {
   canAdvanceAct,
   cluesToAdvanceAct,
   withinLimit,
+  uniqueAssetInPlay,
 } from './actions'
 export {
   registerAct,

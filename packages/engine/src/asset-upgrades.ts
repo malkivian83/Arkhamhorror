@@ -40,7 +40,11 @@ const upgradeSum = (asset: Asset | undefined, value: (code: string) => number | 
 
 // RR: Fight. Applies while attacking with the host asset, not to other attacks.
 export function attachedAttackSkillBonus(state: GameState, test: SkillTest): number {
-  return upgradeSum(attacking(state, test), (c) => playerCardBehavior(c)?.attachedAttackSkill)
+  const host = attacking(state, test)
+  return (
+    upgradeSum(host, (c) => playerCardBehavior(c)?.attachedAttackSkill) +
+    (host?.nextFightBonus ?? 0)
+  )
 }
 
 // The bonus needs a successful attack on a Monster; redirected fail damage gets none.

@@ -4,7 +4,7 @@ import { newCampaign, purchase, purchaseOptions, startScenario } from '../campai
 import { isStandard } from '../decks'
 
 // RR: Deckbuilding and campaign upgrades. One entry per approved code.
-for (const code of ['04019', '04020', '04193', '60172']) {
+for (const code of ['04019', '04020', '04193', '60172', '60162', '60163']) {
   it(`purchases ${code} into a legal deck and starts a scenario`, () => {
     let c = newCampaign('brethren-of-ash', ['daniela'], 'easy')
     const id = c.investigators[0]!.id

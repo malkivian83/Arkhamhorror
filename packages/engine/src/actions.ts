@@ -315,6 +315,19 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
         id: a.id,
       }),
     ),
+    // RR: Attachments. Abilities printed on events attached to your assets.
+    ...Object.values(state.assets)
+      .filter((a) => a.owner === id)
+      .flatMap((a) =>
+        (a.upgrades ?? []).flatMap((u, index) =>
+          u.owner === id
+            ? withTarget(
+                playerCardBehavior(u.code)?.attachedAbilities?.(state, a, index, id) ?? [],
+                { type: 'asset', id: a.id },
+              )
+            : [],
+        ),
+      ),
     // Cartas de Historia: cualquier investigador puede usar sus habilidades.
     ...Object.values(state.stories ?? {}).flatMap((s) =>
       withTarget(storyBehavior(s.code)?.abilities?.(state, s, id) ?? [], {

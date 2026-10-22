@@ -378,6 +378,8 @@
     "observatoryDraw": "Robar 1 carta",
     "orneDraw": "Robar 3 cartas (2 acciones)",
     "fightWith": "Combatir a {enemy} con {card}",
+    "ironSights": "Mira de hierro: +3 a tu próximo combate con {card}",
+    "customGrip": "Empuñadora personalizada: devolver {card} a tu mano",
     "investigateWith": "Investigar con {card} ({skill})",
     "wrenchProvoke": "Provocar a {enemy} (se enfrenta a ti y ataca)",
     "twinSecond": "Segundo disparo contra {enemy} (Agilidad +1, +1 daño)",
@@ -771,7 +773,9 @@
       "agendaNext": "El siguiente plan ya está activo",
       "agendaFinished": "El plan ha terminado"
     },
-    "assetUpgrades": "Mejoras de {card}"
+    "assetUpgrades": "Mejoras de {card}",
+    "exhaustedUpgrades": "{count} agotadas",
+    "nextFightBonus": "+{amount} al próximo combate"
   },
   "difficulty": {
     "easy": "Fácil",
@@ -1601,6 +1605,8 @@
       "08105": "Objeto. Herramienta. Cuerpo a cuerpo.",
       "60172": "Objeto. Mejora.",
       "04193": "Mejora. Suministros. Bendecido.",
+      "60162": "Mejora.",
+      "60163": "Objeto. Mejora.",
       "08125": "Maldición.",
       "09109": "Dilema. Perspicacia.",
       "10023": "Objeto. Talismán. Máscara.",
@@ -1863,6 +1869,8 @@
       "04020": "Rápido. Solo durante tu turno. Vincula a un apoyo Objeto que controles. Al resolver una capacidad activada del apoyo vinculado, recibes +1 a cada una de tus habilidades.",
       "60172": "Rápido. Solo durante tu turno. Vincula a un apoyo Arma de fuego que controles. Recibes +1 a tu valor de habilidad al atacar con él.",
       "04193": "Rápido. Solo durante tu turno. Vincula a un apoyo Arma de fuego controlado por un investigador de tu Lugar y coloca 2 municiones sobre él. Límite de 1 por apoyo. Sus ataques infligen +1 de daño contra Enemigos Monstruo.",
+      "60162": "Rápido. Solo durante tu turno. Vincula a un apoyo Arma de fuego que controles. Rápida, durante tu turno salvo durante una acción: descártala para devolver el apoyo a tu mano; después puedes jugar un apoyo Arma de fuego de tu mano pagando su coste.",
+      "60163": "Rápido. Solo durante tu turno. Vincula a un apoyo Arma de fuego que controles. Acción, agótala: +3 a tu valor de habilidad la próxima vez que combatas con el apoyo este turno. No provoca ataques de oportunidad.",
       "01048": "Durante tu turno puedes realizar una acción adicional. Aliado único con 2 de salud y 2 de cordura.",
       "02188": "Límite de 1 por investigador. Al comenzar tu turno puedes obtener 1 recurso si no hay otros investigadores en tu Lugar.",
       "05036": "Límite de 1 Calzado por investigador. +1 [agility]. Tras moverte, antes del enfrentamiento de Enemigos, agótalos para probar [agility] (3); si tienes éxito, muévete a un Lugar conectado.",
@@ -2114,6 +2122,8 @@
       "04020": "Fiable",
       "60172": "Cañón extendido",
       "04193": "Munición a medida",
+      "60162": "Empuñadora personalizada",
+      "60163": "Mira de hierro",
       "01048": "Leo De Luca",
       "02188": "Lobo solitario",
       "05036": "Zapatos de atletismo",
