@@ -32,11 +32,6 @@ jobs:
       - run: pnpm build:plesk
         env:
           SOURCE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
-      - uses: actions/upload-artifact@v4
-        with:
-          name: arkham-plesk
-          path: dist/plesk/
-          include-hidden-files: true
       - name: Publicar en la rama deploy
         env:
           SOURCE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
