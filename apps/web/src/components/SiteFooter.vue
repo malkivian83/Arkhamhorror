@@ -7,6 +7,7 @@ const paragraphs = ['rights', 'nonProfit', 'fairUse', 'takedown', 'warranty'] as
 const dialog = ref<HTMLDialogElement>()
 const opener = ref<HTMLButtonElement>()
 const titleId = useId()
+const contactEmail = 'info@arkham-online.es'
 </script>
 
 <template>
@@ -35,7 +36,13 @@ const titleId = useId()
             ✕
           </button>
         </header>
-        <p v-for="key in paragraphs" :key="key">{{ t(`app.copyright.${key}`) }}</p>
+        <template v-for="key in paragraphs" :key="key">
+          <p>{{ t(`app.copyright.${key}`) }}</p>
+          <p v-if="key === 'takedown'" class="contact">
+            {{ t('app.copyright.contact') }}:
+            <a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a>
+          </p>
+        </template>
       </dialog>
     </Teleport>
   </footer>
@@ -98,5 +105,12 @@ const titleId = useId()
 .copyright-dialog p {
   margin: 12px 0 0;
   color: var(--muted);
+}
+.copyright-dialog .contact {
+  margin-top: 4px;
+}
+.copyright-dialog a {
+  color: var(--accent);
+  text-underline-offset: 3px;
 }
 </style>
