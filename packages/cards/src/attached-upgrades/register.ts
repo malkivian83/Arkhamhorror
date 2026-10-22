@@ -1,17 +1,44 @@
-import { playerCardDef, registerPlayerCard, type GameState } from '@lcg/engine'
+import {
+  playerCardDef,
+  registerPlayerCard,
+  type GameState,
+  type Message,
+  type PlayerCardBehavior,
+} from '@lcg/engine'
 import { ask } from '../dunwich-pilot/effects'
 
-export function registerUpgrade(code: string, trait: string) {
-  const targets = (s: GameState, by: string) =>
-    Object.values(s.assets).filter(
-      (a) => a.owner === by && playerCardDef(a.code)?.traits.includes(trait),
-    )
+interface UpgradeOptions {
+  behavior?: Pick<
+    PlayerCardBehavior,
+    'attachedVitals' | 'attachedResolvingSkills' | 'attachedAttackSkill' | 'attachedMonsterDamage'
+  >
+  /** Host controlled by any investigator at your location instead of by you. */
+  atLocation?: boolean
+  limitPerAsset?: boolean
+  /** Ammo placed on the host after attaching. */
+  ammo?: number
+}
+
+export function registerUpgrade(code: string, trait: string, options: UpgradeOptions = {}) {
+  const { atLocation = false, limitPerAsset = false, ammo = 0 } = options
+  const targets = (s: GameState, by: string) => {
+    const here = s.investigators.find((i) => i.id === by)?.location ?? null
+    return Object.values(s.assets).filter((a) => {
+      const controller = s.investigators.find((i) => i.id === a.owner)
+      return (
+        controller &&
+        (atLocation
+          ? !controller.eliminated && here !== null && controller.location === here
+          : a.owner === by) &&
+        !(limitPerAsset && a.upgrades?.some((u) => u.code === code)) &&
+        playerCardDef(a.code)?.traits.includes(trait)
+      )
+    })
+  }
   registerPlayerCard({
     code,
-    ...(code === '04019'
-      ? { attachedVitals: { health: 1, sanity: 1 } }
-      : { attachedResolvingSkills: 1 }),
-    // RR: Fast, Play Restrictions, Attach To. The host must be controlled by you.
+    ...(options.behavior ?? {}),
+    // RR: Fast, Play Restrictions, Attach To. By default the host must be controlled by you.
     canPlay: (s, by) => s.activeTurn === by && targets(s, by).length > 0,
     play: (s, by) =>
       ask(
@@ -20,7 +47,21 @@ export function registerUpgrade(code: string, trait: string) {
           label: 'choice.attachUpgrade',
           params: { card: playerCardDef(a.code)!.name },
           target: { type: 'asset', id: a.id },
-          then: [{ type: 'AttachEventToAsset', asset: a.id, investigator: by, code, trait }],
+          then: [
+            {
+              type: 'AttachEventToAsset',
+              asset: a.id,
+              investigator: by,
+              code,
+              trait,
+              ...(atLocation ? { atLocation } : {}),
+              ...(limitPerAsset ? { limitPerAsset } : {}),
+            },
+            // RR: Uses. Tokens of another type would not be spendable by the host.
+            ...(ammo && playerCardDef(a.code)?.uses?.type === 'ammo'
+              ? [{ type: 'AddUses', asset: a.id, amount: ammo } as Message]
+              : []),
+          ],
         })),
       ),
   })

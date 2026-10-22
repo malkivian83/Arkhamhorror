@@ -1,5 +1,5 @@
 import { playerCardBehavior, playerCardDef } from './content'
-import type { Asset, GameState } from './types'
+import type { Asset, GameState, SkillTest } from './types'
 
 // RR: Attach To, Modifiers. A dash cannot gain a health/sanity value.
 export function assetVitals(asset: Asset): { health?: number; sanity?: number } {
@@ -28,6 +28,27 @@ export function resolvingSkillBonus(state: GameState, investigator: string): num
       )
     )
   }, 0)
+}
+
+function attacking(state: GameState, test: SkillTest): Asset | undefined {
+  const asset = test.kind.type === 'fight' && test.source ? state.assets[test.source] : undefined
+  return asset?.owner === test.investigator ? asset : undefined
+}
+
+const upgradeSum = (asset: Asset | undefined, value: (code: string) => number | undefined) =>
+  (asset?.upgrades ?? []).reduce((n, u) => n + (value(u.code) ?? 0), 0)
+
+// RR: Fight. Applies while attacking with the host asset, not to other attacks.
+export function attachedAttackSkillBonus(state: GameState, test: SkillTest): number {
+  return upgradeSum(attacking(state, test), (c) => playerCardBehavior(c)?.attachedAttackSkill)
+}
+
+// The bonus needs a successful attack on a Monster; redirected fail damage gets none.
+export function attachedAttackDamageBonus(state: GameState, test: SkillTest): number {
+  if (test.kind.type !== 'fight' || !test.succeeded) return 0
+  const enemy = state.enemies[test.kind.enemy]
+  if (!enemy?.traits?.includes('Monster')) return 0
+  return upgradeSum(attacking(state, test), (c) => playerCardBehavior(c)?.attachedMonsterDamage)
 }
 
 // RR: Leaves Play. Covers discard, return to hand, elimination and scenario effects.

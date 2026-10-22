@@ -1015,6 +1015,10 @@ export type Message =
       investigator: InvestigatorId
       code: CardCode
       trait: string
+      /** Host controlled by any investigator at the player's location. */
+      atLocation?: boolean
+      /** Limit 1 copy of this title per asset. */
+      limitPerAsset?: boolean
     }
   | { type: 'HealAsset'; asset: AssetId; damage: number; horror: number }
   | { type: 'ReturnAssetToHand'; asset: AssetId }

@@ -301,6 +301,10 @@ export interface PlayerCardBehavior {
   attachedVitals?: { health?: number; sanity?: number }
   /** Bonus to each skill while resolving a triggered ability of the host asset. */
   attachedResolvingSkills?: number
+  /** Skill bonus while attacking with the host asset. */
+  attachedAttackSkill?: number
+  /** Extra damage dealt to Monster enemies by successful attacks with the host asset. */
+  attachedMonsterDamage?: number
   /** Additive difficulty modifier while this card is committed. */
   committedDifficulty?: number
   /** Printed permission to commit without matching icons (e.g. Take Heart). */

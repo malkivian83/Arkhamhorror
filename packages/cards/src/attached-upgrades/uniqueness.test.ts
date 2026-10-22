@@ -23,6 +23,7 @@ import movement from '../data/movement-skills.json'
 import reactions from '../data/reactive-events.json'
 import direct from '../data/direct-events.json'
 import search from '../data/search-assets.json'
+import survivor from '../data/survivor-deck.json'
 describe('attached upgrades, not additional printings', () => {
   it('introduces distinct families absent from every earlier batch and the core set', () => {
     const previous = [
@@ -48,6 +49,7 @@ describe('attached upgrades, not additional printings', () => {
       ...reactions,
       ...direct,
       ...search,
+      ...survivor,
     ]
     expect(new Set(previous.map((c) => c.code)).size).toBe(previous.length)
     const codes = new Set(previous.map((c) => c.code)),
