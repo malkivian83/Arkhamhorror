@@ -732,8 +732,16 @@ export type Message =
       effect?: Message[]
       /** Messages between paying the card cost and resolving it (attacks of opportunity). */
       before?: Message[]
+      /** Chosen value of a printed X cost (Jenny's Twin .45s). */
+      x?: number
     }
-  | { type: 'ResolvePlayedCard'; investigator: InvestigatorId; code: CardCode; effect?: Message[] }
+  | {
+      type: 'ResolvePlayedCard'
+      investigator: InvestigatorId
+      code: CardCode
+      effect?: Message[]
+      x?: number
+    }
   | {
       type: 'PutAssetIntoPlay'
       investigator: InvestigatorId
@@ -898,6 +906,8 @@ export type Message =
       by?: InvestigatorId
       /** Origen del daño, para las cartas que lo reducen (Espectro vengativo). */
       source?: DamageSource
+      /** Simultaneous damage: defeat is checked later with CheckEnemyDefeat. */
+      deferDefeat?: boolean
     }
   | { type: 'DefeatEnemy'; enemy: EnemyId; by?: InvestigatorId; withoutWindows?: boolean }
   | { type: 'DefeatAllEnemiesWithoutWindows'; by: InvestigatorId }
@@ -1134,7 +1144,9 @@ export type Message =
   /** "Retira toda la perdición del juego." */
   | { type: 'RemoveAllDoom' }
   /** Derrota al enemigo si ya tiene tanto daño como salud (al perder una vinculada). */
-  | { type: 'CheckEnemyDefeat'; enemy: EnemyId }
+  | { type: 'CheckEnemyDefeat'; enemy: EnemyId; by?: InvestigatorId }
+  /** RR "Equipment Slots": discard assets until the remaining ones fit their slots. */
+  | { type: 'CheckSlots'; investigator: InvestigatorId }
   /** Colocación inicial: el jefe en `lead` y los demás en `others`. */
   | { type: 'PlaceAtStart'; lead: LocationId; others: LocationId }
   /** El enemigo abandona el juego y va a la zona de victoria (sin ser derrotado). */

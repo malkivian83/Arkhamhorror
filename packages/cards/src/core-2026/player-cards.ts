@@ -25,6 +25,8 @@ import {
 } from '@lcg/engine'
 import data from '../data/core-2026.json'
 import pete from '../data/ashcan-pete.json'
+import jenny from '../data/jenny-barnes.json'
+import jennyDecklist from '../jenny-barnes/decklist-1179.json'
 
 /**
  * Reverso de cada investigador (datos públicos de ArkhamDB): tamaño del mazo,
@@ -51,7 +53,7 @@ export const playerCards: PlayerCardDef[] = (data as PlayerCardDef[]).map((card)
     ? { ...card, ...rules, signatures: [boxCode(position + 1), boxCode(position + 2)] }
     : card
 })
-registerPlayerCards([...playerCards, ...(pete as PlayerCardDef[])])
+registerPlayerCards([...playerCards, ...(pete as PlayerCardDef[]), ...(jenny as PlayerCardDef[])])
 
 /** Código de carta a partir del número de colección de la caja (p. ej. 20 → "12020"). */
 export const code = (position: number) => `12${String(position).padStart(3, '0')}`
@@ -75,6 +77,19 @@ type DeckList = {
 }
 
 export const STARTER_DECKS: Record<string, DeckList> = {
+  // ArkhamDB decklist 1179 with its exact codes; 01000 becomes a real basic weakness.
+  jenny: {
+    investigator: 3,
+    investigatorCode: '02003',
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(jennyDecklist.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
   pete: {
     investigator: 5,
     investigatorCode: '02005',

@@ -78,6 +78,7 @@ import './test-modifiers'
 import './distributed-results'
 import './basic-action-skills'
 import './ashcan-pete'
+import './jenny-barnes'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 

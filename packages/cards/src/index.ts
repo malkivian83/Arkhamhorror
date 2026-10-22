@@ -156,6 +156,7 @@ import { DIRECT_EVENT_RENDERED_CODES } from './direct-events'
 import { SEARCH_ASSET_RENDERED_CODES } from './search-assets'
 import { ATTACHED_UPGRADE_RENDERED_CODES } from './attached-upgrades'
 import { PETE_RENDERED_CODES } from './ashcan-pete'
+import { JENNY_RENDERED_CODES } from './jenny-barnes'
 import { SURVIVOR_DECK_RENDERED_CODES } from './survivor-deck'
 import { BASIC_ABILITY_RENDERED_CODES } from './basic-abilities'
 import { BASIC_EVENT_RENDERED_CODES } from './basic-events'
@@ -182,6 +183,7 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...DISTRIBUTED_RESULT_RENDERED_CODES,
   ...BASIC_ACTION_SKILL_RENDERED_CODES,
   ...PETE_RENDERED_CODES,
+  ...JENNY_RENDERED_CODES,
   ...SURVIVOR_DECK_RENDERED_CODES,
   ...MOVEMENT_SKILL_RENDERED_CODES,
   ...REACTIVE_EVENT_RENDERED_CODES,
