@@ -39,11 +39,20 @@ jobs:
           node-version-file: .nvmrc
       - run: corepack enable
       - run: pnpm install --frozen-lockfile
-      - run: pnpm format:check
-      - run: pnpm lint
-      - run: pnpm typecheck
-      - run: pnpm test
-      - run: node scripts/verify-card-images.mjs
+      # Las comprobaciones independientes de SQL solo necesitan una ejecución.
+      - if: matrix.database == 'mysql:8.4'
+        run: pnpm format:check
+      - if: matrix.database == 'mysql:8.4'
+        run: pnpm lint
+      - if: matrix.database == 'mysql:8.4'
+        run: pnpm typecheck
+      - if: matrix.database == 'mysql:8.4'
+        run: pnpm test
+      - if: matrix.database == 'mariadb:10.11'
+        run: pnpm test --project server src/accounts/accounts.mysql.test.ts
+      - if: matrix.database == 'mysql:8.4'
+        run: node scripts/verify-card-images.mjs
+      # El paquete de producción se verifica contra ambos motores SQL.
       - run: pnpm build
       - run: node scripts/package-plesk.mjs
       - run: node scripts/verify-plesk.mjs
