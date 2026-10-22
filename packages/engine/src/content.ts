@@ -352,8 +352,8 @@ export interface PlayerCardBehavior {
   beforeResults?: (state: GameState, test: SkillTest, self: Asset) => Message[]
   /** Ranuras adicionales mientras está en juego (Carl Sanford: +1 arcana). */
   extraSlots?: Partial<Record<SlotType, number>>
-  /** Additional slots that only assets with the trait may use (Bandolier: Weapon hand). */
-  restrictedSlots?: { slot: SlotType; count: number; trait: string }[]
+  /** Additional slots that only assets with one of the traits may use (Bandolier: Weapon hand). */
+  restrictedSlots?: { slot: SlotType; count: number; trait: string | string[] }[]
   /** Printed cost X: chosen when paying; an asset enters play with X uses. */
   costX?: boolean
   /** Sin dueño (colocado en una localización o enemigo): habilidades para quien esté allí. */
