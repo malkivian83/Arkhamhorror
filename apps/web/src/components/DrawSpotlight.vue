@@ -122,6 +122,8 @@ onBeforeUnmount(() => window.removeEventListener('keydown', key, true))
 .card-details {
   display: flex;
   align-items: flex-start;
+  /* La traducción ensancha el bloque hasta la pantalla: la pareja va al centro. */
+  justify-content: center;
   gap: 16px;
 }
 @media (max-width: 650px) {

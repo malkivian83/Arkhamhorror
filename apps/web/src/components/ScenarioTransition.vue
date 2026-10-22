@@ -278,6 +278,11 @@ figcaption {
   max-width: 100%;
   box-sizing: border-box;
 }
+/* Bajo las dos caras, el texto del reverso ocupa toda la fila. */
+.faces :deep(.translation) {
+  flex: 1 1 100%;
+  width: 100%;
+}
 .deck-label {
   display: block;
   margin-bottom: 2px;
