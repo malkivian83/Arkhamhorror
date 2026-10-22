@@ -699,6 +699,8 @@ export type Message =
       investigator: InvestigatorId
       code: CardCode
       noSlot?: boolean
+      /** Played normally: open the after-play window for this exact instance. */
+      played?: boolean
       /** Fichas con las que entra (al tomar el control de un apoyo colocado). */
       tokens?: Partial<Pick<Asset, 'damage' | 'horror' | 'doom' | 'uses' | 'exhausted'>>
     }
@@ -1005,6 +1007,10 @@ export type Message =
       discount?: number
       /** Cualquier carta, no solo apoyos con esos rasgos (Mysterious Grimoire). */
       anyCard?: boolean
+      /** Match the traits across card types, rather than assets only. */
+      anyType?: boolean
+      /** A search may fail to find a card even when a match exists. */
+      optional?: boolean
       /** The chosen card is drawn, rather than merely added to the hand. */
       drawFound?: boolean
       /** Las debilidades buscadas también se roban. */
@@ -1137,7 +1143,7 @@ export type Trigger =
       location?: LocationId
       source?: AssetId
     }
-  | { type: 'afterPlayAsset'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'afterPlayAsset'; investigator: InvestigatorId; code: CardCode; asset?: AssetId }
   | { type: 'afterActionAbility'; investigator: InvestigatorId; code: CardCode }
   | { type: 'afterAssetEntersPlay'; investigator: InvestigatorId; asset: AssetId }
   | { type: 'afterDrawCard'; investigator: InvestigatorId; card: CardCode }

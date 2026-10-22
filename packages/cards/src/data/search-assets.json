@@ -1,0 +1,14 @@
+[
+  {
+    "code": "60159",
+    "name": "Protective Vest",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Armor"],
+    "cost": 3,
+    "xp": 0,
+    "icons": { "willpower": 1 },
+    "slots": ["body"],
+    "health": 2
+  }
+]
