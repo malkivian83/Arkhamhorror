@@ -1,0 +1,474 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "sourceSnapshotSha256": "36bdf57ced256a33c3145b1562eea5f8ea6146d38e6a600cb04e27d43ef5749e",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "cards": [
+    {
+      "code": "01060",
+      "family": "shrivelling",
+      "module": "card-01060",
+      "test": "spells.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "01560",
+      "family": "shrivelling",
+      "module": "card-01060",
+      "test": "spells.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "02154",
+      "family": "shrivelling-3",
+      "module": "card-01060",
+      "test": "spells.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "02306",
+      "family": "shrivelling-5",
+      "module": "card-01060",
+      "test": "spells.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "60407",
+      "family": "azure-flame",
+      "module": "card-60407",
+      "test": "spells.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "60425",
+      "family": "azure-flame-3",
+      "module": "card-60407",
+      "test": "spells.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "60430",
+      "family": "azure-flame-5",
+      "module": "card-60407",
+      "test": "spells.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "02112",
+      "family": "song-of-the-dead",
+      "module": "card-02112",
+      "test": "spells.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 5,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "60408",
+      "family": "clairvoyance",
+      "module": "card-60408",
+      "test": "spells.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "60426",
+      "family": "clairvoyance-3",
+      "module": "card-60408",
+      "test": "spells.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "60431",
+      "family": "clairvoyance-5",
+      "module": "card-60408",
+      "test": "spells.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "60409",
+      "family": "ineffable-truth",
+      "module": "card-60409",
+      "test": "spells.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "60427",
+      "family": "ineffable-truth-3",
+      "module": "card-60409",
+      "test": "spells.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "60432",
+      "family": "ineffable-truth-5",
+      "module": "card-60409",
+      "test": "spells.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "52006",
+      "family": "suggestion-1",
+      "module": "card-52006",
+      "test": "evasion.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "01074",
+      "family": "baseball-bat",
+      "module": "card-01074",
+      "test": "weapons.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01574",
+      "family": "baseball-bat",
+      "module": "card-01074",
+      "test": "weapons.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "06195",
+      "family": "35-winchester",
+      "module": "card-06195",
+      "test": "weapons.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 5,
+        "type": "ammo"
+      }
+    },
+    {
+      "code": "01029",
+      "family": "shotgun",
+      "module": "card-01029",
+      "test": "weapons.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 2,
+        "type": "ammo"
+      }
+    },
+    {
+      "code": "01529",
+      "family": "shotgun",
+      "module": "card-01029",
+      "test": "weapons.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 2,
+        "type": "ammo"
+      }
+    },
+    {
+      "code": "06327",
+      "family": "sawed-off-shotgun",
+      "module": "card-01029",
+      "test": "weapons.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 2,
+        "type": "ammo"
+      }
+    },
+    {
+      "code": "04268",
+      "family": "colt-vest-pocket",
+      "module": "card-04268",
+      "test": "weapons.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 5,
+        "type": "ammo"
+      }
+    },
+    {
+      "code": "53006",
+      "family": "colt-vest-pocket-2",
+      "module": "card-04268",
+      "test": "weapons.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 5,
+        "type": "ammo"
+      }
+    },
+    {
+      "code": "05186",
+      "family": "45-thompson-guardian",
+      "module": "card-05186",
+      "test": "weapons.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 5,
+        "type": "ammo"
+      }
+    },
+    {
+      "code": "07025",
+      "family": "25-automatic",
+      "module": "card-07025",
+      "test": "weapons.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "ammo"
+      },
+      "fast": true
+    },
+    {
+      "code": "11021",
+      "family": "crowbar",
+      "module": "card-11021",
+      "test": "weapons.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "11050",
+      "family": "luger-p08",
+      "module": "card-11050",
+      "test": "weapons.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 2,
+        "type": "ammo"
+      }
+    },
+    {
+      "code": "60306",
+      "family": "mauser-c96",
+      "module": "card-60306",
+      "test": "weapons.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 5,
+        "type": "ammo"
+      }
+    },
+    {
+      "code": "60321",
+      "family": "mauser-c96-2",
+      "module": "card-60306",
+      "test": "weapons.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 5,
+        "type": "ammo"
+      }
+    },
+    {
+      "code": "08060",
+      "family": "dragon-pole",
+      "module": "card-08060",
+      "test": "weapons.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01045",
+      "family": "burglary",
+      "module": "card-01045",
+      "test": "investigation.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01545",
+      "family": "burglary",
+      "module": "card-01045",
+      "test": "investigation.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "06200",
+      "family": "burglary-2",
+      "module": "card-01045",
+      "test": "investigation.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60305",
+      "family": "lockpicks",
+      "module": "card-60305",
+      "test": "investigation.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60361",
+      "family": "lockpicks",
+      "module": "card-60305",
+      "test": "investigation.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "03031",
+      "family": "lockpicks-1",
+      "module": "card-60305",
+      "test": "investigation.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "supply"
+      }
+    },
+    {
+      "code": "01687",
+      "family": "lockpicks-1",
+      "module": "card-60305",
+      "test": "investigation.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "supply"
+      }
+    },
+    {
+      "code": "60372",
+      "family": "lockpicks-1",
+      "module": "card-60305",
+      "test": "investigation.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "supply"
+      }
+    },
+    {
+      "code": "03036",
+      "family": "lantern",
+      "module": "card-03036",
+      "test": "investigation.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "52009",
+      "family": "lantern-2",
+      "module": "card-03036",
+      "test": "investigation.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60507",
+      "family": "old-keyring",
+      "module": "card-60507",
+      "test": "investigation.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 2,
+        "type": "key"
+      }
+    },
+    {
+      "code": "09117",
+      "family": "old-keyring-3",
+      "module": "card-60507",
+      "test": "investigation.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "key"
+      }
+    },
+    {
+      "code": "09044",
+      "family": "grim-memoir",
+      "module": "card-09044",
+      "test": "investigation.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "secret"
+      }
+    },
+    {
+      "code": "04194",
+      "family": "otherworldly-compass",
+      "module": "card-04194",
+      "test": "investigation.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "11036",
+      "family": "forensic-kit",
+      "module": "card-11036",
+      "test": "investigation.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "supply"
+      }
+    },
+    {
+      "code": "10040",
+      "family": "chemistry-set",
+      "module": "card-10040",
+      "test": "investigation.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "09062",
+      "family": "disguise",
+      "module": "card-09062",
+      "test": "evasion.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "supply"
+      }
+    }
+  ]
+}

@@ -27,6 +27,8 @@ const { t } = useI18n()
 /** Acción corta de las habilidades de carta más comunes (sin nombre de carta ni lugar). */
 const SHORT_ABILITY: Record<string, string> = {
   'ability.fightWith': 'fight',
+  'ability.fightWithSkill': 'fight',
+  'ability.evadeWith': 'evade',
   'ability.investigateWith': 'investigate',
 }
 

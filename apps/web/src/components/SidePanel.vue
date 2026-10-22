@@ -5,6 +5,7 @@ import { useI18n } from 'vue-i18n'
 import { useLabels } from '../game/labels'
 import type { UndoKind } from '../game/undo'
 import { useGameStore } from '../stores/game'
+import CampaignRecord from './CampaignRecord.vue'
 import GameCard from './GameCard.vue'
 import KeywordsPanel from './KeywordsPanel.vue'
 import PhaseTracker from './PhaseTracker.vue'
@@ -105,6 +106,7 @@ watch(
     </div>
 
     <KeywordsPanel :scenario-id="state.scenarioId" />
+    <CampaignRecord :state="state" />
 
     <details class="keys">
       <summary>⌨ {{ t('shortcuts.title') }}</summary>

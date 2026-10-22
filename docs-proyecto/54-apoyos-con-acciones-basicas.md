@@ -1,0 +1,26 @@
+# Apoyos con acciones básicas: Combatir, Investigar y Evitar
+
+- Lote `basic-abilities`: **47 códigos / 40 cartas-niveles nuevos / 7 reediciones** (01560, 01574, 01529, 01545, 60361, 01687 y 60372). Se eligió tras analizar los 1117 nombres pendientes del inventario congelado. La mecánica compartida con más volumen viable es la de los apoyos cuya capacidad es una acción básica, que resuelve una ayuda común parametrizada (`registerBasicAsset`).
+- Cartas:
+  - Hechizos de Voluntad: Shrivelling (0, 3, 5), Azure Flame (0, 3, 5), Song of the Dead (2), Clairvoyance (0, 3, 5), Ineffable Truth (0, 3, 5) y Suggestion (1).
+  - Armas: Baseball Bat, .35 Winchester, Shotgun, Sawed-Off Shotgun, Colt Vest Pocket (0, 2), .45 Thompson (Guardián), .25 Automatic (0), Crowbar, Luger P08, Mauser C96 (0, 2) y Dragon Pole.
+  - Investigación y evasión: Burglary (0, 2), Lockpicks (0, 1), Lantern (0, 2), Old Keyring (0, 3), Grim Memoir, Otherworldly Compass, Forensic Kit, Chemistry Set y Disguise.
+- Ayuda común: habilidad de Combatir, Investigar o Evitar con habilidades alternativas, modificador fijo o calculado, coste de uso, agotar o descartar, costes extra, habilidad rápida, daño o pistas adicionales y efectos al tener éxito, al fallar o en ambos casos. Investigar provoca ataques de oportunidad; Combatir y Evitar con apoyos no.
+- Ampliaciones del motor:
+  - `IfTestResult` comprueba durante la resolución el margen, que es negativo al fallar y nunca 0 con fallo automático, y las fichas reveladas. Admite «por al menos», «por menos de», «por exactamente» y listas de fichas (+1, 0, Símbolo arcano, símbolos…).
+  - El ataque admite daño por margen en lugar del daño normal (Shotgun, con mínimo 1) y daño extra por ficha revelada (Song of the Dead, .35 Winchester).
+  - `RemoveAssetFromGame` retira un apoyo sin enviarlo a la pila de descartes (Lantern 2).
+- Decisiones de reglas:
+  - Shrivelling excluye el Símbolo arcano y Azure Flame los símbolos.
+  - El daño redirigido al fallar contra un enemigo enfrentado a otro investigador usa el margen de fallo con el mismo tope.
+  - Colt Vest Pocket 2 solo se descarta si su acción se usó esa ronda.
+  - «Añade tu valor de [habilidad]» usa el valor base del investigador, como el precedente del Núcleo.
+  - Forensic Kit comprueba al resolverse si hay un enemigo agotado.
+  - Old Keyring 3 da la pista adicional si la dificultad resultante es 0.
+  - Las capacidades rápidas de combate (Luger P08) se ofrecen en tu turno, como el resto de habilidades rápidas del motor.
+- Excluidos por falta de soporte: armas con bendición o maldición (las fichas no existen en el modelo); Tennessee Sour Mash (las pruebas de traición no identifican la carta); British Bull Dog (la negociación no identifica al enemigo); Beretta M1918 (elegir daño adicional después del éxito); y armas con ataques repetidos, a otros lugares, contraataques en la fase de enemigos o penalizaciones temporales al enemigo.
+- 112 pruebas del lote (63 de reglas, 47 de compra y 2 de unicidad): reglas parametrizadas por nivel (hechizos, armas, investigación y evasión), compra e inicio de escenario por código con un investigador de la clase adecuada, y unicidad frente a todos los lotes anteriores con recuento de reediciones.
+- Presentación EN/ES: nombres y rasgos oficiales, resúmenes por impresión y etiquetas nuevas (combatir con habilidad, evitar, reponer munición, descartar o retirar el farol, preparar, obtener recurso, robar). La mesa resume las nuevas etiquetas como «Combatir» o «Evitar». 47 imágenes inglesas y 42 españolas con sus miniaturas (lienzo del navegador a 192 px). Las cinco reediciones sin escaneo español se registran como ausentes y usan la imagen inglesa; 1184 imágenes verificadas.
+- Revisión en la web local con una partida real importada (Dexter Drake): menú y nombres españoles de Consunción, Verdad inefable y Farol. La ventana no estaba visible para capturas; se verificó el texto renderizado.
+- Validación local antes de subir: formato, lint (excluido `.card-import-tmp/**`), tipos, build, suite completa (2323 pruebas correctas, 17 omitidas) y verificación de imágenes, todo correcto. CI y Deploy no se consultan.
+- Reglas: [Shrivelling](https://arkhamdb.com/card/01060), [Azure Flame](https://arkhamdb.com/card/60407), [Shotgun](https://arkhamdb.com/card/01029), [Lockpicks](https://arkhamdb.com/card/60305), [Chemistry Set](https://arkhamdb.com/card/10040) y las páginas de cada código del lote en ArkhamDB.

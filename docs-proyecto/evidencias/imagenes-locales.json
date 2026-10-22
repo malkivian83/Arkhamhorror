@@ -8761,6 +8761,718 @@
       "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/10054.avif",
       "bytes": 82223,
       "sha256": "9471ffbf25b6fdf767bea4fd17f6889973fefa767fd9633929545a31ff9089e0"
+    },
+    {
+      "art": "01060",
+      "language": "en",
+      "path": "/local-assets/cards/en/01060.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/01060.avif",
+      "bytes": 30832,
+      "sha256": "0f9119848b917515767467ed39064aadf097b0ff3260ba9f013a0f7c50e3c183"
+    },
+    {
+      "art": "01560",
+      "language": "en",
+      "path": "/local-assets/cards/en/01560.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/01560.avif",
+      "bytes": 22003,
+      "sha256": "6dbb42e847956198a6a6adb69550da024bbf8227db8eb9c6942c0bd765b7f528"
+    },
+    {
+      "art": "02154",
+      "language": "en",
+      "path": "/local-assets/cards/en/02154.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/02154.avif",
+      "bytes": 119903,
+      "sha256": "3b18dbb8cb671ad26df4031114956701290ec4db273529b2bf140f66cc333fe9"
+    },
+    {
+      "art": "02306",
+      "language": "en",
+      "path": "/local-assets/cards/en/02306.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/02306.avif",
+      "bytes": 114077,
+      "sha256": "8cf3a3568a446915ce57ab98efac3936390d1e755ce80e73d3e74c6f80223e45"
+    },
+    {
+      "art": "60407",
+      "language": "en",
+      "path": "/local-assets/cards/en/60407.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/60407.avif",
+      "bytes": 69880,
+      "sha256": "48b243b8139bb2173ec4e5a7b774b612dadd3255252047eed9c3db7bf5ee77dd"
+    },
+    {
+      "art": "60425",
+      "language": "en",
+      "path": "/local-assets/cards/en/60425.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/60425.avif",
+      "bytes": 71499,
+      "sha256": "703022c75e81cd311338fea14f69c64d6e28304bdd26e55ffc1b6c54df71824b"
+    },
+    {
+      "art": "60430",
+      "language": "en",
+      "path": "/local-assets/cards/en/60430.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/60430.avif",
+      "bytes": 71528,
+      "sha256": "ceaa5a614e9b5bb02c6b58fbc8f02c8879795d906430043d75192a4e93a79830"
+    },
+    {
+      "art": "02112",
+      "language": "en",
+      "path": "/local-assets/cards/en/02112.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/02112.avif",
+      "bytes": 121970,
+      "sha256": "75ab682bfd4a12c92e51a765e57edf9f07467ffc8fc54654f9e47fe8d61ca3ee"
+    },
+    {
+      "art": "60408",
+      "language": "en",
+      "path": "/local-assets/cards/en/60408.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/60408.avif",
+      "bytes": 62323,
+      "sha256": "a96a4eafd325e32387a975aecce848b62f6c943c574f4be0dca32c1377a781db"
+    },
+    {
+      "art": "60426",
+      "language": "en",
+      "path": "/local-assets/cards/en/60426.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/60426.avif",
+      "bytes": 68197,
+      "sha256": "762ae98895b74de85a279cdaf1420c2412b8d2473dc74b7e771890c37a625556"
+    },
+    {
+      "art": "60431",
+      "language": "en",
+      "path": "/local-assets/cards/en/60431.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/60431.avif",
+      "bytes": 69334,
+      "sha256": "cac38e97853bb445b4c4bc35b809f8573e3345ff25ab82eb88c6bbe83dc153e3"
+    },
+    {
+      "art": "60409",
+      "language": "en",
+      "path": "/local-assets/cards/en/60409.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/60409.avif",
+      "bytes": 76142,
+      "sha256": "c2d0d5705d8c5c59e7e5f1b4bbf21cd4aa58d0615fa1d480a3737eed311e6f79"
+    },
+    {
+      "art": "60427",
+      "language": "en",
+      "path": "/local-assets/cards/en/60427.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/60427.avif",
+      "bytes": 78827,
+      "sha256": "a208553edb609b0764bf2b8d6534e4941493582364e0f4c37821e8efb813467f"
+    },
+    {
+      "art": "60432",
+      "language": "en",
+      "path": "/local-assets/cards/en/60432.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/60432.avif",
+      "bytes": 78666,
+      "sha256": "257fe99c0b99e829d65aba25970b3b4b0793fa2431c7e061eb8415e160554484"
+    },
+    {
+      "art": "52006",
+      "language": "en",
+      "path": "/local-assets/cards/en/52006.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/52006.avif",
+      "bytes": 78052,
+      "sha256": "bfeab38a2b48d8c117ae787d573fd190a71a9cc3af3ac74ca740feff57a0a63e"
+    },
+    {
+      "art": "01074",
+      "language": "en",
+      "path": "/local-assets/cards/en/01074.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/01074.avif",
+      "bytes": 32512,
+      "sha256": "4c236c1110a0fe71faf67851e670d744d226c428fb302a121609d7224e0923e5"
+    },
+    {
+      "art": "01574",
+      "language": "en",
+      "path": "/local-assets/cards/en/01574.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/01574.avif",
+      "bytes": 26561,
+      "sha256": "926e659c7e548246a61f0f28c247a1fa335ab2b0b5067e565d375758625d5fe8"
+    },
+    {
+      "art": "06195",
+      "language": "en",
+      "path": "/local-assets/cards/en/06195.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/06195.avif",
+      "bytes": 91699,
+      "sha256": "6f2ee1887d369fe9df3e7b73960aadb08e428cbacf27d4c6671cd7765c3fcac6"
+    },
+    {
+      "art": "01029",
+      "language": "en",
+      "path": "/local-assets/cards/en/01029.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/01029.avif",
+      "bytes": 41771,
+      "sha256": "81ef54433f6535c758d3cf7b51f5f2adbc16bef1266320b728b0ccd310b8d54f"
+    },
+    {
+      "art": "01529",
+      "language": "en",
+      "path": "/local-assets/cards/en/01529.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/01529.avif",
+      "bytes": 31545,
+      "sha256": "95882e10079e9b2b878eb88554b5a2e65c8b830db500533ed045582f62616fa7"
+    },
+    {
+      "art": "06327",
+      "language": "en",
+      "path": "/local-assets/cards/en/06327.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/06327.avif",
+      "bytes": 93924,
+      "sha256": "1e1589dfef9d157960f60a3cbc0a27ae409c0d35139cbffac8a8f8fa118ed8fa"
+    },
+    {
+      "art": "04268",
+      "language": "en",
+      "path": "/local-assets/cards/en/04268.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/04268.avif",
+      "bytes": 87678,
+      "sha256": "3386e0dad4de7e35115b473decbdf756653ce1193048d1e489d6c1fc5d605fb9"
+    },
+    {
+      "art": "53006",
+      "language": "en",
+      "path": "/local-assets/cards/en/53006.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/53006.avif",
+      "bytes": 92897,
+      "sha256": "1185d13fad2a511ea0a168ea3b654bb8d2da026b9edaf892f6473c035dbed2ed"
+    },
+    {
+      "art": "05186",
+      "language": "en",
+      "path": "/local-assets/cards/en/05186.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/05186.avif",
+      "bytes": 108266,
+      "sha256": "7a6bf64012d67213990d86c17cccc503506f8fb1854431349de44bbdbc4d98ea"
+    },
+    {
+      "art": "07025",
+      "language": "en",
+      "path": "/local-assets/cards/en/07025.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/07025.avif",
+      "bytes": 91638,
+      "sha256": "bc1c1c73ca972dd2cc1e4bb07d09d2dbeeacfbea9aad32434c8124ee1f68f6dc"
+    },
+    {
+      "art": "11021",
+      "language": "en",
+      "path": "/local-assets/cards/en/11021.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/11021.avif",
+      "bytes": 61758,
+      "sha256": "1eef1865cd5f532e0fe6df5ca137fe73665eb635d3d16171fd807adaad1da364"
+    },
+    {
+      "art": "11050",
+      "language": "en",
+      "path": "/local-assets/cards/en/11050.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/11050.avif",
+      "bytes": 62247,
+      "sha256": "c6b792a8aac6c9324debec5b8cd85cc7174a5e6eabaf6cd73881b782f064f79b"
+    },
+    {
+      "art": "60306",
+      "language": "en",
+      "path": "/local-assets/cards/en/60306.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/60306.avif",
+      "bytes": 78989,
+      "sha256": "62fb65b1b85468eb4b75e06d51d3d2240a44a52586173d6a50f0792b817cf339"
+    },
+    {
+      "art": "60321",
+      "language": "en",
+      "path": "/local-assets/cards/en/60321.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/60321.avif",
+      "bytes": 81628,
+      "sha256": "cc96a04f9aa906cfd0599ed59976330768dc3a7a783cb8f429925e0bb478e714"
+    },
+    {
+      "art": "08060",
+      "language": "en",
+      "path": "/local-assets/cards/en/08060.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/08060.avif",
+      "bytes": 110416,
+      "sha256": "e5228fad4eae8c696264b7b714ce429898d18072fa07f387d1f8dae70f5b1dcc"
+    },
+    {
+      "art": "01045",
+      "language": "en",
+      "path": "/local-assets/cards/en/01045.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/01045.avif",
+      "bytes": 30693,
+      "sha256": "49d3f5cfef6f26d1978ccf6e64da3877c31331f27a4a9a35a75ed857a9e06f5b"
+    },
+    {
+      "art": "01545",
+      "language": "en",
+      "path": "/local-assets/cards/en/01545.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/01545.avif",
+      "bytes": 21485,
+      "sha256": "0f30460ca6265c8b6ba41691a452d637c269975a0c5ae1776e3e27ee4c106481"
+    },
+    {
+      "art": "06200",
+      "language": "en",
+      "path": "/local-assets/cards/en/06200.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/06200.avif",
+      "bytes": 86015,
+      "sha256": "de39514f4007512c97ea83a2e2ea5e7284425ce4ba027e8297c97a755ee8f96e"
+    },
+    {
+      "art": "60305",
+      "language": "en",
+      "path": "/local-assets/cards/en/60305.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/60305.avif",
+      "bytes": 70748,
+      "sha256": "08722d627da38ac9312bd14b9ec320cce5c7f32b7a46a379fb3416169fccf1e3"
+    },
+    {
+      "art": "60361",
+      "language": "en",
+      "path": "/local-assets/cards/en/60361.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/60361.avif",
+      "bytes": 57190,
+      "sha256": "22ba20e7823844383759c347b6288ac95671d8b55e3582e1dd071686a278a099"
+    },
+    {
+      "art": "03031",
+      "language": "en",
+      "path": "/local-assets/cards/en/03031.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/03031.avif",
+      "bytes": 83267,
+      "sha256": "d087f69e1dd77dc561a8c0313a26a0d9761ed7d6af802e196773ec108069838e"
+    },
+    {
+      "art": "01687",
+      "language": "en",
+      "path": "/local-assets/cards/en/01687.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/01687.avif",
+      "bytes": 25162,
+      "sha256": "c03f18468df47e6d181b5430ac4341fe382d41e0b2ca0a347f9c0ec8812740fb"
+    },
+    {
+      "art": "60372",
+      "language": "en",
+      "path": "/local-assets/cards/en/60372.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/60372.avif",
+      "bytes": 64285,
+      "sha256": "a5e65907bbb91328297aeb583d9cdd6a49aa69d8ef6ad886eaa18713138d9a84"
+    },
+    {
+      "art": "03036",
+      "language": "en",
+      "path": "/local-assets/cards/en/03036.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/03036.avif",
+      "bytes": 80767,
+      "sha256": "58332b2a106601dce63fbcfcccba0ecd9b9351137245be2c627a795a81e32833"
+    },
+    {
+      "art": "52009",
+      "language": "en",
+      "path": "/local-assets/cards/en/52009.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/52009.avif",
+      "bytes": 90415,
+      "sha256": "2bef7e257dde57cbc03ad5b919fe46ebcfcf5069b311ebdab9e488533430777d"
+    },
+    {
+      "art": "60507",
+      "language": "en",
+      "path": "/local-assets/cards/en/60507.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/60507.avif",
+      "bytes": 155314,
+      "sha256": "b5be2aaa50ec8f700637f66010614674f5022ae777a3ad0d60911b1029926bc5"
+    },
+    {
+      "art": "09117",
+      "language": "en",
+      "path": "/local-assets/cards/en/09117.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/09117.avif",
+      "bytes": 131110,
+      "sha256": "ee2fa4342bf55e158b1354832d8c476c513a31ba857046e0d63590f6dfde0bbb"
+    },
+    {
+      "art": "09044",
+      "language": "en",
+      "path": "/local-assets/cards/en/09044.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/09044.avif",
+      "bytes": 53915,
+      "sha256": "ab5503aa6990937ef8b30b87038eb414d7122e4cfc23a23b07d70ac64a0588f5"
+    },
+    {
+      "art": "04194",
+      "language": "en",
+      "path": "/local-assets/cards/en/04194.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/04194.avif",
+      "bytes": 107324,
+      "sha256": "7440c7e1235aeac7169094597d2aa2feae8dc70d0893cc250e3f52970476b01a"
+    },
+    {
+      "art": "11036",
+      "language": "en",
+      "path": "/local-assets/cards/en/11036.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/11036.avif",
+      "bytes": 170574,
+      "sha256": "d00e7b208ae0bf48bb9312d03ead54b8f107a8a69cfd67d4c5193536bf5e1479"
+    },
+    {
+      "art": "10040",
+      "language": "en",
+      "path": "/local-assets/cards/en/10040.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/10040.avif",
+      "bytes": 94545,
+      "sha256": "036bce503770025e5c1eaf611bd9779e34d773aed1b9be1d741972c6cf66988e"
+    },
+    {
+      "art": "09062",
+      "language": "en",
+      "path": "/local-assets/cards/en/09062.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/09062.avif",
+      "bytes": 63029,
+      "sha256": "e77ccbde6b1a22efb743fb91ee5827debbe17ee1ea990aaf983beec12360a19e"
+    },
+    {
+      "art": "01060",
+      "language": "es",
+      "path": "/local-assets/cards/es/01060.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/01060.avif",
+      "bytes": 71960,
+      "sha256": "898727e29ae226ea004d1ac6ee7cf3c30633f48b8b48fc98ec98c399b56736d1"
+    },
+    {
+      "art": "02154",
+      "language": "es",
+      "path": "/local-assets/cards/es/02154.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/02154.avif",
+      "bytes": 70219,
+      "sha256": "cec56ad783f1543ebbb2abf06c3a68f59fe126210eed2e2ad3d1fbb69511b92a"
+    },
+    {
+      "art": "02306",
+      "language": "es",
+      "path": "/local-assets/cards/es/02306.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/02306.avif",
+      "bytes": 53853,
+      "sha256": "87a5cfd4b7ac4d94bfefd4625004caaebd6a4e747d5b524eec44cfbd0d1fe56b"
+    },
+    {
+      "art": "60407",
+      "language": "es",
+      "path": "/local-assets/cards/es/60407.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/60407.avif",
+      "bytes": 86197,
+      "sha256": "80a044bca326a7ca04ce2ffe80c4699eae171e2646cd1163aeaa884670a1b2e0"
+    },
+    {
+      "art": "60425",
+      "language": "es",
+      "path": "/local-assets/cards/es/60425.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/60425.avif",
+      "bytes": 71406,
+      "sha256": "2ecabe8e7f60dd737a2d3bf3c5600cd3a303cd61f14139d11d81895845b0723b"
+    },
+    {
+      "art": "60430",
+      "language": "es",
+      "path": "/local-assets/cards/es/60430.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/60430.avif",
+      "bytes": 91444,
+      "sha256": "3374e99a03e4b93d5594aa91f22cf2b4b2c65c1148d234b77c33454c666d4c94"
+    },
+    {
+      "art": "02112",
+      "language": "es",
+      "path": "/local-assets/cards/es/02112.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/02112.avif",
+      "bytes": 79305,
+      "sha256": "e4c0b54b2515e7e1e72f658b2f04d0a6fd05dec8e45636ce9a9be95e1ed0d2e6"
+    },
+    {
+      "art": "60408",
+      "language": "es",
+      "path": "/local-assets/cards/es/60408.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/60408.avif",
+      "bytes": 74002,
+      "sha256": "8ba352ac2527dbae3319fd09017d0bb988f866e63ae8c912e49d1d5d8c87e753"
+    },
+    {
+      "art": "60426",
+      "language": "es",
+      "path": "/local-assets/cards/es/60426.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/60426.avif",
+      "bytes": 65053,
+      "sha256": "68c2f2ee230c36c86c636e2472d1632e67e1b70c461665cd20f77c26a4a84669"
+    },
+    {
+      "art": "60431",
+      "language": "es",
+      "path": "/local-assets/cards/es/60431.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/60431.avif",
+      "bytes": 79618,
+      "sha256": "8e4b3e3d92f16d3598214aa537bfbb191e85520baf80948c708c36118103f38b"
+    },
+    {
+      "art": "60409",
+      "language": "es",
+      "path": "/local-assets/cards/es/60409.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/60409.avif",
+      "bytes": 110373,
+      "sha256": "08333fbd13316c4eea977d57450d34309641f36c5a217a4bb9948bd494037a9a"
+    },
+    {
+      "art": "60427",
+      "language": "es",
+      "path": "/local-assets/cards/es/60427.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/60427.avif",
+      "bytes": 78923,
+      "sha256": "bace42d93c20aa52e888eeb68cde072450898c3bbb356811b965190dfe876044"
+    },
+    {
+      "art": "60432",
+      "language": "es",
+      "path": "/local-assets/cards/es/60432.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/60432.avif",
+      "bytes": 97472,
+      "sha256": "16896116eb59f92a7b9270dd0176a5b1fd61a4dfc4337aeb6f99f40b64a1fb10"
+    },
+    {
+      "art": "52006",
+      "language": "es",
+      "path": "/local-assets/cards/es/52006.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/52006.avif",
+      "bytes": 73117,
+      "sha256": "4648e7ef6350a8983410d833865705245995e58a90a7160a238a97f098ad917b"
+    },
+    {
+      "art": "01074",
+      "language": "es",
+      "path": "/local-assets/cards/es/01074.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/01074.avif",
+      "bytes": 71341,
+      "sha256": "a6ea953a0e1ec2344bd20caa3ec16d66a4bbe6637eb3ec41ed6bb93c49128b31"
+    },
+    {
+      "art": "06195",
+      "language": "es",
+      "path": "/local-assets/cards/es/06195.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/06195.avif",
+      "bytes": 70156,
+      "sha256": "963e2dd7a4bab1e7b9daaf2fdd8f1e9b6b56988b14e8bcb761a1c36f039af096"
+    },
+    {
+      "art": "01029",
+      "language": "es",
+      "path": "/local-assets/cards/es/01029.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/01029.avif",
+      "bytes": 105923,
+      "sha256": "5ce41f1d4d929bd2b11274ceca4f7ec38abb65355da4e8df2bbf86e08ea38bce"
+    },
+    {
+      "art": "06327",
+      "language": "es",
+      "path": "/local-assets/cards/es/06327.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/06327.avif",
+      "bytes": 90336,
+      "sha256": "3ab4e7a70dae177b6cc346feeab9ca8e387d44f161893b41956c7ab2ff493c56"
+    },
+    {
+      "art": "04268",
+      "language": "es",
+      "path": "/local-assets/cards/es/04268.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/04268.avif",
+      "bytes": 81309,
+      "sha256": "d5e7f8dfcd7699d9fa2d1770f6a078523c7170cf904170140f73c655fae99ea4"
+    },
+    {
+      "art": "53006",
+      "language": "es",
+      "path": "/local-assets/cards/es/53006.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/53006.avif",
+      "bytes": 77655,
+      "sha256": "d035864a10d05ff56060a690bd75e41037800d193446788f690f2a2185ff48fa"
+    },
+    {
+      "art": "05186",
+      "language": "es",
+      "path": "/local-assets/cards/es/05186.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/05186.avif",
+      "bytes": 87098,
+      "sha256": "c99c38bb812f6a5a6a9003df284fa23d720454b35ee4c7dc5d40942bf583bcdf"
+    },
+    {
+      "art": "07025",
+      "language": "es",
+      "path": "/local-assets/cards/es/07025.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/07025.avif",
+      "bytes": 89076,
+      "sha256": "b15200d7de9745d096ff1624b8990e11680262a9abc2d116920c4813cada77b8"
+    },
+    {
+      "art": "11021",
+      "language": "es",
+      "path": "/local-assets/cards/es/11021.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/11021.avif",
+      "bytes": 81461,
+      "sha256": "b14523b3d4d866bae19e7b396df18011c5223695a0f57ea2c3374457aeb91b80"
+    },
+    {
+      "art": "11050",
+      "language": "es",
+      "path": "/local-assets/cards/es/11050.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/11050.avif",
+      "bytes": 86105,
+      "sha256": "058dc5113bbb4b2fe20a8b7a086c7bc4c555e22b41684d1ea25e078c998046a4"
+    },
+    {
+      "art": "60306",
+      "language": "es",
+      "path": "/local-assets/cards/es/60306.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/60306.avif",
+      "bytes": 57699,
+      "sha256": "f27b9ba7e8cab2615489c003798b6fc73ece6df0b15d89b699939be806ad138d"
+    },
+    {
+      "art": "60321",
+      "language": "es",
+      "path": "/local-assets/cards/es/60321.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/60321.avif",
+      "bytes": 66364,
+      "sha256": "1c3a6bc3d04bc502bdf7c02df859c4373d5779bbac97b105f0b885f4a0987244"
+    },
+    {
+      "art": "08060",
+      "language": "es",
+      "path": "/local-assets/cards/es/08060.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/08060.avif",
+      "bytes": 92129,
+      "sha256": "9a7d5b837f73556cefeca310a7354eefe590cd1b64cec53a3a66584f22dfcbde"
+    },
+    {
+      "art": "01045",
+      "language": "es",
+      "path": "/local-assets/cards/es/01045.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/01045.avif",
+      "bytes": 68299,
+      "sha256": "ee508b1354a122271d20d213c6c56b55e63eec3e0be6b5c396744bd8b7e52664"
+    },
+    {
+      "art": "06200",
+      "language": "es",
+      "path": "/local-assets/cards/es/06200.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/06200.avif",
+      "bytes": 70679,
+      "sha256": "0d65650208d2cb96bc5d01178c5a8856b064cdf6c3bbf4868012a8035f9f2a57"
+    },
+    {
+      "art": "60305",
+      "language": "es",
+      "path": "/local-assets/cards/es/60305.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/60305.avif",
+      "bytes": 72125,
+      "sha256": "73ad3b756d32277e1e03be3445c64dea458e98b33b5b8dca6dfc7d69ab3c1af6"
+    },
+    {
+      "art": "60361",
+      "language": "es",
+      "path": "/local-assets/cards/es/60361.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/60361.avif",
+      "bytes": 82987,
+      "sha256": "0f723117330962b2c17149ce60dbedff2792b4453e86d2e3cceb5ee9397a4974"
+    },
+    {
+      "art": "03031",
+      "language": "es",
+      "path": "/local-assets/cards/es/03031.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/03031.avif",
+      "bytes": 51216,
+      "sha256": "b1ace7d1896ad32e39b4289706bedd1610b0944501af9c769b83484af79ce824"
+    },
+    {
+      "art": "60372",
+      "language": "es",
+      "path": "/local-assets/cards/es/60372.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/60372.avif",
+      "bytes": 94230,
+      "sha256": "6b2a1ca063b88f2b682e96ad6f511895622df179d8e03f714bf56a713ee22e03"
+    },
+    {
+      "art": "03036",
+      "language": "es",
+      "path": "/local-assets/cards/es/03036.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/03036.avif",
+      "bytes": 51442,
+      "sha256": "70d50d8c71d1b5f8a844b0f242585432a69be867bec96b0f740788a55e4cd4c9"
+    },
+    {
+      "art": "52009",
+      "language": "es",
+      "path": "/local-assets/cards/es/52009.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/52009.avif",
+      "bytes": 63770,
+      "sha256": "5f652028cf09e8ad530e47c437a634cded88857dfe3e9e99da5a91655e02e6f3"
+    },
+    {
+      "art": "60507",
+      "language": "es",
+      "path": "/local-assets/cards/es/60507.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/60507.avif",
+      "bytes": 77899,
+      "sha256": "8b4151546ce8875457f028b7090212fb962663a84209253fb0005c2be32f445e"
+    },
+    {
+      "art": "09117",
+      "language": "es",
+      "path": "/local-assets/cards/es/09117.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/09117.avif",
+      "bytes": 112640,
+      "sha256": "a74666998b1c708f1d602314fd63be53d2e0f93d41c11b50adca5faaa413400d"
+    },
+    {
+      "art": "09044",
+      "language": "es",
+      "path": "/local-assets/cards/es/09044.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/09044.avif",
+      "bytes": 78073,
+      "sha256": "c1c6c9408110bd7ccef59564a0e3c9d2deb26182723a269e88aa581ccef445ed"
+    },
+    {
+      "art": "04194",
+      "language": "es",
+      "path": "/local-assets/cards/es/04194.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/04194.avif",
+      "bytes": 95536,
+      "sha256": "4813dfd5f8b931b45952a25124ea27c030795d1f4dc4ea99afa102c6e9330dea"
+    },
+    {
+      "art": "11036",
+      "language": "es",
+      "path": "/local-assets/cards/es/11036.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/11036.avif",
+      "bytes": 103694,
+      "sha256": "56562fe8ce2392fb214ab97511dd7f3a6a4b8b254be7aaab37e029f9f7862c81"
+    },
+    {
+      "art": "10040",
+      "language": "es",
+      "path": "/local-assets/cards/es/10040.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/10040.avif",
+      "bytes": 84823,
+      "sha256": "fc0fe70bbd0654c41b6019c687b99cba02fafcef75a36b799dffc3ddbb388652"
+    },
+    {
+      "art": "09062",
+      "language": "es",
+      "path": "/local-assets/cards/es/09062.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/09062.avif",
+      "bytes": 79620,
+      "sha256": "ecd4479818dfbde33ab9eaa75770dc07b3c493ef05d0fb4c4f9b549a9ecb1a03"
     }
   ],
   "missing": [
@@ -10211,6 +10923,26 @@
     {
       "art": "60457b",
       "language": "en"
+    },
+    {
+      "art": "01560",
+      "language": "es"
+    },
+    {
+      "art": "01574",
+      "language": "es"
+    },
+    {
+      "art": "01529",
+      "language": "es"
+    },
+    {
+      "art": "01545",
+      "language": "es"
+    },
+    {
+      "art": "01687",
+      "language": "es"
     }
   ]
 }

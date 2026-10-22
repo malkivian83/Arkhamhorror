@@ -184,10 +184,14 @@ const shown = computed(
   color: var(--accent);
   margin-left: 4px;
 }
+/* Ampliación fija en la esquina inferior izquierda del tapete, lejos de la barra del escenario. */
 .zoom {
-  position: fixed;
-  right: 356px;
-  top: 64px;
+  grid-column: 1;
+  grid-row: 2;
+  align-self: end;
+  justify-self: start;
+  position: relative;
+  margin: 0 0 12px 12px;
   z-index: 1100;
   pointer-events: none;
 }

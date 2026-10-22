@@ -3094,6 +3094,19 @@ export function handle(state: GameState, message: Message): GameState {
         ? push(state, ...message.then)
         : state
 
+    case 'IfTestResult': {
+      const test = state.skillTest
+      if (!test) return state
+      // An automatic failure is never a success by 0, whatever the skill value.
+      const result = test.succeeded ? margin(state) : Math.min(-1, margin(state))
+      const holds =
+        (message.atLeast === undefined || result >= message.atLeast) &&
+        (message.below === undefined || result < message.below) &&
+        (message.exactly === undefined || result === message.exactly) &&
+        (message.tokens === undefined || test.tokens.some((t) => message.tokens!.includes(t)))
+      return holds ? push(state, ...message.then) : state
+    }
+
     case 'IfEnemyDefeated':
       return state.enemies[message.enemy] ? state : push(state, ...message.then)
 
@@ -3877,6 +3890,11 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     // ------------------------------------------------------- Habilidades
+    case 'RemoveAssetFromGame': {
+      if (!state.assets[message.asset]) return state
+      const { [message.asset]: _removed, ...assets } = state.assets
+      return { ...state, assets }
+    }
     case 'ExhaustUpgrade':
     case 'DiscardUpgrade': {
       const asset = state.assets[message.asset]
