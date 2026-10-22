@@ -157,20 +157,22 @@ export const useGameStore = defineStore('game', () => {
     boons: import('@lcg/engine').Boon[] = [],
   ) {
     error.value = null
-    newAdventure()
     const next = newCampaign(
       campaignId,
       members,
       difficulty,
       Math.floor(Math.random() * 2 ** 31),
       boons,
+      useDecksStore().rewards,
     )
     if (boons.includes('ancients') && Object.values(next.log.investigators).some((i) => i.xp > 0)) {
+      newAdventure()
       setCampaign(next)
       set(null, null)
       return
     }
     const prepared = startScenario(next, Math.floor(Math.random() * 2 ** 32))
+    newAdventure()
     setCampaign(next)
     play(prepared)
   }

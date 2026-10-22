@@ -31,7 +31,7 @@ import {
   type ExperienceGain,
 } from '@lcg/engine'
 import { campaignDefinition, type CampaignScenario } from './campaign-definition'
-import { withRandomBasicWeakness } from './decks'
+import { validateDeck, withRandomBasicWeakness } from './decks'
 import {
   code,
   investigatorSetup,
@@ -107,6 +107,7 @@ export function newCampaign(
   difficulty: Difficulty,
   seed = 1,
   boons: Boon[] = [],
+  rewards: CardCode[] = [],
 ): Campaign {
   campaignDefinition(campaignId)
   if (campaignDefinition(campaignId).standalone)
@@ -145,8 +146,9 @@ export function newCampaign(
     investigators.some((i) => !playerCardDef(i.id) || i.deck.some((code) => !playerCardDef(code)))
   )
     throw new Error('Contenido de mazo desconocido')
-  for (const investigator of investigators) assertAvailable(investigator.id, investigator.deck)
+  for (const investigator of investigators) assertDeck(investigator, true, rewards)
   const log = emptyCampaignLog(investigators.map((i) => i.id))
+  if (rewards.length) log.rewards = [...new Set(rewards)]
   if (boons.includes('ancients') && !campaignDefinition(campaignId).standalone) {
     for (const record of Object.values(log.investigators)) record.xp = 5
   }
@@ -192,7 +194,15 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
   const definition = campaignDefinition(campaign.id)
   const members = activeMembers(campaign)
   if (!members.length) throw new Error('No quedan investigadores que puedan continuar')
-  for (const investigator of members) assertAvailable(investigator.id, investigator.deck)
+  for (const investigator of members) {
+    // Las recompensas de mazos ya creados siguen siendo válidas; los guardados
+    // antiguos no anotaban en el registro las ganadas en campañas anteriores.
+    const rewards = [
+      ...(campaign.log.rewards ?? []),
+      ...investigator.deck.filter((c) => playerCardDef(c)?.reward),
+    ]
+    assertDeck(investigator, false, rewards)
+  }
   const scenario = entry.build({
     difficulty: campaign.difficulty,
     log: campaign.log,
@@ -246,6 +256,16 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
   if (game.scenarioId !== currentScenario(campaign) || game.difficulty !== campaign.difficulty)
     throw new Error('El resultado no pertenece al escenario actual de esta campaña')
   const played = game.campaignLog ?? campaign.log
+  const expected = new Set(activeMembers(campaign).map((i) => i.id))
+  const actual = new Set(game.investigators.map((i) => i.id))
+  if (
+    game.investigators.length !== expected.size ||
+    actual.size !== expected.size ||
+    [...actual].some((id) => !expected.has(id)) ||
+    Object.keys(played.investigators).length !== campaign.investigators.length ||
+    campaign.investigators.some((i) => !played.investigators[i.id])
+  )
+    throw new Error('El resultado no pertenece al escenario actual de esta campaña')
   // La experiencia no baja de 0 (Dead Ends puede restar más de lo ganado).
   const log = {
     ...played,
@@ -314,6 +334,20 @@ function assertAvailable(investigator: CardCode, cards: CardCode[]): void {
     (code) => !playerCardDef(code) || !isImplemented(code),
   )
   if (pending.length) throw new Error(`Cartas no disponibles: ${[...new Set(pending)].join(', ')}`)
+}
+
+function assertDeck(
+  member: CampaignInvestigator,
+  campaignStart: boolean,
+  rewards: CardCode[],
+): void {
+  assertAvailable(member.id, member.deck)
+  const { problems } = validateDeck(
+    { id: member.id, name: member.id, investigator: member.id, cards: member.deck },
+    campaignStart,
+    rewards,
+  )
+  if (problems.length) throw new Error(problems[0]!.key)
 }
 
 /** Cuenta para el tamaño del mazo (ni debilidades, ni exclusivas, ni permanentes). */

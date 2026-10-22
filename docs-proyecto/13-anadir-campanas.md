@@ -67,5 +67,14 @@ escenarios, resultados y mazos de la definición.
 
 - Tests del escenario: preparación, reglas nuevas y resoluciones (ver los de
   Brethren of Ash).
-- `brethren-of-ash/robustness.test.ts`: partidas con decisiones al azar y que cada
-  localización tenga posición; conviene añadir cada escenario nuevo.
+- `scenario-coverage.test.ts`: recorre automáticamente los escenarios registrados
+  con `build`, con 1–4 investigadores y las cuatro dificultades.
+- Las simulaciones usan `playRandomlyToEnd` de `scenario-testing.ts`: exigen una
+  resolución, opciones disponibles en cada pregunta y un máximo de decisiones.
+  Llegar al límite con una pregunta pendiente hace fallar el test.
+- `brethren-of-ash/robustness.test.ts`: semillas adicionales y posiciones de las
+  localizaciones; los otros escenarios tienen sus propias pruebas de preparación.
+- `campaign-validation.test.ts`: mazos legales al crear y continuar campañas,
+  recompensas ganadas, mejoras y pertenencia de los resultados al equipo. Al
+  llamar a `newCampaign`, pasa las recompensas ganadas como sexto argumento si
+  el mazo las necesita; el inicio desde la web las obtiene del almacén de mazos.

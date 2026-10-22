@@ -1,5 +1,6 @@
 import { accountStorage } from '../account/storage'
-import { newCampaign } from '@lcg/cards'
+import { cardPool, newCampaign, starterDeckList } from '@lcg/cards'
+import { isPermanent } from '@lcg/engine'
 import { createPinia, setActivePinia } from 'pinia'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { session, SESSION_KEY } from '../game/session'
@@ -8,6 +9,8 @@ import { useGameStore } from './game'
 
 let values: Map<string, string>
 beforeEach(() => {
+  vi.stubGlobal('window', { matchMedia: () => ({ matches: true }) })
+  vi.stubGlobal('document', { visibilityState: 'visible' })
   accountStorage.clear()
   values = new Map()
   vi.stubGlobal('localStorage', {
@@ -22,6 +25,37 @@ const rewarded = () => {
   return session(null, null, { ...campaign, log: { ...campaign.log, rewards: ['12181'] } })
 }
 describe('recuperación de recompensas junto con la campaña', () => {
+  it('inicia una campaña con un mazo válido que incluye una recompensa ganada', () => {
+    const decks = useDecksStore()
+    decks.addRewards(['12181'])
+    const deck = starterDeckList('daniela', 'collector', 'Collector')
+    const extra = cardPool(deck.investigator)
+      .filter((c) => !c.xp && !isPermanent(c.code) && !deck.cards.includes(c.code))
+      .slice(0, 5)
+    deck.cards.push('12181', ...extra.map((c) => c.code))
+    expect(decks.check(deck).problems).toEqual([])
+    const game = useGameStore()
+    game.start('brethren-of-ash', [deck], 'standard')
+    expect(game.campaign?.log.rewards).toContain('12181')
+    expect(game.state?.scenarioId).toBe('spreading-flames')
+    expect(game.storageIssue).toBeNull()
+  })
+
+  it('rechazar un mazo inválido conserva la campaña y el guardado actuales', () => {
+    const game = useGameStore()
+    game.start('brethren-of-ash', ['joe'], 'standard')
+    const campaign = game.campaign
+    const state = game.state
+    const saved = accountStorage.getItem(SESSION_KEY)
+    accountStorage.setItem('active-save', 'current-adventure')
+    expect(() =>
+      game.start('brethren-of-ash', [{ investigator: '12001', cards: [] }], 'standard'),
+    ).toThrow()
+    expect(game.campaign).toBe(campaign)
+    expect(game.state).toBe(state)
+    expect(accountStorage.getItem(SESSION_KEY)).toBe(saved)
+    expect(accountStorage.getItem('active-save')).toBe('current-adventure')
+  })
   it('importar una campaña recupera Collector en el constructor de mazos', () => {
     const game = useGameStore()
     expect(game.importSession(JSON.stringify(rewarded()))).toBe(true)

@@ -3,6 +3,7 @@ import { choose, during } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { starterInvestigator } from '../core-2026/player-cards'
 import '../index'
+import { playRandomlyToEnd } from '../scenario-testing'
 import { CODES, FACTION_CARDS, GROUND_FLOOR, isGuest } from './cards'
 import { midwinterGala, score } from './gala'
 
@@ -81,19 +82,9 @@ describe('La gala: preparación', () => {
 })
 
 describe('La gala: partidas al azar', () => {
-  it('10 partidas con decisiones al azar no rompen el motor', () => {
+  it('10 partidas con decisiones al azar llegan a una resolución', () => {
     for (let seed = 1; seed <= 10; seed++) {
-      let game = newGame(seed)
-      let r = seed
-      const random = (n: number) => {
-        r = (r * 1103515245 + 12345) % 2 ** 31
-        return r % n
-      }
-      for (let n = 0; n < 700 && !game.outcome && game.pending; n++) {
-        const choice = random(game.pending.question.choices.length)
-        game = applyInput(game, { investigator: game.pending.investigator, choice })
-      }
-      expect(game.outcome !== null || game.pending !== null).toBe(true)
+      const game = playRandomlyToEnd(newGame(seed), seed)
       expect(score(game).total).toBeGreaterThanOrEqual(0)
     }
   })
