@@ -6294,6 +6294,42 @@
       "sourceSha256": "4809bcddfb56126cc789c13bdb1fb279d05bd9d3d443d0577d80707f4dff4391",
       "path": "/local-assets/cards/es/thumbs/06246.webp",
       "sha256": "d12f9e5c76452dca93af4a574f37b05a793990527a45fc6faca46bc3931cc399"
+    },
+    {
+      "source": "/local-assets/cards/en/11045.avif",
+      "sourceSha256": "c3ec1ffe94ea97a6d186d2c2dc50d637e9a48fa480e0b5ce68a95bf26a91d3a3",
+      "path": "/local-assets/cards/en/thumbs/11045.webp",
+      "sha256": "f316e6ec01928063005514743a7d84da7f28398938dde803100cbd9b9eb2081a"
+    },
+    {
+      "source": "/local-assets/cards/en/60111.avif",
+      "sourceSha256": "45623a2385f5508318a6928b2382ee3e47e6b3d2b8df089c9d398a8985db9a4b",
+      "path": "/local-assets/cards/en/thumbs/60111.webp",
+      "sha256": "d12f2e716568aa175ea2e19dfe921a39da1450984d5bdbe45ef2fd19b0348fcb"
+    },
+    {
+      "source": "/local-assets/cards/en/60118.avif",
+      "sourceSha256": "794e6dea799d42acaff24a76b6fc51405ace6ff8772cacaabcf74a87630970d1",
+      "path": "/local-assets/cards/en/thumbs/60118.webp",
+      "sha256": "69191315897fb30ea2746e163b2e53979ad6cbeea04ed3b5a8e485df2c0f0936"
+    },
+    {
+      "source": "/local-assets/cards/es/11045.avif",
+      "sourceSha256": "2505f86b516df18bde1b593170062fab54ad79a8d05b9bec704691aa4edec64b",
+      "path": "/local-assets/cards/es/thumbs/11045.webp",
+      "sha256": "b422d8146d42c331bf214bd4092313ac9827537c363096a91568dcca896e826f"
+    },
+    {
+      "source": "/local-assets/cards/es/60111.avif",
+      "sourceSha256": "4f3625475fc79e927006a0cde5885d73b83e3a837ea85c2573134ba0205571a9",
+      "path": "/local-assets/cards/es/thumbs/60111.webp",
+      "sha256": "582b7688ab0fdd5fa355eda58ceb102982c38e3d1e03db02db01665e9210a92f"
+    },
+    {
+      "source": "/local-assets/cards/es/60118.avif",
+      "sourceSha256": "fb29f074bc3702fd3e440fc087b10b82a633fe5aca101a4b4d31258868da5c1d",
+      "path": "/local-assets/cards/es/thumbs/60118.webp",
+      "sha256": "c2c33d2f804197571d0bfd4c954b23149d856b0fcd7d7ebab8c443d5c442a3ab"
     }
   ]
 }

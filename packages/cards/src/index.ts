@@ -152,6 +152,7 @@ import { DISTRIBUTED_RESULT_RENDERED_CODES } from './distributed-results'
 import { BASIC_ACTION_SKILL_RENDERED_CODES } from './basic-action-skills'
 import { MOVEMENT_SKILL_RENDERED_CODES } from './movement-skills'
 import { REACTIVE_EVENT_RENDERED_CODES } from './reactive-events'
+import { DIRECT_EVENT_RENDERED_CODES } from './direct-events'
 import { PETE_RENDERED_CODES } from './ashcan-pete'
 export const RENDERED_PLAYER_CARD_CODES = [
   ...pilotCodes,
@@ -173,4 +174,5 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...PETE_RENDERED_CODES,
   ...MOVEMENT_SKILL_RENDERED_CODES,
   ...REACTIVE_EVENT_RENDERED_CODES,
+  ...DIRECT_EVENT_RENDERED_CODES,
 ]

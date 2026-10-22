@@ -1,0 +1,36 @@
+[
+  {
+    "code": "60118",
+    "name": "Stand Together",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "willpower": 1 },
+    "slots": []
+  },
+  {
+    "code": "60111",
+    "name": "Clean Them Out",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit", "Tactic"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "willpower": 1, "combat": 1 },
+    "slots": []
+  },
+  {
+    "code": "11045",
+    "name": "Working a Hunch",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 2,
+    "xp": 2,
+    "icons": { "intellect": 2 },
+    "slots": [],
+    "fast": true
+  }
+]
