@@ -12,8 +12,9 @@ los documentos necesarios para la tarea; evita reconstruir todo el historial.
 - Revisa primero el estado actual y las diferencias desde la última revisión.
   No repitas auditorías, búsquedas ni comprobaciones sin cambios que lo justifiquen.
 - En trabajos por lotes, reutiliza un único resumen de continuación: último lote
-  y commit, estado de CI y despliegue, siguiente grupo y bloqueos. Actualízalo al
-  cerrar cada lote, sin duplicar informes ni transcribir salidas correctas.
+  y commit, siguiente grupo y bloqueos. Incluye el estado de CI y despliegue solo
+  si se ha consultado por petición expresa. Actualízalo al cerrar cada lote, sin
+  duplicar informes ni transcribir salidas correctas.
 - Si dos intentos de corrección no aportan avance sobre el mismo problema,
   registra la causa y continúa con trabajo independiente. Reinténtalo cuando
   cambie la causa o haya una hipótesis nueva; pide intervención si es imprescindible.
@@ -54,10 +55,11 @@ los documentos necesarios para la tarea; evita reconstruir todo el historial.
   equivalentes por cada impresión; añade integración cuando haya conexiones nuevas.
 - Distingue fallos propios de los preexistentes. No declares superadas pruebas
   no ejecutadas ni modifiques trabajo ajeno solo para obtener un resultado correcto.
-- Después de subir, comprueba CI y el workflow Deploy del commit enviado.
-  Espacia las consultas mientras estén pendientes y consulta los registros si
-  fallan. En trabajos por lotes, puedes preparar el siguiente mientras esperas,
-  pero confirma el anterior antes de volver a subir.
+- Después de subir, no es necesario comprobar ni esperar a CI o al workflow
+  Deploy, salvo petición expresa de la persona usuaria. No hagas seguimiento
+  automático ni bloquees el cierre de la tarea o el siguiente lote por esos
+  resultados. Si se solicita comprobarlos, espacia las consultas pendientes y
+  consulta los registros si fallan.
 
 ## Importación de cartas de jugador
 
