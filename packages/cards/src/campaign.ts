@@ -1,3 +1,4 @@
+import './simple-assets'
 import './starter-actions'
 import './restricted-slots'
 import './sequenced-events'
