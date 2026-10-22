@@ -5,6 +5,7 @@ import './search-assets'
 import './attached-upgrades'
 import './survivor-deck'
 import './basic-abilities'
+import './basic-events'
 /**
  * Partida de campaña: lo que dura entre escenarios. El registro de campaña lo
  * escribe el motor durante cada escenario (notas, experiencia, trauma…); aquí

@@ -1907,6 +1907,20 @@ export function handle(state: GameState, message: Message): GameState {
       // RR "Equipment Slots": si no hay ranura libre, se descarta un apoyo que la ocupe.
       const def = playerCardDef(message.code)
       if (!def) return state
+      if (message.fromHand) {
+        // "Put into play from your hand" is not playing it: no cost, no play windows.
+        const owner = getInvestigator(state, message.investigator)
+        const index = owner.hand.indexOf(message.code)
+        if (index < 0) return state
+        const { fromHand: _taken, ...rest } = message
+        return handle(
+          updateInvestigator(state, owner.id, (i) => ({
+            ...i,
+            hand: i.hand.filter((_, n) => n !== index),
+          })),
+          rest,
+        )
+      }
       if (uniqueAssetInPlay(state, message.code)) return state
       if (
         playerCardBehavior(message.code)?.limitTitle &&

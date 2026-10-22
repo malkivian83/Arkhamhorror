@@ -34,6 +34,9 @@ export interface BasicAbility {
   /** 0 for a [fast] ability. */
   actions?: number
   key?: string
+  /** Label override and extra label parameters (e.g. charges spent). */
+  label?: string
+  params?: Record<string, string | number>
   available?: (ctx: Ctx) => boolean
   // Fight
   extraDamage?: number | ((ctx: Ctx, enemy: Enemy) => number)
@@ -125,12 +128,13 @@ function options(code: string, ability: BasicAbility, ctx: Ctx): AbilityOption[]
       ...base,
       key: `${self.id}:${ability.action}:${skill}${ability.key ?? ''}`,
       label:
-        ability.action === 'evade'
+        ability.label ??
+        (ability.action === 'evade'
           ? 'ability.evadeWith'
           : skills.length > 1 || skill !== 'combat'
             ? 'ability.fightWithSkill'
-            : 'ability.fightWith',
-      params: { card, enemy: enemy.name, skill },
+            : 'ability.fightWith'),
+      params: { card, enemy: enemy.name, skill, ...ability.params },
       target: { type: 'enemy', id: enemy.id },
       provokes: false,
       then: [

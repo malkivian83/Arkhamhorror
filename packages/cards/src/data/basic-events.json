@@ -1,0 +1,486 @@
+[
+  {
+    "code": "01066",
+    "name": "Blinding Light",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "01566",
+    "name": "Blinding Light",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "01069",
+    "name": "Blinding Light",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "01569",
+    "name": "Blinding Light",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "01078",
+    "name": "Cunning Distraction",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Tactic"],
+    "cost": 5,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "01578",
+    "name": "Cunning Distraction",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Tactic"],
+    "cost": 5,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "04232",
+    "name": "Slip Away",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60314",
+    "name": "Slip Away",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60324",
+    "name": "Slip Away",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60316",
+    "name": "Sneak By",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "agility": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "11055",
+    "name": "Bum's Rush",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Tactic", "Trick"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "11086",
+    "name": "\"Catch!\"",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Tactic", "Trick"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "agility": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "04029",
+    "name": "Mists of R'lyeh",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 4,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "53007",
+    "name": "Mists of R'lyeh",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 5,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "04271",
+    "name": "Mists of R'lyeh",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 2,
+    "xp": 4,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 5,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "02300",
+    "name": "Monster Slayer",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit"],
+    "cost": 1,
+    "xp": 5,
+    "icons": {
+      "combat": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60116",
+    "name": "Monster Slayer",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "03194",
+    "name": "Cheap Shot",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60312",
+    "name": "Cheap Shot",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60323",
+    "name": "Cheap Shot",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "08023",
+    "name": "Sweeping Kick",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit", "Tactic", "Trick"],
+    "cost": 1,
+    "xp": 1,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "53001",
+    "name": "Blood Eclipse",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spell", "Spirit"],
+    "cost": 1,
+    "xp": 1,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "04266",
+    "name": "Blood Eclipse",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spell", "Spirit"],
+    "cost": 1,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "06201",
+    "name": "Spectral Razor",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "10102",
+    "name": "Spectral Razor",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "combat": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60117",
+    "name": "One-Two Punch",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit", "Tactic"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "05037",
+    "name": "Act of Desperation",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Tactic", "Gambit"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "combat": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "05193",
+    "name": "Enchanted Blade",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Relic", "Weapon", "Melee"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": ["hand", "arcane"],
+    "uses": {
+      "count": 4,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "60315",
+    "name": "Pilfer",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60328",
+    "name": "Pilfer",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 4,
+    "xp": 3,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60214",
+    "name": "Burning the Midnight Oil",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "02303",
+    "name": "Deciphered Reality",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 4,
+    "xp": 5,
+    "icons": {
+      "willpower": 1,
+      "intellect": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "04024",
+    "name": "Unearth the Ancients",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "11087",
+    "name": "Unconventional Method",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Insight", "Tactic"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": []
+  }
+]
