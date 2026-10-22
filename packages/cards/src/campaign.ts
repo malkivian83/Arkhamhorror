@@ -1,3 +1,4 @@
+import './permanent-talents'
 import './phase-bonuses'
 import './movement-skills'
 import './reactive-events'
