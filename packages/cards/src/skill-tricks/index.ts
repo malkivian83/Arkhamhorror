@@ -1,0 +1,18 @@
+import { registerPlayerCards, type PlayerCardDef } from '@lcg/engine'
+import data from '../data/skill-tricks.json'
+import approvals from './approvals.json'
+import './card-08024'
+import './card-08037'
+import './card-08065'
+import './card-08078'
+import './card-08052'
+import './card-60180'
+import './card-09070'
+import './card-01053'
+import './card-01553'
+import './card-60319'
+import './card-02231'
+import './card-60526'
+import './card-60569'
+registerPlayerCards(data as PlayerCardDef[])
+export const SKILL_TRICK_RENDERED_CODES = approvals.cards.map((c) => c.code)
