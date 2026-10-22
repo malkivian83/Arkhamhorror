@@ -1,0 +1,257 @@
+[
+  {
+    "code": "09057",
+    "name": "Fingerprint Kit",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tool"],
+    "cost": 5,
+    "xp": 4,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 3,
+      "type": "supplies"
+    }
+  },
+  {
+    "code": "09075",
+    "name": "Thieves' Kit",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Tool", "Illicit"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 6,
+      "type": "supplies"
+    }
+  },
+  {
+    "code": "52001",
+    "name": ".32 Colt",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Firearm"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "combat": 2
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 6,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "60529",
+    "name": "Chainsaw",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Tool", "Weapon", "Melee"],
+    "cost": 4,
+    "xp": 4,
+    "icons": {
+      "combat": 3
+    },
+    "slots": ["hand", "hand"],
+    "uses": {
+      "count": 3,
+      "type": "supplies"
+    }
+  },
+  {
+    "code": "60575",
+    "name": "Winchester Model 52",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Weapon", "Firearm"],
+    "cost": 3,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": ["hand", "hand"],
+    "uses": {
+      "count": 2,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "08025",
+    "name": "Butterfly Swords",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Melee"],
+    "cost": 3,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": ["hand", "hand"]
+  },
+  {
+    "code": "01054",
+    "name": "Leo De Luca",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Ally", "Criminal"],
+    "unique": true,
+    "cost": 5,
+    "xp": 1,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "01554",
+    "name": "Leo De Luca",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Ally", "Criminal"],
+    "unique": true,
+    "cost": 5,
+    "xp": 1,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "04196",
+    "name": "Lola Santiago",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Ally", "Wayfarer"],
+    "unique": true,
+    "cost": 3,
+    "xp": 3,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "03151",
+    "name": "Dario El-Amin",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Ally", "Patron"],
+    "unique": true,
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "04275",
+    "name": "Hemispheric Map",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Relic"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": ["accessory"]
+  },
+  {
+    "code": "01040",
+    "name": "Magnifying Glass",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tool"],
+    "cost": 0,
+    "xp": 1,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"],
+    "fast": true
+  },
+  {
+    "code": "01540",
+    "name": "Magnifying Glass",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tool"],
+    "cost": 0,
+    "xp": 1,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"],
+    "fast": true
+  },
+  {
+    "code": "60270",
+    "name": "Magnifying Glass",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tool"],
+    "cost": 0,
+    "xp": 1,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"],
+    "fast": true
+  },
+  {
+    "code": "03230",
+    "name": "First Aid",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Talent", "Science"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "willpower": 2
+    },
+    "slots": [],
+    "uses": {
+      "count": 4,
+      "type": "supplies"
+    }
+  },
+  {
+    "code": "01683",
+    "name": "First Aid",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Talent", "Science"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "willpower": 2
+    },
+    "slots": [],
+    "uses": {
+      "count": 4,
+      "type": "supplies"
+    }
+  }
+]
