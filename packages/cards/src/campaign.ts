@@ -1,3 +1,4 @@
+import './starter-actions'
 import './restricted-slots'
 import './sequenced-events'
 import './permanent-talents'

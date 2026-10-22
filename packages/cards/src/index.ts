@@ -165,7 +165,9 @@ import { PHASE_BONUS_RENDERED_CODES } from './phase-bonuses'
 import { PERMANENT_TALENT_RENDERED_CODES } from './permanent-talents'
 import { SEQUENCED_EVENT_RENDERED_CODES } from './sequenced-events'
 import { RESTRICTED_SLOT_RENDERED_CODES } from './restricted-slots'
+import { STARTER_ACTION_RENDERED_CODES } from './starter-actions'
 export const RENDERED_PLAYER_CARD_CODES = [
+  ...STARTER_ACTION_RENDERED_CODES,
   ...RESTRICTED_SLOT_RENDERED_CODES,
   ...SEQUENCED_EVENT_RENDERED_CODES,
   ...PERMANENT_TALENT_RENDERED_CODES,
