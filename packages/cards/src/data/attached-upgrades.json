@@ -7,7 +7,9 @@
     "traits": ["Upgrade"],
     "cost": 1,
     "xp": 0,
-    "icons": { "willpower": 1 },
+    "icons": {
+      "willpower": 1
+    },
     "slots": [],
     "fast": true
   },
@@ -19,7 +21,38 @@
     "traits": ["Upgrade"],
     "cost": 1,
     "xp": 1,
-    "icons": { "intellect": 1 },
+    "icons": {
+      "intellect": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "04193",
+    "name": "Custom Ammunition",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Upgrade", "Supply", "Blessed"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60172",
+    "name": "Extended Barrel",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Item", "Upgrade"],
+    "cost": 1,
+    "xp": 1,
+    "icons": {
+      "intellect": 1
+    },
     "slots": [],
     "fast": true
   }

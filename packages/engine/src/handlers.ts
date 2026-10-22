@@ -30,7 +30,7 @@ import {
   storyBehavior,
   treacheryBehavior,
 } from './content'
-import { assetVitals, resolvingSkillBonus } from './asset-upgrades'
+import { assetVitals, attachedAttackSkillBonus, resolvingSkillBonus } from './asset-upgrades'
 import { EngineError } from './errors'
 import { attackDamage } from './combat'
 import { nextInt, shuffle } from './rng'
@@ -3871,9 +3871,16 @@ export function handle(state: GameState, message: Message): GameState {
       const asset = state.assets[message.asset]
       const owner = getInvestigator(state, message.investigator)
       const index = owner.discard.lastIndexOf(message.code)
+      const controller = asset && state.investigators.find((i) => i.id === asset.owner)
       if (
         !asset ||
-        asset.owner !== owner.id ||
+        !controller ||
+        (message.atLocation
+          ? controller.eliminated ||
+            owner.location === null ||
+            controller.location !== owner.location
+          : asset.owner !== owner.id) ||
+        (message.limitPerAsset && asset.upgrades?.some((u) => u.code === message.code)) ||
         index < 0 ||
         !playerCardDef(asset.code)?.traits.includes(message.trait)
       )
@@ -5751,7 +5758,8 @@ export function skillTestValue(state: GameState): {
         )
   const base = test.baseSkill ?? investigator.skills[test.skill]
   const scenario = scenarioBehavior(state.scenarioId)?.skillModifier?.(state, test) ?? 0
-  const resolving = resolvingSkillBonus(state, investigator.id)
+  const resolving =
+    resolvingSkillBonus(state, investigator.id) + attachedAttackSkillBonus(state, test)
   const sources = [
     ...Object.values(state.assets)
       .filter((a) => a.owner === investigator.id)

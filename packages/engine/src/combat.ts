@@ -1,3 +1,4 @@
+import { attachedAttackDamageBonus } from './asset-upgrades'
 import { getInvestigator } from './state'
 import { playerCardBehavior } from './content'
 import type { GameState, SkillTest } from './types'
@@ -23,6 +24,7 @@ export function attackDamage(state: GameState, test: SkillTest): number {
       : 0) +
     Math.min(kind.bonusPerSuccess ?? 0, margin) +
     (investigator.resources === 0 ? (kind.damageIfNoResources ?? 0) : 0) +
-    Math.min(investigator.clues, kind.damageFromClues ?? 0)
+    Math.min(investigator.clues, kind.damageFromClues ?? 0) +
+    attachedAttackDamageBonus(state, test)
   )
 }

@@ -19,6 +19,22 @@
       "test": "card-04020.test.ts",
       "status": "verified",
       "fast": true
+    },
+    {
+      "code": "04193",
+      "family": "custom-ammunition",
+      "module": "card-04193",
+      "test": "card-04193.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60172",
+      "family": "extended-barrel",
+      "module": "card-60172",
+      "test": "card-60172.test.ts",
+      "status": "verified",
+      "fast": true
     }
   ]
 }
