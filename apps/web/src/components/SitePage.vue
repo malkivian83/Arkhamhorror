@@ -133,9 +133,9 @@ h1 {
   text-transform: uppercase;
 }
 .page-footer {
-  margin-top: 36px;
+  margin-top: 32px;
   border-top: 1px solid var(--border);
-  padding-top: 20px;
+  padding-top: 8px;
   color: var(--muted);
   font-size: 0.75rem;
 }

@@ -1023,7 +1023,7 @@ h1 {
   box-sizing: border-box;
 }
 .setup-footer {
-  padding-block: 18px 28px;
+  padding-block: 8px 12px;
   color: var(--site-muted);
   font-size: 0.75rem;
   line-height: 1.5;
