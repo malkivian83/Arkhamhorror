@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, provide, watch } from 'vue'
+import { onBeforeUnmount, onMounted, provide, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { cardName } from '../game/cards'
+import { localName } from '../game/localized'
 import { gameClient } from '../online/game'
 import { onlineTable } from '../online/table'
+import { turnNotice } from '../online/turn'
 import { tableControllerKey } from '../game/tableController'
 import { openPile } from '../game/pile'
 import { inspected } from '../game/inspect'
@@ -24,6 +27,20 @@ function clearInspection() {
 }
 clearInspection()
 watch(() => state.value?.scenarioId, clearInspection)
+const yourTurn = ref<string | null>(null)
+let turnTimer: ReturnType<typeof setTimeout> | undefined
+const notice = turnNotice()
+watch(
+  () => state.value?.table?.pending?.investigator,
+  (decider) => {
+    const own = state.value?.ownInvestigator
+    if (!own || !notice(decider, own, state.value?.investigators.length ?? 0)) return
+    yourTurn.value = localName(cardName(own))
+    clearTimeout(turnTimer)
+    turnTimer = setTimeout(() => (yourTurn.value = null), 4000)
+  },
+  { immediate: true },
+)
 async function poll() {
   if (!active) return
   if (document.visibilityState === 'visible') await refresh()
@@ -39,6 +56,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   active = false
   clearTimeout(timer)
+  clearTimeout(turnTimer)
   document.removeEventListener('visibilitychange', visible)
   clearInspection()
   reset()
@@ -57,6 +75,20 @@ onBeforeUnmount(() => {
       }}</span>
       <button :disabled="busy" @click="refresh">{{ t('online.refresh') }}</button>
       <button v-if="retry" :disabled="busy" @click="resend">{{ t('online.play.retry') }}</button>
+    </div>
+    <div class="turn-live" role="status" aria-live="polite">
+      <Transition name="turn">
+        <button
+          v-if="yourTurn"
+          type="button"
+          class="your-turn"
+          :aria-label="t('online.play.yourTurn')"
+          @click="yourTurn = null"
+        >
+          <strong>{{ t('online.play.yourTurn') }}</strong>
+          <span>{{ t('online.play.yourTurnDetail', { name: yourTurn }) }}</span>
+        </button>
+      </Transition>
     </div>
     <GameView v-if="state?.table" :key="state.scenarioId" />
     <p v-else role="status">{{ t('online.play.loading') }}</p>
@@ -97,6 +129,56 @@ onBeforeUnmount(() => {
   right: 0;
   background: #42251c;
   padding: 8px;
+}
+.your-turn {
+  position: fixed;
+  z-index: 1400;
+  top: 18%;
+  left: 50%;
+  translate: -50% 0;
+  display: grid;
+  gap: 4px;
+  min-width: min(360px, calc(100vw - 32px));
+  margin: 0;
+  padding: 18px 32px;
+  color: #f6dccb;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(229 170 141 / 26%), transparent 70%),
+    linear-gradient(180deg, #3a2b2a, #211a1c);
+  border: 1px solid #e5aa8d;
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgb(255 230 210 / 18%),
+    0 0 0 4px #19191dcc,
+    0 18px 48px #000a;
+  cursor: pointer;
+}
+.your-turn strong {
+  font:
+    700 1.6rem/1.2 'Libre Baskerville',
+    Georgia,
+    serif;
+}
+.your-turn span {
+  color: #d0c7c1;
+}
+.turn-enter-active,
+.turn-leave-active {
+  transition:
+    opacity 240ms ease,
+    transform 240ms ease;
+}
+.turn-enter-from,
+.turn-leave-to {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .turn-enter-active,
+  .turn-leave-active {
+    transition: none;
+  }
 }
 .intermission {
   position: fixed;

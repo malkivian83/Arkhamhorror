@@ -3070,6 +3070,8 @@
       "invalid_purchase": "La mejora no es válida: revisa la experiencia, la carta y la sustitución."
     },
     "play": {
+      "yourTurn": "Es tu turno",
+      "yourTurnDetail": "Te toca decidir con {name}.",
       "title": "Mesa compartida",
       "retry": "Reintentar la misma decisión",
       "status": "Ronda {round} · {phase} · Perdición: {doom}",

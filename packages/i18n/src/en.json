@@ -3070,6 +3070,8 @@
       "invalid_purchase": "Invalid upgrade: check experience, card and replacement."
     },
     "play": {
+      "yourTurn": "It's your turn",
+      "yourTurnDetail": "You decide for {name}.",
       "title": "Shared table",
       "retry": "Retry the same decision",
       "status": "Round {round} · {phase} · Doom: {doom}",
