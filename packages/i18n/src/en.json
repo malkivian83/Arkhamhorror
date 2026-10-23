@@ -708,6 +708,7 @@
     "enemyRemoved": "{enemy} is removed from the game"
   },
   "table": {
+    "investigators": "Investigators",
     "scenarioReference": "Symbol reference",
     "enlarge": "Enlarge card",
     "enlargeCard": "Enlarge {name}",

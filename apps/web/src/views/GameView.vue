@@ -61,21 +61,6 @@ const shown = computed(
     </BoardViewport>
     <SkillTestPanel :state="state" />
     <div class="players">
-      <nav v-if="state.investigators.length > 1" class="tabs">
-        <button
-          v-for="i in state.investigators"
-          :key="i.id"
-          type="button"
-          :class="{ active: i.id === shown?.id, deciding: i.id === state.pending?.investigator }"
-          :style="{ '--class': classColor(i.id) }"
-          @click="selected = i.id"
-        >
-          {{ i.name }}
-          <span v-if="i.id === state.pending?.investigator" class="dot" :title="t('table.decides')"
-            >●</span
-          >
-        </button>
-      </nav>
       <PlayerArea
         v-if="shown"
         :state="state"
@@ -87,6 +72,29 @@ const shown = computed(
         :private-hand="!!game.online && shown.id !== game.ownInvestigator"
         :hand-count="game.handCounts?.[shown.id]"
       >
+        <!-- Con varios investigadores, el nombre de la cabecera hace de selector. -->
+        <template v-if="state.investigators.length > 1" #name>
+          <nav class="tabs" :aria-label="t('table.investigators')">
+            <button
+              v-for="i in state.investigators"
+              :key="i.id"
+              type="button"
+              class="ui-plain"
+              :class="{ active: i.id === shown?.id }"
+              :aria-pressed="i.id === shown?.id"
+              :style="{ '--class': classColor(i.id) }"
+              @click="selected = i.id"
+            >
+              {{ i.name }}
+              <span
+                v-if="i.id === state.pending?.investigator"
+                class="dot"
+                :title="t('table.decides')"
+                >●</span
+              >
+            </button>
+          </nav>
+        </template>
         <template #controls>
           <button
             ref="caseButton"
@@ -168,24 +176,33 @@ const shown = computed(
 .case-toggle {
   display: none;
 }
+/* Selector compacto en la cabecera del investigador: el activo, como el título. */
 .tabs {
   display: flex;
-  gap: 2px;
-  padding: 0 8px;
-  background: #121318;
-  overflow-x: auto;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  min-width: 0;
 }
 .tabs button {
-  flex: none;
-  min-height: 44px;
-  border-radius: 6px 6px 0 0;
-  border-bottom: none;
-  border-top: 3px solid var(--class);
-  opacity: 0.7;
+  min-height: 32px;
+  padding: 2px 0;
+  border-bottom: 2px solid transparent;
+  color: #c3bbb4;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgb(0 0 0 / 80%);
+  cursor: pointer;
+}
+.tabs button:hover {
+  color: var(--ink);
 }
 .tabs button.active {
-  opacity: 1;
-  background: var(--panel);
+  color: var(--brass);
+  border-bottom-color: var(--class);
+}
+.tabs button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 .dot {
   color: var(--accent);

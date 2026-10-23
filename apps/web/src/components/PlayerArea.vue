@@ -146,7 +146,9 @@ const slots = computed(() => {
     <div class="player-desk">
       <div class="investigator-summary">
         <header>
-          <h3>{{ i.name }}</h3>
+          <slot name="name"
+            ><h3>{{ i.name }}</h3></slot
+          >
           <span v-if="deciding" class="turn">
             {{ t('table.decides') }}
             <template v-if="state.phase !== 'setup'">

@@ -333,7 +333,9 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
   --border: #807574;
   position: relative;
   grid-column: 1 / -2;
-  grid-row: 1 / 3;
+  /* Crece solo lo que pide su contenido y puede cubrir la parte alta de la
+     zona del jugador antes que obligar a desplazarse dentro del panel. */
+  grid-row: 1 / -1;
   align-self: start;
   justify-self: center;
   margin: 12px 0;
@@ -876,6 +878,7 @@ footer {
 @media (max-width: 900px) {
   .skill-test {
     grid-column: 1 / -1;
+    grid-row: 1 / 3;
     width: min(560px, calc(100% - 24px));
     margin-top: 72px;
     max-height: calc(100% - 84px);
