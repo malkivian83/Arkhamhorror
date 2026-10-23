@@ -12233,6 +12233,14 @@
       "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/11025.avif",
       "bytes": 90400,
       "sha256": "4e81bdc696643df34e59b1c31dd7e240c24e6c0b3d65327c1bac3722d2e9052b"
+    },
+    {
+      "art": "04309",
+      "language": "en",
+      "path": "/local-assets/cards/en/04309.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/04309.avif",
+      "bytes": 89187,
+      "sha256": "9c8a45e3f448eff788a1bcedd8dd3c5e6fb70477deffc01087e4c35f00ee1811"
     }
   ],
   "missing": [
