@@ -1,0 +1,14 @@
+[
+  {
+    "code": "01036",
+    "name": "Mind over Matter",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "combat": 1, "agility": 1 },
+    "slots": [],
+    "fast": true
+  }
+]

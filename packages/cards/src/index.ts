@@ -171,7 +171,9 @@ import { SUPPORT_ALLY_RENDERED_CODES } from './support-allies'
 import { SKILL_TRICK_RENDERED_CODES } from './skill-tricks'
 import { DIRECT_EFFECT_RENDERED_CODES } from './direct-effects'
 import { ROUND_EFFECT_RENDERED_CODES } from './round-effects'
+import { SKILL_REPLACEMENT_RENDERED_CODES } from './skill-replacement'
 export const RENDERED_PLAYER_CARD_CODES = [
+  ...SKILL_REPLACEMENT_RENDERED_CODES,
   ...ROUND_EFFECT_RENDERED_CODES,
   ...DIRECT_EFFECT_RENDERED_CODES,
   ...SKILL_TRICK_RENDERED_CODES,

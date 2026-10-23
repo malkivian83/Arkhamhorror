@@ -43,6 +43,8 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  /** Optional skill substitutions available before committing cards this round. */
+  roundSkillReplacements?: { from: SkillType; to: SkillType; code: CardCode; round: number }[]
   /** Round-lasting bonuses; horror is evaluated when calculating the test. */
   roundSkillBonuses?: {
     skill: SkillType
@@ -610,6 +612,13 @@ export type PhaseStep =
 /** Todo lo que puede ocurrir en la partida. */
 export type Message =
   | {
+      type: 'RoundSkillReplacement'
+      investigator: InvestigatorId
+      from: SkillType
+      to: SkillType
+      code: CardCode
+    }
+  | {
       type: 'RoundSkillBonus'
       investigator: InvestigatorId
       skill: SkillType
@@ -711,6 +720,8 @@ export type Message =
   | { type: 'DiscoverClues'; investigator: InvestigatorId; amount: number; location?: LocationId }
   | {
       type: 'BeginSkillTest'
+      /** The investigator already chose whether to replace the tested skill. */
+      skillSelected?: boolean
       baseSkill?: number
       basicAction?: boolean
       investigator: InvestigatorId
