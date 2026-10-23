@@ -1,0 +1,13 @@
+[
+  {
+    "code": "04309",
+    "name": "All In",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Fortune"],
+    "xp": 5,
+    "icons": { "wild": 2 },
+    "slots": [],
+    "commitLimit": 1
+  }
+]

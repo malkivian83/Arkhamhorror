@@ -922,10 +922,20 @@ export function handle(state: GameState, message: Message): GameState {
     case 'DrawCards': {
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.eliminated) return state
-      const finish = (cards: string[]): Message[] =>
-        cards.length
-          ? [{ type: 'ResolveDrawnRevelations', investigator: investigator.id, cards }]
-          : []
+      const finish = (cards: string[], weaknesses = message.drawnWeaknesses ?? []): Message[] => [
+        ...(weaknesses.length
+          ? [
+              {
+                type: 'ShuffleDrawnWeaknesses' as const,
+                investigator: investigator.id,
+                codes: weaknesses,
+              },
+            ]
+          : []),
+        ...(cards.length
+          ? [{ type: 'ResolveDrawnRevelations' as const, investigator: investigator.id, cards }]
+          : []),
+      ]
       if (message.amount <= 0) return push(state, ...finish(message.revelations ?? []))
       if (investigator.deck.length === 0) {
         const [deck, rng] = shuffle(investigator.discard, state.rng)
@@ -945,9 +955,13 @@ export function handle(state: GameState, message: Message): GameState {
           : push(reshuffled, horror, message)
       }
       const [card, ...deck] = investigator.deck as [string, ...string[]]
+      const unresolved = !!message.shuffleWeaknesses && !!playerCardDef(card)?.weakness
+      const weaknesses = [...(message.drawnWeaknesses ?? []), ...(unresolved ? [card] : [])]
       const revelations = [
         ...(message.revelations ?? []),
-        ...(playerCardBehavior(card)?.revelation || resolvesWhenDrawn(card) ? [card] : []),
+        ...(!unresolved && (playerCardBehavior(card)?.revelation || resolvesWhenDrawn(card))
+          ? [card]
+          : []),
       ]
       const more: Message[] =
         message.amount > 1
@@ -956,18 +970,25 @@ export function handle(state: GameState, message: Message): GameState {
                 ...message,
                 amount: message.amount - 1,
                 ...(revelations.length ? { revelations } : {}),
+                ...(weaknesses.length ? { drawnWeaknesses: weaknesses } : {}),
               },
             ]
-          : finish(revelations)
+          : finish(revelations, weaknesses)
       return push(
         updateInvestigator(state, investigator.id, (i) => ({
           ...i,
           deck,
-          hand: [...i.hand, card],
+          hand: unresolved ? i.hand : [...i.hand, card],
         })),
         { type: 'Forced', trigger: { type: 'afterDrawCard', investigator: investigator.id, card } },
         ...more,
       )
+    }
+
+    case 'ShuffleDrawnWeaknesses': {
+      const investigator = getInvestigator(state, message.investigator)
+      const [deck, rng] = shuffle([...investigator.deck, ...message.codes], state.rng)
+      return updateInvestigator({ ...state, rng }, investigator.id, (i) => ({ ...i, deck }))
     }
 
     case 'ResolveOpeningRevelations':

@@ -689,7 +689,16 @@ export type Message =
   | { type: 'PerformAction'; investigator: InvestigatorId; action: Action; entryPaid?: boolean }
   /** `basic`: la acción de recurso o el mantenimiento (no es el efecto de una carta). */
   | { type: 'GainResources'; investigator: InvestigatorId; amount: number; basic?: boolean }
-  | { type: 'DrawCards'; investigator: InvestigatorId; amount: number; revelations?: CardCode[] }
+  | {
+      type: 'DrawCards'
+      investigator: InvestigatorId
+      amount: number
+      revelations?: CardCode[]
+      /** All In: count weaknesses in the draw, then shuffle them back unresolved. */
+      shuffleWeaknesses?: boolean
+      drawnWeaknesses?: CardCode[]
+    }
+  | { type: 'ShuffleDrawnWeaknesses'; investigator: InvestigatorId; codes: CardCode[] }
   | { type: 'ResolveDrawnRevelations'; investigator: InvestigatorId; cards: CardCode[] }
   | { type: 'ResolvePlayerRevelation'; investigator: InvestigatorId; code: CardCode }
   | { type: 'DiscardResolvedRevelation'; investigator: InvestigatorId; code: CardCode }
