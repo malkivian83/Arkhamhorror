@@ -172,11 +172,13 @@ import { SKILL_TRICK_RENDERED_CODES } from './skill-tricks'
 import { DIRECT_EFFECT_RENDERED_CODES } from './direct-effects'
 import { ROUND_EFFECT_RENDERED_CODES } from './round-effects'
 import { SKILL_REPLACEMENT_RENDERED_CODES } from './skill-replacement'
+import { SYNERGY_ATTACK_RENDERED_CODES } from './synergy-attacks'
 import { SYNERGY_RENDERED_CODES } from './synergy'
 import { TARGETED_EVENT_RENDERED_CODES } from './targeted-events'
 import { EXCLUSIVE_SKILL_RENDERED_CODES } from './exclusive-skills'
 import { SKILL_UTILITY_RENDERED_CODES } from './skill-utilities'
 export const RENDERED_PLAYER_CARD_CODES = [
+  ...SYNERGY_ATTACK_RENDERED_CODES,
   ...SYNERGY_RENDERED_CODES,
   ...TARGETED_EVENT_RENDERED_CODES,
   ...EXCLUSIVE_SKILL_RENDERED_CODES,
