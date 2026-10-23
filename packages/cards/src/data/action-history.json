@@ -1,0 +1,12 @@
+[
+  {
+    "code": "04150",
+    "name": "Take the Initiative",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Practiced", "Bold"],
+    "xp": 0,
+    "icons": { "wild": 3 },
+    "slots": []
+  }
+]

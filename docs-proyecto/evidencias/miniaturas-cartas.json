@@ -9180,6 +9180,18 @@
       "sourceSha256": "9c8a45e3f448eff788a1bcedd8dd3c5e6fb70477deffc01087e4c35f00ee1811",
       "path": "/local-assets/cards/en/thumbs/04309.webp",
       "sha256": "4be3f15c129fb186e03d2e8c550e90f658248cdcc6800026c170b4afa967a2e8"
+    },
+    {
+      "source": "/local-assets/cards/en/04150.avif",
+      "sourceSha256": "f8d71838acaa33fb27a291b00a991c6215000ee4f31c4dfda01f7a080ec01544",
+      "path": "/local-assets/cards/en/thumbs/04150.webp",
+      "sha256": "6b86e8ce75f1b9121f5b91cd9ebccc1f7bf3d95cf81a330e60b6336029599b49"
+    },
+    {
+      "source": "/local-assets/cards/es/04150.avif",
+      "sourceSha256": "15c61ab769569c34c39042f297fe5c39087063a7c2b16674f6ce1bf89b89fa01",
+      "path": "/local-assets/cards/es/thumbs/04150.webp",
+      "sha256": "8a84a6497f327ab91d807682930c14057c0228c48fb961b7085a07878168c9d4"
     }
   ]
 }

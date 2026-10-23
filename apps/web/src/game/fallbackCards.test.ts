@@ -12,6 +12,19 @@ import { localizedCards, useCardLocale } from './localized'
 
 afterEach(() => vi.unstubAllGlobals())
 describe('recursos de cartas sin red', () => {
+  it('presents Take the Initiative with official EN/ES rules, icons and scans', () => {
+    for (const locale of ['en', 'es']) {
+      const card = fallbackCards(locale).find((c) => c.code === '04150')!
+      expect(card.name).toBe(locale === 'es' ? 'Tomar la iniciativa' : 'Take the Initiative')
+      expect(card.type_code).toBe('skill')
+      expect(card.xp).toBe(0)
+      expect(card.skill_wild).toBe(3)
+      expect(card.text).toContain(locale === 'es' ? 'esta fase' : 'this phase')
+      expect(cardImages('04150', false, locale)[0]).toBe(
+        '/local-assets/cards/' + locale + '/04150.avif',
+      )
+    }
+  })
   it('presents All In with official EN/ES rules and a scan matching the implemented version', () => {
     for (const locale of ['en', 'es']) {
       const card = fallbackCards(locale).find((c) => c.code === '04309')!
