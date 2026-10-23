@@ -86,6 +86,6 @@ it('renders a shared start in English without a local game launch or private sta
   }
   const html = await render('en')
   expect(html).toContain(messages.en.online.started)
-  expect(html).toContain(messages.en.online.nextStage)
+  expect(html).toContain(messages.en.online.play.title)
   expect(html).not.toContain(messages.en.online.select)
 })

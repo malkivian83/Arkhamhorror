@@ -2982,7 +2982,26 @@
       "already_started": "The game has already started.",
       "not_owner": "Only the host can perform this action.",
       "verification_required": "Verify your account to continue.",
-      "lobby_full": "The table already has four players."
+      "lobby_full": "The table already has four players.",
+      "not_your_decision": "Another player owns this decision.",
+      "stale_question": "The question changed. Refresh the table.",
+      "invalid_choice": "This choice is not valid.",
+      "command_conflict": "This identifier belongs to a different decision.",
+      "not_started": "The game has not started yet."
+    },
+    "play": {
+      "title": "Shared table",
+      "retry": "Retry the same decision",
+      "status": "Round {round} · {phase} · Doom: {doom}",
+      "finished": "The scenario has ended.",
+      "waiting": "Waiting for {investigator} to decide.",
+      "card": "Card in play",
+      "location": "Clues: {clues}",
+      "enemy": "Location: {location} · Damage: {damage}/{health} · Engaged: {engaged}",
+      "asset": "Controller: {owner} · Uses: {uses} · Damage: {damage} · Horror: {horror} · Exhausted: {exhausted}",
+      "investigator": "Location: {location} · Resources: {resources} · Clues: {clues} · Damage: {damage} · Horror: {horror} · Actions: {actionsRemaining} · Hand: {handCount} · Deck: {deckCount}",
+      "eliminated": "Investigator eliminated from the scenario.",
+      "test": "{skill} test · Difficulty: {difficulty} · Value: {value} · Tokens: {tokens}"
     }
   },
   "chaosHelp": {

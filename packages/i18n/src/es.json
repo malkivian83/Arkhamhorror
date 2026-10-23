@@ -2982,7 +2982,26 @@
       "already_started": "La partida ya ha comenzado.",
       "not_owner": "Solo el anfitrión puede realizar esta acción.",
       "verification_required": "Verifica tu cuenta para continuar.",
-      "lobby_full": "La mesa ya tiene cuatro jugadores."
+      "lobby_full": "La mesa ya tiene cuatro jugadores.",
+      "not_your_decision": "Esta decisión corresponde a otro jugador.",
+      "stale_question": "La pregunta ha cambiado. Actualiza la mesa.",
+      "invalid_choice": "La opción ya no es válida.",
+      "command_conflict": "Este identificador ya corresponde a otra decisión.",
+      "not_started": "La partida todavía no ha empezado."
+    },
+    "play": {
+      "title": "Mesa compartida",
+      "retry": "Reintentar la misma decisión",
+      "status": "Ronda {round} · {phase} · Perdición: {doom}",
+      "finished": "El escenario ha terminado.",
+      "waiting": "Esperando la decisión de {investigator}.",
+      "card": "Carta en juego",
+      "location": "Pistas: {clues}",
+      "enemy": "Lugar: {location} · Daño: {damage}/{health} · Enfrentado: {engaged}",
+      "asset": "Controlador: {owner} · Usos: {uses} · Daño: {damage} · Horror: {horror} · Agotado: {exhausted}",
+      "investigator": "Lugar: {location} · Recursos: {resources} · Pistas: {clues} · Daño: {damage} · Horror: {horror} · Acciones: {actionsRemaining} · Mano: {handCount} · Mazo: {deckCount}",
+      "eliminated": "Investigador eliminado del escenario.",
+      "test": "Prueba de {skill} · Dificultad: {difficulty} · Valor: {value} · Fichas: {tokens}"
     }
   },
   "chaosHelp": {

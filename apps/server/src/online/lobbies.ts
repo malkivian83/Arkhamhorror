@@ -1,7 +1,8 @@
 import { randomInt, randomUUID } from 'node:crypto'
 import { newCampaign, startScenario, type Campaign } from '@lcg/cards'
-import type { GameState } from '@lcg/engine'
-import type { OnlineDeck, OnlineLobby } from '@lcg/shared'
+import { applyInput, type GameState } from '@lcg/engine'
+import type { OnlineCommand, OnlineDeck, OnlineLobby } from '@lcg/shared'
+import { gameView } from './game'
 import type { FastifyInstance } from 'fastify'
 import type { authentication } from '../accounts/auth'
 import type { Database } from '../accounts/database'
@@ -19,6 +20,7 @@ export interface Lobby {
   ready?: string[]
   campaign?: Campaign
   game?: GameState
+  commands?: Record<string, { user: string; signature: string }>
 }
 export const lobbyView = (lobby: Lobby): OnlineLobby => ({
   id: lobby.id,
@@ -69,6 +71,49 @@ export class LobbyService {
     const lobby = await this.read(this.db, id)
     requireValue(lobby.members.includes(user), 'not_member', 403)
     return lobbyView(lobby)
+  }
+  async game(id: string, user: string) {
+    const lobby = await this.read(this.db, id)
+    requireValue(lobby.members.includes(user), 'not_member', 403)
+    requireValue(lobby.game, 'not_started', 409)
+    return gameView(lobby, user)
+  }
+  async decide(id: string, user: string, command: OnlineCommand) {
+    return this.change(id, (lobby) => {
+      requireValue(lobby.members.includes(user), 'not_member', 403)
+      requireValue(lobby.game, 'not_started', 409)
+      const signature = JSON.stringify([command.revision, command.questionId, command.choice])
+      const prior = lobby.commands?.[command.commandId]
+      if (prior) {
+        requireValue(prior.user === user && prior.signature === signature, 'command_conflict', 409)
+        return gameView(lobby, user)
+      }
+      requireValue(lobby.revision === command.revision, 'stale_revision', 409)
+      const pending = lobby.game.pending
+      requireValue(
+        pending && !lobby.game.outcome && command.questionId === String(lobby.revision),
+        'stale_question',
+        409,
+      )
+      requireValue(
+        pending.investigator === lobby.decks?.[user]?.investigator,
+        'not_your_decision',
+        403,
+      )
+      requireValue(
+        Number.isInteger(command.choice) &&
+          command.choice >= 0 &&
+          command.choice < pending.question.choices.length,
+        'invalid_choice',
+      )
+      lobby.game = applyInput(lobby.game, {
+        investigator: pending.investigator,
+        choice: command.choice,
+      })
+      lobby.commands = { ...lobby.commands, [command.commandId]: { user, signature } }
+      lobby.revision++
+      return gameView(lobby, user)
+    })
   }
   private async change<T>(id: string, run: (lobby: Lobby) => T) {
     return this.db.transaction(async (tx) => {
@@ -224,6 +269,26 @@ export function onlineLobbies(
     required: Object.keys(properties),
     properties,
   })
+  app.get<{ Params: { id: string } }>(
+    '/api/online/lobbies/:id/game',
+    { schema: { params } },
+    async (req) => service.game(req.params.id, (await auth.requireUser(req)).id),
+  )
+  app.post<{ Params: { id: string }; Body: OnlineCommand }>(
+    '/api/online/lobbies/:id/game/decisions',
+    {
+      schema: {
+        params,
+        body: bodySchema({
+          revision,
+          commandId: { type: 'string', format: 'uuid' },
+          questionId: { type: 'string', minLength: 1, maxLength: 30 },
+          choice: { type: 'integer', minimum: 0 },
+        }),
+      },
+    },
+    async (req) => service.decide(req.params.id, (await auth.requireUser(req)).id, req.body),
+  )
   app.post<{
     Params: { id: string }
     Body: { revision: number; campaignId: string; difficulty: OnlineLobby['difficulty'] }

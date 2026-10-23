@@ -8,6 +8,7 @@ import { account, api } from '../account/api'
 import { useDecksStore } from '../stores/decks'
 import { lobbyClient } from '../online/lobby'
 import SitePage from '../components/SitePage.vue'
+import OnlineGame from '../components/OnlineGame.vue'
 
 const { t, te } = useI18n(),
   route = useRoute(),
@@ -243,7 +244,7 @@ onBeforeUnmount(() => {
             <h2>{{ t('online.started') }}</h2>
             <p>{{ t(`campaign.scenario.${lobby.game?.scenarioId}`) }}</p>
             <p>{{ t('online.startedDetail', { n: lobby.game?.investigatorCount }) }}</p>
-            <p>{{ t('online.nextStage') }}</p>
+            <OnlineGame :key="`${lobby.id}:${account.user.id}`" :room="lobby.id" />
           </section>
         </template>
       </template>

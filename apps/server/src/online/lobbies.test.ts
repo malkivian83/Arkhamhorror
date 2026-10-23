@@ -2,7 +2,8 @@ import { describe, expect, it, vi } from 'vitest'
 import Fastify from 'fastify'
 import type { Database } from '../accounts/database'
 import { ApiError } from '../accounts/security'
-import { LobbyService, onlineLobbies } from './lobbies'
+import { LobbyService, onlineLobbies, type Lobby } from './lobbies'
+import { randomUUID } from 'node:crypto'
 import { starterDeck, starterInvestigator } from '@lcg/cards'
 
 const deck = (key: 'joe' | 'daniela') => ({
@@ -44,6 +45,141 @@ function memory() {
 }
 
 describe('private online lobbies', () => {
+  async function active() {
+    const { db, data } = memory(),
+      service = new LobbyService(db)
+    let lobby = await service.create('host')
+    const invite = await service.invite(lobby.id, 'host')
+    lobby = await service.join(lobby.id, 'friend', invite.token)
+    lobby = await service.select(lobby.id, 'host', lobby.revision, deck('joe'))
+    lobby = await service.select(lobby.id, 'friend', lobby.revision, deck('daniela'))
+    lobby = await service.ready(lobby.id, 'host', lobby.revision, true)
+    lobby = await service.ready(lobby.id, 'friend', lobby.revision, true)
+    await service.start(lobby.id, 'host', lobby.revision)
+    return { service, db, data, id: lobby.id }
+  }
+  it('projects only the current player hand and decision, never messages or hidden piles', async () => {
+    const { service, id } = await active()
+    const host = await service.game(id, 'host'),
+      friend = await service.game(id, 'friend')
+    expect(host.investigators[0]!.hand).toBeDefined()
+    expect(friend.investigators[0]!.hand).toBeUndefined()
+    expect(host.investigators[1]!.hand).toBeUndefined()
+    expect(friend.investigators[1]!.hand).toBeDefined()
+    for (const view of [host, friend]) {
+      for (const key of ['rng', 'queue', 'encounterDeck', 'setAside', 'campaign', 'log'])
+        expect(view).not.toHaveProperty(key)
+      expect(JSON.stringify(view)).not.toContain('"then"')
+      expect(view.investigators.every((i) => !('deck' in i))).toBe(true)
+    }
+    const deciding = host.pending!.investigator === deck('joe').investigator ? host : friend
+    const waiting = deciding === host ? friend : host
+    expect(deciding.pending!.choices.length).toBeGreaterThan(0)
+    expect(waiting.pending!.choices).toEqual([])
+    expect(waiting.pending!.prompt).toBeUndefined()
+    await expect(service.game(id, 'outsider')).rejects.toMatchObject({ code: 'not_member' })
+  })
+  it('serializes simultaneous answers, persists deduplication and rejects stale or foreign decisions', async () => {
+    const { service, db, data, id } = await active()
+    const view = await service.game(id, 'host')
+    const user = view.pending!.investigator === deck('joe').investigator ? 'host' : 'friend'
+    const command = {
+      commandId: randomUUID(),
+      revision: view.revision,
+      questionId: view.pending!.id,
+      choice: 0,
+    }
+    await expect(
+      service.decide(id, user === 'host' ? 'friend' : 'host', command),
+    ).rejects.toMatchObject({ code: 'not_your_decision' })
+    await expect(service.decide(id, 'outsider', command)).rejects.toMatchObject({
+      code: 'not_member',
+    })
+    await expect(service.decide(id, user, { ...command, choice: -1 })).rejects.toMatchObject({
+      code: 'invalid_choice',
+    })
+    await expect(
+      service.decide(id, user, { ...command, questionId: 'wrong' }),
+    ).rejects.toMatchObject({ code: 'stale_question' })
+    const [a, b] = await Promise.all([
+      service.decide(id, user, command),
+      service.decide(id, user, command),
+    ])
+    expect(a).toEqual(b)
+    expect(a.revision).toBe(view.revision + 1)
+    const stored = data.get(id)
+    expect(await new LobbyService(db).decide(id, user, command)).toEqual(a)
+    expect(data.get(id)).toBe(stored)
+    await expect(service.decide(id, user, { ...command, choice: 1 })).rejects.toMatchObject({
+      code: 'command_conflict',
+    })
+    await expect(
+      service.decide(id, user, { ...command, commandId: randomUUID() }),
+    ).rejects.toMatchObject({ code: 'stale_revision' })
+  })
+  it('plays setup and synchronized actions with the actual engine and resumes after reconnecting', async () => {
+    const { service, db, data, id } = await active()
+    // RR: setup/mulligan and investigation actions use exactly the engine choices.
+    for (let step = 0; step < 80; step++) {
+      const stored = JSON.parse(data.get(id)!) as Lobby
+      const pending = stored.game!.pending!
+      if (pending.question.prompt === 'prompt.chooseAction') break
+      const user = pending.investigator === deck('joe').investigator ? 'host' : 'friend'
+      const view = await service.game(id, user)
+      const done = pending.question.choices.findIndex((c) => /done|finish|keep/i.test(c.label))
+      await service.decide(id, user, {
+        commandId: randomUUID(),
+        revision: view.revision,
+        questionId: view.pending!.id,
+        choice: done < 0 ? 0 : done,
+      })
+    }
+    const stored = JSON.parse(data.get(id)!) as Lobby
+    expect(stored.game!.pending!.question.prompt).toBe('prompt.chooseAction')
+    const p = stored.game!.pending!,
+      user = p.investigator === deck('joe').investigator ? 'host' : 'friend'
+    const choice = p.question.choices.findIndex((c) =>
+      c.then.some((m) => m.type === 'TakeAction' && m.action.kind === 'resource'),
+    )
+    expect(choice).toBeGreaterThanOrEqual(0)
+    const before = stored.game!.investigators.find((i) => i.id === p.investigator)!
+    await service.decide(id, user, {
+      commandId: randomUUID(),
+      revision: stored.revision,
+      questionId: String(stored.revision),
+      choice,
+    })
+    const recovered = await new LobbyService(db).game(id, user)
+    expect(recovered.investigators.find((i) => i.id === p.investigator)!.resources).toBe(
+      before.resources + 1,
+    )
+    expect(recovered.investigators.find((i) => i.id === p.investigator)!.actionsRemaining).toBe(
+      before.actionsRemaining - 1,
+    )
+    const other = await service.game(id, user === 'host' ? 'friend' : 'host')
+    expect(other.revision).toBe(recovered.revision)
+    expect(other.cards).toEqual(recovered.cards)
+  })
+  it('accepts only one of two distinct commands against the same question', async () => {
+    const { service, id } = await active()
+    const view = await service.game(id, 'host')
+    const user = view.pending!.investigator === deck('joe').investigator ? 'host' : 'friend'
+    const results = await Promise.allSettled(
+      [0, 1].map(() =>
+        service.decide(id, user, {
+          commandId: randomUUID(),
+          revision: view.revision,
+          questionId: view.pending!.id,
+          choice: 0,
+        }),
+      ),
+    )
+    expect(results.filter((r) => r.status === 'fulfilled')).toHaveLength(1)
+    expect(results.find((r) => r.status === 'rejected')).toMatchObject({
+      reason: { code: 'stale_revision' },
+    })
+    expect((await service.game(id, user)).revision).toBe(view.revision + 1)
+  })
   it('prepares and starts a shared game through the HTTP routes for two identities', async () => {
     const app = Fastify()
     app.setErrorHandler((error, _req, reply) =>
@@ -100,6 +236,31 @@ describe('private online lobbies', () => {
         headers: { 'test-user': 'friend' },
       })
       expect(friend.json()).toEqual(response.json())
+      const game = await app.inject({
+        url: `/api/online/lobbies/${lobby.id}/game`,
+        headers: { 'test-user': 'host' },
+      })
+      const view = game.json()
+      const actor = view.pending.investigator === deck('joe').investigator ? 'host' : 'friend'
+      const command = {
+        commandId: randomUUID(),
+        revision: view.revision,
+        questionId: view.pending.id,
+        choice: 0,
+      }
+      expect(
+        (await post(`/${lobby.id}/game/decisions`, actor, { ...command, choice: -1 })).statusCode,
+      ).toBe(400)
+      expect(
+        (await post(`/${lobby.id}/game/decisions`, actor, { ...command, commandId: '__proto__' }))
+          .statusCode,
+      ).toBe(400)
+      const decision = await post(`/${lobby.id}/game/decisions`, actor, command)
+      expect(decision.statusCode).toBe(200)
+      expect(decision.json().revision).toBe(view.revision + 1)
+      expect((await post(`/${lobby.id}/game/decisions`, actor, command)).json()).toEqual(
+        decision.json(),
+      )
     } finally {
       await app.close()
     }
