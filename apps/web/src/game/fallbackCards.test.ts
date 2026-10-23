@@ -11,6 +11,16 @@ import { localizedCards, useCardLocale } from './localized'
 
 afterEach(() => vi.unstubAllGlobals())
 describe('recursos de cartas sin red', () => {
+  it('presents Fight or Flight with official EN/ES rules and local scans', () => {
+    for (const locale of ['en', 'es']) {
+      const card = fallbackCards(locale).find((c) => c.code === '03155')!
+      expect(card.name).toBe(locale === 'es' ? 'Pelear o huir' : 'Fight or Flight')
+      expect(card.text).toContain(locale === 'es' ? 'final de la ronda' : 'end of the round')
+      expect(card.text).toContain('[combat]')
+      expect(card.cost).toBe(1)
+      expect(cardImages('03155', false, locale)[0]).toBe(`/local-assets/cards/${locale}/03155.avif`)
+    }
+  })
   it('serves the reference application scans for Pete, both sides, Duke and the weakness in EN/ES', () => {
     for (const language of ['en', 'es'])
       for (const code of ['02005', '02014', '02015'])

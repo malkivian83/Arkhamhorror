@@ -8922,6 +8922,18 @@
       "sourceSha256": "ea2c5b3b5bdfde97ae53b0359f290b65351df5f3408ad744d5c2021c899f6347",
       "path": "/local-assets/cards/es/thumbs/08061.webp",
       "sha256": "56b784009f14e944002a1a471ad80dd5640ad0cb38a7decf1096902981ac5524"
+    },
+    {
+      "source": "/local-assets/cards/en/03155.avif",
+      "sourceSha256": "dcbf14bcd743f2f58595d911def9891a3f9aa226460b37a6cad6c588b7455a13",
+      "path": "/local-assets/cards/en/thumbs/03155.webp",
+      "sha256": "cb5abe90bba4c5e78813be327facc175d29a4966bcaad4c4e875eddf903af008"
+    },
+    {
+      "source": "/local-assets/cards/es/03155.avif",
+      "sourceSha256": "703fec48803273eaa1c6c6960ace0e0ad83fe37d4d7cd35715b417a4f15f10bd",
+      "path": "/local-assets/cards/es/thumbs/03155.webp",
+      "sha256": "b8bf643be2f9cbe77bbea6f42f031ba0024ade1aaa3c28c7260769cff7c1dbd2"
     }
   ]
 }

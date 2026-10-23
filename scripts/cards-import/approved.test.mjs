@@ -1,10 +1,20 @@
-import { readFile } from 'node:fs/promises'
+import { readFile, readdir } from 'node:fs/promises'
 import { describe, expect, it } from 'vitest'
 import { approvedDefinition } from './approved.mjs'
 
 const read = async (relative) =>
   JSON.parse(await readFile(new URL(relative, import.meta.url), 'utf8'))
 describe('reviewed inventory conversion', () => {
+  it('rejects codes repeated between published batch data files', async () => {
+    const dir = new URL('../../packages/cards/src/data/', import.meta.url)
+    const codes = []
+    for (const file of await readdir(dir)) {
+      if (!file.endsWith('.json')) continue
+      const data = JSON.parse(await readFile(new URL(file, dir), 'utf8'))
+      if (Array.isArray(data)) codes.push(...data.map((c) => c.code))
+    }
+    expect(new Set(codes).size).toBe(codes.length)
+  })
   it.each([
     'dunwich-pilot',
     'dunwich-followup',
@@ -40,6 +50,7 @@ describe('reviewed inventory conversion', () => {
     'support-allies',
     'skill-tricks',
     'direct-effects',
+    'round-effects',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(

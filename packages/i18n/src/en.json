@@ -1673,6 +1673,7 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "03155": "Spirit.",
       "01048": "Ally. Criminal.",
       "02188": "Talent.",
       "05036": "Item. Clothing. Footwear.",
@@ -1808,6 +1809,7 @@
       "09062": "Talent. Trick. Illicit."
     },
     "summary": {
+      "03155": "Fast. Play only during your turn.\nUntil the end of the round, you get +X [combat] and +X [agility], where X is the amount of horror on you.",
       "01064": "Draw the top card of the encounter deck. Then, discover 2 clues at your location.",
       "03239": "Gain 4 resources or place 4 supply tokens among assets controlled by investigators at your location, or any combination thereof.",
       "60115": "Fast. Play after you defeat an enemy.\nDraw 2 cards.",
@@ -2304,6 +2306,7 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "03155": "Fight or Flight",
       "01064": "Drawn to the Flame",
       "03239": "Emergency Cache",
       "60115": "Glory",

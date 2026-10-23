@@ -11897,6 +11897,22 @@
       "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/08061.avif",
       "bytes": 80835,
       "sha256": "ea2c5b3b5bdfde97ae53b0359f290b65351df5f3408ad744d5c2021c899f6347"
+    },
+    {
+      "art": "03155",
+      "language": "en",
+      "path": "/local-assets/cards/en/03155.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/03155.avif",
+      "bytes": 94070,
+      "sha256": "dcbf14bcd743f2f58595d911def9891a3f9aa226460b37a6cad6c588b7455a13"
+    },
+    {
+      "art": "03155",
+      "language": "es",
+      "path": "/local-assets/cards/es/03155.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/03155.avif",
+      "bytes": 68798,
+      "sha256": "703fec48803273eaa1c6c6960ace0e0ad83fe37d4d7cd35715b417a4f15f10bd"
     }
   ],
   "missing": [
