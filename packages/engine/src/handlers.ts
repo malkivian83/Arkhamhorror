@@ -947,7 +947,7 @@ export function handle(state: GameState, message: Message): GameState {
       const [card, ...deck] = investigator.deck as [string, ...string[]]
       const revelations = [
         ...(message.revelations ?? []),
-        ...(playerCardBehavior(card)?.revelation ? [card] : []),
+        ...(playerCardBehavior(card)?.revelation || resolvesWhenDrawn(card) ? [card] : []),
       ]
       const more: Message[] =
         message.amount > 1
@@ -959,13 +959,6 @@ export function handle(state: GameState, message: Message): GameState {
               },
             ]
           : finish(revelations)
-      if (resolvesWhenDrawn(card)) {
-        return push(
-          updateInvestigator(state, investigator.id, (i) => ({ ...i, deck })),
-          { type: 'ResolveWeakness', investigator: investigator.id, code: card },
-          ...more,
-        )
-      }
       return push(
         updateInvestigator(state, investigator.id, (i) => ({
           ...i,
@@ -1012,7 +1005,17 @@ export function handle(state: GameState, message: Message): GameState {
       const investigator = getInvestigator(state, message.investigator)
       const behavior = playerCardBehavior(message.code)
       const index = investigator.hand.indexOf(message.code)
-      if (index < 0 || investigator.eliminated || !behavior?.revelation) return state
+      if (index < 0 || investigator.eliminated) return state
+      if (resolvesWhenDrawn(message.code)) {
+        return push(
+          updateInvestigator(state, investigator.id, (i) => ({
+            ...i,
+            hand: i.hand.filter((_, n) => n !== index),
+          })),
+          { type: 'ResolveWeakness', investigator: investigator.id, code: message.code },
+        )
+      }
+      if (!behavior?.revelation) return state
       const round = Math.max(1, state.round)
       const count = state.dilemmasResolved?.round === round ? state.dilemmasResolved.count : 0
       const canResolve = !behavior.dilemma || count < 2
@@ -2238,7 +2241,26 @@ export function handle(state: GameState, message: Message): GameState {
                 icons: commitIcons(state, test, code, helper.id),
               },
               then: [
-                { type: 'CommitCard', investigator: helper.id, code },
+                {
+                  type: 'Ask',
+                  investigator: helper.id,
+                  question: {
+                    kind: 'chooseOne',
+                    alwaysAsk: true,
+                    prompt: 'prompt.commitCards',
+                    choices: [
+                      {
+                        label: 'choice.commit',
+                        params: {
+                          card: playerCardDef(code)?.name ?? code,
+                          icons: commitIcons(state, test, code, helper.id),
+                        },
+                        then: [{ type: 'CommitCard', investigator: helper.id, code }],
+                      },
+                      { label: 'choice.skip', then: [] },
+                    ],
+                  },
+                },
                 { type: 'CommitWindow' },
               ],
             })),

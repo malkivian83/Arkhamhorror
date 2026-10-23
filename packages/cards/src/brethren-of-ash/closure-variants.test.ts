@@ -134,6 +134,8 @@ describe('Smoke: los seis códices y el umbral por investigador', () => {
               damage: 2,
               horror: 2,
               skills: { willpower: 8, intellect: 8, combat: 8, agility: 8 },
+              // This matrix isolates codex thresholds, not optional card commitments.
+              hand: [],
             })),
           }),
           { type: 'SpawnEnemy', card, location: here, engageWith: null },

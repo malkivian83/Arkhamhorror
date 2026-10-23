@@ -37,6 +37,7 @@ it('heals the helper who committed the skill', () => {
     kind: { type: 'effect', source: 'test', onSuccess: [], onFail: [], onFailEach: [] },
   })
   s = choose(s, 'choice.commitFrom', { name: 'B' })
+  s = choose(s, 'choice.commit')
   expect(s.investigators[1]!.horror).toBe(2)
   expect(me(s).horror).toBe(0)
 })

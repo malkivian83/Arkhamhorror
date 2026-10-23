@@ -258,6 +258,7 @@ describe('Long Shot', () => {
         canCommitFrom({ ...s, skillTest: { ...s.skillTest!, tags: ['peril'] } }, 'a', '10116'),
       ).toBe(false)
       s = choose(s, 'choice.commitFrom', { card: 'Long Shot' })
+      s = choose(s, 'choice.commit')
       expect(skillTestValue(s).icons).toBe(0)
       s = resolveTest(s)
       expect(s.enemies[enemy.id]?.damageTaken).toBe(kind === 'fight' ? 2 : 1)
@@ -328,6 +329,8 @@ describe('At a Crossroads', () => {
   it('resolves a weakness first in a multi-card draw and ignores a third Dilemma across all investigators', () => {
     let s = patch({ hand: [], deck: ['09109', 'dilemma-test-weakness'], discard: [] })(bare())
     s = dispatch(s, { type: 'DrawCards', investigator: 'a', amount: 2 })
+    expect(s.pending?.question.prompt).toBe('prompt.playerRevelationOrder')
+    s = choose(s, 'choice.card', { card: 'Dilemma test weakness' })
     expect(s.pending).toBeNull()
     expect(me(s).discard).toContain('09109')
     expect(s.dilemmasResolved).toBeUndefined()

@@ -128,6 +128,16 @@ export function labels(state: GameState): string[] {
   return state.pending?.question.choices.map((c) => c.label) ?? []
 }
 
+/** Card-effect fixtures explicitly opt into the helper accepting a proposed card. */
+export function chooseWithConsent(
+  state: GameState,
+  label: string,
+  params: LabelParams = {},
+): GameState {
+  const next = choose(state, label, params)
+  return label === 'choice.commitFrom' ? choose(next, 'choice.commit') : next
+}
+
 /**
  * Durante el turno de un investigador: modifica el estado y/o resuelve mensajes
  * y vuelve a mostrarle su menú de acciones (recalculado).

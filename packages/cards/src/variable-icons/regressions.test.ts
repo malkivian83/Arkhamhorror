@@ -44,6 +44,7 @@ it('offers Leadership with the helper bonus and resolves it for the tester', () 
     s.pending!.question.choices.find((c) => c.label === 'choice.commitFrom')?.params?.icons,
   ).toBe(3)
   s = choose(s, 'choice.commitFrom')
+  s = choose(s, 'choice.commit')
   expect(me(s).resources).toBe(1)
   expect(s.investigators[1]!.discard).toContain('02260')
 })

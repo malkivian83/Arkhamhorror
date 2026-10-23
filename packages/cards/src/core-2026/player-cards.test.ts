@@ -188,6 +188,13 @@ describe('comprometer cartas a pruebas', () => {
     game = choose(game, 'action.investigate')
     expect(game.pending?.question.prompt).toBe('prompt.commitCards')
     game = choose(game, 'choice.commitFrom', { name: 'Joe Diamond', card: 'Perception' })
+    // RR Skill Tests: only the helper can authorize their own commitment.
+    expect(game.pending?.investigator).toBe(JOE)
+    expect(getInvestigator(game, JOE).hand).toContain(code(93))
+    game = choose(game, 'choice.skip')
+    expect(getInvestigator(game, JOE).hand).toContain(code(93))
+    game = choose(game, 'choice.commitFrom', { name: 'Joe Diamond', card: 'Perception' })
+    game = choose(game, 'choice.commit')
     // Joe ya ha comprometido una carta: no se le ofrece Deduction y la prueba se resuelve.
     expect(labels(game)).not.toContain('choice.commitFrom')
     const joe = getInvestigator(game, JOE)

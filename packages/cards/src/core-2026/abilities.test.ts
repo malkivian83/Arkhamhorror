@@ -78,6 +78,32 @@ describe('inicio de la partida', () => {
 })
 
 describe('debilidades', () => {
+  it.each([false, true])('FAQ Patrice: Amnesia waits for the complete draw (last=%s)', (last) => {
+    // FAQ v2.5A, p. 39: draw simultaneously, then resolve revelations.
+    let s = during(
+      game('a'),
+      set({ hand: ['one', 'two'], deck: last ? ['three', code(97)] : [code(97), 'three'] }),
+      { type: 'DrawCards', investigator: 'a', amount: 2 },
+    )
+    while (s.pending?.question.prompt !== 'prompt.chooseAction') {
+      s = choose(s, s.pending!.question.choices[0]!.label)
+    }
+    expect(me(s).hand).toHaveLength(1)
+    expect(me(s).discard).toContain(code(97))
+    expect(me(s).deck).toHaveLength(0)
+  })
+
+  it('offers the order of two drawn weaknesses after the complete draw', () => {
+    const s = during(game('a'), set({ hand: [], deck: [code(97), code(101)], resources: 7 }), {
+      type: 'DrawCards',
+      investigator: 'a',
+      amount: 2,
+    })
+    expect(s.pending?.question.prompt).toBe('prompt.playerRevelationOrder')
+    expect(me(s).deck).toHaveLength(0)
+    expect(me(s).resources).toBe(7)
+    expect(s.pending?.question.choices).toHaveLength(2)
+  })
   it('las de la mano inicial se apartan y se barajan en el mazo', () => {
     const s = game('a', { deck: [code(101), ...filler(20)] })
     expect(me(s).hand).not.toContain(code(101))

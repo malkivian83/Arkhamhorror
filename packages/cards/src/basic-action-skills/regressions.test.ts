@@ -57,6 +57,7 @@ it('does not add Brute Force damage to a failed attack against another investiga
 
 it('lets the committer decline Expeditious Retreat without a second evasion', () => {
   let s = choose(open('06246', 'b'), 'choice.commitFrom')
+  s = choose(s, 'choice.commit')
   expect(s.pending!.investigator).toBe('b')
   s = choose(s, 'choice.skip')
   expect(Object.values(s.enemies)[0]!.exhausted).toBe(true)
