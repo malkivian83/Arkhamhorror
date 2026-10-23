@@ -1675,6 +1675,8 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "03191": "Inspiración.",
+      "52003": "Inspiración.",
       "04036": "Gambito.",
       "11093": "Gambito.",
       "09030": "Experimentado.",
@@ -1818,6 +1820,8 @@
       "09062": "Talento. Truco. Ilegal."
     },
     "summary": {
+      "03191": "Juega esta carta sólo si tienes al menos 1 pista.\nElige un investigador que esté en tu Lugar. Ese investigador se cura 2 puntos de horror o bien descarta una carta de [[Terror]] de su zona de amenaza.",
+      "52003": "Por cada pista que tengas (hasta un máximo de 3), cúrale 2 puntos de horror a un investigador que esté en tu Lugar o bien descarta una carta [[Terror]] que esté en tu Lugar.",
       "04036": "Sólo puedes asignar esta carta a una prueba de habilidad que no tenga otras cartas asignadas a ella. No se pueden asignar otras cartas a esta prueba de habilidad.\nÚltima oportunidad pierde [wild] por cada carta que tengas en la mano.",
       "11093": "Sólo puedes asignar esta carta a una prueba de habilidad que no tenga otras cartas asignadas a ella. No se pueden asignar otras cartas a esta prueba de habilidad.\nÚltima oportunidad pierde [wild] por cada carta que tengas en la mano. Si esta prueba tiene éxito mientras Última oportunidad esté asignada a ella, roba 2 cartas.",
       "09030": "Asigna esta carta sólo a una prueba de habilidad durante un ataque o intento de evitar.\n Puedes asignar esta habilidad a la prueba de un investigador que esté en cualquier Lugar.",
@@ -2322,6 +2326,8 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "03191": "Razonamiento lógico",
+      "52003": "Razonamiento lógico",
       "04036": "Última oportunidad",
       "11093": "Última oportunidad",
       "09030": "Lecciones de combate",

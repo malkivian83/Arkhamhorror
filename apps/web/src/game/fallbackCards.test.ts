@@ -11,6 +11,24 @@ import { localizedCards, useCardLocale } from './localized'
 
 afterEach(() => vi.unstubAllGlobals())
 describe('recursos de cartas sin red', () => {
+  it.each(['03191', '52003'])(
+    '%s presents Logical Reasoning in both languages with the correct level',
+    (code) => {
+      for (const locale of ['en', 'es']) {
+        const card = fallbackCards(locale).find((c) => c.code === code)!
+        expect(card.name).toBe(locale === 'es' ? 'Razonamiento lógico' : 'Logical Reasoning')
+        expect(card.type_code).toBe('event')
+        expect(card.xp).toBe(code === '03191' ? 0 : 4)
+        expect(card.skill_willpower).toBe(code === '03191' ? 2 : 3)
+        expect(card.cost).toBe(2)
+        expect(card.text).toContain('[[Terror]]')
+        expect(card.text).toContain(locale === 'es' ? 'pista' : 'clue')
+        expect(cardImages(code, false, locale)[0]).toBe(
+          '/local-assets/cards/' + locale + '/' + code + '.avif',
+        )
+      }
+    },
+  )
   it.each(['04036', '11093'])(
     '%s presents official EN/ES rules and the correct upgraded icons',
     (code) => {

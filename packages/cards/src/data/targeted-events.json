@@ -1,0 +1,24 @@
+[
+  {
+    "code": "03191",
+    "name": "Logical Reasoning",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "willpower": 2 },
+    "slots": []
+  },
+  {
+    "code": "52003",
+    "name": "Logical Reasoning",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 2,
+    "xp": 4,
+    "icons": { "willpower": 3 },
+    "slots": []
+  }
+]
