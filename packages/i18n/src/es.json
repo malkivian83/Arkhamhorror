@@ -1673,6 +1673,7 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "01036": "Inspiración.",
       "03155": "Espíritu.",
       "01048": "Aliado. Criminal.",
       "02188": "Talento.",
@@ -1809,6 +1810,7 @@
       "09062": "Talento. Truco. Ilegal."
     },
     "summary": {
+      "01036": "Rápido. Juega esta carta sólo durante tu turno.\nHasta el final de la ronda, puedes usar tu [intellect] en lugar de tu [combat] y de tu [agility].",
       "03155": "Rápido. Juega esta carta sólo durante tu turno.\nHasta el final de la ronda, recibe +X [combat] y +X [agility], donde X es la cantidad de horror que tengas.",
       "01064": "Roba la primera carta del mazo de Encuentros. A continuación, descubre 2 pistas en tu Lugar.",
       "03239": "Obtén 4 recursos o coloca 4 fichas de suministros entre Apoyos controlados por investigadores que estén en tu Lugar, o cualquier combinación de ambas cosas.",
@@ -2306,6 +2308,7 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "01036": "La mente sobre la materia",
       "03155": "Pelear o huir",
       "01064": "Atracción por la llama",
       "03239": "Alijo de emergencia",

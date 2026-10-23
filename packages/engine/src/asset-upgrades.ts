@@ -48,6 +48,8 @@ const upgradeSum = (asset: Asset | undefined, value: (code: string) => number | 
 
 // RR: Fight. Applies while attacking with the host asset, not to other attacks.
 export function attachedAttackSkillBonus(state: GameState, test: SkillTest): number {
+  // Custom Ammunition / Iron Sights modify combat, not a substituted skill.
+  if (test.skill !== 'combat') return 0
   const host = attacking(state, test)
   return (
     upgradeSum(host, (c) => playerCardBehavior(c)?.attachedAttackSkill) +

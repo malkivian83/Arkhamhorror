@@ -2541,6 +2541,39 @@ export function handle(state: GameState, message: Message): GameState {
         queue.splice(end + 1, 0, message)
         return { ...state, queue }
       }
+      if (!message.skillSelected) {
+        const investigator = getInvestigator(state, message.investigator)
+        const replacements = (investigator.roundSkillReplacements ?? []).filter(
+          (r) => r.round === state.round && r.from === message.skill,
+        )
+        const skills = [...new Set([message.skill, ...replacements.map((r) => r.to)])]
+        if (skills.length > 1)
+          return push(state, {
+            type: 'Ask',
+            investigator: message.investigator,
+            question: {
+              kind: 'chooseOne',
+              prompt: 'prompt.chooseSkill',
+              choices: skills.map((skill) => {
+                const next = { ...message, skill, skillSelected: true }
+                if (skill !== message.skill) {
+                  delete next.baseSkill
+                  delete next.modifier
+                }
+                return {
+                  label: `choice.test.${skill}`,
+                  params: {
+                    difficulty: Math.max(
+                      0,
+                      message.difficulty + enemyStatBonus(state, message.kind),
+                    ),
+                  },
+                  then: [next],
+                }
+              }),
+            },
+          })
+      }
       return push(
         {
           ...state,
@@ -4462,6 +4495,15 @@ export function handle(state: GameState, message: Message): GameState {
         },
       )
     }
+
+    case 'RoundSkillReplacement':
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        roundSkillReplacements: [
+          ...(i.roundSkillReplacements ?? []).filter((b) => b.round === state.round),
+          { from: message.from, to: message.to, code: message.code, round: state.round },
+        ],
+      }))
 
     case 'RoundSkillBonus':
       return updateInvestigator(state, message.investigator, (i) => ({

@@ -11,6 +11,18 @@ import { localizedCards, useCardLocale } from './localized'
 
 afterEach(() => vi.unstubAllGlobals())
 describe('recursos de cartas sin red', () => {
+  it('presents Mind over Matter with official EN/ES rules, icons and local scans', () => {
+    for (const locale of ['en', 'es']) {
+      const card = fallbackCards(locale).find((c) => c.code === '01036')!
+      expect(card.name).toBe(locale === 'es' ? 'La mente sobre la materia' : 'Mind over Matter')
+      expect(card.text).toContain(locale === 'es' ? 'final de la ronda' : 'end of the round')
+      expect(card.text).toContain('[intellect]')
+      expect(card.skill_combat).toBe(1)
+      expect(card.skill_agility).toBe(1)
+      expect(card.cost).toBe(1)
+      expect(cardImages('01036', false, locale)[0]).toBe(`/local-assets/cards/${locale}/01036.avif`)
+    }
+  })
   it('presents Fight or Flight with official EN/ES rules and local scans', () => {
     for (const locale of ['en', 'es']) {
       const card = fallbackCards(locale).find((c) => c.code === '03155')!
