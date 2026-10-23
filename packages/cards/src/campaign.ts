@@ -1,6 +1,7 @@
 import './direct-effects'
 import './round-effects'
 import './skill-replacement'
+import './skill-utilities'
 import './skill-tricks'
 import './support-allies'
 import './simple-assets'

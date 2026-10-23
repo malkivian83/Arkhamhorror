@@ -1675,6 +1675,10 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "09030": "Experimentado.",
+      "11088": "Innato.",
+      "60268": "Experimentado.",
+      "60269": "Experimentado.",
       "01036": "Inspiración.",
       "03155": "Espíritu.",
       "01048": "Aliado. Criminal.",
@@ -1812,6 +1816,10 @@
       "09062": "Talento. Truco. Ilegal."
     },
     "summary": {
+      "09030": "Asigna esta carta sólo a una prueba de habilidad durante un ataque o intento de evitar.\n Puedes asignar esta habilidad a la prueba de un investigador que esté en cualquier Lugar.",
+      "11088": "Puedes asignar Contemplativo a una investigación o a una prueba de habilidad durante un intento de negociar en tu Lugar o en un Lugar conectado.\nSi esta prueba tiene éxito, el investigador que la realiza descubre 1 pista en su Lugar.",
+      "60268": "Si esta prueba de habilidad tiene éxito, el investigador que la esté realizando busca un Evento [[Inspiración]] entre las 6 primeras cartas de su mazo, lo roba y baraja su mazo.",
+      "60269": "Si esta prueba de habilidad tiene éxito, repón 1 secreto de un Apoyo [[Tomo]] que esté en tu Lugar.",
       "01036": "Rápido. Juega esta carta sólo durante tu turno.\nHasta el final de la ronda, puedes usar tu [intellect] en lugar de tu [combat] y de tu [agility].",
       "03155": "Rápido. Juega esta carta sólo durante tu turno.\nHasta el final de la ronda, recibe +X [combat] y +X [agility], donde X es la cantidad de horror que tengas.",
       "01064": "Roba la primera carta del mazo de Encuentros. A continuación, descubre 2 pistas en tu Lugar.",
@@ -2310,6 +2318,10 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "09030": "Lecciones de combate",
+      "11088": "Contemplativo",
+      "60268": "Establecer un motivo",
+      "60269": "Análisis literario",
       "01036": "La mente sobre la materia",
       "03155": "Pelear o huir",
       "01064": "Atracción por la llama",

@@ -1,0 +1,42 @@
+[
+  {
+    "code": "09030",
+    "name": "Fighting Lessons",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "combat": 1, "agility": 1, "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "11088",
+    "name": "Contemplative",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "60268",
+    "name": "Establish Motive",
+    "type": "skill",
+    "class": "seeker",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "60269",
+    "name": "Literary Analysis",
+    "type": "skill",
+    "class": "seeker",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "intellect": 2 },
+    "slots": []
+  }
+]

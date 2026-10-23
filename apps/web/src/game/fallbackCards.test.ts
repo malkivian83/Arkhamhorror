@@ -11,6 +11,26 @@ import { localizedCards, useCardLocale } from './localized'
 
 afterEach(() => vi.unstubAllGlobals())
 describe('recursos de cartas sin red', () => {
+  it.each(['09030', '11088', '60268', '60269'])(
+    '%s has official EN/ES names, rules and local scans',
+    (code) => {
+      const english = fallbackCards('en').find((c) => c.code === code)!
+      const spanish = fallbackCards('es').find((c) => c.code === code)!
+      expect(english.type_code).toBe('skill')
+      expect(spanish.name).not.toBe(english.name)
+      expect(spanish.text).not.toBe(english.text)
+      expect(english.text?.length ?? 0).toBeGreaterThan(30)
+      expect(spanish.text?.length ?? 0).toBeGreaterThan(30)
+      for (const locale of ['en', 'es'])
+        expect(cardImages(code, false, locale)[0]).toBe(
+          `/local-assets/cards/${locale}/${code}.avif`,
+        )
+      if (code === '11088') {
+        expect(spanish.skill_wild).toBeUndefined()
+        expect(spanish.skill_intellect).toBeUndefined()
+      }
+    },
+  )
   it('presents Mind over Matter with official EN/ES rules, icons and local scans', () => {
     for (const locale of ['en', 'es']) {
       const card = fallbackCards(locale).find((c) => c.code === '01036')!

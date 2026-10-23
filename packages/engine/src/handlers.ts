@@ -4744,6 +4744,7 @@ export function handle(state: GameState, message: Message): GameState {
       }
       const matches = [...new Set(searched)].filter((code) => {
         const def = playerCardDef(code)
+        if (message.cardType && def?.type !== message.cardType) return false
         if (message.anyCard) return !!def && !def.weakness
         if (!def || (!message.anyType && def.type !== 'asset')) return false
         if (!def.traits.some((t) => message.traits.includes(t))) return false

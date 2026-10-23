@@ -1675,6 +1675,10 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "09030": "Practiced.",
+      "11088": "Innate.",
+      "60268": "Practiced.",
+      "60269": "Practiced.",
       "01036": "Insight.",
       "03155": "Spirit.",
       "01048": "Ally. Criminal.",
@@ -1812,6 +1816,10 @@
       "09062": "Talent. Trick. Illicit."
     },
     "summary": {
+      "09030": "Commit only to a skill test during an attack or evasion attempt.\nYou can commit this skill to an investigator's test at any location.",
+      "11088": "You may commit Contemplative to an investigation or skill test during a parley attempt at your location or a connecting location.\nIf this test is successful, the performing investigator discovers 1 clue at their location.",
+      "60268": "If this skill test is successful, the performing investigator searches the top 6 cards of their deck for an [[Insight]] event, draws it, and shuffles their deck.",
+      "60269": "If this skill test is successful, replenish 1 secret on a [[Tome]] asset at your location.",
       "01036": "Fast. Play only during your turn.\nUntil the end of the round, you may use your [intellect] in place of your [combat] and [agility].",
       "03155": "Fast. Play only during your turn.\nUntil the end of the round, you get +X [combat] and +X [agility], where X is the amount of horror on you.",
       "01064": "Draw the top card of the encounter deck. Then, discover 2 clues at your location.",
@@ -2310,6 +2318,10 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "09030": "Fighting Lessons",
+      "11088": "Contemplative",
+      "60268": "Establish Motive",
+      "60269": "Literary Analysis",
       "01036": "Mind over Matter",
       "03155": "Fight or Flight",
       "01064": "Drawn to the Flame",
