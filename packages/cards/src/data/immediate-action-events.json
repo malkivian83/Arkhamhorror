@@ -1,0 +1,14 @@
+[
+  {
+    "code": "05156",
+    "name": "Swift Reflexes",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Gambit"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "agility": 2 },
+    "slots": [],
+    "fast": true
+  }
+]

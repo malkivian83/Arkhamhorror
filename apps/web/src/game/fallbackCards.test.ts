@@ -12,6 +12,21 @@ import { localizedCards, useCardLocale } from './localized'
 
 afterEach(() => vi.unstubAllGlobals())
 describe('recursos de cartas sin red', () => {
+  it('presents Swift Reflexes with official EN/ES text, cost, icons and local scans', () => {
+    for (const locale of ['en', 'es'] as const) {
+      const c = fallbackCards(locale).find((c) => c.code === '05156')!
+      expect(c.name).toBe(locale === 'en' ? 'Swift Reflexes' : 'Reflejos rápidos')
+      expect(c.cost).toBe(2)
+      expect(c.xp).toBe(0)
+      expect(c.skill_agility).toBe(2)
+      expect(c.text).toContain(
+        locale === 'en' ? 'except during an action' : 'excepto durante una acción',
+      )
+      expect(cardImages('05156', false, locale)[0]).toBe(
+        '/local-assets/cards/' + locale + '/05156.avif',
+      )
+    }
+  })
   it('presents Quick Thinking with official EN/ES rules and an original-version scan', () => {
     for (const locale of ['en', 'es'] as const) {
       const card = fallbackCards(locale).find((c) => c.code === '02229')!
