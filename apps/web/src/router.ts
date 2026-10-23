@@ -10,6 +10,7 @@ import LibraryView from './views/LibraryView.vue'
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
+    { path: '/online/:id?', name: 'online', component: () => import('./views/OnlineView.vue') },
     { path: '/admin', name: 'admin', component: () => import('./views/AdminView.vue') },
     { path: '/account', name: 'account', component: AccountView },
     { path: '/library', name: 'library', component: LibraryView },

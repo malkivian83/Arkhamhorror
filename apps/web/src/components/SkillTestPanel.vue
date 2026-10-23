@@ -7,6 +7,7 @@ import { localName } from '../game/localized'
 import { useLabels } from '../game/labels'
 import { useGameStore } from '../stores/game'
 import ChaosTokenView from './ChaosTokenView.vue'
+import ChaosTokenHelp from './ChaosTokenHelp.vue'
 import GameCard from './GameCard.vue'
 import SkillIcon from './SkillIcon.vue'
 import ScenarioSymbol from './ScenarioSymbol.vue'
@@ -292,7 +293,7 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
               <small v-if="typeof b.token !== 'number'" class="mod">{{
                 b.effect.autoFail ? '✗' : fmt(b.effect.modifier)
               }}</small>
-              <ChaosTokenView :token="b.token" :size="30" />
+              <ChaosTokenHelp :state="state" :token="b.token" :size="30" />
             </span>
           </div>
         </details>

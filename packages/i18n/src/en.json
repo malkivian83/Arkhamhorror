@@ -700,6 +700,7 @@
     "enemyRemoved": "{enemy} is removed from the game"
   },
   "table": {
+    "scenarioReference": "Symbol reference",
     "enlarge": "Enlarge card",
     "enlargeCard": "Enlarge {name}",
     "backToDeck": "Back to deck",
@@ -910,7 +911,8 @@
     "footer": "In Arkham, nothing is quite what it seems.",
     "descriptions": {
       "brethren-of-ash": "A fire, a restless city, and a mystery spreading through the ashes. Three scenarios, one connected story.",
-      "the-midwinter-gala": "A night of luxury and secrets. Accept the invitation and discover what hides behind the masks at the gala."
+      "the-midwinter-gala": "A night of luxury and secrets. Accept the invitation and discover what hides behind the masks at the gala.",
+      "murder-at-the-excelsior-hotel": "A murder and a hotel full of secrets. Investigate what happened at the Excelsior and uncover the truth before it is too late."
     },
     "continueTitle": "Continue where you left off",
     "chooseStory": "Choose the story",
@@ -2918,5 +2920,91 @@
       "description": "When assigning a random basic weakness, reject one of three candidates and receive one of the other two at random."
     },
     "morriganPrompt": "Choose the weakness to exclude"
+  },
+  "online": {
+    "title": "Play with friends",
+    "subtitle": "Prepare a private table and choose your deck.",
+    "login": "Sign in to play with friends",
+    "create": "Create table",
+    "invitation": "Invitation",
+    "join": "Join",
+    "refresh": "Refresh",
+    "room": "Table {id}",
+    "configuration": "{campaign} · {difficulty}",
+    "player": "Player {n}",
+    "you": "(you)",
+    "noDeck": "No deck",
+    "ready": "Ready",
+    "waiting": "Preparing",
+    "prepare": "Prepare game",
+    "campaign": "Campaign",
+    "difficulty": "Difficulty",
+    "configure": "Save configuration",
+    "invite": "Create or renew invitation",
+    "revoke": "Revoke invitation",
+    "share": "Copy this link to invite your friends",
+    "deck": "Your deck",
+    "choose": "Select a deck",
+    "trauma": "Starting physical trauma (the remainder is mental)",
+    "select": "Save deck",
+    "unready": "Not ready",
+    "start": "Start game",
+    "started": "Shared game created",
+    "startedDetail": "The server has prepared the scenario for {n} investigators.",
+    "nextStage": "The game is saved. Online game decisions and the game board will be available in the next release.",
+    "errors": {
+      "generic": "The operation could not be completed. Please try again.",
+      "network": "Could not connect. You can try again.",
+      "not_member": "You are not a member of this table. Use an invitation to join.",
+      "invalid_invite": "The invitation is invalid, expired or revoked.",
+      "stale_revision": "The table has changed. Review the updated details before trying again.",
+      "invalid_deck": "This deck does not meet the requirements to start this campaign.",
+      "investigator_taken": "Another player has chosen this investigator.",
+      "not_ready": "At least two players must be ready with their decks.",
+      "already_started": "The game has already started.",
+      "not_owner": "Only the host can perform this action.",
+      "verification_required": "Verify your account to continue.",
+      "lobby_full": "The table already has four players."
+    }
+  },
+  "chaosHelp": {
+    "rules": {
+      "spreading-flames": {
+        "skull": "-X. X is the current act number{extra}.",
+        "tablet": "{modifier}. Reveal another token. If you fail, take 1 damage.",
+        "elderThing": "{modifier}. If you fail{margin}, draw the topmost copy of Fire! in the encounter discard pile, if able."
+      },
+      "smoke-and-mirrors": {
+        "skull": "-X. X is the number of Elite enemies in play{extra}.",
+        "cultist": "{modifier}. If this test is against an Elite enemy, reveal another token.",
+        "tablet": "{modifier}. If you fail, place 1 of your clues on your location.",
+        "elderThing": "-X. X is {multiple}the number of clues you have."
+      },
+      "queen-of-ash": {
+        "skull": "-X. X is {multiple}the number of copies of Fire! in play.",
+        "cultist": "{modifier}. If this test is against a Cultist enemy, reveal another token.",
+        "tablet": "{condition}",
+        "elderThing": "{modifier}. If you fail, draw the topmost copy of Fire! in the encounter discard pile, if able."
+      },
+      "the-midwinter-gala": {
+        "skull": "-X. X is the current agenda number{extra}.",
+        "cultist": "-X. X is {guests}.",
+        "tablet": "{modifier}. At a Private location, {privateValue} instead.",
+        "elderThing": "{modifier}. If you fail or The Bloodless Man is at your location, take 1 horror (only once)."
+      }
+    },
+    "numeric": "Modify your skill value by {value}.",
+    "autoFail": "Automatically fail this test.",
+    "elderSign": "Resolve the elder sign effect of the investigator performing this test.",
+    "reference": "Consult this symbol on the scenario reference card.",
+    "current": "Modifier in this test: {value}.",
+    "extraOne": " plus 1",
+    "extraTwo": " plus 2",
+    "double": "twice ",
+    "margin": " by 2 or more",
+    "queenStandard": "-2. At the Underground Cistern, -4 instead.",
+    "queenHard": "-4. At the Underground Cistern, automatically fail instead.",
+    "guests": "the number of Guests at your location, to a maximum of 5",
+    "storyAssets": "the number of story assets at your location"
   }
 }

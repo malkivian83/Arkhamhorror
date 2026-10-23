@@ -95,6 +95,7 @@ function setLocale(value: Locale) {
           <RouterLink to="/">{{ t('campaign.new') }}</RouterLink>
           <RouterLink to="/decks">{{ t('decks.title') }}</RouterLink>
           <RouterLink to="/library">{{ t('account.library') }}</RouterLink>
+          <RouterLink to="/online">{{ t('online.title') }}</RouterLink>
           <RouterLink v-if="canAdminister(account.user)" to="/admin">{{
             t('admin.title')
           }}</RouterLink>

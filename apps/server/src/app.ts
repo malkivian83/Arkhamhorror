@@ -11,6 +11,7 @@ import { mailer, type SendMail } from './accounts/mail'
 import { ApiError } from './accounts/security'
 import { serveWeb } from './web'
 import { dashboard } from './accounts/dashboard'
+import { onlineLobbies } from './online/lobbies'
 
 export const SERVER_VERSION = '0.0.0'
 
@@ -74,6 +75,7 @@ export async function buildApp(
     if (connection) app.addHook('onClose', () => connection.close())
     const auth = authentication(app, db, config, options.sendMail ?? mailer(config))
     library(app, db, auth)
+    onlineLobbies(app, db, auth)
     dashboard(app, db, auth, config)
     app.get('/api/ready', async () => {
       await db.rows('SELECT 1')

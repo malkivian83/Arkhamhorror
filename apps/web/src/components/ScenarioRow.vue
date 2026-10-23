@@ -5,9 +5,11 @@ import { useI18n } from 'vue-i18n'
 import { localizedCards, localName } from '../game/localized'
 import { showPile } from '../game/pile'
 import ChaosTokenView from './ChaosTokenView.vue'
+import ChaosTokenHelp from './ChaosTokenHelp.vue'
 import GameCard from './GameCard.vue'
 import ScenarioDeckViewer from './ScenarioDeckViewer.vue'
 import ScenarioSymbol from './ScenarioSymbol.vue'
+import ScenarioReference from './ScenarioReference.vue'
 import TableTarget from './TableTarget.vue'
 import TokenBadge from './TokenBadge.vue'
 
@@ -144,6 +146,7 @@ const sortedBag = computed(() =>
         ><strong class="stat-number">{{ state.chaosBag.length }}</strong></span
       >
     </button>
+    <ScenarioReference :state="state" />
     <button
       type="button"
       class="scenario-stat victory"
@@ -224,7 +227,13 @@ const sortedBag = computed(() =>
           </button>
         </header>
         <div class="bag-tokens">
-          <ChaosTokenView v-for="(token, i) in sortedBag" :key="i" :token="token" :size="42" />
+          <ChaosTokenHelp
+            v-for="(token, i) in sortedBag"
+            :key="i"
+            :state="state"
+            :token="token"
+            :size="42"
+          />
         </div>
       </dialog>
     </Teleport>

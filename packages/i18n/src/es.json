@@ -700,6 +700,7 @@
     "enemyRemoved": "{enemy} se retira de la partida"
   },
   "table": {
+    "scenarioReference": "Referencia de símbolos",
     "enlarge": "Ampliar carta",
     "enlargeCard": "Ampliar {name}",
     "backToDeck": "Volver al mazo",
@@ -910,7 +911,8 @@
     "footer": "En Arkham, nada es lo que parece.",
     "descriptions": {
       "brethren-of-ash": "Un incendio, una ciudad inquieta y un misterio que se extiende entre las cenizas. Tres escenarios, una historia conectada.",
-      "the-midwinter-gala": "Una noche de lujo y secretos. Acepta la invitación y descubre qué se esconde tras las máscaras de la gala."
+      "the-midwinter-gala": "Una noche de lujo y secretos. Acepta la invitación y descubre qué se esconde tras las máscaras de la gala.",
+      "murder-at-the-excelsior-hotel": "Un asesinato y un hotel lleno de secretos. Investiga lo ocurrido en el Excelsior y descubre la verdad antes de que sea demasiado tarde."
     },
     "continueTitle": "Continuar donde lo dejaste",
     "chooseStory": "Elige la historia",
@@ -2918,5 +2920,91 @@
       "description": "Al asignar tu debilidad básica aleatoria, excluyes una de tres candidatas y recibes una de las otras dos al azar."
     },
     "morriganPrompt": "Elige la debilidad que quieres excluir"
+  },
+  "online": {
+    "title": "Jugar con amigos",
+    "subtitle": "Prepara una mesa privada y elige tu mazo.",
+    "login": "Inicia sesión para jugar con amigos",
+    "create": "Crear mesa",
+    "invitation": "Invitación",
+    "join": "Unirme",
+    "refresh": "Actualizar",
+    "room": "Mesa {id}",
+    "configuration": "{campaign} · {difficulty}",
+    "player": "Jugador {n}",
+    "you": "(tú)",
+    "noDeck": "Sin mazo",
+    "ready": "Listo",
+    "waiting": "Preparando",
+    "prepare": "Preparar la partida",
+    "campaign": "Campaña",
+    "difficulty": "Dificultad",
+    "configure": "Guardar configuración",
+    "invite": "Crear o renovar invitación",
+    "revoke": "Revocar invitación",
+    "share": "Copia este enlace para invitar a tus amigos",
+    "deck": "Tu mazo",
+    "choose": "Selecciona un mazo",
+    "trauma": "Trauma físico inicial (el resto será mental)",
+    "select": "Guardar mazo",
+    "unready": "Dejar de estar listo",
+    "start": "Iniciar partida",
+    "started": "Partida compartida creada",
+    "startedDetail": "El servidor ha preparado el escenario para {n} investigadores.",
+    "nextStage": "La partida está guardada. Las decisiones y la mesa de juego online estarán disponibles en la siguiente entrega.",
+    "errors": {
+      "generic": "No se pudo completar la operación. Vuelve a intentarlo.",
+      "network": "No se pudo conectar. Puedes volver a intentarlo.",
+      "not_member": "No perteneces a esta mesa. Usa una invitación para unirte.",
+      "invalid_invite": "La invitación es incorrecta, ha caducado o ha sido revocada.",
+      "stale_revision": "La mesa ha cambiado. Revisa los datos actualizados antes de repetir la acción.",
+      "invalid_deck": "El mazo no cumple los requisitos para iniciar esta campaña.",
+      "investigator_taken": "Otro jugador ya ha elegido ese investigador.",
+      "not_ready": "Deben estar listos al menos dos jugadores con sus mazos.",
+      "already_started": "La partida ya ha comenzado.",
+      "not_owner": "Solo el anfitrión puede realizar esta acción.",
+      "verification_required": "Verifica tu cuenta para continuar.",
+      "lobby_full": "La mesa ya tiene cuatro jugadores."
+    }
+  },
+  "chaosHelp": {
+    "rules": {
+      "spreading-flames": {
+        "skull": "-X. X es el número del acto en curso{extra}.",
+        "tablet": "{modifier}. Revela otra ficha. Si fracasas, recibe 1 daño.",
+        "elderThing": "{modifier}. Si fracasas{margin}, roba la primera copia de ¡Fuego! de la pila de descartes de Encuentros, si es posible."
+      },
+      "smoke-and-mirrors": {
+        "skull": "-X. X es el número de enemigos Élite en juego{extra}.",
+        "cultist": "{modifier}. Si esta prueba es contra un enemigo Élite, revela otra ficha.",
+        "tablet": "{modifier}. Si fracasas, coloca 1 de tus pistas en tu Lugar.",
+        "elderThing": "-X. X es {multiple}el número de pistas que tienes."
+      },
+      "queen-of-ash": {
+        "skull": "-X. X es {multiple}el número de copias de ¡Fuego! en juego.",
+        "cultist": "{modifier}. Si esta prueba es contra un enemigo Sectario, revela otra ficha.",
+        "tablet": "{condition}",
+        "elderThing": "{modifier}. Si fracasas, roba la primera copia de ¡Fuego! de la pila de descartes de Encuentros, si es posible."
+      },
+      "the-midwinter-gala": {
+        "skull": "-X. X es el número del plan en curso{extra}.",
+        "cultist": "-X. X es {guests}.",
+        "tablet": "{modifier}. Si estás en un Lugar Privado, {privateValue} en su lugar.",
+        "elderThing": "{modifier}. Si fracasas o El Exangüe está en tu Lugar, recibe 1 horror (una sola vez)."
+      }
+    },
+    "numeric": "Modifica tu valor de habilidad en {value}.",
+    "autoFail": "Fracasa automáticamente en esta prueba.",
+    "elderSign": "Resuelve el efecto de signo arcano del investigador que realiza la prueba.",
+    "reference": "Consulta este símbolo en la carta de referencia del escenario.",
+    "current": "Modificador en esta prueba: {value}.",
+    "extraOne": " más 1",
+    "extraTwo": " más 2",
+    "double": "2 veces ",
+    "margin": " por 2 o más",
+    "queenStandard": "-2. En la Cisterna subterránea, -4 en su lugar.",
+    "queenHard": "-4. En la Cisterna subterránea, fracasas automáticamente en su lugar.",
+    "guests": "el número de Invitados en tu Lugar, hasta un máximo de 5",
+    "storyAssets": "el número de Apoyos de historia en tu Lugar"
   }
 }

@@ -1,0 +1,17 @@
+import type { GameState } from '@lcg/engine'
+
+/** Scenario reference cards: front = easy/standard, back = hard/expert. */
+const references: Record<string, { code: string; name: string }> = {
+  'spreading-flames': { code: '12105', name: 'Spreading Flames' },
+  'smoke-and-mirrors': { code: '12133', name: 'Smoke and Mirrors' },
+  'queen-of-ash': { code: '12168', name: 'Queen of Ash' },
+  'the-midwinter-gala': { code: '71001', name: 'The Midwinter Gala' },
+  'murder-at-the-excelsior-hotel': { code: '84001', name: 'Murder at the Excelsior Hotel' },
+}
+
+export function scenarioReference(state: Pick<GameState, 'scenarioId' | 'difficulty'>) {
+  const card = references[state.scenarioId]
+  return card
+    ? { ...card, back: state.difficulty === 'hard' || state.difficulty === 'expert' }
+    : null
+}
