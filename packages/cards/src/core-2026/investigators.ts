@@ -261,7 +261,7 @@ registerInvestigator({
     [...new Set(self.discard)]
       .filter((c) => {
         const def = playerCardDef(c)
-        return def?.type === 'skill' && canCommitFrom(state, self.id, c)
+        return def?.type === 'skill' && canCommitFrom(state, self.id, c, 'discard')
       })
       .map((c): ReactionOption => ({
         key: 'isabelle',

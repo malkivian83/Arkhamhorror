@@ -1110,6 +1110,8 @@ export type Message =
   | {
       type: 'SearchDeck'
       investigator: InvestigatorId
+      /** Restrict a trait search to a printed card type (Establish Motive). */
+      cardType?: PlayerCardDef['type']
       top?: number
       traits: string[]
       to: 'hand' | 'play'

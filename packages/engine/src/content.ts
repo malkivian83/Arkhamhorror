@@ -329,6 +329,8 @@ export interface PlayerCardBehavior {
   committedDifficulty?: number
   /** Printed permission to commit without matching icons (e.g. Take Heart). */
   commitWithoutIcons?: boolean
+  /** This card must be the only card committed, including other investigators. */
+  exclusiveCommit?: boolean
   /** Damage added by a committed card to the attack itself, before defeat checks. */
   committedAttackDamage?: (state: GameState, test: SkillTest, by: InvestigatorId) => number
   /** Clues added to the successful investigation result, before discovery triggers. */
@@ -338,6 +340,7 @@ export interface PlayerCardBehavior {
     state: GameState,
     test: SkillTest,
     by: InvestigatorId,
+    zone?: 'hand' | 'discard' | 'committed',
   ) => PlayerCardDef['icons']
   /** Additional printed restriction, evaluated for the investigator committing this card. */
   canCommit?: (state: GameState, test: SkillTest, by: InvestigatorId) => boolean

@@ -1,5 +1,5 @@
 import { dispatch, playerCardDef, skillTestValue, type GameState, type Message } from '@lcg/engine'
-import { choose, during } from '@lcg/engine/testing'
+import { chooseWithConsent as choose, during } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { game, me, patch } from '../dunwich-pilot/testing'
 import { newCampaign, purchase, purchaseOptions, startScenario } from '../campaign'

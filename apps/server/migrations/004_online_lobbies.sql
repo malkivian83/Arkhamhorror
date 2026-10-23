@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS online_lobbies (
+  id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin PRIMARY KEY,
+  owner_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  payload JSON NOT NULL,
+  FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB;

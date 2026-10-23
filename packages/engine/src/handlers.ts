@@ -947,7 +947,7 @@ export function handle(state: GameState, message: Message): GameState {
       const [card, ...deck] = investigator.deck as [string, ...string[]]
       const revelations = [
         ...(message.revelations ?? []),
-        ...(playerCardBehavior(card)?.revelation ? [card] : []),
+        ...(playerCardBehavior(card)?.revelation || resolvesWhenDrawn(card) ? [card] : []),
       ]
       const more: Message[] =
         message.amount > 1
@@ -959,13 +959,6 @@ export function handle(state: GameState, message: Message): GameState {
               },
             ]
           : finish(revelations)
-      if (resolvesWhenDrawn(card)) {
-        return push(
-          updateInvestigator(state, investigator.id, (i) => ({ ...i, deck })),
-          { type: 'ResolveWeakness', investigator: investigator.id, code: card },
-          ...more,
-        )
-      }
       return push(
         updateInvestigator(state, investigator.id, (i) => ({
           ...i,
@@ -1012,7 +1005,17 @@ export function handle(state: GameState, message: Message): GameState {
       const investigator = getInvestigator(state, message.investigator)
       const behavior = playerCardBehavior(message.code)
       const index = investigator.hand.indexOf(message.code)
-      if (index < 0 || investigator.eliminated || !behavior?.revelation) return state
+      if (index < 0 || investigator.eliminated) return state
+      if (resolvesWhenDrawn(message.code)) {
+        return push(
+          updateInvestigator(state, investigator.id, (i) => ({
+            ...i,
+            hand: i.hand.filter((_, n) => n !== index),
+          })),
+          { type: 'ResolveWeakness', investigator: investigator.id, code: message.code },
+        )
+      }
+      if (!behavior?.revelation) return state
       const round = Math.max(1, state.round)
       const count = state.dilemmasResolved?.round === round ? state.dilemmasResolved.count : 0
       const canResolve = !behavior.dilemma || count < 2
@@ -2131,7 +2134,7 @@ export function handle(state: GameState, message: Message): GameState {
           top !== undefined &&
           test.committed.length === 0 &&
           !noCommit(investigator.id) &&
-          canCommitFrom(state, investigator.id, top)
+          canCommitFrom(state, investigator.id, top, 'discard')
             ? [top]
             : []
         if (options.length === 0 && testOptions(state, test).length === 0 && !state.interactive)
@@ -2148,7 +2151,7 @@ export function handle(state: GameState, message: Message): GameState {
                 label: 'choice.commitFromDiscard',
                 params: {
                   card: playerCardDef(code)?.name ?? code,
-                  icons: commitIcons(state, test, code, investigator.id),
+                  icons: commitIcons(state, test, code, investigator.id, 'discard'),
                 },
                 then: [
                   {
@@ -2238,7 +2241,26 @@ export function handle(state: GameState, message: Message): GameState {
                 icons: commitIcons(state, test, code, helper.id),
               },
               then: [
-                { type: 'CommitCard', investigator: helper.id, code },
+                {
+                  type: 'Ask',
+                  investigator: helper.id,
+                  question: {
+                    kind: 'chooseOne',
+                    alwaysAsk: true,
+                    prompt: 'prompt.commitCards',
+                    choices: [
+                      {
+                        label: 'choice.commit',
+                        params: {
+                          card: playerCardDef(code)?.name ?? code,
+                          icons: commitIcons(state, test, code, helper.id),
+                        },
+                        then: [{ type: 'CommitCard', investigator: helper.id, code }],
+                      },
+                      { label: 'choice.skip', then: [] },
+                    ],
+                  },
+                },
                 { type: 'CommitWindow' },
               ],
             })),
@@ -2273,7 +2295,7 @@ export function handle(state: GameState, message: Message): GameState {
         deck,
         discard: [...i.discard, code],
       }))
-      return canCommitFrom(next, investigator.id, code)
+      return canCommitFrom(next, investigator.id, code, 'discard')
         ? push(next, { type: 'CommitCard', investigator: investigator.id, code, from: 'discard' })
         : next
     }
@@ -2286,8 +2308,9 @@ export function handle(state: GameState, message: Message): GameState {
         zone === 'discard'
           ? investigator.discard.lastIndexOf(message.code)
           : investigator.hand.indexOf(message.code)
-      if (!test || index < 0 || !canCommit(state, test, message.code, investigator.id)) return state
-      if (!canCommitFrom(state, investigator.id, message.code)) return state
+      if (!test || index < 0 || !canCommit(state, test, message.code, investigator.id, zone))
+        return state
+      if (!canCommitFrom(state, investigator.id, message.code, zone)) return state
       return push(
         {
           ...updateInvestigator(state, investigator.id, (i) => ({
@@ -4722,6 +4745,7 @@ export function handle(state: GameState, message: Message): GameState {
       }
       const matches = [...new Set(searched)].filter((code) => {
         const def = playerCardDef(code)
+        if (message.cardType && def?.type !== message.cardType) return false
         if (message.anyCard) return !!def && !def.weakness
         if (!def || (!message.anyType && def.type !== 'asset')) return false
         if (!def.traits.some((t) => message.traits.includes(t))) return false
@@ -5276,11 +5300,20 @@ function testEnemyHasKeyword(
   )
 }
 
-function canCommit(state: GameState, test: SkillTest, code: string, by: string): boolean {
+function canCommit(
+  state: GameState,
+  test: SkillTest,
+  code: string,
+  by: string,
+  zone: 'hand' | 'discard' = 'hand',
+): boolean {
+  if (test.committed.some((c) => playerCardBehavior(c.code)?.exclusiveCommit)) return false
+  if (playerCardBehavior(code)?.exclusiveCommit && test.committed.length > 0) return false
   const def = playerCardDef(code)
   if (
     !def ||
-    (commitIcons(state, test, code, by) === 0 && !playerCardBehavior(code)?.commitWithoutIcons)
+    (commitIcons(state, test, code, by, zone) === 0 &&
+      !playerCardBehavior(code)?.commitWithoutIcons)
   )
     return false
   return (
@@ -5290,10 +5323,15 @@ function canCommit(state: GameState, test: SkillTest, code: string, by: string):
 }
 
 /** Full eligibility for an effect committing from a zone other than the hand. */
-export function canCommitFrom(state: GameState, id: string, code: string): boolean {
+export function canCommitFrom(
+  state: GameState,
+  id: string,
+  code: string,
+  zone: 'hand' | 'discard' = 'hand',
+): boolean {
   const test = state.skillTest
   const investigator = getInvestigator(state, id)
-  if (!test || investigator.eliminated || !canCommit(state, test, code, id)) return false
+  if (!test || investigator.eliminated || !canCommit(state, test, code, id, zone)) return false
   if (scenarioBehavior(state.scenarioId)?.cannotCommit?.(state, id)) return false
   if (typeBlocked(investigator, playerCardDef(code)?.type ?? '', state.round)) return false
   return (
@@ -5970,10 +6008,17 @@ function slotOccupants(
   return freeing.length ? freeing : occupying
 }
 
-function commitIcons(state: GameState, test: SkillTest, code: string, by: string): number {
-  return (
+function commitIcons(
+  state: GameState,
+  test: SkillTest,
+  code: string,
+  by: string,
+  zone: 'hand' | 'discard' | 'committed' = 'hand',
+): number {
+  return Math.max(
+    0,
     matchingIcons(playerCardDef(code)?.icons, test.skill) +
-    matchingIcons(playerCardBehavior(code)?.additionalIcons?.(state, test, by), test.skill)
+      matchingIcons(playerCardBehavior(code)?.additionalIcons?.(state, test, by, zone), test.skill),
   )
 }
 
@@ -6063,7 +6108,10 @@ export function skillTestValue(state: GameState): {
   const test = state.skillTest
   if (!test) return { base: 0, modifier: 0, icons: 0, passive: 0, sources: [], total: 0 }
   const investigator = getInvestigator(state, test.investigator)
-  const icons = test.committed.reduce((sum, c) => sum + commitIcons(state, test, c.code, c.by), 0)
+  const icons = test.committed.reduce(
+    (sum, c) => sum + commitIcons(state, test, c.code, c.by, 'committed'),
+    0,
+  )
   const passive = Object.values(state.assets)
     .filter((a) => a.owner === investigator.id)
     .reduce((sum, a) => sum + (playerCardBehavior(a.code)?.skillModifier?.(state, a, test) ?? 0), 0)

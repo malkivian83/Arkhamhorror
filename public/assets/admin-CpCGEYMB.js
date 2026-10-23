@@ -1,0 +1,1 @@
+var e=e=>!!e&&!!e.verified&&e.role===`admin`&&e.email===`malkivian@gmail.com`;export{e as t};

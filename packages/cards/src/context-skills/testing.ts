@@ -6,7 +6,7 @@ import {
   type Message,
   type SkillType,
 } from '@lcg/engine'
-import { choose, during, ghoul, spawnAt } from '@lcg/engine/testing'
+import { chooseWithConsent as choose, during, ghoul, spawnAt } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { game, me, patch, withAsset } from '../dunwich-pilot/testing'
 import { newCampaign, purchase, purchaseOptions, startScenario } from '../campaign'

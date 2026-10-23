@@ -1,5 +1,7 @@
 import type { GameState, PlayerInput } from '@lcg/engine'
 export * from './admin'
+export * from './online'
+export * from './online-game'
 export type {
   AccountUser,
   AuthStatus,
