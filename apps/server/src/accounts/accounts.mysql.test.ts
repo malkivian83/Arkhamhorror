@@ -169,7 +169,9 @@ describe.skipIf(!url)('cuentas y bibliotecas con MySQL real', () => {
     const versions = await db.db.rows<{ version: number }>(
       'SELECT version FROM schema_migrations ORDER BY version',
     )
-    expect(versions.map((v) => v.version)).toEqual([1, 2, 3])
+    expect(versions.map((v) => v.version)).toEqual([1, 2, 3, 4])
+    // The online migration must create a usable table, not just a version marker.
+    expect(await db.db.rows('SELECT id, owner_id, payload FROM online_lobbies LIMIT 0')).toEqual([])
   })
 
   it('restringe el panel y consulta usuarios, sesiones y logs reales sin secretos', async () => {
