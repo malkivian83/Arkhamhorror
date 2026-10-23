@@ -229,6 +229,7 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "quickThinkingAction": "Realizar una acción adicional",
     "simpleChainsawSupply": "Coloca 1 suministro en {card}",
     "simpleChainsawDamage": "Inflige 1 daño a {enemy}",
     "eventResources": "Recibir {n} recursos",
@@ -1677,6 +1678,7 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "02229": "Innato.",
       "04150": "Experimentado. Audaz.",
       "04309": "Fortuna.",
       "11025": "Innato.",
@@ -1829,6 +1831,7 @@
       "09062": "Talento. Truco. Ilegal."
     },
     "summary": {
+      "02229": "Si esta prueba de habilidad tiene éxito por 2 o más, después de que se resuelva, puedes realizar una acción inmediatamente como si fuera tu turno. Esta acción no cuenta para el número de acciones que puedes realizar en cada turno.",
       "04150": "Asigna esta carta sólo a una prueba de habilidad que estés realizando.\nTomar la iniciativa pierde [wild] por cada acción que haya completado cualquier investigador en esta fase.",
       "04309": "Máximo de 1 asignada por prueba de habilidad.\nSi esta prueba tiene éxito, roba 1 carta por cada punto que tengas por encima del valor mínimo de éxito, hasta un máximo de 5. Devuelve a tu mazo cada Debilidad robada por este efecto sin resolverla y baraja tu mazo.",
       "11025": "Máximo de 1 asignada por prueba de habilidad.\nDuro de pelar obtiene [combat][wild] por cada ataque con éxito que hayas realizado esta ronda.",
@@ -2342,6 +2345,7 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "02229": "Reacción rápida",
       "04150": "Tomar la iniciativa",
       "04309": "No va más",
       "11025": "Duro de pelar",

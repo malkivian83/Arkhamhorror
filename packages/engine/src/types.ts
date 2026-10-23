@@ -1515,6 +1515,10 @@ export interface GameState {
   immediateActions?: {
     investigator: InvestigatorId
     activeTurn: InvestigatorId | null
+    /** The action is inside this investigator's actual turn, not a temporary context. */
+    ownTurn?: boolean
+    /** Set on the outermost frame when the actual turn ends during an action. */
+    endedTurn?: boolean
     actionsRemaining: number
     actionsTaken?: number
     movedThisTurn?: boolean

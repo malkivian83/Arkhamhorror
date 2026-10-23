@@ -9192,6 +9192,12 @@
       "sourceSha256": "15c61ab769569c34c39042f297fe5c39087063a7c2b16674f6ce1bf89b89fa01",
       "path": "/local-assets/cards/es/thumbs/04150.webp",
       "sha256": "8a84a6497f327ab91d807682930c14057c0228c48fb961b7085a07878168c9d4"
+    },
+    {
+      "source": "/local-assets/cards/en/02229.avif",
+      "sourceSha256": "399d086fa803fd1c3bc48597cd948cc070d19ddf15c8a1903eb58792842f0fa8",
+      "path": "/local-assets/cards/en/thumbs/02229.webp",
+      "sha256": "7fd42f07775537967af34037d3520685a7aa143adc95178f27e89988882c1610"
     }
   ]
 }

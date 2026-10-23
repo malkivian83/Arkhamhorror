@@ -229,6 +229,7 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "quickThinkingAction": "Take one additional action",
     "simpleChainsawSupply": "Place 1 supply on {card}",
     "simpleChainsawDamage": "Deal 1 damage to {enemy}",
     "eventResources": "Gain {n} resources",
@@ -1677,6 +1678,7 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "02229": "Innate.",
       "04150": "Practiced. Bold.",
       "04309": "Fortune.",
       "11025": "Innate.",
@@ -1829,6 +1831,7 @@
       "09062": "Talent. Trick. Illicit."
     },
     "summary": {
+      "02229": "If this skill test is successful by 2 or more, after it resolves, you may immediately take an action as if it were your turn (this action does not count toward the number of actions you can take each turn).",
       "04150": "Commit only to a skill test you are performing.<br/>Take the Initiative loses [wild] for each action that has been completed by any investigator this phase.",
       "04309": "Max 1 committed per skill test.\nIf this test is successful, draw 1 card for each point you succeeded by, to a maximum of 5. Shuffle each weakness drawn by this effect back into your deck without resolving it.",
       "11025": "Max 1 committed per skill test.\nHardboiled gains [combat] [wild] for each successful attack you performed this round.",
@@ -2342,6 +2345,7 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "02229": "Quick Thinking",
       "04150": "Take the Initiative",
       "04309": "All In",
       "11025": "Hardboiled",

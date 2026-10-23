@@ -1,0 +1,15 @@
+# 81 · Reacción rápida y acciones inmediatas
+
+Lote `immediate-action-skills`: **1 código / 1 carta distinta nueva / 0 reediciones**: Reacción rápida (02229), nivel 0, versión impresa sin Tabú.
+
+Con éxito por dos o más, quien comprometió la carta decide si reserva una acción inmediata. La decisión se resuelve durante los resultados y la acción espera a que termine la prueba. Así, Double or Nothing repite el efecto y dos copias también funcionan. El ayudante recibe su propia acción; se admite actuar fuera de su turno y en otras fases. Se conservan costes, objetivos y ataques de oportunidad normales.
+
+La corrección de las acciones inmediatas distingue el turno real del contexto temporal. Durante el turno real, conserva acciones realizadas y movimiento, permite pagar costes adicionales con acciones ordinarias y contabiliza los bonos continuos gastados. Fuera de él, concede una sola acción y restaura los contadores anteriores. Un efecto de finalizar turno no termina un turno temporal; un turno real finalizado o un investigador derrotado no se restaura. La ventana normal deja de ofrecer acciones cuando ya no corresponde al investigador activo. Los contextos anidados y los marcos de partidas antiguas conservan su restauración correspondiente.
+
+Veinticuatro pruebas cubren margen, fracaso automático, decisión opcional, temporización, ayudante, mitos, copias, resultados duplicados, encadenamiento, movimiento, costes adicionales, Leo De Luca, Pay Day, finales de turno anidados, ataques de oportunidad, derrota del actor y del ayudante, restauración JSON, marcos antiguos y compra/inicio de escenario. Cuatro regresiones se contrastaron contra el motor publicado antes de validar la corrección; la derrota también se reprodujo y corrigió. La batería general detectó un cierre excesivo de ventanas: se corrigió conservando las habilidades de Pete durante el turno de otro investigador, con 34 pruebas dirigidas correctas entre Pete y este lote. Integración previa de At a Crossroads, EN/ES, conversión y unicidad dirigidas correctas.
+
+Nombres, reglas y rasgos oficiales EN/ES. La revisión visual detectó que el escaneo español de referencia añade el Tabú «Máximo de una vez por ronda». Se excluye esa variante y se utiliza el escaneo inglés original, con miniatura y huellas, como alternativa también en español. El texto español completo corresponde a la versión implementada; no se añade ese límite opcional a la versión impresa.
+
+Referencias: [texto y FAQ de Quick Thinking](https://arkhamdb.com/card/02229), reglas de [As If](https://arkhamdb.com/rules#Asif), `Skill/Cards/QuickThinking.hs` de la aplicación de referencia y reutilización de `AfterCurrentSkillTest`. La FAQ confirma la repetición con Double or Nothing y que se concede una sola acción, sin una ventana adicional para jugar apoyos rápidos fuera del turno real.
+
+Acumulado: **577 códigos / 468 familias**. Sobre 104 históricos: **473 altas = 364 registros distintos + 109 reediciones**. Pendientes históricos: **1406 códigos**, incluidas reediciones. Inventarios congelados intactos; publicación y siguiente grupo en el [resumen único](continuacion-importacion.md).

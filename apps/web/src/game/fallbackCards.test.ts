@@ -12,6 +12,21 @@ import { localizedCards, useCardLocale } from './localized'
 
 afterEach(() => vi.unstubAllGlobals())
 describe('recursos de cartas sin red', () => {
+  it('presents Quick Thinking with official EN/ES rules and an original-version scan', () => {
+    for (const locale of ['en', 'es'] as const) {
+      const card = fallbackCards(locale).find((c) => c.code === '02229')!
+      expect(card.name).toBe(locale === 'es' ? 'Reacción rápida' : 'Quick Thinking')
+      expect(card.type_code).toBe('skill')
+      expect(card.xp).toBe(0)
+      expect(card.skill_wild).toBe(1)
+      expect(card.text).toContain(
+        locale === 'es' ? 'como si fuera tu turno' : 'as if it were your turn',
+      )
+      expect(card.text).not.toContain('Máximo de una vez por ronda')
+      expect(cardImages('02229', false, locale)[0]).toBe('/local-assets/cards/en/02229.avif')
+      expect(messages[locale].choice.quickThinkingAction.length).toBeGreaterThan(10)
+    }
+  })
   it('presents Take the Initiative with official EN/ES rules, icons and scans', () => {
     for (const locale of ['en', 'es']) {
       const card = fallbackCards(locale).find((c) => c.code === '04150')!
