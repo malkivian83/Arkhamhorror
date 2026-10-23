@@ -1,6 +1,7 @@
 import './direct-effects'
 import './round-effects'
 import './skill-replacement'
+import './next-test-effects'
 import './synergy-attacks'
 import './synergy'
 import './targeted-events'

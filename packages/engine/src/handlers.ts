@@ -2564,8 +2564,13 @@ export function handle(state: GameState, message: Message): GameState {
         queue.splice(end + 1, 0, message)
         return { ...state, queue }
       }
+      const investigator = getInvestigator(state, message.investigator)
+      const pendingReduction = investigator.nextTestDifficulty
+      const reduction =
+        pendingReduction?.phase === state.phase && pendingReduction.round === state.round
+          ? pendingReduction.amount
+          : 0
       if (!message.skillSelected) {
-        const investigator = getInvestigator(state, message.investigator)
         const replacements = (investigator.roundSkillReplacements ?? []).filter(
           (r) => r.round === state.round && r.from === message.skill,
         )
@@ -2588,7 +2593,7 @@ export function handle(state: GameState, message: Message): GameState {
                   params: {
                     difficulty: Math.max(
                       0,
-                      message.difficulty + enemyStatBonus(state, message.kind),
+                      message.difficulty + enemyStatBonus(state, message.kind) - reduction,
                     ),
                   },
                   then: [next],
@@ -2599,13 +2604,18 @@ export function handle(state: GameState, message: Message): GameState {
       }
       return push(
         {
-          ...state,
-          skillTest: {
+          ...updateInvestigator(
+            state,
+            investigator.id,
+            ({ nextTestDifficulty: _used, ...rest }) => rest,
+          ),
+          skillTest: withCommittedDifficulty({
             ...(message.baseSkill !== undefined ? { baseSkill: message.baseSkill } : {}),
             ...(message.basicAction ? { basicAction: true } : {}),
             investigator: message.investigator,
             skill: message.skill,
             difficulty: Math.max(0, message.difficulty + enemyStatBonus(state, message.kind)),
+            ...(reduction > 0 ? { difficultyReduction: reduction } : {}),
             kind: message.kind,
             baseModifier: message.modifier ?? 0,
             ...(message.source ? { source: message.source } : {}),
@@ -2620,7 +2630,7 @@ export function handle(state: GameState, message: Message): GameState {
             tokenOnFailBy: [],
             modifiedSkill: null,
             succeeded: null,
-          },
+          }),
         },
         { type: 'CommitWindow' },
         { type: 'RevealChaosToken' },
@@ -4529,6 +4539,23 @@ export function handle(state: GameState, message: Message): GameState {
         ],
       }))
 
+    case 'ReduceNextTestDifficulty': {
+      if (message.phase !== state.phase || message.round !== state.round || message.amount <= 0)
+        return state
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        nextTestDifficulty: {
+          phase: message.phase,
+          round: message.round,
+          amount:
+            message.amount +
+            (i.nextTestDifficulty?.phase === message.phase &&
+            i.nextTestDifficulty.round === message.round
+              ? i.nextTestDifficulty.amount
+              : 0),
+        },
+      }))
+    }
     case 'RoundSkillBonus':
       return updateInvestigator(state, message.investigator, (i) => ({
         ...i,
@@ -5280,7 +5307,10 @@ function withCommittedDifficulty(test: SkillTest): SkillTest {
   return {
     ...test,
     baseDifficulty: base,
-    difficulty: Math.max(0, base * (test.difficultyFactor ?? 1) + offset),
+    difficulty: Math.max(
+      0,
+      (base + offset - (test.difficultyReduction ?? 0)) * (test.difficultyFactor ?? 1),
+    ),
   }
 }
 

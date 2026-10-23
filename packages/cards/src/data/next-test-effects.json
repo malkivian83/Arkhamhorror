@@ -1,0 +1,12 @@
+[
+  {
+    "code": "06115",
+    "name": "Momentum",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Practiced"],
+    "xp": 1,
+    "icons": { "wild": 1 },
+    "slots": []
+  }
+]
