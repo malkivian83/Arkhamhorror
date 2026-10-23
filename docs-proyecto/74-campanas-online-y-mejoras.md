@@ -5,6 +5,45 @@ mazos con experiencia y continuar la campaña. Se reutilizan `finishScenario`,
 `purchaseOptions`, `purchase`, `activeMembers` y `startScenario`; el navegador
 no calcula experiencia ni envía un mazo sustitutorio o un estado de campaña.
 
+## Requisito de interfaz confirmado · 23 de octubre de 2026
+
+La persona usuaria ha aclarado que las partidas online deben jugarse en **la
+mesa de juego normal de la aplicación**, tanto en solitario como con amigos.
+La vista simplificada actual de «Mesa compartida», con una lista de botones de
+acciones y cartas debajo del lobby, **no es la experiencia solicitada**. Las
+pruebas anteriores acreditan el funcionamiento del protocolo, pero no satisfacen
+este requisito de interfaz.
+
+El lobby debe servir para reunir a los jugadores, invitar, elegir mazos,
+configurar la partida y confirmar que están listos. Al iniciar o reabrir una
+partida activa, se debe acceder a la mesa habitual: mapa de lugares, zona de
+investigadores, mano, apoyos, enemigos, acto y plan, referencia del escenario,
+inspección de cartas y controles y diálogos de decisiones ya existentes.
+Las acciones sobre cartas y lugares deben funcionar desde esos mismos controles.
+
+### Criterios de aceptación de la integración pendiente
+
+- Reutilizar la presentación y las interacciones de la mesa normal (`GameView`
+  y sus componentes), evitando mantener una segunda mesa simplificada online.
+- Enviar las acciones y decisiones al servidor autoritativo; no resolver una
+  partida local independiente ni sustituir el guardado local al abrir una mesa online.
+- Mostrar el estado público compartido y únicamente la información privada
+  autorizada para cada jugador. La integración visual no puede enviar al
+  navegador manos ajenas, órdenes ocultos de mazos ni el estado completo del motor.
+- Permitir decidir solo al jugador correspondiente y mostrar la espera a los demás.
+  Conservar las revisiones, la deduplicación y la recuperación tras recargar.
+- Mantener el cierre del escenario, las mejoras individuales, la confirmación
+  del grupo y la entrada al siguiente escenario dentro del flujo de la mesa normal.
+- Verificar en dos navegadores que ambos usan la mesa normal y ven los cambios
+  públicos sincronizados; probar también el inicio en solitario, las decisiones
+  desde cartas y mapa, la privacidad, la recarga y la transición con mazos mejorados.
+- Añadir pruebas para los cambios de integración y las regresiones encontradas,
+  conservando el funcionamiento de las partidas locales.
+
+**Estado:** requisito documentado, integración pendiente. No se ha implementado
+la reutilización de la mesa normal. La siguiente intervención debe partir de
+este requisito, no ampliar la vista simplificada como interfaz final.
+
 ## Flujo
 
 1. Tras la resolución, el anfitrión registra el resultado. Se guardan experiencia,
