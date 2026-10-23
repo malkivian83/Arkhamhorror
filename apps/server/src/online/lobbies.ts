@@ -1,7 +1,15 @@
 import { randomInt, randomUUID } from 'node:crypto'
-import { newCampaign, startScenario, type Campaign } from '@lcg/cards'
+import {
+  newCampaign,
+  startScenario,
+  finishScenario,
+  purchase,
+  activeMembers,
+  canPlayNext,
+  type Campaign,
+} from '@lcg/cards'
 import { applyInput, type GameState } from '@lcg/engine'
-import type { OnlineCommand, OnlineDeck, OnlineLobby } from '@lcg/shared'
+import type { OnlineCommand, OnlineDeck, OnlineLobby, OnlineProgressCommand } from '@lcg/shared'
 import { gameView } from './game'
 import type { FastifyInstance } from 'fastify'
 import type { authentication } from '../accounts/auth'
@@ -21,6 +29,8 @@ export interface Lobby {
   campaign?: Campaign
   game?: GameState
   commands?: Record<string, { user: string; signature: string }>
+  intermission?: boolean
+  campaignReady?: string[]
 }
 export const lobbyView = (lobby: Lobby): OnlineLobby => ({
   id: lobby.id,
@@ -110,6 +120,81 @@ export class LobbyService {
         investigator: pending.investigator,
         choice: command.choice,
       })
+      lobby.commands = { ...lobby.commands, [command.commandId]: { user, signature } }
+      lobby.revision++
+      return gameView(lobby, user)
+    })
+  }
+  async progress(id: string, user: string, command: OnlineProgressCommand) {
+    return this.change(id, (lobby) => {
+      requireValue(lobby.members.includes(user), 'not_member', 403)
+      requireValue(lobby.game && lobby.campaign, 'not_started', 409)
+      const signature = JSON.stringify([
+        'progress',
+        command.revision,
+        command.action,
+        command.action === 'purchase'
+          ? [command.card, command.upgrade, command.remove ?? null]
+          : command.action === 'ready'
+            ? command.ready
+            : null,
+      ])
+      const prior = lobby.commands?.[command.commandId]
+      if (prior) {
+        requireValue(prior.user === user && prior.signature === signature, 'command_conflict', 409)
+        return gameView(lobby, user)
+      }
+      requireValue(command.revision === lobby.revision, 'stale_revision', 409)
+      requireValue(lobby.game.outcome, 'scenario_not_finished', 409)
+      if (command.action === 'finish') {
+        requireValue(lobby.owner === user, 'not_owner', 403)
+        requireValue(!lobby.intermission, 'already_finished', 409)
+        lobby.campaign = finishScenario(lobby.campaign, lobby.game)
+        lobby.intermission = true
+        lobby.campaignReady = []
+      } else {
+        requireValue(lobby.intermission, 'not_intermission', 409)
+        requireValue(canPlayNext(lobby.campaign), 'campaign_cannot_continue', 409)
+        const investigator = lobby.decks?.[user]?.investigator
+        const active = activeMembers(lobby.campaign)
+        if (command.action === 'next') {
+          requireValue(lobby.owner === user, 'not_owner', 403)
+          requireValue(
+            active.every((i) =>
+              lobby.members.some(
+                (member) =>
+                  lobby.decks?.[member]?.investigator === i.id &&
+                  lobby.campaignReady?.includes(member),
+              ),
+            ),
+            'not_ready',
+            409,
+          )
+          lobby.game = startScenario(lobby.campaign, randomInt(1, 0x7fffffff), true)
+          lobby.intermission = false
+          lobby.campaignReady = []
+        } else {
+          requireValue(
+            investigator && active.some((i) => i.id === investigator),
+            'inactive_investigator',
+            403,
+          )
+          if (command.action === 'ready') {
+            lobby.campaignReady = (lobby.campaignReady ?? []).filter((member) => member !== user)
+            if (command.ready) lobby.campaignReady.push(user)
+          } else {
+            try {
+              lobby.campaign = purchase(lobby.campaign, investigator, command.card, {
+                upgrade: command.upgrade,
+                ...(command.remove ? { remove: command.remove } : {}),
+              })
+            } catch {
+              requireValue(false, 'invalid_purchase')
+            }
+            lobby.campaignReady = (lobby.campaignReady ?? []).filter((member) => member !== user)
+          }
+        }
+      }
       lobby.commands = { ...lobby.commands, [command.commandId]: { user, signature } }
       lobby.revision++
       return gameView(lobby, user)
@@ -269,6 +354,36 @@ export function onlineLobbies(
     required: Object.keys(properties),
     properties,
   })
+  app.post<{ Params: { id: string }; Body: OnlineProgressCommand }>(
+    '/api/online/lobbies/:id/game/progress',
+    {
+      schema: {
+        params,
+        body: {
+          type: 'object',
+          additionalProperties: false,
+          required: ['commandId', 'revision', 'action'],
+          properties: {
+            commandId: { type: 'string', format: 'uuid' },
+            revision,
+            action: { type: 'string', enum: ['finish', 'purchase', 'ready', 'next'] },
+            card: { type: 'string', minLength: 1, maxLength: 30 },
+            upgrade: { type: 'boolean' },
+            remove: { type: 'string', minLength: 1, maxLength: 30 },
+            ready: { type: 'boolean' },
+          },
+          allOf: [
+            {
+              if: { properties: { action: { const: 'purchase' } } },
+              then: { required: ['card', 'upgrade'] },
+            },
+            { if: { properties: { action: { const: 'ready' } } }, then: { required: ['ready'] } },
+          ],
+        },
+      },
+    },
+    async (req) => service.progress(req.params.id, (await auth.requireUser(req)).id, req.body),
+  )
   app.get<{ Params: { id: string } }>(
     '/api/online/lobbies/:id/game',
     { schema: { params } },
