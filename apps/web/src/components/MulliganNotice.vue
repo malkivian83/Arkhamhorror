@@ -3,11 +3,11 @@ import type { GameState } from '@lcg/engine'
 import { computed, onMounted, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { startingMulligan } from '../game/mulligan'
-import { useGameStore } from '../stores/game'
+import { useTableGame } from '../game/tableController'
 
 /** Aviso al empezar la partida: cada investigador puede cambiar su mano inicial una vez. */
 const props = defineProps<{ state: GameState }>()
-const game = useGameStore()
+const game = useTableGame()
 const { t } = useI18n()
 const dialog = ref<HTMLDialogElement>()
 const titleId = useId()

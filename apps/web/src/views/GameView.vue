@@ -19,9 +19,9 @@ import StoryModal from '../components/StoryModal.vue'
 import { classColor } from '../game/cards'
 import { useShortcuts } from '../game/shortcuts'
 import { useEnemyArrival } from '../game/enemyArrival'
-import { useGameStore } from '../stores/game'
+import { useTableGame } from '../game/tableController'
 
-const game = useGameStore()
+const game = useTableGame()
 const router = useRouter()
 const { t } = useI18n()
 
@@ -38,9 +38,11 @@ function closeCase() {
   caseButton.value?.focus()
 }
 watch(
-  () => state.value?.pending?.investigator,
-  (deciding) => {
-    if (deciding) selected.value = deciding
+  () => [game.ownInvestigator, state.value?.pending?.investigator] as const,
+  ([mine, deciding]) => {
+    if (game.online) {
+      if (!selected.value) selected.value = mine ?? null
+    } else if (deciding) selected.value = deciding
   },
   { immediate: true },
 )
@@ -78,7 +80,12 @@ const shown = computed(
         v-if="shown"
         :state="state"
         :investigator="shown"
-        :deciding="shown.id === state.pending?.investigator"
+        :deciding="
+          shown.id === state.pending?.investigator &&
+          (!game.online || shown.id === game.ownInvestigator)
+        "
+        :private-hand="!!game.online && shown.id !== game.ownInvestigator"
+        :hand-count="game.handCounts?.[shown.id]"
       >
         <template #controls>
           <button

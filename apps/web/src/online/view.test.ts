@@ -27,7 +27,10 @@ beforeEach(() => {
 async function render(locale: 'en' | 'es' = 'es') {
   const router = createRouter({
     history: createMemoryHistory(),
-    routes: [{ path: '/online/:id?', component: OnlineView }],
+    routes: [
+      { path: '/online/:id?', component: OnlineView },
+      { path: '/online/:id/play', component: { template: '<div />' } },
+    ],
   })
   await router.push('/online/table')
   await router.isReady()
@@ -86,7 +89,7 @@ it('renders a shared start in English without a local game launch or private sta
   }
   const html = await render('en')
   expect(html).toContain(messages.en.online.started)
-  expect(html).toContain(messages.en.online.play.title)
+  expect(html).toContain(messages.en.online.play.openTable)
   expect(html).not.toContain(messages.en.online.select)
 })
 
@@ -97,4 +100,21 @@ it('allows the ready host to start alone and keeps an unready solo table disable
   expect(await render()).toMatch(/<button(?![^>]*disabled)[^>]*>Iniciar partida<\/button>/)
   state.view!.seats[0]!.ready = false
   expect(await render()).toMatch(/<button[^>]*disabled[^>]*>Iniciar partida<\/button>/)
+})
+
+it.each([
+  ['es', 1, 'para 1 investigador.'],
+  ['es', 2, 'para 2 investigadores.'],
+  ['en', 1, 'for 1 investigator.'],
+  ['en', 2, 'for 2 investigators.'],
+] as const)('renders the investigator count in %s for %i players', async (locale, count, text) => {
+  host()
+  state.view!.status = 'active'
+  state.view!.game = {
+    scenarioId: 'spreading-flames',
+    phase: 'setup',
+    round: 0,
+    investigatorCount: count,
+  }
+  expect(await render(locale)).toContain(text)
 })

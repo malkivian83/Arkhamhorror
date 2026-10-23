@@ -3,7 +3,7 @@ import { computed, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { inspected } from '../game/inspect'
 import { localizedCards, localName } from '../game/localized'
-import { useGameStore } from '../stores/game'
+import { useTableGame } from '../game/tableController'
 import ActionButton from './ActionButton.vue'
 import CardTranslation from './CardTranslation.vue'
 import GameCard from './GameCard.vue'
@@ -12,7 +12,7 @@ import GameCard from './GameCard.vue'
  * Carta tocada en un dispositivo sin ratón: ampliada para leerla y, debajo, lo
  * que se puede hacer con ella ahora. Sin opciones, solo se ve la carta.
  */
-const game = useGameStore()
+const game = useTableGame()
 const { t } = useI18n()
 const dialog = ref<HTMLDialogElement>()
 const titleId = useId()

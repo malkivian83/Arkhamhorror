@@ -6,7 +6,7 @@ import { cardBackImage } from '../game/assets'
 import { localName } from '../game/localized'
 import GameCard from './GameCard.vue'
 import CardTranslation from './CardTranslation.vue'
-import { useGameStore } from '../stores/game'
+import { useTableGame } from '../game/tableController'
 import { unreviewedEncounterDraws } from '../game/advanceReview'
 
 /**
@@ -19,7 +19,7 @@ const emit = defineEmits<{ dismissed: [code: string, source: DOMRect | undefined
 const face = ref<HTMLElement | null>(null)
 const imageLanguage = ref('unknown')
 const { t } = useI18n()
-const game = useGameStore()
+const game = useTableGame()
 
 interface Drawn {
   code: string

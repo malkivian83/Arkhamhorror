@@ -7,14 +7,14 @@ import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useLabels } from '../game/labels'
 import { storyBody, toggleOfficial } from '../game/story'
-import { useGameStore } from '../stores/game'
+import { useTableGame } from '../game/tableController'
 
 /**
  * Textos de historia (introducción, resoluciones) en una ventana sobre la mesa,
  * con sus efectos de campaña y las decisiones; y el aviso de fin del escenario.
  */
 const props = defineProps<{ state: GameState }>()
-const game = useGameStore()
+const game = useTableGame()
 const router = useRouter()
 const { t } = useI18n()
 const label = useLabels()
@@ -36,7 +36,9 @@ watch(
   () => props.state.outcome,
   () => (endDismissed.value = false),
 )
-const ending = computed(() => !entry.value && !!props.state.outcome && !endDismissed.value)
+const ending = computed(
+  () => !game.online && !entry.value && !!props.state.outcome && !endDismissed.value,
+)
 
 function newGame() {
   game.quit()
@@ -85,6 +87,7 @@ function toCampaign() {
           :key="i"
           type="button"
           class="table-action"
+          :data-choice-index="i"
           @click="game.answer(i)"
         >
           {{ label(choice.label, choice.params ?? {}) }}

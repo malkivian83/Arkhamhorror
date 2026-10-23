@@ -1,11 +1,11 @@
 import type { GameState } from '@lcg/engine'
 import { nextTick, onBeforeUnmount, watch, type Ref } from 'vue'
 import { unreviewedEncounterDraws } from './advanceReview'
-import { useGameStore } from '../stores/game'
+import { useTableGame } from '../game/tableController'
 
 /** Presentation only: the engine can continue while the card travels. */
 export function useEnemyArrival(state: Readonly<Ref<GameState | null>>) {
-  const game = useGameStore()
+  const game = useTableGame()
   const waiting = new Map<string, { code: string; card: HTMLElement }>()
   const active = new Set<() => void>()
   let revision = 0

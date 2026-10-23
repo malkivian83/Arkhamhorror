@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { LOCALES, canAdminister, type Locale } from '@lcg/shared'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import PlaymatPicker from './components/PlaymatPicker.vue'
@@ -16,6 +16,7 @@ const { t, locale } = useI18n()
 const route = useRoute()
 const router = useRouter()
 const game = useGameStore()
+const isTable = computed(() => route.name === 'game' || route.name === 'online-game')
 const gameMenu = ref<HTMLDialogElement>()
 const menuButton = ref<HTMLButtonElement>()
 function closeMenu() {
@@ -52,7 +53,7 @@ function setLocale(value: Locale) {
 </script>
 
 <template>
-  <template v-if="route.name === 'game'">
+  <template v-if="isTable">
     <button
       ref="menuButton"
       class="game-menu-toggle"
@@ -121,15 +122,21 @@ function setLocale(value: Locale) {
             </button>
           </div>
         </div>
-        <SaveGame />
-        <button type="button" class="menu-quit" @click="quit">{{ t('setup.quit') }}</button>
+        <SaveGame v-if="route.name === 'game'" />
+        <button v-if="route.name === 'game'" type="button" class="menu-quit" @click="quit">
+          {{ t('setup.quit') }}
+        </button>
         <p class="menu-disclaimer">{{ t('app.disclaimer') }}</p>
       </div>
     </dialog>
   </template>
   <SiteHeader v-else />
-  <main :class="{ 'game-shell': route.name === 'game' }">
-    <div v-if="game.storageIssue || game.error" class="session-warning" role="alert">
+  <main :class="{ 'game-shell': isTable }">
+    <div
+      v-if="route.name !== 'online-game' && (game.storageIssue || game.error)"
+      class="session-warning"
+      role="alert"
+    >
       <p v-if="game.storageIssue">{{ t(`session.issue.${game.storageIssue}`) }}</p>
       <p v-if="game.error">{{ game.error }}</p>
     </div>

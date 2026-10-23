@@ -10,6 +10,7 @@ const props = defineProps<{
   kind: 'agenda' | 'act'
   cards: readonly { code?: string; name: string }[]
   activeIndex: number
+  totalCards?: number | undefined
   compact?: boolean
 }>()
 const { t } = useI18n()
@@ -60,7 +61,7 @@ function nameOf(card: { code?: string; name: string }) {
       t('table.viewScenarioDeck', {
         deck: t(`table.${kind}`),
         current: activeIndex + 1,
-        total: cards.length,
+        total: totalCards ?? cards.length,
       })
     "
     :title="t('table.viewPile')"
@@ -76,7 +77,7 @@ function nameOf(card: { code?: string; name: string }) {
     <span v-else class="stack-icon" aria-hidden="true">▱</span>
     <span class="deck-caption"
       ><span>{{ t(`table.${kind}`) }}</span>
-      <span class="deck-stage">{{ activeIndex + 1 }}/{{ cards.length }}</span></span
+      <span class="deck-stage">{{ activeIndex + 1 }}/{{ totalCards ?? cards.length }}</span></span
     >
   </button>
 
@@ -143,7 +144,7 @@ function nameOf(card: { code?: string; name: string }) {
           :aria-current="index === activeIndex ? 'step' : undefined"
         >
           <div class="stage">
-            <span>{{ index + 1 }} / {{ cards.length }}</span>
+            <span>{{ index + 1 }} / {{ totalCards ?? cards.length }}</span>
             <strong>{{ t(`table.deckStatus.${status(index)}`) }}</strong>
           </div>
           <button

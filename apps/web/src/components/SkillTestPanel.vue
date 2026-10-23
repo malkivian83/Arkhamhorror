@@ -5,7 +5,7 @@ import { useI18n } from 'vue-i18n'
 import { classColor } from '../game/cards'
 import { localName } from '../game/localized'
 import { useLabels } from '../game/labels'
-import { useGameStore } from '../stores/game'
+import { useTableGame } from '../game/tableController'
 import ChaosTokenView from './ChaosTokenView.vue'
 import ChaosTokenHelp from './ChaosTokenHelp.vue'
 import GameCard from './GameCard.vue'
@@ -18,7 +18,7 @@ import ScenarioSymbol from './ScenarioSymbol.vue'
  * comprometidas, la ficha revelada y la bolsa del caos con sus modificadores.
  */
 const props = defineProps<{ state: GameState }>()
-const game = useGameStore()
+const game = useTableGame()
 const { t } = useI18n()
 const label = useLabels()
 const minimized = ref(false)
@@ -37,11 +37,14 @@ const intermediateQuestion = computed(() =>
     : null,
 )
 watch(prompt, () => (minimized.value = false))
-const committing = computed(() => prompt.value === 'prompt.commitCards')
+const committing = computed(() => game.stats?.committing ?? prompt.value === 'prompt.commitCards')
 const testAbilities = computed(() =>
   committing.value
     ? (question.value?.choices.flatMap((choice, index) =>
-        choice.then.some((message) => message.type === 'UseAbility') ? [{ choice, index }] : [],
+        choice.display?.kind === 'ability' ||
+        choice.then.some((message) => message.type === 'UseAbility')
+          ? [{ choice, index }]
+          : [],
       ) ?? [])
     : [],
 )
@@ -88,20 +91,23 @@ const source = computed(() => {
   return { code: '', name: kind.source, back: false }
 })
 
-const value = computed(() => skillTestValue(props.state))
+const value = computed(() => game.stats?.value ?? skillTestValue(props.state))
 const shownValue = computed(() =>
   resolved.value ? (test.value?.modifiedSkill ?? 0) : value.value.total,
 )
 
 const bag = computed(() =>
-  [...props.state.chaosBag]
-    .map((token) => ({ token, effect: previewToken(props.state, token) }))
+  (
+    game.stats?.bag ??
+    props.state.chaosBag.map((token) => ({ token, effect: previewToken(props.state, token) }))
+  )
+    .slice()
     .sort((a, b) => {
       const num = (x: typeof a) => (typeof x.token === 'number' ? 0 : 1)
       return num(a) - num(b) || b.effect.modifier - a.effect.modifier
     }),
 )
-const odds = computed(() => successChance(props.state))
+const odds = computed(() => (game.stats ? game.stats.odds : successChance(props.state)))
 const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
 </script>
 
@@ -219,8 +225,9 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
           v-else
           type="button"
           class="bag-button"
-          :disabled="!committing"
+          :disabled="!question?.choices.some((c) => c.label === 'choice.revealToken')"
           :title="t('choice.revealToken')"
+          :data-choice-index="question?.choices.findIndex((c) => c.label === 'choice.revealToken')"
           @click="game.answerLabel('choice.revealToken')"
         >
           <span class="bag-medallion"><ScenarioSymbol kind="bag" /></span>
@@ -233,6 +240,7 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
           v-for="option in testAbilities"
           :key="option.index"
           type="button"
+          :data-choice-index="option.index"
           @click="game.answer(option.index)"
         >
           {{ label(option.choice.label, option.choice.params ?? {}) }}
@@ -251,6 +259,7 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
           v-if="canApplyResults"
           type="button"
           class="apply"
+          :data-choice-index="question?.choices.findIndex((c) => c.label === 'choice.applyResults')"
           @click="game.answerLabel('choice.applyResults')"
         >
           {{ t('choice.applyResults') }}
@@ -266,6 +275,7 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
           :key="index"
           type="button"
           :class="choice.label === 'choice.skip' ? 'skip' : 'take'"
+          :data-choice-index="index"
           @click="game.answer(index)"
         >
           <svg

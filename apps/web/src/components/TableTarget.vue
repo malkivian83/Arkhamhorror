@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { inspected, noHover, TABLE_CARD, type InspectedCard } from '../game/inspect'
 import { useLabels } from '../game/labels'
 import { BOARD_VIEW_KEY, type ViewTransform } from '../game/viewport'
-import { useGameStore } from '../stores/game'
+import { useTableGame } from '../game/tableController'
 import ActionButton from './ActionButton.vue'
 
 /**
@@ -14,7 +14,7 @@ import ActionButton from './ActionButton.vue'
  * objetivo), se elige directamente.
  */
 const props = defineProps<{ target: string }>()
-const game = useGameStore()
+const game = useTableGame()
 const open = ref(false)
 const root = ref<HTMLElement | null>(null)
 const menu = ref<HTMLElement | null>(null)
@@ -144,6 +144,7 @@ onBeforeUnmount(() => {
           v-for="o in options"
           :key="o.index"
           :choice="o.choice"
+          :data-choice-index="o.index"
           @click.stop="pick(o.index)"
         />
       </div>

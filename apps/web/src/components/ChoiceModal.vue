@@ -3,7 +3,7 @@ import type { GameState } from '@lcg/engine'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useLabels } from '../game/labels'
-import { useGameStore } from '../stores/game'
+import { useTableGame } from '../game/tableController'
 import CardDetails from './CardDetails.vue'
 
 /**
@@ -12,7 +12,7 @@ import CardDetails from './CardDetails.vue'
  * se está resolviendo y las opciones. Se puede minimizar para mirar la mesa.
  */
 const props = defineProps<{ state: GameState }>()
-const game = useGameStore()
+const game = useTableGame()
 const { t } = useI18n()
 const label = useLabels()
 const minimized = ref(false)
@@ -21,6 +21,7 @@ const question = computed(() => props.state.pending?.question ?? null)
 const show = computed(
   () =>
     !!question.value &&
+    question.value.choices.length > 0 &&
     !question.value.story &&
     question.value.prompt !== 'prompt.chooseAction' &&
     !props.state.skillTest &&
@@ -62,6 +63,7 @@ watch(question, () => (minimized.value = false))
             v-for="(choice, i) in question.choices"
             :key="i"
             type="button"
+            :data-choice-index="i"
             @click="game.answer(i)"
           >
             <kbd v-if="i < 9">{{ i + 1 }}</kbd>

@@ -1,5 +1,6 @@
 import type { OnlineGame } from '@lcg/shared'
 import type { Lobby } from './lobbies'
+import { tableStats, tableView } from './table'
 import {
   activeMembers,
   canPlayNext,
@@ -70,10 +71,14 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
   for (const t of Object.values(g.treacheries))
     cards.push({ id: t.id, code: t.code, name: t.name, detail: 'online.play.card', params: {} })
   for (const a of Object.values(g.placedAssets ?? {}))
-    cards.push({ id: a.id, code: a.code, name: a.name, detail: 'online.play.card', params: {} })
+    if (!a.faceDown)
+      cards.push({ id: a.id, code: a.code, name: a.name, detail: 'online.play.card', params: {} })
   for (const [code] of Object.entries(g.stories ?? {}))
     cards.push({ id: `story:${code}`, code, name: code, detail: 'online.play.card', params: {} })
   return {
+    table: tableView(g, mine),
+    tableStats: tableStats(g),
+    ...(mine ? { ownInvestigator: mine } : {}),
     canFinish: !!g.outcome && !lobby.intermission && lobby.owner === user,
     ...(lobby.intermission && campaign
       ? {

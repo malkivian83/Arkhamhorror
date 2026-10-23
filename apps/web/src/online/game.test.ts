@@ -81,6 +81,51 @@ it('does not send decisions while waiting for another investigator', async () =>
   await client.choose(0)
   expect(request).toHaveBeenCalledTimes(1)
 })
+it.each(['old view', 'network failure'])(
+  'accepts clicks during polling and ignores its late %s',
+  async (late) => {
+    let resolve!: (value: OnlineGame) => void, reject!: (error: Error) => void
+    const request = vi
+      .fn()
+      .mockResolvedValueOnce(view)
+      .mockImplementationOnce(
+        () =>
+          new Promise<OnlineGame>((yes, no) => {
+            resolve = yes
+            reject = no
+          }),
+      )
+      .mockResolvedValueOnce({ ...view, revision: 4 })
+    const client = gameClient('table', request as typeof api)
+    await client.refresh()
+    const reading = client.refresh()
+    await client.choose(0)
+    expect(request.mock.calls[2]).toMatchObject([
+      '/online/lobbies/table/game/decisions',
+      'POST',
+      { revision: 3, choice: 0 },
+    ])
+    if (late === 'old view') resolve(view)
+    else reject(new ApiError('network', 0))
+    await reading
+    expect(client.state.value?.revision).toBe(4)
+    expect(client.error.value).toBe('')
+    expect(client.retry.value).toBeNull()
+  },
+)
+it.each([401, 403])('clears the previous private view when access is lost (%i)', async (status) => {
+  const request = vi
+    .fn()
+    .mockResolvedValueOnce(view)
+    .mockRejectedValueOnce(new ApiError('not_member', status))
+  const client = gameClient('table', request as typeof api)
+  await client.refresh()
+  await client.refresh()
+  expect(client.state.value).toBeNull()
+  expect(client.retry.value).toBeNull()
+  await client.choose(0)
+  expect(request).toHaveBeenCalledTimes(2)
+})
 it('uses campaign endpoint and preserves a purchase identifier after lost acknowledgement', async () => {
   const request = vi
     .fn()

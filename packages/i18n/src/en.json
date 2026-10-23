@@ -2992,7 +2992,7 @@
     "unready": "Not ready",
     "start": "Start game",
     "started": "Shared game created",
-    "startedDetail": "The server has prepared the scenario for {n} investigators.",
+    "startedDetail": "The server has prepared the scenario for {count} investigator. | The server has prepared the scenario for {count} investigators.",
     "nextStage": "The game is saved. Online game decisions and the game board will be available in the next release.",
     "errors": {
       "generic": "The operation could not be completed. Please try again.",
@@ -3031,7 +3031,10 @@
       "asset": "Controller: {owner} · Uses: {uses} · Damage: {damage} · Horror: {horror} · Exhausted: {exhausted}",
       "investigator": "Location: {location} · Resources: {resources} · Clues: {clues} · Damage: {damage} · Horror: {horror} · Actions: {actionsRemaining} · Hand: {handCount} · Deck: {deckCount}",
       "eliminated": "Investigator eliminated from the scenario.",
-      "test": "{skill} test · Difficulty: {difficulty} · Value: {value} · Tokens: {tokens}"
+      "test": "{skill} test · Difficulty: {difficulty} · Value: {value} · Tokens: {tokens}",
+      "privateHand": "Private hand",
+      "openTable": "Open game table",
+      "loading": "Connecting to the table…"
     },
     "campaignPlay": {
       "title": "Between scenarios",

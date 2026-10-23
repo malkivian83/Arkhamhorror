@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useGameStore } from '../stores/game'
+import { useTableGame } from '../game/tableController'
 import { useLabels } from '../game/labels'
 import { localName } from '../game/localized'
 import { zoomed } from '../game/zoom'
 import CardTranslation from './CardTranslation.vue'
 import GameCard from './GameCard.vue'
 
-const game = useGameStore()
+const game = useTableGame()
 const { t } = useI18n()
 const label = useLabels()
 const title = useId()

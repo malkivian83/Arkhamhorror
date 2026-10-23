@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useTableGame } from '../game/tableController'
 import { shroudOf, type GameState, type Location } from '@lcg/engine'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -9,6 +10,7 @@ import TokenBadge from './TokenBadge.vue'
 import TableTarget from './TableTarget.vue'
 
 const props = defineProps<{ state: GameState }>()
+const game = useTableGame()
 const { t } = useI18n()
 
 const CELL_W = 190
@@ -136,7 +138,7 @@ const treacheriesAt = (id: string) =>
             class="shroud-mod"
             :title="t('table.shroudUntilEndOfRound')"
           >
-            {{ t('game.shroud', { n: shroudOf(state, l.id) }) }}
+            {{ t('game.shroud', { n: game.stats?.shroud[l.id] ?? shroudOf(state, l.id) }) }}
             ({{ l.shroudModifier > 0 ? '+' : '−' }}{{ Math.abs(l.shroudModifier) }})
           </span>
         </GameCard>

@@ -11,9 +11,11 @@ import ScenarioDeckViewer from './ScenarioDeckViewer.vue'
 import ScenarioSymbol from './ScenarioSymbol.vue'
 import ScenarioReference from './ScenarioReference.vue'
 import TableTarget from './TableTarget.vue'
+import { useTableGame } from '../game/tableController'
 import TokenBadge from './TokenBadge.vue'
 
 const props = defineProps<{ state: GameState }>()
+const game = useTableGame()
 const { t } = useI18n()
 const bagDialog = ref<HTMLDialogElement>()
 const bagButton = ref<HTMLButtonElement>()
@@ -61,6 +63,7 @@ const sortedBag = computed(() =>
       <ScenarioDeckViewer
         kind="agenda"
         :cards="state.agendas"
+        :total-cards="game.stats?.agendaCount"
         :active-index="state.agendaIndex"
         compact
       />
@@ -85,7 +88,13 @@ const sortedBag = computed(() =>
       </TableTarget>
     </div>
     <div v-if="act" class="scenario-group act-group" role="group" :aria-label="t('table.act')">
-      <ScenarioDeckViewer kind="act" :cards="state.acts" :active-index="state.actIndex" compact />
+      <ScenarioDeckViewer
+        kind="act"
+        :cards="state.acts"
+        :total-cards="game.stats?.actCount"
+        :active-index="state.actIndex"
+        compact
+      />
       <TableTarget target="act" class="group-target">
         <GameCard
           class="group-card"

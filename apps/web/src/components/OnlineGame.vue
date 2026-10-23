@@ -1,55 +1,71 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted } from 'vue'
+import { onBeforeUnmount, onMounted, provide, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { gameClient } from '../online/game'
-import { useLabels } from '../game/labels'
-import { cardName } from '../game/cards'
-import GameCard from './GameCard.vue'
-import { scenarioReference } from '../game/scenarioReference'
+import { onlineTable } from '../online/table'
+import { tableControllerKey } from '../game/tableController'
+import { openPile } from '../game/pile'
+import { inspected } from '../game/inspect'
+import { zoomed } from '../game/zoom'
+import GameView from '../views/GameView.vue'
 import OnlineCampaign from './OnlineCampaign.vue'
 
 const props = defineProps<{ room: string }>()
-const { t, te } = useI18n(),
-  label = useLabels()
-const { state, busy, error, retry, refresh, choose, progress, resend, reset } = gameClient(
-  props.room,
-)
+const { t, te } = useI18n()
+const client = gameClient(props.room)
+const { state, busy, error, retry, refresh, progress, resend, reset } = client
+provide(tableControllerKey, onlineTable(client))
 let active = true
 let timer: ReturnType<typeof setTimeout> | undefined
+function clearInspection() {
+  openPile.value = null
+  inspected.value = null
+  zoomed.value = null
+}
+clearInspection()
+watch(() => state.value?.scenarioId, clearInspection)
 async function poll() {
   if (!active) return
   if (document.visibilityState === 'visible') await refresh()
   if (active) timer = setTimeout(poll, 2000)
 }
+function visible() {
+  if (document.visibilityState === 'visible') void refresh()
+}
 onMounted(() => {
   void poll()
+  document.addEventListener('visibilitychange', visible)
 })
 onBeforeUnmount(() => {
   active = false
   clearTimeout(timer)
+  document.removeEventListener('visibilitychange', visible)
+  clearInspection()
   reset()
 })
 </script>
 
 <template>
-  <section class="shared-table" :aria-label="t('online.play.title')">
-    <h2>{{ t('online.play.title') }}</h2>
-    <p v-if="error" role="alert">
-      {{ te(`online.errors.${error}`) ? t(`online.errors.${error}`) : t('online.errors.generic') }}
-    </p>
-    <button :disabled="busy" @click="refresh">{{ t('online.refresh') }}</button>
-    <button v-if="retry" :disabled="busy" @click="resend">{{ t('online.play.retry') }}</button>
-    <template v-if="state">
-      <p>
-        {{
-          t('online.play.status', {
-            round: state.round,
-            phase: t(`phase.${state.phase}`),
-            doom: state.doom,
-          })
-        }}
-      </p>
-      <p v-if="state.finished" role="status">{{ t('online.play.finished') }}</p>
+  <section
+    class="online-table"
+    :aria-label="t('online.play.title')"
+    :data-revision="state?.revision"
+  >
+    <div v-if="error || retry" class="connection" role="alert">
+      <span v-if="error">{{
+        te(`online.errors.${error}`) ? t(`online.errors.${error}`) : t('online.errors.generic')
+      }}</span>
+      <button :disabled="busy" @click="refresh">{{ t('online.refresh') }}</button>
+      <button v-if="retry" :disabled="busy" @click="resend">{{ t('online.play.retry') }}</button>
+    </div>
+    <GameView v-if="state?.table" :key="state.scenarioId" />
+    <p v-else role="status">{{ t('online.play.loading') }}</p>
+    <section
+      v-if="state?.finished || state?.campaign"
+      class="intermission"
+      :aria-label="t('online.play.finished')"
+    >
+      <p>{{ t('online.play.finished') }}</p>
       <button
         v-if="state.canFinish"
         :disabled="busy || !!retry"
@@ -63,90 +79,38 @@ onBeforeUnmount(() => {
         :disabled="busy || !!retry"
         @action="progress"
       />
-      <p v-if="state.test">
-        {{
-          t('online.play.test', {
-            ...state.test,
-            skill: t(`skill.${state.test.skill}`),
-            tokens: state.test.tokens.join(', '),
-            value: state.test.value ?? '—',
-          })
-        }}
-      </p>
-      <section v-if="state.pending" class="decision" aria-live="polite">
-        <template v-if="state.pending.prompt">
-          <h3>{{ label(state.pending.prompt, state.pending.params) }}</h3>
-          <template v-if="state.pending.story">
-            <h4>{{ t(state.pending.story.title) }}</h4>
-            <p>{{ t(state.pending.story.body) }}</p>
-          </template>
-          <button
-            v-for="(choice, index) in state.pending.choices"
-            :key="`${state.pending.id}:${index}`"
-            :disabled="busy || !!retry"
-            @click="choose(index)"
-          >
-            {{ label(choice.label, choice.params) }}
-          </button>
-        </template>
-        <p v-else>
-          {{
-            t('online.play.waiting', {
-              investigator: state.investigators.find((i) => i.id === state?.pending?.investigator)
-                ?.name,
-            })
-          }}
-        </p>
-      </section>
-      <div class="public-cards">
-        <GameCard v-if="scenarioReference(state)" v-bind="scenarioReference(state)!" :width="160" />
-        <figure v-for="card in state.cards" :key="card.id">
-          <GameCard :code="card.code" :name="card.name" :back="card.back ?? false" :width="160" />
-          <figcaption>{{ label(card.detail, card.params) }}</figcaption>
-        </figure>
-      </div>
-      <section v-for="i in state.investigators" :key="i.id">
-        <h3>{{ i.name }}</h3>
-        <p>{{ t('online.play.investigator', { ...i, location: i.location ?? '—' }) }}</p>
-        <p v-if="i.eliminated">{{ t('online.play.eliminated') }}</p>
-        <div v-if="i.hand" class="public-cards">
-          <GameCard
-            v-for="(code, index) in i.hand"
-            :key="index"
-            :code="code"
-            :name="cardName(code)"
-            :width="160"
-          />
-        </div>
-      </section>
-    </template>
+    </section>
   </section>
 </template>
 
 <style scoped>
-.shared-table {
-  padding: 1rem;
+.online-table {
+  height: 100%;
+  min-height: 0;
+  position: relative;
 }
-.public-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+.connection {
+  position: fixed;
+  z-index: 1500;
+  top: 0;
+  left: 64px;
+  right: 0;
+  background: #42251c;
+  padding: 8px;
 }
-figure {
-  margin: 0;
-  width: 160px;
-}
-figcaption {
-  overflow-wrap: anywhere;
-}
-.decision {
-  border: 1px solid currentColor;
-  padding: 1rem;
-  margin-block: 1rem;
+.intermission {
+  position: fixed;
+  inset: 12% 8%;
+  z-index: 1000;
+  overflow: auto;
+  padding: 24px;
+  background: #232329;
+  border: 1px solid #b88c58;
+  box-shadow: 0 0 0 100vmax #000a;
 }
 button {
-  padding: 0.65rem;
-  margin: 0.3rem;
+  padding: 10px;
+  margin: 4px;
   font: inherit;
 }
 </style>

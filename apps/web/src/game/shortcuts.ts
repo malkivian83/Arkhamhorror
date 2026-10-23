@@ -1,5 +1,5 @@
 import { onBeforeUnmount, onMounted } from 'vue'
-import { useGameStore } from '../stores/game'
+import { useTableGame } from '../game/tableController'
 
 /** Teclas de las acciones básicas (la etiqueta de la opción que eligen). */
 export const ACTION_KEYS: Record<string, string> = {
@@ -18,7 +18,7 @@ function typing(target: EventTarget | null) {
 
 /** Atajos de teclado de la mesa mientras el componente está montado. */
 export function useShortcuts() {
-  const game = useGameStore()
+  const game = useTableGame()
 
   function onKey(event: KeyboardEvent) {
     if (document.querySelector('dialog[open]')) return

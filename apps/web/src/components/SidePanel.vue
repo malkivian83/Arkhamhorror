@@ -4,7 +4,7 @@ import { computed, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useLabels } from '../game/labels'
 import type { UndoKind } from '../game/undo'
-import { useGameStore } from '../stores/game'
+import { useTableGame } from '../game/tableController'
 import CampaignRecord from './CampaignRecord.vue'
 import GameCard from './GameCard.vue'
 import KeywordsPanel from './KeywordsPanel.vue'
@@ -12,7 +12,7 @@ import PhaseTracker from './PhaseTracker.vue'
 
 const props = defineProps<{ state: GameState }>()
 const emit = defineEmits<{ close: [] }>()
-const game = useGameStore()
+const game = useTableGame()
 const { t } = useI18n()
 const label = useLabels()
 const logEl = ref<HTMLElement | null>(null)
@@ -49,7 +49,7 @@ watch(
     </div>
     <PhaseTracker :state="state" />
 
-    <div class="undo">
+    <div v-if="!game.online" class="undo">
       <span>↶ {{ t('undo.title') }}</span>
       <button
         v-for="kind in UNDO_KINDS"
@@ -86,6 +86,7 @@ watch(
           v-for="(o, n) in game.untargetedChoices"
           :key="o.index"
           type="button"
+          :data-choice-index="o.index"
           @click="game.answer(o.index)"
         >
           <kbd v-if="n < 9">{{ n + 1 }}</kbd>
@@ -98,6 +99,7 @@ watch(
           v-for="(choice, index) in state.pending.question.choices.filter((c) => c.target)"
           :key="index"
           type="button"
+          :data-choice-index="state.pending.question.choices.indexOf(choice)"
           @click="game.answer(state.pending.question.choices.indexOf(choice))"
         >
           {{ label(choice.label, choice.params ?? {}) }}
@@ -123,12 +125,14 @@ watch(
           <kbd>{{ t('shortcuts.enter') }}</kbd>
         </dt>
         <dd>{{ t('shortcuts.confirm') }}</dd>
-        <dt><kbd>U</kbd></dt>
-        <dd>{{ t('undo.hint.step') }}</dd>
-        <dt><kbd>Ctrl</kbd>+<kbd>Z</kbd></dt>
-        <dd>{{ t('undo.hint.action') }}</dd>
-        <dt><kbd>Ctrl</kbd>+<kbd>⇧</kbd>+<kbd>Z</kbd></dt>
-        <dd>{{ t('undo.hint.turn') }}</dd>
+        <template v-if="!game.online">
+          <dt><kbd>U</kbd></dt>
+          <dd>{{ t('undo.hint.step') }}</dd>
+          <dt><kbd>Ctrl</kbd>+<kbd>Z</kbd></dt>
+          <dd>{{ t('undo.hint.action') }}</dd>
+          <dt><kbd>Ctrl</kbd>+<kbd>⇧</kbd>+<kbd>Z</kbd></dt>
+          <dd>{{ t('undo.hint.turn') }}</dd>
+        </template>
       </dl>
     </details>
 

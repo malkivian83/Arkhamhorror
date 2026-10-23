@@ -1,4 +1,31 @@
-import type { ChaosToken, Difficulty, LabelParams } from '@lcg/engine'
+import type {
+  ChaosToken,
+  Difficulty,
+  LabelParams,
+  GameState,
+  skillTestValue,
+  TokenEffect,
+  Choice,
+  Question,
+} from '@lcg/engine'
+
+export type OnlineChoice = Omit<Choice, 'then' | 'requires'>
+export type OnlineTable = Omit<GameState, 'pending'> & {
+  pending: {
+    investigator: string
+    question: Omit<Question, 'choices'> & { choices: OnlineChoice[] }
+  } | null
+}
+
+export interface OnlineTableStats {
+  agendaCount: number
+  actCount: number
+  committing: boolean
+  shroud: Record<string, number>
+  value: ReturnType<typeof skillTestValue>
+  odds: number | null
+  bag: { token: ChaosToken; effect: Pick<TokenEffect, 'modifier' | 'autoFail' | 'revealAnother'> }[]
+}
 
 /** Transport DTOs deliberately exclude engine messages and hidden piles. */
 export interface OnlineCommand {
@@ -40,6 +67,10 @@ export interface OnlineCampaignView {
   } | null
 }
 export interface OnlineGame {
+  /** Redacted presentation only: never apply engine inputs or persist as a local game. */
+  table?: OnlineTable
+  tableStats?: OnlineTableStats
+  ownInvestigator?: string
   canFinish?: boolean
   campaign?: OnlineCampaignView
   revision: number

@@ -9,7 +9,7 @@ no calcula experiencia ni envía un mazo sustitutorio o un estado de campaña.
 
 La persona usuaria ha aclarado que las partidas online deben jugarse en **la
 mesa de juego normal de la aplicación**, tanto en solitario como con amigos.
-La vista simplificada actual de «Mesa compartida», con una lista de botones de
+La vista simplificada anterior de «Mesa compartida», con una lista de botones de
 acciones y cartas debajo del lobby, **no es la experiencia solicitada**. Las
 pruebas anteriores acreditan el funcionamiento del protocolo, pero no satisfacen
 este requisito de interfaz.
@@ -21,7 +21,7 @@ investigadores, mano, apoyos, enemigos, acto y plan, referencia del escenario,
 inspección de cartas y controles y diálogos de decisiones ya existentes.
 Las acciones sobre cartas y lugares deben funcionar desde esos mismos controles.
 
-### Criterios de aceptación de la integración pendiente
+### Criterios de aceptación de la integración
 
 - Reutilizar la presentación y las interacciones de la mesa normal (`GameView`
   y sus componentes), evitando mantener una segunda mesa simplificada online.
@@ -40,9 +40,61 @@ Las acciones sobre cartas y lugares deben funcionar desde esos mismos controles.
 - Añadir pruebas para los cambios de integración y las regresiones encontradas,
   conservando el funcionamiento de las partidas locales.
 
-**Estado:** requisito documentado, integración pendiente. No se ha implementado
-la reutilización de la mesa normal. La siguiente intervención debe partir de
-este requisito, no ampliar la vista simplificada como interfaz final.
+**Estado:** integración implementada. El lobby activo redirige
+a `/online/:id/play`, servido también al recargar directamente. `OnlineGame`
+proporciona un controlador a `GameView` y a sus componentes: lugares, mano,
+apoyos, pruebas de habilidad, historia y decisiones usan la misma interfaz.
+
+El controlador local sigue siendo `useGameStore`. El controlador online no
+llama al motor, no importa partidas en ese almacén y no escribe el guardado
+local; usa las decisiones y revisiones del servidor. No ofrece deshacer ni
+exportar el estado compartido como si fuera una partida local.
+
+`tableView` construye una proyección mediante listas explícitas de campos.
+Solo incluye la mano propia; las demás muestran reversos y cantidades. Los
+mazos ocultos tienen reversos anónimos, no identidades ni orden. No transmite
+semillas reales, colas de mensajes, efectos pendientes, futuras cartas de acto
+o plan ni metadatos privados del escenario. Los valores de habilidad, velo,
+probabilidad y modificadores del caos se calculan en el servidor. Los registros
+públicos también filtran sus claves y parámetros.
+
+La sincronización consulta cada dos segundos mientras la pestaña está visible.
+Las lecturas no bloquean los clics; las decisiones conservan revisión e ID de
+comando, impiden doble envío y permiten reintentar una respuesta perdida. Una
+respuesta antigua no sustituye otra reciente. Perder autorización vacía la
+vista privada; cambiar de cuenta o de mesa desmonta el controlador y limpia
+las cartas abiertas.
+
+Al concluir se muestra el resultado y la preparación entre escenarios sobre
+la mesa normal. Cada jugador mejora su propio mazo y confirma; el anfitrión
+inicia el siguiente escenario cuando corresponde. El cambio de escenario
+renueva los componentes de la mesa y mantiene los datos autoritativos.
+
+### Validación de la mesa normal
+
+- Proyección del servidor: mano propia, reversos ajenos, límites de información
+  oculta, efectos anidados, destinos de habilidades y valores calculados.
+- Controlador y componentes: decisiones de la mesa, reintentos, respuestas fuera
+  de orden, autorización perdida, privacidad visual, transición y conservación
+  del estado y almacenamiento locales.
+- Regresión encontrada en navegadores: una lectura periódica bloqueaba clics.
+  Las lecturas y escrituras ahora se coordinan por separado; una respuesta antigua
+  no restaura una revisión ni un error ya superados.
+- Suite completa: 439 archivos y 2.952 pruebas aprobados; 19 pruebas SQL omitidas
+  al no configurar `MYSQL_TEST_URL` para esa ejecución. Formato, tipos y build
+  aprobados. Lint aprobado excluyendo `.card-import-tmp/**`, carpeta temporal
+  que contiene un script ajeno con errores preexistentes.
+- Aceptación real con Chrome 155 y Edge 155, sesiones independientes y MariaDB
+  10.4 temporal: inicio desde el lobby, acción de investigar desde el mapa, mano
+  propia y reversos ajenos al cambiar de investigador, decisiones compartidas,
+  cierre del primer escenario, mejoras `12037 → 12041` y `12016 → 12027`,
+  persistencia tras recarga y entrada a Smoke and Mirrors con ambos jugadores.
+  También se inició una mesa en solitario con Jenny y se confirmó una decisión.
+  Sin errores JavaScript. La prueba usa el motor y experiencia obtenida en juego.
+
+La aceptación se ejecuta con `scripts/test-online-browsers.mjs`, actualizado
+para los controles reales de la mesa. No se ha probado una campaña completa,
+una conexión por internet ni dispositivos móviles.
 
 ## Flujo
 
@@ -68,12 +120,12 @@ Los resultados que solicitan repetir escenario conservan el índice conforme a
 
 POST `/api/online/lobbies/:id/game/progress` acepta `commandId`, `revision` y:
 
-| Acción | Datos | Propietario |
-| --- | --- | --- |
-| `finish` | Ninguno | Anfitrión |
-| `purchase` | `card`, `upgrade`, `remove` cuando corresponde | Mazo del usuario autenticado |
-| `ready` | `ready` booleano | Usuario autenticado superviviente |
-| `next` | Ninguno | Anfitrión |
+| Acción     | Datos                                          | Propietario                       |
+| ---------- | ---------------------------------------------- | --------------------------------- |
+| `finish`   | Ninguno                                        | Anfitrión                         |
+| `purchase` | `card`, `upgrade`, `remove` cuando corresponde | Mazo del usuario autenticado      |
+| `ready`    | `ready` booleano                               | Usuario autenticado superviviente |
+| `next`     | Ninguno                                        | Anfitrión                         |
 
 El bloqueo SQL, la revisión y el registro persistente de comandos son los mismos
 de la sincronización de decisiones. La firma incluye la acción y sus parámetros.
@@ -85,7 +137,7 @@ Se añaden `intermission` y `campaignReady` opcionales al JSON privado del lobby
 sin migración SQL nueva. Los lobbies anteriores pueden registrar su resultado al
 terminar. No se modifica la biblioteca personal ni la asociación usuario/investigador.
 
-## Verificación
+## Verificación previa del protocolo
 
 Pruebas de servicio y HTTP: cierre único, compras propias y coste de XP,
 sustitución obligatoria, experiencia insuficiente, rechazo de investigadores
@@ -103,7 +155,7 @@ Resultado: 33 pruebas dirigidas aprobadas; las 19 pruebas SQL de cuentas y lobbi
 también pasaron juntas contra la base temporal. Tipos del workspace, lint de los
 archivos afectados, formato y compilación aprobados.
 
-## Aceptación con dos navegadores (23 de octubre de 2026)
+## Aceptación anterior con la vista simplificada (23 de octubre de 2026)
 
 Se ha probado el servidor que sirve la web compilada, con MariaDB 10.4 temporal,
 Chrome 155 y Edge 155 en procesos y sesiones independientes. Son navegadores

@@ -28,6 +28,7 @@ it('sirve las rutas de Vue y los recursos públicos sin exponer archivos privado
     '/decks',
     '/online',
     '/online/12345678-1234-4234-8234-123456789abc',
+    '/online/12345678-1234-4234-8234-123456789abc/play',
   ]) {
     const response = await app.inject(path)
     expect(response.statusCode, `${path}: ${response.body}`).toBe(200)

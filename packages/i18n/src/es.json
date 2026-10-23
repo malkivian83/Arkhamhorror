@@ -2992,7 +2992,7 @@
     "unready": "Dejar de estar listo",
     "start": "Iniciar partida",
     "started": "Partida compartida creada",
-    "startedDetail": "El servidor ha preparado el escenario para {n} investigadores.",
+    "startedDetail": "El servidor ha preparado el escenario para {count} investigador. | El servidor ha preparado el escenario para {count} investigadores.",
     "nextStage": "La partida está guardada. Las decisiones y la mesa de juego online estarán disponibles en la siguiente entrega.",
     "errors": {
       "generic": "No se pudo completar la operación. Vuelve a intentarlo.",
@@ -3031,7 +3031,10 @@
       "asset": "Controlador: {owner} · Usos: {uses} · Daño: {damage} · Horror: {horror} · Agotado: {exhausted}",
       "investigator": "Lugar: {location} · Recursos: {resources} · Pistas: {clues} · Daño: {damage} · Horror: {horror} · Acciones: {actionsRemaining} · Mano: {handCount} · Mazo: {deckCount}",
       "eliminated": "Investigador eliminado del escenario.",
-      "test": "Prueba de {skill} · Dificultad: {difficulty} · Valor: {value} · Fichas: {tokens}"
+      "test": "Prueba de {skill} · Dificultad: {difficulty} · Valor: {value} · Fichas: {tokens}",
+      "privateHand": "Mano privada",
+      "openTable": "Abrir mesa de juego",
+      "loading": "Conectando con la mesa…"
     },
     "campaignPlay": {
       "title": "Entre escenarios",

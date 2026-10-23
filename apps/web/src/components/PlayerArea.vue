@@ -23,7 +23,13 @@ import TokenBadge from './TokenBadge.vue'
 const SKILLS = ['willpower', 'intellect', 'combat', 'agility'] as const
 import TableTarget from './TableTarget.vue'
 
-const props = defineProps<{ state: GameState; investigator: Investigator; deciding: boolean }>()
+const props = defineProps<{
+  state: GameState
+  investigator: Investigator
+  deciding: boolean
+  privateHand?: boolean
+  handCount?: number | undefined
+}>()
 const { t } = useI18n()
 
 const i = computed(() => props.investigator)
@@ -210,8 +216,9 @@ const slots = computed(() => {
       </div>
       <div class="zone hand">
         <div class="hand-heading">
-          <h4 class="mat-label">{{ t('table.hand') }} ({{ i.hand.length }})</h4>
+          <h4 class="mat-label">{{ t('table.hand') }} ({{ handCount ?? i.hand.length }})</h4>
           <button
+            v-if="!privateHand"
             type="button"
             class="view-hand"
             :aria-label="t('table.viewHand')"
@@ -222,8 +229,16 @@ const slots = computed(() => {
           </button>
         </div>
         <div class="cards">
+          <div
+            v-for="n in privateHand ? handCount : 0"
+            :key="`back-${n}`"
+            class="private-card"
+            :aria-label="t('online.play.privateHand')"
+          >
+            <img v-if="playerBack" :src="playerBack" alt="" width="80" />
+          </div>
           <TableTarget
-            v-for="(code, n) in i.hand"
+            v-for="(code, n) in privateHand ? [] : i.hand"
             :key="`${code}-${n}`"
             :target="deciding ? `hand:${code}` : ''"
             class="in-hand"
@@ -438,6 +453,17 @@ const slots = computed(() => {
 </template>
 
 <style scoped>
+.private-card {
+  flex: 0 0 80px;
+  min-height: 112px;
+  background: #282433;
+  border: 1px solid #9c8054;
+  border-radius: 5px;
+}
+.private-card img {
+  display: block;
+  border-radius: inherit;
+}
 .asset-upgrades {
   display: flex;
   align-items: center;

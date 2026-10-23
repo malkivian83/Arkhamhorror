@@ -13,17 +13,23 @@ export function gameClient(room: string, request: typeof api = api) {
     error = ref('')
   const retry = ref<OnlineCommand | OnlineProgressCommand | null>(null)
   let generation = 0
+  let reading = false
+  let serial = 0
+  let completed = 0
   function reset() {
     generation++
     state.value = null
     busy.value = false
+    reading = false
     retry.value = null
     error.value = ''
   }
   async function send(command?: OnlineCommand | OnlineProgressCommand) {
-    if (busy.value) return
+    if (busy.value || (!command && reading)) return
     const epoch = generation
-    busy.value = true
+    const sequence = ++serial
+    if (command) busy.value = true
+    else reading = true
     try {
       const result = await request<OnlineGame>(
         `/online/lobbies/${room}/game${command ? ('action' in command ? '/progress' : '/decisions') : ''}`,
@@ -31,16 +37,30 @@ export function gameClient(room: string, request: typeof api = api) {
         command,
       )
       if (epoch !== generation) return
-      if (!state.value || result.revision >= state.value.revision) state.value = result
+      if (!state.value || result.revision > state.value.revision) state.value = result
       if (command) retry.value = null
-      if (!retry.value) error.value = ''
+      if (sequence >= completed) {
+        completed = sequence
+        if (!retry.value) error.value = ''
+      }
     } catch (e) {
       if (epoch !== generation) return
+      // Another tab may have changed the cookie/account: remove private data immediately.
+      if (e instanceof ApiError && (e.status === 401 || e.status === 403)) {
+        reset()
+        error.value = e.code
+        return
+      }
+      if (sequence < completed) return
+      completed = sequence
       error.value = e instanceof ApiError ? e.code : 'network'
       // Keep the exact command on an ambiguous network failure; never invent a new retry.
       if (command && e instanceof ApiError && e.status >= 400 && e.status < 500) retry.value = null
     } finally {
-      if (epoch === generation) busy.value = false
+      if (epoch === generation) {
+        if (command) busy.value = false
+        else reading = false
+      }
     }
   }
   async function choose(choice: number) {

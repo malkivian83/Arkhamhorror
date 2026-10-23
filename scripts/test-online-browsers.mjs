@@ -28,12 +28,11 @@ async function reload(index, intermission = false) {
   const response = pages[index].waitForResponse((r) => r.url().endsWith('/game') && r.ok())
   await pages[index].reload()
   const view = await (await response).json()
-  await pages[index]
-    .getByRole('heading', {
-      name: intermission ? 'Entre escenarios' : 'Mesa compartida',
-      exact: true,
-    })
-    .waitFor()
+  await (
+    intermission
+      ? pages[index].getByRole('heading', { name: 'Entre escenarios', exact: true })
+      : pages[index].locator('.table')
+  ).waitFor()
   return view
 }
 
@@ -45,6 +44,42 @@ async function progress(index, button) {
   const result = await response
   assert.equal(result.status(), 200, await result.text())
   return result.json()
+}
+
+async function clickDecision(page, choice, view) {
+  await page.locator(`.online-table[data-revision="${view.revision}"]`).waitFor()
+  while (await page.locator('.spotlight button').count())
+    await page.locator('.spotlight button').click()
+  if (await page.locator('dialog.mulligan-notice[open]').count()) {
+    await page.locator('dialog.mulligan-notice[open] button').first().click()
+  }
+  const selector = `[data-choice-index="${choice}"]`
+  for (const region of ['.story', '.choice', '.skill-test', '.side .buttons']) {
+    const button = page.locator(`${region} ${selector}`).first()
+    if (await button.isVisible()) {
+      await button.click()
+      return
+    }
+  }
+  // Use a highlighted map/card target, as a player would, before the journal fallback.
+  const target = view.table.pending.question.choices[choice].target
+  if (target) {
+    const key =
+      target.type === 'hand'
+        ? `hand:${target.code}`
+        : target.id
+          ? `${target.type}:${target.id}`
+          : target.type
+    const card = page.locator(`[data-table-target="${key}"]`).first()
+    if (await card.isVisible()) {
+      await card.click()
+      const menu = page.locator(`.abilities ${selector}`)
+      if (await menu.count()) await menu.click()
+      return
+    }
+  }
+  await page.locator('.side details.all summary').click()
+  await page.locator(`.side details.all ${selector}`).click()
 }
 
 async function decideUntil(stop, limit) {
@@ -76,9 +111,10 @@ async function decideUntil(stop, limit) {
     const response = pages[actor].waitForResponse(
       (r) => r.url().endsWith('/game/decisions') && r.request().method() === 'POST',
     )
-    await pages[actor].locator('.decision button').nth(choice).click()
-    const result = await response
+    const [result] = await Promise.all([response, clickDecision(pages[actor], choice, view)])
     assert.equal(result.status(), 200, await result.text())
+    const confirmed = await result.json()
+    await eventually(() => snapshots[actor]?.revision >= confirmed.revision)
     decisions++
     if (decisions % 25 === 0) console.log(`Decisions: ${decisions}; round: ${view.round}`)
     await delay(100)
@@ -137,10 +173,52 @@ try {
   }
   await host.reload()
   await host.getByRole('button', { name: 'Iniciar partida', exact: true }).click()
-  await Promise.all(
-    pages.map((p) => p.getByRole('heading', { name: 'Mesa compartida', exact: true }).waitFor()),
-  )
+  await Promise.all(pages.map((p) => p.locator('.table').waitFor()))
   await reload(0)
+  for (const page of pages) assert.match(page.url(), /\/online\/[^/]+\/play$/)
+  await decideUntil((v) => v.table?.pending?.question.prompt === 'prompt.chooseAction', 100)
+  await eventually(() => snapshots[0].revision === snapshots[1].revision)
+  for (let index = 0; index < 2; index++) {
+    const view = snapshots[index]
+    assert.ok(view.table)
+    assert.equal(
+      view.table.investigators.filter((i) => i.id !== view.ownInvestigator && i.hand.length).length,
+      0,
+    )
+    const other = view.table.investigators.find((i) => i.id !== view.ownInvestigator)
+    await pages[index].locator('.players .tabs button').filter({ hasText: other.name }).click()
+    assert.equal(
+      await pages[index].locator('.private-card').count(),
+      view.investigators.find((i) => i.id === other.id).handCount,
+    )
+    assert.equal(await pages[index].locator('.view-hand').count(), 0)
+    await pages[index]
+      .locator('.players .tabs button')
+      .filter({ hasText: view.table.investigators.find((i) => i.id === view.ownInvestigator).name })
+      .click()
+    await pages[index].screenshot({
+      path: join(output, `normal-table-${index}.png`),
+      fullPage: true,
+    })
+  }
+  const actor = snapshots.findIndex((v) =>
+    v.pending?.choices.some((c) => c.label === 'action.investigate'),
+  )
+  assert.ok(actor >= 0)
+  const investigate = snapshots[actor].pending.choices.findIndex(
+    (c) => c.label === 'action.investigate',
+  )
+  const investigated = pages[actor].waitForResponse(
+    (r) => r.url().endsWith('/game/decisions') && r.request().method() === 'POST',
+  )
+  const [investigateResponse] = await Promise.all([
+    investigated,
+    clickDecision(pages[actor], investigate, snapshots[actor]),
+  ])
+  assert.equal(investigateResponse.status(), 200)
+  const investigateView = await investigateResponse.json()
+  await eventually(() => snapshots[actor]?.revision >= investigateView.revision)
+  console.log('PASS: normal map action, private hands and player tabs')
   console.log(`First scenario finished in ${await decideUntil((v) => v.finished, 1500)} decisions`)
   await reload(0)
   await progress(
@@ -241,6 +319,22 @@ try {
       fullPage: true,
     })
   }
+  // A ready solo host must enter the same table, with the same server-driven controls.
+  await host.goto(`${base}/online`)
+  await host.getByRole('button', { name: 'Crear mesa', exact: true }).click()
+  await host.getByRole('combobox', { name: /Tu mazo/ }).selectOption('starter:jenny')
+  await host.getByRole('button', { name: 'Guardar mazo', exact: true }).click()
+  await host.getByRole('button', { name: 'Listo', exact: true }).click()
+  await host.getByRole('button', { name: 'Dejar de estar listo', exact: true }).waitFor()
+  await host.getByRole('button', { name: 'Iniciar partida', exact: true }).click()
+  await host.locator('.table').waitFor()
+  const solo = await reload(0)
+  assert.equal(solo.investigators.length, 1)
+  const soloDecision = host.waitForResponse(
+    (r) => r.url().endsWith('/game/decisions') && r.request().method() === 'POST',
+  )
+  await clickDecision(host, 0, solo)
+  assert.equal((await soloDecision).status(), 200)
   assert.deepEqual(errors, [])
   console.log(
     'PASS: invitation, decks, shared decisions, both purchases, persistence, readiness, next scenario and private hands',
