@@ -175,12 +175,14 @@ import { SKILL_REPLACEMENT_RENDERED_CODES } from './skill-replacement'
 import { NEXT_TEST_RENDERED_CODES } from './next-test-effects'
 import { ATTACK_HISTORY_RENDERED_CODES } from './attack-history'
 import { PROTECTED_DRAW_RENDERED_CODES } from './protected-draw'
+import { ACTION_HISTORY_RENDERED_CODES } from './action-history'
 import { SYNERGY_ATTACK_RENDERED_CODES } from './synergy-attacks'
 import { SYNERGY_RENDERED_CODES } from './synergy'
 import { TARGETED_EVENT_RENDERED_CODES } from './targeted-events'
 import { EXCLUSIVE_SKILL_RENDERED_CODES } from './exclusive-skills'
 import { SKILL_UTILITY_RENDERED_CODES } from './skill-utilities'
 export const RENDERED_PLAYER_CARD_CODES = [
+  ...ACTION_HISTORY_RENDERED_CODES,
   ...PROTECTED_DRAW_RENDERED_CODES,
   ...ATTACK_HISTORY_RENDERED_CODES,
   ...NEXT_TEST_RENDERED_CODES,

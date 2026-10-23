@@ -43,6 +43,8 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  /** Completed actions, separately from action costs and actions in progress. */
+  completedActions?: { phase: Phase; round: number; count: number }
   /** Successful attacks completed by this investigator in the tagged round. */
   successfulAttacks?: { round: number; count: number }
   /** Sum of reductions reserved for this investigator's next test this phase. */
@@ -686,6 +688,7 @@ export type Message =
   | { type: 'InvestigatorFastWindow' }
   | { type: 'EndTurn'; investigator: InvestigatorId }
   | { type: 'TakeAction'; investigator: InvestigatorId; action: Action }
+  | { type: 'CompleteAction'; investigator: InvestigatorId; phase: Phase; round: number }
   | { type: 'PerformAction'; investigator: InvestigatorId; action: Action; entryPaid?: boolean }
   /** `basic`: la acción de recurso o el mantenimiento (no es el efecto de una carta). */
   | { type: 'GainResources'; investigator: InvestigatorId; amount: number; basic?: boolean }

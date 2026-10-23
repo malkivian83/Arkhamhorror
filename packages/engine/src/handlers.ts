@@ -781,6 +781,12 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'TakeAction': {
       const investigator = getInvestigator(state, message.investigator)
+      const complete: Message = {
+        type: 'CompleteAction',
+        investigator: investigator.id,
+        phase: state.phase,
+        round: state.round,
+      }
       // La acción adicional de evitar (Trish) se gasta antes que las normales.
       const useMove = !!investigator.extraMove && message.action.kind === 'move'
       const useExtra = !!investigator.extraEvade && isEvadeAction(message.action)
@@ -813,28 +819,59 @@ export function handle(state: GameState, message: Message): GameState {
       // RR, initiating abilities step 2 / attacks of opportunity: resource costs
       // are paid before enemies attack. Reactions cannot spend those resources twice.
       if (message.action.kind === 'play') {
-        return push(paid, {
-          type: 'PlayCard',
-          investigator: investigator.id,
-          code: message.action.card,
-          before: attacks,
-        })
+        return push(
+          paid,
+          {
+            type: 'PlayCard',
+            investigator: investigator.id,
+            code: message.action.card,
+            before: attacks,
+          },
+          complete,
+        )
       }
       if (message.action.kind === 'move') {
         if (!canAffordEntry(state, message.action.to))
           throw new EngineError('No hay pistas suficientes para entrar')
-        return push(paid, ...entryCosts(state, investigator.id, message.action.to), ...attacks, {
+        return push(
+          paid,
+          ...entryCosts(state, investigator.id, message.action.to),
+          ...attacks,
+          {
+            type: 'PerformAction',
+            investigator: investigator.id,
+            action: message.action,
+            entryPaid: true,
+          },
+          complete,
+        )
+      }
+      return push(
+        paid,
+        ...attacks,
+        {
           type: 'PerformAction',
           investigator: investigator.id,
           action: message.action,
-          entryPaid: true,
-        })
-      }
-      return push(paid, ...attacks, {
-        type: 'PerformAction',
-        investigator: investigator.id,
-        action: message.action,
-      })
+        },
+        complete,
+      )
+    }
+
+    case 'CompleteAction': {
+      if (message.phase !== state.phase || message.round !== state.round) return state
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        completedActions: {
+          phase: message.phase,
+          round: message.round,
+          count:
+            (i.completedActions?.phase === message.phase &&
+            i.completedActions.round === message.round
+              ? i.completedActions.count
+              : 0) + 1,
+        },
+      }))
     }
 
     case 'PerformAction': {
@@ -4155,6 +4192,17 @@ export function handle(state: GameState, message: Message): GameState {
     }
     case 'UseAbility': {
       const investigator = getInvestigator(state, message.investigator)
+      const complete: Message[] =
+        message.actions > 0
+          ? [
+              {
+                type: 'CompleteAction',
+                investigator: investigator.id,
+                phase: state.phase,
+                round: state.round,
+              },
+            ]
+          : []
       const watching = Object.values(state.assets).some(
         (a) => a.owner === investigator.id && playerCardBehavior(a.code)?.observesActionAbilities,
       )
@@ -4219,6 +4267,7 @@ export function handle(state: GameState, message: Message): GameState {
           },
           ...message.then,
           ...after,
+          ...complete,
         )
       const host = Object.values(state.assets).find((a) => message.key.startsWith(`${a.id}:`))
       return push(
@@ -4229,6 +4278,7 @@ export function handle(state: GameState, message: Message): GameState {
         ...message.then,
         ...(host ? [{ type: 'EndAssetAbility' as const, asset: host.id }] : []),
         ...after,
+        ...complete,
       )
     }
 
