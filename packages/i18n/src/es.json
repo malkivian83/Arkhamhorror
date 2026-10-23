@@ -1675,6 +1675,8 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "04036": "Gambito.",
+      "11093": "Gambito.",
       "09030": "Experimentado.",
       "11088": "Innato.",
       "60268": "Experimentado.",
@@ -1816,6 +1818,8 @@
       "09062": "Talento. Truco. Ilegal."
     },
     "summary": {
+      "04036": "Sólo puedes asignar esta carta a una prueba de habilidad que no tenga otras cartas asignadas a ella. No se pueden asignar otras cartas a esta prueba de habilidad.\nÚltima oportunidad pierde [wild] por cada carta que tengas en la mano.",
+      "11093": "Sólo puedes asignar esta carta a una prueba de habilidad que no tenga otras cartas asignadas a ella. No se pueden asignar otras cartas a esta prueba de habilidad.\nÚltima oportunidad pierde [wild] por cada carta que tengas en la mano. Si esta prueba tiene éxito mientras Última oportunidad esté asignada a ella, roba 2 cartas.",
       "09030": "Asigna esta carta sólo a una prueba de habilidad durante un ataque o intento de evitar.\n Puedes asignar esta habilidad a la prueba de un investigador que esté en cualquier Lugar.",
       "11088": "Puedes asignar Contemplativo a una investigación o a una prueba de habilidad durante un intento de negociar en tu Lugar o en un Lugar conectado.\nSi esta prueba tiene éxito, el investigador que la realiza descubre 1 pista en su Lugar.",
       "60268": "Si esta prueba de habilidad tiene éxito, el investigador que la esté realizando busca un Evento [[Inspiración]] entre las 6 primeras cartas de su mazo, lo roba y baraja su mazo.",
@@ -2318,6 +2322,8 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "04036": "Última oportunidad",
+      "11093": "Última oportunidad",
       "09030": "Lecciones de combate",
       "11088": "Contemplativo",
       "60268": "Establecer un motivo",

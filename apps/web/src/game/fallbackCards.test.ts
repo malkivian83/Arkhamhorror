@@ -11,6 +11,22 @@ import { localizedCards, useCardLocale } from './localized'
 
 afterEach(() => vi.unstubAllGlobals())
 describe('recursos de cartas sin red', () => {
+  it.each(['04036', '11093'])(
+    '%s presents official EN/ES rules and the correct upgraded icons',
+    (code) => {
+      for (const locale of ['en', 'es']) {
+        const card = fallbackCards(locale).find((c) => c.code === code)!
+        expect(card.name).toBe(locale === 'es' ? 'Última oportunidad' : 'Last Chance')
+        expect(card.skill_wild).toBe(code === '04036' ? 5 : 6)
+        expect(card.xp).toBe(code === '04036' ? 0 : 3)
+        expect(card.text).toContain('[wild]')
+        expect(card.text).toContain(locale === 'es' ? 'otras cartas' : 'Other cards')
+        expect(cardImages(code, false, locale)[0]).toBe(
+          '/local-assets/cards/' + locale + '/' + code + '.avif',
+        )
+      }
+    },
+  )
   it.each(['09030', '11088', '60268', '60269'])(
     '%s has official EN/ES names, rules and local scans',
     (code) => {

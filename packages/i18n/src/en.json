@@ -1675,6 +1675,8 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "04036": "Gambit.",
+      "11093": "Gambit.",
       "09030": "Practiced.",
       "11088": "Innate.",
       "60268": "Practiced.",
@@ -1816,6 +1818,8 @@
       "09062": "Talent. Trick. Illicit."
     },
     "summary": {
+      "04036": "Commit only to a skill test with no other cards committed to it. Other cards cannot be committed to this skill test.\nLast Chance loses [wild] for each card in your hand.",
+      "11093": "Commit only to a skill test with no other cards committed to it. Other cards cannot be committed to this skill test.\nLast Chance loses [wild] for each card in your hand. If this test is successful while Last Chance is committed to it, draw 2 cards.",
       "09030": "Commit only to a skill test during an attack or evasion attempt.\nYou can commit this skill to an investigator's test at any location.",
       "11088": "You may commit Contemplative to an investigation or skill test during a parley attempt at your location or a connecting location.\nIf this test is successful, the performing investigator discovers 1 clue at their location.",
       "60268": "If this skill test is successful, the performing investigator searches the top 6 cards of their deck for an [[Insight]] event, draws it, and shuffles their deck.",
@@ -2318,6 +2322,8 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "04036": "Last Chance",
+      "11093": "Last Chance",
       "09030": "Fighting Lessons",
       "11088": "Contemplative",
       "60268": "Establish Motive",

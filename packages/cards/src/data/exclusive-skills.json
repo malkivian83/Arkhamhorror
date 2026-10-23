@@ -1,0 +1,22 @@
+[
+  {
+    "code": "04036",
+    "name": "Last Chance",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Gambit"],
+    "xp": 0,
+    "icons": { "wild": 5 },
+    "slots": []
+  },
+  {
+    "code": "11093",
+    "name": "Last Chance",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Gambit"],
+    "xp": 3,
+    "icons": { "wild": 6 },
+    "slots": []
+  }
+]

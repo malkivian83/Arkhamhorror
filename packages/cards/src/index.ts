@@ -172,8 +172,10 @@ import { SKILL_TRICK_RENDERED_CODES } from './skill-tricks'
 import { DIRECT_EFFECT_RENDERED_CODES } from './direct-effects'
 import { ROUND_EFFECT_RENDERED_CODES } from './round-effects'
 import { SKILL_REPLACEMENT_RENDERED_CODES } from './skill-replacement'
+import { EXCLUSIVE_SKILL_RENDERED_CODES } from './exclusive-skills'
 import { SKILL_UTILITY_RENDERED_CODES } from './skill-utilities'
 export const RENDERED_PLAYER_CARD_CODES = [
+  ...EXCLUSIVE_SKILL_RENDERED_CODES,
   ...SKILL_UTILITY_RENDERED_CODES,
   ...SKILL_REPLACEMENT_RENDERED_CODES,
   ...ROUND_EFFECT_RENDERED_CODES,
