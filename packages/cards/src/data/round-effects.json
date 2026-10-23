@@ -1,0 +1,14 @@
+[
+  {
+    "code": "03155",
+    "name": "Fight or Flight",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spirit"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "fast": true
+  }
+]

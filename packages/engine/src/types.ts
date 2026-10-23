@@ -43,6 +43,13 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  /** Round-lasting bonuses; horror is evaluated when calculating the test. */
+  roundSkillBonuses?: {
+    skill: SkillType
+    amount: number | 'horror'
+    code: CardCode
+    round: number
+  }[]
   /** Bonuses with a phase boundary; printed skills remain unchanged. */
   phaseSkillBonuses?: {
     skill: SkillType
@@ -602,6 +609,13 @@ export type PhaseStep =
 
 /** Todo lo que puede ocurrir en la partida. */
 export type Message =
+  | {
+      type: 'RoundSkillBonus'
+      investigator: InvestigatorId
+      skill: SkillType
+      amount: number | 'horror'
+      code: CardCode
+    }
   | {
       type: 'PhaseSkillBonus'
       investigator: InvestigatorId

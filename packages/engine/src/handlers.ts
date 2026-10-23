@@ -4463,6 +4463,15 @@ export function handle(state: GameState, message: Message): GameState {
       )
     }
 
+    case 'RoundSkillBonus':
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        roundSkillBonuses: [
+          ...(i.roundSkillBonuses ?? []).filter((b) => b.round === state.round),
+          { skill: message.skill, amount: message.amount, code: message.code, round: state.round },
+        ],
+      }))
+
     case 'PhaseSkillBonus':
       return updateInvestigator(state, message.investigator, (i) => ({
         ...i,
@@ -6030,6 +6039,14 @@ export function skillTestValue(state: GameState): {
   const phaseSources = (investigator.phaseSkillBonuses ?? [])
     .filter((b) => b.phase === state.phase && b.round === state.round && b.skill === test.skill)
     .map((b) => ({ name: playerCardDef(b.code)?.name ?? b.code, amount: b.amount }))
+  phaseSources.push(
+    ...(investigator.roundSkillBonuses ?? [])
+      .filter((b) => b.round === state.round && b.skill === test.skill)
+      .map((b) => ({
+        name: playerCardDef(b.code)?.name ?? b.code,
+        amount: b.amount === 'horror' ? investigator.horror : b.amount,
+      })),
+  )
   const phaseBonus = phaseSources.reduce((sum, b) => sum + b.amount, 0)
   const sources = [
     ...phaseSources,
