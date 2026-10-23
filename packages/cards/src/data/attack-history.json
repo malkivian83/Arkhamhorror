@@ -1,0 +1,13 @@
+[
+  {
+    "code": "11025",
+    "name": "Hardboiled",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "combat": 1, "wild": 1 },
+    "slots": [],
+    "commitLimit": 1
+  }
+]

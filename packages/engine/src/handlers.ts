@@ -3047,6 +3047,16 @@ export function handle(state: GameState, message: Message): GameState {
       const test = state.skillTest
       const tokens = [...(test?.tokens ?? []), ...(test?.ignoredTokens ?? [])]
       let next: GameState = { ...state, skillTest: null, chaosBag: [...state.chaosBag, ...tokens] }
+      // RR Skill Tests ST.8: one attack, even if its results resolved twice.
+      // Record after completion so a committed Hardboiled cannot count itself.
+      if (test?.kind.type === 'fight' && test.succeeded)
+        next = updateInvestigator(next, test.investigator, (i) => ({
+          ...i,
+          successfulAttacks: {
+            round: state.round,
+            count: (i.successfulAttacks?.round === state.round ? i.successfulAttacks.count : 0) + 1,
+          },
+        }))
       // Iron Sights: the bonus is used by the next fight with that asset, success or not.
       const primed =
         test?.kind.type === 'fight' && test.source ? next.assets[test.source] : undefined
