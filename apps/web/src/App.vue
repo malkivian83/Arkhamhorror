@@ -6,6 +6,7 @@ import { useRoute, useRouter } from 'vue-router'
 import PlaymatPicker from './components/PlaymatPicker.vue'
 import SaveGame from './components/SaveGame.vue'
 import SiteHeader from './components/SiteHeader.vue'
+import AnalyticsConsent from './components/AnalyticsConsent.vue'
 import { scanLocale } from './game/cards'
 import { useCardLocale } from './game/localized'
 import './game/playmats'
@@ -142,6 +143,7 @@ function setLocale(value: Locale) {
     </div>
     <RouterView />
   </main>
+  <AnalyticsConsent />
 </template>
 
 <style>
