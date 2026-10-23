@@ -14,6 +14,7 @@ vi.mock('./game', () => ({
     retry: ref(null),
     refresh: vi.fn(),
     choose: vi.fn(),
+    progress: vi.fn(),
     resend: vi.fn(),
     reset: vi.fn(),
   }),

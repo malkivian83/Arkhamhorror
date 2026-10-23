@@ -1,12 +1,17 @@
 import { ref } from 'vue'
-import type { OnlineCommand, OnlineGame } from '@lcg/shared'
+import type {
+  OnlineCommand,
+  OnlineGame,
+  OnlineProgressCommand,
+  OnlineProgressAction,
+} from '@lcg/shared'
 import { api, ApiError } from '../account/api'
 
 export function gameClient(room: string, request: typeof api = api) {
   const state = ref<OnlineGame | null>(null),
     busy = ref(false),
     error = ref('')
-  const retry = ref<OnlineCommand | null>(null)
+  const retry = ref<OnlineCommand | OnlineProgressCommand | null>(null)
   let generation = 0
   function reset() {
     generation++
@@ -15,13 +20,13 @@ export function gameClient(room: string, request: typeof api = api) {
     retry.value = null
     error.value = ''
   }
-  async function send(command?: OnlineCommand) {
+  async function send(command?: OnlineCommand | OnlineProgressCommand) {
     if (busy.value) return
     const epoch = generation
     busy.value = true
     try {
       const result = await request<OnlineGame>(
-        `/online/lobbies/${room}/game${command ? '/decisions' : ''}`,
+        `/online/lobbies/${room}/game${command ? ('action' in command ? '/progress' : '/decisions') : ''}`,
         command ? 'POST' : 'GET',
         command,
       )
@@ -48,6 +53,11 @@ export function gameClient(room: string, request: typeof api = api) {
     }
     await send(retry.value)
   }
+  async function progress(action: OnlineProgressAction) {
+    if (busy.value || retry.value || !state.value) return
+    retry.value = { ...action, commandId: crypto.randomUUID(), revision: state.value.revision }
+    await send(retry.value)
+  }
   return {
     state,
     busy,
@@ -56,6 +66,7 @@ export function gameClient(room: string, request: typeof api = api) {
     reset,
     refresh: () => send(),
     choose,
+    progress,
     resend: () => (retry.value ? send(retry.value) : Promise.resolve()),
   }
 }

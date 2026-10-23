@@ -6,11 +6,14 @@ import { useLabels } from '../game/labels'
 import { cardName } from '../game/cards'
 import GameCard from './GameCard.vue'
 import { scenarioReference } from '../game/scenarioReference'
+import OnlineCampaign from './OnlineCampaign.vue'
 
 const props = defineProps<{ room: string }>()
 const { t, te } = useI18n(),
   label = useLabels()
-const { state, busy, error, retry, refresh, choose, resend, reset } = gameClient(props.room)
+const { state, busy, error, retry, refresh, choose, progress, resend, reset } = gameClient(
+  props.room,
+)
 let active = true
 let timer: ReturnType<typeof setTimeout> | undefined
 async function poll() {
@@ -47,6 +50,19 @@ onBeforeUnmount(() => {
         }}
       </p>
       <p v-if="state.finished" role="status">{{ t('online.play.finished') }}</p>
+      <button
+        v-if="state.canFinish"
+        :disabled="busy || !!retry"
+        @click="progress({ action: 'finish' })"
+      >
+        {{ t('online.campaignPlay.finish') }}
+      </button>
+      <OnlineCampaign
+        v-if="state.campaign"
+        :campaign="state.campaign"
+        :disabled="busy || !!retry"
+        @action="progress"
+      />
       <p v-if="state.test">
         {{
           t('online.play.test', {

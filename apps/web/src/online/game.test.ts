@@ -81,3 +81,21 @@ it('does not send decisions while waiting for another investigator', async () =>
   await client.choose(0)
   expect(request).toHaveBeenCalledTimes(1)
 })
+it('uses campaign endpoint and preserves a purchase identifier after lost acknowledgement', async () => {
+  const request = vi
+    .fn()
+    .mockResolvedValueOnce(view)
+    .mockRejectedValueOnce(new ApiError('network', 0))
+    .mockResolvedValueOnce({ ...view, revision: 4 })
+  const client = gameClient('table', request as typeof api)
+  await client.refresh()
+  await client.progress({ action: 'purchase', card: '01030', upgrade: false, remove: '01039' })
+  const command = { ...request.mock.calls[1]![2] }
+  expect(request.mock.calls[1]![0]).toBe('/online/lobbies/table/game/progress')
+  expect(command).toMatchObject({ action: 'purchase', revision: 3, card: '01030', remove: '01039' })
+  await client.progress({ action: 'next' })
+  expect(request).toHaveBeenCalledTimes(2)
+  await client.resend()
+  expect(request.mock.calls[2]![2]).toEqual(command)
+  expect(client.state.value?.revision).toBe(4)
+})

@@ -2993,7 +2993,13 @@
       "stale_question": "La pregunta ha cambiado. Actualiza la mesa.",
       "invalid_choice": "La opción ya no es válida.",
       "command_conflict": "Este identificador ya corresponde a otra decisión.",
-      "not_started": "La partida todavía no ha empezado."
+      "not_started": "La partida todavía no ha empezado.",
+      "scenario_not_finished": "El escenario no ha terminado.",
+      "already_finished": "El resultado ya está registrado.",
+      "not_intermission": "Primero registra el resultado del escenario.",
+      "campaign_cannot_continue": "La campaña no tiene un siguiente escenario disponible.",
+      "inactive_investigator": "Este investigador no puede continuar.",
+      "invalid_purchase": "La mejora no es válida: revisa la experiencia, la carta y la sustitución."
     },
     "play": {
       "title": "Mesa compartida",
@@ -3008,6 +3014,22 @@
       "investigator": "Lugar: {location} · Recursos: {resources} · Pistas: {clues} · Daño: {damage} · Horror: {horror} · Acciones: {actionsRemaining} · Mano: {handCount} · Mazo: {deckCount}",
       "eliminated": "Investigador eliminado del escenario.",
       "test": "Prueba de {skill} · Dificultad: {difficulty} · Valor: {value} · Fichas: {tokens}"
+    },
+    "campaignPlay": {
+      "title": "Entre escenarios",
+      "finish": "Registrar resultado y experiencia",
+      "next": "Siguiente escenario: {scenario}",
+      "ended": "No hay otro escenario jugable con los investigadores actuales.",
+      "member": "{investigator} · XP: {xp} · Trauma físico: {physicalTrauma} · Trauma mental: {mentalTrauma}",
+      "inactive": "No puede continuar",
+      "upgrade": "Mejorar mi mazo",
+      "search": "Buscar carta",
+      "card": "Carta y coste de experiencia",
+      "replaces": "(mejora de {card})",
+      "remove": "Carta que sale del mazo",
+      "buy": "Comprar mejora",
+      "start": "Iniciar siguiente escenario",
+      "chooseCard": "Selecciona una carta"
     }
   },
   "chaosHelp": {

@@ -1,5 +1,12 @@
 import type { OnlineGame } from '@lcg/shared'
 import type { Lobby } from './lobbies'
+import {
+  activeMembers,
+  canPlayNext,
+  currentScenario,
+  purchaseOptions,
+  removableCards,
+} from '@lcg/cards'
 
 /** Allowlist projection: adding an engine field can never disclose it accidentally. */
 export function gameView(lobby: Lobby, user: string): OnlineGame {
@@ -7,6 +14,14 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
   const mine = lobby.decks?.[user]?.investigator
   const pending = g.pending
   const canDecide = pending?.investigator === mine
+  const campaign = lobby.campaign
+  const active = campaign ? activeMembers(campaign).map((i) => i.id) : []
+  const ready = (investigator: string) =>
+    lobby.members.some(
+      (user) =>
+        lobby.decks?.[user]?.investigator === investigator && lobby.campaignReady?.includes(user),
+    )
+  const own = campaign?.investigators.find((i) => i.id === mine && active.includes(i.id))
   const cards: OnlineGame['cards'] = []
   const agenda = g.agendas[g.agendaIndex],
     act = g.acts[g.actIndex]
@@ -59,6 +74,44 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
   for (const [code] of Object.entries(g.stories ?? {}))
     cards.push({ id: `story:${code}`, code, name: code, detail: 'online.play.card', params: {} })
   return {
+    canFinish: !!g.outcome && !lobby.intermission && lobby.owner === user,
+    ...(lobby.intermission && campaign
+      ? {
+          campaign: {
+            canManage: lobby.owner === user,
+            nextScenario: currentScenario(campaign),
+            canContinue: canPlayNext(campaign),
+            ready: !!mine && ready(mine),
+            allReady: active.length > 0 && active.every(ready),
+            members: campaign.investigators.map((i) => {
+              const record = campaign.log.investigators[i.id]!
+              return {
+                investigator: i.id,
+                xp: record.xp,
+                physicalTrauma: record.physicalTrauma,
+                mentalTrauma: record.mentalTrauma,
+                active: active.includes(i.id),
+                ready: ready(i.id),
+              }
+            }),
+            own: own
+              ? {
+                  deck: [...own.deck],
+                  removable: removableCards(campaign, own.id),
+                  options: canPlayNext(campaign)
+                    ? purchaseOptions(campaign, own.id).map((o) => ({
+                        code: o.code,
+                        name: o.name,
+                        cost: o.cost,
+                        needsRemoval: o.needsRemoval,
+                        ...(o.replaces ? { replaces: o.replaces } : {}),
+                      }))
+                    : [],
+                }
+              : null,
+          },
+        }
+      : {}),
     revision: lobby.revision,
     scenarioId: g.scenarioId,
     difficulty: g.difficulty,

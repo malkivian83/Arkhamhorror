@@ -5,6 +5,7 @@ import { ApiError } from '../accounts/security'
 import { LobbyService, onlineLobbies, type Lobby } from './lobbies'
 import { randomUUID } from 'node:crypto'
 import { starterDeck, starterInvestigator } from '@lcg/cards'
+import type { OnlineProgressAction } from '@lcg/shared'
 
 const deck = (key: 'joe' | 'daniela') => ({
   investigator: starterInvestigator(key).id,
@@ -58,6 +59,295 @@ describe('private online lobbies', () => {
     await service.start(lobby.id, 'host', lobby.revision)
     return { service, db, data, id: lobby.id }
   }
+  const progressCommand = (revision: number, action: OnlineProgressAction) => ({
+    ...action,
+    revision,
+    commandId: randomUUID(),
+  })
+  async function ended() {
+    const fixture = await active()
+    const lobby = JSON.parse(fixture.data.get(fixture.id)!) as Lobby
+    // The transport starts with the engine's completed resolution, including awards/trauma.
+    lobby.game!.outcome = { type: 'resolution', resolution: 1 }
+    lobby.game!.pending = null
+    lobby.game!.queue = []
+    lobby.game!.campaignLog = structuredClone(lobby.campaign!.log)
+    for (const record of Object.values(lobby.game!.campaignLog.investigators)) {
+      record.xp += 5
+      record.physicalTrauma = 1
+    }
+    fixture.data.set(fixture.id, JSON.stringify(lobby))
+    return { ...fixture, revision: lobby.revision }
+  }
+  it('records outcomes once, buys only the authenticated player deck and starts the next shared scenario', async () => {
+    const { service, db, data, id, revision } = await ended()
+    const finish = progressCommand(revision, { action: 'finish' })
+    await expect(service.progress(id, 'friend', finish)).rejects.toMatchObject({
+      code: 'not_owner',
+    })
+    const [first, duplicate] = await Promise.all([
+      service.progress(id, 'host', finish),
+      service.progress(id, 'host', finish),
+    ])
+    expect(duplicate).toEqual(first)
+    expect(first.campaign!.nextScenario).toBe('smoke-and-mirrors')
+    expect(first.campaign!.members.every((m) => m.xp === 5 && m.physicalTrauma === 1)).toBe(true)
+    expect(first.campaign!.own!.deck).toEqual(deck('joe').cards)
+    expect((await service.game(id, 'friend')).campaign!.own!.deck).toEqual(deck('daniela').cards)
+    expect((JSON.parse(data.get(id)!) as Lobby).campaign!.results).toHaveLength(1)
+    let view = await service.progress(
+      id,
+      'host',
+      progressCommand(first.revision, { action: 'ready', ready: true }),
+    )
+    const option =
+      view.campaign!.own!.options.find((o) => o.replaces) ?? view.campaign!.own!.options[0]!
+    const remove = option.needsRemoval ? view.campaign!.own!.removable[0] : option.replaces
+    const buy = progressCommand(view.revision, {
+      action: 'purchase',
+      card: option.code,
+      upgrade: !!option.replaces,
+      ...(option.needsRemoval ? { remove: remove! } : {}),
+    })
+    view = await service.progress(id, 'host', buy)
+    expect(view.campaign!.ready).toBe(false)
+    expect(view.campaign!.members[0]!.xp).toBe(5 - option.cost)
+    expect(view.campaign!.members[1]!.xp).toBe(5)
+    const expected = [...deck('joe').cards]
+    if (remove) expected.splice(expected.indexOf(remove), 1)
+    expected.push(option.code)
+    expect(view.campaign!.own!.deck).toEqual(expected)
+    expect(await new LobbyService(db).progress(id, 'host', buy)).toEqual(view)
+    await expect(
+      service.progress(id, 'host', progressCommand(view.revision, { action: 'next' })),
+    ).rejects.toMatchObject({ code: 'not_ready' })
+    view = await service.progress(
+      id,
+      'host',
+      progressCommand(view.revision, { action: 'ready', ready: true }),
+    )
+    view = await service.progress(
+      id,
+      'friend',
+      progressCommand(view.revision, { action: 'ready', ready: true }),
+    )
+    expect(view.campaign!.allReady).toBe(true)
+    await expect(
+      service.progress(id, 'friend', progressCommand(view.revision, { action: 'next' })),
+    ).rejects.toMatchObject({ code: 'not_owner' })
+    const next = progressCommand(view.revision, { action: 'next' })
+    const [a, b] = await Promise.all([
+      service.progress(id, 'host', next),
+      service.progress(id, 'host', next),
+    ])
+    expect(a).toEqual(b)
+    expect(a.scenarioId).toBe('smoke-and-mirrors')
+    expect(a.finished).toBe(false)
+    expect(a.campaign).toBeUndefined()
+    expect(a.investigators.every((i) => i.damage === 1)).toBe(true)
+    expect(await new LobbyService(db).game(id, 'host')).toEqual(a)
+    expect((JSON.parse(data.get(id)!) as Lobby).campaign!.investigators[0]!.deck).toEqual(expected)
+    // An old acknowledged purchase cannot spend XP in the new scenario.
+    expect(await service.progress(id, 'host', buy)).toEqual(a)
+  })
+  it('rejects early, invalid, stale and conflicting campaign commands without changing the game', async () => {
+    const { service, id, data, revision } = await ended()
+    await expect(
+      service.progress(id, 'outsider', progressCommand(revision, { action: 'finish' })),
+    ).rejects.toMatchObject({ code: 'not_member' })
+    await expect(
+      service.progress(id, 'host', progressCommand(revision, { action: 'ready', ready: true })),
+    ).rejects.toMatchObject({ code: 'not_intermission' })
+    const finish = progressCommand(revision, { action: 'finish' })
+    const view = await service.progress(id, 'host', finish)
+    await expect(service.progress(id, 'host', { ...finish, action: 'next' })).rejects.toMatchObject(
+      { code: 'command_conflict' },
+    )
+    await expect(
+      service.progress(id, 'host', progressCommand(view.revision, { action: 'finish' })),
+    ).rejects.toMatchObject({ code: 'already_finished' })
+    const before = data.get(id)
+    for (const card of ['missing', '12004']) {
+      await expect(
+        service.progress(
+          id,
+          'host',
+          progressCommand(view.revision, { action: 'purchase', card, upgrade: false }),
+        ),
+      ).rejects.toMatchObject({ code: 'invalid_purchase' })
+    }
+    expect(data.get(id)).toBe(before)
+    const outcomes = await Promise.allSettled(
+      ['host', 'friend'].map((user) =>
+        service.progress(
+          id,
+          user,
+          progressCommand(view.revision, { action: 'ready', ready: true }),
+        ),
+      ),
+    )
+    expect(outcomes.filter((o) => o.status === 'fulfilled')).toHaveLength(1)
+    expect(outcomes.find((o) => o.status === 'rejected')).toMatchObject({
+      reason: { code: 'stale_revision' },
+    })
+    const running = await active()
+    const runningView = await running.service.game(running.id, 'host')
+    await expect(
+      running.service.progress(
+        running.id,
+        'host',
+        progressCommand(runningView.revision, { action: 'finish' }),
+      ),
+    ).rejects.toMatchObject({ code: 'scenario_not_finished' })
+  })
+  it('requires readiness only from survivors and prevents eliminated players from buying', async () => {
+    const { service, id, data, revision } = await ended()
+    const lobby = JSON.parse(data.get(id)!) as Lobby
+    lobby.game!.campaignLog!.investigators[deck('daniela').investigator]!.killed = true
+    data.set(id, JSON.stringify(lobby))
+    let view = await service.progress(id, 'host', progressCommand(revision, { action: 'finish' }))
+    expect((await service.game(id, 'friend')).campaign!.own).toBeNull()
+    await expect(
+      service.progress(
+        id,
+        'friend',
+        progressCommand(view.revision, { action: 'ready', ready: true }),
+      ),
+    ).rejects.toMatchObject({ code: 'inactive_investigator' })
+    await expect(
+      service.progress(
+        id,
+        'friend',
+        progressCommand(view.revision, { action: 'purchase', card: '01030', upgrade: false }),
+      ),
+    ).rejects.toMatchObject({ code: 'inactive_investigator' })
+    view = await service.progress(
+      id,
+      'host',
+      progressCommand(view.revision, { action: 'ready', ready: true }),
+    )
+    expect(view.campaign!.allReady).toBe(true)
+    view = await service.progress(id, 'host', progressCommand(view.revision, { action: 'next' }))
+    expect(view.investigators.map((i) => i.id)).toEqual([deck('joe').investigator])
+  })
+  it('checks replacement requirements and available XP at purchase time', async () => {
+    const { service, data, id, revision } = await ended()
+    const view = await service.progress(id, 'host', progressCommand(revision, { action: 'finish' }))
+    const option = view.campaign!.own!.options.find((o) => o.needsRemoval)!
+    expect(option).toBeDefined()
+    const invalid = progressCommand(view.revision, {
+      action: 'purchase',
+      card: option.code,
+      upgrade: false,
+    })
+    await expect(service.progress(id, 'host', invalid)).rejects.toMatchObject({
+      code: 'invalid_purchase',
+    })
+    await expect(
+      service.progress(id, 'host', {
+        ...invalid,
+        action: 'purchase',
+        card: option.code,
+        upgrade: false,
+        remove: 'missing',
+      }),
+    ).rejects.toMatchObject({ code: 'invalid_purchase' })
+    const lobby = JSON.parse(data.get(id)!) as Lobby
+    lobby.campaign!.log.investigators[deck('joe').investigator]!.xp = 0
+    data.set(id, JSON.stringify(lobby))
+    const before = data.get(id)
+    await expect(
+      service.progress(
+        id,
+        'host',
+        progressCommand(view.revision, {
+          action: 'purchase',
+          card: option.code,
+          upgrade: false,
+          remove: view.campaign!.own!.removable[0]!,
+        }),
+      ),
+    ).rejects.toMatchObject({ code: 'invalid_purchase' })
+    expect(data.get(id)).toBe(before)
+  })
+  it('exposes campaign progress through authenticated HTTP and rejects malformed purchases', async () => {
+    const { db, id, revision } = await ended()
+    const app = Fastify()
+    app.setErrorHandler((error, _req, reply) =>
+      reply.code(error instanceof ApiError ? error.statusCode : 400).send({}),
+    )
+    onlineLobbies(app, db, {
+      requireUser: async (req) => ({
+        id: String(req.headers['test-user']),
+        name: 'Test',
+        email: 'test@example.test',
+        verified: 1,
+        locale: 'es',
+      }),
+    })
+    const post = (user: string, payload: object) =>
+      app.inject({
+        method: 'POST',
+        url: `/api/online/lobbies/${id}/game/progress`,
+        headers: { 'test-user': user },
+        payload,
+      })
+    try {
+      expect(
+        (await post('host', { commandId: randomUUID(), revision, action: 'purchase' })).statusCode,
+      ).toBe(400)
+      expect(
+        (await post('host', { commandId: randomUUID(), revision, action: 'ready' })).statusCode,
+      ).toBe(400)
+      const finish = progressCommand(revision, { action: 'finish' })
+      expect((await post('outsider', finish)).statusCode).toBe(403)
+      const response = await post('host', finish)
+      expect(response.statusCode).toBe(200)
+      const view = response.json()
+      expect(view.campaign.own.deck).toEqual(deck('joe').cards)
+      const ready = await post('friend', {
+        ...progressCommand(view.revision, { action: 'ready', ready: true }),
+        investigator: deck('joe').investigator,
+      })
+      expect(ready.statusCode).toBe(200)
+      expect(ready.json().campaign.members[0].ready).toBe(false)
+      expect(ready.json().campaign.members[1].ready).toBe(true)
+      expect(ready.json().campaign.own.deck).toEqual(deck('daniela').cards)
+    } finally {
+      await app.close()
+    }
+  })
+  it('blocks further scenarios at campaign end and preserves replay outcomes without advancing twice', async () => {
+    const fixture = await ended()
+    const lobby = JSON.parse(fixture.data.get(fixture.id)!) as Lobby
+    lobby.campaign!.scenarioIndex = 2
+    lobby.game!.scenarioId = 'queen-of-ash'
+    fixture.data.set(fixture.id, JSON.stringify(lobby))
+    const final = await fixture.service.progress(
+      fixture.id,
+      'host',
+      progressCommand(fixture.revision, { action: 'finish' }),
+    )
+    expect(final.campaign!.canContinue).toBe(false)
+    await expect(
+      fixture.service.progress(
+        fixture.id,
+        'host',
+        progressCommand(final.revision, { action: 'next' }),
+      ),
+    ).rejects.toMatchObject({ code: 'campaign_cannot_continue' })
+    const replay = await ended()
+    const replayLobby = JSON.parse(replay.data.get(replay.id)!) as Lobby
+    replayLobby.game!.scenarioMeta = { replay: 1 }
+    replay.data.set(replay.id, JSON.stringify(replayLobby))
+    const result = await replay.service.progress(
+      replay.id,
+      'host',
+      progressCommand(replay.revision, { action: 'finish' }),
+    )
+    expect(result.campaign!.nextScenario).toBe('spreading-flames')
+    expect((JSON.parse(replay.data.get(replay.id)!) as Lobby).campaign!.results).toHaveLength(0)
+  })
   it('projects only the current player hand and decision, never messages or hidden piles', async () => {
     const { service, id } = await active()
     const host = await service.game(id, 'host'),

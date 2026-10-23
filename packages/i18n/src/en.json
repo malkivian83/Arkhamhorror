@@ -2993,7 +2993,13 @@
       "stale_question": "The question changed. Refresh the table.",
       "invalid_choice": "This choice is not valid.",
       "command_conflict": "This identifier belongs to a different decision.",
-      "not_started": "The game has not started yet."
+      "not_started": "The game has not started yet.",
+      "scenario_not_finished": "The scenario has not ended.",
+      "already_finished": "The outcome has already been recorded.",
+      "not_intermission": "Record the scenario outcome first.",
+      "campaign_cannot_continue": "No next scenario is available.",
+      "inactive_investigator": "This investigator cannot continue.",
+      "invalid_purchase": "Invalid upgrade: check experience, card and replacement."
     },
     "play": {
       "title": "Shared table",
@@ -3008,6 +3014,22 @@
       "investigator": "Location: {location} · Resources: {resources} · Clues: {clues} · Damage: {damage} · Horror: {horror} · Actions: {actionsRemaining} · Hand: {handCount} · Deck: {deckCount}",
       "eliminated": "Investigator eliminated from the scenario.",
       "test": "{skill} test · Difficulty: {difficulty} · Value: {value} · Tokens: {tokens}"
+    },
+    "campaignPlay": {
+      "title": "Between scenarios",
+      "finish": "Record outcome and experience",
+      "next": "Next scenario: {scenario}",
+      "ended": "No further scenario is playable with the current investigators.",
+      "member": "{investigator} · XP: {xp} · Physical trauma: {physicalTrauma} · Mental trauma: {mentalTrauma}",
+      "inactive": "Cannot continue",
+      "upgrade": "Upgrade my deck",
+      "search": "Search cards",
+      "card": "Card and experience cost",
+      "replaces": "(upgrade from {card})",
+      "remove": "Card to remove from the deck",
+      "buy": "Purchase upgrade",
+      "start": "Start next scenario",
+      "chooseCard": "Select a card"
     }
   },
   "chaosHelp": {
