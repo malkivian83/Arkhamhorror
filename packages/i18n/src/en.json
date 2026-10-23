@@ -206,6 +206,7 @@
       "solutionMeddler": "Remove 2 clues from the Sinister Solution?"
     },
     "chooseSpawnLocation": "Where does {enemy} spawn?",
+    "fastCard": "Play this fast card or pass.",
     "investigatorFast": "Free triggered ability window",
     "playerRevelationOrder": "Choose the next player-card revelation to resolve",
     "immediateAction": "Take one action as if it were your turn",
@@ -450,6 +451,7 @@
     "returnFromDiscard": "Hunter's Instinct: recover {target}",
     "jumpsuit": "Discard Jumpsuit: recover {card}",
     "revealToDraw": "Reveal {card}: draw {n} cards",
+    "playFastFor": "{name}: play {card}",
     "playCard": "Play {card}",
     "necronomicon": "Willpower test (5) to discard The Necronomicon",
     "searchTop": "{card}: search the top {n} cards of your deck",
@@ -1675,6 +1677,8 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "08077": "Innate. Synergy.",
+      "08050": "Trick. Synergy.",
       "03191": "Insight.",
       "52003": "Insight.",
       "04036": "Gambit.",
@@ -1820,6 +1824,8 @@
       "09062": "Talent. Trick. Illicit."
     },
     "summary": {
+      "08077": "Strength in Numbers gains a [wild] icon for each different class among cards you control.",
+      "08050": "Fast. Play during any [fast] window.\nGain 1 resource for each different class among cards you control.",
       "03191": "Play only if you have at least 1 clue.\nChoose an investigator at your location. That investigator either heals 2 horror or discards a [[Terror]] card from his or her threat area.",
       "52003": "For each clue you have (to a maximum of 3), either heal 2 horror from an investigator at your location or discard a [[Terror]] card at your location.",
       "04036": "Commit only to a skill test with no other cards committed to it. Other cards cannot be committed to this skill test.\nLast Chance loses [wild] for each card in your hand.",
@@ -2326,6 +2332,8 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "08077": "Strength in Numbers",
+      "08050": "Cheat the System",
       "03191": "Logical Reasoning",
       "52003": "Logical Reasoning",
       "04036": "Last Chance",

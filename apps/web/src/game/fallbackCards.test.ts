@@ -1,3 +1,4 @@
+import { messages } from '@lcg/i18n'
 import {
   playerCards,
   SPREADING_FLAMES_CODES,
@@ -11,6 +12,29 @@ import { localizedCards, useCardLocale } from './localized'
 
 afterEach(() => vi.unstubAllGlobals())
 describe('recursos de cartas sin red', () => {
+  it.each(['08050', '08077'])('%s presents Synergy with official EN/ES rules and scans', (code) => {
+    for (const locale of ['en', 'es'] as const) {
+      const card = fallbackCards(locale).find((c) => c.code === code)!
+      expect(card.name).toBe(
+        locale === 'es'
+          ? code === '08050'
+            ? 'Burlar el sistema'
+            : 'La unión hace la fuerza'
+          : code === '08050'
+            ? 'Cheat the System'
+            : 'Strength in Numbers',
+      )
+      expect(card.xp).toBe(1)
+      expect(card.traits).toContain(locale === 'es' ? 'Sinergia' : 'Synergy')
+      expect(card.text).toContain(locale === 'es' ? 'clase' : 'class')
+      expect(cardImages(code, false, locale)[0]).toBe(
+        '/local-assets/cards/' + locale + '/' + code + '.avif',
+      )
+      expect(messages[locale].ability.playFastFor).toContain('{name}')
+      expect(messages[locale].ability.playFastFor).toContain('{card}')
+      expect(messages[locale].prompt.fastCard.length).toBeGreaterThan(10)
+    }
+  })
   it.each(['03191', '52003'])(
     '%s presents Logical Reasoning in both languages with the correct level',
     (code) => {

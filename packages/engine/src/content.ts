@@ -285,6 +285,8 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Printed permission to play this fast event in any player window. */
+  playInAnyFastWindow?: boolean
   /** Asset fast abilities offered in every supported player window. */
   fastOptions?: (state: GameState, self: Asset) => ReactionOption[]
   /** Continuous additional actions, consumed before ordinary actions (Leo De Luca). */

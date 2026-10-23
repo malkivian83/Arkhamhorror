@@ -206,6 +206,7 @@
       "solutionMeddler": "¿Retiras 2 pistas de la Solución siniestra?"
     },
     "chooseSpawnLocation": "¿Dónde aparece {enemy}?",
+    "fastCard": "Juega esta carta rápida o pasa.",
     "investigatorFast": "Ventana de habilidades gratuitas",
     "playerRevelationOrder": "Elige la siguiente revelación de carta de jugador",
     "immediateAction": "Realiza una acción como si fuera tu turno",
@@ -450,6 +451,7 @@
     "returnFromDiscard": "Hunter's Instinct: recuperar {target}",
     "jumpsuit": "Descartar Jumpsuit: recuperar {card}",
     "revealToDraw": "Revelar {card}: robar {n} cartas",
+    "playFastFor": "{name}: jugar {card}",
     "playCard": "Jugar {card}",
     "necronomicon": "Prueba de Voluntad (5) para descartar The Necronomicon",
     "searchTop": "{card}: buscar entre las {n} primeras de tu mazo",
@@ -1675,6 +1677,8 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "08077": "Innato. Sinergia.",
+      "08050": "Truco. Sinergia.",
       "03191": "Inspiración.",
       "52003": "Inspiración.",
       "04036": "Gambito.",
@@ -1820,6 +1824,8 @@
       "09062": "Talento. Truco. Ilegal."
     },
     "summary": {
+      "08077": "La unión hace la fuerza obtiene un icono [wild] por cada clase distinta que haya entre las cartas que controlas.",
+      "08050": "Rápido. Juega esta carta durante cualquier oportunidad [free].\nObtén 1 recurso por cada clase distinta que haya entre las cartas que controlas.",
       "03191": "Juega esta carta sólo si tienes al menos 1 pista.\nElige un investigador que esté en tu Lugar. Ese investigador se cura 2 puntos de horror o bien descarta una carta de [[Terror]] de su zona de amenaza.",
       "52003": "Por cada pista que tengas (hasta un máximo de 3), cúrale 2 puntos de horror a un investigador que esté en tu Lugar o bien descarta una carta [[Terror]] que esté en tu Lugar.",
       "04036": "Sólo puedes asignar esta carta a una prueba de habilidad que no tenga otras cartas asignadas a ella. No se pueden asignar otras cartas a esta prueba de habilidad.\nÚltima oportunidad pierde [wild] por cada carta que tengas en la mano.",
@@ -2326,6 +2332,8 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "08077": "La unión hace la fuerza",
+      "08050": "Burlar el sistema",
       "03191": "Razonamiento lógico",
       "52003": "Razonamiento lógico",
       "04036": "Última oportunidad",

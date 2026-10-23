@@ -1,0 +1,24 @@
+[
+  {
+    "code": "08050",
+    "name": "Cheat the System",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick", "Synergy"],
+    "cost": 0,
+    "xp": 1,
+    "icons": { "intellect": 1, "agility": 1 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "08077",
+    "name": "Strength in Numbers",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate", "Synergy"],
+    "xp": 1,
+    "icons": { "wild": 1 },
+    "slots": []
+  }
+]

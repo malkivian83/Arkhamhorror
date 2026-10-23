@@ -1,6 +1,7 @@
 import './direct-effects'
 import './round-effects'
 import './skill-replacement'
+import './synergy'
 import './targeted-events'
 import './exclusive-skills'
 import './skill-utilities'

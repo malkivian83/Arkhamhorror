@@ -696,7 +696,7 @@ export function handle(state: GameState, message: Message): GameState {
         then: [{ type: 'PlayCard', investigator: id, code }, again],
       }))
       const abilities: Choice[] = [
-        ...fastInvestigatorOptions(state).map((o): Choice => ({
+        ...fastInvestigatorOptions(state, id).map((o): Choice => ({
           label: o.label,
           ...(o.params ? { params: o.params } : {}),
           then: [
@@ -5350,10 +5350,46 @@ function margin(state: GameState): number {
   return test ? (test.modifiedSkill ?? 0) - test.difficulty : 0
 }
 
-/** Habilidades rápidas que el investigador que hace la prueba puede usar antes de revelar. */
-function fastInvestigatorOptions(state: GameState): ReactionOption[] {
+/** Abilities and permitted fast events in supported player windows; skip duplicate own-hand plays. */
+function fastInvestigatorOptions(state: GameState, skipHandOf?: InvestigatorId): ReactionOption[] {
   const active = activeInvestigators(state)
   return [
+    ...active
+      .filter(
+        (i) =>
+          i.id !== skipHandOf &&
+          (!state.skillTest?.tags?.includes('peril') || i.id === state.skillTest.investigator),
+      )
+      .flatMap((i) =>
+        playableCards(state, i.id, true)
+          .filter((code) => playerCardBehavior(code)?.playInAnyFastWindow)
+          .map((code): ReactionOption => ({
+            key: `hand-fast:${i.id}:${code}`,
+            investigator: i.id,
+            label: 'ability.playFastFor',
+            params: { name: i.name, card: playerCardDef(code)!.name },
+            then: [
+              {
+                type: 'Ask',
+                investigator: i.id,
+                question: {
+                  kind: 'chooseOne',
+                  prompt: 'prompt.fastCard',
+                  alwaysAsk: true,
+                  choices: [
+                    {
+                      label: 'ability.playCard',
+                      params: { card: playerCardDef(code)!.name },
+                      target: { type: 'hand', code },
+                      then: [{ type: 'PlayCard', investigator: i.id, code }],
+                    },
+                    { label: 'choice.skip', then: [] },
+                  ],
+                },
+              },
+            ],
+          })),
+      ),
     ...active.flatMap((i) => investigatorBehavior(i.id)?.fastOptions?.(state, i) ?? []),
     ...Object.values(state.assets)
       .filter((a) => active.some((i) => i.id === a.owner) && !assetsBlocked(state, a.owner))
