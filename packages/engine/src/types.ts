@@ -43,6 +43,8 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  /** Successful attacks completed by this investigator in the tagged round. */
+  successfulAttacks?: { round: number; count: number }
   /** Sum of reductions reserved for this investigator's next test this phase. */
   nextTestDifficulty?: { amount: number; phase: Phase; round: number }
   /** Optional skill substitutions available before committing cards this round. */

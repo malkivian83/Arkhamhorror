@@ -12,6 +12,20 @@ import { localizedCards, useCardLocale } from './localized'
 
 afterEach(() => vi.unstubAllGlobals())
 describe('recursos de cartas sin red', () => {
+  it('presents Hardboiled with official EN/ES rules, icons and scans', () => {
+    for (const locale of ['en', 'es']) {
+      const card = fallbackCards(locale).find((c) => c.code === '11025')!
+      expect(card.name).toBe(locale === 'es' ? 'Duro de pelar' : 'Hardboiled')
+      expect(card.type_code).toBe('skill')
+      expect(card.xp).toBe(0)
+      expect(card.skill_combat).toBe(1)
+      expect(card.skill_wild).toBe(1)
+      expect(card.text).toContain(locale === 'es' ? 'esta ronda' : 'this round')
+      expect(cardImages('11025', false, locale)[0]).toBe(
+        '/local-assets/cards/' + locale + '/11025.avif',
+      )
+    }
+  })
   it('presents Momentum with official EN/ES rules, level and scans', () => {
     for (const locale of ['en', 'es']) {
       const card = fallbackCards(locale).find((c) => c.code === '06115')!
