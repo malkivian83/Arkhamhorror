@@ -10,6 +10,28 @@ beforeEach(() => {
   })
 })
 afterEach(() => vi.unstubAllGlobals())
+
+it('distinguishes account connection failures from unsaved library changes and preserves mail errors', async () => {
+  const request = vi.fn().mockRejectedValue(new DOMException('Timed out', 'TimeoutError'))
+  vi.stubGlobal('fetch', request)
+  const { api } = await import('./api')
+  await expect(api('/auth/register', 'POST', {})).rejects.toMatchObject({
+    code: 'auth_network',
+    status: 0,
+  })
+  await expect(api('/auth/login', 'POST', {})).rejects.toMatchObject({
+    code: 'auth_network',
+    status: 0,
+  })
+  await expect(api('/library')).rejects.toMatchObject({ code: 'network', status: 0 })
+  request.mockResolvedValue(
+    new Response(JSON.stringify({ code: 'mail_unavailable' }), { status: 503 }),
+  )
+  await expect(api('/auth/register', 'POST', {})).rejects.toMatchObject({
+    code: 'mail_unavailable',
+    status: 503,
+  })
+})
 const a = {
   id: 'a',
   email: 'a@example.com',

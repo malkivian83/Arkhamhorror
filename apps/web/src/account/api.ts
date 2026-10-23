@@ -30,7 +30,7 @@ export async function api<T>(path: string, method = 'GET', body?: unknown): Prom
       ...(body !== undefined ? { body: JSON.stringify(body) } : {}),
     })
   } catch {
-    throw new ApiError('network', 0)
+    throw new ApiError(path.startsWith('/auth/') ? 'auth_network' : 'network', 0)
   }
   let data
   try {

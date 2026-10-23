@@ -44,7 +44,7 @@ const options = computed(() => [
   })),
 ])
 const canStart = computed(
-  () => owner.value && lobby.value!.members.length >= 2 && lobby.value!.seats.every((s) => s.ready),
+  () => owner.value && lobby.value!.members.length >= 1 && lobby.value!.seats.every((s) => s.ready),
 )
 const displayError = computed(() =>
   te(`online.errors.${error.value}`)

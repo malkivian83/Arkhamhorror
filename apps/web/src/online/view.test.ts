@@ -89,3 +89,12 @@ it('renders a shared start in English without a local game launch or private sta
   expect(html).toContain(messages.en.online.play.title)
   expect(html).not.toContain(messages.en.online.select)
 })
+
+it('allows the ready host to start alone and keeps an unready solo table disabled', async () => {
+  host()
+  state.view!.members = ['host']
+  state.view!.seats = [state.view!.seats[0]!]
+  expect(await render()).toMatch(/<button(?![^>]*disabled)[^>]*>Iniciar partida<\/button>/)
+  state.view!.seats[0]!.ready = false
+  expect(await render()).toMatch(/<button[^>]*disabled[^>]*>Iniciar partida<\/button>/)
+})

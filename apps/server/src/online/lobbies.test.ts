@@ -46,6 +46,24 @@ function memory() {
 }
 
 describe('private online lobbies', () => {
+  it('starts a solo table only after selecting a deck and confirming readiness', async () => {
+    const service = new LobbyService(memory().db)
+    let lobby = await service.create('host')
+    await expect(service.start(lobby.id, 'host', lobby.revision)).rejects.toMatchObject({
+      code: 'not_ready',
+    })
+    lobby = await service.select(lobby.id, 'host', lobby.revision, deck('joe'))
+    await expect(service.start(lobby.id, 'host', lobby.revision)).rejects.toMatchObject({
+      code: 'not_ready',
+    })
+    lobby = await service.ready(lobby.id, 'host', lobby.revision, true)
+    const started = await service.start(lobby.id, 'host', lobby.revision)
+    expect(started.status).toBe('active')
+    expect(started.game?.investigatorCount).toBe(1)
+    const view = await service.game(lobby.id, 'host')
+    expect(view.investigators).toHaveLength(1)
+    expect(view.pending?.choices.length).toBeGreaterThan(0)
+  })
   async function active() {
     const { db, data } = memory(),
       service = new LobbyService(db)
