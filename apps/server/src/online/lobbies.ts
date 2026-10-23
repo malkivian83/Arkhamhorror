@@ -313,7 +313,7 @@ export class LobbyService {
       if (lobby.game) return lobbyView(lobby)
       this.editable(lobby, user, revision)
       requireValue(
-        lobby.members.length >= 2 &&
+        lobby.members.length >= 1 &&
           lobby.members.every((member) => lobby.decks?.[member] && lobby.ready?.includes(member)),
         'not_ready',
         409,
