@@ -117,6 +117,9 @@ const visibleCampaigns = computed(() => {
       (!query || normalize(`${t(c.name)} ${t(`setup.descriptions.${c.id}`)}`).includes(query)),
   )
 })
+const availableCampaigns = computed(() =>
+  visibleCampaigns.value.filter((c) => c.scenarios[0]?.build),
+)
 
 /* Carril de portadas: flechas solo cuando hay más portadas que espacio. */
 const rail = ref<HTMLElement>()
@@ -178,7 +181,7 @@ function toggle(key: DeckKey) {
 }
 
 function start() {
-  if (!chosen.value.length || !selectedCampaign.value) return
+  if (!chosen.value.length || !selectedCampaign.value?.scenarios[0]?.build) return
   if (game.campaign && !window.confirm(t('campaign.confirmReplace'))) return
   const members = chosen.value.map((key): CampaignMember => {
     const own = selectedDeckFor(key)
@@ -238,7 +241,7 @@ function start() {
             <span class="ui-step-number" aria-hidden="true">1</span>
             <h2 id="story-title">{{ t('setup.chooseStory') }}</h2>
             <span class="ui-step-meta">{{
-              t('setup.available', { n: visibleCampaigns.length }, visibleCampaigns.length)
+              t('setup.available', { n: availableCampaigns.length }, availableCampaigns.length)
             }}</span>
             <div class="ui-toolbar step-tools">
               <label class="search">
@@ -296,7 +299,9 @@ function start() {
                   </span>
                   <span class="ui-card-title">{{ t(c.name) }}</span>
                   <span :id="`campaign-${c.id}`" class="ui-card-meta">{{
-                    t('setup.scenarioCount', { n: c.scenarios.length }, c.scenarios.length)
+                    c.scenarios[0]?.build
+                      ? t('setup.scenarioCount', { n: c.scenarios.length }, c.scenarios.length)
+                      : t('campaign.notImplemented')
                   }}</span>
                 </label>
               </li>
@@ -597,9 +602,17 @@ function start() {
             type="submit"
             icon="→"
             class="dock-start"
-            :disabled="!chosen.length || !selectedCampaign"
+            :disabled="!chosen.length || !selectedCampaign?.scenarios[0]?.build"
           >
-            {{ t(selectedCampaign?.standalone ? 'setup.beginScenario' : 'setup.beginCampaign') }}
+            {{
+              t(
+                !selectedCampaign?.scenarios[0]?.build
+                  ? 'campaign.notImplemented'
+                  : selectedCampaign.standalone
+                    ? 'setup.beginScenario'
+                    : 'setup.beginCampaign',
+              )
+            }}
           </SiteAction>
         </div>
       </div>

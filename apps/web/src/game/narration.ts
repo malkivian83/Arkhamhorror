@@ -4,6 +4,12 @@
  * texto oficial, así que solo se ofrecen en el idioma de la grabación.
  */
 const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
+  'story.carcosa.prologue': { es: 'carcosa-prologue.mp3' },
+  'story.carcosa.lolaPrologue': { es: 'carcosa-lola-prologue.mp3' },
+  'story.curtainCall.intro': { es: 'curtain-call-intro.mp3' },
+  'story.curtainCall.noResolution': { es: 'curtain-call-no-resolution.mp3' },
+  'story.curtainCall.resolution1': { es: 'curtain-call-resolution1.mp3' },
+  'story.curtainCall.resolution2': { es: 'curtain-call-resolution2.mp3' },
   'story.brethrenOfAsh.prologue': { es: 'brethren-of-ash-prologue.mp3' },
   'story.spreadingFlames.intro': { es: 'spreading-flames-intro.mp3' },
   'story.spreadingFlames.noResolution': { es: 'spreading-flames-no-resolution.mp3' },

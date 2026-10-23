@@ -25,7 +25,7 @@ const invitation = ref(''),
   copied = ref(false)
 const campaign = ref('brethren-of-ash'),
   difficulty = ref<OnlineLobby['difficulty']>('standard')
-const campaigns = allCampaigns()
+const campaigns = allCampaigns().filter((c) => c.scenarios[0]?.build)
 const difficulties = ['easy', 'standard', 'hard', 'expert'] as const
 const physical = ref(0)
 /** Investigadores sin retrato de preparación: se recurre a la carta. */

@@ -5134,7 +5134,8 @@ export function handle(state: GameState, message: Message): GameState {
       if (enemy) {
         if (investigator.location === null)
           return toOwnerDiscard(named, investigator.id, message.code)
-        if (enemy.spawnFarthestEmpty) {
+        const customSpawn = enemyBehavior(enemy.code)?.spawn?.(state, investigator.id)
+        if (customSpawn !== undefined || enemy.spawnFarthestEmpty) {
           const distances = distancesFrom(state, investigator.location)
           const empty = Object.values(state.locations).filter(
             (l) =>
@@ -5143,7 +5144,10 @@ export function handle(state: GameState, message: Message): GameState {
               !Object.values(state.enemies).some((e) => e.location === l.id),
           )
           const farthest = Math.max(...empty.map((l) => distances.get(l.id)!))
-          const places = empty.filter((l) => distances.get(l.id) === farthest)
+          const places =
+            customSpawn !== undefined
+              ? customSpawn.flatMap((id) => (state.locations[id] ? [state.locations[id]!] : []))
+              : empty.filter((l) => distances.get(l.id) === farthest)
           if (!places.length) return toOwnerDiscard(named, investigator.id, message.code)
           const spawn = (location: string): Message => ({
             type: 'SpawnEnemy',

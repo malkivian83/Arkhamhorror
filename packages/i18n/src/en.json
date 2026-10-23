@@ -619,7 +619,8 @@
     "moveTo": "{card}: move to {location}",
     "searchDeck": "{card}: search your deck",
     "placeUse": "{card}: place 1 use on {asset}",
-    "searchingForIzzie": "Searching for Izzie: investigate to discard it"
+    "searchingForIzzie": "Searching for Izzie: investigate to discard it",
+    "carcosaInvestigateStranger": "Investigate with +2 shroud. On success, defeat The Man in the Pallid Mask instead of discovering clues."
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -921,7 +922,8 @@
     "descriptions": {
       "brethren-of-ash": "A fire, a restless city, and a mystery spreading through the ashes. Three scenarios, one connected story.",
       "the-midwinter-gala": "A night of luxury and secrets. Accept the invitation and discover what hides behind the masks at the gala.",
-      "murder-at-the-excelsior-hotel": "A murder and a hotel full of secrets. Investigate what happened at the Excelsior and uncover the truth before it is too late."
+      "murder-at-the-excelsior-hotel": "A murder and a hotel full of secrets. Investigate what happened at the Excelsior and uncover the truth before it is too late.",
+      "the-path-to-carcosa": "The King in Yellow arrives in Arkham. Eight scenarios between doubt and conviction. In development: no scenarios are playable yet."
     },
     "continueTitle": "Continue where you left off",
     "chooseStory": "Choose the story",
@@ -1056,7 +1058,14 @@
       "excelsiorClaimsAnotherVictim": "the Excelsior claims another victim",
       "investigatorsFledTheSceneOfTheCrime": "the investigators fled the scene of the crime",
       "excelsiorIsQuietForNow": "the Excelsior is quiet, for now",
-      "murdersContinueUnsolved": "the murders continue, unsolved"
+      "murdersContinueUnsolved": "the murders continue, unsolved",
+      "carcosaDoubt": "Doubt",
+      "carcosaConviction": "Conviction",
+      "carcosaChasingTheStranger": "Chasing the Stranger",
+      "carcosaWarnedPolice": "the investigators tried to warn the police",
+      "carcosaAvoidedPolice": "the investigators chose not to go to the police",
+      "carcosaPoliceSuspicious": "the police are suspicious of the investigators",
+      "carcosaStrangerIsOnToYou": "the Stranger is on to the investigators"
     },
     "scenario": {
       "smokeAndMirrors": "Scenario II: Smoke and Mirrors",
@@ -1311,6 +1320,27 @@
       "culpritDoom10": "The agenda reached its doom threshold before you could stop the true culprit. (→R2)",
       "culpritObjective10Title": "The True Culprit (v. X): solved",
       "culpritObjective10": "Silence falls over the hotel. You find some comfort knowing that the strange goings-on at the Excelsior are over, at least for now. (→R1)"
+    },
+    "carcosa": {
+      "prologueTitle": "The Path to Carcosa: Prologue",
+      "nextScenario": "Scenario II: The Last King",
+      "prologue": "The King in Yellow has arrived at the Ward Theatre. Disappearances, deaths and talk of a returning king have drawn your attention. You attend the performance to investigate. During the interval, sleep overwhelms you.",
+      "lolaPrologueTitle": "Lola’s prologue",
+      "lolaPrologue": "Backstage, Lola tries to leave her memories of Paris behind and become Cassilda. The Stranger watches her from afar. She cannot look away, and everything goes dark.",
+      "markConviction": "Mark 1 Conviction in the shared campaign log.",
+      "markDoubt": "Mark 1 Doubt in the shared campaign log.",
+      "strangerBearer": "{name} adds The Man in the Pallid Mask to their deck. It does not count toward deck size. If its bearer leaves the campaign, choose a new bearer.",
+      "chasingMarks": "Make {n} marks under Chasing the Stranger."
+    },
+    "curtainCall": {
+      "introTitle": "Scenario I: Curtain Call",
+      "intro": "You wake in the darkened Ward Theatre. The curtains are torn, the stage is empty and a foul smell hangs in the air. You approach another patron to ask the time, only to discover a corpse.",
+      "noResolutionTitle": "No resolution",
+      "noResolution": "You awaken outside the theatre. An old man offers help, then disappears around a corner. In his place stands the Stranger. You follow him but find only an invitation to the cast party at Constance Dumaine’s home.",
+      "resolution1Title": "Resolution 1",
+      "resolution1": "The police dismiss your account of the theatre and send you away. You return to look for proof, but the doors are locked. A cast-party invitation offers a new lead.",
+      "resolution2Title": "Resolution 2",
+      "resolution2": "You decide the police would never believe you. Returning to the theatre, you catch sight of the Stranger. He vanishes into an alley, where an invitation to the cast party awaits."
     }
   },
   "playmat": {
@@ -1376,12 +1406,21 @@
       "smoke-and-mirrors": "Smoke and Mirrors",
       "queen-of-ash": "Queen of Ash",
       "the-midwinter-gala": "Standalone scenario",
-      "murder-at-the-excelsior-hotel": "Standalone scenario"
+      "murder-at-the-excelsior-hotel": "Standalone scenario",
+      "curtain-call": "Curtain Call",
+      "the-last-king": "The Last King",
+      "echoes-of-the-past": "Echoes of the Past",
+      "the-unspeakable-oath": "The Unspeakable Oath",
+      "a-phantom-of-truth": "A Phantom of Truth",
+      "the-pallid-mask": "The Pallid Mask",
+      "black-stars-rise": "Black Stars Rise",
+      "dim-carcosa": "Dim Carcosa"
     },
     "names": {
       "brethren-of-ash": "Brethren of Ash",
       "the-midwinter-gala": "The Midwinter Gala",
-      "murder-at-the-excelsior-hotel": "Murder at the Excelsior Hotel"
+      "murder-at-the-excelsior-hotel": "Murder at the Excelsior Hotel",
+      "the-path-to-carcosa": "The Path to Carcosa"
     },
     "choose": "Choose the campaign",
     "xpBreakdown": "Experience breakdown",
@@ -1836,7 +1875,8 @@
       "09117": "Item. Tool.",
       "09044": "Item. Tome.",
       "04194": "Item. Relic.",
-      "09062": "Talent. Trick. Illicit."
+      "09062": "Talent. Trick. Illicit.",
+      "03059": "Humanoid. Elite."
     },
     "summary": {
       "08129": "One at a time, in any order, if you control a...\n- [rogue] card, you may move to a connecting location.\n- [guardian] card, deal 1 damage to an enemy at your location.\n- [seeker] card, discover 1 clue at your location.\n- [mystic] card, heal 1 horror from any card.\n- [survivor] card, heal 1 damage from any card.",
@@ -2340,7 +2380,8 @@
       "02011": "Revelation - Attach Searching for Izzie to the location farthest from you.\n[action][action]: Investigate. If you succeed, instead of discovering clues, discard Searching for Izzie.\nForced - When the game ends, if Searching for Izzie is in play: Jenny Barnes suffers 1 mental trauma.",
       "01024": "Choose either your location or a connecting location. Deal 3 damage to each enemy and to each investigator at the chosen location.",
       "01050": "Fast. Play only during your turn.\nDisengage from each enemy engaged with you and move to a revealed location with no enemies.",
-      "02147": "You have 1 additional hand slot, which can only be used to hold a Weapon asset."
+      "02147": "You have 1 additional hand slot, which can only be used to hold a Weapon asset.",
+      "03059": "Aloof. Spawn at the location farthest from all investigators. Action: investigate your location with +2 shroud. If successful, defeat The Man in the Pallid Mask instead of discovering clues."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -2829,7 +2870,8 @@
       "02011": "Searching for Izzie",
       "01024": "Dynamite Blast",
       "01050": "Elusive",
-      "02147": "Bandolier"
+      "02147": "Bandolier",
+      "03059": "The Man in the Pallid Mask"
     }
   },
   "account": {

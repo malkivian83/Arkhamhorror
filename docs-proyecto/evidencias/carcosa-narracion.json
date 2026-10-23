@@ -1,0 +1,65 @@
+{
+  "voiceId": "5egO01tkUjEzu7xSSE8M",
+  "voiceName": "Carmelo - Mature, Mysterious and Clear",
+  "language": "es",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.15,
+      "speed": 0.95,
+      "use_speaker_boost": true
+    }
+  },
+  "files": [
+    {
+      "key": "story.carcosa.prologue",
+      "file": "carcosa-prologue.mp3",
+      "characters": 2462,
+      "inputHash": "b6f83f73efdd3e62b44c714139687e35a6d9448af86e8ae9d879fa4b1f98c918",
+      "sha256": "c6b0d927bbc784dcff54e6d1a1637a82d2851b2c9174eed7f19b7b38038268e6",
+      "bytes": 3215403
+    },
+    {
+      "key": "story.carcosa.lolaPrologue",
+      "file": "carcosa-lola-prologue.mp3",
+      "characters": 1422,
+      "inputHash": "1be587c0e20de75d5a0b0278825edbddd83f1d1cea0c87fafc8ce7f5e9f011f6",
+      "sha256": "3c9f9d6654e5e61c2e528809cffec61a401c74e6c962c5fb157f6373cf9125f3",
+      "bytes": 1795595
+    },
+    {
+      "key": "story.curtainCall.intro",
+      "file": "curtain-call-intro.mp3",
+      "characters": 707,
+      "inputHash": "9d01fe4deb4e456a1ca4501796b5175a5abee5e8f2fd3f1b135b3a9661c5088f",
+      "sha256": "1267fb7a4bb5990677bb11d8193716e6ceb698e434d8c9d21137a537e5c6589b",
+      "bytes": 943376
+    },
+    {
+      "key": "story.curtainCall.noResolution",
+      "file": "curtain-call-no-resolution.mp3",
+      "characters": 2278,
+      "inputHash": "a54d2dca00fb8f8d4cd46241b2f591e26aa716c7ea1d7d2b3585e0b23b30f395",
+      "sha256": "ab0d2710931a1cca2357e4cc5d44f95d8cab9fcb500ef12572ddd44231fc5029",
+      "bytes": 2969643
+    },
+    {
+      "key": "story.curtainCall.resolution1",
+      "file": "curtain-call-resolution1.mp3",
+      "characters": 2089,
+      "inputHash": "4feec32dd3e07574b16145bd58154057c819aa3b3c8aad67f230cc44394c95c6",
+      "sha256": "27949699d7970ac2b18b82a43f077cbab9c764f01be9c892864fb2a1d75cc475",
+      "bytes": 2631514
+    },
+    {
+      "key": "story.curtainCall.resolution2",
+      "file": "curtain-call-resolution2.mp3",
+      "characters": 2030,
+      "inputHash": "31a594bf45878cc04b13c7cb09cc223fd5b95bc7dd0d03c9964be9c40a1cd444",
+      "sha256": "3bd522feb9cb95c2179dcbdcc23508cab54845c84c090bbb385611baaaf5827b",
+      "bytes": 2629842
+    }
+  ]
+}

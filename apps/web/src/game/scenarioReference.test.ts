@@ -8,6 +8,8 @@ import manifest from './cardImageManifest.json'
 describe('scenario symbol reference', () => {
   for (const campaign of allCampaigns())
     for (const scenario of campaign.scenarios) {
+      // Los escenarios pendientes aún no tienen cartas de referencia publicadas.
+      if (!scenario.build) continue
       it.each(['easy', 'standard', 'hard', 'expert'] as const)(
         `${scenario.id}: selects the %s face with a local image`,
         (difficulty) => {

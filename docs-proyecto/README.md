@@ -78,6 +78,7 @@ vigente de pendientes.
 | 66 | [Habilidades con trucos](66-habilidades-con-trucos.md) | 11 habilidades distintas y 2 reediciones: iconos según tus habilidades, acciones o ataques y retorno a la mano. |
 | 67 | [Eventos de efecto directo](67-eventos-de-efecto-directo.md) | 13 eventos distintos y 1 reedición: fichas, daño, recursos, curación y perdición retirada de apoyos o investigadores. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
+| 84 | [El camino a Carcosa](84-camino-a-carcosa.md) | Base de campaña, bolsas y orden oficial; continuación con Se cierra el telón y dependencias pendientes. |
 
 ## Decisiones ya tomadas
 

@@ -12,6 +12,26 @@ import { localizedCards, useCardLocale } from './localized'
 
 afterEach(() => vi.unstubAllGlobals())
 describe('recursos de cartas sin red', () => {
+  it('presents The Man in the Pallid Mask in both languages', () => {
+    for (const locale of ['en', 'es'] as const) {
+      const card = fallbackCards(locale).find((c) => c.code === '03059')!
+      expect(card.name).toBe(
+        locale === 'en' ? 'The Man in the Pallid Mask' : 'El hombre de la máscara pálida',
+      )
+      expect(card.type_code).toBe('enemy')
+      expect(card).toMatchObject({
+        health: 3,
+        enemy_fight: 4,
+        enemy_evade: 4,
+        enemy_damage: 0,
+        enemy_horror: 1,
+      })
+      expect(card.text).toContain(
+        locale === 'en' ? 'instead of discovering clues' : 'en lugar de descubrir pistas',
+      )
+      expect(cardImages('03059', false, locale)[0]).toBe(`/local-assets/cards/${locale}/03059.avif`)
+    }
+  })
   it('presents Call for Backup with official EN/ES rules and scans', () => {
     for (const locale of ['en', 'es'] as const) {
       const c = fallbackCards(locale).find((c) => c.code === '08129')!

@@ -619,7 +619,8 @@
     "moveTo": "{card}: moverte a {location}",
     "searchDeck": "{card}: buscar en tu mazo",
     "placeUse": "{card}: colocar 1 uso en {asset}",
-    "searchingForIzzie": "Buscando a Izzie: investiga para descartarla"
+    "searchingForIzzie": "Buscando a Izzie: investiga para descartarla",
+    "carcosaInvestigateStranger": "Investigar con +2 al velo. Si tienes éxito, derrota a El hombre de la máscara pálida en lugar de descubrir pistas."
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -921,7 +922,8 @@
     "descriptions": {
       "brethren-of-ash": "Un incendio, una ciudad inquieta y un misterio que se extiende entre las cenizas. Tres escenarios, una historia conectada.",
       "the-midwinter-gala": "Una noche de lujo y secretos. Acepta la invitación y descubre qué se esconde tras las máscaras de la gala.",
-      "murder-at-the-excelsior-hotel": "Un asesinato y un hotel lleno de secretos. Investiga lo ocurrido en el Excelsior y descubre la verdad antes de que sea demasiado tarde."
+      "murder-at-the-excelsior-hotel": "Un asesinato y un hotel lleno de secretos. Investiga lo ocurrido en el Excelsior y descubre la verdad antes de que sea demasiado tarde.",
+      "the-path-to-carcosa": "El Rey de Amarillo llega a Arkham. Ocho escenarios entre Dudas y Convicciones. En desarrollo: todavía no hay escenarios jugables."
     },
     "continueTitle": "Continuar donde lo dejaste",
     "chooseStory": "Elige la historia",
@@ -1056,7 +1058,14 @@
       "excelsiorClaimsAnotherVictim": "el Excelsior se cobra otra víctima",
       "investigatorsFledTheSceneOfTheCrime": "los investigadores huyeron de la escena del crimen",
       "excelsiorIsQuietForNow": "el Excelsior está tranquilo, por ahora",
-      "murdersContinueUnsolved": "los asesinatos continúan sin resolver"
+      "murdersContinueUnsolved": "los asesinatos continúan sin resolver",
+      "carcosaDoubt": "Dudas",
+      "carcosaConviction": "Convicciones",
+      "carcosaChasingTheStranger": "Persiguiendo al Extranjero",
+      "carcosaWarnedPolice": "los investigadores trataron de avisar a la policía",
+      "carcosaAvoidedPolice": "los investigadores eligieron no acudir a la policía",
+      "carcosaPoliceSuspicious": "la policía sospecha de los investigadores",
+      "carcosaStrangerIsOnToYou": "el Extranjero sabe lo que intentan hacer los investigadores"
     },
     "scenario": {
       "smokeAndMirrors": "el Escenario II: Smoke and Mirrors",
@@ -1311,6 +1320,27 @@
       "culpritDoom10": "El plan ha llegado a su umbral de perdición antes de que pudieras detener al verdadero culpable. (→R2)",
       "culpritObjective10Title": "El verdadero culpable (v. X): resuelto",
       "culpritObjective10": "El hotel queda en silencio. Te reconforta saber que los extraños sucesos del Excelsior han terminado, al menos por ahora. (→R1)"
+    },
+    "carcosa": {
+      "prologueTitle": "El camino a Carcosa: Prólogo",
+      "nextScenario": "Escenario II: El último Rey",
+      "prologue": "El Rey de Amarillo llega al Teatro Ward. Desapariciones, muertes y rumores sobre el regreso de un rey os llevan a investigar la representación. Durante el descanso, os vence el sueño.",
+      "lolaPrologueTitle": "Prólogo de Lola",
+      "lolaPrologue": "Entre bastidores, Lola intenta dejar atrás sus recuerdos de París para convertirse en Cassilda. El Forastero la observa desde lejos. No puede apartar la mirada y todo se vuelve negro.",
+      "markConviction": "Marca 1 Convicción en el registro de campaña compartido.",
+      "markDoubt": "Marca 1 Duda en el registro de campaña compartido.",
+      "strangerBearer": "{name} añade El hombre de la máscara pálida a su mazo. No cuenta para el tamaño de su mazo. Si su portador abandona la campaña, elegid otro portador.",
+      "chasingMarks": "Haz {n} marcas en Persiguiendo al Extranjero."
+    },
+    "curtainCall": {
+      "introTitle": "Escenario I: Se cierra el telón",
+      "intro": "Despiertas en el oscuro Teatro Ward. El telón está rasgado, el escenario vacío y un olor repulsivo impregna el aire. Te acercas a otro espectador para preguntarle la hora y descubres que es un cadáver.",
+      "noResolutionTitle": "Sin resolución",
+      "noResolution": "Despiertas fuera del teatro. Un anciano te ayuda y desaparece al doblar una esquina. En su lugar está el Extranjero. Lo sigues, pero solo encuentras una invitación a la fiesta del equipo en casa de Constance Dumaine.",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "La policía no cree tu relato del teatro y te echa de la comisaría. Regresas en busca de pruebas, pero las puertas están cerradas. Una invitación a la fiesta del equipo ofrece una nueva pista.",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "Decides que la policía no te creería. Al regresar al teatro, vuelves a ver al Extranjero. Desaparece en un callejón donde encuentras una invitación a la fiesta del equipo."
     }
   },
   "playmat": {
@@ -1376,12 +1406,21 @@
       "smoke-and-mirrors": "Smoke and Mirrors",
       "queen-of-ash": "Queen of Ash",
       "the-midwinter-gala": "Escenario independiente",
-      "murder-at-the-excelsior-hotel": "Escenario independiente"
+      "murder-at-the-excelsior-hotel": "Escenario independiente",
+      "curtain-call": "Se cierra el telón",
+      "the-last-king": "El último Rey",
+      "echoes-of-the-past": "Ecos del pasado",
+      "the-unspeakable-oath": "El juramento inconfesable",
+      "a-phantom-of-truth": "El Fantasma de la Verdad",
+      "the-pallid-mask": "La máscara pálida",
+      "black-stars-rise": "Surgen estrellas negras",
+      "dim-carcosa": "Penumbrosa Carcosa"
     },
     "names": {
       "brethren-of-ash": "Brethren of Ash",
       "the-midwinter-gala": "La gala del ecuador del invierno",
-      "murder-at-the-excelsior-hotel": "Asesinato en el hotel Excelsior"
+      "murder-at-the-excelsior-hotel": "Asesinato en el hotel Excelsior",
+      "the-path-to-carcosa": "El camino a Carcosa"
     },
     "choose": "Elige la campaña",
     "xpBreakdown": "Desglose de experiencia",
@@ -1836,7 +1875,8 @@
       "09117": "Objeto. Herramienta.",
       "09044": "Objeto. Tomo.",
       "04194": "Objeto. Reliquia.",
-      "09062": "Talento. Truco. Ilegal."
+      "09062": "Talento. Truco. Ilegal.",
+      "03059": "Humanoide. Élite."
     },
     "summary": {
       "08129": "De uno en uno, en cualquier orden, si controlas una...\n- carta [rogue], puedes moverte a un Lugar conectado.\n- carta [guardian], inflige 1 punto de daño a un Enemigo que esté en tu Lugar.\n- carta [seeker], descubre 1 pista en tu Lugar.\n- carta [mystic], cura 1 punto de horror de cualquier carta.\n- carta [survivor], cura 1 punto de daño de cualquier carta.",
@@ -2340,7 +2380,8 @@
       "02011": "Revelación - Vincula Buscando a Izzie al Lugar más alejado de ti.\n[action][action]: Investigar. Si tienes éxito, en lugar de descubrir pistas, descarta Buscando a Izzie.\nObligado - Si Buscando a Izzie está en juego cuando termine la partida: Sufres 1 trauma mental.",
       "01024": "Elige tu Lugar o un Lugar conectado. Inflige 3 puntos de daño a cada Enemigo e Investigador que esté en el Lugar elegido.",
       "01050": "Rápido. Juega esta carta sólo durante tu turno.\nDeja de estar enfrentado a cada Enemigo enfrentado a ti y muévete a un Lugar revelado que no tenga Enemigos.",
-      "02147": "Tienes 1 espacio de mano adicional que sólo puede usarse para un Apoyo Arma."
+      "02147": "Tienes 1 espacio de mano adicional que sólo puede usarse para un Apoyo Arma.",
+      "03059": "Indiferente. Aparece en el Lugar más alejado de todos los investigadores. Acción: investiga tu Lugar con +2 al velo. Si tienes éxito, derrota a El hombre de la máscara pálida en lugar de descubrir pistas."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -2829,7 +2870,8 @@
       "02011": "Buscando a Izzie",
       "01024": "Explosión de dinamita",
       "01050": "Escurridizo",
-      "02147": "Bandolera"
+      "02147": "Bandolera",
+      "03059": "El hombre de la máscara pálida"
     }
   },
   "account": {
