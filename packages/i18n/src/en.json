@@ -1677,6 +1677,7 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "08022": "Spirit. Synergy.",
       "08077": "Innate. Synergy.",
       "08050": "Trick. Synergy.",
       "03191": "Insight.",
@@ -1824,6 +1825,7 @@
       "09062": "Talent. Trick. Illicit."
     },
     "summary": {
+      "08022": "<b>Fight.</b> For each different class among cards you control, you get +1 [combat] and deal +1 damage for this attack.",
       "08077": "Strength in Numbers gains a [wild] icon for each different class among cards you control.",
       "08050": "Fast. Play during any [fast] window.\nGain 1 resource for each different class among cards you control.",
       "03191": "Play only if you have at least 1 clue.\nChoose an investigator at your location. That investigator either heals 2 horror or discards a [[Terror]] card from his or her threat area.",
@@ -2332,6 +2334,7 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "08022": "Gang Up",
       "08077": "Strength in Numbers",
       "08050": "Cheat the System",
       "03191": "Logical Reasoning",

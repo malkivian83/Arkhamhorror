@@ -2609,6 +2609,7 @@ export function handle(state: GameState, message: Message): GameState {
             kind: message.kind,
             baseModifier: message.modifier ?? 0,
             ...(message.source ? { source: message.source } : {}),
+            ...(message.effectSource ? { effectSource: message.effectSource } : {}),
             ...(message.commitRule ? { commitRule: message.commitRule } : {}),
             tags: message.tags ?? (message.kind.type === 'effect' ? ['scenario'] : []),
             committed: [],
@@ -6174,7 +6175,13 @@ export function skillTestValue(state: GameState): {
       })),
   )
   const phaseBonus = phaseSources.reduce((sum, b) => sum + b.amount, 0)
+  const effectBonus = test.effectSource
+    ? (playerCardBehavior(test.effectSource)?.effectSkillModifier?.(state, test) ?? 0)
+    : 0
   const sources = [
+    ...(test.effectSource
+      ? [{ name: playerCardDef(test.effectSource)?.name ?? test.effectSource, amount: effectBonus }]
+      : []),
     ...phaseSources,
     ...Object.values(state.assets)
       .filter((a) => a.owner === investigator.id)
@@ -6194,8 +6201,17 @@ export function skillTestValue(state: GameState): {
     modifier: test.baseModifier,
     icons,
     sources,
-    passive: passive + auras + scenario + resolving + phaseBonus,
-    total: base + test.baseModifier + icons + passive + auras + scenario + resolving + phaseBonus,
+    passive: passive + auras + scenario + resolving + phaseBonus + effectBonus,
+    total:
+      base +
+      test.baseModifier +
+      icons +
+      passive +
+      auras +
+      scenario +
+      resolving +
+      phaseBonus +
+      effectBonus,
   }
 }
 

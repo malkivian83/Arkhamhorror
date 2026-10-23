@@ -14,6 +14,9 @@ export function attackDamage(state: GameState, test: SkillTest): number {
   return (
     base +
     (kind.extraDamage ?? 0) +
+    (test.effectSource
+      ? (playerCardBehavior(test.effectSource)?.effectAttackDamage?.(state, test) ?? 0)
+      : 0) +
     (kind.damageIfTokens && test.tokens.some((t) => kind.damageIfTokens!.tokens.includes(t))
       ? kind.damageIfTokens.amount
       : 0) +

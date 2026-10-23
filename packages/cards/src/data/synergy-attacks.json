@@ -1,0 +1,13 @@
+[
+  {
+    "code": "08022",
+    "name": "Gang Up",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit", "Synergy"],
+    "cost": 3,
+    "xp": 1,
+    "icons": { "willpower": 1, "combat": 1 },
+    "slots": []
+  }
+]

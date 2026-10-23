@@ -1677,6 +1677,7 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "08022": "Espíritu. Sinergia.",
       "08077": "Innato. Sinergia.",
       "08050": "Truco. Sinergia.",
       "03191": "Inspiración.",
@@ -1824,6 +1825,7 @@
       "09062": "Talento. Truco. Ilegal."
     },
     "summary": {
+      "08022": "<b>Combatir.</b> Por cada clase distinta que haya entre las cartas que controlas, recibes +1 [combat] e infliges +1 de daño para este ataque.",
       "08077": "La unión hace la fuerza obtiene un icono [wild] por cada clase distinta que haya entre las cartas que controlas.",
       "08050": "Rápido. Juega esta carta durante cualquier oportunidad [free].\nObtén 1 recurso por cada clase distinta que haya entre las cartas que controlas.",
       "03191": "Juega esta carta sólo si tienes al menos 1 pista.\nElige un investigador que esté en tu Lugar. Ese investigador se cura 2 puntos de horror o bien descarta una carta de [[Terror]] de su zona de amenaza.",
@@ -2332,6 +2334,7 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "08022": "Ataque en grupo",
       "08077": "La unión hace la fuerza",
       "08050": "Burlar el sistema",
       "03191": "Razonamiento lógico",

@@ -548,6 +548,8 @@ export interface SkillTest {
   }[]
   /** Apoyo cuya habilidad inició la prueba. */
   source?: AssetId
+  /** Event whose resolving effect initiated this test; independent of asset sources. */
+  effectSource?: CardCode
   /** Etiquetas de la prueba: "parley", "spell", "scenario"… */
   tags?: string[]
   tokenOnSuccess?: Message[]
@@ -730,6 +732,7 @@ export type Message =
       kind: SkillTestKind
       modifier?: number
       source?: AssetId
+      effectSource?: CardCode
       tags?: string[]
       /** Solo se puede comprometer la carta superior de la pila de descartes (Habitación 245). */
       commitRule?: 'discardTop'
