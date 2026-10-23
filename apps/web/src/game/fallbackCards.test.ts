@@ -12,6 +12,22 @@ import { localizedCards, useCardLocale } from './localized'
 
 afterEach(() => vi.unstubAllGlobals())
 describe('recursos de cartas sin red', () => {
+  it('presents Call for Backup with official EN/ES rules and scans', () => {
+    for (const locale of ['en', 'es'] as const) {
+      const c = fallbackCards(locale).find((c) => c.code === '08129')!
+      expect(c.name).toBe(locale === 'en' ? 'Call for Backup' : 'Petición de apoyo')
+      expect(c.cost).toBe(1)
+      expect(c.xp).toBe(2)
+      expect(c.skill_wild).toBe(1)
+      expect(c.text).toContain(locale === 'en' ? 'any order' : 'cualquier orden')
+      expect(c.text).toContain('[survivor]')
+      expect(cardImages('08129', false, locale)[0]).toBe(
+        '/local-assets/cards/' + locale + '/08129.avif',
+      )
+      for (const cls of ['Rogue', 'Guardian', 'Seeker', 'Mystic', 'Survivor'] as const)
+        expect(messages[locale].choice[('backup' + cls) as 'backupRogue'].length).toBeGreaterThan(5)
+    }
+  })
   it('presents Swift Reflexes with official EN/ES text, cost, icons and local scans', () => {
     for (const locale of ['en', 'es'] as const) {
       const c = fallbackCards(locale).find((c) => c.code === '05156')!

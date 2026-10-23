@@ -229,6 +229,11 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "backupRogue": "Move to a connecting location (Rogue)",
+    "backupGuardian": "Deal 1 damage (Guardian)",
+    "backupSeeker": "Discover 1 clue (Seeker)",
+    "backupMystic": "Heal 1 horror from any card (Mystic)",
+    "backupSurvivor": "Heal 1 damage from any card (Survivor)",
     "quickThinkingAction": "Take one additional action",
     "simpleChainsawSupply": "Place 1 supply on {card}",
     "simpleChainsawDamage": "Deal 1 damage to {enemy}",
@@ -1678,6 +1683,7 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "08129": "Favor. Synergy.",
       "05156": "Gambit.",
       "02229": "Innate.",
       "04150": "Practiced. Bold.",
@@ -1832,6 +1838,7 @@
       "09062": "Talent. Trick. Illicit."
     },
     "summary": {
+      "08129": "One at a time, in any order, if you control a...\n- [rogue] card, you may move to a connecting location.\n- [guardian] card, deal 1 damage to an enemy at your location.\n- [seeker] card, discover 1 clue at your location.\n- [mystic] card, heal 1 horror from any card.\n- [survivor] card, heal 1 damage from any card.",
       "05156": "Fast. Play during any investigator's turn, except during an action.\nImmediately take an action as if it were your turn. This action does not count toward the number of actions you can take each turn.",
       "02229": "If this skill test is successful by 2 or more, after it resolves, you may immediately take an action as if it were your turn (this action does not count toward the number of actions you can take each turn).",
       "04150": "Commit only to a skill test you are performing.<br/>Take the Initiative loses [wild] for each action that has been completed by any investigator this phase.",
@@ -2347,6 +2354,7 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "08129": "Call for Backup",
       "05156": "Swift Reflexes",
       "02229": "Quick Thinking",
       "04150": "Take the Initiative",

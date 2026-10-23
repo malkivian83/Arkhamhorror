@@ -1,0 +1,13 @@
+[
+  {
+    "code": "08129",
+    "name": "Call for Backup",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Favor", "Synergy"],
+    "cost": 1,
+    "xp": 2,
+    "icons": { "wild": 1 },
+    "slots": []
+  }
+]

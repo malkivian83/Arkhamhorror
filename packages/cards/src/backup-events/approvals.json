@@ -1,0 +1,15 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "sourceSnapshotSha256": "36bdf57ced256a33c3145b1562eea5f8ea6146d38e6a600cb04e27d43ef5749e",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "cards": [
+    {
+      "code": "08129",
+      "family": "call-for-backup",
+      "module": "card-08129",
+      "test": "rules.test.ts",
+      "status": "verified"
+    }
+  ]
+}

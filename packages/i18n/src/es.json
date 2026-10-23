@@ -229,6 +229,11 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "backupRogue": "Moverse a un Lugar conectado (Rebelde)",
+    "backupGuardian": "Infligir 1 daño (Guardián)",
+    "backupSeeker": "Descubrir 1 pista (Buscador)",
+    "backupMystic": "Curar 1 horror de cualquier carta (Místico)",
+    "backupSurvivor": "Curar 1 daño de cualquier carta (Superviviente)",
     "quickThinkingAction": "Realizar una acción adicional",
     "simpleChainsawSupply": "Coloca 1 suministro en {card}",
     "simpleChainsawDamage": "Inflige 1 daño a {enemy}",
@@ -1678,6 +1683,7 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "08129": "Favor. Sinergia.",
       "05156": "Gambito.",
       "02229": "Innato.",
       "04150": "Experimentado. Audaz.",
@@ -1832,6 +1838,7 @@
       "09062": "Talento. Truco. Ilegal."
     },
     "summary": {
+      "08129": "De uno en uno, en cualquier orden, si controlas una...\n- carta [rogue], puedes moverte a un Lugar conectado.\n- carta [guardian], inflige 1 punto de daño a un Enemigo que esté en tu Lugar.\n- carta [seeker], descubre 1 pista en tu Lugar.\n- carta [mystic], cura 1 punto de horror de cualquier carta.\n- carta [survivor], cura 1 punto de daño de cualquier carta.",
       "05156": "Rápido. Juega esta carta durante el turno de cualquier investigador, excepto durante una acción.\nRealiza una acción inmediatamente como si fuera tu turno. Esta acción no cuenta para el número de acciones que puedes realizar cada turno.",
       "02229": "Si esta prueba de habilidad tiene éxito por 2 o más, después de que se resuelva, puedes realizar una acción inmediatamente como si fuera tu turno. Esta acción no cuenta para el número de acciones que puedes realizar en cada turno.",
       "04150": "Asigna esta carta sólo a una prueba de habilidad que estés realizando.\nTomar la iniciativa pierde [wild] por cada acción que haya completado cualquier investigador en esta fase.",
@@ -2347,6 +2354,7 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "08129": "Petición de apoyo",
       "05156": "Reflejos rápidos",
       "02229": "Reacción rápida",
       "04150": "Tomar la iniciativa",
