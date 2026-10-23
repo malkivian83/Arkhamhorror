@@ -1,4 +1,4 @@
-// RR: Modifiers (multiply before add), Skill Tests ST.8, Alert, Retaliate, Commit Limits.
+// RR: Modifiers (add/subtract before doubling), Skill Tests ST.8, Alert, Retaliate, Commit Limits.
 import {
   dispatch,
   enemyHasKeyword,
@@ -33,7 +33,7 @@ for (const base of [1, 2, 3])
             investigator: 'a',
             code,
           })
-        expect(next.skillTest!.difficulty).toBe(Math.max(0, base * 2 - 2))
+        expect(next.skillTest!.difficulty).toBe(Math.max(0, (base - 2) * 2))
         const removed = dispatch(next, { type: 'ReturnCommittedToHand', except: '02026' })
         expect(removed.skillTest!.difficulty).toBe(base * 2)
         expect(me(removed).hand).toContain('09112')

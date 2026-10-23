@@ -1677,6 +1677,7 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "06115": "Experimentado.",
       "08022": "Espíritu. Sinergia.",
       "08077": "Innato. Sinergia.",
       "08050": "Truco. Sinergia.",
@@ -1825,6 +1826,7 @@
       "09062": "Talento. Truco. Ilegal."
     },
     "summary": {
+      "06115": "Si esta prueba de habilidad tiene éxito, reduce la dificultad de la siguiente prueba de habilidad que realices en esta fase en X, donde X es la cantidad de puntos que tengas por encima del valor mínimo de éxito (hasta un máximo de 3).",
       "08022": "<b>Combatir.</b> Por cada clase distinta que haya entre las cartas que controlas, recibes +1 [combat] e infliges +1 de daño para este ataque.",
       "08077": "La unión hace la fuerza obtiene un icono [wild] por cada clase distinta que haya entre las cartas que controlas.",
       "08050": "Rápido. Juega esta carta durante cualquier oportunidad [free].\nObtén 1 recurso por cada clase distinta que haya entre las cartas que controlas.",
@@ -2334,6 +2336,7 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "06115": "Ímpetu",
       "08022": "Ataque en grupo",
       "08077": "La unión hace la fuerza",
       "08050": "Burlar el sistema",

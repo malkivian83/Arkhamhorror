@@ -1677,6 +1677,7 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "06115": "Practiced.",
       "08022": "Spirit. Synergy.",
       "08077": "Innate. Synergy.",
       "08050": "Trick. Synergy.",
@@ -1825,6 +1826,7 @@
       "09062": "Talent. Trick. Illicit."
     },
     "summary": {
+      "06115": "If this skill test is successful, reduce the difficulty of the next skill test you perform this phase by X, where X is the amount this skill test succeeded by (to a maximum of 3).",
       "08022": "<b>Fight.</b> For each different class among cards you control, you get +1 [combat] and deal +1 damage for this attack.",
       "08077": "Strength in Numbers gains a [wild] icon for each different class among cards you control.",
       "08050": "Fast. Play during any [fast] window.\nGain 1 resource for each different class among cards you control.",
@@ -2334,6 +2336,7 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "06115": "Momentum",
       "08022": "Gang Up",
       "08077": "Strength in Numbers",
       "08050": "Cheat the System",

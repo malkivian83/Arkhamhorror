@@ -43,6 +43,8 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  /** Sum of reductions reserved for this investigator's next test this phase. */
+  nextTestDifficulty?: { amount: number; phase: Phase; round: number }
   /** Optional skill substitutions available before committing cards this round. */
   roundSkillReplacements?: { from: SkillType; to: SkillType; code: CardCode; round: number }[]
   /** Round-lasting bonuses; horror is evaluated when calculating the test. */
@@ -535,6 +537,7 @@ export interface SkillTest {
   skill: SkillType
   difficulty: number
   kind: SkillTestKind
+  difficultyReduction?: number
   /** Fichas reveladas (fuera de la bolsa hasta que termina la prueba). */
   /** Modificador del efecto que inició la prueba (p. ej. "+1 [combat] para este ataque"). */
   baseModifier: number
@@ -736,6 +739,13 @@ export type Message =
       tags?: string[]
       /** Solo se puede comprometer la carta superior de la pila de descartes (Habitación 245). */
       commitRule?: 'discardTop'
+    }
+  | {
+      type: 'ReduceNextTestDifficulty'
+      investigator: InvestigatorId
+      amount: number
+      phase: Phase
+      round: number
     }
   | { type: 'CommitWindow' }
   | {
