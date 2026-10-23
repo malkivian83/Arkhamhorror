@@ -40,6 +40,11 @@ async function render(locale: 'en' | 'es' = 'es') {
       .use(createI18n({ legacy: false, locale, messages })),
   )
 }
+/** Whether the start button exists and is disabled; undefined when it is absent. */
+function startDisabled(html: string) {
+  const button = html.match(/<button[^>]*>(?:(?!<\/button>).)*Iniciar partida/s)?.[0]
+  return button === undefined ? undefined : /^<button[^>]*\sdisabled/.test(button)
+}
 function host() {
   account.value = {
     ...account.value,
@@ -76,7 +81,7 @@ it('renders deck selection, readiness and a disabled start until every member is
   const html = await render()
   expect(html).toContain(messages.es.online.deck)
   expect(html).toContain(messages.es.online.waiting)
-  expect(html).toMatch(/<button[^>]*disabled[^>]*>Iniciar partida<\/button>/)
+  expect(startDisabled(html)).toBe(true)
 })
 it('renders a shared start in English without a local game launch or private state', async () => {
   host()
@@ -97,9 +102,9 @@ it('allows the ready host to start alone and keeps an unready solo table disable
   host()
   state.view!.members = ['host']
   state.view!.seats = [state.view!.seats[0]!]
-  expect(await render()).toMatch(/<button(?![^>]*disabled)[^>]*>Iniciar partida<\/button>/)
+  expect(startDisabled(await render())).toBe(false)
   state.view!.seats[0]!.ready = false
-  expect(await render()).toMatch(/<button[^>]*disabled[^>]*>Iniciar partida<\/button>/)
+  expect(startDisabled(await render())).toBe(true)
 })
 
 it.each([
