@@ -63,3 +63,63 @@ navegadores reales. Los cambios quedan locales, sin commit ni push.
 Resultado: 33 pruebas dirigidas aprobadas; las 19 pruebas SQL de cuentas y lobbies
 también pasaron juntas contra la base temporal. Tipos del workspace, lint de los
 archivos afectados, formato y compilación aprobados.
+
+## Aceptación con dos navegadores (23 de octubre de 2026)
+
+Se ha probado el servidor que sirve la web compilada, con MariaDB 10.4 temporal,
+Chrome 155 y Edge 155 en procesos y sesiones independientes. Son navegadores
+reales en modo headless, en la misma máquina; no una simulación de peticiones.
+
+Se encontró un fallo de despliegue: `/online` y `/online/:id` devolvían 404 al
+entrar directamente, abrir una invitación o recargar. Se añaden estas rutas
+al servidor, validando el UUID de la mesa y manteniendo los 404 de rutas
+desconocidas y API. La regresión en `web.test.ts` falló antes de la corrección
+y pasó después.
+
+El recorrido final con Trish y Daniela completó 87 decisiones hasta terminar
+Spreading Flames, registró el resultado, compró mejoras para ambos y llegó a
+la primera ronda de Smoke and Mirrors. No se modificó el estado del motor ni
+se concedió experiencia artificialmente. Se comprobaron:
+
+- Invitación, selección de mazos, confirmaciones e inicio compartido.
+- Decisiones desde el navegador del investigador al que le corresponde.
+- Mejoras `12037 → 12041` y `12016 → 12027`, con descuento de 2 XP cada una,
+  sustitución de carta y retirada de la confirmación del comprador.
+- Persistencia de los mazos tras recargar y ausencia de cambios en el mazo ajeno.
+- Espera hasta la confirmación de ambos y continuación reservada al anfitrión.
+- Mismo escenario/revisión/cartas públicas, trauma conservado y mano privada.
+- Preparación y primeras decisiones del segundo escenario, sin errores JavaScript.
+
+Una primera sesión con Joe y Daniela también llegó al segundo escenario.
+Una confirmación con revisión obsoleta recibió 409, sin aplicar el cambio;
+actualizar y confirmar de nuevo permitió continuar, conforme al protocolo.
+
+### Repetición local
+
+Usar una base **temporal** local cuyo nombre termine en `_test`, con permiso
+para migrarla, Chrome y Edge instalados y Playwright disponible. El ejecutor
+acepta `PLAYWRIGHT_MODULE` para reutilizar una instalación externa; no añade
+dependencias a la aplicación. Nunca usar cuentas ni bases de producción.
+
+1. Ejecutar `pnpm --filter @lcg/web build`.
+2. En una terminal, definir `MYSQL_TEST_URL` apuntando a esa base y ejecutar
+   `pnpm --filter @lcg/server exec tsx e2e/online-browser-server.ts`.
+   Este servidor de prueba escucha solo en `127.0.0.1:3187` y crea dos cuentas
+   verificadas de prueba. No se importa desde el servidor de producción.
+3. En otra terminal, ejecutar `node scripts/test-online-browsers.mjs`.
+   Si Playwright no está en la resolución de módulos, definir previamente
+   `PLAYWRIGHT_MODULE` con la ruta absoluta a su paquete instalado.
+4. El script imprime el resultado y la carpeta temporal con capturas de ambos
+   navegadores, cierra los navegadores y no guarda cookies ni invitaciones.
+   Detener el servidor de prueba y eliminar la base temporal al terminar.
+
+El recorrido termina el primer escenario dejando pasar turnos: verifica el
+ciclo online, no una estrategia para ganar. La semilla es la normal del servidor;
+el número de decisiones puede variar. No cubre una campaña completa, internet
+real, pérdidas de red ni dispositivos móviles. Las pruebas de servicio/SQL
+mantienen la cobertura de concurrencia, permisos y deduplicación.
+
+Validación de esta revisión: 34 pruebas dirigidas aprobadas (1 de rutas web,
+17 de servicio online, 2 con MariaDB real y 14 de cliente), tipos del servidor,
+lint de los archivos cambiados y formato. Cambios locales sin commit ni push;
+no se ha consultado CI ni despliegue.
