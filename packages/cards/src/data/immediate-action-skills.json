@@ -1,0 +1,12 @@
+[
+  {
+    "code": "02229",
+    "name": "Quick Thinking",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": []
+  }
+]

@@ -666,7 +666,11 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'PlayerWindow': {
       const investigator = getInvestigator(state, message.investigator)
-      if (investigator.eliminated) return state
+      if (
+        investigator.eliminated ||
+        (state.activeTurn === null && investigator.actionsRemaining === 0)
+      )
+        return state
       const id = investigator.id
       const again: Message = { type: 'PlayerWindow', investigator: id }
       if (actObjectiveMet(state)) return push(state, { type: 'AdvanceAct' }, again)
@@ -760,6 +764,13 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'EndTurn': {
+      const frames = state.immediateActions
+      if (frames?.length) {
+        const root = frames[0]!
+        // Ending a temporary "as if" turn cannot end somebody else's actual turn.
+        if (root.activeTurn !== message.investigator || root.endedTurn) return state
+        state = { ...state, immediateActions: [{ ...root, endedTurn: true }, ...frames.slice(1)] }
+      }
       // "Al final de tu turno": efectos pendientes de este investigador.
       const pending = (state.endOfTurn ?? []).filter((e) => e.investigator === message.investigator)
       const next = updateInvestigator(
@@ -1119,6 +1130,8 @@ export function handle(state: GameState, message: Message): GameState {
     case 'TakeImmediateAction': {
       const i = getInvestigator(state, message.investigator)
       if (i.eliminated) return state
+      const root = state.immediateActions?.[0]
+      const ownTurn = (root ? root.activeTurn : state.activeTurn) === i.id && !root?.endedTurn
       const next = updateInvestigator(
         {
           ...state,
@@ -1128,6 +1141,7 @@ export function handle(state: GameState, message: Message): GameState {
             {
               investigator: i.id,
               activeTurn: state.activeTurn ?? null,
+              ownTurn,
               actionsRemaining: i.actionsRemaining,
               ...(i.actionsTaken !== undefined ? { actionsTaken: i.actionsTaken } : {}),
               ...(i.movedThisTurn !== undefined ? { movedThisTurn: i.movedThisTurn } : {}),
@@ -1138,7 +1152,14 @@ export function handle(state: GameState, message: Message): GameState {
           ],
         },
         i.id,
-        (current) => ({ ...current, actionsRemaining: 1, extraMove: false, extraEvade: false }),
+        (current) => ({
+          ...current,
+          actionsRemaining: (ownTurn ? current.actionsRemaining : 0) + 1,
+          actionsTaken: ownTurn ? (current.actionsTaken ?? 0) : 0,
+          movedThisTurn: ownTurn ? (current.movedThisTurn ?? false) : false,
+          extraMove: false,
+          extraEvade: false,
+        }),
       )
       return push(
         next,
@@ -1193,14 +1214,40 @@ export function handle(state: GameState, message: Message): GameState {
       const frames = state.immediateActions ?? []
       const frame = frames[frames.length - 1]
       if (!frame) return state
-      const { investigator, activeTurn, turnActionGrants, ...turn } = frame
+      const {
+        investigator,
+        activeTurn,
+        turnActionGrants,
+        ownTurn: savedOwnTurn,
+        endedTurn: _ended,
+        ...turn
+      } = frame
+      // Older saved frames used a single-action budget and must retain their
+      // original restore semantics rather than interpreting it as ordinary actions.
+      const ownTurn = savedOwnTurn ?? false
+      const ended = !!frames[0]!.endedTurn
+      const resume =
+        (ended && activeTurn === frames[0]!.activeTurn) ||
+        (activeTurn && getInvestigator(state, activeTurn).eliminated)
+          ? null
+          : activeTurn
+      // The free action pays the first action cost; extra costs spend ordinary
+      // actions (including continuous grants) only during the actor's actual turn.
+      let spent = ownTurn
+        ? Math.max(0, turn.actionsRemaining - getInvestigator(state, investigator).actionsRemaining)
+        : 0
+      const grants = turnActionGrants?.map((g) => {
+        const used = Math.min(g.remaining, spent)
+        spent -= used
+        return { ...g, remaining: g.remaining - used }
+      })
       const { immediateActions: _frames, turnActionGrants: _grants, ...rest } = state
       return updateInvestigator(
         {
           ...rest,
-          activeTurn,
+          activeTurn: resume,
           ...(frames.length > 1 ? { immediateActions: frames.slice(0, -1) } : {}),
-          ...(turnActionGrants ? { turnActionGrants } : {}),
+          ...(resume && grants ? { turnActionGrants: grants } : {}),
         },
         investigator,
         (i) => {
@@ -1211,7 +1258,24 @@ export function handle(state: GameState, message: Message): GameState {
             extraEvade: _evade,
             ...current
           } = i
-          return { ...current, ...turn }
+          return {
+            ...current,
+            ...turn,
+            ...(i.eliminated ? { actionsRemaining: 0, extraMove: false, extraEvade: false } : {}),
+            ...(ownTurn && !i.eliminated
+              ? {
+                  actionsRemaining: ended ? 0 : i.actionsRemaining,
+                  ...(i.actionsTaken !== undefined ? { actionsTaken: i.actionsTaken } : {}),
+                  ...(i.movedThisTurn !== undefined ? { movedThisTurn: i.movedThisTurn } : {}),
+                  ...(i.extraMove || turn.extraMove !== undefined
+                    ? { extraMove: !!(i.extraMove || turn.extraMove) }
+                    : {}),
+                  ...(i.extraEvade || turn.extraEvade !== undefined
+                    ? { extraEvade: !!(i.extraEvade || turn.extraEvade) }
+                    : {}),
+                }
+              : {}),
+          }
         },
       )
     }
