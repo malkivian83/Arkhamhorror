@@ -356,6 +356,134 @@
       "inputHash": "145effedc073e4add6f924c7a277ac54cd01f6278b30d6ce4c3f0c6268d2e96e",
       "sha256": "8679793586687ac24989247caa7ad74126493ad3ff03baeec6ec32a6d1ce3ea5",
       "bytes": 334828
+    },
+    {
+      "key": "story.phantom.intro1",
+      "file": "a-phantom-of-truth-intro1.mp3",
+      "characters": 1546,
+      "inputHash": "3edbf9ca708eb9c6511ce048a061b5f4ae2519da84861136eed7a1ffcb76aa33",
+      "sha256": "45c3152388f32404e972e817e3627c7e6f599da01322408bc023d28d2a382601",
+      "bytes": 2020457
+    },
+    {
+      "key": "story.phantom.intro2",
+      "file": "a-phantom-of-truth-intro2.mp3",
+      "characters": 605,
+      "inputHash": "253406129371bdccdfd96f9c37b95e4620e42c6e7c0259c2f9a1f41633f0ab4e",
+      "sha256": "83bcf6ffe3b677352514d1f3eaf64041361a7f3e2a97f0f06262d7140dc67500",
+      "bytes": 820078
+    },
+    {
+      "key": "story.phantom.dream1",
+      "file": "a-phantom-of-truth-dream1.mp3",
+      "characters": 285,
+      "inputHash": "4719200380db212ddfc9c164acc4ca0a0c84c729d4a82709024a40728f59d2fd",
+      "sha256": "c7680f3adb1b28745534f882ad96b9f98f28348524115274c872ca8f8a37b6fb",
+      "bytes": 379967
+    },
+    {
+      "key": "story.phantom.dream2",
+      "file": "a-phantom-of-truth-dream2.mp3",
+      "characters": 158,
+      "inputHash": "0de2364f3bc084c6d6762c0090015933b890e48618adf4061171a931e1641c6a",
+      "sha256": "b268fd971221caebb408d46fe021dcfc535a7d38cc3d585d35989fa4dc0c6d3c",
+      "bytes": 270044
+    },
+    {
+      "key": "story.phantom.dream3",
+      "file": "a-phantom-of-truth-dream3.mp3",
+      "characters": 337,
+      "inputHash": "b1e542687c3e99f010c2013a43724547abd3f7b9f8a1428fc8c6c69076cb9ad7",
+      "sha256": "cb48e08d9ea8c7a4ea3b5ddd2dfbe5569b88c4ba8de34b896568eecfa1ec5815",
+      "bytes": 443915
+    },
+    {
+      "key": "story.phantom.dream4",
+      "file": "a-phantom-of-truth-dream4.mp3",
+      "characters": 238,
+      "inputHash": "2718bf2506c37e3c821a5ca61f4ca07eef4c41d9e4b1a4e9c0e20fd2f0a308e9",
+      "sha256": "7bf272e802efad6511459ba35a53a97b238265d1d8b1ca838271d435f931e1c4",
+      "bytes": 353218
+    },
+    {
+      "key": "story.phantom.dream6",
+      "file": "a-phantom-of-truth-dream6.mp3",
+      "characters": 304,
+      "inputHash": "9d4f479ee735adca65c13e63be1dfab8176bdf4ece137a11500f1cc7d2a6d5e5",
+      "sha256": "0bb68cbf01730ead540b5316db827b141084d9951e0294d4167862484ab6e5dd",
+      "bytes": 408389
+    },
+    {
+      "key": "story.phantom.dream7",
+      "file": "a-phantom-of-truth-dream7.mp3",
+      "characters": 735,
+      "inputHash": "950811cf3907ae7b20de788b6db52904f8de73b15895a1d2cd6aaec6c9bfb41d",
+      "sha256": "a985fb87af6cb935cb08f954c97a6b3b9d102c2d531f549f19dc269ba64cdc64",
+      "bytes": 955915
+    },
+    {
+      "key": "story.phantom.dream8",
+      "file": "a-phantom-of-truth-dream8.mp3",
+      "characters": 124,
+      "inputHash": "c96f7e1975caccc7a1ebb29f3a50219d5bc58ba192b3c4e36184bea9d73dcad1",
+      "sha256": "6703e8eb7d42ad9716a082493ac52670d479ecfc054446e69b17a8273aef30f3",
+      "bytes": 230756
+    },
+    {
+      "key": "story.phantom.dream9",
+      "file": "a-phantom-of-truth-dream9.mp3",
+      "characters": 377,
+      "inputHash": "9b9db60948bd22b08568759d89c6756444e0dc63708834d85280a978895bc087",
+      "sha256": "f4dc038b24593792b5f48b1ef47895f2d741f8e984e69ac1836c5561683f6968",
+      "bytes": 504937
+    },
+    {
+      "key": "story.phantom.dream10",
+      "file": "a-phantom-of-truth-dream10.mp3",
+      "characters": 570,
+      "inputHash": "3769742c8d68c14f0eb41da0b9c1a3f5749fe4fb594786db097306fb43f0f6d2",
+      "sha256": "4f75ff2f00ff3de9f3c354e2adad4e3218dc885c9150621e7bc113b029ed70dc",
+      "bytes": 718932
+    },
+    {
+      "key": "story.phantom.dream11",
+      "file": "a-phantom-of-truth-dream11.mp3",
+      "characters": 250,
+      "inputHash": "f59702351539456f1cff0a8d3bafa2304f45ff6fc89162520418dce70feca59a",
+      "sha256": "70850e24f0cd1956676c28b3c7103db084ac01a388807f50f403f320cbab80c7",
+      "bytes": 373280
+    },
+    {
+      "key": "story.phantom.dream12",
+      "file": "a-phantom-of-truth-dream12.mp3",
+      "characters": 142,
+      "inputHash": "81994a3d5f48ec01a9059876316a82d679e297056e74faa5a39076205a62789a",
+      "sha256": "84345166ff951f6d54779dadbdce040aa6502caa628d19c4c359913bcec6509d",
+      "bytes": 220307
+    },
+    {
+      "key": "story.phantom.dream13",
+      "file": "a-phantom-of-truth-dream13.mp3",
+      "characters": 74,
+      "inputHash": "a6690cb9b4b92ef4f44717a3712d9bc428bbc73b2ad51623f7b570f091e48361",
+      "sha256": "d6bc1133dee52a668c272dd6b12b621f0d0aa180cec12e259e3f6c1dbf3edadd",
+      "bytes": 125848
+    },
+    {
+      "key": "story.phantom.awakening",
+      "file": "a-phantom-of-truth-awakening.mp3",
+      "characters": 351,
+      "inputHash": "994a8466903ef326686b333f97b601f3ebef3c5c58c4922f98e21c69edc19c7f",
+      "sha256": "1d816e8f3acfb0147c1a206e77ed44c6009c2c490aa7c8e3daa5af4ef91d9341",
+      "bytes": 461052
+    },
+    {
+      "key": "story.phantom.jordan",
+      "file": "a-phantom-of-truth-jordan.mp3",
+      "characters": 483,
+      "inputHash": "f82f834f85073184f4ad262670ecf91c4be044ddd03c1c909f38e97ad08c906f",
+      "sha256": "e57b3ae8e4ac98d183f38c8f543d95cd3cd8e5ed770613090ca800b838c5cba0",
+      "bytes": 662926
     }
   ]
 }
