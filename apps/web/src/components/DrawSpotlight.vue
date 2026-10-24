@@ -8,6 +8,7 @@ import GameCard from './GameCard.vue'
 import CardTranslation from './CardTranslation.vue'
 import { useTableGame } from '../game/tableController'
 import { unreviewedEncounterDraws } from '../game/advanceReview'
+import { useLabels } from '../game/labels'
 
 /**
  * Carta de encuentro recién robada, en grande en el centro: se da la vuelta
@@ -20,6 +21,7 @@ const face = ref<HTMLElement | null>(null)
 const imageLanguage = ref('unknown')
 const { t } = useI18n()
 const game = useTableGame()
+const label = useLabels()
 
 interface Drawn {
   code: string
@@ -29,6 +31,21 @@ interface Drawn {
 const queue = ref<Drawn[]>([])
 const current = computed(() => queue.value[0] ?? null)
 const back = computed(() => cardBackImage('encounter'))
+/** Dónde ha acabado la carta, si es la única copia en la mesa (traición en un Lugar o enemigo). */
+const placed = computed(() => {
+  const c = current.value
+  if (!c) return null
+  const at = (id: string) => props.state.locations[id]?.name ?? id
+  const treacheries = Object.values(props.state.treacheries).filter((tr) => tr.code === c.code)
+  const enemies = Object.values(props.state.enemies).filter((e) => e.code === c.code)
+  const [treachery] = treacheries
+  if (treacheries.length === 1 && !enemies.length && treachery!.placement.type === 'location')
+    return { key: 'table.placedAt', location: at(treachery!.placement.location) }
+  const [enemy] = enemies
+  if (enemies.length === 1 && !treacheries.length)
+    return { key: 'table.spawnedAt', location: at(enemy!.location) }
+  return null
+})
 
 // Solo las cartas robadas desde que se abre la mesa; deshacer (el registro
 // encoge) o cargar una partida no vuelve a mostrar las anteriores.
@@ -92,6 +109,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', key, true))
         <CardTranslation :code="current.code" :image-language="imageLanguage" />
       </div>
       <p class="name">{{ localName(current.card) }}</p>
+      <p v-if="placed" class="placed">{{ label(placed.key, { location: placed.location }) }}</p>
       <button type="button" class="table-action" @click="dismiss">
         {{ t('table.ok') }}<template v-if="queue.length > 1"> ({{ queue.length - 1 }})</template>
       </button>
@@ -143,6 +161,12 @@ onBeforeUnmount(() => window.removeEventListener('keydown', key, true))
 }
 .name {
   font-size: 1.15rem;
+}
+.placed {
+  margin: 0;
+  color: var(--accent);
+  font-weight: 600;
+  text-shadow: 0 2px 6px rgb(0 0 0 / 80%);
 }
 .flipper {
   position: relative;

@@ -446,7 +446,7 @@ describe('G13: persecución por conexiones', () => {
       }),
       { ...pursue, data: { enemy: Object.keys(s.enemies)[0]!, investigator: 'a', attack: false } },
     )
-    expect(s.pending?.question.prompt).toBe('prompt.chooseLocation')
+    expect(s.pending?.question.prompt).toBe('prompt.chooseHunterPath')
     s = choose(s, 'choice.location', { location: 'Room D' })
     expect(s.scenarioMeta?.visits).toBe('DC')
     expect(me(s).damage).toBe(0)

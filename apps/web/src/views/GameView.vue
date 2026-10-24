@@ -17,6 +17,7 @@ import ScenarioTransition from '../components/ScenarioTransition.vue'
 import SidePanel from '../components/SidePanel.vue'
 import SkillTestPanel from '../components/SkillTestPanel.vue'
 import StoryModal from '../components/StoryModal.vue'
+import TargetPrompt from '../components/TargetPrompt.vue'
 import { classColor } from '../game/cards'
 import { useShortcuts } from '../game/shortcuts'
 import { useEnemyArrival } from '../game/enemyArrival'
@@ -60,6 +61,7 @@ const shown = computed(
     <BoardViewport :reset-key="state.scenarioId" class="board playmat sigil">
       <LocationMap :state="state" />
     </BoardViewport>
+    <TargetPrompt :state="state" />
     <SkillTestPanel :state="state" />
     <div class="players">
       <PlayerArea

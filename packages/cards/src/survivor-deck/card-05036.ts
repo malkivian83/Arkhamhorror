@@ -56,7 +56,12 @@ registerPlayerCard({
           {
             type: 'Ask',
             investigator: by,
-            question: { kind: 'chooseOne', prompt: 'prompt.chooseLocation', choices },
+            question: {
+              kind: 'chooseOne',
+              prompt: 'prompt.cardMoveTo',
+              promptParams: { card: '05036' },
+              choices,
+            },
           },
         ]
       : []

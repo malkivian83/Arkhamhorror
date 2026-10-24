@@ -204,7 +204,8 @@
       "geistDamage": "Deal damage to a Geist enemy?",
       "brain": "Harvested Brain: damage or horror?",
       "meal": "Restaurant: take 1 horror to heal 3 damage?",
-      "solutionMeddler": "Remove 2 clues from the Sinister Solution?"
+      "solutionMeddler": "Remove 2 clues from the Sinister Solution?",
+      "placeNearestNotCrimeScene": "{card} attaches to the nearest location that is not a Crime Scene and there is a tie: choose where to put it."
     },
     "chooseSpawnLocation": "Where does {enemy} spawn?",
     "fastCard": "Play this fast card or pass.",
@@ -225,7 +226,8 @@
       "cloak": "Who adds The Tattered Cloak to their deck?",
       "oathspeaker": "Possessed Oathspeaker: ready him or place 1 doom on him",
       "peabody": "Choose who takes control of Mr. Peabody",
-      "ledAstray": "Place 1 of your clues on a Cultist or 1 doom on the agenda"
+      "ledAstray": "Place 1 of your clues on a Cultist or 1 doom on the agenda",
+      "peabodyPassage": "{card}: choose the location that gets −1 shroud and the Passageway trait until {card} readies."
     },
     "chooseStartingLocation": "Choose where you begin play",
     "oath": {
@@ -233,7 +235,13 @@
       "keysTester": "Choose the investigator who takes the test",
       "wayOut": "Choose the investigator with the lowest [willpower] who searches for a Monster",
       "daniel": "Choose who takes control of Daniel Chesterfield"
-    }
+    },
+    "spawnTied": "{enemy} spawns at the location its text indicates and several qualify: choose where it spawns.",
+    "spawnFarthestEmpty": "{enemy} spawns at the empty location farthest from you and several are tied: choose where it spawns.",
+    "placeMostInvestigators": "{card} attaches to the location with the most investigators and there is a tie: choose where to put it.",
+    "placeMostClues": "{card} attaches to the location with the most clues (without another {card}) and there is a tie: choose where to put it.",
+    "cardMoveTo": "{card}: choose the location you move to.",
+    "cardDiscoverElsewhere": "{card}: choose another revealed location to discover 1 clue at."
   },
   "action": {
     "draw": "Draw 1 card",
@@ -998,7 +1006,10 @@
     "hidden": "Hidden",
     "hiddenHelp": "Hidden: secretly in this investigator’s hand. It is treated as if it were in their threat area and counts toward hand size.",
     "hiddenCard": "Hidden card",
-    "cluesOnAct": "Clues on the act"
+    "cluesOnAct": "Clues on the act",
+    "placedAt": "Placed at {location}",
+    "spawnedAt": "Spawns at {location}",
+    "targetHint": "Choose one of the highlighted items on the table."
   },
   "difficulty": {
     "easy": "Easy",

@@ -5327,7 +5327,11 @@ export function handle(state: GameState, message: Message): GameState {
                     investigator: leadInvestigator(state)!.id,
                     question: {
                       kind: 'chooseOne',
-                      prompt: 'prompt.chooseLocation',
+                      prompt:
+                        customSpawn !== undefined
+                          ? 'prompt.spawnTied'
+                          : 'prompt.spawnFarthestEmpty',
+                      promptParams: { enemy: enemy.name },
                       choices: places.map((l) => ({
                         label: 'choice.location',
                         params: { location: l.name },

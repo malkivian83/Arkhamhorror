@@ -203,6 +203,13 @@ function effectsBetween(before: GameState, after: GameState): AutoEffect[] {
         params: { ...params, location: locationName(after, t.placement.location) },
       })
   }
+  // Apoyos sin dueño puestos en un Lugar (Invitados…); los boca abajo siguen ocultos.
+  for (const a of Object.values(after.placedAssets ?? {}))
+    if (!before.placedAssets?.[a.id] && !a.faceDown && a.placement.type === 'location')
+      effects.push({
+        key: 'table.advanceReview.enteredAt',
+        params: { card: a.name, location: locationName(after, a.placement.location) },
+      })
   for (const t of Object.values(before.treacheries))
     if (!after.treacheries[t.id] && t.placement.type !== 'limbo')
       effects.push({ key: 'table.autoSteps.cardLeft', params: { card: t.name } })

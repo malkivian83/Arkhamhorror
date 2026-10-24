@@ -204,7 +204,8 @@
       "geistDamage": "¿Infliges daño a un Enemigo Geist?",
       "brain": "Cerebro extraído: ¿daño u horror?",
       "meal": "Restaurante: ¿recibes 1 horror para curarte 3 daños?",
-      "solutionMeddler": "¿Retiras 2 pistas de la Solución siniestra?"
+      "solutionMeddler": "¿Retiras 2 pistas de la Solución siniestra?",
+      "placeNearestNotCrimeScene": "{card} se vincula al Lugar más cercano que no sea Escena del crimen y hay empate: elige en qué Lugar la pones."
     },
     "chooseSpawnLocation": "¿Dónde aparece {enemy}?",
     "fastCard": "Juega esta carta rápida o pasa.",
@@ -225,7 +226,8 @@
       "cloak": "¿Quién añade El Manto Andrajoso a su mazo?",
       "oathspeaker": "Juramentado poseído: preparadlo o colocad 1 perdición sobre él",
       "peabody": "Elige quién toma el control del Sr. Peabody",
-      "ledAstray": "Coloca 1 de tus pistas sobre un Sectario o 1 perdición en el plan"
+      "ledAstray": "Coloca 1 de tus pistas sobre un Sectario o 1 perdición en el plan",
+      "peabodyPassage": "{card}: elige el Lugar que tendrá −1 velo y el rasgo Pasadizo hasta que {card} se prepare."
     },
     "chooseStartingLocation": "Elige dónde empiezas la partida",
     "oath": {
@@ -233,7 +235,13 @@
       "keysTester": "Elige al investigador que hace la prueba",
       "wayOut": "Elige al investigador con menos [willpower] que busca un Monstruo",
       "daniel": "Elige quién toma el control de Daniel Chesterfield"
-    }
+    },
+    "spawnTied": "{enemy} aparece en el Lugar que indica su texto y hay varios posibles: elige dónde aparece.",
+    "spawnFarthestEmpty": "{enemy} aparece en el Lugar vacío más alejado de ti y hay varios a la misma distancia: elige dónde aparece.",
+    "placeMostInvestigators": "{card} se une al Lugar con más investigadores y hay empate: elige en qué Lugar la pones.",
+    "placeMostClues": "{card} se une al Lugar con más pistas (sin otra {card}) y hay empate: elige en qué Lugar la pones.",
+    "cardMoveTo": "{card}: elige a qué Lugar te mueves.",
+    "cardDiscoverElsewhere": "{card}: elige otro Lugar revelado en el que descubres 1 pista."
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -998,7 +1006,10 @@
     "hidden": "Oculta",
     "hiddenHelp": "Oculto: en secreto en la mano de este investigador. Se trata como si estuviera en su zona de amenaza y cuenta para su tamaño de mano.",
     "hiddenCard": "Carta oculta",
-    "cluesOnAct": "Pistas sobre el acto"
+    "cluesOnAct": "Pistas sobre el acto",
+    "placedAt": "Se pone en {location}",
+    "spawnedAt": "Aparece en {location}",
+    "targetHint": "Elige uno de los elementos resaltados en la mesa."
   },
   "difficulty": {
     "easy": "Fácil",

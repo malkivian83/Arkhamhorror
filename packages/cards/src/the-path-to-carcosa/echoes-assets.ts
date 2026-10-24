@@ -75,7 +75,8 @@ registerPlayerCard({
                 investigator,
                 question: {
                   kind: 'chooseOne',
-                  prompt: 'prompt.chooseLocation',
+                  prompt: 'prompt.echoes.peabodyPassage',
+                  promptParams: { card: MR_PEABODY },
                   choices: Object.values(state.locations).map((l) => ({
                     label: 'choice.location',
                     params: { location: l.revealed ? l.name : (l.unrevealedName ?? l.name) },

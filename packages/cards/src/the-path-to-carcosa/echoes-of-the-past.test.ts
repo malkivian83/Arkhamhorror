@@ -301,6 +301,7 @@ describe('Echoes of the Past: agendas and acts', () => {
     // El Sr. Peabody convierte la Biblioteca oculta en Pasadizo (y le quita 1 de velo).
     const peabody = availableAbilities(state, 'a').find((a) => a.key.endsWith(':passage'))!
     state = during(state, keep, ...peabody.then)
+    expect(state.pending!.question.prompt).toBe('prompt.echoes.peabodyPassage')
     state = choose(state, 'choice.location', { location: 'Hidden Library' })
     expect(shroudOf(state, CODES.hiddenLibrary)).toBe(3)
     if (passages.length)

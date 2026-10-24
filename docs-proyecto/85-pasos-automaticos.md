@@ -36,3 +36,21 @@ cada paso del reglamento, su motivo y los cambios que ha producido.
 - `apps/web/src/stores/game.test.ts`: terminar el turno rellena el modal, no
   lo guarda y aceptarlo lo cierra.
 - Revisión visual en escritorio y a 390 px de ancho con La gala de mitad de invierno.
+
+## Elecciones sobre la mesa
+
+Cuando hay que elegir un elemento de la mesa (por ejemplo, en qué Lugar se
+pone una carta), no se abre ninguna ventana: el mapa resalta las opciones.
+
+- `TargetPrompt.vue` muestra sobre el tapete qué se elige, la carta de
+  encuentro que se resuelve y quién decide, también en móvil, donde el panel
+  lateral está oculto.
+- El genérico «Elige un Lugar» se sustituye por enunciados con la carta y el
+  motivo del empate: Puerta secreta (más investigadores), Puerta cerrada con
+  llave (más pistas), Prueba incriminatoria (más cercano sin Escena del crimen),
+  debilidades que aparecen en el Lugar vacío más alejado o según su texto,
+  persecución de La gala (`prompt.chooseHunterPath`), 05036, Voluntad del
+  cosmos y Sr. Peabody.
+- El foco de la carta de encuentro robada indica dónde ha acabado
+  («Se pone en…», «Aparece en…») cuando solo hay una copia en la mesa.
+- Los pasos automáticos incluyen los apoyos sin dueño que entran en un Lugar.

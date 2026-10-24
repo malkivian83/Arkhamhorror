@@ -834,7 +834,8 @@ registerPlayerCard({
               investigator,
               question: {
                 kind: 'chooseOne',
-                prompt: 'prompt.chooseLocation',
+                prompt: 'prompt.cardDiscoverElsewhere',
+                promptParams: { card: code(66) },
                 choices: others.map((l) => ({
                   label: 'choice.location',
                   params: { location: l.name },

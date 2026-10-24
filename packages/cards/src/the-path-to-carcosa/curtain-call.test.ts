@@ -263,7 +263,8 @@ describe('The Man in the Pallid Mask', () => {
       }),
       { type: 'ResolveWeakness', investigator: 'a', code: THE_MAN_IN_THE_PALLID_MASK },
     )
-    expect(tied.pending?.question.prompt).toBe('prompt.chooseLocation')
+    expect(tied.pending?.question.prompt).toBe('prompt.spawnTied')
+    expect(tied.pending?.question.promptParams?.enemy).toBeTruthy()
     expect(tied.pending?.question.choices).toHaveLength(3)
     tied = choose(tied, 'choice.location', { location: 'Room C' })
     expect(Object.values(tied.enemies)[0]?.location).toBe('C')

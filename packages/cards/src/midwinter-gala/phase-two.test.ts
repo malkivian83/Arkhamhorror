@@ -562,6 +562,9 @@ describe('G14 y G21: traiciones compartidas', () => {
         { type: 'location', id: CODES.ballroom },
       ]),
     )
+    // El empate se explica: qué carta se pone y por qué hay que elegir.
+    expect(s.pending!.question.prompt).toBe('prompt.placeMostInvestigators')
+    expect(s.pending!.question.promptParams).toEqual({ card: 'Secret Door' })
     s = choose(s, 'choice.location', { location: s.locations[CODES.lobby]!.name })
     expect(availableActions(s, 'a').some((a) => a.kind === 'move')).toBe(false)
     s = during(
