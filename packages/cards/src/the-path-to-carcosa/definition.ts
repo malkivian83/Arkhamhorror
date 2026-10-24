@@ -1,4 +1,5 @@
 import { registerCampaign } from '../campaign-definition'
+import { A_PHANTOM_OF_TRUTH, aPhantomOfTruth } from './a-phantom-of-truth'
 import { CARCOSA_CHAOS_BAGS, THE_PATH_TO_CARCOSA } from './campaign'
 import { CURTAIN_CALL, curtainCall } from './curtain-call'
 import { CLASP_OF_BLACK_ONYX } from './echoes-assets'
@@ -43,6 +44,12 @@ registerCampaign({
                 build: ({ difficulty, seed, log }) => theUnspeakableOath({ difficulty, seed, log }),
                 keywords: ['hidden', 'peril', 'surge', 'massive', 'hunter', 'retaliate', 'prey'],
               }
-            : { id },
+            : id === A_PHANTOM_OF_TRUTH
+              ? {
+                  id,
+                  build: ({ difficulty, seed, log }) => aPhantomOfTruth({ difficulty, seed, log }),
+                  keywords: ['peril', 'surge', 'aloof', 'hunter', 'retaliate', 'prey'],
+                }
+              : { id },
   ),
 })

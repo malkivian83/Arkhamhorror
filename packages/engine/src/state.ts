@@ -274,8 +274,13 @@ export function nextStepToward(
 
 /** Distancia (en conexiones) desde `from` a cada localización a la que se puede llegar. */
 /** Conexiones por las que puede moverse un enemigo (las de todos y las propias del escenario). */
-export function enemyNeighbours(state: GameState, location: LocationId): LocationId[] {
-  const extra = scenarioBehavior(state.scenarioId)?.enemyConnections?.(state, location) ?? []
+export function enemyNeighbours(
+  state: GameState,
+  location: LocationId,
+  /** El enemigo que se mueve, si las conexiones del escenario dependen de él (Byakhee). */
+  mover?: Enemy,
+): LocationId[] {
+  const extra = scenarioBehavior(state.scenarioId)?.enemyConnections?.(state, location, mover) ?? []
   return [...new Set([...(state.locations[location]?.connections ?? []), ...extra])]
 }
 
@@ -283,7 +288,7 @@ export function distancesFrom(
   state: GameState,
   from: LocationId,
   /** Para el movimiento de un enemigo (incluye `enemyConnections` del escenario). */
-  enemy = false,
+  enemy: boolean | Enemy = false,
 ): Map<LocationId, number> {
   const distances = new Map<LocationId, number>([[from, 0]])
   let frontier: LocationId[] = [from]
@@ -291,7 +296,7 @@ export function distancesFrom(
     const next: LocationId[] = []
     for (const current of frontier) {
       for (const neighbour of enemy
-        ? enemyNeighbours(state, current)
+        ? enemyNeighbours(state, current, enemy === true ? undefined : enemy)
         : (state.locations[current]?.connections ?? [])) {
         if (distances.has(neighbour) || !state.locations[neighbour]) continue
         distances.set(neighbour, (distances.get(current) ?? 0) + 1)
@@ -336,7 +341,7 @@ export function bestByPrey(candidates: Investigator[], prey: Prey | undefined): 
  * opciones, decide el jefe.
  */
 export function huntingSteps(state: GameState, enemy: Enemy): LocationId[] {
-  const distances = distancesFrom(state, enemy.location, true)
+  const distances = distancesFrom(state, enemy.location, enemy)
   const reachable = activeInvestigators(state).filter(
     (i) => i.location !== null && distances.has(i.location),
   )
@@ -347,9 +352,9 @@ export function huntingSteps(state: GameState, enemy: Enemy): LocationId[] {
   const closest = reachable.filter((i) => distance(i) === nearest)
   const preferred = bestByPrey(closest, enemy.prey)
   const targets = new Set((preferred.length ? preferred : closest).map((i) => i.location))
-  return enemyNeighbours(state, enemy.location).filter((step) => {
+  return enemyNeighbours(state, enemy.location, enemy).filter((step) => {
     if (!state.locations[step]) return false
-    const fromStep = distancesFrom(state, step, true)
+    const fromStep = distancesFrom(state, step, enemy)
     return [...targets].some((t) => fromStep.get(t as LocationId) === nearest - 1)
   })
 }
