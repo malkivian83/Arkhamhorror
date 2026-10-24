@@ -62,13 +62,23 @@ if (!process.argv.includes('--generate')) {
     headers,
     signal: AbortSignal.timeout(30000),
   })
-  if (!voiceResponse.ok) throw new Error(`Consulta de voz: HTTP ${voiceResponse.status}`)
-  const voice = await voiceResponse.json()
+  const recorded = existsSync(evidencePath) ? JSON.parse(readFileSync(evidencePath, 'utf8')) : null
+  // Una clave sin permiso de lectura de voces usa la verificación ya registrada de esta voz.
+  const voice = voiceResponse.ok
+    ? await voiceResponse.json()
+    : voiceResponse.status === 401 && recorded?.voiceId === voiceId
+      ? { name: recorded.voiceName }
+      : null
+  if (!voice) throw new Error(`Consulta de voz: HTTP ${voiceResponse.status}`)
   if (!/^Carmelo\b/i.test(voice.name)) throw new Error('La voz configurada no es Carmelo')
   mkdirSync(output, { recursive: true })
-  const evidence = existsSync(evidencePath)
-    ? JSON.parse(readFileSync(evidencePath, 'utf8'))
-    : { voiceId, voiceName: voice.name, language: 'es', settings, files: [] }
+  const evidence = recorded ?? {
+    voiceId,
+    voiceName: voice.name,
+    language: 'es',
+    settings,
+    files: [],
+  }
   for (const { key, file, text } of entries) {
     const inputHash = hash(JSON.stringify({ text, voiceId, ...settings }))
     const path = join(output, file)
