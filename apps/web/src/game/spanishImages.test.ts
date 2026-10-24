@@ -124,6 +124,13 @@ describe('imágenes españolas de referencia y alternativas', () => {
       expect(cardImages(reprint, false, 'es')).toEqual(cardImages('12097', false, 'es'))
     expect(cardImages('12097', false, 'es').length).toBeGreaterThan(0)
   })
+  it('Constance Dumaine (03076a) tiene su Historia (03076b) como reverso', () => {
+    expect(cardImages('03076a', false, 'es')).toEqual([
+      '/local-assets/cards/es/03076a.avif',
+      '/local-assets/cards/en/03076a.avif',
+    ])
+    expect(cardImages('03076a', true, 'en')).toEqual(['/local-assets/cards/en/03076b.avif'])
+  })
   it('no solicita traducciones ausentes de Gala ni pierde su segunda cara especial', () => {
     expect(cardImages('71008', false, 'es')).toEqual(['/local-assets/cards/en/71008.avif'])
     expect(cardImages('71045b', false, 'es')).toEqual(['/local-assets/cards/en/71045b.avif'])

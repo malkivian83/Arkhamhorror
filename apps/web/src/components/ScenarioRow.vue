@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { cluesToAdvanceAct, type GameState } from '@lcg/engine'
+import { actBehavior, cluesToAdvanceAct, type GameState } from '@lcg/engine'
 import { computed, ref, useId } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { localizedCards, localName } from '../game/localized'
@@ -24,6 +24,10 @@ const stories = computed(() => Object.values(props.state.stories ?? {}))
 const agenda = computed(() => props.state.agendas[props.state.agendaIndex])
 const act = computed(() => props.state.acts[props.state.actIndex])
 const actClues = computed(() => cluesToAdvanceAct(props.state))
+/** Traiciones en juego junto al mazo de Plan (Un público difícil, Cieno e impurezas). */
+const besideAgenda = computed(() =>
+  Object.values(props.state.treacheries).filter((tr) => tr.placement.type === 'agenda'),
+)
 
 function showDiscard() {
   showPile({
@@ -86,6 +90,14 @@ const sortedBag = computed(() =>
           <span class="stat-label">{{ t('table.doom') }}</span>
         </span>
       </TableTarget>
+      <TableTarget
+        v-for="tr in besideAgenda"
+        :key="tr.id"
+        :target="`treachery:${tr.id}`"
+        class="beside-agenda"
+      >
+        <GameCard :code="tr.code" :name="tr.name" :width="40" thumbnail color="#b5462f" />
+      </TableTarget>
     </div>
     <div v-if="act" class="scenario-group act-group" role="group" :aria-label="t('table.act')">
       <ScenarioDeckViewer
@@ -112,6 +124,15 @@ const sortedBag = computed(() =>
             }}</strong></span
           >
           <span class="stat-label">{{ t('table.clues') }}</span>
+        </span>
+        <!-- Pistas colocadas sobre el acto (Descubriendo la verdad). -->
+        <span v-else-if="actBehavior(act.code)?.eliminatedCluesToAct" class="group-metric">
+          <span class="metric-value"
+            ><TokenBadge kind="clue" value="" :size="20" aria-hidden="true" /><strong>{{
+              state.actClues ?? 0
+            }}</strong></span
+          >
+          <span class="stat-label">{{ t('table.cluesOnAct') }}</span>
         </span>
         <span v-else class="group-metric"
           ><span class="stat-label">{{ t('table.actions') }}</span></span

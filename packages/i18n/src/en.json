@@ -213,7 +213,12 @@
     "chooseAmount": "Choose an amount",
     "chooseCard": "Choose a card",
     "upkeepCost": "{card}: pay 1 resource or discard it",
-    "chooseX": "Choose X: the resources you pay"
+    "chooseX": "Choose X: the resources you pay",
+    "lastKing": {
+      "dianne": "Choose the bystander with the fewest clues Dianne Devine goes to",
+      "bonusXp": "Choose who earns 1 additional experience ({n} to assign)"
+    },
+    "corrosion": "Corrosion: discard Items with a total cost of at least {n} more"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -397,7 +402,12 @@
     "attachToLocation": "Attach to {location}",
     "moveTo": "Move to {location}",
     "dynamiteLocation": "Blast {location}",
-    "horrorPerPointFailed": "Take 1 horror for each point you failed by"
+    "horrorPerPointFailed": "Take 1 horror for each point you failed by",
+    "lastKing": {
+      "clueOn": "Place 1 of your clues on {card}"
+    },
+    "psychopathFight": "Young Psychopath gets +3 fight until the end of the investigation phase",
+    "damageAndHorror": "Take 1 damage and 1 horror"
   },
   "phase": {
     "setup": "Setup",
@@ -628,7 +638,13 @@
     "spiritsTorment": "Place 1 of your clues here: discard Spirit’s Torment",
     "stealFromBoxOffice": "Gain 5 resources (you “stole from the box office”)",
     "greenRoomInvestigate": "Investigate with +3 Intellect, then discard your hand",
-    "dressingRoomHeal": "Heal 3 horror"
+    "dressingRoomHeal": "Heal 3 horror",
+    "lastKing": {
+      "parley": "Parley with {card}",
+      "ballroom": "Ballroom: gain 2 resources",
+      "livingRoom": "Living Room: draw 1 card",
+      "diningRoom": "Heal 1 horror and reveal a random token"
+    }
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -714,7 +730,10 @@
       "tidiedUpTheRoom": "The investigators tidied up the room"
     },
     "enemyToVictory": "{enemy} is added to the victory display",
-    "enemyRemoved": "{enemy} is removed from the game"
+    "enemyRemoved": "{enemy} is removed from the game",
+    "lastKing": {
+      "diningToken": "Dining Room: the {token} token is revealed"
+    }
   },
   "table": {
     "investigators": "Investigators",
@@ -877,7 +896,8 @@
     "nextFightBonus": "+{amount} next fight",
     "hidden": "Hidden",
     "hiddenHelp": "Hidden: secretly in this investigator’s hand. It is treated as if it were in their threat area and counts toward hand size.",
-    "hiddenCard": "Hidden card"
+    "hiddenCard": "Hidden card",
+    "cluesOnAct": "Clues on the act"
   },
   "difficulty": {
     "easy": "Easy",
@@ -934,7 +954,7 @@
       "brethren-of-ash": "A fire, a restless city, and a mystery spreading through the ashes. Three scenarios, one connected story.",
       "the-midwinter-gala": "A night of luxury and secrets. Accept the invitation and discover what hides behind the masks at the gala.",
       "murder-at-the-excelsior-hotel": "A murder and a hotel full of secrets. Investigate what happened at the Excelsior and uncover the truth before it is too late.",
-      "the-path-to-carcosa": "The King in Yellow arrives in Arkham. Eight scenarios between doubt and conviction. In development: only scenario I, Curtain Call, is playable so far."
+      "the-path-to-carcosa": "The King in Yellow arrives in Arkham. Eight scenarios between doubt and conviction. In development: scenarios I and II, Curtain Call and The Last King, are playable so far."
     },
     "continueTitle": "Continue where you left off",
     "chooseStory": "Choose the story",
@@ -1076,7 +1096,20 @@
       "carcosaWarnedPolice": "the investigators tried to warn the police",
       "carcosaAvoidedPolice": "the investigators chose not to go to the police",
       "carcosaPoliceSuspicious": "the police are suspicious of the investigators",
-      "carcosaStrangerIsOnToYou": "the Stranger is on to the investigators"
+      "carcosaStrangerIsOnToYou": "the Stranger is on to the investigators",
+      "carcosaInterviewedConstance": "VIP interviewed: Constance Dumaine",
+      "carcosaInterviewedJordan": "VIP interviewed: Jordan Perry",
+      "carcosaInterviewedHaruko": "VIP interviewed: Ishimaru Haruko",
+      "carcosaInterviewedSebastien": "VIP interviewed: Sebastien Moreau",
+      "carcosaInterviewedAshleigh": "VIP interviewed: Ashleigh Clarke",
+      "carcosaSlainConstance": "VIP slain: Constance Dumaine",
+      "carcosaSlainJordan": "VIP slain: Jordan Perry",
+      "carcosaSlainHaruko": "VIP slain: Ishimaru Haruko",
+      "carcosaSlainSebastien": "VIP slain: Sebastien Moreau",
+      "carcosaSlainAshleigh": "VIP slain: Ashleigh Clarke",
+      "carcosaSecretMeeting": "the investigators crashed a secret meeting",
+      "carcosaFledTheParty": "the investigators fled the party",
+      "carcosaSlewTheMonsters": "the investigators slew the monsters at the party"
     },
     "scenario": {
       "smokeAndMirrors": "Scenario II: Smoke and Mirrors",
@@ -1341,7 +1374,8 @@
       "markConviction": "Mark 1 Conviction in the shared campaign log.",
       "markDoubt": "Mark 1 Doubt in the shared campaign log.",
       "strangerBearer": "{name} adds The Man in the Pallid Mask to their deck. It does not count toward deck size. If its bearer leaves the campaign, choose a new bearer.",
-      "chasingMarks": "Make {n} marks under Chasing the Stranger."
+      "chasingMarks": "Make {n} marks under Chasing the Stranger.",
+      "echoesOfThePast": "Scenario III: Echoes of the Past"
     },
     "curtainCall": {
       "introTitle": "Scenario I: Curtain Call",
@@ -1358,6 +1392,56 @@
       "escaping": "You have escaped the theatre. The investigators must decide what to do next.",
       "decide1": "We have to warn the police about what's going on! (→R1)",
       "decide2": "The police won’t believe us. We have to solve this mystery on our own. (→R2)"
+    },
+    "theLastKing": {
+      "introTitle": "Scenario II: The Last King",
+      "intro": "With no other leads, you attend the cast party of The King in Yellow at Constance Dumaine’s home, 1452 Atlantic Avenue.",
+      "setupTitle": "Setup",
+      "setup": "Gather the The Last King, Hastur’s Gift, Decay and Filth, The Stranger and Ancient Evils encounter sets.\n\nPut all 6 locations into play. Each investigator begins in the Foyer.\n\nThe 5 bystanders (Constance Dumaine, Jordan Perry, Ishimaru Haruko, Sebastien Moreau and Ashleigh Clarke) are placed at random, one at each location other than the Foyer, with 1 clue plus 1 per investigator.\n\nDianne Devine is set aside and the 5 Sickening Reality cards go beneath the scenario reference card.\n\nShuffle the remaining encounter cards to build the encounter deck.",
+      "resolution1Title": "Resolution 1",
+      "resolution1": "You leave the manor certain that the cast and crew of The King in Yellow are afflicted with madness. Looking back, the scene has changed: the windows are whole, the blood is gone and slow jazz is playing.",
+      "resolution2Title": "Resolution 2",
+      "resolution2": "A servant wakes you in an armchair in the living room. The party is winding down and everyone you were looking for is gone. Every trace of madness has vanished, but you remember what happened.",
+      "resolution3Title": "Resolution 3",
+      "resolution3": "Days later you remember a fantastic evening, with a hole in your memory. Obsessed with learning what happened, you head to the Historical Society in Southside.",
+      "forgotten": "Cross out all of those names: you have forgotten what happened that night.",
+      "clueXp": "For the clues on the act deck, {n} additional experience, divided as evenly as possible.",
+      "tokensEach": "Remove all cultist, tablet and elder thing tokens from the chaos bag, then add 1 of each.",
+      "toInterlude": "Proceed to Interlude I: Lunacy’s Reward.",
+      "interludeTitle": "Interlude I: Lunacy’s Reward",
+      "interlude": "The investigators must decide what to do now.",
+      "interludeChoice1": "Things seem to have calmed down. Perhaps we should go back inside and investigate further.",
+      "interludeChoice2": "I don’t trust this place one bit. Let’s block the door and get out of here!",
+      "interludeChoice3": "If we leave these people alive, this horror will happen again. We have to kill them.",
+      "lunacysReward1Title": "Lunacy’s Reward 1",
+      "lunacysReward1": "You go back inside. Everything seems normal until you see the Stranger talking to a tall man with a cane. His gaze pierces you and you flee as fast as you can.",
+      "lunacysReward2Title": "Lunacy’s Reward 2",
+      "lunacysReward2": "You block the front door with stone benches and drive to Southside in search of answers.",
+      "lunacysReward3Title": "Lunacy’s Reward 3",
+      "lunacysReward3": "You douse the manor in gasoline and set it ablaze, watching from the front yard as the horrors inside shriek.",
+      "tokens1": "Remove all cultist, tablet and elder thing tokens from the chaos bag, then add 2 elder thing tokens.",
+      "tokens2": "Remove all cultist, tablet and elder thing tokens from the chaos bag, then add 2 tablet tokens.",
+      "tokens3": "Remove all cultist, tablet and elder thing tokens from the chaos bag, then add 2 cultist tokens.",
+      "interviewConstanceTitle": "Engram's Oath",
+      "interviewJordanTitle": "L'agneau Perdu",
+      "interviewHarukoTitle": "The Pattern",
+      "interviewSebastienTitle": "The First Show",
+      "interviewAshleighTitle": "Above and Below",
+      "interviewConstance": "You have interviewed Constance Dumaine. The card flips back to its asset side.",
+      "interviewJordan": "You have interviewed Jordan Perry. The card flips back to its asset side.",
+      "interviewHaruko": "You have interviewed Ishimaru Haruko. The card flips back to its asset side.",
+      "interviewSebastien": "You have interviewed Sebastien Moreau. The card flips back to its asset side.",
+      "interviewAshleigh": "You have interviewed Ashleigh Clarke. The card flips back to its asset side.",
+      "sickeningConstanceTitle": "Sickening Reality",
+      "sickeningJordanTitle": "Sickening Reality",
+      "sickeningHarukoTitle": "Sickening Reality",
+      "sickeningSebastienTitle": "Sickening Reality",
+      "sickeningAshleighTitle": "Sickening Reality",
+      "sickeningConstance": "Constance Dumaine transforms before your eyes. Each investigator at their location takes 1 horror, their clues go to their location and they become a Lunatic enemy.",
+      "sickeningJordan": "Jordan Perry transforms before your eyes. Each investigator at their location takes 1 horror, their clues go to their location and they become a Lunatic enemy.",
+      "sickeningHaruko": "Ishimaru Haruko transforms before your eyes. Each investigator at their location takes 1 horror, their clues go to their location and they become a Lunatic enemy.",
+      "sickeningSebastien": "Sebastien Moreau transforms before your eyes. Each investigator at their location takes 1 horror, their clues go to their location and they become a Lunatic enemy.",
+      "sickeningAshleigh": "Ashleigh Clarke transforms before your eyes. Each investigator at their location takes 1 horror, their clues go to their location and they become a Lunatic enemy."
     }
   },
   "playmat": {
@@ -1637,6 +1721,10 @@
     "hidden": {
       "title": "Hidden",
       "body": "A hidden card is secretly added to your hand. While there it is treated as if it were in your threat area: its abilities work, but only you can trigger them. It counts toward your hand size and can only be discarded as its own text describes; then it goes to the encounter discard pile."
+    },
+    "bystanders": {
+      "title": "Bystanders",
+      "body": "Bystander assets are at locations, uncontrolled, with clues on them. Parley with them to take their clues (parleying does not provoke attacks of opportunity). When the last clue is removed from a bystander, they have been interviewed."
     }
   },
   "phaseStep": {

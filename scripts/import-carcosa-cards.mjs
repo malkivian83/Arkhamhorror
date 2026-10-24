@@ -38,6 +38,18 @@ const CODES = new Set([
   '01163',
   '01164',
   '01165',
+  // El Último Rey (03059 es una debilidad de jugador; las Realidades repulsivas tienen el
+  // Enemigo Lunático en su reverso, 0306Xb, y los Transeúntes su Historia, 0307Xb).
+  ...range(3061, 3075),
+  ...['03065b', '03066b', '03067b', '03068b', '03069b'],
+  '03076a',
+  '03076b',
+  ...range(3077, 3080).flatMap((code) => [code, `${code}b`]),
+  ...range(3081, 3083),
+  // El regalo de Hastur, Podredumbre e impurezas, El Extranjero y Antiguos males.
+  ...range(3095, 3097),
+  ...range(3101, 3105),
+  '01166',
 ])
 
 /** Erratas de la traducción de la fuente, contrastadas con las cartas impresas. */
@@ -46,11 +58,24 @@ const ERRATA = [
   ['Lugar de parición normal', 'Lugar de aparición normal'],
   ['<b>Revelación</b> Si tienes', '<b>Revelación</b> - Si tienes'],
   ['obtiene:"', 'obtiene: "'],
+  ['Realidad repulsica', 'Realidad repulsiva'],
+  ['en lugar de eso has avanzar', 'en lugar de eso haz avanzar'],
 ]
 const fix = (text) =>
   typeof text === 'string'
     ? ERRATA.reduce((t, [wrong, right]) => t.replaceAll(wrong, right), text)
     : text
+
+/**
+ * La fuente inglesa usa los nombres de la reedición (Possessed, Seer of the Sign, Puppet of
+ * Hastur); las cartas impresas, la guía y la fuente española usan los originales.
+ */
+const ORIGINAL_EN = {
+  '03095': { name: 'Maniac' },
+  '03096': { name: 'Young Psychopath' },
+}
+const original = (lang, code, text) =>
+  lang === 'en' && typeof text === 'string' ? text.replaceAll('Possessed', 'Lunatic') : text
 
 for (const lang of ['en', 'es']) {
   const cards = JSON.parse(
@@ -58,15 +83,17 @@ for (const lang of ['en', 'es']) {
   )
   const out = {}
   for (const card of cards.filter((c) => CODES.has(c.code))) {
+    const entries = Object.entries({
+      name: fix(card.name),
+      subname: fix(card.subname),
+      traits: fix(card.traits),
+      text: fix(card.text),
+      backName: fix(card.back_name),
+      backText: fix(card.back_text),
+      ...(lang === 'en' ? ORIGINAL_EN[card.code] : {}),
+    }).map(([key, value]) => [key, original(lang, card.code, value)])
     out[card.code] = Object.fromEntries(
-      Object.entries({
-        name: fix(card.name),
-        subname: fix(card.subname),
-        traits: fix(card.traits),
-        text: fix(card.text),
-        backName: fix(card.back_name),
-        backText: fix(card.back_text),
-      }).filter(([, v]) => typeof v === 'string' && v !== ''),
+      entries.filter(([, v]) => typeof v === 'string' && v !== ''),
     )
   }
   const missing = [...CODES].filter((code) => !out[code])

@@ -213,7 +213,12 @@
     "chooseAmount": "Elige una cantidad",
     "chooseCard": "Elige una carta",
     "upkeepCost": "{card}: paga 1 recurso o descártalo",
-    "chooseX": "Elige X: los recursos que pagas"
+    "chooseX": "Elige X: los recursos que pagas",
+    "lastKing": {
+      "dianne": "Elige el Transeúnte con menos pistas al que va Dianne Devine",
+      "bonusXp": "Elige quién obtiene 1 de experiencia adicional ({n} por repartir)"
+    },
+    "corrosion": "Corrosión: descarta Objetos con un coste total de al menos {n} más"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -397,7 +402,12 @@
     "attachToLocation": "Vincular a {location}",
     "moveTo": "Moverte a {location}",
     "dynamiteLocation": "Hacer estallar {location}",
-    "horrorPerPointFailed": "Recibir 1 horror por cada punto que te faltó"
+    "horrorPerPointFailed": "Recibir 1 horror por cada punto que te faltó",
+    "lastKing": {
+      "clueOn": "Dejar 1 de tus pistas sobre {card}"
+    },
+    "psychopathFight": "La Psicópata joven recibe +3 a combate hasta el final de la fase de Investigación",
+    "damageAndHorror": "Recibir 1 daño y 1 horror"
   },
   "phase": {
     "setup": "Preparación",
@@ -628,7 +638,13 @@
     "spiritsTorment": "Colocar 1 de tus pistas aquí: descartar Tormento del espíritu",
     "stealFromBoxOffice": "Obtener 5 recursos (habéis «robado en la taquilla»)",
     "greenRoomInvestigate": "Investigar con +3 de Intelecto y después descartar tu mano",
-    "dressingRoomHeal": "Curar 3 de horror"
+    "dressingRoomHeal": "Curar 3 de horror",
+    "lastKing": {
+      "parley": "Negociar con {card}",
+      "ballroom": "Salón de baile: obtén 2 recursos",
+      "livingRoom": "Sala de estar: roba 1 carta",
+      "diningRoom": "Cúrate 1 horror y revela una ficha al azar"
+    }
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -714,7 +730,10 @@
       "tidiedUpTheRoom": "Los investigadores han ordenado la habitación"
     },
     "enemyToVictory": "{enemy} se añade a la zona de victoria",
-    "enemyRemoved": "{enemy} se retira de la partida"
+    "enemyRemoved": "{enemy} se retira de la partida",
+    "lastKing": {
+      "diningToken": "Comedor: se revela la ficha {token}"
+    }
   },
   "table": {
     "investigators": "Investigadores",
@@ -877,7 +896,8 @@
     "nextFightBonus": "+{amount} al próximo combate",
     "hidden": "Oculta",
     "hiddenHelp": "Oculto: en secreto en la mano de este investigador. Se trata como si estuviera en su zona de amenaza y cuenta para su tamaño de mano.",
-    "hiddenCard": "Carta oculta"
+    "hiddenCard": "Carta oculta",
+    "cluesOnAct": "Pistas sobre el acto"
   },
   "difficulty": {
     "easy": "Fácil",
@@ -934,7 +954,7 @@
       "brethren-of-ash": "Un incendio, una ciudad inquieta y un misterio que se extiende entre las cenizas. Tres escenarios, una historia conectada.",
       "the-midwinter-gala": "Una noche de lujo y secretos. Acepta la invitación y descubre qué se esconde tras las máscaras de la gala.",
       "murder-at-the-excelsior-hotel": "Un asesinato y un hotel lleno de secretos. Investiga lo ocurrido en el Excelsior y descubre la verdad antes de que sea demasiado tarde.",
-      "the-path-to-carcosa": "El Rey de Amarillo llega a Arkham. Ocho escenarios entre Dudas y Convicciones. En desarrollo: de momento solo se puede jugar el escenario I, Se cierra el telón."
+      "the-path-to-carcosa": "El Rey de Amarillo llega a Arkham. Ocho escenarios entre Dudas y Convicciones. En desarrollo: de momento se pueden jugar los escenarios I y II, Se cierra el telón y El Último Rey."
     },
     "continueTitle": "Continuar donde lo dejaste",
     "chooseStory": "Elige la historia",
@@ -1076,7 +1096,20 @@
       "carcosaWarnedPolice": "los investigadores trataron de avisar a la policía",
       "carcosaAvoidedPolice": "los investigadores eligieron no acudir a la policía",
       "carcosaPoliceSuspicious": "la policía sospecha de los investigadores",
-      "carcosaStrangerIsOnToYou": "el Extranjero sabe lo que intentan hacer los investigadores"
+      "carcosaStrangerIsOnToYou": "el Extranjero sabe lo que intentan hacer los investigadores",
+      "carcosaInterviewedConstance": "VIP interrogado: Constance Dumaine",
+      "carcosaInterviewedJordan": "VIP interrogado: Jordan Perry",
+      "carcosaInterviewedHaruko": "VIP interrogado: Ishimaru Haruko",
+      "carcosaInterviewedSebastien": "VIP interrogado: Sebastien Moreau",
+      "carcosaInterviewedAshleigh": "VIP interrogado: Ashleigh Clarke",
+      "carcosaSlainConstance": "VIP muerto: Constance Dumaine",
+      "carcosaSlainJordan": "VIP muerto: Jordan Perry",
+      "carcosaSlainHaruko": "VIP muerto: Ishimaru Haruko",
+      "carcosaSlainSebastien": "VIP muerto: Sebastien Moreau",
+      "carcosaSlainAshleigh": "VIP muerto: Ashleigh Clarke",
+      "carcosaSecretMeeting": "los investigadores se colaron en una reunión secreta",
+      "carcosaFledTheParty": "los investigadores huyeron de la fiesta",
+      "carcosaSlewTheMonsters": "los investigadores mataron a los monstruos de la fiesta"
     },
     "scenario": {
       "smokeAndMirrors": "el Escenario II: Smoke and Mirrors",
@@ -1341,7 +1374,8 @@
       "markConviction": "Marca 1 Convicción en el registro de campaña compartido.",
       "markDoubt": "Marca 1 Duda en el registro de campaña compartido.",
       "strangerBearer": "{name} añade El hombre de la máscara pálida a su mazo. No cuenta para el tamaño de su mazo. Si su portador abandona la campaña, elegid otro portador.",
-      "chasingMarks": "Haz {n} marcas en Persiguiendo al Extranjero."
+      "chasingMarks": "Haz {n} marcas en Persiguiendo al Extranjero.",
+      "echoesOfThePast": "Escenario III: Ecos del pasado"
     },
     "curtainCall": {
       "introTitle": "Escenario I: Se cierra el telón",
@@ -1358,6 +1392,56 @@
       "escaping": "Habéis escapado del teatro. Los investigadores deben decidir qué hacer a continuación.",
       "decide1": "¡Debemos avisar a la policía de lo que está pasando! (→R1)",
       "decide2": "La policía no nos creerá. Tenemos que resolver este misterio por nuestra cuenta. (→R2)"
+    },
+    "theLastKing": {
+      "introTitle": "Escenario II: El Último Rey",
+      "intro": "Sin más pistas que seguir, acudes a la fiesta del elenco de El Rey de Amarillo en casa de Constance Dumaine, en el 1452 de la Avenida Atlantic.",
+      "setupTitle": "Preparación",
+      "setup": "Se reúnen los conjuntos de encuentros El Último Rey, El regalo de Hastur, Podredumbre e impurezas, El Extranjero y Antiguos males.\n\nLos 6 Lugares entran en juego. Cada investigador empieza en el Recibidor.\n\nLos 5 Transeúntes (Constance Dumaine, Jordan Perry, Ishimaru Haruko, Sebastien Moreau y Ashleigh Clarke) se colocan al azar, uno en cada Lugar salvo el Recibidor, con 1 pista más 1 por investigador.\n\nSe aparta Dianne Devine y las 5 Realidades repulsivas quedan bajo la referencia del escenario.\n\nEl resto de cartas de encuentro se baraja para formar el mazo de Encuentros.",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "Sales de la mansión convencido de que el elenco y el equipo de El Rey de Amarillo están aquejados de locura. Al mirar atrás, la escena ha cambiado: las ventanas están intactas, la sangre ha desaparecido y suena un jazz lento.",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "Un criado te despierta en un sillón de la sala de estar. La fiesta se apaga y ya no queda nadie a quien buscabas. Todo rastro de locura ha desaparecido, pero tú recuerdas lo sucedido.",
+      "resolution3Title": "Resolución 3",
+      "resolution3": "Días después recuerdas una velada fantástica, pero con un agujero en la memoria. Obsesionado por saber qué ocurrió, te diriges a la Sociedad Histórica del Barrio Sur.",
+      "forgotten": "Tachad todos esos nombres: habéis olvidado lo sucedido esa noche.",
+      "clueXp": "Por las pistas del mazo de Acto, {n} punto(s) de experiencia adicional, repartidos lo más equitativamente posible.",
+      "tokensEach": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 1 de cada.",
+      "toInterlude": "Pasad al Interludio I: La sombra de la realidad.",
+      "interludeTitle": "Interludio I: La sombra de la realidad",
+      "interlude": "Los investigadores deben decidir qué hacer ahora.",
+      "interludeChoice1": "Las cosas parecen haberse calmado. Quizás deberíamos volver dentro y seguir investigando.",
+      "interludeChoice2": "No me fío de este sitio ni un ápice. ¡Vamos a bloquear la puerta y larguémonos de aquí!",
+      "interludeChoice3": "Si dejamos a esta gente con vida, este horror se volverá a repetir. Tenemos que matarlos.",
+      "lunacysReward1Title": "La sombra de la realidad 1",
+      "lunacysReward1": "Vuelves a entrar. Todo parece normal hasta que ves al Extranjero hablando con un hombre alto con bastón. Su mirada te atraviesa y huyes a toda velocidad.",
+      "lunacysReward2Title": "La sombra de la realidad 2",
+      "lunacysReward2": "Bloqueas la puerta principal con bancos de piedra y te marchas al Barrio Sur en busca de respuestas.",
+      "lunacysReward3Title": "La sombra de la realidad 3",
+      "lunacysReward3": "Rocías la mansión con gasolina y le prendes fuego. Desde el patio delantero ves cómo arde mientras chillan los horrores de dentro.",
+      "tokens1": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de primigenio.",
+      "tokens2": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de tablilla.",
+      "tokens3": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de sectario.",
+      "interviewConstanceTitle": "El juramento de Engram",
+      "interviewJordanTitle": "L'agneau perdu",
+      "interviewHarukoTitle": "El diseño",
+      "interviewSebastienTitle": "La primera representación",
+      "interviewAshleighTitle": "Arriba y abajo",
+      "interviewConstance": "Has interrogado a Constance Dumaine. La carta vuelve a su cara de Apoyo.",
+      "interviewJordan": "Has interrogado a Jordan Perry. La carta vuelve a su cara de Apoyo.",
+      "interviewHaruko": "Has interrogado a Ishimaru Haruko. La carta vuelve a su cara de Apoyo.",
+      "interviewSebastien": "Has interrogado a Sebastien Moreau. La carta vuelve a su cara de Apoyo.",
+      "interviewAshleigh": "Has interrogado a Ashleigh Clarke. La carta vuelve a su cara de Apoyo.",
+      "sickeningConstanceTitle": "Realidad repulsiva",
+      "sickeningJordanTitle": "Realidad repulsiva",
+      "sickeningHarukoTitle": "Realidad repulsiva",
+      "sickeningSebastienTitle": "Realidad repulsiva",
+      "sickeningAshleighTitle": "Realidad repulsiva",
+      "sickeningConstance": "Constance Dumaine se transforma ante vuestros ojos. Cada investigador de su Lugar recibe 1 horror, sus pistas pasan a su Lugar y se convierte en un Enemigo Lunático.",
+      "sickeningJordan": "Jordan Perry se transforma ante vuestros ojos. Cada investigador de su Lugar recibe 1 horror, sus pistas pasan a su Lugar y se convierte en un Enemigo Lunático.",
+      "sickeningHaruko": "Ishimaru Haruko se transforma ante vuestros ojos. Cada investigador de su Lugar recibe 1 horror, sus pistas pasan a su Lugar y se convierte en un Enemigo Lunático.",
+      "sickeningSebastien": "Sebastien Moreau se transforma ante vuestros ojos. Cada investigador de su Lugar recibe 1 horror, sus pistas pasan a su Lugar y se convierte en un Enemigo Lunático.",
+      "sickeningAshleigh": "Ashleigh Clarke se transforma ante vuestros ojos. Cada investigador de su Lugar recibe 1 horror, sus pistas pasan a su Lugar y se convierte en un Enemigo Lunático."
     }
   },
   "playmat": {
@@ -1637,6 +1721,10 @@
     "hidden": {
       "title": "Oculto",
       "body": "Una carta Oculto se añade en secreto a tu mano. Allí se trata como si estuviera en tu zona de amenaza: sus capacidades funcionan, pero solo tú puedes activarlas. Cuenta para tu tamaño de mano y solo se descarta como indica su propio texto; entonces va a la pila de descartes de Encuentros."
+    },
+    "bystanders": {
+      "title": "Transeúntes",
+      "body": "Los Apoyos Transeúnte están en los Lugares, sin dueño, con pistas. Negocia con ellos para tomar sus pistas (negociar no provoca ataques de oportunidad). Al retirar la última pista de un Transeúnte, se le ha interrogado."
     }
   },
   "phaseStep": {

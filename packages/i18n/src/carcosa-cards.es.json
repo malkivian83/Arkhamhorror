@@ -19,6 +19,11 @@
     "traits": "Terror.",
     "text": "<b>Revelación</b> - Pon las Voces disonantes en juego en tu zona de amenaza.\nNo puedes jugar Apoyos ni Eventos.\n<b>Obligado</b> - Al final de la ronda: Descarta las Voces disonantes."
   },
+  "01166": {
+    "name": "Antiguos males",
+    "traits": "Augurio.",
+    "text": "<b>Revelación</b> - Coloca 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance."
+  },
   "03043": {
     "name": "Se cierra el telón",
     "text": "<b>Fácil/Normal</b>\n[skull] -1, o bien -3 si tienes 3 o más puntos de horror.\n[cultist] [tablet] [elder_thing] -4. Si tu Lugar tiene al menos 1 punto de horror, recibes 1 punto de horror <i>(de la reserva de fichas)</i>. Si tu Lugar no tiene horror, en lugar de eso coloca 1 punto de horror sobre él.",
@@ -121,6 +126,168 @@
     "traits": "Monstruo. Élite.",
     "text": "<b>Presa</b> - Menor [willpower].\nDescomunal. Cazador. Represalia.\n<b>Obligado</b> - Al final de la fase de Enemigos: Cada investigador que esté en el Lugar del Emisario real o en un Lugar conectado recibe 1 punto de horror."
   },
+  "03061": {
+    "name": "El Último Rey",
+    "text": "<b>Fácil/Normal</b>\n[skull] Revela otra ficha. Si fracasas, coloca 1 ficha de Perdición sobre un Enemigo [[Lunático]] que esté en juego.\n[cultist] -2. Si fracasas, coloca 1 de tus pistas sobre tu Lugar.\n[tablet]: -4. Si fracasas, recibe 1 punto de horror.\n[elder_thing]: -X. X es el valor de velo de tu Lugar.",
+    "backText": "<b>Difícil/Experto</b>\n[skull] Revela otra ficha. Si fracasas, coloca 1 ficha de Perdición sobre un Enemigo [[Lunático]] que esté en juego con más salud restante.\n[cultist] -3. Coloca 1 de tus pistas sobre tu Lugar.\n[tablet] -4. Recibe 1 punto de horror.\n[elder_thing] -X. X es el valor de velo de tu Lugar. Si fracasas, recibe 1 punto de daño."
+  },
+  "03062": {
+    "name": "Elegantemente tarde",
+    "backName": "La última invitada",
+    "backText": "Busca el Apoyo [[Transeúnte]] que tenga menos pistas. Haz aparecer el Enemigo Dianne Devine puesto aparte en el Lugar de ese Apoyo.\nAñade la pila de descartes de Encuentros al mazo de Encuentros y barájalo."
+  },
+  "03063": {
+    "name": "La aterradora verdad",
+    "text": "<b>Obligado</b> - Cuando este plan fuese a avanzar por llegar a su umbral de perdición: En lugar de eso, retira toda la perdición que haya en juego y resuelve al azar 1 de las cartas Realidad repulsiva que hay bajo la carta de referencia de escenario. Si no hay cartas bajo la carta de referencia de escenario, en lugar de eso haz avanzar el plan al plan 2b.",
+    "backName": "Si no puedes vencerlos…",
+    "backText": "<b>(→R3)</b>"
+  },
+  "03064": {
+    "name": "Descubriendo la verdad",
+    "text": "<b>Obligado</b> - Cuando un investigador sea eliminado [[(por ser derrotado o por desistir)]]: Coloca todas las pistas de ese investigador sobre este acto en lugar de colocarlas en su Lugar.\n<b>Objetivo</b> - ¡Encontrad tantas pistas como podáis y luego salid de este terrible lugar!",
+    "backName": "¿…?",
+    "backText": "<b>Locura.</b> [[f]]. De loco y ·ura.\nPrivación del juicio o del uso de la razón.\n- Acción inconsiderada o gran desacierto\n- Exaltación del ánimo o de los ánimos, producida por algún afecto u otro incentivo.\n- ¿Por qué estás leyendo este lado?\n- No hay ningún motivo para darle la vuelta a la carta y mirar el acto 1b.\n- Vuelve a darle la vuelta a esta carta para mostrar el acto 1a."
+  },
+  "03065": {
+    "name": "Realidad repulsiva",
+    "text": "Cada investigador que esté en el Lugar de Constance Dumaine recibe 1 punto de horror.\nMueve todas las pistas de Constance Dumaine a su Lugar.\nDale la vuelta a esta carta para mostrar su lado de Enemigo, sustituye con ella la versión Apoyo [[Transeúnte]] de Constance Dumaine y retira ésta de la partida."
+  },
+  "03065b": {
+    "name": "Constance Dumaine",
+    "subname": "Sociable de más",
+    "traits": "Monstruo. Lunático. Élite.",
+    "text": "Cazador.\nMientras Constance Dumaine esté agotada, recibe +3 a combate."
+  },
+  "03066": {
+    "name": "Realidad repulsiva",
+    "text": "Cada investigador que esté en el Lugar de Jordan Perry recibe 1 punto de horror.\nMueve todas las pistas de Jordan Perry a su Lugar.\nDale la vuelta a esta carta para mostrar su lado de Enemigo, sustituye con ella la versión Apoyo [[Transeúnte]] de Jordan Perry y retira ésta de la partida."
+  },
+  "03066b": {
+    "name": "Jordan Perry",
+    "subname": "Una presencia imponente",
+    "traits": "Monstruo. Lunático. Élite.",
+    "text": "Cazador.\n<b>Obligado</b> - Al comienzo de la fase de Enemigos: Cura 1 punto de daño de Jordan Perry."
+  },
+  "03067": {
+    "name": "Realidad repulsiva",
+    "text": "Cada investigador que esté en el Lugar de Ishimaru Haruko recibe 1 punto de horror.\nMueve todas las pistas de Ishimaru Haruko a su Lugar.\nDale la vuelta a esta carta para mostrar su lado de Enemigo, sustituye con ella la versión Apoyo [[Transeúnte]] de Ishimaru Haruko y retira ésta de la partida."
+  },
+  "03067b": {
+    "name": "Ishimaru Haruko",
+    "subname": "Sólo piel y huesos",
+    "traits": "Monstruo. Lunático. Élite.",
+    "text": "Cazador.\n<b>Obligado</b> - Después de que inflijas daño a Ishimaru Haruko mediante un efecto distinto a un ataque: Roba la primera carta del mazo de Encuentros"
+  },
+  "03068": {
+    "name": "Realidad repulsiva",
+    "text": "Cada investigador que esté en el Lugar de Sebastien Moreau recibe 1 punto de horror.\nMueve todas las pistas de Sebastien Moreau a su Lugar.\nDale la vuelta a esta carta para mostrar su lado de Enemigo, sustituye con ella la versión Apoyo [[Transeúnte]] de Sebastien Moreau y retira ésta de la partida."
+  },
+  "03068b": {
+    "name": "Sebastien Moreau",
+    "subname": "Histeria salvaje",
+    "traits": "Monstruo. Lunático. Élite.",
+    "text": "Cazador. Represalia.\nLos ataques de Sebastien Moreau no pueden ser cancelados."
+  },
+  "03069": {
+    "name": "Realidad repulsiva",
+    "text": "Cada investigador que esté en el Lugar de Ashleigh Clarke recibe 1 punto de horror.\nMueve todas las pistas de Ashleigh Clarke a su Lugar.\nDale la vuelta a esta carta para mostrar su lado de Enemigo, sustituye con ella la versión Apoyo [[Transeúnte]] de Ashleigh Clarke y retira ésta de la partida."
+  },
+  "03069b": {
+    "name": "Ashleigh Clarke",
+    "subname": "Los cantos deben morir inaudibles",
+    "traits": "Monstruo. Lunático. Élite.",
+    "text": "Cazador.\nCada investigador que esté en el Lugar de Ashleigh Clarke no roba cartas en la fase de Mantenimiento."
+  },
+  "03070": {
+    "name": "Recibidor",
+    "text": "[action]: <b>Desistir.</b> Tras encontrar valiosa información sobre la producción, te marchas para planear el próximo movimiento. [[(Si todos los investigadores no derrotados han desistido, pasa a la sección \"Si no se ha llegado a ninguna resolución\" de la guía de campaña)]]."
+  },
+  "03071": {
+    "name": "Salón de baile",
+    "text": "[reaction] Después de que realices una acción de negociar en el Salón de baile: Obtén 2 recursos. Límite de grupo una vez por fase."
+  },
+  "03072": {
+    "name": "Sala de estar",
+    "text": "[reaction] Después de que realices una acción de negociar en la Sala de estar: Roba 1 carta. Límite de grupo una vez por fase."
+  },
+  "03073": {
+    "name": "Galería",
+    "text": "<b>Obligado</b> - Después de que acabes el turno en la Galería: Realiza una prueba de [willpower] (2). Si fracasas, coloca 1 de tus pistas en la Galería."
+  },
+  "03074": {
+    "name": "Patio",
+    "text": "<b>Obligado</b> - Después de que entres en el Patio: Descarta la primera carta del mazo de Encuentros. Si esa carta es un Enemigo, róbala."
+  },
+  "03075": {
+    "name": "Comedor",
+    "text": "[action]: Cúrate 1 punto de horror. A continuación, revela una ficha aleatoria de la bolsa de caos. Si revelas un símbolo de [skull] o [auto_fail], recibe 1 punto de horror y coloca una ficha de Perdición en el Comedor."
+  },
+  "03076a": {
+    "name": "Constance Dumaine",
+    "subname": "Anfitriona sociable",
+    "traits": "Transeúnte.",
+    "text": "[action]: <b>Negociar.</b> Realiza una prueba de [intellect] (3) para preguntarle a Constance por la obra. Si tienes éxito, toma el control de 1 de las pistas de Constance Dumaine.\n<b>Obligado</b> - Cuando se retire la última pista de Constance Dumaine: Dale la vuelta a esta carta y resuelve su texto."
+  },
+  "03076b": {
+    "name": "El juramento de Engram",
+    "text": "Recuerda que has \"interrogado a Constance.\"\nDale la vuelta a esta carta para mostrar su lado de Apoyo [[Transeúnte]]."
+  },
+  "03077": {
+    "name": "Jordan Perry",
+    "subname": "Financiero solemne",
+    "traits": "Transeúnte.",
+    "text": "[action] Si tienes 10 o más recursos: <b>Negociar.</b> Realiza una prueba [intellect] (2) para confraternizar con Jordan. Si tienes éxito, toma el control de 1 de las pistas de Jordan Perry.\n<b>Obligado</b> - Cuando se retire la última pista de Jordan Perry: Dale la vuelta a esta carta y resuelve su texto."
+  },
+  "03077b": {
+    "name": "L'agneau perdu",
+    "text": "Recuerda que has \"interrogado a Jordan.\"\nDale la vuelta a esta carta para mostrar su lado de Apoyo [[Transeúnte]]."
+  },
+  "03078": {
+    "name": "Ishimaru Haruko",
+    "subname": "Diseñadora de moda",
+    "traits": "Transeúnte.",
+    "text": "[action] Si tienes 6 o más cartas en la mano: <b>Negociar.</b> Realiza una prueba de [willpower] (2) para interrogar a Haruko sobre la obra. Si tienes éxito, toma el control de 1 de las pistas de Ishimaru Haruko.\n<b>Obligado</b> - Cuando se retire la última pista de Ishimaru Haruko: Dale la vuelta a esta carta y resuelve su texto."
+  },
+  "03078b": {
+    "name": "El diseño",
+    "text": "Recuerda que has \"interrogado a Haruko.\"\nDale la vuelta a esta carta para mostrar su lado de Apoyo [[Transeúnte]]."
+  },
+  "03079": {
+    "name": "Sebastien Moreau",
+    "subname": "Productor apasionado",
+    "traits": "Transeúnte.",
+    "text": "[action]: <b>Negociar.</b> Realiza una prueba de [willpower] (3) para sonsacarle a Sebastien información sobre la producción. Si tienes éxito, toma el control de 1 de las pistas de Sebastien Moreau.\n<b>Obligado</b> - Cuando se retire la última pista de Sebastien Moreau: Dale la vuelta a esta carta y resuelve su texto."
+  },
+  "03079b": {
+    "name": "La primera representación",
+    "text": "Recuerda que has \"interrogado a Sebastien.\"\nDale la vuelta a esta carta para mostrar su lado de Apoyo [[Transeúnte]]."
+  },
+  "03080": {
+    "name": "Ashleigh Clarke",
+    "subname": "Artista de talento",
+    "traits": "Transeúnte.",
+    "text": "[action][action]: <b>Negociar.</b> Escucháis una actuación de Ashleigh. Toma el control de 1 de las pistas de Ashleigh Clarke.\n<b>Obligado</b> - Cuando se retire la última pista de Ashleigh Clarke: Dale la vuelta a esta carta y resuelve su texto."
+  },
+  "03080b": {
+    "name": "Arriba y abajo",
+    "text": "Recuerda que has \"interrogado a Ashleigh.\"\nDale la vuelta a esta carta para mostrar su lado de Apoyo [[Transeúnte]]."
+  },
+  "03081": {
+    "name": "Dianne Devine",
+    "subname": "Volátil y malvada",
+    "traits": "Humanoide. Sectario. Élite.",
+    "text": "Indiferente.\nCada investigador que esté en el Lugar de Dianne Devine no puede descubrir ni tomar el control de pistas.\n<b>Obligado</b> - Al comienzo de la fase de Enemigos: Busca el Apoyo [[Transeúnte]] que tenga menos pistas. Mueve a Dianne Devine al Lugar de ese Apoyo si es posible."
+  },
+  "03082": {
+    "name": "Cena elegante",
+    "traits": "Terror.",
+    "text": "Peligro.\n<b>Revelación</b> - Debes colocar 1 de tus pistas en un Apoyo [[Transeúnte]] que esté en juego o bien recibir 1 punto de horror y 1 punto de daño."
+  },
+  "03083": {
+    "name": "Un público difícil",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> - Pon Un público difícil en juego junto al mazo de Plan.\nCada investigador debe gastar 1 acción adicional para negociar.\n<b>Obligado</b> - Al final de la ronda: Descarta Un público difícil."
+  },
   "03084a": {
     "name": "Susurros en tu cabeza",
     "subname": "Desaliento",
@@ -175,6 +342,21 @@
     "traits": "Maldición. Geist.",
     "text": "<b>Revelación</b> - Vincula esta carta a tu Lugar.\n<b>Obligado</b> - Después de que abandones el Lugar vinculado: Debes recibir 1 punto de horror o perder 1 acción.\n[action] Coloca 1 de tus pistas en el Lugar vinculado: Descarta el Tormento del espíritu."
   },
+  "03095": {
+    "name": "Maníaco",
+    "traits": "Humanoide. Lunático.",
+    "text": "<b>Obligado</b> - Después de que el Maníaco se enfrente a ti: Recibe 1 punto de daño e inflige 1 punto de daño al Maníaco."
+  },
+  "03096": {
+    "name": "Psicópata joven",
+    "traits": "Humanoide. Lunático.",
+    "text": "<b>Obligado</b> - Después de que la Psicópata joven se enfrente a ti: Debes recibir 1 punto de horror, o bien la Psicópata joven recibe +3 a combate hasta el final de la fase de Investigación."
+  },
+  "03097": {
+    "name": "La danza del Rey de Amarillo",
+    "traits": "Pacto.",
+    "text": "<b>Revelación</b> - Si no hay Enemigos [[Lunático]] en juego, La danza del Rey de Amarillo obtiene Oleada. Si no es así, realiza una prueba de [willpower] (3). Si fracasas, el Enemigo [[Lunático]] más cercano se prepara, se mueve de Lugar en Lugar hasta que llegue a tu Lugar, se enfrenta a ti y realiza un ataque inmediatamente."
+  },
   "03098": {
     "name": "Fanático",
     "traits": "Humanoide. Sectario.",
@@ -189,5 +371,30 @@
     "name": "El edicto del Rey",
     "traits": "Pacto.",
     "text": "<b>Revelación</b> - Por cada Enemigo [[Sectario]] que haya en juego, mueve 1 pista del Lugar de ese Enemigo a ese Enemigo. Hasta el final de ronda, cada Enemigo [[Sectario]] que esté en juego recibe +1 a combate por cada pista y/o ficha de Perdición que tenga. Si no se movió ninguna pista por este efecto, El edicto del Rey obtiene Oleada."
+  },
+  "03101": {
+    "name": "Cieno e impurezas",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> - Pon Cieno e impurezas en juego junto al mazo de Plan.\nCada Lugar recibe +1 a velo.\n<b>Obligado</b> - Al final de la ronda: Descarta Cieno e impurezas."
+  },
+  "03102": {
+    "name": "Corrosión",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> - Descarta Apoyos [[Objeto]] del juego y/o de tu mano que tengan un coste de recursos impreso total de al menos X, donde X es el valor de velo de tu Lugar. Si no se descartaron cartas por este efecto, la Corrosión obtiene Oleada."
+  },
+  "03103": {
+    "name": "Enjambre de cucarachas",
+    "traits": "Criatura.",
+    "text": "X es el valor de velo del Lugar del Enjambre de cucarachas."
+  },
+  "03104": {
+    "name": "Marcado por el signo",
+    "traits": "Pacto.",
+    "text": "Peligro.\n<b>Revelación</b> - Realiza una prueba de [willpower] (2). Si fracasas, recibe 2 puntos de horror. Si El hombre de la máscara pálida está en juego, el horror infligido por este efecto se considera horror directo y esta prueba tiene +2 a su dificultad."
+  },
+  "03105": {
+    "name": "La invitación de la máscara pálida",
+    "traits": "Augurio. Pacto.",
+    "text": "<b>Revelación</b> - Si El hombre de la máscara pálida está en juego, ataca a cada investigador siguiendo el orden de juego, independientemente de su Lugar actual. Si El hombre de la máscara pálida no está en juego, búscalo en el mazo y la pila de descartes del afectado, róbalo y baraja el mazo del afectado <em>(resuelve este efecto incluso si el afectado está eliminado en ese momento, buscando en todas las zonas que estén fuera del juego)</em>."
   }
 }

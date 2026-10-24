@@ -2,15 +2,14 @@
 
 ## Estado actual
 
-**1 de 8 escenarios jugables: I · Se cierra el telón** (tercera entrega,
-publicada en `cf4511d`). La campaña ya se puede empezar en local y en línea; al terminar
-el escenario I no hay un segundo escenario disponible. Los escenarios II–VIII siguen
-sin `build`.
+**2 de 8 escenarios jugables: I · Se cierra el telón y II · El Último Rey**, con el
+Interludio I (cuarta entrega). Al terminar el escenario II no hay un tercero disponible.
+Los escenarios III–VIII siguen sin `build`.
 
 | Escenario                      | Implementado                                                                            | Pendiente para jugar                                                                                                                    |
 | ------------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | I · Se cierra el telón         | Completo: preparación, actos, planes, Lugares, 7 conjuntos, resoluciones y narración    | Lola Hayes (no jugable aún)                                                                                                             |
-| II · El último Rey             | Nombre y posición en la campaña                                                         | Implementación íntegra y transición al interludio I                                                                                     |
+| II · El último Rey             | Completo: preparación, Transeúntes, planes, acto, 5 conjuntos, R1–R3 e Interludio I      | Audios de narración                                                                                                                     |
 | III · Ecos del pasado          | Nombre y posición en la campaña                                                         | Implementación íntegra y lectura del registro previo                                                                                    |
 | IV · El juramento inconfesable | Nombre y posición en la campaña                                                         | Implementación íntegra y transición al interludio II                                                                                    |
 | V · El Fantasma de la Verdad   | Nombre y posición en la campaña                                                         | Implementación íntegra y variantes según el registro                                                                                    |
@@ -204,6 +203,49 @@ por el cambio sin publicar de `SearchDeck.anyCard` del lote de cartas en curso).
 Formato, tipos y compilación correctos; lint correcto salvo un aviso en
 `grouped-import` (ajeno).
 
+## Cuarta entrega: El Último Rey e Interludio I
+
+Escenario en `the-path-to-carcosa/the-last-king.ts`; conjuntos El regalo de Hastur,
+Podredumbre e impurezas, El Extranjero y Antiguos males añadidos a `encounter-sets.ts`.
+Mazo de 22 cartas; apartados Dianne Devine y los cinco VIP Lunáticos. Fuentes: guía ES
+pp. 7–9 (revisadas sobre la página renderizada) y textos de las cartas de la referencia
+(`cards_{en,es}.json`, `TheLastKing.hs` y sus Lugares, solo como contraste).
+
+- Transeúntes: apoyos sin dueño con pistas (1 + 1 por investigador), al azar en los cinco
+  Lugares que no son el Recibidor. Negociar con su requisito, prueba y acciones; Un público
+  difícil suma 1 acción por copia. Al tomar la última pista se les interroga (una vez por
+  partida); las pistas retiradas por una Realidad repulsiva no cuentan como interrogatorio.
+- Planes: el reverso del 1 hace aparecer a Dianne junto al Transeúnte con menos pistas y
+  baraja los descartes. El 2 sustituye el avance por una Realidad repulsiva al azar
+  (horror, pistas al Lugar y Enemigo Lunático en lugar del apoyo); sin ninguna, R3.
+- Acto: las pistas de los eliminados van al acto; cada 2 dan 1 experiencia repartida lo más
+  equitativamente posible (el jefe elige quién recibe el resto).
+- Resoluciones: VIP interrogados y muertos en el registro (tachados en R3), cambio de
+  fichas del caos en R2/R3 e Interludio I tras R1 con sus tres opciones.
+- Motor (genérico): pistas sobre apoyos colocados y sobre el acto, traiciones junto al
+  plan (`placement: agenda`, con velo global), sustitución del avance de un plan, enemigos
+  que impiden tomar pistas en su Lugar o cuyos ataques no se cancelan, escenarios que
+  omiten el robo de mantenimiento y reacción `afterParley`. Aparecer enfrentado ahora
+  dispara "después de enfrentarse".
+
+Diferencias revisadas: la fuente inglesa usa los nombres de la reedición (Possessed, Seer of
+the Sign, Puppet of Hastur); el catálogo conserva los originales (Lunatic, Maniac, Young
+Psychopath) como la guía, las imágenes y la fuente española. Dos erratas de la fuente ES
+corregidas al importar. Límites "una vez por fase" del Salón de baile y la Sala de estar
+como "una vez por ronda" (solo se negocia en la fase de investigación). La Danza del Rey
+de Amarillo lleva al Lunático directamente a tu Lugar.
+
+Validación: 68 pruebas nuevas (preparación 1–4 × 4 dificultades, cada Transeúnte, Lugar,
+plan, enemigo y carta de encuentro, resoluciones e interludio, y 40 partidas aleatorias).
+Formato, lint y tipos correctos.
+
+Presentación: catálogo oficial EN/ES (78 cartas de Carcosa), 104 escaneos EN/ES con
+miniaturas ([evidencia](evidencias/imagenes-the-last-king.json)) contrastados con los datos
+(velo, pistas, valores de enemigos y umbrales), Constance Dumaine con caras `03076a`/`03076b`,
+pistas sobre los Transeúntes y sobre el acto, traiciones junto al plan y referencia de
+símbolos. Revisión visual local en ES/EN con una partida en curso. Sin audios: la narración
+del escenario II se muestra como texto; `generate-carcosa-audio.mjs` aún solo cubre el I.
+
 ## Dependencias posteriores
 
 - Oculto: secreto por investigador en online, cuenta para tamaño de mano,
@@ -239,9 +281,10 @@ escaneos; formato, lint y tipos correctos; 3209 pruebas superadas y 19 omitidas.
 fallo de Eureka ya no aparece. Los 2 fallos de `apps/server/src/deploy.test.mjs` solo
 se deben a ejecutar con Node 22 (el despliegue exige Node 24).
 
-Siguiente bloque: escenario II (El último Rey) e interludio I, reutilizando Oculto,
-los contadores y los conjuntos de encuentro ya implementados. Pendiente del I:
-Lola Hayes. La elección del nuevo portador de 03059 ya es manual.
+Siguiente bloque: escenario III (Ecos del pasado), que lee del registro los VIP
+interrogados (Sebastien) y la huida de la fiesta, reutilizando Delirios, Secta del Signo
+Amarillo y los contadores ya implementados. Pendientes: Lola Hayes (escenario I) y los
+audios del escenario II (ampliar `generate-carcosa-audio.mjs`).
 
 Para retomar en otro ordenador, actualizar `main`: el PDF ya está versionado en
 `docs-proyecto/reglas/`. La aplicación de referencia sigue siendo una copia externa

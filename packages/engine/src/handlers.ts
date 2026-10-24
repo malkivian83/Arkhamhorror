@@ -231,8 +231,10 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'CheckAgenda': {
       const agenda = state.agendas[state.agendaIndex]
-      if (agenda && totalDoom(state) >= agenda.doomThreshold)
-        return push(state, { type: 'AdvanceAgenda' })
+      if (agenda && totalDoom(state) >= agenda.doomThreshold) {
+        const instead = agendaBehavior(agenda.code)?.insteadOfAdvance?.(state)
+        return push(state, ...(instead ?? [{ type: 'AdvanceAgenda' } as Message]))
+      }
       return state
     }
 
@@ -423,6 +425,12 @@ export function handle(state: GameState, message: Message): GameState {
         )
       const [id, withId] = newId(state, 'enemy-')
       const { card } = message
+      const engagedWith =
+        card.keywords.includes('massive') ||
+        (message.engageWith &&
+          getInvestigator(state, message.engageWith).location !== message.location)
+          ? null
+          : message.engageWith
       const next = {
         ...withId,
         enemies: {
@@ -434,12 +442,7 @@ export function handle(state: GameState, message: Message): GameState {
             maxHealth: perInvestigator(withId, card.health, card.healthPerInvestigator ?? false),
             damageTaken: 0,
             location: message.location,
-            engagedWith:
-              card.keywords.includes('massive') ||
-              (message.engageWith &&
-                getInvestigator(state, message.engageWith).location !== message.location)
-                ? null
-                : message.engageWith,
+            engagedWith,
             exhausted: false,
             ...(message.owner ? { owner: message.owner } : {}),
           },
@@ -451,6 +454,15 @@ export function handle(state: GameState, message: Message): GameState {
           ? [{ type: 'PlaceDoomOnEnemy', enemy: id, amount: card.startingDoom } as Message]
           : []),
         { type: 'CheckEngagement', location: message.location },
+        // Aparecer enfrentado también es enfrentarse (Maníaco, Psicópata joven).
+        ...(engagedWith
+          ? [
+              {
+                type: 'Forced',
+                trigger: { type: 'afterEngage', investigator: engagedWith, enemy: id },
+              } as Message,
+            ]
+          : []),
         {
           type: 'Forced',
           trigger: { type: 'enemyEntersLocation', enemy: id, location: message.location },
@@ -1383,6 +1395,7 @@ export function handle(state: GameState, message: Message): GameState {
           ? { uses: message.uses ?? playerCardDef(message.code)!.uses!.count }
           : {}),
         ...(message.doom ? { doom: message.doom } : {}),
+        ...(message.clues ? { clues: message.clues } : {}),
         ...(message.faceDown ? { faceDown: true } : {}),
       }
       return { ...next, placedAssets: { ...(next.placedAssets ?? {}), [id]: placed } }
@@ -1755,7 +1768,7 @@ export function handle(state: GameState, message: Message): GameState {
       if (where === null || !state.locations[where]) return state
       const location = getLocation(state, where)
       const amount = Math.min(message.amount, location.clues)
-      if (amount <= 0) return state
+      if (amount <= 0 || cluesBlocked(state, investigator.id)) return state
       return push(
         updateInvestigator(
           updateLocation(state, location.id, (l) => ({ ...l, clues: l.clues - amount })),
@@ -2699,7 +2712,10 @@ export function handle(state: GameState, message: Message): GameState {
       }
       let next = state
       const here = investigator.location
-      if (here !== null && investigator.clues > 0) {
+      const act = state.acts[state.actIndex]
+      if (investigator.clues > 0 && act && actBehavior(act.code)?.eliminatedCluesToAct) {
+        next = { ...next, actClues: (next.actClues ?? 0) + investigator.clues }
+      } else if (here !== null && investigator.clues > 0) {
         next = updateLocation(next, here, (l) => ({ ...l, clues: l.clues + investigator.clues }))
       }
       for (const enemy of engagedEnemies(next, investigator.id)) {
@@ -3787,6 +3803,7 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'GainClues':
+      if (cluesBlocked(state, message.investigator)) return state
       return updateInvestigator(state, message.investigator, (i) => ({
         ...i,
         clues: i.clues + message.amount,
@@ -3854,8 +3871,11 @@ export function handle(state: GameState, message: Message): GameState {
       })
     }
 
-    case 'CancelEnemyAttack':
+    case 'CancelEnemyAttack': {
+      const enemy = findEnemy(state, message.enemy)
+      if (enemy && enemyBehavior(enemy.code)?.attacksCannotBeCanceled) return state
       return { ...state, canceledAttack: message.enemy }
+    }
 
     case 'ResolveEnemyAttack': {
       if (state.canceledAttack === message.enemy) return { ...state, canceledAttack: null }
@@ -3929,7 +3949,12 @@ export function handle(state: GameState, message: Message): GameState {
         ? [
             {
               type: 'Forced',
-              trigger: { type: 'afterDealDamage', investigator: by, enemy: enemy.id },
+              trigger: {
+                type: 'afterDealDamage',
+                investigator: by,
+                enemy: enemy.id,
+                ...(message.source?.attack ? { attack: true } : {}),
+              },
             },
           ]
         : []
@@ -4133,7 +4158,9 @@ export function handle(state: GameState, message: Message): GameState {
         { type: 'ReadyAll' },
         { type: 'Step', step: 'drawAndGainResource' },
         ...activeInvestigators(state).flatMap((i): Message[] => [
-          { type: 'DrawCards', investigator: i.id, amount: 1 },
+          ...(scenarioBehavior(state.scenarioId)?.skipsUpkeepDraw?.(state, i.id)
+            ? []
+            : [{ type: 'DrawCards', investigator: i.id, amount: 1 } as Message]),
           {
             type: 'GainResources',
             investigator: i.id,
@@ -5344,6 +5371,7 @@ export function handle(state: GameState, message: Message): GameState {
       const available = cluesOn(state, message.from)
       const amount = Math.min(message.amount, available)
       if (amount <= 0) return state
+      if (message.to.type === 'investigator' && cluesBlocked(state, message.to.id)) return state
       return setClues(
         setClues(state, message.from, available - amount),
         message.to,
@@ -6037,6 +6065,15 @@ function skillTestResults(state: GameState, succeeded: boolean, failBy: number):
 }
 
 /** Pistas sobre una carta (la reserva tiene tantas como haga falta). */
+/** Un enemigo de su Lugar le impide descubrir o tomar el control de pistas (Dianne Devine). */
+function cluesBlocked(state: GameState, investigator: InvestigatorId): boolean {
+  const here = state.investigators.find((i) => i.id === investigator)?.location
+  if (here == null) return false
+  return Object.values(state.enemies).some(
+    (e) => e.location === here && !!enemyBehavior(e.code)?.blocksCluesHere,
+  )
+}
+
 function cluesOn(state: GameState, holder: ClueHolder): number {
   switch (holder.type) {
     case 'investigator':
@@ -6049,6 +6086,10 @@ function cluesOn(state: GameState, holder: ClueHolder): number {
       return state.enemies[holder.id]?.clues ?? 0
     case 'treachery':
       return state.treacheries[holder.id]?.clues ?? 0
+    case 'placed':
+      return state.placedAssets?.[holder.id]?.clues ?? 0
+    case 'act':
+      return state.actClues ?? 0
     case 'pool':
       return Infinity
   }
@@ -6081,6 +6122,14 @@ function setClues(state: GameState, holder: ClueHolder, clues: number): GameStat
           }
         : state
     }
+    case 'placed': {
+      const placed = state.placedAssets?.[holder.id]
+      return placed
+        ? { ...state, placedAssets: { ...state.placedAssets, [placed.id]: { ...placed, clues } } }
+        : state
+    }
+    case 'act':
+      return { ...state, actClues: clues }
     case 'pool':
       return state
   }

@@ -34,8 +34,17 @@ const SWAPPED_SIDES = new Set([
 /** Cartas cuyo código lleva una letra de copia (sus reversos añaden otra `b`). */
 const LETTERED = new Set(['03047a', '03047b', '03047c', '03084a', '03084b', '03084c', '03084d'])
 
+/** Caras `a`/`b` de una misma carta (Constance Dumaine: Transeúnte 03076a, Historia 03076b). */
+const A_SIDES = new Set(['03076a'])
+
 /** Spanish image, then English image, both from our local asset inventory. */
 export function cardImages(code: string, back = false, locale = scanLocale.value): string[] {
+  if (A_SIDES.has(code)) {
+    const art = back ? code.replace(/a$/, 'b') : code
+    return [locale === 'es' ? LOCAL_IMAGES.es[art] : undefined, LOCAL_IMAGES.en[art]].filter(
+      (path): path is string => Boolean(path),
+    )
+  }
   // Copias distintas con letra (El Extranjero 03047a–c): `03047b` es una carta, no un reverso.
   const lettered = LETTERED.has(code.replace(/(?<=[a-d])b$/, ''))
   const match = lettered ? /^(\d{5}[a-d])(b)?$/.exec(code) : /^(\d{5})(b)?$/.exec(code)

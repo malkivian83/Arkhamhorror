@@ -42,7 +42,7 @@ describe('The Path to Carcosa: campaign foundation', () => {
   )
 
   it.each([1, 2, 3, 4])(
-    'creates a campaign for %i investigators; only Curtain Call is playable',
+    'creates a campaign for %i investigators; only Curtain Call and The Last King are playable',
     (players) => {
       const campaign = newCampaign(
         definition.id,
@@ -56,8 +56,9 @@ describe('The Path to Carcosa: campaign foundation', () => {
       expect(campaign.log.chaosTokens).toEqual([])
       expect(canPlayNext(campaign)).toBe(true)
       expect(startScenario(campaign, 1).scenarioId).toBe('curtain-call')
+      expect(startScenario({ ...campaign, scenarioIndex: 1 }, 1).scenarioId).toBe('the-last-king')
       for (const [scenarioIndex, scenario] of definition.scenarios.entries()) {
-        if (scenarioIndex === 0) continue
+        if (scenarioIndex <= 1) continue
         const pending = { ...campaign, scenarioIndex }
         expect(canPlayNext(pending)).toBe(false)
         expect(() => startScenario(pending, 1)).toThrow(`Escenario no disponible: ${scenario.id}`)

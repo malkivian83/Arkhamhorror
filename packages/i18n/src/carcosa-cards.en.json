@@ -19,6 +19,11 @@
     "traits": "Terror.",
     "text": "<b>Revelation</b> - Put Dissonant Voices into play in your threat area.\nYou cannot play assets or events.\n<b>Forced</b> - At the end of the round: Discard Dissonant Voices."
   },
+  "01166": {
+    "name": "Ancient Evils",
+    "traits": "Omen.",
+    "text": "<b>Revelation</b> - Place 1 doom on the current agenda. This effect can cause the current agenda to advance."
+  },
   "03043": {
     "name": "Curtain Call",
     "text": "Easy / Standard\n[skull]: -1 (-3 instead if you have 3 or more horror on you).\n[cultist] [tablet] [elder_thing]: -4. If your location has at least 1 horror on it, take 1 horror <i>(from the token pool)</i>. If your location has no horror on it, place 1 horror on it instead.",
@@ -121,6 +126,168 @@
     "traits": "Monster. Elite.",
     "text": "<b>Prey</b> - Lowest [willpower].\nMassive. Hunter. Retaliate.\n<b>Forced</b> - At the end of the enemy phase: Each investigator at Royal Emissary's location or a connecting location takes 1 horror."
   },
+  "03061": {
+    "name": "The Last King",
+    "text": "Easy / Standard\n[skull]: Reveal another token. If you fail, place 1 doom on a [[Lunatic]] enemy in play.\n[cultist]: -2. If you fail, place 1 of your clues on your location.\n[tablet]: -4. If you fail, take 1 horror.\n[elder_thing]: -X. X is the shroud value of your location.",
+    "backText": "Hard / Expert\n[skull]: Reveal another token. If you fail, place 1 doom on the [[Lunatic]] enemy in play with the most remaining health.\n[cultist]: -3. Place 1 of your clues on your location.\n[tablet]: -4. Take 1 horror.\n[elder_thing]: -X. X is the shroud value of your location. If you fail, take 1 damage."
+  },
+  "03062": {
+    "name": "Fashionably Late",
+    "backName": "The Final Guest",
+    "backText": "Find the [[Bystander]] asset with the fewest clues on it. Spawn the set-aside Dianne Devine enemy at that asset's location.\nShuffle the encounter discard pile into the encounter deck."
+  },
+  "03063": {
+    "name": "The Terrifying Truth",
+    "text": "<b>Forced</b> - When this agenda would advance by reaching its doom threshold: Instead, remove all doom in play and randomly resolve one of the Sickening Reality cards underneath the scenario reference card. If there are no cards underneath the scenario reference card, advance to agenda 2b instead.",
+    "backName": "If You Can't Beat Them…",
+    "backText": "<b>(→R3)</b>"
+  },
+  "03064": {
+    "name": "Discovering the Truth",
+    "text": "<b>Forced</b> - When an investigator is eliminated <i>(by defeat or resignation)</i>: Place each of that investigator's clues on this act, instead of placing them at his or her location.\n<b>Objective</b> - Find as many clues as you can, then get out of this awful place!",
+    "backName": "…?",
+    "backText": "<b>Madness.</b> <i>noun.</i> mad.ness.\nThe state of being mentally ill, especially severely.\n- Extremely foolish behavior.\n- A state of frenzied or chaotic activity.\n- Why are you looking at this side?\n- There is no reason to flip to Act 1b.\n- Flip back to Act 1a."
+  },
+  "03065": {
+    "name": "Sickening Reality",
+    "text": "Each investigator at Constance Dumaine's location takes 1 horror.\nMove each clue from Constance Dumaine to her location.\nFlip this card to its enemy side, and switch it with the [[Bystander]] asset version of Constance Dumaine, removing that version from the game."
+  },
+  "03065b": {
+    "name": "Constance Dumaine",
+    "subname": "A Little Too Sociable",
+    "traits": "Monster. Lunatic. Elite.",
+    "text": "Hunter.\nWhile Constance Dumaine is exhausted, she gets +3 fight."
+  },
+  "03066": {
+    "name": "Sickening Reality",
+    "text": "Each investigator at Jordan Perry's location takes 1 horror.\nMove each clue from Jordan Perry to his location.\nFlip this card to its enemy side, and switch it with the [[Bystander]] asset version of Jordan Perry, removing that version from the game."
+  },
+  "03066b": {
+    "name": "Jordan Perry",
+    "subname": "An Imposing Presence",
+    "traits": "Monster. Lunatic. Elite.",
+    "text": "Hunter.\n<b>Forced</b> - At the beginning of the enemy phase: Heal 1 damage from Jordan Perry."
+  },
+  "03067": {
+    "name": "Sickening Reality",
+    "text": "Each investigator at Ishimaru Haruko's location takes 1 horror.\nMove each clue from Ishimaru Haruko to her location.\nFlip this card to its enemy side, and switch it with the [[Bystander]] asset version of Ishimaru Haruko, removing that version from the game."
+  },
+  "03067b": {
+    "name": "Ishimaru Haruko",
+    "subname": "Just Skin and Bones",
+    "traits": "Monster. Lunatic. Elite.",
+    "text": "Hunter.\n<b>Forced</b> - After you deal damage to Ishimaru Haruko by an effect other than an attack: Draw the top card of the encounter deck."
+  },
+  "03068": {
+    "name": "Sickening Reality",
+    "text": "Each investigator at Sebastien Moreau's location takes 1 horror.\nMove each clue from Sebastien Moreau to his location.\nFlip this card to its enemy side, and switch it with the [[Bystander]] asset version of Sebastien Moreau, removing that version from the game."
+  },
+  "03068b": {
+    "name": "Sebastien Moreau",
+    "subname": "Savage Hysteria",
+    "traits": "Monster. Lunatic. Elite.",
+    "text": "Hunter. Retaliate.\nSebastien Moreau's attacks cannot be canceled."
+  },
+  "03069": {
+    "name": "Sickening Reality",
+    "text": "Each investigator at Ashleigh Clarke's location takes 1 horror.\nMove each clue from Ashleigh Clarke to her location.\nFlip this card to its enemy side, and switch it with the [[Bystander]] asset version of Ashleigh Clarke, removing that version from the game"
+  },
+  "03069b": {
+    "name": "Ashleigh Clarke",
+    "subname": "Songs Die Unheard",
+    "traits": "Monster. Lunatic. Elite.",
+    "text": "Hunter.\nEach investigator at Ashleigh Clarke's location does not draw cards during the upkeep phase."
+  },
+  "03070": {
+    "name": "Foyer",
+    "text": "[action]: <b>Resign.</b> Having found valuable information about the production, you depart and plan your next move. <i>(If each undefeated investigator has resigned, proceed to \"if no resolution was reached\" in the Campaign Guide.)</i>"
+  },
+  "03071": {
+    "name": "Ballroom",
+    "text": "[reaction] After you perform a parley action in the Ballroom: Gain 2 resources. (Group limit once per phase.)"
+  },
+  "03072": {
+    "name": "Living Room",
+    "text": "[reaction] After you perform a parley action in the Living Room: Draw 1 card. (Group limit once per phase.)"
+  },
+  "03073": {
+    "name": "Gallery",
+    "text": "<b>Forced</b> - After you end your turn at the Gallery: Test [willpower] (2). If you fail, place 1 of your clues on the Gallery."
+  },
+  "03074": {
+    "name": "Courtyard",
+    "text": "<b>Forced</b> - After you enter the Courtyard: Discard the top card of the encounter deck. If that card is an enemy, draw it."
+  },
+  "03075": {
+    "name": "Dining Room",
+    "text": "[action]: Heal 1 horror. Then, reveal a random token from the chaos bag. If a [skull] or [auto_fail] symbol is revealed, take 1 horror and place 1 doom on the Dining Room."
+  },
+  "03076a": {
+    "name": "Constance Dumaine",
+    "subname": "Sociable Hostess",
+    "traits": "Bystander.",
+    "text": "[action]: <b>Parley.</b> Test [intellect] (3) to ask Constance about the play. If you succeed, take control of 1 of the clues on Constance Dumaine.\n<b>Forced</b> - When the last clue is removed from Constance Dumaine: Flip this card over and resolve its text."
+  },
+  "03076b": {
+    "name": "Engram's Oath",
+    "text": "Remember that you \"interviewed Constance.\"\nFlip this card back over to its [[Bystander]] asset side."
+  },
+  "03077": {
+    "name": "Jordan Perry",
+    "subname": "Dignified Financier",
+    "traits": "Bystander.",
+    "text": "[action] If you have 10 or more resources: <b>Parley.</b> Test [intellect] (2) to fraternize with Jordan. If you succeed, take control of 1 of the clues on Jordan Perry.\n<b>Forced</b> - When the last clue is removed from Jordan Perry: Flip this card over and resolve its text."
+  },
+  "03077b": {
+    "name": "L'agneau Perdu",
+    "text": "Remember that you \"interviewed Jordan.\"\nFlip this card back over to its [[Bystander]] asset side."
+  },
+  "03078": {
+    "name": "Ishimaru Haruko",
+    "subname": "Costume Designer",
+    "traits": "Bystander.",
+    "text": "[action] If you have 6 or more cards in your hand: <b>Parley.</b> Test [willpower] (2) to question Haruko about the play. If you succeed, take control of 1 of the clues on Ishimaru Haruko.\n<b>Forced</b> - When the last clue is removed from Ishimaru Haruko: Flip this card over and resolve its text."
+  },
+  "03078b": {
+    "name": "The Pattern",
+    "text": "Remember that you \"interviewed Haruko.\"\nFlip this card back over to its [[Bystander]] asset side."
+  },
+  "03079": {
+    "name": "Sebastien Moreau",
+    "subname": "Impassioned Producer",
+    "traits": "Bystander.",
+    "text": "[action]: <b>Parley.</b> Test [willpower] (3) to get information about the production from Sebastien. If you succeed, take control of 1 of the clues on Sebastien Moreau.\n<b>Forced</b> - When the last clue is removed from Sebastien Moreau: Flip this card over and resolve its text."
+  },
+  "03079b": {
+    "name": "The First Show",
+    "text": "Remember that you \"interviewed Sebastien.\"\nFlip this card back over to its [[Bystander]] asset side."
+  },
+  "03080": {
+    "name": "Ashleigh Clarke",
+    "subname": "Talented Entertainer",
+    "traits": "Bystander.",
+    "text": "[action] [action]: <b>Parley.</b> You listen to Ashleigh perform. Take control of 1 of the clues on Ashleigh Clarke.\n<b>Forced</b> - When the last clue is removed from Ashleigh Clarke: Flip this card over and resolve its text."
+  },
+  "03080b": {
+    "name": "Above and Below",
+    "text": "Remember that you \"interviewed Ashleigh.\"\nFlip this card back over to its [[Bystander]] asset side."
+  },
+  "03081": {
+    "name": "Dianne Devine",
+    "subname": "Mercurial and Mischevious",
+    "traits": "Humanoid. Cultist. Elite.",
+    "text": "Aloof.\nEach investigator at Dianne Devine's location cannot discover or take control of clues.\n<b>Forced</b> - At the beginning of the enemy phase: Find the [[Bystander]] asset with the fewest clues on it. Move Dianne Devine to that asset's location, if able."
+  },
+  "03082": {
+    "name": "Fine Dining",
+    "traits": "Terror.",
+    "text": "Peril.\n<b>Revelation</b> - You must either place 1 of your clues on a [[Bystander]] asset in play or take 1 horror and 1 damage."
+  },
+  "03083": {
+    "name": "Tough Crowd",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Put Tough Crowd into play next to the agenda deck.\nEach investigator must spend 1 additional action to parley.\n<b>Forced</b> - At the end of the round: Discard Tough Crowd."
+  },
   "03084a": {
     "name": "Whispers in Your Head",
     "subname": "Dismay",
@@ -175,6 +342,21 @@
     "traits": "Curse. Geist.",
     "text": "<b>Revelation</b> - Attach to your location.\n<b>Forced</b> - After you leave attached location: You must either take 1 horror or lose 1 action.\n[action] Place 1 of your clues on attached location: Discard Spirit's Torment."
   },
+  "03095": {
+    "name": "Maniac",
+    "traits": "Humanoid. Lunatic.",
+    "text": "<b>Forced</b> - After Maniac engages you: Take 1 damage and deal 1 damage to Maniac."
+  },
+  "03096": {
+    "name": "Young Psychopath",
+    "traits": "Humanoid. Lunatic.",
+    "text": "<b>Forced</b> - After Young Psychopath engages you: You must either take 1 horror, or Young Psychopath gets +3 fight until the end of the investigation phase."
+  },
+  "03097": {
+    "name": "Dance of the Yellow King",
+    "traits": "Pact.",
+    "text": "<b>Revelation</b> - If there are no [[Lunatic]] enemies in play, Dance of the Yellow King gains surge. Otherwise, test [willpower] (3). If you fail, the nearest [[Lunatic]] enemy readies, moves (one location at a time) until it reaches your location, engages you, and makes an immediate attack."
+  },
   "03098": {
     "name": "Fanatic",
     "traits": "Humanoid. Cultist.",
@@ -189,5 +371,30 @@
     "name": "The King's Edict",
     "traits": "Pact.",
     "text": "<b>Revelation</b> - For each [[Cultist]] enemy in play, move 1 clue from that enemy's location to that enemy. Until the end of the round, each [[Cultist]] enemy in play gets +1 fight for each clue and/or doom on it. If no clues are moved by this effect, The King's Edict gains surge."
+  },
+  "03101": {
+    "name": "Ooze and Filth",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Put Ooze and Filth into play next to the act deck.\nEach location gets +1 shroud.\n<b>Forced</b> - At the end of the round: Discard Ooze and Filth."
+  },
+  "03102": {
+    "name": "Corrosion",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Discard [[Item]] assets from your play area and/or from your hand with a total printed resource cost of at least X, where X is the shroud value of your location. If no cards are discarded by this effect, Corrosion gains surge."
+  },
+  "03103": {
+    "name": "Roach Swarm",
+    "traits": "Creature.",
+    "text": "X is the shroud value of Roach Swarm's location."
+  },
+  "03104": {
+    "name": "Marked by the Sign",
+    "traits": "Pact.",
+    "text": "Peril.\n<b>Revelation</b> - Test [willpower] (2). If you fail, take 2 horror. If The Man in the Pallid Mask is in play, horror dealt by this effect is considered direct horror, and this test has +2 difficulty."
+  },
+  "03105": {
+    "name": "The Pale Mask Beckons",
+    "traits": "Omen. Pact.",
+    "text": "<b>Revelation</b> - If The Man in the Pallid Mask is in play, he attacks each investigator in player order, regardless of his current location. If The Man in the Pallid Mask is not in play, search his bearer's deck and discard pile for him, draw him, and shuffle his bearer's deck <i>(resolve this effect even if his bearer is currently eliminated, searching all out-of-play areas)</i>."
   }
 }

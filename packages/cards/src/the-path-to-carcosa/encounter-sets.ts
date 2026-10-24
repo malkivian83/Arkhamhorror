@@ -1,18 +1,23 @@
 /**
  * Conjuntos de encuentros que usa El camino a Carcosa: Portentos malignos, Delirios,
- * Apariciones y Secta del Signo Amarillo (03084–03100), y los de la caja básica
- * original que pide su guía: Miedo impactante y Ratas (01159, 01163–01165).
+ * Apariciones, El regalo de Hastur, Secta del Signo Amarillo, Podredumbre e impurezas y
+ * El Extranjero (03084–03105), y los de la caja básica original que pide su guía:
+ * Miedo impactante, Ratas y Antiguos males (01159, 01163–01166).
  *
  * Solo datos y comportamiento; el texto de las cartas está en el catálogo EN/ES.
  */
 import {
   actionsThisRound,
   activeInvestigators,
+  distancesFrom,
+  enemyMaxHealth,
   getInvestigator,
   getLocation,
+  playerCardDef,
   registerEnemy,
   registerTreachery,
   shroudOf,
+  shuffle,
   totalDoom,
   type AbilityOption,
   type Enemy,
@@ -22,6 +27,7 @@ import {
   type Message,
   type TreacheryBehavior,
 } from '@lcg/engine'
+import { THE_MAN_IN_THE_PALLID_MASK } from './the-man-in-the-pallid-mask'
 import { copies, damage, effectTest, enemy, treachery } from '../scenario-helpers'
 
 export const SETS = {
@@ -38,6 +44,17 @@ export const SETS = {
   // Apariciones
   poltergeist: '03093',
   spiritsTorment: '03094',
+  // El regalo de Hastur
+  maniac: '03095',
+  youngPsychopath: '03096',
+  danceOfTheYellowKing: '03097',
+  // Podredumbre e impurezas
+  oozeAndFilth: '03101',
+  corrosion: '03102',
+  roachSwarm: '03103',
+  // El Extranjero
+  markedByTheSign: '03104',
+  thePaleMaskBeckons: '03105',
   // Secta del Signo Amarillo
   fanatic: '03098',
   agentOfTheKing: '03099',
@@ -47,6 +64,8 @@ export const SETS = {
   rottingRemains: '01163',
   frozenInFear: '01164',
   dissonantVoices: '01165',
+  // Caja básica original: Antiguos males
+  ancientEvils: '01166',
 } as const
 
 // ---------------------------------------------------------------------------
@@ -111,6 +130,43 @@ const agentOfTheKing = enemy({
   victory: 1,
 })
 
+const maniac = enemy({
+  code: SETS.maniac,
+  name: 'Maniac',
+  traits: ['Humanoid', 'Lunatic'],
+  fight: 3,
+  health: 4,
+  evade: 1,
+  damage: 1,
+  horror: 0,
+  keywords: [],
+})
+
+const youngPsychopath = enemy({
+  code: SETS.youngPsychopath,
+  name: 'Young Psychopath',
+  traits: ['Humanoid', 'Lunatic'],
+  fight: 2,
+  health: 2,
+  evade: 3,
+  damage: 1,
+  horror: 1,
+  keywords: [],
+})
+
+/** Combate X: el velo de su Lugar (se suma con `roachSwarmFight`). */
+const roachSwarm = enemy({
+  code: SETS.roachSwarm,
+  name: 'Roach Swarm',
+  traits: ['Creature'],
+  fight: 0,
+  health: 2,
+  evade: 3,
+  damage: 1,
+  horror: 0,
+  keywords: [],
+})
+
 const card = (code: string, name: string, traits: string[], keywords: ('surge' | 'peril')[] = []) =>
   treachery({ code, name, traits, keywords })
 
@@ -143,6 +199,21 @@ export const ENCOUNTER_SETS = {
     ...copies(card(SETS.dissonantVoices, 'Dissonant Voices', ['Terror']), 2),
   ],
   rats: copies(swarmOfRats, 3),
+  hastursGift: [
+    ...copies(maniac, 2),
+    ...copies(youngPsychopath, 2),
+    ...copies(card(SETS.danceOfTheYellowKing, 'Dance of the Yellow King', ['Pact']), 2),
+  ],
+  decayAndFilth: [
+    ...copies(card(SETS.oozeAndFilth, 'Ooze and Filth', ['Hazard']), 2),
+    ...copies(card(SETS.corrosion, 'Corrosion', ['Hazard']), 2),
+    ...copies(roachSwarm, 2),
+  ],
+  theStranger: [
+    ...copies(card(SETS.markedByTheSign, 'Marked by the Sign', ['Pact'], ['peril']), 2),
+    card(SETS.thePaleMaskBeckons, 'The Pale Mask Beckons', ['Omen', 'Pact']),
+  ],
+  ancientEvils: copies(card(SETS.ancientEvils, 'Ancient Evils', ['Omen']), 3),
 }
 
 // ---------------------------------------------------------------------------
@@ -541,4 +612,346 @@ registerTreachery({
 export function atOrConnected(state: GameState, location: LocationId) {
   const near = new Set([location, ...getLocation(state, location).connections])
   return activeInvestigators(state).filter((i) => i.location !== null && near.has(i.location))
+}
+
+// ---------------------------------------------------------------------------
+// El regalo de Hastur
+// ---------------------------------------------------------------------------
+
+export const isLunatic = (e: Enemy) => (e.traits ?? []).includes('Lunatic')
+
+registerEnemy({
+  code: SETS.maniac,
+  // Forzado: después de enfrentarse a ti, recibes 1 daño y le infliges 1 daño.
+  forced: (_state, trigger, self) =>
+    trigger.type === 'afterEngage' && trigger.enemy === self.id
+      ? [
+          damage(trigger.investigator, 1),
+          { type: 'DamageEnemy', enemy: self.id, amount: 1, source: { encounter: true } },
+        ]
+      : [],
+})
+
+export const PSYCHOPATH = 'carcosa:psychopath:'
+
+/** Ronda cuya fase de investigación pone fin al +3 de combate de la Psicópata joven. */
+const psychopathUntil = (state: GameState) =>
+  state.phase === 'mythos' || state.phase === 'investigation' ? state.round : state.round + 1
+
+registerEnemy({
+  code: SETS.youngPsychopath,
+  // Forzado: después de enfrentarse a ti, recibes 1 horror o gana +3 de combate hasta el
+  // final de la fase de investigación.
+  forced: (state, trigger, self) =>
+    trigger.type === 'afterEngage' && trigger.enemy === self.id
+      ? [
+          {
+            type: 'Ask',
+            investigator: trigger.investigator,
+            question: {
+              kind: 'chooseOne',
+              prompt: 'prompt.chooseEffect',
+              promptParams: { card: self.name },
+              choices: [
+                { label: 'choice.takeHorror', then: [damage(trigger.investigator, 0, 1)] },
+                {
+                  label: 'choice.psychopathFight',
+                  then: [
+                    {
+                      type: 'SetScenarioMeta',
+                      key: `${PSYCHOPATH}${self.id}`,
+                      value: psychopathUntil(state),
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ]
+      : [],
+})
+
+/** Combate de la Psicópata joven (+3) y del Enjambre de cucarachas (velo de su Lugar). */
+export function hastursGiftFight(state: GameState, e: Enemy, stat: 'fight' | 'evade'): number {
+  if (stat !== 'fight') return 0
+  if (e.code === SETS.roachSwarm)
+    return state.locations[e.location] ? shroudOf(state, e.location) : 0
+  if (e.code !== SETS.youngPsychopath) return 0
+  const until = Number(state.scenarioMeta?.[`${PSYCHOPATH}${e.id}`] ?? 0)
+  const active =
+    state.round < until ||
+    (state.round === until && (state.phase === 'mythos' || state.phase === 'investigation'))
+  return active ? 3 : 0
+}
+
+/** Enemigos más cercanos a un Lugar entre los dados. */
+function nearest(state: GameState, from: LocationId, enemies: Enemy[]): Enemy[] {
+  const distances = distancesFrom(state, from)
+  const distance = (e: Enemy) => distances.get(e.location) ?? Infinity
+  const best = Math.min(...enemies.map(distance))
+  return enemies.filter((e) => distance(e) === best)
+}
+
+registerTreachery({
+  code: SETS.danceOfTheYellowKing,
+  // Sin Lunáticos en juego: oleada. Si no, voluntad (3); si fallas, el Lunático más cercano
+  // se prepara, va hasta tu Lugar, se enfrenta a ti y te ataca.
+  revelation: (state, investigator) => {
+    const lunatics = Object.values(state.enemies).filter(isLunatic)
+    if (!lunatics.length) return [{ type: 'GainSurge' }]
+    return [
+      effectTest(investigator, 'Dance of the Yellow King', 'willpower', 3, {
+        onFail: [{ type: 'ScenarioSpecific', key: 'carcosaDance', data: { investigator } }],
+      }),
+    ]
+  },
+})
+
+/** La Danza del Rey de Amarillo: el Lunático más cercano viene a por ti y te ataca. */
+export function danceOfTheYellowKing(state: GameState, investigator: InvestigatorId): Message[] {
+  const here = getInvestigator(state, investigator).location
+  const lunatics = Object.values(state.enemies).filter(isLunatic)
+  if (here === null || !lunatics.length) return []
+  const comes = (e: Enemy): Message[] => [
+    { type: 'ReadyEnemy', enemy: e.id },
+    // Se mueve de Lugar en Lugar hasta el tuyo (solo importa dónde llega) y se enfrenta.
+    { type: 'EngageEnemy', enemy: e.id, investigator },
+    { type: 'EnemyAttack', enemy: e.id, investigator, exhaustAfter: false },
+  ]
+  const candidates = nearest(state, here, lunatics)
+  if (candidates.length === 1) return comes(candidates[0]!)
+  return [
+    {
+      type: 'Ask',
+      investigator,
+      question: {
+        kind: 'chooseOne',
+        prompt: 'prompt.chooseEnemy',
+        choices: candidates.map((e) => ({
+          label: 'choice.enemy',
+          params: { enemy: e.name },
+          target: { type: 'enemy', id: e.id },
+          then: comes(e),
+        })),
+      },
+    },
+  ]
+}
+
+// ---------------------------------------------------------------------------
+// Podredumbre e impurezas
+// ---------------------------------------------------------------------------
+
+/** "Pon en juego junto al mazo de Plan. Forzado – Al final de la ronda: descártala." */
+const nextToAgenda: Pick<TreacheryBehavior, 'revelation' | 'forced'> = {
+  revelation: (_state, _investigator, self) => [
+    { type: 'PlaceTreachery', treachery: self.id, placement: { type: 'agenda' } },
+  ],
+  forced: (_state, trigger, self) =>
+    trigger.type === 'roundEnds' && self.placement.type === 'agenda'
+      ? [{ type: 'DiscardTreachery', treachery: self.id }]
+      : [],
+}
+
+registerTreachery({
+  code: SETS.oozeAndFilth,
+  // Cada Lugar recibe +1 a velo.
+  shroudModifier: 1,
+  ...nextToAgenda,
+})
+
+/** Traiciones junto al mazo de Plan con este código. */
+export const nextToAgendaCount = (state: GameState, code: string) =>
+  Object.values(state.treacheries).filter((t) => t.code === code && t.placement.type === 'agenda')
+    .length
+
+registerTreachery({
+  code: SETS.corrosion,
+  // Descarta Objetos de tu zona de juego y/o mano con un coste impreso total de al menos X
+  // (velo de tu Lugar). Si no se descarta ninguno: oleada.
+  revelation: (state, investigator) => {
+    const here = getInvestigator(state, investigator).location
+    const x = here === null ? 0 : shroudOf(state, here)
+    return [
+      {
+        type: 'ScenarioSpecific',
+        key: 'carcosaCorrosion',
+        data: { investigator, remaining: x, discarded: 0 },
+      },
+    ]
+  },
+})
+
+const isItem = (code: string) => (playerCardDef(code)?.traits ?? []).includes('Item')
+const printedCost = (code: string) => playerCardDef(code)?.cost ?? 0
+
+/** Un paso de Corrosión: elegir el siguiente Objeto que se descarta, hasta llegar a X. */
+export function corrosionStep(
+  state: GameState,
+  investigator: InvestigatorId,
+  remaining: number,
+  discarded: number,
+): Message[] {
+  const me = getInvestigator(state, investigator)
+  const inPlay = Object.values(state.assets).filter((a) => a.owner === me.id && isItem(a.code))
+  const inHand = [...new Set(me.hand.filter(isItem))]
+  if (remaining <= 0 || (!inPlay.length && !inHand.length))
+    return discarded === 0 ? [{ type: 'GainSurge' }] : []
+  const next = (cost: number): Message => ({
+    type: 'ScenarioSpecific',
+    key: 'carcosaCorrosion',
+    data: { investigator, remaining: remaining - cost, discarded: discarded + 1 },
+  })
+  return [
+    {
+      type: 'Ask',
+      investigator,
+      question: {
+        kind: 'chooseOne',
+        prompt: 'prompt.corrosion',
+        promptParams: { n: remaining },
+        choices: [
+          ...inPlay.map((a) => ({
+            label: 'choice.card',
+            params: { card: playerCardDef(a.code)?.name ?? a.code },
+            target: { type: 'asset' as const, id: a.id },
+            then: [{ type: 'DiscardAsset', asset: a.id } as Message, next(printedCost(a.code))],
+          })),
+          ...inHand.map((code) => ({
+            label: 'choice.card',
+            params: { card: playerCardDef(code)?.name ?? code },
+            target: { type: 'hand' as const, code },
+            then: [
+              { type: 'DiscardFromHand', investigator, card: code } as Message,
+              next(printedCost(code)),
+            ],
+          })),
+        ],
+      },
+    },
+  ]
+}
+
+// ---------------------------------------------------------------------------
+// El Extranjero
+// ---------------------------------------------------------------------------
+
+const manInPlay = (state: GameState) =>
+  Object.values(state.enemies).find((e) => e.code === THE_MAN_IN_THE_PALLID_MASK)
+
+registerTreachery({
+  code: SETS.markedByTheSign,
+  // Peligro. Voluntad (2); si fallas, 2 horror. Con El hombre de la máscara pálida en
+  // juego, la prueba tiene +2 y el horror es directo.
+  revelation: (state, investigator) => {
+    const man = !!manInPlay(state)
+    return [
+      effectTest(investigator, 'Marked by the Sign', 'willpower', man ? 4 : 2, {
+        onFail: [
+          {
+            type: 'TakeDamage',
+            investigator,
+            damage: 0,
+            horror: 2,
+            ...(man ? { direct: true } : {}),
+          },
+        ],
+      }),
+    ]
+  },
+})
+
+registerTreachery({
+  code: SETS.thePaleMaskBeckons,
+  // En juego: ataca a cada investigador en orden de jugadores, esté donde esté. Si no, su
+  // portador lo roba de su mazo o su pila de descartes y baraja su mazo.
+  revelation: (state) => {
+    const man = manInPlay(state)
+    if (man)
+      return activeInvestigators(state).map((i): Message => ({
+        type: 'EnemyAttack',
+        enemy: man.id,
+        investigator: i.id,
+        exhaustAfter: false,
+      }))
+    return [{ type: 'ScenarioSpecific', key: 'carcosaBeckons' }]
+  },
+})
+
+/** La invitación de la máscara pálida: el portador roba al Extranjero y baraja su mazo. */
+export function paleMaskBeckons(state: GameState): GameState {
+  const bearer = state.investigators.find(
+    (i) =>
+      i.deck.includes(THE_MAN_IN_THE_PALLID_MASK) || i.discard.includes(THE_MAN_IN_THE_PALLID_MASK),
+  )
+  if (!bearer) return state
+  const without = (pile: string[]) => {
+    const index = pile.indexOf(THE_MAN_IN_THE_PALLID_MASK)
+    return index < 0 ? pile : pile.filter((_, n) => n !== index)
+  }
+  const fromDeck = bearer.deck.includes(THE_MAN_IN_THE_PALLID_MASK)
+  const deck = fromDeck ? without(bearer.deck) : bearer.deck
+  const discard = fromDeck ? bearer.discard : without(bearer.discard)
+  const [shuffled, rng] = shuffle(deck, state.rng)
+  return {
+    ...state,
+    rng,
+    investigators: state.investigators.map((i) =>
+      i.id === bearer.id
+        ? { ...i, deck: shuffled, discard, hand: [...i.hand, THE_MAN_IN_THE_PALLID_MASK] }
+        : i,
+    ),
+    queue: [
+      {
+        type: 'ResolveDrawnRevelations',
+        investigator: bearer.id,
+        cards: [THE_MAN_IN_THE_PALLID_MASK],
+      },
+      ...state.queue,
+    ],
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Caja básica original: Antiguos males
+// ---------------------------------------------------------------------------
+
+registerTreachery({
+  code: SETS.ancientEvils,
+  // 1 perdición en el plan en curso; puede hacerlo avanzar.
+  revelation: () => [{ type: 'PlaceDoom', amount: 1 }, { type: 'CheckAgenda' }],
+})
+
+/**
+ * Mensajes propios de estos conjuntos (Danza del Rey de Amarillo, Corrosión, La invitación de
+ * la máscara pálida). Cada escenario que los usa los delega aquí; null si no es uno de ellos.
+ */
+export function encounterSpecific(
+  state: GameState,
+  key: string,
+  data: Record<string, string | number | boolean>,
+): GameState | null {
+  const investigator = typeof data.investigator === 'string' ? data.investigator : null
+  const push = (messages: Message[]): GameState => ({
+    ...state,
+    queue: [...messages, ...state.queue],
+  })
+  switch (key) {
+    case 'carcosaDance':
+      return investigator ? push(danceOfTheYellowKing(state, investigator)) : state
+    case 'carcosaCorrosion':
+      return investigator
+        ? push(corrosionStep(state, investigator, Number(data.remaining), Number(data.discarded)))
+        : state
+    case 'carcosaBeckons':
+      return paleMaskBeckons(state)
+  }
+  return null
+}
+
+/** Lunático con más salud restante (empates incluidos). */
+export function mostRemainingHealth(state: GameState, enemies: Enemy[]): Enemy[] {
+  const left = (e: Enemy) => enemyMaxHealth(state, e) - e.damageTaken
+  const best = Math.max(...enemies.map(left))
+  return enemies.filter((e) => left(e) === best)
 }

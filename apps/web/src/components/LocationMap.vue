@@ -209,6 +209,15 @@ const treacheriesAt = (id: string) =>
               :size="20"
             />
             <TokenBadge v-if="p.doom" class="placed-doom" kind="doom" :value="p.doom" :size="20" />
+            <!-- Pistas sobre un Transeúnte (El Último Rey). -->
+            <TokenBadge
+              v-if="p.clues"
+              class="placed-clues"
+              kind="clue"
+              :value="p.clues"
+              :size="20"
+              :title="t('table.clues')"
+            />
           </GameCard>
         </TableTarget>
         <TableTarget v-for="tr in treacheriesAt(l.id)" :key="tr.id" :target="`treachery:${tr.id}`">
@@ -325,6 +334,11 @@ const treacheriesAt = (id: string) =>
   position: absolute;
   left: -6px;
   bottom: -4px;
+}
+.placed-clues {
+  position: absolute;
+  right: -6px;
+  top: -4px;
 }
 .edges {
   position: absolute;

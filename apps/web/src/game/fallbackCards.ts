@@ -1,6 +1,8 @@
 import {
   CURTAIN_CALL_STRANGERS,
   curtainCall,
+  theLastKing,
+  THE_LAST_KING_VIPS,
   spreadingFlames,
   smokeAndMirrors,
   queenOfAsh,
@@ -110,6 +112,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     midwinterGala({ players: 1 }),
     murderAtTheExcelsiorHotel({ players: 1 }),
     curtainCall({ difficulty: 'standard' }),
+    theLastKing({ difficulty: 'standard' }),
     ...Array.from({ length: 12 }, (_, seed) =>
       smokeAndMirrors({
         seed,
@@ -197,6 +200,18 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   // Se cierra el telón usa una sola de las tres copias del acto 2 por partida.
   for (const code of CURTAIN_CALL_STRANGERS)
     put({ code, name: 'The Stranger', real_name: 'The Stranger', type_code: 'act', clues: 0 })
+  put({ code: '03061', name: 'The Last King', real_name: 'The Last King', type_code: 'scenario' })
+  // El Último Rey: Realidades repulsivas (Historia con el Enemigo Lunático al dorso) y el
+  // reverso de Historia de cada Transeúnte.
+  for (const vip of THE_LAST_KING_VIPS) {
+    put({
+      code: vip.sickening,
+      name: 'Sickening Reality',
+      real_name: 'Sickening Reality',
+      type_code: 'story',
+    })
+    put({ code: vip.interview, name: vip.name, real_name: vip.name, type_code: 'story' })
+  }
   const catalogues = [excelsiorCards, carcosaCards].map((c) => c[locale === 'es' ? 'es' : 'en'])
   for (const [code, text] of catalogues.flatMap((c) => Object.entries(c))) {
     const card = cards.get(code)
