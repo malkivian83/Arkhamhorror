@@ -1,9 +1,11 @@
 import { accountStorage } from '../account/storage'
-import { cardPool, newCampaign, starterDeckList } from '@lcg/cards'
+import { cardPool, newCampaign, starterDeckList, startScenario } from '@lcg/cards'
 import { isPermanent } from '@lcg/engine'
+import { throughSetup } from '@lcg/engine/testing'
 import { createPinia, setActivePinia } from 'pinia'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { session, SESSION_KEY } from '../game/session'
+import { markOf } from '../game/undo'
 import { useDecksStore } from './decks'
 import { useGameStore } from './game'
 
@@ -76,5 +78,22 @@ describe('recuperación de recompensas junto con la campaña', () => {
     expect(game.importSession(JSON.stringify({ ...rewarded(), version: 99 }))).toBe(false)
     expect(useDecksStore().rewards).toEqual([])
     expect(values.has(SESSION_KEY)).toBe(false)
+  })
+})
+
+describe('pasos automáticos en la mesa', () => {
+  it('terminar el turno muestra los pasos resueltos solos, sin guardarlos', () => {
+    const game = useGameStore()
+    const state = throughSetup(
+      startScenario(newCampaign('the-midwinter-gala', ['joe'], 'standard'), 13),
+    )
+    const history = { base: state, inputs: [], marks: [markOf(state)] }
+    expect(game.importSession(JSON.stringify(session(state, history, null)))).toBe(true)
+    game.answerLabel('action.endTurn')
+    expect(game.error).toBeNull()
+    expect(game.autoSteps?.steps.some((s) => s.key === 'log.step.enemyBegins')).toBe(true)
+    expect(accountStorage.getItem(SESSION_KEY)).not.toContain('autoSteps')
+    game.acceptAutoSteps()
+    expect(game.autoSteps).toBeNull()
   })
 })

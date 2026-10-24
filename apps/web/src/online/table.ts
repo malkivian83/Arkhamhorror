@@ -60,6 +60,8 @@ export function onlineTable(client: ReturnType<typeof gameClient>): TableControl
     },
     advanceReview: [],
     acceptAdvance() {},
+    autoSteps: null,
+    acceptAutoSteps() {},
     undo() {},
     undoTargets: { step: null, action: null, turn: null, round: null },
     campaign: null,

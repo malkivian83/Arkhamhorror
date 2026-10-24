@@ -12,6 +12,8 @@ export type TableController = Pick<
   | 'answerLabel'
   | 'advanceReview'
   | 'acceptAdvance'
+  | 'autoSteps'
+  | 'acceptAutoSteps'
   | 'undo'
   | 'undoTargets'
   | 'campaign'

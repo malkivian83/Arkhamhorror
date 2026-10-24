@@ -79,6 +79,7 @@ vigente de pendientes.
 | 67 | [Eventos de efecto directo](67-eventos-de-efecto-directo.md) | 13 eventos distintos y 1 reedición: fichas, daño, recursos, curación y perdición retirada de apoyos o investigadores. |
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 | 84 | [El camino a Carcosa](84-camino-a-carcosa.md) | Base de campaña, bolsas y orden oficial; continuación con Se cierra el telón y dependencias pendientes. |
+| 85 | [Pasos automáticos](85-pasos-automaticos.md) | Modal que muestra, paso a paso y con su motivo, lo que el juego resuelve solo tras cada decisión. |
 
 ## Decisiones ya tomadas
 

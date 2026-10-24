@@ -34,6 +34,7 @@ import {
 import { useDecksStore } from './decks'
 import { choiceTarget } from '../game/choiceTarget'
 import { createAdvanceReview, resumedAdvanceReview, type AdvanceFrame } from '../game/advanceReview'
+import { createAutoSteps, type AutoStepsReview } from '../game/autoSteps'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
@@ -80,6 +81,8 @@ export const useGameStore = defineStore('game', () => {
   const advanceReview = shallowRef<AdvanceFrame[]>(
     loaded.data.advanceReview ?? resumedAdvanceReview(loaded.data.state),
   )
+  /** Pasos resueltos solos tras la última decisión; solo se muestran, no se guardan. */
+  const autoSteps = shallowRef<AutoStepsReview | null>(null)
   const storageIssue = shallowRef<SessionIssue | null>(loaded.issue ?? null)
   const error = shallowRef<string | null>(null)
   /** Campaña en curso: el escenario que se juega es uno de sus escenarios. */
@@ -105,11 +108,17 @@ export const useGameStore = defineStore('game', () => {
    */
   let latest = state.value
 
-  function set(next: GameState | null, nextHistory: History | null, review: AdvanceFrame[] = []) {
+  function set(
+    next: GameState | null,
+    nextHistory: History | null,
+    review: AdvanceFrame[] = [],
+    steps: AutoStepsReview | null = null,
+  ) {
     const previous = latest
     latest = next
     history.value = nextHistory
     advanceReview.value = review
+    autoSteps.value = steps
     persist()
     // Si algún investigador cambia de localización, su mini se desliza hasta
     // la nueva (transición de vista del navegador, como en el ejemplo).
@@ -232,12 +241,17 @@ export const useGameStore = defineStore('game', () => {
     const input = { investigator: current.pending.investigator, choice: index }
     try {
       const review = createAdvanceReview(current)
-      const next = applyInput(current, input, review.observe)
+      const steps = createAutoSteps(current)
+      const next = applyInput(current, input, (before, message, after) => {
+        review.observe(before, message, after)
+        steps.observe(before, message, after)
+      })
       const h = history.value
       set(
         next,
         h && { base: h.base, inputs: [...h.inputs, input], marks: [...h.marks, markOf(next)] },
         review.finish(next),
+        steps.finish(next),
       )
       error.value = null
     } catch (e) {
@@ -290,6 +304,10 @@ export const useGameStore = defineStore('game', () => {
     persist()
   }
 
+  function acceptAutoSteps() {
+    autoSteps.value = null
+  }
+
   /** Import is validated and persisted before replacing the visible session. */
   function importSession(raw: string): boolean {
     try {
@@ -300,6 +318,7 @@ export const useGameStore = defineStore('game', () => {
       latest = data.state
       history.value = data.history
       advanceReview.value = data.advanceReview ?? resumedAdvanceReview(data.state)
+      autoSteps.value = null
       state.value = data.state
       notifyLocalChange('game', exportSession())
       error.value = null
@@ -338,6 +357,8 @@ export const useGameStore = defineStore('game', () => {
     campaign,
     advanceReview,
     acceptAdvance,
+    autoSteps,
+    acceptAutoSteps,
     start,
     closeScenario,
     playNext,

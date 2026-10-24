@@ -2,6 +2,7 @@
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import AutoStepsReview from '../components/AutoStepsReview.vue'
 import BoardViewport from '../components/BoardViewport.vue'
 import CardInspector from '../components/CardInspector.vue'
 import CardZoom from '../components/CardZoom.vue'
@@ -128,6 +129,7 @@ const shown = computed(
     <CardPileModal />
     <DrawSpotlight :state="state" @dismissed="finishDraw" />
     <ScenarioTransition />
+    <AutoStepsReview />
     <MulliganNotice :state="state" />
     <CardInspector />
   </div>
