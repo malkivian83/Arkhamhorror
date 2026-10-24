@@ -57,6 +57,7 @@ export {
   canEnter,
   cardCost,
   commitBlocked,
+  investigationBlocked,
   leavingBlocked,
   moveBlocked,
   parleyCosts,
@@ -106,5 +107,7 @@ export {
   shroudOf,
   updateInvestigator,
   distancesFrom,
+  enemyNeighbours,
+  recomputeConnections,
 } from './state'
 export type * from './types'

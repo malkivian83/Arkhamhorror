@@ -100,6 +100,12 @@ export interface ScenarioBehavior {
   cardCostModifier?: (state: GameState, investigator: InvestigatorId, code: CardCode) => number
   /** Cuántas cartas cuenta cada carta Oculta de su mano para el tamaño de mano (Bastidores). */
   hiddenHandWeight?: (state: GameState, investigator: InvestigatorId) => number
+  /** Conexiones que el escenario añade a una localización (Pasadizos, Sr. Peabody). */
+  connections?: (state: GameState, location: Location) => LocationId[]
+  /** Conexiones adicionales solo cuando se mueve un enemigo (Biblioteca oculta). */
+  enemyConnections?: (state: GameState, location: LocationId) => LocationId[]
+  /** La habilidad de la prueba no puede modificarse (Museo histórico al investigar). */
+  skillUnmodified?: (state: GameState, test: SkillTest) => boolean
   /** El investigador no roba carta en la fase de Mantenimiento (Ashleigh Clarke). */
   skipsUpkeepDraw?: (state: GameState, investigator: InvestigatorId) => boolean
   forced?: (state: GameState, trigger: Trigger) => Message[]
@@ -154,6 +160,8 @@ export interface TreacheryBehavior {
   cannotDiscard?: boolean
   /** Unida a una localización: los investigadores no pueden salir de ella (Secret Door). */
   blocksLeaving?: boolean
+  /** El Lugar al que está unida no puede investigarse (Puerta cerrada con llave). */
+  blocksInvestigation?: boolean
   /**
    * En la zona de amenaza (o Oculta en la mano): lo que su investigador no puede hacer.
    * Tipos de carta que no puede jugar o comprometer, habilidades [fast] y moverse
@@ -238,6 +246,10 @@ export interface AgendaBehavior {
    * resuelven en su lugar (La aterradora verdad).
    */
   insteadOfAdvance?: (state: GameState) => Message[] | null
+  /** Se omite el paso "Coloca 1 perdición en el plan" de la fase de Mitos. */
+  skipsMythosDoom?: boolean
+  /** Las pistas colocadas sobre un enemigo pasan a ser perdición. */
+  enemyCluesBecomeDoom?: boolean
   /** Instrucciones del reverso al avanzar. */
   onAdvance?: (state: GameState) => Message[]
   /** Instrucciones del reverso que se resuelven con el plan siguiente ya en juego. */
@@ -347,6 +359,10 @@ export interface PlayerCardBehavior {
   commitFromLocation?: (state: GameState, test: SkillTest, by: InvestigatorId) => boolean
   /** Continuous modifiers while this event is attached to an asset. */
   attachedVitals?: { health?: number; sanity?: number }
+  /** En juego: cambia la salud o la cordura de su dueño (El Manto Andrajoso, -1 cordura). */
+  ownerVitals?: { health?: number; sanity?: number }
+  /** En la mano: cambia el coste de cada otra carta de la mano (Broche de ónice negro). */
+  handCostModifier?: number
   /** Bonus to each skill while resolving a triggered ability of the host asset. */
   attachedResolvingSkills?: number
   /** Skill bonus while attacking with the host asset. */

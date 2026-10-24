@@ -31,6 +31,7 @@ import type {
   GameState,
   Investigator,
   InvestigatorId,
+  LocationId,
   Message,
   Treachery,
 } from './types'
@@ -85,7 +86,7 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
     ...playableCards(state, id, false).map((card): Action => ({ kind: 'play', card })),
     { kind: 'draw' },
     { kind: 'resource' },
-    { kind: 'investigate' },
+    ...(investigationBlocked(state, here) ? [] : [{ kind: 'investigate' } as Action]),
     ...(leavingBlocked(state, here) || moveBlocked(state, id) ? [] : location.connections)
       .filter((to) => state.locations[to] && canAffordEntry(state, to) && canEnter(state, id, to))
       .map((to): Action => ({ kind: 'move', to })),
@@ -378,6 +379,16 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
     })
 }
 
+/** Una traición unida al Lugar impide investigarlo (Puerta cerrada con llave). */
+export function investigationBlocked(state: GameState, location: LocationId): boolean {
+  return Object.values(state.treacheries).some(
+    (t) =>
+      t.placement.type === 'location' &&
+      t.placement.location === location &&
+      !!treacheryBehavior(t.code)?.blocksInvestigation,
+  )
+}
+
 /**
  * Costes adicionales para negociar de las cartas de la zona de amenaza del
  * investigador (¿Qué has hecho?). `null` si alguno no se puede pagar.
@@ -472,7 +483,12 @@ export function cardCost(
 ): number {
   const printed = playerCardDef(code)?.cost ?? 0
   const change = scenarioBehavior(state.scenarioId)?.cardCostModifier?.(state, id, code) ?? 0
-  return Math.max(0, printed + change - discount)
+  // Cartas de la mano que encarecen las demás (una copia de la propia carta no cuenta).
+  const hand = [...(state.investigators.find((i) => i.id === id)?.hand ?? [])]
+  const own = hand.indexOf(code)
+  if (own >= 0) hand.splice(own, 1)
+  const fromHand = hand.reduce((n, c) => n + (playerCardBehavior(c)?.handCostModifier ?? 0), 0)
+  return Math.max(0, printed + change + fromHand - discount)
 }
 
 /** Una debilidad en su zona de amenaza le impide jugar o usar apoyos (The Necronomicon). */
