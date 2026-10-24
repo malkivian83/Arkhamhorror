@@ -50,6 +50,14 @@ const CODES = new Set([
   ...range(3095, 3097),
   ...range(3101, 3105),
   '01166',
+  // Ecos del pasado (con Sr. Peabody, Broche de ónice negro y El Manto Andrajoso) y los
+  // conjuntos de la caja básica original que pide: Las máscaras de medianoche (solo sus
+  // traiciones), Secta oscura y Puertas cerradas.
+  ...range(3120, 3146),
+  '01135',
+  '01136',
+  ...range(1169, 1171),
+  '01174',
 ])
 
 /** Erratas de la traducción de la fuente, contrastadas con las cartas impresas. */
@@ -60,6 +68,9 @@ const ERRATA = [
   ['obtiene:"', 'obtiene: "'],
   ['Realidad repulsica', 'Realidad repulsiva'],
   ['en lugar de eso has avanzar', 'en lugar de eso haz avanzar'],
+  // Museo histórico (03130, 03132): la carta impresa dice "modificado".
+  ['no puede ser aumentado', 'no puede ser modificado'],
+  ['cannot be increased', 'cannot be modified'],
 ]
 const fix = (text) =>
   typeof text === 'string'

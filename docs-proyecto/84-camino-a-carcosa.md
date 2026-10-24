@@ -2,15 +2,15 @@
 
 ## Estado actual
 
-**2 de 8 escenarios jugables: I · Se cierra el telón y II · El Último Rey**, con el
-Interludio I (cuarta entrega). Al terminar el escenario II no hay un tercero disponible.
-Los escenarios III–VIII siguen sin `build`.
+**3 de 8 escenarios jugables: I · Se cierra el telón, II · El Último Rey (con el
+Interludio I) y III · Ecos del pasado** (quinta entrega). Al terminar el escenario III no
+hay un cuarto disponible. Los escenarios IV–VIII siguen sin `build`.
 
 | Escenario                      | Implementado                                                                            | Pendiente para jugar                                                                                                                    |
 | ------------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | I · Se cierra el telón         | Completo: preparación, actos, planes, Lugares, 7 conjuntos, resoluciones y narración    | Lola Hayes (no jugable aún)                                                                                                             |
 | II · El último Rey             | Completo: preparación, Transeúntes, planes, acto, 5 conjuntos, R1–R3 e Interludio I      | Audios de narración                                                                                                                     |
-| III · Ecos del pasado          | Nombre y posición en la campaña                                                         | Implementación íntegra y lectura del registro previo                                                                                    |
+| III · Ecos del pasado          | Completo: preparación al azar, Pasadizos, Sr. Peabody, 6 conjuntos, R1–R4 y recompensas   | Audios de narración                                                                                                                     |
 | IV · El juramento inconfesable | Nombre y posición en la campaña                                                         | Implementación íntegra y transición al interludio II                                                                                    |
 | V · El Fantasma de la Verdad   | Nombre y posición en la campaña                                                         | Implementación íntegra y variantes según el registro                                                                                    |
 | VI · La máscara pálida         | Nombre y posición en la campaña                                                         | Implementación íntegra                                                                                                                  |
@@ -246,6 +246,47 @@ pistas sobre los Transeúntes y sobre el acto, traiciones junto al plan y refere
 símbolos. Revisión visual local en ES/EN con una partida en curso. Sin audios: la narración
 del escenario II se muestra como texto; `generate-carcosa-audio.mjs` aún solo cubre el I.
 
+## Quinta entrega: Ecos del pasado
+
+Escenario en `the-path-to-carcosa/echoes-of-the-past.ts`; cartas de jugador Sr. Peabody,
+Broche de ónice negro (Debilidad) y El Manto Andrajoso en `echoes-assets.ts`; Las máscaras
+de medianoche (solo sus 5 traiciones), Secta oscura y Puertas cerradas añadidas a
+`encounter-sets.ts`. Mazo de 33 cartas menos los Buscadores que aparecen en la preparación.
+Fuentes: guía ES pp. 10–12 (revisadas sobre la página renderizada), cartas de la referencia
+y `EchoesOfThePast.hs` (Lugares y símbolos) como contraste.
+
+- Preparación: 1 Lugar Sociedad Histórica de cada planta retirado al azar; Buscadores de
+  Carcosa según jugadores; Información de Sebastien (1 pista por investigador en el
+  Vestíbulo, solo si no está tachado) y 1 acción adicional en el primer turno si huyeron de
+  la fiesta.
+- Conexiones: el Vestíbulo y los Pasillos tranquilos conectan con su planta; las caras sin
+  revelar conectan con el centro de su planta y las reveladas por sus símbolos. En el acto 3,
+  los Pasadizos se conectan entre sí; el Sr. Peabody hace Pasadizo (y -1 velo) al Lugar que
+  elija hasta que se prepare. Para los enemigos, la Biblioteca oculta es un Pasadizo.
+- Planes: sin perdición en el Mitos; las pistas colocadas sobre enemigos pasan a perdición.
+  El plan 2 trae al Juramentado poseído y a Sebastien Moreau (si no está entre los VIP
+  muertos); el 3, R4. El Juramentado es inmune en los actos 1–2 y derrotarlo es R3.
+- Resoluciones: R1/R2 al decidir en el acto 3, R3, R4 (también sin resolución); notas,
+  Dudas/Convicciones, Broche obligatorio (R1) y Manto opcional (R3), Sebastien muerto y
+  cambio de fichas.
+- Motor (genérico): conexiones del escenario y adicionales solo para enemigos, omitir la
+  perdición del Mitos, pistas que se vuelven perdición, "tu habilidad no puede
+  modificarse", traiciones que impiden investigar, disparador al final del Mitos, coste de
+  cartas modificado desde la mano y cordura modificada por un apoyo. Las conexiones se
+  recalculan al avanzar acto o plan y al preparar cartas.
+
+Diferencias revisadas: la referencia añade 2 primigenios en R4; la guía ES p. 12 dice 1
+sectario, 1 tablilla y 1 primigenio, y se sigue la guía. Los umbrales de perdición son por
+investigador (cartas impresas). El Museo histórico dice "no puede ser modificado" en las
+cartas EN/ES impresas; la fuente decía "aumentado" (corregido al importar). La reacción de la
+Biblioteca histórica se ofrece al terminar la prueba, ya descubierta la pista.
+
+Validación: 60 pruebas nuevas (preparación 1–4 × 4 dificultades, conexiones, Pasadizos y
+Sr. Peabody, cada Lugar, plan, acto, ficha, carta de encuentro y recompensa, resoluciones
+y 40 partidas aleatorias). Presentación: catálogo EN/ES (111 cartas de Carcosa), 106
+escaneos EN/ES con miniaturas ([evidencia](evidencias/imagenes-echoes-of-the-past.json))
+contrastados con los datos; revisión visual local del acto 3.
+
 ## Dependencias posteriores
 
 - Oculto: secreto por investigador en online, cuenta para tamaño de mano,
@@ -281,10 +322,10 @@ escaneos; formato, lint y tipos correctos; 3209 pruebas superadas y 19 omitidas.
 fallo de Eureka ya no aparece. Los 2 fallos de `apps/server/src/deploy.test.mjs` solo
 se deben a ejecutar con Node 22 (el despliegue exige Node 24).
 
-Siguiente bloque: escenario III (Ecos del pasado), que lee del registro los VIP
-interrogados (Sebastien) y la huida de la fiesta, reutilizando Delirios, Secta del Signo
-Amarillo y los contadores ya implementados. Pendientes: Lola Hayes (escenario I) y los
-audios del escenario II (ampliar `generate-carcosa-audio.mjs`).
+Siguiente bloque: escenario IV (El juramento inconfesable) e Interludio II, que leen del
+registro el broche y el juramentado. Pendientes: Lola Hayes (escenario I) y los audios de los
+escenarios II y III (la clave de ElevenLabs aportada es de una cuenta gratuita, que no puede
+usar la voz de biblioteca de Carmelo por la API).
 
 Para retomar en otro ordenador, actualizar `main`: el PDF ya está versionado en
 `docs-proyecto/reglas/`. La aplicación de referencia sigue siendo una copia externa

@@ -1,4 +1,4 @@
-import type { CampaignLog, GameState, Message } from '@lcg/engine'
+import type { CampaignLog, ChaosToken, GameState, Message } from '@lcg/engine'
 
 export const CARCOSA_COUNTERS = {
   doubt: 'carcosaDoubt',
@@ -42,3 +42,42 @@ export function applyCarcosaMark(
     },
   }
 }
+
+const SYMBOLS: ChaosToken[] = ['cultist', 'tablet', 'elderThing']
+
+/** Retira de la bolsa de la campaña las fichas de sectario, tablilla y primigenio y añade estas. */
+export function replaceSymbolTokens(...add: ChaosToken[]): Message {
+  return { type: 'ScenarioSpecific', key: 'carcosaTokens', data: { add: add.join(',') } }
+}
+
+/** Mensajes comunes de los escenarios de Carcosa (marcas y fichas); null si no es uno de ellos. */
+export function carcosaSpecific(
+  state: GameState,
+  key: string,
+  data: Record<string, string | number | boolean>,
+): GameState | null {
+  if (key === 'carcosaMark') {
+    if (typeof data.counter !== 'string' || !Object.hasOwn(CARCOSA_COUNTERS, data.counter))
+      return state
+    return applyCarcosaMark(state, data.counter as CarcosaCounter, Number(data.amount))
+  }
+  if (key === 'carcosaTokens') {
+    const log = state.campaignLog
+    if (!log) return state
+    const add = String(data.add ?? '')
+      .split(',')
+      .filter(Boolean) as ChaosToken[]
+    return {
+      ...state,
+      campaignLog: {
+        ...log,
+        chaosTokens: [...log.chaosTokens.filter((t) => !SYMBOLS.includes(t)), ...add],
+      },
+    }
+  }
+  return null
+}
+
+/** Nota del registro que sigue vigente (anotada y sin tachar). */
+export const hasNote = (log: CampaignLog | undefined, note: string) =>
+  !!log?.notes.includes(note) && !log.crossedOut.includes(note)

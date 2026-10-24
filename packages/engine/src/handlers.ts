@@ -51,6 +51,7 @@ import {
   effectiveVitals,
   bestByPrey,
   distancesFrom,
+  enemyNeighbours,
   enemiesAt,
   engagedEnemies,
   findEnemy,
@@ -141,7 +142,9 @@ export function handle(state: GameState, message: Message): GameState {
         log({ ...state, phase: 'mythos' }, 'log.phase', { phase: 'mythos' }),
         { type: 'Step', step: 'mythosBegins' },
         { type: 'Step', step: 'placeDoom' },
-        { type: 'PlaceDoom', amount: 1 },
+        ...(agendaBehavior(state.agendas[state.agendaIndex]?.code)?.skipsMythosDoom
+          ? []
+          : [{ type: 'PlaceDoom', amount: 1 } as Message]),
         { type: 'Step', step: 'checkDoom' },
         { type: 'CheckAgenda' },
         { type: 'Step', step: 'drawEncounter' },
@@ -149,6 +152,7 @@ export function handle(state: GameState, message: Message): GameState {
           type: 'DrawEncounterCard',
           investigator: i.id,
         })),
+        { type: 'Forced', trigger: { type: 'mythosPhaseEnds' } },
         { type: 'Step', step: 'mythosEnds' },
       )
 
@@ -276,7 +280,7 @@ export function handle(state: GameState, message: Message): GameState {
       if (agendaIndex >= state.agendas.length) {
         return push(state, { type: 'EndScenario', outcome: { type: 'noResolution' } })
       }
-      const advanced = { ...state, agendaIndex }
+      const advanced = recomputeConnections({ ...state, agendaIndex })
       const after = agendaBehavior(state.agendas[state.agendaIndex]?.code)?.afterAdvance
       return after ? push(advanced, ...after(advanced)) : advanced
     }
@@ -4202,8 +4206,9 @@ export function handle(state: GameState, message: Message): GameState {
       const occupied = [
         ...new Set(activeInvestigators(state).flatMap((i) => (i.location ? [i.location] : []))),
       ]
+      // Las conexiones del escenario pueden depender de cartas agotadas (Sr. Peabody).
       return push(
-        { ...state, enemies, assets },
+        recomputeConnections({ ...state, enemies, assets }),
         ...occupied.map((location): Message => ({ type: 'CheckEngagement', location })),
       )
     }
@@ -4270,7 +4275,8 @@ export function handle(state: GameState, message: Message): GameState {
       if (actIndex >= state.acts.length) {
         return push(state, { type: 'EndScenario', outcome: { type: 'resolution', resolution: 1 } })
       }
-      return { ...state, actIndex }
+      // Las conexiones del escenario pueden depender del acto (Pasadizos en El juramento).
+      return recomputeConnections({ ...state, actIndex })
     }
 
     // ------------------------------------------------------- Habilidades
@@ -5372,6 +5378,16 @@ export function handle(state: GameState, message: Message): GameState {
       const amount = Math.min(message.amount, available)
       if (amount <= 0) return state
       if (message.to.type === 'investigator' && cluesBlocked(state, message.to.id)) return state
+      // Ecos del pasado: las pistas colocadas sobre un enemigo se dan la vuelta (perdición).
+      if (
+        message.to.type === 'enemy' &&
+        agendaBehavior(state.agendas[state.agendaIndex]?.code)?.enemyCluesBecomeDoom
+      )
+        return push(setClues(state, message.from, available - amount), {
+          type: 'PlaceDoomOnEnemy',
+          enemy: message.to.id,
+          amount,
+        })
       return setClues(
         setClues(state, message.from, available - amount),
         message.to,
@@ -5862,13 +5878,13 @@ function forcedAbilities(state: GameState, trigger: Trigger): Message[] {
  */
 function patrolSteps(state: GameState, enemy: Enemy, targets: LocationId[]): LocationId[] {
   if (targets.length === 0 || targets.includes(enemy.location)) return []
-  const distances = distancesFrom(state, enemy.location)
+  const distances = distancesFrom(state, enemy.location, true)
   const reachable = targets.filter((t) => distances.has(t))
   if (reachable.length === 0) return []
   const nearest = Math.min(...reachable.map((t) => distances.get(t) ?? 0))
   const goals = reachable.filter((t) => distances.get(t) === nearest)
-  return (state.locations[enemy.location]?.connections ?? []).filter((step) => {
-    const fromStep = distancesFrom(state, step)
+  return enemyNeighbours(state, enemy.location).filter((step) => {
+    const fromStep = distancesFrom(state, step, true)
     return goals.some((g) => fromStep.get(g) === nearest - 1)
   })
 }
@@ -6504,6 +6520,8 @@ export function skillTestValue(state: GameState): {
         )
   const base = test.baseSkill ?? investigator.skills[test.skill]
   const scenario = scenarioBehavior(state.scenarioId)?.skillModifier?.(state, test) ?? 0
+  // "Tu habilidad no puede modificarse": solo cuenta su valor (sin iconos ni modificadores).
+  const unmodified = !!scenarioBehavior(state.scenarioId)?.skillUnmodified?.(state, test)
   const resolving =
     resolvingSkillBonus(state, investigator.id) + attachedAttackSkillBonus(state, test)
   const phaseSources = (investigator.phaseSkillBonuses ?? [])
@@ -6545,16 +6563,17 @@ export function skillTestValue(state: GameState): {
     icons,
     sources,
     passive: passive + auras + scenario + resolving + phaseBonus + effectBonus,
-    total:
-      base +
-      test.baseModifier +
-      icons +
-      passive +
-      auras +
-      scenario +
-      resolving +
-      phaseBonus +
-      effectBonus,
+    total: unmodified
+      ? base
+      : base +
+        test.baseModifier +
+        icons +
+        passive +
+        auras +
+        scenario +
+        resolving +
+        phaseBonus +
+        effectBonus,
   }
 }
 

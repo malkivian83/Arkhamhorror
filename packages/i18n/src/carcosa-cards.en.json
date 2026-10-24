@@ -1,4 +1,13 @@
 {
+  "01135": {
+    "name": "Hunting Shadow",
+    "traits": "Curse.",
+    "text": "Peril.\n<b>Revelation</b> - You must either (choose one): Spend 1 clue or take 2 damage."
+  },
+  "01136": {
+    "name": "False Lead",
+    "text": "<b>Revelation</b> - If you have no clues, False Lead gains surge. If you have 1 or more clues, test [intellect] (4). For each point you fail by, place 1 of your clues on your location."
+  },
   "01159": {
     "name": "Swarm of Rats",
     "traits": "Creature.",
@@ -23,6 +32,26 @@
     "name": "Ancient Evils",
     "traits": "Omen.",
     "text": "<b>Revelation</b> - Place 1 doom on the current agenda. This effect can cause the current agenda to advance."
+  },
+  "01169": {
+    "name": "Acolyte",
+    "traits": "Humanoid. Cultist.",
+    "text": "<b>Spawn</b> - Any empty location.\n<b>Forced</b> - After Acolyte enters play: Place 1 doom on it."
+  },
+  "01170": {
+    "name": "Wizard of the Order",
+    "traits": "Humanoid. Cultist.",
+    "text": "<b>Spawn</b> - Any empty location.\nRetaliate.\n<b>Forced</b> - At the end of the mythos phase: Place 1 doom on Wizard of the Order."
+  },
+  "01171": {
+    "name": "Mysterious Chanting",
+    "traits": "Hex.",
+    "text": "<b>Revelation</b> - Place 2 doom on the nearest [[Cultist]] enemy. If there are no [[Cultist]] enemies in play, search the encounter deck and discard pile for a [[Cultist]] enemy and draw it. Shuffle the encounter deck."
+  },
+  "01174": {
+    "name": "Locked Door",
+    "traits": "Obstacle.",
+    "text": "<b>Revelation</b> - Attach to the location in play with the most clues, and without a Locked Door attached.\nThe attached location cannot be investigated.\n[action]: Test [combat] (4) to break down the door or [agility] (4) to pick the lock. If you succeed, discard Locked Door."
   },
   "03043": {
     "name": "Curtain Call",
@@ -396,5 +425,169 @@
     "name": "The Pale Mask Beckons",
     "traits": "Omen. Pact.",
     "text": "<b>Revelation</b> - If The Man in the Pallid Mask is in play, he attacks each investigator in player order, regardless of his current location. If The Man in the Pallid Mask is not in play, search his bearer's deck and discard pile for him, draw him, and shuffle his bearer's deck <i>(resolve this effect even if his bearer is currently eliminated, searching all out-of-play areas)</i>."
+  },
+  "03120": {
+    "name": "Echoes of the Past",
+    "text": "Easy / Standard\n[skull]: -X. X is the highest number of doom on an enemy in play.\n[cultist]: -2. If you fail, place 1 doom on the nearest enemy.\n[tablet]: -2. If you fail, discard a random card from your hand.\n[elder_thing]: -2. If you fail and there is an enemy at your location, take 1 horror.",
+    "backText": "Hard / Expert\n[skull]: -X. X is the total number of doom on enemies in play.\n[cultist]: -4. Place 1 doom on the nearest enemy.\n[tablet]: -4. Discard a random card from your hand.\n[elder_thing]: -4. If there is an enemy at your location, take 1 horror."
+  },
+  "03121": {
+    "name": "The Truth is Hidden",
+    "text": "Skip the 'Place 1 doom on the current agenda' step of the Mythos phase.\n<b>Forced</b> - After 1 or more clues are placed on an enemy in play: Flip those clues to their doom side.",
+    "backName": "Dark Ritual",
+    "backText": "Shuffle the encounter discard pile into the encounter deck."
+  },
+  "03122": {
+    "name": "Ransacking the Manor",
+    "text": "Skip the 'Place 1 doom on the current agenda' step of the Mythos phase.\n<b>Forced</b> - After 1 or more clues are placed on an enemy in play: Flip those clues to their doom side.",
+    "backName": "Oathbreaking",
+    "backText": "Spawn the set-aside Lunatic Oathspeaker enemy at the Entry Hall.\nCheck Campaign Log. If Sebastien Moreau is not listed under \"VIPs Slain,\" search the collection for Sebastien Moreau <i>(Savage Hysteria)</i> and spawn him in the Entry Hall."
+  },
+  "03123": {
+    "name": "Secrets Better Left Hidden",
+    "text": "Skip the 'Place 1 doom on the current agenda' step of the Mythos phase.\n<b>Forced</b> - After 1 or more clues are placed on an enemy in play: Flip those clues to their doom side.",
+    "backName": "The Way Forward",
+    "backText": "<b>(→R4)</b>."
+  },
+  "03124": {
+    "name": "Race for Answers",
+    "backName": "Late-Night Studies",
+    "backText": "For each revealed Historical Society location, add 1 [per_investigator] clues to it (to a maximum of its clue value)."
+  },
+  "03125": {
+    "name": "Mistakes of the Past",
+    "backName": "Secret Passageways",
+    "backText": "For each revealed Historical Society location, add 1 [per_investigator] clues to it (to a maximum of its clue value).\nChoose an investigator to take control of the set-aside Mr. Peabody asset.\nPut the set-aside Hidden Library location into play."
+  },
+  "03126": {
+    "name": "The Oath",
+    "text": "Locations with the [[Passageway]] trait are connected to one another.\n<b>Objective</b> - Only investigators in the Hidden Library may spend the requisite number of clues, as a group, to advance.",
+    "backName": "The Clasp",
+    "backText": "The investigators must decide (choose one):\n- This is an important discovery! We should take it with us. <b>(→R1)</b>.\n- It's just a silly trinket, and it would be wrong to steal from the Historical Society. Leave it behind. <b>(→R2)</b>"
+  },
+  "03127": {
+    "name": "Entry Hall",
+    "traits": "Ground Floor.",
+    "text": "Entry Hall is connected to each other [[Ground Floor]] location.\n[action]: <b>Resign.</b> You flee, leaving the mysteries of the past to the mysterious cultists.",
+    "backText": "Entry Hall is connected to each other [[Ground Floor]] location."
+  },
+  "03128": {
+    "name": "Historical Society",
+    "subname": "Meeting Room",
+    "traits": "Ground Floor. Passageway.",
+    "text": "[action] Exhaust an [[Ally]] asset: Discover a clue at this location. (Limit once per round.)",
+    "backText": "<b>Forced</b> - When an enemy spawns at this location: Reveal this location."
+  },
+  "03129": {
+    "name": "Historical Society",
+    "subname": "Record Office",
+    "traits": "Ground Floor.",
+    "text": "Each enemy at this location gets +1 fight and +1 evade.",
+    "backText": "<b>Forced</b> - When an enemy spawns at this location: Reveal this location."
+  },
+  "03130": {
+    "name": "Historical Society",
+    "subname": "Historical Museum",
+    "traits": "Ground Floor.",
+    "text": "While investigating this location, your [intellect] cannot be modified.",
+    "backText": "<b>Forced</b> - When an enemy spawns at this location: Reveal this location."
+  },
+  "03131": {
+    "name": "Quiet Halls",
+    "traits": "Second Floor.",
+    "text": "Quiet Halls is connected to each other [[Second Floor]] location.\n[action] If each location in play is revealed and there are no clues on locations in play: Place 1 [per_investigator] clues on Quiet Halls <i>(from the token bank)</i>.",
+    "backText": "Quiet Halls is connected to each other [[Second Floor]] location."
+  },
+  "03132": {
+    "name": "Historical Society",
+    "subname": "Historical Museum",
+    "traits": "Second Floor.",
+    "text": "While investigating this location, your [intellect] cannot be modified.",
+    "backText": "<b>Forced</b> - When an enemy spawns at this location: Reveal this location."
+  },
+  "03133": {
+    "name": "Historical Society",
+    "subname": "Historical Library",
+    "traits": "Second Floor. Passageway.",
+    "text": "[reaction] After you successfully investigate this location, take 2 horror: Discover 1 clue at this location. (Limit once per round).",
+    "backText": "<b>Forced</b> - When an enemy spawns at this location: Reveal this location."
+  },
+  "03134": {
+    "name": "Historical Society",
+    "subname": "Reading Room",
+    "traits": "Second Floor.",
+    "text": "[action]: <b>Investigate.</b> If you succeed, instead of discovering clues, choose an enemy with doom on it. Take 1 of that enemy's doom, flip it to its clue side, and place it on your investigator. (Group limit once per round).",
+    "backText": "<b>Forced</b> - When an enemy spawns at this location: Reveal this location."
+  },
+  "03135": {
+    "name": "Quiet Halls",
+    "traits": "Third Floor.",
+    "text": "Quiet Halls is connected to each other [[Third Floor]] location.\n[action] If each location in play is revealed and there are no clues on locations in play: Place 1 [per_investigator] clues on Quiet Halls <i>(from the token bank)</i>.",
+    "backText": "Quiet Halls is connected to each other [[Third Floor]] location."
+  },
+  "03136": {
+    "name": "Historical Society",
+    "subname": "Historical Library",
+    "traits": "Third Floor. Passageway.",
+    "text": "[reaction] After you successfully investigate this location, take 2 horror: Discover 1 clue at this location. (Limit once per round).",
+    "backText": "<b>Forced</b> - When an enemy spawns at this location: Reveal this location."
+  },
+  "03137": {
+    "name": "Historical Society",
+    "subname": "Peabody's Office",
+    "traits": "Third Floor. Passageway.",
+    "text": "While an investigator at this location controls Mr. Peabody, this location gets -2 shroud.",
+    "backText": "<b>Forced</b> - When an enemy spawns at this location: Reveal this location."
+  },
+  "03138": {
+    "name": "Historical Society",
+    "subname": "Record Office",
+    "traits": "Third Floor.",
+    "text": "Each enemy at this location gets +1 fight and +1 evade.",
+    "backText": "<b>Forced</b> - When an enemy spawns at this location: Reveal this location."
+  },
+  "03139": {
+    "name": "Hidden Library",
+    "text": "While an enemy is moving, Hidden Library gains the [[Passageway]] trait.",
+    "backText": "While an enemy is moving, Hidden Library gains the [[Passageway]] trait."
+  },
+  "03140": {
+    "name": "Lunatic Oathspeaker",
+    "subname": "A Damnable Fate",
+    "traits": "Monster. Servitor. Elite.",
+    "text": "Hunter. Retaliate.\nCannot be damaged during act 1 or act 2.\n<b>Forced</b> - At the beginning of the enemy phase: The investigators must either ready Lunatic Oathspeaker or place 1 doom on it.\n<b>Objective</b> - If Lunatic Oathspeaker is defeated: <b>(→R3)</b>"
+  },
+  "03141": {
+    "name": "Mr. Peabody",
+    "subname": "Historical Society Curator",
+    "traits": "Ally. Historical Society.",
+    "text": "[action] Exhaust Mr. Peabody: Choose a location. Until Mr. Peabody readies, that location gets -1 shroud and gains the [[Passageway]] trait."
+  },
+  "03142": {
+    "name": "Clasp of Black Onyx",
+    "subname": "A Gift Unlooked For",
+    "traits": "Item. Relic.",
+    "text": "While Clasp of Black Onyx is in your hand, increase the cost of each other card in your hand by 1."
+  },
+  "03143": {
+    "name": "The Tattered Cloak",
+    "subname": "Regalia Dementia",
+    "traits": "Item. Clothing.",
+    "text": "You get -1 sanity.\nYou get +1 [willpower], +1 [combat], and +1 [agility] while you have 3 or fewer remaining sanity."
+  },
+  "03144": {
+    "name": "Seeker of Carcosa",
+    "traits": "Humanoid. Cultist.",
+    "text": "<b>Spawn</b> - Any empty Historical Society location.\nAloof.\n<b>Forced</b> - At the end of the mythos phase: Move 1 clue from Seeker of Carcosa's location to Seeker of Carcosa (if you cannot, place 1 doom on Seeker of Carcosa, instead)."
+  },
+  "03145": {
+    "name": "Led Astray",
+    "traits": "Scheme.",
+    "text": "Peril.\n<b>Revelation</b> - You must decide (choose one):\n- Place 1 of your clues on a [[Cultist]] enemy.\n- Place 1 doom on the current agenda (this effect may cause the current agenda to advance)."
+  },
+  "03146": {
+    "name": "The Cult's Search",
+    "traits": "Scheme.",
+    "text": "<b>Revelation</b> - If there is a [[Cultist]] enemy in play with doom on it, move all doom from each [[Cultist]] enemy to the current agenda (this effect may cause the current agenda to advance). If there are no [[Cultist]] enemies in play with doom on them, search the encounter deck and discard pile for a [[Cultist]] enemy and draw it (shuffle the encounter deck)."
   }
 }

@@ -1,4 +1,14 @@
 {
+  "01135": {
+    "name": "Sombra acechante",
+    "traits": "Maldición.",
+    "text": "Peligro.\n<b>Revelación</b> - Debes (elige una opción): Gastar 1 pista o recibir 2 puntos de daño."
+  },
+  "01136": {
+    "name": "Pista falsa",
+    "traits": "Maldición.",
+    "text": "<b>Revelación</b> - Si no tienes pistas, Pista falsa obtiene Oleada. Si tienes 1 o más pistas, realiza una prueba de [intellect] (4). Por cada punto que te falte para tener éxito, coloca 1 de tus pistas sobre tu Lugar."
+  },
   "01159": {
     "name": "Avalancha de ratas",
     "traits": "Criatura.",
@@ -23,6 +33,26 @@
     "name": "Antiguos males",
     "traits": "Augurio.",
     "text": "<b>Revelación</b> - Coloca 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance."
+  },
+  "01169": {
+    "name": "Acólito",
+    "traits": "Humanoide. Sectario.",
+    "text": "<b>Aparición</b> - Cualquier Lugar vacío.\n<b>Obligado</b> - Después de que el Acólito entre en juego: Coloca 1 ficha de Perdición sobre él."
+  },
+  "01170": {
+    "name": "Mago de la Orden",
+    "traits": "Humanoide. Sectario.",
+    "text": "<b>Aparición</b> - Cualquier Lugar vacío.\nRepresalia.\n<b>Obligado</b> - Al final de la fase de Mitos: Coloca 1 ficha de Perdición sobre el Mago de la Orden."
+  },
+  "01171": {
+    "name": "Cántico misterioso",
+    "traits": "Maleficio.",
+    "text": "<b>Revelación</b> - Coloca 2 fichas de Perdición sobre el Enemigo [[Sectario]] más cercano. Si no hay Enemigos [[Sectario]] en juego, busca en el mazo y la pila de descartes de Encuentros un Enemigo [[Sectario]] y róbalo (baraja el mazo de Encuentros)."
+  },
+  "01174": {
+    "name": "Puerta cerrada con llave",
+    "traits": "Obstáculo.",
+    "text": "<b>Revelación</b> - Vincula esta carta al Lugar que tenga más pistas y que no tenga una Puerta cerrada con llave vinculada.\nEl Lugar no puede ser investigado.\n[action]: Realiza una prueba de [combat] (4) para romper la puerta o de [agility] (4) para forzar la cerradura. Si tienes éxito, descarta la Puerta cerrada con llave."
   },
   "03043": {
     "name": "Se cierra el telón",
@@ -396,5 +426,169 @@
     "name": "La invitación de la máscara pálida",
     "traits": "Augurio. Pacto.",
     "text": "<b>Revelación</b> - Si El hombre de la máscara pálida está en juego, ataca a cada investigador siguiendo el orden de juego, independientemente de su Lugar actual. Si El hombre de la máscara pálida no está en juego, búscalo en el mazo y la pila de descartes del afectado, róbalo y baraja el mazo del afectado <em>(resuelve este efecto incluso si el afectado está eliminado en ese momento, buscando en todas las zonas que estén fuera del juego)</em>."
+  },
+  "03120": {
+    "name": "Ecos del pasado",
+    "text": "<b>Fácil/Normal</b>\n[skull]: -X. X es la cantidad más alta de fichas de Perdición que haya sobre un Enemigo en juego.\n[cultist]: -2. Si fracasas, coloca 1 ficha de Perdición sobre el Enemigo más cercano.\n[tablet]: -2. Si fracasas, descarta una carta de tu mano al azar.\n[elder_thing]: -2. Si fracasas y hay un Enemigo en tu Lugar, recibe 1 punto de horror.",
+    "backText": "<b>Difícil/Experto</b>\n[skull]: -X. X es la cantidad total de fichas de Perdición que haya sobre los Enemigos en juego.\n[cultist]: -4. Coloca 1 ficha de Perdición sobre el Enemigo más cercano.\n[tablet]: -4. Descarta una carta de tu mano al azar.\n[elder_thing]: -4. Si hay un Enemigo en tu Lugar, recibe 1 punto de horror."
+  },
+  "03121": {
+    "name": "La verdad está oculta",
+    "text": "Omite el paso \"Coloca 1 ficha de Perdición sobre el plan en curso\" de la fase de Mitos.\n<b>Obligado</b> - Después de que se coloquen 1 o más pistas sobre un Enemigo en juego: Dale la vuelta a esas pistas para mostrar su lado de perdición.",
+    "backName": "Ritual oscuro",
+    "backText": "Añade la pila de descartes de Encuentros al mazo de Encuentros y barájalo."
+  },
+  "03122": {
+    "name": "Saqueando la mansión",
+    "text": "Omite el paso \"Coloca 1 ficha de Perdición sobre el plan en curso\" de la fase de Mitos.\n<b>Obligado</b> - Después de que se coloquen 1 o más pistas sobre un Enemigo en juego: Dale la vuelta a esas pistas para mostrar su lado de perdición.",
+    "backName": "Rompiendo el juramento",
+    "backText": "Haz aparecer el Enemigo Juramentado poseído puesto aparte en el Vestíbulo de entrada.\nComprueba el registro de campaña. Si Sebastien Moreau no aparece en la sección \"VIP muertos\", busca en tu colección a Sebastien Moreau [[(Historia salvaje)]] y haz que aparezca en el Vestíbulo de entrada."
+  },
+  "03123": {
+    "name": "Secretos que es mejor dejar ocultos",
+    "text": "Omite el paso \"Coloca 1 ficha de Perdición sobre el plan en curso\" de la fase de Mitos.\n<b>Obligado</b> - Después de que se coloquen 1 o más pistas sobre un Enemigo en juego: Dale la vuelta a esas pistas para mostrar su lado de perdición.",
+    "backName": "El camino hacia adelante",
+    "backText": "<b>(→R4)</b>."
+  },
+  "03124": {
+    "name": "La búsqueda de respuestas",
+    "backName": "Estudios nocturnos",
+    "backText": "Añade 1 pista[per_investigator] a cada Lugar Sociedad Histórica revelado (hasta su valor de pista máximo)."
+  },
+  "03125": {
+    "name": "Errores del pasado",
+    "backName": "Pasadizos secretos",
+    "backText": "Añade 1 pista[per_investigator] a cada Lugar Sociedad Histórica revelado (hasta su valor de pista máximo).\nElige un investigador para que tome el control del Apoyo Sr. Peabody puesto aparte.\nPon en juego el Lugar Biblioteca oculta puesto aparte."
+  },
+  "03126": {
+    "name": "El juramento",
+    "text": "Los Lugares con el rasgo [[Pasadizo]] están conectados entre sí.\n<b>Objetivo</b> - Sólo los investigadores que estén en la Biblioteca oculta pueden, como grupo, gastar la cantidad necesaria de pistas para hacer avanzar el acto.",
+    "backName": "El broche",
+    "backText": "Los investigadores deben decidir (elige una opción):\n- ¡Es un descubrimiento importante! Deberíamos llevárnoslo. <b>(→R1)</b>.\n- No es más que una baratija sin importancia, y estaría mal robársela a la Sociedad Histórica. Dejémosla aquí. <b>(→R2)</b>"
+  },
+  "03127": {
+    "name": "Vestíbulo de entrada",
+    "traits": "Planta baja.",
+    "text": "El Vestíbulo de entrada está conectado a todos los demás Lugares [[Planta baja]].\n[action]: <b>Desistir.</b> Huyes y dejas los enigmas del pasado a los misteriosos sectarios.",
+    "backText": "El Vestíbulo de entrada está conectado a todos los demás Lugares [[Planta baja]]."
+  },
+  "03128": {
+    "name": "Sociedad Histórica",
+    "subname": "Sala de reuniones",
+    "traits": "Planta baja. Pasadizo.",
+    "text": "[action] Agota un Apoyo [[Aliado]]: Descubre una pista en este Lugar. Límite de una vez por ronda.",
+    "backText": "<b>Obligado</b> - Cuando aparezca un Enemigo en este Lugar: Revela este Lugar."
+  },
+  "03129": {
+    "name": "Sociedad Histórica",
+    "subname": "Oficina del archivo",
+    "traits": "Planta baja.",
+    "text": "Cada Enemigo que esté en este Lugar recibe +1 a combate y +1 a evitar.",
+    "backText": "<b>Obligado</b> - Cuando aparezca un Enemigo en este Lugar: Revela este Lugar."
+  },
+  "03130": {
+    "name": "Sociedad Histórica",
+    "subname": "Museo histórico",
+    "traits": "Planta baja.",
+    "text": "Al investigar este Lugar, tu [intellect] no puede ser modificado.",
+    "backText": "<b>Obligado</b> - Cuando aparezca un Enemigo en este Lugar: Revela este Lugar."
+  },
+  "03131": {
+    "name": "Pasillos tranquilos",
+    "traits": "Primer piso.",
+    "text": "Los Pasillos tranquilos están conectados a todos los demás Lugares [[Primer piso]].\n[action] Si todos los lugares en juego están revelados y no hay pistas en los Lugares en juego: Coloca 1 pista[per_investigator] sobre los Pasillos tranquilos [[(de la reserva de fichas)]].",
+    "backText": "Los Pasillos tranquilos están conectados a todos los demás Lugares [[Primer piso]]."
+  },
+  "03132": {
+    "name": "Sociedad Histórica",
+    "subname": "Museo histórico",
+    "traits": "Primer piso.",
+    "text": "Al investigar este Lugar, tu [intellect] no puede ser modificado.",
+    "backText": "<b>Obligado</b> - Cuando aparezca un Enemigo en este Lugar: Revela este Lugar."
+  },
+  "03133": {
+    "name": "Sociedad Histórica",
+    "subname": "Biblioteca histórica",
+    "traits": "Primer piso. Pasadizo.",
+    "text": "[reaction] Después de que investigues con éxito en este Lugar, recibe 2 puntos de horror: Descubre 1 pista en este Lugar. Límite de una vez por ronda.",
+    "backText": "<b>Obligado</b> - Cuando aparezca un Enemigo en este Lugar: Revela este Lugar."
+  },
+  "03134": {
+    "name": "Sociedad Histórica",
+    "subname": "Sala de lectura",
+    "traits": "Primer piso.",
+    "text": "[action]: <b>Investigar.</b> Si tienes éxito, en lugar de descubrir pistas, elige un Enemigo que tenga perdición. Coge 1 de las fichas de Perdición de ese Enemigo, dale la vuelta para mostrar su lado de pista y colócala sobre tu investigador. Límite de grupo de una vez por ronda.",
+    "backText": "<b>Obligado</b> - Cuando aparezca un Enemigo en este Lugar: Revela este Lugar."
+  },
+  "03135": {
+    "name": "Pasillos tranquilos",
+    "traits": "Segundo piso.",
+    "text": "Los Pasillos tranquilos están conectados a todos los demás Lugares [[Segundo piso]].\n[action] Si todos los lugares en juego están revelados y no hay pistas en los Lugares en juego: Coloca 1 pista[per_investigator] sobre los Pasillos tranquilos [[(de la reserva de fichas)]].",
+    "backText": "Los Pasillos tranquilos están conectados a todos los demás Lugares [[Segundo piso]]."
+  },
+  "03136": {
+    "name": "Sociedad Histórica",
+    "subname": "Biblioteca Histórica",
+    "traits": "Segundo piso. Pasadizo.",
+    "text": "[reaction] Después de que investigues con éxito en este Lugar, recibe 2 puntos de horror: Descubre 1 pista en este Lugar. Límite de una vez por ronda.",
+    "backText": "<b>Obligado</b> - Cuando aparezca un Enemigo en este Lugar: Revela este Lugar."
+  },
+  "03137": {
+    "name": "Sociedad Histórica",
+    "subname": "Despacho de Peabody",
+    "traits": "Segundo piso. Pasadizo.",
+    "text": "Mientras un investigador que esté en este Lugar controle al Sr. Peabody, este Lugar recibe -2 a velo.",
+    "backText": "<b>Obligado</b> - Cuando aparezca un Enemigo en este Lugar: Revela este Lugar."
+  },
+  "03138": {
+    "name": "Sociedad Histórica",
+    "subname": "Oficina de archivo",
+    "traits": "Segundo piso.",
+    "text": "Cada Enemigo que esté en este Lugar recibe +1 a combate y +1 a evitar.",
+    "backText": "<b>Obligado</b> - Cuando aparezca un Enemigo en este Lugar: Revela este Lugar."
+  },
+  "03139": {
+    "name": "Biblioteca oculta",
+    "text": "Mientras un Enemigo se esté moviendo, la Biblioteca oculta obtiene el rasgo [[Pasadizo]].",
+    "backText": "Mientras un Enemigo se esté moviendo, la Biblioteca oculta obtiene el rasgo [[Pasadizo]]."
+  },
+  "03140": {
+    "name": "Juramentado poseído",
+    "subname": "Un destino siniestro",
+    "traits": "Monstruo. Servidor. Élite.",
+    "text": "Cazador. Represalia.\nNo puede ser dañado durante los actos 1 y 2.\n<b>Obligado</b> - Al comienzo de la fase de Enemigos: Los investigadores deben preparar al Juramentado poseído o bien colocar 1 ficha de Perdición sobre él.\n<b>Objetivo</b> - Si el Juramentado poseído es derrotado: <b>(→R3)</b>"
+  },
+  "03141": {
+    "name": "Sr. Peabody",
+    "subname": "Conservador de la Sociedad Histórica",
+    "traits": "Aliado. Sociedad Histórica.",
+    "text": "[action] Agota al Sr. Peabody: Elige un Lugar. Hasta que el Sr. Peabody se prepare, ese Lugar recibe -1 a velo y obtiene el rasgo [[Pasadizo]]."
+  },
+  "03142": {
+    "name": "Broche de ónice negro",
+    "subname": "Un regalo que no buscabas",
+    "traits": "Objeto. Reliquia.",
+    "text": "Mientras el Broche de ónice negro esté en tu mano, aumenta en 1 el coste de todas las demás cartas de tu mano."
+  },
+  "03143": {
+    "name": "El Manto Andrajoso",
+    "subname": "Regalia Dementia",
+    "traits": "Objeto. Ropa.",
+    "text": "Recibes -1 de cordura.\nRecibes +1 [willpower], +1 [combat] y +1 [agility] mientras tengas 3 o menos puntos de cordura restantes."
+  },
+  "03144": {
+    "name": "Buscador de Carcosa",
+    "traits": "Humanoide. Sectario.",
+    "text": "<b>Aparición</b> - Cualquier Lugar Sociedad Histórica vacío.\nIndiferente.\n<b>Obligado</b> - Al final de la fase de Mitos: Mueve 1 pista del Lugar del Buscador de Carcosa al Buscador de Carcosa. Si no puedes, en lugar de eso, coloca 1 ficha de Perdición sobre el Buscador de Carcosa."
+  },
+  "03145": {
+    "name": "Ir descaminado",
+    "traits": "Maquinación.",
+    "text": "Peligro.\n<b>Revelación</b> - Debes decidir (elige una opción):\n- Coloca 1 de tus pistas sobre un Enemigo [[Sectario]].\n- Coloca 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance."
+  },
+  "03146": {
+    "name": "La búsqueda de la secta",
+    "traits": "Maquinación.",
+    "text": "<b>Revelación</b> - Si hay un Enemigo [[Sectario]] en juego que tenga perdición, mueve toda la perdición de cada Enemigo [[Sectario]] al plan en curso. Este efecto puede hacer que el plan en curso avance. Si no hay Enemigos [[Sectario]] en juego que tengan perdición, busca en el mazo y la pila de descartes de Encuentros un Enemigo [[Sectario]] y róbalo. Baraja el mazo de Encuentros."
   }
 }

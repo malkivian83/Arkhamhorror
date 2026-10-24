@@ -218,7 +218,14 @@
       "dianne": "Choose the bystander with the fewest clues Dianne Devine goes to",
       "bonusXp": "Choose who earns 1 additional experience ({n} to assign)"
     },
-    "corrosion": "Corrosion: discard Items with a total cost of at least {n} more"
+    "corrosion": "Corrosion: discard Items with a total cost of at least {n} more",
+    "echoes": {
+      "clasp": "Choose who adds the Clasp of Black Onyx weakness to their deck",
+      "cloak": "Who adds The Tattered Cloak to their deck?",
+      "oathspeaker": "Possessed Oathspeaker: ready him or place 1 doom on him",
+      "peabody": "Choose who takes control of Mr. Peabody",
+      "ledAstray": "Place 1 of your clues on a Cultist or 1 doom on the agenda"
+    }
   },
   "action": {
     "draw": "Draw 1 card",
@@ -407,7 +414,13 @@
       "clueOn": "Place 1 of your clues on {card}"
     },
     "psychopathFight": "Young Psychopath gets +3 fight until the end of the investigation phase",
-    "damageAndHorror": "Take 1 damage and 1 horror"
+    "damageAndHorror": "Take 1 damage and 1 horror",
+    "echoes": {
+      "nobody": "Nobody",
+      "readyOathspeaker": "Ready Possessed Oathspeaker",
+      "doomOnOathspeaker": "Place 1 doom on him"
+    },
+    "spendClue": "Spend 1 clue"
   },
   "phase": {
     "setup": "Setup",
@@ -644,7 +657,15 @@
       "ballroom": "Ballroom: gain 2 resources",
       "livingRoom": "Living Room: draw 1 card",
       "diningRoom": "Heal 1 horror and reveal a random token"
-    }
+    },
+    "echoes": {
+      "peabody": "Exhaust Mr. Peabody: a location gets -1 shroud and gains Passageway",
+      "meetingRoom": "Exhaust {card}: discover 1 clue here",
+      "quietHalls": "Place 1 clue per investigator on Quiet Halls",
+      "readingRoom": "Investigate: if you succeed, take 1 doom from an enemy as a clue",
+      "library": "Take 2 horror: discover 1 more clue here"
+    },
+    "lockedDoor": "Break down the door ([combat]) or pick the lock ([agility]) (4)"
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -954,7 +975,7 @@
       "brethren-of-ash": "A fire, a restless city, and a mystery spreading through the ashes. Three scenarios, one connected story.",
       "the-midwinter-gala": "A night of luxury and secrets. Accept the invitation and discover what hides behind the masks at the gala.",
       "murder-at-the-excelsior-hotel": "A murder and a hotel full of secrets. Investigate what happened at the Excelsior and uncover the truth before it is too late.",
-      "the-path-to-carcosa": "The King in Yellow arrives in Arkham. Eight scenarios between doubt and conviction. In development: scenarios I and II, Curtain Call and The Last King, are playable so far."
+      "the-path-to-carcosa": "The King in Yellow arrives in Arkham. Eight scenarios between doubt and conviction. In development: scenarios I to III are playable so far."
     },
     "continueTitle": "Continue where you left off",
     "chooseStory": "Choose the story",
@@ -1109,7 +1130,11 @@
       "carcosaSlainAshleigh": "VIP slain: Ashleigh Clarke",
       "carcosaSecretMeeting": "the investigators crashed a secret meeting",
       "carcosaFledTheParty": "the investigators fled the party",
-      "carcosaSlewTheMonsters": "the investigators slew the monsters at the party"
+      "carcosaSlewTheMonsters": "the investigators slew the monsters at the party",
+      "carcosaTookTheOnyxClasp": "the investigators took the onyx clasp",
+      "carcosaLeftTheOnyxClasp": "the investigators left the onyx clasp behind",
+      "carcosaDestroyedTheOathspeaker": "the investigators destroyed the oathspeaker",
+      "carcosaFollowersFoundTheWay": "the followers of the Sign have found the way forward"
     },
     "scenario": {
       "smokeAndMirrors": "Scenario II: Smoke and Mirrors",
@@ -1375,7 +1400,8 @@
       "markDoubt": "Mark 1 Doubt in the shared campaign log.",
       "strangerBearer": "{name} adds The Man in the Pallid Mask to their deck. It does not count toward deck size. If its bearer leaves the campaign, choose a new bearer.",
       "chasingMarks": "Make {n} marks under Chasing the Stranger.",
-      "echoesOfThePast": "Scenario III: Echoes of the Past"
+      "echoesOfThePast": "Scenario III: Echoes of the Past",
+      "theUnspeakableOath": "Scenario IV: The Unspeakable Oath"
     },
     "curtainCall": {
       "introTitle": "Scenario I: Curtain Call",
@@ -1442,6 +1468,34 @@
       "sickeningHaruko": "Ishimaru Haruko transforms before your eyes. Each investigator at their location takes 1 horror, their clues go to their location and they become a Lunatic enemy.",
       "sickeningSebastien": "Sebastien Moreau transforms before your eyes. Each investigator at their location takes 1 horror, their clues go to their location and they become a Lunatic enemy.",
       "sickeningAshleigh": "Ashleigh Clarke transforms before your eyes. Each investigator at their location takes 1 horror, their clues go to their location and they become a Lunatic enemy."
+    },
+    "echoes": {
+      "introTitle": "Scenario III: Echoes of the Past",
+      "intro": "You head to the Historical Society in Southside: if there are records of the first production of The King in Yellow, also directed by Nigel Engram, they will be there.",
+      "sebastienTitle": "Sebastien’s Information",
+      "sebastien": "You recall what Sebastien told you: The King in Yellow came to Arkham decades ago. Perhaps the Historical Society kept clippings about that production.",
+      "setupTitle": "Setup",
+      "setup": "Gather the Echoes of the Past, Cult of the Yellow Sign, Delusions, the 5 treacheries of The Midnight Masks, Locked Doors and Dark Cult encounter sets.\n\nRemove 1 random Historical Society location of each floor. Put into play the Entry Hall, both Quiet Halls and the 6 remaining Historical Society locations. Each investigator begins in the Entry Hall.\n\nSet aside the Hidden Library, Possessed Oathspeaker, Mr. Peabody, The Tattered Cloak and Clasp of Black Onyx.\n\nWith 2 players, 1 Seeker of Carcosa spawns at a Third Floor location; with 3, 2 at different Third Floor locations; with 4, 3 at different Second or Third Floor locations.",
+      "noResolutionTitle": "No resolution",
+      "noResolution": "You barely escape the building with your body and mind intact. Read Resolution 4.",
+      "resolution1Title": "Resolution 1",
+      "resolution1": "You take the onyx clasp: you know it is important. The last document you find is a psychiatric evaluation of Daniel Chesterfield, a stagehand of the original production committed to the asylum.",
+      "resolution2Title": "Resolution 2",
+      "resolution2": "You leave the clasp behind: it must be a prop from the original play. The last document is a psychiatric evaluation of Daniel Chesterfield, a stagehand committed to the asylum.",
+      "resolution3Title": "Resolution 3",
+      "resolution3": "The oathspeaker collapses and melts. Before dying it screams the name of Daniel Chesterfield, the stagehand who also spoke the oath.",
+      "resolution4Title": "Resolution 4",
+      "resolution4": "Exhausted, you take refuge at Ma’s Boarding House. You dream of a cell and a man murmuring “No mask…”; someone calls him: “Daniel, wake up.” And then you wake up.",
+      "theClaspTitle": "The Clasp",
+      "theClasp": "The investigators must decide what to do with the clasp you found.",
+      "decide1": "This is an important discovery! We should take it with us. (→R1)",
+      "decide2": "It’s just a silly trinket, and it would be wrong to steal from the Historical Society. Leave it behind. (→R2)",
+      "claspEffect": "An investigator must include the Clasp of Black Onyx weakness in their deck (it does not count toward deck size).",
+      "cloakEffect": "Any investigator may add The Tattered Cloak to their deck (it does not count toward deck size).",
+      "tokens1": "Remove all cultist, tablet and elder thing tokens from the chaos bag, then add 2 cultist tokens.",
+      "tokens2": "Remove all cultist, tablet and elder thing tokens from the chaos bag, then add 2 tablet tokens.",
+      "tokens3": "Remove all cultist, tablet and elder thing tokens from the chaos bag, then add 2 tablet tokens.",
+      "tokens4": "Remove all cultist, tablet and elder thing tokens from the chaos bag, then add 1 of each."
     }
   },
   "playmat": {

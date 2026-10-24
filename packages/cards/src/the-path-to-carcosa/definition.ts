@@ -1,6 +1,7 @@
 import { registerCampaign } from '../campaign-definition'
 import { CARCOSA_CHAOS_BAGS, THE_PATH_TO_CARCOSA } from './campaign'
 import { CURTAIN_CALL, curtainCall } from './curtain-call'
+import { ECHOES_OF_THE_PAST, echoesOfThePast } from './echoes-of-the-past'
 import { THE_LAST_KING, theLastKing } from './the-last-king'
 import { THE_MAN_IN_THE_PALLID_MASK } from './the-man-in-the-pallid-mask'
 
@@ -26,6 +27,13 @@ registerCampaign({
               theLastKing({ difficulty, seed, players: investigators.length }),
             keywords: ['bystanders', 'peril', 'surge', 'aloof', 'hunter', 'retaliate', 'prey'],
           }
-        : { id },
+        : id === ECHOES_OF_THE_PAST
+          ? {
+              id,
+              build: ({ difficulty, seed, investigators, log }) =>
+                echoesOfThePast({ difficulty, seed, players: investigators.length, log }),
+              keywords: ['hidden', 'peril', 'surge', 'aloof', 'hunter', 'retaliate', 'prey'],
+            }
+          : { id },
   ),
 })

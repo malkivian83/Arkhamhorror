@@ -1,4 +1,4 @@
-// Textos oficiales de la guía aportada, contrastados con sus pp. 3–9, y de las cartas de
+// Textos oficiales de la guía aportada, contrastados con sus pp. 3–12, y de las cartas de
 // Historia de El Último Rey. Solo añade las claves de Carcosa; conserva las otras campañas.
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
@@ -56,6 +56,16 @@ for (const locale of ['en', 'es']) {
     texts[`story.theLastKing.interview${key}`] = paragraphs(`<p>${cards.get(interview).flavor}</p>`)
     texts[`story.theLastKing.sickening${key}`] = paragraphs(`<p>${cards.get(sickening).flavor}</p>`)
   }
+  // Ecos del pasado: introducción, Información de Sebastien y resoluciones.
+  const echoes = JSON.parse(readFileSync(join(source, 'scenarios/echoesOfThePast.json'), 'utf8'))
+  texts['story.echoes.intro'] = paragraphs(echoes.intro.body)
+  texts['story.echoes.sebastien'] = paragraphs(echoes.intro.sebastiensInformation)
+  // "Sin resolución" no lleva párrafos: es una sola frase dentro del bloque de resolución.
+  texts['story.echoes.noResolution'] = paragraphs(
+    `<p>${echoes.resolutions.noResolution.body.replace(/<\/?div[^>]*>/g, '')}</p>`,
+  )
+  for (const n of [1, 2, 3, 4])
+    texts[`story.echoes.resolution${n}`] = paragraphs(echoes.resolutions[`resolution${n}`].body)
   writeFileSync(path, JSON.stringify(texts, null, 2) + '\n')
-  console.log(`${locale}: relatos de los escenarios I y II importados.`)
+  console.log(`${locale}: relatos de los escenarios I a III importados.`)
 }

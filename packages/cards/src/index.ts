@@ -77,6 +77,11 @@ export {
   STRANGERS as CURTAIN_CALL_STRANGERS,
 } from './the-path-to-carcosa/curtain-call'
 export {
+  CODES as ECHOES_OF_THE_PAST_CODES,
+  ECHOES_OF_THE_PAST,
+  echoesOfThePast,
+} from './the-path-to-carcosa/echoes-of-the-past'
+export {
   CODES as THE_LAST_KING_CODES,
   THE_LAST_KING,
   theLastKing,

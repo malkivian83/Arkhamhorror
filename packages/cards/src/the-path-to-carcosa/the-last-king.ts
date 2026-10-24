@@ -22,7 +22,6 @@ import {
   shroudOf,
   shuffle,
   type AbilityOption,
-  type ChaosToken,
   type Choice,
   type EnemyCard,
   type GameState,
@@ -60,7 +59,7 @@ import {
   mostRemainingHealth,
   nextToAgendaCount,
 } from './encounter-sets'
-import { applyCarcosaMark, CARCOSA_COUNTERS, markCarcosa } from './log'
+import { carcosaSpecific, markCarcosa, replaceSymbolTokens } from './log'
 
 export const THE_LAST_KING = 'the-last-king'
 
@@ -468,10 +467,8 @@ for (const vip of VIPS) {
 // Fichas del caos, recompensas y registro
 // ---------------------------------------------------------------------------
 
-const SYMBOLS: ChaosToken[] = ['cultist', 'tablet', 'elderThing']
-
 /** Retira todas las fichas de sectario, tablilla y primigenio de la bolsa y añade estas. */
-const replaceTokens = (...add: ChaosToken[]) => specific('lastKingTokens', { add: add.join(',') })
+const replaceTokens = replaceSymbolTokens
 
 const interviewed = (state: GameState) =>
   VIPS.filter((v) => state.scenarioMeta?.[`${INTERVIEWED}${v.key}`] === 1)
@@ -665,16 +662,8 @@ registerScenario({
     return []
   },
   specific: (state, key, data) => {
-    if (
-      key === 'carcosaMark' &&
-      typeof data.counter === 'string' &&
-      Object.hasOwn(CARCOSA_COUNTERS, data.counter)
-    )
-      return applyCarcosaMark(
-        state,
-        data.counter as keyof typeof CARCOSA_COUNTERS,
-        Number(data.amount),
-      )
+    const common = carcosaSpecific(state, key, data)
+    if (common) return common
     const push = (...messages: Message[]): GameState => ({
       ...state,
       queue: [...messages, ...state.queue],
@@ -837,20 +826,6 @@ registerScenario({
               : []),
             ...state.queue,
           ],
-        }
-      }
-      case 'lastKingTokens': {
-        const log = state.campaignLog
-        if (!log) return state
-        const add = String(data.add ?? '')
-          .split(',')
-          .filter(Boolean) as ChaosToken[]
-        return {
-          ...state,
-          campaignLog: {
-            ...log,
-            chaosTokens: [...log.chaosTokens.filter((t) => !SYMBOLS.includes(t)), ...add],
-          },
         }
       }
       case 'lastKingBonusXp': {

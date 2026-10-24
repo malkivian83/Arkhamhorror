@@ -218,7 +218,14 @@
       "dianne": "Elige el Transeúnte con menos pistas al que va Dianne Devine",
       "bonusXp": "Elige quién obtiene 1 de experiencia adicional ({n} por repartir)"
     },
-    "corrosion": "Corrosión: descarta Objetos con un coste total de al menos {n} más"
+    "corrosion": "Corrosión: descarta Objetos con un coste total de al menos {n} más",
+    "echoes": {
+      "clasp": "Elegid quién añade la Debilidad Broche de ónice negro a su mazo",
+      "cloak": "¿Quién añade El Manto Andrajoso a su mazo?",
+      "oathspeaker": "Juramentado poseído: preparadlo o colocad 1 perdición sobre él",
+      "peabody": "Elige quién toma el control del Sr. Peabody",
+      "ledAstray": "Coloca 1 de tus pistas sobre un Sectario o 1 perdición en el plan"
+    }
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -407,7 +414,13 @@
       "clueOn": "Dejar 1 de tus pistas sobre {card}"
     },
     "psychopathFight": "La Psicópata joven recibe +3 a combate hasta el final de la fase de Investigación",
-    "damageAndHorror": "Recibir 1 daño y 1 horror"
+    "damageAndHorror": "Recibir 1 daño y 1 horror",
+    "echoes": {
+      "nobody": "Nadie",
+      "readyOathspeaker": "Preparar al Juramentado poseído",
+      "doomOnOathspeaker": "Colocar 1 perdición sobre él"
+    },
+    "spendClue": "Gastar 1 pista"
   },
   "phase": {
     "setup": "Preparación",
@@ -644,7 +657,15 @@
       "ballroom": "Salón de baile: obtén 2 recursos",
       "livingRoom": "Sala de estar: roba 1 carta",
       "diningRoom": "Cúrate 1 horror y revela una ficha al azar"
-    }
+    },
+    "echoes": {
+      "peabody": "Agotar al Sr. Peabody: un Lugar recibe -1 a velo y obtiene Pasadizo",
+      "meetingRoom": "Agotar a {card}: descubrir 1 pista aquí",
+      "quietHalls": "Colocar 1 pista por investigador en los Pasillos tranquilos",
+      "readingRoom": "Investigar: si tienes éxito, toma 1 perdición de un enemigo como pista",
+      "library": "Recibir 2 horror: descubrir 1 pista más aquí"
+    },
+    "lockedDoor": "Derribar la puerta ([combat]) o forzar la cerradura ([agility]) (4)"
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -954,7 +975,7 @@
       "brethren-of-ash": "Un incendio, una ciudad inquieta y un misterio que se extiende entre las cenizas. Tres escenarios, una historia conectada.",
       "the-midwinter-gala": "Una noche de lujo y secretos. Acepta la invitación y descubre qué se esconde tras las máscaras de la gala.",
       "murder-at-the-excelsior-hotel": "Un asesinato y un hotel lleno de secretos. Investiga lo ocurrido en el Excelsior y descubre la verdad antes de que sea demasiado tarde.",
-      "the-path-to-carcosa": "El Rey de Amarillo llega a Arkham. Ocho escenarios entre Dudas y Convicciones. En desarrollo: de momento se pueden jugar los escenarios I y II, Se cierra el telón y El Último Rey."
+      "the-path-to-carcosa": "El Rey de Amarillo llega a Arkham. Ocho escenarios entre Dudas y Convicciones. En desarrollo: de momento se pueden jugar los escenarios I a III."
     },
     "continueTitle": "Continuar donde lo dejaste",
     "chooseStory": "Elige la historia",
@@ -1109,7 +1130,11 @@
       "carcosaSlainAshleigh": "VIP muerto: Ashleigh Clarke",
       "carcosaSecretMeeting": "los investigadores se colaron en una reunión secreta",
       "carcosaFledTheParty": "los investigadores huyeron de la fiesta",
-      "carcosaSlewTheMonsters": "los investigadores mataron a los monstruos de la fiesta"
+      "carcosaSlewTheMonsters": "los investigadores mataron a los monstruos de la fiesta",
+      "carcosaTookTheOnyxClasp": "los investigadores se llevaron el broche de ónice",
+      "carcosaLeftTheOnyxClasp": "los investigadores dejaron el broche de ónice",
+      "carcosaDestroyedTheOathspeaker": "los investigadores destruyeron al juramentado",
+      "carcosaFollowersFoundTheWay": "los seguidores del signo encontraron el camino"
     },
     "scenario": {
       "smokeAndMirrors": "el Escenario II: Smoke and Mirrors",
@@ -1375,7 +1400,8 @@
       "markDoubt": "Marca 1 Duda en el registro de campaña compartido.",
       "strangerBearer": "{name} añade El hombre de la máscara pálida a su mazo. No cuenta para el tamaño de su mazo. Si su portador abandona la campaña, elegid otro portador.",
       "chasingMarks": "Haz {n} marcas en Persiguiendo al Extranjero.",
-      "echoesOfThePast": "Escenario III: Ecos del pasado"
+      "echoesOfThePast": "Escenario III: Ecos del pasado",
+      "theUnspeakableOath": "Escenario IV: El juramento inconfesable"
     },
     "curtainCall": {
       "introTitle": "Escenario I: Se cierra el telón",
@@ -1442,6 +1468,34 @@
       "sickeningHaruko": "Ishimaru Haruko se transforma ante vuestros ojos. Cada investigador de su Lugar recibe 1 horror, sus pistas pasan a su Lugar y se convierte en un Enemigo Lunático.",
       "sickeningSebastien": "Sebastien Moreau se transforma ante vuestros ojos. Cada investigador de su Lugar recibe 1 horror, sus pistas pasan a su Lugar y se convierte en un Enemigo Lunático.",
       "sickeningAshleigh": "Ashleigh Clarke se transforma ante vuestros ojos. Cada investigador de su Lugar recibe 1 horror, sus pistas pasan a su Lugar y se convierte en un Enemigo Lunático."
+    },
+    "echoes": {
+      "introTitle": "Escenario III: Ecos del pasado",
+      "intro": "Te diriges a la Sociedad Histórica del Barrio Sur: si hay registros de la primera representación de El Rey de Amarillo, dirigida también por Nigel Engram, estarán allí.",
+      "sebastienTitle": "Información de Sebastien",
+      "sebastien": "Recuerdas lo que te contó Sebastien: El Rey de Amarillo ya vino a Arkham hace décadas. Quizá la Sociedad Histórica conserve recortes sobre aquella representación.",
+      "setupTitle": "Preparación",
+      "setup": "Se reúnen los conjuntos Ecos del pasado, Secta del Signo Amarillo, Delirios, las 5 traiciones de Las máscaras de medianoche, Puertas cerradas y Secta oscura.\n\nSe retira al azar 1 Lugar Sociedad Histórica de cada planta. Entran en juego el Vestíbulo de entrada, ambos Pasillos tranquilos y los 6 Lugares Sociedad Histórica restantes. Cada investigador empieza en el Vestíbulo de entrada.\n\nSe apartan la Biblioteca oculta, el Juramentado poseído, el Sr. Peabody, El Manto Andrajoso y el Broche de ónice negro.\n\nCon 2 jugadores aparece 1 Buscador de Carcosa en un Lugar del segundo piso; con 3, 2 en Lugares distintos del segundo piso; con 4, 3 en Lugares distintos del primer o segundo piso.",
+      "noResolutionTitle": "Sin resolución",
+      "noResolution": "Escapas a duras penas del edificio con el cuerpo y la mente intactos. Lee la Resolución 4.",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "Te llevas el broche de ónice: sabes que es importante. El último documento que encuentras es una evaluación psiquiátrica de Daniel Chesterfield, un tramoyista de la producción original ingresado en el manicomio.",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "Dejas el broche: debe de ser atrezo de la obra original. El último documento es una evaluación psiquiátrica de Daniel Chesterfield, un tramoyista ingresado en el manicomio.",
+      "resolution3Title": "Resolución 3",
+      "resolution3": "El juramentado se desploma y se funde. Antes de morir grita el nombre de Daniel Chesterfield, el tramoyista que también pronunció el juramento.",
+      "resolution4Title": "Resolución 4",
+      "resolution4": "Agotado, te refugias en la Pensión de Ma. Sueñas con una celda y un hombre que murmura «Sin máscara…»; alguien le llama: «Daniel, despierta». Y entonces despiertas.",
+      "theClaspTitle": "El broche",
+      "theClasp": "Los investigadores deben decidir qué hacer con el broche que habéis encontrado.",
+      "decide1": "¡Es un descubrimiento importante! Debemos llevárnoslo. (→R1)",
+      "decide2": "Es una baratija y estaría mal robar a la Sociedad Histórica. Lo dejamos aquí. (→R2)",
+      "claspEffect": "Un investigador debe incluir la Debilidad Broche de ónice negro en su mazo (no cuenta para el tamaño del mazo).",
+      "cloakEffect": "Cualquier investigador puede añadir El Manto Andrajoso a su mazo (no cuenta para el tamaño del mazo).",
+      "tokens1": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de sectario.",
+      "tokens2": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de tablilla.",
+      "tokens3": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de tablilla.",
+      "tokens4": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 1 de cada."
     }
   },
   "playmat": {

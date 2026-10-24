@@ -28,7 +28,7 @@ import {
   type TreacheryBehavior,
 } from '@lcg/engine'
 import { THE_MAN_IN_THE_PALLID_MASK } from './the-man-in-the-pallid-mask'
-import { copies, damage, effectTest, enemy, treachery } from '../scenario-helpers'
+import { chooseSkillTest, copies, damage, effectTest, enemy, treachery } from '../scenario-helpers'
 
 export const SETS = {
   // Delirios
@@ -66,6 +66,14 @@ export const SETS = {
   dissonantVoices: '01165',
   // Caja básica original: Antiguos males
   ancientEvils: '01166',
+  // Caja básica original: Las máscaras de medianoche (solo sus traiciones), Secta oscura y
+  // Puertas cerradas
+  huntingShadow: '01135',
+  falseLead: '01136',
+  acolyte: '01169',
+  wizardOfTheOrder: '01170',
+  mysteriousChanting: '01171',
+  lockedDoor: '01174',
 } as const
 
 // ---------------------------------------------------------------------------
@@ -167,6 +175,30 @@ const roachSwarm = enemy({
   keywords: [],
 })
 
+const acolyte = enemy({
+  code: SETS.acolyte,
+  name: 'Acolyte',
+  traits: ['Humanoid', 'Cultist'],
+  fight: 3,
+  health: 1,
+  evade: 2,
+  damage: 1,
+  horror: 0,
+  keywords: [],
+})
+
+const wizardOfTheOrder = enemy({
+  code: SETS.wizardOfTheOrder,
+  name: 'Wizard of the Order',
+  traits: ['Humanoid', 'Cultist'],
+  fight: 4,
+  health: 2,
+  evade: 2,
+  damage: 1,
+  horror: 0,
+  keywords: ['retaliate'],
+})
+
 const card = (code: string, name: string, traits: string[], keywords: ('surge' | 'peril')[] = []) =>
   treachery({ code, name, traits, keywords })
 
@@ -214,6 +246,17 @@ export const ENCOUNTER_SETS = {
     card(SETS.thePaleMaskBeckons, 'The Pale Mask Beckons', ['Omen', 'Pact']),
   ],
   ancientEvils: copies(card(SETS.ancientEvils, 'Ancient Evils', ['Omen']), 3),
+  /** Las máscaras de medianoche: solo sus 5 traiciones (guía de Carcosa p. 10). */
+  midnightMasksTreacheries: [
+    ...copies(card(SETS.falseLead, 'False Lead', []), 2),
+    ...copies(card(SETS.huntingShadow, 'Hunting Shadow', ['Curse'], ['peril']), 3),
+  ],
+  lockedDoors: copies(card(SETS.lockedDoor, 'Locked Door', ['Obstacle']), 2),
+  darkCult: [
+    ...copies(acolyte, 3),
+    { ...wizardOfTheOrder },
+    ...copies(card(SETS.mysteriousChanting, 'Mysterious Chanting', ['Hex']), 2),
+  ],
 }
 
 // ---------------------------------------------------------------------------
@@ -945,6 +988,8 @@ export function encounterSpecific(
         : state
     case 'carcosaBeckons':
       return paleMaskBeckons(state)
+    case 'carcosaFindCultist':
+      return investigator ? findCultist(state, investigator) : state
   }
   return null
 }
@@ -955,3 +1000,186 @@ export function mostRemainingHealth(state: GameState, enemies: Enemy[]): Enemy[]
   const best = Math.max(...enemies.map(left))
   return enemies.filter((e) => left(e) === best)
 }
+
+// ---------------------------------------------------------------------------
+// Caja básica original: Las máscaras de medianoche, Secta oscura y Puertas cerradas
+// ---------------------------------------------------------------------------
+
+/** Lugares vacíos (sin investigadores ni enemigos). */
+export const emptyLocations = (state: GameState): LocationId[] =>
+  Object.keys(state.locations).filter(
+    (id) =>
+      !activeInvestigators(state).some((i) => i.location === id) &&
+      !Object.values(state.enemies).some((e) => e.location === id),
+  )
+
+registerTreachery({
+  code: SETS.huntingShadow,
+  // Peligro. Gastas 1 pista o recibes 2 daño.
+  revelation: (state, investigator) => {
+    const hurt: Message = damage(investigator, 2)
+    if (getInvestigator(state, investigator).clues < 1) return [hurt]
+    return [
+      {
+        type: 'Ask',
+        investigator,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.chooseEffect',
+          choices: [
+            {
+              label: 'choice.spendClue',
+              then: [{ type: 'SpendClues', investigator, amount: 1 }],
+            },
+            { label: 'choice.takeDamage', params: { n: 2 }, then: [hurt] },
+          ],
+        },
+      },
+    ]
+  },
+})
+
+registerTreachery({
+  code: SETS.falseLead,
+  // Sin pistas: oleada. Si no, intelecto (4): por cada punto que falles, dejas 1 pista.
+  revelation: (state, investigator) =>
+    getInvestigator(state, investigator).clues < 1
+      ? [{ type: 'GainSurge' }]
+      : [
+          effectTest(investigator, 'False Lead', 'intellect', 4, {
+            onFailEach: [{ type: 'PlaceCluesOnLocation', investigator, amount: 1 }],
+          }),
+        ],
+})
+
+for (const code of [SETS.acolyte, SETS.wizardOfTheOrder])
+  registerEnemy({
+    code,
+    // Aparición: cualquier Lugar vacío.
+    spawn: emptyLocations,
+    forced: (_state, trigger, self) => {
+      // Acólito: después de entrar en juego, 1 perdición sobre él.
+      if (code === SETS.acolyte && trigger.type === 'enemySpawned' && trigger.enemy === self.id)
+        return [{ type: 'PlaceDoomOnEnemy', enemy: self.id, amount: 1 }, { type: 'CheckAgenda' }]
+      // Mago de la Orden: al final de la fase de Mitos, 1 perdición sobre él.
+      if (code === SETS.wizardOfTheOrder && trigger.type === 'mythosPhaseEnds')
+        return [{ type: 'PlaceDoomOnEnemy', enemy: self.id, amount: 1 }, { type: 'CheckAgenda' }]
+      return []
+    },
+  })
+
+const isCultist = (e: { traits?: string[] }) => (e.traits ?? []).includes('Cultist')
+
+registerTreachery({
+  code: SETS.mysteriousChanting,
+  // 2 perdiciones sobre el Sectario más cercano; sin Sectarios, busca uno en el mazo y la
+  // pila de descartes de Encuentros y róbalo (se baraja el mazo).
+  revelation: (state, investigator) => {
+    const cultists = Object.values(state.enemies).filter(isCultist)
+    if (!cultists.length)
+      return [{ type: 'ScenarioSpecific', key: 'carcosaFindCultist', data: { investigator } }]
+    const here = getInvestigator(state, investigator).location
+    const targets = here === null ? cultists : nearest(state, here, cultists)
+    const doom = (e: Enemy): Message[] => [
+      { type: 'PlaceDoomOnEnemy', enemy: e.id, amount: 2 },
+      { type: 'CheckAgenda' },
+    ]
+    if (targets.length === 1) return doom(targets[0]!)
+    return [
+      {
+        type: 'Ask',
+        investigator,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.chooseEnemy',
+          choices: targets.map((e) => ({
+            label: 'choice.enemy',
+            params: { enemy: e.name },
+            target: { type: 'enemy', id: e.id },
+            then: doom(e),
+          })),
+        },
+      },
+    ]
+  },
+})
+
+/** Busca un Sectario en el mazo y los descartes de Encuentros, lo roba y baraja el mazo. */
+export function findCultist(state: GameState, investigator: InvestigatorId): GameState {
+  const inDeck = state.encounterDeck.findIndex((c) => c.kind === 'enemy' && isCultist(c))
+  const inDiscard = state.encounterDiscard.findIndex((c) => c.kind === 'enemy' && isCultist(c))
+  const card = inDeck >= 0 ? state.encounterDeck[inDeck] : state.encounterDiscard[inDiscard]
+  const rest = state.encounterDeck.filter((_, n) => n !== inDeck)
+  const [deck, rng] = shuffle(rest, state.rng)
+  return {
+    ...state,
+    rng,
+    encounterDeck: deck,
+    encounterDiscard:
+      inDeck >= 0
+        ? state.encounterDiscard
+        : state.encounterDiscard.filter((_, n) => n !== inDiscard),
+    queue: [
+      ...(card ? [{ type: 'ResolveEncounterCard', investigator, card } as Message] : []),
+      ...state.queue,
+    ],
+  }
+}
+
+/** Puerta cerrada con llave: Lugar al que está unida. */
+const doorOf = (t: { placement: { type: string; location?: LocationId } }) => attachedTo(t)
+
+registerTreachery({
+  code: SETS.lockedDoor,
+  // Se une al Lugar en juego con más pistas que no tenga otra Puerta cerrada con llave.
+  revelation: (state, investigator, self) => {
+    const locked = new Set(
+      Object.values(state.treacheries)
+        .filter((t) => t.code === SETS.lockedDoor && t.id !== self.id)
+        .map(doorOf),
+    )
+    const free = Object.values(state.locations).filter((l) => !locked.has(l.id))
+    if (!free.length) return []
+    const most = Math.max(...free.map((l) => l.clues))
+    const options = free.filter((l) => l.clues === most)
+    const attach = (location: LocationId): Message[] => [
+      { type: 'PlaceTreachery', treachery: self.id, placement: { type: 'location', location } },
+    ]
+    if (options.length === 1) return attach(options[0]!.id)
+    return [
+      {
+        type: 'Ask',
+        investigator,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.chooseLocation',
+          choices: options.map((l) => ({
+            label: 'choice.location',
+            params: { location: l.name },
+            target: { type: 'location', id: l.id },
+            then: attach(l.id),
+          })),
+        },
+      },
+    ]
+  },
+  blocksInvestigation: true,
+  // [action]: [combat] (4) para derribarla o [agility] (4) para forzar la cerradura.
+  abilities: (state, self, investigator) => {
+    const location = doorOf(self)
+    if (location === null || getInvestigator(state, investigator).location !== location) return []
+    return [
+      {
+        key: `${self.id}:open`,
+        label: 'ability.lockedDoor',
+        actions: 1,
+        provokes: true,
+        then: [
+          chooseSkillTest(investigator, 'Locked Door', ['combat', 'agility'], 4, {
+            onSuccess: [{ type: 'DiscardTreachery', treachery: self.id }],
+          }),
+        ],
+      },
+    ]
+  },
+})

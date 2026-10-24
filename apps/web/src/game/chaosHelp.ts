@@ -17,6 +17,7 @@ export function chaosHelp(
     'murder-at-the-excelsior-hotel': excelsiorCards[locale === 'es' ? 'es' : 'en']['84001'],
     'curtain-call': carcosaCards[locale === 'es' ? 'es' : 'en']['03043'],
     'the-last-king': carcosaCards[locale === 'es' ? 'es' : 'en']['03061'],
+    'echoes-of-the-past': carcosaCards[locale === 'es' ? 'es' : 'en']['03120'],
   }
   const card = official[state.scenarioId]
   if (card) {

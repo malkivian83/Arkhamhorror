@@ -1299,6 +1299,8 @@ export type Trigger =
   /** Tras ganar recursos por el efecto de una carta. */
   | { type: 'afterGainResources'; investigator: InvestigatorId; amount: number }
   | { type: 'investigationPhaseEnds' }
+  /** Al final de la fase de Mitos (Buscador de Carcosa, Mago de la Orden). */
+  | { type: 'mythosPhaseEnds' }
   | { type: 'enemyDefeated'; enemy: Enemy; by?: InvestigatorId }
   | { type: 'afterEnemyPhaseAttack'; enemy: EnemyId; investigator: InvestigatorId }
   | { type: 'afterDoomPlaced' }

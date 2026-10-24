@@ -3,6 +3,7 @@ import {
   curtainCall,
   theLastKing,
   THE_LAST_KING_VIPS,
+  echoesOfThePast,
   spreadingFlames,
   smokeAndMirrors,
   queenOfAsh,
@@ -113,6 +114,8 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     murderAtTheExcelsiorHotel({ players: 1 }),
     curtainCall({ difficulty: 'standard' }),
     theLastKing({ difficulty: 'standard' }),
+    // Cada semilla deja fuera un Lugar por planta: con varias aparecen todos.
+    ...Array.from({ length: 8 }, (_, seed) => echoesOfThePast({ difficulty: 'standard', seed })),
     ...Array.from({ length: 12 }, (_, seed) =>
       smokeAndMirrors({
         seed,
@@ -201,6 +204,12 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   for (const code of CURTAIN_CALL_STRANGERS)
     put({ code, name: 'The Stranger', real_name: 'The Stranger', type_code: 'act', clues: 0 })
   put({ code: '03061', name: 'The Last King', real_name: 'The Last King', type_code: 'scenario' })
+  put({
+    code: '03120',
+    name: 'Echoes of the Past',
+    real_name: 'Echoes of the Past',
+    type_code: 'scenario',
+  })
   // El Último Rey: Realidades repulsivas (Historia con el Enemigo Lunático al dorso) y el
   // reverso de Historia de cada Transeúnte.
   for (const vip of THE_LAST_KING_VIPS) {
