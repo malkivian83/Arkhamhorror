@@ -68,7 +68,14 @@ const CODES = new Set([
   '03089',
   '01175',
   '01176',
+  // El Fantasma de la Verdad (El organista: 03221 en la fuente, 03221a aquí) y Byakhee.
+  ...range(3200, 3227),
+  '03221b',
+  '03086',
+  '03087',
 ])
+/** Códigos de la fuente que el proyecto usa con otra letra de cara. */
+const RENAMED = { '03221': '03221a' }
 
 /** Erratas de la traducción de la fuente, contrastadas con las cartas impresas. */
 const ERRATA = [
@@ -114,11 +121,11 @@ for (const lang of ['en', 'es']) {
       backText: fix(card.back_text),
       ...(lang === 'en' ? ORIGINAL_EN[card.code] : {}),
     }).map(([key, value]) => [key, original(lang, card.code, value)])
-    out[card.code] = Object.fromEntries(
+    out[RENAMED[card.code] ?? card.code] = Object.fromEntries(
       entries.filter(([, v]) => typeof v === 'string' && v !== ''),
     )
   }
-  const missing = [...CODES].filter((code) => !out[code])
+  const missing = [...CODES].filter((code) => !out[RENAMED[code] ?? code])
   if (missing.length) throw new Error(`Faltan cartas en ${lang}: ${missing.join(', ')}`)
   const sorted = Object.fromEntries(Object.entries(out).sort(([a], [b]) => a.localeCompare(b)))
   writeFileSync(target(lang), JSON.stringify(sorted, null, 2) + '\n')

@@ -19,6 +19,7 @@ export function chaosHelp(
     'the-last-king': carcosaCards[locale === 'es' ? 'es' : 'en']['03061'],
     'echoes-of-the-past': carcosaCards[locale === 'es' ? 'es' : 'en']['03120'],
     'the-unspeakable-oath': carcosaCards[locale === 'es' ? 'es' : 'en']['03159'],
+    'a-phantom-of-truth': carcosaCards[locale === 'es' ? 'es' : 'en']['03200'],
   }
   const card = official[state.scenarioId]
   if (card) {

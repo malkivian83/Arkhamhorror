@@ -357,6 +357,16 @@
     "traits": "Terror.",
     "text": "Oleada.\n<b>Revelación</b> - Si tienes al menos 3 puntos de horror, pierde 1 acción."
   },
+  "03086": {
+    "name": "Byakhee veloz",
+    "traits": "Monstruo. Byakhee.",
+    "text": "<b>Presa</b> - Menor cordura restante.\nCazador. Represalia.\n<b>Obligado</b> - Cuando el Byakhee veloz fuese a moverse mediante la palabra clave Cazador: En lugar de eso, muévelo de Lugar en Lugar hasta que entre en el Lugar de su presa. Si se movió más de un Lugar por este efecto, no ataca en esta fase."
+  },
+  "03087": {
+    "name": "Perseguido por byakhees",
+    "traits": "Pacto.",
+    "text": "<b>Revelación</b> - Realiza una prueba de [agility] (6). Si fracasas, revela las X primeras cartas del mazo de Encuentros, donde X es la cantidad de puntos que te falten para tener éxito. Si es revelado al menos 1 Enemigo [[Byakhee]] por este efecto, elige y roba 1 de ellos. Si es revelada al menos 1 Traición [[Augurio]] por este efecto, recibe 1 punto de horror. Baraja el mazo de Encuentros."
+  },
   "03088": {
     "name": "Bestia de Aldebarán",
     "traits": "Monstruo. Élite.",
@@ -789,5 +799,160 @@
     "name": "Las paredes se cierran",
     "traits": "Terror.",
     "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (X), donde X es el valor de velo de tu Lugar. Si fracasas, debes recibir 1 punto de horror por cada punto que te falte para tener éxito, o biem elegir 1 Enemigo al azar entre los Enemigos [[Monstruo]] puestos aparte y colocarlo bajo el mazo de Acto sin mirarlo."
+  },
+  "03200": {
+    "name": "El Fantasma de la Verdad",
+    "text": "<b>Fácil/Normal</b>\n[skull]: -X. X es la cantidad de perdición en juego (máx. 5).\n[cultist]: -2. Si fracasas, mueve cada [[Byakhee]] no enfrentado que esté en juego una vez hacia el investigador más cercano.\n[tablet]: -3. Cancela los efectos e iconos de todas las cartas de Habilidad asignadas a esta prueba.\n[elder_thing]: -2. Si fracasas, pierde 1 recurso por cada punto que te falte para tener éxito.",
+    "backText": "<b>Difícil/Experto</b>\n[skull]: -X. X es la cantidad de perdición en juego.\n[cultist]: -2. Mueve cada [[Byakhee]] no enfrentado que esté en juego una vez hacia el investigador más cercano.\n[tablet]: -4. Cancela los efectos e iconos de todas las cartas de Habilidad asignadas a esta prueba.\n[elder_thing]: -3. Si fracasas, pierde 1 recurso por cada punto que te falte para tener éxito."
+  },
+  "03201": {
+    "name": "La primera noche",
+    "text": "Mientras tengas más <b>Convicciones</b> que <b>Dudas</b>, este plan obtiene:\n\"Al comprobar el umbral de perdición, la perdición que haya en cartas que no sean este plan se resta de la perdición total en juego en lugar de sumarse.\"",
+    "backName": "La llegada del día",
+    "backText": "Todos los investigadores dejan de estar enfrentados a cada Enemigo enfrentado a ellos y pueden moverse a un Lugar conectado. Mueve El organista 1 Lugar alejándose del investigador más cercano (a un Lugar en el que no haya investigadores si es posible)."
+  },
+  "03202": {
+    "name": "La segunda noche",
+    "text": "Mientras tengas más <b>Convicciones</b> que <b>Dudas</b>, este plan obtiene:\n\"Al comprobar el umbral de perdición, la perdición que haya en cartas que no sean este plan se resta de la perdición total en juego en lugar de sumarse.\"",
+    "backName": "Sale un sol rojo",
+    "backText": "Todos los investigadores dejan de estar enfrentados a cada Enemigo enfrentado a ellos y pueden moverse a un Lugar conectado. Mueve El organista 1 Lugar alejándose del investigador más cercano (a un Lugar en el que no haya investigadores si es posible).\nComprueba el registro de campaña. Si Jordan Perry no aparece en la sección \"VIP muertos\", busca en tu colección a Jordan Perry [[(Una presencia imponente)]] y haz que aparezca en Montparnasse."
+  },
+  "03203": {
+    "name": "La tercera noche",
+    "text": "Mientras tengas más <b>Convicciones</b> que <b>Dudas</b>, este plan obtiene:\n\"Al comprobar el umbral de perdición, la perdición que haya en cartas que no sean este plan se resta de la perdición total en juego en lugar de sumarse.\"",
+    "backName": "Por fin llega el alba",
+    "backText": "Comprueba el registro de campaña.\n-Si tienes una cantidad mayor o igual de <b>Dudas</b> que de <b>Convicciones</b>, pasa a <b>(→R3)</b>.\n-Si tienes más <b>Convicciones</b> que <b>Dudas</b>, avanza al acto 2b."
+  },
+  "03204": {
+    "name": "La conspiración parisina (v. I)",
+    "text": "<b>Objetivo</b> - Gasta la cantidad necesaria de pistas para avanzar.\n<b>Objetivo</b> - Al final de la ronda, si hay 3 o más fichas de Perdición en juego, haz avanzar el acto.",
+    "backName": "San Bernabé",
+    "backText": "<b>Si los investigadores gastaron pistas para avanzar</b>:\n<blockquote>[[Estás a punto de chocarte con un hombre alto, cuyo abrigo y sombrero son tan negros como pálida es su piel. Recuerdas haberlo visto por las ventanas de la iglesia de San Bernabé. Su forma de tocar el órgano te sigue obsesionando…]]</blockquote>\nHaz aparecer el Enemigo El organista puesto aparte en el Lugar del investigador jefe, con el lado [[(Envuelto en misterio)]] boca arriba. Haz avanzar el acto al acto 2a - Persiguiendo sombras.\n<b>Si no es así</b>:\n<blockquote>[[El órgano que escuchaste antes te sigue obsesionando. Allá donde vas, los tortuosos acordes se repiten una y otra vez en tu cabeza. Extrañado, le preguntas por la iglesia a una transeúnte. –¿San Bernabé?– responde con un fuerte acento –. Ese sitio no existe.\"]]</blockquote>\nCada investigador recibe 2 puntos de horror.\nHaz aparecer el Enemigo El organista puesto aparte en el Lugar más alejado de todos los investigadores, con el lado [[(Envuelto en misterio)]] boca arriba. Haz avanzar el acto al acto 2a - Persiguiendo sombras."
+  },
+  "03205": {
+    "name": "La conspiración parisina (v. II)",
+    "text": "<b>Objetivo</b> - Gasta la cantidad necesaria de pistas para avanzar.\n<b>Objetivo</b> - Al final de la ronda, si hay 3 o más fichas de Perdición en juego, haz avanzar el acto.",
+    "backName": "El mal verdadero",
+    "backText": "<b>Si los investigadores gastaron pistas para avanzar</b>:\n<blockquote>[[El órgano que escuchaste antes te sigue obsesionando. Allá donde vas, los tortuosos acordes se repiten una y otra vez en tu cabeza. La sensación de que te están observando no deja de dar vueltas en tu mente.]]</blockquote>\nHaz aparecer el Enemigo El organista puesto aparte en el Lugar más alejado de todos los investigadores, con el lado [[(Lo desafie sin esperanza)]] boca arriba. Haz avanzar el acto al acto 2a - Acechados por las sombras.\n<hr><b>Si no es así</b>:\n<blockquote>[[Estás a punto de chocarte con un hombre alto, cuyo abrigo y sombrero es tan negros como pálida es su piel. Te echa una mirada de odio tan intensa y letal como jamás has visto. Retrocedes al verlo, y las sombras se arremolinan en torno a sus pies mientras camina hacia ti.]]</blockquote>\nCada investigador recibe 2 puntos de horror.\nHaz aparecer el Enemigo El organista puesto aparte en el Lugar más alejado de todos los investigadores, con el lado [[(Lo desafie sin esperanza)]] boca arriba. Haz avanzar el acto al acto 2a - Acechado por las sombras."
+  },
+  "03206": {
+    "name": "Persiguiendo sombras",
+    "text": "[reaction] Después de que ataques con éxito a El organista: un investigador que esté en tu Lugar puede colocar 1 de sus pistas sobre El organista. Límite de grupo 1 vez [per_investigator] por ronda.\n<b>Objetivo</b> - Si hay 3 pistas [per_investigator] sobre El organista, haz avanzar el acto.",
+    "backName": "La oveja perdida",
+    "backText": "Comprueba el registro de campaña.\n-Si [[los investigadores se colaron en una reunión secreta]], pasa a <b>(→R2)</b>.\n-Si no es así, pasa a <b>(→R1)</b>."
+  },
+  "03207": {
+    "name": "Acechados por las sombras",
+    "text": "[free] Gastad, como grupo, 1 pista[per_investigator]: Coloca 1 ficha de perdición sobre el plan en curso, o bien evita automáticamente a El organista. Límite de grupo de una vez por ronda.\n<b>Objetivo</b> - Sobrevivir tres noches. [[(No avances hasta que no se te indique)]].",
+    "backName": "El cayado del pastor",
+    "backText": "Comprueba el registro de campaña.\n-Si [[los investigadores se colaron en una reunión secreta]], pasa a <b>(→R2)</b>.\n-Si no es así, pasa a <b>(→R1)</b>."
+  },
+  "03208": {
+    "name": "Montparnasse",
+    "traits": "París. Ferrocarril.",
+    "text": "[free] Descarta una carta de tu mano: Obtén una cantidad de recursos igual a la cantidad de iconos [willpower] de la carta descartada. Límite de una vez por ronda."
+  },
+  "03209": {
+    "name": "Montmartre",
+    "traits": "París. Ferrocarril.",
+    "text": "[action]: Revela la primera carta del mazo de cada investigador. Puedes jugar un Apoyo revelado por este efecto [[(pagando su coste)]], bajo tu control. Baraja el mazo de cada investigador. Límite de grupo una vez por ronda."
+  },
+  "03210": {
+    "name": "Montmartre",
+    "traits": "París. Ferrocarril.",
+    "text": "[action] Gasta 1 recurso: Añade 1 ficha de suministro o de munición a una carta que controles. Límite de una vez por ronda."
+  },
+  "03211": {
+    "name": "Grand Guignol",
+    "subname": "Teatro del gran guiñol",
+    "traits": "París.",
+    "text": "<b>Obligado</b> - Después de que reveles el Grand Guignol: Debes recibir 2 puntos de horror, o bien añadir todas las cartas que no sean Debilidad de tu mano a tu mazo, barajarlo y luego robar esa misma cantidad de cartas."
+  },
+  "03212": {
+    "name": "Opéra Garnier",
+    "traits": "París. Ferrocarril.",
+    "text": "Mientras estés investigando la Opéra Garnier, dobla la cantidad de iconos de habilidad de las cartas asignadas a esa prueba de habilidad."
+  },
+  "03213": {
+    "name": "Opéra Garnier",
+    "traits": "París. Ferrocarril.",
+    "text": "Mientras estés investigando la Opéra Garnier, dobla el valor básico de tu habilidad."
+  },
+  "03214": {
+    "name": "Gare d'Orsay",
+    "traits": "París. Ferrocarril.",
+    "text": "[action] Gasta 1 recurso: Muévete a cualquier Lugar [[Ferrocarril]]."
+  },
+  "03215": {
+    "name": "Cementerio Père Lachaise",
+    "traits": "París.",
+    "text": "<b>Obligado</b> - Después de que investigues con éxito en el Cementerio Père Lachaise: No puedes abandonar el Cementerio Père Lachaise hasta el final de la ronda."
+  },
+  "03216": {
+    "name": "Canal Saint-Martin",
+    "traits": "París.",
+    "text": "[reaction] Después de que evites a un Enemigo en Canal Saint-Martin: Mueve ese Enemigo a un Lugar conectado. Límite de una vez por ronda."
+  },
+  "03217": {
+    "name": "Le Marais",
+    "traits": "París. Ferrocarril.",
+    "text": "[reaction] Cuando comience tu turno, si estás en Le Marais: Roba 1 carta. Límite de grupo de una vez por ronda."
+  },
+  "03218": {
+    "name": "Le Marais",
+    "traits": "París. Ferrocarril.",
+    "text": "<b>Obligado</b> - Después de que entres en Le Marais: Durante el resto de la ronda, no puedes abandonar Le Marais."
+  },
+  "03219": {
+    "name": "Notre-Dame",
+    "traits": "París. Ferrocarril.",
+    "text": "Cada enemigo que esté en Notre-Dame recibe -1 a combate y +1 a evitar.\n[action]: Realiza una prueba de [willpower] (6). Si tienes éxito, coloca 1 ficha de Perdición sobre el plan en curso, o bien retira 1 ficha de Perdición del plan en curso. Límite de grupo de una vez por partida."
+  },
+  "03220": {
+    "name": "Jardines de Luxemburgo",
+    "traits": "París.",
+    "text": "Mientras un Enemigo [[Byakhee]] se mueva, si hay un investigador en los Jardines de Luxemburgo, el Lugar de ese enemigo se considera conectado a los Jardines de Luxemburgo."
+  },
+  "03221a": {
+    "name": "El organista",
+    "subname": "Lo desafie sin esperanza",
+    "traits": "Humanoide. Avatar. Élite.",
+    "text": "Cazador. No puede ser dañado.\n<b>Obligado</b> - Después de que El organista se mueva por la palabra clave Cazador, si no está enfrentado: Resuelve su palabra clave Cazador de nuevo. El organista no puede atacar en esta fase. Límite de una vez por ronda."
+  },
+  "03221b": {
+    "name": "El organista",
+    "subname": "Envuelto en misterio",
+    "traits": "Humanoide. Avatar. Élite.",
+    "text": "Indiferente. No puede ser dañado.\n<b>Obligado</b> - Al final de la fase de Enemigos: Si El organista no está enfrentado, muévelo 1 Lugar alejándose del investigador más cercano (a un Lugar en el que no haya investigadores si es posible). Si está enfrentado, en lugar de eso haz que deje de estar enfrentado."
+  },
+  "03222": {
+    "name": "Byakhee sigiloso",
+    "traits": "Monstruo. Byakhee.",
+    "text": "Cazador.\nMientras el Byakhee sigiloso esté agotado, recibe -3 a combate."
+  },
+  "03223": {
+    "name": "Soles gemelos",
+    "traits": "Augurio.",
+    "text": "<b>Revelación</b> - Realiza una prueba de [intellect] (4). Si fracasas, debes retirar 1 ficha de Perdición del plan en curso o bien recibir 1 punto de horror por cada punto que te falte para tener éxito."
+  },
+  "03224": {
+    "name": "Destino fatal",
+    "traits": "Augurio.",
+    "text": "<b>Revelación</b> - Realiza una prueba de (3). Si fracasas, descarta cartas de la parte superior del mazo de Encuentros hasta que sea descartado un Enemigo. Debes robar ese Enemigo, o bien ese Enemigo te ataca [[(desde la pila de descartes)]]. Si no es descartado ningún Enemigo, en lugar de eso recibe 1 punto de horror."
+  },
+  "03225": {
+    "name": "Acordes tortuosos",
+    "traits": "Maleficio. Terror.",
+    "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (5). Si fracasas, pon en juego Acordes tortuosos en tu zona de amenaza con 1 recurso sobre ellos por cada punto que te falte para tener éxito.\nCada vez que juegues una carta, aumenta en 1 el coste de esa carta y retira 1 recurso de los Acordes tortuosos.\nSi los Acordes tortuosos no tienen recursos, descártalos."
+  },
+  "03226": {
+    "name": "Paralizado por el miedo",
+    "traits": "Terror.",
+    "text": "<b>Revelación</b> - Pon Paralizado por el miedo en juego en tu zona de amenaza.\nLa primera vez que realices una de las siguientes acciones (moverte, combatir o evitar) cada ronda, te cuesta 1 acción adicional.\n<b>Obligado</b> - Al final de tu turno: Realiza una prueba de [willpower] (3). Si tienes éxito, descarta Paralizado por el miedo."
+  },
+  "03227": {
+    "name": "Alma perdida",
+    "traits": "Locura. Pacto.",
+    "text": "<b>Revelación</b> - Comprueba el registro de campaña.\n - Si tienes una cantidad mayor o igual de <b>Dudas</b> que de <b>Convicciones</b>, realiza una prueba de [intellect] (X), donde X es tu [willpower]. Si fracasas, recibe 2 puntos de daño.\n - Si tienes una cantidad mayor de <b>Convicciones</b> que de <b>Dudas</b>, realiza una prueba de [willpower] (X), donde X es tu [intellect]. Si fracasas, recibe 2 puntos de daño."
   }
 }

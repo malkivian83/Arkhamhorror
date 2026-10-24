@@ -356,6 +356,16 @@
     "traits": "Terror.",
     "text": "Surge.\n<b>Revelation</b> - If you have at least 3 horror on you, lose 1 action."
   },
+  "03086": {
+    "name": "Swift Byakhee",
+    "traits": "Monster. Byakhee.",
+    "text": "<b>Prey</b> - Lowest remaining sanity.\nHunter. Retaliate.\n<b>Forced</b> - When Swift Byakhee would move via the hunter keyword: Instead, move it (one location at a time) until it enters its prey's location. If it moved more than one location by this effect, it does not attack this phase."
+  },
+  "03087": {
+    "name": "Hunted by Byakhee",
+    "traits": "Pact.",
+    "text": "<b>Revelation</b> - Test [agility] (6). If you fail, reveal the top X cards of the encounter deck, where X is the amount you failed by. If at least 1 [[Byakhee]] enemy is revealed by this effect, choose and draw 1 of them. If at least 1 [[Omen]] treachery is revealed by this effect, take 1 horror. Shuffle the encounter deck."
+  },
   "03088": {
     "name": "Beast of Aldebaran",
     "traits": "Monster. Elite.",
@@ -784,5 +794,160 @@
     "name": "Walls Closing In",
     "traits": "Terror.",
     "text": "<b>Revelation</b> - Test [willpower] (X), where X is the shroud value of your location. If you fail, you must either take 1 horror for each point you failed by, or randomly choose 1 enemy from among the set-aside [[Monster]] enemies and place it beneath the act deck without looking at it."
+  },
+  "03200": {
+    "name": "A Phantom of Truth",
+    "text": "Easy / Standard\n[skull]: -X. X is the amount of doom in play (max 5).\n[cultist]: -2. If you fail, move each unengaged [[Byakhee]] in play once toward the nearest investigator.\n[tablet]: -3. Cancel the effects and icons of each skill card committed to this test.\n[elder_thing]: -2. If you fail, lose 1 resource for each point you failed by.",
+    "backText": "Hard / Expert\n[skull]: -X. X is the amount of doom in play.\n[cultist]: -2. Move each unengaged [[Byakhee]] in play once toward the nearest investigator.\n[tablet]: -4. Cancel the effects and icons of each skill card committed to this test.\n[elder_thing]: -3. If you fail, lose 1 resource for each point you failed by."
+  },
+  "03201": {
+    "name": "The First Night",
+    "text": "While you have more <b>Conviction</b> than <b>Doubt</b>, this agenda gains:\n\"When checking the doom threshold, doom on cards other than this agenda subtract from the total doom in play instead of adding to it.\"",
+    "backName": "Daybreak",
+    "backText": "Each investigator disengages from each enemy engaged with him or her and may move to a connecting location. Move The Organist 1 location away from the nearest investigator (to a location with no investigators, if possible)."
+  },
+  "03202": {
+    "name": "The Second Night",
+    "text": "While you have more <b>Conviction</b> than <b>Doubt</b>, this agenda gains:\n\"When checking the doom threshold, doom on cards other than this agenda subtract from the total doom in play instead of adding to it.\"",
+    "backName": "A Red Sun Rises",
+    "backText": "Each investigator disengages from each enemy engaged with him or her and may move to a connecting location. Move The Organist 1 location away from the nearest investigator (to a location with no investigators, if possible).\nCheck Campaign Log. If Jordan Perry is not listed under \"VIPs Slain,\" search the collection for Jordan Perry <i>(An Imposing Presence)</i> and spawn him in Montparnasse."
+  },
+  "03203": {
+    "name": "The Third Night",
+    "text": "While you have more <b>Conviction</b> than <b>Doubt</b>, this agenda gains:\n\"When checking the doom threshold, doom on cards other than this agenda subtract from the total doom in play instead of adding to it.\"",
+    "backName": "Dawn At Last",
+    "backText": "Check Campaign Log.\n- If you have more (or equal) <b>Doubt</b> than <b>Conviction</b>, proceed to <b>(→R3)</b>.\n- If you have more <b>Conviction</b> than <b>Doubt</b>, advance to act 2b."
+  },
+  "03204": {
+    "name": "The Parisian Conspiracy (v. I)",
+    "text": "<b>Objective</b> - Spend the requisite number of clues to advance.\n<b>Objective</b> - At the end of the round, if there are 3 or more doom in play, advance.",
+    "backName": "St. Barnabé",
+    "backText": "<b>If you spent clues to advance:</b>\n<blockquote><i>You nearly bump into a tall man, his coat and hat as black as his skin is pale. You remember seeing him through the windows of St. Barnabé Church. His organ playing continues to haunt you…</i></blockquote>\nSpawn the set-aside The Organist enemy at the lead investigator's location, <i>(Draped in Mystery)</i> side face-up. Advance to Act 2a - Pursuing Shadows.\n<hr><b>Otherwise:</b>\n<blockquote><i>The organ you heard earlier continues to haunt you. No matter where you are, the torturous chords play over and over in your head. Startled, you ask a passerby about the church. \"St. Barnabé?\" she replies in a thick accent. \"There is no such place.\"</i></blockquote>\nEach investigator takes 2 horror.\nSpawn the set-aside The Organist enemy at the location farthest from all investigators, <i>(Draped in Mystery)</i> side face-up. Advance to Act 2a - Pursuing Shadows."
+  },
+  "03205": {
+    "name": "The Parisian Conspiracy (v. II)",
+    "text": "<b>Objective</b> - Spend the requisite number of clues to advance.\n<b>Objective</b> - At the end of the round, if there are 3 or more doom in play, advance.",
+    "backName": "True Evil",
+    "backText": "<b>If you spent clues to advance</b>:\n<blockquote><i>The organ you heard earlier continues to haunt you. No matter where you are, the torturous chords play over and over in your head. The sensation that you are being watched tugs at your mind.</i></blockquote>\nSpawn the set-aside The Organist enemy at the location farthest from all investigators, <i>(Hopeless, I Defied Him)</i> side face-up. Advance to Act 2a - Stalked by Shadows.\n<hr><b>Otherwise:</b>\n<blockquote><i>You nearly bump into a tall man, his coat and hat as black as his skin is pale. He gives you a look of hatred, as intense and as deadly as you have ever seen. You recoil at the mere sight of him, and shadows gather around his feet as he marches toward you.</i></blockquote>\nEach investigator takes 2 horror.\nSpawn the set-aside The Organist enemy at the lead investigator's location, <i>(Hopeless, I Defied Him)</i> side face-up. Advance to Act 2a - Stalked by Shadows."
+  },
+  "03206": {
+    "name": "Pursuing Shadows",
+    "text": "[reaction] After you successfully attack The Organist: An investigator at your location may place 1 of his or her clues on The Organist. (Group limit 1 [per_investigator] times per round.)\n<b>Objective</b> - If there are 3 [per_investigator] clues on The Organist, advance.",
+    "backName": "Lost Lamb",
+    "backText": "Check Campaign Log.\n- <i>If you intruded on a secret meeting</i>, proceed to <b>(→R2)</b>.\n- Otherwise, proceed to <b>(→R1)</b>."
+  },
+  "03207": {
+    "name": "Stalked by Shadows",
+    "text": "[fast] Spend 1 [per_investigator] clues, as a group: Either place 1 doom on the current agenda, or automatically evade The Organist. (Group limit once per round.)\n<b>Objective</b> - Survive three nights. <i>(Do not advance until you are instructed.)</i>",
+    "backName": "Shepherd's Crook",
+    "backText": "Check Campaign Log.\n- <i>If you intruded on a secret meeting</i>, proceed to <b>(→R2)</b>.\n- Otherwise, proceed to <b>(→R1)</b>."
+  },
+  "03208": {
+    "name": "Montparnasse",
+    "traits": "Paris. Rail.",
+    "text": "[fast] Discard a card from your hand: Gain resources equal to the number of [willpower] icons on the discarded card. (Limit once per round.)"
+  },
+  "03209": {
+    "name": "Montmartre",
+    "traits": "Paris. Rail.",
+    "text": "[action]: Reveal the top card of each investigator's deck. You may play an asset revealed by this effect <i>(paying its cost)</i>, under your control. Shuffle each investigator's deck. (Group limit once per round.)"
+  },
+  "03210": {
+    "name": "Montmartre",
+    "traits": "Paris. Rail.",
+    "text": "[action] Spend 1 resource: Add 1 supply or ammo token to a card you control. (Limit once per round.)"
+  },
+  "03211": {
+    "name": "Grand Guignol",
+    "subname": "Theatre of the Great Puppet",
+    "traits": "Paris.",
+    "text": "<b>Forced</b> - After you reveal Grand Guignol: You must either take 2 horror, or shuffle all non-weakness cards from your hand into your deck, then draw an equal number of cards."
+  },
+  "03212": {
+    "name": "Opéra Garnier",
+    "traits": "Paris. Rail.",
+    "text": "While you are investigating Opéra Garnier, double the number of skill icons committed to this skill test."
+  },
+  "03213": {
+    "name": "Opéra Garnier",
+    "traits": "Paris. Rail.",
+    "text": "While you are investigating Opéra Garnier, double the base value of your skill."
+  },
+  "03214": {
+    "name": "Gare d'Orsay",
+    "traits": "Paris. Rail.",
+    "text": "[action] Spend 1 resource: Move to any [[Rail]] location."
+  },
+  "03215": {
+    "name": "Père Lachaise Cemetery",
+    "traits": "Paris.",
+    "text": "<b>Forced</b> - After you successfully investigate Père Lachaise Cemetery: You cannot leave Père Lachaise Cemetery until the end of the round."
+  },
+  "03216": {
+    "name": "Canal Saint-Martin",
+    "traits": "Paris.",
+    "text": "[reaction] After you evade an enemy at Canal Saint-Martin: Move that enemy to a connecting location. (Limit once per round.)"
+  },
+  "03217": {
+    "name": "Le Marais",
+    "traits": "Paris. Rail.",
+    "text": "[reaction] When your turn begins, if you are in Le Marais: Draw 1 card. (Group limit once per round.)"
+  },
+  "03218": {
+    "name": "Le Marais",
+    "traits": "Paris. Rail.",
+    "text": "<b>Forced</b> - After you enter Le Marais: For the remainder of the round, you cannot leave Le Marais."
+  },
+  "03219": {
+    "name": "Notre-Dame",
+    "traits": "Paris. Rail.",
+    "text": "Each enemy at Notre-Dame gets -1 fight and +1 evade.\n[action]: Test [willpower] (6). If you succeed, either place 1 doom on the current agenda, or remove 1 doom from the current agenda. (Group limit once per game.)"
+  },
+  "03220": {
+    "name": "Gardens of Luxembourg",
+    "traits": "Paris.",
+    "text": "While a [[Byakhee]] enemy is moving, if there is an investigator at Gardens of Luxembourg, that enemy's location is considered to be connected to Gardens of Luxembourg."
+  },
+  "03221a": {
+    "name": "The Organist",
+    "subname": "Hopeless, I Defied Him",
+    "traits": "Humanoid. Avatar. Elite.",
+    "text": "Hunter. Cannot be damaged.\n<b>Forced</b> - After The Organist moves from the hunter keyword, if it is unengaged: Resolve its hunter keyword again. The Organist cannot attack this phase. (Limit once per round)."
+  },
+  "03221b": {
+    "name": "The Organist",
+    "subname": "Draped in Mystery",
+    "traits": "Humanoid. Avatar. Elite.",
+    "text": "Aloof. Cannot be damaged.\n<b>Forced</b> - At the end of the enemy phase: If The Organist is unengaged, move it 1 location away from the nearest investigator (to a location with no investigators, if possible). If it is engaged, disengage it instead."
+  },
+  "03222": {
+    "name": "Stealthy Byakhee",
+    "traits": "Monster. Byakhee.",
+    "text": "Hunter.\nWhile Stealthy Byakhee is exhausted, it gets -3 fight."
+  },
+  "03223": {
+    "name": "Twin Suns",
+    "traits": "Omen.",
+    "text": "<b>Revelation</b> - Test [intellect] (4). If you fail, you must either remove 1 doom from the current agenda, or take 1 horror for each point you failed by."
+  },
+  "03224": {
+    "name": "Deadly Fate",
+    "traits": "Omen.",
+    "text": "<b>Revelation</b> - Test [willpower] (3). If you fail, discard cards from the top of the encounter deck until an enemy is discarded. You must either draw that enemy, or that enemy attacks you <i>(from the discard pile)</i>. If no enemy is discarded, take 1 horror instead."
+  },
+  "03225": {
+    "name": "Torturous Chords",
+    "traits": "Hex. Terror.",
+    "text": "<b>Revelation</b> - Test [willpower] (5). If you fail, put Torturous Chords into play in your threat area, with 1 resource on it for each point you failed by.\nEach time you play a card, increase the cost of that card by 1 and remove 1 resource from Torturous Chords.\nIf Torturous Chords has no resources, discard it."
+  },
+  "03226": {
+    "name": "Frozen in Fear",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Put Frozen in Fear into play in your threat area.\nThe first time you perform one of the following actions (move, fight, or evade) each round, it costs 1 additional action.\n<b>Forced</b> - At the end of your turn: Test [willpower] (3). If you succeed, discard Frozen in Fear."
+  },
+  "03227": {
+    "name": "Lost Soul",
+    "traits": "Madness. Pact.",
+    "text": "<b>Revelation</b> - Check Campaign Log. \n- If you have more (or equal) <b>Doubt</b> than <b>Conviction</b>, test [intellect] (X), where X is your [willpower]. If you fail, take 2 damage.\n- If you have more <b>Conviction</b> than <b>Doubt</b>, test [willpower] (X), where X is your [intellect]. If you fail, take 2 damage."
   }
 }

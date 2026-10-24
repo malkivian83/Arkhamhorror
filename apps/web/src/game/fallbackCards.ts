@@ -5,6 +5,7 @@ import {
   THE_LAST_KING_VIPS,
   echoesOfThePast,
   theUnspeakableOath,
+  aPhantomOfTruth,
   spreadingFlames,
   smokeAndMirrors,
   queenOfAsh,
@@ -131,6 +132,20 @@ export function fallbackCards(locale: string): LocalizedCard[] {
         },
       }),
     ),
+    // Una copia de Montmartre, Opéra Garnier y Le Marais por partida, y ambos actos 1–2.
+    ...Array.from({ length: 12 }, (_, seed) =>
+      aPhantomOfTruth({
+        difficulty: 'standard',
+        seed,
+        log: {
+          notes: [],
+          crossedOut: [],
+          values: seed % 2 ? { carcosaConviction: '1' } : {},
+          investigators: {},
+          chaosTokens: [],
+        },
+      }),
+    ),
     ...Array.from({ length: 12 }, (_, seed) =>
       smokeAndMirrors({
         seed,
@@ -223,6 +238,12 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     code: '03120',
     name: 'Echoes of the Past',
     real_name: 'Echoes of the Past',
+    type_code: 'scenario',
+  })
+  put({
+    code: '03200',
+    name: 'A Phantom of Truth',
+    real_name: 'A Phantom of Truth',
     type_code: 'scenario',
   })
   put({

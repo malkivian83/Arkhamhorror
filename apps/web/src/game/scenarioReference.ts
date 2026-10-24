@@ -11,6 +11,7 @@ const references: Record<string, { code: string; name: string }> = {
   'the-last-king': { code: '03061', name: 'The Last King' },
   'echoes-of-the-past': { code: '03120', name: 'Echoes of the Past' },
   'the-unspeakable-oath': { code: '03159', name: 'The Unspeakable Oath' },
+  'a-phantom-of-truth': { code: '03200', name: 'A Phantom of Truth' },
 }
 
 export function scenarioReference(state: Pick<GameState, 'scenarioId' | 'difficulty'>) {

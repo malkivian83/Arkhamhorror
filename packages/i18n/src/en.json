@@ -243,7 +243,15 @@
     "cardMoveTo": "{card}: choose the location you move to.",
     "cardDiscoverElsewhere": "{card}: choose another revealed location to discover 1 clue at.",
     "assignDamageFrom": "Assign 1 damage from {source}",
-    "assignHorrorFrom": "Assign 1 horror from {source}"
+    "assignHorrorFrom": "Assign 1 horror from {source}",
+    "phantom": {
+      "organistAway": "Where does The Organist move away to?",
+      "organistSpawn": "Where does The Organist spawn (farthest from all investigators)?",
+      "daybreakMove": "Daybreak: you may move to a connecting location",
+      "organistClue": "Who places 1 of their clues on The Organist?",
+      "paranoia": "Dream 7: choose the investigator who adds Paranoia to their deck",
+      "montmartre": "Montmartre: you may play a revealed asset, paying its cost"
+    }
   },
   "action": {
     "draw": "Draw 1 card",
@@ -449,6 +457,18 @@
       "monsterBeneathAct": "Place a random set-aside Monster beneath the act deck",
       "autoFail": "This test automatically fails",
       "wallsHorror": "Take {n} horror"
+    },
+    "phantom": {
+      "stay": "Stay here",
+      "removeAgendaDoom": "Remove 1 doom from the current agenda",
+      "agendaDoom": "Place 1 doom on the current agenda",
+      "evadeOrganist": "Automatically evade The Organist",
+      "drawEnemy": "Draw {enemy}",
+      "enemyAttacks": "{enemy} attacks you from the discard pile",
+      "guignolHorror": "Take 2 horror",
+      "guignolShuffle": "Shuffle your non-weakness hand into your deck and draw that many cards",
+      "playNothing": "Play nothing",
+      "playRevealed": "Play {card}, paying its cost"
     }
   },
   "phase": {
@@ -709,6 +729,17 @@
       "autoEvade": "Take 1 horror: automatically evade {enemy}",
       "showClasp": "Parley: show Daniel the Clasp of Black Onyx",
       "giftOfMadness": "Place a random set-aside Monster beneath the act deck and discard {card}"
+    },
+    "phantom": {
+      "leMarais": "Draw 1 card (Le Marais)",
+      "canal": "Move {enemy} to a connecting location (Canal Saint-Martin)",
+      "organistClue": "Place 1 clue on The Organist",
+      "stalked": "Spend {n} clues as a group: 1 doom on the agenda or evade The Organist",
+      "montparnasse": "Discard a card from your hand: gain 1 resource per [willpower] icon",
+      "montmartreReveal": "Reveal the top card of each deck: you may play a revealed asset",
+      "montmartreUses": "Spend 1 resource: add 1 ammo or supply to {card}",
+      "gareDOrsay": "Spend 1 resource: move to any Rail location",
+      "notreDame": "Test [willpower] (6): place or remove 1 doom on the agenda"
     }
   },
   "log": {
@@ -799,7 +830,10 @@
     "lastKing": {
       "diningToken": "Dining Room: the {token} token is revealed"
     },
-    "damageFrom": "{name} takes {damage} damage and {horror} horror from {source}"
+    "damageFrom": "{name} takes {damage} damage and {horror} horror from {source}",
+    "phantom": {
+      "revealed": "{name} reveals {card} from the top of their deck."
+    }
   },
   "table": {
     "investigators": "Investigators",
@@ -1233,7 +1267,11 @@
       "carcosaAttackedEscapingTheAsylum": "the investigators were attacked as they escaped the asylum",
       "carcosaEscapedTheAsylum": "the investigators escaped the asylum",
       "carcosaIgnoredDanielsWarning": "the investigators ignored Daniel’s warning",
-      "carcosaHeededDanielsWarning": "the investigators heeded Daniel’s warning"
+      "carcosaHeededDanielsWarning": "the investigators heeded Daniel’s warning",
+      "carcosaGazeOfThePhantom": "the investigators did not escape the gaze of the Phantom",
+      "carcosaFoundNigelsHome": "the investigators found Nigel’s home",
+      "carcosaFoundNigelEngram": "the investigators found Nigel Engram",
+      "carcosaUnableToFindNigel": "the investigators were unable to find Nigel"
     },
     "scenario": {
       "smokeAndMirrors": "Scenario II: Smoke and Mirrors",
@@ -1501,7 +1539,8 @@
       "chasingMarks": "Make {n} marks under Chasing the Stranger.",
       "echoesOfThePast": "Scenario III: Echoes of the Past",
       "theUnspeakableOath": "Scenario IV: The Unspeakable Oath",
-      "aPhantomOfTruth": "Scenario V: A Phantom of Truth"
+      "aPhantomOfTruth": "Scenario V: A Phantom of Truth",
+      "thePallidMask": "Scenario VI: The Pallid Mask"
     },
     "curtainCall": {
       "introTitle": "Scenario I: Curtain Call",
@@ -1639,6 +1678,63 @@
       "markDoubts": "Mark 2 Doubt in the shared campaign log.",
       "markConvictions": "Mark 2 Conviction in the shared campaign log.",
       "hasturRule": "For the rest of the campaign, whenever an investigator speaks the name HASTUR aloud during a scenario (or its setup), they take 1 horror."
+    },
+    "phantom": {
+      "introTitle": "Scenario V: A Phantom of Truth",
+      "intro1": "Months after The King in Yellow was staged at the Ward Theatre, you follow the trail of another group of investigators who ended up in the asylum. That night you dream of Carcosa.",
+      "intro2": "Weeks after the asylum, you are no closer to the truth. Every night you dream of Carcosa: its black stars, twin suns, shattered moons and twisted towers.",
+      "dream1Title": "Dream 1",
+      "dream2Title": "Dream 2",
+      "dream3Title": "Dream 3",
+      "dream4Title": "Dream 4",
+      "dream5Title": "Dream 5",
+      "dream6Title": "Dream 6",
+      "dream7Title": "Dream 7",
+      "dream8Title": "Dream 8",
+      "dream9Title": "Dream 9",
+      "dream10Title": "Dream 10",
+      "dream11Title": "Dream 11",
+      "dream12Title": "Dream 12",
+      "dream13Title": "Dream 13",
+      "dream1": "You fall through the abyssal void of Hali, while Hastur manipulates your descent.",
+      "dream2": "Constance takes your hand and leads you onto the dance floor.",
+      "dream3": "The man with the moustache and the silver-handled cane pours you a glass of wine.",
+      "dream4": "Smoke and embers drift into a starless night sky; the burning creatures scream.",
+      "dream5": "Your reflection looks back at you curiously. “Wait a minute, this isn’t Dream 1.”",
+      "dream6": "The theatre lights dim and a tentacled creature welcomes the audience.",
+      "dream7": "At the Arkham police station, the desk sergeant arrests you for theft.",
+      "dream8": "You look in the mirror and the Stranger stares back. The mirror shatters.",
+      "dream9": "You chase the Stranger through dark corridors made of skeletons, until a wall of bone swallows him.",
+      "dream10": "You chase the Stranger up a broken stone staircase into a building with a stained-glass window. “Isn’t it beautiful?” he says.",
+      "dream10Choice11": "“How could any of this be beautiful to you?” (Dream 11)",
+      "dream10Choice12": "“What exactly is that?” (Dream 12)",
+      "dream11": "You avoid looking at the window and step forward to confront the Stranger.",
+      "dream12": "You look up at the stained glass. What is that shadow? What does this strange design mean?",
+      "dream13": "Daniel’s voice calls out to you: “They are opening the path to Carcosa.”",
+      "lostSoulEffect": "Each investigator adds the Lost Soul weakness to their deck. It does not count toward deck size.",
+      "traumaEffect": "Each investigator suffers 1 mental trauma.",
+      "paranoiaEffect": "Choose an investigator: they add the Paranoia weakness to their deck. It does not count toward deck size.",
+      "awakeningTitle": "Awakening",
+      "awakening": "You wake up drenched in sweat. You must find Nigel Engram, director of The King in Yellow. You pack your bags for Paris.",
+      "jordanTitle": "Jordan’s Information",
+      "jordan": "Jordan Perry met Nigel Engram at a café in Montparnasse, “L’agneau perdu”. That is where you go first.",
+      "jordanEffect": "Each investigator begins with 3 additional resources and at Montparnasse instead of the normal starting location.",
+      "setupTitle": "Setup",
+      "setup": "Gather A Phantom of Truth, Evil Portents, Byakhee, The Stranger, Agents of Hastur and the 5 treacheries of The Midnight Masks.\n\nWith as much or more Doubt than Conviction, remove Twin Suns and Hunting Shadow and use act 1 v. I; with more Conviction, remove Black Stars Rise and False Lead and use act 1 v. II.\n\nPut into play a random copy of Montmartre, Opéra Garnier and Le Marais, and the other 7 locations. Each investigator begins at Gare d’Orsay. Set aside The Organist.",
+      "noResolutionTitle": "No Resolution",
+      "noResolution": "You flee through the city with winged creatures above you, until the man in black corners you in a courtyard.",
+      "resolution1Title": "Resolution 1",
+      "resolution1": "You find Nigel Engram’s home, abandoned for years; the walls repeat over and over: “He is already here.”",
+      "resolution2Title": "Resolution 2",
+      "resolution2": "Nigel Engram welcomes you and talks of the path to Carcosa; minutes later you find him hanging, weeks dead.",
+      "resolution3Title": "Resolution 3",
+      "resolution3": "As the sun rises over Paris you lose sight of the mysterious figure. When you wake up, you are no longer in your hotel room.",
+      "mentalTrauma": "Each investigator suffers 1 mental trauma and earns 2 bonus experience.",
+      "tokens": {
+        "cultist": "Remove all cultist, tablet and elder thing tokens from the chaos bag and add 2 cultist tokens.",
+        "tablet": "Remove all cultist, tablet and elder thing tokens from the chaos bag and add 2 tablet tokens.",
+        "elderThing": "Remove all cultist, tablet and elder thing tokens from the chaos bag and add 2 elder thing tokens."
+      }
     }
   },
   "playmat": {

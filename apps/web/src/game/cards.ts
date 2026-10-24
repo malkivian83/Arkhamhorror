@@ -34,8 +34,8 @@ const SWAPPED_SIDES = new Set([
 /** Cartas cuyo código lleva una letra de copia (sus reversos añaden otra `b`). */
 const LETTERED = new Set(['03047a', '03047b', '03047c', '03084a', '03084b', '03084c', '03084d'])
 
-/** Caras `a`/`b` de una misma carta (Constance Dumaine 03076a/b, Daniel Chesterfield 03182a/b). */
-const A_SIDES = new Set(['03076a', '03182a'])
+/** Caras `a`/`b` de una misma carta (Constance 03076a/b, Daniel 03182a/b, El organista 03221a/b). */
+const A_SIDES = new Set(['03076a', '03182a', '03221a'])
 
 /** Spanish image, then English image, both from our local asset inventory. */
 export function cardImages(code: string, back = false, locale = scanLocale.value): string[] {

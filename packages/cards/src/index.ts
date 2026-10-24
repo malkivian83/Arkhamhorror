@@ -82,6 +82,11 @@ export {
   echoesOfThePast,
 } from './the-path-to-carcosa/echoes-of-the-past'
 export {
+  A_PHANTOM_OF_TRUTH,
+  aPhantomOfTruth,
+  CODES as A_PHANTOM_OF_TRUTH_CODES,
+} from './the-path-to-carcosa/a-phantom-of-truth'
+export {
   CODES as THE_UNSPEAKABLE_OATH_CODES,
   THE_UNSPEAKABLE_OATH,
   theUnspeakableOath,

@@ -2,10 +2,10 @@
 
 ## Estado actual
 
-**4 de 8 escenarios jugables: I · Se cierra el telón, II · El Último Rey (con el
-Interludio I), III · Ecos del pasado y IV · El juramento inconfesable (con el Interludio
-II)** (sexta entrega). Al terminar el escenario IV no hay un quinto disponible. Los
-escenarios V–VIII siguen sin `build`.
+**5 de 8 escenarios jugables: I · Se cierra el telón, II · El Último Rey (con el
+Interludio I), III · Ecos del pasado, IV · El juramento inconfesable (con el Interludio
+II) y V · El Fantasma de la Verdad** (séptima entrega). Al terminar el escenario V no hay
+un sexto disponible. Los escenarios VI–VIII siguen sin `build`.
 
 | Escenario                      | Implementado                                                                            | Pendiente para jugar                                                                                                                    |
 | ------------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -13,12 +13,12 @@ escenarios V–VIII siguen sin `build`.
 | II · El último Rey             | Completo: preparación, Transeúntes, planes, acto, 5 conjuntos, R1–R3 e Interludio I      | —                                                                                                                                       |
 | III · Ecos del pasado          | Completo: preparación al azar, Pasadizos, Sr. Peabody, 6 conjuntos, R1–R4 y recompensas   | —                                                                                                                                       |
 | IV · El juramento inconfesable | Completo: preparación, recuerdos, Monstruos bajo el acto, Daniel, 6 conjuntos, R1–R3 e Interludio II | —                                                                                                                                       |
-| V · El Fantasma de la Verdad   | Nombre y posición en la campaña                                                         | Implementación íntegra y variantes según el registro                                                                                    |
+| V · El Fantasma de la Verdad   | Completo: sueños, Dudas/Convicciones, El organista, 6 conjuntos, Lugares de París y R1–R3 | —                                                                                                                                       |
 | VI · La máscara pálida         | Nombre y posición en la campaña                                                         | Implementación íntegra                                                                                                                  |
 | VII · Surgen estrellas negras  | Nombre y posición en la campaña                                                         | Implementación íntegra y sus ramas                                                                                                      |
 | VIII · Penumbrosa Carcosa      | Nombre y posición en la campaña                                                         | Implementación íntegra, final de campaña y epílogo                                                                                      |
 
-El epílogo y las narraciones de los escenarios V–VIII tampoco están implementados. Las dependencias compartidas se enumeran más abajo; no se
+El epílogo y las narraciones de los escenarios VI–VIII tampoco están implementados. Las dependencias compartidas se enumeran más abajo; no se
 ha auditado todavía cada carta de esos siete escenarios.
 
 ## Primera entrega: base de campaña
@@ -342,6 +342,61 @@ EN/ES con miniaturas ([evidencia](evidencias/imagenes-the-unspeakable-oath.json)
 narraciones nuevas con Carmelo (introducciones, Información de Constance, investigador
 derrotado, R1–R3 e Interludio II).
 
+## Séptima entrega: El Fantasma de la Verdad
+
+Escenario en `the-path-to-carcosa/a-phantom-of-truth.ts` (con la Debilidad Alma perdida);
+Byakhee (Byakhee veloz y Cazado por Byakhee) añadido a `encounter-sets.ts`, y la copia
+03226 de Paralizado por el miedo con el mismo comportamiento que 01164. Fuentes: guía ES
+pp. 17–21 (texto extraído del PDF), cartas de la referencia y `APhantomOfTruth.hs`
+(símbolos y distribución) como contraste; umbrales comprobados en los escaneos.
+
+- Introducción: Introducción 1 o 2 y los Sueños según el registro (Rey, reunión secreta,
+  monstruos, policía, marcas de Persiguiendo al Extranjero). Sueño 1: Alma perdida en cada
+  mazo y en el registro; Sueño 4: 1 trauma mental; Sueño 7: Paranoia (12101, la
+  reimpresión de Básica 97) al investigador elegido; Sueño 10: decisión con Convicción
+  (Sueño 11) o Duda (Sueño 12), que se aplica antes de fijar el acto 1 y las cartas
+  retiradas. Información de Jordan: +3 recursos y empezar en Montparnasse.
+- Preparación: Dudas ≥ Convicciones retira Soles gemelos y Sombra acechante (acto 1 v. I,
+  Persiguiendo sombras); más Convicciones retira Surgen estrellas negras y Pista falsa
+  (acto 1 v. II, Acechados por las sombras). Una copia al azar de Montmartre, Opéra Garnier
+  y Le Marais.
+- Planes: con más Convicciones, la perdición de otras cartas resta del umbral (nuevo
+  `thresholdDoom`). Reversos 1–2: desenfrentarse, moverse si se quiere y El organista se
+  aleja; Jordan Perry aparece en Montparnasse si no murió. Reverso 3: R3 con Dudas, o el
+  reverso del acto 2 (R2 con la reunión secreta, si no R1).
+- Actos: el acto 1 también avanza al final de la ronda con 3 o más de perdición en juego
+  (2 horror a cada uno y El organista en el otro sitio). Persiguiendo sombras: pistas sobre
+  El organista tras atacarlo con éxito (límite de grupo 1 por investigador y ronda) hasta 3
+  por investigador. Acechados: [fast] 1 pista por investigador para perdición o evitar.
+- El organista: no recibe daño ni puede ser derrotado; Envuelto en misterio se aleja (o se
+  separa) al final de la fase de Enemigos; Lo desafié sin esperanza vuelve a cazar una vez
+  por ronda y no ataca esa fase (nuevo `EnemySkipsAttacks`, y `huntedRound` se marca en
+  todo movimiento por Cazador).
+- Fichas: calavera (perdición en juego), sectario (Byakhee hacia el investigador más
+  cercano), tablilla (cancela iconos y efectos de las cartas de habilidad, nuevo
+  `CancelCommittedSkills`) y primigenio (recursos por punto de fallo).
+- Lugares: los 13 con su capacidad: Opéra Garnier duplica iconos o valor base (nuevo
+  `skillDoubling`), Père Lachaise y Le Marais impiden salir esa ronda (nuevo
+  `cannotLeave`), Jardines de Luxemburgo conectan para los Byakhee (las conexiones de
+  enemigo reciben el enemigo que se mueve), Gare d’Orsay, Notre-Dame, Montparnasse,
+  Montmartre, Grand Guignol, Canal Saint-Martin y Le Marais.
+- Encuentros: Byakhee sigiloso, Soles gemelos, Destino fatal, Acordes tortuosos (coste +1
+  con el nuevo disparador `afterPlayCard`), Byakhee veloz y Cazado por Byakhee.
+- Resoluciones: sin resolución y R1–R3 con sus notas, fichas, Jordan muerto, y R2 con 1
+  trauma mental y 2 de experiencia adicional.
+
+Diferencias y límites: el Sueño 5 (huevo de Pascua) no se muestra. El jugador que juega un
+apoyo revelado de otro mazo en Montmartre lo controla y, al descartarlo, va a su propia pila.
+Destino fatal resuelve el ataque desde los descartes como daño y horror sin enemigo en
+juego. El sectario solo mueve Byakhee preparados (como Cazador). La regla de HASTUR del
+Interludio II sigue solo anotada.
+
+Validación: 58 pruebas nuevas (preparación 1–4 × 4 dificultades y variantes del registro,
+Sueños, planes, actos, El organista, fichas, Lugares, encuentros, resoluciones y 40
+partidas aleatorias). Presentación: catálogo EN/ES (177 cartas de Carcosa), 104 escaneos
+EN/ES con miniaturas ([evidencia](evidencias/imagenes-a-phantom-of-truth.json)) y 16
+narraciones nuevas con Carmelo (introducciones, Sueños, Despertar e Información de Jordan).
+
 ## Dependencias posteriores
 
 - Oculto: secreto por investigador en online, cuenta para tamaño de mano,
@@ -387,7 +442,13 @@ gratuitas no pueden usar voces de biblioteca por la API.
 Narración del escenario IV e Interludio II: 13 MP3 más con la misma voz y ajustes
 (43 en total en la evidencia; unos 15 min 11 s más). Tramas MPEG verificadas sin errores.
 
-Siguiente bloque: escenario V (El Fantasma de la Verdad). Pendiente: Lola Hayes (escenario I).
+Narración del escenario V: 16 MP3 más con la misma voz y ajustes (59 en total; unos 9 min
+19 s). Las 4 de las resoluciones (sin resolución y R1–R3) están ya en
+`scripts/generate-carcosa-audio.mjs`, pero la cuenta de ElevenLabs agotó su cuota
+(`quota_exceeded`); al recargar créditos, `--generate` las crea y basta añadirlas a
+`narration.ts` y a la cuenta de la prueba.
+
+Siguiente bloque: escenario VI (La máscara pálida). Pendiente: Lola Hayes (escenario I).
 
 Para retomar en otro ordenador, actualizar `main`: el PDF ya está versionado en
 `docs-proyecto/reglas/`. La aplicación de referencia sigue siendo una copia externa

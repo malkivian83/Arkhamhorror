@@ -1,4 +1,4 @@
-// Textos oficiales de la guía aportada, contrastados con sus pp. 3–16, y de las cartas de
+// Textos oficiales de la guía aportada, contrastados con sus pp. 3–21, y de las cartas de
 // Historia de El Último Rey. Solo añade las claves de Carcosa; conserva las otras campañas.
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
@@ -85,6 +85,16 @@ for (const locale of ['en', 'es']) {
     ['heedTheWarning', 'heedTheWarning'],
   ])
     texts[`story.oath.${key}`] = story(base.interlude2[from])
+  // El Fantasma de la Verdad: introducciones, sueños, Despertar, Información de Jordan y
+  // resoluciones (los sueños con varias salidas guardan el texto en `body`).
+  const phantom = JSON.parse(readFileSync(join(source, 'scenarios/aPhantomOfTruth.json'), 'utf8'))
+  const text = (value) => story(typeof value === 'string' ? value : value.body)
+  for (const key of ['intro1', 'intro2', 'awakening'])
+    texts[`story.phantom.${key}`] = text(phantom.intro[key])
+  for (let n = 1; n <= 13; n++) texts[`story.phantom.dream${n}`] = text(phantom.intro[`dream${n}`])
+  texts['story.phantom.jordan'] = text(phantom.intro.jordansInformation)
+  for (const key of ['noResolution', 'resolution1', 'resolution2', 'resolution3'])
+    texts[`story.phantom.${key}`] = text(phantom.resolutions[key].body)
   writeFileSync(path, JSON.stringify(texts, null, 2) + '\n')
-  console.log(`${locale}: relatos de los escenarios I a IV importados.`)
+  console.log(`${locale}: relatos de los escenarios I a V importados.`)
 }

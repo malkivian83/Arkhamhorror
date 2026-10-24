@@ -243,7 +243,15 @@
     "cardMoveTo": "{card}: elige a qué Lugar te mueves.",
     "cardDiscoverElsewhere": "{card}: elige otro Lugar revelado en el que descubres 1 pista.",
     "assignDamageFrom": "Asigna 1 daño de {source}",
-    "assignHorrorFrom": "Asigna 1 horror de {source}"
+    "assignHorrorFrom": "Asigna 1 horror de {source}",
+    "phantom": {
+      "organistAway": "¿Hacia dónde se aleja El organista?",
+      "organistSpawn": "¿Dónde aparece El organista (lo más lejos de todos los investigadores)?",
+      "daybreakMove": "Amanecer: puedes moverte a un Lugar conectado",
+      "organistClue": "¿Quién coloca 1 de sus pistas sobre El organista?",
+      "paranoia": "Sueño 7: elegid al investigador que añade Paranoia a su mazo",
+      "montmartre": "Montmartre: puedes jugar un Apoyo revelado pagando su coste"
+    }
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -449,6 +457,18 @@
       "monsterBeneathAct": "Colocar al azar un Monstruo apartado bajo el mazo de Acto",
       "autoFail": "Esta prueba fracasa automáticamente",
       "wallsHorror": "Recibir {n} horror"
+    },
+    "phantom": {
+      "stay": "Quedarse aquí",
+      "removeAgendaDoom": "Retirar 1 perdición del plan actual",
+      "agendaDoom": "Colocar 1 perdición en el plan actual",
+      "evadeOrganist": "Evitar automáticamente a El organista",
+      "drawEnemy": "Robar {enemy}",
+      "enemyAttacks": "{enemy} te ataca desde la pila de descartes",
+      "guignolHorror": "Recibir 2 horror",
+      "guignolShuffle": "Barajar en tu mazo las cartas de tu mano (salvo Debilidades) y robar otras tantas",
+      "playNothing": "No jugar nada",
+      "playRevealed": "Jugar {card} pagando su coste"
     }
   },
   "phase": {
@@ -709,6 +729,17 @@
       "autoEvade": "Recibir 1 horror: evitar automáticamente a {enemy}",
       "showClasp": "Negociar: enseñar a Daniel el Broche de ónice negro",
       "giftOfMadness": "Colocar al azar un Monstruo apartado bajo el mazo de Acto y descartar {card}"
+    },
+    "phantom": {
+      "leMarais": "Robar 1 carta (Le Marais)",
+      "canal": "Mover a {enemy} a un Lugar conectado (Canal Saint-Martin)",
+      "organistClue": "Colocar 1 pista sobre El organista",
+      "stalked": "Gastad {n} pistas en grupo: 1 perdición en el plan o evitar a El organista",
+      "montparnasse": "Descartar una carta de tu mano: 1 recurso por icono [willpower]",
+      "montmartreReveal": "Revelar la carta superior de cada mazo: puedes jugar un Apoyo revelado",
+      "montmartreUses": "Gastar 1 recurso: añadir 1 munición o suministro a {card}",
+      "gareDOrsay": "Gastar 1 recurso: moverte a cualquier Lugar Ferrocarril",
+      "notreDame": "Prueba [willpower] (6): colocar o retirar 1 perdición del plan"
     }
   },
   "log": {
@@ -799,7 +830,10 @@
     "lastKing": {
       "diningToken": "Comedor: se revela la ficha {token}"
     },
-    "damageFrom": "{name} recibe {damage} daño y {horror} horror de {source}"
+    "damageFrom": "{name} recibe {damage} daño y {horror} horror de {source}",
+    "phantom": {
+      "revealed": "{name} revela {card} de la parte superior de su mazo."
+    }
   },
   "table": {
     "investigators": "Investigadores",
@@ -1233,7 +1267,11 @@
       "carcosaAttackedEscapingTheAsylum": "los investigadores fueron atacados al escapar del manicomio",
       "carcosaEscapedTheAsylum": "los investigadores escaparon del manicomio",
       "carcosaIgnoredDanielsWarning": "los investigadores ignoraron la advertencia de Daniel",
-      "carcosaHeededDanielsWarning": "los investigadores hicieron caso a la advertencia de Daniel"
+      "carcosaHeededDanielsWarning": "los investigadores hicieron caso a la advertencia de Daniel",
+      "carcosaGazeOfThePhantom": "los investigadores no escaparon de la mirada del Fantasma",
+      "carcosaFoundNigelsHome": "los investigadores encontraron la casa de Nigel",
+      "carcosaFoundNigelEngram": "los investigadores encontraron a Nigel Engram",
+      "carcosaUnableToFindNigel": "los investigadores no lograron encontrar a Nigel"
     },
     "scenario": {
       "smokeAndMirrors": "el Escenario II: Smoke and Mirrors",
@@ -1501,7 +1539,8 @@
       "chasingMarks": "Haz {n} marcas en Persiguiendo al Extranjero.",
       "echoesOfThePast": "Escenario III: Ecos del pasado",
       "theUnspeakableOath": "Escenario IV: El juramento inconfesable",
-      "aPhantomOfTruth": "Escenario V: El Fantasma de la Verdad"
+      "aPhantomOfTruth": "Escenario V: El Fantasma de la Verdad",
+      "thePallidMask": "Escenario VI: La máscara pálida"
     },
     "curtainCall": {
       "introTitle": "Escenario I: Se cierra el telón",
@@ -1639,6 +1678,63 @@
       "markDoubts": "Marca 2 Dudas en el registro de campaña compartido.",
       "markConvictions": "Marca 2 Convicciones en el registro de campaña compartido.",
       "hasturRule": "Durante el resto de la campaña, cada vez que un investigador pronuncie en voz alta el nombre de HASTUR durante un escenario (o su preparación), recibe 1 horror."
+    },
+    "phantom": {
+      "introTitle": "Escenario V: El Fantasma de la Verdad",
+      "intro1": "Meses después de la representación de El Rey de Amarillo en el Teatro Ward, sigues el rastro de otros investigadores que acabaron en el manicomio. Esa noche sueñas con Carcosa.",
+      "intro2": "Semanas después del manicomio, sigues sin acercarte a la verdad. Cada noche sueñas con Carcosa: sus estrellas negras, soles gemelos, lunas destrozadas y torres retorcidas.",
+      "dream1Title": "Sueño 1",
+      "dream2Title": "Sueño 2",
+      "dream3Title": "Sueño 3",
+      "dream4Title": "Sueño 4",
+      "dream5Title": "Sueño 5",
+      "dream6Title": "Sueño 6",
+      "dream7Title": "Sueño 7",
+      "dream8Title": "Sueño 8",
+      "dream9Title": "Sueño 9",
+      "dream10Title": "Sueño 10",
+      "dream11Title": "Sueño 11",
+      "dream12Title": "Sueño 12",
+      "dream13Title": "Sueño 13",
+      "dream1": "Caes por el vacío abismal de Hali, mientras Hastur manipula tu descenso.",
+      "dream2": "Constance te coge de la mano y te lleva a la pista de baile.",
+      "dream3": "El hombre del bigote y el bastón de mango de plata te sirve un vaso de vino.",
+      "dream4": "Humo y ascuas flotan hacia el cielo sin estrellas; las criaturas arden y gritan.",
+      "dream5": "Tu reflejo te observa con curiosidad. –Espera un momento, éste no es el Sueño 1.",
+      "dream6": "Las luces del auditorio se atenúan y una criatura de tentáculos da la bienvenida al público.",
+      "dream7": "En la comisaría de Arkham, el sargento de guardia te arresta por robo.",
+      "dream8": "Miras en el espejo y el Extranjero te devuelve la mirada. El espejo se hace pedazos.",
+      "dream9": "Persigues al Extranjero por corredores de esqueletos, hasta que una pared de hueso lo engulle.",
+      "dream10": "Persigues al Extranjero por una escalera de piedra hasta un edificio con una vidriera. –¿Verdad que es precioso? –dice.",
+      "dream10Choice11": "–¿Cómo puede resultarte precioso nada de esto? (Sueño 11)",
+      "dream10Choice12": "–¿Eso qué es exactamente? (Sueño 12)",
+      "dream11": "Evitas mirar la vidriera y avanzas para enfrentarte al Extranjero.",
+      "dream12": "Levantas la vista hacia la vidriera. ¿Qué es esa sombra? ¿Qué significa este extraño diseño?",
+      "dream13": "La voz de Daniel te llama: –Están abriendo el camino a Carcosa.",
+      "lostSoulEffect": "Cada investigador añade la Debilidad Alma perdida a su mazo. No cuenta para el tamaño de mazo.",
+      "traumaEffect": "Cada investigador sufre 1 trauma mental.",
+      "paranoiaEffect": "Elegid un investigador: añade la Debilidad Paranoia a su mazo. No cuenta para el tamaño de mazo.",
+      "awakeningTitle": "Despertar",
+      "awakening": "Despiertas sudoroso. Debes encontrar a Nigel Engram, director de El Rey de Amarillo. Preparas tu viaje a París.",
+      "jordanTitle": "Información de Jordan",
+      "jordan": "Jordan Perry conoció a Nigel Engram en una cafetería de Montparnasse, «L’agneau perdu». Allí vas primero.",
+      "jordanEffect": "Cada investigador comienza con 3 recursos adicionales y en Montparnasse en lugar del Lugar inicial normal.",
+      "setupTitle": "Preparación",
+      "setup": "Se reúnen El Fantasma de la Verdad, Portentos malignos, Byakhee, El Extranjero, Agentes de Hastur y las 5 traiciones de Las máscaras de medianoche.\n\nCon tantas o más Dudas que Convicciones se retiran Soles gemelos y Sombra acechante y se usa el acto 1 v. I; con más Convicciones, se retiran Surgen estrellas negras y Pista falsa y se usa el acto 1 v. II.\n\nEntran en juego una copia al azar de Montmartre, Opéra Garnier y Le Marais y los otros 7 Lugares. Cada investigador empieza en la Gare d’Orsay. Se aparta El organista.",
+      "noResolutionTitle": "Sin resolución",
+      "noResolution": "Huyes por la ciudad con criaturas aladas sobre ti, hasta que el hombre de negro te acorrala en un patio.",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "Encuentras la casa de Nigel Engram, abandonada desde hace años; las paredes repiten una y otra vez: «Ya está aquí».",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "Nigel Engram te recibe y habla del camino a Carcosa; minutos después lo encuentras ahorcado, muerto desde hace semanas.",
+      "resolution3Title": "Resolución 3",
+      "resolution3": "Cuando el sol sale sobre París pierdes de vista a la misteriosa figura. Al despertar, ya no estás en tu habitación del hotel.",
+      "mentalTrauma": "Cada investigador sufre 1 trauma mental y obtiene 2 de experiencia adicional.",
+      "tokens": {
+        "cultist": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de sectario.",
+        "tablet": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de tablilla.",
+        "elderThing": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de primigenio."
+      }
     }
   },
   "playmat": {

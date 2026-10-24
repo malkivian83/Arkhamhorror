@@ -60,6 +60,9 @@ export const SETS = {
   fanatic: '03098',
   agentOfTheKing: '03099',
   theKingsEdict: '03100',
+  // Byakhee
+  swiftByakhee: '03086',
+  huntedByByakhee: '03087',
   // Habitantes de Carcosa
   beastOfAldebaran: '03088',
   spawnOfHali: '03089',
@@ -232,6 +235,19 @@ export const spawnOfHali = enemy({
   keywords: ['retaliate'],
 })
 
+export const swiftByakhee = enemy({
+  code: SETS.swiftByakhee,
+  name: 'Swift Byakhee',
+  traits: ['Monster', 'Byakhee'],
+  prey: { type: 'lowestRemainingSanity' },
+  fight: 2,
+  health: 3,
+  evade: 2,
+  damage: 1,
+  horror: 1,
+  keywords: ['hunter', 'retaliate'],
+})
+
 export const screechingByakhee = enemy({
   code: SETS.screechingByakhee,
   name: 'Screeching Byakhee',
@@ -293,6 +309,10 @@ export const ENCOUNTER_SETS = {
     card(SETS.thePaleMaskBeckons, 'The Pale Mask Beckons', ['Omen', 'Pact']),
   ],
   inhabitantsOfCarcosa: [{ ...beastOfAldebaran }, ...copies(spawnOfHali, 2)],
+  byakhee: [
+    ...copies(swiftByakhee, 2),
+    ...copies(card(SETS.huntedByByakhee, 'Hunted by Byakhee', ['Pact']), 2),
+  ],
   agentsOfHastur: [
     ...copies(screechingByakhee, 2),
     ...copies(card(SETS.theYellowSign, 'The Yellow Sign', ['Omen']), 2),
@@ -672,27 +692,29 @@ registerTreachery({
 
 const ROUND_FIRST: string[] = ['move', 'fight', 'evade']
 
-registerTreachery({
-  code: SETS.frozenInFear,
-  revelation: (_state, investigator, self) => [toThreatArea(investigator, self.id)],
-  // La primera vez que te mueves, atacas o evitas cada ronda cuesta 1 acción adicional.
-  actionCost: (state, self, action) => {
-    if (self.placement.type !== 'threatArea' || !ROUND_FIRST.includes(action.kind)) return 0
-    const done = actionsThisRound(state, self.placement.investigator)
-    return done.some((kind) => ROUND_FIRST.includes(kind)) ? 0 : 1
-  },
-  // Forzado: al final de tu turno, voluntad (3); si tienes éxito, la descartas.
-  forced: (_state, trigger, self) =>
-    trigger.type === 'turnEnds' &&
-    self.placement.type === 'threatArea' &&
-    self.placement.investigator === trigger.investigator
-      ? [
-          effectTest(trigger.investigator, 'Frozen in Fear', 'willpower', 3, {
-            onSuccess: [{ type: 'DiscardTreachery', treachery: self.id }],
-          }),
-        ]
-      : [],
-})
+// Paralizado por el miedo: la de Miedo impactante y la reimpresión de El Fantasma de la Verdad.
+for (const code of [SETS.frozenInFear, '03226'])
+  registerTreachery({
+    code,
+    revelation: (_state, investigator, self) => [toThreatArea(investigator, self.id)],
+    // La primera vez que te mueves, atacas o evitas cada ronda cuesta 1 acción adicional.
+    actionCost: (state, self, action) => {
+      if (self.placement.type !== 'threatArea' || !ROUND_FIRST.includes(action.kind)) return 0
+      const done = actionsThisRound(state, self.placement.investigator)
+      return done.some((kind) => ROUND_FIRST.includes(kind)) ? 0 : 1
+    },
+    // Forzado: al final de tu turno, voluntad (3); si tienes éxito, la descartas.
+    forced: (_state, trigger, self) =>
+      trigger.type === 'turnEnds' &&
+      self.placement.type === 'threatArea' &&
+      self.placement.investigator === trigger.investigator
+        ? [
+            effectTest(trigger.investigator, 'Frozen in Fear', 'willpower', 3, {
+              onSuccess: [{ type: 'DiscardTreachery', treachery: self.id }],
+            }),
+          ]
+        : [],
+  })
 
 registerTreachery({
   code: SETS.dissonantVoices,
@@ -1044,6 +1066,12 @@ export function encounterSpecific(
       return investigator ? findCultist(state, investigator) : state
     case 'carcosaYellowSign':
       return investigator ? drawMadness(state, investigator) : state
+    case 'carcosaHuntedByByakhee':
+      return investigator ? huntedByByakhee(state, investigator) : state
+    case 'carcosaDrawRevealed':
+      return investigator
+        ? drawRevealed(state, investigator, Number(data.index), data.omen === true)
+        : state
   }
   return null
 }
@@ -1315,4 +1343,109 @@ export function drawMadness(state: GameState, investigator: InvestigatorId): Gam
           },
         ]
   return { ...state, queue: [...then, ...state.queue] }
+}
+
+// ---------------------------------------------------------------------------
+// Byakhee
+// ---------------------------------------------------------------------------
+
+registerEnemy({
+  code: SETS.swiftByakhee,
+  // Forzado: en vez de moverse una vez por Cazador, se mueve hasta entrar en el Lugar de su
+  // presa; si se ha movido más de una vez, no ataca en esta fase.
+  forced: (state, trigger, self) =>
+    trigger.type === 'enemyEntersLocation' &&
+    trigger.enemy === self.id &&
+    state.phase === 'enemy' &&
+    self.huntedRound === state.round &&
+    self.engagedWith === null &&
+    !activeInvestigators(state).some((i) => i.location === self.location)
+      ? [
+          { type: 'EnemySkipsAttacks', enemy: self.id },
+          { type: 'HuntersMove', enemies: [self.id] },
+        ]
+      : [],
+})
+
+registerTreachery({
+  code: SETS.huntedByByakhee,
+  // [agility] (6): si fallas, revela X cartas del mazo de Encuentros (X = lo que fallaste).
+  revelation: (_state, investigator) => [
+    effectTest(investigator, 'Hunted by Byakhee', 'agility', 6, {
+      onFail: [{ type: 'ScenarioSpecific', key: 'carcosaHuntedByByakhee', data: { investigator } }],
+    }),
+  ],
+})
+
+/**
+ * Cazado por Byakhee: revela las X primeras cartas de Encuentros; si hay algún Byakhee,
+ * eliges uno y lo robas; si hay algún Augurio, 1 horror. Luego se baraja el mazo.
+ */
+function huntedByByakhee(state: GameState, investigator: InvestigatorId): GameState {
+  const test = state.skillTest
+  const failBy = test ? Math.max(1, test.difficulty - (test.modifiedSkill ?? 0)) : 1
+  const revealed = state.encounterDeck.slice(0, failBy)
+  const byakhee = revealed.filter((c) => c.kind === 'enemy' && (c.traits ?? []).includes('Byakhee'))
+  const omen = revealed.some((c) => c.kind === 'treachery' && (c.traits ?? []).includes('Omen'))
+  if (byakhee.length === 0) {
+    const [encounterDeck, rng] = shuffle(state.encounterDeck, state.rng)
+    return {
+      ...state,
+      encounterDeck,
+      rng,
+      queue: [...(omen ? [damage(investigator, 0, 1)] : []), ...state.queue],
+    }
+  }
+  if (byakhee.length === 1)
+    return drawRevealed(state, investigator, revealed.indexOf(byakhee[0]!), omen)
+  return {
+    ...state,
+    queue: [
+      {
+        type: 'Ask',
+        investigator,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.chooseEnemy',
+          choices: byakhee.map((c) => ({
+            label: 'choice.card',
+            params: { card: c.name },
+            then: [
+              {
+                type: 'ScenarioSpecific',
+                key: 'carcosaDrawRevealed',
+                data: { investigator, index: revealed.indexOf(c), omen },
+              },
+            ],
+          })),
+        },
+      },
+      ...state.queue,
+    ],
+  }
+}
+
+/** Roba la carta revelada elegida (por su posición en el mazo) y baraja el resto. */
+export function drawRevealed(
+  state: GameState,
+  investigator: InvestigatorId,
+  index: number,
+  omen: boolean,
+): GameState {
+  const card = state.encounterDeck[index]
+  if (!card) return state
+  const [encounterDeck, rng] = shuffle(
+    state.encounterDeck.filter((_, n) => n !== index),
+    state.rng,
+  )
+  return {
+    ...state,
+    encounterDeck,
+    rng,
+    queue: [
+      ...(omen ? [damage(investigator, 0, 1)] : []),
+      { type: 'ResolveEncounterCard', investigator, card } as Message,
+      ...state.queue,
+    ],
+  }
 }
