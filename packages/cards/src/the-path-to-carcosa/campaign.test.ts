@@ -42,7 +42,7 @@ describe('The Path to Carcosa: campaign foundation', () => {
   )
 
   it.each([1, 2, 3, 4])(
-    'creates a campaign for %i investigators; scenarios I–III are playable',
+    'creates a campaign for %i investigators; scenarios I–IV are playable',
     (players) => {
       const campaign = newCampaign(
         definition.id,
@@ -60,8 +60,11 @@ describe('The Path to Carcosa: campaign foundation', () => {
       expect(startScenario({ ...campaign, scenarioIndex: 2 }, 1).scenarioId).toBe(
         'echoes-of-the-past',
       )
+      expect(startScenario({ ...campaign, scenarioIndex: 3 }, 1).scenarioId).toBe(
+        'the-unspeakable-oath',
+      )
       for (const [scenarioIndex, scenario] of definition.scenarios.entries()) {
-        if (scenarioIndex <= 2) continue
+        if (scenarioIndex <= 3) continue
         const pending = { ...campaign, scenarioIndex }
         expect(canPlayNext(pending)).toBe(false)
         expect(() => startScenario(pending, 1)).toThrow(`Escenario no disponible: ${scenario.id}`)

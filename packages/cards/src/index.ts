@@ -82,6 +82,11 @@ export {
   echoesOfThePast,
 } from './the-path-to-carcosa/echoes-of-the-past'
 export {
+  CODES as THE_UNSPEAKABLE_OATH_CODES,
+  THE_UNSPEAKABLE_OATH,
+  theUnspeakableOath,
+} from './the-path-to-carcosa/the-unspeakable-oath'
+export {
   CODES as THE_LAST_KING_CODES,
   THE_LAST_KING,
   theLastKing,

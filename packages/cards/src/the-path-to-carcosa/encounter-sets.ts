@@ -10,6 +10,7 @@ import {
   actionsThisRound,
   activeInvestigators,
   distancesFrom,
+  effectiveVitals,
   enemyMaxHealth,
   getInvestigator,
   getLocation,
@@ -59,6 +60,12 @@ export const SETS = {
   fanatic: '03098',
   agentOfTheKing: '03099',
   theKingsEdict: '03100',
+  // Habitantes de Carcosa
+  beastOfAldebaran: '03088',
+  spawnOfHali: '03089',
+  // Caja básica original: Agentes de Hastur
+  screechingByakhee: '01175',
+  theYellowSign: '01176',
   // Caja básica original: Ratas y Miedo impactante
   swarmOfRats: '01159',
   rottingRemains: '01163',
@@ -199,6 +206,46 @@ const wizardOfTheOrder = enemy({
   keywords: ['retaliate'],
 })
 
+export const beastOfAldebaran = enemy({
+  code: SETS.beastOfAldebaran,
+  name: 'Beast of Aldebaran',
+  traits: ['Monster', 'Elite'],
+  fight: 3,
+  health: 7,
+  evade: 5,
+  damage: 2,
+  horror: 1,
+  keywords: ['massive'],
+  victory: 1,
+})
+
+export const spawnOfHali = enemy({
+  code: SETS.spawnOfHali,
+  name: 'Spawn of Hali',
+  traits: ['Monster'],
+  prey: { type: 'mostHorror' },
+  fight: 4,
+  health: 4,
+  evade: 2,
+  damage: 1,
+  horror: 2,
+  keywords: ['retaliate'],
+})
+
+export const screechingByakhee = enemy({
+  code: SETS.screechingByakhee,
+  name: 'Screeching Byakhee',
+  traits: ['Monster', 'Byakhee'],
+  prey: { type: 'lowestRemainingSanity' },
+  fight: 3,
+  health: 4,
+  evade: 3,
+  damage: 1,
+  horror: 2,
+  keywords: ['hunter'],
+  victory: 1,
+})
+
 const card = (code: string, name: string, traits: string[], keywords: ('surge' | 'peril')[] = []) =>
   treachery({ code, name, traits, keywords })
 
@@ -244,6 +291,11 @@ export const ENCOUNTER_SETS = {
   theStranger: [
     ...copies(card(SETS.markedByTheSign, 'Marked by the Sign', ['Pact'], ['peril']), 2),
     card(SETS.thePaleMaskBeckons, 'The Pale Mask Beckons', ['Omen', 'Pact']),
+  ],
+  inhabitantsOfCarcosa: [{ ...beastOfAldebaran }, ...copies(spawnOfHali, 2)],
+  agentsOfHastur: [
+    ...copies(screechingByakhee, 2),
+    ...copies(card(SETS.theYellowSign, 'The Yellow Sign', ['Omen']), 2),
   ],
   ancientEvils: copies(card(SETS.ancientEvils, 'Ancient Evils', ['Omen']), 3),
   /** Las máscaras de medianoche: solo sus 5 traiciones (guía de Carcosa p. 10). */
@@ -990,6 +1042,8 @@ export function encounterSpecific(
       return paleMaskBeckons(state)
     case 'carcosaFindCultist':
       return investigator ? findCultist(state, investigator) : state
+    case 'carcosaYellowSign':
+      return investigator ? drawMadness(state, investigator) : state
   }
   return null
 }
@@ -1183,3 +1237,81 @@ registerTreachery({
     ]
   },
 })
+
+// ---------------------------------------------------------------------------
+// Habitantes de Carcosa y Agentes de Hastur
+// ---------------------------------------------------------------------------
+
+registerEnemy({
+  code: SETS.beastOfAldebaran,
+  // Su daño y horror se asignan a una sola carta tanto como sea posible antes que a otra.
+  concentratedAssignment: true,
+})
+
+registerEnemy({
+  code: SETS.spawnOfHali,
+  // Forzado: después de evitarlo con éxito por 2 o menos, recibes 1 horror.
+  forced: (_state, trigger, self) =>
+    trigger.type === 'afterSkillTest' &&
+    trigger.kind === 'evade' &&
+    trigger.succeeded &&
+    trigger.enemy === self.id &&
+    trigger.margin <= 2
+      ? [damage(trigger.investigator, 0, 1)]
+      : [],
+})
+
+/** Byakhee chillador: +1 de combate y evasión enfrentado a alguien con 4 o menos de cordura. */
+export function byakheeStat(state: GameState, e: Enemy): number {
+  if (e.code !== SETS.screechingByakhee || e.engagedWith === null) return 0
+  const engaged = getInvestigator(state, e.engagedWith)
+  return effectiveVitals(state, engaged).sanity - engaged.horror <= 4 ? 1 : 0
+}
+
+registerTreachery({
+  code: SETS.theYellowSign,
+  // [willpower] (4): si fallas, 2 horror y robas una Debilidad Locura de tu mazo.
+  revelation: (_state, investigator) => [
+    effectTest(investigator, 'The Yellow Sign', 'willpower', 4, {
+      onFail: [
+        damage(investigator, 0, 2),
+        { type: 'ScenarioSpecific', key: 'carcosaYellowSign', data: { investigator } },
+      ],
+    }),
+  ],
+})
+
+/** Busca una Debilidad Locura en el mazo, la roba y baraja. */
+export function drawMadness(state: GameState, investigator: InvestigatorId): GameState {
+  const madness = [
+    ...new Set(
+      getInvestigator(state, investigator).deck.filter((code) => {
+        const def = playerCardDef(code)
+        return !!def?.weakness && def.traits.includes('Madness')
+      }),
+    ),
+  ]
+  const take = (code: string): Message[] => [
+    { type: 'TakeFromDeck', investigator, code, to: 'hand', drawFound: true },
+  ]
+  const shuffleDeck: Message = { type: 'ShuffleDeck', investigator }
+  const then: Message[] =
+    madness.length <= 1
+      ? [...(madness[0] ? take(madness[0]) : []), shuffleDeck]
+      : [
+          {
+            type: 'Ask',
+            investigator,
+            question: {
+              kind: 'chooseOne',
+              prompt: 'prompt.chooseCard',
+              choices: madness.map((code) => ({
+                label: 'choice.card',
+                params: { card: playerCardDef(code)?.name ?? code },
+                then: [...take(code), shuffleDeck],
+              })),
+            },
+          },
+        ]
+  return { ...state, queue: [...then, ...state.queue] }
+}

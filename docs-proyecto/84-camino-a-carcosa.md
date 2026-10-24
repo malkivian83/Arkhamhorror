@@ -2,23 +2,23 @@
 
 ## Estado actual
 
-**3 de 8 escenarios jugables: I · Se cierra el telón, II · El Último Rey (con el
-Interludio I) y III · Ecos del pasado** (quinta entrega). Al terminar el escenario III no
-hay un cuarto disponible. Los escenarios IV–VIII siguen sin `build`.
+**4 de 8 escenarios jugables: I · Se cierra el telón, II · El Último Rey (con el
+Interludio I), III · Ecos del pasado y IV · El juramento inconfesable (con el Interludio
+II)** (sexta entrega). Al terminar el escenario IV no hay un quinto disponible. Los
+escenarios V–VIII siguen sin `build`.
 
 | Escenario                      | Implementado                                                                            | Pendiente para jugar                                                                                                                    |
 | ------------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | I · Se cierra el telón         | Completo: preparación, actos, planes, Lugares, 7 conjuntos, resoluciones y narración    | Lola Hayes (no jugable aún)                                                                                                             |
 | II · El último Rey             | Completo: preparación, Transeúntes, planes, acto, 5 conjuntos, R1–R3 e Interludio I      | —                                                                                                                                       |
 | III · Ecos del pasado          | Completo: preparación al azar, Pasadizos, Sr. Peabody, 6 conjuntos, R1–R4 y recompensas   | —                                                                                                                                       |
-| IV · El juramento inconfesable | Nombre y posición en la campaña                                                         | Implementación íntegra y transición al interludio II                                                                                    |
+| IV · El juramento inconfesable | Completo: preparación, recuerdos, Monstruos bajo el acto, Daniel, 6 conjuntos, R1–R3 e Interludio II | —                                                                                                                                       |
 | V · El Fantasma de la Verdad   | Nombre y posición en la campaña                                                         | Implementación íntegra y variantes según el registro                                                                                    |
 | VI · La máscara pálida         | Nombre y posición en la campaña                                                         | Implementación íntegra                                                                                                                  |
 | VII · Surgen estrellas negras  | Nombre y posición en la campaña                                                         | Implementación íntegra y sus ramas                                                                                                      |
 | VIII · Penumbrosa Carcosa      | Nombre y posición en la campaña                                                         | Implementación íntegra, final de campaña y epílogo                                                                                      |
 
-Los interludios, el epílogo y las narraciones de los escenarios II–VIII tampoco
-están implementados. Las dependencias compartidas se enumeran más abajo; no se
+El epílogo y las narraciones de los escenarios V–VIII tampoco están implementados. Las dependencias compartidas se enumeran más abajo; no se
 ha auditado todavía cada carta de esos siete escenarios.
 
 ## Primera entrega: base de campaña
@@ -287,6 +287,61 @@ y 40 partidas aleatorias). Presentación: catálogo EN/ES (111 cartas de Carcosa
 escaneos EN/ES con miniaturas ([evidencia](evidencias/imagenes-echoes-of-the-past.json))
 contrastados con los datos; revisión visual local del acto 3.
 
+## Sexta entrega: El juramento inconfesable e Interludio II
+
+Escenario en `the-path-to-carcosa/the-unspeakable-oath.ts`; cartas de jugador Daniel
+Chesterfield (aliado, 03182a) y Coraje (Información de Constance) en `oath-assets.ts`;
+Habitantes de Carcosa y Agentes de Hastur añadidos a `encounter-sets.ts`. Mazo inicial de 23
+cartas; 7 Monstruos y 7 Lunáticos apartados en montones, más Daniel (Enemigo) y Constance.
+Fuentes: guía ES pp. 13–16 (revisadas sobre las páginas renderizadas), cartas de la
+referencia y `TheUnspeakableOath.hs` como contraste.
+
+- Preparación: 1 copia al azar de cada ala de los Pasillos; cada investigador elige en
+  cuál empieza (nuevo `startingLocationChoices`). Ficha permanente -2/-3/-4/-5 según
+  dificultad, anotada en el registro. Acto 2 v. I con el broche, v. II sin él. Introducción
+  1 o 2 según el registro, la 3 y la Información de Constance (la carta superior del mazo
+  pasa a ser un apoyo Coraje; si abandona el juego, se descarta la carta real).
+- Lugares: Cocina, Jardín y Pasillo del sótano no se pueden entrar sin revelar en el acto 1;
+  entrar en una Celda sin revelar cuesta 1 pista al que entra. Revelar el Pasillo del sótano
+  pone en juego las 4 Celdas en huecos al azar; revelar la Celda de Daniel avanza el acto 2.
+  Seis capacidades de "recuerdo" (en `scenarioMeta`, visibles en el registro de la mesa y en
+  línea); con 4 avanza el acto 3. Patio, Comedor, Enfermería y ambas alas implementadas.
+- Monstruos bajo el acto: al azar y sin mirar (`underAct`, oculto en línea); Su dominio los
+  baraja en el mazo en su lugar. Los actos 2 v. I y 3 los devuelven al mazo; con 3 o más,
+  el de menos [willpower] descarta hasta un Monstruo y lo roba.
+- Fichas: calavera (difícil: revela otra, una vez por prueba), sectario y tablilla (velo
+  básico) y primigenio (Monstruo bajo el acto o fallo automático elegido, nuevo
+  `ForceSkillTestFailure`).
+- Daniel: aliado con su daño forzado al recibir horror, cesión rápida y retirada del juego al
+  salir; si su controlador se retira, sobrevive (Interludio II). Enemigo en la v. II;
+  negociar con el Broche de ónice negro lo lleva a la zona de victoria.
+- Encuentros: Camisa de fuerza (ocupa ranuras en la zona de amenaza), Regalo de la locura
+  Piedad/Miseria (Ocultos), Las paredes se cierran (horror por punto de fallo o Monstruo),
+  El Signo Amarillo (roba una Debilidad Locura), Glotón (no ataca tras cazar ni hace ataques
+  de oportunidad), Paciente loco, Bestia de Aldebarán (todo el daño a una sola carta mientras
+  quepa), Semilla de Hali y Byakhee chillador.
+- Resoluciones: los derrotados quedan enloquecidos (nuevo `DriveDefeatedInsane`); R1 si
+  todos fueron derrotados (sin Interludio II), R2/R3 al retirarse por el Jardín según se
+  derribara a la enfermera. R2: 1 trauma físico. Constance muerta y cambio de fichas. El
+  Broche pasa a otro investigador si su portador abandona la campaña.
+- Interludio II: Daniel sobrevivió (+2 de experiencia), fue poseído o no sobrevivió; ignorar
+  la advertencia (2 Dudas) o hacerle caso (2 Convicciones, +1 de experiencia y la regla de
+  HASTUR, solo anotada).
+
+Diferencias y límites: la app no permite elegir investigadores de sustitución en R1; si no
+quedan investigadores, la campaña no puede continuar. La carta EN de las Celdas no tiene el
+rasgo Manicomio Arkham (la traducción ES sí): se sigue la EN y el coste de 1 pista se
+mantiene en todos los actos. El horror de "cuando atacas al Paciente loco" se recibe tras
+revelar la ficha. El daño forzado de Daniel cuenta el horror que recibe el investigador.
+
+Validación: 62 pruebas nuevas (preparación 1–4 × 4 dificultades, elección inicial,
+Información de Constance, entradas bloqueadas y Celdas, actos 1–4, planes 1–3, fichas,
+Lugares, Daniel, enemigos, traiciones, resoluciones, Interludio II, traspaso del broche y 40
+partidas aleatorias). Presentación: catálogo EN/ES (146 cartas de Carcosa), 116 escaneos
+EN/ES con miniaturas ([evidencia](evidencias/imagenes-the-unspeakable-oath.json)) y 13
+narraciones nuevas con Carmelo (introducciones, Información de Constance, investigador
+derrotado, R1–R3 e Interludio II).
+
 ## Dependencias posteriores
 
 - Oculto: secreto por investigador en online, cuenta para tamaño de mano,
@@ -329,8 +384,10 @@ verificadas sin errores; evidencia en [carcosa-narracion.json](evidencias/carcos
 No equivale a una revisión auditiva humana. La generación necesita una cuenta de pago: las
 gratuitas no pueden usar voces de biblioteca por la API.
 
-Siguiente bloque: escenario IV (El juramento inconfesable) e Interludio II, que leen del
-registro el broche y el juramentado. Pendiente: Lola Hayes (escenario I).
+Narración del escenario IV e Interludio II: 13 MP3 más con la misma voz y ajustes
+(43 en total en la evidencia; unos 15 min 11 s más). Tramas MPEG verificadas sin errores.
+
+Siguiente bloque: escenario V (El Fantasma de la Verdad). Pendiente: Lola Hayes (escenario I).
 
 Para retomar en otro ordenador, actualizar `main`: el PDF ya está versionado en
 `docs-proyecto/reglas/`. La aplicación de referencia sigue siendo una copia externa

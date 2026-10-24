@@ -225,6 +225,13 @@
       "oathspeaker": "Juramentado poseído: preparadlo o colocad 1 perdición sobre él",
       "peabody": "Elige quién toma el control del Sr. Peabody",
       "ledAstray": "Coloca 1 de tus pistas sobre un Sectario o 1 perdición en el plan"
+    },
+    "chooseStartingLocation": "Elige dónde empiezas la partida",
+    "oath": {
+      "keys": "La llave del sótano: ¿cómo conseguís las llaves de la enfermera?",
+      "keysTester": "Elige al investigador que hace la prueba",
+      "wayOut": "Elige al investigador con menos [willpower] que busca un Monstruo",
+      "daniel": "Elige quién toma el control de Daniel Chesterfield"
     }
   },
   "action": {
@@ -420,7 +427,18 @@
       "readyOathspeaker": "Preparar al Juramentado poseído",
       "doomOnOathspeaker": "Colocar 1 perdición sobre él"
     },
-    "spendClue": "Gastar 1 pista"
+    "spendClue": "Gastar 1 pista",
+    "oath": {
+      "keys": {
+        "combat": "Intimidarla para que os dé las llaves: [combat] (4)",
+        "agility": "Robarle las llaves: [agility] (4)",
+        "intellect": "Persuadirla para que os dé las llaves: [intellect] (4)",
+        "force": "Derribarla y haceros con las llaves («os hicisteis con las llaves por la fuerza»)"
+      },
+      "monsterBeneathAct": "Colocar al azar un Monstruo apartado bajo el mazo de Acto",
+      "autoFail": "Esta prueba fracasa automáticamente",
+      "wallsHorror": "Recibir {n} horror"
+    }
   },
   "phase": {
     "setup": "Preparación",
@@ -665,7 +683,22 @@
       "readingRoom": "Investigar: si tienes éxito, toma 1 perdición de un enemigo como pista",
       "library": "Recibir 2 horror: descubrir 1 pista más aquí"
     },
-    "lockedDoor": "Derribar la puerta ([combat]) o forzar la cerradura ([agility]) (4)"
+    "lockedDoor": "Derribar la puerta ([combat]) o forzar la cerradura ([agility]) (4)",
+    "oath": {
+      "giveDaniel": "Agotar a Daniel Chesterfield: dar su control a {name}",
+      "westernDraw": "Robar 1 carta (Lunático derrotado en los Pasillos del manicomio)",
+      "knowTheGuardsPatrols": "Prueba [intellect] ({difficulty}): «conocéis las patrullas de los guardias»",
+      "setAFireInTheKitchen": "Prueba [willpower] ({difficulty}): «prendisteis fuego en la cocina»",
+      "incitedAFightAmongstThePatients": "Recibir 1 daño: «incitasteis una pelea entre los pacientes»",
+      "releasedADangerousPatient": "Prueba [combat] ({difficulty}): «liberasteis a un paciente peligroso»",
+      "recalledTheWayOut": "Prueba [willpower] ({difficulty}): «recordasteis la salida»",
+      "distractedTheGuards": "Prueba [agility] ({difficulty}): «distrajisteis a los guardias»",
+      "healDamage": "Curar 1 daño y recibir 1 horror directo",
+      "healHorror": "Curar 1 horror y recibir 1 daño directo",
+      "autoEvade": "Recibir 1 horror: evitar automáticamente a {enemy}",
+      "showClasp": "Negociar: enseñar a Daniel el Broche de ónice negro",
+      "giftOfMadness": "Colocar al azar un Monstruo apartado bajo el mazo de Acto y descartar {card}"
+    }
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -1134,7 +1167,12 @@
       "carcosaTookTheOnyxClasp": "los investigadores se llevaron el broche de ónice",
       "carcosaLeftTheOnyxClasp": "los investigadores dejaron el broche de ónice",
       "carcosaDestroyedTheOathspeaker": "los investigadores destruyeron al juramentado",
-      "carcosaFollowersFoundTheWay": "los seguidores del signo encontraron el camino"
+      "carcosaFollowersFoundTheWay": "los seguidores del signo encontraron el camino",
+      "carcosaKingClaimedItsVictims": "el Rey se cobró sus víctimas",
+      "carcosaAttackedEscapingTheAsylum": "los investigadores fueron atacados al escapar del manicomio",
+      "carcosaEscapedTheAsylum": "los investigadores escaparon del manicomio",
+      "carcosaIgnoredDanielsWarning": "los investigadores ignoraron la advertencia de Daniel",
+      "carcosaHeededDanielsWarning": "los investigadores hicieron caso a la advertencia de Daniel"
     },
     "scenario": {
       "smokeAndMirrors": "el Escenario II: Smoke and Mirrors",
@@ -1401,7 +1439,8 @@
       "strangerBearer": "{name} añade El hombre de la máscara pálida a su mazo. No cuenta para el tamaño de su mazo. Si su portador abandona la campaña, elegid otro portador.",
       "chasingMarks": "Haz {n} marcas en Persiguiendo al Extranjero.",
       "echoesOfThePast": "Escenario III: Ecos del pasado",
-      "theUnspeakableOath": "Escenario IV: El juramento inconfesable"
+      "theUnspeakableOath": "Escenario IV: El juramento inconfesable",
+      "aPhantomOfTruth": "Escenario V: El Fantasma de la Verdad"
     },
     "curtainCall": {
       "introTitle": "Escenario I: Se cierra el telón",
@@ -1496,6 +1535,49 @@
       "tokens2": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de tablilla.",
       "tokens3": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de tablilla.",
       "tokens4": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 1 de cada."
+    },
+    "oath": {
+      "introTitle": "Escenario IV: El juramento inconfesable",
+      "intro1": "«Despierta, Daniel.» Te despiertas agotado, como si no hubieras dormido. El hombre de tu sueño parecía desquiciado, encerrado en una celda: un manicomio. Te diriges al Manicomio Arkham.",
+      "intro2": "Daniel Chesterfield, tramoyista de la producción anterior de El Rey de Amarillo, parece ser su único superviviente. Lo internaron en el Manicomio Arkham hace años, y allí te diriges.",
+      "intro3": "El recepcionista te dice que Daniel está al cuidado especial del doctor Mintz, en un nivel restringido al personal. Te promete una reunión y los guardias te escoltan al ala de pacientes…",
+      "constanceTitle": "Información de Constance",
+      "constance": "Constance te contó que el director, Nigel Engram, hizo pronunciar un juramento al elenco y al equipo, y que después se sentían más seguros y llenos de espíritu. Cada investigador coloca boca abajo en juego la carta superior de su mazo como un Apoyo Coraje (coste 0, sin iconos, 2 de cordura), que se descarta si abandona el juego.",
+      "setupTitle": "Preparación",
+      "setup": "Se reúnen El juramento inconfesable, El regalo de Hastur, Habitantes de Carcosa, Delirios, Podredumbre e impurezas y Agentes de Hastur. Se apartan los 7 Enemigos Monstruo y los 7 Enemigos Lunático en montones separados.\n\nSe retira al azar 1 copia de cada ala de los Pasillos del manicomio y las otras dos entran en juego; cada investigador empieza en los Pasillos del manicomio que elija. Entran en juego el Comedor, la Cocina, el Patio, el Jardín, la Enfermería y el Pasillo del sótano.\n\nSe apartan Daniel Chesterfield y los 4 Lugares Aislamiento de pacientes. Se añade una ficha permanente a la bolsa de caos: -2 (Fácil), -3 (Normal), -4 (Difícil) o -5 (Experto).\n\nSi los investigadores se llevaron el broche de ónice, se usa el acto 2 v. I; si no, la v. II.",
+      "defeatedTitle": "Investigador derrotado",
+      "defeated": "El doctor Mintz repasa el historial: el paciente sigue divagando sobre la obra y afirma que sólo son huéspedes. Sus procedimientos experimentales tendrán otro sujeto.",
+      "drivenInsane": "Cada investigador derrotado es enloquecido.",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "…Y así terminó la locura de El Rey de Amarillo.",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "Auxiliares y guardias bloquean tu huida y tienes que abrirte paso a la fuerza. Algunos pacientes atacan a los guardias y, en el tumulto, escapas, magullado y golpeado, pero libre de nuevo.",
+      "resolution3Title": "Resolución 3",
+      "resolution3": "Los guardias están demasiado ocupados controlando la situación y reduciendo a los pacientes como para advertir tu huida.",
+      "newClaspBearer": "Si los investigadores se llevaron el broche de ónice y su portador abandona la campaña, elegid otro portador del Broche de ónice negro.",
+      "physicalTrauma": "Cada investigador sufre 1 trauma físico.",
+      "tokens1": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de sectario.",
+      "tokens2": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de tablilla.",
+      "tokens3": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de primigenio.",
+      "toInterlude": "Pasad al Interludio II: Alma perdida.",
+      "danielSurvivedTitle": "Interludio II: Daniel sobrevivió",
+      "danielSurvived": "Escondes a Daniel en la Pensión de Ma. Una noche tranquila te advierte de que el Rey de Amarillo es un ser llamado Hastur: no pronuncies Su nombre, no cedas. Horas después lo encuentras estrangulado.",
+      "danielXp": "Cada investigador obtiene 2 puntos de experiencia adicionales por haber recibido información sobre las maquinaciones del Rey Andrajoso.",
+      "danielWasPossessedTitle": "Interludio II: Daniel fue poseído",
+      "danielWasPossessed": "Pones por escrito las divagaciones de Daniel: «Hastur». «Nos obligó a pronunciar el juramento». La tercera noche encuentras su cuerpo en tu puerta, con una expresión de puro terror.",
+      "danielDiedTitle": "Interludio II: Daniel no sobrevivió",
+      "danielDied": "Pones por escrito las divagaciones de Daniel: «Hastur». «Nos obligó a pronunciar el juramento». «Están abriendo el camino a Carcosa». Y su advertencia: «No pronuncies Su nombre».",
+      "lostSoulTitle": "Interludio II: Alma perdida",
+      "lostSoul": "Los investigadores deben decidir qué hacer con la advertencia de Daniel.",
+      "ignoreChoice": "¿Posesión? ¿Juramentos? Debe de haber otra explicación para todo esto. (Ignorar la advertencia)",
+      "heedChoice": "Debemos hacer caso a la advertencia de Daniel. No debemos pronunciar el nombre del Rey de Amarillo. (Hacer caso de la advertencia)",
+      "ignoreTheWarningTitle": "Ignorar la advertencia",
+      "ignoreTheWarning": "Pasas horas dándole vueltas a la información que tienes sobre El Rey de Amarillo. Eres el único que puede encontrarle algún sentido a esta locura.",
+      "heedTheWarningTitle": "Hacer caso de la advertencia",
+      "heedTheWarning": "Pasas horas dándole vueltas a la información que tienes sobre El Rey de Amarillo. Eres el único que puede encontrarle algún sentido a esta locura.",
+      "markDoubts": "Marca 2 Dudas en el registro de campaña compartido.",
+      "markConvictions": "Marca 2 Convicciones en el registro de campaña compartido.",
+      "hasturRule": "Durante el resto de la campaña, cada vez que un investigador pronuncie en voz alta el nombre de HASTUR durante un escenario (o su preparación), recibe 1 horror."
     }
   },
   "playmat": {
@@ -1692,7 +1774,14 @@
     "hidTheBody": "Los investigadores han ocultado el cuerpo.",
     "tidiedUpTheRoom": "Los investigadores han ordenado la habitación.",
     "policeOnYourSide": "La policía está de vuestra parte.",
-    "policeDontBelieveYou": "La policía no os cree."
+    "policeDontBelieveYou": "La policía no os cree.",
+    "knowTheGuardsPatrols": "Conocéis las patrullas de los guardias.",
+    "setAFireInTheKitchen": "Prendisteis fuego en la cocina.",
+    "incitedAFightAmongstThePatients": "Incitasteis una pelea entre los pacientes.",
+    "releasedADangerousPatient": "Liberasteis a un paciente peligroso.",
+    "recalledTheWayOut": "Recordasteis la salida.",
+    "distractedTheGuards": "Distrajisteis a los guardias.",
+    "tookTheKeysByForce": "Os hicisteis con las llaves por la fuerza."
   },
   "keywords": {
     "title": "Palabras clave y conceptos",
@@ -2551,7 +2640,8 @@
       "01024": "Elige tu Lugar o un Lugar conectado. Inflige 3 puntos de daño a cada Enemigo e Investigador que esté en el Lugar elegido.",
       "01050": "Rápido. Juega esta carta sólo durante tu turno.\nDeja de estar enfrentado a cada Enemigo enfrentado a ti y muévete a un Lugar revelado que no tenga Enemigos.",
       "02147": "Tienes 1 espacio de mano adicional que sólo puede usarse para un Apoyo Arma.",
-      "03059": "Indiferente. Aparece en el Lugar más alejado de todos los investigadores. Acción: investiga tu Lugar con +2 al velo. Si tienes éxito, derrota a El hombre de la máscara pálida en lugar de descubrir pistas."
+      "03059": "Indiferente. Aparece en el Lugar más alejado de todos los investigadores. Acción: investiga tu Lugar con +2 al velo. Si tienes éxito, derrota a El hombre de la máscara pálida en lugar de descubrir pistas.",
+      "courage": "Carta boca abajo de la parte superior de tu mazo (Información de Constance): Apoyo Coraje con coste 0, sin iconos y 2 de cordura. Se descarta si abandona el juego."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -3041,7 +3131,8 @@
       "01024": "Explosión de dinamita",
       "01050": "Escurridizo",
       "02147": "Bandolera",
-      "03059": "El hombre de la máscara pálida"
+      "03059": "El hombre de la máscara pálida",
+      "courage": "Coraje"
     }
   },
   "account": {

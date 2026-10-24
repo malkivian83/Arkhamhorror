@@ -225,6 +225,13 @@
       "oathspeaker": "Possessed Oathspeaker: ready him or place 1 doom on him",
       "peabody": "Choose who takes control of Mr. Peabody",
       "ledAstray": "Place 1 of your clues on a Cultist or 1 doom on the agenda"
+    },
+    "chooseStartingLocation": "Choose where you begin play",
+    "oath": {
+      "keys": "Key to the Basement: how do you get the keys from the nurse?",
+      "keysTester": "Choose the investigator who takes the test",
+      "wayOut": "Choose the investigator with the lowest [willpower] who searches for a Monster",
+      "daniel": "Choose who takes control of Daniel Chesterfield"
     }
   },
   "action": {
@@ -420,7 +427,18 @@
       "readyOathspeaker": "Ready Possessed Oathspeaker",
       "doomOnOathspeaker": "Place 1 doom on him"
     },
-    "spendClue": "Spend 1 clue"
+    "spendClue": "Spend 1 clue",
+    "oath": {
+      "keys": {
+        "combat": "Intimidate her into giving you the keys: [combat] (4)",
+        "agility": "Steal the keys from her: [agility] (4)",
+        "intellect": "Persuade her to give you the keys: [intellect] (4)",
+        "force": "Knock her over and grab the keys (“you took the keys by force”)"
+      },
+      "monsterBeneathAct": "Place a random set-aside Monster beneath the act deck",
+      "autoFail": "This test automatically fails",
+      "wallsHorror": "Take {n} horror"
+    }
   },
   "phase": {
     "setup": "Setup",
@@ -665,7 +683,22 @@
       "readingRoom": "Investigate: if you succeed, take 1 doom from an enemy as a clue",
       "library": "Take 2 horror: discover 1 more clue here"
     },
-    "lockedDoor": "Break down the door ([combat]) or pick the lock ([agility]) (4)"
+    "lockedDoor": "Break down the door ([combat]) or pick the lock ([agility]) (4)",
+    "oath": {
+      "giveDaniel": "Exhaust Daniel Chesterfield: give control of him to {name}",
+      "westernDraw": "Draw 1 card (Lunatic defeated in the Asylum Halls)",
+      "knowTheGuardsPatrols": "Test [intellect] ({difficulty}): “you know the guards’ patrols”",
+      "setAFireInTheKitchen": "Test [willpower] ({difficulty}): “set a fire in the kitchen”",
+      "incitedAFightAmongstThePatients": "Take 1 damage: “incited a fight amongst the patients”",
+      "releasedADangerousPatient": "Test [combat] ({difficulty}): “released a dangerous patient”",
+      "recalledTheWayOut": "Test [willpower] ({difficulty}): “recalled the way out”",
+      "distractedTheGuards": "Test [agility] ({difficulty}): “distracted the guards”",
+      "healDamage": "Heal 1 damage and take 1 direct horror",
+      "healHorror": "Heal 1 horror and take 1 direct damage",
+      "autoEvade": "Take 1 horror: automatically evade {enemy}",
+      "showClasp": "Parley: show Daniel the Clasp of Black Onyx",
+      "giftOfMadness": "Place a random set-aside Monster beneath the act deck and discard {card}"
+    }
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -1134,7 +1167,12 @@
       "carcosaTookTheOnyxClasp": "the investigators took the onyx clasp",
       "carcosaLeftTheOnyxClasp": "the investigators left the onyx clasp behind",
       "carcosaDestroyedTheOathspeaker": "the investigators destroyed the oathspeaker",
-      "carcosaFollowersFoundTheWay": "the followers of the Sign have found the way forward"
+      "carcosaFollowersFoundTheWay": "the followers of the Sign have found the way forward",
+      "carcosaKingClaimedItsVictims": "the King claimed its victims",
+      "carcosaAttackedEscapingTheAsylum": "the investigators were attacked as they escaped the asylum",
+      "carcosaEscapedTheAsylum": "the investigators escaped the asylum",
+      "carcosaIgnoredDanielsWarning": "the investigators ignored Daniel’s warning",
+      "carcosaHeededDanielsWarning": "the investigators heeded Daniel’s warning"
     },
     "scenario": {
       "smokeAndMirrors": "Scenario II: Smoke and Mirrors",
@@ -1401,7 +1439,8 @@
       "strangerBearer": "{name} adds The Man in the Pallid Mask to their deck. It does not count toward deck size. If its bearer leaves the campaign, choose a new bearer.",
       "chasingMarks": "Make {n} marks under Chasing the Stranger.",
       "echoesOfThePast": "Scenario III: Echoes of the Past",
-      "theUnspeakableOath": "Scenario IV: The Unspeakable Oath"
+      "theUnspeakableOath": "Scenario IV: The Unspeakable Oath",
+      "aPhantomOfTruth": "Scenario V: A Phantom of Truth"
     },
     "curtainCall": {
       "introTitle": "Scenario I: Curtain Call",
@@ -1496,6 +1535,49 @@
       "tokens2": "Remove all cultist, tablet and elder thing tokens from the chaos bag, then add 2 tablet tokens.",
       "tokens3": "Remove all cultist, tablet and elder thing tokens from the chaos bag, then add 2 tablet tokens.",
       "tokens4": "Remove all cultist, tablet and elder thing tokens from the chaos bag, then add 1 of each."
+    },
+    "oath": {
+      "introTitle": "Scenario IV: The Unspeakable Oath",
+      "intro1": "“Wake up, Daniel.” You wake up exhausted, as if you had not slept. The man from your dream looked unhinged, locked in a cell: an asylum. You head towards Arkham Asylum.",
+      "intro2": "Daniel Chesterfield, a stagehand of the previous production of The King in Yellow, seems to be its only survivor. He was committed to Arkham Asylum years ago, and you head there.",
+      "intro3": "The receptionist tells you Daniel is under the special care of Doctor Mintz, on a level restricted to staff. He promises you a meeting and the guards escort you into the patient wing…",
+      "constanceTitle": "Constance’s Information",
+      "constance": "Constance told you that the director, Nigel Engram, made the cast and crew take an oath, and that afterwards they felt more confident and full of spirit. Each investigator puts the top card of their deck facedown into play as a Courage asset (cost 0, no icons, 2 sanity), discarded if it leaves play.",
+      "setupTitle": "Setup",
+      "setup": "Gather The Unspeakable Oath, Hastur’s Gift, Inhabitants of Carcosa, Delusions, Decay & Filth and Agents of Hastur. Set aside the 7 Monster enemies and the 7 Lunatic enemies in separate piles.\n\nRemove 1 random copy of each wing of the Asylum Halls and put the other two into play; each investigator begins at the Asylum Halls of their choice. Put into play the Mess Hall, Kitchen, Yard, Garden, Infirmary and Basement Hall.\n\nSet aside Daniel Chesterfield and the 4 Patient Confinement locations. Add a permanent token to the chaos bag: -2 (Easy), -3 (Standard), -4 (Hard) or -5 (Expert).\n\nIf the investigators took the onyx clasp, use act 2 v. I; otherwise, v. II.",
+      "defeatedTitle": "Investigator Defeated",
+      "defeated": "Doctor Mintz reviews the file: the patient keeps raving about the play and insists they are only guests. His experimental procedures will have another subject.",
+      "drivenInsane": "Each defeated investigator is driven insane.",
+      "resolution1Title": "Resolution 1",
+      "resolution1": "…And so ended the madness of The King in Yellow.",
+      "resolution2Title": "Resolution 2",
+      "resolution2": "Orderlies and guards block your escape and you have to force your way through. Some patients attack the guards and, in the uproar, you escape, bruised and battered but free again.",
+      "resolution3Title": "Resolution 3",
+      "resolution3": "The guards are too busy controlling the situation and restraining the patients to notice your escape.",
+      "newClaspBearer": "If the investigators took the onyx clasp and its bearer left the campaign, choose another bearer for the Clasp of Black Onyx.",
+      "physicalTrauma": "Each investigator suffers 1 physical trauma.",
+      "tokens1": "Remove all cultist, tablet and elder thing tokens from the chaos bag and add 2 cultist tokens.",
+      "tokens2": "Remove all cultist, tablet and elder thing tokens from the chaos bag and add 2 tablet tokens.",
+      "tokens3": "Remove all cultist, tablet and elder thing tokens from the chaos bag and add 2 elder thing tokens.",
+      "toInterlude": "Proceed to Interlude II: Lost Soul.",
+      "danielSurvivedTitle": "Interlude II: Daniel Survived",
+      "danielSurvived": "You hide Daniel at Ma’s Boarding House. On a calm night he warns you that the King in Yellow is a being called Hastur: do not speak His name, do not give in. Hours later you find him strangled.",
+      "danielXp": "Each investigator earns 2 bonus experience for gaining insight into the machinations of the Tattered King.",
+      "danielWasPossessedTitle": "Interlude II: Daniel Was Possessed",
+      "danielWasPossessed": "You write down Daniel’s ravings: “Hastur.” “He made us speak the oath.” On the third night you find his body at your door, with an expression of pure terror.",
+      "danielDiedTitle": "Interlude II: Daniel Did Not Survive",
+      "danielDied": "You write down Daniel’s ravings: “Hastur.” “He made us speak the oath.” “They are opening the path to Carcosa.” And his warning: “Do not speak His name.”",
+      "lostSoulTitle": "Interlude II: Lost Soul",
+      "lostSoul": "The investigators must decide what to do with Daniel’s warning.",
+      "ignoreChoice": "Possession? Oaths? There must be another explanation for all of this. (Ignore the warning)",
+      "heedChoice": "We must heed Daniel’s warning. We must not speak the name of the King in Yellow. (Heed the warning)",
+      "ignoreTheWarningTitle": "Ignore the Warning",
+      "ignoreTheWarning": "You spend hours going over what you know about The King in Yellow. You are the only one who can make sense of this madness.",
+      "heedTheWarningTitle": "Heed the Warning",
+      "heedTheWarning": "You spend hours going over what you know about The King in Yellow. You are the only one who can make sense of this madness.",
+      "markDoubts": "Mark 2 Doubt in the shared campaign log.",
+      "markConvictions": "Mark 2 Conviction in the shared campaign log.",
+      "hasturRule": "For the rest of the campaign, whenever an investigator speaks the name HASTUR aloud during a scenario (or its setup), they take 1 horror."
     }
   },
   "playmat": {
@@ -1692,7 +1774,14 @@
     "hidTheBody": "The investigators hid the body.",
     "tidiedUpTheRoom": "The investigators tidied up the room.",
     "policeOnYourSide": "The police are on your side.",
-    "policeDontBelieveYou": "The police don’t believe you."
+    "policeDontBelieveYou": "The police don’t believe you.",
+    "knowTheGuardsPatrols": "You know the guards’ patrols.",
+    "setAFireInTheKitchen": "You set a fire in the kitchen.",
+    "incitedAFightAmongstThePatients": "You incited a fight amongst the patients.",
+    "releasedADangerousPatient": "You released a dangerous patient.",
+    "recalledTheWayOut": "You recalled the way out.",
+    "distractedTheGuards": "You distracted the guards.",
+    "tookTheKeysByForce": "You took the keys by force."
   },
   "keywords": {
     "title": "Keywords and concepts",
@@ -2551,7 +2640,8 @@
       "01024": "Choose either your location or a connecting location. Deal 3 damage to each enemy and to each investigator at the chosen location.",
       "01050": "Fast. Play only during your turn.\nDisengage from each enemy engaged with you and move to a revealed location with no enemies.",
       "02147": "You have 1 additional hand slot, which can only be used to hold a Weapon asset.",
-      "03059": "Aloof. Spawn at the location farthest from all investigators. Action: investigate your location with +2 shroud. If successful, defeat The Man in the Pallid Mask instead of discovering clues."
+      "03059": "Aloof. Spawn at the location farthest from all investigators. Action: investigate your location with +2 shroud. If successful, defeat The Man in the Pallid Mask instead of discovering clues.",
+      "courage": "Facedown card from the top of your deck (Constance’s Information): Courage asset with cost 0, no icons and 2 sanity. Discard it if it leaves play."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -3041,7 +3131,8 @@
       "01024": "Dynamite Blast",
       "01050": "Elusive",
       "02147": "Bandolier",
-      "03059": "The Man in the Pallid Mask"
+      "03059": "The Man in the Pallid Mask",
+      "courage": "Courage"
     }
   },
   "account": {

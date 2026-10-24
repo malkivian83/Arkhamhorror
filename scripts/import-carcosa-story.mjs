@@ -1,4 +1,4 @@
-// Textos oficiales de la guía aportada, contrastados con sus pp. 3–12, y de las cartas de
+// Textos oficiales de la guía aportada, contrastados con sus pp. 3–16, y de las cartas de
 // Historia de El Último Rey. Solo añade las claves de Carcosa; conserva las otras campañas.
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
@@ -66,6 +66,25 @@ for (const locale of ['en', 'es']) {
   )
   for (const n of [1, 2, 3, 4])
     texts[`story.echoes.resolution${n}`] = paragraphs(echoes.resolutions[`resolution${n}`].body)
+  // El juramento inconfesable e Interludio II. Sin los párrafos de instrucciones
+  // ("Continúa con…", "Antes de resolver…"), que la mesa resuelve como efectos.
+  const oath = JSON.parse(readFileSync(join(source, 'scenarios/theUnspeakableOath.json'), 'utf8'))
+  const story = (html) =>
+    paragraphs(html.replace(/<(p|div) class='basic[^']*'>[\s\S]*?<\/\1>/g, ''))
+  for (const key of ['intro1', 'intro2', 'intro3'])
+    texts[`story.oath.${key}`] = story(oath.intro[key])
+  texts['story.oath.constance'] = story(oath.intro.constancesInformation)
+  texts['story.oath.defeated'] = story(oath.resolutions.defeated.body)
+  for (const n of [1, 2, 3])
+    texts[`story.oath.resolution${n}`] = story(oath.resolutions[`resolution${n}`].body)
+  for (const [key, from] of [
+    ['danielSurvived', 'danielSurvived'],
+    ['danielWasPossessed', 'danielWasPossessed'],
+    ['danielDied', 'danielDidNotSurvive'],
+    ['ignoreTheWarning', 'ignoreTheWarning'],
+    ['heedTheWarning', 'heedTheWarning'],
+  ])
+    texts[`story.oath.${key}`] = story(base.interlude2[from])
   writeFileSync(path, JSON.stringify(texts, null, 2) + '\n')
-  console.log(`${locale}: relatos de los escenarios I a III importados.`)
+  console.log(`${locale}: relatos de los escenarios I a IV importados.`)
 }

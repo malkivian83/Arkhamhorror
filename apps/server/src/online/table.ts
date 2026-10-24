@@ -299,6 +299,14 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
         'tidiedUpTheRoom',
         'policeOnYourSide',
         'policeDontBelieveYou',
+        // El juramento inconfesable: lo que los investigadores recuerdan.
+        'knowTheGuardsPatrols',
+        'setAFireInTheKitchen',
+        'incitedAFightAmongstThePatients',
+        'releasedADangerousPatient',
+        'recalledTheWayOut',
+        'distractedTheGuards',
+        'tookTheKeysByForce',
       ]
         .filter((key) => g.scenarioMeta?.[key] === 1)
         .map((key) => [key, 1]),

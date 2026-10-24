@@ -4,6 +4,7 @@ import {
   theLastKing,
   THE_LAST_KING_VIPS,
   echoesOfThePast,
+  theUnspeakableOath,
   spreadingFlames,
   smokeAndMirrors,
   queenOfAsh,
@@ -116,6 +117,20 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     theLastKing({ difficulty: 'standard' }),
     // Cada semilla deja fuera un Lugar por planta: con varias aparecen todos.
     ...Array.from({ length: 8 }, (_, seed) => echoesOfThePast({ difficulty: 'standard', seed })),
+    // Una copia de cada ala de los Pasillos y las dos versiones del acto 2.
+    ...Array.from({ length: 8 }, (_, seed) =>
+      theUnspeakableOath({
+        difficulty: 'standard',
+        seed,
+        log: {
+          notes: seed % 2 ? ['carcosaTookTheOnyxClasp'] : [],
+          crossedOut: [],
+          values: {},
+          investigators: {},
+          chaosTokens: [],
+        },
+      }),
+    ),
     ...Array.from({ length: 12 }, (_, seed) =>
       smokeAndMirrors({
         seed,
@@ -208,6 +223,12 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     code: '03120',
     name: 'Echoes of the Past',
     real_name: 'Echoes of the Past',
+    type_code: 'scenario',
+  })
+  put({
+    code: '03159',
+    name: 'The Unspeakable Oath',
+    real_name: 'The Unspeakable Oath',
     type_code: 'scenario',
   })
   // El Último Rey: Realidades repulsivas (Historia con el Enemigo Lunático al dorso) y el

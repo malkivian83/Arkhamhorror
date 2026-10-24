@@ -58,6 +58,16 @@ const CODES = new Set([
   '01136',
   ...range(1169, 1171),
   '01174',
+  // El juramento inconfesable (Daniel Chesterfield: apoyo 03182a y Enemigo 03182b),
+  // Habitantes de Carcosa y Agentes de Hastur de la caja básica original.
+  ...range(3159, 3181),
+  '03182a',
+  '03182b',
+  ...range(3183, 3188),
+  '03088',
+  '03089',
+  '01175',
+  '01176',
 ])
 
 /** Erratas de la traducción de la fuente, contrastadas con las cartas impresas. */
@@ -84,6 +94,7 @@ const fix = (text) =>
 const ORIGINAL_EN = {
   '03095': { name: 'Maniac' },
   '03096': { name: 'Young Psychopath' },
+  '03184': { name: 'Mad Patient' },
 }
 const original = (lang, code, text) =>
   lang === 'en' && typeof text === 'string' ? text.replaceAll('Possessed', 'Lunatic') : text

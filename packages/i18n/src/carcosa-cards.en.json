@@ -53,6 +53,16 @@
     "traits": "Obstacle.",
     "text": "<b>Revelation</b> - Attach to the location in play with the most clues, and without a Locked Door attached.\nThe attached location cannot be investigated.\n[action]: Test [combat] (4) to break down the door or [agility] (4) to pick the lock. If you succeed, discard Locked Door."
   },
+  "01175": {
+    "name": "Screeching Byakhee",
+    "traits": "Monster. Byakhee.",
+    "text": "<b>Prey</b> - Lowest remaining sanity.\nHunter.\nWhile engaged with an investigator with remaining sanity 4 or fewer, Screeching Byakhee gets +1 fight and +1 evade."
+  },
+  "01176": {
+    "name": "The Yellow Sign",
+    "traits": "Omen.",
+    "text": "<b>Revelation</b> - Test [willpower] (4). If you fail, take 2 horror and search your deck for a [[Madness]] weakness. Draw that card and shuffle your deck."
+  },
   "03043": {
     "name": "Curtain Call",
     "text": "Easy / Standard\n[skull]: -1 (-3 instead if you have 3 or more horror on you).\n[cultist] [tablet] [elder_thing]: -4. If your location has at least 1 horror on it, take 1 horror <i>(from the token pool)</i>. If your location has no horror on it, place 1 horror on it instead.",
@@ -346,6 +356,16 @@
     "traits": "Terror.",
     "text": "Surge.\n<b>Revelation</b> - If you have at least 3 horror on you, lose 1 action."
   },
+  "03088": {
+    "name": "Beast of Aldebaran",
+    "traits": "Monster. Elite.",
+    "text": "Massive.\nWhile assigning damage and horror from Beast of Aldebaran's attack, you must assign as much damage and horror as possible to a single card before assigning it to another card."
+  },
+  "03089": {
+    "name": "Spawn of Hali",
+    "traits": "Monster.",
+    "text": "<b>Prey</b> - Most horror.\nRetaliate.\n<b>Forced</b> - After you successfully evade Spawn of Hali by 2 or less: Take 1 horror."
+  },
   "03090": {
     "name": "Black Stars Rise",
     "traits": "Omen.",
@@ -589,5 +609,180 @@
     "name": "The Cult's Search",
     "traits": "Scheme.",
     "text": "<b>Revelation</b> - If there is a [[Cultist]] enemy in play with doom on it, move all doom from each [[Cultist]] enemy to the current agenda (this effect may cause the current agenda to advance). If there are no [[Cultist]] enemies in play with doom on them, search the encounter deck and discard pile for a [[Cultist]] enemy and draw it (shuffle the encounter deck)."
+  },
+  "03159": {
+    "name": "The Unspeakable Oath",
+    "text": "Easy / Standard\n[skull]: -1. If you fail, randomly choose an enemy from among the set-aside [[Monster]] enemies and place it beneath the act deck without looking at it.\n[cultist]: -X. X is the amount of horror on you.\n[tablet]: -X. X is the base shroud value of your location.\n[elder_thing]: 0. Either randomly choose an enemy from among the set-aside [[Monster]] enemies and place it beneath the act deck without looking at it, or this test automatically fails instead.",
+    "backText": "Hard / Expert\n[skull]: Reveal another token. If you fail, randomly choose an enemy from among the set-aside [[Monster]] enemies and place it beneath the act deck without looking at it. (Limit once per test.)\n[cultist]: -X. X is the amount of horror on you. If you fail, take 1 horror.\n[tablet]: -X. X is the base shroud value of your location. If you fail, take 1 horror.\n[elder_thing]: 0. Either randomly choose an enemy from among the set-aside [[Monster]] enemies and place it beneath the act deck without looking at it, or this test automatically fails instead."
+  },
+  "03160": {
+    "name": "Locked Inside",
+    "backName": "The Patients",
+    "backText": "Shuffle the encounter discard pile and each of the set-aside [[Lunatic]] enemies into the encounter deck.\nThe lead investigator must randomly choose an enemy from among the set-aside [[Monster]] enemies and place it beneath the act deck without looking at it."
+  },
+  "03161": {
+    "name": "Torturous Descent",
+    "backName": "The Yellow Sign",
+    "backText": "The lead investigator must randomly choose an enemy from among the set-aside [[Monster]] enemies and shuffle it into the encounter deck without looking at it.\nCheck Campaign Log. If Constance Dumaine is not listed under \"VIPs Slain,\" search the collection for Constance Dumaine <i>(A Little Too Sociable)</i> and spawn her in the Garden."
+  },
+  "03162": {
+    "name": "His Domain",
+    "text": "<b>Forced</b> - When you would place an enemy beneath the act deck: Shuffle that enemy into the encounter deck, instead.",
+    "backName": "Masks, Masks, Masks",
+    "backText": "Each investigator who has not resigned is defeated. <i>(If any investigators resigned, those investigators may immediately advance to act 4b.)</i>"
+  },
+  "03163": {
+    "name": "Arkham Asylum",
+    "backName": "Key to the Basement",
+    "backText": "The investigators must decide (choose one):\n- Any investigator tests [combat] (4) to intimidate her into giving you the keys. If successful, advance to act 2a. If failed, you must choose an option you have yet to choose.\n- Any investigator tests [agility] (4) to steal the keys from her. If successful, advance to act 2a. If failed, you must choose an option you have yet to choose.\n- Any investigator tests [intellect] (4) to persuade her to give you the keys. If successful, advance to act 2a. If failed, you must choose an option you have yet to choose.\n- You knock her over and grab the keys. Remember that \"you took the keys by force.\" Advance to act 2a."
+  },
+  "03164": {
+    "name": "\"The Really Bad Ones\" (v. I)",
+    "text": "Ignore the text on the unrevealed side of [[Arkham Asylum]] locations.\n<b>Objective</b> - Find the Patient Confinement location with Daniel Chesterfield. <i>(You will be instructed when to advance.)</i>",
+    "backName": "Three Geese in a Flock",
+    "backText": "Choose an investigator at Patient Confinement <i>(Daniel's Cell)</i>. Put the set-aside Daniel Chesterfield card (asset side faceup) into play under that investigator's control.\nShuffle the encounter discard pile and each enemy beneath the act deck into the encounter deck."
+  },
+  "03165": {
+    "name": "\"The Really Bad Ones\" (v. II)",
+    "text": "Ignore the text on the unrevealed side of [[Arkham Asylum]] locations.\n<b>Objective</b> - Find the Patient Confinement location with Daniel Chesterfield. <i>(You will be instructed when to advance.)</i>",
+    "backName": "Daniel's Warning",
+    "backText": "Spawn the set-aside Daniel Chesterfield (enemy side faceup) at Patient Confinement <i>(Daniel's Cell)</i>."
+  },
+  "03166": {
+    "name": "Planning the Escape",
+    "text": "Ignore the text on the unrevealed side of [[Arkham Asylum]]locations.\n<b>Objective</b> - If investigators have performed 4 of the following, you must advance.\n- \"Know the guards' patrols.\"\n- \"Set a fire in the kitchen.\"\n- \"Incited a fight amongst the patients.\"\n- \"Released a dangerous patient.\"\n- \"Recalled the way out.\"\n- \"Distracted the guards.\"",
+    "backName": "A Way Out",
+    "backText": "Shuffle the encounter discard pile and each enemy beneath the act deck into the encounter deck.\nIf at least 3 [[Monster]] enemies were shuffled into the encounter deck by this effect, the investigator with the lowest [willpower] discards cards from the top of the encounter deck until a [[Monster]] enemy is discarded and draws that enemy."
+  },
+  "03167": {
+    "name": "No Asylum",
+    "text": "Ignore the text on the unrevealed side of <i>Arkham Asylum </i>locations.\nGarden gains: \"[action] If there is no ready enemy in the Garden: <b>Resign.</b> Finally, a way out!\"\n<b>Objective</b> - If each undefeated investigator has resigned, advance.",
+    "backName": "Escape",
+    "backText": "<b>If \"you took the keys by force,\" read the following:</b>\n<i>As you attempt to escape, you are spotted by the nurse you attacked earlier, leading a group of guards. \"There they are! Quickly, restrain them!\"</i>\n<b>(→R2)</b>\n\n<b>Otherwise, read the following:</b>\n<i>The guards are too busy controlling the situation and restraining the asylum's patients to notice your escape.</i>\n<b>(→R3)</b>"
+  },
+  "03168": {
+    "name": "Asylum Halls",
+    "subname": "Western Patient Wing",
+    "traits": "Arkham Asylum.",
+    "text": "[reaction] After you defeat a [[Lunatic]] enemy at this location: Draw 1 card."
+  },
+  "03169": {
+    "name": "Asylum Halls",
+    "subname": "Western Patient Wing",
+    "traits": "Arkham Asylum.",
+    "text": "Each [[Lunatic]] enemy at this location gets +1 horror value."
+  },
+  "03170": {
+    "name": "Asylum Halls",
+    "subname": "Eastern Patient Wing",
+    "traits": "Arkham Asylum.",
+    "text": "[action] Take 1 horror: <b>Evade.</b> Automatically evade a [[Lunatic]] enemy at this location."
+  },
+  "03171": {
+    "name": "Asylum Halls",
+    "subname": "Eastern Patient Wing",
+    "traits": "Arkham Asylum.",
+    "text": "<b>Forced</b> - After you end your turn at this location: Take 1 horror and gain 2 resources."
+  },
+  "03172": {
+    "name": "Kitchen",
+    "traits": "Arkham Asylum.",
+    "text": "[action] If there are no clues on the Kitchen: Test [willpower] (2). If you succeed, remember that you \"set a fire in the kitchen.\"",
+    "backText": "The door leading into the Kitchen is locked. You cannot enter the Kitchen."
+  },
+  "03173": {
+    "name": "Mess Hall",
+    "traits": "Arkham Asylum.",
+    "text": "<b>Forced</b> - After you successfully investigate the Mess Hall: Choose and discard 1 card from your hand."
+  },
+  "03174": {
+    "name": "Infirmary",
+    "traits": "Arkham Asylum.",
+    "text": "[action]: Heal 1 damage and take 1 direct horror, or heal 1 horror and take 1 direct damage. (Limit once per round.)"
+  },
+  "03175": {
+    "name": "Yard",
+    "traits": "Arkham Asylum.",
+    "text": "While you are investigating the Yard, it gets +1 shroud for each horror on you.\n[action] If there are no clues on Yard, take 1 damage: Remember that you \"incited a fight amongst the patients.\""
+  },
+  "03176": {
+    "name": "Garden",
+    "traits": "Arkham Asylum.",
+    "text": "[action] If there are no clues on Garden: Test [agility] (2). If you succeed, remember that you \"distracted the guards.\"",
+    "backText": "The gate leading into the Garden is locked. You cannot enter the Garden."
+  },
+  "03177": {
+    "name": "Basement Hall",
+    "traits": "Arkham Asylum.",
+    "text": "<b>Forced</b> - After the Basement Hall is revealed: Put the 4 set-aside Patient Confinement locations into play.",
+    "backText": "The door leading into the Basement Hall is locked. You cannot enter the Basement Hall."
+  },
+  "03178": {
+    "name": "Patient Confinement",
+    "subname": "Daniel's Cell",
+    "text": "<b>Forced</b> - After Patient Confinement is revealed: Advance to act 2b.",
+    "backText": "As an additional cost to enter Patient Confinement, you must spend 1 clue."
+  },
+  "03179": {
+    "name": "Patient Confinement",
+    "subname": "Occupied Cell",
+    "text": "[action]: Test [combat] (2) to release the patient here from his bonds. If you succeed, he howls like a wolf and tears off through the basement; remember that you \"released a dangerous patient.\"",
+    "backText": "As an additional cost to enter Patient Confinement, you must spend 1 clue."
+  },
+  "03180": {
+    "name": "Patient Confinement",
+    "subname": "Dreary Cell",
+    "text": "[action]: Test [intellect] (2) to speak to the patient here. If you succeed, you are able to interpret her ravings; remember that you \"know the guards' patrols.\"",
+    "backText": "As an additional cost to enter Patient Confinement, you must spend 1 clue."
+  },
+  "03181": {
+    "name": "Patient Confinement",
+    "subname": "Familiar Cell",
+    "text": "[action]: Test [willpower] (X), where X is the amount of horror on you. If you succeed, you recognize the room; remember that you \"recalled the way out.\"",
+    "backText": "As an additional cost to enter Patient Confinement, you must spend 1 clue."
+  },
+  "03182a": {
+    "name": "Daniel Chesterfield",
+    "subname": "He’s Not Doing All Too Well",
+    "traits": "Ally. Lunatic.",
+    "text": "[fast] Exhaust Daniel Chesterfield: Give control of him to another investigator at your location.\n<b>Forced</b> - When you take horror, if at least 1 of that horror is not assigned to Daniel Chesterfield: Take 1 damage.\n<b>Forced</b> - If Daniel Chesterfield leaves play: Remove him from the game."
+  },
+  "03182b": {
+    "name": "Daniel Chesterfield",
+    "subname": "…Or At Least, What's Left of Him",
+    "traits": "Humanoid. Lunatic. Elite.",
+    "text": "<b>Prey</b> - Highest [combat].\n[action] If you control Clasp of Black Onyx: <b>Parley.</b> You show Daniel the clasp, and he staggers backward, collapsing into a motionless husk. Add him to the victory display."
+  },
+  "03183": {
+    "name": "Asylum Gorger",
+    "traits": "Monster. Abomination.",
+    "text": "<b>Spawn</b> - Basement Halls.\nHunter.\nAsylum Gorger cannot make attacks of opportunity, and cannot attack during the same phase it moved from its hunter keyword."
+  },
+  "03184": {
+    "name": "Mad Patient",
+    "traits": "Humanoid. Lunatic.",
+    "text": "<b>Spawn</b> - Nearest Asylum Halls.\n<b>Prey</b> - Most remaining sanity.\n<b>Forced</b> - When you attack Mad Patient: Take 1 horror."
+  },
+  "03185": {
+    "name": "Straitjacket",
+    "traits": "Item. Clothing.",
+    "text": "<b>Revelation</b> - If there is no copy of Straitjacket in your threat area, put Straitjacket into play in your threat area as an asset that takes up a body slot and 2 hand slots. Return each asset in those slots to your hand. This card cannot leave play except by the ability below.\n[action] [action]: Discard Straitjacket."
+  },
+  "03186": {
+    "name": "Gift of Madness",
+    "subname": "Pity",
+    "traits": "Terror.",
+    "text": "Peril. Hidden.\n<b>Revelation</b> - Secretly add Gift of Madness (Pity) to your hand.\nYou cannot attack [[Lunatic]] enemies.\n[action]: Randomly choose 1 enemy from among the set-aside [[Monster]] enemies and place it beneath the act deck without looking at it. Discard Gift of Madness (Pity) from your hand."
+  },
+  "03187": {
+    "name": "Gift of Madness",
+    "subname": "Misery",
+    "traits": "Terror.",
+    "text": "Peril. Hidden.\n<b>Revelation</b> - Secretly add Gift of Madness (Misery) to your hand.\nYou cannot trigger [action] abilities on locations.\n[action]: Randomly choose 1 enemy from among the set-aside [[Monster]] enemies and place it beneath the act deck without looking at it. Discard Gift of Madness (Misery) from your hand."
+  },
+  "03188": {
+    "name": "Walls Closing In",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Test [willpower] (X), where X is the shroud value of your location. If you fail, you must either take 1 horror for each point you failed by, or randomly choose 1 enemy from among the set-aside [[Monster]] enemies and place it beneath the act deck without looking at it."
   }
 }

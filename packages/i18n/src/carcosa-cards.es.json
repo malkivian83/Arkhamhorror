@@ -54,6 +54,16 @@
     "traits": "Obstáculo.",
     "text": "<b>Revelación</b> - Vincula esta carta al Lugar que tenga más pistas y que no tenga una Puerta cerrada con llave vinculada.\nEl Lugar no puede ser investigado.\n[action]: Realiza una prueba de [combat] (4) para romper la puerta o de [agility] (4) para forzar la cerradura. Si tienes éxito, descarta la Puerta cerrada con llave."
   },
+  "01175": {
+    "name": "Byakhee chillador",
+    "traits": "Monstruo. Byakhee.",
+    "text": "<b>Presa</b> - Menor cordura restante.\nCazador.\nMientras esté enfrentado a un investigador al que le queden 4 puntos de cordura o menos, el Byakhee chillador recibe +1 a combate y +1 a evitar."
+  },
+  "01176": {
+    "name": "El Signo Amarillo",
+    "traits": "Augurio.",
+    "text": "<b>Revelación<b> - Realiza una prueba de [willpower] (4). Si fracasas, recibe 2 puntos de horror y busca en tu mazo una Debilidad [[Locura]]. Roba esa carta y baraja tu mazo."
+  },
   "03043": {
     "name": "Se cierra el telón",
     "text": "<b>Fácil/Normal</b>\n[skull] -1, o bien -3 si tienes 3 o más puntos de horror.\n[cultist] [tablet] [elder_thing] -4. Si tu Lugar tiene al menos 1 punto de horror, recibes 1 punto de horror <i>(de la reserva de fichas)</i>. Si tu Lugar no tiene horror, en lugar de eso coloca 1 punto de horror sobre él.",
@@ -347,6 +357,16 @@
     "traits": "Terror.",
     "text": "Oleada.\n<b>Revelación</b> - Si tienes al menos 3 puntos de horror, pierde 1 acción."
   },
+  "03088": {
+    "name": "Bestia de Aldebarán",
+    "traits": "Monstruo. Élite.",
+    "text": "Descomunal.\nAl asignar el daño y el horror del ataque de la Bestia de Aldebarán, debes asignar tanto daño y horror como sea posible a una misma carta antes de asignárselos a otra carta."
+  },
+  "03089": {
+    "name": "Semilla de Hali",
+    "traits": "Monstruo.",
+    "text": "<b>Presa</b> - Más horror.\nRepresalia.\n<b>Obligado</b> - Después de que evites con éxito a la Semilla de Hali por 2 o menos: Recibe 1 punto de horror."
+  },
   "03090": {
     "name": "Surgen estrellas negras",
     "traits": "Augurio.",
@@ -590,5 +610,184 @@
     "name": "La búsqueda de la secta",
     "traits": "Maquinación.",
     "text": "<b>Revelación</b> - Si hay un Enemigo [[Sectario]] en juego que tenga perdición, mueve toda la perdición de cada Enemigo [[Sectario]] al plan en curso. Este efecto puede hacer que el plan en curso avance. Si no hay Enemigos [[Sectario]] en juego que tengan perdición, busca en el mazo y la pila de descartes de Encuentros un Enemigo [[Sectario]] y róbalo. Baraja el mazo de Encuentros."
+  },
+  "03159": {
+    "name": "El juramento inconfesable",
+    "text": "<b>Fácil/Normal</b>\n[skull]: -1. Si fracasas, elige un Enemigo al azar entre los Enemigos [[Monstruo]] puestos aparte y colócalo bajo el mazo de Acto sin mirarlo.\n[cultist]: -X. X es la cantidad de horror que tengas.\n[tablet]: -X. X es el valor de velo básico de tu Lugar.\n[elder_thing]: 0. Elige un Enemigo al azar de entre los Enemigos [[Monstruo]] puestos aparte y colócalo bajo el mazo de Acto sin mirarlo o bien esta prueba fracasa automáticamente.",
+    "backText": "<b>Difícil/Experto</b>\n[skull]: Revela otra ficha. Si fracasas, elige un Enemigo al azar entre los Enemigos [[Monstruo]] puestos aparte y colócalo bajo el mazo de Acto sin mirarlo. Límite de una vez por prueba.\n[cultist]: -X. X es la cantidad de horror que tengas. Si fracasas, recibe 1 punto de horror.\n[tablet]: -X. X es el valor de velo básico de tu Lugar. Si fracasas, recibe 1 punto de horror.\n[elder_thing]: 0. Elige un Enemigo al azar de entre los Enemigos [[Monstruo]] puestos aparte y colócalo bajo el mazo de Acto sin mirarlo o bien esta prueba fracasa automáticamente."
+  },
+  "03160": {
+    "name": "Encerrados dentro",
+    "backName": "Los pacientes",
+    "backText": "Añade la pila de descartes de Encuentros y todos los Enemigos [[Lunático]] puestos aparte al mazo de Encuentros y barájalo.\nEl investigador jefe debe elegir un Enemigo al azar entre los Enemigos [[Monstruo]] puestos aparte y colocarlo bajo el mazo de Acto sin mirarlo."
+  },
+  "03161": {
+    "name": "Descenso tortuoso",
+    "backName": "El signo Amarillo",
+    "backText": "El investigador jefe debe elegir un Enemigo al azar entre todos los Enemigos [[Monstruo]] puestos aparte, añadirlo al mazo de Encuentros sin mirarlo y barajar el mazo.\nComprueba el registro de campaña. Si Constance Dumaine no aparece en la sección \"VIP muertos\", busca en tu colección a Constance Dumaine [[(Sociable de más)]] y haz que aparezca en el Jardín."
+  },
+  "03162": {
+    "name": "Su dominio",
+    "text": "<b>Obligado</b> - Cuando fueses a colocar un Enemigo bajo el mazo de Acto: En lugar de eso, añade ese Enemigo al mazo de Encuentros y barájalo.",
+    "backName": "Máscaras, máscaras, máscaras",
+    "backText": "Cada investigador que no haya desistido queda derrotado. [[Si cualquier investigador desistió, esos investigadores pueden avanzar inmediatamente al acto 4b.]]"
+  },
+  "03163": {
+    "name": "Manicomio Arkham",
+    "backName": "La llave del sótano",
+    "backText": "Los investigadores deben decidir (elige una opción):\n- Cualquier investigador realiza una prueba de [combat] (4) para intimidarla y que os dé las llaves. Si tiene éxito, haz avanzar el acto al acto 2a. Si fracasa, debéis elegir una opción que no hayáis elegido aún.\n- Cualquier investigador realiza una prueba de [agility] (4) para robarle las llaves. Si tiene éxito, haz avanzar el acto al acto 2a. Si fracasa, debéis elegir una opción que no hayáis elegido aún.\n- Cualquier investigador realiza una prueba de [intellect] (4) para persuadirla de que os dé las llaves. Si tiene éxito, haz avanzar el acto al acto 2a. Si fracasa, debéis elegir una opción que no hayáis elegido aún.\n- La tiráis al suelo y cogéis las llaves. Recuerda que \"los investigadores cogieron las llaves por la fuerza\". Haz avanzar el acto al acto 2a."
+  },
+  "03164": {
+    "name": "\"Los realmente graves\" (v. I)",
+    "text": "Ignora el texto de los lados sin revelar de los Lugares [[Manicomio Arkham]].\n<b>Objetivo</b> - Encuentra el Lugar Aislamiento de pacientes donde está Daniel Chesterfield [[(Se indicará cuándo avanzar)]].",
+    "backName": "Tres gansos en bandada",
+    "backText": "Elige un investigador que esté en el Aislamiento de pacientes [[(Celda de Daniel)]]. Pon en juego la carta Daniel Chesterfield puesta aparte, con el lado de Apoyo boca arriba, bajo el control de ese investigador.\nAñade la pila de descartes de Encuentros y todos los Enemigos que haya bajo el mazo de Acto al mazo de Encuentros y barájalo."
+  },
+  "03165": {
+    "name": "\"Los realmente graves\" (v. II)",
+    "text": "Ignora el texto de los lados sin revelar de los Lugares [[Manicomio Arkham]].\n<b>Objetivo</b> - Encuentra el Lugar Aislamiento de pacientes donde está Daniel Chesterfield [[(Se indicará cuándo avanzar)]].",
+    "backName": "La advertencia de Daniel",
+    "backText": "Haz aparecer la carta Daniel Chesterfield puesta aparte con el lado Enemigo boca arriba, en el Aislamiento de pacientes [[(Celda de Daniel)]]."
+  },
+  "03166": {
+    "name": "Planeando la huida",
+    "text": "Ignora el texto de los lados sin revelar de los Lugares [[Manicomio Arkham]].\n<b>Objetivo</b> - Si los investigadores han realizado 4 de las siguientes cosas, debéis avanzar.\n- Conocer las patrullas de los guardias.\n- Provocar un incendio en la cocina.\n- Incitar una pelea entre los pacientes.\n- Soltar a un paciente peligroso.\n- Recordar el camino de salida.\n- Distraer a los guardias.",
+    "backName": "Una forma de escapar",
+    "backText": "Añade la pila de descartes de Encuentros y todos los Enemigos que haya bajo el mazo de Acto al mazo de Encuentros y barájalo.\nSi se añadieron al menos 3 Enemigos [[Monstruo]] al mazo de Encuentros por este efecto, el investigador con menos [willpower] descarta cartas de la parte superior del mazo de Encuentros hasta que sea descartado un Enemigo [[Monstruo]] y roba ese Enemigo."
+  },
+  "03167": {
+    "name": "Sin salvación",
+    "text": "Ignora el texto de los lados sin revelar de los Lugares [[Manicomio Arkham]].\nEl jardín obtiene: \"[action] Si no hay ningún Enemigo preparado en el Jardín: <b>Desistir.</b> ¡Por fin, una forma de escapar!\n<b>Objetivo</b> - Si todos los investigadores no derrotados han desistido, haz avanzar el acto.",
+    "backName": "Fuga",
+    "backText": "<b>Si \"los investigadores cogieron las llaves por la fuerza\", lee lo siguiente:</b>\n[[Cuando intentas escapar, aparece la enfermera a la que atacaste antes a la cabeza de un grupo de guardias y te descubre: -¡Ahí está! ¡Rápido, detenedlo!]]\n<b>(→R2)</b>\n\n<hr><b>Si no es así, lee lo siguiente:</b>\n[[Los guardias están demasiado ocupados controlando la situación y reduciendo a los pacientes del manicomio como para darse cuenta de tu fuga]].\n<b>(→R3)</b>"
+  },
+  "03168": {
+    "name": "Pasillos del manicomio",
+    "subname": "Ala de pacientes oeste",
+    "traits": "Manicomio Arkham.",
+    "text": "[reaction] Después de que derrotes a un Enemigo [[Lunático]] que esté en este Lugar: Roba 1 carta."
+  },
+  "03169": {
+    "name": "Pasillos del manicomio",
+    "subname": "Ala de pacientes oeste",
+    "traits": "Manicomio Arkham.",
+    "text": "Cada Enemigo [[Lunático]] que esté en este Lugar recibe +1 a su valor de horror."
+  },
+  "03170": {
+    "name": "Pasillos del manicomio",
+    "subname": "Ala de pacientes este",
+    "traits": "Manicomio Arkham.",
+    "text": "[action] Recibe 1 punto de horror: <b>Evitar.</b> Evita automáticamente a un Enemigo [[Lunático]] que esté en este Lugar."
+  },
+  "03171": {
+    "name": "Pasillos del manicomio",
+    "subname": "Ala de pacientes este",
+    "traits": "Manicomio Arkham.",
+    "text": "<b>Obligado</b> - Después de que termines tu turno en este Lugar: Recibe 1 punto de horror y obtén 2 recursos."
+  },
+  "03172": {
+    "name": "Cocina",
+    "traits": "Manicomio Arkham.",
+    "text": "[action] Si no hay pistas en la Cocina: Realiza una prueba de [willpower] (2). Si tienes éxito, recuerda que \"los investigadores provocaron un incendio en la cocina.\"",
+    "backText": "La puerta que da acceso a la Cocina está cerrada con llave. No puedes entrar en la Cocina."
+  },
+  "03173": {
+    "name": "Comedor",
+    "traits": "Manicomio Arkham.",
+    "text": "<b>Obligado</b> - Después de que investigues con éxito en el Comedor: Elige y descarta 1 carta de tu mano."
+  },
+  "03174": {
+    "name": "Enfermería",
+    "traits": "Manicomio Arkham.",
+    "text": "[action]: Cúrate 1 punto de daño y recibe 1 punto de horror directo, o bien cúrate un punto de horror y recibe 1 punto de daño directo. Límite de una vez por ronda."
+  },
+  "03175": {
+    "name": "Patio",
+    "traits": "Manicomio Arkham.",
+    "text": "Mientras estés investigando el Patio, recibe +1 a velo por cada punto de horror que tengas.\n[action] Si no hay pistas en el Patio, recibe 1 punto de daño: Recuerda que \"los investigadores incitaron una pelea entre los pacientes\"."
+  },
+  "03176": {
+    "name": "Jardín",
+    "traits": "Manicomio Arkham.",
+    "text": "[action] Si no hay pistas en el Jardín: Realiza una prueba de [agility] (2). Si tienes éxito, recuerda que \"los investigadores distrajeron a los guardias\".",
+    "backText": "La puerta que da acceso al Jardín está cerrada con llave. No puedes entrar en el Jardín."
+  },
+  "03177": {
+    "name": "Pasillo del sótano",
+    "traits": "Manicomio Arkham.",
+    "text": "<b>Obligado</b> - Después de que el Pasillo del sótano sea revelado: Pon en juego los 4 Lugares Aislamiento de pacientes puestos aparte.",
+    "backText": "La puerta que da acceso al Pasillo del sótano está cerrada con llave. No puedes entrar en el Pasillo del sótano."
+  },
+  "03178": {
+    "name": "Aislamiento de pacientes",
+    "subname": "Celda de Daniel",
+    "traits": "Manicomio Arkham.",
+    "text": "<b>Obligado</b> - Después de que el Aislamiento de pacientes sea revelado: Haz avanzar el acto al acto 2b.",
+    "backText": "Como coste adicional para entrar en el Aislamiento de pacientes, debes gastar 1 pista."
+  },
+  "03179": {
+    "name": "Aislamiento de pacientes",
+    "subname": "Celda ocupada",
+    "traits": "Manicomio Arkham.",
+    "text": "[action]: Realiza una prueba de [combat] (2) para desatar las ligaduras de este paciente. Si tienes éxito, logras interpretar sus delirios; recuerda que \"los investigadores soltaron a un paciente peligroso\".",
+    "backText": "Como coste adicional para entrar en el Aislamiento de pacientes, debes gastar 1 pista."
+  },
+  "03180": {
+    "name": "Aislamiento de pacientes",
+    "subname": "Celda deprimente",
+    "traits": "Manicomio Arkham.",
+    "text": "[action]: Realiza una prueba de [intellect] (2) para hablar con esta paciente. Si tienes éxito, logras interpretar sus delirios; recuerda que \"los investigadores conocen las patrullas de los guardias\".",
+    "backText": "Como coste adicional para entrar en el Aislamiento de pacientes, debes gastar 1 pista."
+  },
+  "03181": {
+    "name": "Aislamiento de pacientes",
+    "subname": "Celda Familiar",
+    "traits": "Manicomio Arkham.",
+    "text": "[action]: Realiza una prueba de [willpower] (X), donde X es la cantidad de horror que tienes. Si tienes éxito, reconoces la habitación; recuerda que \"los investigadores recordaron el camino de salida\".",
+    "backText": "Como coste adicional para entrar en el Aislamiento de pacientes, debes gastar 1 pista."
+  },
+  "03182a": {
+    "name": "Daniel Chesterfield",
+    "subname": "No está demasiado bien",
+    "traits": "Aliado. Lunático.",
+    "text": "[free] Agota a Daniel Chesterfield: Dale su control a otro investigador que esté en tu Lugar.\n<b>Obligado</b> - Cuando recibas horror, si no se asigna al menos un 1 punto de horror a Daniel Chesterfield: Recibes 1 punto de daño.\n<b>Obligado</b> - Si Daniel Chesterfield abandona el juego: Retíralo de la partida."
+  },
+  "03182b": {
+    "name": "Daniel Chesterfield",
+    "subname": "…O al menos, lo que queda de él",
+    "traits": "Humanoide. Lunático. Élite.",
+    "text": "<b>Presa</b> - Mayor [combat].\n[action] Si controlas el Broche de ónice negro: <b>Negociar.</b> Le enseñas el broche a Daniel, y éste se tambalea hacia atrás y se desploma hecho un ovillo y sin moverse. Añádelo a la zona de victoria."
+  },
+  "03183": {
+    "name": "Glotón del manicomio",
+    "traits": "Monstruo. Abominación.",
+    "text": "<b>Aparición</b> - Pasillo del sótano.\nCazador.\nEl Glotón del manicomio no puede realizar ataques de oportunidad y no puede atacar durante la misma fase en la que se moviera por su palabra clave Cazador."
+  },
+  "03184": {
+    "name": "Paciente loco",
+    "traits": "Humanoide. Lunático.",
+    "text": "<b>Aparición</b> - Pasillos del manicomio más cercanos.\n<b>Presa</b> - Mayor cordura restante.\n<b>Obligado</b> - Cuando ataques al Paciente loco: Recibe 1 punto de horror."
+  },
+  "03185": {
+    "name": "Camisa de fuerza",
+    "traits": "Objeto. Ropa.",
+    "text": "<b>Revelación</b> - Si no hay ninguna copia de Camisa de fuerza en tu zona de amenaza, pon en juego la Camisa de fuerza en tu zona de amenaza como un Apoyo que ocupa 1 espacio de cuerpo y dos espacios de mano. Devuelve a tu mano todos los Apoyos que estén en esos espacios. Esta carta no puede abandonar el juego excepto mediante la siguiente capacidad:\n[action] [action]: Descarta la Camisa de fuerza."
+  },
+  "03186": {
+    "name": "Regalo de la locura",
+    "subname": "Piedad",
+    "traits": "Terror.",
+    "text": "Peligro. Oculto.\n<b>Revelación</b> - Añade Regalo de la locura (Piedad) a tu mano en secreto.\nNo puedes atacar a Enemigos [[Lunático]].\n[action]: Elige 1 Enemigo al azar entre los Enemigos [[Monstruo]] puestos aparte y colócalo bajo el mazo de Acto sin mirarlo. Descarta Regalo de la locura (Piedad) de tu mano."
+  },
+  "03187": {
+    "name": "Regalo de la locura",
+    "subname": "Miseria",
+    "traits": "Terror.",
+    "text": "Peligro. Oculto.\n<b>Revelación</b> - Añade Regalo de la locura (Miseria) a tu mano en secreto.\nNo puedes activar las capacidades [action] de los Lugares,\n[action]: Elige 1 Enemigo al azar entre los Enemigos [[Monstruo]] puestos aparte y colócalo bajo el mazo de Acto sin mirarlo. Descarta Regalo de la locura (miseria) de tu mano."
+  },
+  "03188": {
+    "name": "Las paredes se cierran",
+    "traits": "Terror.",
+    "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (X), donde X es el valor de velo de tu Lugar. Si fracasas, debes recibir 1 punto de horror por cada punto que te falte para tener éxito, o biem elegir 1 Enemigo al azar entre los Enemigos [[Monstruo]] puestos aparte y colocarlo bajo el mazo de Acto sin mirarlo."
   }
 }
