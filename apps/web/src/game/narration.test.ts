@@ -6,10 +6,10 @@ import evidence from '../../../../docs-proyecto/evidencias/carcosa-narracion.jso
 import { allNarrations, storyNarration } from './narration'
 
 describe('narraciones de los textos de historia', () => {
-  it('Carcosa has six Spanish recordings with the verified Carmelo voice and matching transcripts', () => {
+  it('Carcosa scenarios I–III have 30 Spanish recordings with the verified Carmelo voice and matching transcripts', () => {
     expect(evidence.voiceId).toBe('5egO01tkUjEzu7xSSE8M')
     expect(evidence.voiceName).toMatch(/^Carmelo\b/)
-    expect(evidence.files).toHaveLength(6)
+    expect(evidence.files).toHaveLength(30)
     const transcripts = JSON.parse(
       readFileSync(
         fileURLToPath(new URL('../../public/local-assets/story/es.json', import.meta.url)),

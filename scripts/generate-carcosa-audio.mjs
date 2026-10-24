@@ -33,6 +33,13 @@ const keys = {
   'story.theLastKing.sickeningHaruko': 'the-last-king-sickening-haruko.mp3',
   'story.theLastKing.sickeningSebastien': 'the-last-king-sickening-sebastien.mp3',
   'story.theLastKing.sickeningAshleigh': 'the-last-king-sickening-ashleigh.mp3',
+  'story.echoes.intro': 'echoes-of-the-past-intro.mp3',
+  'story.echoes.sebastien': 'echoes-of-the-past-sebastien.mp3',
+  'story.echoes.noResolution': 'echoes-of-the-past-no-resolution.mp3',
+  'story.echoes.resolution1': 'echoes-of-the-past-resolution1.mp3',
+  'story.echoes.resolution2': 'echoes-of-the-past-resolution2.mp3',
+  'story.echoes.resolution3': 'echoes-of-the-past-resolution3.mp3',
+  'story.echoes.resolution4': 'echoes-of-the-past-resolution4.mp3',
 }
 const settings = {
   model_id: 'eleven_multilingual_v2',

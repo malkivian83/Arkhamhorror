@@ -60,6 +60,198 @@
       "inputHash": "31a594bf45878cc04b13c7cb09cc223fd5b95bc7dd0d03c9964be9c40a1cd444",
       "sha256": "3bd522feb9cb95c2179dcbdcc23508cab54845c84c090bbb385611baaaf5827b",
       "bytes": 2629842
+    },
+    {
+      "key": "story.theLastKing.intro",
+      "file": "the-last-king-intro.mp3",
+      "characters": 344,
+      "inputHash": "bc7926b4b9ec6810e15faf3c7030aa1acecdac058c1d81e851672fc915a47343",
+      "sha256": "f40a7964302072138ab8212936e0e4eb94e04b1dc6b8d3409a2531f2302b3406",
+      "bytes": 432630
+    },
+    {
+      "key": "story.theLastKing.resolution1",
+      "file": "the-last-king-resolution1.mp3",
+      "characters": 725,
+      "inputHash": "a7320756b4c68dc76475d9082eac53bd68c1978cf977377ccc69d360665ee602",
+      "sha256": "9f9666a8238f6b5e3bc0ed981d9e4d02cc398f6892b6754239835e4ba52591db",
+      "bytes": 957169
+    },
+    {
+      "key": "story.theLastKing.resolution2",
+      "file": "the-last-king-resolution2.mp3",
+      "characters": 1127,
+      "inputHash": "cde51a455a5fbb143031c3da6eddf5cec629094f7049540e3624bd71790c1ab3",
+      "sha256": "5ddfe0efd9f9a9cf2218016ca7de328275350d8d82ec235febbf6e3d7c60eba0",
+      "bytes": 1451615
+    },
+    {
+      "key": "story.theLastKing.resolution3",
+      "file": "the-last-king-resolution3.mp3",
+      "characters": 833,
+      "inputHash": "939764a9b33c683f68bd06ebadb37e9fb83958fdb6561b10adb3b5b3f6a692b5",
+      "sha256": "2157c2eca0f332d02fadf923c05550bf51e81722617a3dd57ba17d53326a2305",
+      "bytes": 1095514
+    },
+    {
+      "key": "story.theLastKing.lunacysReward1",
+      "file": "lunacys-reward-1.mp3",
+      "characters": 1170,
+      "inputHash": "a516b42fec01bc6742eeca51d3c5a6da8185b43a96ecb7a7c69f447a669e3e13",
+      "sha256": "75632b6428a571ddb743f56328d948559b3a281bbe3fdfa12f892b451541425c",
+      "bytes": 1520578
+    },
+    {
+      "key": "story.theLastKing.lunacysReward2",
+      "file": "lunacys-reward-2.mp3",
+      "characters": 522,
+      "inputHash": "e1d58529bd3b129f9ba5bc27e3e3da5431df708b5f597646aefe158d0a55d748",
+      "sha256": "6fb8cc7a7560c4e09430ee6b6dabd1f06b615a106a2559e8bc4541027df09b54",
+      "bytes": 701796
+    },
+    {
+      "key": "story.theLastKing.lunacysReward3",
+      "file": "lunacys-reward-3.mp3",
+      "characters": 874,
+      "inputHash": "030438707c63dc59a53b7a578338a7c1a1b8728a40cc42d1e4d2868daabbcca6",
+      "sha256": "61f7233074aeaa6f1f99df6970a3146170d9168f7ca5d53b2ca82ddb91ecf557",
+      "bytes": 1102201
+    },
+    {
+      "key": "story.theLastKing.interviewConstance",
+      "file": "the-last-king-interview-constance.mp3",
+      "characters": 718,
+      "inputHash": "e20183c802b5e56944fa6745de9e2085068e9303ba2478055f34ea4f004765ef",
+      "sha256": "224e0ef54df76bb92ebb233f3d2cef0ffd0a96d9e851a801c34a487497030dc4",
+      "bytes": 950482
+    },
+    {
+      "key": "story.theLastKing.interviewJordan",
+      "file": "the-last-king-interview-jordan.mp3",
+      "characters": 858,
+      "inputHash": "6888fbe0a67534311e7cc42d9026149a0253cdbbc4ea2a4fbcab4e5422c79d82",
+      "sha256": "44b0837b45c87956a9896650652cc384fb2ca11a381d76fe1af9ca43e533665c",
+      "bytes": 1135638
+    },
+    {
+      "key": "story.theLastKing.interviewHaruko",
+      "file": "the-last-king-interview-haruko.mp3",
+      "characters": 933,
+      "inputHash": "18262442eef63ade5bc77784eb97ca09e38395f6420c2d2132bfe0756d9c6982",
+      "sha256": "179b4abcd1e8f5abcdad3b6ac5eb40f87c2aa2803f14baf8ace68c36dde862d6",
+      "bytes": 1140235
+    },
+    {
+      "key": "story.theLastKing.interviewSebastien",
+      "file": "the-last-king-interview-sebastien.mp3",
+      "characters": 823,
+      "inputHash": "97b88f8e11d4dc69690b6aa57c5baa575ecf644f889243f8a91213844baa0bf7",
+      "sha256": "92ab5c3f4a422ced6b48a504cc1e0eff2d70d8bb8f4a6e7b4be91134b26317ae",
+      "bytes": 1075452
+    },
+    {
+      "key": "story.theLastKing.interviewAshleigh",
+      "file": "the-last-king-interview-ashleigh.mp3",
+      "characters": 466,
+      "inputHash": "57dc8a00917de0be0b959928de1a342737d3d948c41919f2a3610fd9dd2ccaf3",
+      "sha256": "e9f65c784a0722bc8b19ace8b694fa22faea317df94acf0bd966a66c6777ced5",
+      "bytes": 666687
+    },
+    {
+      "key": "story.theLastKing.sickeningConstance",
+      "file": "the-last-king-sickening-constance.mp3",
+      "characters": 287,
+      "inputHash": "6ec168c97e7a0d8e8b9c4b55214d1b51d00daf52336d51436dc1aac668ae71a2",
+      "sha256": "979e7ac33c080e1aa07f8ad900dbe39adf948796bdd39108d60504356e855813",
+      "bytes": 379967
+    },
+    {
+      "key": "story.theLastKing.sickeningJordan",
+      "file": "the-last-king-sickening-jordan.mp3",
+      "characters": 350,
+      "inputHash": "77826cbdd83341ff1269526ee0659128e92c9e80190dbb2a3d42c84b3c0df2f3",
+      "sha256": "926402eae1ea457431d461bd14e10862d86907dbb5295da291962ea9f4d2cb99",
+      "bytes": 450603
+    },
+    {
+      "key": "story.theLastKing.sickeningHaruko",
+      "file": "the-last-king-sickening-haruko.mp3",
+      "characters": 341,
+      "inputHash": "4b64066908e281bfdc846a0581f97cb5135d5286f4bea2456002104c3b372064",
+      "sha256": "5ab478891eae7a9fba2d72abdd7a59214fec9c17f173b110129d582fe193d840",
+      "bytes": 429705
+    },
+    {
+      "key": "story.theLastKing.sickeningSebastien",
+      "file": "the-last-king-sickening-sebastien.mp3",
+      "characters": 385,
+      "inputHash": "05043c11cefe0c56886da79c00fa82a6dc75e6302f8ce9c0aea7ea94a2094a02",
+      "sha256": "b65c161ba609790c641c5cecbbbeb085d529a27792f25f5c16c345b635416520",
+      "bytes": 512878
+    },
+    {
+      "key": "story.theLastKing.sickeningAshleigh",
+      "file": "the-last-king-sickening-ashleigh.mp3",
+      "characters": 492,
+      "inputHash": "f5399849c8164e5e35a40cb51a0959d8306d9ece727ab5f16503465414ddc595",
+      "sha256": "32160517b8a1602e4e7e4a1402407b5ad18022acbfaf0195b5ea65919121f21b",
+      "bytes": 663762
+    },
+    {
+      "key": "story.echoes.intro",
+      "file": "echoes-of-the-past-intro.mp3",
+      "characters": 1440,
+      "inputHash": "d7b467ddb5c31289e68ffa47902de204969e6cecd4348b6880925372b233b934",
+      "sha256": "82b048965c2d2cf345fabdddfa4c947f3c1d576155e32c6aa1992d4b0002b6fc",
+      "bytes": 1847422
+    },
+    {
+      "key": "story.echoes.sebastien",
+      "file": "echoes-of-the-past-sebastien.mp3",
+      "characters": 643,
+      "inputHash": "8a27144d18442c601913b59a04483fdda0a0907ceaab6f305a0cefa4ccd1de50",
+      "sha256": "816d5353a37ca4ffb3b1fa8f00a36f4e845f99fa09f193919fec4cb061c405fd",
+      "bytes": 810883
+    },
+    {
+      "key": "story.echoes.noResolution",
+      "file": "echoes-of-the-past-no-resolution.mp3",
+      "characters": 205,
+      "inputHash": "3bc70c8d353eb0eb34bff8f9c842072729d1d0ca5a19c958ed428c07ec013ad3",
+      "sha256": "d591c0e98836735142218639ff46a34463825a267b35300a5e377721fd91a84a",
+      "bytes": 341515
+    },
+    {
+      "key": "story.echoes.resolution1",
+      "file": "echoes-of-the-past-resolution1.mp3",
+      "characters": 547,
+      "inputHash": "8d92e1aebee0e507f8e28f042d45484a98d18e5ea0f63d1d73cdd8138ecc0d4e",
+      "sha256": "73917ce5fcc78e917645e47c3153aaa57024db0d790613595af77d0f547c66b6",
+      "bytes": 721022
+    },
+    {
+      "key": "story.echoes.resolution2",
+      "file": "echoes-of-the-past-resolution2.mp3",
+      "characters": 643,
+      "inputHash": "c923bae5a2768fb75ea3d0295e3e63e984ef5c3315ab876db663cb09b142bdf4",
+      "sha256": "7467eb2a22b3a4346715705eae9d448cc46e60424e7992e7a6e5feb6c3779336",
+      "bytes": 831781
+    },
+    {
+      "key": "story.echoes.resolution3",
+      "file": "echoes-of-the-past-resolution3.mp3",
+      "characters": 610,
+      "inputHash": "4fa73610f29b343b6f1bbf3abf757bc7e39729f98c5752790bc43f4fbbc8c284",
+      "sha256": "be2b6ef0ae6ab451dc6b6607595b5f4df7c76d9804826758cd30f979f39a0b5b",
+      "bytes": 786642
+    },
+    {
+      "key": "story.echoes.resolution4",
+      "file": "echoes-of-the-past-resolution4.mp3",
+      "characters": 1415,
+      "inputHash": "542070f8f7bfd9948d4f3d93b718df4e55af033ecd6ef47d428ee6f7d242415d",
+      "sha256": "979a121dec680043de4d49d61762cd347cb51364208a29f973e1e72049c109fc",
+      "bytes": 1799775
     }
   ]
 }

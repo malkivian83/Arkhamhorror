@@ -9,8 +9,8 @@ hay un cuarto disponible. Los escenarios IV–VIII siguen sin `build`.
 | Escenario                      | Implementado                                                                            | Pendiente para jugar                                                                                                                    |
 | ------------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | I · Se cierra el telón         | Completo: preparación, actos, planes, Lugares, 7 conjuntos, resoluciones y narración    | Lola Hayes (no jugable aún)                                                                                                             |
-| II · El último Rey             | Completo: preparación, Transeúntes, planes, acto, 5 conjuntos, R1–R3 e Interludio I      | Audios de narración                                                                                                                     |
-| III · Ecos del pasado          | Completo: preparación al azar, Pasadizos, Sr. Peabody, 6 conjuntos, R1–R4 y recompensas   | Audios de narración                                                                                                                     |
+| II · El último Rey             | Completo: preparación, Transeúntes, planes, acto, 5 conjuntos, R1–R3 e Interludio I      | —                                                                                                                                       |
+| III · Ecos del pasado          | Completo: preparación al azar, Pasadizos, Sr. Peabody, 6 conjuntos, R1–R4 y recompensas   | —                                                                                                                                       |
 | IV · El juramento inconfesable | Nombre y posición en la campaña                                                         | Implementación íntegra y transición al interludio II                                                                                    |
 | V · El Fantasma de la Verdad   | Nombre y posición en la campaña                                                         | Implementación íntegra y variantes según el registro                                                                                    |
 | VI · La máscara pálida         | Nombre y posición en la campaña                                                         | Implementación íntegra                                                                                                                  |
@@ -322,10 +322,15 @@ escaneos; formato, lint y tipos correctos; 3209 pruebas superadas y 19 omitidas.
 fallo de Eureka ya no aparece. Los 2 fallos de `apps/server/src/deploy.test.mjs` solo
 se deben a ejecutar con Node 22 (el despliegue exige Node 24).
 
+Narración de los escenarios II y III: 24 MP3 en español con Carmelo, la misma voz, modelo y
+ajustes que el escenario I (introducciones, resoluciones, Interludio I, interrogatorios,
+Realidades repulsivas e Información de Sebastien; unos 22 min 42 s). Tramas MPEG
+verificadas sin errores; evidencia en [carcosa-narracion.json](evidencias/carcosa-narracion.json).
+No equivale a una revisión auditiva humana. La generación necesita una cuenta de pago: las
+gratuitas no pueden usar voces de biblioteca por la API.
+
 Siguiente bloque: escenario IV (El juramento inconfesable) e Interludio II, que leen del
-registro el broche y el juramentado. Pendientes: Lola Hayes (escenario I) y los audios de los
-escenarios II y III (la clave de ElevenLabs aportada es de una cuenta gratuita, que no puede
-usar la voz de biblioteca de Carmelo por la API).
+registro el broche y el juramentado. Pendiente: Lola Hayes (escenario I).
 
 Para retomar en otro ordenador, actualizar `main`: el PDF ya está versionado en
 `docs-proyecto/reglas/`. La aplicación de referencia sigue siendo una copia externa
