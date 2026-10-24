@@ -236,7 +236,8 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'CheckAgenda': {
       const agenda = state.agendas[state.agendaIndex]
-      if (agenda && totalDoom(state) >= agenda.doomThreshold) {
+      const doom = agendaBehavior(agenda?.code)?.thresholdDoom?.(state) ?? totalDoom(state)
+      if (agenda && doom >= agenda.doomThreshold) {
         const instead = agendaBehavior(agenda.code)?.insteadOfAdvance?.(state)
         return push(state, ...(instead ?? [{ type: 'AdvanceAgenda' } as Message]))
       }
@@ -1682,7 +1683,11 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'MoveTo': {
       const mover = getInvestigator(state, message.investigator)
-      if (mover.eliminated || (mover.location && leavingBlocked(state, mover.location)))
+      if (
+        mover.eliminated ||
+        (mover.location && leavingBlocked(state, mover.location)) ||
+        (mover.location && scenarioBehavior(state.scenarioId)?.cannotLeave?.(state, mover.id))
+      )
         return state
       // Whispers in Your Head (Dread): no puede moverse más de una vez por turno.
       if (mover.location !== null && moveBlocked(state, mover.id)) return state
@@ -2121,7 +2126,11 @@ export function handle(state: GameState, message: Message): GameState {
               },
             ]
           : []
-      return push(paid, ...spent, ...(message.before ?? []), {
+      const played: Message = {
+        type: 'Forced',
+        trigger: { type: 'afterPlayCard', investigator: investigator.id, code: message.code },
+      }
+      return push(paid, ...spent, played, ...(message.before ?? []), {
         type: 'ResolvePlayedCard',
         investigator: investigator.id,
         code: message.code,
@@ -3076,7 +3085,7 @@ export function handle(state: GameState, message: Message): GameState {
           return push(state, ...before, { type: 'ApplySkillTestResults', prepared: true })
       }
       const failBy = Math.max(0, test.difficulty - (test.modifiedSkill ?? 0))
-      const committed = test.committed.flatMap(
+      const committed = activeCommitted(test).flatMap(
         (c) =>
           playerCardBehavior(c.code)?.afterCommittedTest?.(state, test, !!test.succeeded, c.by) ??
           [],
@@ -3334,7 +3343,7 @@ export function handle(state: GameState, message: Message): GameState {
           type: 'Forced',
           trigger: skillTestTrigger(test, 'skillTestEnded'),
         },
-        ...test.committed.flatMap(
+        ...activeCommitted(test).flatMap(
           (c) =>
             playerCardBehavior(c.code)?.afterCommittedTestEnds?.(
               next,
@@ -3417,6 +3426,8 @@ export function handle(state: GameState, message: Message): GameState {
       const enemy = findEnemy(state, message.enemy)
       const investigator = getInvestigator(state, message.investigator)
       if (!enemy || enemy.exhausted || investigator.eliminated) return state
+      // El organista: no ataca en esta fase de enemigos.
+      if (enemy.noAttackRound === state.round && state.phase === 'enemy') return state
       // Glotón del manicomio: no ataca en la fase de enemigos en la que se movió por Cazador.
       if (
         enemy.huntedRound === state.round &&
@@ -3465,6 +3476,14 @@ export function handle(state: GameState, message: Message): GameState {
       return state.skillTest
         ? { ...state, skillTest: { ...state.skillTest, forcedSuccess: true } }
         : state
+
+    case 'CancelCommittedSkills':
+      return state.skillTest
+        ? { ...state, skillTest: { ...state.skillTest, skillCardsCanceled: true } }
+        : state
+
+    case 'EnemySkipsAttacks':
+      return updateEnemy(state, message.enemy, (e) => ({ ...e, noAttackRound: state.round }))
 
     case 'ForceSkillTestFailure':
       return state.skillTest
@@ -4138,7 +4157,7 @@ export function handle(state: GameState, message: Message): GameState {
         next = updateEnemy(next, enemy.id, (e) => ({
           ...e,
           location: step,
-          ...(behavior?.noAttackAfterHunting ? { huntedRound: state.round } : {}),
+          huntedRound: state.round,
         }))
         destinations.add(step)
         entered.push({
@@ -5198,7 +5217,8 @@ export function handle(state: GameState, message: Message): GameState {
       if (
         investigator.location === null ||
         leavingBlocked(state, investigator.location) ||
-        moveBlocked(state, investigator.id)
+        moveBlocked(state, investigator.id) ||
+        !!scenarioBehavior(state.scenarioId)?.cannotLeave?.(state, investigator.id)
       )
         return state
       const options = withinConnections(state, investigator.location, message.range ?? 1).filter(
@@ -5976,13 +5996,13 @@ function forcedAbilities(state: GameState, trigger: Trigger): Message[] {
  */
 function patrolSteps(state: GameState, enemy: Enemy, targets: LocationId[]): LocationId[] {
   if (targets.length === 0 || targets.includes(enemy.location)) return []
-  const distances = distancesFrom(state, enemy.location, true)
+  const distances = distancesFrom(state, enemy.location, enemy)
   const reachable = targets.filter((t) => distances.has(t))
   if (reachable.length === 0) return []
   const nearest = Math.min(...reachable.map((t) => distances.get(t) ?? 0))
   const goals = reachable.filter((t) => distances.get(t) === nearest)
-  return enemyNeighbours(state, enemy.location).filter((step) => {
-    const fromStep = distancesFrom(state, step, true)
+  return enemyNeighbours(state, enemy.location, enemy).filter((step) => {
+    const fromStep = distancesFrom(state, step, enemy)
     return goals.some((g) => fromStep.get(g) === nearest - 1)
   })
 }
@@ -6506,6 +6526,13 @@ function slotOccupants(
   return freeing.length ? freeing : occupying
 }
 
+/** Cartas comprometidas que cuentan (sin las de habilidad canceladas por una ficha). */
+function activeCommitted(test: SkillTest): SkillTest['committed'] {
+  return test.skillCardsCanceled
+    ? test.committed.filter((c) => playerCardDef(c.code)?.type !== 'skill')
+    : test.committed
+}
+
 function commitIcons(
   state: GameState,
   test: SkillTest,
@@ -6606,10 +6633,12 @@ export function skillTestValue(state: GameState): {
   const test = state.skillTest
   if (!test) return { base: 0, modifier: 0, icons: 0, passive: 0, sources: [], total: 0 }
   const investigator = getInvestigator(state, test.investigator)
-  const icons = test.committed.reduce(
-    (sum, c) => sum + commitIcons(state, test, c.code, c.by, 'committed'),
-    0,
-  )
+  const doubling = scenarioBehavior(state.scenarioId)?.skillDoubling?.(state, test) ?? {}
+  const icons =
+    activeCommitted(test).reduce(
+      (sum, c) => sum + commitIcons(state, test, c.code, c.by, 'committed'),
+      0,
+    ) * (doubling.icons ? 2 : 1)
   const passive = Object.values(state.assets)
     .filter((a) => a.owner === investigator.id)
     .reduce((sum, a) => sum + (playerCardBehavior(a.code)?.skillModifier?.(state, a, test) ?? 0), 0)
@@ -6620,7 +6649,7 @@ export function skillTestValue(state: GameState): {
           (sum, e) => sum + (enemyBehavior(e.code)?.skillModifier?.(state, e, test) ?? 0),
           0,
         )
-  const base = test.baseSkill ?? investigator.skills[test.skill]
+  const base = (test.baseSkill ?? investigator.skills[test.skill]) * (doubling.base ? 2 : 1)
   const scenario = scenarioBehavior(state.scenarioId)?.skillModifier?.(state, test) ?? 0
   // "Tu habilidad no puede modificarse": solo cuenta su valor (sin iconos ni modificadores).
   const unmodified = !!scenarioBehavior(state.scenarioId)?.skillUnmodified?.(state, test)

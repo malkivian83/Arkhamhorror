@@ -201,8 +201,10 @@ export interface Enemy extends EnemyCard {
   owner?: InvestigatorId
   /** No se prepara en la próxima fase de mantenimiento. */
   stayExhausted?: boolean
-  /** Ronda en la que se movió por Cazador (Glotón del manicomio). */
+  /** Ronda en la que se movió por Cazador o Errante (Glotón del manicomio, El organista). */
   huntedRound?: number
+  /** Ronda en cuya fase de enemigos no ataca (El organista, Byakhee veloz). */
+  noAttackRound?: number
 }
 
 /** `hidden`: Oculto (El camino a Carcosa), se añade en secreto a la mano. */
@@ -588,6 +590,8 @@ export interface SkillTest {
   tokenOnSuccess?: Message[]
   tokenAfter?: Message[]
   tokens: ChaosToken[]
+  /** Sin iconos ni efectos de las cartas de habilidad comprometidas ([tablet] de El Fantasma). */
+  skillCardsCanceled?: boolean
   tokenModifier: number
   autoFail: boolean
   tokenOnFail: Message[]
@@ -893,6 +897,10 @@ export type Message =
   | { type: 'ForceSkillTestSuccess' }
   /** La prueba en curso fracasa automáticamente (El juramento inconfesable, [elder_thing]). */
   | { type: 'ForceSkillTestFailure' }
+  /** Cancela los efectos y los iconos de las cartas de habilidad comprometidas. */
+  | { type: 'CancelCommittedSkills' }
+  /** El enemigo no ataca en la fase de enemigos de esta ronda. */
+  | { type: 'EnemySkipsAttacks'; enemy: EnemyId }
   /** Las demás cartas comprometidas vuelven a la mano de sus dueños (On the Brink). */
   | { type: 'ReturnCommittedToHand'; except: CardCode }
   /** Si en la prueba en curso se ha revelado alguna ficha con símbolo. */
@@ -1344,6 +1352,8 @@ export type Trigger =
       source?: AssetId
     }
   | { type: 'afterPlayAsset'; investigator: InvestigatorId; code: CardCode; asset?: AssetId }
+  /** Se ha jugado una carta (pagado su coste), de cualquier tipo (Acordes tortuosos). */
+  | { type: 'afterPlayCard'; investigator: InvestigatorId; code: CardCode }
   | { type: 'afterActionAbility'; investigator: InvestigatorId; code: CardCode }
   | { type: 'afterAssetEntersPlay'; investigator: InvestigatorId; asset: AssetId }
   | { type: 'afterDrawCard'; investigator: InvestigatorId; card: CardCode }

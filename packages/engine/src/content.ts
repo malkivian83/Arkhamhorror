@@ -105,7 +105,11 @@ export interface ScenarioBehavior {
   /** Conexiones que el escenario añade a una localización (Pasadizos, Sr. Peabody). */
   connections?: (state: GameState, location: Location) => LocationId[]
   /** Conexiones adicionales solo cuando se mueve un enemigo (Biblioteca oculta). */
-  enemyConnections?: (state: GameState, location: LocationId) => LocationId[]
+  enemyConnections?: (state: GameState, location: LocationId, enemy?: Enemy) => LocationId[]
+  /** El investigador no puede salir de su Lugar (Cementerio Père Lachaise, Le Marais). */
+  cannotLeave?: (state: GameState, investigator: InvestigatorId) => boolean
+  /** Duplica el valor base o los iconos comprometidos de la prueba (Opéra Garnier). */
+  skillDoubling?: (state: GameState, test: SkillTest) => { base?: boolean; icons?: boolean }
   /** La habilidad de la prueba no puede modificarse (Museo histórico al investigar). */
   skillUnmodified?: (state: GameState, test: SkillTest) => boolean
   /** El investigador no roba carta en la fase de Mantenimiento (Ashleigh Clarke). */
@@ -266,6 +270,8 @@ export interface AgendaBehavior {
   onAdvance?: (state: GameState) => Message[]
   /** Instrucciones del reverso que se resuelven con el plan siguiente ya en juego. */
   afterAdvance?: (state: GameState) => Message[]
+  /** Perdición que cuenta para su umbral, si no es la total en juego (La primera noche). */
+  thresholdDoom?: (state: GameState) => number
 }
 
 export interface ActBehavior {

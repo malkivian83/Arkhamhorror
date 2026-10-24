@@ -147,7 +147,12 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
     { kind: 'draw' },
     { kind: 'resource' },
     ...(investigationBlocked(state, here) ? [] : [{ kind: 'investigate' } as Action]),
-    ...(leavingBlocked(state, here) || moveBlocked(state, id) ? [] : location.connections)
+    ...(leavingBlocked(state, here) ||
+    moveBlocked(state, id) ||
+    scenarioBehavior(state.scenarioId)?.cannotLeave?.(state, id)
+      ? []
+      : location.connections
+    )
       .filter((to) => state.locations[to] && canAffordEntry(state, to) && canEnter(state, id, to))
       .map((to): Action => ({ kind: 'move', to })),
     // Un enemigo distante (aloof) no enfrentado no puede ser atacado.
