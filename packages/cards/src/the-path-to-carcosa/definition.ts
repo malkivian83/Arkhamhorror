@@ -1,6 +1,7 @@
 import { registerCampaign } from '../campaign-definition'
 import { CARCOSA_CHAOS_BAGS, THE_PATH_TO_CARCOSA } from './campaign'
 import { CURTAIN_CALL, curtainCall } from './curtain-call'
+import { THE_LAST_KING, theLastKing } from './the-last-king'
 import { THE_MAN_IN_THE_PALLID_MASK } from './the-man-in-the-pallid-mask'
 
 registerCampaign({
@@ -18,6 +19,13 @@ registerCampaign({
           build: ({ difficulty, seed }) => curtainCall({ difficulty, seed }),
           keywords: ['hidden', 'peril', 'surge', 'aloof', 'massive', 'hunter', 'retaliate', 'prey'],
         }
-      : { id },
+      : id === THE_LAST_KING
+        ? {
+            id,
+            build: ({ difficulty, seed, investigators }) =>
+              theLastKing({ difficulty, seed, players: investigators.length }),
+            keywords: ['bystanders', 'peril', 'surge', 'aloof', 'hunter', 'retaliate', 'prey'],
+          }
+        : { id },
   ),
 })

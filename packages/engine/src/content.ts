@@ -100,6 +100,8 @@ export interface ScenarioBehavior {
   cardCostModifier?: (state: GameState, investigator: InvestigatorId, code: CardCode) => number
   /** Cuántas cartas cuenta cada carta Oculta de su mano para el tamaño de mano (Bastidores). */
   hiddenHandWeight?: (state: GameState, investigator: InvestigatorId) => number
+  /** El investigador no roba carta en la fase de Mantenimiento (Ashleigh Clarke). */
+  skipsUpkeepDraw?: (state: GameState, investigator: InvestigatorId) => boolean
   forced?: (state: GameState, trigger: Trigger) => Message[]
   /** Reacciones de las cartas del escenario (localizaciones, plan, acto) para los investigadores. */
   reactions?: (state: GameState, trigger: Trigger) => ReactionOption[]
@@ -210,6 +212,10 @@ export interface EnemyBehavior {
     amount: number,
     source: DamageSource,
   ) => { amount: number; then?: Message[] }
+  /** Los investigadores de su Lugar no pueden descubrir ni tomar el control de pistas. */
+  blocksCluesHere?: boolean
+  /** Sus ataques no pueden cancelarse (Sebastien Moreau). */
+  attacksCannotBeCanceled?: boolean
 }
 
 export interface LocationBehavior {
@@ -227,6 +233,11 @@ export interface AgendaBehavior {
   enemyImmune?: (state: GameState, enemy: Enemy) => boolean
   abilities?: AbilitiesFn<Agenda>
   forced?: (state: GameState, trigger: Trigger, self: Agenda) => Message[]
+  /**
+   * Al ir a avanzar por llegar a su umbral de perdición: si devuelve mensajes, se
+   * resuelven en su lugar (La aterradora verdad).
+   */
+  insteadOfAdvance?: (state: GameState) => Message[] | null
   /** Instrucciones del reverso al avanzar. */
   onAdvance?: (state: GameState) => Message[]
   /** Instrucciones del reverso que se resuelven con el plan siguiente ya en juego. */
@@ -239,6 +250,8 @@ export interface ActBehavior {
   forced?: (state: GameState, trigger: Trigger, self: Act) => Message[]
   /** Para actos con objetivo de condición (`advanceTiming: 'objective'`). */
   objectiveMet?: (state: GameState) => boolean
+  /** Las pistas de un investigador eliminado van al acto en vez de a su Lugar. */
+  eliminatedCluesToAct?: boolean
   /** Instrucciones del reverso al avanzar. */
   onAdvance?: (state: GameState) => Message[]
 }

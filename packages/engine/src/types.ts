@@ -220,6 +220,8 @@ export type TreacheryPlacement =
   | { type: 'location'; location: LocationId }
   /** Vinculada a un enemigo: se descarta cuando el enemigo abandona el juego. */
   | { type: 'enemy'; enemy: EnemyId }
+  /** En juego junto al mazo de Plan o de Acto (Un público difícil, Cieno e impurezas). */
+  | { type: 'agenda' }
 
 export interface Treachery extends TreacheryCard {
   id: TreacheryId
@@ -435,6 +437,8 @@ export interface PlacedAsset {
   doom?: number
   /** Uses survive control changes and spellbinding, including zero. */
   uses?: number
+  /** Pistas sobre el apoyo (Transeúntes de El Último Rey). */
+  clues?: number
 }
 
 /** Carta de Historia en juego junto al acto (facción aliada, rival…). */
@@ -841,6 +845,7 @@ export type Message =
       horror?: number
       doom?: number
       uses?: number
+      clues?: number
     }
   | { type: 'MovePlacedAsset'; placed: PlacedAssetId; placement: AssetPlacement }
   | { type: 'TakeControlOfPlaced'; placed: PlacedAssetId; investigator: InvestigatorId }
@@ -1272,6 +1277,9 @@ export type ClueHolder =
   | { type: 'location'; id: LocationId }
   | { type: 'enemy'; id: EnemyId }
   | { type: 'treachery'; id: TreacheryId }
+  | { type: 'placed'; id: PlacedAssetId }
+  /** Pistas sobre el mazo de Acto (Descubriendo la verdad). */
+  | { type: 'act' }
   | { type: 'pool' }
 
 /** Momentos en los que se comprueban las habilidades forzadas. */
@@ -1365,7 +1373,15 @@ export type Trigger =
       moveAction?: boolean
     }
   | { type: 'beforeMoveEngagement'; investigator: InvestigatorId }
-  | { type: 'afterDealDamage'; investigator: InvestigatorId; enemy: EnemyId }
+  | {
+      type: 'afterDealDamage'
+      investigator: InvestigatorId
+      enemy: EnemyId
+      /** El daño procede de un ataque (prueba de combate). */
+      attack?: boolean
+    }
+  /** Después de realizar una acción de negociar (Salón de baile, Sala de estar). */
+  | { type: 'afterParley'; investigator: InvestigatorId; location: LocationId | null }
 
 /** Parámetros que acompañan a una clave i18n (nombres, cantidades…). */
 export type LabelParams = Record<string, string | number>
@@ -1586,6 +1602,8 @@ export interface GameState {
   scenarioDecks?: Record<string, CardCode[]>
   /** Datos del escenario (facción aliada, puntuación…). */
   scenarioMeta?: Record<string, string | number>
+  /** Pistas colocadas sobre el mazo de Acto. */
+  actClues?: number
   log: LogEntry[]
   skillTest: SkillTest | null
   /** Pila de mensajes pendientes: el primero es el siguiente en procesarse. */

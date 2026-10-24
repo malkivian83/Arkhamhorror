@@ -70,7 +70,12 @@ export function effectiveVitals(
 export function shroudOf(state: GameState, id: LocationId): number {
   const location = getLocation(state, id)
   const attached = Object.values(state.treacheries)
-    .filter((t) => t.placement.type === 'location' && t.placement.location === id)
+    // Unidas a este Lugar, o junto al plan con efecto en cada Lugar (Cieno e impurezas).
+    .filter(
+      (t) =>
+        (t.placement.type === 'location' && t.placement.location === id) ||
+        t.placement.type === 'agenda',
+    )
     .reduce((sum, t) => sum + (treacheryBehavior(t.code)?.shroudModifier ?? 0), 0)
   const scenario = scenarioBehavior(state.scenarioId)?.shroudModifier?.(state, location) ?? 0
   return Math.max(0, location.shroud + (location.shroudModifier ?? 0) + attached + scenario)
