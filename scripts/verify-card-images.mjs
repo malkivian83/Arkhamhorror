@@ -6,7 +6,7 @@ const inventory = JSON.parse(
 )
 const seen = new Set()
 for (const file of inventory.files) {
-  if (!/^\/local-assets\/cards\/(en|es)\/\d{5}b?\.(avif|jpg)$/.test(file.path))
+  if (!/^\/local-assets\/cards\/(en|es)\/\d{5}[a-d]?b?\.(avif|jpg)$/.test(file.path))
     throw new Error(`Invalid local image path: ${file.path}`)
   const bytes = await readFile(`apps/web/public${file.path}`)
   if (
@@ -35,7 +35,7 @@ const thumbnails = JSON.parse(
 )
 const thumbnailPaths = new Set()
 for (const file of thumbnails.files) {
-  const expected = file.source.replace(/\/(\d{5}b?)\.(avif|jpg)$/, '/thumbs/$1.webp')
+  const expected = file.source.replace(/\/(\d{5}[a-d]?b?)\.(avif|jpg)$/, '/thumbs/$1.webp')
   if (!seen.has(file.source) || file.path !== expected || thumbnailPaths.has(file.path))
     throw new Error(`Invalid thumbnail: ${file.path}`)
   const original = await readFile(`apps/web/public${file.source}`)
