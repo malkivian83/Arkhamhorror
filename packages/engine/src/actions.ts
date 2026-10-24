@@ -32,6 +32,7 @@ import type {
   GameState,
   Investigator,
   InvestigatorId,
+  LabelParams,
   LocationId,
   Message,
   Treachery,
@@ -62,6 +63,64 @@ export function playableCards(state: GameState, id: InvestigatorId, fast: boolea
     if (cardCost(state, id, code) > investigator.resources) return false
     return behavior?.canPlay?.(state, id) ?? true
   })
+}
+
+/** Motivo, traducible, por el que una carta de la mano no se puede jugar. */
+export interface PlayRestriction {
+  key: string
+  params?: LabelParams
+}
+
+/**
+ * Por qué las reglas impiden jugar esta carta de la mano, con las mismas
+ * comprobaciones que `playableCards` (sin el momento de juego, que depende de
+ * la pregunta pendiente). `null` si nada lo impide.
+ */
+export function playRestriction(
+  state: GameState,
+  id: InvestigatorId,
+  code: CardCode,
+): PlayRestriction | null {
+  const investigator = getInvestigator(state, id)
+  const def = playerCardDef(code)
+  if (!def) return null
+  if (def.type === 'skill') return { key: 'unplayable.skill' }
+  if (def.type !== 'asset' && def.type !== 'event') return { key: 'unplayable.notPlayable' }
+  if (investigator.eliminated || investigator.location === null)
+    return { key: 'unplayable.notInPlay' }
+  const threats = threatAreaTreacheries(state, id)
+  const by = (t: Treachery) => ({ card: t.name })
+  if (def.type === 'asset') {
+    const blocker = Object.values(state.treacheries).find(
+      (t) =>
+        t.placement.type === 'threatArea' &&
+        t.placement.investigator === id &&
+        !!treacheryBehavior(t.code)?.blocksAssets,
+    )
+    if (blocker) return { key: 'unplayable.blockedAsset', params: by(blocker) }
+    if (uniqueAssetInPlay(state, code))
+      return { key: 'unplayable.unique', params: { card: def.name } }
+  }
+  if (typeBlocked(investigator, def.type, state.round))
+    return { key: `unplayable.${def.type}ThisRound` }
+  const restriction = threats.find((t) =>
+    treacheryBehavior(t.code)?.restricts?.play?.some((type) => type === def.type),
+  )
+  if (restriction)
+    return {
+      key: def.type === 'asset' ? 'unplayable.blockedAsset' : 'unplayable.blockedEvent',
+      params: by(restriction),
+    }
+  const behavior = playerCardBehavior(code)
+  if (def.type === 'event' && !behavior?.play) return { key: 'unplayable.notImplemented' }
+  const cost = cardCost(state, id, code)
+  if (cost > investigator.resources)
+    return {
+      key: cost === (def.cost ?? 0) ? 'unplayable.cost' : 'unplayable.costModified',
+      params: { cost, printed: def.cost ?? 0, resources: investigator.resources },
+    }
+  if (behavior?.canPlay && !behavior.canPlay(state, id)) return { key: 'unplayable.conditions' }
+  return null
 }
 
 /** Acciones básicas que el investigador puede realizar ahora mismo. */

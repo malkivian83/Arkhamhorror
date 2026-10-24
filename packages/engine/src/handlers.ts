@@ -95,6 +95,7 @@ import type {
   SlotType,
   EncounterCard,
   Enemy,
+  EnemyId,
   EnemyCard,
   GameState,
   Investigator,
@@ -1826,6 +1827,7 @@ export function handle(state: GameState, message: Message): GameState {
     case 'TakeDamage': {
       if (getInvestigator(state, message.investigator).osirisProtected && message.damage > 0)
         return push(state, { ...message, damage: 0 })
+      const source = message.source ?? damageSource(state, message.enemy)
       // RR "Damage and Horror": si hay apoyos que puedan recibirlo, el jugador asigna.
       const canSoak =
         !message.direct &&
@@ -1842,6 +1844,7 @@ export function handle(state: GameState, message: Message): GameState {
           horror: message.horror,
           ...(message.assignFirst ? { assignFirst: message.assignFirst } : {}),
           ...(message.enemy ? { enemy: message.enemy } : {}),
+          ...(source ? { source } : {}),
         })
       }
       const assigned: Message[] = message.dealt?.length
@@ -1867,7 +1870,7 @@ export function handle(state: GameState, message: Message): GameState {
             horror: i.horror + message.horror,
           })),
           'log.damage',
-          { name, damage: message.damage, horror: message.horror },
+          { name, damage: message.damage, horror: message.horror, ...(source ? { source } : {}) },
         ),
         { type: 'CheckDefeat', investigator: message.investigator },
         {
@@ -1897,6 +1900,7 @@ export function handle(state: GameState, message: Message): GameState {
                 investigator,
                 dealt,
                 ...(message.enemy ? { enemy: message.enemy } : {}),
+                ...(message.source ? { source: message.source } : {}),
               },
             })
           : state
@@ -1925,6 +1929,7 @@ export function handle(state: GameState, message: Message): GameState {
           horror: kind === 'horror' ? horror - 1 : horror,
           ...(message.assignFirst ? { assignFirst: message.assignFirst } : {}),
           ...(message.enemy ? { enemy: message.enemy } : {}),
+          ...(message.source ? { source: message.source } : {}),
           ...(merged.length ? { dealt: merged } : {}),
           ...(concentrated && !to?.placed ? { focus: to?.asset ?? ('investigator' as const) } : {}),
         }
@@ -1940,6 +1945,7 @@ export function handle(state: GameState, message: Message): GameState {
           horror,
           direct: true,
           ...(message.enemy ? { enemy: message.enemy } : {}),
+          ...(message.source ? { source: message.source } : {}),
           ...(dealt.length ? { dealt } : {}),
         })
       const available = focused.length ? focused : soakers(state, investigator, kind)
@@ -1957,6 +1963,7 @@ export function handle(state: GameState, message: Message): GameState {
         horror: kind === 'horror' ? 1 : 0,
         direct: true,
         ...(message.enemy ? { enemy: message.enemy } : {}),
+        ...(message.source ? { source: message.source } : {}),
       }
       if (options.length === 0 && placedOptions.length === 0) {
         // Lo que queda va al investigador de una vez.
@@ -1967,6 +1974,7 @@ export function handle(state: GameState, message: Message): GameState {
           horror,
           direct: true,
           ...(message.enemy ? { enemy: message.enemy } : {}),
+          ...(message.source ? { source: message.source } : {}),
           ...(dealt.length ? { dealt } : {}),
         })
       }
@@ -1976,6 +1984,7 @@ export function handle(state: GameState, message: Message): GameState {
         question: {
           kind: 'chooseOne',
           prompt: kind === 'damage' ? 'prompt.assignDamage' : 'prompt.assignHorror',
+          ...(message.source ? { promptParams: { source: message.source } } : {}),
           choices: [
             ...(mandatory.length || focused.length
               ? []
@@ -2962,7 +2971,7 @@ export function handle(state: GameState, message: Message): GameState {
           },
         })
       }
-      const effect = resolveToken(state, token, test.investigator)
+      const effect = withTokenSource(resolveToken(state, token, test.investigator), token)
       const source = test.source ? state.assets[test.source] : undefined
       const onReveal = source
         ? (playerCardBehavior(source.code)?.onTokenRevealed?.(state, token, source) ?? [])
@@ -5327,7 +5336,11 @@ export function handle(state: GameState, message: Message): GameState {
                     investigator: leadInvestigator(state)!.id,
                     question: {
                       kind: 'chooseOne',
-                      prompt: 'prompt.chooseLocation',
+                      prompt:
+                        customSpawn !== undefined
+                          ? 'prompt.spawnTied'
+                          : 'prompt.spawnFarthestEmpty',
+                      promptParams: { enemy: enemy.name },
                       choices: places.map((l) => ({
                         label: 'choice.location',
                         params: { location: l.name },
@@ -5874,32 +5887,75 @@ function toOwnerDiscard(state: GameState, owner: string, code: string): GameStat
 }
 
 /** Habilidades forzadas de las cartas en juego que responden a `trigger`. */
+/** Da origen al daño que inflige directamente una carta (sin tocar el que ya lo tiene). */
+function sourced(messages: Message[] | undefined, source: string): Message[] {
+  return (messages ?? []).map((m) =>
+    m.type === 'TakeDamage' && !m.source && !m.enemy ? { ...m, source } : m,
+  )
+}
+
+/** El daño que causa una ficha del caos (calavera, sectario…) lleva la ficha como origen. */
+function withTokenSource(effect: TokenEffect, token: ChaosToken): TokenEffect {
+  if (typeof token === 'number') return effect
+  const source = `token:${token}`
+  return {
+    ...effect,
+    ...(effect.onFail ? { onFail: sourced(effect.onFail, source) } : {}),
+    ...(effect.onFailBy
+      ? { onFailBy: { ...effect.onFailBy, then: sourced(effect.onFailBy.then, source) } }
+      : {}),
+    ...(effect.immediate ? { immediate: sourced(effect.immediate, source) } : {}),
+    ...(effect.after ? { after: sourced(effect.after, source) } : {}),
+  }
+}
+
+/**
+ * Origen del daño deducido de lo que se está resolviendo: el enemigo que
+ * ataca, la carta que exige la prueba, la traición revelada o la carta de
+ * jugador en uso. Sin un origen claro no se inventa ninguno.
+ */
+function damageSource(state: GameState, enemy?: EnemyId): string | undefined {
+  if (enemy) return findEnemy(state, enemy)?.name
+  const test = state.skillTest
+  if (test?.kind.type === 'effect') return test.kind.source
+  const revealed = Object.values(state.treacheries).find((t) => t.placement.type === 'limbo')
+  if (revealed) return revealed.name
+  const resolving = state.resolvingAssets?.at(-1)
+  const asset = resolving ? state.assets[resolving] : undefined
+  if (asset) return playerCardDef(asset.code)?.name
+  if (test?.effectSource) return playerCardDef(test.effectSource)?.name
+  return undefined
+}
+
 function forcedAbilities(state: GameState, trigger: Trigger): Message[] {
   const fromTreacheries = Object.values(state.treacheries)
     .filter((t) => t.placement.type !== 'limbo')
-    .flatMap((t) => treacheryBehavior(t.code)?.forced?.(state, trigger, t) ?? [])
+    .flatMap((t) => sourced(treacheryBehavior(t.code)?.forced?.(state, trigger, t), t.name))
   const enemies = trigger.type === 'enemyDefeated' ? [trigger.enemy] : Object.values(state.enemies)
-  const fromEnemies = enemies.flatMap(
-    (e) => enemyBehavior(e.code)?.forced?.(state, trigger, e) ?? [],
+  const fromEnemies = enemies.flatMap((e) =>
+    sourced(enemyBehavior(e.code)?.forced?.(state, trigger, e), e.name),
   )
   const agenda = state.agendas[state.agendaIndex]
   const fromAgenda = agenda
-    ? (agendaBehavior(agenda.code)?.forced?.(state, trigger, agenda) ?? [])
+    ? sourced(agendaBehavior(agenda.code)?.forced?.(state, trigger, agenda), agenda.name)
     : []
   const act = state.acts[state.actIndex]
-  const fromAct = act ? (actBehavior(act.code)?.forced?.(state, trigger, act) ?? []) : []
-  const fromLocations = Object.values(state.locations).flatMap(
-    (l) => locationBehavior(l.id)?.forced?.(state, trigger, l) ?? [],
+  const fromAct = act ? sourced(actBehavior(act.code)?.forced?.(state, trigger, act), act.name) : []
+  const fromLocations = Object.values(state.locations).flatMap((l) =>
+    sourced(locationBehavior(l.id)?.forced?.(state, trigger, l), l.name),
   )
-  const fromAssets = Object.values(state.assets).flatMap(
-    (a) => playerCardBehavior(a.code)?.forced?.(state, trigger, a) ?? [],
+  const fromAssets = Object.values(state.assets).flatMap((a) =>
+    sourced(
+      playerCardBehavior(a.code)?.forced?.(state, trigger, a),
+      playerCardDef(a.code)?.name ?? a.code,
+    ),
   )
-  const fromStories = Object.values(state.stories ?? {}).flatMap(
-    (s) => storyBehavior(s.code)?.forced?.(state, trigger, s) ?? [],
+  const fromStories = Object.values(state.stories ?? {}).flatMap((s) =>
+    sourced(storyBehavior(s.code)?.forced?.(state, trigger, s), s.name),
   )
   const fromPlaced = Object.values(state.placedAssets ?? {})
     .filter((p) => !p.faceDown)
-    .flatMap((p) => playerCardBehavior(p.code)?.placedForced?.(state, trigger, p) ?? [])
+    .flatMap((p) => sourced(playerCardBehavior(p.code)?.placedForced?.(state, trigger, p), p.name))
   const fromScenario = scenarioBehavior(state.scenarioId)?.forced?.(state, trigger) ?? []
   return [
     ...fromScenario,

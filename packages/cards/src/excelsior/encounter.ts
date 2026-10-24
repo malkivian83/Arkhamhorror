@@ -499,13 +499,14 @@ registerTreachery({
     return [
       ask(
         investigator,
-        'prompt.chooseLocation',
+        'prompt.excelsior.placeNearestNotCrimeScene',
         options.map((l): Choice => ({
           label: 'choice.location',
           params: { location: state.locations[l]!.name },
           target: { type: 'location', id: l },
           then: [attach(l)],
         })),
+        { card: self.name },
       ),
     ]
   },

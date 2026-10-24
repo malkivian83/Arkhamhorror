@@ -1206,7 +1206,8 @@ registerTreachery({
         investigator,
         question: {
           kind: 'chooseOne',
-          prompt: 'prompt.chooseLocation',
+          prompt: 'prompt.placeMostClues',
+          promptParams: { card: self.name },
           choices: options.map((l) => ({
             label: 'choice.location',
             params: { location: l.name },

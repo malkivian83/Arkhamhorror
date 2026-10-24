@@ -39,10 +39,15 @@ import {
 
 type Data = Record<string, string | number | boolean>
 
-const ask = (investigator: InvestigatorId, prompt: string, choices: Choice[]): Message => ({
+const ask = (
+  investigator: InvestigatorId,
+  prompt: string,
+  choices: Choice[],
+  promptParams?: Record<string, string | number>,
+): Message => ({
   type: 'Ask',
   investigator,
-  question: { kind: 'chooseOne', prompt, choices },
+  question: { kind: 'chooseOne', prompt, choices, ...(promptParams ? { promptParams } : {}) },
 })
 
 // ---------------------------------------------------------------------------
@@ -414,13 +419,14 @@ function specific(state: GameState, key: string, data: Data): GameState {
             state,
             ask(
               investigator,
-              'prompt.chooseLocation',
+              'prompt.chooseHunterPath',
               paths.map((location) => ({
                 label: 'choice.location',
                 params: { location: state.locations[location]!.name },
                 target: { type: 'location', id: location },
                 then: step(location),
               })),
+              { enemy: enemy.name },
             ),
           )
     }
@@ -1089,7 +1095,7 @@ registerTreachery({
       ? [
           ask(
             investigator,
-            'prompt.chooseLocation',
+            'prompt.placeMostInvestigators',
             tied.map(({ l }) => ({
               label: 'choice.location',
               params: { location: state.locations[l]!.name },
@@ -1102,6 +1108,7 @@ registerTreachery({
                 },
               ],
             })),
+            { card: self.name },
           ),
         ]
       : []
