@@ -1,3 +1,4 @@
+import type { LabelParams } from '@lcg/engine'
 import { ref, shallowRef, type InjectionKey } from 'vue'
 
 /** Carta de la mesa tal como se ve (cara, orientación). */
@@ -17,8 +18,18 @@ const query =
 export const noHover = ref(query?.matches ?? false)
 query?.addEventListener('change', (e) => (noHover.value = e.matches))
 
+/** Por qué un elemento sin opciones no se puede usar ahora (carta de la mano). */
+export interface TargetNote {
+  key: string
+  params?: LabelParams
+}
+
 /** Carta abierta al tocarla y elemento de la mesa del que salen sus opciones. */
-export const inspected = shallowRef<{ card: InspectedCard; target: string } | null>(null)
+export const inspected = shallowRef<{
+  card: InspectedCard
+  target: string
+  note?: TargetNote | null
+} | null>(null)
 
 /** Cada elemento de la mesa conoce la carta que muestra, para abrirla al tocarlo. */
 export const TABLE_CARD: InjectionKey<(card: () => InspectedCard) => () => void> =

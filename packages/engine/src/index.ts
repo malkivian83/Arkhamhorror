@@ -62,7 +62,9 @@ export {
   moveBlocked,
   parleyCosts,
   playBlocked,
+  playRestriction,
   threatAreaTreacheries,
+  type PlayRestriction,
 } from './actions'
 export { BOONS } from './types'
 export { EngineError } from './errors'

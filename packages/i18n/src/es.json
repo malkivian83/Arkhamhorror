@@ -3508,5 +3508,22 @@
     "queenHard": "-4. En la Cisterna subterránea, fracasas automáticamente en su lugar.",
     "guests": "el número de Invitados en tu Lugar, hasta un máximo de 5",
     "storyAssets": "el número de Apoyos de historia en tu Lugar"
+  },
+  "unplayable": {
+    "skill": "Las habilidades no se juegan: se comprometen a las pruebas de habilidad.",
+    "notPlayable": "Esta carta no se juega desde la mano.",
+    "notInPlay": "Tu investigador no está en ningún Lugar.",
+    "blockedAsset": "{card} te impide jugar Apoyos.",
+    "blockedEvent": "{card} te impide jugar Eventos.",
+    "unique": "{card} es única y ya hay una copia en juego.",
+    "assetThisRound": "Esta ronda no puedes jugar Apoyos.",
+    "eventThisRound": "Esta ronda no puedes jugar Eventos.",
+    "notImplemented": "Esta carta todavía no se puede jugar en la aplicación.",
+    "cost": "Cuesta {cost} recursos y tienes {resources}.",
+    "costModified": "Ahora cuesta {cost} recursos (impreso: {printed}) y tienes {resources}.",
+    "conditions": "No se cumplen ahora las condiciones de su texto para jugarla.",
+    "fastWindow": "Es rápida: se juega en tu turno o cuando el juego abre una ventana para efectos rápidos.",
+    "actionTiming": "Se juega como acción durante tu turno.",
+    "noActions": "No te quedan acciones este turno."
   }
 }

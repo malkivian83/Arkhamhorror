@@ -2,6 +2,7 @@
 import { computed, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { inspected } from '../game/inspect'
+import { useLabels } from '../game/labels'
 import { localizedCards, localName } from '../game/localized'
 import { useTableGame } from '../game/tableController'
 import ActionButton from './ActionButton.vue'
@@ -19,6 +20,8 @@ const titleId = useId()
 const language = ref('unknown')
 
 const card = computed(() => inspected.value?.card ?? null)
+const note = computed(() => (options.value.length ? null : (inspected.value?.note ?? null)))
+const label = useLabels()
 const options = computed(() =>
   inspected.value ? (game.choicesByTarget.get(inspected.value.target) ?? []) : [],
 )
@@ -93,6 +96,7 @@ watch(
             @click="pick(o.index)"
           />
         </div>
+        <p v-if="note" class="note" role="status">{{ label(note.key, note.params ?? {}) }}</p>
         <CardTranslation :code="card.code" :back="card.back" :image-language="language" />
       </template>
     </dialog>
@@ -149,6 +153,14 @@ h2 {
 .face :deep(.game-card) {
   border-radius: 12px;
   box-shadow: 0 8px 28px rgb(0 0 0 / 70%);
+}
+.note {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  background: rgb(255 255 255 / 6%);
+  line-height: 1.4;
 }
 .options {
   display: flex;

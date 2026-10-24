@@ -54,3 +54,16 @@ pone una carta), no se abre ninguna ventana: el mapa resalta las opciones.
 - El foco de la carta de encuentro robada indica dónde ha acabado
   («Se pone en…», «Aparece en…») cuando solo hay una copia en la mesa.
 - Los pasos automáticos incluyen los apoyos sin dueño que entran en un Lugar.
+
+## Por qué no se puede jugar una carta
+
+- `playRestriction` (motor) da el motivo con las mismas comprobaciones que
+  `playableCards`: habilidades (se comprometen), traición que impide jugar
+  Apoyos o Eventos (Susurros en tu cabeza (Duda), Voces disonantes, también
+  Ocultas), carta única en juego, tipo bloqueado esta ronda, coste (normal o
+  modificado, p. ej. Cabina de luces), condiciones de la carta o carta aún no
+  jugable en la aplicación.
+- `handReason` (web) añade el momento de juego: acción en tu turno, sin
+  acciones o carta rápida fuera de una ventana.
+- Al pulsar una carta de la mano sin opciones se muestra el motivo en un
+  globo (escritorio, también como `title`) o bajo la carta ampliada (móvil).

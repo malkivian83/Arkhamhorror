@@ -3508,5 +3508,22 @@
     "queenHard": "-4. At the Underground Cistern, automatically fail instead.",
     "guests": "the number of Guests at your location, to a maximum of 5",
     "storyAssets": "the number of story assets at your location"
+  },
+  "unplayable": {
+    "skill": "Skills are not played: they are committed to skill tests.",
+    "notPlayable": "This card is not played from your hand.",
+    "notInPlay": "Your investigator is not at any location.",
+    "blockedAsset": "{card} prevents you from playing assets.",
+    "blockedEvent": "{card} prevents you from playing events.",
+    "unique": "{card} is unique and a copy is already in play.",
+    "assetThisRound": "You cannot play assets this round.",
+    "eventThisRound": "You cannot play events this round.",
+    "notImplemented": "This card cannot be played in the app yet.",
+    "cost": "It costs {cost} resources and you have {resources}.",
+    "costModified": "It now costs {cost} resources (printed: {printed}) and you have {resources}.",
+    "conditions": "The conditions in its text to play it are not met right now.",
+    "fastWindow": "It is fast: play it during your turn or when the game opens a window for fast effects.",
+    "actionTiming": "It is played as an action during your turn.",
+    "noActions": "You have no actions left this turn."
   }
 }

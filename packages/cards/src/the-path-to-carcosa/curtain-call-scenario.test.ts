@@ -1,4 +1,10 @@
-import { availableAbilities, cardCost, getInvestigator, type GameState } from '@lcg/engine'
+import {
+  availableAbilities,
+  cardCost,
+  getInvestigator,
+  playRestriction,
+  type GameState,
+} from '@lcg/engine'
 import { choose, during, keep, labels } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import '../index'
@@ -186,6 +192,11 @@ describe('Curtain Call: locations', () => {
     expect(cardCost(state, 'a', asset)).toBe(3)
     state = prep(state, [placeAt(CODES.lightingBox), update('a', { hand: [asset], resources: 6 })])
     expect(cardCost(state, 'a', asset)).toBe(5)
+    // Sin recursos suficientes se explica el coste modificado.
+    expect(playRestriction(prep(state, [update('a', { resources: 4 })]), 'a', asset)).toEqual({
+      key: 'unplayable.costModified',
+      params: { cost: 5, printed: 3, resources: 4 },
+    })
     state = during(state, keep, { type: 'PlayCard', investigator: 'a', code: asset })
     expect(getInvestigator(state, 'a').resources).toBe(1)
   })

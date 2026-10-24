@@ -3,6 +3,7 @@ import {
   availableActions,
   getInvestigator,
   playableCards,
+  playRestriction,
   totalDoom,
   type EncounterCard,
   type GameState,
@@ -69,6 +70,11 @@ describe('Delusions: Whispers in Your Head (hidden)', () => {
     const before = playableCards(state, 'a', false)
     state = during(state, keep, draw(SETS.whispersDoubt))
     expect(playableCards(state, 'a', false)).toEqual(before.filter((c) => c !== EVENT))
+    // La mesa explica por qué el evento de la mano ya no se puede jugar.
+    expect(playRestriction(state, 'a', EVENT)).toEqual({
+      key: 'unplayable.blockedEvent',
+      params: { card: treacheryOf(state, SETS.whispersDoubt)!.name },
+    })
   })
 
   it('Dread: you cannot move more than once each turn', () => {

@@ -14,7 +14,9 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { cardName, classColor } from '../game/cards'
 import { cardBackImage, ICON_GLYPHS, tokenImage, type TokenKind } from '../game/assets'
+import { handReason } from '../game/handReason'
 import { showPile } from '../game/pile'
+import { useTableGame } from '../game/tableController'
 import GameCard from './GameCard.vue'
 import SkillIcon from './SkillIcon.vue'
 import SlotIcon from './SlotIcon.vue'
@@ -33,6 +35,13 @@ const props = defineProps<{
 const { t } = useI18n()
 
 const i = computed(() => props.investigator)
+const game = useTableGame()
+/** Carta de la mano sin opciones ahora: el motivo, para explicarlo al pulsarla. */
+function handBlocked(code: string) {
+  if (props.privateHand) return null
+  if (props.deciding && game.choicesByTarget.has(`hand:${code}`)) return null
+  return handReason(props.state, i.value.id, code)
+}
 const playerBack = computed(() => cardBackImage('player'))
 const topDiscard = computed(() => i.value.discard.at(-1))
 
@@ -243,6 +252,7 @@ const slots = computed(() => {
             v-for="(code, n) in privateHand ? [] : i.hand"
             :key="`${code}-${n}`"
             :target="deciding ? `hand:${code}` : ''"
+            :blocked="handBlocked(code)"
             class="in-hand"
           >
             <GameCard

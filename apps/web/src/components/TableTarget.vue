@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { computed, inject, nextTick, onBeforeUnmount, provide, ref, watch, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { inspected, noHover, TABLE_CARD, type InspectedCard } from '../game/inspect'
+import {
+  inspected,
+  noHover,
+  TABLE_CARD,
+  type InspectedCard,
+  type TargetNote,
+} from '../game/inspect'
 import { useLabels } from '../game/labels'
 import { BOARD_VIEW_KEY, type ViewTransform } from '../game/viewport'
 import { useTableGame } from '../game/tableController'
@@ -13,7 +19,11 @@ import ActionButton from './ActionButton.vue'
  * opción que no es una acción con prueba (moverse, jugar una carta, elegir un
  * objetivo), se elige directamente.
  */
-const props = defineProps<{ target: string }>()
+const props = defineProps<{
+  target: string
+  /** Sin opciones: por qué no se puede usar ahora; se muestra al pulsarlo. */
+  blocked?: TargetNote | null
+}>()
 const game = useTableGame()
 const open = ref(false)
 const root = ref<HTMLElement | null>(null)
@@ -75,11 +85,15 @@ async function click() {
   // Sin ratón: la carta se abre ampliada con sus opciones; elegir es un segundo toque.
   if (noHover.value && cards[0]) {
     open.value = false
-    inspected.value = { card: cards[0](), target: props.target }
+    inspected.value = {
+      card: cards[0](),
+      target: props.target,
+      ...(options.value.length ? {} : { note: props.blocked ?? null }),
+    }
     return
   }
   if (direct.value) return game.answer(direct.value.index)
-  if (!options.value.length) return
+  if (!options.value.length && !props.blocked) return
   open.value = !open.value
   if (open.value) {
     place()
@@ -128,8 +142,9 @@ onBeforeUnmount(() => {
     class="table-target"
     :data-table-target="target"
     :class="{ active: options.length > 0, open }"
-    :role="options.length ? 'button' : undefined"
-    :tabindex="options.length ? 0 : undefined"
+    :role="options.length || blocked ? 'button' : undefined"
+    :tabindex="options.length || blocked ? 0 : undefined"
+    :title="!options.length && blocked ? label(blocked.key, blocked.params ?? {}) : undefined"
     :aria-label="hint ?? undefined"
     :aria-expanded="options.length && !direct ? open : undefined"
     @click.stop="click"
@@ -139,6 +154,15 @@ onBeforeUnmount(() => {
     <slot />
     <span v-if="hint && !open" class="hint" aria-hidden="true">▶ {{ hint }}</span>
     <Teleport to="body">
+      <p
+        v-if="open && !options.length && blocked"
+        ref="menu"
+        class="abilities blocked"
+        role="status"
+        :style="position"
+      >
+        {{ label(blocked.key, blocked.params ?? {}) }}
+      </p>
       <div v-if="open && options.length" ref="menu" class="abilities" :style="position">
         <ActionButton
           v-for="o in options"
@@ -200,5 +224,13 @@ onBeforeUnmount(() => {
   border-radius: 7px;
   background: rgb(0 0 0 / 80%);
   box-shadow: 0 6px 18px rgb(0 0 0 / 50%);
+}
+.abilities.blocked {
+  max-width: min(280px, calc(100vw - 16px));
+  margin: 0;
+  padding: 8px 10px;
+  color: var(--ink, #eee);
+  font-size: 0.9rem;
+  line-height: 1.35;
 }
 </style>
