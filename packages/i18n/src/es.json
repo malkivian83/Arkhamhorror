@@ -71,7 +71,8 @@
     "sections": "Secciones",
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú",
-    "preferences": "Preferencias"
+    "preferences": "Preferencias",
+    "privacySettings": "Privacidad · Analytics"
   },
   "home": {
     "serverStatus": "Estado del servidor",

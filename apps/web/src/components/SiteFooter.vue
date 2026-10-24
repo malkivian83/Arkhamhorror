@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, useId } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { analyticsSettingsRequested } from '../analyticsSettings'
 
 const { t } = useI18n()
 const paragraphs = ['rights', 'nonProfit', 'fairUse', 'takedown', 'warranty'] as const
@@ -21,6 +22,13 @@ const contactEmail = 'info@arkham-online.es'
       @click="dialog?.showModal()"
     >
       {{ t('app.copyright.title') }}
+    </button>
+    <button
+      type="button"
+      class="ui-plain copyright-link"
+      @click="analyticsSettingsRequested = true"
+    >
+      {{ t('app.privacySettings') }}
     </button>
     <Teleport to="body">
       <dialog
