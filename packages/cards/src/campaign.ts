@@ -311,6 +311,31 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
 }
 
 /** Cierra el escenario terminado: guarda su registro y pasa al siguiente. */
+/**
+ * Guía de El camino a Carcosa: si el portador de una carta que se transfiere abandona la
+ * campaña, pasa a otro investigador que siga en ella (el primero en orden de jugadores).
+ */
+function transferFromLeavers(campaign: Campaign, log: CampaignLog): CampaignLog {
+  const codes = campaignDefinition(campaign.id).transferOnLeave ?? []
+  const left = (id: string) => !!log.investigators[id]?.killed || !!log.investigators[id]?.insane
+  const heir = campaign.investigators.find((i) => !left(i.id))
+  if (!codes.length || !heir) return log
+  let investigators = log.investigators
+  for (const code of codes)
+    for (const member of campaign.investigators) {
+      const record = investigators[member.id]
+      if (!record || !left(member.id) || !record.storyAssets.includes(code)) continue
+      const index = record.storyAssets.indexOf(code)
+      const target = investigators[heir.id]!
+      investigators = {
+        ...investigators,
+        [member.id]: { ...record, storyAssets: record.storyAssets.filter((_, n) => n !== index) },
+        [heir.id]: { ...target, storyAssets: [...target.storyAssets, code] },
+      }
+    }
+  return { ...log, investigators }
+}
+
 export function finishScenario(campaign: Campaign, game: GameState): Campaign {
   if (!game.outcome) throw new Error('El escenario aún no ha terminado')
   if (game.scenarioId !== currentScenario(campaign) || game.difficulty !== campaign.difficulty)
@@ -327,12 +352,12 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
   )
     throw new Error('El resultado no pertenece al escenario actual de esta campaña')
   // La experiencia no baja de 0 (Dead Ends puede restar más de lo ganado).
-  const log = {
+  const log = transferFromLeavers(campaign, {
     ...played,
     investigators: Object.fromEntries(
       Object.entries(played.investigators).map(([id, r]) => [id, { ...r, xp: Math.max(0, r.xp) }]),
     ),
-  }
+  })
   // "Volver a jugar" (Asesinato en el hotel Excelsior, R2 y R3): el mismo escenario
   // vuelve a la preparación; solo se conserva lo anotado (el trauma) y no se gana
   // experiencia ni se cuenta como resultado.

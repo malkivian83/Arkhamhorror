@@ -71,6 +71,12 @@ export {
 export { BRETHREN_OF_ASH, CHAOS_BAGS, type Difficulty } from './brethren-of-ash/campaign'
 export { CARCOSA_CHAOS_BAGS, THE_PATH_TO_CARCOSA } from './the-path-to-carcosa/campaign'
 export {
+  CODES as CURTAIN_CALL_CODES,
+  CURTAIN_CALL,
+  curtainCall,
+  STRANGERS as CURTAIN_CALL_STRANGERS,
+} from './the-path-to-carcosa/curtain-call'
+export {
   CODES as QUEEN_OF_ASH_CODES,
   QUEEN_OF_ASH,
   queenOfAsh,

@@ -8,6 +8,7 @@ import {
   scenarioBehavior,
   storyBehavior,
   treacheryBehavior,
+  type TreacheryBehavior,
 } from './content'
 import {
   activeInvestigators,
@@ -31,6 +32,7 @@ import type {
   Investigator,
   InvestigatorId,
   Message,
+  Treachery,
 } from './types'
 
 /** RR: Unique. The shared canonical title applies across controllers and printings. */
@@ -52,10 +54,10 @@ export function playableCards(state: GameState, id: InvestigatorId, fast: boolea
     if (def.type !== 'asset' && def.type !== 'event') return false
     if (def.type === 'asset' && assetsBlocked(state, id)) return false
     if (def.type === 'asset' && uniqueAssetInPlay(state, code)) return false
-    if (typeBlocked(investigator, def.type, state.round)) return false
+    if (playBlocked(state, id, def.type)) return false
     const behavior = playerCardBehavior(code)
     if (def.type === 'event' && !behavior?.play) return false
-    if ((def.cost ?? 0) > investigator.resources) return false
+    if (cardCost(state, id, code) > investigator.resources) return false
     return behavior?.canPlay?.(state, id) ?? true
   })
 }
@@ -84,7 +86,7 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
     { kind: 'draw' },
     { kind: 'resource' },
     { kind: 'investigate' },
-    ...(leavingBlocked(state, here) ? [] : location.connections)
+    ...(leavingBlocked(state, here) || moveBlocked(state, id) ? [] : location.connections)
       .filter((to) => state.locations[to] && canAffordEntry(state, to) && canEnter(state, id, to))
       .map((to): Action => ({ kind: 'move', to })),
     // Un enemigo distante (aloof) no enfrentado no puede ser atacado.
@@ -126,14 +128,25 @@ export function canAffordEntry(state: GameState, location: string): boolean {
 export function actionCost(state: GameState, id: InvestigatorId, action: Action): number {
   const here = getInvestigator(state, id).location
   if (here === null) return 1
+  // Frozen in Fear: costes adicionales de las traiciones de su zona de amenaza.
+  const extra = threatAreaTreacheries(state, id).reduce(
+    (sum, t) => sum + (treacheryBehavior(t.code)?.actionCost?.(state, t, action) ?? 0),
+    0,
+  )
   if (
     action.kind === 'investigate' ||
     (action.kind === 'play' && playerCardBehavior(action.card)?.investigateAction)
   ) {
-    return 1 + (getLocation(state, here).investigateExtraActions ?? 0)
+    return 1 + extra + (getLocation(state, here).investigateExtraActions ?? 0)
   }
-  if (action.kind === 'move') return 1 + moveCost(state, here) + moveCost(state, action.to)
-  return 1
+  if (action.kind === 'move') return 1 + extra + moveCost(state, here) + moveCost(state, action.to)
+  return 1 + extra
+}
+
+/** Tipos de acción básica que ya ha realizado en esta ronda. */
+export function actionsThisRound(state: GameState, id: InvestigatorId): Action['kind'][] {
+  const record = getInvestigator(state, id).roundActions
+  return record?.round === state.round ? record.kinds : []
 }
 
 /** Coste adicional de entrar o salir de una localización por las traiciones unidas a ella. */
@@ -270,8 +283,12 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
   const treacheries = Object.values(state.treacheries).filter((t) => {
     const p = t.placement
     if (p.type === 'location') return p.location === here
+    // Guía de El camino a Carcosa, "Oculto": solo su investigador activa sus habilidades.
     if (p.type === 'threatArea') {
-      return p.investigator === id || getInvestigator(state, p.investigator).location === here
+      return (
+        p.investigator === id ||
+        (!t.hidden && getInvestigator(state, p.investigator).location === here)
+      )
     }
     if (p.type === 'enemy') return state.enemies[p.enemy]?.location === here
     return false
@@ -346,9 +363,13 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
       ),
     ...(scenarioBehavior(state.scenarioId)?.abilities?.(state, null, id) ?? []),
   ]
+  const noFast = fastAbilitiesBlocked(state, id)
   return options
     .filter(
-      (a) => a.actions <= investigator.actionsRemaining && withinLimit(state, a.key, id, a.limit),
+      (a) =>
+        a.actions <= investigator.actionsRemaining &&
+        !(noFast && a.actions === 0) &&
+        withinLimit(state, a.key, id, a.limit),
     )
     .flatMap((a) => {
       if (!a.parley) return [a]
@@ -386,6 +407,72 @@ export function provokesAttacksOfOpportunity(action: Action): boolean {
 /** Languor: no puede jugar ni comprometer cartas de este tipo esta ronda. */
 export function typeBlocked(investigator: Investigator, cardType: string, round: number): boolean {
   return (investigator.blockedTypes ?? []).some((b) => b.cardType === cardType && b.round === round)
+}
+
+/** Traiciones de su zona de amenaza, incluidas las Ocultas de su mano. */
+export function threatAreaTreacheries(state: GameState, id: InvestigatorId): Treachery[] {
+  return Object.values(state.treacheries).filter(
+    (t) => t.placement.type === 'threatArea' && t.placement.investigator === id,
+  )
+}
+
+type Restriction = NonNullable<TreacheryBehavior['restricts']>
+
+function restricted(
+  state: GameState,
+  id: InvestigatorId,
+  applies: (r: Restriction) => boolean | undefined,
+): boolean {
+  return threatAreaTreacheries(state, id).some((t) => {
+    const r = treacheryBehavior(t.code)?.restricts
+    return !!r && !!applies(r)
+  })
+}
+
+/** Una traición de su zona de amenaza le impide jugar este tipo (Dissonant Voices). */
+export const treacheryBlocksPlay = (state: GameState, id: InvestigatorId, cardType: string) =>
+  restricted(state, id, (r) => r.play?.some((type) => type === cardType))
+
+/** No puede jugar cartas de este tipo (Languor, Dissonant Voices, Whispers in Your Head). */
+export function playBlocked(state: GameState, id: InvestigatorId, cardType: string): boolean {
+  return (
+    typeBlocked(getInvestigator(state, id), cardType, state.round) ||
+    treacheryBlocksPlay(state, id, cardType)
+  )
+}
+
+/** No puede comprometer cartas de este tipo a pruebas de habilidad. */
+export function commitBlocked(state: GameState, id: InvestigatorId, cardType: string): boolean {
+  return (
+    typeBlocked(getInvestigator(state, id), cardType, state.round) ||
+    restricted(state, id, (r) => r.commit?.some((type) => type === cardType))
+  )
+}
+
+/** No puede activar habilidades [fast] (Whispers in Your Head: Anxiety). */
+export const fastAbilitiesBlocked = (state: GameState, id: InvestigatorId): boolean =>
+  restricted(state, id, (r) => r.fastAbilities)
+
+/** Ya se ha movido en este turno y no puede moverse más de una vez por turno (Dread). */
+export function moveBlocked(state: GameState, id: InvestigatorId): boolean {
+  const investigator = getInvestigator(state, id)
+  return (
+    !!state.activeTurn &&
+    investigator.lastMoveTurn === turnStartedAt(state) &&
+    restricted(state, id, (r) => r.moveOncePerTurn)
+  )
+}
+
+/** Coste en recursos de una carta de su mano, con los cambios del escenario (Cabina de luces). */
+export function cardCost(
+  state: GameState,
+  id: InvestigatorId,
+  code: CardCode,
+  discount = 0,
+): number {
+  const printed = playerCardDef(code)?.cost ?? 0
+  const change = scenarioBehavior(state.scenarioId)?.cardCostModifier?.(state, id, code) ?? 0
+  return Math.max(0, printed + change - discount)
 }
 
 /** Una debilidad en su zona de amenaza le impide jugar o usar apoyos (The Necronomicon). */

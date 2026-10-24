@@ -42,11 +42,21 @@ const publicLogParams: Record<string, string[]> = {
     ]),
   ),
 }
-function publicLog(g: GameState): GameState['log'] {
+function publicLog(g: GameState, mine: string | undefined): GameState['log'] {
+  const myName = g.investigators.find((i) => i.id === mine)?.name
   return g.log.flatMap((entry) => {
     const keys =
       publicLogParams[entry.key] ?? (entry.key.startsWith('log.step.') ? ['name'] : undefined)
     if (!keys) return []
+    // Oculto: los demás saben que alguien roba una carta, no cuál.
+    if (entry.params?.hidden && entry.params.name !== myName)
+      return [
+        {
+          key: entry.key,
+          round: entry.round,
+          params: { name: entry.params.name ?? '', card: '?' },
+        },
+      ]
     return [
       {
         key: entry.key,
@@ -160,7 +170,6 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
     locations: entities(g.locations, (l) => ({
       ...pick(l, [
         'id',
-        'name',
         'position',
         'connections',
         'extraConnections',
@@ -171,7 +180,12 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
         'unrevealed',
         'enterCost',
         'enterHorror',
+        'unrevealedName',
+        'horror',
+        'doom',
       ]),
+      // Sin revelar, solo el nombre de su cara visible (Puerta del vestíbulo).
+      name: l.revealed ? l.name : (l.unrevealedName ?? l.name),
       shroud: l.revealed ? l.shroud : 0,
       clueValue: l.revealed ? l.clueValue : 0,
       cluesPerInvestigator: l.revealed && l.cluesPerInvestigator,
@@ -231,22 +245,33 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
       code: a.faceDown ? '' : a.code,
       name: a.faceDown ? '' : a.name,
     })),
-    treacheries: entities(g.treacheries, (t) =>
-      pick(t, [
-        'id',
-        'kind',
-        'code',
-        'name',
-        'traits',
-        'keywords',
-        'placement',
-        'owner',
-        'canceled',
-        'tokens',
-        'clues',
-        'horror',
-      ]),
-    ),
+    treacheries: entities(g.treacheries, (t) => {
+      // Oculto: solo su investigador sabe qué carta tiene en la mano.
+      const secret =
+        t.hidden && !(t.placement.type === 'threatArea' && t.placement.investigator === mine)
+      return secret
+        ? {
+            ...pick(t, ['id', 'kind', 'placement', 'hidden']),
+            code: '',
+            name: '',
+            keywords: [],
+          }
+        : pick(t, [
+            'id',
+            'kind',
+            'code',
+            'name',
+            'traits',
+            'keywords',
+            'placement',
+            'owner',
+            'canceled',
+            'tokens',
+            'clues',
+            'horror',
+            'hidden',
+          ])
+    }),
     stories: entities(g.stories ?? {}, (s) => pick(s, ['code', 'name', 'clues'])),
     ...(g.campaignLog
       ? {
@@ -308,7 +333,7 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
     chaosBag: [...g.chaosBag],
     tokenValues: { ...g.tokenValues },
     // New log kinds/parameters need review before being visible to other players.
-    log: publicLog(g),
+    log: publicLog(g, mine),
     skillTest: testView(g.skillTest),
     pending:
       g.pending && q

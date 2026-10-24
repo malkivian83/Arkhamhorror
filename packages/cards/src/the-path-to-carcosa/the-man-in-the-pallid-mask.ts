@@ -82,6 +82,12 @@ registerEnemy({
       },
     ]
   },
+  // Se cierra el telón, acto 2 (Objetivo): al ir a descartarse, el acto avanza y su
+  // reverso lo mueve al Vestíbulo en lugar de descartarlo.
+  insteadOfDiscard: (state) =>
+    state.scenarioId === 'curtain-call' && state.acts[state.actIndex]?.code?.startsWith('03047')
+      ? [{ type: 'AdvanceAct' }]
+      : null,
   forced: (state, trigger, self): Message[] => {
     if (trigger.type !== 'enemyDefeated' || trigger.enemy.id !== self.id) return []
     if (state.scenarioId === 'curtain-call')
