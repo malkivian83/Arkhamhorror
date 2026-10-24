@@ -2,8 +2,8 @@
 
 ## Estado actual
 
-**1 de 8 escenarios jugables: I · Se cierra el telón** (tercera entrega, sin
-publicar todavía). La campaña ya se puede empezar en local y en línea; al terminar
+**1 de 8 escenarios jugables: I · Se cierra el telón** (tercera entrega,
+publicada en `cf4511d`). La campaña ya se puede empezar en local y en línea; al terminar
 el escenario I no hay un segundo escenario disponible. Los escenarios II–VIII siguen
 sin `build`.
 
@@ -103,9 +103,9 @@ La narración de Lola queda preparada, pero no se activa esa investigadora. Los
 audios están registrados por clave de historia; se ofrecerán al alcanzar esos
 relatos cuando el escenario completo esté habilitado.
 
-## Siguiente entrega: completar Se cierra el telón
+## Plan de la tercera entrega: completar Se cierra el telón
 
-Implementar el escenario completo antes de habilitarlo:
+Plan previo a la tercera entrega, conservado como registro; ya está completado:
 
 1. Datos de actos, planes, Lugares y encuentros con códigos oficiales y
    presentación EN/ES. Conjuntos: Se cierra el telón, Portentos malignos,
@@ -147,9 +147,6 @@ Implementar el escenario completo antes de habilitarlo:
 - [x] Añadir el `build` en `the-path-to-carcosa/definition.ts` y actualizar la
       descripción de disponibilidad solo al completar lo anterior. Los otros
       siete escenarios seguirán pendientes hasta su propia implementación.
-
-Estos criterios no están satisfechos por las pruebas actuales: las reglas de
-Carcosa se han probado sobre una fixture genérica, no sobre su escenario completo.
 
 ## Tercera entrega: Se cierra el telón jugable
 
@@ -232,12 +229,12 @@ la copia seleccionada para publicar; la compilación avisó de una fuente extern
 y del tamaño de algunos chunks. Estos resultados no acreditan jugabilidad de
 Carcosa: sus escenarios aún no tienen `build`.
 
-Tercera entrega (Se cierra el telón jugable): **sin commit ni push**, pendiente de
-autorización. Al publicarla hay que preparar solo sus rutas y fragmentos: el árbol
-mezcla cambios de la importación de cartas en curso en `engine/handlers.ts`,
-`types.ts`, `content.ts`, i18n (reordenado del lobby) y `continuacion-importacion.md`.
-El manifiesto de imágenes conserva el orden de HEAD con las 108 entradas nuevas; el
-reordenado ajeno previo de ese archivo (sin cambio de contenido) no se ha conservado.
+Tercera entrega (Se cierra el telón jugable): publicada en `cf4511d`; las 108
+imágenes se incorporaron al inventario general en `fda541f`. Revisión posterior sobre
+`fda541f`: datos de Lugares, actos, planes, Emisario y 03059 contrastados con los
+escaneos; formato, lint y tipos correctos; 3209 pruebas superadas y 19 omitidas. El
+fallo de Eureka ya no aparece. Los 2 fallos de `apps/server/src/deploy.test.mjs` solo
+se deben a ejecutar con Node 22 (el despliegue exige Node 24).
 
 Siguiente bloque: escenario II (El último Rey) e interludio I, reutilizando Oculto,
 los contadores y los conjuntos de encuentro ya implementados. Pendientes del I:
