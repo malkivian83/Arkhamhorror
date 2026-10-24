@@ -6,6 +6,7 @@ import {
   purchase,
   activeMembers,
   canPlayNext,
+  chooseTransferHeir,
   type Campaign,
 } from '@lcg/cards'
 import { applyInput, type GameState } from '@lcg/engine'
@@ -135,9 +136,11 @@ export class LobbyService {
         command.action,
         command.action === 'purchase'
           ? [command.card, command.upgrade, command.remove ?? null]
-          : command.action === 'ready'
-            ? command.ready
-            : null,
+          : command.action === 'heir'
+            ? [command.card, command.heir]
+            : command.action === 'ready'
+              ? command.ready
+              : null,
       ])
       const prior = lobby.commands?.[command.commandId]
       if (prior) {
@@ -152,6 +155,14 @@ export class LobbyService {
         lobby.campaign = finishScenario(lobby.campaign, lobby.game)
         lobby.intermission = true
         lobby.campaignReady = []
+      } else if (command.action === 'heir') {
+        requireValue(lobby.intermission, 'not_intermission', 409)
+        requireValue(lobby.owner === user, 'not_owner', 403)
+        try {
+          lobby.campaign = chooseTransferHeir(lobby.campaign, command.card, command.heir)
+        } catch {
+          requireValue(false, 'invalid_heir')
+        }
       } else {
         requireValue(lobby.intermission, 'not_intermission', 409)
         requireValue(canPlayNext(lobby.campaign), 'campaign_cannot_continue', 409)
@@ -366,11 +377,12 @@ export function onlineLobbies(
           properties: {
             commandId: { type: 'string', format: 'uuid' },
             revision,
-            action: { type: 'string', enum: ['finish', 'purchase', 'ready', 'next'] },
+            action: { type: 'string', enum: ['finish', 'purchase', 'ready', 'next', 'heir'] },
             card: { type: 'string', minLength: 1, maxLength: 30 },
             upgrade: { type: 'boolean' },
             remove: { type: 'string', minLength: 1, maxLength: 30 },
             ready: { type: 'boolean' },
+            heir: { type: 'string', minLength: 1, maxLength: 30 },
           },
           allOf: [
             {
@@ -378,6 +390,10 @@ export function onlineLobbies(
               then: { required: ['card', 'upgrade'] },
             },
             { if: { properties: { action: { const: 'ready' } } }, then: { required: ['ready'] } },
+            {
+              if: { properties: { action: { const: 'heir' } } },
+              then: { required: ['card', 'heir'] },
+            },
           ],
         },
       },

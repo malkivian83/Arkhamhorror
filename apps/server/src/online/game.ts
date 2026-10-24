@@ -5,6 +5,7 @@ import {
   activeMembers,
   canPlayNext,
   currentScenario,
+  pendingTransfers,
   purchaseOptions,
   removableCards,
 } from '@lcg/cards'
@@ -88,6 +89,7 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
             canContinue: canPlayNext(campaign),
             ready: !!mine && ready(mine),
             allReady: active.length > 0 && active.every(ready),
+            transfers: pendingTransfers(campaign),
             members: campaign.investigators.map((i) => {
               const record = campaign.log.investigators[i.id]!
               return {
