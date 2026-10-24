@@ -252,6 +252,110 @@
       "inputHash": "542070f8f7bfd9948d4f3d93b718df4e55af033ecd6ef47d428ee6f7d242415d",
       "sha256": "979a121dec680043de4d49d61762cd347cb51364208a29f973e1e72049c109fc",
       "bytes": 1799775
+    },
+    {
+      "key": "story.oath.intro1",
+      "file": "the-unspeakable-oath-intro1.mp3",
+      "characters": 863,
+      "inputHash": "96e00c1a08fbb2034c78eaa103230f69f09d8c41d66f9f1618e5805ac8c93290",
+      "sha256": "93f8fef865e7e2c7f3606aff4ca8d7d85d3af524cab04b5308581557039f8825",
+      "bytes": 1156536
+    },
+    {
+      "key": "story.oath.intro2",
+      "file": "the-unspeakable-oath-intro2.mp3",
+      "characters": 1004,
+      "inputHash": "8c1403fcca4e693fd42f7eb9ec0c196af764fc25bbbf911381b3f4ab6ab74e37",
+      "sha256": "9c0e2a4739dc57cbd1e6a986f6d33a192198c1b11ddddec715cc4c0be5c3add1",
+      "bytes": 1288193
+    },
+    {
+      "key": "story.oath.intro3",
+      "file": "the-unspeakable-oath-intro3.mp3",
+      "characters": 1307,
+      "inputHash": "81906c00a14b627d43fb3c7edd0e7f3ad72671728d20f41875127f7d606b038a",
+      "sha256": "017e4e48d101ab15c3aa988afa43c1835fdc42c1097cc57bffd2196244117dcd",
+      "bytes": 1640950
+    },
+    {
+      "key": "story.oath.constance",
+      "file": "the-unspeakable-oath-constance.mp3",
+      "characters": 789,
+      "inputHash": "02b65502972f05243acb895dcfbba73a37f4ce154219df7d4b10cde8228e4339",
+      "sha256": "65e50bc658be6fa77e34f2a0152de4da64d2374eed8d752b5760d3c783aa69a8",
+      "bytes": 991442
+    },
+    {
+      "key": "story.oath.defeated",
+      "file": "the-unspeakable-oath-defeated.mp3",
+      "characters": 1299,
+      "inputHash": "7d1ae8e8abe400cbbcd6efa95caf53756bf02b11239f881ce49998e18a150fe4",
+      "sha256": "d64ce8f948e50d05571defbe8e182e0475cef6d3c3290f8881e23ae058b9be7e",
+      "bytes": 1641786
+    },
+    {
+      "key": "story.oath.resolution1",
+      "file": "the-unspeakable-oath-resolution1.mp3",
+      "characters": 61,
+      "inputHash": "8bcdae9b76af0dbf05a1058183f9c3ed989771dffb3992ebdcbb7183f906dc75",
+      "sha256": "dbc1cd0334657c85a924da2f2f686b3c269cdcd5dabe78b69ba473b5e5f30d20",
+      "bytes": 96173
+    },
+    {
+      "key": "story.oath.resolution2",
+      "file": "the-unspeakable-oath-resolution2.mp3",
+      "characters": 588,
+      "inputHash": "f38d76e2519055c39a4554f20821ed1114ea2abc28c0b16d3d168268724a98a6",
+      "sha256": "dea0ac6c6b8eabbfe980b0c8298395b587d208fdc431ed9d04a09ae48b3586e8",
+      "bytes": 754459
+    },
+    {
+      "key": "story.oath.resolution3",
+      "file": "the-unspeakable-oath-resolution3.mp3",
+      "characters": 611,
+      "inputHash": "3f5450bcc05603ba732772dce5e1f7d357326356f17436aaa69a467abfc0ccf3",
+      "sha256": "7198d50d09bac23e0fe98c07360a7add0b8b5bc90fa40c62bd74aea7d60ffb14",
+      "bytes": 794583
+    },
+    {
+      "key": "story.oath.danielSurvived",
+      "file": "lost-soul-daniel-survived.mp3",
+      "characters": 1860,
+      "inputHash": "4343217b796e05c44b0fd22f4f1da3ab56c43aff1e7341f19d9a2a83d1940188",
+      "sha256": "c76ac96a85532186ffb062a238085654f261155cfa46e278911a0d7625f4d934",
+      "bytes": 2372797
+    },
+    {
+      "key": "story.oath.danielWasPossessed",
+      "file": "lost-soul-daniel-was-possessed.mp3",
+      "characters": 1756,
+      "inputHash": "8d45ace7460109d8ae34ffdc583fd2a4ed9d272e0ea292f48c8a0ecaf6ea170e",
+      "sha256": "5542464570af64eb53d87e9fa895caf46b6b40be8dcc3473ca2ee22d02fa47c2",
+      "bytes": 2234034
+    },
+    {
+      "key": "story.oath.danielDied",
+      "file": "lost-soul-daniel-did-not-survive.mp3",
+      "characters": 761,
+      "inputHash": "b890d1873fc580f4df7d09907afafe22e2eeb4320a6e8933a4a0e8ef9645b27a",
+      "sha256": "79893d4079281f10df64b099e4825cdf526800e9fddc9395377970cd6fb76f5b",
+      "bytes": 965528
+    },
+    {
+      "key": "story.oath.ignoreTheWarning",
+      "file": "lost-soul-ignore-the-warning.mp3",
+      "characters": 200,
+      "inputHash": "f36b8e2cda52e9d2fd42b49d59e0c7647ec49abd8947509e95b7507836004bd7",
+      "sha256": "6c9b9b279a5aed1ccd20543e78bb611a442fceb35023f7cdb7f23d0be7c58601",
+      "bytes": 309332
+    },
+    {
+      "key": "story.oath.heedTheWarning",
+      "file": "lost-soul-heed-the-warning.mp3",
+      "characters": 206,
+      "inputHash": "145effedc073e4add6f924c7a277ac54cd01f6278b30d6ce4c3f0c6268d2e96e",
+      "sha256": "8679793586687ac24989247caa7ad74126493ad3ff03baeec6ec32a6d1ce3ea5",
+      "bytes": 334828
     }
   ]
 }
