@@ -877,6 +877,8 @@ export type Message =
       assignFirst?: Partial<Record<'damage' | 'horror', string>>
       /** Enemigo cuyo ataque inflige el daño (Vagabundo dimensional). */
       enemy?: EnemyId
+      /** Origen que se muestra: nombre de carta o `token:<ficha>`. */
+      source?: string
       /** Lo ya asignado a apoyos, para la ventana de "tras infligirle daño u horror". */
       dealt?: DamageDealt[]
       /** Carta elegida que debe llenarse antes que otra (Bestia de Aldebarán). */
@@ -1016,6 +1018,8 @@ export type Message =
       assignFirst?: Partial<Record<'damage' | 'horror', string>>
       /** Enemigo cuyo ataque inflige el daño. */
       enemy?: EnemyId
+      /** Origen que se muestra: nombre de carta o `token:<ficha>`; si falta, se deduce. */
+      source?: string
       dealt?: DamageDealt[]
     }
   | { type: 'CheckDefeat'; investigator: InvestigatorId }

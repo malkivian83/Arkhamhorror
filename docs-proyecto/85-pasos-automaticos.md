@@ -67,3 +67,19 @@ pone una carta), no se abre ninguna ventana: el mapa resalta las opciones.
   acciones o carta rápida fuera de una ventana.
 - Al pulsar una carta de la mano sin opciones se muestra el motivo en un
   globo (escritorio, también como `title`) o bajo la carta ampliada (móvil).
+
+## De dónde viene el daño
+
+- `TakeDamage` y `AssignDamage` aceptan `source`: nombre de carta o
+  `token:<ficha>`. Si falta, el motor lo deduce al aplicarlo: enemigo que
+  ataca, carta que exige la prueba de efecto, traición que se está revelando,
+  apoyo cuya habilidad se resuelve o evento de la prueba. Sin un origen claro
+  no se inventa ninguno.
+- Los efectos obligados llevan su carta (traición, enemigo, plan, acto, Lugar,
+  apoyo, Historia o apoyo sin dueño) y los efectos de las fichas del caos, la
+  ficha.
+- Las claves no cambian (`log.damage`, `prompt.assignDamage`,
+  `prompt.assignHorror`): solo añaden el parámetro `source`, y la web usa el
+  texto `…From` («Roland recibe 1 daño y 0 horror de Necrófago», «Asigna 1
+  horror de la ficha de Calavera») en el diario, los pasos automáticos y el
+  reparto entre apoyos. En línea, `source` es público en el registro.

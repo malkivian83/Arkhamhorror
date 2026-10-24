@@ -241,7 +241,9 @@
     "placeMostInvestigators": "{card} attaches to the location with the most investigators and there is a tie: choose where to put it.",
     "placeMostClues": "{card} attaches to the location with the most clues (without another {card}) and there is a tie: choose where to put it.",
     "cardMoveTo": "{card}: choose the location you move to.",
-    "cardDiscoverElsewhere": "{card}: choose another revealed location to discover 1 clue at."
+    "cardDiscoverElsewhere": "{card}: choose another revealed location to discover 1 clue at.",
+    "assignDamageFrom": "Assign 1 damage from {source}",
+    "assignHorrorFrom": "Assign 1 horror from {source}"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -796,7 +798,8 @@
     "enemyRemoved": "{enemy} is removed from the game",
     "lastKing": {
       "diningToken": "Dining Room: the {token} token is revealed"
-    }
+    },
+    "damageFrom": "{name} takes {damage} damage and {horror} horror from {source}"
   },
   "table": {
     "investigators": "Investigators",
@@ -3525,5 +3528,13 @@
     "fastWindow": "It is fast: play it during your turn or when the game opens a window for fast effects.",
     "actionTiming": "It is played as an action during your turn.",
     "noActions": "You have no actions left this turn."
+  },
+  "chaosTokenName": {
+    "skull": "the Skull token",
+    "cultist": "the Cultist token",
+    "tablet": "the Tablet token",
+    "elderThing": "the Elder Thing token",
+    "elderSign": "the Elder Sign token",
+    "autoFail": "the Tentacle token"
   }
 }

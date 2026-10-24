@@ -24,7 +24,7 @@ const publicLogParams: Record<string, string[]> = {
   'log.lead': ['name'],
   'log.play': ['name', 'card'],
   'log.clues': ['name', 'amount'],
-  'log.damage': ['name', 'damage', 'horror'],
+  'log.damage': ['name', 'damage', 'horror', 'source'],
   'log.testSuccess': ['name', 'skill', 'value', 'difficulty', 'tokens'],
   'log.testFailure': ['name', 'skill', 'value', 'difficulty', 'tokens'],
   'log.agendaAdvanced': ['name'],

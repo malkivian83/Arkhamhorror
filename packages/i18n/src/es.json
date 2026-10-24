@@ -241,7 +241,9 @@
     "placeMostInvestigators": "{card} se une al Lugar con más investigadores y hay empate: elige en qué Lugar la pones.",
     "placeMostClues": "{card} se une al Lugar con más pistas (sin otra {card}) y hay empate: elige en qué Lugar la pones.",
     "cardMoveTo": "{card}: elige a qué Lugar te mueves.",
-    "cardDiscoverElsewhere": "{card}: elige otro Lugar revelado en el que descubres 1 pista."
+    "cardDiscoverElsewhere": "{card}: elige otro Lugar revelado en el que descubres 1 pista.",
+    "assignDamageFrom": "Asigna 1 daño de {source}",
+    "assignHorrorFrom": "Asigna 1 horror de {source}"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -796,7 +798,8 @@
     "enemyRemoved": "{enemy} se retira de la partida",
     "lastKing": {
       "diningToken": "Comedor: se revela la ficha {token}"
-    }
+    },
+    "damageFrom": "{name} recibe {damage} daño y {horror} horror de {source}"
   },
   "table": {
     "investigators": "Investigadores",
@@ -3525,5 +3528,13 @@
     "fastWindow": "Es rápida: se juega en tu turno o cuando el juego abre una ventana para efectos rápidos.",
     "actionTiming": "Se juega como acción durante tu turno.",
     "noActions": "No te quedan acciones este turno."
+  },
+  "chaosTokenName": {
+    "skull": "la ficha de Calavera",
+    "cultist": "la ficha de Sectario",
+    "tablet": "la ficha de Tablilla",
+    "elderThing": "la ficha de Primigenio",
+    "elderSign": "la ficha de Signo arcano",
+    "autoFail": "la ficha de Tentáculo"
   }
 }

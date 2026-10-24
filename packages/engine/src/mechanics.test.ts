@@ -359,3 +359,31 @@ describe('decisiones del jefe (FAQ 1.5)', () => {
     expect(Object.values(s.enemies)[0]?.location).toBe('C')
   })
 })
+
+describe('origen del daño', () => {
+  const sources = (s: GameState) =>
+    s.log.filter((e) => e.key === 'log.damage').map((e) => e.params?.source)
+
+  it('la prueba de una traición, su efecto obligado y una ficha del caos', () => {
+    // Prueba de voluntad de la traición: el daño viene de la carta que la exige.
+    const smoke = during(newTestGame(), withBag(-2), reveal(treachery('t-smoke')))
+    expect(sources(smoke)).toEqual(['t-smoke', 't-smoke'])
+    // Forzado de una traición en la zona de amenaza.
+    let haunt = during(newTestGame(), withBag(0), reveal(treachery('t-haunt')))
+    haunt = choose(haunt, 'action.investigate')
+    expect(sources(haunt)).toEqual(['t-haunt'])
+    // "Si fallas, 1 daño" de la tablilla.
+    const token = choose(
+      during(newTestGame({ scenario: { id: 'test-tokens' } }), withBag('tablet', 'tablet')),
+      'action.investigate',
+    )
+    expect(sources(token)).toEqual(['token:tablet', 'token:tablet'])
+  })
+
+  it('el ataque de un enemigo', () => {
+    const attacked = during(newTestGame(), keep, spawnAt('A', ghoul, 'a'), {
+      type: 'EnemiesAttack',
+    })
+    expect(sources(attacked)).toEqual(['Ghoul'])
+  })
+})

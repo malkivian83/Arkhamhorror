@@ -5,7 +5,7 @@ import { localName } from './localized'
 
 /** Traduce una clave del motor, traduciendo también los parámetros que son claves (habilidad, fase). */
 export function useLabels() {
-  const { t } = useI18n()
+  const { t, te } = useI18n()
   return (key: string, params: LabelParams = {}) => {
     // Los nombres de cartas que guarda el motor están en inglés: se traducen si hay datos.
     // Las partidas guardadas pueden traer aún el código de la carta en vez de su nombre.
@@ -21,6 +21,12 @@ export function useLabels() {
       translated.scenario = t(`campaign.scenario.${params.scenario}`)
     if (params.kind === 'damage' || params.kind === 'horror') {
       translated.kind = t(`damageKind.${params.kind}`)
+    }
+    // Origen del daño: una carta o una ficha del caos; el texto "…From" lo nombra.
+    if (typeof params.source === 'string') {
+      const token = params.source.startsWith('token:') ? params.source.slice(6) : null
+      translated.source = token ? t(`chaosTokenName.${token}`) : localName(cardName(params.source))
+      if (te(`${key}From`)) key = `${key}From`
     }
     // Con un número {n}, los textos con "singular | plural" eligen su forma.
     return typeof params.n === 'number' ? t(key, translated, params.n) : t(key, translated)

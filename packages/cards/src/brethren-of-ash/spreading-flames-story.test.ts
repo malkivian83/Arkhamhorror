@@ -264,6 +264,8 @@ describe('Spreading Flames: Dr. Henry Armitage y Hellhound', () => {
     // La segunda sí: hay que repartir el daño del ataque.
     game = choose(game, 'action.resource')
     expect(game.pending?.question.prompt).toBe('prompt.assignDamage')
+    // El reparto dice de dónde viene el daño: el ataque de oportunidad del enemigo.
+    expect(game.pending?.question.promptParams).toEqual({ source: servantOfFlame.name })
   })
 
   it('Hellhound: tras atacarte en la fase de enemigos, descartas un apoyo', () => {
