@@ -13,6 +13,7 @@ function view(): OnlineCampaignView {
     nextScenario: 'smoke-and-mirrors',
     ready: false,
     allReady: false,
+    transfers: [],
     members: [
       {
         investigator: '12004',

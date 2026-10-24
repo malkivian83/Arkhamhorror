@@ -1441,7 +1441,14 @@
     },
     "choose": "Elige la campaña",
     "xpBreakdown": "Desglose de experiencia",
-    "standalone": "Escenario independiente"
+    "standalone": "Escenario independiente",
+    "transfer": {
+      "title": "Nuevo portador",
+      "prompt": "{from} ha abandonado la campaña. Elegid qué investigador recibe {card}.",
+      "choose": "Elige un investigador",
+      "assign": "Asignar",
+      "blocked": "Falta elegir el nuevo portador de una debilidad."
+    }
   },
   "class": {
     "guardian": "Guardián",
@@ -3131,6 +3138,7 @@
       "not_intermission": "Primero registra el resultado del escenario.",
       "campaign_cannot_continue": "La campaña no tiene un siguiente escenario disponible.",
       "inactive_investigator": "Este investigador no puede continuar.",
+      "invalid_heir": "Elige a un investigador que siga en la campaña.",
       "invalid_purchase": "La mejora no es válida: revisa la experiencia, la carta y la sustitución."
     },
     "play": {
@@ -3166,7 +3174,8 @@
       "remove": "Carta que sale del mazo",
       "buy": "Comprar mejora",
       "start": "Iniciar siguiente escenario",
-      "chooseCard": "Selecciona una carta"
+      "chooseCard": "Selecciona una carta",
+      "heir": "Asignar"
     }
   },
   "chaosHelp": {

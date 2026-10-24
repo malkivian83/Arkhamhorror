@@ -108,6 +108,7 @@ export { onePrintingEach, printingsOf, reprintSource } from './reprints'
 export {
   activeMembers,
   canPlayNext,
+  chooseTransferHeir,
   currentScenario,
   DECK_SIZE,
   deckSize,
@@ -115,6 +116,7 @@ export {
   finishScenario,
   isImplemented,
   newCampaign,
+  pendingTransfers,
   purchase,
   purchaseOptions,
   removableCards,

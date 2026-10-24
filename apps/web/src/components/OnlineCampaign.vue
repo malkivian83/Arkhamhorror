@@ -21,6 +21,7 @@ const options = computed(() =>
       o.code.includes(search.value),
   ),
 )
+const heirs = ref<Record<string, string>>({})
 const option = computed(() => props.campaign.own?.options.find((o) => key(o) === selected.value))
 function buy() {
   if (!option.value) return
@@ -36,7 +37,24 @@ function buy() {
 <template>
   <section class="campaign">
     <h3>{{ t('online.campaignPlay.title') }}</h3>
-    <p v-if="campaign.canContinue">
+    <section v-for="p in campaign.transfers" :key="p.card" class="transfer">
+      <h4>{{ t('campaign.transfer.title') }}</h4>
+      <p>{{ t('campaign.transfer.prompt', { card: name(p.card), from: name(p.from) }) }}</p>
+      <fieldset v-if="campaign.canManage" :disabled="disabled">
+        <select v-model="heirs[p.card]" :aria-label="t('campaign.transfer.choose')">
+          <option :value="undefined" disabled>{{ t('campaign.transfer.choose') }}</option>
+          <option v-for="id in p.candidates" :key="id" :value="id">{{ name(id) }}</option>
+        </select>
+        <button
+          :disabled="!heirs[p.card]"
+          @click="emit('action', { action: 'heir', card: p.card, heir: heirs[p.card]! })"
+        >
+          {{ t('online.campaignPlay.heir') }}
+        </button>
+      </fieldset>
+    </section>
+    <p v-if="campaign.transfers.length">{{ t('campaign.transfer.blocked') }}</p>
+    <p v-else-if="campaign.canContinue">
       {{
         t('online.campaignPlay.next', { scenario: t(`campaign.scenario.${campaign.nextScenario}`) })
       }}

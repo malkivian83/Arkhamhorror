@@ -6,6 +6,7 @@ import {
   deckSize,
   deckSizeOf,
   onePrintingEach,
+  pendingTransfers,
   purchaseOptions,
   removableCards,
   type PurchaseOption,
@@ -38,6 +39,10 @@ const definition = computed(() => (campaign.value ? campaignDefinition(campaign.
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
 const next = computed(() => (campaign.value ? currentScenario(campaign.value) : null))
 const playable = computed(() => !!campaign.value && canPlayNext(campaign.value))
+
+/** Cartas cuyo portador dejó la campaña y esperan a que el grupo elija otro. */
+const transfers = computed(() => (campaign.value ? pendingTransfers(campaign.value) : []))
+const heirs = ref<Record<string, string>>({})
 
 const scenarioName = (id: string) => t(`campaign.scenario.${id}`)
 const name = (code: string) => localName(cardName(code))
@@ -272,6 +277,28 @@ function abandon() {
       </section>
     </div>
 
+    <section
+      v-for="p in transfers"
+      :key="p.card"
+      class="page transfer"
+      :aria-label="t('campaign.transfer.title')"
+    >
+      <h2>{{ t('campaign.transfer.title') }}</h2>
+      <p>{{ t('campaign.transfer.prompt', { card: name(p.card), from: name(p.from) }) }}</p>
+      <select v-model="heirs[p.card]" :aria-label="t('campaign.transfer.choose')">
+        <option :value="undefined" disabled>{{ t('campaign.transfer.choose') }}</option>
+        <option v-for="id in p.candidates" :key="id" :value="id">{{ name(id) }}</option>
+      </select>
+      <button
+        type="button"
+        :disabled="!heirs[p.card] || !!game.state"
+        @click="game.chooseHeir(p.card, heirs[p.card]!)"
+      >
+        {{ t('campaign.transfer.assign') }}
+      </button>
+      <p v-if="game.error" class="error">{{ game.error }}</p>
+    </section>
+
     <footer class="actions">
       <SiteAction v-if="game.state" icon="→" @click="router.push('/game')">
         {{ t('campaign.resumeScenario') }}
@@ -280,7 +307,8 @@ function abandon() {
         <SiteAction icon="→" :disabled="!playable" @click="playNext">
           {{ t('campaign.play', { scenario: scenarioName(next) }) }}
         </SiteAction>
-        <span v-if="!playable" class="soon">{{ t('campaign.comingSoon') }}</span>
+        <span v-if="transfers.length" class="soon">{{ t('campaign.transfer.blocked') }}</span>
+        <span v-else-if="!playable" class="soon">{{ t('campaign.comingSoon') }}</span>
       </template>
       <p v-else class="finished">{{ t('campaign.finished') }}</p>
       <SiteAction icon="×" variant="danger" class="abandon" @click="abandon">{{
@@ -302,6 +330,18 @@ function abandon() {
 </template>
 
 <style scoped>
+.transfer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 28px;
+}
+.transfer h2,
+.transfer p {
+  flex-basis: 100%;
+  margin: 0;
+}
 .grid {
   display: grid;
   grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);

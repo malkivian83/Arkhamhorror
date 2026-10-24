@@ -9,7 +9,14 @@ import {
   type RngState,
 } from '@lcg/engine'
 import { describe, expect, it } from 'vitest'
-import { finishScenario, newCampaign, startScenario } from '../campaign'
+import {
+  canPlayNext,
+  chooseTransferHeir,
+  finishScenario,
+  newCampaign,
+  pendingTransfers,
+  startScenario,
+} from '../campaign'
 import '../index'
 import { CODES } from './curtain-call'
 import { carcosaCount } from './log'
@@ -183,30 +190,64 @@ describe('Curtain Call: complete games with ordinary inputs', () => {
 })
 
 describe('The Path to Carcosa: the Stranger changes bearer when the bearer leaves', () => {
-  it('passes the weakness to the next remaining investigator', () => {
-    const { campaign, state } = play(2, 133)
-    let next = finishScenario(campaign, state)
-    const [first, second] = campaign.investigators
-    const bearer = next.log.investigators[first!.id]!.storyAssets.includes(
-      THE_MAN_IN_THE_PALLID_MASK,
-    )
-      ? first!
-      : second!
-    const other = bearer === first ? second! : first!
-    // El portador muere en el siguiente escenario: se simula con su registro.
+  /** Juega el escenario I y simula que su portador muere en el siguiente. */
+  function bearerKilled(players: number) {
+    const { campaign, state } = play(players, 133)
+    const after = finishScenario(campaign, state)
+    const bearer = campaign.investigators.find((i) =>
+      after.log.investigators[i.id]!.storyAssets.includes(THE_MAN_IN_THE_PALLID_MASK),
+    )!
     const killed = {
       ...state,
       scenarioId: 'curtain-call',
       campaignLog: {
-        ...next.log,
+        ...after.log,
         investigators: {
-          ...next.log.investigators,
-          [bearer.id]: { ...next.log.investigators[bearer.id]!, killed: true },
+          ...after.log.investigators,
+          [bearer.id]: { ...after.log.investigators[bearer.id]!, killed: true },
         },
       },
     }
-    next = finishScenario({ ...next, scenarioIndex: 0 }, killed)
-    expect(next.log.investigators[bearer.id]!.storyAssets).not.toContain(THE_MAN_IN_THE_PALLID_MASK)
-    expect(next.log.investigators[other.id]!.storyAssets).toContain(THE_MAN_IN_THE_PALLID_MASK)
+    const next = finishScenario({ ...after, scenarioIndex: 0 }, killed)
+    const others = campaign.investigators.filter((i) => i !== bearer).map((i) => i.id)
+    return { next, bearer: bearer.id, others }
+  }
+
+  it('passes the weakness to the only remaining investigator', () => {
+    const { next, bearer, others } = bearerKilled(2)
+    expect(pendingTransfers(next)).toEqual([])
+    expect(next.log.investigators[bearer]!.storyAssets).not.toContain(THE_MAN_IN_THE_PALLID_MASK)
+    expect(next.log.investigators[others[0]!]!.storyAssets).toContain(THE_MAN_IN_THE_PALLID_MASK)
+  })
+
+  it('with several remaining investigators, the group chooses the new bearer', () => {
+    const { next, bearer, others } = bearerKilled(3)
+    expect(pendingTransfers(next)).toEqual([
+      { card: THE_MAN_IN_THE_PALLID_MASK, from: bearer, candidates: others },
+    ])
+    for (const id of [bearer, ...others])
+      expect(next.log.investigators[id]!.storyAssets).not.toContain(THE_MAN_IN_THE_PALLID_MASK)
+    expect(() => chooseTransferHeir(next, THE_MAN_IN_THE_PALLID_MASK, bearer)).toThrow()
+    const heir = others[1]!
+    const chosen = chooseTransferHeir(next, THE_MAN_IN_THE_PALLID_MASK, heir)
+    expect(pendingTransfers(chosen)).toEqual([])
+    expect(chosen.log.investigators[heir]!.storyAssets).toContain(THE_MAN_IN_THE_PALLID_MASK)
+    expect(chosen.log.investigators[others[0]!]!.storyAssets).not.toContain(
+      THE_MAN_IN_THE_PALLID_MASK,
+    )
+    expect(() => chooseTransferHeir(chosen, THE_MAN_IN_THE_PALLID_MASK, heir)).toThrow()
+  })
+
+  it('a pending choice blocks the next scenario', () => {
+    const campaign = newCampaign('the-path-to-carcosa', ['joe', 'trish', 'isabelle'], 'easy')
+    expect(canPlayNext(campaign)).toBe(true)
+    const pending = {
+      ...campaign,
+      log: { ...campaign.log, values: { [`transfer:${THE_MAN_IN_THE_PALLID_MASK}`]: 'dexter' } },
+    }
+    expect(canPlayNext(pending)).toBe(false)
+    expect(() => startScenario(pending, 1)).toThrow('Falta elegir el nuevo portador')
+    const heir = campaign.investigators[0]!.id
+    expect(canPlayNext(chooseTransferHeir(pending, THE_MAN_IN_THE_PALLID_MASK, heir))).toBe(true)
   })
 })

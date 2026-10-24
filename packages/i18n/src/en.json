@@ -1441,7 +1441,14 @@
     },
     "choose": "Choose the campaign",
     "xpBreakdown": "Experience breakdown",
-    "standalone": "Standalone scenario"
+    "standalone": "Standalone scenario",
+    "transfer": {
+      "title": "New bearer",
+      "prompt": "{from} has left the campaign. Choose which investigator receives {card}.",
+      "choose": "Choose an investigator",
+      "assign": "Assign",
+      "blocked": "Choose the new bearer of a weakness first."
+    }
   },
   "class": {
     "guardian": "Guardian",
@@ -3131,6 +3138,7 @@
       "not_intermission": "Record the scenario outcome first.",
       "campaign_cannot_continue": "No next scenario is available.",
       "inactive_investigator": "This investigator cannot continue.",
+      "invalid_heir": "Choose an investigator who is still in the campaign.",
       "invalid_purchase": "Invalid upgrade: check experience, card and replacement."
     },
     "play": {
@@ -3166,7 +3174,8 @@
       "remove": "Card to remove from the deck",
       "buy": "Purchase upgrade",
       "start": "Start next scenario",
-      "chooseCard": "Select a card"
+      "chooseCard": "Select a card",
+      "heir": "Assign"
     }
   },
   "chaosHelp": {

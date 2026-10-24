@@ -39,6 +39,7 @@ export type OnlineProgressAction =
   | { action: 'next' }
   | { action: 'ready'; ready: boolean }
   | { action: 'purchase'; card: string; upgrade: boolean; remove?: string }
+  | { action: 'heir'; card: string; heir: string }
 export type OnlineProgressCommand = { commandId: string; revision: number } & OnlineProgressAction
 export interface OnlineCampaignView {
   canManage: boolean
@@ -46,6 +47,8 @@ export interface OnlineCampaignView {
   canContinue: boolean
   ready: boolean
   allReady: boolean
+  /** Cartas cuyo portador dejó la campaña: el anfitrión elige quién las recibe. */
+  transfers: { card: string; from: string; candidates: string[] }[]
   members: {
     investigator: string
     xp: number

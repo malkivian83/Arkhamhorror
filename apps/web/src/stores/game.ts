@@ -1,6 +1,7 @@
 import { accountStorage, notifyLocalChange } from '../account/storage'
 import { newAdventure } from '../account/library'
 import {
+  chooseTransferHeir,
   finishScenario,
   newCampaign,
   purchase,
@@ -207,6 +208,18 @@ export const useGameStore = defineStore('game', () => {
     }
   }
 
+  /** Da al investigador elegido una carta cuyo portador dejó la campaña. */
+  function chooseHeir(card: CardCode, heir: string) {
+    if (!campaign.value || latest) return
+    try {
+      setCampaign(chooseTransferHeir(campaign.value, card, heir))
+      persist()
+      error.value = null
+    } catch (e) {
+      error.value = e instanceof Error ? e.message : String(e)
+    }
+  }
+
   /** Abandona la campaña entera (y el escenario en curso). */
   function abandonCampaign() {
     setCampaign(null)
@@ -329,6 +342,7 @@ export const useGameStore = defineStore('game', () => {
     closeScenario,
     playNext,
     buy,
+    chooseHeir,
     abandonCampaign,
     answer,
     answerLabel,

@@ -335,6 +335,44 @@ describe('private online lobbies', () => {
       await app.close()
     }
   })
+  it('lets only the host choose the new bearer before the next scenario', async () => {
+    const { service, data, id, revision } = await ended()
+    const finished = await service.progress(
+      id,
+      'host',
+      progressCommand(revision, { action: 'finish' }),
+    )
+    const lobby = JSON.parse(data.get(id)!) as Lobby
+    const [heir] = lobby.campaign!.investigators.map((i) => i.id)
+    lobby.campaign!.log.values = { ...lobby.campaign!.log.values, 'transfer:03059': '03001' }
+    data.set(id, JSON.stringify(lobby))
+    let view = await service.game(id, 'friend')
+    expect(view.campaign!.canContinue).toBe(false)
+    expect(view.campaign!.transfers).toEqual([
+      { card: '03059', from: '03001', candidates: lobby.campaign!.investigators.map((i) => i.id) },
+    ])
+    const choose = (who: string, to: string) =>
+      service.progress(
+        id,
+        who,
+        progressCommand(finished.revision, { action: 'heir', card: '03059', heir: to }),
+      )
+    await expect(choose('friend', heir!)).rejects.toMatchObject({ code: 'not_owner' })
+    await expect(
+      service.progress(
+        id,
+        'host',
+        progressCommand(finished.revision, { action: 'ready', ready: true }),
+      ),
+    ).rejects.toMatchObject({ code: 'campaign_cannot_continue' })
+    await expect(choose('host', '03001')).rejects.toMatchObject({ code: 'invalid_heir' })
+    view = await choose('host', heir!)
+    expect(view.campaign!.transfers).toEqual([])
+    expect(view.campaign!.canContinue).toBe(true)
+    const stored = JSON.parse(data.get(id)!) as Lobby
+    expect(stored.campaign!.log.investigators[heir!]!.storyAssets).toContain('03059')
+  })
+
   it('blocks further scenarios at campaign end and preserves replay outcomes without advancing twice', async () => {
     const fixture = await ended()
     const lobby = JSON.parse(fixture.data.get(fixture.id)!) as Lobby

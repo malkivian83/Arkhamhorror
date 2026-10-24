@@ -244,7 +244,11 @@ export function activeMembers(campaign: Campaign): CampaignInvestigator[] {
 
 /** El escenario que toca ya se puede jugar. */
 export function canPlayNext(campaign: Campaign): boolean {
-  return !!scenarioEntry(campaign)?.build && activeMembers(campaign).length > 0
+  return (
+    !!scenarioEntry(campaign)?.build &&
+    activeMembers(campaign).length > 0 &&
+    !pendingTransfers(campaign).length
+  )
 }
 
 /** Prepara el escenario que toca con el estado de la campaña (trauma, bolsa del caos). */
@@ -254,6 +258,7 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
   const definition = campaignDefinition(campaign.id)
   const members = activeMembers(campaign)
   if (!members.length) throw new Error('No quedan investigadores que puedan continuar')
+  if (pendingTransfers(campaign).length) throw new Error('Falta elegir el nuevo portador')
   for (const investigator of members) {
     // Las recompensas de mazos ya creados siguen siendo válidas; los guardados
     // antiguos no anotaban en el registro las ganadas en campañas anteriores.
@@ -310,32 +315,79 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
   })
 }
 
-/** Cierra el escenario terminado: guarda su registro y pasa al siguiente. */
+/** Clave del registro que guarda un traspaso pendiente de elegir heredero. */
+const TRANSFER = 'transfer:'
+
+const leftCampaign = (log: CampaignLog, id: string) =>
+  !!log.investigators[id]?.killed || !!log.investigators[id]?.insane
+
 /**
  * Guía de El camino a Carcosa: si el portador de una carta que se transfiere abandona la
- * campaña, pasa a otro investigador que siga en ella (el primero en orden de jugadores).
+ * campaña, se elige a otro investigador que siga en ella. Con un solo candidato pasa
+ * directamente; con varios queda pendiente hasta `chooseTransferHeir`.
  */
 function transferFromLeavers(campaign: Campaign, log: CampaignLog): CampaignLog {
   const codes = campaignDefinition(campaign.id).transferOnLeave ?? []
-  const left = (id: string) => !!log.investigators[id]?.killed || !!log.investigators[id]?.insane
-  const heir = campaign.investigators.find((i) => !left(i.id))
-  if (!codes.length || !heir) return log
+  const heirs = campaign.investigators.filter((i) => !leftCampaign(log, i.id))
+  if (!codes.length || !heirs.length) return log
   let investigators = log.investigators
+  let values = log.values
   for (const code of codes)
     for (const member of campaign.investigators) {
       const record = investigators[member.id]
-      if (!record || !left(member.id) || !record.storyAssets.includes(code)) continue
+      if (!record || !leftCampaign(log, member.id) || !record.storyAssets.includes(code)) continue
       const index = record.storyAssets.indexOf(code)
-      const target = investigators[heir.id]!
       investigators = {
         ...investigators,
         [member.id]: { ...record, storyAssets: record.storyAssets.filter((_, n) => n !== index) },
-        [heir.id]: { ...target, storyAssets: [...target.storyAssets, code] },
       }
+      if (heirs.length === 1) {
+        const heir = investigators[heirs[0]!.id]!
+        investigators = {
+          ...investigators,
+          [heirs[0]!.id]: { ...heir, storyAssets: [...heir.storyAssets, code] },
+        }
+      } else values = { ...values, [TRANSFER + code]: member.id }
     }
-  return { ...log, investigators }
+  return { ...log, investigators, values }
 }
 
+/** Cartas que esperan a que el grupo elija su nuevo portador, con los candidatos. */
+export function pendingTransfers(
+  campaign: Campaign,
+): { card: CardCode; from: InvestigatorId; candidates: InvestigatorId[] }[] {
+  const candidates = activeMembers(campaign).map((i) => i.id)
+  return Object.entries(campaign.log.values)
+    .filter(([key]) => key.startsWith(TRANSFER))
+    .map(([key, from]) => ({ card: key.slice(TRANSFER.length), from, candidates }))
+}
+
+/** Asigna la carta pendiente al investigador elegido. */
+export function chooseTransferHeir(
+  campaign: Campaign,
+  card: CardCode,
+  heir: InvestigatorId,
+): Campaign {
+  const pending = pendingTransfers(campaign).find((p) => p.card === card)
+  if (!pending) throw new Error(`No hay traspaso pendiente de ${card}`)
+  if (!pending.candidates.includes(heir)) throw new Error(`${heir} no puede recibir ${card}`)
+  const record = campaign.log.investigators[heir]!
+  const values = { ...campaign.log.values }
+  delete values[TRANSFER + card]
+  return {
+    ...campaign,
+    log: {
+      ...campaign.log,
+      values,
+      investigators: {
+        ...campaign.log.investigators,
+        [heir]: { ...record, storyAssets: [...record.storyAssets, card] },
+      },
+    },
+  }
+}
+
+/** Cierra el escenario terminado: guarda su registro y pasa al siguiente. */
 export function finishScenario(campaign: Campaign, game: GameState): Campaign {
   if (!game.outcome) throw new Error('El escenario aún no ha terminado')
   if (game.scenarioId !== currentScenario(campaign) || game.difficulty !== campaign.difficulty)

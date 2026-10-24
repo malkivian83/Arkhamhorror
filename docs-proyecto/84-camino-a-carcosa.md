@@ -9,7 +9,7 @@ sin `build`.
 
 | Escenario                      | Implementado                                                                            | Pendiente para jugar                                                                                                                    |
 | ------------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| I · Se cierra el telón         | Completo: preparación, actos, planes, Lugares, 7 conjuntos, resoluciones y narración    | Lola Hayes (no jugable aún) y elección manual del nuevo portador de 03059                                                              |
+| I · Se cierra el telón         | Completo: preparación, actos, planes, Lugares, 7 conjuntos, resoluciones y narración    | Lola Hayes (no jugable aún)                                                                                                             |
 | II · El último Rey             | Nombre y posición en la campaña                                                         | Implementación íntegra y transición al interludio I                                                                                     |
 | III · Ecos del pasado          | Nombre y posición en la campaña                                                         | Implementación íntegra y lectura del registro previo                                                                                    |
 | IV · El juramento inconfesable | Nombre y posición en la campaña                                                         | Implementación íntegra y transición al interludio II                                                                                    |
@@ -172,7 +172,10 @@ Motor (genérico, reutilizable por otras campañas):
   solo para el escenario; traiciones que se descartan al dejar de cumplirse
   (Torres de Carcosa); `ForEachPointFailed` (Surgen estrellas negras).
 - Campaña: `transferOnLeave` pasa 03059 a otro investigador si su portador muere o
-  enloquece (de momento, el siguiente en orden de jugadores).
+  enloquece. Con un solo superviviente pasa directamente; con varios queda pendiente
+  en el registro (`transfer:<código>`) y el grupo elige el heredero entre escenarios
+  (`chooseTransferHeir`; en línea, el anfitrión). No se puede empezar el siguiente
+  escenario hasta elegirlo.
 
 Decisiones y diferencias revisadas:
 
@@ -237,8 +240,8 @@ fallo de Eureka ya no aparece. Los 2 fallos de `apps/server/src/deploy.test.mjs`
 se deben a ejecutar con Node 22 (el despliegue exige Node 24).
 
 Siguiente bloque: escenario II (El último Rey) e interludio I, reutilizando Oculto,
-los contadores y los conjuntos de encuentro ya implementados. Pendientes del I:
-Lola Hayes y la elección manual del nuevo portador de 03059.
+los contadores y los conjuntos de encuentro ya implementados. Pendiente del I:
+Lola Hayes. La elección del nuevo portador de 03059 ya es manual.
 
 Para retomar en otro ordenador, actualizar `main`: el PDF ya está versionado en
 `docs-proyecto/reglas/`. La aplicación de referencia sigue siendo una copia externa
