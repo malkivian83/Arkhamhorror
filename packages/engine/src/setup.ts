@@ -43,6 +43,8 @@ export interface ScenarioDefinition {
   startingLocation: LocationId
   /** El investigador jefe empieza aquí y los demás en `startingLocation` (Excelsior). */
   leadStartingLocation?: LocationId
+  /** Cada investigador elige dónde empezar entre estas (El juramento inconfesable). */
+  startingLocationChoices?: LocationId[]
   agendas: Agenda[]
   acts: Act[]
   encounterDeck: EncounterCard[]
@@ -228,11 +230,29 @@ export function prepareGame({
             others: scenario.startingLocation,
           } as Message,
         ]
-      : players.map((p): Message => ({
-          type: 'MoveTo',
-          investigator: p.id,
-          location: scenario.startingLocation,
-        }))),
+      : scenario.startingLocationChoices
+        ? players.map((p): Message => ({
+            type: 'Ask',
+            investigator: p.id,
+            question: {
+              kind: 'chooseOne',
+              prompt: 'prompt.chooseStartingLocation',
+              choices: scenario.startingLocationChoices!.map((id) => {
+                const card = scenario.locations.find((l) => l.id === id)
+                return {
+                  label: 'choice.location',
+                  params: { location: card?.name ?? id },
+                  target: { type: 'location' as const, id },
+                  then: [{ type: 'MoveTo', investigator: p.id, location: id } as Message],
+                }
+              }),
+            },
+          }))
+        : players.map((p): Message => ({
+            type: 'MoveTo',
+            investigator: p.id,
+            location: scenario.startingLocation,
+          }))),
     ...(scenario.setup ?? []),
     ...(players.some((i) => i.deck.some((code) => !!playerCardBehavior(code)?.revelation))
       ? [{ type: 'ResolveOpeningRevelations' } as Message]

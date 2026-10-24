@@ -154,6 +154,9 @@ export type Prey =
   | { type: 'only'; investigator: InvestigatorId }
   | { type: 'mostResources' }
   | { type: 'mostClues' }
+  | { type: 'mostHorror' }
+  | { type: 'mostRemainingSanity' }
+  | { type: 'lowestRemainingSanity' }
 
 export interface EnemyCard {
   /** Entra en juego con esta perdición (Zealot). */
@@ -198,6 +201,8 @@ export interface Enemy extends EnemyCard {
   owner?: InvestigatorId
   /** No se prepara en la próxima fase de mantenimiento. */
   stayExhausted?: boolean
+  /** Ronda en la que se movió por Cazador (Glotón del manicomio). */
+  huntedRound?: number
 }
 
 /** `hidden`: Oculto (El camino a Carcosa), se añade en secreto a la mano. */
@@ -874,6 +879,8 @@ export type Message =
       enemy?: EnemyId
       /** Lo ya asignado a apoyos, para la ventana de "tras infligirle daño u horror". */
       dealt?: DamageDealt[]
+      /** Carta elegida que debe llenarse antes que otra (Bestia de Aldebarán). */
+      focus?: AssetId | 'investigator'
     }
   | { type: 'DamageAsset'; asset: AssetId; damage: number; horror: number }
   /** Revela una ficha; con `token`, resuelve esa ficha ya sacada (e ignora `ignored`). */
@@ -882,6 +889,8 @@ export type Message =
   | { type: 'RevealExtraToken'; investigator: InvestigatorId }
   /** La prueba en curso tiene éxito por 0 (Scrape By). */
   | { type: 'ForceSkillTestSuccess' }
+  /** La prueba en curso fracasa automáticamente (El juramento inconfesable, [elder_thing]). */
+  | { type: 'ForceSkillTestFailure' }
   /** Las demás cartas comprometidas vuelven a la mano de sus dueños (On the Brink). */
   | { type: 'ReturnCommittedToHand'; except: CardCode }
   /** Si en la prueba en curso se ha revelado alguna ficha con símbolo. */
@@ -942,6 +951,8 @@ export type Message =
   | { type: 'DiscardCardsOfType'; investigator: InvestigatorId; cardType: string; all: boolean }
   /** Muertos para la campaña (los que no se retiraron, con `exceptResigned`). */
   | { type: 'KillInvestigators'; exceptResigned?: boolean }
+  /** Los investigadores derrotados (no retirados) quedan enloquecidos para la campaña. */
+  | { type: 'DriveDefeatedInsane' }
   /** Cambia la carta de un enemigo (otra cara), conservando daño y posición. */
   | { type: 'FlipEnemy'; enemy: EnemyId; card: EnemyCard }
   | { type: 'SetAct'; index: number }

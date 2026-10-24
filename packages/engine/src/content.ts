@@ -84,6 +84,8 @@ export interface ScenarioBehavior {
   skillModifier?: (state: GameState, test: SkillTest) => number
   /** El enemigo no puede recibir daño. */
   enemyImmune?: (state: GameState, enemy: Enemy) => boolean
+  /** Modificador al horror que inflige el ataque de un enemigo (Pasillos del manicomio). */
+  enemyHorrorModifier?: (state: GameState, enemy: Enemy) => number
   /** Modificador al combate/evasión de un enemigo (Savage Shantak). */
   enemyStat?: (state: GameState, enemy: Enemy, stat: 'fight' | 'evade') => number
   /** Modificador al velo de una localización (Parlor). */
@@ -162,6 +164,8 @@ export interface TreacheryBehavior {
   blocksLeaving?: boolean
   /** El Lugar al que está unida no puede investigarse (Puerta cerrada con llave). */
   blocksInvestigation?: boolean
+  /** En la zona de amenaza, como un apoyo: ranuras de su investigador que ocupa (Camisa de fuerza). */
+  occupiesSlots?: Partial<Record<SlotType, number>>
   /**
    * En la zona de amenaza (o Oculta en la mano): lo que su investigador no puede hacer.
    * Tipos de carta que no puede jugar o comprometer, habilidades [fast] y moverse
@@ -172,6 +176,10 @@ export interface TreacheryBehavior {
     commit?: PlayerCardDef['type'][]
     fastAbilities?: boolean
     moveOncePerTurn?: boolean
+    /** No puede atacar a enemigos con este rasgo (Regalo de la locura: Piedad). */
+    attackTrait?: string
+    /** No puede activar habilidades [action] de Lugares (Regalo de la locura: Miseria). */
+    locationActionAbilities?: boolean
   }
   /** Se descarta en cuanto deja de cumplirse (Spires of Carcosa: su Lugar sin perdición). */
   persistsWhile?: (state: GameState, self: Treachery) => boolean
@@ -224,6 +232,10 @@ export interface EnemyBehavior {
   blocksCluesHere?: boolean
   /** Sus ataques no pueden cancelarse (Sebastien Moreau). */
   attacksCannotBeCanceled?: boolean
+  /** No ataca en la misma fase en la que se movió por Cazador (Glotón del manicomio). */
+  noAttackAfterHunting?: boolean
+  /** Su daño y horror se asignan a una sola carta hasta llenarla (Bestia de Aldebarán). */
+  concentratedAssignment?: boolean
 }
 
 export interface LocationBehavior {
