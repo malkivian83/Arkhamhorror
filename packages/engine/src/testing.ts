@@ -110,7 +110,12 @@ export function choose(state: GameState, label: string, params: LabelParams = {}
 }
 
 /** Preguntas de la preparación que `throughSetup` contesta por defecto. */
-const SETUP_PROMPTS = new Set(['prompt.story', 'prompt.mulligan', 'prompt.chooseLead'])
+const SETUP_PROMPTS = new Set([
+  'prompt.story',
+  'prompt.mulligan',
+  'prompt.chooseLead',
+  'prompt.chooseStartingLocation',
+])
 
 /**
  * En la mesa: lee los textos de la preparación, deja de jefe al primero y se

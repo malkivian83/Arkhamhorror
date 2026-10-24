@@ -1901,6 +1901,10 @@ export function handle(state: GameState, message: Message): GameState {
             })
           : state
       }
+      // Bestia de Aldebarán: la primera carta elegida recibe todo lo que pueda.
+      const concentrated =
+        !!message.enemy &&
+        !!enemyBehavior(findEnemy(state, message.enemy)?.code ?? '')?.concentratedAssignment
       const rest = (to: Omit<DamageDealt, 'damage' | 'horror'> | null): Message => {
         const point = { damage: kind === 'damage' ? 1 : 0, horror: kind === 'horror' ? 1 : 0 }
         const same = (d: DamageDealt) =>
@@ -1922,15 +1926,30 @@ export function handle(state: GameState, message: Message): GameState {
           ...(message.assignFirst ? { assignFirst: message.assignFirst } : {}),
           ...(message.enemy ? { enemy: message.enemy } : {}),
           ...(merged.length ? { dealt: merged } : {}),
+          ...(concentrated && !to?.placed ? { focus: to?.asset ?? ('investigator' as const) } : {}),
         }
       }
-      const available = soakers(state, investigator, kind)
+      const focused = message.focus
+        ? soakers(state, investigator, kind).filter((a) => a.id === message.focus)
+        : []
+      if (concentrated && message.focus === 'investigator')
+        return push(state, {
+          type: 'TakeDamage',
+          investigator,
+          damage,
+          horror,
+          direct: true,
+          ...(message.enemy ? { enemy: message.enemy } : {}),
+          ...(dealt.length ? { dealt } : {}),
+        })
+      const available = focused.length ? focused : soakers(state, investigator, kind)
       const trait = message.assignFirst?.[kind]
       const mandatory = trait
         ? available.filter((a) => playerCardDef(a.code)?.traits.includes(trait))
         : []
       const options = mandatory.length ? mandatory : available
-      const placedOptions = mandatory.length ? [] : placedSoakers(state, investigator, kind)
+      const placedOptions =
+        mandatory.length || focused.length ? [] : placedSoakers(state, investigator, kind)
       const toInvestigator: Message = {
         type: 'TakeDamage',
         investigator,
@@ -1958,7 +1977,7 @@ export function handle(state: GameState, message: Message): GameState {
           kind: 'chooseOne',
           prompt: kind === 'damage' ? 'prompt.assignDamage' : 'prompt.assignHorror',
           choices: [
-            ...(mandatory.length
+            ...(mandatory.length || focused.length
               ? []
               : [
                   {
@@ -3389,6 +3408,13 @@ export function handle(state: GameState, message: Message): GameState {
       const enemy = findEnemy(state, message.enemy)
       const investigator = getInvestigator(state, message.investigator)
       if (!enemy || enemy.exhausted || investigator.eliminated) return state
+      // Glotón del manicomio: no ataca en la fase de enemigos en la que se movió por Cazador.
+      if (
+        enemy.huntedRound === state.round &&
+        state.phase === 'enemy' &&
+        enemyBehavior(enemy.code)?.noAttackAfterHunting
+      )
+        return state
       if (
         enemy.spares?.some((s) => s.investigator === investigator.id && s.round === state.round)
       ) {
@@ -3429,6 +3455,11 @@ export function handle(state: GameState, message: Message): GameState {
     case 'ForceSkillTestSuccess':
       return state.skillTest
         ? { ...state, skillTest: { ...state.skillTest, forcedSuccess: true } }
+        : state
+
+    case 'ForceSkillTestFailure':
+      return state.skillTest
+        ? { ...state, skillTest: { ...state.skillTest, autoFail: true } }
         : state
 
     case 'ReturnCommittedToHand': {
@@ -3730,6 +3761,11 @@ export function handle(state: GameState, message: Message): GameState {
         message.exceptResigned && i.resigned ? r : { ...r, killed: true },
       )
 
+    case 'DriveDefeatedInsane':
+      return updateRecords(state, undefined, (r, i) =>
+        i.eliminated && !i.resigned ? { ...r, insane: true } : r,
+      )
+
     case 'FlipEnemy': {
       const enemy = findEnemy(state, message.enemy)
       if (!enemy) return state
@@ -3894,7 +3930,9 @@ export function handle(state: GameState, message: Message): GameState {
           type: 'TakeDamage',
           investigator: message.investigator,
           damage: enemy.damage,
-          horror: enemy.horror,
+          horror:
+            enemy.horror +
+            (scenarioBehavior(state.scenarioId)?.enemyHorrorModifier?.(state, enemy) ?? 0),
           // The attacking enemy travels with the damage (Guard Dog, Dimensional Shambler).
           enemy: enemy.id,
           ...(enemyBehavior(enemy.code)?.assignFirst
@@ -4088,7 +4126,11 @@ export function handle(state: GameState, message: Message): GameState {
           })
           continue
         }
-        next = updateEnemy(next, enemy.id, (e) => ({ ...e, location: step }))
+        next = updateEnemy(next, enemy.id, (e) => ({
+          ...e,
+          location: step,
+          ...(behavior?.noAttackAfterHunting ? { huntedRound: state.round } : {}),
+        }))
         destinations.add(step)
         entered.push({
           type: 'Forced',
@@ -6319,6 +6361,10 @@ export function slotCapacity(
   investigator: InvestigatorId,
   slot: SlotType,
 ): number {
+  // Camisa de fuerza: en la zona de amenaza ocupa ranuras como un apoyo.
+  const occupied = Object.values(state.treacheries)
+    .filter((t) => t.placement.type === 'threatArea' && t.placement.investigator === investigator)
+    .reduce((n, t) => n + (treacheryBehavior(t.code)?.occupiesSlots?.[slot] ?? 0), 0)
   return Object.values(state.assets)
     .filter((a) => a.owner === investigator)
     .reduce(
@@ -6326,7 +6372,7 @@ export function slotCapacity(
         total +
         (playerCardBehavior(a.code)?.permanent?.slots?.[slot] ?? 0) +
         (playerCardBehavior(a.code)?.extraSlots?.[slot] ?? 0),
-      SLOT_CAPACITY[slot],
+      SLOT_CAPACITY[slot] - occupied,
     )
 }
 

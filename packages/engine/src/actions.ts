@@ -24,6 +24,7 @@ import {
 import type {
   AbilityLimit,
   AbilityOption,
+  Enemy,
   Action,
   CardCode,
   Choice,
@@ -93,6 +94,7 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
     // Un enemigo distante (aloof) no enfrentado no puede ser atacado.
     ...enemiesHere
       .filter((e) => e.engagedWith !== null || !enemyHasKeyword(state, e, 'aloof'))
+      .filter((e) => !attackBlocked(state, id, e))
       .map((e): Action => ({ kind: 'fight', enemy: e.id })),
     ...engagedEnemies(state, id).map((e): Action => ({ kind: 'evade', enemy: e.id })),
     ...enemiesHere
@@ -302,10 +304,13 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
     options.map((o) => ({ target, ...o }))
   const options = [
     ...(location.revealed
-      ? withTarget(locationBehavior(location.id)?.abilities?.(state, location, id) ?? [], {
-          type: 'location',
-          id: location.id,
-        })
+      ? withTarget(
+          // Regalo de la locura (Miseria): sin habilidades [action] de Lugares.
+          (locationBehavior(location.id)?.abilities?.(state, location, id) ?? []).filter(
+            (a) => a.actions === 0 || !restricted(state, id, (r) => r.locationActionAbilities),
+          ),
+          { type: 'location', id: location.id },
+        )
       : []),
     ...(agenda
       ? withTarget(agendaBehavior(agenda.code)?.abilities?.(state, agenda, id) ?? [], {
@@ -370,7 +375,8 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
       (a) =>
         a.actions <= investigator.actionsRemaining &&
         !(noFast && a.actions === 0) &&
-        withinLimit(state, a.key, id, a.limit),
+        withinLimit(state, a.key, id, a.limit) &&
+        !attacksBlockedEnemy(state, id, a),
     )
     .flatMap((a) => {
       if (!a.parley) return [a]
@@ -458,6 +464,23 @@ export function commitBlocked(state: GameState, id: InvestigatorId, cardType: st
     typeBlocked(getInvestigator(state, id), cardType, state.round) ||
     restricted(state, id, (r) => r.commit?.some((type) => type === cardType))
   )
+}
+
+/** No puede atacar a este enemigo (Regalo de la locura: Piedad, enemigos Lunáticos). */
+export function attackBlocked(state: GameState, id: InvestigatorId, enemy: Enemy): boolean {
+  return restricted(
+    state,
+    id,
+    (r) => !!r.attackTrait && (enemy.traits ?? []).includes(r.attackTrait),
+  )
+}
+
+/** Habilidad que ataca a un enemigo que no puede atacar (Regalo de la locura: Piedad). */
+function attacksBlockedEnemy(state: GameState, id: InvestigatorId, a: AbilityOption): boolean {
+  if (a.target?.type !== 'enemy') return false
+  const enemy = state.enemies[a.target.id]
+  if (!enemy || !attackBlocked(state, id, enemy)) return false
+  return a.then.some((m) => m.type === 'BeginSkillTest' && m.kind.type === 'fight')
 }
 
 /** No puede activar habilidades [fast] (Whispers in Your Head: Anxiety). */
