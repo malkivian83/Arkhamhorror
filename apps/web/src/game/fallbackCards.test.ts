@@ -32,6 +32,37 @@ describe('recursos de cartas sin red', () => {
       expect(cardImages('03059', false, locale)[0]).toBe(`/local-assets/cards/${locale}/03059.avif`)
     }
   })
+  it('presents Curtain Call cards with official EN/ES text and lettered scans', () => {
+    for (const locale of ['en', 'es'] as const) {
+      const cards = new Map(fallbackCards(locale).map((c) => [c.code, c]))
+      const es = locale === 'es'
+      expect(cards.get('03043')).toMatchObject({ type_code: 'scenario' })
+      expect(cards.get('03050')).toMatchObject({
+        name: es ? 'Vestíbulo' : 'Lobby',
+        type_code: 'location',
+        shroud: 4,
+      })
+      expect(cards.get('03053')!.back_name).toBe(es ? 'Puerta del vestíbulo' : 'Lobby Doorway')
+      expect(cards.get('03047b')).toMatchObject({
+        name: es ? 'El Extranjero' : 'The Stranger',
+        back_name: es ? 'El camino es mío' : 'The Path is Mine',
+      })
+      expect(cards.get('03084c')).toMatchObject({ subname: es ? 'Ansiedad' : 'Anxiety' })
+      expect(cards.get('03093')!.text).toContain(es ? 'inflígele' : 'deal it 1 damage')
+      expect(cards.get('01164')!.name).toBe(es ? 'Paralizado por el miedo' : 'Frozen in Fear')
+      expect(cards.get('03059')!.name).toBe(
+        es ? 'El hombre de la máscara pálida' : 'The Man in the Pallid Mask',
+      )
+      // 03047b es una carta propia; su reverso añade otra b.
+      expect(cardImages('03047b', false, locale)[0]).toBe(
+        `/local-assets/cards/${locale}/03047b.avif`,
+      )
+      expect(cardImages('03047b', true, locale)[0]).toBe(
+        `/local-assets/cards/${locale}/03047bb.avif`,
+      )
+      expect(cardImages('03049', true, locale)[0]).toBe(`/local-assets/cards/${locale}/03049b.avif`)
+    }
+  })
   it('presents Call for Backup with official EN/ES rules and scans', () => {
     for (const locale of ['en', 'es'] as const) {
       const c = fallbackCards(locale).find((c) => c.code === '08129')!

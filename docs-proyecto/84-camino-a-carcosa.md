@@ -1,5 +1,27 @@
 # 84 · El camino a Carcosa
 
+## Estado actual
+
+**1 de 8 escenarios jugables: I · Se cierra el telón** (tercera entrega, sin
+publicar todavía). La campaña ya se puede empezar en local y en línea; al terminar
+el escenario I no hay un segundo escenario disponible. Los escenarios II–VIII siguen
+sin `build`.
+
+| Escenario                      | Implementado                                                                            | Pendiente para jugar                                                                                                                    |
+| ------------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| I · Se cierra el telón         | Completo: preparación, actos, planes, Lugares, 7 conjuntos, resoluciones y narración    | Lola Hayes (no jugable aún) y elección manual del nuevo portador de 03059                                                              |
+| II · El último Rey             | Nombre y posición en la campaña                                                         | Implementación íntegra y transición al interludio I                                                                                     |
+| III · Ecos del pasado          | Nombre y posición en la campaña                                                         | Implementación íntegra y lectura del registro previo                                                                                    |
+| IV · El juramento inconfesable | Nombre y posición en la campaña                                                         | Implementación íntegra y transición al interludio II                                                                                    |
+| V · El Fantasma de la Verdad   | Nombre y posición en la campaña                                                         | Implementación íntegra y variantes según el registro                                                                                    |
+| VI · La máscara pálida         | Nombre y posición en la campaña                                                         | Implementación íntegra                                                                                                                  |
+| VII · Surgen estrellas negras  | Nombre y posición en la campaña                                                         | Implementación íntegra y sus ramas                                                                                                      |
+| VIII · Penumbrosa Carcosa      | Nombre y posición en la campaña                                                         | Implementación íntegra, final de campaña y epílogo                                                                                      |
+
+Los interludios, el epílogo y las narraciones de los escenarios II–VIII tampoco
+están implementados. Las dependencias compartidas se enumeran más abajo; no se
+ha auditado todavía cada carta de esos siete escenarios.
+
 ## Primera entrega: base de campaña
 
 Campaña original de ocho escenarios; no incluye las variantes de Regreso a
@@ -104,6 +126,84 @@ Implementar el escenario completo antes de habilitarlo:
 7. Pruebas de preparación con 1–4 investigadores y todas las dificultades,
    resoluciones y partidas completas; revisión visual representativa EN/ES.
 
+### Criterios para habilitar el escenario I (cumplidos en la tercera entrega)
+
+- [x] Construir un `ScenarioDefinition` completo con los conjuntos de encuentro,
+      las cantidades, cartas apartadas, variantes y conexiones revisados.
+- [x] Implementar y probar cada carta, las tres variantes del acto 2 y el ciclo
+      de aparición, derrota y regreso del Emisario real.
+- [x] Conectar el horror de los Lugares con los efectos y propagaciones del
+      escenario, y mostrarlo en mesa; tenerlo guardado en metadatos no completa
+      esas reglas ni su presentación.
+- [x] Resolver los objetivos, la retirada y la derrota del grupo mediante el
+      flujo real de actos y planes, llegando a las resoluciones existentes.
+- [x] Completar la asignación y transferencia de la debilidad entre portadores,
+      incluidos investigadores eliminados, y su persistencia entre partidas.
+- [x] Integrar textos, referencia del escenario, imágenes y miniaturas EN/ES;
+      conectar los seis audios existentes sin volver a generarlos.
+- [x] Superar pruebas de preparación, variantes, efectos, resoluciones,
+      guardado/reanudación y partidas completas con 1–4 investigadores y las
+      cuatro dificultades. Revisar presentación y decisiones local/online.
+- [x] Añadir el `build` en `the-path-to-carcosa/definition.ts` y actualizar la
+      descripción de disponibilidad solo al completar lo anterior. Los otros
+      siete escenarios seguirán pendientes hasta su propia implementación.
+
+Estos criterios no están satisfechos por las pruebas actuales: las reglas de
+Carcosa se han probado sobre una fixture genérica, no sobre su escenario completo.
+
+## Tercera entrega: Se cierra el telón jugable
+
+Escenario completo en `the-path-to-carcosa/curtain-call.ts` y conjuntos de
+encuentro reutilizables en `encounter-sets.ts` (Portentos malignos, Delirios,
+Apariciones, Secta del Signo Amarillo, Miedo impactante y Ratas). Mazo de 32 cartas;
+apartados el Extranjero, el Emisario real y las seis Puertas. Fuentes: guía ES pp. 4–6
+y cartas; referencia Haskell (`CurtainCall.hs`, actos, planes y Lugares) solo como
+contraste.
+
+Motor (genérico, reutilizable por otras campañas):
+
+- Horror y perdición en los Lugares (`Location.horror/doom`); la perdición cuenta
+  para el plan y se retira al avanzarlo. Sustituye a los metadatos de la segunda entrega.
+- Oculto: la traición va en secreto a la mano (`hidden`), se trata como zona de
+  amenaza, cuenta para el tamaño de mano (×3 en Bastidores), solo su dueño ve y usa
+  sus habilidades y solo la descarta su propio texto. En línea, los demás ven una
+  carta oculta y el registro no revela cuál se robó.
+- Restricciones continuas de traiciones: jugar/comprometer tipos, habilidades
+  [fast] y moverse una vez por turno; coste adicional de acciones (Frozen in Fear);
+  coste de cartas modificado por el escenario (Cabina de luces); `onReveal` de
+  Lugares; `insteadOfDiscard` de enemigos (objetivo del acto 2); fichas añadidas
+  solo para el escenario; traiciones que se descartan al dejar de cumplirse
+  (Torres de Carcosa); `ForEachPointFailed` (Surgen estrellas negras).
+- Campaña: `transferOnLeave` pasa 03059 a otro investigador si su portador muere o
+  enloquece (de momento, el siguiente en orden de jugadores).
+
+Decisiones y diferencias revisadas:
+
+- La copia del acto 2 se elige al azar en la preparación con la semilla; es
+  equivalente a elegirla al avanzar (nadie la ve antes) y el mazo de actos muestra 3.
+- El Extranjero derrotado en el acto 2 cuenta como derrota (Persiguiendo al
+  Extranjero) y vuelve al Vestíbulo sin daño.
+- Todos retirados o derrotados con alguno retirado en el acto 3: el grupo elige R1/R2
+  («Huida del teatro»); todos derrotados: sin resolución.
+- Palcos solo castiga la acción de movimiento (no los movimientos por efecto).
+- La restricción de Languor sigue sin aplicarse a eventos jugados como reacción;
+  corregirlo cambia una partida grabada de Queen of Ash (hallazgo aparte).
+
+Presentación: catálogo oficial EN/ES (`scripts/import-carcosa-cards.mjs`, 36 cartas,
+con dos erratas corregidas), 108 escaneos EN/ES con miniaturas
+([evidencia](evidencias/imagenes-curtain-call.json)), códigos con letra (03047a–c,
+03084a–d), fichas de horror/perdición en el mapa, nombre de la cara sin revelar de
+las Puertas, referencia de símbolos y ayuda de fichas desde la carta oficial.
+Revisión visual local: prólogo con audio, preparación, plan/acto, mapa y Puertas.
+
+Validación: 123 pruebas de Carcosa (preparación 1–4 jugadores × 4 dificultades,
+cada Lugar, acto, plan, variante y carta de encuentro, retirada con entradas reales,
+guardado/reanudación y 160 partidas guiadas que recorren los tres actos y las tres
+variantes). Batería completa: 3261 correctas, 19 omitidas y 1 fallo ajeno (Eureka,
+por el cambio sin publicar de `SearchDeck.anyCard` del lote de cartas en curso).
+Formato, tipos y compilación correctos; lint correcto salvo un aviso en
+`grouped-import` (ajeno).
+
 ## Dependencias posteriores
 
 - Oculto: secreto por investigador en online, cuenta para tamaño de mano,
@@ -120,24 +220,31 @@ Implementar el escenario completo antes de habilitarlo:
 
 ## Continuación
 
-Validación de la primera entrega: 46 pruebas dirigidas correctas (base de Carcosa,
-campaña existente, paridad i18n, presentación SSR EN/ES y referencias de los
-escenarios jugables). Comprobación de tipos de todo el proyecto, ESLint y
-Prettier de las rutas editadas, `git diff --check` y compilación de la web
-correctos. La compilación avisa de una fuente externa que se resolverá en
-ejecución y del tamaño de algunos chunks. No se ha ejecutado la suite completa.
+Último bloque de implementación: `c524324`, publicado en `main`, con reglas
+parciales y seis narraciones de Carmelo. PDF revisado publicado en `98c2f26`.
+Analytics se publicó por separado en `7216a87`.
 
-Segunda entrega: 122 pruebas dirigidas correctas, incluidas 30 de reglas de
-Carcosa, regresión de campaña y motor, presentación EN/ES y huellas de los seis
-audios. Tras corregir la clave del siguiente escenario se repiten sus 32 pruebas
-afectadas (reglas e i18n), correctas. Tipos de todo el proyecto y compilación web
-final correctos (con los avisos de fuente y tamaño indicados arriba). ESLint y
-Prettier de las rutas editadas y `git diff --check`, correctos. No se ha ejecutado
-la suite completa. Se mantienen los cambios concurrentes ajenos.
+Validación completa de `c524324`: **3103 pruebas superadas, 19 omitidas, ningún
+fallo; 450 archivos superados y 2 omitidos**. Comando:
+`pnpm test --maxWorkers=4 --testTimeout=30000`, con acceso a los servidores TCP/SMTP
+locales simulados. Formato, lint, tipos y compilación también se comprobaron sobre
+la copia seleccionada para publicar; la compilación avisó de una fuente externa
+y del tamaño de algunos chunks. Estos resultados no acreditan jugabilidad de
+Carcosa: sus escenarios aún no tienen `build`.
 
-Base: `aebcf84` en `main`. El pull de la primera entrega fue correcto; en la segunda
-lo impiden los cambios locales propios y concurrentes, que no se han apartado.
-Publicación de Carcosa y de la sesión de Analytics autorizada el 23/10/2026;
-se separan los cambios de los otros trabajos activos. Próximo grupo:
-actos, planes, Lugares y encuentros del escenario I según la lista anterior.
-Resto de escenarios e interludios pendientes; la campaña aún no es jugable.
+Tercera entrega (Se cierra el telón jugable): **sin commit ni push**, pendiente de
+autorización. Al publicarla hay que preparar solo sus rutas y fragmentos: el árbol
+mezcla cambios de la importación de cartas en curso en `engine/handlers.ts`,
+`types.ts`, `content.ts`, i18n (reordenado del lobby) y `continuacion-importacion.md`.
+El manifiesto de imágenes conserva el orden de HEAD con las 108 entradas nuevas; el
+reordenado ajeno previo de ese archivo (sin cambio de contenido) no se ha conservado.
+
+Siguiente bloque: escenario II (El último Rey) e interludio I, reutilizando Oculto,
+los contadores y los conjuntos de encuentro ya implementados. Pendientes del I:
+Lola Hayes y la elección manual del nuevo portador de 03059.
+
+Para retomar en otro ordenador, actualizar `main`: el PDF ya está versionado en
+`docs-proyecto/reglas/`. La aplicación de referencia sigue siendo una copia externa
+que hay que tener disponible y cuya ruta puede cambiar. Los MP3 ya publicados no
+requieren ElevenLabs para reproducirse; la clave de `.env` solo se necesita si se
+generan narraciones nuevas y no debe subirse al repositorio.

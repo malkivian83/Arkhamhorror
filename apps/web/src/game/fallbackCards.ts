@@ -1,4 +1,6 @@
 import {
+  CURTAIN_CALL_STRANGERS,
+  curtainCall,
   spreadingFlames,
   smokeAndMirrors,
   queenOfAsh,
@@ -12,10 +14,11 @@ import {
 import {
   allPlayerCardDefs,
   playerCardBehavior,
+  playerCardDef,
   type EncounterCard,
   type LocationCard,
 } from '@lcg/engine'
-import { excelsiorCards, messages } from '@lcg/i18n'
+import { carcosaCards, excelsiorCards, messages } from '@lcg/i18n'
 import type { LocalizedCard } from './localized'
 
 /** Bundled mechanical data, official text where available and local summaries. */
@@ -80,6 +83,8 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     })
   }
   function encounter(c: EncounterCard) {
+    // Debilidades de jugador apartadas en un escenario (03059): se conserva su ficha propia.
+    if (playerCardDef(c.code)) return
     put({
       code: c.code,
       name: c.name,
@@ -104,6 +109,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     queenOfAsh(),
     midwinterGala({ players: 1 }),
     murderAtTheExcelsiorHotel({ players: 1 }),
+    curtainCall({ difficulty: 'standard' }),
     ...Array.from({ length: 12 }, (_, seed) =>
       smokeAndMirrors({
         seed,
@@ -187,7 +193,12 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     real_name: 'Murder at the Excelsior Hotel',
     type_code: 'scenario',
   })
-  for (const [code, text] of Object.entries(excelsiorCards[locale === 'es' ? 'es' : 'en'])) {
+  put({ code: '03043', name: 'Curtain Call', real_name: 'Curtain Call', type_code: 'scenario' })
+  // Se cierra el telón usa una sola de las tres copias del acto 2 por partida.
+  for (const code of CURTAIN_CALL_STRANGERS)
+    put({ code, name: 'The Stranger', real_name: 'The Stranger', type_code: 'act', clues: 0 })
+  const catalogues = [excelsiorCards, carcosaCards].map((c) => c[locale === 'es' ? 'es' : 'en'])
+  for (const [code, text] of catalogues.flatMap((c) => Object.entries(c))) {
     const card = cards.get(code)
     if (!card) continue
     put({

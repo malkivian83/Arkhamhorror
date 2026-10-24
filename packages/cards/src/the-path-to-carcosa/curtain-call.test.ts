@@ -17,7 +17,7 @@ import {
   throughSetup,
 } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
-import { CURTAIN_CALL, locationHorrorKey } from './curtain-call'
+import { CURTAIN_CALL } from './curtain-call'
 import { CARCOSA_COUNTERS, carcosaBelief, carcosaCount, markCarcosa } from './log'
 import {
   STRANGER_DEFEATS,
@@ -99,12 +99,12 @@ describe('Curtain Call: symbol reference', () => {
       let state = game('standard', 2)
       expect(tokenEffect(state, token).modifier).toBe(-4)
       state = during(state, keep, ...tokenEffect(state, token).immediate!)
-      expect(state.scenarioMeta?.[locationHorrorKey('A')]).toBe(1)
+      expect(state.locations.A!.horror).toBe(1)
       expect(getInvestigator(state, 'a').horror).toBe(0)
       state = during(state, keep, ...tokenEffect(state, token).immediate!)
       expect(getInvestigator(state, 'a').horror).toBe(1)
       expect(getInvestigator(state, 'b').horror).toBe(0)
-      expect(state.scenarioMeta?.[locationHorrorKey('A')]).toBe(1)
+      expect(state.locations.A!.horror).toBe(1)
       state = during(
         state,
         (s) => ({
@@ -113,7 +113,7 @@ describe('Curtain Call: symbol reference', () => {
         }),
         ...tokenEffect(state, token).immediate!,
       )
-      expect(state.scenarioMeta?.[locationHorrorKey('B')]).toBe(1)
+      expect(state.locations.B!.horror).toBe(1)
       expect(getInvestigator(state, 'a').horror).toBe(1)
       expect(tokenEffect(game('hard'), token).modifier).toBe(-5)
       expect(tokenEffect(game('expert'), token).modifier).toBe(-5)
@@ -128,7 +128,7 @@ describe('Curtain Call: symbol reference', () => {
       ...tokenEffect(initial, 'tablet').immediate!,
     )
     expect(getInvestigator(result, 'a').horror).toBe(1)
-    expect(result.scenarioMeta?.[locationHorrorKey('A')]).toBe(1)
+    expect(result.locations.A!.horror).toBe(1)
   })
 })
 

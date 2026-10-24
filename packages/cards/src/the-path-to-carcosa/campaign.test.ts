@@ -42,7 +42,7 @@ describe('The Path to Carcosa: campaign foundation', () => {
   )
 
   it.each([1, 2, 3, 4])(
-    'creates a campaign for %i investigators without enabling unfinished scenarios',
+    'creates a campaign for %i investigators; only Curtain Call is playable',
     (players) => {
       const campaign = newCampaign(
         definition.id,
@@ -54,7 +54,10 @@ describe('The Path to Carcosa: campaign foundation', () => {
       expect(campaign.results).toEqual([])
       expect(campaign.log.notes).toEqual([])
       expect(campaign.log.chaosTokens).toEqual([])
+      expect(canPlayNext(campaign)).toBe(true)
+      expect(startScenario(campaign, 1).scenarioId).toBe('curtain-call')
       for (const [scenarioIndex, scenario] of definition.scenarios.entries()) {
+        if (scenarioIndex === 0) continue
         const pending = { ...campaign, scenarioIndex }
         expect(canPlayNext(pending)).toBe(false)
         expect(() => startScenario(pending, 1)).toThrow(`Escenario no disponible: ${scenario.id}`)

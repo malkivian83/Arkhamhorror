@@ -51,7 +51,18 @@ export {
 } from './asset-upgrades'
 export { attackDamage } from './combat'
 export { assetsCannotReady } from './state'
-export { canAffordEntry, canEnter, leavingBlocked, parleyCosts } from './actions'
+export {
+  actionsThisRound,
+  canAffordEntry,
+  canEnter,
+  cardCost,
+  commitBlocked,
+  leavingBlocked,
+  moveBlocked,
+  parleyCosts,
+  playBlocked,
+  threatAreaTreacheries,
+} from './actions'
 export { BOONS } from './types'
 export { EngineError } from './errors'
 export {
@@ -65,6 +76,7 @@ export {
   skillTestValue,
   canCommitFrom,
   successChance,
+  totalDoom,
 } from './handlers'
 export * from './rng'
 export {

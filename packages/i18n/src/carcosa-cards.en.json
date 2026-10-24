@@ -1,0 +1,193 @@
+{
+  "01159": {
+    "name": "Swarm of Rats",
+    "traits": "Creature.",
+    "text": "Hunter."
+  },
+  "01163": {
+    "name": "Rotting Remains",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Test [willpower] (3). For each point you fail by, take 1 horror."
+  },
+  "01164": {
+    "name": "Frozen in Fear",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Put Frozen in Fear into play in your threat area.\nThe first time you perform one of the following actions (move, fight, or evade) each round, it costs 1 additional action.\n<b>Forced</b> - At the end of your turn: Test [willpower] (3). If you succeed, discard Frozen in Fear."
+  },
+  "01165": {
+    "name": "Dissonant Voices",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Put Dissonant Voices into play in your threat area.\nYou cannot play assets or events.\n<b>Forced</b> - At the end of the round: Discard Dissonant Voices."
+  },
+  "03043": {
+    "name": "Curtain Call",
+    "text": "Easy / Standard\n[skull]: -1 (-3 instead if you have 3 or more horror on you).\n[cultist] [tablet] [elder_thing]: -4. If your location has at least 1 horror on it, take 1 horror <i>(from the token pool)</i>. If your location has no horror on it, place 1 horror on it instead.",
+    "backText": "Hard / Expert\n[skull]: -X, where X is the amount of horror on you. (If you have no horror on you, X is 1.)\n[cultist] [tablet] [elder_thing]: -5. If your location has at least 1 horror on it, take 1 horror <i>(from the token pool)</i>. If your location has no horror on it, place 1 horror on it instead."
+  },
+  "03044": {
+    "name": "The Third Act",
+    "backName": "The Emissary's Message",
+    "backText": "Search all set-aside cards and the victory display for the Royal Emissary enemy, and spawn it in the Theatre."
+  },
+  "03045": {
+    "name": "Encore",
+    "text": "<b>Forced</b> - After Royal Emissary is added to the victory display: Remove all doom from play and reset the agenda deck to agenda 1a. Then, place 3 doom on that agenda.",
+    "backName": "\"Exit Now\"",
+    "backText": "Each investigator takes 100 horror <i>(cannot be prevented)</i>."
+  },
+  "03046": {
+    "name": "Awakening",
+    "backName": "His Final Bow",
+    "backText": "Choose one of the set-aside locations, at random. Put that location into play, and spawn the set-aside The Man in the Pallid Mask enemy at that location <i>(instead of his normal spawn location)</i>.\nAdvance to one of the 3 copies of act 2a, at random. Remove the other 2 copies of act 2a from the game without looking at them."
+  },
+  "03047a": {
+    "name": "The Stranger",
+    "text": "<b>Objective</b> - When The Man in the Pallid Mask would be discarded from play, advance.",
+    "backName": "A City Aflame",
+    "backText": "Instead of discarding The Man in the Pallid Mask, move him to the Lobby.\nAdd 2 [cultist] tokens to the chaos bag.\nPlace 1 horror on the Theatre. Until the end of the scenario, horror on locations represents spreading flames, and each location with horror gains: \"<b>Forced</b> - After you enter this location or end your turn at this location: Test [agility] (3). If you fail, take 1 damage. (Limit once per round.)\"\nKeep this card next to the act deck as a reminder, and advance to act 3a."
+  },
+  "03047b": {
+    "name": "The Stranger",
+    "text": "<b>Objective</b> - When The Man in the Pallid Mask would be discarded from play, advance.",
+    "backName": "The Path is Mine",
+    "backText": "Instead of discarding The Man in the Pallid Mask, move him to the Lobby.\nAdd 2 [tablet] tokens to the chaos bag.\nPlace 1 horror on the location The Man in the Pallid Mask was moved from. Until the end of the scenario, horror on locations represents the advancing ooze, and each location with horror gains: \"<b>Forced</b> - After you leave this location: Test [agility] (4). If you fail, take 1 horror and 1 damage.\"\nKeep this card next to the act deck as a reminder, and advance to act 3a."
+  },
+  "03047c": {
+    "name": "The Stranger",
+    "text": "<b>Objective</b> - When The Man in the Pallid Mask would be discarded from play, advance.",
+    "backName": "The Shores of Hali",
+    "backText": "Instead of discarding The Man in the Pallid Mask, move him to the Lobby.\nAdd 2 [elder_thing] tokens to the chaos bag.\nPlace 1 horror on each [[Private]] location. Until the end of the scenario, horror on locations represents flooding water, and each location with horror gains: \"<b>Forced</b> - When you would leave this location: Test [agility] (2). If you fail, take 1 damage and cancel the effects of the move. (Limit once per round.)\"\nKeep this card next to the act deck as a reminder, and advance to act 3a."
+  },
+  "03048": {
+    "name": "Curtain Call",
+    "text": "While The Man in the Pallid Mask is not in play, the Lobby gains: \"[action]: <b>Resign.</b>\"\n<b>Forced</b> - At the end of the round: Place 1 horror on each location with no horror that is connected to a location with horror.\n<b>Objective</b> - If each undefeated investigator has resigned, advance.",
+    "backName": "Escaping the Theatre",
+    "backText": "The investigators must decide (choose one):\n- We have to warn the police about what's going on! <b>(→R1)</b>\n- The police won't believe us. We have to solve this mystery on our own. <b>(→R2)</b>"
+  },
+  "03049": {
+    "name": "Theatre"
+  },
+  "03050": {
+    "name": "Lobby",
+    "text": "<b>Forced</b> - When Lobby is revealed: Put 2 of the set-aside Lobby Doorway locations into play, at random.\n[action] [action]: Draw 3 cards."
+  },
+  "03051": {
+    "name": "Balcony",
+    "text": "<b>Forced</b> - After you perform a move action during which you move from the Balcony to the Theatre: Take 2 damage."
+  },
+  "03052": {
+    "name": "Backstage",
+    "text": "<b>Forced</b> - When Backstage is revealed: Put 2 of the set-aside Backstage Doorway locations into play, at random.\nWhile you are at Backstage, each hidden treachery in your hand counts as 3 cards instead of 1 for the purposes of counting your hand size."
+  },
+  "03053": {
+    "name": "Lighting Box",
+    "traits": "Private.",
+    "text": "While you are in the Lighting Box, increase the resource cost of each card in your hand by 2.",
+    "backName": "Lobby Doorway"
+  },
+  "03054": {
+    "name": "Box Office",
+    "traits": "Private.",
+    "text": "[action]: Gain 5 resources. Remember that you \"stole from the box office.\" (Group limit once per game.)",
+    "backName": "Lobby Doorway"
+  },
+  "03055": {
+    "name": "Green Room",
+    "traits": "Private.",
+    "text": "[action] <b>Investigate.</b> You get +3 [intellect] for this investigation. After this skill test ends, discard each card in your hand.",
+    "backName": "Lobby Doorway"
+  },
+  "03056": {
+    "name": "Dressing Room",
+    "traits": "Private.",
+    "text": "[action] [action] [action]: Heal 3 horror.",
+    "backName": "Backstage Doorway"
+  },
+  "03057": {
+    "name": "Rehearsal Room",
+    "traits": "Private.",
+    "text": "<b>Forced</b> - After you succeed by 2 or more while investigating the Rehearsal Room: Take 1 horror.",
+    "backName": "Backstage Doorway"
+  },
+  "03058": {
+    "name": "Trap Room",
+    "traits": "Private.",
+    "text": "<b>Forced</b> - After you reveal the Trap Room: Search the encounter deck and discard pile for 1 copy of Swarm of Rats and put it into play engaged with you (2 copies instead if there are 3 or 4 investigators in the game). Shuffle the encounter deck if it is searched.",
+    "backName": "Backstage Doorway"
+  },
+  "03060": {
+    "name": "Royal Emissary",
+    "subname": "Messenger from Aldebaran",
+    "traits": "Monster. Elite.",
+    "text": "<b>Prey</b> - Lowest [willpower].\nMassive. Hunter. Retaliate.\n<b>Forced</b> - At the end of the enemy phase: Each investigator at Royal Emissary's location or a connecting location takes 1 horror."
+  },
+  "03084a": {
+    "name": "Whispers in Your Head",
+    "subname": "Dismay",
+    "traits": "Terror.",
+    "text": "Peril. Hidden.\n<b>Revelation</b> - Secretly add Whispers in Your Head (Dismay) to your hand.\nYou cannot commit skill cards to skill tests.\n[action] [action]: Discard Whispers in Your Head (Dismay) from your hand."
+  },
+  "03084b": {
+    "name": "Whispers in Your Head",
+    "subname": "Dread",
+    "traits": "Terror.",
+    "text": "Peril. Hidden.\n<b>Revelation</b> - Secretly add Whispers in Your Head (Dread) to your hand.\nYou cannot move more than once each turn.\n[action] [action]: Discard Whispers in Your Head (Dread) from your hand."
+  },
+  "03084c": {
+    "name": "Whispers in Your Head",
+    "subname": "Anxiety",
+    "traits": "Terror.",
+    "text": "Peril. Hidden.\n<b>Revelation</b> - Secretly add Whispers in Your Head (Anxiety) to your hand.\nYou cannot trigger [fast] abilities.\n[action] [action]: Discard Whispers in Your Head (Anxiety) from your hand."
+  },
+  "03084d": {
+    "name": "Whispers in Your Head",
+    "subname": "Doubt",
+    "traits": "Terror.",
+    "text": "Peril. Hidden.\n<b>Revelation</b> - Secretly add Whispers in Your Head (Doubt) to your hand.\nYou cannot play events.\n[action] [action]: Discard Whispers in Your Head (Doubt) from your hand."
+  },
+  "03085": {
+    "name": "Descent into Madness",
+    "traits": "Terror.",
+    "text": "Surge.\n<b>Revelation</b> - If you have at least 3 horror on you, lose 1 action."
+  },
+  "03090": {
+    "name": "Black Stars Rise",
+    "traits": "Omen.",
+    "text": "<b>Revelation</b> - Test [intellect] (4). If you fail, you must either place 1 doom on the current agenda or take 1 horror for each point you failed by. This effect can cause the current agenda to advance."
+  },
+  "03091": {
+    "name": "Spires of Carcosa",
+    "traits": "Omen.",
+    "text": "<b>Revelation</b> - Attach to your location, then place 2 doom on that location.\nIf there is no doom on attached location, discard Spires of Carcosa.\n[action]: <b>Investigate.</b> If you succeed, instead of discovering clues here, remove 1 doom from attached location."
+  },
+  "03092": {
+    "name": "Twisted to His Will",
+    "traits": "Pact.",
+    "text": "<b>Revelation</b> - If there is no doom in play, Twisted to His Will gains surge. Otherwise, test [willpower] (X), where X is the amount of doom in play. If you fail, discard 2 cards from your hand at random."
+  },
+  "03093": {
+    "name": "Poltergeist",
+    "traits": "Monster. Geist.",
+    "text": "Cannot be damaged except by [[Spell]], [[Relic]], or encounter cards.\n[action] <b>Parley.</b> Test [intellect] (3) to attempt to banish the geist. If you succeed, deal it 1 damage."
+  },
+  "03094": {
+    "name": "Spirit's Torment",
+    "traits": "Curse. Geist.",
+    "text": "<b>Revelation</b> - Attach to your location.\n<b>Forced</b> - After you leave attached location: You must either take 1 horror or lose 1 action.\n[action] Place 1 of your clues on attached location: Discard Spirit's Torment."
+  },
+  "03098": {
+    "name": "Fanatic",
+    "traits": "Humanoid. Cultist.",
+    "text": "<b>Spawn</b> - Revealed location with the most clues.\n<b>Forced</b> - After Fanatic enters play: Move 1 clue from Fanatic's location to Fanatic.\n<b>Forced</b> - When you defeat Fanatic: Take control of all of its clues."
+  },
+  "03099": {
+    "name": "Agent of the King",
+    "traits": "Humanoid. Cultist.",
+    "text": "<b>Prey</b> - Most clues.\nHunter.\n<b>Forced</b> - After Agent of the King attacks you: Move 1 of your clues to Agent of the King.\n<b>Forced</b> - When you defeat Agent of the King: Take control of all of its clues."
+  },
+  "03100": {
+    "name": "The King's Edict",
+    "traits": "Pact.",
+    "text": "<b>Revelation</b> - For each [[Cultist]] enemy in play, move 1 clue from that enemy's location to that enemy. Until the end of the round, each [[Cultist]] enemy in play gets +1 fight for each clue and/or doom on it. If no clues are moved by this effect, The King's Edict gains surge."
+  }
+}

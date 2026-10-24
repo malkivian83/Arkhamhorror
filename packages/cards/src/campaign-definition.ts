@@ -44,6 +44,11 @@ export interface CampaignDefinition {
   scenarios: CampaignScenario[]
   /** Bolsa del caos inicial por dificultad (guía de campaña). */
   chaosBags: Record<Difficulty, ChaosToken[]>
+  /**
+   * Cartas de historia que pasan a otro investigador cuando su portador abandona la
+   * campaña (muerto o enloquecido): El hombre de la máscara pálida en Carcosa.
+   */
+  transferOnLeave?: CardCode[]
 }
 
 const campaigns = new Map<string, CampaignDefinition>()

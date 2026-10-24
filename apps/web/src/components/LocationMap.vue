@@ -115,7 +115,12 @@ const treacheriesAt = (id: string) =>
       }"
     >
       <TableTarget :target="`location:${l.id}`">
-        <GameCard :code="l.id" :name="l.name" :back="!l.revealed" :width="CARD_W">
+        <GameCard
+          :code="l.id"
+          :name="l.revealed ? l.name : (l.unrevealedName ?? l.name)"
+          :back="!l.revealed"
+          :width="CARD_W"
+        >
           <span class="pin" aria-hidden="true" />
           <!-- Carta de encuentro boca abajo debajo de la localización (Smoke and Mirrors). -->
           <span
@@ -131,6 +136,23 @@ const treacheriesAt = (id: string) =>
             :value="l.clues"
             :size="34"
             :title="t('table.clues')"
+          />
+          <!-- Horror y perdición sobre el Lugar (Se cierra el telón, Torres de Carcosa). -->
+          <TokenBadge
+            v-if="l.horror"
+            class="loc-horror"
+            kind="horror"
+            :value="l.horror"
+            :size="30"
+            :title="t('table.horror')"
+          />
+          <TokenBadge
+            v-if="l.doom"
+            class="loc-doom"
+            kind="doom"
+            :value="l.doom"
+            :size="30"
+            :title="t('table.doom')"
           />
           <!-- Velo cambiado hasta el final de la ronda (p. ej. Hand-Crank Flashlight). -->
           <span
@@ -419,6 +441,18 @@ const treacheriesAt = (id: string) =>
   top: 6px;
   right: -10px;
   z-index: 2;
+}
+.loc-horror,
+.loc-doom {
+  position: absolute;
+  left: -10px;
+  z-index: 2;
+}
+.loc-horror {
+  top: 6px;
+}
+.loc-doom {
+  top: 42px;
 }
 .enemy-damage {
   position: absolute;

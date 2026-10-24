@@ -321,7 +321,17 @@ const slots = computed(() => {
             </GameCard>
           </TableTarget>
           <TableTarget v-for="tr in threats" :key="tr.id" :target="`treachery:${tr.id}`">
-            <GameCard :code="tr.code" :name="tr.name" :width="42" color="#b5462f" />
+            <!-- Oculto: en secreto en su mano; en línea, los demás solo ven que existe. -->
+            <GameCard
+              :code="tr.code"
+              :name="tr.code ? tr.name : t('table.hiddenCard')"
+              :width="42"
+              color="#b5462f"
+            >
+              <span v-if="tr.hidden" class="hidden-mark" :title="t('table.hiddenHelp')">{{
+                t('table.hidden')
+              }}</span>
+            </GameCard>
           </TableTarget>
         </div>
       </div>
@@ -708,6 +718,19 @@ h4 {
 .zone.threat {
   border-color: rgb(200 60 50 / 55%);
   background: rgb(90 10 10 / 25%);
+}
+.hidden-mark {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%);
+  padding: 0 4px;
+  border-radius: 3px;
+  background: #3b2350;
+  color: #f1e6ff;
+  font-size: 0.6rem;
+  white-space: nowrap;
 }
 .zone .cards {
   display: flex;

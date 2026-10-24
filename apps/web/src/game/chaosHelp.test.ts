@@ -31,6 +31,15 @@ describe('chaos token help', () => {
       expect(chaosHelp({ ...state, difficulty: 'hard' }, 'tablet', locale, t)).toContain('-5')
       expect(chaosHelp(state, 'skull', locale, t)).not.toContain('[[')
     })
+    it(`${locale}: reads grouped symbols from the official Curtain Call reference card`, () => {
+      const state = { scenarioId: 'curtain-call', difficulty: 'standard' as const }
+      for (const token of ['cultist', 'tablet', 'elderThing'] as const) {
+        expect(chaosHelp(state, token, locale, t)).toMatch(/^-4\./)
+        expect(chaosHelp({ ...state, difficulty: 'expert' }, token, locale, t)).toMatch(/^-5\./)
+      }
+      expect(chaosHelp(state, 'skull', locale, t)).toContain('-1')
+      expect(chaosHelp(state, 'cultist', locale, t)).not.toMatch(/<|\[\[/)
+    })
     it(`${locale}: provides nonempty resolved text for every supported scenario symbol`, () => {
       for (const scenarioId of [
         'spreading-flames',
@@ -38,6 +47,7 @@ describe('chaos token help', () => {
         'queen-of-ash',
         'the-midwinter-gala',
         'murder-at-the-excelsior-hotel',
+        'curtain-call',
       ])
         for (const difficulty of ['easy', 'standard', 'hard', 'expert'] as const)
           for (const token of [

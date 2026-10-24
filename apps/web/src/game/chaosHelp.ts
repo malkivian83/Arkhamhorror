@@ -1,5 +1,5 @@
 import type { ChaosToken, GameState } from '@lcg/engine'
-import { excelsiorCards } from '@lcg/i18n'
+import { carcosaCards, excelsiorCards, type CatalogCard } from '@lcg/i18n'
 
 type Translate = (key: string, params?: Record<string, string | number>) => string
 export function chaosHelp(
@@ -12,16 +12,24 @@ export function chaosHelp(
     return t('chaosHelp.numeric', { value: token > 0 ? `+${token}` : token })
   if (token === 'autoFail' || token === 'elderSign') return t(`chaosHelp.${token}`)
   const hard = state.difficulty === 'hard' || state.difficulty === 'expert'
-  if (state.scenarioId === 'murder-at-the-excelsior-hotel') {
-    const card = excelsiorCards[locale === 'es' ? 'es' : 'en']['84001']!
+  // Tarjetas de referencia con texto oficial en el catálogo local.
+  const official: Record<string, CatalogCard | undefined> = {
+    'murder-at-the-excelsior-hotel': excelsiorCards[locale === 'es' ? 'es' : 'en']['84001'],
+    'curtain-call': carcosaCards[locale === 'es' ? 'es' : 'en']['03043'],
+  }
+  const card = official[state.scenarioId]
+  if (card) {
     const tag = token === 'elderThing' ? 'elder_thing' : token
+    // Una línea puede agrupar varios símbolos: "[cultist] [tablet] [elder_thing]: -4…".
+    const symbols = /^(?:\[[a-z_]+\]\s*)+:?/
     const line = (hard ? card.backText : card.text)
       ?.split('\n')
-      .find((line) => line.startsWith(`[${tag}]:`))
+      .find((line) => symbols.exec(line)?.[0].includes(`[${tag}]`))
     if (line)
       return line
-        .slice(tag.length + 3)
+        .replace(symbols, '')
         .replace(/\[\[|\]\]/g, '')
+        .replace(/<\/?[a-z]+>/g, '')
         .trim()
   }
   const modifiers: Record<string, Record<string, [number, number]>> = {

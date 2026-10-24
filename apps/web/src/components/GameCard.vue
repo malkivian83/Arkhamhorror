@@ -59,7 +59,13 @@ function imageFailed() {
     thumbnailFailed.value = false
   }
 }
-const displayName = computed(() => localized.value?.name ?? localName(props.name))
+// Boca abajo, el nombre de la cara visible (Puerta del vestíbulo), no el de la oculta.
+const displayName = computed(
+  () =>
+    (props.back ? localized.value?.back_name : undefined) ??
+    localized.value?.name ??
+    localName(props.name),
+)
 // Follow the face actually displayed, including failed Spanish scans and English fallbacks.
 const imageLanguage = computed(() => {
   if (scan.value) return scanLocale.value

@@ -172,3 +172,42 @@ it('keeps test information public but strips nested outcomes and computes displa
   expect(stats.bag).toHaveLength(g.chaosBag.length)
   expect(JSON.stringify(stats)).not.toContain('onFail')
 })
+
+it('keeps hidden treacheries secret from other players, including the encounter log', () => {
+  const g = startScenario(newCampaign('brethren-of-ash', ['joe', 'daniela'], 'standard'), 778)
+  const [a, b] = g.investigators
+  g.treacheries = {
+    whispers: {
+      kind: 'treachery',
+      id: 'whispers',
+      code: '03084b',
+      name: 'Whispers in Your Head (Dread)',
+      keywords: ['peril', 'hidden'],
+      placement: { type: 'threatArea', investigator: a!.id },
+      hidden: true,
+    },
+  }
+  g.log = [
+    {
+      key: 'log.encounter',
+      round: 1,
+      params: { name: a!.name, card: 'Whispers in Your Head (Dread)', code: '03084b', hidden: 1 },
+    },
+  ]
+  const location = Object.values(g.locations)[0]!
+  location.horror = 1
+  location.doom = 2
+  location.unrevealedName = 'Lobby Doorway'
+  location.revealed = false
+  const own = tableView(g, a!.id)
+  expect(own.treacheries.whispers).toMatchObject({ code: '03084b', hidden: true })
+  expect(own.log[0]!.params).toMatchObject({ card: 'Whispers in Your Head (Dread)' })
+  const other = tableView(g, b!.id)
+  expect(other.treacheries.whispers).toMatchObject({ code: '', name: '', hidden: true })
+  expect(JSON.stringify(other)).not.toContain('Dread')
+  expect(other.locations[location.id]).toMatchObject({
+    name: 'Lobby Doorway',
+    horror: 1,
+    doom: 2,
+  })
+})

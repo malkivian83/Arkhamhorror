@@ -396,7 +396,8 @@
     "payX": "Paga {n} (X = {n})",
     "attachToLocation": "Vincular a {location}",
     "moveTo": "Moverte a {location}",
-    "dynamiteLocation": "Hacer estallar {location}"
+    "dynamiteLocation": "Hacer estallar {location}",
+    "horrorPerPointFailed": "Recibir 1 horror por cada punto que te faltó"
   },
   "phase": {
     "setup": "Preparación",
@@ -620,7 +621,14 @@
     "searchDeck": "{card}: buscar en tu mazo",
     "placeUse": "{card}: colocar 1 uso en {asset}",
     "searchingForIzzie": "Buscando a Izzie: investiga para descartarla",
-    "carcosaInvestigateStranger": "Investigar con +2 al velo. Si tienes éxito, derrota a El hombre de la máscara pálida en lugar de descubrir pistas."
+    "carcosaInvestigateStranger": "Investigar con +2 al velo. Si tienes éxito, derrota a El hombre de la máscara pálida en lugar de descubrir pistas.",
+    "discardHidden": "Descartar {card} de tu mano",
+    "spiresInvestigate": "Investigar: retirar 1 perdición de este Lugar en vez de descubrir pistas",
+    "banishGeist": "Negociar: prueba de Intelecto (3) para desterrar el geist",
+    "spiritsTorment": "Colocar 1 de tus pistas aquí: descartar Tormento del espíritu",
+    "stealFromBoxOffice": "Obtener 5 recursos (habéis «robado en la taquilla»)",
+    "greenRoomInvestigate": "Investigar con +3 de Intelecto y después descartar tu mano",
+    "dressingRoomHeal": "Curar 3 de horror"
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -866,7 +874,10 @@
     },
     "assetUpgrades": "Mejoras de {card}",
     "exhaustedUpgrades": "{count} agotadas",
-    "nextFightBonus": "+{amount} al próximo combate"
+    "nextFightBonus": "+{amount} al próximo combate",
+    "hidden": "Oculta",
+    "hiddenHelp": "Oculto: en secreto en la mano de este investigador. Se trata como si estuviera en su zona de amenaza y cuenta para su tamaño de mano.",
+    "hiddenCard": "Carta oculta"
   },
   "difficulty": {
     "easy": "Fácil",
@@ -923,7 +934,7 @@
       "brethren-of-ash": "Un incendio, una ciudad inquieta y un misterio que se extiende entre las cenizas. Tres escenarios, una historia conectada.",
       "the-midwinter-gala": "Una noche de lujo y secretos. Acepta la invitación y descubre qué se esconde tras las máscaras de la gala.",
       "murder-at-the-excelsior-hotel": "Un asesinato y un hotel lleno de secretos. Investiga lo ocurrido en el Excelsior y descubre la verdad antes de que sea demasiado tarde.",
-      "the-path-to-carcosa": "El Rey de Amarillo llega a Arkham. Ocho escenarios entre Dudas y Convicciones. En desarrollo: todavía no hay escenarios jugables."
+      "the-path-to-carcosa": "El Rey de Amarillo llega a Arkham. Ocho escenarios entre Dudas y Convicciones. En desarrollo: de momento solo se puede jugar el escenario I, Se cierra el telón."
     },
     "continueTitle": "Continuar donde lo dejaste",
     "chooseStory": "Elige la historia",
@@ -1340,7 +1351,13 @@
       "resolution1Title": "Resolución 1",
       "resolution1": "La policía no cree tu relato del teatro y te echa de la comisaría. Regresas en busca de pruebas, pero las puertas están cerradas. Una invitación a la fiesta del equipo ofrece una nueva pista.",
       "resolution2Title": "Resolución 2",
-      "resolution2": "Decides que la policía no te creería. Al regresar al teatro, vuelves a ver al Extranjero. Desaparece en un callejón donde encuentras una invitación a la fiesta del equipo."
+      "resolution2": "Decides que la policía no te creería. Al regresar al teatro, vuelves a ver al Extranjero. Desaparece en un callejón donde encuentras una invitación a la fiesta del equipo.",
+      "setupTitle": "Preparación",
+      "setup": "Se reúnen los conjuntos de encuentros Se cierra el telón, Portentos malignos, Delirios, Apariciones, Secta del Signo Amarillo, Miedo impactante y Ratas.\n\nSe apartan, fuera del juego: El hombre de la máscara pálida, el Emisario real y todas las copias de Puerta del vestíbulo y de Puerta de bastidores.\n\nTeatro, Vestíbulo, Palcos y Bastidores entran en juego. Cada investigador empieza en el Teatro.\n\nEl resto de cartas de encuentro se baraja para formar el mazo de Encuentros.",
+      "escapingTitle": "Huida del teatro",
+      "escaping": "Habéis escapado del teatro. Los investigadores deben decidir qué hacer a continuación.",
+      "decide1": "¡Debemos avisar a la policía de lo que está pasando! (→R1)",
+      "decide2": "La policía no nos creerá. Tenemos que resolver este misterio por nuestra cuenta. (→R2)"
     }
   },
   "playmat": {
@@ -1609,6 +1626,10 @@
     "trueCulprit": {
       "title": "El verdadero culpable",
       "body": "Tras el interludio, una de las diez versiones de El verdadero culpable pasa a ser a la vez el acto y el plan en curso, según tus dos Indicios. Llegar a su umbral de perdición lleva a la Resolución 2; cumplir su objetivo, a la Resolución 1."
+    },
+    "hidden": {
+      "title": "Oculto",
+      "body": "Una carta Oculto se añade en secreto a tu mano. Allí se trata como si estuviera en tu zona de amenaza: sus capacidades funcionan, pero solo tú puedes activarlas. Cuenta para tu tamaño de mano y solo se descarta como indica su propio texto; entonces va a la pila de descartes de Encuentros."
     }
   },
   "phaseStep": {

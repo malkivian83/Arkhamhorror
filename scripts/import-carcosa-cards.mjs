@@ -1,0 +1,77 @@
+#!/usr/bin/env node
+/**
+ * Catálogo local de las cartas de encuentro de El camino a Carcosa ya implementadas
+ * (escenario I y sus conjuntos de encuentros, más Ratas y Miedo impactante de la caja
+ * básica original): nombre, subtítulo, rasgos y texto de cada cara en inglés y
+ * español, sacados de public/cards_{en,es}.json del proyecto de referencia. La mesa
+ * lo usa sin conexión.
+ *
+ * Uso: node scripts/import-carcosa-cards.mjs [ruta-del-proyecto-de-referencia]
+ */
+import { readFileSync, writeFileSync } from 'node:fs'
+import { join } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const reference = process.argv[2] ?? 'D:/referencia/ArkhamHorror-main'
+const target = (lang) =>
+  fileURLToPath(new URL(`../packages/i18n/src/carcosa-cards.${lang}.json`, import.meta.url))
+
+const range = (from, to) =>
+  Array.from({ length: to - from + 1 }, (_, n) => String(from + n).padStart(5, '0'))
+const CODES = new Set([
+  // Se cierra el telón (03059 es una debilidad de jugador con su propio texto).
+  ...range(3043, 3058).filter((code) => code !== '03047'),
+  '03047a',
+  '03047b',
+  '03047c',
+  '03060',
+  // Delirios, Portentos malignos, Apariciones y Secta del Signo Amarillo.
+  '03084a',
+  '03084b',
+  '03084c',
+  '03084d',
+  '03085',
+  ...range(3090, 3094),
+  ...range(3098, 3100),
+  // Caja básica original: Ratas y Miedo impactante.
+  '01159',
+  '01163',
+  '01164',
+  '01165',
+])
+
+/** Erratas de la traducción de la fuente, contrastadas con las cartas impresas. */
+const ERRATA = [
+  ['Si tienes éxito, inflígete 1 punto de daño', 'Si tienes éxito, inflígele 1 punto de daño'],
+  ['Lugar de parición normal', 'Lugar de aparición normal'],
+  ['<b>Revelación</b> Si tienes', '<b>Revelación</b> - Si tienes'],
+  ['obtiene:"', 'obtiene: "'],
+]
+const fix = (text) =>
+  typeof text === 'string'
+    ? ERRATA.reduce((t, [wrong, right]) => t.replaceAll(wrong, right), text)
+    : text
+
+for (const lang of ['en', 'es']) {
+  const cards = JSON.parse(
+    readFileSync(join(reference, `frontend/public/cards_${lang}.json`), 'utf8'),
+  )
+  const out = {}
+  for (const card of cards.filter((c) => CODES.has(c.code))) {
+    out[card.code] = Object.fromEntries(
+      Object.entries({
+        name: fix(card.name),
+        subname: fix(card.subname),
+        traits: fix(card.traits),
+        text: fix(card.text),
+        backName: fix(card.back_name),
+        backText: fix(card.back_text),
+      }).filter(([, v]) => typeof v === 'string' && v !== ''),
+    )
+  }
+  const missing = [...CODES].filter((code) => !out[code])
+  if (missing.length) throw new Error(`Faltan cartas en ${lang}: ${missing.join(', ')}`)
+  const sorted = Object.fromEntries(Object.entries(out).sort(([a], [b]) => a.localeCompare(b)))
+  writeFileSync(target(lang), JSON.stringify(sorted, null, 2) + '\n')
+  console.log(`${Object.keys(sorted).length} cartas en ${target(lang)}`)
+}

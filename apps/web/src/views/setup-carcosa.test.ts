@@ -22,7 +22,7 @@ vi.mock('@lcg/cards', async (original) => {
 })
 
 it.each(['en', 'es'] as const)(
-  'presents the pending Carcosa campaign in %s without offering to start it',
+  'presents the Carcosa campaign in %s, startable now that Curtain Call is playable',
   async (locale) => {
     const app = createSSRApp(SetupView)
       .use(createPinia())
@@ -43,12 +43,9 @@ it.each(['en', 'es'] as const)(
       'dim-carcosa',
     ] as const)
       expect(html).toContain(text.campaign.scenario[id])
-    expect(html).toMatch(
-      new RegExp(
-        `<button[^>]*type="submit"[^>]*disabled[^>]*>[\\s\\S]*?${text.campaign.notImplemented}`,
-      ),
-    )
-    expect(html).not.toContain(text.setup.beginCampaign)
+    // Solo el escenario I tiene `build`; el inicio de la campaña ya está disponible.
+    expect(html).not.toContain(text.campaign.notImplemented)
+    expect(html).toContain(text.setup.beginCampaign)
     expect(html).not.toContain('campaign.scenario.')
     expect(html).toContain('/local-assets/setup/the-path-to-carcosa.jpg')
     expect(

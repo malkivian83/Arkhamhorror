@@ -68,6 +68,8 @@ export interface Investigator {
   }[]
   /** Tipos de carta que no puede jugar ni comprometer en esta ronda (Languor). */
   blockedTypes?: { cardType: string; round: number }[]
+  /** Acciones básicas realizadas en la ronda indicada, por tipo (Frozen in Fear). */
+  roundActions?: { round: number; kinds: Action['kind'][] }
   id: InvestigatorId
   name: string
   skills: Record<SkillType, number>
@@ -99,6 +101,8 @@ export interface Investigator {
   osirisProtected?: boolean
   /** Ya se ha movido este turno. */
   movedThisTurn?: boolean
+  /** Turno (inicio en el registro) de su último movimiento, en el turno de quien sea. */
+  lastMoveTurn?: number
   /** Acciones realizadas en este turno. */
   actionsTaken?: number
   /**
@@ -125,6 +129,11 @@ export interface Location {
   investigateExtraActions?: number
   /** Cartas de encuentro boca abajo debajo de la localización. */
   beneath?: EncounterCard[]
+  /** Nombre de la cara sin revelar, si es distinto (Puerta del vestíbulo). */
+  unrevealedName?: string
+  /** Fichas de horror y perdición sobre la localización (la perdición cuenta para el plan). */
+  horror?: number
+  doom?: number
   /** Modificador del velo hasta el final de la ronda (Hand-Crank Flashlight: −1). */
   shroudModifier?: number
   clueValue: number
@@ -191,7 +200,8 @@ export interface Enemy extends EnemyCard {
   stayExhausted?: boolean
 }
 
-export type TreacheryKeyword = 'peril' | 'surge'
+/** `hidden`: Oculto (El camino a Carcosa), se añade en secreto a la mano. */
+export type TreacheryKeyword = 'peril' | 'surge' | 'hidden'
 
 export interface TreacheryCard {
   kind: 'treachery'
@@ -223,6 +233,11 @@ export interface Treachery extends TreacheryCard {
   /** Pistas y horror sobre la carta (Cerebro extraído). */
   clues?: number
   horror?: number
+  /**
+   * Oculto (El camino a Carcosa): está en secreto en la mano de su investigador. Se
+   * trata como si estuviera en su zona de amenaza y cuenta para el tamaño de mano.
+   */
+  hidden?: boolean
 }
 
 export interface Agenda {
@@ -264,6 +279,8 @@ export interface LocationCard {
   enterHorror?: number
   /** Cartas de encuentro boca abajo debajo de la localización (Smoke and Mirrors). */
   beneath?: EncounterCard[]
+  /** Nombre de la cara sin revelar, si es distinto (Puerta del vestíbulo). */
+  unrevealedName?: string
   id: LocationId
   name: string
   shroud: number
@@ -733,6 +750,8 @@ export type Message =
       location: LocationId
       entryPaid?: boolean
       checked?: boolean
+      /** Lo produce la acción básica de movimiento (Palcos), no el efecto de una carta. */
+      moveAction?: boolean
     }
   | { type: 'RevealLocation'; location: LocationId }
   /** En su localización o en `location`. */
@@ -874,6 +893,8 @@ export type Message =
       tokens?: ChaosToken[]
       then: Message[]
     }
+  /** Durante la prueba en curso: `then` una vez por cada punto por el que se falla. */
+  | { type: 'ForEachPointFailed'; then: Message[] }
   /** Si el enemigo ya no está en juego (lo ha derrotado el ataque). */
   | { type: 'IfEnemyDefeated'; enemy: EnemyId; then: Message[] }
   // ----- Smoke and Mirrors -----
@@ -1016,8 +1037,15 @@ export type Message =
   | { type: 'RevealTreachery'; treachery: TreacheryId; investigator: InvestigatorId }
   | { type: 'AfterRevelation'; treachery: TreacheryId; investigator: InvestigatorId }
   | { type: 'GainSurge' }
-  | { type: 'PlaceTreachery'; treachery: TreacheryId; placement: TreacheryPlacement }
-  | { type: 'DiscardTreachery'; treachery: TreacheryId }
+  | {
+      type: 'PlaceTreachery'
+      treachery: TreacheryId
+      placement: TreacheryPlacement
+      /** Oculto: va en secreto a la mano del investigador de la zona de amenaza. */
+      hidden?: boolean
+    }
+  /** `own`: lo hace la propia carta (lo único que descarta una carta Oculta). */
+  | { type: 'DiscardTreachery'; treachery: TreacheryId; own?: boolean }
   | { type: 'DiscardRandomFromHand'; investigator: InvestigatorId; amount: number }
   | { type: 'LoseResources'; investigator: InvestigatorId; amount: number }
   /** El investigador deja pistas suyas en su localización. */
@@ -1092,7 +1120,10 @@ export type Message =
       investigator?: InvestigatorId
     }
   | { type: 'AddStoryAsset'; investigator: InvestigatorId; code: CardCode }
-  | { type: 'AddChaosTokens'; tokens: ChaosToken[] }
+  /** `scenarioOnly`: solo para este escenario, sin anotarlas en el registro de campaña. */
+  | { type: 'AddChaosTokens'; tokens: ChaosToken[]; scenarioOnly?: boolean }
+  /** Coloca (o retira, con valores negativos) horror y perdición en una localización. */
+  | { type: 'PlaceLocationTokens'; location: LocationId; horror?: number; doom?: number }
   | { type: 'EarnReward'; code: CardCode }
   | { type: 'Ask'; investigator: InvestigatorId; question: Question }
   // ----- Cartas de jugador -----
@@ -1325,7 +1356,14 @@ export type Trigger =
   | { type: 'roundEnds' }
   | { type: 'enemyPhaseEnds' }
   | { type: 'afterSpendResources'; investigator: InvestigatorId; amount: number }
-  | { type: 'afterMove'; investigator: InvestigatorId; first: boolean }
+  | {
+      type: 'afterMove'
+      investigator: InvestigatorId
+      first: boolean
+      from?: LocationId | null
+      /** El movimiento fue una acción de movimiento. */
+      moveAction?: boolean
+    }
   | { type: 'beforeMoveEngagement'; investigator: InvestigatorId }
   | { type: 'afterDealDamage'; investigator: InvestigatorId; enemy: EnemyId }
 

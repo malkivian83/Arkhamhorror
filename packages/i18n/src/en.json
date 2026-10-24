@@ -396,7 +396,8 @@
     "payX": "Pay {n} (X = {n})",
     "attachToLocation": "Attach to {location}",
     "moveTo": "Move to {location}",
-    "dynamiteLocation": "Blast {location}"
+    "dynamiteLocation": "Blast {location}",
+    "horrorPerPointFailed": "Take 1 horror for each point you failed by"
   },
   "phase": {
     "setup": "Setup",
@@ -620,7 +621,14 @@
     "searchDeck": "{card}: search your deck",
     "placeUse": "{card}: place 1 use on {asset}",
     "searchingForIzzie": "Searching for Izzie: investigate to discard it",
-    "carcosaInvestigateStranger": "Investigate with +2 shroud. On success, defeat The Man in the Pallid Mask instead of discovering clues."
+    "carcosaInvestigateStranger": "Investigate with +2 shroud. On success, defeat The Man in the Pallid Mask instead of discovering clues.",
+    "discardHidden": "Discard {card} from your hand",
+    "spiresInvestigate": "Investigate: remove 1 doom from this location instead of discovering clues",
+    "banishGeist": "Parley: Intellect (3) test to banish the geist",
+    "spiritsTorment": "Place 1 of your clues here: discard Spirit’s Torment",
+    "stealFromBoxOffice": "Gain 5 resources (you “stole from the box office”)",
+    "greenRoomInvestigate": "Investigate with +3 Intellect, then discard your hand",
+    "dressingRoomHeal": "Heal 3 horror"
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -866,7 +874,10 @@
     },
     "assetUpgrades": "Upgrades on {card}",
     "exhaustedUpgrades": "{count} exhausted",
-    "nextFightBonus": "+{amount} next fight"
+    "nextFightBonus": "+{amount} next fight",
+    "hidden": "Hidden",
+    "hiddenHelp": "Hidden: secretly in this investigator’s hand. It is treated as if it were in their threat area and counts toward hand size.",
+    "hiddenCard": "Hidden card"
   },
   "difficulty": {
     "easy": "Easy",
@@ -923,7 +934,7 @@
       "brethren-of-ash": "A fire, a restless city, and a mystery spreading through the ashes. Three scenarios, one connected story.",
       "the-midwinter-gala": "A night of luxury and secrets. Accept the invitation and discover what hides behind the masks at the gala.",
       "murder-at-the-excelsior-hotel": "A murder and a hotel full of secrets. Investigate what happened at the Excelsior and uncover the truth before it is too late.",
-      "the-path-to-carcosa": "The King in Yellow arrives in Arkham. Eight scenarios between doubt and conviction. In development: no scenarios are playable yet."
+      "the-path-to-carcosa": "The King in Yellow arrives in Arkham. Eight scenarios between doubt and conviction. In development: only scenario I, Curtain Call, is playable so far."
     },
     "continueTitle": "Continue where you left off",
     "chooseStory": "Choose the story",
@@ -1340,7 +1351,13 @@
       "resolution1Title": "Resolution 1",
       "resolution1": "The police dismiss your account of the theatre and send you away. You return to look for proof, but the doors are locked. A cast-party invitation offers a new lead.",
       "resolution2Title": "Resolution 2",
-      "resolution2": "You decide the police would never believe you. Returning to the theatre, you catch sight of the Stranger. He vanishes into an alley, where an invitation to the cast party awaits."
+      "resolution2": "You decide the police would never believe you. Returning to the theatre, you catch sight of the Stranger. He vanishes into an alley, where an invitation to the cast party awaits.",
+      "setupTitle": "Setup",
+      "setup": "Gather the encounter sets Curtain Call, Evil Portents, Delusions, Hauntings, Cult of the Yellow Sign, Striking Fear and Rats.\n\nSet aside, out of play: The Man in the Pallid Mask, the Royal Emissary, each Lobby Doorway and each Backstage Doorway.\n\nPut the Theatre, Lobby, Balcony and Backstage into play. Each investigator begins at the Theatre.\n\nShuffle the remaining encounter cards to build the encounter deck.",
+      "escapingTitle": "Escaping the Theatre",
+      "escaping": "You have escaped the theatre. The investigators must decide what to do next.",
+      "decide1": "We have to warn the police about what's going on! (→R1)",
+      "decide2": "The police won’t believe us. We have to solve this mystery on our own. (→R2)"
     }
   },
   "playmat": {
@@ -1609,6 +1626,10 @@
     "trueCulprit": {
       "title": "The True Culprit",
       "body": "After the interlude, one of ten versions of The True Culprit becomes both the current act and the current agenda, depending on your two Leads. Reaching its doom threshold leads to Resolution 2; completing its objective, to Resolution 1."
+    },
+    "hidden": {
+      "title": "Hidden",
+      "body": "A hidden card is secretly added to your hand. While there it is treated as if it were in your threat area: its abilities work, but only you can trigger them. It counts toward your hand size and can only be discarded as its own text describes; then it goes to the encounter discard pile."
     }
   },
   "phaseStep": {

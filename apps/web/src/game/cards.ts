@@ -31,9 +31,14 @@ const SWAPPED_SIDES = new Set([
   '12187',
 ])
 
+/** Cartas cuyo código lleva una letra de copia (sus reversos añaden otra `b`). */
+const LETTERED = new Set(['03047a', '03047b', '03047c', '03084a', '03084b', '03084c', '03084d'])
+
 /** Spanish image, then English image, both from our local asset inventory. */
 export function cardImages(code: string, back = false, locale = scanLocale.value): string[] {
-  const match = /^(\d{5})(b)?$/.exec(code)
+  // Copias distintas con letra (El Extranjero 03047a–c): `03047b` es una carta, no un reverso.
+  const lettered = LETTERED.has(code.replace(/(?<=[a-d])b$/, ''))
+  const match = lettered ? /^(\d{5}[a-d])(b)?$/.exec(code) : /^(\d{5})(b)?$/.exec(code)
   if (!match) return []
   const base = match[1]!
   const side = match[2] ? !back : back
@@ -66,8 +71,8 @@ export function cardImage(code: string, back = false): string | null {
 
 /** Locally generated 192px image for small cards; the zoom always uses the original. */
 export function cardThumbnail(original: string): string | null {
-  return /^\/local-assets\/cards\/(en|es)\/\d{5}b?\.(avif|jpg)$/.test(original)
-    ? original.replace(/\/(\d{5}b?)\.(avif|jpg)$/, '/thumbs/$1.webp')
+  return /^\/local-assets\/cards\/(en|es)\/\d{5}[a-d]?b?\.(avif|jpg)$/.test(original)
+    ? original.replace(/\/(\d{5}[a-d]?b?)\.(avif|jpg)$/, '/thumbs/$1.webp')
     : null
 }
 

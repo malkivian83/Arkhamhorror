@@ -1,0 +1,193 @@
+{
+  "01159": {
+    "name": "Avalancha de ratas",
+    "traits": "Criatura.",
+    "text": "Cazador."
+  },
+  "01163": {
+    "name": "Restos en descomposición",
+    "traits": "Terror.",
+    "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (3). Por cada punto que te falte para tener éxito, recibe 1 punto de horror."
+  },
+  "01164": {
+    "name": "Paralizado por el miedo",
+    "traits": "Terror.",
+    "text": "<b>Revelación</b> - Pon Paralizado por el miedo en juego en tu zona de amenaza.\nLa primera vez que realices una de las siguientes acciones (moverte, combatir o evitar) cada ronda, te cuesta 1 acción adicional.\n<b>Obligado</b> - Al final de tu turno: Realiza una prueba de [willpower] (3). Si tienes éxito, descarta Paralizado por el miedo."
+  },
+  "01165": {
+    "name": "Voces disonantes",
+    "traits": "Terror.",
+    "text": "<b>Revelación</b> - Pon las Voces disonantes en juego en tu zona de amenaza.\nNo puedes jugar Apoyos ni Eventos.\n<b>Obligado</b> - Al final de la ronda: Descarta las Voces disonantes."
+  },
+  "03043": {
+    "name": "Se cierra el telón",
+    "text": "<b>Fácil/Normal</b>\n[skull] -1, o bien -3 si tienes 3 o más puntos de horror.\n[cultist] [tablet] [elder_thing] -4. Si tu Lugar tiene al menos 1 punto de horror, recibes 1 punto de horror <i>(de la reserva de fichas)</i>. Si tu Lugar no tiene horror, en lugar de eso coloca 1 punto de horror sobre él.",
+    "backText": "<b>Difícil/Experto</b>\n[skull] -X, donde X es la cantidad de horror que tienes. Si no tienes horror, X es 1.\n[cultist] [tablet] [elder_thing] -5. Si tu Lugar tiene al menos 1 punto de horror, recibes 1 punto de horror <i>(de la reserva de fichas)</i>. Si tu Lugar no tiene horror, en lugar de eso coloca 1 punto de horror sobre él."
+  },
+  "03044": {
+    "name": "El tercer acto",
+    "backName": "El mensaje del emisario",
+    "backText": "Busca el Enemigo Emisario real en todas las cartas que haya puestas aparte y en la zona de victoria y haz que aparezca en el Teatro."
+  },
+  "03045": {
+    "name": "Bis",
+    "text": "<b>Obligado</b> - Después de que el Emisario real sea añadido a la zona de victoria: Retira toda la perdición que haya en juego y reinicia el mazo de Plan al plan 1a. A continuación, coloca 3 fichas de Perdición sobre ese plan.",
+    "backName": "\"Marchaos ya\"",
+    "backText": "Cada investigador recibe 100 puntos de horror [[(no puede ser prevenido)]]."
+  },
+  "03046": {
+    "name": "Despertar",
+    "backName": "Fin de la obra",
+    "backText": "Elige al azar uno de los Lugares puestos aparte. Pon ese Lugar en juego y genera el Enemigo El hombre de la máscara pálida puesto aparte en ese Lugar en vez de en su Lugar de aparición normal.\nHaz avanzar el acto a una de las 3 copias del acto 2a, al azar. Retira de la partida las otras 2 copias del acto 2a sin mirarlas."
+  },
+  "03047a": {
+    "name": "El Extranjero",
+    "text": "<b>Objetivo</b> - Cuando El hombre de la máscara pálida fuese a ser descartado del juego, haz avanzar el acto.",
+    "backName": "Una ciudad en llamas",
+    "backText": "En lugar de descartar El hombre de la máscara pálida, muévelo al Vestíbulo.\nAñade 2 fichas [cultist] a la bolsa de caos.\nColoca 1 ficha de Horror en el Teatro. Hasta el final del escenario, el horror que haya en los Lugares representa las llamas que se extienden, y cada Lugar que tenga horror obtiene: \"<b>Obligado</b> - Después de que entres en este Lugar o termines el turno en este Lugar: Realiza una prueba de [agility] (3). Si fracasas, recibe 1 punto de daño. Límite de una vez por ronda.\".\nDeja esta carta junto al mazo de Acto como recordatorio y haz avanzar el acto al acto 3a."
+  },
+  "03047b": {
+    "name": "El Extranjero",
+    "text": "<b>Objetivo</b> - Cuando El hombre de la máscara pálida fuese a ser descartado del juego, haz avanzar el acto.",
+    "backName": "El camino es mío",
+    "backText": "En lugar de descartar El hombre de la máscara pálida, muévelo al Vestíbulo.\nAñade 2 fichas [tablet] a la bolsa de caos.\nColoca 1 ficha de Horror en el Lugar desde el que se moviera El hombre de la máscara pálida. Hasta el final del escenario, el horror que haya en los Lugares representa el cieno que avanza, y cada Lugar que tenga horror obtiene: \"<b>Obligado</b> - Después de que abandones este Lugar: Realiza una prueba de [agility] (4). Si fracasas, recibe 1 punto de horror y 1 punto de daño.\".\nDeja esta carta junto al mazo de Acto como recordatorio y haz avanzar el acto al acto 3a."
+  },
+  "03047c": {
+    "name": "El Extranjero",
+    "text": "<b>Objetivo</b> - Cuando El hombre de la máscara pálida fuese a ser descartado del juego, haz avanzar el acto.",
+    "backName": "Las costas de Hali",
+    "backText": "En lugar de descartar El hombre de la máscara pálida, muévelo al Vestíbulo.\nAñade 2 fichas [elder_thing] a la bolsa de caos.\nColoca 1 ficha de Horror a cada Lugar [[Privado]]. Hasta el final del escenario, el horror que haya en los Lugares representa la inundación, y cada Lugar que tenga horror obtiene: \"<b>Obligado</b> - Cuando fueses a abandonar este Lugar: Realiza una prueba de [agility] (2). Si fracasas, recibe 1 punto de daño y cancela los efectos del movimiento. Límite de una vez por ronda.\".\nDeja esta carta junto al mazo de Acto como recordatorio y haz avanzar el acto al acto 3a."
+  },
+  "03048": {
+    "name": "Se cierra el telón",
+    "text": "Mientras El hombre de la máscara pálida no esté en juego, el Vestíbulo obtiene: \"[action]: <b>Desistir.</b>\".\n<b>Obligado</b> - Al final de la ronda: Coloca 1 ficha de Horror en cada Lugar que no tenga horror y que esté conectado a un Lugar que tenga horror.\n<b>Objetivo</b> - Si todos los investigadores no derrotados han desistido, haz avanzar el acto.",
+    "backName": "Huida del teatro",
+    "backText": "Los investigadores deben decidir (elige una opción):\n- ¡Debemos avisar a la policía de lo que está pasando! <b>(→R1)</b>\n- La policía no nos creerá. Tenemos que resolver este misterio por nuestra cuenta. <b>(→R2)</b>"
+  },
+  "03049": {
+    "name": "Teatro"
+  },
+  "03050": {
+    "name": "Vestíbulo",
+    "text": "<b>Obligado</b> - Cuando el Vestíbulo sea revelado: Pon en juego 2 de los Lugares Puerta del vestíbulo puestos aparte al azar.\n[action] [action]: Roba 3 cartas."
+  },
+  "03051": {
+    "name": "Palcos",
+    "text": "<b>Obligado</b> - Después de que realices una acción de movimiento durante la que te muevas de los Palcos al Teatro: Recibe 2 puntos de daño."
+  },
+  "03052": {
+    "name": "Bastidores",
+    "text": "<b>Obligado</b> - Cuando los Bastidores sean revelados: Pon en juego 2 de los Lugares Puerta de bastidores puestos aparte al azar.\nMientras estés en los Bastidores, cada Traición con la palabra clave Oculto que esté en tu mano cuenta como 3 cartas en lugar de 1 a efectos de contar tu tamaño de mano."
+  },
+  "03053": {
+    "name": "Cabina de luces",
+    "traits": "Privado.",
+    "text": "Mientras estés en la Cabina de luces, aumenta en 2 el coste de recursos de cada carta de tu mano.",
+    "backName": "Puerta del vestíbulo"
+  },
+  "03054": {
+    "name": "Taquilla",
+    "traits": "Privado.",
+    "text": "[action]: Obtén 5 recursos. Recuerda que \"has robado en la taquilla\". Límite de grupo de una vez por partida.",
+    "backName": "Puerta del vestíbulo"
+  },
+  "03055": {
+    "name": "Sala de descanso",
+    "traits": "Privado.",
+    "text": "[action] <b>Investigar.</b> Recibes +3 [intellect] para esta investigación. Después de que termine esta prueba de habilidad, descarta todas las cartas de tu mano.",
+    "backName": "Puerta del vestíbulo"
+  },
+  "03056": {
+    "name": "Camerino",
+    "traits": "Privado.",
+    "text": "[action] [action] [action]: Cúrate 3 puntos de horror.",
+    "backName": "Puerta de bastidores"
+  },
+  "03057": {
+    "name": "Sala de ensayo",
+    "traits": "Privado.",
+    "text": "<b>Obligado</b> - Después de que tengas éxito por 2 o más al investigar la Sala de ensayo: Recibe 1 punto de horror.",
+    "backName": "Puerta de bastidores"
+  },
+  "03058": {
+    "name": "Foso",
+    "traits": "Privado.",
+    "text": "<b>Obligado</b> - Después de que reveles el Foso: Busca en el mazo y en la pila de descartes de Encuentros 1 copia de Avalancha de ratas y ponla en juego enfrentada a ti, o bien 2 copias si hay 3 o 4 investigadores en la partida. Baraja mazo de Encuentros si buscas en él.",
+    "backName": "Puerta de bastidores"
+  },
+  "03060": {
+    "name": "Emisario real",
+    "subname": "Mensajero de Aldebarán",
+    "traits": "Monstruo. Élite.",
+    "text": "<b>Presa</b> - Menor [willpower].\nDescomunal. Cazador. Represalia.\n<b>Obligado</b> - Al final de la fase de Enemigos: Cada investigador que esté en el Lugar del Emisario real o en un Lugar conectado recibe 1 punto de horror."
+  },
+  "03084a": {
+    "name": "Susurros en tu cabeza",
+    "subname": "Desaliento",
+    "traits": "Terror.",
+    "text": "Peligro. Oculto.\n<b>Revelación</b> - Añade Susurros en tu cabeza (Desaliento) a tu mano en secreto.\nNo puedes asignar cartas de Habilidad a pruebas de habilidad.\n[action][action]: Descarta Susurros en tu cabeza (Desaliento) de tu mano."
+  },
+  "03084b": {
+    "name": "Susurros en tu cabeza",
+    "subname": "Temor",
+    "traits": "Terror.",
+    "text": "Peligro. Oculto.\n<b>Revelación</b> - Añade Susurros en tu cabeza (Temor) a tu mano en secreto.\nNo puedes moverte más de una vez por turno.\n[action][action]: Descarta Susurros en tu cabeza (Temor) de tu mano."
+  },
+  "03084c": {
+    "name": "Susurros en tu cabeza",
+    "subname": "Ansiedad",
+    "traits": "Terror.",
+    "text": "Peligro. Oculto.\n<b>Revelación</b> - Añade Susurros en tu cabeza (Ansiedad) a tu mano en secreto.\nNo puedes activar capacidades [free].\n[action][action]: Descarta Susurros en tu cabeza (Ansiedad) de tu mano."
+  },
+  "03084d": {
+    "name": "Susurros en tu cabeza",
+    "subname": "Duda",
+    "traits": "Terror.",
+    "text": "Peligro. Oculto.\n<b>Revelación</b> - Añade Susurros en tu cabeza (Duda) a tu mano en secreto.\nNo puedes jugar Eventos.\n[action][action]: Descarta Susurros en tu cabeza (Duda) de tu mano."
+  },
+  "03085": {
+    "name": "Descenso a la locura",
+    "traits": "Terror.",
+    "text": "Oleada.\n<b>Revelación</b> - Si tienes al menos 3 puntos de horror, pierde 1 acción."
+  },
+  "03090": {
+    "name": "Surgen estrellas negras",
+    "traits": "Augurio.",
+    "text": "<b>Revelación</b> - Realiza una prueba de [intellect] (4). Si fracasas, debes colocar 1 ficha de Perdición en el plan en curso o bien recibir 1 punto de horror por cada punto que te falte para tener éxito. Este efecto puede hacer avanzar el plan en curso."
+  },
+  "03091": {
+    "name": "Torres de Carcosa",
+    "traits": "Augurio.",
+    "text": "<b>Revelación</b> - Vincula esta carta a tu Lugar, y a continuación coloca 2 fichas de Perdición en ese Lugar.\nSi no hay perdición en el Lugar vinculado, descarta las Torres de Carcosa.\n[action]: <b>Investigar.</b> Si tienes éxito, en lugar de descubrir pistas aquí, retira 1 ficha de Perdición del Lugar vinculado."
+  },
+  "03092": {
+    "name": "Manipulados por su voluntad",
+    "traits": "Pacto.",
+    "text": "<b>Revelación</b> - Si no hay perdición en juego, Manipulados por su voluntad obtiene Oleada. Si no es así, realiza una prueba de [willpower] (X), donde X es la cantidad de perdición en juego. Si fracasas, descarta 2 cartas de tu mano al azar."
+  },
+  "03093": {
+    "name": "Poltergeist",
+    "traits": "Monstruo. Geist.",
+    "text": "No puede ser dañado excepto por cartas [[Hechizo]], [[Reliquia]], o Encuentro.\n[action] <b>Negociar.</b> Realiza una prueba de [intellect] (3) para intentar desterrar el geist. Si tienes éxito, inflígele 1 punto de daño."
+  },
+  "03094": {
+    "name": "Tormento del espíritu",
+    "traits": "Maldición. Geist.",
+    "text": "<b>Revelación</b> - Vincula esta carta a tu Lugar.\n<b>Obligado</b> - Después de que abandones el Lugar vinculado: Debes recibir 1 punto de horror o perder 1 acción.\n[action] Coloca 1 de tus pistas en el Lugar vinculado: Descarta el Tormento del espíritu."
+  },
+  "03098": {
+    "name": "Fanático",
+    "traits": "Humanoide. Sectario.",
+    "text": "<b>Aparición</b> - El Lugar revelado que tenga más pistas.\n<b>Obligado</b> - Después de que el Fanático entre en juego: Mueve 1 pista del Lugar del Fanático al Fanático.\n<b>Obligado</b> - Cuando derrotes al Fanático: Toma el control de todas sus pistas."
+  },
+  "03099": {
+    "name": "Agente del Rey",
+    "traits": "Humanoide. Sectario.",
+    "text": "<b>Presa</b> - Más pistas.\nCazador.\n<b>Obligado</b> - Después de que el Agente del Rey te ataque: Mueve 1 de tus pistas al Agente del Rey.\n<b>Obligado</b> - Cuando derrotes al Agente del Rey: Toma el control de todas sus pistas."
+  },
+  "03100": {
+    "name": "El edicto del Rey",
+    "traits": "Pacto.",
+    "text": "<b>Revelación</b> - Por cada Enemigo [[Sectario]] que haya en juego, mueve 1 pista del Lugar de ese Enemigo a ese Enemigo. Hasta el final de ronda, cada Enemigo [[Sectario]] que esté en juego recibe +1 a combate por cada pista y/o ficha de Perdición que tenga. Si no se movió ninguna pista por este efecto, El edicto del Rey obtiene Oleada."
+  }
+}

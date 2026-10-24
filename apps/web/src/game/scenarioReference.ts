@@ -7,6 +7,7 @@ const references: Record<string, { code: string; name: string }> = {
   'queen-of-ash': { code: '12168', name: 'Queen of Ash' },
   'the-midwinter-gala': { code: '71001', name: 'The Midwinter Gala' },
   'murder-at-the-excelsior-hotel': { code: '84001', name: 'Murder at the Excelsior Hotel' },
+  'curtain-call': { code: '03043', name: 'Curtain Call' },
 }
 
 export function scenarioReference(state: Pick<GameState, 'scenarioId' | 'difficulty'>) {

@@ -9,6 +9,7 @@
 import type {
   AbilityOption,
   Act,
+  Action,
   Agenda,
   Asset,
   CardCode,
@@ -95,6 +96,10 @@ export interface ScenarioBehavior {
   eventPlayed?: (state: GameState, investigator: InvestigatorId, code: CardCode) => Message[] | null
   /** Acciones de cada investigador en su turno (Declan Pearce: 1 menos). */
   actionsModifier?: (state: GameState, investigator: InvestigatorId) => number
+  /** Cambio del coste en recursos de las cartas de la mano del investigador (Cabina de luces). */
+  cardCostModifier?: (state: GameState, investigator: InvestigatorId, code: CardCode) => number
+  /** Cuántas cartas cuenta cada carta Oculta de su mano para el tamaño de mano (Bastidores). */
+  hiddenHandWeight?: (state: GameState, investigator: InvestigatorId) => number
   forced?: (state: GameState, trigger: Trigger) => Message[]
   /** Reacciones de las cartas del escenario (localizaciones, plan, acto) para los investigadores. */
   reactions?: (state: GameState, trigger: Trigger) => ReactionOption[]
@@ -147,6 +152,21 @@ export interface TreacheryBehavior {
   cannotDiscard?: boolean
   /** Unida a una localización: los investigadores no pueden salir de ella (Secret Door). */
   blocksLeaving?: boolean
+  /**
+   * En la zona de amenaza (o Oculta en la mano): lo que su investigador no puede hacer.
+   * Tipos de carta que no puede jugar o comprometer, habilidades [fast] y moverse
+   * más de una vez por turno (Whispers in Your Head, Dissonant Voices).
+   */
+  restricts?: {
+    play?: PlayerCardDef['type'][]
+    commit?: PlayerCardDef['type'][]
+    fastAbilities?: boolean
+    moveOncePerTurn?: boolean
+  }
+  /** Se descarta en cuanto deja de cumplirse (Spires of Carcosa: su Lugar sin perdición). */
+  persistsWhile?: (state: GameState, self: Treachery) => boolean
+  /** En la zona de amenaza: acciones adicionales que cuesta una acción básica (Frozen in Fear). */
+  actionCost?: (state: GameState, self: Treachery, action: Action) => number
   /** Vinculada a un enemigo: cambia sus valores y le quita palabras clave (Llevado a la locura). */
   attachedEnemy?: { fight?: number; evade?: number; health?: number; loses?: EnemyKeyword[] }
 }
@@ -169,6 +189,11 @@ export interface EnemyBehavior {
   patrol?: (state: GameState, self: Enemy) => LocationId[] | null
   /** Ahora no tiene Cazador aunque esté impreso (Seguridad del hotel con Clientes en juego). */
   losesHunter?: (state: GameState, self: Enemy) => boolean
+  /**
+   * Al ir a descartarse (también tras ser derrotado): si devuelve mensajes, se resuelven
+   * en su lugar y sigue en juego. La derrota cuenta igualmente (El Extranjero, acto 2).
+   */
+  insteadOfDiscard?: (state: GameState, self: Enemy) => Message[] | null
   /** Al ir a ser derrotado: si devuelve mensajes, se resuelven en su lugar (no se derrota). */
   wouldBeDefeated?: (state: GameState, self: Enemy) => Message[] | null
   /**
@@ -192,6 +217,8 @@ export interface LocationBehavior {
   /** Solo se ofrecen a investigadores en la localización (ya revelada). */
   abilities?: AbilitiesFn<Location>
   forced?: (state: GameState, trigger: Trigger, self: Location) => Message[]
+  /** Forzado al revelarse, ya revelada (Vestíbulo: pone en juego dos Puertas). */
+  onReveal?: (state: GameState, self: Location) => Message[]
 }
 
 export interface AgendaBehavior {
