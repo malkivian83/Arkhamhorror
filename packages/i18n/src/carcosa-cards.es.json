@@ -1114,5 +1114,165 @@
     "name": "El pozo abierto",
     "traits": "Riesgo.",
     "text": "<b>Revelación</b> - Vincula esta carta a tu Lugar si no hay ninguna copia de El pozo abierto vinculada a él: si la hay, en lugar de eso descarta El pozo abierto y éste obtiene Oleada\nEl Lugar vinculado recibe +1 a velo.\n<b>Obligado</b> - Al final de ronda: Cada investigador que esté en el Lugar vinculado recibe 3 puntos de Daño. Descarta El pozo abierto."
+  },
+  "03274": {
+    "name": "Surgen estrellas negras",
+    "text": "<b>Fácil/Normal</b>\n[skull]: -X. X es la cantidad más alta de fichas de Perdición que haya sobre un plan en juego.\n[cultist]: Revela otra ficha. Si la ficha original fue revelada durante un ataque o intento de evitar realizado contra un Enemigo que tenga fichas de Perdición, en lugar de revelar otra ficha esta prueba de habilidad fracasa automáticamente.\n[tablet]: Revela otra ficha. Si fracasas, coloca 1 ficha de Perdición sobre cada plan.\n[elder_thing]: -2. Si fracasas, busca en el mazo y la pila de descartes de Encuentros un Enemigo [[Byakhee]] y róbalo.",
+    "backText": "<b>Difícil/Experto</b>\n[skull]: -X. X es la cantidad total de fichas de Perdición que haya sobre los planes en juego.\n[cultist]: Revela otra ficha. Si hay un Enemigo con 1 o más fichas de Perdición en tu Lugar, en lugar de eso esta prueba de habilidad fracasa automáticamente.\n[tablet]: Revela otra ficha. Si no tienes éxito por al menos 1, coloca 1 ficha de Perdición sobre cada plan.\n[elder_thing]: -3. Si fracasas, busca en el mazo y la pila de descartes de Encuentros un Enemigo [[Byakhee]] y róbalo."
+  },
+  "03275": {
+    "name": "La marea sube",
+    "text": "[free] Los investigadores, como grupo, gastan 1 pista [per_investigator]: Coloca 1 ficha de Perdición sobre este plan (este efecto puede hacer avanzar el plan en curso). Cada investigador obtiene 2 recursos. Límite de grupo de una vez por ronda.",
+    "backName": "Que el amanecer rojo adivine",
+    "backText": "Añade la pila de descartes de Encuentros y las dos copias puestas aparte del Terror de la marea al mazo de Encuentros y barájalo.\nComprueba el plan \"c\" en curso.\n- Si el plan 1c tiene 2 o menos fichas de Perdición, marca 1 <b>Convicción</b> en el registro de campaña.\n- Si el plan 1c tiene 3 o más fichas de Perdición, marca 1 <b>Duda</b> en el registro de campaña.\n- Si el plan 1c no es el plan \"c\" en curso, no marques ninguna <b>Duda</b> o <b>Convicción</b>."
+  },
+  "03276a": {
+    "name": "Que ruja la tormenta",
+    "text": "Cada copia de Antiguos males obtiene Oleada.\n[free] Los investigadores, como grupo, gastan 1 pista[per_investigator]: Coloca 1 ficha de Perdición sobre este plan (este efecto puede hacer avanzar este plan). Cada investigador obtiene 2 recursos. Límite de grupo de una vez por ronda.",
+    "backName": "Los mundos se entrelazan",
+    "backText": "Haz aparecer el Enemigo Bestia de Aldebarán puesto aparte en la Torre de la abadía.\nComprueba el registro de campaña. Si Ashleigh Clarke no aparece en la sección \"VIP muertos\", busca en tu colección a Ashleigh Clarke [[(Los cantos deben morir inaudibles)]] y haz que aparezca en ls Porte de l'Avancée.\nRetira de la partida la carta del acto 3a puesta aparte. Haz avanzar el plan al plan 3a.\n[[Tu objetivo se encuentra en el otro mazo de Plan]]."
+  },
+  "03276b": {
+    "name": "Que ruja la tormenta",
+    "text": "Cada copia de Antiguos males obtiene Oleada.\n[free] Los investigadores, como grupo, gastan 1 pista[per_investigator]: Coloca 1 ficha de Perdición sobre este plan (este efecto puede hacer avanzar este plan). Cada investigador obtiene 2 recursos. Límite de grupo de una vez por ronda.",
+    "backName": "El camino a Carcosa",
+    "backText": "Retira de la partida el resto de este mazo de Plan y sustitúyelo por la carta del acto 3a puesta aparte. Avanza a ese acto."
+  },
+  "03277": {
+    "name": "La ciudad se inunda",
+    "text": "Cada copia de Antiguos males obtiene Oleada.",
+    "backName": "Morir inaudibles",
+    "backText": "<b>(→R3)</b>"
+  },
+  "03278": {
+    "name": "Comienza el ritual",
+    "text": "[free] Los investigadores, como grupo, gastan 1 pista [per_investigator]: Coloca 1 ficha de Perdición sobre este plan (este efecto puede hacer avanzar este plan). Cada investigador roba 1 carta. Límite de grupo de una vez por ronda.",
+    "backName": "Muerte de la estrella azul",
+    "backText": "Añade la pila de descartes de Encuentros y las dos copias puestas aparte del Buscador de la grieta al mazo de Encuentros y barájalo.\nComprueba el plan \"a\" en curso.\n- Si el plan 1a tiene 2 o menos fichas de Perdición, marca 1 <b>Convicción</b> en el registro de campaña.\n- Si el plan 1a tiene 3 o más fichas de Perdición, marca 1 <b>Duda</b> en el registro de campaña.\n- Si el plan 1a no es el plan \"a\" en curso, no marques ninguna <b>Duda</b> o <b>Convicción</b>."
+  },
+  "03279a": {
+    "name": "La entidad de arriba",
+    "text": "Cada Enemigo [[Monstruo]] recibe +1 a combate.\n[free] Los investigadores, como grupo, gastan 1 pista [per_investigator]: Coloca 1 ficha de Perdición sobre este plan (este efecto puede hacer avanzar este plan). Cada investigador roba 1 carta. Límite de grupo de una vez por ronda.",
+    "backName": "Los mundos se entrelazan",
+    "backText": "Haz aparecer el Enemigo Bestia de Aldebarán puesto aparte en la Capilla de san Auberto.\nComprueba el registro de campaña. Si Ashleigh Clarke no aparece en la sección \"VIP muertos\", busca en tu colección a Ashleigh Clarke [[(Los cantos deben morir inaudibles)]] y haz que aparezca en la Porte de l'Avancée.\nRetira de la partida la carta del acto 3c puesta aparte. Haz avanzar el plan al plan 3c.\n[[Tu objetivo se encuentra en el otro mazo de Plan]]."
+  },
+  "03279b": {
+    "name": "La entidad de arriba",
+    "text": "Cada Enemigo [[Monstruo]] recibe +1 a combate.\n[free] Los investigadores, como grupo, gastan 1 pista [per_investigator]: Coloca 1 ficha de Perdición sobre este plan (este efecto puede hacer avanzar este plan). Cada investigador roba 1 carta. Límite de grupo de una vez por ronda.",
+    "backName": "El camino a Carcosa",
+    "backText": "Retira de la partida el resto de este mazo de Plan y sustitúyelo por la carta del acto 3c puesta aparte. Avanza a ese acto."
+  },
+  "03280": {
+    "name": "Cielo engullido",
+    "text": "Cada Enemigo [[Monstruo]] recibe +1 a combate.",
+    "backName": "Morir inaudibles",
+    "backText": "<b>(→R3)</b>"
+  },
+  "03281": {
+    "name": "Abrir el camino de abajo",
+    "text": "<b>Objetivo</b> - Si todos los investigadores no derrotados están en la Capilla de san Auberto y no hay pistas en ese Lugar, haz avanzar el acto.",
+    "backName": "A Carcosa",
+    "backText": "<b>(→R1)</b>"
+  },
+  "03282": {
+    "name": "Abrir el camino de arriba",
+    "text": "<b>Objetivo</b> - Si todos los investigadores no derrotados están en la Torre de la abadía y no hay pistas en ese Lugar, haz avanzar el acto.",
+    "backName": "A Carcosa",
+    "backText": "<b>(→R2)</b>"
+  },
+  "03283": {
+    "name": "Porte de l'Avancée",
+    "text": "[action] [action]: Mueve 1 ficha de Perdición de un mazo de Plan a otro. A continuación, coloca 2 pistas sobre la Porte de l'Avancée [[(de la reserva de fichas)]]."
+  },
+  "03284": {
+    "name": "Grand Rue",
+    "text": "<b>Obligado</b> - Después de que tengas éxito por 1 o menos en una prueba de habilidad al investigar la Grand Rue: Coloca 1 ficha de Perdición en el plan que tenga más perdición [[(si hay empate en cuanto a la cantidad de perdición, elige un plan para colocar 1 ficha de Perdición en él)]]."
+  },
+  "03285": {
+    "name": "Muro exterior",
+    "text": "<b>Obligado</b> - Después de que se coloquen 1 o más fichas de Perdición sobre el mazo de Plan \"a\": Cada investigador que esté en el Muro exterior recibe 1 punto de daño."
+  },
+  "03286": {
+    "name": "Muro exterior",
+    "text": "Mientras el plan \"c\" en curso tenga más perdición que el plan \"a\", dobla la cantidad de iconos de habilidad de las cartas asignadas a pruebas de habilidad en el Muro exterior."
+  },
+  "03287": {
+    "name": "Torre norte",
+    "text": "<b>Obligado</b> - Después de que se coloquen 1 o más fichas de Perdición sobre el mazo de Plan \"c\": Cada investigador que esté en la Torre norte recibe 1 punto de horror."
+  },
+  "03288": {
+    "name": "Torre norte",
+    "text": "Mientras el plan \"a\" en curso tenga más perdición que el plan \"c\", reduce en 1 la dificultad de todas las pruebas de habilidad en la torre Norte."
+  },
+  "03289": {
+    "name": "Escalones rotos",
+    "text": "<b>Obligado</b> - Después de que entres en los Escalones rotos: Debes perder 1 acción o bien robar la primera Traición [[Augurio]] de la pila de descartes de Encuentros."
+  },
+  "03290": {
+    "name": "Escalones rotos",
+    "text": "<b>Obligado</b> - Después de que entres en los Escalones rotos: Debes descartar un Apoyo que controles o bien robar el primer Enemigo [[Sectario]] de la pila de descartes de Encuentros."
+  },
+  "03291": {
+    "name": "Iglesia de la abadía",
+    "text": "Si hay 2 planes en juego que tengan números de plan distintos, la Iglesia de la abadía recibe +2 al velo.\n<b>Obligado</b> - Cuando la iglesia de la abadía sea revelada: Pon en juego los Lugares puestos aparte Coro gótico, Sala del caballero, Claustro, Capilla de san Auberto y Torre de la abadía.",
+    "backText": "El camino que lleva a la Iglesia de la abadía está bloqueado. Como coste adicional para que entres en la Iglesia de la abadía, los investigadores que estén en los Escalones rotos deben gastar, como grupo, 3 pistas [per_investigator] ."
+  },
+  "03292": {
+    "name": "Coro gótico",
+    "text": "[action] Coloca 1 ficha de Perdición sobre el plan \"v\" en curso: Cúrtate 2 puntos de horror. Límite de grupo de una vez por partida."
+  },
+  "03293": {
+    "name": "Coro gótico",
+    "text": "[action] Coloca 1 ficha de Perdición sobre el plan \"a\" en curso: Cúrtate 2 puntos de daño. Límite de grupo de una vez por partida."
+  },
+  "03294": {
+    "name": "Claustro",
+    "text": "[action] Si no hay pistas en el Claustro: <b>Negociar.</b> Realiza una prueba de [willpower] (3). Si tienes éxito, recuerda que \"los investigadores han encontrado un guía\"."
+  },
+  "03295": {
+    "name": "Sala del caballero",
+    "text": "[action] Si no hay pistas en la Sala del caballero: <b>Investigar.</b> Investiga usando [agility] en lugar de [intellect]. Si tienes éxito, en lugar de descubrir pistas, recuerda que \"los investigadores han encontrado la llave de la torre\"."
+  },
+  "03296": {
+    "name": "Capilla de san Auberto",
+    "subname": "El camino está abierto",
+    "text": "Sólo puedes descubrir pistas en la Capilla de san Auberto si tienes 3 o menos puntos de cordura restantes.\n[action]: Recibe hasta 3 puntos de horror.",
+    "backText": "El acceso a la Capilla de san Auberto está oculto. Solo puedes entrar en la Capilla de san Auberto si \"los investigadores han encontrado un guía\"."
+  },
+  "03297": {
+    "name": "Capilla de san Auberto",
+    "subname": "Aguas prohibidas",
+    "backText": "El acceso a la Capilla de san Auberto está oculto. Solo puedes entrar en la Capilla de san Auberto si \"los investigadores han encontrado un guía\"."
+  },
+  "03298": {
+    "name": "Torre de la abadía",
+    "subname": "El camino está abierto",
+    "text": "Sólo puedes descubrir pistas en la Torre de la abadía si no tienes cartas en la mano.\n[action]: Descasta hasta 3 cartas de tu mano.",
+    "backText": "La puerta que da a la Torre de la abadía está cerrada. Solo puedes entrar en la Torre de la abadía si \"los investigadores han encontrado la llave de la torre\"."
+  },
+  "03299": {
+    "name": "Torre de la abadía",
+    "subname": "Torres prohibidas",
+    "backText": "La puerta que da a la Torre de la abadía está cerrada. Solo puedes entrar en la Torre de la abadía si \"los investigadores han encontrado la llave de la torre\"."
+  },
+  "03300": {
+    "name": "Terror de la marea",
+    "traits": "Monstruo.",
+    "text": "<b>Aparición</b> - Porte de l'Avancée o Capilla de san Auberto.\nCazador."
+  },
+  "03301": {
+    "name": "Buscador de la grieta",
+    "traits": "Monstruo. Byakhee. Sectario.",
+    "text": "<b>Obligado</b> - Después de que el Buscador de la grieta te ataque: Debes recibir 1 punto de daño adicional y 1 punto de horror adicional o bien colocar 1 ficha de Perdición sobre cada plan que haya en juego.\n[action] Coloca 1 ficha de perdición sobre cada plan que haya en juego y recibe 2 puntos de horror: <b>Negociar.</b> Descarta el Buscador de la grieta."
+  },
+  "03302": {
+    "name": "Inundación rompiente",
+    "traits": "Augurio.",
+    "text": "<b>Revelación</b> - Realiza una prueba de [agility] (3). Si fracasas:\n- Si está en juego el plan 1a, recibe 1 punto de daño y pierde 1 acción.\n- Si está en juego el plan 2a, recibe 2 puntos de daño y pierde 2 acciones.\n- Si está en juego el acto 3a o el plan 3a, recibe 3 puntos de daño y pierde 3 acciones."
+  },
+  "03303": {
+    "name": "Los mundos se fusionan",
+    "traits": "Augurio.",
+    "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (3). Si fracasas:\n- Si está en juego el plan 1c, recibe 1 punto de horror y descarta 1 carta de tu mano.\n- Si está en juego el plan 2c, recibe 2 puntos de horror y descarta 2 cartas de tu mano.\n- Si está en juego el acto 3c o el plan 3c, recibe 3 puntos de horror y descarta 3 cartas de tu mano."
   }
 }

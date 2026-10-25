@@ -259,6 +259,14 @@
       "placeWhere": "Where is the next Catacombs location placed?",
       "readActII": "Who reads the second act of The King in Yellow? (at least 1)",
       "secretPassage": "Haruko’s Information: choose the adjacent Catacombs location to reveal"
+    },
+    "doomOnAgenda": "Which agenda does the doom go on?",
+    "agendaToAdvance": "Both agendas reached their doom threshold: which advances first?",
+    "bsr": {
+      "removeDoom": "Ashleigh's Information: remove 1 doom from which agenda?",
+      "moveDoomFrom": "Move 1 doom from which agenda (to the other)?",
+      "howMuchHorror": "How much horror do you take?",
+      "howManyCards": "How many cards do you discard?"
     }
   },
   "action": {
@@ -493,6 +501,18 @@
         "left": "Place it to the left",
         "right": "Place it to the right"
       }
+    },
+    "doomOnAgenda": "{amount} doom on {name}",
+    "advanceAgenda": "Advance {name}",
+    "bsr": {
+      "agenda": "{name}",
+      "loseAction": "Lose 1 action",
+      "drawOmen": "Draw the topmost Omen treachery in the encounter discard pile",
+      "discardAsset": "Discard an asset you control",
+      "drawCultist": "Draw the topmost Cultist enemy in the encounter discard pile",
+      "amount": "{amount}",
+      "extraHarm": "Take 1 additional damage and 1 additional horror",
+      "doomOnEach": "Place 1 doom on each agenda in play"
     }
   },
   "phase": {
@@ -769,6 +789,19 @@
       "docent": "Parley: test [intellect] (4) to look at the revealed side of a Catacombs location",
       "lookBehind": "You look behind you",
       "readSign": "Test [intellect] (3): look at the revealed side of a Catacombs location"
+    },
+    "bsr": {
+      "ashleigh": "Ashleigh's Information: remove 1 doom from an agenda in play",
+      "agendaResources": "Spend 1 clue per investigator: 1 doom on this agenda; each investigator gains 2 resources",
+      "agendaCards": "Spend 1 clue per investigator: 1 doom on this agenda; each investigator draws 1 card",
+      "moveDoom": "Move 1 doom from one agenda deck to the other; place 2 clues here",
+      "healDamage": "Place 1 doom on agenda \"a\": heal 2 damage",
+      "healHorror": "Place 1 doom on agenda \"c\": heal 2 horror",
+      "findGuide": "Parley: test [willpower] (3) to find a guide",
+      "findKey": "Investigate using [agility]: find the tower key instead of discovering clues",
+      "takeHorror": "Take up to 3 horror",
+      "discardCards": "Discard up to 3 cards from your hand",
+      "riftSeeker": "Parley: place 1 doom on each agenda and take 2 horror to discard Rift Seeker"
     }
   },
   "log": {
@@ -1083,7 +1116,8 @@
     "cluesOnAct": "Clues on the act",
     "placedAt": "Placed at {location}",
     "spawnedAt": "Spawns at {location}",
-    "targetHint": "Choose one of the highlighted items on the table."
+    "targetHint": "Choose one of the highlighted items on the table.",
+    "secondAgenda": "Second agenda"
   },
   "difficulty": {
     "easy": "Easy",
@@ -1312,7 +1346,10 @@
       "carcosaAwokeInTheCatacombs": "the investigators awoke inside the catacombs",
       "carcosaEnteredTheCatacombs": "the investigators entered the catacombs on their own",
       "carcosaKnowTheSiteOfTheGate": "the investigators know the site of the gate",
-      "carcosaReadActII": "Read Act II of The King in Yellow"
+      "carcosaReadActII": "Read Act II of The King in Yellow",
+      "carcosaOpenedThePathBelow": "the investigators opened the path below",
+      "carcosaOpenedThePathAbove": "the investigators opened the path above",
+      "carcosaRealmsMerged": "the realm of Carcosa merged with our own, and Hastur rules over them both"
     },
     "scenario": {
       "smokeAndMirrors": "Scenario II: Smoke and Mirrors",
@@ -1582,7 +1619,8 @@
       "theUnspeakableOath": "Scenario IV: The Unspeakable Oath",
       "aPhantomOfTruth": "Scenario V: A Phantom of Truth",
       "thePallidMask": "Scenario VI: The Pallid Mask",
-      "blackStarsRise": "Scenario VII: Black Stars Rise"
+      "blackStarsRise": "Scenario VII: Black Stars Rise",
+      "dimCarcosa": "Scenario VIII: Dim Carcosa"
     },
     "curtainCall": {
       "introTitle": "Scenario I: Curtain Call",
@@ -1799,6 +1837,24 @@
         "tablet": "Remove all cultist, tablet and elder thing tokens from the chaos bag and add 2 tablet tokens.",
         "elderThing": "Remove all cultist, tablet and elder thing tokens from the chaos bag and add 2 elder thing tokens."
       }
+    },
+    "bsr": {
+      "introTitle": "Scenario VII: Black Stars Rise",
+      "intro": "Mont Saint-Michel rises off the north-west coast of France. The tide is higher than expected and a storm is gathering; a captain agrees to take you to the island for the ritual that is about to begin.",
+      "ashleighTitle": "Ashleigh's Information",
+      "ashleigh": "You remember the haunting song Ashleigh performed the night it all began: \"Above the city, clouds thunder and waves crash against the gilded cage… Below the earth, salt water seeps, shadows fall where the red sun sleeps.\"",
+      "ashleighEffect": "Once per game, as a [fast] ability, an investigator may remove 1 doom from an agenda in play.",
+      "setupTitle": "Setup",
+      "setup": "Gather Black Stars Rise, Evil Portents, Byakhee, Inhabitants of Carcosa, The Stranger, Dark Cult and Ancient Evils. One of the two piles (The Flood Below or The Vortex Above) is chosen at random: agendas 2a and 2c, the Chapel of St. Aubert and the Abbey Tower.\n\nThere is no act deck: there are two agenda decks (1a–3a and 1c–3c). Doom on \"the current agenda\" goes on the agenda you choose; doom on other cards counts for both thresholds.\n\nA random North Tower, Outer Wall and Broken Steps are put into play with the Porte de l’Avancée, the Grand Rue and the Abbey Church; the rest of the abbey is set aside. Everyone starts at the Porte de l’Avancée and adds a random basic Madness, Pact, Cultist or Detective weakness to their deck. A chaos token is added for the rest of the campaign (−3/−5/−6/−7).",
+      "resolution1Title": "Resolution 1",
+      "resolution1": "You swim through the icy water toward the towers in the depths and break through a surface that ripples like a reflection.",
+      "resolution2Title": "Resolution 2",
+      "resolution2": "You fly toward the towers in the sky; the city of Carcosa looms ahead — and a force seizes you and pulls you down.",
+      "resolution3Title": "Resolution 3",
+      "resolution3": "You wake in the Chœur Gothique. Outside, two suns shine over the Lake of Hali, black stars fill the sky and the towers of Carcosa rise beyond the shattered moon.",
+      "allInsane": "Every investigator goes insane. The investigators lose the campaign.",
+      "tokens1": "Remove all cultist, tablet and elder thing tokens from the chaos bag, then add 2 cultist and 2 tablet tokens.",
+      "tokens2": "Remove all cultist, tablet and elder thing tokens from the chaos bag, then add 2 cultist and 2 elder thing tokens."
     }
   },
   "playmat": {

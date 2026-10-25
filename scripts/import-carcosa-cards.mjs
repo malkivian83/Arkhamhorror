@@ -80,6 +80,13 @@ const CODES = new Set([
   ...range(1160, 1162),
   '01167',
   '01168',
+  // Surgen estrellas negras: dos versiones de los planes 2a y 2c (La inundación de abajo y
+  // El vórtice de arriba).
+  ...range(3274, 3303).filter((code) => code !== '03276' && code !== '03279'),
+  '03276a',
+  '03276b',
+  '03279a',
+  '03279b',
 ])
 /** Códigos de la fuente que el proyecto usa con otra letra de cara. */
 const RENAMED = { '03221': '03221a' }
@@ -95,6 +102,8 @@ const ERRATA = [
   // Museo histórico (03130, 03132): la carta impresa dice "modificado".
   ['no puede ser aumentado', 'no puede ser modificado'],
   ['cannot be increased', 'cannot be modified'],
+  // Terror de la marea (03300): palabra clave sin traducir en la fuente.
+  ['Capilla de san Auberto.\nHunter.', 'Capilla de san Auberto.\nCazador.'],
 ]
 const fix = (text) =>
   typeof text === 'string'

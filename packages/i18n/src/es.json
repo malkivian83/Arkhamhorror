@@ -259,6 +259,14 @@
       "placeWhere": "¿Dónde se colocan las siguientes Catacumbas?",
       "readActII": "¿Quién lee el segundo acto de El Rey de Amarillo? (al menos 1)",
       "secretPassage": "Información de Haruko: elige las Catacumbas adyacentes que se revelan"
+    },
+    "doomOnAgenda": "¿En qué plan se coloca la perdición?",
+    "agendaToAdvance": "Los dos planes han llegado a su umbral: ¿cuál avanza primero?",
+    "bsr": {
+      "removeDoom": "Información de Ashleigh: ¿de qué plan se retira 1 perdición?",
+      "moveDoomFrom": "¿De qué plan se mueve 1 perdición (al otro)?",
+      "howMuchHorror": "¿Cuánto horror recibes?",
+      "howManyCards": "¿Cuántas cartas descartas?"
     }
   },
   "action": {
@@ -493,6 +501,18 @@
         "left": "Colocarlas a la izquierda",
         "right": "Colocarlas a la derecha"
       }
+    },
+    "doomOnAgenda": "{amount} de perdición en {name}",
+    "advanceAgenda": "Avanzar {name}",
+    "bsr": {
+      "agenda": "{name}",
+      "loseAction": "Perder 1 acción",
+      "drawOmen": "Robar la traición Presagio superior de la pila de descartes de Encuentros",
+      "discardAsset": "Descartar un Apoyo que controles",
+      "drawCultist": "Robar el Enemigo Sectario superior de la pila de descartes de Encuentros",
+      "amount": "{amount}",
+      "extraHarm": "Recibir 1 daño y 1 horror adicionales",
+      "doomOnEach": "Colocar 1 perdición en cada plan en juego"
     }
   },
   "phase": {
@@ -769,6 +789,19 @@
       "docent": "Negociar: prueba [intellect] (4) para mirar el lado revelado de unas Catacumbas",
       "lookBehind": "Miras detrás de ti",
       "readSign": "Prueba [intellect] (3): mirar el lado revelado de unas Catacumbas"
+    },
+    "bsr": {
+      "ashleigh": "Información de Ashleigh: retira 1 perdición de un plan en juego",
+      "agendaResources": "Gastad 1 pista por investigador: 1 perdición en este plan; cada investigador obtiene 2 recursos",
+      "agendaCards": "Gastad 1 pista por investigador: 1 perdición en este plan; cada investigador roba 1 carta",
+      "moveDoom": "Mueve 1 perdición de un mazo de Plan al otro; coloca 2 pistas aquí",
+      "healDamage": "Coloca 1 perdición en el plan «a»: cura 2 daño",
+      "healHorror": "Coloca 1 perdición en el plan «c»: cura 2 horror",
+      "findGuide": "Negociar: prueba de [willpower] (3) para encontrar un guía",
+      "findKey": "Investigar con [agility]: encontrar la llave de la torre en vez de descubrir pistas",
+      "takeHorror": "Recibe hasta 3 horror",
+      "discardCards": "Descarta hasta 3 cartas de tu mano",
+      "riftSeeker": "Negociar: 1 perdición en cada plan y 2 horror para descartar al Buscador de la grieta"
     }
   },
   "log": {
@@ -1083,7 +1116,8 @@
     "cluesOnAct": "Pistas sobre el acto",
     "placedAt": "Se pone en {location}",
     "spawnedAt": "Aparece en {location}",
-    "targetHint": "Elige uno de los elementos resaltados en la mesa."
+    "targetHint": "Elige uno de los elementos resaltados en la mesa.",
+    "secondAgenda": "Segundo plan"
   },
   "difficulty": {
     "easy": "Fácil",
@@ -1312,7 +1346,10 @@
       "carcosaAwokeInTheCatacombs": "los investigadores despertaron en las catacumbas",
       "carcosaEnteredTheCatacombs": "los investigadores entraron en las catacumbas por su cuenta",
       "carcosaKnowTheSiteOfTheGate": "los investigadores conocen la ubicación del portal",
-      "carcosaReadActII": "Leyeron el segundo acto de El Rey de Amarillo"
+      "carcosaReadActII": "Leyeron el segundo acto de El Rey de Amarillo",
+      "carcosaOpenedThePathBelow": "los investigadores abrieron el camino de abajo",
+      "carcosaOpenedThePathAbove": "los investigadores abrieron el camino de arriba",
+      "carcosaRealmsMerged": "el reino de Carcosa se fusionó con el nuestro, y Hastur gobierna en ambos"
     },
     "scenario": {
       "smokeAndMirrors": "el Escenario II: Smoke and Mirrors",
@@ -1582,7 +1619,8 @@
       "theUnspeakableOath": "Escenario IV: El juramento inconfesable",
       "aPhantomOfTruth": "Escenario V: El Fantasma de la Verdad",
       "thePallidMask": "Escenario VI: La máscara pálida",
-      "blackStarsRise": "Escenario VII: Surgen estrellas negras"
+      "blackStarsRise": "Escenario VII: Surgen estrellas negras",
+      "dimCarcosa": "Escenario VIII: Penumbrosa Carcosa"
     },
     "curtainCall": {
       "introTitle": "Escenario I: Se cierra el telón",
@@ -1799,6 +1837,24 @@
         "tablet": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de tablilla.",
         "elderThing": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de primigenio."
       }
+    },
+    "bsr": {
+      "introTitle": "Escenario VII: Surgen estrellas negras",
+      "intro": "Mont Saint-Michel se alza en la costa noroeste de Francia. La marea está más alta de lo esperado y se avecina una tormenta; un capitán acepta llevarte a la isla para el ritual que va a producirse.",
+      "ashleighTitle": "Información de Ashleigh",
+      "ashleigh": "Recuerdas la canción que interpretó Ashleigh la noche en que comenzó todo: «Arriba, sobre la ciudad, las nubes truenan y las olas chocan contra la jaula dorada… Abajo, en la tierra, el agua salada se filtra, las sombras caen donde el sol rojo dormita».",
+      "ashleighEffect": "Una vez por partida, como capacidad [fast], un investigador puede retirar 1 perdición de un plan en juego.",
+      "setupTitle": "Preparación",
+      "setup": "Se reúnen Surgen estrellas negras, Portentos malignos, Byakhee, Habitantes de Carcosa, El Extranjero, Secta oscura y Antiguos males. Se elige al azar uno de los dos montones (La inundación de abajo o El vórtice de arriba): planes 2a y 2c, Capilla de san Auberto y Torre de la abadía.\n\nNo hay mazo de Acto: hay dos mazos de Plan (1a–3a y 1c–3c). La perdición en «el plan en curso» va al plan que se elija; la de otras cartas cuenta para ambos umbrales.\n\nSe ponen en juego una Torre norte, un Muro exterior y unos Escalones rotos al azar, con la Porte de l’Avancée, la Grand Rue y la Iglesia de la abadía; el resto de la abadía queda aparte. Todos empiezan en la Porte de l’Avancée y añaden a su mazo una Debilidad básica aleatoria Locura, Pacto, Sectario o Detective. Se añade una ficha de Caos para el resto de la campaña (−3/−5/−6/−7).",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "Buceas por el agua helada hacia las torres de las profundidades y atraviesas una superficie que ondula como un reflejo.",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "Vuelas hacia las torres del cielo; la ciudad de Carcosa se alza ante ti… y una fuerza hace presa de tu cuerpo y tira de ti.",
+      "resolution3Title": "Resolución 3",
+      "resolution3": "Despiertas en el Coro gótico. Fuera, dos soles brillan sobre el Lago de Hali, estrellas negras pueblan el cielo y las torres de Carcosa se alzan tras la luna destrozada.",
+      "allInsane": "Todos los investigadores se vuelven locos. Los investigadores pierden la campaña.",
+      "tokens1": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de sectario y 2 de tablilla.",
+      "tokens2": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de sectario y 2 de primigenio."
     }
   },
   "playmat": {
