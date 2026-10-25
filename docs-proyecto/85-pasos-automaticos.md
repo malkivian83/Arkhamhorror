@@ -25,6 +25,10 @@ cada paso del reglamento, su motivo y los cambios que ha producido.
 - El modal descubre los pasos de uno en uno (**Siguiente paso**) o todos a la
   vez (**Ver todos los pasos**) y termina con la decisión que detiene la
   secuencia. Espera a que se acepte la revisión de avance de acto o plan.
+- Se puede desactivar con **Desactivar este visor** en el propio modal o con el
+  interruptor **Pasos automáticos** (Activado/Desactivado) del menú ☰ de la partida.
+  La preferencia se guarda en el navegador (`lcg:autoSteps`) y está activada por
+  defecto; desactivado, el juego resuelve los mismos pasos sin abrir el modal.
 - Solo partidas locales; no se guarda: al recargar no se repite. En línea
   todavía no se muestra porque el servidor no envía los pasos.
 

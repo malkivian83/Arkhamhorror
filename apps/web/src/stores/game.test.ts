@@ -4,6 +4,7 @@ import { isPermanent } from '@lcg/engine'
 import { throughSetup } from '@lcg/engine/testing'
 import { createPinia, setActivePinia } from 'pinia'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { showAutoSteps } from '../game/autoStepsPreference'
 import { session, SESSION_KEY } from '../game/session'
 import { markOf } from '../game/undo'
 import { useDecksStore } from './decks'
@@ -95,5 +96,21 @@ describe('pasos automáticos en la mesa', () => {
     expect(accountStorage.getItem(SESSION_KEY)).not.toContain('autoSteps')
     game.acceptAutoSteps()
     expect(game.autoSteps).toBeNull()
+  })
+  it('con el visor desactivado no se abre el resumen de pasos automáticos', () => {
+    const game = useGameStore()
+    const state = throughSetup(
+      startScenario(newCampaign('the-midwinter-gala', ['joe'], 'standard'), 13),
+    )
+    const history = { base: state, inputs: [], marks: [markOf(state)] }
+    expect(game.importSession(JSON.stringify(session(state, history, null)))).toBe(true)
+    showAutoSteps.value = false
+    try {
+      game.answerLabel('action.endTurn')
+      expect(game.error).toBeNull()
+      expect(game.autoSteps).toBeNull()
+    } finally {
+      showAutoSteps.value = true
+    }
   })
 })

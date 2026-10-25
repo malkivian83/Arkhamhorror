@@ -1035,7 +1035,10 @@
         "drawAndGainResource": "Cada investigador roba 1 carta y gana 1 recurso.",
         "checkHandSize": "Quien tenga más de 8 cartas en la mano debe descartar hasta quedarse con 8.",
         "upkeepEnds": "Termina la fase de mantenimiento y, con ella, la ronda."
-      }
+      },
+      "disable": "Desactivar este visor",
+      "on": "Activado",
+      "off": "Desactivado"
     },
     "assetUpgrades": "Mejoras de {card}",
     "exhaustedUpgrades": "{count} agotadas",

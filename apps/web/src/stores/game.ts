@@ -35,6 +35,7 @@ import { useDecksStore } from './decks'
 import { choiceTarget } from '../game/choiceTarget'
 import { createAdvanceReview, resumedAdvanceReview, type AdvanceFrame } from '../game/advanceReview'
 import { createAutoSteps, type AutoStepsReview } from '../game/autoSteps'
+import { showAutoSteps } from '../game/autoStepsPreference'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
@@ -251,7 +252,8 @@ export const useGameStore = defineStore('game', () => {
         next,
         h && { base: h.base, inputs: [...h.inputs, input], marks: [...h.marks, markOf(next)] },
         review.finish(next),
-        steps.finish(next),
+        // Con el visor desactivado no se abre el resumen de pasos automáticos.
+        showAutoSteps.value ? steps.finish(next) : null,
       )
       error.value = null
     } catch (e) {

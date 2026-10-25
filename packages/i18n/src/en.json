@@ -1035,7 +1035,10 @@
         "drawAndGainResource": "Each investigator draws 1 card and gains 1 resource.",
         "checkHandSize": "Anyone with more than 8 cards in hand must discard down to 8.",
         "upkeepEnds": "The upkeep phase ends, and with it the round."
-      }
+      },
+      "disable": "Turn off this viewer",
+      "on": "On",
+      "off": "Off"
     },
     "assetUpgrades": "Upgrades on {card}",
     "exhaustedUpgrades": "{count} exhausted",

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { showAutoSteps } from '../game/autoStepsPreference'
 import { useTableGame } from '../game/tableController'
 import { useLabels } from '../game/labels'
 import { zoomed } from '../game/zoom'
@@ -39,6 +40,13 @@ function next() {
 function showAll() {
   revealed.value = steps.value.length
 }
+/** Desactiva el visor (se vuelve a activar desde el menú de la partida). */
+function disable() {
+  showAutoSteps.value = false
+}
+watch(showAutoSteps, (on) => {
+  if (!on && game.autoSteps) game.acceptAutoSteps()
+})
 
 let previousFocus: HTMLElement | null = null
 function syncDialog() {
@@ -104,6 +112,9 @@ onBeforeUnmount(() => dialog.value?.close())
           <p>{{ t('game.waitingFor', { name: review.next.name }) }}</p>
         </section>
         <footer>
+          <button type="button" class="table-action disable" @click="disable">
+            {{ t('table.autoSteps.disable') }}
+          </button>
           <button v-if="!done" type="button" class="table-action" @click="showAll">
             {{ t('table.autoSteps.showAll') }}
           </button>
@@ -213,6 +224,12 @@ footer {
   gap: 10px;
   padding: 12px;
   background: var(--bg);
+}
+footer .disable {
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--accent);
+  box-shadow: none;
 }
 footer button {
   min-height: 48px;
