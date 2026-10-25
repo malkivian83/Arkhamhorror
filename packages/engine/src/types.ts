@@ -157,6 +157,7 @@ export type Prey =
   | { type: 'mostHorror' }
   | { type: 'mostRemainingSanity' }
   | { type: 'lowestRemainingSanity' }
+  | { type: 'lowestRemainingHealth' }
 
 export interface EnemyCard {
   /** Entra en juego con esta perdición (Zealot). */
@@ -897,6 +898,8 @@ export type Message =
   | { type: 'ForceSkillTestSuccess' }
   /** La prueba en curso fracasa automáticamente (El juramento inconfesable, [elder_thing]). */
   | { type: 'ForceSkillTestFailure' }
+  /** El ataque en curso inflige `amount` daño más (o menos), o ninguno con `none`. */
+  | { type: 'AdjustAttackDamage'; amount?: number; none?: boolean }
   /** Cancela los efectos y los iconos de las cartas de habilidad comprometidas. */
   | { type: 'CancelCommittedSkills' }
   /** El enemigo no ataca en la fase de enemigos de esta ronda. */

@@ -956,7 +956,11 @@ export function handle(state: GameState, message: Message): GameState {
             type: 'BeginSkillTest',
             basicAction: true,
             investigator: id,
-            skill: 'intellect',
+            skill:
+              scenarioBehavior(state.scenarioId)?.investigateSkill?.(
+                state,
+                investigator.location,
+              ) ?? 'intellect',
             difficulty: shroudOf(state, investigator.location),
             kind: { type: 'investigate', location: investigator.location },
           })
@@ -3476,6 +3480,15 @@ export function handle(state: GameState, message: Message): GameState {
       return state.skillTest
         ? { ...state, skillTest: { ...state.skillTest, forcedSuccess: true } }
         : state
+
+    case 'AdjustAttackDamage': {
+      const test = state.skillTest
+      if (!test || test.kind.type !== 'fight') return state
+      const kind = message.none
+        ? { ...test.kind, noDamage: true }
+        : { ...test.kind, extraDamage: (test.kind.extraDamage ?? 0) + (message.amount ?? 0) }
+      return { ...state, skillTest: { ...test, kind } }
+    }
 
     case 'CancelCommittedSkills':
       return state.skillTest

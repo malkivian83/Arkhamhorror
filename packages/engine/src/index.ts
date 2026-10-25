@@ -13,6 +13,7 @@ export {
   agendaBehavior,
   enemyBehavior,
   locationBehavior,
+  printedCode,
   scenarioBehavior,
   treacheryBehavior,
   registerAgenda,

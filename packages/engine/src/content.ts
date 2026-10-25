@@ -32,6 +32,7 @@ import type {
   ReactionOption,
   ScenarioOutcome,
   SkillTest,
+  SkillType,
   TokenEffect,
   Treachery,
   Trigger,
@@ -106,6 +107,8 @@ export interface ScenarioBehavior {
   connections?: (state: GameState, location: Location) => LocationId[]
   /** Conexiones adicionales solo cuando se mueve un enemigo (Biblioteca oculta). */
   enemyConnections?: (state: GameState, location: LocationId, enemy?: Enemy) => LocationId[]
+  /** Habilidad con la que se investiga ese Lugar (Cripta de la lámpara sepulcral). */
+  investigateSkill?: (state: GameState, location: LocationId) => SkillType | null
   /** El investigador no puede salir de su Lugar (Cementerio Père Lachaise, Le Marais). */
   cannotLeave?: (state: GameState, investigator: InvestigatorId) => boolean
   /** Duplica el valor base o los iconos comprometidos de la prueba (Opéra Garnier). */
@@ -338,8 +341,14 @@ export function enemyBehavior(code: CardCode): EnemyBehavior | undefined {
   return enemies.get(code)
 }
 
+/**
+ * Código impreso de una localización: las copias de una misma carta en juego llevan un
+ * sufijo `~n` en su id (Arcadas de piedra en La máscara pálida).
+ */
+export const printedCode = (id: string): CardCode => id.replace(/~\d+$/, '')
+
 export function locationBehavior(code: CardCode): LocationBehavior | undefined {
-  return locations.get(code)
+  return locations.get(printedCode(code))
 }
 
 export function agendaBehavior(code: CardCode | undefined): AgendaBehavior | undefined {

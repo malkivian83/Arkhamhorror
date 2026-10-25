@@ -82,6 +82,11 @@ export {
   echoesOfThePast,
 } from './the-path-to-carcosa/echoes-of-the-past'
 export {
+  CODES as THE_PALLID_MASK_CODES,
+  THE_PALLID_MASK,
+  thePallidMask,
+} from './the-path-to-carcosa/the-pallid-mask'
+export {
   A_PHANTOM_OF_TRUTH,
   aPhantomOfTruth,
   CODES as A_PHANTOM_OF_TRUTH_CODES,

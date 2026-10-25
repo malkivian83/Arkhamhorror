@@ -6,6 +6,7 @@ import { CLASP_OF_BLACK_ONYX } from './echoes-assets'
 import { ECHOES_OF_THE_PAST, echoesOfThePast } from './echoes-of-the-past'
 import { THE_LAST_KING, theLastKing } from './the-last-king'
 import { THE_MAN_IN_THE_PALLID_MASK } from './the-man-in-the-pallid-mask'
+import { THE_PALLID_MASK, thePallidMask } from './the-pallid-mask'
 import { THE_UNSPEAKABLE_OATH, theUnspeakableOath } from './the-unspeakable-oath'
 
 registerCampaign({
@@ -50,6 +51,12 @@ registerCampaign({
                   build: ({ difficulty, seed, log }) => aPhantomOfTruth({ difficulty, seed, log }),
                   keywords: ['peril', 'surge', 'aloof', 'hunter', 'retaliate', 'prey'],
                 }
-              : { id },
+              : id === THE_PALLID_MASK
+                ? {
+                    id,
+                    build: ({ difficulty, seed, log }) => thePallidMask({ difficulty, seed, log }),
+                    keywords: ['surge', 'hunter', 'retaliate', 'prey'],
+                  }
+                : { id },
   ),
 })
