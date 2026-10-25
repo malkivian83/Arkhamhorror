@@ -2038,6 +2038,14 @@
       "assign": "Assign",
       "blocked": "Choose the new bearer of a weakness first."
     },
+    "replace": {
+      "title": "New investigator",
+      "prompt": "{name} has left the campaign. Their player may choose an investigator not yet used in this campaign, with a level 0 deck.",
+      "choose": "Choose an investigator",
+      "starter": "{name} (starter deck)",
+      "confirm": "Join the campaign",
+      "blocked": "Choose a new investigator to go on."
+    },
     "lost": "Campaign lost: no investigator can go on."
   },
   "class": {

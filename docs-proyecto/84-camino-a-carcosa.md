@@ -603,8 +603,25 @@ Narración del escenario VII: 5 MP3 más con la misma voz y ajustes (74 en total
 Narración del escenario VIII y el epílogo: 8 MP3 más con la misma voz y ajustes (82 en
 total).
 
-Siguiente bloque: revisión de la campaña completa. Lola Hayes: prólogo y salida en los
-Bastidores conectados ([documento 86](86-investigadora-lola-hayes.md)).
+Lola Hayes: prólogo y salida en los Bastidores conectados
+([documento 86](86-investigadora-lola-hayes.md)).
+
+## Revisión de la campaña completa
+
+- Notas del registro: cada nota que lee un escenario la escribe otro anterior, también
+  las de claves compuestas. La ficha −3 del Juramento llega por su preparación.
+- `full-campaign.test.ts` encadena los ocho escenarios con decisiones al azar para
+  equipos de 1 a 4 investigadores (Lola incluida) y resuelve traspasos y sustitutos.
+- Carencia corregida: con todos enloquecidos (Juramento R1, por ejemplo) la campaña se
+  daba por perdida. Según el reglamento ("Campaign Play") y la guía (p. 15), cada jugador
+  cuyo investigador muere o enloquece elige otro aún no usado en la campaña, con un mazo
+  de nivel 0 y sin experiencia; solo se pierde si no queda ninguno. `replaceInvestigator`
+  lo añade al final de la lista (los que se fueron siguen visibles), y el Broche o el
+  Hombre de la máscara pálida que seguían con quien se fue pasan al sustituto. La vista
+  de campaña ofrece el mazo inicial o un mazo propio válido; los guardados admiten más
+  de cuatro investigadores en la lista con un máximo de cuatro activos.
+- Pendiente: la sustitución aún no está en las campañas en línea (el servidor asocia
+  cada jugador a su investigador del lobby).
 
 Para retomar en otro ordenador, actualizar `main`: el PDF ya está versionado en
 `docs-proyecto/reglas/`. La aplicación de referencia sigue siendo una copia externa

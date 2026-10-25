@@ -1,4 +1,4 @@
-import { newCampaign, startScenario } from '@lcg/cards'
+import { newCampaign, replaceInvestigator, replacementOptions, startScenario } from '@lcg/cards'
 import { applyInput, type PlayerInput } from '@lcg/engine'
 import { describe, expect, it } from 'vitest'
 import {
@@ -201,6 +201,27 @@ describe('guardado de campaña y mesa', () => {
       { scenario: 'spreading-flames', outcome: { type: 'noResolution' }, xp: {} },
     ]
     expect(() => decodeSession(encode(data))).toThrow('invalid')
+  })
+  it('acepta una campaña con investigadores sustituidos más allá de cuatro', () => {
+    let campaign = newCampaign('the-path-to-carcosa', ['joe'], 'standard')
+    for (;;) {
+      const leaving = campaign.investigators.at(-1)!.id
+      campaign = {
+        ...campaign,
+        log: {
+          ...campaign.log,
+          investigators: {
+            ...campaign.log.investigators,
+            [leaving]: { ...campaign.log.investigators[leaving]!, insane: true },
+          },
+        },
+      }
+      const [key] = replacementOptions(campaign)
+      if (!key || campaign.investigators.length > 5) break
+      campaign = replaceInvestigator(campaign, leaving, key)
+    }
+    const data = session(null, null, campaign)
+    expect(decodeSession(encode(data)).campaign).toEqual(campaign)
   })
   it('recupera la copia anterior al encontrar un archivo principal corrupto', () => {
     const storage = new MemoryStorage()

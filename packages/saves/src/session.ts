@@ -17,6 +17,8 @@ export const CONTENT_VERSION = 'brethren-of-ash:2026-10-17'
 const MAX_BYTES = 20_000_000
 const MAX_INPUTS = 30_000
 const verifiedWrites = new WeakMap<StoragePort, string>()
+/** Investigadores de una campaña, contando a los que se fueron y a sus sustitutos. */
+const MAX_CAMPAIGN_INVESTIGATORS = 32
 
 export interface History {
   base: GameState
@@ -318,10 +320,11 @@ function campaign(value: unknown): asserts value is Campaign {
     Number(value.scenarioIndex) > count
   )
     fail()
+  // Los muertos o enloquecidos siguen en la lista junto a sus sustitutos.
   if (
     !Array.isArray(value.investigators) ||
     !value.investigators.length ||
-    value.investigators.length > 4
+    value.investigators.length > MAX_CAMPAIGN_INVESTIGATORS
   )
     fail()
   if (
@@ -364,13 +367,12 @@ function campaign(value: unknown): asserts value is Campaign {
   })
   // Validate investigators and deck codes through the same content registry used by play.
   const records = value.log.investigators
-  if (
-    value.scenarioIndex < count &&
-    value.investigators.some((i) => {
-      const r = records[i.id] as Record<string, unknown>
-      return !r.killed && !r.insane
-    })
-  ) {
+  const active = value.investigators.filter((i) => {
+    const r = records[i.id] as Record<string, unknown>
+    return !r.killed && !r.insane
+  })
+  if (active.length > 4) fail()
+  if (value.scenarioIndex < count && active.length) {
     try {
       startScenario(value as unknown as Campaign, 1)
     } catch {

@@ -2038,6 +2038,14 @@
       "assign": "Asignar",
       "blocked": "Falta elegir el nuevo portador de una debilidad."
     },
+    "replace": {
+      "title": "Nuevo investigador",
+      "prompt": "{name} ha abandonado la campaña. Su jugador puede elegir un investigador que aún no se haya usado en ella, con un mazo de nivel 0.",
+      "choose": "Elige un investigador",
+      "starter": "{name} (mazo inicial)",
+      "confirm": "Unir a la campaña",
+      "blocked": "Elegid un nuevo investigador para continuar."
+    },
     "lost": "Campaña perdida: ningún investigador puede continuar."
   },
   "class": {

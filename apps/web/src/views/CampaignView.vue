@@ -2,6 +2,7 @@
 import {
   activeMembers,
   campaignDefinition,
+  campaignLost,
   canPlayNext,
   currentScenario,
   deckSize,
@@ -10,6 +11,10 @@ import {
   pendingTransfers,
   purchaseOptions,
   removableCards,
+  replaceableMembers,
+  replacementOptions,
+  starterInvestigator,
+  type CampaignMember,
   type PurchaseOption,
 } from '@lcg/cards'
 import { computed, ref } from 'vue'
@@ -23,6 +28,7 @@ import SitePage from '../components/SitePage.vue'
 import SiteAction from '../components/SiteAction.vue'
 import { cardName, classColor } from '../game/cards'
 import { localName } from '../game/localized'
+import { useDecksStore } from '../stores/decks'
 import { useGameStore } from '../stores/game'
 
 /**
@@ -33,6 +39,7 @@ import { useGameStore } from '../stores/game'
 const { t } = useI18n()
 const router = useRouter()
 const game = useGameStore()
+const decks = useDecksStore()
 
 const campaign = computed(() => game.campaign)
 const definition = computed(() => (campaign.value ? campaignDefinition(campaign.value.id) : null))
@@ -40,8 +47,42 @@ const definition = computed(() => (campaign.value ? campaignDefinition(campaign.
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
 const next = computed(() => (campaign.value ? currentScenario(campaign.value) : null))
 const playable = computed(() => !!campaign.value && canPlayNext(campaign.value))
-/** Nadie puede seguir (todos muertos o locos): la campaña se ha perdido. */
-const lost = computed(() => !!campaign.value && activeMembers(campaign.value).length === 0)
+/** Nadie puede seguir ni ser sustituido: la campaña se ha perdido. */
+const lost = computed(() => !!campaign.value && campaignLost(campaign.value))
+const nobodyActive = computed(() => !!campaign.value && !activeMembers(campaign.value).length)
+
+/** Investigadores muertos o locos cuyo jugador puede elegir otro (reglamento). */
+const leavers = computed(() =>
+  campaign.value && replacementOptions(campaign.value).length
+    ? replaceableMembers(campaign.value)
+    : [],
+)
+/** Investigadores aún sin usar: su mazo inicial o un mazo propio válido. */
+const replacements = computed(() =>
+  (campaign.value ? replacementOptions(campaign.value) : []).flatMap((key) => {
+    const { id } = starterInvestigator(key)
+    return [
+      { value: `starter:${key}`, label: t('campaign.replace.starter', { name: name(id) }) },
+      ...decks.decks
+        .filter(
+          (d) =>
+            d.investigator === id && !d.cards.includes('08125') && !decks.check(d).problems.length,
+        )
+        .map((d) => ({ value: `deck:${d.id}`, label: `${name(id)} · ${d.name}` })),
+    ]
+  }),
+)
+const replacing = ref<Record<string, string>>({})
+
+function replace(leaving: string) {
+  const [kind, key] = (replacing.value[leaving] ?? '').split(':') as [string, string]
+  const deck = decks.decks.find((d) => kind === 'deck' && d.id === key)
+  const member: CampaignMember | undefined =
+    kind === 'starter'
+      ? (key as CampaignMember)
+      : deck && { investigator: deck.investigator, cards: deck.cards }
+  if (member) game.replaceMember(leaving, member)
+}
 
 /** Cartas cuyo portador dejó la campaña y esperan a que el grupo elija otro. */
 const transfers = computed(() => (campaign.value ? pendingTransfers(campaign.value) : []))
@@ -302,6 +343,24 @@ function abandon() {
       <p v-if="game.error" class="error">{{ game.error }}</p>
     </section>
 
+    <section
+      v-for="id in leavers"
+      :key="id"
+      class="page transfer"
+      :aria-label="t('campaign.replace.title')"
+    >
+      <h2>{{ t('campaign.replace.title') }}</h2>
+      <p>{{ t('campaign.replace.prompt', { name: name(id) }) }}</p>
+      <select v-model="replacing[id]" :aria-label="t('campaign.replace.choose')">
+        <option :value="undefined" disabled>{{ t('campaign.replace.choose') }}</option>
+        <option v-for="o in replacements" :key="o.value" :value="o.value">{{ o.label }}</option>
+      </select>
+      <button type="button" :disabled="!replacing[id] || !!game.state" @click="replace(id)">
+        {{ t('campaign.replace.confirm') }}
+      </button>
+      <p v-if="game.error" class="error">{{ game.error }}</p>
+    </section>
+
     <footer class="actions">
       <SiteAction v-if="game.state" icon="→" @click="router.push('/game')">
         {{ t('campaign.resumeScenario') }}
@@ -311,7 +370,8 @@ function abandon() {
         <SiteAction icon="→" :disabled="!playable" @click="playNext">
           {{ t('campaign.play', { scenario: scenarioName(next) }) }}
         </SiteAction>
-        <span v-if="transfers.length" class="soon">{{ t('campaign.transfer.blocked') }}</span>
+        <span v-if="nobodyActive" class="soon">{{ t('campaign.replace.blocked') }}</span>
+        <span v-else-if="transfers.length" class="soon">{{ t('campaign.transfer.blocked') }}</span>
         <span v-else-if="!playable" class="soon">{{ t('campaign.comingSoon') }}</span>
       </template>
       <p v-else class="finished">{{ t('campaign.finished') }}</p>

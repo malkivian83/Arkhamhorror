@@ -2,6 +2,7 @@ import { accountStorage, notifyLocalChange } from '../account/storage'
 import { newAdventure } from '../account/library'
 import {
   chooseTransferHeir,
+  replaceInvestigator,
   finishScenario,
   newCampaign,
   purchase,
@@ -230,6 +231,20 @@ export const useGameStore = defineStore('game', () => {
     }
   }
 
+  /** El jugador cuyo investigador dejó la campaña elige otro con un mazo de nivel 0. */
+  function replaceMember(leaving: string, member: CampaignMember) {
+    if (!campaign.value || latest) return
+    try {
+      setCampaign(
+        replaceInvestigator(campaign.value, leaving, member, Math.floor(Math.random() * 2 ** 31)),
+      )
+      persist()
+      error.value = null
+    } catch (e) {
+      error.value = e instanceof Error ? e.message : String(e)
+    }
+  }
+
   /** Abandona la campaña entera (y el escenario en curso). */
   function abandonCampaign() {
     setCampaign(null)
@@ -366,6 +381,7 @@ export const useGameStore = defineStore('game', () => {
     playNext,
     buy,
     chooseHeir,
+    replaceMember,
     abandonCampaign,
     answer,
     answerLabel,
