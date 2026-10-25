@@ -21,6 +21,9 @@ import {
   GALA_BLOODLESS_MAN,
   GALA_BLOODLESS_MAN_UNLEASHED,
   GALA_FACTION_CARDS,
+  fortuneAndFollyPartOne,
+  FORTUNE_SETUP_ENEMIES,
+  FORTUNE_CODES,
 } from '@lcg/cards'
 import {
   allPlayerCardDefs,
@@ -30,7 +33,7 @@ import {
   type EncounterCard,
   type LocationCard,
 } from '@lcg/engine'
-import { carcosaCards, excelsiorCards, messages } from '@lcg/i18n'
+import { carcosaCards, excelsiorCards, fortuneCards, messages } from '@lcg/i18n'
 import type { LocalizedCard } from './localized'
 
 /** Bundled mechanical data, official text where available and local summaries. */
@@ -179,6 +182,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
         log: { notes: [], crossedOut: [], values, investigators: {}, chaosTokens: [] },
       }),
     ),
+    fortuneAndFollyPartOne({}),
     ...Array.from({ length: 12 }, (_, seed) =>
       smokeAndMirrors({
         seed,
@@ -335,7 +339,24 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     })
     put({ code: vip.interview, name: vip.name, real_name: vip.name, type_code: 'story' })
   }
-  const catalogues = [excelsiorCards, carcosaCards].map((c) => c[locale === 'es' ? 'es' : 'en'])
+  // Fortuna e insensatez: los enemigos que aparecen en la preparación, la tarjeta de
+  // referencia y las cartas de Historia en juego.
+  FORTUNE_SETUP_ENEMIES.forEach(encounter)
+  put({
+    code: FORTUNE_CODES.scenario,
+    name: 'Fortune and Folly',
+    real_name: 'Fortune and Folly',
+    type_code: 'scenario',
+  })
+  for (const code of [
+    FORTUNE_CODES.theStakeout,
+    FORTUNE_CODES.ifTheUniformFits,
+    FORTUNE_CODES.wellspring,
+  ])
+    put({ code, name: code, real_name: code, type_code: 'story' })
+  const catalogues = [excelsiorCards, carcosaCards, fortuneCards].map(
+    (c) => c[locale === 'es' ? 'es' : 'en'],
+  )
   for (const [code, text] of catalogues.flatMap((c) => Object.entries(c))) {
     const card = cards.get(code)
     if (!card) continue

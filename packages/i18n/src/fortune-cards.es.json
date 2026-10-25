@@ -371,9 +371,9 @@
     "gameIcon": "♦10"
   },
   "88040c": {
-    "name": "Avarice Calls",
-    "traits": "Curse.",
-    "text": "Peril.\n<b>Revelation</b> - You must either (choose one):\n- Take 2 horror.\n- Test [willpower] (X), where X is half your alarm level (rounded up). If you succeed, gain 2 resources. If you fail, take 2 horror and raise your alarm level by 1.",
+    "name": "Atracción por la avaricia",
+    "traits": "Maldición.",
+    "text": "Peligro.\n<b>Revelación</b> - Debes (elige una opción):\n- Recibir 2 puntos de horror.\n-Realizar una prueba de [willpower] (X), donde X es la mitad de tu nivel de alarma (redondeando hacia arriba). Si tienes éxito, obtén 2 recursos. Si fracasas, recibe 2 puntos de horror y aumenta tu nivel de alarma en 1.",
     "gameIcon": "♦10"
   },
   "88041a": {

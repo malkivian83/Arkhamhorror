@@ -1,5 +1,5 @@
 import type { ChaosToken, GameState } from '@lcg/engine'
-import { carcosaCards, excelsiorCards, type CatalogCard } from '@lcg/i18n'
+import { carcosaCards, excelsiorCards, fortuneCards, type CatalogCard } from '@lcg/i18n'
 
 type Translate = (key: string, params?: Record<string, string | number>) => string
 export function chaosHelp(
@@ -23,6 +23,7 @@ export function chaosHelp(
     'the-pallid-mask': carcosaCards[locale === 'es' ? 'es' : 'en']['03240'],
     'black-stars-rise': carcosaCards[locale === 'es' ? 'es' : 'en']['03274'],
     'dim-carcosa': carcosaCards[locale === 'es' ? 'es' : 'en']['03316'],
+    'fortune-and-folly-part-1': fortuneCards[locale === 'es' ? 'es' : 'en']['88001'],
   }
   const card = official[state.scenarioId]
   if (card) {

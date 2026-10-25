@@ -15,6 +15,8 @@ const references: Record<string, { code: string; name: string }> = {
   'the-pallid-mask': { code: '03240', name: 'The Pallid Mask' },
   'black-stars-rise': { code: '03274', name: 'Black Stars Rise' },
   'dim-carcosa': { code: '03316', name: 'Dim Carcosa' },
+  'fortune-and-folly-part-1': { code: '88001', name: 'Fortune and Folly' },
+  'fortune-and-folly-part-2': { code: '88001', name: 'Fortune and Folly' },
 }
 
 export function scenarioReference(state: Pick<GameState, 'scenarioId' | 'difficulty'>) {

@@ -77,6 +77,7 @@ import './brethren-of-ash/definition'
 import './midwinter-gala/definition'
 import './excelsior/definition'
 import './the-path-to-carcosa/definition'
+import './fortune-and-folly/definition'
 // Comportamiento de las cartas: hace falta para saber cuáles se pueden comprar.
 import './core-2026/cards'
 import './core-2026/investigators'

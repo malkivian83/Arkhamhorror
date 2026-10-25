@@ -276,6 +276,22 @@
     },
     "lola": {
       "role": "Choose a role"
+    },
+    "fof": {
+      "role": "Choose a Role.",
+      "color": "Roulette: name a color.",
+      "rank": "Choose a rank.",
+      "suit": "Choose a suit.",
+      "baccarat": "Baccarat: name the result.",
+      "mulligan": "Checked: {icons}. You may mulligan once: mark the cards to set aside.",
+      "grifter": "Checked: {icons}. Use The Grifter?",
+      "grifterPick": "Checked: {icons}. Choose a game icon to change.",
+      "calmWho": "Whose alarm level is reduced by 1?",
+      "avarice": "Avarice Calls: choose one.",
+      "gaze": "Suspicious Gaze: choose one.",
+      "elderThing": "Raise your alarm level by 1 to automatically succeed?",
+      "stash": "Choose an asset to stash beneath Casino Floor.",
+      "plan": "The Plan: choose one."
     }
   },
   "action": {
@@ -547,6 +563,30 @@
         "neutral": "Role: Neutral"
       },
       "keepRole": "Keep your role"
+    },
+    "fof": {
+      "role": "{card}",
+      "red": "Red",
+      "black": "Black",
+      "rank": "{rank}",
+      "suit": "{suit}",
+      "icon": "{icon}",
+      "player": "Player",
+      "banker": "Banker",
+      "tie": "Tie",
+      "swapIcon": "Set aside {icon}",
+      "keepIcon": "Keep {icon}",
+      "swapChosen": "Discard replacements for the marked cards",
+      "noMulligan": "Keep these cards",
+      "grifterChange": "Raise your alarm level by 1 to change up to {count} game icon(s)",
+      "grifterCalm": "Reduce your alarm level by 1",
+      "takeHorror": "Take {amount} horror",
+      "takeDamage": "Take {amount} damage",
+      "raiseAlarm": "Raise your alarm level by 1",
+      "autoSucceed": "Raise your alarm level by 1 and succeed",
+      "stash": "Stash {card}",
+      "planCalm": "Reduce each investigator's alarm level by 1",
+      "practice": "{card} ({name}) becomes Practiced"
     }
   },
   "phase": {
@@ -847,6 +887,21 @@
     },
     "lola": {
       "switchRole": "{name}: switch your role"
+    },
+    "fof": {
+      "poker": "Poker: spend 2 resources and check 5 icons",
+      "roulette": "Roulette: spend 1 resource, name a color and a rank",
+      "baccarat": "Baccarat: spend 2 resources, name player, banker or tie",
+      "slots": "Slots: spend 1 resource and check 3 icons",
+      "highRoller": "High stakes: spend 4 resources and check 5 icons",
+      "vent": "Look for the vent (test agility 3)",
+      "stash": "Stash an asset for the heist",
+      "isamara": "Parley with Isamara (test willpower {difficulty})",
+      "abarranKeys": "Lift Abarran's keys (test agility 3)",
+      "uniform": "Knock out the guard (test combat 3)",
+      "face": "The Face: parley with {enemy}",
+      "muscle": "The Muscle: reduce your alarm level by {amount}",
+      "thief": "The Thief: reverse the patrol of {enemy}"
     }
   },
   "log": {
@@ -954,6 +1009,12 @@
       "rogue": "{name} takes the Rogue role.",
       "mystic": "{name} takes the Mystic role.",
       "neutral": "{name} takes the Neutral role."
+    },
+    "fof": {
+      "checked": "Game icons checked: {icons}",
+      "alarm": "{name}: alarm level {level}",
+      "won": "Win! {amount} resources.",
+      "lost": "The house wins."
     }
   },
   "table": {
@@ -1174,7 +1235,9 @@
     "spawnedAt": "Spawns at {location}",
     "targetHint": "Choose one of the highlighted items on the table.",
     "secondAgenda": "Second agenda",
-    "exhausted": "exhausted"
+    "exhausted": "exhausted",
+    "alarm": "Alarm",
+    "alarmHelp": "Alarm level (1–10). At 6 or higher, Casino enemies at your location lose aloof."
   },
   "difficulty": {
     "easy": "Easy",
@@ -1231,7 +1294,8 @@
       "brethren-of-ash": "A fire, a restless city, and a mystery spreading through the ashes. Three scenarios, one connected story.",
       "the-midwinter-gala": "A night of luxury and secrets. Accept the invitation and discover what hides behind the masks at the gala.",
       "murder-at-the-excelsior-hotel": "A murder and a hotel full of secrets. Investigate what happened at the Excelsior and uncover the truth before it is too late.",
-      "the-path-to-carcosa": "The King in Yellow arrives in Arkham. Eight scenarios between doubt and conviction. In development: scenarios I to III are playable so far."
+      "the-path-to-carcosa": "The King in Yellow arrives in Arkham. Eight scenarios between doubt and conviction. In development: scenarios I to III are playable so far.",
+      "fortune-and-folly": "A Monte Carlo casino bends luck itself. Case the joint in Part I, then pull off the heist. In development: Part I is playable."
     },
     "continueTitle": "Continue where you left off",
     "chooseStory": "Choose the story",
@@ -1409,7 +1473,25 @@
       "carcosaRealmsMerged": "the realm of Carcosa merged with our own, and Hastur rules over them both",
       "carcosaPreventedHastur": "the investigators prevented Hastur from escaping his prison",
       "carcosaPossessed": "possessed investigators",
-      "carcosaHasturHasYou": "Hastur has you in his grasp"
+      "carcosaHasturHasYou": "Hastur has you in his grasp",
+      "fofFoundAVent": "An investigator found a vent",
+      "fofImpersonatedAHighRoller": "An investigator impersonated a high roller",
+      "fofConvincedIsamara": "An investigator convinced Isamara to participate in the heist",
+      "fofObtainedAnEmployeeUniform": "An investigator obtained an employee uniform",
+      "fofStoleAbarransKeys": "An investigator stole Abarran's keys",
+      "fofCleanedOutTheHouse": "The investigators cleaned out the house",
+      "fofNeedRest": "The investigators need time to rest",
+      "fofAlarmLevels": "Alarm levels",
+      "fofWellspringClues": "Clues on The Wellspring of Fortune",
+      "fofStash": "Stashed",
+      "fofRole88028": "Role: The Face",
+      "fofRole88028b": "Role: The Face (Practiced)",
+      "fofRole88029": "Role: The Muscle",
+      "fofRole88029b": "Role: The Muscle (Practiced)",
+      "fofRole88030": "Role: The Thief",
+      "fofRole88030b": "Role: The Thief (Practiced)",
+      "fofRole88031": "Role: The Grifter",
+      "fofRole88031b": "Role: The Grifter (Practiced)"
     },
     "scenario": {
       "smokeAndMirrors": "Scenario II: Smoke and Mirrors",
@@ -1947,6 +2029,31 @@
       "epilogue": "Months of preparation later, you are ready to unveil your latest work to the world: the finest performance of The King in Yellow ever staged.",
       "epiloguePossessed": "Only the possessed investigators read this epilogue.",
       "epilogueAll": "Read this epilogue only because the investigators won the campaign."
+    },
+    "fof": {
+      "intro1Title": "Intro 1",
+      "intro1": "MAN STRUCK BY LIGHTNING TWICE MINUTES AFTER WINNING BIG! This sensational headline is what first grabbed your attention. You might have written it off as just an extraordinary and unlikely event exaggerated to sell papers, if it weren’t for the other stories that followed, all centering around the same place: a casino in Monte Carlo called Défis de la Roulette. In addition to the unlucky patron being struck down mere moments after leaving the casino with his winnings, others have also met grisly yet improbable fates either within or nearby. Upon inquiring further, it seems that this casino appeared quickly and unexpectedly, and the authorities in Monaco have been suspiciously tight-lipped about where exactly it came from and who owns it. Since its opening, the casino has been a magnet for the unnatural and implausible. The more you learn, the more it seems worth at least taking a look to determine whether these events are simply coincidence, or the result of something much more sinister.",
+      "intro3Title": "Intro 3",
+      "intro3": "Although you ask around town about the casino for several days, promising leads seem to be scarce. When you visit the casino itself, nothing appears out of place, although your probing questions don’t go entirely unnoticed. As you sit in the casino lounge, assessing whether the trip to Monte Carlo was a complete waste of time and if nothing is amiss here after all, a woman in a striking red dress sits down at your table. You recognize her as Isamara Ordoñez, the singer who had performed just moments before, capturing the audience with her hauntingly beautiful voice. A casual smile adorns her face, but her words are sharp and pointed. “You’re being too careless. We can’t talk here. If you want to know the truth, meet me in an hour.” She hands you a card with the address of a nearby café. She then stands, smoothing out her dress. “Thank you so much for the kind words about my performance,” she says for the benefit of anyone nearby. “Hope to see you again soon!”",
+      "intro4Title": "Intro 4",
+      "intro4": "Isamara is wearing a long overcoat of the darkest blue when you meet, her wavy brown hair partially hidden beneath a wide- brimmed hat. Clearly, she is worried about someone recognizing her. “You’re right to be suspicious about what’s happening at Défis,” she begins, wasting no time with pleasantries. “On the surface, it’s a casino like any other. But there’s more going on than anyone could guess. Behind the scenes, a cult called the Fortune’s Chosen are the ones that really run the show. They are deadly and dangerous. Anyone who has gotten too close to the truth or crossed the casino in some way has met a horrible fate.”\n\nYou ask about the casino owner, and how involved he is with this cult. Isamara gives a mirthless smile. “Abarran? He is their leader. Not just that, he is the worst of them all. He brought the casino here, but more importantly, he brought the Wellspring.”\n\nIsamara explains that the vault of the casino holds a strange and powerful relic of mysterious origin. It is this relic that is responsible for the unlikely events that seem to pop up around the casino. This item is known as the Wellspring of Fortune, and it has the power to manipulate probability and luck. Abarran guards it jealously, as whoever possesses the Wellspring is able to turn fortune to their cause, no matter how selfish and destructive that cause may be. Over time, he has created the loyal cadre of the Fortune’s Chosen by granting them some measure of the benefits of the Wellspring. They have come to revere it almost as a god. These true believers can be easily distinguished from the regular casino employees by the distinctive coin medallions they wear around their necks. “Abarran trusts me for some reason, and he’s even offered me to join. I think he views me as a potential asset,” Isamara mutters.\n\nYou ask Isamara what she would have you do. “Steal the Wellspring. Take it far away from here. I don’t know how to say it more plainly. As long as it is in Abarran’s grasp, he will use it to aggrandize himself. Even worse, I fear that the longer its powers are used, the greater the chance of harm coming to those in the casino. Who knows what seemingly impossible catastrophes it may summon if it is not removed?”\n\nHer words seem not so much a plea for help as a call to action. You find yourself agreeing to the task almost without conscious thought. As you move to stand, she stops you with her hand.\n\n“One last thing: do not underestimate Abarran. He is a dangerous man. He puts on a face of civility to the world, but underneath that mask there is a barely contained anger that can explode if he feels his prize is threatened. I’ve seen his temper, and I don’t doubt it could drive him to tear a man limb from limb with his bare hands if he felt he had the cause.” Left with that cheery thought, you begin planning a heist with the highest stakes.",
+      "intro5Title": "Intro 5",
+      "intro5": "Several days later, you meet with Isamara to discuss a plan for staking out the casino in advance of the heist. Isamara explains what you need to look for as the night of the stakeout approaches, warning that you will not have time to accomplish everything:\n• High rollers are held in high regard. If you throw enough money around, it will open up options during the heist.\n• Obtaining a uniform from one of the casino employees could go a long way toward allowing you to pass by unnoticed.\n• Isamara is very invested in the heist, but she is also understandably concerned about getting directly involved. Perhaps you can change her mind?\n• The more money you win, the greater the chance that the casino will have to roll out cash carts for the busy night of the heist. These carts happen to have enough space inside for a person to hide...\n• Somewhere in the casino is a major vent that runs from the public areas directly to the employee areas, bypassing the normal employee entrance.\n• Abarran keeps the keys to his office on his person while making his daily rounds. It’s a risk, but if you can get the keys off him, you won’t have to find a way into his office later.\n• There is a space within the main hall of the casino that can be used to hide assets for the heist. Any assets placed here will be immediately available when the big night begins.\n• The Wellspring of Fortune feeds off and manipulates forces of fortune and luck. The more you play games of chance, the easier and faster it will be to gain control of it later.\n• Finally, the more clues you can gather about casino operations, the better your chances of keeping a low profile when it comes time for the actual heist and the more prepared you will be for your role!",
+      "setupTitle": "Part I setup",
+      "setup": "The Public locations (Calm Night) are put into play; the Restricted locations are set aside. Each investigator begins at Casino Floor with an alarm level of 1 and chooses a Role (Unpracticed); a lone investigator chooses two.\n\nAbarran Arrigorriagakoa (The Man with the Ruby Ring) spawns at High Roller's Table and a Casino Guard with If the Uniform Fits… at Roulette Wheel. Isamara Ordoñez (Inconspicuous) is at Baccarat Table. The Wellspring of Fortune begins with 7 clues per investigator.",
+      "noResolutionTitle": "No resolution",
+      "noResolution": "Each investigator was defeated. Proceed to Resolution 1.",
+      "comeBackSoonTitle": "Come Back Soon!",
+      "comeBackSoon": "Each undefeated investigator has resigned: the act advances. If the investigators, as a group, possess 10 resources per investigator or more, remember that you cleaned out the house.",
+      "resolution1Title": "Resolution 1",
+      "resolution1": "You find yourself forcefully removed from the casino after attracting far too much attention. It is certain that soon your description will circulate among the staff. This will undoubtedly make matters much more difficult when the heist begins.",
+      "resolution2Title": "Resolution 2",
+      "resolution2": "You hope that what you were able to learn and accomplish tonight will be enough. You can at least rest a little easier knowing that the staff did not seem to take any special interest in you. That will make it easier to keep a low profile when the heist begins in earnest.",
+      "plan1Title": "Checkpoint: The Plan",
+      "plan1": "With the stakeout completed, the time has come to plan out the actual heist. There are only a few days until Saturday night at Défis de la Roulette, the busiest night of the week and the perfect time to get lost in a crowd. The plan for the heist is simple, at least in theory. With the casino staff and security occupied by the Saturday crowd, you will first enter the public areas, just as you did last time. There, you will try to avoid notice as much as you can while completing any needed tasks. Once that’s done, you will slip into the restricted areas in the back of the casino that are reserved for staff. This area holds the vault itself, where the Wellspring of Fortune is located. According to Isamara, the vault door is not only secured by solid steel, but also held shut by some kind of energy. If that wasn’t enough, it is constantly monitored by guards, patrols, and the cultists of the Fortune’s Chosen. It will take a carefully executed plan, and some improvisation, to succeed against all odds. With only a short time to gather supplies and practice the approach, there may not be enough time to rest and recuperate from your first tangle with the casino.",
+      "raiseUnresigned": "Each investigator who did not resign raises their alarm level by 2.",
+      "noDeckChanges": "Investigators cannot spend experience or alter their decks between Part I and Part II.",
+      "planChoices": "For every 1 clue per investigator on The Stakeout, the group chooses to reduce each investigator's alarm level by 1 or to flip a Role to its Practiced side ({n} choices)."
     }
   },
   "playmat": {
@@ -2020,13 +2127,16 @@
       "a-phantom-of-truth": "A Phantom of Truth",
       "the-pallid-mask": "The Pallid Mask",
       "black-stars-rise": "Black Stars Rise",
-      "dim-carcosa": "Dim Carcosa"
+      "dim-carcosa": "Dim Carcosa",
+      "fortune-and-folly-part-1": "Fortune and Folly, Part I",
+      "fortune-and-folly-part-2": "Fortune and Folly, Part II"
     },
     "names": {
       "brethren-of-ash": "Brethren of Ash",
       "the-midwinter-gala": "The Midwinter Gala",
       "murder-at-the-excelsior-hotel": "Murder at the Excelsior Hotel",
-      "the-path-to-carcosa": "The Path to Carcosa"
+      "the-path-to-carcosa": "The Path to Carcosa",
+      "fortune-and-folly": "Fortune and Folly"
     },
     "choose": "Choose the campaign",
     "xpBreakdown": "Experience breakdown",
@@ -2247,6 +2357,30 @@
     "bystanders": {
       "title": "Bystanders",
       "body": "Bystander assets are at locations, uncontrolled, with clues on them. Parley with them to take their clues (parleying does not provoke attacks of opportunity). When the last clue is removed from a bystander, they have been interviewed."
+    },
+    "fofAlarm": {
+      "title": "Alarm level",
+      "body": "Each investigator has an alarm level from 1 to 10, starting at 1 (shown next to their resources). It is not doom. Each Casino enemy at the location of an investigator with an alarm level of 6 or higher loses aloof."
+    },
+    "fofPatrol": {
+      "title": "Patrol",
+      "body": "In the enemy phase (step 3.2), each ready, unengaged enemy with patrol moves one location toward its patrol location. \"Clockwise\" and \"counterclockwise\" follow the ring of its location group (Public or Restricted)."
+    },
+    "fofGameIcons": {
+      "title": "Game icons",
+      "body": "To check game icons, discard cards from the top of the encounter deck and look at their color, suit and rank (J, Q and K are worth 10; ♥ and ♦ are red). Cards without an icon are set aside and replaced. \"Sequential rank\" means consecutive ranks."
+    },
+    "fofMulligan": {
+      "title": "Mulligan",
+      "body": "After checking, you may set aside any of the discarded cards and discard as many new ones in their place."
+    },
+    "fofRoles": {
+      "title": "Roles",
+      "body": "The Face, The Muscle, The Thief and The Grifter are two-sided story assets: Unpracticed and Practiced. The Thief can be used at the start of the enemy phase, before patrols move."
+    },
+    "fofWellspring": {
+      "title": "The Wellspring of Fortune",
+      "body": "In this scenario the Wellspring is only a clue counter and an objective; its text is blank. Each Game location ability you trigger removes 1 clue from it (2 if you gained resources)."
     }
   },
   "phaseStep": {

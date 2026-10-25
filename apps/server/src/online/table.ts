@@ -31,6 +31,11 @@ const publicLogParams: Record<string, string[]> = {
   'log.actAdvanced': ['name'],
   'log.eliminated': ['name'],
   'log.resigned': ['name'],
+  // Fortuna e insensatez: iconos comprobados, nivel de alarma y premio de los juegos.
+  'log.fof.checked': ['icons'],
+  'log.fof.alarm': ['name', 'level'],
+  'log.fof.won': ['amount'],
+  'log.fof.lost': [],
   'log.end': ['outcome'],
   'log.enemyDefeated': ['enemy'],
   'log.enemyToVictory': ['enemy'],
@@ -313,7 +318,14 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
         'tookTheKeysByForce',
       ]
         .filter((key) => g.scenarioMeta?.[key] === 1)
-        .map((key) => [key, 1]),
+        .map((key): [string, number] => [key, 1])
+        // Fortuna e insensatez: el nivel de alarma de cada investigador es público.
+        .concat(
+          Object.entries(g.scenarioMeta ?? {}).filter(
+            (entry): entry is [string, number] =>
+              entry[0].startsWith('fof:alarm:') && typeof entry[1] === 'number',
+          ),
+        ),
     ),
     agendas: g.agendas
       .slice(0, g.agendaIndex + 1)

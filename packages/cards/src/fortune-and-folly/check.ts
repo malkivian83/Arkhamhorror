@@ -4,7 +4,14 @@
  * Los iconos comprobados se guardan en `scenarioMeta[CHECKED]` («♣Q,♥10,…») para que la
  * capacidad que los pidió los evalúe después (y El estafador pueda cambiarlos antes).
  */
-import { getInvestigator, shuffle, type EncounterCard, type GameState } from '@lcg/engine'
+import {
+  getInvestigator,
+  shuffle,
+  type EncounterCard,
+  type GameState,
+  type InvestigatorId,
+  type Message,
+} from '@lcg/engine'
 import { formatIcon, iconOf, parseIcon, type GameIcon } from './icons'
 
 export const CHECKED = 'fof:checked'
@@ -140,3 +147,13 @@ export function adjustAlarm(
 /** La mitad del nivel de alarma, redondeando hacia arriba. */
 export const halfAlarm = (state: GameState, investigator: string) =>
   Math.ceil(alarmOf(state, investigator) / 2)
+
+/** Clave del `ScenarioSpecific` que cambia el nivel de alarma (con sus efectos). */
+export const ALARM_SPECIFIC = 'fofAlarm'
+
+/** Sube (o baja, si es negativo) el nivel de alarma de un investigador. */
+export const adjustAlarmMessage = (investigator: InvestigatorId, amount: number): Message => ({
+  type: 'ScenarioSpecific',
+  key: ALARM_SPECIFIC,
+  data: { investigator, amount },
+})

@@ -36,6 +36,48 @@ const SWAPPED_SIDES = new Set([
  * Delirios y las dos versiones de los planes 2a y 2c de Surgen estrellas negras.
  */
 const LETTERED = new Set([
+  // Fortuna e insensatez: cada copia lleva otro icono de juego; Abarran desatado (88034b).
+  '88035a',
+  '88035b',
+  '88035c',
+  '88036a',
+  '88036b',
+  '88037a',
+  '88037b',
+  '88037c',
+  '88038a',
+  '88038b',
+  '88038c',
+  '88038d',
+  '88039a',
+  '88039b',
+  '88039c',
+  '88040a',
+  '88040b',
+  '88040c',
+  '88041a',
+  '88041b',
+  '88041c',
+  '88042a',
+  '88042b',
+  '88042c',
+  '88046a',
+  '88046b',
+  '88047a',
+  '88047b',
+  '88049a',
+  '88049b',
+  '88050a',
+  '88050b',
+  '88051a',
+  '88051b',
+  '88051c',
+  '88052a',
+  '88052b',
+  '88052c',
+  '88053a',
+  '88053b',
+  '88034b',
   '03047a',
   '03047b',
   '03047c',
@@ -60,7 +102,7 @@ const LETTERED = new Set([
 const STORY_BACKS: Record<string, string> = DIM_CARCOSA_STORIES
 
 /** Caras `a`/`b` de una misma carta (Constance 03076a/b, Daniel 03182a/b, El organista 03221a/b). */
-const A_SIDES = new Set(['03076a', '03182a', '03221a', '03321a'])
+const A_SIDES = new Set(['03076a', '03182a', '03221a', '03321a', '88034a'])
 
 /** Spanish image, then English image, both from our local asset inventory. */
 export function cardImages(code: string, back = false, locale = scanLocale.value): string[] {

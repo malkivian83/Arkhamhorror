@@ -93,6 +93,8 @@ export interface Investigator {
   eliminated: boolean
   /** Se retiró del escenario (también cuenta como eliminado). */
   resigned: boolean
+  /** Recursos que tenía al quedar eliminado (Fortuna e insensatez: «dejar limpio el casino»). */
+  resourcesWhenEliminated?: number
   deck: CardCode[]
   hand: CardCode[]
   discard: CardCode[]

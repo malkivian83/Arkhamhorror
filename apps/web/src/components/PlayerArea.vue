@@ -83,6 +83,7 @@ const threats = computed(() =>
   ),
 )
 const color = computed(() => classColor(i.value.id))
+const alarm = computed(() => props.state.scenarioMeta?.[`fof:alarm:${i.value.id}`])
 const tokens = computed((): { kind: TokenKind; value: number; label: string; title?: string }[] => {
   const vitals = effectiveVitals(props.state, i.value)
   return [
@@ -100,6 +101,17 @@ const tokens = computed((): { kind: TokenKind; value: number; label: string; tit
       label: 'table.horror',
       title: t('game.horror', { n: i.value.horror, max: vitals.sanity }),
     },
+    // Fortuna e insensatez: el nivel de alarma se marca con perdición (no cuenta como tal).
+    ...(typeof alarm.value === 'number'
+      ? [
+          {
+            kind: 'doom' as const,
+            value: alarm.value,
+            label: 'table.alarm',
+            title: t('table.alarmHelp'),
+          },
+        ]
+      : []),
   ]
 })
 
