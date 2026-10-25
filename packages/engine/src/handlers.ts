@@ -2895,6 +2895,7 @@ export function handle(state: GameState, message: Message): GameState {
         eliminated: true,
         clues: 0,
         resources: 0,
+        resourcesWhenEliminated: i.resources,
         actionsRemaining: 0,
         location: null,
         deck: [],
