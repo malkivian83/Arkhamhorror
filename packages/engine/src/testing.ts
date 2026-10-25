@@ -115,6 +115,8 @@ const SETUP_PROMPTS = new Set([
   'prompt.mulligan',
   'prompt.chooseLead',
   'prompt.chooseStartingLocation',
+  // Lola Hayes elige su papel tras la mano inicial.
+  'prompt.lola.role',
 ])
 
 /**

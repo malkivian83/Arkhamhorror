@@ -574,6 +574,10 @@ export interface InvestigatorBehavior {
   extraEvadeAction?: boolean
   /** Additional resources collected in the upkeep phase (Jenny Barnes). */
   upkeepResources?: number
+  /** Después de robar la mano inicial (tras el mulligan): Lola Hayes elige su papel. */
+  afterOpeningHand?: (state: GameState, self: Investigator) => Message[]
+  /** Puede jugar, comprometer o activar capacidades de esta carta (Lola Hayes). */
+  canUseCard?: (state: GameState, self: Investigator, code: CardCode) => boolean
 }
 
 const investigatorBehaviors = new Map<CardCode, InvestigatorBehavior>()

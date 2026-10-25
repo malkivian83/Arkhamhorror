@@ -93,6 +93,8 @@ export {
   type ScenarioDefinition,
 } from './setup'
 export {
+  cardAllowed,
+  cardOfRole,
   currentAgendas,
   activeInvestigators,
   attachedStat,

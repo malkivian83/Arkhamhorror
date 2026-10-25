@@ -252,22 +252,36 @@ export const encounterDeck = [
 
 const STRANGER_NAME = 'The Stranger'
 
-/** Guía ES p. 4, "Preparación". Lola Hayes (Bastidores) aún no es un investigador jugable. */
+/** Lola Hayes: lee su prólogo y empieza en los Bastidores (guía ES pp. 3–4). */
+export const LOLA_HAYES = '03006'
+
+/** Guía ES p. 4, "Preparación". */
 export function curtainCall({
   difficulty,
   seed = 0,
-}: Pick<ScenarioContext, 'difficulty'> & { seed?: number }): ScenarioDefinition {
+  investigators = [],
+}: Pick<ScenarioContext, 'difficulty'> & {
+  seed?: number
+  investigators?: string[]
+}): ScenarioDefinition {
+  const lola = investigators.includes(LOLA_HAYES)
   const { theatre, lobby, balcony, backstage, ...doorways } = locationCards
   // Acto 2: una de sus tres copias al azar; las otras se retiran sin mirarlas. Elegirla
   // ya en la preparación es equivalente (nadie la ve hasta que avanza el acto 1).
   const stranger = STRANGERS[nextInt(seedRng(seed), STRANGERS.length)[0]]!
   return {
     id: CURTAIN_CALL,
-    intro: { title: 'story.curtainCall.introTitle', body: 'story.curtainCall.intro' },
+    intro: [
+      ...(lola
+        ? [{ title: 'story.carcosa.lolaPrologueTitle', body: 'story.carcosa.lolaPrologue' }]
+        : []),
+      { title: 'story.curtainCall.introTitle', body: 'story.curtainCall.intro' },
+    ],
     setupInstructions: { title: 'story.curtainCall.setupTitle', body: 'story.curtainCall.setup' },
     locations: [theatre, lobby, balcony, backstage],
     setAsideLocations: Object.values(doorways),
     startingLocation: CODES.theatre,
+    ...(lola ? { investigatorStartingLocations: { [LOLA_HAYES]: CODES.backstage } } : {}),
     agendas: [
       { code: CODES.theThirdAct, name: 'The Third Act', doomThreshold: 6 },
       { code: CODES.encore, name: 'Encore', doomThreshold: 6 },

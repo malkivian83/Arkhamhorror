@@ -1,0 +1,60 @@
+[
+  {
+    "code": "03006",
+    "name": "Lola Hayes",
+    "type": "investigator",
+    "class": "neutral",
+    "traits": ["Performer"],
+    "deckLimit": 1,
+    "health": 6,
+    "sanity": 6,
+    "unique": true,
+    "skills": {
+      "willpower": 3,
+      "intellect": 3,
+      "combat": 3,
+      "agility": 3
+    },
+    "deckSize": 35,
+    "deckOptions": [
+      {
+        "classes": ["survivor", "guardian", "seeker", "rogue", "mystic"],
+        "maxLevel": 3
+      },
+      {
+        "classes": ["neutral"],
+        "maxLevel": 5
+      }
+    ],
+    "classMinimum": {
+      "classes": ["survivor", "guardian", "seeker", "rogue", "mystic"],
+      "count": 3,
+      "min": 7
+    },
+    "signatures": ["03018", "03018", "03019", "03019"]
+  },
+  {
+    "code": "03018",
+    "name": "Improvisation",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Insight"],
+    "deckLimit": 2,
+    "cost": 0,
+    "xp": 0,
+    "fast": true,
+    "icons": {
+      "wild": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "03019",
+    "name": "Crisis of Identity",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Madness"],
+    "deckLimit": 2,
+    "weakness": "weakness"
+  }
+]

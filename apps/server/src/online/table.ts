@@ -163,6 +163,8 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
         'extraEvade',
         'extraMove',
         'actionsTaken',
+        'role',
+        'nextRoleDiscount',
       ]),
       hand: i.id === mine ? [...i.hand] : [],
       deck: Array<string>(i.deck.length).fill(''),

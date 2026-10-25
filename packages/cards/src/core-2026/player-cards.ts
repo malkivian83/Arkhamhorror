@@ -26,6 +26,7 @@ import {
 import data from '../data/core-2026.json'
 import pete from '../data/ashcan-pete.json'
 import jenny from '../data/jenny-barnes.json'
+import lola from '../data/lola-hayes.json'
 import jennyDecklist from '../jenny-barnes/decklist-1179.json'
 
 /**
@@ -53,7 +54,12 @@ export const playerCards: PlayerCardDef[] = (data as PlayerCardDef[]).map((card)
     ? { ...card, ...rules, signatures: [boxCode(position + 1), boxCode(position + 2)] }
     : card
 })
-registerPlayerCards([...playerCards, ...(pete as PlayerCardDef[]), ...(jenny as PlayerCardDef[])])
+registerPlayerCards([
+  ...playerCards,
+  ...(pete as PlayerCardDef[]),
+  ...(jenny as PlayerCardDef[]),
+  ...(lola as PlayerCardDef[]),
+])
 
 /** Código de carta a partir del número de colección de la caja (p. ej. 20 → "12020"). */
 export const code = (position: number) => `12${String(position).padStart(3, '0')}`
@@ -88,6 +94,26 @@ export const STARTER_DECKS: Record<string, DeckList> = {
         .filter(([code]) => code !== '01000')
         .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
       '12104',
+    ],
+  },
+  // Lola Hayes: 8 cartas de Guardián, Buscador y Superviviente de la caja de 2026 (al menos 7
+  // de tres clases) y 11 neutrales, con sus 2 Improvisaciones y 2 Crisis de identidad.
+  lola: {
+    investigator: 6,
+    investigatorCode: '03006',
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      '03018',
+      '03018',
+      '03019',
+      '03019',
+      '12104',
+      ...['12016', '12019', '12020', '12021', '12022', '12023', '12024', '12025'],
+      ...['12031', '12032', '12033', '12034', '12036', '12037', '12038', '12039'],
+      ...['12073', '12074', '12075', '12076', '12077', '12078', '12079', '12080'],
+      ...['12086', '12088', '12089', '12090', '12094'].flatMap((c) => [c, c]),
+      '12087',
     ],
   },
   pete: {

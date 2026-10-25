@@ -46,6 +46,8 @@ import { EngineError } from './errors'
 import { attackDamage } from './combat'
 import { nextInt, shuffle } from './rng'
 import {
+  cardAllowed,
+  cardOfRole,
   currentAgendas,
   activeInvestigators,
   assetsCannotReady,
@@ -1727,8 +1729,26 @@ export function handle(state: GameState, message: Message): GameState {
         const { setAsideOpening: _done, ...rest } = i
         return { ...rest, deck: [...i.deck, ...aside] }
       })
-      if (aside.length === 0) return next
-      return push(next, { type: 'ShuffleDeck', investigator: investigator.id })
+      // "Después de robar tu mano inicial" (Lola Hayes).
+      const after =
+        investigatorBehavior(investigator.id)?.afterOpeningHand?.(next, investigator) ?? []
+      if (aside.length === 0) return push(next, ...after)
+      return push(next, { type: 'ShuffleDeck', investigator: investigator.id }, ...after)
+    }
+
+    case 'SetNextRoleDiscount':
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        nextRoleDiscount: { amount: message.amount, round: state.round },
+      }))
+
+    case 'SetRole': {
+      const investigator = getInvestigator(state, message.investigator)
+      return log(
+        updateInvestigator(state, investigator.id, (i) => ({ ...i, role: message.role })),
+        `log.role.${message.role}`,
+        { name: investigator.name },
+      )
     }
 
     case 'DiscardFromHand':
@@ -2196,9 +2216,13 @@ export function handle(state: GameState, message: Message): GameState {
       if (cost > investigator.resources) {
         return log(state, 'log.cannotPay', { name: investigator.name, card: def.name })
       }
+      // La siguiente carta de su papel consume el descuento de Improvisación.
+      const usedDiscount =
+        !!investigator.nextRoleDiscount && cardOfRole(message.code, investigator.role)
       const paid = log(
-        updateInvestigator(state, investigator.id, (i) => ({
+        updateInvestigator(state, investigator.id, ({ nextRoleDiscount, ...i }) => ({
           ...i,
+          ...(nextRoleDiscount && !usedDiscount ? { nextRoleDiscount } : {}),
           resources: i.resources - cost,
           hand: i.hand.filter((_, n) => n !== index),
           // Un evento va a la pila de descartes tras resolverse.
@@ -5086,6 +5110,7 @@ export function handle(state: GameState, message: Message): GameState {
               playerCardBehavior(code)?.playWhenFailing &&
               !playBlocked(state, investigator.id, 'event') &&
               !scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, investigator.id, code) &&
+              cardAllowed(state, investigator.id, code) &&
               cardCost(state, investigator.id, code) <= investigator.resources,
           )
         : []
@@ -5878,6 +5903,7 @@ function canCommit(
   zone: 'hand' | 'discard' = 'hand',
 ): boolean {
   if (test.committed.some((c) => playerCardBehavior(c.code)?.exclusiveCommit)) return false
+  if (!cardAllowed(state, by, code)) return false
   if (playerCardBehavior(code)?.exclusiveCommit && test.committed.length > 0) return false
   const def = playerCardDef(code)
   if (
@@ -5964,7 +5990,12 @@ function fastInvestigatorOptions(state: GameState, skipHandOf?: InvestigatorId):
     ...[
       ...active.flatMap((i) => investigatorBehavior(i.id)?.fastOptions?.(state, i) ?? []),
       ...Object.values(state.assets)
-        .filter((a) => active.some((i) => i.id === a.owner) && !assetsBlocked(state, a.owner))
+        .filter(
+          (a) =>
+            active.some((i) => i.id === a.owner) &&
+            !assetsBlocked(state, a.owner) &&
+            cardAllowed(state, a.owner, a.code),
+        )
         .flatMap((a) => playerCardBehavior(a.code)?.fastOptions?.(state, a) ?? []),
     ].filter((o) => !fastAbilitiesBlocked(state, o.investigator)),
   ].filter((o) => withinLimit(state, o.key, o.investigator, o.limit))
@@ -5977,6 +6008,7 @@ function testOptions(state: GameState, test: SkillTest): ReactionOption[] {
     .filter(
       (a) =>
         !assetsBlocked(state, a.owner) &&
+        cardAllowed(state, a.owner, a.code) &&
         (a.owner === investigator.id ||
           (playerCardBehavior(a.code)?.helpsOtherTests &&
             getInvestigator(state, a.owner).location === investigator.location &&
@@ -6005,7 +6037,7 @@ function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
   if (trigger.type === 'assetDefeated' && !state.assets[trigger.asset.id])
     assets.push(trigger.asset)
   const fromAssets = assets
-    .filter((a) => !assetsBlocked(state, a.owner))
+    .filter((a) => !assetsBlocked(state, a.owner) && cardAllowed(state, a.owner, a.code))
     .flatMap((a) => playerCardBehavior(a.code)?.reactions?.(state, trigger, a) ?? [])
   const fromHands = active.flatMap((i) =>
     [...new Set(i.hand)].flatMap((code) => {
@@ -6014,6 +6046,7 @@ function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
       if (
         cardCost(state, i.id, code) > i.resources ||
         treacheryBlocksPlay(state, i.id, type) ||
+        !cardAllowed(state, i.id, code) ||
         scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, i.id, code)
       )
         return []
