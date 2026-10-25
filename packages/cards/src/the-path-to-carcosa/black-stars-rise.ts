@@ -603,6 +603,8 @@ function resolutionMessages(state: GameState, outcome: ScenarioOutcome): Message
         ]),
       },
       recordNote('carcosaRealmsMerged'),
+      // Guía ES p. 27: los investigadores pierden la campaña (no caben sustitutos).
+      recordNote('campaignLost'),
       { type: 'DriveDefeatedInsane', all: true },
       endScenario(resolution(3)),
     ]
