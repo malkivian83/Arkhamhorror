@@ -12,7 +12,7 @@ epílogo** (décima entrega). Lola Hayes es jugable ([documento 86](86-investiga
 | III · Ecos del pasado          | Completo: preparación al azar, Pasadizos, Sr. Peabody, 6 conjuntos, R1–R4 y recompensas   | —                                                                                                                                       |
 | IV · El juramento inconfesable | Completo: preparación, recuerdos, Monstruos bajo el acto, Daniel, 6 conjuntos, R1–R3 e Interludio II | —                                                                                                                                       |
 | V · El Fantasma de la Verdad   | Completo: sueños, Dudas/Convicciones, El organista, 6 conjuntos, Lugares de París y R1–R3 | —                                                                                                                                       |
-| VI · La máscara pálida         | Completo: cuadrícula de Catacumbas, El hombre de la máscara pálida, Haruko, 4 conjuntos y R1–R2 | Ranuras de Caverna repleta de huesos (ver límites)
+| VI · La máscara pálida         | Completo: cuadrícula de Catacumbas, El hombre de la máscara pálida, Haruko, 4 conjuntos y R1–R2 | —
 | VII · Surgen estrellas negras  | Completo: planes dobles, dos versiones al azar, abadía, Ashleigh, 7 conjuntos y R1–R3 | —
 | VIII · Penumbrosa Carcosa      | Completo: tres versiones de Hastur, Historias en el reverso de los Lugares, Posesión, cordura en Carcosa, R1–R5 y epílogo | —
 

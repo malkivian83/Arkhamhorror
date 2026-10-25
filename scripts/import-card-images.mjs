@@ -2,14 +2,18 @@
 // Downloads official EN/ES card scans (and optionally a setup portrait) for the
 // given art codes, using the CDN paths of the reference application. Existing
 // manifest entries and historical inventory hashes are never rewritten.
-// Usage: node scripts/import-card-images.mjs 02003 02003b 02010 [--portrait 02003]
+// Usage: node scripts/import-card-images.mjs 02003 02003b 02010 [--portrait 02003] [--language en]
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { createHash } from 'node:crypto'
 import { parseArgs } from 'node:util'
 
 const { values, positionals: arts } = parseArgs({
   allowPositionals: true,
-  options: { portrait: { type: 'string', multiple: true, default: [] } },
+  options: {
+    portrait: { type: 'string', multiple: true, default: [] },
+    // Solo esos idiomas (sin escaneo español, la web muestra el inglés).
+    language: { type: 'string', multiple: true, default: ['en', 'es'] },
+  },
 })
 if (!arts.length && !values.portrait.length) {
   console.log('Usage: node scripts/import-card-images.mjs <art codes...> [--portrait code]')
@@ -27,7 +31,7 @@ const download = async (source) => {
   return Buffer.from(await response.arrayBuffer())
 }
 const evidence = []
-for (const language of ['en', 'es']) {
+for (const language of values.language) {
   await mkdir(`apps/web/public/local-assets/cards/${language}`, { recursive: true })
   for (const art of arts) {
     if (manifest[language][art]) {
