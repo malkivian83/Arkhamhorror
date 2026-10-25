@@ -1,4 +1,4 @@
-import { printingsOf } from '@lcg/cards'
+import { DIM_CARCOSA_STORIES, printingsOf } from '@lcg/cards'
 import { playerCardDef } from '@lcg/engine'
 import { ref } from 'vue'
 import imageManifest from './cardImageManifest.json'
@@ -47,13 +47,24 @@ const LETTERED = new Set([
   '03276b',
   '03279a',
   '03279b',
+  // Penumbrosa Carcosa: versiones del acto 2, y Lugares e Historias de sus reversos.
+  '03322a',
+  '03323a',
+  '03325a',
+  ...['03326', '03327', '03328', '03329'].flatMap((code) =>
+    ['a', 'b', 'c', 'd', 'e', 'f'].map((side) => `${code}${side}`),
+  ),
 ])
 
+/** Lugares de Penumbrosa Carcosa: su reverso es una carta de Historia con otro código. */
+const STORY_BACKS: Record<string, string> = DIM_CARCOSA_STORIES
+
 /** Caras `a`/`b` de una misma carta (Constance 03076a/b, Daniel 03182a/b, El organista 03221a/b). */
-const A_SIDES = new Set(['03076a', '03182a', '03221a'])
+const A_SIDES = new Set(['03076a', '03182a', '03221a', '03321a'])
 
 /** Spanish image, then English image, both from our local asset inventory. */
 export function cardImages(code: string, back = false, locale = scanLocale.value): string[] {
+  if (back && STORY_BACKS[code]) return cardImages(STORY_BACKS[code], false, locale)
   if (A_SIDES.has(code)) {
     const art = back ? code.replace(/a$/, 'b') : code
     return [locale === 'es' ? LOCAL_IMAGES.es[art] : undefined, LOCAL_IMAGES.en[art]].filter(
@@ -61,8 +72,8 @@ export function cardImages(code: string, back = false, locale = scanLocale.value
     )
   }
   // Copias distintas con letra (El Extranjero 03047a–c): `03047b` es una carta, no un reverso.
-  const lettered = LETTERED.has(code.replace(/(?<=[a-d])b$/, ''))
-  const match = lettered ? /^(\d{5}[a-d])(b)?$/.exec(code) : /^(\d{5})(b)?$/.exec(code)
+  const lettered = LETTERED.has(code.replace(/(?<=[a-f])b$/, ''))
+  const match = lettered ? /^(\d{5}[a-f])(b)?$/.exec(code) : /^(\d{5})(b)?$/.exec(code)
   if (!match) return []
   const base = match[1]!
   const side = match[2] ? !back : back
@@ -95,8 +106,8 @@ export function cardImage(code: string, back = false): string | null {
 
 /** Locally generated 192px image for small cards; the zoom always uses the original. */
 export function cardThumbnail(original: string): string | null {
-  return /^\/local-assets\/cards\/(en|es)\/\d{5}[a-d]?b?\.(avif|jpg)$/.test(original)
-    ? original.replace(/\/(\d{5}[a-d]?b?)\.(avif|jpg)$/, '/thumbs/$1.webp')
+  return /^\/local-assets\/cards\/(en|es)\/\d{5}[a-f]?b?\.(avif|jpg)$/.test(original)
+    ? original.replace(/\/(\d{5}[a-f]?b?)\.(avif|jpg)$/, '/thumbs/$1.webp')
     : null
 }
 

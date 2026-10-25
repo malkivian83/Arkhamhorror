@@ -242,7 +242,10 @@ const sortedBag = computed(() =>
         }}</span>
       </button>
       <TableTarget :target="`story:${story.code}`"
-        ><span class="story-clues"
+        ><span v-if="story.health !== undefined" class="story-clues"
+          >{{ t('table.damage') }} <strong>{{ story.damage ?? 0 }}/{{ story.health }}</strong
+          ><template v-if="story.exhausted"> · {{ t('table.exhausted') }}</template></span
+        ><span v-else class="story-clues"
           >{{ t('table.clues') }} <strong>{{ story.clues }}</strong></span
         ></TableTarget
       >

@@ -14,6 +14,7 @@ const references: Record<string, { code: string; name: string }> = {
   'a-phantom-of-truth': { code: '03200', name: 'A Phantom of Truth' },
   'the-pallid-mask': { code: '03240', name: 'The Pallid Mask' },
   'black-stars-rise': { code: '03274', name: 'Black Stars Rise' },
+  'dim-carcosa': { code: '03316', name: 'Dim Carcosa' },
 }
 
 export function scenarioReference(state: Pick<GameState, 'scenarioId' | 'difficulty'>) {

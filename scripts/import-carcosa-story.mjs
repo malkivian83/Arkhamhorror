@@ -107,6 +107,12 @@ for (const locale of ['en', 'es']) {
   texts['story.bsr.ashleigh'] = text(stars.intro.ashleighsInformation)
   for (const n of [1, 2, 3])
     texts[`story.bsr.resolution${n}`] = text(stars.resolutions[`resolution${n}`].body)
+  // Penumbrosa Carcosa: introducciones, resoluciones y el epílogo de la campaña.
+  const dim = JSON.parse(readFileSync(join(source, 'scenarios/dimCarcosa.json'), 'utf8'))
+  for (const key of ['intro1', 'intro2']) texts[`story.dim.${key}`] = text(dim.intro[key])
+  for (const n of [1, 2, 3, 4, 5])
+    texts[`story.dim.resolution${n}`] = text(dim.resolutions[`resolution${n}`].body)
+  texts['story.dim.epilogue'] = text(base.epilogue)
   writeFileSync(path, JSON.stringify(texts, null, 2) + '\n')
-  console.log(`${locale}: relatos de los escenarios I a VII importados.`)
+  console.log(`${locale}: relatos de los escenarios I a VIII y el epílogo importados.`)
 }

@@ -55,7 +55,7 @@ describe('imágenes españolas de referencia y alternativas', () => {
     for (const paths of Object.values(manifest))
       for (const original of Object.values(paths)) {
         const thumbnail = cardThumbnail(original)
-        expect(thumbnail).toMatch(/^\/local-assets\/cards\/(en|es)\/thumbs\/\d{5}[a-d]?b?\.webp$/)
+        expect(thumbnail).toMatch(/^\/local-assets\/cards\/(en|es)\/thumbs\/\d{5}[a-f]?b?\.webp$/)
         expect(thumbnail).not.toBe(original)
         expect(
           existsSync(fileURLToPath(new URL(`../../public${thumbnail}`, import.meta.url))),
@@ -70,7 +70,7 @@ describe('imágenes españolas de referencia y alternativas', () => {
   it('el manifiesto solo contiene archivos presentes que se sirven desde nuestra web', () => {
     for (const paths of Object.values(manifest))
       for (const path of Object.values(paths)) {
-        expect(path).toMatch(/^\/local-assets\/cards\/(en|es)\/\d{5}[a-d]?b?\.(avif|jpg)$/)
+        expect(path).toMatch(/^\/local-assets\/cards\/(en|es)\/\d{5}[a-f]?b?\.(avif|jpg)$/)
         expect(existsSync(fileURLToPath(new URL(`../../public${path}`, import.meta.url)))).toBe(
           true,
         )
@@ -88,8 +88,9 @@ describe('imágenes españolas de referencia y alternativas', () => {
     const rendered = new Set(RENDERED_PLAYER_CARD_CODES)
     for (let n = 1; n <= 62; n++) codes.add(`71${String(n).padStart(3, '0')}`)
     for (const code of codes) {
-      // Incluye las copias con letra (El Extranjero 03047a–c, Susurros 03084a–d).
-      if (/^\d{5}[a-d]?b?$/.test(code))
+      // Incluye las copias con letra (El Extranjero 03047a–c, Susurros 03084a–d, Penumbrosa
+      // Carcosa 03327a–f).
+      if (/^\d{5}[a-f]?b?$/.test(code))
         for (const locale of ['en', 'es'])
           expect(cardImages(code, false, locale).length, `${locale}/${code}`).toBeGreaterThan(0)
       if (rendered.has(code)) {

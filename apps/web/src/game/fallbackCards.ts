@@ -9,6 +9,9 @@ import {
   thePallidMask,
   blackStarsRise,
   BLACK_STARS_RISE_CODES,
+  dimCarcosa,
+  DIM_CARCOSA_CODES,
+  DIM_CARCOSA_STORIES,
   spreadingFlames,
   smokeAndMirrors,
   queenOfAsh,
@@ -164,6 +167,18 @@ export function fallbackCards(locale: string): LocalizedCard[] {
         blackStarsRise({ difficulty: 'standard', seed, version }),
       ),
     ),
+    // Cada versión del acto 2 (por las Dudas y Convicciones) y todas las copias de Lugares.
+    ...[
+      {},
+      { carcosaDoubt: '6', carcosaConviction: '1' },
+      { carcosaDoubt: '1', carcosaConviction: '6' },
+    ].map((values, seed) =>
+      dimCarcosa({
+        difficulty: 'standard',
+        seed,
+        log: { notes: [], crossedOut: [], values, investigators: {}, chaosTokens: [] },
+      }),
+    ),
     ...Array.from({ length: 12 }, (_, seed) =>
       smokeAndMirrors({
         seed,
@@ -263,6 +278,27 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     name: 'A Phantom of Truth',
     real_name: 'A Phantom of Truth',
     type_code: 'scenario',
+  })
+  put({
+    code: '03316',
+    name: 'Dim Carcosa',
+    real_name: 'Dim Carcosa',
+    type_code: 'scenario',
+  })
+  // Penumbrosa Carcosa: Historias del reverso de los Lugares, La máscara pálida (03321b) y
+  // Hastur (El Rey de Amarillo), que está junto al acto.
+  for (const code of Object.values(DIM_CARCOSA_STORIES))
+    put({ code, name: code, real_name: code, type_code: 'story' })
+  put({
+    code: DIM_CARCOSA_CODES.hasturKingInYellow,
+    name: 'Hastur',
+    real_name: 'Hastur',
+    type_code: 'enemy',
+    enemy_fight: 4,
+    enemy_evade: 2,
+    health: 7,
+    health_per_investigator: true,
+    enemy_horror: 2,
   })
   put({
     code: '03274',

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {
+  activeMembers,
   campaignDefinition,
   canPlayNext,
   currentScenario,
@@ -39,6 +40,8 @@ const definition = computed(() => (campaign.value ? campaignDefinition(campaign.
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
 const next = computed(() => (campaign.value ? currentScenario(campaign.value) : null))
 const playable = computed(() => !!campaign.value && canPlayNext(campaign.value))
+/** Nadie puede seguir (todos muertos o locos): la campaña se ha perdido. */
+const lost = computed(() => !!campaign.value && activeMembers(campaign.value).length === 0)
 
 /** Cartas cuyo portador dejó la campaña y esperan a que el grupo elija otro. */
 const transfers = computed(() => (campaign.value ? pendingTransfers(campaign.value) : []))
@@ -303,6 +306,7 @@ function abandon() {
       <SiteAction v-if="game.state" icon="→" @click="router.push('/game')">
         {{ t('campaign.resumeScenario') }}
       </SiteAction>
+      <p v-else-if="lost" class="finished">{{ t('campaign.lost') }}</p>
       <template v-else-if="next">
         <SiteAction icon="→" :disabled="!playable" @click="playNext">
           {{ t('campaign.play', { scenario: scenarioName(next) }) }}

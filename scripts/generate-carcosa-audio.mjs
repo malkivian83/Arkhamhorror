@@ -84,6 +84,14 @@ const keys = {
   'story.bsr.resolution1': 'black-stars-rise-resolution1.mp3',
   'story.bsr.resolution2': 'black-stars-rise-resolution2.mp3',
   'story.bsr.resolution3': 'black-stars-rise-resolution3.mp3',
+  'story.dim.intro1': 'dim-carcosa-intro1.mp3',
+  'story.dim.intro2': 'dim-carcosa-intro2.mp3',
+  'story.dim.resolution1': 'dim-carcosa-resolution1.mp3',
+  'story.dim.resolution2': 'dim-carcosa-resolution2.mp3',
+  'story.dim.resolution3': 'dim-carcosa-resolution3.mp3',
+  'story.dim.resolution4': 'dim-carcosa-resolution4.mp3',
+  'story.dim.resolution5': 'dim-carcosa-resolution5.mp3',
+  'story.dim.epilogue': 'dim-carcosa-epilogue.mp3',
 }
 const settings = {
   model_id: 'eleven_multilingual_v2',

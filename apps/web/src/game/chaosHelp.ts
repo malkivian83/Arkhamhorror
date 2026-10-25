@@ -22,6 +22,7 @@ export function chaosHelp(
     'a-phantom-of-truth': carcosaCards[locale === 'es' ? 'es' : 'en']['03200'],
     'the-pallid-mask': carcosaCards[locale === 'es' ? 'es' : 'en']['03240'],
     'black-stars-rise': carcosaCards[locale === 'es' ? 'es' : 'en']['03274'],
+    'dim-carcosa': carcosaCards[locale === 'es' ? 'es' : 'en']['03316'],
   }
   const card = official[state.scenarioId]
   if (card) {

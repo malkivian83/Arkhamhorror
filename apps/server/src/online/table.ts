@@ -283,7 +283,9 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
             'hidden',
           ])
     }),
-    stories: entities(g.stories ?? {}, (s) => pick(s, ['code', 'name', 'clues'])),
+    stories: entities(g.stories ?? {}, (s) =>
+      pick(s, ['code', 'name', 'clues', 'damage', 'health', 'exhausted']),
+    ),
     ...(g.campaignLog
       ? {
           campaignLog: {

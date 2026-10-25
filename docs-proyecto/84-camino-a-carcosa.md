@@ -2,11 +2,8 @@
 
 ## Estado actual
 
-**7 de 8 escenarios jugables: I · Se cierra el telón, II · El Último Rey (con el
-Interludio I), III · Ecos del pasado, IV · El juramento inconfesable (con el Interludio
-II), V · El Fantasma de la Verdad, VI · La máscara pálida y VII · Surgen estrellas
-negras** (novena entrega). Al terminar el escenario VII no hay un octavo disponible. El
-escenario VIII sigue sin `build`.
+**Campaña completa: los 8 escenarios son jugables, con los Interludios I y II y el
+epílogo** (décima entrega). Queda pendiente Lola Hayes (escenario I).
 
 | Escenario                      | Implementado                                                                            | Pendiente para jugar                                                                                                                    |
 | ------------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -17,10 +14,9 @@ escenario VIII sigue sin `build`.
 | V · El Fantasma de la Verdad   | Completo: sueños, Dudas/Convicciones, El organista, 6 conjuntos, Lugares de París y R1–R3 | —                                                                                                                                       |
 | VI · La máscara pálida         | Completo: cuadrícula de Catacumbas, El hombre de la máscara pálida, Haruko, 4 conjuntos y R1–R2 | Ranuras de Caverna repleta de huesos (ver límites)
 | VII · Surgen estrellas negras  | Completo: planes dobles, dos versiones al azar, abadía, Ashleigh, 7 conjuntos y R1–R3 | —
-| VIII · Penumbrosa Carcosa      | Nombre y posición en la campaña                                                         | Implementación íntegra, final de campaña y epílogo                                                                                      |
+| VIII · Penumbrosa Carcosa      | Completo: tres versiones de Hastur, Historias en el reverso de los Lugares, Posesión, cordura en Carcosa, R1–R5 y epílogo | —
 
-El epílogo y la narración del escenario VIII tampoco están implementados. Las dependencias compartidas se enumeran más abajo; no se
-ha auditado todavía cada carta de esos siete escenarios.
+Las dependencias compartidas se enumeran más abajo.
 
 ## Primera entrega: base de campaña
 
@@ -496,6 +492,62 @@ cartas de Carcosa), 120 escaneos EN/ES con miniaturas
 en escritorio y móvil y 5 narraciones nuevas con Carmelo (introducción, Información de
 Ashleigh y resoluciones).
 
+## Décima entrega: Penumbrosa Carcosa y epílogo
+
+Escenario en `the-path-to-carcosa/dim-carcosa.ts`. Fuentes: guía ES pp. 28–32 (texto
+extraído del PDF), cartas de la referencia y `DimCarcosa.hs` con sus cartas como
+contraste; pistas por investigador y estadísticas de Hastur y los enemigos comprobadas en
+los escaneos.
+
+- Motor: los investigadores no son derrotados por el horror en este escenario
+  (`noHorrorDefeat`); nuevos `enemyWouldBeDefeated`, `cannotPlay`, `tokenOverride`,
+  `testOptions` en traiciones (comprometer desde la mano), disparador `afterEnemyDamaged`
+  y `KillInvestigators` para un investigador. La vista previa de una ficha respeta su
+  fallo automático.
+- Preparación: Introducción 1 o 2 y Lugar inicial según el camino abierto; versión del acto
+  2 por las Dudas y Convicciones (empate con 6 o más: elige el jefe); una copia al azar de
+  cada Lugar repetido (las demás, aparte); todos los Lugares revelados con sus pistas;
+  perdición en el plan 1a por las marcas de Persiguiendo al Extranjero; horror directo
+  igual a la mitad de la cordura; El hombre de la máscara pálida sale del mazo de su
+  portador y queda aparte.
+- Actos: En la Perdida Carcosa (2 pistas por investigador; el hombre aparece en el palacio),
+  En busca del Extranjero v. I (el jefe gasta 3 acciones; La máscara pálida, −2 de cordura,
+  y Hastur, El Rey harapiento), v. II (derrotado con su capacidad; Hastur, El Rey de
+  Amarillo, junto al acto, sin Lugar: ataca a todos al empezar la fase de Enemigos y se
+  agota con Voluntad) y v. III (derrotado con daño; Hastur, Señor de Carcosa) y El Rey
+  harapiento ([fast] sin pistas en tu Lugar: retirar las pistas de los investigadores y
+  dar la vuelta al Lugar; Hastur derrotado → R1, R2 o R3 según su versión).
+- Historias del reverso de los 13 Lugares: daño a Hastur (agotarlo y desenfrentarlo), curar
+  horror, daño a otro enemigo, pruebas, La caída (negarse o empujarla) y El final de Hastur
+  ("conocéis el secreto"); las que sustituyen el Lugar ponen otra copia apartada con todo lo
+  que había en él y sus pistas, y las demás ya no se pueden volver a girar. El palacio
+  exige 5 de daño por investigador sobre Hastur.
+- Planes: Hastur no puede ser derrotado (salvo en el plan 3 con el secreto); los planes 1 y
+  2 avanzan con 3 y 5 de daño por investigador sobre él; +1/+2 de combate; reverso 1 (salir
+  del trance con una prueba, 2 horror o desmayarse con 1 perdición), reverso 2 (Bestia de
+  Aldebarán y descartes al mazo) y reverso 3 (R4 o R5 según las Convicciones y Dudas).
+- Fichas, Lugares (sin Aliados, sin cartas Rápido, última pista con daño o acción), Hastur
+  (presa, horror por encima de la cordura con 1 daño más, fichas convertidas en fallo
+  automático sin cordura restante), Criatura salida de Demhe, Ser alado, Maldición funesta,
+  Reino de la locura, El último acto y las tres Posesiones (Oculta; eliminado y muerto con
+  más del doble de horror que de cordura).
+- Resoluciones: R1–R3 con su trauma, 5 de experiencia adicional, investigadores poseídos y
+  victoria; R4 y R5: todos enloquecen y se pierde la campaña. Epílogo tras la victoria (solo
+  para los poseídos, si los hay). La web indica la campaña perdida en lugar de
+  "Próximamente".
+
+Diferencias y límites: El Rey de Amarillo se muestra como carta junto al acto con su daño;
+su ataque se resuelve como horror que puede asignarse a los apoyos. "Cualquier
+investigador" de La locura se enrosca se elige entre todos. El registro nombra las Historias
+en inglés.
+
+Validación: 71 pruebas nuevas (preparación, cordura, actos y versiones de Hastur, planes,
+Historias, fichas, Lugares, encuentros, resoluciones, final de la campaña y 40 partidas
+aleatorias). Presentación: catálogo EN/ES (285 cartas de Carcosa), 110 escaneos EN/ES con
+miniaturas ([evidencia](evidencias/imagenes-dim-carcosa.json)), Hastur junto al acto
+revisado en la mesa y 8 narraciones nuevas con Carmelo (introducciones, resoluciones y
+epílogo).
+
 ## Dependencias posteriores
 
 - Oculto: secreto por investigador en online, cuenta para tamaño de mano,
@@ -548,7 +600,10 @@ Narración del escenario VI: 6 MP3 más con la misma voz y ajustes (69 en total)
 
 Narración del escenario VII: 5 MP3 más con la misma voz y ajustes (74 en total).
 
-Siguiente bloque: escenario VIII (Penumbrosa Carcosa) y el epílogo. Pendiente: Lola Hayes (escenario I).
+Narración del escenario VIII y el epílogo: 8 MP3 más con la misma voz y ajustes (82 en
+total).
+
+Siguiente bloque: revisión de la campaña completa. Pendiente: Lola Hayes (escenario I).
 
 Para retomar en otro ordenador, actualizar `main`: el PDF ya está versionado en
 `docs-proyecto/reglas/`. La aplicación de referencia sigue siendo una copia externa

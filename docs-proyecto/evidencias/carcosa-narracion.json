@@ -604,6 +604,70 @@
       "inputHash": "6c54118ef98d8cb78fb86972643e9aece367c19200684e6d6142fc380d080bf9",
       "sha256": "f2ef8a62f0575a67d2b069e935443303c3d2fb03f91bbe5cde3220dfb011cb66",
       "bytes": 860203
+    },
+    {
+      "key": "story.dim.intro1",
+      "file": "dim-carcosa-intro1.mp3",
+      "characters": 667,
+      "inputHash": "7263589621523255046739bc6af6d7023d79abe793f1fc47d74d64fc646e7a06",
+      "sha256": "372e12aeb660319c6105e3f5e287f021c0d772decf225652d6d63bedcf17c549",
+      "bytes": 899491
+    },
+    {
+      "key": "story.dim.intro2",
+      "file": "dim-carcosa-intro2.mp3",
+      "characters": 598,
+      "inputHash": "18c0e0110f0dfe686c8a8254f38607e58d81e4a21cdf98029cde8c240b0730ab",
+      "sha256": "d5a406baa049319d1e80dafb476b95b4f30e4a750dd89ac76d1fca8e3d7c5aa5",
+      "bytes": 805868
+    },
+    {
+      "key": "story.dim.resolution1",
+      "file": "dim-carcosa-resolution1.mp3",
+      "characters": 469,
+      "inputHash": "55d2f59cd38ddbd6a2d9a9920641d5e78a938be49f1746e55701f2a97af385a0",
+      "sha256": "03aa76e4c076715c65e55340bb5c7282df9568f3d39664d26baec520d01c91f4",
+      "bytes": 636176
+    },
+    {
+      "key": "story.dim.resolution2",
+      "file": "dim-carcosa-resolution2.mp3",
+      "characters": 1123,
+      "inputHash": "df4a22f5933b672c63aa82c0c569133e62543a97ce218bd460810f6041b7acfd",
+      "sha256": "01085956fe94abd8d4f806a68b25e6db0762a1ca54e692d7ece2ee845eb3f42a",
+      "bytes": 1471677
+    },
+    {
+      "key": "story.dim.resolution3",
+      "file": "dim-carcosa-resolution3.mp3",
+      "characters": 887,
+      "inputHash": "4f2a93bea0160dc9d3d3afdc0f87ad8b78fa750e0116158bc0988eb494a71ff2",
+      "sha256": "5f48fbfab32509b4c500f5836deb47382136ca27909ca318df7729bb337e6ccb",
+      "bytes": 1143997
+    },
+    {
+      "key": "story.dim.resolution4",
+      "file": "dim-carcosa-resolution4.mp3",
+      "characters": 631,
+      "inputHash": "2f6ca0b16397e769004a73ceb47d98a913f664ba522d815581398d0dd491d19f",
+      "sha256": "d66b39fc7d82ca339996232830699a3a1ab3b324a3094e9316ad726bac49dafe",
+      "bytes": 826766
+    },
+    {
+      "key": "story.dim.resolution5",
+      "file": "dim-carcosa-resolution5.mp3",
+      "characters": 655,
+      "inputHash": "bc3eccf05108ab1395761d5fe45d09b232580807d313f31d0f9b25dbe0d3da1c",
+      "sha256": "ebcf8679f5f693dae4e70334565c22ec8eb939b0ae112d2a0efb4c9ad8ac8a36",
+      "bytes": 871070
+    },
+    {
+      "key": "story.dim.epilogue",
+      "file": "dim-carcosa-epilogue.mp3",
+      "characters": 833,
+      "inputHash": "5c0442df810532e2d3d6b39650574d73f6d4890b4f7df3da9d363ac8597c7112",
+      "sha256": "5f3b7ac4bec5a044ed1eab124698cc7ab0c801adfb1ff4976c72c8e839d3fc65",
+      "bytes": 1067510
     }
   ]
 }
