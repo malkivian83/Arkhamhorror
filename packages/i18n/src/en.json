@@ -273,6 +273,9 @@
       "whoTests": "Which investigator takes the test?",
       "coils": "Madness Coils: the investigators must decide",
       "realm": "Realm of Madness: discard cards with a total printed cost of at least {amount}"
+    },
+    "lola": {
+      "role": "Choose a role"
     }
   },
   "action": {
@@ -533,6 +536,17 @@
         "horror": "This can’t be real: each investigator takes 2 horror",
         "faint": "Faint: advance and place 1 doom on agenda 2a"
       }
+    },
+    "lola": {
+      "role": {
+        "survivor": "Role: Survivor",
+        "guardian": "Role: Guardian",
+        "seeker": "Role: Seeker",
+        "rogue": "Role: Rogue",
+        "mystic": "Role: Mystic",
+        "neutral": "Role: Neutral"
+      },
+      "keepRole": "Keep your role"
     }
   },
   "phase": {
@@ -830,6 +844,9 @@
       "commitTraitorous": "Commit Possession (Traitorous): this test automatically fails",
       "torturous": "Spend 5 resources: discard Possession (Torturous)",
       "murderous": "Deal 2 damage to {name}: discard Possession (Murderous)"
+    },
+    "lola": {
+      "switchRole": "{name}: switch your role"
     }
   },
   "log": {
@@ -929,6 +946,14 @@
     },
     "dim": {
       "flipped": "{name} flips {location} over: {story}."
+    },
+    "role": {
+      "survivor": "{name} takes the Survivor role.",
+      "guardian": "{name} takes the Guardian role.",
+      "seeker": "{name} takes the Seeker role.",
+      "rogue": "{name} takes the Rogue role.",
+      "mystic": "{name} takes the Mystic role.",
+      "neutral": "{name} takes the Neutral role."
     }
   },
   "table": {
@@ -2108,7 +2133,8 @@
       "unknownCard": "Unknown card: {card}.",
       "rewardNotEarned": "Reward not earned: {card}",
       "unimplemented": "{card} is not implemented yet. A game cannot start with this card.",
-      "offClassLimit": "At most {n} level 0 cards from other classes."
+      "offClassLimit": "At most {n} level 0 cards from other classes.",
+      "classMinimum": "At least {min} cards from each of {count} different classes."
     }
   },
   "record": {
@@ -2986,7 +3012,10 @@
       "01050": "Fast. Play only during your turn.\nDisengage from each enemy engaged with you and move to a revealed location with no enemies.",
       "02147": "You have 1 additional hand slot, which can only be used to hold a Weapon asset.",
       "03059": "Aloof. Spawn at the location farthest from all investigators. Action: investigate your location with +2 shroud. If successful, defeat The Man in the Pallid Mask instead of discovering clues.",
-      "courage": "Facedown card from the top of your deck (Constance’s Information): Courage asset with cost 0, no icons and 2 sanity. Discard it if it leaves play."
+      "courage": "Facedown card from the top of your deck (Constance’s Information): Courage asset with cost 0, no icons and 2 sanity. Discard it if it leaves play.",
+      "03006": "Forced – After you draw your opening hand: choose a role (Survivor, Guardian, Seeker, Rogue, Mystic or Neutral). You can only play, commit or trigger abilities on Neutral cards or cards of your role. [fast]: Switch your role (once per round). [elder_sign]: +2; you may switch roles.",
+      "03018": "Lola Hayes deck only. Fast. Play only during your turn. Switch your role. Until the end of your turn, the next card of your role you play costs 3 less. Draw 1 card.",
+      "03019": "Revelation – Discard all cards you control of your current role. Then discard the top card of your deck and switch your role to its class (neutral if it is a weakness)."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -2997,7 +3026,8 @@
       "12172": "Elokoss appears, Fire enters the encounter deck and Sluice Control becomes available.",
       "12173": "Defeating Elokoss leads to resolution one.",
       "02005": "30-card deck: Survivor and Neutral level 0–5, plus up to five level 0 cards from other classes. Requires Duke, Wracked by Nightmares and a random basic weakness.",
-      "02003": "30-card deck: Rogue and Neutral level 0–5, plus up to five level 0 cards from other classes. Requires Jenny's Twin .45s, Searching for Izzie and a random basic weakness."
+      "02003": "30-card deck: Rogue and Neutral level 0–5, plus up to five level 0 cards from other classes. Requires Jenny's Twin .45s, Searching for Izzie and a random basic weakness.",
+      "03006": "Deck size 35: Survivor, Guardian, Seeker, Rogue and Mystic cards level 0–3 and Neutral cards level 0–5, with at least 7 cards from each of 3 different classes. Requires 2 Improvisation, 2 Crisis of Identity and 1 random basic weakness."
     },
     "victory": "Victory {n}",
     "names": {
@@ -3477,7 +3507,10 @@
       "01050": "Elusive",
       "02147": "Bandolier",
       "03059": "The Man in the Pallid Mask",
-      "courage": "Courage"
+      "courage": "Courage",
+      "03006": "Lola Hayes",
+      "03018": "Improvisation",
+      "03019": "Crisis of Identity"
     }
   },
   "account": {
@@ -3812,7 +3845,8 @@
     "fastWindow": "It is fast: play it during your turn or when the game opens a window for fast effects.",
     "actionTiming": "It is played as an action during your turn.",
     "noActions": "You have no actions left this turn.",
-    "location": "You cannot play this card at your location"
+    "location": "You cannot play this card at your location",
+    "role": "Lola Hayes can only use Neutral cards or cards of her role."
   },
   "chaosTokenName": {
     "skull": "the Skull token",
@@ -3821,5 +3855,16 @@
     "elderThing": "the Elder Thing token",
     "elderSign": "the Elder Sign token",
     "autoFail": "the Tentacle token"
+  },
+  "investigator": {
+    "role": "Role: {role}",
+    "roles": {
+      "survivor": "Survivor",
+      "guardian": "Guardian",
+      "seeker": "Seeker",
+      "rogue": "Rogue",
+      "mystic": "Mystic",
+      "neutral": "Neutral"
+    }
   }
 }

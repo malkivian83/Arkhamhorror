@@ -1,4 +1,10 @@
-import { createGame, getInvestigator, type EnemyCard, type GameState } from '@lcg/engine'
+import {
+  createGame,
+  getInvestigator,
+  playerCardDef,
+  type EnemyCard,
+  type GameState,
+} from '@lcg/engine'
 import { choose, during, labels, withBag } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { CODES, spreadingFlames } from '../brethren-of-ash/spreading-flames'
@@ -48,9 +54,13 @@ describe('caja básica 2026: datos', () => {
     ])
   })
 
-  it('cada mazo inicial tiene 30 cartas, su carta exclusiva y 2 debilidades', () => {
+  it('cada mazo inicial tiene su tamaño, sus cartas exclusivas y su debilidad básica', () => {
     for (const key of Object.keys(STARTER_DECKS)) {
-      expect(starterInvestigator(key).deck, key).toHaveLength(33)
+      const investigator = playerCardDef(starterInvestigator(key).id)!
+      // 30 + 2 exclusivas + 1 debilidad básica; Lola Hayes: 35 + 4 + 1.
+      expect(starterInvestigator(key).deck, key).toHaveLength(
+        (investigator.deckSize ?? 30) + (investigator.signatures?.length ?? 0) + 1,
+      )
     }
   })
 

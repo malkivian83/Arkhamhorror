@@ -273,6 +273,9 @@
       "whoTests": "¿Qué investigador realiza la prueba?",
       "coils": "La locura se enrosca: los investigadores deben decidir",
       "realm": "Reino de la locura: descarta cartas con un coste impreso total de al menos {amount}"
+    },
+    "lola": {
+      "role": "Elige un papel"
     }
   },
   "action": {
@@ -533,6 +536,17 @@
         "horror": "Esto no puede ser real: cada investigador recibe 2 horror",
         "faint": "Desmayarse: avanzar y colocar 1 perdición en el plan 2a"
       }
+    },
+    "lola": {
+      "role": {
+        "survivor": "Papel: Superviviente",
+        "guardian": "Papel: Guardián",
+        "seeker": "Papel: Buscador",
+        "rogue": "Papel: Rebelde",
+        "mystic": "Papel: Místico",
+        "neutral": "Papel: Neutral"
+      },
+      "keepRole": "Mantener el papel"
     }
   },
   "phase": {
@@ -830,6 +844,9 @@
       "commitTraitorous": "Comprometer Posesión (Traicionero): esta prueba fracasa automáticamente",
       "torturous": "Gastar 5 recursos: descartar Posesión (Tortuoso)",
       "murderous": "Infligir 2 daño a {name}: descartar Posesión (Homicida)"
+    },
+    "lola": {
+      "switchRole": "{name}: cambia tu papel"
     }
   },
   "log": {
@@ -929,6 +946,14 @@
     },
     "dim": {
       "flipped": "{name} da la vuelta a {location}: {story}."
+    },
+    "role": {
+      "survivor": "{name} adopta el papel superviviente.",
+      "guardian": "{name} adopta el papel guardián.",
+      "seeker": "{name} adopta el papel buscador.",
+      "rogue": "{name} adopta el papel rebelde.",
+      "mystic": "{name} adopta el papel místico.",
+      "neutral": "{name} adopta el papel neutral."
     }
   },
   "table": {
@@ -2108,7 +2133,8 @@
       "unknownCard": "Carta desconocida: {card}.",
       "rewardNotEarned": "Recompensa no ganada: {card}",
       "unimplemented": "{card} aún no está implementada. No se puede iniciar la partida con ella.",
-      "offClassLimit": "Máximo {n} cartas de otras clases de nivel 0."
+      "offClassLimit": "Máximo {n} cartas de otras clases de nivel 0.",
+      "classMinimum": "Al menos {min} cartas de cada una de {count} clases distintas."
     }
   },
   "record": {
@@ -2986,7 +3012,10 @@
       "01050": "Rápido. Juega esta carta sólo durante tu turno.\nDeja de estar enfrentado a cada Enemigo enfrentado a ti y muévete a un Lugar revelado que no tenga Enemigos.",
       "02147": "Tienes 1 espacio de mano adicional que sólo puede usarse para un Apoyo Arma.",
       "03059": "Indiferente. Aparece en el Lugar más alejado de todos los investigadores. Acción: investiga tu Lugar con +2 al velo. Si tienes éxito, derrota a El hombre de la máscara pálida en lugar de descubrir pistas.",
-      "courage": "Carta boca abajo de la parte superior de tu mazo (Información de Constance): Apoyo Coraje con coste 0, sin iconos y 2 de cordura. Se descarta si abandona el juego."
+      "courage": "Carta boca abajo de la parte superior de tu mazo (Información de Constance): Apoyo Coraje con coste 0, sin iconos y 2 de cordura. Se descarta si abandona el juego.",
+      "03006": "Obligado – Después de robar tu mano inicial: elige un papel (Superviviente, Guardián, Buscador, Rebelde, Místico o neutral). Solo puedes jugar, asignar o activar capacidades de cartas neutrales o de tu papel. [fast]: cambia tu papel (una vez por ronda). [elder_sign]: +2; puedes cambiar de papel.",
+      "03018": "Solo para el mazo de Lola Hayes. Rápido. Juégala solo durante tu turno. Cambia tu papel. Hasta el final del turno, la siguiente carta de tu papel que juegues cuesta 3 menos. Roba 1 carta.",
+      "03019": "Revelación – Descarta todas las cartas de tu papel actual que controles. Después descarta la primera carta de tu mazo y cambia tu papel a su clase (neutral si es una debilidad)."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -2997,7 +3026,8 @@
       "12172": "Aparece Elokoss, Fire entra en los encuentros y queda disponible Sluice Control.",
       "12173": "Derrotar a Elokoss conduce a la resolución uno.",
       "02005": "Mazo de 30 cartas: Superviviente y neutral de nivel 0–5, más hasta cinco cartas de nivel 0 de otras clases. Requiere Duke, Roto por las pesadillas y una debilidad básica aleatoria.",
-      "02003": "Mazo de 30 cartas: Rebelde y neutral de nivel 0–5, más hasta cinco cartas de nivel 0 de otras clases. Requiere .45 gemelas de Jenny, Buscando a Izzie y una debilidad básica aleatoria."
+      "02003": "Mazo de 30 cartas: Rebelde y neutral de nivel 0–5, más hasta cinco cartas de nivel 0 de otras clases. Requiere .45 gemelas de Jenny, Buscando a Izzie y una debilidad básica aleatoria.",
+      "03006": "Mazo de 35 cartas: Superviviente, Guardián, Buscador, Rebelde y Místico de nivel 0–3 y neutrales de nivel 0–5, con al menos 7 cartas de cada una de 3 clases distintas. Requiere 2 Improvisaciones, 2 Crisis de identidad y 1 debilidad básica aleatoria."
     },
     "victory": "Victoria {n}",
     "names": {
@@ -3477,7 +3507,10 @@
       "01050": "Escurridizo",
       "02147": "Bandolera",
       "03059": "El hombre de la máscara pálida",
-      "courage": "Coraje"
+      "courage": "Coraje",
+      "03006": "Lola Hayes",
+      "03018": "Improvisación",
+      "03019": "Crisis de identidad"
     }
   },
   "account": {
@@ -3812,7 +3845,8 @@
     "fastWindow": "Es rápida: se juega en tu turno o cuando el juego abre una ventana para efectos rápidos.",
     "actionTiming": "Se juega como acción durante tu turno.",
     "noActions": "No te quedan acciones este turno.",
-    "location": "No puedes jugar esta carta en tu Lugar"
+    "location": "No puedes jugar esta carta en tu Lugar",
+    "role": "Lola Hayes solo puede usar cartas neutrales o de su papel."
   },
   "chaosTokenName": {
     "skull": "la ficha de Calavera",
@@ -3821,5 +3855,16 @@
     "elderThing": "la ficha de Primigenio",
     "elderSign": "la ficha de Signo arcano",
     "autoFail": "la ficha de Tentáculo"
+  },
+  "investigator": {
+    "role": "Papel: {role}",
+    "roles": {
+      "survivor": "Superviviente",
+      "guardian": "Guardián",
+      "seeker": "Buscador",
+      "rogue": "Rebelde",
+      "mystic": "Místico",
+      "neutral": "Neutral"
+    }
   }
 }

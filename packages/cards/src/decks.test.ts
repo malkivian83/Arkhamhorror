@@ -7,6 +7,7 @@ import {
   deckFromArkhamDb,
   emptyDeck,
   investigatorCards,
+  requiredDeckSize,
   starterDeckList,
   validateDeck,
   withRandomBasicWeakness,
@@ -26,12 +27,14 @@ const without = (cards: string[], card: string) => {
 }
 
 describe('mazos: validación', () => {
-  it('los cinco mazos iniciales son válidos y ya llevan debilidad básica', () => {
+  it('los mazos iniciales son válidos y ya llevan debilidad básica', () => {
     for (const key of Object.keys(STARTER_DECKS)) {
-      const check = validateDeck(starterDeckList(key, key, key))
+      const deck = starterDeckList(key, key, key)
+      const check = validateDeck(deck)
       expect(check.problems).toEqual([])
       expect(check.needsBasicWeakness).toBe(false)
-      expect(check.size).toBe(30)
+      // 30 cartas; Lola Hayes, 35.
+      expect(check.size).toBe(requiredDeckSize(deck.investigator))
     }
   })
 

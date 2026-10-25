@@ -118,6 +118,7 @@ export type DeckProblem =
   | { key: 'deck.problem.size'; params: { n: number; size: number } }
   | { key: 'deck.problem.notAllowed'; params: { card: string } }
   | { key: 'deck.problem.offClassLimit'; params: { n: number } }
+  | { key: 'deck.problem.classMinimum'; params: { count: number; min: number } }
   | { key: 'deck.problem.tooManyCopies'; params: { card: string; n: number } }
   | { key: 'deck.problem.missingSignature'; params: { card: string } }
   | { key: 'deck.problem.otherSignature'; params: { card: string } }
@@ -224,8 +225,26 @@ export function validateDeck(
     if (n > limit) problems.push({ key: 'deck.problem.tooManyCopies', params: { card: title, n } })
   }
 
+  // Lola Hayes: al menos `min` cartas de cada una de `count` clases distintas.
+  const minimum = investigator.classMinimum
+  if (minimum) {
+    const reached = minimum.classes.filter(
+      (cls) =>
+        deck.cards.filter((code) => {
+          const c = byCode(code)
+          return !!c && isStandard(code) && (c.classes ?? [c.class]).includes(cls)
+        }).length >= minimum.min,
+    )
+    if (reached.length < minimum.count)
+      problems.push({
+        key: 'deck.problem.classMinimum',
+        params: { count: minimum.count, min: minimum.min },
+      })
+  }
+
   for (const signature of own) {
-    if (!deck.cards.includes(signature)) {
+    const required = (investigator.signatures ?? []).filter((c) => c === signature).length
+    if (deck.cards.filter((c) => c === signature).length < required) {
       problems.push({ key: 'deck.problem.missingSignature', params: { card: name(signature) } })
     } else {
       const copies = deck.cards.filter((c) => c === signature).length

@@ -24,7 +24,8 @@ registerCampaign({
     id === CURTAIN_CALL
       ? {
           id,
-          build: ({ difficulty, seed }) => curtainCall({ difficulty, seed }),
+          build: ({ difficulty, seed, investigators }) =>
+            curtainCall({ difficulty, seed, investigators }),
           keywords: ['hidden', 'peril', 'surge', 'aloof', 'massive', 'hunter', 'retaliate', 'prey'],
         }
       : id === THE_LAST_KING
