@@ -721,8 +721,8 @@ describe('Dim Carcosa: resolutions and the end of the campaign', () => {
       readAll(
         prep(game(1, { values }), [], { type: 'EndScenario', outcome: { type: 'noResolution' } }),
       )
-    expect(r({ carcosaDoubt: '2', carcosaConviction: '2' }).campaignLog!.notes).toContain(
-      'carcosaRealmsMerged',
+    expect(r({ carcosaDoubt: '2', carcosaConviction: '2' }).campaignLog!.notes).toEqual(
+      expect.arrayContaining(['carcosaRealmsMerged', 'campaignLost']),
     )
     expect(r({ carcosaDoubt: '3', carcosaConviction: '2' }).campaignLog!.notes).toContain(
       'carcosaHasturHasYou',

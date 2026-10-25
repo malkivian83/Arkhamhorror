@@ -247,6 +247,7 @@ export function activeMembers(campaign: Campaign): CampaignInvestigator[] {
 export function canPlayNext(campaign: Campaign): boolean {
   return (
     !!scenarioEntry(campaign)?.build &&
+    !campaign.log.notes.includes(CAMPAIGN_LOST) &&
     activeMembers(campaign).length > 0 &&
     !pendingTransfers(campaign).length
   )
@@ -391,8 +392,13 @@ export function chooseTransferHeir(
 /** Clave del registro que enlaza a un investigador que dejó la campaña con su sustituto. */
 const REPLACED_BY = 'replacedBy:'
 
+/** Nota del registro con la que una resolución da la campaña por perdida. */
+const CAMPAIGN_LOST = 'campaignLost'
+
 /** Investigadores muertos o enloquecidos cuyo jugador aún no ha elegido sustituto. */
 export function replaceableMembers(campaign: Campaign): InvestigatorId[] {
+  // Sin escenarios por jugar o con la campaña perdida no hay a quién sustituir.
+  if (!scenarioEntry(campaign) || campaign.log.notes.includes(CAMPAIGN_LOST)) return []
   return campaign.investigators
     .filter((i) => leftCampaign(campaign.log, i.id) && !campaign.log.values[REPLACED_BY + i.id])
     .map((i) => i.id)
@@ -407,10 +413,11 @@ export function replacementOptions(campaign: Campaign): DeckKey[] {
 }
 
 /**
- * Nadie puede seguir y ningún jugador puede elegir un investigador nuevo: la campaña
- * se ha perdido (reglamento, "Campaign Play").
+ * La campaña se ha perdido: lo dice una resolución, o nadie puede seguir y ningún
+ * jugador puede elegir un investigador nuevo (reglamento, "Campaign Play").
  */
 export function campaignLost(campaign: Campaign): boolean {
+  if (campaign.log.notes.includes(CAMPAIGN_LOST)) return true
   return (
     !activeMembers(campaign).length &&
     !(replaceableMembers(campaign).length && replacementOptions(campaign).length)

@@ -567,6 +567,8 @@ function resolutionMessages(state: GameState, outcome: ScenarioOutcome): Message
         entry: entry(`resolution${number}`, [noteEffect(note), { key: 'story.dim.allInsane' }]),
       },
       recordNote(note),
+      // Guía ES p. 31: los investigadores pierden la campaña.
+      recordNote('campaignLost'),
       { type: 'DriveDefeatedInsane', all: true },
       endScenario(resolution(number)),
     ]

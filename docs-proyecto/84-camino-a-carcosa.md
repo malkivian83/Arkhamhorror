@@ -624,6 +624,18 @@ Lola Hayes: prólogo y salida en los Bastidores conectados
   (acción `replace`, con mazo inicial o propio); el servidor valida el mazo con la misma
   regla y pasa a asociar a ese jugador con el nuevo investigador. La vista indica si
   falta algún sustituto o si la campaña se ha perdido.
+- Auditoría contra la guía ES (pp. 3–33), escenario por escenario: preparación (conjuntos,
+  cartas apartadas, Lugares, inicio, fichas añadidas por dificultad), introducciones y
+  sueños, resoluciones (notas, Dudas y Convicciones, marcas del Extranjero, trauma,
+  experiencia, fichas del caos) e interludios coinciden. Cada resolución tiene un camino
+  en partida cubierto por pruebas; el juego al azar acaba casi siempre en la resolución
+  de derrota de cada escenario, que es lo esperable. Todas las traiciones tienen
+  comportamiento y todas las cartas, texto en EN/ES.
+- Corregido en la auditoría: Surgen estrellas negras R3 y Penumbrosa Carcosa R4/R5
+  ("los investigadores pierden la campaña") anotan `campaignLost`; con esa nota la
+  campaña se da por perdida y no se ofrecen sustitutos.
+- Sin aplicación digital: la regla de Hacer caso de la advertencia de Daniel (1 horror al
+  pronunciar «Hastur» en voz alta) depende de la conversación en la mesa.
 
 Para retomar en otro ordenador, actualizar `main`: el PDF ya está versionado en
 `docs-proyecto/reglas/`. La aplicación de referencia sigue siendo una copia externa

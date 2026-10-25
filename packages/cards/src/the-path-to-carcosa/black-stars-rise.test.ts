@@ -15,7 +15,13 @@ import {
 } from '@lcg/engine'
 import { choose, during, labels, testInvestigator, throughSetup } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
-import { canPlayNext, finishScenario, startScenario } from '../campaign'
+import {
+  campaignLost,
+  canPlayNext,
+  finishScenario,
+  replaceableMembers,
+  startScenario,
+} from '../campaign'
 import '../index'
 import {
   BLACK_STARS_RISE,
@@ -366,6 +372,10 @@ describe('Black Stars Rise: dual agendas', () => {
     const next = finishScenario(campaign, state)
     expect(Object.values(next.log.investigators).every((r) => r.insane)).toBe(true)
     expect(canPlayNext(next)).toBe(false)
+    // Perder la campaña no deja elegir investigadores nuevos.
+    expect(next.log.notes).toContain('campaignLost')
+    expect(campaignLost(next)).toBe(true)
+    expect(replaceableMembers(next)).toEqual([])
   })
 })
 
