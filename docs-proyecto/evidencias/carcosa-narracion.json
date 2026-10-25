@@ -484,6 +484,38 @@
       "inputHash": "f82f834f85073184f4ad262670ecf91c4be044ddd03c1c909f38e97ad08c906f",
       "sha256": "e57b3ae8e4ac98d183f38c8f543d95cd3cd8e5ed770613090ca800b838c5cba0",
       "bytes": 662926
+    },
+    {
+      "key": "story.phantom.noResolution",
+      "file": "a-phantom-of-truth-no-resolution.mp3",
+      "characters": 938,
+      "inputHash": "5621f5908c12f937128bfd7add19e175bdcbe257de148d4f58feeba8dbe15573",
+      "sha256": "e2e6d20dafe191745d4b6c0798a48eb74d932d92e32bbfb14f990b554d080f47",
+      "bytes": 1247233
+    },
+    {
+      "key": "story.phantom.resolution1",
+      "file": "a-phantom-of-truth-resolution1.mp3",
+      "characters": 1143,
+      "inputHash": "06d1f2d8def3918b930a099a1be2e29cd0929b2ec56dff1e80bed39cf0691812",
+      "sha256": "e8bb843e3e39de656554ac6840d648d364a6daa3b4c562ca113ab8ff225445f8",
+      "bytes": 1505532
+    },
+    {
+      "key": "story.phantom.resolution2",
+      "file": "a-phantom-of-truth-resolution2.mp3",
+      "characters": 2312,
+      "inputHash": "f02fdf3f30aecc0f0003a04271de61c53c8c024eccd1cce579e71ffad48f06f5",
+      "sha256": "782e756fdf482c92bab624f8dd3a4bd08e586af65f98430f80c7bae3e811d7c3",
+      "bytes": 2916144
+    },
+    {
+      "key": "story.phantom.resolution3",
+      "file": "a-phantom-of-truth-resolution3.mp3",
+      "characters": 419,
+      "inputHash": "4b05d361e0c5ce7854a27c2d0c2a835fe3ff78f041344c2ba9839e35ccc4b2fc",
+      "sha256": "ef3e6830edab613f44d1239fccb12e9d79c4cee7c227fd8a226ea5f0f82bf772",
+      "bytes": 536702
     }
   ]
 }

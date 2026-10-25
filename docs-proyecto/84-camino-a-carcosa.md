@@ -394,8 +394,9 @@ Interludio II sigue solo anotada.
 Validación: 58 pruebas nuevas (preparación 1–4 × 4 dificultades y variantes del registro,
 Sueños, planes, actos, El organista, fichas, Lugares, encuentros, resoluciones y 40
 partidas aleatorias). Presentación: catálogo EN/ES (177 cartas de Carcosa), 104 escaneos
-EN/ES con miniaturas ([evidencia](evidencias/imagenes-a-phantom-of-truth.json)) y 16
-narraciones nuevas con Carmelo (introducciones, Sueños, Despertar e Información de Jordan).
+EN/ES con miniaturas ([evidencia](evidencias/imagenes-a-phantom-of-truth.json)) y 20
+narraciones nuevas con Carmelo (introducciones, Sueños, Despertar, Información de Jordan y
+resoluciones).
 
 ## Dependencias posteriores
 
@@ -442,11 +443,8 @@ gratuitas no pueden usar voces de biblioteca por la API.
 Narración del escenario IV e Interludio II: 13 MP3 más con la misma voz y ajustes
 (43 en total en la evidencia; unos 15 min 11 s más). Tramas MPEG verificadas sin errores.
 
-Narración del escenario V: 16 MP3 más con la misma voz y ajustes (59 en total; unos 9 min
-19 s). Las 4 de las resoluciones (sin resolución y R1–R3) están ya en
-`scripts/generate-carcosa-audio.mjs`, pero la cuenta de ElevenLabs agotó su cuota
-(`quota_exceeded`); al recargar créditos, `--generate` las crea y basta añadirlas a
-`narration.ts` y a la cuenta de la prueba.
+Narración del escenario V: 20 MP3 más con la misma voz y ajustes (63 en total), incluidas
+las resoluciones. Tramas MPEG verificadas sin errores.
 
 Siguiente bloque: escenario VI (La máscara pálida). Pendiente: Lola Hayes (escenario I).
 
