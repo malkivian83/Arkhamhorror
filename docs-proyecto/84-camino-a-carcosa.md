@@ -634,6 +634,19 @@ Lola Hayes: prólogo y salida en los Bastidores conectados
 - Corregido en la auditoría: Surgen estrellas negras R3 y Penumbrosa Carcosa R4/R5
   ("los investigadores pierden la campaña") anotan `campaignLost`; con esa nota la
   campaña se da por perdida y no se ofrecen sustitutos.
+- Revisión carta a carta (285 entradas del catálogo, más los apoyos de historia): texto EN
+  frente a su comportamiento, y estadísticas, símbolos, conexiones, umbrales y victoria
+  frente a las imágenes de las cartas. Corregido:
+  - Ecos del pasado no sumaba el +1 de combate de El edicto del Rey (Secta del Signo
+    Amarillo), y El Fantasma de la Verdad no aplicaba el +1 del Byakhee chillador (Agentes
+    de Hastur). `shared-sets.test.ts` comprueba en cada escenario los modificadores de los
+    conjuntos compartidos que usa.
+  - Espectro de la muerte: agotado, solo reduce el daño de los ataques.
+  - Caverna llena de huesos: 1 ranura de mano menos mientras la investigas (gancho
+    `slotModifier` del escenario; los apoyos que sobren se descartan al empezar la prueba).
+  - Simplificaciones que se mantienen: La danza del Rey de Amarillo lleva al Lunático
+    directamente (no se resuelven efectos de entrar en los Lugares intermedios) y Ojos en
+    las paredes no obliga a repartir el horror a partes iguales.
 - Sin aplicación digital: la regla de Hacer caso de la advertencia de Daniel (1 horror al
   pronunciar «Hastur» en voz alta) depende de la conversación en la mesa.
 

@@ -108,6 +108,27 @@ describe('The Unspeakable Oath: enemies', () => {
     expect(getInvestigator(state, 'a').horror).toBe(1)
   })
 
+  it('Mad Patient: the horror is taken even when the attack defeats it', () => {
+    let state = game()
+    state = readAll(prep(state, [], draw({ ...madPatient })))
+    const patient = enemyOf(state, CODES.madPatient)!
+    state = prep(
+      state,
+      [
+        withBag(0),
+        placeAt(patient.location),
+        (s) => ({
+          ...s,
+          enemies: { ...s.enemies, [patient.id]: { ...s.enemies[patient.id]!, damageTaken: 1 } },
+        }),
+      ],
+      fight(state, patient.id),
+    )
+    state = readAll(resolveTest(state))
+    expect(enemyOf(state, CODES.madPatient)).toBeUndefined()
+    expect(getInvestigator(state, 'a').horror).toBe(1)
+  })
+
   it('Asylum Gorger spawns in the Basement Hall and does not attack after hunting', () => {
     let state = readAll(prep(game(), [], draw({ ...asylumGorger })))
     const gorger = enemyOf(state, CODES.asylumGorger)!

@@ -2999,6 +2999,10 @@ export function handle(state: GameState, message: Message): GameState {
             succeeded: null,
           }),
         },
+        // Ranuras que cambian durante la prueba: los apoyos que sobren se descartan.
+        ...(scenarioBehavior(state.scenarioId)?.slotModifier
+          ? [{ type: 'CheckSlots', investigator: message.investigator } as Message]
+          : []),
         { type: 'CommitWindow' },
         { type: 'RevealChaosToken' },
         { type: 'AfterRevealWindow' },
@@ -6651,7 +6655,9 @@ export function slotCapacity(
         total +
         (playerCardBehavior(a.code)?.permanent?.slots?.[slot] ?? 0) +
         (playerCardBehavior(a.code)?.extraSlots?.[slot] ?? 0),
-      SLOT_CAPACITY[slot] - occupied,
+      SLOT_CAPACITY[slot] -
+        occupied +
+        (scenarioBehavior(state.scenarioId)?.slotModifier?.(state, investigator, slot) ?? 0),
     )
 }
 

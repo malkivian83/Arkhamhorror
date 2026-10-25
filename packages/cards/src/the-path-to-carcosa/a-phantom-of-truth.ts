@@ -51,7 +51,7 @@ import {
   treachery,
 } from '../scenario-helpers'
 import { CARCOSA_CHAOS_BAGS } from './campaign'
-import { ENCOUNTER_SETS, encounterSpecific, SETS } from './encounter-sets'
+import { byakheeStat, ENCOUNTER_SETS, encounterSpecific, SETS } from './encounter-sets'
 import {
   carcosaBelief,
   carcosaCount,
@@ -708,7 +708,9 @@ registerScenario({
     // Notre-Dame: -1 de combate y +1 de evasión.
     (e.location === CODES.notreDame ? (stat === 'fight' ? -1 : 1) : 0) +
     // Byakhee sigiloso: -3 de combate mientras está agotado.
-    (stat === 'fight' && e.code === CODES.stealthyByakhee && e.exhausted ? -3 : 0),
+    (stat === 'fight' && e.code === CODES.stealthyByakhee && e.exhausted ? -3 : 0) +
+    // Byakhee chillador (Agentes de Hastur): +1 de combate y evasión ante poca cordura.
+    byakheeStat(state, e),
   // El organista no puede recibir daño.
   enemyImmune: (_state, e) => ORGANISTS.includes(e.code),
   // Jardines de Luxemburgo: mientras un Byakhee se mueve, con un investigador allí.

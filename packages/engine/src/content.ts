@@ -124,6 +124,11 @@ export interface ScenarioBehavior {
   enemyConnections?: (state: GameState, location: LocationId, enemy?: Enemy) => LocationId[]
   /** Habilidad con la que se investiga ese Lugar (Cripta de la lámpara sepulcral). */
   investigateSkill?: (state: GameState, location: LocationId) => SkillType | null
+  /**
+   * Ranuras de más o de menos para un investigador (Caverna llena de huesos: 1 de mano
+   * menos mientras la investigas). Se comprueban al empezar cada prueba de habilidad.
+   */
+  slotModifier?: (state: GameState, investigator: InvestigatorId, slot: SlotType) => number
   /** El investigador no puede descubrir pistas en ese Lugar (Capilla de san Auberto). */
   cannotDiscoverClues?: (
     state: GameState,

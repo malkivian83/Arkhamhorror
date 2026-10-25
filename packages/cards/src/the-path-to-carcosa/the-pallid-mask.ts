@@ -578,6 +578,16 @@ registerScenario({
   // Cripta de la lámpara sepulcral: se investiga con [willpower].
   investigateSkill: (_state, location) =>
     isCode(location, CODES.cryptOfTheSepulchralLamp) ? 'willpower' : null,
+  // Caverna llena de huesos: mientras la investigas, tienes 1 ranura de mano menos.
+  slotModifier: (state, investigator, slot) => {
+    const test = state.skillTest
+    return slot === 'hand' &&
+      test?.investigator === investigator &&
+      test.kind.type === 'investigate' &&
+      isCode(test.kind.location, CODES.boneFilledCaverns)
+      ? -1
+      : 0
+  },
   cannotLeave: (state, investigator) =>
     state.scenarioMeta?.[`${STUCK}${investigator}`] === state.round,
   // Catacumbas sin revelar: los investigadores de tu Lugar deben gastar 1 pista por
@@ -1122,8 +1132,8 @@ registerLocation({
 registerEnemy({
   code: CODES.specterOfDeath,
   // Agotado, recibe 1 daño menos de cada ataque.
-  damageTaken: (_state, self, amount) => ({
-    amount: self.exhausted ? Math.max(0, amount - 1) : amount,
+  damageTaken: (_state, self, amount, source) => ({
+    amount: self.exhausted && source.attack ? Math.max(0, amount - 1) : amount,
   }),
   // Forzado: tras fallar una prueba al intentar evitarlo, te ataca.
   forced: (_state, trigger, self) =>

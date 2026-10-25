@@ -1,5 +1,6 @@
 import {
   actBehavior,
+  allPlayerCardDefs,
   applyInput,
   agendaBehavior,
   availableAbilities,
@@ -437,12 +438,42 @@ describe('The Pallid Mask: locations, enemies and treacheries', () => {
     expect(enemyOf(state, CODES.corpseDweller)!.location).toBe(CODES.theGateToHell)
   })
 
-  it('Specter of Death: takes 1 less damage while exhausted', () => {
+  it('Specter of Death: takes 1 less damage from attacks while exhausted', () => {
     const state = prep(game(), [], spawn(specterOfDeath, CODES.theGateToHell))
     const specter = enemyOf(state, CODES.specterOfDeath)!
     const taken = enemyBehavior(CODES.specterOfDeath)!.damageTaken!
-    expect(taken(state, { ...specter, exhausted: true }, 2, {} as never).amount).toBe(1)
-    expect(taken(state, specter, 2, {} as never).amount).toBe(2)
+    expect(taken(state, { ...specter, exhausted: true }, 2, { attack: true }).amount).toBe(1)
+    expect(taken(state, specter, 2, { attack: true }).amount).toBe(2)
+    // Solo los ataques: el daño de otros efectos no se reduce.
+    expect(taken(state, { ...specter, exhausted: true }, 2, { encounter: true }).amount).toBe(2)
+  })
+
+  it('Bone-Filled Caverns: 1 fewer hand slot while investigating it', () => {
+    const hands = allPlayerCardDefs()
+      .filter((d) => d.type === 'asset' && !d.weakness && d.slots?.join() === 'hand')
+      .slice(0, 2)
+      .map((d) => d.code)
+    let state = prep(
+      game(),
+      [],
+      ...hands.map((code): Message => ({ type: 'PutAssetIntoPlay', investigator: 'a', code })),
+    )
+    expect(Object.values(state.assets).filter((a) => hands.includes(a.code))).toHaveLength(2)
+    const investigate = (location: string): Message => ({
+      type: 'BeginSkillTest',
+      investigator: 'a',
+      skill: 'intellect',
+      difficulty: 3,
+      tags: ['investigate'],
+      kind: { type: 'investigate', location },
+    })
+    // En otro Lugar no cambia nada.
+    const other = prep(state, [], investigate(CODES.theGateToHell))
+    expect(other.pending?.question.prompt).not.toBe('prompt.freeSlot')
+    state = prep(state, [], investigate(CODES.boneFilledCaverns))
+    expect(state.pending?.question.prompt).toBe('prompt.freeSlot')
+    state = choose(state, labels(state)[0]!, state.pending!.question.choices[0]!.params)
+    expect(Object.values(state.assets).filter((a) => hands.includes(a.code))).toHaveLength(1)
   })
 
   it('The Pit Below: +1 shroud, and 3 damage at the end of the round', () => {
