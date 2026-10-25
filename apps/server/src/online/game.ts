@@ -3,11 +3,15 @@ import type { Lobby } from './lobbies'
 import { tableStats, tableView } from './table'
 import {
   activeMembers,
+  campaignLost,
   canPlayNext,
   currentScenario,
   pendingTransfers,
   purchaseOptions,
   removableCards,
+  replaceableMembers,
+  replacementOptions,
+  starterInvestigator,
 } from '@lcg/cards'
 
 /** Allowlist projection: adding an engine field can never disclose it accidentally. */
@@ -24,6 +28,10 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
         lobby.decks?.[user]?.investigator === investigator && lobby.campaignReady?.includes(user),
     )
   const own = campaign?.investigators.find((i) => i.id === mine && active.includes(i.id))
+  const unused = campaign
+    ? replacementOptions(campaign).map((key) => starterInvestigator(key).id)
+    : []
+  const leavers = campaign && unused.length ? replaceableMembers(campaign) : []
   const cards: OnlineGame['cards'] = []
   const agenda = g.agendas[g.agendaIndex],
     act = g.acts[g.actIndex]
@@ -90,6 +98,13 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
             ready: !!mine && ready(mine),
             allReady: active.length > 0 && active.every(ready),
             transfers: pendingTransfers(campaign),
+            lost: campaignLost(campaign),
+            awaitingReplacement: lobby.members.some((member) => {
+              const id = lobby.decks?.[member]?.investigator
+              return !!id && leavers.includes(id)
+            }),
+            replacement:
+              mine && leavers.includes(mine) ? { leaving: mine, investigators: unused } : null,
             members: campaign.investigators.map((i) => {
               const record = campaign.log.investigators[i.id]!
               return {

@@ -7,6 +7,7 @@ import {
   activeMembers,
   canPlayNext,
   chooseTransferHeir,
+  replaceInvestigator,
   type Campaign,
 } from '@lcg/cards'
 import { applyInput, type GameState } from '@lcg/engine'
@@ -138,9 +139,11 @@ export class LobbyService {
           ? [command.card, command.upgrade, command.remove ?? null]
           : command.action === 'heir'
             ? [command.card, command.heir]
-            : command.action === 'ready'
-              ? command.ready
-              : null,
+            : command.action === 'replace'
+              ? command.deck
+              : command.action === 'ready'
+                ? command.ready
+                : null,
       ])
       const prior = lobby.commands?.[command.commandId]
       if (prior) {
@@ -163,6 +166,22 @@ export class LobbyService {
         } catch {
           requireValue(false, 'invalid_heir')
         }
+      } else if (command.action === 'replace') {
+        requireValue(lobby.intermission, 'not_intermission', 409)
+        const leaving = lobby.decks?.[user]?.investigator
+        requireValue(leaving, 'inactive_investigator', 403)
+        try {
+          lobby.campaign = replaceInvestigator(
+            lobby.campaign,
+            leaving,
+            command.deck,
+            randomInt(1, 0x7fffffff),
+          )
+        } catch {
+          requireValue(false, 'invalid_replacement')
+        }
+        lobby.decks = { ...lobby.decks, [user]: structuredClone(command.deck) }
+        lobby.campaignReady = (lobby.campaignReady ?? []).filter((member) => member !== user)
       } else {
         requireValue(lobby.intermission, 'not_intermission', 409)
         requireValue(canPlayNext(lobby.campaign), 'campaign_cannot_continue', 409)
@@ -365,6 +384,19 @@ export function onlineLobbies(
     required: Object.keys(properties),
     properties,
   })
+  const deckSchema = {
+    type: 'object',
+    additionalProperties: false,
+    required: ['investigator', 'cards'],
+    properties: {
+      investigator: { type: 'string', minLength: 1, maxLength: 30 },
+      cards: { type: 'array', maxItems: 100, items: { type: 'string', maxLength: 30 } },
+      startingTrauma: bodySchema({
+        physical: { type: 'integer', minimum: 0, maximum: 2 },
+        mental: { type: 'integer', minimum: 0, maximum: 2 },
+      }),
+    },
+  }
   app.post<{ Params: { id: string }; Body: OnlineProgressCommand }>(
     '/api/online/lobbies/:id/game/progress',
     {
@@ -377,12 +409,16 @@ export function onlineLobbies(
           properties: {
             commandId: { type: 'string', format: 'uuid' },
             revision,
-            action: { type: 'string', enum: ['finish', 'purchase', 'ready', 'next', 'heir'] },
+            action: {
+              type: 'string',
+              enum: ['finish', 'purchase', 'ready', 'next', 'heir', 'replace'],
+            },
             card: { type: 'string', minLength: 1, maxLength: 30 },
             upgrade: { type: 'boolean' },
             remove: { type: 'string', minLength: 1, maxLength: 30 },
             ready: { type: 'boolean' },
             heir: { type: 'string', minLength: 1, maxLength: 30 },
+            deck: deckSchema,
           },
           allOf: [
             {
@@ -394,6 +430,7 @@ export function onlineLobbies(
               if: { properties: { action: { const: 'heir' } } },
               then: { required: ['card', 'heir'] },
             },
+            { if: { properties: { action: { const: 'replace' } } }, then: { required: ['deck'] } },
           ],
         },
       },
@@ -451,19 +488,7 @@ export function onlineLobbies(
         params,
         body: bodySchema({
           revision,
-          deck: {
-            type: 'object',
-            additionalProperties: false,
-            required: ['investigator', 'cards'],
-            properties: {
-              investigator: { type: 'string', minLength: 1, maxLength: 30 },
-              cards: { type: 'array', maxItems: 100, items: { type: 'string', maxLength: 30 } },
-              startingTrauma: bodySchema({
-                physical: { type: 'integer', minimum: 0, maximum: 2 },
-                mental: { type: 'integer', minimum: 0, maximum: 2 },
-              }),
-            },
-          },
+          deck: deckSchema,
         }),
       },
     },
