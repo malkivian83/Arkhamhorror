@@ -463,6 +463,10 @@ export interface StoryCardInPlay {
   code: CardCode
   name: string
   clues: number
+  /** Daño y estado de un enemigo representado como carta junto al acto (Hastur). */
+  damage?: number
+  health?: number
+  exhausted?: boolean
 }
 
 export interface Asset {
@@ -975,7 +979,8 @@ export type Message =
   /** Descarta de la mano las cartas (no debilidades) de un tipo: todas o una a elegir. */
   | { type: 'DiscardCardsOfType'; investigator: InvestigatorId; cardType: string; all: boolean }
   /** Muertos para la campaña (los que no se retiraron, con `exceptResigned`). */
-  | { type: 'KillInvestigators'; exceptResigned?: boolean }
+  /** Con `investigator`, solo ese (Posesión: eliminado y muerto). */
+  | { type: 'KillInvestigators'; exceptResigned?: boolean; investigator?: InvestigatorId }
   /** Los investigadores derrotados (no retirados) quedan enloquecidos para la campaña. */
   /** Los derrotados (no retirados) enloquecen; con `all`, todos (Surgen estrellas negras, R3). */
   | { type: 'DriveDefeatedInsane'; all?: boolean }
@@ -1431,6 +1436,8 @@ export type Trigger =
       /** El daño procede de un ataque (prueba de combate). */
       attack?: boolean
     }
+  /** Un enemigo ha recibido daño (de cualquier origen). */
+  | { type: 'afterEnemyDamaged'; enemy: EnemyId; amount: number }
   /** Después de realizar una acción de negociar (Salón de baile, Sala de estar). */
   | { type: 'afterParley'; investigator: InvestigatorId; location: LocationId | null }
 

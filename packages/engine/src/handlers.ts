@@ -2670,7 +2670,8 @@ export function handle(state: GameState, message: Message): GameState {
       if (investigator.eliminated) return state
       const vitals = effectiveVitals(state, investigator)
       const byDamage = investigator.damage >= vitals.health
-      const byHorror = investigator.horror >= vitals.sanity
+      const byHorror =
+        investigator.horror >= vitals.sanity && !scenarioBehavior(state.scenarioId)?.noHorrorDefeat
       if (!byDamage && !byHorror) return state
       const eliminate: Message = { type: 'DefeatInvestigator', investigator: investigator.id }
       // Reglamento, "Trauma": derrotado por daño → 1 trauma físico; por horror → 1 mental.
@@ -3899,7 +3900,10 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'KillInvestigators':
       return updateRecords(state, undefined, (r, i) =>
-        message.exceptResigned && i.resigned ? r : { ...r, killed: true },
+        (message.exceptResigned && i.resigned) ||
+        (message.investigator !== undefined && i.id !== message.investigator)
+          ? r
+          : { ...r, killed: true },
       )
 
     case 'DriveDefeatedInsane':
@@ -4128,6 +4132,10 @@ export function handle(state: GameState, message: Message): GameState {
       const damageTaken = enemy.damageTaken + amount
       const next = updateEnemy(state, enemy.id, (e) => ({ ...e, damageTaken }))
       const by = message.by
+      const damaged: Message = {
+        type: 'Forced',
+        trigger: { type: 'afterEnemyDamaged', enemy: enemy.id, amount },
+      }
       const dealt: Message[] = by
         ? [
             {
@@ -4142,8 +4150,12 @@ export function handle(state: GameState, message: Message): GameState {
           ]
         : []
       return damageTaken >= enemyMaxHealth(state, enemy) && !message.deferDefeat
-        ? push(next, ...dealt, { type: 'DefeatEnemy', enemy: enemy.id, ...(by ? { by } : {}) })
-        : push(next, ...dealt)
+        ? push(next, ...dealt, damaged, {
+            type: 'DefeatEnemy',
+            enemy: enemy.id,
+            ...(by ? { by } : {}),
+          })
+        : push(next, ...dealt, damaged)
     }
 
     case 'DefeatAllEnemiesWithoutWindows':
@@ -4160,7 +4172,9 @@ export function handle(state: GameState, message: Message): GameState {
     case 'DefeatEnemy': {
       const enemy = findEnemy(state, message.enemy)
       if (!enemy) return state
-      const instead = enemyBehavior(enemy.code)?.wouldBeDefeated?.(state, enemy)
+      const instead =
+        scenarioBehavior(state.scenarioId)?.enemyWouldBeDefeated?.(state, enemy) ??
+        enemyBehavior(enemy.code)?.wouldBeDefeated?.(state, enemy)
       if (instead) return push(state, ...instead)
       // Derrotado, pero en lugar de descartarse sigue en juego (El Extranjero, acto 2).
       const notDiscarded = enemyBehavior(enemy.code)?.insteadOfDiscard?.(state, enemy) ?? null
@@ -5071,6 +5085,7 @@ export function handle(state: GameState, message: Message): GameState {
             (code) =>
               playerCardBehavior(code)?.playWhenFailing &&
               !playBlocked(state, investigator.id, 'event') &&
+              !scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, investigator.id, code) &&
               cardCost(state, investigator.id, code) <= investigator.resources,
           )
         : []
@@ -5968,7 +5983,10 @@ function testOptions(state: GameState, test: SkillTest): ReactionOption[] {
             !getInvestigator(state, a.owner).eliminated)),
     )
     .flatMap((a) => playerCardBehavior(a.code)?.testOptions?.(state, test, a) ?? [])
-  return [...own, ...assets, ...fastInvestigatorOptions(state)].filter((o) =>
+  const treacheries = Object.values(state.treacheries).flatMap(
+    (t) => treacheryBehavior(t.code)?.testOptions?.(state, test, t) ?? [],
+  )
+  return [...own, ...assets, ...treacheries, ...fastInvestigatorOptions(state)].filter((o) =>
     withinLimit(state, o.key, o.investigator, o.limit),
   )
 }
@@ -5993,7 +6011,11 @@ function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
     [...new Set(i.hand)].flatMap((code) => {
       // Languor (blockedTypes) aún no se aplica a los eventos jugados como reacción.
       const type = playerCardDef(code)?.type ?? ''
-      if (cardCost(state, i.id, code) > i.resources || treacheryBlocksPlay(state, i.id, type))
+      if (
+        cardCost(state, i.id, code) > i.resources ||
+        treacheryBlocksPlay(state, i.id, type) ||
+        scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, i.id, code)
+      )
         return []
       return playerCardBehavior(code)?.handReactions?.(state, trigger, i.id) ?? []
     }),
@@ -6214,6 +6236,8 @@ function enemyCard(enemy: Enemy): EnemyCard {
 
 /** Valor y efectos de una ficha del caos (RR paso 4). */
 function resolveToken(state: GameState, token: ChaosToken, investigator: string): TokenEffect {
+  const override = scenarioBehavior(state.scenarioId)?.tokenOverride?.(state, token, investigator)
+  if (override) return override
   if (typeof token === 'number') return { modifier: token }
   switch (token) {
     case 'autoFail':
@@ -6860,7 +6884,8 @@ export function previewToken(
   token: ChaosToken,
 ): TokenEffect & { autoFail: boolean } {
   const investigator = state.skillTest?.investigator ?? state.investigators[0]?.id ?? ''
-  return { ...resolveToken(state, token, investigator), autoFail: token === 'autoFail' }
+  const effect = resolveToken(state, token, investigator)
+  return { ...effect, autoFail: token === 'autoFail' || !!effect.autoFail }
 }
 
 /**
