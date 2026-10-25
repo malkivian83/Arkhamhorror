@@ -257,6 +257,15 @@ export interface Agenda {
   doomThreshold: number
 }
 
+/** Mazo de Plan: el principal (`agendas`) o el segundo (`secondAgenda`). */
+export type AgendaDeck = 'first' | 'second'
+
+export interface SecondAgendaDeck {
+  agendas: Agenda[]
+  index: number
+  doom: number
+}
+
 export interface Act {
   code?: CardCode
   name: string
@@ -546,6 +555,8 @@ export interface TokenEffect {
   onFailBy?: { atLeast: number; then: Message[] }
   /** Mensajes adicionales si la prueba tiene éxito (signo arcano). */
   onSuccess?: Message[]
+  /** Mensajes si la prueba falla o se supera por menos de `margin`. */
+  onSuccessBelow?: { margin: number; then: Message[] }
   /** Se resuelven en cuanto se revela la ficha. */
   immediate?: Message[]
   /** Se resuelven cuando la prueba termina. */
@@ -589,6 +600,7 @@ export interface SkillTest {
   /** Etiquetas de la prueba: "parley", "spell", "scenario"… */
   tags?: string[]
   tokenOnSuccess?: Message[]
+  tokenOnSuccessBelow?: { margin: number; then: Message[] }[]
   tokenAfter?: Message[]
   tokens: ChaosToken[]
   /** Sin iconos ni efectos de las cartas de habilidad comprometidas ([tablet] de El Fantasma). */
@@ -965,7 +977,8 @@ export type Message =
   /** Muertos para la campaña (los que no se retiraron, con `exceptResigned`). */
   | { type: 'KillInvestigators'; exceptResigned?: boolean }
   /** Los investigadores derrotados (no retirados) quedan enloquecidos para la campaña. */
-  | { type: 'DriveDefeatedInsane' }
+  /** Los derrotados (no retirados) enloquecen; con `all`, todos (Surgen estrellas negras, R3). */
+  | { type: 'DriveDefeatedInsane'; all?: boolean }
   /** Cambia la carta de un enemigo (otra cara), conservando daño y posición. */
   | { type: 'FlipEnemy'; enemy: EnemyId; card: EnemyCard }
   | { type: 'SetAct'; index: number }
@@ -1040,8 +1053,15 @@ export type Message =
       weaknessesDone?: boolean
       assetsDone?: boolean
     }
-  | { type: 'PlaceDoom'; amount: number }
+  /**
+   * Perdición en "el plan en curso". Con dos mazos de Plan (Surgen estrellas negras) el
+   * jefe elige en cuál, salvo que se indique.
+   */
+  | { type: 'PlaceDoom'; amount: number; agenda?: AgendaDeck }
   | { type: 'CheckAgenda' }
+  /** Avanza el plan en curso del segundo mazo de Plan. */
+  | { type: 'AdvanceSecondAgenda' }
+  | { type: 'SecondAgendaAdvanced'; from?: CardCode }
   | { type: 'AdvanceAgenda' }
   | { type: 'OfferActAdvance' }
   /** `paid`: las pistas ya se han pagado. */
@@ -1095,7 +1115,8 @@ export type Message =
     }
   | { type: 'CheckActObjective' }
   | { type: 'Log'; key: string; params?: LabelParams }
-  | { type: 'AgendaAdvanced' }
+  /** `from`: plan que avanzó; si su reverso cambió el mazo, no se pasa a la siguiente. */
+  | { type: 'AgendaAdvanced'; from?: CardCode }
   | { type: 'ActAdvanced' }
   | { type: 'DiscardEnemy'; enemy: EnemyId }
   | { type: 'MoveEnemy'; enemy: EnemyId; location: LocationId }
@@ -1255,7 +1276,7 @@ export type Message =
   | {
       type: 'RemoveDoom'
       target:
-        | { type: 'agenda' }
+        | { type: 'agenda'; deck?: AgendaDeck }
         | { type: 'enemy'; id: EnemyId }
         | { type: 'asset'; id: AssetId }
         | { type: 'investigator'; id: InvestigatorId }
@@ -1329,7 +1350,7 @@ export type Trigger =
   | { type: 'mythosPhaseEnds' }
   | { type: 'enemyDefeated'; enemy: Enemy; by?: InvestigatorId }
   | { type: 'afterEnemyPhaseAttack'; enemy: EnemyId; investigator: InvestigatorId }
-  | { type: 'afterDoomPlaced' }
+  | { type: 'afterDoomPlaced'; agenda?: AgendaDeck }
   | {
       type: 'afterEnemyAttack'
       enemy: EnemyId
@@ -1568,6 +1589,8 @@ export interface GameState {
   agendas: Agenda[]
   agendaIndex: number
   doom: number
+  /** Segundo mazo de Plan en juego a la vez (Surgen estrellas negras). */
+  secondAgenda?: SecondAgendaDeck | null
   acts: Act[]
   actIndex: number
   chaosBag: ChaosToken[]

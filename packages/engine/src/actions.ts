@@ -11,6 +11,7 @@ import {
   type TreacheryBehavior,
 } from './content'
 import {
+  currentAgendas,
   activeInvestigators,
   enemiesAt,
   enemyHasKeyword,
@@ -345,7 +346,6 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
   if (investigator.eliminated || investigator.location === null) return []
   const here = investigator.location
   const location = getLocation(state, here)
-  const agenda = state.agendas[state.agendaIndex]
   const act = state.acts[state.actIndex]
   const treacheries = Object.values(state.treacheries).filter((t) => {
     const p = t.placement
@@ -376,11 +376,11 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
           { type: 'location', id: location.id },
         )
       : []),
-    ...(agenda
-      ? withTarget(agendaBehavior(agenda.code)?.abilities?.(state, agenda, id) ?? [], {
-          type: 'agenda',
-        })
-      : []),
+    ...currentAgendas(state).flatMap((agenda) =>
+      withTarget(agendaBehavior(agenda.code)?.abilities?.(state, agenda, id) ?? [], {
+        type: 'agenda',
+      }),
+    ),
     ...(act
       ? withTarget(actBehavior(act.code)?.abilities?.(state, act, id) ?? [], { type: 'act' })
       : []),

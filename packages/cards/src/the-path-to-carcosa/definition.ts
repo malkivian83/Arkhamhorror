@@ -1,5 +1,6 @@
 import { registerCampaign } from '../campaign-definition'
 import { A_PHANTOM_OF_TRUTH, aPhantomOfTruth } from './a-phantom-of-truth'
+import { BLACK_STARS_RISE, blackStarsRise } from './black-stars-rise'
 import { CARCOSA_CHAOS_BAGS, THE_PATH_TO_CARCOSA } from './campaign'
 import { CURTAIN_CALL, curtainCall } from './curtain-call'
 import { CLASP_OF_BLACK_ONYX } from './echoes-assets'
@@ -57,6 +58,13 @@ registerCampaign({
                     build: ({ difficulty, seed, log }) => thePallidMask({ difficulty, seed, log }),
                     keywords: ['surge', 'hunter', 'retaliate', 'prey'],
                   }
-                : { id },
+                : id === BLACK_STARS_RISE
+                  ? {
+                      id,
+                      build: ({ difficulty, seed, log }) =>
+                        blackStarsRise({ difficulty, seed, log }),
+                      keywords: ['peril', 'surge', 'massive', 'hunter', 'retaliate', 'prey'],
+                    }
+                  : { id },
   ),
 })

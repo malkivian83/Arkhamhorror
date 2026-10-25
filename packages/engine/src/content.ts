@@ -109,6 +109,12 @@ export interface ScenarioBehavior {
   enemyConnections?: (state: GameState, location: LocationId, enemy?: Enemy) => LocationId[]
   /** Habilidad con la que se investiga ese Lugar (Cripta de la lámpara sepulcral). */
   investigateSkill?: (state: GameState, location: LocationId) => SkillType | null
+  /** El investigador no puede descubrir pistas en ese Lugar (Capilla de san Auberto). */
+  cannotDiscoverClues?: (
+    state: GameState,
+    investigator: InvestigatorId,
+    location: LocationId,
+  ) => boolean
   /** El investigador no puede salir de su Lugar (Cementerio Père Lachaise, Le Marais). */
   cannotLeave?: (state: GameState, investigator: InvestigatorId) => boolean
   /** Duplica el valor base o los iconos comprometidos de la prueba (Opéra Garnier). */

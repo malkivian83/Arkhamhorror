@@ -1,6 +1,7 @@
 import { playerCardBehavior, scenarioBehavior, treacheryBehavior } from './content'
 import { EngineError } from './errors'
 import type {
+  Agenda,
   Enemy,
   EnemyId,
   EnemyKeyword,
@@ -205,6 +206,15 @@ export function removeEnemy(state: GameState, id: EnemyId): GameState {
 
 export function activeInvestigators(state: GameState): Investigator[] {
   return state.investigators.filter((i) => !i.eliminated)
+}
+
+/** Planes en curso: el del mazo principal y, si lo hay, el del segundo mazo de Plan. */
+export function currentAgendas(state: GameState): Agenda[] {
+  const second = state.secondAgenda
+  return [
+    state.agendas[state.agendaIndex],
+    ...(second ? [second.agendas[second.index]] : []),
+  ].filter((a): a is Agenda => !!a)
 }
 
 /** El investigador jefe: el primero en el orden de jugadores que siga en juego. */

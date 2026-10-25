@@ -194,11 +194,28 @@ function game(value: unknown): asserts value is GameState {
   ]) {
     if (!Array.isArray(value[k])) fail()
   }
+  // Surgen estrellas negras: un segundo mazo de Plan y, hasta que uno se sustituye por un
+  // acto, ningún mazo de Acto.
+  const second = value.secondAgenda
+  if (second !== undefined && second !== null) {
+    if (
+      !object(second) ||
+      !Array.isArray(second.agendas) ||
+      !second.agendas.length ||
+      !second.agendas.every((c) => object(c) && typeof c.name === 'string') ||
+      !integer(second.index) ||
+      Number(second.index) < 0 ||
+      Number(second.index) >= second.agendas.length ||
+      !integer(second.doom)
+    )
+      fail()
+  }
   for (const [cards, index] of [
     ['agendas', 'agendaIndex'],
     ['acts', 'actIndex'],
   ] as const) {
     const list = value[cards] as unknown[]
+    if (cards === 'acts' && !list.length && object(second)) continue
     if (
       !list.length ||
       !integer(value[index]) ||

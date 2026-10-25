@@ -87,6 +87,11 @@ export {
   thePallidMask,
 } from './the-path-to-carcosa/the-pallid-mask'
 export {
+  BLACK_STARS_RISE,
+  blackStarsRise,
+  CODES as BLACK_STARS_RISE_CODES,
+} from './the-path-to-carcosa/black-stars-rise'
+export {
   A_PHANTOM_OF_TRUTH,
   aPhantomOfTruth,
   CODES as A_PHANTOM_OF_TRUTH_CODES,

@@ -314,6 +314,18 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
     agendas: g.agendas
       .slice(0, g.agendaIndex + 1)
       .map((a) => pick(a, ['code', 'name', 'doomThreshold'])),
+    // Surgen estrellas negras: el segundo mazo de Plan, también sin los planes siguientes.
+    ...(g.secondAgenda
+      ? {
+          secondAgenda: {
+            agendas: g.secondAgenda.agendas
+              .slice(0, g.secondAgenda.index + 1)
+              .map((a) => pick(a, ['code', 'name', 'doomThreshold'])),
+            index: g.secondAgenda.index,
+            doom: g.secondAgenda.doom,
+          },
+        }
+      : {}),
     acts: g.acts
       .slice(0, g.actIndex + 1)
       .map((a) =>
@@ -396,6 +408,7 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
 export function tableStats(g: GameState): OnlineTableStats {
   return {
     agendaCount: g.agendas.length,
+    ...(g.secondAgenda ? { secondAgendaCount: g.secondAgenda.agendas.length } : {}),
     actCount: g.acts.length,
     committing: g.pending?.question.prompt === 'prompt.commitCards',
     shroud: Object.fromEntries(
