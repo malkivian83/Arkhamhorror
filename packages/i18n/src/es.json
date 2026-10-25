@@ -1037,8 +1037,9 @@
         "upkeepEnds": "Termina la fase de mantenimiento y, con ella, la ronda."
       },
       "disable": "Desactivar este visor",
-      "on": "Activado",
-      "off": "Desactivado"
+      "short": "Pasos",
+      "turnOn": "Mostrar el visor de pasos automáticos",
+      "turnOff": "Ocultar el visor de pasos automáticos"
     },
     "assetUpgrades": "Mejoras de {card}",
     "exhaustedUpgrades": "{count} agotadas",

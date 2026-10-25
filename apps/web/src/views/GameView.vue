@@ -3,6 +3,7 @@ import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import AutoStepsReview from '../components/AutoStepsReview.vue'
+import { showAutoSteps } from '../game/autoStepsPreference'
 import BoardViewport from '../components/BoardViewport.vue'
 import CardInspector from '../components/CardInspector.vue'
 import CardZoom from '../components/CardZoom.vue'
@@ -60,6 +61,18 @@ const shown = computed(
     <ScenarioRow :state="state" class="scenario-toolbar" />
     <BoardViewport :reset-key="state.scenarioId" class="board playmat sigil">
       <LocationMap :state="state" />
+      <template v-if="!game.online" #controls>
+        <button
+          type="button"
+          class="auto-steps-toggle"
+          :aria-pressed="showAutoSteps"
+          :title="t(showAutoSteps ? 'table.autoSteps.turnOff' : 'table.autoSteps.turnOn')"
+          @click="showAutoSteps = !showAutoSteps"
+        >
+          {{ t('table.autoSteps.short') }}
+          <span aria-hidden="true">{{ showAutoSteps ? '●' : '○' }}</span>
+        </button>
+      </template>
     </BoardViewport>
     <TargetPrompt :state="state" />
     <SkillTestPanel :state="state" />
@@ -144,6 +157,23 @@ const shown = computed(
 </template>
 
 <style scoped>
+/* Visor de pasos automáticos: interruptor pequeño junto a los controles del mapa. */
+.auto-steps-toggle {
+  min-width: 26px;
+  min-height: 26px;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  background: #14251f;
+  border-color: #657e70;
+}
+.auto-steps-toggle[aria-pressed='true'] span {
+  color: var(--accent);
+}
+@media (pointer: coarse) {
+  .auto-steps-toggle {
+    min-height: 32px;
+  }
+}
 .table {
   position: relative;
   display: grid;

@@ -1037,8 +1037,9 @@
         "upkeepEnds": "The upkeep phase ends, and with it the round."
       },
       "disable": "Turn off this viewer",
-      "on": "On",
-      "off": "Off"
+      "short": "Steps",
+      "turnOn": "Show the automatic steps viewer",
+      "turnOff": "Hide the automatic steps viewer"
     },
     "assetUpgrades": "Upgrades on {card}",
     "exhaustedUpgrades": "{count} exhausted",

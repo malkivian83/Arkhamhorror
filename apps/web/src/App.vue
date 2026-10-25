@@ -7,7 +7,6 @@ import PlaymatPicker from './components/PlaymatPicker.vue'
 import SaveGame from './components/SaveGame.vue'
 import SiteHeader from './components/SiteHeader.vue'
 import AnalyticsConsent from './components/AnalyticsConsent.vue'
-import { showAutoSteps } from './game/autoStepsPreference'
 import { scanLocale } from './game/cards'
 import { useCardLocale } from './game/localized'
 import './game/playmats'
@@ -121,17 +120,6 @@ function setLocale(value: Locale) {
               @click="setLocale(l)"
             >
               {{ l.toUpperCase() }}
-            </button>
-          </div>
-        </div>
-        <div v-if="route.name === 'game'" class="menu-group">
-          <span class="menu-label">{{ t('table.autoSteps.title') }}</span>
-          <div class="menu-languages" role="group" :aria-label="t('table.autoSteps.title')">
-            <button type="button" :aria-pressed="showAutoSteps" @click="showAutoSteps = true">
-              {{ t('table.autoSteps.on') }}
-            </button>
-            <button type="button" :aria-pressed="!showAutoSteps" @click="showAutoSteps = false">
-              {{ t('table.autoSteps.off') }}
             </button>
           </div>
         </div>

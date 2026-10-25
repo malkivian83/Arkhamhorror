@@ -287,6 +287,8 @@ onBeforeUnmount(() => {
         >
           100%
         </button>
+        <!-- Controles propios de la vista que contiene el mapa (visor de pasos). -->
+        <slot name="controls" />
       </div>
     </div>
     <p :id="helpId" class="viewport-help">

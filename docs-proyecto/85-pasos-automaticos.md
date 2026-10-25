@@ -26,7 +26,8 @@ cada paso del reglamento, su motivo y los cambios que ha producido.
   vez (**Ver todos los pasos**) y termina con la decisión que detiene la
   secuencia. Espera a que se acepte la revisión de avance de acto o plan.
 - Se puede desactivar con **Desactivar este visor** en el propio modal o con el
-  interruptor **Pasos automáticos** (Activado/Desactivado) del menú ☰ de la partida.
+  botón pequeño **Pasos ●/○** de la barra de controles del mapa (solo en partidas
+  locales), que también lo vuelve a activar.
   La preferencia se guarda en el navegador (`lcg:autoSteps`) y está activada por
   defecto; desactivado, el juego resuelve los mismos pasos sin abrir el modal.
 - Solo partidas locales; no se guarda: al recargar no se repite. En línea
