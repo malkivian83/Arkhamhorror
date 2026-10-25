@@ -267,6 +267,12 @@
       "moveDoomFrom": "Move 1 doom from which agenda (to the other)?",
       "howMuchHorror": "How much horror do you take?",
       "howManyCards": "How many cards do you discard?"
+    },
+    "dim": {
+      "act2": "Tie in Doubt and Conviction: which version of act 2?",
+      "whoTests": "Which investigator takes the test?",
+      "coils": "Madness Coils: the investigators must decide",
+      "realm": "Realm of Madness: discard cards with a total printed cost of at least {amount}"
     }
   },
   "action": {
@@ -513,6 +519,20 @@
       "amount": "{amount}",
       "extraHarm": "Take 1 additional damage and 1 additional horror",
       "doomOnEach": "Place 1 doom on each agenda in play"
+    },
+    "dim": {
+      "act2": "Search For the Stranger (v. {version})",
+      "exhaustEnemy": "Exhaust and disengage {enemy}",
+      "exhaustKing": "Exhaust Hastur (The King in Yellow)",
+      "healHorror": "Heal {amount} horror",
+      "cannot": "You cannot bring yourself to do what must be done",
+      "push": "Push her: take 2 horror and deal 2 damage per investigator to Hastur",
+      "coils": {
+        "willpower": "Test Willpower (4) to snap out of it",
+        "intellect": "Test Intellect (4) to remember you have done this before",
+        "horror": "This can’t be real: each investigator takes 2 horror",
+        "faint": "Faint: advance and place 1 doom on agenda 2a"
+      }
     }
   },
   "phase": {
@@ -797,11 +817,19 @@
       "moveDoom": "Move 1 doom from one agenda deck to the other; place 2 clues here",
       "healDamage": "Place 1 doom on agenda \"a\": heal 2 damage",
       "healHorror": "Place 1 doom on agenda \"c\": heal 2 horror",
-      "findGuide": "Parley: test [willpower] (3) to find a guide",
-      "findKey": "Investigate using [agility]: find the tower key instead of discovering clues",
+      "findGuide": "Parley: test Willpower (3) to find a guide",
+      "findKey": "Investigate using Agility: find the tower key instead of discovering clues",
       "takeHorror": "Take up to 3 horror",
       "discardCards": "Discard up to 3 cards from your hand",
       "riftSeeker": "Parley: place 1 doom on each agenda and take 2 horror to discard Rift Seeker"
+    },
+    "dim": {
+      "exhaustKing": "Test Willpower ({difficulty}) to exhaust Hastur (The King in Yellow)",
+      "advanceV1": "Advance the act (the lead investigator, at The Man in the Pallid Mask’s location)",
+      "flip": "Remove each investigator’s clues and flip your location over",
+      "commitTraitorous": "Commit Possession (Traitorous): this test automatically fails",
+      "torturous": "Spend 5 resources: discard Possession (Torturous)",
+      "murderous": "Deal 2 damage to {name}: discard Possession (Murderous)"
     }
   },
   "log": {
@@ -898,6 +926,9 @@
     },
     "pallid": {
       "looked": "{name} looks at a Catacombs location: it is {location}."
+    },
+    "dim": {
+      "flipped": "{name} flips {location} over: {story}."
     }
   },
   "table": {
@@ -1117,7 +1148,8 @@
     "placedAt": "Placed at {location}",
     "spawnedAt": "Spawns at {location}",
     "targetHint": "Choose one of the highlighted items on the table.",
-    "secondAgenda": "Second agenda"
+    "secondAgenda": "Second agenda",
+    "exhausted": "exhausted"
   },
   "difficulty": {
     "easy": "Easy",
@@ -1349,7 +1381,10 @@
       "carcosaReadActII": "Read Act II of The King in Yellow",
       "carcosaOpenedThePathBelow": "the investigators opened the path below",
       "carcosaOpenedThePathAbove": "the investigators opened the path above",
-      "carcosaRealmsMerged": "the realm of Carcosa merged with our own, and Hastur rules over them both"
+      "carcosaRealmsMerged": "the realm of Carcosa merged with our own, and Hastur rules over them both",
+      "carcosaPreventedHastur": "the investigators prevented Hastur from escaping his prison",
+      "carcosaPossessed": "possessed investigators",
+      "carcosaHasturHasYou": "Hastur has you in his grasp"
     },
     "scenario": {
       "smokeAndMirrors": "Scenario II: Smoke and Mirrors",
@@ -1855,6 +1890,38 @@
       "allInsane": "Every investigator goes insane. The investigators lose the campaign.",
       "tokens1": "Remove all cultist, tablet and elder thing tokens from the chaos bag, then add 2 cultist and 2 tablet tokens.",
       "tokens2": "Remove all cultist, tablet and elder thing tokens from the chaos bag, then add 2 cultist and 2 elder thing tokens."
+    },
+    "dim": {
+      "introTitle": "Scenario VIII: Dim Carcosa",
+      "intro1": "You swim to the shore of a lake that reflects two suns. Twisted alien towers rise in the distance. This is Carcosa, where Hastur reigns supreme.",
+      "intro2": "You land on black obsidian winding up a dark tower; above, the abbey of Mont Saint-Michel hangs upside down beneath the clouds. This is Carcosa.",
+      "setupTitle": "Setup",
+      "setup": "Gather Dim Carcosa, Delusions, Cult of the Yellow Sign, Inhabitants of Carcosa, Agents of Hastur and Striking Fear. Act 2 depends on your Doubt and Conviction: 5 or fewer in total, v. I; 6 or more with more Doubt, v. II; with more Conviction, v. III; tied, you choose.\n\nA random copy of Bleak Plains, Dim Streets, Ruins of Carcosa and Depths of Demhe is put into play with the Shores of Hali, the Dark Spires and the Palace of the King, all revealed with their clues. Start at the Shores of Hali if you opened the path below, otherwise at the Dark Spires.\n\nAgenda 1a gets 3, 2, 1 or 0 doom for 0–2, 3–5, 6–8 or 9+ marks under \"Chasing the Stranger\". Each investigator takes direct horror equal to half their sanity. In Carcosa you are not defeated by horror; with more horror than sanity, your remaining sanity is 0.",
+      "noResolutionTitle": "No resolution",
+      "noResolution": "Each investigator was defeated. Check the Campaign Log: more (or equal) Conviction leads to Resolution 4; more Doubt, to Resolution 5.",
+      "resolution1Title": "Resolution 1",
+      "resolution1": "On the balcony of the abbey tower you throw the pallid mask into the storm-tossed waves.",
+      "resolution2Title": "Resolution 2",
+      "resolution2": "Thunderous applause wakes you in the theatre. Was it all a dream? The actor playing the Stranger still wears his pallid mask.",
+      "resolution3Title": "Resolution 3",
+      "resolution3": "You wake in the Chœur Gothique. Outside, the sun shines over a calm Mont Saint-Michel, and your captain asks if you are ready to go back.",
+      "resolution4Title": "Resolution 4",
+      "resolution4": "You wake in the Chœur Gothique, but outside two suns shine over the Lake of Hali, beneath the black stars.",
+      "resolution5Title": "Resolution 5",
+      "resolution5": "Nobody believes your warnings. In your cell you write of Aldebaran and the black stars, and the words fade with the years.",
+      "allInsane": "Every investigator goes insane. The investigators lose the campaign.",
+      "trauma1": "Each investigator suffers 2 physical and 2 mental trauma.",
+      "trauma2": "Each investigator suffers 2 mental trauma.",
+      "trauma3": "Each investigator suffers 2 physical trauma.",
+      "bonus": {
+        "self": "5 bonus experience for triumphing over yourself, the most dangerous enemy.",
+        "truth": "5 bonus experience for learning the truth behind The King in Yellow."
+      },
+      "won": "The investigators win the campaign!",
+      "epilogueTitle": "Epilogue",
+      "epilogue": "Months of preparation later, you are ready to unveil your latest work to the world: the finest performance of The King in Yellow ever staged.",
+      "epiloguePossessed": "Only the possessed investigators read this epilogue.",
+      "epilogueAll": "Read this epilogue only because the investigators won the campaign."
     }
   },
   "playmat": {
@@ -1945,7 +2012,8 @@
       "choose": "Choose an investigator",
       "assign": "Assign",
       "blocked": "Choose the new bearer of a weakness first."
-    }
+    },
+    "lost": "Campaign lost: no investigator can go on."
   },
   "class": {
     "guardian": "Guardian",
@@ -3743,7 +3811,8 @@
     "conditions": "The conditions in its text to play it are not met right now.",
     "fastWindow": "It is fast: play it during your turn or when the game opens a window for fast effects.",
     "actionTiming": "It is played as an action during your turn.",
-    "noActions": "You have no actions left this turn."
+    "noActions": "You have no actions left this turn.",
+    "location": "You cannot play this card at your location"
   },
   "chaosTokenName": {
     "skull": "the Skull token",

@@ -267,6 +267,12 @@
       "moveDoomFrom": "¿De qué plan se mueve 1 perdición (al otro)?",
       "howMuchHorror": "¿Cuánto horror recibes?",
       "howManyCards": "¿Cuántas cartas descartas?"
+    },
+    "dim": {
+      "act2": "Empate entre Dudas y Convicciones: ¿qué versión del acto 2?",
+      "whoTests": "¿Qué investigador realiza la prueba?",
+      "coils": "La locura se enrosca: los investigadores deben decidir",
+      "realm": "Reino de la locura: descarta cartas con un coste impreso total de al menos {amount}"
     }
   },
   "action": {
@@ -513,6 +519,20 @@
       "amount": "{amount}",
       "extraHarm": "Recibir 1 daño y 1 horror adicionales",
       "doomOnEach": "Colocar 1 perdición en cada plan en juego"
+    },
+    "dim": {
+      "act2": "Buscad al Extranjero (v. {version})",
+      "exhaustEnemy": "Agotar y desenfrentar a {enemy}",
+      "exhaustKing": "Agotar a Hastur (El Rey de Amarillo)",
+      "healHorror": "Curar {amount} horror",
+      "cannot": "No puedes decidirte a hacer lo que hay que hacer",
+      "push": "Empujarla: recibe 2 horror y 2 daño por investigador a Hastur",
+      "coils": {
+        "willpower": "Prueba de Voluntad (4) para salir del trance",
+        "intellect": "Prueba de Intelecto (4) para recordar que ya has hecho esto antes",
+        "horror": "Esto no puede ser real: cada investigador recibe 2 horror",
+        "faint": "Desmayarse: avanzar y colocar 1 perdición en el plan 2a"
+      }
     }
   },
   "phase": {
@@ -797,11 +817,19 @@
       "moveDoom": "Mueve 1 perdición de un mazo de Plan al otro; coloca 2 pistas aquí",
       "healDamage": "Coloca 1 perdición en el plan «a»: cura 2 daño",
       "healHorror": "Coloca 1 perdición en el plan «c»: cura 2 horror",
-      "findGuide": "Negociar: prueba de [willpower] (3) para encontrar un guía",
-      "findKey": "Investigar con [agility]: encontrar la llave de la torre en vez de descubrir pistas",
+      "findGuide": "Negociar: prueba de Voluntad (3) para encontrar un guía",
+      "findKey": "Investigar con Agilidad: encontrar la llave de la torre en vez de descubrir pistas",
       "takeHorror": "Recibe hasta 3 horror",
       "discardCards": "Descarta hasta 3 cartas de tu mano",
       "riftSeeker": "Negociar: 1 perdición en cada plan y 2 horror para descartar al Buscador de la grieta"
+    },
+    "dim": {
+      "exhaustKing": "Prueba de Voluntad ({difficulty}) para agotar a Hastur (El Rey de Amarillo)",
+      "advanceV1": "Hacer avanzar el acto (el investigador jefe, en el Lugar de El hombre de la máscara pálida)",
+      "flip": "Retirar las pistas de los investigadores y dar la vuelta a tu Lugar",
+      "commitTraitorous": "Comprometer Posesión (Traicionero): esta prueba fracasa automáticamente",
+      "torturous": "Gastar 5 recursos: descartar Posesión (Tortuoso)",
+      "murderous": "Infligir 2 daño a {name}: descartar Posesión (Homicida)"
     }
   },
   "log": {
@@ -898,6 +926,9 @@
     },
     "pallid": {
       "looked": "{name} mira unas Catacumbas: es {location}."
+    },
+    "dim": {
+      "flipped": "{name} da la vuelta a {location}: {story}."
     }
   },
   "table": {
@@ -1117,7 +1148,8 @@
     "placedAt": "Se pone en {location}",
     "spawnedAt": "Aparece en {location}",
     "targetHint": "Elige uno de los elementos resaltados en la mesa.",
-    "secondAgenda": "Segundo plan"
+    "secondAgenda": "Segundo plan",
+    "exhausted": "agotado"
   },
   "difficulty": {
     "easy": "Fácil",
@@ -1349,7 +1381,10 @@
       "carcosaReadActII": "Leyeron el segundo acto de El Rey de Amarillo",
       "carcosaOpenedThePathBelow": "los investigadores abrieron el camino de abajo",
       "carcosaOpenedThePathAbove": "los investigadores abrieron el camino de arriba",
-      "carcosaRealmsMerged": "el reino de Carcosa se fusionó con el nuestro, y Hastur gobierna en ambos"
+      "carcosaRealmsMerged": "el reino de Carcosa se fusionó con el nuestro, y Hastur gobierna en ambos",
+      "carcosaPreventedHastur": "los investigadores impidieron que Hastur escapara de su prisión",
+      "carcosaPossessed": "investigadores poseídos",
+      "carcosaHasturHasYou": "Hastur te tiene en su poder"
     },
     "scenario": {
       "smokeAndMirrors": "el Escenario II: Smoke and Mirrors",
@@ -1855,6 +1890,38 @@
       "allInsane": "Todos los investigadores se vuelven locos. Los investigadores pierden la campaña.",
       "tokens1": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de sectario y 2 de tablilla.",
       "tokens2": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de sectario y 2 de primigenio."
+    },
+    "dim": {
+      "introTitle": "Escenario VIII: Penumbrosa Carcosa",
+      "intro1": "Nadas hasta la orilla de un lago que refleja dos soles. A lo lejos se alzan las torres alienígenas de una ciudad retorcida. Esto es Carcosa, donde Hastur reina supremo.",
+      "intro2": "Aterrizas sobre obsidiana negra que sube por una torre oscura; sobre ti, la abadía de Mont Saint-Michel cuelga del revés bajo las nubes. Esto es Carcosa.",
+      "setupTitle": "Preparación",
+      "setup": "Se reúnen Penumbrosa Carcosa, Delirios, Secta del Signo Amarillo, Habitantes de Carcosa, Agentes de Hastur y Miedo impactante. El acto 2 depende de las Dudas y Convicciones: 5 o menos en total, v. I; 6 o más con más Dudas, v. II; con más Convicciones, v. III; empatadas, se elige.\n\nUna copia al azar de Llanuras inhóspitas, Calles penumbrosas, Ruinas de Carcosa y Profundidades de Demhe entra en juego con las Costas de Hali, las Torres oscuras y el Palacio del Rey, todas reveladas con sus pistas. Se empieza en las Costas de Hali si abristeis el camino de abajo; si no, en las Torres oscuras.\n\nEl plan 1a recibe 3, 2, 1 o 0 perdición con 0–2, 3–5, 6–8 o 9+ marcas en «Persiguiendo al Extranjero». Cada investigador recibe horror directo igual a la mitad de su cordura. En Carcosa no te derrota el horror; con más horror que cordura, tu cordura restante es 0.",
+      "noResolutionTitle": "Sin resolución",
+      "noResolution": "Cada investigador fue derrotado. Consulta el Registro de campaña: con más (o igual) Convicciones que Dudas, Resolución 4; con más Dudas, Resolución 5.",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "En el balcón de la torre de la abadía lanzas la máscara pálida a las olas movidas por la tempestad.",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "Un aplauso ensordecedor te despierta en el teatro. ¿Fue todo un sueño? El actor que interpreta al Extranjero aún lleva su máscara pálida.",
+      "resolution3Title": "Resolución 3",
+      "resolution3": "Despiertas en el coro gótico. Fuera, el sol brilla sobre un Mont Saint-Michel en calma, y tu capitán te pregunta si estás listo para regresar.",
+      "resolution4Title": "Resolución 4",
+      "resolution4": "Despiertas en el coro gótico, pero fuera dos soles brillan sobre el Lago de Hali, bajo las estrellas negras.",
+      "resolution5Title": "Resolución 5",
+      "resolution5": "Nadie cree tus advertencias. En tu celda escribes sobre Aldebarán y las estrellas negras, y las palabras se desvanecen con los años.",
+      "allInsane": "Todos los investigadores se vuelven locos. Los investigadores pierden la campaña.",
+      "trauma1": "Cada investigador sufre 2 traumas físicos y 2 mentales.",
+      "trauma2": "Cada investigador sufre 2 traumas mentales.",
+      "trauma3": "Cada investigador sufre 2 traumas físicos.",
+      "bonus": {
+        "self": "5 de experiencia adicional por haber triunfado sobre sí mismo, el enemigo más peligroso.",
+        "truth": "5 de experiencia adicional por haber descubierto la verdad que esconde El Rey de Amarillo."
+      },
+      "won": "¡Los investigadores ganan la campaña!",
+      "epilogueTitle": "Epílogo",
+      "epilogue": "Tras meses de preparación, por fin estás listo para desvelar al mundo tu última obra: la mejor representación de El Rey de Amarillo de todos los tiempos.",
+      "epiloguePossessed": "Solo los investigadores poseídos leen este epílogo.",
+      "epilogueAll": "Se lee este epílogo porque los investigadores ganaron la campaña."
     }
   },
   "playmat": {
@@ -1945,7 +2012,8 @@
       "choose": "Elige un investigador",
       "assign": "Asignar",
       "blocked": "Falta elegir el nuevo portador de una debilidad."
-    }
+    },
+    "lost": "Campaña perdida: ningún investigador puede continuar."
   },
   "class": {
     "guardian": "Guardián",
@@ -3743,7 +3811,8 @@
     "conditions": "No se cumplen ahora las condiciones de su texto para jugarla.",
     "fastWindow": "Es rápida: se juega en tu turno o cuando el juego abre una ventana para efectos rápidos.",
     "actionTiming": "Se juega como acción durante tu turno.",
-    "noActions": "No te quedan acciones este turno."
+    "noActions": "No te quedan acciones este turno.",
+    "location": "No puedes jugar esta carta en tu Lugar"
   },
   "chaosTokenName": {
     "skull": "la ficha de Calavera",

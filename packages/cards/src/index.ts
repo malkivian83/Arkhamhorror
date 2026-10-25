@@ -92,6 +92,12 @@ export {
   CODES as BLACK_STARS_RISE_CODES,
 } from './the-path-to-carcosa/black-stars-rise'
 export {
+  CODES as DIM_CARCOSA_CODES,
+  DIM_CARCOSA,
+  dimCarcosa,
+  STORY_OF as DIM_CARCOSA_STORIES,
+} from './the-path-to-carcosa/dim-carcosa'
+export {
   A_PHANTOM_OF_TRUTH,
   aPhantomOfTruth,
   CODES as A_PHANTOM_OF_TRUTH_CODES,

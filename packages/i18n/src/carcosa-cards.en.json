@@ -1269,5 +1269,238 @@
     "name": "Worlds Merge",
     "traits": "Omen.",
     "text": "<b>Revelation</b> - Test [willpower] (3). If you fail:\n- If agenda 1c is in play, take 1 horror and discard 1 card from your hand.\n- If agenda 2c is in play, take 2 horror and discard 2 cards from your hand.\n- If act 3c or agenda 3c is in play, take 3 horror and discard 3 cards from your hand."
+  },
+  "03316": {
+    "name": "Dim Carcosa",
+    "text": "Easy / Standard\n[skull]: -2 (-4 instead if you have no sanity remaining).\n[cultist]: Reveal another token. If you fail, take 1 horror.\n[tablet]: -3. If you fail and Hastur is in play, place 1 clue on your location <i>(from the token bank)</i>.\n[elder_thing]: -3. If this token is revealed during an attack or evasion attempt against a [[Monster]] or [[Ancient One]] enemy, lose 1 action.",
+    "backText": "Hard / Expert\n[skull]: -X. X is the amount of horror on you.\n[cultist]: Reveal another token. If you fail, take 2 horror.\n[tablet]: -5. If you fail and Hastur is in play, place 1 clue on your location <i>(from the token bank)</i>.\n[elder_thing]: -5. If this token is revealed during an attack or evasion attempt against a [[Monster]] or [[Ancient One]] enemy, lose 1 action."
+  },
+  "03317": {
+    "name": "Madness Coils",
+    "text": "Hastur cannot be defeated.\n<b>Forced</b> - If there is at least 3 [per_investigator] damage on Hastur: Advance this agenda.",
+    "backName": "Key to the...?",
+    "backText": "The investigators must decide (choose one):\n - Any investigator tests [willpower] (4) to snap out of it. If successful, advance to agenda 2a. If failed, you must choose an option you have yet to choose.\n - Any investigator tests [intellect] (4) to remember that you've done this before. If successful, advance to agenda 2a. If failed, you must choose an option you have yet to choose.\n - This can't be real. This can't be real. This can't be real. Each investigator takes 2 horror. Advance to agenda 2a.\n - The investigators faint and awaken some time later. Advance to agenda 2a and place 1 doom on it."
+  },
+  "03318": {
+    "name": "Madness Drowns",
+    "text": "Hastur gets +1 fight and cannot be defeated.\n<b>Forced</b> - If there is at least 5 [per_investigator] damage on Hastur: Advance this agenda.",
+    "backName": "The Final Guest...?",
+    "backText": "Spawn the set-aside Beast of Aldebaran enemy at the Palace of the King.\nShuffle the encounter discard pile into the encounter deck."
+  },
+  "03319": {
+    "name": "Madness Dies",
+    "text": "Hastur gets +2 fight.<br/>Hastur cannot be defeated unless an investigator \"know the secret.\"",
+    "backName": "Earth and Carcosa",
+    "backText": "Check Campaign Log.\n - If you have more (or equal) <b>Conviction</b> than <b>Doubt</b>, proceed to <b>(→R4)</b>.\n - If you have more <b>Doubt</b> than <b>Conviction</b>, proceed to <b>(→R5)</b>."
+  },
+  "03320": {
+    "name": "In Lost Carcosa",
+    "text": "<b>Objective</b> - When the investigators have collected the requisite number of clues, they must immediately spend them and advance.",
+    "backName": "His Final Bow...?",
+    "backText": "Spawn the set-aside The Man in the Pallid Mask enemy at the Palace of the King."
+  },
+  "03321a": {
+    "name": "Search For the Stranger (v.I)",
+    "text": "Each investigator cannot discover clues.\nThe Man in the Pallid Mask cannot be defeated.\n<b>Objective</b> - While the lead investigator is at The Man in the Pallid Mask's location, he or she may spend [action] [action] [action] to advance."
+  },
+  "03321b": {
+    "name": "The Pallid Mask",
+    "subname": "Chasing Tails",
+    "traits": "Item. Relic.",
+    "text": "<b>Revelation</b> - Put The Pallid Mask into play, under the lead investigator's control. Remove The Man in the Pallid Mask from the game. Spawn the set-aside Hastur <i>(The Tattered King)</i> enemy at the Palace of the King.\nThe Pallid Mask cannot leave play.\nYou get -2 sanity."
+  },
+  "03322a": {
+    "name": "Search For the Stranger (v.II)",
+    "text": "Each investigator cannot discover clues.\nThe Man in the Pallid Mask cannot be defeated except by his [action] ability.\n<b>Objective</b> - When The Man in the Pallid Mask would be defeated by his [action] ability, advance.",
+    "backName": "Figment of Your Imagination",
+    "backText": "Put the set-aside Hastur <i>(The King in Yellow)</i> enemy into play next to the act deck. For the remainder of the scenario, Hastur is considered to be in play but is not at any location. Remove The Man in the Pallid Mask from the game."
+  },
+  "03323a": {
+    "name": "Search For the Stranger (v.III)",
+    "text": "Each investigator cannot discover clues.\nThe Man in the Pallid Mask cannot be defeated except by damage.\n<b>Objective</b> - When The Man in the Pallid Mask would be defeated by damage, advance.",
+    "backName": "The Disguise is Laid Aside",
+    "backText": "Spawn the set-aside Hastur <i>(Lord of Carcosa)</i>enemy at The Man in the Pallid Mask's location. Remove The Man in the Pallid Mask from the game."
+  },
+  "03324": {
+    "name": "The King in Tatters",
+    "text": "[fast] If there are no clues on your location: Remove each investigator's clues from the game. Flip your location over and resolve the text on the other side.\n<b>Objective</b> - If Hastur is defeated, advance.",
+    "backName": "Fin",
+    "backText": "- If Hastur <i>(The Tattered King)</i> was the version of Hastur that was defeated, proceed to <b>(→R1)</b>.\n - If Hastur <i>(The King in Yellow)</i> was the version of Hastur that was defeated, proceed to <b>(→R2)</b>.\n - If Hastur <i>(Lord of Carcosa)</i> was the version of Hastur that was defeated, proceed to <b>(→R3)</b>."
+  },
+  "03325a": {
+    "name": "Shores of Hali",
+    "traits": "Otherworld."
+  },
+  "03325b": {
+    "name": "Songs That the Hyades Shall Sing",
+    "text": "Deal 1 [per_investigator] damage to Hastur, exhaust him, and disengage him from all investigators.\nFlip this card back over. For the remainder of the game, it cannot be flipped over again."
+  },
+  "03326a": {
+    "name": "Bleak Plains",
+    "traits": "Otherworld.",
+    "text": "While you are at Bleak Plains, you cannot play [[Ally]] assets."
+  },
+  "03326b": {
+    "name": "Stars of Aldebaran",
+    "text": "Each investigator heals 3 horror.\nDeal 4 damage to an enemy in play other than Hastur.\nRemove this card from the game, and replace it with another set-aside copy of Bleak Plains (move all investigators, enemies, and attachments from this location to the new copy of Bleak Plains). Add clues to that copy of Bleak Plains until it has clues on it equal to its clue value."
+  },
+  "03326c": {
+    "name": "Bleak Plains",
+    "traits": "Otherworld.",
+    "text": "While you are at Bleak Plains, you cannot play [[Ally]] assets."
+  },
+  "03326d": {
+    "name": "Bleak Desolation",
+    "text": "Deal 2 [per_investigator] damage to Hastur.\nFlip this card back over. For the remainder of the game, it cannot be flipped over again."
+  },
+  "03327a": {
+    "name": "Ruins of Carcosa",
+    "traits": "Otherworld.",
+    "text": "<b>Forced</b> - After you discover the last remaining clue on Ruins of Carcosa: Take 1 damage."
+  },
+  "03327b": {
+    "name": "Inhabitant of Carcosa",
+    "text": "Each investigator heals 3 horror.\nRemove this card from the game, and replace it with another set-aside copy of Ruins of Carcosa (move all investigators, enemies, and attachments from this location to the new copy of Ruins of Carcosa). Add clues to that copy of Ruins of Carcosa until it has clues on it equal to its clue value."
+  },
+  "03327c": {
+    "name": "Ruins of Carcosa",
+    "traits": "Otherworld.",
+    "text": "<b>Forced</b> - After you discover the last remaining clue on Ruins of Carcosa: Take 1 damage."
+  },
+  "03327d": {
+    "name": "A Moment's Rest",
+    "text": "You must decide (choose one):\n - Choose an enemy in play. Exhaust that enemy and disengage it from all investigators.\n - You heal 5 horror.\nRemove this card from the game, and replace it with another set-aside copy of Ruins of Carcosa (move all investigators, enemies, and attachments from this location to the new copy of Ruins of Carcosa). Add clues to that copy of Ruins of Carcosa until it has clues on it equal to its clue value."
+  },
+  "03327e": {
+    "name": "Ruins of Carcosa",
+    "traits": "Otherworld.",
+    "text": "<b>Forced</b> - After you discover the last remaining clue on Ruins of Carcosa: Take 1 damage."
+  },
+  "03327f": {
+    "name": "The Coffin",
+    "text": "Deal 1 [per_investigator] damage to Hastur.\nFlip this card back over. For the remainder of the game, it cannot be flipped over again."
+  },
+  "03328a": {
+    "name": "Dim Streets",
+    "traits": "Otherworld.",
+    "text": "<b>Forced</b> - After you discover the last remaining clue on Dim Streets: Lose 1 action."
+  },
+  "03328b": {
+    "name": "Mapping the Streets",
+    "text": "Test [intellect] (3). For each point you fail by, take 1 horror. Deal 1 [per_investigator] damage to Hastur regardless of whether you succeed or fail.\nAfter this test ends, flip this card back over. For the remainder of the game, it cannot be flipped over again."
+  },
+  "03328c": {
+    "name": "Dim Streets",
+    "traits": "Otherworld.",
+    "text": "<b>Forced</b> - After you discover the last remaining clue on Dim Streets: Lose 1 action."
+  },
+  "03328d": {
+    "name": "The King's Parade",
+    "text": "Test [combat] (2). If you succeed, exhaust Hastur and disengage him from all investigators.\nRemove this card from the game, and replace it with another set-aside copy of Dim Streets (move all investigators, enemies, and attachments from this location to the new copy of Dim Streets). Add clues to that copy of Dim Streets until it has clues on it equal to its clue value."
+  },
+  "03328e": {
+    "name": "Dim Streets",
+    "traits": "Otherworld.",
+    "text": "<b>Forced</b> - After you discover the last remaining clue on Dim Streets: Lose 1 action."
+  },
+  "03328f": {
+    "name": "The Archway",
+    "text": "Test [willpower] (1). For each point you succeed by, heal 1 horror.\nRemove this card from the game, and replace it with another set-aside copy of Dim Streets (move all investigators, enemies, and attachments from this location to the new copy of Dim Streets). Add clues to that copy of Dim Streets until it has clues on it equal to its clue value."
+  },
+  "03329a": {
+    "name": "Depths of Demhe",
+    "traits": "Otherworld.",
+    "text": "While you are at Depths of Demhe, you cannot play fast cards."
+  },
+  "03329b": {
+    "name": "The Height of the Depths",
+    "text": "Each investigator heals 5 horror.\nRemove this card from the game, and replace it with another set-aside copy of Depths of Demhe (move all investigators, enemies, and attachments from this location to the new copy of Depths of Demhe). Add clues to that copy of Depths of Demhe until it has clues on it equal to its clue value."
+  },
+  "03329c": {
+    "name": "Depths of Demhe",
+    "traits": "Otherworld.",
+    "text": "While you are at Depths of Demhe, you cannot play fast cards."
+  },
+  "03329d": {
+    "name": "Steps of the Palace",
+    "text": "Deal 1 [per_investigator] damage to Hastur, exhaust him, and disengage him from all investigators.\nFlip this card back over. For the remainder of the game, it cannot be flipped over again."
+  },
+  "03330": {
+    "name": "Dark Spires",
+    "traits": "Otherworld."
+  },
+  "03330b": {
+    "name": "The Fall",
+    "text": "You must decide (choose one):\n - <i>You cannot bring yourself to do what must be done.</i> Flip this card back over.\n - <i>Realizing what you must do, you step forward and push her.</i> Take 2 horror and deal 2 [per_investigator] damage to Hastur. Flip this card back over. For the remainder of the game, it cannot be flipped over again."
+  },
+  "03331": {
+    "name": "Palace of the King",
+    "traits": "Otherworld.",
+    "text": "Palace of the King cannot be flipped over unless Hastur has at least 5 [per_investigator] damage on him."
+  },
+  "03331b": {
+    "name": "Hastur's End",
+    "text": "Remember that you \"know the secret.\"\nFlip this card back over. For the remainder of the game, it cannot be flipped over again."
+  },
+  "03332": {
+    "name": "Hastur",
+    "subname": "The King in Yellow",
+    "traits": "Ancient One. Elite.",
+    "text": "Cannot be damaged except by story card effects.\n<b>Forced</b> - At the beginning of the enemy phase, if Hastur is ready: Hastur attacks each investigator, in player order <i>(regardless of their location)</i>. If Hastur's attack deals you horror in excess of your sanity, you take 1 damage, as well.\n[action]: Test [willpower] (X), where X is Hastur's fight value. If you succeed, exhaust Hastur. Any investigator may trigger this action."
+  },
+  "03333": {
+    "name": "Hastur",
+    "subname": "Lord of Carcosa",
+    "traits": "Ancient One. Elite.",
+    "text": "<b>Prey</b> - Most remaining sanity.\nHunter. Massive.\nIf Hastur's attack deals you horror in excess of your sanity, you take 1 damage, as well.\nWhile Hastur is being attacked or evaded by an investigator with no remaining sanity, treat each [elder_sign], \"+1,\" \"0,\" or \"-1\" token that investigator reveals as a [auto_fail] token."
+  },
+  "03334": {
+    "name": "Hastur",
+    "subname": "The Tattered King",
+    "traits": "Ancient One. Elite.",
+    "text": "<b>Prey</b> - Most remaining sanity.\nHunter.\nIf Hastur's attack deals you horror in excess of your sanity, you take 1 damage, as well.\nWhile Hastur is being attacked or evaded by an investigator with no remaining sanity, treat each [elder_sign], \"+1,\" \"0,\" or \"-1\" token that investigator reveals as a [auto_fail] token."
+  },
+  "03335": {
+    "name": "Creature Out of Demhe",
+    "traits": "Monster.",
+    "text": "<b>Spawn</b> - Depths of Demhe.\nMassive.\n<b>Forced</b> - When Creature out of Demhe's location or a connecting location is flipped over, if Creature out of Demhe is ready: It attacks each investigator at that location."
+  },
+  "03336": {
+    "name": "Winged One",
+    "traits": "Monster. Byakhee.",
+    "text": "<b>Spawn</b> - Bleak Plains.\nRetaliate.\n<b>Forced</b> - After a location is flipped over, if Winged One is ready and unengaged: Move it once toward that location."
+  },
+  "03337": {
+    "name": "Dismal Curse",
+    "traits": "Curse. Terror.",
+    "text": "<b>Revelation</b> - Test [willpower] (3). If you have no remaining sanity, this test gets +2 difficulty. If you fail, take 2 damage (4 damage instead if you have horror on you greater than twice your sanity)."
+  },
+  "03338": {
+    "name": "Realm of Madness",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Discard cards from your play area and/or from your hand with a total printed resource cost of at least X, where X is the amount of horror on your investigator. If no cards are discarded by this effect, take 2 horror."
+  },
+  "03339": {
+    "name": "The Final Act",
+    "traits": "Terror.",
+    "text": "Surge.\n<b>Revelation</b> - If you have no remaining sanity, place 2 doom on the current agenda. This effect can cause the current agenda to advance."
+  },
+  "03340": {
+    "name": "Possession",
+    "subname": "Traitorous",
+    "traits": "Hex. Terror.",
+    "text": "Peril. Hidden.\n<b>Revelation</b> - Secretly add Possession (Traitorous) to your hand.\nIf you have horror on you greater than twice your sanity, you are immediately eliminated and <b>killed</b>.\nYou may commit this card to a skill test at your location. That test automatically fails."
+  },
+  "03341": {
+    "name": "Possession",
+    "subname": "Torturous",
+    "traits": "Hex. Terror.",
+    "text": "Peril. Hidden.\n<b>Revelation</b> - Secretly add Possession (Torturous) to your hand.\nIf you have horror on you greater than twice your sanity, you are immediately eliminated and <b>killed</b>.\n[action] Spend 5 resources: Discard Possession (Torturous) from your hand."
+  },
+  "03342": {
+    "name": "Possession",
+    "subname": "Murderous",
+    "traits": "Hex. Terror.",
+    "text": "Peril. Hidden.\n<b>Revelation</b> - Secretly add Possession (Murderous) to your hand.\nIf you have horror on you greater than twice your sanity, you are immediately eliminated and <b>killed</b>.\n[action] Deal 2 damage to an investigator at your location: Discard Possession (Murderous) from your hand."
   }
 }

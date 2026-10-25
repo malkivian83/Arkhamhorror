@@ -87,9 +87,17 @@ const CODES = new Set([
   '03276b',
   '03279a',
   '03279b',
+  // Penumbrosa Carcosa: cada Lugar lleva una Historia en el reverso (03325b, 03326a–d…), las
+  // tres versiones del acto 2 y La máscara pálida (03321b).
+  ...range(3316, 3320),
+  ...['03321a', '03321b', '03322a', '03323a', '03324', '03325', '03325b'],
+  ...['03326a', '03326b', '03326c', '03326d'],
+  ...['a', 'b', 'c', 'd', 'e', 'f'].flatMap((side) => [`03327${side}`, `03328${side}`]),
+  ...['03329a', '03329b', '03329c', '03329d', '03330', '03330b', '03331', '03331b'],
+  ...range(3332, 3342),
 ])
 /** Códigos de la fuente que el proyecto usa con otra letra de cara. */
-const RENAMED = { '03221': '03221a' }
+const RENAMED = { '03221': '03221a', '03325': '03325a' }
 
 /** Erratas de la traducción de la fuente, contrastadas con las cartas impresas. */
 const ERRATA = [
@@ -104,6 +112,7 @@ const ERRATA = [
   ['cannot be increased', 'cannot be modified'],
   // Terror de la marea (03300): palabra clave sin traducir en la fuente.
   ['Capilla de san Auberto.\nHunter.', 'Capilla de san Auberto.\nCazador.'],
+  ['no puede se derrotado', 'no puede ser derrotado'],
 ]
 const fix = (text) =>
   typeof text === 'string'

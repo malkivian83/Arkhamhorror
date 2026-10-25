@@ -42,7 +42,7 @@ describe('The Path to Carcosa: campaign foundation', () => {
   )
 
   it.each([1, 2, 3, 4])(
-    'creates a campaign for %i investigators; scenarios I–VII are playable',
+    'creates a campaign for %i investigators; all eight scenarios are playable',
     (players) => {
       const campaign = newCampaign(
         definition.id,
@@ -70,12 +70,8 @@ describe('The Path to Carcosa: campaign foundation', () => {
       expect(startScenario({ ...campaign, scenarioIndex: 6 }, 1).scenarioId).toBe(
         'black-stars-rise',
       )
-      for (const [scenarioIndex, scenario] of definition.scenarios.entries()) {
-        if (scenarioIndex <= 6) continue
-        const pending = { ...campaign, scenarioIndex }
-        expect(canPlayNext(pending)).toBe(false)
-        expect(() => startScenario(pending, 1)).toThrow(`Escenario no disponible: ${scenario.id}`)
-      }
+      expect(startScenario({ ...campaign, scenarioIndex: 7 }, 1).scenarioId).toBe('dim-carcosa')
+      expect(definition.scenarios.every((s) => !!s.build)).toBe(true)
     },
   )
 })

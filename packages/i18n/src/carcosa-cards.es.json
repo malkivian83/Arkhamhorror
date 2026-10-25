@@ -1274,5 +1274,238 @@
     "name": "Los mundos se fusionan",
     "traits": "Augurio.",
     "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (3). Si fracasas:\n- Si está en juego el plan 1c, recibe 1 punto de horror y descarta 1 carta de tu mano.\n- Si está en juego el plan 2c, recibe 2 puntos de horror y descarta 2 cartas de tu mano.\n- Si está en juego el acto 3c o el plan 3c, recibe 3 puntos de horror y descarta 3 cartas de tu mano."
+  },
+  "03316": {
+    "name": "Penumbrosa Carcosa",
+    "text": "<b>Fácil/Normal</b>\n[skull]: -2, o bien -4 si no te queda cordura.\n[cultist]: Revela otra ficha. Si fracasas, recibe 1 punto de horror.\n[tablet]: -3. Si fracasas y Hastur está en juego, coloca 1 pista en tu Lugar <i>(de la reserva de fichas)</i>.\n[elder_thing]: -3. Si esta ficha es revelada durante un ataque o intento de evitar contra un Enemigo [[Monstruo]] o [[Primigenio]], pierde 1 acción.",
+    "backText": "<b>Difícil/Experto</b>\n[skull]: -X. X es la cantidad de horror que tengas.\n[cultist]: Revela otra ficha. Si fracasas, recibe 2 puntos de horror.\n[tablet]: -5. Si fracasas y Hastur está en juego, coloca 1 pista en tu Lugar <i>(de la reserva de fichas)</i>.\n[elder_thing]: -5. Si esta ficha es revelada durante un ataque o intento de evitar contra un Enemigo [[Monstruo]] o [[Primigenio]], pierde 1 acción."
+  },
+  "03317": {
+    "name": "La locura se enrosca",
+    "text": "Hastur no puede ser derrotado.\n<b>Obligado</b> - Si hay al menos 3 puntos de daño[per_investigator] sobre Hastur: Haz avanzar este plan.",
+    "backName": "¿La llave de…?",
+    "backText": "Los investigadores deben decidir (elige una opción):\n - Cualquier investigador realiza una prueba de [willpower] (4) para recuperarse. Si tiene éxito, haz avanzar el plan al plan 2a. Si fracasa, debéis elegir una opción que no hayáis elegido aún.\n - Cualquier investigador realiza una prueba de [intellect] (4) para recordar que ya habéis hecho esto antes. Si tiene éxito, haz avanzar el plan al plan 2a. Si fracasa, debéis elegir una opción que no hayáis elegido aún.\n - Esto no puede ser real. Esto no puede ser real. Esto no puede ser real. Cada investigador recibe 2 puntos de horror. Haz avanzar el plan al plan 2a.\n - Los investigadores se desmayan y se despiertan algo más tarde. Haz avanzar el plan al plan 2a y coloca 1 ficha de Perdición sobre él."
+  },
+  "03318": {
+    "name": "La locura ahoga",
+    "text": "Hastur recibe +1 a combate y no puede ser derrotado.\n<b>Obligado</b> - Si hay al menos 5 puntos de daño[per_investigator] sobre Hastur: Haz avanzar este plan.",
+    "backName": "¿La última invitada…?",
+    "backText": "Haz aparecer el Enemigo Bestia de Aldebarán puesto aparte en El palacio del Rey.\nAñade la pila de descartes de Encuentros al mazo de Encuentros y barájalo."
+  },
+  "03319": {
+    "name": "La locura muere",
+    "text": "Hastur recibe +2 a combate.\n Hastur sólo puede ser derrotado si \"los investigadores conocen el secreto\".",
+    "backName": "La Tierra y Carcosa",
+    "backText": "Comprueba el registro de campaña.\n - Si tienes una cantidad mayor o igual de <b>Convicciones</b> que de <b>Dudas</b>, pasa a <b>(→R4)</b>.\n - Si tienes una cantidad mayor de <b>Dudas</b> que de <b>Convicciones</b>, pasa a <b>(→R5)</b>."
+  },
+  "03320": {
+    "name": "En la Perdida Carcosa",
+    "text": "<b>Objetivo</b> - Cuando los investigadores hayan obtenido la cantidad necesaria de pistas, deben gastarlas inmediatamente y hacer avanzar el acto.",
+    "backName": "¿Fin de la obra…?",
+    "backText": "Haz aparecer el Enemigo El hombre de la máscara pálida puesto aparte en El palacio del Rey."
+  },
+  "03321a": {
+    "name": "En busca del Extranjero (v.I)",
+    "text": "Ningún investigador puede descubrir pistas.\nEl hombre de la máscara pálida no puede ser derrotado.\n<b>Objetivo</b> - Mientras el investigador jefe esté en el Lugar de El hombre de la máscara pálida, puede gastar [action] [action] [action] para hacer avanzar el acto."
+  },
+  "03321b": {
+    "name": "La máscara pálida",
+    "subname": "Dando vueltas",
+    "traits": "Objeto. Reliquia.",
+    "text": "<b>Revelación</b> - Pon La máscara pálida en juego, bajo el control del investigador jefe. Retira de la partida El hombre de máscara pálida. Haz aparecer el Enemigo Hastur [[(El Rey Andrajoso)]] puesto aparte en El palacio del Rey.\nLa máscara pálida no puede abandonar el juego.\nRecibes -2 de cordura."
+  },
+  "03322a": {
+    "name": "En busca del Extranjero (v.II)",
+    "text": "Ningún investigador puede descubrir pistas.\nEl hombre de la máscara pálida no puede ser derrotado excepto mediante su capacidad de [action].\n<b>Objetivo</b> - Cuando El hombre de la máscara pálida fuese a ser derrotado por su capacidad [action], haz avanzar el acto.",
+    "backName": "Prodcuto de tu imaginación",
+    "backText": "Pon en juego el Enemigo Hastur [[(El Rey de Amarillo)]] puesto aparte junto al mazo de Acto. Durante el resto del escenario, Hastur se considera en juego, pero no está en ningún Lugar. Retira de la partida El hombre de la máscara pálida."
+  },
+  "03323a": {
+    "name": "En busca del Extranjero (v.III)",
+    "text": "Ningún investigador puede descubrir pistas.\nEl hombre de la máscara pálida no puede ser derrotado excepto mediante daño.\n<b>Objetivo</b> - Cuando El hombre de la máscara pálida fuese a ser derrotado mediante daño, haz avanzar el acto.",
+    "backName": "Se quita el disfraz",
+    "backText": "Haz aparecer el Enemigo Hastur [[(Señor de Carcosa)]] puesto aparte en el Lugar de El hombre de la máscara pálida. Retira de la partida el El hombre de la máscara pálida."
+  },
+  "03324": {
+    "name": "El Rey harapiento",
+    "text": "[free] Si no hay pista en tu Lugar: Retira de la partida las pistas de cada investigador. Dale la vuelta a tu Lugar y resuelve el texto del otro lado.\n<b>Objetivo</b> - Si Hastur es derrotado, haz avanzar el acto.",
+    "backName": "Fin",
+    "backText": "- Si la versión de Hastur que fue derrotada fue Hastur [[(El Rey Andrajoso)]], pasa a <b>(→R1)</b>.\n - Si la versión de Hastur que fue derrotada fue Hastur [[(El Rey de Amarillo)]], pasa a  <b>(→R2)</b>.\n - Si la versión de Hastur que fue derrotada fue Hastur [[(Señor de Carcosa)]], pasa a  <b>(→R3)</b>."
+  },
+  "03325a": {
+    "name": "Costas de Hali",
+    "traits": "Sobrenatural."
+  },
+  "03325b": {
+    "name": "los cantos que cantarán las Híades",
+    "text": "Inflige 1 punto de daño[per_investigator] a Hastur, agótalo y haz que deje de estar enfrentado a todos los investigadores.\nDale la vuelta a esta carta. Durante el resto de la partida, no puede volver a darse la vuelta."
+  },
+  "03326a": {
+    "name": "Llanuras inhóspitas",
+    "traits": "Sobrenatural.",
+    "text": "Mientras estés en las Llanuras inhóspitas, no puedes jugar Apoyos [[Aliado]]."
+  },
+  "03326b": {
+    "name": "Estrellas de Aldebarán",
+    "text": "Cada investigador se cura 3 puntos de horror.\nInflige 4 puntos de daño a un Enemigo en juego que no sea Hastur.\nRetira esta carta de la partida y sustitúyela por otra copia puesta de las Llanura inhóspitas (mueve todos los investigadores, Enemigos y cartas vinculadas de este Lugar a la nueva copia de las Llanuras inhóspitas). Añade pistas a esa copia de las Llanuras inhóspitas hasta que tenga una cantidad de pistas igual a su valor de pista."
+  },
+  "03326c": {
+    "name": "Llanuras inhóspitas",
+    "traits": "Sobrenatural.",
+    "text": "Mientras estés en las Llanuras inhóspitas, no puedes jugar Apoyos [[Aliado]]."
+  },
+  "03326d": {
+    "name": "Desolación deprimente",
+    "text": "Inflige 2 puntos de daño[per_investigator] a Hastur.\nDale la vuelta a esta carta. Durante el resto de la partida, no puede volver a darse la vuelta."
+  },
+  "03327a": {
+    "name": "Ruinas de Carcosa",
+    "traits": "Sobrenatural.",
+    "text": "<b>Obligado</b> - Después de que descubras la última pista restante en las Ruinas de Carcosa: Recibe 1 punto de daño."
+  },
+  "03327b": {
+    "name": "Habitante de Carcosa",
+    "text": "Cada investigador se cura 3 puntos de horror.\nRetira esta carta de la partida y sustitúyela por otra copia puesta aparte de las Ruinas de Carcosa (mueve todos los investigadores, Enemigos y cartas vinculadas de este Lugar a la nueva copia de las Ruinas de Carcosa). Añade pistas a esa copia de las Ruinas de Carcosa hasta que tenga una cantidad de pistas igual a su valor de pista."
+  },
+  "03327c": {
+    "name": "Ruinas de Carcosa",
+    "traits": "Sobrenatural.",
+    "text": "<b>Obligado</b> - Después de que descubras la última pista restante en las Ruinas de Carcosa: Recibe 1 punto de daño."
+  },
+  "03327d": {
+    "name": "Un descanso momentáneo",
+    "text": "Debes decidir (elige una opción):\n - Elige un Enemigo que esté en juego. Agota ese Enemigo y haz que deje de estar enfrentado a todos los investigadores.\n - Cúrate 5 puntos de horror.\nRetira esta carta de la partida y sustitúyela por otra copia puesta aparte de las Ruinas de Carcosa (mueve todos los investigadores, Enemigos y cartas vinculadas de este Lugar a la nueva copia de las Ruinas de Carcosa). Añade pistas a esa copia de las Ruinas de Carcosa hasta que tenga una cantidad de pistas igual a su valor de pista."
+  },
+  "03327e": {
+    "name": "Ruinas de Carcosa",
+    "traits": "Sobrenatural.",
+    "text": "<b>Obligado</b> - Después de que descubras la última pista restante en las Ruinas de Carcosa: Recibe 1 punto de daño."
+  },
+  "03327f": {
+    "name": "El ataúd",
+    "text": "Inflige 1 punto de daño[per_investigator] a Hastur.\nDale la vuelta a esta carta. Durante el resto de la partida, no puede volver a darse la vuelta."
+  },
+  "03328a": {
+    "name": "Calles penumbrosas",
+    "traits": "Sobrenatural.",
+    "text": "<b>Obligado</b> - Después de que descubras la última pista restante en las Calles penumbrosas: Pierde 1 acción."
+  },
+  "03328b": {
+    "name": "Dibujando las calles",
+    "text": "Realiza una prueba de [intellect] (3). Por cada punto que te falte para tener éxito, recibe un punto de horror. Inflige 1 punto de daño[per_investigator] a Hastur independientemente de que tengas éxito o fracases.\nDespués de que termine esta prueba, dale la vuelta a esta carta. Durante el resto de la partida, no puede volver a darse la vuelta."
+  },
+  "03328c": {
+    "name": "Calles penumbrosas",
+    "traits": "Sobrenatural.",
+    "text": "<b>Obligado</b> - Después de que descubras la última pista restante en las Calles penumbrosas: Pierde 1 acción."
+  },
+  "03328d": {
+    "name": "El desfile del Rey",
+    "text": "Realiza una prueba de [combat] (2). Si tienes éxito, agota a Hastur y haz que deje de estar enfrentado a todos los investigadores.\nRetira esta carta de la partida y sustitúyela por otra copia puesta aparte de las Calles penumbrosas (mueve todos los investigadores, Enemigos y cartas vinculadas de este Lugar a la nueva copia de las Calles penumbrosas). Añade pistas a esa copia de las Calles penumbrosas hasta que tenga una cantidad de pistas igual a su valor de pista."
+  },
+  "03328e": {
+    "name": "Calles penumbrosas",
+    "traits": "Sobrenatural.",
+    "text": "<b>Obligado</b> - Después de que descubras la última pista restante en las Calles penumbrosas: Pierde 1 acción."
+  },
+  "03328f": {
+    "name": "La arcada",
+    "text": "Realiza una prueba de [willpower] (1). Por cada punto que tengas por encima del valor mínimo de éxito, cada investigador se cura 1 punto de horror.\nRetira esta carta de la partida y sustitúyela por otra copia puesta aparte de las Calles penumbrosas (mueve todos los investigadores, Enemigos y cartas vinculadas de este Lugar a la nueva copia de las Calles penumbrosas). Añade pistas a esa copia de las Calles penumbrosas hasta que tenga una cantidad de pistas igual a su valor de pista."
+  },
+  "03329a": {
+    "name": "Profundidades de Demhe",
+    "traits": "Sobrenatural.",
+    "text": "Mientras estés en las Profundidades de Demhe, no puedes jugar cartas Rápido."
+  },
+  "03329b": {
+    "name": "La altura de las profundidades",
+    "text": "Cada investigador se cura 5 puntos de horror.\nRetira esta carta de la partida y sustitúyela por otra copia puesta aparte de las Profundidades de Demhe (mueve todos los investigadores, Enemigos y cartas vinculadas de este Lugar a la nueva copia de las Profundidades de Demhe). Añade pistas a esa copia de las Profundidades de Demhe hasta que tenga una cantidad de pistas igual a su valor de pista."
+  },
+  "03329c": {
+    "name": "Profundidades de Demhe",
+    "traits": "Sobrenatural.",
+    "text": "Mientras estés en las Profundidades de Demhe, no puedes jugar cartas Rápido."
+  },
+  "03329d": {
+    "name": "Escalones de palacio",
+    "text": "Inflige 1 punto de daño[per_investigator] a Hastur, agótalo y haz que deje de estar enfrentado a todos los investigadores.\nDale la vuelta a esta carta. Durante el resto de la partida, no puede volver a darse la vuelta."
+  },
+  "03330": {
+    "name": "Torres oscuras",
+    "traits": "Sobrenatural."
+  },
+  "03330b": {
+    "name": "La caída",
+    "text": "Debes decidir (elige una opción):\n - [[No eres capaz de hacer lo que debe hacerse]]. Vuelve a darle la vuelta a esta carta.\n - [[Consciente de lo que debes hacer, avanzas y la empujas]]. Recibe 2 puntos de horror e inflige 2 puntos de daño[per_investigator] a Hastur. Dale la vuelta a esta carta. Durante el resto de la partida, no puede volver a darse la vuelta."
+  },
+  "03331": {
+    "name": "El palacio del Rey",
+    "traits": "Sobrenatural.",
+    "text": "No se puede dar la vuelta a El palacio del Rey si Hastur no tiene al menos 5 puntos de daño[per_investigator]."
+  },
+  "03331b": {
+    "name": "El fin de Hastur",
+    "text": "Recuerda que \"los investigadores conocen el secreto\".\nDale la vuelta a esta carta. Durante el resto de la partida, no puede volver a darse la vuelta."
+  },
+  "03332": {
+    "name": "Hastur",
+    "subname": "El Rey de Amarillo",
+    "traits": "Primigenio. Élite.",
+    "text": "No puede ser dañado excepto por efectos de cartas de Historia.\n<b>Obligado</b> - Al comienzo de la fase de Enemigos, si Hastur está preparado: Hastur ataca a cada investigador siguiendo el orden de juego [[(independientemente de su Lugar)]]. Si el ataque de Hastur te inflige una cantidad de horror que sobrepasa tu cordura, recibes también 1 punto de daño.\n[action]: Realiza una prueba de [willpower] (X), donde X es el valor de combate de Hastur. Si tienes éxito, agota a Hastur. Cualquier investigador puede activar esta acción."
+  },
+  "03333": {
+    "name": "Hastur",
+    "subname": "Señor de Carcosa",
+    "traits": "Primigenio. Élite.",
+    "text": "<b>Presa</b> - Mayor cordura restante.\nCazador. Descomunal.\nSi el ataque de Hastur te inflige una cantidad de horror que sobrepasa tu cordura, recibes también 1 punto de daño.\nMientras Hastur esté siendo atacado o evitado por un investigador al que no le quede cordura, considera todas las fichas [elder_sign], \"+1,\" \"0,\" o \"-1\" que revele ese investigador como fichas [auto_fail]."
+  },
+  "03334": {
+    "name": "Hastur",
+    "subname": "El Rey Andrajoso",
+    "traits": "Primigenio. Élite.",
+    "text": "<b>Presa</b> - Mayor cordura restante.\nCazador.\nSi el ataque de Hastur te inflige una cantidad de horror que sobrepasa tu cordura, recibes también 1 punto de daño.\nMientras Hastur esté siendo atacado o evitado por un investigador al que no le quede cordura, considera todas las fichas [elder_sign], \"+1,\" \"0,\" o \"-1\" que revele ese investigador como fichas [auto_fail]."
+  },
+  "03335": {
+    "name": "Criatura salida de Demhe",
+    "traits": "Monstruo.",
+    "text": "<b>Aparición</b> - Profundidades de Demhe.\nDescomunal.\n<b>Obligado</b> - Cuando se le dé la vuelta al Lugar de la Criatura salida de Demhe o a un Lugar conectados, si la Criatura salida de Demhe está preparada: Ataca a cada investigador que esté en ese Lugar."
+  },
+  "03336": {
+    "name": "Ser alado",
+    "traits": "Monstruo. Byakhee.",
+    "text": "<b>Aparición</b> - Llanuras inhóspitas.\nRepresalia.\n<b>Obligado</b> - Después de que se dé la vuelta a un Lugar, si el Ser alado está preparado y no está enfrentado: Muévelo una vez hacia ese Lugar."
+  },
+  "03337": {
+    "name": "Maldición funesta",
+    "traits": "Maldición. Terror.",
+    "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (3). Si no te queda cordura, esta prueba recibe +2 a su dificultad. Si fracasas, recibe 2 puntos de daño, o bien 4 puntos de daño si tienes una cantidad de horror mayor que el doble de tu cordura."
+  },
+  "03338": {
+    "name": "Reino de la locura",
+    "traits": "Terror.",
+    "text": "<b>Revelación</b> - Descarta cartas del juego y/o de tu mano que tengan un coste de recursos impreso total de al menos X, donde X es la cantidad de horror que tiene tu investigador. Si no se descartaron cartas por este efecto, recibe 2 puntos de horror."
+  },
+  "03339": {
+    "name": "El último acto",
+    "traits": "Terror.",
+    "text": "Oleada.\n<b>Revelación</b> - Si no te queda cordura, coloca 2 fichas de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance."
+  },
+  "03340": {
+    "name": "Posesión",
+    "subname": "Traicionero",
+    "traits": "Maleficio. Terror.",
+    "text": "Peligro. Oculto.\n<b>Revelación</b> - Añade Posesión (traicionero) a tu mano en secreto.\nSi tienes una cantidad de horror mayor que el doble de su cordura, quedas eliminado inmediatamente y <b>mueres</b>.\nPuedes asignar esta carta a una prueba de habilidad en tu Lugar. Esa prueba fracasa automáticamente."
+  },
+  "03341": {
+    "name": "Posesión",
+    "subname": "Tortuoso",
+    "traits": "Maleficio. Terror.",
+    "text": "Peligro. Oculto.\n<b>Revelación</b> - Añade Posesión (tortuoso) a tu mano en secreto.\nSi tienes una cantidad de horror mayor que el doble de su cordura, quedas eliminado inmediatamente y <b>mueres</b>.\n[action] Gasta 5 recursos: Descarta Posesión (tortuoso) de tu mano."
+  },
+  "03342": {
+    "name": "Posesión",
+    "subname": "Homicida",
+    "traits": "Maleficio. Terror.",
+    "text": "Peligro. Oculto.\n<b>Revelación</b> - Añade Posesión (homicida) a tu mano en secreto.\nSi tienes una cantidad de horror mayor que el doble de su cordura, quedas eliminado inmediatamente y <b>mueres</b>.\n[action] Inflige 2 puntos de daño a un investigador que esté en tu Lugar recursos: Descarta Posesión (homicida) de tu mano."
   }
 }

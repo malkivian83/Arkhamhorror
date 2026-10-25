@@ -1,6 +1,7 @@
 import { registerCampaign } from '../campaign-definition'
 import { A_PHANTOM_OF_TRUTH, aPhantomOfTruth } from './a-phantom-of-truth'
 import { BLACK_STARS_RISE, blackStarsRise } from './black-stars-rise'
+import { DIM_CARCOSA, dimCarcosa } from './dim-carcosa'
 import { CARCOSA_CHAOS_BAGS, THE_PATH_TO_CARCOSA } from './campaign'
 import { CURTAIN_CALL, curtainCall } from './curtain-call'
 import { CLASP_OF_BLACK_ONYX } from './echoes-assets'
@@ -65,6 +66,20 @@ registerCampaign({
                         blackStarsRise({ difficulty, seed, log }),
                       keywords: ['peril', 'surge', 'massive', 'hunter', 'retaliate', 'prey'],
                     }
-                  : { id },
+                  : id === DIM_CARCOSA
+                    ? {
+                        id,
+                        build: ({ difficulty, seed, log }) => dimCarcosa({ difficulty, seed, log }),
+                        keywords: [
+                          'hidden',
+                          'peril',
+                          'surge',
+                          'massive',
+                          'hunter',
+                          'retaliate',
+                          'prey',
+                        ],
+                      }
+                    : { id },
   ),
 })
