@@ -4285,7 +4285,8 @@ export function handle(state: GameState, message: Message): GameState {
         // Errante (patrol): hacia su localización designada; cazador: hacia el investigador.
         const behavior = enemyBehavior(enemy.code)
         const patrol = behavior?.patrol?.(state, enemy) ?? null
-        const hunter = enemy.keywords.includes('hunter') && !behavior?.losesHunter?.(state, enemy)
+        const hunter =
+          enemyHasKeyword(state, enemy, 'hunter') && !behavior?.losesHunter?.(state, enemy)
         if (enemy.exhausted || enemy.engagedWith !== null) continue
         if (!patrol && !hunter) continue
         const steps = patrol ? patrolSteps(state, enemy, patrol) : huntingSteps(state, enemy)

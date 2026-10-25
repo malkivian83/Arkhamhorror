@@ -122,6 +122,11 @@ export interface ScenarioBehavior {
   connections?: (state: GameState, location: Location) => LocationId[]
   /** Conexiones adicionales solo cuando se mueve un enemigo (Biblioteca oculta). */
   enemyConnections?: (state: GameState, location: LocationId, enemy?: Enemy) => LocationId[]
+  /**
+   * Palabras clave que un enemigo gana (true) o pierde (false) por el escenario; null si no
+   * cambia (Fortuna e insensatez: los Casino pierden Indiferente con alarma 6 o más).
+   */
+  enemyKeyword?: (state: GameState, enemy: Enemy, keyword: EnemyKeyword) => boolean | null
   /** Habilidad con la que se investiga ese Lugar (Cripta de la lámpara sepulcral). */
   investigateSkill?: (state: GameState, location: LocationId) => SkillType | null
   /**

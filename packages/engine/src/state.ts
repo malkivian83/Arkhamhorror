@@ -150,6 +150,9 @@ export function enemyHasKeyword(state: GameState, enemy: Enemy, keyword: EnemyKe
     (test.kind.type === 'fight' || test.kind.type === 'evade') &&
     test.kind.enemy === enemy.id
   const added = target && test.addedEnemyKeywords?.includes(keyword)
+  const changed = scenarioBehavior(state.scenarioId)?.enemyKeyword?.(state, enemy, keyword)
+  if (changed === false) return false
+  if (changed === true) return true
   return (
     (enemy.keywords.includes(keyword) || !!added) &&
     !attachedModifiers(state, enemy.id).some((m) => m.loses?.includes(keyword))
