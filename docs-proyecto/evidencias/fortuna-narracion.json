@@ -1,0 +1,73 @@
+{
+  "voiceId": "DdKbXdRlBmj7Ty7N0FVr",
+  "voiceName": "Juanjo Relatos",
+  "language": "es",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.15,
+      "speed": 0.95,
+      "use_speaker_boost": true
+    }
+  },
+  "files": [
+    {
+      "key": "story.fof.intro1",
+      "file": "fortune-and-folly-intro1.mp3",
+      "characters": 1168,
+      "inputHash": "3d419728a5bc2f321f81ccd8aabdb362f77c5f07e45e4f41544dff704c100207",
+      "sha256": "7cf7fa08596e8972a9bec93705f8404fd52acf8eb8923a64832e33196189c51a",
+      "bytes": 1524340
+    },
+    {
+      "key": "story.fof.intro3",
+      "file": "fortune-and-folly-intro3.mp3",
+      "characters": 1033,
+      "inputHash": "ef170dc1958c7e314128108553876962b8b53d98dc37030145adafc1bae2ce29",
+      "sha256": "f81cc62b1eed547cbee7e396931e390cf3e4af4b523967deda8a40beb405256d",
+      "bytes": 1337094
+    },
+    {
+      "key": "story.fof.intro4",
+      "file": "fortune-and-folly-intro4.mp3",
+      "characters": 2981,
+      "inputHash": "bfaad1fb850e679a74e6fc485c307847d16560f46bb2c62edfe1c84c0b49aa9c",
+      "sha256": "38434db8b156f8bcde7d415f79ccaa7c84362272f4194a1aedbfc539d488494b",
+      "bytes": 3732418
+    },
+    {
+      "key": "story.fof.intro5",
+      "file": "fortune-and-folly-intro5.mp3",
+      "characters": 1822,
+      "inputHash": "fb48aebacec31812b874bd451ad8bdc8b42219964a2ba802380d0765c51c2b77",
+      "sha256": "724cc594d909849c8767c86ebc3a2119b3c7ab9b2478570c6baac892fe1806c3",
+      "bytes": 2340196
+    },
+    {
+      "key": "story.fof.resolution1",
+      "file": "fortune-and-folly-part1-resolution1.mp3",
+      "characters": 227,
+      "inputHash": "fa8051be46e9b8c7895df46ff78002552e3cc54738b70f59de749ad8551f2207",
+      "sha256": "1a1d969f0cc1166ca2a26ceacfbb7df7119d064215b0dd0610ed9ebd4bebb9c8",
+      "bytes": 308078
+    },
+    {
+      "key": "story.fof.resolution2",
+      "file": "fortune-and-folly-part1-resolution2.mp3",
+      "characters": 243,
+      "inputHash": "e150376d032e4c631543c3fcc5aff8c110a16a6e3321812f3722ce7d4f520e13",
+      "sha256": "26ea06168e7f6b1a07b524686b5a2dbe524f07a3c5830a22d6661e0f0519d277",
+      "bytes": 354054
+    },
+    {
+      "key": "story.fof.plan1",
+      "file": "fortune-and-folly-the-plan1.mp3",
+      "characters": 1281,
+      "inputHash": "2e6367eff68ef4f363c5182e54332d64a98018897b5d20aebb56b4bd439c09ee",
+      "sha256": "6ce61ef27de5a8a9bedba5d6ffa80b8adf6860268885d6f6da6d51d487a0d415",
+      "bytes": 1634263
+    }
+  ]
+}

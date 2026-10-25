@@ -13,7 +13,7 @@ ambas. Guía ES: [`reglas/AHC71_Fortuna_e_insensatez_ES.pdf`](reglas/AHC71_Fortu
 | 2       | Mecánicas: nivel de alarma, Errante, iconos de juego, cambiar cartas, roles | Hecha     |
 | 3       | Parte I: preparación, cartas, resoluciones y punto de control              | Hecha     |
 | 4       | Parte II: Lugares Restringido, Los elegidos de la fortuna, Plan al garete  | Pendiente |
-| 5       | Narración de introducciones, punto de control y resoluciones               | Pendiente |
+| 5       | Narración de introducciones, punto de control y resoluciones               | Parte I   |
 
 ## Datos
 
@@ -97,3 +97,12 @@ Simplificaciones de la parte I:
 Pruebas: `fortune-and-folly/mechanics.test.ts` y `part-one.test.ts` (preparación, premios de
 cada juego, cambiar cartas, El estafador, Crupier, alarma y Guardias, Indiferente con alarma
 6, Errante y El ladrón, tareas, traiciones, resoluciones y punto de control).
+
+## Narración
+
+`scripts/generate-fortune-audio.mjs` lee los textos oficiales en español
+(`apps/web/public/local-assets/story/es.json`, de la guía; el inglés, del proyecto de
+referencia) y los graba con «Juanjo Relatos» (`DdKbXdRlBmj7Ty7N0FVr`, comprobada por nombre).
+Parte I: Introducciones 1, 3, 4 y 5, Resoluciones 1 y 2 y El plan 1. Las instrucciones de
+juego no se narran. Evidencia: `evidencias/fortuna-narracion.json`. Los textos de i18n son
+resúmenes propios, como en las demás campañas.

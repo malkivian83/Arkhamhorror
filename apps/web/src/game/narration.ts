@@ -184,6 +184,14 @@ const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
   'story.excelsior.culpritObjective9': { es: 'excelsior-culprit-objective9.mp3' },
   'story.excelsior.culpritDoom10': { es: 'excelsior-culprit-doom10.mp3' },
   'story.excelsior.culpritObjective10': { es: 'excelsior-culprit-objective10.mp3' },
+  // Fortuna e insensatez, parte I: Juanjo Relatos.
+  'story.fof.intro1': { es: 'fortune-and-folly-intro1.mp3' },
+  'story.fof.intro3': { es: 'fortune-and-folly-intro3.mp3' },
+  'story.fof.intro4': { es: 'fortune-and-folly-intro4.mp3' },
+  'story.fof.intro5': { es: 'fortune-and-folly-intro5.mp3' },
+  'story.fof.resolution1': { es: 'fortune-and-folly-part1-resolution1.mp3' },
+  'story.fof.resolution2': { es: 'fortune-and-folly-part1-resolution2.mp3' },
+  'story.fof.plan1': { es: 'fortune-and-folly-the-plan1.mp3' },
 }
 
 /** Ruta de la narración de un texto en un idioma, si está grabada. */
