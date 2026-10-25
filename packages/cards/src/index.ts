@@ -144,6 +144,7 @@ export * from './decks'
 export { onePrintingEach, printingsOf, reprintSource } from './reprints'
 export {
   activeMembers,
+  campaignLost,
   canPlayNext,
   chooseTransferHeir,
   currentScenario,
@@ -157,6 +158,9 @@ export {
   purchase,
   purchaseOptions,
   removableCards,
+  replaceableMembers,
+  replaceInvestigator,
+  replacementOptions,
   startScenario,
   type Campaign,
   type CampaignInvestigator,

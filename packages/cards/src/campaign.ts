@@ -388,6 +388,74 @@ export function chooseTransferHeir(
   }
 }
 
+/** Clave del registro que enlaza a un investigador que dejó la campaña con su sustituto. */
+const REPLACED_BY = 'replacedBy:'
+
+/** Investigadores muertos o enloquecidos cuyo jugador aún no ha elegido sustituto. */
+export function replaceableMembers(campaign: Campaign): InvestigatorId[] {
+  return campaign.investigators
+    .filter((i) => leftCampaign(campaign.log, i.id) && !campaign.log.values[REPLACED_BY + i.id])
+    .map((i) => i.id)
+}
+
+/** Mazos iniciales de investigadores que aún no han participado en la campaña. */
+export function replacementOptions(campaign: Campaign): DeckKey[] {
+  return (Object.keys(STARTER_DECKS) as DeckKey[]).filter((key) => {
+    const list = STARTER_DECKS[key]!
+    return !campaign.log.investigators[list.investigatorCode ?? code(list.investigator)]
+  })
+}
+
+/**
+ * Nadie puede seguir y ningún jugador puede elegir un investigador nuevo: la campaña
+ * se ha perdido (reglamento, "Campaign Play").
+ */
+export function campaignLost(campaign: Campaign): boolean {
+  return (
+    !activeMembers(campaign).length &&
+    !(replaceableMembers(campaign).length && replacementOptions(campaign).length)
+  )
+}
+
+/**
+ * Reglamento, "Campaign Play": el jugador cuyo investigador muere, enloquece o es
+ * devorado elige otro que no se haya usado en la campaña y le crea un mazo de nivel 0.
+ * Si un apoyo que se transfiere seguía en poder de quien se fue, el sustituto puede
+ * recibirlo (guía de El camino a Carcosa).
+ */
+export function replaceInvestigator(
+  campaign: Campaign,
+  leaving: InvestigatorId,
+  member: CampaignMember,
+  seed = 1,
+): Campaign {
+  if (!replaceableMembers(campaign).includes(leaving))
+    throw new Error(`${leaving} no necesita sustituto`)
+  const fresh = newCampaign(
+    campaign.id,
+    [member],
+    campaign.difficulty,
+    seed,
+    [],
+    campaign.log.rewards ?? [],
+  )
+  const joining = fresh.investigators[0]!
+  if (campaign.log.investigators[joining.id]) throw new Error('Un investigador no puede repetirse')
+  const next: Campaign = {
+    ...campaign,
+    investigators: [...campaign.investigators, joining],
+    log: {
+      ...campaign.log,
+      values: { ...campaign.log.values, [REPLACED_BY + leaving]: joining.id },
+      investigators: {
+        ...campaign.log.investigators,
+        [joining.id]: fresh.log.investigators[joining.id]!,
+      },
+    },
+  }
+  return { ...next, log: transferFromLeavers(next, next.log) }
+}
+
 /** Cierra el escenario terminado: guarda su registro y pasa al siguiente. */
 export function finishScenario(campaign: Campaign, game: GameState): Campaign {
   if (!game.outcome) throw new Error('El escenario aún no ha terminado')
