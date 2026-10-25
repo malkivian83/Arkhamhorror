@@ -1,7 +1,14 @@
-import { playerCardBehavior, scenarioBehavior, treacheryBehavior } from './content'
+import {
+  investigatorBehavior,
+  playerCardBehavior,
+  playerCardDef,
+  scenarioBehavior,
+  treacheryBehavior,
+} from './content'
 import { EngineError } from './errors'
 import type {
   Agenda,
+  CardCode,
   Enemy,
   EnemyId,
   EnemyKeyword,
@@ -206,6 +213,22 @@ export function removeEnemy(state: GameState, id: EnemyId): GameState {
 
 export function activeInvestigators(state: GameState): Investigator[] {
   return state.investigators.filter((i) => !i.eliminated)
+}
+
+/**
+ * El investigador puede jugar, comprometer o activar capacidades de esta carta (Lola Hayes:
+ * solo cartas neutrales o de su papel).
+ */
+export function cardAllowed(state: GameState, id: InvestigatorId, code: CardCode): boolean {
+  const investigator = state.investigators.find((i) => i.id === id)
+  if (!investigator) return true
+  return investigatorBehavior(investigator.id)?.canUseCard?.(state, investigator, code) ?? true
+}
+
+/** La carta es de esta clase o papel (las multiclase, de cualquiera de las suyas). */
+export function cardOfRole(code: CardCode, role: string | undefined): boolean {
+  const def = playerCardDef(code)
+  return !!role && !!def && (def.classes ?? [def.class]).includes(role)
 }
 
 /** Planes en curso: el del mazo principal y, si lo hay, el del segundo mazo de Plan. */

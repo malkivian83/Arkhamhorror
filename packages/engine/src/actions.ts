@@ -11,6 +11,8 @@ import {
   type TreacheryBehavior,
 } from './content'
 import {
+  cardAllowed,
+  cardOfRole,
   currentAgendas,
   activeInvestigators,
   enemiesAt,
@@ -60,6 +62,7 @@ export function playableCards(state: GameState, id: InvestigatorId, fast: boolea
     if (def.type === 'asset' && uniqueAssetInPlay(state, code)) return false
     if (playBlocked(state, id, def.type)) return false
     if (scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, id, code)) return false
+    if (!cardAllowed(state, id, code)) return false
     const behavior = playerCardBehavior(code)
     if (def.type === 'event' && !behavior?.play) return false
     if (cardCost(state, id, code) > investigator.resources) return false
@@ -115,6 +118,7 @@ export function playRestriction(
     }
   if (scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, id, code))
     return { key: 'unplayable.location' }
+  if (!cardAllowed(state, id, code)) return { key: 'unplayable.role' }
   const behavior = playerCardBehavior(code)
   if (def.type === 'event' && !behavior?.play) return { key: 'unplayable.notImplemented' }
   const cost = cardCost(state, id, code)
@@ -366,7 +370,7 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
   // The Necronomicon: no se pueden usar las habilidades de los propios apoyos.
   const assets = assetsBlocked(state, id)
     ? []
-    : Object.values(state.assets).filter((a) => a.owner === id)
+    : Object.values(state.assets).filter((a) => a.owner === id && cardAllowed(state, id, a.code))
   const withTarget = (options: AbilityOption[], target: ChoiceTarget) =>
     options.map((o) => ({ target, ...o }))
   const options = [
@@ -578,7 +582,17 @@ export function cardCost(
   const own = hand.indexOf(code)
   if (own >= 0) hand.splice(own, 1)
   const fromHand = hand.reduce((n, c) => n + (playerCardBehavior(c)?.handCostModifier ?? 0), 0)
-  return Math.max(0, printed + change + fromHand - discount)
+  // Improvisación: la siguiente carta de su papel, durante su turno.
+  const investigator = state.investigators.find((i) => i.id === id)
+  const role = investigator?.nextRoleDiscount
+  const improvised =
+    role &&
+    role.round === state.round &&
+    state.activeTurn === id &&
+    cardOfRole(code, investigator.role)
+      ? role.amount
+      : 0
+  return Math.max(0, printed + change + fromHand - discount - improvised)
 }
 
 /** Una debilidad en su zona de amenaza le impide jugar o usar apoyos (The Necronomicon). */

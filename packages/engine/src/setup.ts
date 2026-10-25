@@ -43,6 +43,8 @@ export interface ScenarioDefinition {
   startingLocation: LocationId
   /** El investigador jefe empieza aquí y los demás en `startingLocation` (Excelsior). */
   leadStartingLocation?: LocationId
+  /** Investigadores que empiezan en otro Lugar (Lola Hayes en Bastidores). */
+  investigatorStartingLocations?: Record<InvestigatorId, LocationId>
   /** Cada investigador elige dónde empezar entre estas (El juramento inconfesable). */
   startingLocationChoices?: LocationId[]
   agendas: Agenda[]
@@ -254,7 +256,7 @@ export function prepareGame({
         : players.map((p): Message => ({
             type: 'MoveTo',
             investigator: p.id,
-            location: scenario.startingLocation,
+            location: scenario.investigatorStartingLocations?.[p.id] ?? scenario.startingLocation,
           }))),
     ...(scenario.setup ?? []),
     ...(players.some((i) => i.deck.some((code) => !!playerCardBehavior(code)?.revelation))

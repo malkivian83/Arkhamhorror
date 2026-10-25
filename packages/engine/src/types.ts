@@ -43,6 +43,10 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  /** Lola Hayes: papel elegido (una clase o `neutral`). */
+  role?: string
+  /** Improvisación: la siguiente carta de su papel que juegue en este turno cuesta menos. */
+  nextRoleDiscount?: { amount: number; round: number }
   /** Completed actions, separately from action costs and actions in progress. */
   completedActions?: { phase: Phase; round: number; count: number }
   /** Successful attacks completed by this investigator in the tagged round. */
@@ -404,6 +408,9 @@ export interface PlayerCardDef {
   elderSignModifier?: number
   deckOptions?: DeckOption[]
   offClassLevelZeroLimit?: number
+  /** "Al menos `min` cartas de cada una de `count` clases distintas" (Lola Hayes). */
+  classMinimum?: { classes: string[]; count: number; min: number }
+  /** Cartas exclusivas; un código repetido exige esas copias (Lola Hayes: 2 y 2). */
   signatures?: CardCode[]
   type: 'investigator' | 'asset' | 'event' | 'skill' | 'treachery' | 'enemy'
   class: string
@@ -764,6 +771,10 @@ export type Message =
   | { type: 'SetLead'; investigator: InvestigatorId }
   /** Mano inicial: las debilidades se apartan y se roba otra en su lugar. */
   | { type: 'DrawOpeningHand'; investigator: InvestigatorId; amount: number }
+  /** Lola Hayes: su papel (una clase o `neutral`). */
+  | { type: 'SetRole'; investigator: InvestigatorId; role: string }
+  /** Improvisación: hasta el final del turno, la siguiente carta del papel cuesta menos. */
+  | { type: 'SetNextRoleDiscount'; investigator: InvestigatorId; amount: number }
   /** Cada investigador hace su mulligan, en orden de jugadores (empezando por el jefe). */
   | { type: 'InvestigatorsMulligan' }
   /** Mulligan: el investigador aparta las cartas que quiera de su mano inicial (una vez). */
