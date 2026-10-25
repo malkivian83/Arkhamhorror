@@ -326,9 +326,11 @@ export function bestByPrey(candidates: Investigator[], prey: Prey | undefined): 
             ? i.sanity - i.horror
             : prey.type === 'lowestRemainingSanity'
               ? i.horror - i.sanity
-              : prey.type === 'highestSkill'
-                ? i.skills[prey.skill]
-                : -i.skills[prey.skill]
+              : prey.type === 'lowestRemainingHealth'
+                ? i.damage - i.health
+                : prey.type === 'highestSkill'
+                  ? i.skills[prey.skill]
+                  : -i.skills[prey.skill]
   const best = Math.max(...candidates.map(value))
   return candidates.filter((i) => value(i) === best)
 }
