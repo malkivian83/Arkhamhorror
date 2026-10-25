@@ -54,7 +54,13 @@ import {
   PEABODY_LOCATION,
   THE_TATTERED_CLOAK,
 } from './echoes-assets'
-import { emptyLocations, ENCOUNTER_SETS, encounterSpecific, findCultist } from './encounter-sets'
+import {
+  emptyLocations,
+  ENCOUNTER_SETS,
+  encounterSpecific,
+  findCultist,
+  kingsEdictFight,
+} from './encounter-sets'
 import { carcosaSpecific, hasNote, markCarcosa, replaceSymbolTokens } from './log'
 import { VIPS } from './the-last-king'
 
@@ -618,7 +624,10 @@ registerScenario({
       ? -2
       : 0),
   // Oficina de registros: los enemigos de aquí tienen +1 de combate y de evasión.
-  enemyStat: (_state, e) => (RECORD_OFFICES.includes(e.location) ? 1 : 0),
+  enemyStat: (state, e, stat) =>
+    (RECORD_OFFICES.includes(e.location) ? 1 : 0) +
+    // El edicto del Rey (Secta del Signo Amarillo).
+    kingsEdictFight(state, e, stat),
   // Museo histórico: al investigarlo, tu [intellect] no puede modificarse.
   skillUnmodified: (_state, test) =>
     test.skill === 'intellect' &&
