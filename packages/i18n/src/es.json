@@ -251,6 +251,14 @@
       "organistClue": "¿Quién coloca 1 de sus pistas sobre El organista?",
       "paranoia": "Sueño 7: elegid al investigador que añade Paranoia a su mazo",
       "montmartre": "Montmartre: puedes jugar un Apoyo revelado pagando su coste"
+    },
+    "pallid": {
+      "collapse": "La salida de allí: ¿qué Lugar más alejado de La puerta al Infierno se derrumba?",
+      "collapseMove": "¿A dónde se mueven quienes están en el Lugar que se derrumba?",
+      "look": "Elige las Catacumbas cuyo lado revelado miras",
+      "placeWhere": "¿Dónde se colocan las siguientes Catacumbas?",
+      "readActII": "¿Quién lee el segundo acto de El Rey de Amarillo? (al menos 1)",
+      "secretPassage": "Información de Haruko: elige las Catacumbas adyacentes que se revelan"
     }
   },
   "action": {
@@ -469,6 +477,22 @@
       "guignolShuffle": "Barajar en tu mazo las cartas de tu mano (salvo Debilidades) y robar otras tantas",
       "playNothing": "No jugar nada",
       "playRevealed": "Jugar {card} pagando su coste"
+    },
+    "pallid": {
+      "directDamage": "Recibir 1 daño directo",
+      "directHorror": "Recibir 1 horror directo",
+      "discardHand": "Descartar todas las cartas de tu mano",
+      "discardRandom": "Descartar 2 cartas al azar de tu mano",
+      "discardResources": "Descartar todos tus recursos",
+      "doneReading": "Nadie más lo lee",
+      "loseResources": "Perder 5 recursos",
+      "reads": "{name} lee el segundo acto",
+      "place": {
+        "up": "Colocarlas arriba",
+        "down": "Colocarlas abajo",
+        "left": "Colocarlas a la izquierda",
+        "right": "Colocarlas a la derecha"
+      }
     }
   },
   "phase": {
@@ -740,6 +764,11 @@
       "montmartreUses": "Gastar 1 recurso: añadir 1 munición o suministro a {card}",
       "gareDOrsay": "Gastar 1 recurso: moverte a cualquier Lugar Ferrocarril",
       "notreDame": "Prueba [willpower] (6): colocar o retirar 1 perdición del plan"
+    },
+    "pallid": {
+      "docent": "Negociar: prueba [intellect] (4) para mirar el lado revelado de unas Catacumbas",
+      "lookBehind": "Miras detrás de ti",
+      "readSign": "Prueba [intellect] (3): mirar el lado revelado de unas Catacumbas"
     }
   },
   "log": {
@@ -833,6 +862,9 @@
     "damageFrom": "{name} recibe {damage} daño y {horror} horror de {source}",
     "phantom": {
       "revealed": "{name} revela {card} de la parte superior de su mazo."
+    },
+    "pallid": {
+      "looked": "{name} mira unas Catacumbas: es {location}."
     }
   },
   "table": {
@@ -950,7 +982,8 @@
     "spellbound": "Invitado hechizado (boca abajo)",
     "scenarioDeck": {
       "guests": "Invitados",
-      "leads": "Indicios"
+      "leads": "Indicios",
+      "catacombs": "Catacumbas"
     },
     "advanceReview": {
       "setup": "Preparación de la partida",
@@ -1275,7 +1308,11 @@
       "carcosaGazeOfThePhantom": "los investigadores no escaparon de la mirada del Fantasma",
       "carcosaFoundNigelsHome": "los investigadores encontraron la casa de Nigel",
       "carcosaFoundNigelEngram": "los investigadores encontraron a Nigel Engram",
-      "carcosaUnableToFindNigel": "los investigadores no lograron encontrar a Nigel"
+      "carcosaUnableToFindNigel": "los investigadores no lograron encontrar a Nigel",
+      "carcosaAwokeInTheCatacombs": "los investigadores despertaron en las catacumbas",
+      "carcosaEnteredTheCatacombs": "los investigadores entraron en las catacumbas por su cuenta",
+      "carcosaKnowTheSiteOfTheGate": "los investigadores conocen la ubicación del portal",
+      "carcosaReadActII": "Leyeron el segundo acto de El Rey de Amarillo"
     },
     "scenario": {
       "smokeAndMirrors": "el Escenario II: Smoke and Mirrors",
@@ -1544,7 +1581,8 @@
       "echoesOfThePast": "Escenario III: Ecos del pasado",
       "theUnspeakableOath": "Escenario IV: El juramento inconfesable",
       "aPhantomOfTruth": "Escenario V: El Fantasma de la Verdad",
-      "thePallidMask": "Escenario VI: La máscara pálida"
+      "thePallidMask": "Escenario VI: La máscara pálida",
+      "blackStarsRise": "Escenario VII: Surgen estrellas negras"
     },
     "curtainCall": {
       "introTitle": "Escenario I: Se cierra el telón",
@@ -1734,6 +1772,28 @@
       "resolution3Title": "Resolución 3",
       "resolution3": "Cuando el sol sale sobre París pierdes de vista a la misteriosa figura. Al despertar, ya no estás en tu habitación del hotel.",
       "mentalTrauma": "Cada investigador sufre 1 trauma mental y obtiene 2 de experiencia adicional.",
+      "tokens": {
+        "cultist": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de sectario.",
+        "tablet": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de tablilla.",
+        "elderThing": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de primigenio."
+      }
+    },
+    "pallid": {
+      "introTitle": "Escenario VI: La máscara pálida",
+      "intro1": "Despiertas sobre una losa de fría piedra en un pasadizo subterráneo sin luz, decorado con huesos y cráneos.",
+      "intro2": "El mapa de Nigel Engram muestra una sección de las catacumbas de París: «¡Aquí está la llave para abrir el camino!». Te diriges a la entrada bajo la Rue de la Tombe-Issoire.",
+      "harukoTitle": "Información de Haruko",
+      "haruko": "Reconoces el símbolo que te mostró Haruko, grabado en el cráneo de una oveja. Al tocar su mandíbula, la pared se desliza y revela un nuevo camino. Recuerda que «los investigadores abrieron un pasadizo secreto».",
+      "setupTitle": "Preparación",
+      "setup": "Se reúnen La máscara pálida, Gules, Apariciones y Frío helador. Se apartan la Tumba de sombras y el Pasadizo bloqueado.\n\nSi los investigadores despertaron en las catacumbas, el Lugar inicial es unas Catacumbas al azar; si entraron por su cuenta, La puerta al Infierno. La Tumba, el Pasadizo y otras 3 Catacumbas van al fondo del mazo de Catacumbas y el resto encima.\n\nLas nuevas Catacumbas entran a la izquierda, derecha, arriba o abajo de otras; los Lugares adyacentes están conectados. El afectado por El hombre de la máscara pálida lo pone aparte.",
+      "readActII": "Cada investigador elige si lee el segundo acto de El Rey de Amarillo (al menos 1 debe hacerlo). Quien lo lea obtiene 2 de experiencia adicional y añade a su mazo una Debilidad básica aleatoria Locura o Pacto.",
+      "chasingMarks": "Añade 2 marcas en la sección «Persiguiendo al Extranjero».",
+      "noResolutionTitle": "Sin resolución",
+      "noResolution": "Un agente de policía te despierta y te saca de las catacumbas. Días después, un libro amarillo aparece en tu habitación: el guion completo de El Rey de Amarillo.",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "En el Louvre encuentras un cuadro de una ciudad isleña bajo una tormenta; el diagrama del cráneo aparece en una vidriera. Su título: «El camino está abierto».",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "Caes por un vacío hacia otro reino, entre dos firmamentos reflejados. ¿Es éste el camino a Carcosa? Debes encontrar dónde aparece este portal en la Tierra.",
       "tokens": {
         "cultist": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de sectario.",
         "tablet": "Retirad todas las fichas de sectario, tablilla y primigenio de la bolsa de caos y añadid 2 fichas de tablilla.",

@@ -3,6 +3,7 @@ import {
   distancesFrom,
   getInvestigator,
   shroudOf,
+  printedCode,
   registerEnemy,
   registerPlayerCard,
   registerPlayerCards,
@@ -75,7 +76,11 @@ registerEnemy({
               type: 'investigate',
               location,
               replaceClue: true,
-              onSuccess: [{ type: 'DefeatEnemy', enemy: self.id, by: investigator }],
+              // La máscara pálida: en la Tumba de sombras no puede ser derrotado así.
+              onSuccess:
+                state.scenarioId === 'the-pallid-mask' && printedCode(location) === '03257'
+                  ? []
+                  : [{ type: 'DefeatEnemy', enemy: self.id, by: investigator }],
             },
           },
         ],

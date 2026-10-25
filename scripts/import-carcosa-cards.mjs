@@ -73,6 +73,13 @@ const CODES = new Set([
   '03221b',
   '03086',
   '03087',
+  // La Máscara Pálida (la Ciudad de los muertos 03241b es el reverso de la segunda
+  // agenda) y los conjuntos de la caja básica original Necrófagos y Frío glacial.
+  ...range(3240, 3262),
+  '03241b',
+  ...range(1160, 1162),
+  '01167',
+  '01168',
 ])
 /** Códigos de la fuente que el proyecto usa con otra letra de cara. */
 const RENAMED = { '03221': '03221a' }

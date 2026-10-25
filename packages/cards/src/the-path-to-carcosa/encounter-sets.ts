@@ -29,7 +29,15 @@ import {
   type TreacheryBehavior,
 } from '@lcg/engine'
 import { THE_MAN_IN_THE_PALLID_MASK } from './the-man-in-the-pallid-mask'
-import { chooseSkillTest, copies, damage, effectTest, enemy, treachery } from '../scenario-helpers'
+import {
+  chooseAssetToDiscard,
+  chooseSkillTest,
+  copies,
+  damage,
+  effectTest,
+  enemy,
+  treachery,
+} from '../scenario-helpers'
 
 export const SETS = {
   // Delirios
@@ -66,6 +74,12 @@ export const SETS = {
   // Habitantes de Carcosa
   beastOfAldebaran: '03088',
   spawnOfHali: '03089',
+  // Caja básica original: Gules y Frío helador
+  ghoulMinion: '01160',
+  ravenousGhoul: '01161',
+  graspingHands: '01162',
+  cryptChill: '01167',
+  obscuringFog: '01168',
   // Caja básica original: Agentes de Hastur
   screechingByakhee: '01175',
   theYellowSign: '01176',
@@ -235,6 +249,31 @@ export const spawnOfHali = enemy({
   keywords: ['retaliate'],
 })
 
+export const ghoulMinion = enemy({
+  code: SETS.ghoulMinion,
+  name: 'Ghoul Minion',
+  traits: ['Humanoid', 'Monster', 'Ghoul'],
+  fight: 2,
+  health: 2,
+  evade: 2,
+  damage: 1,
+  horror: 1,
+  keywords: [],
+})
+
+export const ravenousGhoul = enemy({
+  code: SETS.ravenousGhoul,
+  name: 'Ravenous Ghoul',
+  traits: ['Humanoid', 'Monster', 'Ghoul'],
+  prey: { type: 'lowestRemainingHealth' },
+  fight: 3,
+  health: 3,
+  evade: 3,
+  damage: 1,
+  horror: 1,
+  keywords: [],
+})
+
 export const swiftByakhee = enemy({
   code: SETS.swiftByakhee,
   name: 'Swift Byakhee',
@@ -309,6 +348,15 @@ export const ENCOUNTER_SETS = {
     card(SETS.thePaleMaskBeckons, 'The Pale Mask Beckons', ['Omen', 'Pact']),
   ],
   inhabitantsOfCarcosa: [{ ...beastOfAldebaran }, ...copies(spawnOfHali, 2)],
+  ghouls: [
+    ...copies(ghoulMinion, 3),
+    { ...ravenousGhoul },
+    ...copies(card(SETS.graspingHands, 'Grasping Hands', ['Hazard']), 3),
+  ],
+  chillingCold: [
+    ...copies(card(SETS.cryptChill, 'Crypt Chill', ['Hazard']), 2),
+    ...copies(card(SETS.obscuringFog, 'Obscuring Fog', ['Hazard']), 2),
+  ],
   byakhee: [
     ...copies(swiftByakhee, 2),
     ...copies(card(SETS.huntedByByakhee, 'Hunted by Byakhee', ['Pact']), 2),
@@ -1068,6 +1116,14 @@ export function encounterSpecific(
       return investigator ? drawMadness(state, investigator) : state
     case 'carcosaHuntedByByakhee':
       return investigator ? huntedByByakhee(state, investigator) : state
+    case 'carcosaCryptChill': {
+      if (!investigator) return state
+      const discard = chooseAssetToDiscard(state, investigator)
+      return {
+        ...state,
+        queue: [...(discard.length ? discard : [damage(investigator, 2)]), ...state.queue],
+      }
+    }
     case 'carcosaDrawRevealed':
       return investigator
         ? drawRevealed(state, investigator, Number(data.index), data.omen === true)
@@ -1449,3 +1505,47 @@ export function drawRevealed(
     ],
   }
 }
+
+// ---------------------------------------------------------------------------
+// Caja básica original: Gules y Frío helador
+// ---------------------------------------------------------------------------
+
+registerTreachery({
+  code: SETS.graspingHands,
+  // [agility] (3): 1 daño por cada punto de fallo.
+  revelation: (_state, investigator) => [
+    effectTest(investigator, 'Grasping Hands', 'agility', 3, {
+      onFailEach: [damage(investigator, 1)],
+    }),
+  ],
+})
+
+registerTreachery({
+  code: SETS.cryptChill,
+  // [willpower] (4): si fallas, eliges y descartas un apoyo que controles (si no, 2 daño).
+  revelation: (_state, investigator) => [
+    effectTest(investigator, 'Crypt Chill', 'willpower', 4, {
+      onFail: [{ type: 'ScenarioSpecific', key: 'carcosaCryptChill', data: { investigator } }],
+    }),
+  ],
+})
+
+registerTreachery({
+  code: SETS.obscuringFog,
+  // Se une a tu Lugar (límite 1 por Lugar): +2 velo; se descarta al investigarlo con éxito.
+  revelation: (state, investigator, self) => {
+    const here = getInvestigator(state, investigator).location
+    const taken = Object.values(state.treacheries).some(
+      (t) => t.id !== self.id && t.code === SETS.obscuringFog && attachedTo(t) === here,
+    )
+    return taken ? [] : attachHere(state, investigator, self.id)
+  },
+  shroudModifier: 2,
+  forced: (_state, trigger, self) =>
+    trigger.type === 'skillTestEnded' &&
+    trigger.kind === 'investigate' &&
+    trigger.succeeded &&
+    trigger.location === attachedTo(self)
+      ? [{ type: 'DiscardTreachery', treachery: self.id }]
+      : [],
+})

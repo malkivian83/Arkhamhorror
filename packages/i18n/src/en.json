@@ -251,6 +251,14 @@
       "organistClue": "Who places 1 of their clues on The Organist?",
       "paranoia": "Dream 7: choose the investigator who adds Paranoia to their deck",
       "montmartre": "Montmartre: you may play a revealed asset, paying its cost"
+    },
+    "pallid": {
+      "collapse": "The Way Out: which location farthest from The Gate to Hell collapses?",
+      "collapseMove": "Where do those at the collapsing location move?",
+      "look": "Choose the Catacombs location whose revealed side you look at",
+      "placeWhere": "Where is the next Catacombs location placed?",
+      "readActII": "Who reads the second act of The King in Yellow? (at least 1)",
+      "secretPassage": "Haruko’s Information: choose the adjacent Catacombs location to reveal"
     }
   },
   "action": {
@@ -469,6 +477,22 @@
       "guignolShuffle": "Shuffle your non-weakness hand into your deck and draw that many cards",
       "playNothing": "Play nothing",
       "playRevealed": "Play {card}, paying its cost"
+    },
+    "pallid": {
+      "directDamage": "Take 1 direct damage",
+      "directHorror": "Take 1 direct horror",
+      "discardHand": "Discard all cards in your hand",
+      "discardRandom": "Discard 2 random cards from your hand",
+      "discardResources": "Discard all of your resources",
+      "doneReading": "Nobody else reads it",
+      "loseResources": "Lose 5 resources",
+      "reads": "{name} reads Act II",
+      "place": {
+        "up": "Place it above",
+        "down": "Place it below",
+        "left": "Place it to the left",
+        "right": "Place it to the right"
+      }
     }
   },
   "phase": {
@@ -740,6 +764,11 @@
       "montmartreUses": "Spend 1 resource: add 1 ammo or supply to {card}",
       "gareDOrsay": "Spend 1 resource: move to any Rail location",
       "notreDame": "Test [willpower] (6): place or remove 1 doom on the agenda"
+    },
+    "pallid": {
+      "docent": "Parley: test [intellect] (4) to look at the revealed side of a Catacombs location",
+      "lookBehind": "You look behind you",
+      "readSign": "Test [intellect] (3): look at the revealed side of a Catacombs location"
     }
   },
   "log": {
@@ -833,6 +862,9 @@
     "damageFrom": "{name} takes {damage} damage and {horror} horror from {source}",
     "phantom": {
       "revealed": "{name} reveals {card} from the top of their deck."
+    },
+    "pallid": {
+      "looked": "{name} looks at a Catacombs location: it is {location}."
     }
   },
   "table": {
@@ -950,7 +982,8 @@
     "spellbound": "Spellbound guest (facedown)",
     "scenarioDeck": {
       "guests": "Guests",
-      "leads": "Leads"
+      "leads": "Leads",
+      "catacombs": "Catacombs"
     },
     "advanceReview": {
       "setup": "Game setup",
@@ -1275,7 +1308,11 @@
       "carcosaGazeOfThePhantom": "the investigators did not escape the gaze of the Phantom",
       "carcosaFoundNigelsHome": "the investigators found Nigel’s home",
       "carcosaFoundNigelEngram": "the investigators found Nigel Engram",
-      "carcosaUnableToFindNigel": "the investigators were unable to find Nigel"
+      "carcosaUnableToFindNigel": "the investigators were unable to find Nigel",
+      "carcosaAwokeInTheCatacombs": "the investigators awoke inside the catacombs",
+      "carcosaEnteredTheCatacombs": "the investigators entered the catacombs on their own",
+      "carcosaKnowTheSiteOfTheGate": "the investigators know the site of the gate",
+      "carcosaReadActII": "Read Act II of The King in Yellow"
     },
     "scenario": {
       "smokeAndMirrors": "Scenario II: Smoke and Mirrors",
@@ -1544,7 +1581,8 @@
       "echoesOfThePast": "Scenario III: Echoes of the Past",
       "theUnspeakableOath": "Scenario IV: The Unspeakable Oath",
       "aPhantomOfTruth": "Scenario V: A Phantom of Truth",
-      "thePallidMask": "Scenario VI: The Pallid Mask"
+      "thePallidMask": "Scenario VI: The Pallid Mask",
+      "blackStarsRise": "Scenario VII: Black Stars Rise"
     },
     "curtainCall": {
       "introTitle": "Scenario I: Curtain Call",
@@ -1734,6 +1772,28 @@
       "resolution3Title": "Resolution 3",
       "resolution3": "As the sun rises over Paris you lose sight of the mysterious figure. When you wake up, you are no longer in your hotel room.",
       "mentalTrauma": "Each investigator suffers 1 mental trauma and earns 2 bonus experience.",
+      "tokens": {
+        "cultist": "Remove all cultist, tablet and elder thing tokens from the chaos bag and add 2 cultist tokens.",
+        "tablet": "Remove all cultist, tablet and elder thing tokens from the chaos bag and add 2 tablet tokens.",
+        "elderThing": "Remove all cultist, tablet and elder thing tokens from the chaos bag and add 2 elder thing tokens."
+      }
+    },
+    "pallid": {
+      "introTitle": "Scenario VI: The Pallid Mask",
+      "intro1": "You wake up on a cold stone slab in a lightless underground passageway decorated with bones and skulls.",
+      "intro2": "Nigel Engram’s map shows a section of the Catacombs of Paris: “Here lies the key to opening the path!” You head to the entrance under the Rue de la Tombe-Issoire.",
+      "harukoTitle": "Haruko’s Information",
+      "haruko": "You recognize the symbol Haruko showed you, carved into a sheep’s skull. When you touch its jaw, the wall slides open to reveal a new path. Remember that you “opened a secret passageway.”",
+      "setupTitle": "Setup",
+      "setup": "Gather The Pallid Mask, Ghouls, Hauntings and Chilling Cold. Set aside the Tomb of Shadows and the Blocked Passage.\n\nIf the investigators awoke inside the catacombs, a random Catacombs location is the starting location; if they entered on their own, The Gate to Hell is. Put the Tomb, the Passage and 3 other Catacombs at the bottom of the Catacombs deck and the rest on top.\n\nNew Catacombs come into play to the left, right, above or below existing ones; adjacent locations are connected. The bearer of The Man in the Pallid Mask sets it aside.",
+      "readActII": "Each investigator chooses whether to read Act II of The King in Yellow (at least 1 must). Each who does earns 2 bonus experience and adds a random basic Madness or Pact weakness to their deck.",
+      "chasingMarks": "Add 2 marks under “Chasing the Stranger”.",
+      "noResolutionTitle": "No Resolution",
+      "noResolution": "A police officer shakes you awake and leads you out of the catacombs. Days later, a faded yellow book appears in your room: the full script of The King in Yellow.",
+      "resolution1Title": "Resolution 1",
+      "resolution1": "At the Louvre you find a painting of an island city in a storm; the diagram from the burned skull appears in a stained-glass window. Its title: “The Path is Open.”",
+      "resolution2Title": "Resolution 2",
+      "resolution2": "You fall through a void into another realm, between two mirrored skies. Is this the path to Carcosa? You must find where this portal appears on Earth.",
       "tokens": {
         "cultist": "Remove all cultist, tablet and elder thing tokens from the chaos bag and add 2 cultist tokens.",
         "tablet": "Remove all cultist, tablet and elder thing tokens from the chaos bag and add 2 tablet tokens.",

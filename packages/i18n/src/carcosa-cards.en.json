@@ -13,6 +13,20 @@
     "traits": "Creature.",
     "text": "Hunter."
   },
+  "01160": {
+    "name": "Ghoul Minion",
+    "traits": "Humanoid. Monster. Ghoul."
+  },
+  "01161": {
+    "name": "Ravenous Ghoul",
+    "traits": "Humanoid. Monster. Ghoul.",
+    "text": "<b>Prey</b> - Lowest remaining health."
+  },
+  "01162": {
+    "name": "Grasping Hands",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Test [agility] (3). For each point you fail by, take 1 damage."
+  },
   "01163": {
     "name": "Rotting Remains",
     "traits": "Terror.",
@@ -32,6 +46,16 @@
     "name": "Ancient Evils",
     "traits": "Omen.",
     "text": "<b>Revelation</b> - Place 1 doom on the current agenda. This effect can cause the current agenda to advance."
+  },
+  "01167": {
+    "name": "Crypt Chill",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Test [willpower] (4). If you fail, choose and discard 1 asset you control (if you cannot, take 2 damage instead)."
+  },
+  "01168": {
+    "name": "Obscuring Fog",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Attach to your location. Limit 1 per location.\nAttached location gets +2 shroud.\n<b>Forced</b> - After attached location is successfully investigated: Discard Obscuring Fog."
   },
   "01169": {
     "name": "Acolyte",
@@ -949,5 +973,141 @@
     "name": "Lost Soul",
     "traits": "Madness. Pact.",
     "text": "<b>Revelation</b> - Check Campaign Log. \n- If you have more (or equal) <b>Doubt</b> than <b>Conviction</b>, test [intellect] (X), where X is your [willpower]. If you fail, take 2 damage.\n- If you have more <b>Conviction</b> than <b>Doubt</b>, test [willpower] (X), where X is your [intellect]. If you fail, take 2 damage."
+  },
+  "03240": {
+    "name": "The Pallid Mask",
+    "text": "Easy / Standard\n[skull]: -X. X is the number of locations away from the starting location you are (max 5).\n[cultist]: -2. If this token is revealed during an attack, and this skill test is successful, this attack deals 1 less damage.\n[tablet]: -2. If there is a ready [[Ghoul]] or [[Geist]] enemy at your location, it attacks you (if there is more than one, choose one).\n[elder_thing]: -3. If you fail, search the encounter deck and discard pile for a [[Ghoul]] or [[Geist]] enemy and draw it.",
+    "backText": "Hard / Expert\n[skull]: -X. X is the number of locations away from the starting location you are.\n[cultist]: -3. If this token is revealed during an attack and this skill test is successful, this attack deals no damage.\n[tablet]: -3. If there is a [[Ghoul]] or [[Geist]] enemy at your location, it readies and attacks you (if there is more than one, choose one).\n[elder_thing]: -4. If you fail, search the encounter deck and discard pile for a [[Ghoul]] or [[Geist]] enemy and draw it."
+  },
+  "03241": {
+    "name": "Empire of the Dead",
+    "text": "Each location is connected to each location adjacent to it."
+  },
+  "03241b": {
+    "name": "Specter of Death",
+    "subname": "A Force From Beyond",
+    "traits": "Monster. Geist. Elite.",
+    "text": "<b>Spawn</b> - The starting location.\nHunter. Retaliate.\nWhile Specter of Death is exhausted, it takes 1 less damage from each attack made against it.\n<b>Forced</b> - After you fail a skill test while attempting to evade Specter of Death: It attacks you."
+  },
+  "03242": {
+    "name": "Empire of the Undead",
+    "text": "Each location is connected to each location adjacent to it.",
+    "backName": "Join Them In Death",
+    "backText": "Each investigator is defeated and suffers 1 physical trauma."
+  },
+  "03243": {
+    "name": "Through the Catacombs",
+    "text": "<b>Objective</b> - Find The Man in the Pallid Mask. He is somewhere in the Catacombs. (Do not advance until you are instructed.)",
+    "backName": "The Stranger's Shadow",
+    "backText": "Spawn the set-aside The Man in the Pallid Mask weakness in the Tomb of Shadows <i>(instead of its normal spawn location)</i>.\nCheck the Campaign Log. If Ishimaru Haruko is not listed under \"VIPs Slain,\" search the collection for Ishimaru Haruko <i>(Just Skin and Bones)</i> and spawn her at the starting location."
+  },
+  "03244": {
+    "name": "The Path is Barred",
+    "text": "<b>Objective</b> - <i>\"Tell us how to stop the path from opening!\"</i> If The Man in the Pallid Mask is defeated, advance.\n<b>Objective</b> - <i>\"What is he trying to show us?\"</i> Investigators in the Tomb of Shadows may spend the requisite number of clues, as a group, to advance.",
+    "backName": "Behind the Mask",
+    "backText": "<b>If The Man in the Pallid Mask was defeated:</b>\n<blockquote>The Stranger drops to one knee, visibly wounded. Your knuckles whiten with anger, and you shout, \"We know about Carcosa and Hastur. Now tell us how to stop this madness!\" The Stranger digs his fingers into the cold stone floor, and the catacombs shake…</blockquote>\nMark two <b>Conviction</b> in your Campaign Log.\nRemove The Man in the Pallid Mask from the game.\nAdvance to Act 3a - The Way Out.\n<hr><b>If you spent clues to advance:</b>\n<blockquote>Recognizing that the Stranger poses no immediate danger to you, you study your surroundings and the strange shadows twist and distort once more, revealing a strange diagram…</blockquote>\nMark two <b>Doubt</b> in your Campaign Log.\nRemove The Man in the Pallid Mask from the game.\nAdvance to Act 3a - Leading the Way."
+  },
+  "03245": {
+    "name": "The Way Out",
+    "text": "<b>Forced</b> - At the end of the round, if The Gate to Hell is in play: Discard the location that is farthest from The Gate to Hell. Move each investigator and enemy that was at that location to a connecting location and deal 2 damage to each of them.\n<b>Objective</b> - If each undefeated investigator is at The Gate to Hell, advance.",
+    "backName": "The Catacombs Collapse",
+    "backText": "<b>(→R1)</b>"
+  },
+  "03246": {
+    "name": "Leading the Way",
+    "text": "Ignore the <b>Forced</b> ability on Blocked Passage.\n<b>Objective</b> - If each undefeated investigator is at Blocked Passage, advance.",
+    "backName": "The Secret Exit",
+    "backText": "<b>(→R2)</b>"
+  },
+  "03247": {
+    "name": "The Gate to Hell",
+    "text": "<b>Forced</b> - When The Gate to Hell is revealed: Put the top 2 Catacombs in the Catacombs deck into play above and below The Gate to Hell.",
+    "backName": "Catacombs",
+    "backText": "As an additional cost for you to enter Catacombs, investigators at your location must spend 1 [per_investigator] clues, as a group."
+  },
+  "03248": {
+    "name": "Stone Archways",
+    "text": "Ignore the text on unrevealed locations adjacent to Stone Archways.\n<b>Forced</b> - When Stone Archways is revealed: Put the topmost Catacombs in the Catacombs deck into play to the right of Stone Archways.",
+    "backName": "Catacombs",
+    "backText": "As an additional cost for you to enter Catacombs, investigators at your location must spend 1 [per_investigator] clues, as a group."
+  },
+  "03249": {
+    "name": "Crypt of the Sepulchral Lamp",
+    "text": "Crypt of the Sepulchral Lamp is investigated using [willpower] instead of the skill indicated by the investigation attempt.\n<b>Forced</b> - When Crypt of the Sepulchral Lamp is revealed: Put the top 2 Catacombs in the Catacombs deck into play above and to the right of Crypt of the Sepulchral Lamp.",
+    "backName": "Catacombs",
+    "backText": "As an additional cost for you to enter Catacombs, investigators at your location must spend 1 [per_investigator] clues, as a group."
+  },
+  "03250": {
+    "name": "Bone-Filled Caverns",
+    "text": "While you are investigating Bone-Filled Cavern, you have 1 fewer hand slot.\n<b>Forced</b> - When Bone-Filled Cavern is revealed: Put the top 2 Catacombs in the Catacombs deck into play below and to the right of Bone-Filled Cavern.",
+    "backName": "Catacombs",
+    "backText": "As an additional cost for you to enter Catacombs, investigators at your location must spend 1 [per_investigator] clues, as a group."
+  },
+  "03251": {
+    "name": "Well of Souls",
+    "text": "<b>Forced</b> - After you end your turn at Well of Souls: You must either take 1 direct horror or discard 2 random cards from your hand.\n<b>Forced</b> - When Well of Souls is revealed: Put the topmost Catacombs in the Catacombs deck into play above, below, or to the right of Well of Souls.",
+    "backName": "Catacombs",
+    "backText": "As an additional cost for you to enter Catacombs, investigators at your location must spend 1 [per_investigator] clues, as a group."
+  },
+  "03252": {
+    "name": "Candlelit Tunnels",
+    "text": "[action]: Test [intellect] (3) to read an ancient sign. If you succeed, look at the revealed side of any Catacombs location in play. (Group limit once per game.)\n<b>Forced</b> - When Candlelit Tunnels is revealed: Put the top 2 Catacombs in the Catacombs deck into play to the left and right of Candlelit Tunnels.",
+    "backName": "Catacombs",
+    "backText": "As an additional cost for you to enter Catacombs, investigators at your location must spend 1 [per_investigator] clues, as a group."
+  },
+  "03253": {
+    "name": "Labyrinth of Bones",
+    "text": "<b>Forced</b> - When Labyrinth of Bones is revealed: Put the top 3 Catacombs in the Catacombs deck into play above, below, and to the right of Labyrinth of Bones.",
+    "backName": "Catacombs",
+    "backText": "As an additional cost for you to enter Catacombs, investigators at your location must spend 1 [per_investigator] clues, as a group."
+  },
+  "03254": {
+    "name": "Narrow Shaft",
+    "text": "<b>Forced</b> - When you would move from Narrow Shaft to an unrevealed location: Test [agility] (3). If you fail, take 1 damage and cancel the effects of the move.\n<b>Forced</b> - When Narrow Shaft is revealed: Put the topmost Catacombs in the Catacombs deck into play above or to the right of Narrow Shaft.",
+    "backName": "Catacombs",
+    "backText": "As an additional cost for you to enter Catacombs, investigators at your location must spend 1 [per_investigator] clues, as a group."
+  },
+  "03255": {
+    "name": "Shivering Pools",
+    "text": "<b>Forced</b> - After you end your turn at Shivering Pools: You must either take 1 direct damage or lose 5 resources.\n<b>Forced</b> - When Shivering Pools is revealed: Put the topmost Catacombs in the Catacombs deck into play below or to the right of Shivering Pools.",
+    "backName": "Catacombs",
+    "backText": "As an additional cost for you to enter Catacombs, investigators at your location must spend 1 [per_investigator] clues, as a group."
+  },
+  "03256": {
+    "name": "Blocked Passage",
+    "text": "<b>Forced</b> - When you reveal Blocked Passage: Take 2 damage. You cannot leave Blocked Passage this round.",
+    "backName": "Catacombs",
+    "backText": "As an additional cost for you to enter Catacombs, investigators at your location must spend 1 [per_investigator] clues, as a group."
+  },
+  "03257": {
+    "name": "Tomb of Shadows",
+    "text": "<b>Forced</b> - When Tomb of Shadows is revealed: Advance to act 1b.\nWhile The Man in the Pallid Mask is at the Tomb of Shadows, he gets +1 [per_investigator] health and cannot be defeated by his [action] ability.",
+    "backName": "Catacombs",
+    "backText": "As an additional cost for you to enter Catacombs, investigators at your location must spend 1 [per_investigator] clues, as a group."
+  },
+  "03258": {
+    "name": "Catacombs Docent",
+    "traits": "Humanoid. Lunatic.",
+    "text": "<b>Spawn</b> - Nearest unrevealed location.\n[action]: <b>Parley.</b> Test [intellect] (4) to interpret the guide's ravings. If you succeed, look at the revealed side of any Catacombs location in play. (Group limit once per game.)"
+  },
+  "03259": {
+    "name": "Corpse Dweller",
+    "traits": "Monster.",
+    "text": "<b>Spawn</b> - Discard a [[Humanoid]] enemy at any location and spawn Corpse Dweller at that location (if there are no [[Humanoid]] enemies in play, discard Corpse Dweller and it gains surge instead).\nHunter. Retaliate."
+  },
+  "03260": {
+    "name": "Eyes in the Walls",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Test [willpower] (3). For each point you fail by, take 1 horror. When assigning horror from this effect, it must be divided as evenly as possible among eligible cards."
+  },
+  "03261": {
+    "name": "The Shadow Behind You",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Put The Shadow Behind You into play in your threat area. Limit 1 per investigator.\n[action]: You look behind you.\n<b>Forced</b> - At the end of your turn, if you did not perform the above [action] ability: You must either discard all of your resources or discard all cards in your hand. Then, discard The Shadow Behind You."
+  },
+  "03262": {
+    "name": "The Pit Below",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Attach to your location if there is no copy of The Pit Below attached (if there is, discard The Pit Below and it gains surge instead).\nAttached location gets +1 shroud.\n<b>Forced</b> - At the end of the round: Each investigator at attached location takes 3 damage. Discard The Pit Below."
   }
 }
