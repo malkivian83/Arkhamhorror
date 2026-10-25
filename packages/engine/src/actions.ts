@@ -59,6 +59,7 @@ export function playableCards(state: GameState, id: InvestigatorId, fast: boolea
     if (def.type === 'asset' && assetsBlocked(state, id)) return false
     if (def.type === 'asset' && uniqueAssetInPlay(state, code)) return false
     if (playBlocked(state, id, def.type)) return false
+    if (scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, id, code)) return false
     const behavior = playerCardBehavior(code)
     if (def.type === 'event' && !behavior?.play) return false
     if (cardCost(state, id, code) > investigator.resources) return false
@@ -112,6 +113,8 @@ export function playRestriction(
       key: def.type === 'asset' ? 'unplayable.blockedAsset' : 'unplayable.blockedEvent',
       params: by(restriction),
     }
+  if (scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, id, code))
+    return { key: 'unplayable.location' }
   const behavior = playerCardBehavior(code)
   if (def.type === 'event' && !behavior?.play) return { key: 'unplayable.notImplemented' }
   const cost = cardCost(state, id, code)

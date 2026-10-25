@@ -85,6 +85,21 @@ export interface ScenarioBehavior {
   skillModifier?: (state: GameState, test: SkillTest) => number
   /** El enemigo no puede recibir daño. */
   enemyImmune?: (state: GameState, enemy: Enemy) => boolean
+  /**
+   * Al ir a ser derrotado un enemigo: mensajes que se resuelven en su lugar (si devuelve
+   * una lista, aunque esté vacía, no se derrota). Penumbrosa Carcosa: Hastur.
+   */
+  enemyWouldBeDefeated?: (state: GameState, enemy: Enemy) => Message[] | null
+  /** Los investigadores no son derrotados por el horror (Penumbrosa Carcosa). */
+  noHorrorDefeat?: boolean
+  /** No puede jugar esta carta (Llanuras inhóspitas, Profundidades de Demhe). */
+  cannotPlay?: (state: GameState, investigator: InvestigatorId, code: CardCode) => boolean
+  /** Sustituye el efecto de cualquier ficha revelada (Hastur: fallo automático). */
+  tokenOverride?: (
+    state: GameState,
+    token: ChaosToken,
+    investigator: InvestigatorId,
+  ) => TokenEffect | null
   /** Modificador al horror que inflige el ataque de un enemigo (Pasillos del manicomio). */
   enemyHorrorModifier?: (state: GameState, enemy: Enemy) => number
   /** Modificador al combate/evasión de un enemigo (Savage Shantak). */
@@ -173,6 +188,8 @@ export interface TreacheryBehavior {
   healthModifier?: number
   sanityModifier?: number
   cannotDiscard?: boolean
+  /** Opciones durante la ventana de comprometer (Posesión (Traidora), desde la mano). */
+  testOptions?: (state: GameState, test: SkillTest, self: Treachery) => ReactionOption[]
   /** Unida a una localización: los investigadores no pueden salir de ella (Secret Door). */
   blocksLeaving?: boolean
   /** El Lugar al que está unida no puede investigarse (Puerta cerrada con llave). */

@@ -77,10 +77,13 @@ registerEnemy({
               location,
               replaceClue: true,
               // La máscara pálida: en la Tumba de sombras no puede ser derrotado así.
+              // Penumbrosa Carcosa: lo decide la versión del acto 2.
               onSuccess:
                 state.scenarioId === 'the-pallid-mask' && printedCode(location) === '03257'
                   ? []
-                  : [{ type: 'DefeatEnemy', enemy: self.id, by: investigator }],
+                  : state.scenarioId === 'dim-carcosa'
+                    ? [{ type: 'ScenarioSpecific', key: 'dimManAbility', data: { enemy: self.id } }]
+                    : [{ type: 'DefeatEnemy', enemy: self.id, by: investigator }],
             },
           },
         ],
@@ -103,7 +106,11 @@ registerEnemy({
           value: Number(state.scenarioMeta?.[STRANGER_DEFEATS] ?? 0) + 1,
         },
       ]
-    if (!state.campaignLog?.notes.includes('carcosaStrangerIsOnToYou')) return []
+    if (
+      state.scenarioId === 'dim-carcosa' ||
+      !state.campaignLog?.notes.includes('carcosaStrangerIsOnToYou')
+    )
+      return []
     return [
       {
         type: 'RecordNote',
