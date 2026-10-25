@@ -3,11 +3,11 @@
 ## Estado actual
 
 **Campaña completa: los 8 escenarios son jugables, con los Interludios I y II y el
-epílogo** (décima entrega). Queda pendiente Lola Hayes (escenario I).
+epílogo** (décima entrega). Lola Hayes es jugable ([documento 86](86-investigadora-lola-hayes.md)).
 
 | Escenario                      | Implementado                                                                            | Pendiente para jugar                                                                                                                    |
 | ------------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| I · Se cierra el telón         | Completo: preparación, actos, planes, Lugares, 7 conjuntos, resoluciones y narración    | Lola Hayes (no jugable aún)                                                                                                             |
+| I · Se cierra el telón         | Completo: preparación, actos, planes, Lugares, 7 conjuntos, resoluciones y narración    | —                                                                                                             |
 | II · El último Rey             | Completo: preparación, Transeúntes, planes, acto, 5 conjuntos, R1–R3 e Interludio I      | —                                                                                                                                       |
 | III · Ecos del pasado          | Completo: preparación al azar, Pasadizos, Sr. Peabody, 6 conjuntos, R1–R4 y recompensas   | —                                                                                                                                       |
 | IV · El juramento inconfesable | Completo: preparación, recuerdos, Monstruos bajo el acto, Daniel, 6 conjuntos, R1–R3 e Interludio II | —                                                                                                                                       |
@@ -603,7 +603,8 @@ Narración del escenario VII: 5 MP3 más con la misma voz y ajustes (74 en total
 Narración del escenario VIII y el epílogo: 8 MP3 más con la misma voz y ajustes (82 en
 total).
 
-Siguiente bloque: revisión de la campaña completa. Pendiente: Lola Hayes (escenario I).
+Siguiente bloque: revisión de la campaña completa. Lola Hayes: prólogo y salida en los
+Bastidores conectados ([documento 86](86-investigadora-lola-hayes.md)).
 
 Para retomar en otro ordenador, actualizar `main`: el PDF ya está versionado en
 `docs-proyecto/reglas/`. La aplicación de referencia sigue siendo una copia externa

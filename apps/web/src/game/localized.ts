@@ -46,22 +46,29 @@ export interface LocalizedCard {
 }
 
 /**
- * Paquetes de cada idioma: caja básica 2026, La gala del ecuador del invierno y
- * Asesinato en el hotel Excelsior (con sus encuentros).
+ * Paquetes de cada idioma: caja básica 2026, La gala del ecuador del invierno,
+ * Asesinato en el hotel Excelsior (con sus encuentros) y los investigadores de Dunwich y
+ * Carcosa habilitados.
  */
 const SOURCES: Record<string, string[]> = {
-  en: ['https://arkhamdb.com/api/public/cards/dwl.json'],
+  en: [
+    'https://arkhamdb.com/api/public/cards/dwl.json',
+    'https://arkhamdb.com/api/public/cards/ptc.json',
+  ],
   es: [
     'https://es.arkhamdb.com/api/public/cards/core_2026.json',
     'https://es.arkhamdb.com/api/public/cards/tmg.json?encounter=1',
     'https://es.arkhamdb.com/api/public/cards/hotel.json?encounter=1',
     'https://es.arkhamdb.com/api/public/cards/dwl.json',
+    'https://es.arkhamdb.com/api/public/cards/ptc.json',
   ],
 }
-// v5: includes the original Pete and Jenny Barnes cards in EN/ES.
-const CACHE_PREFIX = 'lcg:cards:v5:'
+// v6: also Lola Hayes and her signatures (El camino a Carcosa) in EN/ES.
+const CACHE_PREFIX = 'lcg:cards:v6:'
 /** Dunwich investigators enabled so far; the rest of that pack stays hidden. */
 const DUNWICH_CODES = ['02005', '02014', '02015', '02003', '02010', '02011']
+/** El camino a Carcosa: solo Lola Hayes y sus exclusivas (los escenarios usan el catálogo local). */
+const CARCOSA_CODES = ['03006', '03018', '03019']
 const CACHE_HOURS = 24
 
 /** Bundled alternatives plus any available translated card data. */
@@ -146,7 +153,9 @@ export async function useCardLocale(locale: string): Promise<void> {
       if (!Array.isArray(pack)) throw new Error('Invalid card data')
       return source.endsWith('/dwl.json')
         ? pack.filter((c) => DUNWICH_CODES.includes(c.code))
-        : pack
+        : source.endsWith('/ptc.json')
+          ? pack.filter((c) => CARCOSA_CODES.includes(c.code))
+          : pack
     }),
   )
   const cards = packs.flatMap((p) => (p.status === 'fulfilled' ? p.value : []))

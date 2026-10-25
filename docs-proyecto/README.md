@@ -80,6 +80,7 @@ vigente de pendientes.
 | — | [reglas/](reglas/README.md) | Dónde y cómo guardar los PDF de reglas |
 | 84 | [El camino a Carcosa](84-camino-a-carcosa.md) | Base de campaña, bolsas y orden oficial; continuación con Se cierra el telón y dependencias pendientes. |
 | 85 | [Pasos automáticos](85-pasos-automaticos.md) | Modal que muestra, paso a paso y con su motivo, lo que el juego resuelve solo tras cada decisión. |
+| 86 | [Lola Hayes](86-investigadora-lola-hayes.md) | Investigadora de Carcosa: papel que restringe las cartas, Improvisación, Crisis de identidad y construcción por clases. |
 
 ## Decisiones ya tomadas
 

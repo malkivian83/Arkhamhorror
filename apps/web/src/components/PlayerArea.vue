@@ -164,6 +164,10 @@ const slots = computed(() => {
               · {{ t('table.actionsLeft', { n: i.actionsRemaining }) }}
             </template>
           </span>
+          <!-- Lola Hayes: su papel actual. -->
+          <span v-if="i.role" class="tag role">{{
+            t('investigator.role', { role: t(`investigator.roles.${i.role}`) })
+          }}</span>
           <span v-if="i.eliminated" class="tag">{{
             i.resigned ? t('log.resigned', { name: '' }) : t('game.eliminated')
           }}</span>
