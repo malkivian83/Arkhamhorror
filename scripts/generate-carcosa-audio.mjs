@@ -73,6 +73,12 @@ const keys = {
   'story.phantom.resolution1': 'a-phantom-of-truth-resolution1.mp3',
   'story.phantom.resolution2': 'a-phantom-of-truth-resolution2.mp3',
   'story.phantom.resolution3': 'a-phantom-of-truth-resolution3.mp3',
+  'story.pallid.intro1': 'the-pallid-mask-intro1.mp3',
+  'story.pallid.intro2': 'the-pallid-mask-intro2.mp3',
+  'story.pallid.haruko': 'the-pallid-mask-haruko.mp3',
+  'story.pallid.noResolution': 'the-pallid-mask-no-resolution.mp3',
+  'story.pallid.resolution1': 'the-pallid-mask-resolution1.mp3',
+  'story.pallid.resolution2': 'the-pallid-mask-resolution2.mp3',
 }
 const settings = {
   model_id: 'eleven_multilingual_v2',

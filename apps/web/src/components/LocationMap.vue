@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useTableGame } from '../game/tableController'
-import { shroudOf, type GameState, type Location } from '@lcg/engine'
+import { printedCode, shroudOf, type GameState, type Location } from '@lcg/engine'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { cardBackImage } from '../game/assets'
@@ -116,7 +116,7 @@ const treacheriesAt = (id: string) =>
     >
       <TableTarget :target="`location:${l.id}`">
         <GameCard
-          :code="l.id"
+          :code="printedCode(l.id)"
           :name="l.revealed ? l.name : (l.unrevealedName ?? l.name)"
           :back="!l.revealed"
           :width="CARD_W"

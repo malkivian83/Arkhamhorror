@@ -6,6 +6,7 @@ import {
   echoesOfThePast,
   theUnspeakableOath,
   aPhantomOfTruth,
+  thePallidMask,
   spreadingFlames,
   smokeAndMirrors,
   queenOfAsh,
@@ -20,6 +21,7 @@ import {
   allPlayerCardDefs,
   playerCardBehavior,
   playerCardDef,
+  printedCode,
   type EncounterCard,
   type LocationCard,
 } from '@lcg/engine'
@@ -77,7 +79,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   )
   function location(l: LocationCard) {
     put({
-      code: l.id,
+      code: printedCode(l.id),
       name: l.name,
       real_name: l.name,
       type_code: 'location',
@@ -144,6 +146,14 @@ export function fallbackCards(locale: string): LocalizedCard[] {
           investigators: {},
           chaosTokens: [],
         },
+      }),
+    ),
+    // Todas las Catacumbas (incluidas las segundas copias, ~2) entran en cada partida.
+    ...[[], ['carcosaUnableToFindNigel']].map((notes) =>
+      thePallidMask({
+        difficulty: 'standard',
+        seed: 0,
+        log: { notes, crossedOut: [], values: {}, investigators: {}, chaosTokens: [] },
       }),
     ),
     ...Array.from({ length: 12 }, (_, seed) =>
@@ -244,6 +254,12 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     code: '03200',
     name: 'A Phantom of Truth',
     real_name: 'A Phantom of Truth',
+    type_code: 'scenario',
+  })
+  put({
+    code: '03240',
+    name: 'The Pallid Mask',
+    real_name: 'The Pallid Mask',
     type_code: 'scenario',
   })
   put({

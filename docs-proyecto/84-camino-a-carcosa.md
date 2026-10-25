@@ -2,10 +2,10 @@
 
 ## Estado actual
 
-**5 de 8 escenarios jugables: I · Se cierra el telón, II · El Último Rey (con el
+**6 de 8 escenarios jugables: I · Se cierra el telón, II · El Último Rey (con el
 Interludio I), III · Ecos del pasado, IV · El juramento inconfesable (con el Interludio
-II) y V · El Fantasma de la Verdad** (séptima entrega). Al terminar el escenario V no hay
-un sexto disponible. Los escenarios VI–VIII siguen sin `build`.
+II), V · El Fantasma de la Verdad y VI · La máscara pálida** (octava entrega). Al terminar
+el escenario VI no hay un séptimo disponible. Los escenarios VII–VIII siguen sin `build`.
 
 | Escenario                      | Implementado                                                                            | Pendiente para jugar                                                                                                                    |
 | ------------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -14,11 +14,11 @@ un sexto disponible. Los escenarios VI–VIII siguen sin `build`.
 | III · Ecos del pasado          | Completo: preparación al azar, Pasadizos, Sr. Peabody, 6 conjuntos, R1–R4 y recompensas   | —                                                                                                                                       |
 | IV · El juramento inconfesable | Completo: preparación, recuerdos, Monstruos bajo el acto, Daniel, 6 conjuntos, R1–R3 e Interludio II | —                                                                                                                                       |
 | V · El Fantasma de la Verdad   | Completo: sueños, Dudas/Convicciones, El organista, 6 conjuntos, Lugares de París y R1–R3 | —                                                                                                                                       |
-| VI · La máscara pálida         | Nombre y posición en la campaña                                                         | Implementación íntegra                                                                                                                  |
+| VI · La máscara pálida         | Completo: cuadrícula de Catacumbas, El hombre de la máscara pálida, Haruko, 4 conjuntos y R1–R2 | Ranuras de Caverna repleta de huesos (ver límites)
 | VII · Surgen estrellas negras  | Nombre y posición en la campaña                                                         | Implementación íntegra y sus ramas                                                                                                      |
 | VIII · Penumbrosa Carcosa      | Nombre y posición en la campaña                                                         | Implementación íntegra, final de campaña y epílogo                                                                                      |
 
-El epílogo y las narraciones de los escenarios VI–VIII tampoco están implementados. Las dependencias compartidas se enumeran más abajo; no se
+El epílogo y las narraciones de los escenarios VII–VIII tampoco están implementados. Las dependencias compartidas se enumeran más abajo; no se
 ha auditado todavía cada carta de esos siete escenarios.
 
 ## Primera entrega: base de campaña
@@ -398,6 +398,55 @@ EN/ES con miniaturas ([evidencia](evidencias/imagenes-a-phantom-of-truth.json)) 
 narraciones nuevas con Carmelo (introducciones, Sueños, Despertar, Información de Jordan y
 resoluciones).
 
+## Octava entrega: La máscara pálida
+
+Escenario en `the-path-to-carcosa/the-pallid-mask.ts`; Gules (Secuaz gul, Gul voraz,
+Manos aferradoras) y Frío glacial (Frío de la cripta, Envuelto en niebla) de la caja básica
+original añadidos a `encounter-sets.ts`. Fuentes: guía ES (texto extraído del PDF), cartas
+de la referencia y escaneos (pistas por investigador de cada Catacumba, umbral del acto 2
+y salud del Espectro de la muerte).
+
+- Introducción: Introducción 1 (despertaron en las catacumbas, si no escaparon de la mirada
+  del Fantasma o no encontraron a Nigel) o 2, e Información de Haruko si no murió (abre un
+  pasadizo secreto: decisión opcional en la preparación).
+- Preparación: Lugar inicial al azar o Puerta al Infierno; mazo de Catacumbas con la
+  Tumba de sombras, el Pasadizo bloqueado y otras 3 en las 5 cartas inferiores. El afectado
+  por El hombre de la máscara pálida (03059) lo pone aparte.
+- Cuadrícula: posiciones `[x, y]` desde el Lugar inicial; cada Catacumba revelada coloca
+  la carta superior del mazo arriba, abajo, a izquierda o derecha según la carta impresa, y
+  los Lugares adyacentes quedan conectados. Las segundas copias usan el sufijo `~2` en el
+  identificador (`printedCode` devuelve el código impreso para imágenes y textos).
+- Coste de entrada: entrar en una Catacumba no revelada exige gastar en grupo tantas pistas
+  como investigadores (salvo junto a Arcadas de piedra revelados); Túnel angosto pide antes
+  Agilidad (3).
+- Planes y actos: El Espectro de la muerte aparece en el Lugar inicial; el reverso del plan 2 inflige 1
+  trauma físico y derrota a todos. La Tumba de sombras hace avanzar el acto; El hombre de la
+  máscara pálida aparece en ella con +1 de salud por investigador y no puede ser derrotado
+  allí por su capacidad. Derrotarlo lleva a Convicción ×2; dejarlo marcar Duda ×2 y retira
+  el acto La salida de allí. R1 con todos en Puerta al Infierno; R2 con todos en el Pasadizo bloqueado.
+- Fichas: calavera (distancia al Lugar inicial, máx. 5 en Fácil/Normal), sectario (−1 daño o
+  ninguno durante un ataque; nuevo `AdjustAttackDamage`), tablilla (ataque de un Gul o Geist
+  del Lugar) y primigenio (robar un Gul o Geist).
+- Lugares: Cripta de la lámpara sepulcral investigada con Voluntad (nuevo `investigateSkill`), Túneles iluminados por velas (mirar la carta superior), Pozo de las almas, Estanques gélidos, Pasadizo bloqueado (2
+  daño y atrapado) y el resto de capacidades impresas.
+- Encuentros: Espectro de la muerte (reverso del plan 1), Guía de las catacumbas, Morador de cadáver, Ojos en las paredes, La sombra
+  detrás de ti, El pozo abierto y los conjuntos de la caja básica.
+- Resoluciones: sin resolución, R1 y R2 con sus notas, fichas (0/1/2 Convicciones o Dudas),
+  Haruko muerta y 2 marcas en Persiguiendo al Extranjero en R2. Sin resolución se ofrece
+  leer el Acto II de El Rey de Amarillo: +2 de experiencia y una Debilidad básica de Locura o
+  Pacto al azar.
+
+Diferencias y límites: Caverna repleta de huesos no reduce las ranuras de mano. Ojos en las
+paredes no reparte el horror de forma equitativa. La salud extra de El hombre de la máscara
+pálida se fija al aparecer.
+
+Validación: 62 pruebas nuevas (preparación con y sin despertar, cuadrícula, coste de
+entrada, planes, actos, fichas, Lugares, enemigos, traiciones, resoluciones y 40 partidas
+aleatorias). Presentación: catálogo EN/ES (206 cartas de Carcosa), 92 escaneos EN/ES con
+miniaturas ([evidencia](evidencias/imagenes-the-pallid-mask.json)), cuadrícula revisada en
+escritorio y móvil y 6 narraciones nuevas con Carmelo (introducciones, Información de Haruko y
+resoluciones).
+
 ## Dependencias posteriores
 
 - Oculto: secreto por investigador en online, cuenta para tamaño de mano,
@@ -446,7 +495,9 @@ Narración del escenario IV e Interludio II: 13 MP3 más con la misma voz y ajus
 Narración del escenario V: 20 MP3 más con la misma voz y ajustes (63 en total), incluidas
 las resoluciones. Tramas MPEG verificadas sin errores.
 
-Siguiente bloque: escenario VI (La máscara pálida). Pendiente: Lola Hayes (escenario I).
+Narración del escenario VI: 6 MP3 más con la misma voz y ajustes (69 en total).
+
+Siguiente bloque: escenario VII (Surgen estrellas negras). Pendiente: Lola Hayes (escenario I).
 
 Para retomar en otro ordenador, actualizar `main`: el PDF ya está versionado en
 `docs-proyecto/reglas/`. La aplicación de referencia sigue siendo una copia externa

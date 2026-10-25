@@ -516,6 +516,54 @@
       "inputHash": "4b05d361e0c5ce7854a27c2d0c2a835fe3ff78f041344c2ba9839e35ccc4b2fc",
       "sha256": "ef3e6830edab613f44d1239fccb12e9d79c4cee7c227fd8a226ea5f0f82bf772",
       "bytes": 536702
+    },
+    {
+      "key": "story.pallid.intro1",
+      "file": "the-pallid-mask-intro1.mp3",
+      "characters": 449,
+      "inputHash": "b44f9312dea4d85a4d7c06d5c4506e78ec47814c4fd6ea8a01b8c0a7d5c8fd02",
+      "sha256": "8830e3cbe6a00f57ee6c78429b61918158d8374175748fd8bfe0323ef516de58",
+      "bytes": 642446
+    },
+    {
+      "key": "story.pallid.intro2",
+      "file": "the-pallid-mask-intro2.mp3",
+      "characters": 543,
+      "inputHash": "9420a9064f3c4fb1bb07092c83d2c09680c5e47a4a75950e8d9920d3ec45765a",
+      "sha256": "fd12bb3a5d5085a0e9b8c8dc1d3c9b17cd9a75dcead7cc580b3fce4207c22198",
+      "bytes": 685496
+    },
+    {
+      "key": "story.pallid.haruko",
+      "file": "the-pallid-mask-haruko.mp3",
+      "characters": 579,
+      "inputHash": "e2cab8e1b99c5fb1c9d417748e8985cd0c932e16f2e77392987f927795672026",
+      "sha256": "fbc93a231932b18c312ebd64c97d78a8e1e3ced28adb382794b78634cee2b622",
+      "bytes": 780372
+    },
+    {
+      "key": "story.pallid.noResolution",
+      "file": "the-pallid-mask-no-resolution.mp3",
+      "characters": 1431,
+      "inputHash": "1d34d4264b456cbd5c10bcb4434948ff6ca4879d4e1143e43d5fb56bb1b67368",
+      "sha256": "f65116affa63840f361cf15750e72c0b0f42b1de893aeb7d4f55ca8a68d64520",
+      "bytes": 1811896
+    },
+    {
+      "key": "story.pallid.resolution1",
+      "file": "the-pallid-mask-resolution1.mp3",
+      "characters": 1396,
+      "inputHash": "ed862703feb6d62c97b79478ea862f9aef869fa5ffa0854c2c61ca2c4522f75f",
+      "sha256": "c8c151fba5e46ba2992bc0d4662f2c119ccad2c36e984dbaabfb729f452ebc6e",
+      "bytes": 1801447
+    },
+    {
+      "key": "story.pallid.resolution2",
+      "file": "the-pallid-mask-resolution2.mp3",
+      "characters": 1003,
+      "inputHash": "e272bd672a6a6fa277aaefed379029a659d67c201ac24021456cf30671364b6d",
+      "sha256": "f5405fd6345bfa96499f70032428168d268b62abce51fdd8d6faa2b6b029821e",
+      "bytes": 1289447
     }
   ]
 }

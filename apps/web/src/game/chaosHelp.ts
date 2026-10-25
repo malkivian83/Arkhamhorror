@@ -20,6 +20,7 @@ export function chaosHelp(
     'echoes-of-the-past': carcosaCards[locale === 'es' ? 'es' : 'en']['03120'],
     'the-unspeakable-oath': carcosaCards[locale === 'es' ? 'es' : 'en']['03159'],
     'a-phantom-of-truth': carcosaCards[locale === 'es' ? 'es' : 'en']['03200'],
+    'the-pallid-mask': carcosaCards[locale === 'es' ? 'es' : 'en']['03240'],
   }
   const card = official[state.scenarioId]
   if (card) {

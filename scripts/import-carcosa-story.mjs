@@ -95,6 +95,12 @@ for (const locale of ['en', 'es']) {
   texts['story.phantom.jordan'] = text(phantom.intro.jordansInformation)
   for (const key of ['noResolution', 'resolution1', 'resolution2', 'resolution3'])
     texts[`story.phantom.${key}`] = text(phantom.resolutions[key].body)
+  // La máscara pálida: introducciones, Información de Haruko y resoluciones.
+  const pallid = JSON.parse(readFileSync(join(source, 'scenarios/thePallidMask.json'), 'utf8'))
+  for (const key of ['intro1', 'intro2']) texts[`story.pallid.${key}`] = text(pallid.intro[key])
+  texts['story.pallid.haruko'] = text(pallid.intro.harukosInformation)
+  for (const key of ['noResolution', 'resolution1', 'resolution2'])
+    texts[`story.pallid.${key}`] = text(pallid.resolutions[key].body)
   writeFileSync(path, JSON.stringify(texts, null, 2) + '\n')
-  console.log(`${locale}: relatos de los escenarios I a V importados.`)
+  console.log(`${locale}: relatos de los escenarios I a VI importados.`)
 }

@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { previewToken, skillTestValue, successChance, type GameState } from '@lcg/engine'
+import {
+  previewToken,
+  printedCode,
+  skillTestValue,
+  successChance,
+  type GameState,
+} from '@lcg/engine'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { classColor } from '../game/cards'
@@ -75,7 +81,7 @@ const source = computed(() => {
   if (!kind) return null
   if (kind.type === 'investigate') {
     const l = props.state.locations[kind.location]
-    return l ? { code: l.id, name: l.name, back: !l.revealed } : null
+    return l ? { code: printedCode(l.id), name: l.name, back: !l.revealed } : null
   }
   if (kind.type === 'fight' || kind.type === 'evade') {
     const e = props.state.enemies[kind.enemy]
