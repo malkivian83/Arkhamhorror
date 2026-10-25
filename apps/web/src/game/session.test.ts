@@ -58,6 +58,35 @@ describe('guardado de campaña y mesa', () => {
       expect(storage.getItem(SESSION_KEY)).toBe(raw)
     },
   )
+  it('guarda Surgen estrellas negras con dos mazos de Plan y sin acto, y rechaza uno roto', () => {
+    const base = newCampaign('the-path-to-carcosa', ['joe', 'trish'], 'standard')
+    const done = (scenario: string) => ({
+      scenario,
+      outcome: { type: 'resolution' as const, resolution: 1 },
+      xp: {},
+    })
+    const campaign = {
+      ...base,
+      scenarioIndex: 6,
+      results: [
+        'curtain-call',
+        'the-last-king',
+        'echoes-of-the-past',
+        'the-unspeakable-oath',
+        'a-phantom-of-truth',
+        'the-pallid-mask',
+      ].map(done),
+    }
+    const state = startScenario(campaign, 5)
+    expect(state.acts).toEqual([])
+    expect(state.secondAgenda?.agendas).toHaveLength(3)
+    const current = session(state, { base: state, inputs: [], marks: [markOf(state)] }, campaign)
+    expect(decodeSession(encode(current))).toEqual(current)
+    const broken = JSON.parse(encode(current)) as Session
+    broken.state!.secondAgenda = { agendas: [], index: 0, doom: 0 }
+    expect(() => decodeSession(encode(broken))).toThrow()
+  })
+
   it('el cambio de reglas de Gala no impone una versión nueva a Brethren', () => {
     const data = initial()
     expect(data.state?.scenarioRulesVersion).toBeUndefined()

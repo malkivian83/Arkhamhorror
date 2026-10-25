@@ -46,6 +46,7 @@ import { EngineError } from './errors'
 import { attackDamage } from './combat'
 import { nextInt, shuffle } from './rng'
 import {
+  currentAgendas,
   activeInvestigators,
   assetsCannotReady,
   effectiveVitals,
@@ -208,12 +209,49 @@ export function handle(state: GameState, message: Message): GameState {
       })
     }
 
-    case 'PlaceDoom':
+    case 'PlaceDoom': {
       if (state.doomBecomesDamage) return push(state, ...doomAsDamage(state, message.amount))
+      const second = state.secondAgenda
+      const other = second?.agendas[second.index]
+      // Surgen estrellas negras, "Planes dobles": se elige en cuál de los dos planes.
+      if (second && other && !message.agenda) {
+        const lead = leadInvestigator(state)
+        const current = state.agendas[state.agendaIndex]
+        if (lead && current)
+          return push(state, {
+            type: 'Ask',
+            investigator: lead.id,
+            question: {
+              kind: 'chooseOne',
+              prompt: 'prompt.doomOnAgenda',
+              choices: (
+                [
+                  ['first', current],
+                  ['second', other],
+                ] as const
+              ).map(([agenda, card]) => ({
+                label: 'choice.doomOnAgenda',
+                params: { name: card.name, amount: message.amount },
+                then: [{ type: 'PlaceDoom', amount: message.amount, agenda }],
+              })),
+            },
+          })
+      }
+      if (message.agenda === 'second' && second)
+        return push(
+          { ...state, secondAgenda: { ...second, doom: second.doom + message.amount } },
+          { type: 'Forced', trigger: { type: 'afterDoomPlaced', agenda: 'second' } },
+        )
       return push(
         { ...state, doom: state.doom + message.amount },
-        { type: 'Forced', trigger: { type: 'afterDoomPlaced' } },
+        {
+          type: 'Forced',
+          trigger: message.agenda
+            ? { type: 'afterDoomPlaced', agenda: message.agenda }
+            : { type: 'afterDoomPlaced' },
+        },
       )
+    }
 
     case 'SetDoomBecomesDamage':
       return { ...state, doomBecomesDamage: true }
@@ -237,7 +275,38 @@ export function handle(state: GameState, message: Message): GameState {
     case 'CheckAgenda': {
       const agenda = state.agendas[state.agendaIndex]
       const doom = agendaBehavior(agenda?.code)?.thresholdDoom?.(state) ?? totalDoom(state)
-      if (agenda && doom >= agenda.doomThreshold) {
+      const met = !!agenda && doom >= agenda.doomThreshold
+      const second = state.secondAgenda
+      const other = second?.agendas[second.index]
+      const otherMet = !!other && secondAgendaDoom(state) >= other.doomThreshold
+      // Planes dobles: si se cumplen ambos umbrales, se elige uno; después se comprueba
+      // de nuevo el otro.
+      if (met && otherMet) {
+        const lead = leadInvestigator(state)
+        if (lead)
+          return push(state, {
+            type: 'Ask',
+            investigator: lead.id,
+            question: {
+              kind: 'chooseOne',
+              prompt: 'prompt.agendaToAdvance',
+              choices: [
+                {
+                  label: 'choice.advanceAgenda',
+                  params: { name: agenda.name },
+                  then: [{ type: 'AdvanceAgenda' }, { type: 'CheckAgenda' }],
+                },
+                {
+                  label: 'choice.advanceAgenda',
+                  params: { name: other.name },
+                  then: [{ type: 'AdvanceSecondAgenda' }, { type: 'CheckAgenda' }],
+                },
+              ],
+            },
+          })
+      }
+      if (!met && otherMet) return push(state, { type: 'AdvanceSecondAgenda' })
+      if (agenda && met) {
         const instead = agendaBehavior(agenda.code)?.insteadOfAdvance?.(state)
         return push(state, ...(instead ?? [{ type: 'AdvanceAgenda' } as Message]))
       }
@@ -251,33 +320,49 @@ export function handle(state: GameState, message: Message): GameState {
       const onAdvance = agendaBehavior(agenda?.code)?.onAdvance?.(state) ?? []
       return push(
         log(
-          discardUnsupported({
-            ...state,
-            doom: 0,
-            // También se retira la perdición de las cartas de jugador.
-            investigators: state.investigators.map((i) => (i.doom ? { ...i, doom: 0 } : i)),
-            enemies: Object.fromEntries(
-              Object.entries(state.enemies).map(([id, e]) => [id, e.doom ? { ...e, doom: 0 } : e]),
-            ),
-            assets: Object.fromEntries(
-              Object.entries(state.assets).map(([id, a]) => [id, a.doom ? { ...a, doom: 0 } : a]),
-            ),
-            locations: Object.fromEntries(
-              Object.entries(state.locations).map(([id, l]) => [
-                id,
-                l.doom ? { ...l, doom: 0 } : l,
-              ]),
-            ),
-          }),
+          // También se retira la perdición de las cartas (no la del otro mazo de Plan).
+          discardUnsupported(withoutCardDoom({ ...state, doom: 0 })),
           'log.agendaAdvanced',
           { name: agenda?.name ?? '' },
         ),
         ...onAdvance,
-        { type: 'AgendaAdvanced' },
+        agenda?.code ? { type: 'AgendaAdvanced', from: agenda.code } : { type: 'AgendaAdvanced' },
       )
     }
 
+    case 'AdvanceSecondAgenda': {
+      const second = state.secondAgenda
+      const agenda = second?.agendas[second.index]
+      if (!second || !agenda) return state
+      const onAdvance = agendaBehavior(agenda.code)?.onAdvance?.(state) ?? []
+      return push(
+        log(
+          discardUnsupported(withoutCardDoom({ ...state, secondAgenda: { ...second, doom: 0 } })),
+          'log.agendaAdvanced',
+          { name: agenda.name },
+        ),
+        ...onAdvance,
+        agenda.code
+          ? { type: 'SecondAgendaAdvanced', from: agenda.code }
+          : { type: 'SecondAgendaAdvanced' },
+      )
+    }
+
+    case 'SecondAgendaAdvanced': {
+      const second = state.secondAgenda
+      // El reverso pudo retirar el mazo (sustituido por un acto).
+      if (!second || (message.from && second.agendas[second.index]?.code !== message.from))
+        return state
+      const index = second.index + 1
+      if (index >= second.agendas.length)
+        return push(state, { type: 'EndScenario', outcome: { type: 'noResolution' } })
+      const advanced = recomputeConnections({ ...state, secondAgenda: { ...second, index } })
+      const after = agendaBehavior(second.agendas[second.index]?.code)?.afterAdvance
+      return after ? push(advanced, ...after(advanced)) : advanced
+    }
+
     case 'AgendaAdvanced': {
+      if (message.from && state.agendas[state.agendaIndex]?.code !== message.from) return state
       const agendaIndex = state.agendaIndex + 1
       if (agendaIndex >= state.agendas.length) {
         return push(state, { type: 'EndScenario', outcome: { type: 'noResolution' } })
@@ -1782,7 +1867,12 @@ export function handle(state: GameState, message: Message): GameState {
       if (where === null || !state.locations[where]) return state
       const location = getLocation(state, where)
       const amount = Math.min(message.amount, location.clues)
-      if (amount <= 0 || cluesBlocked(state, investigator.id)) return state
+      if (
+        amount <= 0 ||
+        cluesBlocked(state, investigator.id) ||
+        scenarioBehavior(state.scenarioId)?.cannotDiscoverClues?.(state, investigator.id, where)
+      )
+        return state
       return push(
         updateInvestigator(
           updateLocation(state, location.id, (l) => ({ ...l, clues: l.clues - amount })),
@@ -3012,6 +3102,9 @@ export function handle(state: GameState, message: Message): GameState {
             ? [...test.tokenOnFailBy, effect.onFailBy]
             : test.tokenOnFailBy,
           tokenOnSuccess: [...(test.tokenOnSuccess ?? []), ...(effect.onSuccess ?? [])],
+          ...(effect.onSuccessBelow
+            ? { tokenOnSuccessBelow: [...(test.tokenOnSuccessBelow ?? []), effect.onSuccessBelow] }
+            : {}),
           tokenAfter: [...(test.tokenAfter ?? []), ...(effect.after ?? [])],
         },
       }
@@ -3094,9 +3187,16 @@ export function handle(state: GameState, message: Message): GameState {
           playerCardBehavior(c.code)?.afterCommittedTest?.(state, test, !!test.succeeded, c.by) ??
           [],
       )
+      const margin = (test.modifiedSkill ?? 0) - test.difficulty
       const tokens = test.succeeded
-        ? (test.tokenOnSuccess ?? [])
+        ? [
+            ...(test.tokenOnSuccess ?? []),
+            ...(test.tokenOnSuccessBelow ?? [])
+              .filter((f) => margin < f.margin)
+              .flatMap((f) => f.then),
+          ]
         : [
+            ...(test.tokenOnSuccessBelow ?? []).flatMap((f) => f.then),
             ...test.tokenOnFail,
             ...test.tokenOnFailBy.filter((f) => failBy >= f.atLeast).flatMap((f) => f.then),
           ]
@@ -3804,7 +3904,7 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'DriveDefeatedInsane':
       return updateRecords(state, undefined, (r, i) =>
-        i.eliminated && !i.resigned ? { ...r, insane: true } : r,
+        message.all || (i.eliminated && !i.resigned) ? { ...r, insane: true } : r,
       )
 
     case 'FlipEnemy': {
@@ -5484,8 +5584,15 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'RemoveDoom': {
-      if (message.target.type === 'agenda')
+      if (message.target.type === 'agenda') {
+        const second = state.secondAgenda
+        if (message.target.deck === 'second' && second)
+          return {
+            ...state,
+            secondAgenda: { ...second, doom: Math.max(0, second.doom - message.amount) },
+          }
         return { ...state, doom: Math.max(0, state.doom - message.amount) }
+      }
       if (message.target.type === 'asset') {
         const asset = state.assets[message.target.id]
         if (!asset) return state
@@ -5622,6 +5729,33 @@ export function handle(state: GameState, message: Message): GameState {
 // ---------------------------------------------------------------------------
 // Cartas de jugador: reacciones, ventanas de prueba y debilidades
 // ---------------------------------------------------------------------------
+
+/** Perdición de las cartas en juego (enemigos, apoyos, Lugares e investigadores). */
+function cardDoom(state: GameState): number {
+  return totalDoom(state) - state.doom
+}
+
+/** Perdición que cuenta para el umbral del segundo mazo de Plan. */
+export function secondAgendaDoom(state: GameState): number {
+  return cardDoom(state) + (state.secondAgenda?.doom ?? 0)
+}
+
+/** Retira la perdición de las cartas en juego (al avanzar un plan). */
+function withoutCardDoom(state: GameState): GameState {
+  return {
+    ...state,
+    investigators: state.investigators.map((i) => (i.doom ? { ...i, doom: 0 } : i)),
+    enemies: Object.fromEntries(
+      Object.entries(state.enemies).map(([id, e]) => [id, e.doom ? { ...e, doom: 0 } : e]),
+    ),
+    assets: Object.fromEntries(
+      Object.entries(state.assets).map(([id, a]) => [id, a.doom ? { ...a, doom: 0 } : a]),
+    ),
+    locations: Object.fromEntries(
+      Object.entries(state.locations).map(([id, l]) => [id, l.doom ? { ...l, doom: 0 } : l]),
+    ),
+  }
+}
 
 /** Perdición total en juego: la del plan y la de las cartas de jugador. */
 export function totalDoom(state: GameState): number {
@@ -5968,10 +6102,9 @@ function forcedAbilities(state: GameState, trigger: Trigger): Message[] {
   const fromEnemies = enemies.flatMap((e) =>
     sourced(enemyBehavior(e.code)?.forced?.(state, trigger, e), e.name),
   )
-  const agenda = state.agendas[state.agendaIndex]
-  const fromAgenda = agenda
-    ? sourced(agendaBehavior(agenda.code)?.forced?.(state, trigger, agenda), agenda.name)
-    : []
+  const fromAgenda = currentAgendas(state).flatMap((agenda) =>
+    sourced(agendaBehavior(agenda.code)?.forced?.(state, trigger, agenda), agenda.name),
+  )
   const act = state.acts[state.actIndex]
   const fromAct = act ? sourced(actBehavior(act.code)?.forced?.(state, trigger, act), act.name) : []
   const fromLocations = Object.values(state.locations).flatMap((l) =>

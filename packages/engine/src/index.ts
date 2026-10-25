@@ -81,6 +81,7 @@ export {
   canCommitFrom,
   successChance,
   totalDoom,
+  secondAgendaDoom,
 } from './handlers'
 export * from './rng'
 export {
@@ -92,6 +93,7 @@ export {
   type ScenarioDefinition,
 } from './setup'
 export {
+  currentAgendas,
   activeInvestigators,
   attachedStat,
   effectiveVitals,

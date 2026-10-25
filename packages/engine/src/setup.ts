@@ -46,6 +46,8 @@ export interface ScenarioDefinition {
   /** Cada investigador elige dónde empezar entre estas (El juramento inconfesable). */
   startingLocationChoices?: LocationId[]
   agendas: Agenda[]
+  /** Segundo mazo de Plan, en juego a la vez que el primero (Surgen estrellas negras). */
+  secondAgendas?: Agenda[]
   acts: Act[]
   encounterDeck: EncounterCard[]
   /** Cartas apartadas, fuera de juego, que usarán los efectos del escenario. */
@@ -124,7 +126,8 @@ export function prepareGame({
   if (!scenario.locations.some((l) => l.id === scenario.startingLocation)) {
     throw new EngineError('El Lugar inicial no está en juego')
   }
-  if (scenario.agendas.length === 0 || scenario.acts.length === 0) {
+  // Con dos mazos de Plan puede no haber mazo de Acto al empezar.
+  if (scenario.agendas.length === 0 || (scenario.acts.length === 0 && !scenario.secondAgendas)) {
     throw new EngineError('El escenario necesita al menos un plan y un acto')
   }
 
@@ -279,6 +282,15 @@ export function prepareGame({
     agendas: scenario.agendas.map((a) => ({ ...a })),
     agendaIndex: 0,
     doom: 0,
+    ...(scenario.secondAgendas?.length
+      ? {
+          secondAgenda: {
+            agendas: scenario.secondAgendas.map((a) => ({ ...a })),
+            index: 0,
+            doom: 0,
+          },
+        }
+      : {}),
     acts: scenario.acts.map((a) => ({ ...a })),
     actIndex: 0,
     chaosBag: [...scenario.chaosBag],

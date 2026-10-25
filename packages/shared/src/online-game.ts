@@ -19,6 +19,8 @@ export type OnlineTable = Omit<GameState, 'pending'> & {
 
 export interface OnlineTableStats {
   agendaCount: number
+  /** Cartas del segundo mazo de Plan (Surgen estrellas negras). */
+  secondAgendaCount?: number
   actCount: number
   committing: boolean
   shroud: Record<string, number>
