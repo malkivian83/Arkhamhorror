@@ -3758,6 +3758,7 @@
       "campaign_cannot_continue": "No next scenario is available.",
       "inactive_investigator": "This investigator cannot continue.",
       "invalid_heir": "Choose an investigator who is still in the campaign.",
+      "invalid_replacement": "That investigator cannot join the campaign.",
       "invalid_purchase": "Invalid upgrade: check experience, card and replacement."
     },
     "play": {

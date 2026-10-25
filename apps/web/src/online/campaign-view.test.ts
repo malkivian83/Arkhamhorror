@@ -1,3 +1,4 @@
+import { createPinia } from 'pinia'
 import { createSSRApp } from 'vue'
 import { renderToString } from 'vue/server-renderer'
 import { createI18n } from 'vue-i18n'
@@ -14,6 +15,9 @@ function view(): OnlineCampaignView {
     ready: false,
     allReady: false,
     transfers: [],
+    lost: false,
+    awaitingReplacement: false,
+    replacement: null,
     members: [
       {
         investigator: '12004',
@@ -29,9 +33,9 @@ function view(): OnlineCampaignView {
 }
 async function render(campaign: OnlineCampaignView, locale: 'es' | 'en' = 'es') {
   return renderToString(
-    createSSRApp(OnlineCampaign, { campaign, disabled: false }).use(
-      createI18n({ legacy: false, locale, messages }),
-    ),
+    createSSRApp(OnlineCampaign, { campaign, disabled: false })
+      .use(createPinia())
+      .use(createI18n({ legacy: false, locale, messages })),
   )
 }
 it('shows earned XP, personal deck and a disabled next scenario until everyone is ready', async () => {
@@ -53,4 +57,20 @@ it('hides host actions from guests and upgrades from eliminated players or compl
   expect(await render(campaign)).not.toContain(messages.es.online.campaignPlay.buy)
   campaign.canContinue = false
   expect(await render(campaign, 'en')).toContain(messages.en.online.campaignPlay.ended)
+})
+it('offers unused investigators to the player whose investigator left the campaign', async () => {
+  const campaign = view()
+  campaign.own = null
+  campaign.canContinue = false
+  campaign.awaitingReplacement = true
+  campaign.replacement = { leaving: '12004', investigators: ['12001'] }
+  const html = await render(campaign)
+  expect(html).toContain(messages.es.campaign.replace.title)
+  expect(html).toContain('value="starter:daniela"')
+  expect(html).not.toContain('value="starter:joe"')
+  expect(html).toContain(messages.es.campaign.replace.blocked)
+  campaign.replacement = null
+  campaign.awaitingReplacement = false
+  campaign.lost = true
+  expect(await render(campaign)).toContain(messages.es.campaign.lost)
 })

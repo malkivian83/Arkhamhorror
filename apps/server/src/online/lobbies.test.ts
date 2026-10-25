@@ -373,6 +373,60 @@ describe('private online lobbies', () => {
     expect(stored.campaign!.log.investigators[heir!]!.storyAssets).toContain('03059')
   })
 
+  it('lets each player whose investigator left choose an unused one with a level 0 deck', async () => {
+    const { service, data, id } = await ended()
+    const lobby = JSON.parse(data.get(id)!) as Lobby
+    for (const record of Object.values(lobby.game!.campaignLog!.investigators)) record.insane = true
+    data.set(id, JSON.stringify(lobby))
+    let view = await service.progress(
+      id,
+      'host',
+      progressCommand(lobby.revision, { action: 'finish' }),
+    )
+    expect(view.campaign!.canContinue).toBe(false)
+    expect(view.campaign!.lost).toBe(false)
+    expect(view.campaign!.awaitingReplacement).toBe(true)
+    expect(view.campaign!.replacement?.leaving).toBe(deck('joe').investigator)
+    expect(view.campaign!.replacement?.investigators).not.toContain(deck('daniela').investigator)
+    const starter = (key: 'trish' | 'isabelle') => ({
+      investigator: starterInvestigator(key).id,
+      cards: starterDeck(key),
+    })
+    const replace = (
+      who: string,
+      revision: number,
+      chosen: { investigator: string; cards: string[] },
+    ) => service.progress(id, who, progressCommand(revision, { action: 'replace', deck: chosen }))
+    await expect(replace('host', view.revision, deck('daniela'))).rejects.toMatchObject({
+      code: 'invalid_replacement',
+    })
+    view = await replace('friend', view.revision, starter('trish'))
+    expect(view.ownInvestigator).toBe(starter('trish').investigator)
+    expect(view.campaign!.replacement).toBeNull()
+    expect(view.campaign!.members.at(-1)).toMatchObject({
+      investigator: starter('trish').investigator,
+      xp: 0,
+      active: true,
+    })
+    await expect(replace('friend', view.revision, starter('isabelle'))).rejects.toMatchObject({
+      code: 'invalid_replacement',
+    })
+    view = await replace('host', view.revision, starter('isabelle'))
+    expect(view.campaign!.canContinue).toBe(true)
+    expect(view.campaign!.awaitingReplacement).toBe(false)
+    for (const who of ['host', 'friend'])
+      view = await service.progress(
+        id,
+        who,
+        progressCommand(view.revision, { action: 'ready', ready: true }),
+      )
+    view = await service.progress(id, 'host', progressCommand(view.revision, { action: 'next' }))
+    expect(view.investigators.map((i) => i.id)).toEqual([
+      starter('trish').investigator,
+      starter('isabelle').investigator,
+    ])
+  })
+
   it('blocks further scenarios at campaign end and preserves replay outcomes without advancing twice', async () => {
     const fixture = await ended()
     const lobby = JSON.parse(fixture.data.get(fixture.id)!) as Lobby

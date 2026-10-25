@@ -136,6 +136,9 @@ it('shows shared intermission instead of local campaign navigation and removes i
     ready: false,
     allReady: false,
     transfers: [],
+    lost: false,
+    awaitingReplacement: false,
+    replacement: null,
     members: [],
     own: { deck: [], removable: [], options: [] },
   }

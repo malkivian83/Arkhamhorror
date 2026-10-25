@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { OnlineCampaignView, OnlineProgressAction } from '@lcg/shared'
+import { STARTER_DECKS, starterDeck, starterInvestigator, type DeckKey } from '@lcg/cards'
+import type { OnlineCampaignView, OnlineDeck, OnlineProgressAction } from '@lcg/shared'
 import { cardName } from '../game/cards'
 import GameCard from './GameCard.vue'
 import { localName } from '../game/localized'
+import { useDecksStore } from '../stores/decks'
 
 const props = defineProps<{ campaign: OnlineCampaignView; disabled: boolean }>()
 const emit = defineEmits<{ action: [action: OnlineProgressAction] }>()
@@ -22,6 +24,31 @@ const options = computed(() =>
   ),
 )
 const heirs = ref<Record<string, string>>({})
+/** Sustitutos posibles: mazo inicial o mazo propio de un investigador aún sin usar. */
+const replacements = computed(() => {
+  const unused = props.campaign.replacement?.investigators ?? []
+  // Solo se consultan los mazos propios cuando hay que elegir sustituto.
+  if (!unused.length) return []
+  const decks = useDecksStore()
+  return [
+    ...(Object.keys(STARTER_DECKS) as DeckKey[])
+      .filter((key) => unused.includes(starterInvestigator(key).id))
+      .map((key) => ({
+        id: `starter:${key}`,
+        label: t('campaign.replace.starter', { name: name(starterInvestigator(key).id) }),
+        deck: { investigator: starterInvestigator(key).id, cards: starterDeck(key) },
+      })),
+    ...decks.decks
+      .filter((d) => unused.includes(d.investigator) && !d.cards.includes('08125'))
+      .map((d) => ({
+        id: d.id,
+        label: `${name(d.investigator)} · ${d.name}`,
+        deck: { investigator: d.investigator, cards: [...d.cards] },
+      })),
+  ] satisfies { id: string; label: string; deck: OnlineDeck }[]
+})
+const replacing = ref('')
+const replacement = computed(() => replacements.value.find((o) => o.id === replacing.value))
 const option = computed(() => props.campaign.own?.options.find((o) => key(o) === selected.value))
 function buy() {
   if (!option.value) return
@@ -53,12 +80,30 @@ function buy() {
         </button>
       </fieldset>
     </section>
-    <p v-if="campaign.transfers.length">{{ t('campaign.transfer.blocked') }}</p>
+    <section v-if="campaign.replacement" class="transfer">
+      <h4>{{ t('campaign.replace.title') }}</h4>
+      <p>{{ t('campaign.replace.prompt', { name: name(campaign.replacement.leaving) }) }}</p>
+      <fieldset :disabled="disabled">
+        <select v-model="replacing" :aria-label="t('campaign.replace.choose')">
+          <option value="" disabled>{{ t('campaign.replace.choose') }}</option>
+          <option v-for="o in replacements" :key="o.id" :value="o.id">{{ o.label }}</option>
+        </select>
+        <button
+          :disabled="!replacement"
+          @click="emit('action', { action: 'replace', deck: replacement!.deck })"
+        >
+          {{ t('campaign.replace.confirm') }}
+        </button>
+      </fieldset>
+    </section>
+    <p v-if="campaign.lost">{{ t('campaign.lost') }}</p>
+    <p v-else-if="campaign.transfers.length">{{ t('campaign.transfer.blocked') }}</p>
     <p v-else-if="campaign.canContinue">
       {{
         t('online.campaignPlay.next', { scenario: t(`campaign.scenario.${campaign.nextScenario}`) })
       }}
     </p>
+    <p v-else-if="campaign.awaitingReplacement">{{ t('campaign.replace.blocked') }}</p>
     <p v-else>{{ t('online.campaignPlay.ended') }}</p>
     <ul>
       <li v-for="member in campaign.members" :key="member.investigator">

@@ -3758,6 +3758,7 @@
       "campaign_cannot_continue": "La campaña no tiene un siguiente escenario disponible.",
       "inactive_investigator": "Este investigador no puede continuar.",
       "invalid_heir": "Elige a un investigador que siga en la campaña.",
+      "invalid_replacement": "Ese investigador no puede unirse a la campaña.",
       "invalid_purchase": "La mejora no es válida: revisa la experiencia, la carta y la sustitución."
     },
     "play": {

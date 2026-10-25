@@ -1,3 +1,4 @@
+import type { OnlineDeck } from './online'
 import type {
   ChaosToken,
   Difficulty,
@@ -42,6 +43,8 @@ export type OnlineProgressAction =
   | { action: 'ready'; ready: boolean }
   | { action: 'purchase'; card: string; upgrade: boolean; remove?: string }
   | { action: 'heir'; card: string; heir: string }
+  /** El jugador cuyo investigador murió o enloqueció elige otro con un mazo de nivel 0. */
+  | { action: 'replace'; deck: OnlineDeck }
 export type OnlineProgressCommand = { commandId: string; revision: number } & OnlineProgressAction
 export interface OnlineCampaignView {
   canManage: boolean
@@ -51,6 +54,12 @@ export interface OnlineCampaignView {
   allReady: boolean
   /** Cartas cuyo portador dejó la campaña: el anfitrión elige quién las recibe. */
   transfers: { card: string; from: string; candidates: string[] }[]
+  /** Nadie puede seguir ni ser sustituido. */
+  lost: boolean
+  /** Hay jugadores sin investigador activo que aún pueden elegir otro. */
+  awaitingReplacement: boolean
+  /** Investigadores aún sin usar si el del jugador dejó la campaña; si no, null. */
+  replacement: { leaving: string; investigators: string[] } | null
   members: {
     investigator: string
     xp: number

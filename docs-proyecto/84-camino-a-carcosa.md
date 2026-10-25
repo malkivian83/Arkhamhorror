@@ -620,8 +620,10 @@ Lola Hayes: prólogo y salida en los Bastidores conectados
   Hombre de la máscara pálida que seguían con quien se fue pasan al sustituto. La vista
   de campaña ofrece el mazo inicial o un mazo propio válido; los guardados admiten más
   de cuatro investigadores en la lista con un máximo de cuatro activos.
-- Pendiente: la sustitución aún no está en las campañas en línea (el servidor asocia
-  cada jugador a su investigador del lobby).
+- En línea: entre escenarios, el jugador cuyo investigador se fue elige uno aún sin usar
+  (acción `replace`, con mazo inicial o propio); el servidor valida el mazo con la misma
+  regla y pasa a asociar a ese jugador con el nuevo investigador. La vista indica si
+  falta algún sustituto o si la campaña se ha perdido.
 
 Para retomar en otro ordenador, actualizar `main`: el PDF ya está versionado en
 `docs-proyecto/reglas/`. La aplicación de referencia sigue siendo una copia externa
