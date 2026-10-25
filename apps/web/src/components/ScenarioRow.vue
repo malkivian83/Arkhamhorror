@@ -22,6 +22,10 @@ const bagButton = ref<HTMLButtonElement>()
 const bagId = useId()
 const stories = computed(() => Object.values(props.state.stories ?? {}))
 const agenda = computed(() => props.state.agendas[props.state.agendaIndex])
+const secondAgenda = computed(() => {
+  const second = props.state.secondAgenda
+  return second ? second.agendas[second.index] : undefined
+})
 const act = computed(() => props.state.acts[props.state.actIndex])
 const actClues = computed(() => cluesToAdvanceAct(props.state))
 /** Traiciones en juego junto al mazo de Plan (Un público difícil, Cieno e impurezas). */
@@ -97,6 +101,40 @@ const sortedBag = computed(() =>
         class="beside-agenda"
       >
         <GameCard :code="tr.code" :name="tr.name" :width="40" thumbnail color="#b5462f" />
+      </TableTarget>
+    </div>
+    <!-- Segundo mazo de Plan (Surgen estrellas negras). -->
+    <div
+      v-if="secondAgenda"
+      class="scenario-group agenda-group"
+      role="group"
+      :aria-label="t('table.secondAgenda')"
+    >
+      <ScenarioDeckViewer
+        kind="agenda"
+        :cards="state.secondAgenda!.agendas"
+        :total-cards="game.stats?.secondAgendaCount"
+        :active-index="state.secondAgenda!.index"
+        compact
+      />
+      <TableTarget target="agenda" class="group-target">
+        <GameCard
+          class="group-card"
+          :code="secondAgenda.code ?? ''"
+          :name="secondAgenda.name"
+          :width="72"
+          landscape
+          thumbnail
+          color="#7a2c2c"
+        />
+        <span class="group-metric">
+          <span class="metric-value"
+            ><TokenBadge kind="doom" value="" :size="20" aria-hidden="true" /><strong
+              >{{ state.secondAgenda!.doom }}/{{ secondAgenda.doomThreshold }}</strong
+            ></span
+          >
+          <span class="stat-label">{{ t('table.doom') }}</span>
+        </span>
       </TableTarget>
     </div>
     <div v-if="act" class="scenario-group act-group" role="group" :aria-label="t('table.act')">

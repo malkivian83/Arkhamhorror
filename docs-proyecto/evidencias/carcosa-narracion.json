@@ -564,6 +564,46 @@
       "inputHash": "e272bd672a6a6fa277aaefed379029a659d67c201ac24021456cf30671364b6d",
       "sha256": "f5405fd6345bfa96499f70032428168d268b62abce51fdd8d6faa2b6b029821e",
       "bytes": 1289447
+    },
+    {
+      "key": "story.bsr.intro",
+      "file": "black-stars-rise-intro.mp3",
+      "characters": 629,
+      "inputHash": "d6244e08fd4e37fd688249bd902cb857b3303df06f65974f1a8704e107def8e4",
+      "sha256": "b81a1931a879190614f8989fbf5194ef6b05ab58facc497d00e60a1391d3be00",
+      "bytes": 787060
+    },
+    {
+      "key": "story.bsr.ashleigh",
+      "file": "black-stars-rise-ashleigh.mp3",
+      "characters": 646,
+      "inputHash": "f248b93c4156fc40aff9b1a6f9286797637aa96da3ce5345ec9831a54c6c5764",
+      "sha256": "aee3c165192cdc302357ce81eedde10a4a9e3e0ce542b38c267d1090326e4cd2",
+      "bytes": 859367
+    },
+    {
+      "key": "story.bsr.resolution1",
+      "file": "black-stars-rise-resolution1.mp3",
+      "characters": 272,
+      "inputHash": "f97f52636bb550c95e0aaad0b3c130b728b897c29f6464d67612bc2939e54ab0",
+      "sha256": "f66695bb63a1ed5f84633e25d630dfd31cfd3d2f31bfbe0d6a6a2a40609b154d",
+      "bytes": 379967
+    },
+    {
+      "key": "story.bsr.resolution2",
+      "file": "black-stars-rise-resolution2.mp3",
+      "characters": 273,
+      "inputHash": "edd01ddc7fa2fde88940364af4b6133e6197b01a1456524a2b545f015e8fcaa9",
+      "sha256": "144e71852f2725dc9bee10ffeb5de5f7c7d74fafa8dbc7635bcbba7dfc5b5239",
+      "bytes": 379967
+    },
+    {
+      "key": "story.bsr.resolution3",
+      "file": "black-stars-rise-resolution3.mp3",
+      "characters": 631,
+      "inputHash": "6c54118ef98d8cb78fb86972643e9aece367c19200684e6d6142fc380d080bf9",
+      "sha256": "f2ef8a62f0575a67d2b069e935443303c3d2fb03f91bbe5cde3220dfb011cb66",
+      "bytes": 860203
     }
   ]
 }

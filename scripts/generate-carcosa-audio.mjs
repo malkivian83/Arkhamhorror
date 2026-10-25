@@ -79,6 +79,11 @@ const keys = {
   'story.pallid.noResolution': 'the-pallid-mask-no-resolution.mp3',
   'story.pallid.resolution1': 'the-pallid-mask-resolution1.mp3',
   'story.pallid.resolution2': 'the-pallid-mask-resolution2.mp3',
+  'story.bsr.intro': 'black-stars-rise-intro.mp3',
+  'story.bsr.ashleigh': 'black-stars-rise-ashleigh.mp3',
+  'story.bsr.resolution1': 'black-stars-rise-resolution1.mp3',
+  'story.bsr.resolution2': 'black-stars-rise-resolution2.mp3',
+  'story.bsr.resolution3': 'black-stars-rise-resolution3.mp3',
 }
 const settings = {
   model_id: 'eleven_multilingual_v2',

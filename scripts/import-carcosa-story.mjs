@@ -101,6 +101,12 @@ for (const locale of ['en', 'es']) {
   texts['story.pallid.haruko'] = text(pallid.intro.harukosInformation)
   for (const key of ['noResolution', 'resolution1', 'resolution2'])
     texts[`story.pallid.${key}`] = text(pallid.resolutions[key].body)
+  // Surgen estrellas negras: introducción, Información de Ashleigh y resoluciones.
+  const stars = JSON.parse(readFileSync(join(source, 'scenarios/blackStarsRise.json'), 'utf8'))
+  texts['story.bsr.intro'] = text(stars.intro.body)
+  texts['story.bsr.ashleigh'] = text(stars.intro.ashleighsInformation)
+  for (const n of [1, 2, 3])
+    texts[`story.bsr.resolution${n}`] = text(stars.resolutions[`resolution${n}`].body)
   writeFileSync(path, JSON.stringify(texts, null, 2) + '\n')
-  console.log(`${locale}: relatos de los escenarios I a VI importados.`)
+  console.log(`${locale}: relatos de los escenarios I a VII importados.`)
 }

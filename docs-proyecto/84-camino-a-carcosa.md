@@ -2,10 +2,11 @@
 
 ## Estado actual
 
-**6 de 8 escenarios jugables: I · Se cierra el telón, II · El Último Rey (con el
+**7 de 8 escenarios jugables: I · Se cierra el telón, II · El Último Rey (con el
 Interludio I), III · Ecos del pasado, IV · El juramento inconfesable (con el Interludio
-II), V · El Fantasma de la Verdad y VI · La máscara pálida** (octava entrega). Al terminar
-el escenario VI no hay un séptimo disponible. Los escenarios VII–VIII siguen sin `build`.
+II), V · El Fantasma de la Verdad, VI · La máscara pálida y VII · Surgen estrellas
+negras** (novena entrega). Al terminar el escenario VII no hay un octavo disponible. El
+escenario VIII sigue sin `build`.
 
 | Escenario                      | Implementado                                                                            | Pendiente para jugar                                                                                                                    |
 | ------------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -15,10 +16,10 @@ el escenario VI no hay un séptimo disponible. Los escenarios VII–VIII siguen 
 | IV · El juramento inconfesable | Completo: preparación, recuerdos, Monstruos bajo el acto, Daniel, 6 conjuntos, R1–R3 e Interludio II | —                                                                                                                                       |
 | V · El Fantasma de la Verdad   | Completo: sueños, Dudas/Convicciones, El organista, 6 conjuntos, Lugares de París y R1–R3 | —                                                                                                                                       |
 | VI · La máscara pálida         | Completo: cuadrícula de Catacumbas, El hombre de la máscara pálida, Haruko, 4 conjuntos y R1–R2 | Ranuras de Caverna repleta de huesos (ver límites)
-| VII · Surgen estrellas negras  | Nombre y posición en la campaña                                                         | Implementación íntegra y sus ramas                                                                                                      |
+| VII · Surgen estrellas negras  | Completo: planes dobles, dos versiones al azar, abadía, Ashleigh, 7 conjuntos y R1–R3 | —
 | VIII · Penumbrosa Carcosa      | Nombre y posición en la campaña                                                         | Implementación íntegra, final de campaña y epílogo                                                                                      |
 
-El epílogo y las narraciones de los escenarios VII–VIII tampoco están implementados. Las dependencias compartidas se enumeran más abajo; no se
+El epílogo y la narración del escenario VIII tampoco están implementados. Las dependencias compartidas se enumeran más abajo; no se
 ha auditado todavía cada carta de esos siete escenarios.
 
 ## Primera entrega: base de campaña
@@ -447,6 +448,54 @@ miniaturas ([evidencia](evidencias/imagenes-the-pallid-mask.json)), cuadrícula 
 escritorio y móvil y 6 narraciones nuevas con Carmelo (introducciones, Información de Haruko y
 resoluciones).
 
+## Novena entrega: Surgen estrellas negras
+
+Escenario en `the-path-to-carcosa/black-stars-rise.ts`. Fuentes: guía ES pp. 25–27 (texto
+extraído del PDF), cartas de la referencia y `BlackStarsRise.hs` con sus cartas como
+contraste; umbrales, pistas por investigador y conexiones comprobados en los escaneos.
+
+- Motor: dos mazos de Plan a la vez (`secondAgenda`, `secondAgendas` en la definición). La
+  perdición en "el plan en curso" pide al jefe en qué plan colocarla; la de otras cartas
+  cuenta para ambos umbrales; al avanzar un plan no se retira la del otro; si los dos
+  umbrales se cumplen, el jefe elige cuál avanza y después se comprueba el otro. Nuevos
+  `AdvanceSecondAgenda`, `RemoveDoom` por mazo, `afterDoomPlaced` con el mazo,
+  `cannotDiscoverClues`, `onSuccessBelow` (tablilla en Difícil) y `DriveDefeatedInsane`
+  con `all`. Un escenario puede empezar sin mazo de Acto si tiene dos de Plan; el guardado y
+  la vista en línea (sin los planes siguientes) admiten el segundo mazo.
+- Preparación: versión al azar (La inundación de abajo o El vórtice de arriba: planes 2a y
+  2c, Capilla de san Auberto y Torre de la abadía), Coro gótico, Torre norte, Muro exterior y
+  Escalones rotos al azar; ficha −3/−5/−6/−7 para el resto de la campaña; Debilidad básica
+  aleatoria Locura, Pacto, Sectario o Detective para cada investigador. Información de
+  Ashleigh: [fast] retirar 1 perdición de un plan (una vez por partida).
+- Planes: [fast] 1 pista por investigador para 1 perdición en ese plan (recursos o cartas);
+  reversos 1a/1c (Terror de la marea o Buscador de la grieta al mazo y Convicción/Duda según
+  el plan 1 del otro mazo), "Mundos entrelazados" (Bestia de Aldebarán y Ashleigh Clarke,
+  salvo si murió), "El camino a Carcosa" (el mazo se sustituye por el acto 3a o 3c; si era
+  el primero, el otro pasa a ser el único) y planes 3 → R3. Antiguos males con oleada en
+  2a/3a; Monstruos +1 de combate en 2c/3c.
+- Actos 3a/3c: todos en la Capilla o en la Torre sin pistas → R1 o R2.
+- Fichas: calavera (mayor perdición sobre un plan; total en Difícil), sectario (revela otra
+  o fallo automático con perdición en el enemigo), tablilla (revela otra; perdición en cada
+  plan si fallas, o si no superas por 1 en Difícil) y primigenio (robar un Byakhee).
+- Lugares: Porte de l'Avancée, Grand Rue, ambas versiones de Muro exterior, Torre norte y
+  Escalones rotos, Iglesia de la abadía (coste de entrada desde los Escalones, +2 velo y
+  pone en juego la abadía), Coro gótico, Claustro (guía), Sala del caballero (llave con
+  [agility]), Capilla y Torre (bloqueadas sin guía o llave, y sus restricciones de pistas).
+- Encuentros: Terror de la marea, Buscador de la grieta, Inundación rompiente y Los mundos se fusionan.
+- Resoluciones: R1 y R2 con su nota, fichas (2 sectario y 2 tablilla o primigenio) y Ashleigh
+  muerta; sin resolución → R3: todos enloquecen y la campaña se pierde.
+
+Diferencias y límites: el visor del mazo de Plan permite ver los reversos de los planes
+siguientes, como en los demás escenarios, y con ellos la versión elegida. El repaso de
+avances no muestra los del segundo mazo de Plan.
+
+Validación: 72 pruebas nuevas (preparación, planes dobles, actos, resoluciones, fichas,
+Lugares, encuentros, guardado y 40 partidas aleatorias). Presentación: catálogo EN/ES (238
+cartas de Carcosa), 120 escaneos EN/ES con miniaturas
+([evidencia](evidencias/imagenes-black-stars-rise.json)), segundo plan en la mesa revisado
+en escritorio y móvil y 5 narraciones nuevas con Carmelo (introducción, Información de
+Ashleigh y resoluciones).
+
 ## Dependencias posteriores
 
 - Oculto: secreto por investigador en online, cuenta para tamaño de mano,
@@ -497,7 +546,9 @@ las resoluciones. Tramas MPEG verificadas sin errores.
 
 Narración del escenario VI: 6 MP3 más con la misma voz y ajustes (69 en total).
 
-Siguiente bloque: escenario VII (Surgen estrellas negras). Pendiente: Lola Hayes (escenario I).
+Narración del escenario VII: 5 MP3 más con la misma voz y ajustes (74 en total).
+
+Siguiente bloque: escenario VIII (Penumbrosa Carcosa) y el epílogo. Pendiente: Lola Hayes (escenario I).
 
 Para retomar en otro ordenador, actualizar `main`: el PDF ya está versionado en
 `docs-proyecto/reglas/`. La aplicación de referencia sigue siendo una copia externa

@@ -7,6 +7,8 @@ import {
   theUnspeakableOath,
   aPhantomOfTruth,
   thePallidMask,
+  blackStarsRise,
+  BLACK_STARS_RISE_CODES,
   spreadingFlames,
   smokeAndMirrors,
   queenOfAsh,
@@ -156,6 +158,12 @@ export function fallbackCards(locale: string): LocalizedCard[] {
         log: { notes, crossedOut: [], values: {}, investigators: {}, chaosTokens: [] },
       }),
     ),
+    // Las dos versiones (planes 2a/2c, Capilla y Torre) y todas las copias de los Lugares.
+    ...(['flood', 'vortex'] as const).flatMap((version) =>
+      Array.from({ length: 12 }, (_, seed) =>
+        blackStarsRise({ difficulty: 'standard', seed, version }),
+      ),
+    ),
     ...Array.from({ length: 12 }, (_, seed) =>
       smokeAndMirrors({
         seed,
@@ -176,7 +184,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
       ...(scenario.setAside ?? []),
       ...scenario.locations.flatMap((l) => l.beneath ?? []),
     ].forEach(encounter)
-    scenario.agendas.forEach((c) => {
+    ;[...scenario.agendas, ...(scenario.secondAgendas ?? [])].forEach((c) => {
       if (c.code)
         put({
           code: c.code,
@@ -256,6 +264,18 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     real_name: 'A Phantom of Truth',
     type_code: 'scenario',
   })
+  put({
+    code: '03274',
+    name: 'Black Stars Rise',
+    real_name: 'Black Stars Rise',
+    type_code: 'scenario',
+  })
+  // Surgen estrellas negras: los actos 3a y 3c sustituyen a un mazo de Plan durante la partida.
+  for (const [code, name] of [
+    [BLACK_STARS_RISE_CODES.openThePathBelow, 'Open The Path Below'],
+    [BLACK_STARS_RISE_CODES.openThePathAbove, 'Open The Path Above'],
+  ])
+    put({ code, name, real_name: name, type_code: 'act', clues: 0 })
   put({
     code: '03240',
     name: 'The Pallid Mask',

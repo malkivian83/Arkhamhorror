@@ -31,8 +31,23 @@ const SWAPPED_SIDES = new Set([
   '12187',
 ])
 
-/** Cartas cuyo código lleva una letra de copia (sus reversos añaden otra `b`). */
-const LETTERED = new Set(['03047a', '03047b', '03047c', '03084a', '03084b', '03084c', '03084d'])
+/**
+ * Cartas cuyo código lleva una letra de copia (sus reversos añaden otra `b`): El Extranjero,
+ * Delirios y las dos versiones de los planes 2a y 2c de Surgen estrellas negras.
+ */
+const LETTERED = new Set([
+  '03047a',
+  '03047b',
+  '03047c',
+  '03084a',
+  '03084b',
+  '03084c',
+  '03084d',
+  '03276a',
+  '03276b',
+  '03279a',
+  '03279b',
+])
 
 /** Caras `a`/`b` de una misma carta (Constance 03076a/b, Daniel 03182a/b, El organista 03221a/b). */
 const A_SIDES = new Set(['03076a', '03182a', '03221a'])
