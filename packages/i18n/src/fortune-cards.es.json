@@ -8,69 +8,90 @@
     "name": "La casa siempre observa",
     "text": "<b>Obligado</b> - Al comienzo de la fase de Enemigos: Cada investigador que esté en el mismo Lugar que un Enemigo [[Casino]] preparado aumenta su nivel de alarma en 1.\n<b>Obligado</b> - Después de que un investigador derrote a un Enemigo [[Casino]]: Aumenta el nivel de alarma de ese investigador en 1.",
     "backName": "Va siendo hora de irse",
-    "backText": "Si los investigadores, como grupo, poseen 10 recursos [per_investigator] o más, recuerda que \"los investigadores han dejado limpio al casino\"\n<b>(→R1)</b>"
+    "backText": "Si los investigadores, como grupo, poseen 10 recursos [per_investigator] o más, recuerda que \"los investigadores han dejado limpio al casino\"\n<b>(→R1)</b>",
+    "flavor": "Has llegado a Défis de la Roulette. Si quieres recuperar el manantial, tendrás que conseguir tanta información como puedas sobre el casino y la secta que lo maneja.",
+    "backFlavor": "Las miradas que has empezado a atraer por parte de los crupieres y de los guardias se han vuelto más frecuentes. Un grupo de empleados de seguridad uniformados conversa en un sombrío rincón. Los observas y uno de ellos te mira y te señala. Empiezan a dirigirse hacia ti…"
   },
   "88003": {
     "name": "La mano inicial",
     "text": "<b>Obligado</b> - Al comienzo de la fase de Enemigos: Cada investigador que esté en el mismo Lugar que un Enemigo [[Casino]] preparado aumenta su nivel de alarma en 1.\n<b>Obligado</b> - Después de que un investigador derrote a un Enemigo [[Casino]]: Aumenta el nivel de alarma de ese investigador en 1.",
     "backName": "Farol descubierto",
-    "backText": "Haz aparecer al Vagabundo dimensional puesto aparte en la Ruleta. Añade la pila de descartes de Encuentros y el conjunto de encuentros <i>Plan al garete</i> puesto aparte al mazo de Encuentros y baraja éste.\nAumenta el nivel de alarma de cada investigador en 1."
+    "backText": "Haz aparecer al Vagabundo dimensional puesto aparte en la Ruleta. Añade la pila de descartes de Encuentros y el conjunto de encuentros <i>Plan al garete</i> puesto aparte al mazo de Encuentros y baraja éste.\nAumenta el nivel de alarma de cada investigador en 1.",
+    "flavor": "El Défis de la Roulette está abarrotado en esta bulliciosa noche, lo cual es la cobertura perfecta para ti y tu banda. Esperas que las largas jornadas de planificación den su fruto.",
+    "backFlavor": "Desde las mesas de ruleta llega una voz que se hace oír por encima del barullo del casino: -¡19 rojo!\nAlguien grita de emoción y unos instantes después, la misma voz vuelve a exclamar: ¡19 rojo de nuevo!\nOyes murmullos a tu alrededor, porque se trata algo sumamente improbable. Notas un momentáneo crepitar en el aire, pero no le das importancia. A continuación, justo cuando parece haber vuelto la normalidad, la voz vuelve a sonar, llena de incredulidad: -¡19 rojo por tercera vez!\nEn esta ocasión, es imposible no percibir el crepitar, que comienza a intensificarse hasta que todo parece quedar desdibujado durante un instante. Cuando tu visión se aclara, en mitad del abarrotado casino hay una terrible criatura inimaginable que se alza imponente sobre los humanos que la rodean. Recuerdas con terror la advertencia de Isamara acerca de que la presencia de la reliquia podría ser una invitación al desastre. Por si eso no fuera lo bastante malo, ese desastre recaerá sobre aquellos a los que no favorezca el portador del manantial."
   },
   "88004": {
     "name": "Sigue la partida",
     "text": "<b>Obligado</b> - Al comienzo de la fase de Enemigos: Cada investigador que esté en el mismo Lugar que un Enemigo [[Casino]] preparado aumenta su nivel de alarma en 1.\n<b>Obligado</b> - Después de que un investigador derrote a un Enemigo [[Casino]]: Aumenta el nivel de alarma de ese investigador en 1.",
     "backName": "Caos improbable",
-    "backText": "Baraja las 3 cartas de Historia Desaprobación de la fortuna puestas aparte, selecciona 1 de ellas al azar y resuelve su texto.\nAumenta el nivel de alarma de cada investigador en 1."
+    "backText": "Baraja las 3 cartas de Historia Desaprobación de la fortuna puestas aparte, selecciona 1 de ellas al azar y resuelve su texto.\nAumenta el nivel de alarma de cada investigador en 1.",
+    "flavor": "El golpe se ha complicado mucho más de lo que podrías haber imaginado. Unos aterradores monstruos han aparecido en la zona de juego del casino. Sin embargo, los clientes parecen como en un trance, mientras que el personal sigue buscando cualquier actividad sospechosa. ¿Acaso no ven el peligro que corren?",
+    "backFlavor": "Cuando parecía que la cosa no podía empeorar, se produce una extraña transformación en el ambiente del casino, la calma antes de la tormenta. Después, como la última bocanada antes del ahogamiento, se desata la tormenta de mala suerte…"
   },
   "88005": {
     "name": "No va más",
     "text": "<b>Obligado</b> - Al comienzo de la fase de Enemigos: Cada investigador que esté en el mismo Lugar que un Enemigo [[Casino]] preparado aumenta su nivel de alarma en 1.\n<b>Obligado</b> - Después de que un investigador derrote a un Enemigo [[Casino]]: Aumenta el nivel de alarma de ese investigador en 1.",
     "backName": "Sin blanca",
-    "backText": "Cada investigador que no haya desistido queda derrotado y sufre 1 trauma físico.\n<b>(→R3)</b>"
+    "backText": "Cada investigador que no haya desistido queda derrotado y sufre 1 trauma físico.\n<b>(→R3)</b>",
+    "flavor": "Tienes a la secta en tu contra. Tienes a criaturas de más allá del tiempo y el espacio en tu contra. Y ahora también tienes la fortuna en tu contra. Nadie dijo que esto fuera a ser fácil.",
+    "backFlavor": "Intentas escapar desesperadamente, pero tu suerte ha acabado por agotarse. Varios sectarios con medallones de moneda que conoces bien te bloquean el paso. A tu espalda, las horrendas criaturas que ha invocado el poder del manantial asolan el casino. Mires donde mires, sólo hay caos. No es hasta ese momento cuando los clientes y la seguridad del casino parecen darse cuenta por fin de la horrible verdad que acecha en el casino. Haces todo lo posible por repeler las criaturas y a los sectarios y apenas logras escapar con vida."
   },
   "88006": {
     "name": "Vigilando el local",
     "text": "[reaction]  Después de que actives la capacidad [action] de un Lugar [[Juego]]: Retira 1 pista de El manantial de la fortuna, o bien 2 pistas si obtuviste recursos por la capacidad del Lugar [[Juego]].\n<b>Objetivo</b> - ¡Cumple tantas tareas como puedas y sal antes de que te descubran! Si todos los investigadores no derrotados han desistido, haz avanzar el acto.",
     "backName": "\"¡Vuelva pronto!\"",
-    "backText": "Cada investigador que fuera derrotado aumenta su nivel de alarma en 2.\nSi los investigadores, como grupo, poseen 10 recursos [per_investigator] o más, recuerda que \"los investigadores han dejado limpio el casino\".\n<b>(→R2)</b>"
+    "backText": "Cada investigador que fuera derrotado aumenta su nivel de alarma en 2.\nSi los investigadores, como grupo, poseen 10 recursos [per_investigator] o más, recuerda que \"los investigadores han dejado limpio el casino\".\n<b>(→R2)</b>",
+    "flavor": "Debes actuar con cautela, pues despertar sospechas podría estropear tus planes incluso antes de ponerlo en marcha.",
+    "backFlavor": "Dedicas una última mirada al casino y sales de allí. Confías en que ninguno de los crupieres y el personal de seguridad haya sospechado de ti por nada más que lo fingías ser: un jugador con esperanzas de ganar. Independientemente del dinero que hayas conseguido o perdido hoy, las ganancias de verdad son los datos que has podido reunir. Esperas que basten para preparar el improbable plan que debes llevar a cabo."
   },
   "88007": {
     "name": "El robo",
     "text": "[reaction]  Después de que actives la capacidad [action] de un Lugar [[Juego]]: Retira 1 pista de El manantial de la fortuna, o bien 2 pistas si obtuviste recursos por la capacidad del Lugar [[Juego]].\n<b>Objetivo</b> - Si un investigador controla El manantial de la fortuna, haz avanzar el acto.",
     "backName": "\"¡Vuelva pronto!\"",
-    "backText": "<b>Si Abarran Arrigorriagakoa sigue en juego…</b>\n<i><blockquote>Cuando estás a punto de cantar victoria, oyes una voz desde la puerta que tienes a tu espalda.\n-¿Viene a robarme a mi propio casino? -exclama Abarran, que tiembla de ira-. Estropeará todo lo que he construido, pero ¡no se llevará nada! La fachada de profesionalidad ha desaparecido para revelar al verdadero peligro que supone este hombre.</blockquote></i>\nMueve a Abarran Arrigorriagakoa <i>(Abarran desatado)</i> a la Sala de Reliquias.\n<hr><b>Si Abarran Arrigorriagakoa está en la zona de victoria…</b>\n<i><blockquote>Una voz ronca a tu espalda.\n-¡No permitiré que se lo lleve!\nDe algún modo, Abarran se encuentra en pie en el umbral. Aunque parece a punto de desmayarse, sus ojos arden de ira. Antes de que puedas detenerlo, da un puñetazo en una especie de mecanismo que hay en la pared antes de caer desplomado al suelo. Empiezan a caer grandes pedazos de techo de acero macizo…</blockquote></i>\nCada investigador debe realizar una prueba de [agility] (3). Cada investigador que fracase recibe 2 puntos de daño."
+    "backText": "<b>Si Abarran Arrigorriagakoa sigue en juego…</b>\n<i><blockquote>Cuando estás a punto de cantar victoria, oyes una voz desde la puerta que tienes a tu espalda.\n-¿Viene a robarme a mi propio casino? -exclama Abarran, que tiembla de ira-. Estropeará todo lo que he construido, pero ¡no se llevará nada! La fachada de profesionalidad ha desaparecido para revelar al verdadero peligro que supone este hombre.</blockquote></i>\nMueve a Abarran Arrigorriagakoa <i>(Abarran desatado)</i> a la Sala de Reliquias.\n<hr><b>Si Abarran Arrigorriagakoa está en la zona de victoria…</b>\n<i><blockquote>Una voz ronca a tu espalda.\n-¡No permitiré que se lo lleve!\nDe algún modo, Abarran se encuentra en pie en el umbral. Aunque parece a punto de desmayarse, sus ojos arden de ira. Antes de que puedas detenerlo, da un puñetazo en una especie de mecanismo que hay en la pared antes de caer desplomado al suelo. Empiezan a caer grandes pedazos de techo de acero macizo…</blockquote></i>\nCada investigador debe realizar una prueba de [agility] (3). Cada investigador que fracase recibe 2 puntos de daño.",
+    "flavor": "Comienza el golpe. Debes abrir la puerta de la cámara acorazada, encontrar el manantial, atravesar las defensas místicas y hallar el modo de abrir el recipiente que lo contiene."
   },
   "88008": {
     "name": "La salida",
     "text": "Cada Enemigo [[Casino]] pierde Indiferente y Errante.\nCada Enemigo [[Casino]] obtiene Cazador y \"<b>Presa</b> - El investigador que controle El manantial de fortuna\".\n<b>Objetivo</b> - Si el investigador que tiene El manantial de la fortuna ha desistido, haz avanzar el acto <i>(Cuidado: ¡Todos los investigadores que no hayan desistido se quedarán atrás!)</i>.",
     "backName": "Dulce libertad",
-    "backText": "Cada investigador que no haya desistido queda derrotado y sufre un trauma físico.\n<b>(→R1)</b>"
+    "backText": "Cada investigador que no haya desistido queda derrotado y sufre un trauma físico.\n<b>(→R1)</b>",
+    "flavor": "Entrar era una cosa, pero ahora debes lograr salir con el premio. Es como si todo el casino se interpusiera entre el mundo exterior y tú.",
+    "backFlavor": "Hubo momentos en los que no sabías si ibas a lograr salir del casino con el cuerpo y el alma intactos, pero lo has logrado. Te sientes casi como en un sueño, pero oyes el jaleo que sigue habiendo en el interior. Es hora de marcharse de este sitio y poner tierra de por medio."
   },
   "88009": {
     "name": "Zona de juego del casino",
     "subname": "Noche tranquila",
     "traits": "Público. Casino.",
-    "text": "[action]: <b>Desistir.</b> ¡Es hora de irse de aquí!\n[action]: Pon un Apoyo de tu mano o zona de juego boca abajo bajo la Zona de juego del casino, como parte del \"escondite para el golpe\" de tu banda. Límite de una vez por turno."
+    "text": "[action]: <b>Desistir.</b> ¡Es hora de irse de aquí!\n[action]: Pon un Apoyo de tu mano o zona de juego boca abajo bajo la Zona de juego del casino, como parte del \"escondite para el golpe\" de tu banda. Límite de una vez por turno.",
+    "flavor": "Estar en medio de la zona de juego del casino es abrumador debido a su deslumbrante interior y al barullo de los adinerados clientes."
   },
   "88010": {
     "name": "Mesa de póquer",
     "traits": "Público. Casino. Juego.",
-    "text": "[action] Gasta 2 recursos: Descarta las 5 primeras cartas del mazo de Encuentros y comprueba sus iconos de juego. Puedes cambiar cartas una vez. Si las 5 cartas tienen valor secuencial o si 3 o más cartas tienen el mismo valor, obtén 5 recursos."
+    "text": "[action] Gasta 2 recursos: Descarta las 5 primeras cartas del mazo de Encuentros y comprueba sus iconos de juego. Puedes cambiar cartas una vez. Si las 5 cartas tienen valor secuencial o si 3 o más cartas tienen el mismo valor, obtén 5 recursos.",
+    "flavor": "Omaha 8 o mejor, sin comodines, el cielo es el límite.",
+    "backFlavor": "Las mesas de póquer tiene mucha demanda, y en cada partida hay jugadores de todo el continente y del mundo. El sonido de los montones de fichas al ser empujados y apilados para apostar contra el destino llena el ambiente. Hay una mezcla de humo, sudor y la tensión de un buen farol."
   },
   "88011": {
     "name": "Ruleta",
     "traits": "Público. Casino. Juego.",
-    "text": "[action] Gasta 1 recurso: Nombra un color y un valor. A continuación, descarta la primera carta del mazo de Encuentros y comprueba su icono de juego. Si coincide con el color y valor nombrados, obtén 5 recursos."
+    "text": "[action] Gasta 1 recurso: Nombra un color y un valor. A continuación, descarta la primera carta del mazo de Encuentros y comprueba su icono de juego. Si coincide con el color y valor nombrados, obtén 5 recursos.",
+    "flavor": "Rojo o negro, ¿por cuál te inclinas?",
+    "backFlavor": "La ruleta parece ser el juego favorito de muchos clientes y del propio establecimiento. Al fin y al cabo, el nombre del casino proviene de este icono del juego de Montecarlo."
   },
   "88012": {
     "name": "Mesa de bacará",
     "traits": "Público. Casino. Juego.",
-    "text": "[action] Gasta 2 recursos: Nombra \"jugador\", \"banca\" o \"empate\". Descarta las 2 primeras cartas del mazo de Encuentros y comprueba sus iconos de juego. Si el valor combinado de sus valores es mayor de 18, gana el \"jugador\". Si el valor combinado es menor de 18, gana la \"banca\". Si el valor combinado es igual a 18, hay un \"empate\". Si el resultado coincide con el que has nombrado, obtén 4 recursos."
+    "text": "[action] Gasta 2 recursos: Nombra \"jugador\", \"banca\" o \"empate\". Descarta las 2 primeras cartas del mazo de Encuentros y comprueba sus iconos de juego. Si el valor combinado de sus valores es mayor de 18, gana el \"jugador\". Si el valor combinado es menor de 18, gana la \"banca\". Si el valor combinado es igual a 18, hay un \"empate\". Si el resultado coincide con el que has nombrado, obtén 4 recursos.",
+    "backFlavor": "El bacará lleva un siglo, puede que más, siendo un juego popular entre la nobleza y aristocracia francesa. Parece que el dato sigue siendo cierto incluso en este casino, pues los mejor vestidos y los más ostentosos se sientan en torno a las mesas de bacará."
   },
   "88013": {
     "name": "Tragaperras",
     "traits": "Público. Casino. Juego.",
-    "text": "[action] Gasta 1 recurso: Descarta las 3 primeras cartas del mazo de Encuentros y comprueba sus iconos de juego. Si las 3 cartas tienen el mismo palo o valor, obtén 3 recursos."
+    "text": "[action] Gasta 1 recurso: Descarta las 3 primeras cartas del mazo de Encuentros y comprueba sus iconos de juego. Si las 3 cartas tienen el mismo palo o valor, obtén 3 recursos.",
+    "flavor": "\"¡El premio gordo!\"",
+    "backFlavor": "En un lateral hay varias hileras de tragaperras que atraen al los pobres desdichados que se dejan embrujar por un ciclo eterno de gastar y tirar, gastar y tirar, gastar y tirar. No precisan habilidad ninguna, tan sólo dejarse someter ante los caprichos de la fortuna."
   },
   "88014": {
     "name": "Mesa de apuestas altas",
@@ -82,47 +103,57 @@
     "name": "Bar del casino",
     "subname": "Noche tranquila",
     "traits": "Público. Casino.",
-    "text": "[action] Si no hay pistas en el Bar del casino: Realiza una prueba de [agility] (3). Si tienes éxito, recuerda que \"los investigadores han encontrado un conducto de ventilación\"."
+    "text": "[action] Si no hay pistas en el Bar del casino: Realiza una prueba de [agility] (3). Si tienes éxito, recuerda que \"los investigadores han encontrado un conducto de ventilación\".",
+    "flavor": "La opulenta zona del bar incluye delicias culinarias, un escenario que puede albergar todo tipo de entretenimiento e innumerables mesas en las que llevar a cabo negocios, tanto legales como ilegales."
   },
   "88016": {
     "name": "Pasillo de acceso personal",
     "traits": "Restringido. Casino.",
     "text": "<b>Obligado</b> - Cuando el Pasillo de acceso personal sea revelado: Haz aparecer a Abarran Arrigorriagakoa <i>(Abarran desatado)</i> en el Despacho del dueño. Añade la pila de descartes de Encuentros y el conjunto de encuentros <i>Los elegidos de la fortuna</i> puesto aparte al mazo de Encuentros y baraja éste.",
-    "backText": "Como coste adicional para entrar en el Pasillo de acceso personal, los investigadores que estén en un Lugar conectado deben gastar, como grupo, 4 pistas [per_investigator]."
+    "backText": "Como coste adicional para entrar en el Pasillo de acceso personal, los investigadores que estén en un Lugar conectado deben gastar, como grupo, 4 pistas [per_investigator].",
+    "flavor": "\"¿Se va al baño por aquí?\"",
+    "backFlavor": "La puerta que da a la sección restringida del casino te llama…, pero debes encontrar un modo de pasar cuando no haya nadie mirando y la entrada esté desprotegida."
   },
   "88017": {
     "name": "Oficina de seguridad",
     "traits": "Restringido. Casino.",
-    "text": "[action]: Elige 1, 2 o 3. Descarta esa misma cantidad de cartas de la parte superior del mazo de Encuentros y comprueba sus iconos de juego. Si algún icono coincide con el valor de un Enemigo en juego, recuerda que \"los investigadores han observado al personal\". Si el valor combinado de las cartas descartadas es 19 o más, roba la primera carta de la pila de descartes de Encuentros."
+    "text": "[action]: Elige 1, 2 o 3. Descarta esa misma cantidad de cartas de la parte superior del mazo de Encuentros y comprueba sus iconos de juego. Si algún icono coincide con el valor de un Enemigo en juego, recuerda que \"los investigadores han observado al personal\". Si el valor combinado de las cartas descartadas es 19 o más, roba la primera carta de la pila de descartes de Encuentros.",
+    "backFlavor": "El letrero de la puerta dice: \"Seguridad\". Tus fuentes te han contado que el personal tiene métodos para vigilar el casino en todo momento. Puede que la respuesta esté destrás de esta puerta."
   },
   "88018": {
     "name": "Sala de guardias",
     "traits": "Restringido. Casino.",
-    "text": "[action] Si se cumplen todas las afirmaciones siguientes, recuerda que \"los investigadores se han hecho pasar por guardias\":\n- No hay Enemigos en la Sala de guardias.\n- No quedan pistas en la Salde de guardias.\n- \"Los investigadores han obtenido un uniforme de empleado\"."
+    "text": "[action] Si se cumplen todas las afirmaciones siguientes, recuerda que \"los investigadores se han hecho pasar por guardias\":\n- No hay Enemigos en la Sala de guardias.\n- No quedan pistas en la Salde de guardias.\n- \"Los investigadores han obtenido un uniforme de empleado\".",
+    "backFlavor": "A través de una grieta de la puerta ves una sala repleta de equipo y uniformes de seguridad."
   },
   "88019": {
     "name": "Despacho del dueño",
     "traits": "Restringido. Casino.",
     "text": "X es igual al nivel de alarma más alto que tengan los investigadores que estén en el Despacho del dueño.\n[action] Si no hay pistas en el Despacho del dueño: Recuerda que \"los investigadores han encontrado el símbolo de Abarran\".",
-    "backText": "El Despacho del dueño está cerrado con llave. Como coste adicional para entrar en el Despacho del dueño, los investigadores que estén en un Lugar conectado deben gastar, como grupo, 2 pistas [per_investigator], a no ser que \"los investigadores hayan robado las llaves a Abarran\"."
+    "backText": "El Despacho del dueño está cerrado con llave. Como coste adicional para entrar en el Despacho del dueño, los investigadores que estén en un Lugar conectado deben gastar, como grupo, 2 pistas [per_investigator], a no ser que \"los investigadores hayan robado las llaves a Abarran\".",
+    "flavor": "La caja fuerte y los cajones del escritorio de Abarran están cerrados con llave. El otro lado del despacho da a la sala principal del casino a través de una pared falsa.",
+    "backFlavor": "El letrero que hay junto a la puerta dice: \"Abarran Arrigorriagakoa\". Es posible que aquí dentro haya secretos y materiales importantes. Ojalá pudieras entrar…"
   },
   "88020": {
     "name": "Sala de contar",
     "traits": "Restringido. Casino.",
-    "text": "[action] Los investigadores que estén en la Sala de contar gastan, como grupo, 10 recursos [per_investigator], o bien 5 recursos [per_investigator] si \"los investigadores han encontrado un conducto de ventilación\": Recuerda que \"los investigadores han obtenido un plano\".\n[reaction] Después de que investigues con éxito la Sala de contar por 2 o más: Obtén 2 recursos. Límite de una vez por turno."
+    "text": "[action] Los investigadores que estén en la Sala de contar gastan, como grupo, 10 recursos [per_investigator], o bien 5 recursos [per_investigator] si \"los investigadores han encontrado un conducto de ventilación\": Recuerda que \"los investigadores han obtenido un plano\".\n[reaction] Después de que investigues con éxito la Sala de contar por 2 o más: Obtén 2 recursos. Límite de una vez por turno.",
+    "backFlavor": "A través del umbral de esta puerta se oye el tintineo de las monedas y las fichas. Aunque no has venido aquí por el dinero, ¿verdad?"
   },
   "88021": {
     "name": "Puerta de la cámara",
     "traits": "Restringido. Casino.",
     "text": "[action] <b>Movimiento.</b> Descarta la primera carta del mazo de Encuentros y comprueba su icono de juego (si \"los investigadores han obtenido un plano\", puedes cambiar las cartas hasta dos veces):\n- Si su palo es ♣ o ♠: Muévete a la Sala de guardias.\n-Si su palo es ♥: Muévete al Bar del casino.\n-Si su palo es ♦: Muévete a la Mesa de Bacará.",
-    "backText": "La puerta de la cámara acorazada del casino está cerrada, custodiada y protegida con magia. No puedes entrar en la Puerta de la cámara si no has completado al menos 4 de las tareas de la carta de Historia El golpe"
+    "backText": "La puerta de la cámara acorazada del casino está cerrada, custodiada y protegida con magia. No puedes entrar en la Puerta de la cámara si no has completado al menos 4 de las tareas de la carta de Historia El golpe",
+    "backFlavor": "Ante ti se alza una enorme puerta de acero. Está recorrida de arriba abajo por minúsculas muescas que parecen servir de canales para la energia arcana que la mantiene cerrada."
   },
   "88022": {
     "name": "Sala de reliquias",
     "subname": "Santuario de la fortuna",
     "traits": "Restringido. Casino.",
     "text": "<b>Obligado</b> - Después de que la Sala de reliquias sea revelada: Mueve todas las pistas de El manantial de la fortuna a la Sala de reliquias.\n[action] Si no hay pistas en la Sala de reliquias: Toma el control de El manantial de la fortuna y vincúlalo a tu carta de investigador.",
-    "backText": "No puedes entrar en la Sala de reliquias.\n La puerta de la cámara obtiene: \"[Action] Recibe 1 punto de daño y 1 punto de horror a menos que 'los investigadores hayan encontrado el símbolo de Abarran': Realiza una prueba de [willpower] o de [agility] (4). Si tienes éxito, los investigadores que estén en la Puerta de la cámara pueden gastar, como grupo, 4 pistas [per_investigator] para revelar la Sala de reliquias.\"."
+    "backText": "No puedes entrar en la Sala de reliquias.\n La puerta de la cámara obtiene: \"[Action] Recibe 1 punto de daño y 1 punto de horror a menos que 'los investigadores hayan encontrado el símbolo de Abarran': Realiza una prueba de [willpower] o de [agility] (4). Si tienes éxito, los investigadores que estén en la Puerta de la cámara pueden gastar, como grupo, 4 pistas [per_investigator] para revelar la Sala de reliquias.\".",
+    "flavor": "La moneda palpita de energía y vibra a una velocidad perturbadora. Ojalá encuentres el modo de desbloquear sus secretos."
   },
   "88023": {
     "name": "La vigilancia",
@@ -157,7 +188,8 @@
   "88028": {
     "name": "El rostro",
     "traits": "Rol. Inexperto.",
-    "text": "No se puede descartar.\n[action]: <b>Negociar.</b> Elige un Enemigo [[Casino]] en tu Lugar y realiza una prueba de [willpower] o de [intellect] (3). Si tienes éxito, agota El rostro para reducir el nivel de alarma de cualquier investigador en 1."
+    "text": "No se puede descartar.\n[action]: <b>Negociar.</b> Elige un Enemigo [[Casino]] en tu Lugar y realiza una prueba de [willpower] o de [intellect] (3). Si tienes éxito, agota El rostro para reducir el nivel de alarma de cualquier investigador en 1.",
+    "flavor": "¿Quién necesita ganzúas cuando se tiene esta sonrisa?"
   },
   "88029": {
     "name": "El músculo",
@@ -201,7 +233,8 @@
     "name": "El manantial de la fortuna",
     "subname": "Símbolo de providencia",
     "traits": "Estable.",
-    "text": "<b>Alteración</b> - Durante la siguiente prueba de habilidad realizada en esta ronda, el investigador que la realiza revela una ficha de Caos adicional, elige una para resolverla e ignora la otra. Dale la vuelta a esta Llave para mostrar su lado [[Inestable]]."
+    "text": "<b>Alteración</b> - Durante la siguiente prueba de habilidad realizada en esta ronda, el investigador que la realiza revela una ficha de Caos adicional, elige una para resolverla e ignora la otra. Dale la vuelta a esta Llave para mostrar su lado [[Inestable]].",
+    "flavor": "Archivo 93-♠ / Categoría del sujeto: Amarilla / El sujeto aparece como una moneda pequeña, de 34 mm de diámetro y un metal no identificado."
   },
   "88048": {
     "name": "Vagabundo dimensional",
@@ -236,7 +269,8 @@
   "88029b": {
     "name": "El músculo",
     "traits": "Rol. Experimentado.",
-    "text": "No se puede descartar.\n[reaction] Después de que derrotes a un Enemigo [[Casino]], agota El músculo: Reduce tu nivel de alarma en 1, o bien en 2 si no hay ningún otro Enemigo [[Casino]] en tu Lugar."
+    "text": "No se puede descartar.\n[reaction] Después de que derrotes a un Enemigo [[Casino]], agota El músculo: Reduce tu nivel de alarma en 1, o bien en 2 si no hay ningún otro Enemigo [[Casino]] en tu Lugar.",
+    "flavor": "Shh, Shhhhh. A dormir."
   },
   "88030b": {
     "name": "El ladrón",
@@ -272,30 +306,35 @@
     "name": "Guardia del casino",
     "traits": "Humanoide. Casino.",
     "text": "Indiferente. Errante (sentido contrario a las agujas del reloj).\n<b>Aparición</b> - Mesa de apuestas altas o Sala de guardias (lo que esté más cerca de ti).\n<b>Obligado</b> - Después de que aumentes tu nivel de alarma mientras estés en el Lugar del Guardia del casino: Recibe 1 punto de daño.",
+    "flavor": "\"Tengo que hablar un momento con usted…\".",
     "gameIcon": "♣Q"
   },
   "88035b": {
     "name": "Guardia del casino",
     "traits": "Humanoide. Casino.",
     "text": "Indiferente. Errante (sentido contrario a las agujas del reloj).\n<b>Aparición</b> - Mesa de apuestas altas o Sala de guardias (lo que esté más cerca de ti).\n<b>Obligado</b> - Después de que aumentes tu nivel de alarma mientras estés en el Lugar del Guardia del casino: Recibe 1 punto de daño.",
+    "flavor": "\"Tengo que hablar un momento con usted…\".",
     "gameIcon": "♣J"
   },
   "88035c": {
     "name": "Guardia del casino",
     "traits": "Humanoide. Casino.",
     "text": "Indiferente. Errante (sentido contrario a las agujas del reloj).\n<b>Aparición</b> - Mesa de apuestas altas o Sala de guardias (lo que esté más cerca de ti).\n<b>Obligado</b> - Después de que aumentes tu nivel de alarma mientras estés en el Lugar del Guardia del casino: Recibe 1 punto de daño.",
+    "flavor": "\"Tengo que hablar un momento con usted…\".",
     "gameIcon": "♥10"
   },
   "88036a": {
     "name": "Crupier de la casa",
     "traits": "Humanoide. Casino.",
     "text": "Indiferente. Errante (sentido de las agujas del reloj).\nMientras la Crupier de la casa esté preparada, cada capacidad de su Lugar cuesta una acción adicional para activarla.",
+    "flavor": "\"¿Quiere carta o se planta?\".",
     "gameIcon": "♥9"
   },
   "88036b": {
     "name": "Crupier de la casa",
     "traits": "Humanoide. Casino.",
     "text": "Indiferente. Errante (sentido de las agujas del reloj).\nMientras la Crupier de la casa esté preparada, cada capacidad de su Lugar cuesta una acción adicional para activarla.",
+    "flavor": "\"¿Quiere carta o se planta?\".",
     "gameIcon": "♣9"
   },
   "88037a": {
@@ -380,18 +419,21 @@
     "name": "Mirada sospechosa",
     "traits": "Maquinación.",
     "text": "<b>Revelación</b> - Realiza una prueba de [agility] (3). Si fracasas, debes recibir una cantidad de daño igual a la mitad de tu nivel de alarma (redondeando hacia arriba) o bien aumentar tu nivel de alarma en 1.",
+    "flavor": "¿Te observan a ti o a otra persona? Da igual, será mejor perderse entre la gente.",
     "gameIcon": "♣8"
   },
   "88041b": {
     "name": "Mirada sospechosa",
     "traits": "Maquinación.",
     "text": "<b>Revelación</b> - Realiza una prueba de [agility] (3). Si fracasas, debes recibir una cantidad de daño igual a la mitad de tu nivel de alarma (redondeando hacia arriba) o bien aumentar tu nivel de alarma en 1.",
+    "flavor": "¿Te observan a ti o a otra persona? Da igual, será mejor perderse entre la gente.",
     "gameIcon": "♠7"
   },
   "88041c": {
     "name": "Mirada sospechosa",
     "traits": "Maquinación.",
     "text": "<b>Revelación</b> - Realiza una prueba de [agility] (3). Si fracasas, debes recibir una cantidad de daño igual a la mitad de tu nivel de alarma (redondeando hacia arriba) o bien aumentar tu nivel de alarma en 1.",
+    "flavor": "¿Te observan a ti o a otra persona? Da igual, será mejor perderse entre la gente.",
     "gameIcon": "♣7"
   },
   "88042a": {
@@ -420,7 +462,8 @@
     "name": "El manantial de la fortuna",
     "subname": "Símbolo de providencia",
     "traits": "Inestable.",
-    "text": "<b>Alteración</b> - Durante la siguiente prueba de habilidad realizada en esta ronda, el investigador que la realiza revela una ficha de Caos adicional <i>(resuelve ambas)</i>, A continuación, si un investigador ha activado esta capacidad, dale la vuelta a esta Llave para mostrar su lado [[Estable]]."
+    "text": "<b>Alteración</b> - Durante la siguiente prueba de habilidad realizada en esta ronda, el investigador que la realiza revela una ficha de Caos adicional <i>(resuelve ambas)</i>, A continuación, si un investigador ha activado esta capacidad, dale la vuelta a esta Llave para mostrar su lado [[Estable]].",
+    "flavor": "…no pertenece a ninguna divisa o civilización conocidas."
   },
   "88046a": {
     "name": "Escudo de fortuna",

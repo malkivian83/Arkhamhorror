@@ -27,6 +27,9 @@ export interface CatalogCard {
   backText?: string
   /** Icono de juego (palo y valor) de las cartas de Fortuna e insensatez: "♣Q". */
   gameIcon?: string
+  /** Texto narrativo de cada cara (Fortuna e insensatez). */
+  flavor?: string
+  backFlavor?: string
 }
 
 /**

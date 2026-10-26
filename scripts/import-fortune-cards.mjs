@@ -33,6 +33,8 @@ for (const lang of ['en', 'es']) {
       text,
       backName: card.back_name,
       backText: card.back_text,
+      flavor: card.flavor,
+      backFlavor: card.back_flavor,
       gameIcon: match ? `${match[1]}${match[2]}` : undefined,
     })
     out[card.code] = Object.fromEntries(

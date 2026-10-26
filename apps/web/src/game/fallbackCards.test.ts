@@ -340,9 +340,13 @@ describe('recursos de cartas sin red', () => {
         ...Object.values(QUEEN_OF_ASH_CODES),
       ]
       expect(codes.filter((code) => !cards.has(code))).toEqual([])
-      expect([...cards.values()].every((c) => c.name && c.type_name && c.text && c.back_text)).toBe(
-        true,
-      )
+      // Una cara sin acciones puede llevar solo texto narrativo (Fortuna e insensatez).
+      expect(
+        [...cards.values()].every(
+          (c) => c.name && c.type_name && (c.text || c.flavor) && (c.back_text || c.back_flavor),
+        ),
+      ).toBe(true)
+      expect(cards.get('88011')!.back_flavor).toBeTruthy()
       expect(cards.get('12111')!.back_text).toContain(locale === 'es' ? 'Armitage' : 'Armitage')
       expect(cards.get('12179b')!.type_code).toBe('enemy')
     })

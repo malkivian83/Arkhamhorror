@@ -380,9 +380,12 @@ export function fallbackCards(locale: string): LocalizedCard[] {
       name: text.name,
       subname: text.subname,
       traits: text.traits ?? card.traits,
-      text: text.text,
+      // Sin acciones, solo el texto narrativo (Fortuna e insensatez: Lugares sin revelar).
+      text: text.text ?? (text.flavor ? '' : undefined),
       back_name: text.backName ?? card.back_name,
-      back_text: text.backText ?? card.back_text,
+      back_text: text.backText ?? (text.backFlavor ? '' : card.back_text),
+      flavor: text.flavor,
+      back_flavor: text.backFlavor,
     })
   }
   const catalogue = language.galaCards as Record<
