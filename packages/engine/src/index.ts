@@ -40,6 +40,7 @@ export {
   type PlayerCardBehavior,
   type ScenarioBehavior,
   type ScenarioSymbol,
+  type ActionKind,
   type TreacheryBehavior,
 } from './content'
 export { applyInput, createGame, dispatch, type EngineObserver } from './engine'
@@ -51,7 +52,7 @@ export {
   resolvingSkillBonus,
 } from './asset-upgrades'
 export { attackDamage } from './combat'
-export { assetsCannotReady } from './state'
+export { assetsCannotReady, turnStartedAt } from './state'
 export {
   actionsThisRound,
   canAffordEntry,

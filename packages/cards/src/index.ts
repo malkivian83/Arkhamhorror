@@ -289,9 +289,13 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...ASSET_UTILITY_RENDERED_CODES,
 ]
 export { fortuneAndFollyPartOne } from './fortune-and-folly/part-one'
+export { fortuneAndFollyPartTwo } from './fortune-and-folly/part-two'
 export {
   CODES as FORTUNE_CODES,
   FORTUNE_SETUP_ENEMIES,
   FORTUNE_AND_FOLLY,
   PART_ONE as FORTUNE_PART_ONE,
+  PART_TWO as FORTUNE_PART_TWO,
+  PART_TWO_CODES as FORTUNE_PART_TWO_CODES,
+  abarranUnleashed as FORTUNE_ABARRAN_UNLEASHED,
 } from './fortune-and-folly/cards'

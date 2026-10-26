@@ -36,6 +36,7 @@ const publicLogParams: Record<string, string[]> = {
   'log.fof.alarm': ['name', 'level'],
   'log.fof.won': ['amount'],
   'log.fof.lost': [],
+  'log.fof.wellspring': ['name'],
   'log.end': ['outcome'],
   'log.enemyDefeated': ['enemy'],
   'log.enemyToVictory': ['enemy'],
@@ -316,6 +317,8 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
         'recalledTheWayOut',
         'distractedTheGuards',
         'tookTheKeysByForce',
+        // Fortuna e insensatez: el conducto de ventilación abierto.
+        'fofVentOpen',
       ]
         .filter((key) => g.scenarioMeta?.[key] === 1)
         .map((key): [string, number] => [key, 1])

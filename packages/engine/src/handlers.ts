@@ -919,6 +919,7 @@ export function handle(state: GameState, message: Message): GameState {
         investigator: investigator.id,
         phase: state.phase,
         round: state.round,
+        kind: message.action.kind,
       }
       // La acción adicional de evitar (Trish) se gasta antes que las normales.
       const useMove = !!investigator.extraMove && message.action.kind === 'move'
@@ -997,7 +998,7 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'CompleteAction': {
       if (message.phase !== state.phase || message.round !== state.round) return state
-      return updateInvestigator(state, message.investigator, (i) => ({
+      const completed = updateInvestigator(state, message.investigator, (i) => ({
         ...i,
         completedActions: {
           phase: message.phase,
@@ -1009,6 +1010,15 @@ export function handle(state: GameState, message: Message): GameState {
               : 0) + 1,
         },
       }))
+      // Fortuna e insensatez: el escenario observa el tipo de cada acción completada.
+      const observed = message.kind
+        ? scenarioBehavior(state.scenarioId)?.afterAction?.(
+            state,
+            message.investigator,
+            message.kind,
+          )
+        : undefined
+      return observed?.length ? push(completed, ...observed) : completed
     }
 
     case 'PerformAction': {
@@ -3588,6 +3598,8 @@ export function handle(state: GameState, message: Message): GameState {
       return push(
         next,
         // Ventana para cancelar el ataque antes de resolverlo (Counterattack).
+        // Daga de la fortuna: comprueba iconos al atacar.
+        ...(enemyBehavior(enemy.code)?.onAttack?.(next, enemy, investigator.id) ?? []),
         {
           type: 'Reactions',
           trigger: { type: 'whenEnemyAttacks', enemy: enemy.id, investigator: investigator.id },
@@ -4103,7 +4115,11 @@ export function handle(state: GameState, message: Message): GameState {
         {
           type: 'TakeDamage',
           investigator: message.investigator,
-          damage: enemy.damage,
+          damage: Math.max(
+            0,
+            enemy.damage +
+              (scenarioBehavior(state.scenarioId)?.enemyDamageModifier?.(state, enemy) ?? 0),
+          ),
           horror:
             enemy.horror +
             (scenarioBehavior(state.scenarioId)?.enemyHorrorModifier?.(state, enemy) ?? 0),
@@ -4604,6 +4620,7 @@ export function handle(state: GameState, message: Message): GameState {
                 investigator: investigator.id,
                 phase: state.phase,
                 round: state.round,
+                kind: 'activate',
               },
             ]
           : []
