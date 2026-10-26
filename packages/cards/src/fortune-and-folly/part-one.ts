@@ -118,6 +118,12 @@ export function fortuneAndFollyPartOne({
     chaosBag: [...CHAOS_BAGS[difficulty]],
     tokenValues: {},
     setup: [
+      // Los Lugares públicos no tienen cara sin revelar (Noche tranquila / ajetreada): entran
+      // revelados, con sus pistas.
+      ...PUBLIC_LOCATIONS.filter((l) => l.id !== CODES.casinoFloor).map((l): Message => ({
+        type: 'RevealLocation',
+        location: l.id,
+      })),
       {
         type: 'SpawnEnemy',
         card: { ...abarran },
