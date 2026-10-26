@@ -1,6 +1,6 @@
 {
-  "voiceId": "5egO01tkUjEzu7xSSE8M",
-  "voiceName": "Carmelo -  Mysterious & Deep",
+  "voiceId": "hyKxCTlAqtnW188CgltM",
+  "voiceName": "Salva - The Spanish Voice",
   "language": "es",
   "settings": {
     "model_id": "eleven_multilingual_v2",
@@ -15,139 +15,139 @@
   "files": [
     {
       "key": "story.fof.intro1",
-      "file": "fortune-and-folly-intro1-carmelo.mp3",
+      "file": "fortune-and-folly-intro1-salva.mp3",
       "characters": 1168,
-      "inputHash": "0b06ae2a994d0dd64078501e6a00db54759a731e63f85dad2675f5c07f80cec5",
-      "sha256": "938c1b105d65a961d94c7cc90f33d05e450c3063b138cd0ea73d473c86ebb887",
-      "bytes": 1536878
+      "inputHash": "aabb6c4e4846fc8b72903c55c10cc078d1b19c0b985a111b63208e715336116e",
+      "sha256": "4f2da6311344aac395cbcce74dcabbb1f3d69d717952838c79d076470bcad950",
+      "bytes": 1246397
     },
     {
       "key": "story.fof.intro3",
-      "file": "fortune-and-folly-intro3-carmelo.mp3",
+      "file": "fortune-and-folly-intro3-salva.mp3",
       "characters": 1033,
-      "inputHash": "a632c2537031d84202d66a700a3bdb23acf552e858f5cbbc9793d6d4479c78b4",
-      "sha256": "c93f80920a23c2854a825022d1ec51fb522612062cdca9db83eab179b4939cc6",
-      "bytes": 1296134
+      "inputHash": "ffcc2d090a131c4496fca1f282db6663909d0b38882cca986b4d7f1b77095565",
+      "sha256": "c69b302a46a51a9904d870f24c8de104d1b1058dfa523b0bbaab8b44707d35f7",
+      "bytes": 1235948
     },
     {
       "key": "story.fof.intro4",
-      "file": "fortune-and-folly-intro4-carmelo.mp3",
+      "file": "fortune-and-folly-intro4-salva.mp3",
       "characters": 2981,
-      "inputHash": "9d392541768f5331c5fde13bf79fd21b0a58be378b1c160d559c5d2fa33ebdb7",
-      "sha256": "c591020517083bf48de1df61a4df269201cdc28dfc2c6308118c6db229ab36ba",
-      "bytes": 3772124
+      "inputHash": "ff16ad41aad3bde9269eae734ec299bd1636d346adf1717e60687d9f8e01770c",
+      "sha256": "086be6bd3727b57b323abd7f4a52f1a9d9d37fdaf719dab7257a5d1d298029ea",
+      "bytes": 3360434
     },
     {
       "key": "story.fof.intro5",
-      "file": "fortune-and-folly-intro5-carmelo.mp3",
+      "file": "fortune-and-folly-intro5-salva.mp3",
       "characters": 1822,
-      "inputHash": "7210add77561c4ebec5d597d5c0a348b7c1dd036b8e093b003e74eb54afaac30",
-      "sha256": "9cce3253047657df94dd70ce00b6d4024b3d0fd3f59240d1ae75d158c0b3b486",
-      "bytes": 2364856
+      "inputHash": "3fd437046122e523715768b9fe1accf273d4e7bcd960842aa5ed900f65ea4f66",
+      "sha256": "76b532d7aaac3772398c0ef554bb3bf4e6d460a56144a015e5273231e6aada48",
+      "bytes": 1856617
     },
     {
       "key": "story.fof.resolution1",
-      "file": "fortune-and-folly-part1-resolution1-carmelo.mp3",
+      "file": "fortune-and-folly-part1-resolution1-salva.mp3",
       "characters": 227,
-      "inputHash": "8378b4a81c1d16813a42711210788bc4258787715d9b0c9c34f4b3b223fb4aa4",
-      "sha256": "8d9be53db12a5a101037518daf83d6a66a376db2482e7a82c30d849915f19be1",
-      "bytes": 301391
+      "inputHash": "e5dda782f832b7a001c08b01a6e5d2cd77dc735550194505f729446091781338",
+      "sha256": "49a8bc680a8ff0fccdda2275dd34b7a3b90b2986bbbe0d5c08c5f925eba3a283",
+      "bytes": 219471
     },
     {
       "key": "story.fof.resolution2",
-      "file": "fortune-and-folly-part1-resolution2-carmelo.mp3",
+      "file": "fortune-and-folly-part1-resolution2-salva.mp3",
       "characters": 243,
-      "inputHash": "d9927d5a503cbd55d1c8a5f9cd6a0f436772f79d3aa6904ca11a9baa84ec19d0",
-      "sha256": "4866cd55227a11ec576a144287f88f156633d50d58f83bbd04c3a56450208f65",
-      "bytes": 334828
+      "inputHash": "4e84f503dff99c857cfbd8cd25393de86b16d4fed97b380d102469e4820d22f8",
+      "sha256": "31c7dc6f2d668c5a762dfdb1237633fea0e8ce8c297920813104d4e3957cf108",
+      "bytes": 244131
     },
     {
       "key": "story.fof.plan1",
-      "file": "fortune-and-folly-the-plan1-carmelo.mp3",
+      "file": "fortune-and-folly-the-plan1-salva.mp3",
       "characters": 1281,
-      "inputHash": "409d1c987470cdfab4fc292b43ab7c3fdf33f7e13d14eac88ba9f9e867af6f11",
-      "sha256": "c2b3bb9ef0e417826fb4841d6741fbbf0ca685bd81c94636e95a7ad8ede7dfc1",
-      "bytes": 1598736
+      "inputHash": "f0562e991c36f44ef18c04dd477d8f8a21c56c452e9aba1f342a7d5970098ff6",
+      "sha256": "5752362e0fcb84cefb6af27b764e27e2bc69465376f70170184a1d054bd81f04",
+      "bytes": 1365933
     },
     {
       "key": "story.fof.part2Intro",
-      "file": "fortune-and-folly-part2-intro-carmelo.mp3",
+      "file": "fortune-and-folly-part2-intro-salva.mp3",
       "characters": 1752,
-      "inputHash": "a54b30fd6077908980154883f30ae12db7ea3a4107c8b252032cf50760b60c9e",
-      "sha256": "8b9388ca0bb4e8b98f60777c662c1fd802d67aa5a0be3bb2858ce9620d73513a",
-      "bytes": 2198090
+      "inputHash": "0eacc881992d67f716c1334917c6596d5e219ea7835b665fd65b0b3e7d93066c",
+      "sha256": "3094e70e29b4c7c12879c3ed1d45a1a3bb3d6e3ca20395a369eae87c7ce67d1b",
+      "bytes": 1919729
     },
     {
       "key": "story.fof.part2Resolution1",
-      "file": "fortune-and-folly-part2-resolution1-carmelo.mp3",
+      "file": "fortune-and-folly-part2-resolution1-salva.mp3",
       "characters": 1495,
-      "inputHash": "37e7acaf15a03eafbaa42bfc6c82a9af0f265a1197a04985d9ebddf04585d8ab",
-      "sha256": "4a216d193ff2951941f2fbee39f1bebbb3f2edf47684fdd68d267df54f01aef9",
-      "bytes": 1911370
+      "inputHash": "19f11877c2024c9d2349723e3efcfc6515cde0eb501391a5fde89673bbcbbb50",
+      "sha256": "8252a2fcec05fdac396c1be6cba236edbfa72b0e1af47c4f293824331cb45ea6",
+      "bytes": 1686926
     },
     {
       "key": "story.fof.part2Resolution2",
-      "file": "fortune-and-folly-part2-resolution2-carmelo.mp3",
+      "file": "fortune-and-folly-part2-resolution2-salva.mp3",
       "characters": 1290,
-      "inputHash": "8db68d0606ca935c674c0ee7fe0e8738550dd1b27875a62b83f5fb12a4078ad6",
-      "sha256": "27248e76764f98ae3cc25f4e0f2719ce6947294b48cd51c6fd6c2e4b4afc9354",
-      "bytes": 1603752
+      "inputHash": "cfbfcb967e48c9f56b251d55bfc0af1a4155382350643a78a1c3e9eaf4c78540",
+      "sha256": "c51155f4c50a48c32c3ba660b604b87f44a9db5116fe6dfd12674b2ed367c790",
+      "bytes": 1378054
     },
     {
       "key": "story.fof.part2Resolution3",
-      "file": "fortune-and-folly-part2-resolution3-carmelo.mp3",
+      "file": "fortune-and-folly-part2-resolution3-salva.mp3",
       "characters": 761,
-      "inputHash": "fafb2df18995cd9be65236f05b703ac2620e2cc4c3bb9f0e85178e63e2bef114",
-      "sha256": "4cd56bd09b4de48471bd99590b34fcd457bb6e00801d5cd6ed66a1d0a36291a9",
-      "bytes": 993114
+      "inputHash": "fd492c15a9a49472dd2c6b49d8f7a7b6969879545ccc19406a2fec852b034ff5",
+      "sha256": "dcd6663c9f2c9e65acf4889b41a6dcc24145c989139db8dea0ea9a6e4cf67f72",
+      "bytes": 830945
     },
     {
       "key": "story.fof.relicAcquired",
-      "file": "fortune-and-folly-relic-acquired-carmelo.mp3",
+      "file": "fortune-and-folly-relic-acquired-salva.mp3",
       "characters": 341,
-      "inputHash": "f49779fbef095fffa88f460bf9fd31e4364895abca3ebfe041afc3ae28e5a4ea",
-      "sha256": "d73d0ae195ded31829e84e217aa5e21ad537c3951ea99fdb55bde1e967149290",
-      "bytes": 425943
+      "inputHash": "62772178e98ff56e8a24e5af85b732da919d231cf052046d21e0055d9d530849",
+      "sha256": "a783cec70f1a9a175fbbaf8ae46e3e83f6dc7fc14e3eb12cfcc790b55613ec7d",
+      "bytes": 359070
     },
     {
       "key": "story.fof.relicFallen",
-      "file": "fortune-and-folly-relic-fallen-carmelo.mp3",
+      "file": "fortune-and-folly-relic-fallen-salva.mp3",
       "characters": 365,
-      "inputHash": "d94e25d4ba7573dd587c9fd89cd2fd7fa56fddd79cd31704d9f35b65a98a146f",
-      "sha256": "36ee767c0c6be53f2c060a42d685dc788699a983a7743cbf528d1b42e026575d",
-      "bytes": 512461
+      "inputHash": "a5cbfceb4771e27aab076c6245b76b9b2e264a62179cfbd620f29a63e654f441",
+      "sha256": "a26a053d19a94aaeb49cdb5f41da98d5dd226b947d40978ed9a59bf19af30e8f",
+      "bytes": 423853
     },
     {
       "key": "story.fof.disfavor",
-      "file": "fortune-and-folly-disfavor-carmelo.mp3",
+      "file": "fortune-and-folly-disfavor-salva.mp3",
       "characters": 354,
-      "inputHash": "e5dc6ed1cc2beac398355759a1ed3af06c91062d586ad79f873a32acc6414294",
-      "sha256": "3dd93b22e8fad25cf1b8338b336053f70f307a9aa4c72f2a942eb7a3ccfa04d8",
-      "bytes": 468993
+      "inputHash": "018fae9a34714116ffc152f0a8844cae61d6c86531a742375dece3c88d67d591",
+      "sha256": "882192bf55a3948efea0a6b0f142b3287dd60e2c0102056ecc6ce7982d3645fc",
+      "bytes": 365757
     },
     {
       "key": "story.fof.lightsOut",
-      "file": "fortune-and-folly-lights-out-carmelo.mp3",
+      "file": "fortune-and-folly-lights-out-salva.mp3",
       "characters": 326,
-      "inputHash": "2c07f71947d23b89ff9de2acc890c64bd5f52f3a2bd6fe4bf77bbdfa63135571",
-      "sha256": "d653e6dbe0b0b74b134dc2c0d40304553358e2f563cb01d05f3cb4fb491691b2",
-      "bytes": 431376
+      "inputHash": "2530f89ee2e6a18db9765e2ad7e003a88467f9df581e3b8edd2a10d2727e25ea",
+      "sha256": "b77ace06ed4dad97cfe863ee660ec5f5f0b87b4b78b15e3ef5442bc1a953689a",
+      "bytes": 356144
     },
     {
       "key": "story.fof.unlikelyInjuries",
-      "file": "fortune-and-folly-unlikely-injuries-carmelo.mp3",
+      "file": "fortune-and-folly-unlikely-injuries-salva.mp3",
       "characters": 285,
-      "inputHash": "e058cb39dfba72a87d28da2b48d591fce5cf9ec374b084cdaf628e289a561e1d",
-      "sha256": "ebe340ab4c42dddb7c76d49e0c33ef19377351cc037d0a1280ca5c48e7bbb185",
-      "bytes": 379967
+      "inputHash": "274649c19b5b461bcfb0744bab804b73f7c1ba93dfbe87b76d550341e3a43a77",
+      "sha256": "8fe32adeede88265f521baaf0d4b0aae9654edd9832de5de0bef431adfb0b06e",
+      "bytes": 305153
     },
     {
       "key": "story.fof.personalEntanglement",
-      "file": "fortune-and-folly-personal-entanglement-carmelo.mp3",
+      "file": "fortune-and-folly-personal-entanglement-salva.mp3",
       "characters": 228,
-      "inputHash": "2795fc69cc9b46a77dffdf6854e327c6b42abd9a337cf93add55e5f7822e5686",
-      "sha256": "74f9005fbd33b01a3405c4e152801dd8b2982acda33f605823420f03010db65c",
-      "bytes": 311004
+      "inputHash": "f6d28f6b5308d791372ee681a17b276bb17673f46a757d1406b89ed5759c51c8",
+      "sha256": "2600344685dfa2152c01ae84d9d238e87ea2faeec4817f70610f464a17c3bc44",
+      "bytes": 254998
     }
   ]
 }

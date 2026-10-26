@@ -1,32 +1,32 @@
-// Narración ES de Fortuna e insensatez con Carmelo. --list es local; --generate consume ElevenLabs.
+// Narración ES de Fortuna e insensatez con Salva («Salva - The Spanish Narrator», voz compartida de ElevenLabs). --list es local; --generate consume ElevenLabs.
 // Reanudable por huella de texto, voz y ajustes, sin publicar credenciales.
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-const voiceId = '5egO01tkUjEzu7xSSE8M'
+const voiceId = 'hyKxCTlAqtnW188CgltM'
 const root = 'apps/web/public/local-assets/story'
 const output = join(root, 'audio/es')
 const evidencePath = 'docs-proyecto/evidencias/fortuna-narracion.json'
 const texts = JSON.parse(readFileSync(join(root, 'es.json'), 'utf8'))
 const keys = {
-  'story.fof.intro1': 'fortune-and-folly-intro1-carmelo.mp3',
-  'story.fof.intro3': 'fortune-and-folly-intro3-carmelo.mp3',
-  'story.fof.intro4': 'fortune-and-folly-intro4-carmelo.mp3',
-  'story.fof.intro5': 'fortune-and-folly-intro5-carmelo.mp3',
-  'story.fof.resolution1': 'fortune-and-folly-part1-resolution1-carmelo.mp3',
-  'story.fof.resolution2': 'fortune-and-folly-part1-resolution2-carmelo.mp3',
-  'story.fof.plan1': 'fortune-and-folly-the-plan1-carmelo.mp3',
-  'story.fof.part2Intro': 'fortune-and-folly-part2-intro-carmelo.mp3',
-  'story.fof.part2Resolution1': 'fortune-and-folly-part2-resolution1-carmelo.mp3',
-  'story.fof.part2Resolution2': 'fortune-and-folly-part2-resolution2-carmelo.mp3',
-  'story.fof.part2Resolution3': 'fortune-and-folly-part2-resolution3-carmelo.mp3',
-  'story.fof.relicAcquired': 'fortune-and-folly-relic-acquired-carmelo.mp3',
-  'story.fof.relicFallen': 'fortune-and-folly-relic-fallen-carmelo.mp3',
-  'story.fof.disfavor': 'fortune-and-folly-disfavor-carmelo.mp3',
-  'story.fof.lightsOut': 'fortune-and-folly-lights-out-carmelo.mp3',
-  'story.fof.unlikelyInjuries': 'fortune-and-folly-unlikely-injuries-carmelo.mp3',
-  'story.fof.personalEntanglement': 'fortune-and-folly-personal-entanglement-carmelo.mp3',
+  'story.fof.intro1': 'fortune-and-folly-intro1-salva.mp3',
+  'story.fof.intro3': 'fortune-and-folly-intro3-salva.mp3',
+  'story.fof.intro4': 'fortune-and-folly-intro4-salva.mp3',
+  'story.fof.intro5': 'fortune-and-folly-intro5-salva.mp3',
+  'story.fof.resolution1': 'fortune-and-folly-part1-resolution1-salva.mp3',
+  'story.fof.resolution2': 'fortune-and-folly-part1-resolution2-salva.mp3',
+  'story.fof.plan1': 'fortune-and-folly-the-plan1-salva.mp3',
+  'story.fof.part2Intro': 'fortune-and-folly-part2-intro-salva.mp3',
+  'story.fof.part2Resolution1': 'fortune-and-folly-part2-resolution1-salva.mp3',
+  'story.fof.part2Resolution2': 'fortune-and-folly-part2-resolution2-salva.mp3',
+  'story.fof.part2Resolution3': 'fortune-and-folly-part2-resolution3-salva.mp3',
+  'story.fof.relicAcquired': 'fortune-and-folly-relic-acquired-salva.mp3',
+  'story.fof.relicFallen': 'fortune-and-folly-relic-fallen-salva.mp3',
+  'story.fof.disfavor': 'fortune-and-folly-disfavor-salva.mp3',
+  'story.fof.lightsOut': 'fortune-and-folly-lights-out-salva.mp3',
+  'story.fof.unlikelyInjuries': 'fortune-and-folly-unlikely-injuries-salva.mp3',
+  'story.fof.personalEntanglement': 'fortune-and-folly-personal-entanglement-salva.mp3',
 }
 const settings = {
   model_id: 'eleven_multilingual_v2',
@@ -58,13 +58,24 @@ if (!process.argv.includes('--generate')) {
   })
   const recorded = existsSync(evidencePath) ? JSON.parse(readFileSync(evidencePath, 'utf8')) : null
   // Una clave sin permiso de lectura de voces usa la verificación ya registrada de esta voz.
-  const voice = voiceResponse.ok
-    ? await voiceResponse.json()
-    : voiceResponse.status === 401 && recorded?.voiceId === voiceId
-      ? { name: recorded.voiceName }
-      : null
+  // Voz compartida que no está en la biblioteca: su nombre sale de la biblioteca pública.
+  const shared = voiceResponse.ok
+    ? null
+    : await fetch('https://api.elevenlabs.io/v1/shared-voices?search=Salva&page_size=30', {
+        headers,
+        signal: AbortSignal.timeout(30000),
+      })
+        .then((r) => r.json())
+        .then((j) => j.voices?.find((v) => v.voice_id === voiceId) ?? null)
+  const voice = shared
+    ? { name: shared.name }
+    : voiceResponse.ok
+      ? await voiceResponse.json()
+      : voiceResponse.status === 401 && recorded?.voiceId === voiceId
+        ? { name: recorded.voiceName }
+        : null
   if (!voice) throw new Error(`Consulta de voz: HTTP ${voiceResponse.status}`)
-  if (!/^Carmelo\b/i.test(voice.name)) throw new Error('La voz configurada no es Carmelo')
+  if (!/^Salva\b/i.test(voice.name)) throw new Error('La voz configurada no es Salva')
   mkdirSync(output, { recursive: true })
   const evidence = recorded ?? {
     voiceId,
