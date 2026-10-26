@@ -837,10 +837,19 @@ export type Message =
       shuffleAfter?: boolean
       investigator: InvestigatorId
       code: CardCode
-      from?: 'discard'
+      from?: 'discard' | 'deck'
+      /** Explicit card-effect permission may exceed the ordinary helper allowance. */
+      byEffect?: boolean
       toDeckBottom?: boolean
     }
   | { type: 'DiscardTopAndCommit'; investigator: InvestigatorId }
+  | {
+      type: 'RevealUntilCommittableSkill'
+      investigator: InvestigatorId
+      faction: string
+      discardOthers?: boolean
+    }
+  | { type: 'ShuffleCardsIntoDeck'; investigator: InvestigatorId; cards: CardCode[] }
   /**
    * Juega una carta de la mano pagando su coste (menos `discount`). `effect`
    * sustituye al efecto del evento (cuando depende del momento en que se juega).
@@ -1253,6 +1262,8 @@ export type Message =
       discount?: number
       /** Cualquier carta, no solo apoyos con esos rasgos (Mysterious Grimoire). */
       anyCard?: boolean
+      /** Allow weaknesses as choices in an unrestricted card search. */
+      includeWeaknesses?: boolean
       /** Match the traits across card types, rather than assets only. */
       anyType?: boolean
       /** A search may fail to find a card even when a match exists. */

@@ -479,6 +479,8 @@ export interface PlayerCardBehavior {
   ) => PlayerCardDef['icons']
   /** Additional printed restriction, evaluated for the investigator committing this card. */
   canCommit?: (state: GameState, test: SkillTest, by: InvestigatorId) => boolean
+  /** While committed, double the icons of each other committed card. */
+  doublesOtherCommittedIcons?: boolean
 
   /** Pure, serializable continuations for delayed decisions and effects. */
   effect?: (

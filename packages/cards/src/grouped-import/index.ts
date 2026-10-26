@@ -1,0 +1,14 @@
+import { registerPlayerCards, type PlayerCardDef } from '@lcg/engine'
+import data from '../data/grouped-import.json'
+import './card-02019'
+import './card-60130'
+import './card-50002'
+import './card-60129'
+import './card-03307'
+import './card-60582'
+import './card-07024'
+import './card-09031'
+import './card-60318'
+import './card-06240'
+registerPlayerCards(data as PlayerCardDef[])
+export const GROUPED_RENDERED_CODES = data.map((c) => c.code)
