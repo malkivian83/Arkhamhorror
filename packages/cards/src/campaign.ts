@@ -115,6 +115,8 @@ export interface CampaignInvestigator {
 export interface ScenarioResult {
   scenario: string
   outcome: ScenarioOutcome
+  /** Deliberately skipped before investigator setup, rather than played and lost. */
+  skipped?: boolean
   /** Experiencia ganada en el escenario por cada investigador. */
   xp: Record<InvestigatorId, number>
   experience?: ExperienceGain[]
@@ -511,6 +513,7 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
       {
         scenario: game.scenarioId,
         outcome: game.outcome,
+        ...(game.scenarioMeta?.skipped === 1 ? { skipped: true } : {}),
         xp,
         ...(game.experience ? { experience: game.experience } : {}),
         ...(typeof game.scenarioMeta?.score === 'number' ? { score: game.scenarioMeta.score } : {}),
@@ -595,6 +598,11 @@ export function purchaseOptions(
   campaign: Campaign,
   investigator: InvestigatorId,
 ): PurchaseOption[] {
+  if (
+    campaignDefinition(campaign.id).scenarios[campaign.scenarioIndex - 1]?.allowDeckChangesAfter ===
+    false
+  )
+    return []
   const { deck } = member(campaign, investigator)
   const xp = campaign.log.investigators[investigator]?.xp ?? 0
   const options = byCode(investigator)?.deckOptions ?? []

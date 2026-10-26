@@ -75,7 +75,14 @@ import {
   agendaForced,
 } from './common'
 import { PACKAGE } from './encounter'
-import { abarranHunts, DAGGER, DUPLICATE, MOVES, nearestExtradimensional } from './encounter-two'
+import {
+  abarranHunts,
+  DAGGER,
+  DUPLICATE,
+  DUPLICATE_CODE,
+  MOVES,
+  nearestExtradimensional,
+} from './encounter-two'
 import { gameAbility } from './games'
 import { formatIcon, iconOf } from './icons'
 import { STASH } from './part-one'
@@ -103,6 +110,7 @@ const INJURY = 'fof:injury:'
 const IGNORE_INJURY = 'fof:ignoreInjury:'
 const TURN_ACTIONS = 'fof:turnActions:'
 const SHAMBLER_TURN = 'fof:shamblerTurn'
+const LAST_ACTION = 'fof:lastAction'
 const ENTANGLED = 'fof:entangled'
 const CART = 'fof:cart:'
 const PACKAGE_ASSET = 'fof:packageAsset'
@@ -263,6 +271,14 @@ const cluesAt = (state: GameState, location: string) =>
   state.investigators
     .filter((i) => !i.eliminated && i.location === location)
     .reduce((sum, i) => sum + i.clues, 0)
+
+const payCluesAt = (state: GameState, location: string, amount: number): Message => ({
+  type: 'PayGroupClues',
+  amount,
+  from: state.investigators
+    .filter((i) => !i.eliminated && i.location === location)
+    .map((i) => i.id),
+})
 
 const bearer = (state: GameState) => {
   const id = state.scenarioMeta?.[BEARER]
@@ -442,8 +458,13 @@ function fofSpecificTwo(
       }
       return { ...next, queue: [...logs, ...state.queue] }
     }
-    case 'fof_personalEntanglement':
-      return { ...state, scenarioMeta: { ...state.scenarioMeta, [ENTANGLED]: 0 } }
+    case 'fof_personalEntanglement': {
+      const code = `${PART_TWO_CODES.personalEntanglement}b`
+      const story = state.stories?.[code]
+      return story
+        ? { ...state, stories: { ...state.stories, [code]: { ...story, horror: 0 } } }
+        : state
+    }
     case 'fofIgnoreInjury':
       return {
         ...state,
@@ -495,7 +516,7 @@ function fofSpecificTwo(
       const moved = {
         ...state,
         investigators: state.investigators.map((i) =>
-          i.id === investigator ? { ...i, deck: rest, discard: [...i.discard, top] } : i,
+          i.id === investigator ? { ...i, deck: rest } : i,
         ),
       }
       return {
@@ -505,8 +526,9 @@ function fofSpecificTwo(
             type: 'SpawnEnemy',
             card: {
               kind: 'enemy',
-              code: PART_TWO_CODES.duplicators[0],
-              name: 'Dimensional Duplicate',
+              code: DUPLICATE_CODE,
+              originalCardCode: top,
+              name: 'Extradimensional Enemy',
               traits: ['Extradimensional'],
               fight: 1,
               health: 1,
@@ -517,8 +539,8 @@ function fofSpecificTwo(
             },
             location: me.location,
             engageWith: investigator,
+            owner: investigator,
           },
-          specific('fofMarkDuplicate'),
           ...state.queue,
         ],
       }
@@ -715,15 +737,17 @@ function fofSpecificTwo(
       }
     }
     case 'fofCartProtect': {
-      // Carro de dinero: el enemigo se desenfrenta y, hasta el final de la ronda, los
-      // enemigos de este Lugar no pueden enfrentarse a ti.
-      const enemy = state.enemies[String(data.enemy)]
+      const here = getInvestigator(state, investigator).location
       return {
         ...state,
-        enemies: enemy
-          ? { ...state.enemies, [enemy.id]: { ...enemy, engagedWith: null } }
-          : state.enemies,
-        scenarioMeta: { ...state.scenarioMeta, [`${CART}${investigator}`]: state.round },
+        scenarioMeta: {
+          ...state.scenarioMeta,
+          ...Object.fromEntries(
+            Object.values(state.enemies)
+              .filter((e) => e.location === here)
+              .map((e) => [`${CART}${e.id}:${investigator}`, state.round]),
+          ),
+        },
       }
     }
     case 'placedDefeated': {
@@ -754,12 +778,15 @@ function fofSpecificTwo(
       // Implicación personal: al final de la fase de Enemigos, horror sobre la carta.
       if (!state.stories?.[`${PART_TWO_CODES.personalEntanglement}b`]) return state
       const enemy = Object.values(state.enemies).some((e) => e.location === CODES.ownersOffice)
-      const horror = Number(state.scenarioMeta?.[ENTANGLED] ?? 0) + (enemy ? 2 : 1)
+      const storyCode = `${PART_TWO_CODES.personalEntanglement}b`
+      const story = state.stories[storyCode]!
+      const horror =
+        (story.horror ?? Number(state.scenarioMeta?.[ENTANGLED] ?? 0)) + (enemy ? 2 : 1)
       const lead = leadInvestigator(state)
       const tooLate = horror >= 6
       return {
         ...state,
-        scenarioMeta: { ...state.scenarioMeta, [ENTANGLED]: horror },
+        stories: { ...state.stories, [storyCode]: { ...story, horror } },
         queue: [
           ...(tooLate
             ? [
@@ -821,11 +848,8 @@ function resolutionMessages(state: GameState, outcome: ScenarioOutcome): Message
           : 3
   const tasks = tasksDone(state)
   const bonus = Math.max(0, tasks - 4)
-  const isamara =
-    Object.values(state.placedAssets ?? {}).some((p) => p.code === PART_TWO_CODES.isamaraCrew) ||
-    Object.values(state.assets).some((a) => a.code === PART_TWO_CODES.isamaraCrew)
   const rewards = [
-    ...(tasks >= 5 && isamara ? ['fofEarnedIsamara'] : []),
+    ...(tasks >= 5 ? ['fofEarnedIsamara'] : []),
     ...(tasks >= 6 ? ['fofEarnedDeckOfPossibilities'] : []),
   ]
   return [
@@ -854,25 +878,21 @@ function resolutionMessages(state: GameState, outcome: ScenarioOutcome): Message
 
 registerScenario({
   id: PART_TWO,
+  sequentialEnemyMovement: true,
   resolution: resolutionMessages,
   tokenEffect,
+  enemyPrey: (state, enemy) =>
+    state.acts[state.actIndex]?.code === CODES.theExit && isCasino(enemy.traits) && bearer(state)
+      ? { type: 'investigator', investigator: bearer(state)! }
+      : undefined,
+  canEnemyEngage: (state, enemy, investigator) =>
+    state.scenarioMeta?.[`${CART}${enemy.id}:${investigator}`] !== state.round,
   enemyKeyword: (state, enemy, keyword) => {
     const exit = state.acts[state.actIndex]?.code === CODES.theExit
     // La salida: los Casino pierden Indiferente y ganan Cazador.
     if (exit && isCasino(enemy.traits) && (keyword === 'aloof' || keyword === 'hunter'))
       return keyword === 'hunter'
     if (keyword === 'hunter' && enemy.code === CODES.abarranUnleashed && abarranHunts(state))
-      return true
-    // Carro de dinero: los enemigos del Lugar no se enfrentan a quien se esconde esta ronda.
-    if (
-      keyword === 'aloof' &&
-      state.investigators.some(
-        (i) =>
-          !i.eliminated &&
-          i.location === enemy.location &&
-          state.scenarioMeta?.[`${CART}${i.id}`] === state.round,
-      )
-    )
       return true
     return casinoAloof(state, enemy, keyword)
   },
@@ -947,7 +967,9 @@ registerScenario({
       (e) => e.code === PART_TWO_CODES.dimensionalShambler,
     )
     const here = getInvestigator(state, investigator).location
-    const twice = previous[previous.length - 1] === kind
+    const currentAction = `${state.round}:${state.phase}:${investigator}:${kind}`
+    const twice = state.scenarioMeta?.[LAST_ACTION] === currentAction
+    const history: Message = { type: 'SetScenarioMeta', key: LAST_ACTION, value: currentAction }
     if (
       !twice ||
       !shambler ||
@@ -956,9 +978,10 @@ registerScenario({
       here === null ||
       state.scenarioMeta?.[SHAMBLER_TURN] === turnStartedAt(state)
     )
-      return [record]
+      return [record, history]
     return [
       record,
+      history,
       { type: 'SetScenarioMeta', key: SHAMBLER_TURN, value: turnStartedAt(state) },
       { type: 'HuntOnce', enemy: shambler.id, toward: here, attack: false },
     ]
@@ -1038,7 +1061,7 @@ registerScenario({
         label: 'ability.fof.rescue',
         actions: 1,
         provokes: true,
-        costs: [{ type: 'SpendGroupClues', amount: players(state) }],
+        costs: [payCluesAt(state, CODES.ownersOffice, players(state))],
         then: [{ type: 'RemoveStory', code: `${PART_TWO_CODES.personalEntanglement}b` }],
       })
     // Entrega de paquete: el Apoyo bajo la Puerta de la cámara.
@@ -1095,11 +1118,6 @@ registerScenario({
       ]
     }
     if (trigger.type === 'enemyPhaseEnds') return [specific('fofEntanglement')]
-    // Duplicado dimensional: si deja de estar enfrentado, se descarta.
-    if (trigger.type === 'afterEvade' || trigger.type === 'turnEnds')
-      return Object.values(state.enemies)
-        .filter((e) => state.scenarioMeta?.[`${DUPLICATE}${e.id}`] && e.engagedWith === null)
-        .map((e): Message => ({ type: 'DiscardEnemy', enemy: e.id }))
     return []
   },
   // Sala de contar: tras investigarla con éxito por 2 o más, gana 2 recursos (1 vez por turno).
@@ -1261,7 +1279,7 @@ registerLocation({
           actions: 1,
           provokes: true,
           limit: { per: 'game', group: true },
-          costs: [{ type: 'SpendGroupClues', amount: 2 * players(state) }],
+          costs: [payCluesAt(state, self.id, 2 * players(state))],
           then: [specific('fofVent', { investigator })],
         })
       : [],
@@ -1396,7 +1414,7 @@ registerLocation({
               label: 'choice.fof.openRelicRoom',
               params: { amount: 4 * players(state) },
               then: [
-                { type: 'SpendGroupClues', amount: 4 * players(state) },
+                payCluesAt(state, self.id, 4 * players(state)),
                 { type: 'RevealLocation', location: CODES.relicRoom },
               ],
             },
@@ -1514,19 +1532,24 @@ registerPlayerCard({
   // Cuando un enemigo se enfrentaría a ti: 1 daño al carro y, hasta el final de la ronda, los
   // enemigos de este Lugar no pueden enfrentarse a ti (al aplicarse ya enfrentado, se desenfrenta).
   placedReactions: (state, trigger, self) => {
-    if (trigger.type !== 'afterEngage' || self.placement.type !== 'location') return []
-    const who = getInvestigator(state, trigger.investigator)
-    if (who.location !== self.placement.location) return []
-    return [
-      {
-        key: `${self.id}:hide`,
+    if (self.placement.type !== 'location') return []
+    const location = self.placement.location
+    const candidates =
+      trigger.type === 'beforeEngage'
+        ? [getInvestigator(state, trigger.investigator)]
+        : trigger.type === 'enemyWouldEnterLocation' && trigger.location === location
+          ? state.investigators.filter((i) => !i.eliminated)
+          : []
+    return candidates
+      .filter((i) => i.location === location)
+      .map((who) => ({
+        key: `${self.id}:hide:${who.id}`,
         investigator: who.id,
         label: 'ability.fof.hideInCart',
         then: [
-          { type: 'DamagePlacedAsset', placed: self.id, damage: 1, horror: 0 },
-          specific('fofCartProtect', { investigator: who.id, enemy: trigger.enemy }),
+          { type: 'DamagePlacedAsset' as const, placed: self.id, damage: 1, horror: 0 },
+          specific('fofCartProtect', { investigator: who.id }),
         ],
-      },
-    ]
+      }))
   },
 })

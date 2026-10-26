@@ -535,7 +535,7 @@ export function handle(state: GameState, message: Message): GameState {
             maxHealth: perInvestigator(withId, card.health, card.healthPerInvestigator ?? false),
             damageTaken: 0,
             location: message.location,
-            engagedWith,
+            engagedWith: null,
             exhausted: false,
             ...(message.owner ? { owner: message.owner } : {}),
           },
@@ -546,16 +546,20 @@ export function handle(state: GameState, message: Message): GameState {
         ...(card.startingDoom
           ? [{ type: 'PlaceDoomOnEnemy', enemy: id, amount: card.startingDoom } as Message]
           : []),
-        { type: 'CheckEngagement', location: message.location },
-        // Aparecer enfrentado también es enfrentarse (Maníaco, Psicópata joven).
+        {
+          type: 'Forced',
+          trigger: { type: 'enemyWouldEnterLocation', enemy: id, location: message.location },
+        },
         ...(engagedWith
           ? [
               {
-                type: 'Forced',
-                trigger: { type: 'afterEngage', investigator: engagedWith, enemy: id },
+                type: 'EngageEnemy',
+                enemy: id,
+                investigator: engagedWith,
               } as Message,
             ]
           : []),
+        { type: 'CheckEngagement', location: message.location },
         {
           type: 'Forced',
           trigger: { type: 'enemyEntersLocation', enemy: id, location: message.location },
@@ -849,6 +853,7 @@ export function handle(state: GameState, message: Message): GameState {
               investigator: id,
               key: a.key,
               actions: a.actions,
+              ...(a.actionKind ? { actionKind: a.actionKind } : {}),
               provokes: a.provokes,
               ...(a.limit ? { limit: a.limit } : {}),
               ...(a.costs ? { costs: a.costs } : {}),
@@ -1328,6 +1333,7 @@ export function handle(state: GameState, message: Message): GameState {
                 investigator: id,
                 key: a.key,
                 actions: a.actions,
+                ...(a.actionKind ? { actionKind: a.actionKind } : {}),
                 provokes: a.provokes,
                 ...(a.limit ? { limit: a.limit } : {}),
                 ...(a.costs ? { costs: a.costs } : {}),
@@ -2985,6 +2991,11 @@ export function handle(state: GameState, message: Message): GameState {
 
     // ------------------------------------------------------ Prueba de habilidad
     case 'BeginSkillTest': {
+      if (
+        (message.kind.type === 'fight' || message.kind.type === 'evade') &&
+        state.enemies[message.kind.enemy]?.hasNoStats
+      )
+        return state
       if (state.skillTest) {
         // Una prueba que empieza durante otra (p. ej. un plan que avanza a mitad de una
         // prueba) espera a que la actual termine.
@@ -3556,13 +3567,42 @@ export function handle(state: GameState, message: Message): GameState {
     case 'EngageEnemy': {
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.location === null || !findEnemy(state, message.enemy)) return state
-      if (getEnemy(state, message.enemy).keywords.includes('massive')) return state
+      const enemy = getEnemy(state, message.enemy)
+      if (enemy.keywords.includes('massive') || enemy.engagedWith === investigator.id) return state
+      if (
+        scenarioBehavior(state.scenarioId)?.canEnemyEngage?.(state, enemy, investigator.id) ===
+        false
+      )
+        return message.windowResolved
+          ? push(state, { type: 'CheckEngagement', location: enemy.location, enemies: [enemy.id] })
+          : state
+      if (!message.windowResolved)
+        return push(
+          state,
+          {
+            type: 'Forced',
+            trigger: { type: 'beforeEngage', investigator: investigator.id, enemy: enemy.id },
+          },
+          { ...message, windowResolved: true },
+        )
       return push(
         updateEnemy(state, message.enemy, (e) => ({
           ...e,
           engagedWith: investigator.id,
           location: investigator.location as string,
         })),
+        ...(enemy.engagedWith
+          ? [
+              {
+                type: 'Forced' as const,
+                trigger: {
+                  type: 'enemyDisengaged' as const,
+                  enemy: enemy.id,
+                  investigator: enemy.engagedWith,
+                },
+              },
+            ]
+          : []),
         {
           type: 'Forced',
           trigger: { type: 'afterEngage', investigator: investigator.id, enemy: message.enemy },
@@ -3571,29 +3611,34 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'CheckEngagement': {
-      // RR "Enemy Engagement": un enemigo preparado y no enfrentado se enfrenta
-      // a un investigador de su localización. Con presa, el que mejor la cumpla;
-      // si no (o empate), decide el jefe (FAQ 1.5). Fuera de la mesa, el primero
-      // en orden de jugadores.
       const candidates = investigatorsAt(state, message.location)
-      if (candidates.length === 0) return state
-      let next = state
-      const engaged: Message[] = []
+      if (!candidates.length) return state
+      const [enemy, ...rest] = enemiesAt(state, message.location).filter(
+        (e) =>
+          (!message.enemies || message.enemies.includes(e.id)) &&
+          !e.exhausted &&
+          e.engagedWith === null &&
+          !enemyHasKeyword(state, e, 'aloof') &&
+          !e.keywords.includes('massive'),
+      )
+      if (!enemy) return state
+      const again: Message = {
+        type: 'CheckEngagement',
+        location: message.location,
+        enemies: rest.map((e) => e.id),
+      }
+      const permitted = candidates.filter(
+        (i) => scenarioBehavior(state.scenarioId)?.canEnemyEngage?.(state, enemy, i.id) !== false,
+      )
+      const prey = scenarioBehavior(state.scenarioId)?.enemyPrey?.(state, enemy) ?? enemy.prey
+      const best = bestByPrey(permitted, prey)
+      const [target] = best
+      if (!target) return push(state, again)
       const lead = leadInvestigator(state)
-      for (const enemy of enemiesAt(state, message.location)) {
-        if (
-          enemy.exhausted ||
-          enemy.engagedWith !== null ||
-          enemyHasKeyword(state, enemy, 'aloof') ||
-          enemy.keywords.includes('massive')
-        ) {
-          continue
-        }
-        const best = bestByPrey(candidates, enemy.prey)
-        const [target] = best
-        if (!target) continue
-        if (best.length > 1 && state.interactive && lead) {
-          engaged.push({
+      if (best.length > 1 && state.interactive && lead)
+        return push(
+          state,
+          {
             type: 'Ask',
             investigator: lead.id,
             question: {
@@ -3606,16 +3651,10 @@ export function handle(state: GameState, message: Message): GameState {
                 then: [{ type: 'EngageEnemy', enemy: enemy.id, investigator: i.id }],
               })),
             },
-          })
-          continue
-        }
-        next = updateEnemy(next, enemy.id, (e) => ({ ...e, engagedWith: target.id }))
-        engaged.push({
-          type: 'Forced',
-          trigger: { type: 'afterEngage', investigator: target.id, enemy: enemy.id },
-        })
-      }
-      return push(next, ...engaged)
+          },
+          again,
+        )
+      return push(state, { type: 'EngageEnemy', enemy: enemy.id, investigator: target.id }, again)
     }
 
     case 'EnemyAttack': {
@@ -4208,7 +4247,7 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'DamageEnemy': {
       const enemy = findEnemy(state, message.enemy)
-      if (!enemy) return state
+      if (!enemy || enemy.hasNoStats) return state
       const agenda = state.agendas[state.agendaIndex]
       if (
         (agenda && agendaBehavior(agenda.code)?.enemyImmune?.(state, enemy)) ||
@@ -4283,7 +4322,7 @@ export function handle(state: GameState, message: Message): GameState {
       const next = notDiscarded
         ? push(removed, ...notDiscarded)
         : enemy.owner
-          ? toOwnerDiscard(removed, enemy.owner, enemy.code)
+          ? toOwnerDiscard(removed, enemy.owner, enemy.originalCardCode ?? enemy.code)
           : enemy.victory !== undefined
             ? {
                 ...removed,
@@ -4309,18 +4348,40 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'EvadeEnemy': {
-      if (!findEnemy(state, message.enemy)) return state
+      const previous = findEnemy(state, message.enemy)
+      if (!previous || previous.hasNoStats) return state
       const evaded = updateEnemy(state, message.enemy, (e) => ({
         ...e,
         engagedWith: null,
         exhausted: true,
       }))
-      return message.by
-        ? push(evaded, {
-            type: 'Forced',
-            trigger: { type: 'afterEvade', investigator: message.by, enemy: message.enemy },
-          })
-        : evaded
+      return push(
+        evaded,
+        ...(previous.engagedWith
+          ? [
+              {
+                type: 'Forced' as const,
+                trigger: {
+                  type: 'enemyDisengaged' as const,
+                  enemy: previous.id,
+                  investigator: previous.engagedWith,
+                },
+              },
+            ]
+          : []),
+        ...(message.by
+          ? [
+              {
+                type: 'Forced' as const,
+                trigger: {
+                  type: 'afterEvade' as const,
+                  investigator: message.by,
+                  enemy: message.enemy,
+                },
+              },
+            ]
+          : []),
+      )
     }
 
     case 'ReadyEnemy':
@@ -4341,61 +4402,139 @@ export function handle(state: GameState, message: Message): GameState {
       )
 
     case 'HuntersMove': {
-      // RR "Hunter": cada enemigo preparado y no enfrentado con cazador se mueve
-      // una vez por el camino más corto hacia el investigador más cercano.
-      // Con varios caminos posibles, decide el jefe (FAQ 1.5); fuera de la mesa, el primero.
-      let next = state
-      const destinations = new Set<string>()
-      const entered: Message[] = []
-      const choices: Message[] = []
-      const lead = leadInvestigator(state)
-      for (const enemy of Object.values(state.enemies)) {
-        if (message.enemies && !message.enemies.includes(enemy.id)) continue
-        // Errante (patrol): hacia su localización designada; cazador: hacia el investigador.
-        const behavior = enemyBehavior(enemy.code)
-        const patrol = behavior?.patrol?.(state, enemy) ?? null
-        const hunter =
-          enemyHasKeyword(state, enemy, 'hunter') && !behavior?.losesHunter?.(state, enemy)
-        if (enemy.exhausted || enemy.engagedWith !== null) continue
-        if (!patrol && !hunter) continue
-        const steps = patrol ? patrolSteps(state, enemy, patrol) : huntingSteps(state, enemy)
-        const [step] = steps
-        if (step === undefined) continue
-        if (steps.length > 1 && state.interactive && lead) {
-          choices.push({
-            type: 'Ask',
-            investigator: lead.id,
-            question: {
-              kind: 'chooseOne',
-              prompt: 'prompt.chooseHunterPath',
-              promptParams: { enemy: enemy.name },
-              choices: steps.map((location): Choice => ({
-                label: 'choice.moveEnemyTo',
-                params: { enemy: enemy.name, location: getLocation(state, location).name },
-                target: { type: 'location', id: location },
-                then: [{ type: 'MoveEnemy', enemy: enemy.id, location }],
-              })),
-            },
+      // Preserve recorded decision streams for scenarios not using the new windows.
+      if (!scenarioBehavior(state.scenarioId)?.sequentialEnemyMovement) {
+        // RR "Hunter": cada enemigo preparado y no enfrentado con cazador se mueve
+        // una vez por el camino más corto hacia el investigador más cercano.
+        // Con varios caminos posibles, decide el jefe (FAQ 1.5); fuera de la mesa, el primero.
+        let next = state
+        const destinations = new Set<string>()
+        const entered: Message[] = []
+        const choices: Message[] = []
+        const lead = leadInvestigator(state)
+        for (const enemy of Object.values(state.enemies)) {
+          if (message.enemies && !message.enemies.includes(enemy.id)) continue
+          // Errante (patrol): hacia su localización designada; cazador: hacia el investigador.
+          const behavior = enemyBehavior(enemy.code)
+          const patrol = behavior?.patrol?.(state, enemy) ?? null
+          const hunter =
+            enemyHasKeyword(state, enemy, 'hunter') && !behavior?.losesHunter?.(state, enemy)
+          if (enemy.exhausted || enemy.engagedWith !== null) continue
+          if (!patrol && !hunter) continue
+          const steps = patrol ? patrolSteps(state, enemy, patrol) : huntingSteps(state, enemy)
+          const [step] = steps
+          if (step === undefined) continue
+          if (steps.length > 1 && state.interactive && lead) {
+            choices.push({
+              type: 'Ask',
+              investigator: lead.id,
+              question: {
+                kind: 'chooseOne',
+                prompt: 'prompt.chooseHunterPath',
+                promptParams: { enemy: enemy.name },
+                choices: steps.map((location): Choice => ({
+                  label: 'choice.moveEnemyTo',
+                  params: { enemy: enemy.name, location: getLocation(state, location).name },
+                  target: { type: 'location', id: location },
+                  then: [{ type: 'MoveEnemy', enemy: enemy.id, location }],
+                })),
+              },
+            })
+            continue
+          }
+          next = updateEnemy(next, enemy.id, (e) => ({
+            ...e,
+            location: step,
+            huntedRound: state.round,
+          }))
+          destinations.add(step)
+          entered.push({
+            type: 'Forced',
+            trigger: { type: 'enemyEntersLocation', enemy: enemy.id, location: step },
           })
-          continue
         }
-        next = updateEnemy(next, enemy.id, (e) => ({
-          ...e,
-          location: step,
-          huntedRound: state.round,
-        }))
-        destinations.add(step)
-        entered.push({
-          type: 'Forced',
-          trigger: { type: 'enemyEntersLocation', enemy: enemy.id, location: step },
-        })
+        return push(
+          next,
+          ...[...destinations].map((location): Message => ({ type: 'CheckEngagement', location })),
+          ...entered,
+          ...choices,
+        )
       }
-      return push(
-        next,
-        ...[...destinations].map((location): Message => ({ type: 'CheckEngagement', location })),
-        ...entered,
-        ...choices,
+
+      const movers = Object.values(state.enemies).filter(
+        (enemy) =>
+          (!message.enemies || message.enemies.includes(enemy.id)) &&
+          !enemy.exhausted &&
+          enemy.engagedWith === null &&
+          (enemyBehavior(enemy.code)?.patrol?.(state, enemy) != null ||
+            (enemyHasKeyword(state, enemy, 'hunter') &&
+              !enemyBehavior(enemy.code)?.losesHunter?.(state, enemy))),
       )
+      const lead = leadInvestigator(state)
+      if (state.interactive && lead && movers.length > 1)
+        return push(state, {
+          type: 'Ask',
+          investigator: lead.id,
+          question: {
+            kind: 'chooseOne',
+            prompt: 'prompt.chooseHunterOrder',
+            choices: movers.map((enemy) => ({
+              label: 'choice.moveEnemyNow',
+              params: { enemy: enemy.name },
+              target: { type: 'enemy' as const, id: enemy.id },
+              then: [
+                { type: 'MoveHuntingEnemy' as const, enemy: enemy.id },
+                {
+                  type: 'HuntersMove' as const,
+                  enemies: movers.filter((e) => e.id !== enemy.id).map((e) => e.id),
+                },
+              ],
+            })),
+          },
+        })
+      return push(
+        state,
+        ...movers.map((enemy): Message => ({ type: 'MoveHuntingEnemy', enemy: enemy.id })),
+      )
+    }
+
+    case 'MoveHuntingEnemy': {
+      // Resolve each enemy and its reaction window before examining the next enemy.
+      const enemy = findEnemy(state, message.enemy)
+      if (!enemy || enemy.exhausted || enemy.engagedWith !== null) return state
+      const behavior = enemyBehavior(enemy.code)
+      const patrol = behavior?.patrol?.(state, enemy) ?? null
+      const hunter =
+        enemyHasKeyword(state, enemy, 'hunter') && !behavior?.losesHunter?.(state, enemy)
+      if (!patrol && !hunter) return state
+      if (patrol && !message.windowResolved)
+        return push(
+          state,
+          { type: 'Forced', trigger: { type: 'enemyWouldPatrol', enemy: enemy.id } },
+          { ...message, windowResolved: true },
+        )
+      const steps = patrol ? patrolSteps(state, enemy, patrol) : huntingSteps(state, enemy)
+      const [step] = steps
+      if (step === undefined) return state
+      const next = updateEnemy(state, enemy.id, (e) => ({ ...e, huntedRound: state.round }))
+      const lead = leadInvestigator(state)
+      if (steps.length > 1 && state.interactive && lead)
+        return push(next, {
+          type: 'Ask',
+          investigator: lead.id,
+          question: {
+            kind: 'chooseOne',
+            prompt: 'prompt.chooseHunterPath',
+            promptParams: { enemy: enemy.name },
+            choices: steps.map((location): Choice => ({
+              label: 'choice.moveEnemyTo',
+              params: { enemy: enemy.name, location: getLocation(state, location).name },
+              target: { type: 'location', id: location },
+              then: [{ type: 'MoveEnemy', enemy: enemy.id, location }],
+            })),
+          },
+        })
+      return push(next, { type: 'MoveEnemy', enemy: enemy.id, location: step })
     }
 
     case 'EnemiesAttack':
@@ -4672,7 +4811,7 @@ export function handle(state: GameState, message: Message): GameState {
                 investigator: investigator.id,
                 phase: state.phase,
                 round: state.round,
-                kind: 'activate',
+                kind: message.actionKind ?? 'activate',
               },
             ]
           : []
@@ -4764,7 +4903,11 @@ export function handle(state: GameState, message: Message): GameState {
       if (notDiscarded) return push(state, ...notDiscarded)
       const dropped = dropAttached(state, enemy)
       if (enemy.owner)
-        return toOwnerDiscard(removeEnemy(dropped, enemy.id), enemy.owner, enemy.code)
+        return toOwnerDiscard(
+          removeEnemy(dropped, enemy.id),
+          enemy.owner,
+          enemy.originalCardCode ?? enemy.code,
+        )
       return {
         ...removeEnemy(dropped, enemy.id),
         encounterDiscard: [...state.encounterDiscard, enemyCard(enemy)],
@@ -4779,6 +4922,26 @@ export function handle(state: GameState, message: Message): GameState {
           location: message.location,
           engagedWith: null,
         })),
+        ...(getEnemy(state, message.enemy).engagedWith
+          ? [
+              {
+                type: 'Forced' as const,
+                trigger: {
+                  type: 'enemyDisengaged' as const,
+                  enemy: message.enemy,
+                  investigator: getEnemy(state, message.enemy).engagedWith!,
+                },
+              },
+            ]
+          : []),
+        {
+          type: 'Forced',
+          trigger: {
+            type: 'enemyWouldEnterLocation',
+            enemy: message.enemy,
+            location: message.location,
+          },
+        },
         { type: 'CheckEngagement', location: message.location },
         {
           type: 'Forced',
@@ -5449,7 +5612,13 @@ export function handle(state: GameState, message: Message): GameState {
       for (const enemy of engagedEnemies(state, message.investigator)) {
         next = updateEnemy(next, enemy.id, (e) => ({ ...e, engagedWith: null }))
       }
-      return next
+      return push(
+        next,
+        ...engagedEnemies(state, message.investigator).map((enemy): Message => ({
+          type: 'Forced',
+          trigger: { type: 'enemyDisengaged', enemy: enemy.id, investigator: message.investigator },
+        })),
+      )
     }
 
     case 'ChooseMove': {

@@ -158,6 +158,8 @@ export type Prey =
   | { type: 'highestSkill'; skill: SkillType }
   /** "Presa (solo X)": solo se enfrenta a ese investigador. */
   | { type: 'only'; investigator: InvestigatorId }
+  /** A preferred investigator breaks ties, without the restriction "only". */
+  | { type: 'investigator'; investigator: InvestigatorId }
   | { type: 'mostResources' }
   | { type: 'mostClues' }
   | { type: 'mostHorror' }
@@ -166,6 +168,10 @@ export type Prey =
   | { type: 'lowestRemainingHealth' }
 
 export interface EnemyCard {
+  /** Printed fight, health and evade are dashes, not zero-valued statistics. */
+  hasNoStats?: boolean
+  /** Original code of a player card represented by a face-down enemy. */
+  originalCardCode?: CardCode
   /** Entra en juego con esta perdición (Zealot). */
   startingDoom?: number
   /** No hace ataques de oportunidad. */
@@ -330,6 +336,8 @@ export interface AbilityLimit {
  * comportamientos de las cartas (ver content.ts) cada vez que se abre su menú.
  */
 export interface AbilityOption {
+  /** Printed action designator, when the ability performs a named action. */
+  actionKind?: ActionName
   /** Identificador único de la habilidad (para los límites de uso). */
   key: string
   /** Clave i18n y parámetros de la etiqueta. */
@@ -472,6 +480,7 @@ export interface StoryCardInPlay {
   code: CardCode
   name: string
   clues: number
+  horror?: number
   /** Daño y estado de un enemigo representado como carta junto al acto (Hastur). */
   damage?: number
   health?: number
@@ -1041,8 +1050,8 @@ export type Message =
     }
   | { type: 'ResolveSkillTest' }
   | { type: 'EndSkillTest' }
-  | { type: 'EngageEnemy'; enemy: EnemyId; investigator: InvestigatorId }
-  | { type: 'CheckEngagement'; location: LocationId }
+  | { type: 'EngageEnemy'; enemy: EnemyId; investigator: InvestigatorId; windowResolved?: boolean }
+  | { type: 'CheckEngagement'; location: LocationId; enemies?: EnemyId[] }
   | { type: 'EnemyAttack'; enemy: EnemyId; investigator: InvestigatorId; exhaustAfter: boolean }
   /** Fase de enemigos: el investigador elige en qué orden le atacan los que quedan. */
   | { type: 'AttacksAgainst'; investigator: InvestigatorId; enemies: EnemyId[] }
@@ -1064,6 +1073,7 @@ export type Message =
   | { type: 'ReadyEnemy'; enemy: EnemyId }
   /** Con `enemies`, solo esos enemigos resuelven Cazador y Errante (Sr. Trombly). */
   | { type: 'HuntersMove'; enemies?: EnemyId[] }
+  | { type: 'MoveHuntingEnemy'; enemy: EnemyId; windowResolved?: boolean }
   | { type: 'EnemiesAttack' }
   | { type: 'ReadyAll' }
   /** `direct`: solo puede asignarse a la carta de investigador. */
@@ -1138,6 +1148,7 @@ export type Message =
   | { type: 'Forced'; trigger: Trigger }
   | {
       type: 'UseAbility'
+      actionKind?: ActionName
       investigator: InvestigatorId
       key: string
       actions: number
@@ -1446,6 +1457,10 @@ export type Trigger =
   | { type: 'afterTakeControlOfPlaced'; investigator: InvestigatorId; code: CardCode }
   | { type: 'assetDefeated'; asset: Asset }
   | { type: 'afterEngage'; investigator: InvestigatorId; enemy: EnemyId }
+  | { type: 'beforeEngage'; investigator: InvestigatorId; enemy: EnemyId }
+  | { type: 'enemyWouldPatrol'; enemy: EnemyId }
+  | { type: 'enemyWouldEnterLocation'; enemy: EnemyId; location: LocationId }
+  | { type: 'enemyDisengaged'; enemy: EnemyId; investigator: InvestigatorId }
   | { type: 'turnBegins'; investigator: InvestigatorId }
   | { type: 'turnEnds'; investigator: InvestigatorId }
   | { type: 'roundEnds' }
@@ -1531,6 +1546,8 @@ export interface StoryEntry {
   title: string
   body: string
   effects?: { key: string; params?: LabelParams }[]
+  /** Decisions printed in an introduction, resolved before investigator setup. */
+  choices?: Choice[]
 }
 
 export interface Question {

@@ -125,15 +125,17 @@ for (const code of [CODES.theMuscle, practiced(CODES.theMuscle)]) {
 
 // El ladrón: cuando un enemigo Casino de un Lugar conectado (experimentado: a 2 Lugares o
 // menos) va a resolver Errante, agótalo para invertir su sentido en este movimiento. Se
-// ofrece al empezar la fase de Enemigos, antes de que se muevan.
+// ofrece inmediatamente antes de resolver el Errante de ese enemigo.
 for (const code of [CODES.theThief, practiced(CODES.theThief)]) {
   const skilled = code !== CODES.theThief
   registerPlayerCard({
     code,
     reactions: (state, trigger, self) => {
-      if (self.exhausted || trigger.type !== 'enemyPhaseBegins') return []
-      return casinoEnemiesWithin(state, self.owner, skilled ? 2 : 1, 1)
-        .filter((e) => PATROL[e.code] && !e.exhausted && e.engagedWith === null)
+      if (self.exhausted || trigger.type !== 'enemyWouldPatrol') return []
+      return casinoEnemiesWithin(state, self.owner, skilled ? 2 : 1, skilled ? 0 : 1)
+        .filter(
+          (e) => e.id === trigger.enemy && PATROL[e.code] && !e.exhausted && e.engagedWith === null,
+        )
         .map((e) => ({
           key: `${self.id}:thief:${e.id}`,
           investigator: self.owner,

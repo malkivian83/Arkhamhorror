@@ -181,7 +181,11 @@ export function prepareGame({
 
   const story = (entries: StoryEntry | StoryEntry[] | undefined): Message[] =>
     interactive && entries
-      ? [entries].flat().map((entry): Message => ({ type: 'Story', entry }))
+      ? [entries].flat().map((entry): Message => ({
+          type: 'Story',
+          entry,
+          ...(entry.choices ? { choices: entry.choices } : {}),
+        }))
       : []
   const setupMessages: Message[] = [
     ...story(scenario.prologue),

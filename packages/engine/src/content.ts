@@ -28,6 +28,7 @@ import type {
   Message,
   PlacedAsset,
   PlayerCardDef,
+  Prey,
   StoryCardInPlay,
   ReactionOption,
   ScenarioOutcome,
@@ -139,6 +140,12 @@ export interface ScenarioBehavior {
    * cambia (Fortuna e insensatez: los Casino pierden Indiferente con alarma 6 o más).
    */
   enemyKeyword?: (state: GameState, enemy: Enemy, keyword: EnemyKeyword) => boolean | null
+  /** Dynamic prey replaces printed prey; ordinary prey still only breaks ties. */
+  enemyPrey?: (state: GameState, enemy: Enemy) => Prey | undefined
+  /** Per-investigator engagement restrictions, without granting aloof. */
+  canEnemyEngage?: (state: GameState, enemy: Enemy, investigator: InvestigatorId) => boolean
+  /** Sequential movement windows and lead-chosen ordering for this scenario's rules. */
+  sequentialEnemyMovement?: boolean
   /** Habilidad con la que se investiga ese Lugar (Cripta de la lámpara sepulcral). */
   investigateSkill?: (state: GameState, location: LocationId) => SkillType | null
   /**

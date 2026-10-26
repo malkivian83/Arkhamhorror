@@ -171,6 +171,7 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
     ...engagedEnemies(state, id).map((e): Action => ({ kind: 'evade', enemy: e.id })),
     ...enemiesHere
       .filter((e) => e.engagedWith !== id && !e.keywords.includes('massive'))
+      .filter((e) => scenarioBehavior(state.scenarioId)?.canEnemyEngage?.(state, e, id) !== false)
       .map((e): Action => ({ kind: 'engage', enemy: e.id })),
   ]
   const allowed = scenarioBehavior(state.scenarioId)?.actionAllowed
@@ -452,7 +453,12 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
         !attacksBlockedEnemy(state, id, a) &&
         // Lesiones (Fortuna e insensatez): límite de habilidades [action] por turno.
         (a.actions === 0 ||
-          (scenarioBehavior(state.scenarioId)?.actionAllowed?.(state, id, 'activate') ?? true)),
+          (scenarioBehavior(state.scenarioId)?.actionAllowed?.(
+            state,
+            id,
+            a.actionKind ?? 'activate',
+          ) ??
+            true)),
     )
     .flatMap((a) => {
       if (!a.parley) return [a]
@@ -544,10 +550,9 @@ export function commitBlocked(state: GameState, id: InvestigatorId, cardType: st
 
 /** No puede atacar a este enemigo (Regalo de la locura: Piedad, enemigos Lunáticos). */
 export function attackBlocked(state: GameState, id: InvestigatorId, enemy: Enemy): boolean {
-  return restricted(
-    state,
-    id,
-    (r) => !!r.attackTrait && (enemy.traits ?? []).includes(r.attackTrait),
+  return (
+    !!enemy.hasNoStats ||
+    restricted(state, id, (r) => !!r.attackTrait && (enemy.traits ?? []).includes(r.attackTrait))
   )
 }
 
