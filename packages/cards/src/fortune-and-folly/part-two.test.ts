@@ -133,6 +133,8 @@ describe('Fortune and Folly, Part II: setup from the checkpoint', () => {
     ])
     expect(s.stories?.[CODES.wellspring]?.clues).toBe(3)
     expect(s.doom).toBe(1)
+    expect(s.locations[CODES.casinoLoungeBusy]).toMatchObject({ revealed: true, clues: 2 })
+    expect(s.locations[CODES.guardRoom]?.revealed).toBe(false)
     expect(s.locations[CODES.ownersOffice]?.enterCost).toBe(0)
     expect(s.locations[CODES.staffAccessHallway]?.enterCost).toBe(4)
     expect(enemyOf(s, '88035a').location).toBe(CODES.highRollersTableBusy)

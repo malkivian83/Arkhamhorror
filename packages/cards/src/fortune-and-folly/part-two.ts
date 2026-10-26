@@ -180,6 +180,11 @@ export function fortuneAndFollyPartTwo({
     chaosBag: [...CHAOS_BAGS[difficulty]],
     tokenValues: {},
     setup: [
+      // El grupo público entra revelado (las caras de noche no son caras sin revelar).
+      ...BUSY_PUBLIC_LOCATIONS.filter((l) => l.id !== CODES.casinoFloorBusy).map((l): Message => ({
+        type: 'RevealLocation',
+        location: l.id,
+      })),
       {
         type: 'SpawnEnemy',
         card: casinoGuard(guard),

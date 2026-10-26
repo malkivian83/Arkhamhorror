@@ -104,6 +104,9 @@ describe('Fortune and Folly, Part I: setup', () => {
       placement: { type: 'location', location: CODES.baccaratTable },
     })
     expect(s.stories?.[CODES.wellspring]?.clues).toBe(14)
+    // Los Lugares públicos entran revelados, con sus pistas por investigador.
+    expect(s.locations[CODES.highRollersTable]).toMatchObject({ revealed: true, clues: 4 })
+    expect(s.locations[CODES.pokerTable]).toMatchObject({ revealed: true, clues: 2 })
     expect(alarmOf(s, 'a')).toBe(1)
     expect(s.scenarioMeta?.[`${ROLE}a`]).toBe(CODES.theFace)
     expect(s.scenarioMeta?.[`${ROLE}b`]).toBe(CODES.theMuscle)
