@@ -25,8 +25,10 @@ import {
   isCasino,
   PATROL,
   PATROLS,
+  BUSY_PUBLIC_RING,
   PUBLIC_RING,
   QUESTIONING,
+  RESTRICTED_RING,
   SPOTLIGHTS,
   UNIQUE_ENEMIES,
 } from './cards'
@@ -39,10 +41,18 @@ const specific = (key: string, data: Record<string, string | number | boolean>):
 })
 
 /** Grupos de Lugares para Errante, en el sentido de las agujas del reloj. */
-export const RINGS: string[][] = [PUBLIC_RING]
+export const RINGS: string[][] = [PUBLIC_RING, BUSY_PUBLIC_RING, RESTRICTED_RING]
 
-/** Siguiente Lugar en el sentido del Errante del enemigo (o el contrario, El ladrón). */
-export function patrolTarget(state: GameState, enemy: Enemy): LocationId[] {
+/** El enemigo que lleva la Entrega de paquete (parte II): va hacia la Puerta de la cámara. */
+export const PACKAGE = 'fof:package'
+
+/**
+ * Siguiente Lugar en el sentido del Errante del enemigo (o el contrario, El ladrón). En el
+ * acto 3 (La salida) los Casino pierden Errante: null.
+ */
+export function patrolTarget(state: GameState, enemy: Enemy): LocationId[] | null {
+  if (state.scenarioMeta?.[PACKAGE] === enemy.id) return [CODES.vaultDoor]
+  if (state.acts[state.actIndex]?.code === CODES.theExit && isCasino(enemy.traits)) return null
   const ring = RINGS.find((r) => r.includes(enemy.location))
   const printed = PATROL[enemy.code]
   if (!ring || !printed) return []
@@ -107,7 +117,11 @@ for (const code of GUARDS)
     patrol: (state, self) => patrolTarget(state, self),
     // Aparición: Mesa de apuestas altas o Sala de guardias (la más cercana).
     spawn: (state, investigator) =>
-      nearestOf(state, investigator, [CODES.highRollersTable, CODES.guardRoom]),
+      nearestOf(state, investigator, [
+        CODES.highRollersTable,
+        CODES.highRollersTableBusy,
+        CODES.guardRoom,
+      ]),
   })
 
 for (const code of DEALERS)
@@ -119,7 +133,11 @@ for (const code of PATROLS)
     patrol: (state, self) => patrolTarget(state, self),
     // Aparición: Bar del casino u Oficina de seguridad (la más cercana).
     spawn: (state, investigator) =>
-      nearestOf(state, investigator, [CODES.casinoLounge, CODES.securityOffice]),
+      nearestOf(state, investigator, [
+        CODES.casinoLounge,
+        CODES.casinoLoungeBusy,
+        CODES.securityOffice,
+      ]),
     // Después de moverse a tu Lugar durante la fase de Enemigos: +1 alarma.
     forced: (state, trigger, self) =>
       trigger.type === 'enemyEntersLocation' && trigger.enemy === self.id && state.phase === 'enemy'

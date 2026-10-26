@@ -68,6 +68,86 @@
       "inputHash": "2e6367eff68ef4f363c5182e54332d64a98018897b5d20aebb56b4bd439c09ee",
       "sha256": "6ce61ef27de5a8a9bedba5d6ffa80b8adf6860268885d6f6da6d51d487a0d415",
       "bytes": 1634263
+    },
+    {
+      "key": "story.fof.part2Intro",
+      "file": "fortune-and-folly-part2-intro.mp3",
+      "characters": 1752,
+      "inputHash": "2fd0e5a9e05e5de7f28c6113016673dcb0198caa31aad51f1d2962e812835a8e",
+      "sha256": "ad2e7c151a01517aa2ca0fe65750a347ccc3abc9af6b87219be9d972d6a83996",
+      "bytes": 2239886
+    },
+    {
+      "key": "story.fof.part2Resolution1",
+      "file": "fortune-and-folly-part2-resolution1.mp3",
+      "characters": 1495,
+      "inputHash": "57d1cc3ff2dd0f0727e39bd8bb06f0199ea7e3f0792493c69a6aef9c26998839",
+      "sha256": "f5e33e5aa6f4025e2c3bb12a7fe38dfd94daba00c9c1746595f98697f6bea228",
+      "bytes": 1892980
+    },
+    {
+      "key": "story.fof.part2Resolution2",
+      "file": "fortune-and-folly-part2-resolution2.mp3",
+      "characters": 1290,
+      "inputHash": "037a12ea0890530b68a23c56401c78becc47520bc64411d05be2854e17ba5ed7",
+      "sha256": "741280756aac799356bc1871ee1165daf5bc4c3c0edb6b9df7d459ab2d93ae41",
+      "bytes": 1621724
+    },
+    {
+      "key": "story.fof.part2Resolution3",
+      "file": "fortune-and-folly-part2-resolution3.mp3",
+      "characters": 761,
+      "inputHash": "5da169793feef879cbbe649a17a1f4a416b305329086208c3809bc7200a8e4c6",
+      "sha256": "a63788b24ec650b05b1118cc924cdf4bc0959f1b5ddac612ff16612eed97b814",
+      "bytes": 981829
+    },
+    {
+      "key": "story.fof.relicAcquired",
+      "file": "fortune-and-folly-relic-acquired.mp3",
+      "characters": 341,
+      "inputHash": "bc387fd4990f24ad034321393ec47cb58c583d4efcdc63ee6ab00f814b23d6f0",
+      "sha256": "e55ed99e4ee984190050e1831386a7c131841a0f64a308318a8734eb3cd2d11b",
+      "bytes": 429705
+    },
+    {
+      "key": "story.fof.relicFallen",
+      "file": "fortune-and-folly-relic-fallen.mp3",
+      "characters": 365,
+      "inputHash": "66e6df90fc3f2cec0f30ed28f4f59c535324246637064623924ae8348da364f7",
+      "sha256": "580f2c029d86c78eb54e38799f38c9a954db6cce751a097e6be218092182adfd",
+      "bytes": 504937
+    },
+    {
+      "key": "story.fof.disfavor",
+      "file": "fortune-and-folly-disfavor.mp3",
+      "characters": 354,
+      "inputHash": "1d1acf1b99a896c5febb05d838bb52bc532fcc1761888db17304f118a7a7fb99",
+      "sha256": "4c45ae260636554ea6e3b275711105ac3cad206b747553d7f1482af51d850491",
+      "bytes": 486129
+    },
+    {
+      "key": "story.fof.lightsOut",
+      "file": "fortune-and-folly-lights-out.mp3",
+      "characters": 326,
+      "inputHash": "f965a955f2c04dc5a79cb50cd408321fb880556af2c2812e392cfd9283ab3ae8",
+      "sha256": "9224b5dd242703fa14e24a88a0b98769d437bdd513f5e69839c93597f70a3264",
+      "bytes": 413404
+    },
+    {
+      "key": "story.fof.unlikelyInjuries",
+      "file": "fortune-and-folly-unlikely-injuries.mp3",
+      "characters": 285,
+      "inputHash": "a0e81c8945db40df10692fba518cbf1ced37f1441d8e2e5e9bea5dad3a898727",
+      "sha256": "5a56cdd4c2086fc3941e729190f9314ace574f2e435da001cc449d03c7fa4237",
+      "bytes": 379967
+    },
+    {
+      "key": "story.fof.personalEntanglement",
+      "file": "fortune-and-folly-personal-entanglement.mp3",
+      "characters": 228,
+      "inputHash": "7c00f2baa1a1cedd34f13bd505855545a67be60d5c76b53f799bfc9ea28aa949",
+      "sha256": "a302e309e9aa703ed6d35694fdd7f1fd22bba3efc8644de02997bc3efd757e87",
+      "bytes": 317692
     }
   ]
 }

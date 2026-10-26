@@ -36,7 +36,8 @@ import {
 export const BET = 'fof:bet'
 const SWAP = 'fof:swap'
 
-export type Game = 'poker' | 'roulette' | 'baccarat' | 'slots' | 'highRoller'
+export type Game =
+  'poker' | 'roulette' | 'baccarat' | 'slots' | 'highRoller' | 'medallion' | 'vault'
 
 interface GameRules {
   location: string
@@ -90,6 +91,20 @@ export const GAMES: Record<Game, GameRules> = {
     count: 5,
     mulligans: 1,
     prize: (icons) => (sameSuit(icons) || sequential(icons) || mostOfARank(icons) >= 4 ? 8 : 0),
+  },
+  medallion: {
+    location: CODES.highRollersTableBusy,
+    cost: 4,
+    count: 5,
+    mulligans: 1,
+    prize: (icons) => (sameSuit(icons) || sequential(icons) || mostOfARank(icons) >= 4 ? 8 : 0),
+  }, // Puerta de la cámara: [action] Moverse según el palo (no es un Lugar Juego).
+  vault: {
+    location: CODES.vaultDoor,
+    cost: 0,
+    count: 1,
+    mulligans: 0,
+    prize: () => 0,
   },
 }
 
@@ -253,16 +268,21 @@ export function gameSpecific(
     case 'fofCheck': {
       const game = data.game as Game
       const rules = GAMES[game]
+      const mulligans = Number(data.mulligans ?? rules.mulligans)
       const next = checkIcons(state, rules.count)
-      const checked = { ...next, scenarioMeta: { ...next.scenarioMeta, [BET]: String(data.bet) } }
+      const checked = {
+        ...next,
+        scenarioMeta: { ...next.scenarioMeta, [BET]: String(data.bet ?? '') },
+      }
       return {
         ...checked,
         queue: [
           { type: 'Log', key: 'log.fof.checked', params: { icons: iconList(checked) } },
-          ...(rules.mulligans > 0 && checkedIcons(checked).length
-            ? [specific('fofMulligan', { investigator, game })]
+          ...(mulligans > 0 && checkedIcons(checked).length
+            ? [specific('fofMulligan', { investigator, game, remaining: mulligans })]
             : []),
-          specific('fofGrifter', { investigator }),
+          // El estafador solo actúa en los Lugares Juego.
+          ...(game === 'vault' ? [] : [specific('fofGrifter', { investigator })]),
           specific('fofPrize', { investigator, game }),
           ...state.queue,
         ],
@@ -294,6 +314,10 @@ export function gameSpecific(
         scenarioMeta: { ...swapped.scenarioMeta, [SWAP]: '' },
         queue: [
           { type: 'Log', key: 'log.fof.checked', params: { icons: iconList(swapped) } },
+          // La Puerta de la cámara permite cambiar cartas hasta dos veces.
+          ...(Number(data.remaining ?? 1) > 1
+            ? [specific('fofMulligan', { ...data, remaining: Number(data.remaining) - 1 })]
+            : []),
           ...state.queue,
         ],
       }
@@ -376,6 +400,21 @@ export function gameSpecific(
         ...state,
         scenarioMeta: { ...state.scenarioMeta, [CHECKED]: '', [BET]: '' },
       }
+      if (game === 'vault') {
+        // ♣ o ♠: Sala de guardias; ♥: Bar del casino; ♦: Mesa de bacará.
+        const suit = icons[0]?.suit
+        const to =
+          suit === '♥'
+            ? CODES.casinoLoungeBusy
+            : suit === '♦'
+              ? CODES.baccaratTable
+              : suit
+                ? CODES.guardRoom
+                : null
+        return to
+          ? { ...cleared, queue: [{ type: 'MoveTo', investigator, location: to }, ...state.queue] }
+          : cleared
+      }
       return {
         ...cleared,
         queue: [
@@ -383,6 +422,10 @@ export function gameSpecific(
             ? [
                 { type: 'GainResources', investigator, amount: prize } as Message,
                 { type: 'Log', key: 'log.fof.won', params: { amount: prize } } as Message,
+                // Mesa de apuestas altas (noche ajetreada): «ganasteis un medallón sectario».
+                ...(game === 'medallion'
+                  ? [{ type: 'RecordNote', note: 'fofWonACultistMedallion' } as Message]
+                  : []),
               ]
             : [{ type: 'Log', key: 'log.fof.lost' } as Message]),
           specific('fofGamePlayed', { investigator, gained: prize > 0 }),

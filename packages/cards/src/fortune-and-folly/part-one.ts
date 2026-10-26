@@ -6,7 +6,6 @@
 import {
   distancesFrom,
   getInvestigator,
-  leadInvestigator,
   playerCardDef,
   registerAct,
   registerAgenda,
@@ -37,7 +36,6 @@ import {
   adjustAlarm,
   adjustAlarmMessage,
   ALARM,
-  ALARM_SPECIFIC,
   alarmOf,
   checkedIcons,
   checkIcons,
@@ -52,38 +50,37 @@ import {
   fortuneAndFollySet,
   GAME_LOCATIONS,
   GUARDS,
-  isCasino,
   practiced,
   PART_ONE,
   PUBLIC_LOCATIONS,
-  ROLES,
   roleOf,
   UNIQUE_ENEMIES,
-  DEALERS,
 } from './cards'
-import { GAINED, nonUniqueCasino } from './encounter'
-import { gameAbility, gameAt, gameSpecific } from './games'
+import {
+  agendaForced,
+  casinoAloof,
+  commonSpecific,
+  dealerTax,
+  leadChooses,
+  metaList,
+  players,
+  ROLE,
+  setStoryClues,
+  specific,
+  tokenEffect,
+  trackResources,
+} from './common'
+import { gameAbility, gameAt } from './games'
 import { colorOf, formatIcon } from './icons'
-import { REVERSE } from './roles'
 
 /** El guardia que lleva el uniforme (Si el uniforme te vale…). */
 const UNIFORM = 'fof:uniform'
-/** Roles de cada investigador («código,código»), con su cara actual. */
-export const ROLE = 'fof:role:'
 /** Apoyos escondidos de cada investigador («código,código»). */
 export const STASH = 'fof:stash:'
-const NO_ALOOF = 'fof:noAloof:'
 /** El guardia del uniforme: la primera copia del Guardia del casino. */
 const UNIFORM_GUARD = GUARDS[0]!
 
 const entry = storyEntries('fof')
-const specific = (key: string, data: Record<string, string | number | boolean> = {}): Message => ({
-  type: 'ScenarioSpecific',
-  key,
-  data,
-})
-const hard = (state: GameState) => state.difficulty === 'hard' || state.difficulty === 'expert'
-const players = (state: GameState) => state.investigators.length
 
 // ---------------------------------------------------------------------------
 // Preparación (guía p. 14)
@@ -153,39 +150,9 @@ export function fortuneAndFollyPartOne({
 // Ayudas
 // ---------------------------------------------------------------------------
 
-const metaList = (state: GameState, key: string) =>
-  String(state.scenarioMeta?.[key] ?? '')
-    .split(',')
-    .filter(Boolean)
-
 function uniformGuard(state: GameState) {
   const id = state.scenarioMeta?.[UNIFORM]
   return typeof id === 'string' ? state.enemies[id] : undefined
-}
-
-/** Habilidades de un Lugar: +1 acción con un Crupier de la casa preparado en él. */
-const dealerTax = (state: GameState, location: string) =>
-  Object.values(state.enemies).some(
-    (e) => DEALERS.includes(e.code) && e.location === location && !e.exhausted,
-  )
-    ? 1
-    : 0
-
-function setStoryClues(state: GameState, code: string, clues: number): GameState {
-  const story = state.stories?.[code]
-  if (!story) return state
-  return {
-    ...state,
-    stories: { ...state.stories, [code]: { ...story, clues: Math.max(0, clues) } },
-  }
-}
-
-const leadChooses = (state: GameState, prompt: string, choices: Choice[]): Message[] => {
-  if (choices.length <= 1) return choices[0]?.then ?? []
-  const lead = leadInvestigator(state) ?? state.investigators[0]
-  return lead
-    ? [{ type: 'Ask', investigator: lead.id, question: { kind: 'chooseOne', prompt, choices } }]
-    : []
 }
 
 // ---------------------------------------------------------------------------
@@ -197,42 +164,14 @@ function fofSpecific(
   key: string,
   data: Record<string, string | number | boolean>,
 ): GameState {
-  const game = gameSpecific(state, key, data)
-  if (game) return game
+  const common = commonSpecific(state, key, data)
+  if (common) return common
   const push = (...messages: Message[]): GameState => ({
     ...state,
     queue: [...messages, ...state.queue],
   })
   const investigator = String(data.investigator ?? '')
   switch (key) {
-    case ALARM_SPECIFIC: {
-      // Guardia del casino: después de que subas tu alarma en su Lugar, recibes 1 daño.
-      const who = getInvestigator(state, investigator)
-      if (who.eliminated) return state
-      const { state: next, raised } = adjustAlarm(state, investigator, Number(data.amount))
-      const guards = Object.values(next.enemies).filter(
-        (e) => GUARDS.includes(e.code) && e.location === who.location,
-      )
-      return {
-        ...next,
-        queue: [
-          {
-            type: 'Log',
-            key: 'log.fof.alarm',
-            params: { name: who.name, level: alarmOf(next, investigator) },
-          },
-          ...(raised > 0
-            ? guards.map((): Message => ({
-                type: 'TakeDamage',
-                investigator,
-                damage: 1,
-                horror: 0,
-              }))
-            : []),
-          ...state.queue,
-        ],
-      }
-    }
     case 'fofSetup': {
       const guard = Object.values(state.enemies).find((e) => e.code === UNIFORM_GUARD)
       const withMeta = {
@@ -245,42 +184,6 @@ function fofSpecific(
       }
       // El manantial de fortuna: 7 pistas por investigador.
       return setStoryClues(withMeta, CODES.wellspring, 7 * players(state))
-    }
-    case 'fofRoleAsk': {
-      // Cada investigador elige un Rol; con un solo investigador, elige otro más.
-      const index = Number(data.index)
-      const extra = !!data.extra
-      const who = state.investigators[index]
-      if (!who) return state
-      const taken = state.investigators.flatMap((i) => metaList(state, `${ROLE}${i.id}`))
-      const next =
-        state.investigators.length === 1 && !extra
-          ? { index, extra: true }
-          : { index: index + 1, extra: false }
-      return push({
-        type: 'Ask',
-        investigator: who.id,
-        question: {
-          kind: 'chooseOne',
-          prompt: 'prompt.fof.role',
-          choices: ROLES.filter((r) => !taken.includes(r)).map((code) => ({
-            label: 'choice.fof.role',
-            params: { card: code },
-            then: [
-              { type: 'PutAssetIntoPlay', investigator: who.id, code },
-              specific('fofRoleTaken', { investigator: who.id, code }),
-              specific('fofRoleAsk', next),
-            ],
-          })),
-        },
-      })
-    }
-    case 'fofRoleTaken': {
-      const roles = [...metaList(state, `${ROLE}${investigator}`), String(data.code)]
-      return {
-        ...state,
-        scenarioMeta: { ...state.scenarioMeta, [`${ROLE}${investigator}`]: roles.join(',') },
-      }
     }
     case 'fofAbarranKeys': {
       // Comprueba 1 icono: si es rojo, «robaste las llaves de Abarran».
@@ -313,50 +216,6 @@ function fofSpecific(
         { type: 'RemoveStory', code: CODES.ifTheUniformFits },
       )
     }
-    case 'fofNoAloof': {
-      // Interrogatorio inoportuno: los Casino no únicos de tu Lugar pierden Indiferente.
-      const here = getInvestigator(state, investigator).location
-      const targets = nonUniqueCasino(state).filter((e) => e.location === here)
-      return {
-        ...state,
-        scenarioMeta: {
-          ...state.scenarioMeta,
-          ...Object.fromEntries(targets.map((e) => [`${NO_ALOOF}${e.id}`, state.round])),
-        },
-        queue:
-          here === null
-            ? state.queue
-            : [{ type: 'CheckEngagement', location: here }, ...state.queue],
-      }
-    }
-    case 'fofNearestMoves': {
-      // [tablet]: el enemigo más cercano se mueve una vez hacia ti.
-      const here = getInvestigator(state, investigator).location
-      if (here === null) return state
-      const distances = distancesFrom(state, here)
-      const nearest = Object.values(state.enemies)
-        .filter((e) => distances.has(e.location))
-        .sort((a, b) => distances.get(a.location)! - distances.get(b.location)!)[0]
-      return nearest
-        ? push({ type: 'HuntOnce', enemy: nearest.id, toward: here, attack: false })
-        : state
-    }
-    case 'fofElderThing':
-      return push({
-        type: 'Ask',
-        investigator,
-        question: {
-          kind: 'chooseOne',
-          prompt: 'prompt.fof.elderThing',
-          choices: [
-            {
-              label: 'choice.fof.autoSucceed',
-              then: [adjustAlarmMessage(investigator, 1), { type: 'ForceSkillTestSuccess' }],
-            },
-            { label: 'choice.skip', then: [] },
-          ],
-        },
-      })
     case 'fofIsamara': {
       // 1 pista sobre Isamara; con 1 por investigador, «la convencisteis».
       const placed = state.placedAssets?.[String(data.placed)]
@@ -394,22 +253,6 @@ function fofSpecific(
         ),
       }
     }
-    case 'fofThief': {
-      const thief = state.assets[String(data.asset)]
-      if (!thief || thief.exhausted) return state
-      return {
-        ...state,
-        assets: { ...state.assets, [thief.id]: { ...thief, exhausted: true } },
-        scenarioMeta: { ...state.scenarioMeta, [`${REVERSE}${String(data.enemy)}`]: state.round },
-      }
-    }
-    case 'fofGamePlayed': {
-      // Vigilando el local: tras la habilidad de un Lugar Juego, 1 pista menos en el manantial
-      // (2 si ganaste recursos).
-      const story = state.stories?.[CODES.wellspring]
-      if (!story) return state
-      return setStoryClues(state, CODES.wellspring, story.clues - (data.gained ? 2 : 1))
-    }
     case 'fofCleanedOut': {
       // Con 10 recursos por investigador entre todos: «habéis dejado limpio el casino».
       const total = state.investigators.reduce(
@@ -446,11 +289,6 @@ function fofSpecific(
           ...roles,
         ]),
       )
-    }
-    case 'fofCalmAll': {
-      let next = state
-      for (const i of state.investigators) next = adjustAlarm(next, i.id, -1).state
-      return next
     }
     case 'fofPractice': {
       const code = String(data.code)
@@ -548,38 +386,8 @@ function resolutionMessages(state: GameState, outcome: ScenarioOutcome): Message
 registerScenario({
   id: PART_ONE,
   resolution: resolutionMessages,
-  tokenEffect: (state, token, investigator) => {
-    switch (token) {
-      case 'skull':
-        return {
-          modifier: -(hard(state)
-            ? alarmOf(state, investigator)
-            : Math.ceil(alarmOf(state, investigator) / 2)),
-        }
-      case 'cultist':
-        return { modifier: 0, revealAnother: true, onFail: [adjustAlarmMessage(investigator, 1)] }
-      case 'tablet': {
-        const move = [specific('fofNearestMoves', { investigator })]
-        return hard(state) ? { modifier: -4, immediate: move } : { modifier: -3, onFail: move }
-      }
-      case 'elderThing':
-        return {
-          modifier: hard(state) ? -6 : -5,
-          immediate: [specific('fofElderThing', { investigator })],
-        }
-    }
-    return { modifier: 0 }
-  },
-  // Con alarma 6 o más, los Casino del Lugar pierden Indiferente (también por el
-  // Interrogatorio inoportuno, hasta el final de la ronda).
-  enemyKeyword: (state, enemy, keyword) => {
-    if (keyword !== 'aloof' || !isCasino(enemy.traits)) return null
-    if (state.scenarioMeta?.[`${NO_ALOOF}${enemy.id}`] === state.round) return false
-    const alarmed = state.investigators.some(
-      (i) => !i.eliminated && i.location === enemy.location && alarmOf(state, i.id) >= 6,
-    )
-    return alarmed ? false : null
-  },
+  tokenEffect,
+  enemyKeyword: casinoAloof,
   // Abarran (El hombre del anillo de rubí) no tiene valores: no se le puede dañar.
   enemyImmune: (_state, enemy) => enemy.code === CODES.abarran,
   // Si el uniforme te vale…: [action] Luchar contra el guardia vinculado.
@@ -603,22 +411,8 @@ registerScenario({
     ]
   },
   forced: (state, trigger) => {
-    // Juego obsesivo: recursos ganados en el turno.
-    if (trigger.type === 'turnBegins') {
-      const me = getInvestigator(state, trigger.investigator)
-      return [{ type: 'SetScenarioMeta', key: `${GAINED}${me.id}`, value: `0:${me.resources}:0` }]
-    }
-    if (trigger.type === 'afterGainResources' || trigger.type === 'afterSpendResources') {
-      const key = `${GAINED}${trigger.investigator}`
-      const [flag, start, spent] = String(state.scenarioMeta?.[key] ?? '0:0:0')
-        .split(':')
-        .map(Number)
-      const value =
-        trigger.type === 'afterGainResources'
-          ? `1:${start}:${spent}`
-          : `${flag}:${start}:${(spent ?? 0) + trigger.amount}`
-      return [{ type: 'SetScenarioMeta', key, value }]
-    }
+    const tracked = trackResources(state, trigger)
+    if (tracked.length) return tracked
     // El guardia del uniforme abandona el juego: la carta de Historia se retira.
     if (
       trigger.type === 'enemyDefeated' &&
@@ -634,22 +428,6 @@ registerScenario({
 // ---------------------------------------------------------------------------
 // Plan y acto
 // ---------------------------------------------------------------------------
-
-/** Forzados comunes de los planes: alarma al empezar la fase de Enemigos y al derrotar Casino. */
-export function agendaForced(
-  state: GameState,
-  trigger: Parameters<NonNullable<Parameters<typeof registerAgenda>[0]['forced']>>[1],
-): Message[] {
-  if (trigger.type === 'enemyPhaseBegins') {
-    const ready = Object.values(state.enemies).filter((e) => isCasino(e.traits) && !e.exhausted)
-    return state.investigators
-      .filter((i) => !i.eliminated && ready.some((e) => e.location === i.location))
-      .map((i) => adjustAlarmMessage(i.id, 1))
-  }
-  if (trigger.type === 'enemyDefeated' && trigger.by && isCasino(trigger.enemy.traits))
-    return [adjustAlarmMessage(trigger.by, 1)]
-  return []
-}
 
 registerAgenda({
   code: CODES.theHouseAlwaysWatches,
@@ -721,7 +499,9 @@ registerLocation({
   },
 })
 
-for (const code of GAME_LOCATIONS)
+// Mesa de apuestas altas (noche tranquila). Las otras mesas las registra part-two para las
+// dos partes.
+for (const code of GAME_LOCATIONS.filter((c) => c === CODES.highRollersTable))
   registerLocation({
     code,
     abilities: (state, self, investigator) => {
@@ -793,3 +573,5 @@ registerPlayerCard({
 /** Enemigos únicos: para presentación y pruebas. */
 export const PART_ONE_UNIQUE = UNIQUE_ENEMIES
 export type { InvestigatorId }
+
+export { ROLE }

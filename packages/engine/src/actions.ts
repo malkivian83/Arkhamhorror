@@ -173,10 +173,12 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
       .filter((e) => e.engagedWith !== id && !e.keywords.includes('massive'))
       .map((e): Action => ({ kind: 'engage', enemy: e.id })),
   ]
+  const allowed = scenarioBehavior(state.scenarioId)?.actionAllowed
   return actions.filter(
     (a) =>
+      (!allowed || allowed(state, id, a.kind)) &&
       actionCost(state, id, a) <=
-      investigator.actionsRemaining + (a.kind === 'move' && investigator.extraMove ? 1 : 0),
+        investigator.actionsRemaining + (a.kind === 'move' && investigator.extraMove ? 1 : 0),
   )
 }
 
@@ -447,7 +449,10 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
         a.actions <= investigator.actionsRemaining &&
         !(noFast && a.actions === 0) &&
         withinLimit(state, a.key, id, a.limit) &&
-        !attacksBlockedEnemy(state, id, a),
+        !attacksBlockedEnemy(state, id, a) &&
+        // Lesiones (Fortuna e insensatez): límite de habilidades [action] por turno.
+        (a.actions === 0 ||
+          (scenarioBehavior(state.scenarioId)?.actionAllowed?.(state, id, 'activate') ?? true)),
     )
     .flatMap((a) => {
       if (!a.parley) return [a]

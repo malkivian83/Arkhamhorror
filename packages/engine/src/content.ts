@@ -39,6 +39,9 @@ import type {
   SlotType,
 } from './types'
 
+/** Tipo de acción: las básicas y `activate` (habilidades [action] de cartas). */
+export type ActionKind = Action['kind'] | 'activate'
+
 export type ScenarioSymbol = Exclude<ChaosSymbol, 'elderSign' | 'autoFail'>
 
 /** Habilidades que `investigator` puede activar en esta carta ahora mismo. */
@@ -102,6 +105,15 @@ export interface ScenarioBehavior {
   ) => TokenEffect | null
   /** Modificador al horror que inflige el ataque de un enemigo (Pasillos del manicomio). */
   enemyHorrorModifier?: (state: GameState, enemy: Enemy) => number
+  /** Modificador al daño que inflige el ataque de un enemigo (Daga de la fortuna). */
+  enemyDamageModifier?: (state: GameState, enemy: Enemy) => number
+  /**
+   * El investigador puede realizar ahora este tipo de acción (lesiones de Fortuna e
+   * insensatez). `activate`: habilidades [action] de cartas.
+   */
+  actionAllowed?: (state: GameState, investigator: InvestigatorId, kind: ActionKind) => boolean
+  /** Tras completar una acción (Vagabundo dimensional: la misma acción dos veces seguidas). */
+  afterAction?: (state: GameState, investigator: InvestigatorId, kind: ActionKind) => Message[]
   /** Modificador al combate/evasión de un enemigo (Savage Shantak). */
   enemyStat?: (state: GameState, enemy: Enemy, stat: 'fight' | 'evade') => number
   /** Modificador al velo de una localización (Parlor). */
@@ -238,6 +250,8 @@ export interface EnemyBehavior {
   abilities?: AbilitiesFn<Enemy>
   /** Reacciones que el enemigo ofrece a los investigadores (códex). */
   reactions?: (state: GameState, trigger: Trigger, self: Enemy) => ReactionOption[]
+  /** Al atacar, antes de resolver el ataque (Daga de la fortuna: comprueba iconos). */
+  onAttack?: (state: GameState, self: Enemy, investigator: InvestigatorId) => Message[]
   /** Modificador a las habilidades de los investigadores de su localización (Whippoorwill). */
   skillModifier?: (state: GameState, self: Enemy, test: SkillTest) => number
   /**

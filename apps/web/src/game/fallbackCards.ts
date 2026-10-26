@@ -22,6 +22,7 @@ import {
   GALA_BLOODLESS_MAN_UNLEASHED,
   GALA_FACTION_CARDS,
   fortuneAndFollyPartOne,
+  fortuneAndFollyPartTwo,
   FORTUNE_SETUP_ENEMIES,
   FORTUNE_CODES,
 } from '@lcg/cards'
@@ -183,6 +184,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
       }),
     ),
     fortuneAndFollyPartOne({}),
+    fortuneAndFollyPartTwo({}),
     ...Array.from({ length: 12 }, (_, seed) =>
       smokeAndMirrors({
         seed,
@@ -354,6 +356,19 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     FORTUNE_CODES.wellspring,
   ])
     put({ code, name: code, real_name: code, type_code: 'story' })
+  // Caras traseras de Historia de la parte II (El golpe, Entrega de paquete, Desaprobaciones).
+  const fortune = fortuneCards[locale === 'es' ? 'es' : 'en']
+  for (const front of ['88023', '88024', '88025', '88026', '88027']) {
+    const text = fortune[front]
+    if (text)
+      put({
+        code: `${front}b`,
+        name: text.backName ?? text.name,
+        real_name: text.backName ?? text.name,
+        type_code: 'story',
+        text: text.backText,
+      })
+  }
   const catalogues = [excelsiorCards, carcosaCards, fortuneCards].map(
     (c) => c[locale === 'es' ? 'es' : 'en'],
   )

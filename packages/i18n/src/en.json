@@ -291,7 +291,14 @@
       "gaze": "Suspicious Gaze: choose one.",
       "elderThing": "Raise your alarm level by 1 to automatically succeed?",
       "stash": "Choose an asset to stash beneath Casino Floor.",
-      "plan": "The Plan: choose one."
+      "plan": "The Plan: choose one.",
+      "security": "Discard how many encounter cards?",
+      "openRelicRoom": "Spend clues to reveal Relic Room?",
+      "packageWho": "Who searches their deck for the decoy package?",
+      "packageAsset": "Choose an Ally or Item asset to place beneath Vault Door.",
+      "hunger": "Hunter's Hunger: choose one.",
+      "restorePower": "Restore power to which area?",
+      "pushCart": "Move the Cash Cart where?"
     }
   },
   "action": {
@@ -586,7 +593,15 @@
       "autoSucceed": "Raise your alarm level by 1 and succeed",
       "stash": "Stash {card}",
       "planCalm": "Reduce each investigator's alarm level by 1",
-      "practice": "{card} ({name}) becomes Practiced"
+      "practice": "{card} ({name}) becomes Practiced",
+      "checkN": "Check {n}",
+      "openRelicRoom": "Spend {amount} clues and reveal Relic Room",
+      "packageAsset": "{card}",
+      "discardAlly": "Discard {card} (others take 1 horror)",
+      "restore": {
+        "public": "Main hall (Public)",
+        "restricted": "Staff area (Restricted)"
+      }
     }
   },
   "phase": {
@@ -901,7 +916,29 @@
       "uniform": "Knock out the guard (test combat 3)",
       "face": "The Face: parley with {enemy}",
       "muscle": "The Muscle: reduce your alarm level by {amount}",
-      "thief": "The Thief: reverse the patrol of {enemy}"
+      "thief": "The Thief: reverse the patrol of {enemy}",
+      "medallion": "High stakes: spend 4 resources and check 5 icons",
+      "delivery": "Set up a delivery to the vault (spend 2 resources)",
+      "openVent": "Open the vent to Guard Room",
+      "security": "Watch the security feeds",
+      "disguise": "Impersonate a guard",
+      "sigil": "Take Abarran's sigil",
+      "schematic": "Buy a schematic ({amount} resources as a group)",
+      "countingRoom": "Counting Room: gain 2 resources",
+      "vaultMove": "Vault Door: move by checking a game icon",
+      "vaultRelic": "Break the vault seal (test willpower or agility 4)",
+      "takeWellspring": "Take control of The Wellspring of Fortune",
+      "ignoreInjury": {
+        "damage": "Take 1 damage: ignore your injury this turn",
+        "horror": "Take 1 horror: ignore your injury this turn"
+      },
+      "restorePower": "Restore power (1 clue per investigator)",
+      "rescue": "Rescue your acquaintance (1 clue per investigator as a group)",
+      "packageTake": "Take {card} from beneath Vault Door",
+      "recruitIsamara": "Parley: take control of Isamara",
+      "mesmerize": "Isamara sings: evade every Casino enemy here",
+      "pushCart": "Move the Cash Cart",
+      "hideInCart": "Hide in the Cash Cart (1 damage to it)"
     }
   },
   "log": {
@@ -1014,7 +1051,8 @@
       "checked": "Game icons checked: {icons}",
       "alarm": "{name}: alarm level {level}",
       "won": "Win! {amount} resources.",
-      "lost": "The house wins."
+      "lost": "The house wins.",
+      "wellspring": "{name} takes The Wellspring of Fortune."
     }
   },
   "table": {
@@ -1295,7 +1333,7 @@
       "the-midwinter-gala": "A night of luxury and secrets. Accept the invitation and discover what hides behind the masks at the gala.",
       "murder-at-the-excelsior-hotel": "A murder and a hotel full of secrets. Investigate what happened at the Excelsior and uncover the truth before it is too late.",
       "the-path-to-carcosa": "The King in Yellow arrives in Arkham. Eight scenarios between doubt and conviction. In development: scenarios I to III are playable so far.",
-      "fortune-and-folly": "A Monte Carlo casino bends luck itself. Case the joint in Part I, then pull off the heist. In development: Part I is playable."
+      "fortune-and-folly": "A Monte Carlo casino bends luck itself. Case the joint in Part I, then pull off the heist in Part II."
     },
     "continueTitle": "Continue where you left off",
     "chooseStory": "Choose the story",
@@ -1491,7 +1529,18 @@
       "fofRole88030": "Role: The Thief",
       "fofRole88030b": "Role: The Thief (Practiced)",
       "fofRole88031": "Role: The Grifter",
-      "fofRole88031b": "Role: The Grifter (Practiced)"
+      "fofRole88031b": "Role: The Grifter (Practiced)",
+      "fofWonACultistMedallion": "An investigator won a cultist medallion",
+      "fofObservedTheStaff": "An investigator observed the staff",
+      "fofFoundAbarransSigil": "An investigator found Abarran's sigil",
+      "fofObtainedASchematic": "An investigator obtained a schematic",
+      "fofImpersonatedAGuard": "An investigator impersonated a guard",
+      "fofStayedOutOfSight": "An investigator stayed out of sight",
+      "fofDeliveredADecoyPackage": "An investigator delivered a decoy package",
+      "fofIsamaraMesmerized": "Isamara mesmerized the guards with her song",
+      "fofBadLuck": "Fortune's Chosen have bound the investigators with bad luck",
+      "fofEarnedIsamara": "The investigators earned Isamara Ordoñez (The Torch Singer)",
+      "fofEarnedDeckOfPossibilities": "The investigators earned the Deck of Possibilities"
     },
     "scenario": {
       "smokeAndMirrors": "Scenario II: Smoke and Mirrors",
@@ -2053,7 +2102,35 @@
       "plan1": "With the stakeout done, you plan the heist for the busy Saturday night: slip in through the public areas, sneak into the restricted ones and open the vault, guarded by steel, magic and constant watch. There is little time to rest.",
       "raiseUnresigned": "Each investigator who did not resign raises their alarm level by 2.",
       "noDeckChanges": "Investigators cannot spend experience or alter their decks between Part I and Part II.",
-      "planChoices": "For every 1 clue per investigator on The Stakeout, the group chooses to reduce each investigator's alarm level by 1 or to flip a Role to its Practiced side ({n} choices)."
+      "planChoices": "For every 1 clue per investigator on The Stakeout, the group chooses to reduce each investigator's alarm level by 1 or to flip a Role to its Practiced side ({n} choices).",
+      "part2Intro": "Before the heist, Isamara goes over the casino map: the floor manager bets his medallion at poker, Abarran keeps a sigil that grants access to the Wellspring's power, a counter sells vent schematics, the guards have a room at the back, surveillance can be turned on the staff, a cash cart makes a hiding place, the vault holds important patrons' valuables, and the vent you found can be used again.",
+      "part2Resolution1": "With the Wellspring in hand, Isamara smiles for real for the first time. You leave Monte Carlo at once, before Abarran and his Chosen come for you.",
+      "part2Resolution2": "You escape alive, but without the Wellspring. The casino never reopens and Abarran vanishes with the relic, protected by someone powerful.",
+      "part2Resolution3": "You wake in an empty casino: no one is left and the Wellspring is gone. The casino closes for good and Abarran disappears.",
+      "part2NoResolution": "Each investigator was defeated. Proceed to Resolution 3.",
+      "relicAcquired": "Abarran appears in the doorway, shaking with fury: his civility is gone. He moves to Relic Room.",
+      "relicFallen": "Abarran, nearly defeated, triggers a mechanism before collapsing and the steel ceiling starts to fall. Each investigator tests [agility] (3); those who fail take 2 damage.",
+      "disfavor": "The relic brings misfortune to those it does not favor: in the middle of the heist, everything turns upside-down.",
+      "lightsOut": "The casino goes dark: each location gets +1 shroud, and triggering its abilities costs an additional action or 1 horror. At Security Office, power can be restored to the public or staff area by spending 1 clue per investigator.",
+      "unlikelyInjuries": "A chain of unlikely accidents: each investigator checks 1 icon and suffers an injury by suit (♥ one move, ♦ one investigate, ♣ one fight, ♠ one activate action per turn). [fast] Take 1 damage or 1 horror to ignore it this turn.",
+      "personalEntanglement": "Someone from the lead investigator's past works at the casino and Abarran knows it. At Owner's Office, 1 clue per investigator as a group rescues them; at 6 horror, the lead investigator suffers 1 mental trauma and everyone takes 2 direct horror.",
+      "bluffCalled": "The Dimensional Shambler spawns at Roulette Wheel and Plan in Shambles joins the encounter deck. Each investigator raises their alarm level by 1.",
+      "setup2": "The Restricted group (unrevealed) and the Public group on its Busy Night side are put into play. Each investigator begins at Casino Floor with their recorded alarm level, Roles and stashed cards. A Casino Guard spawns at High Roller's Table and a Security Patrol at Casino Floor. Isamara (Crew) is at Casino Lounge if you convinced her; the Cash Cart is at High Roller's Table if you cleaned out the house.",
+      "badLuckToken": "Fortune's Chosen have bound you with bad luck: in a campaign, replace a number token in the chaos bag with one of a value 2 lower.",
+      "tasksDone": "Heist tasks completed: {n}. Each task beyond 4 grants 1 bonus experience; at 5, Isamara (if still in play), and at 6, the Deck of Possibilities.",
+      "part2IntroTitle": "Fortune and Folly, Part II",
+      "part2Resolution1Title": "Resolution 1",
+      "part2Resolution2Title": "Resolution 2",
+      "part2Resolution3Title": "Resolution 3",
+      "part2NoResolutionTitle": "No resolution",
+      "relicAcquiredTitle": "Relic Acquired",
+      "relicFallenTitle": "Relic Acquired",
+      "disfavorTitle": "Fortune's Disfavor",
+      "lightsOutTitle": "Lights Out!",
+      "unlikelyInjuriesTitle": "Unlikely Injuries",
+      "personalEntanglementTitle": "Personal Entanglement",
+      "bluffCalledTitle": "Bluff Called",
+      "setup2Title": "Part II setup"
     }
   },
   "playmat": {
@@ -2270,7 +2347,8 @@
     "releasedADangerousPatient": "You released a dangerous patient.",
     "recalledTheWayOut": "You recalled the way out.",
     "distractedTheGuards": "You distracted the guards.",
-    "tookTheKeysByForce": "You took the keys by force."
+    "tookTheKeysByForce": "You took the keys by force.",
+    "fofVentOpen": "The vent is open"
   },
   "keywords": {
     "title": "Keywords and concepts",
@@ -2381,6 +2459,10 @@
     "fofWellspring": {
       "title": "The Wellspring of Fortune",
       "body": "In this scenario the Wellspring is only a clue counter and an objective; its text is blank. Each Game location ability you trigger removes 1 clue from it (2 if you gained resources)."
+    },
+    "fofHeist": {
+      "title": "The Heist",
+      "body": "The Heist story card lists 8 tasks. You cannot enter Vault Door until at least 4 are completed. Relic Room cannot be entered until it is revealed from Vault Door; taking the Wellspring there advances the act, and the investigator who holds it must resign to win."
     }
   },
   "phaseStep": {

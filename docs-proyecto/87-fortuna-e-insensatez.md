@@ -12,8 +12,8 @@ ambas. Guía ES: [`reglas/AHC71_Fortuna_e_insensatez_ES.pdf`](reglas/AHC71_Fortu
 | 1       | Catálogo EN/ES (89 cartas, 88001–88053), iconos de juego, imágenes y guía | Hecha     |
 | 2       | Mecánicas: nivel de alarma, Errante, iconos de juego, cambiar cartas, roles | Hecha     |
 | 3       | Parte I: preparación, cartas, resoluciones y punto de control              | Hecha     |
-| 4       | Parte II: Lugares Restringido, Los elegidos de la fortuna, Plan al garete  | Pendiente |
-| 5       | Narración de introducciones, punto de control y resoluciones               | Parte I   |
+| 4       | Parte II: Lugares Restringido, Los elegidos de la fortuna, Plan al garete    | Hecha     |
+| 5       | Narración de introducciones, punto de control y resoluciones               | Hecha     |
 
 ## Datos
 
@@ -58,8 +58,8 @@ experiencia a cada investigador; se valorará cuando el escenario sea jugable.
 
 ## Parte I en la aplicación (entrega 3)
 
-Campaña independiente `fortune-and-folly` con dos escenarios; la parte I
-(`fortune-and-folly-part-1`) se puede jugar y la parte II aún no tiene preparación.
+Campaña independiente `fortune-and-folly` con dos escenarios jugables, `fortune-and-folly-part-1`
+y `fortune-and-folly-part-2`.
 
 - **Código**: `packages/cards/src/fortune-and-folly/` — `cards.ts` (datos, Lugares, anillo de
   Errante), `check.ts` e `icons.ts` (iconos y alarma), `games.ts` (los cinco juegos),
@@ -106,3 +106,53 @@ referencia) y los graba con «Juanjo Relatos» (`DdKbXdRlBmj7Ty7N0FVr`, comproba
 Parte I: Introducciones 1, 3, 4 y 5, Resoluciones 1 y 2 y El plan 1. Las instrucciones de
 juego no se narran. Evidencia: `evidencias/fortuna-narracion.json`. Los textos de i18n son
 resúmenes propios, como en las demás campañas.
+
+## Parte II en la aplicación (entrega 4)
+
+`part-two.ts` (preparación, Lugares, planes, actos, Isamara de la Banda, Carro de dinero,
+Entrega de paquete, Desaprobación de la fortuna y resoluciones) y `encounter-two.ts` (Abarran
+desatado, Los elegidos de la fortuna y Plan al garete). Lo común a las dos partes está en
+`common.ts`.
+
+- **Preparación desde cero** con los valores `fof:*` del registro: nivel de alarma, Roles (con
+  su cara Experimentado), cartas escondidas (del mazo a la mano tras cambiar la mano inicial),
+  pistas del manantial, Isamara (Banda) en el Bar si la convencisteis, el Carro de dinero si
+  dejasteis limpio el casino, 1 perdición en el plan 2 si necesitáis descansar y las llaves de
+  Abarran (entrar en su despacho no cuesta pistas). Un investigador sin Roles anotados los elige.
+- **Lugares** (guía p. 26, conexiones leídas de las cartas): el grupo restringido encima del
+  público. Pasillo de acceso (4 pistas por investigador para entrar; al revelarse, Abarran
+  desatado y Los elegidos de la fortuna), Oficina de seguridad, Sala de guardias, Despacho del
+  dueño (velo X; 2 pistas por investigador salvo con las llaves), Sala de contar, Puerta de la
+  cámara (4 tareas para entrar; moverse por palo, cambiando cartas hasta dos veces con el
+  plano) y Sala de reliquias (solo se revela desde la Puerta de la cámara; sus pistas incluyen
+  las del manantial). Anillo restringido: Pasillo → Oficina → Despacho → Puerta → Sala de
+  contar → Sala de guardias.
+- **El golpe**: las 8 tareas son notas del registro; cada una por encima de 4 da 1 de
+  experiencia, y con 5 y 6 se anotan Isamara y el Mazo de posibilidades.
+- **Planes**: Farol descubierto (Vagabundo dimensional y Plan al garete), Caos improbable (una
+  Desaprobación de la fortuna al azar) y Desplumados (→R3). **Actos**: El robo (al tomar el
+  manantial, Abarran va a la Sala de reliquias o cae el techo) y La salida (los Casino pierden
+  Indiferente y Errante y ganan Cazador; →R1 cuando el portador desiste).
+- **Motor**: nuevos ganchos genéricos `enemyDamageModifier`, `actionAllowed` y `afterAction`
+  (escenario) y `onAttack` (enemigo); `CompleteAction` lleva el tipo de acción.
+
+Simplificaciones de la parte II:
+
+- La Presa de La salida («quien controle el manantial») no se aplica: los Cazadores van al
+  investigador más cercano.
+- El Duplicado dimensional usa la imagen del Duplicador y la carta del mazo va directamente a
+  la pila de descartes; se descarta en cuanto deja de estar enfrentado (al evitar o al final
+  del turno).
+- El Carro de dinero se usa después de que un enemigo se enfrente (lo desenfrenta) en vez de
+  «cuando fuera a enfrentarse»; hasta el final de la ronda, los enemigos de su Lugar son
+  Indiferentes para todos.
+- Los pagos «como grupo» de pistas los puede hacer cualquier investigador.
+- El Vagabundo dimensional solo cuenta las acciones dentro de un mismo turno.
+- La Desaprobación de la fortuna «Implicación personal» guarda su horror en el escenario.
+- Las recompensas (Isamara, Cantante de baladas y Mazo de posibilidades) y la ficha de «mala
+  suerte» solo se anotan: en el escenario independiente no hay partida siguiente.
+- La introducción inglesa de la parte II es traducción propia de la guía española (la
+  referencia no la incluye).
+
+Narración de la parte II: introducción, Resoluciones 1–3, Reliquia conseguida (las dos
+versiones) y las cuatro caras de Desaprobación de la fortuna.

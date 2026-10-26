@@ -27,12 +27,15 @@ export const CODES = {
   theTake: '88007',
   theExit: '88008',
   casinoFloor: '88009',
+  casinoFloorBusy: '88009b',
   pokerTable: '88010',
   rouletteWheel: '88011',
   baccaratTable: '88012',
   slotMachines: '88013',
   highRollersTable: '88014',
+  highRollersTableBusy: '88014b',
   casinoLounge: '88015',
+  casinoLoungeBusy: '88015b',
   staffAccessHallway: '88016',
   securityOffice: '88017',
   guardRoom: '88018',
@@ -285,5 +288,258 @@ registerPlayerCards([
     traits: ['Ally', 'Casino', 'Discreet'],
     unique: true,
     story: true,
+  },
+])
+
+// ---------------------------------------------------------------------------
+// Parte II: noche ajetreada y grupo restringido (guía pp. 15 y 26)
+// ---------------------------------------------------------------------------
+
+export const PART_TWO_CODES = {
+  heist: '88023b',
+  packageDelivery: '88024b',
+  lightsOut: '88025',
+  unlikelyInjuries: '88026',
+  personalEntanglement: '88027',
+  isamaraCrew: '88032b',
+  fortunesShield: ['88046a', '88046b'],
+  fortunesDagger: ['88047a', '88047b'],
+  dimensionalShambler: '88048',
+  duplicators: ['88049a', '88049b'],
+  displacers: ['88050a', '88050b'],
+  hypnosis: ['88051a', '88051b', '88051c'],
+  grips: ['88052a', '88052b', '88052c'],
+  hungers: ['88053a', '88053b'],
+} as const
+
+/** Desaprobación de la fortuna: las tres cartas de Historia (se elige una al azar). */
+export const DISFAVOR = [
+  PART_TWO_CODES.lightsOut,
+  PART_TWO_CODES.unlikelyInjuries,
+  PART_TWO_CODES.personalEntanglement,
+]
+
+/** Lugares Restringido. */
+export const RESTRICTED: string[] = [
+  CODES.staffAccessHallway,
+  CODES.securityOffice,
+  CODES.guardRoom,
+  CODES.ownersOffice,
+  CODES.countingRoom,
+  CODES.vaultDoor,
+  CODES.relicRoom,
+]
+
+/** Equivalencias de la noche tranquila a la ajetreada en las conexiones. */
+const BUSY: Record<string, string> = {
+  [CODES.casinoFloor]: CODES.casinoFloorBusy,
+  [CODES.highRollersTable]: CODES.highRollersTableBusy,
+  [CODES.casinoLounge]: CODES.casinoLoungeBusy,
+}
+const busy = (id: string) => BUSY[id] ?? id
+
+/** Grupo público (noche ajetreada), debajo del grupo restringido. */
+export const BUSY_PUBLIC_LOCATIONS: LocationCard[] = PUBLIC_LOCATIONS.map((l) => ({
+  ...l,
+  id: busy(l.id),
+  position: [l.position![0], l.position![1] + 5] as [number, number],
+  connections: [
+    ...l.connections.map(busy),
+    ...(l.id === CODES.highRollersTable || l.id === CODES.casinoLounge
+      ? [CODES.staffAccessHallway]
+      : []),
+  ],
+  // Bar del casino (noche ajetreada): velo 4 y Victoria 1.
+  ...(l.id === CODES.casinoLounge ? { shroud: 4, victory: 1 } : {}),
+}))
+
+const restricted = (
+  id: string,
+  name: string,
+  shroud: number,
+  clues: number,
+  position: [number, number],
+  connections: string[],
+  extra: Partial<LocationCard> = {},
+): LocationCard => ({
+  ...place(id, name, shroud, clues, position, connections),
+  unrevealedName: name,
+  ...extra,
+})
+
+export const RESTRICTED_LOCATIONS: LocationCard[] = [
+  restricted(CODES.relicRoom, 'Relic Room', 4, 1, [1, 0], [CODES.vaultDoor], { victory: 1 }),
+  restricted(
+    CODES.vaultDoor,
+    'Vault Door',
+    3,
+    0,
+    [1, 1],
+    [CODES.countingRoom, CODES.ownersOffice, CODES.relicRoom],
+  ),
+  // El Despacho del dueño tiene velo X (la alarma más alta allí): base 0 más el modificador.
+  restricted(
+    CODES.ownersOffice,
+    "Owner's Office",
+    0,
+    3,
+    [0, 2],
+    [CODES.countingRoom, CODES.securityOffice, CODES.vaultDoor],
+    { victory: 1, enterCost: 2 },
+  ),
+  restricted(
+    CODES.countingRoom,
+    'Counting Room',
+    3,
+    1,
+    [2, 2],
+    [CODES.guardRoom, CODES.ownersOffice, CODES.vaultDoor],
+  ),
+  restricted(
+    CODES.securityOffice,
+    'Security Office',
+    4,
+    2,
+    [0, 3],
+    [CODES.ownersOffice, CODES.staffAccessHallway, CODES.guardRoom],
+    { victory: 1 },
+  ),
+  restricted(
+    CODES.guardRoom,
+    'Guard Room',
+    2,
+    2,
+    [2, 3],
+    [CODES.staffAccessHallway, CODES.countingRoom, CODES.securityOffice],
+  ),
+  restricted(
+    CODES.staffAccessHallway,
+    'Staff Access Hallway',
+    2,
+    0,
+    [1, 4],
+    [CODES.securityOffice, CODES.guardRoom, CODES.highRollersTableBusy, CODES.casinoLoungeBusy],
+    { enterCost: 4 },
+  ),
+]
+
+/** Rutas de Errante de la noche ajetreada, en el sentido de las agujas del reloj. */
+export const BUSY_PUBLIC_RING = PUBLIC_RING.map(busy)
+export const RESTRICTED_RING: string[] = [
+  CODES.staffAccessHallway,
+  CODES.securityOffice,
+  CODES.ownersOffice,
+  CODES.vaultDoor,
+  CODES.countingRoom,
+  CODES.guardRoom,
+]
+
+// ---------------------------------------------------------------------------
+// Parte II: enemigos y traiciones
+// ---------------------------------------------------------------------------
+
+/** Abarran desatado: Élite con salud por investigador. */
+export const abarranUnleashed: EnemyCard = enemy({
+  code: CODES.abarranUnleashed,
+  name: 'Abarran Arrigorriagakoa',
+  traits: ['Humanoid', 'Casino', 'Coterie', 'Elite'],
+  fight: 4,
+  health: 4,
+  healthPerInvestigator: true,
+  evade: 3,
+  damage: 2,
+  horror: 2,
+  keywords: [],
+  victory: 1,
+})
+
+const cultist = (code: string, name: string, fight: number, health: number, evade: number) =>
+  enemy({
+    code,
+    name,
+    traits: ['Humanoid', 'Casino', 'Cultist'],
+    fight,
+    health,
+    evade,
+    damage: 1,
+    horror: 1,
+    keywords: ['retaliate'],
+  })
+
+/** Los elegidos de la fortuna (4 cartas). */
+export const fortunesChosenSet = (): EnemyCard[] => [
+  ...PART_TWO_CODES.fortunesShield.map((c) => cultist(c, "Fortune's Shield", 2, 4, 3)),
+  ...PART_TWO_CODES.fortunesDagger.map((c) => cultist(c, "Fortune's Dagger", 4, 3, 2)),
+]
+
+const monster = (
+  code: string,
+  name: string,
+  stats: Pick<EnemyCard, 'fight' | 'health' | 'evade' | 'damage' | 'horror' | 'keywords'> &
+    Partial<Pick<EnemyCard, 'victory'>>,
+  elite = false,
+) =>
+  enemy({
+    code,
+    name,
+    traits: ['Monster', 'Extradimensional', ...(elite ? ['Elite'] : [])],
+    ...stats,
+  })
+
+export const dimensionalShambler = monster(
+  PART_TWO_CODES.dimensionalShambler,
+  'Dimensional Shambler',
+  { fight: 6, health: 5, evade: 2, damage: 2, horror: 2, keywords: ['hunter'], victory: 1 },
+  true,
+)
+
+/** Plan al garete sin el Vagabundo dimensional (12 cartas; él se aparta). */
+export const planInShamblesSet = (): (EnemyCard | TreacheryCard)[] => [
+  ...PART_TWO_CODES.duplicators.map((c) =>
+    monster(c, 'Dimensional Duplicator', {
+      fight: 3,
+      health: 3,
+      evade: 3,
+      damage: 1,
+      horror: 1,
+      keywords: ['hunter'],
+    }),
+  ),
+  ...PART_TWO_CODES.displacers.map((c) =>
+    monster(c, 'Dimensional Displacer', {
+      fight: 5,
+      health: 2,
+      evade: 3,
+      damage: 0,
+      horror: 2,
+      keywords: ['hunter', 'retaliate'],
+    }),
+  ),
+  ...PART_TWO_CODES.hypnosis.map((c) => scheme(c, 'Dimensional Hypnosis', ['Terror'])),
+  ...PART_TWO_CODES.grips.map((c) => scheme(c, 'Grip of the Beyond', ['Hazard'])),
+  ...PART_TWO_CODES.hungers.map((c) => scheme(c, "Hunter's Hunger", ['Hazard'], true)),
+]
+
+registerPlayerCards([
+  {
+    code: PART_TWO_CODES.isamaraCrew,
+    name: 'Isamara Ordoñez',
+    type: 'asset',
+    class: 'neutral',
+    traits: ['Ally', 'Casino', 'Crew'],
+    unique: true,
+    story: true,
+    slots: ['ally'],
+    health: 1,
+    sanity: 3,
+  },
+  {
+    code: CODES.cashCart,
+    name: 'Cash Cart',
+    type: 'asset',
+    class: 'neutral',
+    traits: ['Casino'],
+    story: true,
+    health: 3,
   },
 ])

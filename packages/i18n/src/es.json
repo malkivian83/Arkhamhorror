@@ -291,7 +291,14 @@
       "gaze": "Mirada sospechosa: elige una opción.",
       "elderThing": "¿Aumentas en 1 tu nivel de alarma para tener éxito automáticamente?",
       "stash": "Elige el Apoyo que escondes bajo la Zona de juego del casino.",
-      "plan": "El plan: elige una opción."
+      "plan": "El plan: elige una opción.",
+      "security": "¿Cuántas cartas de Encuentro descartas?",
+      "openRelicRoom": "¿Gastáis pistas para revelar la Sala de reliquias?",
+      "packageWho": "¿Quién busca en su mazo el paquete señuelo?",
+      "packageAsset": "Elige un Apoyo Aliado u Objeto para ponerlo bajo la Puerta de la cámara.",
+      "hunger": "Hambre de cazador: elige una opción.",
+      "restorePower": "¿A qué zona devuelves la luz?",
+      "pushCart": "¿Adónde mueves el Carro de dinero?"
     }
   },
   "action": {
@@ -586,7 +593,15 @@
       "autoSucceed": "Aumentar en 1 tu alarma y tener éxito",
       "stash": "Esconder {card}",
       "planCalm": "Reducir en 1 el nivel de alarma de cada investigador",
-      "practice": "{card} ({name}) pasa a Experimentado"
+      "practice": "{card} ({name}) pasa a Experimentado",
+      "checkN": "Comprobar {n}",
+      "openRelicRoom": "Gastar {amount} pistas y revelar la Sala de reliquias",
+      "packageAsset": "{card}",
+      "discardAlly": "Descartar {card} (los demás reciben 1 horror)",
+      "restore": {
+        "public": "Zona principal (Público)",
+        "restricted": "Zona de personal (Restringido)"
+      }
     }
   },
   "phase": {
@@ -901,7 +916,29 @@
       "uniform": "Dejar inconsciente al guardia (prueba de combate 3)",
       "face": "El rostro: negociar con {enemy}",
       "muscle": "El músculo: reduce tu nivel de alarma en {amount}",
-      "thief": "El ladrón: invertir el sentido de {enemy}"
+      "thief": "El ladrón: invertir el sentido de {enemy}",
+      "medallion": "Apuestas altas: gasta 4 recursos y comprueba 5 iconos",
+      "delivery": "Preparar una entrega a la cámara (gasta 2 recursos)",
+      "openVent": "Abrir el conducto hacia la Sala de guardias",
+      "security": "Revisar la vigilancia",
+      "disguise": "Hacerse pasar por guardia",
+      "sigil": "Coger el símbolo de Abarran",
+      "schematic": "Comprar un plano ({amount} recursos en grupo)",
+      "countingRoom": "Sala de contar: gana 2 recursos",
+      "vaultMove": "Puerta de la cámara: moverse comprobando un icono",
+      "vaultRelic": "Romper el sello de la cámara (prueba de voluntad o agilidad 4)",
+      "takeWellspring": "Tomar el control de El manantial de fortuna",
+      "ignoreInjury": {
+        "damage": "Recibe 1 daño: ignora tu lesión este turno",
+        "horror": "Recibe 1 horror: ignora tu lesión este turno"
+      },
+      "restorePower": "Devolver la luz (1 pista por investigador)",
+      "rescue": "Rescatar a tu conocido (1 pista por investigador en grupo)",
+      "packageTake": "Coger {card} de debajo de la Puerta de la cámara",
+      "recruitIsamara": "Negociar: tomar el control de Isamara",
+      "mesmerize": "Isamara canta: evita a todos los Casino de aquí",
+      "pushCart": "Mover el Carro de dinero",
+      "hideInCart": "Esconderse en el Carro de dinero (1 daño al carro)"
     }
   },
   "log": {
@@ -1014,7 +1051,8 @@
       "checked": "Iconos de juego comprobados: {icons}",
       "alarm": "{name}: nivel de alarma {level}",
       "won": "¡Premio! {amount} recursos.",
-      "lost": "Gana la banca."
+      "lost": "Gana la banca.",
+      "wellspring": "{name} toma El manantial de fortuna."
     }
   },
   "table": {
@@ -1295,7 +1333,7 @@
       "the-midwinter-gala": "Una noche de lujo y secretos. Acepta la invitación y descubre qué se esconde tras las máscaras de la gala.",
       "murder-at-the-excelsior-hotel": "Un asesinato y un hotel lleno de secretos. Investiga lo ocurrido en el Excelsior y descubre la verdad antes de que sea demasiado tarde.",
       "the-path-to-carcosa": "El Rey de Amarillo llega a Arkham. Ocho escenarios entre Dudas y Convicciones. En desarrollo: de momento se pueden jugar los escenarios I a III.",
-      "fortune-and-folly": "Un casino de Montecarlo manipula la propia suerte. Vigila el local en la parte I y da el golpe en la parte II. En desarrollo: de momento se puede jugar la parte I."
+      "fortune-and-folly": "Un casino de Montecarlo manipula la propia suerte. Vigila el local en la parte I y da el golpe en la parte II."
     },
     "continueTitle": "Continuar donde lo dejaste",
     "chooseStory": "Elige la historia",
@@ -1491,7 +1529,18 @@
       "fofRole88030": "Rol: El ladrón",
       "fofRole88030b": "Rol: El ladrón (Experimentado)",
       "fofRole88031": "Rol: El estafador",
-      "fofRole88031b": "Rol: El estafador (Experimentado)"
+      "fofRole88031b": "Rol: El estafador (Experimentado)",
+      "fofWonACultistMedallion": "Los investigadores ganaron un medallón sectario",
+      "fofObservedTheStaff": "Los investigadores observaron al personal",
+      "fofFoundAbarransSigil": "Los investigadores encontraron el símbolo de Abarran",
+      "fofObtainedASchematic": "Los investigadores consiguieron un plano",
+      "fofImpersonatedAGuard": "Los investigadores se hicieron pasar por guardias",
+      "fofStayedOutOfSight": "Los investigadores pasaron desapercibidos",
+      "fofDeliveredADecoyPackage": "Los investigadores entregaron un paquete señuelo",
+      "fofIsamaraMesmerized": "Isamara hipnotizó a los guardias con su canción",
+      "fofBadLuck": "Los elegidos de la fortuna han atado la mala suerte a los investigadores",
+      "fofEarnedIsamara": "Los investigadores han conseguido a Isamara Ordoñez (Cantante de baladas)",
+      "fofEarnedDeckOfPossibilities": "Los investigadores han conseguido el Mazo de posibilidades"
     },
     "scenario": {
       "smokeAndMirrors": "el Escenario II: Smoke and Mirrors",
@@ -2053,7 +2102,35 @@
       "plan1": "Con la vigilancia completada, planeas el golpe para la ajetreada noche del sábado: entrar por las zonas públicas, colarte en las restringidas y abrir la cámara acorazada, protegida con acero, magia y vigilancia constante. Queda poco tiempo para descansar.",
       "raiseUnresigned": "Cada investigador que no desistió aumenta en 2 su nivel de alarma.",
       "noDeckChanges": "No se puede gastar experiencia ni modificar los mazos entre la parte I y la parte II.",
-      "planChoices": "Por cada pista por investigador en La vigilancia, el grupo elige reducir en 1 el nivel de alarma de cada investigador o pasar un Rol a Experimentado ({n} elecciones)."
+      "planChoices": "Por cada pista por investigador en La vigilancia, el grupo elige reducir en 1 el nivel de alarma de cada investigador o pasar un Rol a Experimentado ({n} elecciones).",
+      "part2Intro": "Antes del golpe, Isamara repasa el plano del casino: el jefe de sala apuesta su medallón al póquer, Abarran guarda un símbolo que da acceso al poder del manantial, un contable vende planos de los conductos, los guardias tienen su sala al fondo, la vigilancia puede volverse contra el personal, un carro de dinero sirve de escondite, la cámara guarda objetos de clientes importantes y el conducto que encontraste puede volver a usarse.",
+      "part2Resolution1": "Con el manantial en vuestro poder, Isamara sonríe por primera vez de verdad. Abandonáis Montecarlo de inmediato, antes de que Abarran y sus elegidos vengan a por vosotros.",
+      "part2Resolution2": "Escapas con vida, pero sin el manantial. El casino no vuelve a abrir y Abarran desaparece con la reliquia, protegido por alguien poderoso.",
+      "part2Resolution3": "Despiertas en un casino vacío: no queda nadie ni rastro del manantial. El casino cierra para siempre y Abarran desaparece.",
+      "part2NoResolution": "Todos los investigadores han sido derrotados. Pasa a la Resolución 3.",
+      "relicAcquired": "Abarran aparece en la puerta, temblando de ira: ya no finge buenos modales. Se mueve a la Sala de reliquias.",
+      "relicFallen": "Abarran, casi derrotado, acciona un mecanismo antes de desplomarse y el techo de acero empieza a caer. Cada investigador prueba [agility] (3); quien falle recibe 2 daños.",
+      "disfavor": "La reliquia trae desgracias a quienes no favorece: en plena noche del golpe, todo se pone patas arriba.",
+      "lightsOut": "Se va la luz en todo el casino: cada Lugar tiene +1 a velo, y activar sus habilidades cuesta una acción más o 1 horror. En la Oficina de seguridad se puede devolver la luz a la zona pública o a la de personal gastando 1 pista por investigador.",
+      "unlikelyInjuries": "Una cadena de accidentes improbables: cada investigador comprueba 1 icono y sufre una lesión según el palo (♥ un movimiento, ♦ una investigación, ♣ un combate, ♠ una activación por turno). [fast] 1 daño o 1 horror para ignorarla ese turno.",
+      "personalEntanglement": "Alguien del pasado del jefe trabaja en el casino y Abarran lo sabe. En el Despacho del dueño, 1 pista por investigador en grupo lo rescata; si acumula 6 horror, el jefe sufre 1 trauma mental y todos reciben 2 horror directo.",
+      "bluffCalled": "El Vagabundo dimensional aparece en la Ruleta y Plan al garete entra en el mazo de Encuentros. Cada investigador aumenta en 1 su nivel de alarma.",
+      "setup2": "Entran en juego el grupo restringido (sin revelar) y el grupo público con la noche ajetreada. Cada investigador empieza en la Zona de juego del casino con su nivel de alarma, sus Roles y sus cartas escondidas anotadas. Un Guardia del casino aparece en la Mesa de apuestas altas y una Patrulla de seguridad en la Zona de juego. Isamara (Banda) está en el Bar si la convencisteis; el Carro de dinero, en la Mesa de apuestas altas si dejasteis limpio el casino.",
+      "badLuckToken": "Los elegidos de la fortuna os han atado la mala suerte: en una campaña, cambiad una ficha numérica de la bolsa del caos por otra de valor 2 menos.",
+      "tasksDone": "Tareas de El golpe completadas: {n}. Cada tarea por encima de 4 da 1 de experiencia adicional; con 5, Isamara (si sigue en juego), y con 6, el Mazo de posibilidades.",
+      "part2IntroTitle": "Fortuna e insensatez, parte II",
+      "part2Resolution1Title": "Resolución 1",
+      "part2Resolution2Title": "Resolución 2",
+      "part2Resolution3Title": "Resolución 3",
+      "part2NoResolutionTitle": "Sin resolución",
+      "relicAcquiredTitle": "Reliquia conseguida",
+      "relicFallenTitle": "Reliquia conseguida",
+      "disfavorTitle": "Desaprobación de la fortuna",
+      "lightsOutTitle": "¡Luces fuera!",
+      "unlikelyInjuriesTitle": "Lesiones improbables",
+      "personalEntanglementTitle": "Implicación personal",
+      "bluffCalledTitle": "Farol descubierto",
+      "setup2Title": "Preparación de la parte II"
     }
   },
   "playmat": {
@@ -2270,7 +2347,8 @@
     "releasedADangerousPatient": "Liberasteis a un paciente peligroso.",
     "recalledTheWayOut": "Recordasteis la salida.",
     "distractedTheGuards": "Distrajisteis a los guardias.",
-    "tookTheKeysByForce": "Os hicisteis con las llaves por la fuerza."
+    "tookTheKeysByForce": "Os hicisteis con las llaves por la fuerza.",
+    "fofVentOpen": "El conducto de ventilación está abierto"
   },
   "keywords": {
     "title": "Palabras clave y conceptos",
@@ -2381,6 +2459,10 @@
     "fofWellspring": {
       "title": "El manantial de fortuna",
       "body": "En este escenario el manantial solo es un contador de pistas y un objetivo; su texto se considera en blanco. Cada habilidad de un Lugar Juego que actives le quita 1 pista (2 si ganaste recursos)."
+    },
+    "fofHeist": {
+      "title": "El golpe",
+      "body": "La carta de Historia El golpe tiene 8 tareas. No se puede entrar en la Puerta de la cámara sin completar al menos 4. En la Sala de reliquias no se entra hasta revelarla desde la Puerta de la cámara; tomar allí el manantial avanza el acto, y quien lo lleve debe desistir para ganar."
     }
   },
   "phaseStep": {

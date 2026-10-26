@@ -17,6 +17,16 @@ const keys = {
   'story.fof.resolution1': 'fortune-and-folly-part1-resolution1.mp3',
   'story.fof.resolution2': 'fortune-and-folly-part1-resolution2.mp3',
   'story.fof.plan1': 'fortune-and-folly-the-plan1.mp3',
+  'story.fof.part2Intro': 'fortune-and-folly-part2-intro.mp3',
+  'story.fof.part2Resolution1': 'fortune-and-folly-part2-resolution1.mp3',
+  'story.fof.part2Resolution2': 'fortune-and-folly-part2-resolution2.mp3',
+  'story.fof.part2Resolution3': 'fortune-and-folly-part2-resolution3.mp3',
+  'story.fof.relicAcquired': 'fortune-and-folly-relic-acquired.mp3',
+  'story.fof.relicFallen': 'fortune-and-folly-relic-fallen.mp3',
+  'story.fof.disfavor': 'fortune-and-folly-disfavor.mp3',
+  'story.fof.lightsOut': 'fortune-and-folly-lights-out.mp3',
+  'story.fof.unlikelyInjuries': 'fortune-and-folly-unlikely-injuries.mp3',
+  'story.fof.personalEntanglement': 'fortune-and-folly-personal-entanglement.mp3',
 }
 const settings = {
   model_id: 'eleven_multilingual_v2',

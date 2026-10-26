@@ -744,7 +744,14 @@ export type Message =
   | { type: 'InvestigatorFastWindow' }
   | { type: 'EndTurn'; investigator: InvestigatorId }
   | { type: 'TakeAction'; investigator: InvestigatorId; action: Action }
-  | { type: 'CompleteAction'; investigator: InvestigatorId; phase: Phase; round: number }
+  | {
+      type: 'CompleteAction'
+      investigator: InvestigatorId
+      phase: Phase
+      round: number
+      /** Tipo de acción completada (para `afterAction` del escenario). */
+      kind?: Action['kind'] | 'activate'
+    }
   | { type: 'PerformAction'; investigator: InvestigatorId; action: Action; entryPaid?: boolean }
   /** `basic`: la acción de recurso o el mantenimiento (no es el efecto de una carta). */
   | { type: 'GainResources'; investigator: InvestigatorId; amount: number; basic?: boolean }

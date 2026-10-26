@@ -2,7 +2,9 @@
 import { registerCampaign } from '../campaign-definition'
 import { CHAOS_BAGS, FORTUNE_AND_FOLLY, PART_ONE, PART_TWO } from './cards'
 import './encounter'
+import './encounter-two'
 import { fortuneAndFollyPartOne } from './part-one'
+import { fortuneAndFollyPartTwo } from './part-two'
 import './roles'
 
 registerCampaign({
@@ -23,7 +25,11 @@ registerCampaign({
         'fofWellspring',
       ],
     },
-    // La parte II (el golpe) llega en la siguiente entrega.
-    { id: PART_TWO },
+    {
+      id: PART_TWO,
+      build: ({ difficulty, seed, investigators, log }) =>
+        fortuneAndFollyPartTwo({ difficulty, seed, players: investigators.length, log }),
+      keywords: ['fofAlarm', 'fofPatrol', 'fofGameIcons', 'fofMulligan', 'fofRoles', 'fofHeist'],
+    },
   ],
 })
