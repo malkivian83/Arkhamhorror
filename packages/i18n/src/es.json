@@ -601,6 +601,12 @@
       "restore": {
         "public": "Zona principal (Público)",
         "restricted": "Zona de personal (Restringido)"
+      },
+      "roleText": {
+        "88028": "{card} (acción): negociar con un Casino de tu Lugar, prueba de voluntad o intelecto (3). Si tienes éxito, reduce en 1 la alarma de cualquier investigador.",
+        "88029": "{card}: tras derrotar a un enemigo Casino, reduce tu alarma en 1 (2 si no hay otros Casino en tu Lugar ni en uno conectado).",
+        "88030": "{card}: al empezar la fase de Enemigos, invierte el sentido del Errante de un Casino de un Lugar conectado.",
+        "88031": "{card}: al comprobar iconos en un Lugar Juego, sube tu alarma 1 para cambiar un icono, o reduce tu alarma en 1."
       }
     }
   },

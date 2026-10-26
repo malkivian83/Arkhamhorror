@@ -601,6 +601,12 @@
       "restore": {
         "public": "Main hall (Public)",
         "restricted": "Staff area (Restricted)"
+      },
+      "roleText": {
+        "88028": "{card} (action): parley with a Casino enemy at your location, test willpower or intellect (3). If you succeed, reduce any investigator's alarm level by 1.",
+        "88029": "{card}: after you defeat a Casino enemy, reduce your alarm level by 1 (2 if no other Casino enemies are at your location or a connecting one).",
+        "88030": "{card}: at the start of the enemy phase, reverse the patrol direction of a Casino enemy at a connecting location.",
+        "88031": "{card}: when you check game icons at a Game location, raise your alarm by 1 to change an icon, or reduce your alarm by 1."
       }
     }
   },
