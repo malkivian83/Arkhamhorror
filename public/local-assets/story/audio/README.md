@@ -1,6 +1,6 @@
 # Narraciones de historia
 
-Lecturas en español de España con ElevenLabs, incorporadas el 20 de octubre de 2026. Los Hermanos de la Ceniza usa «Gabo - Deep, Evocative and Resonant» y La gala del ecuador del invierno usa «Carmelo - Mature, Mysterious and Clear». Fortuna e insensatez usa «Juanjo Relatos» (`scripts/generate-fortune-audio.mjs`, evidencia en `docs-proyecto/evidencias/fortuna-narracion.json`).
+Lecturas en español de España con ElevenLabs, incorporadas el 20 de octubre de 2026. Los Hermanos de la Ceniza usa «Gabo - Deep, Evocative and Resonant» y La gala del ecuador del invierno usa «Carmelo - Mature, Mysterious and Clear». Fortuna e insensatez usa «Carmelo - Mysterious & Deep» (`scripts/generate-fortune-audio.mjs`, evidencia en `docs-proyecto/evidencias/fortuna-narracion.json`).
 La mesa las ofrece desde `apps/web/src/game/narration.ts`, por clave del texto.
 
 Las resoluciones y los códex añadidos incluyen solo narración y diálogos: se omiten las instrucciones de juego, las recompensas, los encabezados y las condiciones del registro de campaña. Las preparaciones no se narran.
