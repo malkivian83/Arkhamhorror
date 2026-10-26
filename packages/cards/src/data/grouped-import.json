@@ -1,0 +1,113 @@
+[
+  {
+    "code": "60318",
+    "name": "Daredevil",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Fortune", "Practiced"],
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "06240",
+    "name": "Daredevil",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Fortune", "Practiced"],
+    "xp": 2,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "07024",
+    "name": "Plan of Action",
+    "type": "skill",
+    "class": "seeker",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "09031",
+    "name": "Helping Hand",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "60582",
+    "name": "Timely Intervention",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Fortune"],
+    "xp": 3,
+    "icons": { "wild": 3 },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "50002",
+    "name": "Dynamite Blast",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 4,
+    "xp": 2,
+    "icons": { "willpower": 1, "combat": 1 },
+    "slots": []
+  },
+  {
+    "code": "60129",
+    "name": "Dynamite Blast",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 4,
+    "xp": 3,
+    "icons": { "willpower": 2, "combat": 2 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "03307",
+    "name": "No Stone Unturned",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 2,
+    "xp": 5,
+    "icons": { "intellect": 1, "wild": 1 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "02019",
+    "name": "Taunt",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 1,
+    "xp": 2,
+    "icons": { "willpower": 1, "combat": 1, "agility": 1 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60130",
+    "name": "Taunt",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 1,
+    "xp": 3,
+    "icons": { "willpower": 2, "combat": 1, "agility": 1 },
+    "slots": [],
+    "fast": true
+  }
+]

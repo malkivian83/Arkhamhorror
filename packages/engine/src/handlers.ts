@@ -2644,6 +2644,56 @@ export function handle(state: GameState, message: Message): GameState {
       })
     }
 
+    case 'RevealUntilCommittableSkill': {
+      const i = getInvestigator(state, message.investigator)
+      if (!state.skillTest || i.eliminated || state.skillTest.commitRule) return state
+      const index = i.deck.findIndex((code) => {
+        const d = playerCardDef(code)
+        return (
+          d?.type === 'skill' &&
+          (d.classes ?? [d.class]).includes(message.faction) &&
+          canCommitFrom(state, i.id, code, 'hand', true)
+        )
+      })
+      const found = index >= 0 ? i.deck[index] : undefined
+      const others = index >= 0 ? i.deck.slice(0, index) : i.deck
+      const returned = message.discardOthers
+        ? others.filter((code) => playerCardDef(code)?.weakness)
+        : others
+      const discarded = message.discardOthers
+        ? others.filter((code) => !playerCardDef(code)?.weakness)
+        : []
+      const next = updateInvestigator(state, i.id, (current) => ({
+        ...current,
+        deck: index >= 0 ? i.deck.slice(index) : [],
+        discard: [...current.discard, ...discarded],
+      }))
+      return push(
+        next,
+        ...(found
+          ? [
+              {
+                type: 'CommitCard' as const,
+                investigator: i.id,
+                code: found,
+                from: 'deck' as const,
+                byEffect: true,
+              },
+            ]
+          : []),
+        ...(returned.length
+          ? [{ type: 'ShuffleCardsIntoDeck' as const, investigator: i.id, cards: returned }]
+          : []),
+      )
+    }
+
+    case 'ShuffleCardsIntoDeck': {
+      const i = getInvestigator(state, message.investigator)
+      if (i.eliminated || message.cards.length === 0) return state
+      const [deck, rng] = shuffle([...i.deck, ...message.cards], state.rng)
+      return updateInvestigator({ ...state, rng }, i.id, (current) => ({ ...current, deck }))
+    }
+
     case 'DiscardTopAndCommit': {
       const investigator = getInvestigator(state, message.investigator)
       const [code, ...deck] = investigator.deck
@@ -2661,14 +2711,16 @@ export function handle(state: GameState, message: Message): GameState {
     case 'CommitCard': {
       const test = state.skillTest
       const investigator = getInvestigator(state, message.investigator)
-      const zone = message.from === 'discard' ? 'discard' : 'hand'
+      const zone = message.from ?? 'hand'
+      const iconZone = zone === 'deck' ? 'hand' : zone
       const index =
         zone === 'discard'
           ? investigator.discard.lastIndexOf(message.code)
-          : investigator.hand.indexOf(message.code)
-      if (!test || index < 0 || !canCommit(state, test, message.code, investigator.id, zone))
+          : investigator[zone].indexOf(message.code)
+      if (!test || index < 0 || !canCommit(state, test, message.code, investigator.id, iconZone))
         return state
-      if (!canCommitFrom(state, investigator.id, message.code, zone)) return state
+      if (!canCommitFrom(state, investigator.id, message.code, iconZone, message.byEffect))
+        return state
       return push(
         {
           ...updateInvestigator(state, investigator.id, (i) => ({
@@ -5280,7 +5332,7 @@ export function handle(state: GameState, message: Message): GameState {
       const matches = [...new Set(searched)].filter((code) => {
         const def = playerCardDef(code)
         if (message.cardType && def?.type !== message.cardType) return false
-        if (message.anyCard) return !!def && !def.weakness
+        if (message.anyCard) return !!def && (!def.weakness || !!message.includeWeaknesses)
         if (!def || (!message.anyType && def.type !== 'asset')) return false
         if (!def.traits.some((t) => message.traits.includes(t))) return false
         if (message.to === 'play') {
@@ -5344,10 +5396,22 @@ export function handle(state: GameState, message: Message): GameState {
       }))
       if (message.to === 'hand')
         return message.drawFound
-          ? push(taken, {
-              type: 'Forced',
-              trigger: { type: 'afterDrawCard', investigator: investigator.id, card: message.code },
-            })
+          ? push(
+              taken,
+              {
+                type: 'Forced',
+                trigger: {
+                  type: 'afterDrawCard',
+                  investigator: investigator.id,
+                  card: message.code,
+                },
+              },
+              {
+                type: 'ResolveDrawnRevelations',
+                investigator: investigator.id,
+                cards: [message.code],
+              },
+            )
           : taken
       return push(taken, {
         type: 'PlayCard',
@@ -5947,6 +6011,7 @@ export function canCommitFrom(
   id: string,
   code: string,
   zone: 'hand' | 'discard' = 'hand',
+  byEffect = false,
 ): boolean {
   const test = state.skillTest
   const investigator = getInvestigator(state, id)
@@ -5959,7 +6024,7 @@ export function canCommitFrom(
       investigator.location !== null &&
       (investigator.location === getInvestigator(state, test.investigator).location ||
         playerCardBehavior(code)?.commitFromLocation?.(state, test, id) === true) &&
-      !test.committed.some((c) => c.by === id))
+      (byEffect || !test.committed.some((c) => c.by === id)))
   )
 }
 
@@ -6768,10 +6833,22 @@ function commitIcons(
   by: string,
   zone: 'hand' | 'discard' | 'committed' = 'hand',
 ): number {
-  return Math.max(
-    0,
-    matchingIcons(playerCardDef(code)?.icons, test.skill) +
-      matchingIcons(playerCardBehavior(code)?.additionalIcons?.(state, test, by, zone), test.skill),
+  const doublers =
+    zone === 'committed'
+      ? test.committed.filter(
+          (c) => c.code !== code && playerCardBehavior(c.code)?.doublesOtherCommittedIcons,
+        ).length
+      : 0
+  return (
+    Math.max(
+      0,
+      matchingIcons(playerCardDef(code)?.icons, test.skill) +
+        matchingIcons(
+          playerCardBehavior(code)?.additionalIcons?.(state, test, by, zone),
+          test.skill,
+        ),
+    ) *
+    2 ** doublers
   )
 }
 
