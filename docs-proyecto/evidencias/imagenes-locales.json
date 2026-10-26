@@ -20105,6 +20105,62 @@
       "source": "https://assets.arkhamhorror.app/img/arkham/cards/88053b.avif",
       "bytes": 120197,
       "sha256": "e4b5c82016a1d9674be80e91127d0f1461143f4bd5b30101fe3881d1a65f17b9"
+    },
+    {
+      "art": "88010b",
+      "language": "en",
+      "path": "/local-assets/cards/en/88010b.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/88010b.avif",
+      "bytes": 117166,
+      "sha256": "b523f72deea3b1946e28a5150e2db33f4e6f0c52b9b55041c6436e8f0ee55ca0"
+    },
+    {
+      "art": "88011b",
+      "language": "en",
+      "path": "/local-assets/cards/en/88011b.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/88011b.avif",
+      "bytes": 105551,
+      "sha256": "98ee1bb5705bb1ec459a709a04b2f8eb248ca7e6c470a3510b10192a776a0f52"
+    },
+    {
+      "art": "88012b",
+      "language": "en",
+      "path": "/local-assets/cards/en/88012b.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/88012b.avif",
+      "bytes": 125232,
+      "sha256": "bdb3e0be206bd70d7b83cefbaa3bdd6326ffba4cea77a46a077959b73dd0cd52"
+    },
+    {
+      "art": "88013b",
+      "language": "en",
+      "path": "/local-assets/cards/en/88013b.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/88013b.avif",
+      "bytes": 127488,
+      "sha256": "7982119800ad4f72b7a7109944fc47670cfbf74793867231d99024a28a36f6ea"
+    },
+    {
+      "art": "88017b",
+      "language": "en",
+      "path": "/local-assets/cards/en/88017b.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/88017b.avif",
+      "bytes": 86530,
+      "sha256": "adc417bcc9a01a387b994044049967c6fde89bb064096d3f8646851c9165296a"
+    },
+    {
+      "art": "88018b",
+      "language": "en",
+      "path": "/local-assets/cards/en/88018b.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/88018b.avif",
+      "bytes": 75788,
+      "sha256": "23f0e37f055909e95ca5d2bb490701c9eb175336a90a97b36198b94d44efb6fe"
+    },
+    {
+      "art": "88020b",
+      "language": "en",
+      "path": "/local-assets/cards/en/88020b.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/88020b.avif",
+      "bytes": 81173,
+      "sha256": "a605b6e58e365672402281e429792e33ba9feb1b7f298c7c3da0daf68dfcb1bd"
     }
   ],
   "missing": [

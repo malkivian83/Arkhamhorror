@@ -158,4 +158,5 @@ Simplificaciones de la parte II:
 Narración de la parte II: introducción, Resoluciones 1–3, Reliquia conseguida (las dos
 versiones) y las cuatro caras de Desaprobación de la fortuna.
 
-Los Lugares de una cara (Mesas, Ruleta, Tragaperras, Oficina de seguridad, Sala de guardias y Sala de contar) no tienen escaneo sin revelar: la mesa muestra su anverso.
+Las caras sin revelar de los Lugares de una cara (88010b–88013b, 88017b, 88018b y 88020b) se
+importaron después del CDN del proyecto de referencia.

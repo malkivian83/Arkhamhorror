@@ -105,14 +105,7 @@ const STORY_BACKS: Record<string, string> = DIM_CARCOSA_STORIES
 const A_SIDES = new Set(['03076a', '03182a', '03221a', '03321a', '88034a'])
 
 /** Spanish image, then English image, both from our local asset inventory. */
-/**
- * Lugares de Fortuna e insensatez sin escaneo de su cara sin revelar: se muestra el anverso
- * (la fuente solo tiene la cara revelada).
- */
-const FRONT_AS_BACK = new Set(['88010', '88011', '88012', '88013', '88017', '88018', '88020'])
-
 export function cardImages(code: string, back = false, locale = scanLocale.value): string[] {
-  if (back && FRONT_AS_BACK.has(code)) return cardImages(code, false, locale)
   if (back && STORY_BACKS[code]) return cardImages(STORY_BACKS[code], false, locale)
   if (A_SIDES.has(code)) {
     const art = back ? code.replace(/a$/, 'b') : code
