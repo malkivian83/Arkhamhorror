@@ -270,7 +270,7 @@ export function commonSpecific(
           kind: 'chooseOne',
           prompt: 'prompt.fof.role',
           choices: ROLES.filter((r) => !taken.includes(r)).map((code) => ({
-            label: 'choice.fof.role',
+            label: `choice.fof.roleText.${code}`,
             params: { card: code },
             then: [
               { type: 'PutAssetIntoPlay', investigator: who.id, code },
