@@ -15,7 +15,7 @@
   "files": [
     {
       "key": "story.fof.intro1",
-      "file": "fortune-and-folly-intro1.mp3",
+      "file": "fortune-and-folly-intro1-carmelo.mp3",
       "characters": 1168,
       "inputHash": "0b06ae2a994d0dd64078501e6a00db54759a731e63f85dad2675f5c07f80cec5",
       "sha256": "938c1b105d65a961d94c7cc90f33d05e450c3063b138cd0ea73d473c86ebb887",
@@ -23,7 +23,7 @@
     },
     {
       "key": "story.fof.intro3",
-      "file": "fortune-and-folly-intro3.mp3",
+      "file": "fortune-and-folly-intro3-carmelo.mp3",
       "characters": 1033,
       "inputHash": "a632c2537031d84202d66a700a3bdb23acf552e858f5cbbc9793d6d4479c78b4",
       "sha256": "c93f80920a23c2854a825022d1ec51fb522612062cdca9db83eab179b4939cc6",
@@ -31,7 +31,7 @@
     },
     {
       "key": "story.fof.intro4",
-      "file": "fortune-and-folly-intro4.mp3",
+      "file": "fortune-and-folly-intro4-carmelo.mp3",
       "characters": 2981,
       "inputHash": "9d392541768f5331c5fde13bf79fd21b0a58be378b1c160d559c5d2fa33ebdb7",
       "sha256": "c591020517083bf48de1df61a4df269201cdc28dfc2c6308118c6db229ab36ba",
@@ -39,7 +39,7 @@
     },
     {
       "key": "story.fof.intro5",
-      "file": "fortune-and-folly-intro5.mp3",
+      "file": "fortune-and-folly-intro5-carmelo.mp3",
       "characters": 1822,
       "inputHash": "7210add77561c4ebec5d597d5c0a348b7c1dd036b8e093b003e74eb54afaac30",
       "sha256": "9cce3253047657df94dd70ce00b6d4024b3d0fd3f59240d1ae75d158c0b3b486",
@@ -47,7 +47,7 @@
     },
     {
       "key": "story.fof.resolution1",
-      "file": "fortune-and-folly-part1-resolution1.mp3",
+      "file": "fortune-and-folly-part1-resolution1-carmelo.mp3",
       "characters": 227,
       "inputHash": "8378b4a81c1d16813a42711210788bc4258787715d9b0c9c34f4b3b223fb4aa4",
       "sha256": "8d9be53db12a5a101037518daf83d6a66a376db2482e7a82c30d849915f19be1",
@@ -55,7 +55,7 @@
     },
     {
       "key": "story.fof.resolution2",
-      "file": "fortune-and-folly-part1-resolution2.mp3",
+      "file": "fortune-and-folly-part1-resolution2-carmelo.mp3",
       "characters": 243,
       "inputHash": "d9927d5a503cbd55d1c8a5f9cd6a0f436772f79d3aa6904ca11a9baa84ec19d0",
       "sha256": "4866cd55227a11ec576a144287f88f156633d50d58f83bbd04c3a56450208f65",
@@ -63,7 +63,7 @@
     },
     {
       "key": "story.fof.plan1",
-      "file": "fortune-and-folly-the-plan1.mp3",
+      "file": "fortune-and-folly-the-plan1-carmelo.mp3",
       "characters": 1281,
       "inputHash": "409d1c987470cdfab4fc292b43ab7c3fdf33f7e13d14eac88ba9f9e867af6f11",
       "sha256": "c2b3bb9ef0e417826fb4841d6741fbbf0ca685bd81c94636e95a7ad8ede7dfc1",
@@ -71,7 +71,7 @@
     },
     {
       "key": "story.fof.part2Intro",
-      "file": "fortune-and-folly-part2-intro.mp3",
+      "file": "fortune-and-folly-part2-intro-carmelo.mp3",
       "characters": 1752,
       "inputHash": "a54b30fd6077908980154883f30ae12db7ea3a4107c8b252032cf50760b60c9e",
       "sha256": "8b9388ca0bb4e8b98f60777c662c1fd802d67aa5a0be3bb2858ce9620d73513a",
@@ -79,7 +79,7 @@
     },
     {
       "key": "story.fof.part2Resolution1",
-      "file": "fortune-and-folly-part2-resolution1.mp3",
+      "file": "fortune-and-folly-part2-resolution1-carmelo.mp3",
       "characters": 1495,
       "inputHash": "37e7acaf15a03eafbaa42bfc6c82a9af0f265a1197a04985d9ebddf04585d8ab",
       "sha256": "4a216d193ff2951941f2fbee39f1bebbb3f2edf47684fdd68d267df54f01aef9",
@@ -87,7 +87,7 @@
     },
     {
       "key": "story.fof.part2Resolution2",
-      "file": "fortune-and-folly-part2-resolution2.mp3",
+      "file": "fortune-and-folly-part2-resolution2-carmelo.mp3",
       "characters": 1290,
       "inputHash": "8db68d0606ca935c674c0ee7fe0e8738550dd1b27875a62b83f5fb12a4078ad6",
       "sha256": "27248e76764f98ae3cc25f4e0f2719ce6947294b48cd51c6fd6c2e4b4afc9354",
@@ -95,7 +95,7 @@
     },
     {
       "key": "story.fof.part2Resolution3",
-      "file": "fortune-and-folly-part2-resolution3.mp3",
+      "file": "fortune-and-folly-part2-resolution3-carmelo.mp3",
       "characters": 761,
       "inputHash": "fafb2df18995cd9be65236f05b703ac2620e2cc4c3bb9f0e85178e63e2bef114",
       "sha256": "4cd56bd09b4de48471bd99590b34fcd457bb6e00801d5cd6ed66a1d0a36291a9",
@@ -103,7 +103,7 @@
     },
     {
       "key": "story.fof.relicAcquired",
-      "file": "fortune-and-folly-relic-acquired.mp3",
+      "file": "fortune-and-folly-relic-acquired-carmelo.mp3",
       "characters": 341,
       "inputHash": "f49779fbef095fffa88f460bf9fd31e4364895abca3ebfe041afc3ae28e5a4ea",
       "sha256": "d73d0ae195ded31829e84e217aa5e21ad537c3951ea99fdb55bde1e967149290",
@@ -111,7 +111,7 @@
     },
     {
       "key": "story.fof.relicFallen",
-      "file": "fortune-and-folly-relic-fallen.mp3",
+      "file": "fortune-and-folly-relic-fallen-carmelo.mp3",
       "characters": 365,
       "inputHash": "d94e25d4ba7573dd587c9fd89cd2fd7fa56fddd79cd31704d9f35b65a98a146f",
       "sha256": "36ee767c0c6be53f2c060a42d685dc788699a983a7743cbf528d1b42e026575d",
@@ -119,7 +119,7 @@
     },
     {
       "key": "story.fof.disfavor",
-      "file": "fortune-and-folly-disfavor.mp3",
+      "file": "fortune-and-folly-disfavor-carmelo.mp3",
       "characters": 354,
       "inputHash": "e5dc6ed1cc2beac398355759a1ed3af06c91062d586ad79f873a32acc6414294",
       "sha256": "3dd93b22e8fad25cf1b8338b336053f70f307a9aa4c72f2a942eb7a3ccfa04d8",
@@ -127,7 +127,7 @@
     },
     {
       "key": "story.fof.lightsOut",
-      "file": "fortune-and-folly-lights-out.mp3",
+      "file": "fortune-and-folly-lights-out-carmelo.mp3",
       "characters": 326,
       "inputHash": "2c07f71947d23b89ff9de2acc890c64bd5f52f3a2bd6fe4bf77bbdfa63135571",
       "sha256": "d653e6dbe0b0b74b134dc2c0d40304553358e2f563cb01d05f3cb4fb491691b2",
@@ -135,7 +135,7 @@
     },
     {
       "key": "story.fof.unlikelyInjuries",
-      "file": "fortune-and-folly-unlikely-injuries.mp3",
+      "file": "fortune-and-folly-unlikely-injuries-carmelo.mp3",
       "characters": 285,
       "inputHash": "e058cb39dfba72a87d28da2b48d591fce5cf9ec374b084cdaf628e289a561e1d",
       "sha256": "ebe340ab4c42dddb7c76d49e0c33ef19377351cc037d0a1280ca5c48e7bbb185",
@@ -143,7 +143,7 @@
     },
     {
       "key": "story.fof.personalEntanglement",
-      "file": "fortune-and-folly-personal-entanglement.mp3",
+      "file": "fortune-and-folly-personal-entanglement-carmelo.mp3",
       "characters": 228,
       "inputHash": "2795fc69cc9b46a77dffdf6854e327c6b42abd9a337cf93add55e5f7822e5686",
       "sha256": "74f9005fbd33b01a3405c4e152801dd8b2982acda33f605823420f03010db65c",
