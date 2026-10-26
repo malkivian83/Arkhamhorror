@@ -1,10 +1,10 @@
-// Narración ES de Fortuna e insensatez con Juanjo Relatos. --list es local; --generate consume ElevenLabs.
+// Narración ES de Fortuna e insensatez con Carmelo. --list es local; --generate consume ElevenLabs.
 // Reanudable por huella de texto, voz y ajustes, sin publicar credenciales.
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-const voiceId = 'DdKbXdRlBmj7Ty7N0FVr'
+const voiceId = '5egO01tkUjEzu7xSSE8M'
 const root = 'apps/web/public/local-assets/story'
 const output = join(root, 'audio/es')
 const evidencePath = 'docs-proyecto/evidencias/fortuna-narracion.json'
@@ -64,7 +64,7 @@ if (!process.argv.includes('--generate')) {
       ? { name: recorded.voiceName }
       : null
   if (!voice) throw new Error(`Consulta de voz: HTTP ${voiceResponse.status}`)
-  if (!/^Juanjo/i.test(voice.name)) throw new Error('La voz configurada no es Juanjo Relatos')
+  if (!/^Carmelo\b/i.test(voice.name)) throw new Error('La voz configurada no es Carmelo')
   mkdirSync(output, { recursive: true })
   const evidence = recorded ?? {
     voiceId,

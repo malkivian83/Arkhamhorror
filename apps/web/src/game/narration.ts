@@ -184,7 +184,7 @@ const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
   'story.excelsior.culpritObjective9': { es: 'excelsior-culprit-objective9.mp3' },
   'story.excelsior.culpritDoom10': { es: 'excelsior-culprit-doom10.mp3' },
   'story.excelsior.culpritObjective10': { es: 'excelsior-culprit-objective10.mp3' },
-  // Fortuna e insensatez, parte I: Juanjo Relatos.
+  // Fortuna e insensatez, parte I: Carmelo.
   'story.fof.intro1': { es: 'fortune-and-folly-intro1.mp3' },
   'story.fof.intro3': { es: 'fortune-and-folly-intro3.mp3' },
   'story.fof.intro4': { es: 'fortune-and-folly-intro4.mp3' },
@@ -192,7 +192,7 @@ const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
   'story.fof.resolution1': { es: 'fortune-and-folly-part1-resolution1.mp3' },
   'story.fof.resolution2': { es: 'fortune-and-folly-part1-resolution2.mp3' },
   'story.fof.plan1': { es: 'fortune-and-folly-the-plan1.mp3' },
-  // Fortuna e insensatez, parte II: Juanjo Relatos.
+  // Fortuna e insensatez, parte II: Carmelo.
   'story.fof.part2Intro': { es: 'fortune-and-folly-part2-intro.mp3' },
   'story.fof.part2Resolution1': { es: 'fortune-and-folly-part2-resolution1.mp3' },
   'story.fof.part2Resolution2': { es: 'fortune-and-folly-part2-resolution2.mp3' },

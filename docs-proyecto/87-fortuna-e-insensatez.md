@@ -3,7 +3,7 @@
 Historia secundaria (y escenario independiente) en dos partes: la vigilancia del casino
 _Défis de la Roulette_ (parte I) y el golpe (parte II), con un punto de control entre
 ambas. Guía ES: [`reglas/AHC71_Fortuna_e_insensatez_ES.pdf`](reglas/AHC71_Fortuna_e_insensatez_ES.pdf)
-(32 páginas). Narración: voz de ElevenLabs «Juanjo Relatos» (`DdKbXdRlBmj7Ty7N0FVr`).
+(32 páginas). Narración: voz de ElevenLabs «Carmelo».
 
 ## Estado actual
 
@@ -102,7 +102,8 @@ cada juego, cambiar cartas, El estafador, Crupier, alarma y Guardias, Indiferent
 
 `scripts/generate-fortune-audio.mjs` lee los textos oficiales en español
 (`apps/web/public/local-assets/story/es.json`, de la guía; el inglés, del proyecto de
-referencia) y los graba con «Juanjo Relatos» (`DdKbXdRlBmj7Ty7N0FVr`, comprobada por nombre).
+referencia) y los graba con Carmelo (`5egO01tkUjEzu7xSSE8M`, comprobada por nombre), que sustituye a la
+primera grabación con Juanjo Relatos.
 Parte I: Introducciones 1, 3, 4 y 5, Resoluciones 1 y 2 y El plan 1. Las instrucciones de
 juego no se narran. Evidencia: `evidencias/fortuna-narracion.json`. Los textos de i18n son
 resúmenes propios, como en las demás campañas.
@@ -156,3 +157,5 @@ Simplificaciones de la parte II:
 
 Narración de la parte II: introducción, Resoluciones 1–3, Reliquia conseguida (las dos
 versiones) y las cuatro caras de Desaprobación de la fortuna.
+
+Los Lugares de una cara (Mesas, Ruleta, Tragaperras, Oficina de seguridad, Sala de guardias y Sala de contar) no tienen escaneo sin revelar: la mesa muestra su anverso.
