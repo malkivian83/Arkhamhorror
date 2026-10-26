@@ -12,7 +12,7 @@ import {
 } from '@lcg/engine'
 import { choose, during, labels, testInvestigator, throughSetup } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
-import { finishScenario, newCampaign, startScenario } from '../campaign'
+import { finishScenario, newCampaign, purchaseOptions, startScenario } from '../campaign'
 import '../index'
 import { CODES, fortunesChosenSet, PART_TWO, PART_TWO_CODES, planInShamblesSet } from './cards'
 import { alarmOf } from './check'
@@ -54,6 +54,7 @@ function settle(s: GameState, preferred: string[] = [], stopAt = 'prompt.chooseA
       'choice.revealToken',
       'choice.applyResults',
       'choice.continue',
+      'ability.fof.reduceWellspring',
       'choice.skip',
     ]
       .map((label) => s.pending!.question.choices.findIndex((c) => c.label === label))
@@ -443,9 +444,11 @@ describe('Fortune and Folly, Part II: more encounter cards', () => {
       by: 'a',
     } as Message)
     s = settle(s)
-    const copy = Object.values(s.enemies).find((e) => e.name === 'Dimensional Duplicate')!
+    const copy = Object.values(s.enemies).find((e) => e.code === 'fof-dimensional-duplicate')!
     expect(copy).toMatchObject({ fight: 1, health: 1, engagedWith: 'a' })
-    expect(s.investigators[0]!.discard).toContain(top)
+    expect(copy.originalCardCode).toBe(top)
+    expect(copy.owner).toBe('a')
+    expect(s.investigators[0]!.discard).not.toContain(top)
   })
 
   it('Dimensional Displacer replaces the nearest non-unique Casino enemy', () => {
@@ -530,4 +533,32 @@ describe('Fortune and Folly: from Part I to Part II in the campaign', () => {
     expect(alarmOf(two, id)).toBe(5)
     expect(Object.values(two.assets).length).toBe(2)
   })
+})
+
+it('can skip the stakeout at Introduction 4 and proceed without part-I penalties or upgrades', () => {
+  let campaign = newCampaign('fortune-and-folly', ['joe'], 'standard')
+  let s = startScenario(campaign, 3)
+  for (
+    let n = 0;
+    n < 10 &&
+    s.pending &&
+    !s.pending.question.choices.some((c) => c.label === 'choice.fof.skipVigilance');
+    n++
+  )
+    s = applyInput(s, { investigator: s.pending.investigator, choice: 0 })
+  expect(s.pending!.question.choices.some((c) => c.label === 'choice.fof.skipVigilance')).toBe(true)
+  s = choose(s, 'choice.fof.skipVigilance')
+  expect(s.outcome).toEqual({ type: 'noResolution' })
+  expect(s.investigators[0]!.damage).toBe(0)
+  expect(s.investigators[0]!.horror).toBe(0)
+  expect(s.scenarioMeta?.skipped).toBe(1)
+  campaign = finishScenario(campaign, s)
+  expect(campaign.results[0]!.skipped).toBe(true)
+  const id = campaign.investigators[0]!.id
+  campaign.log.investigators[id]!.xp = 10
+  expect(purchaseOptions(campaign, id)).toEqual([])
+  const two = throughSetup(startScenario(campaign, 4))
+  expect(two.scenarioId).toBe(PART_TWO)
+  expect(alarmOf(two, id)).toBe(1)
+  expect(two.pending!.question.prompt).toBe('prompt.fof.role')
 })

@@ -69,9 +69,11 @@ watch(
 
     <div v-if="state.outcome" class="outcome">
       {{
-        state.outcome.type === 'resolution'
-          ? t('game.won', { n: state.outcome.resolution })
-          : t('game.lost')
+        state.scenarioMeta?.skipped === 1
+          ? t('table.scenarioSkipped')
+          : state.outcome.type === 'resolution'
+            ? t('game.won', { n: state.outcome.resolution })
+            : t('game.lost')
       }}
     </div>
 

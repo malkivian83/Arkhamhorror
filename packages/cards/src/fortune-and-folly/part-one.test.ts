@@ -54,7 +54,13 @@ function table(players = 1, difficulty: Difficulty = 'standard'): GameState {
 
 function settle(s: GameState, preferred: string[] = [], stopAt = 'prompt.chooseAction'): GameState {
   for (let n = 0; s.pending && n < 60 && s.pending.question.prompt !== stopAt; n++) {
-    const choice = [...preferred, 'choice.revealToken', 'choice.applyResults', 'choice.skip']
+    const choice = [
+      ...preferred,
+      'choice.revealToken',
+      'choice.applyResults',
+      'ability.fof.reduceWellspring',
+      'choice.skip',
+    ]
       .map((label) => s.pending!.question.choices.findIndex((c) => c.label === label))
       .find((n) => n >= 0)
     s = applyInput(s, { investigator: s.pending.investigator, choice: choice ?? 0 })
@@ -236,7 +242,7 @@ describe('Fortune and Folly, Part I: alarm level and patrols', () => {
     expect(patrolTarget(s, guard)).toEqual([CODES.casinoLounge])
     const reversed = {
       ...s,
-      scenarioMeta: { ...s.scenarioMeta, [`fof:reverse:${guard.id}`]: s.round },
+      scenarioMeta: { ...s.scenarioMeta, [`fof:reverse:${guard.id}`]: `${s.round}:${s.phase}` },
     }
     expect(patrolTarget(reversed, guard)).toEqual([CODES.slotMachines])
   })
@@ -286,7 +292,14 @@ describe('Fortune and Folly, Part I: tasks', () => {
   it('knocks out the uniformed guard', () => {
     let s = table(1)
     s = during(s, (g) => ({ ...at(CODES.rouletteWheel)(g), chaosBag: [0] }))
+    s = during(s, (g) => g, {
+      type: 'EngageEnemy',
+      investigator: 'a',
+      enemy: enemyOf(s, GUARDS[0]!).id,
+    })
     s = choose(s, 'ability.fof.uniform')
+    expect(s.skillTest?.kind.type).toBe('fight')
+    expect(s.investigators[0]!.damage).toBe(0)
     s = settle(s)
     expect(s.campaignLog?.notes).toContain('fofObtainedAnEmployeeUniform')
     expect(Object.values(s.enemies).some((e) => e.code === GUARDS[0])).toBe(false)

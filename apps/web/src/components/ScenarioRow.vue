@@ -245,6 +245,8 @@ const sortedBag = computed(() =>
         ><span v-if="story.health !== undefined" class="story-clues"
           >{{ t('table.damage') }} <strong>{{ story.damage ?? 0 }}/{{ story.health }}</strong
           ><template v-if="story.exhausted"> · {{ t('table.exhausted') }}</template></span
+        ><span v-else-if="story.horror !== undefined" class="story-clues"
+          >{{ t('table.horror') }} <strong>{{ story.horror }}</strong></span
         ><span v-else class="story-clues"
           >{{ t('table.clues') }} <strong>{{ story.clues }}</strong></span
         ></TableTarget

@@ -114,6 +114,7 @@
     "agility": "Agility"
   },
   "prompt": {
+    "chooseHunterOrder": "The lead investigator chooses which enemy moves first.",
     "chooseAction": "Choose an action",
     "chooseNextInvestigator": "Who takes the next turn?",
     "discardDownToHandSize": "Discard down to 8 cards",
@@ -315,6 +316,7 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "moveEnemyNow": "Resolve movement for {enemy}",
     "backupRogue": "Move to a connecting location (Rogue)",
     "backupGuardian": "Deal 1 damage (Guardian)",
     "backupSeeker": "Discover 1 clue (Seeker)",
@@ -572,6 +574,8 @@
       "keepRole": "Keep your role"
     },
     "fof": {
+      "skipVigilance": "Skip the stakeout and proceed to the heist",
+      "playVigilance": "Play the stakeout",
       "role": "{card}",
       "red": "Red",
       "black": "Black",
@@ -910,6 +914,7 @@
       "switchRole": "{name}: switch your role"
     },
     "fof": {
+      "reduceWellspring": "Remove {amount} clues from the Wellspring",
       "poker": "Poker: spend 2 resources and check 5 icons",
       "roulette": "Roulette: spend 1 resource, name a color and a rank",
       "baccarat": "Baccarat: spend 2 resources, name player, banker or tie",
@@ -1062,6 +1067,7 @@
     }
   },
   "table": {
+    "scenarioSkipped": "Scenario skipped",
     "investigators": "Investigators",
     "scenarioReference": "Symbol reference",
     "enlarge": "Enlarge card",
@@ -2739,6 +2745,7 @@
       "03059": "Humanoid. Elite."
     },
     "summary": {
+      "fof-dimensional-duplicate": "Face down. <b>Forced</b>: After it disengages, discard it.",
       "08129": "One at a time, in any order, if you control a...\n- [rogue] card, you may move to a connecting location.\n- [guardian] card, deal 1 damage to an enemy at your location.\n- [seeker] card, discover 1 clue at your location.\n- [mystic] card, heal 1 horror from any card.\n- [survivor] card, heal 1 damage from any card.",
       "05156": "Fast. Play during any investigator's turn, except during an action.\nImmediately take an action as if it were your turn. This action does not count toward the number of actions you can take each turn.",
       "02229": "If this skill test is successful by 2 or more, after it resolves, you may immediately take an action as if it were your turn (this action does not count toward the number of actions you can take each turn).",
@@ -3261,6 +3268,7 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "fof-dimensional-duplicate": "Extradimensional Enemy",
       "08129": "Call for Backup",
       "05156": "Swift Reflexes",
       "02229": "Quick Thinking",

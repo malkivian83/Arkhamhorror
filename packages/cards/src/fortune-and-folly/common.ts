@@ -240,7 +240,10 @@ export function commonSpecific(
       return {
         ...state,
         assets: { ...state.assets, [thief.id]: { ...thief, exhausted: true } },
-        scenarioMeta: { ...state.scenarioMeta, [`${REVERSE}${String(data.enemy)}`]: state.round },
+        scenarioMeta: {
+          ...state.scenarioMeta,
+          [`${REVERSE}${String(data.enemy)}`]: `${state.round}:${state.phase}`,
+        },
       }
     }
     case 'fofGamePlayed': {
@@ -249,8 +252,33 @@ export function commonSpecific(
       const act = state.acts[state.actIndex]?.code
       const story = state.stories?.[CODES.wellspring]
       if (!story || (act !== CODES.casingTheJoint && act !== CODES.theTake)) return state
+      if (story.clues <= 0) return state
+      if (state.interactive)
+        return push({
+          type: 'Ask',
+          investigator,
+          question: {
+            kind: 'chooseOne',
+            alwaysAsk: true,
+            prompt: 'prompt.reaction',
+            choices: [
+              {
+                label: 'ability.fof.reduceWellspring',
+                params: { amount: data.gained ? 2 : 1 },
+                then: [specific('fofRemoveWellspringClues', { amount: data.gained ? 2 : 1 })],
+              },
+              { label: 'choice.skip', then: [] },
+            ],
+          },
+        })
       return setStoryClues(state, CODES.wellspring, story.clues - (data.gained ? 2 : 1))
     }
+    case 'fofRemoveWellspringClues':
+      return setStoryClues(
+        state,
+        CODES.wellspring,
+        (state.stories?.[CODES.wellspring]?.clues ?? 0) - Number(data.amount),
+      )
     // Cada investigador elige un Rol (parte I, o parte II sin Roles anotados).
     case 'fofRoleAsk': {
       // Cada investigador elige un Rol; con un solo investigador, elige otro más.

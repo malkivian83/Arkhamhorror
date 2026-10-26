@@ -106,6 +106,7 @@ const A_SIDES = new Set(['03076a', '03182a', '03221a', '03321a', '88034a'])
 
 /** Spanish image, then English image, both from our local asset inventory. */
 export function cardImages(code: string, back = false, locale = scanLocale.value): string[] {
+  if (code === 'fof-dimensional-duplicate') return ['/local-assets/backs/player.jpg']
   if (back && STORY_BACKS[code]) return cardImages(STORY_BACKS[code], false, locale)
   if (A_SIDES.has(code)) {
     const art = back ? code.replace(/a$/, 'b') : code

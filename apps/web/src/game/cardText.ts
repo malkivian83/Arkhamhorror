@@ -64,6 +64,7 @@ export function cardTextHtml(text: string | undefined): string {
   if (!text) return ''
   return escape(text)
     .replace(/&lt;(\/?)(b|i|em|strong)&gt;/g, '<$1$2>')
+    .replace(/&lt;hr\s*\/?&gt;/g, '<hr>')
     .replace(/\[\[([^\]]+)\]\]/g, '<i>$1</i>')
     .replace(/\[([a-z_]+)\]/g, (match, name: string) => {
       if (CLASSES[name]) return `<span class="ci cls">${CLASSES[name]}</span>`

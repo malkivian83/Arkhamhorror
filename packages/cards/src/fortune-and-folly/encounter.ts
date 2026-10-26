@@ -56,7 +56,7 @@ export function patrolTarget(state: GameState, enemy: Enemy): LocationId[] | nul
   const ring = RINGS.find((r) => r.includes(enemy.location))
   const printed = PATROL[enemy.code]
   if (!ring || !printed) return []
-  const reversed = state.scenarioMeta?.[`${REVERSE}${enemy.id}`] === state.round
+  const reversed = state.scenarioMeta?.[`${REVERSE}${enemy.id}`] === `${state.round}:${state.phase}`
   const clockwise = (printed === 'clockwise') !== reversed
   const inPlay = ring.filter((l) => state.locations[l])
   const at = inPlay.indexOf(enemy.location)

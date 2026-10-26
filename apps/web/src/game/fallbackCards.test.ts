@@ -8,10 +8,19 @@ import {
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { fallbackCards } from './fallbackCards'
 import { cardImage, cardImages } from './cards'
-import { localizedCards, useCardLocale } from './localized'
+import { localizedCards, localName, useCardLocale } from './localized'
 
 afterEach(() => vi.unstubAllGlobals())
 describe('recursos de cartas sin red', () => {
+  it('translates Fortune story names used by engine logs, including the second part', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('offline')))
+    await useCardLocale('es')
+    expect(localName('The Stakeout')).toBe('La vigilancia')
+    expect(localName('If the Uniform Fits…')).toBe('Entrega de paquete')
+    expect(localName('The Wellspring of Fortune')).toBe('El manantial de la fortuna')
+    const back = localizedCards.value.get('88023b')!
+    expect(localName(back.real_name)).toBe(back.name)
+  })
   it('presents The Man in the Pallid Mask in both languages', () => {
     for (const locale of ['en', 'es'] as const) {
       const card = fallbackCards(locale).find((c) => c.code === '03059')!

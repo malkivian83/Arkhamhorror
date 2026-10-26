@@ -114,6 +114,7 @@
     "agility": "Agilidad"
   },
   "prompt": {
+    "chooseHunterOrder": "El investigador jefe elige qué enemigo mueve primero.",
     "chooseAction": "Elige una acción",
     "chooseNextInvestigator": "¿Quién juega el siguiente turno?",
     "discardDownToHandSize": "Descarta hasta tener 8 cartas",
@@ -315,6 +316,7 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "moveEnemyNow": "Resolver el movimiento de {enemy}",
     "backupRogue": "Moverse a un Lugar conectado (Rebelde)",
     "backupGuardian": "Infligir 1 daño (Guardián)",
     "backupSeeker": "Descubrir 1 pista (Buscador)",
@@ -572,6 +574,8 @@
       "keepRole": "Mantener el papel"
     },
     "fof": {
+      "skipVigilance": "Omitir la vigilancia y pasar al golpe",
+      "playVigilance": "Jugar la vigilancia",
       "role": "{card}",
       "red": "Rojo",
       "black": "Negro",
@@ -910,6 +914,7 @@
       "switchRole": "{name}: cambia tu papel"
     },
     "fof": {
+      "reduceWellspring": "Retirar {amount} pistas del Manantial",
       "poker": "Póquer: gasta 2 recursos y comprueba 5 iconos",
       "roulette": "Ruleta: gasta 1 recurso y nombra un color y un valor",
       "baccarat": "Bacará: gasta 2 recursos y nombra jugador, banca o empate",
@@ -1062,6 +1067,7 @@
     }
   },
   "table": {
+    "scenarioSkipped": "Escenario omitido",
     "investigators": "Investigadores",
     "scenarioReference": "Referencia de símbolos",
     "enlarge": "Ampliar carta",
@@ -2739,6 +2745,7 @@
       "03059": "Humanoide. Élite."
     },
     "summary": {
+      "fof-dimensional-duplicate": "Boca abajo. <b>Obligado</b>: Después de que deje de estar enfrentado, descártalo.",
       "08129": "De uno en uno, en cualquier orden, si controlas una...\n- carta [rogue], puedes moverte a un Lugar conectado.\n- carta [guardian], inflige 1 punto de daño a un Enemigo que esté en tu Lugar.\n- carta [seeker], descubre 1 pista en tu Lugar.\n- carta [mystic], cura 1 punto de horror de cualquier carta.\n- carta [survivor], cura 1 punto de daño de cualquier carta.",
       "05156": "Rápido. Juega esta carta durante el turno de cualquier investigador, excepto durante una acción.\nRealiza una acción inmediatamente como si fuera tu turno. Esta acción no cuenta para el número de acciones que puedes realizar cada turno.",
       "02229": "Si esta prueba de habilidad tiene éxito por 2 o más, después de que se resuelva, puedes realizar una acción inmediatamente como si fuera tu turno. Esta acción no cuenta para el número de acciones que puedes realizar en cada turno.",
@@ -3261,6 +3268,7 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "fof-dimensional-duplicate": "Enemigo extradimensional",
       "08129": "Petición de apoyo",
       "05156": "Reflejos rápidos",
       "02229": "Reacción rápida",

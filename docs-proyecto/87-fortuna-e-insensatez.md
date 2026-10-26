@@ -81,18 +81,24 @@ y `fortune-and-folly-part-2`.
 - El motor guarda `resourcesWhenEliminated` porque al desistir los recursos pasan a 0 y la
   tarea «dejar limpio el casino» los cuenta.
 
-Simplificaciones de la parte I:
+Reglas revisadas con el código de referencia:
 
-- El ladrón se ofrece al empezar la fase de Enemigos (antes de que se muevan), no en el
-  momento exacto en que cada enemigo resuelve Errante.
-- La reacción del acto 1 (quitar pistas del manantial tras un juego) se aplica sola: no tiene
-  inconveniente.
-- Abarran (El hombre del anillo de rubí) no tiene valores: no se le puede dañar; enfrentarse a
-  él hace avanzar el plan y termina la partida (→R1).
-- «Luchar» contra el guardia del uniforme es una prueba de [combat] (3) sin daño.
-- Las pistas de La vigilancia se guardan con el acto (`actClues`).
-- No se ofrece saltar la vigilancia (Introducción 4) ni las introducciones de Las llaves
-  escarlata.
+- El ladrón reacciona justo antes de resolver el Errante del enemigo elegido. Su cara
+  Experimentado incluye el propio Lugar; la inversión termina al cambiar de fase.
+- La retirada de pistas del Manantial tras un juego es una reacción opcional.
+- Abarran conserva sus valores impresos «–»: no se le puede atacar, dañar ni evitar;
+  los datos de presentación no muestran valores numéricos inventados.
+- Obtener el uniforme es una acción Luchar real, sin ataques de oportunidad, con prueba
+  de Combate (3) y sin daño al tener éxito. Respeta Indiferente y permite los efectos
+  que se refieren a una prueba Luchar.
+- La introducción 4 permite omitir la vigilancia y pasar a la parte II sin resolver
+  las penalizaciones ni los efectos de fin de una partida que no se ha jugado.
+- El punto de control cuenta también las pistas que conservan los investigadores no
+  eliminados. Practicar un Rol cambia su carta en juego y su registro. No se pueden
+  comprar ni mejorar cartas entre las dos partes.
+
+Alcance: la aplicación ofrece el modo independiente en dos partes; no integra esta
+historia secundaria dentro de una campaña de Las llaves escarlata.
 
 Pruebas: `fortune-and-folly/mechanics.test.ts` y `part-one.test.ts` (preparación, premios de
 cada juego, cambiar cartas, El estafador, Crupier, alarma y Guardias, Indiferente con alarma
@@ -138,26 +144,76 @@ desatado, Los elegidos de la fortuna y Plan al garete). Lo común a las dos part
 - **Motor**: nuevos ganchos genéricos `enemyDamageModifier`, `actionAllowed` y `afterAction`
   (escenario) y `onAttack` (enemigo); `CompleteAction` lleva el tipo de acción.
 
-Simplificaciones de la parte II:
+Reglas revisadas de la parte II:
 
-- La Presa de La salida («quien controle el manantial») no se aplica: los Cazadores van al
-  investigador más cercano.
-- El Duplicado dimensional usa la imagen del Duplicador y la carta del mazo va directamente a
-  la pila de descartes; se descarta en cuanto deja de estar enfrentado (al evitar o al final
-  del turno).
-- El Carro de dinero se usa después de que un enemigo se enfrente (lo desenfrenta) en vez de
-  «cuando fuera a enfrentarse»; hasta el final de la ronda, los enemigos de su Lugar son
-  Indiferentes para todos.
-- Los pagos «como grupo» de pistas los puede hacer cualquier investigador.
-- El Vagabundo dimensional solo cuenta las acciones dentro de un mismo turno.
-- La Desaprobación de la fortuna «Implicación personal» guarda su horror en el escenario.
-- Las recompensas (Isamara, Cantante de baladas y Mazo de posibilidades) y la ficha de «mala
-  suerte» solo se anotan: en el escenario independiente no hay partida siguiente.
-- La introducción inglesa de la parte II es traducción propia de la guía española (la
-  referencia no la incluye).
+- La salida sustituye la Presa de los Casino por el portador del Manantial. Como Presa
+  ordinaria, desempata entre investigadores a igual distancia; no convierte la
+  instrucción en «Presa, solo». También desempata el enfrentamiento en un mismo Lugar.
+- El jefe elige el orden del movimiento de los Cazadores y Errantes. Cada enemigo
+  resuelve su ventana, movimiento y enfrentamientos antes del siguiente.
+- El Duplicado conserva fuera del mazo y de los descartes la carta original de su
+  dueño, muestra el reverso de jugador y tiene un comportamiento independiente del
+  Duplicador. Al descartarse o ser derrotado devuelve esa carta al descarte correcto;
+  se descarta al desenfrentarse, también mediante efectos distintos de evitar.
+- El Carro reacciona antes del enfrentamiento o al entrar el enemigo, no después.
+  Su protección afecta al investigador que lo utiliza y a los enemigos presentes
+  al resolverla; no concede Indiferente a todo el Lugar. Se recalculan los candidatos
+  a enfrentamiento después de las reacciones.
+- Los pagos de pistas restringidos al Lugar solo pueden hacerlos los investigadores
+  presentes en él, mediante el selector de pagos de grupo.
+- El Vagabundo conserva el historial de acciones consecutivas durante la fase,
+  incluso entre turnos, con su límite de una vez por turno.
+- Implicación personal conserva y muestra su horror sobre la carta de Historia.
+- La recompensa de Isamara con cinco tareas no exige que su versión Banda siga en juego.
+
+La aplicación sigue ofreciendo esta historia como independiente. Las recompensas que
+solo se usarían en una campaña posterior se anotan en el registro. La referencia
+excluye expresamente el cambio de ficha de Los elegidos de la fortuna en independiente
+(`handleFortunesChosen = unlessM getIsStandalone`); no falta esa penalización en este modo.
+La introducción inglesa de la parte II es una traducción propia de la guía española.
 
 Narración de la parte II: introducción, Resoluciones 1–3, Reliquia conseguida (las dos
 versiones) y las cuatro caras de Desaprobación de la fortuna.
 
 Las caras sin revelar de los Lugares de una cara (88010b–88013b, 88017b, 88018b y 88020b) se
 importaron después del CDN del proyecto de referencia.
+
+## Revisión del 26/10/2026
+
+- El índice español de la copia de referencia no anuncia imágenes `880xx` y las 106
+  rutas españolas de los anversos y reversos importados devuelven HTTP 404 en el CDN.
+  Se mantiene el escaneo inglés y el texto español. Comprobación por carta en
+  [`evidencias/fortuna-imagenes-es-revision.json`](evidencias/fortuna-imagenes-es-revision.json).
+- La referencia web requiere iniciar sesión; la comprobación del catálogo se hizo
+  con sus datos locales y las rutas de su CDN, sin modificar ninguna cuenta.
+- Verificación visual local: selección de Fortuna, introducciones, mano inicial,
+  dos Roles en solitario, preparación, alarma 1, primer turno, detalle de La vigilancia
+  y conservación de la partida al recargar.
+- Corregidos el separador `<hr>` que se mostraba como texto y los nombres ingleses de
+  las Historias en el diario. El separador solo admite la etiqueta sin atributos;
+  las etiquetas desconocidas siguen escapadas.
+- 262 pruebas dirigidas correctas en 14 archivos: mecánicas y ambas partes de Fortuna,
+  catálogo, imágenes, formato seguro del texto y el lote de jugador en preparación.
+  La comprobación visual inicial no certificaba fidelidad de reglas; las correcciones posteriores se detallan arriba.
+- Tras las correcciones de reglas: batería completa con 4.147 pruebas correctas y
+  19 omitidas, incluida la regresión de los escenarios existentes; formato, lint,
+  tipos y construcción correctos. El lint excluyó la carpeta temporal
+  `.card-import-tmp`, ajena al código del proyecto.
+- La comprobación visual posterior confirmó que omitir la vigilancia muestra
+  «Escenario omitido», conserva al investigador sin trauma, impide modificar los
+  mazos en el punto de control y permite entrar en la parte II. Tras corregir esa
+  etiqueta se repitieron las 124 pruebas afectadas, todas correctas.
+  Formato, lint y tipos volvieron a pasar; la web se construyó en
+  `apps/web/dist-fidelity-check` por un bloqueo de archivos de salida en Windows.
+
+## Fuentes de la revisión de reglas
+
+Copia local de referencia: `D:/referencia/ArkhamHorror-main/backend/arkham-api/library/Arkham/`.
+Se contrastaron `Act/Cards/FortuneAndFolly/TheExit.hs`,
+`Asset/Assets/TheThiefUnpracticed.hs`, `TheThiefPracticed.hs` y `CashCart.hs`,
+`Enemy/Cards/FortuneAndFolly/DimensionalDuplicatorA.hs`,
+`DimensionalShamblerHunterFromBeyond.hs` y `AbarranArrigorriagakoaTheManWithTheRubyRing.hs`,
+`Enemy/Cards/ExtradimensionalEnemy.hs`, las Historias `IfTheUniformFits.hs` y
+`PersonalEntaglement.hs` y la preparación/punto de control de
+`Scenario/Scenarios/FortuneAndFolly.hs`. Las regresiones nuevas viven en
+`fortune-and-folly/fidelity.test.ts`, además de las pruebas de las dos partes y de presentación.

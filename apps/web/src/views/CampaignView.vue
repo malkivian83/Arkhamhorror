@@ -43,6 +43,11 @@ const decks = useDecksStore()
 
 const campaign = computed(() => game.campaign)
 const definition = computed(() => (campaign.value ? campaignDefinition(campaign.value.id) : null))
+const deckChangesAllowed = computed(
+  () =>
+    !campaign.value ||
+    definition.value?.scenarios[campaign.value.scenarioIndex - 1]?.allowDeckChangesAfter !== false,
+)
 /** Números romanos de los escenarios. */
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
 const next = computed(() => (campaign.value ? currentScenario(campaign.value) : null))
@@ -175,9 +180,11 @@ function abandon() {
             <span class="title">{{ scenarioName(id) }}</span>
             <span v-if="campaign.results[n]" class="outcome">
               {{
-                campaign.results[n]!.outcome.type === 'resolution'
-                  ? t('table.resolutionN', { n: campaign.results[n]!.outcome.resolution })
-                  : t('table.noResolution')
+                campaign.results[n]!.skipped
+                  ? t('table.scenarioSkipped')
+                  : campaign.results[n]!.outcome.type === 'resolution'
+                    ? t('table.resolutionN', { n: campaign.results[n]!.outcome.resolution })
+                    : t('table.noResolution')
               }}
             </span>
             <span v-if="campaign.results[n]?.score !== undefined" class="outcome">
@@ -272,6 +279,7 @@ function abandon() {
             <p v-else-if="campaign.log.investigators[i.id]?.insane" class="fate">
               {{ t('campaign.insane') }}
             </p>
+            <p v-else-if="!deckChangesAllowed" class="fate">{{ t('story.fof.noDeckChanges') }}</p>
             <button
               v-else
               type="button"

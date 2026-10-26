@@ -8,6 +8,23 @@ import { RENDERED_PLAYER_CARD_CODES } from '@lcg/cards'
 import { isPermanent, playerCardBehavior } from '@lcg/engine'
 
 describe('imágenes españolas de referencia y alternativas', () => {
+  it('shows the player back for a dimensional duplicate instead of the Duplicator scan', () => {
+    expect(cardImages('fof-dimensional-duplicate', false, 'es')).toEqual([
+      '/local-assets/backs/player.jpg',
+    ])
+    expect(cardImages('fof-dimensional-duplicate', false, 'en')).toEqual([
+      '/local-assets/backs/player.jpg',
+    ])
+  })
+  it('represents Abarran’s printed dashes without inventing numerical statistics', () => {
+    for (const locale of ['en', 'es']) {
+      const card = fallbackCards(locale).find((c) => c.code === '88034a')!
+      expect(card.enemy_fight).toBeUndefined()
+      expect(card.health).toBeUndefined()
+      expect(card.enemy_evade).toBeUndefined()
+    }
+  })
+
   it.each([
     '01033',
     '01046',
@@ -135,6 +152,15 @@ describe('imágenes españolas de referencia y alternativas', () => {
   it('no solicita traducciones ausentes de Gala ni pierde su segunda cara especial', () => {
     expect(cardImages('71008', false, 'es')).toEqual(['/local-assets/cards/en/71008.avif'])
     expect(cardImages('71045b', false, 'es')).toEqual(['/local-assets/cards/en/71045b.avif'])
+  })
+  it('Fortuna conserva sus escaneos ingleses y ambas caras cuando no hay escaneo español', () => {
+    for (const art of ['88001', '88001b', '88010', '88010b', '88035a', '88040c', '88053a']) {
+      expect(cardImages(art, false, 'es')).toEqual([`/local-assets/cards/en/${art}.avif`])
+    }
+    expect(cardImages('88001', true, 'es')).toEqual(['/local-assets/cards/en/88001b.avif'])
+    const spanish = new Map(fallbackCards('es').map((card) => [card.code, card]))
+    expect(spanish.get('88001')!.name).toBe('Fortuna e insensatez')
+    expect(spanish.get('88011')!.back_flavor).toBeTruthy()
   })
   it('las imágenes .avif no se invierten: {código} es la cara revelada y {código}b la otra', () => {
     // Patio principal de Miskatonic: revelada con texto, sin revelar solo con la ilustración.

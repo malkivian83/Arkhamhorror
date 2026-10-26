@@ -1,0 +1,643 @@
+{
+  "checkedAt": "2026-10-26T15:44:32.434Z",
+  "reference": "D:/referencia/ArkhamHorror-main",
+  "digestMatches": [],
+  "results": [
+    {
+      "art": "88001",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88001.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88001b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88001b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88002",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88002.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88002b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88002b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88003",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88003.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88003b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88003b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88004",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88004.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88004b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88004b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88005",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88005.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88005b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88005b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88006",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88006.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88006b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88006b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88007",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88007.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88007b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88007b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88008",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88008.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88008b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88008b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88009",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88009.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88009b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88009b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88010",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88010.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88011",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88011.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88012",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88012.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88013",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88013.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88014",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88014.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88014b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88014b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88015",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88015.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88015b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88015b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88016",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88016.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88016b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88016b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88017",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88017.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88018",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88018.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88019",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88019.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88019b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88019b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88020",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88020.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88021",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88021.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88021b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88021b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88022",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88022.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88022b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88022b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88023",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88023.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88023b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88023b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88024",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88024.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88024b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88024b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88025",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88025.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88025b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88025b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88026",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88026.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88026b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88026b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88027",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88027.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88027b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88027b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88028",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88028.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88028b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88028b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88029",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88029.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88029b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88029b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88030",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88030.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88030b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88030b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88031",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88031.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88031b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88031b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88032",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88032.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88032b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88032b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88033",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88033.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88034a",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88034a.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88034b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88034b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88035a",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88035a.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88035b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88035b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88035c",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88035c.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88036a",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88036a.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88036b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88036b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88037a",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88037a.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88037b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88037b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88037c",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88037c.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88038a",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88038a.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88038b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88038b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88038c",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88038c.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88038d",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88038d.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88039a",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88039a.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88039b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88039b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88039c",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88039c.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88040a",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88040a.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88040b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88040b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88040c",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88040c.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88041a",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88041a.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88041b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88041b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88041c",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88041c.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88042a",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88042a.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88042b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88042b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88042c",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88042c.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88043",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88043.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88043b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88043b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88044",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88044.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88045",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88045.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88045b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88045b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88046a",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88046a.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88046b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88046b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88047a",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88047a.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88047b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88047b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88048",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88048.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88049a",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88049a.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88049b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88049b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88050a",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88050a.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88050b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88050b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88051a",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88051a.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88051b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88051b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88051c",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88051c.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88052a",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88052a.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88052b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88052b.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88052c",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88052c.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88053a",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88053a.avif",
+      "status": 404,
+      "type": "application/xml"
+    },
+    {
+      "art": "88053b",
+      "url": "https://assets.arkhamhorror.app/img/arkham/es/cards/88053b.avif",
+      "status": 404,
+      "type": "application/xml"
+    }
+  ]
+}

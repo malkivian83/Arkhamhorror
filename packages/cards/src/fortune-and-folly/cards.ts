@@ -121,6 +121,7 @@ export const UNIQUE_ENEMIES: string[] = [CODES.abarran, CODES.abarranUnleashed]
 /** Abarran (El hombre del anillo de rubí): sin valores («–»), no puede recibir daño. */
 export const abarran: EnemyCard = enemy({
   code: CODES.abarran,
+  hasNoStats: true,
   name: 'Abarran Arrigorriagakoa',
   traits: ['Humanoid', 'Casino', 'Coterie', 'Elite'],
   fight: 0,

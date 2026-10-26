@@ -5,6 +5,7 @@
  */
 import {
   distancesFrom,
+  enemyHasKeyword,
   getInvestigator,
   playerCardDef,
   registerAct,
@@ -97,7 +98,18 @@ export function fortuneAndFollyPartOne({
   const [encounterDeck] = shuffle(deck, seedRng(seed))
   return {
     id: PART_ONE,
-    intro: [entry('intro1'), entry('intro3'), entry('intro4'), entry('intro5')],
+    intro: [
+      entry('intro1'),
+      entry('intro3'),
+      {
+        ...entry('intro4'),
+        choices: [
+          { label: 'choice.fof.playVigilance', then: [] },
+          { label: 'choice.fof.skipVigilance', then: [specific('fofSkipVigilance')] },
+        ],
+      },
+      entry('intro5'),
+    ],
     setupInstructions: { title: 'story.fof.setupTitle', body: 'story.fof.setup' },
     locations: PUBLIC_LOCATIONS.map((l) => ({ ...l })),
     startingLocation: CODES.casinoFloor,
@@ -178,6 +190,16 @@ function fofSpecific(
   })
   const investigator = String(data.investigator ?? '')
   switch (key) {
+    case 'fofSkipVigilance':
+      return push(
+        { type: 'SetScenarioMeta', key: 'skipped', value: 1 },
+        {
+          type: 'EndScenario',
+          outcome: { type: 'noResolution' },
+          told: true,
+          weaknessesDone: true,
+        },
+      )
     case 'fofSetup': {
       const guard = Object.values(state.enemies).find((e) => e.code === UNIFORM_GUARD)
       const withMeta = {
@@ -303,6 +325,14 @@ function fofSpecific(
       )
       return {
         ...state,
+        assets: Object.fromEntries(
+          Object.entries(state.assets).map(([id, asset]) => [
+            id,
+            asset.owner === investigator && asset.code === code
+              ? { ...asset, code: practiced(code) }
+              : asset,
+          ]),
+        ),
         scenarioMeta: { ...state.scenarioMeta, [`${ROLE}${investigator}`]: roles.join(',') },
       }
     }
@@ -356,7 +386,11 @@ function resolutionMessages(state: GameState, outcome: ScenarioOutcome): Message
   const resigned = state.investigators.some((i) => i.resigned)
   // Sin resolución: si alguien desistió, avanza el acto (→R2); si todos fueron derrotados, R1.
   const number = outcome.type === 'resolution' ? outcome.resolution : resigned ? 2 : 1
-  const stakeout = Math.floor((state.actClues ?? 0) / players(state))
+  const stakeout = Math.floor(
+    ((state.actClues ?? 0) +
+      state.investigators.filter((i) => !i.eliminated).reduce((sum, i) => sum + i.clues, 0)) /
+      players(state),
+  )
   return [
     ...(outcome.type === 'noResolution' && !resigned
       ? [{ type: 'Story', entry: entry('noResolution') } as Message]
@@ -391,6 +425,7 @@ function resolutionMessages(state: GameState, outcome: ScenarioOutcome): Message
 
 registerScenario({
   id: PART_ONE,
+  sequentialEnemyMovement: true,
   resolution: resolutionMessages,
   tokenEffect,
   enemyKeyword: casinoAloof,
@@ -399,19 +434,35 @@ registerScenario({
   // Si el uniforme te vale…: [action] Luchar contra el guardia vinculado.
   abilities: (state, _self, investigator): AbilityOption[] => {
     const guard = uniformGuard(state)
-    if (!guard || getInvestigator(state, investigator).location !== guard.location) return []
+    if (
+      !guard ||
+      getInvestigator(state, investigator).location !== guard.location ||
+      (guard.engagedWith === null && enemyHasKeyword(state, guard, 'aloof'))
+    )
+      return []
     return [
       {
         key: `${CODES.ifTheUniformFits}:fight`,
         label: 'ability.fof.uniform',
+        actionKind: 'fight',
         actions: 1,
-        provokes: true,
+        provokes: false,
         target: { type: 'enemy', id: guard.id },
         then: [
-          effectTest(investigator, CODES.ifTheUniformFits, 'combat', 3, {
-            onSuccess: [specific('fofKnockOut', { investigator })],
-            onFail: [adjustAlarmMessage(investigator, 1)],
-          }),
+          {
+            type: 'BeginSkillTest',
+            investigator,
+            source: CODES.ifTheUniformFits,
+            skill: 'combat',
+            difficulty: 3,
+            kind: {
+              type: 'fight',
+              enemy: guard.id,
+              noDamage: true,
+              onSuccess: [specific('fofKnockOut', { investigator })],
+              onFail: [adjustAlarmMessage(investigator, 1)],
+            },
+          },
         ],
       },
     ]

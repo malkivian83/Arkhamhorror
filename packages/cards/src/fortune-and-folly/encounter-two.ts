@@ -28,6 +28,7 @@ const specific = (key: string, data: Record<string, string | number | boolean>):
 
 /** Copias del Duplicador dimensional en juego (cartas del mazo del investigador boca abajo). */
 export const DUPLICATE = 'fof:duplicate:'
+export const DUPLICATE_CODE = 'fof-dimensional-duplicate'
 /** Daño adicional del ataque en curso de la Daga de la fortuna. */
 export const DAGGER = 'fof:dagger:'
 
@@ -44,7 +45,15 @@ export function peekIcon(state: GameState) {
 }
 
 const isDuplicate = (state: GameState, enemy: Enemy) =>
-  !!state.scenarioMeta?.[`${DUPLICATE}${enemy.id}`]
+  enemy.code === DUPLICATE_CODE || !!state.scenarioMeta?.[`${DUPLICATE}${enemy.id}`]
+
+registerEnemy({
+  code: DUPLICATE_CODE,
+  forced: (_state, trigger, self) =>
+    trigger.type === 'enemyDisengaged' && trigger.enemy === self.id
+      ? [{ type: 'DiscardEnemy', enemy: self.id }]
+      : [],
+})
 
 /** Enemigos Extradimensional más cercanos al investigador. */
 export function nearestExtradimensional(state: GameState, investigator: InvestigatorId) {

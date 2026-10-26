@@ -15,6 +15,7 @@ registerCampaign({
   scenarios: [
     {
       id: PART_ONE,
+      allowDeckChangesAfter: false,
       build: ({ difficulty, seed }) => fortuneAndFollyPartOne({ difficulty, seed }),
       keywords: [
         'fofAlarm',

@@ -351,6 +351,10 @@ export function distancesFrom(
 export function bestByPrey(candidates: Investigator[], prey: Prey | undefined): Investigator[] {
   if (!prey || candidates.length === 0) return candidates
   if (prey.type === 'only') return candidates.filter((i) => i.id === prey.investigator)
+  if (prey.type === 'investigator') {
+    const preferred = candidates.filter((i) => i.id === prey.investigator)
+    return preferred.length ? preferred : candidates
+  }
   const value = (i: Investigator) =>
     prey.type === 'mostResources'
       ? i.resources
@@ -388,7 +392,8 @@ export function huntingSteps(state: GameState, enemy: Enemy): LocationId[] {
   const nearest = Math.min(...reachable.map(distance))
   if (nearest === 0) return []
   const closest = reachable.filter((i) => distance(i) === nearest)
-  const preferred = bestByPrey(closest, enemy.prey)
+  const prey = scenarioBehavior(state.scenarioId)?.enemyPrey?.(state, enemy) ?? enemy.prey
+  const preferred = bestByPrey(closest, prey)
   const targets = new Set((preferred.length ? preferred : closest).map((i) => i.location))
   return enemyNeighbours(state, enemy.location, enemy).filter((step) => {
     if (!state.locations[step]) return false

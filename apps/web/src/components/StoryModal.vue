@@ -101,9 +101,11 @@ function toCampaign() {
       <h1>{{ t('table.scenarioOver') }}</h1>
       <p class="result">
         {{
-          state.outcome.type === 'resolution'
-            ? t('table.resolutionN', { n: state.outcome.resolution })
-            : t('table.noResolution')
+          state.scenarioMeta?.skipped === 1
+            ? t('table.scenarioSkipped')
+            : state.outcome.type === 'resolution'
+              ? t('table.resolutionN', { n: state.outcome.resolution })
+              : t('table.noResolution')
         }}
       </p>
       <div class="options">

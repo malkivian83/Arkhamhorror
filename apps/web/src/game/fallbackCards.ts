@@ -109,10 +109,10 @@ export function fallbackCards(locale: string): LocalizedCard[] {
       traits: c.traits?.join('. '),
       ...(c.kind === 'enemy'
         ? {
-            health: c.health,
+            health: c.hasNoStats ? undefined : c.health,
             health_per_investigator: c.healthPerInvestigator,
-            enemy_fight: c.fight,
-            enemy_evade: c.evade,
+            enemy_fight: c.hasNoStats ? undefined : c.fight,
+            enemy_evade: c.hasNoStats ? undefined : c.evade,
             enemy_damage: c.damage,
             enemy_horror: c.horror,
             victory: c.victory,
@@ -355,7 +355,19 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     FORTUNE_CODES.ifTheUniformFits,
     FORTUNE_CODES.wellspring,
   ])
-    put({ code, name: code, real_name: code, type_code: 'story' })
+    put({ code, name: code, real_name: fortuneCards.en[code]?.name ?? code, type_code: 'story' })
+  put({
+    code: 'fof-dimensional-duplicate',
+    real_name: 'Extradimensional Enemy',
+    name: names['fof-dimensional-duplicate'],
+    text: summaries['fof-dimensional-duplicate'],
+    type_code: 'enemy',
+    enemy_fight: 1,
+    health: 1,
+    enemy_evade: 1,
+    enemy_damage: 1,
+    enemy_horror: 1,
+  })
   // Caras traseras de Historia de la parte II (El golpe, Entrega de paquete, Desaprobaciones).
   const fortune = fortuneCards[locale === 'es' ? 'es' : 'en']
   for (const front of ['88023', '88024', '88025', '88026', '88027']) {
@@ -364,7 +376,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
       put({
         code: `${front}b`,
         name: text.backName ?? text.name,
-        real_name: text.backName ?? text.name,
+        real_name: fortuneCards.en[front]?.backName ?? fortuneCards.en[front]?.name ?? front,
         type_code: 'story',
         text: text.backText,
       })
