@@ -35,7 +35,14 @@ import {
   type EncounterCard,
   type LocationCard,
 } from '@lcg/engine'
-import { carcosaCards, excelsiorCards, fortuneCards, zealotCards, messages } from '@lcg/i18n'
+import {
+  cardNarratives,
+  carcosaCards,
+  excelsiorCards,
+  fortuneCards,
+  zealotCards,
+  messages,
+} from '@lcg/i18n'
 import type { LocalizedCard } from './localized'
 
 /** Bundled mechanical data, official text where available and local summaries. */
@@ -48,11 +55,14 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   const backSummaries = language.offlineCard.backSummary as Record<string, string>
   const cards = new Map<string, LocalizedCard>()
   function put(draft: { [K in keyof LocalizedCard]: LocalizedCard[K] | undefined }) {
+    const narrative = cardNarratives[locale === 'es' ? 'es' : 'en'][draft.code ?? '']
     const card = Object.fromEntries(
       Object.entries(draft).filter(([, value]) => value !== undefined),
     ) as unknown as LocalizedCard
     cards.set(card.code, {
       ...card,
+      ...(narrative?.flavor && !draft.flavor ? { flavor: narrative.flavor } : {}),
+      ...(narrative?.backFlavor && !draft.back_flavor ? { back_flavor: narrative.backFlavor } : {}),
       type_name: types[card.type_code as keyof typeof types] ?? card.type_code,
       text: draft.text ?? summaries[card.code] ?? language.offlineCard.help,
       back_text:

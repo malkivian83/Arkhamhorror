@@ -1,0 +1,517 @@
+{
+  "12106": {
+    "group": "ceniza",
+    "typeCode": "agenda",
+    "flavor": "The campus is strangely quiet, and there is no sign of your friend. Hooded figures cross the quad as nervous students scurry under painfully bright streetlamps.",
+    "backFlavor": "The wind carries the scent of smoke from across campus. A plume of flame rises from a nearby building."
+  },
+  "12107": {
+    "group": "ceniza",
+    "typeCode": "agenda",
+    "flavor": "The sky glows a faint orange as the flames spread.",
+    "backFlavor": "Cinders fly through the air above Miskatonic University. The wail of a fire alarm resounds across the quad as dozens of frightened students flee the scene."
+  },
+  "12108": {
+    "group": "ceniza",
+    "typeCode": "agenda",
+    "flavor": "The campus is ablaze!",
+    "backFlavor": "Thick, black smoke fills the air around you as you fall to your knees, coughing. Hazy dark shapes move somewhere beyond the roaring flames. Try as you might, you cannot pull yourself to safety. Your vision swims as you lose consciousness."
+  },
+  "12109": {
+    "group": "ceniza",
+    "typeCode": "act",
+    "flavor": "You are searching the dormitories for any sign of your friend.",
+    "backFlavor": "You find your friend's satchel, scorched with a stylized emblem of an open palm. Wherever your friend is, you imagine they didn't go willingly. As you turn to leave, you are confronted by a masked figure wreathed in flame. As the room erupts into flames around you, they let out a chilling wail."
+  },
+  "12110": {
+    "group": "ceniza",
+    "typeCode": "act",
+    "flavor": "A burning apparition stands between you and the exit. You must escape the dormitories!",
+    "backFlavor": "You emerge from the dormitories, lungs bursting, into the crisp autumn evening. Looking behind, there is no trace of your pursuer. You remember your friend planned to consult Miskatonic University's head librarian, Dr. Henry Armitage. He may be able to help you understand what is going on."
+  },
+  "12111": {
+    "group": "ceniza",
+    "typeCode": "act",
+    "flavor": "Your friend had mentioned visiting the head librarian, Dr. Henry Armitage. With more and more strange figures arriving, you must scour the campus for his whereabouts.",
+    "backFlavor": "You find Dr. Armitage barricaded in one of Orne Library's lecture halls.\n\"Some on campus have been acting strange lately, your friend among them. But all of that can wait. We must confront your pursuer and stop them before the entire campus burns!\" Dr. Armitage says."
+  },
+  "12112": {
+    "group": "ceniza",
+    "typeCode": "act",
+    "flavor": "Your fiery nemesis can't be allowed to hurt more innocents! With Dr. Armitage's help, perhaps you can stop them.",
+    "backFlavor": "Your nightmarish pursuer reels back, clutching both hands to their head, as if trying to pry their mask off. The sound of sirens in the distance grows louder. You turn to see a gaggle of terrified students rush past you. When you turn your attention back to your flaming nemesis, they have vanished into thin air."
+  },
+  "12134": {
+    "group": "ceniza",
+    "typeCode": "agenda",
+    "flavor": "An unnatural haze fills the streets of Arkham. Some of the locals say the hills west of Arkham are burning. Despite the cool autumn weather, the city streets feel unnaturally warm as evening falls.",
+    "backFlavor": "An itch you've done your best to ignore becomes unbearable. Pulling back your sleeve reveals a patch of peeling gray skin. Gingerly, you scratch the dead skin to reveal a smooth scar, almost as though you were branded. The scar resembles a hand with an unblinking eye inset into it. Touching it gives you a warm, heady feeling, like being drunk."
+  },
+  "12135": {
+    "group": "ceniza",
+    "typeCode": "agenda",
+    "flavor": "Steam rises off of the wet pavement, as though the ground beneath it were actually burning.",
+    "backFlavor": "You check your watch and realize it is already half past 11. Cursing, you hail a cab to make your way to Easttown."
+  },
+  "12136": {
+    "group": "ceniza",
+    "typeCode": "act",
+    "flavor": "You must find the whereabouts of the suspects on your friend's list.",
+    "backFlavor": "Your search has turned up some interesting results. With all that you've learned, you and Dr. Armitage should have enough clues to find your friend's whereabouts. You hail a cab back to Easttown to discuss your findings."
+  },
+  "12169": {
+    "group": "ceniza",
+    "typeCode": "agenda",
+    "flavor": "Chanting echoes through the fetid tunnels. The cult's rebirth is at hand!",
+    "backFlavor": "From somewhere deep within the bowels of the city, a searing flame grows in intensity. Those who bear the mark of the queen arise to herald her return."
+  },
+  "12170": {
+    "group": "ceniza",
+    "typeCode": "agenda",
+    "flavor": "The air is choked with noxious smoke as the sounds of chanting grow louder."
+  },
+  "12171": {
+    "group": "ceniza",
+    "typeCode": "agenda",
+    "backFlavor": "A knotted, claw-like hand grabs your arm as dozens more wrap around you, embracing you. The touch burns. You scream as a horrifying, toothy maw opens in Elokoss' belly.\n\"Don't worry. She only wants to honor you,\" says a familiar voice.\nYou look behind you to see your friend wearing the same black and red robes as the rest of the Brethren of Ash. They grin at you as tongues of flame billow out from the burning maw, enveloping you in a cocoon of fire. The last thing you hear as you are pulled into the white-hot inferno in Elokoss' chest is your friend - along with the rest of the cult - singing a lilting, off-key hymn for your rebirth."
+  },
+  "12172": {
+    "group": "ceniza",
+    "typeCode": "act",
+    "flavor": "The Brethren of Ash could be anywhere. You must search the sewers for the cult's ritual site if you hope to save your friend.",
+    "backFlavor": "The chanting leads you through a labyrinth of tunnels to a dry cistern. Several dozen robed figures kneel before a burning birch tree, chanting. Your friend is among them. You must stop them before they sacrifice themselves for Elokoss!"
+  },
+  "12173": {
+    "group": "ceniza",
+    "typeCode": "act",
+    "flavor": "You must stop the rite at any cost. You could scour the cistern for a means to stop the cult, or you could try to chop their profane idol to tinder!",
+    "backFlavor": "As you chop the burning tree to tinder, an unearthly howl fills the room. Ignoring it, you continue your attack, placing well-timed strike after well-timed strike to destroy the ancient evil. Eventually, the former effigy of the Brethren's goddess lies in pieces."
+  },
+  "71002": {
+    "group": "gala",
+    "typeCode": "agenda",
+    "flavor": "Promising to be a night of intrigue and wonder, the gala is expected to be filled with secrets and whispers that are as much a part of the entertainment as the drinks and music.",
+    "backFlavor": "A crash resounds from somewhere deeper in the manor, followed by a scream. Declan Pearce emerges to calm the crowd in the ballroom, but you can't help but notice the masked attendants have positioned themselves in front of each of the manor's many exits."
+  },
+  "71003": {
+    "group": "gala",
+    "typeCode": "agenda",
+    "flavor": "Commotion stirs deeper within the manor as various guests ask the attendants to be let out. Other guests shuffle through the manor with dead eyes and blank stares."
+  },
+  "71004": {
+    "group": "gala",
+    "typeCode": "agenda",
+    "flavor": "The party descends into utter mayhem, with guests throwing themselves out of glass doors and windows to escape the otherworldly monstrosities.",
+    "backFlavor": "A rank stench pervades the once-stately manor. As more and more nightmarish creatures overtake wounded or dazed guests, you dash out from a hiding place to make a beeline for the exit. A ravenous creature, the stuff of nightmares, catches wind of your scent and pursues you doggedly to the exit. You feel its claws on your throat as you throw yourself through the solid pane of glass, straight onto a gory pile of bodies covered in lightly falling snow."
+  },
+  "71005": {
+    "group": "gala",
+    "typeCode": "act",
+    "flavor": "You notice the Jewel is no longer in the ballroom. Maybe a guest saw someone move it?",
+    "backFlavor": "You and your contact meet with several guests, who each confirm that the Jewel was taken by Declan Pearce from the display case in the Ballroom. Furthermore, strange sounds have begun to emanate from the second floor of the manor..."
+  },
+  "71006": {
+    "group": "gala",
+    "typeCode": "act",
+    "flavor": "You must help your contact and their associates, no matter the cost.",
+    "backFlavor": "You take a deep breath as you stagger out into the cold night air. Snow falls thickly on the once-pristine lawn, now stained red with blood. The manor is dead silent behind you. The Jewel of Sarnath pulses with an unearthly light in your palm, and for a moment you feel a balmy breeze, the scent of another place both familiar and dreamlike. Was the gem worth all this devastation?"
+  },
+  "88002": {
+    "group": "fortune",
+    "typeCode": "agenda",
+    "flavor": "You have arrived at Défis de la Roulette. If you are to recover the Wellspring, you must learn all that you can about this casino and the cult that operates it.",
+    "backFlavor": "The stray glances that you have started attracting from the dealers and guards have become more frequent. In a shadowed corner, a group of uniformed security gathers together in conversation. As you watch them, one looks at you and points in your direction. They begin to head your way..."
+  },
+  "88003": {
+    "group": "fortune",
+    "typeCode": "agenda",
+    "flavor": "Défis de la Roulette is bustling on this busy night — the perfect cover for you and your crew. You hope that your long days of planning will pay off.",
+    "backFlavor": "A voice from the roulette tables cuts clearly through the din of the entire casino: \"Red 19!\" Someone nearby shouts in excitement. A few moments later, the same voice calls out once more: \"Red 19 hits again!\" You hear murmurings around you. Such an event is highly improbable. For a moment, you feel a small crackling in the air, but you shrug it off. Then, just when normalcy seems to have reasserted itself, the voice calls out once more in disbelief: \"Red 19 a third time!\" The crackling is unmistakable this time and begins to intensify until everything seems to blur for a moment. When your vision clears, a terrible creature beyond all imagining stands in the middle of the crowded casino, towering above the humans surrounding it. With a sinking feeling, you remember Isamara's warning that the relic's presence might invite disaster. If that wasn't bad enough, said disaster will fall on those who are not favored by the bearer of the Wellspring."
+  },
+  "88004": {
+    "group": "fortune",
+    "typeCode": "agenda",
+    "flavor": "The heist has become more complicated than you could have ever imagined. Terrifying monsters have appeared on the casino floor. The patrons, however, seem to be in a daze, while the staff continue to watch for suspicious activity. Can they not see the danger they are all in?",
+    "backFlavor": "Just when it seems like things couldn't get any worse, there is a strange transformation in the atmosphere of the casino, the calm before a storm. Then, like the last gasp before drowning, the storm of misfortune breaks..."
+  },
+  "88005": {
+    "group": "fortune",
+    "typeCode": "agenda",
+    "flavor": "The cult is against you. Creatures from beyond time and space are against you. Now fortune itself is against you. No one said this would be easy.",
+    "backFlavor": "You try desperately to escape, but your luck has run out at last. Several cultists wearing familiar coin medallions block your way out. Behind you, the horrifying creatures that were summoned by the Wellspring's power rampage through the casino. Chaos erupts around you. It is only then the crowds and the casino security seem to finally notice the horrible truth lurking within the casino. You try your best to fend off both the creatures and the cultists, and you barely escape with your life."
+  },
+  "88006": {
+    "group": "fortune",
+    "typeCode": "act",
+    "flavor": "You must tread carefully, as arousing suspicion may ruin your plans before they have even begun.",
+    "backFlavor": "With one last parting glance, you exit the casino. You're confident that none of the dealers or security suspected you for anything other than what you pretended to be: just another hopeful gambler. Regardless of any money that you made or lost tonight, your real winnings will be the information that you were able to gather. You hope that it will be enough to prepare you for the improbable scheme that you must now concoct and pull off."
+  },
+  "88007": {
+    "group": "fortune",
+    "typeCode": "act",
+    "flavor": "The heist begins. You must open the vault door, locate the Wellspring, make it past the mystical defenses, and find a way to open the container that holds it."
+  },
+  "88008": {
+    "group": "fortune",
+    "typeCode": "act",
+    "flavor": "Getting in was one thing, but now you must make it out with your prize. It feels as if the whole casino stands between you and the world outside.",
+    "backFlavor": "There were times when you weren't sure whether you would make it out of the casino with your skin and soul intact, but here you stand. It almost feels like a dream, but you can still hear a commotion inside. It's time to leave this place behind and make yourself scarce."
+  },
+  "01105": {
+    "group": "zealot",
+    "typeCode": "agenda",
+    "flavor": "It is late at night. You are holed up in your study, researching the bloody disappearances that have been taking place in the region. A few hours into your research, you hear the sound of strange chanting coming from your parlor, down the hall. At the same time, you hear dirt churning, as if something were digging beneath the floor.",
+    "backFlavor": "Your house continues to change before your very eyes. The walls have decayed, and the ground in many rooms has turned to dirt. It is almost as if you have been transported somewhere else entirely, although every now and again you recognize elements of your former home."
+  },
+  "01106": {
+    "group": "zealot",
+    "typeCode": "agenda",
+    "flavor": "The floor beneath you is giving way, and you see a vast network of tunnels, twisting into the darkness below. Shapes and silhouettes of strange creatures move swiftly through the tunnels, trying to find a way up. You probably don't want to be here when they do...",
+    "backFlavor": "A feral beast, roughly humanoid with a canine cast and hooves for feet, tears through the ground in front of you. Below the floor, you can see vast tunnels beneath your house. Fiendish howling echoes from deep within the underground caverns."
+  },
+  "01108": {
+    "group": "zealot",
+    "typeCode": "act",
+    "flavor": "As you leap to investigate, the door to your study vanishes before your eyes, leaving behind only solid wall. You're trapped inside your study until you can find another way out.",
+    "backFlavor": "You notice that the edges of your newly purchased rug are tattered and mud-stained. Finding this odd, you shift the furniture aside and pull back the rug. To your surprise, you see the door leading out of your study. You slowly turn the knob, and the door swings open, revealing your hallway below.\nYou jump through the doorway, landing on your feet on soft dirt. The door to the study slams shut above you. The smell of burning wood fills the narrow hall, intermingled with the scent of rot and decay."
+  },
+  "01109": {
+    "group": "zealot",
+    "typeCode": "act",
+    "flavor": "A glowing barrier blocks the path to your parlor. As you move toward it, intense heat forces you to back away. Picking up a handful of dirt, you toss it as the barrier and watch in horror as the dirt incinerates. Perhaps there's something in the cellar or attic that can help.",
+    "backFlavor": "Using the barrel from the attic, you carry ice and snow from the cellar and hurl it at the barrier. The barrier sparks and shudders as it consumes the ice, then hisses and fades out of existence."
+  },
+  "01107": {
+    "group": "zealot",
+    "typeCode": "agenda",
+    "flavor": "You hear a crazed howl outside, and suddenly all the creatures turn their attention to that sound. They rush to escape the house, breaking down doors and clawing at everything in their way.",
+    "backFlavor": "The ground begins to shake and you can see claws rising up from the dirt as uncanny creatures desperately try to claw their way out of the ground all around you. Everywhere you turn, you see monsters rising from the earth. Terrified, you flee as fast as you can."
+  },
+  "01110": {
+    "group": "zealot",
+    "typeCode": "act",
+    "flavor": "A woman with a torch stands in your parlor, a glimmer of hatred in her eyes. \"What have you done to my barrier?\" she screams, furious. Before you can enter, a ghastly wail sounds behind you, and a creature wearing robes and a deer skull mask tears through the wall, advancing toward you.",
+    "backFlavor": "When the robed creature falls, the fiendish swarm burrows back into the ground and the chaos of the house quiets. But the stranger in your parlor chamber doesn't seem relieved.\n\"You broke my seal that was set to trap the ghouls within.\" She raises her torch. \"Now, we must take more direct measures and burn this hell-pit to the ground!\""
+  },
+  "03044": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "The theatre is eerily silent. The old wooden floor creaks beneath your feet, and a light rain gently patters on the roof as you explore the auditorium. There are more rotting corpses among the seats, and the rest of the crowd has vanished…",
+    "backFlavor": "Abruptly, the malformed body of an unnatural nightmare slams onto the stage, its slithering tendrils reaching into the aisles. It opens its maw and lets out a shrill, piercing song. The melody is uncanny; the notes sear into your mind. Pain pounds in your forehead, and blood runs from your ears."
+  },
+  "03045": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "The creature’s song echoes relentlessly throughout the halls of the theatre. The melody repeats again and again, yet somehow, never the same note twice.",
+    "backFlavor": "The song grows louder and louder, until it drowns out all of your thoughts. You collapse to the floor and cover your ears, but try as you might, you cannot muffle the intensity of the creature's awful voice. The whole world threatens to close around you, until at last you hear a discordant phrase throughout the melody: \"EXIT NOW.\""
+  },
+  "03046": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "You pinch yourself to see if you are dreaming, and sure enough, your skin stings and reddens. You take a few deep breaths and try to think rationally. Whatever is going on, you must explore the theatre to learn the truth of the matter.",
+    "backFlavor": "A shadow creeps along the wall beside you, and your heart leaps into your throat. You turn, and a figure flits away just out of sight. Either your mind is playing tricks on you, or someone else is in the theatre.\nYou follow the direction of the shadow, rounding a nearby corner. At the far end of the hall, he stands awaiting you: a man in an elegant black suit, his face covered by a pale mask. Though his attire has changed, you instantly recognize him as the actor who played the role of the Stranger - one of the characters from <u>The King in Yellow</u>. He turns and disappears through an open doorway, as if taunting you to follow."
+  },
+  "03047a": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "The mysterious Stranger from <u>The King in Yellow</u> might know something about what happened during the intermission. You must find and confront him if you are to discover the truth.",
+    "backFlavor": "As you face off with the Stranger, you get the sense that he is grinning beneath his pale, faceless mask. \"Where is everyone?\" you ask, but he does not respond. \"What is going on?\" He remains silent and steps back as you approach, until his back is against the corner of the room. You feel intense heat behind you, and you turn to see flames roaring throughout the auditorium. You turn back to the Stranger, but he is gone."
+  },
+  "03047b": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "The mysterious Stranger from <u>The King in Yellow</u> might know something about what happened during the intermission. You must find and confront him if you are to discover the truth.",
+    "backFlavor": "As you face off with the Stranger, you get the sense that he is grinning beneath his pale, faceless mask. \"Where is everyone?\" you ask, but he does not respond. \"What is going on?\" He remains silent and steps back as you approach, until his back is against the corner of the room. Inexplicably, he continues to back away, and his body melds into the wall behind him. Erupting from where he stood is a growing mass of viscous ooze."
+  },
+  "03047c": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "The mysterious Stranger from <u>The King in Yellow</u> might know something about what happened during the intermission. You must find and confront him if you are to discover the truth.",
+    "backFlavor": "As you face off with the Stranger, you get the sense that he is grinning beneath his pale, faceless mask. \"Where is everyone?\" you ask, but he does not respond. \"What is going on?\" He remains silent and steps back as you approach, until his back is against the corner of the room. You spin in shock as the windows shatter, and a deluge of cold salt water floods the room. You turn back to the Stranger, but he is gone."
+  },
+  "03048": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "The Stranger must know the way out. You have to follow him!",
+    "backFlavor": "The Stranger gives you a slight bow as he steps through the lobby's front entrance, opening a glass door that was not there a moment before. A sudden cacophony of noise erupts around you, and you fear that the building has only seconds before it is destroyed. You flee, crashing through the front doors and leaving the ruined theatre in your wake. \nSeveral blocks away, you take a moment to rest and think about what you've witnessed..."
+  },
+  "03062": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "As you pull up to the manor, you notice that something is wrong. A trail of blood leads up the porch steps, and the front door is smashed. Muted music comes from within the house, its warped and discordant notes painful to your ears. Has the madness of <u>The King in Yellow</u> already made its way here?",
+    "backFlavor": "\"Ah, if it isn't our final guest,\" the doorman announces. \"Miss Devine, your presence here has been long awaited.\" The woman wears a devilish dress and similar grin. You swear you've seen the symbol on her amulet before. \"Well, now the <u>real</u> party can begin,\" she declares, then heads off to mingle with the other party-goers."
+  },
+  "03063": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "More and more, this place continues to fall into madness, transforming before your very eyes…",
+    "backFlavor": "It's all in your head. It must be. How else could you explain what is going on around you? You've had one too many drinks, and your mind is playing tricks on you. Everybody is having so much fun - all they want is for you to join them."
+  },
+  "03064": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "This isn’t a party: it’s a mad house. But for some reason, the guests are too deluded to notice. Very few of them are sane, and many are themselves horrors to your eye. Perhaps you can talk to them to learn more about <u>The King in Yellow</u>."
+  },
+  "03121": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Surprisingly, the front doors of the Historical Society’s Georgian manor are cracked halfway open when you arrive. Who else could be here at this hour?",
+    "backFlavor": "A phrase in a language you cannot describe whispers through the building, and without warning all of the electric lights shatter at once. You light a nearby candle and continue your search.\nThe building is quite different once plunged into darkness. Shadows and silhouettes dance along the walls. Crevices you hadn't noticed before draw your wary eye. What other secrets does this building hold?"
+  },
+  "03122": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Though the whispering has ceased, the sounds of rummaging and furniture shifting is unmistakable. Whoever is here, they’re searching just as thoroughly as you are...",
+    "backFlavor": "The front door of the manor opens, letting in a howl of chill wind and the pitter-patter of soft rain, then it suddenly slams shut. You find a place to hide and eavesdrop, wondering who else might have entered the building this late. \"No, I swear, I swear I don't know where the door is!\" A man cries out. \"You'll have to find the Path on your own, I cannot help you!\" He sounds panicked and disorientated.\n\"You spoke the Oath,\" a man's voice responds. \"You spoke His name.\" The man stammers. \"No! No, I cannot! I will not!\" Then, his voice becomes distorted, and he speaks no more. You hear footsteps on the staircase - heavy and wet."
+  },
+  "03123": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Whoever these people are, they must be involved with the conspiracy behind <i>The King in Yellow</i>. You can’t let them find whatever it is they’re looking for!",
+    "backFlavor": "There is a rush of footsteps along the manor's central stairway, and the front door opens once more. \"Have you found it?\" A muffled voice asks.\n\"Yes. We can embark immediately. The Path <i>will</i> be opened.\"\nThe door closes, and the manor returns to being quiet and lonely. For the remainder of your search, you find no further traces of the mysterious robed figures, nor do you find any information to answer your many questions about <i>The King in Yellow</i>..."
+  },
+  "03124": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Each of the Historical Society’s many rooms contains records and documents that may aid you in your search for answers about <i>The King in Yellow</i>. There must be something here that can guide you toward the truth.",
+    "backFlavor": "You find a record kept by one of the society's historians pertaining to the \"dreadful events\" surrounding the closing of an old theatre in Arkham, the Cedar Playhouse. Though there is no explicit mention of <i>The King in Yellow</i>, you believe you are on the right track.\nThe historian's notes are cut short, and there is a faded, handwritten page clipped to the final entry.\n<b>This matter is too ghastly for the public eye. I am placing the remainder of this record in the hidden library. All further inquiries should be done away from prying eyes, for this is a dangerous matter, and not one to be researched lightly.</b>"
+  },
+  "03125": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Somewhere in the manor is a \"hidden library\" where you might be able to find more information about <i>The King in Yellow</i>. You must find the way in if you are to continue your investigation.",
+    "backFlavor": "As you rummage through a desk drawer, you are startled when you hear a voice behind you. \"Excuse me! Can I help you?\" You are relived to find the voice belonging to a thin, elderly man wearing wide-rimmed glasses - a member of the Historical Society, no doubt. You explain to him that you are searching for a hidden library somewhere in the manor, though you purposely leave out why.\nHe introduces himself as Mr. Peabody, the Historical Society's curator. \"I'll help you find what you are looking for,\" he explains, \"but only if you tell me what this is all about once we get there.\" You hope it doesn't come to that."
+  },
+  "03126": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "\"This building is very old, and filled with all manner of secret passageways,\" Mr. Peabody explains. \"Perhaps one of them will lead to this library you’re looking for.\"",
+    "backFlavor": "As you study the hidden library, you find a few pieces of information that stand out. As with the recent production, the previous performance of <i>The King in Yellow</i> came to Arkham from overseas, and was performed by a French acting troupe. You don't recognize any of the cast members' names, and of course the actor who played the role of the Stranger is anonymous. However, it seems that a member of the Historical Society has done some of your work for you; there are several old newspaper clippings gathered together along with information about the play. Headlines include: Cedar Playhouse Closes Due To Fire, Experts Baffled Over Freak Floods, and the like. Hidden amongst this information, you also find a strange object - A clasp of onyx with an alien inscription."
+  },
+  "03160": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "The patient wing of the asylum is far quieter and lonelier than you had expected. The hall reeks of chemicals and body odor. As soon as you are escorted inside, the doors behind you are closed and locked tight.",
+    "backFlavor": "Speaking with the patients is proving more difficult than you had assumed. They eye you cautiously and refuse to answer any of your questions, backing away or fleeing if confronted. Either they're not used to guests, or something about you is causing them a considerable amount of distress. Some act like animals back into a corner, and you think at any moment they might strike."
+  },
+  "03161": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "The longer you spend in this hellish place, the more you want to leave. Already it has felt like days. You fear that if you are stuck here much longer, you will become like the patients: a husk of your former self, unruly, and dangerous.",
+    "backFlavor": "In the back of your mind, a force beckons. \"Have you seen it?\" It calls to you. Glimpsing something in your peripheral vision, you turn, and find a familiar symbol peering back at you wherever you look. It is etched upon the doors. Drawn on the walls. Painted on the patients' canvases. You cannot escape it."
+  },
+  "03162": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Flee.\nFlee while you still can.",
+    "backFlavor": "The walls close in. Your vision blurs. There is screeching in your ears. You are grabbed and cannot fight back. You call for help but nobody comes to your aid.\nYou look for a way to escape, but instead you see the pallid mask of the Stranger staring back at you. Around every corner, behind every door, staring at you through every window. That mask… That damned mask…\n\n\nOr… Perhaps it is you who wears the mask…?"
+  },
+  "03163": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Aside from the few patients giving you a wide berth, there aren’t any orderlies or doctors around to speak with. Looks like you’ll have to find Mr. Chesterfield on your own.",
+    "backFlavor": "Turning a corner, you nearly bump into a nurse with light brown hair and sharp features. You tell her about the violent patients and the strange things you've seen, but she doesn't listen. When you inquire about Daniel, she informs you that he is a patient of Dr. Mintz and that he resides in the secured basement level. Unfortunately, she refuses to let you into that area of the asylum."
+  },
+  "03164": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Daniel is somewhere in the secured basement where the most dangerous patients are kept. Now that you have the key, you can explore this area of the asylum.",
+    "backFlavor": "When you enter his cell, you find Daniel huddled in a corner of the room, sobbing and rocking back and forth on the ground. \"No mask, no mask…\" he stammers over and over. You help him to his feet and try to console him, telling him that he is not crazy - that strange events have been occurring throughout town ever since <u>The King in Yellow</u> returned to Arkham. \"It's Nigel!\" he exclaims, gripping you tightly. \"Nigel made us speak his name… He made us speak the Oath, and now He lives inside us, controlling us, don't you understand?\" he rambles on. \"We spoke His name and the price was paid! Hastur! Hastur! O King!\"\nYou believe you might understand more about the situation if you can calm him down, but you'll have to get him out of this asylum if you are to accomplish that."
+  },
+  "03165": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Daniel is somewhere in the secured basement where the most dangerous patients are kept. Now that you have the key, you can explore this area of the asylum.",
+    "backFlavor": "When you enter his cell, you find Daniel huddled in a corner of the room, sobbing and rocking back and forth on the ground. \"No mask, no mask…\" he stammers over and over. You help him to his feet and ask him what he remembers about <u>The King in Yellow</u>, but he interrupts you. \"Don't speak His name!\" he exclaims frantically, his eyes wide with a yellow glow. \"Nigel made us speak his name… He made us speak the Oath, and now He lives inside us, controlling us, don't you understand?\" he rambles on.\nThe man approaches wearing a crazed expression, and you take a wary step backward. \"We spoke His name and the price was paid! Hastur! Hastur! O King! - \" Then, suddenly, he transforms before your very eyes. His bones twist and snap. His body warps grotesquely. The symbol carved into his forehead burns bright, and a yellow glow emanates from within his body. He lunges to attack you."
+  },
+  "03166": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "With or without Daniel, you have to get out of this place as soon as you can.",
+    "backFlavor": "An orderly's scream echoes across the hall. Within moments, an alarm rings loudly throughout the institution. Nurses and guards rush through the asylum in a desperate attempt to control the situation. You feel dazed, and your vision is spotty, as though you've been struck by something heavy. The walls blur together and twist. Creatures begin to emerge out of the crevices and corners that did not exist moments before."
+  },
+  "03167": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "All hell has broken loose."
+  },
+  "03201": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "As you step off the train in Gare d’Orsay, the sun sinks below the Paris skyline. You cannot waste any time. If Nigel Engram is somewhere in Paris, you have to find him and wring the answers from him one way or another.",
+    "backFlavor": "Birds start to chirp eagerly. An orange tint slowly spreads across the sky as the creatures of the night shrink back into the darkness. You spend most of the day resting, and the daylight passes quickly with very little to show for it. Before you are able to fully recover from the previous night's events, it is evening once more"
+  },
+  "03202": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "The city stirs as cold shadows embrace the streets. There is danger all around you. Danger that you cannot escape. Danger that will follow you to the ends of the earth. When will this waking nightmare end?",
+    "backFlavor": "To your relief, the sun once again begins to rise, peeking just over the eastern horizon and casting long shadows across the city streets. You are completely exhausted from the night's events. It feels as though you haven't slept in weeks. Perhaps you haven't."
+  },
+  "03203": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "On the evening of your third night in Paris, a desperate resolve stirs within you. This cat and mouse game cannot go on any longer. One way or another, this night will end it. ",
+    "backFlavor": "The sun rises, and dispels the darkness. A warm fog envelops the city, blotting out the sky."
+  },
+  "03204": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "You pass the Church of St. Barnabé as you exit the train station and cannot help but overhear the organ playing. Is there a sermon this late in the evening? You marvel at the wild and strange chords for a moment before continuing. Paris is a big city, and you have very few leads…"
+  },
+  "03205": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "You pass the Church of St. Barnabé as you exit the train station and cannot help but overhear the organ playing. Is there a sermon this late in the evening? You marvel at the wild and strange chords for a moment before continuing. Paris is a big city, and you have very few leads…"
+  },
+  "03206": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "The chords that echo in your mind, the infernal man whose organ-playing intrigues and terrifies you… Perhaps there is a connection between this shadowy presence and <u>The King in Yellow</u>?",
+    "backFlavor": "You pursue your quarry through a narrow avenue, passing a set of heavy iron gates. You are in a dead end - a court with tall, old houses on either side. You close the gates behind you and turn back toward the shadowed figure just as day begins to break. Rays of light peek out over the skyline, and you lift your hand to block the gaze of the sun. Then, as though dispersed by the sunlight, the figure you had been chasing folds into the shadows and vanishes. You search the court for the mysterious figure, but there is no sign of him anywhere. Just as you are about to leave, you spot a plaque next to a red-brown door atop a steep, narrow staircase. It reads: \"N. Engram.\""
+  },
+  "03207": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "I knew that every time I met him brought him nearer to the accomplishment of his purpose and my fate. And still I tried to save myself.\n-Robert W. Chambers, \"In the Court of the Dragon,\" <u>The King in Yellow</u>",
+    "backFlavor": "You lose track of yourself within the city as you flee for your life. Your feet move of their own accord. The beating of sinewy wings and screeching of creatures above you spurs you onward. Soon you find yourself running down a narrow avenue, passing a set of heavy iron gates. You are in a dead end - a court with tall, old houses on either side. You turn back toward the entrance and breathe a sigh of relief as you see the sun rising once more over the skyline of Paris. As though dispersed by the sunlight, the figure that had been chasing you folds into the shadows and vanishes. Just as you are about to leave, you spot a plaque next to a red-brown door atop a steep, narrow staircase. It reads: \"N. Engram.\""
+  },
+  "03241": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "The dank, chill air of the catacombs penetrates your clothes and causes you to shiver. Everywhere you look, the remains of the dead greet you - a grim reminder of your own mortality."
+  },
+  "03242": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "All around you, the eyes of skulls glow with an otherworldly hue. A ghostly voice echoes throughout the labyrinthine catacombs. You sense a threatening presence looming around you. It is just outside of your vision, past the dim fog that permeates through the catacombs, around every corner…",
+    "backFlavor": "The ghostly presence that menaces you grows with each minute you spend exploring these dreadful catacombs. You walk faster, glancing behind you nervously every few steps. Why does it hound you? What is its purpose? It tugs and pulls on the periphery of your senses. You turn a sharp corner and its shapeless umbral form stares back at you. You spin and flee, passing through a narrow stone corridor you do not recognize. At every intersection, every corner, its shadowy arms reach for you, its many faces contorted in agony. You cannot escape. Resigned to your fate, you drop to your knees in hopelessness and stare down at the cold stone floor. You feel the presence approaching you and cannot bear to look up. Everything goes black."
+  },
+  "03243": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "At the end of the long tunnel next to you, the Stranger steps through the darkness, his pale mask glinting in the candlelight. \"Wait!\" you call out. He glances your way before vanishing into the shadows. Once more, you are forced to track him down to find answers…",
+    "backFlavor": "Rows of skulls chatter their teeth endlessly as you pass through a narrow stone archway, into a round chamber illuminated by firelight. In the center of the tomb stands the Stranger, peering into the blaze. Across the wall, shadows dance and twist with the flickering of the flame. The Stranger turns to face you, and his own shadow spreads across the wall. Where his shadow's arms should be, tentacle shapes emerge, enveloping the walls in darkness. He lifts his hands toward the wall, as if trying to show you something."
+  },
+  "03244": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "The shadows cast along the bone walls shift into the shapes of several figures, acting out a macabre parody of <u>The King in Yellow</u>."
+  },
+  "03245": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Bones rattle to the floor, dislodged by the shaking and crumbling of the caverns around you. The Stranger grabs a skull from within the flames in the center of the chamber and flees.",
+    "backFlavor": "The catacombs rumble and collapse behind you as you make your escape. You are able to follow the Stranger's shadow, tracing his steps to find your way through the labyrinthine passages. You cross the threshold of the catacombs entrance, a wave of rubble and bone chips following in your wake. The deafening noise of falling debris crashes behind you, and you turn to find the entrance blocked by a newly-formed wall of bone and rock. Just as you are ready to depart, a partially-charred skull bearing a strange diagram rolls to a stop at your feet. There is no sign of the Stranger anywhere."
+  },
+  "03246": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "The shadows along the walls of the tomb begin to coalesce. Strange runic symbols twist into the image of a building with a tall tower, its spire reaching up toward the ceiling. Then the Stranger beckons for you to follow, and disappears through the stone archway behind you.",
+    "backFlavor": "Following the Stranger's lead, you take a circuitous route through the underground passageways. Finally you are confronted by a dead end - a tunnel blocked by an impossibly thick wall of collapsed bone and rubble. The Stranger stands nearby, holding the partially-charred skull he pulled from the fire in the Tomb of Shadows. \"What now?\" you ask, confused. He holds the skull aloft, and the floor begins to collapse into a pit of dark emptiness below. Bones and rubble from the wall fall into the pit, and it grows larger with each moment. The Stranger bows, then falls backwards into the pit before you can grab him. \"Wait!\" you call out, but it is too late. With the pit growing and threatening to swallow the catacombs entirely, you have no choice but to follow him."
+  },
+  "03275": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Your boat docks at Porte de l’Avancée, but with the rising tide and torrential rain flooding the street, the boat’s captain isn’t keen on sticking around. He tells you he will come back for you in the morning. You tell him not to bother; you probably won’t be around by then.",
+    "backFlavor": "The tide continues to rise rapidly, the outer walls of the village assaulted by hurricane-force winds and freezing rain. The storm only grows in intensity as the evening turns to night. Soon, the tidewater will completely flood the city."
+  },
+  "03276a": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "The angry sea continues to barrage the island. Waves crash against the walls, and rain pelts the rooftops. Is the rising sea the key to opening the path? If so, you have no choice but to let the storm rage on…",
+    "backFlavor": "Something is wrong. The flood must have triggered the gate by now. You researched this ritual to the best of your abilities, but for some reason, it isn't working.\nDesperate, you look up at the heavens for a sign. Lightning courses through the vortex of black clouds above. Figures robed in yellow search through the sky on the backs of monstrous winged creatures. Suddenly, you realize your error - the tide wasn't the key, it was the sky!"
+  },
+  "03276b": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "The angry sea continues to barrage the island. Waves crash against the walls, and rain pelts the rooftops. Is the rising sea the key to opening the path? If so, you have no choice but to let the storm rage on…",
+    "backFlavor": "The ritual is almost complete. All that is left is to find the gate and step through."
+  },
+  "03277": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "The water level continues to rise. The outer walls cannot stop the tide from swallowing the island. The streets flood with ice cold water, and powerful waves demolish buildings where they stand. If you do not act soon, the path will be forever lost, and nobody will be able to prevent Hastur’s agents from releasing his bonds.",
+    "backFlavor": "The sea swallows Mont Saint-Michel whole. Seawater pours over the walls and crashes through the lower half of the city. The abbey is the only refuge from the flood, but even that will be consumed in time. The vortex above - your only hope for escaping this doom - suddenly fades into wisps of gray cloud.\nYou sit on a slab of wet rock outside the abbey and contemplate the madness all around you. How has it come to this? Is all of this even truly happening? Or will you awaken in an asylum like Daniel Chesterfield, a victim of some cruel cosmic joke?"
+  },
+  "03278": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Dark storm clouds swirl overhead. A vortex of eldritch energy rages in the center of the storm. The ritual has begun. The gate may appear above the abbey, or below it. You must choose which route to pursue and reach the gate before Hastur’s agents do.",
+    "backFlavor": "As the vortex grows in size and force, so too does its pull on reality. Debris and rubble start to float upwards, pulled into the terrible void. A thunderous crash shakes the island to its very core. Soon, the whole city will be destroyed by the maelstrom."
+  },
+  "03279a": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "The whirlwind over the island continues to rage. Blinding flashes of lightning and deafening thunder assault your senses. Is the vortex above the key to opening the path? If so, you have no choice but to beckon the entity closer…",
+    "backFlavor": "Something is wrong. The vortex must have triggered the gate by now. You researched this ritual to the best of your abilities, but for some reason, it isn't working.\nDesperate, you examine your surroundings. Waves crash just over the outer walls of the village, flooding the streets. Figures robed in yellow search through the streets, their hooded lamps illuminating the floodwater. Suddenly, you realize your error - the vortex wasn't the key, it was the sea!"
+  },
+  "03279b": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "The whirlwind over the island continues to rage. Blinding flashes of lightning and deafening thunder assault your senses. Is the vortex above the key to opening the path? If so, you have no choice but to beckon the entity closer…",
+    "backFlavor": "The ritual is almost complete. All that is left is to find the gate and step through."
+  },
+  "03280": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "The maelstrom in the sky envelops the horizon. The island starts to break into pieces. The screeches of uncanny creatures fill the air, an unholy choir praying to a force beyond your comprehension. If you do not act soon, the path will be forever lost, and nobody will be able to prevent Hastur’s agents from releasing his bonds.",
+    "backFlavor": "The vortex consumes the abbey of Mont Saint-Michel, shattering it into a thousand shards of reality. Gravity's hold on the island is released, and debris begins to lift into the air. The lower streets of the island are the only refuge from the angry sky, but even they will be consumed in time. The tidewater - your only hope for escaping this doom - suddenly recedes, and floodwater seeps into the earth below.\nYou sit at the edge of the north tower below the abbey and contemplate the madness all around you. How has it come to this? Is all of this even truly happening? Or will you awaken in an asylum like Daniel Chesterfield, a victim of some cruel cosmic joke?"
+  },
+  "03281": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Tidewater churns around the walls of the city. Layers of reality unfold. Reflected in the depths below, you can see the twisted spires of Carcosa. You have no choice but to dive in.",
+    "backFlavor": "Only you can stop Hastur from escaping his prison.\nYou dive into the churning waters and open the path to Carcosa, the realm of madness."
+  },
+  "03282": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Clouds churn over the abbey tower. Layers of reality unfold. Through the dark storm clouds, you can see the twisted spires of Carcosa. You have no choice but to make the leap.",
+    "backFlavor": "Only you can stop Hastur from escaping his prison.\nYou leap into the churning maelstrom and open the path to Carcosa, the realm of madness."
+  },
+  "03317": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "And now, far away, over leagues of tossing cloud-waves, I saw the moon dripping with spray; and beyond, the towers of Carcosa rose behind the moon.\n - Robert W. Chambers, \"In the Court of the Dragon,\" <u>The King in Yellow</u>",
+    "backFlavor": "Turning a corner, you nearly bump into a nurse with light brown hair and sharp features. You tell her about the violent patients and the strange things you've seen, but she doesn't listen. When you inquire about Daniel, she informs you that he is a friend of the King and that he resides in the palace."
+  },
+  "03318": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "I thought, too, of The King in Yellow wrapt in the fantastic colors of his tattered mantle, and that bitter cry of Cassilda, \"Not upon us, oh King, not upon us!\"\n- Robert W. Chambers, \"The Mask,\" <u>The King in Yellow</u>",
+    "backFlavor": "\"Ah, if it isn't our final guest,\" the doorman announces. \"Miss Devine, your presence here has been long awaited.\" The creature slithers up the side of the palace. You swear you've seen the symbol on her amulet before. Wait, that can't be right.\n\"Well, now the <u>real</u> party can begin,\" it roars."
+  },
+  "03319": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "...I cannot forget Carcosa, where black stars hang in the heavens, where the shadows of men’s thoughts lengthen in the afternoon, when the twin suns sink into the Lake of Hali, and my mind will bear forever the memory of the Pallid Mask.\n - Robert W. Chambers, \"The Repairer of Reputations,\" <u>The King in Yellow</u>",
+    "backFlavor": "The sky falls. Cloud-wisps lash into the earth, and the dozens of moons in the sky shatter. Shards of the cosmic entities above plunge into the ground and assault the city. The dark reflections of Mont Saint-Michel which floats upside down above you starts to descend. They abbey crashes into the king's palace, launching ebony debris in all directions. Hastur's hideous echoing laughter haunts your mind. It is done."
+  },
+  "03320": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "You have opened the path to Carcosa in order to stop those who wish to free Hastur from his prison in the stars. Only you can put an end to this madness!",
+    "backFlavor": "A shadow creeps along the wall beside you, and your heart leaps into your throat. You turn, and a figure flits away just out of sight. Either your mind is playing tricks on you, or someone else is in the theatre.\nYou follow the direction of the shadow, rounding a nearby corner. At the far end of the hall, he stands awaiting you: the man who wears the Pallid Mask, the Stranger whose steps you have haunted for so many weeks. You remember that you have been here before.\nThe theatre dissolves around you. The bright glare of two suns pierce into your eyes from above. \"Do you remember now?\" he asks. He turns and vanishes into the aether, as if taunting you to follow."
+  },
+  "03321a": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "It is time to finally confront the Stranger and learn the truth about his identity, once and for all."
+  },
+  "03322a": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "It is time to finally confront the Stranger and learn the truth about his identity, once and for all."
+  },
+  "03323a": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "It is time to finally confront the Stranger and learn the truth about his identity, once and for all."
+  },
+  "03324": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "...I heard the King in Yellow whispering to my soul: \"It is a fearful thing to fall into the hands of the living God!\"\n - Robert W. Chambers, \"In the Court of the Dragon,\" <u>The King in Yellow</u>",
+    "backFlavor": "A chorus of cries echoes throughout your mind. Chaotic organ chords torture your ears. You fall to your knees and blood drips from your eyes. The realm of Carcosa shatters into millions of pieces and fades into the empty void of space.\nCurtains fall."
+  }
+}

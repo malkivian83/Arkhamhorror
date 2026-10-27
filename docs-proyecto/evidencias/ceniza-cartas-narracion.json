@@ -1,0 +1,268 @@
+{
+  "voiceId": "o0SveC0zgHFuCsEO3vHR",
+  "language": "es",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.31,
+      "similarity_boost": 0.86,
+      "style": 0,
+      "speed": 1,
+      "use_speaker_boost": true
+    }
+  },
+  "files": [
+    {
+      "code": "12106",
+      "side": "front",
+      "text": "El campus está extrañamente tranquilo y no hay ni rastro de tu amigo. Unas figuras encapuchadas cruzan el patio principal mientras unos nerviosos estudiantes se apresuran bajo las farolas fastidiosamente brillantes.",
+      "file": "12106-front.mp3",
+      "inputHash": "552dd301fd7c0055b9360d235fd0631db830e2ead9a20d05b5aef62d2306c810",
+      "bytes": 257505,
+      "sha256": "551eeaf520e43d164b35a32a799ecf517ff3f48b1c2cfd565022e7a5c6ed53ba"
+    },
+    {
+      "code": "12106",
+      "side": "back",
+      "text": "El viento lleva el olor del humo por todo el campus. Una columna de llamas sale de un edificio cercano.",
+      "file": "12106-back.mp3",
+      "inputHash": "2cf77eb7edcee8d586d586663468def698252bbe187565004bd58fc1d55913f4",
+      "bytes": 121251,
+      "sha256": "d110bb711a2a55fcff8db620e1e9dfcaabd70f9bdb382e61da64086e5fa85bd7"
+    },
+    {
+      "code": "12107",
+      "side": "front",
+      "text": "El cielo presenta un resplandor anaranjado a medida que las llamas se propagan.",
+      "file": "12107-front.mp3",
+      "inputHash": "476945124858bbd89c5c0bda0d1b45a6fd2aca0126038b489b11182778db19e6",
+      "bytes": 84470,
+      "sha256": "0500a066209e25cb858ba744be401251ae8d2b4ee8748ce283e5e246293ce2a6"
+    },
+    {
+      "code": "12107",
+      "side": "back",
+      "text": "Las ascuas recorren el aire sobre la Universidad Miskatonic. El alarido de una alarma de incendios resuena por el patio principal mientras docenas de asustados estudiantes huyen del lugar.",
+      "file": "12107-back.mp3",
+      "inputHash": "bd3d5bbbdad918e6291252f8b2db7e92f74663cc00f10ae2921f7f832043246a",
+      "bytes": 224069,
+      "sha256": "2823a021c8174449be440a8169b16f43a52652c66d838aa338a238dfbf5d408c"
+    },
+    {
+      "code": "12108",
+      "side": "front",
+      "text": "¡El campus está ardiendo!",
+      "file": "12108-front.mp3",
+      "inputHash": "70add2ece3d0c2fc7b5d78912f1c8edbad1fc4e83d17c03430d6cfd11a044157",
+      "bytes": 29300,
+      "sha256": "a234eeecff83c807b0247d88e256b28668a770c85f3c68bc86bed4f66f521286"
+    },
+    {
+      "code": "12108",
+      "side": "back",
+      "text": "Un denso humo negro llena el aire a tu alrededor y caes de rodillas entre toses. Más allá de las voraces llamas, ves que se mueven unas borrosas siluetas oscuras. Por mucho que te esfuerces, no logras ponerte a salvo. Se te nubla la vista mientras pierdes la consciencia.",
+      "file": "12108-back.mp3",
+      "inputHash": "72eff3c6b65f66c78a0b78dda51594d0f87edc28be7edec44570b7c047427e37",
+      "bytes": 379967,
+      "sha256": "ab41faa4fb58189767218774ff131c510889250aab340be383f5c0600a62c30c"
+    },
+    {
+      "code": "12109",
+      "side": "front",
+      "text": "Registras la residencia universitaria en busca de algún rastro de tu amigo.",
+      "file": "12109-front.mp3",
+      "inputHash": "d382b0172ceff2d46438d256b2acf4c85ffae53f391d81d3c84f8811c9a9ec57",
+      "bytes": 86560,
+      "sha256": "988e14db32744f4296a2751c982189beb81daeb85f699fe0eb54683ba39ff7e6"
+    },
+    {
+      "code": "12109",
+      "side": "back",
+      "text": "Encuentras la bolsa de tu amigo, quemada con el emblema estilizado de la palma de una mano abierta. Esté donde esté, supones que no se fue por voluntad propia. Cuanto te dispones a marcharte, una figura enmascarada y envuelta en llamas se encara contigo. Emite un escalofriante chillido y la estancia se prende fuego a tu alrededor.",
+      "file": "12109-back.mp3",
+      "inputHash": "88ceb31286e170f6518c4d964adf428eb1ee3510feb63c9b708f53a1cb20a952",
+      "bytes": 422181,
+      "sha256": "dcf0fe1413f111ed5bdf5a4f14f6b30d7f02d49536e611539ada6f4761950a24"
+    },
+    {
+      "code": "12110",
+      "side": "front",
+      "text": "Una aparición ardiente se interpone entre la salida y tú. ¡Debes escapar de la residencia!",
+      "file": "12110-front.mp3",
+      "inputHash": "3793f0a3d2e7c4d2e18cd9cac2bb53d7729eb409be7172fad9b63ddced7892d8",
+      "bytes": 114145,
+      "sha256": "820582e70effae621df139bbe44e2791005c0711fed65c9a13964630e60f402c"
+    },
+    {
+      "code": "12110",
+      "side": "back",
+      "text": "Sales de la residencia al fresco aire de la noche otoñal con los pulmones a punto de reventar. Al mirar atrás, no hay ni rastro de tu perseguidor. Recuerdas que tu amigo quería hablar con el Dr. Henry Armitage, el bibliotecario jefe de la Universidad Miskatonic.\nTal vez él pueda ayudarte a entender lo que está pasando.",
+      "file": "12110-back.mp3",
+      "inputHash": "41a66e584830b8ab720288b77f7f1528cb02ac44d87363704426ad45812d99c1",
+      "bytes": 392088,
+      "sha256": "e01355746b2194ff7fb3b036ee556dbb618391a8a4902013cdf38fb594597613"
+    },
+    {
+      "code": "12111",
+      "side": "front",
+      "text": "Tu amigo mencionó que había visitado al Dr. Henry Armitage, el bibliotecario jefe. Cada vez llegan más personajes extraños, así que debes registrar el campus para dar con su paradero.",
+      "file": "12111-front.mp3",
+      "inputHash": "266379b8490ea84fac67433ca68c0de2083526c5dcc046f45a3084f0c7e229c9",
+      "bytes": 218217,
+      "sha256": "61ac0c272a30b3b3a37b38e886dcdb44de8fa10a6d378f5e5d67c95a9157edc1"
+    },
+    {
+      "code": "12111",
+      "side": "back",
+      "text": "Encuentras al Dr. Armitage atrincherado en una de las aulas de la Biblioteca Orne.\n—Ha habido personas que se comportaban de forma extraña en el campus últimamente, entre ellas tu amigo. Pero todo eso puede esperar. ¡Debemos enfrentarnos a tu perseguidor y detenerlo antes de que arda todo el campus! —dice el Dr. Armitage.",
+      "file": "12111-back.mp3",
+      "inputHash": "03d87777159386c47105bcacdfa46249d6abebc5da083539f1c2f36b1989f933",
+      "bytes": 432630,
+      "sha256": "c05c582b39c30596201f11275cf2fff86d2cb3e6a3cfffbeea6e3809c92d15e4"
+    },
+    {
+      "code": "12112",
+      "side": "front",
+      "text": "¡No puedes permitir que tu ardiente némesis haga daño a más inocentes! Con ayuda del Dr. Armitage, quizás puedas detenerlo.",
+      "file": "12112-front.mp3",
+      "inputHash": "2e831820b8076178a5afe7030b8660a0cd532ef4361232debd771141a8bebb8f",
+      "bytes": 165972,
+      "sha256": "76eaa885cfa933cb5767349e4a0e29d8f1fbc5c70f52609f458807fca2af4e35"
+    },
+    {
+      "code": "12112",
+      "side": "back",
+      "text": "Tu terrible perseguidor retrocede, tambaleante, y se aferra la cabeza con ambas manos, como si intentase arrancarse la máscara. El sonido de las sirenas a lo lejos va aumentando de intensidad. Te giras y ves un grupo de aterrados estudiantes que pasan corriendo junto a ti. Cuando vuelves tu atención a tu llameante némesis, se ha desvanecido sin dejar rastro.",
+      "file": "12112-back.mp3",
+      "inputHash": "f182a895c73c3e1df7bfd4a0006974a141f635830ff9ce7e267d696f04b05f05",
+      "bytes": 462305,
+      "sha256": "3e1a21aa27402dee481db5c19ce7a9d5dcb5ed110921feb054bf783b67e7c562"
+    },
+    {
+      "code": "12134",
+      "side": "front",
+      "text": "Una neblina antinatural llena las calles de Arkham. Algunos de los lugareños dicen que las colinas que hay al oeste de Arkham están ardiendo. Pese al fresco tiempo otoñal, las calles de la ciudad tienen una calidez poco natural mientras cae la noche.",
+      "file": "12134-front.mp3",
+      "inputHash": "622e58920ab2ce3bf744584bfa591365de2c85890278c29972106d9a8b5857f8",
+      "bytes": 314766,
+      "sha256": "d85a8c9f2266c318feae1605f43bbf016d70f4fd8cd7aa2405857929046d192a"
+    },
+    {
+      "code": "12134",
+      "side": "back",
+      "text": "Un picor que te has esforzado por ignorar se vuelve insoportable. Al remangarte, ves una zona de piel gris que se está pelando. Te rascas cuidadosamente la piel muerta y revelas una cicatriz lisa, casi como si te hubieran marcado a fuego. La cicatriz parece una mano con un ojo imperturbable en su interior. Al tocarla, sientes una sensación cálida y embriagadora, como de borrachera.",
+      "file": "12134-back.mp3",
+      "inputHash": "625d62b48bce2e783f61cb2cff7de61693744806164ef9d2c8580a2f03945c35",
+      "bytes": 514550,
+      "sha256": "71b40789f337e676e030a7b3d24279b1584a832386e1202aa3df3ec834c039a3"
+    },
+    {
+      "code": "12135",
+      "side": "front",
+      "text": "De la acera mojada brota vapor, como si el suelo que hay debajo estuviera ardiendo de verdad.",
+      "file": "12135-front.mp3",
+      "inputHash": "4d52957ab2cc4bf9c110359f8c3fd59976a04a1c771a56a5ca53514c75b7100f",
+      "bytes": 131282,
+      "sha256": "1e222a34e958aac030c28dc2a41ed1581d336e5179ea7ef95dd499449c2db204"
+    },
+    {
+      "code": "12135",
+      "side": "back",
+      "text": "Miras tu reloj y ves que ya son las 11 y media. Sueltas un taco y paras un taxi para que te lleve al Barrio Este.",
+      "file": "12135-back.mp3",
+      "inputHash": "2787f3b0ade9bbf8cf4807d905b0d1d805305ba8d39e54075a9511337ec0de90",
+      "bytes": 136297,
+      "sha256": "c4c98e11e61e21cf466b4f4b9dd011d81b4e44b8427509f7e114518d09210aff"
+    },
+    {
+      "code": "12136",
+      "side": "front",
+      "text": "Debes encontrar el paradero de los sospechosos de la lista de tu amigo.",
+      "file": "12136-front.mp3",
+      "inputHash": "745f77777c50abbde2cb19c7f2dbcdc0e5e4cebdfb9a5bf82b9102174f1d40f1",
+      "bytes": 65662,
+      "sha256": "cd1b4437076e1de8453fc8a5504a99cb31c25b29737c60246828660836913685"
+    },
+    {
+      "code": "12136",
+      "side": "back",
+      "text": "Tu búsqueda ha dado unos frutos interesantes. Con todo lo que has descubierto, tú y el Dr. Armitage deberíais tener suficientes pistas como para encontrar el paradero de tu amigo. Te montas en un taxi para volver al Barrio Este, donde podrás poner en común tus averiguaciones.",
+      "file": "12136-back.mp3",
+      "inputHash": "7e3e7fa77faa0f828290eacfc4065d27cef11e5b489b511120b3ff1f6a6905e3",
+      "bytes": 325633,
+      "sha256": "f5dc11b02ee25d43033fdc781a17709f465ac110f61e2956cdcd422fe506e362"
+    },
+    {
+      "code": "12169",
+      "side": "front",
+      "text": "Un cántico resuena por los fétidos túneles. ¡El renacimiento de la secta se acerca!",
+      "file": "12169-front.mp3",
+      "inputHash": "977d0517ac045d51d7cd389b1ae9c65fe0fc05fae9a1286a10929b12b19118ad",
+      "bytes": 110384,
+      "sha256": "d9ae7a1b046df0293c5d9d3bb27d1541d84966f9daed06a65f1c2c6d6c220e20"
+    },
+    {
+      "code": "12169",
+      "side": "back",
+      "text": "En algún profundo lugar de las entrañas de la ciudad, la intensidad de una ardiente llama crece. Quienes llevan la marca de la reina se alzan para proclamar su regreso.",
+      "file": "12169-back.mp3",
+      "inputHash": "520ec22e57aa08c00fc70951ee5fd91441c6343346434787010a244c8b6ae00e",
+      "bytes": 200245,
+      "sha256": "905e292144cae5f25eb91219385f85bfba6e05e254c21d23f66397f2d0bd6f8d"
+    },
+    {
+      "code": "12170",
+      "side": "front",
+      "text": "Un humo nocivo invade el aire mientras el sonido del cántico se vuelve más fuerte.",
+      "file": "12170-front.mp3",
+      "inputHash": "5b077c8abf84d87186c838e8afafd6fa984d54f85d5cbbac07eb8cfc1bfa4cf6",
+      "bytes": 93247,
+      "sha256": "a8793b574d08df2b5292e779b4cd3e6ee1587167803e2fc5478b2d021c19453c"
+    },
+    {
+      "code": "12171",
+      "side": "back",
+      "text": "Una mano retorcida en forma de garra te aferra el brazo mientras varias docenas más se enroscan en torno a ti, como si te abrazaran. Arden al tacto. Gritas mientras unas horrendas fauces repletas de dientes se abren en el vientre de Elokoss.\n—No te preocupes, sólo quiere honrarte —dice una voz familiar.\nAl mirar hacia atrás, ves a tu amigo ataviado con la misma túnica negra y roja que llevan los demás Hermanos de las cenizas. Te sonríe mientras de las ardientes fauces brotan lenguas de llamas que te envuelven en un capullo de fuego. Lo último que oyes mientras te arrastran al abrasador infierno del pecho de Elokoss es a tu amigo, que junto con el resto de la secta canta un himno desafinado y rítmico por tu renacimiento.",
+      "file": "12171-back.mp3",
+      "inputHash": "b989ad4cc1790add6c21b632bc66620dde748ed2fa982d6ee3bf41b9e911812f",
+      "bytes": 884444,
+      "sha256": "26e904f3931d0ac318911c8a34f11c0dd009efc15ed76cc17546e0e383938c93"
+    },
+    {
+      "code": "12172",
+      "side": "front",
+      "text": "Los Hermanos de las cenizas podrían estar en cualquier parte. Debes registrar las alcantarillas en busca del lugar del ritual de la secta si quieres salvar a tu amigo.",
+      "file": "12172-front.mp3",
+      "inputHash": "dd9b984989317b2cc86d4147525e0aca34d69b54dbbcfd1bbfc470ecb3246ff6",
+      "bytes": 187706,
+      "sha256": "6e901c7cb5f148cfc0754297c99a404d141f695998554a3803a987a63b8aaf0e"
+    },
+    {
+      "code": "12172",
+      "side": "back",
+      "text": "El cántico te lleva por un laberinto de túneles hasta una cisterna seca. Hay varias docenas de personajes ataviados con túnicas arrodillados ante un abedul ardiente. Tu amigo se encuentra entre ellos. ¡Debes detenerlo antes de que se sacrifique por Elokoss!",
+      "file": "12172-back.mp3",
+      "inputHash": "c45019c20386e00c3c41f9cc20febf961c651d245438080bbb1c373b1396d33c",
+      "bytes": 325215,
+      "sha256": "f56f4a56e42e003d06379190dbe785069a50960ffc89fe89fb3fb712f630a22f"
+    },
+    {
+      "code": "12173",
+      "side": "front",
+      "text": "Debes detener el rito a toda costa. Podrías registrar la cisterna en busca de alguna forma de detener a la secta, ¡o bien podrías hacer leña de su ídolo profano!",
+      "file": "12173-front.mp3",
+      "inputHash": "3866ef83d8c7a8a293b706357e91009bc16e326dc4daeffe4c3f7fdfc31f9e9b",
+      "bytes": 194394,
+      "sha256": "c706266c5f7458289575f1d913ed5032b26037cd9df6f2d6be3c2e1b2befa0f3"
+    },
+    {
+      "code": "12173",
+      "side": "back",
+      "text": "Mientras haces leña del árbol ardiente, un aullido sobrenatural llena la cámara. Lo ignoras y prosigues tu ataque, asestando un certero golpe tras otro para destruir el mal primordial. Al final, la antigua efigie de la diosa de los Hermanos yace hecha pedazos.",
+      "file": "12173-back.mp3",
+      "inputHash": "1aa894bb66040d80d9e0c60ee12fb69b1e212437bcc2e2c886dc5468df8fb493",
+      "bytes": 361577,
+      "sha256": "49c4af2e0ffed9572dda2fe5e84504a059735f014e1f82b99c9adc5e1d0d74de"
+    }
+  ]
+}

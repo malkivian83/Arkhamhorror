@@ -1,0 +1,517 @@
+{
+  "12106": {
+    "group": "ceniza",
+    "typeCode": "agenda",
+    "flavor": "El campus está extrañamente tranquilo y no hay ni rastro de tu amigo. Unas figuras encapuchadas cruzan el patio principal mientras unos nerviosos estudiantes se apresuran bajo las farolas fastidiosamente brillantes.",
+    "backFlavor": "El viento lleva el olor del humo por todo el campus. Una columna de llamas sale de un edificio cercano."
+  },
+  "12107": {
+    "group": "ceniza",
+    "typeCode": "agenda",
+    "flavor": "El cielo presenta un resplandor anaranjado a medida que las llamas se propagan.",
+    "backFlavor": "Las ascuas recorren el aire sobre la Universidad Miskatonic. El alarido de una alarma de incendios resuena por el patio principal mientras docenas de asustados estudiantes huyen del lugar."
+  },
+  "12108": {
+    "group": "ceniza",
+    "typeCode": "agenda",
+    "flavor": "¡El campus está ardiendo!",
+    "backFlavor": "Un denso humo negro llena el aire a tu alrededor y caes de rodillas entre toses. Más allá de las voraces llamas, ves que se mueven unas borrosas siluetas oscuras. Por mucho que te esfuerces, no logras ponerte a salvo. Se te nubla la vista mientras pierdes la consciencia."
+  },
+  "12109": {
+    "group": "ceniza",
+    "typeCode": "act",
+    "flavor": "Registras la residencia universitaria en busca de algún rastro de tu amigo.",
+    "backFlavor": "Encuentras la bolsa de tu amigo, quemada con el emblema estilizado de la palma de una mano abierta. Esté donde esté, supones que no se fue por voluntad propia. Cuanto te dispones a marcharte, una figura enmascarada y envuelta en llamas se encara contigo. Emite un escalofriante chillido y la estancia se prende fuego a tu alrededor."
+  },
+  "12110": {
+    "group": "ceniza",
+    "typeCode": "act",
+    "flavor": "Una aparición ardiente se interpone entre la salida y tú. ¡Debes escapar de la residencia!",
+    "backFlavor": "Sales de la residencia al fresco aire de la noche otoñal con los pulmones a punto de reventar. Al mirar atrás, no hay ni rastro de tu perseguidor. Recuerdas que tu amigo quería hablar con el Dr. Henry Armitage, el bibliotecario jefe de la Universidad Miskatonic.\nTal vez él pueda ayudarte a entender lo que está pasando."
+  },
+  "12111": {
+    "group": "ceniza",
+    "typeCode": "act",
+    "flavor": "Tu amigo mencionó que había visitado al Dr. Henry Armitage, el bibliotecario jefe. Cada vez llegan más personajes extraños, así que debes registrar el campus para dar con su paradero.",
+    "backFlavor": "Encuentras al Dr. Armitage atrincherado en una de las aulas de la Biblioteca Orne.\n—Ha habido personas que se comportaban de forma extraña en el campus últimamente, entre ellas tu amigo. Pero todo eso puede esperar. ¡Debemos enfrentarnos a tu perseguidor y detenerlo antes de que arda todo el campus! —dice el Dr. Armitage."
+  },
+  "12112": {
+    "group": "ceniza",
+    "typeCode": "act",
+    "flavor": "¡No puedes permitir que tu ardiente némesis haga daño a más inocentes! Con ayuda del Dr. Armitage, quizás puedas detenerlo.",
+    "backFlavor": "Tu terrible perseguidor retrocede, tambaleante, y se aferra la cabeza con ambas manos, como si intentase arrancarse la máscara. El sonido de las sirenas a lo lejos va aumentando de intensidad. Te giras y ves un grupo de aterrados estudiantes que pasan corriendo junto a ti. Cuando vuelves tu atención a tu llameante némesis, se ha desvanecido sin dejar rastro."
+  },
+  "12134": {
+    "group": "ceniza",
+    "typeCode": "agenda",
+    "flavor": "Una neblina antinatural llena las calles de Arkham. Algunos de los lugareños dicen que las colinas que hay al oeste de Arkham están ardiendo. Pese al fresco tiempo otoñal, las calles de la ciudad tienen una calidez poco natural mientras cae la noche.",
+    "backFlavor": "Un picor que te has esforzado por ignorar se vuelve insoportable. Al remangarte, ves una zona de piel gris que se está pelando. Te rascas cuidadosamente la piel muerta y revelas una cicatriz lisa, casi como si te hubieran marcado a fuego. La cicatriz parece una mano con un ojo imperturbable en su interior. Al tocarla, sientes una sensación cálida y embriagadora, como de borrachera."
+  },
+  "12135": {
+    "group": "ceniza",
+    "typeCode": "agenda",
+    "flavor": "De la acera mojada brota vapor, como si el suelo que hay debajo estuviera ardiendo de verdad.",
+    "backFlavor": "Miras tu reloj y ves que ya son las 11 y media. Sueltas un taco y paras un taxi para que te lleve al Barrio Este."
+  },
+  "12136": {
+    "group": "ceniza",
+    "typeCode": "act",
+    "flavor": "Debes encontrar el paradero de los sospechosos de la lista de tu amigo.",
+    "backFlavor": "Tu búsqueda ha dado unos frutos interesantes. Con todo lo que has descubierto, tú y el Dr. Armitage deberíais tener suficientes pistas como para encontrar el paradero de tu amigo. Te montas en un taxi para volver al Barrio Este, donde podrás poner en común tus averiguaciones."
+  },
+  "12169": {
+    "group": "ceniza",
+    "typeCode": "agenda",
+    "flavor": "Un cántico resuena por los fétidos túneles. ¡El renacimiento de la secta se acerca!",
+    "backFlavor": "En algún profundo lugar de las entrañas de la ciudad, la intensidad de una ardiente llama crece. Quienes llevan la marca de la reina se alzan para proclamar su regreso."
+  },
+  "12170": {
+    "group": "ceniza",
+    "typeCode": "agenda",
+    "flavor": "Un humo nocivo invade el aire mientras el sonido del cántico se vuelve más fuerte."
+  },
+  "12171": {
+    "group": "ceniza",
+    "typeCode": "agenda",
+    "backFlavor": "Una mano retorcida en forma de garra te aferra el brazo mientras varias docenas más se enroscan en torno a ti, como si te abrazaran. Arden al tacto. Gritas mientras unas horrendas fauces repletas de dientes se abren en el vientre de Elokoss.\n—No te preocupes, sólo quiere honrarte —dice una voz familiar.\nAl mirar hacia atrás, ves a tu amigo ataviado con la misma túnica negra y roja que llevan los demás Hermanos de las cenizas. Te sonríe mientras de las ardientes fauces brotan lenguas de llamas que te envuelven en un capullo de fuego. Lo último que oyes mientras te arrastran al abrasador infierno del pecho de Elokoss es a tu amigo, que junto con el resto de la secta canta un himno desafinado y rítmico por tu renacimiento."
+  },
+  "12172": {
+    "group": "ceniza",
+    "typeCode": "act",
+    "flavor": "Los Hermanos de las cenizas podrían estar en cualquier parte. Debes registrar las alcantarillas en busca del lugar del ritual de la secta si quieres salvar a tu amigo.",
+    "backFlavor": "El cántico te lleva por un laberinto de túneles hasta una cisterna seca. Hay varias docenas de personajes ataviados con túnicas arrodillados ante un abedul ardiente. Tu amigo se encuentra entre ellos. ¡Debes detenerlo antes de que se sacrifique por Elokoss!"
+  },
+  "12173": {
+    "group": "ceniza",
+    "typeCode": "act",
+    "flavor": "Debes detener el rito a toda costa. Podrías registrar la cisterna en busca de alguna forma de detener a la secta, ¡o bien podrías hacer leña de su ídolo profano!",
+    "backFlavor": "Mientras haces leña del árbol ardiente, un aullido sobrenatural llena la cámara. Lo ignoras y prosigues tu ataque, asestando un certero golpe tras otro para destruir el mal primordial. Al final, la antigua efigie de la diosa de los Hermanos yace hecha pedazos."
+  },
+  "71002": {
+    "group": "gala",
+    "typeCode": "agenda",
+    "flavor": "La gala promete ser una noche de intriga y asombro, repleta de secretos y susurros que forman parte del entretenimiento junto con las bebidas y la música.",
+    "backFlavor": "Se escucha un estruendo que proviene de algún lugar más metido en la mansión, seguido de un grito. Aparece Declan Pearce para tranquilizar a la gente congregada en el salón de baile, pero no puedes evitar darte cuenta de que los asistentes enmascarados se han colocado delante de cada una de las numerosas salidas de la mansión."
+  },
+  "71003": {
+    "group": "gala",
+    "typeCode": "agenda",
+    "flavor": "Los ánimos empiezan a alterarse aún más dentro de la mansión cuando varios invitados piden a los asistentes que les dejen salir. Otros invitados deambulan por el edificio con la mirada muerta y perdida."
+  },
+  "71004": {
+    "group": "gala",
+    "typeCode": "agenda",
+    "flavor": "La fiesta se convierte en un caos absoluto, con invitados lanzándose por las ventanas y las puertas de cristal para escapar de las monstruosidades sobrenaturales.",
+    "backFlavor": "Un rancio hedor invade la mansión tan señorial antes. Mientras cada vez más criaturas horripilantes atrapan a invitados heridos o aturdidos, sales a toda prisa de tu escondite para tratar de alcanzar la salida. Una voraz criatura que parece sacada de tus pesadillas capta tu olor y te persigue incansable hacia la salida. Sientes sus garras en tu garganta mientras te lanzas para atravesar el panel de vidrio sólido y aterrizas sobre una cruenta pila de cuerpos cubierta de una ligera capa de la nieve que está cayendo."
+  },
+  "71005": {
+    "group": "gala",
+    "typeCode": "act",
+    "flavor": "Te das cuenta de que la joya ya no está en el salón de baile. ¿Habrá visto algún invitado cómo la trasladaban?",
+    "backFlavor": "Tu contacto y tú habláis con varios invitados, y todos confirman que Declan Pearce sacó la Joya de la vitrina del salón de baile. Además, han empezado a oírse sonidos extraños que provienen del primer piso de la mansión…"
+  },
+  "71006": {
+    "group": "gala",
+    "typeCode": "act",
+    "flavor": "Debes ayudar a tu contacto y a sus asociados cueste lo que cueste.",
+    "backFlavor": "Cuando sales tambaleante al frío aire nocturno, respiras hondo. La nieve cae con abundancia sobre el césped que, de estar inmaculado, ha pasado a teñirse de rojo por la sangre. En la mansión que tienes a tu espalda reina un silencio sepulcral. La Joya de Sarnath palpita con una luz sobrenatural en la palma de tu mano, y sientes por un instante una brisa templada y el aroma de otro lugar, que te resulta familiar e imaginado a la vez. ¿Merecía la gema toda esta devastación?"
+  },
+  "88002": {
+    "group": "fortune",
+    "typeCode": "agenda",
+    "flavor": "Has llegado a Défis de la Roulette. Si quieres recuperar el manantial, tendrás que conseguir tanta información como puedas sobre el casino y la secta que lo maneja.",
+    "backFlavor": "Las miradas que has empezado a atraer por parte de los crupieres y de los guardias se han vuelto más frecuentes. Un grupo de empleados de seguridad uniformados conversa en un sombrío rincón. Los observas y uno de ellos te mira y te señala. Empiezan a dirigirse hacia ti…"
+  },
+  "88003": {
+    "group": "fortune",
+    "typeCode": "agenda",
+    "flavor": "El Défis de la Roulette está abarrotado en esta bulliciosa noche, lo cual es la cobertura perfecta para ti y tu banda. Esperas que las largas jornadas de planificación den su fruto.",
+    "backFlavor": "Desde las mesas de ruleta llega una voz que se hace oír por encima del barullo del casino: -¡19 rojo!\nAlguien grita de emoción y unos instantes después, la misma voz vuelve a exclamar: ¡19 rojo de nuevo!\nOyes murmullos a tu alrededor, porque se trata algo sumamente improbable. Notas un momentáneo crepitar en el aire, pero no le das importancia. A continuación, justo cuando parece haber vuelto la normalidad, la voz vuelve a sonar, llena de incredulidad: -¡19 rojo por tercera vez!\nEn esta ocasión, es imposible no percibir el crepitar, que comienza a intensificarse hasta que todo parece quedar desdibujado durante un instante. Cuando tu visión se aclara, en mitad del abarrotado casino hay una terrible criatura inimaginable que se alza imponente sobre los humanos que la rodean. Recuerdas con terror la advertencia de Isamara acerca de que la presencia de la reliquia podría ser una invitación al desastre. Por si eso no fuera lo bastante malo, ese desastre recaerá sobre aquellos a los que no favorezca el portador del manantial."
+  },
+  "88004": {
+    "group": "fortune",
+    "typeCode": "agenda",
+    "flavor": "El golpe se ha complicado mucho más de lo que podrías haber imaginado. Unos aterradores monstruos han aparecido en la zona de juego del casino. Sin embargo, los clientes parecen como en un trance, mientras que el personal sigue buscando cualquier actividad sospechosa. ¿Acaso no ven el peligro que corren?",
+    "backFlavor": "Cuando parecía que la cosa no podía empeorar, se produce una extraña transformación en el ambiente del casino, la calma antes de la tormenta. Después, como la última bocanada antes del ahogamiento, se desata la tormenta de mala suerte…"
+  },
+  "88005": {
+    "group": "fortune",
+    "typeCode": "agenda",
+    "flavor": "Tienes a la secta en tu contra. Tienes a criaturas de más allá del tiempo y el espacio en tu contra. Y ahora también tienes la fortuna en tu contra. Nadie dijo que esto fuera a ser fácil.",
+    "backFlavor": "Intentas escapar desesperadamente, pero tu suerte ha acabado por agotarse. Varios sectarios con medallones de moneda que conoces bien te bloquean el paso. A tu espalda, las horrendas criaturas que ha invocado el poder del manantial asolan el casino. Mires donde mires, sólo hay caos. No es hasta ese momento cuando los clientes y la seguridad del casino parecen darse cuenta por fin de la horrible verdad que acecha en el casino. Haces todo lo posible por repeler las criaturas y a los sectarios y apenas logras escapar con vida."
+  },
+  "88006": {
+    "group": "fortune",
+    "typeCode": "act",
+    "flavor": "Debes actuar con cautela, pues despertar sospechas podría estropear tus planes incluso antes de ponerlo en marcha.",
+    "backFlavor": "Dedicas una última mirada al casino y sales de allí. Confías en que ninguno de los crupieres y el personal de seguridad haya sospechado de ti por nada más que lo fingías ser: un jugador con esperanzas de ganar. Independientemente del dinero que hayas conseguido o perdido hoy, las ganancias de verdad son los datos que has podido reunir. Esperas que basten para preparar el improbable plan que debes llevar a cabo."
+  },
+  "88007": {
+    "group": "fortune",
+    "typeCode": "act",
+    "flavor": "Comienza el golpe. Debes abrir la puerta de la cámara acorazada, encontrar el manantial, atravesar las defensas místicas y hallar el modo de abrir el recipiente que lo contiene."
+  },
+  "88008": {
+    "group": "fortune",
+    "typeCode": "act",
+    "flavor": "Entrar era una cosa, pero ahora debes lograr salir con el premio. Es como si todo el casino se interpusiera entre el mundo exterior y tú.",
+    "backFlavor": "Hubo momentos en los que no sabías si ibas a lograr salir del casino con el cuerpo y el alma intactos, pero lo has logrado. Te sientes casi como en un sueño, pero oyes el jaleo que sigue habiendo en el interior. Es hora de marcharse de este sitio y poner tierra de por medio."
+  },
+  "01105": {
+    "group": "zealot",
+    "typeCode": "agenda",
+    "flavor": "La noche está muy avanzada. Estáis metidos en tu estudio, investigando las sangrientas desapariciones que han estado teniendo lugar en la región. Tras varias horas de investigación, oís un extraño cántico proveniente de la salita que hay al final del pasillo. Al mismo tiempo, se oye un movimiento de tierra, como si algo estuviera cavando bajo el suelo.",
+    "backFlavor": "Tu casa sigue cambiando ante tus ojos. Las paredes se descomponen, y el suelo de muchas habitaciones se ha convertido en tierra. Es casi como si os hubieran transportado a un lugar totalmente distinto, aunque aquí y allí reconocéis elementos de tu antigua casa."
+  },
+  "01106": {
+    "group": "zealot",
+    "typeCode": "agenda",
+    "flavor": "El suelo cede bajo vuestros pies, y veis una vasta red de túneles que se extiende en la oscuridad del subsuelo. Hay formas y siluetas de extrañas criaturas que se mueven velozmente por los corredores, tratando de encontrar la forma de subir. Es probable que no queráis estar aquí cuando lo hagan…",
+    "backFlavor": "Una bestia salvaje con burdos rasgos humanoides, un rostro canino y pezuñas por pies atraviesa el suelo que tenéis delante. Bajo éste, veis vastos túneles bajo tu casa. Un aullido infernal resuena en las profundidades de las cavernas subterráneas."
+  },
+  "01108": {
+    "group": "zealot",
+    "typeCode": "act",
+    "flavor": "Cuando vais a poneros en acción para investigar, la puerta del estudio se desvanece ante vuestros ojos, dejando sólo una pared sólida. Estáis atrapados en el estudio hasta que podáis encontrar otra forma de salir.",
+    "backFlavor": "Os dais cuenta de que los bordes de la alfombra recién comprada están deshilachados y manchados de barro. Al encontrarlo extraño, decidís apartar los muebles y quitar la alfombra. Para vuestra sorpresa, veis la puerta de salida del estudio. Uno de vosotros gira lentamente el picaporte, y la puerta se abre para descubrir que bajo ella se encuentra el pasillo.\nSaltáis por el umbral y caéis sobre una tierra blanda. La puerta del estudio se cierra de golpe sobre vuestras cabezas. Un olor a madera quemada llena el estrecho pasillo, mezclado con el hedor de la putrefacción y la descomposición."
+  },
+  "01109": {
+    "group": "zealot",
+    "typeCode": "act",
+    "flavor": "Una brillante barrera os bloquea el paso hacia la salita. Al acercaros, un intenso calor os obliga a retroceder. Cogéis algo de tierra y la lanzáis contra la barrera, donde para vuestro horror queda totalmente incinerada. Puede que en el sótano o el ático haya algo que os sirva de ayuda.",
+    "backFlavor": "Usáis el barril del ático para transportar hielo y nieve del sótano y lanzarlo contra la barrera. Ésta chisporrotea y vibra al consumir el hielo, para después desvanecerse con un siseo."
+  },
+  "01107": {
+    "group": "zealot",
+    "typeCode": "agenda",
+    "flavor": "Oís un demencial aullido en el exterior, y d epronto todas las criaturas vuelven su atención a ese sonido. Corren para escapar de la casa, derribando puertas y desgarrando cuanto encuentran en su camino.",
+    "backFlavor": "El suelo comienza a temblar, y veis garras que salen de la tierra mientras las imposibles criaturas tratan desesperadamente de cavar para emerger del suelo que os rodea. Dondequiera que miréis hay monstruos saliendo de la tierra. Aterrados, huis tan rápido como podéis."
+  },
+  "01110": {
+    "group": "zealot",
+    "typeCode": "act",
+    "flavor": "En la salita hay una mujer con una antorcha y un brillo de odio en los ojos. —¿Qué le habéis hecho a mi barrera? —grita con furia. Antes de que podáis contestar, un espectral alarido suena a vuestra espalda, y una criatura vestida con túnica y una máscara hecha con el cráneo de un ciervo atraviesa la pared y avanza hacia vosotros.",
+    "backFlavor": "Cuando la criatura de la túnica cae, la diabólica horda vuelve a meterse en el suelo, y el caos de la casa se calma. Pero la desconocida de la salita no parace aliviada.\n—Habéis roto el sello que coloqué para atrapar a los gules en el interior —dice mientras levanta la antorcha—. ¡Ahora tendremos que tomar medidas más directas y quema este pozo infernal hasta los cimientos!"
+  },
+  "03044": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "En el teatro reina un siniestro silencio. El viejo suelo de madera cruje bajo nuestros pies, y una ligera lluvia repiquetea sobre el tejado mientras exploráis el auditorio. Hay más cadáveres en descomposición entre los asientos, y el resto del público ha desaparecido…",
+    "backFlavor": "El cuerpo deforme de una pesadilla antinatural cae sobre el escenario de forma abrupta, y sus serpenteantes tentáculos se extienden hacia los pasillos. Abre sus fauces y emite un agudo y penetrante canto, una melodía imposible cuyas notas os perforan la mente. La frente os palpita de dolor, y os sangran los oídos."
+  },
+  "03045": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "La canción de la criatura resuena sin cesar por las salas del teatro. La melodía se repite una y otra vez, pero, de algún modo, nunca suena la misma nota dos veces.",
+    "backFlavor": "La canción se hace más y más fuerte, hasta ahogar todos vuestros pensamientos. Os desplomáis en el suelo y os tapáis los oídos, pero por mucho que lo intentéis, no podéis atenuar la intensidad de la terrible voz de la criatura. El mundo entero parece cerrarse sobre vosotros, hasta que por fin oís una frase discordante en la melodía: \"MARCHAOS YA\"."
+  },
+  "03046": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Os pellizcáis para ver si estáis soñando y, como es natural, se os enrojece la piel y os duele. Respiráis hondo varias veces y tratáis de pensar de forma racional. Sea lo que sea lo que esté pasando, debéis explorar el teatro para descubrir la verdad.",
+    "backFlavor": "Una sombra se desliza por la pared junto a vosotros, y se os hace un nudo en la garganta. Al giraros, una silueta desaparece de vuestra vista rápidamente. O vuestra mente os engaña, o hay alguien más en el teatro.\nSeguís la dirección de la sombra doblando una esquina cercana. En el otro extremo del pasillo os espera un hombre vestido con un elegante traje negro y con el rostro cubierto por una máscara pálida. Aunque se ha cambiado de ropa, lo reconocéis al instante como el actor que interpretó el papel del Extranjero, uno de los personajes de <u>El Rey de Amarillo</u>. Se gira y desaparece por una puerta abierta, como si os retase a seguirlo."
+  },
+  "03047a": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "El misterioso Extranjero de <u>El Rey de Amarillo</u> podría saber algo sobre lo ocurrido durante el descanso. Debéis encontrarlo y enfrentaros a él si queréis descubrir la verdad.",
+    "backFlavor": "Al encararos con el Extranjero, tenéis la impresión de que sonríe bajo su pálida máscara sin facciones. -¿Dónde está todo el mundo? -le preguntáis, pero no responde- ¿Qué está pasando? -Sigue en silencio y retrocede cuando os acercáis, hasta acabar con la espalda contra uno de los rincones de la sala. Notáis un intenso calor a vuestra espalda, y os volvéis para ver que el auditorio es pasto de las llamas. Cuando os giráis de nuevo hacia el Extranjero, ha desaparecido."
+  },
+  "03047b": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "El misterioso Extranjero de <u>El Rey de Amarillo</u> podría saber algo sobre lo ocurrido durante el descanso. Debéis encontrarlo y enfrentaros a él si queréis descubrir la verdad.",
+    "backFlavor": "Al encararos con el Extranjero, tenéis la impresión de que sonríe bajo su pálida máscara sin facciones. -¿Dónde está todo el mundo? -le preguntáis, pero no responde- ¿Qué está pasando? -Sigue en silencio y retrocede cuando os acercáis, hasta acabar con la espalda contra uno de los rincones de la sala. Sigue retrocediendo de forma inexplicable, y su cuerpo se funde con la pared que tiene detrás. Del lugar en que se encontraba brota una masa creciente de un cieno viscoso."
+  },
+  "03047c": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "El misterioso Extranjero de <u>El Rey de Amarillo</u> podría saber algo sobre lo ocurrido durante el descanso. Debéis encontrarlo y enfrentaros a él si queréis descubrir la verdad.",
+    "backFlavor": "Al encararos con el Extranjero, tenéis la impresión de que sonríe bajo su pálida máscara sin facciones. -¿Dónde está todo el mundo? -le preguntáis, pero no responde- ¿Qué está pasando? -Sigue en silencio y retrocede cuando os acercáis, hasta acabar con la espalda contra uno de los rincones de la sala. De pronto, las ventanas estallan, y os volvéis hacia ellas sobresaltados mientras un diluvio de fría agua salada inunda la sala. Cuando os giráis de nuevo hacia el Extranjero, ha desaparecido."
+  },
+  "03048": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "El Extranjero debe de saber cómo salir de aquí. ¡Tenéis que seguilo!",
+    "backFlavor": "El Extranjero os hace una ligera reverencia mientras sale por la entrada principal del vestíbulo, abriendo una puerta de cristal que no estaba ahí hace un instante. Una repentina cacofonía de ruidos brota a vuestro alrededor, y teméis que sólo queden unos segundos antes de que el edificio sea destruido. Huis atravesando las puertas principales y dejando atrás el teatro en ruinas.\nNo paráis a descansar y pensar en lo que acabáis de vivir hasta poner varias manzanas de por medio…"
+  },
+  "03062": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Al aparcar cerca de la mansión, os dais cuenta de que algo no va bien. Hay un rastro de sangre en los escalones del porche, y la puerta principal está hundida. Del interior de la casa llega una música amortiguada, y sus distorsionadas y discordantes notas os hacen daño a los oídos. ¿Ha llegado ya aquí la locura de <u>El Rey de Amarillo</u>?",
+    "backFlavor": "-Vaya, nuestra última invitada -anuncia el portero-. Señorita Devine, todo el mundo aguardaba su presencia hoy. -La mujer lleva un pícaro vestido y una sonrisa a juego. Juraríais que ya habéis visto antes el símbolo de su amuleto-. Bueno, pues que empiece la fiesta de verdad -declara antes de mezclarse con el resto de asistentes."
+  },
+  "03063": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Este sitio está cayendo presa de la locura cada vez más, transformándose ante vuestros ojos…",
+    "backFlavor": "Está todo en vuestras cabezas. Tiene que ser aquí. ¿Cómo si no podéis explicar todo lo que sucede a vuestro alrededor? Habéis tomado alguna copa de más, y vuestra mente os juega malas pasadas. Todo el mundo se está divirtiendo mucho y sólo quieren que os unáis a ellos."
+  },
+  "03064": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Esto no es una fiesta, es un manicomio. Pero, por algún motivo, los invitados no se dan cuenta. Hay muy pocos cuerdos, y muchos de los que veis son verdaderos horrores. Quizá podáis hablar con ellos para saber algo más sobre <u>El Rey de Amarillo</u>."
+  },
+  "03121": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Sorprendentemente, las puertas principales de la mansión georgiana de la Sociedad Histórica están medio abiertas cuando llegas. ¿Quién más podría estar aquí a estas horas?",
+    "backFlavor": "Un susurro recorre el edificio, pronunciando una frase en un idioma que no puedes describir; sin previo aviso, todas las luces eléctricas explotan a la vez. Enciendes una vela y sigues la búsqueda.\n El edificio es bastante distinto cuando está sumido en la oscuridad. Sombras y siluetas bailan por las paredes. Huecos que no habías visto antes te llaman la atención ahora. ¿Qué otros secretos contiene este edificio?"
+  },
+  "03122": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Aunque los susurros han cesado, sigues oyendo el ruido inconfundible de alguien que mueve muebles y rebusca. Quienquiera que esté aquí está registrando el edificio tan a fondo como tú…",
+    "backFlavor": "La puerta principal de la mansión se abre, dejando entrar el ulular de un frío viento y el repiqueteo de la lluvia, y luego se cierra de golpe. Encuentras un lugar en el que ocultarte y escuchar, preguntándote quién más podría haber entrado en el edificio tan tarde. -No, lo juro ¡Juro que no sé dónde está la puerta! -grita un hombre-. Tendréis que encontrar el camino vosotros solos. ¡No puedo ayudaros! -Su voz suena llena de pánico y desorientada.\n-Pronunciaste el juramento -responde una voz masculina-. Pronunciaste Su Nombre -El primer hombre tartamudea-: ¡No! ¡No, no puedo! ¡No lo haré! -Después de esto, su voz se distorsiona y deja de hablar. Oyes pasos en la escalera, pasos húmedos y pesados."
+  },
+  "03123": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Quienesquiera que sean estas personas, deben de estar involucradas en la conspiración de [[El Rey de Amarillo]]. ¡No puedes dejar que encuentren lo que estén buscando!",
+    "backFlavor": "Hay un ajetreo de pisadas en la escalinata central de la mansión, y la puerta principal vuelve a abrirse: -¿Lo habéis encontrado? -pregunta una voz apagada.\n-Sí, podemos embarcar inmediatamente. El camino se [[abrirá]].\nLa puerta se cierra, la mansión vuelve a estar en silencio y solitaria. Durante el resto de tu búsqueda, no encuentras más rastros de los misteriosos personajes encapuchados, ni tampoco información que responda las muchas preguntas que tienes sobre [[El Rey de Amarillo]]…"
+  },
+  "03124": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Todas y cada una de las numerosas salas de la Sociedad Histórica contienen registros y documentos que podrían ayudarte en tu búsqueda de respuestas sobre [[El Rey de Amarillo]]. Debe de haber algo que pueda guiarte hacia la verdad.",
+    "backFlavor": "Encuentras un documento que guardó uno de los historiadores de la sociedad que hace referencia a los \"terribles sucesos\" que rodearon el cierre de un antiguo teatro de Arkham: el Auditorio Cedar. Aunque no hay ninguna mención explícita de [[El Rey de Amarillo]], crees que vas por el camino correcto.\nLas notas del historiador se cortan de pronto, y hay una desvaída página escrita a mano sujeta a la última entrada.\n<b>Este asiento es demasiado macabro como para que se haga público. Voy a dejar el resto de este documento en la biblioteca oculta. Cualquier indagación posterior debe hacerse alejada de los ojos curiosos, pues es un asunto peligroso y que no debe investigarse a la ligera</b>."
+  },
+  "03125": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "En algún lugar de la mansión hay una \"biblioteca oculta\" en la que podrías encontrar más información sobre [[El Rey de Amarillo]]. Debes encontrar la forma de acceder para poder continuar tu investigación.",
+    "backFlavor": "Mientras rebuscas en los cajones de un escritorio, te sobresalta oír una voz a tu espalda: -¡Perdón! ¿Puedo ayudarle? -Te alivia descubrir que la voz pertenece a un delgado anciano que lleva unas gafas de montura ancha, sin duda un miembro de la Sociedad Histórica. Le explicas que estás buscando una biblioteca oculta en algún lugar de la mansión, aunque evitas contarle el motivo.\nSe presenta como el Sr. Peabody, el conservador de la Sociedad Histórica. -Le ayudaré a encontrar lo que busca -te dice-, pero sólo si me cuenta de qué va todo esto cuando estemos allí -Esperas no tener que llegar a eso."
+  },
+  "03126": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "-Este edificio es muy antiguo y está repleto de todo tipo de pasadizos secretos -explica el Sr. Peabody-. Puede que alguno de ellos lleve a esta biblioteca que busca.",
+    "backFlavor": "Mientras estudias la biblioteca oculta, encuentras varias informaciones que te llaman la atención. Como ocurrió con la reciente producción, la anterior representación de [[El Rey de Amarillo]] vino a Arkham desde el extranjero y la realizó un elenco actoral francés. No reconoces ninguno de los nombres de los actores, aunque, como esperabas, el intérprete del Extranjero es anónimo. Sin embargo, parece que un miembro de la Sociedad Histórica ya te ha hecho parte del trabajo; hay varios recortes de periódico recopilados junto con la información de la obra. Algunos de los titulares son: El Auditorio Cedar cierra por un incendio, Expertos atónitos ante las extrañas inundaciones. Escondido entre estas informaciones, también encuentras un extraño objeto; un broche de ónice con una extraña inscripción."
+  },
+  "03160": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "El ala de pacientes del manicomio es mucho más tranquila y solitaria de lo que esperabas. En el pasillo impera un hedor a productos químicos y olor corporal. En cuanto te acompañan dentro, las puertas se cierran a cal y canto detrás de ti.",
+    "backFlavor": "Hablar con los pacientes está resultando ser más difícil de lo que suponías. Te miran con recelo y se niegan a contestar ninguna de las preguntas, retrocediendo o huyendo si los confrontas. O bien no están acostumbrados a que haya invitados o tienes algo que les provoca una enorme cantidad de angustia. Algunos se comportan como animales acorralados en un rincón, y crees que podrían atacarte en cualquier momento."
+  },
+  "03161": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Cuanto más tiempo pasas en este lugar infernal, más ganas tienes de marcharte. Te parece que llevaras días aquí. Temes que, si te quedas aquí mucho más tiempo, acabes como los pacientes: una incontrolable y peligrosa sombra de tu antiguo yo.",
+    "backFlavor": "En una parte de tu mente, una fuerza te habla. \"¿lo has visto?\". Te llama. Atisbas algo en tu visión periférica y te giras para encontrar un símbolo familiar que aparece allí donde miras. Está grabado en las puertas. Dibujado en las paredes. Pintado en las telas de los pacientes. No puedes escapar de él."
+  },
+  "03162": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Huye.\nHuye mientras aún puedas.",
+    "backFlavor": "Las paredes se cierran. Se te nubla la visión. Suena un chillido en tus oídos. Te cogen y no puedes defenderte. Pides ayuda, pero no acude nadie.\nBuscas una forma de escapar, pero en lugar de eso, ves la máscara pálida del Extranjero que te devuelve la mirada. A la vuelta de cada esquina, detrás de cada puerta, a través de todas las ventanas. Esa máscara… Esa maldita máscara…\n\n¿O… puede que seas tú quien lleva la máscara…?"
+  },
+  "03163": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Aparte de unos pocos pacientes que te rehúyen, no hay ningún auxiliar ni médico por allí con los que puedas hablar. Parece que tendrás que encontrar al Sr. Chesterfield por tu cuenta.",
+    "backFlavor": "Al doblar una esquina, Estás a punto de chocarte con una enfermera de marcados rasgos y pelo castaño claro. Le cuentas lo ocurrido con los pacientes violentos y las cosas extrañas que has visto, pero no te escucha. Cuando le preguntas por Daniel, te informa que es paciente del Dr. Mintz y que se encuentra en la planta segura del sótano. Por desgracia, se niega a dejarte entrar en esa zona del manicomio."
+  },
+  "03164": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Daniel está en alguna parte del sótano seguro en el que se encuentran los pacientes más peligrosos. Ahora que tienes la llave, puedes explorar esta zona del manicomio.",
+    "backFlavor": "Cuando entras en su celda, encuentras a Daniel hecho un ovillo en un rincón de la estancia, sollozando y meciéndose en el suelo: -Sin máscara… Sin máscara… -repite una y otra vez. Lo ayudas a levantarse y tratas de consolarlo, diciéndole que no está loco, que han estado ocurriendo extraños sucesos por toda la ciudad desde que <u>El Rey de Amarillo</u> volvió a Arkham. -¡Es Nigel! -exclama mientras te agarra-. Nigel nos obligó a pronunciar su nombre… Nos hizo pronunciar el juramento, y ahora Él vive dentro de nosotros, ¿no lo entiendes? -sigue desvariando-. ¡Pronunciamos Su nombre y se pagó el precio! ¡Hastur! ¡Hastur! ¡Oh, Rey!\nCrees que podrías entender algo más acerca de la situación si logras calmarlo, pero tendrás que sacarlo de este manicomio para conseguirlo."
+  },
+  "03165": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Daniel está en alguna parte del sótano seguro en el que se encuentran los pacientes más peligrosos. Ahora que tienes la llave, puedes explorar esta zona del manicomio.",
+    "backFlavor": "Cuando entras en su celda, encuentras a Daniel hecho un ovillo en un rincón de la estancia, sollozando y meciéndose en el suelo: -Sin máscara… Sin máscara… -repite una y otra vez. Lo ayudas a ponerse en pie y le preguntas qué recuerda sobre <u>El Rey de Amarillo</u>, pero te interrumpe: \"¡No pronuncies Su nombre!\" -exclama con frenesí y los ojos abiertos y con un brillo amarillo-. Nigel nos obligó a pronunciar su nombre… Nos hizo pronunciar el juramento, y ahora Él vive dentro de nosotros, ¿no lo entiendes? -sigue desvariando.\nEl hombre se acerca con una expresión demente en el rostro, y das un paso hacia atrás por si acaso: -¡Pronunciamos Su nombre y se pagó el precio! ¡Hastur! ¡Hastur! ¡Oh, Rey! -A continuación, se transforma de repente ante tus ojos. Sus huesos se retuercen y se parten. Su cuerpo se distorsiona de forma grotesca. El símbolo grabado en su frente emite un fuerte brillo, y un resplandor amarillo brota del interior de su cuerpo. Se abalanza sobre ti para atacarte."
+  },
+  "03166": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Tienes que salir de este lugar lo antes posible, con Daniel o sin él.",
+    "backFlavor": "El grito de un auxiliar resuena en el pasillo. En pocos instantes, una alarma comienza a sonar ruidosamente por toda la institución. Las enfermeras y los guardias empiezan a correr por todo el manicomio intentando controlar la situación. Te notas aturdido, y tu visión es borrosa, como si te hubieran golpeado con algo pesado. Las paredes son un borrón que se funde y retuerce. Comienzan a surgir criaturas de grietas y rincones que no existían hace unos instantes."
+  },
+  "03167": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Se ha armado un buen cristo."
+  },
+  "03201": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Cuando bajas del tren en la Gare d’Orsay, el sol se está poniendo tras la silueta de los edificios de París. No puedes perder tiempo. Si Nigel Engram está en algún lugar de París, debes encontrarlo y sacarle respuestas de un modo u otro.",
+    "backFlavor": "Los pájaros empiezan a piar con ganas. Un suave tono naranja se extiende lentamente por el cielo mientras las criaturas de la noche se repliegan en la oscuridad. Pasas la mayor parte del día descansando, y la luz diurna pasa rápidamente sin que la aproveches del todo. Antes de que hayas podido recuperarte por completo de los acontecimientos de la noche anterior, vuelve a caer la noche."
+  },
+  "03202": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "La ciudad se agita cuando las frías sombras envuelven las calles. Estás rodeado de peligros. Peligros de los que no puedes escapar. Peligros que te seguirán hasta los confines de la Tierra. ¿Cuándo terminará esta pesadilla viviente?",
+    "backFlavor": "Para tu alivio, el sol vuelve a salir una vez más, asomando por el horizonte oriental y proyectando largas sombras por las calles de la ciudad. Estás completamente agotado por los sucesos de la noche. Tienes la sensación de llevar semanas sin dormir. Y puede que sea así."
+  },
+  "03203": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Cuando llega tu tercera noche en París, una determinación desesperada se agita en tu interior. Hay que acabar con este juego el gato y el ratón. De un modo u otro, esta noche será la última.",
+    "backFlavor": "El sol se alza y disipa la oscuridad. Una cálida niebla envuelve la ciudad y tapa el cielo."
+  },
+  "03204": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Pasas junto a la iglesia de San Bernabé al salir de la estación de tren y no puedes evitar oír la música de su órgano. ¿Habrá servicio religioso a esta hora de la noche? Te maravillas ante los extraños y tempestuosos acordes durante unos instantes antes de continuar. París es una ciudad muy grande, y tienes muy pocas pistas…"
+  },
+  "03205": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Pasas junto a la iglesia de San Bernabé al salir de la estación de tren y no puedes evitar oír la música de su órgano. ¿Habrá servicio religioso a esta hora de la noche? Te maravillas ante los extraños y tempestuosos acordes durante unos instantes antes de continuar. París es una ciudad muy grande, y tienes muy pocas pistas…"
+  },
+  "03206": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Los acordes que resuenan en tu mente, el hombre infernal cuya música de órgano te intriga y aterra… ¿Podría haber alguna conexión entre esta sombría presencia y <u>El Rey de Amarillo</u>?",
+    "backFlavor": "Persigues a tu presa por una estrecha avenida y a través de unos pesados portones de hierro. Estás en un callejón sin salida, un patio con altas casas antiguas en todos sus lados. Cierras los portones y te vuelves hacia la sombría silueta justo cuando comienza a despuntar el alba. Rayos de luz asoman por las siluetas de los edificios, y levantas la mano para tapar el brillo del sol. A continuación, como si lo hubiera dispersado la luz de sol, la figura que perseguías se funde entre las sombras y desaparece. Registras el patio en busca del misterioso personaje, pero no hay ni rastro por ninguna parte. Cuando estás a punto de marcharte, ves una placa junto a una puerta de color marrón rojizo que se encuentra en lo alto de una empinada y estrecha escalinata y que dice: \"N. Engram\"."
+  },
+  "03207": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Sabía que cada vez que lo encontrara, el cumplimiento de su cometido y mi destino estarían más cerca. Y aún trataba de salvarme.\n–Robert W. Chambers, \"En la corte del dragón,\" <u>El Rey de Amarillo</u>",
+    "backFlavor": "Ni siquiera miras por dónde vas mientras huyes por la ciudad para ponerte a salvo. Tus pies se mueven solos. El batir de unas fuertes alas y el chillido de las criaturas que te sobrevuelan te hacen ir más rápido. Pronto te encuentras corriendo por una estrecha avenida y a través de unos pesados portones de hierro. Estás en un callejón sin salida, un patio con altas casas antiguas en todos sus lados. Te vuelves hacia la entrada y respiras con alivio al ver que el sol vuelve a salir sobre la silueta de los edificios de París. Como si lo hubiera dispersado la luz del sol, la figura que te perseguía se funde entre las sombras y desaparece. Cuando estás a punto de marcharte, ves una placa junto a una puerta de color marrón rojizo que se encuentra en lo alto de una empinada y estrecha escalinata y que dice: \"N. Engram\"."
+  },
+  "03241": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "El frío y húmedo aire rancio de las catacumbas penetra en tu ropa y te hace estremecerte. Mires donde mires, los restos de los muertos te saludan como un siniestro recuerdo de tu propia mortalidad."
+  },
+  "03242": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "A tu alrededor, los ojos de los cráneos brillan con un tono sobrenatural. Una voz fantasmal resuena por las laberínticas catacumbas. Notas una presencia amenazadora que te acecha. Está siempre fuera de tu campo visual, tras la tenue niebla que recorre las catacumbas, en cada rincón…",
+    "backFlavor": "La presencia fantasmal que te amenaza crece cada minuto que pasas explorando estas terribles catacumbas. Caminas más rápido, echando nerviosas miradas hacia atrás cada pocos pasos. ¿Por qué te persigue? ¿Cuál es su propósito? Tira y estira en la periferia de tus sentidos. Doblas una esquina y ves su sombría silueta informe mirándote. Das media vuelta y huyes, pasando por un estrecho corredor de piedra que no reconoces. En cada intersección, en cada esquina, sus brazos de sombra intentan cogerte, y sus muchos rostros están demudados por la agonía. No puedes escapar. Resignado a tu destino, caes de rodillas tras perder la esperanza y te quedas mirando el frío suelo de piedra. Notas cómo se acerca la presencia, pero no puedes levantar la vista. Todo se vuelve negro."
+  },
+  "03243": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Al final del largo túnel que tienes al lado, el Extranjero atraviesa la oscuridad, y su pálida máscara centellea con la luz de las velas. -¡Espera! -gritas. Mira en tu dirección antes de desaparecer entre las sombras. Una vez más, te ves obligado a buscarlo para encontrar respuestas…",
+    "backFlavor": "Hilera tras hilera de cráneos hacen castañetear sus dientes de forma incesante mientras atraviesas una estrecha arcada de piedra hacia una cámara redonda iluminada por un fuego. En el centro de la tumba se encuentra el Extranjero, mirando la llama. Las sombras bailan y se retuercen a lo largo de la pared. Allí donde deberían estar sus brazos de sombra, emergen formas de tentáculos que envuelven las paredes en oscuridad. Levanta las manos hacia la pared, como si intentara mostrarte algo."
+  },
+  "03244": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Las sombras proyectadas por las paredes de hueso se transforman en las siluetas de varios personajes que interpretan una macabra parodia de [[El Rey de Amarillo]]."
+  },
+  "03245": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Varios huesos caen al suelo debido a que las cavernas que te rodean tiemblan y se desmoronan. El Extranjero agarra un cráneo que hay en las llamas del centro de la cámara y huye.",
+    "backFlavor": "Las catacumbas retumban y se desploman a tu espalda mientras tratas de escapar. Logras seguir la sombra del Extranjero y seguir sus pasos para encontrar el camino de salida por los laberínticos corredores. Cruzas el umbral de la entrada de las catacumbas, dejando a tu paso una oleada de escombros y esquirlas de hueso. Un ruido ensordecedor de restos que caen a tu espalda te hace girarte para descubrir que la entrada está bloqueada por un muro recién formado de huesos y rocas. Cuando estás a punto de marcharte, un cráneo parcialmente calcinado y que tiene un extraño diagrama rueda hasta detenerse a tus pies. No hay rastro del Extranjero por ninguna parte."
+  },
+  "03246": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Las sombras que recorren las paredes de la tumba empiezan a fusionarse. Extraños símbolos rúnicos se retuercen hasta formar la imagen de una torre que crece hacia el techo. A continuación, el Extranjero te hace un gesto para que lo sigas y desaparece por la arcada de piedra que tienes detrás.",
+    "backFlavor": "Siguiendo al Extranjero, recorres un circuito por los pasadizos subterráneos, hasta que por fin llegas a un callejón sin salida: un túnel bloqueado por un muro imposiblemente grueso hecho de huesos y escombros. El Extranjero está allí al lado, sosteniendo el cráneo parcialmente calcinado que sacó del fuego en la Tumba de las sombras. -¿Y ahora qué? -preguntas, confundido. Él sostiene el cráneo en alto, y el suelo comienza a hundirse y a formar un pozo de oscuro vacío. Los huesos y escombros del muro caen al pozo, que va creciendo con cada instante que pasa. El Extranjero hace una inclinación y luego cae de espaldas por el pozo antes de que puedas cogerlo. -¡Espera! -gritas, pero es demasiado tarde. Puesto que el pozo crece y amenaza con tragarse las catacumbas por completo, no tienes más elección que seguirlo."
+  },
+  "03275": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Tu barco atraca en la Porte de l’Avancée, pero entre la marea creciente y la lluvia torrencial que inunda la calle, el capitán del barco no tiene intención de quedarse. Te dice que volverá a por ti por la mañana. le dices que no se moleste; probablemente no estés aquí para entonces.",
+    "backFlavor": "La marea sigue subiendo rápidamente, y los muros exteriores del pueblo se ven asaltados por vientos de fuerza huracanada y una lluvia gélida. La tormenta no deja de crecer en intensidad cuando la tarde da paso a la noche. Pronto, el agua de la marea inundará la ciudad por completo."
+  },
+  "03276a": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "El enfurecido mar sigue golpeando la isla. Las olas chocan contra los muros, y la lluvia azota los tejados. ¿Será el embravecido mar la llave para abrir el camino? Si es así, no tienes más elección que dejar que la tormenta ruja…",
+    "backFlavor": "Algo no va bien. La inundación ya tendría que haber activado el portal a estas alturas. Has investigado este ritual hasta donde has podido, pero, por algún motivo, no está funcionando.\nDesesperado, miras hacia el firmamento en busca de alguna señal. Varios relámpagos surcan el vórtice de nubes negras que lo cubre. Ves siluetas con túnicas amarillas que escudriñan el cielo a lomos de monstruosas criaturas aladas. De pronto, te das cuenta de tu error: la llave no era la marea, ¡sino el cielo!"
+  },
+  "03276b": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "El enfurecido mar sigue golpeando la isla. Las olas chocan contra los muros, y la lluvia azota los tejados. ¿Será el embravecido mar la llave para abrir el camino? Si es así, no tienes más elección que dejar que la tormenta ruja…",
+    "backFlavor": "El ritual está casi completo. Lo único que queda es encontrar el portal y atravesarlo."
+  },
+  "03277": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "El nivel del agua sigue creciendo. Los muros exteriores no pueden evitar que la marea se trague la isla. Las calles se inundan de agua fría como el hielo, y unas poderosas olas derriban los edificios. Si no actúas pronto, el camino se perderá para siempre, y nadie podrá evitar que los agentes de Hastur lo liberen de su prisión.",
+    "backFlavor": "El mar se traga entera Mont Saint-Michel. El agua marina se desborda sobre los muros y rompe contra la mitad inferior de la ciudad. La abadía es el único refugio ante la inundación, pero incluso ella acabará siendo consumida. El vórtice del cielo, tu única esperanza para escapar de esta perdición, de pronto se disipa en volutas grises./nTe sientas sobre una losa de roca mojada en el exterior de la abadía y contemplas la locura que te rodea. ¿Cómo se ha llegado a esto? ¿Está ocurriendo realmente todo esto? ¿O vas a despertar en el manicomio como Daniel Chesterfield, víctima de una cruel broma cósmica?"
+  },
+  "03278": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Negras nubes de tormenta se arremolinan sobre tu cabeza. Un vórtice de energía arcana ruge en el centro de la tormenta. El ritual ha comenzado. El portal podría aparecer sobre la abadía o bajo ella. Debes elegir qué ruta seguir y llegar al portal antes de que lo hagan los agentes de Hastur.",
+    "backFlavor": "A medida que el vórtice aumenta en tamaño y fuerza, también lo hace su efecto sobre la realidad. Los restos y escombros comienzan a flotar hacia arriba, atraídos hacia el terrible vacío. Un estruendo hace temblar la isla hasta su mismísimo núcleo. La ciudad entera pronto será destruida por el torbellino."
+  },
+  "03279a": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "El remolino que hay sobre la isla sigue rugiendo. Cegadores destellos de relámpagos y ensordecedores truenos asaltan tus sentidos. ¿ Es el vórtice de arriba la llave para abrir el camino? Si es así, no tienes más elección que hacer que la entidad se acerque…",
+    "backFlavor": "Algo no va bien. El vórtice ya tendría que haber activado el portal a estas alturas. Has investigado este ritual hasta donde has podido, pero, por algún motivo, no está funcionando.\nDesesperado, examinas lo que te rodea. Las olas rompen y se desbordan sobre los muros exteriores del pueblo, inundando las calles. Ves siluetas con túnicas amarillas escudriñando las calles, y sus faroles iluminan las aguas de la inundación. De pronto, te das cuenta de tu error: la llave no era el vórtice, ¡sino el mar!"
+  },
+  "03279b": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "El remolino que hay sobre la isla sigue rugiendo. Cegadores destellos de relámpagos y ensordecedores truenos asaltan tus sentidos. ¿Es el vórtice de arriba la llave para abrir el camino? Si es así, no tienes más elección que hacer que la entidad se acerque…",
+    "backFlavor": "El ritual está casi completo. Lo único que queda es encontrar el portal y atravesarlo."
+  },
+  "03280": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "El torbellino del cielo envuelve el horizonte. La isla comienza a hacerse pedazos. Los chillidos de unas criaturas imposibles llenan el aire como un coro impío que reza a una fuerza más allá de tu comprensión. Si no actúas pronto, el camino se perderá para siempre, y nadie podrá evitar que los agentes de Hastur lo liberen de su prisión.",
+    "backFlavor": "El vórtice consume la abadía de Mont Saint-Michel, convirtiéndola en miles de esquirlas de realidad. La isla deja de estar sujeta pro la gravedad, y los escombros comienzan a elevarse por los aires. Las calles inferiores de la isla son el único refugio del enfurecido cielo, pero también acabarán por ser consumidas. El agua de la marea, tu única esperanza para escapar de esta perdición, se retira de improviso, y la inundación se filtra en la tierra./nTe sientas al borde de la torre norte, bajo la abadía y contemplas la locura que te rodea. ¿Cómo se ha llegado a esto? ¿Está ocurriendo realmente todo esto? ¿O vas a despertar en el manicomio como Daniel Chesterfield, víctima de una cruel broma cósmica?"
+  },
+  "03281": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "El agua de la marea se agita en torno a los muros de la ciudad. Las capas de la realidad se despliegan. Ves las retorcidas torres de Carcosa reflejadas en las profundidades. No tienes más elección que sumergirte.",
+    "backFlavor": "Solo tú puedes evitar que Hastur escape de su prisión.\nTe sumerges en las aguas revueltas y abres el camino a Carcosa, el reino de la locura."
+  },
+  "03282": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Las nubes se agitan en torno a la torre de la abadía. Las capas de la realidad se despliegan. Ves las retorcidas torres de Carcosa a través de las oscuras nubes de tormenta. No tienes más elección que dar el salto.",
+    "backFlavor": "Solo tú puedes evitar que Hastur escape de su prisión.\nSaltas hacia el rugiente remolino y abres el camino a Carcosa, el reino de la locura."
+  },
+  "03317": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "Y ahora, a lo lejos, sobre leguas de nubosas olas agitadas, vi la luna con perlas de rocío; y más allá las torres de Carcosa se alzaban tras la luna.\n– Robert W. Chambers, \"En la corte del dragón\", <u>El Rey de Amarillo</u>",
+    "backFlavor": "Al doblar una esquina, estás a punto de chocarte con una enfermera de marcados rasgos y pelo castaño claro. Le cuentas lo ocurrido con los pacientes violentos y las cosas extrañas que has visto, pero no te escucha. Cuando le preguntas por Daniel, te informa que es amigo del Rey y que se encuentra en palacio."
+  },
+  "03318": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "También pensaba en el Rey de Amarillo envuelto en los fantásticos colores de su capa harapienta y el amargo grito de Cassilda: \"¡No a nosotros no, oh Rey, no a nosotros!\"\n– Robert W. Chambers, \"La máscara\", <u>El Rey de Amarillo</u>",
+    "backFlavor": "–Vaya, nuestra última invitada –anuncia el portero–. Señora Devine, todo el mundo aguardaba su presencia hoy. –La criatura sube reptando por el lateral del palacio. Jurarías que ya has visto antes el símbolo de amuleto. Un momento, esto no puede ser cierto–.\nBueno, pues que empiece la fiesta de verdad –ruge."
+  },
+  "03319": {
+    "group": "carcosa",
+    "typeCode": "agenda",
+    "flavor": "…no puedo olvidarme de Carcosa donde estrellas negras lucen en los cielos; donde las sombras de los pensamientos de los hombres se alargan en la tarde, cuando los soles gemelos se hunden en el lago Hali; y mi memoria cargará para siempre con el recuerdo de la Máscara Pálida.\n– Robert W. Chambers, \"El reparador de reputaciones\", <u>El Rey de Amarillo</u>",
+    "backFlavor": "El cielo cae. Volutas de nubes azotan la tierra, y las docenas de lunas del cielo se hacen pedazos. Los fragmentos de las entidades cósmicas se precipitan contra el suelo y asaltan la ciudad. El oscuro reflejo de Mont Saint-Michel que flota boca abajo sobre ti comienza a descender. La abadía se estrella contra el palacio del Rey, lanzando escombros de ébano en todas direcciones. La espantosa y sonora risa de Hastur invade tu mente. Se acabó."
+  },
+  "03320": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Has abierto el camino a Carcosa para detener a quienes pretenden liberar a Hastur de su prisión de estrellas. ¡Sólo tú puedes ponerle fin a esta locura!",
+    "backFlavor": "Una sombra se desliza por la pared junto a ti, y se te hace un nudo en la garganta. Al girarte, una silueta desaparece de tu vista rápidamente. O tu mente te engaña, o hay alguien más en el teatro.\nSigues la dirección de la sombra doblando una esquina cercana. En el otro extremo del pasillo te espera el hombre que lleva la máscara pálida: el Extranjero cuyos pasos llevas siguiendo varias semanas. Recuerdas que ya has estado antes aquí.\nEl teatro se disuelve a tu alrededor. El brillante resplandor de dos soles te inunda los ojos. –¿Lo recuerdas ahora?– te pregunta. Se da media vuelta y desaparece en el éter, como si te retara a que lo sigas."
+  },
+  "03321a": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Es hora de enfrentarte definitivamente al Extranjero y descubrir la verdad sobre su identidad de una vez por todas."
+  },
+  "03322a": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Es hora de enfrentarte definitivamente al Extranjero y descubrir la verdad sobre su identidad de una vez por todas."
+  },
+  "03323a": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "Es hora de enfrentarte definitivamente al Extranjero y descubrir la verdad sobre su identidad de una vez por todas."
+  },
+  "03324": {
+    "group": "carcosa",
+    "typeCode": "act",
+    "flavor": "…oí al Rey de Amarillo que me susurraba al aído: –¡Es terrible caer en las garras del Dios vivo!.\n – Robert W. Chambers, \"En la corte del dragón\", <u>El Rey de Amarillo</u>",
+    "backFlavor": "Un coro de gritos resuena en tu mente. Los caóticos acordes de un órgano torturan tus oídos. Caes de rodillas mientras te sangran los ojos. El reino de Carcosa se rompe en millones de pedazos y se desvanece en el vacío del espacio.\nSe cierra el telón."
+  }
+}

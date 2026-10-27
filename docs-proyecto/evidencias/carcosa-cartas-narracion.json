@@ -1,0 +1,925 @@
+{
+  "voiceId": "5egO01tkUjEzu7xSSE8M",
+  "language": "es",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.15,
+      "speed": 0.95,
+      "use_speaker_boost": true
+    }
+  },
+  "files": [
+    {
+      "code": "03044",
+      "side": "front",
+      "text": "En el teatro reina un siniestro silencio. El viejo suelo de madera cruje bajo nuestros pies, y una ligera lluvia repiquetea sobre el tejado mientras exploráis el auditorio. Hay más cadáveres en descomposición entre los asientos, y el resto del público ha desaparecido…",
+      "file": "03044-front.mp3",
+      "inputHash": "c6fccb78eb0e55d5dba08c75c1d08aaca3a1dc1cc6225b297b06b158935ddfdd",
+      "bytes": 379967,
+      "sha256": "a4cb80445dd053634d2ccef709f1a8e6d44804a263440eff230b7b5605b512ca"
+    },
+    {
+      "code": "03044",
+      "side": "back",
+      "text": "El cuerpo deforme de una pesadilla antinatural cae sobre el escenario de forma abrupta, y sus serpenteantes tentáculos se extienden hacia los pasillos. Abre sus fauces y emite un agudo y penetrante canto, una melodía imposible cuyas notas os perforan la mente. La frente os palpita de dolor, y os sangran los oídos.",
+      "file": "03044-back.mp3",
+      "inputHash": "835ec6738f9299e2feab42d5ec24061e56faa8fff814e677cabb71c51691919f",
+      "bytes": 411314,
+      "sha256": "6dbc53a8cc2b361f4e25f5140462bc71f4c2eada660fa8534a373539f9125847"
+    },
+    {
+      "code": "03045",
+      "side": "front",
+      "text": "La canción de la criatura resuena sin cesar por las salas del teatro. La melodía se repite una y otra vez, pero, de algún modo, nunca suena la misma nota dos veces.",
+      "file": "03045-front.mp3",
+      "inputHash": "6016f0363345b34a707a4353cfd1b22e2176efdc28af713bdca24c8fd782a0d2",
+      "bytes": 226158,
+      "sha256": "c39623d5275c58a74a2e156c4e51c4984117d25a4babe0c183805f42b8f9c86a"
+    },
+    {
+      "code": "03045",
+      "side": "back",
+      "text": "La canción se hace más y más fuerte, hasta ahogar todos vuestros pensamientos. Os desplomáis en el suelo y os tapáis los oídos, pero por mucho que lo intentéis, no podéis atenuar la intensidad de la terrible voz de la criatura. El mundo entero parece cerrarse sobre vosotros, hasta que por fin oís una frase discordante en la melodía: \"MARCHAOS YA\".",
+      "file": "03045-back.mp3",
+      "inputHash": "555019daef8574d2d8f7f977f20cfb465a3fc101c239ef7bd50880e42ba378ad",
+      "bytes": 461887,
+      "sha256": "10bca589fa0a18cb51c0fca8152a382b55bbcd192e5485b8dd48140fb874a548"
+    },
+    {
+      "code": "03046",
+      "side": "front",
+      "text": "Os pellizcáis para ver si estáis soñando y, como es natural, se os enrojece la piel y os duele. Respiráis hondo varias veces y tratáis de pensar de forma racional. Sea lo que sea lo que esté pasando, debéis explorar el teatro para descubrir la verdad.",
+      "file": "03046-front.mp3",
+      "inputHash": "81e42c078cfdc6332234f8e2fe3faea5b5352af0b92d77b032515e78ebfd1cef",
+      "bytes": 379967,
+      "sha256": "09eadea302a1fd02e32e90a9eeb4f91ed1fb7833d39d13b01b8f36aaee30170a"
+    },
+    {
+      "code": "03046",
+      "side": "back",
+      "text": "Una sombra se desliza por la pared junto a vosotros, y se os hace un nudo en la garganta. Al giraros, una silueta desaparece de vuestra vista rápidamente. O vuestra mente os engaña, o hay alguien más en el teatro.\nSeguís la dirección de la sombra doblando una esquina cercana. En el otro extremo del pasillo os espera un hombre vestido con un elegante traje negro y con el rostro cubierto por una máscara pálida. Aunque se ha cambiado de ropa, lo reconocéis al instante como el actor que interpretó el papel del Extranjero, uno de los personajes de El Rey de Amarillo. Se gira y desaparece por una puerta abierta, como si os retase a seguirlo.",
+      "file": "03046-back.mp3",
+      "inputHash": "4c9a1dde26da367b3804665e632b470a05d0836d3f8d5e57c71d38134efa92cd",
+      "bytes": 873577,
+      "sha256": "e9414d289a203ad955d182aa8352157a4ef291ecad9df3d8986ee618eb4d8fac"
+    },
+    {
+      "code": "03047a",
+      "side": "front",
+      "text": "El misterioso Extranjero de El Rey de Amarillo podría saber algo sobre lo ocurrido durante el descanso. Debéis encontrarlo y enfrentaros a él si queréis descubrir la verdad.",
+      "file": "03047a-front.mp3",
+      "inputHash": "9a088f6d38d1620daf4381de59fd15d4c6ea493f919f775d5831e5581262f09b",
+      "bytes": 260431,
+      "sha256": "7d1d62f8dd85f5c045598dee6fa2f6ac5cfb7f6594f510a8c00cf7c160a5f02a"
+    },
+    {
+      "code": "03047a",
+      "side": "back",
+      "text": "Al encararos con el Extranjero, tenéis la impresión de que sonríe bajo su pálida máscara sin facciones. -¿Dónde está todo el mundo? -le preguntáis, pero no responde- ¿Qué está pasando? -Sigue en silencio y retrocede cuando os acercáis, hasta acabar con la espalda contra uno de los rincones de la sala. Notáis un intenso calor a vuestra espalda, y os volvéis para ver que el auditorio es pasto de las llamas. Cuando os giráis de nuevo hacia el Extranjero, ha desaparecido.",
+      "file": "03047a-back.mp3",
+      "inputHash": "8b25aea77246221cab149c250f20ac00b675871635f00e9548b12ce4bbaabd07",
+      "bytes": 614861,
+      "sha256": "a215cb3d24a3e435fa7f4f420657b6810280520e2f09fe1e84f99e202530fd4c"
+    },
+    {
+      "code": "03047b",
+      "side": "front",
+      "text": "El misterioso Extranjero de El Rey de Amarillo podría saber algo sobre lo ocurrido durante el descanso. Debéis encontrarlo y enfrentaros a él si queréis descubrir la verdad.",
+      "file": "03047b-front.mp3",
+      "inputHash": "9a088f6d38d1620daf4381de59fd15d4c6ea493f919f775d5831e5581262f09b",
+      "bytes": 260431,
+      "sha256": "7d1d62f8dd85f5c045598dee6fa2f6ac5cfb7f6594f510a8c00cf7c160a5f02a"
+    },
+    {
+      "code": "03047b",
+      "side": "back",
+      "text": "Al encararos con el Extranjero, tenéis la impresión de que sonríe bajo su pálida máscara sin facciones. -¿Dónde está todo el mundo? -le preguntáis, pero no responde- ¿Qué está pasando? -Sigue en silencio y retrocede cuando os acercáis, hasta acabar con la espalda contra uno de los rincones de la sala. Sigue retrocediendo de forma inexplicable, y su cuerpo se funde con la pared que tiene detrás. Del lugar en que se encontraba brota una masa creciente de un cieno viscoso.",
+      "file": "03047b-back.mp3",
+      "inputHash": "81c28ab772b8f006b27f28aded63ae85a558686c415750298c80c3c59e802780",
+      "bytes": 618622,
+      "sha256": "14bebc8dc6497defefc85ccf6d4f457f8908fc5803ea5387b00920705ccfe1ee"
+    },
+    {
+      "code": "03047c",
+      "side": "front",
+      "text": "El misterioso Extranjero de El Rey de Amarillo podría saber algo sobre lo ocurrido durante el descanso. Debéis encontrarlo y enfrentaros a él si queréis descubrir la verdad.",
+      "file": "03047c-front.mp3",
+      "inputHash": "9a088f6d38d1620daf4381de59fd15d4c6ea493f919f775d5831e5581262f09b",
+      "bytes": 260431,
+      "sha256": "7d1d62f8dd85f5c045598dee6fa2f6ac5cfb7f6594f510a8c00cf7c160a5f02a"
+    },
+    {
+      "code": "03047c",
+      "side": "back",
+      "text": "Al encararos con el Extranjero, tenéis la impresión de que sonríe bajo su pálida máscara sin facciones. -¿Dónde está todo el mundo? -le preguntáis, pero no responde- ¿Qué está pasando? -Sigue en silencio y retrocede cuando os acercáis, hasta acabar con la espalda contra uno de los rincones de la sala. De pronto, las ventanas estallan, y os volvéis hacia ellas sobresaltados mientras un diluvio de fría agua salada inunda la sala. Cuando os giráis de nuevo hacia el Extranjero, ha desaparecido.",
+      "file": "03047c-back.mp3",
+      "inputHash": "56094e5505709dba42ba7b7b57f975034e72515f86431c6e2c1ebed65d655ff9",
+      "bytes": 673375,
+      "sha256": "44f1125e016fbd305a2c125a37107862cb09ccd9166aadd99d86c0b8faf3a4ef"
+    },
+    {
+      "code": "03048",
+      "side": "front",
+      "text": "El Extranjero debe de saber cómo salir de aquí. ¡Tenéis que seguilo!",
+      "file": "03048-front.mp3",
+      "inputHash": "493cd7a958f607a1c2d921428de1e23bb77e079e7c20450baea74e28253c7fc7",
+      "bytes": 87396,
+      "sha256": "7b6cc25a86d94e0add6da69b8538016a6dcf3abe0fa0ddee3d0b5fdf61a098b8"
+    },
+    {
+      "code": "03048",
+      "side": "back",
+      "text": "El Extranjero os hace una ligera reverencia mientras sale por la entrada principal del vestíbulo, abriendo una puerta de cristal que no estaba ahí hace un instante. Una repentina cacofonía de ruidos brota a vuestro alrededor, y teméis que sólo queden unos segundos antes de que el edificio sea destruido. Huis atravesando las puertas principales y dejando atrás el teatro en ruinas.\nNo paráis a descansar y pensar en lo que acabáis de vivir hasta poner varias manzanas de por medio…",
+      "file": "03048-back.mp3",
+      "inputHash": "807e012875cd92899b49a51c254a2bc2611506763491fa4980b4bd559fea3b69",
+      "bytes": 629071,
+      "sha256": "30dbc1009337a5bea53aac81131de2fbb28d2f7206d3e5fbb286c0497485f4b7"
+    },
+    {
+      "code": "03062",
+      "side": "front",
+      "text": "Al aparcar cerca de la mansión, os dais cuenta de que algo no va bien. Hay un rastro de sangre en los escalones del porche, y la puerta principal está hundida. Del interior de la casa llega una música amortiguada, y sus distorsionadas y discordantes notas os hacen daño a los oídos. ¿Ha llegado ya aquí la locura de El Rey de Amarillo?",
+      "file": "03062-front.mp3",
+      "inputHash": "03d2b324ff016c811f2723ec028687b587868c26cf096a9a94ba56bc9190fdbe",
+      "bytes": 435138,
+      "sha256": "546eead8830adc2fc75875e6620d8556c5fc9a929b9c013bea067ca4e081ca6f"
+    },
+    {
+      "code": "03062",
+      "side": "back",
+      "text": "-Vaya, nuestra última invitada -anuncia el portero-. Señorita Devine, todo el mundo aguardaba su presencia hoy. -La mujer lleva un pícaro vestido y una sonrisa a juego. Juraríais que ya habéis visto antes el símbolo de su amuleto-. Bueno, pues que empiece la fiesta de verdad -declara antes de mezclarse con el resto de asistentes.",
+      "file": "03062-back.mp3",
+      "inputHash": "e61ed40c2d30a8a9ef943656923c70a54a27c74c705669a972b9deea64fc8843",
+      "bytes": 425943,
+      "sha256": "2667db4acc39b5915d1fc7328c59e706c455f748d36ad6d27becc923b6d67aef"
+    },
+    {
+      "code": "03063",
+      "side": "front",
+      "text": "Este sitio está cayendo presa de la locura cada vez más, transformándose ante vuestros ojos…",
+      "file": "03063-front.mp3",
+      "inputHash": "f92c65f989d7511f29ecde1b88820cfc80a6bc28eb39536ded69c8932a9e110b",
+      "bytes": 134625,
+      "sha256": "c947b6760f1393f0a341bf6cb49641122a006a949df9c210b86bd7729194a234"
+    },
+    {
+      "code": "03063",
+      "side": "back",
+      "text": "Está todo en vuestras cabezas. Tiene que ser aquí. ¿Cómo si no podéis explicar todo lo que sucede a vuestro alrededor? Habéis tomado alguna copa de más, y vuestra mente os juega malas pasadas. Todo el mundo se está divirtiendo mucho y sólo quieren que os unáis a ellos.",
+      "file": "03063-back.mp3",
+      "inputHash": "ff5ce12514f461fca6ef0d8813abbbaa002b09ded4d63796b668c55bc4cf06a2",
+      "bytes": 372444,
+      "sha256": "0999b835f288dc43917735d1fc9c00bf888b0fbf22cc7a667752a3c59c42d3f6"
+    },
+    {
+      "code": "03064",
+      "side": "front",
+      "text": "Esto no es una fiesta, es un manicomio. Pero, por algún motivo, los invitados no se dan cuenta. Hay muy pocos cuerdos, y muchos de los que veis son verdaderos horrores. Quizá podáis hablar con ellos para saber algo más sobre El Rey de Amarillo.",
+      "file": "03064-front.mp3",
+      "inputHash": "c8ba3c5db1a4e9bc3aeb3d321c8d7f8eeb106412eb24fe12be44f68f8292dede",
+      "bytes": 366593,
+      "sha256": "f75b889a383f85e7716c42674cc6c629c39fbc2f073b758fec17c7a5fd213b60"
+    },
+    {
+      "code": "03121",
+      "side": "front",
+      "text": "Sorprendentemente, las puertas principales de la mansión georgiana de la Sociedad Histórica están medio abiertas cuando llegas. ¿Quién más podría estar aquí a estas horas?",
+      "file": "03121-front.mp3",
+      "inputHash": "3779cd9595215bbfa1ee9803d0532afedc1a259243bc59b0cfa8e8b9e0738f4d",
+      "bytes": 223233,
+      "sha256": "a0494c706be2abe80e7d1969530e76486c5ee58c84323fa4e794fc61b6be4410"
+    },
+    {
+      "code": "03121",
+      "side": "back",
+      "text": "Un susurro recorre el edificio, pronunciando una frase en un idioma que no puedes describir; sin previo aviso, todas las luces eléctricas explotan a la vez. Enciendes una vela y sigues la búsqueda.\n El edificio es bastante distinto cuando está sumido en la oscuridad. Sombras y siluetas bailan por las paredes. Huecos que no habías visto antes te llaman la atención ahora. ¿Qué otros secretos contiene este edificio?",
+      "file": "03121-back.mp3",
+      "inputHash": "77e4c6122b0a48e4dd500419f582c9568a8ee079c15eb6b70ee6be25821a3d43",
+      "bytes": 568885,
+      "sha256": "fc914702b739e6e32ef14462e46af5611d7ba390dd4fe4a110ecec8ae1760e1a"
+    },
+    {
+      "code": "03122",
+      "side": "front",
+      "text": "Aunque los susurros han cesado, sigues oyendo el ruido inconfundible de alguien que mueve muebles y rebusca. Quienquiera que esté aquí está registrando el edificio tan a fondo como tú…",
+      "file": "03122-front.mp3",
+      "inputHash": "37d288cb0b0dd84412db0da091f9efedc101189eb4cfff18d762750c077ef84e",
+      "bytes": 270880,
+      "sha256": "ae6523218cba2e81f2c99416584bfcc72a4ed982698269ca99d9c4b1b71508f1"
+    },
+    {
+      "code": "03122",
+      "side": "back",
+      "text": "La puerta principal de la mansión se abre, dejando entrar el ulular de un frío viento y el repiqueteo de la lluvia, y luego se cierra de golpe. Encuentras un lugar en el que ocultarte y escuchar, preguntándote quién más podría haber entrado en el edificio tan tarde. -No, lo juro ¡Juro que no sé dónde está la puerta! -grita un hombre-. Tendréis que encontrar el camino vosotros solos. ¡No puedo ayudaros! -Su voz suena llena de pánico y desorientada.\n-Pronunciaste el juramento -responde una voz masculina-. Pronunciaste Su Nombre -El primer hombre tartamudea-: ¡No! ¡No, no puedo! ¡No lo haré! -Después de esto, su voz se distorsiona y deja de hablar. Oyes pasos en la escalera, pasos húmedos y pesados.",
+      "file": "03122-back.mp3",
+      "inputHash": "5ec4352f1debc061c955d682810e0921e29f9d1563e7e0782b688f494272456f",
+      "bytes": 950482,
+      "sha256": "80a342e87f8c149102a75c13d47db36eb8d3d7a7e5c2a69f89b8376e7be11f79"
+    },
+    {
+      "code": "03123",
+      "side": "front",
+      "text": "Quienesquiera que sean estas personas, deben de estar involucradas en la conspiración de El Rey de Amarillo. ¡No puedes dejar que encuentren lo que estén buscando!",
+      "file": "03123-front.mp3",
+      "inputHash": "3db1398c70a7f1add6b139b3cdec28d0970956b0b8fc0fe2ebefddae643c4848",
+      "bytes": 190632,
+      "sha256": "c6dfd1e1085f8244a6af66990e5c8013eb885266dee2a22b2c398e1ed4b98578"
+    },
+    {
+      "code": "03123",
+      "side": "back",
+      "text": "Hay un ajetreo de pisadas en la escalinata central de la mansión, y la puerta principal vuelve a abrirse: -¿Lo habéis encontrado? -pregunta una voz apagada.\n-Sí, podemos embarcar inmediatamente. El camino se abrirá.\nLa puerta se cierra, la mansión vuelve a estar en silencio y solitaria. Durante el resto de tu búsqueda, no encuentras más rastros de los misteriosos personajes encapuchados, ni tampoco información que responda las muchas preguntas que tienes sobre El Rey de Amarillo…",
+      "file": "03123-back.mp3",
+      "inputHash": "8ed478ef80cd421ecaebb81f686346c09bcd37d6edf2cecf1872414cd64102d9",
+      "bytes": 564287,
+      "sha256": "f3ecd4bee86d638d6ff9e6c19a2644a8271f50e2935c8c9aa2f3939a50ef8503"
+    },
+    {
+      "code": "03124",
+      "side": "front",
+      "text": "Todas y cada una de las numerosas salas de la Sociedad Histórica contienen registros y documentos que podrían ayudarte en tu búsqueda de respuestas sobre El Rey de Amarillo. Debe de haber algo que pueda guiarte hacia la verdad.",
+      "file": "03124-front.mp3",
+      "inputHash": "c61df58f5d51f7607412ff7c7e1d04dd20a6a6619cee34c33997fe81c12af1d8",
+      "bytes": 301391,
+      "sha256": "897223f3e62c632c6c32a5fabf0861b3cbad031fb57f4d19d6111b6b4cb683ed"
+    },
+    {
+      "code": "03124",
+      "side": "back",
+      "text": "Encuentras un documento que guardó uno de los historiadores de la sociedad que hace referencia a los \"terribles sucesos\" que rodearon el cierre de un antiguo teatro de Arkham: el Auditorio Cedar. Aunque no hay ninguna mención explícita de El Rey de Amarillo, crees que vas por el camino correcto.\nLas notas del historiador se cortan de pronto, y hay una desvaída página escrita a mano sujeta a la última entrada.\nEste asiento es demasiado macabro como para que se haga público. Voy a dejar el resto de este documento en la biblioteca oculta. Cualquier indagación posterior debe hacerse alejada de los ojos curiosos, pues es un asunto peligroso y que no debe investigarse a la ligera.",
+      "file": "03124-back.mp3",
+      "inputHash": "3254fdde39c6327d640e19623e99da2c69dd2a3409bc351691315e1a1da87975",
+      "bytes": 878593,
+      "sha256": "8d86370f7999fdd20d7093def077ad44c01cd4be826676c4117ed0ddcc5d4a20"
+    },
+    {
+      "code": "03125",
+      "side": "front",
+      "text": "En algún lugar de la mansión hay una \"biblioteca oculta\" en la que podrías encontrar más información sobre El Rey de Amarillo. Debes encontrar la forma de acceder para poder continuar tu investigación.",
+      "file": "03125-front.mp3",
+      "inputHash": "f78a4e0e40f36eaf8f0dd5814c394f91f90c45294108192a50a618a9e5878a57",
+      "bytes": 292196,
+      "sha256": "dcebb62faf9cad9ea1c3d0be7259a757442247277ba829e40fde3d95d6656b2a"
+    },
+    {
+      "code": "03125",
+      "side": "back",
+      "text": "Mientras rebuscas en los cajones de un escritorio, te sobresalta oír una voz a tu espalda: -¡Perdón! ¿Puedo ayudarle? -Te alivia descubrir que la voz pertenece a un delgado anciano que lleva unas gafas de montura ancha, sin duda un miembro de la Sociedad Histórica. Le explicas que estás buscando una biblioteca oculta en algún lugar de la mansión, aunque evitas contarle el motivo.\nSe presenta como el Sr. Peabody, el conservador de la Sociedad Histórica. -Le ayudaré a encontrar lo que busca -te dice-, pero sólo si me cuenta de qué va todo esto cuando estemos allí -Esperas no tener que llegar a eso.",
+      "file": "03125-back.mp3",
+      "inputHash": "5c89da531014681dc999693cbae257c065f6b0174286966cc187887f027e6b98",
+      "bytes": 773685,
+      "sha256": "71352c033e89da860c87181de5c64ef1c615898030f0091992eab53dcc640f01"
+    },
+    {
+      "code": "03126",
+      "side": "front",
+      "text": "-Este edificio es muy antiguo y está repleto de todo tipo de pasadizos secretos -explica el Sr. Peabody-. Puede que alguno de ellos lleve a esta biblioteca que busca.",
+      "file": "03126-front.mp3",
+      "inputHash": "b0aad9f123ad40d20bdfa9bb0dc4a20367816243e6e38a30446725851eb712f2",
+      "bytes": 233682,
+      "sha256": "355d1b97a643254401acaf2b351fe21e243af710cdc4a445ad3a1f1044c46709"
+    },
+    {
+      "code": "03126",
+      "side": "back",
+      "text": "Mientras estudias la biblioteca oculta, encuentras varias informaciones que te llaman la atención. Como ocurrió con la reciente producción, la anterior representación de El Rey de Amarillo vino a Arkham desde el extranjero y la realizó un elenco actoral francés. No reconoces ninguno de los nombres de los actores, aunque, como esperabas, el intérprete del Extranjero es anónimo. Sin embargo, parece que un miembro de la Sociedad Histórica ya te ha hecho parte del trabajo; hay varios recortes de periódico recopilados junto con la información de la obra. Algunos de los titulares son: El Auditorio Cedar cierra por un incendio, Expertos atónitos ante las extrañas inundaciones. Escondido entre estas informaciones, también encuentras un extraño objeto; un broche de ónice con una extraña inscripción.",
+      "file": "03126-back.mp3",
+      "inputHash": "ebf461387642b237caea339d86f575881a4c1d58ac052dbdb505353b64619a8f",
+      "bytes": 1030730,
+      "sha256": "cc0e2cd42a2de28c9236cd23c38581d4826c177c3faac14226538c1552b1d86d"
+    },
+    {
+      "code": "03160",
+      "side": "front",
+      "text": "El ala de pacientes del manicomio es mucho más tranquila y solitaria de lo que esperabas. En el pasillo impera un hedor a productos químicos y olor corporal. En cuanto te acompañan dentro, las puertas se cierran a cal y canto detrás de ti.",
+      "file": "03160-front.mp3",
+      "inputHash": "decd6d605baa84c9f9bd50d440eeba39ddcde3ace51b3f638c160bea36e190d0",
+      "bytes": 320617,
+      "sha256": "aa5d29110c487278bd28f0e09a5fbcd649e8597a2e753d27e9d1beb2fc0ab99a"
+    },
+    {
+      "code": "03160",
+      "side": "back",
+      "text": "Hablar con los pacientes está resultando ser más difícil de lo que suponías. Te miran con recelo y se niegan a contestar ninguna de las preguntas, retrocediendo o huyendo si los confrontas. O bien no están acostumbrados a que haya invitados o tienes algo que les provoca una enorme cantidad de angustia. Algunos se comportan como animales acorralados en un rincón, y crees que podrían atacarte en cualquier momento.",
+      "file": "03160-back.mp3",
+      "inputHash": "491ece23a4cfc5403993ed5df5eecdb91428dedf5fee659760d31fa698afd921",
+      "bytes": 555928,
+      "sha256": "3670565d4c01ac998224206e7b0dd0cc84e81ab648d30a2670b19f015f6c910d"
+    },
+    {
+      "code": "03161",
+      "side": "front",
+      "text": "Cuanto más tiempo pasas en este lugar infernal, más ganas tienes de marcharte. Te parece que llevaras días aquí. Temes que, si te quedas aquí mucho más tiempo, acabes como los pacientes: una incontrolable y peligrosa sombra de tu antiguo yo.",
+      "file": "03161-front.mp3",
+      "inputHash": "93426a214a5548700d2375e852cc6e42d11c5f547ba62f036ec9535222e1b839",
+      "bytes": 344441,
+      "sha256": "c3fd134937bf189aeeb980e236693c599f3b692375c22e574ebd610c569e3a7f"
+    },
+    {
+      "code": "03161",
+      "side": "back",
+      "text": "En una parte de tu mente, una fuerza te habla. \"¿lo has visto?\". Te llama. Atisbas algo en tu visión periférica y te giras para encontrar un símbolo familiar que aparece allí donde miras. Está grabado en las puertas. Dibujado en las paredes. Pintado en las telas de los pacientes. No puedes escapar de él.",
+      "file": "03161-back.mp3",
+      "inputHash": "83c2364cf28d63e15c911b1118f13dd6e1ccc7bd04c5b9ad5610e6fe37df142d",
+      "bytes": 385819,
+      "sha256": "930cb478645c276bfc4194002912d1dbb9ca7c1989c585c6f2149b2695312c50"
+    },
+    {
+      "code": "03162",
+      "side": "front",
+      "text": "Huye.\nHuye mientras aún puedas.",
+      "file": "03162-front.mp3",
+      "inputHash": "0b71ac236bccd37795e5533ee4790b7bc449e9fb65c20fa415af5b269901de6c",
+      "bytes": 57721,
+      "sha256": "f77ee177ee0bb639cd9fe746c0e9e0b15bc644cd6c71ed1ac4fdadbdfab58e3a"
+    },
+    {
+      "code": "03162",
+      "side": "back",
+      "text": "Las paredes se cierran. Se te nubla la visión. Suena un chillido en tus oídos. Te cogen y no puedes defenderte. Pides ayuda, pero no acude nadie.\nBuscas una forma de escapar, pero en lugar de eso, ves la máscara pálida del Extranjero que te devuelve la mirada. A la vuelta de cada esquina, detrás de cada puerta, a través de todas las ventanas. Esa máscara… Esa maldita máscara…\n\n¿O… puede que seas tú quien lleva la máscara…?",
+      "file": "03162-back.mp3",
+      "inputHash": "ba069c5b9da87f5a44867b7e1e4421c49e21d200981d01e14aa83119af87dd4c",
+      "bytes": 626145,
+      "sha256": "3144a1deec608c575bf5ef6e0cb19f4c66f157b0dde2d526890e263c02ff4f10"
+    },
+    {
+      "code": "03163",
+      "side": "front",
+      "text": "Aparte de unos pocos pacientes que te rehúyen, no hay ningún auxiliar ni médico por allí con los que puedas hablar. Parece que tendrás que encontrar al Sr. Chesterfield por tu cuenta.",
+      "file": "03163-front.mp3",
+      "inputHash": "be2d0874e2e811ea4917f03b57a63c98b7581d8b71a9e5dec4df906037405138",
+      "bytes": 233682,
+      "sha256": "e49542de1917bc4e3e853d02ff200809c1d2f8e685c9c2bf6a4a2bb221a7a9b1"
+    },
+    {
+      "code": "03163",
+      "side": "back",
+      "text": "Al doblar una esquina, Estás a punto de chocarte con una enfermera de marcados rasgos y pelo castaño claro. Le cuentas lo ocurrido con los pacientes violentos y las cosas extrañas que has visto, pero no te escucha. Cuando le preguntas por Daniel, te informa que es paciente del Dr. Mintz y que se encuentra en la planta segura del sótano. Por desgracia, se niega a dejarte entrar en esa zona del manicomio.",
+      "file": "03163-back.mp3",
+      "inputHash": "b67340b70ee57d4e20c0d60056c3d26702c3d33a9a79ac0c4f8af155f7b4fbf8",
+      "bytes": 502012,
+      "sha256": "95c06d7e71aa022a3c115c7190b978e83e557a77f131080fd07df02b0fae0a2a"
+    },
+    {
+      "code": "03164",
+      "side": "front",
+      "text": "Daniel está en alguna parte del sótano seguro en el que se encuentran los pacientes más peligrosos. Ahora que tienes la llave, puedes explorar esta zona del manicomio.",
+      "file": "03164-front.mp3",
+      "inputHash": "72065931165b78a672023da385a153a3ed0d15f487cbdac001139f987d6d0b5c",
+      "bytes": 233682,
+      "sha256": "0897d4d170c5ec1cc2f0048b7a1d60b5dd0439cb6885a205427c2a5a820beef8"
+    },
+    {
+      "code": "03164",
+      "side": "back",
+      "text": "Cuando entras en su celda, encuentras a Daniel hecho un ovillo en un rincón de la estancia, sollozando y meciéndose en el suelo: -Sin máscara… Sin máscara… -repite una y otra vez. Lo ayudas a levantarse y tratas de consolarlo, diciéndole que no está loco, que han estado ocurriendo extraños sucesos por toda la ciudad desde que El Rey de Amarillo volvió a Arkham. -¡Es Nigel! -exclama mientras te agarra-. Nigel nos obligó a pronunciar su nombre… Nos hizo pronunciar el juramento, y ahora Él vive dentro de nosotros, ¿no lo entiendes? -sigue desvariando-. ¡Pronunciamos Su nombre y se pagó el precio! ¡Hastur! ¡Hastur! ¡Oh, Rey!\nCrees que podrías entender algo más acerca de la situación si logras calmarlo, pero tendrás que sacarlo de este manicomio para conseguirlo.",
+      "file": "03164-back.mp3",
+      "inputHash": "2819ca21c27c16ac0fbc3ec19cd9c151b9e9feb1ebac7cc772f38a85b96e36bc",
+      "bytes": 1001891,
+      "sha256": "7dce7b116e78e20e251cc28f2cc8d73f52c12dda6a84c654086f60eb8c8104ae"
+    },
+    {
+      "code": "03165",
+      "side": "front",
+      "text": "Daniel está en alguna parte del sótano seguro en el que se encuentran los pacientes más peligrosos. Ahora que tienes la llave, puedes explorar esta zona del manicomio.",
+      "file": "03165-front.mp3",
+      "inputHash": "72065931165b78a672023da385a153a3ed0d15f487cbdac001139f987d6d0b5c",
+      "bytes": 233682,
+      "sha256": "0897d4d170c5ec1cc2f0048b7a1d60b5dd0439cb6885a205427c2a5a820beef8"
+    },
+    {
+      "code": "03165",
+      "side": "back",
+      "text": "Cuando entras en su celda, encuentras a Daniel hecho un ovillo en un rincón de la estancia, sollozando y meciéndose en el suelo: -Sin máscara… Sin máscara… -repite una y otra vez. Lo ayudas a ponerse en pie y le preguntas qué recuerda sobre El Rey de Amarillo, pero te interrumpe: \"¡No pronuncies Su nombre!\" -exclama con frenesí y los ojos abiertos y con un brillo amarillo-. Nigel nos obligó a pronunciar su nombre… Nos hizo pronunciar el juramento, y ahora Él vive dentro de nosotros, ¿no lo entiendes? -sigue desvariando.\nEl hombre se acerca con una expresión demente en el rostro, y das un paso hacia atrás por si acaso: -¡Pronunciamos Su nombre y se pagó el precio! ¡Hastur! ¡Hastur! ¡Oh, Rey! -A continuación, se transforma de repente ante tus ojos. Sus huesos se retuercen y se parten. Su cuerpo se distorsiona de forma grotesca. El símbolo grabado en su frente emite un fuerte brillo, y un resplandor amarillo brota del interior de su cuerpo. Se abalanza sobre ti para atacarte.",
+      "file": "03165-back.mp3",
+      "inputHash": "0584a91aa6adf46a226b3bef02d66dfa7f1392e16caf19fb31cb87f0cb57cfe8",
+      "bytes": 1283595,
+      "sha256": "df4cf3c993f191bd08fc1e016305fb3f1e7528dd48c5a4f23922cf4ec763ccf2"
+    },
+    {
+      "code": "03166",
+      "side": "front",
+      "text": "Tienes que salir de este lugar lo antes posible, con Daniel o sin él.",
+      "file": "03166-front.mp3",
+      "inputHash": "4afdace9793249b050928cd942eb5802f1ddaab5b7097f303a91ee40df30a1ad",
+      "bytes": 98263,
+      "sha256": "c7fc670a47362aa544f24fcc4a9aaa9828dd9e82d4c15080074a2ceaf63023a8"
+    },
+    {
+      "code": "03166",
+      "side": "back",
+      "text": "El grito de un auxiliar resuena en el pasillo. En pocos instantes, una alarma comienza a sonar ruidosamente por toda la institución. Las enfermeras y los guardias empiezan a correr por todo el manicomio intentando controlar la situación. Te notas aturdido, y tu visión es borrosa, como si te hubieran golpeado con algo pesado. Las paredes son un borrón que se funde y retuerce. Comienzan a surgir criaturas de grietas y rincones que no existían hace unos instantes.",
+      "file": "03166-back.mp3",
+      "inputHash": "0727fa2aac056172a937ccf16b9ae6a1625938e69c929394b33853e3572b8216",
+      "bytes": 601486,
+      "sha256": "749bf80579938d11c829f44b65fce0f29067e6c008412d497936ac8636564659"
+    },
+    {
+      "code": "03167",
+      "side": "front",
+      "text": "Se ha armado un buen cristo.",
+      "file": "03167-front.mp3",
+      "inputHash": "66800b19df8004fe83be5ad1e5402f77320ddae24e20d81ea846103c1623940e",
+      "bytes": 35987,
+      "sha256": "58715193a2abcd3dae77243bab027152ce18df557d5738cf715e34d532f33030"
+    },
+    {
+      "code": "03201",
+      "side": "front",
+      "text": "Cuando bajas del tren en la Gare d’Orsay, el sol se está poniendo tras la silueta de los edificios de París. No puedes perder tiempo. Si Nigel Engram está en algún lugar de París, debes encontrarlo y sacarle respuestas de un modo u otro.",
+      "file": "03201-front.mp3",
+      "inputHash": "10015f7e167fb3f56a53bd02009424a4db389bf929471e2327bbcb675ab248ca",
+      "bytes": 365339,
+      "sha256": "86d7fbc7fc9b9a41a7bec0dff9af25a1b9c7192b4b8e0bed731386ad6f31ea77"
+    },
+    {
+      "code": "03201",
+      "side": "back",
+      "text": "Los pájaros empiezan a piar con ganas. Un suave tono naranja se extiende lentamente por el cielo mientras las criaturas de la noche se repliegan en la oscuridad. Pasas la mayor parte del día descansando, y la luz diurna pasa rápidamente sin que la aproveches del todo. Antes de que hayas podido recuperarte por completo de los acontecimientos de la noche anterior, vuelve a caer la noche.",
+      "file": "03201-back.mp3",
+      "inputHash": "2faefa7524219fe22cbc4ee26debedf1370a234ed29c16bfe2d09b95b0441fc2",
+      "bytes": 475680,
+      "sha256": "ae2355620fc89868ca85d6650c1c7c212a766af22123a55eb0355e9caf360107"
+    },
+    {
+      "code": "03202",
+      "side": "front",
+      "text": "La ciudad se agita cuando las frías sombras envuelven las calles. Estás rodeado de peligros. Peligros de los que no puedes escapar. Peligros que te seguirán hasta los confines de la Tierra. ¿Cuándo terminará esta pesadilla viviente?",
+      "file": "03202-front.mp3",
+      "inputHash": "69b73e991086c34a2c340228d23f6ff11268992ab8d71639b26b79a8f906988c",
+      "bytes": 335246,
+      "sha256": "7da966cc38cc82103273ddfd99d015f6bd9c34501330fc80d17d9fea87d17604"
+    },
+    {
+      "code": "03202",
+      "side": "back",
+      "text": "Para tu alivio, el sol vuelve a salir una vez más, asomando por el horizonte oriental y proyectando largas sombras por las calles de la ciudad. Estás completamente agotado por los sucesos de la noche. Tienes la sensación de llevar semanas sin dormir. Y puede que sea así.",
+      "file": "03202-back.mp3",
+      "inputHash": "c2bce9bc73f4cc08aea6dbb4ed043779a750e4b315cf127e1f114ff247c4b9ec",
+      "bytes": 379967,
+      "sha256": "2149726fa98e078a790f9ce68147d34d3326899b2489d82bf7f06cd8cb2115e1"
+    },
+    {
+      "code": "03203",
+      "side": "front",
+      "text": "Cuando llega tu tercera noche en París, una determinación desesperada se agita en tu interior. Hay que acabar con este juego el gato y el ratón. De un modo u otro, esta noche será la última.",
+      "file": "03203-front.mp3",
+      "inputHash": "cd148860f55217d144554f2b0efa55519163af7ec6269cfc84d5d5850bb71224",
+      "bytes": 285091,
+      "sha256": "12440eb365e99b349b3c31b9c063f128c37367126ddb304e0fa73438e8ad835b"
+    },
+    {
+      "code": "03203",
+      "side": "back",
+      "text": "El sol se alza y disipa la oscuridad. Una cálida niebla envuelve la ciudad y tapa el cielo.",
+      "file": "03203-back.mp3",
+      "inputHash": "50fea3e7cad1b8e56d8e3f59e8602de2ea26e833eb86e7a2fa17d9e58c687d00",
+      "bytes": 146746,
+      "sha256": "3dd8d01fa8e7315c277c0a80989917294f68bbfc0350d008983ea617ad55759a"
+    },
+    {
+      "code": "03204",
+      "side": "front",
+      "text": "Pasas junto a la iglesia de San Bernabé al salir de la estación de tren y no puedes evitar oír la música de su órgano. ¿Habrá servicio religioso a esta hora de la noche? Te maravillas ante los extraños y tempestuosos acordes durante unos instantes antes de continuar. París es una ciudad muy grande, y tienes muy pocas pistas…",
+      "file": "03204-front.mp3",
+      "inputHash": "f5dc7c3cbd5cb2527c9b61a8b9dfb284d1e6fb1fcd59ad05d19e7bb8f0532d9a",
+      "bytes": 428451,
+      "sha256": "a85d98aeea2967406a8f7f13f98b43b597db3707778f2a95e2f33a2162c059fd"
+    },
+    {
+      "code": "03205",
+      "side": "front",
+      "text": "Pasas junto a la iglesia de San Bernabé al salir de la estación de tren y no puedes evitar oír la música de su órgano. ¿Habrá servicio religioso a esta hora de la noche? Te maravillas ante los extraños y tempestuosos acordes durante unos instantes antes de continuar. París es una ciudad muy grande, y tienes muy pocas pistas…",
+      "file": "03205-front.mp3",
+      "inputHash": "f5dc7c3cbd5cb2527c9b61a8b9dfb284d1e6fb1fcd59ad05d19e7bb8f0532d9a",
+      "bytes": 428451,
+      "sha256": "a85d98aeea2967406a8f7f13f98b43b597db3707778f2a95e2f33a2162c059fd"
+    },
+    {
+      "code": "03206",
+      "side": "front",
+      "text": "Los acordes que resuenan en tu mente, el hombre infernal cuya música de órgano te intriga y aterra… ¿Podría haber alguna conexión entre esta sombría presencia y El Rey de Amarillo?",
+      "file": "03206-front.mp3",
+      "inputHash": "324749df65f2501b8b7b4c77ff9ef418aba38be09831a9952b4593c917a5260e",
+      "bytes": 247892,
+      "sha256": "8d4c0992fa12a073f8f700c3b16caaca9ab419f7b1c5997773ae74eca0ef8462"
+    },
+    {
+      "code": "03206",
+      "side": "back",
+      "text": "Persigues a tu presa por una estrecha avenida y a través de unos pesados portones de hierro. Estás en un callejón sin salida, un patio con altas casas antiguas en todos sus lados. Cierras los portones y te vuelves hacia la sombría silueta justo cuando comienza a despuntar el alba. Rayos de luz asoman por las siluetas de los edificios, y levantas la mano para tapar el brillo del sol. A continuación, como si lo hubiera dispersado la luz de sol, la figura que perseguías se funde entre las sombras y desaparece. Registras el patio en busca del misterioso personaje, pero no hay ni rastro por ninguna parte. Cuando estás a punto de marcharte, ves una placa junto a una puerta de color marrón rojizo que se encuentra en lo alto de una empinada y estrecha escalinata y que dice: \"N. Engram\".",
+      "file": "03206-back.mp3",
+      "inputHash": "e8af426c81d1551d2c5d9bf4d22e21fb5c8dcb6558ff303c1bcad91264b03cb5",
+      "bytes": 1007324,
+      "sha256": "196d277ece40999f0755697e75b7e18b6605fee599bb7db37f1fcf7172ed2d4e"
+    },
+    {
+      "code": "03207",
+      "side": "front",
+      "text": "Sabía que cada vez que lo encontrara, el cumplimiento de su cometido y mi destino estarían más cerca. Y aún trataba de salvarme.\n–Robert W. Chambers, \"En la corte del dragón,\" El Rey de Amarillo",
+      "file": "03207-front.mp3",
+      "inputHash": "086477370871fcca146028279584e7e27ccc149737b2e08d191ebfb03f19380a",
+      "bytes": 322707,
+      "sha256": "b14611e887e0521cc99598e9723f59732ee84b5a7d001d52a69ce32fa45d545a"
+    },
+    {
+      "code": "03207",
+      "side": "back",
+      "text": "Ni siquiera miras por dónde vas mientras huyes por la ciudad para ponerte a salvo. Tus pies se mueven solos. El batir de unas fuertes alas y el chillido de las criaturas que te sobrevuelan te hacen ir más rápido. Pronto te encuentras corriendo por una estrecha avenida y a través de unos pesados portones de hierro. Estás en un callejón sin salida, un patio con altas casas antiguas en todos sus lados. Te vuelves hacia la entrada y respiras con alivio al ver que el sol vuelve a salir sobre la silueta de los edificios de París. Como si lo hubiera dispersado la luz del sol, la figura que te perseguía se funde entre las sombras y desaparece. Cuando estás a punto de marcharte, ves una placa junto a una puerta de color marrón rojizo que se encuentra en lo alto de una empinada y estrecha escalinata y que dice: \"N. Engram\".",
+      "file": "03207-back.mp3",
+      "inputHash": "96ef3658c9e3e5a10f98ee0836f6c113193b58f98b94e6325aa82e81120a09f0",
+      "bytes": 1137310,
+      "sha256": "f83bd02c3ce48278f2e18a293763acf05a6ab1f53d876d431639284325d9de24"
+    },
+    {
+      "code": "03241",
+      "side": "front",
+      "text": "El frío y húmedo aire rancio de las catacumbas penetra en tu ropa y te hace estremecerte. Mires donde mires, los restos de los muertos te saludan como un siniestro recuerdo de tu propia mortalidad.",
+      "file": "03241-front.mp3",
+      "inputHash": "dcd555a12d4af524cf32f8d5ef54e11090035eb54474513f53b7cd7fad1428dd",
+      "bytes": 312258,
+      "sha256": "f01266f8abb1e8bd0b2ec59c315a902d3761e98f277b10102e35b74272d23265"
+    },
+    {
+      "code": "03242",
+      "side": "front",
+      "text": "A tu alrededor, los ojos de los cráneos brillan con un tono sobrenatural. Una voz fantasmal resuena por las laberínticas catacumbas. Notas una presencia amenazadora que te acecha. Está siempre fuera de tu campo visual, tras la tenue niebla que recorre las catacumbas, en cada rincón…",
+      "file": "03242-front.mp3",
+      "inputHash": "bcddb2e4857266ec81d05e3be7d7508e3eb47a5c08ce19a920cedec09235a449",
+      "bytes": 379967,
+      "sha256": "1c1c31146c90332f4c9253ca53094aefc167017a0b41dcbbb3d02e4003d1552a"
+    },
+    {
+      "code": "03242",
+      "side": "back",
+      "text": "La presencia fantasmal que te amenaza crece cada minuto que pasas explorando estas terribles catacumbas. Caminas más rápido, echando nerviosas miradas hacia atrás cada pocos pasos. ¿Por qué te persigue? ¿Cuál es su propósito? Tira y estira en la periferia de tus sentidos. Doblas una esquina y ves su sombría silueta informe mirándote. Das media vuelta y huyes, pasando por un estrecho corredor de piedra que no reconoces. En cada intersección, en cada esquina, sus brazos de sombra intentan cogerte, y sus muchos rostros están demudados por la agonía. No puedes escapar. Resignado a tu destino, caes de rodillas tras perder la esperanza y te quedas mirando el frío suelo de piedra. Notas cómo se acerca la presencia, pero no puedes levantar la vista. Todo se vuelve negro.",
+      "file": "03242-back.mp3",
+      "inputHash": "b113b79e025b3055cf08ad9b5396211449391c7f3284026c5a6fa724ce05eddf",
+      "bytes": 1005652,
+      "sha256": "9d186402355f765cf2cdf3c77d42ca75ff937582525705404cf5ea4d66f4673b"
+    },
+    {
+      "code": "03243",
+      "side": "front",
+      "text": "Al final del largo túnel que tienes al lado, el Extranjero atraviesa la oscuridad, y su pálida máscara centellea con la luz de las velas. -¡Espera! -gritas. Mira en tu dirección antes de desaparecer entre las sombras. Una vez más, te ves obligado a buscarlo para encontrar respuestas…",
+      "file": "03243-front.mp3",
+      "inputHash": "4154f9aef5cf14f704560cc70328638c81eee055c688c8328bfd805bc220b73a",
+      "bytes": 379967,
+      "sha256": "fc4992bd81b3c344afdd3c82df3e759e88107782becbccee938d4211889d18e8"
+    },
+    {
+      "code": "03243",
+      "side": "back",
+      "text": "Hilera tras hilera de cráneos hacen castañetear sus dientes de forma incesante mientras atraviesas una estrecha arcada de piedra hacia una cámara redonda iluminada por un fuego. En el centro de la tumba se encuentra el Extranjero, mirando la llama. Las sombras bailan y se retuercen a lo largo de la pared. Allí donde deberían estar sus brazos de sombra, emergen formas de tentáculos que envuelven las paredes en oscuridad. Levanta las manos hacia la pared, como si intentara mostrarte algo.",
+      "file": "03243-back.mp3",
+      "inputHash": "7c1274d4af38c2736aa6cdf8e80cee2a950fb0c5c8993602b695b3bc41da8411",
+      "bytes": 657074,
+      "sha256": "5c89ae26f9dc1de290f567511139fc4e9d8716714fa3f5830e3524ade89a7fac"
+    },
+    {
+      "code": "03244",
+      "side": "front",
+      "text": "Las sombras proyectadas por las paredes de hueso se transforman en las siluetas de varios personajes que interpretan una macabra parodia de El Rey de Amarillo.",
+      "file": "03244-front.mp3",
+      "inputHash": "09f60964ceac86f98de3ce0879b4789c05c7010335c2467d67537c44348c1e7d",
+      "bytes": 233682,
+      "sha256": "191b29658f718affb4310c72a78c0925f81f7b101433cfb6bc89fba31ae2e2b7"
+    },
+    {
+      "code": "03245",
+      "side": "front",
+      "text": "Varios huesos caen al suelo debido a que las cavernas que te rodean tiemblan y se desmoronan. El Extranjero agarra un cráneo que hay en las llamas del centro de la cámara y huye.",
+      "file": "03245-front.mp3",
+      "inputHash": "162adb31954f58d5b20a3979622c0c255022228bf56cf1b72b42de718d444390",
+      "bytes": 273806,
+      "sha256": "2ce21019ee03232be204780d24e4b11ca0c419bb479c8979f5b7e2cf2660b337"
+    },
+    {
+      "code": "03245",
+      "side": "back",
+      "text": "Las catacumbas retumban y se desploman a tu espalda mientras tratas de escapar. Logras seguir la sombra del Extranjero y seguir sus pasos para encontrar el camino de salida por los laberínticos corredores. Cruzas el umbral de la entrada de las catacumbas, dejando a tu paso una oleada de escombros y esquirlas de hueso. Un ruido ensordecedor de restos que caen a tu espalda te hace girarte para descubrir que la entrada está bloqueada por un muro recién formado de huesos y rocas. Cuando estás a punto de marcharte, un cráneo parcialmente calcinado y que tiene un extraño diagrama rueda hasta detenerse a tus pies. No hay rastro del Extranjero por ninguna parte.",
+      "file": "03245-back.mp3",
+      "inputHash": "8f9390f654c1dc282865603b56186ebd2e5af75a59654b45326c88e8f3eab1c1",
+      "bytes": 856859,
+      "sha256": "fabf62daeeafe7805c67f4ecdf2ba4bb5899fd0c74d6589daa08fac7bc2f7fd4"
+    },
+    {
+      "code": "03246",
+      "side": "front",
+      "text": "Las sombras que recorren las paredes de la tumba empiezan a fusionarse. Extraños símbolos rúnicos se retuercen hasta formar la imagen de una torre que crece hacia el techo. A continuación, el Extranjero te hace un gesto para que lo sigas y desaparece por la arcada de piedra que tienes detrás.",
+      "file": "03246-front.mp3",
+      "inputHash": "42cfef15ca922b23c75f01915ad6ed90a8fc3ca9a67b5d2ea0d856a3f10939f4",
+      "bytes": 379967,
+      "sha256": "f005f270fd53e1d53e8a3a33f1de7ac6becf4cf339c350b213cb811ebb306659"
+    },
+    {
+      "code": "03246",
+      "side": "back",
+      "text": "Siguiendo al Extranjero, recorres un circuito por los pasadizos subterráneos, hasta que por fin llegas a un callejón sin salida: un túnel bloqueado por un muro imposiblemente grueso hecho de huesos y escombros. El Extranjero está allí al lado, sosteniendo el cráneo parcialmente calcinado que sacó del fuego en la Tumba de las sombras. -¿Y ahora qué? -preguntas, confundido. Él sostiene el cráneo en alto, y el suelo comienza a hundirse y a formar un pozo de oscuro vacío. Los huesos y escombros del muro caen al pozo, que va creciendo con cada instante que pasa. El Extranjero hace una inclinación y luego cae de espaldas por el pozo antes de que puedas cogerlo. -¡Espera! -gritas, pero es demasiado tarde. Puesto que el pozo crece y amenaza con tragarse las catacumbas por completo, no tienes más elección que seguirlo.",
+      "file": "03246-back.mp3",
+      "inputHash": "f14a2430007d1932c1d8017a69d6a8a42074c6ec926b2e10564e3a0efdc52e87",
+      "bytes": 1048702,
+      "sha256": "74cbee15d853944ee129fe33b9b1bd8daf3515355b9459ee36d169cd8de4bae6"
+    },
+    {
+      "code": "03275",
+      "side": "front",
+      "text": "Tu barco atraca en la Porte de l’Avancée, pero entre la marea creciente y la lluvia torrencial que inunda la calle, el capitán del barco no tiene intención de quedarse. Te dice que volverá a por ti por la mañana. le dices que no se moleste; probablemente no estés aquí para entonces.",
+      "file": "03275-front.mp3",
+      "inputHash": "6228213e17ae414f696771e288fd27c790825e0d4026786315933fad7d98141e",
+      "bytes": 379967,
+      "sha256": "53a48b105e1268b3ef700cf9317153a0af0399a07f369228a0ab8f835d728fdb"
+    },
+    {
+      "code": "03275",
+      "side": "back",
+      "text": "La marea sigue subiendo rápidamente, y los muros exteriores del pueblo se ven asaltados por vientos de fuerza huracanada y una lluvia gélida. La tormenta no deja de crecer en intensidad cuando la tarde da paso a la noche. Pronto, el agua de la marea inundará la ciudad por completo.",
+      "file": "03275-back.mp3",
+      "inputHash": "d7517a88878e2fb14ebb7d7cc0905c3d7d9aa3bc44fc84660785948bb1bb0d4f",
+      "bytes": 379967,
+      "sha256": "7c4a808ebb743ba170d4f20e9c343d4386952a0fb03d7a9dfa89c813ecaebf8b"
+    },
+    {
+      "code": "03276a",
+      "side": "front",
+      "text": "El enfurecido mar sigue golpeando la isla. Las olas chocan contra los muros, y la lluvia azota los tejados. ¿Será el embravecido mar la llave para abrir el camino? Si es así, no tienes más elección que dejar que la tormenta ruja…",
+      "file": "03276a-front.mp3",
+      "inputHash": "6bfe5c6d4a3ec4e1c070d988f9dd47ac8d4d4e6511c5be121275a34b2615ec2f",
+      "bytes": 350292,
+      "sha256": "a247bcdca3bf0c2155c0b6c2b4561186d82d007ff18c016376c2906b2cee31a2"
+    },
+    {
+      "code": "03276a",
+      "side": "back",
+      "text": "Algo no va bien. La inundación ya tendría que haber activado el portal a estas alturas. Has investigado este ritual hasta donde has podido, pero, por algún motivo, no está funcionando.\nDesesperado, miras hacia el firmamento en busca de alguna señal. Varios relámpagos surcan el vórtice de nubes negras que lo cubre. Ves siluetas con túnicas amarillas que escudriñan el cielo a lomos de monstruosas criaturas aladas. De pronto, te das cuenta de tu error: la llave no era la marea, ¡sino el cielo!",
+      "file": "03276a-back.mp3",
+      "inputHash": "e7dbaa94760ec7d527aa2ce3a525e0fad3adf72c1572f138055d5862f68a90b6",
+      "bytes": 654985,
+      "sha256": "82a834474d636ccaa314dad0133a9bf701ce2d0c5c2180a7511a950dd241235e"
+    },
+    {
+      "code": "03276b",
+      "side": "front",
+      "text": "El enfurecido mar sigue golpeando la isla. Las olas chocan contra los muros, y la lluvia azota los tejados. ¿Será el embravecido mar la llave para abrir el camino? Si es así, no tienes más elección que dejar que la tormenta ruja…",
+      "file": "03276b-front.mp3",
+      "inputHash": "6bfe5c6d4a3ec4e1c070d988f9dd47ac8d4d4e6511c5be121275a34b2615ec2f",
+      "bytes": 350292,
+      "sha256": "a247bcdca3bf0c2155c0b6c2b4561186d82d007ff18c016376c2906b2cee31a2"
+    },
+    {
+      "code": "03276b",
+      "side": "back",
+      "text": "El ritual está casi completo. Lo único que queda es encontrar el portal y atravesarlo.",
+      "file": "03276b-back.mp3",
+      "inputHash": "22b733c642b0e925c7b4a5c4531732efe75625911c215b37f2ec028cfb9a8115",
+      "bytes": 122087,
+      "sha256": "7df6b00b96e5da61464beae51cea58e83027a26d19d0df134fb0244257ead215"
+    },
+    {
+      "code": "03277",
+      "side": "front",
+      "text": "El nivel del agua sigue creciendo. Los muros exteriores no pueden evitar que la marea se trague la isla. Las calles se inundan de agua fría como el hielo, y unas poderosas olas derriban los edificios. Si no actúas pronto, el camino se perderá para siempre, y nadie podrá evitar que los agentes de Hastur lo liberen de su prisión.",
+      "file": "03277-front.mp3",
+      "inputHash": "28516aa2e04314c4dbea2946ecf62ff2c0b3b7403a040b879e50cfe91d0d996a",
+      "bytes": 421763,
+      "sha256": "e56141a61b0511e7bb19a6a875dcedd6dfd45107a3faed761a46c4043efe381c"
+    },
+    {
+      "code": "03277",
+      "side": "back",
+      "text": "El mar se traga entera Mont Saint-Michel. El agua marina se desborda sobre los muros y rompe contra la mitad inferior de la ciudad. La abadía es el único refugio ante la inundación, pero incluso ella acabará siendo consumida. El vórtice del cielo, tu única esperanza para escapar de esta perdición, de pronto se disipa en volutas grises./nTe sientas sobre una losa de roca mojada en el exterior de la abadía y contemplas la locura que te rodea. ¿Cómo se ha llegado a esto? ¿Está ocurriendo realmente todo esto? ¿O vas a despertar en el manicomio como Daniel Chesterfield, víctima de una cruel broma cósmica?",
+      "file": "03277-back.mp3",
+      "inputHash": "1f031b1695d97b6a38eaa7c26d210b4c640b0d370ebd7553482fd82592ebd626",
+      "bytes": 785806,
+      "sha256": "dbdc481633e3f91b8dfdc2a94c7c51898138fe00985fa2c29c8164a736ab7ef9"
+    },
+    {
+      "code": "03278",
+      "side": "front",
+      "text": "Negras nubes de tormenta se arremolinan sobre tu cabeza. Un vórtice de energía arcana ruge en el centro de la tormenta. El ritual ha comenzado. El portal podría aparecer sobre la abadía o bajo ella. Debes elegir qué ruta seguir y llegar al portal antes de que lo hagan los agentes de Hastur.",
+      "file": "03278-front.mp3",
+      "inputHash": "ac5eab8863b05b77dd28d9734c31770dc4d734f5e2fab3d570edabb51a3d2003",
+      "bytes": 379967,
+      "sha256": "36edd43b1750fe5665a6b490696b9713ed9955cf1fdb3394f7bb6d145a8dfe78"
+    },
+    {
+      "code": "03278",
+      "side": "back",
+      "text": "A medida que el vórtice aumenta en tamaño y fuerza, también lo hace su efecto sobre la realidad. Los restos y escombros comienzan a flotar hacia arriba, atraídos hacia el terrible vacío. Un estruendo hace temblar la isla hasta su mismísimo núcleo. La ciudad entera pronto será destruida por el torbellino.",
+      "file": "03278-back.mp3",
+      "inputHash": "325e907af9b50c9793856e4e670591ab3bab083f98e83aeb35e34a1fe6cd8ade",
+      "bytes": 387491,
+      "sha256": "1b90f062084b3a8d7185f42a3a2cd6cba112b3ee057262571b87157280e8f745"
+    },
+    {
+      "code": "03279a",
+      "side": "front",
+      "text": "El remolino que hay sobre la isla sigue rugiendo. Cegadores destellos de relámpagos y ensordecedores truenos asaltan tus sentidos. ¿ Es el vórtice de arriba la llave para abrir el camino? Si es así, no tienes más elección que hacer que la entidad se acerque…",
+      "file": "03279a-front.mp3",
+      "inputHash": "27f3f6cbb67deb2bcd16fca7403823e6b1b460efb600aee8a8f33b84c6b31e80",
+      "bytes": 379967,
+      "sha256": "618f50305c43df2b97a82cd3accb84759e4a5f1627972973242a1ee6f2566399"
+    },
+    {
+      "code": "03279a",
+      "side": "back",
+      "text": "Algo no va bien. El vórtice ya tendría que haber activado el portal a estas alturas. Has investigado este ritual hasta donde has podido, pero, por algún motivo, no está funcionando.\nDesesperado, examinas lo que te rodea. Las olas rompen y se desbordan sobre los muros exteriores del pueblo, inundando las calles. Ves siluetas con túnicas amarillas escudriñando las calles, y sus faroles iluminan las aguas de la inundación. De pronto, te das cuenta de tu error: la llave no era el vórtice, ¡sino el mar!",
+      "file": "03279a-back.mp3",
+      "inputHash": "9c0ab31d5e99817c1f6ef77755d3f34b3f68b597e5f51c4074b158bd19b22ee5",
+      "bytes": 689257,
+      "sha256": "8fe640455d66e7422ffa2278c306f724d4c78bb3d10cc90370bfc0c839c04122"
+    },
+    {
+      "code": "03279b",
+      "side": "front",
+      "text": "El remolino que hay sobre la isla sigue rugiendo. Cegadores destellos de relámpagos y ensordecedores truenos asaltan tus sentidos. ¿Es el vórtice de arriba la llave para abrir el camino? Si es así, no tienes más elección que hacer que la entidad se acerque…",
+      "file": "03279b-front.mp3",
+      "inputHash": "9b9e322b8a12879f2a3bd8f60a77a391b42524ee59ee5fb5451487ca3216d0ce",
+      "bytes": 374116,
+      "sha256": "629b0dc659e4fb7b0ce9dfc4854f80845e1d0ff3813520a84bd4ed5a14c9e4be"
+    },
+    {
+      "code": "03279b",
+      "side": "back",
+      "text": "El ritual está casi completo. Lo único que queda es encontrar el portal y atravesarlo.",
+      "file": "03279b-back.mp3",
+      "inputHash": "22b733c642b0e925c7b4a5c4531732efe75625911c215b37f2ec028cfb9a8115",
+      "bytes": 122087,
+      "sha256": "7df6b00b96e5da61464beae51cea58e83027a26d19d0df134fb0244257ead215"
+    },
+    {
+      "code": "03280",
+      "side": "front",
+      "text": "El torbellino del cielo envuelve el horizonte. La isla comienza a hacerse pedazos. Los chillidos de unas criaturas imposibles llenan el aire como un coro impío que reza a una fuerza más allá de tu comprensión. Si no actúas pronto, el camino se perderá para siempre, y nadie podrá evitar que los agentes de Hastur lo liberen de su prisión.",
+      "file": "03280-front.mp3",
+      "inputHash": "0b2e6b22f4bcc10cc72e964d991f5a951d1726a810b6b1efb3cf8b763ea3f40b",
+      "bytes": 431376,
+      "sha256": "3b79cedb6febdd50b486f0b367d73cb181acb372dbaed5f380cdc0b78b64d1a5"
+    },
+    {
+      "code": "03280",
+      "side": "back",
+      "text": "El vórtice consume la abadía de Mont Saint-Michel, convirtiéndola en miles de esquirlas de realidad. La isla deja de estar sujeta pro la gravedad, y los escombros comienzan a elevarse por los aires. Las calles inferiores de la isla son el único refugio del enfurecido cielo, pero también acabarán por ser consumidas. El agua de la marea, tu única esperanza para escapar de esta perdición, se retira de improviso, y la inundación se filtra en la tierra./nTe sientas al borde de la torre norte, bajo la abadía y contemplas la locura que te rodea. ¿Cómo se ha llegado a esto? ¿Está ocurriendo realmente todo esto? ¿O vas a despertar en el manicomio como Daniel Chesterfield, víctima de una cruel broma cósmica?",
+      "file": "03280-back.mp3",
+      "inputHash": "c59ebaf06b3d723bc75e8385d015fd9948a2ecc3c2111604d3a6d0879b22ec14",
+      "bytes": 961767,
+      "sha256": "5dca504431451848e92cae5e76ece4b5475a975c92296758bcbc6be2adf5847f"
+    },
+    {
+      "code": "03281",
+      "side": "front",
+      "text": "El agua de la marea se agita en torno a los muros de la ciudad. Las capas de la realidad se despliegan. Ves las retorcidas torres de Carcosa reflejadas en las profundidades. No tienes más elección que sumergirte.",
+      "file": "03281-front.mp3",
+      "inputHash": "2cf94dfcfb3c11289b7dcc5fad0db09557efc71f33849fa751344d3ec1f6fdd4",
+      "bytes": 354890,
+      "sha256": "cd960edcac86fade0d0ce444a14f3e46a53f1c7f425677adfe7d0990846dcc5c"
+    },
+    {
+      "code": "03281",
+      "side": "back",
+      "text": "Solo tú puedes evitar que Hastur escape de su prisión.\nTe sumerges en las aguas revueltas y abres el camino a Carcosa, el reino de la locura.",
+      "file": "03281-back.mp3",
+      "inputHash": "5ea7bac903b83851b2ab2101c32377e5d452786f7573f31a9e851cb4f2e02d39",
+      "bytes": 200245,
+      "sha256": "0638b1210b907fd85b6bd71423af591b9cb6f344cfedaecee6253c0733ae7e0f"
+    },
+    {
+      "code": "03282",
+      "side": "front",
+      "text": "Las nubes se agitan en torno a la torre de la abadía. Las capas de la realidad se despliegan. Ves las retorcidas torres de Carcosa a través de las oscuras nubes de tormenta. No tienes más elección que dar el salto.",
+      "file": "03282-front.mp3",
+      "inputHash": "df3dac1fffbfa15e94f4ba67e43ab4dc299683aed419e3ce91ef82c8e6cf3b79",
+      "bytes": 339843,
+      "sha256": "0e085236ac30bf3b2a7d90587a5f6421e97e877c5573183ae629109df5dc8414"
+    },
+    {
+      "code": "03282",
+      "side": "back",
+      "text": "Solo tú puedes evitar que Hastur escape de su prisión.\nSaltas hacia el rugiente remolino y abres el camino a Carcosa, el reino de la locura.",
+      "file": "03282-back.mp3",
+      "inputHash": "1adf1cf2d8e7d12480deb337dad3a68c18aaa6b5f766ef60ca5cc0cc292e377d",
+      "bytes": 209022,
+      "sha256": "7a1b525821d6961a63133532fd65257e1d33831721c3816759cab89757a80744"
+    },
+    {
+      "code": "03317",
+      "side": "front",
+      "text": "Y ahora, a lo lejos, sobre leguas de nubosas olas agitadas, vi la luna con perlas de rocío; y más allá las torres de Carcosa se alzaban tras la luna.\n– Robert W. Chambers, \"En la corte del dragón\", El Rey de Amarillo",
+      "file": "03317-front.mp3",
+      "inputHash": "cb169f0ed1d33c64673f369fc49ea45008422ce5a46f1817647423b47fc551d4",
+      "bytes": 379967,
+      "sha256": "31f903a4139ec29adc550798835512da89c52307b26a06038cb237f4d27d7461"
+    },
+    {
+      "code": "03317",
+      "side": "back",
+      "text": "Al doblar una esquina, estás a punto de chocarte con una enfermera de marcados rasgos y pelo castaño claro. Le cuentas lo ocurrido con los pacientes violentos y las cosas extrañas que has visto, pero no te escucha. Cuando le preguntas por Daniel, te informa que es amigo del Rey y que se encuentra en palacio.",
+      "file": "03317-back.mp3",
+      "inputHash": "00e72474d406ecffed6537d2c78ea3242298cd53f2a546b301bbd55fec437ddf",
+      "bytes": 408807,
+      "sha256": "dc559f31e1be2a7c0484a3091857cccdcf6d7bae76bd31a0b09f61a75e70e022"
+    },
+    {
+      "code": "03318",
+      "side": "front",
+      "text": "También pensaba en el Rey de Amarillo envuelto en los fantásticos colores de su capa harapienta y el amargo grito de Cassilda: \"¡No a nosotros no, oh Rey, no a nosotros!\"\n– Robert W. Chambers, \"La máscara\", El Rey de Amarillo",
+      "file": "03318-front.mp3",
+      "inputHash": "ce928833be3174d80d3503ed590a1b4c9556fcfe4263a386f281f76655abec0c",
+      "bytes": 372026,
+      "sha256": "e7e733877edd361e51bf670b3eb8ccf4f4b6472a6d5d65fe4d359162bfe5530f"
+    },
+    {
+      "code": "03318",
+      "side": "back",
+      "text": "–Vaya, nuestra última invitada –anuncia el portero–. Señora Devine, todo el mundo aguardaba su presencia hoy. –La criatura sube reptando por el lateral del palacio. Jurarías que ya has visto antes el símbolo de amuleto. Un momento, esto no puede ser cierto–.\nBueno, pues que empiece la fiesta de verdad –ruge.",
+      "file": "03318-back.mp3",
+      "inputHash": "4798bb5ca8321ae627b4f6a8924f301a3627a5b52dac95254fa6f24cd692a4e6",
+      "bytes": 430541,
+      "sha256": "5be7fd96bcf65161cf7803a056ab2f90da5eb7707233b4cca4acc9a4e97197d5"
+    },
+    {
+      "code": "03319",
+      "side": "front",
+      "text": "…no puedo olvidarme de Carcosa donde estrellas negras lucen en los cielos; donde las sombras de los pensamientos de los hombres se alargan en la tarde, cuando los soles gemelos se hunden en el lago Hali; y mi memoria cargará para siempre con el recuerdo de la Máscara Pálida.\n– Robert W. Chambers, \"El reparador de reputaciones\", El Rey de Amarillo",
+      "file": "03319-front.mp3",
+      "inputHash": "6ec33c558a931e570b7eb0743429ccec52a9fad2a17961a0663a15ad7ec33e28",
+      "bytes": 472754,
+      "sha256": "2584e53af36e9c8ec46cf7d5a1ed193b199b4fac91486ab3d34a592cb8ee459b"
+    },
+    {
+      "code": "03319",
+      "side": "back",
+      "text": "El cielo cae. Volutas de nubes azotan la tierra, y las docenas de lunas del cielo se hacen pedazos. Los fragmentos de las entidades cósmicas se precipitan contra el suelo y asaltan la ciudad. El oscuro reflejo de Mont Saint-Michel que flota boca abajo sobre ti comienza a descender. La abadía se estrella contra el palacio del Rey, lanzando escombros de ébano en todas direcciones. La espantosa y sonora risa de Hastur invade tu mente. Se acabó.",
+      "file": "03319-back.mp3",
+      "inputHash": "5b671f70589fac942376d10a726a8782021c36d11218622068c4adcf20cb8d67",
+      "bytes": 629071,
+      "sha256": "8f8c037c35e2ef5a6b24f5ef51c8c01f5cdb1b71777677e6199f10f06c3c8ba2"
+    },
+    {
+      "code": "03320",
+      "side": "front",
+      "text": "Has abierto el camino a Carcosa para detener a quienes pretenden liberar a Hastur de su prisión de estrellas. ¡Sólo tú puedes ponerle fin a esta locura!",
+      "file": "03320-front.mp3",
+      "inputHash": "4c188efd6efa1d75a3af6b06d9ea23888d86d53c90d65000337776164b81cfb6",
+      "bytes": 196483,
+      "sha256": "d9d001581afa82ccd9c95d290d98b3167442d68019b1d023c5cde3b69de77d17"
+    },
+    {
+      "code": "03320",
+      "side": "back",
+      "text": "Una sombra se desliza por la pared junto a ti, y se te hace un nudo en la garganta. Al girarte, una silueta desaparece de tu vista rápidamente. O tu mente te engaña, o hay alguien más en el teatro.\nSigues la dirección de la sombra doblando una esquina cercana. En el otro extremo del pasillo te espera el hombre que lleva la máscara pálida: el Extranjero cuyos pasos llevas siguiendo varias semanas. Recuerdas que ya has estado antes aquí.\nEl teatro se disuelve a tu alrededor. El brillante resplandor de dos soles te inunda los ojos. –¿Lo recuerdas ahora?– te pregunta. Se da media vuelta y desaparece en el éter, como si te retara a que lo sigas.",
+      "file": "03320-back.mp3",
+      "inputHash": "e2416b0391edcb077687a4931dbcb02561de223c1c8133137fede8e85f525742",
+      "bytes": 847246,
+      "sha256": "46105f713a50bb949264bd3e411af0804331ccd001f611340f74167c8f5a91cd"
+    },
+    {
+      "code": "03321a",
+      "side": "front",
+      "text": "Es hora de enfrentarte definitivamente al Extranjero y descubrir la verdad sobre su identidad de una vez por todas.",
+      "file": "03321a-front.mp3",
+      "inputHash": "5e0bacb6923b7e60aab1083cc28dff34acc6488cb6ac986085413a79d58f0f07",
+      "bytes": 161375,
+      "sha256": "82dd110d0cddcf6391537d5352712e3e9b56ae4cff44ad429bb16f6647d53ad5"
+    },
+    {
+      "code": "03322a",
+      "side": "front",
+      "text": "Es hora de enfrentarte definitivamente al Extranjero y descubrir la verdad sobre su identidad de una vez por todas.",
+      "file": "03322a-front.mp3",
+      "inputHash": "5e0bacb6923b7e60aab1083cc28dff34acc6488cb6ac986085413a79d58f0f07",
+      "bytes": 161375,
+      "sha256": "82dd110d0cddcf6391537d5352712e3e9b56ae4cff44ad429bb16f6647d53ad5"
+    },
+    {
+      "code": "03323a",
+      "side": "front",
+      "text": "Es hora de enfrentarte definitivamente al Extranjero y descubrir la verdad sobre su identidad de una vez por todas.",
+      "file": "03323a-front.mp3",
+      "inputHash": "5e0bacb6923b7e60aab1083cc28dff34acc6488cb6ac986085413a79d58f0f07",
+      "bytes": 161375,
+      "sha256": "82dd110d0cddcf6391537d5352712e3e9b56ae4cff44ad429bb16f6647d53ad5"
+    },
+    {
+      "code": "03324",
+      "side": "front",
+      "text": "…oí al Rey de Amarillo que me susurraba al aído: –¡Es terrible caer en las garras del Dios vivo!.\n – Robert W. Chambers, \"En la corte del dragón\", El Rey de Amarillo",
+      "file": "03324-front.mp3",
+      "inputHash": "160c34a052d643001d45d4d361000ab231d73489db2bb74f6e1032249d6f0af3",
+      "bytes": 270880,
+      "sha256": "bf660dffe919b18ef057661e87d4c792823f9d4f88f2a5de45959495abee8d02"
+    },
+    {
+      "code": "03324",
+      "side": "back",
+      "text": "Un coro de gritos resuena en tu mente. Los caóticos acordes de un órgano torturan tus oídos. Caes de rodillas mientras te sangran los ojos. El reino de Carcosa se rompe en millones de pedazos y se desvanece en el vacío del espacio.\nSe cierra el telón.",
+      "file": "03324-back.mp3",
+      "inputHash": "2821ca9b67c7344e20f742aad5041f4a56f989800eedef25a56c23844de546d1",
+      "bytes": 379967,
+      "sha256": "8718e8902733e4ca30e0c8f5f679dc01634bd986373bef435f2f15d2449ac318"
+    }
+  ]
+}

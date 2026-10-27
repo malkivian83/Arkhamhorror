@@ -12,6 +12,17 @@ import fortuneEn from './fortune-cards.en.json'
 import fortuneEs from './fortune-cards.es.json'
 import galaEn from './gala-cards.en.json'
 import galaEs from './gala-cards.es.json'
+import cardNarrativesEn from './card-narratives.en.json'
+import cardNarrativesEs from './card-narratives.es.json'
+
+/** Narración oficial de planes y actos de los catálogos implementados. */
+export const cardNarratives: Record<
+  'en' | 'es',
+  Record<string, Pick<CatalogCard, 'typeCode' | 'flavor' | 'backFlavor'> & { group: string }>
+> = {
+  en: cardNarrativesEn,
+  es: cardNarrativesEs,
+}
 
 /** Textos de interfaz. Solo inglés y español. */
 export const messages = {

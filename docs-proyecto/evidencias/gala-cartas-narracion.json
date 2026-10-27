@@ -1,0 +1,97 @@
+{
+  "voiceId": "5egO01tkUjEzu7xSSE8M",
+  "language": "es",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.31,
+      "similarity_boost": 0.86,
+      "style": 0,
+      "speed": 1,
+      "use_speaker_boost": true
+    }
+  },
+  "files": [
+    {
+      "code": "71002",
+      "side": "front",
+      "text": "La gala promete ser una noche de intriga y asombro, repleta de secretos y susurros que forman parte del entretenimiento junto con las bebidas y la música.",
+      "file": "71002-front.mp3",
+      "inputHash": "fc25d65a3fd3c51f722cc078f66c2867067aa1bda48a5352dde1b779c35d6995",
+      "bytes": 223233,
+      "sha256": "628b61e7ee0bdb6ea919bf6d936eaabfc1cdc83d61aa3d1ccfd62453209eed69"
+    },
+    {
+      "code": "71002",
+      "side": "back",
+      "text": "Se escucha un estruendo que proviene de algún lugar más metido en la mansión, seguido de un grito. Aparece Declan Pearce para tranquilizar a la gente congregada en el salón de baile, pero no puedes evitar darte cuenta de que los asistentes enmascarados se han colocado delante de cada una de las numerosas salidas de la mansión.",
+      "file": "71002-back.mp3",
+      "inputHash": "adc68748496cd3cac80061d898c32e81c32d281235b06c2c32cb5210f0a2b09b",
+      "bytes": 405463,
+      "sha256": "b21fad38a712f487480e9186e70b0a7f4865ea0a8431a97f6e4401e68f3d13c6"
+    },
+    {
+      "code": "71003",
+      "side": "front",
+      "text": "Los ánimos empiezan a alterarse aún más dentro de la mansión cuando varios invitados piden a los asistentes que les dejen salir. Otros invitados deambulan por el edificio con la mirada muerta y perdida.",
+      "file": "71003-front.mp3",
+      "inputHash": "68044ff5063458d186505f6d86b50efe2668d5d3b5fcd5736fab6191aae0ae8f",
+      "bytes": 286345,
+      "sha256": "c06c0ab519bc7c4c09cb004476e3352787a30b21e3aab22514b6dd93ec99c6d6"
+    },
+    {
+      "code": "71004",
+      "side": "front",
+      "text": "La fiesta se convierte en un caos absoluto, con invitados lanzándose por las ventanas y las puertas de cristal para escapar de las monstruosidades sobrenaturales.",
+      "file": "71004-front.mp3",
+      "inputHash": "8d5edc52643f37b3b9f48a3a214436943f952aedbac108a825c30f95d591f75c",
+      "bytes": 218635,
+      "sha256": "fcf36f6f1006929a49d491453c0336f86e9ca86a3e359a2f212f010e05f51985"
+    },
+    {
+      "code": "71004",
+      "side": "back",
+      "text": "Un rancio hedor invade la mansión tan señorial antes. Mientras cada vez más criaturas horripilantes atrapan a invitados heridos o aturdidos, sales a toda prisa de tu escondite para tratar de alcanzar la salida. Una voraz criatura que parece sacada de tus pesadillas capta tu olor y te persigue incansable hacia la salida. Sientes sus garras en tu garganta mientras te lanzas para atravesar el panel de vidrio sólido y aterrizas sobre una cruenta pila de cuerpos cubierta de una ligera capa de la nieve que está cayendo.",
+      "file": "71004-back.mp3",
+      "inputHash": "dd26e46347496e9047f11a281ff1ac99d50ca2f6acfdda90ad2644e9317ae9ef",
+      "bytes": 662508,
+      "sha256": "d2375861f59d284e6ed094f853d7565362440a9bff95973ffce85085102b3f08"
+    },
+    {
+      "code": "71005",
+      "side": "front",
+      "text": "Te das cuenta de que la joya ya no está en el salón de baile. ¿Habrá visto algún invitado cómo la trasladaban?",
+      "file": "71005-front.mp3",
+      "inputHash": "194e5f8bce4ee9ab98b7390f48f64888bf6773cbdce8fa4a2f883ff176874451",
+      "bytes": 121251,
+      "sha256": "c8cd94ea55f9766544c75174d543c17cf004724b37f3c8209fd679ff50ab5d1f"
+    },
+    {
+      "code": "71005",
+      "side": "back",
+      "text": "Tu contacto y tú habláis con varios invitados, y todos confirman que Declan Pearce sacó la Joya de la vitrina del salón de baile. Además, han empezado a oírse sonidos extraños que provienen del primer piso de la mansión…",
+      "file": "71005-back.mp3",
+      "inputHash": "48590e620a68b15952ead57af8c4b8b01d705ad558e3c133ace8bf9a8e3a2dc0",
+      "bytes": 333992,
+      "sha256": "b79c8b57009afdaf545e39bb5b17e927b34917fb5b7bfaeeefc117fce3e5a48c"
+    },
+    {
+      "code": "71006",
+      "side": "front",
+      "text": "Debes ayudar a tu contacto y a sus asociados cueste lo que cueste.",
+      "file": "71006-front.mp3",
+      "inputHash": "3d76bc6fcd21805ddedd1d551f278d73172da90ba01428b68b3bf08a90063ee7",
+      "bytes": 84470,
+      "sha256": "ac04aeeff3fd0338ec617d40f2ac1a4ae5ae80f64bab46c0ed4c8c5ac5c9c28c"
+    },
+    {
+      "code": "71006",
+      "side": "back",
+      "text": "Cuando sales tambaleante al frío aire nocturno, respiras hondo. La nieve cae con abundancia sobre el césped que, de estar inmaculado, ha pasado a teñirse de rojo por la sangre. En la mansión que tienes a tu espalda reina un silencio sepulcral. La Joya de Sarnath palpita con una luz sobrenatural en la palma de tu mano, y sientes por un instante una brisa templada y el aroma de otro lugar, que te resulta familiar e imaginado a la vez. ¿Merecía la gema toda esta devastación?",
+      "file": "71006-back.mp3",
+      "inputHash": "8b313a9ab3e026f3d3cd3ebfc51d6999e3ecdc659c83e208b3ba20a93de3c0d9",
+      "bytes": 616950,
+      "sha256": "2249c02db027ba8c23be3119131b763a510d38f1b2adb3035c41f6a897d88867"
+    }
+  ]
+}

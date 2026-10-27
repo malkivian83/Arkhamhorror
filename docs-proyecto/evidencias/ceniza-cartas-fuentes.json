@@ -1,0 +1,173 @@
+{
+  "method": "Transcripción visual de los párrafos narrativos de las imágenes españolas locales. Se omiten reglas, títulos y condiciones. 12170b contiene narraciones condicionales y queda excluida del audio único.",
+  "sources": [
+    {
+      "code": "12106",
+      "field": "flavor",
+      "path": "apps/web/public/local-assets/cards/es/12106.avif",
+      "sha256": "4825407332b4beec49543dbe78acba2b4f9e8dc4d0d769d7acf6c3bdd11365d8"
+    },
+    {
+      "code": "12106",
+      "field": "backFlavor",
+      "path": "apps/web/public/local-assets/cards/es/12106b.avif",
+      "sha256": "b6ab32b5a1f862efc5357a9abc31df39e958e72b19f0c510696e8e424f01dccb"
+    },
+    {
+      "code": "12107",
+      "field": "flavor",
+      "path": "apps/web/public/local-assets/cards/es/12107.avif",
+      "sha256": "11b166341ba545ac72ec7a8fb4e71330a01038d769db7a72bb4fb3916ca3a97a"
+    },
+    {
+      "code": "12107",
+      "field": "backFlavor",
+      "path": "apps/web/public/local-assets/cards/es/12107b.avif",
+      "sha256": "ffff4038d07cf1b9ca84ec5f949513d67230561006fb1d918bc01aa7d40c57a0"
+    },
+    {
+      "code": "12108",
+      "field": "flavor",
+      "path": "apps/web/public/local-assets/cards/es/12108.avif",
+      "sha256": "3d688a34b7add017aefa6a7cf14ae080a3a18dfa2a91a19226a09f031a0687a4"
+    },
+    {
+      "code": "12108",
+      "field": "backFlavor",
+      "path": "apps/web/public/local-assets/cards/es/12108b.avif",
+      "sha256": "7e90446f6c2640f2ed53c53aa4a919cfd8aa08613974de97d03334d748e1e45b"
+    },
+    {
+      "code": "12109",
+      "field": "flavor",
+      "path": "apps/web/public/local-assets/cards/es/12109.avif",
+      "sha256": "5796081d81a2f3128ea25bfb5a84b8a484160b16ce7a01d9c4fd60c3a0ae43e5"
+    },
+    {
+      "code": "12109",
+      "field": "backFlavor",
+      "path": "apps/web/public/local-assets/cards/es/12109b.avif",
+      "sha256": "5ef0f4a0089dc5a9a319f0f1a28e0e38bc6cdc8d1e7054d482575fc945cb3c21"
+    },
+    {
+      "code": "12110",
+      "field": "flavor",
+      "path": "apps/web/public/local-assets/cards/es/12110.avif",
+      "sha256": "5e960485cc2d4e5898d162979aad92d09257613d5e034d34c694f32afd953705"
+    },
+    {
+      "code": "12110",
+      "field": "backFlavor",
+      "path": "apps/web/public/local-assets/cards/es/12110b.avif",
+      "sha256": "27c93c4300b9ec841b00306b2afdd456c552cc6912f079cfc37fe7e28417a348"
+    },
+    {
+      "code": "12111",
+      "field": "flavor",
+      "path": "apps/web/public/local-assets/cards/es/12111.avif",
+      "sha256": "533a9295c047d12e12b4a63cd427d86a081d010e8608a9f5d79c496d87437766"
+    },
+    {
+      "code": "12111",
+      "field": "backFlavor",
+      "path": "apps/web/public/local-assets/cards/es/12111b.avif",
+      "sha256": "c16d723068592683e82d2a618ddb35cf6c4ea802574d85580674175c53efd9c8"
+    },
+    {
+      "code": "12112",
+      "field": "flavor",
+      "path": "apps/web/public/local-assets/cards/es/12112.avif",
+      "sha256": "f6d2bdb5db53d9a6b1b0220b283514486dfef13e16344dad0a32c156de87db81"
+    },
+    {
+      "code": "12112",
+      "field": "backFlavor",
+      "path": "apps/web/public/local-assets/cards/es/12112b.avif",
+      "sha256": "a51bd9c65c3a5319157f4445221c438c59e7f65b000835ce5e2d4dec0346beeb"
+    },
+    {
+      "code": "12134",
+      "field": "flavor",
+      "path": "apps/web/public/local-assets/cards/es/12134.avif",
+      "sha256": "363ea8338565eee5cf1a9aec348cef15964b77acc12e0333197e983be9d775ca"
+    },
+    {
+      "code": "12134",
+      "field": "backFlavor",
+      "path": "apps/web/public/local-assets/cards/es/12134b.avif",
+      "sha256": "5084fd69c1fed3204cb3914dee0bb3b48da5e8628bf47fff9184e620e5aff5bd"
+    },
+    {
+      "code": "12135",
+      "field": "flavor",
+      "path": "apps/web/public/local-assets/cards/es/12135.avif",
+      "sha256": "b46844a50e70b8885a8f08e513bf80f1bd3bf82113af21da92e5d5058c740dd5"
+    },
+    {
+      "code": "12135",
+      "field": "backFlavor",
+      "path": "apps/web/public/local-assets/cards/es/12135b.avif",
+      "sha256": "3ea7e1e31f250862625f60cf8e843091c678a16e4750cbe722ccb7201ae41363"
+    },
+    {
+      "code": "12136",
+      "field": "flavor",
+      "path": "apps/web/public/local-assets/cards/es/12136.avif",
+      "sha256": "df328c7e4d3a6caef2570bf1be36c2e6398f90c2acfa461e0c6eaf1191563735"
+    },
+    {
+      "code": "12136",
+      "field": "backFlavor",
+      "path": "apps/web/public/local-assets/cards/es/12136b.avif",
+      "sha256": "0bd52495da230d686677ef3c4deed859627d30bcfb188186931b71e50e5d6991"
+    },
+    {
+      "code": "12169",
+      "field": "flavor",
+      "path": "apps/web/public/local-assets/cards/es/12169.avif",
+      "sha256": "215871408982246e930a2fcbb7c661fd41842b9a2a66ef10fc45e02338708609"
+    },
+    {
+      "code": "12169",
+      "field": "backFlavor",
+      "path": "apps/web/public/local-assets/cards/es/12169b.avif",
+      "sha256": "fb5dbf6cc731b84dee06623e61cad39cb4f6c70f1327af411c29aa48fb8f5eec"
+    },
+    {
+      "code": "12170",
+      "field": "flavor",
+      "path": "apps/web/public/local-assets/cards/es/12170.avif",
+      "sha256": "384cf6ceb50639e5965a297e67acb6c0d89cebd7051ecc80395e0124cd284202"
+    },
+    {
+      "code": "12171",
+      "field": "backFlavor",
+      "path": "apps/web/public/local-assets/cards/es/12171b.avif",
+      "sha256": "4e2dc9df2de8ea82403356d4e6a331f11c2ac672ea4cff976d2d04b343afbc6e"
+    },
+    {
+      "code": "12172",
+      "field": "flavor",
+      "path": "apps/web/public/local-assets/cards/es/12172.avif",
+      "sha256": "c12135ed7f3e26b99e2300b669442f474b61899b2bc44575510070b730ae0841"
+    },
+    {
+      "code": "12172",
+      "field": "backFlavor",
+      "path": "apps/web/public/local-assets/cards/es/12172b.avif",
+      "sha256": "bae61b7cc87a290788ef5330d4f7d333881e4aae89012303c308663c876e2cbc"
+    },
+    {
+      "code": "12173",
+      "field": "flavor",
+      "path": "apps/web/public/local-assets/cards/es/12173.avif",
+      "sha256": "00b7aceba182e635e403f075210254efba9fb9787e40eb441e8afa52196f7bcd"
+    },
+    {
+      "code": "12173",
+      "field": "backFlavor",
+      "path": "apps/web/public/local-assets/cards/es/12173b.avif",
+      "sha256": "80de7a7ba2f19fa53ffac9923ccd48090451632462db727e10322653a89c68c9"
+    }
+  ]
+}

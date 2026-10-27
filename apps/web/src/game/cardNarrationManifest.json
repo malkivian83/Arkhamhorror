@@ -1,4 +1,81 @@
 {
+  "12106": {
+    "front": "12106-front.mp3",
+    "back": "12106-back.mp3"
+  },
+  "12107": {
+    "front": "12107-front.mp3",
+    "back": "12107-back.mp3"
+  },
+  "12108": {
+    "front": "12108-front.mp3",
+    "back": "12108-back.mp3"
+  },
+  "12109": {
+    "front": "12109-front.mp3",
+    "back": "12109-back.mp3"
+  },
+  "12110": {
+    "front": "12110-front.mp3",
+    "back": "12110-back.mp3"
+  },
+  "12111": {
+    "front": "12111-front.mp3",
+    "back": "12111-back.mp3"
+  },
+  "12112": {
+    "front": "12112-front.mp3",
+    "back": "12112-back.mp3"
+  },
+  "12134": {
+    "front": "12134-front.mp3",
+    "back": "12134-back.mp3"
+  },
+  "12135": {
+    "front": "12135-front.mp3",
+    "back": "12135-back.mp3"
+  },
+  "12136": {
+    "front": "12136-front.mp3",
+    "back": "12136-back.mp3"
+  },
+  "12169": {
+    "front": "12169-front.mp3",
+    "back": "12169-back.mp3"
+  },
+  "12170": {
+    "front": "12170-front.mp3"
+  },
+  "12171": {
+    "back": "12171-back.mp3"
+  },
+  "12172": {
+    "front": "12172-front.mp3",
+    "back": "12172-back.mp3"
+  },
+  "12173": {
+    "front": "12173-front.mp3",
+    "back": "12173-back.mp3"
+  },
+  "71002": {
+    "front": "71002-front.mp3",
+    "back": "71002-back.mp3"
+  },
+  "71003": {
+    "front": "71003-front.mp3"
+  },
+  "71004": {
+    "front": "71004-front.mp3",
+    "back": "71004-back.mp3"
+  },
+  "71005": {
+    "front": "71005-front.mp3",
+    "back": "71005-back.mp3"
+  },
+  "71006": {
+    "front": "71006-front.mp3",
+    "back": "71006-back.mp3"
+  },
   "84002": {
     "front": "84002-front.mp3",
     "back": "84002-back.mp3"
@@ -13,5 +90,267 @@
   },
   "84005": {
     "front": "84005-front.mp3"
+  },
+  "88002": {
+    "front": "88002-front.mp3",
+    "back": "88002-back.mp3"
+  },
+  "88003": {
+    "front": "88003-front.mp3",
+    "back": "88003-back.mp3"
+  },
+  "88004": {
+    "front": "88004-front.mp3",
+    "back": "88004-back.mp3"
+  },
+  "88005": {
+    "front": "88005-front.mp3",
+    "back": "88005-back.mp3"
+  },
+  "88006": {
+    "front": "88006-front.mp3",
+    "back": "88006-back.mp3"
+  },
+  "88007": {
+    "front": "88007-front.mp3"
+  },
+  "88008": {
+    "front": "88008-front.mp3",
+    "back": "88008-back.mp3"
+  },
+  "01105": {
+    "front": "01105-front.mp3",
+    "back": "01105-back.mp3"
+  },
+  "01106": {
+    "front": "01106-front.mp3",
+    "back": "01106-back.mp3"
+  },
+  "01108": {
+    "front": "01108-front.mp3",
+    "back": "01108-back.mp3"
+  },
+  "01109": {
+    "front": "01109-front.mp3",
+    "back": "01109-back.mp3"
+  },
+  "01107": {
+    "front": "01107-front.mp3",
+    "back": "01107-back.mp3"
+  },
+  "01110": {
+    "front": "01110-front.mp3",
+    "back": "01110-back.mp3"
+  },
+  "03044": {
+    "front": "03044-front.mp3",
+    "back": "03044-back.mp3"
+  },
+  "03045": {
+    "front": "03045-front.mp3",
+    "back": "03045-back.mp3"
+  },
+  "03046": {
+    "front": "03046-front.mp3",
+    "back": "03046-back.mp3"
+  },
+  "03047a": {
+    "front": "03047a-front.mp3",
+    "back": "03047a-back.mp3"
+  },
+  "03047b": {
+    "front": "03047b-front.mp3",
+    "back": "03047b-back.mp3"
+  },
+  "03047c": {
+    "front": "03047c-front.mp3",
+    "back": "03047c-back.mp3"
+  },
+  "03048": {
+    "front": "03048-front.mp3",
+    "back": "03048-back.mp3"
+  },
+  "03062": {
+    "front": "03062-front.mp3",
+    "back": "03062-back.mp3"
+  },
+  "03063": {
+    "front": "03063-front.mp3",
+    "back": "03063-back.mp3"
+  },
+  "03064": {
+    "front": "03064-front.mp3"
+  },
+  "03121": {
+    "front": "03121-front.mp3",
+    "back": "03121-back.mp3"
+  },
+  "03122": {
+    "front": "03122-front.mp3",
+    "back": "03122-back.mp3"
+  },
+  "03123": {
+    "front": "03123-front.mp3",
+    "back": "03123-back.mp3"
+  },
+  "03124": {
+    "front": "03124-front.mp3",
+    "back": "03124-back.mp3"
+  },
+  "03125": {
+    "front": "03125-front.mp3",
+    "back": "03125-back.mp3"
+  },
+  "03126": {
+    "front": "03126-front.mp3",
+    "back": "03126-back.mp3"
+  },
+  "03160": {
+    "front": "03160-front.mp3",
+    "back": "03160-back.mp3"
+  },
+  "03161": {
+    "front": "03161-front.mp3",
+    "back": "03161-back.mp3"
+  },
+  "03162": {
+    "front": "03162-front.mp3",
+    "back": "03162-back.mp3"
+  },
+  "03163": {
+    "front": "03163-front.mp3",
+    "back": "03163-back.mp3"
+  },
+  "03164": {
+    "front": "03164-front.mp3",
+    "back": "03164-back.mp3"
+  },
+  "03165": {
+    "front": "03165-front.mp3",
+    "back": "03165-back.mp3"
+  },
+  "03166": {
+    "front": "03166-front.mp3",
+    "back": "03166-back.mp3"
+  },
+  "03167": {
+    "front": "03167-front.mp3"
+  },
+  "03201": {
+    "front": "03201-front.mp3",
+    "back": "03201-back.mp3"
+  },
+  "03202": {
+    "front": "03202-front.mp3",
+    "back": "03202-back.mp3"
+  },
+  "03203": {
+    "front": "03203-front.mp3",
+    "back": "03203-back.mp3"
+  },
+  "03204": {
+    "front": "03204-front.mp3"
+  },
+  "03205": {
+    "front": "03205-front.mp3"
+  },
+  "03206": {
+    "front": "03206-front.mp3",
+    "back": "03206-back.mp3"
+  },
+  "03207": {
+    "front": "03207-front.mp3",
+    "back": "03207-back.mp3"
+  },
+  "03241": {
+    "front": "03241-front.mp3"
+  },
+  "03242": {
+    "front": "03242-front.mp3",
+    "back": "03242-back.mp3"
+  },
+  "03243": {
+    "front": "03243-front.mp3",
+    "back": "03243-back.mp3"
+  },
+  "03244": {
+    "front": "03244-front.mp3"
+  },
+  "03245": {
+    "front": "03245-front.mp3",
+    "back": "03245-back.mp3"
+  },
+  "03246": {
+    "front": "03246-front.mp3",
+    "back": "03246-back.mp3"
+  },
+  "03275": {
+    "front": "03275-front.mp3",
+    "back": "03275-back.mp3"
+  },
+  "03276a": {
+    "front": "03276a-front.mp3",
+    "back": "03276a-back.mp3"
+  },
+  "03276b": {
+    "front": "03276b-front.mp3",
+    "back": "03276b-back.mp3"
+  },
+  "03277": {
+    "front": "03277-front.mp3",
+    "back": "03277-back.mp3"
+  },
+  "03278": {
+    "front": "03278-front.mp3",
+    "back": "03278-back.mp3"
+  },
+  "03279a": {
+    "front": "03279a-front.mp3",
+    "back": "03279a-back.mp3"
+  },
+  "03279b": {
+    "front": "03279b-front.mp3",
+    "back": "03279b-back.mp3"
+  },
+  "03280": {
+    "front": "03280-front.mp3",
+    "back": "03280-back.mp3"
+  },
+  "03281": {
+    "front": "03281-front.mp3",
+    "back": "03281-back.mp3"
+  },
+  "03282": {
+    "front": "03282-front.mp3",
+    "back": "03282-back.mp3"
+  },
+  "03317": {
+    "front": "03317-front.mp3",
+    "back": "03317-back.mp3"
+  },
+  "03318": {
+    "front": "03318-front.mp3",
+    "back": "03318-back.mp3"
+  },
+  "03319": {
+    "front": "03319-front.mp3",
+    "back": "03319-back.mp3"
+  },
+  "03320": {
+    "front": "03320-front.mp3",
+    "back": "03320-back.mp3"
+  },
+  "03321a": {
+    "front": "03321a-front.mp3"
+  },
+  "03322a": {
+    "front": "03322a-front.mp3"
+  },
+  "03323a": {
+    "front": "03323a-front.mp3"
+  },
+  "03324": {
+    "front": "03324-front.mp3",
+    "back": "03324-back.mp3"
   }
 }

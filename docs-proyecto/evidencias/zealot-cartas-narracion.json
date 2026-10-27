@@ -1,0 +1,124 @@
+{
+  "voiceId": "RnKqZYEeVQciORlpiCz0",
+  "language": "es",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.15,
+      "speed": 0.95,
+      "use_speaker_boost": true
+    }
+  },
+  "files": [
+    {
+      "code": "01105",
+      "side": "front",
+      "text": "La noche está muy avanzada. Estáis metidos en tu estudio, investigando las sangrientas desapariciones que han estado teniendo lugar en la región. Tras varias horas de investigación, oís un extraño cántico proveniente de la salita que hay al final del pasillo. Al mismo tiempo, se oye un movimiento de tierra, como si algo estuviera cavando bajo el suelo.",
+      "file": "01105-front.mp3",
+      "inputHash": "54b33a5abb423eaf37b11c093e0e4d51e0800f501be2f8db9e11133cfad0fd1f",
+      "bytes": 318945,
+      "sha256": "70cf0e1e56dd66fe9f11b488229d4ed9a564f030273163607dcbbf5329e42e1c"
+    },
+    {
+      "code": "01105",
+      "side": "back",
+      "text": "Tu casa sigue cambiando ante tus ojos. Las paredes se descomponen, y el suelo de muchas habitaciones se ha convertido en tierra. Es casi como si os hubieran transportado a un lugar totalmente distinto, aunque aquí y allí reconocéis elementos de tu antigua casa.",
+      "file": "01105-back.mp3",
+      "inputHash": "12e3e01211d7bceeb4c7ae4e851e072aba4b86d8299ed1cfeac8165915bd999f",
+      "bytes": 238279,
+      "sha256": "192f18c78e507736c32cd29637e29620228ecf18a03a9199526427c53a1fe251"
+    },
+    {
+      "code": "01106",
+      "side": "front",
+      "text": "El suelo cede bajo vuestros pies, y veis una vasta red de túneles que se extiende en la oscuridad del subsuelo. Hay formas y siluetas de extrañas criaturas que se mueven velozmente por los corredores, tratando de encontrar la forma de subir. Es probable que no queráis estar aquí cuando lo hagan…",
+      "file": "01106-front.mp3",
+      "inputHash": "7b3cbabc81f3829521bd6566f45255ff15c263429d0d964ee83032a670c0bb85",
+      "bytes": 271716,
+      "sha256": "bdc9128ab5ab21516405ead6c740a3612e30c612252b6ba45a2e11355fd8355d"
+    },
+    {
+      "code": "01106",
+      "side": "back",
+      "text": "Una bestia salvaje con burdos rasgos humanoides, un rostro canino y pezuñas por pies atraviesa el suelo que tenéis delante. Bajo éste, veis vastos túneles bajo tu casa. Un aullido infernal resuena en las profundidades de las cavernas subterráneas.",
+      "file": "01106-back.mp3",
+      "inputHash": "6b18c6bc48c5e659750186e86e55b13feb77875437b71ab137b813ed5ff50f8e",
+      "bytes": 237443,
+      "sha256": "11d3f504c90c71ae33c591555c9665dc08ad65c9201c9beb7f492e3c604ff2f9"
+    },
+    {
+      "code": "01108",
+      "side": "front",
+      "text": "Cuando vais a poneros en acción para investigar, la puerta del estudio se desvanece ante vuestros ojos, dejando sólo una pared sólida. Estáis atrapados en el estudio hasta que podáis encontrar otra forma de salir.",
+      "file": "01108-front.mp3",
+      "inputHash": "040363d9bd7dd79c15edc4260fe30b0c69a39eea879e2036903ec397ecd10226",
+      "bytes": 189796,
+      "sha256": "2100dd0904c1110a9b3a4353b76a6d228c9bf340a856d8e17d667111eec4a4f8"
+    },
+    {
+      "code": "01108",
+      "side": "back",
+      "text": "Os dais cuenta de que los bordes de la alfombra recién comprada están deshilachados y manchados de barro. Al encontrarlo extraño, decidís apartar los muebles y quitar la alfombra. Para vuestra sorpresa, veis la puerta de salida del estudio. Uno de vosotros gira lentamente el picaporte, y la puerta se abre para descubrir que bajo ella se encuentra el pasillo.\nSaltáis por el umbral y caéis sobre una tierra blanda. La puerta del estudio se cierra de golpe sobre vuestras cabezas. Un olor a madera quemada llena el estrecho pasillo, mezclado con el hedor de la putrefacción y la descomposición.",
+      "file": "01108-back.mp3",
+      "inputHash": "8f231f5349b5803bbd41d909039516bd2cf704e0f707fb28c78cc663202e150a",
+      "bytes": 519566,
+      "sha256": "fa9a43ff0ee54e86efc57916fd71da4b44ffe3b07b0f8111eff23821ecb18f36"
+    },
+    {
+      "code": "01109",
+      "side": "front",
+      "text": "Una brillante barrera os bloquea el paso hacia la salita. Al acercaros, un intenso calor os obliga a retroceder. Cogéis algo de tierra y la lanzáis contra la barrera, donde para vuestro horror queda totalmente incinerada. Puede que en el sótano o el ático haya algo que os sirva de ayuda.",
+      "file": "01109-front.mp3",
+      "inputHash": "fb20f07d57882b5e73ffa1570949ad65c32bfd2f6b3c5e8c90b6949494515da6",
+      "bytes": 255834,
+      "sha256": "d3c67bab2dff50d372a8b9b1112820991eb0631f3a38ff85be8fab08c60e5f8f"
+    },
+    {
+      "code": "01109",
+      "side": "back",
+      "text": "Usáis el barril del ático para transportar hielo y nieve del sótano y lanzarlo contra la barrera. Ésta chisporrotea y vibra al consumir el hielo, para después desvanecerse con un siseo.",
+      "file": "01109-back.mp3",
+      "inputHash": "80c1e70ef3459b7247cc0a47cf568cfad58a205cba9ed3c41eced1051f5e7e65",
+      "bytes": 167644,
+      "sha256": "9d0cebbd8c2db70f82406dd2a72313a2d530b3b175ed8ffa36aec73954c28480"
+    },
+    {
+      "code": "01107",
+      "side": "front",
+      "text": "Oís un demencial aullido en el exterior, y d epronto todas las criaturas vuelven su atención a ese sonido. Corren para escapar de la casa, derribando puertas y desgarrando cuanto encuentran en su camino.",
+      "file": "01107-front.mp3",
+      "inputHash": "5941fde9bbd39351fa9ceb65566bd2b0a6dcf31e3352a72d57c9ce9af7ee069a",
+      "bytes": 183945,
+      "sha256": "6edb4b2fce9cf440781d368e24f471ba49482c75f239921b8bebdc34799566cc"
+    },
+    {
+      "code": "01107",
+      "side": "back",
+      "text": "El suelo comienza a temblar, y veis garras que salen de la tierra mientras las imposibles criaturas tratan desesperadamente de cavar para emerger del suelo que os rodea. Dondequiera que miréis hay monstruos saliendo de la tierra. Aterrados, huis tan rápido como podéis.",
+      "file": "01107-back.mp3",
+      "inputHash": "e2bc819d031f89037de48633c1fcef1fd25368a3f68f6808290d8304edcce88d",
+      "bytes": 241623,
+      "sha256": "46fcea332690a97b7d26d6e65da751acf08753ee66482180044e1731b4db7967"
+    },
+    {
+      "code": "01110",
+      "side": "front",
+      "text": "En la salita hay una mujer con una antorcha y un brillo de odio en los ojos. —¿Qué le habéis hecho a mi barrera? —grita con furia. Antes de que podáis contestar, un espectral alarido suena a vuestra espalda, y una criatura vestida con túnica y una máscara hecha con el cráneo de un ciervo atraviesa la pared y avanza hacia vosotros.",
+      "file": "01110-front.mp3",
+      "inputHash": "7744a08ed6362d19fc8011cc4e891b436a341fa5d9cba658b789c1d3affd76bd",
+      "bytes": 301391,
+      "sha256": "2a9cbefc0fd866cc8c547332b0f00b8fbabfd418b3ef8c0a95ef7f11e6e96d1f"
+    },
+    {
+      "code": "01110",
+      "side": "back",
+      "text": "Cuando la criatura de la túnica cae, la diabólica horda vuelve a meterse en el suelo, y el caos de la casa se calma. Pero la desconocida de la salita no parace aliviada.\n—Habéis roto el sello que coloqué para atrapar a los gules en el interior —dice mientras levanta la antorcha—. ¡Ahora tendremos que tomar medidas más directas y quema este pozo infernal hasta los cimientos!",
+      "file": "01110-back.mp3",
+      "inputHash": "0c51b38a3dcae19ac2023ba20de98cbfacbe2463d5d10656d2be8aad6e0b8782",
+      "bytes": 334828,
+      "sha256": "85ef9e99255d91212ef87ccca4b3afed63fb8e02830ff9ccf7506dabe4743f8f"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "voiceId": "hyKxCTlAqtnW188CgltM",
+  "language": "es",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.15,
+      "speed": 0.95,
+      "use_speaker_boost": true
+    }
+  },
+  "files": [
+    {
+      "code": "88002",
+      "side": "front",
+      "text": "Has llegado a Défis de la Roulette. Si quieres recuperar el manantial, tendrás que conseguir tanta información como puedas sobre el casino y la secta que lo maneja.",
+      "file": "88002-front.mp3",
+      "inputHash": "2ab10bc34c50f4afe9ffee71e44450d3e79dbdd78d45083ad603533ce08cdc7b",
+      "bytes": 152598,
+      "sha256": "0ef063dc1a8bfc79273369d51f33c41567b42725a069f81e00af786b6c100cf2"
+    },
+    {
+      "code": "88002",
+      "side": "back",
+      "text": "Las miradas que has empezado a atraer por parte de los crupieres y de los guardias se han vuelto más frecuentes. Un grupo de empleados de seguridad uniformados conversa en un sombrío rincón. Los observas y uno de ellos te mira y te señala. Empiezan a dirigirse hacia ti…",
+      "file": "88002-back.mp3",
+      "inputHash": "f8753c6c3c54f829c84b8e4cc208f2fee91d0d6b75fe5d44f11dcb15cabbe4a3",
+      "bytes": 306407,
+      "sha256": "ab17bc57693d6b698f16c48f1223feacfb390ecd9513b040d8dd37edd3f2372d"
+    },
+    {
+      "code": "88003",
+      "side": "front",
+      "text": "El Défis de la Roulette está abarrotado en esta bulliciosa noche, lo cual es la cobertura perfecta para ti y tu banda. Esperas que las largas jornadas de planificación den su fruto.",
+      "file": "88003-front.mp3",
+      "inputHash": "ba3d99d0ed8cd6746e33cd78eacef8105bac5616d24587d266b3e80f93132bb1",
+      "bytes": 209858,
+      "sha256": "11adf37b7792f47c6166118858f13d763e0f6cc25931621ec628e5cb8a0c36b4"
+    },
+    {
+      "code": "88003",
+      "side": "back",
+      "text": "Desde las mesas de ruleta llega una voz que se hace oír por encima del barullo del casino: -¡19 rojo!\nAlguien grita de emoción y unos instantes después, la misma voz vuelve a exclamar: ¡19 rojo de nuevo!\nOyes murmullos a tu alrededor, porque se trata algo sumamente improbable. Notas un momentáneo crepitar en el aire, pero no le das importancia. A continuación, justo cuando parece haber vuelto la normalidad, la voz vuelve a sonar, llena de incredulidad: -¡19 rojo por tercera vez!\nEn esta ocasión, es imposible no percibir el crepitar, que comienza a intensificarse hasta que todo parece quedar desdibujado durante un instante. Cuando tu visión se aclara, en mitad del abarrotado casino hay una terrible criatura inimaginable que se alza imponente sobre los humanos que la rodean. Recuerdas con terror la advertencia de Isamara acerca de que la presencia de la reliquia podría ser una invitación al desastre. Por si eso no fuera lo bastante malo, ese desastre recaerá sobre aquellos a los que no favorezca el portador del manantial.",
+      "file": "88003-back.mp3",
+      "inputHash": "58c1fc82e52a6ca76d4d571b0bee11646297e02c6ca26e33dca23c4b8541a9e4",
+      "bytes": 1174926,
+      "sha256": "313584179d25a2c810134a534e759890ef324e8814c29040db09de5293d67a3e"
+    },
+    {
+      "code": "88004",
+      "side": "front",
+      "text": "El golpe se ha complicado mucho más de lo que podrías haber imaginado. Unos aterradores monstruos han aparecido en la zona de juego del casino. Sin embargo, los clientes parecen como en un trance, mientras que el personal sigue buscando cualquier actividad sospechosa. ¿Acaso no ven el peligro que corren?",
+      "file": "88004-front.mp3",
+      "inputHash": "e23478597303ce140ccbba8045aa6bb444f874d18fd8dd6735a38a8a0b2017d7",
+      "bytes": 350292,
+      "sha256": "1c84f92f39b4e9a6ddf67d58478930c4b1ccb15a3e124595b0c4630aff5437c3"
+    },
+    {
+      "code": "88004",
+      "side": "back",
+      "text": "Cuando parecía que la cosa no podía empeorar, se produce una extraña transformación en el ambiente del casino, la calma antes de la tormenta. Después, como la última bocanada antes del ahogamiento, se desata la tormenta de mala suerte…",
+      "file": "88004-back.mp3",
+      "inputHash": "94de2d300a47a13455ee4e6853a2042d3b4f766a9f8a26fa220db6e63bed48ff",
+      "bytes": 244967,
+      "sha256": "30d0caade6fc770150e2528cb9f17cbba080183349fd2983fbcf3817d4e0dda9"
+    },
+    {
+      "code": "88005",
+      "side": "front",
+      "text": "Tienes a la secta en tu contra. Tienes a criaturas de más allá del tiempo y el espacio en tu contra. Y ahora también tienes la fortuna en tu contra. Nadie dijo que esto fuera a ser fácil.",
+      "file": "88005-front.mp3",
+      "inputHash": "395c65645f3d061772500d08c45b3752bfa2ccdbf44547c1dadc0c838f6fd455",
+      "bytes": 192722,
+      "sha256": "15a47409a3bbbac232e8c0992aaba4117ffa74a20dc22be86486524dcd50e349"
+    },
+    {
+      "code": "88005",
+      "side": "back",
+      "text": "Intentas escapar desesperadamente, pero tu suerte ha acabado por agotarse. Varios sectarios con medallones de moneda que conoces bien te bloquean el paso. A tu espalda, las horrendas criaturas que ha invocado el poder del manantial asolan el casino. Mires donde mires, sólo hay caos. No es hasta ese momento cuando los clientes y la seguridad del casino parecen darse cuenta por fin de la horrible verdad que acecha en el casino. Haces todo lo posible por repeler las criaturas y a los sectarios y apenas logras escapar con vida.",
+      "file": "88005-back.mp3",
+      "inputHash": "c80e9bde3789cd1821f81d4892f79a0d69a7e986d42d482d111ba650c1276177",
+      "bytes": 570975,
+      "sha256": "66ea9394e88a1748726dd8741e563b553e98858a9c79d64a107fa4b59c522a3c"
+    },
+    {
+      "code": "88006",
+      "side": "front",
+      "text": "Debes actuar con cautela, pues despertar sospechas podría estropear tus planes incluso antes de ponerlo en marcha.",
+      "file": "88006-front.mp3",
+      "inputHash": "3eaf3ce4361668b47c779c6c17a67c0933404e8114d3358676efa88d8cf32e2c",
+      "bytes": 113310,
+      "sha256": "ee6ef36db2cc4606aac07be20daf35582bdb3c4382466a1834047962227af4d7"
+    },
+    {
+      "code": "88006",
+      "side": "back",
+      "text": "Dedicas una última mirada al casino y sales de allí. Confías en que ninguno de los crupieres y el personal de seguridad haya sospechado de ti por nada más que lo fingías ser: un jugador con esperanzas de ganar. Independientemente del dinero que hayas conseguido o perdido hoy, las ganancias de verdad son los datos que has podido reunir. Esperas que basten para preparar el improbable plan que debes llevar a cabo.",
+      "file": "88006-back.mp3",
+      "inputHash": "d58687fddc957bd6328d21b40aab472eff64ce6eeea28eb91631bf535c1ac040",
+      "bytes": 464813,
+      "sha256": "317456758a05eedce2ec4cd8289196c56a1a6919706a62979ba58b6ddd7621f0"
+    },
+    {
+      "code": "88007",
+      "side": "front",
+      "text": "Comienza el golpe. Debes abrir la puerta de la cámara acorazada, encontrar el manantial, atravesar las defensas místicas y hallar el modo de abrir el recipiente que lo contiene.",
+      "file": "88007-front.mp3",
+      "inputHash": "af6e279976204bd1fa9c78fb39c9531497d5deef7243fb4781b71f811951585e",
+      "bytes": 199409,
+      "sha256": "9c81f09d6f686b06407e56ad28a6057a82f3bde7fba3901d1ef6f282e2fc2abc"
+    },
+    {
+      "code": "88008",
+      "side": "front",
+      "text": "Entrar era una cosa, pero ahora debes lograr salir con el premio. Es como si todo el casino se interpusiera entre el mundo exterior y tú.",
+      "file": "88008-front.mp3",
+      "inputHash": "7b915d7239c4d7942876f4d9d2d88894b9ab9e3a179c3c177409bc30edc4eb82",
+      "bytes": 145910,
+      "sha256": "d49eba71fcad8327996f244a2773648fd682b533825288b15436037c01f412ed"
+    },
+    {
+      "code": "88008",
+      "side": "back",
+      "text": "Hubo momentos en los que no sabías si ibas a lograr salir del casino con el cuerpo y el alma intactos, pero lo has logrado. Te sientes casi como en un sueño, pero oyes el jaleo que sigue habiendo en el interior. Es hora de marcharse de este sitio y poner tierra de por medio.",
+      "file": "88008-back.mp3",
+      "inputHash": "c46ec5ca4b78c28e214d6501092c87faff6c95469ee3b3d5f22b4d7c301ab9d6",
+      "bytes": 290942,
+      "sha256": "c7f4a757077eef32dda829db7d079d4881c49dce5c0cee07d7ec5f13d630f39c"
+    }
+  ]
+}
