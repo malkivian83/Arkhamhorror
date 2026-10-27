@@ -43,8 +43,10 @@ it.each(['en', 'es'] as const)(
       'dim-carcosa',
     ] as const)
       expect(html).toContain(text.campaign.scenario[id])
-    // Solo el escenario I tiene `build`; el inicio de la campaña ya está disponible.
-    expect(html).not.toContain(text.campaign.notImplemented)
+    // Otras campañas del selector pueden estar pendientes; Carcosa sí puede empezar.
+    const start = html.match(/<button\b[^>]*class="[^"]*\bdock-start\b[^"]*"[^>]*>/)?.[0]
+    expect(start).toBeDefined()
+    expect(start).not.toContain('disabled')
     expect(html).toContain(text.setup.beginCampaign)
     expect(html).not.toContain('campaign.scenario.')
     expect(html).toContain('/local-assets/setup/the-path-to-carcosa.jpg')

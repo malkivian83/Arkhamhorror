@@ -1395,7 +1395,8 @@
       "the-midwinter-gala": "A night of luxury and secrets. Accept the invitation and discover what hides behind the masks at the gala.",
       "murder-at-the-excelsior-hotel": "A murder and a hotel full of secrets. Investigate what happened at the Excelsior and uncover the truth before it is too late.",
       "the-path-to-carcosa": "The King in Yellow arrives in Arkham. Eight scenarios between doubt and conviction. In development: scenarios I to III are playable so far.",
-      "fortune-and-folly": "A Monte Carlo casino bends luck itself. Case the joint in Part I, then pull off the heist in Part II."
+      "fortune-and-folly": "A Monte Carlo casino bends luck itself. Case the joint in Part I, then pull off the heist in Part II.",
+      "the-dunwich-legacy": "Two missing professors lead to the secrets of Dunwich. In development: no scenarios are playable yet."
     },
     "continueTitle": "Continue where you left off",
     "chooseStory": "Choose the story",
@@ -1417,7 +1418,8 @@
     "noInvestigators": "No investigator matches your search.",
     "decksSummary": "Starter deck for everyone | 1 with a custom deck | {n} with custom decks",
     "emptySlot": "Empty slot",
-    "standaloneTag": "Standalone"
+    "standaloneTag": "Standalone",
+    "openingScenario": "Whom will you look for first?"
   },
   "skillTest": {
     "progress": "Step {n} of 8",
@@ -2193,6 +2195,10 @@
       "personalEntanglementTitle": "Personal Entanglement",
       "bluffCalledTitle": "Bluff Called",
       "setup2Title": "Part II setup"
+    },
+    "dunwich": {
+      "prologueTitle": "Prologue",
+      "prologue": "Dr. Henry Armitage asks for your help: his colleagues Warren Rice and Francis Morgan have disappeared. Rice was last seen at Miskatonic University’s Humanities department; Morgan has been frequenting the Clover Club. Decide whom to look for first."
     }
   },
   "playmat": {
@@ -2268,14 +2274,23 @@
       "black-stars-rise": "Black Stars Rise",
       "dim-carcosa": "Dim Carcosa",
       "fortune-and-folly-part-1": "Fortune and Folly, Part I",
-      "fortune-and-folly-part-2": "Fortune and Folly, Part II"
+      "fortune-and-folly-part-2": "Fortune and Folly, Part II",
+      "extracurricular-activity": "Extracurricular Activity",
+      "the-house-always-wins": "The House Always Wins",
+      "the-miskatonic-museum": "The Miskatonic Museum",
+      "the-essex-county-express": "The Essex County Express",
+      "blood-on-the-altar": "Blood on the Altar",
+      "undimensioned-and-unseen": "Undimensioned and Unseen",
+      "where-doom-awaits": "Where Doom Awaits",
+      "lost-in-time-and-space": "Lost in Time and Space"
     },
     "names": {
       "brethren-of-ash": "Brethren of Ash",
       "the-midwinter-gala": "The Midwinter Gala",
       "murder-at-the-excelsior-hotel": "Murder at the Excelsior Hotel",
       "the-path-to-carcosa": "The Path to Carcosa",
-      "fortune-and-folly": "Fortune and Folly"
+      "fortune-and-folly": "Fortune and Folly",
+      "the-dunwich-legacy": "The Dunwich Legacy"
     },
     "choose": "Choose the campaign",
     "xpBreakdown": "Experience breakdown",

@@ -3,6 +3,7 @@ import {
   activeMembers,
   campaignDefinition,
   campaignLost,
+  campaignScenarios,
   canPlayNext,
   currentScenario,
   deckSize,
@@ -46,7 +47,8 @@ const definition = computed(() => (campaign.value ? campaignDefinition(campaign.
 const deckChangesAllowed = computed(
   () =>
     !campaign.value ||
-    definition.value?.scenarios[campaign.value.scenarioIndex - 1]?.allowDeckChangesAfter !== false,
+    campaignScenarios(campaign.value)[campaign.value.scenarioIndex - 1]?.allowDeckChangesAfter !==
+      false,
 )
 /** Números romanos de los escenarios. */
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
@@ -172,7 +174,7 @@ function abandon() {
         <h2>{{ t('campaign.scenarios') }}</h2>
         <ol class="scenarios">
           <li
-            v-for="({ id }, n) in definition?.scenarios ?? []"
+            v-for="({ id }, n) in campaignScenarios(campaign)"
             :key="id"
             :class="{ done: n < campaign.scenarioIndex, current: id === next }"
           >

@@ -1,0 +1,27 @@
+{
+  "voiceId": "iXa2i9eYvgmNMRQRCwqO",
+  "voiceName": "Nico - Calm, Rhythmic and Alluring",
+  "voiceSource": "https://json2video.com/ai-voices/elevenlabs/voices/iXa2i9eYvgmNMRQRCwqO/",
+  "language": "es",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.15,
+      "speed": 0.95,
+      "use_speaker_boost": true
+    }
+  },
+  "files": [
+    {
+      "key": "story.dunwich.prologue",
+      "file": "dunwich-prologue-nico.mp3",
+      "text": "El Dr. Henry Armitage se sirve un vaso de pinot y toma asiento en su mesa mientras os hace un gesto para que os sentéis frente a él. –Lamento haberos avisado con tan poca antelación –os dice. Tiene el rostro pálido, y el sudor le perla las arrugas de preocupación que surcan su frente. Armitage, el bibliotecario jefe de la Universidad Miskatonic y antiguo mentor vuestro, se puso en contacto con vosotros de forma privada con la esperanza de conseguir vuestra ayuda. Deseosos de prestársela, os pusisteis camino de su casa en el Barrio Sur. Al entrar, os sorprendió ver el desorden imperante. Había libros y notas desperdigadas por su escritorio, y una botella de vino vacía volcada en el suelo junto a la chimenea. El Armitage que siempre habéis conocido era una persona pulcra y bien organizada. El anciano se toma un instante para componer sus ideas y os dice: –Estoy buscando a dos de mis colegas: el Dr. Francis Morgan, profesor de Arqueología, y Warren Rice, profesor de idiomas. Se suponía que Warren iba a reunirse conmigo para almorzar hoy, ya que íbamos a hablar acerca de varios hallazgos importantes, pero ha desaparecido desde entonces. Al principio no le di importancia, pero tengo la acuciante sensación de que hay algo más. Es una sensación muy... familiar . Nunca antes habéis visto a Armitage tan preocupado. Cuando va a coger el vaso de su escritorio, le tiemblan las manos, y da un sorbo de forma nerviosa. –Intenté encontrar a Francis, con la esperanza de que supiera donde estaba Warren, pero él también está ilocalizable. Francis ha estado frecuentando un garito de juego muy a menudo, o eso me han dicho. –Os he llamado porque me preocupa que Warren pueda estar en problemas. Os estaría muy agradecido si pudierais encontrarlo. Y puede que también queráis pedirle ayuda a Francis si lográis dar con él.",
+      "characters": 1827,
+      "inputHash": "115e63c55cea74cf9cf68fda137ad583354e950e1d69b30cd41ca82d0d8d8ba8",
+      "sha256": "fade325f7df8c1662ee5269f12776c71c9ede8081115880cfd349098dbd4ff20",
+      "bytes": 1950240
+    }
+  ]
+}

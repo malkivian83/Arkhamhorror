@@ -163,6 +163,7 @@ export const useGameStore = defineStore('game', () => {
     members: CampaignMember[],
     difficulty: Difficulty,
     boons: import('@lcg/engine').Boon[] = [],
+    openingScenario?: string,
   ) {
     error.value = null
     const next = newCampaign(
@@ -172,6 +173,7 @@ export const useGameStore = defineStore('game', () => {
       Math.floor(Math.random() * 2 ** 31),
       boons,
       useDecksStore().rewards,
+      openingScenario,
     )
     if (Object.values(next.log.investigators).some((i) => i.xp > 0)) {
       newAdventure()

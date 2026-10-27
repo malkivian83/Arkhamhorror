@@ -4,6 +4,7 @@
  * texto oficial, así que solo se ofrecen en el idioma de la grabación.
  */
 const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
+  'story.dunwich.prologue': { es: 'dunwich-prologue-nico.mp3' },
   'story.zealot.prologue': { es: 'zealot-prologue-baldo.mp3' },
   'story.theGathering.intro': { es: 'the-gathering-intro-baldo.mp3' },
   'story.theGathering.noResolution': { es: 'the-gathering-no-resolution-baldo.mp3' },

@@ -15,6 +15,8 @@ import DisclosureIcon from '../components/DisclosureIcon.vue'
 import SiteAction from '../components/SiteAction.vue'
 import SiteFooter from '../components/SiteFooter.vue'
 import SkillIcon from '../components/SkillIcon.vue'
+import StoryNarration from '../components/StoryNarration.vue'
+import { storyNarration } from '../game/narration'
 import { campaignCover, scenarioLabel } from '../game/campaignProgress'
 import { useDecksStore } from '../stores/decks'
 import { useGameStore, type DeckKey } from '../stores/game'
@@ -26,7 +28,7 @@ import { localName } from '../game/localized'
  * rejilla de retratos con búsqueda y filtros por clase, y una barra fija al pie
  * con el expediente (campaña, equipo, dificultad) y el botón para empezar.
  */
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const router = useRouter()
 const game = useGameStore()
 const deckStore = useDecksStore()
@@ -51,6 +53,34 @@ const boons = ref<Boon[]>([])
 const campaigns = allCampaigns()
 const campaignId = ref(campaigns[0]?.id ?? '')
 const selectedCampaign = computed(() => campaigns.find((c) => c.id === campaignId.value))
+const prologueAudio = computed(() =>
+  selectedCampaign.value?.prologue
+    ? storyNarration(selectedCampaign.value.prologue.body, locale.value)
+    : null,
+)
+const openingScenario = ref('')
+watch(
+  campaignId,
+  () => {
+    openingScenario.value = selectedCampaign.value?.openingScenarios?.[0] ?? ''
+  },
+  { immediate: true },
+)
+const selectedFirstScenario = computed(
+  () =>
+    selectedCampaign.value?.scenarios.find((s) => s.id === openingScenario.value) ??
+    selectedCampaign.value?.scenarios[0],
+)
+const selectedScenarios = computed(() => {
+  const scenarios = selectedCampaign.value?.scenarios ?? []
+  if (!selectedCampaign.value?.openingScenarios?.includes(openingScenario.value)) return scenarios
+  const opening = selectedCampaign.value.openingScenarios
+  return [
+    ...scenarios.filter((s) => s.id === openingScenario.value),
+    ...scenarios.filter((s) => opening.includes(s.id) && s.id !== openingScenario.value),
+    ...scenarios.filter((s) => !opening.includes(s.id)),
+  ]
+})
 const difficulties: Difficulty[] = ['easy', 'standard', 'hard', 'expert']
 const skills = ['willpower', 'intellect', 'combat', 'agility'] as const
 const portrait = (id: string) => `/local-assets/setup/${id}.jpg`
@@ -181,7 +211,7 @@ function toggle(key: DeckKey) {
 }
 
 function start() {
-  if (!chosen.value.length || !selectedCampaign.value?.scenarios[0]?.build) return
+  if (!chosen.value.length || !selectedFirstScenario.value?.build) return
   if (game.campaign && !window.confirm(t('campaign.confirmReplace'))) return
   const members = chosen.value.map((key): CampaignMember => {
     const own = selectedDeckFor(key)
@@ -195,7 +225,13 @@ function start() {
         : {}),
     }
   })
-  game.start(campaignId.value, members, difficulty.value, activeBoons.value)
+  game.start(
+    campaignId.value,
+    members,
+    difficulty.value,
+    activeBoons.value,
+    openingScenario.value || undefined,
+  )
   void router.push(game.state ? '/game' : '/campaign')
 }
 </script>
@@ -356,12 +392,21 @@ function start() {
               <h3>{{ t(selectedCampaign.name) }}</h3>
               <p>{{ t(`setup.descriptions.${selectedCampaign.id}`) }}</p>
             </div>
+            <fieldset v-if="selectedCampaign.openingScenarios?.length">
+              <legend>{{ t('setup.openingScenario') }}</legend>
+              <p v-if="selectedCampaign.prologue">{{ t(selectedCampaign.prologue.body) }}</p>
+              <StoryNarration v-if="prologueAudio" :key="prologueAudio" :src="prologueAudio" />
+              <label v-for="id in selectedCampaign.openingScenarios" :key="id">
+                <input v-model="openingScenario" type="radio" :value="id" name="opening-scenario" />
+                {{ t(`campaign.scenario.${id}`) }}
+              </label>
+            </fieldset>
             <ol
               v-if="!selectedCampaign.standalone"
               class="story-scenarios"
               :aria-label="t('setup.chapters')"
             >
-              <li v-for="(scenario, index) in selectedCampaign.scenarios" :key="scenario.id">
+              <li v-for="(scenario, index) in selectedScenarios" :key="scenario.id">
                 <span aria-hidden="true">{{
                   ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'][index]
                 }}</span
@@ -602,13 +647,13 @@ function start() {
             type="submit"
             icon="→"
             class="dock-start"
-            :disabled="!chosen.length || !selectedCampaign?.scenarios[0]?.build"
+            :disabled="!chosen.length || !selectedFirstScenario?.build"
           >
             {{
               t(
-                !selectedCampaign?.scenarios[0]?.build
+                !selectedFirstScenario?.build
                   ? 'campaign.notImplemented'
-                  : selectedCampaign.standalone
+                  : selectedCampaign?.standalone
                     ? 'setup.beginScenario'
                     : 'setup.beginCampaign',
               )

@@ -1395,7 +1395,8 @@
       "the-midwinter-gala": "Una noche de lujo y secretos. Acepta la invitación y descubre qué se esconde tras las máscaras de la gala.",
       "murder-at-the-excelsior-hotel": "Un asesinato y un hotel lleno de secretos. Investiga lo ocurrido en el Excelsior y descubre la verdad antes de que sea demasiado tarde.",
       "the-path-to-carcosa": "El Rey de Amarillo llega a Arkham. Ocho escenarios entre Dudas y Convicciones. En desarrollo: de momento se pueden jugar los escenarios I a III.",
-      "fortune-and-folly": "Un casino de Montecarlo manipula la propia suerte. Vigila el local en la parte I y da el golpe en la parte II."
+      "fortune-and-folly": "Un casino de Montecarlo manipula la propia suerte. Vigila el local en la parte I y da el golpe en la parte II.",
+      "the-dunwich-legacy": "Dos profesores desaparecidos conducen a los secretos de Dunwich. En desarrollo: todavía no hay escenarios jugables."
     },
     "continueTitle": "Continuar donde lo dejaste",
     "chooseStory": "Elige la historia",
@@ -1417,7 +1418,8 @@
     "noInvestigators": "Ningún investigador coincide con la búsqueda.",
     "decksSummary": "Mazo inicial para todos | 1 con mazo propio | {n} con mazos propios",
     "emptySlot": "Hueco libre",
-    "standaloneTag": "Independiente"
+    "standaloneTag": "Independiente",
+    "openingScenario": "¿A quién buscáis primero?"
   },
   "skillTest": {
     "progress": "Paso {n} de 8",
@@ -2193,6 +2195,10 @@
       "personalEntanglementTitle": "Implicación personal",
       "bluffCalledTitle": "Farol descubierto",
       "setup2Title": "Preparación de la parte II"
+    },
+    "dunwich": {
+      "prologueTitle": "Prólogo",
+      "prologue": "El Dr. Henry Armitage solicita vuestra ayuda: sus colegas Warren Rice y Francis Morgan han desaparecido. Rice fue visto por última vez en el departamento de Humanidades de la Universidad Miskatonic; Morgan frecuentaba el Clover Club. Decidís a cuál buscar primero."
     }
   },
   "playmat": {
@@ -2268,14 +2274,23 @@
       "black-stars-rise": "Surgen estrellas negras",
       "dim-carcosa": "Penumbrosa Carcosa",
       "fortune-and-folly-part-1": "Fortuna e insensatez, parte I",
-      "fortune-and-folly-part-2": "Fortuna e insensatez, parte II"
+      "fortune-and-folly-part-2": "Fortuna e insensatez, parte II",
+      "extracurricular-activity": "Actividad extracurricular",
+      "the-house-always-wins": "La casa siempre gana",
+      "the-miskatonic-museum": "El museo Miskatonic",
+      "the-essex-county-express": "El Essex County Express",
+      "blood-on-the-altar": "Sangre en el altar",
+      "undimensioned-and-unseen": "Invisibles y sin dimensión",
+      "where-doom-awaits": "Donde aguarda la perdición",
+      "lost-in-time-and-space": "Perdidos en el tiempo y el espacio"
     },
     "names": {
       "brethren-of-ash": "Brethren of Ash",
       "the-midwinter-gala": "La gala del ecuador del invierno",
       "murder-at-the-excelsior-hotel": "Asesinato en el hotel Excelsior",
       "the-path-to-carcosa": "El camino a Carcosa",
-      "fortune-and-folly": "Fortuna e insensatez"
+      "fortune-and-folly": "Fortuna e insensatez",
+      "the-dunwich-legacy": "El legado de Dunwich"
     },
     "choose": "Elige la campaña",
     "xpBreakdown": "Desglose de experiencia",
