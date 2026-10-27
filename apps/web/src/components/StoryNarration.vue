@@ -140,7 +140,7 @@ onBeforeUnmount(() => {
   font-family: system-ui, sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #5a4630;
+  color: var(--narration-text, #5a4630);
 }
 .bar {
   display: flex;
@@ -153,13 +153,13 @@ onBeforeUnmount(() => {
   font-family: system-ui, sans-serif;
   font-size: 0.8rem;
   font-variant-numeric: tabular-nums;
-  color: #5a4630;
+  color: var(--narration-text, #5a4630);
 }
 input[type='range'] {
   flex: 1;
   min-width: 0;
   margin: 0;
-  accent-color: #5a1f14;
+  accent-color: var(--narration-accent, #5a1f14);
   cursor: pointer;
 }
 input[type='range']:disabled {

@@ -382,25 +382,41 @@ function start() {
           <p v-if="!visibleCampaigns.length" class="empty-note">{{ t('setup.noStories') }}</p>
 
           <div v-if="selectedCampaign" class="story-detail ui-panel">
-            <div class="story-copy">
-              <p class="ui-eyebrow">
-                {{ t('setup.selected') }} ·
-                {{
-                  selectedCampaign.standalone ? t('campaign.standalone') : t('setup.campaignLabel')
-                }}
-              </p>
-              <h3>{{ t(selectedCampaign.name) }}</h3>
-              <p>{{ t(`setup.descriptions.${selectedCampaign.id}`) }}</p>
+            <div class="story-main">
+              <div class="story-copy">
+                <p class="ui-eyebrow">
+                  {{ t('setup.selected') }} ·
+                  {{
+                    selectedCampaign.standalone
+                      ? t('campaign.standalone')
+                      : t('setup.campaignLabel')
+                  }}
+                </p>
+                <h3>{{ t(selectedCampaign.name) }}</h3>
+                <p>{{ t(`setup.descriptions.${selectedCampaign.id}`) }}</p>
+              </div>
+              <fieldset v-if="selectedCampaign.openingScenarios?.length" class="story-opening">
+                <legend>{{ t('setup.openingScenario') }}</legend>
+                <p v-if="selectedCampaign.prologue">{{ t(selectedCampaign.prologue.body) }}</p>
+                <StoryNarration v-if="prologueAudio" :key="prologueAudio" :src="prologueAudio" />
+                <div class="opening-options">
+                  <label
+                    v-for="id in selectedCampaign.openingScenarios"
+                    :key="id"
+                    class="opening-option"
+                    :class="{ selected: openingScenario === id }"
+                  >
+                    <input
+                      v-model="openingScenario"
+                      type="radio"
+                      :value="id"
+                      name="opening-scenario"
+                    />
+                    {{ t(`campaign.scenario.${id}`) }}
+                  </label>
+                </div>
+              </fieldset>
             </div>
-            <fieldset v-if="selectedCampaign.openingScenarios?.length">
-              <legend>{{ t('setup.openingScenario') }}</legend>
-              <p v-if="selectedCampaign.prologue">{{ t(selectedCampaign.prologue.body) }}</p>
-              <StoryNarration v-if="prologueAudio" :key="prologueAudio" :src="prologueAudio" />
-              <label v-for="id in selectedCampaign.openingScenarios" :key="id">
-                <input v-model="openingScenario" type="radio" :value="id" name="opening-scenario" />
-                {{ t(`campaign.scenario.${id}`) }}
-              </label>
-            </fieldset>
             <ol
               v-if="!selectedCampaign.standalone"
               class="story-scenarios"
@@ -835,10 +851,60 @@ h1 {
 }
 
 .story-detail {
-  display: flex;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.55fr);
+  align-items: start;
   gap: 28px;
   padding: 22px 24px;
+}
+.story-main {
+  min-width: 0;
+  display: grid;
+  gap: 24px;
+}
+.story-main:only-child {
+  grid-column: 1 / -1;
+}
+.story-opening {
+  min-width: 0;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--site-line);
+  border-radius: var(--site-radius-lg);
+  --narration-text: var(--site-ink-soft);
+  --narration-accent: var(--site-accent);
+}
+.story-opening legend {
+  padding-inline: 8px;
+  font-weight: 600;
+}
+.story-opening > p {
+  margin: 0 0 20px;
+  line-height: 1.65;
+  color: var(--site-ink-soft);
+}
+.opening-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 10px;
+}
+.opening-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--site-line);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.opening-option.selected {
+  border-color: var(--site-accent);
+  background: var(--site-panel-selected);
+}
+.opening-option input {
+  flex: none;
+  margin: 0;
+  accent-color: var(--site-accent);
 }
 .story-copy {
   flex: 1;
@@ -856,7 +922,7 @@ h1 {
   line-height: 1.6;
 }
 .story-scenarios {
-  min-width: 300px;
+  min-width: 0;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1101,7 +1167,7 @@ h1 {
     padding-right: 20px;
   }
   .story-scenarios {
-    min-width: 240px;
+    min-width: 0;
   }
 }
 
@@ -1125,7 +1191,7 @@ h1 {
     width: 100%;
   }
   .story-detail {
-    flex-direction: column;
+    grid-template-columns: minmax(0, 1fr);
   }
   .story-scenarios {
     min-width: 0;
@@ -1212,7 +1278,7 @@ h1 {
     gap: 14px;
   }
   .story-copy h3 {
-    display: none;
+    font-size: 1.25rem;
   }
   .save-note {
     margin-top: -24px;
