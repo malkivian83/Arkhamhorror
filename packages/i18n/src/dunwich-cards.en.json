@@ -1,0 +1,44 @@
+{
+  "02083": {
+    "name": "Visions of Futures Past",
+    "typeCode": "treachery",
+    "traits": "Hex.",
+    "text": "<b>Revelation</b> - Test [willpower] (5). For each point you fail by, discard the top card of your deck."
+  },
+  "02084": {
+    "name": "Beyond the Veil",
+    "typeCode": "treachery",
+    "traits": "Hex.",
+    "text": "Surge.\n<b>Revelation</b> - Put Beyond the Veil into play in your threat area if there is no copy of Beyond the Veil in your threat area.\n<b>Forced</b> - If your deck has no cards in it: Take 10 damage and discard Beyond the Veil."
+  },
+  "02090": {
+    "name": "Whippoorwill",
+    "typeCode": "enemy",
+    "traits": "Creature.",
+    "text": "Aloof. Hunter.\nEach investigator at Whippoorwill's location gets -1 [willpower], -1 [intellect], -1 [combat], and -1 [agility]."
+  },
+  "02091": {
+    "name": "Eager for Death",
+    "typeCode": "treachery",
+    "traits": "Omen.",
+    "text": "<b>Revelation</b> - Test [willpower] (2). Increase this skill test's difficulty by 1 for each damage on you. If you fail, take 2 horror."
+  },
+  "02100": {
+    "name": "Pushed into the Beyond",
+    "typeCode": "treachery",
+    "traits": "Hex.",
+    "text": "<b>Revelation</b> - Choose and shuffle a non-story asset you control into your deck and discard the top 3 cards of your deck. If a copy of that asset is discarded, take 2 horror."
+  },
+  "02101": {
+    "name": "Terror from Beyond",
+    "typeCode": "treachery",
+    "traits": "Hex. Terror.",
+    "text": "Peril.\n<b>Revelation</b> - Choose one of the following cardtypes (asset, event, or skill). Each player must discard each card in his or her hand that is of the chosen cardtype. If this is not the first copy of Terror from Beyond drawn this phase, choose two cardtypes instead."
+  },
+  "02102": {
+    "name": "Arcane Barrier",
+    "typeCode": "treachery",
+    "traits": "Hex. Obstacle.",
+    "text": "<b>Revelation</b> - Attach to your location.\nAs an additional cost to move into or out of attached location, test [willpower] (4). If successful, discard Arcane Barrier. Otherwise, you must either cancel the effects of the move or discard the top 5 cards of your deck."
+  }
+}

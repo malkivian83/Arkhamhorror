@@ -1,4 +1,5 @@
 import { registerCampaign } from '../campaign-definition'
+import './encounter-sets'
 import { DUNWICH_CHAOS_BAGS, THE_DUNWICH_LEGACY } from './campaign'
 
 registerCampaign({

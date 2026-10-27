@@ -195,6 +195,14 @@ export interface StoryBehavior {
 }
 
 export interface TreacheryBehavior {
+  /** Resolves on drawing the card, even if its revelation is subsequently canceled. */
+  onDraw?: (state: GameState, investigator: InvestigatorId, self: Treachery) => Message[]
+  /** Additional movement cost; the supplied move already marks this treachery as checked. */
+  beforeMove?: (
+    state: GameState,
+    self: Treachery,
+    move: Extract<Message, { type: 'MoveTo' }>,
+  ) => Message[] | null
   /** Acciones adicionales para entrar o salir de la localización a la que está unida (Arcane Lock). */
   moveCost?: number
   /** Modificador al velo de la localización a la que está unida (Flash Flood). */

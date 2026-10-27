@@ -311,7 +311,11 @@
     "grapevineStep": "Elige el siguiente Lugar del camino más corto",
     "rightUnderTheirNoses": "¿Dónde descubres la pista?",
     "watchThis": "\"¡Mira esto!\": gasta hasta 3 recursos",
-    "loseAdditionalAction": "¿Qué acción adicional pierdes?"
+    "loseAdditionalAction": "¿Qué acción adicional pierdes?",
+    "dunwich": {
+      "pushedAsset": "Elige un apoyo para barajarlo en el mazo de su propietario",
+      "barrier": "La barrera resiste. ¿Cancelas el movimiento o descartas las 5 primeras cartas de tu mazo?"
+    }
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -641,6 +645,10 @@
       "evade": "La acción adicional de evitar",
       "move": "La acción adicional de moverse",
       "trait": "La acción adicional para Hechizos"
+    },
+    "dunwich": {
+      "cancelMove": "Cancelar el movimiento",
+      "discardAndMove": "Descartar las 5 primeras cartas y moverse"
     }
   },
   "phase": {

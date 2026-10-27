@@ -452,6 +452,11 @@ export function handle(state: GameState, message: Message): GameState {
               [id]: { ...card, keywords: [...card.keywords], id, placement: { type: 'limbo' } },
             },
           },
+          ...(treacheryBehavior(card.code)?.onDraw?.(state, investigator.id, {
+            ...card,
+            id,
+            placement: { type: 'limbo' },
+          }) ?? []),
           {
             type: 'Forced',
             trigger: { type: 'whenTreacheryDrawn', investigator: investigator.id, treachery: id },
@@ -1906,6 +1911,18 @@ export function handle(state: GameState, message: Message): GameState {
         return state
       if (!message.checked) {
         const instead = scenario?.beforeMove?.(state, message)
+        if (instead) return push(state, ...instead)
+      }
+      for (const treachery of Object.values(state.treacheries)) {
+        if (
+          treachery.placement.type === 'limbo' ||
+          message.checkedTreacheries?.includes(treachery.id)
+        )
+          continue
+        const instead = treacheryBehavior(treachery.code)?.beforeMove?.(state, treachery, {
+          ...message,
+          checkedTreacheries: [...(message.checkedTreacheries ?? []), treachery.id],
+        })
         if (instead) return push(state, ...instead)
       }
       const costs = message.entryPaid
@@ -4284,12 +4301,29 @@ export function handle(state: GameState, message: Message): GameState {
       }
     }
 
-    case 'MillDeck':
-      return updateInvestigator(state, message.investigator, (i) => ({
+    case 'MillDeck': {
+      const discarded = getInvestigator(state, message.investigator).deck.slice(0, message.amount)
+      const next = updateInvestigator(state, message.investigator, (i) => ({
         ...i,
         deck: i.deck.slice(message.amount),
         discard: [...i.discard, ...i.deck.slice(0, message.amount)],
       }))
+      return message.ifDiscarded && discarded.includes(message.ifDiscarded.code)
+        ? push(next, ...message.ifDiscarded.then)
+        : next
+    }
+
+    case 'ShuffleAssetIntoDeck': {
+      const asset = state.assets[message.asset]
+      if (!asset || stuckInPlay(state, asset)) return state
+      const owner = getInvestigator(state, asset.originalOwner ?? asset.owner)
+      const { [asset.id]: _gone, ...assets } = state.assets
+      const [deck, rng] = shuffle([...owner.deck, asset.code], state.rng)
+      return push(
+        updateInvestigator({ ...state, assets, rng }, owner.id, (i) => ({ ...i, deck })),
+        { type: 'CheckSlots', investigator: asset.owner },
+      )
+    }
 
     case 'HealEnemy':
       return updateEnemy(state, message.enemy, (e) => ({
@@ -4319,7 +4353,7 @@ export function handle(state: GameState, message: Message): GameState {
       const investigator = getInvestigator(state, message.investigator)
       const ofType = investigator.hand.filter((code) => {
         const def = playerCardDef(code)
-        return def?.type === message.cardType && !def.weakness
+        return def?.type === message.cardType && (!def.weakness || !!message.includeWeaknesses)
       })
       if (ofType.length === 0) return state
       if (message.all) {

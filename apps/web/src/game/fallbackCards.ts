@@ -1,5 +1,6 @@
 import {
   theGathering,
+  DUNWICH_ENCOUNTER_SETS,
   CURTAIN_CALL_STRANGERS,
   curtainCall,
   theLastKing,
@@ -41,6 +42,7 @@ import {
   excelsiorCards,
   fortuneCards,
   zealotCards,
+  dunwichCards,
   messages,
 } from '@lcg/i18n'
 import type { LocalizedCard } from './localized'
@@ -242,6 +244,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   if (elokoss) put({ ...elokoss, code: '12179b', type_code: 'enemy' })
 
   // The Bloodless Man starts in play, outside the scenario's encounter/set-aside lists.
+  Object.values(DUNWICH_ENCOUNTER_SETS).flat().forEach(encounter)
   encounter(GALA_BLOODLESS_MAN)
   encounter(GALA_BLOODLESS_MAN_UNLEASHED)
   const jewel = allPlayerCardDefs().find((d) => d.code === '71052')!
@@ -394,7 +397,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
       })
   }
   put({ code: '01104', name: 'The Gathering', real_name: 'The Gathering', type_code: 'scenario' })
-  const catalogues = [excelsiorCards, carcosaCards, fortuneCards, zealotCards].map(
+  const catalogues = [excelsiorCards, carcosaCards, fortuneCards, zealotCards, dunwichCards].map(
     (c) => c[locale === 'es' ? 'es' : 'en'],
   )
   for (const [code, text] of catalogues.flatMap((c) => Object.entries(c))) {

@@ -832,6 +832,8 @@ export type Message =
       location: LocationId
       entryPaid?: boolean
       checked?: boolean
+      /** Additional movement costs already resolved for individual treacheries. */
+      checkedTreacheries?: TreacheryId[]
       /** Lo produce la acción básica de movimiento (Palcos), no el efecto de una carta. */
       moveAction?: boolean
     }
@@ -1075,7 +1077,13 @@ export type Message =
   /** No puede jugar ni comprometer cartas de este tipo durante el resto de la ronda. */
   | { type: 'BlockCardType'; investigator: InvestigatorId; cardType: string }
   /** Descarta de la mano las cartas (no debilidades) de un tipo: todas o una a elegir. */
-  | { type: 'DiscardCardsOfType'; investigator: InvestigatorId; cardType: string; all: boolean }
+  | {
+      type: 'DiscardCardsOfType'
+      investigator: InvestigatorId
+      cardType: string
+      all: boolean
+      includeWeaknesses?: boolean
+    }
   /** Muertos para la campaña (los que no se retiraron, con `exceptResigned`). */
   /** Con `investigator`, solo ese (Posesión: eliminado y muerto). */
   | { type: 'KillInvestigators'; exceptResigned?: boolean; investigator?: InvestigatorId }
@@ -1262,7 +1270,14 @@ export type Message =
   /** Until the end of the phase, the agenda cannot advance by its doom threshold (Mystifying Song). */
   | { type: 'HoldAgenda' }
   /** Descarta las primeras cartas del mazo de un investigador. */
-  | { type: 'MillDeck'; investigator: InvestigatorId; amount: number }
+  | {
+      type: 'MillDeck'
+      investigator: InvestigatorId
+      amount: number
+      ifDiscarded?: { code: CardCode; then: Message[] }
+    }
+  /** Return a controlled asset to its original owner's deck and shuffle. */
+  | { type: 'ShuffleAssetIntoDeck'; asset: AssetId }
   /** Gastar pistas "como grupo" (de cualquier investigador). */
   | { type: 'SpendGroupClues'; amount: number }
   /** El investigador elige y descarta cartas de su mano. */
@@ -1530,6 +1545,8 @@ export type Trigger =
   | { type: 'afterActionAbility'; investigator: InvestigatorId; code: CardCode }
   | { type: 'afterAssetEntersPlay'; investigator: InvestigatorId; asset: AssetId }
   | { type: 'afterDrawCard'; investigator: InvestigatorId; card: CardCode }
+  /** The last card left the investigator's deck, before any later reshuffle. */
+  | { type: 'deckEmptied'; investigator: InvestigatorId }
   | { type: 'enemyEntersLocation'; enemy: EnemyId; location: LocationId }
   | { type: 'whenTreacheryDrawn'; investigator: InvestigatorId; treachery: TreacheryId }
   | { type: 'afterCancelRevelation'; card: CardCode; weakness: boolean }

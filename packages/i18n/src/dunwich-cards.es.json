@@ -1,0 +1,44 @@
+{
+  "02083": {
+    "name": "Visiones de futuros pasados",
+    "typeCode": "treachery",
+    "traits": "Maleficio.",
+    "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (5). Por cada punto que te falte para tener éxito, descarta la primera carta de tu mazo."
+  },
+  "02084": {
+    "name": "Al otro lado del velo",
+    "typeCode": "treachery",
+    "traits": "Maleficio.",
+    "text": "Oleada.\n<b>Revelación</b> - Pon Al otro lado del velo en juego en tu zona de amenaza si no hay ninguna copia de Al otro lado del velo en tu zona de amenaza.\n<b>Obligado</b> - Si no hay cartas en tu mazo: Recibe 10 puntos de daño y descarta Al otro lado del velo."
+  },
+  "02090": {
+    "name": "Chotacabras",
+    "typeCode": "enemy",
+    "traits": "Criatura.",
+    "text": "Indiferente. Cazador.\nCada investigador que esté en el mismo Lugar que el Chotacabras recibe -1 [willpower], -1 [intellect], -1 [combat], y -1 [agility]."
+  },
+  "02091": {
+    "name": "Ávidos de muerte",
+    "typeCode": "treachery",
+    "traits": "Augurio.",
+    "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (2). Aumenta la dificultad de esta prueba en 1 por cada punto de daño que tengas. Si fracasas, recibe 2 puntos de horror."
+  },
+  "02100": {
+    "name": "Empujado al otro lado",
+    "typeCode": "treachery",
+    "traits": "Maleficio.",
+    "text": "<b>Revelación</b> - Elige un Apoyo que controles que no sea de historia, añádelo a tu mazo y baraja éste. Descarta las 3 primeras cartas de tu mazo. Si es descartada una copia de ese Apoyo, recibe 2 puntos de horror."
+  },
+  "02101": {
+    "name": "Terror del otro lado",
+    "typeCode": "treachery",
+    "traits": "Maleficio. Terror.",
+    "text": "Peligro.\n<b>Revelación</b> - Elige 1 de los siguientes tipos de carta: Apoyo, Evento o Habilidad. Cada jugador debe descartar todas las cartas de su mano que sean del tipo de carta elegido. Si ésta no es la primera copia de Terror del otro lado robada en esta fase, elige 2 tipos de carta en lugar de 1."
+  },
+  "02102": {
+    "name": "Barrera arcana",
+    "typeCode": "treachery",
+    "traits": "Maleficio. Obstáculo.",
+    "text": "<b>Revelación</b> - Vincula esta carta a tu Lugar.\nComo coste adicional para entrar o salir del Lugar vinculado, realiza una prueba de [willpower] (4). Si tiene éxito, descarta la Barrera arcana. Si no es así, debes cancelar los efectos del movimiento o bien descartar las 5 primeras cartas de tu mazo."
+  }
+}

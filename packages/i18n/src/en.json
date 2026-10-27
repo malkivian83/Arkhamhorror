@@ -311,7 +311,11 @@
     "grapevineStep": "Choose the next location of the shortest path",
     "rightUnderTheirNoses": "Where do you discover the clue?",
     "watchThis": "\"Watch this!\": spend up to 3 resources",
-    "loseAdditionalAction": "Which additional action do you lose?"
+    "loseAdditionalAction": "Which additional action do you lose?",
+    "dunwich": {
+      "pushedAsset": "Choose an asset to shuffle into its owner’s deck",
+      "barrier": "The barrier holds. Cancel the move or discard the top 5 cards of your deck?"
+    }
   },
   "action": {
     "draw": "Draw 1 card",
@@ -641,6 +645,10 @@
       "evade": "The additional evade action",
       "move": "The additional move action",
       "trait": "The additional action for Spells"
+    },
+    "dunwich": {
+      "cancelMove": "Cancel the move",
+      "discardAndMove": "Discard the top 5 cards and move"
     }
   },
   "phase": {

@@ -2,6 +2,8 @@ import zealotEn from './zealot.en.json'
 import zealotEs from './zealot.es.json'
 import zealotCardsEn from './zealot-cards.en.json'
 import zealotCardsEs from './zealot-cards.es.json'
+import dunwichCardsEn from './dunwich-cards.en.json'
+import dunwichCardsEs from './dunwich-cards.es.json'
 import carcosaEn from './carcosa-cards.en.json'
 import carcosaEs from './carcosa-cards.es.json'
 import en from './en.json'
@@ -115,4 +117,10 @@ export const fortuneCards: Record<'en' | 'es', Record<string, CatalogCard>> = {
 export const zealotCards: Record<'en' | 'es', Record<string, CatalogCard>> = {
   en: zealotCardsEn,
   es: zealotCardsEs,
+}
+
+/** Shared encounter cards implemented for The Dunwich Legacy. */
+export const dunwichCards: Record<'en' | 'es', Record<string, CatalogCard>> = {
+  en: dunwichCardsEn,
+  es: dunwichCardsEs,
 }
