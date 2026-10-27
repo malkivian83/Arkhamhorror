@@ -1,3 +1,4 @@
+import { theEssexCountyExpress, THE_ESSEX_COUNTY_EXPRESS } from './the-essex-county-express'
 import { theMiskatonicMuseum, THE_MISKATONIC_MUSEUM } from './the-miskatonic-museum'
 import { theHouseAlwaysWins, THE_HOUSE_ALWAYS_WINS } from './the-house-always-wins'
 import { registerCampaign } from '../campaign-definition'
@@ -31,6 +32,12 @@ registerCampaign({
               build: ({ difficulty, log }) => theMiskatonicMuseum({ difficulty, log }),
               keywords: ['hunter', 'retaliate', 'massive', 'surge', 'peril'],
             }
-          : { id },
+          : id === THE_ESSEX_COUNTY_EXPRESS
+            ? {
+                id,
+                build: ({ difficulty, log }) => theEssexCountyExpress({ difficulty, log }),
+                keywords: ['hunter', 'surge', 'doom', 'peril'],
+              }
+            : { id },
   ),
 })

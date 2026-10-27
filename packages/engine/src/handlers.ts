@@ -551,7 +551,9 @@ export function handle(state: GameState, message: Message): GameState {
         )
       const [id, withId] = newId(state, 'enemy-')
       const { card } = message
+      const entersExhausted = !!enemyBehavior(card.code)?.entersExhausted
       const engagedWith =
+        entersExhausted ||
         card.keywords.includes('massive') ||
         (message.engageWith &&
           getInvestigator(state, message.engageWith).location !== message.location)
@@ -569,7 +571,7 @@ export function handle(state: GameState, message: Message): GameState {
             damageTaken: 0,
             location: message.location,
             engagedWith: null,
-            exhausted: false,
+            exhausted: entersExhausted,
             ...(message.owner ? { owner: message.owner } : {}),
           },
         },
@@ -1950,7 +1952,13 @@ export function handle(state: GameState, message: Message): GameState {
       }
       const reveal: Message[] = getLocation(next, message.location).revealed
         ? []
-        : [{ type: 'RevealLocation', location: message.location }]
+        : [
+            {
+              type: 'RevealLocation',
+              location: message.location,
+              investigator: message.investigator,
+            },
+          ]
       const arrival: Message[] = [
         {
           type: 'Forced',
@@ -1998,6 +2006,7 @@ export function handle(state: GameState, message: Message): GameState {
         : (locationBehavior(message.location)?.onReveal?.(
             revealed,
             getLocation(revealed, message.location),
+            message.investigator,
           ) ?? [])
       return onReveal.length ? push(revealed, ...onReveal) : revealed
     }
@@ -2198,7 +2207,7 @@ export function handle(state: GameState, message: Message): GameState {
       const available = focused.length ? focused : soakers(state, investigator, kind)
       const trait = message.assignFirst?.[kind]
       const mandatory = trait
-        ? available.filter((a) => playerCardDef(a.code)?.traits.includes(trait))
+        ? available.filter((a) => trait === '*' || playerCardDef(a.code)?.traits.includes(trait))
         : []
       const options = mandatory.length ? mandatory : available
       const placedOptions =
@@ -4227,7 +4236,7 @@ export function handle(state: GameState, message: Message): GameState {
       if (state.doomBecomesDamage) return push(state, ...doomAsDamage(state, message.amount))
       return push(
         updateEnemy(state, message.enemy, (e) => ({ ...e, doom: (e.doom ?? 0) + message.amount })),
-        { type: 'CheckAgenda' },
+        ...(message.checkAgenda === false ? [] : [{ type: 'CheckAgenda' } as Message]),
       )
 
     case 'AddLead':

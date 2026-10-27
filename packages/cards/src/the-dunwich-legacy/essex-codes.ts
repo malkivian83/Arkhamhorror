@@ -1,0 +1,32 @@
+export const THE_ESSEX_COUNTY_EXPRESS = 'the-essex-county-express'
+export const T = {
+  reference: '02159',
+  tear: '02160',
+  maw: '02161',
+  rolling: '02162',
+  drawn: '02163',
+  outOfTime: '02164',
+  run: '02165',
+  engine: '02166',
+  agilityCar: '02167',
+  combatCar: '02168',
+  willCar: '02169',
+  intellectCar: '02170',
+  wildCar: '02171',
+  sleeping: '02172',
+  dining: '02173',
+  parlor: '02174',
+  enginePlain: '02175',
+  engineHorror: '02176',
+  engineDraw: '02177',
+  across: '02178',
+  passenger: '02179',
+  claws: '02180',
+  rails: '02181',
+  grappling: '02182',
+  emergent: '02183',
+} as const
+export const TN = {
+  delayed: 'dunwichDelayed',
+  necronomiconStolen: 'dunwichNecronomiconStolen',
+} as const

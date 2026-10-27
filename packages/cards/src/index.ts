@@ -343,3 +343,11 @@ export {
   MN,
   THE_MISKATONIC_MUSEUM,
 } from './the-dunwich-legacy/the-miskatonic-museum'
+
+export {
+  theEssexCountyExpress,
+  ESSEX_LOCATIONS,
+  ESSEX_ENCOUNTERS,
+  T as ESSEX_CODES,
+  THE_ESSEX_COUNTY_EXPRESS,
+} from './the-dunwich-legacy/the-essex-county-express'
