@@ -1663,7 +1663,7 @@ export function handle(state: GameState, message: Message): GameState {
           type: 'PutAssetIntoPlay',
           investigator: message.investigator,
           code: placed.code,
-          noSlot: true,
+          noSlot: message.noSlot ?? true,
           tokens: {
             damage: placed.damage,
             horror: placed.horror,

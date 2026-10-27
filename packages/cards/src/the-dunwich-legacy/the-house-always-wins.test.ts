@@ -640,3 +640,21 @@ it.each(['extracurricular-activity', 'the-house-always-wins'])(
     expect(c.log.notes.filter((n) => n === HN.armitageKidnapped)).toHaveLength(1)
   },
 )
+
+it('taking control of Morgan keeps his printed Ally slot', () => {
+  let s = during(
+    game(),
+    (x) => ({ ...change({ location: H.vip })(x), actIndex: 2 }),
+    {
+      type: 'PlaceAsset',
+      code: H.morgan,
+      name: 'Dr. Francis Morgan',
+      placement: { type: 'location', location: H.vip },
+    },
+    ...reveal(H.vip),
+  )
+  s = settle(during(s, keep, ...ability(s, ':parley').then))
+  const morgan = Object.values(s.assets).find((a) => a.code === H.morgan)!
+  expect(morgan.owner).toBe('a')
+  expect(morgan.noSlot).not.toBe(true)
+})

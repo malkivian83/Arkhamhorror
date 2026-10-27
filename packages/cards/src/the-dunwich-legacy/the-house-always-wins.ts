@@ -489,7 +489,12 @@ registerScenario({
       const clues = (a.clues ?? 0) + 1
       const next = { ...s, placedAssets: { ...s.placedAssets, [a.id]: { ...a, clues } } }
       return clues >= s.startingInvestigatorCount
-        ? push(next, { type: 'TakeControlOfPlaced', placed: a.id, investigator })
+        ? push(next, {
+            type: 'TakeControlOfPlaced',
+            placed: a.id,
+            investigator,
+            noSlot: a.code !== H.morgan,
+          })
         : next
     }
     if (key === 'hawDiscardAlly') {
