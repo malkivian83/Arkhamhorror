@@ -1,5 +1,6 @@
 import {
   applyInput,
+  actBehavior,
   availableAbilities,
   availableActions,
   createGame,
@@ -149,9 +150,9 @@ describe('Extracurricular Activity', () => {
       investigator: 'a',
       location: EA.union,
     })
-    expect(
-      availableActions(s, 'a').some((a) => a.kind === 'move' && a.to === EA.dormitories),
-    ).toBe(false)
+    expect(availableActions(s, 'a').some((a) => a.kind === 'move' && a.to === EA.dormitories)).toBe(
+      false,
+    )
     s = during(
       s,
       keep,
@@ -169,6 +170,18 @@ describe('Extracurricular Activity', () => {
       { type: 'MoveTo', investigator: 'a', location: EA.dormitories },
     )
     expect(getInvestigator(s, 'a').location).toBe(EA.dormitories)
+  })
+
+  it('an off-turn investigator finds Jazz at their own location, not the active investigator’s', () => {
+    let s = during(game(2), (s) => ({
+      ...change('b', { location: EA.humanities, clues: 1 })(s),
+      actIndex: 1,
+      encounterDeck: [{ kind: 'treachery', code: EA.jazz, name: '"Jazz" Mulligan', keywords: [] }],
+    }))
+    const search = actBehavior(EA.ricesWhereabouts)!.abilities!(s, s.acts[1]!, 'b')[0]!
+    s = during(s, keep, ...(search.costs ?? []), ...search.then)
+    const jazz = Object.values(s.placedAssets ?? {}).find((a) => a.code === EA.jazz)
+    expect(jazz?.placement).toEqual({ type: 'location', location: EA.humanities })
   })
 
   it('Humanities and Administration discard cards at the end of the relevant investigator turn', () => {

@@ -76,7 +76,17 @@ function run(initial: GameState, observer?: EngineObserver): GameState {
       for (const card of state.encounterDiscard) {
         const count = previous.get(card) ?? 0
         if (count) previous.set(card, count - 1)
-        else discarded.push({ type: 'Forced', trigger: { type: 'encounterCardDiscarded', card } })
+        else
+          discarded.push({
+            type: 'Forced',
+            trigger: {
+              type: 'encounterCardDiscarded',
+              card,
+              ...('investigator' in message && typeof message.investigator === 'string'
+                ? { investigator: message.investigator }
+                : {}),
+            },
+          })
       }
       if (discarded.length) state = push(state, ...discarded)
     }

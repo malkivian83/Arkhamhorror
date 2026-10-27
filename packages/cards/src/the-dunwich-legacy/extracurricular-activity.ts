@@ -293,7 +293,11 @@ registerScenario({
     )
       return [
         specific('eaJazzAppears', {
-          investigator: s.activeTurn ?? leadInvestigator(s)?.id ?? s.investigators[0]!.id,
+          investigator:
+            trigger.investigator ??
+            s.activeTurn ??
+            leadInvestigator(s)?.id ??
+            s.investigators[0]!.id,
         }),
       ]
     return []
@@ -530,7 +534,7 @@ registerAct({
             costs: [{ type: 'SpendClues', investigator, amount: 1 }],
             then: Array.from(
               { length: s.startingInvestigatorCount === 1 ? 10 : 5 },
-              (): Message => ({ type: 'DiscardTopEncounter' }),
+              (): Message => ({ type: 'DiscardTopEncounter', investigator }),
             ),
           },
         ]

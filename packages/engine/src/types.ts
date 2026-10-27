@@ -1060,7 +1060,7 @@ export type Message =
       then: Message[]
       otherwise?: Message[]
     }
-  | { type: 'DiscardTopEncounter' }
+  | { type: 'DiscardTopEncounter'; investigator?: InvestigatorId }
   /** Pistas de la reserva (no de una localización). */
   | { type: 'GainClues'; investigator: InvestigatorId; amount: number }
   /** Una carta de la zona de victoria pasa a estar debajo del acto. */
@@ -1498,7 +1498,7 @@ export type ClueHolder =
 
 /** Momentos en los que se comprueban las habilidades forzadas. */
 export type Trigger =
-  | { type: 'encounterCardDiscarded'; card: EncounterCard }
+  | { type: 'encounterCardDiscarded'; card: EncounterCard; investigator?: InvestigatorId }
   | { type: 'beforeEnemySpawns'; location: LocationId; card: EnemyCard }
   | { type: 'afterRevealChaosToken'; investigator: InvestigatorId; token: ChaosToken }
   /** Before the revealed token resolves; `state.skillTest.revealing` holds it. */
