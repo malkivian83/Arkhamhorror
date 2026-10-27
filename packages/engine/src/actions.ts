@@ -2,6 +2,7 @@ import {
   actBehavior,
   agendaBehavior,
   enemyBehavior,
+  investigatorBehavior,
   locationBehavior,
   playerCardBehavior,
   playerCardDef,
@@ -22,6 +23,7 @@ import {
   getLocation,
   perInvestigator,
   placedLocation,
+  playableHand,
   turnStartedAt,
 } from './state'
 import type {
@@ -54,20 +56,31 @@ export function uniqueAssetInPlay(state: GameState, code: CardCode): boolean {
 export function playableCards(state: GameState, id: InvestigatorId, fast: boolean): CardCode[] {
   const investigator = getInvestigator(state, id)
   if (investigator.eliminated || investigator.location === null) return []
-  return [...new Set(investigator.hand)].filter((code) => {
+  return [...new Set(playableHand(state, id))].filter((code) => {
     const def = playerCardDef(code)
     if (!def || (def.fast ?? false) !== fast) return false
     if (def.type !== 'asset' && def.type !== 'event') return false
     if (def.type === 'asset' && assetsBlocked(state, id)) return false
     if (def.type === 'asset' && uniqueAssetInPlay(state, code)) return false
+    if (def.type === 'asset' && limitTitleReached(state, id, code)) return false
     if (playBlocked(state, id, def.type)) return false
     if (scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, id, code)) return false
     if (!cardAllowed(state, id, code)) return false
     const behavior = playerCardBehavior(code)
     if (def.type === 'event' && !behavior?.play) return false
+    if (behavior?.parley && !parleyCosts(state, id)) return false
     if (cardCost(state, id, code) > investigator.resources) return false
     return behavior?.canPlay?.(state, id) ?? true
   })
+}
+
+/** "Limit 1 per investigator": they already control an asset with this title. */
+export function limitTitleReached(state: GameState, id: InvestigatorId, code: CardCode): boolean {
+  const name = playerCardDef(code)?.name
+  return (
+    !!playerCardBehavior(code)?.limitTitle &&
+    Object.values(state.assets).some((a) => a.owner === id && playerCardDef(a.code)?.name === name)
+  )
 }
 
 /** Motivo, traducible, por el que una carta de la mano no se puede jugar. */
@@ -139,15 +152,29 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
   const location = getLocation(state, here)
   const enemiesHere = enemiesAt(state, here)
 
-  // Sin acciones normales, solo la adicional de evitar (Trish Scarborough).
+  const trait = traitActionTrait(state, id)
+  // Sin acciones normales, solo las adicionales: evitar (Trish Scarborough) o jugar cartas
+  // de un rasgo (Marie Lambeau: Hechizos).
   if (investigator.actionsRemaining <= 0 && !investigator.extraMove) {
-    if (!investigator.extraEvade) return []
-    return [
-      ...playableCards(state, id, false)
-        .filter((card) => playerCardBehavior(card)?.evadeAction)
-        .map((card): Action => ({ kind: 'play', card })),
-      ...engagedEnemies(state, id).map((e): Action => ({ kind: 'evade', enemy: e.id })),
-    ]
+    const evades: Action[] = investigator.extraEvade
+      ? [
+          ...playableCards(state, id, false)
+            .filter((card) => playerCardBehavior(card)?.evadeAction)
+            .map((card): Action => ({ kind: 'play', card })),
+          ...engagedEnemies(state, id).map((e): Action => ({ kind: 'evade', enemy: e.id })),
+        ]
+      : []
+    const traitPlays: Action[] = trait
+      ? playableCards(state, id, false)
+          .filter(
+            (card) =>
+              hasTrait(card, trait) &&
+              !evades.some((a) => a.kind === 'play' && a.card === card) &&
+              actionCost(state, id, { kind: 'play', card }) <= 1,
+          )
+          .map((card): Action => ({ kind: 'play', card }))
+      : []
+    return [...evades, ...traitPlays]
   }
 
   const actions: Action[] = [
@@ -179,7 +206,35 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
     (a) =>
       (!allowed || allowed(state, id, a.kind)) &&
       actionCost(state, id, a) <=
-        investigator.actionsRemaining + (a.kind === 'move' && investigator.extraMove ? 1 : 0),
+        investigator.actionsRemaining +
+          (a.kind === 'move' && investigator.extraMove ? 1 : 0) +
+          (trait && a.kind === 'play' && hasTrait(a.card, trait) ? 1 : 0),
+  )
+}
+
+const hasTrait = (code: CardCode, trait: string) => !!playerCardDef(code)?.traits.includes(trait)
+
+/**
+ * RR Additional Actions: the trait the investigator's restricted additional action can be
+ * used for right now (Marie Lambeau: Spell, while she has doom on cards she controls).
+ */
+export function traitActionTrait(state: GameState, id: InvestigatorId): string | null {
+  const investigator = getInvestigator(state, id)
+  const extra = investigatorBehavior(id)?.traitAction
+  if (!extra || investigator.traitActionUsed || investigator.eliminated || state.activeTurn !== id)
+    return null
+  return extra.active(state, investigator) ? extra.trait : null
+}
+
+/** The [action] ability is printed on a controlled asset with the trait (key sset:…). */
+export function traitAbility(
+  state: GameState,
+  id: InvestigatorId,
+  key: string,
+  trait: string,
+): boolean {
+  return Object.values(state.assets).some(
+    (a) => a.owner === id && key.startsWith(`${a.id}:`) && hasTrait(a.code, trait),
   )
 }
 
@@ -444,10 +499,13 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
     ...(scenarioBehavior(state.scenarioId)?.abilities?.(state, null, id) ?? []),
   ]
   const noFast = fastAbilitiesBlocked(state, id)
+  const trait = traitActionTrait(state, id)
   return options
     .filter(
       (a) =>
-        a.actions <= investigator.actionsRemaining &&
+        a.actions <=
+          investigator.actionsRemaining +
+            (trait && a.actions > 0 && traitAbility(state, id, a.key, trait) ? 1 : 0) &&
         !(noFast && a.actions === 0) &&
         withinLimit(state, a.key, id, a.limit) &&
         !attacksBlockedEnemy(state, id, a) &&
@@ -498,7 +556,8 @@ export function parleyCosts(state: GameState, id: InvestigatorId): Message[] | n
 export function provokesAttacksOfOpportunity(action: Action): boolean {
   if (action.kind === 'play') {
     const behavior = playerCardBehavior(action.card)
-    return !behavior?.evadeAction && !behavior?.noAttacksOfOpportunity
+    // Fight, evade and parley actions do not provoke attacks of opportunity.
+    return !behavior?.evadeAction && !behavior?.noAttacksOfOpportunity && !behavior?.parley
   }
   return action.kind !== 'fight' && action.kind !== 'evade'
 }

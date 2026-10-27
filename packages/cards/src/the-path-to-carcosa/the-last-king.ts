@@ -427,7 +427,6 @@ for (const vip of VIPS) {
       const me = getInvestigator(state, investigator)
       if (vip.requirement === 'resources' && me.resources < 10) return []
       if (vip.requirement === 'hand' && me.hand.length < 6) return []
-      const here = me.location
       const take = takeClue(investigator, self.id)
       const ability: AbilityOption = {
         key: `${self.id}:parley`,
@@ -455,7 +454,7 @@ for (const vip of VIPS) {
                 },
               }
             : take,
-          { type: 'Reactions', trigger: { type: 'afterParley', investigator, location: here } },
+          // "Después de negociar" (Salón de baile, Sala de estar) lo abre el motor.
         ],
       }
       return [ability]
@@ -800,14 +799,21 @@ registerScenario({
       }
       case 'lastKingDining': {
         // Cúrate 1 horror; revela una ficha al azar: con calavera o fallo automático, 1
-        // horror y 1 perdición en el Comedor.
-        if (investigator === null || !state.chaosBag.length) return state
-        const [index, rng] = nextInt(state.rng, state.chaosBag.length)
-        const token = state.chaosBag[index]!
+        // horror y 1 perdición en el Comedor. La revela el investigador (Wendy Adams, el
+        // Padre Mateo, El códice de las eras o Premonición pueden responder).
+        if (investigator === null) return state
+        return push({
+          type: 'RevealTokenOutsideTest',
+          investigator,
+          then: { type: 'ScenarioSpecific', key: 'lastKingDiningToken', data: { investigator } },
+        })
+      }
+      case 'lastKingDiningToken': {
+        if (investigator === null) return state
+        const token = data.token
         const bad = token === 'skull' || token === 'autoFail'
         return {
           ...state,
-          rng,
           log: [
             ...state.log,
             {

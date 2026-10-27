@@ -215,6 +215,10 @@ import { ATTACHED_UPGRADE_RENDERED_CODES } from './attached-upgrades'
 import { PETE_RENDERED_CODES } from './ashcan-pete'
 import { JENNY_RENDERED_CODES } from './jenny-barnes'
 import { LOLA_RENDERED_CODES } from './lola-hayes'
+import { ANDRE_RENDERED_CODES } from './andre-patel'
+import { WENDY_RENDERED_CODES } from './wendy-adams'
+import { MATEO_RENDERED_CODES } from './father-mateo'
+import { MARIE_RENDERED_CODES } from './marie-lambeau'
 import { SURVIVOR_DECK_RENDERED_CODES } from './survivor-deck'
 import { BASIC_ABILITY_RENDERED_CODES } from './basic-abilities'
 import { BASIC_EVENT_RENDERED_CODES } from './basic-events'
@@ -285,6 +289,10 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...PETE_RENDERED_CODES,
   ...JENNY_RENDERED_CODES,
   ...LOLA_RENDERED_CODES,
+  ...ANDRE_RENDERED_CODES,
+  ...WENDY_RENDERED_CODES,
+  ...MATEO_RENDERED_CODES,
+  ...MARIE_RENDERED_CODES,
   ...SURVIVOR_DECK_RENDERED_CODES,
   ...MOVEMENT_SKILL_RENDERED_CODES,
   ...REACTIVE_EVENT_RENDERED_CODES,

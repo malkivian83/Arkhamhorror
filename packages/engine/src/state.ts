@@ -153,8 +153,12 @@ export function enemyHasKeyword(state: GameState, enemy: Enemy, keyword: EnemyKe
   const changed = scenarioBehavior(state.scenarioId)?.enemyKeyword?.(state, enemy, keyword)
   if (changed === false) return false
   if (changed === true) return true
+  // Keywords gained until the end of the round (Pay Your Dues: aloof).
+  const gained = (enemy.roundKeywords ?? []).some(
+    (k) => k.keyword === keyword && k.round === state.round,
+  )
   return (
-    (enemy.keywords.includes(keyword) || !!added) &&
+    (enemy.keywords.includes(keyword) || !!added || gained) &&
     !attachedModifiers(state, enemy.id).some((m) => m.loses?.includes(keyword))
   )
 }
@@ -226,6 +230,30 @@ export function cardAllowed(state: GameState, id: InvestigatorId, code: CardCode
   const investigator = state.investigators.find((i) => i.id === id)
   if (!investigator) return true
   return investigatorBehavior(investigator.id)?.canUseCard?.(state, investigator, code) ?? true
+}
+
+/**
+ * Cards the investigator may play as if they were in hand: the hand plus, with an asset
+ * such as Wendy's Amulet, the topmost event of their discard pile.
+ */
+export function playableHand(state: GameState, id: InvestigatorId): CardCode[] {
+  const investigator = state.investigators.find((i) => i.id === id)
+  if (!investigator) return []
+  const top = investigator.discard.at(-1)
+  const fromDiscard =
+    top !== undefined &&
+    playerCardDef(top)?.type === 'event' &&
+    Object.values(state.assets).some(
+      (a) => a.owner === id && playerCardBehavior(a.code)?.playsTopDiscardEvent,
+    )
+  return fromDiscard ? [...investigator.hand, top] : investigator.hand
+}
+
+/** Wendy's Amulet: its controller's events go to the bottom of their deck, not the discard. */
+export function eventsToDeckBottom(state: GameState, owner: InvestigatorId): boolean {
+  return Object.values(state.assets).some(
+    (a) => a.owner === owner && playerCardBehavior(a.code)?.eventsToDeckBottom,
+  )
 }
 
 /** La carta es de esta clase o papel (las multiclase, de cualquiera de las suyas). */

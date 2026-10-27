@@ -76,6 +76,8 @@ export const use = (state: GameState, found: ReturnType<typeof parley>, investig
     key: found!.key,
     actions: found!.actions,
     provokes: found!.provokes,
+    // Como en la mesa: las negociaciones abren "después de negociar".
+    ...(found!.parley ? { parley: true } : {}),
     then: found!.then,
   })
 

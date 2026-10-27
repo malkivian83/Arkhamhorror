@@ -3,6 +3,7 @@ import { discardOrphanedUpgrades } from './asset-upgrades'
 import { EngineError } from './errors'
 import { handle } from './handlers'
 import { prepareGame, type NewGameOptions } from './setup'
+import { releaseOrphanedSeals } from './seals'
 import { push } from './state'
 import type { GameState, Message, PlayerInput } from './types'
 
@@ -47,7 +48,9 @@ function run(initial: GameState, observer?: EngineObserver): GameState {
     const before = state
     state = synchronizeTurnActions(
       before,
-      discardOrphanedUpgrades(before, handle({ ...state, queue: rest }, message)),
+      releaseOrphanedSeals(
+        discardOrphanedUpgrades(before, handle({ ...state, queue: rest }, message)),
+      ),
       message,
     )
     observer?.(before, message, state)

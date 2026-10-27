@@ -87,7 +87,8 @@ const effects: Record<number, Partial<Message>> = {
   51: { type: 'SearchEncounterForEnemy', top: 9 },
   52: { type: 'Ask' },
   55: { type: 'BeginSkillTest', modifier: 2 },
-  64: { type: 'SealToken' },
+  // Premonition: revela la ficha (admite respuestas) y después la sella.
+  64: { type: 'RevealTokenOutsideTest' },
   66: { type: 'PlaceDoomOnInvestigator', amount: 1 },
   70: { type: 'BeginSkillTest', modifier: 3 },
   79: { type: 'BeginSkillTest', skill: 'agility' },

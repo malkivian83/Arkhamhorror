@@ -300,7 +300,18 @@
       "hunger": "Hambre de cazador: elige una opción.",
       "restorePower": "¿A qué zona devuelves la luz?",
       "pushCart": "¿Adónde mueves el Carro de dinero?"
-    }
+    },
+    "mateo": {
+      "elderSign": "Signo arcano del Padre Mateo: elige una opción"
+    },
+    "marie": {
+      "doom": "Puedes añadir 1 perdición a una carta que controles o retirarle 1"
+    },
+    "grapevine": "Elige un Enemigo en un Lugar revelado a 2 conexiones como máximo",
+    "grapevineStep": "Elige el siguiente Lugar del camino más corto",
+    "rightUnderTheirNoses": "¿Dónde descubres la pista?",
+    "watchThis": "\"¡Mira esto!\": gasta hasta 3 recursos",
+    "loseAdditionalAction": "¿Qué acción adicional pierdes?"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -613,6 +624,23 @@
         "88030": "{card}: al empezar la fase de Enemigos, invierte el sentido del Errante de un Casino de un Lugar conectado.",
         "88031": "{card}: al comprobar iconos en un Lugar Juego, sube tu alarma 1 para cambiar un icono, o reduce tu alarma en 1."
       }
+    },
+    "mateo": {
+      "drawAndGain": "Roba 1 carta y obtén 1 recurso",
+      "action": "Realiza una acción adicional en este turno"
+    },
+    "marie": {
+      "addDoom": "Añade 1 perdición a {card}",
+      "removeDoom": "Retira 1 perdición de {card}"
+    },
+    "polishedCane": "Agota el Bastón bruñido para evitar automáticamente a {enemy}",
+    "discoverHere": "Descubre 1 pista en tu Lugar",
+    "discoverAt": "Descubre 1 pista en {location}",
+    "spendResources": "Gasta {n} recursos",
+    "loseAdditionalAction": {
+      "evade": "La acción adicional de evitar",
+      "move": "La acción adicional de moverse",
+      "trait": "La acción adicional para Hechizos"
     }
   },
   "phase": {
@@ -951,7 +979,22 @@
       "mesmerize": "Isamara canta: evita a todos los Casino de aquí",
       "pushCart": "Mover el Carro de dinero",
       "hideInCart": "Esconderse en el Carro de dinero (1 daño al carro)"
-    }
+    },
+    "andre": {
+      "action": "André Patel: realiza una acción adicional en este turno"
+    },
+    "wendy": {
+      "cancel": "Wendy Adams: descarta 1 carta de tu mano para cancelar la ficha {token} y revelar otra"
+    },
+    "mateo": {
+      "elderSign": "Padre Mateo: cancela la ficha [auto_fail] de {name} y considérala una [elder_sign]"
+    },
+    "resolveSealed": "Descarta {card}: resuelve la ficha {token} sellada en lugar de revelar una",
+    "baronSamedi": "Agota al Barón Samedi: coloca 1 perdición sobre él (con 3 o más, descártalo)",
+    "centerStage": "El centro de atención: gasta 1 de renombre y agótalo: +{n} a tu valor de habilidad",
+    "fame": "Fama: gasta 1 de renombre: Negociar. Obtén 2 recursos",
+    "grapevine": "El mentidero: gasta 1 rumor y agótalo: Negociar. Muévete hasta un Enemigo a 2 conexiones como máximo y enfréntate a él",
+    "extravagantRing": "Anillo extravagante: gasta 1 de renombre y agótalo: +2 a tu valor de habilidad para esta prueba"
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -1065,7 +1108,13 @@
       "won": "¡Premio! {amount} recursos.",
       "lost": "Gana la banca.",
       "wellspring": "{name} toma El manantial de fortuna."
-    }
+    },
+    "additionalActions": "{name} puede realizar {n} acción(es) adicional(es) en este turno.",
+    "tokenCanceled": "Se cancela la ficha {token} y vuelve a la bolsa del caos.",
+    "tokenTreatedAs": "Se cancela la ficha {token} y se considera {face}.",
+    "discardRemoved": "{name} retira de la partida las {n} cartas de su pila de descartes.",
+    "agendaHeld": "Hasta el final de la fase, el plan no puede avanzar por llegar a su umbral de perdición.",
+    "additionalDamage": "{card} coloca {n} daño adicional sobre {name}."
   },
   "table": {
     "scenarioSkipped": "Escenario omitido",
@@ -3266,7 +3315,31 @@
       "60130": "Rápido. Juega esta carta durante cualquier oportunidad [free].\nEnfréntate a cualquier cantidad de Enemigos que estén en tu Lugar. Por cada Enemigo enfrentado de esta forma, inflígele 1 punto de daño y roba 1 carta.",
       "03273": "Devuelve 3 habilidades [[Innato]] de tu pila de descartes a tu mano.",
       "04313": "Rápido. Juego esta carta durante cualquier oportunidad de los jugadores [free].\nElige y descarta del juego una Traición que no sea Debilidad y que no esté vinculada a un Enemigo [[Élite]].",
-      "53009": "Elige y descarta del juego una Traición que no sea Debilidad y que no esté vinculada a un Enemigo [[Élite]]."
+      "53009": "Elige y descarta del juego una Traición que no sea Debilidad y que no esté vinculada a un Enemigo [[Élite]].",
+      "60351": "[reaction] Después de que tengas éxito en una prueba de habilidad por 2 o más durante tu turno: puedes realizar una acción adicional en este turno (límite de una vez por ronda). [elder_sign]: +2; obtén 1 recurso.",
+      "60352": "Solo para el mazo de André Patel. Mientras esté asignada a un ataque o una evasión, obtiene [wild] [wild].",
+      "60353": "Solo para el mazo de André Patel. Mientras esté asignada a una prueba de habilidad de una carta de Escenario, obtiene [wild] [wild].",
+      "60354": "Solo para el mazo de André Patel. Mientras esté asignada a una investigación o negociación, obtiene [wild] [wild].",
+      "60355": "Revelación – Pon El peso del mundo en juego en tu zona de amenaza. Obligado – Cuando fracases en una prueba de habilidad mientras está en juego: recibe 1 punto de horror y barájala de nuevo en tu mazo.",
+      "01005": "[reaction] Cuando reveles una ficha de Caos, elige y descarta 1 carta de tu mano: cancela esa ficha, devuélvela a la bolsa y revela una nueva (límite de una vez por prueba/capacidad). [elder_sign]: +0; si el Amuleto de Wendy está en juego, tienes éxito automáticamente.",
+      "01014": "Solo para el mazo de Wendy Adams. Puedes jugar el Evento superior de tu pila de descartes como si estuviera en tu mano. Obligado – Después de que juegues un Evento o descartes un Evento del juego: colócalo en la parte inferior de tu mazo en lugar de en tu pila de descartes.",
+      "01015": "Revelación – Recibe 2 puntos de horror directo y retira de la partida todas las cartas de tu pila de descartes.",
+      "04004": "[reaction] Cuando un investigador revele una ficha [auto_fail]: cancélala y considérala una ficha [elder_sign] (límite de una vez por partida). [elder_sign]: tienes éxito automáticamente. Al terminar la prueba, elige una: roba 1 carta y obtén 1 recurso o, si es tu turno, realiza una acción adicional en este turno.",
+      "04013": "Solo para el mazo del Padre Mateo. Sello ([elder_sign]). Recibes +1 [willpower] mientras haya una ficha sellada aquí. [reaction] Cuando fueses a revelar una ficha de la bolsa del caos, descarta El códice de las eras: resuelve la ficha [elder_sign] sellada como si acabara de revelarse, en su lugar.",
+      "04014": "Presa – Solo el Padre Mateo. Cazador. Revelación – Busca la ficha [elder_sign] en la bolsa del caos y séllala sobre las Serpientes de Yig (vuelve a la bolsa cuando abandonan el juego).",
+      "05006": "Mientras tengas 1 o más fichas de Perdición entre las cartas que controlas, puedes realizar una acción adicional en tu turno, solo para jugar cartas Hechizo o activar capacidades [action] de Hechizos. [elder_sign]: +1; puedes añadir o retirar 1 perdición de una carta que controles.",
+      "05018": "Solo para el mazo de Marie Lambeau. Rápido. Juégala cuando el plan fuese a avanzar por llegar a su umbral de perdición. Hasta el final de la fase, el plan no puede avanzar por llegar a su umbral de perdición. Retira la Canción desconcertante de la partida.",
+      "05019": "Revelación – Pon el Barón Samedi en juego. No puede abandonar el juego mientras tenga menos de 3 perdiciones. Obligado – Cuando se coloque daño sobre un investigador de su Lugar: coloca 1 daño adicional sobre ese investigador. [fast] Agota al Barón Samedi: coloca 1 perdición sobre él; con 3 o más, descártalo.",
+      "60356": "Revelación – Pon Desprevenido en juego en tu zona de amenaza. Obligado – La primera vez que fracases en una prueba de habilidad durante tu turno: roba la primera carta del mazo de Encuentros. Si esa carta es un Enemigo, descarta Desprevenido.",
+      "60357": "Límite de 1 por investigador. Usos (3 de renombre). Si no hay renombre en El centro de atención, descártalo. [fast] Durante una prueba de habilidad, gasta 1 de renombre y agota El centro de atención: recibes +1 a tu valor de habilidad por cada acción que hayas gastado en esta ronda (incluida ésta si se activa durante una de tus acciones).",
+      "60358": "Usos (4 de renombre). Si no hay renombre en Fama, descártala. [action] Si hay un Enemigo en tu Lugar, gasta 1 de renombre: Negociar. Obtén 2 recursos.",
+      "60359": "Usos (3 rumores). Si no hay rumores en El mentidero, descártalo. [action] Gasta 1 rumor y agota El mentidero: Negociar. Elige un Enemigo que esté en un Lugar revelado a un máximo de 2 conexiones. Muévete (de Lugar en Lugar) por el camino más corto hasta su Lugar y enfréntate a él.",
+      "60360": "Usos (3 de renombre). [reaction] Cuando fueses a tener éxito en una prueba de habilidad, gasta 1 de renombre y agota el Anillo extravagante: recibes +2 a tu valor de habilidad para esta prueba.",
+      "60362": "Obtienes 1 recurso adicional durante la fase de Mantenimiento. Obligado – Después de que fracases en una prueba de habilidad: inflige 1 punto de horror a Marcus Sengstacke.",
+      "60363": "[action]: Combatir ([combat]). Añade tu [agility] a tu [combat] para este ataque. Si este ataque tiene éxito por 2 o más contra un Enemigo que no sea Élite, puedes agotar el Bastón bruñido para evitar automáticamente a ese Enemigo.",
+      "60365": "Negociar. Elige un Enemigo con X de salud restante que no sea Élite y que esté en tu Lugar. Ese Enemigo deja de estar enfrentado a cada investigador y obtiene Indiferente hasta el final de la ronda. Descubre 1 pista en tu Lugar.",
+      "60368": "Rápido. Juega esta carta después de evitar con éxito a un Enemigo. Descubre 1 pista en tu Lugar, o bien 1 pista en un Lugar conectado si tuviste éxito por 2 o más.",
+      "60371": "Sólo puedes asignar esta carta a una prueba de habilidad que estés realizando. Como coste adicional para asignarla, gasta hasta 3 recursos. Si tienes éxito por 1 o más, obtén el doble de esa cantidad de recursos."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -3278,7 +3351,11 @@
       "12173": "Derrotar a Elokoss conduce a la resolución uno.",
       "02005": "Mazo de 30 cartas: Superviviente y neutral de nivel 0–5, más hasta cinco cartas de nivel 0 de otras clases. Requiere Duke, Roto por las pesadillas y una debilidad básica aleatoria.",
       "02003": "Mazo de 30 cartas: Rebelde y neutral de nivel 0–5, más hasta cinco cartas de nivel 0 de otras clases. Requiere .45 gemelas de Jenny, Buscando a Izzie y una debilidad básica aleatoria.",
-      "03006": "Mazo de 35 cartas: Superviviente, Guardián, Buscador, Rebelde y Místico de nivel 0–3 y neutrales de nivel 0–5, con al menos 7 cartas de cada una de 3 clases distintas. Requiere 2 Improvisaciones, 2 Crisis de identidad y 1 debilidad básica aleatoria."
+      "03006": "Mazo de 35 cartas: Superviviente, Guardián, Buscador, Rebelde y Místico de nivel 0–3 y neutrales de nivel 0–5, con al menos 7 cartas de cada una de 3 clases distintas. Requiere 2 Improvisaciones, 2 Crisis de identidad y 1 debilidad básica aleatoria.",
+      "60351": "Mazo de 30 cartas: Rebelde y neutrales de nivel 0–5. Requiere Conocer la salida, Conocer el texto, Conocer la escena, El peso del mundo y 1 debilidad básica aleatoria.",
+      "01005": "Mazo de 30 cartas: Superviviente y neutrales de nivel 0–5 y Rebelde de nivel 0–2. Requiere Amuleto de Wendy, Sola y abandonada y 1 debilidad básica aleatoria.",
+      "04004": "Mazo de 30 cartas: Místico y neutrales de nivel 0–5 y cartas Bendecido de nivel 0–3. Requiere El códice de las eras, Serpientes de Yig y 1 debilidad básica aleatoria. Empieza la campaña con 5 puntos de experiencia adicionales.",
+      "05006": "Mazo de 30 cartas: Hechizos de nivel 0–5, Místico de nivel 0–3, neutrales de nivel 0–5, cartas Ocultismo de nivel 0 y hasta otras cinco cartas de nivel 0 de Buscador y/o Superviviente. Requiere Canción desconcertante, Barón Samedi y 1 debilidad básica aleatoria."
     },
     "victory": "Victoria {n}",
     "names": {
@@ -3775,7 +3852,31 @@
       "60130": "Provocación",
       "03273": "Supervivencia real",
       "04313": "Alterar el destino",
-      "53009": "Alterar el destino"
+      "53009": "Alterar el destino",
+      "60351": "André Patel",
+      "60352": "Conocer la salida",
+      "60353": "Conocer el texto",
+      "60354": "Conocer la escena",
+      "60355": "El peso del mundo",
+      "01005": "Wendy Adams",
+      "01014": "Amuleto de Wendy",
+      "01015": "Sola y abandonada",
+      "04004": "Padre Mateo",
+      "04013": "El códice de las eras",
+      "04014": "Serpientes de Yig",
+      "05006": "Marie Lambeau",
+      "05018": "Canción desconcertante",
+      "05019": "Barón Samedi",
+      "60356": "Desprevenido",
+      "60357": "El centro de atención",
+      "60358": "Fama",
+      "60359": "El mentidero",
+      "60360": "Anillo extravagante",
+      "60362": "Marcus Sengstacke",
+      "60363": "Bastón bruñido",
+      "60365": "Ganárselo a pulso",
+      "60368": "Delante de sus narices",
+      "60371": "\"¡Mira esto!\""
     }
   },
   "account": {

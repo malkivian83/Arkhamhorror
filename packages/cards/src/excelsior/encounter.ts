@@ -34,7 +34,8 @@ import {
   nearestEnemies,
   nearestLocations,
   onSpecific,
-  revealRandomToken,
+  revealedToken,
+  revealToken,
   specific,
   tokenText,
 } from './helpers'
@@ -307,13 +308,15 @@ registerEnemy({
       : [],
 })
 
-onSpecific('snatch', (state, data) => {
+onSpecific('snatch', (state, data) =>
+  push(state, revealToken(String(data.investigator), 'snatchToken', data)),
+)
+onSpecific('snatchToken', (state, data) => {
   const investigator = String(data.investigator)
-  const [token, next] = revealRandomToken(state)
-  if (token === undefined) return state
+  const token = revealedToken(data)
   const name = getInvestigator(state, investigator).name
   return push(
-    next,
+    state,
     log('tokenRevealed', { name, token: tokenText(token) }),
     ...(token === 'autoFail'
       ? [
@@ -334,11 +337,13 @@ registerEnemy({
       : [],
 })
 
-onSpecific('enclaveToken', (state, data) => {
-  const [token, next] = revealRandomToken(state)
-  if (token === undefined) return state
+onSpecific('enclaveToken', (state, data) =>
+  push(state, revealToken(String(data.investigator), 'enclaveTokenRevealed', data)),
+)
+onSpecific('enclaveTokenRevealed', (state, data) => {
+  const token = revealedToken(data)
   return push(
-    next,
+    state,
     log('tokenRevealed', {
       name: getInvestigator(state, String(data.investigator)).name,
       token: tokenText(token),

@@ -84,6 +84,7 @@ vigente de pendientes.
 | 87 | [Fortuna e insensatez](87-fortuna-e-insensatez.md) | Historia secundaria en dos partes: plan por entregas, mecánicas nuevas, datos, imágenes y narración. |
 
 - [88 · La noche de la fanática](88-noche-de-la-fanatica.md): El encuentro, reglas compartidas, Grimorio y continuación.
+- [89 · Wendy, Mateo, Marie y André](89-investigadores-wendy-mateo-marie-andre.md): cuatro investigadores y sus exclusivas; cancelar y sellar fichas, éxito automático, acción por rasgo y construcción por rasgos.
 
 ## Decisiones ya tomadas
 

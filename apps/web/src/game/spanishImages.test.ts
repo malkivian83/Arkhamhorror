@@ -5,7 +5,7 @@ import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { fallbackCards } from './fallbackCards'
 import { RENDERED_PLAYER_CARD_CODES } from '@lcg/cards'
-import { isPermanent, playerCardBehavior } from '@lcg/engine'
+import { isPermanent, playerCardBehavior, playerCardDef } from '@lcg/engine'
 
 describe('imágenes españolas de referencia y alternativas', () => {
   it('shows the player back for a dimensional duplicate instead of the Duplicator scan', () => {
@@ -118,7 +118,9 @@ describe('imágenes españolas de referencia y alternativas', () => {
           if (
             ['skill', 'investigator', 'treachery', 'enemy'].includes(card.type_code) ||
             isPermanent(code) ||
-            playerCardBehavior(code)?.dilemma
+            playerCardBehavior(code)?.dilemma ||
+            // Debilidades de apoyo sin coste impreso (Barón Samedi).
+            (playerCardDef(code)?.weakness && playerCardDef(code)?.cost === undefined)
           )
             expect(card.cost, code).toBeUndefined()
           else expect(card.cost, code).toBeTypeOf('number')

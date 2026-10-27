@@ -46,29 +46,39 @@ export interface LocalizedCard {
 }
 
 /**
+ * Paquetes de investigadores: solo los investigadores habilitados y sus exclusivas; el resto
+ * del paquete queda oculto (los escenarios y las demás cartas usan el catálogo local).
+ */
+const INVESTIGATOR_PACKS: Record<string, string[]> = {
+  core: ['01005', '01014', '01015'],
+  dwl: ['02005', '02014', '02015', '02003', '02010', '02011'],
+  ptc: ['03006', '03018', '03019'],
+  tfa: ['04004', '04013', '04014'],
+  tcu: ['05006', '05018', '05019'],
+  and: [
+    ...['60351', '60352', '60353', '60354', '60355', '60356', '60357', '60358', '60359'],
+    ...['60360', '60361', '60362', '60363', '60364', '60365', '60366', '60367', '60368'],
+    ...['60369', '60370', '60371'],
+  ],
+}
+const packUrls = (host: string) =>
+  Object.keys(INVESTIGATOR_PACKS).map((pack) => `https://${host}/api/public/cards/${pack}.json`)
+
+/**
  * Paquetes de cada idioma: caja básica 2026, La gala del ecuador del invierno,
- * Asesinato en el hotel Excelsior (con sus encuentros) y los investigadores de Dunwich y
- * Carcosa habilitados.
+ * Asesinato en el hotel Excelsior (con sus encuentros) y los investigadores habilitados.
  */
 const SOURCES: Record<string, string[]> = {
-  en: [
-    'https://arkhamdb.com/api/public/cards/dwl.json',
-    'https://arkhamdb.com/api/public/cards/ptc.json',
-  ],
+  en: packUrls('arkhamdb.com'),
   es: [
     'https://es.arkhamdb.com/api/public/cards/core_2026.json',
     'https://es.arkhamdb.com/api/public/cards/tmg.json?encounter=1',
     'https://es.arkhamdb.com/api/public/cards/hotel.json?encounter=1',
-    'https://es.arkhamdb.com/api/public/cards/dwl.json',
-    'https://es.arkhamdb.com/api/public/cards/ptc.json',
+    ...packUrls('es.arkhamdb.com'),
   ],
 }
-// v6: also Lola Hayes and her signatures (El camino a Carcosa) in EN/ES.
-const CACHE_PREFIX = 'lcg:cards:v6:'
-/** Dunwich investigators enabled so far; the rest of that pack stays hidden. */
-const DUNWICH_CODES = ['02005', '02014', '02015', '02003', '02010', '02011']
-/** El camino a Carcosa: solo Lola Hayes y sus exclusivas (los escenarios usan el catálogo local). */
-const CARCOSA_CODES = ['03006', '03018', '03019']
+// v7: also Wendy Adams, Father Mateo, Marie Lambeau and André Patel in EN/ES.
+const CACHE_PREFIX = 'lcg:cards:v7:'
 const CACHE_HOURS = 24
 
 /** Bundled alternatives plus any available translated card data. */
@@ -151,11 +161,8 @@ export async function useCardLocale(locale: string): Promise<void> {
       if (!response.ok) throw new Error(String(response.status))
       const pack = (await response.json()) as LocalizedCard[]
       if (!Array.isArray(pack)) throw new Error('Invalid card data')
-      return source.endsWith('/dwl.json')
-        ? pack.filter((c) => DUNWICH_CODES.includes(c.code))
-        : source.endsWith('/ptc.json')
-          ? pack.filter((c) => CARCOSA_CODES.includes(c.code))
-          : pack
+      const enabled = INVESTIGATOR_PACKS[source.match(/\/cards\/(\w+)\.json/)?.[1] ?? '']
+      return enabled ? pack.filter((c) => enabled.includes(c.code)) : pack
     }),
   )
   const cards = packs.flatMap((p) => (p.status === 'fulfilled' ? p.value : []))

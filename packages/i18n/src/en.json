@@ -300,7 +300,18 @@
       "hunger": "Hunter's Hunger: choose one.",
       "restorePower": "Restore power to which area?",
       "pushCart": "Move the Cash Cart where?"
-    }
+    },
+    "mateo": {
+      "elderSign": "Father Mateo's elder sign: choose one"
+    },
+    "marie": {
+      "doom": "You may add 1 doom to or remove 1 doom from a card you control"
+    },
+    "grapevine": "Choose an enemy at a revealed location up to 2 connections away",
+    "grapevineStep": "Choose the next location of the shortest path",
+    "rightUnderTheirNoses": "Where do you discover the clue?",
+    "watchThis": "\"Watch this!\": spend up to 3 resources",
+    "loseAdditionalAction": "Which additional action do you lose?"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -613,6 +624,23 @@
         "88030": "{card}: at the start of the enemy phase, reverse the patrol direction of a Casino enemy at a connecting location.",
         "88031": "{card}: when you check game icons at a Game location, raise your alarm by 1 to change an icon, or reduce your alarm by 1."
       }
+    },
+    "mateo": {
+      "drawAndGain": "Draw 1 card and gain 1 resource",
+      "action": "Take an additional action this turn"
+    },
+    "marie": {
+      "addDoom": "Add 1 doom to {card}",
+      "removeDoom": "Remove 1 doom from {card}"
+    },
+    "polishedCane": "Exhaust Polished Cane to automatically evade {enemy}",
+    "discoverHere": "Discover 1 clue at your location",
+    "discoverAt": "Discover 1 clue at {location}",
+    "spendResources": "Spend {n} resources",
+    "loseAdditionalAction": {
+      "evade": "The additional evade action",
+      "move": "The additional move action",
+      "trait": "The additional action for Spells"
     }
   },
   "phase": {
@@ -951,7 +979,22 @@
       "mesmerize": "Isamara sings: evade every Casino enemy here",
       "pushCart": "Move the Cash Cart",
       "hideInCart": "Hide in the Cash Cart (1 damage to it)"
-    }
+    },
+    "andre": {
+      "action": "André Patel: take an additional action this turn"
+    },
+    "wendy": {
+      "cancel": "Wendy Adams: discard 1 card from your hand to cancel the {token} token and reveal a new one"
+    },
+    "mateo": {
+      "elderSign": "Father Mateo: cancel the [auto_fail] token of {name} and treat it as an [elder_sign]"
+    },
+    "resolveSealed": "Discard {card}: resolve the sealed {token} token instead of revealing one",
+    "baronSamedi": "Exhaust Baron Samedi: place 1 doom on him (with 3 or more, discard him)",
+    "centerStage": "Center Stage: spend 1 renown and exhaust it: +{n} skill value",
+    "fame": "Fame: spend 1 renown: Parley. Gain 2 resources",
+    "grapevine": "The Grapevine: spend 1 rumor and exhaust it: Parley. Move to an enemy up to 2 connections away and engage it",
+    "extravagantRing": "Extravagant Ring: spend 1 renown and exhaust it: +2 skill value for this test"
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -1065,7 +1108,13 @@
       "won": "Win! {amount} resources.",
       "lost": "The house wins.",
       "wellspring": "{name} takes The Wellspring of Fortune."
-    }
+    },
+    "additionalActions": "{name} may take {n} additional action(s) this turn.",
+    "tokenCanceled": "The {token} token is canceled and returned to the chaos bag.",
+    "tokenTreatedAs": "The {token} token is canceled and treated as {face}.",
+    "discardRemoved": "{name} removes the {n} cards of their discard pile from the game.",
+    "agendaHeld": "Until the end of the phase, the agenda cannot advance by reaching its doom threshold.",
+    "additionalDamage": "{card} places {n} additional damage on {name}."
   },
   "table": {
     "scenarioSkipped": "Scenario skipped",
@@ -3266,7 +3315,31 @@
       "60130": "Fast. Play during any [fast] window.\nEngage any number of enemies at your location. For each enemy engaged this way, deal it 1 damage and draw 1 card.",
       "03273": "Return 3 [[Innate]] skills from your discard pile to your hand.",
       "04313": "Fast. Play during any [fast] player window.\nChoose and discard from play a non-weakness treachery that is not attached to an [[Elite]] enemy.",
-      "53009": "Choose and discard from play a non-weakness treachery that is not attached to an [[Elite]] enemy."
+      "53009": "Choose and discard from play a non-weakness treachery that is not attached to an [[Elite]] enemy.",
+      "60351": "[reaction] After you succeed at a skill test by 2 or more during your turn: you may take an additional action this turn (limit once per round). [elder_sign]: +2; gain 1 resource.",
+      "60352": "André Patel deck only. While this card is committed to an attack or an evasion, it gains [wild] [wild].",
+      "60353": "André Patel deck only. While this card is committed to a skill test on a scenario card, it gains [wild] [wild].",
+      "60354": "André Patel deck only. While this card is committed to an investigation or parley, it gains [wild] [wild].",
+      "60355": "Revelation – Put Weight of the World into play in your threat area. Forced – When you fail a skill test while it is in play: take 1 horror and shuffle it back into your deck.",
+      "01005": "[reaction] When you reveal a chaos token, choose and discard 1 card from your hand: cancel that token, return it to the bag and reveal a new one (limit once per test/ability). [elder_sign]: +0; if Wendy's Amulet is in play, you automatically succeed instead.",
+      "01014": "Wendy Adams deck only. You may play the topmost event in your discard pile as if it were in your hand. Forced – After you play an event or discard an event from play: place it on the bottom of your deck instead of in your discard pile.",
+      "01015": "Revelation – Take 2 direct horror and remove all cards in your discard pile from the game.",
+      "04004": "[reaction] When an investigator reveals an [auto_fail] token: cancel it and treat it as an [elder_sign] token instead (limit once per game). [elder_sign]: you automatically succeed. After this test ends, choose one: draw 1 card and gain 1 resource, or, if it is your turn, take an additional action this turn.",
+      "04013": "Father Mateo deck only. Seal ([elder_sign]). You get +1 [willpower] while there is a token sealed here. [reaction] When you would reveal a chaos token from the chaos bag, discard The Codex of Ages: resolve the sealed [elder_sign] token as if it were just revealed, instead.",
+      "04014": "Prey – Father Mateo only. Hunter. Revelation – Search the chaos bag for the [elder_sign] token and seal it on Serpents of Yig (it returns to the bag when Serpents of Yig leaves play).",
+      "05006": "While you have 1 or more doom among cards you control, you may take an additional action during your turn, which can only be used to play Spell cards or activate Spell [action] abilities. [elder_sign]: +1; you may add 1 doom to or remove 1 doom from a card you control.",
+      "05018": "Marie Lambeau deck only. Fast. Play when the agenda would advance by reaching its doom threshold. Until the end of the phase, the agenda cannot advance by reaching its doom threshold. Remove Mystifying Song from the game.",
+      "05019": "Revelation – Put Baron Samedi into play. He cannot leave play while he has less than 3 doom on him. Forced – When any amount of damage is placed on an investigator at his location: place 1 additional damage on that investigator. [fast] Exhaust Baron Samedi: place 1 doom on him; with 3 or more, discard him.",
+      "60356": "Revelation – Put Unaware into play in your threat area. Forced – The first time you fail a skill test during your turn: draw the top card of the encounter deck. If that card is an enemy, discard Unaware.",
+      "60357": "Limit 1 per investigator. Uses (3 renown). If there is no renown on Center Stage, discard it. [fast] During a skill test, spend 1 renown and exhaust Center Stage: you get +1 skill value for each action you have spent this round (including this one, if triggered during one of your actions).",
+      "60358": "Uses (4 renown). If there is no renown on Fame, discard it. [action] If there is an enemy at your location, spend 1 renown: Parley. Gain 2 resources.",
+      "60359": "Uses (3 rumors). If there are no rumors on The Grapevine, discard it. [action] Spend 1 rumor and exhaust The Grapevine: Parley. Choose an enemy at a revealed location up to 2 connections away. Move (one location at a time) along the shortest path to that enemy's location and engage it.",
+      "60360": "Uses (3 renown). [reaction] When you would succeed at a skill test, spend 1 renown and exhaust Extravagant Ring: you get +2 skill value for this test.",
+      "60362": "You gain 1 additional resource during the upkeep phase. Forced – After you fail a skill test: deal 1 horror to Marcus Sengstacke.",
+      "60363": "[action]: Fight ([combat]). Add your [agility] to your [combat] for this attack. If this attack succeeds by 2 or more against a non-Elite enemy, you may exhaust Polished Cane to automatically evade that enemy.",
+      "60365": "Parley. Choose a non-Elite enemy at your location with X remaining health. That enemy disengages from each investigator and gains aloof until the end of the round. Discover 1 clue at your location.",
+      "60368": "Fast. Play after you successfully evade an enemy. Discover 1 clue at your location (if you succeeded by 2 or more, you may discover 1 clue at a connecting location, instead).",
+      "60371": "Commit only to a skill test you are performing. As an additional cost to commit \"Watch this!\" to a skill test, spend up to 3 resources. If you succeed by 1 or more, gain twice that many resources."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -3278,7 +3351,11 @@
       "12173": "Defeating Elokoss leads to resolution one.",
       "02005": "30-card deck: Survivor and Neutral level 0–5, plus up to five level 0 cards from other classes. Requires Duke, Wracked by Nightmares and a random basic weakness.",
       "02003": "30-card deck: Rogue and Neutral level 0–5, plus up to five level 0 cards from other classes. Requires Jenny's Twin .45s, Searching for Izzie and a random basic weakness.",
-      "03006": "Deck size 35: Survivor, Guardian, Seeker, Rogue and Mystic cards level 0–3 and Neutral cards level 0–5, with at least 7 cards from each of 3 different classes. Requires 2 Improvisation, 2 Crisis of Identity and 1 random basic weakness."
+      "03006": "Deck size 35: Survivor, Guardian, Seeker, Rogue and Mystic cards level 0–3 and Neutral cards level 0–5, with at least 7 cards from each of 3 different classes. Requires 2 Improvisation, 2 Crisis of Identity and 1 random basic weakness.",
+      "60351": "30-card deck: Rogue and Neutral cards level 0–5. Requires Know the Exit, Know the Line, Know the Scene, Weight of the World and 1 random basic weakness.",
+      "01005": "30-card deck: Survivor and Neutral cards level 0–5 and Rogue cards level 0–2. Requires Wendy's Amulet, Abandoned and Alone and 1 random basic weakness.",
+      "04004": "30-card deck: Mystic and Neutral cards level 0–5 and Blessed cards level 0–3. Requires The Codex of Ages, Serpents of Yig and 1 random basic weakness. Begins the campaign with 5 additional experience.",
+      "05006": "30-card deck: Spell cards level 0–5, Mystic cards level 0–3, Neutral cards level 0–5, Occult cards level 0 and up to five other level 0 Seeker and/or Survivor cards. Requires Mystifying Song, Baron Samedi and 1 random basic weakness."
     },
     "victory": "Victory {n}",
     "names": {
@@ -3775,7 +3852,31 @@
       "60130": "Taunt",
       "03273": "True Survivor",
       "04313": "Alter Fate",
-      "53009": "Alter Fate"
+      "53009": "Alter Fate",
+      "60351": "André Patel",
+      "60352": "Know the Exit",
+      "60353": "Know the Line",
+      "60354": "Know the Scene",
+      "60355": "Weight of the World",
+      "01005": "Wendy Adams",
+      "01014": "Wendy's Amulet",
+      "01015": "Abandoned and Alone",
+      "04004": "Father Mateo",
+      "04013": "The Codex of Ages",
+      "04014": "Serpents of Yig",
+      "05006": "Marie Lambeau",
+      "05018": "Mystifying Song",
+      "05019": "Baron Samedi",
+      "60356": "Unaware",
+      "60357": "Center Stage",
+      "60358": "Fame",
+      "60359": "The Grapevine",
+      "60360": "Extravagant Ring",
+      "60362": "Marcus Sengstacke",
+      "60363": "Polished Cane",
+      "60365": "Pay Your Dues",
+      "60368": "Right Under Their Noses",
+      "60371": "\"Watch this!\""
     }
   },
   "account": {

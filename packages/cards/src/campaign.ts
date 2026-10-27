@@ -43,7 +43,9 @@ import {
   shuffle,
   seedRng,
   emptyCampaignLog,
+  deckOptionAllows,
   isPermanent,
+  offClassAllowed,
   playerCardBehavior,
   playerCardDef,
   treacheryBehavior,
@@ -104,6 +106,10 @@ import './basic-action-skills'
 import './ashcan-pete'
 import './jenny-barnes'
 import './lola-hayes'
+import './andre-patel'
+import './wendy-adams'
+import './father-mateo'
+import './marie-lambeau'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
@@ -213,6 +219,9 @@ export function newCampaign(
     record.mentalTrauma += trauma.mental
     record.xp += startingExperience(investigator.deck) - startingExperienceSpent(investigator.deck)
   }
+  // Father Mateo: bonus experience when the campaign begins.
+  for (const investigator of investigators)
+    log.investigators[investigator.id]!.xp += playerCardDef(investigator.id)?.bonusExperience ?? 0
   if (rewards.length) log.rewards = [...new Set(rewards)]
   if (boons.includes('ancients') && !campaignDefinition(campaignId).standalone) {
     for (const record of Object.values(log.investigators)) record.xp += 5
@@ -618,12 +627,8 @@ export function purchaseOptions(
         ![IN_THE_THICK_OF_IT, '08071'].includes(card.code) &&
         isImplemented(card.code) &&
         !isSignature(card.code) &&
-        (options.some(
-          (o) =>
-            (card.classes ?? [card.class]).some((f) => o.classes.includes(f)) &&
-            (card.xp ?? 0) <= o.maxLevel,
-        ) ||
-          (!!byCode(investigator)?.offClassLevelZeroLimit && (card.xp ?? 0) === 0)),
+        (options.some((o) => deckOptionAllows(o, card)) ||
+          offClassAllowed(byCode(investigator)!, card)),
     )
     .flatMap((card): PurchaseOption[] => {
       const base = {
@@ -693,10 +698,7 @@ export function purchase(
         d &&
         countsForSize(c) &&
         !d.reward &&
-        !byCode(investigator)!.deckOptions!.some(
-          (o) =>
-            (d.classes ?? [d.class]).some((f) => o.classes.includes(f)) && level(c) <= o.maxLevel,
-        )
+        !byCode(investigator)!.deckOptions!.some((o) => deckOptionAllows(o, d))
       )
     }).length > offClassLimit
   )
