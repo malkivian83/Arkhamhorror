@@ -6,6 +6,7 @@ import { useLabels } from '../game/labels'
 import { localName } from '../game/localized'
 import { zoomed } from '../game/zoom'
 import CardTranslation from './CardTranslation.vue'
+import CardNarration from './CardNarration.vue'
 import GameCard from './GameCard.vue'
 
 const game = useTableGame()
@@ -87,6 +88,7 @@ onBeforeUnmount(() => dialog.value?.close())
               no-zoom
             />
             <figcaption>{{ t('table.viewCardFront') }}</figcaption>
+            <CardNarration :code="current.card.code" />
           </figure>
           <figure>
             <GameCard
@@ -160,6 +162,7 @@ onBeforeUnmount(() => dialog.value?.close())
               :code="card.code"
               :image-language="imageLanguages[`${card.code}:${!!card.back}`]"
             />
+            <CardNarration v-else :code="card.code" :back="!!card.back" />
           </figure>
         </section>
         <ol v-if="current.effects.length" class="effects">

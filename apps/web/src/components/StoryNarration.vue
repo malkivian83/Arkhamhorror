@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { startNarration, stopNarration } from '../game/narrationPlayback'
 
 /** Narración grabada de un texto de historia: reproducir/pausar y avance. */
 defineProps<{ src: string }>()
@@ -22,6 +23,11 @@ function onTime() {
   current.value = audio.value?.currentTime ?? 0
 }
 
+function onPlay() {
+  if (audio.value) startNarration(audio.value)
+  playing.value = true
+}
+
 function onMetadata() {
   const value = audio.value?.duration ?? 0
   duration.value = Number.isFinite(value) ? value : 0
@@ -40,7 +46,9 @@ const time = computed(() =>
 )
 
 // Al pasar al siguiente texto, la narración se calla.
-onBeforeUnmount(() => audio.value?.pause())
+onBeforeUnmount(() => {
+  if (audio.value) stopNarration(audio.value)
+})
 </script>
 
 <template>
@@ -49,8 +57,9 @@ onBeforeUnmount(() => audio.value?.pause())
       ref="audio"
       :src="src"
       preload="metadata"
-      @play="playing = true"
+      @play="onPlay"
       @pause="playing = false"
+      @ended="playing = false"
       @timeupdate="onTime"
       @loadedmetadata="onMetadata"
     />

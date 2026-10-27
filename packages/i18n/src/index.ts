@@ -66,6 +66,7 @@ export type MessageSchema = typeof messages.en
 /** Textos oficiales de una carta en un catálogo sin conexión. */
 export interface CatalogCard {
   name: string
+  typeCode?: string
   subname?: string
   traits?: string
   text?: string

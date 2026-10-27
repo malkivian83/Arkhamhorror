@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { cardTextHtml } from '../game/cardText'
 import { localizedCards } from '../game/localized'
+import CardNarration from './CardNarration.vue'
 
 const props = defineProps<{ code: string; back?: boolean; imageLanguage?: string | undefined }>()
 const { t, locale } = useI18n()
@@ -25,6 +26,7 @@ const sourceUrl = (source: string | undefined) =>
 </script>
 
 <template>
+  <CardNarration :code="code" :back="back" />
   <aside v-if="card && (transcribe || faqs.length)" class="translation">
     <template v-if="transcribe">
       <h3>{{ name }}</h3>

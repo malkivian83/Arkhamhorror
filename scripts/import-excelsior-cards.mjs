@@ -44,11 +44,14 @@ for (const lang of ['en', 'es']) {
     out[card.code] = Object.fromEntries(
       Object.entries({
         name: fix(card.name),
+        typeCode: card.type_code,
         subname: fix(card.subname),
         traits: fix(card.traits),
         text: fix(card.text),
         backName: fix(card.back_name),
         backText: fix(card.back_text),
+        flavor: ['agenda', 'act'].includes(card.type_code) ? fix(card.flavor) : undefined,
+        backFlavor: ['agenda', 'act'].includes(card.type_code) ? fix(card.back_flavor) : undefined,
       }).filter(([, v]) => typeof v === 'string' && v !== ''),
     )
   }

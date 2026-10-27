@@ -1,0 +1,82 @@
+import { createHash } from 'node:crypto'
+import { readFileSync } from 'node:fs'
+import { execFileSync } from 'node:child_process'
+import { fileURLToPath } from 'node:url'
+import { expect, it } from 'vitest'
+import { excelsiorCards } from '@lcg/i18n'
+import evidence from '../../../../docs-proyecto/evidencias/excelsior-cartas-narracion.json'
+import manifest from './cardNarrationManifest.json'
+import { cardNarration } from './cardNarration'
+import { startNarration, stopNarration } from './narrationPlayback'
+
+const hash = (value: string | Buffer) => createHash('sha256').update(value).digest('hex')
+
+it('connects each available face to a Spanish recording of only its narrative, with the Excelsior voice', () => {
+  expect(evidence.voiceId).toBe('OjrdP8Z2fWjVyt0scrL7')
+  expect(evidence.files).toHaveLength(7)
+  expect(Object.values(manifest).flatMap(Object.values)).toHaveLength(evidence.files.length)
+  for (const entry of evidence.files) {
+    expect(['agenda', 'act']).toContain(excelsiorCards.es[entry.code]!.typeCode)
+    const back = entry.side === 'back'
+    const text = excelsiorCards.es[entry.code]![back ? 'backFlavor' : 'flavor']!
+    expect(entry.text).toBe(text)
+    expect(entry.text).not.toBe(excelsiorCards.es[entry.code]![back ? 'backText' : 'text'])
+    expect(hash(JSON.stringify({ text, voiceId: evidence.voiceId, ...evidence.settings }))).toBe(
+      entry.inputHash,
+    )
+    const path = cardNarration(entry.code, back, 'es')!
+    expect(path).toBe(`/local-assets/cards/audio/es/${entry.file}`)
+    expect(cardNarration(entry.code, back, 'en')).toBeNull()
+    const bytes = readFileSync(new URL(`../../public${path}`, import.meta.url))
+    expect(bytes.length).toBe(entry.bytes)
+    expect(bytes.subarray(0, 3).toString()).toBe('ID3')
+    expect(hash(bytes)).toBe(entry.sha256)
+  }
+})
+
+it('generates only narrative faces of agendas and acts, excluding other card types', () => {
+  const root = fileURLToPath(new URL('../../../../', import.meta.url))
+  const listed = JSON.parse(
+    execFileSync(process.execPath, ['scripts/generate-card-audio.mjs', '--list'], {
+      cwd: root,
+      encoding: 'utf8',
+    }),
+  ) as { entries: { code: string; side: string }[] }
+  expect(listed.entries.map((entry) => `${entry.code}:${entry.side}`)).toEqual([
+    '84002:front',
+    '84002:back',
+    '84003:front',
+    '84003:back',
+    '84004:front',
+    '84004:back',
+    '84005:front',
+  ])
+  expect(cardNarration('84006', false, 'es')).toBeNull()
+  expect(cardNarration('84010', true, 'es')).toBeNull()
+})
+
+it('offers the pictured agenda on both sides, without substituting unrecorded cards or faces', () => {
+  expect(cardNarration('84002', false, 'es')).toContain('84002-front.mp3')
+  expect(cardNarration('84002', true, 'es')).toContain('84002-back.mp3')
+  expect(cardNarration('84001', true, 'es')).toBeNull()
+  expect(cardNarration('84001', false, 'es')).toBeNull()
+  expect(cardNarration('unknown', false, 'es')).toBeNull()
+})
+
+it('stops the previous narration and releases only the audio being closed', () => {
+  let firstPauses = 0
+  let secondPauses = 0
+  const first = { pause: () => firstPauses++ }
+  const second = { pause: () => secondPauses++ }
+  startNarration(first)
+  startNarration(second)
+  expect(firstPauses).toBe(1)
+  stopNarration(first)
+  expect(secondPauses).toBe(0)
+  startNarration(first)
+  expect(secondPauses).toBe(1)
+  stopNarration(first)
+  startNarration(second)
+  expect(firstPauses).toBe(3)
+  stopNarration(second)
+})

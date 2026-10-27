@@ -1,0 +1,79 @@
+{
+  "voiceId": "OjrdP8Z2fWjVyt0scrL7",
+  "language": "es",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.31,
+      "similarity_boost": 0.86,
+      "style": 0,
+      "speed": 1,
+      "use_speaker_boost": true
+    }
+  },
+  "files": [
+    {
+      "code": "84002",
+      "side": "front",
+      "text": "Cuando recuperas la consciencia, estás de pie junto al cuerpo del hombre. Retrocedes inmediatamente ante la macabra visión. Tiene el pecho perforado por varias cuchilladas y hay un charco de sangre en el suelo. ¿Qué demonios ha pasado aquí? ¿Y por qué no recuerdas nada?",
+      "file": "84002-front.mp3",
+      "inputHash": "b6466798edc0fbf9644307e064e26737756043db4a92d1d03a559c9c2566e4e2",
+      "bytes": 288434,
+      "sha256": "b49e13b906d43c73f1360667027338daf691b12be4237d82df7f5f5e5f53c14e"
+    },
+    {
+      "code": "84002",
+      "side": "back",
+      "text": "Mientras intentas hacer memoria para entender la situación, se oyen golpes en la puerta de la suite: -¡Policía! -dice una voz severa-. Nos han llamado por un alboroto. ¡Abran la puerta!",
+      "file": "84002-back.mp3",
+      "inputHash": "426c10da2cae96b42b527c4c51d5049f5290c18fad138589e86d9a0bf9a4e8ea",
+      "bytes": 194394,
+      "sha256": "00d31c12e6c6979f0a782a52d2ebaed45bcc007e3dcd6692d5f8caefa75ebe56"
+    },
+    {
+      "code": "84003",
+      "side": "front",
+      "text": "No sois los únicos interesados en los extraños acontecimientos que suceden esta noche en el Excelsior, y la policía sospecha de vosotros. Aún no estáis seguros de lo que ha sucedido, o de si podría suceder de nuevo.",
+      "file": "84003-front.mp3",
+      "inputHash": "05b04b91069643271067044e2480ec751a1b94ad10d6e5663091d3b3a5e0cdf4",
+      "bytes": 209858,
+      "sha256": "9f9a6a3d5a8c152fc938b303c411468693ca047599d6ea65db057a69ee23a9c4"
+    },
+    {
+      "code": "84003",
+      "side": "back",
+      "text": "Habéis pasado mucho tiempo en el hotel, y aunque estáis seguros de que algo no va bien, no habéis logrado llegar al fondo del asunto. Entráis en el vestíbulo mientras seguís tratando de hacer encajar las piezas que habéis obtenido, pero os reciben más agentes de la policía de Arkham que han entrado desde la calle. Nada más veros, sacan las armas.\n-¡Alto! -os ordena el que está al mando-. ¡Estáis arrestados!",
+      "file": "84003-back.mp3",
+      "inputHash": "c8bcae39970713e9a9c1900fdee9c9d1ecf7ebe7d6f12117cf29ca34ac43c91a",
+      "bytes": 408389,
+      "sha256": "45cad7acd0bc7e4e3962980bdcef1ddfb2aeb4509ab0738e1c92e89df518cbfc"
+    },
+    {
+      "code": "84004",
+      "side": "front",
+      "text": "Te da vueltas la cabeza mientras intentas entender la situación. Hay botellas vacías tiradas por toda la habitación. Sientes un hormigueo en las manos. Las sombras parecen retorcerse y reptar a tu alrededor. ¿Te han drogado? ¿O se trata de algo totalmente distinto?",
+      "file": "84004-front.mp3",
+      "inputHash": "3af764aa19e6b4149de119d9827e097d875d862014d76bc8a8896a57fc13e911",
+      "bytes": 318527,
+      "sha256": "8d2a8ad0968d09ef925569a1f1f2b78d3112a7c54cb51e165ddc0ce9233e9fa8"
+    },
+    {
+      "code": "84004",
+      "side": "back",
+      "text": "No es mucho, pero es lo que tenéis. La única opción que os queda ahora es explorar el resto del hotel y ver qué más descubrís.",
+      "file": "84004-back.mp3",
+      "inputHash": "9d88a2450148e31f2b8a68263f13386ce44c36787eefbed0ede0fe2ba16853d1",
+      "bytes": 126684,
+      "sha256": "75bff12d99435c25b9a225ed634a7f8a56ed9348d2878eac5648fc04dd5f8937"
+    },
+    {
+      "code": "84005",
+      "side": "front",
+      "text": "Gracias a los indicios que habéis descubierto en la suite, estáis razonablemente seguros de que quienquiera que haya tendido esta trampa sigue en el hotel. La pregunta es dónde encontrar a esa persona. Mirando los indicios que tenéis, os da la impresión de que las respuestas están delante de vuestros ojos…",
+      "file": "84005-front.mp3",
+      "inputHash": "bcbaf20ed173fc1a275a19fa6de687223d0b387ced21444841f8c7860de3daac",
+      "bytes": 282583,
+      "sha256": "1a98c2e5f8c89f7810b3ed2afb94627c6c666eadb095b807a89ff7b80bd8b091"
+    }
+  ]
+}

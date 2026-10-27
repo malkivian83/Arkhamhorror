@@ -1,286 +1,345 @@
 {
   "84001": {
     "name": "Asesinato en el hotel Excelsior",
+    "typeCode": "scenario",
     "text": "<b>Fácil/Normal</b>\n[skull]: -X. X es la cantidad de Enemigos [[Cliente]] en juego.\n[cultist]: -1. Si hay un Enemigo [[Inocente]] en la zona de victoria, revela otra ficha de Caos.\n[tablet]: -3. Puedes colocar una de tus pistas sobre tu Lugar para considerar este resultado como -1 en lugar de -3.\n[elder_thing]: -3. Si fracasas y hay un Enemigo [[Inocente]] en la zona de victoria, recibe 1 punto de horror.",
     "backText": "<b>Difícil/Experto</b>\n[skull]: -X. X es la cantidad de Enemigos [[Inocente]] en juego.\n[cultist]: -2. Si hay un Enemigo [[Inocente]] en la zona de victoria, revela otra ficha de Caos.\n[tablet]: -5. Puedes colocar una de tus pistas sobre tu Lugar para considerar este resultado como -2 en lugar de -5.\n[elder_thing]: -3. Si fracasas, recibe 1 punto de horror por cada Enemigo [[Inocente]] que haya en la zona de victoria."
   },
   "84002": {
     "name": "El asesinato",
+    "typeCode": "agenda",
     "text": "Si sólo hay 1 investigador en la partida, este plan recibe +1 a su umbral de perdición.",
     "backName": "Levantando sospechas",
-    "backText": "Pon en juego en el Vestíbulo el Sargento Monroe puesto aparte.\nHaz aparecer en el Pasillo del segundo piso 1 Enemigo Agente de Arkham puesto aparte (si hay 3 o 4 investigadores en la partida, haz aparecer en el Vestíbulo otro Enemigo Agente de Arkham puesto aparte). A continuación, añade la pila de descartes de Encuentros y todos los demás Enemigos Agente de Arkham puestos aparte al mazo de Encuentros y baraja éste.\nEl investigador jefe roba la Debilidad ¿Qué has hecho? puesta aparte.\nPon cada una de las siguientes circunstancias que se cumpla, coloca 1 pista de la Habitación 225 <i>(de la reserva de pistas)</i> y coloca 1 ficha de Perdición sobre un Agente de Arkham:\n- Los investigadores no han \"limpiado la sangre\".\n- Los investigadores no han \"ocultado el cuerpo\".\n- Los investigadores no han \"ordenado la habitación\"."
+    "backText": "Pon en juego en el Vestíbulo el Sargento Monroe puesto aparte.\nHaz aparecer en el Pasillo del segundo piso 1 Enemigo Agente de Arkham puesto aparte (si hay 3 o 4 investigadores en la partida, haz aparecer en el Vestíbulo otro Enemigo Agente de Arkham puesto aparte). A continuación, añade la pila de descartes de Encuentros y todos los demás Enemigos Agente de Arkham puestos aparte al mazo de Encuentros y baraja éste.\nEl investigador jefe roba la Debilidad ¿Qué has hecho? puesta aparte.\nPon cada una de las siguientes circunstancias que se cumpla, coloca 1 pista de la Habitación 225 <i>(de la reserva de pistas)</i> y coloca 1 ficha de Perdición sobre un Agente de Arkham:\n- Los investigadores no han \"limpiado la sangre\".\n- Los investigadores no han \"ocultado el cuerpo\".\n- Los investigadores no han \"ordenado la habitación\".",
+    "flavor": "Cuando recuperas la consciencia, estás de pie junto al cuerpo del hombre. Retrocedes inmediatamente ante la macabra visión. Tiene el pecho perforado por varias cuchilladas y hay un charco de sangre en el suelo. ¿Qué demonios ha pasado aquí? ¿Y por qué no recuerdas nada?",
+    "backFlavor": "Mientras intentas hacer memoria para entender la situación, se oyen golpes en la puerta de la suite: -¡Policía! -dice una voz severa-. Nos han llamado por un alboroto. ¡Abran la puerta!"
   },
   "84003": {
     "name": "Investigación especial",
+    "typeCode": "agenda",
     "text": "<b>Obligado</b> - Después de que un investigador que esté en el mismo Lugar que un Enemigo [[Policía]] preparado descubra 1 o más pistas en ese Lugar o inflija daño a un Enemigo [[Humanoide]]: Cada Enemigo [[Policía]] preparado que esté en ese Lugar se enfrenta a ese investigador y realiza un ataque inmediatamente.",
     "backName": "Gato encerrado",
-    "backText": "¡Los investigadores no han logrado resolver el crimen y limpiar sus nombres! <b>(→R3)</b>"
+    "backText": "¡Los investigadores no han logrado resolver el crimen y limpiar sus nombres! <b>(→R3)</b>",
+    "flavor": "No sois los únicos interesados en los extraños acontecimientos que suceden esta noche en el Excelsior, y la policía sospecha de vosotros. Aún no estáis seguros de lo que ha sucedido, o de si podría suceder de nuevo.",
+    "backFlavor": "Habéis pasado mucho tiempo en el hotel, y aunque estáis seguros de que algo no va bien, no habéis logrado llegar al fondo del asunto. Entráis en el vestíbulo mientras seguís tratando de hacer encajar las piezas que habéis obtenido, pero os reciben más agentes de la policía de Arkham que han entrado desde la calle. Nada más veros, sacan las armas.\n-¡Alto! -os ordena el que está al mando-. ¡Estáis arrestados!"
   },
   "84004": {
     "name": "¿Qué ha pasado…?",
+    "typeCode": "act",
     "text": "[action] Gasta 1 pista [per_investigator] como grupo: Roba la primera carta del mazo de Indicios.\n<b>Objetivo</b> - Si los investigadores controlan 2 Apoyos [[Indicio]], haz avanzar el acto.",
     "backName": "Hay que empezar por algún lado…",
-    "backText": "Pon en juego todos los demás Lugares puestos aparte.\nRetira el resto del mazo de Indicios de la partida.\nEn función de qué Apoyos [[Indicio]] estén en juego, añade la pila de descartes de Encuentros y 6 cartas (ver a continuación) al mazo de Encuentros y barájalo:\n- Si el Artefacto alienígena está en juego, añade al mazo de Encuentros las 3 copias puestas aparte de la Señal encefálica.\n- Si la Llave del director está en juego, añade al mazo de Encuentros las 3 copias puestas aparte de la Seguridad del hotel.\n- Si el Tomo de rituales está en juego, añade al mazo de Encuentros las 3 copias puestas aparte de la Sectaria del Enclave.\n- Si la Solución siniestra está en juego, añade al mazo de Encuentros las 3 copias puestas aparte de la Conciencia macabra.\n- Si  el Guardapelo desgastado está en juego, añade al mazo de Encuentros las 3 copias puestas aparte de la Presencia escalofriante."
+    "backText": "Pon en juego todos los demás Lugares puestos aparte.\nRetira el resto del mazo de Indicios de la partida.\nEn función de qué Apoyos [[Indicio]] estén en juego, añade la pila de descartes de Encuentros y 6 cartas (ver a continuación) al mazo de Encuentros y barájalo:\n- Si el Artefacto alienígena está en juego, añade al mazo de Encuentros las 3 copias puestas aparte de la Señal encefálica.\n- Si la Llave del director está en juego, añade al mazo de Encuentros las 3 copias puestas aparte de la Seguridad del hotel.\n- Si el Tomo de rituales está en juego, añade al mazo de Encuentros las 3 copias puestas aparte de la Sectaria del Enclave.\n- Si la Solución siniestra está en juego, añade al mazo de Encuentros las 3 copias puestas aparte de la Conciencia macabra.\n- Si  el Guardapelo desgastado está en juego, añade al mazo de Encuentros las 3 copias puestas aparte de la Presencia escalofriante.",
+    "flavor": "Te da vueltas la cabeza mientras intentas entender la situación. Hay botellas vacías tiradas por toda la habitación. Sientes un hormigueo en las manos. Las sombras parecen retorcerse y reptar a tu alrededor. ¿Te han drogado? ¿O se trata de algo totalmente distinto?",
+    "backFlavor": "No es mucho, pero es lo que tenéis. La única opción que os queda ahora es explorar el resto del hotel y ver qué más descubrís."
   },
   "84005": {
     "name": "Investigando indicios",
+    "typeCode": "act",
     "text": "<b>Objetivo</b> - Descubre más sobre tus indicios colocando pistas sobre ellos <i>(usando las capacidades de algunos lugares)</i>. Cuantas más pistas, mejor. Al final de la ronda, puedes elegir hacer avanzar el acto si cada Apoyo [[Indicio]] tiene al menos 1 pista [per_investigator]. <i>Consejo: si quieres presentarle estas pruebas a la policía, tal vez deberías tener al menos 2 pistas [per_investigator] sobre cada Apoyo [[Indicio]]</i>.",
     "backName": "La verdad",
-    "backText": "Lee el <b>interludio del escenario: La verdad</b> en la página 10 de las reglas."
+    "backText": "Lee el <b>interludio del escenario: La verdad</b> en la página 10 de las reglas.",
+    "flavor": "Gracias a los indicios que habéis descubierto en la suite, estáis razonablemente seguros de que quienquiera que haya tendido esta trampa sigue en el hotel. La pregunta es dónde encontrar a esa persona. Mirando los indicios que tenéis, os da la impresión de que las respuestas están delante de vuestros ojos…"
   },
   "84006": {
     "name": "Daga manchada de sangre",
+    "typeCode": "asset",
     "subname": "El arma asesina",
     "traits": "Objeto. Arma. Cuerpo a cuerpo. Maldito.",
     "text": "[action]: <b>Combatir.</b> Recibes +2 [combat] para este ataque.\n[action] Agota la Daga manchada de sangre y recibe 1 punto de horror: <b>Combatir.</b> Recibes +2 [combat] e infliges +1 punto de daño para este ataque. Si este ataque derrota a un Enemigo, roba 1 carta."
   },
   "84007": {
     "name": "¿Qué has hecho?",
+    "typeCode": "treachery",
     "traits": "Locura.",
     "text": "<b>Revelación</b> - Pon ¿Qué has hecho? en juego en tu zona de amenaza.\nComo coste adicional para que negocies, debes descartar una carta aleatoria de tu mano.\n[action]: Devuelve ¿Qué has hecho? a tu mazo y baraja éste."
   },
   "84008": {
     "name": "Sargento Monroe",
+    "typeCode": "asset",
     "subname": "Dos días para jubilarse",
     "traits": "Aliado. Policía.",
     "text": "Puede asignarse al Sargento Monroe daño y/u horror infligidos a cualquier investigador que esté en su Lugar incluso si no está controlado.\n[reaction] Cuando se inflija cualquier cantidad de daño u horror al Sargento Monroe, agótalo: Inflige esa misma cantidad como daño a un Enemigo que no sea [[Inocente]] y que esté en su Lugar. Cualquier investigador que esté en el Lugar del Sargento Monroe puede activar esta capacidad."
   },
   "84009": {
     "name": "Agente de Arkham",
+    "typeCode": "enemy",
     "traits": "Humanoide. Policía. Inocente.",
     "text": "Indiferente. Errante (Lugar más cercano con pistas).\n<b>Obligado</b> - Al final de la fase de Enemigos: Mueve 1 pista al Agente de Arkham desde su Lugar, dándole la vuelta a su lado de perdición.\n[action]: <b>Negociar.</b> Realiza una prueba de [willpower] (3). Si tienes éxito, evita automáticamente al Agente de Arkham, o bien dale la vuelta a una de sus fichas de Perdición para mostrar su lado de pista y toma su control."
   },
   "84010": {
     "name": "Habitación 225",
+    "typeCode": "location",
     "subname": "Escena del crimen",
     "traits": "Escena del crimen.",
     "text": "[action]: Realiza una prueba [willpower] (3). Si tienes éxito, recuerda que los investigadores han \"limpiado la sangre\".\n[action]: Realiza una prueba de [combat] (3). Si tienes éxito, recuerda que los investigadores han  \"ocultado el cuerpo\".\n[action]: Realiza una prueba de [intellect] (3). Si tienes éxito, recuerda que los investigadores han \"ordenado la habitación\"."
   },
   "84011": {
     "name": "Balcón de la suite",
+    "typeCode": "location",
     "traits": "Escena del crimen.",
     "text": "[action]: Elige un Enemigo [[Humanoide]] que esté en el Balcón de la suite y realiza una prueba de [combat] o de [agility] (4). Si tienes éxito, recibe 1 punto de horror directo y derrota al Enemigo elegido, o bien inflígele 2 puntos de daño en vez de eso si ese Enemigo es [[Élite]]. Esta acción no provoca ataques de oportunidad."
   },
   "84012": {
     "name": "Pasillo del segundo piso",
+    "typeCode": "location",
     "traits": "Pasillo.",
     "text": "[reaction] Después de que entres en este Lugar: Puedes moverte inmediatamente a un Lugar conectado. Si lo haces, revela una ficha aleatoria de la bolsa de caos. Si es revelado un símbolo [skull], [cultist], [tablet], [elder_thing], o [auto_fail], roba la primera carta del mazo de Encuentros."
   },
   "84013": {
     "name": "Vestíbulo",
+    "typeCode": "location",
     "traits": "Pasillo.",
     "text": "[action]: <b>Desistir.</b> Huyes de la escena del crimen.\n<b>Obligado</b> - Cuando intentes salir de Vestíbulo mientras haya al menos 1 Enemigo [[Cliente]] aquí: Realiza una prueba de [agility] (X), donde X es la cantidad de Enemigos [[Cliente]] que haya aquí. Si fracasas, debes gastar 1 acción adicional para salir del Vestíbulo."
   },
   "84014": {
     "name": "Restaurante",
+    "typeCode": "location",
     "traits": "Pasillo.",
     "text": "[action] Gasta 2 recursos: Pides algo mientras soportas las fulminantes miradas de todos los camareros. Al final de tu turno, si sigues en el Restaurante, puedes recibir 1 punto de horror para curarte 3 puntos de daño. Límite de una vez por partida.\n[free] Si todos los Lugares en juego están revelados y no hay pistas en los Lugares en juego: Coloca 1 pista [per_investigator] sobre el Restaurante <i>(de la reserva de fichas)</i>."
   },
   "84015": {
     "name": "Tejado del Hotel",
+    "typeCode": "location",
     "text": "[action]: Realiza una prueba de [agility] o de [combat] (4). Si tienes éxito, muévete a la Habitación 212, a la Habitación 225 o a la Habitación 245.\n[action]: Realiza una prueba de [willpower] (3). Si tienes éxito, mueve al Artefacto alienígena (si está en juego) cualquier cantidad de pistas controladas por los investigadores que estén en este Lugar."
   },
   "84016": {
     "name": "Habitación 212",
+    "typeCode": "location",
     "traits": "Escena del crimen.",
     "text": "[action]: Realiza una prueba de [intellect] (3). Si tienes éxito, mueve a la Solución siniestra (si está en juego) cualquier cantidad de pistas controladas por los investigadores que estén en este Lugar.",
     "backText": "La Habitación 212 está cerrada con Llave. No puedes entrar en la Habitación 212 desde el Pasillo del segundo piso.\nEl Pasillo del segundo piso obtiene el siguiente texto: \"[action]: Realiza una prueba de [agility] (4) para intentar forzar la cerradura. Si tienes éxito, revela la Habitación 212 y muévete a ella inmediatamente\"."
   },
   "84017": {
     "name": "Habitación 245",
+    "typeCode": "location",
     "traits": "Escena del crimen.",
     "text": "[action]: Realiza una prueba de [intellect] (3). Sólo se puede asignar a esta prueba de habilidad la primera carta de tu pila de descartes (si lo haces, colócala en la parte inferior de tu mazo después de que esta prueba se resuelva). Si tienes éxito, mueve al Guardapelo desgastado (si está en juego) cualquier cantidad de pistas controladas por los investigadores que estén en la Habitación 245."
   },
   "84018": {
     "name": "Despacho",
+    "typeCode": "location",
     "text": "[action]: Realiza una prueba de [intellect] (0). Por cada punto que tengas por encima del valor mínimo de éxito, puedes mover a la Llave del director (si está en juego) 1 pista controlada por un investigador que esté en el Despacho.",
     "backText": "La puerta del Despacho está cerrada con Llave. No puedes entrar en el Despacho a menos que controles la Llave del director.\nEl Sótano obtiene el siguiente texto: \"[action]: Realiza una prueba de [agility] (3) para intentar forzar la cerradura. Si tienes éxito, revela el Despacho y muévete a ella inmediatamente\"."
   },
   "84019": {
     "name": "Sótano",
+    "typeCode": "location",
     "traits": "Escena del crimen.",
     "text": "[action]: Realiza una prueba de [intellect] (1). Si tienes éxito, mueve un Enemigo [[Humanoide]] que esté en cualquier Lugar una vez hacia el Sótano.\n[reaction] Después de que derrotes a un Enemigo en el Sótano: Mueve al Tomo de rituales  (si está en juego) cualquier cantidad de pistas controladas por los investigadores que estén en el Sótano."
   },
   "84020": {
     "name": "Sr. Trombly",
+    "typeCode": "enemy",
     "subname": "Conserje enloquecido",
     "traits": "Humanoide. Personal.",
     "text": "<b>Aparición</b> - Vestíbulo.\nCazador.\n<b>Obligado</b> - Después Sr. Trombly entre en juego: Resuelve inmediatamente las palabras clave Cazador y Errante de cada uno de los demás Enemigos [[Personal]] que haya en juego."
   },
   "84021": {
     "name": "Personal sospechoso",
+    "typeCode": "enemy",
     "traits": "Humanoide. Personal.",
     "text": "<b>Aparición</b> - Lugar [[Escena del crimen]] más cercano.\n<b>Presa</b> - Más pistas.\nCazador."
   },
   "84022": {
     "name": "Clienta del hotel",
+    "typeCode": "enemy",
     "traits": "Humanoide. Cliente. Inocente.",
     "text": "<b>Aparición</b> - Lugar [[Pasillo]] más cercano.\nIndiferente. Errante (Lugar [[Escena del crimen]] más cercano).\n<b>Obligado</b> - Al final de la fase de Enemigos, si la Clienta del hotel está en un Lugar [[Escena del crimen]]: Añade 1 ficha de Perdición a la Clienta del hotel.\n[action] <b>Negociar.</b> Realiza una prueba de [willpower] o de [intellect] (3). Si tienes éxito, descarta la Clienta del hotel."
   },
   "84023": {
     "name": "Vapores nocivos",
+    "typeCode": "treachery",
     "traits": "Riesgo.",
     "text": "<b>Revelación</b> - Siguiendo el orden de juego, cada investigador que esté en tu Lugar debe elegir:\n- Realiza una prueba de [agility] (3) para intentar huir antes de que el gas llene la habitación. Si tienes éxito, muévete a un Lugar conectado. Si fracasas, recibe 2 puntos de daño.\n- Realiza una prueba de [combat] (3) para intentar contener la respiración. Por cada punto que te falte para tener éxito, recibe 1 punto de daño."
   },
   "84024": {
     "name": "Llevado a la locura",
+    "typeCode": "treachery",
     "traits": "Maldición.",
     "text": "<b>Revelación</b> - Si no hay Enemigos [[Humanoide]] en juego, Llevado a la locura obtiene Oleada. Si no es así, vincula Llevado a la locura al Enemigo [[Humanoide]] más cercano.\nEl Enemigo vinculado recibe +1 a combate, +1 punto de salud y +1 a evitar. El Enemigo vinculado pierde Indiferente. Los investigadores no pueden negociar con el Enemigo vinculado.\n<b>Obligado</b> - Después de que el Enemigo sea evitado: Descarta Llevado a la locura."
   },
   "84025": {
     "name": "Sangre en tus manos",
+    "typeCode": "treachery",
     "traits": "Terror.",
     "text": "<b>Revelación</b> - Realiza una prueba [willpower] (2). Aumenta la dificultad de esta prueba en 1 por cada Enemigo [[Inocente]] que haya en la zona de victoria. Si fracasas, recibe 2 puntos de horror (si estás en un Lugar [[Escena del crimen]], también debes elegir y descartar una carta de tu mano)."
   },
   "84026": {
     "name": "Pruebas incriminatorias",
+    "typeCode": "treachery",
     "traits": "Prueba.",
     "text": "<b>Revelación</b> - Vincula esta carta al Lugar más cercano que no sea [[Escena del crimen]].\nEl lugar vinculado obtiene el rasgo [[Escena del crimen]] y recibe +2 a velo.\n[reaction] Cuando investigues con éxito el Lugar vinculado: En lugar de descubrir pistas, descarta las Pruebas incriminatorias."
   },
   "84027": {
     "name": "Estallido violento",
+    "typeCode": "treachery",
     "traits": "Maldición.",
     "text": "<b>Revelación</b> - Si no hay Enemigos [[Humanoide]] en juego, busca en el mazo y la pila de descartes de Encuentro un Enemigo [[Humanoide]], róbalo y baraja el mazo de Encuentros. Si no es así, el Enemigo [[Humanoide]] más cercano se prepara, se mueve de Lugar en Lugar hasta que llegue a tu Lugar, se enfrenta a ti y realiza un ataque inmediatamente."
   },
   "84028": {
     "name": "Artefacto alienígena",
+    "typeCode": "asset",
     "subname": "Maquinaciones desde el otro lado",
     "traits": "Indicio. Extraterrestre.",
     "text": "<b>Revelación</b> - Ponlo en juego en tu zona de juego.\n<b>Obligado</b> - Cuando seas derrotado: Dale el control del Artefacto alienígena a otro investigador."
   },
   "84029": {
     "name": "Entrometido sobrenatural",
+    "typeCode": "enemy",
     "subname": "Presencia de más allá de las estrellas",
     "traits": "Monstruo. Mi-Go. Élite.",
     "text": "Represalia.\n<b>Obligado</b> - Cuando el Entrometido sobrenatural fuese a recibir daño de un ataque: Retira 1 ficha de Perdición del Entrometido sobrenatural y reduce ese daño en 1.\n<b>Obligado</b> - Después de que un investigador sea derrotado: Añade 3 fichas de Perdición al Entrometido sobrenatural."
   },
   "84030": {
     "name": "Señal encefálica",
+    "typeCode": "treachery",
     "traits": "Riesgo.",
     "text": "Peligro. <b>Revelación</b> - Coloca 1 ficha de Perdición sobre el Entrometido sobrenatural (si está en juego) y realiza una prueba de [willpower] (4). Si fracasas, debes (elige uno):\n- Recibir 2 puntos de horror.\n- Infligir 2 puntos de daño a un investigador o a un Enemigo [[Humanoide]] que esté en tu Lugar."
   },
   "84031": {
     "name": "Llave del director",
+    "typeCode": "asset",
     "subname": "Manchada de sangre",
     "traits": "Indicio. Llave.",
     "text": "<b>Revelación</b> - Ponla en juego en tu zona de juego.\n<b>Obligado</b> - Cuando seas derrotado: Dale el control de la Llave del director a otro investigador."
   },
   "84032": {
     "name": "Director del hotel",
+    "typeCode": "enemy",
     "subname": "Que comience el festín",
     "traits": "Monstruo. Personal. Élite.",
     "text": "Descomunal. Represalia.\nCada Enemigo [[Cliente]] pierde Errante y obtiene Oleada.\n<b>Obligado</b> - Al comienzo de la fase de Enemigos: Añade 1 Enemigo [[Cliente]] del Lugar del Director del hotel a la zona de victoria y luego coloca 2 fichas de Perdición sobre el Director del hotel. Mueve cada uno de los demás Enemigos [[Cliente]] un Lugar hacia el Director del hotel."
   },
   "84033": {
     "name": "Seguridad del hotel",
+    "typeCode": "enemy",
     "traits": "Humanoide. Monstruo. Personal.",
     "text": "<b>Aparición</b> - Lugar vacío más cercano.\nCazador. Represalia.\nSi hay al menos 1 Enemigo [[Cliente]] en juego, la Seguridad del hotel pierde Cazador y obtiene el siguiente texto:\"Errante (Lugar más cercano con un Enemigo [[Cliente]]).\"."
   },
   "84034": {
     "name": "Tomo de rituales",
+    "typeCode": "asset",
     "subname": "Volumen blasfemo",
     "traits": "Indicio. Tomo.",
     "text": "<b>Revelación</b> - Ponlo en juego en tu zona de juego.\n<b>Obligado</b> - Cuando seas derrotado: Dale el control del Tomo de rituales a otro investigador."
   },
   "84035": {
     "name": "Vagabundo dimensional",
+    "typeCode": "enemy",
     "traits": "Monstruo. Extradimensional. Élite.",
     "text": "Cazador.\n<b>Obligado</b> - Después de que el Vagabundo dimensional te inflija daño por su ataque: Revela una ficha aleatoria de la bolsa de caos. Si es revelado un símbolo [auto_fail] te arrebata de esta dimensión; retira el Vagabundo dimensional de la partida y quedas derrotado."
   },
   "84036": {
     "name": "Sectaria del Enclave",
+    "typeCode": "enemy",
     "traits": "Humanoide. Sectario.",
     "text": "<b>Aparición</b> - Sótano.\nCazador.\n<b>Obligado</b> - Después de que la Sectaria del Enclave ataque: Revela una ficha aleatoria de la bolsa de caos. Si es revelado un símbolo [skull], [cultist], [tablet], [elder_thing], o [auto_fail], coloca 1 ficha de Perdición sobre el plan en curso."
   },
   "84037": {
     "name": "Solución siniestra",
+    "typeCode": "asset",
     "subname": "Brebaje vil",
     "traits": "Indicio. Ciencia.",
     "text": "<b>Revelación</b> - Ponla en juego en tu zona de juego.\n<b>Obligado</b> - Cuando seas derrotado: Dale el control de la Solución siniestra a otro investigador."
   },
   "84038": {
     "name": "Cerebro extraído",
+    "typeCode": "treachery",
     "traits": "Antiguo. Ciencia.",
     "text": "<b>Obligado</b> - Al final de la fase de Investigación: Cada investigador que esté en este Lugar vinculado recibe 1 punto de daño y 1 punto de horror. Cada uno de los demás investigadores debe recibir 1 punto de daño o 1 punto de horror <i>(a su elección)</i>."
   },
   "84039": {
     "name": "Conciencia macabra",
+    "typeCode": "treachery",
     "traits": "Riesgo.",
     "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (6). Reduce la dificultad de esta prueba en 1 por cada Lugar de distancia que haya entre la Habitación 212 y tú. Si fracasas, debes colocar 1 de tus pistas sobre tu Lugar o bien recibir 2 puntos de horror."
   },
   "84040": {
     "name": "Guardapelo desgastado",
+    "typeCode": "asset",
     "subname": "Visión fúnebre del pasado",
     "traits": "Indicio. Amuleto.",
     "text": "<b>Revelación</b> - Ponlo en juego en tu zona de juego.\n<b>Obligado</b> - Cuando seas derrotado: Dale el control del Guardapelo desgastado a otro investigador."
   },
   "84041": {
     "name": "Espectro vengativo",
+    "typeCode": "enemy",
     "subname": "La primera víctima",
     "traits": "Monstruo. Geist. Élite.",
     "text": "Errante (Habitación 245). Represalia.\n<b>Obligado</b> - Cuando fuese a colocarse daño sobre el Espectro vengativo: Reduce ese daño a 1 a menos que lo infligiera un [[Hechizo]], [[Reliquia]], [[Amuleto]], o carta de Encuentro."
   },
   "84042": {
     "name": "Presencia escalofriante",
+    "typeCode": "treachery",
     "traits": "Terror.",
     "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (3). Por cada punto que te falte para tener éxito, recibe 1 punto de horror. Por cada punto que tengas por encima del valor mínimo de éxito, puedes infligir 1 punto de daño a un Enemigo [[Geist]] que esté en tu Lugar. Si es revelado un símbolo [elder_sign] durante esta prueba, puedes infligir 2 puntos de daño a un Enemigo [[Geist]] que esté en cualquier Lugar."
   },
   "84043": {
     "name": "El verdadero culpable (v. I)",
+    "typeCode": "agenda",
     "text": "El Artefacto alienígena obtiene el siguiente texto: \"[action] Si el Espectro vengativo está agotado y en tu Lugar, retira 2 pistas del Artefacto alienígena: Inflige 2 puntos de daño al Espectro vengativo.\".\n<b>Objetivo</b> - Si el Espectro vengativo es derrotado, haz avanzar el plan.",
     "backName": "Peón en el tablero paranormal",
     "backText": "<b>Si este plan avanza por llegar a su umbral de perdición:</b>\n<blockquote><i>El afligido alarido te golpea como una oleada de muerte. El espectro, la imagen fantasmal de una mujer asesinada hace mucho tiempo, no tiene esperanzas de más allá pacífico. Sólo quiere venganza, para que otros se unan a ella en su desasosegante purgatorio. Ya has matado por ella antes, y ahora, frente a todo el poder de su mirada muerta y negra como el abismo infinito, estás dispuesto a hacerlo de nuevo. Clientes y personal por igual caen ante ti hasta que te desplomas en el suelo, empapado de la sangre de los inocentes.</i><b>(→R2)</b></blockquote><hr><b>Si este plan avanza porque has completado su objetivo:</b>\n<blockquote><i>Tienes el guardapelo en la palma de tu mano y lo examinas ahora que se ha hecho un repentino silencio en el hotel. Parece un objeto muy sencillo, pero pese a su inocente aspecto, este recuerdo de hechos siniestros ha estado involucrado en los sucesos del Excelsior. Te lo metes en el bolsillo y vas hacia la puerta con una sensación de alivio. Te sientes vagamente reconfortado sabiendo que los extraños acontecimientos del Excelsior se han detenido, al menos por ahora.</i><b>(→R1)</b></blockquote>"
   },
   "84044": {
     "name": "El verdadero culpable (v. II)",
+    "typeCode": "agenda",
     "text": "La Solución siniestra obtiene el siguiente texto: \"[action] Si estás en la Habitación 212: Realiza una prueba de [intellect] (2). Si tienes éxito, puedes retirar 2 pistas de la Solución siniestra para agotar el Entrometido sobrenatural o bien infligirle 2 puntos de daño.\".\n<b>Objetivo</b> - Si el Entrometido sobrenatural es derrotado, haz avanzar el plan.",
     "backName": "Peón en el tablero cósmico",
     "backText": "<b>Si este plan avanza por llegar a su umbral de perdición:</b>\n<blockquote><i>Tienes el artefacto aferrado cuando de pronto empieza a zumbar y vibrar, y su núcleo brilla con una penetrante luz de color verde pálido. La cabeza te palpita, y notas una gota de sangre que baja desde tu nariz. Has llegado demasiado tarde. No has logrado detener la amenaza Mi-Go antes de que el artefacto alcanzara todo su poder. Mientras sientes como pierdes el contacto con la realidad, te preguntas que será lo siguiente que os obligará a hacer el entrometido alienígena a ti y al resto de personas del Excelsior. Tu mente está totalmente bajo su control.</i><b>(→R2)</b></blockquote><hr><b>Si este plan avanza porque has completado su objetivo:</b>\n<blockquote><i>El artefacto alienígena zumba y palpita durante unos instantes más, pero acaba por silenciarse. Lo tienes en las manos, frío e inerte, como si volviera a ser una baratija inocente. Respiras aliviado y te sientes vagamente reconfortado sabiendo que los extraños acontecimientos del Excelsior se han detenido, al menos por ahora.</i><b>(→R1)</b></blockquote>"
   },
   "84045": {
     "name": "El verdadero culpable (v. III)",
+    "typeCode": "agenda",
     "text": "El Artefacto alienígena obtiene el siguiente texto: \"[action] Agota Artefacto alienígena y retira 2 pistas de él: Añade a la zona de victoria un Enemigo [[Personal]] que esté en tu Lugar, o bien inflígele 2 puntos de daño si es [[Elite]]. No provoca ataques de oportunidad.\".\n<b>Objetivo</b> - Si el Director del hotel es derrotado, haz avanzar el plan.",
     "backName": "Peón en el tablero eterno",
     "backText": "<b>Si este plan avanza por llegar a su umbral de perdición:</b>\n<blockquote><i>El poder de la criatura crece con cada persona que consume. Los clientes pasan junto a ti para dirigirse a ella, caminando tambaleantes como corderos sin mente camino del matadero. El ruido de su forma amorfa dándose un atracón con los inocentes llega tus oídos. Intentas razonar con ellos, pero te ignoran. Intentas detenerlos, pero las criaturas que se hacen pasar por la seguridad del hotel te hacen retroceder. Caes al suelo sin esperanza alguna… Entonces los oyes, Una voz susurra en tu cabeza. Te persuade, te llama. Te pones en pie lentamente y vas hacia tu destino.</i><b>(→R2)</b></blockquote><hr><b>Si este plan avanza porque has completado su objetivo:</b>\n<blockquote><i>Estás en el vestíbulo del hotel, y el edificio ha quedado repentinamente silencioso y aparentemente vacío. Observas el resultado de tu trabajo y miras la llave que tienes en la mano. Un objeto tan sencillo pero que  aún te provoca escalofríos sabiendo quién la usaba antes. Te sientes vagamente reconfortado sabiendo que los extraños acontecimientos del Excelsior se han detenido, al menos por ahora.</i><b>(→R1)</b></blockquote>"
   },
   "84046": {
     "name": "El verdadero culpable (v. IV)",
+    "typeCode": "agenda",
     "text": "El Tomo de rituales obtiene el siguiente texto: \"[action] Retira 2 pistas del Tomo de rituales: <b>Combatir.</b> Este ataque usa [willpower] en lugar de [combat]. Si tienes éxito, en lugar de infligir daño, retira 3 fichas de perdición del Enemigo atacado.\".\n<b>Objetivo</b> - Si el Entrometido sobrenatural es derrotado o no tiene perdición sobre él haz avanzar el plan.",
     "backName": "Peón en el tablero cósmico",
     "backText": "<b>Si este plan avanza por llegar a su umbral de perdición:</b>\n<blockquote><i>Tienes el artefacto aferrado cuando de pronto empieza a zumbar y vibrar, y su núcleo brilla con una penetrante luz de color verde pálido. La cabeza te palpita, y notas una gota de sangre que baja desde tu nariz. Has llegado demasiado tarde. No has logrado detener la amenaza Mi-Go antes de que el artefacto alcanzara todo su poder. Mientras sientes como pierdes el contacto con la realidad, te preguntas que será lo siguiente que os obligará a hacer el entrometido alienígena a ti y al resto de personas del Excelsior. Tu mente está totalmente bajo su control.</i><b>(→R2)</b></blockquote><hr><b>Si este plan avanza porque has completado su objetivo:</b>\n<blockquote><i>El artefacto alienígena zumba y palpita durante unos instantes más, pero acaba por silenciarse. Lo tienes en las manos, frío e inerte, como si volviera a ser una baratija inocente. Respiras aliviado y te sientes vagamente reconfortado sabiendo que los extraños acontecimientos del Excelsior se han detenido, al menos por ahora.</i><b>(→R1)</b></blockquote>"
   },
   "84047": {
     "name": "El verdadero culpable (v. V)",
+    "typeCode": "agenda",
     "text": "La Solución siniestra obtiene el siguiente texto: \"[action] Si el Espectro vengativo está en tu Lugar: Realiza una prueba de [intellect] (1). Por cada punto que tengas por encima del valor mínimo de éxito, mueve 1 pista de la Solución siniestra al Espectro vengativo. No provoca ataques de oportunidad.\".\n<b>Objetivo</b> - Si el Espectro vengativo es derrotado o tiene una cantidad de pistas sobre él igual que su salud restante, haz avanzar este plan.",
     "backName": "Peón en el tablero paranormal",
     "backText": "<b>Si este plan avanza por llegar a su umbral de perdición:</b>\n<blockquote><i>El afligido alarido te golpea como una oleada de muerte. El espectro, la imagen fantasmal de una mujer asesinada hace mucho tiempo, no tiene esperanzas de más allá pacífico. Sólo quiere venganza, para que otros se unan a ella en su desasosegante purgatorio. Ya has matado por ella antes, y ahora, frente a todo el poder de su mirada muerta y negra como el abismo infinito, estás dispuesto a hacerlo de nuevo. Clientes y personal por igual caen ante ti hasta que te desplomas en el suelo, empapado de la sangre de los inocentes.</i><b>(→R2)</b></blockquote><hr><b>Si este plan avanza porque has completado su objetivo:</b>\n<blockquote><i>Tienes el guardapelo en la palma de tu mano y lo examinas ahora que se ha hecho un repentino silencio en el hotel. Parece un objeto muy sencillo, pero pese a su inocente aspecto, este recuerdo de hechos siniestros ha estado involucrado en los sucesos del Excelsior. Te lo metes en el bolsillo y vas hacia la puerta con una sensación de alivio. Te sientes vagamente reconfortado sabiendo que los extraños acontecimientos del Excelsior se han detenido, al menos por ahora.</i><b>(→R1)</b></blockquote>"
   },
   "84048": {
     "name": "El verdadero culpable (v. VI)",
+    "typeCode": "agenda",
     "text": "El Guardapelo desgastado obtiene el siguiente texto: \"[reaction] Cuando el Director del hotel fuese a atacar a un investigador que esté en tu Lugar, retira 2 pistas del Guardapelo desgastado: Cancela ese ataque.\".\n<b>Objetivo</b> - Si el Director del Hotel es derrotado, haz avanzar este plan.",
     "backName": "Peón en el tablero eterno",
     "backText": "<b>Si este plan avanza por llegar a su umbral de perdición:</b>\n<blockquote><i>El poder de la criatura crece con cada persona que consume. Los clientes pasan junto a ti para dirigirse a ella, caminando tambaleantes como corderos sin mente camino del matadero. El ruido de su forma amorfa dándose un atracón con los inocentes llega tus oídos. Intentas razonar con ellos, pero te ignoran. Intentas detenerlos, pero las criaturas que se hacen pasar por la seguridad del hotel te hacen retroceder. Caes al suelo sin esperanza alguna… Entonces los oyes, Una voz susurra en tu cabeza. Te persuade, te llama. Te pones en pie lentamente y vas hacia tu destino.</i><b>(→R2)</b></blockquote><hr><b>Si este plan avanza porque has completado su objetivo:</b>\n<blockquote><i>Estás en el vestíbulo del hotel, y el edificio ha quedado repentinamente silencioso y aparentemente vacío. Observas el resultado de tu trabajo y miras la llave que tienes en la mano. Un objeto tan sencillo pero que  aún te provoca escalofríos sabiendo quién la usaba antes. Te sientes vagamente reconfortado sabiendo que los extraños acontecimientos del Excelsior se han detenido, al menos por ahora.</i><b>(→R1)</b></blockquote>"
   },
   "84049": {
     "name": "El verdadero culpable (v. VII)",
+    "typeCode": "agenda",
     "text": "Cada Enemigo [[Cliente]] pierde <b>Victoria 0</b>, pierde [[Inocente]], y obtiene [[Sectario]].\nCada Apoyo [[Indicio]] obtiene el siguiente texto: \"[action] Si el Vagabundo dimensional está en tu Lugar, retira 1 pista de este Apoyo: <b>Evitar.</b> Evita automáticamente al Vagabundo dimensional.\".\n<b>Objetivo</b> - Si no hay Enemigos [[Sectario]] en juego, haz avanzar este plan.",
     "backName": "Peón en el tablero sobrenatural",
     "backText": "<b>Si este plan avanza por llegar a su umbral de perdición:</b>\n<blockquote><i>Están en todas partes. En cada habitación y en cada pasillo, y sus voces cantan como una sola. Tienes su libro, pero eso no importa, ya no. Su ritual ha continuado durante demasiado tiempo y ha acumulado demasiado poder. El tomo te quema en las manos, y su portada de cuero abrasa tu piel, pero sigues aferrándolo. Notas cómo palpita, como si hubiera un corazón ente sus páginas. Al mirarlo, te das cuenta de que es la única forma de sobrevivir a esta pesadilla. Abres el tomo, buscas la página del ritual y añades tu voz al coro incesante.</i><b>(→R2)</b></blockquote><hr><b>Si este plan avanza porque has completado su objetivo:</b>\n<blockquote><i>Ahora el libro está cerrado, y cuando abrochas sus cierres y te lo colocas bajo el brazo, esperas y rezas por poder mantenerlo a salvo para que nunca vuelva a ser abierto. Sabes de primera mano que en sus ajadas páginas sólo mora la locura, y ahora es tarea tuya protegerlo y que no caiga en malas manos. Respiras aliviado y te sientes vagamente reconfortado sabiendo que los extraños acontecimientos del Excelsior se han detenido, al menos por ahora.</i><b>(→R1)</b></blockquote>"
   },
   "84050": {
     "name": "El verdadero culpable (v. VIII)",
+    "typeCode": "agenda",
     "text": "Cada Apoyo [[Indicio]] obtiene el siguiente texto: \"[action] Retira 1 una pista de este Apoyo: Busca en el mazo y la pila de descartes de Encuentros un Enemigo [[Personal]] y róbalo. Baraja el mazo de Encuentros.\".\n[reaction] Después de que un Enemigo [[Personal]] sea derrotado: Inflige 1 punto de horror al Cerebro extraído.\n<b>Objetivo</b> - Si hay 2 puntos de horror más 1 [per_investigator] sobre el Cerebro Extraído, haz avanzar este plan.",
     "backName": "Peón en el tablero cerebral",
     "backText": "<b>Si este plan avanza por llegar a su umbral de perdición:</b>\n<blockquote><i>Vayas donde vayas, notas su penetrante consciencia en tu mente. Es demasiado poderosa como para resistirte. Notas cómo observa todos tus movimientos, escucha todos tus pensamientos y prueba todos tus miedos. Te pone de los nervios, como si sus fríos y oscuros dedos se introdujeran en tu cerebro. Te miras las manos y notas que una inquietante idea crece en tu mente. Tu propio cuerpo te parece ajeno, y finalmente tu consciencia es apartada para dejar sito a esta nueva.</i><b>(→R2)</b></blockquote><hr><b>Si este plan avanza porque has completado su objetivo:</b>\n<blockquote><i>Estás en el vestíbulo del hotel, y el edificio ha quedado repentinamente silencioso y aparentemente vacío. Levantas la botella del extraño líquido hacia la luz y vuelve a examinar su contenido. Notas un tic en el ojo mientras sigues con la mirada la solución verde que gira y se agita en el interior, y te estremeces al preguntarte qué otros efectos podría tener este brebaje. Te metes la botella en el bolsillo y te sientes vagamente reconfortado sabiendo que los extraños acontecimientos del Excelsior se han detenido, al menos por ahora.</i><b>(→R1)</b></blockquote>"
   },
   "84051": {
     "name": "El verdadero culpable (v. IX)",
+    "typeCode": "agenda",
     "text": "La Habitación 212 obtiene el siguiente texto: \"[action] Si el Tomo de rituales está en este Lugar: Realiza una prueba de [willpower] (5) o de [intellect] (5). Si tienes éxito, mueve hasta 1 pista [per_investigator] del Tomo de rituales al Cerebro extraído.\".\n<b>Objetivo</b> - Si el Cerebro extraído tiene 3 pistas [per_investigator] o más sobre él, haz avanzar este plan.",
     "backName": "Peón en el tablero cerebral",
     "backText": "<b>Si este plan avanza por llegar a su umbral de perdición:</b>\n<blockquote><i>Vayas donde vayas, notas su penetrante consciencia en tu mente. Es demasiado poderosa como para resistirte. Notas cómo observa todos tus movimientos, escucha todos tus pensamientos y prueba todos tus miedos. Te pone de los nervios, como si sus fríos y oscuros dedos se introdujeran en tu cerebro. Te miras las manos y notas que una inquietante idea crece en tu mente. Tu propio cuerpo te parece ajeno, y finalmente tu consciencia es apartada para dejar sito a esta nueva.</i><b>(→R2)</b></blockquote><hr><b>Si este plan avanza porque has completado su objetivo:</b>\n<blockquote><i>Estás en el vestíbulo del hotel, y el edificio ha quedado repentinamente silencioso y aparentemente vacío. Levantas la botella del extraño líquido hacia la luz y vuelve a examinar su contenido. Notas un tic en el ojo mientras sigues con la mirada la solución verde que gira y se agita en el interior, y te estremeces al preguntarte qué otros efectos podría tener este brebaje. Te metes la botella en el bolsillo y te sientes vagamente reconfortado sabiendo que los extraños acontecimientos del Excelsior se han detenido, al menos por ahora.</i><b>(→R1)</b></blockquote>"
   },
   "84052": {
     "name": "El verdadero culpable (v. X)",
+    "typeCode": "agenda",
     "text": "Cada Enemigo [[Cliente]] pierde <b>Victoria 0</b>, pierde [[Inocente]], y obtiene [[Sectario]].\nEl Sótano obtiene el siguiente texto: \"[action]: Realiza una prueba de [willpower] o de [agility] (4). Puedes retirar 1 pista de un Apoyo [[Indicio]] que esté en el Sótano para reducir la dificultad de esta prueba en 2. Si tienes éxito, retira 1 ficha de Perdición del plan.\".\n<b>Objetivo</b> - Si no hay perdición sobre este plan, hazlo avanzar.",
     "backName": "Peón en el tablero sobrenatural",
     "backText": "<b>Si este plan avanza por llegar a su umbral de perdición:</b>\n<blockquote><i>Están en todas partes. En cada habitación y en cada pasillo, y sus voces cantan como una sola. Tienes su libro, pero eso no importa, ya no. Su ritual ha continuado durante demasiado tiempo y ha acumulado demasiado poder. El tomo te quema en las manos, y su portada de cuero abrasa tu piel, pero sigues aferrándolo. Notas cómo palpita, como si hubiera un corazón ente sus páginas. Al mirarlo, te das cuenta de que es la única forma de sobrevivir a esta pesadilla. Abres el tomo, buscas la página del ritual y añades tu voz al coro incesante.</i><b>(→R2)</b></blockquote><hr><b>Si este plan avanza porque has completado su objetivo:</b>\n<blockquote><i>Ahora el libro está cerrado, y cuando abrochas sus cierres y te lo colocas bajo el brazo, esperas y rezas por poder mantenerlo a salvo para que nunca vuelva a ser abierto. Sabes de primera mano que en sus ajadas páginas sólo mora la locura, y ahora es tarea tuya protegerlo y que no caiga en malas manos. Respiras aliviado y te sientes vagamente reconfortado sabiendo que los extraños acontecimientos del Excelsior se han detenido, al menos por ahora.</i><b>(→R1)</b></blockquote>"
