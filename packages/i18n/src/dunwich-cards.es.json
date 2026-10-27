@@ -698,5 +698,201 @@
     "name": "Reptando detrás de ti",
     "typeCode": "treachery",
     "text": "<b>Revelación</b> - Si el Horrendo cazador está en juego, añádele 1 ficha de Perdición. Si el Horrendo cazador no está en juego, busca el Horrendo cazador en el vacío y en el mazo y la pila de descartes de Encuentros y haz que aparezca en tu Lugar, enfrentado a ti. Baraja el mazo de Encuentros."
+  },
+  "02159": {
+    "name": "El Essex County Express",
+    "typeCode": "scenario",
+    "text": "<b>Fácil/Normal</b>\n[skull]: -X. X es el número de plan en curso.\n[cultist]: -1. Si fracasas y es tu turno, pierde todas las acciones restantes y termina tu turno inmediatamente.\n[tablet]: -2. Añade 1 ficha de Perdición al Enemigo [[Sectario]] más cercano.\n[elder_thing]: -3. Si fracasas, elige y descarta una carta de tu mano.",
+    "backText": "<b>Difícil/Experto</b>\n[skull]: -X. X es el número de plan en curso más 1. \n[cultist]: Revela otra ficha. Si fracasas y es tu turno, pierde todas las acciones restantes y termina tu turno inmediatamente.\n[tablet]: -4. Añade 1 ficha de Perdición a todos los Enemigos [[Sectario]] en juego.\n[elder_thing]: -3. Si fracasas, elige y descarta una carta de tu mano por cada punto que te falte para tener éxito."
+  },
+  "02160": {
+    "name": "Un desgarro en la realidad",
+    "typeCode": "agenda",
+    "text": "",
+    "backName": "¡Seguid moviéndoos!",
+    "backText": "Retira de la partida el Lugar que esté más a la izquierda, o colócalo en la zona de victoria si tiene Victoria X y no tiene pistas. Cada investigador que esté en ese Lugar queda derrotado. Todos los Enemigos y Apoyos que estén en ese Lugar son descartados.\nDescarta todas las pistas controladas por los investigadores.",
+    "flavor": "Cuando el tren a Dunwich se detiene abruptamente, miráis por la ventana hacia atrás y veis una inmensa grieta en el cielo, como un desgarro en un trozo de tela. Varios de los vagones de retaguardia están siendo arrastrados hacia atrás, y se oye un terrible crujido metálico cuando se sueltan. Los vagones caen hacia arriba, en dirección de la grieta del cielo. Los pasajeros que tenéis cerca entran en pánico, otros están encogidos de miedo en sus asientos, y un hombre mayor se ha desmayado de terror.",
+    "backFlavor": "El último vagón se desengancha al ser arrastrado hacia atrás. Veis con horror como se eleva de las vías y es consumido por el portal que tenéis encima."
+  },
+  "02161": {
+    "name": "La grieta se ensancha",
+    "typeCode": "agenda",
+    "text": "",
+    "backName": "¡No os detengáis!",
+    "backText": "Retira de la partida el Lugar que esté más a la izquierda, o colócalo en la zona de victoria si tiene Victoria X y no tiene pistas. Cada investigador que esté en ese Lugar queda derrotado. Todos los Enemigos y Apoyos que estén en ese Lugar son descartados.\nDescarta todas las pistas controladas por los investigadores.",
+    "flavor": "La grieta se hace mayor, y notáis como el último vagón del tren tiembla al ser arrastrado hacia atrás. La situación amenaza con desembocar en el caos a medida que más pasajeros se dan cuenta del peligro que corren. Algunos buscan sitios para ocultarse, mientras que otros corren por los compartimentos presa del pánico.",
+    "backFlavor": "El siguiente vagón es arrancado con una violenta fuerza. Un hombre de mediana edad cuelga por la punta de los dedos del vagón mientras éste vuela directamente hacia la grieta. En unos instantes, el vagón es consumido por completo, y el hombre se suelta antes de ser absorbido por el vacío. Comienza a caer, pero la fuerza de la grieta lo atrapa y es engullido de todas formas."
+  },
+  "02162": {
+    "name": "Rodando hacia atrás",
+    "typeCode": "agenda",
+    "text": "",
+    "backName": "¡Está yendo más rápido!",
+    "backText": "Retira de la partida los dos Lugares que estén más a la izquierda, o coloca en la zona de victoria cualquiera que tenga Victoria X y no tenga pistas. Cada investigador que esté en esos Lugares queda derrotado. Todos los Enemigos y Apoyos que estén en esos Lugares son descartados.\nDescarta todas las pistas controladas por los investigadores.",
+    "flavor": "La atracción de la grieta del cielo parece hacerse más fuerte, y todo el tren comienza a rodar hacia atrás por las vías. Los últimos vagones del tren comienzan a traquetear, y la fuerza de la grieta amenaza con desengancharlos. ¡Debéis salir de estos vagones lo más rápido que podáis!",
+    "backFlavor": "Dos de los vagones más cercanos al portal quedan cercenados del resto del tren por una especie de cortina de vapor increíblemente caliente que atraviesa el metal como si fuera mantequilla. Los vagones son absorbidos hacia arriba y vuelan hacia el portal. Algo que hay por encima del tren emite un terrible chillido, aunque a vuestros oídos parece como el sonido de una tubería de vapor rota."
+  },
+  "02163": {
+    "name": "Atraídos",
+    "typeCode": "agenda",
+    "text": "",
+    "backName": "No hay lugar seguro",
+    "backText": "Retira de la partida los dos Lugares que estén más a la izquierda, o coloca en la zona de victoria cualquiera que tenga Victoria X y no tenga pistas. Cada investigador que esté en esos Lugares queda derrotado. Todos los Enemigos y Apoyos que estén en esos Lugares son descartados.\nDescarta todas las pistas controladas por los investigadores.",
+    "flavor": "El portal chisporrotea de poder a medida que aumenta su fuerza. La tierra y las rocas del borde del puente que tenéis detrás están siendo arrancadas del suelo, y los árboles están siendo desarraigados al ser atraídos por el portal. Un joven pasajero rompe la ventana de vuestro vagón y grita: —iDebemos salir de aquí! —Salta por la ventana, pero antes de caer al río que hay debajo, es atrapado por las garras de una veloz criatura voladora y desaparece de vuestra vista. Al paso de la criatura sólo queda un rastro de vapor.",
+    "backFlavor": "Los dos vagones de la cola del tren comienzan a fundirse a medida que se llenan de vapor ultracaliente. El metal se dobla, y los pasajeros del interior gritan de agonía. Los vagones son arrancados de las vías del tren junto con tablones de los raíles y trozos del puente que tenéis detrás."
+  },
+  "02164": {
+    "name": "Se acaba el tiempo",
+    "typeCode": "agenda",
+    "text": "",
+    "backName": "Engullidos",
+    "backText": "Cada investigador superviviente queda derrotado inmediatamente y recibe 1 trauma mental. <b>(→R2)</b>",
+    "flavor": "La grieta del cielo se retuerce y tiembla, completamente distorsionada. Ahora tiene un tamaño descomunal, y su forma no deja de cambiar, como si estuviera a punto de explotar.",
+    "backFlavor": "Todo el puente se resquebraja por la presión del portal y acaba partiéndose. En lugar de caer al río, los vagones restantes son atraídos hacia la grieta del cielo. Os agarráis como podéis y gritáis de terror al ser absorbidos por el portal. Después, todo se vuelve negro."
+  },
+  "02165": {
+    "name": "¡CorredR!",
+    "typeCode": "act",
+    "text": "<b>Objective</b> - Si un investigador entra en la Locomotora, haz avanzar el acto inmediatamente.",
+    "backName": "Alas de vapor",
+    "backText": "<b>El investigador que entre en la Locomotora lee lo siguiente en voz alta:\n</b>Debes decidir (elige una opción):\n- Realiza una prueba de [agility] (3) para intentar esquivar a la criatura. Si fracasas, saltas demasiado lejos y apenas logras aferrarte al lateral del tren, por lo que quedas colgado a duras penas. Aunque logras auparte, la experiencia es aterradora. Sufre 1 trauma mental.\n- Realiza una prueba de [combat] (3) para intentar soportar el calor extremo de la criatura. Si fracasas, la criatura te atraviesa volando y el calor te quema. Sufre 1 trauma físico.",
+    "flavor": "El tren se ha detenido sobre un puente que se eleva sobre el río Miskatonic; quizá podríais sobrevivir a la caída, pero no queréis tentar a la suerte. Lo mejor que podéis hacer es llegar a la locomotora tan rápido como podáis para volver a poner el tren en marcha.",
+    "backFlavor": "Un ténder lleno de carbón bloquea el paso hasta la cabina de la locomotora. Te tragas el miedo y sales por la ventana que tienes más cerca para trepar al techo del tren y cruzar el ténder. El incesante movimiento hacia atrás del tren te dificulta no perder el equilibrio. Al acercarte, una criatura alada desciende desde lo alto, con un cuerpo compuesto de hirviente vapor."
+  },
+  "02166": {
+    "name": "¡Arrancad la locomotora!",
+    "typeCode": "act",
+    "text": "<b>Objective</b> - Si no hay pistas en la Locomotora, haz avanzar el acto inmediatamente.",
+    "backName": "Hacia delante",
+    "backText": "<b>(→R1)</b>",
+    "flavor": "Habéis logrado llegar a la locomotora, pero ¡ahora tenéis que volver a arrancar el motor para poder escapar de la fuerza absorbente del portal!",
+    "backFlavor": "El motor ruge y se pone en marcha. Echáis carbón a paletadas en la caldera del motor, y os alivia ver que el tren vuelve a moverse hacia delante por las vías."
+  },
+  "02167": {
+    "name": "Vagón de pasajeros",
+    "typeCode": "location",
+    "traits": "Tren.",
+    "text": "El Vagón de pasajeros está conectado a los Lugares de su izquierda y de su derecha.\n<b>Obligado</b> - Después de que entres en el Vagón de pasajeros: Debes descartar cartas de tu mano que tengan al menos 2 iconos [agility] en total, o bien recibir 2 puntos de daño.",
+    "backName": "Vagón de tren",
+    "backText": "El Vagón de tren está conectado a los Lugares de su izquierda y de su derecha.\nNo puedes entrar en el Vagón de tren a menos que todas las pistas del Lugar de su izquierda hayan sido descubiertas."
+  },
+  "02168": {
+    "name": "Vagón de pasajeros",
+    "typeCode": "location",
+    "traits": "Tren.",
+    "text": "El Vagón de pasajeros está conectado a los Lugares de su izquierda y de su derecha.\n<b>Obligado</b> - Después de que entres en el Vagón de pasajeros: Debes descartar cartas de tu mano que tengan al menos 2 iconos [combat] en total, o bien recibir 2 puntos de daño.",
+    "backName": "Vagón de tren",
+    "backText": "El Vagón de tren está conectado a los Lugares de su izquierda y de su derecha.\nNo puedes entrar en el Vagón de tren a menos que todas las pistas del Lugar de su izquierda hayan sido descubiertas."
+  },
+  "02169": {
+    "name": "Vagón de pasajeros",
+    "typeCode": "location",
+    "traits": "Tren.",
+    "text": "El Vagón de pasajeros está conectado a los Lugares de su izquierda y de su derecha.\n<b>Obligado</b> - Después de que entres en el Vagón de pasajeros: Debes descartar cartas de tu mano que tengan al menos 2 iconos [willpower] en total, o bien recibir 2 puntos de horror.",
+    "backName": "Vagón de tren",
+    "backText": "El Vagón de tren está conectado a los Lugares de su izquierda y de su derecha.\nNo puedes entrar en el Vagón de tren a menos que todas las pistas del Lugar de su izquierda hayan sido descubiertas."
+  },
+  "02170": {
+    "name": "Vagón de pasajeros",
+    "typeCode": "location",
+    "traits": "Tren.",
+    "text": "El Vagón de pasajeros está conectado a los Lugares de su izquierda y de su derecha.\n<b>Obligado</b> - Después de que entres en el Vagón de pasajeros: Debes descartar cartas de tu mano que tengan al menos 2 iconos [intellect] en total, o bien recibir 2 puntos de horror.",
+    "backName": "Vagón de tren",
+    "backText": "El Vagón de tren está conectado a los Lugares de su izquierda y de su derecha.\nNo puedes entrar en el Vagón de tren a menos que todas las pistas del Lugar de su izquierda hayan sido descubiertas."
+  },
+  "02171": {
+    "name": "Vagón de pasajeros",
+    "typeCode": "location",
+    "traits": "Tren.",
+    "text": "El Vagón de pasajeros está conectado a los Lugares de su izquierda y de su derecha.\n<b>Obligado</b> - Después de que entres en el Vagón de pasajeros: Debes descartar una carta de tu mano que tenga al menos 1 icono ?, o bien recibir 1 punto de daño y 1 de horror.",
+    "backName": "Vagón de tren",
+    "backText": "El Vagón de tren está conectado a los Lugares de su izquierda y de su derecha.\nNo puedes entrar en el Vagón de tren a menos que todas las pistas del Lugar de su izquierda hayan sido descubiertas."
+  },
+  "02172": {
+    "name": "Coche cama",
+    "typeCode": "location",
+    "traits": "Tren.",
+    "text": "El Coche cama está conectado a los Lugares de su izquierda y de su derecha.\n[action]: Obtén 3 recursos. Recuerda que has \"robado el equipaje de un pasajero\". Límite de grupo de una vez por partida.",
+    "backName": "Vagón de tren",
+    "backText": "El Vagón de tren está conectado a los Lugares de su izquierda y de su derecha.\nNo puedes entrar en el Vagón de tren a menos que todas las pistas del Lugar de su izquierda hayan sido descubiertas."
+  },
+  "02173": {
+    "name": "Vagón restaurante",
+    "typeCode": "location",
+    "traits": "Tren.",
+    "text": "El Vagón restaurante está conectado a los Lugares de su izquierda y de su derecha.\n<b>Obligado</b> - Después de que reveles el Vagón restaurante: Busca un Horror apresador en el mazo y la pila de descartes de Encuentros y róbalo. Baraja el mazo de Encuentros.",
+    "backName": "Vagón de tren",
+    "backText": "El Vagón de tren está conectado a los Lugares de su izquierda y de su derecha.\nNo puedes entrar en el Vagón de tren a menos que todas las pistas del Lugar de su izquierda hayan sido descubiertas."
+  },
+  "02174": {
+    "name": "Vagón de lujo",
+    "typeCode": "location",
+    "traits": "Tren.",
+    "text": "El Vagón de lujo está conectado a los Lugares de su izquierda y de su derecha.\nEl Vagón de lujo no puede ser investigado.\n[action] Gasta 3 recursos: Descubre 1 pista en el Vagón restaurante.",
+    "backName": "Vagón de tren",
+    "backText": "El Vagón de tren está conectado a los Lugares de su izquierda y de su derecha.\nNo puedes entrar en el Vagón de tren a menos que todas las pistas del Lugar de su izquierda hayan sido descubiertas."
+  },
+  "02175": {
+    "name": "Locomotora",
+    "typeCode": "location",
+    "traits": "Tren.",
+    "text": "La Locomotora está conectada al Lugar de su izquierda.",
+    "backText": "La Locomotora está conectado al Lugar de su izquierda.\nNo puedes entrar en la Locomotora a menos que todas las pistas del Lugar de su izquierda hayan sido descubiertas.",
+    "flavor": "No hay ni rastro del maquinista. Tendréis que averiguar cómo arrancar el motor por vuestra cuenta."
+  },
+  "02176": {
+    "name": "Locomotora",
+    "typeCode": "location",
+    "traits": "Tren.",
+    "text": "La Locomotora está conectada al Lugar de su izquierda.\n<b>Obligado</b> - Después de que reveles la Locomotora: Busca un Horror apresador en el mazo y la pila de descartes de Encuentros y róbalo. Baraja el mazo de Encuentros.",
+    "backText": "La Locomotora está conectado al Lugar de su izquierda.\nNo puedes entrar en la Locomotora a menos que todas las pistas del Lugar de su izquierda hayan sido descubiertas.",
+    "flavor": "¡Veis una terrible bestia sobre el aterrado maquinista del tren, que grita de terror!"
+  },
+  "02177": {
+    "name": "Locomotora",
+    "typeCode": "location",
+    "traits": "Tren.",
+    "text": "La Locomotora está conectada al Lugar de su izquierda.\n<b>Obligado</b> - Después de que reveles la Locomotora: Roba las 3 primeras cartas del mazo de Encuentros.",
+    "backText": "La Locomotora está conectado al Lugar de su izquierda.\nNo puedes entrar en la Locomotora a menos que todas las pistas del Lugar de su izquierda hayan sido descubiertas.",
+    "flavor": "El cuerpo muerto del maquinista está tendido sobre los muchos mecanismos de control de la locomotora."
+  },
+  "02178": {
+    "name": "A través del tiempo y el espacio",
+    "typeCode": "treachery",
+    "traits": "Locura.",
+    "text": "<b>Revelación</b> - Descarta las 3 primeras cartas de tu mazo.",
+    "flavor": "¿Qué ocurrió al otro lado?"
+  },
+  "02179": {
+    "name": "Pasajero indefenso",
+    "typeCode": "asset",
+    "traits": "Aliado. Transeúnte.",
+    "text": "Oleada.\n<b>Revelación</b> - Pon el Pasajero indefenso en juego en el Lugar de tu izquierda, o bien en tu Lugar si no puedes.\n[action] <b>Negociar</b>. Toma el control del Pasajero indefenso.\n<b>Obligado</b> - Si el Pasajero indefenso abandona el juego: Cada investigador recibe 1 punto de horror."
+  },
+  "02180": {
+    "name": "Garras de vapor",
+    "typeCode": "treachery",
+    "traits": "Poder.",
+    "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (3). Si fracasas, recibe 2 puntos de daño y no puedes moverte de este Lugar en esta ronda. El daño de este efecto debe ser asignado primero a tus Apoyos si es posible."
+  },
+  "02181": {
+    "name": "Raíles rotos",
+    "typeCode": "treachery",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> - Cada investigador que esté en tu Lugar pierde 1 acción. Cada investigador que esté en tu Lugar y tenga 4 o más puntos de daño también debe descartar un Apoyo que controle.",
+    "flavor": "Vuestro vagón comienza a temblar y agitarse violentamente adelante y atrás en las vías tirándoos al suelo."
+  },
+  "02182": {
+    "name": "Horror apresador",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Abominación.",
+    "text": "Cazador.\nMientras estés enfrentado al Horror apresador, no puedes moverte."
+  },
+  "02183": {
+    "name": "Monstruosidad emergente",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Abominación.",
+    "text": "<b>Aparición</b> - El Lugar de tu derecha, o bien tu Lugar si no hay ningún Lugar a tu derecha.\nLa Monstruosidad emergente entra en juego agotada.",
+    "flavor": "La criatura surge de debajo de uno de los asientos, creciendo sin cesar en masa y volumen y amenazando con engullir todo el compartimento."
   }
 }

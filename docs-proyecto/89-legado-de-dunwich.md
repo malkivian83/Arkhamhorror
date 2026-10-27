@@ -2,11 +2,10 @@
 
 ## Estado actual
 
-**Tres de los ocho escenarios son jugables**: Actividad extracurricular,
-La casa siempre gana y El museo Miskatonic, para uno a cuatro investigadores y
+**Cuatro de los ocho escenarios son jugables**: Actividad extracurricular,
+La casa siempre gana, El museo Miskatonic y El Essex County Express, para uno a cuatro investigadores y
 las cuatro dificultades. Los dos primeros pueden jugarse en cualquier orden y
-conectan con El destino de Armitage. Tras el museo queda pendiente El Essex County
-Express y los otros cuatro escenarios. No se presenta la campaña como completa
+conectan con El destino de Armitage. Tras el tren quedan pendientes los otros cuatro escenarios. No se presenta la campaña como completa
 ni se incluye Regreso a Dunwich.
 
 La elección del prólogo se conserva en `log.values.openingScenario`; los guardados
@@ -59,13 +58,13 @@ de la copia externa, que no se ha trasladado literalmente.
 
 ## Presentación y narración
 
-Catálogo local EN/ES de 92 códigos, referencia de escenario y ayuda de fichas,
-290 escaneos oficiales y sus 290 miniaturas, portada y huellas de integridad.
+Catálogo local EN/ES de 117 códigos, referencia de escenario y ayuda de fichas,
+378 escaneos oficiales y sus 378 miniaturas, portada y huellas de integridad.
 Se han inspeccionado escaneos representativos sin abrir el navegador.
 La revisión visual de la mesa queda para la persona usuaria, conforme a AGENTS.
 
 Los audios usan **Nico - History & Documentary**,
-`FXn3GKRRt9FCEyTbrkaL`. Hay veinte grabaciones de historia en español:
+`FXn3GKRRt9FCEyTbrkaL`. Hay veinticuatro grabaciones de historia en español:
 prólogo; introducción y cinco desenlaces de Actividad extracurricular; introducción
 y cuatro resoluciones de La casa siempre gana; ambas variantes de Armitage; e
 introducción, dos variantes y tres desenlaces del museo. Los relatos
@@ -141,33 +140,47 @@ mazo de encuentros contiene 34 cartas de los seis conjuntos indicados.
 - Se reutilizan Mala suerte, Hechicería, El Más Allá, Frío helador y Puertas
   cerradas. El final se guarda y avanza al tren sin presentar el resto como listo.
 
+## El Essex County Express
+
+Fuentes: guía revisada ES, páginas 11–12, y cartas 02159–02183. Se eligen seis de
+los ocho vagones y una de tres locomotoras, conectados en línea. El mazo reúne
+35 encuentros de los conjuntos impresos; la preparación añade la ficha negativa
+permanente de la dificultad.
+
+- Solo se entra en el siguiente vagón sin revelar después de vaciar el anterior.
+  Los costes por iconos, daño u horror distinguen las cinco variantes de pasajeros.
+  Dormitorio respeta el límite de grupo; Salón impide investigar y permite pagar
+  recursos. Comedor y locomotoras resuelven sus encuentros para quien los revela.
+- Los planes retiran uno, uno, dos y dos vagones, eliminan a sus ocupantes,
+  descartan enemigos y apoyos y las pistas del grupo; conservan la victoria de
+  los Lugares vacíos. El último plan añade trauma mental y termina la partida.
+- Vapor, vías, pasajeros y enemigos tienen comportamiento propio. La Monstruosidad
+  entra agotada y el Horrendo aferrador impide abandonar el vagón. Las Garras
+  obligan a asignar primero a apoyos y bloquean el movimiento durante la ronda.
+- Las pruebas del acto afectan al investigador que llega a la locomotora. Los
+  derrotados reciben la debilidad de historia y experiencia; se conservan las
+  pérdidas del libro y los profesores. Los desenlaces guardan el avance a Sangre
+  en el altar y la demora cuando corresponde.
+- El motor transmite quién revela un Lugar, admite enemigos que entran agotados
+  y la asignación obligatoria a cualquier apoyo. Los efectos de Culto oscuro
+  colocan perdición sin adelantar el plan fuera del momento reglamentario.
+
 ## Validación y continuación
 
-Último lote funcional: `b4081af`, museo completo y seis audios nuevos; corrección
-`1c298b3` para las salidas de Adam y Harold por descarte, derrota, retirada,
-retorno a la mano, barajado y retirada de la partida. Incluye el ajuste pendiente
-para quitar investigadores del equipo (`7fa8780`), por petición de la persona
-usuaria. Lote cerrado para la subida autorizada.
+Último lote subido: museo en `a8eede7`, incluido el ajuste del equipo solicitado.
+Lote actual: Essex, 42 pruebas dirigidas correctas. El conjunto dirigido del motor,
+Dunwich y presentación obtuvo 348 pruebas correctas; el nuevo catálogo detectó
+una expectativa que no contemplaba la debilidad de historia y se ajustó.
+Comprobaciones finales del lote pendientes.
 
-Formato, lint y tipos globales comprobados. La suite obtuvo 4549 pruebas correctas
-y tres límites de tiempo preexistentes en Gala, Brethren of Ash y administración.
-Tras corregir la salida de los aliados se repitieron los controles afectados:
-329 pruebas del motor, Dunwich y los tres archivos con tiempo ampliado, todas
-correctas. Pasan las 48 pruebas del museo y la compilación final. Las veinte
-narraciones conservan las transcripciones y la voz Nico - History & Documentary.
-
-
-Las pruebas dirigidas incluyen preparación de uno a cuatro investigadores,
-variantes de oficinas y mazo oculto, vacío persistente, enemigos, traiciones,
-aliados, costes, fichas, resoluciones y guardado. Un recorrido completo recupera
-y destruye el libro mediante acciones legales, sin editar el estado tras la
-preparación. Partidas con mazos iniciales reales de uno a cuatro investigadores
-terminan usando decisiones legales y conservan el siguiente escenario. Catálogos,
-escaneos y las veinte narraciones se verifican por consola. Se inspeccionaron
-imágenes representativas y las conexiones impresas; la revisión visual de la
+Las pruebas del tren incluyen preparación, azar, cuatro dificultades, colapso,
+traumas, encuentros, costes, fichas y guardado. Un recorrido gana mediante acciones
+legales sin editar el estado tras preparar; otras partidas usan mazos iniciales
+reales de uno a cuatro investigadores. Se inspeccionaron cartas representativas.
+Los 24 audios conservan la voz y sus transcripciones; la revisión visual de la
 aplicación queda para la persona usuaria conforme a AGENTS.
 
-Siguiente grupo: **El Essex County Express**; después Sangre en el altar,
-Invisibles y sin dimensión, Donde aguarda la perdición, Perdidos en el tiempo y
-el espacio, Los supervivientes y el epílogo. Continúa vigente la autorización
-para implementar y subir cada escenario al completar sus comprobaciones.
+Siguiente grupo: **Sangre en el altar**; después Invisibles y sin dimensión,
+Donde aguarda la perdición, Perdidos en el tiempo y el espacio, Los supervivientes
+y el epílogo. Continúa vigente la autorización para implementar y subir cada
+escenario al completar sus comprobaciones.

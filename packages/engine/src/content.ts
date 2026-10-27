@@ -268,6 +268,7 @@ export interface TreacheryBehavior {
 }
 
 export interface EnemyBehavior {
+  entersExhausted?: boolean
   insteadOfRemove?: (state: GameState, self: Enemy) => Message[] | null
   healthModifier?: (state: GameState, self: Enemy) => number
   attackModifier?: (
@@ -331,7 +332,7 @@ export interface LocationBehavior {
   abilities?: AbilitiesFn<Location>
   forced?: (state: GameState, trigger: Trigger, self: Location) => Message[]
   /** Forzado al revelarse, ya revelada (Vestíbulo: pone en juego dos Puertas). */
-  onReveal?: (state: GameState, self: Location) => Message[]
+  onReveal?: (state: GameState, self: Location, investigator?: InvestigatorId) => Message[]
 }
 
 export interface AgendaBehavior {

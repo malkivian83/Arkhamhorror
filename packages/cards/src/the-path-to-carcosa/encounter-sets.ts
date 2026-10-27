@@ -1198,10 +1198,10 @@ for (const code of [SETS.acolyte, SETS.wizardOfTheOrder])
     forced: (_state, trigger, self) => {
       // Acólito: después de entrar en juego, 1 perdición sobre él.
       if (code === SETS.acolyte && trigger.type === 'enemySpawned' && trigger.enemy === self.id)
-        return [{ type: 'PlaceDoomOnEnemy', enemy: self.id, amount: 1 }, { type: 'CheckAgenda' }]
+        return [{ type: 'PlaceDoomOnEnemy', enemy: self.id, amount: 1, checkAgenda: false }]
       // Mago de la Orden: al final de la fase de Mitos, 1 perdición sobre él.
       if (code === SETS.wizardOfTheOrder && trigger.type === 'mythosPhaseEnds')
-        return [{ type: 'PlaceDoomOnEnemy', enemy: self.id, amount: 1 }, { type: 'CheckAgenda' }]
+        return [{ type: 'PlaceDoomOnEnemy', enemy: self.id, amount: 1, checkAgenda: false }]
       return []
     },
   })
@@ -1219,8 +1219,7 @@ registerTreachery({
     const here = getInvestigator(state, investigator).location
     const targets = here === null ? cultists : nearest(state, here, cultists)
     const doom = (e: Enemy): Message[] => [
-      { type: 'PlaceDoomOnEnemy', enemy: e.id, amount: 2 },
-      { type: 'CheckAgenda' },
+      { type: 'PlaceDoomOnEnemy', enemy: e.id, amount: 2, checkAgenda: false },
     ]
     if (targets.length === 1) return doom(targets[0]!)
     return [

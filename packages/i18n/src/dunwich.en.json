@@ -1,5 +1,5 @@
 {
-  "description": "Find the missing professors. Both opening scenarios and The Miskatonic Museum are playable; the next five remain in development.",
+  "description": "Find the missing professors. The first four scenarios are playable; the final four remain in development.",
   "story": {
     "museum": {
       "intro": "Several months ago, Armitage and his colleagues stopped a rampaging horror from tearing through Dunwich, a backwater town several hours north and west of Arkham. At first you imagine this beast as a rabid bear, or worse, but the professor’s description of the creature paints a different picture. It all began when a man named Wilbur Whateley entered the Orne Library looking for Olaus Wormius’s Latin translation of a book called the Necronomicon. Wilbur already possessed a beaten-up English translation by Dr. John Dee, but it was insufficient for his purposes. Armitage turned the man away, fearing what use the strange man had for the book. Whateley returned in secret, hoping to steal the book , but was attacked by a hound guarding the university. Armitage, Rice, and Morgan later discovered Whateley’s body. A description of the foul corpse—semi-anthropomorphic and covered in fur, with a leathery hide and greenish-grey tentacles—causes you to question whether or not Whateley was truly human.",
@@ -31,12 +31,27 @@
       "peek02136": "Shroud: 3. Clues per investigator: 2. Forced - After you fail a skill test while investigating this location: Take 1 horror.",
       "peek02137Title": "Exhibit Hall — Restricted Hall",
       "peek02137": "Shroud: 3. Clues per investigator: 2. While Hunting Horror is at this location, this location cannot be investigated."
+    },
+    "essex": {
+      "intro": "Recent events in the Museum have forced you to re-evaluate Armitage’s tale about Dunwich. It cannot be a coincidence—Wilbur Whateley, the Necronomicon, the creature from Dunwich, and the people and creatures who attacked here in Arkham —everything must be connected. You’re certain now where you must head: the lonely and dismal town of Dunwich Village. You consider telling the Massachusetts State Police what you know, but the negative consequences outweigh the potential gain. Given the nature of your story, they would likely write your stories off as an absurd hoax. Worse, they could lock you up. After all, you were present in an illegal speakeasy, and you also trespassed in the museum. Instead, you decide to head to Dunwich yourself, in order to investigate further. You pack everything you think you might need and manage to get some rest for the night. In the morning, you head to the train station in Northside and purchase a last-minute express ticket. Dunwich is several hours by train northwest along the Miskatonic River Valley. There is no train station in Dunwich, but you manage to phone one of Armitage’s acquaintances in the small village: a man by the name of Zebulon Whateley who was present during the events several months ago. Armitage’s notes indicate that the Whateley family is spread across many branches, some decadent and unscrupulous, others “undecayed” or otherwise untouched by nefarious and diabolic rites. According to Armitage, Zebulon’s branch of the family lay somewhere between the decayed and undecayed Whateleys, who knew of the traditions of his ancestors, but was not corrupted by them. He agrees to pick you up at the closest station and drive you into town. As the train departs from Arkham, you feel the events of the previous night catching up to you, and exhaustion sets in. But before you can safely reach your destination, the train car suddenly rumbles and shakes, startling you out of your reverie. The train loudly skids to a violent halt, and you hear a rattling noise behind you…",
+      "introTitle": "El Essex County Express",
+      "defeated": "Your experience beyond the gate is simultaneously terrifying and impossible to recall with clarity. A hypnotic spectacle of lights, otherworldly sensations, and altered geometry dances at the tattered edges of your mind. An unearthly voice from beyond rings in your ears, its significance an enigma. When you awaken, you find yourself in the woods, several miles from the Miskatonic River. Destroyed train cars surround you. They are crumpled as if from a severe impact; they are also decayed as if years of rust and squalor have claimed them. There is no sign of the other passengers.",
+      "defeatedTitle": "Defeated investigator",
+      "resolution1": "You breathe a sigh of relief as the gate behind the train collapses harmlessly upon itself. The few passengers who survived the ordeal seem unable to comprehend what just happened. One passenger mentions “a pipe bursting in the rear car,” and that quickly becomes the explanation for the innocent and ignorant, those who either cannot or choose not to delve further into the mystery. You, on the other hand, know better… although in hindsight, you wish you didn’t.",
+      "resolution1Title": "Resolution 1",
+      "resolution2": "Rattled, you begin walking alongside the train tracks, making your way towards Dunwich.",
+      "resolution2Title": "Resolution 2",
+      "setupTitle": "Setup",
+      "setup": "Gather Essex County Express, The Beyond, Striking Fear, Ancient Evils and Dark Cult. Randomly select six of the eight train cars and one of the three engines. Start in the revealed leftmost car, ignoring its entry effects. Set four copies of Across Space and Time aside. Permanently add a −2, −3, −4 or −5 token for the chosen difficulty.",
+      "defeatedEffect": "Each defeated investigator gains Across Space and Time and 1 bonus experience. Professors and The Necronomicon in their deck are lost."
     }
   },
   "notes": {
     "dunwichMuseumFailed": "The investigators failed to recover the Necronomicon",
     "dunwichNecronomiconDestroyed": "The investigators destroyed the Necronomicon",
-    "dunwichNecronomiconKept": "The investigators took custody of the Necronomicon"
+    "dunwichNecronomiconKept": "The investigators took custody of the Necronomicon",
+    "dunwichDelayed": "The investigators were delayed on their way to Dunwich",
+    "dunwichNecronomiconStolen": "The Necronomicon was stolen"
   },
   "abilities": {
     "museum": {
@@ -45,6 +60,11 @@
       "exhibit": "Open the next exhibit",
       "search": "Search the top 6 cards",
       "look": "Inspect an exhibit"
+    },
+    "essex": {
+      "passenger": "Help the helpless passenger",
+      "luggage": "Steal luggage: gain 3 resources",
+      "parlor": "Pay 3 resources to discover 1 clue"
     }
   },
   "choices": {
@@ -54,6 +74,12 @@
       "top": "Inspect the top exhibit card",
       "destroy": "Destroy The Necronomicon",
       "keep": "Keep The Necronomicon"
+    },
+    "essex": {
+      "icons": "Discard cards with the required icons",
+      "damage": "Take the car’s damage or horror",
+      "agility": "Dodge the creature: agility (3)",
+      "combat": "Endure the heat: combat (3)"
     }
   },
   "prompts": {
@@ -62,6 +88,11 @@
       "passage": "Choose a consequence",
       "look": "Choose an exhibit to inspect",
       "tome": "What will you do with The Necronomicon?"
+    },
+    "essex": {
+      "icons": "Discard cards to pay {amount} remaining icons",
+      "passengerCost": "Choose how to cross the car",
+      "steam": "Choose how to overcome the steam creature"
     }
   }
 }

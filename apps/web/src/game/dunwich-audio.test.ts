@@ -8,7 +8,7 @@ import { storyNarration } from './narration'
 it('connects all implemented Dunwich narratives to their complete transcripts and exact Nico voice', () => {
   expect(evidence.voiceName).toBe('Nico - History & Documentary')
   expect(evidence.voiceId).toBe('FXn3GKRRt9FCEyTbrkaL')
-  expect(evidence.files).toHaveLength(20)
+  expect(evidence.files).toHaveLength(24)
   const transcripts = JSON.parse(
     readFileSync(
       fileURLToPath(new URL('../../public/local-assets/story/es.json', import.meta.url)),

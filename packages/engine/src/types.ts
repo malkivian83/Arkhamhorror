@@ -839,7 +839,7 @@ export type Message =
       /** Lo produce la acción básica de movimiento (Palcos), no el efecto de una carta. */
       moveAction?: boolean
     }
-  | { type: 'RevealLocation'; location: LocationId }
+  | { type: 'RevealLocation'; location: LocationId; investigator?: InvestigatorId }
   /** En su localización o en `location`. */
   | { type: 'DiscoverClues'; investigator: InvestigatorId; amount: number; location?: LocationId }
   | {
@@ -1048,7 +1048,7 @@ export type Message =
   /** Si el enemigo ya no está en juego (lo ha derrotado el ataque). */
   | { type: 'IfEnemyDefeated'; enemy: EnemyId; then: Message[] }
   // ----- Smoke and Mirrors -----
-  | { type: 'PlaceDoomOnEnemy'; enemy: EnemyId; amount: number }
+  | { type: 'PlaceDoomOnEnemy'; enemy: EnemyId; amount: number; checkAgenda?: boolean }
   /** Pistas (pruebas) sobre un enemigo: recursos de la reserva como "pistas" del códex. */
   | { type: 'AddLead'; enemy: EnemyId }
   /** El enemigo sale del juego y queda debajo del acto. */

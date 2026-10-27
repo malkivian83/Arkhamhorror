@@ -29,6 +29,7 @@ it.each(['en', 'es'] as const)(
     const codes = [
       ...encounters,
       '02040',
+      ...Array.from({ length: 25 }, (_, n) => String(2159 + n).padStart(5, '0')),
       ...Array.from({ length: 29 }, (_, n) => String(2118 + n).padStart(5, '0')),
       ...Array.from({ length: 21 }, (_, n) => String(2062 + n).padStart(5, '0')),
       ...Array.from({ length: 8 }, (_, n) => String(2092 + n).padStart(5, '0')),
@@ -53,7 +54,7 @@ it.each(['en', 'es'] as const)(
         text: dunwichCards[locale][code]!.text,
         type_code: dunwichCards[locale][code]!.typeCode,
       })
-      if (dunwichCards[locale][code]!.typeCode !== 'asset')
+      if (dunwichCards[locale][code]!.typeCode !== 'asset' && code !== '02178')
         expect(playerCardDef(code)).toBeUndefined()
       const path = (manifest[locale] as Record<string, string>)[code]!
       const bytes = readFileSync(fileURLToPath(new URL(`../../public${path}`, import.meta.url)))

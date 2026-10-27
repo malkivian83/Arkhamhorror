@@ -1,5 +1,5 @@
 {
-  "description": "Busca a los profesores desaparecidos. Los dos escenarios iniciales y El museo Miskatonic son jugables; los cinco siguientes siguen en desarrollo.",
+  "description": "Busca a los profesores desaparecidos. Los cuatro primeros escenarios son jugables; los cuatro últimos siguen en desarrollo.",
   "story": {
     "museum": {
       "intro": "Hace algunos meses, Armitage y sus colegas detuvieron a un horror desa tado que iba a destruir Dunwich, una apartada ciudad que se encuentra a varias horas de Arkham, hacia el noroeste. Al principio pensáis que esta bestia es un oso rabioso o algo peor, pero la descripción que hace el profesor de la criatura describe algo muy distinto. Todo comenzó cuando un hombre llamado Wilbur Whateley entró en la biblioteca Orne en busca de la traducción al latín de Olaus Wormius de un libro llamado el Necronomicón . Wilbur ya poseía una ajada traducción al inglés del Dr. John Dee, pero no le bastaba para sus propósitos. Armitage le prohibió el acceso, pues temía el posible uso que pudiera darle al libro ese extraño hombre. Whateley volvió en secreto, con la esperanza de poder robar el libro, pero fue atacado por un sabueso guardián de la universidad. Más tarde, Armitage, Rice y Morgan descubrieron el cuerpo de Whateley. Una descripción del terrible cadáver –semiantropomórfico y cubierto de pelaje, con una piel coriácea y tentáculos de un color gris verdoso– os hace cuestionaros si Whateley era humano realmente.",
@@ -31,12 +31,27 @@
       "peek02136": "Velo: 3. Pistas por investigador: 2. Obligado - Después de que fracases en una prueba de habilidad al investigar este Lugar: Recibe 1 punto de horror.",
       "peek02137Title": "Sala de exposición — Sala restringida",
       "peek02137": "Velo: 3. Pistas por investigador: 2. Mientras el Horrendo cazador esté en este Lugar, este Lugar no puede ser investigado."
+    },
+    "essex": {
+      "intro": "Los recientes acontecimientos en el museo os han obligado a reconsiderar el relato de Armitage sobre Dunwich. No puede ser una coincidencia: Wilbur Whateley, el Necronomicón, la criatura de Dunwich y la gente y criaturas que os atacaron aquí, en Arkham... todo debe de estar conectado. Ahora estáis seguros de adónde debéis dirigiros: a la solitaria y lúgubre ciudad de Dunwich. Os planteáis contarle a la policía estatal de Massachusetts lo que sabéis, pero las consecuencias negativas superan a cualquier posible beneficio. Dada la naturaleza de vuestra historia, probablemente pensarían que es un fraude absurdo. O peor, podrían encerraros. Después de todo, estuvis teis presentes en un garito ilegal y también os colasteis en el museo. Así que desecháis la idea y decidís dirigiros a Dunwich vosotros mismos para seguir investigando. Metéis en el equipaje todo lo que creéis que podréis necesitar y lográis des cansar un poco durante la noche. Por la mañana, vais a la estación de tren del Barrio Norte y compráis billetes de última hora para el tren expreso. Dunwich está a varias horas en tren hacia el noroeste, siguiendo el valle del río Miskatonic. En la localidad no hay estación de tren, pero lográis hablar por teléfono con uno de los conocidos de Armitage que viven allí: se trata de un hombre llamado Zebulon Whateley, que estuvo presente durante los sucesos de hace unos meses. Las notas de Armitage indican que el árbol genealógico de la familia Wha teley tiene una gran cantidad de ramas, algunas repletas de miembros de la familia decadentes y sin escrúpulos, y otras “limpias” o libres de la influen cia de los ritos diabólicos y siniestros. Según Armitage, la rama de la fami lia de Zebulon se encuentra entre los Whateley podridos y los no podridos, y aunque conocían las tradiciones de sus ancestros, no fueron corrompidos por ellas. Zebulon accede a recogeros en la estación más cercana y llevaros a la ciudad. Cuando el tren sale de Arkham, notáis que los acontecimientos de la noche anterior empiezan a pasaros factura, y el cansancio os vence. Pero antes de que podáis llegar a vuestro destino sanos y salvos, el vagón empieza a tem blar y sacudirse y os saca de vuestro sopor. El tren se detiene brusca y ruido samente, y oís un traqueteo a vuestra espalda...",
+      "introTitle": "El Essex County Express",
+      "defeated": "Vuestra experiencia al otro lado del portal es a la vez aterradora e imposible de recordar claramente. Un hipnótico espectáculo de luces, sensaciones sobrenaturales y geometría alterada baila en los límites hechos jirones de vues tra mente. Una voz fantasmal que viene del más allá resuena en vuestros oídos, pero su significado es un enigma. Cuando despertáis, os encontráis en los bosques, a varias millas del río Miskatonic. Estáis rodeados de vagones de tren destruidos, que han que dado arrugados como si hubieran sufrido un impacto tremendo, y también están deteriorados de una forma que parece como si años de óxido y suciedad hubieran hecho estragos en ellos. No hay ni rastro de los demás pasajeros.",
+      "defeatedTitle": "Investigador derrotado",
+      "resolution1": "Dais un suspiro de alivio cuando el portal que hay detrás del tren se colapsa sobre sí mismo. Los pocos pasajeros que han sobrevivido a la odisea parecen incapaces de compren der lo que acaba de suceder. Un pasajero menciona “una tubería que ha explotado en el vagón trasero”, y eso se convierte rápida mente en la explicación para los inocentes e ignorantes, aquellos que no pueden o no quieren indagar más en el misterio. Voso tros, en cambio, sabéis la verdad... aunque desearíais no saberla.",
+      "resolution1Title": "Resolución 1",
+      "resolution2": "Conmocionados, echáis a andar siguiendo las vías del tren en dirección a Dunwich.",
+      "resolution2Title": "Resolución 2",
+      "setupTitle": "Preparación",
+      "setup": "Reúne El Essex County Express, El Más Allá, Miedo impactante, Antiguos males y Secta oscura. Selecciona al azar seis de los ocho Vagones y una de las tres Locomotoras. Comenzad en el Vagón más a la izquierda, revelado, e ignorad sus efectos de entrada. Aparta cuatro copias de A través del tiempo y el espacio. Añade a la bolsa durante el resto de la campaña una ficha de −2, −3, −4 o −5 según la dificultad.",
+      "defeatedEffect": "Cada investigador derrotado añade A través del tiempo y el espacio y obtiene 1 experiencia adicional. Los profesores y El Necronomicón de su mazo se pierden."
     }
   },
   "notes": {
     "dunwichMuseumFailed": "Los investigadores no lograron recuperar el Necronomicón",
     "dunwichNecronomiconDestroyed": "Los investigadores destruyeron el Necronomicón",
-    "dunwichNecronomiconKept": "Los investigadores se quedaron con el Necronomicón"
+    "dunwichNecronomiconKept": "Los investigadores se quedaron con el Necronomicón",
+    "dunwichDelayed": "Los investigadores quedaron retrasados de camino a Dunwich",
+    "dunwichNecronomiconStolen": "El Necronomicón ha sido robado"
   },
   "abilities": {
     "museum": {
@@ -45,6 +60,11 @@
       "exhibit": "Abrir la siguiente exposición",
       "search": "Buscar entre las 6 primeras cartas",
       "look": "Inspeccionar una exposición"
+    },
+    "essex": {
+      "passenger": "Ayudar al pasajero indefenso",
+      "luggage": "Robar equipaje: obtener 3 recursos",
+      "parlor": "Pagar 3 recursos para descubrir 1 pista"
     }
   },
   "choices": {
@@ -54,6 +74,12 @@
       "top": "Inspeccionar la siguiente exposición del mazo",
       "destroy": "Destruir El Necronomicón",
       "keep": "Conservar El Necronomicón"
+    },
+    "essex": {
+      "icons": "Descartar cartas con los iconos necesarios",
+      "damage": "Recibir el daño u horror del Vagón",
+      "agility": "Evitar a la criatura: agilidad (3)",
+      "combat": "Soportar el calor: combate (3)"
     }
   },
   "prompts": {
@@ -62,6 +88,11 @@
       "passage": "Elige una consecuencia",
       "look": "Elige una exposición para inspeccionar",
       "tome": "¿Qué haréis con El Necronomicón?"
+    },
+    "essex": {
+      "icons": "Descarta cartas para pagar {amount} iconos restantes",
+      "passengerCost": "Elige cómo atravesar el Vagón",
+      "steam": "Elige cómo superar a la criatura de vapor"
     }
   }
 }

@@ -4,6 +4,32 @@ import { createHash } from 'node:crypto'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 
 const arts = [
+  '02159',
+  '02160',
+  '02161',
+  '02162',
+  '02163',
+  '02164',
+  '02165',
+  '02166',
+  '02167',
+  '02168',
+  '02169',
+  '02170',
+  '02171',
+  '02172',
+  '02173',
+  '02174',
+  '02175',
+  '02176',
+  '02177',
+  '02178',
+  '02179',
+  '02180',
+  '02181',
+  '02182',
+  '02183',
+
   '02118',
   '02119',
   '02120',
@@ -101,7 +127,8 @@ const arts = [
 ].flatMap((code) =>
   (Number(code) >= 2041 && Number(code) <= 2057) ||
   (Number(code) >= 2062 && Number(code) <= 2077) ||
-  (Number(code) >= 2118 && Number(code) <= 2137)
+  (Number(code) >= 2118 && Number(code) <= 2137) ||
+  (Number(code) >= 2159 && Number(code) <= 2177)
     ? [code, `${code}b`]
     : [code],
 )

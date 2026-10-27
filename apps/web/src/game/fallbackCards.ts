@@ -4,6 +4,8 @@ import {
   extracurricularActivity,
   theHouseAlwaysWins,
   theMiskatonicMuseum,
+  theEssexCountyExpress,
+  ESSEX_LOCATIONS,
   MUSEUM_LOCATIONS,
   HOUSE_LOCATIONS,
   HOUSE_PIT_BOSS,
@@ -144,6 +146,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     extracurricularActivity(),
     theHouseAlwaysWins(),
     theMiskatonicMuseum(),
+    theEssexCountyExpress(),
     theGathering(),
     spreadingFlames(),
     queenOfAsh(),
@@ -256,6 +259,14 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   // The Bloodless Man starts in play, outside the scenario's encounter/set-aside lists.
   Object.values(DUNWICH_ENCOUNTER_SETS).flat().forEach(encounter)
   Object.values(DUNWICH_LOCATION_CARDS).forEach(location)
+  Object.values(ESSEX_LOCATIONS).forEach(location)
+  put({
+    code: '02159',
+    name: 'Essex County Express',
+    real_name: 'Essex County Express',
+    type_code: 'scenario',
+  })
+  put({ ...cards.get('02179')!, type_code: 'asset', faction_code: 'neutral' })
   Object.values(MUSEUM_LOCATIONS).forEach(location)
   put({
     code: '02118',

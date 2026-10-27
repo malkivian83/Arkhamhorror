@@ -193,6 +193,42 @@
       "inputHash": "5be5bcb342bc0c12cbe80feb71db40631a4015e87aefe12149bc70ecf9f82550",
       "sha256": "679c6e34f9c9ce17e9c0183d11fa157497f6c98cf85f558215532cd6f06a8321",
       "bytes": 449767
+    },
+    {
+      "key": "story.essex.intro",
+      "file": "essex-intro-nico-history.mp3",
+      "text": "Los recientes acontecimientos en el museo os han obligado a reconsiderar el relato de Armitage sobre Dunwich. No puede ser una coincidencia: Wilbur Whateley, el Necronomicón, la criatura de Dunwich y la gente y criaturas que os atacaron aquí, en Arkham... todo debe de estar conectado. Ahora estáis seguros de adónde debéis dirigiros: a la solitaria y lúgubre ciudad de Dunwich. Os planteáis contarle a la policía estatal de Massachusetts lo que sabéis, pero las consecuencias negativas superan a cualquier posible beneficio. Dada la naturaleza de vuestra historia, probablemente pensarían que es un fraude absurdo. O peor, podrían encerraros. Después de todo, estuvis teis presentes en un garito ilegal y también os colasteis en el museo. Así que desecháis la idea y decidís dirigiros a Dunwich vosotros mismos para seguir investigando. Metéis en el equipaje todo lo que creéis que podréis necesitar y lográis des cansar un poco durante la noche. Por la mañana, vais a la estación de tren del Barrio Norte y compráis billetes de última hora para el tren expreso. Dunwich está a varias horas en tren hacia el noroeste, siguiendo el valle del río Miskatonic. En la localidad no hay estación de tren, pero lográis hablar por teléfono con uno de los conocidos de Armitage que viven allí: se trata de un hombre llamado Zebulon Whateley, que estuvo presente durante los sucesos de hace unos meses. Las notas de Armitage indican que el árbol genealógico de la familia Wha teley tiene una gran cantidad de ramas, algunas repletas de miembros de la familia decadentes y sin escrúpulos, y otras “limpias” o libres de la influen cia de los ritos diabólicos y siniestros. Según Armitage, la rama de la fami lia de Zebulon se encuentra entre los Whateley podridos y los no podridos, y aunque conocían las tradiciones de sus ancestros, no fueron corrompidos por ellas. Zebulon accede a recogeros en la estación más cercana y llevaros a la ciudad. Cuando el tren sale de Arkham, notáis que los acontecimientos de la noche anterior empiezan a pasaros factura, y el cansancio os vence. Pero antes de que podáis llegar a vuestro destino sanos y salvos, el vagón empieza a tem blar y sacudirse y os saca de vuestro sopor. El tren se detiene brusca y ruido samente, y oís un traqueteo a vuestra espalda...",
+      "characters": 2286,
+      "inputHash": "87f8519e14da88a67648eb8623a243d72397f5491d2a50417be73826ab94b4e6",
+      "sha256": "1ba6e8badfafba8db57ce64c6c287f10a2a9fecef20257fa88237c88e51f5a8d",
+      "bytes": 2585538
+    },
+    {
+      "key": "story.essex.defeated",
+      "file": "essex-defeated-nico-history.mp3",
+      "text": "Vuestra experiencia al otro lado del portal es a la vez aterradora e imposible de recordar claramente. Un hipnótico espectáculo de luces, sensaciones sobrenaturales y geometría alterada baila en los límites hechos jirones de vues tra mente. Una voz fantasmal que viene del más allá resuena en vuestros oídos, pero su significado es un enigma. Cuando despertáis, os encontráis en los bosques, a varias millas del río Miskatonic. Estáis rodeados de vagones de tren destruidos, que han que dado arrugados como si hubieran sufrido un impacto tremendo, y también están deteriorados de una forma que parece como si años de óxido y suciedad hubieran hecho estragos en ellos. No hay ni rastro de los demás pasajeros.",
+      "characters": 708,
+      "inputHash": "8a152a1753599e51ef00e6e3393744c6a7cd4045384ef222e384fb576fc7b4c5",
+      "sha256": "17db7d43a6092427fefe28a8368adabe5421d054c06b9f4010d3024210be3167",
+      "bytes": 791657
+    },
+    {
+      "key": "story.essex.resolution1",
+      "file": "essex-resolution1-nico-history.mp3",
+      "text": "Dais un suspiro de alivio cuando el portal que hay detrás del tren se colapsa sobre sí mismo. Los pocos pasajeros que han sobrevivido a la odisea parecen incapaces de compren der lo que acaba de suceder. Un pasajero menciona “una tubería que ha explotado en el vagón trasero”, y eso se convierte rápida mente en la explicación para los inocentes e ignorantes, aquellos que no pueden o no quieren indagar más en el misterio. Voso tros, en cambio, sabéis la verdad... aunque desearíais no saberla.",
+      "characters": 495,
+      "inputHash": "17d75c40ff67ac5433a40338138667576962f34001db99b33ea35839dc89540b",
+      "sha256": "86996f54b6423997eae80cc5b076de27b2b58cec112767196341aa389e1b0cca",
+      "bytes": 589365
+    },
+    {
+      "key": "story.essex.resolution2",
+      "file": "essex-resolution2-nico-history.mp3",
+      "text": "Conmocionados, echáis a andar siguiendo las vías del tren en dirección a Dunwich.",
+      "characters": 81,
+      "inputHash": "e556517fd94f1a86d966d3850aa92e5bcf485af0e5d6615677257b547f4252d2",
+      "sha256": "c963fab7074480d6e15b56f3cbf4327a847e6a7f21ee4880e446ee6597751760",
+      "bytes": 79873
     }
   ]
 }
