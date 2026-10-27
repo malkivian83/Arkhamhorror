@@ -111,7 +111,7 @@ try {
 } catch (error) {
   if (error.code !== 'ENOENT') throw error
   const response = await fetch(coverSource, { signal: AbortSignal.timeout(25000) })
-  if (!response.ok) throw new Error('Missing Dunwich cover: ' + response.status)
+  if (!response.ok) throw new Error('Missing Dunwich cover: ' + response.status, { cause: error })
   coverBytes = Buffer.from(await response.arrayBuffer())
   await writeFile('apps/web/public' + coverPath, coverBytes)
 }
