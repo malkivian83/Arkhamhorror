@@ -2553,7 +2553,9 @@ export function handle(state: GameState, message: Message): GameState {
       const asset = state.assets[message.asset]
       // Reglamento, "Permanent": no puede abandonar el juego (ni Baron Samedi sin 3 perdición).
       if (!asset || stuckInPlay(state, asset)) return state
-      const instead = scenarioBehavior(state.scenarioId)?.assetLeavesPlay?.(state, asset, 'discard')
+      const instead =
+        playerCardBehavior(asset.code)?.leavesPlay?.(state, asset, 'discard') ??
+        scenarioBehavior(state.scenarioId)?.assetLeavesPlay?.(state, asset, 'discard')
       if (instead) return push(state, ...instead)
       const { [asset.id]: _gone, ...assets } = state.assets
       const discarded = updateInvestigator(
@@ -3074,11 +3076,17 @@ export function handle(state: GameState, message: Message): GameState {
           .filter((asset) => asset.owner === investigator.id)
           .flatMap(
             (asset) =>
+              playerCardBehavior(asset.code)?.leavesPlay?.(
+                state,
+                asset,
+                investigator.resigned ? 'resigned' : 'defeated',
+              ) ??
               scenarioBehavior(state.scenarioId)?.assetLeavesPlay?.(
                 state,
                 asset,
                 investigator.resigned ? 'resigned' : 'defeated',
-              ) ?? [],
+              ) ??
+              [],
           )
         if (effects.length) return push(state, ...effects, { ...message, assetsDone: true })
       }
@@ -3145,6 +3153,15 @@ export function handle(state: GameState, message: Message): GameState {
 
     // ------------------------------------------------------ Prueba de habilidad
     case 'BeginSkillTest': {
+      if (
+        message.kind.type === 'investigate' &&
+        scenarioBehavior(state.scenarioId)?.cannotInvestigate?.(
+          state,
+          message.investigator,
+          message.kind.location,
+        )
+      )
+        return state
       if (
         (message.kind.type === 'fight' || message.kind.type === 'evade') &&
         state.enemies[message.kind.enemy]?.hasNoStats
@@ -4331,6 +4348,8 @@ export function handle(state: GameState, message: Message): GameState {
     case 'ShuffleAssetIntoDeck': {
       const asset = state.assets[message.asset]
       if (!asset || stuckInPlay(state, asset)) return state
+      const instead = playerCardBehavior(asset.code)?.leavesPlay?.(state, asset, 'other')
+      if (instead) return push(state, ...instead)
       const owner = getInvestigator(state, asset.originalOwner ?? asset.owner)
       const { [asset.id]: _gone, ...assets } = state.assets
       const [deck, rng] = shuffle([...owner.deck, asset.code], state.rng)
@@ -5205,6 +5224,11 @@ export function handle(state: GameState, message: Message): GameState {
     // ------------------------------------------------------- Habilidades
     case 'RemoveAssetFromGame': {
       if (!state.assets[message.asset]) return state
+      const asset = state.assets[message.asset]!
+      const instead = !message.leavingResolved
+        ? playerCardBehavior(asset.code)?.leavesPlay?.(state, asset, 'other')
+        : null
+      if (instead) return push(state, ...instead)
       const { [message.asset]: _removed, ...assets } = state.assets
       return { ...state, assets }
     }
@@ -5504,6 +5528,8 @@ export function handle(state: GameState, message: Message): GameState {
       // Busca en juego y en las zonas fuera de juego; se aparta curado.
       const inPlay = Object.values(state.enemies).find((e) => e.code === message.code)
       if (inPlay) {
+        const instead = enemyBehavior(inPlay.code)?.insteadOfRemove?.(state, inPlay)
+        if (instead) return push(state, ...instead)
         return {
           ...removeEnemy(state, inPlay.id),
           setAside: [...state.setAside, enemyCard(inPlay)],
@@ -5938,6 +5964,8 @@ export function handle(state: GameState, message: Message): GameState {
     case 'ReturnAssetToHand': {
       const asset = state.assets[message.asset]
       if (!asset || stuckInPlay(state, asset)) return state
+      const instead = playerCardBehavior(asset.code)?.leavesPlay?.(state, asset, 'other')
+      if (instead) return push(state, ...instead)
       const { [asset.id]: _gone, ...assets } = state.assets
       return updateInvestigator({ ...state, assets }, asset.originalOwner ?? asset.owner, (i) => ({
         ...i,
@@ -6471,6 +6499,10 @@ export function handle(state: GameState, message: Message): GameState {
     case 'RemoveEnemyFromGame': {
       const enemy = findEnemy(state, message.enemy)
       if (!enemy) return state
+      const instead = !message.leavingResolved
+        ? enemyBehavior(enemy.code)?.insteadOfRemove?.(state, enemy)
+        : null
+      if (instead) return push(state, ...instead)
       return push(
         log(removeEnemy(dropAttached(state, enemy), enemy.id), 'log.enemyRemoved', {
           enemy: enemy.name,

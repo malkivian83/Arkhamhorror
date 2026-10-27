@@ -54,6 +54,11 @@ export type AbilitiesFn<Self> = (
 ) => AbilityOption[]
 
 export interface ScenarioBehavior {
+  cannotInvestigate?: (
+    state: GameState,
+    investigator: InvestigatorId,
+    location: LocationId,
+  ) => boolean
   cannotDrawCards?: (state: GameState, investigator: InvestigatorId) => boolean
   cannotGainResources?: (state: GameState, investigator: InvestigatorId) => boolean
   handSizeModifier?: (state: GameState, investigator: InvestigatorId) => number
@@ -263,6 +268,7 @@ export interface TreacheryBehavior {
 }
 
 export interface EnemyBehavior {
+  insteadOfRemove?: (state: GameState, self: Enemy) => Message[] | null
   healthModifier?: (state: GameState, self: Enemy) => number
   attackModifier?: (
     state: GameState,
@@ -488,6 +494,12 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Replace a controlled asset's departure; terminal removals mark leavingResolved. */
+  leavesPlay?: (
+    state: GameState,
+    self: Asset,
+    reason: 'discard' | 'defeated' | 'resigned' | 'other',
+  ) => Message[] | null
   /** Printed permission to play this fast event in any player window. */
   playInAnyFastWindow?: boolean
   /** Dynamic modifiers of the test explicitly initiated by this event. */

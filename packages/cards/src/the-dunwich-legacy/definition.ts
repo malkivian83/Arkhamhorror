@@ -1,3 +1,4 @@
+import { theMiskatonicMuseum, THE_MISKATONIC_MUSEUM } from './the-miskatonic-museum'
 import { theHouseAlwaysWins, THE_HOUSE_ALWAYS_WINS } from './the-house-always-wins'
 import { registerCampaign } from '../campaign-definition'
 import './encounter-sets'
@@ -24,6 +25,12 @@ registerCampaign({
             build: ({ difficulty, log }) => theHouseAlwaysWins({ difficulty, log }),
             keywords: ['aloof', 'hunter', 'retaliate', 'surge', 'prey'],
           }
-        : { id },
+        : id === THE_MISKATONIC_MUSEUM
+          ? {
+              id,
+              build: ({ difficulty, log }) => theMiskatonicMuseum({ difficulty, log }),
+              keywords: ['hunter', 'retaliate', 'massive', 'surge', 'peril'],
+            }
+          : { id },
   ),
 })

@@ -334,3 +334,12 @@ export {
 } from './the-dunwich-legacy/the-house-always-wins'
 
 export { pitBoss as HOUSE_PIT_BOSS } from './the-dunwich-legacy/the-house-always-wins'
+
+export {
+  theMiskatonicMuseum,
+  MUSEUM_LOCATIONS,
+  MUSEUM_ENCOUNTERS,
+  M,
+  MN,
+  THE_MISKATONIC_MUSEUM,
+} from './the-dunwich-legacy/the-miskatonic-museum'
