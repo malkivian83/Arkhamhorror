@@ -43,6 +43,8 @@ export interface CampaignDefinition {
   standalone?: boolean
   /** Prólogo que se lee al empezar la campaña (antes del primer escenario). */
   prologue?: StoryEntry
+  /** Opening scenarios that may be played in either order. */
+  openingScenarios?: string[]
   scenarios: CampaignScenario[]
   /** Bolsa del caos inicial por dificultad (guía de campaña). */
   chaosBags: Record<Difficulty, ChaosToken[]>

@@ -80,6 +80,7 @@ import './night-of-the-zealot/definition'
 import './midwinter-gala/definition'
 import './excelsior/definition'
 import './the-path-to-carcosa/definition'
+import './the-dunwich-legacy/definition'
 import './fortune-and-folly/definition'
 // Comportamiento de las cartas: hace falta para saber cuáles se pueden comprar.
 import './core-2026/cards'
@@ -161,8 +162,11 @@ export function newCampaign(
   seed = 1,
   boons: Boon[] = [],
   rewards: CardCode[] = [],
+  openingScenario?: string,
 ): Campaign {
-  campaignDefinition(campaignId)
+  const definition = campaignDefinition(campaignId)
+  if (openingScenario && !definition.openingScenarios?.includes(openingScenario))
+    throw new Error('Escenario inicial no permitido')
   if (campaignDefinition(campaignId).standalone)
     boons = boons.filter((b) => b !== 'ancients' && b !== 'persephone')
   if (members.length < 1 || members.length > 4)
@@ -201,6 +205,7 @@ export function newCampaign(
     throw new Error('Contenido de mazo desconocido')
   for (const investigator of investigators) assertDeck(investigator, true, rewards)
   const log = emptyCampaignLog(investigators.map((i) => i.id))
+  if (openingScenario) log.values.openingScenario = openingScenario
   for (const [n, investigator] of investigators.entries()) {
     if (!investigator.deck.includes(IN_THE_THICK_OF_IT)) continue
     const source = members[n]!
@@ -238,9 +243,21 @@ export function newCampaign(
   }
 }
 
-/** Escenario que toca jugar, o null si la campaña ha terminado. */
+/** Orden de escenarios de esta partida, conservando la elección del prólogo. */
+export function campaignScenarios(campaign: Campaign): CampaignScenario[] {
+  const definition = campaignDefinition(campaign.id)
+  const first = campaign.log.values.openingScenario
+  if (!first || !definition.openingScenarios?.includes(first)) return definition.scenarios
+  const opening = definition.scenarios.filter((s) => definition.openingScenarios!.includes(s.id))
+  return [
+    ...opening.filter((s) => s.id === first),
+    ...opening.filter((s) => s.id !== first),
+    ...definition.scenarios.filter((s) => !definition.openingScenarios!.includes(s.id)),
+  ]
+}
+
 function scenarioEntry(campaign: Campaign): CampaignScenario | null {
-  return campaignDefinition(campaign.id).scenarios[campaign.scenarioIndex] ?? null
+  return campaignScenarios(campaign)[campaign.scenarioIndex] ?? null
 }
 
 /** Id del escenario que toca jugar, o null si la campaña ha terminado. */
@@ -608,10 +625,7 @@ export function purchaseOptions(
   campaign: Campaign,
   investigator: InvestigatorId,
 ): PurchaseOption[] {
-  if (
-    campaignDefinition(campaign.id).scenarios[campaign.scenarioIndex - 1]?.allowDeckChangesAfter ===
-    false
-  )
+  if (campaignScenarios(campaign)[campaign.scenarioIndex - 1]?.allowDeckChangesAfter === false)
     return []
   const { deck } = member(campaign, investigator)
   const xp = campaign.log.investigators[investigator]?.xp ?? 0

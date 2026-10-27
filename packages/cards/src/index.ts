@@ -77,6 +77,7 @@ export {
 } from './midwinter-gala/cards'
 export { BRETHREN_OF_ASH, CHAOS_BAGS, type Difficulty } from './brethren-of-ash/campaign'
 export { CARCOSA_CHAOS_BAGS, THE_PATH_TO_CARCOSA } from './the-path-to-carcosa/campaign'
+export { DUNWICH_CHAOS_BAGS, THE_DUNWICH_LEGACY } from './the-dunwich-legacy/campaign'
 export {
   CODES as CURTAIN_CALL_CODES,
   CURTAIN_CALL,
@@ -152,6 +153,7 @@ export { onePrintingEach, printingsOf, reprintSource } from './reprints'
 export {
   activeMembers,
   campaignLost,
+  campaignScenarios,
   canPlayNext,
   chooseTransferHeir,
   currentScenario,
