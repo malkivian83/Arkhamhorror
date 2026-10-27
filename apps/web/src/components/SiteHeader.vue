@@ -19,6 +19,7 @@ const drawerButton = ref<HTMLButtonElement>()
 
 const sections = computed(() => [
   { to: '/', label: 'app.newGame' },
+  { to: '/online', label: 'online.title' },
   { to: '/decks', label: 'decks.title' },
   { to: '/library', label: 'account.library' },
   ...(canAdminister(account.value.user) ? [{ to: '/admin', label: 'admin.title' }] : []),
@@ -60,7 +61,11 @@ watch(
           v-for="s in sections"
           :key="s.to"
           :to="s.to"
-          :class="{ 'router-link-exact-active': s.to === '/decks' && route.name === 'deck-editor' }"
+          :class="{
+            'router-link-exact-active':
+              (s.to === '/decks' && route.name === 'deck-editor') ||
+              (s.to === '/online' && route.name === 'online'),
+          }"
           >{{ t(s.label) }}</RouterLink
         >
       </nav>
@@ -149,8 +154,11 @@ watch(
             v-for="s in sections"
             :key="s.to"
             :to="s.to"
+            @click="drawer?.close()"
             :class="{
-              'router-link-exact-active': s.to === '/decks' && route.name === 'deck-editor',
+              'router-link-exact-active':
+                (s.to === '/decks' && route.name === 'deck-editor') ||
+                (s.to === '/online' && route.name === 'online'),
             }"
             >{{ t(s.label) }}</RouterLink
           >
@@ -416,7 +424,7 @@ watch(
     display: none;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 1100px) {
   .header-content {
     min-height: 72px;
     padding: 12px 16px;
