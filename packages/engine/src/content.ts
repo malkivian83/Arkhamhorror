@@ -54,6 +54,8 @@ export type AbilitiesFn<Self> = (
 ) => AbilityOption[]
 
 export interface ScenarioBehavior {
+  cannotDrawCards?: (state: GameState, investigator: InvestigatorId) => boolean
+  cannotGainResources?: (state: GameState, investigator: InvestigatorId) => boolean
   handSizeModifier?: (state: GameState, investigator: InvestigatorId) => number
   id: string
   /** Incompatible deterministic rule changes are versioned per scenario. */
@@ -118,7 +120,7 @@ export interface ScenarioBehavior {
   /** Tras completar una acción (Vagabundo dimensional: la misma acción dos veces seguidas). */
   afterAction?: (state: GameState, investigator: InvestigatorId, kind: ActionKind) => Message[]
   /** Modificador al combate/evasión de un enemigo (Savage Shantak). */
-  enemyStat?: (state: GameState, enemy: Enemy, stat: 'fight' | 'evade') => number
+  enemyStat?: (state: GameState, enemy: Enemy, stat: 'fight' | 'evade', source?: string) => number
   /** Modificador al velo de una localización (Parlor). */
   shroudModifier?: (state: GameState, location: Location) => number
   /** El acto solo se puede avanzar pagando pistas si se cumple (Meet and Greet). */
@@ -196,6 +198,7 @@ export interface StoryBehavior {
 }
 
 export interface TreacheryBehavior {
+  skillModifier?: (state: GameState, self: Treachery, test: SkillTest) => number
   allDamageDirect?: boolean
   /** Resolves on drawing the card, even if its revelation is subsequently canceled. */
   onDraw?: (state: GameState, investigator: InvestigatorId, self: Treachery) => Message[]

@@ -2,6 +2,9 @@ import {
   theGathering,
   DUNWICH_ENCOUNTER_SETS,
   extracurricularActivity,
+  theHouseAlwaysWins,
+  HOUSE_LOCATIONS,
+  HOUSE_PIT_BOSS,
   DUNWICH_LOCATION_CARDS,
   CURTAIN_CALL_STRANGERS,
   curtainCall,
@@ -137,6 +140,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   }
   const scenarios = [
     extracurricularActivity(),
+    theHouseAlwaysWins(),
     theGathering(),
     spreadingFlames(),
     queenOfAsh(),
@@ -249,6 +253,15 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   // The Bloodless Man starts in play, outside the scenario's encounter/set-aside lists.
   Object.values(DUNWICH_ENCOUNTER_SETS).flat().forEach(encounter)
   Object.values(DUNWICH_LOCATION_CARDS).forEach(location)
+  Object.values(HOUSE_LOCATIONS).forEach(location)
+  encounter(HOUSE_PIT_BOSS)
+  put({ code: '02069', name: 'Fold', real_name: 'Fold', type_code: 'act' })
+  put({
+    code: '02062',
+    name: 'The House Always Wins',
+    real_name: 'The House Always Wins',
+    type_code: 'scenario',
+  })
   put({
     code: '02041',
     name: 'Extracurricular Activity',

@@ -53,8 +53,16 @@ function run(initial: GameState, observer?: EngineObserver): GameState {
       ),
       message,
     )
-    // RR "Forced Abilities": a deck-empty condition resolves as soon as it becomes true,
-    // including draws, discards and searches, before another queued draw reshuffles it.
+    // RR "Gain": clues gained from the pool or transferred also trigger forced abilities.
+    const gainedClues = state.investigators.flatMap((i): Message[] => {
+      const amount =
+        i.clues - (before.investigators.find((old) => old.id === i.id)?.clues ?? i.clues)
+      return amount > 0
+        ? [{ type: 'Forced', trigger: { type: 'afterGainClues', investigator: i.id, amount } }]
+        : []
+    })
+    if (gainedClues.length) state = push(state, ...gainedClues)
+    // RR "Forced Abilities": a deck-empty condition resolves before another draw reshuffles it.
     const emptied = state.investigators.filter(
       (i) =>
         !i.eliminated &&

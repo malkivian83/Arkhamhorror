@@ -76,6 +76,69 @@
       "inputHash": "56ed5b2ebb4d932afe6060416b960c0b78c5e6328b03423f0ee7179d50667acc",
       "sha256": "6e12111d2273e89ff660cd644eb79ba942d07077be5ea7ff5d3e18350f1d8b08",
       "bytes": 410478
+    },
+    {
+      "key": "story.house.intro",
+      "file": "house-intro-nico-history.mp3",
+      "text": "El Dr. Armitage os sugirió que buscaseis a su socio, el Dr. Francis Morgan. No está seguro de si el Dr. Morgan tiene problemas, pero no le agradan particularmente las compañías que está frecuentando su colega. Se encuen tra en el Clover Club, un notorio garito de juego en algún lugar del centro. Encontrar la ubicación exacta del club no es fácil; tenéis que untar unas cuantas manos sólo para descubrir cuál de los restaurantes del centro actúa como tapadera del club. Se trata de La Bella Luna, un establecimiento ita liano de cierta sofisticación que hay junto al teatro. Os ponéis vuestras mejores galas y os dirigís allí. Delante de La Bella Luna hay un hombre con traje de raya diplomática que os escudriña con la mirada cuando os acercáis. –Que lo pasen bien –os dice con una sonrisa taimada mientras abre la puerta del restaurante.",
+      "characters": 840,
+      "inputHash": "5e6b0aeb9ffedd3821bb87c3e273e9f968d6546e74b5995ed7bf422527801061",
+      "sha256": "077c95abb0ea818472f5fc1e66219ad81f048ac9663063bccdac7f5733824177",
+      "bytes": 937943
+    },
+    {
+      "key": "story.house.resolution1",
+      "file": "house-resolution1-nico-history.mp3",
+      "text": "Huis hasta el final de la manzana y os paráis para recuperaros. Antes de poder recobrar el aliento, el suelo tiembla con gran estruendo. La gente sale de sus casas y tiendas para ver qué es ese alboroto, y se forma una multitud en la calle. Os acercáis a la primera fila de la muchedumbre y os horroriza ver que el edificio del que habíais huido minutos antes ha quedado reducido a escombros. No hay ni rastro del Dr. Morgan por ninguna parte.",
+      "characters": 443,
+      "inputHash": "6f16f5eeffdc532b8a78c5640e228b53e5b8520a219f0af991dccb6908f31187",
+      "sha256": "4f2503a557d4714a9e71e24ab6450bef09f1ade8a558dd9125502d37ce1b2e72",
+      "bytes": 457290
+    },
+    {
+      "key": "story.house.resolution2",
+      "file": "house-resolution2-nico-history.mp3",
+      "text": "–¿Pero qué diantres...? –El Dr. Morgan sale por fin de su estupor cuando lográis poneros a salvo. Le preguntáis qué recuerda, y balbucea y sacude la cabeza. –Es todo como nebuloso –explica, visiblemente agotado–. ¡Estaba en la mayor racha de mi vida! Puede que me hubiera tomado alguna copa de más. Pero, esas criaturas... no había visto nada así desde... Pierde el hilo, y notáis perfectamente cómo su mente trabaja a toda velocidad. Abre los ojos como platos al comprenderlo, y su rostro palidece. –Puede que no esté en la mejor de las formas, pero os ayudaré con vuestra investigación. Cueste lo que cueste.",
+      "characters": 610,
+      "inputHash": "3dcd0843d1f0029572ed658385090667d05037ee65397a45b0628e83b51c8854",
+      "sha256": "d56aca68b9c2c14766b3fed322d4de924b490f6ad0d6f9e52ef37be37b820987",
+      "bytes": 669195
+    },
+    {
+      "key": "story.house.resolution3",
+      "file": "house-resolution3-nico-history.mp3",
+      "text": "Aunque no lograsteis encontrar al Dr. Morgan en el club, el hombre al que rescatasteis os está agradecido por vuestra ayuda. Se presenta como Peter Clover, el dueño del esta blecimiento que acabáis de abandonar. A pesar de la situación, mantiene un aire de serena profesionalidad. Al salir a la calle, un brillante Chrysler B-70 se detiene junto a vosotros, y de él sale una bellísima mujer de largo cabello castaño y ojos pequeños. Está flanqueada por hombres de aspecto peligroso que se meten la mano en la chaqueta al veros. –Peter –dice con un suspiro de alivio–. Estás bien. ¿Es cierto que ha habido problemas? –Se vuelve hacia vosotros y os dirige una mirada asesina–. ¿Quiénes son? El Sr. Clover se sacude el polvo del chaleco, sin aspecto de estar preocupado. –Naomi, querida, son amigos míos. Ellos... –se aclara la garganta–. Ellos me han acompañado fuera del establecimiento – explica tras una breve pausa–. Se han ganado nuestra gratitud. La mujer cruza los brazos y dedica un instante a examinaros con la mirada antes de dedicaros una sonrisa sardónica. –Muy bien. Entonces debo daros las gracias por cuidar de Peter. Y ahora marchaos; ya nos encargamos nosotros del resto. Hace un gesto a los matones que la flanquean, y éstos pasan junto a vosotros para dirigirse a la entrada trasera del club mientras se sacan armas de fuego de las chaquetas. No estáis seguros de qué quiere decir “encargarse”, pero estáis totalmente seguros de que no queréis estar aquí cuando empiece el tiroteo. Les dais las gracias a Naomi y a Peter y os marcháis.",
+      "characters": 1552,
+      "inputHash": "0a22cc1f3b1568ce8e81baa9bff0243d4732552f8454f065977aae1598c3552b",
+      "sha256": "71b189886224f3ad2434ca73329bd6b13278d05702b5c92159506d509c166da1",
+      "bytes": 1760487
+    },
+    {
+      "key": "story.house.resolution4",
+      "file": "house-resolution4-nico-history.mp3",
+      "text": "Varios bomberos os sacan de entre los escombros, y uno de ellos exclama: –¡Tenemos supervivientes! Varios de ellos os practican primeros auxilios, y la policía os pre gunta por lo sucedido. Estáis seguros de que no se van a creer vuestra historia de que unas horribles monstruosidades han derribado el edificio desde dentro. Sin saber muy bien qué decir, declaráis vagamente que apenas recordáis gran cosa. –Os vamos a llevar al Santa María –dice una de las enfermeras mientras señala una ambulancia cercana. Sabiendo como sabéis lo acuciante de la situación, os escabullís mientras está distraída con algo de los escombros...",
+      "characters": 626,
+      "inputHash": "5c3118ad1b265bf5753a703da2e8a91d4eb2b830179f228df52f11c3f1bc11b0",
+      "sha256": "559cd96912bdad9bbd151b39346b29af16b72425b6eeec06f15c9fe003b0fb90",
+      "bytes": 673375
+    },
+    {
+      "key": "story.house.armitage1",
+      "file": "dunwich-armitage1-nico-history.mp3",
+      "text": "Vuestras experiencias en la universidad y en el Clover Club os han dejado más que simplemente agitados. No estáis seguros de qué pensar sobre quienquiera (o lo que quiera) que fuese tras Rice y Morgan. Ahora os preocupa el Dr. Armitage, así que volvéis a su casa lo más rápido que podéis. Cuando llegáis, descubrís que han reventado los cerrojos de su puerta delantera, y que han registrado a lo bestia su sala de estar y su estudio. El Dr. Armitage no aparece por nin guna parte. Al buscar por su casa, encontráis un diario que los intru sos no se han llevado porque estaba oculto bajo otros documentos en el cajón inferior del escritorio del Dr. Armitage. El diario parece escrito en un extraño idioma que no podéis descifrar, y emplea una escritura que no habéis visto jamás en la vida. Por suerte, parece que el Dr. Armitage ya se había tomado la molestia de traducirlo, y al parecer pertenece a un tal “Wilbur Whateley”. El diario, junto con muchas de las notas de Armitage, cuenta un relato alucinante que apenas seríais capaces de creeros de no ser por vuestras siniestras experiencias de esta misma noche...",
+      "characters": 1115,
+      "inputHash": "cd15ba6691c22e85102a484d3681e7cfed3335d1674fd8d2c06de81bc3260e2f",
+      "sha256": "e287ddb0b9bc7a72dae7f32500d8bc0dd211789ac50eb42608705c81c9f6a3f0",
+      "bytes": 1213796
+    },
+    {
+      "key": "story.house.armitage2",
+      "file": "dunwich-armitage2-nico-history.mp3",
+      "text": "Cuando llegáis a casa del Dr. Armitage en el Barrio Sur, lo encontráis sentado en su escritorio, con el rostro pálido y sudando de preocupación. Os agradece que buscaseis a sus colegas, pero no parece aliviado. Tras una larga pausa, se coloca las gafas y explica: –Me temo que debo disculparme. Hay algo que no os mencioné antes –os dice, antes de empezar a contaros un relato que apenas seríais capaces de creeros de no ser por vuestras siniestras experiencias de esta misma noche...",
+      "characters": 484,
+      "inputHash": "12effb839d829f2fc00ab55b7fd9f02dca68aa870f3752fea3388cc1c0c98826",
+      "sha256": "b03bf041b5b7d711571e660eaaec971724511d881247ed26f46ae28cf4ada8a0",
+      "bytes": 535866
     }
   ]
 }

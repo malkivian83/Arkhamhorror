@@ -2,11 +2,12 @@
 
 ## Estado actual
 
-**Actividad extracurricular es jugable**, con uno a cuatro investigadores y las
-cuatro dificultades. Para empezar hay que elegir buscar primero a Warren Rice.
-La casa siempre gana y los seis escenarios posteriores permanecen bloqueados;
-terminar el primer escenario guarda el resultado y deja pendiente La casa siempre
-gana. No se presenta la campaña como completa ni se incluye Regreso a Dunwich.
+**Actividad extracurricular y La casa siempre gana son jugables**, con uno a
+cuatro investigadores y las cuatro dificultades. Se pueden iniciar en cualquier
+orden. Al terminar ambos se resuelve **El destino de Armitage**, se conservan
+notas, fichas, experiencia y aliados, y la campaña queda ante El museo Miskatonic,
+todavía bloqueado junto con los otros cinco escenarios. No se presenta la campaña
+como completa ni se incluye Regreso a Dunwich.
 
 La elección del prólogo se conserva en `log.values.openingScenario`; los guardados
 anteriores sin elección mantienen el orden del índice. La pantalla de progreso y
@@ -58,14 +59,15 @@ de la copia externa, que no se ha trasladado literalmente.
 
 ## Presentación y narración
 
-Catálogo local EN/ES de 33 códigos, referencia de escenario y ayuda de fichas,
-100 escaneos oficiales y sus 100 miniaturas, portada y huellas de integridad.
+Catálogo local EN/ES de 63 códigos, referencia de escenario y ayuda de fichas,
+192 escaneos oficiales y sus 192 miniaturas, portada y huellas de integridad.
 Se han inspeccionado escaneos representativos sin abrir el navegador.
 La revisión visual de la mesa queda para la persona usuaria, conforme a AGENTS.
 
 Los audios usan **Nico - History & Documentary**,
-`FXn3GKRRt9FCEyTbrkaL`. Hay siete grabaciones de historia en español:
-prólogo, introducción y los cinco desenlaces del primer escenario. Los relatos
+`FXn3GKRRt9FCEyTbrkaL`. Hay catorce grabaciones de historia en español:
+prólogo; introducción y cinco desenlaces de Actividad extracurricular; introducción
+y cuatro resoluciones de La casa siempre gana; y ambas variantes de Armitage. Los relatos
 españoles se extraen de la guía revisada; se omiten instrucciones y recompensas
 en el audio, que la mesa presenta aparte. No se ofrece audio español como inglés.
 
@@ -76,26 +78,56 @@ en el audio, que la mesa presenta aparte. No se ofrece audio español como ingl�
   Sin `--generate`, el inventario es local. Voz, textos, ajustes y huellas están
   en `evidencias/dunwich-nico-narracion.json`. La clave no se guarda en archivos.
 
+## La casa siempre gana
+
+Fuentes: guía revisada ES, páginas 6–8, y caras originales 02062–02082 y
+02092–02099. El interludio incorpora al Dr. Henry Armitage (02040). Los relatos
+españoles proceden de la guía revisada; los ingleses, de la copia externa.
+
+- Cuatro Lugares iniciales, Jefe de sala en el Salón, mazo de 19 encuentros y
+  trece cartas apartadas de Abominaciones espantosas y Miedo impactante.
+- Pistas por investigador, fichas de la reserva por las apuestas, copas y Aliados
+  descartados de la mano. Límites por investigador y trampas una vez por ronda
+  para el grupo; penalización permanente de Primigenio si alguien hizo trampas.
+- Criminales Indiferentes durante el primer plan; daño infligido por un
+  investigador lo avanza de inmediato. Segunda cara frontal omitida si el club
+  se visita en segundo lugar. Abominación aleatoria, incorporación de los dos
+  conjuntos apartados y evacuación de La Bella Luna al avanzar el segundo plan.
+- Pasillo desbloqueado por cuatro pistas por investigador, con guardia si aún
+  está el primer plan; tres puertas de nombre oculto en posiciones aleatorias.
+  Objetivo de dos pistas por investigador aportadas solo desde la Zona VIP.
+- Morgan aparece en la visita temprana; Peter y una Abominación, en la tardía.
+  Negociaciones acumulativas por cada investigador y daño a Peter sin controlador.
+  Desistir con el personaje rescatado determina R2 o R3; R1 y derrumbe R4 aplican
+  notas, experiencia, trauma y la ficha permanente correspondientes.
+- Mala suerte, La banda de Naomi, Abominaciones espantosas y las dos traiciones
+  del escenario, incluidos costes, apariciones, ataques y movimiento forzado.
+- Morgan y Armitage funcionan como aliados de campaña; Peter permite evitar a
+  Criminales. El interludio distingue haber quedado inconscientes en cualquiera
+  de los dos escenarios y ofrece a Armitage o concede dos puntos de experiencia.
+
+El motor incorpora la ventana de ganar pistas de cualquier origen, la prohibición
+de robar o ganar recursos y modificadores de prueba por traiciones. El origen del
+ataque se transmite al modificador de combate de la Abominación aviar.
+
+La pantalla de selección agrupa título, descripción, prólogo y opciones en una
+columna amplia, con escenarios al lateral y disposición apilada en pantallas
+pequeñas. La narración tiene contraste adaptado al fondo oscuro.
+
 ## Validación y continuación
 
-Las pruebas dirigidas cubren preparación de uno a cuatro investigadores,
-encuentros y activos, lugares, actos, planes, los cinco desenlaces, experiencia,
-bolsas de las cuatro dificultades, restauración, presentación y grabaciones.
-Incluyen un rescate completo por acciones legales sin editar el estado después
-de preparar la partida, y partidas reproducibles con el mazo completo para uno
-a cuatro investigadores, cuyo resultado se aplica a la campaña.
+Último lote publicado: `a75d568`, Actividad extracurricular y voz Nico corregida.
+Lote actual: La casa siempre gana, El destino de Armitage y corrección de diseño;
+pendiente de los controles finales y la subida conjunta autorizada.
 
-Último bloque funcional: `83dcba9`, Actividad extracurricular completa y sus
-reglas compartidas. La voz se corrigió a Nico - History & Documentary con el
-identificador facilitado por la persona usuaria; se regeneraron las siete
-narraciones con nombres nuevos para evitar reproducir la caché anterior.
+Las pruebas cubren preparaciones de uno a cuatro investigadores, cuatro
+ dificultades, encuentros, actos, planes, variantes, resoluciones, costes,
+aliados, guardado y ambos órdenes de campaña. Incluyen un rescate completo de
+Morgan por acciones legales sin editar el estado después de la preparación, y
+partidas reproducibles con mazos completos y decisiones legales para uno a cuatro
+investigadores. Presentación y audios se verifican por consola; la revisión visual
+de la aplicación queda para la persona usuaria conforme a AGENTS.
 
-Formato, lint, tipos y compilación comprobados. La suite completa pasó salvo
-cuatro casos que agotaron el límite de cinco segundos; sus tres archivos se
-repitieron con 30 segundos y pasaron sus 57 pruebas. La corrección de voz añade
-verificación del nombre exacto, identificador, transcripciones y huellas.
-Corrección `8e937a2` validada: formato, lint, tipos, las cinco pruebas de
-narración y compilación final correctos. Lote cerrado para la subida autorizada
-a `origin/main`.
-Siguiente grupo: **La casa siempre gana** y el interludio El destino de Armitage;
-después los seis escenarios restantes, Los supervivientes y el epílogo.
+Siguiente grupo: **El museo Miskatonic**; después El Essex County Express,
+Sangre en el altar, Invisibles y sin dimensión, Donde aguarda la perdición,
+Perdidos en el tiempo y el espacio, Los supervivientes y el epílogo.

@@ -12,6 +12,14 @@
     "text": "Peligro.\n<b>Revelación</b> - Debes (elige una opción): Robar 2 cartas y colocar 2 fichas de Perdición sobre el plan en curso (este efecto puede hacer avanzar el plan en curso) o recibir 2 puntos de horror.",
     "flavor": "Una voz te habla en tu cabeza y te oferece poder… por un precio."
   },
+  "02040": {
+    "name": "Dr. Henry Armitage",
+    "typeCode": "asset",
+    "subname": "El bibliotecario jefe",
+    "traits": "Aliado. Miskatonic.",
+    "text": "[reaction] Después de que robes una carta, descarta esa carta y agota al Dr. Henry Armitage: Obtén 3 recursos.",
+    "flavor": "Armitage sabía muy bien que iban a tener que habérselas con pavorosas fuerzas, pero también veía claramente que era el único medio de acabar con aquel maléfico embrollo que otros antes que él habían venido a complicar y agravar. - H. P. Lovecraft, \"El Horror de Dunwich\""
+  },
   "02041": {
     "name": "Actividad extracurricular",
     "typeCode": "scenario",
@@ -182,6 +190,171 @@
     "traits": "Aliado. Miskatonic.",
     "text": "Recibes +1 [intellect].\n[reaction] Después de que descubras la última pista restante en tu Lugar, agota al Profesor Warren Rice: Roba 1 carta."
   },
+  "02062": {
+    "name": "La casa siempre gana",
+    "typeCode": "scenario",
+    "text": "<b>Fácil/Normal</b>\n[skull]: -2. Puedes gastar 2 recursos para considerar esta ficha como un 0 en lugar de su valor normal.\n[cultist]: -3. Si tienes éxito, obtén 3 recursos.\n[tablet]: -2. Si fallas, descarta 3 recursos.",
+    "backText": "<b>Difícil/Experto</b>\n[skull]: -3. Puedes gastar 3 recursos para considerar esta ficha como un 0 en lugar de su valor normal.\n[cultist]: -3. Si fallas, descarta 3 recursos.\n[tablet]: -2. Descarta 3 recursos."
+  },
+  "02063": {
+    "name": "El Clover Club",
+    "typeCode": "agenda",
+    "text": "Cada Enemigo [[Criminal]] obtiene indiferente.\n<b>Obligado</b> - Si un investigador inflige daño a un Enemigo [[Criminal]]: Haz avanzar el plan inmediatamente.",
+    "backName": "Tras la buena pista",
+    "backText": "Añade la pila de descartes de Encuentros al mazo de Encuentros y barájalo.\nSi los jugadores han completado Actividad extracurricular, avanza directamente al plan 2b. Si La casa siempre gana es el primer escenario de la campaña, avanza al plan 2a.",
+    "flavor": "Habéis entrado en el casino del Clover Club en busca del Dr. Morgan. El club está abarrotado a estas horas de la noche, repleto de clientes que quieren relajarse y beber o bien ganar a lo grande. No parece que estéis en peligro.",
+    "backFlavor": "Vuestras preguntas han atraído la atención de varios hombres con aspecto de matones a sueldo. —Francis no quiere que le molesten —dice uno de ellos—. Les sugerimos que abandonen el local antes de que debamos obligarles a marcharse."
+  },
+  "02064": {
+    "name": "Matones de los bajos fondos",
+    "typeCode": "agenda",
+    "text": "",
+    "backName": "Caos repentino",
+    "backText": "Haz aparecer un Enemigo aleatorio del conjunto de encuentros puesto aparte <i>Abominaciones espantosas</i> en el Salón del Clover Club. Añade el resto de ese conjunto de encuentros, el conjunto de encuentros puesto aparte <i>Miedo impactante</i> y la pila de descartes de Encuentros al mazo de Encuentros y barájalo.\nMueve todos los investigadores y Enemigos sin enfrentar de La Bella Luna al Salón del Clover CLub. Retira La Bella Luna de la partida.",
+    "flavor": "La mayoría de los demás clientes parecen ajenos a los mafiosos y matones que empiezan a rodearos. Pero vosotros sois conscientes de lo que ocurre: están a punto de daros una paliza.",
+    "backFlavor": "Oís un estruendo que viene de fuera y gritos de dolor en el salón. Una terrible monstruosidad atraviesa la entrada del club, haciendo añicos la escalera y llevándose por delante tanto a clientes como a gánsteres."
+  },
+  "02065": {
+    "name": "Caos en el Clover Club",
+    "typeCode": "agenda",
+    "text": "<b>Obligado</b> - Al comienzo de la fase de Enemigos: Descarta todos los Enemigos [[Criminal]] que estén en el mismo Lugar que un Enemigo [[Abominación]].",
+    "backName": "El edificio se desploma",
+    "backText": "<b>(→R4)</b>",
+    "flavor": "Las extrañas abominaciones atacan a todos los presentes en el club entre el caos y la confusión. Las salas se llenan de gritos cuando comienza a correr la sangre.",
+    "backFlavor": "Mientras las extrañas abominaciones siguen arrasando el club, los cimientos del edificio comienzan a sacudirse y temblar. Huis hacia la salida, pero quedáis atrapados por los escombros que caen cuando el club queda destruido."
+  },
+  "02066": {
+    "name": "La suerte del principiante",
+    "typeCode": "act",
+    "text": "[reaction] Cuando reveles una ficha de Caos: Puedes considerar esa ficha como si fuese cualquier otra ficha de la bolsa de caos. Si lo haces, recuerda que “has hecho trampas”. Límite de grupo de una vez por ronda.\n<b>Objetivo</b> - Cuando los investigadores hayan obtenido la cantidad necesaria de pistas, deben gastarlas inmediatamente y hacer avanzar el acto.",
+    "backName": "Jugador de altos vuelos",
+    "backText": "Pon en juego el Pasillo en penumbra puesto aparte.\nSi está en juego el plan 1, descarta cartas de la parte superior del mazo de Encuentros hasta que sea descartado un Enemigo [[Criminal]] y haz aparecer ese Enemigo en el Pasillo en penumbra.",
+    "flavor": "Debéis encontrar el Dr. Morgan. El club está abarrotado, y quizás alguien sepa dónde está.",
+    "backFlavor": "Tras hablar con varios de los jugadores y camareros, parece que el Dr. Morgan ha tenido una racha increíble últimamente. En lugar de cobrar sus ganancias, le convencieron para que se lo jugara a doble o nada. La última vez que lo vieron, estaba entrando en el pasillo vigilado por guardias que hay en la parte trasera de la sala de juego."
+  },
+  "02067": {
+    "name": "Juego sucio",
+    "typeCode": "act",
+    "text": "<b>Objetivo</b> - Sólo los investigadores que estén en la Zona VIP pueden, como grupo, gastar la cantidad necesaria de pistas para hacer avanzar el acto.",
+    "backName": "El destino del Dr. Morgan",
+    "backText": "<b>Si los jugadores no han completado Actividad extracurricular:</b><blockquote><em>Encontráis al Dr. Morgan jugando en una de las salas VIP… pero parece estar jugando a las cartas con dos cuerpos inconscientes, con las pupilas dilatadas como si estuviera en trance. No deja de reír, sonreír y charlar con los otros “jugadores”.</em></blockquote>Pon en juego al Dr. Morgan puesto aparte en la Zona VIP. Haz avanzar el acto al acto 3a - “No va más”.\n<hr><b>Si los jugadores han completado Actividad extracurricular</b>:<blockquote><em>Las salas VIP están llenas de los cuerpos mutilados y ensangrentados de infortunados clientes, pero no parece haber ni rastro del Dr. Morgan. Oís griyos y disparos provenientes de la zona principal del club.</em></blockquote>Pon en juego la carta Peter Clover puesta aparte en el Bar del Clover CLub. Busca un Enemigo [[Abominación]] en el mazo de Encuentros (o fuera del juego) y haz que aparezca en el Bar del Clover Club. Haz avanzar el acto al acto 3a - “Abandono”.",
+    "flavor": "El Dr. Morgan está en alguna parte de la sección privada del club, donde sólo se permite entrar a los VIP y a los encargados del club. Si queréis encontrarlo, vais a tener que colaros o abriros paso peleando."
+  },
+  "02068": {
+    "name": "No va más",
+    "typeCode": "act",
+    "text": "Mientras el Dr. Morgan no esté controlado por un jugador, obtiene “[action]: <b>Negociar.</b> Realizar una pruena de [willpower] (3) para sacar al Dr. Morgan de su estupor. Si tienes éxito, coloca 1 pista de la reserva de pistas sobre él. Si hay 1 pista [per_investigator] sobre el Dr. Morgan, toma su control.”.\n<b>Obligado</b> - Si todos los investigadores no derrotados han desistido, haz avanzar el acto.",
+    "backName": "A salvo… Por ahora.",
+    "backText": "— Si un investigador desistió con el Dr. Francis Morgan bajo su control, <b>(→R2)</b>\n— Si no es así, <b>(→R1)</b>",
+    "flavor": "Tenéis que salir de aquí, con el Dr. Morgan o sin él. Y rápido.",
+    "backFlavor": "Huis del club, tratando de pasar desapercibidos, cuando varios coches paran en la calle. De ellos salen hombres y mujeres de rostro adusto, que corren hacia la entrada del restaurante para controlar la situación. Uno se os queda mirando mientras aferra su arma del .38, pero, por suerte, vuelve dirigir su atención al resto de su grupo y los sigue al interior del club. Dais un suspiro de alivio…"
+  },
+  "02069": {
+    "name": "Abandono",
+    "typeCode": "act",
+    "text": "Mientras Peter Clover no esté controlado por un jugador, obtiene “[action]: <b>Negociar.</b> Realiza una prueba de [willpower] (3) para convencer a Peter Clover de que os siga. Si tienes éxito, coloca 1 pista de la reserva de pistas sobre él. Si hay 1 pista [per_investigator] sobre Peter Clover, toma su control.”\n<b>Objetivo</b> - Si todos los investigadores no derrotados han desistido, haz avanzar el acto.",
+    "backName": "Huida del club",
+    "backText": "— Si un investigador desistió con Peter Clover bajo su control, <b>(→R3)</b>\n— Si no es así, <b>(→R1)</b>",
+    "flavor": "—¡Barra libre para quien me saque de esta locura! —exclama un hombre desde el bar.",
+    "backFlavor": "Os ponéis en marcha para salir a las calles de Arkham, mojadas por la lluvia."
+  },
+  "02070": {
+    "name": "La Bella Luna",
+    "typeCode": "location",
+    "traits": "Arkham.",
+    "text": "[action]: <b>Desistir</b>. Esto ha sido un fiasco.",
+    "flavor": "La música es un cliché, y sólo sirven espaguetis. En lo que a tapaderas de tugurios clandestinos se refiere, no es particularmente creativa.",
+    "backFlavor": "La Bella Luna era un establecimiento “multiusos”."
+  },
+  "02071": {
+    "name": "Salón del Clover Club",
+    "typeCode": "location",
+    "traits": "Clover Club.",
+    "text": "Mientras esté en juego el acto 1, el Salón del Clover obtiene:\n“[action] Descarta un Apoyo [[Aliado]] de tu mano: Obtén 2 pistas de la reserva de fichas. Límite de una vez por partida.”.",
+    "backFlavor": "Cómodos sillones de cuero, muebles de caoba y toda una exposición de arte reciben a los jugadores y los tientan a tratar de acceder a la vida de los más pudientes."
+  },
+  "02072": {
+    "name": "Bar del Clover Club",
+    "typeCode": "location",
+    "traits": "Clover Club.",
+    "text": "Mientras esté en juego el acto 1, el Bar del Clover Club obtiene:\n“[action] Gasta 2 recursos: Obtén 2 pistas de la reserva de fichas y roba 2 cartas. Recuerda que te has 'tomado una copa'. Límite de una vez por partida.”.",
+    "backFlavor": "Los estantes que hay tras la barra se comban bajo el peso de todo tipo de bebidas de contrabando: cervezas baratas, licor casero, botellas de vino caro, whisky añejo. Ojalá tuvierais un par de horas de tiempo libre…"
+  },
+  "02073": {
+    "name": "Sala de juego del Clover Club",
+    "typeCode": "location",
+    "traits": "Clover Club.",
+    "text": "Mientras esté en juego el acto 1, la Sala de juego del Clover Club obtiene:\n“[action] Gasta 2 recursos: Revela una ficha de Caos aleatoria.\nSi es un símbolo [elder_sign], obtén 2 pistas y 2 recursos de la reserva de fichas.\nSi es un número par, obtén 2 pistas de la reserva de fichas.\nSi es un número impar o un símbolo [skull], [cultist], [tablet], [elder_thing] o [auto_fail], no ocurre nada.”.",
+    "backFlavor": "Al aproximaros a la sala de juego, el entrechocar de las fichas de póquer y el ruido de las cartas se ven acompañado por gritos de júbilo y frustración. El escándalo prácticamente ahoga vuestros pensamientos."
+  },
+  "02074": {
+    "name": "Pasillo en penumbra",
+    "typeCode": "location",
+    "traits": "Clover Club.",
+    "text": "<b>Obligado</b> - Cuando el Pasillo en penumbra sea revelado: Pon en juego los 3 Lugares Puerta del final del pasillo puestos aparte.",
+    "flavor": "La puerta se cierra de golpe después de cruzarla, y os encontrais en medio de un repentino silencio. Esta zona del club es solitaria y está desprovista de calidez y color. De algún modo, el impecable suelo y las paredes parecen más siniestros que acogedores.",
+    "backFlavor": "Hay una pesada puerta de roble en un rincón apartado del club. Al acercaros a ella, el aire se vuelve pesado, y el clamor de la sala de juego se atenúa a vuestra espalda."
+  },
+  "02075": {
+    "name": "Galería de arte",
+    "typeCode": "location",
+    "traits": "Clover Club.",
+    "text": "<b>Obligado</b> - Después de que fracases en una prueba de habilidad al investigar la Galería de arte: Descarta 2 recursos.",
+    "backName": "Puerta al final del pasillo",
+    "flavor": "Las paredes de la galería privada de Peter Clover están adornadas con obras de arte y antigüedades exóticas. Una brisa vespertina pasa las manoseadas páginas de un libro de cuentas adelanta y atrás.",
+    "backFlavor": "Os acercáis a una puerta del fondo del Clover Club que no tiene ningún distintivo."
+  },
+  "02076": {
+    "name": "Zona VIP",
+    "typeCode": "location",
+    "traits": "Clover Club.",
+    "text": "Mientras estés en la Zona VIP, no puedes robar cartas ni obtener recursos durante la fase de Mantenimiento.",
+    "backName": "Puerta al final del pasillo",
+    "flavor": "El metálico olor de sangre asalta vuestros sentidos. El suelo está cubierto de cristales rotos, y el tapizado está hecho pedazos. ¿Dónde está el Dr. Morgan?",
+    "backFlavor": "Os acercáis a una puerta del fondo del Clover Club que no tiene ningún distintivo."
+  },
+  "02077": {
+    "name": "Callejón trasero",
+    "typeCode": "location",
+    "traits": "Clover Club.",
+    "text": "[action]: <b>Desistir</b>. ¡Podemos salir por aquí!",
+    "backName": "Puerta al final del pasillo",
+    "flavor": "Una empinada y estrecha escalera sube hacia una segunda puerta sin ningún distintivo. Para vuestra sorpresa, da a un callejón trasero que hay detrás de La Bella Luna. Por aquí debe de ser por donde traen sus \"artículos\" de contrabando.",
+    "backFlavor": "Os acercáis a una puerta del fondo del Clover Club que no tiene ningún distintivo."
+  },
+  "02078": {
+    "name": "Jefe de sala del Clover Club",
+    "typeCode": "enemy",
+    "traits": "Criminal. Élite.",
+    "text": "<b>Presa</b> - Mayor [intellect].\nCazador.\n<b>Obligado</b> - Después de que un investigador obtenga cualquier cantidad de pistas en el mismo Lugar en el que esté el Jefe de sala del Clover Club: El Jefe de sala del Clover Club se prepara, se enfrenta a ese investigador y realiza un ataque inmediatamente."
+  },
+  "02079": {
+    "name": "Peter Clover",
+    "typeCode": "asset",
+    "subname": "Tiene todas las cartas",
+    "traits": "Humanoide. Criminal.",
+    "text": "<b>Obligado</b> - Al comienzo de la fase de Enemigos, si ningún investigador controla a Peter Clover: Inflígele 1 punto de daño.\n[free] Agota a Peter Clover: Evita automáticamente a un Enemigo [[Criminal]] en tu Lugar."
+  },
+  "02080": {
+    "name": "Dr. Francis Morgan",
+    "typeCode": "asset",
+    "subname": "Profesor de Arqueología",
+    "traits": "Aliado. Miskatonic.",
+    "text": "Recibes +1 [combat].\n[reaction] Después de que derrotes a un Enemigo, agota al Dr. Francis Morgan: Roba 1 carta."
+  },
+  "02081": {
+    "name": "Algo en la bebida",
+    "typeCode": "treachery",
+    "traits": "Veneno. Ilegal.",
+    "text": "Oleada.\n<b>Revelación</b> - Cada jugador que haya “tomado una copa” pierde 1 acción.",
+    "flavor": "Una desagradable calidez te recorre el cuerpo, y miras soñolientamente el vaso vacío."
+  },
+  "02082": {
+    "name": "Levantando sospechas",
+    "typeCode": "treachery",
+    "text": "<b>Revelación</b> - Coloca 1 ficha de Perdición sobre cada Enemigo [[Criminal]] que esté en tu Lugar. Si no se colocó ninguna ficha de Perdición por este efecto, descarta 2 recursos.",
+    "flavor": "Hay ojos por todas partes que vigilan cada uno de vuestros movimientos."
+  },
   "02083": {
     "name": "Visiones de futuros pasados",
     "typeCode": "treachery",
@@ -227,6 +400,57 @@
     "traits": "Augurio.",
     "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (2). Aumenta la dificultad de esta prueba en 1 por cada punto de daño que tengas. Si fracasas, recibe 2 puntos de horror.",
     "flavor": "Si consiguen atrapar el alma fugitiva en el momento en que abandona el cuerpo se ponen a revolotear al instante y prorrumpen en diabólicas risotadas... <cite>H. P. Lovecraft, \"El Horror de Dunwich\"</cite>"
+  },
+  "02092": {
+    "name": "Suerte maldita",
+    "typeCode": "treachery",
+    "traits": "Augurio.",
+    "text": "<b>Revelación</b> - Pon la Suerte maldita en juego en tu zona de amenaza.\nRecibes -1 al valor de habilidad durante las pruebas de habilidad.\n<b>Obligado</b> - Después de que tengas éxito en una prueba de habilidad por 1 o más: Descarta la Suerte maldita."
+  },
+  "02093": {
+    "name": "Giro del destino",
+    "typeCode": "treachery",
+    "traits": "Augurio.",
+    "text": "<b>Revelación</b> - Revela una ficha al azar de la bolsa de caos.\nSi revelas un símbolo [elder_sign] o un número positivo, no ocurre nada.\nSi revelas cualquier otro número, recibe 1 punto de daño.\nSi revelas un símbolo [skull], [cultist], [tablet], [elder_thing], o [auto_fail], recibe 2 puntos de horror."
+  },
+  "02094": {
+    "name": "Esclavo aviar",
+    "typeCode": "enemy",
+    "traits": "Criatura. Monstruo. Abominación.",
+    "text": "<b>Presa</b> - Menor [intellect].\nCazador.\nMientras el Esclavo aviar esté siendo atacado usando un Apoyo [[A distancia]], [[Arma de fuego]], o [[Hechizo]], recibe -3 a combate."
+  },
+  "02095": {
+    "name": "Esclavo lobuno",
+    "typeCode": "enemy",
+    "traits": "Criatura. Monstruo. Abominación.",
+    "text": "<b>Aparición</b> - Lugar más alejado de ti.\n<b>Presa</b> - Menor [agility].\nCazador. Represalia.",
+    "flavor": "¿Qué clase de lobo tiene tantos dientes?"
+  },
+  "02096": {
+    "name": "Bestia alterada",
+    "typeCode": "treachery",
+    "traits": "Poder.",
+    "text": "<b>Revelación</b> - Si no hay ningún Enemigo [[Abominación]] en juego, Bestia alterada obtiene Oleada. Si no es así, elige un enemigo [[Abominación]]. Cura todo el daño de ese Enemigo y vincúlale Bestia alterada.\n<b>Obligado</b> - Cuando entres en el Lugar del Enemigo vinculado (o viceversa): Recibe 1 punto de horror."
+  },
+  "02097": {
+    "name": "Matón de O'Bannion",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Criminal. Sindicato.",
+    "text": "Mientras el Matón de O'Bannion esté enfrentado a ti, no puedes obtener recursos.",
+    "flavor": "\"¿Vas a causar algún problema?\""
+  },
+  "02098": {
+    "name": "Mafioso",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Criminal. Sindicato.",
+    "text": "Represalia.\n<b>Obligado</b> - Después de que el Mafioso te ataque: Descarta 1 recurso.",
+    "flavor": "\"Más vale que te largues, amigo, a menos que quieras probar el cuero de mi bota y tragar plomo.\""
+  },
+  "02099": {
+    "name": "Cazado",
+    "typeCode": "treachery",
+    "traits": "Táctica.",
+    "text": "<b>Revelación</b> - Si no hay ningún Enemigo [[Criminal]] sin enfrentar en juego, Cazado obtiene Oleada. Si hay 1 o más Enemigos [[Criminal]] sin enfrentar en juego, cada uno se mueve 1 Lugar hacia ti. Cada enemigo [[Criminal]] que se enfrente a ti como resultado de este efecto realiza un ataque inmediatamente."
   },
   "02100": {
     "name": "Empujado al otro lado",

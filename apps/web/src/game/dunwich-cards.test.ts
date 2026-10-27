@@ -28,6 +28,9 @@ it.each(['en', 'es'] as const)(
     ]
     const codes = [
       ...encounters,
+      '02040',
+      ...Array.from({ length: 21 }, (_, n) => String(2062 + n).padStart(5, '0')),
+      ...Array.from({ length: 8 }, (_, n) => String(2092 + n).padStart(5, '0')),
       ...Array.from({ length: 21 }, (_, n) => String(2041 + n).padStart(5, '0')),
     ].sort()
     const catalog = fallbackCards(locale)
@@ -43,7 +46,7 @@ it.each(['en', 'es'] as const)(
     expect(Object.keys(dunwichCards[locale]).sort()).toEqual(codes)
     for (const code of codes) {
       const matches = catalog.filter((c) => c.code === code)
-      expect(matches).toHaveLength(1)
+      expect(matches, code).toHaveLength(1)
       expect(matches[0]).toMatchObject({
         name: dunwichCards[locale][code]!.name,
         text: dunwichCards[locale][code]!.text,

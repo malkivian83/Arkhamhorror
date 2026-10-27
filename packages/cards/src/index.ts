@@ -323,3 +323,14 @@ export {
   PART_TWO_CODES as FORTUNE_PART_TWO_CODES,
   abarranUnleashed as FORTUNE_ABARRAN_UNLEASHED,
 } from './fortune-and-folly/cards'
+
+export {
+  theHouseAlwaysWins,
+  HOUSE_LOCATIONS,
+  H,
+  HN,
+  HOUSE_SETS,
+  THE_HOUSE_ALWAYS_WINS,
+} from './the-dunwich-legacy/the-house-always-wins'
+
+export { pitBoss as HOUSE_PIT_BOSS } from './the-dunwich-legacy/the-house-always-wins'

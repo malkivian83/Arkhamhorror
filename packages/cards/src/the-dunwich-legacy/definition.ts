@@ -1,3 +1,4 @@
+import { theHouseAlwaysWins, THE_HOUSE_ALWAYS_WINS } from './the-house-always-wins'
 import { registerCampaign } from '../campaign-definition'
 import './encounter-sets'
 import { DUNWICH_CHAOS_BAGS, THE_DUNWICH_LEGACY } from './campaign'
@@ -17,6 +18,12 @@ registerCampaign({
           build: ({ difficulty, log }) => extracurricularActivity({ difficulty, log }),
           keywords: ['peril', 'surge', 'aloof', 'hunter', 'retaliate', 'massive', 'prey'],
         }
-      : { id },
+      : id === THE_HOUSE_ALWAYS_WINS
+        ? {
+            id,
+            build: ({ difficulty, log }) => theHouseAlwaysWins({ difficulty, log }),
+            keywords: ['aloof', 'hunter', 'retaliate', 'surge', 'prey'],
+          }
+        : { id },
   ),
 })

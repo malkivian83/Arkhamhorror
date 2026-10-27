@@ -21,6 +21,7 @@ export function chaosHelp(
   const hard = state.difficulty === 'hard' || state.difficulty === 'expert'
   // Tarjetas de referencia con texto oficial en el catálogo local.
   const official: Record<string, CatalogCard | undefined> = {
+    'the-house-always-wins': dunwichCards[locale === 'es' ? 'es' : 'en']['02062'],
     'extracurricular-activity': dunwichCards[locale === 'es' ? 'es' : 'en']['02041'],
     'the-gathering': zealotCards[locale === 'es' ? 'es' : 'en']['01104'],
     'murder-at-the-excelsior-hotel': excelsiorCards[locale === 'es' ? 'es' : 'en']['84001'],

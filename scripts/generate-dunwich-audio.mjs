@@ -11,6 +11,14 @@ const output = join(root, 'audio/es')
 const evidencePath = 'docs-proyecto/evidencias/dunwich-nico-narracion.json'
 const texts = JSON.parse(readFileSync(join(root, 'es.json'), 'utf8'))
 const keys = {
+  'story.house.intro': 'house-intro-nico-history.mp3',
+  'story.house.resolution1': 'house-resolution1-nico-history.mp3',
+  'story.house.resolution2': 'house-resolution2-nico-history.mp3',
+  'story.house.resolution3': 'house-resolution3-nico-history.mp3',
+  'story.house.resolution4': 'house-resolution4-nico-history.mp3',
+  'story.house.armitage1': 'dunwich-armitage1-nico-history.mp3',
+  'story.house.armitage2': 'dunwich-armitage2-nico-history.mp3',
+
   'story.dunwich.prologue': 'dunwich-prologue-nico-history.mp3',
   'story.extracurricular.intro': 'extracurricular-intro-nico-history.mp3',
   'story.extracurricular.noResolution': 'extracurricular-noresolution-nico-history.mp3',

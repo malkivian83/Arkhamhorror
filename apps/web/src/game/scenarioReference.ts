@@ -2,6 +2,7 @@ import type { GameState } from '@lcg/engine'
 
 /** Scenario reference cards: front = easy/standard, back = hard/expert. */
 const references: Record<string, { code: string; name: string }> = {
+  'the-house-always-wins': { code: '02062', name: 'The House Always Wins' },
   'extracurricular-activity': { code: '02041', name: 'Extracurricular Activity' },
   'the-gathering': { code: '01104', name: 'The Gathering' },
   'spreading-flames': { code: '12105', name: 'Spreading Flames' },

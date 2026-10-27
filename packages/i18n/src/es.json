@@ -315,6 +315,10 @@
     "dunwich": {
       "pushedAsset": "Elige un apoyo para barajarlo en el mazo de su propietario",
       "barrier": "La barrera resiste. ¿Cancelas el movimiento o descartas las 5 primeras cartas de tu mazo?"
+    },
+    "house": {
+      "cheat": "Elige una ficha de la bolsa",
+      "ally": "Elige un Aliado de tu mano"
     }
   },
   "action": {
@@ -653,6 +657,17 @@
       "attachAgenda": "Vincular al plan actual",
       "acceptPower": "Robar 2 cartas y colocar 2 perdiciones",
       "refusePower": "Recibir 2 puntos de horror"
+    },
+    "house": {
+      "token": "{token}",
+      "tokens": {
+        "elderSign": "Signo arcano",
+        "autoFail": "Fallo automático",
+        "skull": "Calavera",
+        "cultist": "Sectario",
+        "tablet": "Tablilla",
+        "elderThing": "Primigenio"
+      }
     }
   },
   "phase": {
@@ -1015,6 +1030,18 @@
       "heal": "Curar 1 daño y 1 horror",
       "findConcoction": "Investigar para recuperar la Pócima alquímica",
       "findJazz": "Gastar 1 pista y buscar a Jazz"
+    },
+    "house": {
+      "paySkull": "Pagar para tratar la calavera como 0",
+      "cheat": "Hacer trampas",
+      "drink": "Tomar una copa",
+      "bet": "Apostar 2 recursos",
+      "ally": "Descartar un Aliado de la mano",
+      "findMorgan": "Buscar al Dr. Morgan",
+      "parley": "Negociar para obtener su ayuda",
+      "morganDraw": "Agotar al Dr. Morgan para robar",
+      "peterEvade": "Peter Clover: evitar a un Criminal",
+      "armitageResources": "Armitage: descartar la carta robada y ganar 3 recursos"
     }
   },
   "log": {
@@ -1417,7 +1444,7 @@
       "murder-at-the-excelsior-hotel": "Un asesinato y un hotel lleno de secretos. Investiga lo ocurrido en el Excelsior y descubre la verdad antes de que sea demasiado tarde.",
       "the-path-to-carcosa": "El Rey de Amarillo llega a Arkham. Ocho escenarios entre Dudas y Convicciones. En desarrollo: de momento se pueden jugar los escenarios I a III.",
       "fortune-and-folly": "Un casino de Montecarlo manipula la propia suerte. Vigila el local en la parte I y da el golpe en la parte II.",
-      "the-dunwich-legacy": "Busca a los profesores desaparecidos. Actividad extracurricular ya es jugable. El resto de escenarios sigue en desarrollo."
+      "the-dunwich-legacy": "Busca a los profesores desaparecidos. Actividad extracurricular y La casa siempre gana son jugables. Los seis escenarios siguientes siguen en desarrollo."
     },
     "continueTitle": "Continuar donde lo dejaste",
     "chooseStory": "Elige la historia",
@@ -1631,7 +1658,13 @@
       "dunwichStudentsRescued": "los estudiantes han sido rescatados",
       "dunwichStudentsLost": "los investigadores no lograron salvar a los estudiantes",
       "dunwichExperimentDefeated": "el experimento ha sido derrotado",
-      "dunwichUnconscious": "los investigadores estuvieron inconscientes varias horas"
+      "dunwichUnconscious": "los investigadores estuvieron inconscientes varias horas",
+      "dunwichMorganRescued": "Los investigadores rescataron al Dr. Francis Morgan",
+      "dunwichMorganKidnapped": "El Dr. Francis Morgan ha sido secuestrado",
+      "dunwichNaomiSupports": "Naomi apoya a los investigadores",
+      "dunwichObannionGrudge": "La banda de O’Bannion tiene cuentas que saldar con los investigadores",
+      "dunwichArmitageRescued": "Los investigadores rescataron al Dr. Henry Armitage",
+      "dunwichArmitageKidnapped": "El Dr. Henry Armitage ha sido secuestrado"
     },
     "scenario": {
       "smokeAndMirrors": "el Escenario II: Smoke and Mirrors",
@@ -2245,6 +2278,29 @@
       "riceRewardTitle": "El profesor Rice",
       "riceReward": "Un investigador puede añadir al Profesor Warren Rice a su mazo. No cuenta para el tamaño del mazo.",
       "tabletEffect": "Añade una ficha de tablilla a la bolsa de caos para el resto de la campaña."
+    },
+    "house": {
+      "intro": "El Dr. Armitage os sugirió que buscaseis a su socio, el Dr. Francis Morgan. No está seguro de si el Dr. Morgan tiene problemas, pero no le agradan particularmente las compañías que está frecuentando su colega. Se encuen tra en el Clover Club, un notorio garito de juego en algún lugar del centro. Encontrar la ubicación exacta del club no es fácil; tenéis que untar unas cuantas manos sólo para descubrir cuál de los restaurantes del centro actúa como tapadera del club. Se trata de La Bella Luna, un establecimiento ita liano de cierta sofisticación que hay junto al teatro. Os ponéis vuestras mejores galas y os dirigís allí. Delante de La Bella Luna hay un hombre con traje de raya diplomática que os escudriña con la mirada cuando os acercáis. –Que lo pasen bien –os dice con una sonrisa taimada mientras abre la puerta del restaurante.",
+      "introTitle": "Escenario I-B: La casa siempre gana",
+      "resolution1": "Huis hasta el final de la manzana y os paráis para recuperaros. Antes de poder recobrar el aliento, el suelo tiembla con gran estruendo. La gente sale de sus casas y tiendas para ver qué es ese alboroto, y se forma una multitud en la calle. Os acercáis a la primera fila de la muchedumbre y os horroriza ver que el edificio del que habíais huido minutos antes ha quedado reducido a escombros. No hay ni rastro del Dr. Morgan por ninguna parte.",
+      "resolution1Title": "Resolución 1",
+      "resolution2": "–¿Pero qué diantres...? –El Dr. Morgan sale por fin de su estupor cuando lográis poneros a salvo. Le preguntáis qué recuerda, y balbucea y sacude la cabeza. –Es todo como nebuloso –explica, visiblemente agotado–. ¡Estaba en la mayor racha de mi vida! Puede que me hubiera tomado alguna copa de más. Pero, esas criaturas... no había visto nada así desde... Pierde el hilo, y notáis perfectamente cómo su mente trabaja a toda velocidad. Abre los ojos como platos al comprenderlo, y su rostro palidece. –Puede que no esté en la mejor de las formas, pero os ayudaré con vuestra investigación. Cueste lo que cueste.",
+      "resolution2Title": "Resolución 2",
+      "resolution4": "Varios bomberos os sacan de entre los escombros, y uno de ellos exclama: –¡Tenemos supervivientes! Varios de ellos os practican primeros auxilios, y la policía os pre gunta por lo sucedido. Estáis seguros de que no se van a creer vuestra historia de que unas horribles monstruosidades han derribado el edificio desde dentro. Sin saber muy bien qué decir, declaráis vagamente que apenas recordáis gran cosa. –Os vamos a llevar al Santa María –dice una de las enfermeras mientras señala una ambulancia cercana. Sabiendo como sabéis lo acuciante de la situación, os escabullís mientras está distraída con algo de los escombros...",
+      "resolution4Title": "Resolución 4",
+      "resolution3": "Aunque no lograsteis encontrar al Dr. Morgan en el club, el hombre al que rescatasteis os está agradecido por vuestra ayuda. Se presenta como Peter Clover, el dueño del esta blecimiento que acabáis de abandonar. A pesar de la situación, mantiene un aire de serena profesionalidad. Al salir a la calle, un brillante Chrysler B-70 se detiene junto a vosotros, y de él sale una bellísima mujer de largo cabello castaño y ojos pequeños. Está flanqueada por hombres de aspecto peligroso que se meten la mano en la chaqueta al veros. –Peter –dice con un suspiro de alivio–. Estás bien. ¿Es cierto que ha habido problemas? –Se vuelve hacia vosotros y os dirige una mirada asesina–. ¿Quiénes son? El Sr. Clover se sacude el polvo del chaleco, sin aspecto de estar preocupado. –Naomi, querida, son amigos míos. Ellos... –se aclara la garganta–. Ellos me han acompañado fuera del establecimiento – explica tras una breve pausa–. Se han ganado nuestra gratitud. La mujer cruza los brazos y dedica un instante a examinaros con la mirada antes de dedicaros una sonrisa sardónica. –Muy bien. Entonces debo daros las gracias por cuidar de Peter. Y ahora marchaos; ya nos encargamos nosotros del resto. Hace un gesto a los matones que la flanquean, y éstos pasan junto a vosotros para dirigirse a la entrada trasera del club mientras se sacan armas de fuego de las chaquetas. No estáis seguros de qué quiere decir “encargarse”, pero estáis totalmente seguros de que no queréis estar aquí cuando empiece el tiroteo. Les dais las gracias a Naomi y a Peter y os marcháis.",
+      "resolution3Title": "Resolución 3",
+      "armitage1": "Vuestras experiencias en la universidad y en el Clover Club os han dejado más que simplemente agitados. No estáis seguros de qué pensar sobre quienquiera (o lo que quiera) que fuese tras Rice y Morgan. Ahora os preocupa el Dr. Armitage, así que volvéis a su casa lo más rápido que podéis. Cuando llegáis, descubrís que han reventado los cerrojos de su puerta delantera, y que han registrado a lo bestia su sala de estar y su estudio. El Dr. Armitage no aparece por nin guna parte. Al buscar por su casa, encontráis un diario que los intru sos no se han llevado porque estaba oculto bajo otros documentos en el cajón inferior del escritorio del Dr. Armitage. El diario parece escrito en un extraño idioma que no podéis descifrar, y emplea una escritura que no habéis visto jamás en la vida. Por suerte, parece que el Dr. Armitage ya se había tomado la molestia de traducirlo, y al parecer pertenece a un tal “Wilbur Whateley”. El diario, junto con muchas de las notas de Armitage, cuenta un relato alucinante que apenas seríais capaces de creeros de no ser por vuestras siniestras experiencias de esta misma noche...",
+      "armitage1Title": "El destino de Armitage",
+      "armitage2": "Cuando llegáis a casa del Dr. Armitage en el Barrio Sur, lo encontráis sentado en su escritorio, con el rostro pálido y sudando de preocupación. Os agradece que buscaseis a sus colegas, pero no parece aliviado. Tras una larga pausa, se coloca las gafas y explica: –Me temo que debo disculparme. Hay algo que no os mencioné antes –os dice, antes de empezar a contaros un relato que apenas seríais capaces de creeros de no ser por vuestras siniestras experiencias de esta misma noche...",
+      "armitage2Title": "El destino de Armitage",
+      "setupTitle": "Preparación",
+      "setup": "Reúne La casa siempre gana, Mala suerte, La banda de Naomi y Ratas. Aparta Abominaciones espantosas y Miedo impactante. Todos comienzan en La Bella Luna; pon en juego el Salón, el Bar y la Sala de juego del Clover Club. Coloca al Jefe de sala en el Salón. Aparta el Pasillo en penumbra, las tres Puertas del final del pasillo, Peter Clover y el Dr. Francis Morgan.",
+      "morganRewardTitle": "Dr. Francis Morgan",
+      "morganReward": "Un investigador puede añadir al Dr. Francis Morgan a su mazo, sin contar para su tamaño.",
+      "armitageRewardTitle": "Dr. Henry Armitage",
+      "armitageReward": "Un investigador puede añadir al Dr. Henry Armitage a su mazo, sin contar para su tamaño.",
+      "cheatEffect": "Añadid una ficha de Primigenio a la bolsa durante el resto de la campaña."
     }
   },
   "playmat": {

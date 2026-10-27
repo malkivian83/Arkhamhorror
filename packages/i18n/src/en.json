@@ -315,6 +315,10 @@
     "dunwich": {
       "pushedAsset": "Choose an asset to shuffle into its owner’s deck",
       "barrier": "The barrier holds. Cancel the move or discard the top 5 cards of your deck?"
+    },
+    "house": {
+      "cheat": "Choose a token in the bag",
+      "ally": "Choose an Ally in your hand"
     }
   },
   "action": {
@@ -653,6 +657,17 @@
       "attachAgenda": "Attach to the current agenda",
       "acceptPower": "Draw 2 cards and place 2 doom",
       "refusePower": "Take 2 horror"
+    },
+    "house": {
+      "token": "{token}",
+      "tokens": {
+        "elderSign": "Elder sign",
+        "autoFail": "Automatic failure",
+        "skull": "Skull",
+        "cultist": "Cultist",
+        "tablet": "Tablet",
+        "elderThing": "Elder thing"
+      }
     }
   },
   "phase": {
@@ -1015,6 +1030,18 @@
       "heal": "Heal 1 damage and 1 horror",
       "findConcoction": "Investigate to recover the Concoction",
       "findJazz": "Spend 1 clue and search for Jazz"
+    },
+    "house": {
+      "paySkull": "Pay to treat the skull as 0",
+      "cheat": "Cheat",
+      "drink": "Have a drink",
+      "bet": "Bet 2 resources",
+      "ally": "Discard an Ally from hand",
+      "findMorgan": "Find Dr. Morgan",
+      "parley": "Parley for their help",
+      "morganDraw": "Exhaust Dr. Morgan to draw",
+      "peterEvade": "Peter Clover: evade a Criminal",
+      "armitageResources": "Armitage: discard the drawn card and gain 3 resources"
     }
   },
   "log": {
@@ -1417,7 +1444,7 @@
       "murder-at-the-excelsior-hotel": "A murder and a hotel full of secrets. Investigate what happened at the Excelsior and uncover the truth before it is too late.",
       "the-path-to-carcosa": "The King in Yellow arrives in Arkham. Eight scenarios between doubt and conviction. In development: scenarios I to III are playable so far.",
       "fortune-and-folly": "A Monte Carlo casino bends luck itself. Case the joint in Part I, then pull off the heist in Part II.",
-      "the-dunwich-legacy": "Search for the missing professors. Extracurricular Activity is playable. The remaining scenarios are in development."
+      "the-dunwich-legacy": "Find the missing professors. Extracurricular Activity and The House Always Wins are playable. The next six scenarios are still in development."
     },
     "continueTitle": "Continue where you left off",
     "chooseStory": "Choose the story",
@@ -1631,7 +1658,13 @@
       "dunwichStudentsRescued": "the students were rescued",
       "dunwichStudentsLost": "the investigators failed to save the students",
       "dunwichExperimentDefeated": "the Experiment was defeated",
-      "dunwichUnconscious": "the investigators were unconscious for several hours"
+      "dunwichUnconscious": "the investigators were unconscious for several hours",
+      "dunwichMorganRescued": "The investigators rescued Dr. Francis Morgan",
+      "dunwichMorganKidnapped": "Dr. Francis Morgan was kidnapped",
+      "dunwichNaomiSupports": "Naomi has the investigators’ backs",
+      "dunwichObannionGrudge": "The O’Bannion gang has a bone to pick with the investigators",
+      "dunwichArmitageRescued": "The investigators rescued Dr. Henry Armitage",
+      "dunwichArmitageKidnapped": "Dr. Henry Armitage was kidnapped"
     },
     "scenario": {
       "smokeAndMirrors": "Scenario II: Smoke and Mirrors",
@@ -2245,6 +2278,29 @@
       "riceRewardTitle": "Professor Rice",
       "riceReward": "One investigator may add Professor Warren Rice to their deck. He does not count towards deck size.",
       "tabletEffect": "Add one tablet token to the chaos bag for the rest of the campaign."
+    },
+    "house": {
+      "intro": "Dr. Armitage suggested you track down his associate Dr. Francis Morgan. He’s not sure whether Dr. Morgan is in trouble, but he’s not particularly happy with his colleague’s present choice of company. He’s in the Clover Club, a notorious gambling joint somewhere downtown. Finding the club’s exact location isn’t easy—you have to grease a few palms just to learn which of the Downtown restaurants operates as the club’s front. That restaurant is La Bella Luna, a somewhat upscale Italian eatery by the theatre. You change into your Sunday best and make your way there. In front of La Bella Luna stands a man in a pinstripe suit who sizes you up as you approach. “Enjoy yourselves,” he says with a snake-like grin as he holds open the restaurant’s front door.",
+      "introTitle": "Scenario I-B: The House Always Wins",
+      "resolution1": "You flee to the end of the block and pause to recover. Before you can catch your breath, the ground shakes with a thunderous crash. People emerge from their homes and storefronts to see what the ruckus is, and a crowd forms on the street. You head to the front of the crowd and are horrified to see the building from which you fled just minutes earlier reduced to rubble. There is no sign of Dr. Morgan anywhere.",
+      "resolution1Title": "Resolution 1",
+      "resolution2": "“What in the world…?” Dr. Morgan finally breaks out of his daze as you make your way to safety. You ask him what he remembers, and he sputters and shakes his head. “It’s all a haze,” he explains, visibly exhausted. “I was having the run of my life! Perhaps I had one too many shots. But, those creatures—I haven’t seen anything like that since…” He trails off, and you can tell that his mind is racing. His eyes widen with realization and his face pales. “I may not be in the best shape, but I’ll help with your investigation. Whatever it takes.”",
+      "resolution2Title": "Resolution 2",
+      "resolution3": "Although you were unable to find Dr. Morgan in the club, the man you rescued is grateful for your help. He introduces himself as Peter Clover, the owner of the establishment you’d just left. Despite the situation, he maintains an air of quiet professionalism. As you make your way towards the street, a well-polished Chrysler B-70 rolls up to you, and a gorgeous woman with long brown hair and narrow eyes exits. She is flanked by dangerous-looking men who slip their hands under their suit jackets when they see you. “Peter,” she says with a sigh of relief, “Good, you’re okay. I heard there was trouble?” She turns and glares at you with deadly eyes. “Who are they?” Mr. Clover dusts off his vest, unworried. “Naomi, my dear, these are friends of mine. They…” he clears his throat. “They escorted me off the premises,” he explains after a short pause. “They have earned our gratitude.” The woman crosses her arms and takes a moment to size you up before giving you a smirk. “Very well then. I must thank you for taking care of Peter. Run along now; we’ll handle things from here.” She nods to the goons flanking her and they walk past you toward the club’s rear entrance, pulling firearms out from underneath their coats. You’re not sure what ‘handling things’ means, but you’re pretty sure you don’t want to be here when the gunfire starts. You thank Naomi and Peter, and head off.",
+      "resolution3Title": "Resolution 3",
+      "resolution4": "You are pulled from the debris by several firefighters, one of whom exclaims, “We’ve got a live one!” A few of them patch you up, and the cops ask you what happened. You’re certain they wouldn’t believe your story about horrible monstrosities demolishing the building from within. Unsure of what to say, you give a vague statement about not remembering much. “We’re bringing you to St. Mary’s,” one of the nurses says, pointing to a nearby ambulance. Knowing now how dire the situation is, you slip away while she is distracted by something else in the rubble…",
+      "resolution4Title": "Resolution 4",
+      "armitage1": "You are more than a little rattled by your experiences in the university and the Clover Club. You’re not sure what to make of whoever—or whatever—was after Rice and Morgan. Worried about Dr. Armitage, you swiftly make your way back to his home. When you arrive, you find that the latches of his front door have been busted open, and his living area and study have been ransacked. Dr. Armitage is nowhere to be found. Searching his home, you find a journal the intruders didn’t steal tucked beneath several other documents in the bottom drawer of Armitage’s desk. The journal appears to be written in a strange language you cannot decode, using a script you’ve never seen in your entire life. Fortunately, it seems Dr. Armitage had already gone through the trouble of translating it into English. Apparently, it belongs to one “Wilbur Whateley.” The journal—along with Armitage’s many notes—tells a startling tale, one you would scarcely believe had it not been for your harrowing experiences earlier tonight…",
+      "armitage1Title": "Armitage's Fate",
+      "armitage2": "When you arrive at Dr. Armitage’s home in Southside, you find him sitting at his desk, pale-faced and sweating with worry. He is grateful to you for searching for his colleagues, but he doesn’t look relieved. With a long pause, he straightens his glasses and explains: “I’m afraid I must apologize. There’s something I didn’t mention to you earlier.” Dr. Armitage then spins a tale you would scarcely believe had it not been for your harrowing experiences earlier that night…",
+      "armitage2Title": "Armitage's Fate",
+      "setupTitle": "Setup",
+      "setup": "Gather The House Always Wins, Bad Luck, Naomi’s Crew and Rats. Set Hideous Abominations and Striking Fear aside. Start at La Bella Luna with the Lounge, Bar and Cardroom in play. Spawn the Pit Boss in the Lounge. Set Darkened Hall, the three Back Hall Doorways, Peter Clover and Dr. Francis Morgan aside.",
+      "morganRewardTitle": "Dr. Francis Morgan",
+      "morganReward": "One investigator may add Dr. Francis Morgan to their deck, without counting toward deck size.",
+      "armitageRewardTitle": "Dr. Henry Armitage",
+      "armitageReward": "One investigator may add Dr. Henry Armitage to their deck, without counting toward deck size.",
+      "cheatEffect": "Add an elder thing token to the chaos bag for the rest of the campaign."
     }
   },
   "playmat": {

@@ -4,6 +4,37 @@ import { createHash } from 'node:crypto'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 
 const arts = [
+  '02040',
+  '02062',
+  '02063',
+  '02064',
+  '02065',
+  '02066',
+  '02067',
+  '02068',
+  '02069',
+  '02070',
+  '02071',
+  '02072',
+  '02073',
+  '02074',
+  '02075',
+  '02076',
+  '02077',
+  '02078',
+  '02079',
+  '02080',
+  '02081',
+  '02082',
+  '02092',
+  '02093',
+  '02094',
+  '02095',
+  '02096',
+  '02097',
+  '02098',
+  '02099',
+
   '01177',
   '01178',
   '02041',
@@ -37,7 +68,11 @@ const arts = [
   '02100',
   '02101',
   '02102',
-].flatMap((code) => (Number(code) >= 2041 && Number(code) <= 2057 ? [code, `${code}b`] : [code]))
+].flatMap((code) =>
+  (Number(code) >= 2041 && Number(code) <= 2057) || (Number(code) >= 2062 && Number(code) <= 2077)
+    ? [code, `${code}b`]
+    : [code],
+)
 const manifestPath = 'apps/web/src/game/cardImageManifest.json'
 const before = JSON.parse(await readFile(manifestPath, 'utf8'))
 const tasks = ['en', 'es'].flatMap((language) =>

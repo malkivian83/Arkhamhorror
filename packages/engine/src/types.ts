@@ -1498,6 +1498,7 @@ export type ClueHolder =
 
 /** Momentos en los que se comprueban las habilidades forzadas. */
 export type Trigger =
+  | { type: 'afterGainClues'; investigator: InvestigatorId; amount: number }
   | { type: 'encounterCardDiscarded'; card: EncounterCard; investigator?: InvestigatorId }
   | { type: 'beforeEnemySpawns'; location: LocationId; card: EnemyCard }
   | { type: 'afterRevealChaosToken'; investigator: InvestigatorId; token: ChaosToken }
