@@ -79,6 +79,28 @@
       "test": "taunt.test.ts",
       "status": "verified",
       "fast": true
+    },
+    {
+      "code": "03273",
+      "family": "discard-return",
+      "module": "card-03273",
+      "test": "discard-events.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04313",
+      "family": "treachery-removal",
+      "module": "card-04313",
+      "test": "discard-events.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "53009",
+      "family": "treachery-removal",
+      "module": "card-53009",
+      "test": "discard-events.test.ts",
+      "status": "verified"
     }
   ]
 }

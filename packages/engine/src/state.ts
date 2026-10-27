@@ -243,9 +243,10 @@ export function currentAgendas(state: GameState): Agenda[] {
   ].filter((a): a is Agenda => !!a)
 }
 
-/** El investigador jefe: el primero en el orden de jugadores que siga en juego. */
+/** Jefe elegido entre los activos; en partidas antiguas, el primero que siga en juego. */
 export function leadInvestigator(state: GameState): Investigator | undefined {
-  return activeInvestigators(state)[0]
+  const active = activeInvestigators(state)
+  return active.find((i) => i.id === state.leadInvestigatorId) ?? active[0]
 }
 
 export function investigatorsAt(state: GameState, location: LocationId): Investigator[] {

@@ -4,6 +4,13 @@
  * texto oficial, así que solo se ofrecen en el idioma de la grabación.
  */
 const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
+  'story.zealot.prologue': { es: 'zealot-prologue-baldo.mp3' },
+  'story.theGathering.intro': { es: 'the-gathering-intro-baldo.mp3' },
+  'story.theGathering.noResolution': { es: 'the-gathering-no-resolution-baldo.mp3' },
+  'story.theGathering.resolution1': { es: 'the-gathering-resolution1-baldo.mp3' },
+  'story.theGathering.resolution2': { es: 'the-gathering-resolution2-baldo.mp3' },
+  'story.theGathering.resolution3': { es: 'the-gathering-resolution3-baldo.mp3' },
+
   'story.carcosa.prologue': { es: 'carcosa-prologue.mp3' },
   'story.carcosa.lolaPrologue': { es: 'carcosa-lola-prologue.mp3' },
   'story.curtainCall.intro': { es: 'curtain-call-intro.mp3' },

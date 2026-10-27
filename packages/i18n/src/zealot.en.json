@@ -1,0 +1,55 @@
+{
+  "campaignName": "Night of the Zealot",
+  "description": "Investigate the disappearances in Arkham. The Gathering is available; the other two scenarios are still pending.",
+  "scenarios": {
+    "the-gathering": "The Gathering",
+    "the-midnight-masks": "The Midnight Masks",
+    "the-devourer-below": "The Devourer Below"
+  },
+  "zealot": {
+    "prologueTitle": "The Ghouls Hunger…",
+    "prologue": "Arkham, September 1925. Unrelenting heat and rising tempers accompany a string of disappearances. A small group of investigators searches for answers."
+  },
+  "theGathering": {
+    "introTitle": "The Gathering",
+    "intro": "You gather at the lead investigator’s home to discuss the disappearances and mutilated bodies found near Arkham. Something stirs beneath the Study.",
+    "setupTitle": "The Gathering setup",
+    "setup": "All investigators begin in the Study. Set aside the rest of the house and the Ghoul Priest. Lita Chantler enters the Parlor when the barrier falls. The encounter deck uses The Gathering, Rats, Ghouls, Striking Fear, Ancient Evils, and Chilling Cold.",
+    "decideTitle": "The fate of the house",
+    "decide": "After defeating the Ghoul Priest, the lead investigator decides whether to let Lita burn down the house.",
+    "burn": "Let the house burn",
+    "keep": "Keep the house",
+    "noResolutionTitle": "Escape from the house",
+    "noResolution": "You escape and follow Lita to safety. The house is still standing and the Ghoul Priest is still alive. The lead investigator gains Lita Chantler. Each investigator earns victory experience plus 2 bonus experience.",
+    "resolution1Title": "Resolution 1",
+    "resolution1": "You allow Lita to burn down the house. The lead investigator gains Lita Chantler and suffers 1 mental trauma. Each investigator earns victory experience plus 2 bonus experience.",
+    "resolution2Title": "Resolution 2",
+    "resolution2": "The lead investigator refuses to burn down the house and earns 1 additional experience. Lita does not join their deck. Each investigator earns victory experience plus 2 bonus experience.",
+    "resolution3Title": "Resolution 3",
+    "resolution3": "The barrier leaves you trapped. Each investigator who has not resigned is killed. The house is still standing and the Ghoul Priest is still alive. Affected players must choose new investigators to continue. If the lead investigator was killed, choose a new bearer for Lita Chantler.",
+    "litaBearerTitle": "A new ally for Lita",
+    "litaBearer": "The lead investigator was killed. Choose who gains Lita Chantler.",
+    "litaEffect": "{name} gains Lita Chantler; she does not count toward deck size.",
+    "leadMentalTrauma": "{name} suffers 1 mental trauma.",
+    "leadBonusXp": "{name} earns 1 additional experience.",
+    "killEffect": "Each investigator who has not resigned is killed. Choose replacements to continue the campaign.",
+    "litaReassignEffect": "If the lead investigator was killed, choose a new bearer for Lita Chantler; if no one survived, choose after adding replacement investigators."
+  },
+  "notes": {
+    "zealotHouseStanding": "Your house is still standing.",
+    "zealotHouseBurned": "Your house has burned to the ground.",
+    "zealotGhoulPriestAlive": "The Ghoul Priest is still alive.",
+    "zealotLitaFoundOthers": "Lita was forced to find others to help her cause."
+  },
+  "abilities": {
+    "litaDamage": "Lita Chantler: deal 1 additional damage to the Monster",
+    "parleyLita": "Parley with Lita Chantler: intellect (4)"
+  },
+  "choices": {
+    "discardRandomEach": "Each investigator discards 1 random card",
+    "leadHorror": "The lead investigator takes 2 horror"
+  },
+  "prompts": {
+    "chooseGhoul": "Choose a Ghoul enemy from the encounter deck or discard pile"
+  }
+}

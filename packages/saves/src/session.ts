@@ -98,6 +98,8 @@ function game(value: unknown): asserts value is GameState {
     value.investigators.length > 4
   )
     fail()
+  if (value.leadElectionVersion !== undefined && value.leadElectionVersion !== 1)
+    fail('incompatible')
   const ids = new Set<string>()
   for (const i of value.investigators) {
     if (!object(i) || typeof i.id !== 'string' || ids.has(i.id) || typeof i.name !== 'string')
@@ -126,6 +128,11 @@ function game(value: unknown): asserts value is GameState {
     )
       fail('incompatible')
   }
+  if (
+    value.leadInvestigatorId !== undefined &&
+    (typeof value.leadInvestigatorId !== 'string' || !ids.has(value.leadInvestigatorId))
+  )
+    fail()
   for (const k of [
     'locations',
     'enemies',

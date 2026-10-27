@@ -519,6 +519,8 @@ export interface PlayerCardBehavior {
   abilities?: AbilitiesFn<Asset>
   /** Modificador constante a las pruebas de su controlador. */
   skillModifier?: (state: GameState, self: Asset, test: SkillTest) => number
+  /** Aura de un apoyo controlado: se evalúa para pruebas de cualquier investigador. */
+  skillAura?: (state: GameState, self: Asset, test: SkillTest) => number
   /** Carta comprometida: efecto según el resultado de la prueba. */
   afterCommittedTest?: (
     state: GameState,

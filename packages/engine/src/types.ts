@@ -785,8 +785,8 @@ export type Message =
   | { type: 'LoseNextTurnActions'; investigator: InvestigatorId; amount: number }
   // ----- Inicio de la partida (reglamento, "Setup", pasos de los investigadores) -----
   /** El grupo elige al investigador jefe. */
-  | { type: 'ChooseLead' }
-  | { type: 'SetLead'; investigator: InvestigatorId }
+  | { type: 'ChooseLead'; replacement?: boolean }
+  | { type: 'SetLead'; investigator: InvestigatorId; replacement?: boolean }
   /** Mano inicial: las debilidades se apartan y se roba otra en su lugar. */
   | { type: 'DrawOpeningHand'; investigator: InvestigatorId; amount: number }
   /** Lola Hayes: su papel (una clase o `neutral`). */
@@ -1635,8 +1635,12 @@ export interface GameState {
   phase: Phase
   /** Paso de la fase en curso (para la mesa). */
   phaseStep?: PhaseStep
-  /** Orden de jugadores; el primero no eliminado es el investigador jefe. */
+  /** Orden de jugadores establecido durante la preparación. */
   investigators: Investigator[]
+  /** Jefe elegido tras una eliminación; sin este campo, el primero en orden. */
+  leadInvestigatorId?: InvestigatorId
+  /** Nuevas partidas eligen jefe tras eliminarlo; las guardadas sin versión conservan su historial. */
+  leadElectionVersion?: 1
   /** Investigadores que empezaron el escenario (para valores "por investigador"). */
   startingInvestigatorCount: number
   locations: Record<LocationId, Location>

@@ -74,6 +74,7 @@ import {
 } from './core-2026/player-cards'
 // Campañas registradas.
 import './brethren-of-ash/definition'
+import './night-of-the-zealot/definition'
 import './midwinter-gala/definition'
 import './excelsior/definition'
 import './the-path-to-carcosa/definition'

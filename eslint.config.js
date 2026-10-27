@@ -5,7 +5,16 @@ import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
-  { ignores: ['**/dist/**', '**/node_modules/**', 'docs-proyecto/**'] },
+  {
+    ignores: [
+      '**/dist/**',
+      '**/dist-fidelity-check/**',
+      '.card-import-tmp/**',
+      '**/node_modules/**',
+      'docs-proyecto/**',
+      '.codex-remote-attachments/**',
+    ],
+  },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   ...vue.configs['flat/recommended'],
@@ -14,7 +23,10 @@ export default tseslint.config(
     languageOptions: { parserOptions: { parser: tseslint.parser } },
   },
   {
-    languageOptions: { globals: { ...globals.node, ...globals.browser } },
+    languageOptions: {
+      globals: { ...globals.node, ...globals.browser },
+      parserOptions: { tsconfigRootDir: import.meta.dirname },
+    },
     rules: {
       // Variables con prefijo _ se descartan a propósito (p. ej. al desestructurar).
       '@typescript-eslint/no-unused-vars': [

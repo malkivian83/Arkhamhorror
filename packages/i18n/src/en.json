@@ -317,6 +317,7 @@
   },
   "choice": {
     "moveEnemyNow": "Resolve movement for {enemy}",
+    "groupedTreachery": "Discard {card}",
     "backupRogue": "Move to a connecting location (Rogue)",
     "backupGuardian": "Deal 1 damage (Guardian)",
     "backupSeeker": "Discover 1 clue (Seeker)",
@@ -574,8 +575,8 @@
       "keepRole": "Keep your role"
     },
     "fof": {
-      "skipVigilance": "Skip the stakeout and proceed to the heist",
       "playVigilance": "Play the stakeout",
+      "skipVigilance": "Skip the stakeout and proceed to the heist",
       "role": "{card}",
       "red": "Red",
       "black": "Black",
@@ -3252,7 +3253,20 @@
       "courage": "Facedown card from the top of your deck (Constance’s Information): Courage asset with cost 0, no icons and 2 sanity. Discard it if it leaves play.",
       "03006": "Forced – After you draw your opening hand: choose a role (Survivor, Guardian, Seeker, Rogue, Mystic or Neutral). You can only play, commit or trigger abilities on Neutral cards or cards of your role. [fast]: Switch your role (once per round). [elder_sign]: +2; you may switch roles.",
       "03018": "Lola Hayes deck only. Fast. Play only during your turn. Switch your role. Until the end of your turn, the next card of your role you play costs 3 less. Draw 1 card.",
-      "03019": "Revelation – Discard all cards you control of your current role. Then discard the top card of your deck and switch your role to its class (neutral if it is a weakness)."
+      "03019": "Revelation – Discard all cards you control of your current role. Then discard the top card of your deck and switch your role to its class (neutral if it is a weakness).",
+      "60318": "After you commit Daredevil to a skill test, discard cards from the top of your deck until you discard a [rogue] skill you can commit to this test. Commit it. Shuffle each weakness that was discarded by this effect back into your deck.",
+      "06240": "After you commit Daredevil to a skill test, reveal cards from the top of your deck until you reveal a [rogue] skill you can commit to this test. Commit it. Shuffle each other revealed card back into your deck.",
+      "07024": "If this skill test is during or before the first action of this turn, Plan of Action gains [willpower] [agility].\nIf this skill test is between the first and third actions of this turn, draw 1 card if it succeeds.\nIf this skill test is during or after the third action of this turn, Plan of Action gains [combat] [intellect].",
+      "09031": "You may commit Helping Hand to any type of test. Max 1 committed per test.\nWhile Helping Hand is committed to a skill test, double the skill icons of each other card committed to that test.",
+      "60582": "Max 1 committed per skill test.\nYou may commit Timely Intervention from your hand after revealing chaos tokens during a skill test you are performing.",
+      "50002": "Choose either your location or a connecting location. Deal 3 damage to each enemy and to each investigator at the chosen location. This action does not provoke attacks of opportunity.",
+      "60129": "Fast. Play during any [fast] window.\nChoose either your location or a connecting location. Deal 3 damage to each enemy and investigator at the chosen location.",
+      "03307": "Fast. Play during any [fast] player window.\nChoose an investigator at your location. That investigator searches his or her deck for a card, draws it, and shuffles his or her deck.",
+      "02019": "Fast. Play only during your turn.\nEngage any number of enemies at your location. Draw 1 card for each enemy engaged in this way.",
+      "60130": "Fast. Play during any [fast] window.\nEngage any number of enemies at your location. For each enemy engaged this way, deal it 1 damage and draw 1 card.",
+      "03273": "Return 3 [[Innate]] skills from your discard pile to your hand.",
+      "04313": "Fast. Play during any [fast] player window.\nChoose and discard from play a non-weakness treachery that is not attached to an [[Elite]] enemy.",
+      "53009": "Choose and discard from play a non-weakness treachery that is not attached to an [[Elite]] enemy."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -3748,7 +3762,20 @@
       "courage": "Courage",
       "03006": "Lola Hayes",
       "03018": "Improvisation",
-      "03019": "Crisis of Identity"
+      "03019": "Crisis of Identity",
+      "60318": "Daredevil",
+      "06240": "Daredevil",
+      "07024": "Plan of Action",
+      "09031": "Helping Hand",
+      "60582": "Timely Intervention",
+      "50002": "Dynamite Blast",
+      "60129": "Dynamite Blast",
+      "03307": "No Stone Unturned",
+      "02019": "Taunt",
+      "60130": "Taunt",
+      "03273": "True Survivor",
+      "04313": "Alter Fate",
+      "53009": "Alter Fate"
     }
   },
   "account": {

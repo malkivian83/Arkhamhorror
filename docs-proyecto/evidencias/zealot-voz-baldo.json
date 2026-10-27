@@ -1,0 +1,17 @@
+{
+  "source": "https://api.elevenlabs.io/v1/voices",
+  "voice": {
+    "kind": "library",
+    "voiceId": "RnKqZYEeVQciORlpiCz0",
+    "name": "Baldo - Husky, Mature and Alluring",
+    "labels": {
+      "descriptive": "serious",
+      "language": "es",
+      "use_case": "narrative_story",
+      "age": "middle_aged",
+      "accent": "peninsular",
+      "gender": "male"
+    },
+    "description": "Mature and serious male voice. Ideal for storytelling and advertising."
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "voiceId": "RnKqZYEeVQciORlpiCz0",
+  "voiceName": "Baldo - Husky, Mature and Alluring",
+  "language": "es",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.15,
+      "speed": 0.95,
+      "use_speaker_boost": true
+    }
+  },
+  "files": [
+    {
+      "key": "story.zealot.prologue",
+      "file": "zealot-prologue-baldo.mp3",
+      "characters": 851,
+      "inputHash": "1e9746c1e5f6d23078fd279c2dc14b84fee8fcf1faa5ff9c117564a0a3942b37",
+      "sha256": "5a9dc1ad470795028b5fb231c7bee2ea7bb4d6d2414f568db0765e84201611de",
+      "bytes": 822168
+    },
+    {
+      "key": "story.theGathering.intro",
+      "file": "the-gathering-intro-baldo.mp3",
+      "characters": 545,
+      "inputHash": "df3a2cc26fe3041678f2f72752a1e7df4c9dec4041b3ebf4229e6681eef39754",
+      "sha256": "e681de2b9469095ff546e7204c118b0384a062d2a80c3d7a699257ecd4913f98",
+      "bytes": 472336
+    },
+    {
+      "key": "story.theGathering.noResolution",
+      "file": "the-gathering-no-resolution-baldo.mp3",
+      "characters": 565,
+      "inputHash": "44250cc00a32977bdf92716c18744c000b2dba5cf211dacf0bba6c9a88da92d5",
+      "sha256": "c3855fd968c5c489411f677ec1baa34d13a3609032c8966ec712600f8e502e96",
+      "bytes": 511625
+    },
+    {
+      "key": "story.theGathering.resolution1",
+      "file": "the-gathering-resolution1-baldo.mp3",
+      "characters": 444,
+      "inputHash": "de6b3a7ffc28ade40c1dd2a19669d3e22fc7d8a98478941252cc9d8c3dc65c3d",
+      "sha256": "487f9f7c039fe9468fa87b7f8e13f7c0c9192f848b64f08318bb6e2e02719543",
+      "bytes": 456454
+    },
+    {
+      "key": "story.theGathering.resolution2",
+      "file": "the-gathering-resolution2-baldo.mp3",
+      "characters": 457,
+      "inputHash": "0ab8daa47d34f6d2da03bddc7e8751ea8dbb8f9925e93022fa14f9d8825b7825",
+      "sha256": "2d987ee7a6c6f1bc03bfc69cee1484084557b3b77fb6e5c76bc13ce89680234d",
+      "bytes": 423853
+    },
+    {
+      "key": "story.theGathering.resolution3",
+      "file": "the-gathering-resolution3-baldo.mp3",
+      "characters": 255,
+      "inputHash": "6140e74789311f448b325dcc6263210eb168a8b1284f44ee06044edb06498dca",
+      "sha256": "ad6b63c0e4bd52217a6886486fc02c03d78054e3b8ffe25e74d33b817cd9f40a",
+      "bytes": 229920
+    }
+  ]
+}

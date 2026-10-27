@@ -1,0 +1,65 @@
+{
+  "voiceId": "5egO01tkUjEzu7xSSE8M",
+  "voiceName": "Carmelo - Mature, Mysterious and Clear",
+  "language": "es",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.15,
+      "speed": 0.95,
+      "use_speaker_boost": true
+    }
+  },
+  "files": [
+    {
+      "key": "story.zealot.prologue",
+      "file": "zealot-prologue.mp3",
+      "characters": 851,
+      "inputHash": "fdd8fdb9c2f1675dbcadbe4c8f49cf4b613ca9de977082858903e31236953347",
+      "sha256": "4214750ef1956519acfb1848a0ba2a5af81fc5d26d0242ceaeeeeb677886781e",
+      "bytes": 1077541
+    },
+    {
+      "key": "story.theGathering.intro",
+      "file": "the-gathering-intro.mp3",
+      "characters": 545,
+      "inputHash": "551ff8fc636cff7d2111802e4d9eed57ea057a441f9871096817c250e0124976",
+      "sha256": "680dade085d8441bcce09f26499fdfa9a4decfed0f0ebcec7657562fb2e3daf1",
+      "bytes": 703050
+    },
+    {
+      "key": "story.theGathering.noResolution",
+      "file": "the-gathering-no-resolution.mp3",
+      "characters": 565,
+      "inputHash": "a608d6d4dbeec155cc63f7d304b01aa58f8423f5d32f5ef8093ae759cfb0a85f",
+      "sha256": "4d5f0f42fb4bf94c2ea6f891db0b9364f17da90b5d22fc125545ad09ed7ac93a",
+      "bytes": 699706
+    },
+    {
+      "key": "story.theGathering.resolution1",
+      "file": "the-gathering-resolution1.mp3",
+      "characters": 444,
+      "inputHash": "fffc47d14f5f0707f66793ca5ef002aed41b1ce62ce6a3b996e792e590bf2c60",
+      "sha256": "96bcd136ad508d7e430f4f230fb7fdda6cfd6292d340d64086387988db0f27a7",
+      "bytes": 606083
+    },
+    {
+      "key": "story.theGathering.resolution2",
+      "file": "the-gathering-resolution2.mp3",
+      "characters": 457,
+      "inputHash": "e50890da4521d7a888861d575466961d0021c741a8639e1ae65f3583dd54baf4",
+      "sha256": "a6e2237e5039701eeb7648352bf8aa6dc8f25ec99f3def3424a2af0148392b4f",
+      "bytes": 602322
+    },
+    {
+      "key": "story.theGathering.resolution3",
+      "file": "the-gathering-resolution3.mp3",
+      "characters": 255,
+      "inputHash": "a29506a92dade8cbc95f5b8b4c195ad722b9809ce3c14ae8d515fb788d316bdf",
+      "sha256": "9130c3a621e143e04b8d20a2f323964bbe738adf59f0656caddfa24eff5d75e6",
+      "bytes": 371190
+    }
+  ]
+}

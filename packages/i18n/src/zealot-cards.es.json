@@ -1,0 +1,129 @@
+{
+  "01117": {
+    "name": "Lita Chantler",
+    "subname": "La fanática",
+    "traits": "Aliado.",
+    "text": "Mientras controles a Lita Chantler, ésta obtiene: \"Cada investigador que esté en tu Lugar recibe +1 [combat].\n[reaction] Cuando un investigador que esté en tu Lugar ataque con éxito a un Enemigo [[Monstruo]]: Ese investigador inflige +1 de daño.\""
+  },
+  "01119": {
+    "name": "Gul gélido",
+    "traits": "Humanoide. Monstruo. Gul.",
+    "text": "<b>Aparición</b> - Sótano."
+  },
+  "01111": {
+    "name": "Estudio"
+  },
+  "01104": {
+    "name": "El encuentro",
+    "text": "<b>Fácil/Normal</b>\n[skull] -X. X es la cantidad de Enemigos [[Gul]] que hay en tu Lugar.\n[cultist] -1. Si fracasas, recibe 1 punto de horror.\n[tablet] -2. Si hay un enemigo [[Gul]] en tu Lugar, recibe 1 punto de daño.",
+    "backText": "<b>Difícil/Experto</b>\n[skull] -2. Si fracasas, después de esta prueba de habilidad busca en el mazo y la pila de descartes de Encuentros un Enemigo [[Gul]] y róbalo. Baraja el mazo de Encuentros.\n[cultist] Revela otra ficha. Si fracasas, recibe 2 puntos de horror.\n[tablet] -4. Si hay un enemigo [[Gul]] en tu Lugar, recibe 1 punto de daño y 1 punto de horror."
+  },
+  "01105": {
+    "name": "¡¿Qué está pasando?!",
+    "backName": "Un lapso de tiempo",
+    "backText": "El investigador jefe debe decidir (elige una opción): Cada investigador descarta 1 carta al azar de su mano o el investigador jefe recibe 2 puntos de horror."
+  },
+  "01106": {
+    "name": "El ascenso de los gules",
+    "backName": "Los túneles del subsuelo",
+    "backText": "Añade la pila de descartes de Encuentros al mazo de Encuentros y barájalo. Descarta cartas de la parte superior del mazo de Encuentros hasta que sea descartado un Enemigo [[Gul]]. El investigador jefe roba ese Enemigo."
+  },
+  "01108": {
+    "name": "Atrapados",
+    "backName": "La puerta del suelo",
+    "backText": "Pon en juego el Pasillo, el Sótano, el Ático y la Salita que habías puesto aparte.\nDescarta todos los Enemigos del Estudio.\nColoca a todos los investigadores en el Pasillo.\nRetira el Estudio de la partida."
+  },
+  "01109": {
+    "name": "La barrera",
+    "text": "<b>Objetivo</b> - Cuando acabe la ronda, los investigadores que estén en el Pasillo pueden, como grupo, gastar la cantidad necesaria de pistas para hacer avanzar el acto.",
+    "backName": "Rompiendo la barrera",
+    "backText": "La barrera que bloqueaba el paso hacia la Salita se ha desvanecido. Revela la Salita.\nPon en juego en la Salita la carta Lita Chantler que habías puesto aparte.\nHaz aparecer en el Pasillo el Sacerdote gul que habías puesto aparte."
+  },
+  "01112": {
+    "name": "Pasillo"
+  },
+  "01113": {
+    "name": "Ático",
+    "text": "<b>Obligado</b> - Después de que entres en el Ático: Recibe 1 punto de horror."
+  },
+  "01114": {
+    "name": "Sótano",
+    "text": "<b>Obligado</b> - Después de que entres en el Sótano: Recibe 1 punto de daño."
+  },
+  "01115": {
+    "name": "Salita",
+    "text": "[action]: <b>Desistir.</b> \"¡Esto es demasiado para mí!\". Huyes por la puerta delantera, presa del pánico.\nMientras Lita Chantler no esté controlada por un jugador, obtiene: \"[action]: <b>Negociar.</b> Realiza una prueba de [intellect] (4). Si tienes éxito, toma el control de Lita Chantler.\"",
+    "backText": "La entrada a la Salita está bloqueada por una inexplicable barrera que emite un brillo oscuro. No puedes moverte a la Salita."
+  },
+  "01118": {
+    "name": "Devorador de carne",
+    "traits": "Humanoide. Monstruo. Gul.",
+    "text": "<b>Aparición</b> - Ático."
+  },
+  "01159": {
+    "name": "Avalancha de ratas",
+    "traits": "Criatura.",
+    "text": "Cazador."
+  },
+  "01160": {
+    "name": "Secuaz gul",
+    "traits": "Humanoide. Monstruo. Gul."
+  },
+  "01161": {
+    "name": "Gul voraz",
+    "traits": "Humanoide. Monstruo. Gul.",
+    "text": "<b>Presa</b> - Menor salud restante."
+  },
+  "01162": {
+    "name": "Manos aferradoras",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> - Realiza una prueba de [agility] (3). Por cada punto que te falte para tener éxito, recibe 1 punto de daño."
+  },
+  "01163": {
+    "name": "Restos en descomposición",
+    "traits": "Terror.",
+    "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (3). Por cada punto que te falte para tener éxito, recibe 1 punto de horror."
+  },
+  "01165": {
+    "name": "Voces disonantes",
+    "traits": "Terror.",
+    "text": "<b>Revelación</b> - Pon las Voces disonantes en juego en tu zona de amenaza.\nNo puedes jugar Apoyos ni Eventos.\n<b>Obligado</b> - Al final de la ronda: Descarta las Voces disonantes."
+  },
+  "01166": {
+    "name": "Antiguos males",
+    "traits": "Augurio.",
+    "text": "<b>Revelación</b> - Coloca 1 ficha de Perdición sobre el plan en curso. Este efecto puede hacer que el plan en curso avance."
+  },
+  "01168": {
+    "name": "Envuelto en niebla",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> - Vincula esta carta a tu Lugar. Límite de 1 por Lugar.\nEl Lugar vinculado recibe +2 a velo.\n<b>Obligado</b> - Después de que el Lugar vinculado sea investigado con éxito: Descarta Envuelto en niebla."
+  },
+  "01116": {
+    "name": "Sacerdote gul",
+    "traits": "Humanoide. Monstruo. Gul. Élite.",
+    "text": "<b>Presa</b> - Mayor [combat].\nCazador. Represalia."
+  },
+  "01164": {
+    "name": "Paralizado por el miedo",
+    "traits": "Terror.",
+    "text": "<b>Revelación</b> - Pon Paralizado por el miedo en juego en tu zona de amenaza.\nLa primera vez que realices una de las siguientes acciones (moverte, combatir o evitar) cada ronda, te cuesta 1 acción adicional.\n<b>Obligado</b> - Al final de tu turno: Realiza una prueba de [willpower] (3). Si tienes éxito, descarta Paralizado por el miedo."
+  },
+  "01107": {
+    "name": "¡Están saliendo!",
+    "text": "<b>Obligado</b> - Al final de la fase de Enemigos: Cada Enemigo [[Gul]] sin enfrentar se mueve 1 Lugar hacia la Salita.\n<b>Obligado</b> - Al final de la ronda: Coloca 1 ficha de Perdición sobre este plan por cada Enemigo [[Gul]] que haya en el Pasillo o la Salita.",
+    "backName": "Los gules se liberan",
+    "backText": "— Si los investigadores están el acto 1 o 2, quedan atrapados en la casa mientras los gules les hacen pedazos. <b>(→R3)</b>\n— Si los investigadores están en el acto 3, apenas logran escapar con vida, permitiendo que los gules sean liberados. Cada investigador que no haya desistido queda derrotado y sufre 1 trauma físico."
+  },
+  "01110": {
+    "name": "¿Qué habéis hecho?",
+    "text": "<b>Objetivo</b> - Si el Sacerdote gul es derrotado, haz avanzar el acto.",
+    "backName": "Defendiendo el hogar",
+    "backText": "El investigador jefe debe decidir (elige una opción):\n— Tampoco era un verdadero hogar. ¡Quemémoslo! <b>(→R1)</b>\n— ¡Este \"pozo infernal\" es mi hogar! ¡Ni hablar de quemarlo! <b>(→R2)</b>"
+  },
+  "01167": {
+    "name": "Frío de la cripta",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> - Realiza una pruena de [willpower] (4). Si fracasas, elige y descarta 1 Apoyo que controles; si no puedes, en vez de eso recibe 2 puntos de daño."
+  }
+}

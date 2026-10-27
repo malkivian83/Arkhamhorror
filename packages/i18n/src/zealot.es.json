@@ -1,0 +1,55 @@
+{
+  "campaignName": "La noche de la fanática",
+  "description": "Investiga las desapariciones de Arkham. El encuentro está disponible; los otros dos escenarios están pendientes.",
+  "scenarios": {
+    "the-gathering": "El encuentro",
+    "the-midnight-masks": "Las máscaras de medianoche",
+    "the-devourer-below": "El Devorador de las Profundidades"
+  },
+  "zealot": {
+    "prologueTitle": "Los gules tienen hambre…",
+    "prologue": "Arkham, septiembre de 1925. Un calor persistente y una tensión inexplicable acompañan una serie de desapariciones. Un pequeño grupo de investigadores busca respuestas."
+  },
+  "theGathering": {
+    "introTitle": "El encuentro",
+    "intro": "Os reunís en casa del investigador jefe para estudiar las desapariciones y los cadáveres mutilados encontrados en los alrededores de Arkham. Algo se mueve bajo el suelo del Estudio.",
+    "setupTitle": "Preparación de El encuentro",
+    "setup": "Todos comenzáis en el Estudio. El resto de la casa y el Sacerdote gul quedan apartados. Lita Chantler aparecerá en la Salita al eliminar la barrera. El mazo reúne El encuentro, Ratas, Gules, Miedo impactante, Antiguos males y Frío helador.",
+    "decideTitle": "El destino de la casa",
+    "decide": "Tras derrotar al Sacerdote gul, el investigador jefe decide si permite que Lita incendie su casa.",
+    "burn": "Dejar que arda la casa",
+    "keep": "Conservar la casa",
+    "noResolutionTitle": "Huida de la casa",
+    "noResolution": "Escapáis de la casa y Lita os conduce a un lugar seguro. La casa sigue en pie y el Sacerdote gul sigue vivo. El investigador jefe obtiene a Lita Chantler. Cada investigador gana la experiencia de victoria y 2 puntos adicionales.",
+    "resolution1Title": "Resolución 1",
+    "resolution1": "Permitís que Lita incendie la casa. El investigador jefe obtiene a Lita Chantler y sufre 1 trauma mental. Cada investigador gana la experiencia de victoria y 2 puntos adicionales.",
+    "resolution2Title": "Resolución 2",
+    "resolution2": "El investigador jefe se niega a quemar la casa y obtiene 1 punto de experiencia adicional. Lita no se une a su mazo. Cada investigador gana la experiencia de victoria y 2 puntos adicionales.",
+    "resolution3Title": "Resolución 3",
+    "resolution3": "La barrera os deja atrapados. Mueren los investigadores que no hayan desistido. La casa sigue en pie y el Sacerdote gul sigue vivo. Los jugadores afectados deben elegir nuevos investigadores para continuar. Si el jefe ha muerto, elegid un nuevo portador para Lita Chantler.",
+    "litaBearerTitle": "Un nuevo aliado para Lita",
+    "litaBearer": "El investigador jefe ha muerto. Elegid quién obtiene la carta Lita Chantler.",
+    "litaEffect": "{name} obtiene a Lita Chantler; no cuenta para el tamaño de mazo.",
+    "leadMentalTrauma": "{name} sufre 1 trauma mental.",
+    "leadBonusXp": "{name} obtiene 1 punto de experiencia adicional.",
+    "killEffect": "Los investigadores que no hayan desistido están muertos. Deben elegir sustitutos para continuar la campaña.",
+    "litaReassignEffect": "Si el jefe ha muerto, elegid un nuevo portador de Lita Chantler; si no quedan supervivientes, se elegirá tras incorporar sustitutos."
+  },
+  "notes": {
+    "zealotHouseStanding": "Tu casa sigue en pie.",
+    "zealotHouseBurned": "Tu casa ha ardido hasta los cimientos.",
+    "zealotGhoulPriestAlive": "El Sacerdote gul sigue vivo.",
+    "zealotLitaFoundOthers": "Lita se vio obligada a encontrar a otros que la ayudaran en su causa."
+  },
+  "abilities": {
+    "litaDamage": "Lita Chantler: infligir 1 daño adicional al Monstruo",
+    "parleyLita": "Negociar con Lita Chantler: intelecto (4)"
+  },
+  "choices": {
+    "discardRandomEach": "Cada investigador descarta 1 carta al azar",
+    "leadHorror": "El investigador jefe recibe 2 puntos de horror"
+  },
+  "prompts": {
+    "chooseGhoul": "Elige un Enemigo Gul del mazo o descarte de encuentros"
+  }
+}

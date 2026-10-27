@@ -83,6 +83,8 @@ vigente de pendientes.
 | 86 | [Lola Hayes](86-investigadora-lola-hayes.md) | Investigadora de Carcosa: papel que restringe las cartas, Improvisación, Crisis de identidad y construcción por clases. |
 | 87 | [Fortuna e insensatez](87-fortuna-e-insensatez.md) | Historia secundaria en dos partes: plan por entregas, mecánicas nuevas, datos, imágenes y narración. |
 
+- [88 · La noche de la fanática](88-noche-de-la-fanatica.md): El encuentro, reglas compartidas, Grimorio y continuación.
+
 ## Decisiones ya tomadas
 
 - Repositorio propio: `github.com/malkivian83/Arkhamhorror` (privado).

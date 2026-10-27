@@ -1,0 +1,129 @@
+{
+  "01117": {
+    "name": "Lita Chantler",
+    "subname": "The Zealot",
+    "traits": "Ally.",
+    "text": "While you control Lita Chantler, she gains:\n\"Each investigator at your location gets +1 [combat].\n[reaction] When an investigator at your location successfully attacks a [[Monster]] enemy: That investigator deals +1 damage.\""
+  },
+  "01119": {
+    "name": "Icy Ghoul",
+    "traits": "Humanoid. Monster. Ghoul.",
+    "text": "<b>Spawn</b> - Cellar."
+  },
+  "01111": {
+    "name": "Study"
+  },
+  "01104": {
+    "name": "The Gathering",
+    "text": "Easy / Standard\n[skull] -X. X is the number of [[Ghoul]] enemies at your location.\n[cultist] -1. If you fail, take 1 horror.\n[tablet] -2. If there is a [[Ghoul]] enemy at your location, take 1 damage.\n",
+    "backText": "Hard / Expert\n[skull] -2. If you fail, after this skill test, search the encounter deck and discard pile for a [[Ghoul]] enemy, and draw it. Shuffle the encounter deck.\n[cultist] Reveal another token. If you fail, take 2 horror.\n[tablet] -4. If there is a [[Ghoul]] enemy at your location, take 1 damage and 1 horror."
+  },
+  "01105": {
+    "name": "What's Going On?!",
+    "backName": "A Lapse in Time",
+    "backText": "The lead investigator must decide (choose one): Either each investigator discards 1 card at random from his or her hand, or the lead investigator takes 2 horror."
+  },
+  "01106": {
+    "name": "Rise of the Ghouls",
+    "backName": "The Tunnels Below",
+    "backText": "Shuffle the encounter discard pile into the encounter deck. Discard cards from the top of the encounter deck until a [[Ghoul]] enemy is discarded. The lead investigator draws that enemy."
+  },
+  "01108": {
+    "name": "Trapped",
+    "backName": "The Door on the Floor",
+    "backText": "Put into play the set-aside Hallway, Cellar, Attic, and Parlor.\nDiscard each enemy in the Study.\nPlace each investigator in the Hallway.\nRemove the Study from the game."
+  },
+  "01109": {
+    "name": "The Barrier",
+    "text": "<b>Objective</b> - When the round ends, investigators in the hallway may, as a group, spend the requisite number of clues to advance.",
+    "backName": "Breaking the Barrier",
+    "backText": "The barrier blocking passage into the parlor has vanished. Reveal the Parlor.\nPut the set-aside Lita Chantler into play in the Parlor.\nSpawn the set-aside Ghoul Priest in the Hallway."
+  },
+  "01112": {
+    "name": "Hallway"
+  },
+  "01113": {
+    "name": "Attic",
+    "text": "<b>Forced</b> - After you enter the Attic: Take 1 horror."
+  },
+  "01114": {
+    "name": "Cellar",
+    "text": "<b>Forced</b> - After you enter the Cellar: Take 1 damage."
+  },
+  "01115": {
+    "name": "Parlor",
+    "text": "[action] <b>Resign.</b> \"This is too much for me!\" You run out the front door, fleeing in panic.\nWhile Lita Chantler is not controlled by a player, she gains: \"[action]: <b>Parley.</b> Test [intellect] (4). If you succeed, take control of Lita Chantler.\"",
+    "backText": "The entrance to the Parlor is blocked by a darkly glowing unfathomable barrier. You cannot move into the Parlor."
+  },
+  "01118": {
+    "name": "Flesh-Eater",
+    "traits": "Humanoid. Monster. Ghoul.",
+    "text": "<b>Spawn</b> - Attic."
+  },
+  "01159": {
+    "name": "Swarm of Rats",
+    "traits": "Creature.",
+    "text": "Hunter."
+  },
+  "01160": {
+    "name": "Ghoul Minion",
+    "traits": "Humanoid. Monster. Ghoul."
+  },
+  "01161": {
+    "name": "Ravenous Ghoul",
+    "traits": "Humanoid. Monster. Ghoul.",
+    "text": "<b>Prey</b> - Lowest remaining health."
+  },
+  "01162": {
+    "name": "Grasping Hands",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Test [agility] (3). For each point you fail by, take 1 damage."
+  },
+  "01163": {
+    "name": "Rotting Remains",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Test [willpower] (3). For each point you fail by, take 1 horror."
+  },
+  "01165": {
+    "name": "Dissonant Voices",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Put Dissonant Voices into play in your threat area.\nYou cannot play assets or events.\n<b>Forced</b> - At the end of the round: Discard Dissonant Voices."
+  },
+  "01166": {
+    "name": "Ancient Evils",
+    "traits": "Omen.",
+    "text": "<b>Revelation</b> - Place 1 doom on the current agenda. This effect can cause the current agenda to advance."
+  },
+  "01168": {
+    "name": "Obscuring Fog",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Attach to your location. Limit 1 per location.\nAttached location gets +2 shroud.\n<b>Forced</b> - After attached location is successfully investigated: Discard Obscuring Fog."
+  },
+  "01116": {
+    "name": "Ghoul Priest",
+    "traits": "Humanoid. Monster. Ghoul. Elite.",
+    "text": "<b>Prey</b> - Highest [combat].\nHunter. Retaliate."
+  },
+  "01164": {
+    "name": "Frozen in Fear",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Put Frozen in Fear into play in your threat area.\nThe first time you perform one of the following actions (move, fight, or evade) each round, it costs 1 additional action.\n<b>Forced</b> - At the end of your turn: Test [willpower] (3). If you succeed, discard Frozen in Fear."
+  },
+  "01107": {
+    "name": "They're Getting Out!",
+    "text": "<b>Forced</b> - At the end of the enemy phase: Each unengaged [[Ghoul]] enemy moves 1 location towards the Parlor.\n<b>Forced</b> - At the end of the round: Place 1 doom on this agenda for each [[Ghoul]] enemy in the Hallway or Parlor.",
+    "backName": "The Ghouls Break Free",
+    "backText": "- If the investigators are at Act 1 or 2, they are trapped inside the house as the ghouls tear them apart. <b>(→R3)</b>\n- If the investigators are at Act 3, they barely escape with their lives, allowing the ghouls to run rampant. Each investigator that has not resigned is defeated and suffers 1 physical trauma."
+  },
+  "01110": {
+    "name": "What Have You Done?",
+    "text": "<b>Objective</b> - If the Ghoul Priest is Defeated, advance.",
+    "backName": "Defending the Home",
+    "backText": "The lead investigator must decide (choose one):\n- It was never much of a home. Burn it down! <b>(→R1)</b>\n- This hell-pit is my home! No way are we burning it! <b>(→R2)</b>"
+  },
+  "01167": {
+    "name": "Crypt Chill",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Test [willpower] (4). If you fail, choose and discard 1 asset you control (if you cannot, take 2 damage instead)."
+  }
+}

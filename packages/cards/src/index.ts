@@ -53,6 +53,13 @@ export function allCards(): CardDefinition[] {
   return [...registry.values()]
 }
 
+export { NIGHT_OF_THE_ZEALOT, ZEALOT_CHAOS_BAGS } from './night-of-the-zealot/campaign'
+export {
+  theGathering,
+  THE_GATHERING,
+  CODES as THE_GATHERING_CODES,
+} from './night-of-the-zealot/the-gathering'
+export { LITA_CHANTLER } from './night-of-the-zealot/lita'
 export { demoInvestigators, demoScenario } from './demo'
 export { midwinterGala } from './midwinter-gala/gala'
 export { murderAtTheExcelsiorHotel } from './excelsior/excelsior'

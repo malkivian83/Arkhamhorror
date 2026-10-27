@@ -1,4 +1,5 @@
 import {
+  theGathering,
   CURTAIN_CALL_STRANGERS,
   curtainCall,
   theLastKing,
@@ -34,7 +35,7 @@ import {
   type EncounterCard,
   type LocationCard,
 } from '@lcg/engine'
-import { carcosaCards, excelsiorCards, fortuneCards, messages } from '@lcg/i18n'
+import { carcosaCards, excelsiorCards, fortuneCards, zealotCards, messages } from '@lcg/i18n'
 import type { LocalizedCard } from './localized'
 
 /** Bundled mechanical data, official text where available and local summaries. */
@@ -121,6 +122,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     })
   }
   const scenarios = [
+    theGathering(),
     spreadingFlames(),
     queenOfAsh(),
     midwinterGala({ players: 1 }),
@@ -381,7 +383,8 @@ export function fallbackCards(locale: string): LocalizedCard[] {
         text: text.backText,
       })
   }
-  const catalogues = [excelsiorCards, carcosaCards, fortuneCards].map(
+  put({ code: '01104', name: 'The Gathering', real_name: 'The Gathering', type_code: 'scenario' })
+  const catalogues = [excelsiorCards, carcosaCards, fortuneCards, zealotCards].map(
     (c) => c[locale === 'es' ? 'es' : 'en'],
   )
   for (const [code, text] of catalogues.flatMap((c) => Object.entries(c))) {

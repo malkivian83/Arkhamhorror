@@ -317,6 +317,7 @@
   },
   "choice": {
     "moveEnemyNow": "Resolver el movimiento de {enemy}",
+    "groupedTreachery": "Descartar {card}",
     "backupRogue": "Moverse a un Lugar conectado (Rebelde)",
     "backupGuardian": "Infligir 1 daño (Guardián)",
     "backupSeeker": "Descubrir 1 pista (Buscador)",
@@ -574,8 +575,8 @@
       "keepRole": "Mantener el papel"
     },
     "fof": {
-      "skipVigilance": "Omitir la vigilancia y pasar al golpe",
       "playVigilance": "Jugar la vigilancia",
+      "skipVigilance": "Omitir la vigilancia y pasar al golpe",
       "role": "{card}",
       "red": "Rojo",
       "black": "Negro",
@@ -3252,7 +3253,20 @@
       "courage": "Carta boca abajo de la parte superior de tu mazo (Información de Constance): Apoyo Coraje con coste 0, sin iconos y 2 de cordura. Se descarta si abandona el juego.",
       "03006": "Obligado – Después de robar tu mano inicial: elige un papel (Superviviente, Guardián, Buscador, Rebelde, Místico o neutral). Solo puedes jugar, asignar o activar capacidades de cartas neutrales o de tu papel. [fast]: cambia tu papel (una vez por ronda). [elder_sign]: +2; puedes cambiar de papel.",
       "03018": "Solo para el mazo de Lola Hayes. Rápido. Juégala solo durante tu turno. Cambia tu papel. Hasta el final del turno, la siguiente carta de tu papel que juegues cuesta 3 menos. Roba 1 carta.",
-      "03019": "Revelación – Descarta todas las cartas de tu papel actual que controles. Después descarta la primera carta de tu mazo y cambia tu papel a su clase (neutral si es una debilidad)."
+      "03019": "Revelación – Descarta todas las cartas de tu papel actual que controles. Después descarta la primera carta de tu mazo y cambia tu papel a su clase (neutral si es una debilidad).",
+      "60318": "Después de que asignes Temerario a una prueba de habilidad, descarta cartas de la parte superior de tu mazo hasta que descartes una Habilidad [rogue] que puedas asignar a este prueba. Asígnala. Devuelve todas las Debilidades descartadas por este efecto a tu mazo y baraja éste.",
+      "06240": "Después de que asignes Temerario a una prueba de habilidad, revela cartas de la parte superior de tu mazo hasta que reveles una Habilidad [rogue] que puedas asignar a esta prueba. Asígnala. Devuelve todas las demás cartas reveladas a tu mazo y baraja éste.",
+      "07024": "Si esta prueba de habilidad tiene lugar durante o antes de la primera acción de este turno, el Plan de acción obtiene [willpower][agility].\nSi esta prueba de habilidad tiene lugar entre la primera y tercera acciones de este turno, roba 1 carta si tiene éxito.\nSi esta prueba de habilidad tiene lugar durante o después de la tercera acción de este turno, el Plan de acción obtiene [combat][intellect].",
+      "09031": "Puedes asignar Mano amiga a cualquier tipo de prueba. Máximo de 1 asignada por prueba.\nMientras Mano amiga esté asignada a una prueba de habilidad, duplica los iconos de habilidad de cada una de las demás cartas asignadas a esa prueba.",
+      "60582": "Máximo de 1 asignada por prueba de habilidad.\nPuedes asignar Intervención oportuna desde tu mano después de revelar fichas de Caos durante una prueba de habilidad que estés realizando.",
+      "50002": "Elige tu Lugar o un Lugar conectado.\nInflige 3 puntos de daño a cada Enemigo e Investigador que esté en el Lugar elegido. Esta acción no provoca ataques de oportunidad.",
+      "60129": "Rápido. Juega esta carta durante cualquier oportunidad [free].\nElige tu Lugar o un Lugar conectado. Inflige 3 puntos de daño a cada Enemigo e investigador que esté en el Lugar elegido.",
+      "03307": "Rápido. Juega esta carta durante cualquier oportunidad de los jugadores [free].\nElige un investigador que esté en tu Lugar. Ese investigador busca 1 carta en su mazo, la roba y baraja su mazo.",
+      "02019": "Rápido. Juega esta carta sólo durante tu turno.\nEnfréntate a cualquier cantidad de Enemigos que haya en tu Lugar. Roba 1 carta por cada Enemigo enfrentado de esta forma.",
+      "60130": "Rápido. Juega esta carta durante cualquier oportunidad [free].\nEnfréntate a cualquier cantidad de Enemigos que estén en tu Lugar. Por cada Enemigo enfrentado de esta forma, inflígele 1 punto de daño y roba 1 carta.",
+      "03273": "Devuelve 3 habilidades [[Innato]] de tu pila de descartes a tu mano.",
+      "04313": "Rápido. Juego esta carta durante cualquier oportunidad de los jugadores [free].\nElige y descarta del juego una Traición que no sea Debilidad y que no esté vinculada a un Enemigo [[Élite]].",
+      "53009": "Elige y descarta del juego una Traición que no sea Debilidad y que no esté vinculada a un Enemigo [[Élite]]."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -3748,7 +3762,20 @@
       "courage": "Coraje",
       "03006": "Lola Hayes",
       "03018": "Improvisación",
-      "03019": "Crisis de identidad"
+      "03019": "Crisis de identidad",
+      "60318": "Temerario",
+      "06240": "Temerario",
+      "07024": "Plan de acción",
+      "09031": "Mano amiga",
+      "60582": "Intervención oportuna",
+      "50002": "Explosión de dinamita",
+      "60129": "Explosión de dinamita",
+      "03307": "Búsqueda concienzuda",
+      "02019": "Provocación",
+      "60130": "Provocación",
+      "03273": "Supervivencia real",
+      "04313": "Alterar el destino",
+      "53009": "Alterar el destino"
     }
   },
   "account": {
