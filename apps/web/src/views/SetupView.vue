@@ -646,7 +646,7 @@ function start() {
               <button
                 v-if="slot"
                 type="button"
-                class="remove-investigator"
+                class="ui-plain remove-investigator"
                 :aria-label="t('setup.removeInvestigator', { name: localName(slot.name) })"
                 :title="t('setup.removeInvestigator', { name: localName(slot.name) })"
                 @click="toggle(slot.key)"
@@ -702,14 +702,14 @@ function start() {
   right: 0;
   display: grid;
   place-items: center;
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   padding: 0;
   border: 0;
   border-radius: 0 0 0 6px;
   background: #171719;
   color: #ff6060;
-  font: 700 24px/1 var(--site-body);
+  font: 700 18px/1 var(--site-body);
   cursor: pointer;
 }
 .remove-investigator:hover {
