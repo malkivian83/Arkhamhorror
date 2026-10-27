@@ -30,20 +30,20 @@ Experimento empiezan apartados.
 
 ## Reglas implementadas
 
-| Parte | Comportamiento |
-| --- | --- |
-| Encuentros | Hechicería, Chotacabras, El Más Allá, Esclavos de Bishop y Agentes de Yog-Sothoth, con sus cantidades originales. |
-| Acto 1 | Pago de tres pistas por investigador; baraja el descarte y Jazz en el mazo de encuentros. |
-| Acto 2 | Búsqueda por una acción y una pista: descarta diez cartas en solitario o cinco en grupo. Jazz descartado resuelve su revelación. Tomar su control avanza el acto. |
-| Acto 3 | Objetivos de los Lugares para rescatar a Rice o a los estudiantes; derrotar al Experimento avanza al reverso del tercer acto y resuelve R3. |
-| Planes | Horror según descartes, reducción de mano durante mantenimiento, salto de la segunda cara frontal cuando se visita la universidad en segundo lugar y movimiento periódico del Experimento. |
-| Lugares | Conexiones, puertas cerradas hasta que Jazz permita revelarlas, descartes al final del turno, investigación adicional en Orne, curación, búsqueda de Humanoides y recuperación de la Pócima alquímica. |
-| Jazz | Revelación, negociación, control, salud y cordura, permiso sobre Lugares sin revelar y regreso al descarte de encuentros al abandonar el juego. |
-| Experimento | Salud de siete más tres por investigador, Enorme, preparación al inicio de la fase de enemigos y avance hacia la Residencia por los planes. |
-| Pócima | Ataque con intelecto, seis daños adicionales contra el Experimento y retirada de la partida al tener éxito. Solo se prepara en la variante tardía. |
-| Rice | Recompensa opcional, salud, cordura, ranura de Aliado, intelecto adicional y reacción al descubrir la última pista. |
-| Resoluciones | Sin resolución y R1–R4, notas, tablilla permanente, victoria, experiencia adicional cuando corresponde y guardado para el escenario siguiente. |
-| Caos | Ambas caras de 02041, incluyendo costes impresos del descarte inmediato por Primigenio y diferencias por dificultad. |
+| Parte        | Comportamiento                                                                                                                                                                                         |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Encuentros   | Hechicería, Chotacabras, El Más Allá, Esclavos de Bishop y Agentes de Yog-Sothoth, con sus cantidades originales.                                                                                      |
+| Acto 1       | Pago de tres pistas por investigador; baraja el descarte y Jazz en el mazo de encuentros.                                                                                                              |
+| Acto 2       | Búsqueda por una acción y una pista: descarta diez cartas en solitario o cinco en grupo. Jazz descartado resuelve su revelación. Tomar su control avanza el acto.                                      |
+| Acto 3       | Objetivos de los Lugares para rescatar a Rice o a los estudiantes; derrotar al Experimento avanza al reverso del tercer acto y resuelve R3.                                                            |
+| Planes       | Horror según descartes, reducción de mano durante mantenimiento, salto de la segunda cara frontal cuando se visita la universidad en segundo lugar y movimiento periódico del Experimento.             |
+| Lugares      | Conexiones, puertas cerradas hasta que Jazz permita revelarlas, descartes al final del turno, investigación adicional en Orne, curación, búsqueda de Humanoides y recuperación de la Pócima alquímica. |
+| Jazz         | Revelación, negociación, control, salud y cordura, permiso sobre Lugares sin revelar y regreso al descarte de encuentros al abandonar el juego.                                                        |
+| Experimento  | Salud de siete más tres por investigador, Enorme, preparación al inicio de la fase de enemigos y avance hacia la Residencia por los planes.                                                            |
+| Pócima       | Ataque con intelecto, seis daños adicionales contra el Experimento y retirada de la partida al tener éxito. Solo se prepara en la variante tardía.                                                     |
+| Rice         | Recompensa opcional, salud, cordura, ranura de Aliado, intelecto adicional y reacción al descubrir la última pista.                                                                                    |
+| Resoluciones | Sin resolución y R1–R4, notas, tablilla permanente, victoria, experiencia adicional cuando corresponde y guardado para el escenario siguiente.                                                         |
+| Caos         | Ambas caras de 02041, incluyendo costes impresos del descarte inmediato por Primigenio y diferencias por dificultad.                                                                                   |
 
 El motor incorpora ventanas de mazo agotado y carta de encuentro descartada,
 costes de movimiento de traiciones, efectos al robar anteriores a la cancelación,
@@ -67,7 +67,8 @@ Los audios usan **Nico - History & Documentary**,
 `FXn3GKRRt9FCEyTbrkaL`. Hay veinticuatro grabaciones de historia en español:
 prólogo; introducción y cinco desenlaces de Actividad extracurricular; introducción
 y cuatro resoluciones de La casa siempre gana; ambas variantes de Armitage; e
-introducción, dos variantes y tres desenlaces del museo. Los relatos
+introducción, dos variantes y tres desenlaces del museo; introducción, derrota y
+ambas resoluciones del tren. Los relatos
 españoles se extraen de la guía revisada; se omiten instrucciones y recompensas
 en el audio, que la mesa presenta aparte. No se ofrece audio español como inglés.
 
@@ -167,12 +168,12 @@ permanente de la dificultad.
 
 ## Validación y continuación
 
-Último lote subido: museo en `a8eede7`, incluido el ajuste del equipo solicitado.
-Lote actual: Essex, 42 pruebas dirigidas correctas. El conjunto dirigido del motor,
-Dunwich y presentación obtuvo 348 pruebas correctas; el nuevo catálogo detectó
-una expectativa que no contemplaba la debilidad de historia y se ajustó.
-Comprobaciones finales del lote pendientes.
-
+Último lote funcional: `f15765d2`, Essex completo con sus cuatro audios. Formato,
+lint y tipos globales correctos. La suite completa obtuvo 4613 pruebas correctas,
+19 omitidas y cuatro límites de cinco segundos en Gala, Brethren of Ash y
+administración. Los tres archivos afectados pasan al repetirlos con 30 segundos:
+57 pruebas correctas. Las 42 pruebas propias del tren y los catálogos y audios
+pasan en la suite completa. Compilación final correcta.
 Las pruebas del tren incluyen preparación, azar, cuatro dificultades, colapso,
 traumas, encuentros, costes, fichas y guardado. Un recorrido gana mediante acciones
 legales sin editar el estado tras preparar; otras partidas usan mazos iniciales
