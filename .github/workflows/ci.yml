@@ -1,9 +1,21 @@
 name: CI
 
+# Los cambios solo de documentación no lanzan la CI; las evidencias JSON sí,
+# porque las leen las pruebas y la verificación de imágenes.
 on:
   push:
     branches: [main]
+    paths:
+      - '**'
+      - '!**/*.md'
+      - '!docs-proyecto/**'
+      - 'docs-proyecto/evidencias/**'
   pull_request:
+    paths:
+      - '**'
+      - '!**/*.md'
+      - '!docs-proyecto/**'
+      - 'docs-proyecto/evidencias/**'
 
 concurrency:
   group: ci-${{ github.event.pull_request.number || github.ref }}
@@ -13,22 +25,15 @@ jobs:
   check:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    strategy:
-      matrix:
-        include:
-          - database: mysql:8.4
-            health: mysqladmin ping -h 127.0.0.1 -pci-test-only
-          - database: mariadb:10.11
-            health: healthcheck.sh --connect --innodb_initialized
     services:
       mysql:
-        image: ${{ matrix.database }}
+        image: mysql:8.4
         env:
           MYSQL_ROOT_PASSWORD: ci-test-only
           MYSQL_DATABASE: arkham_accounts_test
         ports: ['3306:3306']
         options: >-
-          --health-cmd="${{ matrix.health }}"
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -pci-test-only"
           --health-interval=5s --health-timeout=5s --health-retries=20
     env:
       MYSQL_TEST_URL: mysql://root:ci-test-only@127.0.0.1:3306/arkham_accounts_test
@@ -39,20 +44,41 @@ jobs:
           node-version-file: .nvmrc
       - run: corepack enable
       - run: pnpm install --frozen-lockfile
-      # Las comprobaciones independientes de SQL solo necesitan una ejecución.
-      - if: matrix.database == 'mysql:8.4'
-        run: pnpm format:check
-      - if: matrix.database == 'mysql:8.4'
-        run: pnpm lint
-      - if: matrix.database == 'mysql:8.4'
-        run: pnpm typecheck
-      - if: matrix.database == 'mysql:8.4'
-        run: pnpm test
-      - if: matrix.database == 'mariadb:10.11'
-        run: pnpm test --project server src/accounts/accounts.mysql.test.ts
-      - if: matrix.database == 'mysql:8.4'
-        run: node scripts/verify-card-images.mjs
-      # El paquete de producción se verifica contra ambos motores SQL.
+      - run: pnpm format:check
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: node scripts/verify-card-images.mjs
+      - run: pnpm build
+      - run: node scripts/package-plesk.mjs
+      - run: node scripts/verify-plesk.mjs
+
+  # MariaDB solo se comprueba en las pull requests para ahorrar minutos de Actions.
+  mariadb:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      mysql:
+        image: mariadb:10.11
+        env:
+          MYSQL_ROOT_PASSWORD: ci-test-only
+          MYSQL_DATABASE: arkham_accounts_test
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s --health-timeout=5s --health-retries=20
+    env:
+      MYSQL_TEST_URL: mysql://root:ci-test-only@127.0.0.1:3306/arkham_accounts_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test --project server src/accounts/accounts.mysql.test.ts
+      # El paquete de producción también se verifica contra MariaDB.
       - run: pnpm build
       - run: node scripts/package-plesk.mjs
       - run: node scripts/verify-plesk.mjs
