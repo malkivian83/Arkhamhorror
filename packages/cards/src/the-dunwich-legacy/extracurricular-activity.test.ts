@@ -150,7 +150,7 @@ describe('Extracurricular Activity', () => {
       location: EA.union,
     })
     expect(
-      availableActions(s, 'a').some((a) => a.kind === 'move' && a.location === EA.dormitories),
+      availableActions(s, 'a').some((a) => a.kind === 'move' && a.to === EA.dormitories),
     ).toBe(false)
     s = during(
       s,
