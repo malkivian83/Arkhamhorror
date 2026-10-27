@@ -116,12 +116,19 @@ pequeñas. La narración tiene contraste adaptado al fondo oscuro.
 
 ## Validación y continuación
 
-Último lote publicado: `a75d568`, Actividad extracurricular y voz Nico corregida.
-Lote actual: La casa siempre gana, El destino de Armitage y corrección de diseño;
-pendiente de los controles finales y la subida conjunta autorizada.
+Último lote funcional: `aaa53d7`, La casa siempre gana y El destino de Armitage,
+con la corrección de ranura de Morgan en `5a3ee79`. Incluye la corrección de diseño
+`1f8f8c4`. Lote cerrado para la subida conjunta autorizada a `origin/main`.
+
+Formato, lint, tipos y compilación globales correctos. La suite completa obtuvo
+4484 pruebas correctas y tres límites de tiempo en pruebas preexistentes de Gala,
+Brethren of Ash y administración. Sus tres archivos se repitieron con 30 segundos
+y pasaron las 57 pruebas. Las 61 pruebas del nuevo escenario pasan; las 14
+grabaciones verifican voz, textos, enlaces locales y huellas. Se inspeccionaron
+escaneos representativos y las conexiones impresas de los ocho Lugares.
 
 Las pruebas cubren preparaciones de uno a cuatro investigadores, cuatro
- dificultades, encuentros, actos, planes, variantes, resoluciones, costes,
+dificultades, encuentros, actos, planes, variantes, resoluciones, costes,
 aliados, guardado y ambos órdenes de campaña. Incluyen un rescate completo de
 Morgan por acciones legales sin editar el estado después de la preparación, y
 partidas reproducibles con mazos completos y decisiones legales para uno a cuatro
