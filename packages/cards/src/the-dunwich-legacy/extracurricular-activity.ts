@@ -1,3 +1,4 @@
+import { armitageInterlude } from './house-assets'
 import './jazz-mulligan'
 import './professor-warren-rice'
 import './alchemical-concoction'
@@ -222,7 +223,11 @@ function resolutionStory(state: GameState, outcome: ScenarioOutcome): Message[] 
         { label: 'choice.skip', then: [] },
       ],
     })
-  return [...messages, endScenario(n ? resolution(n) : outcome)]
+  return [
+    ...messages,
+    ...(late(state) ? armitageInterlude(state, n === 4) : []),
+    endScenario(n ? resolution(n) : outcome),
+  ]
 }
 
 function payObjective(

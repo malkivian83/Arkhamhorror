@@ -1168,6 +1168,8 @@ export function handle(state: GameState, message: Message): GameState {
 
     // ------------------------------------------------------------ Investigador
     case 'GainResources': {
+      if (scenarioBehavior(state.scenarioId)?.cannotGainResources?.(state, message.investigator))
+        return state
       const gained = updateInvestigator(state, message.investigator, (i) => ({
         ...i,
         resources: i.resources + message.amount,
@@ -1184,6 +1186,8 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'DrawCards': {
+      if (scenarioBehavior(state.scenarioId)?.cannotDrawCards?.(state, message.investigator))
+        return state
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.eliminated) return state
       const finish = (cards: string[], weaknesses = message.drawnWeaknesses ?? []): Message[] => [
@@ -1659,7 +1663,7 @@ export function handle(state: GameState, message: Message): GameState {
           type: 'PutAssetIntoPlay',
           investigator: message.investigator,
           code: placed.code,
-          noSlot: true,
+          noSlot: message.noSlot ?? true,
           tokens: {
             damage: placed.damage,
             horror: placed.horror,
@@ -3184,7 +3188,9 @@ export function handle(state: GameState, message: Message): GameState {
                   params: {
                     difficulty: Math.max(
                       0,
-                      message.difficulty + enemyStatBonus(state, message.kind) - reduction,
+                      message.difficulty +
+                        enemyStatBonus(state, message.kind, message.source) -
+                        reduction,
                     ),
                   },
                   then: [next],
@@ -3205,7 +3211,10 @@ export function handle(state: GameState, message: Message): GameState {
             ...(message.basicAction ? { basicAction: true } : {}),
             investigator: message.investigator,
             skill: message.skill,
-            difficulty: Math.max(0, message.difficulty + enemyStatBonus(state, message.kind)),
+            difficulty: Math.max(
+              0,
+              message.difficulty + enemyStatBonus(state, message.kind, message.source),
+            ),
             ...(reduction > 0 ? { difficultyReduction: reduction } : {}),
             kind: message.kind,
             baseModifier: message.modifier ?? 0,
@@ -7149,13 +7158,13 @@ function patrolSteps(state: GameState, enemy: Enemy, targets: LocationId[]): Loc
 }
 
 /** Modificador del escenario al combate o evasión del enemigo de la prueba. */
-function enemyStatBonus(state: GameState, kind: SkillTestKind): number {
+function enemyStatBonus(state: GameState, kind: SkillTestKind, source?: string): number {
   if (kind.type !== 'fight' && kind.type !== 'evade') return 0
   const enemy = state.enemies[kind.enemy]
   if (!enemy) return 0
   return (
     attachedStat(state, enemy.id, kind.type) +
-    (scenarioBehavior(state.scenarioId)?.enemyStat?.(state, enemy, kind.type) ?? 0)
+    (scenarioBehavior(state.scenarioId)?.enemyStat?.(state, enemy, kind.type, source) ?? 0)
   )
 }
 
@@ -7841,7 +7850,12 @@ export function skillTestValue(state: GameState): {
           0,
         )
   const base = (test.baseSkill ?? investigator.skills[test.skill]) * (doubling.base ? 2 : 1)
-  const scenario = scenarioBehavior(state.scenarioId)?.skillModifier?.(state, test) ?? 0
+  const scenario =
+    (scenarioBehavior(state.scenarioId)?.skillModifier?.(state, test) ?? 0) +
+    Object.values(state.treacheries).reduce(
+      (sum, t) => sum + (treacheryBehavior(t.code)?.skillModifier?.(state, t, test) ?? 0),
+      0,
+    )
   // "Tu habilidad no puede modificarse": solo cuenta su valor (sin iconos ni modificadores).
   const unmodified = !!scenarioBehavior(state.scenarioId)?.skillUnmodified?.(state, test)
   const resolving =

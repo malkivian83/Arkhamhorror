@@ -939,7 +939,12 @@ export type Message =
       clues?: number
     }
   | { type: 'MovePlacedAsset'; placed: PlacedAssetId; placement: AssetPlacement }
-  | { type: 'TakeControlOfPlaced'; placed: PlacedAssetId; investigator: InvestigatorId }
+  | {
+      type: 'TakeControlOfPlaced'
+      placed: PlacedAssetId
+      investigator: InvestigatorId
+      noSlot?: boolean
+    }
   /** Un apoyo controlado deja de tener dueño y queda colocado (boca abajo si `faceDown`). */
   | { type: 'ReleaseAsset'; asset: AssetId; placement: AssetPlacement; faceDown?: boolean }
   | { type: 'FlipPlacedAsset'; placed: PlacedAssetId }
@@ -1498,6 +1503,7 @@ export type ClueHolder =
 
 /** Momentos en los que se comprueban las habilidades forzadas. */
 export type Trigger =
+  | { type: 'afterGainClues'; investigator: InvestigatorId; amount: number }
   | { type: 'encounterCardDiscarded'; card: EncounterCard; investigator?: InvestigatorId }
   | { type: 'beforeEnemySpawns'; location: LocationId; card: EnemyCard }
   | { type: 'afterRevealChaosToken'; investigator: InvestigatorId; token: ChaosToken }
