@@ -4,13 +4,13 @@
  * texto oficial, así que solo se ofrecen en el idioma de la grabación.
  */
 const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
-  'story.dunwich.prologue': { es: 'dunwich-prologue-nico.mp3' },
-  'story.extracurricular.intro': { es: 'extracurricular-intro-nico.mp3' },
-  'story.extracurricular.noResolution': { es: 'extracurricular-noresolution-nico.mp3' },
-  'story.extracurricular.resolution1': { es: 'extracurricular-resolution1-nico.mp3' },
-  'story.extracurricular.resolution2': { es: 'extracurricular-resolution2-nico.mp3' },
-  'story.extracurricular.resolution3': { es: 'extracurricular-resolution3-nico.mp3' },
-  'story.extracurricular.resolution4': { es: 'extracurricular-resolution4-nico.mp3' },
+  'story.dunwich.prologue': { es: 'dunwich-prologue-nico-history.mp3' },
+  'story.extracurricular.intro': { es: 'extracurricular-intro-nico-history.mp3' },
+  'story.extracurricular.noResolution': { es: 'extracurricular-noresolution-nico-history.mp3' },
+  'story.extracurricular.resolution1': { es: 'extracurricular-resolution1-nico-history.mp3' },
+  'story.extracurricular.resolution2': { es: 'extracurricular-resolution2-nico-history.mp3' },
+  'story.extracurricular.resolution3': { es: 'extracurricular-resolution3-nico-history.mp3' },
+  'story.extracurricular.resolution4': { es: 'extracurricular-resolution4-nico-history.mp3' },
   'story.zealot.prologue': { es: 'zealot-prologue-baldo.mp3' },
   'story.theGathering.intro': { es: 'the-gathering-intro-baldo.mp3' },
   'story.theGathering.noResolution': { es: 'the-gathering-no-resolution-baldo.mp3' },

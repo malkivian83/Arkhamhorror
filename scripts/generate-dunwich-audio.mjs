@@ -4,20 +4,20 @@ import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-const voiceId = 'iXa2i9eYvgmNMRQRCwqO'
-const voiceName = 'Nico - Calm, Rhythmic and Alluring'
+const voiceId = 'FXn3GKRRt9FCEyTbrkaL'
+const voiceName = 'Nico - History & Documentary'
 const root = 'apps/web/public/local-assets/story'
 const output = join(root, 'audio/es')
 const evidencePath = 'docs-proyecto/evidencias/dunwich-nico-narracion.json'
 const texts = JSON.parse(readFileSync(join(root, 'es.json'), 'utf8'))
 const keys = {
-  'story.dunwich.prologue': 'dunwich-prologue-nico.mp3',
-  'story.extracurricular.intro': 'extracurricular-intro-nico.mp3',
-  'story.extracurricular.noResolution': 'extracurricular-noresolution-nico.mp3',
-  'story.extracurricular.resolution1': 'extracurricular-resolution1-nico.mp3',
-  'story.extracurricular.resolution2': 'extracurricular-resolution2-nico.mp3',
-  'story.extracurricular.resolution3': 'extracurricular-resolution3-nico.mp3',
-  'story.extracurricular.resolution4': 'extracurricular-resolution4-nico.mp3',
+  'story.dunwich.prologue': 'dunwich-prologue-nico-history.mp3',
+  'story.extracurricular.intro': 'extracurricular-intro-nico-history.mp3',
+  'story.extracurricular.noResolution': 'extracurricular-noresolution-nico-history.mp3',
+  'story.extracurricular.resolution1': 'extracurricular-resolution1-nico-history.mp3',
+  'story.extracurricular.resolution2': 'extracurricular-resolution2-nico-history.mp3',
+  'story.extracurricular.resolution3': 'extracurricular-resolution3-nico-history.mp3',
+  'story.extracurricular.resolution4': 'extracurricular-resolution4-nico-history.mp3',
 }
 const settings = {
   model_id: 'eleven_multilingual_v2',
@@ -72,20 +72,16 @@ if (!process.argv.includes('--generate')) {
     apiKey = process.env.ELEVENLABS_API_KEY
   }
   if (!apiKey) throw new Error('Falta ELEVENLABS_API_KEY')
-  // La clave puede generar sin voices_read: comprobar la identidad en el catálogo público.
-  const voiceSource = 'https://json2video.com/ai-voices/elevenlabs/voices/iXa2i9eYvgmNMRQRCwqO/'
-  const voiceResponse = await fetch(voiceSource, {
-    headers: { 'User-Agent': 'Mozilla/5.0' },
-    signal: AbortSignal.timeout(30000),
-  })
-  if (!voiceResponse.ok) throw new Error(`Voice verification: HTTP ${voiceResponse.status}`)
-  const listing = await voiceResponse.text()
-  if (!listing.includes(voiceId) || !listing.includes('Nico') || !listing.includes('Calm'))
-    throw new Error('Voice verification mismatch')
+  // Identificador confirmado por el usuario desde la ficha de la voz.
+  const voiceSource = 'https://elevenlabs.io/app/voice-library?voiceId=FXn3GKRRt9FCEyTbrkaL'
   mkdirSync(output, { recursive: true })
-  const evidence = existsSync(evidencePath)
+  const savedEvidence = existsSync(evidencePath)
     ? JSON.parse(readFileSync(evidencePath, 'utf8'))
     : { voiceId, voiceName, voiceSource, language: 'es', settings, files: [] }
+  const evidence =
+    savedEvidence.voiceId === voiceId
+      ? savedEvidence
+      : { voiceId, voiceName, voiceSource, language: 'es', settings, files: [] }
   for (const { key, file, text } of entries) {
     const inputHash = hash(JSON.stringify({ text, voiceId, ...settings }))
     const path = join(output, file)

@@ -1,7 +1,7 @@
 {
-  "voiceId": "iXa2i9eYvgmNMRQRCwqO",
-  "voiceName": "Nico - Calm, Rhythmic and Alluring",
-  "voiceSource": "https://json2video.com/ai-voices/elevenlabs/voices/iXa2i9eYvgmNMRQRCwqO/",
+  "voiceId": "FXn3GKRRt9FCEyTbrkaL",
+  "voiceName": "Nico - History & Documentary",
+  "voiceSource": "https://elevenlabs.io/app/voice-library?voiceId=FXn3GKRRt9FCEyTbrkaL",
   "language": "es",
   "settings": {
     "model_id": "eleven_multilingual_v2",
@@ -16,66 +16,66 @@
   "files": [
     {
       "key": "story.dunwich.prologue",
-      "file": "dunwich-prologue-nico.mp3",
+      "file": "dunwich-prologue-nico-history.mp3",
       "text": "El Dr. Henry Armitage se sirve un vaso de pinot y toma asiento en su mesa mientras os hace un gesto para que os sentéis frente a él. –Lamento haberos avisado con tan poca antelación –os dice. Tiene el rostro pálido, y el sudor le perla las arrugas de preocupación que surcan su frente. Armitage, el bibliotecario jefe de la Universidad Miskatonic y antiguo mentor vuestro, se puso en contacto con vosotros de forma privada con la esperanza de conseguir vuestra ayuda. Deseosos de prestársela, os pusisteis camino de su casa en el Barrio Sur. Al entrar, os sorprendió ver el desorden imperante. Había libros y notas desperdigadas por su escritorio, y una botella de vino vacía volcada en el suelo junto a la chimenea. El Armitage que siempre habéis conocido era una persona pulcra y bien organizada. El anciano se toma un instante para componer sus ideas y os dice: –Estoy buscando a dos de mis colegas: el Dr. Francis Morgan, profesor de Arqueología, y Warren Rice, profesor de idiomas. Se suponía que Warren iba a reunirse conmigo para almorzar hoy, ya que íbamos a hablar acerca de varios hallazgos importantes, pero ha desaparecido desde entonces. Al principio no le di importancia, pero tengo la acuciante sensación de que hay algo más. Es una sensación muy... familiar . Nunca antes habéis visto a Armitage tan preocupado. Cuando va a coger el vaso de su escritorio, le tiemblan las manos, y da un sorbo de forma nerviosa. –Intenté encontrar a Francis, con la esperanza de que supiera donde estaba Warren, pero él también está ilocalizable. Francis ha estado frecuentando un garito de juego muy a menudo, o eso me han dicho. –Os he llamado porque me preocupa que Warren pueda estar en problemas. Os estaría muy agradecido si pudierais encontrarlo. Y puede que también queráis pedirle ayuda a Francis si lográis dar con él.",
       "characters": 1827,
-      "inputHash": "115e63c55cea74cf9cf68fda137ad583354e950e1d69b30cd41ca82d0d8d8ba8",
-      "sha256": "fade325f7df8c1662ee5269f12776c71c9ede8081115880cfd349098dbd4ff20",
-      "bytes": 1950240
+      "inputHash": "70a74054e67e8ed931301effb51751e31be1c477f24b05a30a16a0b39b8631b1",
+      "sha256": "b708fde4344df8692f79c685625067440c718158607259a9c7554691df1a2d99",
+      "bytes": 1989528
     },
     {
       "key": "story.extracurricular.intro",
-      "file": "extracurricular-intro-nico.mp3",
+      "file": "extracurricular-intro-nico-history.mp3",
       "text": "Al Dr. Armitage le preocupa que su colega, el profesor Warren Rice, pueda estar en problemas, así que os ha pedido ayuda para encontrar a su amigo. Parece irracionalmente nervioso por la desaparición de su colega teniendo en cuenta que el profesor Rice sólo ha estado “desaparecido” unas horas...",
       "characters": 296,
-      "inputHash": "9b2816f69b3ba790ee0491d8b8f3004319447a7f16d64d95e752f521f77965e6",
-      "sha256": "8d3c96e3412d98a4adf0bb381bce5751b9fa3e7f0148520ce73cce767dd76804",
-      "bytes": 341933
+      "inputHash": "216bf828fc5beb58e9b4a33780b25f9bb3a18ad7df1b7cd8f069767e3aeff39a",
+      "sha256": "397b88e4b59e4cb14a7d6e92379a924e0b76d64bf1ed04db00b86d8c97b9e170",
+      "bytes": 343605
     },
     {
       "key": "story.extracurricular.noResolution",
-      "file": "extracurricular-noresolution-nico.mp3",
+      "file": "extracurricular-noresolution-nico-history.mp3",
       "text": "Al huir de la universidad, oís gritos que provienen desde el extremo norte del campus. Una ambulancia pasa a vuestro lado, y os teméis lo peor. Horas más tarde, os enteráis de que “una especie de perro rabioso” se coló en la residencia estudiantil. La criatura atacó a los estudiantes del interior, y muchos quedaron gravemente heridos o murieron en el ataque.",
       "characters": 360,
-      "inputHash": "d53b258236e44e9b83ebc68175d2ee3b1701e2c59f8e43abde3361a235955f40",
-      "sha256": "ef588e1a006b8be8f6e4581bf0638dd6590058cc5d0028d2e173cabad2ac0d42",
+      "inputHash": "a8c21111c5642c7aea20273da05f7e7bca9f516ca20a6cd36de64ff8fec93961",
+      "sha256": "63cfcc26841bfa42ec005b4a1b3de62c542c78e46568a5bc84ae93259663fd9e",
       "bytes": 395432
     },
     {
       "key": "story.extracurricular.resolution1",
-      "file": "extracurricular-resolution1-nico.mp3",
+      "file": "extracurricular-resolution1-nico-history.mp3",
       "text": "Encontráis al profesor Rice atado y amordazado en el armario empotrado de su despacho. Cuando lo liberáis, os informa de que los extraños hombres y mujeres que deambulaban por el campus llevaban horas achechándolo. Lo acorralaron en su despacho y lo ataron, aunque Rice no está seguro de cuál era su propósito. Le explicáis que os envía el Dr. Armitage, y Rice parece aliviado, aunque sospecha que el Dr. Morgan también podría estar en peligro. Puesto que los extraños del campus parecían tener como objetivo al profesor Rice, decidís que el mejor curso de acción es escoltarlo lejos del campus lo antes posible. Cuando os marcháis de la universidad, oís gritos que provienen desde el extremo norte del campus. Una ambulancia pasa a vuestro lado, y os teméis lo peor. Horas más tarde, os enteráis de que “una especie de perro rabioso” se coló en la residencia estudiantil. La criatura atacó a los estudiantes del interior, y muchos quedaron gravemente heridos o murieron en el ataque.",
       "characters": 984,
-      "inputHash": "663a30ca019cc33f92b03276712ecb149ee41144d31e3a5599eb9407f370db11",
-      "sha256": "ad3cd0a3292a88f7109d0433c76a81342912e2133d84dcc344c20ff41495b9f7",
-      "bytes": 1048702
+      "inputHash": "e1750e608066a355eb32a5ffe39c7fe2783afe50360374168d9809aea64f3ba9",
+      "sha256": "2514b370b2ec1908ca5d4ad45b409c39d7d206823995f3bdabc75987fd21dc44",
+      "bytes": 1057061
     },
     {
       "key": "story.extracurricular.resolution2",
-      "file": "extracurricular-resolution2-nico.mp3",
+      "file": "extracurricular-resolution2-nico-history.mp3",
       "text": "Activáis todas las alarmas de incendios de la residencia estudiantil y hacéis salir a los estudiantes a toda prisa por la salida norte del edificio, esperando poder huir del campus. Muchos de los estudiantes están confusos y agotados, pero creéis que intentar explicarles la situación haría más mal que bien. Minutos más tarde, un terrible chillido resuena por todo el campus, penetrante y ensordecedor. Les decís a los estudiantes que esperen y volvéis a la residencia para investigar. Sin embargo, no encontráis el menor indicio de la extraña criatura, lo cual os causa mucha más preocupación que alivio. Os apresuráis a llegar a los despachos del profesorado para encontrar al profesor Rice, pero no hay ni rastro de él por ninguna parte.",
       "characters": 741,
-      "inputHash": "ec03ec6c2f6253c0fb17514d92c80b9f3450f5d8f6b20510abe5b0f910d26454",
-      "sha256": "d02e5ab0235395ae75590029ed9ca2b980a4ceeabd3295eed493a5b173796091",
-      "bytes": 719768
+      "inputHash": "748225499548fe628f396e9fee245533383c881ed7d4661240344c7ce693ad77",
+      "sha256": "7708b059e472c7ada8b6997a7f445185c1e858b932994a5035ef2de1b4968e94",
+      "bytes": 802106
     },
     {
       "key": "story.extracurricular.resolution3",
-      "file": "extracurricular-resolution3-nico.mp3",
+      "file": "extracurricular-resolution3-nico-history.mp3",
       "text": "Tras derrotar a la extraña y aterradora criatura del departamento de Alquimia, os apresuráis a llegar a los despachos del profesorado para encontrar al profesor Rice. Para cuando llegáis a su despacho, no hay ni rastro de él por ninguna parte.",
       "characters": 243,
-      "inputHash": "859beba1e5af7046bd50a125a9618e0f7895de974e8f836e40ea0fe79e9fef0e",
-      "sha256": "d4f72b42b9c43a8ee33b5319402fc9c174d19648a2e91b84eb0e87c7ced4ed7b",
-      "bytes": 222397
+      "inputHash": "34d8316b8fec51872d44d25f9f0ad020597c40d74b682251d851b96c2234edf2",
+      "sha256": "42aff33909b9c176c117337d96dedf448b302781a6df51311cdc4d74843373f9",
+      "bytes": 241205
     },
     {
       "key": "story.extracurricular.resolution4",
-      "file": "extracurricular-resolution4-nico.mp3",
+      "file": "extracurricular-resolution4-nico-history.mp3",
       "text": "Os despertáis horas más tarde, agotados y heridos. No estáis seguros de lo que habéis visto, pero su mera visión os inundó la mente de terror. Otros supervivientes os dicen que “una especie de perro rabioso” se coló en la residencia estudiantil. La criatura atacó a los estudiantes del interior, y muchos quedaron gravemente heridos o murieron en el ataque.",
       "characters": 357,
-      "inputHash": "49699febb683c9b96f690dc1e510d768b85261ee68bbd9614d6760f64de9fc17",
-      "sha256": "2d16c87dfa0a5b33b06a1a3b64250ed748f18360d38e7b902cff1ccc229b6668",
-      "bytes": 374952
+      "inputHash": "56ed5b2ebb4d932afe6060416b960c0b78c5e6328b03423f0ee7179d50667acc",
+      "sha256": "6e12111d2273e89ff660cd644eb79ba942d07077be5ea7ff5d3e18350f1d8b08",
+      "bytes": 410478
     }
   ]
 }

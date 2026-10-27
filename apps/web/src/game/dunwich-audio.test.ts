@@ -6,8 +6,8 @@ import evidence from '../../../../docs-proyecto/evidencias/dunwich-nico-narracio
 import { storyNarration } from './narration'
 
 it('connects the prologue and all six Extracurricular narratives to their complete transcripts and Nico recordings', () => {
-  expect(evidence.voiceName).toMatch(/^Nico\b/)
-  expect(evidence.voiceId).toBe('iXa2i9eYvgmNMRQRCwqO')
+  expect(evidence.voiceName).toBe('Nico - History & Documentary')
+  expect(evidence.voiceId).toBe('FXn3GKRRt9FCEyTbrkaL')
   expect(evidence.files).toHaveLength(7)
   const transcripts = JSON.parse(
     readFileSync(

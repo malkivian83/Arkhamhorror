@@ -63,8 +63,8 @@ Catálogo local EN/ES de 33 códigos, referencia de escenario y ayuda de fichas,
 Se han inspeccionado escaneos representativos sin abrir el navegador.
 La revisión visual de la mesa queda para la persona usuaria, conforme a AGENTS.
 
-Los audios usan **Nico - Calm, Rhythmic and Alluring**,
-`iXa2i9eYvgmNMRQRCwqO`. Hay siete grabaciones de historia en español:
+Los audios usan **Nico - History & Documentary**,
+`FXn3GKRRt9FCEyTbrkaL`. Hay siete grabaciones de historia en español:
 prólogo, introducción y los cinco desenlaces del primer escenario. Los relatos
 españoles se extraen de la guía revisada; se omiten instrucciones y recompensas
 en el audio, que la mesa presenta aparte. No se ofrece audio español como inglés.
@@ -85,8 +85,15 @@ Incluyen un rescate completo por acciones legales sin editar el estado después
 de preparar la partida, y partidas reproducibles con el mazo completo para uno
 a cuatro investigadores, cuyo resultado se aplica a la campaña.
 
-Último bloque previo: `4997be7`, encuentros compartidos guardados localmente.
-Bloque actual: primer escenario completo, pendiente de los controles globales
-finales y subida autorizada. Siguiente grupo: **La casa siempre gana** y el
-interludio El destino de Armitage; después los seis escenarios restantes,
-Los supervivientes y el epílogo. No hay bloqueos externos.
+Último bloque funcional: `83dcba9`, Actividad extracurricular completa y sus
+reglas compartidas. La voz se corrigió a Nico - History & Documentary con el
+identificador facilitado por la persona usuaria; se regeneraron las siete
+narraciones con nombres nuevos para evitar reproducir la caché anterior.
+
+Formato, lint, tipos y compilación comprobados. La suite completa pasó salvo
+cuatro casos que agotaron el límite de cinco segundos; sus tres archivos se
+repitieron con 30 segundos y pasaron sus 57 pruebas. La corrección de voz añade
+verificación del nombre exacto, identificador, transcripciones y huellas.
+Subida autorizada pendiente de completar las comprobaciones de esta corrección.
+Siguiente grupo: **La casa siempre gana** y el interludio El destino de Armitage;
+después los seis escenarios restantes, Los supervivientes y el epílogo.
