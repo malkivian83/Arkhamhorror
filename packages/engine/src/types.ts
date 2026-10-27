@@ -1465,7 +1465,7 @@ export type Message =
   /** El enemigo abandona el juego y va a la zona de victoria (sin ser derrotado). */
   | { type: 'EnemyToVictory'; enemy: EnemyId }
   /** El enemigo se retira de la partida (no va a ninguna pila). */
-  | { type: 'RemoveEnemyFromGame'; enemy: EnemyId }
+  | { type: 'RemoveEnemyFromGame'; enemy: EnemyId; leavingResolved?: boolean }
 
 /** Una carta que puede tener daño u horror. */
 export type DamageHolder =

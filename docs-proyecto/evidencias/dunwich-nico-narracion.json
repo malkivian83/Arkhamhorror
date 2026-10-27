@@ -139,6 +139,60 @@
       "inputHash": "12effb839d829f2fc00ab55b7fd9f02dca68aa870f3752fea3388cc1c0c98826",
       "sha256": "b03bf041b5b7d711571e660eaaec971724511d881247ed26f46ae28cf4ada8a0",
       "bytes": 535866
+    },
+    {
+      "key": "story.museum.intro",
+      "file": "museum-intro-nico-history.mp3",
+      "text": "Hace algunos meses, Armitage y sus colegas detuvieron a un horror desa tado que iba a destruir Dunwich, una apartada ciudad que se encuentra a varias horas de Arkham, hacia el noroeste. Al principio pensáis que esta bestia es un oso rabioso o algo peor, pero la descripción que hace el profesor de la criatura describe algo muy distinto. Todo comenzó cuando un hombre llamado Wilbur Whateley entró en la biblioteca Orne en busca de la traducción al latín de Olaus Wormius de un libro llamado el Necronomicón . Wilbur ya poseía una ajada traducción al inglés del Dr. John Dee, pero no le bastaba para sus propósitos. Armitage le prohibió el acceso, pues temía el posible uso que pudiera darle al libro ese extraño hombre. Whateley volvió en secreto, con la esperanza de poder robar el libro, pero fue atacado por un sabueso guardián de la universidad. Más tarde, Armitage, Rice y Morgan descubrieron el cuerpo de Whateley. Una descripción del terrible cadáver –semiantropomórfico y cubierto de pelaje, con una piel coriácea y tentáculos de un color gris verdoso– os hace cuestionaros si Whateley era humano realmente.",
+      "characters": 1116,
+      "inputHash": "b9fe06597b94aa1a52b638575396a4592a48d2092a88ae6ed20542302f3cc5d9",
+      "sha256": "25a2e723b151aa5bfe904c6c63c1f6d0a61a63087e82e7af0c697979f8d9d9fe",
+      "bytes": 1249323
+    },
+    {
+      "key": "story.museum.intro1",
+      "file": "museum-intro1-nico-history.mp3",
+      "text": "Las notas escritas por el Dr. Armitage en su diario hacen hinca pié en el deseo de Whateley por hacerse con el Necronomicón para algún terrible propósito. Al seguir leyendo, parece que el Dr. Armitage llevó la copia del tomo que tenía la universidad a Harold Walsted, el conserva dor del museo Miskatonic, para que la guardara en la sala restringida del museo. Aunque os preocupa vuestro mentor, os preocupa igualmente que los secuestradores de Armitage puedan hacerse con este Necronomicón . Decidís acudir al museo para evitar que lo consigan.",
+      "characters": 545,
+      "inputHash": "5c702096715aaea99c2d8688ed51a80b9725a2868bd59bef771eba116a20ffc4",
+      "sha256": "c140ae9350083245d1cc8e6cb5a959ec222272a95e7fe5fcf1f2d17d31710977",
+      "bytes": 609427
+    },
+    {
+      "key": "story.museum.intro2",
+      "file": "museum-intro2-nico-history.mp3",
+      "text": "–Mis colegas y yo tratamos de olvidar toda esa odisea rápida mente –os dice Armitage con un suspiro–. Pero parece que las cosas no se han resuelto por completo. Os contaré el resto más tarde, pero por ahora, es fundamental que nos hagamos con esa copia del Necronomicón . Si mi instinto no me falla, los agresores con los que os habéis encontrado lo esta rán buscando. Después de todo lo que ocurrió, no me sentía seguro guardán dolo en la biblioteca, así que se lo llevé a mi buen amigo Harold Walsted. Es el actual conservador del museo Miskatonic. Pensé que estaría seguro en la sala restringida del museo, pero ahora ya no lo tengo tan claro. ¡Debéis recuperarlo a toda costa! Tengo un miedo horrible a lo que podrían hacer con los ritos que contienen esas páginas...",
+      "characters": 771,
+      "inputHash": "d044edda68c99b93c61c41114a442ce95e1d37f06421c0090490451af1da45fe",
+      "sha256": "61ed0294c8755a2175f3c4f4ab61adc2b184f8151e149d93c8c4f2d82aefaa3e",
+      "bytes": 750697
+    },
+    {
+      "key": "story.museum.noResolution",
+      "file": "museum-noresolution-nico-history.mp3",
+      "text": "Fuera lo que fuera la criatura del museo, no teníais ni la voluntad ni los medios para destruirla. Parece que debéis abandonar cualquier espe ranza de recuperar el Necronomicón . Aun así, hay otros que dependen de vosotros, así que hacéis acopio de valor y os prepa ráis para vuestra siguiente tarea.",
+      "characters": 300,
+      "inputHash": "cd34118ecabbf972eed671d0e8a56fcc064206b898d5548487a6c63563393196",
+      "sha256": "55a3222813a85be5425f289d273a112ecdd26e59b0de8e2740a2d5811d126c27",
+      "bytes": 336082
+    },
+    {
+      "key": "story.museum.resolution1",
+      "file": "museum-resolution1-nico-history.mp3",
+      "text": "Mientras exista esta traducción del Necronomi cón, habrá hechiceros y otros agentes siniestros como Whateley que lo busquen. Al final, sabéis lo que debéis hacer para proteger a la humanidad de las amenazas que habéis visto. Buscáis una papelera, la llenáis de libros y documentos y tiráis el Necronomi cón encima. Hacen falta varias cerillas para que el contenido de la papelera prenda, y las llamas llenan la estancia de calor, mien tras las sombras se retiran ante la luz. Observáis cómo arde el libro durante un rato, mirando cómo sus páginas se convierten en cenizas. Esperáis haber tomado la decisión correcta.",
+      "characters": 616,
+      "inputHash": "9581c408ccf4c6ad238586a91fc7e1b97e6da6725985305cc037f64c9035c650",
+      "sha256": "cdc60b7293f6edc1d432b90208231c8b82c4ea94c1efe20c71fd307891f7dc7f",
+      "bytes": 663762
+    },
+    {
+      "key": "story.museum.resolution2",
+      "file": "museum-resolution2-nico-history.mp3",
+      "text": "El Necronomicón es más que un simple libro; es una herramienta. Sus páginas contienen una enorme cantidad de información sobre las fuerzas y criaturas con las que os habéis topado. Sabiendo lo útil que podría ser en vuestro empeño, ¿cómo podríais ser capaces de destruirlo? Además, mientras el libro siga estando a salvo en vuestras manos, seguiréis frustrando los planes de quienes quieren usarlo para siniestros propósitos.",
+      "characters": 425,
+      "inputHash": "5be5bcb342bc0c12cbe80feb71db40631a4015e87aefe12149bc70ecf9f82550",
+      "sha256": "679c6e34f9c9ce17e9c0183d11fa157497f6c98cf85f558215532cd6f06a8321",
+      "bytes": 449767
     }
   ]
 }

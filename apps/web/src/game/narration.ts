@@ -4,6 +4,12 @@
  * texto oficial, así que solo se ofrecen en el idioma de la grabación.
  */
 const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
+  'story.museum.intro': { es: 'museum-intro-nico-history.mp3' },
+  'story.museum.intro1': { es: 'museum-intro1-nico-history.mp3' },
+  'story.museum.intro2': { es: 'museum-intro2-nico-history.mp3' },
+  'story.museum.noResolution': { es: 'museum-noresolution-nico-history.mp3' },
+  'story.museum.resolution1': { es: 'museum-resolution1-nico-history.mp3' },
+  'story.museum.resolution2': { es: 'museum-resolution2-nico-history.mp3' },
   'story.house.intro': { es: 'house-intro-nico-history.mp3' },
   'story.house.resolution1': { es: 'house-resolution1-nico-history.mp3' },
   'story.house.resolution2': { es: 'house-resolution2-nico-history.mp3' },

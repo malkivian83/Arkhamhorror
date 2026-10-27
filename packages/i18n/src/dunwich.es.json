@@ -1,0 +1,67 @@
+{
+  "description": "Busca a los profesores desaparecidos. Los dos escenarios iniciales y El museo Miskatonic son jugables; los cinco siguientes siguen en desarrollo.",
+  "story": {
+    "museum": {
+      "intro": "Hace algunos meses, Armitage y sus colegas detuvieron a un horror desa tado que iba a destruir Dunwich, una apartada ciudad que se encuentra a varias horas de Arkham, hacia el noroeste. Al principio pensáis que esta bestia es un oso rabioso o algo peor, pero la descripción que hace el profesor de la criatura describe algo muy distinto. Todo comenzó cuando un hombre llamado Wilbur Whateley entró en la biblioteca Orne en busca de la traducción al latín de Olaus Wormius de un libro llamado el Necronomicón . Wilbur ya poseía una ajada traducción al inglés del Dr. John Dee, pero no le bastaba para sus propósitos. Armitage le prohibió el acceso, pues temía el posible uso que pudiera darle al libro ese extraño hombre. Whateley volvió en secreto, con la esperanza de poder robar el libro, pero fue atacado por un sabueso guardián de la universidad. Más tarde, Armitage, Rice y Morgan descubrieron el cuerpo de Whateley. Una descripción del terrible cadáver –semiantropomórfico y cubierto de pelaje, con una piel coriácea y tentáculos de un color gris verdoso– os hace cuestionaros si Whateley era humano realmente.",
+      "introTitle": "El museo Miskatonic",
+      "intro1": "Las notas escritas por el Dr. Armitage en su diario hacen hinca pié en el deseo de Whateley por hacerse con el Necronomicón para algún terrible propósito. Al seguir leyendo, parece que el Dr. Armitage llevó la copia del tomo que tenía la universidad a Harold Walsted, el conserva dor del museo Miskatonic, para que la guardara en la sala restringida del museo. Aunque os preocupa vuestro mentor, os preocupa igualmente que los secuestradores de Armitage puedan hacerse con este Necronomicón . Decidís acudir al museo para evitar que lo consigan.",
+      "intro1Title": "El museo Miskatonic",
+      "intro2": "–Mis colegas y yo tratamos de olvidar toda esa odisea rápida mente –os dice Armitage con un suspiro–. Pero parece que las cosas no se han resuelto por completo. Os contaré el resto más tarde, pero por ahora, es fundamental que nos hagamos con esa copia del Necronomicón . Si mi instinto no me falla, los agresores con los que os habéis encontrado lo esta rán buscando. Después de todo lo que ocurrió, no me sentía seguro guardán dolo en la biblioteca, así que se lo llevé a mi buen amigo Harold Walsted. Es el actual conservador del museo Miskatonic. Pensé que estaría seguro en la sala restringida del museo, pero ahora ya no lo tengo tan claro. ¡Debéis recuperarlo a toda costa! Tengo un miedo horrible a lo que podrían hacer con los ritos que contienen esas páginas...",
+      "intro2Title": "El museo Miskatonic",
+      "noResolution": "Fuera lo que fuera la criatura del museo, no teníais ni la voluntad ni los medios para destruirla. Parece que debéis abandonar cualquier espe ranza de recuperar el Necronomicón . Aun así, hay otros que dependen de vosotros, así que hacéis acopio de valor y os prepa ráis para vuestra siguiente tarea.",
+      "noResolutionTitle": "Sin resolución",
+      "resolution1": "Mientras exista esta traducción del Necronomi cón, habrá hechiceros y otros agentes siniestros como Whateley que lo busquen. Al final, sabéis lo que debéis hacer para proteger a la humanidad de las amenazas que habéis visto. Buscáis una papelera, la llenáis de libros y documentos y tiráis el Necronomi cón encima. Hacen falta varias cerillas para que el contenido de la papelera prenda, y las llamas llenan la estancia de calor, mien tras las sombras se retiran ante la luz. Observáis cómo arde el libro durante un rato, mirando cómo sus páginas se convierten en cenizas. Esperáis haber tomado la decisión correcta.",
+      "resolution1Title": "Resolución 1",
+      "resolution2": "El Necronomicón es más que un simple libro; es una herramienta. Sus páginas contienen una enorme cantidad de información sobre las fuerzas y criaturas con las que os habéis topado. Sabiendo lo útil que podría ser en vuestro empeño, ¿cómo podríais ser capaces de destruirlo? Además, mientras el libro siga estando a salvo en vuestras manos, seguiréis frustrando los planes de quienes quieren usarlo para siniestros propósitos.",
+      "resolution2Title": "Resolución 2",
+      "setupTitle": "Preparación",
+      "setup": "Reúne El museo Miskatonic, Mala suerte, Hechicería, El Más Allá, Frío helador y Puertas cerradas. Selecciona al azar un Despacho de administración y una Oficina de seguridad. Todos comienzan en la Entrada del museo. La Sala restringida queda entre las tres últimas exposiciones. Aparta Surgido de las sombras y los apoyos del escenario.",
+      "rewardTitle": "El Necronomicón",
+      "reward": "Un investigador puede añadir El Necronomicón (Traducción de Olaus Wormius) a su mazo sin contar para su tamaño.",
+      "temptation": "Añadid una ficha de Primigenio a la bolsa para el resto de la campaña.",
+      "peek02132Title": "Sala de exposición — Exhibición atabascana",
+      "peek02132": "Velo: 1. Pistas por investigador: 0. Obligado - Después de que entres en este Lugar: Pierde todas tus acciones restantes y termina tu turno inmediatamente.\nMientras estés en este Lugar, recibes +2 [agility].",
+      "peek02133Title": "Sala de exposición — Exhibición de medusa",
+      "peek02133": "Velo: 2. Pistas por investigador: 1. Obligado - Después de que fracases en una prueba de habilidad al investigar este Lugar: Descarta 1 Apoyo que controles.",
+      "peek02134Title": "Sala de exposición — Exhibición de ciencias naturales",
+      "peek02134": "Velo: 4. Pistas por investigador: 1. Obligado - Después de que entres en este Lugar: Descarta 2 cartas de tu mano al azar.",
+      "peek02135Title": "Sala de exposición — Exhibición egipcia",
+      "peek02135": "Velo: 3. Pistas por investigador: 2. Obligado - Después de que fracases en una prueba de habilidad al investigar este Lugar: Pierde 1 acción.",
+      "peek02136Title": "Sala de exposición — Sala de los muertos",
+      "peek02136": "Velo: 3. Pistas por investigador: 2. Obligado - Después de que fracases en una prueba de habilidad al investigar este Lugar: Recibe 1 punto de horror.",
+      "peek02137Title": "Sala de exposición — Sala restringida",
+      "peek02137": "Velo: 3. Pistas por investigador: 2. Mientras el Horrendo cazador esté en este Lugar, este Lugar no puede ser investigado."
+    }
+  },
+  "notes": {
+    "dunwichMuseumFailed": "Los investigadores no lograron recuperar el Necronomicón",
+    "dunwichNecronomiconDestroyed": "Los investigadores destruyeron el Necronomicón",
+    "dunwichNecronomiconKept": "Los investigadores se quedaron con el Necronomicón"
+  },
+  "abilities": {
+    "museum": {
+      "resources": "Obtener 2 recursos",
+      "breakDoor": "Forzar la puerta del museo",
+      "exhibit": "Abrir la siguiente exposición",
+      "search": "Buscar entre las 6 primeras cartas",
+      "look": "Inspeccionar una exposición"
+    }
+  },
+  "choices": {
+    "museum": {
+      "mill": "Descartar las 5 primeras cartas del mazo",
+      "damage": "Recibir 1 daño directo y dañar a cada Aliado",
+      "top": "Inspeccionar la siguiente exposición del mazo",
+      "destroy": "Destruir El Necronomicón",
+      "keep": "Conservar El Necronomicón"
+    }
+  },
+  "prompts": {
+    "museum": {
+      "ally": "Elige quién toma el control del aliado",
+      "passage": "Elige una consecuencia",
+      "look": "Elige una exposición para inspeccionar",
+      "tome": "¿Qué haréis con El Necronomicón?"
+    }
+  }
+}

@@ -1,3 +1,5 @@
+import dunwichEn from './dunwich.en.json'
+import dunwichEs from './dunwich.es.json'
 import zealotEn from './zealot.en.json'
 import zealotEs from './zealot.es.json'
 import zealotCardsEn from './zealot-cards.en.json'
@@ -38,17 +40,22 @@ export const messages = {
     },
     setup: {
       ...en.setup,
-      descriptions: { ...en.setup.descriptions, 'night-of-the-zealot': zealotEn.description },
+      descriptions: {
+        ...en.setup.descriptions,
+        'night-of-the-zealot': zealotEn.description,
+        'the-dunwich-legacy': dunwichEn.description,
+      },
     },
     story: {
       ...en.story,
+      ...dunwichEn.story,
       zealot: zealotEn.zealot,
       theGathering: zealotEn.theGathering,
-      note: { ...en.story.note, ...zealotEn.notes },
+      note: { ...en.story.note, ...zealotEn.notes, ...dunwichEn.notes },
     },
-    ability: { ...en.ability, zealot: zealotEn.abilities },
-    choice: { ...en.choice, zealot: zealotEn.choices },
-    prompt: { ...en.prompt, zealot: zealotEn.prompts },
+    ability: { ...en.ability, zealot: zealotEn.abilities, ...dunwichEn.abilities },
+    choice: { ...en.choice, zealot: zealotEn.choices, ...dunwichEn.choices },
+    prompt: { ...en.prompt, zealot: zealotEn.prompts, ...dunwichEn.prompts },
   },
   es: {
     ...es,
@@ -60,17 +67,22 @@ export const messages = {
     },
     setup: {
       ...es.setup,
-      descriptions: { ...es.setup.descriptions, 'night-of-the-zealot': zealotEs.description },
+      descriptions: {
+        ...es.setup.descriptions,
+        'night-of-the-zealot': zealotEs.description,
+        'the-dunwich-legacy': dunwichEs.description,
+      },
     },
     story: {
       ...es.story,
+      ...dunwichEs.story,
       zealot: zealotEs.zealot,
       theGathering: zealotEs.theGathering,
-      note: { ...es.story.note, ...zealotEs.notes },
+      note: { ...es.story.note, ...zealotEs.notes, ...dunwichEs.notes },
     },
-    ability: { ...es.ability, zealot: zealotEs.abilities },
-    choice: { ...es.choice, zealot: zealotEs.choices },
-    prompt: { ...es.prompt, zealot: zealotEs.prompts },
+    ability: { ...es.ability, zealot: zealotEs.abilities, ...dunwichEs.abilities },
+    choice: { ...es.choice, zealot: zealotEs.choices, ...dunwichEs.choices },
+    prompt: { ...es.prompt, zealot: zealotEs.prompts, ...dunwichEs.prompts },
   },
 } as const
 

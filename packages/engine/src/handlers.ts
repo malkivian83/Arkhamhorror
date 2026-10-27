@@ -3146,6 +3146,15 @@ export function handle(state: GameState, message: Message): GameState {
     // ------------------------------------------------------ Prueba de habilidad
     case 'BeginSkillTest': {
       if (
+        message.kind.type === 'investigate' &&
+        scenarioBehavior(state.scenarioId)?.cannotInvestigate?.(
+          state,
+          message.investigator,
+          message.kind.location,
+        )
+      )
+        return state
+      if (
         (message.kind.type === 'fight' || message.kind.type === 'evade') &&
         state.enemies[message.kind.enemy]?.hasNoStats
       )
@@ -5504,6 +5513,8 @@ export function handle(state: GameState, message: Message): GameState {
       // Busca en juego y en las zonas fuera de juego; se aparta curado.
       const inPlay = Object.values(state.enemies).find((e) => e.code === message.code)
       if (inPlay) {
+        const instead = enemyBehavior(inPlay.code)?.insteadOfRemove?.(state, inPlay)
+        if (instead) return push(state, ...instead)
         return {
           ...removeEnemy(state, inPlay.id),
           setAside: [...state.setAside, enemyCard(inPlay)],
@@ -6471,6 +6482,10 @@ export function handle(state: GameState, message: Message): GameState {
     case 'RemoveEnemyFromGame': {
       const enemy = findEnemy(state, message.enemy)
       if (!enemy) return state
+      const instead = !message.leavingResolved
+        ? enemyBehavior(enemy.code)?.insteadOfRemove?.(state, enemy)
+        : null
+      if (instead) return push(state, ...instead)
       return push(
         log(removeEnemy(dropAttached(state, enemy), enemy.id), 'log.enemyRemoved', {
           enemy: enemy.name,

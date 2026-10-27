@@ -2,12 +2,12 @@
 
 ## Estado actual
 
-**Actividad extracurricular y La casa siempre gana son jugables**, con uno a
-cuatro investigadores y las cuatro dificultades. Se pueden iniciar en cualquier
-orden. Al terminar ambos se resuelve **El destino de Armitage**, se conservan
-notas, fichas, experiencia y aliados, y la campaña queda ante El museo Miskatonic,
-todavía bloqueado junto con los otros cinco escenarios. No se presenta la campaña
-como completa ni se incluye Regreso a Dunwich.
+**Tres de los ocho escenarios son jugables**: Actividad extracurricular,
+La casa siempre gana y El museo Miskatonic, para uno a cuatro investigadores y
+las cuatro dificultades. Los dos primeros pueden jugarse en cualquier orden y
+conectan con El destino de Armitage. Tras el museo queda pendiente El Essex County
+Express y los otros cuatro escenarios. No se presenta la campaña como completa
+ni se incluye Regreso a Dunwich.
 
 La elección del prólogo se conserva en `log.values.openingScenario`; los guardados
 anteriores sin elección mantienen el orden del índice. La pantalla de progreso y
@@ -59,15 +59,16 @@ de la copia externa, que no se ha trasladado literalmente.
 
 ## Presentación y narración
 
-Catálogo local EN/ES de 63 códigos, referencia de escenario y ayuda de fichas,
-192 escaneos oficiales y sus 192 miniaturas, portada y huellas de integridad.
+Catálogo local EN/ES de 92 códigos, referencia de escenario y ayuda de fichas,
+290 escaneos oficiales y sus 290 miniaturas, portada y huellas de integridad.
 Se han inspeccionado escaneos representativos sin abrir el navegador.
 La revisión visual de la mesa queda para la persona usuaria, conforme a AGENTS.
 
 Los audios usan **Nico - History & Documentary**,
-`FXn3GKRRt9FCEyTbrkaL`. Hay catorce grabaciones de historia en español:
+`FXn3GKRRt9FCEyTbrkaL`. Hay veinte grabaciones de historia en español:
 prólogo; introducción y cinco desenlaces de Actividad extracurricular; introducción
-y cuatro resoluciones de La casa siempre gana; y ambas variantes de Armitage. Los relatos
+y cuatro resoluciones de La casa siempre gana; ambas variantes de Armitage; e
+introducción, dos variantes y tres desenlaces del museo. Los relatos
 españoles se extraen de la guía revisada; se omiten instrucciones y recompensas
 en el audio, que la mesa presenta aparte. No se ofrece audio español como inglés.
 
@@ -114,27 +115,50 @@ La pantalla de selección agrupa título, descripción, prólogo y opciones en u
 columna amplia, con escenarios al lateral y disposición apilada en pantallas
 pequeñas. La narración tiene contraste adaptado al fondo oscuro.
 
+## El museo Miskatonic
+
+Fuentes: guía revisada ES, páginas 9–10, y caras originales 02118–02146.
+Preparación con cuatro Lugares, una variante aleatoria de cada oficina y un mazo
+de exposiciones cuya Sala restringida está entre las tres últimas cartas. El
+mazo de encuentros contiene 34 cartas de los seis conjuntos indicados.
+
+- Entrada pagando pistas (Adam Lynch) o forzando la puerta con combate 5
+  (Harold Walsted al avanzar el segundo acto). Salas del museo permanece cerrado
+  hasta resolver el primer acto.
+- Costes de exploración pagados solo por investigadores presentes; exposiciones
+  sin revelar, inspección privada y búsqueda de la Oficina de seguridad con sus
+  límites y reducción de acciones por Adam. Restricciones de investigación y
+  efectos de entrada/fallo de cada Lugar, incluidas conexiones impresas entre
+  exposiciones solo cuando ambos extremos están revelados.
+- Horrendo cazador único: vuelve al vacío al ser derrotado, descartado o retirado.
+  Surgido de las sombras conserva recursos fuera del juego, aumenta combate,
+  salud y evasión al regresar, y otorga Descomunal desde tres recursos. La
+  revelación de ficha al principio de la fase de enemigos puede prepararlo.
+- Planes, cartas de encuentro, ambas caras de la referencia y elección final de
+  destruir o conservar El Necronomicón. Aliados de museo que abandonan el juego
+  se retiran y añaden una tablilla permanente; el libro funciona en campaña con
+  su ranura de mano, icono, intelecto y acción de recursos.
+- Se reutilizan Mala suerte, Hechicería, El Más Allá, Frío helador y Puertas
+  cerradas. El final se guarda y avanza al tren sin presentar el resto como listo.
+
 ## Validación y continuación
 
-Último lote funcional: `aaa53d7`, La casa siempre gana y El destino de Armitage,
-con la corrección de ranura de Morgan en `5a3ee79`. Incluye la corrección de diseño
-`1f8f8c4`. Lote cerrado para la subida conjunta autorizada a `origin/main`.
+Último lote publicado: `bfc1a29`, los dos escenarios iniciales y Armitage.
+Lote actual: museo completo, seis audios nuevos y ajuste pendiente para quitar
+investigadores del equipo (`7fa8780`), incluido por petición de la persona usuaria.
+Pendiente de controles finales y subida autorizada.
 
-Formato, lint, tipos y compilación globales correctos. La suite completa obtuvo
-4484 pruebas correctas y tres límites de tiempo en pruebas preexistentes de Gala,
-Brethren of Ash y administración. Sus tres archivos se repitieron con 30 segundos
-y pasaron las 57 pruebas. Las 61 pruebas del nuevo escenario pasan; las 14
-grabaciones verifican voz, textos, enlaces locales y huellas. Se inspeccionaron
-escaneos representativos y las conexiones impresas de los ocho Lugares.
+Las pruebas dirigidas incluyen preparación de uno a cuatro investigadores,
+variantes de oficinas y mazo oculto, vacío persistente, enemigos, traiciones,
+aliados, costes, fichas, resoluciones y guardado. Un recorrido completo recupera
+y destruye el libro mediante acciones legales, sin editar el estado tras la
+preparación. Partidas con mazos iniciales reales de uno a cuatro investigadores
+terminan usando decisiones legales y conservan el siguiente escenario. Catálogos,
+escaneos y las veinte narraciones se verifican por consola. Se inspeccionaron
+imágenes representativas y las conexiones impresas; la revisión visual de la
+aplicación queda para la persona usuaria conforme a AGENTS.
 
-Las pruebas cubren preparaciones de uno a cuatro investigadores, cuatro
-dificultades, encuentros, actos, planes, variantes, resoluciones, costes,
-aliados, guardado y ambos órdenes de campaña. Incluyen un rescate completo de
-Morgan por acciones legales sin editar el estado después de la preparación, y
-partidas reproducibles con mazos completos y decisiones legales para uno a cuatro
-investigadores. Presentación y audios se verifican por consola; la revisión visual
-de la aplicación queda para la persona usuaria conforme a AGENTS.
-
-Siguiente grupo: **El museo Miskatonic**; después El Essex County Express,
-Sangre en el altar, Invisibles y sin dimensión, Donde aguarda la perdición,
-Perdidos en el tiempo y el espacio, Los supervivientes y el epílogo.
+Siguiente grupo: **El Essex County Express**; después Sangre en el altar,
+Invisibles y sin dimensión, Donde aguarda la perdición, Perdidos en el tiempo y
+el espacio, Los supervivientes y el epílogo. Continúa vigente la autorización
+para implementar y subir cada escenario al completar sus comprobaciones.

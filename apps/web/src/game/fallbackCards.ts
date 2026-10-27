@@ -3,6 +3,8 @@ import {
   DUNWICH_ENCOUNTER_SETS,
   extracurricularActivity,
   theHouseAlwaysWins,
+  theMiskatonicMuseum,
+  MUSEUM_LOCATIONS,
   HOUSE_LOCATIONS,
   HOUSE_PIT_BOSS,
   DUNWICH_LOCATION_CARDS,
@@ -141,6 +143,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   const scenarios = [
     extracurricularActivity(),
     theHouseAlwaysWins(),
+    theMiskatonicMuseum(),
     theGathering(),
     spreadingFlames(),
     queenOfAsh(),
@@ -253,6 +256,19 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   // The Bloodless Man starts in play, outside the scenario's encounter/set-aside lists.
   Object.values(DUNWICH_ENCOUNTER_SETS).flat().forEach(encounter)
   Object.values(DUNWICH_LOCATION_CARDS).forEach(location)
+  Object.values(MUSEUM_LOCATIONS).forEach(location)
+  put({
+    code: '02118',
+    name: 'The Miskatonic Museum',
+    real_name: 'The Miskatonic Museum',
+    type_code: 'scenario',
+  })
+  put({
+    code: '02124',
+    name: 'Breaking and Entering',
+    real_name: 'Breaking and Entering',
+    type_code: 'act',
+  })
   Object.values(HOUSE_LOCATIONS).forEach(location)
   encounter(HOUSE_PIT_BOSS)
   put({ code: '02069', name: 'Fold', real_name: 'Fold', type_code: 'act' })

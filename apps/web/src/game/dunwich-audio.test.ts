@@ -5,10 +5,10 @@ import { expect, it } from 'vitest'
 import evidence from '../../../../docs-proyecto/evidencias/dunwich-nico-narracion.json'
 import { storyNarration } from './narration'
 
-it('connects both Dunwich openers and the Armitage interlude to their complete transcripts and exact Nico voice', () => {
+it('connects all implemented Dunwich narratives to their complete transcripts and exact Nico voice', () => {
   expect(evidence.voiceName).toBe('Nico - History & Documentary')
   expect(evidence.voiceId).toBe('FXn3GKRRt9FCEyTbrkaL')
-  expect(evidence.files).toHaveLength(14)
+  expect(evidence.files).toHaveLength(20)
   const transcripts = JSON.parse(
     readFileSync(
       fileURLToPath(new URL('../../public/local-assets/story/es.json', import.meta.url)),

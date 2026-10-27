@@ -469,5 +469,234 @@
     "typeCode": "treachery",
     "traits": "Hex. Obstacle.",
     "text": "<b>Revelation</b> - Attach to your location.\nAs an additional cost to move into or out of attached location, test [willpower] (4). If successful, discard Arcane Barrier. Otherwise, you must either cancel the effects of the move or discard the top 5 cards of your deck."
+  },
+  "02118": {
+    "name": "The Miskatonic Museum",
+    "typeCode": "scenario",
+    "text": "Easy / Standard\n[skull]: -1 (-3 instead if Hunting Horror is at your location.)\n[cultist]: -1. If you fail, search the encounter deck, discard pile, and the void for Hunting Horror and spawn it at your location, if able.\n[tablet]: -2. Return 1 of your clues to your current location.\n[elder_thing]: -3. If you fail, discard an asset you control.",
+    "backText": "Hard / Expert\n[skull]: -2 (-4 instead if Hunting Horror is at your location.)\n[cultist]: -3. If you fail, search the encounter deck, discard pile, and the void for Hunting Horror and spawn it at your location, if able.\n[tablet]: -4. If Hunting Horror is at your location, it immediately attacks you.\n[elder_thing]: -5. If you fail, discard an asset you control."
+  },
+  "02119": {
+    "name": "Restricted Access",
+    "typeCode": "agenda",
+    "text": "<b>Forced</b> - When Hunting Horror enters play: Attach the set-aside copy of Shadow-spawned to it, or add 1 resource to Shadow-spawned if it is already attached.",
+    "backName": "A Creature of the Void",
+    "backText": "If Hunting Horror is in play, add 1 doom to it.\nIf Hunting Horror is not in play, search the encounter deck, discard pile, and the void for Hunting Horror and spawn it in Museum Halls, if able. Shuffle the encounter discard pile into the encounter deck.",
+    "flavor": "Dr. Armitage has given the university’s Latin translation of The Necronomicon to his associate, Harold Walsted, the curator of the Miskatonic University Museum. Worried that someone might still be after the book, you have gone to the museum to recover it.",
+    "backFlavor": "From the shadows of the museum halls, a terrible creature slithers forth, long and serpentine, and propelled by black leathery wings."
+  },
+  "02120": {
+    "name": "Shadows Deepen",
+    "typeCode": "agenda",
+    "text": "<b>Forced</b> - When Hunting Horror enters play: Attach the set-aside copy of Shadow-spawned to it, or add 1 resource to Shadow-spawned if it is already attached.",
+    "backName": "Hunted Down",
+    "backText": "If Hunting Horror is in play, add 1 doom to it.\nIf Hunting Horror is not in play, search the encounter deck, discard pile, and the void for Hunting Horror and spawn it in Museum Halls, if able. Shuffle the encounter discard pile into the encounter deck.",
+    "flavor": "The shadows in the museum grow and become darker. As the shadows lengthen and shift, they begin to suggest the sinewy body of an uncanny creature darting at the periphery of your awareness...",
+    "backFlavor": "The creature does not relent, pursuing you throughout the museum. "
+  },
+  "02121": {
+    "name": "In Every Shadow",
+    "typeCode": "agenda",
+    "text": "<b>Forced</b> - When Hunting Horror enters play: Attach the set-aside copy of Shadow-spawned to it, or add 1 resource to Shadow-spawned if it is already attached.",
+    "backName": "Driven Out",
+    "backText": "Each investigator who has not resigned is defeated and suffers 1 physical trauma.",
+    "flavor": "The creature in the museum grows larger and more terrifying with each passing moment. Its body slithers from shadow to shadow, every corner of every room a potential hiding place for the hideous beast.",
+    "backFlavor": "With no way of defeating the creature in the museum, you flee. In every shadow of every corridor, the serpentine horror’s slithering body can be seen, the museum halls growing darker with the creature’s presence. As you reach the entrance, it blocks the doorway and attacks you with its terrible fangs. You barely manage to escape the building with your life, though the effects of the creature’s venom will scar you forever."
+  },
+  "02122": {
+    "name": "Finding A Way Inside",
+    "typeCode": "act",
+    "text": "",
+    "backName": "Gaining Entrance",
+    "backText": "<b>If you spent clues to advance:\n</b><blockquote><i>You find the window nearest to the guard and tap it loud enough to get his attention. He gives a startled jump, then shifts open the window. “What do you want?” he asks timidly. You explain the situation to him and tell him he is in grave danger. He warily opens the front door to the Museum, shaking his head. “I wasn’t even supposed to be here today...”</i></blockquote>Choose an investigator to take control of the set-aside Adam Lynch asset. Reveal the Museum Halls. Advance to Act 2a - \"Night at the Museum.\"\n<hr><b>If you successfully performed the [action] ability on the Museum Halls to advance:\n</b><blockquote><i>With great strength, you break down the door to the Museum, making considerable noise as you do. The security guard sees you enter, cries out in fear, and rushes toward the back of the museum.</i></blockquote>The door leading into the Museum Halls is broken. Reveal the Museum Halls. Advance to Act 2a - \"Breaking and Entering.\"",
+    "flavor": "Unfortunately, the entrance to the Museum is kept locked at this late hour. A security guard is visible through the building’s front windows, oblivious to his surroundings. Perhaps you can find a way to get his attention and convince him to let you in."
+  },
+  "02123": {
+    "name": "Night at the Museum",
+    "typeCode": "act",
+    "text": "<b>Objective</b> - If an investigator enters the Exhibit Hall (<i>Restricted Hall</i>), advance.",
+    "backName": "The Curator's Fate",
+    "backText": "Search the encounter deck, discard pile, the void, and all play areas for Hunting Horror, and place it in the Exhibit Hall (<i>Restricted Hall</i>), ready.\nAdvance to Act 3a.",
+    "flavor": "The Necronomicon is being kept in a Restricted Hall somewhere in the museum. Adam barely knows his way around, and gives a startled jump at every creak of the old building. \"I just started here last week,\" he explains. \"What sort of trouble did you say was going on?\" You haven’t the heart to give him the full story.",
+    "backFlavor": "When you enter the restricted hall, you find the curator of the museum lying in a pool of blood, his intestines strewn about in a grotesque display. Your stomach turns over and you resist the urge to vomit. Whatever did this, it’s still nearby..."
+  },
+  "02124": {
+    "name": "Breaking and Entering",
+    "typeCode": "act",
+    "text": "<b>Objective</b> - If an investigator enters the Exhibit Hall (<i>Restricted Hall</i>), advance.",
+    "backName": "The Guard's Fate",
+    "backText": "Choose an investigator to take control of the set-aside Harold Walsted asset. \nSearch the encounter deck, discard pile, the void, and all play areas for Hunting Horror, and place it in the Exhibit Hall (<i>Restricted Hall</i>), ready.\nAdvance to Act 3a.",
+    "flavor": "The Necronomicon is being kept in a Restricted Hall somewhere in the museum.",
+    "backFlavor": "When you enter the Restricted Hall, you find the curator of the museum clutching an ornate statue as if it were a club, his suit stained with blood, a panicked expression on his face. The security guard you saw earlier lies in a pool of blood nearby, his intestines strewn about in a grotesque display. Your stomach turns and you resist the urge to vomit. \"I tried to stop it, but...\" the curator says quietly, his voice quivering. Whatever did this, it’s still nearby..."
+  },
+  "02125": {
+    "name": "Searching for the Tome",
+    "typeCode": "act",
+    "text": "<b>Objective</b> - If there are no clues remaining in the Exhibit Hall <i>(Restricted Hall)</i>, advance.",
+    "backName": "The Necronomicon",
+    "backText": "The investigators must decide (choose one):\n- It's too dangerous to keep around. We must destroy it. <b>(→R1)</b>\n- It's too valuable to destroy. We must keep it safe.<b>(→R2)</b>",
+    "flavor": "Somewhere in this area is Olaus Wormius’s Latin translation of the Necronomicon. You must find it and escape while you can!",
+    "backFlavor": "At last, you find the locked case containing the Necronomicon.\nThe tome, over eight hundred pages in length, is filled with all manner of macabre imagery, formulae, spells, prophecies, and descriptions of creatures from beyond the threshold of space.\nWithout a doubt, it is a dangerous book... But its secrets could be very useful."
+  },
+  "02126": {
+    "name": "Museum Entrance",
+    "typeCode": "location",
+    "traits": "Miskatonic.",
+    "text": "Investigators at the Museum Entrance cannot gain resources.\n[action] <b>Resign.</b> \"Eh. How important can a book really be, anyway?\"",
+    "flavor": "As you approach the museum, you draw your coat tighter around your body to keep the wintry air away. The full moon drapes the building in ominous bright moonlight.",
+    "backFlavor": "The Miskatonic Museum is an opulent and stately building, supported by expeditions funded by the university. Its sizable collection of exotic artifacts, curios, and art has drawn visitors from all over the country."
+  },
+  "02127": {
+    "name": "Museum Halls",
+    "typeCode": "location",
+    "traits": "Miskatonic.",
+    "text": "Museum Halls is connected to each copy of Exhibit Hall.\n[action] Investigators in the Museum Halls spend 1 [per_investigator] clues, as a group: Put the top card of the Exhibit deck into play, unrevealed.",
+    "backText": "The entrance to the Museum Halls is locked. You cannot move into the Museum Halls.\nMuseum Entrance gains: \"[action]: Test [combat] (5) to attempt to break down the door to the Museum. If you are successful, immediately advance to Act 1b.\""
+  },
+  "02128": {
+    "name": "Security Office",
+    "typeCode": "location",
+    "traits": "Miskatonic.",
+    "text": "[action] [action]: Search the top 6 cards of your deck for a card and add it to your hand. Shuffle the rest back into your deck. (Limit once per turn.)",
+    "flavor": "Somebody must have left the security office in a hurry. Blood stains the floor under the desk nearby. Thankfully, there are some useful supplies here you may be able to use.",
+    "backFlavor": "A plaque next to this doorway reads: \"Security.\" The door is ajar, and inside you catch the scent of blood."
+  },
+  "02129": {
+    "name": "Security Office",
+    "typeCode": "location",
+    "traits": "Miskatonic.",
+    "text": "[action] [action]: Look at the revealed side of an Exhibit Hall in play, or the top card of the Exhibit deck. (Limit once per turn.)",
+    "flavor": "Somebody must have left the security office in a hurry. Blood stains the floor under the desk nearby. There are some maps of the Museum in here, as well.",
+    "backFlavor": "A plaque next to this doorway reads: \"Security.\" The door is ajar, and inside you catch the scent of blood."
+  },
+  "02130": {
+    "name": "Administration Office",
+    "typeCode": "location",
+    "traits": "Miskatonic.",
+    "text": "You cannot investigate Administration Office while you have 4 or fewer resources.",
+    "flavor": "This office is meticulously organized, from the books in alphabetical order on the shelves to the stacks of forms organized by category on each desk. A coat is draped over one of the nearby chairs; perhaps somebody other than the security guard is still here at this late hour.",
+    "backFlavor": "A sturdy wooden door with a plaque next to it reads: \"Administration.\" In the hall outside the doorway, you see a row of paintings depicting the museum’s many curators through the years, each adorned with their name and years of employment. Perhaps it’s just your imagination, but they look more distressed in recent years."
+  },
+  "02131": {
+    "name": "Administration Office",
+    "typeCode": "location",
+    "traits": "Miskatonic.",
+    "text": "You cannot investigate Administration Office while you have 4 or fewer cards in your hand.",
+    "flavor": "This office is meticulously organized, from the books in alphabetical order on the shelves to the stacks of forms organized by category on each desk. A coat is draped over one of the nearby chairs; perhaps somebody other than the security guard is still here at this late hour.",
+    "backFlavor": "A sturdy wooden door with a plaque next to it reads: \"Administration.\" In the hall outside the doorway, you see a row of paintings depicting the museum’s many curators through the years, each adorned with their name and years of employment. Perhaps it’s just your imagination, but they look more distressed in recent years."
+  },
+  "02132": {
+    "name": "Exhibit Hall",
+    "typeCode": "location",
+    "subname": "Athabaskan Exhibit",
+    "traits": "Miskatonic. Exhibit.",
+    "text": "<b>Forced</b> - After you enter this location: Lose all of your remaining actions and immediately end your turn.\nWhile you are in this location, you get +2 [agility].",
+    "flavor": "A strange chill fills this hall, as if the climate of Alaskan wilderness has traveled along with the artifacts on display.",
+    "backFlavor": "What alluring artifacts are displayed inside?\nDo they, too, hold a sinister secret?"
+  },
+  "02133": {
+    "name": "Exhibit Hall",
+    "typeCode": "location",
+    "subname": "Medusa Exhibit",
+    "traits": "Miskatonic. Exhibit.",
+    "text": "<b>Forced</b> - After you fail a skill test while investigating this location: Discard an asset you control.",
+    "flavor": "Who would immortalize such a terrible fate?",
+    "backFlavor": "What alluring artifacts are displayed inside?\nDo they, too, hold a sinister secret?"
+  },
+  "02134": {
+    "name": "Exhibit Hall",
+    "typeCode": "location",
+    "subname": "Nature Exhibit",
+    "traits": "Miskatonic. Exhibit.",
+    "text": "<b>Forced</b> - After you enter this location: Discard 2 cards from your hand at random.",
+    "flavor": "Nothing about this exhibit is natural.",
+    "backFlavor": "What alluring artifacts are displayed inside?\nDo they, too, hold a sinister secret?"
+  },
+  "02135": {
+    "name": "Exhibit Hall",
+    "typeCode": "location",
+    "subname": "Egyptian Exhibit",
+    "traits": "Miskatonic. Exhibit.",
+    "text": "<b>Forced</b> - After you fail a skill test while investigating this location: Lose 1 action.",
+    "flavor": "Sandstone sculptures and bejeweled artifacts from another era clutter this exhibit, like the tomb of an ancient pharaoh.",
+    "backFlavor": "What alluring artifacts are displayed inside?\nDo they, too, hold a sinister secret?"
+  },
+  "02136": {
+    "name": "Exhibit Hall",
+    "typeCode": "location",
+    "subname": "Hall of the Dead",
+    "traits": "Miskatonic. Exhibit.",
+    "text": "<b>Forced</b> - After you fail a skill test while investigating this location: Take 1 horror.",
+    "flavor": "I need no reminder of my mortality.\nI know my death is imminent.",
+    "backFlavor": "What alluring artifacts are displayed inside?\nDo they, too, hold a sinister secret?"
+  },
+  "02137": {
+    "name": "Exhibit Hall",
+    "typeCode": "location",
+    "subname": "Restricted Hall",
+    "traits": "Miskatonic. Exhibit.",
+    "text": "While Hunting Horror is at this location, this location cannot be investigated.",
+    "flavor": "Exhibit Not Yet Open For Viewing.",
+    "backFlavor": "What alluring artifacts are displayed inside?\nDo they, too, hold a sinister secret?"
+  },
+  "02138": {
+    "name": "Harold Walsted",
+    "typeCode": "asset",
+    "subname": "Curator of the Museum",
+    "traits": "Ally. Miskatonic.",
+    "text": "You get +2 [intellect] while investigating [[Miskatonic]] locations.\n<b>Forced</b> - When Harold Walsted leaves play: Remove him from the game and add 1 [tablet] token to the chaos bag for the remainder of the campaign."
+  },
+  "02139": {
+    "name": "Adam Lynch",
+    "typeCode": "asset",
+    "subname": "Museum Security",
+    "traits": "Ally. Miskatonic.",
+    "text": "While you control Adam Lynch, treat the \"[action] [action]\" ability on the Security Office as if it were an \"[action]\" ability.\n<b>Forced</b> - When Adam Lynch leaves play: Remove him from the game and add 1 [tablet] token to the chaos bag for the remainder of the campaign."
+  },
+  "02140": {
+    "name": "The Necronomicon",
+    "typeCode": "asset",
+    "subname": "Olaus Wormius Translation",
+    "traits": "Item. Tome.",
+    "text": "You get +1 [intellect].\n[action]: Gain 2 resources.",
+    "flavor": "It was Abdul Alhazred’s magnum opus."
+  },
+  "02141": {
+    "name": "Hunting Horror",
+    "typeCode": "enemy",
+    "subname": "Spawned from the Void",
+    "traits": "Monster. Elite.",
+    "text": "Hunter. Retaliate.\n<b>Forced</b> - At the start of the enemy phase: Reveal a random token from the chaos bag. If the revealed token has a [skull], [cultist], [tablet], [elder_thing], or [auto_fail] symbol, ready Hunting Horror.\n<b>Forced</b> - When Hunting Horror leaves play, place it in the void."
+  },
+  "02142": {
+    "name": "Shadow-spawned",
+    "typeCode": "treachery",
+    "traits": "Power.",
+    "text": "Shadow-spawned remains attached to Hunting Horror if it enters the void.\nHunting Horror gets +1 fight, +1 health, and +1 evade for each resource on Shadow-spawned. If there are 3 resources on Shadow-spawned, Hunting Horror also gains Massive."
+  },
+  "02143": {
+    "name": "Stalked in the Dark",
+    "typeCode": "treachery",
+    "traits": "Tactic.",
+    "text": "<b>Revelation</b> - If Hunting Horror is in play, it readies, engages you, and attacks each investigator at your location. Otherwise, Stalked in the Dark gains surge.",
+    "flavor": "...viperine creatures, which had curiously distorted heads, and grotesquely great clawed appendages...\n-H.P. Lovecraft & August Derleth, The Lurker at the Threshold"
+  },
+  "02144": {
+    "name": "Passage into the Veil",
+    "typeCode": "treachery",
+    "traits": "Power.",
+    "text": "<b>Revelation</b> - Test [willpower] (3). This test has +2 difficulty if Hunting Horror is at your location. If you fail you must either (choose one): discard the top 5 cards of your deck, or take 1 direct damage and deal 1 damage to each of your [[Ally]] assets."
+  },
+  "02145": {
+    "name": "Ephemeral Exhibits",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Test [intellect] (3). If you fail, lose 1 action for each point you failed by.",
+    "flavor": "Are you watching the exhibits, or are the exhibits watching you?"
+  },
+  "02146": {
+    "name": "Slithering Behind You",
+    "typeCode": "treachery",
+    "text": "<b>Revelation</b> - If Hunting Horror is in play, add 1 doom to it. If Hunting Horror is not in play, search the encounter deck, discard pile, and the void for Hunting Horror and spawn it at your location, engaged with you. Shuffle the encounter deck."
   }
 }
