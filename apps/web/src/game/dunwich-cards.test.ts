@@ -12,7 +12,24 @@ import { fallbackCards } from './fallbackCards'
 it.each(['en', 'es'] as const)(
   'presents the reviewed Dunwich encounters once in %s with official text and local art',
   (locale) => {
-    const codes = ['02083', '02084', '02090', '02091', '02100', '02101', '02102']
+    const encounters = [
+      '01177',
+      '01178',
+      '02083',
+      '02084',
+      '02085',
+      '02086',
+      '02087',
+      '02090',
+      '02091',
+      '02100',
+      '02101',
+      '02102',
+    ]
+    const codes = [
+      ...encounters,
+      ...Array.from({ length: 21 }, (_, n) => String(2041 + n).padStart(5, '0')),
+    ].sort()
     const catalog = fallbackCards(locale)
     expect(
       [
@@ -22,17 +39,18 @@ it.each(['en', 'es'] as const)(
             .map((c) => c.code),
         ),
       ].sort(),
-    ).toEqual(codes)
-    expect(Object.keys(dunwichCards[locale])).toEqual(codes)
+    ).toEqual(encounters)
+    expect(Object.keys(dunwichCards[locale]).sort()).toEqual(codes)
     for (const code of codes) {
       const matches = catalog.filter((c) => c.code === code)
       expect(matches).toHaveLength(1)
       expect(matches[0]).toMatchObject({
         name: dunwichCards[locale][code]!.name,
         text: dunwichCards[locale][code]!.text,
-        type_code: code === '02090' ? 'enemy' : 'treachery',
+        type_code: dunwichCards[locale][code]!.typeCode,
       })
-      expect(playerCardDef(code)).toBeUndefined()
+      if (dunwichCards[locale][code]!.typeCode !== 'asset')
+        expect(playerCardDef(code)).toBeUndefined()
       const path = (manifest[locale] as Record<string, string>)[code]!
       const bytes = readFileSync(fileURLToPath(new URL(`../../public${path}`, import.meta.url)))
       const evidence = images.files.find((file) => file.language === locale && file.art === code)!

@@ -1,6 +1,8 @@
 import {
   theGathering,
   DUNWICH_ENCOUNTER_SETS,
+  extracurricularActivity,
+  DUNWICH_LOCATION_CARDS,
   CURTAIN_CALL_STRANGERS,
   curtainCall,
   theLastKing,
@@ -134,6 +136,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     })
   }
   const scenarios = [
+    extracurricularActivity(),
     theGathering(),
     spreadingFlames(),
     queenOfAsh(),
@@ -245,6 +248,13 @@ export function fallbackCards(locale: string): LocalizedCard[] {
 
   // The Bloodless Man starts in play, outside the scenario's encounter/set-aside lists.
   Object.values(DUNWICH_ENCOUNTER_SETS).flat().forEach(encounter)
+  Object.values(DUNWICH_LOCATION_CARDS).forEach(location)
+  put({
+    code: '02041',
+    name: 'Extracurricular Activity',
+    real_name: 'Extracurricular Activity',
+    type_code: 'scenario',
+  })
   encounter(GALA_BLOODLESS_MAN)
   encounter(GALA_BLOODLESS_MAN_UNLEASHED)
   const jewel = allPlayerCardDefs().find((d) => d.code === '71052')!

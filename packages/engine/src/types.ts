@@ -158,6 +158,7 @@ export type EnemyKeyword =
 
 /** Prey (presa): a quién prefiere enfrentarse el enemigo. */
 export type Prey =
+  | { type: 'fewestCards' }
   | { type: 'lowestSkill'; skill: SkillType }
   | { type: 'highestSkill'; skill: SkillType }
   /** "Presa (solo X)": solo se enfrenta a ese investigador. */
@@ -247,7 +248,8 @@ export type TreacheryPlacement =
   /** Vinculada a un enemigo: se descarta cuando el enemigo abandona el juego. */
   | { type: 'enemy'; enemy: EnemyId }
   /** En juego junto al mazo de Plan o de Acto (Un público difícil, Cieno e impurezas). */
-  | { type: 'agenda' }
+  | { type: 'agenda'; code?: CardCode }
+  | { type: 'act'; code: CardCode }
 
 export interface Treachery extends TreacheryCard {
   id: TreacheryId
@@ -1112,6 +1114,7 @@ export type Message =
   | { type: 'CancelEnemyAttack'; enemy: EnemyId }
   | {
       type: 'ResolveEnemyAttack'
+      modifier?: { damage: number; horror: number }
       enemy: EnemyId
       investigator: InvestigatorId
       exhaustAfter: boolean
@@ -1135,7 +1138,13 @@ export type Message =
   | { type: 'EndSkillTest' }
   | { type: 'EngageEnemy'; enemy: EnemyId; investigator: InvestigatorId; windowResolved?: boolean }
   | { type: 'CheckEngagement'; location: LocationId; enemies?: EnemyId[] }
-  | { type: 'EnemyAttack'; enemy: EnemyId; investigator: InvestigatorId; exhaustAfter: boolean }
+  | {
+      type: 'EnemyAttack'
+      enemy: EnemyId
+      investigator: InvestigatorId
+      exhaustAfter: boolean
+      evenIfExhausted?: boolean
+    }
   /** Fase de enemigos: el investigador elige en qué orden le atacan los que quedan. */
   | { type: 'AttacksAgainst'; investigator: InvestigatorId; enemies: EnemyId[] }
   /** El jefe elige quién gasta la siguiente pista hasta reunir `amount` (acto, grupo). */
@@ -1489,6 +1498,7 @@ export type ClueHolder =
 
 /** Momentos en los que se comprueban las habilidades forzadas. */
 export type Trigger =
+  | { type: 'encounterCardDiscarded'; card: EncounterCard }
   | { type: 'beforeEnemySpawns'; location: LocationId; card: EnemyCard }
   | { type: 'afterRevealChaosToken'; investigator: InvestigatorId; token: ChaosToken }
   /** Before the revealed token resolves; `state.skillTest.revealing` holds it. */

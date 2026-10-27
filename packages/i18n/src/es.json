@@ -648,7 +648,11 @@
     },
     "dunwich": {
       "cancelMove": "Cancelar el movimiento",
-      "discardAndMove": "Descartar las 5 primeras cartas y moverse"
+      "discardAndMove": "Descartar las 5 primeras cartas y moverse",
+      "attachAct": "Vincular al acto actual",
+      "attachAgenda": "Vincular al plan actual",
+      "acceptPower": "Robar 2 cartas y colocar 2 perdiciones",
+      "refusePower": "Recibir 2 puntos de horror"
     }
   },
   "phase": {
@@ -1002,7 +1006,16 @@
     "centerStage": "El centro de atención: gasta 1 de renombre y agótalo: +{n} a tu valor de habilidad",
     "fame": "Fama: gasta 1 de renombre: Negociar. Obtén 2 recursos",
     "grapevine": "El mentidero: gasta 1 rumor y agótalo: Negociar. Muévete hasta un Enemigo a 2 conexiones como máximo y enfréntate a él",
-    "extravagantRing": "Anillo extravagante: gasta 1 de renombre y agótalo: +2 a tu valor de habilidad para esta prueba"
+    "extravagantRing": "Anillo extravagante: gasta 1 de renombre y agótalo: +2 a tu valor de habilidad para esta prueba",
+    "dunwich": {
+      "parleyJazz": "Negociar con Jazz (intelecto 3)",
+      "riceDraw": "Agotar a Rice: robar 1 carta",
+      "concoction": "Pócima alquímica: atacar a {enemy}",
+      "rescue": "Gastar pistas del grupo para rescatar",
+      "heal": "Curar 1 daño y 1 horror",
+      "findConcoction": "Investigar para recuperar la Pócima alquímica",
+      "findJazz": "Gastar 1 pista y buscar a Jazz"
+    }
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -1404,7 +1417,7 @@
       "murder-at-the-excelsior-hotel": "Un asesinato y un hotel lleno de secretos. Investiga lo ocurrido en el Excelsior y descubre la verdad antes de que sea demasiado tarde.",
       "the-path-to-carcosa": "El Rey de Amarillo llega a Arkham. Ocho escenarios entre Dudas y Convicciones. En desarrollo: de momento se pueden jugar los escenarios I a III.",
       "fortune-and-folly": "Un casino de Montecarlo manipula la propia suerte. Vigila el local en la parte I y da el golpe en la parte II.",
-      "the-dunwich-legacy": "Dos profesores desaparecidos conducen a los secretos de Dunwich. En desarrollo: todavía no hay escenarios jugables."
+      "the-dunwich-legacy": "Busca a los profesores desaparecidos. Actividad extracurricular ya es jugable. El resto de escenarios sigue en desarrollo."
     },
     "continueTitle": "Continuar donde lo dejaste",
     "chooseStory": "Elige la historia",
@@ -1612,7 +1625,13 @@
       "fofIsamaraMesmerized": "Isamara hipnotizó a los guardias con su canción",
       "fofBadLuck": "Los elegidos de la fortuna han atado la mala suerte a los investigadores",
       "fofEarnedIsamara": "Los investigadores han conseguido a Isamara Ordoñez (Cantante de baladas)",
-      "fofEarnedDeckOfPossibilities": "Los investigadores han conseguido el Mazo de posibilidades"
+      "fofEarnedDeckOfPossibilities": "Los investigadores han conseguido el Mazo de posibilidades",
+      "dunwichRiceRescued": "los investigadores rescataron al profesor Warren Rice",
+      "dunwichRiceKidnapped": "el profesor Warren Rice ha sido secuestrado",
+      "dunwichStudentsRescued": "los estudiantes han sido rescatados",
+      "dunwichStudentsLost": "los investigadores no lograron salvar a los estudiantes",
+      "dunwichExperimentDefeated": "el experimento ha sido derrotado",
+      "dunwichUnconscious": "los investigadores estuvieron inconscientes varias horas"
     },
     "scenario": {
       "smokeAndMirrors": "el Escenario II: Smoke and Mirrors",
@@ -2207,6 +2226,25 @@
     "dunwich": {
       "prologueTitle": "Prólogo",
       "prologue": "El Dr. Henry Armitage solicita vuestra ayuda: sus colegas Warren Rice y Francis Morgan han desaparecido. Rice fue visto por última vez en el departamento de Humanidades de la Universidad Miskatonic; Morgan frecuentaba el Clover Club. Decidís a cuál buscar primero."
+    },
+    "extracurricular": {
+      "introTitle": "Actividad extracurricular",
+      "intro": "Al Dr. Armitage le preocupa que su colega, el profesor Warren Rice, pueda estar en problemas, así que os ha pedido ayuda para encontrar a su amigo. Parece irracionalmente nervioso por la desaparición de su colega teniendo en cuenta que el profesor Rice sólo ha estado “desaparecido” unas horas...",
+      "setupTitle": "Preparación",
+      "setup": "Reúne Actividad extracurricular, Hechicería, El Más Allá, Esclavos de Bishop, Chotacabras, Antiguos males, Puertas cerradas y Agentes de Yog-Sothoth. Usa Despachos del profesorado (La noche aún es joven) si buscas primero a Rice; de lo contrario usa Se ha hecho tarde. Aparta a Jazz Mulligan, la Pócima alquímica, El experimento, el Profesor Warren Rice, la Residencia estudiantil y los Laboratorios de alquimia. Pon en juego el Patio principal, la Biblioteca Orne, Humanidades, el Sindicato de estudiantes, Ciencias y Administración. Todos empiezan en el Patio principal.",
+      "noResolutionTitle": "Sin resolución",
+      "noResolution": "Al huir de la universidad, oís gritos que provienen desde el extremo norte del campus. Una ambulancia pasa a vuestro lado, y os teméis lo peor. Horas más tarde, os enteráis de que “una especie de perro rabioso” se coló en la residencia estudiantil. La criatura atacó a los estudiantes del interior, y muchos quedaron gravemente heridos o murieron en el ataque.",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "Encontráis al profesor Rice atado y amordazado en el armario empotrado de su despacho. Cuando lo liberáis, os informa de que los extraños hombres y mujeres que deambulaban por el campus llevaban horas achechándolo. Lo acorralaron en su despacho y lo ataron, aunque Rice no está seguro de cuál era su propósito. Le explicáis que os envía el Dr. Armitage, y Rice parece aliviado, aunque sospecha que el Dr. Morgan también podría estar en peligro. Puesto que los extraños del campus parecían tener como objetivo al profesor Rice, decidís que el mejor curso de acción es escoltarlo lejos del campus lo antes posible. Cuando os marcháis de la universidad, oís gritos que provienen desde el extremo norte del campus. Una ambulancia pasa a vuestro lado, y os teméis lo peor. Horas más tarde, os enteráis de que “una especie de perro rabioso” se coló en la residencia estudiantil. La criatura atacó a los estudiantes del interior, y muchos quedaron gravemente heridos o murieron en el ataque.",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "Activáis todas las alarmas de incendios de la residencia estudiantil y hacéis salir a los estudiantes a toda prisa por la salida norte del edificio, esperando poder huir del campus. Muchos de los estudiantes están confusos y agotados, pero creéis que intentar explicarles la situación haría más mal que bien. Minutos más tarde, un terrible chillido resuena por todo el campus, penetrante y ensordecedor. Les decís a los estudiantes que esperen y volvéis a la residencia para investigar. Sin embargo, no encontráis el menor indicio de la extraña criatura, lo cual os causa mucha más preocupación que alivio. Os apresuráis a llegar a los despachos del profesorado para encontrar al profesor Rice, pero no hay ni rastro de él por ninguna parte.",
+      "resolution3Title": "Resolución 3",
+      "resolution3": "Tras derrotar a la extraña y aterradora criatura del departamento de Alquimia, os apresuráis a llegar a los despachos del profesorado para encontrar al profesor Rice. Para cuando llegáis a su despacho, no hay ni rastro de él por ninguna parte.",
+      "resolution4Title": "Resolución 4",
+      "resolution4": "Os despertáis horas más tarde, agotados y heridos. No estáis seguros de lo que habéis visto, pero su mera visión os inundó la mente de terror. Otros supervivientes os dicen que “una especie de perro rabioso” se coló en la residencia estudiantil. La criatura atacó a los estudiantes del interior, y muchos quedaron gravemente heridos o murieron en el ataque.",
+      "riceRewardTitle": "El profesor Rice",
+      "riceReward": "Un investigador puede añadir al Profesor Warren Rice a su mazo. No cuenta para el tamaño del mazo.",
+      "tabletEffect": "Añade una ficha de tablilla a la bolsa de caos para el resto de la campaña."
     }
   },
   "playmat": {

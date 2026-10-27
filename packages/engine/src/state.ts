@@ -1,4 +1,5 @@
 import {
+  enemyBehavior,
   investigatorBehavior,
   playerCardBehavior,
   playerCardDef,
@@ -171,7 +172,9 @@ export function attachedStat(state: GameState, enemy: EnemyId, stat: 'fight' | '
 /** Salud máxima del enemigo con sus vinculadas. */
 export function enemyMaxHealth(state: GameState, enemy: Enemy): number {
   return (
-    enemy.maxHealth + attachedModifiers(state, enemy.id).reduce((n, m) => n + (m.health ?? 0), 0)
+    enemy.maxHealth +
+    (enemyBehavior(enemy.code)?.healthModifier?.(state, enemy) ?? 0) +
+    attachedModifiers(state, enemy.id).reduce((n, m) => n + (m.health ?? 0), 0)
   )
 }
 
@@ -377,7 +380,11 @@ export function distancesFrom(
  * Los candidatos que mejor cumplen la presa de un enemigo (todos si no tiene
  * presa). Si quedan varios empatados, decide el jefe.
  */
-export function bestByPrey(candidates: Investigator[], prey: Prey | undefined): Investigator[] {
+export function bestByPrey(
+  candidates: Investigator[],
+  prey: Prey | undefined,
+  state?: GameState,
+): Investigator[] {
   if (!prey || candidates.length === 0) return candidates
   if (prey.type === 'only') return candidates.filter((i) => i.id === prey.investigator)
   if (prey.type === 'investigator') {
@@ -385,21 +392,26 @@ export function bestByPrey(candidates: Investigator[], prey: Prey | undefined): 
     return preferred.length ? preferred : candidates
   }
   const value = (i: Investigator) =>
-    prey.type === 'mostResources'
-      ? i.resources
-      : prey.type === 'mostClues'
-        ? i.clues
-        : prey.type === 'mostHorror'
-          ? i.horror
-          : prey.type === 'mostRemainingSanity'
-            ? i.sanity - i.horror
-            : prey.type === 'lowestRemainingSanity'
-              ? i.horror - i.sanity
-              : prey.type === 'lowestRemainingHealth'
-                ? i.damage - i.health
-                : prey.type === 'highestSkill'
-                  ? i.skills[prey.skill]
-                  : -i.skills[prey.skill]
+    prey.type === 'fewestCards'
+      ? -i.hand.length -
+        Object.values(state?.treacheries ?? {}).filter(
+          (t) => t.hidden && t.placement.type === 'threatArea' && t.placement.investigator === i.id,
+        ).length
+      : prey.type === 'mostResources'
+        ? i.resources
+        : prey.type === 'mostClues'
+          ? i.clues
+          : prey.type === 'mostHorror'
+            ? i.horror
+            : prey.type === 'mostRemainingSanity'
+              ? i.sanity - i.horror
+              : prey.type === 'lowestRemainingSanity'
+                ? i.horror - i.sanity
+                : prey.type === 'lowestRemainingHealth'
+                  ? i.damage - i.health
+                  : prey.type === 'highestSkill'
+                    ? i.skills[prey.skill]
+                    : -i.skills[prey.skill]
   const best = Math.max(...candidates.map(value))
   return candidates.filter((i) => value(i) === best)
 }
@@ -422,7 +434,7 @@ export function huntingSteps(state: GameState, enemy: Enemy): LocationId[] {
   if (nearest === 0) return []
   const closest = reachable.filter((i) => distance(i) === nearest)
   const prey = scenarioBehavior(state.scenarioId)?.enemyPrey?.(state, enemy) ?? enemy.prey
-  const preferred = bestByPrey(closest, prey)
+  const preferred = bestByPrey(closest, prey, state)
   const targets = new Set((preferred.length ? preferred : closest).map((i) => i.location))
   return enemyNeighbours(state, enemy.location, enemy).filter((step) => {
     if (!state.locations[step]) return false

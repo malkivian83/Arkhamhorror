@@ -3,7 +3,41 @@
 import { createHash } from 'node:crypto'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 
-const arts = ['02083', '02084', '02090', '02091', '02100', '02101', '02102']
+const arts = [
+  '01177',
+  '01178',
+  '02041',
+  '02042',
+  '02043',
+  '02044',
+  '02045',
+  '02046',
+  '02047',
+  '02048',
+  '02049',
+  '02050',
+  '02051',
+  '02052',
+  '02053',
+  '02054',
+  '02055',
+  '02056',
+  '02057',
+  '02058',
+  '02059',
+  '02060',
+  '02061',
+  '02083',
+  '02084',
+  '02085',
+  '02086',
+  '02087',
+  '02090',
+  '02091',
+  '02100',
+  '02101',
+  '02102',
+].flatMap((code) => (Number(code) >= 2041 && Number(code) <= 2057 ? [code, `${code}b`] : [code]))
 const manifestPath = 'apps/web/src/game/cardImageManifest.json'
 const before = JSON.parse(await readFile(manifestPath, 'utf8'))
 const tasks = ['en', 'es'].flatMap((language) =>
@@ -69,9 +103,27 @@ for (const file of retained.values()) {
   inventoried.add(file.path)
 }
 await writeFile(inventoryPath, JSON.stringify(inventory, null, 2) + '\n')
+const coverPath = '/local-assets/setup/the-dunwich-legacy.jpg'
+const coverSource = 'https://assets.arkhamhorror.app/img/arkham/boxes/02.jpg'
+let coverBytes
+try {
+  coverBytes = await readFile('apps/web/public' + coverPath)
+} catch (error) {
+  if (error.code !== 'ENOENT') throw error
+  const response = await fetch(coverSource, { signal: AbortSignal.timeout(25000) })
+  if (!response.ok) throw new Error('Missing Dunwich cover: ' + response.status)
+  coverBytes = Buffer.from(await response.arrayBuffer())
+  await writeFile('apps/web/public' + coverPath, coverBytes)
+}
+const cover = {
+  path: coverPath,
+  source: coverSource,
+  bytes: coverBytes.length,
+  sha256: createHash('sha256').update(coverBytes).digest('hex'),
+}
 await writeFile(
   evidencePath,
-  JSON.stringify({ files: [...retained.values()], failed }, null, 2) + '\n',
+  JSON.stringify({ files: [...retained.values()], cover, failed }, null, 2) + '\n',
 )
 console.log(JSON.stringify({ downloaded: files.length, failed }))
 if (failed.length) process.exitCode = 1

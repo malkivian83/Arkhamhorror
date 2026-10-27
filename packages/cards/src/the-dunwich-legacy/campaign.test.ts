@@ -31,7 +31,7 @@ describe('The Dunwich Legacy: campaign foundation', () => {
       ])
       expect(new Set(campaignScenarios(restored).map((s) => s.id)).size).toBe(8)
       expect(definition.scenarios[0]?.id).toBe('extracurricular-activity')
-      expect(canPlayNext(restored)).toBe(false)
+      expect(canPlayNext(restored)).toBe(first === 'extracurricular-activity')
     },
   )
 
@@ -95,7 +95,9 @@ describe('The Dunwich Legacy: campaign foundation', () => {
       expect(campaign.log.notes).toEqual([])
       expect(campaign.log.chaosTokens).toEqual([])
       expect(campaign.results).toEqual([])
-      for (let scenarioIndex = 0; scenarioIndex < 8; scenarioIndex++) {
+      expect(canPlayNext(campaign)).toBe(true)
+      expect(startScenario(campaign, 1).scenarioId).toBe('extracurricular-activity')
+      for (let scenarioIndex = 1; scenarioIndex < 8; scenarioIndex++) {
         const pending = { ...campaign, scenarioIndex }
         expect(canPlayNext(pending)).toBe(false)
         expect(() => startScenario(pending, 1)).toThrow('Escenario no disponible')

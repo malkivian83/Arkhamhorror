@@ -69,6 +69,17 @@ function run(initial: GameState, observer?: EngineObserver): GameState {
           trigger: { type: 'deckEmptied', investigator: i.id },
         })),
       )
+    if (state.encounterDiscard !== before.encounterDiscard) {
+      const previous = new Map<unknown, number>()
+      for (const card of before.encounterDiscard) previous.set(card, (previous.get(card) ?? 0) + 1)
+      const discarded: Message[] = []
+      for (const card of state.encounterDiscard) {
+        const count = previous.get(card) ?? 0
+        if (count) previous.set(card, count - 1)
+        else discarded.push({ type: 'Forced', trigger: { type: 'encounterCardDiscarded', card } })
+      }
+      if (discarded.length) state = push(state, ...discarded)
+    }
     observer?.(before, message, state)
   }
   return state

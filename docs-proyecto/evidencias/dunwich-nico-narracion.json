@@ -22,6 +22,60 @@
       "inputHash": "115e63c55cea74cf9cf68fda137ad583354e950e1d69b30cd41ca82d0d8d8ba8",
       "sha256": "fade325f7df8c1662ee5269f12776c71c9ede8081115880cfd349098dbd4ff20",
       "bytes": 1950240
+    },
+    {
+      "key": "story.extracurricular.intro",
+      "file": "extracurricular-intro-nico.mp3",
+      "text": "Al Dr. Armitage le preocupa que su colega, el profesor Warren Rice, pueda estar en problemas, así que os ha pedido ayuda para encontrar a su amigo. Parece irracionalmente nervioso por la desaparición de su colega teniendo en cuenta que el profesor Rice sólo ha estado “desaparecido” unas horas...",
+      "characters": 296,
+      "inputHash": "9b2816f69b3ba790ee0491d8b8f3004319447a7f16d64d95e752f521f77965e6",
+      "sha256": "8d3c96e3412d98a4adf0bb381bce5751b9fa3e7f0148520ce73cce767dd76804",
+      "bytes": 341933
+    },
+    {
+      "key": "story.extracurricular.noResolution",
+      "file": "extracurricular-noresolution-nico.mp3",
+      "text": "Al huir de la universidad, oís gritos que provienen desde el extremo norte del campus. Una ambulancia pasa a vuestro lado, y os teméis lo peor. Horas más tarde, os enteráis de que “una especie de perro rabioso” se coló en la residencia estudiantil. La criatura atacó a los estudiantes del interior, y muchos quedaron gravemente heridos o murieron en el ataque.",
+      "characters": 360,
+      "inputHash": "d53b258236e44e9b83ebc68175d2ee3b1701e2c59f8e43abde3361a235955f40",
+      "sha256": "ef588e1a006b8be8f6e4581bf0638dd6590058cc5d0028d2e173cabad2ac0d42",
+      "bytes": 395432
+    },
+    {
+      "key": "story.extracurricular.resolution1",
+      "file": "extracurricular-resolution1-nico.mp3",
+      "text": "Encontráis al profesor Rice atado y amordazado en el armario empotrado de su despacho. Cuando lo liberáis, os informa de que los extraños hombres y mujeres que deambulaban por el campus llevaban horas achechándolo. Lo acorralaron en su despacho y lo ataron, aunque Rice no está seguro de cuál era su propósito. Le explicáis que os envía el Dr. Armitage, y Rice parece aliviado, aunque sospecha que el Dr. Morgan también podría estar en peligro. Puesto que los extraños del campus parecían tener como objetivo al profesor Rice, decidís que el mejor curso de acción es escoltarlo lejos del campus lo antes posible. Cuando os marcháis de la universidad, oís gritos que provienen desde el extremo norte del campus. Una ambulancia pasa a vuestro lado, y os teméis lo peor. Horas más tarde, os enteráis de que “una especie de perro rabioso” se coló en la residencia estudiantil. La criatura atacó a los estudiantes del interior, y muchos quedaron gravemente heridos o murieron en el ataque.",
+      "characters": 984,
+      "inputHash": "663a30ca019cc33f92b03276712ecb149ee41144d31e3a5599eb9407f370db11",
+      "sha256": "ad3cd0a3292a88f7109d0433c76a81342912e2133d84dcc344c20ff41495b9f7",
+      "bytes": 1048702
+    },
+    {
+      "key": "story.extracurricular.resolution2",
+      "file": "extracurricular-resolution2-nico.mp3",
+      "text": "Activáis todas las alarmas de incendios de la residencia estudiantil y hacéis salir a los estudiantes a toda prisa por la salida norte del edificio, esperando poder huir del campus. Muchos de los estudiantes están confusos y agotados, pero creéis que intentar explicarles la situación haría más mal que bien. Minutos más tarde, un terrible chillido resuena por todo el campus, penetrante y ensordecedor. Les decís a los estudiantes que esperen y volvéis a la residencia para investigar. Sin embargo, no encontráis el menor indicio de la extraña criatura, lo cual os causa mucha más preocupación que alivio. Os apresuráis a llegar a los despachos del profesorado para encontrar al profesor Rice, pero no hay ni rastro de él por ninguna parte.",
+      "characters": 741,
+      "inputHash": "ec03ec6c2f6253c0fb17514d92c80b9f3450f5d8f6b20510abe5b0f910d26454",
+      "sha256": "d02e5ab0235395ae75590029ed9ca2b980a4ceeabd3295eed493a5b173796091",
+      "bytes": 719768
+    },
+    {
+      "key": "story.extracurricular.resolution3",
+      "file": "extracurricular-resolution3-nico.mp3",
+      "text": "Tras derrotar a la extraña y aterradora criatura del departamento de Alquimia, os apresuráis a llegar a los despachos del profesorado para encontrar al profesor Rice. Para cuando llegáis a su despacho, no hay ni rastro de él por ninguna parte.",
+      "characters": 243,
+      "inputHash": "859beba1e5af7046bd50a125a9618e0f7895de974e8f836e40ea0fe79e9fef0e",
+      "sha256": "d4f72b42b9c43a8ee33b5319402fc9c174d19648a2e91b84eb0e87c7ced4ed7b",
+      "bytes": 222397
+    },
+    {
+      "key": "story.extracurricular.resolution4",
+      "file": "extracurricular-resolution4-nico.mp3",
+      "text": "Os despertáis horas más tarde, agotados y heridos. No estáis seguros de lo que habéis visto, pero su mera visión os inundó la mente de terror. Otros supervivientes os dicen que “una especie de perro rabioso” se coló en la residencia estudiantil. La criatura atacó a los estudiantes del interior, y muchos quedaron gravemente heridos o murieron en el ataque.",
+      "characters": 357,
+      "inputHash": "49699febb683c9b96f690dc1e510d768b85261ee68bbd9614d6760f64de9fc17",
+      "sha256": "2d16c87dfa0a5b33b06a1a3b64250ed748f18360d38e7b902cff1ccc229b6668",
+      "bytes": 374952
     }
   ]
 }

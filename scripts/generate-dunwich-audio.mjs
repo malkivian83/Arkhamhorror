@@ -12,6 +12,12 @@ const evidencePath = 'docs-proyecto/evidencias/dunwich-nico-narracion.json'
 const texts = JSON.parse(readFileSync(join(root, 'es.json'), 'utf8'))
 const keys = {
   'story.dunwich.prologue': 'dunwich-prologue-nico.mp3',
+  'story.extracurricular.intro': 'extracurricular-intro-nico.mp3',
+  'story.extracurricular.noResolution': 'extracurricular-noresolution-nico.mp3',
+  'story.extracurricular.resolution1': 'extracurricular-resolution1-nico.mp3',
+  'story.extracurricular.resolution2': 'extracurricular-resolution2-nico.mp3',
+  'story.extracurricular.resolution3': 'extracurricular-resolution3-nico.mp3',
+  'story.extracurricular.resolution4': 'extracurricular-resolution4-nico.mp3',
 }
 const settings = {
   model_id: 'eleven_multilingual_v2',

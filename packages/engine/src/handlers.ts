@@ -392,7 +392,7 @@ export function handle(state: GameState, message: Message): GameState {
       if (agendaIndex >= state.agendas.length) {
         return push(state, { type: 'EndScenario', outcome: { type: 'noResolution' } })
       }
-      const advanced = recomputeConnections({ ...state, agendaIndex })
+      const advanced = discardUnsupported(recomputeConnections({ ...state, agendaIndex }))
       const after = agendaBehavior(state.agendas[state.agendaIndex]?.code)?.afterAdvance
       return after ? push(advanced, ...after(advanced)) : advanced
     }
@@ -2067,6 +2067,9 @@ export function handle(state: GameState, message: Message): GameState {
       // RR "Damage and Horror": si hay apoyos que puedan recibirlo, el jugador asigna.
       const canSoak =
         !message.direct &&
+        !Object.values(state.treacheries).some(
+          (t) => t.placement.type !== 'limbo' && treacheryBehavior(t.code)?.allDamageDirect,
+        ) &&
         soakers(state, message.investigator, 'damage').length +
           soakers(state, message.investigator, 'horror').length +
           placedSoakers(state, message.investigator, 'damage').length +
@@ -3963,7 +3966,7 @@ export function handle(state: GameState, message: Message): GameState {
         (i) => scenarioBehavior(state.scenarioId)?.canEnemyEngage?.(state, enemy, i.id) !== false,
       )
       const prey = scenarioBehavior(state.scenarioId)?.enemyPrey?.(state, enemy) ?? enemy.prey
-      const best = bestByPrey(permitted, prey)
+      const best = bestByPrey(permitted, prey, state)
       const [target] = best
       if (!target) return push(state, again)
       const lead = leadInvestigator(state)
@@ -3992,7 +3995,8 @@ export function handle(state: GameState, message: Message): GameState {
     case 'EnemyAttack': {
       const enemy = findEnemy(state, message.enemy)
       const investigator = getInvestigator(state, message.investigator)
-      if (!enemy || enemy.exhausted || investigator.eliminated) return state
+      if (!enemy || (enemy.exhausted && !message.evenIfExhausted) || investigator.eliminated)
+        return state
       // El organista: no ataca en esta fase de enemigos.
       if (enemy.noAttackRound === state.round && state.phase === 'enemy') return state
       // Glotón del manicomio: no ataca en la fase de enemigos en la que se movió por Cazador.
@@ -4018,6 +4022,7 @@ export function handle(state: GameState, message: Message): GameState {
         ? updateEnemy(attacked, enemy.id, (e) => ({ ...e, exhausted: true }))
         : attacked
       // Solo los ataques de la fase de enemigos agotan al atacante.
+      const modifier = enemyBehavior(enemy.code)?.attackModifier?.(state, enemy, investigator.id)
       return push(
         next,
         // Ventana para cancelar el ataque antes de resolverlo (Counterattack).
@@ -4029,6 +4034,7 @@ export function handle(state: GameState, message: Message): GameState {
         },
         {
           type: 'ResolveEnemyAttack',
+          ...(modifier ? { modifier } : {}),
           enemy: enemy.id,
           investigator: investigator.id,
           exhaustAfter: message.exhaustAfter,
@@ -4643,10 +4649,12 @@ export function handle(state: GameState, message: Message): GameState {
           damage: Math.max(
             0,
             enemy.damage +
+              (message.modifier?.damage ?? 0) +
               (scenarioBehavior(state.scenarioId)?.enemyDamageModifier?.(state, enemy) ?? 0),
           ),
           horror:
             enemy.horror +
+            (message.modifier?.horror ?? 0) +
             (scenarioBehavior(state.scenarioId)?.enemyHorrorModifier?.(state, enemy) ?? 0),
           // The attacking enemy travels with the damage (Guard Dog, Dimensional Shambler).
           enemy: enemy.id,
@@ -5182,7 +5190,7 @@ export function handle(state: GameState, message: Message): GameState {
         return push(state, { type: 'EndScenario', outcome: { type: 'resolution', resolution: 1 } })
       }
       // Las conexiones del escenario pueden depender del acto (Pasadizos en El juramento).
-      return recomputeConnections({ ...state, actIndex })
+      return discardUnsupported(recomputeConnections({ ...state, actIndex }))
     }
 
     // ------------------------------------------------------- Habilidades
@@ -6617,7 +6625,11 @@ function cardsInHand(state: GameState, investigator: string): number {
 function handSize(state: GameState, investigator: string): number {
   return Object.values(state.assets)
     .filter((a) => a.owner === investigator)
-    .reduce((size, a) => size + (playerCardBehavior(a.code)?.handSize ?? 0), MAX_HAND_SIZE)
+    .reduce(
+      (size, a) => size + (playerCardBehavior(a.code)?.handSize ?? 0),
+      MAX_HAND_SIZE +
+        (scenarioBehavior(state.scenarioId)?.handSizeModifier?.(state, investigator) ?? 0),
+    )
 }
 
 // RR: Max. An explicit maximum applies to the canonical title, across all editions.

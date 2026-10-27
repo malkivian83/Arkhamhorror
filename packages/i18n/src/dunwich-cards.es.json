@@ -1,9 +1,193 @@
 {
+  "01177": {
+    "name": "Observador yithiano",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Yithiano.",
+    "text": "<b>Presa</b> - Menos cartas en la mano.\n<b>Obligado</b> - Cuando el Observador yithiano te ataque: Descarta 1 carta al azar de tu mano. Si no puedes, el Observador yithiano inflige +1 de daño y +1 de horror durante este ataque."
+  },
+  "01178": {
+    "name": "Oferta de poder",
+    "typeCode": "treachery",
+    "traits": "Pacto.",
+    "text": "Peligro.\n<b>Revelación</b> - Debes (elige una opción): Robar 2 cartas y colocar 2 fichas de Perdición sobre el plan en curso (este efecto puede hacer avanzar el plan en curso) o recibir 2 puntos de horror.",
+    "flavor": "Una voz te habla en tu cabeza y te oferece poder… por un precio."
+  },
+  "02041": {
+    "name": "Actividad extracurricular",
+    "typeCode": "scenario",
+    "text": "<b>Fácil/Normal</b>\n[skull]: -1. Si fallas, descarta las 3 primeras cartas de tu mazo.\n[cultist]: -1, o bien -3 si hay 10 o más cartas en tu pila de descartes.\n[elder_thing]: -X. Descarta las 2 primeras cartas de tu mazo. X es el coste impreso total de las cartas descartadas.",
+    "backText": "<b>Difícil/Experto</b>\n[skull]: -2. Si fallas, descarta las 5 primeras cartas de tu mazo.\n[cultist]: -1, o bien -5 si hay 10 o más cartas en tu pila de descartes.\n[elder_thing]: -X. Descarta las 3 primeras cartas de tu mazo. X es el coste impreso total de las cartas descartadas."
+  },
+  "02042": {
+    "name": "Aulas tranquilas",
+    "typeCode": "agenda",
+    "text": "",
+    "backName": "Algo se agita",
+    "backText": "Cada investigador que tenga 5 o más cartas en su pila de descartes recibe 1 punto de horror. Cada investigaddor que tenga 10 o más cartas en su pila de descartes recibe 2 puntos de horror en lugar de 1.\nSi los jugadores han completado La casa siempre gana, avanza directamente al plan 2b.\nSi Actividad extracurricular es el primer escenario de la campaña, avanza al plan 2a.",
+    "flavor": "Habéis llegado al campus de la Universidad Miskatonic en busca del profesor Warren Rice. Las clases han terminado, y un misterioso silencio reina en el ambiente del patio principal.",
+    "backFlavor": "En la universidad no se oye ni un alma. Las sombras se enroscan alrededor de vuestros pues al caminar, y juraríais que hay algo que os sigue a cada paso que dais. ¿Es sólo vuestra imaginación? ¿O realmente hau algo, o alguien, que os acecha?"
+  },
+  "02043": {
+    "name": "En mitad de la noche",
+    "typeCode": "agenda",
+    "text": "El tamaño de mano máximo de cada investigador queda reducido en 3 cuando compruebe el tamaño de su mano durante la fase de mantenimiento.",
+    "backName": "Un experimento que salió mal",
+    "backText": "Si el Lugar Residencia Estudiantil no está en juego, ponlo en juego.\nSi El experimento está en juego, muévelo 1 Lugar hacia la Residencia Estudiantil.\nSi El experimento no está en juego, haz que aparezca en el Edificio de Ciencias.",
+    "flavor": "La desaparición del profesor Rice no es el único suceso extraño en la Universidad. No estáis seguros de qué está sucediendo exactamente, pero empezáis a creer que Armitage tenía razón en pedir vuestra ayuda.",
+    "backFlavor": "Un grito de miedo resuena por el campus, y varios estudiantes vienen huyendo desde el lado este de la universidad, donde se encuentra el edificio de Ciencias. ¿Estará relacionado este alboroto con la desaparición del profesor Rice?"
+  },
+  "02044": {
+    "name": "La bestia desatada",
+    "typeCode": "agenda",
+    "text": "<b>Obligado</b> - Cuando fueses a hacer avanzar este plan por llegar a su umbral de perdición: En lugar de eso, retira toda la perdición que haya en juego y mueve El experimento 1 Lugar hacia la Residencia estudiantil.\n<b>Objetivo</b> - Si El experimento entra en la Residencia estudiantil, haz avanzar el plan.",
+    "backName": "No llegáis a tiempo",
+    "backText": "Cada investigador recibe 3 puntos de horror inmediatamente. A continuación, pasa a <b>(→R4)</b>.",
+    "flavor": "Una especie de criatura salvaje anda suelta. Sea lo que sea, parece que se dirige hacia la residencia estudiantil de la universidad.",
+    "backFlavor": "Antes de que podáis actuar, oís gritos provenientes de la parte norte del campus. Comenzáis a dirigiros hacia los gritos, pero vuestra visión se va oscureciendo con cada paso que dais. En cuanto tenéis a la criatura a la vista, sentís cómo la oscuridad se apodera de vosotros, y una fuerza os arrebata la consciencia. Todo se vuelve negro, y os desmayáis."
+  },
+  "02045": {
+    "name": "Después de clase",
+    "typeCode": "act",
+    "text": "",
+    "backName": "El jefe de bedeles",
+    "backText": "Añade la pila de descartes de Encuentros y la carta “Jazz” Mulligan puesta aparte al mazo de Encuentros y barájalo.",
+    "flavor": "Uno de los alumnos de Armitage vio por última vez al profesor Rice hace varias horas en el edificio de Humanidades.",
+    "backFlavor": "No lográis encontrar al profesor Rice, pero uno de los estudiantes con los que habláis menciona a un hombre extraño que entró en el despacho de Rice. Por desgracia, la puerta que lleva a los despachos del profesorado está cerrada a esta hora. El estudiante os dice que el jefe de bedeles, “Jazz”, podía dejaros entrar si lográis encontrarlo."
+  },
+  "02046": {
+    "name": "El paradero de Rice",
+    "typeCode": "act",
+    "text": "[action] Gasta 1 pista: Descarta las 5 primeras cartas del mazo de Encuentros, o bien las 10 primeras si sólo hay 1 jugador en la partida.\n<b>Obligado</b> - Si descartas a “Jazz” Mulligan por cualquier motivo, resuelve su efecto “Revelación”.\n<b>Objetivo</b> - Cuando tomes el control de “Jazz” Mulligan, haz avanzar el acto.",
+    "backName": "¡El experimento anda suelto!",
+    "backText": "Si el Lugar Laboratorios de alquimia no está en juego, ponlo en juego. Si estás en el plan 1 o 2, haz aparecer El experimento puesto aparte en los Laboratorios de alquimia.\nSi los jugadores han completado La casa siempre gana, pon la Pócima alquímica puesta aparte en juego bajo los Laboratorios de alquimia. Si Actividad extracurricular es el primer escenario de la campaña, en lugar de eso retira de la partida la Pócima alquímica puesta aparte.",
+    "flavor": "Preocupados por la seguridad del profesor Rice, buscáis al jefe de bedeles, que puede dejaros entrar en las secciones cerradas del campus.",
+    "backFlavor": "Convencéis a “Jazz” de que está ocurriendo algo extraño y el profesor Rice podría estar en peligro. No confía tanto en vosotros como para daros sus llaves, pero accede a acompañaros.\nDe pronto, oís un estruendo que proviene del edificio de Ciencias, y un estudiante viene corriendo hacia vosotos. —¡Ayuda! —grita—. ¡Hay una especie de animal suelto en los laboratorios de química! Apenos lo he entrevisto, pero… —se estremece—. ¡Creo que se dirige a la residencia estudiantil! ¡Tenéis que hacer algo!"
+  },
+  "02047": {
+    "name": "Seguridad del campus",
+    "typeCode": "act",
+    "text": "<b>Objetivo</b> - Encuentra y completa un objetivo de otra carta de Encuentro.",
+    "backName": "La muerte de la bestia",
+    "backText": "<b>(→R3)</b>",
+    "flavor": "Sólo tenéis unos instantes para reaccionar. Podéis advertir a los estudiantes de la residencia estudiantil y acompañarlos a un lugar seguro, o bien podéis continuar vuestra tarea de registrar los despachos del profesorado en busca del profesor Rice. O quizás podéis intentar matar a la bestia que amenaza el campus.",
+    "backFlavor": "La monstruosa criatura emite un terrible aullido cuando sucumbe a sus heridas y de desploma en el suelo. Un nauseabundo olor emana de su cadáver mientras su carne comienza a burbujear y espumar. Vuestro alivio se convierte en repulsión cuando el cuerpo empieza a encoger y desintegrarse. Minutos más tarde, el cuerpo se ha evaporado casi por completo dejando una masa pegajosa, y el terrible olor ha desaparecido. Dentro de los restos del cuerpo de la criatura no encontráis más que huesos: la estructura esquelética de un canino."
+  },
+  "02048": {
+    "name": "Patio principal de Miskatonic",
+    "typeCode": "location",
+    "traits": "Miskatonic.",
+    "text": "[action]: <b>Desistir.</b> “No logramos encontrar a Rice por ninguna parte…”. Os marcháis del campus, esperando que Armitage os perdone.",
+    "flavor": "Rodeados de vallas y puertas de hierro forjado, no lagráis evitar sentir que aquí tenéis tanto de prisioneros como de invitados.",
+    "backFlavor": "Un invierno demasiado precoz ha dejado los árboles desnudos. Sus ramas muertas silban cuando un gélido y cortante viento surca el patio vacío."
+  },
+  "02049": {
+    "name": "Edificio de Humanidades",
+    "typeCode": "location",
+    "traits": "Miskatonic.",
+    "text": "<b>Obligado</b> - Al final de tu turno, si estás en el Edificio de Humanidades: Descarta las X primeras cartas de tu mazo, donde X es la cantidad de horror que tengas.",
+    "flavor": "Se ha ido la luz, lo que sume a los pasillos del edificio en una densa oscuridad. No hay ni rastro del profesor Rice.",
+    "backFlavor": "La última vez que vieron al profesor Rice fue en el edificio de Humanidades, dando una de sus clases de latín. De las turbias ventanas de la desgastada estructura no sale ninguna luz, y todo es silencioso en la noche a vuestro alrededor."
+  },
+  "02050": {
+    "name": "Biblioteca Orne",
+    "typeCode": "location",
+    "traits": "Miskatonic.",
+    "text": "Debes gastar 1 acción adicional para investigar la Biblioteca Orne.",
+    "flavor": "La biblioteca Orne es un laberinto de estanterías polvorientas y pasillos mal iluminados.",
+    "backFlavor": "Con sus tres pisos de desgastado granito gris, la biblioteca parece más un relicario que un lugar de aprendizaje. Gárgolas de piedra montan guardia sobre las ventanas arqueadas, y hay una inscripción en latín alrededor de las puertas dobles que coronan una ancha escalinata de piedra."
+  },
+  "02051": {
+    "name": "Sindicato de estudiantes",
+    "typeCode": "location",
+    "traits": "Miskatonic.",
+    "text": "<b>Obligado</b> - Después de que el Sindicato de estudiantes sea revelado: Pon en juego la Residencia estudiantil puesta aparte.\n[action][action]: Cúrate 1 punto de daño y 1 punto de horror.",
+    "backFlavor": "Incluso a una hora tan tardía, podéis oír voces apagadas que llegan del interior del sindicato de estudiantes. Puede que alguno de ellos sepa dónde está el profesor Rice."
+  },
+  "02052": {
+    "name": "Residencia estudiantil",
+    "typeCode": "location",
+    "traits": "Miskatonic.",
+    "text": "<b>Objetivo</b> - Si los investigadores que estén en la Residencia estudiantil gastan, como grupo, 3 pistas[per_investigator]: <b>(→R2)</b>",
+    "backText": "La puerta que da acceso a la Residencia estudiantil está cerrada con llave. No puedes moverte a la Residencia estudiantil.",
+    "flavor": "Mientras exploráis estos edificios antiguos pero bien conservados, os descubrís preguntándoos si las camas son cómodas…",
+    "backFlavor": "La silueta de ladrillos rojos de la residencia del oeste era visible a trávés de los árboles…<br><cite>Graham McNeill, Los gules de Miskatonic</cite>"
+  },
+  "02053": {
+    "name": "Edificio de administración",
+    "typeCode": "location",
+    "traits": "Miskatonic.",
+    "text": "<b>Obligado</b> - Después de que el Edificio de administración sea revelado: Pon en juego los Despachos del profesorado puestos aparte.\n<b>Obligado</b> - Al final del turno, si estás en el Edificio de administración: Descarta la primera carta de tu mazo.",
+    "backFlavor": "Varias enredaderas suben por el avejentado edificio de administración como si quisieran hacerse con él. El antiguo inmueble está en una sección aislada del campus, alejado del bullicio cotidionao de los alumnos."
+  },
+  "02054": {
+    "name": "Despachos del profesorado",
+    "typeCode": "location",
+    "subname": "La noche aún es joven",
+    "traits": "Miskatonic.",
+    "text": "<b>Obligado</b> - Después de que los Despachos del profesorado sean revelados: Busca un Enemigo [[Humanoide]] en el mazo y la pila de descartes de Encuentros y haz que aparezca aquí. Baraja el mazo de encuentros.\n<b>Objetivo</b> - Si los investigadores que están en los Despachos del profesorado gastan, como grupo, 2 pistas[per_investigator]: <b>(→R1)</b>",
+    "backText": "La puerta que da acceso a los Despachos del profesorado está cerrada con llave. No puedes moverte a los Despachos del profesorado.",
+    "backFlavor": "Llegáis a una puerta cerrada que se encuentra al final de las escaleras que llevan al tercer piso del edificio de administración. A través del cristal esmerilado, atisbáis una sombra que cruza el pasillo a toda velocidad."
+  },
+  "02055": {
+    "name": "Despachos del profesorado",
+    "typeCode": "location",
+    "subname": "Se ha hecho tarde",
+    "traits": "Miskatonic.",
+    "text": "",
+    "backText": "La puerta que da acceso a los Despachos del profesorado está cerrada con llave. No puedes moverte a los Despachos del profesorado.",
+    "flavor": "No hay ni rastro del profesor Rice en su despacho. Le llamáis, pero su nombre resuena por el pasillo sin que haya respuesta.",
+    "backFlavor": "Llegáis a una puerta cerrada que se encuentra al final de las escaleras que llevan al tercer piso del edificio de administración. A través del cristal esmerilado, creéis ver una sombra que cruza el pasillo a toda velocidad… o quizá sea sólo vuestra imaginación."
+  },
+  "02056": {
+    "name": "Edificio de Ciencias",
+    "typeCode": "location",
+    "traits": "Miskatonic.",
+    "text": "<b>Obligado</b> - Después de que el Edificio de Ciencias sea revelado: Pon en juego los Laboratorios de alquimia puestos aparte.",
+    "flavor": "Un rastro de cieno viscoso surca los pasillos del primer piso del edificio de Ciencias, en dirección al sótano.",
+    "backFlavor": "El edificio de Ciencias domina el lado este del campus. No hay luz en ninguna de las ventanas, excepto en una que brilla débilmente en la esquina del sótano."
+  },
+  "02057": {
+    "name": "Laboratorios de alquimia",
+    "typeCode": "location",
+    "traits": "Miskatonic.",
+    "text": "[action]: <b>Investigar.</b> Si tienes éxito, en lugar de descubrir pistas, coge la Pócima alquímica de debajo de este Lugar si es posible.",
+    "backText": "La puerta que da acceso a los Laboratorios de alquimia está cerrada con llave. No puedes moverte a los Laboratorios de alquimia.",
+    "flavor": "Los estantes de este laboratorio están poblados de peculiares brebajes y extraños reactivos. ¿Qué clase de ciencia se estudia aquí abajo?",
+    "backFlavor": "Un olor acre sube desde el laboratorio del piso inferior. El inconfundible siseo de un quemador rompe el silencio del pasillo."
+  },
+  "02058": {
+    "name": "El experimento",
+    "typeCode": "enemy",
+    "subname": "Algo ha ido terriblemente mal",
+    "traits": "Monstruo. Abominación. Élite.",
+    "text": "Descomunal.\nEl experimento recibe +3 de salud [per_investigator].\n<b>Obligado</b> - Cuando comience la fase de Enemigos: Prepara El experimento.\n<b>Objetivo</b> - Si El experimento es derrotado, haz avanzar el acto al acto 3b."
+  },
+  "02059": {
+    "name": "Pócima alquímica",
+    "typeCode": "asset",
+    "traits": "Objeto. Ciencia.",
+    "text": "[action]: <b>Combatir.</b> Este ataque usa [intellect] en lugar de [combat]. Si se usa para atacar a El experimento, este ataque inflige +6 de daño. Si tienes éxito, retira la Pócima alquímica de la partida."
+  },
+  "02060": {
+    "name": "\"Jazz\" Mulligan",
+    "typeCode": "asset",
+    "subname": "El jefe de bedeles",
+    "traits": "Aliado. Miskatonic.",
+    "text": "<b>Revelación</b> - Pon a “Jazz” Mulligan en juego en tu Lugar.\nMientras “Jazz” Mulligan no esté controlado por un investigador, obtiene: “[action]: <b>Negociar.</b> Realiza una prueba de [intellect] (3). Si tiene éxito, toma el control de 'Jazz' Mulligan.”.\nMientras controles a “Jazz” Mulligan, ignoras el texto de todos los Lugares [[Miskatonic]] sin revelar."
+  },
+  "02061": {
+    "name": "Profesor Warren Rice",
+    "typeCode": "asset",
+    "subname": "Profesor de idiomas",
+    "traits": "Aliado. Miskatonic.",
+    "text": "Recibes +1 [intellect].\n[reaction] Después de que descubras la última pista restante en tu Lugar, agota al Profesor Warren Rice: Roba 1 carta."
+  },
   "02083": {
     "name": "Visiones de futuros pasados",
     "typeCode": "treachery",
     "traits": "Maleficio.",
-    "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (5). Por cada punto que te falte para tener éxito, descarta la primera carta de tu mazo."
+    "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (5). Por cada punto que te falte para tener éxito, descarta la primera carta de tu mazo.",
+    "flavor": "¿Son visiones de cosas que ocurrirán, o de cosas que podrían ocurrir? ¿O es posible que estos horrores ya hayan tenido lugar?"
   },
   "02084": {
     "name": "Al otro lado del velo",
@@ -11,17 +195,38 @@
     "traits": "Maleficio.",
     "text": "Oleada.\n<b>Revelación</b> - Pon Al otro lado del velo en juego en tu zona de amenaza si no hay ninguna copia de Al otro lado del velo en tu zona de amenaza.\n<b>Obligado</b> - Si no hay cartas en tu mazo: Recibe 10 puntos de daño y descarta Al otro lado del velo."
   },
+  "02085": {
+    "name": "Luz de Aforgomon",
+    "typeCode": "treachery",
+    "traits": "Pacto. Poder.",
+    "text": "Peligro.\n<b>Revelación</b> - Debes vincular Luz de Aforgomon al plan en curso o al acto en curso.\nLímite de 1 por plan/acto. Considera todo el daño como daño directo y todo el horror como horror directo."
+  },
+  "02086": {
+    "name": "Esclavo",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Monstruo. Abominación.",
+    "text": "<b>Aparición</b> - El Lugar que tenga más pistas.\nRepresalia.",
+    "flavor": "Una malevolencia ha dominado sus mentes, convirtiéndolos en marionetas sin alma."
+  },
+  "02087": {
+    "name": "Mago de Yog-Sothoth",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Hechicero.",
+    "text": "<b>Presa</b> - Menos cartas en la mano.\nCazador.\n<b>Obligado</b> - Cuando el investigador enfrentado robe una carta [[Maleficio]] o [[Pacto]]: El Mago de Yog-Sothoth ataca a ese investigador."
+  },
   "02090": {
     "name": "Chotacabras",
     "typeCode": "enemy",
     "traits": "Criatura.",
-    "text": "Indiferente. Cazador.\nCada investigador que esté en el mismo Lugar que el Chotacabras recibe -1 [willpower], -1 [intellect], -1 [combat], y -1 [agility]."
+    "text": "Indiferente. Cazador.\nCada investigador que esté en el mismo Lugar que el Chotacabras recibe -1 [willpower], -1 [intellect], -1 [combat], y -1 [agility].",
+    "flavor": "Afirman que tales pájaros son psicopompos que están al acecho de las almas de los muertos... <cite>H. P. Lovecraft, \"El Horror de Dunwich\"</cite>"
   },
   "02091": {
     "name": "Ávidos de muerte",
     "typeCode": "treachery",
     "traits": "Augurio.",
-    "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (2). Aumenta la dificultad de esta prueba en 1 por cada punto de daño que tengas. Si fracasas, recibe 2 puntos de horror."
+    "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (2). Aumenta la dificultad de esta prueba en 1 por cada punto de daño que tengas. Si fracasas, recibe 2 puntos de horror.",
+    "flavor": "Si consiguen atrapar el alma fugitiva en el momento en que abandona el cuerpo se ponen a revolotear al instante y prorrumpen en diabólicas risotadas... <cite>H. P. Lovecraft, \"El Horror de Dunwich\"</cite>"
   },
   "02100": {
     "name": "Empujado al otro lado",

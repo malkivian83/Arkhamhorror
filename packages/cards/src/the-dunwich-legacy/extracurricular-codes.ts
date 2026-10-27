@@ -1,0 +1,32 @@
+export const EXTRACURRICULAR_ACTIVITY = 'extracurricular-activity'
+export const EA = {
+  reference: '02041',
+  quietHalls: '02042',
+  deadOfNight: '02043',
+  beastUnleashed: '02044',
+  afterHours: '02045',
+  ricesWhereabouts: '02046',
+  campusSafety: '02047',
+  quad: '02048',
+  humanities: '02049',
+  library: '02050',
+  union: '02051',
+  dormitories: '02052',
+  administration: '02053',
+  facultyEarly: '02054',
+  facultyLate: '02055',
+  science: '02056',
+  labs: '02057',
+  experiment: '02058',
+  concoction: '02059',
+  jazz: '02060',
+  rice: '02061',
+} as const
+export const DUNWICH_NOTES = {
+  riceRescued: 'dunwichRiceRescued',
+  riceKidnapped: 'dunwichRiceKidnapped',
+  studentsRescued: 'dunwichStudentsRescued',
+  studentsLost: 'dunwichStudentsLost',
+  experimentDefeated: 'dunwichExperimentDefeated',
+  unconscious: 'dunwichUnconscious',
+} as const

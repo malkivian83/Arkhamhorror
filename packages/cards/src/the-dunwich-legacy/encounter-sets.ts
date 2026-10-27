@@ -9,8 +9,10 @@ import {
 } from '@lcg/engine'
 import { copies, damage, effectTest, enemy, treachery } from '../scenario-helpers'
 import { THE_BEYOND, THE_BEYOND_CODES } from './the-beyond'
+import { BISHOPS_THRALLS, AGENTS_OF_YOG, REMAINING_CODES } from './remaining-encounters'
 
 export const DUNWICH_SETS = {
+  ...REMAINING_CODES,
   ...THE_BEYOND_CODES,
   visionsOfFuturesPast: '02083',
   beyondTheVeil: '02084',
@@ -31,6 +33,8 @@ export const whippoorwill = enemy({
 })
 
 export const DUNWICH_ENCOUNTER_SETS = {
+  bishopsThralls: BISHOPS_THRALLS,
+  agentsOfYog: AGENTS_OF_YOG,
   theBeyond: THE_BEYOND,
   sorcery: [
     ...copies(

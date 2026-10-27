@@ -35,7 +35,10 @@ it.each(['en', 'es'] as const)(
     const rice = html.match(/<input\b[^>]*value="extracurricular-activity"[^>]*>/)?.[0]
     expect(rice).toContain('checked')
     expect(html).toContain('value="the-house-always-wins"')
-    expect(html).toContain(text.campaign.notImplemented)
+    const start = html.match(/<button\b[^>]*class="[^"]*\bdock-start\b[^"]*"[^>]*>/)?.[0]
+    expect(start).toBeDefined()
+    expect(start).not.toContain('disabled')
+    expect(html).toContain(text.setup.beginCampaign)
     expect(html).not.toContain('story.dunwich.')
   },
 )

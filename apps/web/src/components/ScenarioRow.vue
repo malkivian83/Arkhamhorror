@@ -32,6 +32,9 @@ const actClues = computed(() => cluesToAdvanceAct(props.state))
 const besideAgenda = computed(() =>
   Object.values(props.state.treacheries).filter((tr) => tr.placement.type === 'agenda'),
 )
+const besideAct = computed(() =>
+  Object.values(props.state.treacheries).filter((tr) => tr.placement.type === 'act'),
+)
 
 function showDiscard() {
   showPile({
@@ -178,6 +181,14 @@ const sortedBag = computed(() =>
       </TableTarget>
     </div>
 
+    <TableTarget
+      v-for="tr in besideAct"
+      :key="tr.id"
+      :target="`treachery:${tr.id}`"
+      class="beside-agenda"
+    >
+      <GameCard :code="tr.code" :name="tr.name" :width="40" thumbnail color="#b5462f" />
+    </TableTarget>
     <div class="scenario-stat encounter-deck" role="group" :aria-label="t('table.encounterDeck')">
       <img src="/local-assets/home/icon-decks.webp" alt="" width="28" height="28" />
       <span class="stat-copy"
