@@ -21,6 +21,7 @@ const portable = new Set([
   'code',
   'abilities',
   'play',
+  'effect',
   'canPlay',
   'handReactions',
   'reactions',
@@ -50,6 +51,9 @@ export function registerReviewedReprint(code: string, behaviorSource: string): v
     ...source,
     code,
     ...(source.play ? { play: (s, i) => bind(source.play!(s, i)) } : {}),
+    ...(source.effect
+      ? { effect: (s, i, step, data) => bind(source.effect!(s, i, step, data)) }
+      : {}),
     ...(source.abilities ? { abilities: (s, a, i) => bind(source.abilities!(s, a, i)) } : {}),
     ...(source.handReactions
       ? { handReactions: (s, t, i) => bind(source.handReactions!(s, t, i)) }

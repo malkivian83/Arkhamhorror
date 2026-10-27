@@ -1,0 +1,10 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "cards": [
+    { "code": "04004", "module": "card-04004", "test": "card-04004.test.ts", "status": "verified" },
+    { "code": "04013", "module": "card-04013", "test": "card-04013.test.ts", "status": "verified" },
+    { "code": "04014", "module": "card-04014", "test": "card-04014.test.ts", "status": "verified" }
+  ]
+}

@@ -5,8 +5,10 @@
  */
 import {
   allPlayerCardDefs,
+  deckOptionAllows,
   isPermanent,
   nextInt,
+  offClassAllowed,
   playerCardDef,
   seedRng,
   type CardCode,
@@ -70,17 +72,13 @@ const matchesExtra = (card: PlayerCardDef, option: ExtraDeckOption) =>
 
 /** Permitida por las opciones de clase y nivel del investigador. */
 function byClass(investigator: CardCode, card: PlayerCardDef): boolean {
-  const options = byCode(investigator)?.deckOptions ?? []
+  const def = byCode(investigator)
   return (
     card.type !== 'investigator' &&
     isStandard(card.code) &&
     !card.reward &&
-    (options.some(
-      (o) =>
-        (card.classes ?? [card.class]).some((f) => o.classes.includes(f)) &&
-        (card.xp ?? 0) <= o.maxLevel,
-    ) ||
-      (!!byCode(investigator)?.offClassLevelZeroLimit && (card.xp ?? 0) === 0))
+    !!def &&
+    ((def.deckOptions ?? []).some((o) => deckOptionAllows(o, card)) || offClassAllowed(def, card))
   )
 }
 
@@ -171,11 +169,7 @@ export function validateDeck(
         c &&
         isStandard(code) &&
         !c.reward &&
-        !investigator.deckOptions!.some(
-          (o) =>
-            (c.classes ?? [c.class]).some((f) => o.classes.includes(f)) &&
-            (c.xp ?? 0) <= o.maxLevel,
-        )
+        !investigator.deckOptions!.some((o) => deckOptionAllows(o, c))
       )
     }).length
     if (count > offClass)

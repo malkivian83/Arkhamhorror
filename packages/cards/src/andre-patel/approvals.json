@@ -1,0 +1,28 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "cards": [
+    { "code": "60351", "module": "card-60351", "test": "card-60351.test.ts", "status": "verified" },
+    { "code": "60352", "module": "skills", "test": "skills.test.ts", "status": "verified" },
+    { "code": "60353", "module": "skills", "test": "skills.test.ts", "status": "verified" },
+    { "code": "60354", "module": "skills", "test": "skills.test.ts", "status": "verified" },
+    { "code": "60355", "module": "card-60355", "test": "card-60355.test.ts", "status": "verified" },
+    { "code": "60356", "module": "card-60356", "test": "card-60356.test.ts", "status": "verified" },
+    { "code": "60357", "module": "card-60357", "test": "deck.test.ts", "status": "verified" },
+    { "code": "60358", "module": "card-60358", "test": "deck.test.ts", "status": "verified" },
+    { "code": "60359", "module": "card-60359", "test": "deck.test.ts", "status": "verified" },
+    { "code": "60360", "module": "card-60360", "test": "deck.test.ts", "status": "verified" },
+    { "code": "60362", "module": "card-60362", "test": "deck.test.ts", "status": "verified" },
+    { "code": "60363", "module": "card-60363", "test": "deck.test.ts", "status": "verified" },
+    { "code": "60365", "module": "card-60365", "test": "deck.test.ts", "status": "verified" },
+    {
+      "code": "60368",
+      "module": "card-60368",
+      "test": "deck.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    { "code": "60371", "module": "card-60371", "test": "deck.test.ts", "status": "verified" }
+  ]
+}

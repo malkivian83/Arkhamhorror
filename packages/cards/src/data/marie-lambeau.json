@@ -1,0 +1,68 @@
+[
+  {
+    "code": "05006",
+    "name": "Marie Lambeau",
+    "type": "investigator",
+    "class": "mystic",
+    "traits": ["Performer", "Sorcerer"],
+    "deckLimit": 1,
+    "health": 6,
+    "sanity": 8,
+    "unique": true,
+    "skills": {
+      "willpower": 4,
+      "intellect": 4,
+      "combat": 1,
+      "agility": 3
+    },
+    "deckSize": 30,
+    "deckOptions": [
+      {
+        "classes": [],
+        "traits": ["Spell"],
+        "maxLevel": 5
+      },
+      {
+        "classes": ["mystic"],
+        "maxLevel": 3
+      },
+      {
+        "classes": ["neutral"],
+        "maxLevel": 5
+      },
+      {
+        "classes": [],
+        "traits": ["Occult"],
+        "maxLevel": 0
+      }
+    ],
+    "offClassLevelZeroLimit": 5,
+    "offClassLevelZeroClasses": ["seeker", "survivor"],
+    "signatures": ["05018", "05019"]
+  },
+  {
+    "code": "05018",
+    "name": "Mystifying Song",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Spell", "Song"],
+    "deckLimit": 1,
+    "cost": 3,
+    "fast": true,
+    "icons": {
+      "wild": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "05019",
+    "name": "Baron Samedi",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Avatar"],
+    "deckLimit": 1,
+    "unique": true,
+    "slots": ["ally"],
+    "weakness": "weakness"
+  }
+]

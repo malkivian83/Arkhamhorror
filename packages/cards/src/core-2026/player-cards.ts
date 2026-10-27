@@ -27,6 +27,10 @@ import data from '../data/core-2026.json'
 import pete from '../data/ashcan-pete.json'
 import jenny from '../data/jenny-barnes.json'
 import lola from '../data/lola-hayes.json'
+import andre from '../data/andre-patel.json'
+import wendy from '../data/wendy-adams.json'
+import mateo from '../data/father-mateo.json'
+import marie from '../data/marie-lambeau.json'
 import jennyDecklist from '../jenny-barnes/decklist-1179.json'
 
 /**
@@ -59,6 +63,10 @@ registerPlayerCards([
   ...(pete as PlayerCardDef[]),
   ...(jenny as PlayerCardDef[]),
   ...(lola as PlayerCardDef[]),
+  ...(andre as PlayerCardDef[]),
+  ...(wendy as PlayerCardDef[]),
+  ...(mateo as PlayerCardDef[]),
+  ...(marie as PlayerCardDef[]),
 ])
 
 /** Código de carta a partir del número de colección de la caja (p. ej. 20 → "12020"). */
@@ -114,6 +122,67 @@ export const STARTER_DECKS: Record<string, DeckList> = {
       ...['12073', '12074', '12075', '12076', '12077', '12078', '12079', '12080'],
       ...['12086', '12088', '12089', '12090', '12094'].flatMap((c) => [c, c]),
       '12087',
+    ],
+  },
+  // André Patel: his official Investigator Starter Deck (two copies of each level 0 card of
+  // his pack) with his four signatures and its basic weakness, Unaware.
+  andre: {
+    investigator: 7,
+    investigatorCode: '60351',
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...['60352', '60353', '60354', '60355', '60356'],
+      ...Array.from({ length: 15 }, (_, n) => String(60357 + n)).flatMap((c) => [c, c]),
+    ],
+  },
+  // Wendy Adams: Survivor cards of the original Core Set, many events for her Amulet, two
+  // level 0 Rogue cards and Neutral skills.
+  wendy: {
+    investigator: 13,
+    investigatorCode: '01005',
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      '01014',
+      '01015',
+      '12100',
+      ...['01072', '01074', '01075', '01076', '01077', '01078', '01079'].flatMap((c) => [c, c]),
+      ...['01080', '01081', '01050', '01088', '01089', '01092', '01093'].flatMap((c) => [c, c]),
+      '01044',
+      '03114',
+    ],
+  },
+  // Father Mateo: Mystic spells and charms (Lucky Charm is Blessed), events to protect the
+  // group and Neutral skills and tools.
+  mateo: {
+    investigator: 10,
+    investigatorCode: '04004',
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      '04013',
+      '04014',
+      '12101',
+      ...['01060', '01062', '12061', '02029', '04029', '01065', '01064'].flatMap((c) => [c, c]),
+      ...['01066', '01067', '01089', '01093', '01088', '01087'].flatMap((c) => [c, c]),
+      ...['01059', '02030', '06163', '01086'],
+    ],
+  },
+  // Marie Lambeau: Spells (Moonlight Ritual removes her doom), Mystic support, two level 0
+  // Survivor cards (Lucky!) and Neutral skills.
+  marie: {
+    investigator: 10,
+    investigatorCode: '05006',
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      '05018',
+      '05019',
+      '12097',
+      ...['01060', '04029', '02028', '01065', '01066', '02267', '01062'].flatMap((c) => [c, c]),
+      ...['01064', '01080', '01089', '01093', '01088', '01067'].flatMap((c) => [c, c]),
+      ...['02030', '06163', '01059', '02029'],
     ],
   },
   pete: {

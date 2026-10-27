@@ -1,0 +1,16 @@
+import approvals from './approvals.json'
+import './card-60351'
+import './skills'
+import './card-60355'
+import './card-60356'
+import './card-60357'
+import './card-60358'
+import './card-60359'
+import './card-60360'
+import './card-60362'
+import './card-60363'
+import './card-60365'
+import './card-60368'
+import './card-60371'
+// Definitions are registered with the core investigators so signatures are known early.
+export const ANDRE_RENDERED_CODES = approvals.cards.map((c) => c.code)

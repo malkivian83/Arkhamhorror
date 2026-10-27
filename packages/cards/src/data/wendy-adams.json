@@ -1,0 +1,54 @@
+[
+  {
+    "code": "01005",
+    "name": "Wendy Adams",
+    "type": "investigator",
+    "class": "survivor",
+    "traits": ["Drifter"],
+    "deckLimit": 1,
+    "health": 7,
+    "sanity": 7,
+    "unique": true,
+    "skills": {
+      "willpower": 4,
+      "intellect": 3,
+      "combat": 1,
+      "agility": 4
+    },
+    "deckSize": 30,
+    "deckOptions": [
+      {
+        "classes": ["survivor", "neutral"],
+        "maxLevel": 5
+      },
+      {
+        "classes": ["rogue"],
+        "maxLevel": 2
+      }
+    ],
+    "signatures": ["01014", "01015"]
+  },
+  {
+    "code": "01014",
+    "name": "Wendy's Amulet",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Relic"],
+    "deckLimit": 1,
+    "unique": true,
+    "cost": 2,
+    "icons": {
+      "wild": 2
+    },
+    "slots": ["accessory"]
+  },
+  {
+    "code": "01015",
+    "name": "Abandoned and Alone",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Madness"],
+    "deckLimit": 1,
+    "weakness": "weakness"
+  }
+]

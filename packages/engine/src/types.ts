@@ -102,6 +102,10 @@ export interface Investigator {
   doom?: number
   /** Le queda la acción adicional que solo sirve para evitar (Trish Scarborough). */
   extraEvade?: boolean
+  /** The trait-restricted additional action was used this turn (Marie Lambeau). */
+  traitActionUsed?: boolean
+  /** Actions spent in the tagged round, including additional actions (Center Stage). */
+  spentActions?: { round: number; count: number }
   extraMove?: boolean
   osirisUsed?: boolean
   osirisProtected?: boolean
@@ -198,6 +202,8 @@ export interface EnemyCard {
 export interface Enemy extends EnemyCard {
   /** Investigadores a los que no atacará esta ronda. */
   spares?: { investigator: InvestigatorId; round: number }[]
+  /** Keywords gained until the end of the tagged round (Pay Your Dues: aloof). */
+  roundKeywords?: { keyword: EnemyKeyword; round: number }[]
   /** Perdición sobre el enemigo (cuenta para el plan). */
   doom?: number
   /** Recursos puestos como "pistas" del códex (Smoke and Mirrors). */
@@ -395,8 +401,11 @@ export type SkillIcon = SkillType | 'wild'
 /** Datos de una carta de jugador (sin texto). */
 /** Opción de construcción de mazo del reverso de un investigador. */
 export interface DeckOption {
+  /** Empty: any class, when the option is defined by traits. */
   classes: string[]
   maxLevel: number
+  /** The card must also have one of these traits (Father Mateo: Blessed cards level 0–3). */
+  traits?: string[]
 }
 
 /** Opción de construcción que añade una carta (Collector: "un apoyo Relic o Charm…"). */
@@ -418,6 +427,10 @@ export interface PlayerCardDef {
   elderSignModifier?: number
   deckOptions?: DeckOption[]
   offClassLevelZeroLimit?: number
+  /** Classes those other level 0 cards may belong to (Marie Lambeau: Seeker and/or Survivor). */
+  offClassLevelZeroClasses?: string[]
+  /** Experience added when a campaign begins (Father Mateo: 5). */
+  bonusExperience?: number
   /** "Al menos `min` cartas de cada una de `count` clases distintas" (Lola Hayes). */
   classMinimum?: { classes: string[]; count: number; min: number }
   /** Cartas exclusivas; un código repetido exige esas copias (Lola Hayes: 2 y 2). */
@@ -577,6 +590,8 @@ export interface TokenEffect {
   onFailBy?: { atLeast: number; then: Message[] }
   /** Mensajes adicionales si la prueba tiene éxito (signo arcano). */
   onSuccess?: Message[]
+  /** RR Automatic Success: the test succeeds with a total difficulty of 0 (Wendy Adams). */
+  autoSucceed?: boolean
   /** Mensajes si la prueba falla o se supera por menos de `margin`. */
   onSuccessBelow?: { margin: number; then: Message[] }
   /** Se resuelven en cuanto se revela la ficha. */
@@ -639,8 +654,16 @@ export interface SkillTest {
   ignoredTokens?: ChaosToken[]
   /** La prueba tiene éxito por 0 pase lo que pase (Scrape By). */
   forcedSuccess?: boolean
+  /** RR Automatic Success from a resolved token; automatic failure still prevails. */
+  autoSucceed?: boolean
+  /** Token held during its "when revealed" window, and what it is treated as. */
+  revealing?: { token: ChaosToken; face: ChaosToken }
+  /** Revealed tokens treated as another symbol; the physical token returns to the bag. */
+  treatedAs?: { token: ChaosToken; face: ChaosToken }[]
   /** Solo se puede comprometer la carta superior de la pila de descartes (Habitación 245). */
   commitRule?: 'discardTop'
+  /** Resources paid as additional costs to commit cards, by card code ("Watch this!"). */
+  commitPayments?: Record<CardCode, number>
 }
 
 // ---------------------------------------------------------------------------
@@ -944,8 +967,45 @@ export type Message =
       focus?: AssetId | 'investigator'
     }
   | { type: 'DamageAsset'; asset: AssetId; damage: number; horror: number }
-  /** Revela una ficha; con `token`, resuelve esa ficha ya sacada (e ignora `ignored`). */
-  | { type: 'RevealChaosToken'; token?: ChaosToken; ignored?: ChaosToken }
+  /**
+   * Revela una ficha; con `token`, resuelve esa ficha ya sacada (e ignora `ignored`).
+   * `pending`: resolve the token held during its "when revealed" window. `fromBag`: the
+   * investigator declined to resolve a sealed token instead (The Codex of Ages).
+   */
+  | {
+      type: 'RevealChaosToken'
+      token?: ChaosToken
+      ignored?: ChaosToken
+      pending?: boolean
+      fromBag?: boolean
+    }
+  /**
+   * RR: a chaos token revealed outside a skill test by `investigator` (scenario effects,
+   * Premonition). Premonition and The Codex of Ages may replace it, "when revealed" reactions
+   * may cancel it or treat it as another symbol, and `then` resolves with `data.token` (what
+   * it is treated as) and `data.physical`; the token stays in, or returns to, the bag.
+   */
+  | {
+      type: 'RevealTokenOutsideTest'
+      investigator: InvestigatorId
+      then: Extract<Message, { type: 'ScenarioSpecific' | 'PlayerCardEffect' }>
+      token?: ChaosToken
+      pending?: boolean
+      fromBag?: boolean
+      /** Once-per-ability reactions already used on this reveal (Wendy Adams). */
+      used?: string[]
+    }
+  /** Cancel the held token and return it to the bag (Wendy Adams), and reveal a new one. */
+  | { type: 'CancelRevealedToken'; redraw?: boolean; use?: string }
+  /** Cancel the held token and treat it as another symbol (Father Mateo). */
+  | { type: 'TreatRevealedTokenAs'; token: ChaosToken }
+  /** Discard the asset and resolve its sealed token as if revealed (The Codex of Ages). */
+  | {
+      type: 'ResolveSealedToken'
+      asset: AssetId
+      /** Outside a skill test, the reveal it replaces. */
+      outside?: Extract<Message, { type: 'RevealTokenOutsideTest' }>
+    }
   /** La próxima ficha se revela de dos en dos y se elige una (Mask of Silenus). */
   | { type: 'RevealExtraToken'; investigator: InvestigatorId }
   /** La prueba en curso tiene éxito por 0 (Scrape By). */
@@ -1030,6 +1090,14 @@ export type Message =
   /** Busca en el mazo y el descarte de encuentros un enemigo con el rasgo y lo roba. */
   | { type: 'SearchEncounterForTrait'; investigator: InvestigatorId; trait: string }
   | { type: 'LoseActions'; investigator: InvestigatorId; amount: number }
+  /** One restricted additional action is lost (after the standard ones). */
+  | {
+      type: 'LoseAdditionalAction'
+      investigator: InvestigatorId
+      action: 'evade' | 'move' | 'trait'
+    }
+  /** Additional actions this turn, only during that investigator's turn (André Patel). */
+  | { type: 'GainActions'; investigator: InvestigatorId; amount: number }
   /** Elige un enemigo de tu localización al resolverse y le hace daño. */
   | { type: 'ChooseEnemyToDamage'; investigator: InvestigatorId; amount: number }
   /** Cancela el ataque de este enemigo que se está resolviendo (Counterattack). */
@@ -1048,7 +1116,14 @@ export type Message =
       picks: number
       arrange?: boolean
     }
-  | { type: 'ResolveSkillTest' }
+  /** `windowResolved`: the "when you would succeed" reactions were offered (Extravagant Ring). */
+  | { type: 'ResolveSkillTest'; windowResolved?: boolean }
+  /** The enemy disengages from each investigator (Pay Your Dues). */
+  | { type: 'DisengageEnemy'; enemy: EnemyId }
+  /** The enemy gains a keyword until the end of the round (Pay Your Dues: aloof). */
+  | { type: 'EnemyGainsKeyword'; enemy: EnemyId; keyword: EnemyKeyword }
+  /** Adds to (or, negative, takes from) the resources paid to commit a card ("Watch this!"). */
+  | { type: 'CommitPayment'; code: CardCode; amount: number }
   | { type: 'EndSkillTest' }
   | { type: 'EngageEnemy'; enemy: EnemyId; investigator: InvestigatorId; windowResolved?: boolean }
   | { type: 'CheckEngagement'; location: LocationId; enemies?: EnemyId[] }
@@ -1102,7 +1177,8 @@ export type Message =
    * jefe elige en cuál, salvo que se indique.
    */
   | { type: 'PlaceDoom'; amount: number; agenda?: AgendaDeck }
-  | { type: 'CheckAgenda' }
+  /** `windowResolved`: the "agenda would advance" reactions were offered (Mystifying Song). */
+  | { type: 'CheckAgenda'; windowResolved?: boolean }
   /** Avanza el plan en curso del segundo mazo de Plan. */
   | { type: 'AdvanceSecondAgenda' }
   | { type: 'SecondAgendaAdvanced'; from?: CardCode }
@@ -1111,7 +1187,8 @@ export type Message =
   /** `paid`: las pistas ya se han pagado. */
   | { type: 'AdvanceAct'; paid?: boolean }
   | { type: 'SpendClues'; investigator: InvestigatorId; amount: number }
-  | { type: 'DrawEncounterCard'; investigator: InvestigatorId }
+  /** `ifEnemy`: resolved first when the card actually drawn is an enemy (Unaware). */
+  | { type: 'DrawEncounterCard'; investigator: InvestigatorId; ifEnemy?: Message[] }
   | {
       type: 'ResolveEncounterCard'
       investigator: InvestigatorId
@@ -1156,6 +1233,8 @@ export type Message =
       limit?: AbilityLimit
       costs?: Message[]
       playFromDiscard?: { code: CardCode; discount: number }
+      /** A Parley action: parley costs apply and `afterParley` reactions follow. */
+      parley?: boolean
       then: Message[]
     }
   | { type: 'CheckActObjective' }
@@ -1176,6 +1255,12 @@ export type Message =
   | { type: 'MoveSetAsideToEncounterDiscard'; code: CardCode; count?: number }
   /** Baraja en el mazo de encuentros las cartas apartadas con estos códigos. */
   | { type: 'ShuffleSetAsideIntoEncounter'; codes: CardCode[] }
+  /** Every card in the investigator's discard pile is removed from the game (Abandoned and Alone). */
+  | { type: 'RemoveDiscardFromGame'; investigator: InvestigatorId }
+  /** The card is removed from the game from its owner's discard pile (Mystifying Song). */
+  | { type: 'RemoveFromDiscard'; investigator: InvestigatorId; code: CardCode }
+  /** Until the end of the phase, the agenda cannot advance by its doom threshold (Mystifying Song). */
+  | { type: 'HoldAgenda' }
   /** Descarta las primeras cartas del mazo de un investigador. */
   | { type: 'MillDeck'; investigator: InvestigatorId; amount: number }
   /** Gastar pistas "como grupo" (de cualquier investigador). */
@@ -1301,8 +1386,19 @@ export type Message =
   /** El investigador elige una localización conectada a la que moverse. */
   | { type: 'ChooseMove'; investigator: InvestigatorId; revealedOnly?: boolean; range?: number }
   | { type: 'AtEndOfTurn'; investigator: InvestigatorId; then: Message[] }
-  /** Premonition: sella una ficha al azar de la bolsa. */
-  | { type: 'SealToken'; investigator: InvestigatorId; code: CardCode }
+  /**
+   * Premonition: sella una ficha al azar de la bolsa. With `token` and `holder`, search the bag
+   * for that token and seal it on a card in play (The Codex of Ages, Serpents of Yig).
+   */
+  | {
+      type: 'SealToken'
+      investigator: InvestigatorId
+      code: CardCode
+      token?: ChaosToken
+      /** Preferred bag position of `token` (the one just revealed). */
+      index?: number
+      holder?: { type: 'asset'; id: AssetId } | { type: 'enemy'; id: EnemyId }
+    }
   | { type: 'AddTreacheryTokens'; treachery: TreacheryId; amount: number; discardAt?: number }
   /** Saca una debilidad del juego y la baraja en el mazo de su dueño (o de `investigator`). */
   | { type: 'ShuffleTreacheryIntoDeck'; treachery: TreacheryId; investigator?: InvestigatorId }
@@ -1380,6 +1476,8 @@ export type ClueHolder =
 export type Trigger =
   | { type: 'beforeEnemySpawns'; location: LocationId; card: EnemyCard }
   | { type: 'afterRevealChaosToken'; investigator: InvestigatorId; token: ChaosToken }
+  /** Before the revealed token resolves; `state.skillTest.revealing` holds it. */
+  | { type: 'whenRevealChaosToken'; investigator: InvestigatorId; token: ChaosToken }
   | {
       type: 'afterDiscoverClues'
       investigator: InvestigatorId
@@ -1398,6 +1496,10 @@ export type Trigger =
   | { type: 'enemyDefeated'; enemy: Enemy; by?: InvestigatorId }
   | { type: 'afterEnemyPhaseAttack'; enemy: EnemyId; investigator: InvestigatorId }
   | { type: 'afterDoomPlaced'; agenda?: AgendaDeck }
+  /** ST.6: the investigator would succeed at the current skill test (Extravagant Ring). */
+  | { type: 'whenWouldSucceed'; investigator: InvestigatorId }
+  /** The current agenda would advance by reaching its doom threshold. */
+  | { type: 'agendaWouldAdvance' }
   | {
       type: 'afterEnemyAttack'
       enemy: EnemyId
@@ -1697,12 +1799,32 @@ export interface GameState {
   enemyAttacks?: { enemy: EnemyId; investigator: InvestigatorId; round: number }[]
   /** La perdición que se colocaría pasa a ser 1 daño directo a cada investigador. */
   doomBecomesDamage?: boolean
+  /** A chaos token revealed outside a skill test, held during its "when revealed" window. */
+  tokenReveal?: {
+    investigator: InvestigatorId
+    token: ChaosToken
+    face: ChaosToken
+    /** Its position in the bag, to put it back where it was. */
+    index: number
+    then: Extract<Message, { type: 'ScenarioSpecific' | 'PlayerCardEffect' }>
+    used: string[]
+  }
+  /** Mystifying Song: the agenda cannot advance by its doom threshold during this phase. */
+  agendaHeld?: { phase: Phase; round: number }
   /** Ataque cancelado que aún no se ha resuelto. */
   canceledAttack?: EnemyId | null
   /** Efectos pendientes "al final de tu turno". */
   endOfTurn?: { investigator: InvestigatorId; then: Message[] }[]
-  /** Fichas selladas sobre cartas (Premonition). */
-  sealed?: { token: ChaosToken; investigator: InvestigatorId; code: CardCode }[]
+  /**
+   * Fichas selladas sobre cartas. Without `holder` (Premonition) the next reveal resolves it;
+   * with one, it stays on that card and returns to the bag when the card leaves play.
+   */
+  sealed?: {
+    token: ChaosToken
+    investigator: InvestigatorId
+    code: CardCode
+    holder?: { type: 'asset'; id: AssetId } | { type: 'enemy'; id: EnemyId }
+  }[]
   assets: Record<AssetId, Asset>
   /** Nested triggered abilities currently resolving, outermost first. */
   resolvingAssets?: AssetId[]

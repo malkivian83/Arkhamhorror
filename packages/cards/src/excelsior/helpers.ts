@@ -4,7 +4,6 @@ import {
   distancesFrom,
   getInvestigator,
   leadInvestigator,
-  nextInt,
   playerCardDef,
   type Asset,
   type ChaosToken,
@@ -148,12 +147,19 @@ export const leadId = (state: GameState) => leadInvestigator(state)?.id ?? ''
 // Fichas del caos fuera de una prueba
 // ---------------------------------------------------------------------------
 
-/** "Revela una ficha aleatoria de la bolsa": se mira y vuelve a la bolsa. */
-export function revealRandomToken(state: GameState): [ChaosToken | undefined, GameState] {
-  if (state.chaosBag.length === 0) return [undefined, state]
-  const [index, rng] = nextInt(state.rng, state.chaosBag.length)
-  return [state.chaosBag[index], { ...state, rng }]
-}
+/**
+ * "Revela una ficha aleatoria de la bolsa": la revela `investigator` (pueden responder Wendy
+ * Adams, el Padre Mateo, El códice de las eras o Premonición), vuelve a la bolsa y se resuelve
+ * en `key` con `data.token`.
+ */
+export const revealToken = (investigator: string, key: string, data: Data = {}): Message => ({
+  type: 'RevealTokenOutsideTest',
+  investigator,
+  then: { type: 'ScenarioSpecific', key, data },
+})
+
+/** La ficha revelada (o lo que se considera) que recibe la continuación de `revealToken`. */
+export const revealedToken = (data: Data): ChaosToken => data.token as ChaosToken
 
 export const isSymbol = (token: ChaosToken | undefined) =>
   token === 'skull' ||

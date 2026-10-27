@@ -13,6 +13,7 @@ import {
   registerPlayerCard,
   type AbilityOption,
   type Asset,
+  type ChaosToken,
   type GameState,
   type InvestigatorId,
   type Message,
@@ -790,12 +791,31 @@ registerPlayerCard({
   ],
 })
 
-// Premonition: rápida: entra en juego y sella una ficha al azar; la próxima ficha
-// que se revele será esa, y después se descarta.
+// Premonition: rápida: entra en juego, revela una ficha al azar y la sella; la próxima ficha
+// que se revele será esa, y después se descarta. La revelación admite respuestas (Wendy
+// Adams, Padre Mateo), y lo que se sella es la ficha física revelada.
 registerPlayerCard({
   code: code(64),
   canPlay: (state) => state.chaosBag.length > 0 && !state.skillTest,
-  play: (_state, investigator) => [{ type: 'SealToken', investigator, code: code(64) }],
+  play: (_state, investigator) => [
+    {
+      type: 'RevealTokenOutsideTest',
+      investigator,
+      then: { type: 'PlayerCardEffect', code: code(64), investigator, step: 'seal' },
+    },
+  ],
+  effect: (_state, investigator, step, data) =>
+    step === 'seal'
+      ? [
+          {
+            type: 'SealToken',
+            investigator,
+            code: code(64),
+            token: data.physical as ChaosToken,
+            index: Number(data.index),
+          },
+        ]
+      : [],
 })
 
 // Ward of Protection: rápida, cuando robas una traición que no es debilidad: cancela

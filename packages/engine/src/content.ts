@@ -17,6 +17,7 @@ import type {
   ChaosSymbol,
   ChaosToken,
   DamageSource,
+  DeckOption,
   Enemy,
   EnemyCard,
   EnemyKeyword,
@@ -343,11 +344,54 @@ export interface ActBehavior {
   onAdvance?: (state: GameState) => Message[]
 }
 
+/**
+ * RR: a skill test initiated by an ability or effect of a scenario card (the scenario
+ * reference card, locations, agendas, acts, story cards and encounter cards) is a skill test
+ * on a scenario card: the tests in what those behaviors return are tagged `scenario`.
+ */
+export function onScenarioCard<T>(value: T): T {
+  if (!value || typeof value !== 'object') return value
+  let changed = false
+  const walk = (v: unknown) => {
+    const tagged = onScenarioCard(v)
+    if (tagged !== v) changed = true
+    return tagged
+  }
+  const out = Array.isArray(value)
+    ? value.map(walk)
+    : Object.fromEntries(Object.entries(value).map(([k, v]) => [k, walk(v)]))
+  const result = (changed ? out : value) as Record<string, unknown>
+  const tags = result.tags as string[] | undefined
+  return (
+    !Array.isArray(value) && result.type === 'BeginSkillTest' && !tags?.includes('scenario')
+      ? { ...result, tags: [...(tags ?? []), 'scenario'] }
+      : result
+  ) as T
+}
+
+/** Tags the tests started by a scenario card's behavior (`specific` returns a whole state). */
+function scenarioCardBehavior<B extends object>(
+  behavior: B,
+  applies: () => boolean = () => true,
+): B {
+  return Object.fromEntries(
+    Object.entries(behavior).map(([key, value]) => [
+      key,
+      typeof value === 'function' && key !== 'specific'
+        ? (...args: unknown[]) => {
+            const result = (value as (...a: unknown[]) => unknown)(...args)
+            return applies() ? onScenarioCard(result) : result
+          }
+        : value,
+    ]),
+  ) as B
+}
+
 const scenarios = new Map<string, ScenarioBehavior>()
 const stories = new Map<CardCode, StoryBehavior>()
 
 export function registerStory(behavior: StoryBehavior): void {
-  stories.set(behavior.code, behavior)
+  stories.set(behavior.code, scenarioCardBehavior(behavior))
 }
 
 export function storyBehavior(code: CardCode): StoryBehavior | undefined {
@@ -360,27 +404,34 @@ const agendas = new Map<CardCode, AgendaBehavior>()
 const acts = new Map<CardCode, ActBehavior>()
 
 export function registerScenario(behavior: ScenarioBehavior): void {
-  scenarios.set(behavior.id, behavior)
+  scenarios.set(behavior.id, scenarioCardBehavior(behavior))
 }
 
 export function registerTreachery(behavior: TreacheryBehavior): void {
-  treacheries.set(behavior.code, behavior)
+  // Player weaknesses (The Necronomicon, Weight of the World…) are player cards.
+  treacheries.set(
+    behavior.code,
+    scenarioCardBehavior(behavior, () => !playerCards.has(behavior.code)),
+  )
 }
 
 export function registerEnemy(behavior: EnemyBehavior): void {
-  enemies.set(behavior.code, behavior)
+  enemies.set(
+    behavior.code,
+    scenarioCardBehavior(behavior, () => !playerCards.has(behavior.code)),
+  )
 }
 
 export function registerLocation(behavior: LocationBehavior): void {
-  locations.set(behavior.code, behavior)
+  locations.set(behavior.code, scenarioCardBehavior(behavior))
 }
 
 export function registerAgenda(behavior: AgendaBehavior): void {
-  agendas.set(behavior.code, behavior)
+  agendas.set(behavior.code, scenarioCardBehavior(behavior))
 }
 
 export function registerAct(behavior: ActBehavior): void {
-  acts.set(behavior.code, behavior)
+  acts.set(behavior.code, scenarioCardBehavior(behavior))
 }
 
 export function scenarioBehavior(id: string): ScenarioBehavior | undefined {
@@ -511,8 +562,14 @@ export interface PlayerCardBehavior {
   placedAbilities?: AbilitiesFn<PlacedAsset>
   placedForced?: (state: GameState, trigger: Trigger, self: PlacedAsset) => Message[]
   code: CardCode
-  /** Evento: su efecto al jugarlo. */
-  play?: (state: GameState, investigator: InvestigatorId) => Message[]
+  /** Evento: su efecto al jugarlo (`x`: el valor elegido para un coste X). */
+  play?: (state: GameState, investigator: InvestigatorId, x?: number) => Message[]
+  /** Printed cost X: the values X may take (Pay Your Dues: remaining health of a target). */
+  xOptions?: (state: GameState, investigator: InvestigatorId) => number[]
+  /** Event with the Parley designator: parley costs apply and `afterParley` follows. */
+  parley?: boolean
+  /** In play: additional resources its controller gains during the upkeep phase. */
+  upkeepResources?: number
   /** Restricción adicional para jugarlo ("solo durante tu turno", "como primera acción"…). */
   canPlay?: (state: GameState, investigator: InvestigatorId) => boolean
   /** Habilidades del apoyo en juego, para su controlador. */
@@ -542,6 +599,22 @@ export interface PlayerCardBehavior {
   forced?: (state: GameState, trigger: Trigger, self: Asset) => Message[]
   /** Habilidades rápidas durante una prueba de su controlador, antes de revelar fichas. */
   testOptions?: (state: GameState, test: SkillTest, self: Asset) => ReactionOption[]
+  /**
+   * "When you would reveal a chaos token from the chaos bag", its controller may discard
+   * it to resolve the token sealed on it instead (The Codex of Ages).
+   */
+  resolveSealedInstead?: boolean
+  /**
+   * Forced: when damage is placed on `investigator`, this much additional damage is placed
+   * with it, before checking defeat (Baron Samedi: investigators at his location).
+   */
+  additionalDamagePlaced?: (state: GameState, self: Asset, investigator: InvestigatorId) => number
+  /** It cannot leave play by normal means while this holds (Baron Samedi: under 3 doom). */
+  cannotLeavePlay?: (state: GameState, self: Asset) => boolean
+  /** Its controller may play the topmost event of their discard pile as if in hand. */
+  playsTopDiscardEvent?: boolean
+  /** Events its controller plays or discards from play go to the bottom of their deck. */
+  eventsToDeckBottom?: boolean
   /** Efecto al revelar una ficha en una prueba iniciada por este apoyo. */
   onTokenRevealed?: (state: GameState, token: ChaosToken, self: Asset) => Message[]
   /** Se puede comprometer después de revelar las fichas (Timely Intervention). */
@@ -607,6 +680,11 @@ export interface InvestigatorBehavior {
   testOptions?: (state: GameState, test: SkillTest, self: Investigator) => ReactionOption[]
   /** Una acción adicional cada turno que solo sirve para evitar. */
   extraEvadeAction?: boolean
+  /**
+   * An additional action each turn, only to play cards with `trait` or activate [action]
+   * abilities on them, available while `active` holds (Marie Lambeau: Spell, with doom).
+   */
+  traitAction?: { trait: string; active: (state: GameState, self: Investigator) => boolean }
   /** Additional resources collected in the upkeep phase (Jenny Barnes). */
   upkeepResources?: number
   /** Después de robar la mano inicial (tras el mulligan): Lola Hayes elige su papel. */
@@ -636,6 +714,9 @@ export function registerPlayerCard(behavior: PlayerCardBehavior): void {
   playerBehaviors.set(behavior.code, behavior)
 }
 
+/** Story assets come from the scenario: their behavior tags the tests it starts. */
+const storyBehaviors = new WeakMap<PlayerCardBehavior, PlayerCardBehavior>()
+
 /** Todas las cartas de jugador registradas (las de la caja y las de campaña). */
 export function allPlayerCardDefs(): PlayerCardDef[] {
   return [...playerCards.values()]
@@ -646,8 +727,33 @@ export function playerCardDef(code: CardCode): PlayerCardDef | undefined {
 }
 
 export function playerCardBehavior(code: CardCode): PlayerCardBehavior | undefined {
-  return playerBehaviors.get(code)
+  const behavior = playerBehaviors.get(code)
+  if (!behavior || !playerCards.get(code)?.story) return behavior
+  let story = storyBehaviors.get(behavior)
+  if (!story) storyBehaviors.set(behavior, (story = scenarioCardBehavior(behavior)))
+  return story
+}
+
+/** RR Deckbuilding: the class, trait and level option allows this card. */
+export function deckOptionAllows(option: DeckOption, card: PlayerCardDef): boolean {
+  return (
+    (card.xp ?? 0) <= option.maxLevel &&
+    (option.classes.length === 0 ||
+      (card.classes ?? [card.class]).some((f) => option.classes.includes(f))) &&
+    (!option.traits || card.traits.some((t) => option.traits!.includes(t)))
+  )
+}
+
+/** "Up to N other level 0 cards", limited to some classes (Marie Lambeau). */
+export function offClassAllowed(investigator: PlayerCardDef, card: PlayerCardDef): boolean {
+  if (!investigator.offClassLevelZeroLimit || (card.xp ?? 0) !== 0) return false
+  const only = investigator.offClassLevelZeroClasses
+  return !only || (card.classes ?? [card.class]).some((f) => only.includes(f))
 }
 
 /** Permanente: no cuenta para el tamaño del mazo, no se quita de él y no abandona el juego. */
 export const isPermanent = (code: CardCode) => !!playerBehaviors.get(code)?.permanent
+
+/** Permanent assets, or assets that cannot leave play right now (Baron Samedi). */
+export const stuckInPlay = (state: GameState, asset: Asset) =>
+  isPermanent(asset.code) || !!playerBehaviors.get(asset.code)?.cannotLeavePlay?.(state, asset)

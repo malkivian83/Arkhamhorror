@@ -1,0 +1,57 @@
+[
+  {
+    "code": "04004",
+    "name": "Father Mateo",
+    "type": "investigator",
+    "class": "mystic",
+    "traits": ["Believer", "Warden"],
+    "deckLimit": 1,
+    "health": 6,
+    "sanity": 8,
+    "unique": true,
+    "skills": {
+      "willpower": 4,
+      "intellect": 3,
+      "combat": 2,
+      "agility": 3
+    },
+    "deckSize": 30,
+    "deckOptions": [
+      {
+        "classes": ["mystic", "neutral"],
+        "maxLevel": 5
+      },
+      {
+        "classes": [],
+        "traits": ["Blessed"],
+        "maxLevel": 3
+      }
+    ],
+    "bonusExperience": 5,
+    "signatures": ["04013", "04014"]
+  },
+  {
+    "code": "04013",
+    "name": "The Codex of Ages",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Relic", "Tome", "Blessed"],
+    "deckLimit": 1,
+    "unique": true,
+    "cost": 2,
+    "icons": {
+      "willpower": 1,
+      "wild": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "04014",
+    "name": "Serpents of Yig",
+    "type": "enemy",
+    "class": "neutral",
+    "traits": ["Humanoid", "Monster", "Serpent"],
+    "deckLimit": 1,
+    "weakness": "weakness"
+  }
+]

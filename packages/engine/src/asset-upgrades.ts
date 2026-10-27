@@ -1,4 +1,5 @@
 import { playerCardBehavior, playerCardDef } from './content'
+import { eventsToDeckBottom } from './state'
 import type {
   Asset,
   Choice,
@@ -119,11 +120,15 @@ export function discardOrphanedUpgrades(before: GameState, after: GameState): Ga
       continue
     }
     for (const upgrade of asset.upgrades ?? []) {
+      // Wendy's Amulet: events discarded from play go to the bottom of the deck.
+      const toBottom = eventsToDeckBottom(next, upgrade.owner)
       next = {
         ...next,
         investigators: next.investigators.map((i) =>
           i.id === upgrade.owner && !i.eliminated
-            ? { ...i, discard: [...i.discard, upgrade.code] }
+            ? toBottom
+              ? { ...i, deck: [...i.deck, upgrade.code] }
+              : { ...i, discard: [...i.discard, upgrade.code] }
             : i,
         ),
       }

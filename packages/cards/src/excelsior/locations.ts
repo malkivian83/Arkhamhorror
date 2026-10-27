@@ -26,7 +26,8 @@ import {
   perInv,
   remember,
   remembered,
-  revealRandomToken,
+  revealedToken,
+  revealToken,
   specific,
   tokenText,
 } from './helpers'
@@ -229,12 +230,14 @@ onSpecific('keepMoving', (state, data) => {
   )
 })
 
-onSpecific('hallToken', (state, data) => {
+onSpecific('hallToken', (state, data) =>
+  push(state, revealToken(String(data.investigator), 'hallTokenRevealed', data)),
+)
+onSpecific('hallTokenRevealed', (state, data) => {
   const investigator = String(data.investigator)
-  const [token, next] = revealRandomToken(state)
-  if (token === undefined) return state
+  const token = revealedToken(data)
   return push(
-    next,
+    state,
     log('tokenRevealed', {
       name: getInvestigator(state, investigator).name,
       token: tokenText(token),
