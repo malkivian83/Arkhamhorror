@@ -1362,7 +1362,7 @@ export type Message =
       limitPerAsset?: boolean
     }
   /** The asset leaves play without going to a discard pile. */
-  | { type: 'RemoveAssetFromGame'; asset: AssetId }
+  | { type: 'RemoveAssetFromGame'; asset: AssetId; leavingResolved?: boolean }
   | { type: 'ExhaustUpgrade'; asset: AssetId; index: number }
   /** The attached event goes to its owner's discard pile. */
   | { type: 'DiscardUpgrade'; asset: AssetId; index: number }

@@ -494,6 +494,12 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Replace a controlled asset's departure; terminal removals mark leavingResolved. */
+  leavesPlay?: (
+    state: GameState,
+    self: Asset,
+    reason: 'discard' | 'defeated' | 'resigned' | 'other',
+  ) => Message[] | null
   /** Printed permission to play this fast event in any player window. */
   playInAnyFastWindow?: boolean
   /** Dynamic modifiers of the test explicitly initiated by this event. */

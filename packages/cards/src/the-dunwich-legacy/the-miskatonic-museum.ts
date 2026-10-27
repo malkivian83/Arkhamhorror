@@ -194,13 +194,6 @@ registerScenario({
     test.skill === 'agility' && at(s, test.investigator) === M.athabaskan ? 2 : 0,
   enemyStat: (s, e) =>
     e.code === M.horror ? Number(s.scenarioMeta?.museumShadowResources ?? 0) : 0,
-  assetLeavesPlay: (_s, a) =>
-    [M.adam, M.harold].includes(a.code as typeof M.adam)
-      ? [
-          { type: 'RemoveAssetFromGame', asset: a.id },
-          { type: 'AddChaosTokens', tokens: ['tablet'] },
-        ]
-      : null,
   tokenEffect: (s, t, i) => {
     const hard = s.difficulty === 'hard' || s.difficulty === 'expert',
       here = at(s, i),

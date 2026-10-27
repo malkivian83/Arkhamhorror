@@ -14,4 +14,10 @@ registerPlayerCards([
     sanity: 1,
   },
 ])
-registerPlayerCard({ code: M.adam })
+registerPlayerCard({
+  leavesPlay: (_s, a) => [
+    { type: 'RemoveAssetFromGame', asset: a.id, leavingResolved: true },
+    { type: 'AddChaosTokens', tokens: ['tablet'] },
+  ],
+  code: M.adam,
+})

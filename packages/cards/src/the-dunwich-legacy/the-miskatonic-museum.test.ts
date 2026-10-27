@@ -559,3 +559,16 @@ it('printed exhibit symbols add connections only when both faces are revealed', 
   expect(s.locations[M.egypt]!.connections).toContain(M.medusa)
   expect(playerCardDef(M.necronomicon)!.icons).toEqual({ intellect: 1 })
 })
+
+it.each(['ShuffleAssetIntoDeck', 'ReturnAssetToHand', 'RemoveAssetFromGame'] as const)(
+  'museum allies are removed with a tablet when %s would move them',
+  (type) => {
+    let s = during(game(), keep, { type: 'PutAssetIntoPlay', investigator: 'a', code: M.harold })
+    const a = Object.values(s.assets).find((a) => a.code === M.harold)!
+    s = during(s, keep, { type, asset: a.id })
+    expect(s.assets[a.id]).toBeUndefined()
+    expect(getInvestigator(s, 'a').hand).not.toContain(M.harold)
+    expect(getInvestigator(s, 'a').deck).not.toContain(M.harold)
+    expect(s.campaignLog!.chaosTokens).toEqual(['tablet'])
+  },
+)

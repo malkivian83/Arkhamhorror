@@ -15,6 +15,10 @@ registerPlayerCards([
   },
 ])
 registerPlayerCard({
+  leavesPlay: (_s, a) => [
+    { type: 'RemoveAssetFromGame', asset: a.id, leavingResolved: true },
+    { type: 'AddChaosTokens', tokens: ['tablet'] },
+  ],
   code: M.harold,
   skillModifier: (_s, _a, test) =>
     test.kind.type === 'investigate' &&
