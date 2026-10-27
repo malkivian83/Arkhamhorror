@@ -94,6 +94,8 @@ Formato, lint, tipos y compilación comprobados. La suite completa pasó salvo
 cuatro casos que agotaron el límite de cinco segundos; sus tres archivos se
 repitieron con 30 segundos y pasaron sus 57 pruebas. La corrección de voz añade
 verificación del nombre exacto, identificador, transcripciones y huellas.
-Subida autorizada pendiente de completar las comprobaciones de esta corrección.
+Corrección `8e937a2` validada: formato, lint, tipos, las cinco pruebas de
+narración y compilación final correctos. Lote cerrado para la subida autorizada
+a `origin/main`.
 Siguiente grupo: **La casa siempre gana** y el interludio El destino de Armitage;
 después los seis escenarios restantes, Los supervivientes y el epílogo.
