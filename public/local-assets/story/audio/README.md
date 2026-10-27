@@ -142,3 +142,14 @@ Se pueden regenerar con `node scripts/generate-excelsior-audio.mjs`, usando ELEV
 | es/fortune-and-folly-lights-out-salva.mp3            | `story.fof.lightsOut`                  |
 | es/fortune-and-folly-unlikely-injuries-salva.mp3     | `story.fof.unlikelyInjuries`           |
 | es/fortune-and-folly-personal-entanglement-salva.mp3 | `story.fof.personalEntanglement`       |
+
+## La noche de la fanática: El encuentro
+
+Seis narraciones españolas con Baldo (voz `RnKqZYEeVQciORlpiCz0`): prólogo,
+introducción y cuatro desenlaces. El texto español procede de la guía revisada
+aportada (pp. 1–3), sin instrucciones, encabezados ni recompensas.
+
+Generador: `node scripts/generate-zealot-audio.mjs --generate`. Admite
+`--key-stdin` para recibir la clave sin guardarla en archivos. Evidencia:
+`docs-proyecto/evidencias/zealot-baldo-narracion.json`. Conserva audio existente si
+coinciden texto, voz, ajustes y huella del archivo.

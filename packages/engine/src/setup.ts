@@ -273,6 +273,7 @@ export function prepareGame({
   return recomputeConnections({
     ...(boons.length ? { boons: [...new Set(boons)] } : {}),
     engineVersion: ENGINE_VERSION,
+    leadElectionVersion: 1,
     scenarioId: scenario.id,
     ...(rulesVersion !== undefined ? { scenarioRulesVersion: rulesVersion } : {}),
     difficulty,

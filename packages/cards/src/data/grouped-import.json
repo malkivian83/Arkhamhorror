@@ -6,7 +6,9 @@
     "class": "rogue",
     "traits": ["Fortune", "Practiced"],
     "xp": 0,
-    "icons": { "wild": 1 },
+    "icons": {
+      "wild": 1
+    },
     "slots": []
   },
   {
@@ -16,7 +18,9 @@
     "class": "rogue",
     "traits": ["Fortune", "Practiced"],
     "xp": 2,
-    "icons": { "wild": 1 },
+    "icons": {
+      "wild": 1
+    },
     "slots": []
   },
   {
@@ -26,7 +30,9 @@
     "class": "seeker",
     "traits": ["Practiced"],
     "xp": 0,
-    "icons": { "wild": 1 },
+    "icons": {
+      "wild": 1
+    },
     "slots": []
   },
   {
@@ -47,7 +53,9 @@
     "class": "survivor",
     "traits": ["Fortune"],
     "xp": 3,
-    "icons": { "wild": 3 },
+    "icons": {
+      "wild": 3
+    },
     "slots": [],
     "commitLimit": 1
   },
@@ -59,7 +67,10 @@
     "traits": ["Tactic"],
     "cost": 4,
     "xp": 2,
-    "icons": { "willpower": 1, "combat": 1 },
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
     "slots": []
   },
   {
@@ -70,7 +81,10 @@
     "traits": ["Tactic"],
     "cost": 4,
     "xp": 3,
-    "icons": { "willpower": 2, "combat": 2 },
+    "icons": {
+      "willpower": 2,
+      "combat": 2
+    },
     "slots": [],
     "fast": true
   },
@@ -82,7 +96,10 @@
     "traits": ["Insight"],
     "cost": 2,
     "xp": 5,
-    "icons": { "intellect": 1, "wild": 1 },
+    "icons": {
+      "intellect": 1,
+      "wild": 1
+    },
     "slots": [],
     "fast": true
   },
@@ -94,7 +111,11 @@
     "traits": ["Tactic"],
     "cost": 1,
     "xp": 2,
-    "icons": { "willpower": 1, "combat": 1, "agility": 1 },
+    "icons": {
+      "willpower": 1,
+      "combat": 1,
+      "agility": 1
+    },
     "slots": [],
     "fast": true
   },
@@ -106,8 +127,51 @@
     "traits": ["Tactic"],
     "cost": 1,
     "xp": 3,
-    "icons": { "willpower": 2, "combat": 1, "agility": 1 },
+    "icons": {
+      "willpower": 2,
+      "combat": 1,
+      "agility": 1
+    },
     "slots": [],
     "fast": true
+  },
+  {
+    "code": "03273",
+    "name": "True Survivor",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spirit"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "04313",
+    "name": "Alter Fate",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spell", "Blessed"],
+    "cost": 1,
+    "xp": 3,
+    "icons": {
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "53009",
+    "name": "Alter Fate",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spell", "Blessed"],
+    "cost": 3,
+    "xp": 1,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": []
   }
 ]

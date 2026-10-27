@@ -1443,13 +1443,23 @@ export function handle(state: GameState, message: Message): GameState {
           choices: players.map((i): Choice => ({
             label: 'choice.investigator',
             params: { name: i.name },
-            then: [{ type: 'SetLead', investigator: i.id }],
+            then: [
+              {
+                type: 'SetLead',
+                investigator: i.id,
+                ...(message.replacement ? { replacement: true } : {}),
+              },
+            ],
           })),
         },
       })
     }
 
     case 'SetLead': {
+      if (message.replacement)
+        return log({ ...state, leadInvestigatorId: message.investigator }, 'log.lead', {
+          name: getInvestigator(state, message.investigator).name,
+        })
       // El jefe pasa a ser el primero en orden de jugadores; el resto le sigue en orden.
       const at = state.investigators.findIndex((i) => i.id === message.investigator)
       if (at < 0) return state
@@ -2973,6 +2983,15 @@ export function handle(state: GameState, message: Message): GameState {
       if (activeInvestigators(next).length === 0) {
         return push(next, { type: 'EndScenario', outcome: { type: 'noResolution' } })
       }
+      // Grimorio: "Eliminación", "Investigador jefe". El grupo elige un nuevo
+      // jefe si el anterior abandona el escenario; con uno solo no hay elección.
+      const remaining = activeInvestigators(next)
+      const chooseNewLead: Message[] =
+        state.leadElectionVersion === 1 && leadInvestigator(state)?.id === investigator.id
+          ? remaining.length === 1 || !state.interactive
+            ? [{ type: 'SetLead', investigator: remaining[0]!.id, replacement: true }]
+            : [{ type: 'ChooseLead', replacement: true }]
+          : []
       const defeated: Message[] = investigator.resigned
         ? []
         : [
@@ -2983,6 +3002,7 @@ export function handle(state: GameState, message: Message): GameState {
           ]
       return push(
         next,
+        ...chooseNewLead,
         ...(here === null ? [] : [{ type: 'CheckEngagement', location: here } as const]),
         ...defeated,
         { type: 'CheckActObjective' },
@@ -7116,6 +7136,10 @@ export function skillTestValue(state: GameState): {
   const passive = Object.values(state.assets)
     .filter((a) => a.owner === investigator.id)
     .reduce((sum, a) => sum + (playerCardBehavior(a.code)?.skillModifier?.(state, a, test) ?? 0), 0)
+  const assetAuras = Object.values(state.assets).reduce(
+    (sum, a) => sum + (playerCardBehavior(a.code)?.skillAura?.(state, a, test) ?? 0),
+    0,
+  )
   const auras =
     investigator.location === null
       ? 0
@@ -7149,6 +7173,10 @@ export function skillTestValue(state: GameState): {
       ? [{ name: playerCardDef(test.effectSource)?.name ?? test.effectSource, amount: effectBonus }]
       : []),
     ...phaseSources,
+    ...Object.values(state.assets).map((a) => ({
+      name: playerCardDef(a.code)?.name ?? a.code,
+      amount: playerCardBehavior(a.code)?.skillAura?.(state, a, test) ?? 0,
+    })),
     ...Object.values(state.assets)
       .filter((a) => a.owner === investigator.id)
       .map((a) => ({
@@ -7167,13 +7195,14 @@ export function skillTestValue(state: GameState): {
     modifier: test.baseModifier,
     icons,
     sources,
-    passive: passive + auras + scenario + resolving + phaseBonus + effectBonus,
+    passive: passive + assetAuras + auras + scenario + resolving + phaseBonus + effectBonus,
     total: unmodified
       ? base
       : base +
         test.baseModifier +
         icons +
         passive +
+        assetAuras +
         auras +
         scenario +
         resolving +
