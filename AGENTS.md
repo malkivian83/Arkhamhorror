@@ -38,6 +38,11 @@ los documentos necesarios para la tarea; evita reconstruir todo el historial.
 
 ## Verificación proporcional
 
+- **No ejecutes pruebas de navegador ni abras sesiones de navegador para validar**
+  **la aplicación, salvo petición expresa de la persona usuaria.** Consumen demasiados
+  recursos. Utiliza comprobaciones por consola y deja las revisiones visuales
+  pendientes para la persona usuaria.
+
 - Durante el desarrollo, ejecuta pruebas dirigidas a las reglas o componentes
   afectados. Para una edición solo de documentación, comprueba el formato de los
   archivos editados; no ejecutes toda la aplicación si no vas a subir cambios.
