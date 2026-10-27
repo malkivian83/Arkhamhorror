@@ -143,10 +143,19 @@ mazo de encuentros contiene 34 cartas de los seis conjuntos indicados.
 
 ## Validación y continuación
 
-Último lote publicado: `bfc1a29`, los dos escenarios iniciales y Armitage.
-Lote actual: museo completo, seis audios nuevos y ajuste pendiente para quitar
-investigadores del equipo (`7fa8780`), incluido por petición de la persona usuaria.
-Pendiente de controles finales y subida autorizada.
+Último lote funcional: `b4081af`, museo completo y seis audios nuevos; corrección
+`1c298b3` para las salidas de Adam y Harold por descarte, derrota, retirada,
+retorno a la mano, barajado y retirada de la partida. Incluye el ajuste pendiente
+para quitar investigadores del equipo (`7fa8780`), por petición de la persona
+usuaria. Lote cerrado para la subida autorizada.
+
+Formato, lint y tipos globales comprobados. La suite obtuvo 4549 pruebas correctas
+y tres límites de tiempo preexistentes en Gala, Brethren of Ash y administración.
+Tras corregir la salida de los aliados se repitieron los controles afectados:
+329 pruebas del motor, Dunwich y los tres archivos con tiempo ampliado, todas
+correctas. Pasan las 48 pruebas del museo y la compilación final. Las veinte
+narraciones conservan las transcripciones y la voz Nico - History & Documentary.
+
 
 Las pruebas dirigidas incluyen preparación de uno a cuatro investigadores,
 variantes de oficinas y mazo oculto, vacío persistente, enemigos, traiciones,
