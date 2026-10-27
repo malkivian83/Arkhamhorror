@@ -55,6 +55,22 @@ try {
 }
 const retained = new Map(previous.files.map((file) => [`${file.language}:${file.art}`, file]))
 for (const file of files) retained.set(`${file.language}:${file.art}`, file)
+// Incorporar también al inventario general que verifica CI, sin reescribir huellas previas.
+const inventoryPath = 'docs-proyecto/evidencias/imagenes-locales.json'
+const inventory = JSON.parse(await readFile(inventoryPath, 'utf8'))
+const inventoried = new Set(inventory.files.map((file) => file.path))
+for (const file of retained.values()) {
+  if (inventoried.has(file.path)) continue
+  const bytes = await readFile('apps/web/public' + file.path)
+  if (
+    bytes.length !== file.bytes ||
+    createHash('sha256').update(bytes).digest('hex') !== file.sha256
+  )
+    throw new Error('Damaged campaign image: ' + file.path)
+  inventory.files.push(file)
+  inventoried.add(file.path)
+}
+await writeFile(inventoryPath, JSON.stringify(inventory, null, 2) + '\n')
 const coverSource = 'https://assets.arkhamhorror.app/img/arkham/boxes/01.jpg'
 const coverPath = '/local-assets/setup/night-of-the-zealot.jpg'
 const coverResponse = await fetch(coverSource, { signal: AbortSignal.timeout(25000) })
