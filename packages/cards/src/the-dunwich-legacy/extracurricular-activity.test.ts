@@ -235,6 +235,33 @@ describe('Extracurricular Activity', () => {
     ).toBe(true)
   })
 
+  it.each([
+    [EA.facultyEarly, 2, 1],
+    [EA.dormitories, 3, 2],
+  ] as const)(
+    'objective %s requires its exact group clue cost from investigators at that location',
+    (location, perPlayer, result) => {
+      let s = during(
+        game(2, 'standard', false, true),
+        (s) => change('b', { clues: 1 })(change('a', { location, clues: perPlayer * 2 - 1 })(s)),
+        ...reveal(location),
+      )
+      expect(availableAbilities(s, 'a').some((a) => a.key.endsWith(':objective'))).toBe(false)
+      s = during(s, change('b', { location }))
+      const objective = ability(s, ':objective')
+      expect(objective.then[0]).toEqual({
+        type: 'PayGroupClues',
+        amount: perPlayer * 2,
+        from: ['a', 'b'],
+      })
+      s = during(s, keep, ...objective.then)
+      while (s.pending?.question.prompt === 'prompt.whoPaysClue')
+        s = applyInput(s, { investigator: s.pending.investigator, choice: 0 })
+      s = stories(s)
+      expect(s.outcome).toEqual({ type: 'resolution', resolution: result })
+    },
+  )
+
   it('discarding controlled Jazz sends him to the encounter discard rather than the player deck', () => {
     let s = during(game(), (s) => ({ ...s, actIndex: 2 }), {
       type: 'PutAssetIntoPlay',
