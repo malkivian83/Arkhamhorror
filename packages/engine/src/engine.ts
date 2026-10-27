@@ -53,6 +53,43 @@ function run(initial: GameState, observer?: EngineObserver): GameState {
       ),
       message,
     )
+    // RR "Forced Abilities": a deck-empty condition resolves as soon as it becomes true,
+    // including draws, discards and searches, before another queued draw reshuffles it.
+    const emptied = state.investigators.filter(
+      (i) =>
+        !i.eliminated &&
+        i.deck.length === 0 &&
+        (before.investigators.find((old) => old.id === i.id)?.deck.length ?? 0) > 0,
+    )
+    if (emptied.length)
+      state = push(
+        state,
+        ...emptied.map((i): Message => ({
+          type: 'Forced',
+          trigger: { type: 'deckEmptied', investigator: i.id },
+        })),
+      )
+    if (state.encounterDiscard !== before.encounterDiscard) {
+      const previous = new Map<unknown, number>()
+      for (const card of before.encounterDiscard) previous.set(card, (previous.get(card) ?? 0) + 1)
+      const discarded: Message[] = []
+      for (const card of state.encounterDiscard) {
+        const count = previous.get(card) ?? 0
+        if (count) previous.set(card, count - 1)
+        else
+          discarded.push({
+            type: 'Forced',
+            trigger: {
+              type: 'encounterCardDiscarded',
+              card,
+              ...('investigator' in message && typeof message.investigator === 'string'
+                ? { investigator: message.investigator }
+                : {}),
+            },
+          })
+      }
+      if (discarded.length) state = push(state, ...discarded)
+    }
     observer?.(before, message, state)
   }
   return state

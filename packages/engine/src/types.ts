@@ -158,6 +158,7 @@ export type EnemyKeyword =
 
 /** Prey (presa): a quién prefiere enfrentarse el enemigo. */
 export type Prey =
+  | { type: 'fewestCards' }
   | { type: 'lowestSkill'; skill: SkillType }
   | { type: 'highestSkill'; skill: SkillType }
   /** "Presa (solo X)": solo se enfrenta a ese investigador. */
@@ -247,7 +248,8 @@ export type TreacheryPlacement =
   /** Vinculada a un enemigo: se descarta cuando el enemigo abandona el juego. */
   | { type: 'enemy'; enemy: EnemyId }
   /** En juego junto al mazo de Plan o de Acto (Un público difícil, Cieno e impurezas). */
-  | { type: 'agenda' }
+  | { type: 'agenda'; code?: CardCode }
+  | { type: 'act'; code: CardCode }
 
 export interface Treachery extends TreacheryCard {
   id: TreacheryId
@@ -832,6 +834,8 @@ export type Message =
       location: LocationId
       entryPaid?: boolean
       checked?: boolean
+      /** Additional movement costs already resolved for individual treacheries. */
+      checkedTreacheries?: TreacheryId[]
       /** Lo produce la acción básica de movimiento (Palcos), no el efecto de una carta. */
       moveAction?: boolean
     }
@@ -1056,7 +1060,7 @@ export type Message =
       then: Message[]
       otherwise?: Message[]
     }
-  | { type: 'DiscardTopEncounter' }
+  | { type: 'DiscardTopEncounter'; investigator?: InvestigatorId }
   /** Pistas de la reserva (no de una localización). */
   | { type: 'GainClues'; investigator: InvestigatorId; amount: number }
   /** Una carta de la zona de victoria pasa a estar debajo del acto. */
@@ -1075,7 +1079,13 @@ export type Message =
   /** No puede jugar ni comprometer cartas de este tipo durante el resto de la ronda. */
   | { type: 'BlockCardType'; investigator: InvestigatorId; cardType: string }
   /** Descarta de la mano las cartas (no debilidades) de un tipo: todas o una a elegir. */
-  | { type: 'DiscardCardsOfType'; investigator: InvestigatorId; cardType: string; all: boolean }
+  | {
+      type: 'DiscardCardsOfType'
+      investigator: InvestigatorId
+      cardType: string
+      all: boolean
+      includeWeaknesses?: boolean
+    }
   /** Muertos para la campaña (los que no se retiraron, con `exceptResigned`). */
   /** Con `investigator`, solo ese (Posesión: eliminado y muerto). */
   | { type: 'KillInvestigators'; exceptResigned?: boolean; investigator?: InvestigatorId }
@@ -1104,6 +1114,7 @@ export type Message =
   | { type: 'CancelEnemyAttack'; enemy: EnemyId }
   | {
       type: 'ResolveEnemyAttack'
+      modifier?: { damage: number; horror: number }
       enemy: EnemyId
       investigator: InvestigatorId
       exhaustAfter: boolean
@@ -1127,7 +1138,13 @@ export type Message =
   | { type: 'EndSkillTest' }
   | { type: 'EngageEnemy'; enemy: EnemyId; investigator: InvestigatorId; windowResolved?: boolean }
   | { type: 'CheckEngagement'; location: LocationId; enemies?: EnemyId[] }
-  | { type: 'EnemyAttack'; enemy: EnemyId; investigator: InvestigatorId; exhaustAfter: boolean }
+  | {
+      type: 'EnemyAttack'
+      enemy: EnemyId
+      investigator: InvestigatorId
+      exhaustAfter: boolean
+      evenIfExhausted?: boolean
+    }
   /** Fase de enemigos: el investigador elige en qué orden le atacan los que quedan. */
   | { type: 'AttacksAgainst'; investigator: InvestigatorId; enemies: EnemyId[] }
   /** El jefe elige quién gasta la siguiente pista hasta reunir `amount` (acto, grupo). */
@@ -1262,7 +1279,14 @@ export type Message =
   /** Until the end of the phase, the agenda cannot advance by its doom threshold (Mystifying Song). */
   | { type: 'HoldAgenda' }
   /** Descarta las primeras cartas del mazo de un investigador. */
-  | { type: 'MillDeck'; investigator: InvestigatorId; amount: number }
+  | {
+      type: 'MillDeck'
+      investigator: InvestigatorId
+      amount: number
+      ifDiscarded?: { code: CardCode; then: Message[] }
+    }
+  /** Return a controlled asset to its original owner's deck and shuffle. */
+  | { type: 'ShuffleAssetIntoDeck'; asset: AssetId }
   /** Gastar pistas "como grupo" (de cualquier investigador). */
   | { type: 'SpendGroupClues'; amount: number }
   /** El investigador elige y descarta cartas de su mano. */
@@ -1474,6 +1498,7 @@ export type ClueHolder =
 
 /** Momentos en los que se comprueban las habilidades forzadas. */
 export type Trigger =
+  | { type: 'encounterCardDiscarded'; card: EncounterCard; investigator?: InvestigatorId }
   | { type: 'beforeEnemySpawns'; location: LocationId; card: EnemyCard }
   | { type: 'afterRevealChaosToken'; investigator: InvestigatorId; token: ChaosToken }
   /** Before the revealed token resolves; `state.skillTest.revealing` holds it. */
@@ -1530,6 +1555,8 @@ export type Trigger =
   | { type: 'afterActionAbility'; investigator: InvestigatorId; code: CardCode }
   | { type: 'afterAssetEntersPlay'; investigator: InvestigatorId; asset: AssetId }
   | { type: 'afterDrawCard'; investigator: InvestigatorId; card: CardCode }
+  /** The last card left the investigator's deck, before any later reshuffle. */
+  | { type: 'deckEmptied'; investigator: InvestigatorId }
   | { type: 'enemyEntersLocation'; enemy: EnemyId; location: LocationId }
   | { type: 'whenTreacheryDrawn'; investigator: InvestigatorId; treachery: TreacheryId }
   | { type: 'afterCancelRevelation'; card: CardCode; weakness: boolean }

@@ -54,6 +54,7 @@ export type AbilitiesFn<Self> = (
 ) => AbilityOption[]
 
 export interface ScenarioBehavior {
+  handSizeModifier?: (state: GameState, investigator: InvestigatorId) => number
   id: string
   /** Incompatible deterministic rule changes are versioned per scenario. */
   rulesVersion?: number
@@ -195,6 +196,15 @@ export interface StoryBehavior {
 }
 
 export interface TreacheryBehavior {
+  allDamageDirect?: boolean
+  /** Resolves on drawing the card, even if its revelation is subsequently canceled. */
+  onDraw?: (state: GameState, investigator: InvestigatorId, self: Treachery) => Message[]
+  /** Additional movement cost; the supplied move already marks this treachery as checked. */
+  beforeMove?: (
+    state: GameState,
+    self: Treachery,
+    move: Extract<Message, { type: 'MoveTo' }>,
+  ) => Message[] | null
   /** Acciones adicionales para entrar o salir de la localización a la que está unida (Arcane Lock). */
   moveCost?: number
   /** Modificador al velo de la localización a la que está unida (Flash Flood). */
@@ -250,6 +260,12 @@ export interface TreacheryBehavior {
 }
 
 export interface EnemyBehavior {
+  healthModifier?: (state: GameState, self: Enemy) => number
+  attackModifier?: (
+    state: GameState,
+    self: Enemy,
+    investigator: InvestigatorId,
+  ) => { damage: number; horror: number }
   code: CardCode
   /** Assign this kind of attack damage to assets with the trait before other targets. */
   assignFirst?: Partial<Record<'damage' | 'horror', string>>

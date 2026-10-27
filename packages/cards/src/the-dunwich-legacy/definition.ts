@@ -1,5 +1,7 @@
 import { registerCampaign } from '../campaign-definition'
+import './encounter-sets'
 import { DUNWICH_CHAOS_BAGS, THE_DUNWICH_LEGACY } from './campaign'
+import { extracurricularActivity, EXTRACURRICULAR_ACTIVITY } from './extracurricular-activity'
 
 registerCampaign({
   id: THE_DUNWICH_LEGACY.id,
@@ -8,5 +10,13 @@ registerCampaign({
   openingScenarios: ['extracurricular-activity', 'the-house-always-wins'],
   prologue: { title: 'story.dunwich.prologueTitle', body: 'story.dunwich.prologue' },
   // Enable each scenario only after implementing its rules and resolutions.
-  scenarios: THE_DUNWICH_LEGACY.scenarios.map((id) => ({ id })),
+  scenarios: THE_DUNWICH_LEGACY.scenarios.map((id) =>
+    id === EXTRACURRICULAR_ACTIVITY
+      ? {
+          id,
+          build: ({ difficulty, log }) => extracurricularActivity({ difficulty, log }),
+          keywords: ['peril', 'surge', 'aloof', 'hunter', 'retaliate', 'massive', 'prey'],
+        }
+      : { id },
+  ),
 })
