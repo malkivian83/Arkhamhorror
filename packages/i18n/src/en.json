@@ -1466,6 +1466,7 @@
     "noInvestigators": "No investigator matches your search.",
     "decksSummary": "Starter deck for everyone | 1 with a custom deck | {n} with custom decks",
     "emptySlot": "Empty slot",
+    "removeInvestigator": "Remove {name} from the team",
     "standaloneTag": "Standalone",
     "openingScenario": "Whom will you look for first?"
   },

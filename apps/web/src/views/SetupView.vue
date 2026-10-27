@@ -643,6 +643,16 @@ function start() {
                 height="52"
               />
               <span v-else class="visually-hidden">{{ t('setup.emptySlot') }}</span>
+              <button
+                v-if="slot"
+                type="button"
+                class="remove-investigator"
+                :aria-label="t('setup.removeInvestigator', { name: localName(slot.name) })"
+                :title="t('setup.removeInvestigator', { name: localName(slot.name) })"
+                @click="toggle(slot.key)"
+              >
+                <span aria-hidden="true">×</span>
+              </button>
             </span>
             <span class="dock-count">{{ chosen.length }}/4</span>
           </div>
@@ -683,6 +693,33 @@ function start() {
 </template>
 
 <style scoped>
+.dock-team .ui-slot {
+  position: relative;
+}
+.remove-investigator {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 0 0 0 6px;
+  background: #171719;
+  color: #ff6060;
+  font: 700 24px/1 var(--site-body);
+  cursor: pointer;
+}
+.remove-investigator:hover {
+  background: #711f29;
+  color: #fff;
+}
+.remove-investigator:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+}
 .setup-page {
   min-height: calc(100dvh - 84px);
   background: var(--site-bg);

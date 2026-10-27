@@ -1466,6 +1466,7 @@
     "noInvestigators": "Ningún investigador coincide con la búsqueda.",
     "decksSummary": "Mazo inicial para todos | 1 con mazo propio | {n} con mazos propios",
     "emptySlot": "Hueco libre",
+    "removeInvestigator": "Quitar a {name} del equipo",
     "standaloneTag": "Independiente",
     "openingScenario": "¿A quién buscáis primero?"
   },
