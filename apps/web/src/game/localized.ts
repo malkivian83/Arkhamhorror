@@ -57,6 +57,8 @@ const INVESTIGATOR_PACKS: Record<string, string[]> = {
   tcu: ['05006', '05018', '05019'],
   // André Patel's starter pack: every card is playable (60351–60384).
   and: Array.from({ length: 34 }, (_, n) => String(60351 + n)),
+  // Stella Clark's starter pack: every card is playable (60501–60531).
+  ste: Array.from({ length: 31 }, (_, n) => String(60501 + n)),
 }
 const packUrls = (host: string) =>
   Object.keys(INVESTIGATOR_PACKS).map((pack) => `https://${host}/api/public/cards/${pack}.json`)
@@ -74,8 +76,8 @@ const SOURCES: Record<string, string[]> = {
     ...packUrls('es.arkhamdb.com'),
   ],
 }
-// v8: also André Patel's upgrades (60372–60384) in EN/ES.
-const CACHE_PREFIX = 'lcg:cards:v8:'
+// v9: also Stella Clark's pack (60501–60531) in EN/ES.
+const CACHE_PREFIX = 'lcg:cards:v9:'
 const CACHE_HOURS = 24
 
 /** Bundled alternatives plus any available translated card data. */

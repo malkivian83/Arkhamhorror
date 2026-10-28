@@ -320,7 +320,16 @@
       "cheat": "Choose a token in the bag",
       "ally": "Choose an Ally in your hand"
     },
-    "startingCard": "Starting: you may add 1 starting card from your deck to your hand"
+    "startingCard": "Starting: you may add 1 starting card from your deck to your hand",
+    "stella": {
+      "elderSign": "Elder sign: +1, or automatically fail to heal 1 damage and 1 horror?"
+    },
+    "grannyOrne": "How much does the test fail by?",
+    "grannyOrne3": "Change the skill value for this test",
+    "unrelenting": "Unrelenting: seal a token (up to {n} more)",
+    "upkeepResources": "Dark Horse: gain {n} resource(s) this upkeep?",
+    "payWithUses": "Pay for {card} with secrets from {source}?",
+    "playFrom": "Play {card} from…"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -670,7 +679,22 @@
         "elderThing": "Elder thing"
       }
     },
-    "redClockTake": "Take its {n} charges as resources"
+    "redClockTake": "Take its {n} charges as resources",
+    "stella": {
+      "resolve": "+1 to the skill value",
+      "fail": "Automatically fail: heal 1 damage and 1 horror"
+    },
+    "failByLess": "By 1 less",
+    "failByMore": "By 1 more",
+    "skillValuePlus": "+1 skill value",
+    "skillValueMinus": "−1 skill value",
+    "sealToken": "Seal {token}",
+    "doneSealing": "Done sealing",
+    "gainResources": "Gain {n} resource(s)",
+    "declineResources": "Do not gain resources",
+    "payWithUses": "Spend {n} secret(s)",
+    "playFromHand": "Your hand",
+    "playFromDiscard": "Your discard pile"
   },
   "phase": {
     "setup": "Setup",
@@ -1047,7 +1071,14 @@
     },
     "grapevineDraw": "The Grapevine: spend 1 rumor and exhaust it: Parley. Move to an enemy up to {range} connections away, engage it and draw 1 card",
     "wellConnectedReady": "Well Connected: spend 2 resources to ready it",
-    "contingency": "Contingency: spend 3 resources to cancel the {token} token and reveal a new one"
+    "contingency": "Contingency: spend 3 resources to cancel the {token} token and reveal a new one",
+    "stella": {
+      "action": "Stella Clark: take an additional action during your turn this round"
+    },
+    "grimmsFairyTales": "Grimm's Fairy Tales: heal 1 horror from {name}",
+    "grannyOrne": "Granny Orne: {name} fails by 1 less or 1 more",
+    "grannyOrne3": "Granny Orne: +1 or −1 skill value for {name}",
+    "scavenging": "Scavenging: add an Item from your discard pile to your hand"
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -1167,7 +1198,12 @@
     "tokenTreatedAs": "The {token} token is canceled and treated as {face}.",
     "discardRemoved": "{name} removes the {n} cards of their discard pile from the game.",
     "agendaHeld": "Until the end of the phase, the agenda cannot advance by reaching its doom threshold.",
-    "additionalDamage": "{card} places {n} additional damage on {name}."
+    "additionalDamage": "{card} places {n} additional damage on {name}.",
+    "turnActionsLater": "{name} will take {n} additional action(s) during their turn this round.",
+    "failedTestEffectsCanceled": "Neither Rain nor Snow cancels the effects of the failed test.",
+    "enemyToEncounterTop": "{enemy} is placed on top of the encounter deck.",
+    "enemyToEncounterBottom": "{enemy} is placed on the bottom of the encounter deck.",
+    "exiled": "{name} exiles {card}."
   },
   "table": {
     "scenarioSkipped": "Scenario skipped",
@@ -3470,7 +3506,37 @@
       "60381": "Limit 1 per investigator. [fast] Exhaust Well Connected: you get +1 skill value for this skill test for every 4 resources you have. [fast] Spend 2 resources: ready Well Connected (limit once per round).",
       "60382": "Fast. Play after you successfully evade an enemy. Discover 1 clue at your location (if you succeeded by 2 or more, you may discover 1 clue at a connecting location, as well).",
       "60383": "While Contingency is committed to a skill test targeting an enemy, after revealing chaos tokens, you may spend 3 resources to cancel a revealed token, return it to the chaos bag, and reveal a new one (you may do this any number of times).",
-      "60384": "Exceptional. Uses (0 charges). Forced – After your turn begins: you may take all charges here, as resources. Place 1 charge here. If it has exactly 1 charge, you get +4 skill value for your next skill test; 2 charges, you may move up to 3 times; 3 charges, you may take 2 additional actions this turn."
+      "60384": "Exceptional. Uses (0 charges). Forced – After your turn begins: you may take all charges here, as resources. Place 1 charge here. If it has exactly 1 charge, you get +4 skill value for your next skill test; 2 charges, you may move up to 3 times; 3 charges, you may take 2 additional actions this turn.",
+      "60501": "[reaction] After you fail a skill test: You may take an additional action during your turn this round. (Limit once per round.) [elder_sign] effect: +1. You may instead choose to automatically fail this skill test to heal 1 damage and 1 horror.",
+      "60502": "Stella Clark deck only. If this skill test fails, cancel all effects of the failed test.",
+      "60503": "Revelation – Put Called by the Mists into play in your threat area. Forced – After you initiate a skill test with a difficulty of 4 or higher: Take 1 damage. [action][action]: Discard Called by the Mists.",
+      "60504": "Revelation – Put Atychiphobia into play in your threat area. Forced – After you fail a skill test: Take 1 horror. [action][action]: Discard Atychiphobia.",
+      "60506": "Uses (4 secrets). [reaction] After an investigator at your location fails a skill test by 2 or more, exhaust Grimm's Fairy Tales and spend 1 secret: Heal 1 horror from that investigator.",
+      "60508": "You get +1 [willpower]. [reaction] When an investigator at your location would fail a skill test, exhaust Granny Orne: That investigator fails by either 1 less or 1 more.",
+      "60510": "[reaction] After you fail a skill test, exhaust Rabbit's Foot: Draw 1 card.",
+      "60512": "Fast. Play only during your turn. Do not reveal chaos tokens for the next skill test you perform this turn.",
+      "60513": "Fast. Play when an investigator at your location draws a non-weakness treachery card. Test [willpower] (3). If you succeed, cancel that card's revelation effect.",
+      "60514": "Fast. Play after you fail a skill test by 2 or less during an evasion attempt against a non-Elite enemy. Place that enemy on top of the encounter deck.",
+      "60515": "Fast. Play after you fail a skill test. You get +1 to each of your skills for the remainder of the round.",
+      "60516": "Fast. Play after a skill test you failed ends (after resolving all effects from the failed test). Attempt that test again. You get +2 skill value for this test.",
+      "60519": "Max 1 committed per skill test. You may commit Take Heart to any type of test. If this test fails, the performing investigator draws 2 cards and gains 2 resources.",
+      "60520": "Forced – When Cherished Keepsake is defeated by horror: Exile it.",
+      "60521": "Forced – When Leather Coat is defeated by damage: Exile it.",
+      "60522": "Uses (3 ammo). [action] Spend 1 ammo: Fight. You get +2 [combat] and deal +1 damage for this attack. If you fail, place 1 ammo on .18 Derringer and the next time you trigger this ability this round, you get an additional +1 [combat] for that attack.",
+      "60523": "Fast. Play when an investigator at your location draws a non-weakness treachery card. Cancel that card's revelation effect. Then, test [willpower] (3). If you fail, exile A Test of Will.",
+      "60524": "Fast. Play after you fail a skill test by 3 or less while investigating. Discover 2 total clues from among your location and connecting locations.",
+      "60525": "Fast. Play after you fail a skill test by 3 or less during an evasion attempt against a non-Elite enemy. Place that enemy on the bottom of the encounter deck.",
+      "60527": "You get +1 [willpower] and +1 [intellect]. [reaction] When an investigator at your location would fail a skill test, exhaust Granny Orne: That investigator either gets +1 skill value or -1 skill value for that test.",
+      "60528": "Fast. Play when an investigator at your location would fail a skill test. They get +3 to their skill value for that test. That investigator draws 1 card.",
+      "60530": "Permanent. During or before your first action of each of your turns, each skill test you perform gets +1 difficulty. During or after your third action of each of your turns, each skill test you perform gets -1 difficulty.",
+      "60531": "Permanent. In between two scenarios of a campaign, reduce the experience cost to repurchase up to 3 cards that you exiled during the last scenario by 1 each.",
+      "02234": "Limit 1 per investigator. During the upkeep phase, you may choose to not gain resources. While you have no resources in your resource pool, you get +1 [willpower], +1 [intellect], +1 [combat], and +1 [agility].",
+      "04200": "Fast. Play after a skill test you failed ends (after resolving all effects from the failed test). Attempt that test again. You get +2 skill value for this test.",
+      "04272": "You may play Winging It from your discard pile. If you do, shuffle it into your deck after resolving its effects. Investigate. Your location gets -1 shroud for this investigation. (If you played Winging It from your discard pile, discover 1 additional clue if you succeed.)",
+      "01073": "[reaction] After you successfully investigate by 2 or more, exhaust Scavenging: Choose an Item card in your discard pile and add it to your hand.",
+      "07196": "Max 1 committed per test. After you commit Unrelenting to a skill test, search the chaos bag for up to 3 non-[auto_fail] chaos tokens of your choice, and seal them on Unrelenting. If all 3 tokens sealed on Unrelenting are \"+1,\", \"0,\" [bless], and/or [elder_sign] tokens, draw 2 cards. Release all tokens sealed here after this test ends.",
+      "08072": "Uses (5 secrets). If Schoffner's Catalogue has no secrets, discard it. You may spend secrets on Schoffner's Catalogue as resources to pay for Item assets played by any investigator at your location.",
+      "09108": "Fast. Play before revealing a chaos token during an investigation you are performing, and only if the difficulty of this test is currently 0. This test automatically succeeds. You discover 1 additional clue at this location and 1 additional clue at any location."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -3486,7 +3552,8 @@
       "60351": "30-card deck: Rogue and Neutral cards level 0–5. Requires Know the Exit, Know the Line, Know the Scene, Weight of the World and 1 random basic weakness.",
       "01005": "30-card deck: Survivor and Neutral cards level 0–5 and Rogue cards level 0–2. Requires Wendy's Amulet, Abandoned and Alone and 1 random basic weakness.",
       "04004": "30-card deck: Mystic and Neutral cards level 0–5 and Blessed cards level 0–3. Requires The Codex of Ages, Serpents of Yig and 1 random basic weakness. Begins the campaign with 5 additional experience.",
-      "05006": "30-card deck: Spell cards level 0–5, Mystic cards level 0–3, Neutral cards level 0–5, Occult cards level 0 and up to five other level 0 Seeker and/or Survivor cards. Requires Mystifying Song, Baron Samedi and 1 random basic weakness."
+      "05006": "30-card deck: Spell cards level 0–5, Mystic cards level 0–3, Neutral cards level 0–5, Occult cards level 0 and up to five other level 0 Seeker and/or Survivor cards. Requires Mystifying Song, Baron Samedi and 1 random basic weakness.",
+      "60501": "30-card deck: Survivor and Neutral cards level 0–5. Requires 3 copies of Neither Rain nor Snow, 1 Called by the Mists and 1 random basic weakness."
     },
     "victory": "Victory {n}",
     "names": {
@@ -4015,7 +4082,37 @@
       "60381": "Well Connected",
       "60382": "Right Under Their Noses",
       "60383": "Contingency",
-      "60384": "The Red Clock"
+      "60384": "The Red Clock",
+      "60501": "Stella Clark",
+      "60502": "Neither Rain nor Snow",
+      "60503": "Called by the Mists",
+      "60504": "Atychiphobia",
+      "60506": "Grimm's Fairy Tales",
+      "60508": "Granny Orne",
+      "60510": "Rabbit's Foot",
+      "60512": "Will to Survive",
+      "60513": "A Test of Will",
+      "60514": "Dumb Luck",
+      "60515": "Grit Your Teeth",
+      "60516": "Live and Learn",
+      "60519": "Take Heart",
+      "60520": "Cherished Keepsake",
+      "60521": "Leather Coat",
+      "60522": ".18 Derringer",
+      "60523": "A Test of Will",
+      "60524": "\"Look what I found!\"",
+      "60525": "Dumb Luck",
+      "60527": "Granny Orne",
+      "60528": "Lucky!",
+      "60530": "Quick Learner",
+      "60531": "Déjà Vu",
+      "02234": "Dark Horse",
+      "04200": "Live and Learn",
+      "04272": "Winging It",
+      "01073": "Scavenging",
+      "07196": "Unrelenting",
+      "08072": "Schoffner's Catalogue",
+      "09108": "Shed a Light"
     }
   },
   "account": {

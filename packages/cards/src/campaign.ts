@@ -111,6 +111,7 @@ import './andre-patel'
 import './wendy-adams'
 import './father-mateo'
 import './marie-lambeau'
+import './stella-clark'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
@@ -118,6 +119,10 @@ export interface CampaignInvestigator {
   id: InvestigatorId
   /** Mazo actual (sin los apoyos de historia, que se añaden al empezar cada escenario). */
   deck: CardCode[]
+  /** Cards exiled during the last scenario (Déjà Vu discounts repurchasing up to 3). */
+  exiled?: CardCode[]
+  /** Déjà Vu discounts already used since the last scenario. */
+  dejaVuUsed?: number
 }
 
 export interface ScenarioResult {
@@ -534,10 +539,13 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
   return {
     ...campaign,
     scenarioIndex: campaign.scenarioIndex + 1,
-    investigators: campaign.investigators.map((i) => ({
-      ...i,
-      deck: i.deck.filter((code) => !log.removedCards?.includes(code)),
-    })),
+    investigators: campaign.investigators.map(({ exiled: _last, dejaVuUsed: _used, ...i }) => {
+      // RR Exile: exiled copies leave the deck; they must be purchased again (FAQ 1.18).
+      const exiled = (game.exiled ?? []).filter((e) => e.investigator === i.id).map((e) => e.code)
+      const deck = i.deck.filter((code) => !log.removedCards?.includes(code))
+      for (const code of exiled) if (deck.includes(code)) deck.splice(deck.indexOf(code), 1)
+      return { ...i, deck, ...(exiled.length ? { exiled } : {}) }
+    }),
     log,
     results: [
       ...campaign.results,
@@ -635,6 +643,9 @@ export function purchaseOptions(
   const xp = campaign.log.investigators[investigator]?.xp ?? 0
   const options = byCode(investigator)?.deckOptions ?? []
   const full = deckSize(deck) >= deckSizeOf(investigator, deck)
+  // FAQ 1.18: below the deck size after cards were removed, level 0 cards cost 0 experience.
+  const short = deckSize(deck) < deckSizeOf(investigator, deck)
+  const self = member(campaign, investigator)
   return allPlayerCardDefs()
     .filter(
       (card) =>
@@ -670,13 +681,24 @@ export function purchaseOptions(
           ? [
               {
                 ...base,
-                cost: Math.max(1, price(card.code)),
+                cost:
+                  short && base.level === 0 && !isPermanent(card.code)
+                    ? 0
+                    : Math.max(0, Math.max(1, price(card.code)) - dejaVu(self, deck, card.code)),
                 needsRemoval: full && !isPermanent(card.code),
               },
             ]
           : []
       return [...upgrade, ...add].filter((o) => o.cost <= xp)
     })
+}
+
+const DEJA_VU = '60531'
+
+/** Déjà Vu: 1 less to repurchase a card exiled during the last scenario (up to 3 cards). */
+function dejaVu(member: CampaignInvestigator, deck: CardCode[], code: CardCode): number {
+  const exiled = member.exiled ?? []
+  return deck.includes(DEJA_VU) && (member.dejaVuUsed ?? 0) < 3 && exiled.includes(code) ? 1 : 0
 }
 
 /**
@@ -726,9 +748,23 @@ export function purchase(
     throw new Error(`Máximo ${offClassLimit} cartas de otras clases`)
   const record = campaign.log.investigators[investigator]
   if (!record) throw new Error(`Sin registro de campaña: ${investigator}`)
+  // Déjà Vu: the discounted repurchase uses up one exiled copy.
+  const self = member(campaign, investigator)
+  const freeFill = level(card) === 0 && deckSize(self.deck) < deckSizeOf(investigator, self.deck)
+  const discounted = !option.replaces && !freeFill && dejaVu(self, self.deck, card) > 0
+  const exiled = [...(self.exiled ?? [])]
+  if (discounted) exiled.splice(exiled.indexOf(card), 1)
   return {
     ...campaign,
-    investigators: campaign.investigators.map((i) => (i.id === investigator ? { ...i, deck } : i)),
+    investigators: campaign.investigators.map((i) =>
+      i.id === investigator
+        ? {
+            ...i,
+            deck,
+            ...(discounted ? { exiled, dejaVuUsed: (i.dejaVuUsed ?? 0) + 1 } : {}),
+          }
+        : i,
+    ),
     log: {
       ...campaign.log,
       investigators: {

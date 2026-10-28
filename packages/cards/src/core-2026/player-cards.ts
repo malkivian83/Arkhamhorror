@@ -31,6 +31,7 @@ import andre from '../data/andre-patel.json'
 import wendy from '../data/wendy-adams.json'
 import mateo from '../data/father-mateo.json'
 import marie from '../data/marie-lambeau.json'
+import stella from '../data/stella-clark.json'
 import jennyDecklist from '../jenny-barnes/decklist-1179.json'
 
 /**
@@ -67,6 +68,7 @@ registerPlayerCards([
   ...(wendy as PlayerCardDef[]),
   ...(mateo as PlayerCardDef[]),
   ...(marie as PlayerCardDef[]),
+  ...(stella as PlayerCardDef[]),
 ])
 
 /** Código de carta a partir del número de colección de la caja (p. ej. 20 → "12020"). */
@@ -134,6 +136,18 @@ export const STARTER_DECKS: Record<string, DeckList> = {
     cardCodes: [
       ...['60352', '60353', '60354', '60355', '60356'],
       ...Array.from({ length: 15 }, (_, n) => String(60357 + n)).flatMap((c) => [c, c]),
+    ],
+  },
+  // Stella Clark: her official Investigator Starter Deck (two copies of each level 0 card of
+  // her pack) with her signatures and its basic weakness, Atychiphobia.
+  stella: {
+    investigator: 13,
+    investigatorCode: '60501',
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...['60502', '60502', '60502', '60503', '60504'],
+      ...Array.from({ length: 15 }, (_, n) => String(60505 + n)).flatMap((c) => [c, c]),
     ],
   },
   // Wendy Adams: Survivor cards of the original Core Set, many events for her Amulet, two

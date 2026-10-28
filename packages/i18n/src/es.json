@@ -320,7 +320,16 @@
       "cheat": "Elige una ficha de la bolsa",
       "ally": "Elige un Aliado de tu mano"
     },
-    "startingCard": "Inicial: puedes añadir a tu mano 1 carta Inicial de tu mazo"
+    "startingCard": "Inicial: puedes añadir a tu mano 1 carta Inicial de tu mazo",
+    "stella": {
+      "elderSign": "Signo arcano: ¿+1, o fracasar automáticamente para curarte 1 daño y 1 horror?"
+    },
+    "grannyOrne": "¿Por cuánto fracasa la prueba?",
+    "grannyOrne3": "Cambia el valor de habilidad para esta prueba",
+    "unrelenting": "Incansable: sella una ficha (hasta {n} más)",
+    "upkeepResources": "Hermético: ¿obtienes {n} recurso(s) en este mantenimiento?",
+    "payWithUses": "¿Pagas {card} con secretos de {source}?",
+    "playFrom": "Jugar {card} desde…"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -670,7 +679,22 @@
         "elderThing": "Primigenio"
       }
     },
-    "redClockTake": "Coger sus {n} cargas como recursos"
+    "redClockTake": "Coger sus {n} cargas como recursos",
+    "stella": {
+      "resolve": "+1 al valor de habilidad",
+      "fail": "Fracasar automáticamente: cúrate 1 daño y 1 horror"
+    },
+    "failByLess": "Por 1 menos",
+    "failByMore": "Por 1 más",
+    "skillValuePlus": "+1 al valor de habilidad",
+    "skillValueMinus": "−1 al valor de habilidad",
+    "sealToken": "Sellar {token}",
+    "doneSealing": "Terminar de sellar",
+    "gainResources": "Obtener {n} recurso(s)",
+    "declineResources": "No obtener recursos",
+    "payWithUses": "Gastar {n} secreto(s)",
+    "playFromHand": "Tu mano",
+    "playFromDiscard": "Tu pila de descartes"
   },
   "phase": {
     "setup": "Preparación",
@@ -1047,7 +1071,14 @@
     },
     "grapevineDraw": "El mentidero: gasta 1 rumor y agótalo: Negociar. Muévete hasta un Enemigo a {range} conexiones como máximo, enfréntate a él y roba 1 carta",
     "wellConnectedReady": "Bien conectado: gasta 2 recursos para prepararlo",
-    "contingency": "Contingencia: gasta 3 recursos para cancelar la ficha {token} y revelar una nueva"
+    "contingency": "Contingencia: gasta 3 recursos para cancelar la ficha {token} y revelar una nueva",
+    "stella": {
+      "action": "Stella Clark: realiza una acción adicional durante tu turno en esta ronda"
+    },
+    "grimmsFairyTales": "Cuentos de hadas de los hermanos Grimm: cura 1 horror a {name}",
+    "grannyOrne": "Abuelita Orne: {name} fracasa por 1 menos o 1 más",
+    "grannyOrne3": "Abuelita Orne: +1 o −1 al valor de habilidad de {name}",
+    "scavenging": "Reutilizar: añade a tu mano un Objeto de tu pila de descartes"
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -1167,7 +1198,12 @@
     "tokenTreatedAs": "Se cancela la ficha {token} y se considera {face}.",
     "discardRemoved": "{name} retira de la partida las {n} cartas de su pila de descartes.",
     "agendaHeld": "Hasta el final de la fase, el plan no puede avanzar por llegar a su umbral de perdición.",
-    "additionalDamage": "{card} coloca {n} daño adicional sobre {name}."
+    "additionalDamage": "{card} coloca {n} daño adicional sobre {name}.",
+    "turnActionsLater": "{name} realizará {n} acción(es) adicional(es) durante su turno en esta ronda.",
+    "failedTestEffectsCanceled": "Ni la lluvia ni la nieve cancela los efectos de la prueba fracasada.",
+    "enemyToEncounterTop": "{enemy} se coloca en la parte superior del mazo de Encuentros.",
+    "enemyToEncounterBottom": "{enemy} se coloca en la parte inferior del mazo de Encuentros.",
+    "exiled": "{name} exilia {card}."
   },
   "table": {
     "scenarioSkipped": "Escenario omitido",
@@ -3470,7 +3506,37 @@
       "60381": "Límite de 1 por investigador. [fast] Agota Bien conectado: recibes +1 a tu valor de habilidad para esta prueba por cada 4 recursos que tengas. [fast] Gasta 2 recursos: prepara Bien conectado (límite de una vez por ronda).",
       "60382": "Rápido. Juega esta carta después de evitar con éxito a un Enemigo. Descubre 1 pista en tu Lugar; también puedes descubrir 1 pista en un Lugar conectado si tuviste éxito por 2 o más.",
       "60383": "Mientras la Contingencia esté asignada a una prueba de habilidad que tenga como objetivo un Enemigo, después de revelar fichas de Caos, puedes gastar 3 recursos para cancelar una ficha revelada, devolverla a la bolsa y revelar una nueva (cualquier número de veces).",
-      "60384": "Excepcional. Usos (0 cargas). Obligado – Después de que comience tu turno: puedes coger todas sus cargas como recursos. Coloca 1 carga sobre esta carta. Si tiene exactamente 1 carga, recibes +4 al valor de habilidad de tu siguiente prueba; 2 cargas, puedes moverte hasta 3 veces; 3 cargas, puedes realizar 2 acciones adicionales este turno."
+      "60384": "Excepcional. Usos (0 cargas). Obligado – Después de que comience tu turno: puedes coger todas sus cargas como recursos. Coloca 1 carga sobre esta carta. Si tiene exactamente 1 carga, recibes +4 al valor de habilidad de tu siguiente prueba; 2 cargas, puedes moverte hasta 3 veces; 3 cargas, puedes realizar 2 acciones adicionales este turno.",
+      "60501": "[reaction] Después de que fracases en una prueba de habilidad: Puedes realizar una acción adicional durante tu turno en esta ronda. Límite de una vez por ronda. Efecto [elder_sign]: +1. En lugar de eso, puedes elegir fracasar automáticamente en esta prueba de habilidad para curarte 1 punto de daño y 1 punto de horror.",
+      "60502": "Solo para el mazo de Stella Clark. Si esta prueba de habilidad fracasa, cancela todos los efectos de la prueba fracasada.",
+      "60503": "Revelación – Pon Llamada de las nieblas en juego en tu zona de amenaza. Obligado – Después de que inicies una prueba de habilidad de dificultad 4 o más: Recibe 1 punto de daño. [action][action]: Descarta Llamada de las nieblas.",
+      "60504": "Revelación – Pon Atiquifobia en juego en tu zona de amenaza. Obligado – Después de que fracases en una prueba de habilidad: Recibe 1 punto de horror. [action][action]: Descarta Atiquifobia.",
+      "60506": "Usos (4 secretos). [reaction] Después de que un investigador que esté en tu Lugar fracase en una prueba de habilidad por 2 o más, agota los Cuentos de hadas de los hermanos Grimm y gasta 1 secreto: Cúrale 1 punto de horror a ese investigador.",
+      "60508": "Recibes +1 [willpower]. [reaction] Cuando un investigador que esté en tu Lugar vaya a fracasar en una prueba de habilidad, agota a la Abuelita Orne: Ese investigador fracasa por 1 menos o 1 más.",
+      "60510": "[reaction] Después de que fracases en una prueba de habilidad, agota la Pata de conejo: Roba 1 carta.",
+      "60512": "Rápido. Juega esta carta solo durante tu turno. No reveles fichas de Caos para la siguiente prueba de habilidad que realices este turno.",
+      "60513": "Rápido. Juega esta carta cuando un investigador que esté en tu Lugar robe una carta de Traición que no sea de Debilidad. Realiza una prueba de [willpower] (3). Si tienes éxito, cancela el efecto «Revelación» de esa carta.",
+      "60514": "Rápido. Juega esta carta después de que fracases en una prueba de habilidad por 2 o menos durante un intento de evitar contra un Enemigo que no sea Élite. Coloca ese Enemigo en la parte superior del mazo de Encuentros.",
+      "60515": "Rápido. Juega esta carta después de que fracases en una prueba de habilidad. Recibes +1 a cada una de tus habilidades durante el resto de la ronda.",
+      "60516": "Rápido. Juega esta carta después de que acabe una prueba de habilidad en la que fracasaras (después de resolver todos los efectos de la prueba fracasada). Vuelve a intentar esa prueba. Recibes +2 a tu valor de habilidad para esta prueba.",
+      "60519": "Máximo de 1 asignada por prueba de habilidad. Puedes asignar Encontrar consuelo a cualquier tipo de prueba. Si esta prueba fracasa, el investigador que la realiza roba 2 cartas y obtiene 2 recursos.",
+      "60520": "Obligado – Cuando el Recuerdo querido sea derrotado por horror: Exílialo.",
+      "60521": "Obligado – Cuando el Abrigo de cuero sea derrotado por daño: Exílialo.",
+      "60522": "Usos (3 municiones). [action] Gasta 1 munición: Combatir. Recibes +2 [combat] e infliges +1 de daño para este ataque. Si fracasas, coloca 1 munición sobre el Derringer del .18 y la próxima vez que actives esta capacidad en esta ronda, recibes +1 [combat] adicional para ese ataque.",
+      "60523": "Rápido. Juega esta carta cuando un investigador que esté en tu Lugar robe una carta de Traición que no sea de Debilidad. Cancela el efecto «Revelación» de esa carta. A continuación, realiza una prueba de [willpower] (3). Si fracasas, exilia Una prueba de voluntad.",
+      "60524": "Rápido. Juega esta carta después de que fracases en una prueba de habilidad por 3 o menos al investigar. Descubre 2 pistas en total entre tu Lugar y los Lugares conectados.",
+      "60525": "Rápido. Juega esta carta después de que fracases en una prueba de habilidad por 3 o menos durante un intento de evitar contra un Enemigo que no sea Élite. Coloca ese Enemigo en la parte inferior del mazo de Encuentros.",
+      "60527": "Recibes +1 [willpower] y +1 [intellect]. [reaction] Cuando un investigador que esté en tu Lugar vaya a fracasar en una prueba de habilidad, agota a la Abuelita Orne: Ese investigador recibe +1 o -1 al valor de la habilidad para esa prueba.",
+      "60528": "Rápido. Juega esta carta cuando un investigador que esté en tu Lugar fuese a fracasar en una prueba de habilidad. Recibe +3 a su valor de habilidad para esa prueba. Ese investigador roba 1 carta.",
+      "60530": "Permanente. Durante o antes de tu primera acción de cada uno de tus turnos, cada prueba de habilidad que realices recibe +1 a su dificultad. Durante o después de la tercera acción de cada uno de tus turnos, cada prueba de habilidad que realices recibe -1 a su dificultad.",
+      "60531": "Permanente. Entre dos escenarios de una campaña, reduce el coste de experiencia para volver a adquirir hasta 3 cartas que hayas exiliado durante el último escenario en 1 cada una.",
+      "02234": "Límite de 1 por investigador. Durante la fase de Mantenimiento, puedes elegir no obtener recursos. Mientras no tengas recursos en tu reserva de recursos, recibes +1 [willpower], +1 [intellect], +1 [combat] y +1 [agility].",
+      "04200": "Rápido. Juega esta carta después de que acabe una prueba de habilidad en la que fracasaras (después de resolver todos los efectos de la prueba fracasada). Vuelve a intentar esa prueba. Recibes +2 a tu valor de habilidad para esta prueba.",
+      "04272": "Puedes jugar Sobre la marcha desde tu pila de descartes. Si lo haces, añádela a tu mazo y baraja éste después de resolver sus efectos. Investigar. Tu Lugar recibe -1 a velo para esta investigación. Si jugaste Sobre la marcha desde tu pila de descartes, descubre 1 pista adicional si tienes éxito.",
+      "01073": "[reaction] Después de que investigues con éxito por 2 o más, agota Reutilizar: Elige 1 carta Objeto de tu pila de descartes y añádela a tu mano.",
+      "07196": "Máximo de 1 asignada por prueba. Después de que asignes Incansable a una prueba de habilidad, busca en la bolsa de caos hasta 3 fichas de Caos de tu elección que no sean [auto_fail] y séllalas sobre Incansable. Si las 3 fichas selladas sobre Incansable son fichas «+1», «0», [bless], y/o [elder_sign], roba 2 cartas. Libera todas las fichas selladas aquí después de que acabe esta prueba.",
+      "08072": "Usos (5 secretos). Si el Catálogo de Schoffner no tiene secretos, descártalo. Puedes gastar secretos del Catálogo de Schoffner como recursos para pagar Apoyos Objeto jugados por cualquier investigador que esté en tu Lugar.",
+      "09108": "Rápido. Juega esta carta antes de revelar una ficha de Caos durante una investigación que estés realizando, y sólo si la dificultad de esta prueba es 0 actualmente. Esta prueba tiene éxito automáticamente. Descubres 1 pista adicional en este Lugar y 1 pista adicional en cualquier Lugar."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -3486,7 +3552,8 @@
       "60351": "Mazo de 30 cartas: Rebelde y neutrales de nivel 0–5. Requiere Conocer la salida, Conocer el texto, Conocer la escena, El peso del mundo y 1 debilidad básica aleatoria.",
       "01005": "Mazo de 30 cartas: Superviviente y neutrales de nivel 0–5 y Rebelde de nivel 0–2. Requiere Amuleto de Wendy, Sola y abandonada y 1 debilidad básica aleatoria.",
       "04004": "Mazo de 30 cartas: Místico y neutrales de nivel 0–5 y cartas Bendecido de nivel 0–3. Requiere El códice de las eras, Serpientes de Yig y 1 debilidad básica aleatoria. Empieza la campaña con 5 puntos de experiencia adicionales.",
-      "05006": "Mazo de 30 cartas: Hechizos de nivel 0–5, Místico de nivel 0–3, neutrales de nivel 0–5, cartas Ocultismo de nivel 0 y hasta otras cinco cartas de nivel 0 de Buscador y/o Superviviente. Requiere Canción desconcertante, Barón Samedi y 1 debilidad básica aleatoria."
+      "05006": "Mazo de 30 cartas: Hechizos de nivel 0–5, Místico de nivel 0–3, neutrales de nivel 0–5, cartas Ocultismo de nivel 0 y hasta otras cinco cartas de nivel 0 de Buscador y/o Superviviente. Requiere Canción desconcertante, Barón Samedi y 1 debilidad básica aleatoria.",
+      "60501": "Mazo de 30 cartas: Superviviente y neutrales de nivel 0–5. Requiere 3 copias de Ni la lluvia ni la nieve, 1 Llamada de las nieblas y 1 debilidad básica aleatoria."
     },
     "victory": "Victoria {n}",
     "names": {
@@ -4015,7 +4082,37 @@
       "60381": "Bien conectado",
       "60382": "Delante de sus narices",
       "60383": "Contingencia",
-      "60384": "El reloj rojo"
+      "60384": "El reloj rojo",
+      "60501": "Stella Clark",
+      "60502": "Ni la lluvia ni la nieve",
+      "60503": "Llamada de las nieblas",
+      "60504": "Atiquifobia",
+      "60506": "Cuentos de hadas de los hermanos Grimm",
+      "60508": "Abuelita Orne",
+      "60510": "Pata de conejo",
+      "60512": "Voluntad de supervivencia",
+      "60513": "Una prueba de voluntad",
+      "60514": "Chiripa",
+      "60515": "Apretar los dientes",
+      "60516": "Vivir y aprender",
+      "60519": "Encontrar consuelo",
+      "60520": "Recuerdo querido",
+      "60521": "Abrigo de cuero",
+      "60522": "Derringer del .18",
+      "60523": "Una prueba de voluntad",
+      "60524": "\"¡Mira lo que he encontrado!\"",
+      "60525": "Chiripa",
+      "60527": "Abuelita Orne",
+      "60528": "¡Qué suerte!",
+      "60530": "Espabilado",
+      "60531": "Déjà Vu",
+      "02234": "Hermético",
+      "04200": "Vivir y aprender",
+      "04272": "Sobre la marcha",
+      "01073": "Reutilizar",
+      "07196": "Incansable",
+      "08072": "Catálogo de Schoffner",
+      "09108": "Alumbrar"
     }
   },
   "account": {

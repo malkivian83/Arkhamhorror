@@ -632,8 +632,33 @@ export interface PlayerCardBehavior {
   placedAbilities?: AbilitiesFn<PlacedAsset>
   placedForced?: (state: GameState, trigger: Trigger, self: PlacedAsset) => Message[]
   code: CardCode
-  /** Evento: su efecto al jugarlo (`x`: el valor elegido para un coste X). */
-  play?: (state: GameState, investigator: InvestigatorId, x?: number) => Message[]
+  /**
+   * Evento: su efecto al jugarlo (`x`: el valor elegido para un coste X; `fromDiscard`: se jugó
+   * desde la pila de descartes).
+   */
+  play?: (
+    state: GameState,
+    investigator: InvestigatorId,
+    x?: number,
+    fromDiscard?: boolean,
+  ) => Message[]
+  /** It may be played from its owner's discard pile, any copy (Winging It). */
+  playableFromDiscard?: boolean
+  /** Committed: if the test fails, cancel all effects of the failed test (Neither Rain nor Snow). */
+  cancelsFailedTestEffects?: boolean
+  /** In play: difficulty modifier of each skill test its controller initiates (Quick Learner). */
+  ownerTestDifficulty?: (state: GameState, self: Asset) => number
+  /** In play: its controller may choose not to gain resources during upkeep (Dark Horse). */
+  mayDeclineUpkeepResources?: boolean
+  /** In play: its uses may be spent as resources to pay for `code` (Schoffner's Catalogue). */
+  usesAsResources?: (
+    state: GameState,
+    self: Asset,
+    payer: InvestigatorId,
+    code: CardCode,
+  ) => boolean
+  /** Replaces discarding it when it is defeated (Cherished Keepsake: it is exiled instead). */
+  whenDefeated?: (state: GameState, self: Asset) => Message[] | null
   /** Printed cost X: the values X may take (Pay Your Dues: remaining health of a target). */
   xOptions?: (state: GameState, investigator: InvestigatorId) => number[]
   /** Event with the Parley designator: parley costs apply and `afterParley` follows. */

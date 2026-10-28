@@ -3,6 +3,7 @@ import {
   investigatorBehavior,
   assetBehavior,
   assetOwnerVitals,
+  playerCardBehavior,
   playerCardDef,
   scenarioBehavior,
   treacheryBehavior,
@@ -27,6 +28,39 @@ import type {
 /** A repeated turn in the same round has a distinct event position; no new state field is needed. */
 export const turnStartedAt = (state: GameState): number =>
   state.log.findLastIndex((entry) => entry.key === 'log.step.turnBegins')
+
+/**
+ * FAQ 2.4 (July 2025), Plan of Action and Quick Learner: during an actual investigator turn,
+ * 'early' until its first action resolves, 'late' from its third action on, 'middle' between.
+ * A temporary action still occurs during the actual turn: the action enclosing it counts.
+ */
+export function turnActionTiming(
+  s: GameState,
+  investigator?: InvestigatorId,
+): 'early' | 'middle' | 'late' | null {
+  const root = s.immediateActions?.[0]
+  const turn = root ? (root.endedTurn ? null : root.activeTurn) : s.activeTurn
+  if (s.phase !== 'investigation' || !turn || (investigator && turn !== investigator)) return null
+  const pending = s.queue.filter(
+    (m) =>
+      m.type === 'CompleteAction' &&
+      m.investigator === turn &&
+      m.phase === s.phase &&
+      m.round === s.round,
+  ).length
+  const completed = Math.max(0, (getInvestigator(s, turn).actionsTaken ?? 0) - pending)
+  if (completed === 0) return 'early'
+  if (completed === 1 || (completed === 2 && pending === 0)) return 'middle'
+  return 'late'
+}
+
+/** Their turn this round is in progress or has not begun yet (Stella Clark). */
+export function turnAheadThisRound(state: GameState, id: InvestigatorId): boolean {
+  const investigator = state.investigators.find((i) => i.id === id)
+  if (!investigator || investigator.eliminated) return false
+  if (state.activeTurn === id) return true
+  return state.phase === 'mythos' || (state.phase === 'investigation' && !investigator.turnTaken)
+}
 
 /** RR: Cannot overrides all ready effects, including upkeep. */
 export const assetsCannotReady = (state: GameState, owner: InvestigatorId): boolean =>
@@ -250,7 +284,24 @@ export function playableHand(state: GameState, id: InvestigatorId): CardCode[] {
     Object.values(state.assets).some(
       (a) => a.owner === id && assetBehavior(state, a)?.playsTopDiscardEvent,
     )
-  return fromDiscard ? [...investigator.hand, top] : investigator.hand
+  // Winging It: "you may play it from your discard pile" (any copy).
+  const discarded = [
+    ...new Set(investigator.discard.filter((c) => playerCardBehavior(c)?.playableFromDiscard)),
+  ].filter((c) => !(fromDiscard && c === top))
+  return [...investigator.hand, ...(fromDiscard ? [top] : []), ...discarded]
+}
+
+/** Uses on assets that may pay for `code` as resources (Schoffner's Catalogue), by asset. */
+export function usesAsResources(
+  state: GameState,
+  payer: InvestigatorId,
+  code: CardCode,
+): { asset: string; uses: number }[] {
+  return Object.values(state.assets)
+    .filter(
+      (a) => a.uses > 0 && !!assetBehavior(state, a)?.usesAsResources?.(state, a, payer, code),
+    )
+    .map((a) => ({ asset: a.id, uses: a.uses }))
 }
 
 /** Wendy's Amulet: its controller's events go to the bottom of their deck, not the discard. */
