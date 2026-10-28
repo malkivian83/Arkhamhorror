@@ -65,3 +65,15 @@ Pruebas de reglas por efecto y forma, restricciones, última carga, Deducción, 
 persistencia, metadatos, exilio, unicidad del registro, servicio online e interfaz EN/ES
 mediante renderizado SSR. Se reutilizan las pruebas de Supervivencia real del lote parcial.
 Revisión visual de la aplicación pendiente para la persona usuaria; no se abre navegador.
+
+Validación final del commit `61094e25`, integrado sobre `801f398c`: formato, lint sin
+errores, tipos y compilación correctos. Batería completa: 4.840 pruebas correctas y
+19 omitidas, incluyendo la repetición de los dos archivos existentes que agotaron
+5 segundos bajo carga (correctos con límite de 15 segundos). La prueba del inventario
+se corrigió para usar Vitest y también pasó. Lista 39832: 33 códigos jugables y ninguno
+pendiente. Persisten los avisos previos de orden de atributos en SiteHeader, fuente
+externa y tamaño de los paquetes de compilación.
+
+La publicación se prepara en `.card-import-tmp/stella-main`, copia temporal de main,
+para preservar las ediciones concurrentes de Carcosa del árbol original. Este último
+mantiene su HEAD previo y requiere integrar main cuando termine ese trabajo.
