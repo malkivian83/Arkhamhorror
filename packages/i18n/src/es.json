@@ -307,7 +307,7 @@
     "marie": {
       "doom": "Puedes añadir 1 perdición a una carta que controles o retirarle 1"
     },
-    "grapevine": "Elige un Enemigo en un Lugar revelado a 2 conexiones como máximo",
+    "grapevine": "Elige un Enemigo en un Lugar revelado a {range} conexiones como máximo",
     "grapevineStep": "Elige el siguiente Lugar del camino más corto",
     "rightUnderTheirNoses": "¿Dónde descubres la pista?",
     "watchThis": "\"¡Mira esto!\": gasta hasta 3 recursos",
@@ -319,7 +319,8 @@
     "house": {
       "cheat": "Elige una ficha de la bolsa",
       "ally": "Elige un Aliado de tu mano"
-    }
+    },
+    "startingCard": "Inicial: puedes añadir a tu mano 1 carta Inicial de tu mazo"
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -668,7 +669,8 @@
         "tablet": "Tablilla",
         "elderThing": "Primigenio"
       }
-    }
+    },
+    "redClockTake": "Coger sus {n} cargas como recursos"
   },
   "phase": {
     "setup": "Preparación",
@@ -1020,7 +1022,7 @@
     "baronSamedi": "Agota al Barón Samedi: coloca 1 perdición sobre él (con 3 o más, descártalo)",
     "centerStage": "El centro de atención: gasta 1 de renombre y agótalo: +{n} a tu valor de habilidad",
     "fame": "Fama: gasta 1 de renombre: Negociar. Obtén 2 recursos",
-    "grapevine": "El mentidero: gasta 1 rumor y agótalo: Negociar. Muévete hasta un Enemigo a 2 conexiones como máximo y enfréntate a él",
+    "grapevine": "El mentidero: gasta 1 rumor y agótalo: Negociar. Muévete hasta un Enemigo a {range} conexiones como máximo y enfréntate a él",
     "extravagantRing": "Anillo extravagante: gasta 1 de renombre y agótalo: +2 a tu valor de habilidad para esta prueba",
     "dunwich": {
       "parleyJazz": "Negociar con Jazz (intelecto 3)",
@@ -1042,7 +1044,10 @@
       "morganDraw": "Agotar al Dr. Morgan para robar",
       "peterEvade": "Peter Clover: evitar a un Criminal",
       "armitageResources": "Armitage: descartar la carta robada y ganar 3 recursos"
-    }
+    },
+    "grapevineDraw": "El mentidero: gasta 1 rumor y agótalo: Negociar. Muévete hasta un Enemigo a {range} conexiones como máximo, enfréntate a él y roba 1 carta",
+    "wellConnectedReady": "Bien conectado: gasta 2 recursos para prepararlo",
+    "contingency": "Contingencia: gasta 3 recursos para cancelar la ficha {token} y revelar una nueva"
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -3457,7 +3462,15 @@
       "60363": "[action]: Combatir ([combat]). Añade tu [agility] a tu [combat] para este ataque. Si este ataque tiene éxito por 2 o más contra un Enemigo que no sea Élite, puedes agotar el Bastón bruñido para evitar automáticamente a ese Enemigo.",
       "60365": "Negociar. Elige un Enemigo con X de salud restante que no sea Élite y que esté en tu Lugar. Ese Enemigo deja de estar enfrentado a cada investigador y obtiene Indiferente hasta el final de la ronda. Descubre 1 pista en tu Lugar.",
       "60368": "Rápido. Juega esta carta después de evitar con éxito a un Enemigo. Descubre 1 pista en tu Lugar, o bien 1 pista en un Lugar conectado si tuviste éxito por 2 o más.",
-      "60371": "Sólo puedes asignar esta carta a una prueba de habilidad que estés realizando. Como coste adicional para asignarla, gasta hasta 3 recursos. Si tienes éxito por 1 o más, obtén el doble de esa cantidad de recursos."
+      "60371": "Sólo puedes asignar esta carta a una prueba de habilidad que estés realizando. Como coste adicional para asignarla, gasta hasta 3 recursos. Si tienes éxito por 1 o más, obtén el doble de esa cantidad de recursos.",
+      "60374": "Usos (3 rumores). Si no hay rumores en El mentidero, descártalo. [action] Gasta 1 rumor y agota El mentidero: Negociar. Elige un Enemigo que esté en un Lugar revelado a un máximo de 3 conexiones. Muévete (de Lugar en Lugar) por el camino más corto hasta su Lugar y enfréntate a él. Roba 1 carta.",
+      "60375": "Obtienes 1 recurso adicional durante la fase de Mantenimiento. Obligado – Después de que fracases en una prueba de habilidad: inflige 1 punto de horror a Marcus Sengstacke.",
+      "60379": "Excepcional. Mientras tengas… 10+ recursos, recibes +1 de salud y +1 de cordura. 15+ recursos, puedes realizar una acción adicional durante tu turno. 20+ recursos, recibes +1 a cada una de tus habilidades.",
+      "60380": "Inicial (puedes comenzar la partida con 1 copia de una carta Inicial en tu mano inicial). [fast] Gasta 1 recurso: recibes +1 [intellect] para esta prueba de habilidad, o +2 [intellect] si es de negociar o una evasión. [fast] Gasta 1 recurso: recibes +1 [agility] para esta prueba de habilidad, o +2 [agility] si es de negociar o una evasión.",
+      "60381": "Límite de 1 por investigador. [fast] Agota Bien conectado: recibes +1 a tu valor de habilidad para esta prueba por cada 4 recursos que tengas. [fast] Gasta 2 recursos: prepara Bien conectado (límite de una vez por ronda).",
+      "60382": "Rápido. Juega esta carta después de evitar con éxito a un Enemigo. Descubre 1 pista en tu Lugar; también puedes descubrir 1 pista en un Lugar conectado si tuviste éxito por 2 o más.",
+      "60383": "Mientras la Contingencia esté asignada a una prueba de habilidad que tenga como objetivo un Enemigo, después de revelar fichas de Caos, puedes gastar 3 recursos para cancelar una ficha revelada, devolverla a la bolsa y revelar una nueva (cualquier número de veces).",
+      "60384": "Excepcional. Usos (0 cargas). Obligado – Después de que comience tu turno: puedes coger todas sus cargas como recursos. Coloca 1 carga sobre esta carta. Si tiene exactamente 1 carga, recibes +4 al valor de habilidad de tu siguiente prueba; 2 cargas, puedes moverte hasta 3 veces; 3 cargas, puedes realizar 2 acciones adicionales este turno."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -3994,7 +4007,15 @@
       "60363": "Bastón bruñido",
       "60365": "Ganárselo a pulso",
       "60368": "Delante de sus narices",
-      "60371": "\"¡Mira esto!\""
+      "60371": "\"¡Mira esto!\"",
+      "60374": "El mentidero",
+      "60375": "Marcus Sengstacke",
+      "60379": "El abanico negro",
+      "60380": "Pico de oro",
+      "60381": "Bien conectado",
+      "60382": "Delante de sus narices",
+      "60383": "Contingencia",
+      "60384": "El reloj rojo"
     }
   },
   "account": {

@@ -8,7 +8,9 @@ FAQ (`reglas/FAQ v2.5A.pdf`).
 
 ## Recuento
 
-Cuatro lotes: **24 códigos / 24 cartas distintas nuevas / 0 reediciones**.
+Cuatro lotes: **24 códigos / 24 cartas distintas nuevas / 0 reediciones**. Ampliación del
+28/10/2026 en el lote `andre-patel`, con las mejoras de su caja: **8 códigos / 8 cartas o
+niveles distintos nuevos / 0 reediciones** (32 en total).
 
 | Lote            | Códigos                                                                                         |
 | --------------- | ----------------------------------------------------------------------------------------------- |
@@ -16,6 +18,7 @@ Cuatro lotes: **24 códigos / 24 cartas distintas nuevas / 0 reediciones**.
 | `father-mateo`  | 04004 Padre Mateo, 04013 El códice de las eras, 04014 Serpientes de Yig                          |
 | `marie-lambeau` | 05006 Marie Lambeau, 05018 Canción desconcertante, 05019 Barón Samedi                            |
 | `andre-patel`   | 60351 André Patel, 60352–60354 Conocer la salida/el texto/la escena, 60355 El peso del mundo, 60356 Desprevenido y las cartas de su mazo de inicio que faltaban: 60357 El centro de atención, 60358 Fama, 60359 El mentidero, 60360 Anillo extravagante, 60362 Marcus Sengstacke, 60363 Bastón bruñido, 60365 Ganárselo a pulso, 60368 Delante de sus narices y 60371 «¡Mira esto!» |
+| `andre-patel` (mejoras) | 60374 El mentidero (2), 60375 Marcus Sengstacke (2), 60379 El abanico negro, 60380 Pico de oro (3), 60381 Bien conectado (3), 60382 Delante de sus narices (3), 60383 Contingencia, 60384 El reloj rojo |
 
 Solo las versiones originales y sus exclusivas primarias. Quedan fuera las alternativas del
 inventario: 01505 (caja revisada), 90037–90040 y 90081–90083 (paralelos), 99001 (promo de
@@ -26,7 +29,9 @@ otras exclusivas), distinta de la original.
 
 - **André Patel:** su mazo de inicio oficial: dos copias de cada carta de nivel 0 de su caja
   (60357–60371), sus cuatro exclusivas y su debilidad básica, Desprevenido. Las mejoras de la
-  caja (60372–60384) no forman parte del mazo; Ganzúas (1) ya estaba implementada.
+  caja (60372–60384) no forman parte del mazo y se compran con experiencia. Ganzúas (1), Por
+  la puerta y las tres habilidades de Agilidad (60376–60378) ya estaban implementadas en
+  otros lotes; las otras ocho se añadieron en la ampliación.
 - **Wendy, Mateo y Marie** no tienen mazo oficial (ni en sus cajas ni en los reglamentos del
   proyecto). Sus mazos iniciales usan cartas jugables de sus clases:
   - Wendy: Superviviente de la caja básica original, muchos eventos para el Amuleto, dos
@@ -88,6 +93,25 @@ otras exclusivas), distinta de la original.
   **Ganárselo a pulso:** X es la salud restante del objetivo; Indiferente hasta el final de
   la ronda. **Delante de sus narices:** solo tras evitar con éxito en una prueba (evitar
   automáticamente no cuenta, FAQ 2.9). **«¡Mira esto!»:** cada copia paga y cobra lo suyo.
+- **Mejoras de André.** **El mentidero (2):** hasta 3 conexiones y roba 1 carta tras
+  enfrentarse. **Marcus Sengstacke (2):** el mismo texto; solo cambian el coste, la cordura
+y los iconos. **El
+  abanico negro** (Excepcional): con 10+ recursos, +1 de salud y cordura (al bajar de 10 se
+  comprueba la derrota); con 15+, una acción adicional en su turno, que se pierde al bajar
+  de 15 y se recupera sin volver a concederse; con 20+, +1 a cada habilidad. **Pico de oro
+  (3):** Inicial (tras el mulligan puede buscarla en el mazo y añadirla a la mano, antes de
+  barajar); +1 [intellect] o [agility] por 1 recurso, +2 en negociaciones y evasiones. **Bien
+  conectado (3):** límite 1 por investigador; +1 por cada 4 recursos y, por 2 recursos, se
+  prepara una vez por ronda. **Delante de sus narices (3):** pista en su Lugar y, si tuvo
+  éxito por 2 o más, también en uno conectado. **Contingencia:** asignada a una prueba con
+  un Enemigo como objetivo (ataques, evasiones y pruebas de capacidades de Enemigo), después
+  de revelar fichas paga 3 recursos para cancelar una, devolverla a la bolsa y revelar otra,
+  cualquier número de veces. **El reloj rojo** (Excepcional): obligado al comenzar su turno,
+  puede coger todas sus cargas como recursos y después coloca 1; con exactamente 1, +4 a la
+  siguiente prueba; con 2, hasta 3 movimientos; con 3, 2 acciones adicionales este turno.
+- **Excepcional** (reglamento 2026): cuesta el doble de experiencia y solo 1 copia por mazo.
+  **Sello es un coste:** El códice de las eras no puede jugarse sin el [elder_sign] en la
+  bolsa.
 
 ### Diferencias con el texto impreso en español
 
@@ -116,12 +140,21 @@ Se aplica el texto vigente (ArkhamDB y erratas de la FAQ): el Amuleto de Wendy i
   `upkeepResources` de apoyos, `CommitPayment`, `limitTitleReached` al jugar y
   `skillValueFor` (valor actual de una habilidad; también en Ganzúas).
 - Construcción: `DeckOption.traits`, `offClassLevelZeroClasses`, `bonusExperience`.
+- Ampliación de las mejoras: palabra clave Inicial (`starting`, búsqueda tras el mulligan en
+  `FinishMulligan`); ventana «después de revelar» (`afterRevealingChaosToken`); reacciones de
+  cartas asignadas (`committedReactions`); acciones adicionales condicionales
+  (`additionalTurnActions` como función, con concesiones inactivas en `turn-actions.ts`);
+  salud y cordura dinámicas (`ownerVitals` como función, con comprobación de derrota al
+  bajar); `NextTestBonus`; `ChooseMove.then`; Excepcional (`exceptional`: doble coste en la
+  campaña y en la experiencia inicial gastada); las capacidades de Enemigo etiquetan sus
+  pruebas como `enemy`; y Sello como coste en El códice de las eras. El etiquetado de
+  pruebas sobre cartas de Escenario también beneficia a Levelheaded (12076).
 
 ## Presentación y recursos
 
 Textos EN/ES en `offlineCard` y etiquetas nuevas. El catálogo en línea consulta los paquetes
 de investigador habilitados (`core`, `dwl`, `ptc`, `tfa`, `tcu` y `and`) filtrados a sus
-códigos (`INVESTIGATOR_PACKS`, caché `v7`). Escaneos oficiales EN/ES, miniaturas y retratos;
+códigos (`INVESTIGATOR_PACKS`, caché `v8` desde la ampliación). Escaneos oficiales EN/ES, miniaturas y retratos;
 procedencia en `evidencias/investigadores-89-recursos-oficiales.json` e
 `imagenes-locales.json`. André no tiene escaneo del reverso (ArkhamDB y referencia): se
 muestra su `backSummary`. El Barón Samedi se dibuja sin coste.
@@ -137,3 +170,10 @@ muestra su `backSummary`. El Barón Samedi se dibuja sin coste.
   después sella).
 - Revisión visual: miniaturas EN/ES, retratos en la pantalla de nueva partida y mazo de
   Marie válido en el editor.
+- Mejoras de André: `andre-patel/upgrades.test.ts` cubre cada carta (alcance y robo de El
+  mentidero (2), derrota y acciones de El abanico negro, Inicial en una partida nueva,
+  preparación limitada de Bien conectado, cancelaciones repetidas de Contingencia, los tres
+  efectos del reloj y el coste Excepcional en la campaña y el mazo), más el Sello como coste
+  del Códice. Escaneos EN/ES y miniaturas descargados; el filtro del paquete `and` incluye
+  toda la caja (60351–60384). Revisión visual de las mejoras pendiente para la persona
+  usuaria.

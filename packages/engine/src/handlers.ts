@@ -1839,6 +1839,32 @@ export function handle(state: GameState, message: Message): GameState {
           { ...message, count: 0 },
         )
       }
+      // RR Starting: after the mulligan (before shuffling the set-aside cards back), they may
+      // search their deck for one copy of a starting card and add it to their hand.
+      const starting = message.startingDone
+        ? []
+        : [...new Set(investigator.deck)].filter((c) => playerCardBehavior(c)?.starting)
+      if (starting.length)
+        return push(state, {
+          type: 'Ask',
+          investigator: investigator.id,
+          question: {
+            kind: 'chooseOne',
+            prompt: 'prompt.startingCard',
+            choices: [
+              ...starting.map((code): Choice => ({
+                label: 'choice.card',
+                params: { card: playerCardDef(code)?.name ?? code },
+                then: [
+                  { type: 'TakeFromDeck', investigator: investigator.id, code, to: 'hand' },
+                  { type: 'ShuffleDeck', investigator: investigator.id },
+                  { ...message, startingDone: true },
+                ],
+              })),
+              { label: 'choice.skip', then: [{ ...message, startingDone: true }] },
+            ],
+          },
+        })
       const aside = investigator.setAsideOpening ?? []
       const next = updateInvestigator(state, investigator.id, (i) => {
         const { setAsideOpening: _done, ...rest } = i
@@ -3263,7 +3289,7 @@ export function handle(state: GameState, message: Message): GameState {
           ...updateInvestigator(
             state,
             investigator.id,
-            ({ nextTestDifficulty: _used, ...rest }) => rest,
+            ({ nextTestDifficulty: _used, nextTestBonus: _bonus, ...rest }) => rest,
           ),
           skillTest: withCommittedDifficulty({
             ...(message.baseSkill !== undefined ? { baseSkill: message.baseSkill } : {}),
@@ -3276,7 +3302,8 @@ export function handle(state: GameState, message: Message): GameState {
             ),
             ...(reduction > 0 ? { difficultyReduction: reduction } : {}),
             kind: message.kind,
-            baseModifier: message.modifier ?? 0,
+            // The Red Clock: +X skill value for the investigator's next skill test.
+            baseModifier: (message.modifier ?? 0) + (investigator.nextTestBonus ?? 0),
             ...(message.source ? { source: message.source } : {}),
             ...(message.effectSource ? { effectSource: message.effectSource } : {}),
             ...(message.commitRule ? { commitRule: message.commitRule } : {}),
@@ -3313,6 +3340,9 @@ export function handle(state: GameState, message: Message): GameState {
       if (message.pending) {
         const held = test.revealing
         if (!held) return state
+        // ST.3 ends: "after revealing" reactions, with the token still held (Contingency).
+        const after = !message.afterWindow && afterRevealing(state, test.investigator, held.face)
+        if (after) return after
         const { revealing: _held, ...rest } = test
         return resolveRevealedToken({ ...state, skillTest: rest }, held.token, held.face)
       }
@@ -3451,7 +3481,9 @@ export function handle(state: GameState, message: Message): GameState {
           { type: 'Forced', trigger: when },
           { type: 'RevealChaosToken', pending: true },
         )
-      return resolveRevealedToken(taken, token, token)
+      return (
+        afterRevealing(held, test.investigator, token) || resolveRevealedToken(taken, token, token)
+      )
     }
 
     case 'CancelRevealedToken': {
@@ -4621,6 +4653,12 @@ export function handle(state: GameState, message: Message): GameState {
         },
       })
     }
+
+    case 'NextTestBonus':
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        nextTestBonus: (i.nextTestBonus ?? 0) + message.amount,
+      }))
 
     case 'LoseAdditionalAction':
       return updateInvestigator(state, message.investigator, (i) => ({
@@ -6221,7 +6259,10 @@ export function handle(state: GameState, message: Message): GameState {
               label: 'action.move',
               params: { location: getLocation(state, to).name },
               target: { type: 'location', id: to },
-              then: [{ type: 'MoveTo', investigator: investigator.id, location: to }],
+              then: [
+                { type: 'MoveTo', investigator: investigator.id, location: to },
+                ...(message.then ?? []),
+              ],
             })),
             { label: 'choice.skip', then: [] },
           ],
@@ -6929,7 +6970,13 @@ function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
     .filter((p) => !p.faceDown)
     .flatMap((p) => playerCardBehavior(p.code)?.placedReactions?.(state, trigger, p) ?? [])
   const fromScenario = scenarioBehavior(state.scenarioId)?.reactions?.(state, trigger) ?? []
+  // Cards committed to the current test (Contingency); one option per card and investigator.
+  const committed = state.skillTest ? activeCommitted(state.skillTest) : []
+  const fromCommitted = committed
+    .flatMap((c) => playerCardBehavior(c.code)?.committedReactions?.(state, trigger, c.by) ?? [])
+    .filter((o, n, all) => all.findIndex((x) => x.key === o.key) === n)
   return [
+    ...fromCommitted,
     ...fromInvestigators,
     ...fromAssets,
     ...fromHands,
@@ -7126,6 +7173,24 @@ function additionalDamage(state: GameState, investigator: InvestigatorId): strin
       () => playerCardDef(a.code)?.name ?? a.code,
     ),
   )
+}
+
+/** Opens the "after revealing chaos tokens" window for the held token, if anyone can react. */
+function afterRevealing(
+  state: GameState,
+  investigator: InvestigatorId,
+  token: ChaosToken,
+): GameState | null {
+  const trigger: Trigger = { type: 'afterRevealingChaosToken', investigator, token }
+  return reactionOptions(state, trigger).some((o) =>
+    withinLimit(state, o.key, o.investigator, o.limit),
+  )
+    ? push(
+        state,
+        { type: 'Forced', trigger },
+        { type: 'RevealChaosToken', pending: true, afterWindow: true },
+      )
+    : null
 }
 
 /** Tokens that go back to the bag at ST.8: the physical ones, not what they were treated as. */

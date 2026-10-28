@@ -55,11 +55,8 @@ const INVESTIGATOR_PACKS: Record<string, string[]> = {
   ptc: ['03006', '03018', '03019'],
   tfa: ['04004', '04013', '04014'],
   tcu: ['05006', '05018', '05019'],
-  and: [
-    ...['60351', '60352', '60353', '60354', '60355', '60356', '60357', '60358', '60359'],
-    ...['60360', '60361', '60362', '60363', '60364', '60365', '60366', '60367', '60368'],
-    ...['60369', '60370', '60371'],
-  ],
+  // André Patel's starter pack: every card is playable (60351–60384).
+  and: Array.from({ length: 34 }, (_, n) => String(60351 + n)),
 }
 const packUrls = (host: string) =>
   Object.keys(INVESTIGATOR_PACKS).map((pack) => `https://${host}/api/public/cards/${pack}.json`)
@@ -77,8 +74,8 @@ const SOURCES: Record<string, string[]> = {
     ...packUrls('es.arkhamdb.com'),
   ],
 }
-// v7: also Wendy Adams, Father Mateo, Marie Lambeau and André Patel in EN/ES.
-const CACHE_PREFIX = 'lcg:cards:v7:'
+// v8: also André Patel's upgrades (60372–60384) in EN/ES.
+const CACHE_PREFIX = 'lcg:cards:v8:'
 const CACHE_HOURS = 24
 
 /** Bundled alternatives plus any available translated card data. */

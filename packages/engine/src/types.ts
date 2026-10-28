@@ -106,6 +106,8 @@ export interface Investigator {
   traitActionUsed?: boolean
   /** Actions spent in the tagged round, including additional actions (Center Stage). */
   spentActions?: { round: number; count: number }
+  /** Skill value bonus for their next skill test (The Red Clock: +4). */
+  nextTestBonus?: number
   extraMove?: boolean
   osirisUsed?: boolean
   osirisProtected?: boolean
@@ -461,6 +463,8 @@ export interface PlayerCardDef {
   story?: boolean
   /** Máximo de copias en un mazo (2 si no se indica). */
   deckLimit?: number
+  /** Exceptional: costs twice its level in experience; one copy per deck (by title). */
+  exceptional?: boolean
   /** Cartas de mazo adicionales (Collector: +5). */
   deckSizeBonus?: number
   extraDeckOption?: ExtraDeckOption
@@ -824,7 +828,8 @@ export type Message =
   | { type: 'Mulligan'; investigator: InvestigatorId; count?: number }
   | { type: 'MulliganCard'; investigator: InvestigatorId; card: CardCode; count: number }
   /** Roba tantas cartas como apartó y baraja las apartadas en el mazo. */
-  | { type: 'FinishMulligan'; investigator: InvestigatorId; count: number }
+  /** `startingDone`: the Starting card search was offered. */
+  | { type: 'FinishMulligan'; investigator: InvestigatorId; count: number; startingDone?: boolean }
   | { type: 'DiscardFromHand'; investigator: InvestigatorId; card: CardCode }
   | { type: 'CheckHandSize'; investigator: InvestigatorId }
   /** `checked`: el escenario ya resolvió lo que ocurre al intentar moverse (Vestíbulo). */
@@ -994,6 +999,8 @@ export type Message =
       token?: ChaosToken
       ignored?: ChaosToken
       pending?: boolean
+      /** The held token's "after revealing" window was offered (Contingency). */
+      afterWindow?: boolean
       fromBag?: boolean
     }
   /**
@@ -1113,6 +1120,8 @@ export type Message =
   /** Busca en el mazo y el descarte de encuentros un enemigo con el rasgo y lo roba. */
   | { type: 'SearchEncounterForTrait'; investigator: InvestigatorId; trait: string }
   | { type: 'LoseActions'; investigator: InvestigatorId; amount: number }
+  /** +X skill value for the investigator's next skill test (The Red Clock). */
+  | { type: 'NextTestBonus'; investigator: InvestigatorId; amount: number }
   /** One restricted additional action is lost (after the standard ones). */
   | {
       type: 'LoseAdditionalAction'
@@ -1421,7 +1430,14 @@ export type Message =
   | { type: 'SearchEncounterForEnemy'; investigator: InvestigatorId; top: number }
   | { type: 'DisengageAll'; investigator: InvestigatorId }
   /** El investigador elige una localización conectada a la que moverse. */
-  | { type: 'ChooseMove'; investigator: InvestigatorId; revealedOnly?: boolean; range?: number }
+  /** `then`: resolved after moving, not when skipping (The Red Clock: move up to 3 times). */
+  | {
+      type: 'ChooseMove'
+      investigator: InvestigatorId
+      revealedOnly?: boolean
+      range?: number
+      then?: Message[]
+    }
   | { type: 'AtEndOfTurn'; investigator: InvestigatorId; then: Message[] }
   /**
    * Premonition: sella una ficha al azar de la bolsa. With `token` and `holder`, search the bag
@@ -1518,6 +1534,8 @@ export type Trigger =
   | { type: 'afterRevealChaosToken'; investigator: InvestigatorId; token: ChaosToken }
   /** Before the revealed token resolves; `state.skillTest.revealing` holds it. */
   | { type: 'whenRevealChaosToken'; investigator: InvestigatorId; token: ChaosToken }
+  /** ST.3 ends: "after revealing chaos tokens", the token still held (Contingency). */
+  | { type: 'afterRevealingChaosToken'; investigator: InvestigatorId; token: ChaosToken }
   | {
       type: 'afterDiscoverClues'
       investigator: InvestigatorId
@@ -1762,6 +1780,16 @@ export interface ExperienceGain {
 // Estado
 // ---------------------------------------------------------------------------
 
+/**
+ * An asset's additional actions this turn. `inactive`: its condition stopped holding (The Black
+ * Fan under 15 resources); the remaining actions return if it holds again, but never twice.
+ */
+export interface TurnActionGrant {
+  asset: AssetId
+  remaining: number
+  inactive?: boolean
+}
+
 export interface GameState {
   /** Versión del motor que creó la partida, para migraciones futuras. */
   boons?: Boon[]
@@ -1822,7 +1850,7 @@ export interface GameState {
   /** Investigador cuyo turno está en curso. */
   activeTurn?: InvestigatorId | null
   /** Remaining continuous bonus actions, tracked by physical asset instance. */
-  turnActionGrants?: { asset: AssetId; remaining: number }[]
+  turnActionGrants?: TurnActionGrant[]
   /** Saved turn context while taking an action as if it were another investigator's turn. */
   immediateActions?: {
     investigator: InvestigatorId
@@ -1836,7 +1864,7 @@ export interface GameState {
     movedThisTurn?: boolean
     extraMove?: boolean
     extraEvade?: boolean
-    turnActionGrants?: { asset: AssetId; remaining: number }[]
+    turnActionGrants?: TurnActionGrant[]
   }[]
   dilemmasResolved?: { round: number; count: number }
   /** Ataques de enemigos (para "si este enemigo te ha atacado esta ronda"). */

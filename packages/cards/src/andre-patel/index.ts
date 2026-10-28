@@ -12,5 +12,10 @@ import './card-60363'
 import './card-60365'
 import './card-60368'
 import './card-60371'
+import './card-60379'
+import './card-60380'
+import './card-60381'
+import './card-60383'
+import './card-60384'
 // Definitions are registered with the core investigators so signatures are known early.
 export const ANDRE_RENDERED_CODES = approvals.cards.map((c) => c.code)

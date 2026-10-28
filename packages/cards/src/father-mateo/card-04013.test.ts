@@ -1,5 +1,5 @@
 // RR: Seal, Modifiers, Triggered Abilities, Leaves Play.
-import { dispatch } from '@lcg/engine'
+import { dispatch, playableCards } from '@lcg/engine'
 import { choose, labels } from '@lcg/engine/testing'
 import { expect, it } from 'vitest'
 import {
@@ -52,6 +52,12 @@ it('also replaces a reveal outside a skill test (Premonition then seals the [eld
   expect(Object.values(s.assets).some((a) => a.code === CODEX_OF_AGES)).toBe(false)
   expect(s.sealed).toEqual([expect.objectContaining({ token: 'elderSign', code: '12064' })])
   expect(s.chaosBag).toEqual([0])
+})
+
+it('Seal is a cost: it cannot be played without the [elder_sign] in the bag', () => {
+  const s = withMateo(ready(), { hand: [CODEX_OF_AGES], resources: 5 })
+  expect(playableCards(s, MATEO, false)).toContain(CODEX_OF_AGES)
+  expect(playableCards({ ...s, chaosBag: [0] }, MATEO, false)).not.toContain(CODEX_OF_AGES)
 })
 
 it('returns the sealed token to the bag when it leaves play', () => {

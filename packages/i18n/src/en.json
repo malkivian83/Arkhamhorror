@@ -307,7 +307,7 @@
     "marie": {
       "doom": "You may add 1 doom to or remove 1 doom from a card you control"
     },
-    "grapevine": "Choose an enemy at a revealed location up to 2 connections away",
+    "grapevine": "Choose an enemy at a revealed location up to {range} connections away",
     "grapevineStep": "Choose the next location of the shortest path",
     "rightUnderTheirNoses": "Where do you discover the clue?",
     "watchThis": "\"Watch this!\": spend up to 3 resources",
@@ -319,7 +319,8 @@
     "house": {
       "cheat": "Choose a token in the bag",
       "ally": "Choose an Ally in your hand"
-    }
+    },
+    "startingCard": "Starting: you may add 1 starting card from your deck to your hand"
   },
   "action": {
     "draw": "Draw 1 card",
@@ -668,7 +669,8 @@
         "tablet": "Tablet",
         "elderThing": "Elder thing"
       }
-    }
+    },
+    "redClockTake": "Take its {n} charges as resources"
   },
   "phase": {
     "setup": "Setup",
@@ -1020,7 +1022,7 @@
     "baronSamedi": "Exhaust Baron Samedi: place 1 doom on him (with 3 or more, discard him)",
     "centerStage": "Center Stage: spend 1 renown and exhaust it: +{n} skill value",
     "fame": "Fame: spend 1 renown: Parley. Gain 2 resources",
-    "grapevine": "The Grapevine: spend 1 rumor and exhaust it: Parley. Move to an enemy up to 2 connections away and engage it",
+    "grapevine": "The Grapevine: spend 1 rumor and exhaust it: Parley. Move to an enemy up to {range} connections away and engage it",
     "extravagantRing": "Extravagant Ring: spend 1 renown and exhaust it: +2 skill value for this test",
     "dunwich": {
       "parleyJazz": "Parley with Jazz (intellect 3)",
@@ -1042,7 +1044,10 @@
       "morganDraw": "Exhaust Dr. Morgan to draw",
       "peterEvade": "Peter Clover: evade a Criminal",
       "armitageResources": "Armitage: discard the drawn card and gain 3 resources"
-    }
+    },
+    "grapevineDraw": "The Grapevine: spend 1 rumor and exhaust it: Parley. Move to an enemy up to {range} connections away, engage it and draw 1 card",
+    "wellConnectedReady": "Well Connected: spend 2 resources to ready it",
+    "contingency": "Contingency: spend 3 resources to cancel the {token} token and reveal a new one"
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -3457,7 +3462,15 @@
       "60363": "[action]: Fight ([combat]). Add your [agility] to your [combat] for this attack. If this attack succeeds by 2 or more against a non-Elite enemy, you may exhaust Polished Cane to automatically evade that enemy.",
       "60365": "Parley. Choose a non-Elite enemy at your location with X remaining health. That enemy disengages from each investigator and gains aloof until the end of the round. Discover 1 clue at your location.",
       "60368": "Fast. Play after you successfully evade an enemy. Discover 1 clue at your location (if you succeeded by 2 or more, you may discover 1 clue at a connecting location, instead).",
-      "60371": "Commit only to a skill test you are performing. As an additional cost to commit \"Watch this!\" to a skill test, spend up to 3 resources. If you succeed by 1 or more, gain twice that many resources."
+      "60371": "Commit only to a skill test you are performing. As an additional cost to commit \"Watch this!\" to a skill test, spend up to 3 resources. If you succeed by 1 or more, gain twice that many resources.",
+      "60374": "Uses (3 rumors). If there are no rumors on The Grapevine, discard it. [action] Spend 1 rumor and exhaust The Grapevine: Parley. Choose an enemy at a revealed location up to 3 connections away. Move (one location at a time) along the shortest path to that enemy's location and engage it. Draw 1 card.",
+      "60375": "You gain 1 additional resource during the upkeep phase. Forced – After you fail a skill test: deal 1 horror to Marcus Sengstacke.",
+      "60379": "Exceptional. While you have… 10+ resources, you get +1 health and +1 sanity. 15+ resources, you may take one additional action during your turn. 20+ resources, you get +1 to each of your skills.",
+      "60380": "Starting (you may begin the game with 1 copy of a starting card in your opening hand). [fast] Spend 1 resource: you get +1 [intellect] for this skill test (+2 [intellect] instead if this is an evasion or parley). [fast] Spend 1 resource: you get +1 [agility] for this skill test (+2 [agility] instead if this is an evasion or parley).",
+      "60381": "Limit 1 per investigator. [fast] Exhaust Well Connected: you get +1 skill value for this skill test for every 4 resources you have. [fast] Spend 2 resources: ready Well Connected (limit once per round).",
+      "60382": "Fast. Play after you successfully evade an enemy. Discover 1 clue at your location (if you succeeded by 2 or more, you may discover 1 clue at a connecting location, as well).",
+      "60383": "While Contingency is committed to a skill test targeting an enemy, after revealing chaos tokens, you may spend 3 resources to cancel a revealed token, return it to the chaos bag, and reveal a new one (you may do this any number of times).",
+      "60384": "Exceptional. Uses (0 charges). Forced – After your turn begins: you may take all charges here, as resources. Place 1 charge here. If it has exactly 1 charge, you get +4 skill value for your next skill test; 2 charges, you may move up to 3 times; 3 charges, you may take 2 additional actions this turn."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -3994,7 +4007,15 @@
       "60363": "Polished Cane",
       "60365": "Pay Your Dues",
       "60368": "Right Under Their Noses",
-      "60371": "\"Watch this!\""
+      "60371": "\"Watch this!\"",
+      "60374": "The Grapevine",
+      "60375": "Marcus Sengstacke",
+      "60379": "The Black Fan",
+      "60380": "Silver Tongue",
+      "60381": "Well Connected",
+      "60382": "Right Under Their Noses",
+      "60383": "Contingency",
+      "60384": "The Red Clock"
     }
   },
   "account": {

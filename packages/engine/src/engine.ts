@@ -4,7 +4,8 @@ import { EngineError } from './errors'
 import { handle } from './handlers'
 import { prepareGame, type NewGameOptions } from './setup'
 import { releaseOrphanedSeals } from './seals'
-import { push } from './state'
+import { effectiveVitals, push } from './state'
+import { playerCardBehavior } from './content'
 import type { GameState, Message, PlayerInput } from './types'
 
 /** Límite de seguridad contra bucles infinitos de mensajes. */
@@ -97,6 +98,24 @@ function run(initial: GameState, observer?: EngineObserver): GameState {
           })
       }
       if (discarded.length) state = push(state, ...discarded)
+    }
+    // RR Defeat: health or sanity that drops without new damage can defeat (The Black Fan).
+    const dynamic = (s: GameState) =>
+      Object.values(s.assets).some(
+        (a) => typeof playerCardBehavior(a.code)?.ownerVitals === 'function',
+      )
+    if (dynamic(before) || dynamic(state)) {
+      const lowered = state.investigators.filter((i) => {
+        const old = before.investigators.find((o) => o.id === i.id)
+        if (!old || i.eliminated) return false
+        const [now, then] = [effectiveVitals(state, i), effectiveVitals(before, old)]
+        return now.health < then.health || now.sanity < then.sanity
+      })
+      if (lowered.length)
+        state = push(
+          state,
+          ...lowered.map((i): Message => ({ type: 'CheckDefeat', investigator: i.id })),
+        )
     }
     observer?.(before, message, state)
   }
