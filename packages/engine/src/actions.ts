@@ -408,7 +408,8 @@ export function describeAction(state: GameState, id: InvestigatorId, action: Act
 /** Pistas necesarias para avanzar el acto actual (null si no avanza con pistas). */
 export function cluesToAdvanceAct(state: GameState): number | null {
   const act = state.acts[state.actIndex]
-  if (!act || act.advanceTiming === 'objective') return null
+  if (!act || (act.advanceTiming === 'objective' && !actBehavior(act.code)?.objectiveRequiresClues))
+    return null
   return perInvestigator(state, act.clueThreshold, act.cluesPerInvestigator)
 }
 

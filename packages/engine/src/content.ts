@@ -54,6 +54,7 @@ export type AbilitiesFn<Self> = (
 ) => AbilityOption[]
 
 export interface ScenarioBehavior {
+  cannotPlaceClues?: (state: GameState, location: LocationId) => boolean
   cannotInvestigate?: (
     state: GameState,
     investigator: InvestigatorId,
@@ -276,6 +277,8 @@ export interface TreacheryBehavior {
 }
 
 export interface EnemyBehavior {
+  /** An investigator defeated by this attack is killed instead. */
+  attackKills?: boolean
   canBeAttacked?: (
     state: GameState,
     self: Enemy,
@@ -374,6 +377,8 @@ export interface AgendaBehavior {
 }
 
 export interface ActBehavior {
+  /** Mandatory objective that still spends its printed clue threshold. */
+  objectiveRequiresClues?: boolean
   code: CardCode
   abilities?: AbilitiesFn<Act>
   forced?: (state: GameState, trigger: Trigger, self: Act) => Message[]

@@ -1034,6 +1034,7 @@ export type Message =
   | { type: 'MoveAssetCluesToEnemy'; asset: AssetId; enemy: EnemyId; amount: number }
   | {
       type: 'AssignDamage'
+      killInstead?: boolean
       investigator: InvestigatorId
       damage: number
       horror: number
@@ -1279,6 +1280,7 @@ export type Message =
   /** `direct`: solo puede asignarse a la carta de investigador. */
   | {
       type: 'TakeDamage'
+      killInstead?: boolean
       investigator: InvestigatorId
       damage: number
       horror: number
@@ -1295,7 +1297,7 @@ export type Message =
       assignmentPart?: boolean
       assignmentAssets?: Asset[]
     }
-  | { type: 'CheckDefeat'; investigator: InvestigatorId }
+  | { type: 'CheckDefeat'; investigator: InvestigatorId; killInstead?: boolean }
   | {
       type: 'EliminateInvestigator'
       investigator: InvestigatorId
@@ -1329,6 +1331,7 @@ export type Message =
   | { type: 'DrawFromEncounterDiscard'; investigator: InvestigatorId; code: CardCode }
   | {
       type: 'SpawnEnemy'
+      initialDamage?: number
       card: EnemyCard
       location: LocationId
       engageWith: InvestigatorId | null
@@ -1734,6 +1737,7 @@ export type Trigger =
       /** El movimiento fue una acción de movimiento. */
       moveAction?: boolean
     }
+  | { type: 'whenEnterLocation'; investigator: InvestigatorId; location: LocationId }
   | { type: 'beforeMoveEngagement'; investigator: InvestigatorId }
   | {
       type: 'afterDealDamage'

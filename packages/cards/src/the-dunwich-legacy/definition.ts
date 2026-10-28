@@ -1,3 +1,4 @@
+import { whereDoomAwaits, WHERE_DOOM_AWAITS } from './where-doom-awaits'
 import { theEssexCountyExpress, THE_ESSEX_COUNTY_EXPRESS } from './the-essex-county-express'
 import { bloodOnTheAltar, BLOOD_ON_THE_ALTAR } from './blood-on-the-altar'
 import { undimensionedAndUnseen, UNDIMENSIONED_AND_UNSEEN } from './undimensioned-and-unseen'
@@ -52,6 +53,12 @@ registerCampaign({
                     build: ({ difficulty, log }) => undimensionedAndUnseen({ difficulty, log }),
                     keywords: ['massive', 'surge', 'peril', 'hunter', 'aloof', 'retaliate'],
                   }
-                : { id },
+                : id === WHERE_DOOM_AWAITS
+                  ? {
+                      id,
+                      build: ({ difficulty, log }) => whereDoomAwaits({ difficulty, log }),
+                      keywords: ['hunter', 'retaliate', 'peril', 'surge', 'prey'],
+                    }
+                  : { id },
   ),
 })
