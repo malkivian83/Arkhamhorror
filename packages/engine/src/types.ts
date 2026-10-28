@@ -43,6 +43,8 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  /** Purchased checkboxes, shared by this investigator's copies of each customizable card. */
+  customizations?: Record<CardCode, Record<string, number>>
   /** Lola Hayes: papel elegido (una clase o `neutral`). */
   role?: string
   /** Improvisación: la siguiente carta de su papel que juegue en este turno cuesta menos. */
@@ -427,6 +429,8 @@ export interface ExtraDeckOption {
 }
 
 export interface PlayerCardDef {
+  /** Upgrade sheet: stable option id -> number of experience checkboxes required. */
+  customizable?: Record<string, number>
   code: CardCode
   name: string
   /** Investigadores: tamaño del mazo, opciones de construcción y cartas exclusivas. */
@@ -511,6 +515,10 @@ export interface StoryCardInPlay {
 }
 
 export interface Asset {
+  /** Current form of a transforming asset, reset when it leaves play. */
+  form?: string
+  /** Printed upgrades retain their owner's sheet when control changes. */
+  customization?: Record<string, number>
   /** Player events attached to this instance; owner is retained on control changes. */
   upgrades?: { code: CardCode; owner: InvestigatorId; exhausted?: boolean }[]
   /** Skill bonus for the next fight using this asset this turn (Iron Sights). */
@@ -541,6 +549,8 @@ export type SkillTestKind =
       type: 'investigate'
       location: LocationId
       extraClues?: number
+      /** Replace only the basic clue, retaining additional clues from committed cards. */
+      baseClues?: number
       replaceClue?: boolean
       onSuccess?: Message[]
       /** Si se supera por al menos `atLeast`. */
@@ -617,6 +627,8 @@ export interface TokenEffect {
 }
 
 export interface SkillTest {
+  /** Replaces the normal outcome without changing the kind or success windows. */
+  replacementResults?: Message[]
   /** The message that initiated it, to attempt the same test again (Live and Learn). */
   origin?: Extract<Message, { type: 'BeginSkillTest' }>
   /** Granny Orne: the test fails by this much more (or less, if negative). */
@@ -759,6 +771,11 @@ export type Message =
       data?: Record<string, string | number | boolean>
     }
   | { type: 'ApplySkillTestResults'; prepared?: boolean }
+  | {
+      type: 'ResolveCancelableTestResults'
+      remaining: { label: string; params?: Record<string, string>; then: Message[] }[]
+      cancel?: boolean
+    }
   | {
       type: 'ModifySkillTest'
       ignoredEnemyKeywords?: EnemyKeyword[]
@@ -938,6 +955,10 @@ export type Message =
       usesPayment?: Record<AssetId, number>
       /** Chosen zone when a copy is in hand and another playable from the discard pile. */
       from?: 'hand' | 'discard'
+      /** A resolving card effect grants permission to play from this zone. */
+      byEffect?: boolean
+      /** Play without paying the resource cost (including cost modifiers). */
+      noCost?: boolean
     }
   | {
       type: 'ResolvePlayedCard'
@@ -1001,6 +1022,9 @@ export type Message =
   | { type: 'ExhaustAsset'; asset: AssetId }
   | { type: 'ReadyAsset'; asset: AssetId }
   | { type: 'SpendUses'; asset: AssetId; amount: number }
+  | { type: 'SetAssetForm'; asset: AssetId; form: string }
+  | { type: 'ReplaceSkillTestResults'; then: Message[] }
+  | { type: 'RemoveCardFromDiscard'; investigator: InvestigatorId; code: CardCode }
   | { type: 'PlaceCluesOnAsset'; asset: AssetId; amount: number }
   | { type: 'MoveAssetCluesToEnemy'; asset: AssetId; enemy: EnemyId; amount: number }
   | {

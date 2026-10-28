@@ -329,7 +329,8 @@
     "unrelenting": "Unrelenting: seal a token (up to {n} more)",
     "upkeepResources": "Dark Horse: gain {n} resource(s) this upkeep?",
     "payWithUses": "Pay for {card} with secrets from {source}?",
-    "playFrom": "Play {card} from…"
+    "playFrom": "Play {card} from…",
+    "orderCancelableTestResults": "Resolve a result before cancellation, or cancel all remaining results."
   },
   "action": {
     "draw": "Draw 1 card",
@@ -694,7 +695,14 @@
     "declineResources": "Do not gain resources",
     "payWithUses": "Spend {n} secret(s)",
     "playFromHand": "Your hand",
-    "playFromDiscard": "Your discard pile"
+    "playFromDiscard": "Your discard pile",
+    "resolveTestConsequences": "Resolve the test's consequences",
+    "resolveTokenConsequences": "Resolve the chaos tokens' consequences",
+    "cancelRemainingTestResults": "Neither Rain nor Snow: cancel all remaining results",
+    "salvageResources": "Remove from the game and gain {n} resources",
+    "shotcasterMoveEnemy": "Move {enemy} to {location}",
+    "shotcasterBefore": "Move before the attempt",
+    "shotcasterAfter": "Move after the attempt"
   },
   "phase": {
     "setup": "Setup",
@@ -1078,7 +1086,9 @@
     "grimmsFairyTales": "Grimm's Fairy Tales: heal 1 horror from {name}",
     "grannyOrne": "Granny Orne: {name} fails by 1 less or 1 more",
     "grannyOrne3": "Granny Orne: +1 or −1 skill value for {name}",
-    "scavenging": "Scavenging: add an Item from your discard pile to your hand"
+    "scavenging": "Scavenging: add an Item from your discard pile to your hand",
+    "shotcasterForm": "Change Hyperphysical Shotcaster form",
+    "scavenging2": "Return or play an Item from your discard pile"
   },
   "log": {
     "mulligan": "{name} confirms their opening hand. Cards replaced: {n}.",
@@ -1426,7 +1436,8 @@
     "secondAgenda": "Second agenda",
     "exhausted": "exhausted",
     "alarm": "Alarm",
-    "alarmHelp": "Alarm level (1–10). At 6 or higher, Casino enemies at your location lose aloof."
+    "alarmHelp": "Alarm level (1–10). At 6 or higher, Casino enemies at your location lose aloof.",
+    "scenarioDeckRevealedHelp": "Only revealed cards are shown. The back of the current card and upcoming cards remain hidden until the scenario reveals them."
   },
   "difficulty": {
     "easy": "Easy",
@@ -2550,7 +2561,8 @@
       "rewardNotEarned": "Reward not earned: {card}",
       "unimplemented": "{card} is not implemented yet. A game cannot start with this card.",
       "offClassLimit": "At most {n} level 0 cards from other classes.",
-      "classMinimum": "At least {min} cards from each of {count} different classes."
+      "classMinimum": "At least {min} cards from each of {count} different classes.",
+      "customizations": "The upgrade sheet is invalid."
     }
   },
   "record": {
@@ -3536,7 +3548,11 @@
       "01073": "[reaction] After you successfully investigate by 2 or more, exhaust Scavenging: Choose an Item card in your discard pile and add it to your hand.",
       "07196": "Max 1 committed per test. After you commit Unrelenting to a skill test, search the chaos bag for up to 3 non-[auto_fail] chaos tokens of your choice, and seal them on Unrelenting. If all 3 tokens sealed on Unrelenting are \"+1,\", \"0,\" [bless], and/or [elder_sign] tokens, draw 2 cards. Release all tokens sealed here after this test ends.",
       "08072": "Uses (5 secrets). If Schoffner's Catalogue has no secrets, discard it. You may spend secrets on Schoffner's Catalogue as resources to pay for Item assets played by any investigator at your location.",
-      "09108": "Fast. Play before revealing a chaos token during an investigation you are performing, and only if the difficulty of this test is currently 0. This test automatically succeeds. You discover 1 additional clue at this location and 1 additional clue at any location."
+      "09108": "Fast. Play before revealing a chaos token during an investigation you are performing, and only if the difficulty of this test is currently 0. This test automatically succeeds. You discover 1 additional clue at this location and 1 additional clue at any location.",
+      "06332": "[reaction] After you successfully investigate by 2 or more, exhaust Scavenging: Choose an [[Item]] card in your discard pile and either add it to your hand or play it (paying its cost).",
+      "09105": "Fast. Play before revealing a chaos token during an attack or evasion attempt you are performing, and only if the difficulty of this test is currently 0. This test automatically succeeds. Instead of this test’s normal effects, discard the attacked or evaded enemy (if it is Elite, automatically evade it and deal it 3 damage instead).",
+      "09116": "Choose an [[Item]] asset in your discard pile. Either remove it from the game and gain resources equal to its cost, or play it (paying its cost).",
+      "09119": "Customizable. Uses (4 aether). If Hyperphysical Shotcaster has no aether, discard it. [action] Spend 1 aether: Resolve the Manifest ability of its current form. [free] Exhaust: Change to a form unlocked on its upgrade sheet."
     },
     "backSummary": {
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
@@ -4112,7 +4128,11 @@
       "01073": "Scavenging",
       "07196": "Unrelenting",
       "08072": "Schoffner's Catalogue",
-      "09108": "Shed a Light"
+      "09108": "Shed a Light",
+      "06332": "Scavenging",
+      "09105": "Exploit Weakness",
+      "09116": "Salvage",
+      "09119": "Hyperphysical Shotcaster"
     }
   },
   "account": {
@@ -4468,6 +4488,33 @@
       "rogue": "Rogue",
       "mystic": "Mystic",
       "neutral": "Neutral"
+    }
+  },
+  "customization": {
+    "title": "Upgrade sheet",
+    "total": "{xp} XP marked · level {level}",
+    "addCopies": "New copies with this purchase",
+    "noRemoval": "No replacement needed",
+    "save": "Save upgrades",
+    "railshooter": "Railshooter",
+    "telescanner": "Telescanner",
+    "translocator": "Translocator",
+    "realitycollapser": "Realitycollapser",
+    "matterweaver": "Matterweaver",
+    "aethericLink": "Aetheric Link",
+    "empoweredConfiguration": "Empowered Configuration",
+    "invalid": "These upgrades or deck changes are not legal.",
+    "experience": "Choose upgrades you can afford.",
+    "permanent": "Purchased upgrades cannot be removed.",
+    "unavailable": "Upgrades are not available now.",
+    "description": {
+      "railshooter": "Fight using any skill; deal +1 damage.",
+      "telescanner": "Investigate using any skill; discover the basic clue at any revealed location.",
+      "translocator": "Evade using any skill. Before or after, optionally move an investigator or non-Elite enemy between your location and a connected location.",
+      "realitycollapser": "Test any skill (3). On success, discard a non-weakness treachery in play that is not attached to an Elite enemy.",
+      "matterweaver": "Choose an asset in hand. Test any skill against its cost; on success, play it at no cost.",
+      "aethericLink": "Enter play with 2 additional aether.",
+      "empoweredConfiguration": "+2 skill value when using Manifest."
     }
   }
 }

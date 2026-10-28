@@ -6,6 +6,7 @@ import {
   finishScenario,
   newCampaign,
   purchase,
+  customize,
   startScenario,
   STARTER_DECKS,
   type Campaign,
@@ -206,6 +207,21 @@ export const useGameStore = defineStore('game', () => {
   }
 
   /** Gasta experiencia en una carta para el mazo de un investigador. */
+  function customizeCard(
+    investigator: string,
+    code: string,
+    sheet: Record<string, number>,
+    options: { copies?: number; remove?: string[] } = {},
+  ) {
+    if (!campaign.value || state.value) return
+    try {
+      setCampaign(customize(campaign.value, investigator, code, sheet, options))
+      error.value = null
+    } catch (e) {
+      error.value = e instanceof Error ? e.message : String(e)
+    }
+  }
+
   function buy(
     investigator: string,
     card: CardCode,
@@ -382,6 +398,7 @@ export const useGameStore = defineStore('game', () => {
     closeScenario,
     playNext,
     buy,
+    customizeCard,
     chooseHeir,
     replaceMember,
     abandonCampaign,

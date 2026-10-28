@@ -1,0 +1,81 @@
+[
+  {
+    "code": "03273",
+    "name": "True Survivor",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spirit"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "06332",
+    "name": "Scavenging",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Talent"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "09105",
+    "name": "Exploit Weakness",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Tactic", "Trick"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "09116",
+    "name": "Salvage",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Insight"],
+    "cost": 0,
+    "xp": 2,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "09119",
+    "name": "Hyperphysical Shotcaster",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Relic", "Weapon", "Firearm"],
+    "unique": true,
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 4,
+      "type": "aether"
+    },
+    "customizable": {
+      "railshooter": 2,
+      "telescanner": 2,
+      "translocator": 2,
+      "realitycollapser": 2,
+      "matterweaver": 2,
+      "aethericLink": 4,
+      "empoweredConfiguration": 4
+    }
+  }
+]

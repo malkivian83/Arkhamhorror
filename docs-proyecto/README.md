@@ -86,6 +86,7 @@ vigente de pendientes.
 - [88 · La noche de la fanática](88-noche-de-la-fanatica.md): El encuentro, reglas compartidas, Grimorio y continuación.
 - [89 · Wendy, Mateo, Marie y André](89-investigadores-wendy-mateo-marie-andre.md): cuatro investigadores y sus exclusivas; cancelar y sellar fichas, éxito automático, acción por rasgo y construcción por rasgos.
 - [90 · Stella Clark](90-investigadora-stella-clark.md): su caja y las listas 25117 y 39832; exiliar, ventana de fracaso inminente, cancelar efectos de la prueba fracasada y pruebas sin fichas.
+- [91 · Banquillo de Stella](91-banquillo-stella-personalizables.md): cinco cartas y hojas de mejoras personalizables, con compra, persistencia y juego local/online.
 
 ## Decisiones ya tomadas
 

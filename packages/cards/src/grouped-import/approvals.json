@@ -81,13 +81,6 @@
       "fast": true
     },
     {
-      "code": "03273",
-      "family": "discard-return",
-      "module": "card-03273",
-      "test": "discard-events.test.ts",
-      "status": "verified"
-    },
-    {
       "code": "04313",
       "family": "treachery-removal",
       "module": "card-04313",

@@ -136,17 +136,6 @@
     "fast": true
   },
   {
-    "code": "03273",
-    "name": "True Survivor",
-    "type": "event",
-    "class": "survivor",
-    "traits": ["Spirit"],
-    "cost": 3,
-    "xp": 3,
-    "icons": {},
-    "slots": []
-  },
-  {
     "code": "04313",
     "name": "Alter Fate",
     "type": "event",

@@ -220,6 +220,7 @@ function start() {
     return {
       investigator: own.investigator,
       cards: own.cards,
+      ...(own.customizations ? { customizations: own.customizations } : {}),
       ...(own.cards.includes('08125')
         ? { startingTrauma: { physical, mental: 2 - physical } }
         : {}),

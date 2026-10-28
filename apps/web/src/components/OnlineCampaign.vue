@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { allPlayerCardDefs } from '@lcg/engine'
+import CustomizationSheet from './CustomizationSheet.vue'
 import { useI18n } from 'vue-i18n'
 import { STARTER_DECKS, starterDeck, starterInvestigator, type DeckKey } from '@lcg/cards'
 import type { OnlineCampaignView, OnlineDeck, OnlineProgressAction } from '@lcg/shared'
@@ -43,7 +45,11 @@ const replacements = computed(() => {
       .map((d) => ({
         id: d.id,
         label: `${name(d.investigator)} · ${d.name}`,
-        deck: { investigator: d.investigator, cards: [...d.cards] },
+        deck: {
+          investigator: d.investigator,
+          cards: [...d.cards],
+          ...(d.customizations ? { customizations: d.customizations } : {}),
+        },
       })),
   ] satisfies { id: string; label: string; deck: OnlineDeck }[]
 })
@@ -121,6 +127,26 @@ function buy() {
       </li>
     </ul>
     <template v-if="campaign.own && campaign.canContinue">
+      <CustomizationSheet
+        v-for="card in allPlayerCardDefs().filter((c) => c.customizable)"
+        :key="card.code"
+        :code="card.code"
+        :sheet="campaign.own.customizations?.[card.code]"
+        :copies="campaign.own.deck.filter((c) => c === card.code).length"
+        :xp="campaign.own.xp ?? 0"
+        :removable="campaign.own.removable"
+        :disabled="disabled"
+        @save="
+          (sheet, options) =>
+            emit('action', {
+              action: 'customize',
+              card: card.code,
+              sheet,
+              copies: options.copies,
+              removals: options.remove,
+            })
+        "
+      />
       <details>
         <summary>{{ t('online.deck') }}</summary>
         <ul>

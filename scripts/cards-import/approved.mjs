@@ -6,8 +6,14 @@ export function approvedDefinition(card, approval) {
     approval.adapter === 'reviewed-dual-faction-v1' &&
     card.code === '08105' &&
     card.factions.join(',') === 'seeker,survivor'
+  const reviewedCustomizable =
+    approval.adapter === 'reviewed-shotcaster-v1' && card.code === '09119'
   if (
-    card.modelIssues.some((issue) => !reviewedDualFaction || issue !== 'unsupported-factions') ||
+    card.modelIssues.some(
+      (issue) =>
+        !(reviewedDualFaction && issue === 'unsupported-factions') &&
+        !(reviewedCustomizable && issue === 'customization'),
+    ) ||
     (!reviewedDualFaction && card.factions.length !== 1) ||
     card.slots.unknown.length
   )

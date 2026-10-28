@@ -119,6 +119,8 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
             own: own
               ? {
                   deck: [...own.deck],
+                  xp: campaign.log.investigators[own.id]?.xp ?? 0,
+                  ...(own.customizations ? { customizations: own.customizations } : {}),
                   removable: removableCards(campaign, own.id),
                   options: canPlayNext(campaign)
                     ? purchaseOptions(campaign, own.id).map((o) => ({

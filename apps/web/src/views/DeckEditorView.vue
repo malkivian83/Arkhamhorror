@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { cardPool, deckSizeOf, isStandard, type DeckProblem } from '@lcg/cards'
-import { playerCardDef } from '@lcg/engine'
+import { playerCardDef, retainedCustomizations } from '@lcg/engine'
+import CustomizationSheet from '../components/CustomizationSheet.vue'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import GameCard from '../components/GameCard.vue'
@@ -89,7 +90,12 @@ function problemText(p: DeckProblem): string {
 
 // ------------------------------------------------------------- Editor
 function update(cards: string[]) {
-  if (selected.value) store.save({ ...selected.value, cards })
+  if (selected.value)
+    store.save({
+      ...selected.value,
+      cards,
+      customizations: retainedCustomizations(cards, selected.value.customizations),
+    })
 }
 function rename(value: string) {
   if (selected.value) store.save({ ...selected.value, name: value })
@@ -245,6 +251,21 @@ const titleCount = (code: string) => {
             {{ t('decks.pool') }}
           </button>
         </nav>
+        <CustomizationSheet
+          v-for="code in [...new Set(selected.cards)].filter((c) => def(c)?.customizable)"
+          :key="code"
+          :code="code"
+          :sheet="selected.customizations?.[code]"
+          :copies="count(code)"
+          draft
+          @save="
+            (sheet) =>
+              store.save({
+                ...selected!,
+                customizations: { ...selected!.customizations, [code]: sheet },
+              })
+          "
+        />
         <div class="columns" :class="{ 'show-pool': editorTab === 'pool' }">
           <section id="deck-contents" class="contents" :aria-label="t('decks.contents')">
             <h2>{{ t('decks.contents') }}</h2>

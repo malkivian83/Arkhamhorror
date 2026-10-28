@@ -329,7 +329,8 @@
     "unrelenting": "Incansable: sella una ficha (hasta {n} más)",
     "upkeepResources": "Hermético: ¿obtienes {n} recurso(s) en este mantenimiento?",
     "payWithUses": "¿Pagas {card} con secretos de {source}?",
-    "playFrom": "Jugar {card} desde…"
+    "playFrom": "Jugar {card} desde…",
+    "orderCancelableTestResults": "Resuelve un resultado antes de la cancelación o cancela todos los resultados pendientes."
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -694,7 +695,14 @@
     "declineResources": "No obtener recursos",
     "payWithUses": "Gastar {n} secreto(s)",
     "playFromHand": "Tu mano",
-    "playFromDiscard": "Tu pila de descartes"
+    "playFromDiscard": "Tu pila de descartes",
+    "resolveTestConsequences": "Resolver las consecuencias de la prueba",
+    "resolveTokenConsequences": "Resolver las consecuencias de las fichas de Caos",
+    "cancelRemainingTestResults": "Ni la lluvia ni la nieve: cancelar todos los resultados pendientes",
+    "salvageResources": "Retirar de la partida y obtener {n} recursos",
+    "shotcasterMoveEnemy": "Mover a {enemy} a {location}",
+    "shotcasterBefore": "Mover antes del intento",
+    "shotcasterAfter": "Mover después del intento"
   },
   "phase": {
     "setup": "Preparación",
@@ -1078,7 +1086,9 @@
     "grimmsFairyTales": "Cuentos de hadas de los hermanos Grimm: cura 1 horror a {name}",
     "grannyOrne": "Abuelita Orne: {name} fracasa por 1 menos o 1 más",
     "grannyOrne3": "Abuelita Orne: +1 o −1 al valor de habilidad de {name}",
-    "scavenging": "Reutilizar: añade a tu mano un Objeto de tu pila de descartes"
+    "scavenging": "Reutilizar: añade a tu mano un Objeto de tu pila de descartes",
+    "shotcasterForm": "Cambiar forma del Lanzadisparos hiperfísico",
+    "scavenging2": "Recuperar o jugar un Objeto del descarte"
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -1426,7 +1436,8 @@
     "secondAgenda": "Segundo plan",
     "exhausted": "agotado",
     "alarm": "Alarma",
-    "alarmHelp": "Nivel de alarma (1–10). Con 6 o más, los enemigos Casino de tu Lugar pierden Indiferente."
+    "alarmHelp": "Nivel de alarma (1–10). Con 6 o más, los enemigos Casino de tu Lugar pierden Indiferente.",
+    "scenarioDeckRevealedHelp": "Solo se muestran las cartas reveladas. El reverso de la carta actual y las cartas siguientes permanecen ocultos hasta que el escenario los revele."
   },
   "difficulty": {
     "easy": "Fácil",
@@ -2550,7 +2561,8 @@
       "rewardNotEarned": "Recompensa no ganada: {card}",
       "unimplemented": "{card} aún no está implementada. No se puede iniciar la partida con ella.",
       "offClassLimit": "Máximo {n} cartas de otras clases de nivel 0.",
-      "classMinimum": "Al menos {min} cartas de cada una de {count} clases distintas."
+      "classMinimum": "Al menos {min} cartas de cada una de {count} clases distintas.",
+      "customizations": "La lista de mejoras no es válida."
     }
   },
   "record": {
@@ -3536,7 +3548,11 @@
       "01073": "[reaction] Después de que investigues con éxito por 2 o más, agota Reutilizar: Elige 1 carta Objeto de tu pila de descartes y añádela a tu mano.",
       "07196": "Máximo de 1 asignada por prueba. Después de que asignes Incansable a una prueba de habilidad, busca en la bolsa de caos hasta 3 fichas de Caos de tu elección que no sean [auto_fail] y séllalas sobre Incansable. Si las 3 fichas selladas sobre Incansable son fichas «+1», «0», [bless], y/o [elder_sign], roba 2 cartas. Libera todas las fichas selladas aquí después de que acabe esta prueba.",
       "08072": "Usos (5 secretos). Si el Catálogo de Schoffner no tiene secretos, descártalo. Puedes gastar secretos del Catálogo de Schoffner como recursos para pagar Apoyos Objeto jugados por cualquier investigador que esté en tu Lugar.",
-      "09108": "Rápido. Juega esta carta antes de revelar una ficha de Caos durante una investigación que estés realizando, y sólo si la dificultad de esta prueba es 0 actualmente. Esta prueba tiene éxito automáticamente. Descubres 1 pista adicional en este Lugar y 1 pista adicional en cualquier Lugar."
+      "09108": "Rápido. Juega esta carta antes de revelar una ficha de Caos durante una investigación que estés realizando, y sólo si la dificultad de esta prueba es 0 actualmente. Esta prueba tiene éxito automáticamente. Descubres 1 pista adicional en este Lugar y 1 pista adicional en cualquier Lugar.",
+      "06332": "[reaction] Después de que investigues con éxito por 2 o más, agota Reutilizar: Elige 1 carta [[Objeto]] de tu pila de descartes y añádela a tu mano o juégala (pagando su coste).",
+      "09105": "Rápido. Juega esta carta antes de revelar una ficha de Caos durante un ataque o intento de evitar que estés realizando, y sólo si la dificultad de esta prueba es 0 actualmente. Esta prueba tiene éxito automáticamente. En lugar de sus efectos normales, descarta el Enemigo atacado o evitado, o bien evítalo automáticamente e inflígele 3 puntos de daño si es Élite.",
+      "09116": "Elige un Apoyo [[Objeto]] de tu pila de descartes: retíralo de la partida y obtén recursos iguales a su coste, o juégalo pagando su coste.",
+      "09119": "Personalizable. Usos (4 de éter). Si no tiene éter, descártalo. [action] Gasta 1 de éter: Resuelve la capacidad Manifestar de su forma actual. [free] Agota: Cambia a una forma desbloqueada en su lista de mejoras."
     },
     "backSummary": {
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
@@ -4112,7 +4128,11 @@
       "01073": "Reutilizar",
       "07196": "Incansable",
       "08072": "Catálogo de Schoffner",
-      "09108": "Alumbrar"
+      "09108": "Alumbrar",
+      "06332": "Reutilizar",
+      "09105": "Aprovechar la debilidad",
+      "09116": "Reaprovechar",
+      "09119": "Lanzadisparos hiperfísico"
     }
   },
   "account": {
@@ -4468,6 +4488,33 @@
       "rogue": "Rebelde",
       "mystic": "Místico",
       "neutral": "Neutral"
+    }
+  },
+  "customization": {
+    "title": "Lista de mejoras",
+    "total": "{xp} PX marcados · nivel {level}",
+    "addCopies": "Copias nuevas con esta compra",
+    "noRemoval": "No hace falta sustituir",
+    "save": "Guardar mejoras",
+    "railshooter": "Lanzador de riel",
+    "telescanner": "Teleescáner",
+    "translocator": "Translocador",
+    "realitycollapser": "Colapsador de realidad",
+    "matterweaver": "Tejedor de materia",
+    "aethericLink": "Enlace etérico",
+    "empoweredConfiguration": "Configuración potenciada",
+    "invalid": "Estas mejoras o cambios de mazo no son válidos.",
+    "experience": "Elige mejoras que puedas pagar.",
+    "permanent": "Las mejoras compradas no se pueden retirar.",
+    "unavailable": "Ahora no se pueden comprar mejoras.",
+    "description": {
+      "railshooter": "Combate con cualquier habilidad e inflige +1 de daño.",
+      "telescanner": "Investiga con cualquier habilidad; descubre la pista básica en cualquier Lugar revelado.",
+      "translocator": "Evita con cualquier habilidad. Antes o después, puedes mover un investigador o Enemigo no Élite entre tu Lugar y uno conectado.",
+      "realitycollapser": "Prueba de cualquier habilidad (3). Si tienes éxito, descarta una Traición en juego que no sea Debilidad ni esté vinculada a un Enemigo Élite.",
+      "matterweaver": "Elige un Apoyo en tu mano. Prueba de cualquier habilidad contra su coste; si tienes éxito, juégalo sin coste.",
+      "aethericLink": "Entra en juego con 2 de éter adicional.",
+      "empoweredConfiguration": "+2 a tu valor de habilidad al usar Manifestar."
     }
   }
 }

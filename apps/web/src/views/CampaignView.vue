@@ -19,6 +19,8 @@ import {
   type PurchaseOption,
 } from '@lcg/cards'
 import { computed, ref } from 'vue'
+import { allPlayerCardDefs } from '@lcg/engine'
+import CustomizationSheet from '../components/CustomizationSheet.vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import ChaosTokenView from '../components/ChaosTokenView.vue'
@@ -87,7 +89,11 @@ function replace(leaving: string) {
   const member: CampaignMember | undefined =
     kind === 'starter'
       ? (key as CampaignMember)
-      : deck && { investigator: deck.investigator, cards: deck.cards }
+      : deck && {
+          investigator: deck.investigator,
+          cards: deck.cards,
+          ...(deck.customizations ? { customizations: deck.customizations } : {}),
+        }
   if (member) game.replaceMember(leaving, member)
 }
 
@@ -294,6 +300,17 @@ function abandon() {
           </div>
 
           <div v-if="shopping === i.id" class="shop">
+            <CustomizationSheet
+              v-for="card in allPlayerCardDefs().filter((c) => c.customizable)"
+              :key="card.code"
+              :code="card.code"
+              :sheet="i.customizations?.[card.code]"
+              :copies="i.deck.filter((c) => c === card.code).length"
+              :xp="campaign.log.investigators[i.id]?.xp ?? 0"
+              :removable="removable"
+              :disabled="!!game.state || !deckChangesAllowed"
+              @save="(sheet, options) => game.customizeCard(i.id, card.code, sheet, options)"
+            />
             <p v-if="!options.length" class="empty">{{ t('campaign.nothingToBuy') }}</p>
             <ul v-else>
               <li v-for="o in options" :key="optionKey(o)" :class="{ pending: !o.implemented }">
@@ -325,7 +342,9 @@ function abandon() {
                 </button>
               </li>
             </ul>
-            <p v-if="game.error" class="error">{{ game.error }}</p>
+            <p v-if="game.error" class="error">
+              {{ game.error.startsWith('customization.') ? t(game.error) : game.error }}
+            </p>
           </div>
         </article>
       </section>

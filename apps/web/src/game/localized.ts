@@ -76,8 +76,8 @@ const SOURCES: Record<string, string[]> = {
     ...packUrls('es.arkhamdb.com'),
   ],
 }
-// v9: also Stella Clark's pack (60501–60531) in EN/ES.
-const CACHE_PREFIX = 'lcg:cards:v9:'
+// v10: Stella Clark's pack and sideboard in EN/ES.
+const CACHE_PREFIX = 'lcg:cards:v10:'
 const CACHE_HOURS = 24
 
 /** Bundled alternatives plus any available translated card data. */

@@ -62,6 +62,7 @@ export interface ScenarioDefinition {
 }
 
 export interface InvestigatorSetup {
+  customizations?: Investigator['customizations']
   id: string
   name: string
   skills: Record<SkillType, number>
@@ -151,6 +152,13 @@ export function prepareGame({
     )
     return {
       id: setup.id,
+      ...(setup.customizations
+        ? {
+            customizations: Object.fromEntries(
+              Object.entries(setup.customizations).map(([c, s]) => [c, { ...s }]),
+            ),
+          }
+        : {}),
       name: setup.name,
       skills: { ...setup.skills },
       health: setup.health,

@@ -4,6 +4,7 @@ import {
   startScenario,
   finishScenario,
   purchase,
+  customize,
   activeMembers,
   canPlayNext,
   chooseTransferHeir,
@@ -137,13 +138,15 @@ export class LobbyService {
         command.action,
         command.action === 'purchase'
           ? [command.card, command.upgrade, command.remove ?? null]
-          : command.action === 'heir'
-            ? [command.card, command.heir]
-            : command.action === 'replace'
-              ? command.deck
-              : command.action === 'ready'
-                ? command.ready
-                : null,
+          : command.action === 'customize'
+            ? [command.card, command.sheet, command.copies ?? null, command.removals ?? null]
+            : command.action === 'heir'
+              ? [command.card, command.heir]
+              : command.action === 'replace'
+                ? command.deck
+                : command.action === 'ready'
+                  ? command.ready
+                  : null,
       ])
       const prior = lobby.commands?.[command.commandId]
       if (prior) {
@@ -214,10 +217,16 @@ export class LobbyService {
             if (command.ready) lobby.campaignReady.push(user)
           } else {
             try {
-              lobby.campaign = purchase(lobby.campaign, investigator, command.card, {
-                upgrade: command.upgrade,
-                ...(command.remove ? { remove: command.remove } : {}),
-              })
+              lobby.campaign =
+                command.action === 'customize'
+                  ? customize(lobby.campaign, investigator, command.card, command.sheet, {
+                      ...(command.copies !== undefined ? { copies: command.copies } : {}),
+                      ...(command.removals ? { remove: command.removals } : {}),
+                    })
+                  : purchase(lobby.campaign, investigator, command.card, {
+                      upgrade: command.upgrade,
+                      ...(command.remove ? { remove: command.remove } : {}),
+                    })
             } catch {
               requireValue(false, 'invalid_purchase')
             }
@@ -391,6 +400,15 @@ export function onlineLobbies(
     properties: {
       investigator: { type: 'string', minLength: 1, maxLength: 30 },
       cards: { type: 'array', maxItems: 100, items: { type: 'string', maxLength: 30 } },
+      customizations: {
+        type: 'object',
+        maxProperties: 50,
+        additionalProperties: {
+          type: 'object',
+          maxProperties: 30,
+          additionalProperties: { type: 'integer', minimum: 0, maximum: 10 },
+        },
+      },
       startingTrauma: bodySchema({
         physical: { type: 'integer', minimum: 0, maximum: 2 },
         mental: { type: 'integer', minimum: 0, maximum: 2 },
@@ -411,16 +429,27 @@ export function onlineLobbies(
             revision,
             action: {
               type: 'string',
-              enum: ['finish', 'purchase', 'ready', 'next', 'heir', 'replace'],
+              enum: ['finish', 'purchase', 'customize', 'ready', 'next', 'heir', 'replace'],
             },
             card: { type: 'string', minLength: 1, maxLength: 30 },
             upgrade: { type: 'boolean' },
+            sheet: {
+              type: 'object',
+              maxProperties: 30,
+              additionalProperties: { type: 'integer', minimum: 0, maximum: 10 },
+            },
+            copies: { type: 'integer', minimum: 0, maximum: 2 },
+            removals: { type: 'array', maxItems: 2, items: { type: 'string', maxLength: 30 } },
             remove: { type: 'string', minLength: 1, maxLength: 30 },
             ready: { type: 'boolean' },
             heir: { type: 'string', minLength: 1, maxLength: 30 },
             deck: deckSchema,
           },
           allOf: [
+            {
+              if: { properties: { action: { const: 'customize' } } },
+              then: { required: ['card', 'sheet'] },
+            },
             {
               if: { properties: { action: { const: 'purchase' } } },
               then: { required: ['card', 'upgrade'] },

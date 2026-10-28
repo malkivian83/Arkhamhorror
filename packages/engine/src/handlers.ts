@@ -21,6 +21,7 @@ import {
   cluesToAdvanceAct,
   describeAction,
   playableCards,
+  canPlayByEffect,
   provokesAttacksOfOpportunity,
   traitAbility,
   traitActionTrait,
@@ -2399,6 +2400,17 @@ export function handle(state: GameState, message: Message): GameState {
     // ------------------------------------------------------- Cartas de jugador
     case 'PlayCard': {
       const investigator = getInvestigator(state, message.investigator)
+      if (
+        message.byEffect &&
+        !canPlayByEffect(
+          state,
+          investigator.id,
+          message.code,
+          message.from ?? 'hand',
+          message.noCost,
+        )
+      )
+        return state
       const def = playerCardDef(message.code)
       const index = investigator.hand.indexOf(message.code)
       // Wendy's Amulet: the topmost event of the discard pile, as if it were in hand; Winging It:
@@ -2407,7 +2419,7 @@ export function handle(state: GameState, message: Message): GameState {
       const fromDiscard =
         (index < 0 || message.from === 'discard') &&
         discardAt >= 0 &&
-        playableHand(state, investigator.id).includes(message.code)
+        (message.byEffect || playableHand(state, investigator.id).includes(message.code))
       if (!def || (index < 0 && !fromDiscard)) return state
       // A copy in hand and another playable from the discard pile: its player chooses.
       if (
@@ -2434,7 +2446,12 @@ export function handle(state: GameState, message: Message): GameState {
       const costIncrease = cardCost(state, investigator.id, message.code) - (def.cost ?? 0)
       // RR "X": the value is chosen while paying the cost, up to the resources available.
       const xOptions = playerCardBehavior(message.code)?.xOptions?.(state, investigator.id)
-      if (playerCardBehavior(message.code)?.costX && message.x === undefined && xOptions)
+      if (
+        !message.noCost &&
+        playerCardBehavior(message.code)?.costX &&
+        message.x === undefined &&
+        xOptions
+      )
         // X limited by the card (Pay Your Dues: the remaining health of a valid target).
         return push(state, {
           type: 'Ask',
@@ -2451,7 +2468,7 @@ export function handle(state: GameState, message: Message): GameState {
               })),
           },
         })
-      if (playerCardBehavior(message.code)?.costX && message.x === undefined)
+      if (!message.noCost && playerCardBehavior(message.code)?.costX && message.x === undefined)
         return push(state, {
           type: 'Ask',
           investigator: investigator.id,
@@ -2468,8 +2485,9 @@ export function handle(state: GameState, message: Message): GameState {
             ),
           },
         })
-      const cost =
-        message.x !== undefined
+      const cost = message.noCost
+        ? 0
+        : message.x !== undefined
           ? message.x + Math.max(0, costIncrease)
           : cardCost(state, investigator.id, message.code, message.discount ?? 0)
       // Schoffner's Catalogue: its uses may pay for this card as resources.
@@ -2671,7 +2689,17 @@ export function handle(state: GameState, message: Message): GameState {
             exhausted: false,
             damage: 0,
             horror: 0,
-            uses: def.uses?.count ?? 0,
+            uses:
+              playerCardBehavior(message.code)?.initialUses?.(state, message.investigator) ??
+              def.uses?.count ??
+              0,
+            ...(getInvestigator(state, message.investigator).customizations?.[message.code]
+              ? {
+                  customization: {
+                    ...getInvestigator(state, message.investigator).customizations![message.code],
+                  },
+                }
+              : {}),
             ...playerCardBehavior(message.code)?.entersPlayWith,
             ...noSlot,
             ...message.tokens,
@@ -2779,6 +2807,26 @@ export function handle(state: GameState, message: Message): GameState {
         },
       }
 
+    case 'SetAssetForm': {
+      const asset = state.assets[message.asset]
+      return asset
+        ? { ...state, assets: { ...state.assets, [asset.id]: { ...asset, form: message.form } } }
+        : state
+    }
+    case 'ReplaceSkillTestResults':
+      return state.skillTest
+        ? { ...state, skillTest: { ...state.skillTest, replacementResults: message.then } }
+        : state
+    case 'RemoveCardFromDiscard': {
+      const i = getInvestigator(state, message.investigator)
+      const at = i.discard.indexOf(message.code)
+      return at < 0
+        ? state
+        : updateInvestigator(state, i.id, (owner) => ({
+            ...owner,
+            discard: owner.discard.filter((_, n) => n !== at),
+          }))
+    }
     case 'SpendUses': {
       const asset = state.assets[message.asset]
       if (!asset) return state
@@ -3873,19 +3921,14 @@ export function handle(state: GameState, message: Message): GameState {
           return push(state, ...before, { type: 'ApplySkillTestResults', prepared: true })
       }
       const failBy = Math.max(0, -testMargin(test))
-      const committed = activeCommitted(test).flatMap(
-        (c) =>
+      const committedResults = activeCommitted(test).map((c) => ({
+        label: 'choice.card',
+        params: { card: playerCardDef(c.code)?.name ?? c.code },
+        then:
           playerCardBehavior(c.code)?.afterCommittedTest?.(state, test, !!test.succeeded, c.by) ??
           [],
-      )
+      }))
       const margin = testMargin(test)
-      // Neither Rain nor Snow (FAQ v2.1): the step 7 results of the failed test are canceled,
-      // including committed cards' and chaos tokens' effects; reactions still trigger.
-      if (
-        !test.succeeded &&
-        activeCommitted(test).some((c) => playerCardBehavior(c.code)?.cancelsFailedTestEffects)
-      )
-        return log(state, 'log.failedTestEffectsCanceled')
       const tokens = test.succeeded
         ? [
             ...(test.tokenOnSuccess ?? []),
@@ -3898,7 +3941,26 @@ export function handle(state: GameState, message: Message): GameState {
             ...test.tokenOnFail,
             ...test.tokenOnFailBy.filter((f) => failBy >= f.atLeast).flatMap((f) => f.then),
           ]
-      const results = [...skillTestResults(state, !!test.succeeded, failBy), ...committed]
+      const sourceResults = skillTestResults(state, !!test.succeeded, failBy)
+      const results = [...sourceResults, ...committedResults.flatMap((effect) => effect.then)]
+      // RR ST.7: the investigator chooses the order of results. Cancellation only
+      // prevents pending effects; Take Heart can resolve before Neither Rain nor Snow.
+      if (
+        !test.succeeded &&
+        activeCommitted(test).some((c) => playerCardBehavior(c.code)?.cancelsFailedTestEffects)
+      ) {
+        return push(state, {
+          type: 'ResolveCancelableTestResults',
+          remaining: [
+            {
+              label: 'choice.resolveTestConsequences',
+              then: sourceResults,
+            },
+            ...committedResults,
+            { label: 'choice.resolveTokenConsequences', then: tokens },
+          ].filter((effect) => effect.then.length > 0),
+        })
+      }
       return push(
         state,
         ...Array.from({ length: test.succeeded ? (test.resultRepetitions ?? 1) : 1 }).flatMap(
@@ -3906,6 +3968,38 @@ export function handle(state: GameState, message: Message): GameState {
         ),
         ...tokens,
       )
+    }
+
+    case 'ResolveCancelableTestResults': {
+      const test = state.skillTest
+      if (!test || test.succeeded !== false) return state
+      if (message.cancel || !message.remaining.length)
+        return log(state, 'log.failedTestEffectsCanceled')
+      return push(state, {
+        type: 'Ask',
+        investigator: test.investigator,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.orderCancelableTestResults',
+          choices: [
+            ...message.remaining.map((effect, index) => ({
+              label: effect.label,
+              ...(effect.params ? { params: effect.params } : {}),
+              then: [
+                ...effect.then,
+                {
+                  type: 'ResolveCancelableTestResults',
+                  remaining: message.remaining.filter((_, i) => i !== index),
+                } satisfies Message,
+              ],
+            })),
+            {
+              label: 'choice.cancelRemainingTestResults',
+              then: [{ type: 'ResolveCancelableTestResults', remaining: [], cancel: true }],
+            },
+          ],
+        },
+      })
     }
 
     case 'ModifySkillTest': {
@@ -7769,6 +7863,7 @@ function resolveBaseToken(state: GameState, token: ChaosToken, investigator: str
 function skillTestResults(state: GameState, succeeded: boolean, failBy: number): Message[] {
   const test = state.skillTest
   if (!test) return []
+  if (test.replacementResults) return test.replacementResults
   const { kind, investigator } = test
   switch (kind.type) {
     case 'effect':
@@ -7792,7 +7887,7 @@ function skillTestResults(state: GameState, succeeded: boolean, failBy: number):
                     investigating: true,
                     investigator,
                     amount:
-                      1 +
+                      (kind.baseClues ?? 1) +
                       (kind.extraClues ?? 0) +
                       test.committed.reduce(
                         (sum, c) =>

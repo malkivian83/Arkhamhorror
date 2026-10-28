@@ -47,7 +47,11 @@ const options = computed(() => [
   ...decks.decks.map((deck) => ({
     id: deck.id,
     name: deck.name,
-    deck: { investigator: deck.investigator, cards: [...deck.cards] } as OnlineDeck,
+    deck: {
+      investigator: deck.investigator,
+      cards: [...deck.cards],
+      ...(deck.customizations ? { customizations: deck.customizations } : {}),
+    } as OnlineDeck,
   })),
 ])
 const selectedOption = computed(() => options.value.find((o) => o.id === selected.value))

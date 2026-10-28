@@ -102,23 +102,93 @@ describe('Stella Clark', () => {
 })
 
 describe('Neither Rain nor Snow', () => {
+  // RR ST.7: results are applied in the testing investigator's chosen order.
+  it.each(['04201', TAKE_HEART])(
+    'can resolve Take Heart (%s) before canceling remaining effects',
+    (code) => {
+      let s = withStella(ready([-8]), {
+        hand: [NEITHER_RAIN_NOR_SNOW, code],
+        deck: ['01088', '01089', '01090'],
+      })
+      s = dispatch(s, effectTest(9, [horror(2)]))
+      s = choose(s, 'choice.commit', { card: 'Neither Rain nor Snow' })
+      s = choose(s, 'choice.commit', { card: 'Take Heart' })
+      s = { ...s, skillTest: { ...s.skillTest!, tokenOnFail: [horror(1)] } }
+      s = reveal(s)
+      for (
+        let n = 0;
+        n < 20 && s.pending?.question.prompt !== 'prompt.orderCancelableTestResults';
+        n++
+      )
+        s = choose(s, labels(s).includes('choice.skip') ? 'choice.skip' : labels(s).at(-1)!)
+      expect(s.pending?.question.prompt).toBe('prompt.orderCancelableTestResults')
+      s = choose(s, 'choice.card', { card: 'Take Heart' })
+      expect(stella(s).hand).toHaveLength(2)
+      expect(stella(s).resources).toBe(7)
+      expect(labels(s)).not.toContain('choice.card')
+      s = through(choose(s, 'choice.cancelRemainingTestResults'))
+      expect(stella(s).horror).toBe(0)
+      expect(result(s)).toBe('log.testFailure')
+    },
+  )
+
+  it('does not undo token consequences resolved before cancellation', () => {
+    let s = withStella(ready([-8]), { hand: [NEITHER_RAIN_NOR_SNOW] })
+    s = dispatch(s, effectTest(9, [horror(2)]))
+    s = choose(s, 'choice.commit', { card: 'Neither Rain nor Snow' })
+    s = { ...s, skillTest: { ...s.skillTest!, tokenOnFail: [horror(1)] } }
+    s = reveal(s)
+    for (
+      let n = 0;
+      n < 20 && s.pending?.question.prompt !== 'prompt.orderCancelableTestResults';
+      n++
+    )
+      s = choose(s, labels(s).includes('choice.skip') ? 'choice.skip' : labels(s).at(-1)!)
+    s = choose(s, 'choice.resolveTokenConsequences')
+    expect(stella(s).horror).toBe(1)
+    expect(labels(s)).not.toContain('choice.resolveTokenConsequences')
+    s = through(choose(s, 'choice.cancelRemainingTestResults'))
+    expect(stella(s).horror).toBe(1)
+  })
+
+  it('preserves Stella, Atychiphobia and Rabbit’s Foot after-failure abilities', () => {
+    let s = dispatch(ready([-8]), { type: 'BeginTurn', investigator: STELLA })
+    s = dispatch(clear(s), put(RABBITS_FOOT))
+    s = dispatch(clear(s), { type: 'ResolveWeakness', investigator: STELLA, code: ATYCHIPHOBIA })
+    s = withStella(clear(s), { hand: [NEITHER_RAIN_NOR_SNOW], deck: ['01088'] })
+    s = dispatch(s, effectTest(9, [horror(2)]))
+    s = choose(s, 'choice.commit', { card: 'Neither Rain nor Snow' })
+    s = reveal(s)
+    expect(stella(s).horror).toBe(1)
+    expect(labels(s)).toContain('ability.stella.action')
+    expect(labels(s)).toContain('ability.drawCards')
+    s = choose(s, 'ability.stella.action')
+    s = choose(s, 'ability.drawCards', { n: 1 })
+    s = through(s)
+    expect(stella(s).hand).toContain('01088')
+    expect(stella(s).actionsRemaining).toBe(4)
+    expect(stella(s).horror).toBe(1)
+  })
+
   it('cancels the effects of the failed test, chaos tokens and committed cards included', () => {
     let s = withStella(ready([-8]), { hand: [NEITHER_RAIN_NOR_SNOW, TAKE_HEART] })
     s = dispatch(s, effectTest(9, [horror(2)]))
     s = choose(s, 'choice.commit', { card: 'Neither Rain nor Snow' })
     s = choose(s, 'choice.commit', { card: 'Take Heart' })
+    s = { ...s, skillTest: { ...s.skillTest!, tokenOnFail: [horror(1)] } }
     s = through(reveal(s))
     expect(result(s)).toBe('log.testFailure')
     expect(stella(s).horror).toBe(0)
     expect(stella(s).hand).toEqual([])
+    expect(stella(s).resources).toBe(5)
     expect(s.log.some((e) => e.key === 'log.failedTestEffectsCanceled')).toBe(true)
     // Without it, the failure applies.
     s = through(reveal(dispatch(ready([-8]), effectTest(9, [horror(2)]))))
     expect(stella(s).horror).toBe(2)
   })
 
-  it('also cancels the Alert attack of a failed evasion', () => {
-    let s = dispatch(ready([-8]), spawnAt('A', { ...ghoul, evade: 9, keywords: ['alert'] }, STELLA))
+  it.each(['alert', 'retaliate'] as const)('also cancels the %s attack', (keyword) => {
+    let s = dispatch(ready([-8]), spawnAt('A', { ...ghoul, evade: 9, keywords: [keyword] }, STELLA))
     s = withStella(s, { hand: [NEITHER_RAIN_NOR_SNOW] })
     const enemy = Object.keys(s.enemies)[0]!
     s = dispatch(s, {
@@ -126,7 +196,7 @@ describe('Neither Rain nor Snow', () => {
       investigator: STELLA,
       skill: 'agility',
       difficulty: 9,
-      kind: { type: 'evade', enemy },
+      kind: keyword === 'alert' ? { type: 'evade', enemy } : { type: 'fight', enemy },
     })
     s = choose(s, 'choice.commit', { card: 'Neither Rain nor Snow' })
     s = through(reveal(s))

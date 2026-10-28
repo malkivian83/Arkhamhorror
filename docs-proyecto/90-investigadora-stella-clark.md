@@ -22,9 +22,9 @@ esta última también de este lote).
   caja ya eran jugables.
 - Listas (7): 02234 Hermético, 04200 Vivir y aprender, 04272 Sobre la marcha, 01073 Reutilizar,
   07196 Incansable, 08072 Catálogo de Schoffner y 09108 Alumbrar.
-- Fuera del alcance: el banquillo (`sideSlots`) de 39832, que la importación de mazos no usa:
-  03273 (preparada en el lote parcial `grouped-import`, sin activar), 06332, 09105, 09116 y
-  09119 (Personalizable, sin hoja de mejoras en el motor).
+- Ampliación posterior: las cinco cartas pendientes del banquillo (`sideSlots`) de 39832
+  se habilitan en el [lote 91](91-banquillo-stella-personalizables.md), con el sistema de
+  mejoras personalizables. La importación del mazo no añade automáticamente su banquillo.
 
 ## Mazos
 
@@ -42,11 +42,15 @@ esta última también de este lote).
   gana en el acto; antes (fase de Mitos o investigación antes de su turno) se guarda hasta que
   empiece; después de su turno no tendría efecto y no se ofrece. Signo arcano: +1 o, en su
   lugar, fracasar automáticamente para curarse 1 daño y 1 horror.
-- **Ni la lluvia ni la nieve.** Si la prueba fracasa, se cancelan los efectos de la prueba
-  fracasada: según la FAQ v2.1 y la resolución revisada de ArkhamDB, los de los pasos 6 y 7,
-  incluidos Alerta y Represalia, los efectos de fallo de fichas y de la fuente y los de las
-  cartas asignadas (como en la referencia). Las capacidades disparadas «después de fracasar»
-  (la de Stella, Atiquifobia, Pata de conejo) siguen activándose.
+- **Ni la lluvia ni la nieve.** Cancela los efectos pendientes de la prueba fracasada,
+  incluidos Alerta y Represalia y las consecuencias del fallo de fichas y de la fuente.
+  Según [ST.7](https://arkhamdb.com/rules#ST.7_Apply_skill_test_results.), el investigador
+  elige el orden de los resultados: puede resolver Encontrar consuelo antes de cancelar
+  los restantes. Si cancela primero, Encontrar consuelo no se resuelve. La cancelación
+  no deshace efectos ya resueltos ni convierte el fracaso en éxito. La
+  [FAQ de la carta](https://arkhamdb.com/card/60502) recoge la resolución revisada sobre
+  Alerta, Represalia y Embrujado. Las capacidades «después de fracasar» (Stella,
+  Atiquifobia, Pata de conejo) se resuelven antes, al determinar el fracaso, y siguen activándose.
 - **Llamada de las nieblas / Atiquifobia.** En la zona de amenaza: 1 daño tras iniciar una
   prueba de dificultad 4 o más / 1 horror tras fracasar. [action][action]: descartarla (también
   investigadores de su Lugar).
@@ -109,3 +113,9 @@ Textos EN/ES de ArkhamDB y etiquetas nuevas. Paquete `ste` en `INVESTIGATOR_PACK
 `stella-clark/rules.test.ts` (efectos de cada carta) e `integration.test.ts` (mazo inicial, las
 dos listas con campaña y escenario, construcción, exilio con relleno gratuito y Déjà Vu).
 Revisión visual pendiente para la persona usuaria.
+
+Revisión de reglas del 28/10/2026: orden de resultados antes de cancelar, con cobertura de
+ambas impresiones de Encontrar consuelo (04201/60519), cancelación antes de sus beneficios,
+consecuencias de fichas, Alerta/Represalia y capacidades de Stella, Atiquifobia y Pata de conejo.
+Los cinco códigos del banquillo se completan en el lote 91, incluido el sistema de
+personalización de 09119 y la activación de 03273 preparada anteriormente.
