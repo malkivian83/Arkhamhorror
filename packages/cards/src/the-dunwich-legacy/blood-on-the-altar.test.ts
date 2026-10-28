@@ -563,8 +563,8 @@ it.each([false, true])('emptying the chamber resolves the act with book in play 
 it.each(['easy', 'standard', 'hard', 'expert'] as const)(
   'the %s reference counts searched locations and places doom without premature advancement',
   (difficulty) => {
-    let s = game(1, 11, difficulty),
-      r = scenarioBehavior(s.scenarioId)!
+    let s = game(1, 11, difficulty)
+    const r = scenarioBehavior(s.scenarioId)!
     expect(r.tokenEffect!(s, 'skull', 'a').modifier).toBe(-1)
     const meta = { ...s.scenarioMeta }
     for (const key of Object.keys(meta)) if (key.startsWith('altarUnder:')) delete meta[key]

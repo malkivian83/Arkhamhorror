@@ -175,7 +175,9 @@ Fuentes: guía revisada ES, páginas 13–16, cartas 02195–02224, Dunwich 0208
 
 ## Validación y continuación
 
-Último lote subido: `a14284ff`, Essex completo. Lote actual: Sangre en el altar y Los supervivientes. Pasan 49 pruebas del escenario y las 14 de El Más Allá tras actualizar la expectativa de etiquetas de traición. Hay un recorrido completo hasta derrotar a Silas mediante acciones legales, sin editar el estado tras preparar, y partidas con mazos iniciales reales de uno a cuatro investigadores. Comprobaciones globales finales pendientes.
+Último lote funcional: `2175cd68`, Sangre en el altar y Los supervivientes. Formato, lint y tipos globales correctos. La suite completa obtuvo 4683 pruebas correctas, 19 omitidas y tres límites de cinco segundos preexistentes en Gala, Brethren of Ash y administración. Los tres archivos afectados pasan con 30 segundos: 57 pruebas correctas. La compilación final pasa.
+
+Pasan las 49 pruebas del escenario, incluidos recorrido legal hasta derrotar a Silas, partidas con mazos iniciales reales de uno a cuatro investigadores, cuatro dificultades, variantes, encuentros, desenlaces, recompensas y prohibición de cartas sacrificadas. Se actualizó la expectativa de etiquetas de las 14 pruebas de El Más Allá para distinguir las pruebas de traiciones.
 
 Catálogo, escaneos y 35 narraciones se verifican por consola. Se inspeccionaron las conexiones impresas de las dos caras de los Lugares y cartas representativas. La revisión visual de la aplicación queda para la persona usuaria conforme a AGENTS.
 
