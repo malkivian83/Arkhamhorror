@@ -131,6 +131,8 @@ export interface Investigator {
 }
 
 export interface Location {
+  /** Physical single-sided encounter card currently represented by this location. */
+  encounterCard?: EncounterLocationCard
   id: LocationId
   name: string
   shroud: number
@@ -189,6 +191,7 @@ export interface EnemyCard {
   startingDoom?: number
   /** No hace ataques de oportunidad. */
   noOpportunityAttacks?: boolean
+  cannotBeEvaded?: boolean
   kind: 'enemy'
   code: CardCode
   name: string
@@ -246,7 +249,13 @@ export interface TreacheryCard {
   keywords: TreacheryKeyword[]
 }
 
-export type EncounterCard = EnemyCard | TreacheryCard
+export interface EncounterLocationCard extends Omit<LocationCard, 'id'> {
+  kind: 'location'
+  code: CardCode
+  traits?: string[]
+  keywords: 'surge'[]
+}
+export type EncounterCard = EnemyCard | TreacheryCard | EncounterLocationCard
 
 export type TreacheryPlacement =
   /** Recién robada, resolviendo su revelación. */
@@ -875,6 +884,9 @@ export type Message =
   /** `checked`: el escenario ya resolvió lo que ocurre al intentar moverse (Vestíbulo). */
   | {
       type: 'MoveTo'
+      /** Forced relocation that cannot be cancelled (Another Dimension). */
+      unpreventable?: boolean
+      encounterEffect?: boolean
       investigator: InvestigatorId
       location: LocationId
       entryPaid?: boolean
@@ -1180,6 +1192,13 @@ export type Message =
   /** Los investigadores derrotados (no retirados) quedan enloquecidos para la campaña. */
   /** Los derrotados (no retirados) enloquecen; con `all`, todos (Surgen estrellas negras, R3). */
   | { type: 'DriveDefeatedInsane'; all?: boolean }
+  | { type: 'DriveInvestigatorInsane'; investigator: InvestigatorId }
+  | {
+      type: 'ReduceEnemyAttackHorror'
+      enemy: EnemyId
+      investigator: InvestigatorId
+      amount: number
+    }
   /** Cambia la carta de un enemigo (otra cara), conservando daño y posición. */
   | { type: 'FlipEnemy'; enemy: EnemyId; card: EnemyCard }
   | { type: 'SetAct'; index: number }
@@ -1379,7 +1398,20 @@ export type Message =
   | { type: 'DiscardEnemy'; enemy: EnemyId }
   | { type: 'MoveEnemy'; enemy: EnemyId; location: LocationId }
   | { type: 'PutLocationIntoPlay'; location: LocationId }
-  | { type: 'RemoveLocation'; location: LocationId }
+  | {
+      type: 'PutEncounterLocation'
+      card: EncounterLocationCard
+      investigator: InvestigatorId
+      drawn?: boolean
+      moveAfter?: boolean
+      resolveRevelation?: boolean
+    }
+  | {
+      type: 'RemoveLocation'
+      location: LocationId
+      checked?: boolean
+      shuffleIntoEncounter?: boolean
+    }
   | { type: 'PlaceCluesOnLocationFromPool'; location: LocationId; amount: number }
   | { type: 'SpawnSetAsideEnemy'; code: CardCode; location: LocationId }
   /** Saca un enemigo del juego (curado) y lo vuelve a apartar. */
@@ -1719,6 +1751,7 @@ export type Trigger =
   | { type: 'enemySpawned'; enemy: EnemyId; location: LocationId }
   | { type: 'afterTakeControlOfPlaced'; investigator: InvestigatorId; code: CardCode }
   | { type: 'assetDefeated'; asset: Asset }
+  | { type: 'locationCluesRemoved'; location: LocationId }
   | { type: 'afterEngage'; investigator: InvestigatorId; enemy: EnemyId }
   | { type: 'beforeEngage'; investigator: InvestigatorId; enemy: EnemyId }
   | { type: 'enemyWouldPatrol'; enemy: EnemyId }
@@ -1736,6 +1769,7 @@ export type Trigger =
       from?: LocationId | null
       /** El movimiento fue una acción de movimiento. */
       moveAction?: boolean
+      encounterEffect?: boolean
     }
   | { type: 'whenEnterLocation'; investigator: InvestigatorId; location: LocationId }
   | { type: 'beforeMoveEngagement'; investigator: InvestigatorId }

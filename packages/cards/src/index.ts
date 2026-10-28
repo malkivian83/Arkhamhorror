@@ -382,3 +382,12 @@ export {
   W as DOOM_CODES,
   WHERE_DOOM_AWAITS,
 } from './the-dunwich-legacy/where-doom-awaits'
+
+export {
+  lostInTimeAndSpace,
+  LOST_LOCATIONS,
+  LOST_ENCOUNTERS,
+  LOST_ENCOUNTER_LOCATIONS,
+  L as LOST_CODES,
+  LOST_IN_TIME_AND_SPACE,
+} from './the-dunwich-legacy/lost-in-time-and-space'

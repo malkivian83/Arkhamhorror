@@ -361,7 +361,13 @@ export function handle(state: GameState, message: Message): GameState {
           trigger: { type: 'agendaAdvances', ...(agenda?.code ? { code: agenda.code } : {}) },
         },
         ...onAdvance,
-        agenda?.code ? { type: 'AgendaAdvanced', from: agenda.code } : { type: 'AgendaAdvanced' },
+        ...(agenda?.code && agendaBehavior(agenda.code)?.repeats
+          ? []
+          : [
+              agenda?.code
+                ? { type: 'AgendaAdvanced' as const, from: agenda.code }
+                : { type: 'AgendaAdvanced' as const },
+            ]),
       )
     }
 
@@ -452,6 +458,13 @@ export function handle(state: GameState, message: Message): GameState {
         // Oculto: en línea, solo quien la roba ve qué carta es.
         ...(card.kind === 'treachery' && card.keywords.includes('hidden') ? { hidden: 1 } : {}),
       })
+      if (card.kind === 'location')
+        return push(state, {
+          type: 'PutEncounterLocation',
+          card,
+          investigator: investigator.id,
+          drawn: true,
+        })
       if (card.kind === 'treachery') {
         const [id, next] = newId(state, 'treachery-')
         return push(
@@ -1976,22 +1989,29 @@ export function handle(state: GameState, message: Message): GameState {
       const mover = getInvestigator(state, message.investigator)
       if (
         mover.eliminated ||
-        (mover.location && leavingBlocked(state, mover.location)) ||
-        (mover.location && scenarioBehavior(state.scenarioId)?.cannotLeave?.(state, mover.id))
+        (!message.unpreventable && mover.location && leavingBlocked(state, mover.location)) ||
+        (!message.unpreventable &&
+          mover.location &&
+          scenarioBehavior(state.scenarioId)?.cannotLeave?.(state, mover.id))
       )
         return state
       // Whispers in Your Head (Dread): no puede moverse más de una vez por turno.
-      if (mover.location !== null && moveBlocked(state, mover.id)) return state
+      if (!message.unpreventable && mover.location !== null && moveBlocked(state, mover.id))
+        return state
       getLocation(state, message.location)
       const scenario = scenarioBehavior(state.scenarioId)
-      if (scenario?.canEnter?.(state, mover.id, mover.location, message.location) === false)
+      if (
+        !message.unpreventable &&
+        scenario?.canEnter?.(state, mover.id, mover.location, message.location) === false
+      )
         return state
-      if (!message.checked) {
+      if (!message.unpreventable && !message.checked) {
         const instead = scenario?.beforeMove?.(state, message)
         if (instead) return push(state, ...instead)
       }
       for (const treachery of Object.values(state.treacheries)) {
         if (
+          message.unpreventable ||
           treachery.placement.type === 'limbo' ||
           message.checkedTreacheries?.includes(treachery.id)
         )
@@ -2002,9 +2022,10 @@ export function handle(state: GameState, message: Message): GameState {
         })
         if (instead) return push(state, ...instead)
       }
-      const costs = message.entryPaid
-        ? []
-        : entryCosts(state, message.investigator, message.location)
+      const costs =
+        message.entryPaid || message.unpreventable
+          ? []
+          : entryCosts(state, message.investigator, message.location)
       if (costs.length > 0) {
         if (!canAffordEntry(state, message.location)) return state
         return push(state, ...costs, { ...message, entryPaid: true })
@@ -2052,6 +2073,7 @@ export function handle(state: GameState, message: Message): GameState {
             first,
             from: mover.location,
             ...(message.moveAction ? { moveAction: true } : {}),
+            ...(message.encounterEffect ? { encounterEffect: true } : {}),
           },
         },
       ]
@@ -2127,6 +2149,7 @@ export function handle(state: GameState, message: Message): GameState {
             last: location.clues - amount === 0,
           },
         },
+        { type: 'Forced', trigger: { type: 'locationCluesRemoved', location: location.id } },
       )
     }
 
@@ -3546,6 +3569,8 @@ export function handle(state: GameState, message: Message): GameState {
 
     // ------------------------------------------------------ Prueba de habilidad
     case 'BeginSkillTest': {
+      if (message.kind.type === 'evade' && state.enemies[message.kind.enemy]?.cannotBeEvaded)
+        return state
       if (message.kind.type === 'fight') {
         const enemy = state.enemies[message.kind.enemy],
           source = message.source ? state.assets[message.source]?.code : message.effectSource
@@ -5084,6 +5109,12 @@ export function handle(state: GameState, message: Message): GameState {
           : { ...r, killed: true },
       )
 
+    case 'DriveInvestigatorInsane':
+      return push(
+        updateRecords(state, message.investigator, (r) => ({ ...r, insane: true })),
+        { type: 'DefeatInvestigator', investigator: message.investigator },
+      )
+
     case 'DriveDefeatedInsane':
       return updateRecords(state, undefined, (r, i) =>
         message.all || (i.eliminated && !i.resigned) ? { ...r, insane: true } : r,
@@ -5356,11 +5387,35 @@ export function handle(state: GameState, message: Message): GameState {
       return { ...state, canceledAttack: message.enemy }
     }
 
+    case 'ReduceEnemyAttackHorror': {
+      let changed = false
+      return {
+        ...state,
+        queue: state.queue.map((m) => {
+          if (
+            changed ||
+            m.type !== 'ResolveEnemyAttack' ||
+            m.enemy !== message.enemy ||
+            m.investigator !== message.investigator
+          )
+            return m
+          changed = true
+          return {
+            ...m,
+            modifier: {
+              damage: m.modifier?.damage ?? 0,
+              horror: (m.modifier?.horror ?? 0) - message.amount,
+            },
+          }
+        }),
+      }
+    }
+
     case 'ResolveEnemyAttack': {
       if (state.canceledAttack === message.enemy) return { ...state, canceledAttack: null }
       const enemy =
         findEnemy(state, message.enemy) ?? state.attackSourcesWithoutLocation?.[message.enemy]
-      if (!enemy) return state
+      if (!enemy || getInvestigator(state, message.investigator).eliminated) return state
       const elusive: Message[] =
         state.enemies[enemy.id] && enemy.keywords.includes('elusive')
           ? [{ type: 'ElusiveRetreat', enemy: enemy.id }]
@@ -5516,7 +5571,7 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'EvadeEnemy': {
       const previous = findEnemy(state, message.enemy)
-      if (!previous || previous.hasNoStats) return state
+      if (!previous || previous.hasNoStats || previous.cannotBeEvaded) return state
       const evaded = updateEnemy(state, message.enemy, (e) => ({
         ...e,
         engagedWith: null,
@@ -6177,6 +6232,49 @@ export function handle(state: GameState, message: Message): GameState {
         },
       )
 
+    case 'PutEncounterLocation': {
+      const { card } = message
+      const [id, next] = newId(state, `${card.code}~`)
+      const { kind: _kind, code: _code, keywords: _keywords, ...data } = card
+      const location = {
+        ...data,
+        id,
+        encounterCard: card,
+        revealed: true,
+        clues: perInvestigator(state, card.clueValue, card.cluesPerInvestigator),
+        position:
+          card.position ??
+          ([
+            Object.keys(state.locations).length % 4,
+            Math.floor(Object.keys(state.locations).length / 4),
+          ] as [number, number]),
+      }
+      const placed = recomputeConnections({
+        ...next,
+        locations: { ...next.locations, [id]: location },
+      })
+      return push(
+        placed,
+        ...(message.resolveRevelation === false
+          ? []
+          : (locationBehavior(card.code)?.revelation?.(placed, location, message.investigator) ??
+            [])),
+        ...(message.moveAfter
+          ? [
+              {
+                type: 'MoveTo' as const,
+                investigator: message.investigator,
+                location: id,
+                encounterEffect: true,
+              },
+            ]
+          : []),
+        ...(message.drawn && card.keywords.includes('surge')
+          ? [{ type: 'DrawEncounterCard' as const, investigator: message.investigator }]
+          : []),
+      )
+    }
+
     case 'PutLocationIntoPlay': {
       const card = state.setAsideLocations[message.location]
       if (!card || state.locations[message.location]) return state
@@ -6195,14 +6293,45 @@ export function handle(state: GameState, message: Message): GameState {
     case 'RemoveLocation': {
       // Se descartan sus fichas y vinculadas, y sale del juego.
       if (!state.locations[message.location]) return state
+      if (!message.checked) {
+        const instead = scenarioBehavior(state.scenarioId)?.beforeRemoveLocation?.(state, {
+          ...message,
+          checked: true,
+        })
+        if (instead) return push(state, ...instead)
+      }
       let next = state
       for (const t of Object.values(state.treacheries)) {
         if (t.placement.type === 'location' && t.placement.location === message.location) {
           next = discardTreachery(next, t.id)
         }
       }
+      if (next.placedAssets)
+        next = {
+          ...next,
+          placedAssets: Object.fromEntries(
+            Object.entries(next.placedAssets).filter(
+              ([, a]) =>
+                a.placement.type !== 'location' || a.placement.location !== message.location,
+            ),
+          ),
+        }
       const { [message.location]: _removed, ...locations } = next.locations
-      return { ...next, locations }
+      if (_removed?.encounterCard) {
+        if (message.shuffleIntoEncounter) {
+          const [encounterDeck, rng] = shuffle(
+            [...next.encounterDeck, _removed.encounterCard],
+            next.rng,
+          )
+          return recomputeConnections({ ...next, locations, encounterDeck, rng })
+        }
+        return recomputeConnections({
+          ...next,
+          locations,
+          encounterDiscard: [...next.encounterDiscard, _removed.encounterCard],
+        })
+      }
+      return recomputeConnections({ ...next, locations })
     }
 
     case 'PlaceCluesOnLocationFromPool':
@@ -7187,11 +7316,17 @@ export function handle(state: GameState, message: Message): GameState {
           enemy: message.to.id,
           amount,
         })
-      return setClues(
+      const next = setClues(
         setClues(state, message.from, available - amount),
         message.to,
         cluesOn(state, message.to) + amount,
       )
+      return message.from.type === 'location'
+        ? push(next, {
+            type: 'Forced',
+            trigger: { type: 'locationCluesRemoved', location: message.from.id },
+          })
+        : next
     }
 
     case 'RemoveDoom': {

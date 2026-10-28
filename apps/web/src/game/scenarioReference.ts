@@ -2,6 +2,7 @@ import type { GameState } from '@lcg/engine'
 
 /** Scenario reference cards: front = easy/standard, back = hard/expert. */
 const references: Record<string, { code: string; name: string }> = {
+  'lost-in-time-and-space': { code: '02311', name: 'Lost in Time and Space' },
   'where-doom-awaits': { code: '02274', name: 'Where Doom Awaits' },
   'undimensioned-and-unseen': { code: '02236', name: 'Undimensioned and Unseen' },
   'blood-on-the-altar': { code: '02195', name: 'Blood on the Altar' },

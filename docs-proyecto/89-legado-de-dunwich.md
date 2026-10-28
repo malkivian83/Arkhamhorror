@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-**Siete de los ocho escenarios son jugables**: Actividad extracurricular, La casa siempre gana, El museo Miskatonic, El Essex County Express, Sangre en el altar, Invisibles y sin dimensión y Donde aguarda la perdición. Admiten de uno a cuatro investigadores y las cuatro dificultades. Los dos primeros pueden jugarse en cualquier orden y conectan con El destino de Armitage; Sangre en el altar incluye Los supervivientes. Quedan el escenario final y el epílogo. No se incluye Regreso a Dunwich.
+**Los ocho escenarios y el epílogo son jugables**: Actividad extracurricular, La casa siempre gana, El museo Miskatonic, El Essex County Express, Sangre en el altar, Invisibles y sin dimensión, Donde aguarda la perdición y Perdidos en el tiempo y el espacio. Admiten de uno a cuatro investigadores y las cuatro dificultades. Los dos primeros pueden jugarse en cualquier orden y conectan con El destino de Armitage; Sangre en el altar incluye Los supervivientes. No se incluye Regreso a Dunwich.
 
 La elección del prólogo se conserva en `log.values.openingScenario`; los guardados
 anteriores sin elección mantienen el orden del índice. La pantalla de progreso y
@@ -54,8 +54,8 @@ de la copia externa, que no se ha trasladado literalmente.
 
 ## Presentación y narración
 
-Catálogo local EN/ES de 202 códigos, referencia de escenario y ayuda de fichas,
-660 escaneos oficiales y sus 660 miniaturas, portada y huellas de integridad.
+Catálogo local EN/ES de 225 códigos, referencia de escenario y ayuda de fichas,
+730 escaneos oficiales y sus 730 miniaturas, portada y huellas de integridad.
 Se han inspeccionado escaneos representativos sin abrir el navegador.
 La revisión visual de la mesa queda para la persona usuaria, conforme a AGENTS.
 
@@ -193,10 +193,19 @@ Fuentes: guía revisada ES, páginas 17–18, y cartas 02236–02259. Se elige u
 - Devotos con movimiento y sacrificio al final de enemigos; Shoggoth que mata solo si su ataque termina derrotando al investigador tras la asignación; Horrores del acechador y Esferas con sus efectos. Ritos que recuperan las debilidades recién descartadas sin duplicarlas, Espacios intermedios y Vórtice del tiempo.
 - Portal, experiencia por victoria, derrota de campaña y locura de todos los investigadores. EN/ES, 92 imágenes y miniaturas nuevas, once narraciones nuevas con Nico - History & Documentary. Se corrigen erratas externas contrastadas con los escaneos antes de generar el audio.
 
+## Perdidos en el tiempo y el espacio y epílogo
+
+- Guía revisada, páginas 21–23, y cartas 02311–02333. Diez Lugares de una sola cara son cartas de Lugar reales en el mazo de encuentros, con copias físicas independientes, entrada revelada y habilidades propias. Se reutiliza la identidad `código~n` del motor y se conserva la carta al descartarla o barajarla.
+- Exploración desde los cuatro actos: descartar tres encuentros y elegir un Lugar. Resolver una Revelación no equivale a robar la carta: solo el robo normal activa Oleada. El movimiento de la ficha de sectario pone el Lugar sin resolver su Revelación.
+- Los ocho tipos de Lugar, sus conexiones y ambas caras se contrastaron con los escaneos. La desaparición de un Lugar mueve a sus ocupantes a Otra dimensión sin permitir que Barrera arcana cancele el traslado, descarta vinculadas y aplica el horror del plan. Las Cascadas también desaparecen al retirar su última pista mediante un Viajero.
+- Cuatro planes con recuerdos de los estudiantes y sacrificados; aparición de Yog-Sothoth y plan final que se repite. Yog tiene 4 más 6 de salud por investigador, no puede ser evitado ni hacer ataques de oportunidad, y permite sustituir horror por cartas descartadas. Quedarse sin mazo al usar esta reacción provoca locura.
+- Cuatro actos, cierre del desgarro y desistimiento individual pagando dos pistas. Cuatro desenlaces, muerte de los derrotados, trauma y experiencia correspondientes y epílogo condicionado por la decisión de calmar o advertir a los lugareños.
+- 70 escaneos y miniaturas nuevos; EN/ES y quince narraciones nuevas con Nico - History & Documentary, incluidos ambos epílogos. Una interrupción de escritura del inventario se recuperó verificando la grabación ya creada; el inventario ahora se sustituye de forma atómica. Se completaron los dos últimos audios con la nueva credencial aportada, sin guardarla en archivos.
+
 ## Validación y continuación
 
-Último lote funcional: `3b5c63c1`, Donde aguarda la perdición (séptimo escenario), con correcciones finales de catálogo y pistas al eliminar investigadores; 43 pruebas específicas, recorrido completo de victoria mediante acciones legales y partidas con mazos iniciales reales de uno a cuatro investigadores hasta su resolución. Se comprueban por consola las 54 narraciones y sus huellas.
+Último lote subido: `cb0d3282`, Donde aguarda la perdición (séptimo escenario). Lote actual: escenario final y epílogo; 49 pruebas específicas, recorrido completo de combate contra Yog mediante acciones legales con investigador de prueba y partidas con mazos iniciales reales de uno a cuatro investigadores hasta su desenlace. Las pruebas de guardado reanudan una elección pendiente de desaparición de Lugar con el mismo resultado; el tablero en línea publica los datos del Lugar descartado sin revelar el mazo. Los 69 audios y sus huellas pasan la comprobación dirigida.
 
-Formato, lint, tipos y compilación pasan. La suite global integrada obtuvo 4910 pruebas correctas y 19 omitidas, más dos fallos de catálogo corregidos y tres límites de tiempo preexistentes. Tras corregir el catálogo, las 46 pruebas dirigidas de escenario, presentación y audio pasan; los dos archivos con límite de tiempo pasan sus 51 pruebas con tiempo ampliado. Los controles afectados por las correcciones se repitieron. La revisión visual de la aplicación queda para la persona usuaria conforme a AGENTS. Sin seguimiento de CI o despliegue.
+Controles globales del lote final pendientes de ejecutar sobre el estado integrado. La revisión visual de la aplicación queda para la persona usuaria conforme a AGENTS.
 
-Siguiente grupo: **Perdidos en el tiempo y el espacio y el epílogo**. La autorización vigente pide continuar y subir los escenarios restantes, revisar la campaña completa al terminar y subir las correcciones finales. No detenerse después de este lote.
+Siguiente grupo: **revisión de las conexiones de la campaña completa tras subir el octavo escenario**. Revisar ambos órdenes de apertura, notas y decisiones entre escenarios y restauración de guardados; corregir y subir cualquier incidencia. La autorización vigente cubre esta revisión y sus subidas. No detenerse al cerrar el octavo escenario.

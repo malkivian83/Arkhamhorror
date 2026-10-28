@@ -1,3 +1,4 @@
+import { lostInTimeAndSpace, LOST_IN_TIME_AND_SPACE } from './lost-in-time-and-space'
 import { whereDoomAwaits, WHERE_DOOM_AWAITS } from './where-doom-awaits'
 import { theEssexCountyExpress, THE_ESSEX_COUNTY_EXPRESS } from './the-essex-county-express'
 import { bloodOnTheAltar, BLOOD_ON_THE_ALTAR } from './blood-on-the-altar'
@@ -59,6 +60,12 @@ registerCampaign({
                       build: ({ difficulty, log }) => whereDoomAwaits({ difficulty, log }),
                       keywords: ['hunter', 'retaliate', 'peril', 'surge', 'prey'],
                     }
-                  : { id },
+                  : id === LOST_IN_TIME_AND_SPACE
+                    ? {
+                        id,
+                        build: ({ difficulty, log }) => lostInTimeAndSpace({ difficulty, log }),
+                        keywords: ['hunter', 'retaliate', 'massive', 'peril', 'surge'],
+                      }
+                    : { id },
   ),
 })

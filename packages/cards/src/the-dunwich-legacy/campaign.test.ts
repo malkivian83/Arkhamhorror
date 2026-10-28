@@ -83,7 +83,7 @@ describe('The Dunwich Legacy: campaign foundation', () => {
   })
 
   it.each([1, 2, 3, 4])(
-    'creates a campaign for %i players without enabling unfinished scenarios',
+    'creates a campaign for %i players with all eight reviewed scenarios enabled',
     (players) => {
       const campaign = newCampaign(
         definition.id,
@@ -99,8 +99,8 @@ describe('The Dunwich Legacy: campaign foundation', () => {
       expect(startScenario(campaign, 1).scenarioId).toBe('extracurricular-activity')
       for (let scenarioIndex = 7; scenarioIndex < 8; scenarioIndex++) {
         const pending = { ...campaign, scenarioIndex }
-        expect(canPlayNext(pending)).toBe(false)
-        expect(() => startScenario(pending, 1)).toThrow('Escenario no disponible')
+        expect(canPlayNext(pending)).toBe(true)
+        expect(startScenario(pending, 1).scenarioId).toBe('lost-in-time-and-space')
       }
     },
   )

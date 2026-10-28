@@ -4,6 +4,22 @@
  * texto oficial, así que solo se ofrecen en el idioma de la grabación.
  */
 const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
+  'story.lost.epilogue1': { es: 'lost-epilogue1-nico-history.mp3' },
+  'story.lost.epilogue2': { es: 'lost-epilogue2-nico-history.mp3' },
+  'story.lost.intro': { es: 'lost-intro-nico-history.mp3' },
+  'story.lost.defeated': { es: 'lost-defeated-nico-history.mp3' },
+  'story.lost.resolution1': { es: 'lost-resolution1-nico-history.mp3' },
+  'story.lost.resolution2': { es: 'lost-resolution2-nico-history.mp3' },
+  'story.lost.resolution3': { es: 'lost-resolution3-nico-history.mp3' },
+  'story.lost.resolution4': { es: 'lost-resolution4-nico-history.mp3' },
+  'story.lost.act1': { es: 'lost-act1-nico-history.mp3' },
+  'story.lost.act2': { es: 'lost-act2-nico-history.mp3' },
+  'story.lost.act3': { es: 'lost-act3-nico-history.mp3' },
+  'story.lost.act4': { es: 'lost-act4-nico-history.mp3' },
+  'story.lost.agenda4': { es: 'lost-agenda4-nico-history.mp3' },
+  'story.lost.students': { es: 'lost-students-nico-history.mp3' },
+  'story.lost.sacrificed': { es: 'lost-sacrificed-nico-history.mp3' },
+
   'story.doom.intro': { es: 'doom-intro-nico-history.mp3' },
   'story.doom.part1': { es: 'doom-part1-nico-history.mp3' },
   'story.doom.agenda1': { es: 'doom-agenda1-nico-history.mp3' },

@@ -5,6 +5,30 @@ import { join } from 'node:path'
 
 const reference = process.argv[2] ?? 'D:/referencia/ArkhamHorror-main'
 const codes = new Set([
+  '02311',
+  '02312',
+  '02313',
+  '02314',
+  '02315',
+  '02316',
+  '02317',
+  '02318',
+  '02319',
+  '02320',
+  '02321',
+  '02322',
+  '02323',
+  '02324',
+  '02325',
+  '02326',
+  '02327',
+  '02328',
+  '02329',
+  '02330',
+  '02331',
+  '02332',
+  '02333',
+
   '02274',
   '02275',
   '02276',
@@ -262,6 +286,21 @@ for (const locale of ['en', 'es']) {
             cards[code][field] = cards[code][field].replaceAll(from, to)
       }
     }
+  }
+
+  if (locale === 'es') {
+    const fixes = {
+      'Haz aparece el Enemigo': 'Haz aparecer el Enemigo',
+      'para que vuelta a mostrar': 'para que vuelva a mostrar',
+      'zona defina lluvia': 'zona de fina lluvia',
+      '—iNo… no!': '—¡No… no!',
+    }
+    for (const code of ['02313', '02314', '02315', '02319'])
+      for (const field of ['backText', 'backFlavor']) {
+        if (cards[code]?.[field])
+          for (const [from, to] of Object.entries(fixes))
+            cards[code][field] = cards[code][field].replaceAll(from, to)
+      }
   }
   writeFileSync(
     `packages/i18n/src/dunwich-cards.${locale}.json`,

@@ -1,8 +1,23 @@
 import { expect, it } from 'vitest'
-import { newCampaign, startScenario } from '@lcg/cards'
+import { newCampaign, startScenario, LOST_ENCOUNTER_LOCATIONS } from '@lcg/cards'
 import { skillTestValue, shroudOf } from '@lcg/engine'
 import { tableView, tableStats } from './table'
 import { gameView } from './game'
+
+it('projects a discarded encounter location with its public location data while keeping the deck anonymous', () => {
+  const campaign = { ...newCampaign('the-dunwich-legacy', ['joe'], 'standard'), scenarioIndex: 7 }
+  const g = startScenario(campaign, 440)
+  g.encounterDiscard = [LOST_ENCOUNTER_LOCATIONS[0]!]
+  const view = tableView(g, g.investigators[0]!.id)
+  expect(view.encounterDiscard[0]).toMatchObject({
+    kind: 'location',
+    code: '02324',
+    shroud: 1,
+    clueValue: 1,
+    cluesPerInvestigator: false,
+  })
+  expect(view.encounterDeck.every((c) => c.code === '' && c.name === '')).toBe(true)
+})
 
 it('projects the normal board without hidden cards, future stages, RNG or deferred effects', () => {
   const g = startScenario(newCampaign('brethren-of-ash', ['joe', 'daniela'], 'standard'), 777)

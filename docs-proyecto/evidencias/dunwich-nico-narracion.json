@@ -499,6 +499,141 @@
       "inputHash": "89b40f9e23953ecefea5d8cf8db59043f2ae0390477f74384f4bb8f0c9b2141c",
       "sha256": "3aed5efc788041417349db346a27303ed577496790df1d3e9221ac6e6d641128",
       "bytes": 718096
+    },
+    {
+      "key": "story.lost.intro",
+      "file": "lost-intro-nico-history.mp3",
+      "text": "Atravesar el portal es una experiencia totalmente distinta a todo lo que habéis vivido. Notáis cómo el cuerpo se retuerce y distorsiona, atravesando realidades mientras el portal os arrastra hacia su destino final: un lugar más allá de todo lo que pueda concebir la imaginación humana. De pronto, se hace el silencio, y el caos del viaje da paso a una sensación de soledad y temor. Estáis en un lugar inenarrable, algo que se escapa por mucho a vuestra capacidad de raciocinio, y además completamente alienígena. El paisaje es surrealista y extraño, y la arquitectura, imposible. Estáis tan lejos de casa que ese concepto se ha convertido en un sueño que pende de un hilo y que apenas lográis recordar. Incluso si encontráis la forma de salir de este terrible lugar, puede que jamás volváis a ser los mismos.",
+      "characters": 808,
+      "inputHash": "5ce3e05652e3836fbd8032ac50a758d642cf37251bc1580f5fd51bfe24fab43a",
+      "sha256": "89a57fde2295e78616aca5ea32981c2ef68ed37e15f779110e645c12e2a0982c",
+      "bytes": 957169
+    },
+    {
+      "key": "story.lost.defeated",
+      "file": "lost-defeated-nico-history.mp3",
+      "text": "¿De dónde vinisteis? ¿Por qué estáis aquí? ¿Estáis soñando, o este lugar es real? Ahora que lo pensáis, ¿no habéis estado antes aquí? O quizá estuvisteis aquí todo el tiempo. Ahora lo recordáis. Éste es vuestro hogar de verdad. El camino que recorréis no es más que un saliente, con muchos más por debajo. Sólo tenéis que caer para estar allí donde pertenecéis. Un paso más...",
+      "characters": 376,
+      "inputHash": "0c7793e5283f5a0a5cf6688fd967f45ebe083813f7d652728744cd61fd167f0f",
+      "sha256": "d9e928d212002d84866f69ee145f38016640692b8d5b653d5daf1163da776057",
+      "bytes": 429705
+    },
+    {
+      "key": "story.lost.resolution1",
+      "file": "lost-resolution1-nico-history.mp3",
+      "text": "Estáis tumbados de espaldas sobre un trozo de hierba húmeda, mirando con nostalgia el cielo nocturno. De algún modo, habéis vuelto a la cima de Sentinel Hill, y no lográis recordar cómo llegasteis aquí exactamente. El cielo nocturno os hipnotiza. Los segundos se convierten en minutos, y los minutos se convierten en horas. Finalmente, un grupo de ciudadanos de Dunwich acaba por encontraros y os ponen en pie. –¿Qué ha ocurrido? ¿Qué hacen aquí? –os preguntan, asustados pero con curiosidad. Parece que no podéis encontrar las palabras apropiadas para describir los acontecimientos que tuvieron lugar al otro lado del portal... si es que ocurrieron realmente. Tampoco parece haber ni rastro de Seth Bishop, de las criaturas que combatisteis antes o del fantasmal y sobrenatural portal. Pero cada vez que dormís, soñáis... y cuando soñáis, todo vuelve como un torrente.",
+      "characters": 869,
+      "inputHash": "3f03dd1b91ab56dd07a20c465829b8a8fbc1f0df733dbf169f305de5401645f3",
+      "sha256": "e2d281933444dc32ac933230e5d26b145ecbc979e681ab1db06e7404484cf2f5",
+      "bytes": 934181
+    },
+    {
+      "key": "story.lost.resolution2",
+      "file": "lost-resolution2-nico-history.mp3",
+      "text": "Varios de los aldeanos de Dunwich oyeron el alboroto de Sentinel Hill y fueron a investigar. Lo que encontraron allí no respondió a ninguna de sus preguntas. –¿Qué creéis que ha pasado? –pregunta un asustado Curtis Whateley mientras examinan la cima de la colina. El resto de aldeanos sacuden la cabeza sin poder ofrecer una explicación. –Lo último que vi es que el cielo se abrió y hubo un fuerte destello –dice uno de ellos mientras observa el cielo estrellado desde la cumbre de Sentinel Hill. –Esos tipos de Arkham no aparecen por ninguna parte –añade Curtis, mirando el agrietado altar de piedra–. No hay el menor rastro de ellos. A diferencia del Sr. Bishop y sus amigos –prosigue mientras señala varios cadáveres tirados en el suelo. –¿Creéis que deberíamos ir a buscar a los polis de Aylesbury? –¿Para qué? ¿Para que vuelvan a reírse de nosotros? –responde Curtis escupiendo–. Nunca nos creerían ni una palabra de todo esto –añade mientras mira de reojo el altar de piedra y se mueve inquieto –. Más vale que nos olvidemos del asunto. Vamos, enterremos a los muertos y marchémonos de aquí.",
+      "characters": 1097,
+      "inputHash": "9754118153c71948ecd23de47923a7f4ca03c5889b841e3f5bbd7b23104dc57c",
+      "sha256": "8a858282f12b8d70b2ef74a88c3759d6ce73d3d9b4959a3b099d309f88027e24",
+      "bytes": 1263533
+    },
+    {
+      "key": "story.lost.resolution3",
+      "file": "lost-resolution3-nico-history.mp3",
+      "text": "De la criatura surge una furia cósmica de sonidos, colores y espacio distorsionado que os repele y aleja de ella. Observáis horrorizados cómo uno de sus brazos rasga el tejido del mundo y su forma amorfa se introduce por la grieta, arrastrando con ella la urdimbre del mundo. Tratáis de agarraros a algo, pero os veis absorbidos inexorablemente por el desgarro. Notáis como si vuestro cuerpo se estirara y vuestra mente fuera aplastada. Después, todo se vuelve negro.",
+      "characters": 467,
+      "inputHash": "3d50addf6bfdb150f14bf1981af8cc5abb4e0315054c57bef41f8962092b3bdb",
+      "sha256": "ab49319c73edf6bdf4fdf636f1a8cefd003ac823c4d813ff8f9815251fe14a88",
+      "bytes": 536702
+    },
+    {
+      "key": "story.lost.resolution4",
+      "file": "lost-resolution4-nico-history.mp3",
+      "text": "En su búsqueda de un poder arcano más allá de este reino, los hechiceros de Dunwich han logrado aquello que no pudieron conseguir Wilbur y el viejo Whateley. Mediante sacrificios de sangre e indescriptibles experimentos, el oscuro poder que perseguían los hechiceros ahora está a su alcance. Sin embargo, nunca tendrán la oportunidad de hacer uso de él realmente. Al pedirle al padre de Wilbur que les otorgara conocimientos, han atraído a la criatura desde su reino extradimensional. Yog-Sothoth emerge de la grieta abierta sobre Sentinel Hill, oscureciendo el cielo y rodeando el mundo. Ahora que ha llegado a la Tierra, gobierna allí donde antes caminaba la humanidad.",
+      "characters": 671,
+      "inputHash": "89b40f9e23953ecefea5d8cf8db59043f2ae0390477f74384f4bb8f0c9b2141c",
+      "sha256": "9806920d703290cb4caa47c8ef3cad5f3ae37f2b29fd455b431d2a544349e8c3",
+      "bytes": 697198
+    },
+    {
+      "key": "story.lost.act1",
+      "file": "lost-act1-nico-history.mp3",
+      "text": "Una luz brilla a lo lejos, y os dirigís hacia ella para investigarla. Similar a un fuego fatuo, la luz se aleja de vosotros, flotando por los extraños portales de este mundo, subiendo por escaleras serpenteantes y cruzando barreras que antes no os atrevisteis a cruzar. Ante las escasas posibilidades que tenéis de encontrar el nexo vosotros solos, seguís a la luz, con la esperanza de que os guíe en la dirección correcta.",
+      "characters": 423,
+      "inputHash": "f0de72fe1a12b715e218962a27e5b0265e60b1f5578ebb895c0c39e39b6c1b78",
+      "sha256": "8dc86a9872d4153e699c0c3202b7956348900787de9fe598211b913062e6bf7b",
+      "bytes": 493652
+    },
+    {
+      "key": "story.lost.act2",
+      "file": "lost-act2-nico-history.mp3",
+      "text": "Llegáis a un vacío negro como el carbón e imposiblemente denso, y os dais cuenta de que este lugar es donde acaba toda la realidad, toda la que es y toda la que será. En su centro, veis una grieta minúscula, suspendida fuera de vuestro alcance. Al mirar por ella, os sorprende ver la cumbre de Sentinel Hill. De algún modo, habéis llegado al otro lado de la grieta. Ahora debéis encontrar una forma de cerrarla para siempre.",
+      "characters": 424,
+      "inputHash": "7fdbcc0124df6240df65ee99714bc28f837618126e0c6deb16767cbea0c22573",
+      "sha256": "1191cd3f99ac9311ebbced9aeef584626045acd6e4e0671e0cdfa309eba46703",
+      "bytes": 465649
+    },
+    {
+      "key": "story.lost.act3",
+      "file": "lost-act3-nico-history.mp3",
+      "text": "Estáis absolutamente agotados, sin tener ni idea de qué se puede hacer para cerrar la grieta. Está demasiado lejos para tocarla, y nada de lo que hacéis tiene efecto alguno. Aquí no hay nada para guiaros aparte de las voces sobrenaturales que se filtran en vuestra mente. Entonces, oís una voz familiar dentro del coro de ecos, y os sentís compelidos a repetir lo que dice —Claude ostium… —susurráis en primer lugar, y las palabras se forman en la punta de vuestra lengua. Cerráis los ojos para concentraros, y el eco se vuelve más fuerte. Cuando acaba y abrís los ojos, no veis más que un abismo azabache, y la grieta se ha desvanecido.",
+      "characters": 637,
+      "inputHash": "69b4db647a2dddb59cd6dc4e446fd5e7341949edd86fdf6608fff3030225f91d",
+      "sha256": "67ee1512186dc0e5e2d686afbe9259774cef004c6228373b758041757b1a1f49",
+      "bytes": 699706
+    },
+    {
+      "key": "story.lost.act4",
+      "file": "lost-act4-nico-history.mp3",
+      "text": "Descubrís un camino que os resulta familiar en cierto modo y lo seguís. Aunque vuestra tarea está completa, ahora entendéis que, al haber cerrado la grieta, puede que nunca volváis a casa. El miedo de quedar perdidos aquí para siempre os espolea a seguir, y cruzáis una arcada que da a un corredor cubierto de vegetación. Una húmeda puerta de madera os conduce a una zona de fina lluvia y cielos oscuros. El cemento se convierte en gravilla, y luego en mármol, después en acero, y más tarde en hierba. Cruzáis prados imposiblemente largos y atravesáis densos bosques antes de que la fatiga haga mella en vosotros. Estáis desprovistos de toda energía, y no podéis avanzar más. Vuestro cuerpo desfallece.",
+      "characters": 702,
+      "inputHash": "55eb61f98a6c08139966abacb31e11f3786bcc3008493f8af2ad60cbbf9e6d52",
+      "sha256": "a286d708235ebb7731bf5cc9af4132ac08d93e75639f33983ac52cc27c41e97a",
+      "bytes": 793747
+    },
+    {
+      "key": "story.lost.agenda4",
+      "file": "lost-agenda4-nico-history.mp3",
+      "text": "El horror extradimensional se revuelve mientras busca la grieta por la que entrasteis en esta dimensión, y al hacerlo aplasta reinos enteros que tiene aferrados.",
+      "characters": 161,
+      "inputHash": "64f73c94fcaac1f1c396512c2ff27f8f6d334569c35e6c78913ffee1ed8b126b",
+      "sha256": "20fa4c87aa440e9b798457d62244fd1aa515b73c0f26fe0c5ab13436edbd6ea8",
+      "bytes": 163883
+    },
+    {
+      "key": "story.lost.students",
+      "file": "lost-students-nico-history.mp3",
+      "text": "Una enorme criatura canina, alienígena a vuestros ojos y aun así familiar, aparece ante vosotros. La criatura se lanza hacia delante, y os preparáis para defenderos de ella, pero para vuestra sorpresa, corre a través de vosotros hacia un edificio que no estaba a vuestra espalda hace un instante: el Pabellón Derby de la Universidad Miskatonic. La criatura irrumpe por la puerta principal del edificio y oís chillidos de pánico en el interior, seguidos del crujido de huesos partiéndose y gritos de dolor.",
+      "characters": 505,
+      "inputHash": "f8d4e83e722daef0f6dff013f67fba59a2f51adabeb19b4fe75a5bfeda707d73",
+      "sha256": "51cee54a7b67b4c4de642d56930bf7cfd9f56590d03c19e9fc23f6b295c81517",
+      "bytes": 591037
+    },
+    {
+      "key": "story.lost.sacrificed",
+      "file": "lost-sacrificed-nico-history.mp3",
+      "text": "Oís una voz familiar que os llama, y entráis en un edificio de forma imposible hecho de piedra agrietada. —¡No… no! —grita la voz. Corréis hacia ella, bajando por unas escaleras estrechas y empinadas. Al llegar al fondo, os encontráis en la cámara oculta de Dunwich. Veis a quienes no lograsteis salvar atados por grilletes, ensangrentados y mutilados. Una criatura con rostro de hombre está devorando un cadáver del suelo. La cabeza del cadáver se gira para miraros, y un agudo dolor os atraviesa el corazón.",
+      "characters": 509,
+      "inputHash": "3bf305afec847992bda97545aa6f865c5f060088776196d01c4b39fa611b2f61",
+      "sha256": "7a16a4f3e908437f476cbceaa1f215549591b56deb78e6c515c842ac6afe9387",
+      "bytes": 585185
+    },
+    {
+      "key": "story.lost.epilogue1",
+      "file": "lost-epilogue1-nico-history.mp3",
+      "text": "Habían pasado seis meses, y la vida de Curtis Whateley por fin estaba volviendo a la normalidad. Puesto que habían ocultado el incidente y las autoridades guardaban las distancias con esta zona, el Sr Osborn había subastado las pertenencias de las familias Ericks y Bishop. Joe se quedó con algunas baratijas, claro, pero Curtis no quiso saber nada de ello. Ya había mucha gente que no se fiaba de él por los pecados de su familia, aunque había estado yendo a misa de forma habitual y se había mantenido alejado de cualquier cosa que pareciera remotamente arcana. Aun así, Curtis no lograba quitarse de encima una sensación de premonición. Había visto la devastación que habían sufrido los hogares de los Ericks, los Bishop y los Frye. Había visto de primera mano la criatura que los tipos de Arkham habían desterrado. Algunos días, sus pensamientos lo llevaban a la granja de Wilbur Whateley, y se quedaba allí fuera, mirándola durante horas, demasiado asustado para entrar, pero demasiado curioso para marcharse. Puede que haya algo allí dentro que pueda hacer que se marchen estas terribles visiones. Algo que pudiera darle la fuerza suficiente como para resistir las pesadillas. Curtis decidió que lo encontraría.",
+      "characters": 1217,
+      "inputHash": "e61c875cbf428a75ab0ad86df6dce84adba237f4e9a1732897a0634676a20224",
+      "sha256": "c2abc72b4066d491b9d623ce7bd9271fe26fc5caf8f43906c2008bd980522f2d",
+      "bytes": 1268131
+    },
+    {
+      "key": "story.lost.epilogue2",
+      "file": "lost-epilogue2-nico-history.mp3",
+      "text": "Gené se arrodilló para examinar más de cerca el signo que había en la tierra del suelo. La forma del signo le resultaba totalmente extraña, y las huellas que llevaban a él eran distintas a cualquiera que hubiera visto hasta la fecha. Todo eso, junto al informe de la universidad... No sabía muy bien qué pensar. –Srta. Beauregard –dijo su ayudante–, ¿ha encontrado algo? Gené se incorporó y se volvió para mirar al estudiante de primer año que le habían asignado. Era un buen chico, y algo inexperto, pero trabajaba mucho y tenía ganas de demostrar lo que valía. –Se supone que este sitio estaba cerrado –respondió Gené–. Aquí no ha vivido nadie desde hace meses. Y aun así, mira: sus primitivos ritos prosiguen a día de hoy. El alumno se acercó para examinar el signo junto a Gené, mientras hojeaba su diario buscando alguna referencia para los símbolos. –¿Qué cree que significa? –le preguntó. Ella sacudió la cabeza. Apenas llegaban forasteros a Dunwich, y todas las señales que indicaban cómo llegar hasta él han desaparecido del camino. Pero hoy en día, hasta los lugareños que tenían aquí su hogar lo habían abandonado. –No lo sé –admitió Gené–. Pero aquí hay alguien, y éste no es el primer signo similar que vemos. Las historias dicen que hay un altar en el que los lugareños llevaban a cabo rituales paganos sobre esa colina. Puede que allí averigüemos algo más.",
+      "characters": 1371,
+      "inputHash": "ced76160742dc9e4323b0f6921872d3c18e971bc35ca8d028a381970b452206e",
+      "sha256": "9d280714de6100b10ff54b76d90fdb1f09e1b2c68cacce903652ba149be96aba",
+      "bytes": 1530191
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "description": "Busca a los profesores desaparecidos. Los siete primeros escenarios son jugables; el escenario final sigue en desarrollo.",
+  "description": "Busca a los profesores desaparecidos. Los ocho escenarios y el epílogo de la campaña son jugables.",
   "story": {
     "museum": {
       "intro": "Hace algunos meses, Armitage y sus colegas detuvieron a un horror desa tado que iba a destruir Dunwich, una apartada ciudad que se encuentra a varias horas de Arkham, hacia el noroeste. Al principio pensáis que esta bestia es un oso rabioso o algo peor, pero la descripción que hace el profesor de la criatura describe algo muy distinto. Todo comenzó cuando un hombre llamado Wilbur Whateley entró en la biblioteca Orne en busca de la traducción al latín de Olaus Wormius de un libro llamado el Necronomicón . Wilbur ya poseía una ajada traducción al inglés del Dr. John Dee, pero no le bastaba para sus propósitos. Armitage le prohibió el acceso, pues temía el posible uso que pudiera darle al libro ese extraño hombre. Whateley volvió en secreto, con la esperanza de poder robar el libro, pero fue atacado por un sabueso guardián de la universidad. Más tarde, Armitage, Rice y Morgan descubrieron el cuerpo de Whateley. Una descripción del terrible cadáver –semiantropomórfico y cubierto de pelaje, con una piel coriácea y tentáculos de un color gris verdoso– os hace cuestionaros si Whateley era humano realmente.",
@@ -123,6 +123,50 @@
       "resolution2Title": "Resolución 2",
       "setup": "Reúne Donde aguarda la perdición, Esclavos-bestia, Hechicería, Esclavos de Bishop, Miedo impactante, Antiguos males y Frío helador. Pon en juego los tres Lugares de Sentinel Hill y comienza al pie de la colina. Retira al azar un Sendero divergente y uno alterado; aparta las otras tres copias de cada tipo y a Seth Bishop. El registro de campaña determina el acto 2, la perdición inicial y las Abominaciones horrendas. Añade la ficha negativa correspondiente a la dificultad para el resto de la campaña.",
       "setupTitle": "Preparación"
+    },
+    "lost": {
+      "act1": "Una luz brilla a lo lejos, y os dirigís hacia ella para investigarla. Similar a un fuego fatuo, la luz se aleja de vosotros, flotando por los extraños portales de este mundo, subiendo por escaleras serpenteantes y cruzando barreras que antes no os atrevisteis a cruzar. Ante las escasas posibilidades que tenéis de encontrar el nexo vosotros solos, seguís a la luz, con la esperanza de que os guíe en la dirección correcta.",
+      "act1Title": "Perdidos en el tiempo y el espacio",
+      "act2": "Llegáis a un vacío negro como el carbón e imposiblemente denso, y os dais cuenta de que este lugar es donde acaba toda la realidad, toda la que es y toda la que será. En su centro, veis una grieta minúscula, suspendida fuera de vuestro alcance. Al mirar por ella, os sorprende ver la cumbre de Sentinel Hill. De algún modo, habéis llegado al otro lado de la grieta. Ahora debéis encontrar una forma de cerrarla para siempre.",
+      "act2Title": "Perdidos en el tiempo y el espacio",
+      "act3": "Estáis absolutamente agotados, sin tener ni idea de qué se puede hacer para cerrar la grieta. Está demasiado lejos para tocarla, y nada de lo que hacéis tiene efecto alguno. Aquí no hay nada para guiaros aparte de las voces sobrenaturales que se filtran en vuestra mente. Entonces, oís una voz familiar dentro del coro de ecos, y os sentís compelidos a repetir lo que dice —Claude ostium… —susurráis en primer lugar, y las palabras se forman en la punta de vuestra lengua. Cerráis los ojos para concentraros, y el eco se vuelve más fuerte. Cuando acaba y abrís los ojos, no veis más que un abismo azabache, y la grieta se ha desvanecido.",
+      "act3Title": "Perdidos en el tiempo y el espacio",
+      "act4": "Descubrís un camino que os resulta familiar en cierto modo y lo seguís. Aunque vuestra tarea está completa, ahora entendéis que, al haber cerrado la grieta, puede que nunca volváis a casa. El miedo de quedar perdidos aquí para siempre os espolea a seguir, y cruzáis una arcada que da a un corredor cubierto de vegetación. Una húmeda puerta de madera os conduce a una zona de fina lluvia y cielos oscuros. El cemento se convierte en gravilla, y luego en mármol, después en acero, y más tarde en hierba. Cruzáis prados imposiblemente largos y atravesáis densos bosques antes de que la fatiga haga mella en vosotros. Estáis desprovistos de toda energía, y no podéis avanzar más. Vuestro cuerpo desfallece.",
+      "act4Title": "Perdidos en el tiempo y el espacio",
+      "agenda4": "El horror extradimensional se revuelve mientras busca la grieta por la que entrasteis en esta dimensión, y al hacerlo aplasta reinos enteros que tiene aferrados.",
+      "agenda4Title": "Perdidos en el tiempo y el espacio",
+      "students": "Una enorme criatura canina, alienígena a vuestros ojos y aun así familiar, aparece ante vosotros. La criatura se lanza hacia delante, y os preparáis para defenderos de ella, pero para vuestra sorpresa, corre a través de vosotros hacia un edificio que no estaba a vuestra espalda hace un instante: el Pabellón Derby de la Universidad Miskatonic. La criatura irrumpe por la puerta principal del edificio y oís chillidos de pánico en el interior, seguidos del crujido de huesos partiéndose y gritos de dolor.",
+      "studentsTitle": "Perdidos en el tiempo y el espacio",
+      "sacrificed": "Oís una voz familiar que os llama, y entráis en un edificio de forma imposible hecho de piedra agrietada. —¡No… no! —grita la voz. Corréis hacia ella, bajando por unas escaleras estrechas y empinadas. Al llegar al fondo, os encontráis en la cámara oculta de Dunwich. Veis a quienes no lograsteis salvar atados por grilletes, ensangrentados y mutilados. Una criatura con rostro de hombre está devorando un cadáver del suelo. La cabeza del cadáver se gira para miraros, y un agudo dolor os atraviesa el corazón.",
+      "sacrificedTitle": "Perdidos en el tiempo y el espacio",
+      "intro": "Atravesar el portal es una experiencia totalmente distinta a todo lo que habéis vivido. Notáis cómo el cuerpo se retuerce y distorsiona, atravesando realidades mientras el portal os arrastra hacia su destino final: un lugar más allá de todo lo que pueda concebir la imaginación humana. De pronto, se hace el silencio, y el caos del viaje da paso a una sensación de soledad y temor. Estáis en un lugar inenarrable, algo que se escapa por mucho a vuestra capacidad de raciocinio, y además completamente alienígena. El paisaje es surrealista y extraño, y la arquitectura, imposible. Estáis tan lejos de casa que ese concepto se ha convertido en un sueño que pende de un hilo y que apenas lográis recordar. Incluso si encontráis la forma de salir de este terrible lugar, puede que jamás volváis a ser los mismos.",
+      "introTitle": "Perdidos en el tiempo y el espacio",
+      "defeated": "¿De dónde vinisteis? ¿Por qué estáis aquí? ¿Estáis soñando, o este lugar es real? Ahora que lo pensáis, ¿no habéis estado antes aquí? O quizá estuvisteis aquí todo el tiempo. Ahora lo recordáis. Éste es vuestro hogar de verdad. El camino que recorréis no es más que un saliente, con muchos más por debajo. Sólo tenéis que caer para estar allí donde pertenecéis. Un paso más...",
+      "defeatedTitle": "Investigador derrotado",
+      "resolution1": "Estáis tumbados de espaldas sobre un trozo de hierba húmeda, mirando con nostalgia el cielo nocturno. De algún modo, habéis vuelto a la cima de Sentinel Hill, y no lográis recordar cómo llegasteis aquí exactamente. El cielo nocturno os hipnotiza. Los segundos se convierten en minutos, y los minutos se convierten en horas. Finalmente, un grupo de ciudadanos de Dunwich acaba por encontraros y os ponen en pie. –¿Qué ha ocurrido? ¿Qué hacen aquí? –os preguntan, asustados pero con curiosidad. Parece que no podéis encontrar las palabras apropiadas para describir los acontecimientos que tuvieron lugar al otro lado del portal... si es que ocurrieron realmente. Tampoco parece haber ni rastro de Seth Bishop, de las criaturas que combatisteis antes o del fantasmal y sobrenatural portal. Pero cada vez que dormís, soñáis... y cuando soñáis, todo vuelve como un torrente.",
+      "resolution1Title": "Resolución 1",
+      "resolution2": "Varios de los aldeanos de Dunwich oyeron el alboroto de Sentinel Hill y fueron a investigar. Lo que encontraron allí no respondió a ninguna de sus preguntas. –¿Qué creéis que ha pasado? –pregunta un asustado Curtis Whateley mientras examinan la cima de la colina. El resto de aldeanos sacuden la cabeza sin poder ofrecer una explicación. –Lo último que vi es que el cielo se abrió y hubo un fuerte destello –dice uno de ellos mientras observa el cielo estrellado desde la cumbre de Sentinel Hill. –Esos tipos de Arkham no aparecen por ninguna parte –añade Curtis, mirando el agrietado altar de piedra–. No hay el menor rastro de ellos. A diferencia del Sr. Bishop y sus amigos –prosigue mientras señala varios cadáveres tirados en el suelo. –¿Creéis que deberíamos ir a buscar a los polis de Aylesbury? –¿Para qué? ¿Para que vuelvan a reírse de nosotros? –responde Curtis escupiendo–. Nunca nos creerían ni una palabra de todo esto –añade mientras mira de reojo el altar de piedra y se mueve inquieto –. Más vale que nos olvidemos del asunto. Vamos, enterremos a los muertos y marchémonos de aquí.",
+      "resolution2Title": "Resolución 2",
+      "resolution3": "De la criatura surge una furia cósmica de sonidos, colores y espacio distorsionado que os repele y aleja de ella. Observáis horrorizados cómo uno de sus brazos rasga el tejido del mundo y su forma amorfa se introduce por la grieta, arrastrando con ella la urdimbre del mundo. Tratáis de agarraros a algo, pero os veis absorbidos inexorablemente por el desgarro. Notáis como si vuestro cuerpo se estirara y vuestra mente fuera aplastada. Después, todo se vuelve negro.",
+      "resolution3Title": "Resolución 3",
+      "resolution4": "En su búsqueda de un poder arcano más allá de este reino, los hechiceros de Dunwich han logrado aquello que no pudieron conseguir Wilbur y el viejo Whateley. Mediante sacrificios de sangre e indescriptibles experimentos, el oscuro poder que perseguían los hechiceros ahora está a su alcance. Sin embargo, nunca tendrán la oportunidad de hacer uso de él realmente. Al pedirle al padre de Wilbur que les otorgara conocimientos, han atraído a la criatura desde su reino extradimensional. Yog-Sothoth emerge de la grieta abierta sobre Sentinel Hill, oscureciendo el cielo y rodeando el mundo. Ahora que ha llegado a la Tierra, gobierna allí donde antes caminaba la humanidad.",
+      "resolution4Title": "Resolución 4",
+      "epilogue1": "Habían pasado seis meses, y la vida de Curtis Whateley por fin estaba volviendo a la normalidad. Puesto que habían ocultado el incidente y las autoridades guardaban las distancias con esta zona, el Sr Osborn había subastado las pertenencias de las familias Ericks y Bishop. Joe se quedó con algunas baratijas, claro, pero Curtis no quiso saber nada de ello. Ya había mucha gente que no se fiaba de él por los pecados de su familia, aunque había estado yendo a misa de forma habitual y se había mantenido alejado de cualquier cosa que pareciera remotamente arcana. Aun así, Curtis no lograba quitarse de encima una sensación de premonición. Había visto la devastación que habían sufrido los hogares de los Ericks, los Bishop y los Frye. Había visto de primera mano la criatura que los tipos de Arkham habían desterrado. Algunos días, sus pensamientos lo llevaban a la granja de Wilbur Whateley, y se quedaba allí fuera, mirándola durante horas, demasiado asustado para entrar, pero demasiado curioso para marcharse. Puede que haya algo allí dentro que pueda hacer que se marchen estas terribles visiones. Algo que pudiera darle la fuerza suficiente como para resistir las pesadillas. Curtis decidió que lo encontraría.",
+      "epilogue1Title": "Epílogo 1",
+      "epilogue2": "Gené se arrodilló para examinar más de cerca el signo que había en la tierra del suelo. La forma del signo le resultaba totalmente extraña, y las huellas que llevaban a él eran distintas a cualquiera que hubiera visto hasta la fecha. Todo eso, junto al informe de la universidad... No sabía muy bien qué pensar. –Srta. Beauregard –dijo su ayudante–, ¿ha encontrado algo? Gené se incorporó y se volvió para mirar al estudiante de primer año que le habían asignado. Era un buen chico, y algo inexperto, pero trabajaba mucho y tenía ganas de demostrar lo que valía. –Se supone que este sitio estaba cerrado –respondió Gené–. Aquí no ha vivido nadie desde hace meses. Y aun así, mira: sus primitivos ritos prosiguen a día de hoy. El alumno se acercó para examinar el signo junto a Gené, mientras hojeaba su diario buscando alguna referencia para los símbolos. –¿Qué cree que significa? –le preguntó. Ella sacudió la cabeza. Apenas llegaban forasteros a Dunwich, y todas las señales que indicaban cómo llegar hasta él han desaparecido del camino. Pero hoy en día, hasta los lugareños que tenían aquí su hogar lo habían abandonado. –No lo sé –admitió Gené–. Pero aquí hay alguien, y éste no es el primer signo similar que vemos. Las historias dicen que hay un altar en el que los lugareños llevaban a cabo rituales paganos sobre esa colina. Puede que allí averigüemos algo más.",
+      "epilogue2Title": "Epílogo 2",
+      "setup": "Reúne Perdidos en el tiempo y el espacio, Hechicería, El Más Allá, Abominaciones espantosas y Agentes de Yog-Sothoth. Pon en juego Otra dimensión; todos comienzan allí. Aparta Los bordes del universo, Desgarro en el tiempo y Yog-Sothoth. Baraja el resto de cartas, incluidos los diez Lugares de una sola cara, para formar el mazo de encuentros. Estos Lugares entran revelados al resolver su Revelación.",
+      "setupTitle": "Perdidos en el tiempo y el espacio",
+      "agenda1": "Baraja la pila de descartes de Encuentros con el mazo. Descarta cartas hasta encontrar un Lugar y resuelve su Revelación con el investigador jefe. A continuación, consulta los recuerdos del registro de campaña.",
+      "agenda1Title": "Perdidos en el tiempo y el espacio",
+      "agenda2": "Baraja la pila de descartes de Encuentros con el mazo. Descarta cartas hasta encontrar un Lugar y resuelve su Revelación con el investigador jefe. A continuación, consulta los recuerdos del registro de campaña.",
+      "agenda2Title": "Perdidos en el tiempo y el espacio",
+      "agenda3": "Haz aparecer a Yog-Sothoth en Los bordes del universo, o en Otra dimensión si ese Lugar no está en juego. Avanza al plan 4.",
+      "agenda3Title": "Perdidos en el tiempo y el espacio",
+      "resolution1Effect": "Cada investigador sufre 2 traumas físicos y 2 mentales y obtiene experiencia por victoria más 5 puntos. ¡Los investigadores ganan la campaña!",
+      "resolution2Effect": "Los investigadores ganan la campaña… y nunca se vuelve a saber nada de ellos.",
+      "resolution3Effect": "Todos los investigadores han muerto. Los investigadores ganan la campaña… y nunca se vuelve a saber nada de ellos.",
+      "resolution4Effect": "Todos los investigadores supervivientes se vuelven locos. Los investigadores pierden la campaña."
     }
   },
   "notes": {
@@ -148,7 +192,9 @@
     "dunwichCalmedTownsfolk": "Calmasteis a los lugareños",
     "dunwichWarnedTownsfolk": "Advertisteis a los lugareños",
     "dunwichEnteredGate": "Los investigadores entraron en el portal.",
-    "dunwichYogSothothMerged": "Yog-Sothoth hizo pedazos la barrera entre los mundos y se hizo uno con la realidad."
+    "dunwichYogSothothMerged": "Yog-Sothoth hizo pedazos la barrera entre los mundos y se hizo uno con la realidad.",
+    "dunwichClosedRift": "Los investigadores cerraron el desgarro en la realidad.",
+    "dunwichYogSothothFled": "Yog-Sothoth ha huido a otra dimensión."
   },
   "abilities": {
     "museum": {
@@ -184,6 +230,11 @@
     },
     "doom": {
       "investigate": "Investigar el sendero"
+    },
+    "lost": {
+      "explore": "Buscar otro Lugar",
+      "resign": "Gastar 2 pistas y desistir",
+      "yog": "Descartar cartas en lugar de recibir horror"
     }
   },
   "choices": {
@@ -215,6 +266,13 @@
       "minusFour": "Tratar la ficha como −4",
       "amount": "{amount} pistas",
       "enemy": "{enemy} — {location} ({clues} pistas, {damage} daño)"
+    },
+    "lost": {
+      "mill": "Descartar {amount} cartas",
+      "doom": "Colocar 1 perdición",
+      "discard": "Descartar el Lugar",
+      "resources": "Gastar 2 recursos",
+      "shuffle": "Barajar el Lugar en el mazo de encuentros"
     }
   },
   "prompts": {
@@ -242,6 +300,12 @@
       "clue": "Puedes colocar una de tus pistas sobre una Abominación",
       "donor": "¿Quién aporta la pista?",
       "amount": "¿Cuántas pistas colocáis?"
+    },
+    "lost": {
+      "explore": "Elige un Lugar descartado",
+      "decay": "Coloca perdición o descarta el Lugar",
+      "doorway": "Gasta 2 recursos o baraja la Entrada dimensional",
+      "yog": "¿Cuántas cartas descartas en lugar de recibir horror?"
     }
   }
 }

@@ -8,6 +8,7 @@ import {
   bloodOnTheAltar,
   undimensionedAndUnseen,
   whereDoomAwaits,
+  lostInTimeAndSpace,
   DOOM_LOCATIONS,
   DOOM_EXTRA_ENEMIES,
   UNSEEN_LOCATIONS,
@@ -128,6 +129,10 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     })
   }
   function encounter(c: EncounterCard) {
+    if (c.kind === 'location') {
+      location({ ...c, id: c.code })
+      return
+    }
     // Debilidades de jugador apartadas en un escenario (03059): se conserva su ficha propia.
     if (playerCardDef(c.code)) return
     put({
@@ -157,6 +162,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     bloodOnTheAltar(),
     undimensionedAndUnseen(),
     whereDoomAwaits(),
+    lostInTimeAndSpace(),
     theGathering(),
     spreadingFlames(),
     queenOfAsh(),
@@ -274,6 +280,12 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   Object.values(UNSEEN_LOCATIONS).forEach(location)
   DOOM_LOCATIONS.forEach(location)
   DOOM_EXTRA_ENEMIES.forEach(encounter)
+  put({
+    code: '02311',
+    name: 'Lost in Time and Space',
+    real_name: 'Lost in Time and Space',
+    type_code: 'scenario',
+  })
   put({
     code: '02274',
     name: 'Where Doom Awaits',

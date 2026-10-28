@@ -201,7 +201,9 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
           ...playableCards(state, id, false)
             .filter((card) => playerCardBehavior(card)?.evadeAction)
             .map((card): Action => ({ kind: 'play', card })),
-          ...engagedEnemies(state, id).map((e): Action => ({ kind: 'evade', enemy: e.id })),
+          ...engagedEnemies(state, id)
+            .filter((e) => !e.cannotBeEvaded)
+            .map((e): Action => ({ kind: 'evade', enemy: e.id })),
         ]
       : []
     const traitPlays: Action[] = trait
@@ -235,7 +237,9 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
       .filter((e) => e.engagedWith !== null || !enemyHasKeyword(state, e, 'aloof'))
       .filter((e) => !attackBlocked(state, id, e))
       .map((e): Action => ({ kind: 'fight', enemy: e.id })),
-    ...engagedEnemies(state, id).map((e): Action => ({ kind: 'evade', enemy: e.id })),
+    ...engagedEnemies(state, id)
+      .filter((e) => !e.cannotBeEvaded)
+      .map((e): Action => ({ kind: 'evade', enemy: e.id })),
     ...enemiesHere
       .filter((e) => e.engagedWith !== id && !e.keywords.includes('massive'))
       .filter((e) => scenarioBehavior(state.scenarioId)?.canEnemyEngage?.(state, e, id) !== false)

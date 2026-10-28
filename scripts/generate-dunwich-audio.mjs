@@ -1,7 +1,7 @@
 // Narración ES de Dunwich con Nico, voz elegida por el usuario.
 // --list es local; --generate consume ElevenLabs. --key-stdin evita persistir la clave.
 import { createHash } from 'node:crypto'
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync } from 'node:fs'
 import { join } from 'node:path'
 
 const voiceId = 'FXn3GKRRt9FCEyTbrkaL'
@@ -11,6 +11,22 @@ const output = join(root, 'audio/es')
 const evidencePath = 'docs-proyecto/evidencias/dunwich-nico-narracion.json'
 const texts = JSON.parse(readFileSync(join(root, 'es.json'), 'utf8'))
 const keys = {
+  'story.lost.intro': 'lost-intro-nico-history.mp3',
+  'story.lost.defeated': 'lost-defeated-nico-history.mp3',
+  'story.lost.resolution1': 'lost-resolution1-nico-history.mp3',
+  'story.lost.resolution2': 'lost-resolution2-nico-history.mp3',
+  'story.lost.resolution3': 'lost-resolution3-nico-history.mp3',
+  'story.lost.resolution4': 'lost-resolution4-nico-history.mp3',
+  'story.lost.act1': 'lost-act1-nico-history.mp3',
+  'story.lost.act2': 'lost-act2-nico-history.mp3',
+  'story.lost.act3': 'lost-act3-nico-history.mp3',
+  'story.lost.act4': 'lost-act4-nico-history.mp3',
+  'story.lost.agenda4': 'lost-agenda4-nico-history.mp3',
+  'story.lost.students': 'lost-students-nico-history.mp3',
+  'story.lost.sacrificed': 'lost-sacrificed-nico-history.mp3',
+  'story.lost.epilogue1': 'lost-epilogue1-nico-history.mp3',
+  'story.lost.epilogue2': 'lost-epilogue2-nico-history.mp3',
+
   'story.doom.intro': 'doom-intro-nico-history.mp3',
   'story.doom.part1': 'doom-part1-nico-history.mp3',
   'story.doom.agenda1': 'doom-agenda1-nico-history.mp3',
@@ -155,7 +171,14 @@ if (!process.argv.includes('--generate')) {
         signal: AbortSignal.timeout(120000),
       },
     )
-    if (!response.ok) throw new Error(`${key}: HTTP ${response.status}`)
+    if (!response.ok) {
+      const detail = await response.json().catch(() => ({}))
+      const status = detail?.detail?.status ?? 'unknown'
+      const message = String(detail?.detail?.message ?? '')
+        .replaceAll(apiKey, '[redacted]')
+        .slice(0, 500)
+      throw new Error(`${key}: HTTP ${response.status} (${status}) ${message}`)
+    }
     if (!response.headers.get('content-type')?.includes('audio'))
       throw new Error(`${key}: response is not audio`)
     const bytes = Buffer.from(await response.arrayBuffer())
@@ -171,7 +194,8 @@ if (!process.argv.includes('--generate')) {
       sha256: hash(bytes),
       bytes: bytes.length,
     })
-    writeFileSync(evidencePath, JSON.stringify(evidence, null, 2) + '\n')
+    writeFileSync(evidencePath + '.tmp', JSON.stringify(evidence, null, 2) + '\n')
+    renameSync(evidencePath + '.tmp', evidencePath)
     console.log(`Generado ${file} (${bytes.length} bytes)`)
   }
 }
