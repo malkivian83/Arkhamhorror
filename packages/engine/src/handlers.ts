@@ -74,7 +74,6 @@ import {
   investigatorsAt,
   leadInvestigator,
   newId,
-  nextStepToward,
   perInvestigator,
   placedLocation,
   push,
@@ -4936,16 +4935,38 @@ export function handle(state: GameState, message: Message): GameState {
     case 'HuntOnce': {
       const enemy = findEnemy(state, message.enemy)
       if (!enemy || enemy.location === message.toward) return state
-      const step = nextStepToward(state, enemy.location, (l) => l === message.toward)
-      if (step === null) return state
-      return push(
-        state,
-        { type: 'MoveEnemy', enemy: enemy.id, location: step },
-        { type: 'CheckEngagement', location: step },
+      const distance = distancesFrom(state, enemy.location, enemy).get(message.toward)
+      if (distance === undefined) return state
+      const steps = enemyNeighbours(state, enemy.location, enemy).filter(
+        (next) =>
+          state.locations[next] &&
+          distancesFrom(state, next, enemy).get(message.toward) === distance - 1,
+      )
+      const move = (location: string): Message[] => [
+        { type: 'MoveEnemy', enemy: enemy.id, location },
         ...(message.attack === false
           ? []
           : [{ type: 'AttackIfEngaged', enemy: enemy.id } as Message]),
-      )
+      ]
+      if (!steps.length) return state
+      if (steps.length === 1) return push(state, ...move(steps[0]!))
+      const lead = leadInvestigator(state)
+      if (!lead) return state
+      return push(state, {
+        type: 'Ask',
+        investigator: lead.id,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.chooseHunterPath',
+          promptParams: { enemy: enemy.name },
+          choices: steps.map((location) => ({
+            label: 'choice.location',
+            params: { location: state.locations[location]!.name },
+            target: { type: 'location', id: location },
+            then: move(location),
+          })),
+        },
+      })
     }
 
     case 'AttackIfEngaged': {

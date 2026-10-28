@@ -3,7 +3,6 @@ import {
   activeInvestigators,
   distancesFrom,
   getInvestigator,
-  nextStepToward,
   push,
   registerEnemy,
   registerTreachery,
@@ -594,14 +593,11 @@ onSpecific('pursue', (state, data) => {
       { type: 'EnemyAttack', enemy: enemy.id, investigator, exhaustAfter: false },
     )
   }
-  const step = nextStepToward(state, enemy.location, (l) => l === target)
-  if (step === null || Number(data.steps) > Object.keys(state.locations).length) return state
+  if (!distancesFrom(state, enemy.location, enemy).has(target)) return state
+  if (Number(data.steps) >= Object.keys(state.locations).length) return state
   return push(
-    {
-      ...state,
-      enemies: { ...state.enemies, [enemy.id]: { ...enemy, location: step, engagedWith: null } },
-    },
-    { type: 'Forced', trigger: { type: 'enemyEntersLocation', enemy: enemy.id, location: step } },
+    state,
+    { type: 'HuntOnce', enemy: enemy.id, toward: target, attack: false },
     specific('pursue', { ...data, steps: Number(data.steps) + 1 }),
   )
 })

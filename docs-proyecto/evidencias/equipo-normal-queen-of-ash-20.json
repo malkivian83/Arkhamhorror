@@ -767,6 +767,10 @@
     },
     {
       "investigator": "12001",
+      "choice": 0
+    },
+    {
+      "investigator": "12001",
       "choice": 5
     },
     {
@@ -1701,6 +1705,13 @@
       "prompt": "prompt.chooseTrauma",
       "label": "choice.physicalTrauma",
       "params": null
+    },
+    {
+      "prompt": "prompt.chooseHunterPath",
+      "label": "choice.location",
+      "params": {
+        "location": "Sewer Tunnels"
+      }
     },
     {
       "prompt": "prompt.commitCards",

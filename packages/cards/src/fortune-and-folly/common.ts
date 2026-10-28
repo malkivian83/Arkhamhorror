@@ -3,8 +3,8 @@
  * alarma (con el daño de los Guardias), Indiferente, juegos, recursos ganados en el turno y
  * los forzados de todos los planes.
  */
+import { nearestEnemyChoice } from '../nearest-choice'
 import {
-  distancesFrom,
   getInvestigator,
   leadInvestigator,
   type Choice,
@@ -210,13 +210,15 @@ export function commonSpecific(
       // [tablet]: el enemigo más cercano se mueve una vez hacia ti.
       const here = getInvestigator(state, investigator).location
       if (here === null) return state
-      const distances = distancesFrom(state, here)
-      const nearest = Object.values(state.enemies)
-        .filter((e) => distances.has(e.location))
-        .sort((a, b) => distances.get(a.location)! - distances.get(b.location)!)[0]
-      return nearest
-        ? push({ type: 'HuntOnce', enemy: nearest.id, toward: here, attack: false })
-        : state
+      return {
+        ...state,
+        queue: [
+          ...nearestEnemyChoice(state, investigator, Object.values(state.enemies), (enemy) => [
+            { type: 'HuntOnce', enemy: enemy.id, toward: here, attack: false },
+          ]),
+          ...state.queue,
+        ],
+      }
     }
     case 'fofElderThing':
       return push({
