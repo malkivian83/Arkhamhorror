@@ -2,6 +2,7 @@ import {
   enemyBehavior,
   investigatorBehavior,
   assetBehavior,
+  assetOwnerVitals,
   playerCardDef,
   scenarioBehavior,
   treacheryBehavior,
@@ -63,7 +64,7 @@ export function effectiveVitals(
   )
   const owned = Object.values(state.assets).filter((a) => a.owner === investigator.id)
   const fromAssets = (k: 'health' | 'sanity') =>
-    owned.reduce((n, a) => n + (assetBehavior(state, a)?.ownerVitals?.[k] ?? 0), 0)
+    owned.reduce((n, a) => n + (assetOwnerVitals(state, a)[k] ?? 0), 0)
   return {
     health: Math.max(
       0,

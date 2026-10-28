@@ -10,5 +10,7 @@ export const startingExperience = (deck: CardCode[]) => (deck.includes(IN_THE_TH
 export const startingExperienceSpent = (deck: CardCode[]) =>
   deck.reduce((spent, code) => {
     const card = playerCardDef(code)
-    return spent + (card && !card.weakness && !card.story ? (card.xp ?? 0) : 0)
+    // RR Exceptional: twice the printed level.
+    const cost = (card?.xp ?? 0) * (card?.exceptional ? 2 : 1)
+    return spent + (card && !card.weakness && !card.story ? cost : 0)
   }, 0)

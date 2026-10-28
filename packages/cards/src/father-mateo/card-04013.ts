@@ -9,6 +9,8 @@ const sealedHere = (state: GameState, id: string) =>
 // would reveal a chaos token from the bag, you may discard it to resolve that token instead.
 registerPlayerCard({
   code: CODEX_OF_AGES,
+  // RR Seal: the keyword is a cost; without the [elder_sign] in the bag it cannot be played.
+  canPlay: (state) => state.chaosBag.includes('elderSign'),
   forced: (_state, trigger, self) =>
     trigger.type === 'afterAssetEntersPlay' && trigger.asset === self.id
       ? [

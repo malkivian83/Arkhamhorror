@@ -455,9 +455,18 @@ export function registerTreachery(behavior: TreacheryBehavior): void {
 }
 
 export function registerEnemy(behavior: EnemyBehavior): void {
+  // Tests of abilities printed on an enemy target that enemy (Contingency).
+  const abilities = behavior.abilities
+  const targeting = abilities
+    ? {
+        ...behavior,
+        abilities: (...args: Parameters<typeof abilities>) =>
+          onScenarioCard(abilities(...args), 'enemy'),
+      }
+    : behavior
   enemies.set(
     behavior.code,
-    scenarioCardBehavior(behavior, () => !playerCards.has(behavior.code)),
+    scenarioCardBehavior(targeting, () => !playerCards.has(behavior.code)),
   )
 }
 
@@ -521,8 +530,19 @@ export interface PlayerCardBehavior {
   effectAttackDamage?: (state: GameState, test: SkillTest) => number
   /** Asset fast abilities offered in every supported player window. */
   fastOptions?: (state: GameState, self: Asset) => ReactionOption[]
-  /** Continuous additional actions, consumed before ordinary actions (Leo De Luca). */
-  additionalTurnActions?: number
+  /**
+   * Continuous additional actions, consumed before ordinary actions (Leo De Luca); a function
+   * when they depend on a condition (The Black Fan: 1 with 15 or more resources).
+   */
+  additionalTurnActions?: number | ((state: GameState, self: Asset) => number)
+  /** Starting: after the opening hand and mulligan, it may be searched for and added to hand. */
+  starting?: boolean
+  /** Reactions of this card while committed to the current test (Contingency). */
+  committedReactions?: (
+    state: GameState,
+    trigger: Trigger,
+    committedBy: InvestigatorId,
+  ) => ReactionOption[]
   /** Printed maximum of one asset with this trait per investigator. */
   limitTrait?: string
   limitTitle?: boolean
@@ -536,8 +556,13 @@ export interface PlayerCardBehavior {
   commitFromLocation?: (state: GameState, test: SkillTest, by: InvestigatorId) => boolean
   /** Continuous modifiers while this event is attached to an asset. */
   attachedVitals?: { health?: number; sanity?: number }
-  /** En juego: cambia la salud o la cordura de su dueño (El Manto Andrajoso, -1 cordura). */
-  ownerVitals?: { health?: number; sanity?: number }
+  /**
+   * En juego: cambia la salud o la cordura de su dueño (El Manto Andrajoso, -1 cordura); una
+   * función si depende de una condición (The Black Fan: +1/+1 con 10 o más recursos).
+   */
+  ownerVitals?:
+    | { health?: number; sanity?: number }
+    | ((state: GameState, self: Asset) => { health?: number; sanity?: number })
   /** En la mano: cambia el coste de cada otra carta de la mano (Broche de ónice negro). */
   handCostModifier?: number
   /** Bonus to each skill while resolving a triggered ability of the host asset. */
@@ -780,6 +805,21 @@ export function playerCardBehavior(code: CardCode): PlayerCardBehavior | undefin
 }
 
 /** RR "Blank": traits and statistics remain, but printed abilities are suppressed. */
+/** Additional actions an asset grants its controller right now (Leo De Luca, The Black Fan). */
+export function assetTurnActions(state: GameState, asset: Asset): number {
+  const value = assetBehavior(state, asset)?.additionalTurnActions
+  return typeof value === 'function' ? value(state, asset) : (value ?? 0)
+}
+
+/** Health and sanity an asset adds to its controller right now (The Black Fan). */
+export function assetOwnerVitals(
+  state: GameState,
+  asset: Asset,
+): { health?: number; sanity?: number } {
+  const value = assetBehavior(state, asset)?.ownerVitals
+  return typeof value === 'function' ? value(state, asset) : (value ?? {})
+}
+
 export function assetBehavior(state: GameState, asset: Asset): PlayerCardBehavior | undefined {
   const traits = playerCardDef(asset.code)?.traits ?? []
   const blank = Object.values(state.treacheries).some(

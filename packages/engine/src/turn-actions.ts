@@ -1,8 +1,12 @@
-import { assetBehavior } from './content'
+import { assetTurnActions } from './content'
 import { getInvestigator, updateInvestigator } from './state'
-import type { GameState, Message } from './types'
+import type { GameState, Message, TurnActionGrant } from './types'
 
-/** RR Additional Actions: use continuous bonus actions before ordinary actions. */
+/**
+ * RR Additional Actions: use continuous bonus actions before ordinary actions. A grant whose
+ * condition stops holding is kept inactive (its unused actions come back if it holds again
+ * during the turn, never a second full grant); it is dropped when the asset leaves play.
+ */
 export function synchronizeTurnActions(
   before: GameState,
   after: GameState,
@@ -15,11 +19,9 @@ export function synchronizeTurnActions(
     const { turnActionGrants: _done, ...rest } = after
     return rest
   }
-  const sources = Object.values(after.assets).filter(
-    (a) => a.owner === id && (assetBehavior(after, a)?.additionalTurnActions ?? 0) > 0,
-  )
+  const owned = Object.values(after.assets).filter((a) => a.owner === id)
   const old = message.type === 'BeginTurn' ? [] : (after.turnActionGrants ?? [])
-  if (!sources.length && !old.length) return after
+  if (!old.length && !owned.some((a) => assetTurnActions(after, a) > 0)) return after
   let spent =
     message.type === 'BeginTurn' || before.activeTurn !== id
       ? 0
@@ -29,20 +31,35 @@ export function synchronizeTurnActions(
             getInvestigator(after, id).actionsRemaining,
         )
   const used = old.map((grant) => {
+    if (grant.inactive) return grant
     const consume = Math.min(grant.remaining, spent)
     spent -= consume
     return { ...grant, remaining: grant.remaining - consume }
   })
-  let delta = -used
-    .filter((g) => !sources.some((a) => a.id === g.asset))
-    .reduce((n, g) => n + g.remaining, 0)
-  const grants = sources.map((a) => {
-    const prior = used.find((g) => g.asset === a.id)
-    if (prior) return prior
-    const remaining = assetBehavior(after, a)?.additionalTurnActions ?? 0
+  let delta = 0
+  const grants: TurnActionGrant[] = []
+  for (const grant of used) {
+    const asset = owned.find((a) => a.id === grant.asset)
+    if (!asset) {
+      if (!grant.inactive) delta -= grant.remaining
+      continue
+    }
+    const holds = assetTurnActions(after, asset) > 0
+    if (holds === !grant.inactive) {
+      grants.push(grant)
+      continue
+    }
+    delta += holds ? grant.remaining : -grant.remaining
+    const { inactive: _was, ...active } = grant
+    grants.push(holds ? active : { ...grant, inactive: true })
+  }
+  for (const asset of owned) {
+    if (grants.some((g) => g.asset === asset.id)) continue
+    const remaining = assetTurnActions(after, asset)
+    if (remaining <= 0) continue
     delta += remaining
-    return { asset: a.id, remaining }
-  })
+    grants.push({ asset: asset.id, remaining })
+  }
   const next = grants.length
     ? { ...after, turnActionGrants: grants }
     : (() => {

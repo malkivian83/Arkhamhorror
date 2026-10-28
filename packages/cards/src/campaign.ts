@@ -659,8 +659,10 @@ export function purchaseOptions(
       const copies = deck.filter((c) => byCode(c)?.name === card.name)
       // Mejora: una copia de menor nivel del mismo título pasa a la nueva versión.
       const lower = copies.find((c) => level(c) < base.level && !isPermanent(c))
+      // RR Exceptional: twice the printed level in experience.
+      const price = (code: CardCode) => level(code) * (byCode(code)?.exceptional ? 2 : 1)
       const upgrade: PurchaseOption[] = lower
-        ? [{ ...base, cost: base.level - level(lower), replaces: lower, needsRemoval: false }]
+        ? [{ ...base, cost: price(card.code) - price(lower), replaces: lower, needsRemoval: false }]
         : []
       // Carta nueva: como máximo 2 copias por título; cuesta al menos 1 experiencia.
       const add: PurchaseOption[] =
@@ -668,7 +670,7 @@ export function purchaseOptions(
           ? [
               {
                 ...base,
-                cost: Math.max(1, base.level),
+                cost: Math.max(1, price(card.code)),
                 needsRemoval: full && !isPermanent(card.code),
               },
             ]
