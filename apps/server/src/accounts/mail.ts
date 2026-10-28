@@ -5,6 +5,7 @@ export interface AccountMail {
   to: string
   subject: string
   text: string
+  html?: string
 }
 export type SendMail = (mail: AccountMail) => Promise<void>
 export function mailer(config: AccountConfig): SendMail {

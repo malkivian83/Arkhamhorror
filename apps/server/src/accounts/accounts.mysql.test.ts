@@ -33,7 +33,9 @@ describe.skipIf(!url)('cuentas y bibliotecas con MySQL real', () => {
       .map((c) => `${c.name}=${c.value}`)
       .join('; ')
   const tokenFrom = (mail: AccountMail) =>
-    new URLSearchParams(new URL(mail.text.split('\n')[1]!).hash.slice(1)).get('token')!
+    new URLSearchParams(new URL(mail.text.match(/^https?:\/\/\S+$/m)![0]).hash.slice(1)).get(
+      'token',
+    )!
   async function user(address = `${randomUUID()}@example.com`) {
     expect(
       (

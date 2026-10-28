@@ -72,9 +72,13 @@ it('envía correo mediante SMTP y falla explícitamente si no hay transporte con
       to: 'test@example.test',
       subject: 'Verify account',
       text: 'Open the verification link.',
+      html: '<p>Open the verification link.</p>',
     })
     expect(received).toContain('To: test@example.test')
     expect(received).toContain('Open the verification link.')
+    expect(received).toContain('multipart/alternative')
+    expect(received).toContain('Content-Type: text/html')
+    expect(received).toContain('<p>Open the verification link.</p>')
     await expect(
       mailer({ databaseUrl: '', origin: 'http://localhost', production: false })({
         to: 'test@example.test',
