@@ -187,9 +187,9 @@ Fuentes: guía revisada ES, páginas 17–18, y cartas 02236–02259. Se elige u
 
 ## Validación y continuación
 
-Último lote funcional: `9e339f4a`, Invisibles y sin dimensión; ajuste posterior de la reserva de debilidades según la [FAQ oficial 2.5, página 16](https://images-cdn.fantasyflightgames.com/filer_public/c1/d0/c1d0fab6-7fa6-4ce2-af6a-16416381a19b/ahc_faq_v25_february_2026-web.pdf). La selección descuenta las copias usadas y reserva las debilidades progresivas.
+Último lote funcional: `9e339f4a`, Invisibles y sin dimensión, con los ajustes de reserva y pistas controladas en `ac32a346`; ajuste de la reserva de debilidades según la [FAQ oficial 2.5, página 16](https://images-cdn.fantasyflightgames.com/filer_public/c1/d0/c1d0fab6-7fa6-4ce2-af6a-16416381a19b/ahc_faq_v25_february_2026-web.pdf). La selección descuenta las copias usadas y reserva las debilidades progresivas.
 
-Formato, lint y tipos globales comprobados. La última suite completa obtuvo 4768 pruebas correctas, 19 omitidas y tres fallos: dos límites de cinco segundos preexistentes en Gala y Brethren of Ash y una expectativa de presentación del nuevo pago de pistas. Esta última se corrigió; pasan 430 pruebas afectadas del motor, Dunwich y presentación, incluidas las 51 propias del escenario. Controles finales y repetición de los dos archivos con tiempo ampliado pendientes.
+Formato, lint y tipos globales comprobados. La última suite completa obtuvo 4768 pruebas correctas, 19 omitidas y tres fallos: dos límites de cinco segundos preexistentes en Gala y Brethren of Ash y una expectativa de presentación del nuevo pago de pistas. Esta última se corrigió; pasan 430 pruebas afectadas del motor, Dunwich y presentación, incluidas las 51 propias del escenario. Los controles afectados vuelven a pasar y la compilación final es correcta. Los dos archivos con 30 segundos pasan sus 51 pruebas.
 
 Las pruebas incluyen un recorrido completo que destruye todas las Progenies mediante acciones legales sin editar el estado tras preparar, partidas con mazos iniciales reales de uno a cuatro investigadores, variantes de Lugares, costes, fichas, encuentros, guardado y decisiones de preparación.
 
