@@ -1,4 +1,5 @@
 export interface OnlineDeck {
+  customizations?: Record<string, Record<string, number>>
   investigator: string
   cards: string[]
   startingTrauma?: { physical: number; mental: number }

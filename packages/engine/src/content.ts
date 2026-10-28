@@ -630,6 +630,8 @@ export interface PlayerCardBehavior {
   restrictedSlots?: { slot: SlotType; count: number; trait: string | string[] }[]
   /** Damage or horror printed as already on the asset when it enters play (Jessica Hyde). */
   entersPlayWith?: { damage?: number; horror?: number }
+  /** Initial uses can depend on the owner's purchased customizations. */
+  initialUses?: (state: GameState, investigator: InvestigatorId) => number
   /** Engage actions of its controller do not provoke attacks of opportunity (Trench Knife). */
   engageWithoutOpportunity?: boolean
   /** Printed cost X: chosen when paying; an asset enters play with X uses. */

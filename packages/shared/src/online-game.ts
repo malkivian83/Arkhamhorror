@@ -42,6 +42,13 @@ export type OnlineProgressAction =
   | { action: 'next' }
   | { action: 'ready'; ready: boolean }
   | { action: 'purchase'; card: string; upgrade: boolean; remove?: string }
+  | {
+      action: 'customize'
+      card: string
+      sheet: Record<string, number>
+      copies?: number
+      removals?: string[]
+    }
   | { action: 'heir'; card: string; heir: string }
   /** El jugador cuyo investigador murió o enloqueció elige otro con un mazo de nivel 0. */
   | { action: 'replace'; deck: OnlineDeck }
@@ -69,6 +76,8 @@ export interface OnlineCampaignView {
     ready: boolean
   }[]
   own: {
+    xp?: number
+    customizations?: Record<string, Record<string, number>>
     deck: string[]
     removable: string[]
     options: {

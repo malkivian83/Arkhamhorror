@@ -5,6 +5,10 @@
  */
 import {
   allPlayerCardDefs,
+  customizedCard,
+  customizationCost,
+  validCustomizations,
+  type Customizations,
   deckOptionAllows,
   isPermanent,
   nextInt,
@@ -21,6 +25,7 @@ import { onePrintingEach } from './reprints'
 import { startingExperience, startingExperienceSpent } from './survivor-deck/card-08125'
 
 export interface DeckList {
+  customizations?: Customizations
   id: string
   name: string
   investigator: CardCode
@@ -111,6 +116,7 @@ export function requiredDeckSize(investigator: CardCode, deck: CardCode[] = []):
 }
 
 export type DeckProblem =
+  | { key: 'deck.problem.customizations' }
   | { key: 'deck.problem.unimplemented'; params: { card: string } }
   | { key: 'deck.problem.unknownInvestigator' }
   | { key: 'deck.problem.size'; params: { n: number; size: number } }
@@ -155,8 +161,15 @@ export function validateDeck(
     }
   }
   const problems: DeckProblem[] = []
+  if (!validCustomizations(deck.cards, deck.customizations))
+    problems.push({ key: 'deck.problem.customizations' })
+  const cardFor = (code: string) => {
+    const card = byCode(code)
+    return card ? customizedCard(card, deck.customizations) : undefined
+  }
   const overStartingBudget =
-    campaignStart && startingExperienceSpent(deck.cards) > startingExperience(deck.cards)
+    campaignStart &&
+    startingExperienceSpent(deck.cards, deck.customizations) > startingExperience(deck.cards)
   const name = (code: CardCode) => byCode(code)?.name ?? code
   const own = new Set(investigator.signatures ?? [])
   // Opciones adicionales (Collector): cuántas cartas fuera de clase puede llevar.
@@ -164,7 +177,7 @@ export function validateDeck(
   const offClass = investigator.offClassLevelZeroLimit
   if (offClass !== undefined) {
     const count = deck.cards.filter((code) => {
-      const c = byCode(code)
+      const c = cardFor(code)
       return (
         c &&
         isStandard(code) &&
@@ -185,7 +198,7 @@ export function validateDeck(
 
   for (const code of new Set(deck.cards)) {
     if (code === RANDOM_BASIC_WEAKNESS) continue
-    const card = byCode(code)
+    const card = cardFor(code)
     if (!card) {
       problems.push({ key: 'deck.problem.unknownCard', params: { card: code } })
       continue
@@ -299,6 +312,7 @@ export interface ArkhamDbDeck {
   name: string
   investigator_code: string
   slots: Record<string, number>
+  meta?: string
 }
 
 /** Id de un mazo de ArkhamDB a partir de su enlace (o del propio número). */
@@ -338,5 +352,36 @@ export function deckFromArkhamDb(
   if (!byCode(data.investigator_code)?.deckOptions) {
     unknown.unshift(data.investigator_code)
   }
-  return { deck: { id, name: data.name, investigator: data.investigator_code, cards }, unknown }
+  const customizations: Customizations = {}
+  if (data.meta) {
+    const meta = JSON.parse(data.meta) as Record<string, unknown>
+    for (const [key, value] of Object.entries(meta)) {
+      // ArkhamDB app.deck.js: cus_<code>, comma-separated index|checkbox-count entries.
+      if (!key.startsWith('cus_') || typeof value !== 'string') continue
+      const code = key.slice(4)
+      if (!cards.includes(code)) continue
+      const options = Object.keys(byCode(code)?.customizable ?? {})
+      if (!options.length) throw new Error(`Unsupported customization: ${code}`)
+      const sheet: Record<string, number> = {}
+      for (const part of value.split(',').filter(Boolean)) {
+        const [index, boxes] = part.split('|').map(Number)
+        const option = options[index!]
+        if (!option || boxes === undefined || Object.hasOwn(sheet, option))
+          throw new Error('Invalid customization')
+        sheet[option] = boxes
+      }
+      if (customizationCost(sheet)) customizations[code] = sheet
+    }
+  }
+  if (!validCustomizations(cards, customizations)) throw new Error('Invalid customization')
+  return {
+    deck: {
+      id,
+      name: data.name,
+      investigator: data.investigator_code,
+      cards,
+      ...(Object.keys(customizations).length ? { customizations } : {}),
+    },
+    unknown,
+  }
 }

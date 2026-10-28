@@ -39,6 +39,11 @@ import './asset-utilities'
  */
 import {
   allPlayerCardDefs,
+  customizationCost,
+  customizedCard,
+  retainedCustomizations,
+  validCustomizations,
+  type Customizations,
   createGame,
   shuffle,
   seedRng,
@@ -112,10 +117,12 @@ import './wendy-adams'
 import './father-mateo'
 import './marie-lambeau'
 import './stella-clark'
+import './stella-sideboard'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
 export interface CampaignInvestigator {
+  customizations?: Customizations
   id: InvestigatorId
   /** Mazo actual (sin los apoyos de historia, que se añaden al empezar cada escenario). */
   deck: CardCode[]
@@ -156,6 +163,7 @@ export type CampaignMember =
   | {
       investigator: CardCode
       cards: CardCode[]
+      customizations?: Customizations
       /** Chosen when creating a deck with In the Thick of It; totals exactly two. */
       startingTrauma?: { physical: number; mental: number }
     }
@@ -177,10 +185,20 @@ export function newCampaign(
   if (members.length < 1 || members.length > 4)
     throw new Error('La campaña necesita de 1 a 4 investigadores')
   const weaknessChoices: Record<string, CardCode[]> = {}
-  const investigators = members.map((member, n) => {
+  const investigators: CampaignInvestigator[] = members.map((member, n) => {
     if (typeof member !== 'string') {
       // Un mazo propio sin debilidad básica recibe una al azar (reglamento).
-      return { id: member.investigator, deck: withRandomBasicWeakness(member.cards, seed + n) }
+      return {
+        id: member.investigator,
+        deck: withRandomBasicWeakness(member.cards, seed + n),
+        ...(member.customizations
+          ? {
+              customizations: Object.fromEntries(
+                Object.entries(member.customizations).map(([c, s]) => [c, { ...s }]),
+              ),
+            }
+          : {}),
+      }
     }
     const list = STARTER_DECKS[member]
     if (!list) throw new Error(`Mazo desconocido: ${member}`)
@@ -227,7 +245,9 @@ export function newCampaign(
     const record = log.investigators[investigator.id]!
     record.physicalTrauma += trauma.physical
     record.mentalTrauma += trauma.mental
-    record.xp += startingExperience(investigator.deck) - startingExperienceSpent(investigator.deck)
+    record.xp +=
+      startingExperience(investigator.deck) -
+      startingExperienceSpent(investigator.deck, investigator.customizations)
   }
   // Father Mateo: bonus experience when the campaign begins.
   for (const investigator of investigators)
@@ -346,6 +366,7 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
             : []),
         ]),
         physicalTrauma: record?.physicalTrauma ?? 0,
+        ...(i.customizations ? { customizations: i.customizations } : {}),
         mentalTrauma: record?.mentalTrauma ?? 0,
       }
     }),
@@ -544,7 +565,14 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
       const exiled = (game.exiled ?? []).filter((e) => e.investigator === i.id).map((e) => e.code)
       const deck = i.deck.filter((code) => !log.removedCards?.includes(code))
       for (const code of exiled) if (deck.includes(code)) deck.splice(deck.indexOf(code), 1)
-      return { ...i, deck, ...(exiled.length ? { exiled } : {}) }
+      return {
+        ...i,
+        deck,
+        ...(i.customizations
+          ? { customizations: retainedCustomizations(deck, i.customizations) }
+          : {}),
+        ...(exiled.length ? { exiled } : {}),
+      }
     }),
     log,
     results: [
@@ -578,7 +606,6 @@ const SIGNATURES = new Set(allPlayerCardDefs().flatMap((c) => c.signatures ?? []
 const isSignature = (card: CardCode) => SIGNATURES.has(card)
 
 const byCode = (card: CardCode): PlayerCardDef | undefined => playerCardDef(card)
-const level = (card: CardCode) => byCode(card)?.xp ?? 0
 
 /** Content with a registered implementation, including cards with printed data only. */
 export function isImplemented(card: CardCode): boolean {
@@ -599,7 +626,13 @@ function assertDeck(
 ): void {
   assertAvailable(member.id, member.deck)
   const { problems } = validateDeck(
-    { id: member.id, name: member.id, investigator: member.id, cards: member.deck },
+    {
+      id: member.id,
+      name: member.id,
+      investigator: member.id,
+      cards: member.deck,
+      ...(member.customizations ? { customizations: member.customizations } : {}),
+    },
     campaignStart,
     rewards,
   )
@@ -647,6 +680,7 @@ export function purchaseOptions(
   const short = deckSize(deck) < deckSizeOf(investigator, deck)
   const self = member(campaign, investigator)
   return allPlayerCardDefs()
+    .map((card) => customizedCard(card, self.customizations))
     .filter(
       (card) =>
         ['asset', 'event', 'skill'].includes(card.type) &&
@@ -669,9 +703,14 @@ export function purchaseOptions(
       }
       const copies = deck.filter((c) => byCode(c)?.name === card.name)
       // Mejora: una copia de menor nivel del mismo título pasa a la nueva versión.
-      const lower = copies.find((c) => level(c) < base.level && !isPermanent(c))
+      const lower = copies.find(
+        (c) =>
+          (customizedCard(byCode(c)!, self.customizations).xp ?? 0) < base.level && !isPermanent(c),
+      )
       // RR Exceptional: twice the printed level in experience.
-      const price = (code: CardCode) => level(code) * (byCode(code)?.exceptional ? 2 : 1)
+      const price = (code: CardCode) =>
+        (customizedCard(byCode(code)!, self.customizations).xp ?? 0) *
+        (byCode(code)?.exceptional ? 2 : 1)
       const upgrade: PurchaseOption[] = lower
         ? [{ ...base, cost: price(card.code) - price(lower), replaces: lower, needsRemoval: false }]
         : []
@@ -750,7 +789,9 @@ export function purchase(
   if (!record) throw new Error(`Sin registro de campaña: ${investigator}`)
   // Déjà Vu: the discounted repurchase uses up one exiled copy.
   const self = member(campaign, investigator)
-  const freeFill = level(card) === 0 && deckSize(self.deck) < deckSizeOf(investigator, self.deck)
+  const freeFill =
+    (customizedCard(byCode(card)!, self.customizations).xp ?? 0) === 0 &&
+    deckSize(self.deck) < deckSizeOf(investigator, self.deck)
   const discounted = !option.replaces && !freeFill && dejaVu(self, self.deck, card) > 0
   const exiled = [...(self.exiled ?? [])]
   if (discounted) exiled.splice(exiled.indexOf(card), 1)
@@ -761,6 +802,9 @@ export function purchase(
         ? {
             ...i,
             deck,
+            ...(i.customizations
+              ? { customizations: retainedCustomizations(deck, i.customizations) }
+              : {}),
             ...(discounted ? { exiled, dejaVuUsed: (i.dejaVuUsed ?? 0) + 1 } : {}),
           }
         : i,
@@ -770,6 +814,66 @@ export function purchase(
       investigators: {
         ...campaign.log.investigators,
         [investigator]: { ...record, xp: record.xp - option.cost },
+      },
+    },
+  }
+}
+
+/** RR Customizable: permanent checked boxes, one XP each, shared by all owned copies.
+ * New copies may be bought together with upgrades without a separate card cost.
+ */
+export function customize(
+  campaign: Campaign,
+  investigator: InvestigatorId,
+  code: CardCode,
+  sheet: Record<string, number>,
+  options: { copies?: number; remove?: CardCode[] } = {},
+): Campaign {
+  if (campaignScenarios(campaign)[campaign.scenarioIndex - 1]?.allowDeckChangesAfter === false)
+    throw new Error('customization.unavailable')
+  const self = member(campaign, investigator)
+  const record = campaign.log.investigators[investigator]
+  if (!record || record.killed || record.insane || !isImplemented(code))
+    throw new Error('customization.unavailable')
+  const previous = self.customizations?.[code] ?? {}
+  if (Object.entries(previous).some(([key, n]) => (sheet[key] ?? 0) < n))
+    throw new Error('customization.permanent')
+  const cost = customizationCost(sheet) - customizationCost(previous)
+  if (cost <= 0 || cost > record.xp) throw new Error('customization.experience')
+  const copies = options.copies ?? (self.deck.includes(code) ? 0 : 1)
+  if (!Number.isInteger(copies) || copies < 0 || copies > 2)
+    throw new Error('customization.invalid')
+  const deck = [...self.deck]
+  for (const out of options.remove ?? []) {
+    if (!removableCards(campaign, investigator).includes(out) || !deck.includes(out))
+      throw new Error('customization.invalid')
+    deck.splice(deck.indexOf(out), 1)
+  }
+  deck.push(...Array<string>(copies).fill(code))
+  const customizations = {
+    ...retainedCustomizations(deck, self.customizations),
+    [code]: { ...sheet },
+  }
+  if (!validCustomizations(deck, customizations)) throw new Error('customization.invalid')
+  const checked = validateDeck(
+    { id: self.id, name: self.id, investigator, cards: deck, customizations },
+    false,
+    campaign.log.rewards ?? [],
+  )
+  if (checked.problems.some((p) => p.key !== 'deck.problem.size' || p.params.n > p.params.size))
+    throw new Error('customization.invalid')
+  if (deckSize(deck) < deckSize(self.deck) && (options.remove?.length ?? 0) > copies)
+    throw new Error('customization.invalid')
+  return {
+    ...campaign,
+    investigators: campaign.investigators.map((i) =>
+      i.id === investigator ? { ...i, deck, customizations } : i,
+    ),
+    log: {
+      ...campaign.log,
+      investigators: {
+        ...campaign.log.investigators,
+        [investigator]: { ...record, xp: record.xp - cost },
       },
     },
   }

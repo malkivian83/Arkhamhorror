@@ -2,6 +2,7 @@ export {
   availableAbilities,
   availableActions,
   playableCards,
+  canPlayByEffect,
   limitTitleReached,
   traitActionTrait,
   canAdvanceAct,
@@ -58,6 +59,13 @@ export {
   resolvingSkillBonus,
 } from './asset-upgrades'
 export { attackDamage } from './combat'
+export {
+  customizationCost,
+  customizedCard,
+  validCustomizations,
+  retainedCustomizations,
+  type Customizations,
+} from './customizations'
 export {
   assetsCannotReady,
   controlledClues,

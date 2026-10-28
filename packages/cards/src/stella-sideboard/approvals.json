@@ -1,0 +1,31 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "decklist": "https://arkhamdb.com/decklist/view/39832",
+  "cards": [
+    {
+      "code": "03273",
+      "module": "card-03273",
+      "test": "../grouped-import/discard-events.test.ts",
+      "status": "verified"
+    },
+    { "code": "06332", "module": "card-06332", "test": "rules.test.ts", "status": "verified" },
+    {
+      "code": "09105",
+      "module": "card-09105",
+      "test": "rules.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    { "code": "09116", "module": "card-09116", "test": "rules.test.ts", "status": "verified" },
+    {
+      "code": "09119",
+      "module": "card-09119",
+      "test": "shotcaster.test.ts",
+      "status": "verified",
+      "adapter": "reviewed-shotcaster-v1",
+      "uses": { "count": 4, "type": "aether" }
+    }
+  ]
+}

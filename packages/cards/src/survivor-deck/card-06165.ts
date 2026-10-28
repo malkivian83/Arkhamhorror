@@ -1,4 +1,4 @@
-import { getInvestigator, playerCardDef, registerPlayerCard } from '@lcg/engine'
+import { customizedCard, getInvestigator, playerCardDef, registerPlayerCard } from '@lcg/engine'
 import { ask } from '../dunwich-pilot/effects'
 const candidates = (s: Parameters<typeof getInvestigator>[0], by: string, resolving = false) => {
   const discard = getInvestigator(s, by).discard
@@ -7,7 +7,7 @@ const candidates = (s: Parameters<typeof getInvestigator>[0], by: string, resolv
     const d = playerCardDef(c)
     return (
       !!d &&
-      d.xp === 0 &&
+      customizedCard(d, getInvestigator(s, by).customizations).xp === 0 &&
       !d.weakness &&
       !d.story &&
       !s.investigators.some((i) => playerCardDef(i.id)?.signatures?.includes(c))

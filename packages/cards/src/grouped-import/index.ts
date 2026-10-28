@@ -10,7 +10,7 @@ import './card-07024'
 import './card-09031'
 import './card-60318'
 import './card-06240'
-import './card-03273'
+import '../stella-sideboard'
 import './card-04313'
 import './card-53009'
 registerPlayerCards(data as PlayerCardDef[])

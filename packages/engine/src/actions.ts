@@ -77,6 +77,34 @@ export function playableCards(state: GameState, id: InvestigatorId, fast: boolea
   })
 }
 
+/** Check permission and costs when a resolving effect grants a card play. */
+export function canPlayByEffect(
+  state: GameState,
+  id: InvestigatorId,
+  code: CardCode,
+  from: 'hand' | 'discard',
+  noCost = false,
+): boolean {
+  const i = getInvestigator(state, id)
+  const def = playerCardDef(code)
+  if (!def || i.eliminated || i.location === null || !i[from].includes(code)) return false
+  if (!['asset', 'event'].includes(def.type) || !cardAllowed(state, id, code)) return false
+  if (
+    def.type === 'asset' &&
+    (assetsBlocked(state, id) ||
+      uniqueAssetInPlay(state, code) ||
+      limitTitleReached(state, id, code))
+  )
+    return false
+  if (
+    playBlocked(state, id, def.type) ||
+    scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, id, code)
+  )
+    return false
+  if (!noCost && cardCost(state, id, code) > spendableFor(state, id, code)) return false
+  return playerCardBehavior(code)?.canPlay?.(state, id) ?? true
+}
+
 /** Resources available to pay for `code`, plus uses that may pay as resources (Schoffner's). */
 export function spendableFor(state: GameState, id: InvestigatorId, code: CardCode): number {
   return (
