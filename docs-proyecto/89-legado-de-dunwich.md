@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-**Seis de los ocho escenarios son jugables**: Actividad extracurricular, La casa siempre gana, El museo Miskatonic, El Essex County Express, Sangre en el altar e Invisibles y sin dimensión. Admiten de uno a cuatro investigadores y las cuatro dificultades. Los dos primeros pueden jugarse en cualquier orden y conectan con El destino de Armitage; Sangre en el altar incluye Los supervivientes. Los dos escenarios finales siguen pendientes. No se incluye Regreso a Dunwich.
+**Siete de los ocho escenarios son jugables**: Actividad extracurricular, La casa siempre gana, El museo Miskatonic, El Essex County Express, Sangre en el altar, Invisibles y sin dimensión y Donde aguarda la perdición. Admiten de uno a cuatro investigadores y las cuatro dificultades. Los dos primeros pueden jugarse en cualquier orden y conectan con El destino de Armitage; Sangre en el altar incluye Los supervivientes. Quedan el escenario final y el epílogo. No se incluye Regreso a Dunwich.
 
 La elección del prólogo se conserva en `log.values.openingScenario`; los guardados
 anteriores sin elección mantienen el orden del índice. La pantalla de progreso y
@@ -185,14 +185,18 @@ Fuentes: guía revisada ES, páginas 17–18, y cartas 02236–02259. Se elige u
 - Las cuatro cartas de encuentro y ambas caras de la referencia incluyen ataques inmediatos, crecimiento de enemigos, pruebas de grupo, Oleada y elección de tablilla. Se reutilizan los otros conjuntos ya revisados.
 - Los escaneos confirman ambas caras de las conexiones. Se corrige una errata de transcripción externa: el escaneo de 02238b dice «fuerza», donde el texto externo omitía la r. La narración usa el texto contrastado.
 
+## Donde aguarda la perdición
+
+- Preparación de la guía revisada, páginas 19–20: seis senderos apartados al azar, tres Lugares iniciales, ficha permanente según dificultad, perdición por Progenies escapadas y ayuda de Naomi. Si Silas murió, aparecen las Abominaciones horrendas (02103–02104), distintas de los Esclavos-bestia.
+- Pago obligatorio del primer objetivo; retirada de pistas y revelación del Sendero ascendente. Tres variantes del segundo acto según Silas y el Necronomicón. Al entrar en la Cumbre, el acto avanza antes de revelar el Lugar y colocar sus pistas. El daño inicial de Seth se aplica antes de sus ventanas de aparición.
+- Senderos con ambas caras y conexiones contrastadas: investigaciones que ponen Lugares en juego en lugar de descubrir pistas, límite personal por ronda, ocho efectos de revelación y retirada de perdición del Sendero destruido. La prohibición de colocar pistas del acto 2 también cubre revelaciones y transferencias.
+- Devotos con movimiento y sacrificio al final de enemigos; Shoggoth que mata solo si su ataque termina derrotando al investigador tras la asignación; Horrores del acechador y Esferas con sus efectos. Ritos que recuperan las debilidades recién descartadas sin duplicarlas, Espacios intermedios y Vórtice del tiempo.
+- Portal, experiencia por victoria, derrota de campaña y locura de todos los investigadores. EN/ES, 92 imágenes y miniaturas nuevas, once narraciones nuevas con Nico - History & Documentary. Se corrigen erratas externas contrastadas con los escaneos antes de generar el audio.
+
 ## Validación y continuación
 
-Último lote funcional: `3bed970a`, Invisibles y sin dimensión, con los ajustes de reserva y pistas controladas en `ac272480`; ajuste de la reserva de debilidades según la [FAQ oficial 2.5, página 16](https://images-cdn.fantasyflightgames.com/filer_public/c1/d0/c1d0fab6-7fa6-4ce2-af6a-16416381a19b/ahc_faq_v25_february_2026-web.pdf). La selección descuenta las copias usadas y reserva las debilidades progresivas.
+Último lote subido: `801f398c`, Invisibles y sin dimensión (sexto escenario). Lote actual: Donde aguarda la perdición; 41 pruebas específicas, recorrido completo de victoria mediante acciones legales y partidas con mazos iniciales reales de uno a cuatro investigadores hasta su resolución. Se comprueban por consola las 54 narraciones y sus huellas.
 
-Tras integrar los cambios nuevos de main y combinar los inventarios por ruta, formato, lint y tipos globales vuelven a pasar. La suite completa integrada obtuvo 4801 pruebas correctas, 19 omitidas y tres límites de cinco segundos preexistentes en dos archivos de Gala y Brethren of Ash. Las 51 pruebas propias del escenario y las de pago visual pasan. Los dos archivos afectados pasan al repetir sus 51 pruebas con tiempo ampliado; la compilación final también pasa.
+Controles globales del séptimo escenario pendientes de ejecutar sobre el estado final. La revisión visual de la aplicación queda para la persona usuaria conforme a AGENTS. Sin seguimiento de CI o despliegue.
 
-Las pruebas incluyen un recorrido completo que destruye todas las Progenies mediante acciones legales sin editar el estado tras preparar, partidas con mazos iniciales reales de uno a cuatro investigadores, variantes de Lugares, costes, fichas, encuentros, guardado y decisiones de preparación.
-
-Catálogo, escaneos y 43 narraciones se verifican por consola. Se inspeccionaron conexiones y cartas representativas. La revisión visual de la aplicación queda para la persona usuaria conforme a AGENTS.
-
-Siguiente grupo: **Donde aguarda la perdición**; después Perdidos en el tiempo y el espacio y el epílogo. La autorización vigente pide continuar y subir los escenarios restantes, revisar la campaña completa al terminar y subir las correcciones finales. No detenerse después de este lote.
+Siguiente grupo: **Perdidos en el tiempo y el espacio y el epílogo**. La autorización vigente pide continuar y subir los escenarios restantes, revisar la campaña completa al terminar y subir las correcciones finales. No detenerse después de este lote.

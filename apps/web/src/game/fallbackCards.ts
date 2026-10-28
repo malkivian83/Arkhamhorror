@@ -7,6 +7,8 @@ import {
   theEssexCountyExpress,
   bloodOnTheAltar,
   undimensionedAndUnseen,
+  whereDoomAwaits,
+  DOOM_LOCATIONS,
   UNSEEN_LOCATIONS,
   ALTAR_LOCATIONS,
   ESSEX_LOCATIONS,
@@ -153,6 +155,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     theEssexCountyExpress(),
     bloodOnTheAltar(),
     undimensionedAndUnseen(),
+    whereDoomAwaits(),
     theGathering(),
     spreadingFlames(),
     queenOfAsh(),
@@ -268,6 +271,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   Object.values(ESSEX_LOCATIONS).forEach(location)
   Object.values(ALTAR_LOCATIONS).forEach(location)
   Object.values(UNSEEN_LOCATIONS).forEach(location)
+  DOOM_LOCATIONS.forEach(location)
   put({
     code: '02236',
     name: 'Undimensioned and Unseen',

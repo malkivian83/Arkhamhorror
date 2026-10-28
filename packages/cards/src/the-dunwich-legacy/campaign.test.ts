@@ -97,7 +97,7 @@ describe('The Dunwich Legacy: campaign foundation', () => {
       expect(campaign.results).toEqual([])
       expect(canPlayNext(campaign)).toBe(true)
       expect(startScenario(campaign, 1).scenarioId).toBe('extracurricular-activity')
-      for (let scenarioIndex = 6; scenarioIndex < 8; scenarioIndex++) {
+      for (let scenarioIndex = 7; scenarioIndex < 8; scenarioIndex++) {
         const pending = { ...campaign, scenarioIndex }
         expect(canPlayNext(pending)).toBe(false)
         expect(() => startScenario(pending, 1)).toThrow('Escenario no disponible')

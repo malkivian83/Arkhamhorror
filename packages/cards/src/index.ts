@@ -373,3 +373,11 @@ export {
   U as UNSEEN_CODES,
   UNDIMENSIONED_AND_UNSEEN,
 } from './the-dunwich-legacy/undimensioned-and-unseen'
+
+export {
+  whereDoomAwaits,
+  DOOM_LOCATIONS,
+  DOOM_ENCOUNTERS,
+  W as DOOM_CODES,
+  WHERE_DOOM_AWAITS,
+} from './the-dunwich-legacy/where-doom-awaits'

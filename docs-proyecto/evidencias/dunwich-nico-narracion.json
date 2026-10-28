@@ -400,6 +400,105 @@
       "inputHash": "f8097f6c0c1874e4924068f8def5a9888823e3ae4e61b51a3a2eede73b6e3908",
       "sha256": "2b1cd95d0a3efa3bb3afb125eb2c6e5cbdedb530f8dfc00eab555f725a970857",
       "bytes": 494488
+    },
+    {
+      "key": "story.doom.intro",
+      "file": "doom-intro-nico-history.mp3",
+      "text": "Os despertáis con el sonido de unos chillidos. Temiendo lo peor, cogéis vuestras cosas y salís a las calles de Dunwich. En cuanto ponéis el pie en el exterior, notáis algo vil en el frío aire nocturno: un terrible y acre olor que apenas podéis describir, y una pesadez en la atmósfera que hace difícil respirar. Los ciudadanos de Dunwich han cerrado sus puertas a cal y canto, y el pueblo parece en silencio y solitario. A lo lejos, un tenue brillo sale de lo alto de una colina que hay por encima del pueblo. La conocéis por Zebulon y los registros de Armitage. Se llama Sentinel Hill. Los relatos sobre ella hablan de que allí se realizaban ritos satánicos; ritos en los que grandes piras rituales iluminaban el cielo nocturno mientras el suelo temblaba furiosamente bajo ellas. En los tejados de la aldea hay posadas bandadas de chotacabras, observando siniestramente cómo os montáis en la vieja y destartalada camioneta de Zebulon. Mientras conducís hacia Sentinel Hill, el aire se llena de más chillidos con un tono tan horrible que os duelen los oídos. Todo lo que habéis leído sobre Dunwich y experimentado allí ha llevado hasta este momento. Si el siniestro ritual que Seth quiere llevar a cabo tiene algo que ver con lo que Armitage y sus colegas evitaron hace meses, está relacionado con el favor de una antigua criatura: Yog-Sothoth. Si no lográis detener este ritual, podría significar la perdición total... no sólo para Dunwich, sino para el mundo entero.",
+      "characters": 1468,
+      "inputHash": "97c53aa8c14635b3a6b23b4788e71ecaa1f9c16b3339efe6bfa395c6814cacda",
+      "sha256": "7cb056dc138d4bcfd8f3878da656a2d578a42aeef39c21649ab4ecb9c7c836dc",
+      "bytes": 1637189
+    },
+    {
+      "key": "story.doom.part1",
+      "file": "doom-part1-nico-history.mp3",
+      "text": "El sendero que sube por Sentinel Hill es estrecho y demasiado accidentado para la camioneta de Zebulon, así que la dejáis aparcada al pie de la colina y os disponéis a hacer el resto del camino a pie. En ese momento os dais cuenta de que no estáis solos. Varios hombres y mujeres salen del bosque que hay a vuestra espalda, empuñando armas de fuego y apuntándoos con ellas. Levantáis las manos y os preparáis para lo peor. –Esperad –dice uno de ellos mientras levanta la mano para detener al resto–. Os reconozco del Clover Club –prosigue diciendo con una amplia sonrisa mientras baja el arma–. Naomi os manda recuerdos. Llenos de curiosidad, les preguntáis a los gánsteres qué hacen allí. –La Srta. O’Bannion nos puso a investigar el ataque contra el club de su prometido –os explica–. Resulta que había unos hombres en Arkham que estaban detrás de todo. Un tal Bishop y sus secuaces. Los seguimos hasta este vertedero. –Antes de poder seguir con su relato, el familiar sonido de una ametralladora resuena por la colina–. Ése debe de ser Vinny. ¡Vamos, chicos! – Hace un gesto a los demás para que lo sigan y corre colina arriba. Sacudís la cabeza y los seguís. Estos mafiosos no saben dónde se están metiendo.",
+      "characters": 1211,
+      "inputHash": "53a1ca1153eede27d0dec4ab23d1402f5625590880043de18e5d4b1ddd5b61af",
+      "sha256": "f742a629cadf5dadb95fa0dd29b03571363fd1841143eff06d243e015e93e05d",
+      "bytes": 1310345
+    },
+    {
+      "key": "story.doom.agenda1",
+      "file": "doom-agenda1-nico-history.mp3",
+      "text": "Al explorar los caminos que rodean Sentinel Hill, los cánticos de la cumbre llegan a un crescendo y adoptan una naturaleza sobrenatural, reverberando entre los árboles como si los llevasen unas corrientes invisibles. El mundo comienza a cambiar. La hierba y los árboles se disuelven como azúcar en una taza de té. Un vasto cielo infinito atraviesa la realidad que veis ante vosotros y entre el terror y el asombro, notáis como sois atraídos hacia él. El arcano poder se distorsiona y se filtra a vuestro alrededor, creando extrañas alteraciones en la tierra.",
+      "characters": 558,
+      "inputHash": "6e8b9073c069ceea4cf734794d73b2632fadc0b2b0191d5f2c352458e8f45b57",
+      "sha256": "85354aa6c3c30f5ad42690a181e5afd2349b121ca725a0f2d0e7ce96e684a9f7",
+      "bytes": 604412
+    },
+    {
+      "key": "story.doom.agenda2",
+      "file": "doom-agenda2-nico-history.mp3",
+      "text": "El cántico llega a su clímac, y en la cumbre de Sentinel Hill se abre una grieta en el tejido del cielo que aparta las nubes y corta el mismo aire. Observáis cómo una entidad indescriptible -esferas, ojos, bocas, cieno- surge de la fisura. Los hechiceros pronuncian su nombre mientras su forma se filtra por el cielo y se extiende sobre la Tierra.\"¡Iä! ¡Iä! ¡Yog-Sothoth! ¡Iä! ¡Iä! ¡Yog-Sothoth!\" Antes de que puedan proseguir sus cantos de júbilo, son asfixiados por la masa creciente, y deja de oírseles. Para horror vuestro, la expansión de la masa no cesa.",
+      "characters": 560,
+      "inputHash": "9fe6d70a16143c9479ca3d1e52736bbaf0128c49e67c2e92dd67b75438e3ebbf",
+      "sha256": "8cfb456df76e8e37eb555d3a6054027cc083c4ad0d8e144ef7fc339b5748c229",
+      "bytes": 696363
+    },
+    {
+      "key": "story.doom.act1",
+      "file": "doom-act1-nico-history.mp3",
+      "text": "Durante vuestra búsqueda por los boscosos senderos que rodean el pie de Sentinel Hill, os topáis con una sorprendente visión. Hay un rebaño de ovejas muertas en el suelo de un apartado claro, y sus sangrientos cadáveres están colocados formando un extraño pero cuidadoso diseño. Os tapáis la nariz ante el hedor de la muerte, y pasáis sobre las ovejas mutiladas para llegar al centro de la extraña forma. En el centro de las ovejas se encuentra un cadáver de un hombre. Tiene una gema transparente que han presionado contra su frente hasta hundirla en la parte de delante de su cráneo. Tiene los ojos abiertos como platos, y el rostro retorcido en una mueca de terror, como si os suplicara piedad. Aunque sabéis que no es posible, comprobáis si tiene pulso. Al tocar la piel del hombre, la joya de su frente se disuelve, y el bosque que os rodea parece despejarse.",
+      "characters": 864,
+      "inputHash": "01bd9bfba5b38b7327228023d0fb6b039cef04cba15c6024088f8721648a13de",
+      "sha256": "c7de54a8ee3644d175ed8f38487c7eebc8a6ad452a68561a0326ff3d46ef79d6",
+      "bytes": 913701
+    },
+    {
+      "key": "story.doom.act2I",
+      "file": "doom-act2i-nico-history.mp3",
+      "text": "Al acercaros a la cumbre de Sentinel Hill, se os acercan varios ciudadanos de Dunwich. El hombre del centro de su círculo salmodia en latín mientras los demás inclinan la cabeza en señal de reverencia. -¿Seth Bishop? -preguntáis suponiendo la respuesta. El hombre del centro levanta la mirada como respuesta, lo que confirma vuestras sospechas. Le rogáis que detenga esta locura, pero no os responde. Sacáis el colgante de plata con la constelación que encontrasteis en el cuerpo de Silas y se lo entregáis a Seth. -Esto es todo lo que encontramos de tu hermano -gritáis para haceros oír sobre el aullante viento-. ¿Es éste el destino que queréis para vosotros? ¿Para todos nosotros? -Lanzáis el colgante contra el suelo, y estupefacto al verlo, se tambalea hacia atrás y se equivoca con el ensalmo mientras abre los ojos como platos. Al caer, el altar que tiene a su espalda se parte en dos, y un torrente de energía brota de la piedra, girando hasta formar un portal abierto que se traga al hombre. Apenas lográis clavar los talones en el suelo y agarraros a una roca cercana para resistir la atracción del portal.",
+      "characters": 1116,
+      "inputHash": "34c9f94d10195bcdead8d92932943c553ae24f004edccf1cfabe50e90297ff87",
+      "sha256": "6a168e405c5a1d3a78d34a81d6354b0512fcc91137bc5db349eabf18455cfe2a",
+      "bytes": 1184121
+    },
+    {
+      "key": "story.doom.act2II",
+      "file": "doom-act2ii-nico-history.mp3",
+      "text": "Al acercaros a la cumbre de Sentinel Hill, se os acercan varios ciudadanos de Dunwich. El hombre del centro de su círculo emite una risa demente. Reconocéis al hombre, Seth Bishop, por su descripción que os dieron los lugareños. A su espalda, varios hombres y mujeres inclinan la cabeza en señal de reverencia mientras salmodian en latín. -¡Lo hemos logrado! -grita entre carcajadas-. ¡Hemos logrado lo que el viejo Whateley y los suyos no pudieron hacer! -Observáis con repulsión cómo sus ojos se le vuelven vidriosos y se mueven como si estuviese leyendo algo invisible-. Ahora puedo verlo... ¡Por fin lo veo! -Levanta los brazos hacia el cielo y la lápida del altar que tiene a su espalda se parte en dos. Un torrente de energía brota de la piedra, girando hasta formar un portal abierto. Seth se agarra a la piedra que tiene delante para evitar ser absorbido, pero varios de los demás se sorprenden y son tragados por el portal. Apenas lográis clavar los talones en el suelo y agarraros a una roca cercana para resistir la atracción del portal. Seth se pone de pie con una expresión de orgullo en el rostro.",
+      "characters": 1111,
+      "inputHash": "cec65d3e67af8bcd5711ee0cc86ca50045ea5bf10594493780eea40b17cc8604",
+      "sha256": "a15f44e7d29994459125264913cabe839f2c59d154a76ee3f8a9fc9bdc08aed8",
+      "bytes": 1259772
+    },
+    {
+      "key": "story.doom.act2III",
+      "file": "doom-act2iii-nico-history.mp3",
+      "text": "Al acercaros a la cumbre de Sentinel Hill, se os acercan varios ciudadanos de Dunwich. El hombre que se encuentra en el centro de su círculo está intentando desesperadamente completar un ensalmo en latín. -¡No funciona, Seth! -grita uno de los otros hombres-. ¿Qué vamos a hacer? -El hombre del centro deja el ensalmo y saca un cuchillo de zapatero-. El padre exige un sacrificio de sangre -declara, y su rostro se contorsiona con una expresión demente. Antes de que podáis reaccionar, se abre la muñeca izquierda con el cuchillo y cae de rodillas por el dolor. La lápida del altar que tiene a su espalda se parte en dos. Un torrente de energía brota de la piedra, girando hasta formar un portal abierto. Seth se agarra a la piedra que tiene delante para evitar ser absorbido, pero varios de los demás se sorprenden y son tragados por el portal. Apenas lográis clavar los talones en el suelo y agarraros a una roca cercana para resistir la atracción del portal. Seth se levanta, herido pero vivo, con una expresión de orgullo en el dolorido rostro.",
+      "characters": 1048,
+      "inputHash": "431a0d2219434b5bac45923b05bf4f76960edd80a48f3f070395de555135438e",
+      "sha256": "e62ae9127488695ebb784bd48315cd9d4fbc08f08c5e9b292ce81d732c1c1fac",
+      "bytes": 1090498
+    },
+    {
+      "key": "story.doom.act3",
+      "file": "doom-act3-nico-history.mp3",
+      "text": "No sabéis cómo cerrar el turbulento portal que tenéis delante, y a cada momento que pasa, la fuerza de su interior crece. Teméis que se acerque la entidad que hayan invocado los hechiceros desde el más allá. Sin tiempo que perder, os acercáis al tomo abierto que hay sobre el altar de piedra, buscando respuestas desesperadamente.",
+      "characters": 330,
+      "inputHash": "f9780891d2fa1d601b5d87ed7face3c711b3643008ade0b01b05a96dba5d7693",
+      "sha256": "6406d429c00fb78278ee7452373b68d388d67aa0e30402ec7c3c171e589cfd29",
+      "bytes": 349456
+    },
+    {
+      "key": "story.doom.resolution1",
+      "file": "doom-resolution1-nico-history.mp3",
+      "text": "El tomo de pésima encuadernación parece ser las anotaciones del viejo Whateley, el hombre que le enseñó a Wilbur los antiguos secretos de la hechicería. Encontráis un fragmento que describe un lugar fuera del tiempo y el espacio en el que los mundos convergen y donde mora Yog-Sothoth. Sólo llegando a este nexo en los bordes de la realidad podréis reparar la grieta que se ha abierto en el mundo. Aunque tenéis la sensación de dirigiros a vuestra perdición, hacéis acopio de los restos de valor que os quedan y entráis en el portal.",
+      "characters": 533,
+      "inputHash": "44501aa44b9cdc75982235d5f2a42cd3e26cc4f67f5b39d7f1e73bd78c9173c5",
+      "sha256": "72a3e75e0b8afca83058dcec2d591c6485413f93c84df0e9ac08cce48ee11788",
+      "bytes": 530851
+    },
+    {
+      "key": "story.doom.resolution2",
+      "file": "doom-resolution2-nico-history.mp3",
+      "text": "En su búsqueda de un poder arcano más allá de este reino, los hechiceros de Dunwich han logrado aquello que no pudieron conseguir Wilbur y el viejo Whateley. Mediante sacrificios de sangre e indescriptibles experimentos, el oscuro poder que perseguían los hechiceros ahora está a su alcance. Sin embargo, nunca tendrán la oportunidad de hacer uso de él realmente. Al pedirle al padre de Wilbur que les otorgara conocimientos, han atraído a la criatura desde su reino extradimensional. Yog-Sothoth emerge de la grieta abierta sobre Sentinel Hill, oscureciendo el cielo y rodeando el mundo. Ahora que ha llegado a la Tierra, gobierna allí donde antes caminaba la humanidad.",
+      "characters": 671,
+      "inputHash": "89b40f9e23953ecefea5d8cf8db59043f2ae0390477f74384f4bb8f0c9b2141c",
+      "sha256": "3aed5efc788041417349db346a27303ed577496790df1d3e9221ac6e6d641128",
+      "bytes": 718096
     }
   ]
 }

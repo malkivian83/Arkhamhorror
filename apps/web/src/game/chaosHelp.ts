@@ -21,6 +21,7 @@ export function chaosHelp(
   const hard = state.difficulty === 'hard' || state.difficulty === 'expert'
   // Tarjetas de referencia con texto oficial en el catálogo local.
   const official: Record<string, CatalogCard | undefined> = {
+    'where-doom-awaits': dunwichCards[locale === 'es' ? 'es' : 'en']['02274'],
     'undimensioned-and-unseen': dunwichCards[locale === 'es' ? 'es' : 'en']['02236'],
     'blood-on-the-altar': dunwichCards[locale === 'es' ? 'es' : 'en']['02195'],
     'the-essex-county-express': dunwichCards[locale === 'es' ? 'es' : 'en']['02159'],

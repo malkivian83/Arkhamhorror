@@ -4,6 +4,18 @@
  * texto oficial, así que solo se ofrecen en el idioma de la grabación.
  */
 const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
+  'story.doom.intro': { es: 'doom-intro-nico-history.mp3' },
+  'story.doom.part1': { es: 'doom-part1-nico-history.mp3' },
+  'story.doom.agenda1': { es: 'doom-agenda1-nico-history.mp3' },
+  'story.doom.agenda2': { es: 'doom-agenda2-nico-history.mp3' },
+  'story.doom.act1': { es: 'doom-act1-nico-history.mp3' },
+  'story.doom.act2I': { es: 'doom-act2i-nico-history.mp3' },
+  'story.doom.act2II': { es: 'doom-act2ii-nico-history.mp3' },
+  'story.doom.act2III': { es: 'doom-act2iii-nico-history.mp3' },
+  'story.doom.act3': { es: 'doom-act3-nico-history.mp3' },
+  'story.doom.resolution1': { es: 'doom-resolution1-nico-history.mp3' },
+  'story.doom.resolution2': { es: 'doom-resolution2-nico-history.mp3' },
+
   'story.unseen.intro': { es: 'unseen-intro-nico-history.mp3' },
   'story.unseen.part1': { es: 'unseen-part1-nico-history.mp3' },
   'story.unseen.part2': { es: 'unseen-part2-nico-history.mp3' },

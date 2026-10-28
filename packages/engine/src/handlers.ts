@@ -579,7 +579,7 @@ export function handle(state: GameState, message: Message): GameState {
             keywords: [...card.keywords],
             id,
             maxHealth: perInvestigator(withId, card.health, card.healthPerInvestigator ?? false),
-            damageTaken: 0,
+            damageTaken: message.initialDamage ?? 0,
             location: message.location,
             engagedWith: null,
             exhausted: entersExhausted,
@@ -2022,6 +2022,14 @@ export function handle(state: GameState, message: Message): GameState {
         if (enemy.keywords.includes('massive')) continue
         next = updateEnemy(next, enemy.id, (e) => ({ ...e, location: message.location }))
       }
+      const entering: Message = {
+        type: 'Forced',
+        trigger: {
+          type: 'whenEnterLocation',
+          investigator: message.investigator,
+          location: message.location,
+        },
+      }
       const reveal: Message[] = getLocation(next, message.location).revealed
         ? []
         : [
@@ -2053,8 +2061,8 @@ export function handle(state: GameState, message: Message): GameState {
           a.owner === mover.id && assetBehavior(state, a)?.reactsBeforeEngagement && !a.exhausted,
       )
       return beforeEngagement
-        ? push(next, ...reveal, { type: 'AfterCurrentSkillTest', then: arrival })
-        : push(next, ...reveal, ...arrival.slice(1))
+        ? push(next, entering, ...reveal, { type: 'AfterCurrentSkillTest', then: arrival })
+        : push(next, entering, ...reveal, ...arrival.slice(1))
     }
 
     case 'RevealLocation': {
@@ -2066,7 +2074,12 @@ export function handle(state: GameState, message: Message): GameState {
             : {
                 ...l,
                 revealed: true,
-                clues: perInvestigator(state, l.clueValue, l.cluesPerInvestigator),
+                clues: scenarioBehavior(state.scenarioId)?.cannotPlaceClues?.(
+                  { ...state, locations: { ...state.locations, [l.id]: { ...l, revealed: true } } },
+                  l.id,
+                )
+                  ? 0
+                  : perInvestigator(state, l.clueValue, l.cluesPerInvestigator),
               },
         ),
       )
@@ -2121,7 +2134,12 @@ export function handle(state: GameState, message: Message): GameState {
     case 'PlaceCluesOnLocation': {
       const investigator = getInvestigator(state, message.investigator)
       const amount = Math.min(message.amount, investigator.clues)
-      if (investigator.location === null || amount <= 0) return state
+      if (
+        investigator.location === null ||
+        amount <= 0 ||
+        scenarioBehavior(state.scenarioId)?.cannotPlaceClues?.(state, investigator.location)
+      )
+        return state
       return updateLocation(
         updateInvestigator(state, investigator.id, (i) => ({ ...i, clues: i.clues - amount })),
         investigator.location,
@@ -2187,6 +2205,7 @@ export function handle(state: GameState, message: Message): GameState {
           horror: message.horror,
           ...(message.assignFirst ? { assignFirst: message.assignFirst } : {}),
           ...(message.enemy ? { enemy: message.enemy } : {}),
+          ...(message.killInstead ? { killInstead: true } : {}),
           ...(source ? { source } : {}),
         })
       }
@@ -2234,7 +2253,11 @@ export function handle(state: GameState, message: Message): GameState {
       )
       return push(
         extra.reduce((s, card) => log(s, 'log.additionalDamage', { name, n: 1, card }), placed),
-        { type: 'CheckDefeat', investigator: message.investigator },
+        {
+          type: 'CheckDefeat',
+          investigator: message.investigator,
+          ...(message.killInstead ? { killInstead: true } : {}),
+        },
         {
           type: 'Forced',
           trigger: {
@@ -2243,6 +2266,7 @@ export function handle(state: GameState, message: Message): GameState {
             damage,
             horror: message.horror,
             ...(message.enemy ? { enemy: message.enemy } : {}),
+            ...(message.killInstead ? { killInstead: true } : {}),
           },
         },
         ...assigned,
@@ -2342,6 +2366,7 @@ export function handle(state: GameState, message: Message): GameState {
                 dealt,
                 ...(message.assignmentAssets ? { assignmentAssets: message.assignmentAssets } : {}),
                 ...(message.enemy ? { enemy: message.enemy } : {}),
+                ...(message.killInstead ? { killInstead: true } : {}),
                 ...(message.source ? { source: message.source } : {}),
               },
             })
@@ -2371,6 +2396,7 @@ export function handle(state: GameState, message: Message): GameState {
           horror: kind === 'horror' ? horror - 1 : horror,
           ...(message.assignFirst ? { assignFirst: message.assignFirst } : {}),
           ...(message.enemy ? { enemy: message.enemy } : {}),
+          ...(message.killInstead ? { killInstead: true } : {}),
           ...(message.source ? { source: message.source } : {}),
           ...(merged.length ? { dealt: merged } : {}),
           ...(concentrated && !to?.placed ? { focus: to?.asset ?? ('investigator' as const) } : {}),
@@ -2388,6 +2414,7 @@ export function handle(state: GameState, message: Message): GameState {
           direct: true,
           ...(message.assignmentAssets ? { assignmentAssets: message.assignmentAssets } : {}),
           ...(message.enemy ? { enemy: message.enemy } : {}),
+          ...(message.killInstead ? { killInstead: true } : {}),
           ...(message.source ? { source: message.source } : {}),
           ...(dealt.length ? { dealt } : {}),
         })
@@ -2407,6 +2434,7 @@ export function handle(state: GameState, message: Message): GameState {
         direct: true,
         assignmentPart: true,
         ...(message.enemy ? { enemy: message.enemy } : {}),
+        ...(message.killInstead ? { killInstead: true } : {}),
         ...(message.source ? { source: message.source } : {}),
       }
       if (options.length === 0 && placedOptions.length === 0) {
@@ -2419,6 +2447,7 @@ export function handle(state: GameState, message: Message): GameState {
           direct: true,
           ...(message.assignmentAssets ? { assignmentAssets: message.assignmentAssets } : {}),
           ...(message.enemy ? { enemy: message.enemy } : {}),
+          ...(message.killInstead ? { killInstead: true } : {}),
           ...(message.source ? { source: message.source } : {}),
           ...(dealt.length ? { dealt } : {}),
         })
@@ -3271,6 +3300,8 @@ export function handle(state: GameState, message: Message): GameState {
         investigator.horror >= vitals.sanity && !scenarioBehavior(state.scenarioId)?.noHorrorDefeat
       if (!byDamage && !byHorror) return state
       const eliminate: Message = { type: 'DefeatInvestigator', investigator: investigator.id }
+      if (message.killInstead)
+        return push(state, { type: 'KillInvestigators', investigator: investigator.id }, eliminate)
       // Reglamento, "Trauma": derrotado por daño → 1 trauma físico; por horror → 1 mental.
       // Si es por ambos a la vez, el jugador elige cuál sufre.
       if (byDamage && byHorror) {
@@ -5324,6 +5355,7 @@ export function handle(state: GameState, message: Message): GameState {
             enemy.horror +
             (message.modifier?.horror ?? 0) +
             (scenarioBehavior(state.scenarioId)?.enemyHorrorModifier?.(state, enemy) ?? 0),
+          ...(enemyBehavior(enemy.code)?.attackKills ? { killInstead: true } : {}),
           // The attacking enemy travels with the damage (Guard Dog, Dimensional Shambler).
           enemy: enemy.id,
           ...(enemyBehavior(enemy.code)?.assignFirst
@@ -6149,7 +6181,11 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'PlaceCluesOnLocationFromPool':
-      if (!state.locations[message.location]) return state
+      if (
+        !state.locations[message.location] ||
+        scenarioBehavior(state.scenarioId)?.cannotPlaceClues?.(state, message.location)
+      )
+        return state
       return updateLocation(state, message.location, (l) => ({
         ...l,
         clues: l.clues + message.amount,
@@ -7107,6 +7143,11 @@ export function handle(state: GameState, message: Message): GameState {
 
     // ------------------------------------------- Asesinato en el hotel Excelsior
     case 'MoveClues': {
+      if (
+        message.to.type === 'location' &&
+        scenarioBehavior(state.scenarioId)?.cannotPlaceClues?.(state, message.to.id)
+      )
+        return state
       const available = cluesOn(state, message.from)
       const amount = Math.min(message.amount, available)
       if (amount <= 0) return state

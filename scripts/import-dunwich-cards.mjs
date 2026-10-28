@@ -5,6 +5,34 @@ import { join } from 'node:path'
 
 const reference = process.argv[2] ?? 'D:/referencia/ArkhamHorror-main'
 const codes = new Set([
+  '02274',
+  '02275',
+  '02276',
+  '02277',
+  '02278',
+  '02279',
+  '02280',
+  '02281',
+  '02282',
+  '02283',
+  '02284',
+  '02285',
+  '02286',
+  '02287',
+  '02288',
+  '02289',
+  '02290',
+  '02291',
+  '02292',
+  '02293',
+  '02294',
+  '02295',
+  '02296',
+  '02297',
+  '02298',
+  '02103',
+  '02104',
+
   '02236',
   '02237',
   '02238',
@@ -217,6 +245,24 @@ for (const locale of ['en', 'es']) {
   // The checked Spanish scan reads "fuerza"; the external transcription drops its r.
   if (locale === 'es' && cards['02238']?.backText)
     cards['02238'].backText = cards['02238'].backText.replace('una fueza', 'una fuerza')
+
+  if (locale === 'es') {
+    const fixes = {
+      'hacie él': 'hacia él',
+      'se distrosiona': 'se distorsiona',
+      'del homre': 'del hombre',
+      'subre por': 'sube por',
+      'la cabez en': 'la cabeza en',
+      'fuerza de su anterior': 'fuerza de su interior',
+    }
+    for (const code of ['02275', '02277', '02279', '02281']) {
+      for (const field of ['backText', 'backFlavor']) {
+        if (cards[code]?.[field])
+          for (const [from, to] of Object.entries(fixes))
+            cards[code][field] = cards[code][field].replaceAll(from, to)
+      }
+    }
+  }
   writeFileSync(
     `packages/i18n/src/dunwich-cards.${locale}.json`,
     JSON.stringify(cards, null, 2) + '\n',
