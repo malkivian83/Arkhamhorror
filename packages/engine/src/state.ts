@@ -83,6 +83,12 @@ export function getInvestigator(state: GameState, id: InvestigatorId): Investiga
 }
 
 /** FAQ 1.28: clues on controlled player cards may be spent as the investigator's clues. */
+/** Clues available for costs, respecting scenario restrictions. */
+export function spendableClues(state: GameState, id: InvestigatorId): number {
+  return scenarioBehavior(state.scenarioId)?.cannotSpendClues?.(state, id)
+    ? 0
+    : controlledClues(state, id)
+}
 export function controlledClues(state: GameState, id: InvestigatorId): number {
   return (
     getInvestigator(state, id).clues +

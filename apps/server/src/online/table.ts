@@ -367,17 +367,31 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
     encounterDiscard: g.encounterDiscard.map((c) =>
       c.kind === 'treachery'
         ? pick(c, ['kind', 'code', 'name', 'keywords'])
-        : pick(c, [
-            'kind',
-            'code',
-            'name',
-            'fight',
-            'health',
-            'evade',
-            'damage',
-            'horror',
-            'keywords',
-          ]),
+        : c.kind === 'location'
+          ? pick(c, [
+              'kind',
+              'code',
+              'name',
+              'shroud',
+              'clueValue',
+              'cluesPerInvestigator',
+              'connections',
+              'symbol',
+              'connectsTo',
+              'keywords',
+              'traits',
+            ])
+          : pick(c, [
+              'kind',
+              'code',
+              'name',
+              'fight',
+              'health',
+              'evade',
+              'damage',
+              'horror',
+              'keywords',
+            ]),
     ),
     victoryDisplay: [...g.victoryDisplay],
     chaosBag: [...g.chaosBag],

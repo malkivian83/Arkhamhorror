@@ -1,0 +1,249 @@
+{
+  "enemies": {
+    "01141": {
+      "kind": "enemy",
+      "code": "01141",
+      "name": "Ruth Turner",
+      "traits": ["Humanoid", "Cultist"],
+      "fight": 2,
+      "health": 4,
+      "evade": 5,
+      "damage": 1,
+      "horror": 0,
+      "keywords": [],
+      "victory": 1,
+      "unique": true
+    },
+    "01140": {
+      "kind": "enemy",
+      "code": "01140",
+      "name": "Victoria Devereux",
+      "traits": ["Humanoid", "Cultist"],
+      "fight": 3,
+      "health": 3,
+      "evade": 2,
+      "damage": 1,
+      "horror": 0,
+      "keywords": [],
+      "victory": 1,
+      "unique": true
+    },
+    "01137": {
+      "kind": "enemy",
+      "code": "01137",
+      "name": "\"Wolf-Man\" Drew",
+      "traits": ["Humanoid", "Cultist"],
+      "fight": 4,
+      "health": 4,
+      "evade": 2,
+      "damage": 2,
+      "horror": 0,
+      "keywords": [],
+      "victory": 1,
+      "unique": true
+    },
+    "01121b": {
+      "kind": "enemy",
+      "code": "01121b",
+      "name": "The Masked Hunter",
+      "traits": ["Humanoid", "Cultist", "Elite"],
+      "fight": 4,
+      "health": 4,
+      "evade": 2,
+      "damage": 2,
+      "horror": 1,
+      "keywords": ["hunter"],
+      "victory": 2,
+      "unique": true,
+      "prey": {
+        "type": "mostClues"
+      }
+    },
+    "01138": {
+      "kind": "enemy",
+      "code": "01138",
+      "name": "Herman Collins",
+      "traits": ["Humanoid", "Cultist"],
+      "fight": 3,
+      "health": 4,
+      "evade": 4,
+      "damage": 1,
+      "horror": 1,
+      "keywords": [],
+      "victory": 1,
+      "unique": true
+    },
+    "01139": {
+      "kind": "enemy",
+      "code": "01139",
+      "name": "Peter Warren",
+      "traits": ["Humanoid", "Cultist"],
+      "fight": 2,
+      "health": 3,
+      "evade": 3,
+      "damage": 1,
+      "horror": 0,
+      "keywords": [],
+      "victory": 1,
+      "unique": true
+    },
+    "01157": {
+      "kind": "enemy",
+      "code": "01157",
+      "name": "Umôrdhoth",
+      "traits": ["Ancient One", "Elite"],
+      "fight": 5,
+      "health": 6,
+      "evade": 6,
+      "damage": 3,
+      "horror": 3,
+      "keywords": ["hunter", "massive"],
+      "unique": true
+    }
+  },
+  "sets": {
+    "nightgaunts": [
+      {
+        "kind": "enemy",
+        "code": "01172",
+        "name": "Hunting Nightgaunt",
+        "traits": ["Monster", "Nightgaunt"],
+        "fight": 3,
+        "health": 4,
+        "evade": 1,
+        "damage": 1,
+        "horror": 1,
+        "keywords": ["hunter"]
+      },
+      {
+        "kind": "enemy",
+        "code": "01172",
+        "name": "Hunting Nightgaunt",
+        "traits": ["Monster", "Nightgaunt"],
+        "fight": 3,
+        "health": 4,
+        "evade": 1,
+        "damage": 1,
+        "horror": 1,
+        "keywords": ["hunter"]
+      },
+      {
+        "kind": "treachery",
+        "code": "01173",
+        "name": "On Wings of Darkness",
+        "traits": [],
+        "keywords": []
+      },
+      {
+        "kind": "treachery",
+        "code": "01173",
+        "name": "On Wings of Darkness",
+        "traits": [],
+        "keywords": []
+      }
+    ],
+    "agents_of_shub": [
+      {
+        "kind": "enemy",
+        "code": "01179",
+        "name": "Relentless Dark Young",
+        "traits": ["Monster", "Dark Young"],
+        "fight": 4,
+        "health": 5,
+        "evade": 2,
+        "damage": 2,
+        "horror": 1,
+        "keywords": [],
+        "victory": 1,
+        "prey": {
+          "type": "lowestSkill",
+          "skill": "agility"
+        }
+      },
+      {
+        "kind": "enemy",
+        "code": "01180",
+        "name": "Goat Spawn",
+        "traits": ["Humanoid", "Monster"],
+        "fight": 3,
+        "health": 3,
+        "evade": 2,
+        "damage": 1,
+        "horror": 0,
+        "keywords": ["hunter", "retaliate"]
+      },
+      {
+        "kind": "enemy",
+        "code": "01180",
+        "name": "Goat Spawn",
+        "traits": ["Humanoid", "Monster"],
+        "fight": 3,
+        "health": 3,
+        "evade": 2,
+        "damage": 1,
+        "horror": 0,
+        "keywords": ["hunter", "retaliate"]
+      },
+      {
+        "kind": "enemy",
+        "code": "01180",
+        "name": "Goat Spawn",
+        "traits": ["Humanoid", "Monster"],
+        "fight": 3,
+        "health": 3,
+        "evade": 2,
+        "damage": 1,
+        "horror": 0,
+        "keywords": ["hunter", "retaliate"]
+      }
+    ],
+    "agents_of_cthulhu": [
+      {
+        "kind": "enemy",
+        "code": "01181",
+        "name": "Young Deep One",
+        "traits": ["Humanoid", "Monster", "Deep One"],
+        "fight": 3,
+        "health": 3,
+        "evade": 3,
+        "damage": 1,
+        "horror": 1,
+        "keywords": ["hunter"],
+        "prey": {
+          "type": "lowestSkill",
+          "skill": "combat"
+        }
+      },
+      {
+        "kind": "enemy",
+        "code": "01181",
+        "name": "Young Deep One",
+        "traits": ["Humanoid", "Monster", "Deep One"],
+        "fight": 3,
+        "health": 3,
+        "evade": 3,
+        "damage": 1,
+        "horror": 1,
+        "keywords": ["hunter"],
+        "prey": {
+          "type": "lowestSkill",
+          "skill": "combat"
+        }
+      },
+      {
+        "kind": "treachery",
+        "code": "01182",
+        "name": "Dreams of R'lyeh",
+        "traits": ["Omen"],
+        "keywords": []
+      },
+      {
+        "kind": "treachery",
+        "code": "01182",
+        "name": "Dreams of R'lyeh",
+        "traits": ["Omen"],
+        "keywords": []
+      }
+    ]
+  }
+}

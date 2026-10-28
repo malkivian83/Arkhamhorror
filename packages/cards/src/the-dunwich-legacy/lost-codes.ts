@@ -1,0 +1,27 @@
+export const LOST_IN_TIME_AND_SPACE = 'lost-in-time-and-space'
+export const L = {
+  reference: '02311',
+  all: '02312',
+  past: '02313',
+  breaking: '02314',
+  end: '02315',
+  out: '02316',
+  beyond: '02317',
+  close: '02318',
+  finding: '02319',
+  another: '02320',
+  edge: '02321',
+  time: '02322',
+  yog: '02323',
+  space: '02324',
+  cascade: '02325',
+  bridge: '02326',
+  steps: '02327',
+  doorway: '02328',
+  traveler: '02329',
+  starseeker: '02330',
+  collapsing: '02331',
+  wormhole: '02332',
+  expanse: '02333',
+} as const
+export const LN = { closed: 'dunwichClosedRift', fled: 'dunwichYogSothothFled' } as const

@@ -54,6 +54,10 @@ export type AbilitiesFn<Self> = (
 ) => AbilityOption[]
 
 export interface ScenarioBehavior {
+  beforeRemoveLocation?: (
+    state: GameState,
+    message: Extract<Message, { type: 'RemoveLocation' }>,
+  ) => Message[] | null
   cannotPlaceClues?: (state: GameState, location: LocationId) => boolean
   cannotInvestigate?: (
     state: GameState,
@@ -164,6 +168,7 @@ export interface ScenarioBehavior {
    */
   slotModifier?: (state: GameState, investigator: InvestigatorId, slot: SlotType) => number
   /** El investigador no puede descubrir pistas en ese Lugar (Capilla de san Auberto). */
+  cannotSpendClues?: (state: GameState, investigator: InvestigatorId) => boolean
   cannotDiscoverClues?: (
     state: GameState,
     investigator: InvestigatorId,
@@ -345,6 +350,8 @@ export interface EnemyBehavior {
 }
 
 export interface LocationBehavior {
+  /** Revelation of a single-sided location just put into play from an encounter zone. */
+  revelation?: (state: GameState, self: Location, investigator: InvestigatorId) => Message[]
   code: CardCode
   /** Solo se ofrecen a investigadores en la localización (ya revelada). */
   abilities?: AbilitiesFn<Location>
@@ -354,6 +361,8 @@ export interface LocationBehavior {
 }
 
 export interface AgendaBehavior {
+  /** After its reverse resolves, return this agenda to its front instead of replacing it. */
+  repeats?: boolean
   code: CardCode
   /** Enemigos que no pueden recibir daño mientras este plan está en juego. */
   enemyImmune?: (state: GameState, enemy: Enemy) => boolean
