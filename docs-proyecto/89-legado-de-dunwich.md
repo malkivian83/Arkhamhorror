@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-**Cinco de los ocho escenarios son jugables**: Actividad extracurricular, La casa siempre gana, El museo Miskatonic, El Essex County Express y Sangre en el altar. Admiten de uno a cuatro investigadores y las cuatro dificultades. Los dos primeros pueden jugarse en cualquier orden y conectan con El destino de Armitage; Sangre en el altar incluye Los supervivientes. Los tres escenarios finales siguen pendientes. No se incluye Regreso a Dunwich.
+**Seis de los ocho escenarios son jugables**: Actividad extracurricular, La casa siempre gana, El museo Miskatonic, El Essex County Express, Sangre en el altar e Invisibles y sin dimensión. Admiten de uno a cuatro investigadores y las cuatro dificultades. Los dos primeros pueden jugarse en cualquier orden y conectan con El destino de Armitage; Sangre en el altar incluye Los supervivientes. Los dos escenarios finales siguen pendientes. No se incluye Regreso a Dunwich.
 
 La elección del prólogo se conserva en `log.values.openingScenario`; los guardados
 anteriores sin elección mantienen el orden del índice. La pantalla de progreso y
@@ -54,17 +54,17 @@ de la copia externa, que no se ha trasladado literalmente.
 
 ## Presentación y narración
 
-Catálogo local EN/ES de 151 códigos, referencia de escenario y ayuda de fichas,
-484 escaneos oficiales y sus 484 miniaturas, portada y huellas de integridad.
+Catálogo local EN/ES de 175 códigos, referencia de escenario y ayuda de fichas,
+568 escaneos oficiales y sus 568 miniaturas, portada y huellas de integridad.
 Se han inspeccionado escaneos representativos sin abrir el navegador.
 La revisión visual de la mesa queda para la persona usuaria, conforme a AGENTS.
 
 Los audios usan **Nico - History & Documentary**,
-`FXn3GKRRt9FCEyTbrkaL`. Hay treinta y cinco grabaciones de historia en español:
+`FXn3GKRRt9FCEyTbrkaL`. Hay cuarenta y tres grabaciones de historia en español:
 prólogo; introducción y cinco desenlaces de Actividad extracurricular; introducción
 y cuatro resoluciones de La casa siempre gana; ambas variantes de Armitage; e
 introducción, dos variantes y tres desenlaces del museo; introducción, derrota y
-ambas resoluciones del tren; introducción y cuatro desenlaces de Sangre en el altar, Los supervivientes y sus cinco personajes. Los relatos
+ambas resoluciones del tren; introducción y cuatro desenlaces de Sangre en el altar, Los supervivientes y sus cinco personajes; introducción, dos decisiones, dos desenlaces, dos variantes de la Fórmula y tormenta de Invisibles y sin dimensión. Los relatos
 españoles se extraen de la guía revisada; se omiten instrucciones y recompensas
 en el audio, que la mesa presenta aparte. No se ofrece audio español como inglés.
 
@@ -173,12 +173,21 @@ Fuentes: guía revisada ES, páginas 13–16, cartas 02195–02224, Dunwich 0208
 - Los supervivientes se resuelven por personaje, sin duplicar aliados ni Polvo. Zebulon y Earl tienen sus modificadores y reacciones; el Polvo entra con pistas por superviviente y las traslada a una Progenie agotada del mismo Lugar.
 - Tierra impía blanquea el texto de los aliados y prohíbe jugarlos. El motor distingue las pruebas de traiciones, aplica el Canto del psicopompo antes de asignar daño, dobla las fichas negativas al evitar al Ángel descarnado y permite reaccionar al enemigo recién derrotado.
 
+## Invisibles y sin dimensión
+
+Fuentes: guía revisada ES, páginas 17–18, y cartas 02236–02259. Se elige una variante de cada uno de los seis Lugares. Las dos decisiones del prólogo se conservan. Según los sacrificios se preparan dos, tres, cuatro o cinco Progenies, con cero, una o dos iniciales. En campaña, cada investigador añade una debilidad básica aleatoria Locura, Lesión o Pacto; el Polvo se puede buscar y poner en juego.
+
+- Progenies Descomunales con salud de uno más uno por investigador, inmunes a ataques y daño salvo la Fórmula. Los efectos de derrota directa siguen siendo válidos. La Fórmula usa voluntad y un bono dinámico por las pistas del enemigo, incluso cuando cambian durante la prueba.
+- Coste de acto aportado solo desde las Ruinas Whateley; una Fórmula por investigador y una perdición si Armitage fue sacrificado. Objetivo final, experiencia y recuento de Progenies escapadas, retirando el Polvo de los mazos.
+- Movimiento aleatorio al final de enemigos, incluso agotadas; barajado y apariciones al avanzar los planes, emboscada del segundo plan y final del tercero. La variante de la cañada permite sustituir un Lugar aleatorio mediante su prueba.
+- Las variantes permiten pistas individuales, del grupo o de cada investigador, con sus límites de una vez por partida; pista temporal de la lluvia, atraer o mover criaturas y daño del páramo. La elección distingue Progenies por Lugar, pistas y daño.
+- Las cuatro cartas de encuentro y ambas caras de la referencia incluyen ataques inmediatos, crecimiento de enemigos, pruebas de grupo, Oleada y elección de tablilla. Se reutilizan los otros conjuntos ya revisados.
+- Los escaneos confirman ambas caras de las conexiones. Se corrige una errata de transcripción externa: el escaneo de 02238b dice «fuerza», donde el texto externo omitía la r. La narración usa el texto contrastado.
+
 ## Validación y continuación
 
-Último lote funcional: `2175cd68`, Sangre en el altar y Los supervivientes. Formato, lint y tipos globales correctos. La suite completa obtuvo 4683 pruebas correctas, 19 omitidas y tres límites de cinco segundos preexistentes en Gala, Brethren of Ash y administración. Los tres archivos afectados pasan con 30 segundos: 57 pruebas correctas. La compilación final pasa.
+Último lote subido: Sangre en el altar y Los supervivientes en `fa08bea6`. Lote actual: Invisibles y sin dimensión. Pasan 47 pruebas del escenario y 413 pruebas dirigidas del motor, Dunwich, catálogos y narraciones. Incluyen un recorrido completo que destruye todas las Progenies mediante acciones legales sin editar el estado tras preparar, y partidas con mazos iniciales reales de uno a cuatro investigadores. Comprobaciones globales finales pendientes.
 
-Pasan las 49 pruebas del escenario, incluidos recorrido legal hasta derrotar a Silas, partidas con mazos iniciales reales de uno a cuatro investigadores, cuatro dificultades, variantes, encuentros, desenlaces, recompensas y prohibición de cartas sacrificadas. Se actualizó la expectativa de etiquetas de las 14 pruebas de El Más Allá para distinguir las pruebas de traiciones.
+Catálogo, escaneos y 43 narraciones se verifican por consola. Se inspeccionaron conexiones y cartas representativas. La revisión visual de la aplicación queda para la persona usuaria conforme a AGENTS.
 
-Catálogo, escaneos y 35 narraciones se verifican por consola. Se inspeccionaron las conexiones impresas de las dos caras de los Lugares y cartas representativas. La revisión visual de la aplicación queda para la persona usuaria conforme a AGENTS.
-
-Siguiente grupo: **Invisibles y sin dimensión**; después Donde aguarda la perdición, Perdidos en el tiempo y el espacio y el epílogo. La última instrucción autoriza continuar y subir todos los escenarios; después hay que revisar la campaña completa y subir las correcciones finales. No detenerse después de Sangre en el altar.
+Siguiente grupo: **Donde aguarda la perdición**; después Perdidos en el tiempo y el espacio y el epílogo. La autorización vigente pide continuar y subir los escenarios restantes, revisar la campaña completa al terminar y subir las correcciones finales. No detenerse después de este lote.

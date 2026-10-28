@@ -619,19 +619,27 @@ export function commitBlocked(state: GameState, id: InvestigatorId, cardType: st
 }
 
 /** No puede atacar a este enemigo (Regalo de la locura: Piedad, enemigos Lunáticos). */
-export function attackBlocked(state: GameState, id: InvestigatorId, enemy: Enemy): boolean {
+export function attackBlocked(
+  state: GameState,
+  id: InvestigatorId,
+  enemy: Enemy,
+  source?: CardCode,
+): boolean {
   return (
     !!enemy.hasNoStats ||
+    enemyBehavior(enemy.code)?.canBeAttacked?.(state, enemy, id, source) === false ||
     restricted(state, id, (r) => !!r.attackTrait && (enemy.traits ?? []).includes(r.attackTrait))
   )
 }
 
 /** Habilidad que ataca a un enemigo que no puede atacar (Regalo de la locura: Piedad). */
 function attacksBlockedEnemy(state: GameState, id: InvestigatorId, a: AbilityOption): boolean {
-  if (a.target?.type !== 'enemy') return false
-  const enemy = state.enemies[a.target.id]
-  if (!enemy || !attackBlocked(state, id, enemy)) return false
-  return a.then.some((m) => m.type === 'BeginSkillTest' && m.kind.type === 'fight')
+  return a.then.some((m) => {
+    if (m.type !== 'BeginSkillTest' || m.kind.type !== 'fight') return false
+    const e = state.enemies[m.kind.enemy],
+      source = m.source ? state.assets[m.source]?.code : m.effectSource
+    return !!e && attackBlocked(state, id, e, source)
+  })
 }
 
 /** No puede activar habilidades [fast] (Whispers in Your Head: Anxiety). */

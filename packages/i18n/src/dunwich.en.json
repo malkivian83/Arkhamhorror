@@ -1,5 +1,5 @@
 {
-  "description": "Search for the missing professors. The first five scenarios are playable; the final three remain in development.",
+  "description": "Search for the missing professors. The first six scenarios are playable; the final two remain in development.",
   "story": {
     "museum": {
       "intro": "Several months ago, Armitage and his colleagues stopped a rampaging horror from tearing through Dunwich, a backwater town several hours north and west of Arkham. At first you imagine this beast as a rabid bear, or worse, but the professor’s description of the creature paints a different picture. It all began when a man named Wilbur Whateley entered the Orne Library looking for Olaus Wormius’s Latin translation of a book called the Necronomicon. Wilbur already possessed a beaten-up English translation by Dr. John Dee, but it was insufficient for his purposes. Armitage turned the man away, fearing what use the strange man had for the book. Whateley returned in secret, hoping to steal the book , but was attacked by a hound guarding the university. Armitage, Rice, and Morgan later discovered Whateley’s body. A description of the foul corpse—semi-anthropomorphic and covered in fur, with a leathery hide and greenish-grey tentacles—causes you to question whether or not Whateley was truly human.",
@@ -74,6 +74,29 @@
       "powderReward": "One investigator may add Powder of Ibn Ghazi to their deck.",
       "survivor02080": "If Dr. Francis Morgan is not listed under “Sacrificed to Yog‑Sothoth:”_ “Thank you for everything you’ve done,” Dr. Morgan says, taking count of your provisions and ammunition. “Last time, we needed some of that strange powder Armitage concocted to even see the beast that terrorized Dunwich. If there’s more of those things out there, we’re going to need that powder. I think I remember how he made it…”",
       "survivor02080Title": "The Survivors"
+    },
+    "unseen": {
+      "intro": "Your search of the village of Dunwich has uncovered a number of documents, journal entries, and esoteric theories. Reading through these materials leaves you exhausted and emotionally drained. Most of the content was written by a single source —a man named Seth Bishop. When you ask around town, you learn that Seth is a citizen of Dunwich. Along with several others, Seth had witnessed firsthand the devastation wrought by the events of “the Dunwich horror,” as Armitage had dubbed the incident. Curiously, since that time, very few people had seen Seth around town, and those who did claimed his eyes had been bloodshot and his face sweaty and pale. You don’t doubt that somebody who has seen what Seth has seen would appear nervous or paranoid. But the more you read of his frantic and unhinged writings, the more you believe he is involved in recent events. His writings speak of having “gathered the remains” and of using arcane methods to “imbue the fathers’ essence” into other creatures, and eventually, into other people. The explanations and diagrams that follow are unfathomably complex and defy understanding. Before you are able to find Seth and confront him, several men and women from the village approach you in a panic. “It’s back!” one of them wails. You recognize him as Curtis Whateley, of the undecayed branch. “Whatever it was that killed them Fryes, it’s back! Up and smashed the Bishops’ home like it were made o’ paper!” Curtis and the other townsfolk are clamoring amongst themselves, raising their voices in a panic.",
+      "part1": "You aim to calm the townsfolk so they can explain to you what is going on. They inform you that there was a rumbling to the north, and when they went to investigate they found the Bishops’ farmhouse had been torn to shreds. A trail of heavy tracks led into nearby Cold Spring Glen. “You know what to do, right? You Arkham folk stopped that thing last time,” one of the townsfolk says. Curtis shakes his head and bites at his lip. “We couldn’t even see that hellish thing until the old professor sprayed that there powder on it,” He says. “To this day, I wish I hadn’t seen it at all…” Something must be done to stop the monster’s rampage. But, if the documents you found are true, there may be more than one such creature on the loose….",
+      "part2": "You warn the townsfolk that they are in grave danger, and urge them to flee Dunwich while they can. Several of them immediately heed your advice, remembering the terrible monstrosity that had previously endangered the town. Curtis drops to his knees in despair, sweating feverishly. “It’s that _thing_ again, ain’t it? It’s come back fer us,” Curtis stutters. “I hope you’ve got some of that powder the old professor had last time. We couldn’t even see the damned thing until he sprayed it. To this day, I wish I hadn’t seen it at all…” Something must be done to stop the monster’s rampage. But, if the documents you found are true, there may be more than one such creature on the loose….",
+      "resolution1": "You did all you could to stop the rampaging monsters, but there were more of them than you realized and you weren’t able to slay them all. Exhausted and terrified, you retreat to Zebulon’s home and hope to survive the night.",
+      "resolution2": "After slaying what seems to be the last of the rampaging monsters you retreat to Zebulon’s home, exhausted and rattled by your experience.",
+      "formulaWithArmitage": "\"There!\" Armitage sighs a breath of relief, jotting down the last phrases of the formula. \"I have translated the last of it.\" He shudders as he hands you the script, the words conjuring forth memories of his battle with the creature. \"I hope this is the last time I'll have to read it,\" he admits. \"But if we do nothing, the end result will be much, much worse.\"",
+      "formulaWithoutArmitage": "Using the information contained within the ruins of the Whateley homestead, you are able to transcribe the remainder of the formula previously used by Dr. Armitage to destroy the beast that plagued Dunwich. However, the endeavor sets you back several hours.",
+      "storm": "Bleak storm clouds churn overhead and a blanket of rain pelts the countryside. As the downpour grows in intensity, you take refuge in a half-ruined shack nearby. There is a flash of lightning, and in the brief illumination, you spot the outline of something large in the rain. Without warning, the distant trees bend, though nothing seems to be bending them. Moments later, a force with the strength of a truck crashes into your refuge.",
+      "introTitle": "Undimensioned and Unseen",
+      "part1Title": "Undimensioned and Unseen",
+      "part2Title": "Undimensioned and Unseen",
+      "resolution1Title": "Undimensioned and Unseen",
+      "resolution2Title": "Undimensioned and Unseen",
+      "formulaWithArmitageTitle": "Undimensioned and Unseen",
+      "formulaWithoutArmitageTitle": "Undimensioned and Unseen",
+      "stormTitle": "Undimensioned and Unseen",
+      "decisionTitle": "Undimensioned and Unseen",
+      "decision": "How do you address the townsfolk?",
+      "setupTitle": "Setup",
+      "setup": "Gather Undimensioned and Unseen, Whippoorwills, Beast-thralls, Dunwich and Striking Fear. Choose one variant of each location and start in Dunwich Village. The sacrifice count determines the initial and set-aside Broods. In campaign play, add one random Madness, Injury or Pact basic weakness to each deck. You may search for Powder of Ibn Ghazi and put it into play.",
+      "escapedEffect": "{amount} Broods escaped. Remove Powder of Ibn Ghazi from the decks."
     }
   },
   "notes": {
@@ -95,7 +118,9 @@
     "dunwichSurvived02218": "Earl Sawyer survived The Dunwich Legacy",
     "dunwichSacrificed02218": "Earl Sawyer was sacrificed to Yog-Sothoth",
     "dunwichSurvived02080": "Dr. Francis Morgan survived The Dunwich Legacy",
-    "dunwichSacrificed02080": "Dr. Francis Morgan was sacrificed to Yog-Sothoth"
+    "dunwichSacrificed02080": "Dr. Francis Morgan was sacrificed to Yog-Sothoth",
+    "dunwichCalmedTownsfolk": "You calmed the townsfolk",
+    "dunwichWarnedTownsfolk": "You warned the townsfolk"
   },
   "abilities": {
     "museum": {
@@ -119,6 +144,15 @@
       "zebulon": "Exhaust Zebulon to draw a card",
       "earl": "Exhaust Earl to draw a card",
       "powder": "Place a clue on an exhausted Brood"
+    },
+    "unseen": {
+      "formula": "Esoteric Formula: {enemy} ({clues} clues, {damage} damage)",
+      "single": "Place up to {amount} clues from one investigator (once per game)",
+      "group": "Place up to {amount} group clues (once per game)",
+      "each": "Each investigator may place 1 clue (once per game)",
+      "rain": "Lure into the rain: 1 clue until the round ends",
+      "lure": "Lure a Brood toward the village",
+      "move": "Test intellect (4) to move a Brood"
     }
   },
   "choices": {
@@ -138,6 +172,18 @@
     "altar": {
       "willpower": "Test willpower (4)",
       "agility": "Test agility (4)"
+    },
+    "unseen": {
+      "calm": "Calm the townsfolk",
+      "warn": "Warn the townsfolk",
+      "horror": "Take 2 horror",
+      "spawn": "Spawn a Brood",
+      "powder": "Put Powder of Ibn Ghazi into play",
+      "removeClues": "Remove {clues} clues from {enemy} — {location} ({damage} damage)",
+      "autoFail": "Automatically fail",
+      "minusFour": "Treat the token as −4",
+      "amount": "{amount} clues",
+      "enemy": "{enemy} — {location} ({clues} clues, {damage} damage)"
     }
   },
   "prompts": {
@@ -156,6 +202,15 @@
       "kidnapped": "Choose a test to avoid being kidnapped",
       "song": "Choose who receives Psychopomp’s Song",
       "ally": "Choose the kidnapped ally"
+    },
+    "unseen": {
+      "tracks": "The creatures’ tracks",
+      "powder": "Search for Powder of Ibn Ghazi?",
+      "randomGlen": "The glen was chosen: you may test agility (3) to choose a different random location",
+      "tablet": "Remove a Brood’s clues or accept the penalty",
+      "clue": "You may place one of your clues on an Abomination",
+      "donor": "Who contributes the clue?",
+      "amount": "How many clues do you place?"
     }
   }
 }

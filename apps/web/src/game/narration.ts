@@ -4,6 +4,14 @@
  * texto oficial, así que solo se ofrecen en el idioma de la grabación.
  */
 const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
+  'story.unseen.intro': { es: 'unseen-intro-nico-history.mp3' },
+  'story.unseen.part1': { es: 'unseen-part1-nico-history.mp3' },
+  'story.unseen.part2': { es: 'unseen-part2-nico-history.mp3' },
+  'story.unseen.resolution1': { es: 'unseen-resolution1-nico-history.mp3' },
+  'story.unseen.resolution2': { es: 'unseen-resolution2-nico-history.mp3' },
+  'story.unseen.formulaWithArmitage': { es: 'unseen-formulawitharmitage-nico-history.mp3' },
+  'story.unseen.formulaWithoutArmitage': { es: 'unseen-formulawithoutarmitage-nico-history.mp3' },
+  'story.unseen.storm': { es: 'unseen-storm-nico-history.mp3' },
   'story.altar.intro': { es: 'altar-intro-nico-history.mp3' },
   'story.altar.noResolution': { es: 'altar-noresolution-nico-history.mp3' },
   'story.altar.resolution1': { es: 'altar-resolution1-nico-history.mp3' },

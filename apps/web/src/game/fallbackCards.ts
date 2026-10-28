@@ -6,6 +6,8 @@ import {
   theMiskatonicMuseum,
   theEssexCountyExpress,
   bloodOnTheAltar,
+  undimensionedAndUnseen,
+  UNSEEN_LOCATIONS,
   ALTAR_LOCATIONS,
   ESSEX_LOCATIONS,
   MUSEUM_LOCATIONS,
@@ -150,6 +152,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     theMiskatonicMuseum(),
     theEssexCountyExpress(),
     bloodOnTheAltar(),
+    undimensionedAndUnseen(),
     theGathering(),
     spreadingFlames(),
     queenOfAsh(),
@@ -264,6 +267,13 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   Object.values(DUNWICH_LOCATION_CARDS).forEach(location)
   Object.values(ESSEX_LOCATIONS).forEach(location)
   Object.values(ALTAR_LOCATIONS).forEach(location)
+  Object.values(UNSEEN_LOCATIONS).forEach(location)
+  put({
+    code: '02236',
+    name: 'Undimensioned and Unseen',
+    real_name: 'Undimensioned and Unseen',
+    type_code: 'scenario',
+  })
   put({
     code: '02195',
     name: 'Blood on the Altar',

@@ -495,6 +495,13 @@
     "traits": "Maleficio. Obstáculo.",
     "text": "<b>Revelación</b> - Vincula esta carta a tu Lugar.\nComo coste adicional para entrar o salir del Lugar vinculado, realiza una prueba de [willpower] (4). Si tiene éxito, descarta la Barrera arcana. Si no es así, debes cancelar los efectos del movimiento o bien descartar las 5 primeras cartas de tu mazo."
   },
+  "02254": {
+    "name": "Fórmula esoterica",
+    "typeCode": "asset",
+    "traits": "Hechizo.",
+    "text": "[action] <b>Combatir.</b> Este ataque usa [willpower] en lugar de [combat]. Recibes +2 [willpower] para este ataque por cada pista que haya sobre el Enemigo atacado. Usa esta capacidad sólo contra un Eneemigo <b>[[Abominación]]</b>.",
+    "flavor": "Negotium perambulans in tenebris..."
+  },
   "02118": {
     "name": "El museo Miskatonic",
     "typeCode": "scenario",
@@ -1137,5 +1144,175 @@
     "typeCode": "enemy",
     "traits": "Humanoide.",
     "text": "<b>Aparición</b> - Cualquier Lugar vacío.\nRepresalia.\n[reaction] Después de que derrotes al Sirviente de muchas bocas: Descubre 1 pista en cualquier Lugar."
+  },
+  "02236": {
+    "name": "Invisibles y sin dimensión",
+    "typeCode": "scenario",
+    "text": "<b>Fácil/Normal</b>\n[skull]: -1 por cada Progenie de Yog-Sothoth que esté en juego.\n[cultist]: Revela otra ficha. Si fracasas en esta prueba, recibe 1 punto de horror.\n[tablet]: 0. Debes retirar todas las fichas de Pista de una Progenie de Yog-Sothoth que esté en juego, o bien el modificador de esta ficha es -4.\n[elder_thing]: -3. Si esta ficha es revelada durante un ataque o intento de evitar contra una Progenie de Yog-Sothoth, ésta te ataca inmediatamente.",
+    "backText": "<b>Difícil/Experto</b>\n[skull]: -2 por cada Progenie de Yog-Sothoth que esté en juego.\n[cultist]: Revela otra ficha. Si fracasas en esta prueba, recibe 1 punto de horror y 1 punto de daño.\n[tablet]: 0. Debes retirar todas las fichas de Pista de una Progenie de Yog-Sothoth que esté en juego, o bien esta prueba fracasa automáticamente.\n[elder_thing]: -5. Si esta ficha es revelada durante un ataque o intento de evitar contra una Progenie de Yog-Sothoth, ésta te ataca inmediatamente."
+  },
+  "02237": {
+    "name": "Criaturas desatadas",
+    "typeCode": "agenda",
+    "text": "<b>Obligado</b> - Al final de la fase de Enemigos: Mueve cada Enemigo Progenie de Yog-Sothoth una vez hacia un Lugar aleatorio.",
+    "backName": "La calamidad golpea",
+    "backText": "Añade la pila de descartes de Encuentros al mazo de Encuentros y barájalo.\nHaz aparecer 1 de los Enemigos Progenie de Yog-Sothoth puestos aparte en un Lugar aleatorio si es posible.",
+    "flavor": "Las noticias de que unos entes aterradores están sembrando el caos en el campo han hecho que los ciudadanos de Dunwich entren en pánico. Y lo que es peor aún, las criaturas parecen ser invisibles a simple vista.",
+    "backFlavor": "Una vieja camioneta se para en los erosionados caminos de Dunwich. El conductor, Joe Osborn, os llama desde la ventanilla del conductor hecha añicos, con el motor aún en marcha:. –¡Está en la granaja de los Erick! –grita–. Ha hecho trizas el sitio. Pobres Henry y Martha…\nLe pedís a Osborn la ubicación de la finca de los Erick, y eso os confirma vuestro peor temor. Para que ese ataque haya ocurrido recientemente, debe de haber varios monstruos sueltos."
+  },
+  "02238": {
+    "name": "Esperando su momento",
+    "typeCode": "agenda",
+    "text": "<b>Obligado</b> - Al final de la fase de Enemigos: Mueve cada Enemigo Progenie de Yog-Sothoth una vez hacia un Lugar aleatorio.",
+    "backName": "Sin lugar donde ocultarse",
+    "backText": "Añade la pila de descartes de Encuentros al mazo de Encuentros y barájalo. <b>Si hay una Progenie de Yog-Sothoth puesta aparte, el investigador jefe lee lo siguiente en voz alta:\n[[Grises nubes de tormenta se agolpan sobre vuestras cabezas, y una intensa lluvia golpea los campos. Mientras el aguacero aumenta su intensidad, os refugiáis en una cabaña medio derruida que hay cerca. Cae un relámpago, y la breve iluminación os permite ver algo enorme silueteado contra la lluvia. Sin previo aviso, los lejanos árboles se doblan, pero no parece haber nada doblándolos. Momentos más tarde, una fuerza como la de un camión se estrella contra vuestro refugio.]]\n</b>Haz aparecer 1 de los Enemigos Progenie de Yog-Sothoth puestos aparte en el Lugar del investigador jefe si es posible. A continuación, cada investigador que esté en ese Lugar realiza una prueba de [agility] (4). La Progenie de Yog-Sothoth que acaba de aparecer realiza un ataque contra cada investigador que fracase en esta prueba de habilidad.",
+    "flavor": "De vez en cuando, el viento que subía del fondo de la cañada de Cold Spring traía un hedor insoportable a la ya cargada atmósfera nocturna... Pero la tan esperada monstruosidad no se dejó ver en toda la noche. No cabía duda, lo que había en el fondo del barranco aguardaba el momento propicio, y Armitage dijo a sus compañeros que sería suicida intentar atacarlo en medio de la oscuridad nocturna.\n—H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02239": {
+    "name": "Horrores desencadenados",
+    "typeCode": "agenda",
+    "text": "Cada Enemigo <b>[[Abominación]]</b> recibe +1 a combate y +1 a evitar.\n<b>Obligado</b> - Al final de la fase de Enemigos: Mueve cada Enemigo Progenie de Yog-Sothoth una vez hacia un Lugar aleatorio.",
+    "backName": "A las colinas",
+    "backText": "<b>(→R1)</b>",
+    "flavor": "No tenía nada de divertido seguir la pista de algo tan grande como una casa y no lograr verlo, si bien podía respirarse en el ambiente una maléfica presencial infernal.\n—H.P. Lovecraft, \"El Horror de Dunwich\"",
+    "backFlavor": "Hay un monstruoso estruendo que resuena por los campos, aunque es imposible determinar si su origen son las criaturas que buscáis o las propias montañas. Poco después, encontráis más rastros de las criaturas que llevan colina arriba: un sendero de diez metros de arbustos aplastados y árboles quebrados como ramas. Agotados por el combate, y con la noche a punto de llegar, decidís volver a un lugar seguro en vez de seguir estos rastros infernales."
+  },
+  "02240": {
+    "name": "Escritura sarracena",
+    "typeCode": "act",
+    "text": "<b>Objetivo</b> - Sólo los investigadores que estén en las Ruinas Whateley pueden, como grupo, gastar la cantidad necesaria de pistas para hacer avanzar el acto.",
+    "backName": "Obtener la fórmula",
+    "backText": "<b>Consulta el registro de campaña. Si el Dr. Armitage sobrevivió a El legado de Dunwich:</b>\n[[\"–¡Tomad! –Armitage suspira de alivio mientras anota las últimas frases de la fórmula–. He traducido lo que faltaba. –Se estremece a daros el texto, pues las palabras le traen recuerdos de su combate con la criatura–. Espero que sea la última vez que debo leerlo –admite–. Pero si no hacemos nada, el resultado final será mucho, mucho peor.\"]]\nCada investigador pone en juego 1 Fórmula esotérica puesta aparte.\n<b>Si el Dr. Armitage está anotado en la sección \"Sacrificados a Yog-Sothoth\":</b>\n[[Empleando la información que contienen las ruinas de la finca de los Whateley, lográis transcribir el resto de la fórmula que usó el Dr. Armitage para destruir a la bestia que aterrorizaba Dunwich. Sin embargo, la tarea os cuesta varias horas de retraso.]]\nCada investigador pone en juego 1 Fórmula esotérica puesta aparte. Coloca 1 ficha de Perdición sobre el plan en curso.",
+    "flavor": "Los monstruos que están causando estragos en los campos de Dunwich son inmunes a las armas tradicionales. Sólo puede derrotarse a las criaturas recitando un ensalmo concreto. Primero debéis registrar las ruinas del hogar de Wilbur Whateley para encontrar los últimos fragmentos del sobrenatural texto."
+  },
+  "02241": {
+    "name": "¡Deben ser destruidos!",
+    "typeCode": "act",
+    "text": "<b>Objetivo</b> - Derrota a tantos Enemigos Progenie de Yog-Sothoth como puedas. Si no hay copias de la Progenie de Yog-Sothoth en juego o puestas aparte, haz avanzar el acto.",
+    "backName": "El fin de la progenie",
+    "backText": "<b>(→R2)</b>",
+    "flavor": "Con la fórmula en vuestro, por fin tenéis los medios para destruir a las criaturas que siembran el caos en Dunwich... pero sólo si lográis sobrevivir en el tiempo suficiente.",
+    "backFlavor": "Al completar el ensalmo, la siniestra criatura grita con una voz ronca e inhumana que trepida y se rompe, y las sílabas de su graznido no se parecen ni remotamente a vuestro idioma. Cuando su grito se desvanece, la criatura comienza a encogerse sobre sí misma, y sin previo aviso, desaparece. Todo lo que queda es un fétido hedor y una repulsiva marca que acaba con la vegetación allí donde estuvo la bestia."
+  },
+  "02242": {
+    "name": "Aldea de Dunwich",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[action]:<b>Desistir.</b> Te escondes de las criaturas.\n[free]: Tomas prestados unos sabuesos para que rastreen el olor de las criaturas. Un investigador que esté en la Aldea de Dunwich puede colocar 1 de sus pistas sobre cualquier Enemigo <b>[[Abominación]]</b> que esté en juego. Límite de grupo de una vez por partida.",
+    "backFlavor": "Siempre resulta reconfortante salir de aquel lugar y, siguiendo el angosto camino que discurre al pie de las montañas, cruzar la llanura que extiende una vez traspuestas las cumbres montañosas hasta volver a desembocar en la carretera de Aylesbury. Una vez allí, es posible que el viajero se entere de que ha pasado por Dunwich.\n—H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02243": {
+    "name": "Aldea de Dunwich",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[action]:<b>Desistir</b> Te escondes de las criaturas.\n[action]: Mueve un Enemigo Progenie de Yog-Sothoth una vez hacia la Aldea de Dunwiche.",
+    "flavor": "Tocar la campana de la iglesia podría atraer a los monstruos hacia la aldea si tenéis el valor de enfrentaros a ellos.",
+    "backFlavor": "Siempre resulta reconfortante salir de aquel lugar y, siguiendo el angosto camino que discurre al pie de las montañas, cruzar la llanura que extiende una vez traspuestas las cumbres montañosas hasta volver a desembocar en la carretera de Aylesbury. Una vez allí, es posible que el viajero se entere de que ha pasado por Dunwich.\n—H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02244": {
+    "name": "Cañada de Cold Spring",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "Cada Enemigo que esté en la Cañada de Cold Spring recibe -1 a evitar.\n[free]: Atraes a la criatura entre la densa vegetación de los árboles y se queda enganchada. Los investigadores que estén en la Cañada de Cold Spring pueden, como grupo, colocar hasta 2 de sus pistas sobre un Enemigo <b>[[Abominación]]</b> que esté en la Cañada de Cold Spring. Límite de grupo de una vez por partida.",
+    "backFlavor": "¡Mira que les advertí que no bajasen a la cañada! Jamás se me ocurrió que fuera a meterse nadie ahí con esas huellas y ese olor y con los chotacabras armando tan griterío a plena luz del día...”\n—H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02245": {
+    "name": "Cañada de Cold Spring",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "Cada Enemigo que esté en la Cañada de Cold Spring recibe -1 a evitar.\n[reaction] Después de que la Cañada de Cold Spring sea elegida como Lugar aleatorio: Un investigador que esté en la Cañada de Cold Spring realiza una prueba de [agility] (3). Si tiene éxito, elige un Lugar aleatorio distinto.",
+    "flavor": "Las oscuras sombras y la gran cantidad de árboles hacen que este bosque sea un buen lugar donde esconderse.",
+    "backFlavor": "\"¡Mira que les advertí que no bajasen a la cañada! Jamás se me ocurrió que fuera a meterse nadie ahí con esas huellas y ese olor y con los chotacabras armando tan griterío a plena luz del día...”\n—H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02246": {
+    "name": "Pradera de diez acres",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[free]: Atraes al monstruo bajo la lluvia. Coloca 1 pista de la reserva de fichas sobre un Enemigo <b>[[Abominación]]</b> que esté en la Pradera de diez acres. Al final de la ronda, retira 1 pista de ese Enemigo. Límite de grupo de una vez por partida.",
+    "backFlavor": "Los árboles de los bosques son allí de unas dimensiones excesivamente grandes, y la maleza, las zarzas y la hierba alcanzan una frondosidad rara vez vista en las regiones habitadas. Por el contrario, los campos cultivados son muy escasos y áridos...\n—H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02247": {
+    "name": "Pradera de diez acres",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[free]: Usas un animal vivo como cebo. Cada investigador que esté en la Pradera de diez acres puede colocar 1 de sus pistas sobre un Enemigo <b>[[Abominación]]</b> que esté en la Pradera de diez acres. Límite de grupo de una vez por partida.",
+    "backFlavor": "Los árboles de los bosques son allí de unas dimensiones excesivamente grandes, y la maleza, las zarzas y la hierba alcanzan una frondosidad rara vez vista en las regiones habitadas. Por el contrario, los campos cultivados son muy escasos y áridos...\n—H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02248": {
+    "name": "Páramo arrasado",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[free]: Atraes a la criatura a una zona de arena. Los investigadores que estén en el Páramo arrasado pueden, como grupo, colocar hasta 2 de sus pistas sobre un Enemigo [[Abominación]] que esté en el Páramo arrasado. Límite de grupo de una vez por partida.",
+    "flavor": "El suelo de esta zona está suelto y apenas soporta tu peso.",
+    "backFlavor": "Las cumbres tienen una forma demasiado ovalada y simétrica como para pensar en una naturaleza apacible y normal, y a veces pueden verse recortados con singular nitidez contra el cielo unos extraños círculos formados por altas columnas de piedra que coronan la mayoría de las cimas montañosas.\n—H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02249": {
+    "name": "Páramo arrasado",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "<b>Obligado</b> - Al final de tu turno, si estás en el Páramo arrasado: Recibe 1 punto de daño.",
+    "flavor": "Una espesa neblina amarilla, cubre esta región como una terrible miasma. Se enrosca en torno a tu piel y hace que se te encojan los pulmones.",
+    "backFlavor": "Las cumbres tienen una forma demasiado ovalada y simétrica como para pensar en una naturaleza apacible y normal, y a veces pueden verse recortados con singular nitidez contra el cielo unos extraños círculos formados por unas altas columnas de piedra que coronan la mayoría de las cimas montañosas.\n—H. P. Lovecraft, “El Horror de Dunwich”"
+  },
+  "02250": {
+    "name": "Ruinas Whateley",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "Cada investigador que esté en las Ruinas Whateley recibe -1 [willpower].\n[free]: Lanzas una lata de pintura que hay por ahí cerca contra el monstruo. Un investigador que esté en las Ruinas Whateley puede colocar hasta 3 de sus pistas sobre un Enemigo <b>[[Abominación]]</b> que esté en las Ruinas Whateley. Límite de grupo de una vez por partida.",
+    "backFlavor": "Daba la impresión de que una avalancha hubiese arrastrado toda una casa entera, precipitándola por la enmarañada floresta de la vertiente casi cortada a pico.\n—H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02251": {
+    "name": "Ruinas Whateley",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "Cada investigador que esté en las Ruinas Whateley recibe -1 [willpower].\n[action]: Realiza una prueba de [intellect] (4). Si tienes éxito, mueve un Enemig Progenie de Yog-Sothoth 1 Lugar en cualquier dirección.",
+    "flavor": "Los antiguos tomos arcanos encontrados en las ruinas Whateley continenen los secretos sobre cómo manipular a los monstruos.",
+    "backFlavor": "Daba la impresión de que una avalancha hubiese arrastrado toda una casa entera, precipitándola por la enmarañada floresta de la vertiente casi cortada a pico.\n—H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02252": {
+    "name": "Devil's Hop Yard",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[free]: Atraes a la criatura a la densa niebla. Un investigador que esté en Devil's Hop Yard puede colocar hasta 2 de sus pistas sobre un Enemigo <b>[[Abominación]]</b> que esté en Devil's Hop Yard. Límite de grupo de una vez por partida.",
+    "flavor": "…otras leyendas tratan de explicarlo todo en función del Devil’s Hop Yard, una ladera totalmente baldía en la que no crecen ni árboles, ni matorrales ni hierba alguna.\n—H.P. Lovecraft, \"El Horror de Dunwich\"",
+    "backFlavor": "...still others try to explain the Devil’s Hop Yard - a bleak, blasted hillside where no tree, shrub, or grass-blade will grow.\n-H.P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02253": {
+    "name": "Devil's Hop Yard",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[free]: La criatura te sigue hasta el barro. Cada investigador que esté en Devil's Hop Yard puede colocar 1 de sus pistas sobre un Enemigo <b>[[Abominación]]</b> que esté en Devil's Hop Yard. Límite de grupo de una vez por partida.",
+    "flavor": "Un reciente aguacero ha dejado la zona embarrada y difícil de atravesar.",
+    "backFlavor": "…otras leyendas tratan de explicarlo todo en función del Devil’s Hop Yard, una ladera totalmente baldía en la que no crecen ni árboles, ni matorrales ni hierba alguna.\n—H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02255": {
+    "name": "Progenie de Yog-Sothoth",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Abominación.",
+    "text": "Descomunal.\nLa Progenie de Yog-Sothoth recibe +1 de salud [per_investigator] y no puede ser dañada ni atacada excepto mediante la capacidad de la Fórmula esotérica.",
+    "flavor": "\"Creo que hay una posibilidad de acabar de una vez por todas con lo que quiera que sea ese monstruo.\"\n–H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02256": {
+    "name": "Bestias imponentes",
+    "typeCode": "treachery",
+    "text": "Peligro.\n<b>Revelación</b> - Vincula esta carta a un Enemigo Progenie de Yog-Sothoth que esté en juego. Si ese Enemigo está en tu Lugar, recibes 1 punto de daño.\nEl Enemigo vinculado recibe +1 a combate y +1 de salud."
+  },
+  "02257": {
+    "name": "Ruina y destrucción",
+    "typeCode": "treachery",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> - Si no hay investigadores en el mismo Lugar que una Progenie de Yog-Sothoth, Ruina y destrucción obtiene Oleada. Si no es así, cada investigador que esté en el mismo Lugar que una Progenie de Yog-Sothoth realiza una prueba de [agility] (3). Por cada punto que le falte para tener éxito, recibe 1 punto de daño."
+  },
+  "02258": {
+    "name": "Atraer la atención",
+    "typeCode": "treachery",
+    "text": "Oleada.\n<b>Revelación</b> - Cada Enemigo Progenie de Yog-Sothoth que esté en juego se mueve una vez hacia ti."
+  },
+  "02259": {
+    "name": "Los rastros de las criaturas",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "Peligro.\n<b>Revelación</b> - Debes (elige una): Recibir 2 puntos de horror, o bien hacer aparecer una Progenie de Yog-Sothoth puesta aparte en un Lugar aleatorio.",
+    "flavor": "…los bordes del camino estaban aplastados, indicio de que por allí había pasado el imponente y monstruoso horror…\n—H.P. Lovecraft, \"El Horror de Dunwich\""
   }
 }

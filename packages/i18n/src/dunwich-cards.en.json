@@ -495,6 +495,13 @@
     "traits": "Hex. Obstacle.",
     "text": "<b>Revelation</b> - Attach to your location.\nAs an additional cost to move into or out of attached location, test [willpower] (4). If successful, discard Arcane Barrier. Otherwise, you must either cancel the effects of the move or discard the top 5 cards of your deck."
   },
+  "02254": {
+    "name": "Esoteric Formula",
+    "typeCode": "asset",
+    "traits": "Spell.",
+    "text": "[action] <b>Fight.</b> This attack uses [willpower] instead of [combat]. You get +2 [willpower] for this attack for each clue on the attacked enemy. Use this ability only on an [[Abomination]] enemy.",
+    "flavor": "Negotium perambulans in tenebris..."
+  },
   "02118": {
     "name": "The Miskatonic Museum",
     "typeCode": "scenario",
@@ -1136,5 +1143,174 @@
     "typeCode": "enemy",
     "traits": "Humanoid.",
     "text": "<b>Spawn</b> - Any empty location.\nRetaliate.\n[reaction] After you defeat Servant of Many Mouths: Discover 1 clue at any location."
+  },
+  "02236": {
+    "name": "Undimensioned and Unseen",
+    "typeCode": "scenario",
+    "text": "Easy / Standard\n[skull]: -1 for each Brood of Yog-Sothoth in play.\n[cultist]: Reveal another token. If you fail this test, take 1 horror.\n[tablet]: 0. You must either remove all clue tokens from a Brood of Yog-Sothoth in play, or this token's modifier is -4 instead.\n[elder_thing]: -3. If this token is revealed during an attack or evasion attempt against a Brood of Yog-Sothoth, it immediately attacks you.",
+    "backText": "Hard / Expert\n[skull]: -2 for each Brood of Yog-Sothoth in play.\n[cultist]: Reveal another token. If you fail this test, take 1 horror and 1 damage.\n[tablet]: 0. You must either remove all clue tokens from a Brood of Yog-Sothoth in play, or this test automatically fails.\n[elder_thing]: -5. If this token is revealed during an attack or evasion attempt against a Brood of Yog-Sothoth, it immediately attacks you."
+  },
+  "02237": {
+    "name": "Rampaging Creatures",
+    "typeCode": "agenda",
+    "text": "<b>Forced</b> - At the end of the enemy phase: Move each Brood of Yog-Sothoth enemy once toward a random location.",
+    "backName": "Calamity Strikes",
+    "backText": "Shuffle the encounter discard pile into the encounter deck.\nSpawn 1 of the set-aside Brood of Yog-Sothoth enemies at a random location, if able.",
+    "flavor": "Reports of terrifying entities wreaking havoc across the countryside have caused the citizens of Dunwich to panic. Worse, the creatures seem to be invisible to the naked eye.",
+    "backFlavor": "An old pickup truck rolls to a stop along the weathered trails of Dunwich. The driver - Joe Osborn - calls out to you through a shattered driver-side window, the truck's engine still running. \"IT's over at the Ericks' farm!\" he shouts. \"Done blasted their place apart. Poor Henry and Martha...\"\nYou ask Osborn for the location of the Ericks' homestead, and it confirms your worst fear. For that attack to have occurred recently, there must be more of the monsters on the loose."
+  },
+  "02238": {
+    "name": "Biding Its Time",
+    "typeCode": "agenda",
+    "text": "<b>Forced</b> - At the end of the enemy phase: Move each Brood of Yog-Sothoth enemy once toward a random location.",
+    "backName": "No Place to Hide",
+    "backText": "Shuffle the encounter discard pile into the encounter deck.\n<b><hr>If there is a set-aside Brood of Yog-Sothoth, the lead investigator reads the following (out loud):</b>\n<blockquote><i>Bleak storm clouds churn overhead and a blanket of rain pelts the countryside. As the downpour grows in intensity, you take refuge in a half-ruined shack nearby. There is a flash of lightning, and in the brief illumination, you spot the outline of something large in the rain. Without warning, the distant trees bend, though nothing seems to be bending them. Moments later, a force with the strength of a truck crashes into your refuge.</i></blockquote>\nSpawn 1 of the set-aside Brood of Yog-Sothoth enemies at the lead investigator's location, if able. Then, each investigator at that location tests [agility] (4). The newly spawned Brood of Yog-Sothoth makes an attack against each investigator who fails this skill test.",
+    "flavor": "Once in a while a wind, sweeping up out of Cold Spring Glen, would bring a touch of ineffable foetor to the heavy night air... But the looked-for terror did not appear. Whatever was down there in the glen was biding its time, and Armitage told his colleagues it would be suicidal to try to attack it in the dark.\n-H.P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02239": {
+    "name": "Horrors Unleashed",
+    "typeCode": "agenda",
+    "text": "Each [[Abomination]] enemy gets +1 fight and +1 evade.\n<b>Forced</b> - At the end of the enemy phase: Move each Brood of Yog-Sothoth enemy once toward a random location.",
+    "backName": "Into the Hills",
+    "backText": "<b>(→R1)</b>",
+    "flavor": "It was no joke tracking down something as big as a house that one could not see, but that had all the vicious malevolence of a daemon.\n-H.P. Lovecraft, \"The Dunwich Horror\"",
+    "backFlavor": "There is a monstrous rumbling throughout the countryside, though it is impossible to tell whether its source is the creatures you hunt or the very mountains themselves. Soon after, you find more of the creatures' tracks leading up toward the hills: a thirty-foot path of crushed underbrush and trees snapped like twigs. Exhausted from battle, and with night fast approaching, you decide to head to safety rather than follow these hellish tracks."
+  },
+  "02240": {
+    "name": "Saracenic Script",
+    "typeCode": "act",
+    "text": "<b>Objective</b> - Only investigators at Whateley Ruins may spend the requisite number of clues, as a group, to advance.",
+    "backName": "Obtaining the Formula",
+    "backText": "<b>Check Campaign Log. If Dr. Armitage survived The Dunwich Legacy:</b><blockquote><i>\"There!\" Armitage sighs a breath of relief, jotting down the last phrases of the formula. \"I have translated the last of it.\" He shudders as he hands you the script, the words conjuring forth memories of his battle with the creature. \"I hope this is the last time I'll have to read it,\" he admits. \"But if we do nothing, the end result will be much, much worse.\"</i></blockquote>Each investigator puts into play 1 set-aside Esoteric Formula.\n<b>If Dr. Armitage is listed under \"Sacrificed to Yog-Sothoth\":</b><blockquote><i>Using the information contained within the ruins of the Whateley homestead, you are able to transcribe the remainder of the formula previously used by Dr. Armitage to destroy the beast that plagued Dunwich. However, the endeavor sets you back several hours.</i></blockquote>Each investigator puts into play 1 set-aside Esoteric Formula. Place 1 doom on the current agenda.",
+    "flavor": "The monsters tearing through Dunwich county are immune to traditional weapons. Only by reciting a particular incantation can the creatures be defeated. First you must search the ruins of Wilbur Whateley’s home in order to find the final sections of the otherworldly script."
+  },
+  "02241": {
+    "name": "They Must Be Destroyed!",
+    "typeCode": "act",
+    "text": "<b>Objective</b> - Defeat as many Brood of Yog-Sothoth enemies as you can. If there are no copies of Brood of Yog-Sothoth in play or set aside, advance.",
+    "backName": "The Brood is Ended",
+    "backText": "<b>(→R2)</b>",
+    "flavor": "With the formula in hand, you finally have the means to destroy the creatures wreaking havoc in Dunwich... but only if you can survive long enough.",
+    "backFlavor": "As you complete the incantation, the foul creature cries out with a raucous, inhuman voice. It rumbles and cracks, the syllables of its croaking far from English. As its cry plays out, the creature shrinks upon itself, and then, with little warning, it is gone. All that remains is a foul stench and a repulsive mark that mars the vegetation where the beast once stood."
+  },
+  "02242": {
+    "name": "Dunwich Village",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[action]: <b>Resign.</b> You hide from the rampaging creatures.\n[fast]: You borrow some hounds to track the creatures by scent. An investigator in Dunwich Village may place 1 of his or her clues on any [[Abomination]] enemy in play. (Group limit once per game).",
+    "backFlavor": "It is always a relief to get clear of the place, and to follow the narrow road around the base of the hills and across the level country beyond till it rejoins the Aylesbury pike. Afterward one sometimes learns that one has been through Dunwich.\n-H.P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02243": {
+    "name": "Dunwich Village",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[action]: <b>Resign.</b> You hide from the rampaging creatures.\n[action]: Move a Brood of Yog-Sothoth enemy once toward Dunwich Village.",
+    "flavor": "Ringing the church bell may draw the monsters toward the village, if you are brave enough to face them.",
+    "backFlavor": "It is always a relief to get clear of the place, and to follow the narrow road around the base of the hills and across the level country beyond till it rejoins the Aylesbury pike. Afterward one sometimes learns that one has been through Dunwich.\n-H.P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02244": {
+    "name": "Cold Spring Glen",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "Each enemy in Cold Spring Glen gets -1 evade.\n[fast]: You lure the creature into the dense tree cover, and it becomes tangled. Investigators in Cold Spring Glen may, as a group, place up to 2 of their clues on an [[Abomination]] enemy in Cold Spring Glen. (Group limit once per game).",
+    "backFlavor": "\"Gawd,\" he gasped, \"I telled 'em not ter go daown into the glen, an' I never thought nobody'd dew it with them tracks an' that smell an' the whippoorwills a-screechin' daown thar in the dark o' noonday...”\n-H.P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02245": {
+    "name": "Cold Spring Glen",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "Each enemy in Cold Spring Glen gets -1 evade.\n[reaction] After Cold Spring Glen is chosen as a random location: An investigator in Cold Spring Glen tests [agility] (3). If successful, choose a different random location.",
+    "flavor": "The thick shadows and crowded trees make these woods a good hiding place.",
+    "backFlavor": "\"Gawd,\" he gasped, \"I telled 'em not ter go daown into the glen, an' I never thought nobody'd dew it with them tracks an' that smell an' the whippoorwills a-screechin' daown thar in the dark o' noonday...”\n-H.P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02246": {
+    "name": "Ten-Acre Meadow",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[fast]: You lure the monster into the rain. Place 1 clue from the token bank on an [[Abomination]] enemy in Ten-Acre Meadow. At the end of the round, remove 1 clue from that enemy. (Group limit once per game).",
+    "backFlavor": "The trees of the frequent forest belts seem too large, and the wild weeds, brambles, and grasses attain a luxuriance not often found in settled regions. At the same time the planted fields appear singularly few and barren...\n-H.P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02247": {
+    "name": "Ten-Acre Meadow",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[fast]: You set a bait using a live animal. Each investigator in Ten-Acre Meadow may place 1 of his or her clues on an [[Abomination]] enemy in Ten-Acre Meadow. (Group limit once per game).",
+    "backFlavor": "The trees of the frequent forest belts seem too large, and the wild weeds, brambles, and grasses attain a luxuriance not often found in settled regions. At the same time the planted fields appear singularly few and barren...\n-H.P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02248": {
+    "name": "Blasted Heath",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[fast]: You lure the creature into a patch of sand. Investigators in Blasted Heath may, as a group, place up to 2 of their clues on an [[Abomination]] enemy in Blasted Heath. (Group limit once per game).",
+    "flavor": "The ground here is loose and barely supports your weight.",
+    "backFlavor": "The summits are too rounded and symmetrical to give a sense of comfort and naturalness, and sometimes the sky silhouettes with especial clearness the queer circles of tall stone pillars with which most of them are crowned.\n-H.P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02249": {
+    "name": "Blasted Heath",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "<b>Forced</b> - At the end of your turn, if you are in Blasted Heath: Take 1 damage.",
+    "flavor": "A dense yellow mist, like a terrible miasma, permeates through this region. It crawls around your skin and causes your lungs to tighten.",
+    "backFlavor": "The summits are too rounded and symmetrical to give a sense of comfort and naturalness, and sometimes the sky silhouettes with especial clearness the queer circles of tall stone pillars with which most of them are crowned.\n-H. P. Lovecraft, “The Dunwich Horror”"
+  },
+  "02250": {
+    "name": "Whateley Ruins",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "Each investigator in Whateley Ruins gets -1 [willpower].\n[fast]: You hurl a nearby canister of paint at the monster. An investigator in Whateley Ruins may place up to 3 of his or her clues on an [[Abomination]] enemy in Whateley Ruins. (Group limit once per game).",
+    "backFlavor": "It was as though a house, launched by an avalanche, had slid down through the tangled growths of the almost vertical slope.\n-H.P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02251": {
+    "name": "Whateley Ruins",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "Each investigator in Whateley Ruins gets -1 [willpower].\n[action]: Test [intellect] (4). If you are successful, move a Brood of Yog-Sothoth enemy 1 location in any direction.",
+    "flavor": "The ancient and arcane tomes found within the Whateley Ruins hold the secrets to manipulating the monsters.",
+    "backFlavor": "It was as though a house, launched by an avalanche, had slid down through the tangled growths of the almost vertical slope.\n-H.P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02252": {
+    "name": "Devil's Hop Yard",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[fast]: You lure the creature into the thick fog. An investigator in Devil's Hop Yard may place up to 2 of his or her clues on an [[Abomination]] enemy in Devil's Hop Yard. (Group limit once per game).",
+    "backFlavor": "...still others try to explain the Devil’s Hop Yard - a bleak, blasted hillside where no tree, shrub, or grass-blade will grow.\n-H.P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02253": {
+    "name": "Devil's Hop Yard",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[fast]: The creature follows you into the mud. Each investigator in Devil's Hop Yard may place 1 of his or her clues on an [[Abomination]] enemy in Devil's Hop Yard. (Group limit once per game).",
+    "flavor": "A recent downpour has made the hop yard muddy and difficult to slog through.",
+    "backFlavor": "...still others try to explain the Devil’s Hop Yard - a bleak, blasted hillside where no tree, shrub, or grass-blade will grow.\n-H.P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02255": {
+    "name": "Brood of Yog-Sothoth",
+    "typeCode": "enemy",
+    "traits": "Monster. Abomination.",
+    "text": "Massive.\nBrood of Yog-Sothoth gets +1 [per_investigator] health and cannot be damaged or attacked except using the ability on Esoteric Formula.",
+    "flavor": "\"I believe there’s a chance of putting it out of business.\"\n-H.P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02256": {
+    "name": "Towering Beasts",
+    "typeCode": "treachery",
+    "text": "Peril.\n<b>Revelation</b> - Attach to a Brood of Yog-Sothoth enemy in play. If that enemy is at your location, take 1 damage.\nAttached enemy gets +1 fight and +1 health."
+  },
+  "02257": {
+    "name": "Ruin and Destruction",
+    "typeCode": "treachery",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - If there are no investigators at the same location as a Brood of Yog-Sothoth, Ruin and Destruction gains surge. Otherwise, each investigator at the same location as a Brood of Yog-Sothoth tests [agility] (3). For each point he or she fails by, he or she takes 1 damage."
+  },
+  "02258": {
+    "name": "Attracting Attention",
+    "typeCode": "treachery",
+    "text": "Surge.\n<b>Revelation</b> - Each Brood of Yog-Sothoth enemy in play moves once toward you."
+  },
+  "02259": {
+    "name": "The Creatures' Tracks",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "Peril.\n<b>Revelation</b> - You must either (choose one): Take 2 horror, or spawn a set aside Brood of Yog-Sothoth at a random location.",
+    "flavor": "...the sides of the road shewed a bruising indicative of the blasphemously stupendous bulk of the horror...\n-H.P. Lovecraft, \"The Dunwich Horror\""
   }
 }

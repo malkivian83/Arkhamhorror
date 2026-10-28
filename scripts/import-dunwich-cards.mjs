@@ -5,6 +5,31 @@ import { join } from 'node:path'
 
 const reference = process.argv[2] ?? 'D:/referencia/ArkhamHorror-main'
 const codes = new Set([
+  '02236',
+  '02237',
+  '02238',
+  '02239',
+  '02240',
+  '02241',
+  '02242',
+  '02243',
+  '02244',
+  '02245',
+  '02246',
+  '02247',
+  '02248',
+  '02249',
+  '02250',
+  '02251',
+  '02252',
+  '02253',
+  '02254',
+  '02255',
+  '02256',
+  '02257',
+  '02258',
+  '02259',
+
   '01172',
   '01173',
   '02088',
@@ -189,6 +214,9 @@ for (const locale of ['en', 'es']) {
       ]),
   )
   if (Object.keys(cards).length !== codes.size) throw new Error(`Incomplete ${locale} catalogue`)
+  // The checked Spanish scan reads "fuerza"; the external transcription drops its r.
+  if (locale === 'es' && cards['02238']?.backText)
+    cards['02238'].backText = cards['02238'].backText.replace('una fueza', 'una fuerza')
   writeFileSync(
     `packages/i18n/src/dunwich-cards.${locale}.json`,
     JSON.stringify(cards, null, 2) + '\n',

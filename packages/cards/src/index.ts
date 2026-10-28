@@ -362,3 +362,10 @@ export {
   B as ALTAR_CODES,
   BLOOD_ON_THE_ALTAR,
 } from './the-dunwich-legacy/blood-on-the-altar'
+export {
+  undimensionedAndUnseen,
+  UNSEEN_LOCATIONS,
+  UNSEEN_ENCOUNTERS,
+  U as UNSEEN_CODES,
+  UNDIMENSIONED_AND_UNSEEN,
+} from './the-dunwich-legacy/undimensioned-and-unseen'

@@ -1,5 +1,6 @@
 import { theEssexCountyExpress, THE_ESSEX_COUNTY_EXPRESS } from './the-essex-county-express'
 import { bloodOnTheAltar, BLOOD_ON_THE_ALTAR } from './blood-on-the-altar'
+import { undimensionedAndUnseen, UNDIMENSIONED_AND_UNSEEN } from './undimensioned-and-unseen'
 import { theMiskatonicMuseum, THE_MISKATONIC_MUSEUM } from './the-miskatonic-museum'
 import { theHouseAlwaysWins, THE_HOUSE_ALWAYS_WINS } from './the-house-always-wins'
 import { registerCampaign } from '../campaign-definition'
@@ -45,6 +46,12 @@ registerCampaign({
                   build: ({ difficulty, log }) => bloodOnTheAltar({ difficulty, log }),
                   keywords: ['hunter', 'aloof', 'retaliate', 'massive', 'surge', 'peril'],
                 }
-              : { id },
+              : id === UNDIMENSIONED_AND_UNSEEN
+                ? {
+                    id,
+                    build: ({ difficulty, log }) => undimensionedAndUnseen({ difficulty, log }),
+                    keywords: ['massive', 'surge', 'peril', 'hunter', 'aloof', 'retaliate'],
+                  }
+                : { id },
   ),
 })

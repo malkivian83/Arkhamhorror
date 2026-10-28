@@ -1,5 +1,5 @@
 {
-  "description": "Busca a los profesores desaparecidos. Los cinco primeros escenarios son jugables; los tres últimos siguen en desarrollo.",
+  "description": "Busca a los profesores desaparecidos. Los seis primeros escenarios son jugables; los dos últimos siguen en desarrollo.",
   "story": {
     "museum": {
       "intro": "Hace algunos meses, Armitage y sus colegas detuvieron a un horror desa tado que iba a destruir Dunwich, una apartada ciudad que se encuentra a varias horas de Arkham, hacia el noroeste. Al principio pensáis que esta bestia es un oso rabioso o algo peor, pero la descripción que hace el profesor de la criatura describe algo muy distinto. Todo comenzó cuando un hombre llamado Wilbur Whateley entró en la biblioteca Orne en busca de la traducción al latín de Olaus Wormius de un libro llamado el Necronomicón . Wilbur ya poseía una ajada traducción al inglés del Dr. John Dee, pero no le bastaba para sus propósitos. Armitage le prohibió el acceso, pues temía el posible uso que pudiera darle al libro ese extraño hombre. Whateley volvió en secreto, con la esperanza de poder robar el libro, pero fue atacado por un sabueso guardián de la universidad. Más tarde, Armitage, Rice y Morgan descubrieron el cuerpo de Whateley. Una descripción del terrible cadáver –semiantropomórfico y cubierto de pelaje, con una piel coriácea y tentáculos de un color gris verdoso– os hace cuestionaros si Whateley era humano realmente.",
@@ -74,6 +74,29 @@
       "powderReward": "Un investigador puede añadir el Polvo de Ibn-Ghazi a su mazo.",
       "survivor02080": "–Gracias por todo lo que habéis hecho –dice el Dr. Mor gan mientras revisa vuestras provisiones y munición–. La última vez nos hizo falta algo de ese extraño polvo que preparó Armitage para poder siquiera ver las bestias que aterrorizaban Dunwich. Si hay más de esas cosas ahí fuera, vamos a necesitar ese polvo. Creo que me acuerdo de cómo lo hacía...",
       "survivor02080Title": "Los supervivientes"
+    },
+    "unseen": {
+      "intro": "Tras registrar el pueblo de Dunwich, habéis descubierto una serie de docu mentos, entradas de diarios y teorías esotéricas. Leer todo ese material os deja cansados y agotados emocionalmente. La mayor parte del contenido lo escribió la misma persona: un hombre llamado Seth Bishop. Cuando pre guntáis en el pueblo, descubrís que Seth es un habitante de Dunwich. Junto a varias personas más, Seth asistió de primera mano a la devastación cau sada por los acontecimientos de “el horror de Dunwich”, como Armitage llamó al incidente. Curiosamente, muy poca gente había visto a Seth por el pueblo desde entonces, y quienes lo vieron afirman que tenía los ojos inyec tados en sangre y el rostro sudoroso y pálido. Estáis seguros de que alguien que hubiera visto lo que Seth ha visto pare cería nervioso o paranoico. Pero cuanto más leéis sus frenéticos y delirantes escritos, más creéis que está implicado en los acontecimientos recientes. En ellos habla de haber “reunido los restos” y de haber usado métodos arcanos para “imbuir la esencia de los padres” en otras criaturas y, al final, en otras personas. Las explicaciones y diagramas que hay después son inenarrable mente complejos y desafían toda comprensión. Antes de que podáis encontrar a Seth y enfrentaros a él, varios hombres y mujeres del pueblo se os acercan presas del pánico. –¡Ha vuelto! –grita uno de ellos, al que reconocéis como Curtis Whateley, de la rama no podrida–. ¡Lo que sea que matara a los Frye ha vuelto! ¡Ha machacado la casa de los Bishop como si fuera de papel! –Curtis y los demás lugareños no dejan de dar voces, completamente asustados.",
+      "part1": "Queréis calmar a los lugareños para que os puedan explicar qué está pasando. Os informan de que hubo un estruendo al norte, y que cuando fueron a investigarlo, encontraron la granja de los Bishop hecha trizas y un rastro de pesadas huellas que llevaba hacia la cercana cañada de Cold Spring. –Saben lo que tienen que hacer, ¿verdad? Ustedes los de Arkham detuvieron a esa cosa la última vez –dice uno de los lugareños. Curtis sacude la cabeza y se muerde el labio. –Ni siquiera podíamos ver a esa cosa infernal hasta que el viejo profesor le echó ese polvo –dice–. Y ahora pienso que ojalá no la hubiera visto nunca... –Hay que hacer algo para detener los desmanes del monstruo. Pero si los documentos que habéis encontrado son ciertos, podría haber más de una de esas criaturas suelta...",
+      "part2": "Avisáis a los lugareños de que corren un grave peligro y los apre miáis a que huyan de Dunwich mientras puedan. Varios siguen vuestro consejo de inmediato, pues recuerdan a la terrible monstruosidad que ya puso en peligro al pueblo una vez. Curtis cae de rodillas, presa de la des esperación y sudando febrilmente: –Es esa cosa de nuevo, ¿verdad? Ha vuelto a por nosotros –masculla Curtis–. Espero que tengan ese polvo que tenía el viejo profesor la última vez. Ni siquiera podíamos ver a la maldita cosa hasta que la roció con él. Y ahora pienso que ojalá no la hubiera visto nunca... –Hay que hacer algo para detener los desmanes del monstruo. Pero si los documentos que habéis encontrado son ciertos, podría haber más de una de esas criaturas suelta...",
+      "resolution1": "Habéis hecho todo lo que habéis podido por dete ner a los violentos monstruos, pero había más de los que pensabais y no lograsteis matarlos a todos. Agotados y aterrados, os retiráis a casa de Zebulon con la esperanza de sobrevivir a la noche.",
+      "resolution2": "Tras matar al que parece ser el último de los vio lentos monstruos, os retiráis a casa de Zebulon, agotados y con mocionados por la experiencia.",
+      "formulaWithArmitage": "\"–¡Tomad! –Armitage suspira de alivio mientras anota las últimas frases de la fórmula–. He traducido lo que faltaba. –Se estremece a daros el texto, pues las palabras le traen recuerdos de su combate con la criatura–. Espero que sea la última vez que debo leerlo –admite–. Pero si no hacemos nada, el resultado final será mucho, mucho peor.\"",
+      "formulaWithoutArmitage": "Empleando la información que contienen las ruinas de la finca de los Whateley, lográis transcribir el resto de la fórmula que usó el Dr. Armitage para destruir a la bestia que aterrorizaba Dunwich. Sin embargo, la tarea os cuesta varias horas de retraso.",
+      "storm": "Grises nubes de tormenta se agolpan sobre vuestras cabezas, y una intensa lluvia golpea los campos. Mientras el aguacero aumenta su intensidad, os refugiáis en una cabaña medio derruida que hay cerca. Cae un relámpago, y la breve iluminación os permite ver algo enorme silueteado contra la lluvia. Sin previo aviso, los lejanos árboles se doblan, pero no parece haber nada doblándolos. Momentos más tarde, una fuerza como la de un camión se estrella contra vuestro refugio.",
+      "introTitle": "Invisibles y sin dimensión",
+      "part1Title": "Invisibles y sin dimensión",
+      "part2Title": "Invisibles y sin dimensión",
+      "resolution1Title": "Invisibles y sin dimensión",
+      "resolution2Title": "Invisibles y sin dimensión",
+      "formulaWithArmitageTitle": "Invisibles y sin dimensión",
+      "formulaWithoutArmitageTitle": "Invisibles y sin dimensión",
+      "stormTitle": "Invisibles y sin dimensión",
+      "decisionTitle": "Invisibles y sin dimensión",
+      "decision": "¿Cómo os dirigís a los lugareños?",
+      "setupTitle": "Preparación",
+      "setup": "Reúne Invisibles y sin dimensión, Chotacabras, Esclavos-bestia, Dunwich y Miedo impactante. Elige una variante de cada Lugar y empieza en la Aldea de Dunwich. La cantidad de sacrificios determina las Progenies iniciales y apartadas. En campaña, añade una debilidad básica Locura, Lesión o Pacto a cada mazo. Puedes buscar el Polvo de Ibn-Ghazi para ponerlo en juego.",
+      "escapedEffect": "Escaparon {amount} Progenies. Retira el Polvo de Ibn-Ghazi de los mazos."
     }
   },
   "notes": {
@@ -95,7 +118,9 @@
     "dunwichSurvived02218": "Earl Sawyer sobrevivió a El legado de Dunwich",
     "dunwichSacrificed02218": "Earl Sawyer fue sacrificado a Yog-Sothoth",
     "dunwichSurvived02080": "Dr. Francis Morgan sobrevivió a El legado de Dunwich",
-    "dunwichSacrificed02080": "Dr. Francis Morgan fue sacrificado a Yog-Sothoth"
+    "dunwichSacrificed02080": "Dr. Francis Morgan fue sacrificado a Yog-Sothoth",
+    "dunwichCalmedTownsfolk": "Calmasteis a los lugareños",
+    "dunwichWarnedTownsfolk": "Advertisteis a los lugareños"
   },
   "abilities": {
     "museum": {
@@ -119,6 +144,15 @@
       "zebulon": "Agotar a Zebulon para robar una carta",
       "earl": "Agotar a Earl para robar una carta",
       "powder": "Colocar una pista sobre una Progenie agotada"
+    },
+    "unseen": {
+      "formula": "Fórmula esotérica: {enemy} ({clues} pistas, {damage} daño)",
+      "single": "Colocar hasta {amount} pistas de un investigador (una vez por partida)",
+      "group": "Colocar hasta {amount} pistas del grupo (una vez por partida)",
+      "each": "Cada investigador puede colocar 1 pista (una vez por partida)",
+      "rain": "Atraer a la lluvia: 1 pista hasta el final de la ronda",
+      "lure": "Atraer una Progenie hacia la aldea",
+      "move": "Probar intelecto (4) para mover una Progenie"
     }
   },
   "choices": {
@@ -138,6 +172,18 @@
     "altar": {
       "willpower": "Probar voluntad (4)",
       "agility": "Probar agilidad (4)"
+    },
+    "unseen": {
+      "calm": "Calmar a los lugareños",
+      "warn": "Advertir a los lugareños",
+      "horror": "Recibir 2 de horror",
+      "spawn": "Hacer aparecer una Progenie",
+      "powder": "Poner el Polvo de Ibn-Ghazi en juego",
+      "removeClues": "Retirar {clues} pistas de {enemy} — {location} ({damage} daño)",
+      "autoFail": "Fallar automáticamente",
+      "minusFour": "Tratar la ficha como −4",
+      "amount": "{amount} pistas",
+      "enemy": "{enemy} — {location} ({clues} pistas, {damage} daño)"
     }
   },
   "prompts": {
@@ -156,6 +202,15 @@
       "kidnapped": "Elige la prueba para evitar el secuestro",
       "song": "Elige quién recibe el Canto del psicopompo",
       "ally": "Elige el aliado secuestrado"
+    },
+    "unseen": {
+      "tracks": "El rastro de las criaturas",
+      "powder": "¿Buscas el Polvo de Ibn-Ghazi?",
+      "randomGlen": "La cañada ha sido elegida: puedes probar agilidad (3) para elegir otro Lugar aleatorio",
+      "tablet": "Retira las pistas de una Progenie o acepta la penalización",
+      "clue": "Puedes colocar una de tus pistas sobre una Abominación",
+      "donor": "¿Quién aporta la pista?",
+      "amount": "¿Cuántas pistas colocáis?"
     }
   }
 }

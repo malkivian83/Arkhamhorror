@@ -328,6 +328,78 @@
       "inputHash": "75e37e2a0f470fce28f23544011f0a4783d7e1a280c929a17e69d91d6df1b754",
       "sha256": "eb039011b8446475771f3c6fd8212fd17c95492d67c8f33ccf818dc84faecfa3",
       "bytes": 378714
+    },
+    {
+      "key": "story.unseen.intro",
+      "file": "unseen-intro-nico-history.mp3",
+      "text": "Tras registrar el pueblo de Dunwich, habéis descubierto una serie de docu mentos, entradas de diarios y teorías esotéricas. Leer todo ese material os deja cansados y agotados emocionalmente. La mayor parte del contenido lo escribió la misma persona: un hombre llamado Seth Bishop. Cuando pre guntáis en el pueblo, descubrís que Seth es un habitante de Dunwich. Junto a varias personas más, Seth asistió de primera mano a la devastación cau sada por los acontecimientos de “el horror de Dunwich”, como Armitage llamó al incidente. Curiosamente, muy poca gente había visto a Seth por el pueblo desde entonces, y quienes lo vieron afirman que tenía los ojos inyec tados en sangre y el rostro sudoroso y pálido. Estáis seguros de que alguien que hubiera visto lo que Seth ha visto pare cería nervioso o paranoico. Pero cuanto más leéis sus frenéticos y delirantes escritos, más creéis que está implicado en los acontecimientos recientes. En ellos habla de haber “reunido los restos” y de haber usado métodos arcanos para “imbuir la esencia de los padres” en otras criaturas y, al final, en otras personas. Las explicaciones y diagramas que hay después son inenarrable mente complejos y desafían toda comprensión. Antes de que podáis encontrar a Seth y enfrentaros a él, varios hombres y mujeres del pueblo se os acercan presas del pánico. –¡Ha vuelto! –grita uno de ellos, al que reconocéis como Curtis Whateley, de la rama no podrida–. ¡Lo que sea que matara a los Frye ha vuelto! ¡Ha machacado la casa de los Bishop como si fuera de papel! –Curtis y los demás lugareños no dejan de dar voces, completamente asustados.",
+      "characters": 1615,
+      "inputHash": "b9c3cfbf3d4e5389f2180e79b3e4ff95928d82695f98bb5e7d19628a693de481",
+      "sha256": "e6ccf7ca630158251e0573b1569ab6dae57b669b221ca85cf025f80412cd22d2",
+      "bytes": 1819419
+    },
+    {
+      "key": "story.unseen.part1",
+      "file": "unseen-part1-nico-history.mp3",
+      "text": "Queréis calmar a los lugareños para que os puedan explicar qué está pasando. Os informan de que hubo un estruendo al norte, y que cuando fueron a investigarlo, encontraron la granja de los Bishop hecha trizas y un rastro de pesadas huellas que llevaba hacia la cercana cañada de Cold Spring. –Saben lo que tienen que hacer, ¿verdad? Ustedes los de Arkham detuvieron a esa cosa la última vez –dice uno de los lugareños. Curtis sacude la cabeza y se muerde el labio. –Ni siquiera podíamos ver a esa cosa infernal hasta que el viejo profesor le echó ese polvo –dice–. Y ahora pienso que ojalá no la hubiera visto nunca... –Hay que hacer algo para detener los desmanes del monstruo. Pero si los documentos que habéis encontrado son ciertos, podría haber más de una de esas criaturas suelta...",
+      "characters": 788,
+      "inputHash": "a04a25d52ced2d179a16509ad7d0a212ce1689a7cb2d7f6063b27705ad46fcae",
+      "sha256": "ef73d682945b008d8db9a4b009869416597c07a9fd3a8894db607a02a2f360b4",
+      "bytes": 853933
+    },
+    {
+      "key": "story.unseen.part2",
+      "file": "unseen-part2-nico-history.mp3",
+      "text": "Avisáis a los lugareños de que corren un grave peligro y los apre miáis a que huyan de Dunwich mientras puedan. Varios siguen vuestro consejo de inmediato, pues recuerdan a la terrible monstruosidad que ya puso en peligro al pueblo una vez. Curtis cae de rodillas, presa de la des esperación y sudando febrilmente: –Es esa cosa de nuevo, ¿verdad? Ha vuelto a por nosotros –masculla Curtis–. Espero que tengan ese polvo que tenía el viejo profesor la última vez. Ni siquiera podíamos ver a la maldita cosa hasta que la roció con él. Y ahora pienso que ojalá no la hubiera visto nunca... –Hay que hacer algo para detener los desmanes del monstruo. Pero si los documentos que habéis encontrado son ciertos, podría haber más de una de esas criaturas suelta...",
+      "characters": 755,
+      "inputHash": "db1817ab2f9baafc2c6bcb666c2e841a2e4b25b103b0c027533922c3801c3e7f",
+      "sha256": "8a1e8bf7eb2e64caffb4b25344555bd96014c1ffa25714c53d89627ff5e81293",
+      "bytes": 795419
+    },
+    {
+      "key": "story.unseen.resolution1",
+      "file": "unseen-resolution1-nico-history.mp3",
+      "text": "Habéis hecho todo lo que habéis podido por dete ner a los violentos monstruos, pero había más de los que pensabais y no lograsteis matarlos a todos. Agotados y aterrados, os retiráis a casa de Zebulon con la esperanza de sobrevivir a la noche.",
+      "characters": 243,
+      "inputHash": "5e3d169fa94daf8f36c8e4b9943990d7545b29c141624e9ee13bfeee0dab1f18",
+      "sha256": "b6a702f8d38b399a6c5496becee33f6b6a58a5a852db4871dd60e7d261fd0719",
+      "bytes": 233682
+    },
+    {
+      "key": "story.unseen.resolution2",
+      "file": "unseen-resolution2-nico-history.mp3",
+      "text": "Tras matar al que parece ser el último de los vio lentos monstruos, os retiráis a casa de Zebulon, agotados y con mocionados por la experiencia.",
+      "characters": 144,
+      "inputHash": "b9214fec0ed5da8ee2148f385284fc4446f4f5243eaed0ef925133ede297650e",
+      "sha256": "6ecd45a619056cc1f924e5905852bbe06cd02a7f7cc385fbee082086fda8f530",
+      "bytes": 149672
+    },
+    {
+      "key": "story.unseen.formulaWithArmitage",
+      "file": "unseen-formulawitharmitage-nico-history.mp3",
+      "text": "\"–¡Tomad! –Armitage suspira de alivio mientras anota las últimas frases de la fórmula–. He traducido lo que faltaba. –Se estremece a daros el texto, pues las palabras le traen recuerdos de su combate con la criatura–. Espero que sea la última vez que debo leerlo –admite–. Pero si no hacemos nada, el resultado final será mucho, mucho peor.\"",
+      "characters": 341,
+      "inputHash": "2843050b7cc8d6b89972aca105303f7b00454e578c94f543153bb84a635d283f",
+      "sha256": "088db431d35dfd17db4002137b19cbdca26beb759845c4bffb6abff099e1d39c",
+      "bytes": 395432
+    },
+    {
+      "key": "story.unseen.formulaWithoutArmitage",
+      "file": "unseen-formulawithoutarmitage-nico-history.mp3",
+      "text": "Empleando la información que contienen las ruinas de la finca de los Whateley, lográis transcribir el resto de la fórmula que usó el Dr. Armitage para destruir a la bestia que aterrorizaba Dunwich. Sin embargo, la tarea os cuesta varias horas de retraso.",
+      "characters": 254,
+      "inputHash": "33a4baae24288b4d1a0c72877833a31e29927da71327373b873f90406b917404",
+      "sha256": "1cc36d0f1079e3788ccddabfb3a7c11d9c51da086bd54c952496684cf421a602",
+      "bytes": 265447
+    },
+    {
+      "key": "story.unseen.storm",
+      "file": "unseen-storm-nico-history.mp3",
+      "text": "Grises nubes de tormenta se agolpan sobre vuestras cabezas, y una intensa lluvia golpea los campos. Mientras el aguacero aumenta su intensidad, os refugiáis en una cabaña medio derruida que hay cerca. Cae un relámpago, y la breve iluminación os permite ver algo enorme silueteado contra la lluvia. Sin previo aviso, los lejanos árboles se doblan, pero no parece haber nada doblándolos. Momentos más tarde, una fuerza como la de un camión se estrella contra vuestro refugio.",
+      "characters": 473,
+      "inputHash": "f8097f6c0c1874e4924068f8def5a9888823e3ae4e61b51a3a2eede73b6e3908",
+      "sha256": "2b1cd95d0a3efa3bb3afb125eb2c6e5cbdedb530f8dfc00eab555f725a970857",
+      "bytes": 494488
     }
   ]
 }

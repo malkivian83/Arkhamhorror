@@ -1,6 +1,7 @@
 import {
   actContributors,
   actionCost,
+  attackBlocked,
   actionsThisRound,
   cardCost,
   commitBlocked,
@@ -3334,6 +3335,11 @@ export function handle(state: GameState, message: Message): GameState {
 
     // ------------------------------------------------------ Prueba de habilidad
     case 'BeginSkillTest': {
+      if (message.kind.type === 'fight') {
+        const enemy = state.enemies[message.kind.enemy],
+          source = message.source ? state.assets[message.source]?.code : message.effectSource
+        if (enemy && attackBlocked(state, message.investigator, enemy, source)) return state
+      }
       if (
         message.kind.type === 'investigate' &&
         scenarioBehavior(state.scenarioId)?.cannotInvestigate?.(
