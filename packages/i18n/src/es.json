@@ -72,7 +72,23 @@
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú",
     "preferences": "Preferencias",
-    "privacySettings": "Privacidad · Analytics"
+    "privacySettings": "Privacidad · Analytics",
+    "changelog": {
+      "link": "Novedades",
+      "title": "Últimas novedades",
+      "description": "Los últimos añadidos y mejoras de Arkham Online.",
+      "dunwich": {
+        "title": "El legado de Dunwich, al completo",
+        "campaign": "Los ocho escenarios y el epílogo ya son jugables, con decisiones y consecuencias que se conservan durante la campaña.",
+        "audio": "69 narraciones en español con Nico - History & Documentary, incluidos los dos epílogos.",
+        "saves": "Corregida la restauración de partidas cuando la campaña comienza por La casa siempre gana."
+      },
+      "improvements": {
+        "title": "Mejoras en las reglas de los escenarios",
+        "carcosa": "Corregidas reglas pendientes de la campaña El camino a Carcosa.",
+        "choices": "Mejoradas las elecciones entre destinos empatados en Fortuna e insensatez, Brethren of Ash y Asesinato en el hotel Excelsior."
+      }
+    }
   },
   "home": {
     "serverStatus": "Estado del servidor",

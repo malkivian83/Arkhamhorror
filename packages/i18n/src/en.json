@@ -72,7 +72,23 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "preferences": "Preferences",
-    "privacySettings": "Privacy · Analytics"
+    "privacySettings": "Privacy · Analytics",
+    "changelog": {
+      "link": "What’s new",
+      "title": "Latest updates",
+      "description": "The latest additions and improvements to Arkham Online.",
+      "dunwich": {
+        "title": "The complete Dunwich Legacy",
+        "campaign": "All eight scenarios and the epilogue are playable, with decisions and consequences carried through the campaign.",
+        "audio": "69 Spanish narrations with Nico - History & Documentary, including both epilogues.",
+        "saves": "Fixed restoring saves when the campaign starts with The House Always Wins."
+      },
+      "improvements": {
+        "title": "Scenario rules improvements",
+        "carcosa": "Fixed outstanding rules in The Path to Carcosa campaign.",
+        "choices": "Improved choices between tied destinations in Fortune and Folly, Brethren of Ash and Murder at the Excelsior Hotel."
+      }
+    }
   },
   "home": {
     "serverStatus": "Server status",
