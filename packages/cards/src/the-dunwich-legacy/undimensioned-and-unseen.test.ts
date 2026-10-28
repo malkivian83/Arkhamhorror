@@ -24,7 +24,8 @@ import {
   UNSEEN_LOCATIONS,
   UNSEEN_ENCOUNTERS,
 } from './undimensioned-and-unseen'
-import { unseenSpecific as specific, broods } from './unseen-helpers'
+import { unseenSpecific as specific, broods, unseenWeaknessPool } from './unseen-helpers'
+import { UNSEEN_WEAKNESS_POOL } from './unseen-weakness-pool'
 import { B, BN } from './altar-codes'
 import { H } from './house-codes'
 import { newCampaign, startScenario, finishScenario, currentScenario } from '../campaign'
@@ -374,6 +375,90 @@ it('a complete legal sequence translates the Formula and destroys every Brood', 
   }
   expect(s.outcome, JSON.stringify(trace.slice(-30))).toEqual({ type: 'resolution', resolution: 2 })
   expect(s.campaignLog!.values[UN.escaped]).toBe('0')
+})
+it('the random weakness pool shares reprints, respects printed copies and avoids counting campaign cards twice', () => {
+  let s = game()
+  s = {
+    ...s,
+    investigators: s.investigators.map((i) => ({ ...i, deck: ['01096'], hand: [], discard: [] })),
+    campaignLog: {
+      ...s.campaignLog!,
+      investigators: { a: { ...s.campaignLog!.investigators.a!, storyAssets: ['01096'] } },
+    },
+  }
+  const amnesia = UNSEEN_WEAKNESS_POOL.find((e) =>
+    (e.codes as readonly string[]).includes('01096'),
+  )!.codes.find((c) => playerCardDef(c)?.weakness === 'basicweakness')!
+  expect(amnesia).toBeDefined()
+  expect(unseenWeaknessPool(s).filter((c) => c === amnesia)).toHaveLength(1)
+  s = change({ deck: ['01096', '01596'] })(s)
+  expect(unseenWeaknessPool(s)).not.toContain(amnesia)
+  s = change({ deck: ['04039'] })(s)
+  expect(unseenWeaknessPool(s)).not.toContain('04038')
+})
+it('clues on Powder may pay the act while the investigator has no clues on their card', () => {
+  let s = game()
+  const ruins = s.acts[0]!.cluesAtLocation!
+  s = during(
+    s,
+    (x) => ({
+      ...change({ location: ruins, clues: 0 })(x),
+      campaignLog: {
+        ...x.campaignLog!,
+        values: { ...x.campaignLog!.values, [BN.survivors]: [H.armitage, B.earl].join(',') },
+      },
+    }),
+    reveal(ruins),
+    { type: 'PutAssetIntoPlay', investigator: 'a', code: B.powder },
+  )
+  const powder = Object.values(s.assets).find((a) => a.code === B.powder)!
+  expect(powder.clues).toBe(2)
+  s = during(s, keep, { type: 'AdvanceAct' })
+  s = settle(s)
+  expect(s.actIndex).toBe(1)
+  expect(s.assets[powder.id]!.clues).toBe(0)
+  expect(getInvestigator(s, 'a').clues).toBe(0)
+})
+it('location clue abilities can move clues controlled on Powder onto an Abomination', () => {
+  let s = game()
+  s = during(
+    s,
+    (x) => ({
+      ...room(U.villageHounds)(change({ location: U.villageHounds, clues: 0 })(x)),
+      campaignLog: {
+        ...x.campaignLog!,
+        values: { ...x.campaignLog!.values, [BN.survivors]: [H.armitage, B.earl].join(',') },
+      },
+    }),
+    put(U.villageHounds),
+    reveal(U.villageHounds),
+    { type: 'PutAssetIntoPlay', investigator: 'a', code: B.powder },
+  )
+  const powder = Object.values(s.assets).find((a) => a.code === B.powder)!
+  s = doAbility(s, `${U.villageHounds}:clue`)
+  s = choose(s, 'choice.unseen.enemy')
+  s = choose(s, 'choice.unseen.amount', { amount: 1 })
+  s = settle(s)
+  expect(s.assets[powder.id]!.clues).toBe(1)
+  expect(broods(s).some((e) => e.clues === 1)).toBe(true)
+})
+it('a clue payment lets the investigator preserve held clues by choosing a controlled asset', () => {
+  let s = during(
+    game(),
+    (x) => ({
+      ...change({ clues: 1 })(x),
+      campaignLog: {
+        ...x.campaignLog!,
+        values: { ...x.campaignLog!.values, [BN.survivors]: [H.armitage, B.earl].join(',') },
+      },
+    }),
+    { type: 'PutAssetIntoPlay', investigator: 'a', code: B.powder },
+    { type: 'SpendClues', investigator: 'a', amount: 1 },
+  )
+  s = choose(s, 'choice.asset', { asset: 'Powder of Ibn Ghazi' })
+  const powder = Object.values(s.assets).find((a) => a.code === B.powder)!
+  expect(powder.clues).toBe(1)
+  expect(getInvestigator(s, 'a').clues).toBe(1)
 })
 it('the intro can warn the townsfolk and standalone setup uses three sacrifices without adding a weakness', () => {
   let s = createGame({

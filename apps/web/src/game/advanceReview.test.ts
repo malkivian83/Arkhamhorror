@@ -1,5 +1,5 @@
 import { applyInput, createGame, registerAct, type GameState, type Message } from '@lcg/engine'
-import { during, testInvestigator, testScenario, throughSetup } from '@lcg/engine/testing'
+import { during, keep, testInvestigator, testScenario, throughSetup } from '@lcg/engine/testing'
 import { newCampaign, startScenario } from '@lcg/cards'
 import { describe, expect, it } from 'vitest'
 import {
@@ -142,6 +142,21 @@ describe('avance visual con aceptación, independiente de las reglas', () => {
     expect(frames.map((f) => f.stage)).toEqual(['effects', 'entered', 'next'])
     expect(frames.at(-1)!.cards[0]!.name).toBe('Second act')
     expect(frames.some((f) => f.stage === 'reverse')).toBe(false)
+  })
+  it('presenta las pistas gastadas de un apoyo como pago antes de revelar el reverso', () => {
+    let s = during(
+      table(),
+      (g) => ({ ...g, investigators: g.investigators.map((i) => ({ ...i, clues: 0 })) }),
+      { type: 'PutAssetIntoPlay', investigator: 'a', code: '02219' },
+    )
+    const asset = Object.values(s.assets).find((a) => a.code === '02219')!
+    s = during(s, keep, { type: 'PlaceCluesOnAsset', asset: asset.id, amount: 2 })
+    const { state, frames } = reviewed(s, 'action.advanceAct')
+    expect(state.assets[asset.id]!.clues).toBe(0)
+    expect(frames.findIndex((f) => f.stage === 'payment')).toBeGreaterThanOrEqual(0)
+    expect(frames.findIndex((f) => f.stage === 'payment')).toBeLessThan(
+      frames.findIndex((f) => f.stage === 'reverse'),
+    )
   })
   it('mantiene las decisiones reales del pago colectivo', () => {
     const { state, frames } = reviewed(table(2), 'action.advanceAct')

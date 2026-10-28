@@ -67,6 +67,7 @@ import {
   findEnemy,
   getEnemy,
   getInvestigator,
+  controlledClues,
   getLocation,
   huntingSteps,
   investigatorsAt,
@@ -5957,10 +5958,62 @@ export function handle(state: GameState, message: Message): GameState {
       })
 
     case 'SpendClues':
-      return updateInvestigator(state, message.investigator, (i) => ({
-        ...i,
-        clues: Math.max(0, i.clues - message.amount),
-      }))
+      if (
+        !Object.values(state.assets).some(
+          (a) => a.owner === message.investigator && (a.clues ?? 0) > 0,
+        )
+      )
+        return updateInvestigator(state, message.investigator, (i) => ({
+          ...i,
+          clues: Math.max(0, i.clues - message.amount),
+        }))
+      return push(state, {
+        type: 'MoveControlledClues',
+        investigator: message.investigator,
+        to: { type: 'pool' },
+        amount: message.amount,
+      })
+
+    case 'MoveControlledClues': {
+      if (message.amount <= 0) return state
+      const actor = getInvestigator(state, message.investigator)
+      const sources: ClueHolder[] = [
+        ...(actor.clues > 0 ? [{ type: 'investigator' as const, id: actor.id }] : []),
+        ...Object.values(state.assets)
+          .filter((a) => a.owner === actor.id && (a.clues ?? 0) > 0)
+          .map((a) => ({ type: 'asset' as const, id: a.id })),
+      ]
+      const move = (from: ClueHolder): Message[] => {
+        const amount = Math.min(message.amount, cluesOn(state, from))
+        return [
+          { type: 'MoveClues', from, to: message.to, amount },
+          { ...message, amount: message.amount - amount },
+        ]
+      }
+      if (!sources.length) return state
+      if (sources.length === 1 || !state.interactive) return push(state, ...move(sources[0]!))
+      return push(state, {
+        type: 'Ask',
+        investigator: actor.id,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.whoPaysClue',
+          promptParams: { n: message.amount },
+          choices: sources.map((source) => ({
+            label: source.type === 'asset' ? 'choice.asset' : 'choice.investigator',
+            params:
+              source.type === 'asset'
+                ? { asset: playerCardDef(state.assets[source.id]!.code)?.name ?? source.id }
+                : { name: actor.name },
+            target:
+              source.type === 'asset'
+                ? { type: 'asset', id: source.id }
+                : { type: 'investigator', id: actor.id },
+            then: move(source),
+          })),
+        },
+      })
+    }
 
     case 'PayGroupClues': {
       // Pistas que paga el grupo: si solo hay una forma de pagarlas, se paga; si
@@ -5968,16 +6021,18 @@ export function handle(state: GameState, message: Message): GameState {
       if (message.amount <= 0) return state
       const payers = message.from
         .map((id) => getInvestigator(state, id))
-        .filter((i) => !i.eliminated && i.clues > 0)
-      const total = payers.reduce((sum, i) => sum + i.clues, 0)
-      const pay = (id: InvestigatorId, n: number): GameState =>
-        updateInvestigator(state, id, (i) => ({ ...i, clues: i.clues - n }))
+        .filter((i) => !i.eliminated && controlledClues(state, i.id) > 0)
+      const total = payers.reduce((sum, i) => sum + controlledClues(state, i.id), 0)
       const [first] = payers
       if (!first) return state
       if (total <= message.amount || payers.length === 1 || !state.interactive) {
         // Todos pagan todo lo que tienen, o paga el único (o el primero) que puede.
-        const spent = Math.min(first.clues, message.amount)
-        return push(pay(first.id, spent), { ...message, amount: message.amount - spent })
+        const spent = Math.min(controlledClues(state, first.id), message.amount)
+        return push(
+          state,
+          { type: 'SpendClues', investigator: first.id, amount: spent },
+          { ...message, amount: message.amount - spent },
+        )
       }
       const lead = leadInvestigator(state) ?? first
       return push(state, {
@@ -5989,7 +6044,7 @@ export function handle(state: GameState, message: Message): GameState {
           promptParams: { n: message.amount },
           choices: payers.map((i): Choice => ({
             label: 'choice.investigatorPaysClue',
-            params: { name: i.name, clues: i.clues },
+            params: { name: i.name, clues: controlledClues(state, i.id) },
             target: { type: 'investigator', id: i.id },
             then: [
               { type: 'SpendClues', investigator: i.id, amount: 1 },

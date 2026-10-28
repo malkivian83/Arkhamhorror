@@ -14,6 +14,7 @@ import {
 } from './content'
 import {
   cardAllowed,
+  controlledClues,
   cardOfRole,
   currentAgendas,
   activeInvestigators,
@@ -265,7 +266,10 @@ export function entryCost(state: GameState, location: string): number {
 /** El grupo tiene pistas suficientes para entrar. */
 export function canAffordEntry(state: GameState, location: string): boolean {
   const cost = entryCost(state, location)
-  return cost === 0 || activeInvestigators(state).reduce((sum, i) => sum + i.clues, 0) >= cost
+  return (
+    cost === 0 ||
+    activeInvestigators(state).reduce((sum, i) => sum + controlledClues(state, i.id), 0) >= cost
+  )
 }
 
 /** Acciones que cuesta una acción básica, con costes adicionales (Waterfront, Arcane Lock). */
@@ -391,7 +395,7 @@ export function canAdvanceAct(state: GameState): boolean {
   const required = cluesToAdvanceAct(state)
   if (required === null) return false
   if (scenarioBehavior(state.scenarioId)?.actAdvanceAllowed?.(state) === false) return false
-  const available = actContributors(state).reduce((sum, i) => sum + i.clues, 0)
+  const available = actContributors(state).reduce((sum, i) => sum + controlledClues(state, i.id), 0)
   return available >= required
 }
 

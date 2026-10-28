@@ -175,9 +175,10 @@ Fuentes: guía revisada ES, páginas 13–16, cartas 02195–02224, Dunwich 0208
 
 ## Invisibles y sin dimensión
 
-Fuentes: guía revisada ES, páginas 17–18, y cartas 02236–02259. Se elige una variante de cada uno de los seis Lugares. Las dos decisiones del prólogo se conservan. Según los sacrificios se preparan dos, tres, cuatro o cinco Progenies, con cero, una o dos iniciales. En campaña, cada investigador añade una debilidad básica aleatoria Locura, Lesión o Pacto; el Polvo se puede buscar y poner en juego.
+Fuentes: guía revisada ES, páginas 17–18, y cartas 02236–02259. Se elige una variante de cada uno de los seis Lugares. Las dos decisiones del prólogo se conservan. Según los sacrificios se preparan dos, tres, cuatro o cinco Progenies, con cero, una o dos iniciales. En campaña, cada investigador añade una debilidad básica aleatoria Locura, Lesión o Pacto de la reserva restante, respetando las cantidades y las reimpresiones equivalentes; el Polvo se puede buscar y poner en juego.
 
 - Progenies Descomunales con salud de uno más uno por investigador, inmunes a ataques y daño salvo la Fórmula. Los efectos de derrota directa siguen siendo válidos. La Fórmula usa voluntad y un bono dinámico por las pistas del enemigo, incluso cuando cambian durante la prueba.
+- Las pistas sobre el Polvo se consideran controladas: sirven para pagar actos y costes de entrada y para las habilidades de los Lugares, pudiendo elegir su origen. El resumen de avance muestra el pago antes del reverso.
 - Coste de acto aportado solo desde las Ruinas Whateley; una Fórmula por investigador y una perdición si Armitage fue sacrificado. Objetivo final, experiencia y recuento de Progenies escapadas, retirando el Polvo de los mazos.
 - Movimiento aleatorio al final de enemigos, incluso agotadas; barajado y apariciones al avanzar los planes, emboscada del segundo plan y final del tercero. La variante de la cañada permite sustituir un Lugar aleatorio mediante su prueba.
 - Las variantes permiten pistas individuales, del grupo o de cada investigador, con sus límites de una vez por partida; pista temporal de la lluvia, atraer o mover criaturas y daño del páramo. La elección distingue Progenies por Lugar, pistas y daño.
@@ -186,7 +187,11 @@ Fuentes: guía revisada ES, páginas 17–18, y cartas 02236–02259. Se elige u
 
 ## Validación y continuación
 
-Último lote subido: Sangre en el altar y Los supervivientes en `fa08bea6`. Lote actual: Invisibles y sin dimensión. Pasan 47 pruebas del escenario y 413 pruebas dirigidas del motor, Dunwich, catálogos y narraciones. Incluyen un recorrido completo que destruye todas las Progenies mediante acciones legales sin editar el estado tras preparar, y partidas con mazos iniciales reales de uno a cuatro investigadores. Comprobaciones globales finales pendientes.
+Último lote funcional: `9e339f4a`, Invisibles y sin dimensión; ajuste posterior de la reserva de debilidades según la [FAQ oficial 2.5, página 16](https://images-cdn.fantasyflightgames.com/filer_public/c1/d0/c1d0fab6-7fa6-4ce2-af6a-16416381a19b/ahc_faq_v25_february_2026-web.pdf). La selección descuenta las copias usadas y reserva las debilidades progresivas.
+
+Formato, lint y tipos globales comprobados. La última suite completa obtuvo 4768 pruebas correctas, 19 omitidas y tres fallos: dos límites de cinco segundos preexistentes en Gala y Brethren of Ash y una expectativa de presentación del nuevo pago de pistas. Esta última se corrigió; pasan 430 pruebas afectadas del motor, Dunwich y presentación, incluidas las 51 propias del escenario. Controles finales y repetición de los dos archivos con tiempo ampliado pendientes.
+
+Las pruebas incluyen un recorrido completo que destruye todas las Progenies mediante acciones legales sin editar el estado tras preparar, partidas con mazos iniciales reales de uno a cuatro investigadores, variantes de Lugares, costes, fichas, encuentros, guardado y decisiones de preparación.
 
 Catálogo, escaneos y 43 narraciones se verifican por consola. Se inspeccionaron conexiones y cartas representativas. La revisión visual de la aplicación queda para la persona usuaria conforme a AGENTS.
 

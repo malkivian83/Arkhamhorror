@@ -1,6 +1,6 @@
 import {
   activeInvestigators,
-  allPlayerCardDefs,
+  controlledClues,
   getInvestigator,
   leadInvestigator,
   nextInt,
@@ -41,7 +41,12 @@ import { H } from './house-codes'
 import { broodOfYogSothoth } from './brood-of-yog-sothoth'
 import { UNSEEN_ENCOUNTERS } from './unseen-encounters'
 import { U, UN, UNDIMENSIONED_AND_UNSEEN } from './unseen-codes'
-import { broods, unseenEnemyChoice, unseenSpecific as specific } from './unseen-helpers'
+import {
+  broods,
+  unseenEnemyChoice,
+  unseenWeaknessPool,
+  unseenSpecific as specific,
+} from './unseen-helpers'
 export { U, UN, UNDIMENSIONED_AND_UNSEEN } from './unseen-codes'
 export { UNSEEN_ENCOUNTERS } from './unseen-encounters'
 const entry = storyEntries('unseen')
@@ -345,14 +350,7 @@ registerScenario({
       )
     }
     if (key === 'unseenWeaknesses') {
-      const pool = allPlayerCardDefs()
-        .filter(
-          (d) =>
-            d.weakness === 'basicweakness' &&
-            d.traits.some((t) => ['Madness', 'Injury', 'Pact'].includes(t)),
-        )
-        .map((d) => d.code)
-        .sort()
+      const pool = unseenWeaknessPool(s)
       if (!pool.length) return s
       let rng = s.rng
       const messages: Message[] = []
@@ -360,6 +358,7 @@ registerScenario({
         const [n, r] = nextInt(rng, pool.length)
         rng = r
         const code = pool[n]!
+        pool.splice(n, 1)
         messages.push(
           { type: 'AddStoryAsset', investigator: i.id, code },
           { type: 'PlaceOnDeck', investigator: i.id, code, where: 'top' },
@@ -625,7 +624,7 @@ registerScenario({
     }
     if (key === 'unseenEachClue') {
       if (
-        getInvestigator(s, investigator).clues <= 0 ||
+        controlledClues(s, investigator) <= 0 ||
         at(s, investigator) !== data.location ||
         !abominations(s, String(data.location)).length
       )
@@ -641,8 +640,8 @@ registerScenario({
               ...unseenEnemyChoice(s, e),
               then: [
                 {
-                  type: 'MoveClues' as const,
-                  from: { type: 'investigator' as const, id: investigator },
+                  type: 'MoveControlledClues' as const,
+                  investigator,
                   to: { type: 'enemy' as const, id: e.id },
                   amount: 1,
                 },
@@ -654,11 +653,13 @@ registerScenario({
       })
     }
     if (key === 'unseenClueAmount') {
-      const actors = localActors(s, String(data.location)).filter((i) => i.clues > 0),
+      const actors = localActors(s, String(data.location)).filter(
+          (i) => controlledClues(s, i.id) > 0,
+        ),
         personal = data.mode === 'single',
         total = personal
-          ? Math.max(0, ...actors.map((i) => i.clues))
-          : actors.reduce((n, i) => n + i.clues, 0),
+          ? Math.max(0, ...actors.map((i) => controlledClues(s, i.id)))
+          : actors.reduce((n, i) => n + controlledClues(s, i.id), 0),
         max = Math.min(Number(data.max), total)
       if (personal && !data.donor)
         return push(s, {
@@ -674,7 +675,7 @@ registerScenario({
             })),
           },
         })
-      const limit = data.donor ? Math.min(max, getInvestigator(s, String(data.donor)).clues) : max
+      const limit = data.donor ? Math.min(max, controlledClues(s, String(data.donor))) : max
       return push(s, {
         type: 'Ask',
         investigator,
@@ -692,7 +693,7 @@ registerScenario({
     if (key === 'unseenDonate') {
       if (Number(data.remaining) <= 0) return s
       const actors = localActors(s, String(data.location)).filter(
-        (i) => i.clues > 0 && (!data.donor || i.id === data.donor),
+        (i) => controlledClues(s, i.id) > 0 && (!data.donor || i.id === data.donor),
       )
       if (!actors.length) return s
       return push(s, {
@@ -706,8 +707,8 @@ registerScenario({
             params: { name: i.name },
             then: [
               {
-                type: 'MoveClues',
-                from: { type: 'investigator', id: i.id },
+                type: 'MoveControlledClues',
+                investigator: i.id,
                 to: { type: 'enemy', id: String(data.enemy) },
                 amount: 1,
               },
@@ -794,7 +795,7 @@ const clueAbility = (
 ): AbilityOption[] =>
   groupUsed(s, l.id) ||
   !abominations(s, global ? undefined : l.id).length ||
-  (mode !== 'rain' && !localActors(s, l.id).some((i) => i.clues > 0))
+  (mode !== 'rain' && !localActors(s, l.id).some((i) => controlledClues(s, i.id) > 0))
     ? []
     : [
         {
