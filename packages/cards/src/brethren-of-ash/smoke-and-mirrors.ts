@@ -10,6 +10,7 @@
  * Los efectos están implementados a partir de su descripción; no se incluye el
  * texto de las cartas.
  */
+import { nearestEnemyChoice } from '../nearest-choice'
 import {
   assetVitals,
   activeInvestigators,
@@ -1083,14 +1084,12 @@ registerTreachery({
   revelation: (state, investigator) => {
     const here = getInvestigator(state, investigator).location
     if (here === null) return []
-    const nonElite = (l: string) =>
-      enemiesAt(state, l).some((e) => !(e.traits ?? []).includes('Elite'))
-    const at = nearestLocation(state, here, nonElite)
-    const enemy =
-      at === null
-        ? undefined
-        : enemiesAt(state, at).find((e) => !(e.traits ?? []).includes('Elite'))
-    return enemy && at !== here ? [{ type: 'HuntOnce', enemy: enemy.id, toward: here }] : []
+    return nearestEnemyChoice(
+      state,
+      investigator,
+      Object.values(state.enemies).filter((e) => !(e.traits ?? []).includes('Elite')),
+      (enemy) => [{ type: 'HuntOnce', enemy: enemy.id, toward: here }],
+    )
   },
 })
 

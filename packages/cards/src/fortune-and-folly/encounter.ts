@@ -2,6 +2,7 @@
  * Cartas de Encuentro del conjunto Fortuna e insensatez: Abarran, los enemigos Casino con
  * Errante y las traiciones que suben el nivel de alarma.
  */
+import { nearestEnemyChoice, nearestLocationChoice } from '../nearest-choice'
 import {
   distancesFrom,
   getInvestigator,
@@ -161,13 +162,10 @@ for (const code of QUESTIONING)
       const casino = nonUniqueCasino(state)
       if (!casino.length) return [{ type: 'GainSurge' }]
       const here = getInvestigator(state, investigator).location
-      const distances = here === null ? new Map() : distancesFrom(state, here)
-      const d = (e: Enemy) => distances.get(e.location) ?? Infinity
-      const nearest = [...casino].sort((a, b) => d(a) - d(b))[0]!
       return [
-        ...(here === null
-          ? []
-          : [{ type: 'HuntOnce', enemy: nearest.id, toward: here, attack: false } as Message]),
+        ...nearestEnemyChoice(state, investigator, casino, (enemy) =>
+          here === null ? [] : [{ type: 'HuntOnce', enemy: enemy.id, toward: here, attack: false }],
+        ),
         effectTest(investigator, code, 'intellect', 3, {
           onFail: [adjustAlarmMessage(investigator, 1), specific('fofNoAloof', { investigator })],
         }),
@@ -185,20 +183,22 @@ for (const code of SPOTLIGHTS)
           .filter((t) => SPOTLIGHTS.includes(t.code) && t.placement.type === 'location')
           .map((t) => (t.placement as { location: LocationId }).location),
       )
-      const [where] = nearestOf(
+      return nearestLocationChoice(
         state,
         investigator,
-        Object.keys(state.locations).filter((l) => !taken.has(l)),
+        nearestOf(
+          state,
+          investigator,
+          Object.keys(state.locations).filter((l) => !taken.has(l)),
+        ),
+        (where) => [
+          {
+            type: 'PlaceTreachery',
+            treachery: self.id,
+            placement: { type: 'location', location: where },
+          },
+        ],
       )
-      return where
-        ? [
-            {
-              type: 'PlaceTreachery',
-              treachery: self.id,
-              placement: { type: 'location', location: where },
-            },
-          ]
-        : []
     },
     forced: (state, trigger, self) => {
       if (self.placement.type !== 'location') return []

@@ -2,6 +2,7 @@
  * Cartas de Encuentro de la parte II: Abarran desatado, Los elegidos de la fortuna y Plan al
  * garete (Vagabundo, Duplicador y Desplazador dimensionales y sus traiciones).
  */
+import { nearestLocationChoice } from '../nearest-choice'
 import {
   distancesFrom,
   getInvestigator,
@@ -168,20 +169,22 @@ for (const code of PART_TWO_CODES.hypnosis)
           )
           .map((t) => (t.placement as { location: LocationId }).location),
       )
-      const [where] = nearestOf(
+      return nearestLocationChoice(
         state,
         investigator,
-        Object.keys(state.locations).filter((l) => !taken.has(l)),
+        nearestOf(
+          state,
+          investigator,
+          Object.keys(state.locations).filter((l) => !taken.has(l)),
+        ),
+        (where) => [
+          {
+            type: 'PlaceTreachery',
+            treachery: self.id,
+            placement: { type: 'location', location: where },
+          },
+        ],
       )
-      return where
-        ? [
-            {
-              type: 'PlaceTreachery',
-              treachery: self.id,
-              placement: { type: 'location', location: where },
-            },
-          ]
-        : []
     },
   })
 
