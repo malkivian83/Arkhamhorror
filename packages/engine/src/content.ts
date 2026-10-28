@@ -168,6 +168,7 @@ export interface ScenarioBehavior {
    */
   slotModifier?: (state: GameState, investigator: InvestigatorId, slot: SlotType) => number
   /** El investigador no puede descubrir pistas en ese Lugar (Capilla de san Auberto). */
+  cannotSpendClues?: (state: GameState, investigator: InvestigatorId) => boolean
   cannotDiscoverClues?: (
     state: GameState,
     investigator: InvestigatorId,

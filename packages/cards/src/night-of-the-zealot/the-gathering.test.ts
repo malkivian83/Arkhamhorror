@@ -93,10 +93,10 @@ function finishTest(state: GameState) {
 
 // Guía ES p. 1; RR: "Setup", "Campaign Play".
 describe('Night of the Zealot: campaign and setup', () => {
-  it('registers three scenarios in order, with only The Gathering playable', () => {
+  it('registers three scenarios in order, with all three scenarios playable', () => {
     const def = campaignDefinition(NIGHT_OF_THE_ZEALOT.id)
     expect(def.scenarios.map((s) => s.id)).toEqual(NIGHT_OF_THE_ZEALOT.scenarios)
-    expect(def.scenarios.map((s) => !!s.build)).toEqual([true, false, false])
+    expect(def.scenarios.map((s) => !!s.build)).toEqual([true, true, true])
     expect(() => startScenario(newCampaign(def.id, ['joe'], 'standard'), 7)).not.toThrow()
   })
   it.each(['easy', 'standard', 'hard', 'expert'] as const)(
@@ -390,7 +390,7 @@ describe('The Gathering: campaign consequences', () => {
     expect(s.campaignLog!.investigators.b!.killed).not.toBe(true)
     expect(s.campaignLog!.investigators.b!.storyAssets).toContain(LITA_CHANTLER)
   })
-  it('keeps XP and notes through save/load and leaves the next scenario explicitly unavailable', () => {
+  it('keeps XP and notes through save/load and opens The Midnight Masks', () => {
     const campaign = newCampaign(NIGHT_OF_THE_ZEALOT.id, ['joe'], 'standard')
     let s = throughSetup(startScenario(campaign, 7))
     s = stories(
@@ -401,7 +401,7 @@ describe('The Gathering: campaign consequences', () => {
     expect(Object.values(next.log.investigators)).toEqual([
       expect.objectContaining({ xp: 2, mentalTrauma: 1, storyAssets: [LITA_CHANTLER] }),
     ])
-    expect(() => startScenario(next, 8)).toThrow()
+    expect(startScenario(next, 8).scenarioId).toBe('the-midnight-masks')
   })
   it('R3 can replace a killed investigator and assign pending Lita to the replacement', () => {
     const campaign = newCampaign(NIGHT_OF_THE_ZEALOT.id, ['joe'], 'standard')

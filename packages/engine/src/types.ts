@@ -291,7 +291,8 @@ export interface Agenda {
   /** Código de carta, para buscar su comportamiento (efecto al avanzar, habilidades). */
   code?: CardCode
   name: string
-  doomThreshold: number
+  /** null: this agenda has no printed doom threshold. */
+  doomThreshold: number | null
 }
 
 /** Mazo de Plan: el principal (`agendas`) o el segundo (`secondAgenda`). */

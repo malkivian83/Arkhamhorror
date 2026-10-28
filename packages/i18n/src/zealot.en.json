@@ -1,6 +1,6 @@
 {
   "campaignName": "Night of the Zealot",
-  "description": "Investigate the disappearances in Arkham. The Gathering is available; the other two scenarios are still pending.",
+  "description": "Investigate the disappearances in Arkham through The Gathering, The Midnight Masks and The Devourer Below.",
   "scenarios": {
     "the-gathering": "The Gathering",
     "the-midnight-masks": "The Midnight Masks",
@@ -39,7 +39,15 @@
     "zealotHouseStanding": "Your house is still standing.",
     "zealotHouseBurned": "Your house has burned to the ground.",
     "zealotGhoulPriestAlive": "The Ghoul Priest is still alive.",
-    "zealotLitaFoundOthers": "Lita was forced to find others to help her cause."
+    "zealotLitaFoundOthers": "Lita was forced to find others to help her cause.",
+    "zealotInterrogated": "Cultists we interrogated",
+    "zealotEscaped": "Cultists who got away",
+    "zealotPastMidnight": "It is past midnight.",
+    "zealotRitualBroken": "The ritual to summon Umôrdhoth was broken.",
+    "zealotRepelledUmordhoth": "The investigators repelled Umôrdhoth.",
+    "zealotSacrificedLita": "The investigators sacrificed Lita Chantler to Umôrdhoth.",
+    "zealotArkhamFell": "Arkham succumbed to Umôrdhoth’s terrible vengeance.",
+    "campaignSurvived": "The investigators survived."
   },
   "abilities": {
     "litaDamage": "Lita Chantler: deal 1 additional damage to the Monster",
@@ -47,9 +55,68 @@
   },
   "choices": {
     "discardRandomEach": "Each investigator discards 1 random card",
-    "leadHorror": "The lead investigator takes 2 horror"
+    "leadHorror": "The lead investigator takes 2 horror",
+    "searchDeckEnemy": "Draw {enemy} from the encounter deck",
+    "searchDiscardEnemy": "Draw {enemy} from the encounter discard pile"
   },
   "prompts": {
     "chooseGhoul": "Choose a Ghoul enemy from the encounter deck or discard pile"
+  },
+  "midnightMasks": {
+    "intro1": "_Intro 1_: The woman came to you in a panic, raving about monsters emerging from the ground in a home near Rivertown. “I managed to trap them,” she explains, “but there are others. Other pits. Other domains.” Only last week, you would have thought she was a lunatic. Recent events, however, have challenged your preconceptions of normality. You decide to hear her out. She introduces herself as Lita Chantler and lays out a tale that strains the limits of your belief. “The creatures I speak of ,” she claims, “are called ghouls—cruel beings who plague the crypts, caverns, and tunnels beneath the city of Arkham…”",
+    "intro1Title": "Part II: The Midnight Masks",
+    "intro2": "_Intro 2_: In the wake of the disaster at your home, Lita Chantler, the red‑haired woman from your parlor, lays out a tale that—even in light of what you have just witnessed—strains the limits of your belief. “The creatures in your home,” she claims, “are called ghouls—cruel beings who plague the crypts, caverns, and tunnels beneath the city of Arkham…”",
+    "intro2Title": "Part II: The Midnight Masks",
+    "intro3": "_Intro 3_: “These creatures feed on the corpses of humans, and they are served by a dark cult within Arkham whose members have inexplicably come to worship the ancient master of the ghouls. This cult has been killing innocent people and feeding them to the ghouls, satiating a monstrous hunger. A dark balance was maintained. Until now. Recently,” Lita continues, “one of their lairs, where the corpses were stored, was destroyed. Since then, the ghouls have been more active than usual. I have tracked their movements and tried my best to stop them from running amok throughout the city. But I think there is something worse going on. The cult has been planning something darker, and more ominous, than anything I have yet observed. Indications are that this plan shall come to fruition tonight, shortly after midnight. Beyond that, I cannot fathom what to expect.\n\n“Many of the cultists,” Lita continues, “will seem like everyday people, despite their foul intentions. Whenever the cult meets, its members don masks shaped like the skulls of various animals to protect their identities from one another. These masks are our mark. Symbols of death and decay. We must unmask the cultists to expose and derail their plans. We have but a few hours. The more cultists we find before midnight, the better.”",
+    "intro3Title": "Part II: The Midnight Masks",
+    "noResolution": "Read Resolution 1.",
+    "noResolutionTitle": "No Resolution",
+    "resolution1": "_Resolution 1_: You’ve managed to obtain some useful information about the cult and its plans. You can only hope it’s enough.",
+    "resolution1Title": "Resolution 1",
+    "resolution2": "_Resolution 2_: Twelve bells ring out, signaling midnight. You’re out of time; the cult’s ritual will begin shortly. You’ve managed to obtain some useful information about the cult and its plans. You can only hope it’s enough.",
+    "resolution2Title": "Resolution 2",
+    "setupTitle": "Setup",
+    "setup": "Gather The Midnight Masks, Chilling Cold, Nightgaunts, Dark Cult and Locked Doors. Shuffle Cult of Umôrdhoth into a separate Cultist deck. Randomly choose one Downtown and one Southside; remove the other versions. Put the other locations specified by the campaign guide into play.\n\nWith 2 investigators, place one Acolyte in Southside; with 3, also place one Downtown; with 4, also place one in the Graveyard. Remove these copies from the encounter deck. If the house burned down, remove it and start in Rivertown; otherwise start at Your House. If the Ghoul Priest is still alive, add it to the encounter deck. Shuffle the remaining encounters."
+  },
+  "devourerBelow": {
+    "intro": "After a frantic nighttime search throughout Arkham, you have tracked down and questioned several members of the cult. Your findings are disturbing: they claim to worship a being known as Umôrdhoth, a monstrous entity from another realm.\n\nYou are able to confirm much of Lita’s story: the cult is agitated over the destruction of a ghoul lair. However, a surprising detail also turns up: the one who invaded the lair and set this night’s events in motion was none other than Lita Chantler herself! You are not sure why this important detail was omitted from Lita’s story—did she tell you only as much as was necessary to draw you into her conflict? But in another light, she seems to be fighting to protect the city of Arkham from a terrible menace.\n\nThe final piece of the puzzle was found written in a journal possessed by one of the cultists. It describes a dark ritual to be performed deep within the woods south of Arkham, this very night. According to the journal, the ritual’s completion will open a gate and bring forth the cult’s dark master into this world. “If the cult is not stopped,” Lita warns, “there is a possibility that Umôrdhoth’s vengeance will consume all in its path.” Frightened but determined to stop the ritual, you head into the woods…",
+    "introTitle": "Part III: The Devourer Below",
+    "noResolution": "_If no resolution was reached (each investigator resigned or was defeated)_: Too frightened to face her fate, Lita flees into the night. She realizes that she has failed and Umôrdhoth’s vengeance will pursue her wherever she goes. The creature’s tendrils spread throughout the city of Arkham, searching for her. It lurks in the darkness of every corner, tugging at the seams of reality. But Lita is nowhere to be found, so the creature dwells in the shadows to this day, searching…killing.",
+    "noResolutionTitle": "No Resolution",
+    "resolution1": "_Resolution 1_: You have managed to prevent the cult from summoning its master. Although you’re unsure what would have happened had the cult succeeded, you’re relieved that—at least for the time being—Arkham is safe. You capture as many cultists as you can find, but very few townspeople believe your tale. Perhaps it was all in your head, after all. Æ Æ In your Campaign Log, record that the ritual to summon Umôrdhoth was broken.",
+    "resolution1Title": "Resolution 1",
+    "resolution2": "_Resolution 2_: Through force of arms and strength of will, you are somehow able to harm Umôrdhoth enough to send it reeling back to the dimension from which it emerged. Warmth and light return to the woods as the void-like mass is sucked in upon itself, vanishing in an instant. You aren’t sure if a being such as this can be killed, but for the time being it seems to have retreated. As their master vanishes, the ghouls nearby climb into the open pit below, fleeing with terrible cries and shrieks. You have stopped an evil plot, but the fight has taken its toll on your body and mind. Worse, you can’t help but feel insignificant in the face of the world’s mysteries. What other terrors exist in the deep, dark corners of reality?",
+    "resolution2Title": "Resolution 2",
+    "resolution3": "_Resolution 3_: In the face of this horror, you don’t believe there is anything you can do to stop it. You have but one hope if you are to survive. You turn on Lita and throw her at the terrible monstrosity, watching in dread as its swirling void-like mass consumes her. She cries out in torment as the life is sucked from her body. “Umôrdhoth…Umôrdhoth…” the cultists chant. Lita Chantler vanishes without a trace. For a moment, you fear that the creature will now turn on you, but you hear one of the cultists say, “Umôrdhoth is a just god who claims only the guilty and the dead. Go, and you shall be spared.” The swirling mass vanishes, and warmth and light return to the woods. The cultists slink away, leaving you alive. Lita’s last moments are forever etched upon your memory.",
+    "resolution3Title": "Resolution 3",
+    "setupTitle": "Setup",
+    "setup": "Gather The Devourer Below, Ancient Evils, Striking Fear, Ghouls and Dark Cult. Put Main Path and four random Arkham Woods into play without looking at their revealed sides; remove the remaining two Woods. All investigators start at Main Path. Set aside Ritual Site and Umôrdhoth.\n\nWithout looking, randomly choose Agents of Yog-Sothoth, Shub-Niggurath, Cthulhu or Hastur and shuffle it into the remaining encounter deck. Place 1 doom for 1–2 escaped cultists, 2 doom for 3–4, or 3 doom for 5–6. Add one elder thing token to the chaos bag for the rest of the campaign. If it is past midnight, each investigator discards two random cards from their opening hand. If the Ghoul Priest is still alive, add it to the encounter deck."
+  },
+  "midnightAbilities": {
+    "drawCultist": "Spend 2 clues per investigator to draw from the Cultist deck",
+    "interrogate": "Parley: interrogate the cultist",
+    "location01124": "Draw 1 card and gain 1 resource",
+    "location01126": "Draw 3 cards",
+    "location01127": "Search for an Ally asset",
+    "location01128": "Heal 3 damage",
+    "location01129": "Search the top 6 cards for a Tome or Spell",
+    "location01130": "Gain 3 resources",
+    "location01131": "Heal 3 horror",
+    "location01134": "Spend 5 resources to gain 2 clues"
+  },
+  "devourerAbilities": {
+    "disrupt": "Spend 1 clue to attempt to disrupt the ritual",
+    "sacrifice": "Throw Lita to Umôrdhoth",
+    "heal": "Heal 1 damage or 1 horror",
+    "dreams": "Willpower (3): discard Dreams of R’lyeh"
+  },
+  "midnightChoices": {
+    "takeHorror": "Take 2 horror"
+  },
+  "devourerChoices": {
+    "discard": "Choose and discard 1 card",
+    "takeDamageHorror": "Take 1 damage and 1 horror",
+    "healDamage": "Heal 1 damage",
+    "healHorror": "Heal 1 horror"
   }
 }

@@ -11,6 +11,16 @@ const output = join(root, 'audio/es')
 const evidencePath = 'docs-proyecto/evidencias/zealot-baldo-narracion.json'
 const texts = JSON.parse(readFileSync(join(root, 'es.json'), 'utf8'))
 const keys = {
+  'story.midnightMasks.intro1': 'midnight-masks-intro1-baldo.mp3',
+  'story.midnightMasks.intro2': 'midnight-masks-intro2-baldo.mp3',
+  'story.midnightMasks.intro3': 'midnight-masks-intro3-baldo.mp3',
+  'story.midnightMasks.resolution1': 'midnight-masks-resolution1-baldo.mp3',
+  'story.midnightMasks.resolution2': 'midnight-masks-resolution2-baldo.mp3',
+  'story.devourerBelow.intro': 'devourer-below-intro-baldo.mp3',
+  'story.devourerBelow.noResolution': 'devourer-below-noResolution-baldo.mp3',
+  'story.devourerBelow.resolution1': 'devourer-below-resolution1-baldo.mp3',
+  'story.devourerBelow.resolution2': 'devourer-below-resolution2-baldo.mp3',
+  'story.devourerBelow.resolution3': 'devourer-below-resolution3-baldo.mp3',
   'story.zealot.prologue': 'zealot-prologue-baldo.mp3',
   'story.theGathering.intro': 'the-gathering-intro-baldo.mp3',
   'story.theGathering.noResolution': 'the-gathering-no-resolution-baldo.mp3',
@@ -72,11 +82,37 @@ if (!process.argv.includes('--generate')) {
   }
   if (!apiKey) throw new Error('Falta ELEVENLABS_API_KEY')
   // Confirmar la identidad de la voz antes de consumir créditos de generación.
-  const voiceResponse = await fetch(`https://api.elevenlabs.io/v1/voices/${voiceId}`, {
+  let voiceResponse = await fetch(`https://api.elevenlabs.io/v1/voices/${voiceId}`, {
     headers: { 'xi-api-key': apiKey },
     signal: AbortSignal.timeout(30000),
   })
-  if (!voiceResponse.ok) throw new Error(`Voice verification: HTTP ${voiceResponse.status}`)
+  if (!voiceResponse.ok) {
+    const missing = await voiceResponse
+      .clone()
+      .json()
+      .catch(() => ({}))
+    if (missing.detail?.status === 'voice_not_found') {
+      const added = await fetch(
+        'https://api.elevenlabs.io/v1/voices/add/7002773bd1c07cf8361315f412cee881a7a87dc7b5323a8af5723b58be406be7/' +
+          voiceId,
+        {
+          method: 'POST',
+          headers: { 'xi-api-key': apiKey, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ new_name: voiceName }),
+        },
+      )
+      if (!added.ok) throw new Error('Add shared Baldo voice: HTTP ' + added.status)
+      voiceResponse = await fetch('https://api.elevenlabs.io/v1/voices/' + voiceId, {
+        headers: { 'xi-api-key': apiKey },
+      })
+    }
+  }
+  if (!voiceResponse.ok) {
+    const body = await voiceResponse.json().catch(() => ({}))
+    throw new Error(
+      `Voice verification: HTTP ${voiceResponse.status}; reason ${body.detail?.status ?? body.detail?.code ?? 'unavailable'}`,
+    )
+  }
   const verified = await voiceResponse.json()
   if (verified.voice_id !== voiceId || verified.name !== voiceName)
     throw new Error('Voice verification mismatch')

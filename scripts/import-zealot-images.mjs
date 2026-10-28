@@ -3,8 +3,15 @@
 import { createHash } from 'node:crypto'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 
-const arts = Array.from({ length: 16 }, (_, n) => String(1104 + n).padStart(5, '0')).flatMap(
-  (code) => (Number(code) <= 1115 ? [code, `${code}b`] : [code]),
+const arts = Array.from({ length: 79 }, (_, n) => String(1104 + n).padStart(5, '0')).flatMap(
+  (code) =>
+    code === '01121'
+      ? ['01121a', '01121b']
+      : Number(code) <= 1115 ||
+          (Number(code) >= 1120 && Number(code) <= 1134) ||
+          (Number(code) >= 1142 && Number(code) <= 1156)
+        ? [code, `${code}b`]
+        : [code],
 )
 const manifestPath = 'apps/web/src/game/cardImageManifest.json'
 const before = JSON.parse(await readFile(manifestPath, 'utf8'))

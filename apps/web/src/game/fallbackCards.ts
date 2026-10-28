@@ -1,5 +1,7 @@
 import {
   theGathering,
+  theMidnightMasks,
+  theDevourerBelow,
   DUNWICH_ENCOUNTER_SETS,
   extracurricularActivity,
   theHouseAlwaysWins,
@@ -47,6 +49,7 @@ import {
 } from '@lcg/cards'
 import {
   allPlayerCardDefs,
+  emptyCampaignLog,
   playerCardBehavior,
   playerCardDef,
   printedCode,
@@ -164,6 +167,20 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     whereDoomAwaits(),
     lostInTimeAndSpace(),
     theGathering(),
+    ...Array.from({ length: 16 }, (_, seed) => [
+      theMidnightMasks({
+        difficulty: 'standard',
+        seed,
+        log: emptyCampaignLog([]),
+        investigators: ['catalog'],
+      }),
+      theDevourerBelow({
+        difficulty: 'standard',
+        seed,
+        log: emptyCampaignLog([]),
+        investigators: ['catalog'],
+      }),
+    ]).flat(),
     spreadingFlames(),
     queenOfAsh(),
     midwinterGala({ players: 1 }),
@@ -255,7 +272,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
           name: c.name,
           real_name: c.name,
           type_code: 'agenda',
-          doom: c.doomThreshold,
+          doom: c.doomThreshold ?? undefined,
         })
     })
     scenario.acts.forEach((c) => {
@@ -498,6 +515,18 @@ export function fallbackCards(locale: string): LocalizedCard[] {
         text: text.backText,
       })
   }
+  put({
+    code: '01120',
+    name: 'The Midnight Masks',
+    real_name: 'The Midnight Masks',
+    type_code: 'scenario',
+  })
+  put({
+    code: '01142',
+    name: 'The Devourer Below',
+    real_name: 'The Devourer Below',
+    type_code: 'scenario',
+  })
   put({ code: '01104', name: 'The Gathering', real_name: 'The Gathering', type_code: 'scenario' })
   const catalogues = [excelsiorCards, carcosaCards, fortuneCards, zealotCards, dunwichCards].map(
     (c) => c[locale === 'es' ? 'es' : 'en'],
@@ -541,6 +570,23 @@ export function fallbackCards(locale: string): LocalizedCard[] {
         back_name: text.name,
         back_text: text.summary,
       })
+  }
+  const devourerFront = cards.get('01145')
+  if (devourerFront)
+    put({
+      ...devourerFront,
+      code: '01145b',
+      name: devourerFront.back_name ?? 'The Devourer Below',
+      text: devourerFront.back_text,
+      back_name: devourerFront.name,
+      back_text: devourerFront.text,
+      doom: undefined,
+    })
+  const predator = cards.get('01121a'),
+    hunter = cards.get('01121b')
+  if (predator && hunter) {
+    put({ ...predator, back_name: hunter.name, back_text: hunter.text })
+    put({ ...hunter, back_name: predator.name, back_text: predator.text })
   }
   return [...cards.values()]
 }

@@ -1,6 +1,6 @@
 {
   "campaignName": "La noche de la fanática",
-  "description": "Investiga las desapariciones de Arkham. El encuentro está disponible; los otros dos escenarios están pendientes.",
+  "description": "Investiga las desapariciones de Arkham en El encuentro, Las máscaras de medianoche y El Devorador de las Profundidades.",
   "scenarios": {
     "the-gathering": "El encuentro",
     "the-midnight-masks": "Las máscaras de medianoche",
@@ -39,7 +39,15 @@
     "zealotHouseStanding": "Tu casa sigue en pie.",
     "zealotHouseBurned": "Tu casa ha ardido hasta los cimientos.",
     "zealotGhoulPriestAlive": "El Sacerdote gul sigue vivo.",
-    "zealotLitaFoundOthers": "Lita se vio obligada a encontrar a otros que la ayudaran en su causa."
+    "zealotLitaFoundOthers": "Lita se vio obligada a encontrar a otros que la ayudaran en su causa.",
+    "zealotInterrogated": "Sectarios que interrogamos",
+    "zealotEscaped": "Sectarios que escaparon",
+    "zealotPastMidnight": "Es más de medianoche.",
+    "zealotRitualBroken": "El ritual para invocar a Umôrdhoth fue roto.",
+    "zealotRepelledUmordhoth": "Los investigadores repelieron a Umôrdhoth.",
+    "zealotSacrificedLita": "Los investigadores sacrificaron a Lita Chantler a Umôrdhoth.",
+    "zealotArkhamFell": "Arkham sucumbió a la terrible venganza de Umôrdhoth.",
+    "campaignSurvived": "Los investigadores han sobrevivido."
   },
   "abilities": {
     "litaDamage": "Lita Chantler: infligir 1 daño adicional al Monstruo",
@@ -47,9 +55,68 @@
   },
   "choices": {
     "discardRandomEach": "Cada investigador descarta 1 carta al azar",
-    "leadHorror": "El investigador jefe recibe 2 puntos de horror"
+    "leadHorror": "El investigador jefe recibe 2 puntos de horror",
+    "searchDeckEnemy": "Robar {enemy} del mazo de Encuentros",
+    "searchDiscardEnemy": "Robar {enemy} de los descartes de Encuentros"
   },
   "prompts": {
     "chooseGhoul": "Elige un Enemigo Gul del mazo o descarte de encuentros"
+  },
+  "midnightMasks": {
+    "intro1": "_Introducción 1_: La mujer acudió a vosotros aterrada, delirando acerca de monstruos que emergían del suelo en una casa cerca del Barrio del río. «He conseguido atraparlos», explica, «pero hay más. Otros pozos. Otros dominios.» Hace tan sólo una semana la habríais tomado por una lunática. Sin embargo, los sucesos recientes han puesto en entredicho vuestra idea de la normalidad. Decidís escucharla. Se presenta como Lita Chantler y os cuenta una historia que pone a prueba los límites de vuestra credulidad. «Las criaturas de las que hablo», afirma, «se llaman gules: seres crueles que infestan las criptas, cavernas y túneles bajo la ciudad de Arkham…»",
+    "intro1Title": "Parte II: Las máscaras de medianoche",
+    "intro2": "_Introducción 2_: Tras el desastre en vuestra casa, Lita Chantler, la mujer pelirroja de vuestro salón, os cuenta una historia que —incluso a la luz de lo que acabáis de presenciar— pone a prueba los límites de vuestra credulidad. «Las criaturas de vuestra casa», afirma, «se llaman gules: seres crueles que infestan las criptas, cavernas y túneles bajo la ciudad de Arkham…»",
+    "intro2Title": "Parte II: Las máscaras de medianoche",
+    "intro3": "_Introducción 3_: «Estas criaturas se alimentan de cadáveres humanos, y las sirve un culto oscuro de Arkham cuyos miembros han llegado inexplicablemente a adorar al antiguo señor de los gules. Este culto ha estado matando a gente inocente y entregándosela a los gules, saciando un hambre monstruosa. Se mantenía un oscuro equilibrio. Hasta ahora. Recientemente», continúa Lita, «una de sus guaridas, donde se almacenaban los cadáveres, fue destruida. Desde entonces, los gules han estado más activos de lo habitual. He seguido sus movimientos y he hecho todo lo posible por impedir que siembren el caos por la ciudad. Pero creo que está ocurriendo algo peor. El culto ha estado planeando algo más oscuro y ominoso que cualquier cosa que haya observado hasta ahora. Todo indica que este plan se consumará esta noche, poco después de medianoche. Más allá de eso, no alcanzo a imaginar qué esperar.\n\n«Muchos de los sectarios», continúa Lita, «parecerán gente corriente, a pesar de sus infames intenciones. Cada vez que el culto se reúne, sus miembros se ponen máscaras con forma de cráneos de distintos animales para ocultar su identidad unos de otros. Esas máscaras son nuestra marca. Símbolos de muerte y decadencia. Debemos desenmascarar a los sectarios para exponer y descarrilar sus planes. Sólo nos quedan unas pocas horas. Cuantos más sectarios encontremos antes de medianoche, mejor.»",
+    "intro3Title": "Parte II: Las máscaras de medianoche",
+    "noResolution": "Lee la Resolución 1.",
+    "noResolutionTitle": "Sin resolución",
+    "resolution1": "_Resolución 1:_ Habéis conseguido obtener información útil sobre el culto y sus planes. Sólo os queda esperar que sea suficiente.",
+    "resolution1Title": "Resolución 1",
+    "resolution2": "_Resolución 2:_ Suenan las doce campanadas, anunciando la medianoche. Se os ha acabado el tiempo; el ritual del culto comenzará en breve. Habéis conseguido obtener información útil sobre el culto y sus planes. Sólo os queda esperar que sea suficiente.",
+    "resolution2Title": "Resolución 2",
+    "setupTitle": "Preparación",
+    "setup": "Reúne Las máscaras de medianoche, Frío helador, Ángeles descarnados, Secta oscura y Puertas cerradas. Baraja Secta de Umôrdhoth como un mazo de Sectarios separado. Elige al azar una versión de Centro y una de Barrio Sur y retira las otras versiones. Pon en juego los demás Lugares indicados por la guía.\n\nCon 2 investigadores, coloca un Acólito en Barrio Sur; con 3, uno en Barrio Sur y otro en Centro; con 4, añade además uno en el Cementerio. Esas copias se retiran del mazo de Encuentros. Si la casa ardió, retírala y comienza en Barrio Fluvial; si sigue en pie, comienza en Tu casa. Si el Sacerdote gul sigue vivo, añádelo al mazo de Encuentros. Baraja los encuentros restantes."
+  },
+  "devourerBelow": {
+    "intro": "Tras una frenética búsqueda nocturna por Arkham, habéis localizado e interrogado a varios miembros del culto. Vuestros hallazgos son inquietantes: afirman adorar a un ser conocido como Umôrdhoth, una entidad monstruosa de otro reino.\n\nPodéis confirmar gran parte de la historia de Lita: el culto está agitado por la destrucción de una guarida de gules. Sin embargo, también sale a la luz un detalle sorprendente: quien invadió la guarida y puso en marcha los sucesos de esta noche no fue otra que la propia Lita Chantler. No estáis seguros de por qué omitió este importante detalle de su relato: ¿os contó sólo lo necesario para involucraros en su conflicto? Pero, visto de otro modo, parece estar luchando para proteger la ciudad de Arkham de una terrible amenaza.\n\nLa última pieza del rompecabezas se encontró escrita en un diario que poseía uno de los sectarios. Describe un oscuro ritual que se realizará esta misma noche en lo más profundo de los bosques al sur de Arkham. Según el diario, al completar el ritual se abrirá una puerta y el oscuro señor del culto llegará a este mundo. «Si no se detiene al culto», advierte Lita, «existe la posibilidad de que la venganza de Umôrdhoth lo consuma todo a su paso.» Aterrorizados, pero decididos a detener el ritual, os adentráis en los bosques…",
+    "introTitle": "Parte III: El Devorador de las profundidades",
+    "noResolution": "_Si no se alcanzó ninguna resolución (cada investigador abandonó o fue derrotado)_: Demasiado aterrorizada para afrontar su destino, Lita huye en la noche. Comprende que ha fracasado y que la venganza de Umôrdhoth la perseguirá allá donde vaya. Los tentáculos de la criatura se extienden por la ciudad de Arkham, buscándola. Acecha en la oscuridad de cada rincón, tirando de las costuras de la realidad. Pero a Lita no se la encuentra en ninguna parte, así que la criatura permanece en las sombras hasta el día de hoy, buscando… matando.",
+    "noResolutionTitle": "Sin resolución",
+    "resolution1": "_Resolución 1:_ Habéis conseguido impedir que el culto invocara a su señor. Aunque no estáis seguros de qué habría ocurrido si el culto hubiera triunfado, os alivia que —al menos de momento— Arkham esté a salvo. Capturáis a tantos sectarios como podéis, pero muy pocos ciudadanos creen vuestro relato. Quizá, al fin y al cabo, todo estuviera en vuestra cabeza.",
+    "resolution1Title": "Resolución 1",
+    "resolution2": "_Resolución 2:_ A fuerza de armas y de voluntad, de algún modo sois capaces de herir a Umôrdhoth lo bastante como para enviarlo de vuelta, tambaleante, a la dimensión de la que surgió. El calor y la luz regresan a los bosques mientras la masa semejante al vacío se retrae sobre sí misma y desaparece en un instante. No estáis seguros de si un ser así puede morir, pero de momento parece haberse retirado. Cuando su señor se desvanece, los gules cercanos trepan hacia el pozo abierto, huyendo con terribles alaridos y chillidos. Habéis detenido un plan malvado, pero el combate ha pasado factura a vuestro cuerpo y a vuestra mente. Peor aún, no podéis evitar sentiros insignificantes ante los misterios del mundo. ¿Qué otros terrores existen en los rincones más profundos y oscuros de la realidad?",
+    "resolution2Title": "Resolución 2",
+    "resolution3": "_Resolución 3:_ Ante este horror, no creéis que haya nada que podáis hacer para detenerlo. Sólo os queda una esperanza si queréis sobrevivir. Os volvéis contra Lita y la arrojáis a la terrible monstruosidad, contemplando con pavor cómo la masa arremolinada semejante al vacío la consume. Ella grita de tormento mientras la vida es succionada de su cuerpo. «Umôrdhoth… Umôrdhoth…» cantan los sectarios. Lita Chantler desaparece sin dejar rastro. Durante un momento teméis que la criatura se vuelva ahora contra vosotros, pero oís a uno de los sectarios decir: «Umôrdhoth es un dios justo que sólo reclama a los culpables y a los muertos. Idos, y seréis perdonados.» La masa arremolinada se desvanece, y el calor y la luz regresan a los bosques. Los sectarios se escabullen, dejándoos con vida. Los últimos instantes de Lita quedan grabados para siempre en vuestra memoria.",
+    "resolution3Title": "Resolución 3",
+    "setupTitle": "Preparación",
+    "setup": "Reúne El Devorador de las Profundidades, Antiguos males, Miedo impactante, Gules y Secta oscura. Pon en juego el Sendero principal y elige al azar cuatro de los seis Bosques de Arkham, sin mirar sus caras reveladas. Retira los otros dos. Todos comienzan en el Sendero principal. Aparta Lugar del ritual y Umôrdhoth.\n\nElige al azar, sin mirar, uno de los conjuntos Agentes de Yog-Sothoth, Shub-Niggurath, Cthulhu o Hastur y barájalo con los encuentros restantes. Coloca 1 perdición si escaparon 1–2 sectarios, 2 si escaparon 3–4 y 3 si escaparon 5–6. Añade una ficha de Primigenio a la bolsa durante el resto de la campaña. Si es más de medianoche, cada investigador descarta dos cartas al azar de su mano inicial. Si el Sacerdote gul sigue vivo, añádelo al mazo de Encuentros."
+  },
+  "midnightAbilities": {
+    "drawCultist": "Gastar 2 pistas por investigador para robar del mazo de Sectarios",
+    "interrogate": "Negociar: interrogar al sectario",
+    "location01124": "Robar 1 carta y ganar 1 recurso",
+    "location01126": "Robar 3 cartas",
+    "location01127": "Buscar un apoyo Aliado",
+    "location01128": "Curar 3 daños",
+    "location01129": "Buscar un Tomo o Hechizo entre las 6 primeras cartas",
+    "location01130": "Ganar 3 recursos",
+    "location01131": "Curar 3 horrores",
+    "location01134": "Gastar 5 recursos para ganar 2 pistas"
+  },
+  "devourerAbilities": {
+    "disrupt": "Gastar 1 pista para intentar romper el ritual",
+    "sacrifice": "Arrojar a Lita a Umôrdhoth",
+    "heal": "Curar 1 daño o 1 horror",
+    "dreams": "Voluntad (3): descartar Sueños de R’lyeh"
+  },
+  "midnightChoices": {
+    "takeHorror": "Recibir 2 horrores"
+  },
+  "devourerChoices": {
+    "discard": "Elegir y descartar 1 carta",
+    "takeDamageHorror": "Recibir 1 daño y 1 horror",
+    "healDamage": "Curar 1 daño",
+    "healHorror": "Curar 1 horror"
   }
 }

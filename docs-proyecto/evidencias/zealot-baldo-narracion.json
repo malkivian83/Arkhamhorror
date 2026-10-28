@@ -60,6 +60,86 @@
       "inputHash": "6140e74789311f448b325dcc6263210eb168a8b1284f44ee06044edb06498dca",
       "sha256": "ad6b63c0e4bd52217a6886486fc02c03d78054e3b8ffe25e74d33b817cd9f40a",
       "bytes": 229920
+    },
+    {
+      "key": "story.midnightMasks.intro1",
+      "file": "midnight-masks-intro1-baldo.mp3",
+      "characters": 653,
+      "inputHash": "4bf710c14b72964cccd8c23e1eb56257981d10516d047c5f9b9cb184df858517",
+      "sha256": "b68648eed6a0b1f0200536b5839dce6c7ac6d2ec86f92efc58f04223a3f65e58",
+      "bytes": 669613
+    },
+    {
+      "key": "story.midnightMasks.intro2",
+      "file": "midnight-masks-intro2-baldo.mp3",
+      "characters": 373,
+      "inputHash": "1798999f3121fc631b5336946d1af9a1ee57128f8a369a9ed6879b169bf29321",
+      "sha256": "74afb1bbb9dd3911e6028f701deac33cea35909c5567c746e5c43619326a452b",
+      "bytes": 375370
+    },
+    {
+      "key": "story.midnightMasks.intro3",
+      "file": "midnight-masks-intro3-baldo.mp3",
+      "characters": 1387,
+      "inputHash": "4f6fff58ac0053eb660e921e2714de338f4903363ecb749b40008bb40fc1767b",
+      "sha256": "c4ed463eebb54cb2d3c34a5d1ff4430d55591eea2e63802f3ea5c1cd1a19c4eb",
+      "bytes": 1318286
+    },
+    {
+      "key": "story.midnightMasks.resolution1",
+      "file": "midnight-masks-resolution1-baldo.mp3",
+      "characters": 127,
+      "inputHash": "0a74837d5f40d90e6a3b77e8b8f3fc5816c5276e72f2ce2ea50bf1737370f26e",
+      "sha256": "acc5bb82b81ab85370f03db7a2c7c2ae0ff994460b78d50e6968070817d8fda7",
+      "bytes": 124594
+    },
+    {
+      "key": "story.midnightMasks.resolution2",
+      "file": "midnight-masks-resolution2-baldo.mp3",
+      "characters": 249,
+      "inputHash": "a9b38eb295b281eac84e7e42c9430b294c4b1a526ecbbd29e5db67ce01cfb2c6",
+      "sha256": "9e2b0e1d4f1e077052a4dc5c76f818de6691600eed18375fca080200f0040f72",
+      "bytes": 247056
+    },
+    {
+      "key": "story.devourerBelow.intro",
+      "file": "devourer-below-intro-baldo.mp3",
+      "characters": 1295,
+      "inputHash": "b3fa825d7f8613d33ceb6f45323d10958feb42bc53d2ee3a75b8ee00f878a01c",
+      "sha256": "b7898b6284c8f8a9e0f79005977999ab14fe872e94c7c3cdccf4d16eb7f221bc",
+      "bytes": 1152774
+    },
+    {
+      "key": "story.devourerBelow.noResolution",
+      "file": "devourer-below-noResolution-baldo.mp3",
+      "characters": 535,
+      "inputHash": "042672ddbd24415c2e580ce10d555a8b0d19bfee8a1477dbcf04fcc9eb9bf5b9",
+      "sha256": "11e604ef28766f711bcc3642f45307355329e8d4a56154a063e158321e7e0583",
+      "bytes": 499086
+    },
+    {
+      "key": "story.devourerBelow.resolution1",
+      "file": "devourer-below-resolution1-baldo.mp3",
+      "characters": 358,
+      "inputHash": "5df05531e34405bcc67ab36e550ed8e8198f8f050ccd8a4e3e595eacaf10dded",
+      "sha256": "3aa46793b1868344f18117145c60219f4bda012140907822bc2c3d47c504faf7",
+      "bytes": 345277
+    },
+    {
+      "key": "story.devourerBelow.resolution2",
+      "file": "devourer-below-resolution2-baldo.mp3",
+      "characters": 794,
+      "inputHash": "5c27c6370c9e8534313faa28a29ce806b20fc3e813b4179fedf8efc9e22ce007",
+      "sha256": "44d811a34b5811b00baa94e305bda200bb7cec66f05091f088dc60221ad68afa",
+      "bytes": 723112
+    },
+    {
+      "key": "story.devourerBelow.resolution3",
+      "file": "devourer-below-resolution3-baldo.mp3",
+      "characters": 869,
+      "inputHash": "dbdc7301f1a85c5a12095e94eec60b2d5d351974a0e0ab85ab394787eb5769d9",
+      "sha256": "40a20cfaa962c348754bf55b305a51165fe0d075ba3073b011849330882d06b7",
+      "bytes": 839305
     }
   ]
 }

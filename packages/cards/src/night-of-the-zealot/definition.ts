@@ -1,3 +1,5 @@
+import { theMidnightMasks } from './the-midnight-masks'
+import { theDevourerBelow } from './the-devourer-below'
 import { registerCampaign } from '../campaign-definition'
 import { NIGHT_OF_THE_ZEALOT, ZEALOT_CHAOS_BAGS } from './campaign'
 import { THE_GATHERING, theGathering } from './the-gathering'
@@ -13,7 +15,15 @@ registerCampaign({
       build: ({ difficulty }) => theGathering(difficulty),
       keywords: ['hunter', 'prey', 'retaliate', 'surge', 'peril'],
     },
-    { id: 'the-midnight-masks' },
-    { id: 'the-devourer-below' },
+    {
+      id: 'the-midnight-masks',
+      build: theMidnightMasks,
+      keywords: ['hunter', 'prey', 'peril', 'surge'],
+    },
+    {
+      id: 'the-devourer-below',
+      build: theDevourerBelow,
+      keywords: ['hunter', 'massive', 'retaliate', 'peril', 'surge'],
+    },
   ],
 })

@@ -68,7 +68,7 @@ import {
   findEnemy,
   getEnemy,
   getInvestigator,
-  controlledClues,
+  spendableClues,
   getLocation,
   huntingSteps,
   investigatorsAt,
@@ -292,10 +292,14 @@ export function handle(state: GameState, message: Message): GameState {
       const doom = agendaBehavior(agenda?.code)?.thresholdDoom?.(state) ?? totalDoom(state)
       // Mystifying Song: during this phase no agenda can advance by its doom threshold.
       const held = state.agendaHeld?.phase === state.phase && state.agendaHeld.round === state.round
-      const met = !!agenda && !held && doom >= agenda.doomThreshold
+      const met = !!agenda && agenda.doomThreshold !== null && !held && doom >= agenda.doomThreshold
       const second = state.secondAgenda
       const other = second?.agendas[second.index]
-      const otherMet = !!other && !held && secondAgendaDoom(state) >= other.doomThreshold
+      const otherMet =
+        !!other &&
+        other.doomThreshold !== null &&
+        !held &&
+        secondAgendaDoom(state) >= other.doomThreshold
       // RR: "when the agenda would advance" reactions resolve first (Mystifying Song).
       const would: Trigger = { type: 'agendaWouldAdvance' }
       if (
@@ -6412,6 +6416,8 @@ export function handle(state: GameState, message: Message): GameState {
       })
 
     case 'SpendClues':
+      if (scenarioBehavior(state.scenarioId)?.cannotSpendClues?.(state, message.investigator))
+        return state
       if (
         !Object.values(state.assets).some(
           (a) => a.owner === message.investigator && (a.clues ?? 0) > 0,
@@ -6475,13 +6481,13 @@ export function handle(state: GameState, message: Message): GameState {
       if (message.amount <= 0) return state
       const payers = message.from
         .map((id) => getInvestigator(state, id))
-        .filter((i) => !i.eliminated && controlledClues(state, i.id) > 0)
-      const total = payers.reduce((sum, i) => sum + controlledClues(state, i.id), 0)
+        .filter((i) => !i.eliminated && spendableClues(state, i.id) > 0)
+      const total = payers.reduce((sum, i) => sum + spendableClues(state, i.id), 0)
       const [first] = payers
       if (!first) return state
       if (total <= message.amount || payers.length === 1 || !state.interactive) {
         // Todos pagan todo lo que tienen, o paga el único (o el primero) que puede.
-        const spent = Math.min(controlledClues(state, first.id), message.amount)
+        const spent = Math.min(spendableClues(state, first.id), message.amount)
         return push(
           state,
           { type: 'SpendClues', investigator: first.id, amount: spent },
@@ -6498,7 +6504,7 @@ export function handle(state: GameState, message: Message): GameState {
           promptParams: { n: message.amount },
           choices: payers.map((i): Choice => ({
             label: 'choice.investigatorPaysClue',
-            params: { name: i.name, clues: controlledClues(state, i.id) },
+            params: { name: i.name, clues: spendableClues(state, i.id) },
             target: { type: 'investigator', id: i.id },
             then: [
               { type: 'SpendClues', investigator: i.id, amount: 1 },

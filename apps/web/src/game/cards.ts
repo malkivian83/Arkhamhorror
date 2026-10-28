@@ -99,10 +99,10 @@ const LETTERED = new Set([
 ])
 
 /** Lugares de Penumbrosa Carcosa: su reverso es una carta de Historia con otro código. */
-const STORY_BACKS: Record<string, string> = DIM_CARCOSA_STORIES
+const STORY_BACKS: Record<string, string> = { ...DIM_CARCOSA_STORIES, '01121b': '01121a' }
 
 /** Caras `a`/`b` de una misma carta (Constance 03076a/b, Daniel 03182a/b, El organista 03221a/b). */
-const A_SIDES = new Set(['03076a', '03182a', '03221a', '03321a', '88034a'])
+const A_SIDES = new Set(['01121a', '03076a', '03182a', '03221a', '03321a', '88034a'])
 
 /** Spanish image, then English image, both from our local asset inventory. */
 export function cardImages(code: string, back = false, locale = scanLocale.value): string[] {

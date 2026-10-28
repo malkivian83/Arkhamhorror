@@ -29,6 +29,8 @@ export function chaosHelp(
     'the-miskatonic-museum': dunwichCards[locale === 'es' ? 'es' : 'en']['02118'],
     'the-house-always-wins': dunwichCards[locale === 'es' ? 'es' : 'en']['02062'],
     'extracurricular-activity': dunwichCards[locale === 'es' ? 'es' : 'en']['02041'],
+    'the-midnight-masks': zealotCards[locale === 'es' ? 'es' : 'en']['01120'],
+    'the-devourer-below': zealotCards[locale === 'es' ? 'es' : 'en']['01142'],
     'the-gathering': zealotCards[locale === 'es' ? 'es' : 'en']['01104'],
     'murder-at-the-excelsior-hotel': excelsiorCards[locale === 'es' ? 'es' : 'en']['84001'],
     'curtain-call': carcosaCards[locale === 'es' ? 'es' : 'en']['03043'],

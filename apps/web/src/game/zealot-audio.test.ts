@@ -5,10 +5,10 @@ import { expect, it } from 'vitest'
 import evidence from '../../../../docs-proyecto/evidencias/zealot-baldo-narracion.json'
 import { storyNarration } from './narration'
 
-it('connects six Spanish ElevenLabs recordings to the complete narrative transcripts', () => {
+it('connects sixteen Spanish ElevenLabs recordings to the complete narrative transcripts', () => {
   expect(evidence.voiceName).toMatch(/^Baldo\b/)
   expect(evidence.voiceId).toBe('RnKqZYEeVQciORlpiCz0')
-  expect(evidence.files).toHaveLength(6)
+  expect(evidence.files).toHaveLength(16)
   const transcripts = JSON.parse(
     readFileSync(
       fileURLToPath(new URL('../../public/local-assets/story/es.json', import.meta.url)),
@@ -34,6 +34,8 @@ it('connects six Spanish ElevenLabs recordings to the complete narrative transcr
     )
   }
   for (const key of [
+    'story.midnightMasks.setup',
+    'story.devourerBelow.setup',
     'story.theGathering.setup',
     'story.theGathering.decide',
     'story.theGathering.litaBearer',

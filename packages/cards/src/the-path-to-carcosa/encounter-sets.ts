@@ -19,6 +19,7 @@ import {
   registerEnemy,
   registerTreachery,
   shroudOf,
+  spendableClues,
   shuffle,
   totalDoom,
   type AbilityOption,
@@ -1196,7 +1197,7 @@ registerTreachery({
   // Peligro. Gastas 1 pista o recibes 2 daño.
   revelation: (state, investigator) => {
     const hurt: Message = damage(investigator, 2)
-    if (getInvestigator(state, investigator).clues < 1) return [hurt]
+    if (spendableClues(state, investigator) < 1) return [hurt]
     return [
       {
         type: 'Ask',

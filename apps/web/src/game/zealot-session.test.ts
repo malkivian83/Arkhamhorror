@@ -66,3 +66,15 @@ it('replays an old saved elimination without inserting a new decision into its h
   expect(restored.state).toEqual(legacy)
   expect(restored.state!.leadElectionVersion).toBeUndefined()
 })
+
+it('preserves the combined act/agenda without a doom threshold through save/load', () => {
+  const campaign = { ...newCampaign('night-of-the-zealot', ['joe'], 'standard'), scenarioIndex: 2 }
+  let s = throughSetup(startScenario(campaign, 7))
+  s = during(s, (g) => ({ ...g, agendaIndex: 2 }), { type: 'AdvanceAgenda' })
+  expect(s.agendas[0]?.doomThreshold).toBeNull()
+  const loaded = decodeSession(
+    JSON.stringify(session(s, { base: s, inputs: [], marks: [] }, null)),
+  ).state!
+  expect(loaded).toEqual(s)
+  expect(loaded.agendas[0]?.doomThreshold).toBeNull()
+})

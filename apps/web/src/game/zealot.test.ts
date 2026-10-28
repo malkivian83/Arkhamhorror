@@ -28,6 +28,19 @@ it.each(['en', 'es'] as const)(
       expect(chaosHelp(state, 'skull', locale, t)).toMatch(difficulty === 'hard' ? /-2/ : /-X/)
       expect(chaosHelp(state, 'tablet', locale, t)).toContain(difficulty === 'hard' ? '-4' : '-2')
     }
+    for (const scenarioId of ['the-midnight-masks', 'the-devourer-below'])
+      for (const difficulty of ['standard', 'hard'] as const) {
+        const value = chaosHelp({ scenarioId, difficulty }, 'tablet', locale, t)
+        expect(value).toContain(
+          difficulty === 'standard' ? '-3' : scenarioId === 'the-midnight-masks' ? '-4' : '-5',
+        )
+      }
+    for (const code of ['01120', '01142', '01121a', '01121b', '01145b'])
+      for (const back of [false, true]) {
+        const art = cardImages(code, back, locale)[0]!
+        expect(art).toBeDefined()
+        expect(existsSync(resolve(import.meta.dirname, '../../public' + art))).toBe(true)
+      }
     for (let n = 1104; n <= 1119; n++) {
       const code = String(n).padStart(5, '0')
       for (const back of n <= 1115 ? [false, true] : [false]) {

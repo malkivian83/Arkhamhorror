@@ -14,7 +14,7 @@ import {
 } from './content'
 import {
   cardAllowed,
-  controlledClues,
+  spendableClues,
   cardOfRole,
   currentAgendas,
   activeInvestigators,
@@ -300,7 +300,7 @@ export function canAffordEntry(state: GameState, location: string): boolean {
   const cost = entryCost(state, location)
   return (
     cost === 0 ||
-    activeInvestigators(state).reduce((sum, i) => sum + controlledClues(state, i.id), 0) >= cost
+    activeInvestigators(state).reduce((sum, i) => sum + spendableClues(state, i.id), 0) >= cost
   )
 }
 
@@ -428,7 +428,7 @@ export function canAdvanceAct(state: GameState): boolean {
   const required = cluesToAdvanceAct(state)
   if (required === null) return false
   if (scenarioBehavior(state.scenarioId)?.actAdvanceAllowed?.(state) === false) return false
-  const available = actContributors(state).reduce((sum, i) => sum + controlledClues(state, i.id), 0)
+  const available = actContributors(state).reduce((sum, i) => sum + spendableClues(state, i.id), 0)
   return available >= required
 }
 

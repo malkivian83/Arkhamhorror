@@ -1,9 +1,6 @@
 # 88 · La noche de la fanática
 
-Estado: 26 de octubre de 2026. Primera entrega local: **El encuentro**.
-Las máscaras de medianoche y El Devorador de las Profundidades están registrados
-en su orden de campaña, sin función de preparación y sin posibilidad de iniciarlos.
-La descripción de selección informa de esta disponibilidad parcial.
+Estado: 28 de octubre de 2026. Los tres escenarios originales están implementados localmente: **El encuentro**, **Las máscaras de medianoche** y **El Devorador de las Profundidades**. No se incluye Regreso a La noche de la fanática.
 
 ## Fuentes y alcance de la revisión
 
@@ -150,3 +147,43 @@ respaldo; la aplicación ofrece las nuevas grabaciones de Baldo.
 La actualización previa a la publicación se ha completado con `git pull --ff-only`,
 tras comprobar que la base local coincidía con `origin/main`. Se excluyen de la
 subida los adjuntos internos y los resultados temporales de comprobación.
+
+
+## Cierre local de los dos escenarios restantes · 28 de octubre
+
+Se han contrastado la guía revisada, cartas oficiales EN/ES y los casos de la
+referencia en `E:/referencia/ArkhamHorror` y arkhamhorror.app.
+
+- Máscaras: variantes de lugares y conexiones, preparación de Acólitos para 1–4
+  investigadores, mazo de cinco Sectarios separado, los seis interrogatorios,
+  Cazador enmascarado, planes, efectos del caos y registros de quienes escaparon.
+- Devorador: cuatro bosques aleatorios con conexiones distintas al revelarse,
+  conjunto de Agentes aleatorio, penalizaciones heredadas de Máscaras, tres actos,
+  tres planes, Umôrdhoth, sacrificio de Lita y los cuatro desenlaces con sus
+  consecuencias de campaña. El reverso final ocupa ambos mazos y no tiene umbral.
+- Las búsquedas permiten elegir carta y zona, incluso si hay copias del mismo
+  enemigo tanto en el mazo como en el descarte. Las restricciones del Cazador
+  impiden descubrir y gastar pistas, sin impedir simplemente ganarlas.
+- Se reutilizan los encuentros comunes revisados; En alas de la oscuridad
+  resuelve el Lugar Central de Máscaras o de Sangre en el altar.
+- Catálogo, textos narrativos y preparación EN/ES; 142 imágenes nuevas y sus
+  miniaturas; diez narraciones ES con Baldo, con huellas en
+  `evidencias/zealot-baldo-narracion.json`. La credencial no se guarda.
+
+`campaign-completion.test.ts` añade 57 casos dirigidos de preparación, costes,
+cartas, movimiento, búsquedas y consecuencias. Formato, lint y tipos comprobados; compilación correcta. El control general
+aprobó 4.993 pruebas y detectó una entrada de traducción vacía. Corregida esa
+entrada, pasan las dos pruebas del archivo de i18n. La repetición de la suite
+completa se detuvo a petición del usuario: se conservan los resultados válidos y
+solo se repiten pruebas fallidas o afectadas; no se declara una nueva ejecución
+completa aprobada.
+No se han realizado pruebas de navegador ni se han consultado CI o despliegue.
+
+
+Validación de publicación: integración sobre `c241b5fe`, conservando el cierre de
+Dunwich. Formato de los archivos combinados, lint, tipos y compilación correctos.
+Se han repetido solo los 14 archivos afectados: **232 pruebas aprobadas**.
+Se mantienen los resultados anteriores válidos, sin volver a ejecutar la suite
+completa. Stella, personalizaciones y las correcciones anteriores de Carcosa
+ya estaban incorporadas en main; el árbol original conserva versiones locales
+anteriores y no se ha sobrescrito.

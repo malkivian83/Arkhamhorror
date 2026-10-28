@@ -3,9 +3,11 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-const reference = process.argv[2] ?? 'D:/referencia/ArkhamHorror-main'
+const reference = process.argv[2] ?? 'E:/referencia/ArkhamHorror'
 const codes = new Set([
-  ...Array.from({ length: 16 }, (_, n) => String(1104 + n).padStart(5, '0')),
+  ...Array.from({ length: 79 }, (_, n) => String(1104 + n).padStart(5, '0')),
+  '01121a',
+  '01121b',
   ...Array.from({ length: 10 }, (_, n) => String(1159 + n).padStart(5, '0')),
 ])
 const fields = {
@@ -32,7 +34,8 @@ for (const locale of ['en', 'es']) {
         ),
       ]),
   )
-  if (Object.keys(cards).length !== codes.size) throw new Error(`Incomplete ${locale} catalogue`)
+  if (Object.keys(cards).length !== codes.size - 1)
+    throw new Error(`Incomplete ${locale} catalogue`)
   writeFileSync(
     `packages/i18n/src/zealot-cards.${locale}.json`,
     JSON.stringify(cards, null, 2) + '\n',

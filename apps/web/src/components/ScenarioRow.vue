@@ -96,7 +96,7 @@ const sortedBag = computed(() =>
         <span class="group-metric">
           <span class="metric-value"
             ><TokenBadge kind="doom" value="" :size="20" aria-hidden="true" /><strong
-              >{{ state.doom }}/{{ agenda.doomThreshold }}</strong
+              >{{ state.doom }}/{{ agenda.doomThreshold ?? '—' }}</strong
             ></span
           >
           <span class="stat-label">{{ t('table.doom') }}</span>
@@ -139,7 +139,7 @@ const sortedBag = computed(() =>
         <span class="group-metric">
           <span class="metric-value"
             ><TokenBadge kind="doom" value="" :size="20" aria-hidden="true" /><strong
-              >{{ state.secondAgenda!.doom }}/{{ secondAgenda.doomThreshold }}</strong
+              >{{ state.secondAgenda!.doom }}/{{ secondAgenda.doomThreshold ?? '—' }}</strong
             ></span
           >
           <span class="stat-label">{{ t('table.doom') }}</span>

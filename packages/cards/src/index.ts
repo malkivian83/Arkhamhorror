@@ -391,3 +391,5 @@ export {
   L as LOST_CODES,
   LOST_IN_TIME_AND_SPACE,
 } from './the-dunwich-legacy/lost-in-time-and-space'
+export { theMidnightMasks } from './night-of-the-zealot/the-midnight-masks'
+export { theDevourerBelow } from './night-of-the-zealot/the-devourer-below'

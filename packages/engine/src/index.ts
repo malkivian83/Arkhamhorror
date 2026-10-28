@@ -69,6 +69,7 @@ export {
 export {
   assetsCannotReady,
   controlledClues,
+  spendableClues,
   turnActionTiming,
   turnAheadThisRound,
   turnStartedAt,
