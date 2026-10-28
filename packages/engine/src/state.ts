@@ -82,6 +82,16 @@ export function getInvestigator(state: GameState, id: InvestigatorId): Investiga
   return investigator
 }
 
+/** FAQ 1.28: clues on controlled player cards may be spent as the investigator's clues. */
+export function controlledClues(state: GameState, id: InvestigatorId): number {
+  return (
+    getInvestigator(state, id).clues +
+    Object.values(state.assets)
+      .filter((a) => a.owner === id)
+      .reduce((n, a) => n + (a.clues ?? 0), 0)
+  )
+}
+
 export function getLocation(state: GameState, id: LocationId): Location {
   const location = state.locations[id]
   if (!location) throw new EngineError(`Lugar desconocido: ${id}`)

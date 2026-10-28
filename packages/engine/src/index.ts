@@ -60,6 +60,7 @@ export {
 export { attackDamage } from './combat'
 export {
   assetsCannotReady,
+  controlledClues,
   turnActionTiming,
   turnAheadThisRound,
   turnStartedAt,

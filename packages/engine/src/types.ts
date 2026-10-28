@@ -1272,6 +1272,7 @@ export type Message =
   /** `paid`: las pistas ya se han pagado. */
   | { type: 'AdvanceAct'; paid?: boolean }
   | { type: 'SpendClues'; investigator: InvestigatorId; amount: number }
+  | { type: 'MoveControlledClues'; investigator: InvestigatorId; to: ClueHolder; amount: number }
   /** `ifEnemy`: resolved first when the card actually drawn is an enemy (Unaware). */
   | { type: 'DrawEncounterCard'; investigator: InvestigatorId; ifEnemy?: Message[] }
   | {

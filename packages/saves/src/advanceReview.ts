@@ -1,4 +1,10 @@
-import { playerCardDef, type EngineObserver, type GameState, type LabelParams } from '@lcg/engine'
+import {
+  controlledClues,
+  playerCardDef,
+  type EngineObserver,
+  type GameState,
+  type LabelParams,
+} from '@lcg/engine'
 
 export interface ReviewCard {
   code: string
@@ -127,12 +133,15 @@ function investigatorEffects(
   for (const inv of after.investigators) {
     const old = before.investigators.find((i) => i.id === inv.id)
     if (!old) continue
-    for (const stat of ['clues', 'resources', 'damage', 'horror'] as const)
-      if (old[stat] !== inv[stat])
+    for (const stat of ['clues', 'resources', 'damage', 'horror'] as const) {
+      const previous = stat === 'clues' ? controlledClues(before, inv.id) : old[stat],
+        current = stat === 'clues' ? controlledClues(after, inv.id) : inv[stat]
+      if (previous !== current)
         effects.push({
           key: `table.advanceReview.${stat}Change`,
-          params: { name: inv.name, before: old[stat], after: inv[stat] },
+          params: { name: inv.name, before: previous, after: current },
         })
+    }
     if (old.location !== inv.location)
       effects.push({
         key: movedKey,
@@ -270,7 +279,10 @@ export function createAdvanceReview(initial: GameState) {
       frames.push(
         frame(
           c,
-          ['PayGroupClues', 'SpendClues'].includes(message.type) ? 'payment' : 'effects',
+          ['PayGroupClues', 'SpendClues'].includes(message.type) ||
+            (message.type === 'MoveClues' && message.to.type === 'pool' && !c.started)
+            ? 'payment'
+            : 'effects',
           drawn,
           effects,
         ),

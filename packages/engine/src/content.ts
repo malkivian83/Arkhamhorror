@@ -276,6 +276,12 @@ export interface TreacheryBehavior {
 }
 
 export interface EnemyBehavior {
+  canBeAttacked?: (
+    state: GameState,
+    self: Enemy,
+    investigator: InvestigatorId,
+    source?: CardCode,
+  ) => boolean
   tokenModifier?: (state: GameState, self: Enemy, test: SkillTest, modifier: number) => number
   entersExhausted?: boolean
   insteadOfRemove?: (state: GameState, self: Enemy) => Message[] | null

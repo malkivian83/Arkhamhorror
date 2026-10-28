@@ -1,0 +1,32 @@
+export const UNDIMENSIONED_AND_UNSEEN = 'undimensioned-and-unseen'
+export const U = {
+  reference: '02236',
+  rampaging: '02237',
+  biding: '02238',
+  horrors: '02239',
+  script: '02240',
+  destroyed: '02241',
+  villageHounds: '02242',
+  villageLure: '02243',
+  glenClues: '02244',
+  glenRandom: '02245',
+  meadowRain: '02246',
+  meadowBait: '02247',
+  heathClues: '02248',
+  heathDamage: '02249',
+  ruinsPaint: '02250',
+  ruinsMove: '02251',
+  yardFog: '02252',
+  yardMud: '02253',
+  formula: '02254',
+  brood: '02255',
+  towering: '02256',
+  ruin: '02257',
+  attention: '02258',
+  tracks: '02259',
+} as const
+export const UN = {
+  calmed: 'dunwichCalmedTownsfolk',
+  warned: 'dunwichWarnedTownsfolk',
+  escaped: 'dunwichBroodEscaped',
+} as const
