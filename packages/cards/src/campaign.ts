@@ -304,6 +304,7 @@ export function canPlayNext(campaign: Campaign): boolean {
     !!scenarioEntry(campaign)?.build &&
     !campaign.log.notes.includes(CAMPAIGN_LOST) &&
     activeMembers(campaign).length > 0 &&
+    !replaceableMembers(campaign).length &&
     !pendingTransfers(campaign).length
   )
 }
@@ -315,6 +316,8 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
   const definition = campaignDefinition(campaign.id)
   const members = activeMembers(campaign)
   if (!members.length) throw new Error('No quedan investigadores que puedan continuar')
+  if (campaign.log.notes.includes(CAMPAIGN_LOST)) throw new Error('La campaña ha terminado')
+  if (replaceableMembers(campaign).length) throw new Error('Falta elegir un investigador sustituto')
   if (pendingTransfers(campaign).length) throw new Error('Falta elegir el nuevo portador')
   for (const investigator of members) {
     // Las recompensas de mazos ya creados siguen siendo válidas; los guardados

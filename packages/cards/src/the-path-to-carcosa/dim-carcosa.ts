@@ -1021,7 +1021,21 @@ registerScenario({
         return push(
           state,
           setMeta(`${BEFORE}${investigator}`, getInvestigator(state, investigator).horror),
-          { type: 'TakeDamage', investigator, damage: 0, horror: KING.horror, source: 'Hastur' },
+          {
+            type: 'AttackWithoutLocation',
+            investigator,
+            card: enemy({
+              code: CODES.hasturKingInYellow,
+              name: 'Hastur',
+              traits: ['Ancient One', 'Elite'],
+              fight: KING.fight,
+              health: KING.health,
+              evade: 0,
+              damage: 0,
+              horror: KING.horror,
+              keywords: [],
+            }),
+          },
           specific('dimExcess', { investigator }),
         )
       case 'dimExcess': {

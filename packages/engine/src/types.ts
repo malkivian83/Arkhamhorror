@@ -945,6 +945,9 @@ export type Message =
       type: 'PlayCard'
       investigator: InvestigatorId
       code: CardCode
+      /** Play the revealed top card of this investigator's deck (Montmartre). */
+      fromDeck?: InvestigatorId
+      originalOwner?: InvestigatorId
       discount?: number
       effect?: Message[]
       /** Messages between paying the card cost and resolving it (attacks of opportunity). */
@@ -964,6 +967,7 @@ export type Message =
       type: 'ResolvePlayedCard'
       investigator: InvestigatorId
       code: CardCode
+      originalOwner?: InvestigatorId
       effect?: Message[]
       x?: number
       /** It was played from the discard pile (Winging It). */
@@ -973,6 +977,7 @@ export type Message =
       type: 'PutAssetIntoPlay'
       investigator: InvestigatorId
       code: CardCode
+      originalOwner?: InvestigatorId
       noSlot?: boolean
       /** Played normally: open the after-play window for this exact instance. */
       played?: boolean
@@ -1039,10 +1044,18 @@ export type Message =
       source?: string
       /** Lo ya asignado a apoyos, para la ventana de "tras infligirle daño u horror". */
       dealt?: DamageDealt[]
+      assignmentAssets?: Asset[]
       /** Carta elegida que debe llenarse antes que otra (Bestia de Aldebarán). */
       focus?: AssetId | 'investigator'
     }
   | { type: 'DamageAsset'; asset: AssetId; damage: number; horror: number }
+  | {
+      type: 'AssignHorrorEvenly'
+      investigator: InvestigatorId
+      remaining: number
+      assigned: Record<string, number>
+      source?: string
+    }
   /**
    * Revela una ficha; con `token`, resuelve esa ficha ya sacada (e ignora `ignored`).
    * `pending`: resolve the token held during its "when revealed" window. `fromBag`: the
@@ -1204,6 +1217,9 @@ export type Message =
   | { type: 'ChooseEnemyToDamage'; investigator: InvestigatorId; amount: number }
   /** Cancela el ataque de este enemigo que se está resolviendo (Counterattack). */
   | { type: 'CancelEnemyAttack'; enemy: EnemyId }
+  | { type: 'AttackFromEncounterDiscard'; index: number; investigator: InvestigatorId }
+  | { type: 'AttackWithoutLocation'; card: EnemyCard; investigator: InvestigatorId }
+  | { type: 'EndAttackWithoutLocation'; enemy: EnemyId }
   | {
       type: 'ResolveEnemyAttack'
       modifier?: { damage: number; horror: number }
@@ -1267,12 +1283,17 @@ export type Message =
       damage: number
       horror: number
       direct?: boolean
+      /** Divide this horror effect as evenly as possible among eligible cards. */
+      evenly?: boolean
       assignFirst?: Partial<Record<'damage' | 'horror', string>>
       /** Enemigo cuyo ataque inflige el daño. */
       enemy?: EnemyId
       /** Origen que se muestra: nombre de carta o `token:<ficha>`; si falta, se deduce. */
       source?: string
       dealt?: DamageDealt[]
+      /** Internal point of an allocation; notify only once for the whole effect. */
+      assignmentPart?: boolean
+      assignmentAssets?: Asset[]
     }
   | { type: 'CheckDefeat'; investigator: InvestigatorId }
   | {
@@ -1568,6 +1589,7 @@ export type DamageHolder =
 
 /** Daño u horror asignado a un apoyo durante una misma asignación. */
 export interface DamageDealt {
+  investigator?: InvestigatorId
   asset?: AssetId
   placed?: PlacedAssetId
   damage: number
@@ -1683,6 +1705,7 @@ export type Trigger =
       type: 'afterDamageAssigned'
       investigator: InvestigatorId
       dealt: DamageDealt[]
+      assignmentAssets?: Asset[]
       /** Attacking enemy, when the damage comes from an enemy attack (Guard Dog). */
       enemy?: EnemyId
     }
@@ -1894,6 +1917,8 @@ export interface GameState {
   startingInvestigatorCount: number
   locations: Record<LocationId, Location>
   enemies: Record<EnemyId, Enemy>
+  /** Attack sources represented outside the location map (discard pile or scenario card). */
+  attackSourcesWithoutLocation?: Record<EnemyId, Enemy>
   agendas: Agenda[]
   agendaIndex: number
   doom: number

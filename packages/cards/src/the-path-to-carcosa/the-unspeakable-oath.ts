@@ -744,10 +744,12 @@ registerScenario({
   forced: (state, trigger) => {
     // Daniel Chesterfield: cuando recibes horror que no se le asigna a él, 1 daño.
     if (
-      trigger.type === 'afterTakeDamage' &&
-      trigger.horror > 0 &&
-      Object.values(state.assets).some(
-        (a) => a.code === DANIEL_ALLY && a.owner === trigger.investigator,
+      trigger.type === 'afterDamageAssigned' &&
+      (trigger.assignmentAssets ?? Object.values(state.assets)).some(
+        (a) =>
+          a.code === DANIEL_ALLY &&
+          a.owner === trigger.investigator &&
+          trigger.dealt.some((d) => d.horror > 0 && d.asset !== a.id),
       )
     )
       return [damage(trigger.investigator, 1)]
@@ -1191,8 +1193,10 @@ registerEnemy({
   // Aparición: los Pasillos del manicomio más cercanos.
   spawn: nearestHalls,
   // Forzado: cuando lo atacas, recibes 1 horror.
-  forced: (_state, trigger, self) =>
-    trigger.type === 'afterSkillTest' && trigger.kind === 'fight' && trigger.enemy === self.id
+  forced: (state, trigger, self) =>
+    trigger.type === 'afterSkillTestInitiated' &&
+    state.skillTest?.kind.type === 'fight' &&
+    state.skillTest.kind.enemy === self.id
       ? [damage(trigger.investigator, 0, 1)]
       : [],
 })
