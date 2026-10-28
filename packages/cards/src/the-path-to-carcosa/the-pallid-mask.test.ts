@@ -7,6 +7,7 @@ import {
   availableActions,
   createGame,
   enemyBehavior,
+  enemyMaxHealth,
   getInvestigator,
   scenarioBehavior,
   type Difficulty,
@@ -301,8 +302,21 @@ describe('The Pallid Mask: the catacombs', () => {
     expect(state.actIndex).toBe(1)
     const man = enemyOf(state, THE_MAN_IN_THE_PALLID_MASK)!
     expect(man.location).toBe(CODES.tombOfShadows)
-    expect(man.maxHealth).toBe(3 + 2)
+    expect(enemyMaxHealth(state, man)).toBe(3 + 2)
     expect(enemyOf(state, '03067b')?.location).toBe(CODES.theGateToHell)
+    state = prep(state, [], { type: 'MoveEnemy', enemy: man.id, location: CODES.theGateToHell })
+    expect(enemyMaxHealth(state, state.enemies[man.id]!)).toBe(3)
+    state = prep(
+      state,
+      [],
+      { type: 'MoveEnemy', enemy: man.id, location: CODES.tombOfShadows },
+      { type: 'DamageEnemy', enemy: man.id, amount: 4 },
+    )
+    expect(state.enemies[man.id]).toBeDefined()
+    state = readAll(
+      prep(state, [], { type: 'MoveEnemy', enemy: man.id, location: CODES.theGateToHell }),
+    )
+    expect(state.enemies[man.id]).toBeUndefined()
   })
 
   it('act 2: defeating The Man marks 2 Conviction and leads to The Way Out', () => {

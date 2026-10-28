@@ -325,11 +325,11 @@ referencia y `TheUnspeakableOath.hs` como contraste.
   la advertencia (2 Dudas) o hacerle caso (2 Convicciones, +1 de experiencia y la regla de
   HASTUR, solo anotada).
 
-Diferencias y límites: la app no permite elegir investigadores de sustitución en R1; si no
-quedan investigadores, la campaña no puede continuar. La carta EN de las Celdas no tiene el
+Diferencias de esta entrega, posteriormente corregidas: faltaban investigadores de
+sustitución en R1, el horror del Paciente loco se aplicaba después de revelar la ficha y
+Daniel solo contaba el horror recibido por el investigador. La carta EN de las Celdas no tiene el
 rasgo Manicomio Arkham (la traducción ES sí): se sigue la EN y el coste de 1 pista se
-mantiene en todos los actos. El horror de "cuando atacas al Paciente loco" se recibe tras
-revelar la ficha. El daño forzado de Daniel cuenta el horror que recibe el investigador.
+mantiene en todos los actos.
 
 Validación: 62 pruebas nuevas (preparación 1–4 × 4 dificultades, elección inicial,
 Información de Constance, entradas bloqueadas y Celdas, actos 1–4, planes 1–3, fichas,
@@ -382,11 +382,11 @@ pp. 17–21 (texto extraído del PDF), cartas de la referencia y `APhantomOfTrut
 - Resoluciones: sin resolución y R1–R3 con sus notas, fichas, Jordan muerto, y R2 con 1
   trauma mental y 2 de experiencia adicional.
 
-Diferencias y límites: el Sueño 5 (huevo de Pascua) no se muestra. El jugador que juega un
-apoyo revelado de otro mazo en Montmartre lo controla y, al descartarlo, va a su propia pila.
-Destino fatal resuelve el ataque desde los descartes como daño y horror sin enemigo en
-juego. El sectario solo mueve Byakhee preparados (como Cazador). La regla de HASTUR del
-Interludio II sigue solo anotada.
+Diferencias y límites de esta entrega, corregidos en la revisión del 28/10/2026:
+Montmartre perdía el propietario original del apoyo, Destino fatal omitía las ventanas de
+ataque y el sectario solo movía Byakhee preparados. El Sueño 5 (huevo de Pascua sin
+transición desde los demás sueños) no se muestra. La regla de pronunciar HASTUR del
+Interludio II depende de la conversación de los jugadores.
 
 Validación: 58 pruebas nuevas (preparación 1–4 × 4 dificultades y variantes del registro,
 Sueños, planes, actos, El organista, fichas, Lugares, encuentros, resoluciones y 40
@@ -433,9 +433,9 @@ y salud del Espectro de la muerte).
   leer el Acto II de El Rey de Amarillo: +2 de experiencia y una Debilidad básica de Locura o
   Pacto al azar.
 
-Diferencias y límites: Caverna repleta de huesos no reduce las ranuras de mano. Ojos en las
-paredes no reparte el horror de forma equitativa. La salud extra de El hombre de la máscara
-pálida se fija al aparecer.
+Defectos de esta entrega, posteriormente corregidos: faltaba la reducción de ranuras de
+Caverna repleta de huesos y el reparto equitativo de Ojos en las paredes; la salud extra de
+El hombre de la máscara pálida se fijaba al aparecer en lugar de depender de su Lugar.
 
 Validación: 62 pruebas nuevas (preparación con y sin despertar, cuadrícula, coste de
 entrada, planes, actos, fichas, Lugares, enemigos, traiciones, resoluciones y 40 partidas
@@ -481,9 +481,10 @@ contraste; umbrales, pistas por investigador y conexiones comprobados en los esc
 - Resoluciones: R1 y R2 con su nota, fichas (2 sectario y 2 tablilla o primigenio) y Ashleigh
   muerta; sin resolución → R3: todos enloquecen y la campaña se pierde.
 
-Diferencias y límites: el visor del mazo de Plan permite ver los reversos de los planes
-siguientes, como en los demás escenarios, y con ellos la versión elegida. El repaso de
-avances no muestra los del segundo mazo de Plan.
+Defecto de esta entrega corregido el 28/10/2026: el visor permitía ver los planes
+siguientes y sus reversos, revelando la versión elegida. Ahora solo permite consultar
+las caras ya reveladas. El repaso visual de avances no muestra los del segundo mazo de
+Plan; sus efectos sí se resuelven en el motor.
 
 Validación: 72 pruebas nuevas (preparación, planes dobles, actos, resoluciones, fichas,
 Lugares, encuentros, guardado y 40 partidas aleatorias). Presentación: catálogo EN/ES (238
@@ -537,7 +538,7 @@ los escaneos.
   "Próximamente".
 
 Diferencias y límites: El Rey de Amarillo se muestra como carta junto al acto con su daño;
-su ataque se resuelve como horror que puede asignarse a los apoyos. "Cualquier
+su ataque usa desde el 28/10/2026 las ventanas de ataque y cancelación del motor. "Cualquier
 investigador" de La locura se enrosca se elige entre todos. El registro nombra las Historias
 en inglés.
 
@@ -644,11 +645,59 @@ Lola Hayes: prólogo y salida en los Bastidores conectados
   - Espectro de la muerte: agotado, solo reduce el daño de los ataques.
   - Caverna llena de huesos: 1 ranura de mano menos mientras la investigas (gancho
     `slotModifier` del escenario; los apoyos que sobren se descartan al empezar la prueba).
-  - Simplificaciones que se mantienen: La danza del Rey de Amarillo lleva al Lunático
-    directamente (no se resuelven efectos de entrar en los Lugares intermedios) y Ojos en
-    las paredes no obliga a repartir el horror a partes iguales.
+  - Defectos pendientes en aquella revisión, corregidos el 28/10/2026: La danza del Rey
+    de Amarillo omitía los Lugares intermedios y Ojos en las paredes no imponía el reparto
+    equitativo del horror. No se consideran equivalencias válidas de las reglas impresas.
 - Sin aplicación digital: la regla de Hacer caso de la advertencia de Daniel (1 horror al
   pronunciar «Hastur» en voz alta) depende de la conversación en la mesa.
+
+## Corrección de reglas del 28/10/2026
+
+- La danza del Rey de Amarillo resuelve cada paso por el camino más corto, con elección
+  entre rutas empatadas, efectos de entrada y comprobación de que el enemigo sigue en
+  juego antes de continuar. No atraviesa localizaciones desconectadas.
+- Ojos en las paredes reparte el horror de una sola prueba de forma equitativa entre las
+  cartas válidas, respetando su capacidad restante. Se decide todo el reparto antes de
+  aplicar el horror; el horror directo sigue sus restricciones.
+- No puede empezar otro escenario mientras falte sustituir a un investigador, tanto
+  desde la función de campaña como desde el servidor online. Tampoco puede iniciarse
+  directamente un escenario de una campaña que se ha perdido.
+- Montmartre usa el proceso normal de jugar el apoyo (costes, restricciones y ventanas)
+  y conserva su propietario original al cambiar de zona.
+- La ficha de sectario de El Fantasma de la Verdad mueve también los Byakhee agotados,
+  sin prepararlos y sin tratar el efecto como movimiento de Cazador.
+- Destino fatal abre las ventanas de ataque y admite su cancelación. Su atacante sigue
+  en los descartes, sin aparecer en juego ni ser un objetivo de efectos sobre enemigos
+  en juego.
+- El Rey de Amarillo también abre la ventana de cancelación de sus ataques sin Lugar.
+- El horror del Paciente loco se recibe al iniciar el ataque, antes de comprometer cartas
+  o revelar fichas. Daniel causa un único daño por efecto cuando cualquier parte del horror
+  se asigna fuera de su carta, incluidos otros apoyos.
+- La salud adicional del Hombre de la máscara pálida solo se aplica mientras está en la
+  Tumba de sombras; al salir se comprueba si su daño alcanza la salud reducida.
+- El visor de actos y planes de Carcosa oculta las cartas futuras y el reverso actual,
+  también en el segundo mazo de Surgen estrellas negras. Presentación EN/ES comprobada
+  mediante renderizado de componentes en consola, sin sesiones de navegador.
+- Las regresiones incluyen los efectos omitidos, capacidades de horror desiguales,
+  rutas empatadas, interrupción del movimiento, propietario del apoyo, Byakhee agotados,
+  cancelación del ataque desde los descartes y sustituciones pendientes en online.
+
+Validación inicial, antes de preparar la publicación: regresiones de Carcosa y renderizado EN/ES del visor superados;
+formato y lint de los archivos afectados, tipos globales y compilación correctos.
+La suite global obtuvo 4776 pruebas superadas y 19 omitidas, con tres pruebas fallidas
+y un archivo sin suite: el trabajo concurrente de Stella (recuperación de cartas con
+Personalizable y un archivo que usaba `node:test`) y dos pruebas SMTP bloqueadas por
+`EACCES` en conexiones locales. No se han modificado esos trabajos para resolver sus
+fallos. El pull inicial quedó bloqueado por cambios locales ajenos. Sin commit, push ni
+validación de navegador en esta revisión.
+
+Publicación preparada sobre `main` actualizado a `111b7f76`, en una copia temporal
+limpia para conservar los cambios locales ajenos. Comprobaciones finales:
+`pnpm format:check`, `pnpm lint`, `pnpm typecheck`, `pnpm test --maxWorkers=4` y `pnpm build`
+superados. La suite completa pasó **4854 pruebas**, con 19 omitidas y ningún fallo
+(542 archivos correctos y 2 omitidos), incluidos Stella y SMTP. Quedan únicamente
+advertencias preexistentes: orden de atributos en `SiteHeader.vue`, fuente externa y
+tamaño de los paquetes de la compilación. No se ha consultado CI ni Deploy.
 
 Para retomar en otro ordenador, actualizar `main`: el PDF ya está versionado en
 `docs-proyecto/reglas/`. La aplicación de referencia sigue siendo una copia externa

@@ -688,6 +688,15 @@ registerScenario({
     if (common) return common
     const investigator = typeof data.investigator === 'string' ? data.investigator : null
     switch (key) {
+      case 'pallidEyes': {
+        const test = state.skillTest
+        if (!investigator || !test) return state
+        const horror = Math.max(
+          0,
+          test.difficulty - (test.modifiedSkill ?? 0) + (test.failByModifier ?? 0),
+        )
+        return push(state, { type: 'TakeDamage', investigator, damage: 0, horror, evenly: true })
+      }
       case 'pallidSetup': {
         // Lugar inicial, mazo de Catacumbas y El hombre de la máscara pálida apartado.
         const bearer = state.investigators.find((i) =>
@@ -1022,7 +1031,7 @@ registerAct({
         ? [
             {
               type: 'SpawnEnemy',
-              card: { ...(man as EnemyCard), health: (man as EnemyCard).health + players(state) },
+              card: { ...(man as EnemyCard) },
               location: tomb,
               engageWith: null,
               ...(typeof state.scenarioMeta?.[BEARER] === 'string'
@@ -1220,10 +1229,10 @@ registerEnemy({
 
 registerTreachery({
   code: CODES.eyesInTheWalls,
-  // [willpower] (3): 1 horror por cada punto de fallo.
+  // 03260: un único efecto, repartido tan equitativamente como sea posible.
   revelation: (_state, investigator) => [
     effectTest(investigator, 'Eyes in the Walls', 'willpower', 3, {
-      onFailEach: [damage(investigator, 0, 1)],
+      onFail: [{ type: 'ScenarioSpecific', key: 'pallidEyes', data: { investigator } }],
     }),
   ],
 })

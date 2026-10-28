@@ -44,6 +44,11 @@ registerPlayerCard({ code: THE_MAN_IN_THE_PALLID_MASK, enemy: theManInThePallidM
 // RR: "Investigate", "Weakness", "Spawn". La investigación sustituye el descubrimiento.
 registerEnemy({
   code: THE_MAN_IN_THE_PALLID_MASK,
+  // 03257: the bonus lasts only while he is at the Tomb of Shadows.
+  healthModifier: (state, self) =>
+    state.scenarioId === 'the-pallid-mask' && printedCode(self.location) === '03257'
+      ? state.startingInvestigatorCount
+      : 0,
   spawn: (state) => {
     const distances = activeInvestigators(state)
       .filter((i) => i.location !== null)
@@ -97,6 +102,12 @@ registerEnemy({
       ? [{ type: 'AdvanceAct' }]
       : null,
   forced: (state, trigger, self): Message[] => {
+    if (
+      state.scenarioId === 'the-pallid-mask' &&
+      trigger.type === 'enemyEntersLocation' &&
+      trigger.enemy === self.id
+    )
+      return [{ type: 'CheckEnemyDefeat', enemy: self.id }]
     if (trigger.type !== 'enemyDefeated' || trigger.enemy.id !== self.id) return []
     if (state.scenarioId === 'curtain-call')
       return [

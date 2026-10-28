@@ -550,6 +550,11 @@ describe('A Phantom of Truth: more locations', () => {
     )
     expect(getInvestigator(state, 'b').deck).not.toContain('01087')
     expect(getInvestigator(state, 'a').resources).toBe(5 - 2)
+    // RR Ownership and Control: leaving play returns it to its owner's discard.
+    const borrowed = Object.values(state.assets).find((a) => a.code === '01087')!
+    state = prep(state, [], { type: 'DiscardAsset', asset: borrowed.id })
+    expect(getInvestigator(state, 'b').discard).toContain('01087')
+    expect(getInvestigator(state, 'a').discard).not.toContain('01087')
   })
 
   it('Montmartre (03210): spend 1 resource to add 1 ammo', () => {
@@ -604,6 +609,43 @@ describe('A Phantom of Truth: more locations', () => {
 })
 
 describe('A Phantom of Truth: encounter cards', () => {
+  it('Deadly Fate opens the attack cancellation window without putting the enemy into play', () => {
+    // 03224; RR Enemy Attacks, Cancel: this is an attack, even from the discard pile.
+    let state = prep(
+      game(),
+      [
+        withBag(-8),
+        update('a', { hand: ['12026'], resources: 10 }),
+        (s) => ({ ...s, encounterDeck: [{ ...swiftByakhee }] }),
+      ],
+      draw(treacheryOf(CODES.deadlyFate)),
+    )
+    state = resolveTest(state)
+    state = choose(state, 'choice.phantom.enemyAttacks')
+    const play = state.pending?.question.choices.find((c) => c.params?.card === 'Counterattack')
+    expect(play).toBeDefined()
+    expect(enemyOf(state, SETS.swiftByakhee)).toBeUndefined()
+    state = choose(state, play!.label, play!.params)
+    state = readAll(state)
+    expect(getInvestigator(state, 'a')).toMatchObject({ damage: 0, horror: 0 })
+    expect(state.encounterDiscard.map((c) => c.code)).toContain(SETS.swiftByakhee)
+    expect(Object.keys(state.attackSourcesWithoutLocation ?? {})).toHaveLength(0)
+  })
+
+  it('the cultist moves an exhausted unengaged Byakhee without readying it', () => {
+    // Scenario 03200: each unengaged Byakhee moves, whether ready or exhausted.
+    let state = prep(game(), [], spawn(stealthyByakhee, CODES.canalSaintMartin))
+    const enemy = enemyOf(state, CODES.stealthyByakhee)!
+    state = prep(
+      state,
+      [(s) => ({ ...s, enemies: { ...s.enemies, [enemy.id]: { ...enemy, exhausted: true } } })],
+      { type: 'ScenarioSpecific', key: 'phantomByakhee', data: {} },
+    )
+    state = readAll(state)
+    expect(state.enemies[enemy.id]?.location).not.toBe(CODES.canalSaintMartin)
+    expect(state.enemies[enemy.id]?.exhausted).toBe(true)
+  })
+
   it('Torturous Chords: +1 cost per resource-bearing copy, then loses 1 resource', () => {
     let state = prep(
       game(),

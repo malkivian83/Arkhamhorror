@@ -48,8 +48,12 @@ describe('campaign: replacing investigators who left', () => {
     expect(next.log.investigators[DANIELA]!.storyAssets).toEqual([CLASP_OF_BLACK_ONYX])
     expect(next.log.investigators[JOE]!.storyAssets).toEqual([])
     expect(replaceableMembers(next)).toEqual([TRISH])
-    expect(canPlayNext(next)).toBe(true)
-    expect(startScenario(next, 3).investigators.map((i) => i.id)).toEqual([DANIELA])
+    // Campaign Play: each player chooses a replacement before the next scenario.
+    expect(canPlayNext(next)).toBe(false)
+    expect(() => startScenario(next, 3)).toThrow()
+    const ready = replaceInvestigator(next, TRISH, 'dexter')
+    expect(canPlayNext(ready)).toBe(true)
+    expect(startScenario(ready, 3).investigators).toHaveLength(2)
   })
 
   it('an investigator already used in the campaign cannot return', () => {

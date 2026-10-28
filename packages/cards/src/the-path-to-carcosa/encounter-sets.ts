@@ -12,6 +12,7 @@ import {
   distancesFrom,
   effectiveVitals,
   enemyMaxHealth,
+  enemyNeighbours,
   getInvestigator,
   getLocation,
   playerCardDef,
@@ -879,9 +880,7 @@ export function danceOfTheYellowKing(state: GameState, investigator: Investigato
   if (here === null || !lunatics.length) return []
   const comes = (e: Enemy): Message[] => [
     { type: 'ReadyEnemy', enemy: e.id },
-    // Se mueve de Lugar en Lugar hasta el tuyo (solo importa dónde llega) y se enfrenta.
-    { type: 'EngageEnemy', enemy: e.id, investigator },
-    { type: 'EnemyAttack', enemy: e.id, investigator, exhaustAfter: false },
+    { type: 'ScenarioSpecific', key: 'carcosaDanceStep', data: { enemy: e.id, investigator } },
   ]
   const candidates = nearest(state, here, lunatics)
   if (candidates.length === 1) return comes(candidates[0]!)
@@ -897,6 +896,45 @@ export function danceOfTheYellowKing(state: GameState, investigator: Investigato
           params: { enemy: e.name },
           target: { type: 'enemy', id: e.id },
           then: comes(e),
+        })),
+      },
+    },
+  ]
+}
+
+/** 03097: resuelve cada entrada antes de continuar; el jefe decide las rutas empatadas. */
+function danceStep(state: GameState, investigator: InvestigatorId, id: string): Message[] {
+  const enemy = state.enemies[id]
+  const target = getInvestigator(state, investigator)
+  if (!enemy || target.location === null || target.eliminated || target.resigned) return []
+  if (enemy.location === target.location)
+    return [
+      { type: 'EngageEnemy', enemy: id, investigator },
+      { type: 'EnemyAttack', enemy: id, investigator, exhaustAfter: false },
+    ]
+  const distance = distancesFrom(state, enemy.location, enemy).get(target.location)
+  if (distance === undefined) return []
+  const steps = enemyNeighbours(state, enemy.location, enemy).filter(
+    (step) => distancesFrom(state, step, enemy).get(target.location!) === distance - 1,
+  )
+  const move = (location: string): Message[] => [
+    { type: 'MoveEnemy', enemy: id, location },
+    { type: 'ScenarioSpecific', key: 'carcosaDanceStep', data: { investigator, enemy: id } },
+  ]
+  if (steps.length === 1) return move(steps[0]!)
+  if (!steps.length) return []
+  return [
+    {
+      type: 'Ask',
+      investigator: state.leadInvestigatorId ?? investigator,
+      question: {
+        kind: 'chooseOne',
+        prompt: 'prompt.chooseLocation',
+        choices: steps.map((location) => ({
+          label: 'choice.location',
+          params: { location: getLocation(state, location).name },
+          target: { type: 'location', id: location },
+          then: move(location),
         })),
       },
     },
@@ -1104,6 +1142,8 @@ export function encounterSpecific(
   switch (key) {
     case 'carcosaDance':
       return investigator ? push(danceOfTheYellowKing(state, investigator)) : state
+    case 'carcosaDanceStep':
+      return investigator ? push(danceStep(state, investigator, String(data.enemy))) : state
     case 'carcosaCorrosion':
       return investigator
         ? push(corrosionStep(state, investigator, Number(data.remaining), Number(data.discarded)))

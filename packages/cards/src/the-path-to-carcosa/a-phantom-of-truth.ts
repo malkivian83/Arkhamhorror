@@ -7,6 +7,8 @@
  */
 import {
   activeInvestigators,
+  canPlayByEffect,
+  enemyNeighbours,
   distancesFrom,
   getInvestigator,
   leadInvestigator,
@@ -954,7 +956,35 @@ registerScenario({
         const byakhee = Object.values(state.enemies)
           .filter((e) => isByakhee(e) && e.engagedWith === null)
           .map((e) => e.id)
-        return byakhee.length ? push(state, { type: 'HuntersMove', enemies: byakhee }) : state
+        return push(state, ...byakhee.map((enemy) => specific('phantomMoveByakhee', { enemy })))
+      }
+      case 'phantomMoveByakhee': {
+        const enemy = state.enemies[String(data.enemy)]
+        if (!enemy || enemy.engagedWith !== null) return state
+        const distances = distancesFrom(state, enemy.location, enemy)
+        const investigators = activeInvestigators(state).filter(
+          (i) => i.location !== null && distances.has(i.location),
+        )
+        const nearest = Math.min(...investigators.map((i) => distances.get(i.location!)!))
+        if (!Number.isFinite(nearest) || nearest === 0) return state
+        const targets = investigators.filter((i) => distances.get(i.location!) === nearest)
+        const steps = enemyNeighbours(state, enemy.location, enemy).filter((step) => {
+          const from = distancesFrom(state, step, enemy)
+          return targets.some((i) => from.get(i.location!) === nearest - 1)
+        })
+        return push(
+          state,
+          ...leadChooses(
+            state,
+            'prompt.chooseHunterPath',
+            steps.map((location) => ({
+              label: 'choice.moveEnemyTo',
+              params: { enemy: enemy.name, location: state.locations[location]!.name },
+              target: { type: 'location' as const, id: location },
+              then: [{ type: 'MoveEnemy' as const, enemy: enemy.id, location }],
+            })),
+          ),
+        )
       }
       case 'phantomLoseResources':
         return investigator
@@ -988,7 +1018,7 @@ registerScenario({
         const index = Number(data.index)
         const attacker = state.encounterDiscard[index]
         if (!attacker || attacker.kind !== 'enemy') return state
-        return push(state, damage(investigator, attacker.damage, attacker.horror))
+        return push(state, { type: 'AttackFromEncounterDiscard', investigator, index })
       }
       case 'phantomDrawFromDiscard': {
         if (investigator === null) return state
@@ -1041,20 +1071,13 @@ registerScenario({
         if (investigator === null) return state
         const owner = String(data.owner)
         const code = String(data.code)
-        const cost = playerCardDef(code)?.cost ?? 0
-        const me = getInvestigator(state, investigator)
-        const from = getInvestigator(state, owner)
-        if (from.deck[0] !== code || me.resources < cost) return state
-        return push(
-          {
-            ...state,
-            investigators: state.investigators.map((i) =>
-              i.id === owner ? { ...i, deck: i.deck.slice(1) } : i,
-            ),
-          },
-          { type: 'SpendResources', investigator, amount: cost },
-          { type: 'PutAssetIntoPlay', investigator, code },
-        )
+        return push(state, {
+          type: 'PlayCard',
+          investigator,
+          code,
+          fromDeck: owner,
+          byEffect: true,
+        })
       }
     }
     return state
@@ -1141,14 +1164,23 @@ function grandGuignol(state: GameState, investigator: InvestigatorId): Message[]
  * un apoyo revelado pagando su coste. Después se barajan los mazos.
  */
 function montmartreReveal(state: GameState, investigator: InvestigatorId): GameState {
-  const me = getInvestigator(state, investigator)
   const revealed = activeInvestigators(state).flatMap((i) => {
     const top = i.deck[0]
     return top ? [{ owner: i.id, code: top }] : []
   })
   const playable = revealed.filter(({ code }) => {
     const def = playerCardDef(code)
-    return def?.type === 'asset' && !def.weakness && (def.cost ?? 0) <= me.resources
+    const projected = {
+      ...state,
+      investigators: state.investigators.map((i) =>
+        i.id === investigator ? { ...i, hand: [code, ...i.hand] } : i,
+      ),
+    }
+    return (
+      def?.type === 'asset' &&
+      !def.weakness &&
+      canPlayByEffect(projected, investigator, code, 'hand')
+    )
   })
   const shuffles: Message[] = activeInvestigators(state).map((i) => ({
     type: 'ShuffleDeck',

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, useId } from 'vue'
+import { computed, ref, useId } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { localizedCards, localName } from '../game/localized'
 import GameCard from './GameCard.vue'
@@ -12,6 +12,7 @@ const props = defineProps<{
   activeIndex: number
   totalCards?: number | undefined
   compact?: boolean
+  hideUnrevealed?: boolean
 }>()
 const { t } = useI18n()
 const dialog = ref<HTMLDialogElement>()
@@ -19,6 +20,9 @@ const trigger = ref<HTMLButtonElement>()
 const titleId = useId()
 const flipped = ref(new Set<number>())
 const enlarged = ref<number | null>(null)
+const visibleCards = computed(() =>
+  props.hideUnrevealed ? props.cards.slice(0, props.activeIndex + 1) : props.cards,
+)
 
 function open() {
   flipped.value = new Set()
@@ -31,6 +35,7 @@ function close() {
 }
 
 function flip(index: number) {
+  if (props.hideUnrevealed && index >= props.activeIndex) return
   const next = new Set(flipped.value)
   if (next.has(index)) next.delete(index)
   else next.add(index)
@@ -94,7 +99,9 @@ function nameOf(card: { code?: string; name: string }) {
       <header>
         <div>
           <h2 :id="titleId">{{ t(`table.${kind}Deck`) }}</h2>
-          <p>{{ t('table.scenarioDeckHelp') }}</p>
+          <p>
+            {{ t(hideUnrevealed ? 'table.scenarioDeckRevealedHelp' : 'table.scenarioDeckHelp') }}
+          </p>
         </div>
         <button
           type="button"
@@ -124,6 +131,7 @@ function nameOf(card: { code?: string; name: string }) {
           />
         </div>
         <button
+          v-if="!hideUnrevealed || enlarged < activeIndex"
           type="button"
           class="deck-action"
           :aria-pressed="flipped.has(enlarged)"
@@ -137,7 +145,7 @@ function nameOf(card: { code?: string; name: string }) {
       </section>
       <ol v-else class="cards">
         <li
-          v-for="(card, index) in cards"
+          v-for="(card, index) in visibleCards"
           :key="`${index}:${card.code ?? card.name}`"
           class="deck-card"
           :class="{ current: index === activeIndex }"
@@ -171,7 +179,7 @@ function nameOf(card: { code?: string; name: string }) {
               {{ t('table.enlarge') }}
             </button>
             <button
-              v-if="card.code"
+              v-if="card.code && (!hideUnrevealed || index < activeIndex)"
               type="button"
               class="deck-action"
               :aria-label="

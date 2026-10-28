@@ -218,12 +218,12 @@ describe('private online lobbies', () => {
       ),
     ).rejects.toMatchObject({ code: 'scenario_not_finished' })
   })
-  it('requires readiness only from survivors and prevents eliminated players from buying', async () => {
+  it('blocks continuation and purchases until eliminated players choose replacements', async () => {
     const { service, id, data, revision } = await ended()
     const lobby = JSON.parse(data.get(id)!) as Lobby
     lobby.game!.campaignLog!.investigators[deck('daniela').investigator]!.killed = true
     data.set(id, JSON.stringify(lobby))
-    let view = await service.progress(id, 'host', progressCommand(revision, { action: 'finish' }))
+    const view = await service.progress(id, 'host', progressCommand(revision, { action: 'finish' }))
     expect((await service.game(id, 'friend')).campaign!.own).toBeNull()
     await expect(
       service.progress(
@@ -231,22 +231,24 @@ describe('private online lobbies', () => {
         'friend',
         progressCommand(view.revision, { action: 'ready', ready: true }),
       ),
-    ).rejects.toMatchObject({ code: 'inactive_investigator' })
+    ).rejects.toMatchObject({ code: 'campaign_cannot_continue' })
     await expect(
       service.progress(
         id,
         'friend',
         progressCommand(view.revision, { action: 'purchase', card: '01030', upgrade: false }),
       ),
-    ).rejects.toMatchObject({ code: 'inactive_investigator' })
-    view = await service.progress(
-      id,
-      'host',
-      progressCommand(view.revision, { action: 'ready', ready: true }),
-    )
-    expect(view.campaign!.allReady).toBe(true)
-    view = await service.progress(id, 'host', progressCommand(view.revision, { action: 'next' }))
-    expect(view.investigators.map((i) => i.id)).toEqual([deck('joe').investigator])
+    ).rejects.toMatchObject({ code: 'campaign_cannot_continue' })
+    await expect(
+      service.progress(
+        id,
+        'host',
+        progressCommand(view.revision, { action: 'ready', ready: true }),
+      ),
+    ).rejects.toMatchObject({ code: 'campaign_cannot_continue' })
+    await expect(
+      service.progress(id, 'host', progressCommand(view.revision, { action: 'next' })),
+    ).rejects.toMatchObject({ code: 'campaign_cannot_continue' })
   })
   it('checks replacement requirements and available XP at purchase time', async () => {
     const { service, data, id, revision } = await ended()
@@ -401,6 +403,11 @@ describe('private online lobbies', () => {
       code: 'invalid_replacement',
     })
     view = await replace('friend', view.revision, starter('trish'))
+    // Do not let the host skip the other player's replacement after only one joins.
+    expect(view.campaign!.canContinue).toBe(false)
+    await expect(
+      service.progress(id, 'host', progressCommand(view.revision, { action: 'next' })),
+    ).rejects.toMatchObject({ code: 'campaign_cannot_continue' })
     expect(view.ownInvestigator).toBe(starter('trish').investigator)
     expect(view.campaign!.replacement).toBeNull()
     expect(view.campaign!.members.at(-1)).toMatchObject({

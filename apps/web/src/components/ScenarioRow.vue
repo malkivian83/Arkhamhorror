@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { actBehavior, cluesToAdvanceAct, type GameState } from '@lcg/engine'
+import { THE_PATH_TO_CARCOSA } from '@lcg/cards'
 import { computed, ref, useId } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { localizedCards, localName } from '../game/localized'
@@ -27,6 +28,9 @@ const secondAgenda = computed(() => {
   return second ? second.agendas[second.index] : undefined
 })
 const act = computed(() => props.state.acts[props.state.actIndex])
+const hideUnrevealed = computed(() =>
+  THE_PATH_TO_CARCOSA.scenarios.some((id) => id === props.state.scenarioId),
+)
 const actClues = computed(() => cluesToAdvanceAct(props.state))
 /** Traiciones en juego junto al mazo de Plan (Un público difícil, Cieno e impurezas). */
 const besideAgenda = computed(() =>
@@ -73,6 +77,7 @@ const sortedBag = computed(() =>
     >
       <ScenarioDeckViewer
         kind="agenda"
+        :hide-unrevealed="hideUnrevealed"
         :cards="state.agendas"
         :total-cards="game.stats?.agendaCount"
         :active-index="state.agendaIndex"
@@ -115,6 +120,7 @@ const sortedBag = computed(() =>
     >
       <ScenarioDeckViewer
         kind="agenda"
+        :hide-unrevealed="hideUnrevealed"
         :cards="state.secondAgenda!.agendas"
         :total-cards="game.stats?.secondAgendaCount"
         :active-index="state.secondAgenda!.index"
@@ -143,6 +149,7 @@ const sortedBag = computed(() =>
     <div v-if="act" class="scenario-group act-group" role="group" :aria-label="t('table.act')">
       <ScenarioDeckViewer
         kind="act"
+        :hide-unrevealed="hideUnrevealed"
         :cards="state.acts"
         :total-cards="game.stats?.actCount"
         :active-index="state.actIndex"

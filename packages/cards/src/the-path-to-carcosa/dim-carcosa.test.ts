@@ -312,6 +312,25 @@ describe('Dim Carcosa: acts and Hastur', () => {
     expect(behavior().forced!(state, { type: 'enemyPhaseBegins' })).toEqual([])
   })
 
+  it('the King in Yellow attack can be canceled despite having no location', () => {
+    // 03332: an enemy attack opens the cancellation window, rather than dealing horror directly.
+    let state = act2({ carcosaDoubt: '5', carcosaConviction: '2' })
+    state = readAll(
+      prep(state, [], { type: 'ScenarioSpecific', key: 'dimManAbility', data: { enemy: 'x' } }),
+    )
+    const before = getInvestigator(state, 'a').horror
+    state = prep(state, [update('a', { hand: ['12026'], resources: 10 })], {
+      type: 'ScenarioSpecific',
+      key: 'dimKingAttack',
+      data: { investigator: 'a' },
+    })
+    const play = state.pending?.question.choices.find((c) => c.params?.card === 'Counterattack')
+    expect(play).toBeDefined()
+    state = readAll(choose(state, play!.label, play!.params))
+    expect(getInvestigator(state, 'a').horror).toBe(before)
+    expect(state.stories?.[CODES.hasturKingInYellow]?.damage).toBe(0)
+  })
+
   it('Hastur’s attack: horror beyond your sanity also deals 1 damage', () => {
     let state = withHastur(game())
     const hastur = enemyOf(state, CODES.hasturLordOfCarcosa)!

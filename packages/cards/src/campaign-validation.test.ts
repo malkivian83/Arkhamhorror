@@ -2,7 +2,13 @@ import { isPermanent, playerCardDef, type GameState } from '@lcg/engine'
 import { choose, during, throughSetup } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { COLLECTOR } from './brethren-of-ash/queen-of-ash'
-import { finishScenario, newCampaign, purchase, startScenario } from './campaign'
+import {
+  finishScenario,
+  newCampaign,
+  purchase,
+  replaceInvestigator,
+  startScenario,
+} from './campaign'
 import { code, STARTER_DECKS } from './core-2026/player-cards'
 import { cardPool, isStandard, starterDeckList, validateDeck } from './decks'
 
@@ -141,14 +147,20 @@ describe('campaign result ownership', () => {
   it('keeps records of investigators who were already dead before the scenario', () => {
     const campaign = newCampaign('brethren-of-ash', ['daniela', 'joe'], 'standard')
     campaign.log.investigators[code(1)]!.killed = true
+    const ready = replaceInvestigator(campaign, code(1), 'trish')
+    let initial = throughSetup(startScenario(ready, 1))
+    if (initial.pending?.question.prompt === 'prompt.chooseNextInvestigator')
+      initial = choose(initial, 'choice.investigator')
     const game = choose(
-      during(throughSetup(startScenario(campaign, 1)), (s) => s, {
+      during(initial, (s) => s, {
         type: 'EndScenario',
         outcome: { type: 'noResolution' },
       }),
       'choice.continue',
     )
-    expect(game.investigators.map((i) => i.id)).toEqual([code(4)])
-    expect(finishScenario(campaign, game).log.investigators[code(1)]!.killed).toBe(true)
+    expect(game.investigators.map((i) => i.id)).toEqual(
+      ready.investigators.slice(1).map((i) => i.id),
+    )
+    expect(finishScenario(ready, game).log.investigators[code(1)]!.killed).toBe(true)
   })
 })

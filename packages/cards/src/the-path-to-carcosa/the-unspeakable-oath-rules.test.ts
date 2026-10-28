@@ -49,6 +49,34 @@ const fight = (state: GameState, enemy: string): Message => ({
 })
 
 describe('The Unspeakable Oath: Daniel Chesterfield', () => {
+  it('assigning horror to another asset triggers Daniel once for the whole effect', () => {
+    // 03182a: at least one horror not assigned to Daniel, including other assets.
+    let state = prep(
+      game(),
+      [],
+      { type: 'PutAssetIntoPlay', investigator: 'a', code: DANIEL_ALLY },
+      { type: 'PutAssetIntoPlay', investigator: 'a', code: '12058' },
+      { type: 'TakeDamage', investigator: 'a', damage: 0, horror: 2 },
+    )
+    state = choose(state, 'choice.assignToAsset', { card: 'Cloak of Resonance' })
+    state = choose(state, 'choice.assignToAsset', { card: 'Cloak of Resonance' })
+    state = readAll(state)
+    expect(getInvestigator(state, 'a').damage).toBe(1)
+    expect(getInvestigator(state, 'a').horror).toBe(0)
+  })
+
+  it('assigning all horror to Daniel does not trigger his damage', () => {
+    let state = prep(
+      game(),
+      [],
+      { type: 'PutAssetIntoPlay', investigator: 'a', code: DANIEL_ALLY },
+      { type: 'TakeDamage', investigator: 'a', damage: 0, horror: 2 },
+    )
+    state = choose(state, 'choice.assignToAsset', { card: 'Daniel Chesterfield' })
+    state = choose(state, 'choice.assignToAsset', { card: 'Daniel Chesterfield' })
+    expect(getInvestigator(state, 'a').damage).toBe(0)
+  })
+
   it('as an ally: horror not assigned to him deals 1 damage; he can be given away', () => {
     let state = prep(game(2), [], {
       type: 'PutAssetIntoPlay',
@@ -104,6 +132,8 @@ describe('The Unspeakable Oath: enemies', () => {
     const patient = enemyOf(state, CODES.madPatient)!
     expect(halls(state)).toContain(patient.location)
     state = prep(state, [withBag(0), placeAt(patient.location)], fight(state, patient.id))
+    // 03184: "when you attack", before committing/revealing tokens, not after the test.
+    expect(getInvestigator(state, 'a').horror).toBe(1)
     state = readAll(resolveTest(state))
     expect(getInvestigator(state, 'a').horror).toBe(1)
   })

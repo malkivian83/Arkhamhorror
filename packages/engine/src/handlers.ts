@@ -2169,9 +2169,20 @@ export function handle(state: GameState, message: Message): GameState {
           placedSoakers(state, message.investigator, 'horror').length >
           0
       if (canSoak) {
+        if (message.evenly && message.horror > 0)
+          return push(state, {
+            type: 'AssignHorrorEvenly',
+            investigator: message.investigator,
+            remaining: message.horror,
+            assigned: {},
+            ...(source ? { source } : {}),
+          })
         return push(state, {
           type: 'AssignDamage',
           investigator: message.investigator,
+          assignmentAssets: Object.values(state.assets).filter(
+            (a) => a.owner === message.investigator,
+          ),
           damage: message.damage,
           horror: message.horror,
           ...(message.assignFirst ? { assignFirst: message.assignFirst } : {}),
@@ -2179,19 +2190,34 @@ export function handle(state: GameState, message: Message): GameState {
           ...(source ? { source } : {}),
         })
       }
-      const assigned: Message[] = message.dealt?.length
-        ? [
-            {
-              type: 'Forced',
-              trigger: {
-                type: 'afterDamageAssigned',
-                investigator: message.investigator,
-                dealt: message.dealt,
-                ...(message.enemy ? { enemy: message.enemy } : {}),
+      const assigned: Message[] =
+        !message.assignmentPart && (message.dealt?.length || message.damage || message.horror)
+          ? [
+              {
+                type: 'Forced',
+                trigger: {
+                  type: 'afterDamageAssigned',
+                  investigator: message.investigator,
+                  dealt: [
+                    ...(message.dealt ?? []),
+                    ...(message.damage || message.horror
+                      ? [
+                          {
+                            investigator: message.investigator,
+                            damage: message.damage,
+                            horror: message.horror,
+                          },
+                        ]
+                      : []),
+                  ],
+                  assignmentAssets:
+                    message.assignmentAssets ??
+                    Object.values(state.assets).filter((a) => a.owner === message.investigator),
+                  ...(message.enemy ? { enemy: message.enemy } : {}),
+                },
               },
-            },
-          ]
-        : []
+            ]
+          : []
       if (message.damage === 0 && message.horror === 0) return push(state, ...assigned)
       const name = getInvestigator(state, message.investigator).name
       // Baron Samedi: additional damage placed together with this damage, before defeat.
@@ -2223,6 +2249,85 @@ export function handle(state: GameState, message: Message): GameState {
       )
     }
 
+    case 'AssignHorrorEvenly': {
+      // 03260; RR Damage/Horror: choose the full allocation before applying it.
+      // Only the horror from this effect counts towards an even division.
+      const { investigator, assigned, remaining, source } = message
+      const candidates = [
+        {
+          key: 'investigator',
+          capacity: Infinity,
+          label: 'choice.assignToInvestigator',
+          params: { name: getInvestigator(state, investigator).name },
+          target: { type: 'investigator' as const, id: investigator },
+        },
+        ...soakers(state, investigator, 'horror').map((a) => ({
+          key: `asset:${a.id}`,
+          capacity: assetVitals(a)!.sanity! - a.horror,
+          label: 'choice.assignToAsset',
+          params: { card: playerCardDef(a.code)?.name ?? a.code },
+          target: { type: 'asset' as const, id: a.id },
+        })),
+        ...placedSoakers(state, investigator, 'horror').map((a) => ({
+          key: `placed:${a.id}`,
+          capacity: playerCardDef(a.code)!.sanity! - a.horror,
+          label: 'choice.assignToAsset',
+          params: { card: a.name },
+          target: { type: 'placed' as const, id: a.id },
+        })),
+      ]
+      if (remaining <= 0) {
+        const dealt: DamageDealt[] = []
+        const messages: Message[] = []
+        for (const [key, horror] of Object.entries(assigned)) {
+          if (key.startsWith('asset:')) {
+            const asset = key.slice(6)
+            messages.push({ type: 'DamageAsset', asset, damage: 0, horror })
+            dealt.push({ asset, damage: 0, horror })
+          } else if (key.startsWith('placed:')) {
+            const placed = key.slice(7)
+            messages.push({ type: 'DamagePlacedAsset', placed, damage: 0, horror })
+            dealt.push({ placed, damage: 0, horror })
+          }
+        }
+        return push(state, ...messages, {
+          type: 'TakeDamage',
+          investigator,
+          damage: 0,
+          horror: assigned.investigator ?? 0,
+          direct: true,
+          dealt,
+          assignmentAssets: Object.values(state.assets).filter((a) => a.owner === investigator),
+          ...(source ? { source } : {}),
+        })
+      }
+      const available = candidates.filter((c) => (assigned[c.key] ?? 0) < c.capacity)
+      const minimum = Math.min(...available.map((c) => assigned[c.key] ?? 0))
+      return push(state, {
+        type: 'Ask',
+        investigator,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.assignHorror',
+          ...(source ? { promptParams: { source } } : {}),
+          choices: available
+            .filter((c) => (assigned[c.key] ?? 0) === minimum)
+            .map((c) => ({
+              label: c.label,
+              params: c.params,
+              target: c.target,
+              then: [
+                {
+                  ...message,
+                  remaining: remaining - 1,
+                  assigned: { ...assigned, [c.key]: (assigned[c.key] ?? 0) + 1 },
+                },
+              ],
+            })),
+        },
+      })
+    }
+
     case 'AssignDamage': {
       const { investigator, damage, horror } = message
       const kind = damage > 0 ? 'damage' : horror > 0 ? 'horror' : null
@@ -2235,6 +2340,7 @@ export function handle(state: GameState, message: Message): GameState {
                 type: 'afterDamageAssigned',
                 investigator,
                 dealt,
+                ...(message.assignmentAssets ? { assignmentAssets: message.assignmentAssets } : {}),
                 ...(message.enemy ? { enemy: message.enemy } : {}),
                 ...(message.source ? { source: message.source } : {}),
               },
@@ -2245,22 +2351,22 @@ export function handle(state: GameState, message: Message): GameState {
       const concentrated =
         !!message.enemy &&
         !!enemyBehavior(findEnemy(state, message.enemy)?.code ?? '')?.concentratedAssignment
-      const rest = (to: Omit<DamageDealt, 'damage' | 'horror'> | null): Message => {
+      const rest = (recipient: Omit<DamageDealt, 'damage' | 'horror'> | null): Message => {
+        const to = recipient ?? { investigator }
         const point = { damage: kind === 'damage' ? 1 : 0, horror: kind === 'horror' ? 1 : 0 }
         const same = (d: DamageDealt) =>
-          to !== null && d.asset === to.asset && d.placed === to.placed
-        const merged = !to
-          ? dealt
-          : dealt.some(same)
-            ? dealt.map((d) =>
-                same(d)
-                  ? { ...d, damage: d.damage + point.damage, horror: d.horror + point.horror }
-                  : d,
-              )
-            : [...dealt, { ...to, ...point }]
+          d.asset === to.asset && d.placed === to.placed && d.investigator === to.investigator
+        const merged = dealt.some(same)
+          ? dealt.map((d) =>
+              same(d)
+                ? { ...d, damage: d.damage + point.damage, horror: d.horror + point.horror }
+                : d,
+            )
+          : [...dealt, { ...to, ...point }]
         return {
           type: 'AssignDamage',
           investigator,
+          ...(message.assignmentAssets ? { assignmentAssets: message.assignmentAssets } : {}),
           damage: kind === 'damage' ? damage - 1 : damage,
           horror: kind === 'horror' ? horror - 1 : horror,
           ...(message.assignFirst ? { assignFirst: message.assignFirst } : {}),
@@ -2280,6 +2386,7 @@ export function handle(state: GameState, message: Message): GameState {
           damage,
           horror,
           direct: true,
+          ...(message.assignmentAssets ? { assignmentAssets: message.assignmentAssets } : {}),
           ...(message.enemy ? { enemy: message.enemy } : {}),
           ...(message.source ? { source: message.source } : {}),
           ...(dealt.length ? { dealt } : {}),
@@ -2298,6 +2405,7 @@ export function handle(state: GameState, message: Message): GameState {
         damage: kind === 'damage' ? 1 : 0,
         horror: kind === 'horror' ? 1 : 0,
         direct: true,
+        assignmentPart: true,
         ...(message.enemy ? { enemy: message.enemy } : {}),
         ...(message.source ? { source: message.source } : {}),
       }
@@ -2309,6 +2417,7 @@ export function handle(state: GameState, message: Message): GameState {
           damage,
           horror,
           direct: true,
+          ...(message.assignmentAssets ? { assignmentAssets: message.assignmentAssets } : {}),
           ...(message.enemy ? { enemy: message.enemy } : {}),
           ...(message.source ? { source: message.source } : {}),
           ...(dealt.length ? { dealt } : {}),
@@ -2399,6 +2508,20 @@ export function handle(state: GameState, message: Message): GameState {
 
     // ------------------------------------------------------- Cartas de jugador
     case 'PlayCard': {
+      if (message.fromDeck) {
+        const owner = getInvestigator(state, message.fromDeck)
+        if (owner.deck[0] !== message.code) return state
+        const projected = updateInvestigator(state, message.investigator, (i) => ({
+          ...i,
+          hand: [message.code, ...i.hand],
+        }))
+        if (!canPlayByEffect(projected, message.investigator, message.code, 'hand')) return state
+        const { fromDeck, ...play } = message
+        return handle(
+          updateInvestigator(projected, fromDeck, (i) => ({ ...i, deck: i.deck.slice(1) })),
+          { ...play, from: 'hand', byEffect: true, originalOwner: fromDeck },
+        )
+      }
       const investigator = getInvestigator(state, message.investigator)
       if (
         message.byEffect &&
@@ -2579,6 +2702,7 @@ export function handle(state: GameState, message: Message): GameState {
         type: 'ResolvePlayedCard',
         investigator: investigator.id,
         code: message.code,
+        ...(message.originalOwner ? { originalOwner: message.originalOwner } : {}),
         ...(message.effect ? { effect: message.effect } : {}),
         ...(message.x !== undefined ? { x: message.x } : {}),
         ...(fromDiscard ? { fromDiscard: true } : {}),
@@ -2590,7 +2714,9 @@ export function handle(state: GameState, message: Message): GameState {
       const def = playerCardDef(message.code)
       if (!def) return state
       if (investigator.eliminated) {
-        return def.type === 'asset' ? toOwnerDiscard(state, investigator.id, message.code) : state
+        return def.type === 'asset'
+          ? toOwnerDiscard(state, message.originalOwner ?? investigator.id, message.code)
+          : state
       }
       if (def.type === 'asset') {
         return push(state, {
@@ -2598,6 +2724,7 @@ export function handle(state: GameState, message: Message): GameState {
           investigator: investigator.id,
           code: message.code,
           played: true,
+          ...(message.originalOwner ? { originalOwner: message.originalOwner } : {}),
           ...(message.x !== undefined ? { tokens: { uses: message.x } } : {}),
         })
       }
@@ -2686,6 +2813,7 @@ export function handle(state: GameState, message: Message): GameState {
             id,
             code: message.code,
             owner: message.investigator,
+            ...(message.originalOwner ? { originalOwner: message.originalOwner } : {}),
             exhausted: false,
             damage: 0,
             horror: 0,
@@ -4360,8 +4488,47 @@ export function handle(state: GameState, message: Message): GameState {
       return push(state, { type: 'EngageEnemy', enemy: enemy.id, investigator: target.id }, again)
     }
 
+    case 'AttackFromEncounterDiscard': {
+      const card = state.encounterDiscard[message.index]
+      if (!card || card.kind !== 'enemy') return state
+      return push(state, {
+        type: 'AttackWithoutLocation',
+        card,
+        investigator: message.investigator,
+      })
+    }
+
+    case 'AttackWithoutLocation': {
+      const { card } = message
+      const [id, next] = newId(state, 'discard-attack-')
+      const enemy: Enemy = {
+        ...card,
+        id,
+        maxHealth: card.health,
+        damageTaken: 0,
+        location: '',
+        engagedWith: null,
+        exhausted: false,
+      }
+      return push(
+        {
+          ...next,
+          attackSourcesWithoutLocation: { ...next.attackSourcesWithoutLocation, [id]: enemy },
+        },
+        { type: 'EnemyAttack', enemy: id, investigator: message.investigator, exhaustAfter: false },
+        { type: 'EndAttackWithoutLocation', enemy: id },
+      )
+    }
+
+    case 'EndAttackWithoutLocation': {
+      const sources = { ...state.attackSourcesWithoutLocation }
+      delete sources[message.enemy]
+      return { ...state, attackSourcesWithoutLocation: sources }
+    }
+
     case 'EnemyAttack': {
-      const enemy = findEnemy(state, message.enemy)
+      const enemy =
+        findEnemy(state, message.enemy) ?? state.attackSourcesWithoutLocation?.[message.enemy]
       const investigator = getInvestigator(state, message.investigator)
       if (!enemy || (enemy.exhausted && !message.evenIfExhausted) || investigator.eliminated)
         return state
@@ -5127,18 +5294,21 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'CancelEnemyAttack': {
-      const enemy = findEnemy(state, message.enemy)
+      const enemy =
+        findEnemy(state, message.enemy) ?? state.attackSourcesWithoutLocation?.[message.enemy]
       if (enemy && enemyBehavior(enemy.code)?.attacksCannotBeCanceled) return state
       return { ...state, canceledAttack: message.enemy }
     }
 
     case 'ResolveEnemyAttack': {
       if (state.canceledAttack === message.enemy) return { ...state, canceledAttack: null }
-      const enemy = findEnemy(state, message.enemy)
+      const enemy =
+        findEnemy(state, message.enemy) ?? state.attackSourcesWithoutLocation?.[message.enemy]
       if (!enemy) return state
-      const elusive: Message[] = enemy.keywords.includes('elusive')
-        ? [{ type: 'ElusiveRetreat', enemy: enemy.id }]
-        : []
+      const elusive: Message[] =
+        state.enemies[enemy.id] && enemy.keywords.includes('elusive')
+          ? [{ type: 'ElusiveRetreat', enemy: enemy.id }]
+          : []
       return push(
         state,
         {
@@ -7687,7 +7857,7 @@ function withTokenSource(effect: TokenEffect, token: ChaosToken): TokenEffect {
  * jugador en uso. Sin un origen claro no se inventa ninguno.
  */
 function damageSource(state: GameState, enemy?: EnemyId): string | undefined {
-  if (enemy) return findEnemy(state, enemy)?.name
+  if (enemy) return (findEnemy(state, enemy) ?? state.attackSourcesWithoutLocation?.[enemy])?.name
   const test = state.skillTest
   if (test?.kind.type === 'effect') return test.kind.source
   const revealed = Object.values(state.treacheries).find((t) => t.placement.type === 'limbo')
