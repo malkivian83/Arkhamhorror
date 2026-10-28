@@ -210,8 +210,8 @@ Se añadieron 32 recorridos de transiciones narrativas: ambos órdenes iniciales
 
 ## Validación y continuación
 
-Último lote subido: `d6339efa`, escenario final y epílogo. Los ocho escenarios, 225 códigos EN/ES, 730 escaneos y miniaturas y 69 narraciones con Nico - History & Documentary están completos. El escenario final dispone de 49 pruebas específicas; guardado, tablero en línea, catálogo y audio pasan sus comprobaciones dirigidas.
+Último escenario subido: `d6339efa`, escenario final y epílogo. Revisión final implementada en `6e1d81ed`. Los ocho escenarios, 225 códigos EN/ES, 730 escaneos y miniaturas y 69 narraciones con Nico - History & Documentary están completos. El escenario final dispone de 49 pruebas específicas; guardado, tablero en línea, catálogo y audio pasan sus comprobaciones dirigidas.
 
-El lote del octavo escenario pasó formato, lint, tipos y compilación. Su suite global obtuvo 5003 pruebas correctas, 19 omitidas y los tres límites de cinco segundos conocidos de Gala y Brethren of Ash; sus dos archivos pasaron las 51 pruebas con tiempo ampliado. La revisión final añade la corrección del orden al restaurar y sus 34 pruebas, correctas por consola. Controles globales de esta corrección pendientes sobre el estado integrado.
+El lote del octavo escenario pasó formato, lint, tipos y compilación. Su suite global obtuvo 5003 pruebas correctas, 19 omitidas y los tres límites de cinco segundos conocidos de Gala y Brethren of Ash; sus dos archivos pasaron las 51 pruebas con tiempo ampliado. La revisión final añade la corrección del orden al restaurar y sus 34 pruebas. Formato, lint, tipos y compilación vuelven a pasar. La suite final obtuvo 5037 pruebas correctas y 19 omitidas; solo reaparecieron los tres límites de tiempo conocidos, y sus dos archivos volvieron a pasar las 51 pruebas con tiempo ampliado.
 
-La revisión visual de la aplicación queda para la persona usuaria conforme a AGENTS. Siguiente paso: validar y subir la corrección final del guardado; no queda otro escenario por implementar dentro de la campaña original.
+La campaña original y su revisión están completas; no quedan escenarios ni audios pendientes dentro del alcance. La revisión visual de la aplicación queda para la persona usuaria conforme a AGENTS.
