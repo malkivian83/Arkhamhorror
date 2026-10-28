@@ -35,6 +35,7 @@ import {
   onScenarioCard,
   stuckInPlay,
   locationBehavior,
+  assetBehavior,
   playerCardBehavior,
   playerCardDef,
   scenarioBehavior,
@@ -350,6 +351,10 @@ export function handle(state: GameState, message: Message): GameState {
           'log.agendaAdvanced',
           { name: agenda?.name ?? '' },
         ),
+        {
+          type: 'Forced',
+          trigger: { type: 'agendaAdvances', ...(agenda?.code ? { code: agenda.code } : {}) },
+        },
         ...onAdvance,
         agenda?.code ? { type: 'AgendaAdvanced', from: agenda.code } : { type: 'AgendaAdvanced' },
       )
@@ -1020,8 +1025,7 @@ export function handle(state: GameState, message: Message): GameState {
       const quietEngage =
         message.action.kind === 'engage' &&
         Object.values(state.assets).some(
-          (a) =>
-            a.owner === investigator.id && playerCardBehavior(a.code)?.engageWithoutOpportunity,
+          (a) => a.owner === investigator.id && assetBehavior(state, a)?.engageWithoutOpportunity,
         )
       const attacks =
         !quietEngage && provokesAttacksOfOpportunity(message.action)
@@ -1978,9 +1982,7 @@ export function handle(state: GameState, message: Message): GameState {
       ]
       const beforeEngagement = Object.values(next.assets).some(
         (a) =>
-          a.owner === mover.id &&
-          playerCardBehavior(a.code)?.reactsBeforeEngagement &&
-          !a.exhausted,
+          a.owner === mover.id && assetBehavior(state, a)?.reactsBeforeEngagement && !a.exhausted,
       )
       return beforeEngagement
         ? push(next, ...reveal, { type: 'AfterCurrentSkillTest', then: arrival })
@@ -2020,7 +2022,12 @@ export function handle(state: GameState, message: Message): GameState {
       if (
         amount <= 0 ||
         cluesBlocked(state, investigator.id) ||
-        scenarioBehavior(state.scenarioId)?.cannotDiscoverClues?.(state, investigator.id, where)
+        scenarioBehavior(state.scenarioId)?.cannotDiscoverClues?.(
+          state,
+          investigator.id,
+          where,
+          message.investigating === true,
+        )
       )
         return state
       return push(
@@ -2074,6 +2081,11 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'TakeDamage': {
+      for (const t of Object.values(state.treacheries)) {
+        if (t.placement.type === 'limbo') continue
+        const instead = treacheryBehavior(t.code)?.beforeDamage?.(state, t, message)
+        if (instead) return push(state, ...instead)
+      }
       if (getInvestigator(state, message.investigator).osirisProtected && message.damage > 0)
         return push(state, { ...message, damage: 0 })
       const source = message.source ?? damageSource(state, message.enemy)
@@ -2563,7 +2575,7 @@ export function handle(state: GameState, message: Message): GameState {
       // Reglamento, "Permanent": no puede abandonar el juego (ni Baron Samedi sin 3 perdición).
       if (!asset || stuckInPlay(state, asset)) return state
       const instead =
-        playerCardBehavior(asset.code)?.leavesPlay?.(state, asset, 'discard') ??
+        assetBehavior(state, asset)?.leavesPlay?.(state, asset, 'discard') ??
         scenarioBehavior(state.scenarioId)?.assetLeavesPlay?.(state, asset, 'discard')
       if (instead) return push(state, ...instead)
       const { [asset.id]: _gone, ...assets } = state.assets
@@ -2572,7 +2584,7 @@ export function handle(state: GameState, message: Message): GameState {
         asset.originalOwner ?? asset.owner,
         (i) => (i.eliminated ? i : { ...i, discard: [...i.discard, asset.code] }),
       )
-      const behavior = playerCardBehavior(asset.code)
+      const behavior = assetBehavior(state, asset)
       // Losing slots can leave other assets without room (Bandolier).
       return behavior?.restrictedSlots || behavior?.extraSlots
         ? push(discarded, { type: 'CheckSlots', investigator: asset.owner })
@@ -2632,9 +2644,30 @@ export function handle(state: GameState, message: Message): GameState {
       const uses = Math.max(0, asset.uses - message.amount)
       const next = { ...state, assets: { ...state.assets, [asset.id]: { ...asset, uses } } }
       // "Si no le quedan usos, descártalo."
-      return uses === 0 && playerCardBehavior(asset.code)?.discardWhenEmpty
+      return uses === 0 && assetBehavior(state, asset)?.discardWhenEmpty
         ? push(next, { type: 'DiscardAsset', asset: asset.id })
         : next
+    }
+
+    case 'PlaceCluesOnAsset': {
+      const a = state.assets[message.asset]
+      return a
+        ? {
+            ...state,
+            assets: { ...state.assets, [a.id]: { ...a, clues: (a.clues ?? 0) + message.amount } },
+          }
+        : state
+    }
+    case 'MoveAssetCluesToEnemy': {
+      const a = state.assets[message.asset],
+        e = state.enemies[message.enemy]
+      if (!a || !e) return state
+      const amount = Math.max(0, Math.min(a.clues ?? 0, message.amount))
+      return {
+        ...state,
+        assets: { ...state.assets, [a.id]: { ...a, clues: (a.clues ?? 0) - amount } },
+        enemies: { ...state.enemies, [e.id]: { ...e, clues: (e.clues ?? 0) + amount } },
+      }
     }
 
     case 'CommitWindow': {
@@ -3085,7 +3118,7 @@ export function handle(state: GameState, message: Message): GameState {
           .filter((asset) => asset.owner === investigator.id)
           .flatMap(
             (asset) =>
-              playerCardBehavior(asset.code)?.leavesPlay?.(
+              assetBehavior(state, asset)?.leavesPlay?.(
                 state,
                 asset,
                 investigator.resigned ? 'resigned' : 'defeated',
@@ -3648,7 +3681,7 @@ export function handle(state: GameState, message: Message): GameState {
       if (!message.prepared && test.source) {
         const asset = state.assets[test.source]
         const before = asset
-          ? (playerCardBehavior(asset.code)?.beforeResults?.(state, test, asset) ?? [])
+          ? (assetBehavior(state, asset)?.beforeResults?.(state, test, asset) ?? [])
           : []
         if (before.length)
           return push(state, ...before, { type: 'ApplySkillTestResults', prepared: true })
@@ -4357,7 +4390,7 @@ export function handle(state: GameState, message: Message): GameState {
     case 'ShuffleAssetIntoDeck': {
       const asset = state.assets[message.asset]
       if (!asset || stuckInPlay(state, asset)) return state
-      const instead = playerCardBehavior(asset.code)?.leavesPlay?.(state, asset, 'other')
+      const instead = assetBehavior(state, asset)?.leavesPlay?.(state, asset, 'other')
       if (instead) return push(state, ...instead)
       const owner = getInvestigator(state, asset.originalOwner ?? asset.owner)
       const { [asset.id]: _gone, ...assets } = state.assets
@@ -4539,7 +4572,7 @@ export function handle(state: GameState, message: Message): GameState {
           [asset.id]: {
             ...asset,
             uses: Math.min(
-              playerCardBehavior(asset.code)?.maxUses ?? Infinity,
+              assetBehavior(state, asset)?.maxUses ?? Infinity,
               asset.uses + message.amount,
             ),
           },
@@ -5119,7 +5152,7 @@ export function handle(state: GameState, message: Message): GameState {
               // Marcus Sengstacke: assets that give additional upkeep resources.
               Object.values(state.assets)
                 .filter((a) => a.owner === i.id)
-                .reduce((n, a) => n + (playerCardBehavior(a.code)?.upkeepResources ?? 0), 0),
+                .reduce((n, a) => n + (assetBehavior(state, a)?.upkeepResources ?? 0), 0),
             basic: true,
           },
         ]),
@@ -5235,7 +5268,7 @@ export function handle(state: GameState, message: Message): GameState {
       if (!state.assets[message.asset]) return state
       const asset = state.assets[message.asset]!
       const instead = !message.leavingResolved
-        ? playerCardBehavior(asset.code)?.leavesPlay?.(state, asset, 'other')
+        ? assetBehavior(state, asset)?.leavesPlay?.(state, asset, 'other')
         : null
       if (instead) return push(state, ...instead)
       const { [message.asset]: _removed, ...assets } = state.assets
@@ -5344,7 +5377,7 @@ export function handle(state: GameState, message: Message): GameState {
             ]
           : []
       const watching = Object.values(state.assets).some(
-        (a) => a.owner === investigator.id && playerCardBehavior(a.code)?.observesActionAbilities,
+        (a) => a.owner === investigator.id && assetBehavior(state, a)?.observesActionAbilities,
       )
       const source =
         message.actions > 0 && watching
@@ -5973,7 +6006,7 @@ export function handle(state: GameState, message: Message): GameState {
     case 'ReturnAssetToHand': {
       const asset = state.assets[message.asset]
       if (!asset || stuckInPlay(state, asset)) return state
-      const instead = playerCardBehavior(asset.code)?.leavesPlay?.(state, asset, 'other')
+      const instead = assetBehavior(state, asset)?.leavesPlay?.(state, asset, 'other')
       if (instead) return push(state, ...instead)
       const { [asset.id]: _gone, ...assets } = state.assets
       return updateInvestigator({ ...state, assets }, asset.originalOwner ?? asset.owner, (i) => ({
@@ -6676,7 +6709,7 @@ function handSize(state: GameState, investigator: string): number {
   return Object.values(state.assets)
     .filter((a) => a.owner === investigator)
     .reduce(
-      (size, a) => size + (playerCardBehavior(a.code)?.handSize ?? 0),
+      (size, a) => size + (assetBehavior(state, a)?.handSize ?? 0),
       MAX_HAND_SIZE +
         (scenarioBehavior(state.scenarioId)?.handSizeModifier?.(state, investigator) ?? 0),
     )
@@ -6761,7 +6794,7 @@ export function canCommitFrom(
   const test = state.skillTest
   const investigator = getInvestigator(state, id)
   if (!test || investigator.eliminated || !canCommit(state, test, code, id, zone)) return false
-  if (scenarioBehavior(state.scenarioId)?.cannotCommit?.(state, id)) return false
+  if (scenarioBehavior(state.scenarioId)?.cannotCommit?.(state, id, code)) return false
   if (commitBlocked(state, id, playerCardDef(code)?.type ?? '')) return false
   return (
     id === test.investigator ||
@@ -6829,7 +6862,7 @@ function fastInvestigatorOptions(state: GameState, skipHandOf?: InvestigatorId):
             !assetsBlocked(state, a.owner) &&
             cardAllowed(state, a.owner, a.code),
         )
-        .flatMap((a) => playerCardBehavior(a.code)?.fastOptions?.(state, a) ?? []),
+        .flatMap((a) => assetBehavior(state, a)?.fastOptions?.(state, a) ?? []),
     ].filter((o) => !fastAbilitiesBlocked(state, o.investigator)),
   ].filter((o) => withinLimit(state, o.key, o.investigator, o.limit))
 }
@@ -6843,11 +6876,11 @@ function testOptions(state: GameState, test: SkillTest): ReactionOption[] {
         !assetsBlocked(state, a.owner) &&
         cardAllowed(state, a.owner, a.code) &&
         (a.owner === investigator.id ||
-          (playerCardBehavior(a.code)?.helpsOtherTests &&
+          (assetBehavior(state, a)?.helpsOtherTests &&
             getInvestigator(state, a.owner).location === investigator.location &&
             !getInvestigator(state, a.owner).eliminated)),
     )
-    .flatMap((a) => playerCardBehavior(a.code)?.testOptions?.(state, test, a) ?? [])
+    .flatMap((a) => assetBehavior(state, a)?.testOptions?.(state, test, a) ?? [])
   const treacheries = Object.values(state.treacheries).flatMap(
     (t) => treacheryBehavior(t.code)?.testOptions?.(state, test, t) ?? [],
   )
@@ -6871,7 +6904,7 @@ function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
     assets.push(trigger.asset)
   const fromAssets = assets
     .filter((a) => !assetsBlocked(state, a.owner) && cardAllowed(state, a.owner, a.code))
-    .flatMap((a) => playerCardBehavior(a.code)?.reactions?.(state, trigger, a) ?? [])
+    .flatMap((a) => assetBehavior(state, a)?.reactions?.(state, trigger, a) ?? [])
   const fromHands = active.flatMap((i) =>
     [...new Set(playableHand(state, i.id))].flatMap((code) => {
       // Languor (blockedTypes) aún no se aplica a los eventos jugados como reacción.
@@ -6886,7 +6919,10 @@ function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
       return playerCardBehavior(code)?.handReactions?.(state, trigger, i.id) ?? []
     }),
   )
-  const fromEnemies = Object.values(state.enemies).flatMap(
+  const reactiveEnemies = Object.values(state.enemies)
+  if (trigger.type === 'enemyDefeated' && !state.enemies[trigger.enemy.id])
+    reactiveEnemies.push(trigger.enemy)
+  const fromEnemies = reactiveEnemies.flatMap(
     (e) => enemyBehavior(e.code)?.reactions?.(state, trigger, e) ?? [],
   )
   const fromPlaced = Object.values(state.placedAssets ?? {})
@@ -7003,7 +7039,7 @@ function sealedInstead(
     )
     return entry &&
       asset.owner === investigator &&
-      playerCardBehavior(asset.code)?.resolveSealedInstead &&
+      assetBehavior(state, asset)?.resolveSealedInstead &&
       !assetsBlocked(state, asset.owner) &&
       cardAllowed(state, asset.owner, asset.code)
       ? [{ asset, token: entry.token }]
@@ -7086,7 +7122,7 @@ function additionalActions(state: GameState, id: InvestigatorId): ('evade' | 'mo
 function additionalDamage(state: GameState, investigator: InvestigatorId): string[] {
   return Object.values(state.assets).flatMap((a) =>
     Array.from(
-      { length: playerCardBehavior(a.code)?.additionalDamagePlaced?.(state, a, investigator) ?? 0 },
+      { length: assetBehavior(state, a)?.additionalDamagePlaced?.(state, a, investigator) ?? 0 },
       () => playerCardDef(a.code)?.name ?? a.code,
     ),
   )
@@ -7157,7 +7193,7 @@ function forcedAbilities(state: GameState, trigger: Trigger): Message[] {
   )
   const fromAssets = Object.values(state.assets).flatMap((a) =>
     sourced(
-      playerCardBehavior(a.code)?.forced?.(state, trigger, a),
+      assetBehavior(state, a)?.forced?.(state, trigger, a),
       playerCardDef(a.code)?.name ?? a.code,
     ),
   )
@@ -7259,6 +7295,23 @@ function enemyCard(enemy: Enemy): EnemyCard {
 
 /** Valor y efectos de una ficha del caos (RR paso 4). */
 function resolveToken(state: GameState, token: ChaosToken, investigator: string): TokenEffect {
+  const effect = resolveBaseToken(state, token, investigator)
+  const test = state.skillTest
+  const target =
+    test && (test.kind.type === 'fight' || test.kind.type === 'evade')
+      ? state.enemies[test.kind.enemy]
+      : undefined
+  return test && target
+    ? {
+        ...effect,
+        modifier:
+          enemyBehavior(target.code)?.tokenModifier?.(state, target, test, effect.modifier) ??
+          effect.modifier,
+      }
+    : effect
+}
+
+function resolveBaseToken(state: GameState, token: ChaosToken, investigator: string): TokenEffect {
   const override = scenarioBehavior(state.scenarioId)?.tokenOverride?.(state, token, investigator)
   if (override) return override
   if (typeof token === 'number') return { modifier: token }
@@ -7306,6 +7359,7 @@ function skillTestResults(state: GameState, succeeded: boolean, failBy: number):
               : [
                   {
                     type: 'DiscoverClues',
+                    investigating: true,
                     investigator,
                     amount:
                       1 +
@@ -7514,7 +7568,7 @@ function opportunityAttacks(state: GameState, investigator: Investigator): Messa
   const safe =
     (investigator.actionsTaken ?? 0) === 0 &&
     Object.values(state.assets).some(
-      (a) => a.owner === investigator.id && playerCardBehavior(a.code)?.firstActionSafe,
+      (a) => a.owner === investigator.id && assetBehavior(state, a)?.firstActionSafe,
     )
   if (safe) return []
   return engagedEnemies(state, investigator.id)
@@ -7524,7 +7578,7 @@ function opportunityAttacks(state: GameState, investigator: Investigator): Messa
         !Object.values(state.assets).some(
           (a) =>
             a.owner === investigator.id &&
-            playerCardBehavior(a.code)?.ignoresOpportunityAttacks?.(state, a, e),
+            assetBehavior(state, a)?.ignoresOpportunityAttacks?.(state, a, e),
         ),
     )
     .map((e) => ({
@@ -7639,8 +7693,8 @@ export function slotCapacity(
     .reduce(
       (total, a) =>
         total +
-        (playerCardBehavior(a.code)?.permanent?.slots?.[slot] ?? 0) +
-        (playerCardBehavior(a.code)?.extraSlots?.[slot] ?? 0),
+        (assetBehavior(state, a)?.permanent?.slots?.[slot] ?? 0) +
+        (assetBehavior(state, a)?.extraSlots?.[slot] ?? 0),
       SLOT_CAPACITY[slot] -
         occupied +
         (scenarioBehavior(state.scenarioId)?.slotModifier?.(state, investigator, slot) ?? 0),
@@ -7657,7 +7711,7 @@ export function restrictedSlotCapacity(
 ): { trait: string | string[]; count: number }[] {
   return Object.values(state.assets)
     .filter((a) => a.owner === investigator)
-    .flatMap((a) => playerCardBehavior(a.code)?.restrictedSlots ?? [])
+    .flatMap((a) => assetBehavior(state, a)?.restrictedSlots ?? [])
     .filter((r) => r.slot === slot)
     .map(({ trait, count }) => ({ trait, count }))
 }
@@ -7768,7 +7822,7 @@ function soakers(state: GameState, investigator: string, kind: 'damage' | 'horro
   return Object.values(state.assets).filter((a) => {
     if (a.owner !== investigator) {
       const other = getInvestigator(state, a.owner)
-      const behavior = playerCardBehavior(a.code)
+      const behavior = assetBehavior(state, a)
       const guards =
         ((kind === 'damage' && behavior?.soaksForOthers) || behavior?.soaksAtLocation) &&
         here !== null &&
@@ -7878,9 +7932,9 @@ export function skillTestValue(state: GameState): {
     ) * (doubling.icons ? 2 : 1)
   const passive = Object.values(state.assets)
     .filter((a) => a.owner === investigator.id)
-    .reduce((sum, a) => sum + (playerCardBehavior(a.code)?.skillModifier?.(state, a, test) ?? 0), 0)
+    .reduce((sum, a) => sum + (assetBehavior(state, a)?.skillModifier?.(state, a, test) ?? 0), 0)
   const assetAuras = Object.values(state.assets).reduce(
-    (sum, a) => sum + (playerCardBehavior(a.code)?.skillAura?.(state, a, test) ?? 0),
+    (sum, a) => sum + (assetBehavior(state, a)?.skillAura?.(state, a, test) ?? 0),
     0,
   )
   const auras =
@@ -7923,13 +7977,13 @@ export function skillTestValue(state: GameState): {
     ...phaseSources,
     ...Object.values(state.assets).map((a) => ({
       name: playerCardDef(a.code)?.name ?? a.code,
-      amount: playerCardBehavior(a.code)?.skillAura?.(state, a, test) ?? 0,
+      amount: assetBehavior(state, a)?.skillAura?.(state, a, test) ?? 0,
     })),
     ...Object.values(state.assets)
       .filter((a) => a.owner === investigator.id)
       .map((a) => ({
         name: playerCardDef(a.code)?.name ?? a.code,
-        amount: playerCardBehavior(a.code)?.skillModifier?.(state, a, test) ?? 0,
+        amount: assetBehavior(state, a)?.skillModifier?.(state, a, test) ?? 0,
       })),
     ...(investigator.location === null
       ? []

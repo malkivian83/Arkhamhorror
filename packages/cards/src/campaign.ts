@@ -334,8 +334,8 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
       )
       return {
         ...investigatorSetup(i.id, [
-          ...i.deck,
-          ...earned,
+          ...i.deck.filter((code) => !campaign.log.removedCards?.includes(code)),
+          ...earned.filter((code) => !campaign.log.removedCards?.includes(code)),
           ...(campaign.log.values['boonWeakness:' + i.id]
             ? [campaign.log.values['boonWeakness:' + i.id]!]
             : []),
@@ -534,6 +534,10 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
   return {
     ...campaign,
     scenarioIndex: campaign.scenarioIndex + 1,
+    investigators: campaign.investigators.map((i) => ({
+      ...i,
+      deck: i.deck.filter((code) => !log.removedCards?.includes(code)),
+    })),
     log,
     results: [
       ...campaign.results,
@@ -638,6 +642,7 @@ export function purchaseOptions(
         !card.weakness &&
         !card.reward &&
         !card.story &&
+        !campaign.log.removedCards?.includes(card.code) &&
         ![IN_THE_THICK_OF_IT, '08071'].includes(card.code) &&
         isImplemented(card.code) &&
         !isSignature(card.code) &&

@@ -841,7 +841,13 @@ export type Message =
     }
   | { type: 'RevealLocation'; location: LocationId; investigator?: InvestigatorId }
   /** En su localización o en `location`. */
-  | { type: 'DiscoverClues'; investigator: InvestigatorId; amount: number; location?: LocationId }
+  | {
+      type: 'DiscoverClues'
+      investigator: InvestigatorId
+      amount: number
+      location?: LocationId
+      investigating?: boolean
+    }
   | {
       type: 'BeginSkillTest'
       /** The investigator already chose whether to replace the tested skill. */
@@ -960,6 +966,8 @@ export type Message =
   | { type: 'ExhaustAsset'; asset: AssetId }
   | { type: 'ReadyAsset'; asset: AssetId }
   | { type: 'SpendUses'; asset: AssetId; amount: number }
+  | { type: 'PlaceCluesOnAsset'; asset: AssetId; amount: number }
+  | { type: 'MoveAssetCluesToEnemy'; asset: AssetId; enemy: EnemyId; amount: number }
   | {
       type: 'AssignDamage'
       investigator: InvestigatorId
@@ -1503,6 +1511,7 @@ export type ClueHolder =
 
 /** Momentos en los que se comprueban las habilidades forzadas. */
 export type Trigger =
+  | { type: 'agendaAdvances'; code?: CardCode }
   | { type: 'afterGainClues'; investigator: InvestigatorId; amount: number }
   | { type: 'encounterCardDiscarded'; card: EncounterCard; investigator?: InvestigatorId }
   | { type: 'beforeEnemySpawns'; location: LocationId; card: EnemyCard }
@@ -1725,6 +1734,8 @@ export interface InvestigatorRecord {
 
 /** Registro de campaña (guía de campaña, página 15). */
 export interface CampaignLog {
+  /** Cards permanently removed from every investigator's deck by campaign effects. */
+  removedCards?: CardCode[]
   /** Notas de campaña, por clave ("universityBurned"…). */
   notes: string[]
   /** Notas tachadas: se ignoran el resto de la campaña. */

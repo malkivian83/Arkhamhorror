@@ -1,7 +1,7 @@
 import {
   enemyBehavior,
   investigatorBehavior,
-  playerCardBehavior,
+  assetBehavior,
   playerCardDef,
   scenarioBehavior,
   treacheryBehavior,
@@ -63,7 +63,7 @@ export function effectiveVitals(
   )
   const owned = Object.values(state.assets).filter((a) => a.owner === investigator.id)
   const fromAssets = (k: 'health' | 'sanity') =>
-    owned.reduce((n, a) => n + (playerCardBehavior(a.code)?.ownerVitals?.[k] ?? 0), 0)
+    owned.reduce((n, a) => n + (assetBehavior(state, a)?.ownerVitals?.[k] ?? 0), 0)
   return {
     health: Math.max(
       0,
@@ -247,7 +247,7 @@ export function playableHand(state: GameState, id: InvestigatorId): CardCode[] {
     top !== undefined &&
     playerCardDef(top)?.type === 'event' &&
     Object.values(state.assets).some(
-      (a) => a.owner === id && playerCardBehavior(a.code)?.playsTopDiscardEvent,
+      (a) => a.owner === id && assetBehavior(state, a)?.playsTopDiscardEvent,
     )
   return fromDiscard ? [...investigator.hand, top] : investigator.hand
 }
@@ -255,7 +255,7 @@ export function playableHand(state: GameState, id: InvestigatorId): CardCode[] {
 /** Wendy's Amulet: its controller's events go to the bottom of their deck, not the discard. */
 export function eventsToDeckBottom(state: GameState, owner: InvestigatorId): boolean {
   return Object.values(state.assets).some(
-    (a) => a.owner === owner && playerCardBehavior(a.code)?.eventsToDeckBottom,
+    (a) => a.owner === owner && assetBehavior(state, a)?.eventsToDeckBottom,
   )
 }
 

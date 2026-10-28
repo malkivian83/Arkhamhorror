@@ -4,6 +4,7 @@ import {
   enemyBehavior,
   investigatorBehavior,
   locationBehavior,
+  assetBehavior,
   playerCardBehavior,
   playerCardDef,
   scenarioBehavior,
@@ -113,7 +114,8 @@ export function playRestriction(
       (t) =>
         t.placement.type === 'threatArea' &&
         t.placement.investigator === id &&
-        !!treacheryBehavior(t.code)?.blocksAssets,
+        (!!treacheryBehavior(t.code)?.blocksAssets ||
+          def.traits.includes(treacheryBehavior(t.code)?.blocksPlayTrait ?? '\u0000')),
     )
     if (blocker) return { key: 'unplayable.blockedAsset', params: by(blocker) }
     if (uniqueAssetInPlay(state, code))
@@ -462,7 +464,7 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
       }),
     ),
     ...assets.flatMap((a) =>
-      withTarget(playerCardBehavior(a.code)?.abilities?.(state, a, id) ?? [], {
+      withTarget(assetBehavior(state, a)?.abilities?.(state, a, id) ?? [], {
         type: 'asset',
         id: a.id,
       }),
