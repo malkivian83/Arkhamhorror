@@ -108,6 +108,10 @@ export interface Investigator {
   spentActions?: { round: number; count: number }
   /** Skill value bonus for their next skill test (The Red Clock: +4). */
   nextTestBonus?: number
+  /** Additional actions for their turn later in this round (Stella Clark). */
+  roundTurnActions?: { round: number; amount: number }
+  /** No chaos tokens for their next skill test during the turn started at this log index. */
+  noTokensNextTest?: number
   extraMove?: boolean
   osirisUsed?: boolean
   osirisProtected?: boolean
@@ -583,6 +587,12 @@ export type SkillTestKind =
       onSuccessEach?: Message[]
     }
 
+/** Card a chaos token is sealed on; a committed skill card holds it until the test ends. */
+export type SealHolder =
+  | { type: 'asset'; id: AssetId }
+  | { type: 'enemy'; id: EnemyId }
+  | { type: 'committed'; code: CardCode; by: InvestigatorId }
+
 /** Lo que aporta una ficha del caos revelada. */
 export interface TokenEffect {
   modifier: number
@@ -607,6 +617,12 @@ export interface TokenEffect {
 }
 
 export interface SkillTest {
+  /** The message that initiated it, to attempt the same test again (Live and Learn). */
+  origin?: Extract<Message, { type: 'BeginSkillTest' }>
+  /** Granny Orne: the test fails by this much more (or less, if negative). */
+  failByModifier?: number
+  /** No chaos tokens are revealed: steps 3 and 4 are skipped (Will to Survive, Shed a Light). */
+  noTokens?: boolean
   /** Complete deferred windows/effects, in order, after this test ends. */
   afterEnd?: Message[]
   /** Replacement base value before modifiers and committed icons. */
@@ -792,7 +808,14 @@ export type Message =
     }
   | { type: 'PerformAction'; investigator: InvestigatorId; action: Action; entryPaid?: boolean }
   /** `basic`: la acción de recurso o el mantenimiento (no es el efecto de una carta). */
-  | { type: 'GainResources'; investigator: InvestigatorId; amount: number; basic?: boolean }
+  | {
+      type: 'GainResources'
+      investigator: InvestigatorId
+      amount: number
+      basic?: boolean
+      /** The upkeep phase resources (Dark Horse may decline them). */
+      upkeep?: boolean
+    }
   | {
       type: 'DrawCards'
       investigator: InvestigatorId
@@ -911,6 +934,10 @@ export type Message =
       before?: Message[]
       /** Chosen value of a printed X cost (Jenny's Twin .45s). */
       x?: number
+      /** Uses spent as resources toward the cost, by asset (Schoffner's Catalogue). */
+      usesPayment?: Record<AssetId, number>
+      /** Chosen zone when a copy is in hand and another playable from the discard pile. */
+      from?: 'hand' | 'discard'
     }
   | {
       type: 'ResolvePlayedCard'
@@ -918,6 +945,8 @@ export type Message =
       code: CardCode
       effect?: Message[]
       x?: number
+      /** It was played from the discard pile (Winging It). */
+      fromDiscard?: boolean
     }
   | {
       type: 'PutAssetIntoPlay'
@@ -965,7 +994,8 @@ export type Message =
   | { type: 'ScenarioSpecific'; key: string; data?: Record<string, string | number | boolean> }
   | { type: 'SetScenarioMeta'; key: string; value: string | number }
   | { type: 'ConnectLocations'; a: LocationId; b: LocationId }
-  | { type: 'DiscardAsset'; asset: AssetId }
+  /** `defeated`: it leaves play because it was defeated (Cherished Keepsake is exiled). */
+  | { type: 'DiscardAsset'; asset: AssetId; defeated?: boolean }
   /** Cambia el velo de una localización hasta el final de la ronda. */
   | { type: 'ModifyShroud'; location: LocationId; amount: number }
   | { type: 'ExhaustAsset'; asset: AssetId }
@@ -1130,6 +1160,22 @@ export type Message =
     }
   /** Additional actions this turn, only during that investigator's turn (André Patel). */
   | { type: 'GainActions'; investigator: InvestigatorId; amount: number }
+  /** Additional actions during that investigator's turn this round, now or when it begins. */
+  | { type: 'GainTurnActionsThisRound'; investigator: InvestigatorId; amount: number }
+  /** Exile a player card: from play (`asset`) or, otherwise, from its owner's discard pile. */
+  | { type: 'ExileCard'; investigator: InvestigatorId; code: CardCode; asset?: AssetId }
+  /** The current investigation discovers more clues, or adds success effects (Shed a Light). */
+  | { type: 'AddInvestigationResults'; extraClues?: number; onSuccess?: Message[] }
+  /** Granny Orne: the current test fails by this much more (or less, if negative). */
+  | { type: 'ModifyFailBy'; amount: number }
+  /** RR Automatic Success; before any token is revealed, steps 3 and 4 are skipped. */
+  | { type: 'AutoSucceedSkillTest' }
+  /** Will to Survive: no chaos tokens for their next skill test this turn. */
+  | { type: 'SkipNextTestTokens'; investigator: InvestigatorId }
+  /** Place an enemy in play on top (or at the bottom) of the encounter deck (Dumb Luck). */
+  | { type: 'PutEnemyOnEncounterDeck'; enemy: EnemyId; bottom?: boolean }
+  /** Attempt the last ended skill test again, without paying its costs (Live and Learn). */
+  | { type: 'RepeatSkillTest'; investigator: InvestigatorId; modifier: number }
   /** Elige un enemigo de tu localización al resolverse y le hace daño. */
   | { type: 'ChooseEnemyToDamage'; investigator: InvestigatorId; amount: number }
   /** Cancela el ataque de este enemigo que se está resolviendo (Counterattack). */
@@ -1150,7 +1196,7 @@ export type Message =
       arrange?: boolean
     }
   /** `windowResolved`: the "when you would succeed" reactions were offered (Extravagant Ring). */
-  | { type: 'ResolveSkillTest'; windowResolved?: boolean }
+  | { type: 'ResolveSkillTest'; windowResolved?: boolean; failWindowResolved?: boolean }
   /** The enemy disengages from each investigator (Pay Your Dues). */
   | { type: 'DisengageEnemy'; enemy: EnemyId }
   /** The enemy gains a keyword until the end of the round (Pay Your Dues: aloof). */
@@ -1450,7 +1496,7 @@ export type Message =
       token?: ChaosToken
       /** Preferred bag position of `token` (the one just revealed). */
       index?: number
-      holder?: { type: 'asset'; id: AssetId } | { type: 'enemy'; id: EnemyId }
+      holder?: SealHolder
     }
   | { type: 'AddTreacheryTokens'; treachery: TreacheryId; amount: number; discardAt?: number }
   /** Saca una debilidad del juego y la baraja en el mazo de su dueño (o de `investigator`). */
@@ -1556,6 +1602,10 @@ export type Trigger =
   | { type: 'afterDoomPlaced'; agenda?: AgendaDeck }
   /** ST.6: the investigator would succeed at the current skill test (Extravagant Ring). */
   | { type: 'whenWouldSucceed'; investigator: InvestigatorId }
+  /** ST.1: after an investigator initiates a skill test (Called by the Mists). */
+  | { type: 'afterSkillTestInitiated'; investigator: InvestigatorId }
+  /** ST.6: the test would fail (Granny Orne, Lucky!); its value may still change. */
+  | { type: 'whenWouldFail'; investigator: InvestigatorId }
   /** The current agenda would advance by reaching its doom threshold. */
   | { type: 'agendaWouldAdvance' }
   | {
@@ -1881,6 +1931,14 @@ export interface GameState {
     then: Extract<Message, { type: 'ScenarioSpecific' | 'PlayerCardEffect' }>
     used: string[]
   }
+  /** The last skill test that ended, for effects played after it ends (Live and Learn). */
+  lastSkillTest?: {
+    origin: Extract<Message, { type: 'BeginSkillTest' }>
+    investigator: InvestigatorId
+    succeeded: boolean
+  }
+  /** Exiled player cards: removed from the game and from their owner's campaign deck. */
+  exiled?: { investigator: InvestigatorId; code: CardCode }[]
   /** Mystifying Song: the agenda cannot advance by its doom threshold during this phase. */
   agendaHeld?: { phase: Phase; round: number }
   /** Ataque cancelado que aún no se ha resuelto. */
@@ -1895,7 +1953,7 @@ export interface GameState {
     token: ChaosToken
     investigator: InvestigatorId
     code: CardCode
-    holder?: { type: 'asset'; id: AssetId } | { type: 'enemy'; id: EnemyId }
+    holder?: SealHolder
   }[]
   assets: Record<AssetId, Asset>
   /** Nested triggered abilities currently resolving, outermost first. */

@@ -26,6 +26,7 @@ import {
   placedLocation,
   playableHand,
   turnStartedAt,
+  usesAsResources,
 } from './state'
 import type {
   AbilityLimit,
@@ -70,9 +71,17 @@ export function playableCards(state: GameState, id: InvestigatorId, fast: boolea
     const behavior = playerCardBehavior(code)
     if (def.type === 'event' && !behavior?.play) return false
     if (behavior?.parley && !parleyCosts(state, id)) return false
-    if (cardCost(state, id, code) > investigator.resources) return false
+    if (cardCost(state, id, code) > spendableFor(state, id, code)) return false
     return behavior?.canPlay?.(state, id) ?? true
   })
+}
+
+/** Resources available to pay for `code`, plus uses that may pay as resources (Schoffner's). */
+export function spendableFor(state: GameState, id: InvestigatorId, code: CardCode): number {
+  return (
+    getInvestigator(state, id).resources +
+    usesAsResources(state, id, code).reduce((n, s) => n + s.uses, 0)
+  )
 }
 
 /** "Limit 1 per investigator": they already control an asset with this title. */
@@ -137,7 +146,7 @@ export function playRestriction(
   const behavior = playerCardBehavior(code)
   if (def.type === 'event' && !behavior?.play) return { key: 'unplayable.notImplemented' }
   const cost = cardCost(state, id, code)
-  if (cost > investigator.resources)
+  if (cost > spendableFor(state, id, code))
     return {
       key: cost === (def.cost ?? 0) ? 'unplayable.cost' : 'unplayable.costModified',
       params: { cost, printed: def.cost ?? 0, resources: investigator.resources },

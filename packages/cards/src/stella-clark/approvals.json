@@ -1,0 +1,202 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "decklists": [
+    "https://arkhamdb.com/decklist/view/25117",
+    "https://arkhamdb.com/decklist/view/39832"
+  ],
+  "cards": [
+    {
+      "code": "60501",
+      "module": "card-60501",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60502",
+      "module": "card-60502",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60503",
+      "module": "weaknesses",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60504",
+      "module": "weaknesses",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60506",
+      "module": "card-60506",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60508",
+      "module": "granny-orne",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60510",
+      "module": "reprints",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60512",
+      "module": "card-60512",
+      "test": "rules.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60513",
+      "module": "test-of-will",
+      "test": "rules.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60514",
+      "module": "dumb-luck",
+      "test": "rules.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60515",
+      "module": "card-60515",
+      "test": "rules.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60516",
+      "module": "live-and-learn",
+      "test": "rules.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60519",
+      "module": "reprints",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60520",
+      "module": "keepsakes",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60521",
+      "module": "keepsakes",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60522",
+      "module": "card-60522",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60523",
+      "module": "test-of-will",
+      "test": "rules.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60524",
+      "module": "card-60524",
+      "test": "rules.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60525",
+      "module": "dumb-luck",
+      "test": "rules.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60527",
+      "module": "granny-orne",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60528",
+      "module": "card-60528",
+      "test": "rules.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60530",
+      "module": "permanents",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60531",
+      "module": "permanents",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "02234",
+      "module": "card-02234",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "04200",
+      "module": "live-and-learn",
+      "test": "rules.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "04272",
+      "module": "card-04272",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01073",
+      "module": "card-01073",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "07196",
+      "module": "card-07196",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "08072",
+      "module": "card-08072",
+      "test": "rules.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "09108",
+      "module": "card-09108",
+      "test": "rules.test.ts",
+      "status": "verified",
+      "fast": true
+    }
+  ]
+}

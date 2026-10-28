@@ -1,0 +1,421 @@
+[
+  {
+    "code": "60501",
+    "name": "Stella Clark",
+    "type": "investigator",
+    "class": "survivor",
+    "traits": ["Chosen", "Civic"],
+    "deckLimit": 1,
+    "health": 8,
+    "sanity": 8,
+    "unique": true,
+    "skills": {
+      "willpower": 3,
+      "intellect": 2,
+      "combat": 3,
+      "agility": 4
+    },
+    "deckSize": 30,
+    "deckOptions": [
+      {
+        "classes": ["survivor", "neutral"],
+        "maxLevel": 5
+      }
+    ],
+    "signatures": ["60502", "60502", "60502", "60503"]
+  },
+  {
+    "code": "60502",
+    "name": "Neither Rain nor Snow",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate", "Developed"],
+    "deckLimit": 3,
+    "xp": 0,
+    "icons": {
+      "wild": 3
+    },
+    "slots": []
+  },
+  {
+    "code": "60503",
+    "name": "Called by the Mists",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Curse"],
+    "deckLimit": 1,
+    "weakness": "weakness"
+  },
+  {
+    "code": "60504",
+    "name": "Atychiphobia",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Madness"],
+    "deckLimit": 1,
+    "weakness": "basicweakness"
+  },
+  {
+    "code": "60506",
+    "name": "Grimm's Fairy Tales",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Tome"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 4,
+      "type": "secrets"
+    }
+  },
+  {
+    "code": "60508",
+    "name": "Granny Orne",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Ally"],
+    "unique": true,
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 3
+  },
+  {
+    "code": "60510",
+    "name": "Rabbit's Foot",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Charm"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": ["accessory"]
+  },
+  {
+    "code": "60512",
+    "name": "Will to Survive",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spirit"],
+    "cost": 4,
+    "xp": 0,
+    "fast": true,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60513",
+    "name": "A Test of Will",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spirit"],
+    "cost": 1,
+    "xp": 0,
+    "fast": true,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60514",
+    "name": "Dumb Luck",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Fortune"],
+    "cost": 2,
+    "xp": 0,
+    "fast": true,
+    "icons": {
+      "agility": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "60515",
+    "name": "Grit Your Teeth",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spirit"],
+    "cost": 1,
+    "xp": 0,
+    "fast": true,
+    "icons": {
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60516",
+    "name": "Live and Learn",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spirit"],
+    "cost": 0,
+    "xp": 0,
+    "fast": true,
+    "icons": {
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60519",
+    "name": "Take Heart",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "60520",
+    "name": "Cherished Keepsake",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Charm"],
+    "cost": 0,
+    "xp": 1,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["accessory"],
+    "sanity": 4
+  },
+  {
+    "code": "60521",
+    "name": "Leather Coat",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Armor"],
+    "cost": 0,
+    "xp": 1,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["body"],
+    "health": 4
+  },
+  {
+    "code": "60522",
+    "name": ".18 Derringer",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Weapon", "Firearm", "Illicit"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 3,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "60523",
+    "name": "A Test of Will",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spirit"],
+    "cost": 0,
+    "xp": 2,
+    "fast": true,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60524",
+    "name": "\"Look what I found!\"",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Fortune"],
+    "cost": 2,
+    "xp": 2,
+    "fast": true,
+    "icons": {
+      "intellect": 2,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60525",
+    "name": "Dumb Luck",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Fortune"],
+    "cost": 2,
+    "xp": 2,
+    "fast": true,
+    "icons": {
+      "willpower": 1,
+      "agility": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "60527",
+    "name": "Granny Orne",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Ally"],
+    "unique": true,
+    "cost": 4,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 3
+  },
+  {
+    "code": "60528",
+    "name": "Lucky!",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Fortune"],
+    "cost": 0,
+    "xp": 3,
+    "fast": true,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "60530",
+    "name": "Quick Learner",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Condition"],
+    "xp": 4,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "60531",
+    "name": "Déjà Vu",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Talent", "Cursed"],
+    "xp": 5,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "02234",
+    "name": "Dark Horse",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Condition"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "04200",
+    "name": "Live and Learn",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spirit"],
+    "cost": 0,
+    "xp": 0,
+    "fast": true,
+    "icons": {
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "04272",
+    "name": "Winging It",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Tactic", "Improvised"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "01073",
+    "name": "Scavenging",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Talent"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "07196",
+    "name": "Unrelenting",
+    "type": "skill",
+    "class": "survivor",
+    "traits": ["Practiced"],
+    "xp": 1,
+    "icons": {
+      "wild": 1
+    },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "08072",
+    "name": "Schoffner's Catalogue",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Tome"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": [],
+    "uses": {
+      "count": 5,
+      "type": "secrets"
+    }
+  },
+  {
+    "code": "09108",
+    "name": "Shed a Light",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Insight", "Trick"],
+    "cost": 2,
+    "xp": 0,
+    "fast": true,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  }
+]

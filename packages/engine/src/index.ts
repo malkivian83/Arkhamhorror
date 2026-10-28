@@ -58,7 +58,13 @@ export {
   resolvingSkillBonus,
 } from './asset-upgrades'
 export { attackDamage } from './combat'
-export { assetsCannotReady, turnStartedAt } from './state'
+export {
+  assetsCannotReady,
+  turnActionTiming,
+  turnAheadThisRound,
+  turnStartedAt,
+  usesAsResources,
+} from './state'
 export {
   actionsThisRound,
   canAffordEntry,
