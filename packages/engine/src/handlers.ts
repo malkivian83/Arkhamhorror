@@ -3485,7 +3485,11 @@ export function handle(state: GameState, message: Message): GameState {
       const act = state.acts[state.actIndex]
       if (investigator.clues > 0 && act && actBehavior(act.code)?.eliminatedCluesToAct) {
         next = { ...next, actClues: (next.actClues ?? 0) + investigator.clues }
-      } else if (here !== null && investigator.clues > 0) {
+      } else if (
+        here !== null &&
+        investigator.clues > 0 &&
+        !scenarioBehavior(state.scenarioId)?.cannotPlaceClues?.(state, here)
+      ) {
         next = updateLocation(next, here, (l) => ({ ...l, clues: l.clues + investigator.clues }))
       }
       for (const enemy of engagedEnemies(next, investigator.id)) {

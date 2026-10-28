@@ -378,6 +378,7 @@ export {
   whereDoomAwaits,
   DOOM_LOCATIONS,
   DOOM_ENCOUNTERS,
+  DOOM_EXTRA_ENEMIES,
   W as DOOM_CODES,
   WHERE_DOOM_AWAITS,
 } from './the-dunwich-legacy/where-doom-awaits'

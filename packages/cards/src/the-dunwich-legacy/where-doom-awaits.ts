@@ -21,7 +21,6 @@ import {
   type ScenarioDefinition,
 } from '@lcg/engine'
 import {
-  copies,
   damage,
   earnExperience,
   endScenario,
@@ -46,6 +45,7 @@ import { conglomerationOfSpheres } from './conglomeration-of-spheres'
 import { servantOfTheLurker } from './servant-of-the-lurker'
 export { W, WN, WHERE_DOOM_AWAITS } from './doom-codes'
 export { DOOM_ENCOUNTERS } from './doom-encounters'
+export const DOOM_EXTRA_ENEMIES = [conglomerationOfSpheres, servantOfTheLurker]
 const entry = storyEntries('doom')
 const anchors: string[] = [W.base, W.ascent, W.peak]
 const pathCards = [...DIVERGING_PATHS, ...ALTERED_PATHS]

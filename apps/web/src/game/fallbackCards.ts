@@ -9,6 +9,7 @@ import {
   undimensionedAndUnseen,
   whereDoomAwaits,
   DOOM_LOCATIONS,
+  DOOM_EXTRA_ENEMIES,
   UNSEEN_LOCATIONS,
   ALTAR_LOCATIONS,
   ESSEX_LOCATIONS,
@@ -272,6 +273,21 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   Object.values(ALTAR_LOCATIONS).forEach(location)
   Object.values(UNSEEN_LOCATIONS).forEach(location)
   DOOM_LOCATIONS.forEach(location)
+  DOOM_EXTRA_ENEMIES.forEach(encounter)
+  put({
+    code: '02274',
+    name: 'Where Doom Awaits',
+    real_name: 'Where Doom Awaits',
+    type_code: 'scenario',
+  })
+  for (const code of ['02278', '02279'])
+    put({
+      code,
+      name: 'Ascending the Hill',
+      real_name: 'Ascending the Hill',
+      type_code: 'act',
+      clues: 0,
+    })
   put({
     code: '02236',
     name: 'Undimensioned and Unseen',

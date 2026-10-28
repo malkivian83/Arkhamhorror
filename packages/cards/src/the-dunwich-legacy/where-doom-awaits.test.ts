@@ -555,4 +555,12 @@ describe('Where Doom Awaits — campaign guide pp.19–20 and printed cards', ()
     expect(s.assets.blade).toBeUndefined()
     expect(s.investigators[0]?.discard).toContain('01020')
   })
+  it.each([W.base, W.tear])('elimination obeys the act II clue prohibition at %s', (location) => {
+    let s = game(2)
+    s = during(s, (x) => actor({ location, clues: 2 })({ ...path(x, W.tear, true), actIndex: 1 }), {
+      type: 'DefeatInvestigator',
+      investigator: 'a',
+    })
+    expect(s.locations[location]?.clues).toBe(location === W.tear ? 2 : 0)
+  })
 })

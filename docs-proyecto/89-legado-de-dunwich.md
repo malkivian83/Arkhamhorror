@@ -54,8 +54,8 @@ de la copia externa, que no se ha trasladado literalmente.
 
 ## Presentación y narración
 
-Catálogo local EN/ES de 175 códigos, referencia de escenario y ayuda de fichas,
-568 escaneos oficiales y sus 568 miniaturas, portada y huellas de integridad.
+Catálogo local EN/ES de 202 códigos, referencia de escenario y ayuda de fichas,
+660 escaneos oficiales y sus 660 miniaturas, portada y huellas de integridad.
 Se han inspeccionado escaneos representativos sin abrir el navegador.
 La revisión visual de la mesa queda para la persona usuaria, conforme a AGENTS.
 
@@ -195,8 +195,8 @@ Fuentes: guía revisada ES, páginas 17–18, y cartas 02236–02259. Se elige u
 
 ## Validación y continuación
 
-Último lote subido: `801f398c`, Invisibles y sin dimensión (sexto escenario). Lote actual: Donde aguarda la perdición; 41 pruebas específicas, recorrido completo de victoria mediante acciones legales y partidas con mazos iniciales reales de uno a cuatro investigadores hasta su resolución. Se comprueban por consola las 54 narraciones y sus huellas.
+Último lote funcional: `3b5c63c1`, Donde aguarda la perdición (séptimo escenario), con correcciones finales de catálogo y pistas al eliminar investigadores; 43 pruebas específicas, recorrido completo de victoria mediante acciones legales y partidas con mazos iniciales reales de uno a cuatro investigadores hasta su resolución. Se comprueban por consola las 54 narraciones y sus huellas.
 
-Controles globales del séptimo escenario pendientes de ejecutar sobre el estado final. La revisión visual de la aplicación queda para la persona usuaria conforme a AGENTS. Sin seguimiento de CI o despliegue.
+Formato, lint, tipos y compilación pasan. La suite global integrada obtuvo 4910 pruebas correctas y 19 omitidas, más dos fallos de catálogo corregidos y tres límites de tiempo preexistentes. Tras corregir el catálogo, las 46 pruebas dirigidas de escenario, presentación y audio pasan; los dos archivos con límite de tiempo pasan sus 51 pruebas con tiempo ampliado. Los controles afectados por las correcciones se repitieron. La revisión visual de la aplicación queda para la persona usuaria conforme a AGENTS. Sin seguimiento de CI o despliegue.
 
 Siguiente grupo: **Perdidos en el tiempo y el espacio y el epílogo**. La autorización vigente pide continuar y subir los escenarios restantes, revisar la campaña completa al terminar y subir las correcciones finales. No detenerse después de este lote.
