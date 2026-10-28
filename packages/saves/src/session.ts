@@ -1,4 +1,10 @@
-import { allCampaigns, campaignDefinition, startScenario, type Campaign } from '@lcg/cards'
+import {
+  allCampaigns,
+  campaignDefinition,
+  campaignScenarios,
+  startScenario,
+  type Campaign,
+} from '@lcg/cards'
 import {
   applyInput,
   ENGINE_VERSION,
@@ -361,15 +367,9 @@ function campaign(value: unknown): asserts value is Campaign {
       fail()
   }
   if (!Array.isArray(value.results) || value.results.length !== value.scenarioIndex) fail()
-  const definition = campaignDefinition(value.id)
+  const scenarios = campaignScenarios(value as unknown as Campaign)
   value.results.forEach((r, n) => {
-    if (
-      !object(r) ||
-      r.scenario !== definition.scenarios[n]?.id ||
-      !object(r.outcome) ||
-      !object(r.xp)
-    )
-      fail()
+    if (!object(r) || r.scenario !== scenarios[n]?.id || !object(r.outcome) || !object(r.xp)) fail()
     if (r.score !== undefined && (!integer(r.score) || r.score < 0)) fail()
   })
   // Validate investigators and deck codes through the same content registry used by play.
