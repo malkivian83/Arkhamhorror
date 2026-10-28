@@ -204,8 +204,8 @@ Fuentes: guía revisada ES, páginas 17–18, y cartas 02236–02259. Se elige u
 
 ## Validación y continuación
 
-Último lote subido: `cb0d3282`, Donde aguarda la perdición (séptimo escenario). Lote actual: escenario final y epílogo; 49 pruebas específicas, recorrido completo de combate contra Yog mediante acciones legales con investigador de prueba y partidas con mazos iniciales reales de uno a cuatro investigadores hasta su desenlace. Las pruebas de guardado reanudan una elección pendiente de desaparición de Lugar con el mismo resultado; el tablero en línea publica los datos del Lugar descartado sin revelar el mazo. Los 69 audios y sus huellas pasan la comprobación dirigida.
+Último lote funcional: `d34fea0b`, Perdidos en el tiempo y el espacio y epílogo; 49 pruebas específicas, recorrido completo de combate contra Yog mediante acciones legales con investigador de prueba y partidas con mazos iniciales reales de uno a cuatro investigadores hasta su desenlace. Las pruebas de guardado reanudan una elección pendiente de desaparición de Lugar con el mismo resultado; el tablero en línea publica los datos del Lugar descartado sin revelar el mazo. Los 69 audios y sus huellas pasan la comprobación dirigida.
 
-Controles globales del lote final pendientes de ejecutar sobre el estado integrado. La revisión visual de la aplicación queda para la persona usuaria conforme a AGENTS.
+Formato, lint, tipos y compilación pasan sobre el estado integrado. La suite global obtuvo 5003 pruebas correctas, 19 omitidas y los tres límites de cinco segundos ya conocidos de Gala y Brethren of Ash. Sus dos archivos pasan al repetir las 51 pruebas con tiempo ampliado. La revisión visual de la aplicación queda para la persona usuaria conforme a AGENTS.
 
 Siguiente grupo: **revisión de las conexiones de la campaña completa tras subir el octavo escenario**. Revisar ambos órdenes de apertura, notas y decisiones entre escenarios y restauración de guardados; corregir y subir cualquier incidencia. La autorización vigente cubre esta revisión y sus subidas. No detenerse al cerrar el octavo escenario.
