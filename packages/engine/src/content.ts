@@ -131,7 +131,7 @@ export interface ScenarioBehavior {
   /** El acto solo se puede avanzar pagando pistas si se cumple (Meet and Greet). */
   actAdvanceAllowed?: (state: GameState) => boolean
   /** El investigador no puede comprometer cartas (William Bain rival). */
-  cannotCommit?: (state: GameState, investigator: InvestigatorId) => boolean
+  cannotCommit?: (state: GameState, investigator: InvestigatorId, code?: CardCode) => boolean
   /** Al jugar un evento: si devuelve mensajes, sus efectos se cancelan y se resuelven estos. */
   eventPlayed?: (state: GameState, investigator: InvestigatorId, code: CardCode) => Message[] | null
   /** Acciones de cada investigador en su turno (Declan Pearce: 1 menos). */
@@ -167,6 +167,7 @@ export interface ScenarioBehavior {
     state: GameState,
     investigator: InvestigatorId,
     location: LocationId,
+    investigating?: boolean,
   ) => boolean
   /** El investigador no puede salir de su Lugar (Cementerio Père Lachaise, Le Marais). */
   cannotLeave?: (state: GameState, investigator: InvestigatorId) => boolean
@@ -203,6 +204,13 @@ export interface StoryBehavior {
 }
 
 export interface TreacheryBehavior {
+  blanksAssetTrait?: string
+  blocksPlayTrait?: string
+  beforeDamage?: (
+    state: GameState,
+    self: Treachery,
+    damage: Extract<Message, { type: 'TakeDamage' }>,
+  ) => Message[] | null
   skillModifier?: (state: GameState, self: Treachery, test: SkillTest) => number
   allDamageDirect?: boolean
   /** Resolves on drawing the card, even if its revelation is subsequently canceled. */
@@ -268,6 +276,7 @@ export interface TreacheryBehavior {
 }
 
 export interface EnemyBehavior {
+  tokenModifier?: (state: GameState, self: Enemy, test: SkillTest, modifier: number) => number
   entersExhausted?: boolean
   insteadOfRemove?: (state: GameState, self: Enemy) => Message[] | null
   healthModifier?: (state: GameState, self: Enemy) => number
@@ -375,11 +384,11 @@ export interface ActBehavior {
  * reference card, locations, agendas, acts, story cards and encounter cards) is a skill test
  * on a scenario card: the tests in what those behaviors return are tagged `scenario`.
  */
-export function onScenarioCard<T>(value: T): T {
+export function onScenarioCard<T>(value: T, tag = 'scenario'): T {
   if (!value || typeof value !== 'object') return value
   let changed = false
   const walk = (v: unknown) => {
-    const tagged = onScenarioCard(v)
+    const tagged = onScenarioCard(v, tag)
     if (tagged !== v) changed = true
     return tagged
   }
@@ -389,8 +398,8 @@ export function onScenarioCard<T>(value: T): T {
   const result = (changed ? out : value) as Record<string, unknown>
   const tags = result.tags as string[] | undefined
   return (
-    !Array.isArray(value) && result.type === 'BeginSkillTest' && !tags?.includes('scenario')
-      ? { ...result, tags: [...(tags ?? []), 'scenario'] }
+    !Array.isArray(value) && result.type === 'BeginSkillTest' && !tags?.includes(tag)
+      ? { ...result, tags: [...(tags ?? []), tag] }
       : result
   ) as T
 }
@@ -399,6 +408,7 @@ export function onScenarioCard<T>(value: T): T {
 function scenarioCardBehavior<B extends object>(
   behavior: B,
   applies: () => boolean = () => true,
+  tag = 'scenario',
 ): B {
   return Object.fromEntries(
     Object.entries(behavior).map(([key, value]) => [
@@ -406,7 +416,7 @@ function scenarioCardBehavior<B extends object>(
       typeof value === 'function' && key !== 'specific'
         ? (...args: unknown[]) => {
             const result = (value as (...a: unknown[]) => unknown)(...args)
-            return applies() ? onScenarioCard(result) : result
+            return applies() ? onScenarioCard(result, tag) : result
           }
         : value,
     ]),
@@ -437,7 +447,10 @@ export function registerTreachery(behavior: TreacheryBehavior): void {
   // Player weaknesses (The Necronomicon, Weight of the World…) are player cards.
   treacheries.set(
     behavior.code,
-    scenarioCardBehavior(behavior, () => !playerCards.has(behavior.code)),
+    scenarioCardBehavior(
+      scenarioCardBehavior(behavior, () => true, 'treachery'),
+      () => !playerCards.has(behavior.code),
+    ),
   )
 }
 
@@ -764,6 +777,18 @@ export function playerCardBehavior(code: CardCode): PlayerCardBehavior | undefin
   let story = storyBehaviors.get(behavior)
   if (!story) storyBehaviors.set(behavior, (story = scenarioCardBehavior(behavior)))
   return story
+}
+
+/** RR "Blank": traits and statistics remain, but printed abilities are suppressed. */
+export function assetBehavior(state: GameState, asset: Asset): PlayerCardBehavior | undefined {
+  const traits = playerCardDef(asset.code)?.traits ?? []
+  const blank = Object.values(state.treacheries).some(
+    (t) =>
+      t.placement.type === 'threatArea' &&
+      t.placement.investigator === asset.owner &&
+      traits.includes(treacheryBehavior(t.code)?.blanksAssetTrait ?? '\u0000'),
+  )
+  return blank ? undefined : playerCardBehavior(asset.code)
 }
 
 /** RR Deckbuilding: the class, trait and level option allows this card. */

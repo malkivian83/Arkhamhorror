@@ -5,6 +5,8 @@ import {
   theHouseAlwaysWins,
   theMiskatonicMuseum,
   theEssexCountyExpress,
+  bloodOnTheAltar,
+  ALTAR_LOCATIONS,
   ESSEX_LOCATIONS,
   MUSEUM_LOCATIONS,
   HOUSE_LOCATIONS,
@@ -147,6 +149,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     theHouseAlwaysWins(),
     theMiskatonicMuseum(),
     theEssexCountyExpress(),
+    bloodOnTheAltar(),
     theGathering(),
     spreadingFlames(),
     queenOfAsh(),
@@ -260,6 +263,13 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   Object.values(DUNWICH_ENCOUNTER_SETS).flat().forEach(encounter)
   Object.values(DUNWICH_LOCATION_CARDS).forEach(location)
   Object.values(ESSEX_LOCATIONS).forEach(location)
+  Object.values(ALTAR_LOCATIONS).forEach(location)
+  put({
+    code: '02195',
+    name: 'Blood on the Altar',
+    real_name: 'Blood on the Altar',
+    type_code: 'scenario',
+  })
   put({
     code: '02159',
     name: 'Essex County Express',

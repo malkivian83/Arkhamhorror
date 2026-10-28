@@ -4,6 +4,17 @@
  * texto oficial, así que solo se ofrecen en el idioma de la grabación.
  */
 const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
+  'story.altar.intro': { es: 'altar-intro-nico-history.mp3' },
+  'story.altar.noResolution': { es: 'altar-noresolution-nico-history.mp3' },
+  'story.altar.resolution1': { es: 'altar-resolution1-nico-history.mp3' },
+  'story.altar.resolution2': { es: 'altar-resolution2-nico-history.mp3' },
+  'story.altar.resolution3': { es: 'altar-resolution3-nico-history.mp3' },
+  'story.altar.survivors': { es: 'altar-survivors-nico-history.mp3' },
+  'story.altar.survivor02040': { es: 'altar-survivor02040-nico-history.mp3' },
+  'story.altar.survivor02061': { es: 'altar-survivor02061-nico-history.mp3' },
+  'story.altar.survivor02080': { es: 'altar-survivor02080-nico-history.mp3' },
+  'story.altar.survivor02217': { es: 'altar-survivor02217-nico-history.mp3' },
+  'story.altar.survivor02218': { es: 'altar-survivor02218-nico-history.mp3' },
   'story.essex.intro': { es: 'essex-intro-nico-history.mp3' },
   'story.essex.defeated': { es: 'essex-defeated-nico-history.mp3' },
   'story.essex.resolution1': { es: 'essex-resolution1-nico-history.mp3' },

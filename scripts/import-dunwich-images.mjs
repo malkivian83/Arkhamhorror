@@ -4,6 +4,41 @@ import { createHash } from 'node:crypto'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 
 const arts = [
+  '01172',
+  '01173',
+  '02088',
+  '02089',
+  '02195',
+  '02196',
+  '02197',
+  '02198',
+  '02199',
+  '02200',
+  '02201',
+  '02202',
+  '02203',
+  '02204',
+  '02205',
+  '02206',
+  '02207',
+  '02208',
+  '02209',
+  '02210',
+  '02211',
+  '02212',
+  '02213',
+  '02214',
+  '02215',
+  '02216',
+  '02217',
+  '02218',
+  '02219',
+  '02220',
+  '02221',
+  '02222',
+  '02223',
+  '02224',
+
   '02159',
   '02160',
   '02161',
@@ -128,7 +163,8 @@ const arts = [
   (Number(code) >= 2041 && Number(code) <= 2057) ||
   (Number(code) >= 2062 && Number(code) <= 2077) ||
   (Number(code) >= 2118 && Number(code) <= 2137) ||
-  (Number(code) >= 2159 && Number(code) <= 2177)
+  (Number(code) >= 2159 && Number(code) <= 2177) ||
+  (Number(code) >= 2195 && Number(code) <= 2213)
     ? [code, `${code}b`]
     : [code],
 )

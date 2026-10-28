@@ -27,6 +27,11 @@ it.each(['en', 'es'] as const)(
       '02102',
     ]
     const codes = [
+      '01172',
+      '01173',
+      '02088',
+      '02089',
+      ...Array.from({ length: 30 }, (_, n) => String(2195 + n).padStart(5, '0')),
       ...encounters,
       '02040',
       ...Array.from({ length: 25 }, (_, n) => String(2159 + n).padStart(5, '0')),

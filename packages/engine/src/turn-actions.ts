@@ -1,4 +1,4 @@
-import { playerCardBehavior } from './content'
+import { assetBehavior } from './content'
 import { getInvestigator, updateInvestigator } from './state'
 import type { GameState, Message } from './types'
 
@@ -16,7 +16,7 @@ export function synchronizeTurnActions(
     return rest
   }
   const sources = Object.values(after.assets).filter(
-    (a) => a.owner === id && (playerCardBehavior(a.code)?.additionalTurnActions ?? 0) > 0,
+    (a) => a.owner === id && (assetBehavior(after, a)?.additionalTurnActions ?? 0) > 0,
   )
   const old = message.type === 'BeginTurn' ? [] : (after.turnActionGrants ?? [])
   if (!sources.length && !old.length) return after
@@ -39,7 +39,7 @@ export function synchronizeTurnActions(
   const grants = sources.map((a) => {
     const prior = used.find((g) => g.asset === a.id)
     if (prior) return prior
-    const remaining = playerCardBehavior(a.code)?.additionalTurnActions ?? 0
+    const remaining = assetBehavior(after, a)?.additionalTurnActions ?? 0
     delta += remaining
     return { asset: a.id, remaining }
   })

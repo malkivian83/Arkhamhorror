@@ -1,5 +1,5 @@
 {
-  "description": "Find the missing professors. The first four scenarios are playable; the final four remain in development.",
+  "description": "Search for the missing professors. The first five scenarios are playable; the final three remain in development.",
   "story": {
     "museum": {
       "intro": "Several months ago, Armitage and his colleagues stopped a rampaging horror from tearing through Dunwich, a backwater town several hours north and west of Arkham. At first you imagine this beast as a rabid bear, or worse, but the professor’s description of the creature paints a different picture. It all began when a man named Wilbur Whateley entered the Orne Library looking for Olaus Wormius’s Latin translation of a book called the Necronomicon. Wilbur already possessed a beaten-up English translation by Dr. John Dee, but it was insufficient for his purposes. Armitage turned the man away, fearing what use the strange man had for the book. Whateley returned in secret, hoping to steal the book , but was attacked by a hound guarding the university. Armitage, Rice, and Morgan later discovered Whateley’s body. A description of the foul corpse—semi-anthropomorphic and covered in fur, with a leathery hide and greenish-grey tentacles—causes you to question whether or not Whateley was truly human.",
@@ -44,6 +44,36 @@
       "setupTitle": "Setup",
       "setup": "Gather Essex County Express, The Beyond, Striking Fear, Ancient Evils and Dark Cult. Randomly select six of the eight train cars and one of the three engines. Start in the revealed leftmost car, ignoring its entry effects. Set four copies of Across Space and Time aside. Permanently add a −2, −3, −4 or −5 token for the chosen difficulty.",
       "defeatedEffect": "Each defeated investigator gains Across Space and Time and 1 bonus experience. Professors and The Necronomicon in their deck are lost."
+    },
+    "altar": {
+      "intro": "When you finally reach Dunwich, you are greeted by Zebulon Whateley and Earl Sawyer, another man from the village who had met with Dr. Armitage during the incident several months ago. “Things ain’t lookin’ too good here,” Earl tells you. “Some folk up and went missin’ a few nights ago. ‘Dem whippoorwills won’ shut up. Dunno what yer doin’ here, but last time you Arkham folk came ‘round it was bad news. Very bad news.” His eyes blink rapidly, and he coughs and looks away. “Look, why don’t you rest fer the night an’ look fer whatever it is yer looking fer t’morra,” Zebulon chimes in, putting a wrinkled hand on your shoulder. You begin to protest, but your aching muscles and weary mind won’t allow you to refuse. The elderly man offers to take you in for the night, and drives you to his home at the outskirts of Dunwich village. The town is disheveled and eerie, and you find yourself wishing you hadn’t come here at all. You fall asleep on the ride over and scarcely remember anything else from that night. When you awaken, you find that Zebulon’s house is abandoned, and there is no sign of the elderly man, or of Mr. Sawyer. Fearing the worst, you head into the village of Dunwich to investigate, hoping to find answers.",
+      "survivors": "Inside the chamber that contained the terrible beast, you find the missing townsfolk and the others from Arkham; they are bound and shackled. You also find several documents that suggest the creature you found isn’t the only one of its kind in Dunwich. You free the creature’s victims from their bonds, and they offer you their thanks. You begin to plan your next move.",
+      "noResolution": "If no resolution was reached (each investigator resigned or was defeated)_: The cries of the whippoorwills fade into the distance, and the town of Dunwich is filled with an eerie silence. All that can be heard is the dry whistle of the chill wind and the slow rustling of dead leaves. There is no sign of the missing townsfolk, nor will there be ever again.",
+      "resolution1": "As you land the finishing blow, the creature’s body explodes into hundreds of squirming ropelike appendages, wriggling across the ground and climbing up the walls. You’re so startled that you aren’t fast enough to prevent them from escaping the room. Even so, whatever that creature was, you’re glad it’s now dead.",
+      "resolution2": "With the creature that once was Silas lashing out at you from its chains, you have little time to react. Knowing that the Necronomicon might have a spell or incantation that could subdue Silas, you fend off the abomination long enough to find a passage that can help. With no time to spare, you recite the Latin incantation, and find that the words come effortlessly to your tongue, as though recalled from an earlier memory. The creature’s body begins to shrink and melt away as the incantation builds, its cries terrifying and haunting. In the end, all that is left is the disfigured corpse of a man—Silas Bishop. You find a silver pendant emblazoned with an odd constellation tucked into his shirt. You take it with you, hoping to find a use for it.",
+      "resolution3": "With the creature that once was Silas lashing out at you from its chains, you have little time to react. Hoping there is something in the chamber you can use to your advantage, you fend off the abomination long enough to find a journal; many of its passages are written in Latin. It appears to be a handwritten excerpt from the Necronomicon, its purpose unknown. With no time to spare, you recite the incantation, stumbling over the words and feeling your throat tighten with each sentence. The creature’s body begins to shrink and melt away as the incantation continues, its cries terrifying and haunting. In the end, all that is left is a pile of wet and sticky ichor, and a rotten stench.",
+      "survivor02040": "If Dr. Henry Armitage is not listed under “Sacrificed to Yog‑Sothoth:”_ “It is far worse than we had thought,” Dr. Armitage says, pale and trembling. “Wilbur Whateley was only the beginning. There were more, many more in Dunwich, who knew of the ‘Great Old Ones’ and who desired power and knowledge above all else, the Earth be damned. I knew I should have burned that wretch’s journal. But thanks to its contents, I know how we can stop them. We are the only ones who can! Now quickly, help me with this solution—the powder is the key, yes, the powder is the only way…”",
+      "survivor02061": "If Professor Warren Rice is not listed under “Sacrificed to Yog‑Sothoth:”_ Professor Rice adjusts his glasses and studies the documents and arcane manuscripts left in the chamber. “I thought this nightmare was over and done with,” he sighs. “But we have a duty to see this through. We have to stop these creatures, or it won’t be just Dunwich in trouble. The powder mixture Armitage created to see the creatures will be our saving grace,” he explains, and sets off to the task of recreating the powder.",
+      "survivor02217": "If Zebulon Whateley is not listed under “Sacrificed to Yog‑Sothoth:”_ “Dunwich’s had its fair share of oddities,” Zebulon explains to you with a quavering voice, “but I ain’t ever seen anything as sick and twisted as this…this…thing.” He gives the creature’s remains one last sickened glance before closing the door to the chamber behind him, shuddering. He locks eyes with you, his expression grim. “Whoever dun this gotta pay. I’ll do all I can to help.”",
+      "survivor02218": "If Earl Sawyer is not listed under “Sacrificed to Yog-Sothoth:”_ “I never could’a made it if it weren’t for you,” Earl says with a stammer, shaking your hand repeatedly. “If ’n there’s anything I can do to repay yeh, just ask away. I ain’t much of a fighter or anythin’, but I’ll do all I can. Jus’…don’t make me look at anythin’ like that beast again, a’right?”",
+      "introTitle": "Blood on the Altar",
+      "survivorsTitle": "The Survivors",
+      "noResolutionTitle": "Blood on the Altar",
+      "resolution1Title": "Blood on the Altar",
+      "resolution2Title": "Blood on the Altar",
+      "resolution3Title": "Blood on the Altar",
+      "survivor02040Title": "The Survivors",
+      "survivor02061Title": "The Survivors",
+      "survivor02217Title": "The Survivors",
+      "survivor02218Title": "The Survivors",
+      "setupTitle": "Setup",
+      "setup": "Gather Blood on the Altar, Dunwich, Whippoorwills, Nightgaunts and Ancient Evils. Randomly select five locations and one copy of each. Start in Village Commons. Kidnapped characters, Zebulon and Earl are potential sacrifices. Hide the chamber, the key and three encounters underneath the five other locations. The delay adds one doom; the O’Bannion grudge adds Naomi’s Crew.",
+      "rewardTitle": "The Survivors",
+      "reward": "One investigator may add this ally to their deck.",
+      "powderRewardTitle": "Powder of Ibn Ghazi",
+      "powderReward": "One investigator may add Powder of Ibn Ghazi to their deck.",
+      "survivor02080": "If Dr. Francis Morgan is not listed under “Sacrificed to Yog‑Sothoth:”_ “Thank you for everything you’ve done,” Dr. Morgan says, taking count of your provisions and ammunition. “Last time, we needed some of that strange powder Armitage concocted to even see the beast that terrorized Dunwich. If there’s more of those things out there, we’re going to need that powder. I think I remember how he made it…”",
+      "survivor02080Title": "The Survivors"
     }
   },
   "notes": {
@@ -51,7 +81,21 @@
     "dunwichNecronomiconDestroyed": "The investigators destroyed the Necronomicon",
     "dunwichNecronomiconKept": "The investigators took custody of the Necronomicon",
     "dunwichDelayed": "The investigators were delayed on their way to Dunwich",
-    "dunwichNecronomiconStolen": "The Necronomicon was stolen"
+    "dunwichNecronomiconStolen": "The Necronomicon was stolen",
+    "dunwichRitualCompleted": "The ritual was completed",
+    "dunwichSilasKilled": "The investigators put Silas Bishop out of his misery",
+    "dunwichSilasRestored": "The investigators restored Silas Bishop",
+    "dunwichSilasBanished": "The investigators banished Silas Bishop",
+    "dunwichSurvived02040": "Dr. Henry Armitage survived The Dunwich Legacy",
+    "dunwichSacrificed02040": "Dr. Henry Armitage was sacrificed to Yog-Sothoth",
+    "dunwichSurvived02061": "Profesor Warren Rice survived The Dunwich Legacy",
+    "dunwichSacrificed02061": "Profesor Warren Rice was sacrificed to Yog-Sothoth",
+    "dunwichSurvived02217": "Zebulon Whateley survived The Dunwich Legacy",
+    "dunwichSacrificed02217": "Zebulon Whateley was sacrificed to Yog-Sothoth",
+    "dunwichSurvived02218": "Earl Sawyer survived The Dunwich Legacy",
+    "dunwichSacrificed02218": "Earl Sawyer was sacrificed to Yog-Sothoth",
+    "dunwichSurvived02080": "Dr. Francis Morgan survived The Dunwich Legacy",
+    "dunwichSacrificed02080": "Dr. Francis Morgan was sacrificed to Yog-Sothoth"
   },
   "abilities": {
     "museum": {
@@ -65,6 +109,16 @@
       "passenger": "Help the helpless passenger",
       "luggage": "Steal luggage: gain 3 resources",
       "parlor": "Pay 3 resources to discover 1 clue"
+    },
+    "altar": {
+      "under": "Draw the hidden encounter",
+      "key": "Unlock The Hidden Chamber",
+      "item": "Search top 3 for an Item (1 resource)",
+      "resources": "Discard a card to gain 2 resources",
+      "servant": "Discover a clue at any location",
+      "zebulon": "Exhaust Zebulon to draw a card",
+      "earl": "Exhaust Earl to draw a card",
+      "powder": "Place a clue on an exhausted Brood"
     }
   },
   "choices": {
@@ -80,6 +134,10 @@
       "damage": "Take the car’s damage or horror",
       "agility": "Dodge the creature: agility (3)",
       "combat": "Endure the heat: combat (3)"
+    },
+    "altar": {
+      "willpower": "Test willpower (4)",
+      "agility": "Test agility (4)"
     }
   },
   "prompts": {
@@ -93,6 +151,11 @@
       "icons": "Discard cards to pay {amount} remaining icons",
       "passengerCost": "Choose how to cross the car",
       "steam": "Choose how to overcome the steam creature"
+    },
+    "altar": {
+      "kidnapped": "Choose a test to avoid being kidnapped",
+      "song": "Choose who receives Psychopomp’s Song",
+      "ally": "Choose the kidnapped ally"
     }
   }
 }

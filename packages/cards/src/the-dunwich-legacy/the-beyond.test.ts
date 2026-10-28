@@ -247,7 +247,11 @@ describe('The Beyond encounter set', () => {
         location: to,
         checked: true,
       })
-      expect(s.skillTest).toMatchObject({ skill: 'willpower', difficulty: 4, tags: ['scenario'] })
+      expect(s.skillTest).toMatchObject({
+        skill: 'willpower',
+        difficulty: 4,
+        tags: expect.arrayContaining(['scenario', 'treachery']),
+      })
       s = resolveTest(s)
       expect(getInvestigator(s, 'a').location).toBe(to)
       expect(copies(s, C.arcaneBarrier)).toHaveLength(0)

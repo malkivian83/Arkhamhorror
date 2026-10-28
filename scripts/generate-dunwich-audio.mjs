@@ -11,6 +11,18 @@ const output = join(root, 'audio/es')
 const evidencePath = 'docs-proyecto/evidencias/dunwich-nico-narracion.json'
 const texts = JSON.parse(readFileSync(join(root, 'es.json'), 'utf8'))
 const keys = {
+  'story.altar.intro': 'altar-intro-nico-history.mp3',
+  'story.altar.noResolution': 'altar-noresolution-nico-history.mp3',
+  'story.altar.resolution1': 'altar-resolution1-nico-history.mp3',
+  'story.altar.resolution2': 'altar-resolution2-nico-history.mp3',
+  'story.altar.resolution3': 'altar-resolution3-nico-history.mp3',
+  'story.altar.survivors': 'altar-survivors-nico-history.mp3',
+  'story.altar.survivor02040': 'altar-survivor02040-nico-history.mp3',
+  'story.altar.survivor02061': 'altar-survivor02061-nico-history.mp3',
+  'story.altar.survivor02080': 'altar-survivor02080-nico-history.mp3',
+  'story.altar.survivor02217': 'altar-survivor02217-nico-history.mp3',
+  'story.altar.survivor02218': 'altar-survivor02218-nico-history.mp3',
+
   'story.essex.intro': 'essex-intro-nico-history.mp3',
   'story.essex.defeated': 'essex-defeated-nico-history.mp3',
   'story.essex.resolution1': 'essex-resolution1-nico-history.mp3',

@@ -2,11 +2,7 @@
 
 ## Estado actual
 
-**Cuatro de los ocho escenarios son jugables**: Actividad extracurricular,
-La casa siempre gana, El museo Miskatonic y El Essex County Express, para uno a cuatro investigadores y
-las cuatro dificultades. Los dos primeros pueden jugarse en cualquier orden y
-conectan con El destino de Armitage. Tras el tren quedan pendientes los otros cuatro escenarios. No se presenta la campaña como completa
-ni se incluye Regreso a Dunwich.
+**Cinco de los ocho escenarios son jugables**: Actividad extracurricular, La casa siempre gana, El museo Miskatonic, El Essex County Express y Sangre en el altar. Admiten de uno a cuatro investigadores y las cuatro dificultades. Los dos primeros pueden jugarse en cualquier orden y conectan con El destino de Armitage; Sangre en el altar incluye Los supervivientes. Los tres escenarios finales siguen pendientes. No se incluye Regreso a Dunwich.
 
 La elección del prólogo se conserva en `log.values.openingScenario`; los guardados
 anteriores sin elección mantienen el orden del índice. La pantalla de progreso y
@@ -58,17 +54,17 @@ de la copia externa, que no se ha trasladado literalmente.
 
 ## Presentación y narración
 
-Catálogo local EN/ES de 117 códigos, referencia de escenario y ayuda de fichas,
-378 escaneos oficiales y sus 378 miniaturas, portada y huellas de integridad.
+Catálogo local EN/ES de 151 códigos, referencia de escenario y ayuda de fichas,
+484 escaneos oficiales y sus 484 miniaturas, portada y huellas de integridad.
 Se han inspeccionado escaneos representativos sin abrir el navegador.
 La revisión visual de la mesa queda para la persona usuaria, conforme a AGENTS.
 
 Los audios usan **Nico - History & Documentary**,
-`FXn3GKRRt9FCEyTbrkaL`. Hay veinticuatro grabaciones de historia en español:
+`FXn3GKRRt9FCEyTbrkaL`. Hay treinta y cinco grabaciones de historia en español:
 prólogo; introducción y cinco desenlaces de Actividad extracurricular; introducción
 y cuatro resoluciones de La casa siempre gana; ambas variantes de Armitage; e
 introducción, dos variantes y tres desenlaces del museo; introducción, derrota y
-ambas resoluciones del tren. Los relatos
+ambas resoluciones del tren; introducción y cuatro desenlaces de Sangre en el altar, Los supervivientes y sus cinco personajes. Los relatos
 españoles se extraen de la guía revisada; se omiten instrucciones y recompensas
 en el audio, que la mesa presenta aparte. No se ofrece audio español como inglés.
 
@@ -166,22 +162,21 @@ permanente de la dificultad.
   y la asignación obligatoria a cualquier apoyo. Los efectos de Culto oscuro
   colocan perdición sin adelantar el plan fuera del momento reglamentario.
 
+## Sangre en el altar
+
+Fuentes: guía revisada ES, páginas 13–16, cartas 02195–02224, Dunwich 02088–02089 y Ángeles descarnados 01172–01173. La preparación elige una copia de cada Lugar y omite uno de los seis; esconde la cámara, la llave y tres encuentros. El mazo tiene 26 cartas después de esconder tres, o 32 si se añade La banda de Naomi. Conserva los personajes secuestrados y la demora del tren.
+
+- Las cinco cartas ocultas se roban solo con el Lugar vacío. La cámara entra revelada, se conecta a su origen y requiere adjuntar la llave. Entrar avanza el acto, revela el mapa, reúne todas las pistas e incorpora a Silas, Descomunal y sin ataques de oportunidad.
+- Los Lugares respetan conexiones impresas, restricciones de entrada, recursos, eventos, habilidades comprometidas y pistas; las dos búsquedas por rasgo, la búsqueda de Objetos, intercambio de carta y modificadores de enemigos tienen pruebas dirigidas.
+- Planes y Secuestrado mantienen montones separados de sacrificios potenciales y consumados. Las cartas únicas sacrificadas se retiran de todos los mazos y quedan prohibidas durante el resto de la campaña, incluidas las compras. El último plan obliga a desistir.
+- Los tres desenlaces distinguen derrotar, devolver la forma y desterrar a Silas. Sin resolución se completa el ritual y se consumen los sacrificios pendientes. Se registra el libro robado, se concede victoria más dos de experiencia y se guarda el avance.
+- Los supervivientes se resuelven por personaje, sin duplicar aliados ni Polvo. Zebulon y Earl tienen sus modificadores y reacciones; el Polvo entra con pistas por superviviente y las traslada a una Progenie agotada del mismo Lugar.
+- Tierra impía blanquea el texto de los aliados y prohíbe jugarlos. El motor distingue las pruebas de traiciones, aplica el Canto del psicopompo antes de asignar daño, dobla las fichas negativas al evitar al Ángel descarnado y permite reaccionar al enemigo recién derrotado.
+
 ## Validación y continuación
 
-Último lote funcional: `f15765d2`, Essex completo con sus cuatro audios. Formato,
-lint y tipos globales correctos. La suite completa obtuvo 4613 pruebas correctas,
-19 omitidas y cuatro límites de cinco segundos en Gala, Brethren of Ash y
-administración. Los tres archivos afectados pasan al repetirlos con 30 segundos:
-57 pruebas correctas. Las 42 pruebas propias del tren y los catálogos y audios
-pasan en la suite completa. Compilación final correcta.
-Las pruebas del tren incluyen preparación, azar, cuatro dificultades, colapso,
-traumas, encuentros, costes, fichas y guardado. Un recorrido gana mediante acciones
-legales sin editar el estado tras preparar; otras partidas usan mazos iniciales
-reales de uno a cuatro investigadores. Se inspeccionaron cartas representativas.
-Los 24 audios conservan la voz y sus transcripciones; la revisión visual de la
-aplicación queda para la persona usuaria conforme a AGENTS.
+Último lote subido: `a14284ff`, Essex completo. Lote actual: Sangre en el altar y Los supervivientes. Pasan 49 pruebas del escenario y las 14 de El Más Allá tras actualizar la expectativa de etiquetas de traición. Hay un recorrido completo hasta derrotar a Silas mediante acciones legales, sin editar el estado tras preparar, y partidas con mazos iniciales reales de uno a cuatro investigadores. Comprobaciones globales finales pendientes.
 
-Siguiente grupo: **Sangre en el altar**; después Invisibles y sin dimensión,
-Donde aguarda la perdición, Perdidos en el tiempo y el espacio, Los supervivientes
-y el epílogo. Continúa vigente la autorización para implementar y subir cada
-escenario al completar sus comprobaciones.
+Catálogo, escaneos y 35 narraciones se verifican por consola. Se inspeccionaron las conexiones impresas de las dos caras de los Lugares y cartas representativas. La revisión visual de la aplicación queda para la persona usuaria conforme a AGENTS.
+
+Siguiente grupo: **Invisibles y sin dimensión**; después Donde aguarda la perdición, Perdidos en el tiempo y el espacio y el epílogo. La última instrucción autoriza continuar y subir todos los escenarios; después hay que revisar la campaña completa y subir las correcciones finales. No detenerse después de Sangre en el altar.

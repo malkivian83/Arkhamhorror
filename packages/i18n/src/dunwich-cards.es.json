@@ -1,9 +1,22 @@
 {
+  "01172": {
+    "name": "Ángel descarnado cazador",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Ángel descarnado.",
+    "text": "Cazador.\nAl intentar evitar al Ángel descarnado cazador, dobla el modificador negativo de cada ficha de Caos revelada.",
+    "flavor": "…tampoco podían esbozar una sonrisa siquiera, ya que carecían totalmente de rostro, por lo que allí donde debían tener la cara sólo había una superficie lisa y vacía. <cite>H.P. Lovecraft</cite>"
+  },
   "01177": {
     "name": "Observador yithiano",
     "typeCode": "enemy",
     "traits": "Monstruo. Yithiano.",
     "text": "<b>Presa</b> - Menos cartas en la mano.\n<b>Obligado</b> - Cuando el Observador yithiano te ataque: Descarta 1 carta al azar de tu mano. Si no puedes, el Observador yithiano inflige +1 de daño y +1 de horror durante este ataque."
+  },
+  "01173": {
+    "name": "Sobre alas de oscuridad",
+    "typeCode": "treachery",
+    "text": "<b>Revelación</b> - Realiza una prueba [agility] (4). Si fracasas, recibe 1 punto de daño y 1 punto de horror. A continuación, deja de estar enfrentado a todos los Enemigos enfrentados a ti que no sean [[Ángel descarnado]] y muévete a un Lugar [[Central]].",
+    "flavor": "Un ángel descarnado cae desde el cielo y te aferra con sus garras para llevarte volando hacia la noche."
   },
   "01178": {
     "name": "Oferta de poder",
@@ -386,6 +399,18 @@
     "typeCode": "enemy",
     "traits": "Humanoide. Hechicero.",
     "text": "<b>Presa</b> - Menos cartas en la mano.\nCazador.\n<b>Obligado</b> - Cuando el investigador enfrentado robe una carta [[Maleficio]] o [[Pacto]]: El Mago de Yog-Sothoth ataca a ese investigador."
+  },
+  "02088": {
+    "name": "Campiña impía",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "<b>Revelación</b> - Pon la Campiña impía en juego en tu zona de amenaza.\nNo puedes jugar Apoyos [[Aliado]]. Considera el cuadro de texto impreso de cada Apoyo [[Aliado]] que controles como si estuviera en blanco.\n<b>Obligado</b> - Al final de tu turno: Realiza una prueba de [willpower] (3). Si tienes éxito, descarta Campiña impía."
+  },
+  "02089": {
+    "name": "Sórdidos y silencionsos",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "<b>Revelación</b> - Vincula Sórdidos y silenciosos a tu Lugar.\n<b>Obligado</b> - Al final de la ronda: Cada investigador que esté en el Lugar vinculado recibe 1 punto de horror.\n<b>Obligado</b> - Cuando el plan avance: Descarta Sórdidos y silenciosos."
   },
   "02090": {
     "name": "Chotacabras",
@@ -894,5 +919,223 @@
     "traits": "Monstruo. Abominación.",
     "text": "<b>Aparición</b> - El Lugar de tu derecha, o bien tu Lugar si no hay ningún Lugar a tu derecha.\nLa Monstruosidad emergente entra en juego agotada.",
     "flavor": "La criatura surge de debajo de uno de los asientos, creciendo sin cesar en masa y volumen y amenazando con engullir todo el compartimento."
+  },
+  "02195": {
+    "name": "Sangre en el altar",
+    "typeCode": "scenario",
+    "text": "<b>Fácil/Normal</b>\n[skull]: -1 por cada Lugar en juego que no tenga ninguna carta de Encuentro debajo (máx. -4).\n[cultist]: -2. Si fracasas, añade 1 pista de la reserva de fichas a tu Lugar.\n[tablet]: -2. Si estás en La cámara oculta, revela otra ficha.\n[elder_thing]: -3. Si fracasas, coloca 1 ficha de Perdición sobre el plan en curso.",
+    "backText": "<b>Difícil/Experto</b>\n[skull]: -1 por cada Lugar en juego que no tenga ninguna carta de Encuentro debajo.\n[cultist]: -4. Si fracasas, añade 1 pista de la reserva de fichas a tu Lugar.\n[tablet]: -3. Revela otra ficha.\n[elder_thing]: -3. Coloca 1 ficha de Perdición sobre el plan en curso."
+  },
+  "02196": {
+    "name": "Extrañas desapariciones",
+    "typeCode": "agenda",
+    "text": "",
+    "backName": "Primera sangre",
+    "backText": "Si hay 3 o más sacrificios potenciales, elige uno de ellos al azar y colócalo bajo el mazo de Plan sin mirarlo.",
+    "flavor": "Vuestra bienvenida a Dunwich ha sido fría. Una serie de desapariciones tiene en vilo a los lugareños, ya de por sí distantes, La mayoría os miran con desconfianza, y unos pocos están dispuestos a ayudar en vuestra investigación. ¿Quién sabe qué pasará si no encontráis pronto a las personas desaparecidas...?",
+    "backFlavor": "Sobre los tejados abuhardillados de Dunwich se reúnen chotacabras que empiezan a chillar de júbilo. La gente de Dunwich cree que la presencia de los chotacabras presagia la muerte inminente de alguien. ¿Ansían vuestra muerte? ¿O será otro su víctima?"
+  },
+  "02197": {
+    "name": "Los Primigenios tienen hambre",
+    "typeCode": "agenda",
+    "text": "",
+    "backName": "Calles abandonadas",
+    "backText": "\nSi hay 2 o más sacrificios potenciales, elige uno de ellos al azar y colócalo bajo el mazo de Plan sin mirarlo.",
+    "flavor": "Cuando el sol se pone, los asustados lugareños se retiran a sus casas y cierran con llave las puertas. Tenéis claro que muchos de ellos saben más de lo que dicen. Una sensación repugnante os revuelve el estómago al ver la verdadera naturaleza de la aldea.",
+    "backFlavor": "Más chotacabras acuden a la aldea de Dunwich a medida que avanza la noche. Los demás lugareños, tremendamente supersticiosos, están aterrados por la presencia de los pájaros. Con todas las puertas que os rodean cerradas a cal y canto, os encontráis solos en las calles de Dunwich."
+  },
+  "02198": {
+    "name": "Alimentar a la bestia",
+    "typeCode": "agenda",
+    "text": "",
+    "backName": "Sangre en el altar",
+    "backText": "Todos los investigadores deben desistir inmediatamente.",
+    "flavor": "El rítmico chillido de los chotacabras llena la noche. Si las supersticiones de Dunwich son correctas, su canción augura una muerte inminente... Pero ¿de quién?",
+    "backFlavor": "Los chotacabras que llevan toda la noche graznando se dispersan al unísono, como si estuvieran satisfechos de algún modo con el resultado de los acontecimientos."
+  },
+  "02199": {
+    "name": "Buscando respuestas",
+    "typeCode": "act",
+    "text": "<b>Objetivo</b> - Cuando un investigador entre en La cámara oculta, haz avanzar el acto.",
+    "backName": "Lo que estaba oculto",
+    "backText": "Revela todos los Lugares sin revelar. \nMueve todas las pistas en juego, incluyendo las que tengan los investigadores, a La cámara oculta.\nHaz que aparezca el Enemigo Silas Bishop puesto aparte en La cámara oculta.",
+    "flavor": "Las desapariciones producidas en el pueblo pueden estar relacionadas con los acontecimientos de Arkham. Sospecháis que hay en marcha algo terrible. Debéis encontrar dónde retienen a los lugareños desaparecidos para descubrir esta conspiración.",
+    "backFlavor": "Lográis acceder a la cámara oculta en la que creéis que retienen a los desaparecidos, pero los horrores que os plantan cara allí crispan los límites de vuestra cordura. Encadenada en un apartado rincón de la sala se encuentra una terrible criatura con rostro de hombre. Jadea y pugna por liberarse al veros entrar. Las muchas bocas que cubren el cuerpo de la criatura están cubiertas de sangre y trozos de carne, como si se hubiera alimentado hace poco.\nCon un terrible graznido, la criatura habla con siete bocas: —¿Ss.. se... eth... ? —Después se tambalea hacia delante como si quisiera agarraros, y varias de sus cadenas se parten."
+  },
+  "02200": {
+    "name": "La camara de la bestia",
+    "typeCode": "act",
+    "text": "<b>Objetivo</b> - Si Silas Bishop es derrotado: <b>(→R1)\nObjectivo</b> - Si no hay pistas en La cámara oculta, haz avanzar el acto.",
+    "backName": "Desterrar a la criatura",
+    "backText": "Si El Necronomicón (Traducción de Olaus Wormius) está en juego: <b>(→R2)\n</b>Si no es así: <b>(→R3)</b>",
+    "flavor": "La lamentable bestia se lanza para cogeros con sus viscosos brazos, y sus muchas fauces chasquean de hambre. Matarla sería un acto piadoso. Pero quizás haya algo más que descubrir sobre esta criatura...",
+    "backFlavor": "A pesar del peligro, os enfrentáis a la aterradora presencia de la bestia y seguís investigando antes de matarla. Lo que encontráis confirma vuestras peores sospechas. Varias anotaciones de un diario escritas por un tal \"Seth Bishop\" describen el proceso de alimentación de la criatura con espeluznantes detalles; primero tomates, luego caza menor, después ganado, y por último, \"sacrificios humanos\". Pero la parte más perturbadora es que Seth llama a la criatura por su nombre: \"Silas\"."
+  },
+  "02201": {
+    "name": "Calles de la aldea",
+    "typeCode": "location",
+    "traits": "Dunwich. Central.",
+    "text": "[action] <b>Desistir</b>. \"¡Esto es un suicidio! Será mejor que nos ocultemos durante la noche.\"",
+    "flavor": "...las pocas casas diseminadas a lo largo del camino presentan un sorprendente aspecto uniforme de decrepitud, suciedad y ruina.\n–H. P. Lovecraft, \"El Horror de Dunwich\"",
+    "backFlavor": "...es difícil que a uno no le asalte la sensación de un ligero hedor al pasar por la calle principal y ver la descomposición y la mugre acumuladas a lo largo de los siglos.\n–H. P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02202": {
+    "name": "Arroyo Bishop",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "Cada Enemigo que esté en el Arroyo Bishop inflige +1 de horror al atacar.\n[free]Si no hay pistas aquí: Roba la carta de Encuentro que hay bajo el Arroyo Bishop. Límite de grupo de una vez por partida.",
+    "backFlavor": "El simple paso del tenebroso túnel del puente infunde ya cierto temor, pero tampoco hay manera de evitarlo.\n–H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02203": {
+    "name": "Arroyo Bishop",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "Si hay un investigador en el Arroyo Bishop, otros investigadores no pueden entrar al Arroyo Bishop.\n[free]Si no hay pistas aquí: Roba la carta de Encuentro que hay bajo el Arroyo Bishop. Límite de grupo de una vez por partida.",
+    "backFlavor": "El simple paso del tenebroso túnel del puente infunde ya cierto temor, pero tampoco hay manera de evitarlo.\n–H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02204": {
+    "name": "Ruinas calcinadas",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "Cada Enemigo que esté en las Ruinas calcinadas recibe +1 a evitar.\n[free] Si no hay pistas aquí: Roba la carta de Encuentro que hay bajo las Ruinas calcinadas. Límite de grupo de una vez por partida.",
+    "backFlavor": "No resulta nada tranquilizador comprobar que la mayoría de las casas están desiertas y medio derruidas... –H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02205": {
+    "name": "Ruinas calcinadas",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[reaction] Después de que fracases en una prueba de habilidad al investigar las Ruinas calcinadas: Dale la vuelta a 1 ficha de Pista de las Ruinas calcinadas para que muestre su lado de perdición.\n[free] Si no hay pistas aquí: Roba la carta de Encuentro que hay bajo las Ruinas calcinadas. Límite de grupo de una vez por partida.",
+    "backFlavor": "No resulta nada tranquilizador comprobar que la mayoría de las casas están desiertas y medio derruidas... –H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02206": {
+    "name": "Almacén general de Osborn",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "No puedes obtener recursos mientras estés en el Almacén general de Osborn.\n[free] Si no hay pistas aquí: Roba la carta de Encuentro que hay bajo el Almacén general de Osborn. Límite de grupo de una vez por partida.",
+    "backFlavor": "Por la atmósfera de silenciosa tensión que se respiraba en la tienda dc Osborn, los tres investigadores comprendieron que algo horrible había sucedido...\n–H. P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02207": {
+    "name": "Almacén general de Osborn",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[action] Gasta 1 recurso: Busca entre las 3 primeras cartas de tu mazo 1 carta [[Objeto]] y añádela a tu mano. Baraja tu mazo.\n[free] Si no hay pistas aquí: Roba la carta de Encuentro que hay bajo el Almacén general de Osborn. Límite de grupo de una vez por partida.",
+    "backFlavor": "Por la atmósfera de silenciosa tensión que se respiraba en la tienda dc Osborn, los tres investigadores comprendieron que algo horrible había sucedido...\n–H. P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02208": {
+    "name": "Iglesia congregacional",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "<b>Obligado</b> - Después de que la Iglesia congregacional sea revelada: Busca un Enemigo [[Humanoide]] en el mazo de Encuentros y haz que aparezca en las Calles de la aldea. Baraja el mazo de Encuentros.\n[free] Si no hay pistas aquí: Roba la carta de Encuentro que hay bajo la Iglesia congregacional. Límite de grupo de una vez por partida.",
+    "backFlavor": "\"Y hasta yo mismo, no hará más de dos semanas, pude escuchar toda una alocución de las potencias infernales detrás de mi casa. Los chirridos, redobles, quejidos, gritos y silbidos que allí se oían no podían proceder de nadie de este mundo...\"\n—H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02209": {
+    "name": "Iglesia congregacional",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[action] Elige y descarta una carta de tu mano: Obtén 2 recursos.\n Si no hay pistas aquí: Roba la carta de Encuentro que hay bajo la Iglesia congregacional. Límite de grupo de una vez por partida.",
+    "backFlavor": "\"Y hasta yo mismo, no hará más de dos semanas, pude escuchar toda una alocución de las potencias infernales detrás de mi casa. Los chirridos, redobles, quejidos, gritos y silbidos que allí se oían no podían proceder de nadie de este mundo...\"\n—H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02210": {
+    "name": "Casa entre juncos",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "Mientras estés en la Casa entre juncos, no puedes jugar Eventos.\n[free] Si no hay pistas aquí: Roba la carta de Encuentro que hay bajo la Casa entre juncos. Límite de grupo de una vez por partida.",
+    "backFlavor": "Ni siquiera los lugareños se acercan a esta choza medio hundida."
+  },
+  "02211": {
+    "name": "Casa entre juncos",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "<b>Obligado</b> — Después de que la Casa entre juncos sea revelada: Busca un Enemigo [[Ángel descarnado]] en el mazo de Encuentros y haz que aparezca en las Calles de la aldea. Baraja el mazo de Encuentros.\n[free] Si no hay pistas aquí: Roba la carta de Encuentro que hay bajo la Casa entre juncos. Límite de grupo de una vez por partida.",
+    "backFlavor": "Ni siquiera los lugareños se acercan a esta choza medio hundida."
+  },
+  "02212": {
+    "name": "Escuela",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "Mientras estés en la Escuela, no puedes asignar cartas de Habilidad a las pruebas de habilidad.\n[free] Si no hay pistas aquí: Roba la carta de Encuentro que hay bajo la Escuela. Límite de grupo de una vez por partida.",
+    "backFlavor": "Con su tejado medio derruido y las paredes infestadas de ratas, esto apenas es una casa, y mucho menos un colegio."
+  },
+  "02213": {
+    "name": "Escuela",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "No puedes descubrir pistas aquí excepto al investigar.\n[free] Si no hay pistas aquí: Roba la carta de Encuentro que hay bajo la Escuela. Límite de grupo de una vez por partida.",
+    "backFlavor": "Con su tejado medio derruido y las paredes infestadas de ratas, esto apenas es una casa, y mucho menos un colegio."
+  },
+  "02214": {
+    "name": "La cámara oculta",
+    "typeCode": "location",
+    "subname": "Prisión de la bestia",
+    "traits": "Dunwich.",
+    "text": "<b>Revelación</b> - Pon La cámara oculta en juego.\nLa cámara oculta y el Lugar del que fue robada están conectados entre sí.\nLa puerta que da a La cámara oculta está cerrada. No puedes entrar en La cámara oculta a menos que la Llave de la cámara esté vinculada a La cámara oculta."
+  },
+  "02215": {
+    "name": "Llave de la cámara",
+    "typeCode": "asset",
+    "traits": "Objeto. Llave.",
+    "text": "<b>Revelación</b> - Toma el control de la Llave de la cámara.\n[free] Si La cámara oculta está conectada a tu Lugar: Vincula la Llave de la cámara a La cámara oculta.",
+    "flavor": "Esta deslustrada llave de plata estaba muy bien escondida. Debe de abrir algo importante."
+  },
+  "02216": {
+    "name": "Silas Bishop",
+    "typeCode": "enemy",
+    "subname": "Impregnado por el mal",
+    "traits": "Monstruo. Abominación. Élite.",
+    "text": "Descomunal.\nSilas Bishop no puede realizar ataques de oportunidad.",
+    "flavor": "¿Qué pasaba en las montañas aquella noche de mayo? ¿Qué horror engendrado el día de la Invención de la Cruz se había abatido sobre el mundo en forma de carne y hueso semihumanos?\n—H. P. Lovecraft, “El Horror de Dunwich”"
+  },
+  "02217": {
+    "name": "Zebulon Whateley",
+    "typeCode": "asset",
+    "subname": "Recordando cosas antiguas",
+    "traits": "Aliado. Dunwich.",
+    "text": "Recibes +1 [willpower].\n[reaction] Después de que tengas éxito en una prueba de [willpower] de una carta de Traición, agota a Zebulon Whateley: Roba 1 carta.",
+    "flavor": "...sus recuerdos de cantos en los grandes círculos de piedra no tenían nada que ver con lo que pudieran haber hecho Wilbur y su abuelo.\n–H. P. Lovecraft, “El Horror de Dunwich”"
+  },
+  "02218": {
+    "name": "Earl Sawyer",
+    "typeCode": "asset",
+    "subname": "Más listo de lo que aparenta",
+    "traits": "Aliado. Dunwich.",
+    "text": "Recibes +1 [agility].\n Después de que evites a un Enemigo, agota a Earl Sawyer: Roba 1 carta.",
+    "flavor": "Earl Sawyer, que cuidaba del caballo y del ganado desde el fallecimiento de Wilbur, había sufrido una aguda crisis de nervios.\n–H. P. Lovecraft, “El Horror de Dunwich”"
+  },
+  "02219": {
+    "name": "Polvo de Ibn-Ghazi",
+    "typeCode": "asset",
+    "subname": "Ver cosas invisibles",
+    "traits": "Objeto.",
+    "text": "El Polvo de Ibn-Ghazi entra en juego con X pistas sobre él, donde X es el número de personajes que \"sobrevivieron a El legado de Dunwich\" de tu registro de campaña.\n[free]: Mueve 1 pista del Polvo de Ibn-Ghazi a una Progenie de Yog-Sothoth agotada que esté en tu Lugar."
+  },
+  "02220": {
+    "name": "¡Secuestrado!",
+    "typeCode": "treachery",
+    "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (4) o de [agility] (4). Si fracasas, añade un Apoyo [[Aliado]] que controles a la reserva de sacrificios potenciales. A continuación, vincula ¡Secuestrado! al plan en curso. Si no tienes ningún Apoyo [[Aliado]], en lugar de eso recibe 2 puntos de daño y descarta ¡Secuestrado!.\n<b>Obligado</b> - Cuando el plan vinculado avance: Elige un sacrificio potencial aleatorio y colócalo bajo el mazo de Plan."
+  },
+  "02221": {
+    "name": "Canción del psicopompo",
+    "typeCode": "treachery",
+    "traits": "Augurio.",
+    "text": "Oleada. Peligro.\n<b>Revelación</b> - Añade la Canción del psicopompo a la zona de amenaza de cualquier investigador.\n<b>Obligado</b> - Cuando fueses a recibir 1 o más puntos de daño: Recibe 2 puntos de daño adicionales y descarta la Canción del psicopompo."
+  },
+  "02222": {
+    "name": "Señales extrañas",
+    "typeCode": "treachery",
+    "traits": "Augurio.",
+    "text": "<b>Revelación</b> - Realiza una prueba de [intellect] (3). Si fracasas, añade 1 pista de la reserva de fichas a tu Lugar, o bien 2 pistas si hay 3 o 4 investigadores en la partida."
+  },
+  "02223": {
+    "name": "Restos en descomposición",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (3). Por cada punto que te falte para tener éxito, recibe 1 punto de horror.",
+    "flavor": "Una nauseabunda exhibición de sangre y vísceras te provoca arcadas. Te alegra no ser tú."
+  },
+  "02224": {
+    "name": "Sirviente de muchas bocas",
+    "typeCode": "enemy",
+    "traits": "Humanoide.",
+    "text": "<b>Aparición</b> - Cualquier Lugar vacío.\nRepresalia.\n[reaction] Después de que derrotes al Sirviente de muchas bocas: Descubre 1 pista en cualquier Lugar."
   }
 }

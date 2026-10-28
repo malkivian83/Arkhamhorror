@@ -1,5 +1,5 @@
 {
-  "description": "Busca a los profesores desaparecidos. Los cuatro primeros escenarios son jugables; los cuatro últimos siguen en desarrollo.",
+  "description": "Busca a los profesores desaparecidos. Los cinco primeros escenarios son jugables; los tres últimos siguen en desarrollo.",
   "story": {
     "museum": {
       "intro": "Hace algunos meses, Armitage y sus colegas detuvieron a un horror desa tado que iba a destruir Dunwich, una apartada ciudad que se encuentra a varias horas de Arkham, hacia el noroeste. Al principio pensáis que esta bestia es un oso rabioso o algo peor, pero la descripción que hace el profesor de la criatura describe algo muy distinto. Todo comenzó cuando un hombre llamado Wilbur Whateley entró en la biblioteca Orne en busca de la traducción al latín de Olaus Wormius de un libro llamado el Necronomicón . Wilbur ya poseía una ajada traducción al inglés del Dr. John Dee, pero no le bastaba para sus propósitos. Armitage le prohibió el acceso, pues temía el posible uso que pudiera darle al libro ese extraño hombre. Whateley volvió en secreto, con la esperanza de poder robar el libro, pero fue atacado por un sabueso guardián de la universidad. Más tarde, Armitage, Rice y Morgan descubrieron el cuerpo de Whateley. Una descripción del terrible cadáver –semiantropomórfico y cubierto de pelaje, con una piel coriácea y tentáculos de un color gris verdoso– os hace cuestionaros si Whateley era humano realmente.",
@@ -44,6 +44,36 @@
       "setupTitle": "Preparación",
       "setup": "Reúne El Essex County Express, El Más Allá, Miedo impactante, Antiguos males y Secta oscura. Selecciona al azar seis de los ocho Vagones y una de las tres Locomotoras. Comenzad en el Vagón más a la izquierda, revelado, e ignorad sus efectos de entrada. Aparta cuatro copias de A través del tiempo y el espacio. Añade a la bolsa durante el resto de la campaña una ficha de −2, −3, −4 o −5 según la dificultad.",
       "defeatedEffect": "Cada investigador derrotado añade A través del tiempo y el espacio y obtiene 1 experiencia adicional. Los profesores y El Necronomicón de su mazo se pierden."
+    },
+    "altar": {
+      "intro": "Cuando por fin llegáis a Dunwich, os reciben Zebulon Whateley y Earl Sawyer, otro hombre del pueblo que conoció al Dr. Armitage durante el incidente de hace unos meses. –Las cosas no pintan bien por aquí –os dice Earl–. Hace varias noches desaparecieron varias personas. Los chotaca bras tampoco se callan. No sé a qué han venido, pero la última vez que unos tipos de Arkham estuvieron aquí, no pasó nada bueno. Todo lo contrario. –Sus ojos parpadean rápidamente, y tose a la vez que aparta la mirada. –Oigan, ¿por qué no descansan esta noche y ya buscarán lo que estén bus cando mañana? –añade Zebulon mientras le pone la arrugada mano en el hombro a uno de vosotros. Queréis protestar, pero vuestros doloridos mús culos y agotada mente no os permiten rechazar la idea. El anciano os ofrece alojaros durante la noche, y os lleva hasta su casa, en las afueras del pueblo de Dunwich. Se trata de una población destartalada y fantasmagórica, y os descubrís deseando no haber venido aquí. Os quedáis dormidos durante el trayecto, y apenas recordáis nada más de esa noche. Cuando despertáis, descubrís que la casa de Zebulon está abandonada, y no hay ni rastro del anciano ni del Sr. Sawyer. Temiendo lo peor, os dirigís al pueblo de Dunwich para investigar, con la esperanza de encontrar respuestas.",
+      "survivors": "Dentro de la cámara que contenía a la horrible bestia encontráis a los luga reños desaparecidos y a las demás personas de Arkham, atados y engrille tados. También encontráis varios documentos que sugieren que la criatura que encontrasteis no es la única de su especie en Dunwich. Liberáis a las víc timas de la criatura de sus ligaduras y os dan las gracias. Es hora de comen zar a planear vuestro siguiente movimiento.",
+      "noResolution": "Los gritos de los chotacabras se desvanecen a lo lejos, y la ciudad de Dunwich queda sumida en un silencio sepulcral. Lo único que se oye es el seco silbido del frío viento y el lento arrastrar de las hojas secas. No hay ni rastro de los lugareños desaparecidos, ni volverá a haberlo jamás.",
+      "resolution1": "Cuando asestáis el golpe final, el cuerpo de la criatura explota en cientos de apéndices similares a cuerdas que no dejan de retorcerse por el suelo y de trepar por las paredes. Estáis tan sorprendidos que no sois lo suficientemente rápidos como para evitar que escapen de la estancia. Aun así, fuera lo que fuera esa criatura, os alegra que haya muerto.",
+      "resolution2": "No tenéis mucho tiempo para reaccionar mien tras la criatura en la que se ha convertido Silas trata de atacaros pese a estar encadenada. Sabiendo que el Necronomicón podría contener un hechizo o ensalmo para someter a Silas, rechazáis a la abominación el tiempo suficiente como para encontrar un frag mento que os sea útil. Sin tiempo que perder, recitáis el ensalmo en latín, y descubrís que las palabras acuden a vuestra lengua sin ningún esfuerzo, como si las tuvieseis de un recuerdo anterior. El cuerpo de la criatura comienza a encogerse y fundirse a medida que el ensalmo crece, y sus gritos son aterradores y espectrales. Al final, lo único que queda es el cadáver desfigurado de un hom bre: Silas Bishop. Metido en su camisa, encontráis un colgante de plata grabado con una extraña constelación. Os lo lleváis con la esperanza de que pueda resultaros de utilidad.",
+      "resolution3": "No tenéis mucho tiempo para reaccionar mien tras la criatura en la que se ha convertido Silas trata de ataca ros pese a estar encadenada. Pensando que quizá haya algo en la cámara que podáis usar a vuestro favor, rechazáis a la abo minación el tiempo suficiente como para encontrar un diario; muchos de sus pasajes están escritos en latín. Parece ser un frag mento manuscrito del Necronomicón , cuyo propósito os es des conocido. Sin tiempo que perder, recitáis el ensalmo, trabucando las palabras y notando cómo se os agarrota la garganta con cada frase. El cuerpo de la criatura comienza a encogerse y fundirse a medida que el ensalmo crece, y sus gritos son aterradores y espec trales. Al final, lo único que queda es un montón de un húmedo y pegajoso icor que emite un pestilente hedor.",
+      "survivor02040": "–Es mucho peor de lo que pensábamos –dice el Dr. Armitage, pálido y tembloroso–. Wilbur Whateley sólo era el princi pio. Había muchísimos más en Dunwich que conocían a los “Primigenios” y ambicionaban el poder y el conocimiento por encima de todo, aunque con ello condenaran a la Tierra. Sabía que tendría que haber quemado el dia rio de ese infame. Pero gracias a su contenido, sé cómo podemos detenerlos. ¡Somos los únicos que podemos! Rápido, ayudadme con esta solución... El polvo es la clave, sí, el polvo es la única forma...",
+      "survivor02061": "El profesor Rice se coloca las gafas y estudia los documentos y manuscritos arcanos que quedan en la cámara. –Pensaba que habíamos acabado con esta pesadilla de una vez por todas –suspira–. Pero tenemos la obligación de llegar hasta el final con esto. Debemos dete ner a estas criaturas o Dunwich no será el único lugar que tenga problemas. La mezcla en polvo que creó Armitage para ver a las criaturas será nuestra salvación –os explica antes de ponerse a recrear el polvo.",
+      "survivor02217": "–Dunwich ha vivido no pocos acontecimientos extraños – os explica Zebulon con voz temblorosa–, pero nunca había visto nada tan enfermizo y siniestro como esta... esta... cosa . –Le da una última mirada de repulsión a los restos de la criatura antes de cerrar la puerta tras él, estre meciéndose. Os mira con expresión adusta–. Quien haya hecho esto debe pagar por ello. Haré todo lo que pueda para ayudar.",
+      "survivor02218": "–Nunca habría logrado sobrevivir si no fuera por ustedes –dice Earl con un cierto tartamudeo mientras os estrecha la mano repeti damente–. Si hay cualquier cosa que pueda hacer para devolverles el favor, pídanmela. No se me da muy bien pelear ni nada de eso, pero haré todo lo que pueda. Solamente... no me hagan volver a mirar nada como esa bestia, ¿de acuerdo?",
+      "introTitle": "Sangre en el altar",
+      "survivorsTitle": "Los supervivientes",
+      "noResolutionTitle": "Sangre en el altar",
+      "resolution1Title": "Sangre en el altar",
+      "resolution2Title": "Sangre en el altar",
+      "resolution3Title": "Sangre en el altar",
+      "survivor02040Title": "Los supervivientes",
+      "survivor02061Title": "Los supervivientes",
+      "survivor02217Title": "Los supervivientes",
+      "survivor02218Title": "Los supervivientes",
+      "setupTitle": "Preparación",
+      "setup": "Reúne Sangre en el altar, Dunwich, Chotacabras, Ángeles descarnados y Antiguos males. Elige cinco Lugares, una variante al azar de cada uno. Empieza en las Calles de la aldea. Los personajes secuestrados, Zebulon y Earl son sacrificios potenciales. Esconde la cámara, la llave y tres encuentros bajo los otros cinco Lugares. La demora añade una perdición; la deuda con O’Bannion incorpora La banda de Naomi.",
+      "rewardTitle": "Los supervivientes",
+      "reward": "Un investigador puede añadir este aliado a su mazo.",
+      "powderRewardTitle": "Polvo de Ibn-Ghazi",
+      "powderReward": "Un investigador puede añadir el Polvo de Ibn-Ghazi a su mazo.",
+      "survivor02080": "–Gracias por todo lo que habéis hecho –dice el Dr. Mor gan mientras revisa vuestras provisiones y munición–. La última vez nos hizo falta algo de ese extraño polvo que preparó Armitage para poder siquiera ver las bestias que aterrorizaban Dunwich. Si hay más de esas cosas ahí fuera, vamos a necesitar ese polvo. Creo que me acuerdo de cómo lo hacía...",
+      "survivor02080Title": "Los supervivientes"
     }
   },
   "notes": {
@@ -51,7 +81,21 @@
     "dunwichNecronomiconDestroyed": "Los investigadores destruyeron el Necronomicón",
     "dunwichNecronomiconKept": "Los investigadores se quedaron con el Necronomicón",
     "dunwichDelayed": "Los investigadores quedaron retrasados de camino a Dunwich",
-    "dunwichNecronomiconStolen": "El Necronomicón ha sido robado"
+    "dunwichNecronomiconStolen": "El Necronomicón ha sido robado",
+    "dunwichRitualCompleted": "El ritual fue completado",
+    "dunwichSilasKilled": "Los investigadores acabaron con Silas Bishop",
+    "dunwichSilasRestored": "Los investigadores le devolvieron su forma a Silas Bishop",
+    "dunwichSilasBanished": "Los investigadores desterraron a Silas Bishop",
+    "dunwichSurvived02040": "Dr. Henry Armitage sobrevivió a El legado de Dunwich",
+    "dunwichSacrificed02040": "Dr. Henry Armitage fue sacrificado a Yog-Sothoth",
+    "dunwichSurvived02061": "Profesor Warren Rice sobrevivió a El legado de Dunwich",
+    "dunwichSacrificed02061": "Profesor Warren Rice fue sacrificado a Yog-Sothoth",
+    "dunwichSurvived02217": "Zebulon Whateley sobrevivió a El legado de Dunwich",
+    "dunwichSacrificed02217": "Zebulon Whateley fue sacrificado a Yog-Sothoth",
+    "dunwichSurvived02218": "Earl Sawyer sobrevivió a El legado de Dunwich",
+    "dunwichSacrificed02218": "Earl Sawyer fue sacrificado a Yog-Sothoth",
+    "dunwichSurvived02080": "Dr. Francis Morgan sobrevivió a El legado de Dunwich",
+    "dunwichSacrificed02080": "Dr. Francis Morgan fue sacrificado a Yog-Sothoth"
   },
   "abilities": {
     "museum": {
@@ -65,6 +109,16 @@
       "passenger": "Ayudar al pasajero indefenso",
       "luggage": "Robar equipaje: obtener 3 recursos",
       "parlor": "Pagar 3 recursos para descubrir 1 pista"
+    },
+    "altar": {
+      "under": "Robar la carta oculta",
+      "key": "Abrir La cámara oculta",
+      "item": "Buscar un Objeto entre 3 cartas (1 recurso)",
+      "resources": "Descartar una carta para ganar 2 recursos",
+      "servant": "Descubrir una pista en cualquier Lugar",
+      "zebulon": "Agotar a Zebulon para robar una carta",
+      "earl": "Agotar a Earl para robar una carta",
+      "powder": "Colocar una pista sobre una Progenie agotada"
     }
   },
   "choices": {
@@ -80,6 +134,10 @@
       "damage": "Recibir el daño u horror del Vagón",
       "agility": "Evitar a la criatura: agilidad (3)",
       "combat": "Soportar el calor: combate (3)"
+    },
+    "altar": {
+      "willpower": "Probar voluntad (4)",
+      "agility": "Probar agilidad (4)"
     }
   },
   "prompts": {
@@ -93,6 +151,11 @@
       "icons": "Descarta cartas para pagar {amount} iconos restantes",
       "passengerCost": "Elige cómo atravesar el Vagón",
       "steam": "Elige cómo superar a la criatura de vapor"
+    },
+    "altar": {
+      "kidnapped": "Elige la prueba para evitar el secuestro",
+      "song": "Elige quién recibe el Canto del psicopompo",
+      "ally": "Elige el aliado secuestrado"
     }
   }
 }

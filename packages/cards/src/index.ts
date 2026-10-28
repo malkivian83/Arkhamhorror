@@ -351,3 +351,12 @@ export {
   T as ESSEX_CODES,
   THE_ESSEX_COUNTY_EXPRESS,
 } from './the-dunwich-legacy/the-essex-county-express'
+export {
+  bloodOnTheAltar,
+  ALTAR_LOCATIONS,
+  ALTAR_ENCOUNTERS,
+  DUNWICH_COUNTRY,
+  NIGHTGAUNTS,
+  B as ALTAR_CODES,
+  BLOOD_ON_THE_ALTAR,
+} from './the-dunwich-legacy/blood-on-the-altar'

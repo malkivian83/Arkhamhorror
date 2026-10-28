@@ -1,9 +1,22 @@
 {
+  "01172": {
+    "name": "Hunting Nightgaunt",
+    "typeCode": "enemy",
+    "traits": "Monster. Nightgaunt.",
+    "text": "Hunter.\nWhile attempting to evade Hunting Nightgaunt, double the negative modifier of each revealed chaos token.",
+    "flavor": "... they had no faces at all to smile with, but only a suggestive blankness where a face ought to be. <cite>H. P. Lovecraft</cite>"
+  },
   "01177": {
     "name": "Yithian Observer",
     "typeCode": "enemy",
     "traits": "Monster. Yithian.",
     "text": "<b>Prey</b> - Fewest cards in hand.\n<b>Forced</b> - When Yithian Observer attacks you: Discard 1 card at random from your hand. If you cannot, Yithian Observer deals +1 damage and +1 horror for this attack."
+  },
+  "01173": {
+    "name": "On Wings of Darkness",
+    "typeCode": "treachery",
+    "text": "<b>Revelation</b> - Test [agility] (4). If you fail, take 1 horror and 1 damage. Then, disengage with each non-[[Nightgaunt]] enemy engaged with you and move to a [[Central]] location.",
+    "flavor": "A nightgaunt swoops down from the sky and grabs you with its clawed hands, carrying you off into the night."
   },
   "01178": {
     "name": "Offer of Power",
@@ -386,6 +399,18 @@
     "typeCode": "enemy",
     "traits": "Humanoid. Sorcerer.",
     "text": "<b>Prey</b> - Least cards in hand.\nHunter.\n<b>Forced</b> - When the engaged investigator draws a [[Hex]] or [[Pact]] card: Wizard of Yog-Sothoth attacks that investigator."
+  },
+  "02088": {
+    "name": "Unhallowed Country",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Put Unhallowed Country into play in your threat area.\nYou cannot play [[Ally]] assets. Treat the printed text box of each [[Ally]] asset you control as if it were blank.\n<b>Forced</b> - At the end of your turn: Test [willpower] (3). If you succeed, discard Unhallowed Country."
+  },
+  "02089": {
+    "name": "Sordid and Silent",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Attach Sordid and Silent to your location.\n<b>Forced</b> - At the end of the round: Each investigator at attached location takes 1 horror.\n<b>Forced</b> - When the agenda advances: Discard Sordid and Silent."
   },
   "02090": {
     "name": "Whippoorwill",
@@ -893,5 +918,223 @@
     "traits": "Monster. Abomination.",
     "text": "<b>Spawn</b> - The location to your right (or your location if there is no location to your right).\nEmergent Monstrosity enters play exhausted.",
     "flavor": "The creature erupts from underneath one of the seats, growing ceaselessly in mass and volume, threatening to envelop the entire compartment."
+  },
+  "02195": {
+    "name": "Blood on the Altar",
+    "typeCode": "scenario",
+    "text": "Easy / Standard\n[skull]: -1 for each location in play with no encounter card underneath it (max -4).\n[cultist]: -2. If you fail, add 1 clue from the token pool to your location.\n[tablet]: -2. If you are in the Hidden Chamber, reveal another token.\n[elder_thing]: -3. If you fail, place 1 doom on the current agenda.",
+    "backText": "Hard / Expert\n[skull]: -1 for each location in play with no encounter card underneath it.\n[cultist]: -4. If you fail, add 1 clue from the token pool to your location.\n[tablet]: -3. Reveal another token.\n[elder_thing]: -3. Place 1 doom on the current agenda."
+  },
+  "02196": {
+    "name": "Strange Disappearances",
+    "typeCode": "agenda",
+    "text": "",
+    "backName": "First Blood",
+    "backText": "If there are 3 or more potential sacrifices, choose one of them at random and place it underneath the agenda deck, without looking at it.",
+    "flavor": "Your welcome in Dunwich has been cold. A string of disappearances has left the already aloof townsfolk on edge. Most of them look at you with distrust, and few are willing to help in your investigation. Who knows what will happen if you don’t find the location of the missing townsfolk soon...",
+    "backFlavor": "Whippoorwills gather along the gambrel roofs of Dunwich and begin to shriek in jubilation. The people of Dunwich believe that the presence of whippoorwills foreshadows somebody’s imminent death. Do they long for your death? Or is the victim someone else?"
+  },
+  "02197": {
+    "name": "The Old Ones Hunger",
+    "typeCode": "agenda",
+    "text": "",
+    "backName": "Abandoned Streets",
+    "backText": "\nIf there are 2 or more potential sacrifices, choose one of them at random and place it underneath the agenda deck, without looking at it.",
+    "flavor": "As the sun sets, the frightened townsfolk retreat into their homes and lock their doors. It is clear to you that many of them know more than they are letting on. A sickening feeling turns over in your stomach as the village’s true nature becomes clear.",
+    "backFlavor": "More whippoorwills flock to Dunwich village as the night progresses. The other townsfolk, notoriously superstitious, are terrified by the birds’ presence. With the doors around you shut and locked, you find yourself alone in the streets of Dunwich."
+  },
+  "02198": {
+    "name": "Feed the Beast",
+    "typeCode": "agenda",
+    "text": "",
+    "backName": "Blood on the Altar",
+    "backText": "Each investigator must immediately resign.",
+    "flavor": "The rhythmic screeching of the whippoorwills fills the night. If the superstitions of Dunwich are correct, their song portends impending death... But for whom?",
+    "backFlavor": "The whippoorwills that have been cawing through the night scatter in unison, as if they are somehow satisfied with the turn of events."
+  },
+  "02199": {
+    "name": "Searching for Answers",
+    "typeCode": "act",
+    "text": "<b>Objective</b> - When an investigator enters The Hidden Chamber, advance.",
+    "backName": "What Was Hidden",
+    "backText": "Reveal each unrevealed location. \nMove all clues in play (including those on each investigator) to The Hidden Chamber.\nSpawn the set-aside Silas Bishop enemy in The Hidden Chamber.",
+    "flavor": "The disappearances in town may be related to the events in Arkham. You suspect that something awful is afoot. You must find where the missing townsfolk are being held in order to unveil this conspiracy.",
+    "backFlavor": "You find your way into the hidden chamber where you believe the missing folk are being held, but the horrors that confront you there fray the edges of your sanity. Bound by chains in a secluded corner of the room is an unspeakable creature with the face of a man. It wheezes and wrestles to free itself as it notices your entrance. The many mouths covering the creature’s body are covered in blood and gristles of meat, as though it were feeding recently.\nWith a hideous croak, the creature speaks with seven mouths.\"Ss... se... eth...?\" Then it lurches forward as though to grab you, and several of its chains snap."
+  },
+  "02200": {
+    "name": "The Chamber of the Beast",
+    "typeCode": "act",
+    "text": "<b>Objective</b> - If Silas Bishop is defeated: <b>(→R1)\nObjective</b> - If there are no clues in the Hidden Chamber, advance.",
+    "backName": "Banishing the Creature",
+    "backText": "If The Necronomicon is in play: <b>(→R2)\n</b>Otherwise: <b>(→R3)</b>",
+    "flavor": "The pitiful beast lunges to grab you with slimy arms, its many jaws snapping in hunger. Killing it would be merciful. But perhaps there is something else to discover about this creature…",
+    "backFlavor": "Despite the danger, you brave the beast's horrifying presence and investigate further before killing it. What you find confirms your worst suspicions. Several journal entries written by a \"Seth Bishop\" describe the process of feeding the creature in horrifying detail - tomatoes at first, then small game, then cattle, and then finally 'human sacrifices'. But the most disturbing part is that Seth calls the creature by name: 'Silas.'"
+  },
+  "02201": {
+    "name": "Village Commons",
+    "typeCode": "location",
+    "traits": "Dunwich. Central.",
+    "text": "[action] <b>Resign.</b> \"This is suicide! We're better off hiding out the night.\"",
+    "flavor": "...the sparsely scattered houses wear a surprisingly uniform aspect of age, squalor, and dilapidation.\n-H. P. Lovecraft, \"The Dunwich Horror\"",
+    "backFlavor": "...it is hard to prevent the impression of a faint, malign odour about the village street, as of the massed mould and decay of centuries.\n-H. P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02202": {
+    "name": "Bishop's Brook",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "Each enemy at Bishop's Brook deals +1 horror while it is attacking.\n[fast] If there are no clues here: Draw the encounter card underneath Bishop's Brook. (Group limit once per game).",
+    "backFlavor": "One dreads to trust the tenebrous tunnel of the bridge, yet there is no way to avoid it.\n-H. P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02203": {
+    "name": "Bishop's Brook",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "If there is an investigator at Bishop's Brook, other investigators cannot enter Bishop's Brook.\n[fast] If there are no clues here: Draw the encounter card underneath Bishop's Brook. (Group limit once per game).",
+    "backFlavor": "One dreads to trust the tenebrous tunnel of the bridge, yet there is no way to avoid it.\n-H. P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02204": {
+    "name": "Burned Ruins",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "Each enemy in the Burned Ruins gets +1 evade.\n[fast] If there are no clues here: Draw the encounter card underneath Burned Ruins. (Group limit once per game).",
+    "backFlavor": "It is not reassuring to see, on a closer glance, that most of the houses are deserted and falling to ruin...\n-H. P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02205": {
+    "name": "Burned Ruins",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "<b>Forced</b> - After you fail a skill test while investigating the Burned Ruins: Flip 1 clue token on the Burned Ruins to its doom side.\n[fast] If there are no clues here: Draw the encounter card underneath Burned Ruins. (Group limit once per game).",
+    "backFlavor": "It is not reassuring to see, on a closer glance, that most of the houses are deserted and falling to ruin...\n-H. P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02206": {
+    "name": "Osborn's General Store",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "You cannot gain resources while you are in Osborn's General Store.\n[fast] If there are no clues here: Draw the encounter card underneath Osborn's General Store. (Group limit once per game).",
+    "backFlavor": "From the air of hushed fright at Osborn’s store they knew something hideous had happened...\n-H. P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02207": {
+    "name": "Osborn's General Store",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[action]Spend 1 resource: Search the top 3 cards of your deck for an [[Item]] card and add it to your hand. Shuffle your deck.\n[fast] If there are no clues here: Draw the encounter card underneath Osborn's General Store. (Group limit once per game).",
+    "backFlavor": "From the air of hushed fright at Osborn’s store they knew something hideous had happened...\n-H. P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02208": {
+    "name": "Congregational Church",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "<b>Forced</b> - After Congregational Church is revealed: Search the encounter deck for a [[Humanoid]] enemy and spawn it at the Village Commons. Shuffle the encounter deck.\n[fast] If there are no clues here: Draw the encounter card underneath Congregational Church. (Group limit once per game).",
+    "backFlavor": "\"I my self did not more than a Fortnight ago catch a very plain Discourse of evill Powers in the Hill behind my House; wherein there were a Rattling and Rolling, Groaning, Screeching, and Hissing, such as no Things of this Earth cou’d raise up...\"\n-H.P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02209": {
+    "name": "Congregational Church",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "[action] Choose and discard a card from your hand: Gain 2 resources.\n[fast] If there are no clues here: Draw the encounter card underneath Congregational Church. (Group limit once per game).",
+    "backFlavor": "\"I my self did not more than a Fortnight ago catch a very plain Discourse of evill Powers in the Hill behind my House; wherein there were a Rattling and Rolling, Groaning, Screeching, and Hissing, such as no Things of this Earth cou’d raise up...\"\n-H.P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02210": {
+    "name": "House in the Reeds",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "While you are in the House in the Reeds, you cannot play events.\n[fast] If there are no clues here: Draw the encounter card underneath House in the Reeds. (Group limit once per game).",
+    "backFlavor": "Even the locals stay away from this half-sunken hovel."
+  },
+  "02211": {
+    "name": "House in the Reeds",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "<b>Forced</b> - After House in the Reeds is revealed: Search the encounter deck for a [[Nightgaunt]] enemy and spawn it in the Village Commons. Shuffle the encounter deck.\n[fast] If there are no clues here: Draw the encounter card underneath House in the Reeds. (Group limit once per game).",
+    "backFlavor": "Even the locals stay away from this half-sunken hovel."
+  },
+  "02212": {
+    "name": "Schoolhouse",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "While you are in the Schoolhouse, you cannot commit skill cards to skill tests.\n[fast] If there are no clues here: Draw the encounter card underneath Schoolhouse. (Group limit once per game).",
+    "backFlavor": "With its crumbling rooftop and rat-infested walls, this is hardly even a house, let alone a schoolhouse."
+  },
+  "02213": {
+    "name": "Schoolhouse",
+    "typeCode": "location",
+    "traits": "Dunwich.",
+    "text": "You cannot discover clues here except by investigating.\n[fast] If there are no clues here: Draw the encounter card underneath Schoolhouse. (Group limit once per game).",
+    "backFlavor": "With its crumbling rooftop and rat-infested walls, this is hardly even a house, let alone a schoolhouse."
+  },
+  "02214": {
+    "name": "The Hidden Chamber",
+    "typeCode": "location",
+    "subname": "Prison of the Beast",
+    "traits": "Dunwich.",
+    "text": "<b>Revelation</b> - Put The Hidden Chamber into play.\nThe Hidden Chamber and the location from which it was drawn are connected to one another.\nThe door to The Hidden Chamber is locked. You cannot enter The Hidden Chamber unless Key to the Chamber is attached to The Hidden Chamber."
+  },
+  "02215": {
+    "name": "Key to the Chamber",
+    "typeCode": "asset",
+    "traits": "Item. Key.",
+    "text": "<b>Revelation</b> - Take control of Key to the Chamber.\n[fast] If The Hidden Chamber is connected to your location: Attach Key to the Chamber to The Hidden Chamber.",
+    "flavor": "This tarnished silver key was hidden and kept safe out of sight. It must lead somewhere important."
+  },
+  "02216": {
+    "name": "Silas Bishop",
+    "typeCode": "enemy",
+    "subname": "Infused With Evil",
+    "traits": "Monster. Abomination. Elite.",
+    "text": "Massive.\nSilas Bishop cannot make attacks of opportunity.",
+    "flavor": "What walked on the mountains that May-Night?\nWhat Roodmas horror fastened itself on the world in half human flesh and blood?\n-H. P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02217": {
+    "name": "Zebulon Whateley",
+    "typeCode": "asset",
+    "subname": "Recalling Ancient Things",
+    "traits": "Ally. Dunwich.",
+    "text": "You get +1 [willpower].\n[reaction] After you succeed at a [willpower] test on a treachery card, exhaust Zebulon Whateley: Draw 1 card.",
+    "flavor": "...His memories of chantings in the great stone circles were not altogether connected with Wilbur and his grandfather.\n-H. P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02218": {
+    "name": "Earl Sawyer",
+    "typeCode": "asset",
+    "subname": "Smarter Than He Lets On",
+    "traits": "Ally. Dunwich.",
+    "text": "You get +1 [agility].\n[reaction] After you evade an enemy, exhaust Earl Sawyer: Draw 1 card.",
+    "flavor": "Earl Sawyer, who tended the horse and cattle during Wilbur’s absence, had developed a woefully acute case of nerves.\n-H. P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02219": {
+    "name": "Powder of Ibn Ghazi",
+    "typeCode": "asset",
+    "subname": "Seeing Things Unseen",
+    "traits": "Item.",
+    "text": "Powder of Ibn Ghazi enters play with X clues on it, where X is the number of characters who \"survived the Dunwich Legacy\" in your Campaign Log.\n[fast]: Move 1 clue from Powder of Ibn Ghazi to an exhausted Brood of Yog-Sothoth at your location."
+  },
+  "02220": {
+    "name": "Kidnapped!",
+    "typeCode": "treachery",
+    "text": "<b>Revelation</b> - Test [willpower] (4) or [agility] (4). If you fail, add an [[Ally]] asset you control to the pool of potential sacrifices. Then, attach Kidnapped! to the current agenda. If you have no [[Ally]] assets, take 2 damage and discard Kidnapped! instead.\n<b>Forced</b> - When attached agenda advances: Choose a potential sacrifice at random and place it underneath the agenda deck."
+  },
+  "02221": {
+    "name": "Psychopomp's Song",
+    "typeCode": "treachery",
+    "traits": "Omen.",
+    "text": "Surge. Peril.\n<b>Revelation</b> - Add Psychopomp's Song to any investigator's threat area.\n<b>Forced</b> - When you would take 1 or more damage: Take 2 additional damage and discard Psychopomp's Song."
+  },
+  "02222": {
+    "name": "Strange Signs",
+    "typeCode": "treachery",
+    "traits": "Omen.",
+    "text": "<b>Revelation</b> - Test [intellect] (3). If you fail, add 1 clue from the token pool to your location (2 clues instead if there are 3 or 4 investigators in the game)."
+  },
+  "02223": {
+    "name": "Rotting Remains",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Test [willpower] (3). For each point you fail by, take 1 horror.\n",
+    "flavor": "A sickening display of gore causes you to retch. You’re glad this wasn’t you."
+  },
+  "02224": {
+    "name": "Servant of Many Mouths",
+    "typeCode": "enemy",
+    "traits": "Humanoid.",
+    "text": "<b>Spawn</b> - Any empty location.\nRetaliate.\n[reaction] After you defeat Servant of Many Mouths: Discover 1 clue at any location."
   }
 }
