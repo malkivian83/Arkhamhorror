@@ -71,6 +71,7 @@ describe('matriz de antecedentes de Brethren of Ash', () => {
           }
     })
 
+  // 960 complete setups legitimately exceed the default 5s during parallel runs.
   it('Smoke: universidades, barrios, heraldos y bolsa en 960 preparaciones', () => {
     const heralds = new Set<string>()
     const downtown = new Set<string>()
@@ -109,7 +110,7 @@ describe('matriz de antecedentes de Brethren of Ash', () => {
     expect(heralds.size).toBe(6)
     expect(downtown.size).toBe(2)
     expect(uptown.size).toBe(2)
-  })
+  }, 30_000)
 })
 
 describe('Smoke: los seis códices y el umbral por investigador', () => {

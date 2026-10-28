@@ -15,7 +15,7 @@
 
 - Se sube siempre directamente a `main`, sin ramas de trabajo ni pull requests.
 - Commits pequeños, mensaje en imperativo ("Añadir prueba de habilidad").
-- Antes de subir, ejecuta las comprobaciones locales obligatorias indicadas en
+- Antes de subir, ejecuta las comprobaciones proporcionales al cambio indicadas en
   [AGENTS.md](../AGENTS.md). Lo que llega a `main` activa CI y el despliegue automático.
 - No es necesario comprobar ni esperar a CI o Deploy después de subir, salvo
   petición expresa de la persona usuaria.

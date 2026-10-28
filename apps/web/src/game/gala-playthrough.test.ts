@@ -29,6 +29,7 @@ const recordings = [
   teamTwo,
 ] as unknown as Recording[]
 
+// Full replays include repeated save/undo reconstruction and need more than 5s under load.
 // AHC80 ES pp. 11–19, 24: complete games, interludes, faction objectives and XP.
 describe('Gala: victorias completas desde una preparación legal en normal', () => {
   for (const [index, r] of recordings.entries())
@@ -81,5 +82,5 @@ describe('Gala: victorias completas desde una preparación legal en normal', () 
       expect(decodeSession(JSON.stringify(session(null, null, finished))).campaign).toEqual(
         finished,
       )
-    })
+    }, 30_000)
 })

@@ -43,17 +43,44 @@ los documentos necesarios para la tarea; evita reconstruir todo el historial.
   recursos. Utiliza comprobaciones por consola y deja las revisiones visuales
   pendientes para la persona usuaria.
 
-- Durante el desarrollo, ejecuta pruebas dirigidas a las reglas o componentes
-  afectados. Para una edición solo de documentación, comprueba el formato de los
-  archivos editados; no ejecutes toda la aplicación si no vas a subir cambios.
-- **Antes de cada push deben pasar** `pnpm format:check`, `pnpm lint`,
-  `pnpm typecheck` y `pnpm test`. Ejecuta también `pnpm build` si cambias la web,
-  el servidor o paquetes que consumen. Estas comprobaciones siguen siendo
-  obligatorias aunque el cambio sea pequeño.
-- Ejecuta los controles completos una vez sobre el estado final del lote.
-  Detente en el primer fallo, corrígelo y continúa hasta completar todos.
-  Repite los controles fallidos o afectados por las correcciones; evita repetir
-  los que siguen siendo válidos.
+- Elige los controles por el impacto del diff, también antes de subir. **Un push
+  no obliga a repetir la suite completa ni a compilar todo el monorepo.**
+  La CI conserva los controles globales; no los dupliques localmente por rutina.
+
+  | Cambio                                                          | Verificación local                                                                                                             |
+  | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+  | Documentación, textos o estilos sin lógica                      | Prettier sobre los archivos editados; ESLint si corresponde. Sin suite global.                                                 |
+  | Componente o funcionalidad aislada de la web                    | Formato y lint de sus archivos, pruebas del componente o flujo afectado si existen y comprobación de tipos de la web.          |
+  | Carta, escenario o módulo aislado                               | Pruebas dirigidas a sus reglas y conexiones, formato/lint de sus archivos y tipos del paquete afectado.                        |
+  | API, guardados o contratos compartidos                          | Pruebas del módulo y de sus consumidores afectados; tipos de esos paquetes.                                                    |
+  | Motor, registro transversal, dependencias o configuración común | Amplía a los paquetes consumidores; usa la suite completa cuando el alcance sea transversal o no pueda acotarse con confianza. |
+
+- Para pruebas dirigidas usa `pnpm test <archivo.test.ts>` o
+  `pnpm test:related <archivo-fuente>`. La selección relacionada analiza
+  importaciones estáticas: no garantiza cubrir registros dinámicos o escenarios
+  enlazados por códigos; en esos casos selecciona explícitamente sus pruebas.
+  Si un índice global o las traducciones hacen que la selección arrastre toda
+  la suite, escoge las pruebas del comportamiento afectado; no conviertas una
+  edición de textos en una auditoría completa.
+- Compila solo cuando debas verificar el empaquetado o el resultado de producción
+  (dependencias, recursos, rutas de carga, configuración o integración entre
+  paquetes), o lo pida la persona usuaria. Usa el build del paquete afectado.
+  El build de la web ya comprueba sus tipos: no ejecutes también su typecheck
+  sobre el mismo estado si ese build ha pasado.
+- Reutiliza resultados correctos mientras no cambien sus archivos, dependencias
+  relevantes, configuración o entorno. Un commit, push, edición documental o
+  cambio ajeno al alcance no los invalida. Tras un rebase, inspecciona qué se
+  integró y repite solo los controles realmente afectados, no todos por defecto.
+- Comprueba una vez el estado final de cada cambio coherente. Al corregir un
+  fallo, repite únicamente el control fallido y los afectados por la corrección.
+  No repitas pruebas dirigidas que ya estén cubiertas por una ejecución más amplia
+  correcta sobre el mismo código. En el resumen de continuación existente anota
+  brevemente qué se verificó, sobre qué alcance y qué cambios lo invalidarían;
+  no crees informes duplicados ni un inventario por cada comando.
+- Un timeout de una prueba pesada no justifica volver a ejecutar toda la suite.
+  Revisa y repite solo esa prueba o archivo. Ajusta su límite si su trabajo
+  legítimo supera habitualmente el valor por defecto; conserva las aserciones
+  y no actives reintentos automáticos que oculten fallos reales.
 - Cubre cada regla nueva y el efecto principal de cada carta con comportamiento,
   según las convenciones. Las pruebas compartidas o parametrizadas pueden cubrir
   varias cartas si verifican sus diferencias y su registro. Evita copiar pruebas
