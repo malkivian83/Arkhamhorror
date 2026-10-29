@@ -5,7 +5,8 @@ import { randomUUID } from 'node:crypto'
 import { newCampaign } from '@lcg/cards'
 import { session } from '@lcg/saves'
 import { buildApp } from '../app'
-import { database, migrate } from './database'
+import { migrate } from './database'
+import { isolatedMysqlDatabase } from './mysql-test-database'
 import type { AccountMail } from './mail'
 import { provisionAdmin } from './admin'
 import { hashPassword, verifyPassword } from './security'
@@ -13,7 +14,9 @@ import { hashPassword, verifyPassword } from './security'
 const url = process.env.MYSQL_TEST_URL
 describe.skipIf(!url)('cuentas y bibliotecas con MySQL real', () => {
   const origin = 'http://localhost:5173'
-  let app: FastifyInstance, db: ReturnType<typeof database>, mails: AccountMail[]
+  let app: FastifyInstance,
+    db: Awaited<ReturnType<typeof isolatedMysqlDatabase>>,
+    mails: AccountMail[]
   const password = 'a correct long password'
   const post = (path: string, payload: unknown, cookie?: string, csrf?: string) =>
     app.inject({
@@ -83,9 +86,9 @@ describe.skipIf(!url)('cuentas y bibliotecas con MySQL real', () => {
   beforeAll(async () => {
     if (!url || !new URL(url).pathname.endsWith('_test'))
       throw new Error('MYSQL_TEST_URL must target an isolated database ending in _test')
-    db = database(url)
+    db = await isolatedMysqlDatabase(url)
     await migrate(db.db)
-  })
+  }, 30000)
   beforeEach(async () => {
     if (app) await app.close()
     vi.restoreAllMocks()

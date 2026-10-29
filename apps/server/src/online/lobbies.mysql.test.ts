@@ -1,16 +1,26 @@
 import { randomUUID } from 'node:crypto'
-import { expect, it } from 'vitest'
-import { database, migrate } from '../accounts/database'
+import { afterAll, beforeAll, expect, it } from 'vitest'
+import { migrate } from '../accounts/database'
+import { isolatedMysqlDatabase } from '../accounts/mysql-test-database'
 import { LobbyService, type Lobby } from './lobbies'
 import { starterDeck, starterInvestigator } from '@lcg/cards'
+
+let connection: Awaited<ReturnType<typeof isolatedMysqlDatabase>>
+// Creating and dropping an isolated schema is fixture setup, outside each test's budget.
+beforeAll(async () => {
+  if (!process.env.MYSQL_TEST_URL) return
+  connection = await isolatedMysqlDatabase(process.env.MYSQL_TEST_URL)
+  await migrate(connection.db)
+}, 30000)
+afterAll(async () => {
+  if (connection) await connection.close()
+})
 
 it.skipIf(!process.env.MYSQL_TEST_URL)(
   'serializes the last lobby seat in real MySQL and survives a new service instance',
   async () => {
-    const connection = database(process.env.MYSQL_TEST_URL!)
     const owner = randomUUID()
     try {
-      await migrate(connection.db)
       await connection.db.exec(
         'INSERT INTO users (id, email, name, verified, created_at) VALUES (?, ?, ?, ?, ?)',
         [owner, `${owner}@example.test`, 'Online test', true, Date.now()],
@@ -27,7 +37,6 @@ it.skipIf(!process.env.MYSQL_TEST_URL)(
       expect((await new LobbyService(connection.db).get(lobby.id, owner)).members).toHaveLength(4)
     } finally {
       await connection.db.exec('DELETE FROM users WHERE id = ?', [owner])
-      await connection.close()
     }
   },
 )
@@ -35,10 +44,8 @@ it.skipIf(!process.env.MYSQL_TEST_URL)(
 it.skipIf(!process.env.MYSQL_TEST_URL)(
   'persists campaign advancement and prevents duplicate purchases and scenario starts in SQL',
   async () => {
-    const connection = database(process.env.MYSQL_TEST_URL!),
-      owner = randomUUID()
+    const owner = randomUUID()
     try {
-      await migrate(connection.db)
       await connection.db.exec(
         'INSERT INTO users (id, email, name, verified, created_at) VALUES (?, ?, ?, ?, ?)',
         [owner, `${owner}@example.test`, 'Campaign test', true, Date.now()],
@@ -119,7 +126,6 @@ it.skipIf(!process.env.MYSQL_TEST_URL)(
       expect(await new LobbyService(connection.db).game(lobby.id, owner)).toEqual(a)
     } finally {
       await connection.db.exec('DELETE FROM users WHERE id = ?', [owner])
-      await connection.close()
     }
   },
 )

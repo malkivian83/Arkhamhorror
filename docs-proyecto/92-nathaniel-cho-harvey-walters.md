@@ -93,3 +93,26 @@ no se han abierto sesiones de navegador.
   EN/ES de los 65 códigos comprobados. No quedan fallos conocidos sin resolver.
 - Commit de implementación: `068e84ff`. Publicación en `main`; el alcance autorizado
   se limita a estos dos packs.
+
+## Corrección del aislamiento SQL de CI
+
+La CI de `3e36cd1c` detectó una colisión entre los archivos de pruebas de cuentas
+y salas: el borrado global de usuarios de la primera suite eliminaba por cascada
+la sala de la otra. Cada suite SQL crea ahora un esquema temporal propio, protegido
+por un nombre aleatorio y la exigencia de una URL de pruebas terminada en `_test`.
+La preparación y retirada del esquema pertenecen al ciclo de vida de la suite;
+los casos conservan sus límites normales y siguen ejecutándose en paralelo.
+No se cambian las migraciones ni el comportamiento de producción.
+
+La regresión crea cuentas y una sala en esquemas distintos, borra los usuarios del
+primero y comprueba que la sala del segundo sigue disponible. Las tres suites SQL
+se han ejecutado simultáneamente sobre MariaDB local: **21 pruebas correctas**.
+El usuario de pruebas necesita permiso para crear y eliminar sus esquemas; CI ya
+utiliza su usuario raíz dentro del servicio temporal de MySQL.
+
+Controles de la corrección: formato y lint sin errores, tipos y compilación
+correctos; 3.704 escaneos y miniaturas verificados. La suite general obtuvo
+5.271 pruebas correctas y un timeout en el panel SQL; las 17 pruebas de ese
+archivo pasaron al repetirlo con límite de 15 segundos, sin modificar sus
+aserciones. La comprobación se hizo sobre una copia limpia de main para conservar
+el trabajo concurrente de Dunwich.
