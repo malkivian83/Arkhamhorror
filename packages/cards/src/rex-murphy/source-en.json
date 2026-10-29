@@ -1,0 +1,196 @@
+[
+  {
+    "pack_code": "dwl",
+    "pack_name": "The Dunwich Legacy",
+    "type_code": "investigator",
+    "type_name": "Investigator",
+    "faction_code": "seeker",
+    "faction_name": "Seeker",
+    "position": 2,
+    "exceptional": false,
+    "myriad": false,
+    "code": "02002",
+    "name": "Rex Murphy",
+    "real_name": "Rex Murphy",
+    "subname": "The Reporter",
+    "text": "[reaction] After you succeed at a skill test by 2 or more while investigating: Discover 1 clue at your location.\n[elder_sign] effect: +2. You may instead choose to automatically fail this skill test to draw 3 cards.",
+    "real_text": "[reaction] After you succeed at a skill test by 2 or more while investigating: Discover 1 clue at your location.\n[elder_sign] effect: +2. You may instead choose to automatically fail this skill test to draw 3 cards.",
+    "errata_date": {
+      "date": "2019-04-23 00:00:00.000000",
+      "timezone_type": 3,
+      "timezone": "UTC"
+    },
+    "quantity": 1,
+    "skill_willpower": 3,
+    "skill_intellect": 4,
+    "skill_combat": 2,
+    "skill_agility": 3,
+    "health": 6,
+    "health_per_investigator": false,
+    "sanity": 9,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Reporter.",
+    "real_traits": "Reporter.",
+    "deck_requirements": {
+      "size": 30,
+      "card": {
+        "02008": {
+          "02008": "02008",
+          "90079": "90079"
+        },
+        "02009": {
+          "02009": "02009",
+          "90080": "90080"
+        }
+      },
+      "random": [
+        {
+          "target": "subtype",
+          "value": "basicweakness"
+        }
+      ]
+    },
+    "deck_options": [
+      {
+        "not": true,
+        "trait": ["fortune"]
+      },
+      {
+        "faction": ["seeker", "neutral"],
+        "level": {
+          "min": 0,
+          "max": 5
+        }
+      },
+      {
+        "level": {
+          "min": 0,
+          "max": 0
+        },
+        "limit": 5,
+        "error": "You cannot have more than 5 cards that are not Seeker or Neutral"
+      }
+    ],
+    "flavor": "\"This time, nothing will stop me from getting at the truth!\"",
+    "illustrator": "Cristi Balanescu",
+    "is_unique": true,
+    "permanent": false,
+    "double_sided": true,
+    "back_text": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Seeker cards ([seeker]) level 0-5, Neutral cards level 0-5, up to five other level 0 cards from any other class.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Search for the Truth, Rex's Curse, 1 random basic weakness.\n<b>Deckbuilding Restrictions</b>: No [[Fortune]] cards.",
+    "back_flavor": "When disaster strikes, Rex Murphy is usually on hand, suffering the consequences. After spending a day with Rex, even the most hardened skeptic will concede that the man is cursed. Anytime he had a lead on a good story, something would go wrong. That business in Innsmouth with the photographs that had blown out to sea. The tracks in Dunwich that had washed away in the rain just before he'd brought the sheriff. His terrible fortune has more than once exposed him to gruesome beasts and occult conspiracies. To survive, Rex has developed an inquisitive mind, keeping one step ahead of the next disaster.",
+    "octgn_id": "a1591610-a459-4959-9a02-55a1ca2cc5f2:545b4c74-1499-4d77-8081-7eed0f9a19ce",
+    "url": "https://arkhamdb.com/card/02002",
+    "imagesrc": "/bundles/cards/02002.png",
+    "backimagesrc": "/bundles/cards/02002b.png",
+    "alternated_by": ["90078"]
+  },
+  {
+    "pack_code": "dwl",
+    "pack_name": "The Dunwich Legacy",
+    "type_code": "event",
+    "type_name": "Event",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 8,
+    "exceptional": false,
+    "myriad": false,
+    "code": "02008",
+    "name": "Search for the Truth",
+    "real_name": "Search for the Truth",
+    "cost": 1,
+    "text": "Rex Murphy deck only.\nDraw X cards, where X is the number of clues on Rex Murphy (to a maximum of 5).",
+    "real_text": "Rex Murphy deck only.\nDraw X cards, where X is the number of clues on Rex Murphy (to a maximum of 5).",
+    "quantity": 1,
+    "skill_intellect": 2,
+    "skill_wild": 1,
+    "health_per_investigator": false,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Insight.",
+    "real_traits": "Insight.",
+    "restrictions": {
+      "investigator": {
+        "02002": "02002"
+      }
+    },
+    "flavor": "When things went his way, which wasn't often these days, Rex was a good reporter, with a nose for a story and an eye for detail... <cite>Graham McNeill, Ghouls of the Miskatonic,</cite>",
+    "illustrator": "Torstein Nordstrand",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "3eb82dae-9254-487b-8d9f-217bb055a27b",
+    "url": "https://arkhamdb.com/card/02008",
+    "imagesrc": "/bundles/cards/02008.png"
+  },
+  {
+    "pack_code": "dwl",
+    "pack_name": "The Dunwich Legacy",
+    "type_code": "treachery",
+    "type_name": "Treachery",
+    "subtype_code": "weakness",
+    "subtype_name": "Weakness",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 9,
+    "exceptional": false,
+    "myriad": false,
+    "code": "02009",
+    "name": "Rex's Curse",
+    "real_name": "Rex's Curse",
+    "text": "<b>Revelation</b> - Put Rex's Curse into play in your threat area.\n<b>Forced</b> - When you would succeed at a skill test: Return the revealed chaos token to the bag and reveal a new chaos token. If this effect causes you to fail the test, shuffle Rex's Curse into your deck. (Limit once per test.)",
+    "real_text": "<b>Revelation</b> - Put Rex's Curse into play in your threat area.\n<b>Forced</b> - When you would succeed at a skill test: Return the revealed chaos token to the bag and reveal a new chaos token. If this effect causes you to fail the test, shuffle Rex's Curse into your deck. (Limit once per test.)",
+    "quantity": 1,
+    "health_per_investigator": false,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Curse.",
+    "real_traits": "Curse.",
+    "restrictions": {
+      "investigator": {
+        "02002": "02002"
+      }
+    },
+    "illustrator": "Falk",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "77176fab-fe89-41dc-b8f6-9a061f92d18e",
+    "url": "https://arkhamdb.com/card/02009",
+    "imagesrc": "/bundles/cards/02009.png"
+  },
+  {
+    "pack_code": "core",
+    "pack_name": "Core Set",
+    "type_code": "asset",
+    "type_name": "Asset",
+    "faction_code": "seeker",
+    "faction_name": "Seeker",
+    "position": 31,
+    "exceptional": false,
+    "myriad": false,
+    "code": "01031",
+    "name": "Old Book of Lore",
+    "real_name": "Old Book of Lore",
+    "cost": 3,
+    "text": "[action] Exhaust Old Book of Lore: Choose an investigator at your location. That investigator searches the top 3 cards of his or her deck for a card, draws it, and shuffles the remaining cards into his or her deck.",
+    "real_text": "[action] Exhaust Old Book of Lore: Choose an investigator at your location. That investigator searches the top 3 cards of his or her deck for a card, draws it, and shuffles the remaining cards into his or her deck.",
+    "quantity": 1,
+    "skill_willpower": 1,
+    "xp": 0,
+    "health_per_investigator": false,
+    "deck_limit": 2,
+    "slot": "Hand",
+    "real_slot": "Hand",
+    "traits": "Item. Tome.",
+    "real_traits": "Item. Tome.",
+    "illustrator": "Dimitri Bielak",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "6871c1fd-d639-48b7-afdc-b0245ff61e8b",
+    "url": "https://arkhamdb.com/card/01031",
+    "imagesrc": "/bundles/cards/01031.png",
+    "duplicated_by": ["01531"]
+  }
+]

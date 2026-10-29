@@ -1,0 +1,36 @@
+{
+  "decklist": "https://arkhamdb.com/decklist/view/21596/rex-murphy-structure-deck-series-dunwich-legacy-1.0",
+  "cards": [
+    {
+      "test": "card-02002.test.ts",
+      "status": "verified",
+      "code": "02002",
+      "module": "card-02002"
+    },
+    {
+      "test": "card-02008.test.ts",
+      "status": "verified",
+      "code": "02008",
+      "module": "card-02008"
+    },
+    {
+      "test": "card-02009.test.ts",
+      "status": "verified",
+      "code": "02009",
+      "module": "card-02009"
+    },
+    {
+      "test": "card-01031.test.ts",
+      "status": "verified",
+      "code": "01031",
+      "module": "card-01031"
+    }
+  ],
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sources": {
+    "en": "e13c68eaa15856b86ffa6c57117cf329ebd33f1157d5b4790e15aaefc8081177",
+    "es": "59969fc4a6604995ccdea4684d995a01986aef0308ef89bd65e57f2feea7c470"
+  },
+  "sourceBundle": "3c8ee4b5d8100766"
+}

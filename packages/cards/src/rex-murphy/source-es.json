@@ -1,0 +1,196 @@
+[
+  {
+    "pack_code": "dwl",
+    "pack_name": "The Dunwich Legacy",
+    "type_code": "investigator",
+    "type_name": "Investigator",
+    "faction_code": "seeker",
+    "faction_name": "Seeker",
+    "position": 2,
+    "exceptional": false,
+    "myriad": false,
+    "code": "02002",
+    "name": "Rex Murphy",
+    "real_name": "Rex Murphy",
+    "subname": "El reportero",
+    "text": "[reaction] Después de que tengas éxito en una prueba de habilidad por 2 o más al investigar: Descubre 1 pista en tu Lugar.\nEfecto [elder_sign]: +2. En lugar de eso, puedes elegir fracasar automáticamente en esta prueba de habilidad para robar 3 cartas.",
+    "real_text": "[reaction] After you succeed at a skill test by 2 or more while investigating: Discover 1 clue at your location.\n[elder_sign] effect: +2. You may instead choose to automatically fail this skill test to draw 3 cards.",
+    "errata_date": {
+      "date": "2019-04-23 00:00:00.000000",
+      "timezone_type": 3,
+      "timezone": "UTC"
+    },
+    "quantity": 1,
+    "skill_willpower": 3,
+    "skill_intellect": 4,
+    "skill_combat": 2,
+    "skill_agility": 3,
+    "health": 6,
+    "health_per_investigator": false,
+    "sanity": 9,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Reportero.",
+    "real_traits": "Reporter.",
+    "deck_requirements": {
+      "size": 30,
+      "card": {
+        "02008": {
+          "02008": "02008",
+          "90079": "90079"
+        },
+        "02009": {
+          "02009": "02009",
+          "90080": "90080"
+        }
+      },
+      "random": [
+        {
+          "target": "subtype",
+          "value": "basicweakness"
+        }
+      ]
+    },
+    "deck_options": [
+      {
+        "not": true,
+        "trait": ["fortune"]
+      },
+      {
+        "faction": ["seeker", "neutral"],
+        "level": {
+          "min": 0,
+          "max": 5
+        }
+      },
+      {
+        "level": {
+          "min": 0,
+          "max": 0
+        },
+        "limit": 5,
+        "error": "You cannot have more than 5 cards that are not Seeker or Neutral"
+      }
+    ],
+    "flavor": "\"Esta vez, nada evitará que llegue a la verdad.\"",
+    "illustrator": "Cristi Balanescu",
+    "is_unique": true,
+    "permanent": false,
+    "double_sided": true,
+    "back_text": "<b>Tamaño del mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Buscador ([seeker]) de nivel 0-5, cartas neutrales de nivel 0-5, hasta cinco cartas de nivel 0 de cualquier otra clase.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): Buscar la verdad, La maldición de Rex, 1 Debilidad básica aleatoria.\n<b>Restricciones de creación de mazos</b>: Sin cartas [[Fortuna]].",
+    "back_flavor": "Cuando ocurre un desastre, Rex Murphy suele encontrarse cerca, sufriendo las consecuencias. Tras pasar un día con Rex, hasta el escéptico más empedernido admitirá que ese hombre está maldito. Cada vez que tiene una pista para conseguir una buena historia, algo va mal. Las fotografías de ese asunto de Innsmouth que se fueron volando hacia el mar. Los rastros que borró la lluvia en Dunwich justo antes de que llevara el sheriff hasta ellos. Su mala suerte lo ha expuesto en más de una ocasión a horripilantes bestias y conspiraciones ocultistas. Para sobrevivir, Rex ha desarrollado una mente inquisitiva que le permite ir un paso por delante del próximo desastre.",
+    "octgn_id": "a1591610-a459-4959-9a02-55a1ca2cc5f2:545b4c74-1499-4d77-8081-7eed0f9a19ce",
+    "url": "https://es.arkhamdb.com/card/02002",
+    "imagesrc": "/bundles/cards/02002.png",
+    "backimagesrc": "/bundles/cards/02002b.png",
+    "alternated_by": ["90078"]
+  },
+  {
+    "pack_code": "dwl",
+    "pack_name": "The Dunwich Legacy",
+    "type_code": "event",
+    "type_name": "Event",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 8,
+    "exceptional": false,
+    "myriad": false,
+    "code": "02008",
+    "name": "Buscar la verdad",
+    "real_name": "Search for the Truth",
+    "cost": 1,
+    "text": "Sólo para el mazo de Rex Murphy.\nRoba X cartas, donde X es la cantidad de pistas de Rex Murphy, hasta un máximo de 5.",
+    "real_text": "Rex Murphy deck only.\nDraw X cards, where X is the number of clues on Rex Murphy (to a maximum of 5).",
+    "quantity": 1,
+    "skill_intellect": 2,
+    "skill_wild": 1,
+    "health_per_investigator": false,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Inspiración.",
+    "real_traits": "Insight.",
+    "restrictions": {
+      "investigator": {
+        "02002": "02002"
+      }
+    },
+    "flavor": "Cuando las cosas le iban bien, lo cual no era nada habitual últimamente, Rex era un buen reportero, con olfato para las historias y buen ojo para los detalles… <cite>Graham McNeill, Los gules de Miskatonic</cite>",
+    "illustrator": "Torstein Nordstrand",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "3eb82dae-9254-487b-8d9f-217bb055a27b",
+    "url": "https://es.arkhamdb.com/card/02008",
+    "imagesrc": "/bundles/cards/02008.png"
+  },
+  {
+    "pack_code": "dwl",
+    "pack_name": "The Dunwich Legacy",
+    "type_code": "treachery",
+    "type_name": "Treachery",
+    "subtype_code": "weakness",
+    "subtype_name": "Weakness",
+    "faction_code": "neutral",
+    "faction_name": "Neutral",
+    "position": 9,
+    "exceptional": false,
+    "myriad": false,
+    "code": "02009",
+    "name": "La maldición de Rex",
+    "real_name": "Rex's Curse",
+    "text": "<b>Revelación</b> - Pon La maldición de Rex en juego en tu zona de amenaza.\n<b>Obligado</b> - Cuando fueses a tener éxito en una prueba de habilidad: Devuelve la ficha de Caos revelada a la bolsa y revela una nueva ficha de Caos. Si este efecto hace que fracases en la prueba, añade La maldición de Rex a tu mazo y barájalo. Límite de una vez por prueba.",
+    "real_text": "<b>Revelation</b> - Put Rex's Curse into play in your threat area.\n<b>Forced</b> - When you would succeed at a skill test: Return the revealed chaos token to the bag and reveal a new chaos token. If this effect causes you to fail the test, shuffle Rex's Curse into your deck. (Limit once per test.)",
+    "quantity": 1,
+    "health_per_investigator": false,
+    "deck_limit": 1,
+    "real_slot": "",
+    "traits": "Maldición.",
+    "real_traits": "Curse.",
+    "restrictions": {
+      "investigator": {
+        "02002": "02002"
+      }
+    },
+    "illustrator": "Falk",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "77176fab-fe89-41dc-b8f6-9a061f92d18e",
+    "url": "https://es.arkhamdb.com/card/02009",
+    "imagesrc": "/bundles/cards/02009.png"
+  },
+  {
+    "pack_code": "core",
+    "pack_name": "Core Set",
+    "type_code": "asset",
+    "type_name": "Asset",
+    "faction_code": "seeker",
+    "faction_name": "Seeker",
+    "position": 31,
+    "exceptional": false,
+    "myriad": false,
+    "code": "01031",
+    "name": "Viejo libro de conocimiento",
+    "real_name": "Old Book of Lore",
+    "cost": 3,
+    "text": "[action] Agota el Viejo libro de conocimiento: Elige un investigador que esté en tu Lugar. Ese investigador busca 1 carta entre las 3 primeras cartas de su mazo, la roba, devuelve las cartas restantes a su mazo y lo baraja.",
+    "real_text": "[action] Exhaust Old Book of Lore: Choose an investigator at your location. That investigator searches the top 3 cards of his or her deck for a card, draws it, and shuffles the remaining cards into his or her deck.",
+    "quantity": 1,
+    "skill_willpower": 1,
+    "xp": 0,
+    "health_per_investigator": false,
+    "deck_limit": 2,
+    "slot": "Mano",
+    "real_slot": "Hand",
+    "traits": "Objeto. Tomo.",
+    "real_traits": "Item. Tome.",
+    "illustrator": "Dimitri Bielak",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "6871c1fd-d639-48b7-afdc-b0245ff61e8b",
+    "url": "https://es.arkhamdb.com/card/01031",
+    "imagesrc": "/bundles/cards/01031.png",
+    "duplicated_by": ["01531"]
+  }
+]

@@ -4240,6 +4240,35 @@ export function handle(state: GameState, message: Message): GameState {
       )
     }
 
+    case 'RedrawSkillTestTokens': {
+      const test = state.skillTest
+      if (!test) return state
+      return push(
+        {
+          ...state,
+          chaosBag: [...state.chaosBag, ...returnedTokens(test)],
+          skillTest: {
+            ...test,
+            tokens: [],
+            ignoredTokens: [],
+            treatedAs: [],
+            tokenModifier: 0,
+            tokenOnFail: [],
+            tokenOnFailBy: [],
+            tokenOnSuccess: [],
+            tokenOnSuccessBelow: [],
+            tokenAfter: [],
+            autoFail: false,
+            autoSucceed: false,
+            modifiedSkill: null,
+            succeeded: null,
+            abilityCounts: { ...test.abilityCounts, [message.use]: 1 },
+          },
+        },
+        { type: 'RevealChaosToken' },
+      )
+    }
+
     case 'ResolveSkillTest': {
       const test = state.skillTest
       if (!test || (test.tokens.length === 0 && !test.noTokens))
@@ -4261,9 +4290,10 @@ export function handle(state: GameState, message: Message): GameState {
       if (
         succeeded &&
         !message.windowResolved &&
-        reactionOptions(state, would).some((o) =>
-          withinLimit(state, o.key, o.investigator, o.limit),
-        )
+        (forcedAbilities(state, would).length > 0 ||
+          reactionOptions(state, would).some((o) =>
+            withinLimit(state, o.key, o.investigator, o.limit),
+          ))
       )
         return push(
           state,
