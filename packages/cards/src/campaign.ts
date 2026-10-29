@@ -118,6 +118,8 @@ import './father-mateo'
 import './marie-lambeau'
 import './stella-clark'
 import './stella-sideboard'
+import './nathaniel-cho'
+import './harvey-walters'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
@@ -694,6 +696,8 @@ export function purchaseOptions(
         ![IN_THE_THICK_OF_IT, '08071'].includes(card.code) &&
         isImplemented(card.code) &&
         !isSignature(card.code) &&
+        (!playerCardBehavior(card.code)?.requiredResearch ||
+          campaign.log.notes.includes(playerCardBehavior(card.code)!.requiredResearch!)) &&
         (options.some((o) => deckOptionAllows(o, card)) ||
           offClassAllowed(byCode(investigator)!, card)),
     )
@@ -719,7 +723,7 @@ export function purchaseOptions(
         : []
       // Carta nueva: como máximo 2 copias por título; cuesta al menos 1 experiencia.
       const add: PurchaseOption[] =
-        copies.length < (card.deckLimit ?? 2)
+        !playerCardBehavior(card.code)?.requiredResearch && copies.length < (card.deckLimit ?? 2)
           ? [
               {
                 ...base,

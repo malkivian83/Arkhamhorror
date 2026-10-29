@@ -32,6 +32,8 @@ import wendy from '../data/wendy-adams.json'
 import mateo from '../data/father-mateo.json'
 import marie from '../data/marie-lambeau.json'
 import stella from '../data/stella-clark.json'
+import nathaniel from '../data/nathaniel-cho.json'
+import harvey from '../data/harvey-walters.json'
 import jennyDecklist from '../jenny-barnes/decklist-1179.json'
 
 /**
@@ -69,6 +71,8 @@ registerPlayerCards([
   ...(mateo as PlayerCardDef[]),
   ...(marie as PlayerCardDef[]),
   ...(stella as PlayerCardDef[]),
+  ...(nathaniel as PlayerCardDef[]),
+  ...(harvey as PlayerCardDef[]),
 ])
 
 /** Código de carta a partir del número de colección de la caja (p. ej. 20 → "12020"). */
@@ -93,6 +97,32 @@ type DeckList = {
 }
 
 export const STARTER_DECKS: Record<string, DeckList> = {
+  // Official investigator starter decks: signatures, their basic weakness and
+  // two copies of each of the fifteen level 0 cards in the pack.
+  nathaniel: {
+    investigator: 1,
+    investigatorCode: '60101',
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      '60102',
+      '60103',
+      '60104',
+      ...Array.from({ length: 15 }, (_, n) => String(60105 + n)).flatMap((c) => [c, c]),
+    ],
+  },
+  harvey: {
+    investigator: 4,
+    investigatorCode: '60201',
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      '60202',
+      '60203',
+      '60204',
+      ...Array.from({ length: 15 }, (_, n) => String(60205 + n)).flatMap((c) => [c, c]),
+    ],
+  },
   // ArkhamDB decklist 1179 with its exact codes; 01000 becomes a real basic weakness.
   jenny: {
     investigator: 3,

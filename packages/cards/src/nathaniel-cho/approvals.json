@@ -1,0 +1,160 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "sets": ["https://arkhamdb.com/set/nat"],
+  "cards": [
+    {
+      "code": "60101",
+      "status": "verified",
+      "module": "card-60101",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60102",
+      "status": "verified",
+      "module": "card-60102",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60103",
+      "status": "verified",
+      "module": "card-60103",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60104",
+      "status": "verified",
+      "module": "card-60104",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60105",
+      "status": "verified",
+      "module": "card-60105",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60106",
+      "status": "verified",
+      "module": "card-60106",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60107",
+      "status": "verified",
+      "module": "card-60107",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60109",
+      "status": "verified",
+      "module": "card-60109",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60110",
+      "status": "verified",
+      "module": "card-60110",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60112",
+      "status": "verified",
+      "module": "card-60112",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60113",
+      "status": "verified",
+      "module": "card-60113",
+      "test": "rules.test.ts",
+      "behaviorSource": "01023",
+      "equivalenceSha256": "4ab52b0d6a3651ac6b69613673921cb245b2dc13c33ed4fac82daa1762409d4d"
+    },
+    {
+      "code": "60114",
+      "status": "verified",
+      "module": "card-60114",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60120",
+      "status": "verified",
+      "module": "card-60120",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60121",
+      "status": "verified",
+      "module": "card-60121",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60122",
+      "status": "verified",
+      "module": "card-60122",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60123",
+      "status": "verified",
+      "module": "card-60123",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60125",
+      "status": "verified",
+      "module": "card-60125",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60127",
+      "status": "verified",
+      "module": "card-60127",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60128",
+      "status": "verified",
+      "module": "card-60128",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60129",
+      "status": "verified",
+      "module": "card-60129",
+      "test": "../grouped-import/upgraded-events.test.ts"
+    },
+    {
+      "code": "60130",
+      "status": "verified",
+      "module": "card-60130",
+      "test": "../grouped-import/taunt.test.ts"
+    },
+    {
+      "code": "60131",
+      "status": "verified",
+      "module": "card-60131",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60132",
+      "status": "verified",
+      "module": "card-60132",
+      "test": "rules.test.ts"
+    }
+  ],
+  "sources": [
+    {
+      "language": "en",
+      "url": "https://arkhamdb.com/api/public/cards/nat.json",
+      "sha256": "f4565885a1d1f62f1c0dbee8709192fe4802403b67261f34ee30fa272face840"
+    },
+    {
+      "language": "es",
+      "url": "https://es.arkhamdb.com/api/public/cards/nat.json",
+      "sha256": "575eb4ee6f677dd5ccd06edb0eaf518e66127b12b627c9d3829ae60801587327"
+    }
+  ]
+}

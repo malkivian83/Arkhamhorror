@@ -136,6 +136,7 @@ export function registerBasicEvent(
 ): void {
   for (const code of [codes].flat())
     registerPlayerCard({
+      fightAction: spec.action === 'fight',
       code,
       ...actionFlags(spec),
       canPlay: (state, investigator) =>

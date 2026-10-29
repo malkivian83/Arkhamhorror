@@ -1,0 +1,340 @@
+[
+  {
+    "subname": "The Professor",
+    "code": "60201",
+    "name": "Harvey Walters",
+    "type": "investigator",
+    "class": "seeker",
+    "traits": ["Miskatonic"],
+    "deckLimit": 1,
+    "unique": true,
+    "health": 7,
+    "sanity": 8,
+    "skills": {
+      "willpower": 4,
+      "intellect": 5,
+      "combat": 1,
+      "agility": 2
+    },
+    "deckSize": 30,
+    "deckOptions": [
+      {
+        "classes": ["seeker", "neutral"],
+        "maxLevel": 5
+      }
+    ],
+    "signatures": ["60202", "60203"]
+  },
+  {
+    "code": "60202",
+    "name": "Vault of Knowledge",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Talent"],
+    "deckLimit": 1,
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60203",
+    "name": "Thrice-Damned Curiosity",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Flaw"],
+    "deckLimit": 1,
+    "weakness": "weakness",
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "60204",
+    "name": "Obsessive",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Flaw"],
+    "deckLimit": 1,
+    "weakness": "basicweakness",
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "subname": "Book of Books",
+    "code": "60206",
+    "name": "Celaeno Fragments",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tome"],
+    "unique": true,
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "subname": "Protective Amulet",
+    "code": "60207",
+    "name": "Disc of Itzamna",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Relic"],
+    "unique": true,
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["accessory"]
+  },
+  {
+    "subname": "Untranslated",
+    "code": "60210",
+    "name": "Forbidden Tome",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Relic", "Tome"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 5,
+      "type": "secrets"
+    }
+  },
+  {
+    "code": "60211",
+    "name": "Higher Education",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Talent"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "subname": "Hunter of Rare Books",
+    "code": "60213",
+    "name": "Whitton Greene",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ally", "Miskatonic"],
+    "unique": true,
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "60215",
+    "name": "Cryptic Writings",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "60216",
+    "name": "Extensive Research",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 12,
+    "xp": 0,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "60217",
+    "name": "Occult Invocation",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Spell"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60220",
+    "name": "Library Docent",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ally", "Miskatonic"],
+    "cost": 1,
+    "xp": 1,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 2
+  },
+  {
+    "code": "60221",
+    "name": "Glimpse the Unthinkable",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 0,
+    "xp": 1,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": []
+  },
+  {
+    "subname": "Hunter of Rare Books",
+    "code": "60223",
+    "name": "Whitton Greene",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ally", "Miskatonic"],
+    "unique": true,
+    "cost": 4,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 3
+  },
+  {
+    "code": "60224",
+    "name": "Cryptic Writings",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 0,
+    "xp": 2,
+    "icons": {
+      "intellect": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60226",
+    "name": "Mind over Matter",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "subname": "Dark Knowledge",
+    "code": "60229",
+    "name": "Forbidden Tome",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Relic", "Tome"],
+    "cost": 1,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "combat": 1,
+      "wild": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "subname": "Secrets Revealed",
+    "code": "60230",
+    "name": "Forbidden Tome",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Relic", "Tome"],
+    "cost": 1,
+    "xp": 3,
+    "icons": {
+      "intellect": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "60231",
+    "name": "Farsight",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ritual"],
+    "cost": 2,
+    "xp": 4,
+    "icons": {
+      "willpower": 1,
+      "wild": 1
+    },
+    "slots": ["arcane"]
+  },
+  {
+    "code": "60232",
+    "name": "Miskatonic Archaeology Funding",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Grant"],
+    "deckLimit": 1,
+    "xp": 4,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "subname": "Petrus de Dacia Translation",
+    "code": "60233",
+    "name": "The Necronomicon",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tome"],
+    "cost": 3,
+    "xp": 5,
+    "icons": {
+      "intellect": 5
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 6,
+      "type": "secrets"
+    },
+    "deckLimit": 1
+  }
+]

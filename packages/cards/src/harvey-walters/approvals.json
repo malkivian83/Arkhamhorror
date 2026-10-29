@@ -1,0 +1,152 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "sets": ["https://arkhamdb.com/set/har"],
+  "cards": [
+    {
+      "code": "60201",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60202",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60203",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60204",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60206",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60207",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60210",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60211",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60213",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60215",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60216",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60217",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60220",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60221",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60223",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60224",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60226",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60229",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60230",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60231",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60232",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60233",
+      "status": "verified",
+      "module": "cards",
+      "test": "rules.test.ts"
+    }
+  ],
+  "sources": [
+    {
+      "language": "en",
+      "url": "https://arkhamdb.com/api/public/cards/har.json",
+      "sha256": "5987268adff5ff7023f6657512810283ed14ac0be81e6d42b3fd26e4410453fd"
+    },
+    {
+      "language": "es",
+      "url": "https://es.arkhamdb.com/api/public/cards/har.json",
+      "sha256": "ac5477be3b8f0929a612801509eee285c66c47eb3479bf6ecfcaf41741035ee9"
+    }
+  ]
+}

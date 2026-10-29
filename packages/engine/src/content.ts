@@ -537,6 +537,11 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  fightAction?: boolean
+  additionalPlayDiscard?: { max: number }
+  selfCostModifier?: (state: GameState, investigator: InvestigatorId) => number
+  requiredResearch?: string
+  assignmentTraitLimit?: { trait: string; amount: number }
   /** Replace a controlled asset's departure; terminal removals mark leavingResolved. */
   leavesPlay?: (
     state: GameState,
@@ -663,6 +668,7 @@ export interface PlayerCardBehavior {
     investigator: InvestigatorId,
     x?: number,
     fromDiscard?: boolean,
+    discardedCost?: number,
   ) => Message[]
   /** It may be played from its owner's discard pile, any copy (Winging It). */
   playableFromDiscard?: boolean
@@ -829,6 +835,25 @@ export function registerPlayerCards(defs: PlayerCardDef[]): void {
 
 export function registerPlayerCard(behavior: PlayerCardBehavior): void {
   playerBehaviors.set(behavior.code, behavior)
+}
+
+/** Preserve provenance through choices and delayed event effects, including damage without a test. */
+export function playerSourceMessages(messages: Message[], code: CardCode): Message[] {
+  return sourceValue(messages, code) as Message[]
+}
+function sourceValue(value: unknown, code: CardCode): unknown {
+  if (playerCardDef(code)?.type !== 'event') return value
+  if (Array.isArray(value)) return value.map((v) => sourceValue(v, code))
+  if (value === null || typeof value !== 'object') return value
+  const object = value as Record<string, unknown>
+  const origin = object.type === 'PlayCard' && typeof object.code === 'string' ? object.code : code
+  const result = Object.fromEntries(
+    Object.entries(object).map(([key, v]) => [key, sourceValue(v, origin)]),
+  )
+  if (object.type === 'BeginSkillTest' && !object.effectSource) result.effectSource = origin
+  if (object.type === 'DamageEnemy')
+    result.source = { ...((object.source as object) ?? {}), code: origin }
+  return result
 }
 
 /** Story assets come from the scenario: their behavior tags the tests it starts. */

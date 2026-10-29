@@ -83,7 +83,9 @@ describe('mazos: validación', () => {
     const deductions = cardPool(code(4)).filter((c) => c.name === 'Deduction' && !c.xp)
     expect(deductions.map((c) => c.code)).toEqual([code(39)])
     for (const investigator of investigatorCards()) {
-      const titles = cardPool(investigator.code).map((c) => `${c.name}|${c.xp ?? 0}|${c.class}`)
+      const titles = cardPool(investigator.code).map(
+        (c) => `${c.name}|${c.subname ?? ''}|${c.xp ?? 0}|${c.class}`,
+      )
       expect(titles.filter((t, i) => titles.indexOf(t) !== i)).toEqual([])
     }
   })
@@ -92,6 +94,20 @@ describe('mazos: validación', () => {
     expect(reprintSource('01539')).toBe('01039')
     expect(reprintSource(code(39))).toBe('01039')
     expect(printingsOf('60219')).toEqual(expect.arrayContaining(['01039', code(39), '01539']))
+  })
+
+  it('retains both researched Tome variants while sharing their title copy limit', () => {
+    const tomes = cardPool('60201').filter((c) => c.name === 'Forbidden Tome' && c.xp === 3)
+    expect(tomes.map((c) => c.code).sort()).toEqual(['60229', '60230'])
+    expect(new Set(tomes.map((c) => c.subname)).size).toBe(2)
+    const deck = starterDeckList('harvey', 'h', 'Harvey')
+    deck.cards = deck.cards.filter((c) => c !== '60210')
+    deck.cards.push('60229', '60230', '60230')
+    expect(
+      validateDeck(deck).problems.some(
+        (p) => p.key === 'deck.problem.tooManyCopies' && p.params?.card === 'Forbidden Tome',
+      ),
+    ).toBe(true)
   })
 })
 

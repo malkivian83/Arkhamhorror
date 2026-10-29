@@ -310,7 +310,11 @@ registerScenario({
           setAsideLocations,
           scenarioMeta: { ...s.scenarioMeta, museumExhibits: remaining.join(',') },
         },
-        { type: 'PutLocationIntoPlay', location },
+        {
+          type: 'PutLocationIntoPlay',
+          location,
+          ...(typeof data.investigator === 'string' ? { investigator: data.investigator } : {}),
+        },
       )
     }
     if (key === 'museumBroken')
@@ -494,7 +498,7 @@ registerLocation({
 })
 registerLocation({
   code: M.halls,
-  abilities: (s, _l, _i) => {
+  abilities: (s, _l, investigator) => {
     const present = activeInvestigators(s).filter((i) => i.location === M.halls),
       amount = s.startingInvestigatorCount
     return deck(s).length && present.reduce((n, i) => n + i.clues, 0) >= amount
@@ -505,7 +509,7 @@ registerLocation({
             actions: 1,
             provokes: true,
             costs: [{ type: 'PayGroupClues', amount, from: present.map((i) => i.id) }],
-            then: [specific('museumDrawExhibit')],
+            then: [specific('museumDrawExhibit', { investigator })],
           },
         ]
       : []

@@ -208,7 +208,7 @@ it('still resolves non-weakness revelations from the same batch', () => {
   expect(me(s).discard).toContain('all-in-revelation')
   expect(me(s).deck).toContain('12101')
 })
-it('restores a pending batch from JSON without losing or duplicating its held weaknesses', () => {
+it('restores a reaction after the complete draw batch without losing or duplicating shuffled weaknesses', () => {
   let s = clear(
     withAsset(
       patch({ hand: [], deck: ['12101', normal[0]!, normal[1]!, normal[2]!] })(open()),
@@ -217,9 +217,9 @@ it('restores a pending batch from JSON without losing or duplicating its held we
   )
   s = dispatch(s, { type: 'DrawCards', investigator: 'a', amount: 3, shuffleWeaknesses: true })
   expect(s.pending!.question.prompt).toBe('prompt.pilotTarget')
-  expect(s.queue.some((m) => m.type === 'DrawCards' && m.drawnWeaknesses?.includes('12101'))).toBe(
-    true,
-  )
+  expect(s.queue.some((m) => m.type === 'DrawCards')).toBe(false)
+  expect(me(s).hand).toEqual(normal.slice(0, 2))
+  expect(me(s).deck.filter((c) => c === '12101')).toHaveLength(1)
   const restored = JSON.parse(JSON.stringify(s)) as GameState
   const result = choose(restored, 'choice.skip')
   expect(result).toEqual(choose(s, 'choice.skip'))
