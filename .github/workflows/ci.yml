@@ -1,7 +1,6 @@
 name: CI
 
-# Los cambios solo de documentación no lanzan la CI; las evidencias JSON sí,
-# porque las leen las pruebas y la verificación de imágenes.
+# La documentación no despliega; las evidencias sí las leen pruebas y recursos.
 on:
   push:
     branches: [main]
@@ -17,6 +16,9 @@ on:
       - '!docs-proyecto/**'
       - 'docs-proyecto/evidencias/**'
 
+permissions:
+  contents: read
+
 concurrency:
   group: ci-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -25,48 +27,58 @@ jobs:
   check:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    services:
-      mysql:
-        image: mysql:8.4
-        env:
-          MYSQL_ROOT_PASSWORD: ci-test-only
-          MYSQL_DATABASE: arkham_accounts_test
-        ports: ['3306:3306']
-        options: >-
-          --health-cmd="mysqladmin ping -h 127.0.0.1 -pci-test-only"
-          --health-interval=5s --health-timeout=5s --health-retries=20
-    env:
-      MYSQL_TEST_URL: mysql://root:ci-test-only@127.0.0.1:3306/arkham_accounts_test
+    outputs:
+      sql: ${{ steps.plan.outputs.sql }}
+      sql-matrix: ${{ steps.plan.outputs.sql-matrix }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
+      - id: plan
+        name: Seleccionar controles por el diff completo
+        run: node scripts/ci/plan.mjs
+      - run: node --test scripts/ci/*.test.mjs
       - run: corepack enable
       - run: pnpm install --frozen-lockfile
-      - run: pnpm format:check
-      - run: pnpm lint
-      - run: pnpm typecheck
-      - run: pnpm test
-      - run: node scripts/verify-card-images.mjs
-      - run: pnpm build
-      - run: node scripts/package-plesk.mjs
-      - run: node scripts/verify-plesk.mjs
+      - name: Formato, lint, tipos y pruebas del alcance afectado
+        run: node scripts/ci/check.mjs
+      - name: Construir una sola vez el paquete de Plesk
+        run: pnpm build:plesk
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+      # Tar conserva archivos ocultos y permisos. Se publica antes de que el smoke
+      # SQL instale dependencias y modifique su propia copia del paquete.
+      - run: tar -czf dist/plesk.tar.gz -C dist/plesk .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: plesk-${{ github.sha }}
+          path: dist/plesk.tar.gz
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
+          overwrite: true
 
-  # MariaDB solo se comprueba en las pull requests para ahorrar minutos de Actions.
-  mariadb:
-    if: github.event_name == 'pull_request'
+  sql:
+    needs: check
+    if: needs.check.outputs.sql == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.check.outputs.sql-matrix) }}
+    name: SQL (${{ matrix.database }})
     services:
       mysql:
-        image: mariadb:10.11
+        image: ${{ matrix.image }}
         env:
           MYSQL_ROOT_PASSWORD: ci-test-only
           MYSQL_DATABASE: arkham_accounts_test
         ports: ['3306:3306']
         options: >-
-          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-cmd="${{ matrix.database == 'mariadb' && 'healthcheck.sh --connect --innodb_initialized' || 'mysqladmin ping -h 127.0.0.1 -pci-test-only' }}"
           --health-interval=5s --health-timeout=5s --health-retries=20
     env:
       MYSQL_TEST_URL: mysql://root:ci-test-only@127.0.0.1:3306/arkham_accounts_test
@@ -77,8 +89,12 @@ jobs:
           node-version-file: .nvmrc
       - run: corepack enable
       - run: pnpm install --frozen-lockfile
-      - run: pnpm test --project server src/accounts/accounts.mysql.test.ts
-      # El paquete de producción también se verifica contra MariaDB.
-      - run: pnpm build
-      - run: node scripts/package-plesk.mjs
-      - run: node scripts/verify-plesk.mjs
+      - name: Persistencia de cuentas y salas
+        run: pnpm test --project server src/accounts/accounts.mysql.test.ts src/online/lobbies.mysql.test.ts
+      - uses: actions/download-artifact@v4
+        with:
+          name: plesk-${{ github.sha }}
+          path: dist
+      - run: mkdir -p dist/plesk && tar -xzf dist/plesk.tar.gz -C dist/plesk
+      - name: Verificar la instalación del mismo paquete
+        run: node scripts/verify-plesk.mjs

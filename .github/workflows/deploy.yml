@@ -8,9 +8,15 @@ on:
     types: [completed]
     branches: [main]
   workflow_dispatch:
+    inputs:
+      ci_run_id:
+        description: 'ID de una CI correcta de main con artefacto disponible (7 días)'
+        required: true
+        type: string
 
 permissions:
   contents: write
+  actions: read
 
 concurrency:
   group: deploy
@@ -21,20 +27,47 @@ jobs:
     if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
     runs-on: ubuntu-latest
     steps:
+      - name: Identificar la CI validada de main
+        id: source
+        uses: actions/github-script@v7
+        env:
+          CI_RUN_ID: ${{ inputs.ci_run_id || github.event.workflow_run.id }}
+        with:
+          script: |
+            const id = process.env.CI_RUN_ID;
+            if (!/^\d+$/.test(id)) throw new Error('ID de CI inválido');
+            const { data: run } = await github.rest.actions.getWorkflowRun({
+              ...context.repo, run_id: Number(id)
+            });
+            if (run.path !== '.github/workflows/ci.yml' || run.conclusion !== 'success' ||
+                run.event !== 'push' || run.head_branch !== 'main' ||
+                run.head_repository?.full_name !== `${context.repo.owner}/${context.repo.repo}`) {
+              throw new Error('Solo se despliega una CI correcta de un push propio a main');
+            }
+            core.setOutput('sha', run.head_sha);
+            core.setOutput('run-id', run.id);
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          ref: ${{ steps.source.outputs.sha }}
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-      - run: corepack enable
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm build:plesk
+      - uses: actions/download-artifact@v4
+        with:
+          name: plesk-${{ steps.source.outputs.sha }}
+          path: dist
+          github-token: ${{ github.token }}
+          run-id: ${{ steps.source.outputs.run-id }}
+      - name: Extraer y comprobar la revisión del paquete
         env:
-          SOURCE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+          SOURCE_SHA: ${{ steps.source.outputs.sha }}
+        run: |
+          mkdir -p dist/plesk
+          tar -xzf dist/plesk.tar.gz -C dist/plesk
+          node --input-type=module -e "import fs from 'node:fs'; const info = JSON.parse(fs.readFileSync('dist/plesk/deploy-info.json', 'utf8')); if (info.revision !== process.env.SOURCE_SHA) throw new Error('El paquete no corresponde a la CI seleccionada');"
       - name: Publicar en la rama deploy
         env:
-          SOURCE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+          SOURCE_SHA: ${{ steps.source.outputs.sha }}
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'

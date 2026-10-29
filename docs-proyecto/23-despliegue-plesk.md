@@ -2,6 +2,37 @@
 
 El workflow publica una aplicación Node.js completa en `deploy`. `public/` contiene la web compilada; el resto contiene la API, sus migraciones y las herramientas de instalación. No modificar ni subir commits manualmente a `deploy`.
 
+## CI por alcance y reutilización del paquete
+
+`scripts/ci/plan.mjs` compara todo el rango de un push, o el merge base de una PR.
+Cuenta también eliminaciones y ambos lados de un renombrado. Si falta historial,
+hay una ruta desconocida o cambia configuración común, ejecuta los controles completos.
+La selección aparece en el resumen de la ejecución de GitHub Actions.
+
+| Cambio                                                                       | Controles seleccionados                                                                                                                            |
+| ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Changelog, traducciones JSON o estilos CSS/SCSS                              | Formato/lint de archivos editados y pruebas de idiomas; sin SQL ni suite de reglas.                                                                |
+| Código de la web                                                             | Formato/lint y pruebas de la web.                                                                                                                  |
+| Cartas o evidencias                                                          | Pruebas de cartas, importación y consumidores (web, guardados y servidor), tipos e imágenes. Se conserva este alcance por los registros dinámicos. |
+| Servidor o migraciones                                                       | Pruebas del servidor y consumidores, tipos, MySQL y verificación de instalación.                                                                   |
+| Motor, contratos, guardados, dependencias, instalación o configuración común | Formato/lint, tipos y suite completos, imágenes, MySQL y verificación de instalación.                                                              |
+
+Los cambios combinados suman sus controles. MariaDB se añade solo en PR que
+necesiten SQL; las pruebas SQL incluyen cuentas y salas. Los cambios exclusivamente
+documentales siguen sin lanzar CI, excepto las evidencias utilizadas por las pruebas.
+
+Cada CI compila una sola vez la web (incluidos sus tipos) y genera el paquete Plesk
+con el SHA del commit. Guarda `plesk-<sha>` durante siete días como un tar comprimido,
+conservando archivos ocultos y permisos. Las comprobaciones SQL instalan y verifican
+una copia de ese mismo paquete; nunca alteran el artefacto publicado.
+
+Deploy solo descarga el artefacto de una CI correcta de un push propio a `main`,
+comprueba la revisión de `deploy-info.json` y lo publica. No recompila ni instala
+dependencias en GitHub; la instalación de producción sigue correspondiendo a Plesk.
+Para un despliegue manual hay que indicar el ID de una CI correcta de `main` con
+artefacto disponible. Si ha caducado, vuelve a ejecutar esa CI antes de desplegar:
+no se sustituye silenciosamente por una compilación nueva sin validar.
+
 ## Primera activación en el panel
 
 1. En **Git > Configuración**, cambiar temporalmente el modo a **Manual** para preparar el cambio de estructura. La web actual puede seguir sirviendo desde su carpeta anterior.
@@ -10,13 +41,13 @@ El workflow publica una aplicación Node.js completa en `deploy`. `public/` cont
 4. Subir el archivo privado de producción como **`/arkham-app/.env`**. Nunca colocarlo dentro de `public`. La conexión de base en el VPS utiliza `127.0.0.1`, el usuario/base de Plesk y su contraseña. Mantener `NODE_ENV=production`, `APP_ORIGIN=https://arkham-online.es`, SMTP y las credenciales iniciales del administrador. Google es opcional hasta disponer de sus dos credenciales; el botón permanece oculto si ambas están vacías.
 5. En **Dominios > arkham-online.es > Node.js**, seleccionar:
 
-   | Campo | Valor |
-   | --- | --- |
-   | Versión de Node.js | **24** |
-   | Modo | **Production** |
-   | Raíz de la aplicación | **`/arkham-app`** |
-   | Raíz de documentos | **`/arkham-app/public`** |
-   | Archivo de inicio | **`app.cjs`** |
+   | Campo                 | Valor                    |
+   | --------------------- | ------------------------ |
+   | Versión de Node.js    | **24**                   |
+   | Modo                  | **Production**           |
+   | Raíz de la aplicación | **`/arkham-app`**        |
+   | Raíz de documentos    | **`/arkham-app/public`** |
+   | Archivo de inicio     | **`app.cjs`**            |
 
    Plesk exige que la raíz de documentos sea una subcarpeta de la aplicación ([documentación oficial](https://docs.plesk.com/en-US/obsidian/administrator-guide/website-management/nodejs-support.76652/)). Este cambio garantiza que HTTP solo exponga los archivos públicos. La API y las rutas de Vue funcionan bajo el mismo dominio a través de Passenger.
 
