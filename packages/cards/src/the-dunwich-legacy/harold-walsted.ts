@@ -21,6 +21,7 @@ registerPlayerCard({
   ],
   code: M.harold,
   skillModifier: (_s, _a, test) =>
+    test.skill === 'intellect' &&
     test.kind.type === 'investigate' &&
     Object.values(M).includes(test.kind.location as typeof M.entrance)
       ? 2

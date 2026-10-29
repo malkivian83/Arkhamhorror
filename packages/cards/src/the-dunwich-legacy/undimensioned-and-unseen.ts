@@ -34,7 +34,7 @@ import {
 import { ENCOUNTER_SETS } from '../the-path-to-carcosa/encounter-sets'
 import { DUNWICH_CHAOS_BAGS } from './campaign'
 import { DUNWICH_ENCOUNTER_SETS } from './encounter-sets'
-import { HOUSE_SETS } from './house-encounters'
+import { avianFight, HOUSE_SETS } from './house-encounters'
 import { DUNWICH_COUNTRY } from './altar-encounters'
 import { B, BN } from './altar-codes'
 import { H } from './house-codes'
@@ -215,7 +215,8 @@ registerScenario({
   id: UNDIMENSIONED_AND_UNSEEN,
   skillModifier: (s, t) =>
     pairs[4]!.some((code) => code === at(s, t.investigator)) && t.skill === 'willpower' ? -1 : 0,
-  enemyStat: (s, e, stat) =>
+  enemyStat: (s, e, stat, source) =>
+    (e.code === H.avian && stat === 'fight' ? avianFight(s, source) : 0) +
     (pairs[1]!.some((code) => code === e.location) && stat === 'evade' ? -1 : 0) +
     (s.agendaIndex === 2 && e.traits?.includes('Abomination') ? 1 : 0),
   forced: (s, t) =>

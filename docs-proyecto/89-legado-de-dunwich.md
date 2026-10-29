@@ -210,6 +210,22 @@ Se añadieron 32 recorridos de transiciones narrativas: ambos órdenes iniciales
 
 ## Validación y continuación
 
+Revisión de reglas del 29 de octubre de 2026: los planes 1 y 2 del museo
+barajan el descarte también cuando el
+Horrendo cazador está en juego; Harold solo aumenta intelecto al investigar.
+La Abominación aviar aplica su reducción de combate en los tres escenarios que
+usan Esclavos-bestia y exige un apoyo con el rasgo correspondiente, sin beneficiar
+a eventos Hechizo. Sangre en el altar resuelve ahora el movimiento y ataque de
+Perseguidos y la prohibición de ganar recursos del Matón de O’Bannion, compartiendo
+la implementación con La casa siempre gana.
+
+Se reprodujeron los errores antes de corregirlos y se añadieron 19 casos de
+regresión compartidos. Pasan las 482 pruebas de la campaña y sus transiciones,
+los tipos de cartas y formato/lint de los archivos modificados. Estos resultados
+se conservan mientras no cambien las reglas, el motor o sus dependencias. La
+revisión del código y los textos impresos no equivale a verificar todas las
+combinaciones posibles de cartas. No se ha usado el navegador ni consultado CI.
+
 Último escenario subido: `d6339efa`, escenario final y epílogo. Revisión final implementada en `6e1d81ed`. Los ocho escenarios, 225 códigos EN/ES, 730 escaneos y miniaturas y 69 narraciones con Nico - History & Documentary están completos. El escenario final dispone de 49 pruebas específicas; guardado, tablero en línea, catálogo y audio pasan sus comprobaciones dirigidas.
 
 El lote del octavo escenario pasó formato, lint, tipos y compilación. Su suite global obtuvo 5003 pruebas correctas, 19 omitidas y los tres límites de cinco segundos conocidos de Gala y Brethren of Ash; sus dos archivos pasaron las 51 pruebas con tiempo ampliado. La revisión final añade la corrección del orden al restaurar y sus 34 pruebas. Formato, lint, tipos y compilación vuelven a pasar. La suite final obtuvo 5037 pruebas correctas y 19 omitidas; solo reaparecieron los tres límites de tiempo conocidos, y sus dos archivos volvieron a pasar las 51 pruebas con tiempo ampliado.

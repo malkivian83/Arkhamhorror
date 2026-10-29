@@ -28,7 +28,7 @@ import {
 import { ENCOUNTER_SETS } from '../the-path-to-carcosa/encounter-sets'
 import { DUNWICH_CHAOS_BAGS } from './campaign'
 import { DUNWICH_ENCOUNTER_SETS } from './encounter-sets'
-import { HOUSE_SETS } from './house-encounters'
+import { HOUSE_SETS, huntedDownSpecific, thugBlocksResources } from './house-encounters'
 import { H, HN } from './house-codes'
 import { EA, DUNWICH_NOTES as N } from './extracurricular-codes'
 import { M } from './museum-codes'
@@ -178,8 +178,9 @@ registerScenario({
   cannotCommit: (s, i, c) =>
     at(s, i) === B.schoolSkills && !!c && playerCardDef(c)?.type === 'skill',
   cannotDiscoverClues: (_s, _i, l, investigating) => l === B.schoolClues && investigating !== true,
-  cannotGainResources: (s, i) => at(s, i) === B.storePoor,
-  actionAllowed: (s, i, k) => !(k === 'resource' && at(s, i) === B.storePoor),
+  cannotGainResources: (s, i) => at(s, i) === B.storePoor || thugBlocksResources(s, i),
+  actionAllowed: (s, i, k) =>
+    !(k === 'resource' && (at(s, i) === B.storePoor || thugBlocksResources(s, i))),
   enemyHorrorModifier: (_s, e) => (e.location === B.brookHorror ? 1 : 0),
   enemyStat: (_s, e, k) => (e.location === B.ruinsEvade && k === 'evade' ? 1 : 0),
   forced: (s, t) =>
@@ -222,6 +223,8 @@ registerScenario({
     const investigator = String(
       data.investigator ?? s.activeTurn ?? leadInvestigator(s)?.id ?? s.investigators[0]!.id,
     )
+    const hunted = huntedDownSpecific(s, key, data, investigator)
+    if (hunted) return hunted
     if (key === 'altarSetup') {
       let rng = s.rng
       const picked: string[] = []
