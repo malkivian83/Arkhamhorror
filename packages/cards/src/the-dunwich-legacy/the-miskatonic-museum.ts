@@ -657,13 +657,12 @@ registerAct({
 for (const code of [M.restricted, M.shadows])
   registerAgenda({
     code,
-    onAdvance: (s) =>
+    onAdvance: (s) => [
       horrorInPlay(s)
-        ? [specific('museumHorrorDoom')]
-        : [
-            specific('museumSpawn', { location: M.halls }),
-            specific('museumShuffle', { discard: true }),
-          ],
+        ? specific('museumHorrorDoom')
+        : specific('museumSpawn', { location: M.halls }),
+      specific('museumShuffle', { discard: true }),
+    ],
   })
 registerAgenda({
   code: M.everyShadow,

@@ -31,9 +31,9 @@ import {
 import { ENCOUNTER_SETS } from '../the-path-to-carcosa/encounter-sets'
 import { DUNWICH_CHAOS_BAGS } from './campaign'
 import { DUNWICH_ENCOUNTER_SETS } from './encounter-sets'
-import { HOUSE_SETS } from './house-encounters'
+import { avianFight, HOUSE_SETS } from './house-encounters'
 import { BN } from './altar-codes'
-import { HN } from './house-codes'
+import { H, HN } from './house-codes'
 import { MN } from './museum-codes'
 import { TN } from './essex-codes'
 import { UN } from './unseen-codes'
@@ -172,6 +172,8 @@ export function whereDoomAwaits({
 }
 registerScenario({
   id: WHERE_DOOM_AWAITS,
+  enemyStat: (s, e, stat, source) =>
+    e.code === H.avian && stat === 'fight' ? avianFight(s, source) : 0,
   canEnter: (s, _i, _from, to) => to !== W.ascent || s.locations[W.ascent]?.revealed === true,
   cannotPlaceClues: (s, l) => s.actIndex === 1 && !atAltered(s, l),
   connections: (s, l) =>

@@ -2,9 +2,11 @@ import {
   distancesFrom,
   getInvestigator,
   playerCardDef,
+  push,
   registerEnemy,
   registerTreachery,
   type Message,
+  type GameState,
 } from '@lcg/engine'
 import { copies, damage, enemy, treachery } from '../scenario-helpers'
 import { H } from './house-codes'
@@ -170,5 +172,42 @@ registerTreachery({
 // Used by the scenario's enemy stat hook, including event attacks with an asset source.
 export const avianFight = (s: import('@lcg/engine').GameState, source?: string) => {
   const card = source ? playerCardDef(s.assets[source]?.code ?? source) : undefined
-  return card?.traits?.some((t) => ['Ranged', 'Firearm', 'Spell'].includes(t)) ? -3 : 0
+  return card?.type === 'asset' &&
+    card.traits.some((t) => ['Ranged', 'Firearm', 'Spell'].includes(t))
+    ? -3
+    : 0
+}
+
+/** Naomi's Crew is shared by the Clover Club and Blood on the Altar. */
+export const thugBlocksResources = (s: GameState, investigator: string) =>
+  Object.values(s.enemies).some((e) => e.code === H.thug && e.engagedWith === investigator)
+
+export function huntedDownSpecific(
+  s: GameState,
+  key: string,
+  data: Record<string, unknown>,
+  investigator: string,
+): GameState | null {
+  const e = s.enemies[String(data.enemy)]
+  if (key === 'hawHunted') {
+    const location = getInvestigator(s, investigator).location
+    return e && location
+      ? push(
+          s,
+          { type: 'HuntOnce', enemy: e.id, toward: location, attack: false },
+          { type: 'ScenarioSpecific', key: 'hawHuntedAttack', data: { enemy: e.id, investigator } },
+        )
+      : s
+  }
+  if (key === 'hawHuntedAttack')
+    return e?.engagedWith === investigator
+      ? push(s, {
+          type: 'EnemyAttack',
+          enemy: e.id,
+          investigator,
+          evenIfExhausted: true,
+          exhaustAfter: false,
+        })
+      : s
+  return null
 }

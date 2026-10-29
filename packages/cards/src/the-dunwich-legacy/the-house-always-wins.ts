@@ -36,7 +36,7 @@ import {
 } from '../scenario-helpers'
 import { ENCOUNTER_SETS } from '../the-path-to-carcosa/encounter-sets'
 import { DUNWICH_CHAOS_BAGS } from './campaign'
-import { avianFight, HOUSE_SETS } from './house-encounters'
+import { avianFight, HOUSE_SETS, huntedDownSpecific, thugBlocksResources } from './house-encounters'
 import { H, HN, THE_HOUSE_ALWAYS_WINS } from './house-codes'
 import { DUNWICH_NOTES as N } from './extracurricular-codes'
 import { armitageInterlude, storyReward } from './house-assets'
@@ -185,13 +185,10 @@ registerScenario({
   enemyStat: (s, e, stat, source) =>
     e.code === H.avian && stat === 'fight' ? avianFight(s, source) : 0,
   cannotDrawCards: (s, i) => s.phase === 'upkeep' && here(s, i) === H.vip,
-  actionAllowed: (s, i, kind) =>
-    kind !== 'resource' ||
-    !Object.values(s.enemies).some((e) => e.code === H.thug && e.engagedWith === i),
+  actionAllowed: (s, i, kind) => kind !== 'resource' || !thugBlocksResources(s, i),
   skipsUpkeepDraw: (s, i) => here(s, i) === H.vip,
   cannotGainResources: (s, i) =>
-    (s.phase === 'upkeep' && here(s, i) === H.vip) ||
-    Object.values(s.enemies).some((e) => e.code === H.thug && e.engagedWith === i),
+    (s.phase === 'upkeep' && here(s, i) === H.vip) || thugBlocksResources(s, i),
   assetLeavesPlay: (_s, a, reason) =>
     reason === 'resigned' && [H.morgan, H.peter].includes(a.code as typeof H.morgan)
       ? [{ type: 'SetScenarioMeta', key: `hawRescued:${a.code}`, value: 1 }]
@@ -460,29 +457,8 @@ registerScenario({
           : [typeof token === 'number' ? damage(investigator, 1) : damage(investigator, 0, 2)]),
       )
     }
-    if (key === 'hawHunted') {
-      const e = s.enemies[String(data.enemy)],
-        location = here(s, investigator)
-      return e && location
-        ? push(
-            s,
-            { type: 'HuntOnce', enemy: e.id, toward: location, attack: false },
-            hawSpecific('hawHuntedAttack', { enemy: e.id, investigator }),
-          )
-        : s
-    }
-    if (key === 'hawHuntedAttack') {
-      const e = s.enemies[String(data.enemy)]
-      return e?.engagedWith === investigator
-        ? push(s, {
-            type: 'EnemyAttack',
-            enemy: e.id,
-            investigator,
-            evenIfExhausted: true,
-            exhaustAfter: false,
-          })
-        : s
-    }
+    const hunted = huntedDownSpecific(s, key, data, investigator)
+    if (hunted) return hunted
     if (key === 'hawParley') {
       const a = s.placedAssets?.[String(data.placed)]
       if (!a) return s
