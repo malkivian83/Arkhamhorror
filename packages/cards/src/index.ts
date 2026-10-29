@@ -397,3 +397,8 @@ export {
 } from './the-dunwich-legacy/lost-in-time-and-space'
 export { theMidnightMasks } from './night-of-the-zealot/the-midnight-masks'
 export { theDevourerBelow } from './night-of-the-zealot/the-devourer-below'
+export {
+  supportsChapterTwoEncounters,
+  assertEncounterSetVariant,
+  type EncounterSetVariant,
+} from './encounter-variants'

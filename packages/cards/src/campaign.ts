@@ -66,6 +66,11 @@ import {
   type ExperienceGain,
 } from '@lcg/engine'
 import { campaignDefinition, type CampaignScenario } from './campaign-definition'
+import {
+  assertEncounterSetVariant,
+  prepareEncounterVariant,
+  type EncounterSetVariant,
+} from './encounter-variants'
 import { validateDeck, withRandomBasicWeakness } from './decks'
 import {
   IN_THE_THICK_OF_IT,
@@ -147,6 +152,8 @@ export interface ScenarioResult {
 }
 
 export interface Campaign {
+  /** Absent in legacy saves: retain the campaign's original encounter sets. */
+  encounterSetVariant?: EncounterSetVariant
   boons?: Boon[]
   weaknessChoices?: Record<string, CardCode[]>
   /** Id de la definición de campaña. */
@@ -178,7 +185,9 @@ export function newCampaign(
   boons: Boon[] = [],
   rewards: CardCode[] = [],
   openingScenario?: string,
+  encounterSetVariant?: EncounterSetVariant,
 ): Campaign {
+  assertEncounterSetVariant(campaignId, encounterSetVariant)
   const definition = campaignDefinition(campaignId)
   if (openingScenario && !definition.openingScenarios?.includes(openingScenario))
     throw new Error('Escenario inicial no permitido')
@@ -262,6 +271,7 @@ export function newCampaign(
     ...(boons.length ? { boons: [...new Set(boons)] } : {}),
     ...(Object.keys(weaknessChoices).length ? { weaknessChoices } : {}),
     id: campaignId,
+    ...(encounterSetVariant === 'chapter-two' ? { encounterSetVariant } : {}),
     difficulty,
     scenarioIndex: 0,
     investigators,
@@ -330,13 +340,17 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
     ]
     assertDeck(investigator, false, rewards)
   }
-  const scenario = entry.build({
-    difficulty: campaign.difficulty,
-    log: campaign.log,
-    seed,
-    investigators: members.map((i) => i.id),
-  })
-  return createGame({
+  const scenario = prepareEncounterVariant(
+    entry.build({
+      difficulty: campaign.difficulty,
+      log: campaign.log,
+      seed,
+      investigators: members.map((i) => i.id),
+    }),
+    campaign.id,
+    campaign.encounterSetVariant,
+  )
+  const game = createGame({
     seed,
     difficulty: campaign.difficulty,
     interactive,
@@ -376,6 +390,10 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
       }
     }),
   })
+  // The prologue can pause before setup messages run; save the choice from the first frame.
+  return campaign.encounterSetVariant === 'chapter-two'
+    ? { ...game, scenarioMeta: { ...game.scenarioMeta, chapterTwoEncounters: 1 } }
+    : game
 }
 
 /** Clave del registro que guarda un traspaso pendiente de elegir heredero. */

@@ -390,7 +390,14 @@ registerScenario({
     }
     if (key === 'altarSearchEnemy') {
       const trait = String(data.trait),
-        options = s.encounterDeck.filter((c) => c.kind === 'enemy' && c.traits?.includes(trait))
+        // Grimoire p. 46: references to the replaced Nightgaunt apply to Bat Horror.
+        options = s.encounterDeck.filter(
+          (c) =>
+            c.kind === 'enemy' &&
+            (trait === 'Nightgaunt' && s.scenarioMeta?.chapterTwoEncounters === 1
+              ? c.code === CHAPTER_TWO.batHorror
+              : c.traits?.includes(trait)),
+        )
       if (!options.length) {
         const [encounterDeck, rng] = shuffle(s.encounterDeck, s.rng)
         return { ...s, encounterDeck, rng }
@@ -637,3 +644,4 @@ for (const code of groups.flat())
         }
       : {}),
   })
+import { CODES as CHAPTER_TWO } from '../brethren-of-ash/smoke-and-mirrors'

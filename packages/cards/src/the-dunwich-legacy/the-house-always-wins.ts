@@ -329,7 +329,10 @@ registerScenario({
           Object.values(HOUSE_SETS)
             .flat()
             .some((a) => a.code === c.code) ||
-          ENCOUNTER_SETS.strikingFear.some((a) => a.code === c.code),
+          encounterSetForVariant(
+            ENCOUNTER_SETS.strikingFear,
+            s.scenarioMeta?.chapterTwoEncounters === 1 ? 'chapter-two' : undefined,
+          ).some((a) => a.code === c.code),
       )
       const [monsters, rng1] = shuffle(
         cards.filter((c) => c.kind === 'enemy'),
@@ -678,3 +681,4 @@ registerTreachery({
   code: H.suspicions,
   revelation: (_s, investigator) => [hawSpecific('hawSuspicions', { investigator })],
 })
+import { encounterSetForVariant } from '../encounter-variants'

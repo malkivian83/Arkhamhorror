@@ -2,6 +2,7 @@ import {
   allCampaigns,
   campaignDefinition,
   campaignScenarios,
+  assertEncounterSetVariant,
   startScenario,
   type Campaign,
 } from '@lcg/cards'
@@ -324,6 +325,7 @@ function campaign(value: unknown): asserts value is Campaign {
   let count: number
   try {
     count = campaignDefinition(value.id).scenarios.length
+    assertEncounterSetVariant(value.id, value.encounterSetVariant)
   } catch {
     return fail('incompatible')
   }
@@ -490,10 +492,12 @@ export function decodeSession(raw: string, verifyHistory = true): Session {
     }
     if (value.campaign) {
       const c = value.campaign as Campaign
-      const expected = campaignDefinition(c.id).scenarios[c.scenarioIndex]?.id
+      const expected = campaignScenarios(c)[c.scenarioIndex]?.id
       if (
         value.state.scenarioId !== expected ||
         value.state.difficulty !== c.difficulty ||
+        (value.state.scenarioMeta?.chapterTwoEncounters === 1) !==
+          (c.encounterSetVariant === 'chapter-two') ||
         !value.state.investigators.every((i) => c.investigators.some((m) => m.id === i.id))
       )
         fail()

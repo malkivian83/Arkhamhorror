@@ -247,7 +247,7 @@ registerPlayerCards([
   },
 ])
 
-const encounterDeck = [
+export const encounterDeck = [
   ...copies(
     treachery({
       code: CODES.arcaneLock,

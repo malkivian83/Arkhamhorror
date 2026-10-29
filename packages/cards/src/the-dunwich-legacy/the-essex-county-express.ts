@@ -278,6 +278,10 @@ registerScenario({
     return messages
   },
   specific: (s, key, data) => {
+    if (s.scenarioMeta?.chapterTwoEncounters === 1) {
+      const cultists = cultistsSpecific(s, key, data)
+      if (cultists) return cultists
+    }
     const investigator = String(
       data.investigator ?? s.activeTurn ?? leadInvestigator(s)?.id ?? s.investigators[0]!.id,
     )
@@ -653,3 +657,4 @@ registerAgenda({
     { type: 'EndScenario', outcome: resolution(2) },
   ],
 })
+import { cultistsSpecific } from '../brethren-of-ash/queen-of-ash'
