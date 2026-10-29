@@ -11,7 +11,6 @@ import CardPileModal from '../components/CardPileModal.vue'
 import ChoiceModal from '../components/ChoiceModal.vue'
 import DrawSpotlight from '../components/DrawSpotlight.vue'
 import LocationMap from '../components/LocationMap.vue'
-import MulliganNotice from '../components/MulliganNotice.vue'
 import PlayerArea from '../components/PlayerArea.vue'
 import ScenarioRow from '../components/ScenarioRow.vue'
 import ScenarioTransition from '../components/ScenarioTransition.vue'
@@ -145,7 +144,6 @@ const shown = computed(
     <DrawSpotlight :state="state" @dismissed="finishDraw" />
     <ScenarioTransition />
     <AutoStepsReview />
-    <MulliganNotice :state="state" />
     <CardInspector />
   </div>
   <div v-else class="empty">

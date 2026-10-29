@@ -18,6 +18,7 @@ import { handReason } from '../game/handReason'
 import { showPile } from '../game/pile'
 import { useTableGame } from '../game/tableController'
 import GameCard from './GameCard.vue'
+import MulliganNotice from './MulliganNotice.vue'
 import SkillIcon from './SkillIcon.vue'
 import SlotIcon from './SlotIcon.vue'
 import TokenBadge from './TokenBadge.vue'
@@ -242,6 +243,7 @@ const slots = computed(() => {
         </div>
       </div>
       <div class="zone hand">
+        <MulliganNotice v-if="deciding && !privateHand" :state="state" />
         <div class="hand-heading">
           <h4 class="mat-label">{{ t('table.hand') }} ({{ handCount ?? i.hand.length }})</h4>
           <button
