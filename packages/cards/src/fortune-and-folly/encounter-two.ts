@@ -2,10 +2,10 @@
  * Cartas de Encuentro de la parte II: Abarran desatado, Los elegidos de la fortuna y Plan al
  * garete (Vagabundo, Duplicador y Desplazador dimensionales y sus traiciones).
  */
-import { nearestLocationChoice } from '../nearest-choice'
+import { nearestEnemyChoice, nearestLocationChoice } from '../nearest-choice'
 import {
-  distancesFrom,
   getInvestigator,
+  leadInvestigator,
   playerCardDef,
   registerEnemy,
   registerTreachery,
@@ -56,15 +56,16 @@ registerEnemy({
       : [],
 })
 
-/** Enemigos Extradimensional más cercanos al investigador. */
-export function nearestExtradimensional(state: GameState, investigator: InvestigatorId) {
+/** Resolve the nearest-enemy choice when the failed test actually resolves. */
+export function nearestExtradimensional(state: GameState, investigator: InvestigatorId): Message[] {
   const here = getInvestigator(state, investigator).location
-  if (here === null) return null
-  const distances = distancesFrom(state, here)
-  return (
-    Object.values(state.enemies)
-      .filter((e) => (e.traits ?? []).includes('Extradimensional') && distances.has(e.location))
-      .sort((a, b) => distances.get(a.location)! - distances.get(b.location)!)[0] ?? null
+  if (here === null) return []
+  return nearestEnemyChoice(
+    state,
+    investigator,
+    Object.values(state.enemies).filter((e) => (e.traits ?? []).includes('Extradimensional')),
+    (enemy) => [{ type: 'HuntOnce', enemy: enemy.id, toward: here, attack: false }],
+    { chooser: investigator },
   )
 }
 
@@ -149,8 +150,26 @@ for (const code of PART_TWO_CODES.displacers)
     surge: (state) => displaceable(state).length === 0,
     forced: (state, trigger, self) => {
       if (trigger.type !== 'enemySpawned' || trigger.enemy !== self.id) return []
-      const victim = displaceable(state).find((e) => e.location === trigger.location)
-      return victim ? [{ type: 'DiscardEnemy', enemy: victim.id }] : []
+      const victims = displaceable(state).filter((e) => e.location === trigger.location)
+      if (victims.length <= 1) return victims.map((e) => ({ type: 'DiscardEnemy', enemy: e.id }))
+      const chooser = leadInvestigator(state)?.id
+      if (!chooser) return []
+      return [
+        {
+          type: 'Ask',
+          investigator: chooser,
+          question: {
+            kind: 'chooseOne',
+            prompt: 'prompt.chooseEnemy',
+            choices: victims.map((e) => ({
+              label: 'choice.enemy',
+              params: { enemy: e.name },
+              target: { type: 'enemy', id: e.id },
+              then: [{ type: 'DiscardEnemy', enemy: e.id }],
+            })),
+          },
+        },
+      ]
     },
   })
 

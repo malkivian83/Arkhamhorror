@@ -29,7 +29,7 @@ registerEnemy({
             },
           ]
         : []),
-      { type: 'PlaceDoomOnEnemy', enemy: e.id, amount: 1 },
+      { type: 'PlaceDoomOnEnemy', enemy: e.id, amount: 1, checkAgenda: false },
     ]
   },
 })

@@ -22,6 +22,7 @@ import {
   registerPlayerCards,
   registerScenario,
   registerTreachery,
+  stuckInPlay,
   seedRng,
   shuffle,
   type Choice,
@@ -1232,7 +1233,8 @@ registerScenario({
           return def && !def.weakness
         })
         const assets = Object.values(state.assets).filter(
-          (a) => a.owner === investigator && !playerCardDef(a.code)?.story,
+          (a) =>
+            a.owner === investigator && !stuckInPlay(state, a) && !playerCardDef(a.code)?.story,
         )
         if (remaining <= 0 || (!hand.length && !assets.length))
           return discarded ? state : push(state, damage(investigator, 0, 2))

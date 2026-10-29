@@ -19,6 +19,6 @@ registerEnemy({
     t.type === 'whenEnemyAttacks' &&
     t.enemy === e.id &&
     getInvestigator(s, t.investigator).discard.length > 10
-      ? [{ type: 'PlaceDoomOnEnemy', enemy: e.id, amount: 1 }]
+      ? [{ type: 'PlaceDoomOnEnemy', enemy: e.id, amount: 1, checkAgenda: false }]
       : [],
 })

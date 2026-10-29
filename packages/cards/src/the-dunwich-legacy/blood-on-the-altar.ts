@@ -612,7 +612,8 @@ for (const code of groups.flat())
             },
           ]
         : []),
-      ...(code === B.churchResources && getInvestigator(s, i).hand.length
+      ...(code === B.churchResources &&
+      getInvestigator(s, i).hand.some((card) => !playerCardDef(card)?.weakness)
         ? [
             {
               key: 'altar:resources',
