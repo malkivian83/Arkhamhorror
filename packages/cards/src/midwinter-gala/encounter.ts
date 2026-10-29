@@ -7,7 +7,7 @@ import {
   distancesFrom,
   investigatorsAt,
   playerCardDef,
-  isPermanent,
+  stuckInPlay,
   push,
   registerEnemy,
   registerTreachery,
@@ -464,7 +464,9 @@ function specific(state: GameState, key: string, data: Data): GameState {
     // Frío inexplicable: por cada punto de fallo, elige qué pierdes.
     case 'coldChoice': {
       const me = getInvestigator(state, investigator)
-      const inPlay = Object.values(state.assets).filter((a) => a.owner === investigator)
+      const inPlay = Object.values(state.assets).filter(
+        (a) => a.owner === investigator && !stuckInPlay(state, a),
+      )
       const choices: Choice[] = [
         ...inPlay.map((a): Choice => ({
           label: 'choice.discard',
@@ -472,7 +474,7 @@ function specific(state: GameState, key: string, data: Data): GameState {
           target: { type: 'asset', id: a.id },
           then: [{ type: 'DiscardAsset', asset: a.id }],
         })),
-        ...(me.hand.length > 0
+        ...(me.hand.some((code) => !playerCardDef(code)?.weakness)
           ? [
               {
                 label: 'choice.gala.discardFromHand',
@@ -488,26 +490,24 @@ function specific(state: GameState, key: string, data: Data): GameState {
     case 'pushed': {
       const asset = state.assets[data.asset as string]
       if (!asset) return state
-      const owner = getInvestigator(state, asset.owner)
-      const { [asset.id]: _gone, ...assets } = state.assets
+      const owner = getInvestigator(state, asset.originalOwner ?? asset.owner)
       if (
-        isPermanent(asset.code) ||
+        stuckInPlay(state, asset) ||
         playerCardDef(asset.code)?.story ||
         isGuest(asset.code) ||
         asset.code.startsWith('710')
       )
         return state
-      const [deck, rng] = shuffle([...owner.deck, asset.code], state.rng)
-      const milled = deck.slice(0, 3)
-      const next = {
-        ...state,
-        rng,
-        assets,
-        investigators: state.investigators.map((i) =>
-          i.id === owner.id ? { ...i, deck: deck.slice(3), discard: [...i.discard, ...milled] } : i,
-        ),
-      }
-      return milled.includes(asset.code) ? push(next, damage(investigator, 0, 2)) : next
+      return push(
+        state,
+        { type: 'ShuffleAssetIntoDeck', asset: asset.id },
+        {
+          type: 'MillDeck',
+          investigator: owner.id,
+          amount: 3,
+          ifDiscarded: { code: asset.code, then: [damage(investigator, 0, 2)] },
+        },
+      )
     }
     default:
       return state
@@ -1029,7 +1029,7 @@ registerTreachery({
           label: 'choice.gala.flee',
           then: [
             effectTest(i.id, 'Noxious Fumes', 'agility', 3, {
-              onSuccess: [{ type: 'ChooseMove', investigator: i.id }],
+              onSuccess: [{ type: 'ChooseMove', investigator: i.id, mandatory: true }],
               onFail: [damage(i.id, 2)],
             }),
           ],
@@ -1051,7 +1051,7 @@ registerTreachery({
     const mine = Object.values(state.assets).filter(
       (a) =>
         a.owner === investigator &&
-        !isPermanent(a.code) &&
+        !stuckInPlay(state, a) &&
         !playerCardDef(a.code)?.story &&
         !isGuest(a.code) &&
         !a.code.startsWith('710'),

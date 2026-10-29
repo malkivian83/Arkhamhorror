@@ -330,6 +330,8 @@ function fofSpecificTwo(
   })
   const investigator = String(data.investigator ?? '')
   switch (key) {
+    case 'fofHypnosisFailed':
+      return push(...nearestExtradimensional(state, investigator))
     case 'fofSetupTwo': {
       // Nivel de alarma, Roles y escondite anotados; pistas del manantial.
       const log = state.campaignLog
@@ -934,14 +936,11 @@ registerScenario({
         t.placement.location === here,
     )
     if (!hypnosis || here === move.location) return null
-    const nearest = nearestExtradimensional(state, move.investigator)
     return [
       effectTest(move.investigator, hypnosis.code, 'willpower', 3, {
         onSuccess: [{ ...move, checked: true }],
         onFail: [
-          ...(nearest && here !== null
-            ? [{ type: 'HuntOnce', enemy: nearest.id, toward: here, attack: false } as Message]
-            : []),
+          specific('fofHypnosisFailed', { investigator: move.investigator }),
           { type: 'DiscardTreachery', treachery: hypnosis.id },
         ],
       }),

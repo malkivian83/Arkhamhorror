@@ -1232,7 +1232,12 @@ export type Message =
   /** Descarta del mazo de encuentros hasta descartar un enemigo, y lo roba. */
   | { type: 'DiscardUntilEnemy'; investigator: InvestigatorId }
   /** Busca en el mazo y el descarte de encuentros un enemigo con el rasgo y lo roba. */
-  | { type: 'SearchEncounterForTrait'; investigator: InvestigatorId; trait: string }
+  | {
+      type: 'SearchEncounterForTrait'
+      investigator: InvestigatorId
+      trait: string
+      selected?: { zone: 'deck' | 'discard'; index: number }
+    }
   | { type: 'LoseActions'; investigator: InvestigatorId; amount: number }
   /** +X skill value for the investigator's next skill test (The Red Clock). */
   | { type: 'NextTestBonus'; investigator: InvestigatorId; amount: number }
@@ -1595,6 +1600,8 @@ export type Message =
   | {
       type: 'ChooseMove'
       investigator: InvestigatorId
+      /** Omit the skip option when the card requires movement. */
+      mandatory?: boolean
       revealedOnly?: boolean
       range?: number
       then?: Message[]

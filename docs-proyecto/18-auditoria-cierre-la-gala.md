@@ -457,3 +457,36 @@ de los documentos actualizados, las 62 filas únicas de la matriz y las 1.041
 entradas con sus transcripciones. Permanecen los avisos conocidos de fuente y
 tamaño del bundle. Esta comprobación local no acredita la CI remota, el
 despliegue ni la aceptación visual pendiente.
+
+## Correcciones de reglas del 29 de octubre de 2026
+
+Lote autorizado sobre main posterior a `7c44f61b`: los tres hallazgos nuevos de
+Gala y los siete pendientes de la revisión de campañas. Referencia contrastada:
+textos impresos EN/ES de `E:/referencia/ArkhamHorror/frontend/public/cards_*.json`.
+
+- Gala: Vapores nocivos exige moverse tras superar la prueba; Empujado al más
+  allá respeta los apoyos que no pueden abandonar el juego y utiliza el mazo
+  del propietario original, conservando el horror para quien roba la traición.
+  Frío inexplicable no permite pagar descartes con debilidades de la mano ni
+  apoyos que no puedan descartarse.
+- Excelsior y Dunwich: los efectos de perdición revisados esperan la comprobación
+  del umbral de la fase de Mitos; se conserva el avance cuando corresponde.
+- Carcosa: Reino de la locura excluye apoyos que no pueden abandonar el juego,
+  evita el bucle con permanentes y mantiene los 2 horrores si no se descarta nada.
+- Dunwich: la Iglesia congregacional exige una carta descartable para ofrecer
+  la habilidad que obtiene recursos.
+- Fortuna: Hipnosis dimensional resuelve el enemigo más cercano al terminar la
+  prueba y permite elegir los empates. Desplazador dimensional permite elegir
+  entre los enemigos Casino elegibles que comparten el lugar de aparición.
+- Excelsior: las búsquedas de Humanoide y Personal ofrecen cartas de ambas zonas
+  y barajan el mazo también al elegir el descarte o no encontrar coincidencias.
+
+Regresiones: `packages/cards/src/campaign-review-followup.test.ts`, 22 casos,
+incluidos ambos resultados de los empates y una continuación serializada.
+Verificación dirigida: 557 pruebas distintas en 21 archivos (535 existentes y
+22 nuevas); solo se repitieron los tres casos nuevos que fallaron al ajustar sus
+mesas de prueba. Tipos de motor, cartas y web, lint y formato del alcance editado.
+Los resultados se reutilizan mientras no cambien las reglas, contratos o datos
+relevantes; un commit o push no los invalida. Sin suite global, build, navegador
+ni consulta de CI/despliegue. Los límites de aceptación visual anteriores siguen
+vigentes; este lote no certifica todas las interacciones de todas las campañas.

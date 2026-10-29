@@ -117,7 +117,7 @@ registerEnemy({
         to: { type: 'pool' },
         amount: 1,
       },
-      { type: 'PlaceDoomOnEnemy', enemy: self.id, amount: 1 },
+      { type: 'PlaceDoomOnEnemy', enemy: self.id, amount: 1, checkAgenda: false },
     ]
   },
   // [acción] Negociar. [willpower] (3): evítalo automáticamente, o da la vuelta a una de
@@ -202,7 +202,7 @@ registerEnemy({
   // Al final de la fase de Enemigos, si está en una Escena del crimen: 1 perdición.
   forced: (state, trigger, self) =>
     trigger.type === 'enemyPhaseEnds' && isCrimeScene(state, self.location)
-      ? [{ type: 'PlaceDoomOnEnemy', enemy: self.id, amount: 1 }]
+      ? [{ type: 'PlaceDoomOnEnemy', enemy: self.id, amount: 1, checkAgenda: false }]
       : [],
   // [acción] Negociar. [willpower] o [intellect] (3): descarta a la Clienta.
   abilities: (state, self, investigator) =>
@@ -232,7 +232,7 @@ registerEnemy({
   // Después de que un investigador sea derrotado: 3 perdiciones sobre él.
   forced: (_state, trigger, self) =>
     trigger.type === 'investigatorDefeated'
-      ? [{ type: 'PlaceDoomOnEnemy', enemy: self.id, amount: 3 }]
+      ? [{ type: 'PlaceDoomOnEnemy', enemy: self.id, amount: 3, checkAgenda: false }]
       : [],
 })
 
@@ -254,7 +254,7 @@ onSpecific('feast', (state, data) => {
   const others = guests.filter((g) => g.location !== manager.location)
   const eat = (g: Enemy): Message[] => [
     { type: 'EnemyToVictory', enemy: g.id },
-    { type: 'PlaceDoomOnEnemy', enemy: manager.id, amount: 2 },
+    { type: 'PlaceDoomOnEnemy', enemy: manager.id, amount: 2, checkAgenda: false },
   ]
   const [only] = edible
   const first: Message[] = !only
@@ -347,9 +347,7 @@ onSpecific('enclaveTokenRevealed', (state, data) => {
       name: getInvestigator(state, String(data.investigator)).name,
       token: tokenText(token),
     }),
-    ...(isSymbol(token)
-      ? [{ type: 'PlaceDoom', amount: 1 } as Message, { type: 'CheckAgenda' } as Message]
-      : []),
+    ...(isSymbol(token) ? [{ type: 'PlaceDoom', amount: 1 } as Message] : []),
   )
 })
 
@@ -609,7 +607,16 @@ registerTreachery({
   revelation: (state, investigator) => {
     const meddler = Object.values(state.enemies).find((e) => e.code === CODES.otherworldlyMeddler)
     return [
-      ...(meddler ? [{ type: 'PlaceDoomOnEnemy', enemy: meddler.id, amount: 1 } as Message] : []),
+      ...(meddler
+        ? [
+            {
+              type: 'PlaceDoomOnEnemy',
+              enemy: meddler.id,
+              amount: 1,
+              checkAgenda: false,
+            } as Message,
+          ]
+        : []),
       // Peligro: nadie más puede comprometer cartas a esta prueba.
       {
         ...(effectTest(investigator, 'Encephalon Signal', 'willpower', 4, {

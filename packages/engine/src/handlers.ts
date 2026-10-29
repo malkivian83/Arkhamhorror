@@ -5393,25 +5393,51 @@ export function handle(state: GameState, message: Message): GameState {
     case 'SearchEncounterForTrait': {
       const matches = (c: EncounterCard) =>
         c.kind === 'enemy' && (c.traits ?? []).includes(message.trait)
-      const inDeck = state.encounterDeck.findIndex(matches)
-      if (inDeck >= 0) {
-        const card = state.encounterDeck[inDeck]!
+      const selected = message.selected
+      if (selected) {
+        const cards = selected.zone === 'deck' ? state.encounterDeck : state.encounterDiscard
+        const card = cards[selected.index]
+        if (!card || !matches(card)) return state
+        const rest = cards.filter((_, index) => index !== selected.index)
         const [encounterDeck, rng] = shuffle(
-          state.encounterDeck.filter((_, n) => n !== inDeck),
+          selected.zone === 'deck' ? rest : state.encounterDeck,
           state.rng,
         )
         return push(
-          { ...state, encounterDeck, rng },
+          {
+            ...state,
+            encounterDeck,
+            rng,
+            encounterDiscard: selected.zone === 'discard' ? rest : state.encounterDiscard,
+          },
           { type: 'ResolveEncounterCard', investigator: message.investigator, card },
         )
       }
-      const inDiscard = state.encounterDiscard.findIndex(matches)
-      if (inDiscard < 0) return state
-      const card = state.encounterDiscard[inDiscard]!
-      return push(
-        { ...state, encounterDiscard: state.encounterDiscard.filter((_, n) => n !== inDiscard) },
-        { type: 'ResolveEncounterCard', investigator: message.investigator, card },
+      const choices: Choice[] = (['deck', 'discard'] as const).flatMap((zone) =>
+        (zone === 'deck' ? state.encounterDeck : state.encounterDiscard).flatMap((card, index) =>
+          matches(card)
+            ? [
+                {
+                  label:
+                    zone === 'deck'
+                      ? 'choice.zealot.searchDeckEnemy'
+                      : 'choice.zealot.searchDiscardEnemy',
+                  params: { enemy: card.name },
+                  then: [{ ...message, selected: { zone, index } }],
+                },
+              ]
+            : [],
+        ),
       )
+      if (!choices.length) {
+        const [encounterDeck, rng] = shuffle(state.encounterDeck, state.rng)
+        return { ...state, encounterDeck, rng }
+      }
+      return push(state, {
+        type: 'Ask',
+        investigator: message.investigator,
+        question: { kind: 'chooseOne', prompt: 'prompt.chooseEnemy', choices },
+      })
     }
 
     case 'IfEnemyLeads': {
@@ -7365,7 +7391,7 @@ export function handle(state: GameState, message: Message): GameState {
                 ...(message.then ?? []),
               ],
             })),
-            { label: 'choice.skip', then: [] },
+            ...(message.mandatory ? [] : [{ label: 'choice.skip', then: [] }]),
           ],
         },
       })
