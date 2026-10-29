@@ -77,6 +77,13 @@
       "link": "Novedades",
       "title": "Últimas novedades",
       "description": "Los últimos añadidos y mejoras de Arkham Online.",
+      "startersAndRules": {
+        "title": "Nuevos mazos y correcciones de Dunwich",
+        "decks": "Nathaniel Cho y Harvey Walters ya están disponibles con sus mazos iniciales oficiales completos.",
+        "cards": "Incorporadas las cartas y mejoras de ambos packs, con textos e imágenes en español e inglés.",
+        "museum": "Corregidos el barajado del descarte en los planes del museo Miskatonic y la bonificación de intelecto de Harold Walsted.",
+        "encounters": "Corregidas las reglas de la Abominación aviar en los escenarios que la utilizan y los efectos de Perseguidos y del Matón de O’Bannion en Sangre en el altar."
+      },
       "dunwich": {
         "title": "El legado de Dunwich, al completo",
         "campaign": "Los ocho escenarios y el epílogo ya son jugables, con decisiones y consecuencias que se conservan durante la campaña.",

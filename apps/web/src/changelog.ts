@@ -1,6 +1,17 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'nathaniel-harvey-and-dunwich-rules',
+    date: '2026-10-29',
+    title: 'app.changelog.startersAndRules.title',
+    items: [
+      'app.changelog.startersAndRules.decks',
+      'app.changelog.startersAndRules.cards',
+      'app.changelog.startersAndRules.museum',
+      'app.changelog.startersAndRules.encounters',
+    ],
+  },
+  {
     id: 'dunwich-complete',
     date: '2026-10-28',
     title: 'app.changelog.dunwich.title',

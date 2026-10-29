@@ -77,6 +77,13 @@
       "link": "What’s new",
       "title": "Latest updates",
       "description": "The latest additions and improvements to Arkham Online.",
+      "startersAndRules": {
+        "title": "New decks and Dunwich rules fixes",
+        "decks": "Nathaniel Cho and Harvey Walters are now available with their complete official starter decks.",
+        "cards": "Added the cards and upgrades from both packs, with text and images in English and Spanish.",
+        "museum": "Fixed encounter discard shuffling on the Miskatonic Museum agendas and Harold Walsted’s intellect bonus.",
+        "encounters": "Fixed Avian Thrall’s rules across the scenarios that use it, and the effects of Hunted Down and O’Bannion’s Thug in Blood on the Altar."
+      },
       "dunwich": {
         "title": "The complete Dunwich Legacy",
         "campaign": "All eight scenarios and the epilogue are playable, with decisions and consequences carried through the campaign.",
