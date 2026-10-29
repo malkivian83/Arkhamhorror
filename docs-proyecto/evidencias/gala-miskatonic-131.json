@@ -571,7 +571,63 @@
       "choice": 0
     },
     {
-      "investigator": "12010",
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 20
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 13
+    },
+    {
+      "investigator": "12007",
+      "choice": 7
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 13
+    },
+    {
+      "investigator": "12007",
+      "choice": 7
+    },
+    {
+      "investigator": "12007",
       "choice": 1
     },
     {
@@ -580,71 +636,11 @@
     },
     {
       "investigator": "12007",
-      "choice": 17
-    },
-    {
-      "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
       "choice": 13
     },
     {
       "investigator": "12007",
-      "choice": 4
-    },
-    {
-      "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
-      "choice": 13
-    },
-    {
-      "investigator": "12007",
-      "choice": 4
-    },
-    {
-      "investigator": "12007",
-      "choice": 1
-    },
-    {
-      "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
-      "choice": 13
-    },
-    {
-      "investigator": "12007",
-      "choice": 4
+      "choice": 7
     },
     {
       "investigator": "12007",
@@ -660,6 +656,118 @@
     },
     {
       "investigator": "12010",
+      "choice": 9
+    },
+    {
+      "investigator": "12010",
+      "choice": 4
+    },
+    {
+      "investigator": "12010",
+      "choice": 5
+    },
+    {
+      "investigator": "12010",
+      "choice": 0
+    },
+    {
+      "investigator": "12010",
+      "choice": 4
+    },
+    {
+      "investigator": "12010",
+      "choice": 5
+    },
+    {
+      "investigator": "12010",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12010",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 4
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12010",
+      "choice": 1
+    },
+    {
+      "investigator": "12010",
+      "choice": 1
+    },
+    {
+      "investigator": "12010",
+      "choice": 5
+    },
+    {
+      "investigator": "12010",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 4
+    },
+    {
+      "investigator": "12007",
+      "choice": 6
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 4
+    },
+    {
+      "investigator": "12007",
+      "choice": 6
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 4
+    },
+    {
+      "investigator": "12007",
+      "choice": 6
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12010",
+      "choice": 2
+    },
+    {
+      "investigator": "12010",
       "choice": 6
     },
     {
@@ -668,11 +776,11 @@
     },
     {
       "investigator": "12010",
-      "choice": 3
+      "choice": 2
     },
     {
       "investigator": "12010",
-      "choice": 3
+      "choice": 6
     },
     {
       "investigator": "12010",
@@ -680,18 +788,22 @@
     },
     {
       "investigator": "12010",
-      "choice": 4
+      "choice": 2
     },
     {
       "investigator": "12010",
-      "choice": 8
+      "choice": 6
     },
     {
       "investigator": "12010",
-      "choice": 4
+      "choice": 0
     },
     {
-      "investigator": "12007",
+      "investigator": "12010",
+      "choice": 2
+    },
+    {
+      "investigator": "12010",
       "choice": 0
     },
     {
@@ -700,35 +812,15 @@
     },
     {
       "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
       "choice": 5
     },
     {
       "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
-      "choice": 0
+      "choice": 7
     },
     {
       "investigator": "12007",
@@ -740,34 +832,22 @@
     },
     {
       "investigator": "12007",
-      "choice": 5
+      "choice": 7
     },
     {
       "investigator": "12007",
-      "choice": 5
-    },
-    {
-      "investigator": "12010",
-      "choice": 16
-    },
-    {
-      "investigator": "12010",
-      "choice": 15
-    },
-    {
-      "investigator": "12010",
-      "choice": 3
-    },
-    {
-      "investigator": "12010",
       "choice": 0
     },
     {
       "investigator": "12007",
-      "choice": 1
+      "choice": 5
     },
     {
-      "investigator": "12010",
+      "investigator": "12007",
+      "choice": 7
+    },
+    {
+      "investigator": "12007",
       "choice": 0
     },
     {
@@ -779,7 +859,7 @@
       "choice": 0
     },
     {
-      "investigator": "12010",
+      "investigator": "12007",
       "choice": 1
     },
     {
@@ -788,10 +868,38 @@
     },
     {
       "investigator": "12010",
+      "choice": 2
+    },
+    {
+      "investigator": "12010",
       "choice": 0
     },
     {
-      "investigator": "12007",
+      "investigator": "12010",
+      "choice": 7
+    },
+    {
+      "investigator": "12010",
+      "choice": 2
+    },
+    {
+      "investigator": "12010",
+      "choice": 2
+    },
+    {
+      "investigator": "12010",
+      "choice": 0
+    },
+    {
+      "investigator": "12010",
+      "choice": 3
+    },
+    {
+      "investigator": "12010",
+      "choice": 1
+    },
+    {
+      "investigator": "12010",
       "choice": 0
     },
     {
@@ -800,11 +908,35 @@
     },
     {
       "investigator": "12007",
-      "choice": 7
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 1
+    },
+    {
+      "investigator": "12010",
+      "choice": 0
     },
     {
       "investigator": "12007",
       "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 11
+    },
+    {
+      "investigator": "12007",
+      "choice": 5
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 6
     },
     {
       "investigator": "12007",
@@ -816,6 +948,10 @@
     },
     {
       "investigator": "12007",
+      "choice": 3
+    },
+    {
+      "investigator": "12007",
       "choice": 7
     },
     {
@@ -823,24 +959,92 @@
       "choice": 0
     },
     {
+      "investigator": "12007",
+      "choice": 4
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12010",
+      "choice": 17
+    },
+    {
       "investigator": "12010",
       "choice": 16
     },
     {
       "investigator": "12010",
-      "choice": 15
+      "choice": 1
     },
     {
-      "investigator": "12010",
-      "choice": 2
-    },
-    {
-      "investigator": "12010",
-      "choice": 0
+      "investigator": "12007",
+      "choice": 1
     },
     {
       "investigator": "12010",
       "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 5
+    },
+    {
+      "investigator": "12007",
+      "choice": 9
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 1
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 24
+    },
+    {
+      "investigator": "12007",
+      "choice": 6
+    },
+    {
+      "investigator": "12007",
+      "choice": 8
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
+      "choice": 23
+    },
+    {
+      "investigator": "12007",
+      "choice": 4
+    },
+    {
+      "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12010",
+      "choice": 22
+    },
+    {
+      "investigator": "12010",
+      "choice": 4
+    },
+    {
+      "investigator": "12010",
+      "choice": 3
     },
     {
       "investigator": "12010",
@@ -851,87 +1055,11 @@
       "choice": 0
     },
     {
-      "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
-      "choice": 5
-    },
-    {
-      "investigator": "12007",
-      "choice": 3
-    },
-    {
-      "investigator": "12007",
-      "choice": 7
-    },
-    {
-      "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
-      "choice": 5
-    },
-    {
-      "investigator": "12007",
-      "choice": 7
-    },
-    {
-      "investigator": "12007",
-      "choice": 0
-    },
-    {
-      "investigator": "12007",
-      "choice": 16
-    },
-    {
-      "investigator": "12010",
-      "choice": 2
-    },
-    {
-      "investigator": "12010",
-      "choice": 7
-    },
-    {
-      "investigator": "12010",
-      "choice": 0
-    },
-    {
-      "investigator": "12010",
-      "choice": 2
-    },
-    {
-      "investigator": "12010",
-      "choice": 7
-    },
-    {
-      "investigator": "12010",
-      "choice": 0
-    },
-    {
-      "investigator": "12010",
-      "choice": 2
-    },
-    {
-      "investigator": "12010",
-      "choice": 7
-    },
-    {
-      "investigator": "12010",
-      "choice": 0
-    },
-    {
       "investigator": "12010",
       "choice": 1
     },
     {
-      "investigator": "12010",
-      "choice": 3
-    },
-    {
-      "investigator": "12010",
+      "investigator": "12007",
       "choice": 0
     },
     {
@@ -1627,11 +1755,6 @@
       "params": null
     },
     {
-      "prompt": "prompt.chooseMove",
-      "label": "choice.skip",
-      "params": null
-    },
-    {
       "prompt": "prompt.chooseNextInvestigator",
       "label": "choice.investigator",
       "params": {
@@ -1771,22 +1894,16 @@
     },
     {
       "prompt": "prompt.chooseAction",
-      "label": "ability.gala.nameACard",
-      "params": null
-    },
-    {
-      "prompt": "prompt.gala.nameACard",
-      "label": "choice.gala.namedCard",
+      "label": "action.move",
       "params": {
-        "card": "Abhorrent Moon-Beast"
+        "location": "Library"
       }
     },
     {
-      "prompt": "prompt.commitCards",
-      "label": "choice.commit",
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
       "params": {
-        "card": "\"For my next trick...\"",
-        "icons": 2
+        "location": "Library"
       }
     },
     {
@@ -1795,30 +1912,26 @@
       "params": null
     },
     {
-      "prompt": "prompt.skillTestSucceeded",
+      "prompt": "prompt.skillTestFailed",
       "label": "choice.applyResults",
       "params": null
     },
     {
       "prompt": "prompt.chooseAction",
-      "label": "action.move",
-      "params": {
-        "location": "Lobby"
-      }
-    },
-    {
-      "prompt": "prompt.chooseAction",
-      "label": "action.move",
+      "label": "action.investigate",
       "params": {
         "location": "Library"
       }
     },
     {
-      "prompt": "prompt.chooseAction",
-      "label": "action.move",
-      "params": {
-        "location": "Bedroom"
-      }
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
     },
     {
       "prompt": "prompt.chooseHunterPath",
@@ -1827,118 +1940,6 @@
         "enemy": "The Bloodless Man",
         "location": "Art Gallery"
       }
-    },
-    {
-      "prompt": "prompt.assignHorror",
-      "label": "choice.assignToAsset",
-      "params": {
-        "card": "Raymond Loggins"
-      }
-    },
-    {
-      "prompt": "prompt.commitCards",
-      "label": "choice.revealToken",
-      "params": null
-    },
-    {
-      "prompt": "prompt.skillTestFailed",
-      "label": "choice.applyResults",
-      "params": null
-    },
-    {
-      "prompt": "prompt.gala.coldChoice",
-      "label": "choice.discard",
-      "params": {
-        "card": "Magnifying Glass"
-      }
-    },
-    {
-      "prompt": "prompt.gala.coldChoice",
-      "label": "choice.discard",
-      "params": {
-        "card": "Elizabeth Conrad"
-      }
-    },
-    {
-      "prompt": "prompt.gala.coldChoice",
-      "label": "choice.gala.discardFromHand",
-      "params": null
-    },
-    {
-      "prompt": "prompt.chooseCardToDiscard",
-      "label": "choice.discard",
-      "params": {
-        "card": "12052"
-      }
-    },
-    {
-      "prompt": "prompt.gala.coldChoice",
-      "label": "choice.gala.discardFromHand",
-      "params": null
-    },
-    {
-      "prompt": "prompt.chooseCardToDiscard",
-      "label": "choice.discard",
-      "params": {
-        "card": "12086"
-      }
-    },
-    {
-      "prompt": "prompt.chooseNextInvestigator",
-      "label": "choice.investigator",
-      "params": {
-        "name": "Trish Scarborough"
-      }
-    },
-    {
-      "prompt": "prompt.chooseAction",
-      "label": "action.move",
-      "params": {
-        "location": "Bedroom"
-      }
-    },
-    {
-      "prompt": "prompt.chooseAction",
-      "label": "action.move",
-      "params": {
-        "location": "Library"
-      }
-    },
-    {
-      "prompt": "prompt.chooseAction",
-      "label": "action.move",
-      "params": {
-        "location": "Bedroom"
-      }
-    },
-    {
-      "prompt": "prompt.chooseAction",
-      "label": "ability.gala.convinceDeclan",
-      "params": {
-        "n": 1
-      }
-    },
-    {
-      "prompt": "prompt.chooseAction",
-      "label": "ability.gala.convinceDeclan",
-      "params": {
-        "n": 1
-      }
-    },
-    {
-      "prompt": "prompt.commitCards",
-      "label": "choice.revealToken",
-      "params": null
-    },
-    {
-      "prompt": "prompt.skillTestFailed",
-      "label": "choice.applyResults",
-      "params": null
-    },
-    {
-      "prompt": "prompt.reaction",
-      "label": "choice.skip",
-      "params": null
     },
     {
       "prompt": "prompt.discardDownToHandSize",
@@ -1956,6 +1957,28 @@
       "prompt": "prompt.skillTestFailed",
       "label": "choice.applyResults",
       "params": null
+    },
+    {
+      "prompt": "prompt.chooseCardToDiscard",
+      "label": "choice.discard",
+      "params": {
+        "card": "12052"
+      }
+    },
+    {
+      "prompt": "prompt.chooseCardToDiscard",
+      "label": "choice.discard",
+      "params": {
+        "card": "12086"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "\"For my next trick...\"",
+        "icons": 2
+      }
     },
     {
       "prompt": "prompt.commitCards",
@@ -1986,7 +2009,167 @@
       "prompt": "prompt.chooseAction",
       "label": "action.investigate",
       "params": {
-        "location": "Bedroom"
+        "location": "Library"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Library"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Library"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Library"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Library"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Library"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.assignHorror",
+      "label": "choice.assignToAsset",
+      "params": {
+        "card": "Raymond Loggins"
+      }
+    },
+    {
+      "prompt": "prompt.chooseNextInvestigator",
+      "label": "choice.investigator",
+      "params": {
+        "name": "Trish Scarborough"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Library"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Library"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.investigate",
+      "params": {
+        "location": "Library"
       }
     },
     {
@@ -2000,52 +2183,76 @@
       "params": null
     },
     {
-      "prompt": "prompt.chooseAction",
-      "label": "ability.gala.convinceDeclan",
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.assignHorror",
+      "label": "choice.assignToAsset",
       "params": {
-        "n": 1
+        "card": "Elizabeth Conrad"
       }
     },
     {
       "prompt": "prompt.chooseAction",
-      "label": "action.investigate",
+      "label": "ability.gala.parleyGuest",
+      "params": {
+        "card": "Elizabeth Conrad",
+        "skill": "willpower"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestFailed",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.gala.parleyGuest",
+      "params": {
+        "card": "Elizabeth Conrad",
+        "skill": "willpower"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.optional",
+      "label": "choice.skip",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
       "params": {
         "location": "Bedroom"
       }
     },
     {
-      "prompt": "prompt.commitCards",
-      "label": "choice.revealToken",
-      "params": null
-    },
-    {
-      "prompt": "prompt.skillTestFailed",
-      "label": "choice.applyResults",
-      "params": null
-    },
-    {
-      "prompt": "prompt.chooseAction",
-      "label": "ability.gala.convinceDeclan",
+      "prompt": "prompt.assignHorror",
+      "label": "choice.assignToAsset",
       "params": {
-        "n": 1
+        "card": "Elizabeth Conrad"
       }
-    },
-    {
-      "prompt": "prompt.chooseAction",
-      "label": "ability.gala.convinceDeclan",
-      "params": {
-        "n": 1
-      }
-    },
-    {
-      "prompt": "prompt.commitCards",
-      "label": "choice.revealToken",
-      "params": null
-    },
-    {
-      "prompt": "prompt.skillTestFailed",
-      "label": "choice.applyResults",
-      "params": null
     },
     {
       "prompt": "prompt.discardDownToHandSize",
@@ -2060,15 +2267,58 @@
       "params": null
     },
     {
-      "prompt": "prompt.skillTestSucceeded",
+      "prompt": "prompt.skillTestFailed",
       "label": "choice.applyResults",
       "params": null
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "choice.skip",
+      "params": null
+    },
+    {
+      "prompt": "prompt.placeMostInvestigators",
+      "label": "choice.location",
+      "params": {
+        "location": "Bedroom"
+      }
     },
     {
       "prompt": "prompt.chooseNextInvestigator",
       "label": "choice.investigator",
       "params": {
         "name": "Trish Scarborough"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.evade",
+      "params": {
+        "enemy": "The Bloodless Man"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.move",
+      "params": {
+        "location": "Bedroom"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.gala.convinceDeclan",
+      "params": {
+        "n": 1
       }
     },
     {
@@ -2092,9 +2342,87 @@
       "params": null
     },
     {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
       "prompt": "prompt.skillTestFailed",
       "label": "choice.applyResults",
       "params": null
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.gala.convinceDeclan",
+      "params": {
+        "n": 1
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.gala.convinceDeclan",
+      "params": {
+        "n": 1
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "action.endTurn",
+      "params": null
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "choice.skip",
+      "params": null
+    },
+    {
+      "prompt": "prompt.discardDownToHandSize",
+      "label": "choice.discard",
+      "params": {
+        "card": "12088"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Covert Ops",
+        "icons": 2
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.revealToken",
+      "params": null
+    },
+    {
+      "prompt": "prompt.skillTestSucceeded",
+      "label": "choice.applyResults",
+      "params": null
+    },
+    {
+      "prompt": "prompt.reaction",
+      "label": "choice.skip",
+      "params": null
+    },
+    {
+      "prompt": "prompt.chooseNextInvestigator",
+      "label": "choice.investigator",
+      "params": {
+        "name": "Trish Scarborough"
+      }
+    },
+    {
+      "prompt": "prompt.chooseAction",
+      "label": "ability.gala.convinceDeclan",
+      "params": {
+        "n": 1
+      }
     },
     {
       "prompt": "prompt.chooseAction",
@@ -2121,13 +2449,6 @@
       }
     },
     {
-      "prompt": "prompt.chooseAction",
-      "label": "action.investigate",
-      "params": {
-        "location": "Bedroom"
-      }
-    },
-    {
       "prompt": "prompt.commitCards",
       "label": "choice.revealToken",
       "params": null
@@ -2139,26 +2460,24 @@
     },
     {
       "prompt": "prompt.chooseAction",
-      "label": "action.investigate",
+      "label": "ability.gala.convinceDeclan",
       "params": {
-        "location": "Bedroom"
+        "n": 1
       }
-    },
-    {
-      "prompt": "prompt.commitCards",
-      "label": "choice.revealToken",
-      "params": null
-    },
-    {
-      "prompt": "prompt.skillTestFailed",
-      "label": "choice.applyResults",
-      "params": null
     },
     {
       "prompt": "prompt.chooseAction",
-      "label": "action.investigate",
+      "label": "action.evade",
       "params": {
-        "location": "Bedroom"
+        "enemy": "Enraged Gug"
+      }
+    },
+    {
+      "prompt": "prompt.commitCards",
+      "label": "choice.commit",
+      "params": {
+        "card": "Soul Link",
+        "icons": 3
       }
     },
     {
@@ -2167,7 +2486,7 @@
       "params": null
     },
     {
-      "prompt": "prompt.skillTestFailed",
+      "prompt": "prompt.skillTestSucceeded",
       "label": "choice.applyResults",
       "params": null
     },
@@ -2177,14 +2496,11 @@
       "params": null
     },
     {
-      "prompt": "prompt.commitCards",
-      "label": "choice.revealToken",
-      "params": null
-    },
-    {
-      "prompt": "prompt.skillTestFailed",
-      "label": "choice.applyResults",
-      "params": null
+      "prompt": "prompt.chooseEngaged",
+      "label": "choice.investigator",
+      "params": {
+        "name": "Trish Scarborough"
+      }
     },
     {
       "prompt": "prompt.gala.objective",
@@ -2228,7 +2544,7 @@
       "12010": {
         "xp": 1,
         "physicalTrauma": 0,
-        "mentalTrauma": 1,
+        "mentalTrauma": 0,
         "storyAssets": []
       }
     }
