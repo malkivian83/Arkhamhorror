@@ -13,7 +13,7 @@ import {
   getLocation,
   investigatorsAt,
   leadInvestigator,
-  nearestLocation,
+  distancesFrom,
   registerAct,
   registerAgenda,
   registerEnemy,
@@ -49,6 +49,7 @@ import {
   treachery,
 } from '../scenario-helpers'
 import { CHAOS_BAGS, type Difficulty } from './campaign'
+import { nearestLocationChoice } from '../nearest-choice'
 
 export const SPREADING_FLAMES = 'spreading-flames'
 
@@ -496,7 +497,10 @@ registerTreachery({
           },
           {
             label: 'choice.damageHorrorSurge',
-            then: [damage(investigator, 1, 1), { type: 'GainSurge' }],
+            then: [
+              { type: 'TakeDamage', investigator, damage: 1, horror: 1, direct: true },
+              { type: 'GainSurge' },
+            ],
           },
         ],
       },
@@ -692,16 +696,24 @@ registerTreachery({
   revelation: (state, investigator, self) => {
     const here = getInvestigator(state, investigator).location
     if (here === null) return []
-    const target = nearestLocation(state, here, (l) => !hasFire(state, l))
-    return target === null
-      ? []
-      : [
-          {
-            type: 'PlaceTreachery',
-            treachery: self.id,
-            placement: { type: 'location', location: target },
-          },
-        ]
+    const distances = distancesFrom(state, here, true)
+    const candidates = Object.keys(state.locations).filter(
+      (l) => distances.has(l) && !hasFire(state, l),
+    )
+    const nearest = Math.min(...candidates.map((l) => distances.get(l)!))
+    return nearestLocationChoice(
+      state,
+      investigator,
+      candidates.filter((l) => distances.get(l) === nearest),
+      (location) => [
+        {
+          type: 'PlaceTreachery',
+          treachery: self.id,
+          placement: { type: 'location', location },
+        },
+      ],
+      investigator,
+    )
   },
   // Forzado al terminar la fase de investigación: 1 daño directo a cada carta no
   // Élite con salud en esa localización (investigadores, apoyos y enemigos).
@@ -709,7 +721,13 @@ registerTreachery({
     if (trigger.type !== 'investigationPhaseEnds' || self.placement.type !== 'location') return []
     const location = self.placement.location
     return [
-      ...investigatorsAt(state, location).map((i) => damage(i.id, 1)),
+      ...investigatorsAt(state, location).map((i): Message => ({
+        type: 'TakeDamage',
+        investigator: i.id,
+        damage: 1,
+        horror: 0,
+        direct: true,
+      })),
       ...damageAssetsAt(state, location),
       ...enemiesAt(state, location)
         .filter((e) => !(e.traits ?? []).includes('Elite'))

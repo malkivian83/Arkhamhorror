@@ -366,7 +366,7 @@ for (const code of CULTISTS.filter((c) => c !== '01121b'))
               : []
       const legal =
         code === '01138'
-          ? p.hand.length >= 4
+          ? p.hand.filter((c) => !playerCardDef(c)?.weakness).length >= 4
           : code === '01139'
             ? spendableClues(s, i) >= 2
             : code === '01140'

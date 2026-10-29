@@ -14,11 +14,9 @@ import { nearestEnemyChoice } from '../nearest-choice'
 import {
   assetVitals,
   activeInvestigators,
-  enemiesAt,
   getInvestigator,
   getLocation,
   investigatorsAt,
-  nearestLocation,
   nextInt,
   playerCardDef,
   registerAct,
@@ -1050,13 +1048,14 @@ registerTreachery({
   code: CODES.raisingSuspicions,
   // 1 perdición en el enemigo más cercano sin perdición; si no hay, oleada.
   revelation: (state, investigator) => {
-    const here = getInvestigator(state, investigator).location
-    const noDoom = (l: string) => enemiesAt(state, l).some((e) => !e.doom)
-    const target = here === null ? null : nearestLocation(state, here, noDoom)
-    const enemy = target === null ? undefined : enemiesAt(state, target).find((e) => !e.doom)
-    return enemy
-      ? [{ type: 'PlaceDoomOnEnemy', enemy: enemy.id, amount: 1 }]
-      : [{ type: 'GainSurge' }]
+    const choices = nearestEnemyChoice(
+      state,
+      investigator,
+      Object.values(state.enemies).filter((e) => !e.doom),
+      (enemy) => [{ type: 'PlaceDoomOnEnemy', enemy: enemy.id, amount: 1 }],
+      { chooser: investigator },
+    )
+    return choices.length ? choices : [{ type: 'GainSurge' }]
   },
 })
 

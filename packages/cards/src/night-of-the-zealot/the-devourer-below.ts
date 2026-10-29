@@ -5,6 +5,7 @@ import type { ScenarioDefinition } from '@lcg/engine'
 import {
   activeInvestigators,
   allPlayerCardDefs,
+  playerCardDef,
   enemiesAt,
   getInvestigator,
   leadInvestigator,
@@ -358,7 +359,7 @@ registerScenario({
           kind: 'chooseOne',
           prompt: 'prompt.chooseEffect',
           choices: [
-            ...(p.hand.length
+            ...(p.hand.some((c) => !playerCardDef(c)?.weakness)
               ? [
                   {
                     label: 'choice.devourer.discard',

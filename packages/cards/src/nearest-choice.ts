@@ -8,13 +8,18 @@ import {
   type Message,
 } from '@lcg/engine'
 /** RR: Nearest / Farthest and Lead Investigator. Resolve ties explicitly. */
-function chooseNearest(state: GameState, investigator: string, choices: Choice[]): Message[] {
+function chooseNearest(
+  state: GameState,
+  investigator: string,
+  choices: Choice[],
+  chooser?: string,
+): Message[] {
   if (!choices.length) return []
   if (choices.length === 1) return choices[0]!.then
   return [
     {
       type: 'Ask',
-      investigator: leadInvestigator(state)?.id ?? investigator,
+      investigator: chooser ?? leadInvestigator(state)?.id ?? investigator,
       question: { kind: 'chooseOne', prompt: 'prompt.chooseEnemy', choices },
     },
   ]
@@ -24,8 +29,9 @@ export function nearestEnemyChoice(
   investigator: string,
   enemies: Enemy[],
   then: (enemy: Enemy) => Message[],
+  options: { from?: string; chooser?: string } = {},
 ): Message[] {
-  const here = getInvestigator(state, investigator).location
+  const here = options.from ?? getInvestigator(state, investigator).location
   if (here === null) return []
   const distances = distancesFrom(state, here, true)
   const reachable = enemies.filter((e) => distances.has(e.location))
@@ -41,6 +47,7 @@ export function nearestEnemyChoice(
         target: { type: 'enemy', id: e.id },
         then: then(e),
       })),
+    options.chooser,
   )
 }
 export function nearestLocationChoice(
@@ -48,6 +55,7 @@ export function nearestLocationChoice(
   investigator: string,
   locations: string[],
   then: (location: string) => Message[],
+  chooser?: string,
 ): Message[] {
   const choices: Choice[] = locations.map((location) => ({
     label: 'choice.location',
@@ -60,7 +68,7 @@ export function nearestLocationChoice(
   return [
     {
       type: 'Ask',
-      investigator: leadInvestigator(state)?.id ?? investigator,
+      investigator: chooser ?? leadInvestigator(state)?.id ?? investigator,
       question: { kind: 'chooseOne', prompt: 'prompt.chooseLocation', choices },
     },
   ]
