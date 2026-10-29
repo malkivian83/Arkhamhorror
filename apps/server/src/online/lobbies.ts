@@ -27,6 +27,7 @@ export interface Lobby {
   invite?: { hash: string; expires: number }
   campaignId?: string
   difficulty?: OnlineLobby['difficulty']
+  encounterSetVariant?: OnlineLobby['encounterSetVariant']
   decks?: Record<string, OnlineDeck>
   ready?: string[]
   campaign?: Campaign
@@ -43,6 +44,7 @@ export const lobbyView = (lobby: Lobby): OnlineLobby => ({
   status: lobby.game ? 'active' : 'lobby',
   campaignId: lobby.campaignId ?? 'brethren-of-ash',
   difficulty: lobby.difficulty ?? 'standard',
+  ...(lobby.encounterSetVariant ? { encounterSetVariant: lobby.encounterSetVariant } : {}),
   seats: lobby.members.map((user) => ({
     user,
     investigator: lobby.decks?.[user]?.investigator ?? null,
@@ -297,18 +299,21 @@ export class LobbyService {
     revision: number,
     campaignId: string,
     difficulty: OnlineLobby['difficulty'],
+    encounterSetVariant?: OnlineLobby['encounterSetVariant'],
   ) {
     return this.change(id, (lobby) => {
       this.editable(lobby, user, revision)
       requireValue(lobby.owner === user, 'not_owner', 403)
       // The same authoritative campaign validation is used for setup and start.
       try {
-        newCampaign(campaignId, ['joe'], difficulty)
+        newCampaign(campaignId, ['joe'], difficulty, 1, [], [], undefined, encounterSetVariant)
       } catch {
         requireValue(false, 'invalid_campaign')
       }
       lobby.campaignId = campaignId
       lobby.difficulty = difficulty
+      if (encounterSetVariant === 'chapter-two') lobby.encounterSetVariant = encounterSetVariant
+      else delete lobby.encounterSetVariant
       lobby.ready = []
       lobby.revision++
       return lobbyView(lobby)
@@ -363,6 +368,10 @@ export class LobbyService {
         lobby.members.map((member) => lobby.decks![member]!),
         lobby.difficulty ?? 'standard',
         seed,
+        [],
+        [],
+        undefined,
+        lobby.encounterSetVariant,
       )
       lobby.game = startScenario(campaign, seed, true)
       lobby.campaign = campaign
@@ -488,7 +497,12 @@ export function onlineLobbies(
   )
   app.post<{
     Params: { id: string }
-    Body: { revision: number; campaignId: string; difficulty: OnlineLobby['difficulty'] }
+    Body: {
+      revision: number
+      campaignId: string
+      difficulty: OnlineLobby['difficulty']
+      encounterSetVariant?: OnlineLobby['encounterSetVariant']
+    }
   }>(
     '/api/online/lobbies/:id/configure',
     {
@@ -498,6 +512,11 @@ export function onlineLobbies(
           revision,
           campaignId: { type: 'string', maxLength: 100 },
           difficulty: { type: 'string', enum: ['easy', 'standard', 'hard', 'expert'] },
+          encounterSetVariant: {
+            type: 'string',
+            enum: ['original', 'chapter-two'],
+            default: 'original',
+          },
         }),
       },
     },
@@ -508,6 +527,7 @@ export function onlineLobbies(
         req.body.revision,
         req.body.campaignId,
         req.body.difficulty,
+        req.body.encounterSetVariant,
       ),
   )
   app.post<{ Params: { id: string }; Body: { revision: number; deck: OnlineDeck } }>(

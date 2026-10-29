@@ -28,6 +28,26 @@ const rewarded = () => {
   return session(null, null, { ...campaign, log: { ...campaign.log, rewards: ['12181'] } })
 }
 describe('recuperación de recompensas junto con la campaña', () => {
+  it('starts and reloads a Chapter Two Dunwich campaign from the first prologue frame', () => {
+    const game = useGameStore()
+    game.start(
+      'the-dunwich-legacy',
+      ['joe'],
+      'standard',
+      [],
+      'the-house-always-wins',
+      'chapter-two',
+    )
+    expect(game.campaign?.encounterSetVariant).toBe('chapter-two')
+    expect(game.state?.scenarioMeta?.chapterTwoEncounters).toBe(1)
+    expect(game.storageIssue).toBeNull()
+    const saved = accountStorage.getItem(SESSION_KEY)!
+    expect(saved).toBeTruthy()
+    setActivePinia(createPinia())
+    expect(useGameStore().campaign?.encounterSetVariant).toBe('chapter-two')
+    expect(useGameStore().state?.scenarioId).toBe('the-house-always-wins')
+    expect(useGameStore().storageIssue).toBeNull()
+  })
   it('inicia una campaña con un mazo válido que incluye una recompensa ganada', () => {
     const decks = useDecksStore()
     decks.addRewards(['12181'])

@@ -4734,5 +4734,11 @@
       "aethericLink": "Entra en juego con 2 de éter adicional.",
       "empoweredConfiguration": "+2 a tu valor de habilidad al usar Manifestar."
     }
+  },
+  "encounterVariants": {
+    "label": "Conjuntos de encuentros",
+    "original": "Originales de la campaña",
+    "chapter-two": "Sustituciones del capítulo 2",
+    "help": "Variante oficial del Grimorio. Sustituye los conjuntos de la caja básica original y adapta sus referencias durante toda la campaña. Cambian las amenazas y el equilibrio; la historia y los desenlaces se conservan. Ratas se sustituye por los tres Transeúntes."
   }
 }

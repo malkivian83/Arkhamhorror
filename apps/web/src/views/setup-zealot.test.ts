@@ -34,6 +34,7 @@ it.each(['en', 'es'] as const)(
     for (const id of ['the-gathering', 'the-midnight-masks', 'the-devourer-below'] as const)
       expect(html).toContain(text.campaign.scenario[id])
     expect(html).toContain(text.setup.beginCampaign)
+    expect(html).not.toContain('name="encounter-set-variant"')
     expect(html).not.toContain('campaign.scenario.')
     expect(html).toContain('/local-assets/setup/night-of-the-zealot.jpg')
     expect(

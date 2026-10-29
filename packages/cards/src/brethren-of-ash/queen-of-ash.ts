@@ -232,13 +232,13 @@ const t = (
 ) => treachery({ code, name, traits, keywords })
 
 /** Enemigos Sectarios de Ashen Pilgrims y Cultists (para "armaron un buen lío"). */
-const cultistEnemies = (): EnemyCard[] => [
+export const cultistEnemies = (): EnemyCard[] => [
   ...copies(cantorOfFlame, 2),
   ...copies(zealot, 3),
   { ...darkMagician },
 ]
 
-const otherEncounterCards = (): (EnemyCard | TreacheryCard)[] => [
+export const otherEncounterCards = (): (EnemyCard | TreacheryCard)[] => [
   ...copies(hellhound, 2),
   ...copies(cosmicEvils, 3),
   ...copies(t(CODES.blasphemousInvocation, 'Blasphemous Invocation', ['Hex']), 2),
@@ -480,41 +480,47 @@ function targetsCultist(state: GameState): boolean {
   return (state.enemies[test.kind.enemy]?.traits ?? []).includes('Cultist')
 }
 
+export function cultistsSpecific(
+  state: GameState,
+  key: string,
+  data: Record<string, string | number | boolean>,
+): GameState | null {
+  const search = classicSearch(state, key, data)
+  if (search) return search
+  if (key !== 'brethrenInvocationStart' && key !== 'brethrenInvocationDoom') return null
+  const investigator = String(data.investigator)
+  const cultists = Object.values(state.enemies).filter(
+    (e) => e.traits?.includes('Cultist') && !e.doom,
+  )
+  if (key === 'brethrenInvocationStart') {
+    // RR ST.7: inspect the board when the failed test resolves, not when it begins.
+    if (!cultists.length) return classicSearch(state, 'carcosaFindCultist', data)!
+    return push(state, {
+      type: 'ForEachPointFailed',
+      then: [{ type: 'ScenarioSpecific', key: 'brethrenInvocationDoom', data: { investigator } }],
+    })
+  }
+  if (!cultists.length) return state
+  return push(state, {
+    type: 'Ask',
+    investigator,
+    question: {
+      kind: 'chooseOne',
+      prompt: 'prompt.chooseEnemy',
+      choices: cultists.map((e) => ({
+        label: 'choice.enemy',
+        params: { enemy: e.name },
+        target: { type: 'enemy', id: e.id },
+        then: [{ type: 'PlaceDoomOnEnemy', enemy: e.id, amount: 1 }],
+      })),
+    },
+  })
+}
+
 registerScenario({
   id: QUEEN_OF_ASH,
   resolution: resolutionStory,
-  specific: (state, key, data) => {
-    const search = classicSearch(state, key, data)
-    if (search) return search
-    if (key !== 'brethrenInvocationStart' && key !== 'brethrenInvocationDoom') return state
-    const investigator = String(data.investigator)
-    const cultists = Object.values(state.enemies).filter(
-      (e) => e.traits?.includes('Cultist') && !e.doom,
-    )
-    if (key === 'brethrenInvocationStart') {
-      // RR ST.7: inspect the board when the failed test resolves, not when it begins.
-      if (!cultists.length) return classicSearch(state, 'carcosaFindCultist', data)!
-      return push(state, {
-        type: 'ForEachPointFailed',
-        then: [{ type: 'ScenarioSpecific', key: 'brethrenInvocationDoom', data: { investigator } }],
-      })
-    }
-    if (!cultists.length) return state
-    return push(state, {
-      type: 'Ask',
-      investigator,
-      question: {
-        kind: 'chooseOne',
-        prompt: 'prompt.chooseEnemy',
-        choices: cultists.map((e) => ({
-          label: 'choice.enemy',
-          params: { enemy: e.name },
-          target: { type: 'enemy', id: e.id },
-          then: [{ type: 'PlaceDoomOnEnemy', enemy: e.id, amount: 1 }],
-        })),
-      },
-    })
-  },
+  specific: (state, key, data) => cultistsSpecific(state, key, data) ?? state,
   tokenEffect: (state, token, investigator) => {
     const hard = state.difficulty === 'hard' || state.difficulty === 'expert'
     const atRitualSite = getInvestigator(state, investigator).location === CODES.undergroundCistern

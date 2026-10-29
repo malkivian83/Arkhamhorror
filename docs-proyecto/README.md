@@ -89,6 +89,8 @@ vigente de pendientes.
 - [91 · Banquillo de Stella](91-banquillo-stella-personalizables.md): cinco cartas y hojas de mejoras personalizables, con compra, persistencia y juego local/online.
 - [92 · Nathaniel Cho y Harvey Walters](92-nathaniel-cho-harvey-walters.md): dos mazos completos, investigadores y exclusivas, mejoras, reglas por fase y tamaño de mano, e Investigado.
 
+- [93 · Variantes de encuentros](93-variantes-conjuntos-encuentros.md): elección original/capítulo 2 en Dunwich, preparación, excepciones y persistencia local/online.
+
 ## Decisiones ya tomadas
 
 - Repositorio propio: `github.com/malkivian83/Arkhamhorror` (privado).

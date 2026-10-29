@@ -4734,5 +4734,11 @@
       "aethericLink": "Enter play with 2 additional aether.",
       "empoweredConfiguration": "+2 skill value when using Manifest."
     }
+  },
+  "encounterVariants": {
+    "label": "Encounter sets",
+    "original": "Campaign originals",
+    "chapter-two": "Chapter Two substitutions",
+    "help": "Official Grimoire variant. Replaces the original core encounter sets and adapts their references throughout the campaign. Threats and balance change; the story and resolutions remain. Rats is replaced by the three Bystanders."
   }
 }

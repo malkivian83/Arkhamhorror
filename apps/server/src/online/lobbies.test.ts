@@ -46,6 +46,67 @@ function memory() {
 }
 
 describe('private online lobbies', () => {
+  it('persists Chapter Two encounters authoritatively and resets readiness when changed', async () => {
+    const { db, data } = memory()
+    const service = new LobbyService(db)
+    let lobby = await service.create('host')
+    lobby = await service.configure(
+      lobby.id,
+      'host',
+      lobby.revision,
+      'the-dunwich-legacy',
+      'standard',
+      'chapter-two',
+    )
+    expect(lobby.encounterSetVariant).toBe('chapter-two')
+    lobby = await service.select(lobby.id, 'host', lobby.revision, deck('joe'))
+    lobby = await service.ready(lobby.id, 'host', lobby.revision, true)
+    lobby = await service.configure(
+      lobby.id,
+      'host',
+      lobby.revision,
+      'the-dunwich-legacy',
+      'standard',
+      'original',
+    )
+    expect(lobby.encounterSetVariant).toBeUndefined()
+    expect(lobby.seats[0]!.ready).toBe(false)
+    await expect(
+      service.configure(
+        lobby.id,
+        'host',
+        lobby.revision,
+        'the-path-to-carcosa',
+        'standard',
+        'chapter-two',
+      ),
+    ).rejects.toMatchObject({ code: 'invalid_campaign' })
+    lobby = await service.configure(
+      lobby.id,
+      'host',
+      lobby.revision,
+      'the-dunwich-legacy',
+      'standard',
+      'chapter-two',
+    )
+    lobby = await service.ready(lobby.id, 'host', lobby.revision, true)
+    await service.start(lobby.id, 'host', lobby.revision)
+    const persisted = JSON.parse(data.get(lobby.id)!) as Lobby
+    expect(persisted.campaign?.encounterSetVariant).toBe('chapter-two')
+    expect(persisted.game?.scenarioMeta?.chapterTwoEncounters).toBe(1)
+    expect(persisted.game?.encounterDeck.filter((c) => c.code === '12124')).toHaveLength(3)
+    expect(persisted.game?.encounterDeck.some((c) => c.code === '01166')).toBe(false)
+    await expect(
+      service.configure(
+        lobby.id,
+        'host',
+        persisted.revision,
+        'the-dunwich-legacy',
+        'standard',
+        'original',
+      ),
+    ).rejects.toMatchObject({ code: 'already_started' })
+  })
   it('starts a solo table only after selecting a deck and confirming readiness', async () => {
     const service = new LobbyService(memory().db)
     let lobby = await service.create('host')
@@ -610,6 +671,29 @@ describe('private online lobbies', () => {
       })
     try {
       let lobby = (await post('', 'host')).json()
+      const configure = (body: object) =>
+        post(`/${lobby.id}/configure`, 'host', {
+          revision: lobby.revision,
+          campaignId: 'the-dunwich-legacy',
+          difficulty: 'standard',
+          ...body,
+        })
+      const legacy = await configure({})
+      expect(legacy.statusCode).toBe(200)
+      lobby = legacy.json()
+      expect(lobby.encounterSetVariant).toBeUndefined()
+      expect((await configure({ encounterSetVariant: 'unavailable' })).statusCode).toBe(400)
+      const variant = await configure({ encounterSetVariant: 'chapter-two' })
+      expect(variant.statusCode).toBe(200)
+      lobby = variant.json()
+      expect(lobby.encounterSetVariant).toBe('chapter-two')
+      const original = await post(`/${lobby.id}/configure`, 'host', {
+        revision: lobby.revision,
+        campaignId: 'brethren-of-ash',
+        difficulty: 'standard',
+      })
+      expect(original.statusCode).toBe(200)
+      lobby = original.json()
       const invitation = (await post(`/${lobby.id}/invite`, 'host')).json()
       lobby = (await post(`/${lobby.id}/join`, 'friend', { token: invitation.token })).json()
       expect(

@@ -148,7 +148,14 @@ function abandon() {
   <SitePage
     v-if="campaign"
     :title="t('campaign.title', { name: definition ? t(definition.name) : '' })"
-    :subtitle="t(`difficulty.${campaign.difficulty}`)"
+    :subtitle="
+      [
+        t(`difficulty.${campaign.difficulty}`),
+        ...(campaign.encounterSetVariant === 'chapter-two'
+          ? [t('encounterVariants.chapter-two')]
+          : []),
+      ].join(' · ')
+    "
     :art="`/local-assets/setup/${campaign.id}.jpg`"
     :eyebrow="t('setup.caseFile')"
     icon="campaign"

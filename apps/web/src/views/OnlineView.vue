@@ -2,7 +2,14 @@
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { allCampaigns, STARTER_DECKS, starterInvestigator, starterDeck } from '@lcg/cards'
+import {
+  allCampaigns,
+  STARTER_DECKS,
+  starterInvestigator,
+  starterDeck,
+  supportsChapterTwoEncounters,
+  type EncounterSetVariant,
+} from '@lcg/cards'
 import type { OnlineDeck, OnlineLobby } from '@lcg/shared'
 import { account, api } from '../account/api'
 import { useDecksStore } from '../stores/decks'
@@ -23,9 +30,17 @@ const invitation = ref(''),
   selected = ref(''),
   inviting = ref(false),
   copied = ref(false)
-const campaign = ref('brethren-of-ash'),
-  difficulty = ref<OnlineLobby['difficulty']>('standard')
+const campaign = ref(lobby.value?.campaignId ?? 'brethren-of-ash'),
+  difficulty = ref<OnlineLobby['difficulty']>(lobby.value?.difficulty ?? 'standard')
 const campaigns = allCampaigns().filter((c) => c.scenarios[0]?.build)
+const encounterSetVariant = ref<EncounterSetVariant>(lobby.value?.encounterSetVariant ?? 'original')
+watch(
+  campaign,
+  () => {
+    encounterSetVariant.value = 'original'
+  },
+  { flush: 'sync' },
+)
 const difficulties = ['easy', 'standard', 'hard', 'expert'] as const
 const physical = ref(0)
 /** Investigadores sin retrato de preparación: se recurre a la carta. */
@@ -75,6 +90,7 @@ async function refresh() {
     const result = await run(`/${id.value}`)
     if (initial && result) {
       campaign.value = result.campaignId
+      encounterSetVariant.value = result.encounterSetVariant ?? 'original'
       difficulty.value = result.difficulty
     }
   }
@@ -351,6 +367,10 @@ onBeforeUnmount(() => {
                     {{ t('online.lobby.code', { code: lobby.id.slice(0, 8) }) }}
                   </p>
                   <h2 id="campaign-title">{{ t(`campaign.names.${lobby.campaignId}`) }}</h2>
+                  <p v-if="supportsChapterTwoEncounters(lobby.campaignId)" class="help">
+                    {{ t('encounterVariants.label') }}:
+                    {{ t(`encounterVariants.${lobby.encounterSetVariant ?? 'original'}`) }}
+                  </p>
                   <p class="help">
                     {{
                       t('online.lobby.difficultyLabel', {
@@ -377,7 +397,24 @@ onBeforeUnmount(() => {
                       </option>
                     </select></label
                   >
-                  <button @click="mutate('configure', { campaignId: campaign, difficulty })">
+                  <label v-if="supportsChapterTwoEncounters(campaign)" class="field">
+                    <span class="ui-label">{{ t('encounterVariants.label') }}</span>
+                    <select v-model="encounterSetVariant" class="ui-field">
+                      <option
+                        v-for="variant in ['original', 'chapter-two'] as const"
+                        :key="variant"
+                        :value="variant"
+                      >
+                        {{ t(`encounterVariants.${variant}`) }}
+                      </option>
+                    </select>
+                    <span class="help">{{ t('encounterVariants.help') }}</span>
+                  </label>
+                  <button
+                    @click="
+                      mutate('configure', { campaignId: campaign, difficulty, encounterSetVariant })
+                    "
+                  >
                     {{ t('online.configure') }}
                   </button>
                 </fieldset>
@@ -413,6 +450,9 @@ onBeforeUnmount(() => {
             <div>
               <h2>{{ t('online.started') }}</h2>
               <p class="scenario">{{ t(`campaign.scenario.${lobby.game?.scenarioId}`) }}</p>
+              <p v-if="lobby.encounterSetVariant === 'chapter-two'">
+                {{ t('encounterVariants.chapter-two') }}
+              </p>
               <p>{{ t('online.startedDetail', { count: lobby.game?.investigatorCount }) }}</p>
               <SiteAction :to="`/online/${lobby.id}/play`" icon="→">{{
                 t('online.play.openTable')

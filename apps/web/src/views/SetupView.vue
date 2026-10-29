@@ -4,6 +4,8 @@ import {
   campaignDefinition,
   STARTER_DECKS,
   starterInvestigator,
+  supportsChapterTwoEncounters,
+  type EncounterSetVariant,
   type CampaignMember,
   type Difficulty,
 } from '@lcg/cards'
@@ -59,10 +61,12 @@ const prologueAudio = computed(() =>
     : null,
 )
 const openingScenario = ref('')
+const encounterSetVariant = ref<EncounterSetVariant>('original')
 watch(
   campaignId,
   () => {
     openingScenario.value = selectedCampaign.value?.openingScenarios?.[0] ?? ''
+    encounterSetVariant.value = 'original'
   },
   { immediate: true },
 )
@@ -234,6 +238,7 @@ function start() {
     difficulty.value,
     activeBoons.value,
     openingScenario.value || undefined,
+    encounterSetVariant.value,
   )
   void router.push(game.state ? '/game' : '/campaign')
 }
@@ -398,6 +403,26 @@ function start() {
                 <h3>{{ t(selectedCampaign.name) }}</h3>
                 <p>{{ t(`setup.descriptions.${selectedCampaign.id}`) }}</p>
               </div>
+              <fieldset v-if="supportsChapterTwoEncounters(campaignId)" class="story-opening">
+                <legend>{{ t('encounterVariants.label') }}</legend>
+                <p>{{ t('encounterVariants.help') }}</p>
+                <div class="opening-options">
+                  <label
+                    v-for="variant in ['original', 'chapter-two'] as const"
+                    :key="variant"
+                    class="opening-option"
+                    :class="{ selected: encounterSetVariant === variant }"
+                  >
+                    <input
+                      v-model="encounterSetVariant"
+                      type="radio"
+                      :value="variant"
+                      name="encounter-set-variant"
+                    />
+                    {{ t(`encounterVariants.${variant}`) }}
+                  </label>
+                </div>
+              </fieldset>
               <fieldset v-if="selectedCampaign.openingScenarios?.length" class="story-opening">
                 <legend>{{ t('setup.openingScenario') }}</legend>
                 <p v-if="selectedCampaign.prologue">{{ t(selectedCampaign.prologue.body) }}</p>

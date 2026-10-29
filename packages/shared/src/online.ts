@@ -12,6 +12,7 @@ export interface OnlineLobby {
   status: 'lobby' | 'active'
   campaignId: string
   difficulty: 'easy' | 'standard' | 'hard' | 'expert'
+  encounterSetVariant?: 'original' | 'chapter-two'
   seats: { user: string; investigator: string | null; ready: boolean }[]
   game?: { scenarioId: string; phase: string; round: number; investigatorCount: number }
 }

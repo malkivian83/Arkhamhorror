@@ -12,6 +12,7 @@ import {
   type Campaign,
   type CampaignMember,
   type Difficulty,
+  type EncounterSetVariant,
 } from '@lcg/cards'
 import {
   applyInput,
@@ -165,6 +166,7 @@ export const useGameStore = defineStore('game', () => {
     difficulty: Difficulty,
     boons: import('@lcg/engine').Boon[] = [],
     openingScenario?: string,
+    encounterSetVariant?: EncounterSetVariant,
   ) {
     error.value = null
     const next = newCampaign(
@@ -175,6 +177,7 @@ export const useGameStore = defineStore('game', () => {
       boons,
       useDecksStore().rewards,
       openingScenario,
+      encounterSetVariant,
     )
     if (Object.values(next.log.investigators).some((i) => i.xp > 0)) {
       newAdventure()

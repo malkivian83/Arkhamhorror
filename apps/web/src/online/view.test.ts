@@ -83,6 +83,21 @@ it('renders deck selection, readiness and a disabled start until every member is
   expect(html).toContain(messages.es.online.waiting)
   expect(startDisabled(html)).toBe(true)
 })
+it.each(['en', 'es'] as const)(
+  'shows the saved Dunwich variant to host and guest in %s',
+  async (locale) => {
+    host()
+    state.view!.campaignId = 'the-dunwich-legacy'
+    state.view!.encounterSetVariant = 'chapter-two'
+    const html = await render(locale)
+    expect(html).toContain(messages[locale].encounterVariants.help)
+    expect(html.match(/<option\b[^>]*value="chapter-two"[^>]*>/)?.[0]).toContain('selected')
+    state.view!.owner = 'friend'
+    const guest = await render(locale)
+    expect(guest).toContain(messages[locale].encounterVariants['chapter-two'])
+    expect(guest).not.toContain('<option value="chapter-two"')
+  },
+)
 it('renders a shared start in English without a local game launch or private state', async () => {
   host()
   state.view!.status = 'active'
