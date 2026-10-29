@@ -31,6 +31,7 @@ import {
   type TreacheryBehavior,
 } from '@lcg/engine'
 import { THE_MAN_IN_THE_PALLID_MASK } from './the-man-in-the-pallid-mask'
+import { cultistsSpecific } from '../brethren-of-ash/queen-of-ash'
 import {
   chooseAssetToDiscard,
   chooseSkillTest,
@@ -1135,6 +1136,10 @@ export function encounterSpecific(
   key: string,
   data: Record<string, string | number | boolean>,
 ): GameState | null {
+  if (state.scenarioMeta?.chapterTwoEncounters === 1) {
+    const cultists = cultistsSpecific(state, key, data)
+    if (cultists) return cultists
+  }
   const investigator = typeof data.investigator === 'string' ? data.investigator : null
   const push = (messages: Message[]): GameState => ({
     ...state,

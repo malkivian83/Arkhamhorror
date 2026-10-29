@@ -1,3 +1,5 @@
+import { encounterSetForVariant } from '../encounter-variants'
+import { variantEncounterCode } from '../encounter-variant-rules'
 /**
  * Escenario V de El camino a Carcosa: "El Fantasma de la Verdad" (03200–03227).
  * Guía de campaña revisada ES, pp. 17–21.
@@ -300,8 +302,10 @@ const phantomSet: EncounterCard[] = [
 export const convinced = (log: CampaignLog | undefined) => carcosaBelief(log) === 'conviction'
 
 /** Cartas que se retiran según el registro (p. 19). */
-function removedFor(conviction: boolean): string[] {
-  return conviction ? [SETS.blackStarsRise, SETS.falseLead] : [CODES.twinSuns, SETS.huntingShadow]
+function removedFor(conviction: boolean, chapterTwo = false): string[] {
+  return (
+    conviction ? [SETS.blackStarsRise, SETS.falseLead] : [CODES.twinSuns, SETS.huntingShadow]
+  ).map((code) => variantEncounterCode(code, chapterTwo))
 }
 
 /** Sueños de la introducción que se leen sin decidir nada (p. 17–18). */
@@ -351,7 +355,8 @@ export function aPhantomOfTruth({
   difficulty,
   seed = 0,
   log,
-}: Pick<ScenarioContext, 'difficulty'> & {
+  encounterSetVariant,
+}: Pick<ScenarioContext, 'difficulty' | 'encounterSetVariant'> & {
   seed?: number
   players?: number
   log?: ScenarioContext['log']
@@ -380,14 +385,14 @@ export function aPhantomOfTruth({
   const intro = dreams(log)
   const jordanInfo = hasNote(log, 'carcosaInterviewedJordan')
   const conviction = convinced(log)
-  const removed = removedFor(conviction)
+  const removed = removedFor(conviction, encounterSetVariant === 'chapter-two')
   const deck = [
     ...phantomSet,
     ...ENCOUNTER_SETS.evilPortents,
     ...ENCOUNTER_SETS.byakhee,
     ...ENCOUNTER_SETS.theStranger,
     ...ENCOUNTER_SETS.agentsOfHastur,
-    ...ENCOUNTER_SETS.midnightMasksTreacheries,
+    ...encounterSetForVariant(ENCOUNTER_SETS.midnightMasksTreacheries, encounterSetVariant),
   ].filter((c) => !removed.includes(c.code))
   return {
     id: A_PHANTOM_OF_TRUTH,
@@ -911,11 +916,14 @@ registerScenario({
       case 'phantomBelief': {
         // Tras el Sueño 10 cambian el acto 1 y las cartas retiradas según el registro.
         const conviction = convinced(state.campaignLog)
-        const removed = removedFor(conviction)
-        const restored = removedFor(!conviction)
+        const removed = removedFor(conviction, state.scenarioMeta?.chapterTwoEncounters === 1)
+        const restored = removedFor(!conviction, state.scenarioMeta?.chapterTwoEncounters === 1)
         const all = [
           ...ENCOUNTER_SETS.evilPortents,
-          ...ENCOUNTER_SETS.midnightMasksTreacheries,
+          ...encounterSetForVariant(
+            ENCOUNTER_SETS.midnightMasksTreacheries,
+            state.scenarioMeta?.chapterTwoEncounters === 1 ? 'chapter-two' : undefined,
+          ),
           ...phantomSet,
         ].filter((c) => restored.includes(c.code))
         const [encounterDeck, rng] = shuffle(

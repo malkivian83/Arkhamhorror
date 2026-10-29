@@ -1,3 +1,4 @@
+import { isEncounterGhoul } from '../encounter-variant-rules'
 /** El encuentro: guía revisada ES pp. 2–3 y cartas 01104–01119. */
 import {
   activeInvestigators,
@@ -213,7 +214,8 @@ const specific = (key: string, investigator?: InvestigatorId): Message => ({
   key,
   ...(investigator ? { data: { investigator } } : {}),
 })
-const isGhoul = (e: { traits?: string[] }) => e.traits?.includes('Ghoul') ?? false
+const isGhoul = (state: GameState, e: { code: string; traits?: string[] }) =>
+  isEncounterGhoul(state, e)
 
 function resolutionStory(state: GameState, outcome: ScenarioOutcome): Message[] {
   const n = outcome.type === 'resolution' ? outcome.resolution : 0
@@ -286,7 +288,8 @@ registerScenario({
   tokenEffect: (state, token, investigator) => {
     const hard = state.difficulty === 'hard' || state.difficulty === 'expert'
     const here = getInvestigator(state, investigator).location
-    const ghouls = here === null ? 0 : enemiesAt(state, here).filter(isGhoul).length
+    const ghouls =
+      here === null ? 0 : enemiesAt(state, here).filter((e) => isGhoul(state, e)).length
     switch (token) {
       case 'skull':
         return hard
@@ -331,7 +334,7 @@ registerScenario({
       }
     if (key === 'scatterGhouls') {
       const [deck, rng] = shuffle([...state.encounterDeck, ...state.encounterDiscard], state.rng)
-      const at = deck.findIndex((c) => c.kind === 'enemy' && isGhoul(c))
+      const at = deck.findIndex((c) => c.kind === 'enemy' && isGhoul(state, c))
       const card = at < 0 ? undefined : deck[at]
       const next = {
         ...state,
@@ -479,7 +482,7 @@ registerAgenda({
   forced: (state, trigger) => {
     if (trigger.type === 'enemyPhaseEnds')
       return Object.values(state.enemies)
-        .filter((e) => isGhoul(e) && e.engagedWith === null)
+        .filter((e) => isGhoul(state, e) && e.engagedWith === null)
         .map((e): Message => ({
           type: 'HuntOnce',
           enemy: e.id,
@@ -491,7 +494,8 @@ registerAgenda({
         {
           type: 'PlaceDoom',
           amount: Object.values(state.enemies).filter(
-            (e) => isGhoul(e) && (e.location === CODES.hallway || e.location === CODES.parlor),
+            (e) =>
+              isGhoul(state, e) && (e.location === CODES.hallway || e.location === CODES.parlor),
           ).length,
         },
       ]

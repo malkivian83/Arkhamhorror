@@ -1,5 +1,6 @@
 import { AGENTS_OF_YOG } from '../the-dunwich-legacy/remaining-encounters'
 import { classicSearch } from './encounter-search'
+import { cultistsSpecific } from '../brethren-of-ash/queen-of-ash'
 import type { ScenarioDefinition } from '@lcg/engine'
 /** Revised guide pp. 6–7; original cards 01142–01158. */
 import {
@@ -303,6 +304,10 @@ registerScenario({
     ]
   },
   specific: (s, key, d) => {
+    if (s.scenarioMeta?.chapterTwoEncounters === 1) {
+      const cultists = cultistsSpecific(s, key, d)
+      if (cultists) return cultists
+    }
     const search = classicSearch(s, key, d)
     if (search) return search
     const common = encounterSpecific(s, key, d)

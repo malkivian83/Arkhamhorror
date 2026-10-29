@@ -342,6 +342,9 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
   }
   const scenario = prepareEncounterVariant(
     entry.build({
+      ...(campaign.encounterSetVariant === 'chapter-two'
+        ? { encounterSetVariant: campaign.encounterSetVariant }
+        : {}),
       difficulty: campaign.difficulty,
       log: campaign.log,
       seed,

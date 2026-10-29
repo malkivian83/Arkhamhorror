@@ -1,4 +1,5 @@
 import { push, shuffle, type EnemyCard, type GameState } from '@lcg/engine'
+import { isEncounterGhoul } from '../encounter-variant-rules'
 /** RR Search: choose a matching card and its zone, then shuffle the deck. */
 export function classicSearch(
   s: GameState,
@@ -14,7 +15,11 @@ export function classicSearch(
       return [
         ...new Map(
           cards
-            .filter((c): c is EnemyCard => c.kind === 'enemy' && !!c.traits?.includes(trait))
+            .filter(
+              (c): c is EnemyCard =>
+                c.kind === 'enemy' &&
+                (trait === 'Ghoul' ? isEncounterGhoul(s, c) : !!c.traits?.includes(trait)),
+            )
             .map((c) => [c.code, c]),
         ).values(),
       ].map((c) => ({
