@@ -141,11 +141,13 @@ const storyTypes: { value: StoryType; label: string }[] = [
 const normalize = (text: string) => text.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
 const visibleCampaigns = computed(() => {
   const query = normalize(storyQuery.value.trim())
-  return campaigns.filter(
-    (c) =>
-      (storyType.value === 'all' || (storyType.value === 'standalone') === !!c.standalone) &&
-      (!query || normalize(`${t(c.name)} ${t(`setup.descriptions.${c.id}`)}`).includes(query)),
-  )
+  return campaigns
+    .filter(
+      (c) =>
+        (storyType.value === 'all' || (storyType.value === 'standalone') === !!c.standalone) &&
+        (!query || normalize(`${t(c.name)} ${t(`setup.descriptions.${c.id}`)}`).includes(query)),
+    )
+    .sort((a, b) => t(a.name).localeCompare(t(b.name), locale.value, { sensitivity: 'base' }))
 })
 const availableCampaigns = computed(() =>
   visibleCampaigns.value.filter((c) => c.scenarios[0]?.build),
