@@ -34,6 +34,7 @@ import {
 import { ENCOUNTER_SETS } from '../the-path-to-carcosa/encounter-sets'
 import { ZEALOT_CHAOS_BAGS } from './campaign'
 import { LITA_CHANTLER } from './lita'
+import { classicSearch } from './encounter-search'
 
 export const THE_GATHERING = 'the-gathering'
 export const CODES = {
@@ -315,6 +316,8 @@ registerScenario({
     }
   },
   specific: (state, key, data) => {
+    const search = classicSearch(state, key, data)
+    if (search) return search
     if (key === 'litaForReplacement' && state.campaignLog)
       return {
         ...state,
@@ -341,35 +344,7 @@ registerScenario({
         ? push(next, { type: 'ResolveEncounterCard', investigator: lead.id, card })
         : next
     }
-    if (key === 'searchGhoul') {
-      const investigator = String(data.investigator)
-      const candidates = [...state.encounterDeck, ...state.encounterDiscard]
-        .filter((c) => c.kind === 'enemy' && isGhoul(c))
-        .filter((c, i, all) => all.findIndex((other) => other.code === c.code) === i)
-      if (!candidates.length) {
-        const [encounterDeck, rng] = shuffle(state.encounterDeck, state.rng)
-        return { ...state, encounterDeck, rng }
-      }
-      return push(state, {
-        type: 'Ask',
-        investigator,
-        question: {
-          kind: 'chooseOne',
-          prompt: 'prompt.zealot.chooseGhoul',
-          choices: candidates.map((card) => ({
-            label: 'choice.enemy',
-            params: { enemy: card.name },
-            then: [
-              {
-                type: 'ScenarioSpecific',
-                key: 'drawSearchedGhoul',
-                data: { investigator, code: card.code },
-              },
-            ],
-          })),
-        },
-      })
-    }
+    // Retain the legacy continuation for already saved pre-zone-search queues.
     if (key === 'drawSearchedGhoul') {
       const index = state.encounterDeck.findIndex((c) => c.code === data.code)
       const discardIndex = state.encounterDiscard.findIndex((c) => c.code === data.code)

@@ -1,6 +1,6 @@
 import spreading from '../../../../docs-proyecto/evidencias/spreading-flames-57.json'
 import smoke from '../../../../docs-proyecto/evidencias/smoke-and-mirrors-1.json'
-import queen from '../../../../docs-proyecto/evidencias/queen-of-ash-66.json'
+import queen from '../../../../docs-proyecto/evidencias/queen-of-ash-23.json'
 import { applyInput, type PlayerInput, type ScenarioOutcome } from '@lcg/engine'
 import { describe, expect, it } from 'vitest'
 import { finishScenario, newCampaign, startScenario, type Campaign } from '../campaign'

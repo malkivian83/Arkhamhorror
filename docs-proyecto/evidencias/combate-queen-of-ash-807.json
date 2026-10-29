@@ -194,6 +194,10 @@
     },
     {
       "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
       "choice": 12
     },
     {
@@ -518,6 +522,13 @@
       "prompt": "prompt.skillTestFailed",
       "label": "choice.applyResults",
       "params": null
+    },
+    {
+      "prompt": "prompt.chooseEnemy",
+      "label": "choice.zealot.searchDeckEnemy",
+      "params": {
+        "enemy": "Cantor of Flame"
+      }
     },
     {
       "prompt": "prompt.chooseAction",

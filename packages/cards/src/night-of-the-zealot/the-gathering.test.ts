@@ -345,9 +345,9 @@ describe('The Gathering: chaos symbols', () => {
       'action.investigate',
     )
     expect(s.skillTest).toBeNull()
-    expect(s.pending?.question.prompt).toBe('prompt.zealot.chooseGhoul')
+    expect(s.pending?.question.prompt).toBe('prompt.chooseEnemy')
     expect(s.pending?.question.choices).toHaveLength(2)
-    s = choose(s, 'choice.enemy', { enemy: 'Icy Ghoul' })
+    s = choose(s, 'choice.zealot.searchDiscardEnemy', { enemy: 'Icy Ghoul' })
     // Cellar is apart: the selected enemy cannot spawn and returns to discard.
     expect(s.encounterDiscard.filter((c) => c.code === CODES.icyGhoul)).toHaveLength(1)
     expect(s.encounterDeck.map((c) => c.code)).toEqual([CODES.fleshEater])

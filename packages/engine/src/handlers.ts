@@ -6800,14 +6800,17 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'ChooseDiscardFromHand': {
       const investigator = getInvestigator(state, message.investigator)
-      if (message.amount <= 0 || investigator.hand.length === 0) return state
+      // RR Weakness: a weakness cannot be chosen for a hand discard.
+      // Random discards and effects discarding the entire hand use other messages.
+      const cards = investigator.hand.filter((card) => !playerCardDef(card)?.weakness)
+      if (message.amount <= 0 || cards.length === 0) return state
       return push(state, {
         type: 'Ask',
         investigator: investigator.id,
         question: {
           kind: 'chooseOne',
           prompt: 'prompt.chooseCardToDiscard',
-          choices: [...new Set(investigator.hand)].map((card): Choice => ({
+          choices: [...new Set(cards)].map((card): Choice => ({
             label: 'choice.discard',
             params: { card },
             then: [

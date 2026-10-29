@@ -14,7 +14,8 @@ import {
   enemiesAt,
   getInvestigator,
   isPermanent,
-  nearestLocation,
+  leadInvestigator,
+  push,
   playerCardDef,
   registerAct,
   registerAgenda,
@@ -40,6 +41,8 @@ import {
   type TreacheryCard,
 } from '@lcg/engine'
 import { CHAOS_BAGS, type Difficulty } from './campaign'
+import { nearestEnemyChoice } from '../nearest-choice'
+import { classicSearch } from '../night-of-the-zealot/encounter-search'
 import {
   chooseSkillTest,
   copies,
@@ -480,6 +483,38 @@ function targetsCultist(state: GameState): boolean {
 registerScenario({
   id: QUEEN_OF_ASH,
   resolution: resolutionStory,
+  specific: (state, key, data) => {
+    const search = classicSearch(state, key, data)
+    if (search) return search
+    if (key !== 'brethrenInvocationStart' && key !== 'brethrenInvocationDoom') return state
+    const investigator = String(data.investigator)
+    const cultists = Object.values(state.enemies).filter(
+      (e) => e.traits?.includes('Cultist') && !e.doom,
+    )
+    if (key === 'brethrenInvocationStart') {
+      // RR ST.7: inspect the board when the failed test resolves, not when it begins.
+      if (!cultists.length) return classicSearch(state, 'carcosaFindCultist', data)!
+      return push(state, {
+        type: 'ForEachPointFailed',
+        then: [{ type: 'ScenarioSpecific', key: 'brethrenInvocationDoom', data: { investigator } }],
+      })
+    }
+    if (!cultists.length) return state
+    return push(state, {
+      type: 'Ask',
+      investigator,
+      question: {
+        kind: 'chooseOne',
+        prompt: 'prompt.chooseEnemy',
+        choices: cultists.map((e) => ({
+          label: 'choice.enemy',
+          params: { enemy: e.name },
+          target: { type: 'enemy', id: e.id },
+          then: [{ type: 'PlaceDoomOnEnemy', enemy: e.id, amount: 1 }],
+        })),
+      },
+    })
+  },
   tokenEffect: (state, token, investigator) => {
     const hard = state.difficulty === 'hard' || state.difficulty === 'expert'
     const atRitualSite = getInvestigator(state, investigator).location === CODES.undergroundCistern
@@ -704,10 +739,15 @@ registerEnemy({
   // Forzado al final de la ronda: 1 perdición en el enemigo sin perdición más cercano a él.
   forced: (state, trigger, self) => {
     if (trigger.type !== 'roundEnds') return []
-    const noDoom = (l: string) => enemiesAt(state, l).some((e) => !e.doom)
-    const at = nearestLocation(state, self.location, noDoom)
-    const target = at === null ? undefined : enemiesAt(state, at).find((e) => !e.doom)
-    return target ? [{ type: 'PlaceDoomOnEnemy', enemy: target.id, amount: 1 }] : []
+    const lead = leadInvestigator(state)
+    if (!lead) return []
+    return nearestEnemyChoice(
+      state,
+      lead.id,
+      Object.values(state.enemies).filter((e) => !e.doom),
+      (enemy) => [{ type: 'PlaceDoomOnEnemy', enemy: enemy.id, amount: 1 }],
+      { from: self.location },
+    )
   },
 })
 
@@ -856,38 +896,13 @@ registerTreachery({
   code: CODES.blasphemousInvocation,
   // [willpower] (3): por cada punto de fallo, 1 perdición en un Sectario sin perdición. Si
   // fallas y no hay ninguno, buscas un Sectario en el mazo o el descarte y lo robas.
-  revelation: (state, investigator) => {
-    const cultists = Object.values(state.enemies).filter(
-      (e) => (e.traits ?? []).includes('Cultist') && !e.doom,
-    )
-    if (cultists.length === 0) {
-      return [
-        effectTest(investigator, 'Blasphemous Invocation', 'willpower', 3, {
-          onFail: [{ type: 'SearchEncounterForTrait', investigator, trait: 'Cultist' }],
-        }),
-      ]
-    }
-    return [
-      effectTest(investigator, 'Blasphemous Invocation', 'willpower', 3, {
-        onFailEach: [
-          {
-            type: 'Ask',
-            investigator,
-            question: {
-              kind: 'chooseOne',
-              prompt: 'prompt.chooseEnemy',
-              choices: cultists.map((e): Choice => ({
-                label: 'choice.enemy',
-                params: { enemy: e.name },
-                target: { type: 'enemy', id: e.id },
-                then: [{ type: 'PlaceDoomOnEnemy', enemy: e.id, amount: 1 }],
-              })),
-            },
-          },
-        ],
-      }),
-    ]
-  },
+  revelation: (_state, investigator) => [
+    effectTest(investigator, 'Blasphemous Invocation', 'willpower', 3, {
+      onFail: [
+        { type: 'ScenarioSpecific', key: 'brethrenInvocationStart', data: { investigator } },
+      ],
+    }),
+  ],
 })
 
 registerTreachery({
@@ -926,10 +941,7 @@ registerTreachery({
   // [agility] (3). Si fallas: 1 horror y descartas un apoyo tuyo (que no sea de historia).
   revelation: (state, investigator) => {
     const mine = Object.values(state.assets).filter(
-      (a) =>
-        a.owner === investigator &&
-        !isPermanent(a.code) &&
-        !(playerCardDef(a.code)?.traits ?? []).includes('Story'),
+      (a) => a.owner === investigator && !isPermanent(a.code) && !playerCardDef(a.code)?.story,
     )
     return [
       effectTest(investigator, 'Putrid Vapors', 'agility', 3, {

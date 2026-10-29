@@ -597,6 +597,10 @@
     },
     {
       "investigator": "12007",
+      "choice": 0
+    },
+    {
+      "investigator": "12007",
       "choice": 1
     },
     {
@@ -1621,6 +1625,13 @@
       "label": "ability.quadMove",
       "params": {
         "location": "Dormitories"
+      }
+    },
+    {
+      "prompt": "prompt.chooseLocation",
+      "label": "choice.location",
+      "params": {
+        "location": "Warren Observatory"
       }
     },
     {

@@ -627,6 +627,10 @@
     },
     {
       "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
       "choice": 1
     },
     {
@@ -1497,6 +1501,13 @@
       "label": "choice.assignToAsset",
       "params": {
         "card": "Dr. Henry Armitage"
+      }
+    },
+    {
+      "prompt": "prompt.chooseEnemy",
+      "label": "choice.enemy",
+      "params": {
+        "enemy": "Servant of Flame"
       }
     },
     {

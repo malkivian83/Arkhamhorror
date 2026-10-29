@@ -3,7 +3,7 @@ import { applyInput, type GameState, type PlayerInput } from '@lcg/engine'
 import { describe, expect, it } from 'vitest'
 import spreading from '../../../../docs-proyecto/evidencias/spreading-flames-57.json'
 import smoke from '../../../../docs-proyecto/evidencias/smoke-and-mirrors-1.json'
-import queen from '../../../../docs-proyecto/evidencias/queen-of-ash-66.json'
+import queen from '../../../../docs-proyecto/evidencias/queen-of-ash-23.json'
 import { decodeSession, replay, session } from './session'
 import { markOf, undoTarget, type UndoKind } from './undo'
 

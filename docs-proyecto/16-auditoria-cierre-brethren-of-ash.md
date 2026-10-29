@@ -190,3 +190,28 @@ Las tareas de código, recorridos y aceptación automatizable quedan completadas
 Controles finales: **461 pruebas aprobadas en 34 archivos**, tipos de los seis proyectos, lint, formato, compilación web y `git diff --check`, sin errores. Se comprobaron los 31 enlaces locales de esta auditoría. JavaScript de 646,68 kB y 197,74 kB comprimido; se mantienen los avisos conocidos de tamaño y fuente resuelta en ejecución.
 
 **La comprobación en teléfono físico sigue pendiente.** La consulta de dispositivos conectados no encontró ninguno. La ventana de 390×640 prueba el comportamiento adaptable, pero no acredita pantalla táctil, teclado virtual ni navegador de un teléfono real. Para cerrarla hacen falta un dispositivo y las cinco comprobaciones siguientes: abrir una campaña importada, mover y ampliar el mapa con gestos, jugar una carta y resolver una prueba, consultar ambas caras de plan/acto, y recargar y volver al registro conservando el resultado. No se marca esa prueba como realizada.
+
+## Revisión de reglas · 29 de octubre de 2026
+
+Se corrigen el daño directo de Fire! y Cosmic Evils, los empates de Fire!, Raising
+Suspicions y Dark Magician, la selección sucesiva de Sectarios sin perdición de
+Blasphemous Invocation y la protección de los apoyos de historia ante Putrid
+Vapors. La búsqueda de Invocation permite elegir carta y zona. Se contrastan los
+textos de cartas EN de la copia externa `E:/referencia/ArkhamHorror`.
+
+Las grabaciones de combate y de equipos incorporan las nuevas decisiones de
+empate y las consecuencias del daño directo. Se conservan sus desenlaces y las
+aserciones de continuidad. La grabación individual de Queen con semilla 66 ya no
+reproduce R3 bajo las reglas corregidas: se conserva como evidencia histórica y
+se sustituye en las pruebas por [la semilla 23](evidencias/queen-of-ash-23.json),
+118 decisiones legales que continúan el mismo Smoke y alcanzan R3. No se
+parchean estados, resultados ni mazos para obtener estos recorridos.
+
+La comprobación conjunta con Fanática cubre 796 pruebas en 35 archivos distintos,
+incluidas 16 regresiones nuevas. Se conserva el resultado de 288 pruebas del
+primer grupo y 502 de consumidores afectados; tras renovar las grabaciones solo
+se repiten los tres archivos fallidos, que aprueban sus 18 pruebas. No se ejecuta
+la suite global. Tipos de motor, cartas y web, lint de los archivos editados y
+formato comprobados. Los cambios de reglas, sus consumidores o las grabaciones
+afectadas invalidarían las comprobaciones correspondientes. No se abre navegador
+ni se consulta CI o despliegue.

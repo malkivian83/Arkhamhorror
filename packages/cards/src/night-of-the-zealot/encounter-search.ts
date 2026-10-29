@@ -6,8 +6,9 @@ export function classicSearch(
   d: Record<string, string | number | boolean>,
 ): GameState | null {
   const investigator = String(d.investigator)
-  if (key === 'carcosaFindCultist' || key === 'devourerFindMonster') {
-    const trait = key === 'carcosaFindCultist' ? 'Cultist' : 'Monster'
+  if (key === 'carcosaFindCultist' || key === 'devourerFindMonster' || key === 'searchGhoul') {
+    const trait =
+      key === 'searchGhoul' ? 'Ghoul' : key === 'carcosaFindCultist' ? 'Cultist' : 'Monster'
     const choices = (['deck', 'discard'] as const).flatMap((zone) => {
       const cards = zone === 'deck' ? s.encounterDeck : s.encounterDiscard
       return [

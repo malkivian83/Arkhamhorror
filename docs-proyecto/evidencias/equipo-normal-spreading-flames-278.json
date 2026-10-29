@@ -733,6 +733,10 @@
     },
     {
       "investigator": "12004",
+      "choice": 0
+    },
+    {
+      "investigator": "12004",
       "choice": 3
     },
     {
@@ -778,6 +782,10 @@
     {
       "investigator": "12001",
       "choice": 4
+    },
+    {
+      "investigator": "12004",
+      "choice": 0
     },
     {
       "investigator": "12004",
@@ -900,10 +908,6 @@
       "choice": 10
     },
     {
-      "investigator": "12001",
-      "choice": 1
-    },
-    {
       "investigator": "12004",
       "choice": 1
     },
@@ -953,14 +957,6 @@
     },
     {
       "investigator": "12001",
-      "choice": 16
-    },
-    {
-      "investigator": "12001",
-      "choice": 2
-    },
-    {
-      "investigator": "12001",
       "choice": 0
     },
     {
@@ -974,6 +970,22 @@
     {
       "investigator": "12001",
       "choice": 0
+    },
+    {
+      "investigator": "12001",
+      "choice": 16
+    },
+    {
+      "investigator": "12001",
+      "choice": 2
+    },
+    {
+      "investigator": "12001",
+      "choice": 0
+    },
+    {
+      "investigator": "12001",
+      "choice": 1
     },
     {
       "investigator": "12001",
@@ -990,6 +1002,10 @@
     {
       "investigator": "12001",
       "choice": 0
+    },
+    {
+      "investigator": "12001",
+      "choice": 1
     },
     {
       "investigator": "12001",
@@ -2042,6 +2058,13 @@
       "params": null
     },
     {
+      "prompt": "prompt.chooseLocation",
+      "label": "choice.location",
+      "params": {
+        "location": "Dormitories"
+      }
+    },
+    {
       "prompt": "prompt.chooseNextInvestigator",
       "label": "choice.investigator",
       "params": {
@@ -2124,6 +2147,13 @@
       "prompt": "prompt.chooseAction",
       "label": "action.endTurn",
       "params": null
+    },
+    {
+      "prompt": "prompt.chooseLocation",
+      "label": "choice.location",
+      "params": {
+        "location": "Science Hall"
+      }
     },
     {
       "prompt": "prompt.commitCards",
@@ -2326,13 +2356,6 @@
       "prompt": "prompt.assignDamage",
       "label": "choice.assignToAsset",
       "params": {
-        "card": "Aleksey Saburov"
-      }
-    },
-    {
-      "prompt": "prompt.assignDamage",
-      "label": "choice.assignToAsset",
-      "params": {
         "card": "Dr. Henry Armitage"
       }
     },
@@ -2408,6 +2431,14 @@
       "params": null
     },
     {
+      "prompt": "prompt.reaction",
+      "label": "ability.healAsset",
+      "params": {
+        "card": "Aleksey Saburov",
+        "kind": "damage"
+      }
+    },
+    {
       "prompt": "prompt.chooseAction",
       "label": "ability.fightWith",
       "params": {
@@ -2442,6 +2473,13 @@
       "prompt": "prompt.skillTestSucceeded",
       "label": "choice.applyResults",
       "params": null
+    },
+    {
+      "prompt": "prompt.assignHorror",
+      "label": "choice.assignToAsset",
+      "params": {
+        "card": "Aleksey Saburov"
+      }
     },
     {
       "prompt": "prompt.chooseAction",
@@ -2467,6 +2505,13 @@
       "prompt": "prompt.skillTestSucceeded",
       "label": "choice.applyResults",
       "params": null
+    },
+    {
+      "prompt": "prompt.assignDamage",
+      "label": "choice.assignToAsset",
+      "params": {
+        "card": "Aleksey Saburov"
+      }
     },
     {
       "prompt": "prompt.reaction",

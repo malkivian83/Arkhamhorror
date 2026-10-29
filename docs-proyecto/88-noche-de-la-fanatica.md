@@ -187,3 +187,18 @@ Se mantienen los resultados anteriores válidos, sin volver a ejecutar la suite
 completa. Stella, personalizaciones y las correcciones anteriores de Carcosa
 ya estaban incorporadas en main; el árbol original conserva versiones locales
 anteriores y no se ha sobrescrito.
+
+## Revisión de reglas · 29 de octubre de 2026
+
+El descarte elegido de la mano excluye debilidades, conservando la posibilidad
+de descartarlas al azar. Herman exige cuatro cartas descartables y la Ira de
+Umôrdhoth no ofrece descartar si solo quedan debilidades. El encuentro reutiliza
+la búsqueda por carta y zona: se puede escoger el mazo o el descarte aunque ambos
+contengan el mismo Gul, y se baraja el mazo buscado. Se conserva la continuación
+anterior de búsqueda para colas de guardados antiguos.
+
+Las 16 regresiones de `campaign-review-regressions.test.ts` cubren estos casos y
+las correcciones simultáneas de Brethren. La validación dirigida conjunta y sus
+límites están en la última sección de la [auditoría de Brethren](16-auditoria-cierre-brethren-of-ash.md).
+Las pruebas de reglas y guardado de Fanática pasan; no se repite la suite global
+ni se realiza una validación de navegador.
