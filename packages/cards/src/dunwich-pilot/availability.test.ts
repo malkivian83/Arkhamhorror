@@ -53,24 +53,24 @@ describe('pilot availability and lossless deck import', () => {
   })
   it('preserves every unknown code and quantity and blocks the resulting deck', () => {
     const { deck, unknown } = deckFromArkhamDb(
-      { name: 'Imported', investigator_code: '12001', slots: { '12020': 2, '02019': 3 } },
+      { name: 'Imported', investigator_code: '12001', slots: { '12020': 2, '99999': 3 } },
       'id',
     )
     expect(deck.cards).toHaveLength(5)
-    expect(deck.cards.filter((code) => code === '02019')).toHaveLength(3)
-    expect(unknown).toEqual(['02019'])
+    expect(deck.cards.filter((code) => code === '99999')).toHaveLength(3)
+    expect(unknown).toEqual(['99999'])
     expect(validateDeck(deck).problems).toContainEqual({
       key: 'deck.problem.unknownCard',
-      params: { card: '02019' },
+      params: { card: '99999' },
     })
   })
   it('also preserves a future investigator without pretending the deck is playable', () => {
     const { deck, unknown } = deckFromArkhamDb(
-      { name: 'Future', investigator_code: '01001', slots: { '02019': 2 } },
+      { name: 'Future', investigator_code: '01001', slots: { '99999': 2 } },
       'id',
     )
-    expect(deck).toMatchObject({ investigator: '01001', cards: ['02019', '02019'] })
-    expect(unknown).toEqual(['01001', '02019'])
+    expect(deck).toMatchObject({ investigator: '01001', cards: ['99999', '99999'] })
+    expect(unknown).toEqual(['01001', '99999'])
     expect(validateDeck(deck).problems).toContainEqual({ key: 'deck.problem.unknownInvestigator' })
   })
   it.each([-1, 0.5, Infinity, 1001])('rejects invalid quantities: %s', (count) => {

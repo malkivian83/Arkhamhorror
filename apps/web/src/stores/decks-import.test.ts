@@ -18,14 +18,14 @@ describe('ArkhamDB deck persistence', () => {
         json: async () => ({
           name: 'Full import',
           investigator_code: '12001',
-          slots: { '12020': 2, '02019': 2 },
+          slots: { '12020': 2, '99999': 2 },
         }),
       }),
     )
     const store = useDecksStore(),
       result = await store.importFromArkhamDb('123')
     expect(result.ok).toBe(true)
-    expect(store.decks[0]!.cards).toEqual(['12020', '12020', '02019', '02019'])
+    expect(store.decks[0]!.cards).toEqual(['12020', '12020', '99999', '99999'])
     expect(
       store
         .check(store.decks[0]!)

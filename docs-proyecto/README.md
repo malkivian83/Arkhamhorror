@@ -98,3 +98,5 @@ vigente de pendientes.
   las [convenciones vigentes](06-convenciones.md).
   La aplicación sirve sus propias imágenes y usa su propia API, cuentas y base de datos.
 - Idiomas soportados: **solo inglés y español**.
+
+- [93 · Rex Murphy](93-rex-murphy.md): investigador original, exclusivas, Viejo libro de conocimiento y lista 21596 completa.

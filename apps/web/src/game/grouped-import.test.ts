@@ -1,9 +1,8 @@
-// Draft batch integration: importing the module here does not activate it in the app.
+// Batch integration through the public application registry.
 import { expect, it } from 'vitest'
 import { allPlayerCardDefs, playerCardBehavior } from '@lcg/engine'
 import { isStandard, newCampaign, purchase, purchaseOptions, startScenario } from '@lcg/cards'
 import data from '../../../../packages/cards/src/data/grouped-import.json'
-import '../../../../packages/cards/src/grouped-import'
 import { fallbackCards } from './fallbackCards'
 import { cardImages, cardThumbnail } from './cards'
 

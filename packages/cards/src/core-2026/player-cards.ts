@@ -26,6 +26,8 @@ import {
 import data from '../data/core-2026.json'
 import pete from '../data/ashcan-pete.json'
 import jenny from '../data/jenny-barnes.json'
+import rex from '../data/rex-murphy.json'
+import rexDecklist from '../rex-murphy/decklist-21596.json'
 import lola from '../data/lola-hayes.json'
 import andre from '../data/andre-patel.json'
 import wendy from '../data/wendy-adams.json'
@@ -65,6 +67,7 @@ registerPlayerCards([
   ...playerCards,
   ...(pete as PlayerCardDef[]),
   ...(jenny as PlayerCardDef[]),
+  ...(rex as PlayerCardDef[]),
   ...(lola as PlayerCardDef[]),
   ...(andre as PlayerCardDef[]),
   ...(wendy as PlayerCardDef[]),
@@ -124,6 +127,18 @@ export const STARTER_DECKS: Record<string, DeckList> = {
     ],
   },
   // ArkhamDB decklist 1179 with its exact codes; 01000 becomes a real basic weakness.
+  rex: {
+    investigator: 2,
+    investigatorCode: '02002',
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...Object.entries(rexDecklist.slots)
+        .filter(([code]) => code !== '01000')
+        .flatMap(([code, copies]) => Array.from({ length: copies }, () => code)),
+      '12104',
+    ],
+  },
   jenny: {
     investigator: 3,
     investigatorCode: '02003',

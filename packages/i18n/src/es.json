@@ -369,6 +369,7 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "rexFail": "Falla automáticamente y roba 3 cartas",
     "randallHeal": "Curarte 3 puntos de daño",
     "randallSearch": "Buscar un Arma en tu mazo y tu pila de descartes",
     "nathanielFightAgain": "Volver a combatir",
@@ -744,6 +745,8 @@
     "upkeep": "Fase de Mantenimiento"
   },
   "ability": {
+    "oldBookLore": "Libro de conocimientos antiguos",
+    "rexClue": "Rex Murphy: descubre 1 pista",
     "nathanielDamage": "Infligir 1 punto de daño adicional",
     "randallCho": "Randall Cho: curarte o buscar un Arma",
     "boxingGloves": "Guantes de boxeo: buscar un Evento Espíritu",
@@ -2878,6 +2881,7 @@
   },
   "offlineCard": {
     "subnames": {
+      "02002": "El reportero",
       "60101": "El boxeador",
       "60102": "Hermano preocupado",
       "60107": "La purificadora",
@@ -2907,6 +2911,10 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "01031": "Objeto. Tomo.",
+      "02009": "Maldición.",
+      "02008": "Inspiración.",
+      "02002": "Reportero.",
       "08129": "Favor. Sinergia.",
       "05156": "Gambito.",
       "02229": "Innato.",
@@ -3123,6 +3131,10 @@
       "60233": "Objeto. Tomo."
     },
     "summary": {
+      "01031": "[action] Agota el Viejo libro de conocimiento: Elige un investigador que esté en tu Lugar. Ese investigador busca 1 carta entre las 3 primeras cartas de su mazo, la roba, devuelve las cartas restantes a su mazo y lo baraja.",
+      "02009": "<b>Revelación</b> - Pon La maldición de Rex en juego en tu zona de amenaza.\n<b>Obligado</b> - Cuando fueses a tener éxito en una prueba de habilidad: Devuelve la ficha de Caos revelada a la bolsa y revela una nueva ficha de Caos. Si este efecto hace que fracases en la prueba, añade La maldición de Rex a tu mazo y barájalo. Límite de una vez por prueba.",
+      "02008": "Sólo para el mazo de Rex Murphy.\nRoba X cartas, donde X es la cantidad de pistas de Rex Murphy, hasta un máximo de 5.",
+      "02002": "[reaction] Después de que tengas éxito en una prueba de habilidad por 2 o más al investigar: Descubre 1 pista en tu Lugar.\nEfecto [elder_sign]: +2. En lugar de eso, puedes elegir fracasar automáticamente en esta prueba de habilidad para robar 3 cartas.",
       "fof-dimensional-duplicate": "Boca abajo. <b>Obligado</b>: Después de que deje de estar enfrentado, descártalo.",
       "08129": "De uno en uno, en cualquier orden, si controlas una...\n- carta [rogue], puedes moverte a un Lugar conectado.\n- carta [guardian], inflige 1 punto de daño a un Enemigo que esté en tu Lugar.\n- carta [seeker], descubre 1 pista en tu Lugar.\n- carta [mystic], cura 1 punto de horror de cualquier carta.\n- carta [survivor], cura 1 punto de daño de cualquier carta.",
       "05156": "Rápido. Juega esta carta durante el turno de cualquier investigador, excepto durante una acción.\nRealiza una acción inmediatamente como si fuera tu turno. Esta acción no cuenta para el número de acciones que puedes realizar cada turno.",
@@ -3755,6 +3767,7 @@
       "60233": "Usos (6 secretos). Límite de 1 por mazo.\n[free] Gasta 1 secreto: Recibes +2 al valor de habilidad para esta prueba de habilidad.\n[free] Gasta 2 secretos: Roba 2 cartas.\n[free] Gasta 3 secretos: Descubre 1 pista en cualquier Lugar.\n[free] Gasta 4 secretos: Inflige 3 puntos de daño a un Enemigo enfrentado a ti."
     },
     "backSummary": {
+      "02002": "<b>Tamaño del mazo</b>: 30.\n<b>Opciones de creación de mazos</b>: Cartas Buscador ([seeker]) de nivel 0-5, cartas neutrales de nivel 0-5, hasta cinco cartas de nivel 0 de cualquier otra clase.\n<b>Requisitos de creación de mazos</b> (no cuentan para el tamaño de mazo): Buscar la verdad, La maldición de Rex, 1 Debilidad básica aleatoria.\n<b>Restricciones de creación de mazos</b>: Sin cartas [[Fortuna]].",
       "12109": "Entran Dormitories y el patio; aparecen el Servant y Fire.",
       "12110": "Se abre el campus y el Servant queda apartado temporalmente.",
       "12111": "Elige el portador de Armitage; el Servant vuelve al patio con pistas. Roba Fire.",
@@ -3775,6 +3788,10 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "01031": "Viejo libro de conocimiento",
+      "02009": "La maldición de Rex",
+      "02008": "Buscar la verdad",
+      "02002": "Rex Murphy",
       "fof-dimensional-duplicate": "Enemigo extradimensional",
       "08129": "Petición de apoyo",
       "05156": "Reflejos rápidos",

@@ -51,7 +51,7 @@ export interface LocalizedCard {
  */
 const INVESTIGATOR_PACKS: Record<string, string[]> = {
   core: ['01005', '01014', '01015'],
-  dwl: ['02005', '02014', '02015', '02003', '02010', '02011'],
+  dwl: ['02005', '02014', '02015', '02003', '02010', '02011', '02002', '02008', '02009'],
   ptc: ['03006', '03018', '03019'],
   tfa: ['04004', '04013', '04014'],
   tcu: ['05006', '05018', '05019'],
@@ -80,7 +80,7 @@ const SOURCES: Record<string, string[]> = {
   ],
 }
 // v11: Nathaniel Cho and Harvey Walters in EN/ES.
-const CACHE_PREFIX = 'lcg:cards:v11:'
+const CACHE_PREFIX = 'lcg:cards:v12:'
 const CACHE_HOURS = 24
 
 /** Bundled alternatives plus any available translated card data. */

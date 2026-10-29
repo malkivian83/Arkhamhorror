@@ -83,6 +83,7 @@ function byClass(investigator: CardCode, card: PlayerCardDef): boolean {
     isStandard(card.code) &&
     !card.reward &&
     !!def &&
+    !card.traits.some((trait) => def.excludedDeckTraits?.includes(trait)) &&
     ((def.deckOptions ?? []).some((o) => deckOptionAllows(o, card)) || offClassAllowed(def, card))
   )
 }
@@ -102,6 +103,7 @@ export function cardPool(investigator: CardCode, extras: PoolExtras = {}): Playe
     all.filter(
       (card) =>
         isImplemented(card.code) &&
+        !card.traits.some((trait) => byCode(investigator)?.excludedDeckTraits?.includes(trait)) &&
         (byClass(investigator, card) ||
           (card.reward && rewards.has(card.code)) ||
           (isStandard(card.code) && !card.reward && options.some((o) => matchesExtra(card, o)))),
@@ -208,6 +210,8 @@ export function validateDeck(
     }
     if (SIGNATURES.has(code) && !own.has(code)) {
       problems.push({ key: 'deck.problem.otherSignature', params: { card: card.name } })
+    } else if (card.traits.some((trait) => investigator.excludedDeckTraits?.includes(trait))) {
+      problems.push({ key: 'deck.problem.notAllowed', params: { card: card.name } })
     } else if (card.reward) {
       if (!rewards.includes(code)) {
         problems.push({ key: 'deck.problem.rewardNotEarned', params: { card: card.name } })

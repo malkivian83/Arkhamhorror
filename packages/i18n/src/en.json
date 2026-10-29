@@ -369,6 +369,7 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "rexFail": "Automatically fail and draw 3 cards",
     "randallHeal": "Heal 3 damage",
     "randallSearch": "Search your deck and discard pile for a Weapon",
     "nathanielFightAgain": "Fight again",
@@ -744,6 +745,8 @@
     "upkeep": "Upkeep phase"
   },
   "ability": {
+    "oldBookLore": "Old Book of Lore",
+    "rexClue": "Rex Murphy: discover 1 clue",
     "nathanielDamage": "Deal 1 additional damage",
     "randallCho": "Randall Cho: heal or search for a Weapon",
     "boxingGloves": "Boxing Gloves: search for a Spirit event",
@@ -2878,6 +2881,7 @@
   },
   "offlineCard": {
     "subnames": {
+      "02002": "The Reporter",
       "60101": "The Boxer",
       "60102": "Concerned Brother",
       "60107": "The Purifier",
@@ -2907,6 +2911,10 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "01031": "Item. Tome.",
+      "02009": "Curse.",
+      "02008": "Insight.",
+      "02002": "Reporter.",
       "08129": "Favor. Synergy.",
       "05156": "Gambit.",
       "02229": "Innate.",
@@ -3123,6 +3131,10 @@
       "60233": "Item. Tome."
     },
     "summary": {
+      "01031": "[action] Exhaust Old Book of Lore: Choose an investigator at your location. That investigator searches the top 3 cards of his or her deck for a card, draws it, and shuffles the remaining cards into his or her deck.",
+      "02009": "<b>Revelation</b> - Put Rex's Curse into play in your threat area.\n<b>Forced</b> - When you would succeed at a skill test: Return the revealed chaos token to the bag and reveal a new chaos token. If this effect causes you to fail the test, shuffle Rex's Curse into your deck. (Limit once per test.)",
+      "02008": "Rex Murphy deck only.\nDraw X cards, where X is the number of clues on Rex Murphy (to a maximum of 5).",
+      "02002": "[reaction] After you succeed at a skill test by 2 or more while investigating: Discover 1 clue at your location.\n[elder_sign] effect: +2. You may instead choose to automatically fail this skill test to draw 3 cards.",
       "fof-dimensional-duplicate": "Face down. <b>Forced</b>: After it disengages, discard it.",
       "08129": "One at a time, in any order, if you control a...\n- [rogue] card, you may move to a connecting location.\n- [guardian] card, deal 1 damage to an enemy at your location.\n- [seeker] card, discover 1 clue at your location.\n- [mystic] card, heal 1 horror from any card.\n- [survivor] card, heal 1 damage from any card.",
       "05156": "Fast. Play during any investigator's turn, except during an action.\nImmediately take an action as if it were your turn. This action does not count toward the number of actions you can take each turn.",
@@ -3755,6 +3767,7 @@
       "60233": "Uses (6 secrets). Limit 1 per deck.\n[fast] Spend 1 secret: You get +2 skill value for this skill test.\n[fast] Spend 2 secrets: Draw 2 cards.\n[fast] Spend 3 secrets: Discover 1 clue at any location.\n[fast] Spend 4 secrets: Deal 3 damage to an enemy engaged with you."
     },
     "backSummary": {
+      "02002": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Seeker cards ([seeker]) level 0-5, Neutral cards level 0-5, up to five other level 0 cards from any other class.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Search for the Truth, Rex's Curse, 1 random basic weakness.\n<b>Deckbuilding Restrictions</b>: No [[Fortune]] cards.",
       "12109": "Dormitories and the Quad enter play; the Servant and Fire appear.",
       "12110": "The campus opens up and the Servant is set aside temporarily.",
       "12111": "Choose Armitage’s bearer; the Servant returns to the Quad with clues. Draw Fire.",
@@ -3775,6 +3788,10 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "01031": "Old Book of Lore",
+      "02009": "Rex's Curse",
+      "02008": "Search for the Truth",
+      "02002": "Rex Murphy",
       "fof-dimensional-duplicate": "Extradimensional Enemy",
       "08129": "Call for Backup",
       "05156": "Swift Reflexes",

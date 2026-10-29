@@ -453,6 +453,7 @@ export interface PlayerCardDef {
   skills?: Record<SkillType, number>
   elderSignModifier?: number
   deckOptions?: DeckOption[]
+  excludedDeckTraits?: string[]
   offClassLevelZeroLimit?: number
   /** Classes those other level 0 cards may belong to (Marie Lambeau: Seeker and/or Survivor). */
   offClassLevelZeroClasses?: string[]
@@ -1128,6 +1129,8 @@ export type Message =
     }
   /** Cancel the held token and return it to the bag (Wendy Adams), and reveal a new one. */
   | { type: 'CancelRevealedToken'; redraw?: boolean; use?: string }
+  /** Return resolved tokens and reveal afresh, retaining commitments and per-test usage. */
+  | { type: 'RedrawSkillTestTokens'; use: string }
   /** Cancel the held token and treat it as another symbol (Father Mateo). */
   | { type: 'TreatRevealedTokenAs'; token: ChaosToken }
   /** Discard the asset and resolve its sealed token as if revealed (The Codex of Ages). */
