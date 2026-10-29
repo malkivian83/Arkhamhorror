@@ -308,7 +308,7 @@ export const encounterDeck = [
 const location = (card: LocationCard): LocationCard => card
 
 /** Localizaciones con sus conexiones (símbolos de las cartas). */
-const LOCATIONS = {
+export const LOCATIONS = {
   northside: location({
     id: CODES.northside,
     position: [0, 0],

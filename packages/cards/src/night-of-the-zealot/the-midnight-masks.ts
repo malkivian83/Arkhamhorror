@@ -1,4 +1,8 @@
 import { classicSearch } from './encounter-search'
+import { encounterSetForVariant } from '../encounter-variants'
+import { cultistsSpecific } from '../brethren-of-ash/queen-of-ash'
+import { CODES as M } from '../brethren-of-ash/smoke-and-mirrors'
+import { midnightArkham, midnightLocation } from './midnight-variant'
 import type { ScenarioDefinition } from '@lcg/engine'
 /** Revised guide pp. 4–5; original cards 01120–01141, without Return To. */
 import {
@@ -93,17 +97,32 @@ const rawRooms: [string, string, number, number, number?][] = [
   ['01133', 'Graveyard', 1, 2, 1],
   ['01134', 'Northside', 3, 2, 1],
 ]
+function cultistLocations(state: GameState, code: string): string[] {
+  const target = spawnAt[code]!
+  if (state.scenarioMeta?.chapterTwoEncounters === 1) {
+    const location = midnightLocation(state, target === 'downtown' ? '01130' : target)
+    return state.locations[location] ? [location] : []
+  }
+  return Object.keys(state.locations).filter((id) => id === target || groups[id] === target)
+}
 export function theMidnightMasks({
   difficulty,
   log,
   seed,
   investigators,
+  encounterSetVariant,
 }: ScenarioContext): ScenarioDefinition {
   let rng = seedRng(seed)
   const [south, r1] = shuffle(['01126', '01127'], rng)
   rng = r1
   const [downtown, r2] = shuffle(['01130', '01131'], rng)
   rng = r2
+  let university: string = M.universityQuietCampus
+  if (encounterSetVariant === 'chapter-two') {
+    const [options, next] = shuffle([M.universityInFlames, M.universityQuietCampus], rng)
+    university = options[0]!
+    rng = next
+  }
   const [cultists] = shuffle(
     CULTISTS.filter((c) => c !== '01121b'),
     rng,
@@ -115,24 +134,38 @@ export function theMidnightMasks({
       !(['01126', '01127'].includes(c) && c !== south[0]) &&
       !(['01130', '01131'].includes(c) && c !== downtown[0]),
   )
-  const locations: LocationCard[] = chosen.map(([id, name, shroud, clueValue, victory]) => ({
-    id,
-    name,
-    shroud,
-    clueValue,
-    cluesPerInvestigator: true,
-    traits: ['Arkham'],
-    ...(victory ? { victory } : {}),
-    connections: chosen.filter(([c]) => links[groups[id]!]!.includes(groups[c]!)).map(([c]) => c),
-  }))
-  const acolyte = ENCOUNTER_SETS.darkCult.find((c) => c.code === '01169')!
-  const starts = [south[0]!, downtown[0]!, '01133'].slice(0, Math.max(0, investigators.length - 1))
+  const locations: LocationCard[] =
+    encounterSetVariant === 'chapter-two'
+      ? midnightArkham(south[0]!, downtown[0]!, university, burned)
+      : chosen.map(([id, name, shroud, clueValue, victory]) => ({
+          id,
+          name,
+          shroud,
+          clueValue,
+          cluesPerInvestigator: true,
+          traits: ['Arkham'],
+          ...(victory ? { victory } : {}),
+          connections: chosen
+            .filter(([c]) => links[groups[id]!]!.includes(groups[c]!))
+            .map(([c]) => c),
+        }))
+  const darkCult = encounterSetForVariant(ENCOUNTER_SETS.darkCult, encounterSetVariant)
+  const acolyte = darkCult.find(
+    (c) => c.code === (encounterSetVariant === 'chapter-two' ? '12188' : '01169'),
+  )!
+  const locationState = {
+    locations: Object.fromEntries(locations.map((l) => [l.id, l])),
+    scenarioMeta: encounterSetVariant === 'chapter-two' ? { chapterTwoEncounters: 1 } : {},
+  }
+  const starts = [south[0]!, downtown[0]!, '01133']
+    .slice(0, Math.max(0, investigators.length - 1))
+    .map((id) => midnightLocation(locationState, id))
   let removed = starts.length
   const encounters = [
     ...ENCOUNTER_SETS.midnightMasksTreacheries,
     ...ENCOUNTER_SETS.chillingCold,
     ...ENCOUNTER_SETS.lockedDoors,
-    ...ENCOUNTER_SETS.darkCult.filter((c) => c.code !== '01169' || removed-- <= 0),
+    ...darkCult.filter((c) => c.code !== acolyte.code || removed-- <= 0),
     ...(data.sets.nightgaunts as EnemyCard[]),
     ...(log.notes.includes(ZEALOT_NOTES.priestAlive) &&
     !log.crossedOut.includes(ZEALOT_NOTES.priestAlive)
@@ -147,7 +180,7 @@ export function theMidnightMasks({
     ],
     setupInstructions: entry('setup'),
     locations,
-    startingLocation: burned ? '01125' : '01124',
+    startingLocation: midnightLocation(locationState, burned ? '01125' : '01124'),
     agendas: [
       { code: '01121a', name: 'Predator or Prey?', doomThreshold: 6 },
       { code: '01122', name: 'Time Is Running Short', doomThreshold: 8 },
@@ -252,6 +285,10 @@ registerScenario({
     ]
   },
   specific: (s, key, d) => {
+    if (s.scenarioMeta?.chapterTwoEncounters === 1) {
+      const cultists = cultistsSpecific(s, key, d)
+      if (cultists) return cultists
+    }
     const search = classicSearch(s, key, d)
     if (search) return search
     const common = encounterSpecific(s, key, d)
@@ -262,8 +299,7 @@ registerScenario({
         .filter(Boolean)
       const code = deck.shift()
       if (!code) return s
-      const room =
-        Object.keys(s.locations).find((c) => groups[c] === spawnAt[code]) ?? spawnAt[code]!
+      const room = cultistLocations(s, code)[0] ?? spawnAt[code]!
       return push(
         { ...s, scenarioMeta: { ...s.scenarioMeta, midnightCultists: deck.join(',') } },
         { type: 'SpawnSetAsideEnemy', code, location: room },
@@ -336,8 +372,7 @@ for (const code of CULTISTS.filter((c) => c !== '01121b'))
   registerEnemy({
     code,
     spawn: (s) => {
-      const where = spawnAt[code]
-      return Object.keys(s.locations).filter((c) => c === where || groups[c] === where)
+      return cultistLocations(s, code)
     },
     ...(code === '01137'
       ? {
@@ -503,7 +538,7 @@ for (const [code, ,] of rawRooms)
 registerEnemy({
   code: ghoulPriest.code,
   spawn: (s, _i) =>
-    s.scenarioId === MIDNIGHT && s.locations['01124']
-      ? ['01124']
+    s.scenarioId === MIDNIGHT && s.locations[midnightLocation(s, '01124')]
+      ? [midnightLocation(s, '01124')]
       : [getInvestigator(s, _i).location!],
 })

@@ -1,3 +1,4 @@
+import { encounterSetForVariant } from '../encounter-variants'
 /**
  * Escenario IV de El camino a Carcosa: "El juramento inconfesable" (03159–03188) e
  * Interludio II: Alma perdida. Guía de campaña revisada ES, pp. 13–16.
@@ -324,7 +325,8 @@ export function theUnspeakableOath({
   difficulty,
   seed = 0,
   log,
-}: Pick<ScenarioContext, 'difficulty'> & {
+  encounterSetVariant,
+}: Pick<ScenarioContext, 'difficulty' | 'encounterSetVariant'> & {
   seed?: number
   players?: number
   log?: ScenarioContext['log']
@@ -415,10 +417,14 @@ export function theUnspeakableOath({
       ...ENCOUNTER_SETS.hastursGift.filter((c) => c.kind === 'treachery'),
       ...ENCOUNTER_SETS.delusions,
       ...ENCOUNTER_SETS.decayAndFilth,
-      ...ENCOUNTER_SETS.agentsOfHastur.filter((c) => c.kind === 'treachery'),
+      ...encounterSetForVariant(ENCOUNTER_SETS.agentsOfHastur, encounterSetVariant).filter(
+        (c) => c.kind === 'treachery',
+      ),
     ],
     setAside: [
-      ...MONSTERS.map((m) => ({ ...m })),
+      ...MONSTERS.filter(
+        (m) => encounterSetVariant !== 'chapter-two' || m.code !== SETS.screechingByakhee,
+      ).map((m) => ({ ...m })),
       ...lunatics.map((l) => ({ ...l })),
       { ...danielEnemy },
       { ...constance },

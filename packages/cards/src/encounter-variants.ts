@@ -5,12 +5,13 @@ import { cultistEnemies, otherEncounterCards, CODES as Q } from './brethren-of-a
 import { ENCOUNTER_SETS } from './the-path-to-carcosa/encounter-sets'
 import { DUNWICH_ENCOUNTER_SETS } from './the-dunwich-legacy/encounter-sets'
 import { NIGHTGAUNTS } from './the-dunwich-legacy/altar-encounters'
+import classicData from './night-of-the-zealot/classic-data.json'
 
 export type EncounterSetVariant = 'original' | 'chapter-two'
 
 /** Only enable a campaign after reviewing its named-card and set-aside interactions. */
 export function supportsChapterTwoEncounters(campaignId: string): boolean {
-  return campaignId === 'the-dunwich-legacy'
+  return ['the-dunwich-legacy', 'the-path-to-carcosa', 'night-of-the-zealot'].includes(campaignId)
 }
 
 export function assertEncounterSetVariant(
@@ -53,6 +54,29 @@ export const CHAPTER_TWO_SUBSTITUTIONS = [
     replacement: select(spreadingCards, [S.unspeakableTruths, S.forbiddenSecrets]),
   },
   { original: NIGHTGAUNTS, replacement: select(smokeCards, [M.batHorror, M.aerialPursuit]) },
+  {
+    original: ENCOUNTER_SETS.ghouls,
+    replacement: [
+      ...select(smokeCards, [M.rogueGangster, M.crossfire]),
+      ...select(spreadingCards, [S.cantorOfFlame, S.hellhound]),
+    ],
+  },
+  {
+    original: ENCOUNTER_SETS.agentsOfHastur,
+    replacement: select(spreadingCards, [S.extraplanarVisions, S.wildCompulsion]),
+  },
+  {
+    original: classicData.sets.agents_of_shub as EncounterCard[],
+    replacement: select(spreadingCards, [S.mutated, S.mutatedExperiment]),
+  },
+  {
+    original: classicData.sets.agents_of_cthulhu as EncounterCard[],
+    replacement: select(otherEncounterCards(), [Q.unnaturalDecay, Q.putridVapors]),
+  },
+  {
+    original: ENCOUNTER_SETS.midnightMasksTreacheries,
+    replacement: select(smokeCards, [M.raisingSuspicions, M.redHerring]),
+  },
 ] as const
 
 /** Resolve a named set reference in a scenario ability as well as during setup. */

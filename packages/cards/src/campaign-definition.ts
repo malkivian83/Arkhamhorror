@@ -12,9 +12,11 @@ import type {
   ScenarioDefinition,
   StoryEntry,
 } from '@lcg/engine'
+import type { EncounterSetVariant } from './encounter-variants'
 
 /** Lo que necesita un escenario para prepararse dentro de una campaña. */
 export interface ScenarioContext {
+  encounterSetVariant?: EncounterSetVariant
   difficulty: Difficulty
   log: CampaignLog
   /** Semilla para las elecciones al azar de la preparación. */

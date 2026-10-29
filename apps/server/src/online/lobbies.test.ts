@@ -46,6 +46,32 @@ function memory() {
 }
 
 describe('private online lobbies', () => {
+  it.each(['night-of-the-zealot', 'the-path-to-carcosa'])(
+    'starts %s with the selected encounter variant and restores it from storage',
+    async (campaignId) => {
+      const { db, data } = memory()
+      const service = new LobbyService(db)
+      let lobby = await service.create('host')
+      lobby = await service.configure(
+        lobby.id,
+        'host',
+        lobby.revision,
+        campaignId,
+        'standard',
+        'chapter-two',
+      )
+      lobby = await service.select(lobby.id, 'host', lobby.revision, deck('joe'))
+      lobby = await service.ready(lobby.id, 'host', lobby.revision, true)
+      lobby = await service.start(lobby.id, 'host', lobby.revision)
+      expect((await new LobbyService(db).get(lobby.id, 'host')).encounterSetVariant).toBe(
+        'chapter-two',
+      )
+      const stored = JSON.parse(data.get(lobby.id)!) as Lobby
+      expect(stored.campaign?.encounterSetVariant).toBe('chapter-two')
+      expect(stored.game?.encounterDeck.some((c) => c.code === '12123')).toBe(true)
+      expect(stored.game?.encounterDeck.some((c) => c.code === '01159')).toBe(false)
+    },
+  )
   it('persists Chapter Two encounters authoritatively and resets readiness when changed', async () => {
     const { db, data } = memory()
     const service = new LobbyService(db)
@@ -76,7 +102,7 @@ describe('private online lobbies', () => {
         lobby.id,
         'host',
         lobby.revision,
-        'the-path-to-carcosa',
+        'brethren-of-ash',
         'standard',
         'chapter-two',
       ),

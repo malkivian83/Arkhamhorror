@@ -45,13 +45,25 @@ registerCampaign({
           : id === THE_UNSPEAKABLE_OATH
             ? {
                 id,
-                build: ({ difficulty, seed, log }) => theUnspeakableOath({ difficulty, seed, log }),
+                build: ({ difficulty, seed, log, encounterSetVariant }) =>
+                  theUnspeakableOath({
+                    difficulty,
+                    seed,
+                    log,
+                    ...(encounterSetVariant ? { encounterSetVariant } : {}),
+                  }),
                 keywords: ['hidden', 'peril', 'surge', 'massive', 'hunter', 'retaliate', 'prey'],
               }
             : id === A_PHANTOM_OF_TRUTH
               ? {
                   id,
-                  build: ({ difficulty, seed, log }) => aPhantomOfTruth({ difficulty, seed, log }),
+                  build: ({ difficulty, seed, log, encounterSetVariant }) =>
+                    aPhantomOfTruth({
+                      difficulty,
+                      seed,
+                      log,
+                      ...(encounterSetVariant ? { encounterSetVariant } : {}),
+                    }),
                   keywords: ['peril', 'surge', 'aloof', 'hunter', 'retaliate', 'prey'],
                 }
               : id === THE_PALLID_MASK

@@ -103,7 +103,7 @@ describe('Chapter Two encounter variant — Grimoire p. 46', () => {
   })
   it('rejects unavailable variants and incomplete sets rather than silently changing rules', () => {
     expect(() =>
-      newCampaign('the-path-to-carcosa', ['joe'], 'standard', 1, [], [], undefined, 'chapter-two'),
+      newCampaign('brethren-of-ash', ['joe'], 'standard', 1, [], [], undefined, 'chapter-two'),
     ).toThrow('Unsupported')
     expect(() => campaign('invalid' as 'chapter-two')).toThrow('Unsupported')
     const definition = campaignDefinition(ID).scenarios[0]!.build!({

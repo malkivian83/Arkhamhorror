@@ -488,8 +488,8 @@ function farthestFromGate(state: GameState): LocationId[] {
 }
 
 /** Ghoul o Geist. */
-const ghoulOrGeist = (traits: string[] | undefined) =>
-  (traits ?? []).some((t) => t === 'Ghoul' || t === 'Geist')
+const ghoulOrGeist = (state: GameState, card: { code: string; traits?: string[] }) =>
+  isEncounterGhoul(state, card) || !!card.traits?.includes('Geist')
 
 // ---------------------------------------------------------------------------
 // Resoluciones (guía ES p. 24)
@@ -820,7 +820,7 @@ registerScenario({
         if (investigator === null) return state
         const here = getInvestigator(state, investigator).location
         const attackers = Object.values(state.enemies).filter(
-          (e) => e.location === here && ghoulOrGeist(e.traits) && (hard(state) || !e.exhausted),
+          (e) => e.location === here && ghoulOrGeist(state, e) && (hard(state) || !e.exhausted),
         )
         const attack = (id: string): Message[] => [
           ...(hard(state) ? [{ type: 'ReadyEnemy', enemy: id } as Message] : []),
@@ -846,7 +846,7 @@ registerScenario({
       case 'pallidFindGhoul': {
         // Busca un Gul o Geist en el mazo de Encuentros y los descartes, y róbalo.
         if (investigator === null) return state
-        const matches = (c: EncounterCard) => c.kind === 'enemy' && ghoulOrGeist(c.traits)
+        const matches = (c: EncounterCard) => c.kind === 'enemy' && ghoulOrGeist(state, c)
         const inDeck = state.encounterDeck.findIndex(matches)
         if (inDeck >= 0) {
           const found = state.encounterDeck[inDeck]!
@@ -1354,3 +1354,4 @@ registerTreachery({
         ]
       : [],
 })
+import { isEncounterGhoul } from '../encounter-variant-rules'

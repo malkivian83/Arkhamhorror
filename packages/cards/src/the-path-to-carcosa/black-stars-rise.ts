@@ -775,7 +775,8 @@ registerScenario({
     // Plan 2a/3a: cada copia de Antiguos males gana oleada.
     if (trigger.type === 'whenTreacheryDrawn') {
       const a = current(state, 'a')
-      return state.treacheries[trigger.treachery]?.code === SETS.ancientEvils &&
+      return state.treacheries[trigger.treachery]?.code ===
+        variantEncounterCode(SETS.ancientEvils, state.scenarioMeta?.chapterTwoEncounters === 1) &&
         a &&
         NUMBER[a.code]! >= 2
         ? [{ type: 'GainSurge' }]
@@ -1388,3 +1389,4 @@ registerTreachery({
     ]
   },
 })
+import { variantEncounterCode } from '../encounter-variant-rules'

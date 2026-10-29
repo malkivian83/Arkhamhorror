@@ -1,4 +1,4 @@
-import { newCampaign, startScenario } from '@lcg/cards'
+import { campaignDefinition, newCampaign, startScenario } from '@lcg/cards'
 import { applyInput } from '@lcg/engine'
 import { during, keep, throughSetup } from '@lcg/engine/testing'
 import { expect, it } from 'vitest'
@@ -72,3 +72,27 @@ it('restores a pending Cosmic Evils choice and resolves it identically', () => {
   expect(applyInput(restored.state!, input)).toEqual(applyInput(state, input))
   expect(applyInput(restored.state!, input).doom).toBe(state.doom + 1)
 })
+
+it.each(['night-of-the-zealot', 'the-path-to-carcosa'])(
+  'saves and replays the first frame of every variant scenario in %s',
+  (id) => {
+    for (const [index, entry] of campaignDefinition(id).scenarios.entries()) {
+      const campaign = newCampaign(id, ['joe'], 'standard', 1, [], [], undefined, 'chapter-two')
+      campaign.scenarioIndex = index
+      campaign.results = campaignDefinition(id)
+        .scenarios.slice(0, index)
+        .map((s) => ({ scenario: s.id, outcome: { type: 'resolution', resolution: 1 }, xp: {} }))
+      const base = startScenario(campaign, 7)
+      expect(base.scenarioId).toBe(entry.id)
+      const input = { investigator: base.pending!.investigator, choice: 0 }
+      const state = applyInput(base, input)
+      const restored = decodeSession(
+        JSON.stringify(session(state, { base, inputs: [input], marks: [] }, campaign)),
+      )
+      expect(restored.state).toEqual(state)
+      expect(restored.campaign?.encounterSetVariant).toBe('chapter-two')
+      const next = { investigator: state.pending!.investigator, choice: 0 }
+      expect(applyInput(restored.state!, next)).toEqual(applyInput(state, next))
+    }
+  },
+)
