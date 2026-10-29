@@ -43,6 +43,8 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  fightActionsThisTurn?: number
+  roundSkillAdditions?: { from: SkillType; skills: SkillType[]; code: CardCode; round: number }[]
   /** Purchased checkboxes, shared by this investigator's copies of each customizable card. */
   customizations?: Record<CardCode, Record<string, number>>
   /** Lola Hayes: papel elegido (una clase o `neutral`). */
@@ -352,7 +354,7 @@ export interface LocationCard {
 // ---------------------------------------------------------------------------
 
 export interface AbilityLimit {
-  per: 'turn' | 'round' | 'game'
+  per: 'turn' | 'round' | 'game' | 'phase'
   /** Límite de grupo (compartido por todos los investigadores). */
   group?: boolean
 }
@@ -403,6 +405,7 @@ export interface LogEntry {
 }
 
 export interface AbilityUse {
+  phase?: Phase
   key: string
   investigator: InvestigatorId
   round: number
@@ -439,6 +442,8 @@ export interface ExtraDeckOption {
 }
 
 export interface PlayerCardDef {
+  /** Printed subtitle distinguishes mechanically different researched upgrades sharing a title. */
+  subname?: string
   /** Upgrade sheet: stable option id -> number of experience checkboxes required. */
   customizable?: Record<string, number>
   code: CardCode
@@ -752,6 +757,16 @@ export type PhaseStep =
 
 /** Todo lo que puede ocurrir en la partida. */
 export type Message =
+  | { type: 'AdjustPendingEnemyDamage'; enemy: EnemyId; amount: number }
+  | { type: 'ReducePendingDamage'; investigator: InvestigatorId; damage: number; horror: number }
+  | { type: 'GainFightActionsThisTurn'; investigator: InvestigatorId; amount: number }
+  | {
+      type: 'RoundSkillAddition'
+      investigator: InvestigatorId
+      from: SkillType
+      skills: SkillType[]
+      code: CardCode
+    }
   | {
       type: 'RoundSkillReplacement'
       investigator: InvestigatorId
@@ -845,6 +860,8 @@ export type Message =
     }
   | {
       type: 'DrawCards'
+      drawnCount?: number
+      drawnCards?: CardCode[]
       investigator: InvestigatorId
       amount: number
       revelations?: CardCode[]
@@ -908,6 +925,7 @@ export type Message =
     }
   | {
       type: 'BeginSkillTest'
+      autoSuccess?: boolean
       /** The investigator already chose whether to replace the tested skill. */
       skillSelected?: boolean
       baseSkill?: number
@@ -949,13 +967,20 @@ export type Message =
       faction: string
       discardOthers?: boolean
     }
-  | { type: 'ShuffleCardsIntoDeck'; investigator: InvestigatorId; cards: CardCode[] }
+  | {
+      type: 'ShuffleCardsIntoDeck'
+      investigator: InvestigatorId
+      cards: CardCode[]
+      fromHand?: boolean
+    }
   /**
    * Juega una carta de la mano pagando su coste (menos `discount`). `effect`
    * sustituye al efecto del evento (cuando depende del momento en que se juega).
    */
   | {
       type: 'PlayCard'
+      discardedCost?: CardCode[]
+      discardCostPaid?: boolean
       investigator: InvestigatorId
       code: CardCode
       /** Play the revealed top card of this investigator's deck (Montmartre). */
@@ -978,6 +1003,7 @@ export type Message =
     }
   | {
       type: 'ResolvePlayedCard'
+      discardedCost?: number
       investigator: InvestigatorId
       code: CardCode
       originalOwner?: InvestigatorId
@@ -1280,6 +1306,7 @@ export type Message =
   | { type: 'PayGroupClues'; amount: number; from: InvestigatorId[] }
   | {
       type: 'DamageEnemy'
+      checked?: boolean
       enemy: EnemyId
       amount: number
       by?: InvestigatorId
@@ -1300,6 +1327,7 @@ export type Message =
   /** `direct`: solo puede asignarse a la carta de investigador. */
   | {
       type: 'TakeDamage'
+      damageWindowResolved?: boolean
       killInstead?: boolean
       investigator: InvestigatorId
       damage: number
@@ -1372,7 +1400,12 @@ export type Message =
     }
   /** `own`: lo hace la propia carta (lo único que descarta una carta Oculta). */
   | { type: 'DiscardTreachery'; treachery: TreacheryId; own?: boolean }
-  | { type: 'DiscardRandomFromHand'; investigator: InvestigatorId; amount: number }
+  | {
+      type: 'DiscardRandomFromHand'
+      investigator: InvestigatorId
+      amount: number
+      nonWeaknessOnly?: boolean
+    }
   | { type: 'LoseResources'; investigator: InvestigatorId; amount: number }
   /** El investigador deja pistas suyas en su localización. */
   | { type: 'PlaceCluesOnLocation'; investigator: InvestigatorId; amount: number }
@@ -1398,7 +1431,7 @@ export type Message =
   | { type: 'ActAdvanced' }
   | { type: 'DiscardEnemy'; enemy: EnemyId }
   | { type: 'MoveEnemy'; enemy: EnemyId; location: LocationId }
-  | { type: 'PutLocationIntoPlay'; location: LocationId }
+  | { type: 'PutLocationIntoPlay'; location: LocationId; investigator?: InvestigatorId }
   | {
       type: 'PutEncounterLocation'
       card: EncounterLocationCard
@@ -1588,7 +1621,13 @@ export type Message =
   /** El investigador coloca una a una las cartas miradas arriba o abajo de su mazo. */
   | { type: 'ArrangeCards'; investigator: InvestigatorId; cards: CardCode[] }
   | { type: 'PlaceOnDeck'; investigator: InvestigatorId; code: CardCode; where: 'top' | 'bottom' }
-  | { type: 'MoveDamage'; from: DamageHolder; to: DamageHolder; kind: 'damage' | 'horror' }
+  | {
+      type: 'MoveDamage'
+      from: DamageHolder
+      to: DamageHolder
+      kind: 'damage' | 'horror'
+      by?: InvestigatorId
+    }
   /** El investigador elige uno de sus apoyos con ese rasgo y vuelve a su mano. */
   | { type: 'ReturnAssetWithTrait'; investigator: InvestigatorId; trait: string }
   /** Slippery: el enemigo no se prepara en la próxima fase de mantenimiento. */
@@ -1621,7 +1660,9 @@ export type Message =
 
 /** Una carta que puede tener daño u horror. */
 export type DamageHolder =
-  { type: 'investigator'; id: InvestigatorId } | { type: 'asset'; id: AssetId }
+  | { type: 'investigator'; id: InvestigatorId }
+  | { type: 'asset'; id: AssetId }
+  | { type: 'enemy'; id: EnemyId }
 
 /** Daño u horror asignado a un apoyo durante una misma asignación. */
 export interface DamageDealt {
@@ -1634,6 +1675,7 @@ export interface DamageDealt {
 
 /** De dónde viene el daño a un enemigo. */
 export interface DamageSource {
+  code?: CardCode
   /** Daño de un ataque (prueba de combate). */
   attack?: boolean
   /** Rasgos de la carta que lo inflige ("Spell", "Relic"…). */
@@ -1656,6 +1698,27 @@ export type ClueHolder =
 
 /** Momentos en los que se comprueban las habilidades forzadas. */
 export type Trigger =
+  | {
+      type: 'beforeEnemyDamage'
+      enemy: EnemyId
+      investigator: InvestigatorId
+      amount: number
+      source?: DamageSource
+    }
+  | {
+      type: 'whenDealtDamage'
+      investigator: InvestigatorId
+      damage: number
+      horror: number
+      enemy?: EnemyId
+    }
+  | { type: 'afterCardsDrawn'; investigator: InvestigatorId; amount: number }
+  | {
+      type: 'afterRevealLocation' | 'afterPutLocation'
+      investigator?: InvestigatorId
+      location: LocationId
+    }
+  | { type: 'roundBegins' }
   | { type: 'agendaAdvances'; code?: CardCode }
   | { type: 'afterGainClues'; investigator: InvestigatorId; amount: number }
   | { type: 'encounterCardDiscarded'; card: EncounterCard; investigator?: InvestigatorId }
@@ -1782,7 +1845,13 @@ export type Trigger =
       attack?: boolean
     }
   /** Un enemigo ha recibido daño (de cualquier origen). */
-  | { type: 'afterEnemyDamaged'; enemy: EnemyId; amount: number }
+  | {
+      type: 'afterEnemyDamaged'
+      enemy: EnemyId
+      amount: number
+      by?: InvestigatorId
+      excess?: number
+    }
   /** Después de realizar una acción de negociar (Salón de baile, Sala de estar). */
   | { type: 'afterParley'; investigator: InvestigatorId; location: LocationId | null }
 
@@ -1928,6 +1997,7 @@ export interface TurnActionGrant {
 }
 
 export interface GameState {
+  defeatedEnemyHealthThisTurn?: Record<InvestigatorId, number>
   /** Versión del motor que creó la partida, para migraciones futuras. */
   boons?: Boon[]
   athenaUsed?: InvestigatorId[]

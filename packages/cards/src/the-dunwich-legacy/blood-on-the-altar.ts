@@ -277,7 +277,11 @@ registerScenario({
       if (card.code === B.chamber)
         return push(
           { ...next, scenarioMeta: { ...meta, altarChamberSource: location } },
-          { type: 'PutLocationIntoPlay', location: B.chamber },
+          {
+            type: 'PutLocationIntoPlay',
+            location: B.chamber,
+            ...(typeof data.investigator === 'string' ? { investigator: data.investigator } : {}),
+          },
           { type: 'ConnectLocations', a: location, b: B.chamber },
           { type: 'RevealLocation', location: B.chamber, investigator },
         )

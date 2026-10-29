@@ -49,14 +49,6 @@
       "status": "verified"
     },
     {
-      "code": "60129",
-      "family": "dynamite-blast",
-      "module": "card-60129",
-      "test": "upgraded-events.test.ts",
-      "status": "verified",
-      "fast": true
-    },
-    {
       "code": "03307",
       "family": "no-stone-unturned",
       "module": "card-03307",
@@ -68,14 +60,6 @@
       "code": "02019",
       "family": "taunt",
       "module": "card-02019",
-      "test": "taunt.test.ts",
-      "status": "verified",
-      "fast": true
-    },
-    {
-      "code": "60130",
-      "family": "taunt",
-      "module": "card-60130",
       "test": "taunt.test.ts",
       "status": "verified",
       "fast": true

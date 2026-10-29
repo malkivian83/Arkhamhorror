@@ -4,6 +4,7 @@ import { randomUUID } from 'node:crypto'
 import type { Database } from './database'
 import type { AccountConfig } from './config'
 import type { SendMail } from './mail'
+import { accountEmail } from './mail-template'
 import { recordActivity } from './activity'
 import {
   ApiError,
@@ -132,7 +133,6 @@ export function authentication(
     const link = new URL('/account', config.origin)
     // Fragment prevents tokens appearing in proxy request logs or Referer headers.
     link.hash = new URLSearchParams({ action: purpose, token: raw }).toString()
-    const spanish = user.locale !== 'en'
     const activityId = await recordActivity(
       db,
       user.id,
@@ -140,18 +140,16 @@ export function authentication(
       'pending',
     )
     try {
-      await sendMail({
-        to: user.email,
-        subject:
-          purpose === 'verify'
-            ? spanish
-              ? 'Verifica tu cuenta de Arkham'
-              : 'Verify your Arkham account'
-            : spanish
-              ? 'Recupera tu cuenta de Arkham'
-              : 'Reset your Arkham password',
-        text: `${spanish ? 'Abre este enlace para continuar' : 'Open this link to continue'}:\n${link.href}\n\n${spanish ? 'Si no lo has solicitado, ignora este correo.' : 'If you did not request this, ignore this email.'}`,
-      })
+      await sendMail(
+        accountEmail({
+          to: user.email,
+          name: user.name,
+          locale: user.locale,
+          purpose,
+          origin: config.origin,
+          link: link.href,
+        }),
+      )
     } catch {
       await db.exec("UPDATE account_activity SET status = 'failed' WHERE id = ?", [activityId])
       await db.exec('DELETE FROM account_tokens WHERE token_hash = ?', [hash])

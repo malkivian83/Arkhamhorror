@@ -427,7 +427,12 @@ const locationChoice = (state: GameState, id: LocationId, then: Message[]): Choi
 }
 
 /** Pone en juego la carta superior del mazo de Catacumbas en esa posición. */
-function placeTop(state: GameState, x: number, y: number): GameState {
+function placeTop(
+  state: GameState,
+  x: number,
+  y: number,
+  investigator?: InvestigatorId,
+): GameState {
   const deck = state.scenarioDecks?.[DECK] ?? []
   const [top, ...rest] = deck
   if (!top || at(state, x, y)) return state
@@ -439,7 +444,7 @@ function placeTop(state: GameState, x: number, y: number): GameState {
       scenarioDecks: { ...state.scenarioDecks, [DECK]: rest },
       setAsideLocations: { ...state.setAsideLocations, [top]: { ...card, position: [x, y] } },
     },
-    { type: 'PutLocationIntoPlay', location: top },
+    { type: 'PutLocationIntoPlay', location: top, ...(investigator ? { investigator } : {}) },
   )
 }
 
@@ -755,8 +760,13 @@ registerScenario({
         const placement = PLACEMENTS[printedCode(from)]
         if (!placement) return state
         const spots = freeSpots(state, from, placement.dirs)
-        if (!placement.one) return spots.reduce((next, [x, y]) => placeTop(next, x, y), state)
-        if (spots.length <= 1) return spots[0] ? placeTop(state, ...spots[0]) : state
+        if (!placement.one)
+          return spots.reduce(
+            (next, [x, y]) => placeTop(next, x, y, investigator ?? undefined),
+            state,
+          )
+        if (spots.length <= 1)
+          return spots[0] ? placeTop(state, ...spots[0], investigator ?? undefined) : state
         return push(
           state,
           ...leadChooses(
@@ -768,13 +778,15 @@ registerScenario({
                   state.locations[from]!.position![0] + STEP[d][0] === x &&
                   state.locations[from]!.position![1] + STEP[d][1] === y,
               )!}`,
-              then: [specific('pallidPlaceAt', { x, y })],
+              then: [
+                specific('pallidPlaceAt', { x, y, ...(investigator ? { investigator } : {}) }),
+              ],
             })),
           ),
         )
       }
       case 'pallidPlaceAt':
-        return placeTop(state, Number(data.x), Number(data.y))
+        return placeTop(state, Number(data.x), Number(data.y), investigator ?? undefined)
       case 'pallidEnter': {
         // Túnel angosto superado: el movimiento sigue (con el coste de entrar, si lo hay).
         if (investigator === null) return state
@@ -1087,7 +1099,9 @@ registerAct({
 for (const code of Object.keys(PLACEMENTS))
   registerLocation({
     code,
-    onReveal: (_state, self) => [specific('pallidPlace', { location: self.id })],
+    onReveal: (_state, self, investigator) => [
+      specific('pallidPlace', { location: self.id, ...(investigator ? { investigator } : {}) }),
+    ],
     ...(code === CODES.candlelitTunnels
       ? {
           // [action]: [intellect] (3); si tienes éxito, mira el lado revelado de unas

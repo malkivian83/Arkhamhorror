@@ -1,0 +1,361 @@
+[
+  {
+    "subname": "The Boxer",
+    "code": "60101",
+    "name": "Nathaniel Cho",
+    "type": "investigator",
+    "class": "guardian",
+    "traits": ["Criminal", "Warden"],
+    "deckLimit": 1,
+    "unique": true,
+    "health": 9,
+    "sanity": 6,
+    "skills": {
+      "willpower": 3,
+      "intellect": 2,
+      "combat": 5,
+      "agility": 2
+    },
+    "deckSize": 30,
+    "deckOptions": [
+      {
+        "classes": ["guardian", "neutral"],
+        "maxLevel": 5
+      }
+    ],
+    "signatures": ["60102", "60103"]
+  },
+  {
+    "subname": "Concerned Brother",
+    "code": "60102",
+    "name": "Randall Cho",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Medic"],
+    "deckLimit": 1,
+    "unique": true,
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1,
+      "wild": 1
+    },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 3
+  },
+  {
+    "code": "60103",
+    "name": "Tommy Malloy",
+    "type": "enemy",
+    "class": "neutral",
+    "traits": ["Humanoid", "Criminal", "Syndicate"],
+    "deckLimit": 1,
+    "unique": true,
+    "weakness": "weakness",
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "health": 3
+  },
+  {
+    "code": "60104",
+    "name": "Self-Destructive",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Flaw"],
+    "deckLimit": 1,
+    "weakness": "basicweakness",
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "60105",
+    "name": "Boxing Gloves",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["hand", "hand"]
+  },
+  {
+    "code": "60106",
+    "name": "Flesh Ward",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ritual"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["arcane"],
+    "health": 1,
+    "sanity": 1,
+    "uses": {
+      "count": 4,
+      "type": "charges"
+    }
+  },
+  {
+    "subname": "The Purifier",
+    "code": "60107",
+    "name": "Grete Wagner",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Hunter"],
+    "unique": true,
+    "cost": 5,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "combat": 1
+    },
+    "slots": ["ally"],
+    "health": 3,
+    "sanity": 2
+  },
+  {
+    "code": "60109",
+    "name": "Relentless",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Talent"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60110",
+    "name": "Safeguard",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60112",
+    "name": "Counterpunch",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit", "Tactic"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60113",
+    "name": "Dodge",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60114",
+    "name": "\"Get over here!\"",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit", "Tactic"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60120",
+    "name": "Evidence!",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 1,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60121",
+    "name": "Galvanize",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit"],
+    "cost": 2,
+    "xp": 1,
+    "icons": {
+      "willpower": 2
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60122",
+    "name": "Counterpunch",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit", "Tactic"],
+    "cost": 0,
+    "xp": 2,
+    "icons": {
+      "combat": 2,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60123",
+    "name": "\"Get over here!\"",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit", "Tactic"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "willpower": 2,
+      "combat": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60125",
+    "name": "Mano a Mano",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit", "Bold"],
+    "cost": 0,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60127",
+    "name": "Boxing Gloves",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "combat": 2
+    },
+    "slots": ["hand", "hand"]
+  },
+  {
+    "subname": "The Purifier",
+    "code": "60128",
+    "name": "Grete Wagner",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Hunter"],
+    "unique": true,
+    "cost": 5,
+    "xp": 3,
+    "icons": {
+      "intellect": 1,
+      "combat": 1,
+      "wild": 1
+    },
+    "slots": ["ally"],
+    "health": 4,
+    "sanity": 2
+  },
+  {
+    "code": "60129",
+    "name": "Dynamite Blast",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 4,
+    "xp": 3,
+    "icons": {
+      "willpower": 2,
+      "combat": 2
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60130",
+    "name": "Taunt",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 1,
+    "xp": 3,
+    "icons": {
+      "willpower": 2,
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60131",
+    "name": "Physical Training",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 4,
+    "icons": {
+      "willpower": 2,
+      "combat": 2
+    },
+    "slots": [],
+    "uses": {
+      "count": 2,
+      "type": "resources"
+    }
+  },
+  {
+    "code": "60132",
+    "name": "One-Two Punch",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit", "Tactic"],
+    "cost": 2,
+    "xp": 5,
+    "icons": {
+      "combat": 4
+    },
+    "slots": []
+  }
+]

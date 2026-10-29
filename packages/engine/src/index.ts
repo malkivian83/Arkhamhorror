@@ -1,4 +1,5 @@
 export {
+  attackBlocked,
   availableAbilities,
   availableActions,
   playableCards,

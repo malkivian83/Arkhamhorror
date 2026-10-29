@@ -84,6 +84,7 @@ export function canPlayByEffect(
   code: CardCode,
   from: 'hand' | 'discard',
   noCost = false,
+  discount = 0,
 ): boolean {
   const i = getInvestigator(state, id)
   const def = playerCardDef(code)
@@ -101,7 +102,7 @@ export function canPlayByEffect(
     scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, id, code)
   )
     return false
-  if (!noCost && cardCost(state, id, code) > spendableFor(state, id, code)) return false
+  if (!noCost && cardCost(state, id, code, discount) > spendableFor(state, id, code)) return false
   return playerCardBehavior(code)?.canPlay?.(state, id) ?? true
 }
 
@@ -195,7 +196,11 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
   const trait = traitActionTrait(state, id)
   // Sin acciones normales, solo las adicionales: evitar (Trish Scarborough) o jugar cartas
   // de un rasgo (Marie Lambeau: Hechizos).
-  if (investigator.actionsRemaining <= 0 && !investigator.extraMove) {
+  if (
+    investigator.actionsRemaining <= 0 &&
+    !investigator.extraMove &&
+    !(investigator.fightActionsThisTurn && state.activeTurn === id)
+  ) {
     const evades: Action[] = investigator.extraEvade
       ? [
           ...playableCards(state, id, false)
@@ -252,11 +257,31 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
       actionCost(state, id, a) <=
         investigator.actionsRemaining +
           (a.kind === 'move' && investigator.extraMove ? 1 : 0) +
+          (isFightAction(a) && state.activeTurn === id
+            ? (investigator.fightActionsThisTurn ?? 0)
+            : 0) +
           (trait && a.kind === 'play' && hasTrait(a.card, trait) ? 1 : 0),
   )
 }
 
 const hasTrait = (code: CardCode, trait: string) => !!playerCardDef(code)?.traits.includes(trait)
+
+export const isFightAction = (action: Action): boolean =>
+  action.kind === 'fight' ||
+  (action.kind === 'play' && !!playerCardBehavior(action.card)?.fightAction)
+export function fightAbility(messages: Message[]): boolean {
+  const visit = (v: unknown): boolean =>
+    Array.isArray(v)
+      ? v.some(visit)
+      : v !== null &&
+        typeof v === 'object' &&
+        (('type' in v &&
+          v.type === 'BeginSkillTest' &&
+          'kind' in v &&
+          (v.kind as { type?: string })?.type === 'fight') ||
+          Object.values(v).some(visit))
+  return visit(messages)
+}
 
 /**
  * RR Additional Actions: the trait the investigator's restricted additional action can be
@@ -444,7 +469,9 @@ export function withinLimit(
       u.key === key &&
       (limit.group || u.investigator === investigator) &&
       (limit.per === 'game' ||
-        (u.round === state.round && (limit.per !== 'turn' || u.turn === turnStartedAt(state)))),
+        (u.round === state.round &&
+          (limit.per !== 'phase' || u.phase === state.phase) &&
+          (limit.per !== 'turn' || u.turn === turnStartedAt(state)))),
   )
 }
 
@@ -553,6 +580,11 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
       (a) =>
         a.actions <=
           investigator.actionsRemaining +
+            (a.actions > 0 &&
+            (a.actionKind === 'fight' || fightAbility(a.then)) &&
+            state.activeTurn === id
+              ? (investigator.fightActionsThisTurn ?? 0)
+              : 0) +
             (trait && a.actions > 0 && traitAbility(state, id, a.key, trait) ? 1 : 0) &&
         !(noFast && a.actions === 0) &&
         withinLimit(state, a.key, id, a.limit) &&
@@ -701,7 +733,9 @@ export function cardCost(
   discount = 0,
 ): number {
   const printed = playerCardDef(code)?.cost ?? 0
-  const change = scenarioBehavior(state.scenarioId)?.cardCostModifier?.(state, id, code) ?? 0
+  const change =
+    (scenarioBehavior(state.scenarioId)?.cardCostModifier?.(state, id, code) ?? 0) +
+    (playerCardBehavior(code)?.selfCostModifier?.(state, id) ?? 0)
   // Cartas de la mano que encarecen las demás (una copia de la propia carta no cuenta).
   const hand = [...(state.investigators.find((i) => i.id === id)?.hand ?? [])]
   const own = hand.indexOf(code)

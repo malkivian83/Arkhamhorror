@@ -229,6 +229,8 @@ import { LOLA_RENDERED_CODES } from './lola-hayes'
 import { ANDRE_RENDERED_CODES } from './andre-patel'
 import { STELLA_RENDERED_CODES } from './stella-clark'
 import { STELLA_SIDEBOARD_CODES } from './stella-sideboard'
+import { NATHANIEL_RENDERED_CODES } from './nathaniel-cho'
+import { HARVEY_RENDERED_CODES } from './harvey-walters'
 import { WENDY_RENDERED_CODES } from './wendy-adams'
 import { MATEO_RENDERED_CODES } from './father-mateo'
 import { MARIE_RENDERED_CODES } from './marie-lambeau'
@@ -305,6 +307,8 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...ANDRE_RENDERED_CODES,
   ...STELLA_RENDERED_CODES,
   ...STELLA_SIDEBOARD_CODES,
+  ...NATHANIEL_RENDERED_CODES,
+  ...HARVEY_RENDERED_CODES,
   ...WENDY_RENDERED_CODES,
   ...MATEO_RENDERED_CODES,
   ...MARIE_RENDERED_CODES,
