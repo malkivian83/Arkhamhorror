@@ -21,6 +21,7 @@ import {
 import { computed, ref } from 'vue'
 import { allPlayerCardDefs } from '@lcg/engine'
 import CustomizationSheet from '../components/CustomizationSheet.vue'
+import CampaignUpgradeShop from '../components/CampaignUpgradeShop.vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import ChaosTokenView from '../components/ChaosTokenView.vue'
@@ -106,8 +107,6 @@ const name = (code: string) => localName(cardName(code))
 
 /** Investigador cuya tienda de cartas está abierta. */
 const shopping = ref<string | null>(null)
-/** Carta que sale del mazo para hacer sitio, por opción de compra. */
-const removal = ref<Record<string, string>>({})
 
 /** Una impresión por carta; primero las que ya funcionan, después por nivel y nombre. */
 const options = computed(() =>
@@ -124,11 +123,8 @@ const options = computed(() =>
 const removable = computed(() =>
   campaign.value && shopping.value ? removableCards(campaign.value, shopping.value) : [],
 )
-const optionKey = (o: PurchaseOption) => `${o.code}:${o.replaces ?? 'new'}`
-
-function buy(o: PurchaseOption) {
+function buy(o: PurchaseOption, remove?: string) {
   if (!shopping.value) return
-  const remove = o.needsRemoval ? removal.value[optionKey(o)] : undefined
   game.buy(shopping.value, o.code, { upgrade: !!o.replaces, ...(remove ? { remove } : {}) })
 }
 
@@ -318,37 +314,14 @@ function abandon() {
               :disabled="!!game.state || !deckChangesAllowed"
               @save="(sheet, options) => game.customizeCard(i.id, card.code, sheet, options)"
             />
-            <p v-if="!options.length" class="empty">{{ t('campaign.nothingToBuy') }}</p>
-            <ul v-else>
-              <li v-for="o in options" :key="optionKey(o)" :class="{ pending: !o.implemented }">
-                <span class="pips" :title="t('campaign.level', { n: o.level })">
-                  <span v-for="n in 5" :key="n" :class="{ on: n <= o.level }" />
-                </span>
-                <span class="card-name">
-                  {{ localName(o.name) }}
-                  <small v-if="o.replaces">{{
-                    t('campaign.upgradeOf', { card: name(o.replaces) })
-                  }}</small>
-                </span>
-                <select
-                  v-if="o.needsRemoval && o.implemented"
-                  v-model="removal[optionKey(o)]"
-                  :aria-label="t('campaign.remove')"
-                >
-                  <option :value="undefined" disabled>{{ t('campaign.remove') }}</option>
-                  <option v-for="c in removable" :key="c" :value="c">{{ name(c) }}</option>
-                </select>
-                <span v-if="!o.implemented" class="soon">{{ t('campaign.notImplemented') }}</span>
-                <button
-                  v-else
-                  type="button"
-                  :disabled="o.needsRemoval && !removal[optionKey(o)]"
-                  @click="buy(o)"
-                >
-                  {{ t('campaign.buy', { xp: o.cost }) }}
-                </button>
-              </li>
-            </ul>
+            <CampaignUpgradeShop
+              :key="i.id"
+              :options="options"
+              :removable="removable"
+              :xp="campaign.log.investigators[i.id]?.xp ?? 0"
+              :disabled="!!game.state || !deckChangesAllowed"
+              @buy="buy"
+            />
             <p v-if="game.error" class="error">
               {{ game.error.startsWith('customization.') ? t(game.error) : game.error }}
             </p>
@@ -599,48 +572,6 @@ function abandon() {
   background: var(--site-bg);
   border: 1px solid var(--border);
   border-radius: 7px;
-}
-.shop ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 6px;
-}
-.shop li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  font-family: var(--fell);
-  color: var(--ink);
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-}
-.shop li.pending {
-  color: var(--muted);
-}
-.card-name {
-  flex: 1;
-  min-width: 160px;
-}
-.card-name small {
-  display: block;
-  color: var(--muted);
-  font-style: italic;
-}
-.pips {
-  display: inline-flex;
-  gap: 2px;
-}
-.pips span {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: 1px solid var(--brass-dark);
-}
-.pips span.on {
-  background: var(--brass);
 }
 .soon {
   font-family: var(--fell);
