@@ -40,6 +40,7 @@ import { choiceTarget } from '../game/choiceTarget'
 import { createAdvanceReview, resumedAdvanceReview, type AdvanceFrame } from '../game/advanceReview'
 import { createAutoSteps, type AutoStepsReview } from '../game/autoSteps'
 import { showAutoSteps } from '../game/autoStepsPreference'
+import { createCardEntries, type CardEntry } from '@lcg/shared'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 
@@ -88,6 +89,7 @@ export const useGameStore = defineStore('game', () => {
   )
   /** Pasos resueltos solos tras la última decisión; solo se muestran, no se guardan. */
   const autoSteps = shallowRef<AutoStepsReview | null>(null)
+  const cardEntries = shallowRef<(CardEntry & { reviewed?: boolean })[]>([])
   const storageIssue = shallowRef<SessionIssue | null>(loaded.issue ?? null)
   const error = shallowRef<string | null>(null)
   /** Campaña en curso: el escenario que se juega es uno de sus escenarios. */
@@ -118,12 +120,31 @@ export const useGameStore = defineStore('game', () => {
     nextHistory: History | null,
     review: AdvanceFrame[] = [],
     steps: AutoStepsReview | null = null,
+    cards?: CardEntry[],
   ) {
     const previous = latest
     latest = next
     history.value = nextHistory
     advanceReview.value = review
     autoSteps.value = steps
+    const covered = new Set(
+      review.flatMap((frame) => [
+        frame.card.code,
+        ...frame.cards.map((c) => c.code),
+        ...frame.effects
+          .filter((e) => e.key === 'log.encounter')
+          .map((e) => String(e.params?.code ?? '')),
+      ]),
+    )
+    cardEntries.value = cards
+      ? [
+          ...cardEntries.value,
+          ...cards.map((card) => ({
+            ...card,
+            ...(covered.has(card.code) ? { reviewed: true } : {}),
+          })),
+        ]
+      : []
     persist()
     // Si algún investigador cambia de localización, su mini se desliza hasta
     // la nueva (transición de vista del navegador, como en el ejemplo).
@@ -285,9 +306,11 @@ export const useGameStore = defineStore('game', () => {
     try {
       const review = createAdvanceReview(current)
       const steps = createAutoSteps(current)
+      const cards = createCardEntries()
       const next = applyInput(current, input, (before, message, after) => {
         review.observe(before, message, after)
         steps.observe(before, message, after)
+        cards.observe(before, message, after)
       })
       const h = history.value
       set(
@@ -296,6 +319,7 @@ export const useGameStore = defineStore('game', () => {
         review.finish(next),
         // Con el visor desactivado no se abre el resumen de pasos automáticos.
         showAutoSteps.value ? steps.finish(next) : null,
+        cards.finish(),
       )
       error.value = null
     } catch (e) {
@@ -345,6 +369,8 @@ export const useGameStore = defineStore('game', () => {
   function acceptAdvance() {
     if (!advanceReview.value.length) return
     advanceReview.value = advanceReview.value.slice(1)
+    if (!advanceReview.value.length)
+      cardEntries.value = cardEntries.value.filter((card) => !card.reviewed)
     persist()
   }
 
@@ -402,6 +428,10 @@ export const useGameStore = defineStore('game', () => {
     advanceReview,
     acceptAdvance,
     autoSteps,
+    cardEntries,
+    acceptCardEntry() {
+      cardEntries.value = cardEntries.value.slice(1)
+    },
     acceptAutoSteps,
     start,
     closeScenario,

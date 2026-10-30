@@ -26,12 +26,32 @@ cada paso del reglamento, su motivo y los cambios que ha producido.
   vez (**Ver todos los pasos**) y termina con la decisión que detiene la
   secuencia. Espera a que se acepte la revisión de avance de acto o plan.
 - Se puede desactivar con **Desactivar este visor** en el propio modal o con el
-  botón pequeño **Pasos ●/○** de la barra de controles del mapa (solo en partidas
-  locales), que también lo vuelve a activar.
+  botón pequeño **Pasos ●/○** de la barra de controles del mapa, tanto en partidas
+  locales como en línea, que también lo vuelve a activar.
   La preferencia se guarda en el navegador (`lcg:autoSteps`) y está activada por
   defecto; desactivado, el juego resuelve los mismos pasos sin abrir el modal.
-- Solo partidas locales; no se guarda: al recargar no se repite. En línea
-  todavía no se muestra porque el servidor no envía los pasos.
+- Al entrar o recargar no se repiten los pasos anteriores. El visor es individual:
+  abrirlo, cerrarlo o desactivarlo no detiene a los demás jugadores.
+
+## Partidas en línea
+
+- El recolector común vive en `packages/shared/src/autoSteps.ts`; la mesa local
+  conserva el mismo comportamiento a través de su exportación anterior.
+- El servidor observa los mensajes reales de cada decisión y genera una revisión
+  para cada miembro desde su proyección de mesa. Las manos ajenas solo aportan
+  cantidades; las identidades enmascaradas, traiciones ocultas, registros privados
+  y preguntas de otros jugadores siguen filtrados antes de construir los efectos.
+- La sala conserva los últimos 32 lotes de revisiones automáticas, asociados a
+  la revisión autoritativa. Cada respuesta incluye únicamente los resúmenes del
+  miembro autenticado. Los reintentos de un comando no duplican los lotes; al
+  cambiar de escenario se retiran los del escenario anterior.
+- El cliente encola los lotes nuevos en orden, incluso si hubo varias decisiones
+  entre consultas. No vuelve a mostrar revisiones ya recibidas ni reproduce las
+  anteriores a la entrada en la sala. Tras una desconexión que supere la retención
+  del servidor solo estarán disponibles los 32 lotes más recientes.
+- La preferencia se aplica en cada navegador con la misma clave `lcg:autoSteps`.
+  Desactivar descarta también la cola pendiente; reactivar empieza con los nuevos
+  pasos. Aceptar un resumen es una operación local y no cambia el estado de juego.
 
 ## Validación
 
@@ -41,6 +61,41 @@ cada paso del reglamento, su motivo y los cambios que ha producido.
 - `apps/web/src/stores/game.test.ts`: terminar el turno rellena el modal, no
   lo guarda y aceptarlo lo cierra.
 - Revisión visual en escritorio y a 390 px de ancho con La gala de mitad de invierno.
+- Ampliación en línea: pruebas dirigidas de salas, proyección privada, cliente,
+  controlador de mesa, recolector y almacén local. Cubren orden, efectos, cantidades
+  públicas de robo, ocultación de identidades y decisiones, persistencia y límite de
+  lotes, reintentos, consultas repetidas, activación/desactivación, cambio de escenario
+  y limpieza al salir de la cuenta. Tipos de shared, servidor y web, formato y lint
+  sobre los archivos modificados. Sin pruebas de navegador para esta ampliación.
+
+## Presentación de cartas que entran en juego
+
+El foco central recoge también las entradas directas y las caras descubiertas,
+no solo los robos de encuentros. `packages/shared/src/cardEntries.ts` observa los
+mensajes del motor para conservar entradas intermedias aunque la carta salga de
+juego en la misma decisión. Incluye enemigos, apoyos controlados y colocados,
+traiciones en juego, Lugares, Historias y nuevas cartas activas de acto/plan.
+
+Al descubrir un enmascarado se presenta su cara pública desde la cara común.
+La carta de destino permanece oculta hasta aceptar el modal; entonces aparece
+allí, con traslado animado si el destino está visible y se permiten animaciones.
+Las copias se distinguen por destino, no por código. Tomar control de una carta
+ya revelada no es otra entrada; un encuentro robado que después aparece se
+presenta una sola vez. Los avances de acto/plan que ya muestran esas cartas
+conservan su propia revisión, sin repetir después el foco central.
+
+La presentación funciona con el visor de pasos desactivado y con movimiento
+reducido. Es transitoria: deshacer, cargar o cambiar de escenario limpia la cola.
+En línea se envían únicamente las caras visibles para cada miembro, con los
+últimos 32 lotes para recuperar actualizaciones entre consultas; los reintentos
+no duplican entradas. Aceptar la presentación no envía una decisión al servidor.
+
+Pruebas dirigidas de revelación real de servidores/inocentes, entradas directas,
+entradas intermedias, deduplicación del robo, control de apoyos, caras ocultas,
+orden de copias, persistencia/reintentos, aceptación y deshacer local. La prueba
+de renderizado por consola comprueba que el destino siga oculto hasta aceptar.
+Tipos, lint y formato sobre este alcance; revisión visual pendiente, sin abrir
+sesiones de navegador.
 
 ## Elecciones sobre la mesa
 

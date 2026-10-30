@@ -1420,6 +1420,8 @@
     "emptyPile": "No cards.",
     "close": "Close",
     "drawnBy": "{name} draws",
+    "cardRevealed": "Card revealed",
+    "cardEntersPlay": "Card enters play",
     "ok": "OK",
     "agenda": "Agenda",
     "act": "Act",

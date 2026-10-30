@@ -10,6 +10,114 @@ import { useGameStore } from '../stores/game'
 import { tableControllerKey, useTableGame } from '../game/tableController'
 import { gameClient } from './game'
 import { onlineTable } from './table'
+import { showAutoSteps } from '../game/autoStepsPreference'
+
+const automatic = (revision: number) => ({
+  revision,
+  review: { steps: [{ kind: 'step' as const, key: `step-${revision}`, effects: [] }] },
+})
+
+it('queues all unseen server reviews across polling revisions, without replaying initial or acknowledged reviews', async () => {
+  showAutoSteps.value = true
+  const view = fixture()
+  let response: OnlineGame = { ...view, autoSteps: [automatic(8)] }
+  const request = vi.fn().mockImplementation(async () => structuredClone(response))
+  const client = gameClient('room', request as typeof api),
+    table = onlineTable(client)
+  await client.refresh()
+  expect(table.autoSteps).toBeNull()
+  response = { ...view, revision: 10, autoSteps: [automatic(8), automatic(9), automatic(10)] }
+  await client.refresh()
+  expect(table.autoSteps?.steps[0]?.key).toBe('step-9')
+  await client.refresh()
+  table.acceptAutoSteps()
+  expect(table.autoSteps?.steps[0]?.key).toBe('step-10')
+  table.acceptAutoSteps()
+  await client.refresh()
+  expect(table.autoSteps).toBeNull()
+  expect(request.mock.calls.every((c) => c[1] === 'GET')).toBe(true)
+})
+
+it('disables and re-enables online reviews without replaying skipped steps or changing the server', async () => {
+  showAutoSteps.value = false
+  const view = fixture()
+  let response = view
+  const request = vi.fn().mockImplementation(async () => structuredClone(response))
+  const client = gameClient('room', request as typeof api),
+    table = onlineTable(client)
+  await client.refresh()
+  response = { ...view, revision: 9, autoSteps: [automatic(9)] }
+  await client.refresh()
+  expect(table.autoSteps).toBeNull()
+  showAutoSteps.value = true
+  expect(table.autoSteps).toBeNull()
+  response = { ...view, revision: 11, autoSteps: [automatic(9), automatic(10), automatic(11)] }
+  await client.refresh()
+  expect(table.autoSteps?.steps[0]?.key).toBe('step-10')
+  showAutoSteps.value = false
+  expect(table.autoSteps).toBeNull()
+  showAutoSteps.value = true
+  await client.refresh()
+  expect(table.autoSteps).toBeNull()
+  expect(request).toHaveBeenCalledTimes(4)
+})
+
+it('clears pending reviews on account reset and scenario changes', async () => {
+  showAutoSteps.value = true
+  const view = fixture()
+  let response = view
+  const client = gameClient(
+      'room',
+      vi.fn().mockImplementation(async () => structuredClone(response)) as typeof api,
+    ),
+    table = onlineTable(client)
+  await client.refresh()
+  response = { ...view, revision: 9, autoSteps: [automatic(9)] }
+  await client.refresh()
+  expect(table.autoSteps).not.toBeNull()
+  response = { ...view, revision: 10, scenarioId: 'next-scenario', autoSteps: [] }
+  await client.refresh()
+  expect(table.autoSteps).toBeNull()
+  response = { ...response, revision: 11, autoSteps: [automatic(11)] }
+  await client.refresh()
+  expect(table.autoSteps).not.toBeNull()
+  client.reset()
+  expect(table.autoSteps).toBeNull()
+  await client.refresh()
+  expect(table.autoSteps).toBeNull()
+})
+
+it('queues direct entries independently of the optional step viewer and clears them on reset', async () => {
+  showAutoSteps.value = false
+  let response = fixture()
+  const request = vi.fn().mockImplementation(async () => structuredClone(response))
+  const client = gameClient('room', request as typeof api),
+    table = onlineTable(client)
+  await client.refresh()
+  const cards = [
+    { code: '82017', name: 'Revealed', reason: 'reveal' as const, target: 'enemy:first' },
+    { code: '82017', name: 'Second copy', reason: 'enter' as const, target: 'enemy:second' },
+  ]
+  response = {
+    ...response,
+    revision: 10,
+    cardEntries: [
+      { revision: 9, cards: [cards[0]!] },
+      { revision: 10, cards: [cards[1]!] },
+    ],
+  }
+  await client.refresh()
+  expect(table.cardEntries).toEqual(cards)
+  expect(table.autoSteps).toBeNull()
+  table.acceptCardEntry()
+  expect(table.cardEntries[0]?.target).toBe('enemy:second')
+  await client.refresh()
+  expect(table.cardEntries).toHaveLength(1)
+  expect(request.mock.calls.every((c) => c[1] === 'GET')).toBe(true)
+  client.reset()
+  expect(table.cardEntries).toEqual([])
+  showAutoSteps.value = true
+})
 
 afterEach(() => vi.unstubAllGlobals())
 function fixture(): OnlineGame {

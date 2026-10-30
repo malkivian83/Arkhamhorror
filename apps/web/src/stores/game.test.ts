@@ -103,6 +103,48 @@ describe('recuperación de recompensas junto con la campaña', () => {
 })
 
 describe('pasos automáticos en la mesa', () => {
+  it('queues a revealed Carnevale identity without persisting the preview, and clears it on undo', () => {
+    const game = useGameStore()
+    const state = throughSetup(
+      startScenario(newCampaign('carnevale-of-horrors', ['joe'], 'standard'), 42),
+    )
+    const placed = Object.values(state.placedAssets!).find((p) => p.code === '82017b')!
+    const investigator = state.investigators[0]!.id
+    state.pending = {
+      investigator,
+      question: {
+        kind: 'chooseOne',
+        prompt: 'test',
+        choices: [
+          {
+            label: 'test',
+            then: [{ type: 'ScenarioSpecific', key: 'carnevaleFlip', data: { placed: placed.id } }],
+          },
+        ],
+      },
+    }
+    state.queue = []
+    expect(
+      game.importSession(
+        JSON.stringify(session(state, { base: state, inputs: [], marks: [markOf(state)] }, null)),
+      ),
+    ).toBe(true)
+    game.answer(0)
+    expect(game.error).toBeNull()
+    expect(game.cardEntries).toEqual([
+      expect.objectContaining({ reason: 'reveal', code: '82017', from: 'masked' }),
+    ])
+    expect(accountStorage.getItem(SESSION_KEY)).not.toContain('cardEntries')
+    const resolved = game.state
+    game.acceptCardEntry()
+    expect(game.cardEntries).toEqual([])
+    expect(game.state).toBe(resolved)
+    game.undo('step')
+    game.answer(0)
+    expect(game.cardEntries).not.toHaveLength(0)
+    game.undo('step')
+    expect(game.cardEntries).toEqual([])
+  })
   it('terminar el turno muestra los pasos resueltos solos, sin guardarlos', () => {
     const game = useGameStore()
     const state = throughSetup(

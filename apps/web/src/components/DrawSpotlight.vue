@@ -1,36 +1,38 @@
 <script setup lang="ts">
 import type { GameState } from '@lcg/engine'
-import { computed, onBeforeUnmount, ref, watch } from 'vue'
+import type { CardEntry } from '@lcg/shared'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { cardBackImage } from '../game/assets'
 import { localName } from '../game/localized'
 import GameCard from './GameCard.vue'
 import CardTranslation from './CardTranslation.vue'
 import { useTableGame } from '../game/tableController'
-import { unreviewedEncounterDraws } from '../game/advanceReview'
 import { useLabels } from '../game/labels'
 
 /**
- * Carta de encuentro recién robada, en grande en el centro: se da la vuelta
- * desde el reverso y espera a que la cierres. Es solo de la mesa (el motor ya
- * la ha resuelto); si se roban varias, salen una detrás de otra.
+ * Carta robada, descubierta o que entra directamente: se presenta antes de
+ * mostrar su destino. Es solo presentación; el motor conserva su secuencia.
  */
 const props = defineProps<{ state: GameState }>()
-const emit = defineEmits<{ dismissed: [code: string, source: DOMRect | undefined] }>()
+const emit = defineEmits<{ dismissed: [card: CardEntry, source: DOMRect | undefined] }>()
 const face = ref<HTMLElement | null>(null)
 const imageLanguage = ref('unknown')
 const { t } = useI18n()
 const game = useTableGame()
 const label = useLabels()
 
-interface Drawn {
-  code: string
-  card: string
-  name: string
-}
-const queue = ref<Drawn[]>([])
-const current = computed(() => queue.value[0] ?? null)
+const dialog = ref<HTMLDialogElement>()
+const queue = computed(() => game.cardEntries)
+const current = computed(() => (game.advanceReview.length ? null : (queue.value[0] ?? null)))
 const back = computed(() => cardBackImage('encounter'))
+const viewportWidth = ref(typeof window === 'undefined' ? 432 : window.innerWidth)
+const cardWidth = computed(() =>
+  Math.max(120, Math.min(current.value?.landscape ? 400 : 280, viewportWidth.value - 32)),
+)
+function resize() {
+  viewportWidth.value = window.innerWidth
+}
 /** Dónde ha acabado la carta, si es la única copia en la mesa (traición en un Lugar o enemigo). */
 const placed = computed(() => {
   const c = current.value
@@ -42,83 +44,111 @@ const placed = computed(() => {
   if (treacheries.length === 1 && !enemies.length && treachery!.placement.type === 'location')
     return { key: 'table.placedAt', location: at(treachery!.placement.location) }
   const [enemy] = enemies
-  if (enemies.length === 1 && !treacheries.length)
+  if (enemies.length === 1 && !treacheries.length && !enemy!.global)
     return { key: 'table.spawnedAt', location: at(enemy!.location) }
   return null
 })
 
-// Solo las cartas robadas desde que se abre la mesa; deshacer (el registro
-// encoge) o cargar una partida no vuelve a mostrar las anteriores.
-watch(
-  () => props.state.log.length,
-  (length, before) => {
-    if (before === undefined || length <= before) {
-      if (before !== undefined && length < before) queue.value = []
-      return
-    }
-    const drawn = unreviewedEncounterDraws(props.state.log.slice(before), game.advanceReview).map(
-      (e) => ({
-        code: String(e.params!.code),
-        card: String(e.params!.card ?? ''),
-        name: String(e.params!.name ?? ''),
-      }),
-    )
-    queue.value = [...queue.value, ...drawn]
-  },
-  { immediate: true },
-)
+function syncDialog() {
+  if (current.value && !dialog.value?.open) dialog.value?.showModal()
+}
+watch(current, syncDialog, { flush: 'post' })
+onMounted(() => {
+  syncDialog()
+  window.addEventListener('resize', resize)
+})
 
 function dismiss() {
-  if (current.value) emit('dismissed', current.value.code, face.value?.getBoundingClientRect())
-  queue.value = queue.value.slice(1)
+  if (current.value) emit('dismissed', current.value, face.value?.getBoundingClientRect())
+  game.acceptCardEntry()
 }
-function key(event: KeyboardEvent) {
-  if (!current.value) return
-  if (document.querySelector('dialog[open]')) return
-  if (event.key === 'Escape' || event.key === 'Enter' || event.key === ' ') {
-    event.preventDefault()
-    event.stopImmediatePropagation()
-    dismiss()
-  }
-}
-// En captura: la tecla cierra la carta antes de que la usen los atajos de la mesa.
-window.addEventListener('keydown', key, true)
-onBeforeUnmount(() => window.removeEventListener('keydown', key, true))
+onBeforeUnmount(() => {
+  dialog.value?.close()
+  window.removeEventListener('resize', resize)
+})
 </script>
 
 <template>
-  <div v-if="current" class="overlay" @click.self="dismiss">
+  <dialog
+    v-if="current"
+    ref="dialog"
+    class="overlay"
+    :aria-label="localName(current.name)"
+    @cancel.prevent="dismiss"
+    @click.self="dismiss"
+    @keydown.stop
+  >
     <div class="spotlight">
-      <p class="who">{{ t('table.drawnBy', { name: current.name }) }}</p>
+      <p class="who">
+        {{
+          current.reason === 'draw'
+            ? t('table.drawnBy', { name: current.investigator })
+            : t(current.reason === 'reveal' ? 'table.cardRevealed' : 'table.cardEntersPlay')
+        }}
+      </p>
       <div class="card-details">
-        <div :key="`${current.code}-${queue.length}`" class="flipper">
+        <div
+          :key="`${current.code}-${queue.length}`"
+          class="flipper"
+          :style="{
+            width: `${cardWidth}px`,
+            height: `${Math.round(cardWidth * (current.landscape ? 0.715 : 1.4))}px`,
+          }"
+          :class="{ 'no-flip': !current.from }"
+        >
           <div ref="face" class="face front">
             <GameCard
               :code="current.code"
-              :name="current.card"
-              :width="280"
+              :name="current.name"
+              :back="!!current.back"
+              :landscape="!!current.landscape"
+              :width="cardWidth"
               no-zoom
               @image-language="imageLanguage = $event"
             />
           </div>
           <div class="face back">
-            <img v-if="back" :src="back" alt="" draggable="false" />
+            <GameCard
+              v-if="current.from === 'masked'"
+              code="82017b"
+              :name="t('table.maskedCarnevale')"
+              :width="cardWidth"
+              no-zoom
+            />
+            <img
+              v-else-if="back"
+              :src="current.from === 'player' ? (cardBackImage('player') ?? back) : back"
+              alt=""
+              draggable="false"
+            />
             <div v-else class="drawn-back" />
           </div>
         </div>
-        <CardTranslation :code="current.code" :image-language="imageLanguage" />
+        <CardTranslation
+          :code="current.code"
+          :back="!!current.back"
+          :image-language="imageLanguage"
+        />
       </div>
-      <p class="name">{{ localName(current.card) }}</p>
+      <p class="name">{{ localName(current.name) }}</p>
       <p v-if="placed" class="placed">{{ label(placed.key, { location: placed.location }) }}</p>
-      <button type="button" class="table-action" @click="dismiss">
+      <button type="button" class="table-action" autofocus @click="dismiss">
         {{ t('table.ok') }}<template v-if="queue.length > 1"> ({{ queue.length - 1 }})</template>
       </button>
     </div>
-  </div>
+  </dialog>
 </template>
 
 <style scoped>
 .overlay {
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--ink);
   position: fixed;
   inset: 0;
   z-index: 950;
@@ -136,6 +166,13 @@ onBeforeUnmount(() => window.removeEventListener('keydown', key, true))
   max-height: calc(100dvh - 24px);
   overflow: auto;
   padding: 12px;
+}
+.overlay:not([open]) {
+  display: none;
+}
+.flipper.no-flip {
+  animation: none;
+  transform: rotateY(180deg);
 }
 .card-details {
   display: flex;

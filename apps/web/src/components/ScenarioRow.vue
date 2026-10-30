@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { actBehavior, cluesToAdvanceAct, type GameState } from '@lcg/engine'
 import { THE_PATH_TO_CARCOSA } from '@lcg/cards'
-import { computed, ref, useId } from 'vue'
+import { computed, inject, ref, useId } from 'vue'
+import { pendingCardTargets } from '../game/cardEntries'
 import { useI18n } from 'vue-i18n'
 import { localizedCards, localName } from '../game/localized'
 import { showPile } from '../game/pile'
@@ -17,6 +18,7 @@ import TokenBadge from './TokenBadge.vue'
 
 const props = defineProps<{ state: GameState }>()
 const game = useTableGame()
+const pendingCards = inject(pendingCardTargets, null)
 const { t } = useI18n()
 const bagDialog = ref<HTMLDialogElement>()
 const bagButton = ref<HTMLButtonElement>()
@@ -247,7 +249,12 @@ const sortedBag = computed(() =>
       >
     </button>
 
-    <div v-for="story in stories" :key="story.code" class="story-cluster">
+    <div
+      v-for="story in stories"
+      :key="story.code"
+      class="story-cluster"
+      :style="pendingCards?.has(`story:${story.code}`) ? { visibility: 'hidden' } : undefined"
+    >
       <button
         type="button"
         class="story-view"

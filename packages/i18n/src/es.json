@@ -1420,6 +1420,8 @@
     "emptyPile": "No hay cartas.",
     "close": "Cerrar",
     "drawnBy": "{name} roba",
+    "cardRevealed": "Carta descubierta",
+    "cardEntersPlay": "Carta que entra en juego",
     "ok": "De acuerdo",
     "agenda": "Plan",
     "act": "Acto",

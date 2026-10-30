@@ -1,4 +1,6 @@
-import { computed, reactive } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
+import type { AutoStepsReview, CardEntry } from '@lcg/shared'
+import { showAutoSteps } from '../game/autoStepsPreference'
 import { targetKey, type IndexedChoice } from '../stores/game'
 import type { TableController } from '../game/tableController'
 import type { gameClient } from './game'
@@ -6,6 +8,37 @@ import type { GameState } from '@lcg/engine'
 
 /** Only server commands can change the online table. No local store or engine execution. */
 export function onlineTable(client: ReturnType<typeof gameClient>): TableController {
+  const reviews = ref<AutoStepsReview[]>([])
+  const cardEntries = ref<CardEntry[]>([])
+  watch(
+    () => client.state.value,
+    (next, previous) => {
+      if (!next || !previous || next.scenarioId !== previous.scenarioId) {
+        reviews.value = []
+        cardEntries.value = []
+        return
+      }
+      cardEntries.value.push(
+        ...(next.cardEntries ?? [])
+          .filter((entry) => entry.revision > previous.revision && entry.revision <= next.revision)
+          .flatMap((entry) => entry.cards),
+      )
+      if (!showAutoSteps.value) return
+      reviews.value.push(
+        ...(next.autoSteps ?? [])
+          .filter((entry) => entry.revision > previous.revision && entry.revision <= next.revision)
+          .map((entry) => entry.review),
+      )
+    },
+    { flush: 'sync', immediate: true },
+  )
+  watch(
+    showAutoSteps,
+    (on) => {
+      if (!on) reviews.value = []
+    },
+    { flush: 'sync' },
+  )
   const state = computed<GameState | null>(() => {
     const view = client.state.value?.table
     if (!view) return null
@@ -60,8 +93,14 @@ export function onlineTable(client: ReturnType<typeof gameClient>): TableControl
     },
     advanceReview: [],
     acceptAdvance() {},
-    autoSteps: null,
-    acceptAutoSteps() {},
+    autoSteps: computed(() => reviews.value[0] ?? null),
+    cardEntries,
+    acceptCardEntry() {
+      cardEntries.value.shift()
+    },
+    acceptAutoSteps() {
+      reviews.value.shift()
+    },
     undo() {},
     undoTargets: { step: null, action: null, turn: null, round: null },
     campaign: null,

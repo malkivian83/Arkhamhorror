@@ -6,6 +6,7 @@ import { LobbyService, onlineLobbies, type Lobby } from './lobbies'
 import { randomUUID } from 'node:crypto'
 import { starterDeck, starterInvestigator } from '@lcg/cards'
 import type { OnlineProgressAction } from '@lcg/shared'
+import { newTestGame, throughSetup } from '@lcg/engine/testing'
 
 const deck = (key: 'joe' | 'daniela') => ({
   investigator: starterInvestigator(key).id,
@@ -168,6 +169,46 @@ describe('private online lobbies', () => {
     ...action,
     revision,
     commandId: randomUUID(),
+  })
+  it('persists automatic summaries once per command and delivers each member their own summary after polling or restart', async () => {
+    const { service, db, data, id } = await active()
+    const stored = JSON.parse(data.get(id)!) as Lobby
+    stored.game = throughSetup(newTestGame({ players: [deck('joe').investigator] }))
+    const choice = stored.game.pending!.question.choices.findIndex(
+      (c) => c.label === 'action.endTurn',
+    )
+    expect(choice).toBeGreaterThanOrEqual(0)
+    stored.autoSteps = Array.from({ length: 32 }, (_, n) => ({
+      revision: n - 32,
+      reviews: { host: { steps: [] } },
+    }))
+    stored.cardEntries = Array.from({ length: 32 }, (_, n) => ({
+      revision: n - 32,
+      cards: { host: [] },
+    }))
+    data.set(id, JSON.stringify(stored))
+    const command = {
+      commandId: randomUUID(),
+      revision: stored.revision,
+      questionId: String(stored.revision),
+      choice,
+    }
+    const result = await service.decide(id, 'host', command)
+    expect(result.autoSteps?.at(-1)?.revision).toBe(stored.revision + 1)
+    expect(result.cardEntries?.at(-1)?.cards.some((card) => card.code === 'test-ghoul')).toBe(true)
+    expect((JSON.parse(data.get(id)!) as Lobby).cardEntries).toHaveLength(32)
+    expect(
+      result.autoSteps?.at(-1)?.review.steps.some((s) => s.key === 'log.step.huntersMove'),
+    ).toBe(true)
+    expect((JSON.parse(data.get(id)!) as Lobby).autoSteps).toHaveLength(32)
+    expect(await new LobbyService(db).decide(id, 'host', command)).toEqual(result)
+    expect((JSON.parse(data.get(id)!) as Lobby).cardEntries).toHaveLength(32)
+    expect((JSON.parse(data.get(id)!) as Lobby).autoSteps).toHaveLength(32)
+    const friend = await new LobbyService(db).game(id, 'friend')
+    expect(friend.autoSteps).toHaveLength(1)
+    expect(friend.cardEntries).toHaveLength(1)
+    expect(friend.autoSteps![0]!.review.next?.prompt).toBe('game.waitingFor')
+    expect(JSON.stringify(friend.autoSteps)).not.toContain('"then"')
   })
   async function ended() {
     const fixture = await active()

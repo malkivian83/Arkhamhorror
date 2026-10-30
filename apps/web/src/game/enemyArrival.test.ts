@@ -138,4 +138,15 @@ describe('enemy arrival presentation', () => {
     expect(append).not.toHaveBeenCalled()
     expect(current.element.style.visibility).toBe('')
   })
+  it('waits for dismissal before flying a directly entering asset to its exact target', () => {
+    const { finishDraw } = useEnemyArrival(shallowRef(null))
+    expect(append).not.toHaveBeenCalled()
+    finishDraw(
+      { code: 'ally', name: 'Ally', reason: 'enter', target: 'asset:second-copy' },
+      rect(200, 200, 280),
+    )
+    expect(append).toHaveBeenCalledOnce()
+    expect(current.element.style.visibility).toBe('hidden')
+    current.finish()
+  })
 })

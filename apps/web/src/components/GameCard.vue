@@ -102,6 +102,7 @@ if (unregister) onBeforeUnmount(unregister)
 <template>
   <div
     class="game-card"
+    :data-card-code="code"
     :class="{ exhausted }"
     :style="style"
     @mouseenter="hover(true)"

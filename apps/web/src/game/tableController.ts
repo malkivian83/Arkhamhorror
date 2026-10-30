@@ -13,6 +13,8 @@ export type TableController = Pick<
   | 'advanceReview'
   | 'acceptAdvance'
   | 'autoSteps'
+  | 'cardEntries'
+  | 'acceptCardEntry'
   | 'acceptAutoSteps'
   | 'undo'
   | 'undoTargets'

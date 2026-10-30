@@ -22,7 +22,9 @@ const list = ref<HTMLOListElement>()
 /** Pasos ya mostrados: se descubren de uno en uno. */
 const revealed = ref(1)
 
-const review = computed(() => (game.advanceReview.length ? null : game.autoSteps))
+const review = computed(() =>
+  game.advanceReview.length || game.cardEntries.length ? null : game.autoSteps,
+)
 const steps = computed(() => review.value?.steps ?? [])
 const visible = computed(() => steps.value.slice(0, revealed.value))
 const done = computed(() => revealed.value >= steps.value.length)

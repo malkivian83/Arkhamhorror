@@ -12,6 +12,7 @@ import { useLabels } from '../game/labels'
 import { BOARD_VIEW_KEY, type ViewTransform } from '../game/viewport'
 import { useTableGame } from '../game/tableController'
 import ActionButton from './ActionButton.vue'
+import { pendingCardTargets } from '../game/cardEntries'
 
 /**
  * Envuelve un elemento de la mesa. Si la pregunta actual tiene opciones sobre
@@ -25,6 +26,7 @@ const props = defineProps<{
   blocked?: TargetNote | null
 }>()
 const game = useTableGame()
+const pendingCards = inject(pendingCardTargets, null)
 const open = ref(false)
 const root = ref<HTMLElement | null>(null)
 const menu = ref<HTMLElement | null>(null)
@@ -140,6 +142,7 @@ onBeforeUnmount(() => {
   <div
     ref="root"
     class="table-target"
+    :style="pendingCards?.has(target) ? { visibility: 'hidden' } : undefined"
     :data-table-target="target"
     :class="{ active: options.length > 0, open }"
     :role="options.length || blocked ? 'button' : undefined"

@@ -14,6 +14,7 @@ import {
 import { applyInput, type GameState } from '@lcg/engine'
 import type { OnlineCommand, OnlineDeck, OnlineLobby, OnlineProgressCommand } from '@lcg/shared'
 import { gameView } from './game'
+import { createOnlineSteps } from './autoSteps'
 import type { FastifyInstance } from 'fastify'
 import type { authentication } from '../accounts/auth'
 import type { Database } from '../accounts/database'
@@ -35,6 +36,8 @@ export interface Lobby {
   commands?: Record<string, { user: string; signature: string }>
   intermission?: boolean
   campaignReady?: string[]
+  autoSteps?: { revision: number; reviews: Record<string, import('@lcg/shared').AutoStepsReview> }[]
+  cardEntries?: { revision: number; cards: Record<string, import('@lcg/shared').CardEntry[]> }[]
 }
 export const lobbyView = (lobby: Lobby): OnlineLobby => ({
   id: lobby.id,
@@ -121,10 +124,32 @@ export class LobbyService {
           command.choice < pending.question.choices.length,
         'invalid_choice',
       )
-      lobby.game = applyInput(lobby.game, {
-        investigator: pending.investigator,
-        choice: command.choice,
-      })
+      const steps = createOnlineSteps(
+        lobby.game,
+        Object.fromEntries(
+          lobby.members.map((member) => [member, lobby.decks?.[member]?.investigator]),
+        ),
+      )
+      lobby.game = applyInput(
+        lobby.game,
+        {
+          investigator: pending.investigator,
+          choice: command.choice,
+        },
+        steps.observe,
+      )
+      const reviews = steps.finish()
+      const cards = steps.finishCards()
+      if (Object.keys(cards).length)
+        lobby.cardEntries = [
+          ...(lobby.cardEntries ?? []),
+          { revision: lobby.revision + 1, cards },
+        ].slice(-32)
+      if (Object.keys(reviews).length)
+        lobby.autoSteps = [
+          ...(lobby.autoSteps ?? []),
+          { revision: lobby.revision + 1, reviews },
+        ].slice(-32)
       lobby.commands = { ...lobby.commands, [command.commandId]: { user, signature } }
       lobby.revision++
       return gameView(lobby, user)
@@ -206,6 +231,8 @@ export class LobbyService {
             409,
           )
           lobby.game = startScenario(lobby.campaign, randomInt(1, 0x7fffffff), true)
+          delete lobby.autoSteps
+          delete lobby.cardEntries
           lobby.intermission = false
           lobby.campaignReady = []
         } else {

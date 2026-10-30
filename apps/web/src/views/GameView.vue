@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, provide, ref, watch } from 'vue'
+import { pendingCardTargets } from '../game/cardEntries'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import AutoStepsReview from '../components/AutoStepsReview.vue'
@@ -25,6 +26,10 @@ import { useEnemyArrival } from '../game/enemyArrival'
 import { useTableGame } from '../game/tableController'
 
 const game = useTableGame()
+provide(
+  pendingCardTargets,
+  computed(() => new Set(game.cardEntries.flatMap((card) => (card.target ? [card.target] : [])))),
+)
 const router = useRouter()
 const { t } = useI18n()
 
@@ -61,7 +66,7 @@ const shown = computed(
     <ScenarioRow :state="state" class="scenario-toolbar" />
     <BoardViewport :reset-key="state.scenarioId" class="board playmat sigil">
       <LocationMap :state="state" />
-      <template v-if="!game.online" #controls>
+      <template #controls>
         <button
           type="button"
           class="auto-steps-toggle"

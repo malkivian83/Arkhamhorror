@@ -1,4 +1,5 @@
 import type { GameState } from '@lcg/engine'
+import type { CardEntry } from '@lcg/shared'
 import { nextTick, onBeforeUnmount, watch, type Ref } from 'vue'
 import { unreviewedEncounterDraws } from './advanceReview'
 import { useTableGame } from '../game/tableController'
@@ -10,10 +11,12 @@ export function useEnemyArrival(state: Readonly<Ref<GameState | null>>) {
   const active = new Set<() => void>()
   let revision = 0
 
-  function cardAt(target: string) {
-    return document.querySelector<HTMLElement>(
-      `[data-table-target="${CSS.escape(target)}"] .game-card`,
-    )
+  function cardAt(target: string, code?: string) {
+    const selector = `[data-table-target="${CSS.escape(target)}"] .game-card`
+    const cards = document.querySelectorAll?.<HTMLElement>(selector)
+    return cards
+      ? [...cards].find((card) => !code || !card.dataset.cardCode || card.dataset.cardCode === code)
+      : document.querySelector<HTMLElement>(selector)
   }
 
   function enabled() {
@@ -78,7 +81,18 @@ export function useEnemyArrival(state: Readonly<Ref<GameState | null>>) {
     animation.finished.then(stop, stop)
   }
 
-  function finishDraw(code: string, source?: DOMRect) {
+  function finishDraw(code: string | CardEntry, source?: DOMRect) {
+    if (typeof code !== 'string') {
+      const card = code.target ? cardAt(code.target, code.code) : null
+      if (
+        card &&
+        source &&
+        card.isConnected &&
+        (!card.dataset?.cardCode || card.dataset.cardCode === code.code)
+      )
+        fly(card, source)
+      return
+    }
     const entry = [...waiting].find(([, value]) => value.code === code)
     if (!entry) return
     const [id, { card }] = entry
@@ -105,6 +119,7 @@ export function useEnemyArrival(state: Readonly<Ref<GameState | null>>) {
         (enemy) =>
           enemy.engagedWith && previous.enemies[enemy.id]?.engagedWith !== enemy.engagedWith,
       )
+      .filter((enemy) => !game.cardEntries?.some((card) => card.target === `enemy:${enemy.id}`))
       .map((enemy) => ({
         enemy,
         source:
