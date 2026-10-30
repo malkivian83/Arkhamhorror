@@ -102,3 +102,4 @@ vigente de pendientes.
 
 - [93 · Rex Murphy](93-rex-murphy.md): investigador original, exclusivas, Viejo libro de conocimiento y lista 21596 completa.
 - [95 · Variantes mejoradas](95-variantes-mejoradas.md): 44 niveles de cartas con base jugable; talentos que se reponen, Solución extraña (4), Linterna (3) y reducción de dificultad en curso.
+- [96 · Mecánicas reutilizadas](96-mecanicas-reutilizadas.md): 36 cartas sobre mecánicas existentes (parlamento, ventanas de éxito, ataques remotos, búsquedas) y 15 bloqueadas por ventanas o efectos de turno pendientes en el motor.

@@ -1,0 +1,528 @@
+[
+  {
+    "code": "03233",
+    "name": "\"Watch this!\"",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Gambit"],
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "11061",
+    "name": "\"Watch this!\"",
+    "type": "skill",
+    "class": "rogue",
+    "traits": ["Gambit"],
+    "xp": 3,
+    "icons": {
+      "wild": 3
+    },
+    "slots": []
+  },
+  {
+    "code": "05187",
+    "name": ".45 Thompson",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Weapon", "Firearm", "Illicit"],
+    "cost": 5,
+    "xp": 3,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": ["hand", "hand"],
+    "uses": {
+      "count": 5,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "07305",
+    "name": ".25 Automatic",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Weapon", "Firearm", "Illicit"],
+    "cost": 4,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 4,
+      "type": "ammo"
+    },
+    "fast": true
+  },
+  {
+    "code": "09074",
+    "name": "Breaking and Entering",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "03030",
+    "name": "Daring Maneuver",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Gambit"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60322",
+    "name": "Daring Maneuver",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Gambit"],
+    "cost": 0,
+    "xp": 2,
+    "icons": {
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "09069",
+    "name": "Quick Getaway",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "agility": 2
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "08030",
+    "name": "Butterfly Swords",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Melee"],
+    "cost": 3,
+    "xp": 5,
+    "icons": {
+      "combat": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": ["hand", "hand"]
+  },
+  {
+    "code": "09034",
+    "name": "Guard Dog",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Creature"],
+    "cost": 3,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": ["ally"],
+    "health": 4,
+    "sanity": 2
+  },
+  {
+    "code": "09036",
+    "name": "Prepared for the Worst",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 0,
+    "xp": 2,
+    "icons": {
+      "intellect": 1,
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "06196",
+    "name": "Safeguard",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "01027",
+    "name": "Police Badge",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item"],
+    "cost": 3,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "wild": 1
+    },
+    "slots": ["accessory"]
+  },
+  {
+    "code": "60158",
+    "name": "Service Revolver",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Firearm", "Police"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 3,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "60157",
+    "name": "Rookie Cop",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Police"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "08020",
+    "name": "Toe to Toe",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit", "Tactic"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "03106",
+    "name": "Heroic Rescue",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit", "Tactic"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60574",
+    "name": "Hunter's Instinct",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": [],
+    "uses": {
+      "count": 3,
+      "type": "supplies"
+    }
+  },
+  {
+    "code": "04034",
+    "name": "Dumb Luck",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Fortune"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "agility": 2
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "05160",
+    "name": "Belly of the Beast",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Gambit", "Trick"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "01083",
+    "name": "Close Call",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Fortune"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60559",
+    "name": "Pocketknife",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Tool", "Weapon", "Melee"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "60571",
+    "name": "Field Dressing",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spirit"],
+    "cost": 2,
+    "xp": 1,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60564",
+    "name": "Guerrilla Tactics",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Tactic"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "08039",
+    "name": "Unearth the Ancients",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 0,
+    "xp": 2,
+    "icons": {
+      "intellect": 2,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "07158",
+    "name": "Blood Pact",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell", "Pact"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "03270",
+    "name": "Ward of Protection",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Spirit"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60265",
+    "name": "De-Escalate",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "willpower": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "09046",
+    "name": "Bizarre Diagnosis",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight", "Science"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "03027",
+    "name": "In the Know",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Talent"],
+    "cost": 3,
+    "xp": 1,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": [],
+    "uses": {
+      "count": 3,
+      "type": "secrets"
+    }
+  },
+  {
+    "code": "03150",
+    "name": "Forewarned",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 0,
+    "xp": 1,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "03265",
+    "name": "Guidance",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "10078",
+    "name": "Snitch",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Favor", "Trick"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "10071",
+    "name": "Grift",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick", "Illicit"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "09028",
+    "name": "Motivational Speech",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "02151",
+    "name": "\"I'm outta here!\"",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick", "Spirit"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "agility": 2
+    },
+    "slots": []
+  }
+]

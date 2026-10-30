@@ -5,10 +5,8 @@ import { DUMB_LUCK, DUMB_LUCK_2 } from './codes'
 // RR: Fast, Evade, Elite. Dumb Luck: play after you fail a skill test by 2 or less (level 2:
 // 3 or less) during an evasion attempt against a non-Elite enemy. Place that enemy on top
 // (level 2: on the bottom) of the encounter deck; its Alert attack no longer resolves.
-for (const [code, within, bottom] of [
-  [DUMB_LUCK, 2, false],
-  [DUMB_LUCK_2, 3, true],
-] as const)
+// Shared with 04034, which has the same text as 60514.
+export function registerDumbLuck(code: string, within: number, bottom: boolean): void {
   registerPlayerCard({
     code,
     canPlay: () => false,
@@ -42,3 +40,6 @@ for (const [code, within, bottom] of [
       ]
     },
   })
+}
+registerDumbLuck(DUMB_LUCK, 2, false)
+registerDumbLuck(DUMB_LUCK_2, 3, true)
