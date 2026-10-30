@@ -826,6 +826,8 @@ export type Message =
   | { type: 'SpendAdditionalAction'; investigator: InvestigatorId; then: Message[] }
   | { type: 'EndCurrentTurn'; investigator: InvestigatorId }
   | { type: 'TransferResources'; from: InvestigatorId; to: InvestigatorId; amount: number }
+  /** Move uses into a resource pool; this is not gaining resources. */
+  | { type: 'MoveUsesToResources'; asset: AssetId; investigator: InvestigatorId; amount: number }
   | { type: 'TransferAssets'; transfers: { asset: AssetId; to: InvestigatorId }[] }
   | { type: 'EventToVictory'; investigator: InvestigatorId; code: CardCode; points: number }
   | { type: 'BoonMorrigan'; investigator: InvestigatorId; candidates: CardCode[] }
