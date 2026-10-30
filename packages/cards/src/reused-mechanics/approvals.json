@@ -1,0 +1,292 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "sourceSnapshotSha256": "36bdf57ced256a33c3145b1562eea5f8ea6146d38e6a600cb04e27d43ef5749e",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "cards": [
+    {
+      "code": "03233",
+      "family": "watch-this-0",
+      "module": "card-03233",
+      "test": "rogue.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "11061",
+      "family": "watch-this-3",
+      "module": "card-11061",
+      "test": "rogue.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "05187",
+      "family": "45-thompson-3",
+      "module": "card-05187",
+      "test": "rogue.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 5,
+        "type": "ammo"
+      }
+    },
+    {
+      "code": "07305",
+      "family": "25-automatic-2",
+      "module": "card-07305",
+      "test": "rogue.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "ammo"
+      },
+      "fast": true
+    },
+    {
+      "code": "09074",
+      "family": "breaking-and-entering-2",
+      "module": "card-09074",
+      "test": "rogue.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "03030",
+      "family": "daring-maneuver-0",
+      "module": "card-03030",
+      "test": "rogue.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60322",
+      "family": "daring-maneuver-2",
+      "module": "card-60322",
+      "test": "rogue.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "09069",
+      "family": "quick-getaway-0",
+      "module": "card-09069",
+      "test": "rogue.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "08030",
+      "family": "butterfly-swords-5",
+      "module": "card-08030",
+      "test": "guardian.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "09034",
+      "family": "guard-dog-2",
+      "module": "card-09034",
+      "test": "guardian.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "09036",
+      "family": "prepared-for-the-worst-2",
+      "module": "card-09036",
+      "test": "guardian.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "06196",
+      "family": "safeguard-2",
+      "module": "card-06196",
+      "test": "guardian.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "01027",
+      "family": "police-badge-2",
+      "module": "card-01027",
+      "test": "guardian.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60158",
+      "family": "service-revolver-0",
+      "module": "card-60158",
+      "test": "guardian.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "ammo"
+      }
+    },
+    {
+      "code": "60157",
+      "family": "rookie-cop-0",
+      "module": "card-60157",
+      "test": "guardian.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "08020",
+      "family": "toe-to-toe-0",
+      "module": "card-08020",
+      "test": "guardian.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "03106",
+      "family": "heroic-rescue-0",
+      "module": "card-03106",
+      "test": "guardian.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60574",
+      "family": "hunter-s-instinct-2",
+      "module": "card-60574",
+      "test": "survivor.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "supplies"
+      }
+    },
+    {
+      "code": "04034",
+      "family": "dumb-luck-0",
+      "module": "card-04034",
+      "test": "survivor.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "05160",
+      "family": "belly-of-the-beast-0",
+      "module": "card-05160",
+      "test": "survivor.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "01083",
+      "family": "close-call-2",
+      "module": "card-01083",
+      "test": "survivor.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60559",
+      "family": "pocketknife-0",
+      "module": "card-60559",
+      "test": "survivor.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60571",
+      "family": "field-dressing-1",
+      "module": "card-60571",
+      "test": "survivor.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60564",
+      "family": "guerrilla-tactics-0",
+      "module": "card-60564",
+      "test": "survivor.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "08039",
+      "family": "unearth-the-ancients-2",
+      "module": "card-08039",
+      "test": "arcane.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "07158",
+      "family": "blood-pact-0",
+      "module": "card-07158",
+      "test": "arcane.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "03270",
+      "family": "ward-of-protection-2",
+      "module": "card-03270",
+      "test": "arcane.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60265",
+      "family": "de-escalate-0",
+      "module": "card-60265",
+      "test": "arcane.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "09046",
+      "family": "bizarre-diagnosis-0",
+      "module": "card-09046",
+      "test": "arcane.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "03027",
+      "family": "in-the-know-1",
+      "module": "card-03027",
+      "test": "arcane.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "secrets"
+      }
+    },
+    {
+      "code": "03150",
+      "family": "forewarned-1",
+      "module": "card-03150",
+      "test": "arcane.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "03265",
+      "family": "guidance-0",
+      "module": "card-03265",
+      "test": "arcane.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "10078",
+      "family": "snitch-2",
+      "module": "card-10078",
+      "test": "support.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "10071",
+      "family": "grift-0",
+      "module": "card-10071",
+      "test": "support.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "09028",
+      "family": "motivational-speech-0",
+      "module": "card-09028",
+      "test": "support.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "02151",
+      "family": "i-m-outta-here-0",
+      "module": "card-02151",
+      "test": "support.test.ts",
+      "status": "verified"
+    }
+  ]
+}

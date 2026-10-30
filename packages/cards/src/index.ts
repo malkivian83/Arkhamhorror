@@ -258,6 +258,7 @@ import { NEXT_TEST_RENDERED_CODES } from './next-test-effects'
 import { ATTACK_HISTORY_RENDERED_CODES } from './attack-history'
 import { PROTECTED_DRAW_RENDERED_CODES } from './protected-draw'
 import { ACTION_HISTORY_RENDERED_CODES } from './action-history'
+import { REUSED_RENDERED_CODES } from './reused-mechanics'
 import { UPGRADED_RENDERED_CODES } from './upgraded-variants'
 import { BACKUP_RENDERED_CODES } from './backup-events'
 import { REX_RENDERED_CODES } from './rex-murphy'
@@ -272,6 +273,7 @@ import { SKILL_UTILITY_RENDERED_CODES } from './skill-utilities'
 export const RENDERED_PLAYER_CARD_CODES = [
   ...REX_RENDERED_CODES,
   ...GROUPED_RENDERED_CODES,
+  ...REUSED_RENDERED_CODES,
   ...UPGRADED_RENDERED_CODES,
   ...BACKUP_RENDERED_CODES,
   ...IMMEDIATE_EVENT_RENDERED_CODES,
