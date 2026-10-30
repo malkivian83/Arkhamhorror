@@ -1,0 +1,65 @@
+{
+  "voiceId": "hyKxCTlAqtnW188CgltM",
+  "voiceName": "Salva - The Spanish Voice",
+  "language": "es",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.15,
+      "speed": 0.95,
+      "use_speaker_boost": true
+    }
+  },
+  "files": [
+    {
+      "key": "story.carnevale.intro",
+      "file": "carnevale-intro-salva.mp3",
+      "text": "—Mire —insiste el sheriff Engel—, sé que suena a locura, pero es que es lo que hay. —Suspira y vuelve a sentarse, antes de servir una taza de café para ti y otra para él—. Una señora de la periferia vio a un chalado que llevaba puesta esta máscara e iba con un cuchillo de carnicero ensangrentado —dice mientras señala la máscara de cuero negro que hay sobre su mesa. Tiene una nariz cómicamente larga y un extraño símbolo amarillo garabateado en la frente—. Así que nos llamó, y los chicos y yo lo atrapamos en la esquina de Saltonstall y Garrison. —El sheriff tensa la mandíbula y frunce el ceño al relatar la historia—. El tipo se limitó a reírse cuando le pusimos las esposas. Dijo llamarse Zanni, y no añadió nada más, excepto que “llega el carnaval”. A saber lo que significa. No encontramos el cuerpo de la víctima hasta el día siguiente. La defensa le quería internado y con camisa de fuerza, y nosotros estuvimos encantados de concedérselo.\n\nNo queda mucho tiempo. Si la investigación realizada es acertada, en este caso hay más de lo que parece. El tal “Zanni” no se refería a la Feria de Darke, que para algunos es como el carnaval, sino al Carnevale de Venecia, que comienza justo antes de la próxima luna llena…",
+      "inputHash": "63e9f29152b1d240236e5df23c62ab852e13c78e03bbd4df5a164f35585b2005",
+      "bytes": 1409819,
+      "sha256": "48a3186212f57197a1f2cd7e6442742fe214b1b704a5162faa45676f552521fe"
+    },
+    {
+      "key": "story.carnevale.noResolution",
+      "file": "carnevale-no-resolution-salva.mp3",
+      "text": "Te despiertas escupiendo cuando un remo te da unos suaves golpes en el hombro. —¿Tutto bene? —te pregunta el gondolero que sostiene el remo con expresión preocupada. Asientes y te arrastras hasta el embarcadero desde su góndola. La ciudad está devastada. La mayoría de las embarcaciones del canal están destrozadas, y las calles no están cubiertas de confeti, sino de sangre…",
+      "inputHash": "774f589736bf121e4964e46f86e9f685c9e97387e53c63e393328bab0ca6b187",
+      "bytes": 395014,
+      "sha256": "203efb008f0399ead94165aace2930a4b4b95a15547aa5b1260b8ab27dfcb22f"
+    },
+    {
+      "key": "story.carnevale.resolution1",
+      "file": "carnevale-resolution1-salva.mp3",
+      "text": "La ciudad sigue recuperándose de los acontecimientos vividos durante el eclipse. Con casi todos los restos de la criatura fundidos por el cálido sol, muchos le atribuyen la violencia del Carnevale al señor del crimen local Cascio Di Boerio y a su banda. Quienes conocen la verdad saben que es mejor no hablar de la criatura primigenia que vive en la Laguna Veneta. Con suerte, su nombre no será pronunciado nunca más.",
+      "inputHash": "2adedcb496a93cf231d2b2132c090e5ab0fab9a260d829511c6496b8251a0f11",
+      "bytes": 438064,
+      "sha256": "edb918be68683ae370dca7d4dfb2d8fc1f12a1aeacdc9e307d3bf58090975549"
+    },
+    {
+      "key": "story.carnevale.resolution2",
+      "file": "carnevale-resolution2-salva.mp3",
+      "text": "La criatura se revuelve mientras glóbulos de su gelatinosa carne se desprenden de su cuerpo y caen a la laguna con un chapoteo. El cántico de la ciudad se sume en un afligido silencio. Al volver a las calles de los canales, del cielo caen plumas negras allí donde antes revoloteaba el brillante confeti. Lo único que te preguntas es cuánto tardará la criatura en recuperarse.",
+      "inputHash": "99f75384e6bffba19ef53c1c3c086c680d3eaaf2a3e160f063b0dded39a7ad00",
+      "bytes": 420092,
+      "sha256": "ed321cb7e80ae390fa86eb88dfac0f461bd8700ce7578c50fdb7b011b859c4c1"
+    },
+    {
+      "key": "story.carnevale.sacrifice",
+      "file": "carnevale-sacrifice-salva.mp3",
+      "text": "Se perdieron demasiadas vidas durante el eclipse para detener las maquinaciones de los sirvientes de Cnidathqua. La bestia recibió su alimento, y sus siervos, poder. Esperas no vivir lo suficiente como para ver las consecuencias de tu fracaso.",
+      "inputHash": "7a48c389e25e0abd603cb456d033168009bad82e19277eaa0f00902cf783dbea",
+      "bytes": 262521,
+      "sha256": "36147fb39b9a56f60e02d0c79b9461783b35dc2d84a3d92690705a5a4f81eca4"
+    },
+    {
+      "key": "story.carnevale.abbess",
+      "file": "carnevale-abbess-salva.mp3",
+      "text": "—Grazie mille… gracias por toda tu ayuda —dice Allegria cuando vuelves a la Basílica—. Gracias a ti, ha habido pocas bajas. Me estremezco al pensar lo que podría haber ocurrido si no hubieras venido. Si alguna vez necesitas ayuda, no dudes en pedirla.",
+      "inputHash": "fe777411dda29b24a1d597159c53c97992622715658116b9cbe354dd29dbf2d9",
+      "bytes": 281329,
+      "sha256": "f1aac3169ca1dba5e1a3a8ad5e5557f68f1c1745960f09421d6e01482318619d"
+    }
+  ]
+}

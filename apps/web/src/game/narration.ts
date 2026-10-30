@@ -4,6 +4,12 @@
  * texto oficial, así que solo se ofrecen en el idioma de la grabación.
  */
 const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
+  'story.carnevale.intro': { es: 'carnevale-intro-salva.mp3' },
+  'story.carnevale.noResolution': { es: 'carnevale-no-resolution-salva.mp3' },
+  'story.carnevale.resolution1': { es: 'carnevale-resolution1-salva.mp3' },
+  'story.carnevale.resolution2': { es: 'carnevale-resolution2-salva.mp3' },
+  'story.carnevale.sacrifice': { es: 'carnevale-sacrifice-salva.mp3' },
+  'story.carnevale.abbess': { es: 'carnevale-abbess-salva.mp3' },
   'story.lost.epilogue1': { es: 'lost-epilogue1-nico-history.mp3' },
   'story.lost.epilogue2': { es: 'lost-epilogue2-nico-history.mp3' },
   'story.lost.intro': { es: 'lost-intro-nico-history.mp3' },
