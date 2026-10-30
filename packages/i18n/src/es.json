@@ -77,6 +77,13 @@
       "link": "Novedades",
       "title": "Últimas novedades",
       "description": "Los últimos añadidos y mejoras de Arkham Online.",
+      "carnevale": {
+        "title": "Carnevale de horrores ya está disponible",
+        "scenario": "Juega el escenario completo en Venecia: descubre identidades enmascaradas, rescata inocentes y enfréntate a Cnidathqua.",
+        "sideStory": "Disponible como escenario independiente o como historia secundaria entre escenarios de una campaña, por 3 puntos de experiencia por investigador.",
+        "rewards": "Incluye los desenlaces, las cuatro máscaras y la Abadesa como recompensas, conservando experiencia, traumas y cartas al volver a la campaña.",
+        "presentation": "Cartas y guía en español e inglés, narraciones de Salva en español e identidades ocultas protegidas en las partidas en línea."
+      },
       "startersAndRules": {
         "title": "Nuevos mazos y correcciones de Dunwich",
         "decks": "Nathaniel Cho y Harvey Walters ya están disponibles con sus mazos iniciales oficiales completos.",
@@ -353,7 +360,24 @@
     "upkeepResources": "Hermético: ¿obtienes {n} recurso(s) en este mantenimiento?",
     "payWithUses": "¿Pagas {card} con secretos de {source}?",
     "playFrom": "Jugar {card} desde…",
-    "orderCancelableTestResults": "Resuelve un resultado antes de la cancelación o cancela todos los resultados pendientes."
+    "orderCancelableTestResults": "Resuelve un resultado antes de la cancelación o cancela todos los resultados pendientes.",
+    "carnevale": {
+      "attackOrder": "Elige a quién ataca ahora el servidor",
+      "look": "Mira el reverso del enmascarado",
+      "chooseLook": "Elige el enmascarado cuyo reverso quieres mirar",
+      "revealWho": "Elige quién revela la ficha",
+      "appendageSearch": "¿De dónde tomas el Apéndice retorcido?",
+      "hysteria": "¿Sufres daño o redistribuyes a los enmascarados?",
+      "lost": "¿Sufres horror o te mueves enfrente?",
+      "chooseFlip": "Elige un enmascarado para descubrirlo",
+      "innocentDestination": "Mueve al inocente al Lugar vacío más alejado",
+      "abduction": "¿Descartas un Aliado o pierdes todos tus recursos?",
+      "miasma": "¿Sufres daño y horror o resuelves Cazador?",
+      "tablet": "Elige un inocente y si recibe daño u horror",
+      "mask": "Puedes añadir una máscara a tu mazo.",
+      "heal": "Elige qué curar.",
+      "abbess": "¿Quién añade la Abadesa a su mazo?"
+    }
   },
   "action": {
     "draw": "Robar 1 carta",
@@ -735,7 +759,31 @@
     "salvageResources": "Retirar de la partida y obtener {n} recursos",
     "shotcasterMoveEnemy": "Mover a {enemy} a {location}",
     "shotcasterBefore": "Mover antes del intento",
-    "shotcasterAfter": "Mover después del intento"
+    "shotcasterAfter": "Mover después del intento",
+    "carnevale": {
+      "identity": {
+        "82017": "Don Lagorio",
+        "82018": "Elisabetta Magro",
+        "82019": "Salvatore Neri",
+        "82020": "Savio Corvi",
+        "82021": "Carnavalero inocente"
+      },
+      "searchDeck": "Busca en el mazo de Encuentros",
+      "searchDiscard": "Busca en el descarte de Encuentros",
+      "takeDamage": "Recibe 2 de daño",
+      "shuffleMasked": "Baraja y redistribuye a los enmascarados",
+      "takeHorror": "Recibe 2 de horror",
+      "moveAcross": "Muévete al Lugar de enfrente",
+      "masked": "Enmascarado del Carnevale",
+      "loseResources": "Pierde todos los recursos",
+      "takeBoth": "Recibe 1 de daño y 1 de horror",
+      "moveHunters": "Resuelve Cazador en los enemigos",
+      "innocentDamage": "Inflige 1 de daño a este inocente",
+      "innocentHorror": "Inflige 1 de horror a este inocente",
+      "mask": "Añadir {card}",
+      "healdamage": "Curar 1 daño",
+      "healhorror": "Curar 1 horror"
+    }
   },
   "phase": {
     "setup": "Preparación",
@@ -1146,7 +1194,27 @@
     "grannyOrne3": "Abuelita Orne: +1 o −1 al valor de habilidad de {name}",
     "scavenging": "Reutilizar: añade a tu mano un Objeto de tu pila de descartes",
     "shotcasterForm": "Cambiar forma del Lanzadisparos hiperfísico",
-    "scavenging2": "Recuperar o jugar un Objeto del descarte"
+    "scavenging2": "Recuperar o jugar un Objeto del descarte",
+    "carnevale": {
+      "unmask": "Gasta 1 pista: descubre al enmascarado",
+      "parley": "Negociar: convence al carnavalero (intelecto 2)",
+      "rescue": "Pon al carnavalero a salvo bajo el mazo de Acto",
+      "look": "Gasta {clues} pistas en grupo: mira un reverso",
+      "streets": "Muévete al siguiente Lugar horario",
+      "garden": "Paga 2 recursos: cura 2 horror (una vez por partida)",
+      "square": "Evita automáticamente a {enemy}",
+      "canal": "Coloca 1 pista en el Canal",
+      "guardian": "Roba 1 carta",
+      "row": "Remar: prueba combate o agilidad (2)",
+      "maskSkill": {
+        "combat": "Descartar máscara: usar combate en esta prueba",
+        "intellect": "Descartar máscara: usar intelecto en esta prueba",
+        "agility": "Descartar máscara: usar agilidad en esta prueba",
+        "willpower": "Descartar máscara: usar voluntad en esta prueba"
+      },
+      "maskEnter": "Resolver la reacción de entrada de la máscara",
+      "abbess": "Agotar la Abadesa: moverse a {location}"
+    }
   },
   "log": {
     "mulligan": "{name} confirma su mano inicial. Cartas cambiadas: {n}.",
@@ -1271,7 +1339,12 @@
     "failedTestEffectsCanceled": "Ni la lluvia ni la nieve cancela los efectos de la prueba fracasada.",
     "enemyToEncounterTop": "{enemy} se coloca en la parte superior del mazo de Encuentros.",
     "enemyToEncounterBottom": "{enemy} se coloca en la parte inferior del mazo de Encuentros.",
-    "exiled": "{name} exilia {card}."
+    "exiled": "{name} exilia {card}.",
+    "carnevale": {
+      "rescued": "Un carnavalero inocente queda a salvo bajo el mazo de Acto.",
+      "sacrificed": "Un carnavalero inocente pasa bajo el mazo de Plan. Cada investigador sufre 1 horror.",
+      "underAgenda": "Un inocente queda bajo el mazo de Plan."
+    }
   },
   "table": {
     "scenarioSkipped": "Escenario omitido",
@@ -1495,7 +1568,9 @@
     "exhausted": "agotado",
     "alarm": "Alarma",
     "alarmHelp": "Nivel de alarma (1–10). Con 6 o más, los enemigos Casino de tu Lugar pierden Indiferente.",
-    "scenarioDeckRevealedHelp": "Solo se muestran las cartas reveladas. El reverso de la carta actual y las cartas siguientes permanecen ocultos hasta que el escenario los revele."
+    "scenarioDeckRevealedHelp": "Solo se muestran las cartas reveladas. El reverso de la carta actual y las cartas siguientes permanecen ocultos hasta que el escenario los revele.",
+    "globalEnemies": "Enemigos fuera de los Lugares",
+    "maskedCarnevale": "Carnavalero enmascarado"
   },
   "difficulty": {
     "easy": "Fácil",
@@ -1554,7 +1629,8 @@
       "murder-at-the-excelsior-hotel": "Un asesinato y un hotel lleno de secretos. Investiga lo ocurrido en el Excelsior y descubre la verdad antes de que sea demasiado tarde.",
       "the-path-to-carcosa": "El Rey de Amarillo llega a Arkham. Ocho escenarios entre Dudas y Convicciones. En desarrollo: de momento se pueden jugar los escenarios I a III.",
       "fortune-and-folly": "Un casino de Montecarlo manipula la propia suerte. Vigila el local en la parte I y da el golpe en la parte II.",
-      "the-dunwich-legacy": "Busca a los profesores desaparecidos. Actividad extracurricular y La casa siempre gana son jugables. Los seis escenarios siguientes siguen en desarrollo."
+      "the-dunwich-legacy": "Busca a los profesores desaparecidos. Actividad extracurricular y La casa siempre gana son jugables. Los seis escenarios siguientes siguen en desarrollo.",
+      "carnevale-of-horrors": "Investiga las máscaras de Venecia, rescata a los inocentes y escapa de la criatura de la laguna."
     },
     "continueTitle": "Continuar donde lo dejaste",
     "chooseStory": "Elige la historia",
@@ -1775,7 +1851,10 @@
       "dunwichNaomiSupports": "Naomi apoya a los investigadores",
       "dunwichObannionGrudge": "La banda de O’Bannion tiene cuentas que saldar con los investigadores",
       "dunwichArmitageRescued": "Los investigadores rescataron al Dr. Henry Armitage",
-      "dunwichArmitageKidnapped": "El Dr. Henry Armitage ha sido secuestrado"
+      "dunwichArmitageKidnapped": "El Dr. Henry Armitage ha sido secuestrado",
+      "carnevalenoResolution": "Muchos fueron sacrificados a Cnidathqua durante el Carnevale.",
+      "carnevaleresolution1": "El sol desterró a Cnidathqua a las profundidades.",
+      "carnevaleresolution2": "Cnidathqua se retiró para curar sus heridas."
     },
     "scenario": {
       "smokeAndMirrors": "el Escenario II: Smoke and Mirrors",
@@ -2412,6 +2491,24 @@
       "armitageRewardTitle": "Dr. Henry Armitage",
       "armitageReward": "Un investigador puede añadir al Dr. Henry Armitage a su mazo, sin contar para su tamaño.",
       "cheatEffect": "Añadid una ficha de Primigenio a la bolsa durante el resto de la campaña."
+    },
+    "carnevale": {
+      "introTitle": "Llega el Carnevale…",
+      "intro": "—Mire —insiste el sheriff Engel—, sé que suena a locura, pero es que es lo que hay. —Suspira y vuelve a sentarse, antes de servir una taza de café para ti y otra para él—. Una señora de la periferia vio a un chalado que llevaba puesta esta máscara e iba con un cuchillo de carnicero ensangrentado —dice mientras señala la máscara de cuero negro que hay sobre su mesa. Tiene una nariz cómicamente larga y un extraño símbolo amarillo garabateado en la frente—. Así que nos llamó, y los chicos y yo lo atrapamos en la esquina de Saltonstall y Garrison. —El sheriff tensa la mandíbula y frunce el ceño al relatar la historia—. El tipo se limitó a reírse cuando le pusimos las esposas. Dijo llamarse Zanni, y no añadió nada más, excepto que “llega el carnaval”. A saber lo que significa. No encontramos el cuerpo de la víctima hasta el día siguiente. La defensa le quería internado y con camisa de fuerza, y nosotros estuvimos encantados de concedérselo.\n\nNo queda mucho tiempo. Si la investigación realizada es acertada, en este caso hay más de lo que parece. El tal “Zanni” no se refería a la Feria de Darke, que para algunos es como el carnaval, sino al Carnevale de Venecia, que comienza justo antes de la próxima luna llena…",
+      "setupTitle": "Preparación y reglas especiales",
+      "setup": "Reúne el conjunto Carnevale de horrores. Retira al azar uno de los nueve Lugares, excepto la Basílica de San Marcos y el Canal. Coloca los ocho restantes en un círculo aleatorio. Los investigadores y la Abadesa comienzan en la Basílica. Baraja los siete Carnavaleros enmascarados y coloca uno en cada otro Lugar, sin mirar sus reversos. Aparta a Cnidathqua y las cuatro máscaras.\nLos Lugares solo están conectados en sentido horario. Las instrucciones antihorarias son excepciones expresas. El Lugar de enfrente está a cuatro pasos. Las identidades enmascaradas permanecen ocultas hasta que una capacidad permita mirarlas o descubrirlas.",
+      "noResolutionTitle": "Sin resolución",
+      "noResolution": "Te despiertas escupiendo cuando un remo te da unos suaves golpes en el hombro. —¿Tutto bene? —te pregunta el gondolero que sostiene el remo con expresión preocupada. Asientes y te arrastras hasta el embarcadero desde su góndola. La ciudad está devastada. La mayoría de las embarcaciones del canal están destrozadas, y las calles no están cubiertas de confeti, sino de sangre…\n\nAnota en el registro de campaña que fueron sacrificadas muchas personas a Cnidathqua durante el Carnevale. Cada investigador obtiene una cantidad de experiencia igual al valor de Victoria X de cada carta que haya en la zona de victoria. Mueve 1 Carnavalero inocente de debajo del mazo de Acto debajo del mazo de Plan si es posible. Pasa a Recompensas adicionales.",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "La ciudad sigue recuperándose de los acontecimientos vividos durante el eclipse. Con casi todos los restos de la criatura fundidos por el cálido sol, muchos le atribuyen la violencia del Carnevale al señor del crimen local Cascio Di Boerio y a su banda. Quienes conocen la verdad saben que es mejor no hablar de la criatura primigenia que vive en la Laguna Veneta. Con suerte, su nombre no será pronunciado nunca más.\n\nAnota en el registro de campaña que el sol desterró a Cnidathqua a las profundidades. Cada investigador obtiene una cantidad de experiencia igual al valor de Victoria X de cada carta que haya en la zona de victoria. Pasa a Recompensas adicionales.",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "La criatura se revuelve mientras glóbulos de su gelatinosa carne se desprenden de su cuerpo y caen a la laguna con un chapoteo. El cántico de la ciudad se sume en un afligido silencio. Al volver a las calles de los canales, del cielo caen plumas negras allí donde antes revoloteaba el brillante confeti. Lo único que te preguntas es cuánto tardará la criatura en recuperarse.\n\nAnota en el registro de campaña que Cnidathqua se retiró para curarse las heridas. Cada investigador obtiene una cantidad de experiencia igual al valor de Victoria X de cada carta que haya en la zona de victoria. Pasa a Recompensas adicionales.",
+      "sacrificeTitle": "Sacrificio realizado",
+      "sacrifice": "Se perdieron demasiadas vidas durante el eclipse para detener las maquinaciones de los sirvientes de Cnidathqua. La bestia recibió su alimento, y sus siervos, poder. Esperas no vivir lo suficiente como para ver las consecuencias de tu fracaso.\n\nCada investigador busca en la colección una Debilidad Locura, Lesión o Monstruo básica aleatoria y la añade a su mazo durante el resto de la campaña.",
+      "abbessTitle": "Abadesa complacida",
+      "abbess": "—Grazie mille… gracias por toda tu ayuda —dice Allegria cuando vuelves a la Basílica—. Gracias a ti, ha habido pocas bajas. Me estremezco al pensar lo que podría haber ocurrido si no hubieras venido. Si alguna vez necesitas ayuda, no dudes en pedirla.\n\nUn investigador cualquiera puede elegir añadir a la Abadesa Allegria Di Biase a su mazo. Esta carta no cuenta para el tamaño del mazo de ese investigador.",
+      "additionalRewardsTitle": "Recompensas adicionales",
+      "additionalRewards": "En el orden de juego, cada investigador puede elegir una de las siguientes cartas Máscara para añadirla a su mazo: Pantalone, Medico della peste, Bauta o Volto dorado. La carta elegida no cuenta para el tamaño de mazo de ese investigador.\n\nSi no hay Carnavaleros inocentes bajo el mazo de Acto y hay al menos 1 bajo el mazo de Plan, pasa a Sacrificio realizado. Si no hay Carnavaleros inocentes bajo el mazo de Plan y hay 3 bajo el mazo de Acto, pasa a Abadesa complacida."
     }
   },
   "playmat": {
@@ -2536,7 +2633,8 @@
       "blood-on-the-altar": "Sangre en el altar",
       "undimensioned-and-unseen": "Invisibles y sin dimensión",
       "where-doom-awaits": "Donde aguarda la perdición",
-      "lost-in-time-and-space": "Perdidos en el tiempo y el espacio"
+      "lost-in-time-and-space": "Perdidos en el tiempo y el espacio",
+      "carnevale-of-horrors": "Carnevale de horrores"
     },
     "names": {
       "brethren-of-ash": "Brethren of Ash",
@@ -2544,7 +2642,8 @@
       "murder-at-the-excelsior-hotel": "Asesinato en el hotel Excelsior",
       "the-path-to-carcosa": "El camino a Carcosa",
       "fortune-and-folly": "Fortuna e insensatez",
-      "the-dunwich-legacy": "El legado de Dunwich"
+      "the-dunwich-legacy": "El legado de Dunwich",
+      "carnevale-of-horrors": "Carnevale de horrores"
     },
     "choose": "Elige la campaña",
     "xpBreakdown": "Desglose de experiencia",
@@ -2564,7 +2663,8 @@
       "confirm": "Unir a la campaña",
       "blocked": "Elegid un nuevo investigador para continuar."
     },
-    "lost": "Campaña perdida: ningún investigador puede continuar."
+    "lost": "Campaña perdida: ningún investigador puede continuar.",
+    "addCarnevale": "Añadir Carnevale como historia secundaria (3 PX por investigador)"
   },
   "class": {
     "guardian": "Guardián",

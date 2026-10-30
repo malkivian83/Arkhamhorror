@@ -208,6 +208,8 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
     })),
     enemies: entities(g.enemies, (e) =>
       pick(e, [
+        'global',
+        'cannotBeEvaded',
         'id',
         'kind',
         'code',
@@ -261,7 +263,7 @@ export function tableView(g: GameState, mine: string | undefined): OnlineTable {
         'uses',
         'clues',
       ]),
-      code: a.faceDown ? '' : a.code,
+      code: a.faceDown ? (g.scenarioId === 'carnevale-of-horrors' ? '82017b' : '') : a.code,
       name: a.faceDown ? '' : a.name,
     })),
     treacheries: entities(g.treacheries, (t) => {

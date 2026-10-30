@@ -106,6 +106,9 @@ const A_SIDES = new Set(['01121a', '03076a', '03182a', '03221a', '03321a', '8803
 
 /** Spanish image, then English image, both from our local asset inventory. */
 export function cardImages(code: string, back = false, locale = scanLocale.value): string[] {
+  // Las cinco identidades comparten exactamente la cara enmascarada.
+  if (/^820(18|19|20|21)b$/.test(code) && !back) return cardImages('82017b', false, locale)
+  if (/^820(18|19|20|21)$/.test(code) && back) return cardImages('82017b', false, locale)
   if (code === 'fof-dimensional-duplicate') return ['/local-assets/backs/player.jpg']
   if (back && STORY_BACKS[code]) return cardImages(STORY_BACKS[code], false, locale)
   if (A_SIDES.has(code)) {

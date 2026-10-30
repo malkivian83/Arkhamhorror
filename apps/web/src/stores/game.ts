@@ -8,6 +8,7 @@ import {
   purchase,
   customize,
   startScenario,
+  addCarnevale,
   STARTER_DECKS,
   type Campaign,
   type CampaignMember,
@@ -209,6 +210,11 @@ export const useGameStore = defineStore('game', () => {
     play(startScenario(campaign.value, Math.floor(Math.random() * 2 ** 32)))
   }
 
+  function insertCarnevale() {
+    if (!campaign.value || latest) return
+    setCampaign(addCarnevale(campaign.value))
+  }
+
   /** Gasta experiencia en una carta para el mazo de un investigador. */
   function customizeCard(
     investigator: string,
@@ -400,6 +406,7 @@ export const useGameStore = defineStore('game', () => {
     start,
     closeScenario,
     playNext,
+    insertCarnevale,
     buy,
     customizeCard,
     chooseHeir,

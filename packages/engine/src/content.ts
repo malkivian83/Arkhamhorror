@@ -54,6 +54,10 @@ export type AbilitiesFn<Self> = (
 ) => AbilityOption[]
 
 export interface ScenarioBehavior {
+  /** Reglas nuevas de asignación conjunta; opt-in para conservar grabaciones anteriores. */
+  simultaneousAssetAssignment?: boolean
+  /** Sustituye el robo superior antes de tocar el mazo (acto ¡Remad!). */
+  insteadOfEncounterDraw?: (state: GameState, investigator: InvestigatorId) => Message[] | null
   beforeRemoveLocation?: (
     state: GameState,
     message: Extract<Message, { type: 'RemoveLocation' }>,
@@ -130,7 +134,14 @@ export interface ScenarioBehavior {
   /** Tras completar una acción (Vagabundo dimensional: la misma acción dos veces seguidas). */
   afterAction?: (state: GameState, investigator: InvestigatorId, kind: ActionKind) => Message[]
   /** Modificador al combate/evasión de un enemigo (Savage Shantak). */
-  enemyStat?: (state: GameState, enemy: Enemy, stat: 'fight' | 'evade', source?: string) => number
+  enemyStat?: (
+    state: GameState,
+    enemy: Enemy,
+    stat: 'fight' | 'evade',
+    source?: string,
+    /** La dificultad se calcula antes de que exista state.skillTest. */
+    investigator?: InvestigatorId,
+  ) => number
   /** Modificador al velo de una localización (Parlor). */
   shroudModifier?: (state: GameState, location: Location) => number
   /** El acto solo se puede avanzar pagando pistas si se cumple (Meet and Greet). */
@@ -282,6 +293,8 @@ export interface TreacheryBehavior {
 }
 
 export interface EnemyBehavior {
+  /** Permiso de combate remoto; no lo coloca allí ni permite enfrentarlo/evadirlo. */
+  fightFromAnywhere?: boolean
   /** An investigator defeated by this attack is killed instead. */
   attackKills?: boolean
   canBeAttacked?: (
@@ -555,6 +568,8 @@ export interface PlayerCardBehavior {
   effectAttackDamage?: (state: GameState, test: SkillTest) => number
   /** Asset fast abilities offered in every supported player window. */
   fastOptions?: (state: GameState, self: Asset) => ReactionOption[]
+  /** Fast abilities of unowned assets, including printed access from adjacent locations. */
+  placedFastOptions?: (state: GameState, self: PlacedAsset) => ReactionOption[]
   /**
    * Continuous additional actions, consumed before ordinary actions (Leo De Luca); a function
    * when they depend on a condition (The Black Fan: 1 with 15 or more resources).

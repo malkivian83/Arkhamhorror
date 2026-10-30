@@ -63,6 +63,9 @@ export { LITA_CHANTLER } from './night-of-the-zealot/lita'
 export { demoInvestigators, demoScenario } from './demo'
 export { midwinterGala } from './midwinter-gala/gala'
 export { murderAtTheExcelsiorHotel } from './excelsior/excelsior'
+export { carnevaleOfHorrors } from './carnevale/scenario'
+export { LOCATIONS as CARNEVALE_LOCATIONS } from './carnevale/setup'
+export { SERVITORS as CARNEVALE_SERVITORS } from './carnevale/servitors'
 export {
   CODES as EXCELSIOR_CODES,
   EXCELSIOR,
@@ -162,6 +165,8 @@ export {
   activeMembers,
   campaignLost,
   campaignScenarios,
+  canAddCarnevale,
+  addCarnevale,
   canPlayNext,
   chooseTransferHeir,
   currentScenario,

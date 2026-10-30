@@ -71,6 +71,8 @@ export {
   assetsCannotReady,
   controlledClues,
   spendableClues,
+  fightEnemies,
+  huntingSteps,
   turnActionTiming,
   turnAheadThisRound,
   turnStartedAt,

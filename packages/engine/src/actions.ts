@@ -19,6 +19,7 @@ import {
   currentAgendas,
   activeInvestigators,
   enemiesAt,
+  fightEnemies,
   enemyHasKeyword,
   engagedEnemies,
   getInvestigator,
@@ -61,7 +62,11 @@ export function playableCards(state: GameState, id: InvestigatorId, fast: boolea
   if (investigator.eliminated || investigator.location === null) return []
   return [...new Set(playableHand(state, id))].filter((code) => {
     const def = playerCardDef(code)
-    if (!def || (def.fast ?? false) !== fast) return false
+    if (
+      !def ||
+      ((def.fast ?? false) || (def.type === 'asset' && !!investigator.nextAssetFast)) !== fast
+    )
+      return false
     if (def.type !== 'asset' && def.type !== 'event') return false
     if (def.type === 'asset' && assetsBlocked(state, id)) return false
     if (def.type === 'asset' && uniqueAssetInPlay(state, code)) return false
@@ -238,7 +243,7 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
       .filter((to) => state.locations[to] && canAffordEntry(state, to) && canEnter(state, id, to))
       .map((to): Action => ({ kind: 'move', to })),
     // Un enemigo distante (aloof) no enfrentado no puede ser atacado.
-    ...enemiesHere
+    ...fightEnemies(state, id)
       .filter((e) => e.engagedWith !== null || !enemyHasKeyword(state, e, 'aloof'))
       .filter((e) => !attackBlocked(state, id, e))
       .map((e): Action => ({ kind: 'fight', enemy: e.id })),

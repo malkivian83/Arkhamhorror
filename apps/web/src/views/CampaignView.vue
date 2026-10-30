@@ -5,6 +5,7 @@ import {
   campaignLost,
   campaignScenarios,
   canPlayNext,
+  canAddCarnevale,
   currentScenario,
   deckSize,
   deckSizeOf,
@@ -402,6 +403,13 @@ function abandon() {
         <span v-else-if="!playable" class="soon">{{ t('campaign.comingSoon') }}</span>
       </template>
       <p v-else class="finished">{{ t('campaign.finished') }}</p>
+      <SiteAction
+        v-if="campaign && canAddCarnevale(campaign)"
+        icon="+"
+        @click="game.insertCarnevale()"
+      >
+        {{ t('campaign.addCarnevale') }}
+      </SiteAction>
       <SiteAction icon="×" variant="danger" class="abandon" @click="abandon">{{
         t('campaign.abandon')
       }}</SiteAction>

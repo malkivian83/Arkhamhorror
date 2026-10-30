@@ -1,5 +1,5 @@
 import {
-  enemiesAt,
+  fightEnemies,
   getInvestigator,
   registerPlayerCard,
   type Choice,
@@ -44,11 +44,10 @@ for (const [code, comeBack] of [
     ...actionFlags(spec),
     canPlay: (state, investigator) => {
       const here = getInvestigator(state, investigator).location
-      return here !== null && enemiesAt(state, here).length > 0
+      return here !== null && fightEnemies(state, investigator).length > 0
     },
     play: (state, investigator) => {
       const ctx = { state, investigator, code }
-      const here = getInvestigator(state, investigator).location!
       const direct = new Set(targets(spec, state, investigator).map((e) => e.id))
       return [
         {
@@ -57,7 +56,7 @@ for (const [code, comeBack] of [
           question: {
             kind: 'chooseOne',
             prompt: 'prompt.chooseEnemy',
-            choices: enemiesAt(state, here).flatMap((enemy): Choice[] => [
+            choices: fightEnemies(state, investigator).flatMap((enemy): Choice[] => [
               ...(direct.has(enemy.id)
                 ? [
                     {
@@ -68,7 +67,9 @@ for (const [code, comeBack] of [
                     },
                   ]
                 : []),
-              ...(enemy.engagedWith !== investigator && !enemy.keywords.includes('massive')
+              ...(!enemy.global &&
+              enemy.engagedWith !== investigator &&
+              !enemy.keywords.includes('massive')
                 ? [
                     {
                       label: 'choice.engageThenAttack',

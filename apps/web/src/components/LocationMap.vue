@@ -99,10 +99,51 @@ const treacheriesAt = (id: string) =>
 </script>
 
 <template>
+  <section
+    v-if="Object.values(state.enemies).some((e) => e.global)"
+    class="global-enemies"
+    :aria-label="t('table.globalEnemies')"
+  >
+    <TableTarget
+      v-for="e in Object.values(state.enemies).filter((e) => e.global)"
+      :key="e.id"
+      :target="`enemy:${e.id}`"
+    >
+      <GameCard :code="e.code" :name="e.name" :width="120" :exhausted="e.exhausted">
+        <TokenBadge
+          v-if="e.damageTaken"
+          kind="damage"
+          :value="e.damageTaken"
+          :size="22"
+          class="enemy-damage"
+        />
+        <TokenBadge v-if="e.doom" kind="doom" :value="e.doom" :size="22" />
+      </GameCard>
+    </TableTarget>
+  </section>
   <div class="map" :style="{ width: `${size.width}px`, height: `${size.height}px` }">
     <svg class="edges" :width="size.width" :height="size.height">
+      <defs>
+        <marker
+          id="carnevale-clockwise"
+          markerWidth="8"
+          markerHeight="8"
+          refX="8"
+          refY="4"
+          orient="auto"
+        >
+          <path d="M0,0 L8,4 L0,8" fill="currentColor" />
+        </marker>
+      </defs>
       <!-- Hilo rojo de investigador entre chinchetas, algo combado. -->
-      <path v-for="e in edges" :key="`${e.from}-${e.to}`" :d="string(e.from, e.to)" />
+      <path
+        v-for="e in edges"
+        :key="`${e.from}-${e.to}`"
+        :d="string(e.from, e.to)"
+        :marker-end="
+          state.scenarioId === 'carnevale-of-horrors' ? 'url(#carnevale-clockwise)' : undefined
+        "
+      />
     </svg>
 
     <div
@@ -180,8 +221,15 @@ const treacheriesAt = (id: string) =>
       <div class="attachments">
         <TableTarget v-for="p in placedAt(l.id)" :key="p.id" :target="`placed:${p.id}`">
           <!-- Un Invitado hechizado está boca abajo. -->
+          <GameCard
+            v-if="p.faceDown && state.scenarioId === 'carnevale-of-horrors'"
+            code="82017b"
+            :name="t('table.maskedCarnevale')"
+            :width="54"
+            no-zoom
+          />
           <div
-            v-if="p.faceDown"
+            v-else-if="p.faceDown"
             class="spellbound"
             :title="t('table.spellbound')"
             :style="playerBack ? { backgroundImage: `url(${playerBack})` } : {}"
@@ -308,6 +356,12 @@ const treacheriesAt = (id: string) =>
 </template>
 
 <style scoped>
+.global-enemies {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+}
 .map {
   position: relative;
   margin: 0 auto;

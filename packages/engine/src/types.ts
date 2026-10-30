@@ -43,6 +43,7 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  nextAssetFast?: boolean
   fightActionsThisTurn?: number
   roundSkillAdditions?: { from: SkillType; skills: SkillType[]; code: CardCode; round: number }[]
   /** Purchased checkboxes, shared by this investigator's copies of each customizable card. */
@@ -133,6 +134,8 @@ export interface Investigator {
 }
 
 export interface Location {
+  /** Recursos colocados en el Lugar (Góndola). */
+  resources?: number
   /** Physical single-sided encounter card currently represented by this location. */
   encounterCard?: EncounterLocationCard
   id: LocationId
@@ -170,6 +173,7 @@ export type EnemyKeyword =
 
 /** Prey (presa): a quién prefiere enfrentarse el enemigo. */
 export type Prey =
+  | { type: 'mostAssets'; code: CardCode }
   | { type: 'fewestCards' }
   | { type: 'lowestSkill'; skill: SkillType }
   | { type: 'highestSkill'; skill: SkillType }
@@ -185,6 +189,8 @@ export type Prey =
   | { type: 'lowestRemainingHealth' }
 
 export interface EnemyCard {
+  /** En juego sin ocupar un Lugar; location es la cadena vacía, nunca un Lugar ficticio. */
+  global?: boolean
   /** Printed fight, health and evade are dashes, not zero-valued statistics. */
   hasNoStats?: boolean
   /** Original code of a player card represented by a face-down enemy. */
@@ -804,6 +810,7 @@ export type Message =
     }
   | {
       type: 'ModifySkillTest'
+      skill?: SkillType
       ignoredEnemyKeywords?: EnemyKeyword[]
       addedEnemyKeywords?: EnemyKeyword[]
       difficultyFactor?: number
@@ -1055,7 +1062,15 @@ export type Message =
   | { type: 'ReleaseAsset'; asset: AssetId; placement: AssetPlacement; faceDown?: boolean }
   | { type: 'FlipPlacedAsset'; placed: PlacedAssetId }
   | { type: 'RemovePlacedAsset'; placed: PlacedAssetId }
-  | { type: 'DamagePlacedAsset'; placed: PlacedAssetId; damage: number; horror: number }
+  | {
+      type: 'DamagePlacedAsset'
+      placed: PlacedAssetId
+      damage: number
+      horror: number
+      deferDefeat?: boolean
+    }
+  /** Finaliza una asignación conjunta después de colocar ambos tipos de fichas. */
+  | { type: 'FinalizeAssignedAssets'; dealt: DamageDealt[] }
   /** Pasa una carta del mazo de escenario a otra zona (lo resuelve el escenario). */
   | { type: 'ScenarioSpecific'; key: string; data?: Record<string, string | number | boolean> }
   | { type: 'SetScenarioMeta'; key: string; value: string | number }
@@ -1069,6 +1084,7 @@ export type Message =
   | { type: 'SpendUses'; asset: AssetId; amount: number }
   | { type: 'SetAssetForm'; asset: AssetId; form: string }
   | { type: 'ReplaceSkillTestResults'; then: Message[] }
+  | { type: 'NextAssetFast'; investigator: InvestigatorId }
   | { type: 'RemoveCardFromDiscard'; investigator: InvestigatorId; code: CardCode }
   | { type: 'PlaceCluesOnAsset'; asset: AssetId; amount: number }
   | { type: 'MoveAssetCluesToEnemy'; asset: AssetId; enemy: EnemyId; amount: number }
@@ -1089,7 +1105,7 @@ export type Message =
       /** Carta elegida que debe llenarse antes que otra (Bestia de Aldebarán). */
       focus?: AssetId | 'investigator'
     }
-  | { type: 'DamageAsset'; asset: AssetId; damage: number; horror: number }
+  | { type: 'DamageAsset'; asset: AssetId; damage: number; horror: number; deferDefeat?: boolean }
   | {
       type: 'AssignHorrorEvenly'
       investigator: InvestigatorId
@@ -1729,6 +1745,8 @@ export type Trigger =
       location: LocationId
     }
   | { type: 'roundBegins' }
+  | { type: 'mythosPhaseBegins' }
+  | { type: 'afterHunterMove'; enemy: EnemyId }
   | { type: 'agendaAdvances'; code?: CardCode }
   | { type: 'afterGainClues'; investigator: InvestigatorId; amount: number }
   | { type: 'encounterCardDiscarded'; card: EncounterCard; investigator?: InvestigatorId }

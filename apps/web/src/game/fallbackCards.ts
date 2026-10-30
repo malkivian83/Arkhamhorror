@@ -1,5 +1,8 @@
 import {
   theGathering,
+  carnevaleOfHorrors,
+  CARNEVALE_LOCATIONS,
+  CARNEVALE_SERVITORS,
   theMidnightMasks,
   theDevourerBelow,
   DUNWICH_ENCOUNTER_SETS,
@@ -58,6 +61,7 @@ import {
 } from '@lcg/engine'
 import {
   cardNarratives,
+  carnevaleCards,
   carcosaCards,
   excelsiorCards,
   fortuneCards,
@@ -160,6 +164,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     })
   }
   const scenarios = [
+    carnevaleOfHorrors({}),
     extracurricularActivity(),
     theHouseAlwaysWins(),
     theMiskatonicMuseum(),
@@ -288,6 +293,8 @@ export function fallbackCards(locale: string): LocalizedCard[] {
         })
     })
   }
+  CARNEVALE_LOCATIONS.forEach(location)
+  Object.values(CARNEVALE_SERVITORS).forEach(encounter)
   const elokoss = cards.get('12179')
   if (elokoss) put({ ...elokoss, code: '12179b', type_code: 'enemy' })
 
@@ -530,9 +537,18 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     type_code: 'scenario',
   })
   put({ code: '01104', name: 'The Gathering', real_name: 'The Gathering', type_code: 'scenario' })
-  const catalogues = [excelsiorCards, carcosaCards, fortuneCards, zealotCards, dunwichCards].map(
-    (c) => c[locale === 'es' ? 'es' : 'en'],
-  )
+  for (const [code, text] of Object.entries(carnevaleCards.en)) {
+    if (!cards.has(code))
+      put({ code, name: text.name, real_name: text.name, type_code: text.typeCode ?? 'asset' })
+  }
+  const catalogues = [
+    carnevaleCards,
+    excelsiorCards,
+    carcosaCards,
+    fortuneCards,
+    zealotCards,
+    dunwichCards,
+  ].map((c) => c[locale === 'es' ? 'es' : 'en'])
   for (const [code, text] of catalogues.flatMap((c) => Object.entries(c))) {
     const card = cards.get(code)
     if (!card) continue

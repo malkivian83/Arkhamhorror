@@ -1,6 +1,7 @@
 import type { ChaosToken, GameState } from '@lcg/engine'
 import {
   carcosaCards,
+  carnevaleCards,
   excelsiorCards,
   fortuneCards,
   zealotCards,
@@ -21,6 +22,7 @@ export function chaosHelp(
   const hard = state.difficulty === 'hard' || state.difficulty === 'expert'
   // Tarjetas de referencia con texto oficial en el catálogo local.
   const official: Record<string, CatalogCard | undefined> = {
+    'carnevale-of-horrors': carnevaleCards[locale === 'es' ? 'es' : 'en']['82001'],
     'lost-in-time-and-space': dunwichCards[locale === 'es' ? 'es' : 'en']['02311'],
     'where-doom-awaits': dunwichCards[locale === 'es' ? 'es' : 'en']['02274'],
     'undimensioned-and-unseen': dunwichCards[locale === 'es' ? 'es' : 'en']['02236'],

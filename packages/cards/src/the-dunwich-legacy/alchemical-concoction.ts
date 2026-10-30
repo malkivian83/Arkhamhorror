@@ -1,4 +1,4 @@
-import { enemiesAt, getInvestigator, registerPlayerCards, registerPlayerCard } from '@lcg/engine'
+import { fightEnemies, getInvestigator, registerPlayerCards, registerPlayerCard } from '@lcg/engine'
 import { EA } from './extracurricular-codes'
 registerPlayerCards([
   {
@@ -17,7 +17,7 @@ registerPlayerCard({
     const location = getInvestigator(state, investigator).location
     return location === null
       ? []
-      : enemiesAt(state, location).map((enemy) => ({
+      : fightEnemies(state, investigator).map((enemy) => ({
           key: `${self.id}:fight:${enemy.id}`,
           label: 'ability.dunwich.concoction',
           params: { enemy: enemy.name },

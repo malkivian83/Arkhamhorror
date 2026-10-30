@@ -1,8 +1,36 @@
 import { expect, it } from 'vitest'
 import { newCampaign, startScenario, LOST_ENCOUNTER_LOCATIONS } from '@lcg/cards'
-import { skillTestValue, shroudOf } from '@lcg/engine'
+import { skillTestValue, shroudOf, dispatch } from '@lcg/engine'
+import { throughSetup } from '@lcg/engine/testing'
 import { tableView, tableStats } from './table'
 import { gameView } from './game'
+
+it('hides Carnevale identities and private looks while exposing the global boss', () => {
+  let g = throughSetup(
+    startScenario(newCampaign('carnevale-of-horrors', ['joe', 'daniela'], 'standard'), 42),
+  )
+  const [a, b] = g.investigators
+  const hidden = Object.values(g.placedAssets!).filter((p) => p.faceDown)
+  const spectator = tableView(g, undefined)
+  for (const p of hidden)
+    expect(spectator.placedAssets?.[p.id]).toMatchObject({ code: '82017b', name: '' })
+  g = dispatch(
+    { ...g, pending: null, queue: [] },
+    {
+      type: 'ScenarioSpecific',
+      key: 'carnevaleLook',
+      data: { placed: hidden[0]!.id, investigator: a!.id },
+    },
+  )
+  expect(tableView(g, a!.id).pending?.question.choices.length).toBe(1)
+  expect(tableView(g, b!.id).pending?.question.choices).toEqual([])
+  g = dispatch(
+    { ...g, pending: null, queue: [] },
+    { type: 'ScenarioSpecific', key: 'carnevaleBoss', data: {} },
+  )
+  const boss = Object.values(tableView(g, undefined).enemies).find((e) => e.code === '82027')!
+  expect(boss).toMatchObject({ global: true, location: '', cannotBeEvaded: true })
+})
 
 it('projects a discarded encounter location with its public location data while keeping the deck anonymous', () => {
   const campaign = { ...newCampaign('the-dunwich-legacy', ['joe'], 'standard'), scenarioIndex: 7 }

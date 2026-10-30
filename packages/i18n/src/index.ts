@@ -18,6 +18,8 @@ import galaEn from './gala-cards.en.json'
 import galaEs from './gala-cards.es.json'
 import cardNarrativesEn from './card-narratives.en.json'
 import cardNarrativesEs from './card-narratives.es.json'
+import carnevaleEn from './carnevale-cards.en.json'
+import carnevaleEs from './carnevale-cards.es.json'
 
 /** Narración oficial de planes y actos de los catálogos implementados. */
 export const cardNarratives: Record<
@@ -130,6 +132,11 @@ export interface CatalogCard {
   /** Texto narrativo de cada cara (Fortuna e insensatez). */
   flavor?: string
   backFlavor?: string
+}
+
+export const carnevaleCards: Record<'en' | 'es', Record<string, CatalogCard>> = {
+  en: carnevaleEn,
+  es: carnevaleEs,
 }
 
 /**
