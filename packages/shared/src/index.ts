@@ -2,6 +2,8 @@ import type { GameState, PlayerInput } from '@lcg/engine'
 export * from './admin'
 export * from './online'
 export * from './online-game'
+export * from './autoSteps'
+export * from './cardEntries'
 export type {
   AccountUser,
   AuthStatus,

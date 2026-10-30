@@ -85,6 +85,12 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
   for (const [code] of Object.entries(g.stories ?? {}))
     cards.push({ id: `story:${code}`, code, name: code, detail: 'online.play.card', params: {} })
   return {
+    cardEntries: (lobby.cardEntries ?? []).flatMap(({ revision, cards }) =>
+      cards[user] ? [{ revision, cards: cards[user]! }] : [],
+    ),
+    autoSteps: (lobby.autoSteps ?? []).flatMap(({ revision, reviews }) =>
+      reviews[user] ? [{ revision, review: reviews[user]! }] : [],
+    ),
     table: tableView(g, mine),
     tableStats: tableStats(g),
     ...(mine ? { ownInvestigator: mine } : {}),

@@ -90,6 +90,9 @@ export interface OnlineCampaignView {
   } | null
 }
 export interface OnlineGame {
+  cardEntries?: { revision: number; cards: import('./cardEntries').CardEntry[] }[]
+  /** Per-player redacted automatic steps, ordered by authoritative revision. */
+  autoSteps?: { revision: number; review: import('./autoSteps').AutoStepsReview }[]
   /** Redacted presentation only: never apply engine inputs or persist as a local game. */
   table?: OnlineTable
   tableStats?: OnlineTableStats
