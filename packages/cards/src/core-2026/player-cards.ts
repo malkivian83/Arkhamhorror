@@ -5,6 +5,7 @@
  */
 import {
   enemiesAt,
+  fightEnemies,
   enemyHasKeyword,
   engagedEnemies,
   getInvestigator,
@@ -480,7 +481,7 @@ export const name = (position: number) => def(position).name
 export function attackable(state: GameState, investigator: InvestigatorId) {
   const here = getInvestigator(state, investigator).location
   if (here === null) return []
-  return enemiesAt(state, here).filter(
+  return fightEnemies(state, investigator).filter(
     (e) => e.engagedWith !== null || !enemyHasKeyword(state, e, 'aloof'),
   )
 }

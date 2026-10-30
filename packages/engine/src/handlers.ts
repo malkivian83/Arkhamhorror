@@ -207,6 +207,7 @@ export function handle(state: GameState, message: Message): GameState {
       return push(
         log({ ...state, phase: 'mythos' }, 'log.phase', { phase: 'mythos' }),
         { type: 'Step', step: 'mythosBegins' },
+        { type: 'Forced', trigger: { type: 'mythosPhaseBegins' } },
         { type: 'Step', step: 'placeDoom' },
         ...(agendaBehavior(state.agendas[state.agendaIndex]?.code)?.skipsMythosDoom
           ? []
@@ -469,6 +470,11 @@ export function handle(state: GameState, message: Message): GameState {
     case 'DrawEncounterCard': {
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.eliminated || investigator.location === null) return state
+      const instead = scenarioBehavior(state.scenarioId)?.insteadOfEncounterDraw?.(
+        state,
+        investigator.id,
+      )
+      if (instead) return push(state, ...onScenarioCard(instead))
       let deck = state.encounterDeck
       let discard = state.encounterDiscard
       let rng = state.rng
@@ -645,13 +651,19 @@ export function handle(state: GameState, message: Message): GameState {
             id,
             maxHealth: perInvestigator(withId, card.health, card.healthPerInvestigator ?? false),
             damageTaken: message.initialDamage ?? 0,
-            location: message.location,
+            location: card.global ? '' : message.location,
             engagedWith: null,
             exhausted: entersExhausted,
             ...(message.owner ? { owner: message.owner } : {}),
           },
         },
       }
+      if (card.global)
+        return push(
+          next,
+          { type: 'Forced', trigger: { type: 'enemySpawned', enemy: id, location: '' } },
+          ...(message.after ?? []),
+        )
       return push(
         next,
         ...(card.startingDoom
@@ -1038,13 +1050,24 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'EndTurn': {
-      state = { ...state, defeatedEnemyHealthThisTurn: {} }
+      state = {
+        ...state,
+        defeatedEnemyHealthThisTurn: {},
+      }
       const frames = state.immediateActions
       if (frames?.length) {
         const root = frames[0]!
         // Ending a temporary "as if" turn cannot end somebody else's actual turn.
         if (root.activeTurn !== message.investigator || root.endedTurn) return state
         state = { ...state, immediateActions: [{ ...root, endedTurn: true }, ...frames.slice(1)] }
+      }
+      state = {
+        ...state,
+        investigators: state.investigators.map((i) => {
+          if (i.nextAssetFast === undefined) return i
+          const { nextAssetFast: _expired, ...rest } = i
+          return rest
+        }),
       }
       // "Al final de tu turno": efectos pendientes de este investigador.
       const pending = (state.endOfTurn ?? []).filter((e) => e.investigator === message.investigator)
@@ -1801,7 +1824,7 @@ export function handle(state: GameState, message: Message): GameState {
       const defeated =
         (def?.health !== undefined && damaged.damage >= def.health) ||
         (def?.sanity !== undefined && damaged.horror >= def.sanity)
-      if (!defeated) return next
+      if (!defeated || message.deferDefeat) return next
       // Un apoyo sin dueño derrotado lo resuelve el escenario (hechizado) o se retira.
       return push(next, {
         type: 'ScenarioSpecific',
@@ -2371,6 +2394,10 @@ export function handle(state: GameState, message: Message): GameState {
       const assigned: Message[] =
         !message.assignmentPart && (message.dealt?.length || message.damage || message.horror)
           ? [
+              ...(scenarioBehavior(state.scenarioId)?.simultaneousAssetAssignment &&
+              message.dealt?.some((d) => d.asset || d.placed)
+                ? [{ type: 'FinalizeAssignedAssets' as const, dealt: message.dealt }]
+                : []),
               {
                 type: 'Forced',
                 trigger: {
@@ -2540,18 +2567,26 @@ export function handle(state: GameState, message: Message): GameState {
       const dealt = message.dealt ?? []
       if (kind === null) {
         return dealt.length
-          ? push(state, {
-              type: 'Forced',
-              trigger: {
-                type: 'afterDamageAssigned',
-                investigator,
-                dealt,
-                ...(message.assignmentAssets ? { assignmentAssets: message.assignmentAssets } : {}),
-                ...(message.enemy ? { enemy: message.enemy } : {}),
-                ...(message.killInstead ? { killInstead: true } : {}),
-                ...(message.source ? { source: message.source } : {}),
+          ? push(
+              state,
+              ...(scenarioBehavior(state.scenarioId)?.simultaneousAssetAssignment
+                ? [{ type: 'FinalizeAssignedAssets' as const, dealt }]
+                : []),
+              {
+                type: 'Forced',
+                trigger: {
+                  type: 'afterDamageAssigned',
+                  investigator,
+                  dealt,
+                  ...(message.assignmentAssets
+                    ? { assignmentAssets: message.assignmentAssets }
+                    : {}),
+                  ...(message.enemy ? { enemy: message.enemy } : {}),
+                  ...(message.killInstead ? { killInstead: true } : {}),
+                  ...(message.source ? { source: message.source } : {}),
+                },
               },
-            })
+            )
           : state
       }
       // Bestia de Aldebarán: la primera carta elegida recibe todo lo que pueda.
@@ -2626,7 +2661,10 @@ export function handle(state: GameState, message: Message): GameState {
       )
       const trait = message.assignFirst?.[kind]
       const mandatory = trait
-        ? available.filter((a) => trait === '*' || playerCardDef(a.code)?.traits.includes(trait))
+        ? available.filter(
+            (a) =>
+              trait === '*' || a.code === trait || playerCardDef(a.code)?.traits.includes(trait),
+          )
         : []
       const options = mandatory.length ? mandatory : available
       const placedOptions =
@@ -2683,6 +2721,7 @@ export function handle(state: GameState, message: Message): GameState {
                 {
                   type: 'DamageAsset',
                   asset: a.id,
+                  deferDefeat: !!scenarioBehavior(state.scenarioId)?.simultaneousAssetAssignment,
                   damage: kind === 'damage' ? 1 : 0,
                   horror: kind === 'horror' ? 1 : 0,
                 },
@@ -2697,6 +2736,7 @@ export function handle(state: GameState, message: Message): GameState {
                 {
                   type: 'DamagePlacedAsset',
                   placed: p.id,
+                  deferDefeat: !!scenarioBehavior(state.scenarioId)?.simultaneousAssetAssignment,
                   damage: kind === 'damage' ? 1 : 0,
                   horror: kind === 'horror' ? 1 : 0,
                 },
@@ -2718,6 +2758,7 @@ export function handle(state: GameState, message: Message): GameState {
         horror: asset.horror + message.horror,
       }
       const next = { ...state, assets: { ...state.assets, [asset.id]: damaged } }
+      if (message.deferDefeat) return next
       const defeated =
         (def?.health !== undefined && damaged.damage >= def.health) ||
         (def?.sanity !== undefined && damaged.horror >= def.sanity)
@@ -2738,6 +2779,39 @@ export function handle(state: GameState, message: Message): GameState {
             trigger: { type: 'assetDefeated', asset: damaged },
           })
         : push(next, ...after)
+    }
+
+    case 'FinalizeAssignedAssets': {
+      const effects: Message[] = []
+      for (const d of message.dealt) {
+        const a = d.asset ? state.assets[d.asset] : undefined
+        const p = d.placed ? state.placedAssets?.[d.placed] : undefined
+        if (a) {
+          const def = assetVitals(a)
+          const defeated =
+            (def.health !== undefined && a.damage >= def.health) ||
+            (def.sanity !== undefined && a.horror >= def.sanity)
+          if (defeated) effects.push({ type: 'DiscardAsset', asset: a.id, defeated: true })
+          effects.push({
+            type: 'Forced',
+            trigger: { type: 'afterAssetDamaged', asset: a.id, damage: d.damage, horror: d.horror },
+          })
+          if (defeated)
+            effects.push({ type: 'Forced', trigger: { type: 'assetDefeated', asset: a } })
+        } else if (p) {
+          const def = playerCardDef(p.code)
+          if (
+            (def?.health !== undefined && p.damage >= def.health) ||
+            (def?.sanity !== undefined && p.horror >= def.sanity)
+          )
+            effects.push({
+              type: 'ScenarioSpecific',
+              key: 'placedDefeated',
+              data: { placed: p.id },
+            })
+        }
+      }
+      return push(state, ...effects)
     }
 
     // ------------------------------------------------------- Cartas de jugador
@@ -2926,10 +3000,11 @@ export function handle(state: GameState, message: Message): GameState {
       const event = def.type === 'event'
       const toBottom = event && eventsToDeckBottom(state, investigator.id)
       const paid = log(
-        updateInvestigator(state, investigator.id, ({ nextRoleDiscount, ...i }) => ({
+        updateInvestigator(state, investigator.id, ({ nextRoleDiscount, nextAssetFast, ...i }) => ({
           ...i,
           ...(nextRoleDiscount && !usedDiscount ? { nextRoleDiscount } : {}),
           resources: i.resources - (cost - paidWithUses),
+          ...(nextAssetFast && def.type !== 'asset' ? { nextAssetFast } : {}),
           hand: fromDiscard ? i.hand : i.hand.filter((_, n) => n !== index),
           // Un evento va a la pila de descartes tras resolverse (Wendy's Amulet: al fondo
           // del mazo).
@@ -3192,6 +3267,14 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'ExhaustAsset':
+      if (state.placedAssets?.[message.asset])
+        return {
+          ...state,
+          placedAssets: {
+            ...state.placedAssets,
+            [message.asset]: { ...state.placedAssets[message.asset]!, exhausted: true },
+          },
+        }
       if (!state.assets[message.asset]) return state
       return {
         ...state,
@@ -3857,7 +3940,7 @@ export function handle(state: GameState, message: Message): GameState {
                     difficulty: Math.max(
                       0,
                       message.difficulty +
-                        enemyStatBonus(state, message.kind, message.source) -
+                        enemyStatBonus(state, message.kind, message.source, message.investigator) -
                         reduction,
                     ),
                   },
@@ -3894,7 +3977,7 @@ export function handle(state: GameState, message: Message): GameState {
             difficulty: Math.max(
               0,
               message.difficulty +
-                enemyStatBonus(state, message.kind, message.source) +
+                enemyStatBonus(state, message.kind, message.source, message.investigator) +
                 ownerTestDifficulty(state, message.investigator),
             ),
             ...(reduction > 0 ? { difficultyReduction: reduction } : {}),
@@ -4448,6 +4531,12 @@ export function handle(state: GameState, message: Message): GameState {
       })
     }
 
+    case 'NextAssetFast':
+      if (state.activeTurn === null) return state
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        nextAssetFast: state.activeTurn !== null,
+      }))
     case 'ModifySkillTest': {
       const test = state.skillTest
       if (!test) return state
@@ -4455,6 +4544,13 @@ export function handle(state: GameState, message: Message): GameState {
         ...state,
         skillTest: withCommittedDifficulty({
           ...test,
+          ...(message.skill
+            ? {
+                skill: message.skill,
+                baseSkill: getInvestigator(state, test.investigator).skills[message.skill],
+                baseModifier: test.baseModifier - (test.origin?.modifier ?? 0),
+              }
+            : {}),
           difficultyFactor: (test.difficultyFactor ?? 1) * (message.difficultyFactor ?? 1),
           ...(message.ignoredEnemyKeywords
             ? {
@@ -4720,7 +4816,12 @@ export function handle(state: GameState, message: Message): GameState {
       const investigator = getInvestigator(state, message.investigator)
       if (investigator.location === null || !findEnemy(state, message.enemy)) return state
       const enemy = getEnemy(state, message.enemy)
-      if (enemy.keywords.includes('massive') || enemy.engagedWith === investigator.id) return state
+      if (
+        enemy.global ||
+        enemy.keywords.includes('massive') ||
+        enemy.engagedWith === investigator.id
+      )
+        return state
       if (
         scenarioBehavior(state.scenarioId)?.canEnemyEngage?.(state, enemy, investigator.id) ===
         false
@@ -6106,11 +6207,32 @@ export function handle(state: GameState, message: Message): GameState {
               label: 'choice.moveEnemyTo',
               params: { enemy: enemy.name, location: getLocation(state, location).name },
               target: { type: 'location', id: location },
-              then: [{ type: 'MoveEnemy', enemy: enemy.id, location }],
+              then: [
+                { type: 'MoveEnemy', enemy: enemy.id, location },
+                ...(!patrol
+                  ? [
+                      {
+                        type: 'Forced' as const,
+                        trigger: { type: 'afterHunterMove' as const, enemy: enemy.id },
+                      },
+                    ]
+                  : []),
+              ],
             })),
           },
         })
-      return push(next, { type: 'MoveEnemy', enemy: enemy.id, location: step })
+      return push(
+        next,
+        { type: 'MoveEnemy', enemy: enemy.id, location: step },
+        ...(!patrol
+          ? [
+              {
+                type: 'Forced' as const,
+                trigger: { type: 'afterHunterMove' as const, enemy: enemy.id },
+              },
+            ]
+          : []),
+      )
     }
 
     case 'EnemiesAttack':
@@ -6225,7 +6347,21 @@ export function handle(state: GameState, message: Message): GameState {
       ]
       // Las conexiones del escenario pueden depender de cartas agotadas (Sr. Peabody).
       return push(
-        recomputeConnections({ ...state, enemies, assets }),
+        recomputeConnections({
+          ...state,
+          enemies,
+          assets,
+          ...(state.placedAssets
+            ? {
+                placedAssets: Object.fromEntries(
+                  Object.entries(state.placedAssets).map(([id, a]) => [
+                    id,
+                    { ...a, exhausted: false },
+                  ]),
+                ),
+              }
+            : {}),
+        }),
         ...occupied.map((location): Message => ({ type: 'CheckEngagement', location })),
       )
     }
@@ -6526,7 +6662,12 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'MoveEnemy':
-      if (!findEnemy(state, message.enemy) || !state.locations[message.location]) return state
+      if (
+        !findEnemy(state, message.enemy) ||
+        findEnemy(state, message.enemy)?.global ||
+        !state.locations[message.location]
+      )
+        return state
       return push(
         updateEnemy(state, message.enemy, (e) => ({
           ...e,
@@ -8071,7 +8212,13 @@ function fastInvestigatorOptions(state: GameState, skipHandOf?: InvestigatorId):
       )
       .flatMap((i) =>
         playableCards(state, i.id, true)
-          .filter((code) => playerCardBehavior(code)?.playInAnyFastWindow)
+          .filter(
+            (code) =>
+              playerCardBehavior(code)?.playInAnyFastWindow ||
+              (i.nextAssetFast &&
+                state.activeTurn === i.id &&
+                playerCardDef(code)?.type === 'asset'),
+          )
           .map((code): ReactionOption => ({
             key: `hand-fast:${i.id}:${code}`,
             investigator: i.id,
@@ -8110,6 +8257,9 @@ function fastInvestigatorOptions(state: GameState, skipHandOf?: InvestigatorId):
             cardAllowed(state, a.owner, a.code),
         )
         .flatMap((a) => assetBehavior(state, a)?.fastOptions?.(state, a) ?? []),
+      ...Object.values(state.placedAssets ?? {})
+        .filter((a) => !a.faceDown)
+        .flatMap((a) => playerCardBehavior(a.code)?.placedFastOptions?.(state, a) ?? []),
     ].filter((o) => !fastAbilitiesBlocked(state, o.investigator)),
   ].filter((o) => withinLimit(state, o.key, o.investigator, o.limit))
 }
@@ -8506,13 +8656,24 @@ function patrolSteps(state: GameState, enemy: Enemy, targets: LocationId[]): Loc
 }
 
 /** Modificador del escenario al combate o evasión del enemigo de la prueba. */
-function enemyStatBonus(state: GameState, kind: SkillTestKind, source?: string): number {
+function enemyStatBonus(
+  state: GameState,
+  kind: SkillTestKind,
+  source?: string,
+  investigator?: string,
+): number {
   if (kind.type !== 'fight' && kind.type !== 'evade') return 0
   const enemy = state.enemies[kind.enemy]
   if (!enemy) return 0
   return (
     attachedStat(state, enemy.id, kind.type) +
-    (scenarioBehavior(state.scenarioId)?.enemyStat?.(state, enemy, kind.type, source) ?? 0)
+    (scenarioBehavior(state.scenarioId)?.enemyStat?.(
+      state,
+      enemy,
+      kind.type,
+      source,
+      investigator,
+    ) ?? 0)
   )
 }
 

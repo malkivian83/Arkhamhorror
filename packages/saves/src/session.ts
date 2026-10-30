@@ -325,6 +325,16 @@ function campaign(value: unknown): asserts value is Campaign {
   let count: number
   try {
     count = campaignDefinition(value.id).scenarios.length
+    if (value.carnevaleAt !== undefined) {
+      if (
+        !integer(value.carnevaleAt) ||
+        Number(value.carnevaleAt) < 1 ||
+        Number(value.carnevaleAt) >= count ||
+        campaignDefinition(value.id).standalone
+      )
+        fail()
+      count++
+    }
     assertEncounterSetVariant(value.id, value.encounterSetVariant)
   } catch {
     return fail('incompatible')

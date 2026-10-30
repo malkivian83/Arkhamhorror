@@ -4,6 +4,7 @@
  */
 import {
   getInvestigator,
+  fightEnemies,
   allPlayerCardDefs,
   agendaBehavior,
   playableCards,
@@ -51,9 +52,8 @@ function fightAt(
   build: (enemyId: string, fight: number) => Message[],
   extraCost: Message[] = [],
 ): AbilityOption[] {
-  const here = getInvestigator(state, investigator).location
-  return Object.values(state.enemies)
-    .filter((e) => e.location === here && (e.engagedWith !== null || !e.keywords.includes('aloof')))
+  return fightEnemies(state, investigator)
+    .filter((e) => e.engagedWith !== null || !e.keywords.includes('aloof'))
     .map((e) => ({
       key,
       label,

@@ -91,6 +91,7 @@ import './brethren-of-ash/definition'
 import './night-of-the-zealot/definition'
 import './midwinter-gala/definition'
 import './excelsior/definition'
+import './carnevale/definition'
 import './the-path-to-carcosa/definition'
 import './the-dunwich-legacy/definition'
 import './fortune-and-folly/definition'
@@ -154,6 +155,8 @@ export interface ScenarioResult {
 }
 
 export interface Campaign {
+  /** Optional Carnevale interlude, inserted before this campaign position. */
+  carnevaleAt?: number
   /** Absent in legacy saves: retain the campaign's original encounter sets. */
   encounterSetVariant?: EncounterSetVariant
   boons?: Boon[]
@@ -286,13 +289,48 @@ export function newCampaign(
 export function campaignScenarios(campaign: Campaign): CampaignScenario[] {
   const definition = campaignDefinition(campaign.id)
   const first = campaign.log.values.openingScenario
-  if (!first || !definition.openingScenarios?.includes(first)) return definition.scenarios
+  const insertSide = (scenarios: CampaignScenario[]) => {
+    const result = [...scenarios]
+    if (campaign.carnevaleAt !== undefined)
+      result.splice(
+        campaign.carnevaleAt,
+        0,
+        campaignDefinition('carnevale-of-horrors').scenarios[0]!,
+      )
+    return result
+  }
+  if (!first || !definition.openingScenarios?.includes(first))
+    return insertSide(definition.scenarios)
   const opening = definition.scenarios.filter((s) => definition.openingScenarios!.includes(s.id))
-  return [
+  return insertSide([
     ...opening.filter((s) => s.id === first),
     ...opening.filter((s) => s.id !== first),
     ...definition.scenarios.filter((s) => !definition.openingScenarios!.includes(s.id)),
-  ]
+  ])
+}
+
+export function canAddCarnevale(campaign: Campaign): boolean {
+  return (
+    !campaignDefinition(campaign.id).standalone &&
+    campaign.carnevaleAt === undefined &&
+    campaign.scenarioIndex > 0 &&
+    canPlayNext(campaign) &&
+    campaignScenarios(campaign)[campaign.scenarioIndex - 1]?.allowDeckChangesAfter !== false &&
+    activeMembers(campaign).every((i) => (campaign.log.investigators[i.id]?.xp ?? 0) >= 3)
+  )
+}
+
+export function addCarnevale(campaign: Campaign): Campaign {
+  if (!canAddCarnevale(campaign))
+    throw new Error('Carnevale no disponible como historia secundaria')
+  const investigators = { ...campaign.log.investigators }
+  for (const i of activeMembers(campaign))
+    investigators[i.id] = { ...investigators[i.id]!, xp: investigators[i.id]!.xp - 3 }
+  return {
+    ...campaign,
+    carnevaleAt: campaign.scenarioIndex,
+    log: { ...campaign.log, investigators },
+  }
 }
 
 function scenarioEntry(campaign: Campaign): CampaignScenario | null {
@@ -372,7 +410,12 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
         ? { prologue: definition.prologue }
         : {}),
       // Reglamento: en campaña, la bolsa del caos sigue como acabó el escenario anterior.
-      chaosBag: [...scenario.chaosBag, ...campaign.log.chaosTokens],
+      chaosBag: [
+        ...(entry.id === 'carnevale-of-horrors' && !definition.standalone
+          ? definition.chaosBags[campaign.difficulty]
+          : scenario.chaosBag),
+        ...campaign.log.chaosTokens,
+      ],
     },
     investigators: members.map((i) => {
       const record = campaign.log.investigators[i.id]

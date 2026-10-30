@@ -353,7 +353,16 @@ export function investigatorsAt(state: GameState, location: LocationId): Investi
 }
 
 export function enemiesAt(state: GameState, location: LocationId): Enemy[] {
-  return Object.values(state.enemies).filter((e) => e.location === location)
+  return Object.values(state.enemies).filter((e) => !e.global && e.location === location)
+}
+
+/** Objetivos de un combate. No usar para daño sin ataque, negociar o enfrentarse. */
+export function fightEnemies(state: GameState, investigator: InvestigatorId): Enemy[] {
+  const here = getInvestigator(state, investigator).location
+  if (here === null) return []
+  return Object.values(state.enemies).filter(
+    (e) => (!e.global && e.location === here) || enemyBehavior(e.code)?.fightFromAnywhere,
+  )
 }
 
 export function engagedEnemies(state: GameState, investigator: InvestigatorId): Enemy[] {
@@ -460,26 +469,30 @@ export function bestByPrey(
     return preferred.length ? preferred : candidates
   }
   const value = (i: Investigator) =>
-    prey.type === 'fewestCards'
-      ? -i.hand.length -
-        Object.values(state?.treacheries ?? {}).filter(
-          (t) => t.hidden && t.placement.type === 'threatArea' && t.placement.investigator === i.id,
-        ).length
-      : prey.type === 'mostResources'
-        ? i.resources
-        : prey.type === 'mostClues'
-          ? i.clues
-          : prey.type === 'mostHorror'
-            ? i.horror
-            : prey.type === 'mostRemainingSanity'
-              ? i.sanity - i.horror
-              : prey.type === 'lowestRemainingSanity'
-                ? i.horror - i.sanity
-                : prey.type === 'lowestRemainingHealth'
-                  ? i.damage - i.health
-                  : prey.type === 'highestSkill'
-                    ? i.skills[prey.skill]
-                    : -i.skills[prey.skill]
+    prey.type === 'mostAssets'
+      ? Object.values(state?.assets ?? {}).filter((a) => a.owner === i.id && a.code === prey.code)
+          .length
+      : prey.type === 'fewestCards'
+        ? -i.hand.length -
+          Object.values(state?.treacheries ?? {}).filter(
+            (t) =>
+              t.hidden && t.placement.type === 'threatArea' && t.placement.investigator === i.id,
+          ).length
+        : prey.type === 'mostResources'
+          ? i.resources
+          : prey.type === 'mostClues'
+            ? i.clues
+            : prey.type === 'mostHorror'
+              ? i.horror
+              : prey.type === 'mostRemainingSanity'
+                ? i.sanity - i.horror
+                : prey.type === 'lowestRemainingSanity'
+                  ? i.horror - i.sanity
+                  : prey.type === 'lowestRemainingHealth'
+                    ? i.damage - i.health
+                    : prey.type === 'highestSkill'
+                      ? i.skills[prey.skill]
+                      : -i.skills[prey.skill]
   const best = Math.max(...candidates.map(value))
   return candidates.filter((i) => value(i) === best)
 }

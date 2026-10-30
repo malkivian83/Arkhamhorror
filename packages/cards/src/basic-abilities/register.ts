@@ -1,5 +1,5 @@
 import {
-  enemiesAt,
+  fightEnemies,
   engagedEnemies,
   getInvestigator,
   playerCardDef,
@@ -121,7 +121,7 @@ function options(code: string, ability: BasicAbility, ctx: Ctx): AbilityOption[]
     ability.action === 'evade'
       ? engagedEnemies(state, investigator)
       : ability.ignoreAloof
-        ? enemiesAt(state, here)
+        ? fightEnemies(state, investigator)
         : attackable(state, investigator)
   return enemies.flatMap((enemy) =>
     skills.map((skill): AbilityOption => ({

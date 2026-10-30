@@ -3,6 +3,7 @@ import {
   attackBlocked,
   canPlayByEffect,
   engagedEnemies,
+  fightEnemies,
   getInvestigator,
   getLocation,
   playerCardBehavior,
@@ -414,7 +415,9 @@ export function registerNathanielCard(code: string): void {
         )
           return []
         const e = s.enemies[t.enemy]
-        return e && e.location === getInvestigator(s, by).location && !attackBlocked(s, by, e, code)
+        return e &&
+          fightEnemies(s, by).some((target) => target.id === e.id) &&
+          !attackBlocked(s, by, e, code)
           ? [
               reaction(code, by, [
                 attack(s, by, code, e, code === '60122' ? 2 : 0, code === '60122' ? 1 : 0),
@@ -576,19 +579,17 @@ export function registerNathanielCard(code: string): void {
       fightAction: true,
       noAttacksOfOpportunity: true,
       canPlay: (s, by) =>
-        Object.values(s.enemies).some(
+        fightEnemies(s, by).some(
           (e) =>
-            e.location === getInvestigator(s, by).location &&
             !attackBlocked(s, by, e, code) &&
             (e.engagedWith !== null || !e.keywords.includes('aloof')),
         ),
       play: (s, by) =>
         ask(
           by,
-          Object.values(s.enemies)
+          fightEnemies(s, by)
             .filter(
               (e) =>
-                e.location === getInvestigator(s, by).location &&
                 !attackBlocked(s, by, e, code) &&
                 (e.engagedWith !== null || !e.keywords.includes('aloof')),
             )
@@ -620,7 +621,8 @@ export function registerNathanielCard(code: string): void {
                   Object.values(s.enemies)
                     .filter(
                       (e) =>
-                        (e.id === data.first || e.location === getInvestigator(s, by).location) &&
+                        (e.id === data.first ||
+                          fightEnemies(s, by).some((target) => target.id === e.id)) &&
                         !attackBlocked(s, by, e, code) &&
                         (e.id === data.first ||
                           e.engagedWith !== null ||
