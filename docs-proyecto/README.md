@@ -101,3 +101,4 @@ vigente de pendientes.
 - Idiomas soportados: **solo inglés y español**.
 
 - [93 · Rex Murphy](93-rex-murphy.md): investigador original, exclusivas, Viejo libro de conocimiento y lista 21596 completa.
+- [95 · Variantes mejoradas](95-variantes-mejoradas.md): 44 niveles de cartas con base jugable; talentos que se reponen, Solución extraña (4), Linterna (3) y reducción de dificultad en curso.

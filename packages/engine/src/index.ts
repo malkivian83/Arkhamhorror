@@ -109,6 +109,8 @@ export {
   successChance,
   totalDoom,
   secondAgendaDoom,
+  testEnemyHasKeyword,
+  handSize,
 } from './handlers'
 export * from './rng'
 export {

@@ -55,6 +55,8 @@ export function approvedDefinition(card, approval) {
   return {
     code: card.code,
     name: card.name,
+    // Reviewed subtitle distinguishing same-level versions absent from the frozen inventory.
+    ...(approval.subname ? { subname: approval.subname } : {}),
     type: card.type,
     class: card.factions[0],
     ...(reviewedDualFaction ? { classes: card.factions } : {}),

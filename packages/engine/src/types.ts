@@ -1545,6 +1545,8 @@ export type Message =
   | { type: 'SpendResources'; investigator: InvestigatorId; amount: number }
   /** +N al valor de la prueba en curso. */
   | { type: 'BoostSkillTest'; amount: number }
+  /** Additive difficulty reduction of the current test, before factors (Flashlight 3). */
+  | { type: 'ReduceSkillTestDifficulty'; amount: number }
   | { type: 'CommitFromDiscard'; investigator: InvestigatorId; code: CardCode }
   /** Ventana tras revelar fichas para comprometer cartas que lo permiten. */
   | { type: 'AfterRevealWindow' }

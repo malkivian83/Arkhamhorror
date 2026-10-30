@@ -7213,6 +7213,16 @@ export function handle(state: GameState, message: Message): GameState {
         },
       }
 
+    case 'ReduceSkillTestDifficulty':
+      if (!state.skillTest || state.skillTest.succeeded !== null) return state
+      return {
+        ...state,
+        skillTest: withCommittedDifficulty({
+          ...state.skillTest,
+          difficultyReduction: (state.skillTest.difficultyReduction ?? 0) + message.amount,
+        }),
+      }
+
     case 'CommitFromDiscard': {
       const test = state.skillTest
       // Habitación 245: solo puede comprometerse la carta superior (y la comprometida antes no).
@@ -8078,7 +8088,7 @@ function cardsInHand(state: GameState, investigator: string): number {
 }
 
 /** Tamaño máximo de mano: 8 más lo que den sus apoyos. */
-function handSize(state: GameState, investigator: string): number {
+export function handSize(state: GameState, investigator: string): number {
   return Object.values(state.assets)
     .filter((a) => a.owner === investigator)
     .reduce(
@@ -8123,7 +8133,7 @@ function withCommittedDifficulty(test: SkillTest): SkillTest {
   }
 }
 
-function testEnemyHasKeyword(
+export function testEnemyHasKeyword(
   state: GameState,
   test: SkillTest,
   enemy: Enemy,
