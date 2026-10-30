@@ -116,6 +116,40 @@
     "flavor": "You must help your contact and their associates, no matter the cost.",
     "backFlavor": "You take a deep breath as you stagger out into the cold night air. Snow falls thickly on the once-pristine lawn, now stained red with blood. The manor is dead silent behind you. The Jewel of Sarnath pulses with an unearthly light in your palm, and for a moment you feel a balmy breeze, the scent of another place both familiar and dreamlike. Was the gem worth all this devastation?"
   },
+  "82002": {
+    "group": "carnevale",
+    "typeCode": "agenda",
+    "flavor": "Last-minute ocean liner tickets from Boston to Italy set you back a fair bit of dough, but after a tense journey, you arrive in Venice. The Carnevale has already begun, and the city is in celebration. Colorful confetti rains from above, covering the streets. Many revelers throng in Piazza San Marco, the square outside of Basilica. The parade is to begin shortly. You find the nearest uniformed Carabinieri and show him a copy of the symbol you'd transcribed from \"Zanni's\" mask. He pauses to decide your trustworthiness, nods, and escorts you into the basilica to see the Abbess Allegria Di Biase."
+  },
+  "82003": {
+    "group": "carnevale",
+    "typeCode": "agenda",
+    "flavor": "The clamor and celebration of the Carnevale has for the most part drowned out the terrors you've seen in the city... Until now. The sun vanishes behind the moon, and darkness overtakes the sky. There is a solitary cry and the sound of crashing water. Within moments, screams erupt throughout the city. And yet, somehow, you see revelers still celebrating with wide, crazed smiles.",
+    "backFlavor": "The shadow of the eclipse is unrelenting. Throughout the city, a dull chant overtakes the screaming and the chaos, its language ancient and morbid. Tentacles course through the canals from the south, weaving beneath bridges and trapping entire islands within their grasp."
+  },
+  "82004": {
+    "group": "carnevale",
+    "typeCode": "agenda",
+    "flavor": "In the lagoon, an ancient terror stirs. The creature's tentacles coil around the city, and the water level begins to rise. As if in response, the chanting you hear throughout the city grows louder.",
+    "backFlavor": "Great tentacle-arms, covered with acrid slime, rise from the canals and lash at you and anyone else unfortunate enough to be in the vicinity."
+  },
+  "82005": {
+    "group": "carnevale",
+    "typeCode": "act",
+    "flavor": "The abbess addresses you privately: \"So, you know what is coming?\" You nod. \"Then you know what must be done. They are using the celebration as a sacrifice for their wretched master. Bring as many innocents as you can here, where I can protect them. But beware - the creature's servants will try to blend into the crowd with their false masks.\"",
+    "backFlavor": "Many of the revelers are under the sway of a foul spell, and they cannot see the danger emerging around them. You push your way through the crowded streets, gathering what few sane revelers you can find and guiding them toward the relative safety of the Basilica. As the last of them is escorted inside, the ground shakes violently, and a watery shape looms above the island to the south from deep within the lagoon. Their ritual nearly finished, the \"revelers\" in the streets begin to unmask..."
+  },
+  "82006": {
+    "group": "carnevale",
+    "typeCode": "act",
+    "flavor": "The civilians in the Basilica are safe for now, but Venice is doomed if you don't act quickly. The only way to ensure the safety of the sacrifices is to draw the creature in the lagoon away from the city. Sweat beads down your forehead as you realize this decision may be your last. Legs trembling, you head toward the moored boats docked by the canals."
+  },
+  "82007": {
+    "group": "carnevale",
+    "typeCode": "act",
+    "flavor": "Relief turns to desperation as the creature draws its attention to your gondola. You have only one chance if you are to survive.",
+    "backFlavor": "The skin on your hands blisters, rubbed raw by the oar, and your arms ache with pain. The creature movement is slow, its body covered in acrid slime, but its countless tentacles lash at you from the dark waters, coiling around your gondola and attempting to pry the oar out of your hands. With a heart-wrenching snap, the oar splinters into two pieces, the bottom half splashing into the lagoon. You desperately try to propel the gondola forward using any means you can, but it is futile. The beast gains on you, looming over the boat with an impossible feathery shape, its tendrils reaching for you. Above it, the black shape of the moon begins to slide. A thin crescent of sunlight pierces through the mist as the eclipse ends, and the creature's tendrils recoil to surround its body. Slowly it sinks into the lagoon, its body melting as the sun escapes its prison."
+  },
   "88002": {
     "group": "fortune",
     "typeCode": "agenda",
@@ -513,5 +547,350 @@
     "typeCode": "act",
     "flavor": "...I heard the King in Yellow whispering to my soul: \"It is a fearful thing to fall into the hands of the living God!\"\n - Robert W. Chambers, \"In the Court of the Dragon,\" <u>The King in Yellow</u>",
     "backFlavor": "A chorus of cries echoes throughout your mind. Chaotic organ chords torture your ears. You fall to your knees and blood drips from your eyes. The realm of Carcosa shatters into millions of pieces and fades into the empty void of space.\nCurtains fall."
+  },
+  "01122": {
+    "group": "zealot",
+    "typeCode": "agenda",
+    "flavor": "The minutes pass quickly as your investigation continues.",
+    "backFlavor": "Twelve bells ring out across the town. It is midnight. There is no time left to investigate the city; you must act based on the information you've collected from the cultists you've found."
+  },
+  "01143": {
+    "group": "zealot",
+    "typeCode": "agenda",
+    "flavor": "After interrogating members of the conspiracy within Arkham, you have learned that they are performing a rite of vengeance in response to the destruction of one of their master's lairs. You have entered the woods outside Arkham to try and stop them. The woods seem unnaturally cold, and filled with a deathly silence.",
+    "backFlavor": "Throughout the woods, a shrieking cry echoes. From somewhere deeper in the forest, a score of hideous voices answer the call, inhuman as the baying of hounds and yet articulate, repeating a singular name:\n\"Umôrdhoth... Umôrdhoth... Umôrdhoth...\""
+  },
+  "01144": {
+    "group": "zealot",
+    "typeCode": "agenda",
+    "flavor": "\"Umôrdhoth... Umôrdhoth... Umôrdhoth...\"\nThe chanting builds in intensity, echoing into the cold air of the night. The sparse clouds in the sky coalesce above the Arkham woods, blotting out the faint light of the stars.",
+    "backFlavor": "A dark presence approaches, and you are assaulted by invisible pressures that bring you to your knees. A terrible force threatens to invade your mind and soul. Your throat clenches and your eyes water as the sensation burns through you."
+  },
+  "01145": {
+    "group": "zealot",
+    "typeCode": "agenda",
+    "flavor": "The world begins to shift and change as the ritual nears its conclusion. The air grows chilly, and the entire forest is covered in a layer of rime. The trees bend unnaturally, and their shadows lengthen into weird shape."
+  },
+  "01146": {
+    "group": "zealot",
+    "typeCode": "act",
+    "flavor": "The evidence you've gathered has led you to the woods south of Arkham, where you believe a ritual to summon a being called \"Umôrdhoth\" is about to take place. Steeling your resolve, you set forth deeper into the woods, hoping to find the site of this ritual.",
+    "backFlavor": "Scattered throughout the forest you've seen glyphs and arcane sigils in various places - etched into the bark of trees, carved upon the faces of stones, and dripped in blood upon the ground. Though you cannot decipher these glyphs, you notice that most of them tend to face south. Following these signs leads you by twists and turns toward a cave in the darkest and coldest part of the forest.\nAs you advance, shadowy figures emerge from the trees, blocking the only path to the cave."
+  },
+  "01147": {
+    "group": "zealot",
+    "typeCode": "act",
+    "flavor": "The remaining cultists have followed you into the woods to try to stop you, and now they block the path to your objective. They stand ominously beneath the overhanging trees, silent sentinels in the night. You must defeat them or sneak past if you are to gain access to the site of their ritual.",
+    "backFlavor": "When you enter the cave, the air grows cold, and your nostrils are assaulted by the pungent smell of blood and rot."
+  },
+  "01148": {
+    "group": "zealot",
+    "typeCode": "act",
+    "flavor": "The site of the cult's ritual is inside a large cavern in a dark corner of the woods. In the center of the chamber is a candlelit circle marked by rocks and arcane runes.",
+    "backFlavor": "You brave the unnatural chill and weave through arcane symbols, crossing the threshold of the circle. You smother the markings on the ground, covering them with dirt, breaking apart the carefully constructed pattern of smooth rocks. A shrill noise pierces your ears as the air grows suddenly warmer, and the world distorts around you, settling into normality."
+  },
+  "02042": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "You have arrived at the Miskatonic University campus in search of Professor Warren Rice. Classes are over, and a mysterious silence hangs in the air over the quad.",
+    "backFlavor": "The university is dead silent. The shadows coil about your feet as you walk, and you swear there is something following you with each step you take. Is it just your imagination? Or is there really someone - or something - stalking you?"
+  },
+  "02043": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Professor Rice's disappearance isn't the only thing amiss at the university. You're unsure exactly what is going on, but you're starting to believe Armitage was right in asking for your help.",
+    "backFlavor": "A cry of fear echoes through the campus, and several students flee from the eastern side of the university, where the Science building can be found. Could this commotion be linked to Professor Rice's disappearance?"
+  },
+  "02044": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Some kind of wild creature is on the loose. Whatever it is, it appears to be headed toward the university dormitories.",
+    "backFlavor": "Before you are able to act, you hear screaming from the northern side of the campus. You begin to make your way toward the screaming, your vision darkening with each step. As soon as the creature enters sight, you feel the darkness overtake you, and a force pulls you out of your consciousness. Everything goes black, and you pass out."
+  },
+  "02045": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Professor Rice was last seen several hours ago by one of Armitage's students, in the Humanities building.",
+    "backFlavor": "You were unable to find Professor Rice, but one of the students you spoke with mentioned a strange man entering Rice's office. Unfortunately, the door leading to the faculty offices is locked at this late hour. The student says that the head janitor, \"Jazz\", might be able to let you in, if you can find him."
+  },
+  "02046": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Concerned for Professor Rice's safety, you seek out the head janitor, who can let you into the locked sections of the campus.",
+    "backFlavor": "You convince \"Jazz\" that something strange is going on, and that Professor Rice may be in danger. He doesn't trust you enough to hand you his keys, but agrees to come with you.\nAll of a sudden, you hear a crash coming from the Science building, and a student rushes toward you. \"Help!\" he cries. \"There's some kind of animal loose in the chem labs! I only barely caught a glimpse of it, but...\" He shudders. \"I think it's heading to the dorms! You've got to do something!\""
+  },
+  "02047": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "You have only moments to react. You could warn the students in the dormitories and escort them to safety, or continue your task of searching the faculty offices for Professor Rice. Or, perhaps you could try to slay the beast that threatens the campus.",
+    "backFlavor": "The monstrous creature lets out a terrible shriek as it succumbs to its wounds and collapses onto the ground. A foul odor emanates from the corpse as its flesh begins to bubble and froth. Your relief turns to disgust as the body begins to shrink and disintegrate. Minutes later, the body has almost entirely evaporated into a sticky mass, and the awful odor has vanished. Inside the remnants of the creature's body, all you can find is a set of bones - the skeletal structure of a canine."
+  },
+  "02063": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "You have entered the Clover Club Casino in search of Dr. Morgan. The club is bustling at this late hour, filled with patrons looking to relax and drink, or make it big. You don't appear to be in much danger.",
+    "backFlavor": "Your questioning has drawn the attention of several men - hired thugs, by the look of them. \"Francis doesn't want to be bothered,\" one of them says. \"We suggest you leave the premises before we force you to leave.\""
+  },
+  "02064": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Most of the other patrons seem oblivious to the mobsters and goons closing in around you. But you recognize this for what it really is - you're about to get roughed up.",
+    "backFlavor": "You hear a crash from somewhere outside and screams of pain in the lounge. A terrible monstrosity smashes through the entrance to the club, crushing the stairwell and knocking over gangsters and patrons alike."
+  },
+  "02065": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Amidst the chaos and confusion, the strange abominations attack everyone in the club. Screams echo through the halls as the blood begins to spray.",
+    "backFlavor": "As the strange abominations continue to rampage through the club, the building's foundations shake and tremble. You flee toward the exit, but you are caught in the collapsing rubble as the club is destroyed."
+  },
+  "02066": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "You need to find Dr. Morgan. The club is packed; perhaps somebody knows where he is.",
+    "backFlavor": "After speaking to a number of gamblers and servers, it seems as though Dr. Morgan has had quite the run lately. Instead of cashing out his winnings, he was convinced to double down. He was last seen entering the guarded hall near the back of the cardroom."
+  },
+  "02067": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Dr. Morgan is somewhere in the private section of the club, where only VIPs and the club's managers are allowed. If you are to find him, you're going to have to sneak or even fight your way in."
+  },
+  "02068": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "With or without Dr. Morgan, you have to get out of here. Fast.",
+    "backFlavor": "You escape the club, doing your best to look inconspicuous as several cars pull up near the street. A handful of grim-faced men and women exit, running toward the restaurant's entrance to take control of the situation. One of them catches your eye, his hand on the grip of his .38, but thankfully he turns his attention back to the rest of his crew and follows them into the club. You breathe a sigh of relief..."
+  },
+  "02069": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "\"Free drinks for whoever gets me the hell out of here!\" A man exclaims from the bar.",
+    "backFlavor": "You make your way toward the rain-slicked streets of Arkham."
+  },
+  "02119": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Dr. Armitage has given the university’s Latin translation of The Necronomicon to his associate, Harold Walsted, the curator of the Miskatonic University Museum. Worried that someone might still be after the book, you have gone to the museum to recover it.",
+    "backFlavor": "From the shadows of the museum halls, a terrible creature slithers forth, long and serpentine, and propelled by black leathery wings."
+  },
+  "02120": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "The shadows in the museum grow and become darker. As the shadows lengthen and shift, they begin to suggest the sinewy body of an uncanny creature darting at the periphery of your awareness...",
+    "backFlavor": "The creature does not relent, pursuing you throughout the museum. "
+  },
+  "02121": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "The creature in the museum grows larger and more terrifying with each passing moment. Its body slithers from shadow to shadow, every corner of every room a potential hiding place for the hideous beast.",
+    "backFlavor": "With no way of defeating the creature in the museum, you flee. In every shadow of every corridor, the serpentine horror’s slithering body can be seen, the museum halls growing darker with the creature’s presence. As you reach the entrance, it blocks the doorway and attacks you with its terrible fangs. You barely manage to escape the building with your life, though the effects of the creature’s venom will scar you forever."
+  },
+  "02122": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Unfortunately, the entrance to the Museum is kept locked at this late hour. A security guard is visible through the building’s front windows, oblivious to his surroundings. Perhaps you can find a way to get his attention and convince him to let you in."
+  },
+  "02123": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "The Necronomicon is being kept in a Restricted Hall somewhere in the museum. Adam barely knows his way around, and gives a startled jump at every creak of the old building. \"I just started here last week,\" he explains. \"What sort of trouble did you say was going on?\" You haven’t the heart to give him the full story.",
+    "backFlavor": "When you enter the restricted hall, you find the curator of the museum lying in a pool of blood, his intestines strewn about in a grotesque display. Your stomach turns over and you resist the urge to vomit. Whatever did this, it’s still nearby..."
+  },
+  "02124": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "The Necronomicon is being kept in a Restricted Hall somewhere in the museum.",
+    "backFlavor": "When you enter the Restricted Hall, you find the curator of the museum clutching an ornate statue as if it were a club, his suit stained with blood, a panicked expression on his face. The security guard you saw earlier lies in a pool of blood nearby, his intestines strewn about in a grotesque display. Your stomach turns and you resist the urge to vomit. \"I tried to stop it, but...\" the curator says quietly, his voice quivering. Whatever did this, it’s still nearby..."
+  },
+  "02125": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Somewhere in this area is Olaus Wormius’s Latin translation of the Necronomicon. You must find it and escape while you can!",
+    "backFlavor": "At last, you find the locked case containing the Necronomicon.\nThe tome, over eight hundred pages in length, is filled with all manner of macabre imagery, formulae, spells, prophecies, and descriptions of creatures from beyond the threshold of space.\nWithout a doubt, it is a dangerous book... But its secrets could be very useful."
+  },
+  "02160": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "As the train to Dunwich comes to a jarring stop, you look out the window behind you and see an immense tear in the sky, like a rip in a piece of cloth. Several of the rearmost train cars are pulled backwards, and there is a dreadful metallic crunch as they are detached. The train cars topple upwards and into the rift in the sky. Nearby passengers are panicking, others are cowering in their seats, and one elderly man has fainted in fear.",
+    "backFlavor": "The rearmost car of the train detaches as it is pulled backwards. To your horror, it rises off the tracks and is consumed by the gate above you."
+  },
+  "02161": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "The tear grows larger, and you can feel the rearmost car of the train shaking as it is pulled backwards. The situation threatens to erupt into chaos as more passengers realize the danger they are in. Some passengers are looking for places to hide, while others are running about the compartments in terror.",
+    "backFlavor": "The next train car is ripped backwards with violent force. A middle-aged man hangs from his fingertips as the car flies unhindered toward the rift. In moments, the car is consumed whole, and the man lets go rather than be pulled into the void. He starts to fall, but is caught by the rift's force and pulled inside it anyway."
+  },
+  "02162": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "The pull of the rift in the sky seems to grow stronger, and the entire train begins to roll backwards along the tracks. The rearmost cars of the train begin to rattle, the force of the rift threatening to detach them. You must get out of these cars as fast as you can!",
+    "backFlavor": "Two of the train cars closest to the gate are severed from the rest of the train by a sheet of impossibly hot steam, which slices through metal like a knife through butter. The cars are sucked upwards and fly into the gate. Something above the train lets out a terrible screech, though to your ears it is like the shrill sound of a broken steam pipe."
+  },
+  "02163": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "The gate crackles with power as its strength increases. Dirt and rocks from the edge of the bridge behind you are torn from the ground and trees are uprooted, pulled in by the gate. One younger passenger smashes the window of your car and shouts, “We gotta get outta here!” He leaps out of the window, but before he lands in the river below, he is snatched in the talons of a swift flying creature, and carried out of sight. A trail of steam is left in the creature’s wake.",
+    "backFlavor": "The two rearmost train cars begin to melt as they are filled with superheated steam. The metal warps, and the passengers inside scream in agony. The cars are ripped from the train tracks along with rail slats and chunks of the bridge behind you."
+  },
+  "02164": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "The rift in the sky twists and shakes, completely distorted. Its size is now massive, its shape warping and shifting, as if it is about to explode.",
+    "backFlavor": "The entire bridge cracks under the pressure of the gate, and breaks apart. Instead of plummeting into the river, the remaining train cars are pulled into the sky, toward the rift. You hang on for dear life and scream in horror as you are pulled into the gate. Then, everything goes black."
+  },
+  "02165": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "The train has stopped on a bridge high above the Miskatonic River - you might be able to survive the fall, but you don’t like your chances. Your best bet is to make your way to the engine car as fast as you can and get the train running again."
+  },
+  "02166": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "You’ve managed to make it to the engine cab, but now you have to get the engine started again so you can outrun the pulling force of the gate!",
+    "backFlavor": "The engine roars to life and kicks into motion. You shovel coal into the engine's firebox and are relieved to see that the train is moving forward along the tracks once again."
+  },
+  "02196": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Your welcome in Dunwich has been cold. A string of disappearances has left the already aloof townsfolk on edge. Most of them look at you with distrust, and few are willing to help in your investigation. Who knows what will happen if you don’t find the location of the missing townsfolk soon...",
+    "backFlavor": "Whippoorwills gather along the gambrel roofs of Dunwich and begin to shriek in jubilation. The people of Dunwich believe that the presence of whippoorwills foreshadows somebody’s imminent death. Do they long for your death? Or is the victim someone else?"
+  },
+  "02197": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "As the sun sets, the frightened townsfolk retreat into their homes and lock their doors. It is clear to you that many of them know more than they are letting on. A sickening feeling turns over in your stomach as the village’s true nature becomes clear.",
+    "backFlavor": "More whippoorwills flock to Dunwich village as the night progresses. The other townsfolk, notoriously superstitious, are terrified by the birds’ presence. With the doors around you shut and locked, you find yourself alone in the streets of Dunwich."
+  },
+  "02198": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "The rhythmic screeching of the whippoorwills fills the night. If the superstitions of Dunwich are correct, their song portends impending death... But for whom?",
+    "backFlavor": "The whippoorwills that have been cawing through the night scatter in unison, as if they are somehow satisfied with the turn of events."
+  },
+  "02199": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "The disappearances in town may be related to the events in Arkham. You suspect that something awful is afoot. You must find where the missing townsfolk are being held in order to unveil this conspiracy.",
+    "backFlavor": "You find your way into the hidden chamber where you believe the missing folk are being held, but the horrors that confront you there fray the edges of your sanity. Bound by chains in a secluded corner of the room is an unspeakable creature with the face of a man. It wheezes and wrestles to free itself as it notices your entrance. The many mouths covering the creature’s body are covered in blood and gristles of meat, as though it were feeding recently.\nWith a hideous croak, the creature speaks with seven mouths.\"Ss... se... eth...?\" Then it lurches forward as though to grab you, and several of its chains snap."
+  },
+  "02200": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "The pitiful beast lunges to grab you with slimy arms, its many jaws snapping in hunger. Killing it would be merciful. But perhaps there is something else to discover about this creature…",
+    "backFlavor": "Despite the danger, you brave the beast's horrifying presence and investigate further before killing it. What you find confirms your worst suspicions. Several journal entries written by a \"Seth Bishop\" describe the process of feeding the creature in horrifying detail - tomatoes at first, then small game, then cattle, and then finally 'human sacrifices'. But the most disturbing part is that Seth calls the creature by name: 'Silas.'"
+  },
+  "02237": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Reports of terrifying entities wreaking havoc across the countryside have caused the citizens of Dunwich to panic. Worse, the creatures seem to be invisible to the naked eye.",
+    "backFlavor": "An old pickup truck rolls to a stop along the weathered trails of Dunwich. The driver - Joe Osborn - calls out to you through a shattered driver-side window, the truck's engine still running. \"IT's over at the Ericks' farm!\" he shouts. \"Done blasted their place apart. Poor Henry and Martha...\"\nYou ask Osborn for the location of the Ericks' homestead, and it confirms your worst fear. For that attack to have occurred recently, there must be more of the monsters on the loose."
+  },
+  "02238": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Once in a while a wind, sweeping up out of Cold Spring Glen, would bring a touch of ineffable foetor to the heavy night air... But the looked-for terror did not appear. Whatever was down there in the glen was biding its time, and Armitage told his colleagues it would be suicidal to try to attack it in the dark.\n-H.P. Lovecraft, \"The Dunwich Horror\""
+  },
+  "02239": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "It was no joke tracking down something as big as a house that one could not see, but that had all the vicious malevolence of a daemon.\n-H.P. Lovecraft, \"The Dunwich Horror\"",
+    "backFlavor": "There is a monstrous rumbling throughout the countryside, though it is impossible to tell whether its source is the creatures you hunt or the very mountains themselves. Soon after, you find more of the creatures' tracks leading up toward the hills: a thirty-foot path of crushed underbrush and trees snapped like twigs. Exhausted from battle, and with night fast approaching, you decide to head to safety rather than follow these hellish tracks."
+  },
+  "02240": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "The monsters tearing through Dunwich county are immune to traditional weapons. Only by reciting a particular incantation can the creatures be defeated. First you must search the ruins of Wilbur Whateley’s home in order to find the final sections of the otherworldly script."
+  },
+  "02241": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "With the formula in hand, you finally have the means to destroy the creatures wreaking havoc in Dunwich... but only if you can survive long enough.",
+    "backFlavor": "As you complete the incantation, the foul creature cries out with a raucous, inhuman voice. It rumbles and cracks, the syllables of its croaking far from English. As its cry plays out, the creature shrinks upon itself, and then, with little warning, it is gone. All that remains is a foul stench and a repulsive mark that mars the vegetation where the beast once stood."
+  },
+  "02275": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "As you approach Sentinel Hill, you hear ancient Latin rites bellowed across the night. The time for action has come. If you cannot stop the sorcerers in Dunwich, who knows what terrors they might unleash upon the world?",
+    "backFlavor": "As you explore the paths surrounding Sentinel Hill, the chanting at the hilltop rises to a crescendo and takes an otherworldly quality, reverberating through the trees as if carried by unseen currents.\nThe world begins to change. The grass and trees dissolve like sugar in a cup of tea. A vast endless sky slices through the reality you see before you, and you feel drawn to it, terrified and awestruck. The arcane power becomes distorted and seeps around you, creating strange alterations in the land."
+  },
+  "02276": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "The Old Ones were, the Old Ones are, and the Old Ones shall be. Not in the spaces we know, but between them, They walk serene and primal, undimensioned and to us unseen. Yog-Sothoth knows the gate. Yog-Sothoth is the gate. Yog-Sothoth is the key and guardian of the gate. Past, present, future, all are one in Yog-Sothoth. He knows where the Old Ones broke through of old, and where They shall break through again. He knows where They have trod earth’s fields, and where They still tread them, and why no one can behold Them",
+    "backFlavor": "The chanting reaches its climax, and at the summit of Sentinel Hill, a tear opens across the fabric of the sky, parting the clouds and slicing through the very air itself.\nYou watch as an indescribable entity - spheres, eyes, mouths, ooze - pours out of the rift. The sorcerers call its name as its form seeps into the sky, spreading forth above the earth.\"Ia! Ia! Yog-Sothoth! Ia! Ia! Yog-Sothoth!\"\nBefore their jubilant chant can continue, they are smothered by the growing mass, and are heard no more.\nTo your horror, the expansion of the mass does not cease."
+  },
+  "02277": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "A vibrant arcane energy fills the air with a bone-rattling chill. The energy swirls along the crushed trail before you, and seeps down several other paths before disappearing.",
+    "backFlavor": "During your search through the wooded paths around the base of Sentinel Hill, you come across a startling sight. A herd of sheep lays dead upon the ground in a secluded clearing, their bloodied carcasses placed in a strange but careful pattern. Holding your nose against the stench of death, you step over mangled sheep on your way to the center of the odd formation.\nIn the center of the sheep lies the corpse of a man. A clear jewel has been firmly pressed into his forehead, caving in the front of his skull. His eyes are wide, his face contorted in a vision of fear, as if beseeching you for mercy. Though you know better, you check for a pulse. As you touch the man's skin, the jewel in his forehead dissolves, and the woods around you seem to clear."
+  },
+  "02278": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "As you ascend the hill, the environment around you grows increasingly strange and otherworldly. The arcane energy feels even stronger here, crackling in the air and crawling on your skin.",
+    "backFlavor": "Approaching the peak of Sentinel Hill, you are confronted by several citizens of Dunwich. The man in the center of their circle chants in Latin while the others bow their heads in reverence. \"Seth Bishop?\" you ask presumptively. The man in the center raises his gaze in response, confirming your suspicions. You plead with the man to stop this madness, but he doesn't respond. You draw forth the silver constellation pendant you'd found on Silas's body and present it to Seth. \"This is all we found of your brother,\" you shout over the howling wind. \"Is this the fate you want for yourself? For all of us?\" You throw the pendant onto the ground. Staggered by the sight of it, he stumbles backwards and trips over his incantation, eyes widened. As he falls, the altar behind him splits open, and a torrent of energy pours from the stone, swirling into an open gate that swallows the man whole. You barely manage to dig your heels in and grab hold of a nearby rock to resist the pull of the gate."
+  },
+  "02279": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "As you ascend the hill, the environment around you grows increasingly strange and otherworldly. The arcane energy feels even stronger here, crackling in the air and crawling on your skin.",
+    "backFlavor": "Approaching the peak of Sentinel Hill, you are confronted by several citizens of Dunwich. The man in the center of their circle lets out a crazed laugh. You recognize the man - Seth Bishop - from the description given to you by the townsfolk earlier. Behind him, several other men and women bow their heads in reverence, chanting in Latin. \"We've done it!\" he cackles. \"We've accomplished what Old Whateley and 'is git couldn't!\" You watch in revulsion as his eyes glaze over and twitch, as though he were reading something invisible. \"I can see now… I can finally see!\" He raises his hands to the sky and the headstone of the altar behind him splits open. A torrent of energy pours out of the stone, coalescing into the form of an open gate. Seth holds onto the stone in front of him to prevent himself from being sucked into the gate, but several of the others are startled and pulled through it. You barely manage to dig your heels in and grab hold of a nearby rock in time to resist the pull of the gate. Seth rises to his feet, wearing an expression of pride."
+  },
+  "02280": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "As you ascend the hill, the environment around you grows increasingly strange and otherworldly. The arcane energy feels even stronger here, crackling in the air and crawling on your skin.",
+    "backFlavor": "Approaching the peak of Sentinel Hill, you are confronted by several citizens of Dunwich. The man in the center of their circle is desperately trying to complete a Latin incantation. \"It's not working, Seth!\" one of the other men cries out. \"What're we gonna do?\" The man in the center stops his chant and pulls out a cobbler's knife. \"The father demands a blood sacrifice,\" he declares, and his face twists into a crazed expression. Before you can react, he slits his left wrist with the knife, dropping to his knees in agony. The headstone of the altar behind him splits open. A torrent of energy pours out of the stone, coalescing into the form of an open gate. Seth holds onto the stone in front of him to prevent himself from being sucked into the gate, but several of the others are startled and pulled through it. You barely manage to dig your heels in and grab hold of a nearby rock in time to resist the pull of the gate. Seth rises, wounded but alive. An expression of pride spreads across his pained face."
+  },
+  "02281": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "From the ruins of the headstone on the altar at the hill’s peak, a gateway of churning vibrant energy has appeared. A force like a hurricane erupts from the gate, bending trees and pulling debris into it. The howling of the gale drowns out all other sound. Somehow, you must find a way to close the gate.",
+    "backFlavor": "You don't know how to close the swirling gate before you, and with each passing moment, the force from within it grows in strength. You fear that whatever entity the sorcerers have summoned from beyond approaches. With no time to spare, you turn to the open tome on the stone altar, desperate for answers."
+  },
+  "02312": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Pathways of sound and color extend for an eternity in all directions, dotted with impossible architecture, and overgrown with alien wildlife. The lines between objects are jagged and shifting, and your skin feels as if it were inside out."
+  },
+  "02313": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "As you cross this realm, you catch occasional glimpses of reality - scenes from old memories, more recent visions from the past few days, and sometimes even events that you do not remember ever happening…"
+  },
+  "02314": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Throughout this warped dimension, no matter where you travel, there is a haunting shape in the distance. At first, it appears as a disc, like a black moon with many wriggling arms. But as time passes, you can tell it is growing larger and larger…"
+  },
+  "02315": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "The shape in the distance smashes through the barriers of this dimension, its many arms reaching to envelop everything you see. Its body is like an ooze, covered in eyes and mouths. You feel insignificant, like a bug, next to the creature’s terrifying grandeur.",
+    "backFlavor": "Seeking the rift from which you entered this dimension, the extradimensional horror lashes out, crushing entire realms within its grasp."
+  },
+  "02316": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Somehow, you must find your way across this alien landscape in order to find the nexus that was described in Old Whateley’s tome.",
+    "backFlavor": "A light shimmers in the distance, and you head toward it to investigate. The wispy light drifts away from you, floating through the realm's strange gateways, ascending looping staircases, and crossing through barriers you dared not cross earlier. With little chance of finding the nexus on your own, you follow the light, hoping it is guiding you in the right direction."
+  },
+  "02317": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "You continue to follow the wisp of light, though the treacherous landscape makes it a difficult quarry to chase.",
+    "backFlavor": "You reach an impossibly dense pitch-black void, and realize that this place is where all of reality - all that is and all that ever will be - ends. In its center, you see a minuscule rift, suspended just out of reach. When you peer through the tear, you are surprised to see the peak of Sentinel Hill. Somehow, you've reached the other side of the rift. Now you must find a way to close it for good."
+  },
+  "02318": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "The unearthly stones on the ground are inscribed with some sort of seal. Approaching them causes a voice to enter your mind, speaking in an alien tongue.",
+    "backFlavor": "You are utterly exhausted, with no idea as to what can be done to close the rift. It is too distant to touch, and nothing you do has any effect. There is nothing here to guide you apart from the unearthly words that are seeping into your mind. Just then, you hear a familiar voice within the echoing chorus, and feel yourself compelled to repeat it. \"Claude ostium…\" You whisper at first, the words on the tip of your tongue. You close your eyes to concentrate, and the echo grows louder. When it ends and you open your eyes, you face nothing but an inky abyss, and the tear has vanished."
+  },
+  "02319": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "With no clear way out of this dimension, you seek another path.",
+    "backFlavor": "You discover a path that looks somewhat familiar and follow it. Even though your task is complete, you now understand that in closing the tear, you may never make it home. The fear of being lost here forever spurs you onward, through an archway leading into an overgrown corridor. A damp wooden door leads you out into a pocket of thin rain and dark sky. Cement turns to gravel, then marble, then steel, then grass. You cross impossibly long meadows and make your way through dense woods before fatigue finally sets in. Drained of all energy, you cannot go on any further. Your body gives out."
   }
 }

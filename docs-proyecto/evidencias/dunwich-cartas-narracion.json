@@ -1,0 +1,889 @@
+{
+  "voiceId": "FXn3GKRRt9FCEyTbrkaL",
+  "language": "es",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.15,
+      "speed": 0.95,
+      "use_speaker_boost": true
+    }
+  },
+  "files": [
+    {
+      "code": "02042",
+      "side": "front",
+      "text": "Habéis llegado al campus de la Universidad Miskatonic en busca del profesor Warren Rice. Las clases han terminado, y un misterioso silencio reina en el ambiente del patio principal.",
+      "file": "02042-front.mp3",
+      "inputHash": "fb4e666ac1dd0d90b6e8b620e3f5d69386673b53ce9b166b215f1bd2773cfb84",
+      "bytes": 172660,
+      "sha256": "c98a629bbfccc6a7dc8905747877df0650531c724cf9867664bcdafed092473e"
+    },
+    {
+      "code": "02042",
+      "side": "back",
+      "text": "En la universidad no se oye ni un alma. Las sombras se enroscan alrededor de vuestros pues al caminar, y juraríais que hay algo que os sigue a cada paso que dais. ¿Es sólo vuestra imaginación? ¿O realmente hau algo, o alguien, que os acecha?",
+      "file": "02042-back.mp3",
+      "inputHash": "b3b73fc8c4c7199647d2d26809b473c2b89c3b7385ca5df61fc961f7bcff9468",
+      "bytes": 266283,
+      "sha256": "f19e463b4d3b42c319384483e5eab4887674dd568ad8eaef5ddca02ad725d80e"
+    },
+    {
+      "code": "02043",
+      "side": "front",
+      "text": "La desaparición del profesor Rice no es el único suceso extraño en la Universidad. No estáis seguros de qué está sucediendo exactamente, pero empezáis a creer que Armitage tenía razón en pedir vuestra ayuda.",
+      "file": "02043-front.mp3",
+      "inputHash": "4dfb3b10eea75978bb2c2d84146a65f4530882c5449f7a5c9e120b3c3d7e60ae",
+      "bytes": 231592,
+      "sha256": "b6f340573be11c18c1287b3fea664ba6082d0a89b865bad24734f80fecda1ba8"
+    },
+    {
+      "code": "02043",
+      "side": "back",
+      "text": "Un grito de miedo resuena por el campus, y varios estudiantes vienen huyendo desde el lado este de la universidad, donde se encuentra el edificio de Ciencias. ¿Estará relacionado este alboroto con la desaparición del profesor Rice?",
+      "file": "02043-back.mp3",
+      "inputHash": "73e2ea839adbd2d345b6e3a476f5a07a31e630ba6a457b5394ef1653d0e5c7ce",
+      "bytes": 240369,
+      "sha256": "cb5fecce59049cbf59ca8a9ea0b3f2de47df7a71d7195e182c7e94cd3113f269"
+    },
+    {
+      "code": "02044",
+      "side": "front",
+      "text": "Una especie de criatura salvaje anda suelta. Sea lo que sea, parece que se dirige hacia la residencia estudiantil de la universidad.",
+      "file": "02044-front.mp3",
+      "inputHash": "a25840fd4a149a3cb3c398a743a497286bd2ac02abc6fefdc069c13b512d3728",
+      "bytes": 141313,
+      "sha256": "94d5a5b5698a847d0da37e69a50aaf289679ee2f237e1ecd920d64b8119b69bc"
+    },
+    {
+      "code": "02044",
+      "side": "back",
+      "text": "Antes de que podáis actuar, oís gritos provenientes de la parte norte del campus. Comenzáis a dirigiros hacia los gritos, pero vuestra visión se va oscureciendo con cada paso que dais. En cuanto tenéis a la criatura a la vista, sentís cómo la oscuridad se apodera de vosotros, y una fuerza os arrebata la consciencia. Todo se vuelve negro, y os desmayáis.",
+      "file": "02044-back.mp3",
+      "inputHash": "16ad7d1abe5f25d8e9d792e9478a56696f02d9d9eb52cd4e34ee229b01ddbde7",
+      "bytes": 398776,
+      "sha256": "c444572a582d86d4d810e4c2ebe4fa2b7d893027e1654223216cda04556ee04f"
+    },
+    {
+      "code": "02045",
+      "side": "front",
+      "text": "Uno de los alumnos de Armitage vio por última vez al profesor Rice hace varias horas en el edificio de Humanidades.",
+      "file": "02045-front.mp3",
+      "inputHash": "c70d8c53b617e75a860cd349f12c68acbf9bcb51a2547cfadc6f6f53d3d4a390",
+      "bytes": 107458,
+      "sha256": "3bb3842c3ce5b70430b0affcff08f4061c54297d2a9bb981a9a1927712d60ae8"
+    },
+    {
+      "code": "02045",
+      "side": "back",
+      "text": "No lográis encontrar al profesor Rice, pero uno de los estudiantes con los que habláis menciona a un hombre extraño que entró en el despacho de Rice. Por desgracia, la puerta que lleva a los despachos del profesorado está cerrada a esta hora. El estudiante os dice que el jefe de bedeles, “Jazz”, podía dejaros entrar si lográis encontrarlo.",
+      "file": "02045-back.mp3",
+      "inputHash": "085dda594ba6709f7832b684f655e8589cacf76522ebe8867b953e98087c6054",
+      "bytes": 329394,
+      "sha256": "394b707e19659d56897a6a3f0c95fbcc1af66e91f552a1ad8640c5a67420c936"
+    },
+    {
+      "code": "02046",
+      "side": "front",
+      "text": "Preocupados por la seguridad del profesor Rice, buscáis al jefe de bedeles, que puede dejaros entrar en las secciones cerradas del campus.",
+      "file": "02046-front.mp3",
+      "inputHash": "d3b60c4ee53179cb64e34465de84a5327af0168ea5cd9bbc149dadefa7c1e71f",
+      "bytes": 139223,
+      "sha256": "994237d6d266e484c3731a78c241d3dbf1efacacb013eb80196309f54813486c"
+    },
+    {
+      "code": "02046",
+      "side": "back",
+      "text": "Convencéis a “Jazz” de que está ocurriendo algo extraño y el profesor Rice podría estar en peligro. No confía tanto en vosotros como para daros sus llaves, pero accede a acompañaros.\nDe pronto, oís un estruendo que proviene del edificio de Ciencias, y un estudiante viene corriendo hacia vosotos. —¡Ayuda! —grita—. ¡Hay una especie de animal suelto en los laboratorios de química! Apenos lo he entrevisto, pero… —se estremece—. ¡Creo que se dirige a la residencia estudiantil! ¡Tenéis que hacer algo!",
+      "file": "02046-back.mp3",
+      "inputHash": "75029e2acb500ded1b4865bbb9b9604d2af06d0286608de9de198f27fb82215b",
+      "bytes": 554674,
+      "sha256": "0fca8fa774bab5a1a5b3b30095397b1aa3b72c38880678123b81434a5f7170ae"
+    },
+    {
+      "code": "02047",
+      "side": "front",
+      "text": "Sólo tenéis unos instantes para reaccionar. Podéis advertir a los estudiantes de la residencia estudiantil y acompañarlos a un lugar seguro, o bien podéis continuar vuestra tarea de registrar los despachos del profesorado en busca del profesor Rice. O quizás podéis intentar matar a la bestia que amenaza el campus.",
+      "file": "02047-front.mp3",
+      "inputHash": "6642cf2ab58e250e1e0a4df2330868862a75047a770eb62317990ed54c5bbd78",
+      "bytes": 331902,
+      "sha256": "9780d1f410d7e9e0eee312cf468a567e71d99b749f47fcb2aa0c3c58382ecdc0"
+    },
+    {
+      "code": "02047",
+      "side": "back",
+      "text": "La monstruosa criatura emite un terrible aullido cuando sucumbe a sus heridas y de desploma en el suelo. Un nauseabundo olor emana de su cadáver mientras su carne comienza a burbujear y espumar. Vuestro alivio se convierte en repulsión cuando el cuerpo empieza a encoger y desintegrarse. Minutos más tarde, el cuerpo se ha evaporado casi por completo dejando una masa pegajosa, y el terrible olor ha desaparecido. Dentro de los restos del cuerpo de la criatura no encontráis más que huesos: la estructura esquelética de un canino.",
+      "file": "02047-back.mp3",
+      "inputHash": "3e7aa5dccc61df850045c0decb888fb6cd9b01ef451aa2ce032ee1eecc17b6ca",
+      "bytes": 597724,
+      "sha256": "fd495a12c98ac92978da102420c632aefab2240b77d32021e2b685712cc247b2"
+    },
+    {
+      "code": "02063",
+      "side": "front",
+      "text": "Habéis entrado en el casino del Clover Club en busca del Dr. Morgan. El club está abarrotado a estas horas de la noche, repleto de clientes que quieren relajarse y beber o bien ganar a lo grande. No parece que estéis en peligro.",
+      "file": "02063-front.mp3",
+      "inputHash": "4bd34001be315693a7b830920979a3c566e7cfe416eccdd763e65b6b8682a385",
+      "bytes": 234518,
+      "sha256": "0a4e868fbc704ff0e2aceb3d47dc1b24777d1e2ac698fa7e7c8027d228872825"
+    },
+    {
+      "code": "02063",
+      "side": "back",
+      "text": "Vuestras preguntas han atraído la atención de varios hombres con aspecto de matones a sueldo. —Francis no quiere que le molesten —dice uno de ellos—. Les sugerimos que abandonen el local antes de que debamos obligarles a marcharse.",
+      "file": "02063-back.mp3",
+      "inputHash": "5cbaf265e9fc1ba6d098402011c9f018b08ff5885eec39f7d853c90fabdf60c0",
+      "bytes": 224905,
+      "sha256": "2e1d2464e2ea6c0b3cd8fa4d504447fbddbb27663efe30bf91d8b969dcb6028a"
+    },
+    {
+      "code": "02064",
+      "side": "front",
+      "text": "La mayoría de los demás clientes parecen ajenos a los mafiosos y matones que empiezan a rodearos. Pero vosotros sois conscientes de lo que ocurre: están a punto de daros una paliza.",
+      "file": "02064-front.mp3",
+      "inputHash": "5e6bc40422bb88f663aba883c5efe40372c339649f9c58cfe111044d2bf11867",
+      "bytes": 181437,
+      "sha256": "ed707ee1c636cc4e03ee1bde2b679d930bd3e755a46bb588e7da8e3e8f7f1279"
+    },
+    {
+      "code": "02064",
+      "side": "back",
+      "text": "Oís un estruendo que viene de fuera y gritos de dolor en el salón. Una terrible monstruosidad atraviesa la entrada del club, haciendo añicos la escalera y llevándose por delante tanto a clientes como a gánsteres.",
+      "file": "02064-back.mp3",
+      "inputHash": "34d94b25be53f2fcda37f4fc5b85a7c82ffa08d2d2b4af8ddfa8b5b071eab51a",
+      "bytes": 232846,
+      "sha256": "eddc88e478e77a9089925c55140b61d5edec59623dfbcf87dd37112cf256d7e9"
+    },
+    {
+      "code": "02065",
+      "side": "front",
+      "text": "Las extrañas abominaciones atacan a todos los presentes en el club entre el caos y la confusión. Las salas se llenan de gritos cuando comienza a correr la sangre.",
+      "file": "02065-front.mp3",
+      "inputHash": "25969eda0cf5f844b531ae6614672b85307404849324f9e755e1ca51150044ea",
+      "bytes": 165136,
+      "sha256": "b71523d6200dae03934c385be82c981910f8e9240a2b40e23a79f369f96d94ea"
+    },
+    {
+      "code": "02065",
+      "side": "back",
+      "text": "Mientras las extrañas abominaciones siguen arrasando el club, los cimientos del edificio comienzan a sacudirse y temblar. Huis hacia la salida, pero quedáis atrapados por los escombros que caen cuando el club queda destruido.",
+      "file": "02065-back.mp3",
+      "inputHash": "dbbc247a93a2142daa84c99db41d9da90efdb3e2e5ccc895b07a38683b4da69e",
+      "bytes": 227830,
+      "sha256": "fcbea99cfc32ec7383ac27cc21adcdbc24ecd3caa33bf096273cc6beb6d98bdf"
+    },
+    {
+      "code": "02066",
+      "side": "front",
+      "text": "Debéis encontrar el Dr. Morgan. El club está abarrotado, y quizás alguien sepa dónde está.",
+      "file": "02066-front.mp3",
+      "inputHash": "c7ae6d7cda3ef5c628fb7c77435e8b4ced317e0020684e40430d2d4c18604f28",
+      "bytes": 92412,
+      "sha256": "36bebd60e10999895b29615b6594bf4297d20d0e76235409ba9b6e910f8b34ed"
+    },
+    {
+      "code": "02066",
+      "side": "back",
+      "text": "Tras hablar con varios de los jugadores y camareros, parece que el Dr. Morgan ha tenido una racha increíble últimamente. En lugar de cobrar sus ganancias, le convencieron para que se lo jugara a doble o nada. La última vez que lo vieron, estaba entrando en el pasillo vigilado por guardias que hay en la parte trasera de la sala de juego.",
+      "file": "02066-back.mp3",
+      "inputHash": "d1b65630d3b27c089b1fca3fa924c309a6ab6860ae638decda055a3c35ab2c8d",
+      "bytes": 350292,
+      "sha256": "493f3a596116de8a67b5ce8a16ca560a92414840a2039f4682cb34a2580b1a3d"
+    },
+    {
+      "code": "02067",
+      "side": "front",
+      "text": "El Dr. Morgan está en alguna parte de la sección privada del club, donde sólo se permite entrar a los VIP y a los encargados del club. Si queréis encontrarlo, vais a tener que colaros o abriros paso peleando.",
+      "file": "02067-front.mp3",
+      "inputHash": "326b4518d10527e26286eb1bfbfa65d173fe5c48afc48d05055b575f9a2f8ff7",
+      "bytes": 226158,
+      "sha256": "6c2be5d5458ceb9903c04b8a5d5a001bed40516ba1b702cd73a095a31f706305"
+    },
+    {
+      "code": "02068",
+      "side": "front",
+      "text": "Tenéis que salir de aquí, con el Dr. Morgan o sin él. Y rápido.",
+      "file": "02068-front.mp3",
+      "inputHash": "4afd4e2eee2b97e40c0d124740bae9b0a20edc33f0e5bd5a84b5c511b7409b45",
+      "bytes": 64408,
+      "sha256": "76742b3d6cd25c7b0a1207e0bffd98d0aa9108a16cf7a2c863d27747486589c7"
+    },
+    {
+      "code": "02068",
+      "side": "back",
+      "text": "Huis del club, tratando de pasar desapercibidos, cuando varios coches paran en la calle. De ellos salen hombres y mujeres de rostro adusto, que corren hacia la entrada del restaurante para controlar la situación. Uno se os queda mirando mientras aferra su arma del .38, pero, por suerte, vuelve dirigir su atención al resto de su grupo y los sigue al interior del club. Dais un suspiro de alivio…",
+      "file": "02068-back.mp3",
+      "inputHash": "6e9434c39c18f92ba6e83438beb83ae8b2dd60e814790b24fa268c384d825844",
+      "bytes": 407553,
+      "sha256": "a937d1a17be5aaaad0ebf515cfe09b29aecbfd47a3abd84c1de926bf841f80ae"
+    },
+    {
+      "code": "02069",
+      "side": "front",
+      "text": "—¡Barra libre para quien me saque de esta locura! —exclama un hombre desde el bar.",
+      "file": "02069-front.mp3",
+      "inputHash": "c22b12e818f5e59854998243110c7017c217f13f8d4ec340ad65f70f65924579",
+      "bytes": 75275,
+      "sha256": "7ee571b445f1084b9e1fec77ed7a2cfb540b0d08af775197d5de3930d0643253"
+    },
+    {
+      "code": "02069",
+      "side": "back",
+      "text": "Os ponéis en marcha para salir a las calles de Arkham, mojadas por la lluvia.",
+      "file": "02069-back.mp3",
+      "inputHash": "28c706bfc9a693a7cc2de0a2a5ac4e29fe323dc64e9704b098780b7eef0eda1d",
+      "bytes": 76947,
+      "sha256": "7f0e3bae5c1e323666509b3f1f13b2b3f44ba0ef5dd282940aff1eb3a427de2e"
+    },
+    {
+      "code": "02119",
+      "side": "front",
+      "text": "El Dr. Armitage le ha dado la traducción al latín de la universidad del Necronomicón a su colega, Harold Walsted, el conservador del museo de la Universidad Miskatonic. Preocupados por que alguien pueda seguir tratando de hacerse con el libro, habéis ido al museo a recuperarlo.",
+      "file": "02119-front.mp3",
+      "inputHash": "b910bbd58baba83ef08e56729b4085fa9bcf9f9ebb35c8f771c78b36d2123884",
+      "bytes": 305153,
+      "sha256": "0e318b103ee8eb666f337701eb0c9d4db7dfc2c9263b705ea831ed2634dc5228"
+    },
+    {
+      "code": "02119",
+      "side": "back",
+      "text": "Entre las sombras de las salas del museo, una terrible criatura se desliza, larga y serpentina, y se impulsa con unas coriáceas alas negras.",
+      "file": "02119-back.mp3",
+      "inputHash": "f79cee1c83633d2bdd441bc37d37e99f50d5f3b7ff4278a2009368c69d70cbc0",
+      "bytes": 160121,
+      "sha256": "3f55957afc85d8c6f291426f83440236dec58faf20a02f0a6d8f0d15d6a4ed01"
+    },
+    {
+      "code": "02120",
+      "side": "front",
+      "text": "Las sombras del museo crecen y se vuelven más oscuras. A medida que se alargan y cambian, comienzan a sugerir el cuerpo correoso de una imposible criatura que se mueve a toda velocidad en los márgenes de vuestra precepción...",
+      "file": "02120-front.mp3",
+      "inputHash": "b37402fcbc3982d95db04fee80c8c182fbd0680c99f83def9153d46578afe9cf",
+      "bytes": 237443,
+      "sha256": "16df0026fa36b1b661f6a9a4e0e7452daf96f34a32fbf404f1023e61f42f68b4"
+    },
+    {
+      "code": "02120",
+      "side": "back",
+      "text": "La criatura no ceja, y os persigue por todo el museo.",
+      "file": "02120-back.mp3",
+      "inputHash": "20475b67fab56a48ee02dc7c57b66ba2a6d864531a335cb32eea8575b8ea7396",
+      "bytes": 58139,
+      "sha256": "e7c91265bf305ae5f17e15964fe4130c9b4d465fd3b62c323d7999638f1aa103"
+    },
+    {
+      "code": "02121",
+      "side": "front",
+      "text": "La criatura del museo se vuelve mayor y más aterradora a cada momento que pasa. Su cuerpo repta de sombra a sombra, y cada rincón de cada sala es un escondite potencial para la terrible bestia.",
+      "file": "02121-front.mp3",
+      "inputHash": "7603a5b7bcbf63863ba0bd4ae63971b826242d2b164922d75d74e346ec80cc2c",
+      "bytes": 227830,
+      "sha256": "6736d05f9f066c05ea9715eed5037d5c7f88581c527cc4638a50635893b2c824"
+    },
+    {
+      "code": "02121",
+      "side": "back",
+      "text": "Al no tener forma de derrotar a la criatura, huis. Veis un cada sombra de cada corredor el reptante cuerpo del serpentino horror, y las salas del museo se vuelven más oscuras con la presencia de la criatura. Al llegar a la entrada, está bloqueando la puerta y os ataca con sus terribles colmillos. Apenas lográis escapar del edificio con vida, aunque los efectos del veneno de la criatura os marcarán para siempre.",
+      "file": "02121-back.mp3",
+      "inputHash": "96854f8b98c7f8162ee6f92d2b319b16178a52819a527ceff2e4e5e9ac8735f8",
+      "bytes": 429705,
+      "sha256": "fc9b6c217b093fffb0273a6ea34ba5605933b8f5b90a3de3de60772df48f5ae7"
+    },
+    {
+      "code": "02122",
+      "side": "front",
+      "text": "Por desgracia, la entrada del museo está cerrada a esta hora de la noche. Podéis ver a un guardia de seguridad por las ventanas delanteras del edificio, totalmente distraído. Quizá podáis encontrar la forma de atraer su atención y convencerle de que os deje entrar.",
+      "file": "02122-front.mp3",
+      "inputHash": "d8f72aaeee6cd964643cc49247b44d338cec177c2cecef62774f8ac4376f4903",
+      "bytes": 257505,
+      "sha256": "1f794de877854cac1a72922debe26b66f0f17b8b63b50d78ab218f4a4411e834"
+    },
+    {
+      "code": "02123",
+      "side": "front",
+      "text": "Guardan el Necronomicón en una sala restringida, en alguna parte del museo. Adam apenas conoce el lugar, y se sobresalta con cada crujido del viejo edificio.\n—Empecé a trabajar aquí la semana pasada —os explica—. ¿Qué problema dicen que hay? —No tenéis el valor de contarle toda la historia.",
+      "file": "02123-front.mp3",
+      "inputHash": "9b7bf400e3ce9126e8d7d6e37b1d0d6462b079cdf194f1e5fad4fd622ed7d923",
+      "bytes": 345695,
+      "sha256": "8a0f796d4487cbcc7907fbf1e633a6f423645e16272cfcdcf1fc3ab529cc0a12"
+    },
+    {
+      "code": "02123",
+      "side": "back",
+      "text": "Cuando entráis en la sala restringida, encontráis al conservador del museo sobre un charco de sangre, con los intestinos desparramados formando una grotesca visión. Se os revuelve el estómago y tenéis que combatir las ganas de vomitar. Quien haya hecho esto sigue cerca...",
+      "file": "02123-back.mp3",
+      "inputHash": "67e93d87c9bb6570b84cf855ab4956cce29463e034a747f20fc47ff4374cb0dc",
+      "bytes": 281329,
+      "sha256": "2614a9f85caf00af0e473d5fd99f7aa741eb07d9e5ee0f5db07c8238c4e06390"
+    },
+    {
+      "code": "02124",
+      "side": "front",
+      "text": "Guardan el Necronomicón en una sala restringida, en alguna parte del museo.",
+      "file": "02124-front.mp3",
+      "inputHash": "4b996d28a07f2b9ebf4494b9fa090a275df2f3e4eb4fcfd474142c1721f4629b",
+      "bytes": 77783,
+      "sha256": "39d86d6093b40178ae953f2be1190291ddd8959e34f876a9c6443037a3a04eae"
+    },
+    {
+      "code": "02124",
+      "side": "back",
+      "text": "Cuando entráis en la sala restringida, encontráis al conservador del museo aferrando una ornamentada estatua como si fuera una porra, con el traje manchado de sangre y una expresión de pánico en el rostro. El guradia de seguridad que visteis antes yace sobre un charco de sangre, cerca de allí, con los intestinos desparramados formando una grotesca visión. Se os revuelve el estómago y tenéis que combatir las ganas de vomitar. —Intenté detenerlo, pero... —dice el conservador con voz queda y temblorosa. Quien haya hecho esto sigue cerca...",
+      "file": "02124-back.mp3",
+      "inputHash": "6c28d93348dba595eadfe531693cd1db68e6c99816393cb1efa065139653a902",
+      "bytes": 592709,
+      "sha256": "1d2c245e3069232278d03be5f44f8c1a091430d8792b7fb692d3a5616f9ebc4b"
+    },
+    {
+      "code": "02125",
+      "side": "front",
+      "text": "En alguna parte de esta zona se encuentra la traducción al latín del Necronomicón de Olaus Wormius. ¡Debéis encontrarla y huir mientras podáis!",
+      "file": "02125-front.mp3",
+      "inputHash": "888467cfa2353f8a3848bcbdcaa582e9e0cb12719e595f18d9bd2af286492c00",
+      "bytes": 154687,
+      "sha256": "622a0e2f179195f0a80bb19c0a7ae82ec00bbc800ccf434d8d46b092325842b9"
+    },
+    {
+      "code": "02125",
+      "side": "back",
+      "text": "Por fin, encontráis el estuche cerrado que contiene el Necronomicón.\nEl tomo, de más de ochocientas páginas de longitud, está repleto de todo tipo de imágenes macabras, fórmulas, hechizos, profecías y descripciones de criaturas de más allá del umbral del espacio.\nSin ninguna duda, es un libro peligroso... Pero sus secretos podrían ser muy útiles.",
+      "file": "02125-back.mp3",
+      "inputHash": "9f6e901a834aeb1d584ad34d5628c9356a9ba46de25224acb33ee083900a7ac9",
+      "bytes": 395014,
+      "sha256": "7fe9e207d52647e129142bef1d86680413c438e5a5e66fdb87c83769c9f16a22"
+    },
+    {
+      "code": "02160",
+      "side": "front",
+      "text": "Cuando el tren a Dunwich se detiene abruptamente, miráis por la ventana hacia atrás y veis una inmensa grieta en el cielo, como un desgarro en un trozo de tela. Varios de los vagones de retaguardia están siendo arrastrados hacia atrás, y se oye un terrible crujido metálico cuando se sueltan. Los vagones caen hacia arriba, en dirección de la grieta del cielo. Los pasajeros que tenéis cerca entran en pánico, otros están encogidos de miedo en sus asientos, y un hombre mayor se ha desmayado de terror.",
+      "file": "02160-front.mp3",
+      "inputHash": "a912e7af4c436611616dd063407e0b7073403b9f5a3ab8f15a15833c53807ced",
+      "bytes": 552585,
+      "sha256": "db7d6ece0246a5fc02321a689b24b8d934635a64e0484b2ac9381af8efcb1948"
+    },
+    {
+      "code": "02160",
+      "side": "back",
+      "text": "El último vagón se desengancha al ser arrastrado hacia atrás. Veis con horror como se eleva de las vías y es consumido por el portal que tenéis encima.",
+      "file": "02160-back.mp3",
+      "inputHash": "ad03015a891effeead9e2d6f2f32369abc82a4759fcca36694f4e83e66b1acdf",
+      "bytes": 146746,
+      "sha256": "606ea1024a979ad071d503842ef9a1ad56b6b1f253b6a172cf333f8a849bf97b"
+    },
+    {
+      "code": "02161",
+      "side": "front",
+      "text": "La grieta se hace mayor, y notáis como el último vagón del tren tiembla al ser arrastrado hacia atrás. La situación amenaza con desembocar en el caos a medida que más pasajeros se dan cuenta del peligro que corren. Algunos buscan sitios para ocultarse, mientras que otros corren por los compartimentos presa del pánico.",
+      "file": "02161-front.mp3",
+      "inputHash": "2629de991c57edf11c10ccd3bcffc9049b8059122ea6638ca12e970b23c19e66",
+      "bytes": 313094,
+      "sha256": "2f91bfa59cef887e531551dd510069dffed053edaf1160eaa44cdf57ff74cb44"
+    },
+    {
+      "code": "02161",
+      "side": "back",
+      "text": "El siguiente vagón es arrancado con una violenta fuerza. Un hombre de mediana edad cuelga por la punta de los dedos del vagón mientras éste vuela directamente hacia la grieta. En unos instantes, el vagón es consumido por completo, y el hombre se suelta antes de ser absorbido por el vacío. Comienza a caer, pero la fuerza de la grieta lo atrapa y es engullido de todas formas.",
+      "file": "02161-back.mp3",
+      "inputHash": "63a1a0973b37af1434a60271f2257f1cf9eaddf57498ee9063b5ab4433bcbe69",
+      "bytes": 392088,
+      "sha256": "0638758ed920f296926428fe5598436a2739d898b4c5fd9d8c784388ab957e6e"
+    },
+    {
+      "code": "02162",
+      "side": "front",
+      "text": "La atracción de la grieta del cielo parece hacerse más fuerte, y todo el tren comienza a rodar hacia atrás por las vías. Los últimos vagones del tren comienzan a traquetear, y la fuerza de la grieta amenaza con desengancharlos. ¡Debéis salir de estos vagones lo más rápido que podáis!",
+      "file": "02162-front.mp3",
+      "inputHash": "d42d2d1876093238c59376aae16ee89f7bd1ff20c654d152e616ddd61ebd7c5c",
+      "bytes": 305153,
+      "sha256": "3876726eb70b6ba1fefd36da6da872058d12ec6ba4c7a06255b4a6bc3e92d7ee"
+    },
+    {
+      "code": "02162",
+      "side": "back",
+      "text": "Dos de los vagones más cercanos al portal quedan cercenados del resto del tren por una especie de cortina de vapor increíblemente caliente que atraviesa el metal como si fuera mantequilla. Los vagones son absorbidos hacia arriba y vuelan hacia el portal. Algo que hay por encima del tren emite un terrible chillido, aunque a vuestros oídos parece como el sonido de una tubería de vapor rota.",
+      "file": "02162-back.mp3",
+      "inputHash": "4005e30ed70a0123c3975385dd5121c142661a3e1e384e445ae2806538f35881",
+      "bytes": 388745,
+      "sha256": "e4812befb0b71cd520ab3e99dce7177d1f409501b5e2354645278098fdb3bc36"
+    },
+    {
+      "code": "02163",
+      "side": "front",
+      "text": "El portal chisporrotea de poder a medida que aumenta su fuerza. La tierra y las rocas del borde del puente que tenéis detrás están siendo arrancadas del suelo, y los árboles están siendo desarraigados al ser atraídos por el portal. Un joven pasajero rompe la ventana de vuestro vagón y grita: —iDebemos salir de aquí! —Salta por la ventana, pero antes de caer al río que hay debajo, es atrapado por las garras de una veloz criatura voladora y desaparece de vuestra vista. Al paso de la criatura sólo queda un rastro de vapor.",
+      "file": "02163-front.mp3",
+      "inputHash": "fdf0814c72aded9c575ffcefd58d31a1e1b8402192969dc3774a7364e65dcf2c",
+      "bytes": 576826,
+      "sha256": "a4cfc130f7cfe39461fa7874ff7c282b577cdc5de0beed21f7cda250f19aba81"
+    },
+    {
+      "code": "02163",
+      "side": "back",
+      "text": "Los dos vagones de la cola del tren comienzan a fundirse a medida que se llenan de vapor ultracaliente. El metal se dobla, y los pasajeros del interior gritan de agonía. Los vagones son arrancados de las vías del tren junto con tablones de los raíles y trozos del puente que tenéis detrás.",
+      "file": "02163-back.mp3",
+      "inputHash": "80d3c9c5ddad02cee6546d8fe589d8bcca1fd06efaafceb8f532f0c9763a8875",
+      "bytes": 301391,
+      "sha256": "ab021b02eeb368e98ec1aff5d9a41b5e9788995de98e800a277bd8676f5aa705"
+    },
+    {
+      "code": "02164",
+      "side": "front",
+      "text": "La grieta del cielo se retuerce y tiembla, completamente distorsionada. Ahora tiene un tamaño descomunal, y su forma no deja de cambiar, como si estuviera a punto de explotar.",
+      "file": "02164-front.mp3",
+      "inputHash": "4446c6b82157af5892534abb59c00924ff1a4be56fdc72e386f362bb1eb4018e",
+      "bytes": 185198,
+      "sha256": "8fe93410a4f53788c8a6557188270f4fe60904d3d22047a7bc845bde4249b988"
+    },
+    {
+      "code": "02164",
+      "side": "back",
+      "text": "Todo el puente se resquebraja por la presión del portal y acaba partiéndose. En lugar de caer al río, los vagones restantes son atraídos hacia la grieta del cielo. Os agarráis como podéis y gritáis de terror al ser absorbidos por el portal. Después, todo se vuelve negro.",
+      "file": "02164-back.mp3",
+      "inputHash": "ad990352c6de612c776b5464db0319ed1ff908076d950916da7b594d526a1f77",
+      "bytes": 303481,
+      "sha256": "4bc2b55196dcfc59649bf8ffaaaac4def78a434f575799dee5cb4a1e23f85785"
+    },
+    {
+      "code": "02165",
+      "side": "front",
+      "text": "El tren se ha detenido sobre un puente que se eleva sobre el río Miskatonic; quizá podríais sobrevivir a la caída, pero no queréis tentar a la suerte. Lo mejor que podéis hacer es llegar a la locomotora tan rápido como podáis para volver a poner el tren en marcha.",
+      "file": "02165-front.mp3",
+      "inputHash": "81889b3a7d0ceb0cffb6c28be6e1851000950f3cdc23e5d64baf59b7d90e4b30",
+      "bytes": 265029,
+      "sha256": "8eab810952034d471c44a09c7add30593179ca90d332612ae15a604dcb627b38"
+    },
+    {
+      "code": "02165",
+      "side": "back",
+      "text": "Un ténder lleno de carbón bloquea el paso hasta la cabina de la locomotora. Te tragas el miedo y sales por la ventana que tienes más cerca para trepar al techo del tren y cruzar el ténder. El incesante movimiento hacia atrás del tren te dificulta no perder el equilibrio. Al acercarte, una criatura alada desciende desde lo alto, con un cuerpo compuesto de hirviente vapor.",
+      "file": "02165-back.mp3",
+      "inputHash": "ab9f11a1daf2d7523a1ca767ce8b6ce60026423dd2bb1d1aee4ca0b33e53ad27",
+      "bytes": 385819,
+      "sha256": "e56be84cbfb477e71e5bec54c946132eb9dd7cf2ca9864c6f72927bbfcf7adbe"
+    },
+    {
+      "code": "02166",
+      "side": "front",
+      "text": "Habéis logrado llegar a la locomotora, pero ¡ahora tenéis que volver a arrancar el motor para poder escapar de la fuerza absorbente del portal!",
+      "file": "02166-front.mp3",
+      "inputHash": "45e41e357de5810982ad961bb652b01f608a1b49e101984011608044d2d9037f",
+      "bytes": 122923,
+      "sha256": "6ca5ea67a4b657732512f74e2da1392141e8d6332eddd5371ade4f4f73c64d51"
+    },
+    {
+      "code": "02166",
+      "side": "back",
+      "text": "El motor ruge y se pone en marcha. Echáis carbón a paletadas en la caldera del motor, y os alivia ver que el tren vuelve a moverse hacia delante por las vías.",
+      "file": "02166-back.mp3",
+      "inputHash": "b8fa15d7c1f17454e8394493d6361bbdefba9709579acfb712d038b51dde7dac",
+      "bytes": 165972,
+      "sha256": "6ad96c626d353e26eba6a410db01e37eacb85051ab479121ae8c8e29859c56d6"
+    },
+    {
+      "code": "02196",
+      "side": "front",
+      "text": "Vuestra bienvenida a Dunwich ha sido fría. Una serie de desapariciones tiene en vilo a los lugareños, ya de por sí distantes, La mayoría os miran con desconfianza, y unos pocos están dispuestos a ayudar en vuestra investigación. ¿Quién sabe qué pasará si no encontráis pronto a las personas desaparecidas...?",
+      "file": "02196-front.mp3",
+      "inputHash": "6d5a05ecb0b6ddbef820c4cc0abdb2b91bb9115a6d95f3af62f0c6ac38af52d1",
+      "bytes": 303481,
+      "sha256": "e1d8593710a371ba54e3b97d3b73a824083bf97b93ad57bac2918f60a8ad2514"
+    },
+    {
+      "code": "02196",
+      "side": "back",
+      "text": "Sobre los tejados abuhardillados de Dunwich se reúnen chotacabras que empiezan a chillar de júbilo. La gente de Dunwich cree que la presencia de los chotacabras presagia la muerte inminente de alguien. ¿Ansían vuestra muerte? ¿O será otro su víctima?",
+      "file": "02196-back.mp3",
+      "inputHash": "2047e902452529e1b2d98f71fde4b77767c3205028fca097a7edd303b9035f64",
+      "bytes": 267954,
+      "sha256": "4247e135222e47738e409d868093b38b191a02c9956ae7d749c55ddbce3d467f"
+    },
+    {
+      "code": "02197",
+      "side": "front",
+      "text": "Cuando el sol se pone, los asustados lugareños se retiran a sus casas y cierran con llave las puertas. Tenéis claro que muchos de ellos saben más de lo que dicen. Una sensación repugnante os revuelve el estómago al ver la verdadera naturaleza de la aldea.",
+      "file": "02197-front.mp3",
+      "inputHash": "5c9f8d5468690cd8c4220a56a04d933ef2b9e81280cd96e633a7f60555f4dc90",
+      "bytes": 274642,
+      "sha256": "440e72ae6a7d5fb5087d6fdf027398cbfea1d8d5845b6814d846545878ff9b93"
+    },
+    {
+      "code": "02197",
+      "side": "back",
+      "text": "Más chotacabras acuden a la aldea de Dunwich a medida que avanza la noche. Los demás lugareños, tremendamente supersticiosos, están aterrados por la presencia de los pájaros. Con todas las puertas que os rodean cerradas a cal y canto, os encontráis solos en las calles de Dunwich.",
+      "file": "02197-back.mp3",
+      "inputHash": "6647202bd4186cb3ac028bb480715692829832e1b7ef22b97a7902728b2c7942",
+      "bytes": 290942,
+      "sha256": "f89ee76a1a49b4e3645a47ecdb89e3fb6b3de4309c6256316e27db24b2f51bf4"
+    },
+    {
+      "code": "02198",
+      "side": "front",
+      "text": "El rítmico chillido de los chotacabras llena la noche. Si las supersticiones de Dunwich son correctas, su canción augura una muerte inminente... Pero ¿de quién?",
+      "file": "02198-front.mp3",
+      "inputHash": "7966dae1ba1e660e0b16bbdcdc3dbc239d84925a23da88c1a132f248eb4d1ee0",
+      "bytes": 174332,
+      "sha256": "6c5ec8c126476a2dbf983be9d3a895ac4ad4a119377465292c4416a054c8a2ef"
+    },
+    {
+      "code": "02198",
+      "side": "back",
+      "text": "Los chotacabras que llevan toda la noche graznando se dispersan al unísono, como si estuvieran satisfechos de algún modo con el resultado de los acontecimientos.",
+      "file": "02198-back.mp3",
+      "inputHash": "a3fec5149aa58212344c8d1afea9dc3ee1627c8770594a70830623982d43f819",
+      "bytes": 148836,
+      "sha256": "aaf4ebe23c4aa36c617daff8aded992609a34948caab61b2c39cc499431f50be"
+    },
+    {
+      "code": "02199",
+      "side": "front",
+      "text": "Las desapariciones producidas en el pueblo pueden estar relacionadas con los acontecimientos de Arkham. Sospecháis que hay en marcha algo terrible. Debéis encontrar dónde retienen a los lugareños desaparecidos para descubrir esta conspiración.",
+      "file": "02199-front.mp3",
+      "inputHash": "885fcedb66d995295e070425e4c6fac728f0d6a1b4fdc23786e61eca9dc2fc2a",
+      "bytes": 252908,
+      "sha256": "78fa42d4e1dc20a1991b144efb2cdd1f63688cc67efdc54a0529807036f15c9b"
+    },
+    {
+      "code": "02199",
+      "side": "back",
+      "text": "Lográis acceder a la cámara oculta en la que creéis que retienen a los desaparecidos, pero los horrores que os plantan cara allí crispan los límites de vuestra cordura. Encadenada en un apartado rincón de la sala se encuentra una terrible criatura con rostro de hombre. Jadea y pugna por liberarse al veros entrar. Las muchas bocas que cubren el cuerpo de la criatura están cubiertas de sangre y trozos de carne, como si se hubiera alimentado hace poco.\nCon un terrible graznido, la criatura habla con siete bocas: —¿Ss.. se... eth... ? —Después se tambalea hacia delante como si quisiera agarraros, y varias de sus cadenas se parten.",
+      "file": "02199-back.mp3",
+      "inputHash": "f0cb1bb82ac15493af486e3ee89750462c47e536f23a7a48bdcab0d29b19c2ae",
+      "bytes": 672957,
+      "sha256": "3c049098f7a95064b1e354358cd7147429aa1ead361cb52fe47f2f190a4421be"
+    },
+    {
+      "code": "02200",
+      "side": "front",
+      "text": "La lamentable bestia se lanza para cogeros con sus viscosos brazos, y sus muchas fauces chasquean de hambre. Matarla sería un acto piadoso. Pero quizás haya algo más que descubrir sobre esta criatura...",
+      "file": "02200-front.mp3",
+      "inputHash": "b0be233a14fb7dd6d417361debf459fa1f63f957338212a357ea3bf138a3c7c3",
+      "bytes": 235772,
+      "sha256": "c519e1407c99fa0447d26376e583a777265ace84a91320aba5eb551c57dce36a"
+    },
+    {
+      "code": "02200",
+      "side": "back",
+      "text": "A pesar del peligro, os enfrentáis a la aterradora presencia de la bestia y seguís investigando antes de matarla. Lo que encontráis confirma vuestras peores sospechas. Varias anotaciones de un diario escritas por un tal \"Seth Bishop\" describen el proceso de alimentación de la criatura con espeluznantes detalles; primero tomates, luego caza menor, después ganado, y por último, \"sacrificios humanos\". Pero la parte más perturbadora es que Seth llama a la criatura por su nombre: \"Silas\".",
+      "file": "02200-back.mp3",
+      "inputHash": "6847c12e683752bacb7b7bba33d424d4bcc35a3e83fa9c85bb3d11ffc61c9111",
+      "bytes": 557600,
+      "sha256": "af9ced4d4c94fae2e3d8871dcf1d1b3326acc04674dc7862fc86ca8468ecb619"
+    },
+    {
+      "code": "02237",
+      "side": "front",
+      "text": "Las noticias de que unos entes aterradores están sembrando el caos en el campo han hecho que los ciudadanos de Dunwich entren en pánico. Y lo que es peor aún, las criaturas parecen ser invisibles a simple vista.",
+      "file": "02237-front.mp3",
+      "inputHash": "2f5d5cab4a8e9636183ab6e09deb3536817039444fb38907dcd59bca338f05ce",
+      "bytes": 218635,
+      "sha256": "12329fad72b3c0bb9dbb172485f927ad7dfaf0d402713dd0feeb918aaa093ec5"
+    },
+    {
+      "code": "02237",
+      "side": "back",
+      "text": "Una vieja camioneta se para en los erosionados caminos de Dunwich. El conductor, Joe Osborn, os llama desde la ventanilla del conductor hecha añicos, con el motor aún en marcha:. –¡Está en la granaja de los Erick! –grita–. Ha hecho trizas el sitio. Pobres Henry y Martha…\nLe pedís a Osborn la ubicación de la finca de los Erick, y eso os confirma vuestro peor temor. Para que ese ataque haya ocurrido recientemente, debe de haber varios monstruos sueltos.",
+      "file": "02237-back.mp3",
+      "inputHash": "b0c27587746d62a8d234805de2b7d6deec5794d116e92175c4f2a675703ba173",
+      "bytes": 500340,
+      "sha256": "1fadb7495e9e23857f6532424319ad861e7a9bd92f1de76195d8ea4fda53a088"
+    },
+    {
+      "code": "02238",
+      "side": "front",
+      "text": "De vez en cuando, el viento que subía del fondo de la cañada de Cold Spring traía un hedor insoportable a la ya cargada atmósfera nocturna... Pero la tan esperada monstruosidad no se dejó ver en toda la noche. No cabía duda, lo que había en el fondo del barranco aguardaba el momento propicio, y Armitage dijo a sus compañeros que sería suicida intentar atacarlo en medio de la oscuridad nocturna.\n—H.P. Lovecraft, \"El Horror de Dunwich\"",
+      "file": "02238-front.mp3",
+      "inputHash": "65393ede4dc02bbaeeeb4d545dd87ba26cc57ee73dad7ab9fce3cc70b6a1c08d",
+      "bytes": 495324,
+      "sha256": "4a4c5b022f13d334fe4d000c9335919e0c70e3e820bdbe2121203c8eebeca85c"
+    },
+    {
+      "code": "02239",
+      "side": "front",
+      "text": "No tenía nada de divertido seguir la pista de algo tan grande como una casa y no lograr verlo, si bien podía respirarse en el ambiente una maléfica presencial infernal.\n—H.P. Lovecraft, \"El Horror de Dunwich\"",
+      "file": "02239-front.mp3",
+      "inputHash": "34efe4d2769c77b73a429c0d4dda839447d127b80b4d07011dbfc82236dda2cb",
+      "bytes": 242459,
+      "sha256": "d7361d1f982814278799551f85da7def0a4e3b3b3be6119b8d959ad9ef5acbc3"
+    },
+    {
+      "code": "02239",
+      "side": "back",
+      "text": "Hay un monstruoso estruendo que resuena por los campos, aunque es imposible determinar si su origen son las criaturas que buscáis o las propias montañas. Poco después, encontráis más rastros de las criaturas que llevan colina arriba: un sendero de diez metros de arbustos aplastados y árboles quebrados como ramas. Agotados por el combate, y con la noche a punto de llegar, decidís volver a un lugar seguro en vez de seguir estos rastros infernales.",
+      "file": "02239-back.mp3",
+      "inputHash": "38b99d57b83fd65451770bcd45d8198ed9f128017f2dcbaa52a807a28ec0ce0a",
+      "bytes": 462305,
+      "sha256": "e693df1f6bbc309894e8d3e001ff8d2d4f3fac3eaba19c4e025a6bf8feeb6b41"
+    },
+    {
+      "code": "02240",
+      "side": "front",
+      "text": "Los monstruos que están causando estragos en los campos de Dunwich son inmunes a las armas tradicionales. Sólo puede derrotarse a las criaturas recitando un ensalmo concreto. Primero debéis registrar las ruinas del hogar de Wilbur Whateley para encontrar los últimos fragmentos del sobrenatural texto.",
+      "file": "02240-front.mp3",
+      "inputHash": "5f8ee47b8ec54ba7f1dc420141ca902e086056e9ad650ca0d29c4f01a97d7590",
+      "bytes": 313094,
+      "sha256": "ed42508e18469feeda63fd9add1d8aa1bdf1f2845bf8b82b00d7762999d4a577"
+    },
+    {
+      "code": "02241",
+      "side": "front",
+      "text": "Con la fórmula en vuestro, por fin tenéis los medios para destruir a las criaturas que siembran el caos en Dunwich... pero sólo si lográis sobrevivir en el tiempo suficiente.",
+      "file": "02241-front.mp3",
+      "inputHash": "90b0d446220253e8b9285d3d791221a1557db7f323eb90aede0cce68c049c39b",
+      "bytes": 165136,
+      "sha256": "3478938ed3d633527ded7d49f7f79aa81901f327fb9b087e504e206c6c5e623a"
+    },
+    {
+      "code": "02241",
+      "side": "back",
+      "text": "Al completar el ensalmo, la siniestra criatura grita con una voz ronca e inhumana que trepida y se rompe, y las sílabas de su graznido no se parecen ni remotamente a vuestro idioma. Cuando su grito se desvanece, la criatura comienza a encogerse sobre sí misma, y sin previo aviso, desaparece. Todo lo que queda es un fétido hedor y una repulsiva marca que acaba con la vegetación allí donde estuvo la bestia.",
+      "file": "02241-back.mp3",
+      "inputHash": "ff06722c9208d4389fa14003ab0229271f8faba6ccf60608b0029fd6db76d748",
+      "bytes": 476516,
+      "sha256": "f7350f062c8258903d55fd3aae046f868633668c6e1048c357c17e9767b68e56"
+    },
+    {
+      "code": "02275",
+      "side": "front",
+      "text": "Al acercaros a Sentinel Hill, oís antiguos ritos en latín que resuenan en la noche. Ha llegado el momento de entrar en acción. Si no lográis detener a los hechiceros de Dunwich, ¿quién sabe qué terrores podrían desatar en el mundo?",
+      "file": "02275-front.mp3",
+      "inputHash": "534051bb13197abde4a5f074c5506b1bfc996848c8aec22c71e231fe03281199",
+      "bytes": 237443,
+      "sha256": "6678a69346a0ce6e9e8c2ab8bcbae1413a2e8c213ec350e33b7eddb997b0e01f"
+    },
+    {
+      "code": "02275",
+      "side": "back",
+      "text": "Al explorar los caminos que rodean Sentinel Hill, los cánticos de la cumbre llegan a un crescendo y adoptan una naturaleza sobrenatural, reverberando entre los árboles como si los llevasen unas corrientes invisibles.\nEl mundo comienza a cambiar. La hierba y los árboles se disuelven como azúcar en una taza de té. Un vasto cielo infinito atraviesa la realidad que veis ante vosotros y entre el terror y el asombro, notáis como sois atraídos hacia él. El arcano poder se distorsiona y se filtra a vuestro alrededor, creando extrañas alteraciones en la tierra.",
+      "file": "02275-back.mp3",
+      "inputHash": "472352178242cf6b6ff6af1bc967f68e3df1af2c237aa4cdcc082bd38f8ec587",
+      "bytes": 619876,
+      "sha256": "a278e516b889ab29021ef3e44685ef511e076b6f4448021b5e116f4129f47556"
+    },
+    {
+      "code": "02276",
+      "side": "front",
+      "text": "Los Primigenios fueron, los Primigenios son y los Primigenios serán. No en los espacios que conocemos, sino entre ellos. Caminan serenos, prístinos, sin dimensión e invisibles para nosotros. Yog-Sothoth conocel el portal, Yog-Sothoth es el portal, Yog-Sothoth es la llave y el guardián del portal. Pasado, presente y futuro, todo es uno en Yog-Sothoth. Sabe por dónde entraron los Primigenios antaño y dónde entrarán de nuevo. Sabe dónde han hollado los campos terrestres y dónde siguen hollándolos, y por qué nadie puede contemplarlos.",
+      "file": "02276-front.mp3",
+      "inputHash": "70693153a31cf9a073b849826ee19891e14e286cc024cf6d02556d378714431b",
+      "bytes": 651223,
+      "sha256": "73c8f8af6faff327cf056b7694ff4916a59c1e8233de79a60c2b8b83ed6cb92f"
+    },
+    {
+      "code": "02276",
+      "side": "back",
+      "text": "El cántico llega a su clímac, y en la cumbre de Sentinel Hill se abre una grieta en el tejido del cielo que aparta las nubes y corta el mismo aire.\nObserváis cómo una entidad indescriptible -esferas, ojos, bocas, cieno- surge de la fisura. Los hechiceros pronuncian su nombre mientras su forma se filtra por el cielo y se extiende sobre la Tierra.\"¡Iä! ¡Iä! ¡Yog-Sothoth! ¡Iä! ¡Iä! ¡Yog-Sothoth!\"\nAntes de que puedan proseguir sus cantos de júbilo, son asfixiados por la masa creciente, y deja de oírseles.\nPara horror vuestro, la expansión de la masa no cesa.",
+      "file": "02276-back.mp3",
+      "inputHash": "e80fd789ee5325a8637f061b7b36585a141a87ef83138270db10db58f3c9d07f",
+      "bytes": 677972,
+      "sha256": "1863c751a253eaf638088f32a029655cc56a3e4873c74c225ab8dd835965d96b"
+    },
+    {
+      "code": "02277",
+      "side": "front",
+      "text": "Una vibrante energía arcana llena el aire de un frío que se mete en los huesos. La energía baila por el destrozado sendero que tenéis delante, y se desliza por varios caminos más antes de desaparecer.",
+      "file": "02277-front.mp3",
+      "inputHash": "a705e593c81161189aa65256b396ccba3d30324c8d81257da40c3ec9a04c86ec",
+      "bytes": 209022,
+      "sha256": "acc1a74bfd655de27da00ef7444ff28b7e7d61518ef807a7e7b099c1c2bf586e"
+    },
+    {
+      "code": "02277",
+      "side": "back",
+      "text": "Durante vuestra búsqueda por los boscosos senderos que rodean el pie de Sentinel Hill, os topáis con una sorprendente visión. Hay un rebaño de ovejas muertas en el suelo de un apartado claro, y sus sangrientos cadáveres están colocados formando un extraño pero cuidadoso diseño. Os tapáis la nariz ante el hedor de la muerte, y pasáis sobre las ovejas mutiladas para llegar al centro de la extraña forma.\nEn el centro de las ovejas se encuentra un cadáver de un hombre. Tiene una gema transparente que han presionado contra su frente hasta hundirla en la parte de delante de su cráneo. Tiene los ojos abiertos como platos, y el rostro retorcido en una mueca de terror, como si os suplicara piedad. Aunque sabéis que no es posible, comprobáis si tiene pulso. Al tocar la piel del hombre, la joya de su frente se disuelve, y el bosque que os rodea parece despejarse.",
+      "file": "02277-back.mp3",
+      "inputHash": "012666b44cf9d3a9192fe4e3d2ddcc07ba1c26e47b2098101193f369ef941f41",
+      "bytes": 954243,
+      "sha256": "54dc9f632ad72f5a9c5c1c9dbb6e9f473eaf08f2cb70dea832ec2e1cb74aa3dd"
+    },
+    {
+      "code": "02278",
+      "side": "front",
+      "text": "Al subir por la colina, el entorno que os rodea se vuelve cada vez más extraño y sobrenatural. La energía arcana puede percibirse de forma más fuerte aquí, chisporroteando en el aire y recorriéndoos la piel.",
+      "file": "02278-front.mp3",
+      "inputHash": "e3918d5a8662b21f72acb38a202ef228f5facbeb8149f4db1feb4e176e518a99",
+      "bytes": 202335,
+      "sha256": "6375de4b9c7fb89998665800c424002e17a18198fd421f4dc55a7e2b143c5430"
+    },
+    {
+      "code": "02278",
+      "side": "back",
+      "text": "Al acercaros a la cumbre de Sentinel Hill, se os acercan varios ciudadanos de Dunwich. El hombre del centro de su círculo salmodia en latín mientras los demás inclinan la cabeza en señal de reverencia. -¿Seth Bishop? -preguntáis suponiendo la respuesta. El hombre del centro levanta la mirada como respuesta, lo que confirma vuestras sospechas. Le rogáis que detenga esta locura, pero no os responde. Sacáis el colgante de plata con la constelación que encontrasteis en el cuerpo de Silas y se lo entregáis a Seth. -Esto es todo lo que encontramos de tu hermano -gritáis para haceros oír sobre el aullante viento-. ¿Es éste el destino que queréis para vosotros? ¿Para todos nosotros? -Lanzáis el colgante contra el suelo, y estupefacto al verlo, se tambalea hacia atrás y se equivoca con el ensalmo mientras abre los ojos como platos. Al caer, el altar que tiene a su espalda se parte en dos, y un torrente de energía brota de la piedra, girando hasta formar un portal abierto que se traga al hombre. Apenas lográis clavar los talones en el suelo y agarraros a una roca cercana para resistir la atracción del portal.",
+      "file": "02278-back.mp3",
+      "inputHash": "34c9f94d10195bcdead8d92932943c553ae24f004edccf1cfabe50e90297ff87",
+      "bytes": 1178687,
+      "sha256": "8777aaab277f9e6a467ae5b79c223a0923155f47403ce13c50b8e2412011824b"
+    },
+    {
+      "code": "02279",
+      "side": "front",
+      "text": "Al subir por la colina, el entorno que os rodea se vuelve cada vez más extraño y sobrenatural. La energía arcana puede percibirse de forma más fuerte aquí, chisporroteando en el aire y recorriéndoos la piel.",
+      "file": "02279-front.mp3",
+      "inputHash": "e3918d5a8662b21f72acb38a202ef228f5facbeb8149f4db1feb4e176e518a99",
+      "bytes": 202335,
+      "sha256": "6375de4b9c7fb89998665800c424002e17a18198fd421f4dc55a7e2b143c5430"
+    },
+    {
+      "code": "02279",
+      "side": "back",
+      "text": "Al acercaros a la cumbre de Sentinel Hill, se os acercan varios ciudadanos de Dunwich. El hombre del centro de su círculo emite una risa demente. Reconocéis al hombre, Seth Bishop, por su descripción que os dieron los lugareños. A su espalda, varios hombres y mujeres inclinan la cabeza en señal de reverencia mientras salmodian en latín. -¡Lo hemos logrado! -grita entre carcajadas-. ¡Hemos logrado lo que el viejo Whateley y los suyos no pudieron hacer! -Observáis con repulsión cómo sus ojos se le vuelven vidriosos y se mueven como si estuviese leyendo algo invisible-. Ahora puedo verlo... ¡Por fin lo veo! -Levanta los brazos hacia el cielo y la lápida del altar que tiene a su espalda se parte en dos. Un torrente de energía brota de la piedra, girando hasta formar un portal abierto. Seth se agarra a la piedra que tiene delante para evitar ser absorbido, pero varios de los demás se sorprenden y son tragados por el portal. Apenas lográis clavar los talones en el suelo y agarraros a una roca cercana para resistir la atracción del portal. Seth se pone de pie con una expresión de orgullo en el rostro.",
+      "file": "02279-back.mp3",
+      "inputHash": "cec65d3e67af8bcd5711ee0cc86ca50045ea5bf10594493780eea40b17cc8604",
+      "bytes": 1183285,
+      "sha256": "22aad7dd2d14a0bc4811de436e0cb58df2ea2b33e59d9bfa4282cdc3ec525f1a"
+    },
+    {
+      "code": "02280",
+      "side": "front",
+      "text": "Al subir por la colina, el entorno que os rodea se vuelve cada vez más extraño y sobrenatural. La energía arcana puede percibirse de forma más fuerte aquí, chisporroteando en el aire y recorriéndoos la piel.",
+      "file": "02280-front.mp3",
+      "inputHash": "e3918d5a8662b21f72acb38a202ef228f5facbeb8149f4db1feb4e176e518a99",
+      "bytes": 202335,
+      "sha256": "6375de4b9c7fb89998665800c424002e17a18198fd421f4dc55a7e2b143c5430"
+    },
+    {
+      "code": "02280",
+      "side": "back",
+      "text": "Al acercaros a la cumbre de Sentinel Hill, se os acercan varios ciudadanos de Dunwich. El hombre que se encuentra en el centro de su círculo está intentando desesperadamente completar un ensalmo en latín. -¡No funciona, Seth! -grita uno de los otros hombres-. ¿Qué vamos a hacer? -El hombre del centro deja el ensalmo y saca un cuchillo de zapatero-. El padre exige un sacrificio de sangre -declara, y su rostro se contorsiona con una expresión demente. Antes de que podáis reaccionar, se abre la muñeca izquierda con el cuchillo y cae de rodillas por el dolor. La lápida del altar que tiene a su espalda se parte en dos. Un torrente de energía brota de la piedra, girando hasta formar un portal abierto. Seth se agarra a la piedra que tiene delante para evitar ser absorbido, pero varios de los demás se sorprenden y son tragados por el portal. Apenas lográis clavar los talones en el suelo y agarraros a una roca cercana para resistir la atracción del portal. Seth se levanta, herido pero vivo, con una expresión de orgullo en el dolorido rostro.",
+      "file": "02280-back.mp3",
+      "inputHash": "431a0d2219434b5bac45923b05bf4f76960edd80a48f3f070395de555135438e",
+      "bytes": 1101365,
+      "sha256": "9cab94f364198fb4ced9f29da26978cd4107dd4c234ef4efbee21076f79e44cf"
+    },
+    {
+      "code": "02281",
+      "side": "front",
+      "text": "De las ruinas de la lápida del altar de la cumbre de la colina ha aparecido un portal de vibrante energía giratoria. Una fuerza como la de un huracán surge del oprtal, doblando los árboles y arrastrando escombros hacia él. El aullido del vendabal ahoga todos los demás sonidos. Debéis encontrar algún modo de cerrar el portal.",
+      "file": "02281-front.mp3",
+      "inputHash": "821e5716f9bf4a19849d85701c66dc1551bf5cf90de32766c37b42602f8ae936",
+      "bytes": 365339,
+      "sha256": "f2fad6756e0e894814fcdb4028877f06e8f3f6ee967db7c2ef7d7da8e83fd97d"
+    },
+    {
+      "code": "02281",
+      "side": "back",
+      "text": "No sabéis cómo cerrar el turbulento portal que tenéis delante, y a cada momento que pasa, la fuerza de su interior crece. Teméis que se acerque la entidad que hayan invocado los hechiceros desde el más allá. Sin tiempo que perder, os acercáis al tomo abierto que hay sobre el altar de piedra, buscando respuestas desesperadamente.",
+      "file": "02281-back.mp3",
+      "inputHash": "f9780891d2fa1d601b5d87ed7face3c711b3643008ade0b01b05a96dba5d7693",
+      "bytes": 341515,
+      "sha256": "b5fd541773b621791038f01bc6c0d04c0fecc6ec31b84f690f2a2f59cd388e63"
+    },
+    {
+      "code": "02312",
+      "side": "front",
+      "text": "Senderos de sonido y color se extienden durante una eternidad en todas direcciones, salpicados de arquitectura imposible y repletos de vida salvaje alienígena. Las líneas que hay entre los objetos son serradas y cambiantes, y notáis la piel como si la tuvierais del revés.",
+      "file": "02312-front.mp3",
+      "inputHash": "89f21a47ce34ab6451535a7d9b7af16d619cca8ced96266d016d5e8cf8300d1a",
+      "bytes": 289270,
+      "sha256": "da6e39c39d109ad90acfef215e257fda5c95b2e063946bcf5e822d67527f1125"
+    },
+    {
+      "code": "02313",
+      "side": "front",
+      "text": "Al cruzar este reino, atisbáis destellos ocasionales de realidad: escenas de viejos recuerdos, visiones más recientes de los últimos días y, a veces, incluso eventos que no recordáis que hayan ocurrido nunca…",
+      "file": "02313-front.mp3",
+      "inputHash": "61d3b561441e8b7abaef2a5a238b94595a6ef27d7320f60d2dc5a82f51644d92",
+      "bytes": 254580,
+      "sha256": "ed09c5209308eb9b7709bb09639513e20090a26e8ec5a019ee0a2534ee4eece1"
+    },
+    {
+      "code": "02314",
+      "side": "front",
+      "text": "A lo largo de toda esta distorsionada dimensión, da igual adónde viajéis, siempre hay una forma siniestra a lo lejos. Al principio, parece un disco, como una luna negra con muchos brazos que se retuercen. Pero a medida que pasa el tiempo, os dais cuenta de que va creciendo más y más…",
+      "file": "02314-front.mp3",
+      "inputHash": "a26f5dc51c14176639f4ff4b119a5238c312ac7c1f9c595c6d391f25afb0f2c1",
+      "bytes": 333156,
+      "sha256": "6150e48c1af252ce7132d23b71cd09e76b11ae543b3aa071570044f5648fa0b5"
+    },
+    {
+      "code": "02315",
+      "side": "front",
+      "text": "La silueta que hay a lo lejos atraviesa las barreras de esta dimensión, y sus numerosos brazos se extienden hasta tapar todo lo que veis. Su cuerpo es como un cieno, cubierto de ojos y bocas. Os sentís insignificantes, como insectos, ante la aterradora grandiosidad de la criatura.",
+      "file": "02315-front.mp3",
+      "inputHash": "89cfdc4c6c8e260f619a3ce3408da5b1760a8f8e4fa4a18844e07ea63886d302",
+      "bytes": 344441,
+      "sha256": "52ef93ee9832595de466f6318e3f5063185af2965ce09b1a7169bba4d07ebaeb"
+    },
+    {
+      "code": "02315",
+      "side": "back",
+      "text": "El horror extradimensional se revuelve mientras busca la grieta por la que entrasteis en esta dimensión, y al hacerlo aplasta reinos enteros que tiene aferrados.",
+      "file": "02315-back.mp3",
+      "inputHash": "64f73c94fcaac1f1c396512c2ff27f8f6d334569c35e6c78913ffee1ed8b126b",
+      "bytes": 174750,
+      "sha256": "d3653dd97db84fa52aa110eb604c46e338b7e4a26f34a3d897e1e6096b40749a"
+    },
+    {
+      "code": "02316",
+      "side": "front",
+      "text": "Debéis encontrar de algún modo el camino a través de este paisaje alienígena para encontrar el nexo que describía el tomo del viejo Whateley.",
+      "file": "02316-front.mp3",
+      "inputHash": "9a10be5df36051f26f04eac2acc07cec5d6ce7b0846a4b393705bbecfb7c43b0",
+      "bytes": 137133,
+      "sha256": "1bbb40ee45e83d4fb4b11088b52badcf5c94ddadd9fa1af04d50cc913d30b268"
+    },
+    {
+      "code": "02316",
+      "side": "back",
+      "text": "Una luz brilla a lo lejos, y os dirigís hacia ella para investigarla. Similar a un fuego fatuo, la luz se aleja de vosotros, flotando por los extraños portales de este mundo, subiendo por escaleras serpenteantes y cruzando barreras que antes no os atrevisteis a cruzar. Ante las escasas posibilidades que tenéis de encontrar el nexo vosotros solos, seguís a la luz, con la esperanza de que os guíe en la dirección correcta.",
+      "file": "02316-back.mp3",
+      "inputHash": "f0de72fe1a12b715e218962a27e5b0265e60b1f5578ebb895c0c39e39b6c1b78",
+      "bytes": 455618,
+      "sha256": "4b75fcd774b2a8e7958fc81919d1d625d7945bf12aa9a036db5879bc70123de1"
+    },
+    {
+      "code": "02317",
+      "side": "front",
+      "text": "Continuáis siguiendo a la esquiva luz, pero el traicionero paisaje la convierte en una presa difícil de perseguir.",
+      "file": "02317-front.mp3",
+      "inputHash": "15b4ebc624702f8d645ea6e9419d85b24f35878177e9cb1c083fa0ea251cad5d",
+      "bytes": 107876,
+      "sha256": "d69e1f084bdb5cee3c3700d7c735877a1e5908eac8e2ad89ecdab0b3a09100d4"
+    },
+    {
+      "code": "02317",
+      "side": "back",
+      "text": "Llegáis a un vacío negro como el carbón e imposiblemente denso, y os dais cuenta de que este lugar es donde acaba toda la realidad, toda la que es y toda la que será. En su centro, veis una grieta minúscula, suspendida fuera de vuestro alcance. Al mirar por ella, os sorprende ver la cumbre de Sentinel Hill. De algún modo, habéis llegado al otro lado de la grieta. Ahora debéis encontrar una forma de cerrarla para siempre.",
+      "file": "02317-back.mp3",
+      "inputHash": "7fdbcc0124df6240df65ee99714bc28f837618126e0c6deb16767cbea0c22573",
+      "bytes": 498250,
+      "sha256": "9fb00cabecc4e04e8bd5fda92e7326d67a73e64a90299922d6524af9d2756f4b"
+    },
+    {
+      "code": "02318",
+      "side": "front",
+      "text": "Las piedras sobrenaturales del suelo tienen grabado una especie de sello. Al acercaros a ellas, una voz entra en vuestra mente y habla en un idioma alienígena.",
+      "file": "02318-front.mp3",
+      "inputHash": "81024265a6ad3c5a96f4df42d2d05042a9e0765c36bd88a7124e48cf9773775c",
+      "bytes": 176421,
+      "sha256": "a0db0041a2569b46ec4a0d5fab468b7ab630b2bdd9ee28c37c6cfc094d28bffb"
+    },
+    {
+      "code": "02318",
+      "side": "back",
+      "text": "Estáis absolutamente agotados, sin tener ni idea de qué se puede hacer para cerrar la grieta. Está demasiado lejos para tocarla, y nada de lo que hacéis tiene efecto alguno. Aquí no hay nada para guiaros aparte de las voces sobrenaturales que se filtran en vuestra mente. Entonces, oís una voz familiar dentro del coro de ecos, y os sentís compelidos a repetir lo que dice —Claude ostium… —susurráis en primer lugar, y las palabras se forman en la punta de vuestra lengua. Cerráis los ojos para concentraros, y el eco se vuelve más fuerte. Cuando acaba y abrís los ojos, no veis más que un abismo azabache, y la grieta se ha desvanecido.",
+      "file": "02318-back.mp3",
+      "inputHash": "69b4db647a2dddb59cd6dc4e446fd5e7341949edd86fdf6608fff3030225f91d",
+      "bytes": 698870,
+      "sha256": "2265b8a2c2cd2148e6a000c832f7e0c5a1da5411d5658376989f24e5a96cf3ab"
+    },
+    {
+      "code": "02319",
+      "side": "front",
+      "text": "Al no ver una salida clara de esta dimensión, buscáis otro camino.",
+      "file": "02319-front.mp3",
+      "inputHash": "2a5f46e173ffa7d5d5135e4288bec34ed50a2eed1c0b1bde24a21ce47356d1f1",
+      "bytes": 59811,
+      "sha256": "3d7cd5ead93c6bed2024abb0393167b7f8ff49e296288d6fe75e717883d6e64d"
+    },
+    {
+      "code": "02319",
+      "side": "back",
+      "text": "Descubrís un camino que os resulta familiar en cierto modo y lo seguís. Aunque vuestra tarea está completa, ahora entendéis que, al haber cerrado la grieta, puede que nunca volváis a casa. El miedo de quedar perdidos aquí para siempre os espolea a seguir, y cruzáis una arcada que da a un corredor cubierto de vegetación. Una húmeda puerta de madera os conduce a una zona de fina lluvia y cielos oscuros. El cemento se convierte en gravilla, y luego en mármol, después en acero, y más tarde en hierba. Cruzáis prados imposiblemente largos y atravesáis densos bosques antes de que la fatiga haga mella en vosotros. Estáis desprovistos de toda energía, y no podéis avanzar más. Vuestro cuerpo desfallece.",
+      "file": "02319-back.mp3",
+      "inputHash": "55eb61f98a6c08139966abacb31e11f3786bcc3008493f8af2ad60cbbf9e6d52",
+      "bytes": 836797,
+      "sha256": "60575e2a8a830842d40e99dfe9e4119c84fd3f56258e7f4648737ef93a9ffc25"
+    }
+  ]
+}

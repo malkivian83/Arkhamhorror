@@ -119,6 +119,141 @@
       "inputHash": "0c51b38a3dcae19ac2023ba20de98cbfacbe2463d5d10656d2be8aad6e0b8782",
       "bytes": 334828,
       "sha256": "85ef9e99255d91212ef87ccca4b3afed63fb8e02830ff9ccf7506dabe4743f8f"
+    },
+    {
+      "code": "01121a",
+      "side": "front",
+      "text": "Lita parece convencida de que hay una conspiración en la ciudad de Arkham. Cree que una secta secreta sirve a los gules que habitan en las criptas que hay bajo la ciudad, y que varios de los miembros más prominentes de la secta están repartidos por todo Arkham. Cuando comenzáis a buscarlos, no lográis ignorar la sensación de que a vosotros también os están cazando.",
+      "file": "01121a-front.mp3",
+      "inputHash": "4c77c5470da47ddbb936755e8dce19e3e40e5a93effd66fa3831b66bde0ce84a",
+      "bytes": 304317,
+      "sha256": "471fd62258ab65e2ffdbe5cfdba63f813f3f765d9ec45ec8ac70189e58773987"
+    },
+    {
+      "code": "01123",
+      "side": "front",
+      "text": "Tenéis una noche para encontrar a los miembros de esta secta y descubrir su plan. Cuantos más miembros de la secta podáis encontrar e interrogar antes de la medianoche, mejor.",
+      "file": "01123-front.mp3",
+      "inputHash": "00712e350e9a18bda10269f2faf41e832c0f35364ccb197da6099be37b162d0f",
+      "bytes": 156359,
+      "sha256": "9959d7d6c51a16865b0f2a96e03a7220445968b9df4dff54b9f551b9dcde390e"
+    },
+    {
+      "code": "01122",
+      "side": "front",
+      "text": "Los minutos pasan rápidamente mientras vuestra investigación continúa.",
+      "file": "01122-front.mp3",
+      "inputHash": "cc70f04b09d5a7d790073081ae85b4a9a6e3cd8182019e2f56116b86bbb2e866",
+      "bytes": 64826,
+      "sha256": "0b5171b1fe248e4b82cc02e3186746b6e21e7d5414c4012025cb8f39dfcab5eb"
+    },
+    {
+      "code": "01122",
+      "side": "back",
+      "text": "Suenan doce campanadas por toda la ciudad. Es medianoche. No hay más tiempo para investigar la ciudad; debéis actuar en base a la información que habéis conseguido de los sectarios encontrados.",
+      "file": "01122-back.mp3",
+      "inputHash": "4a4dd260e3baba6dd0ccccc7341b81c2ef2ac40e9eee152c10a165aeb5a54e7b",
+      "bytes": 182273,
+      "sha256": "9b389c265299cf7ae38c209afee995a9b4827590e2eb137c0a335f37b5fcfb59"
+    },
+    {
+      "code": "01143",
+      "side": "front",
+      "text": "Tras interrogar a los miembros de la conspiración en Arkham, habéis descubierto que están realizando un rito de venganza como respuesta a la destrucción de una de las guaridas de su señor. Os habéis adentrado en los bosques que hay a las afueras de Arkham para tratar de detenerlos. En el lugar hace un frío sobrenatural y reina un silencio sepulcral.",
+      "file": "01143-front.mp3",
+      "inputHash": "03743a984f2455f35e5bca1bccdf2dc510986895e540d7541a1024f7d67a2766",
+      "bytes": 293032,
+      "sha256": "b88dc542bea1b927e449537da0df06bb5ad062a923cc1e756cb89c437a9d819b"
+    },
+    {
+      "code": "01143",
+      "side": "back",
+      "text": "Un penetrante grito resuena por todo el bosque. En algún lugar de su interior, un coro de terrible voces responde a la llamada, con un sonido inhumano como el ladrido de un sabueso, pero elocuente y que repite un sólo nombre:\n\"Umôrdhoth… Umôrdhoth… Umôrdhoth…\"",
+      "file": "01143-back.mp3",
+      "inputHash": "51110bcf1d600928e336c0432adae87958ad538b896f817bb49e6016e5bd9d33",
+      "bytes": 247892,
+      "sha256": "7f155d4d089c11e054917c757354c40510b309dd5ba1d1a0c31b0f625ad837da"
+    },
+    {
+      "code": "01144",
+      "side": "front",
+      "text": "\"Umôrdhoth… Umôrdhoth… Umôrdhoth…\"\nLos cánticos que resuenan en el frío aire nocturno aumentan de intensidad. Las escasas nubes del cielo convergen sobre el bosque de Arkham, tapando la tenue luz de las estrellas.",
+      "file": "01144-front.mp3",
+      "inputHash": "36267fcee766be9690f6811478c4b4959f26676757520b83a8b830c20690f08d",
+      "bytes": 225323,
+      "sha256": "1f5752387c91215788b2cdf9c43810be8df7ad4c9c8901e504bb40cc282f7c34"
+    },
+    {
+      "code": "01144",
+      "side": "back",
+      "text": "Una presencia oscura se acerca, y os veis asaltados por una presión invisible que os hace caer de rodillas. Una terrible fuerza amenaza con invadir vuestras mentes y almas. Sentís cómo vuestra garganta se tensa y los ojos os lloran mientras algo os quema por dentro.",
+      "file": "01144-back.mp3",
+      "inputHash": "278c8624799ce64cd21e20814e8d9a29c86ead3db583a72371ef32b5ed30ec71",
+      "bytes": 252908,
+      "sha256": "22fddf0e9154b49d6f2c4143f6e0f48b30941072c36462e8beee376af0248d0a"
+    },
+    {
+      "code": "01145",
+      "side": "front",
+      "text": "El mundo comienza a moverse y cambiar a medida que el ritual va llegando a su conclusión. El aire se vuelve gélido, y todo el bosque queda cubierto de una capa de escarcha. Los árboles se inclina de forma antinatural, y sus sombras se alargan y adoptan extrañas figuras…",
+      "file": "01145-front.mp3",
+      "inputHash": "5fbe9d800bb669c419941ea1a5321d6b6fb03d9d5b1bb71ccde7c7a7ee85fe71",
+      "bytes": 238697,
+      "sha256": "e7199bedf5d253ecaa303b57602f30f8b3fbfb478b0eb3a934ebee8189eac584"
+    },
+    {
+      "code": "01146",
+      "side": "front",
+      "text": "Las pruebas que habéis reunido os han llevado a los bosques que hay al sur de Arkham, donde creéis que va a tener lugar un ritual para invocar a un ser llamado “Umôrdhoth”. Os armáis de valor y os adentráis en el bosque, con la esperanza de encontrar el lugar de este ritual.",
+      "file": "01146-front.mp3",
+      "inputHash": "e58c8f4e10a9318b4fb1d31bc7fa350632a0a9a169cb2248429d13d7ef10c4c6",
+      "bytes": 243295,
+      "sha256": "4251289aa487b0b7eaa96980ca7d2ede97714d814d19f8237f451f707be82f10"
+    },
+    {
+      "code": "01146",
+      "side": "back",
+      "text": "Diseminados por todo el bosque, encontráis signos y símbolos arcanos en distintos lugares, grabados en la corteza de los árboles, tallados en las rocas y trazados con sangre sobre el suelo. Aunque no podéis descifrarlos, os dais cuenta de que la mayoría suelen estar orientados hacia el sur. Seguís estos signos y, tras muchas vueltas, llegáis a una cueva que se encuentra en la parte más oscura y fría del bosque.\nCuando avanzáis hacia ella, unas sombrías siluetas surgen de entre los árboles y os cierran el paso del único camino que lleva a la cueva.",
+      "file": "01146-back.mp3",
+      "inputHash": "1f3e34492309bd8bb632f30e8275dcdf62052bbb0449889de2fda8bd9a380ba8",
+      "bytes": 481950,
+      "sha256": "b8e2491f966513d2f2cb75c4733494646f9fdee0a69b4ad9fb1efb1491591c39"
+    },
+    {
+      "code": "01147",
+      "side": "front",
+      "text": "Los sectarios restantes os han seguido al bosque para tratar de deteneros, y ahora os cortan el paso hacia vuestro objetivo. Están parados de forma siniestra bajo las ramas colgantes de los árboles, como silenciosos centinelas nocturnos. Debéis derrotarlos o logar escabulliros si queréis acceder al lugar de su ritual.",
+      "file": "01147-front.mp3",
+      "inputHash": "789fda34810adaa95c9f77014ee5aef3da7f3ed5cd7bc1842b5240084d9516b1",
+      "bytes": 278821,
+      "sha256": "6bfb98902f19b4fb13b4ba0fafe49ed7a5c28c70c2771b7e73b74346b043ac6a"
+    },
+    {
+      "code": "01147",
+      "side": "back",
+      "text": "Cuando entráis en la cueva, el aire se vuelve frío, y el acre olor de la sangre y la descomposición asalta vuestras fosas nasales.",
+      "file": "01147-back.mp3",
+      "inputHash": "7c888958e02d2ca05a9c0398743f5cb956a9679dc63bfbdec9f50ba7a55c3e5d",
+      "bytes": 123758,
+      "sha256": "eea9d480ba1c32689302779122c4b78d72ca77b88be8ccef206be898029680b1"
+    },
+    {
+      "code": "01148",
+      "side": "front",
+      "text": "El ritual de la secta se celebra en el interior de una gran caverna, en un oscuro rincón de los bosques. En el centro de la cámara hay un círculo iluminado por velas y marcado con rocas y runas arcanas.",
+      "file": "01148-front.mp3",
+      "inputHash": "18f8983ddf245d2f6b4a9b65c2b591c930fcce4a352937faea4f09e414054333",
+      "bytes": 184781,
+      "sha256": "af05732804bfd6780cf78a0514dcb0c51ca3356bd90f1c894a37858aff3358a4"
+    },
+    {
+      "code": "01148",
+      "side": "back",
+      "text": "Afrontáis el frío sobrenatural y sorteáis los símbolos arcanos para cruzar el umbral del círculo. Borráis las marcas del suelo y las cubrís con tierra, desbaratando el cuidadoso diseño de rocas pulidas. Un estridente ruido os perfora los oídos, y el aire se vuelve más cálido de pronto, mientras que el mundo se distorsiona a vuestro alrededor hasta volver a la normalidad.",
+      "file": "01148-back.mp3",
+      "inputHash": "c1b4d6fa4b3fc24632df9074c9fc1511cba69f2a22a1970931029e44d7584789",
+      "bytes": 331902,
+      "sha256": "b2f2ec7023a3d44fc45394cca423be02681447ab42a22bc53d19f06a902beb43"
     }
   ]
 }

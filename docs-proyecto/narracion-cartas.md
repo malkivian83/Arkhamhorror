@@ -1,5 +1,57 @@
 # Narración de cartas
 
+## Continuación: campañas completadas (30/10/2026)
+
+Completadas en este orden La noche de la fanática (13 caras adicionales, 27 en
+total, Baldo), Carnevale (10 caras, Salva `hyKxCTlAqtnW188CgltM`) y Dunwich
+(97 caras, Nico `FXn3GKRRt9FCEyTbrkaL`). Son 120 MP3 nuevos y 292 caras
+registradas en total, incluyendo los dos anversos de la corrección anterior.
+No quedan campos narrativos pendientes en estas campañas.
+
+Los campos `flavor` y `back_flavor` de Fanática y Carnevale proceden de los
+catálogos EN/ES de `E:/referencia/ArkhamHorror/frontend/public/cards_<idioma>.json`;
+Dunwich usa los campos narrativos de sus catálogos EN/ES locales. No se leen
+reglas, objetivos ni reversos convertidos en Enemigo o Apoyo. El relato
+condicional de `12170b` mantiene la exclusión documentada más abajo.
+
+Las evidencias por campaña conservan texto, voz, ajustes y huellas de cada MP3.
+Carnevale utiliza los ajustes existentes de Salva en Fortuna. Se conserva el
+catálogo narrativo al reimportar para no perder campañas añadidas posteriormente.
+Un fallo puntual de escritura del manifiesto durante Dunwich se resolvió al
+reanudar, verificando las huellas y reutilizando los archivos generados.
+
+Verificación: siete pruebas dirigidas de narración correctas (cobertura por
+campaña, voces, transcripciones e integridad de todos los MP3), formato, ESLint,
+tipos de la web y diff sin errores de espacios. Repetir los controles afectados
+si cambian los catálogos, generadores, manifiesto o grabaciones. Escucha final
+pendiente de la persona usuaria; no se ha abierto navegador.
+
+Commit y push de las narraciones autorizados posteriormente. El pull sigue
+bloqueado por cambios locales ajenos, conservados; `fetch` confirma que no hay
+commits remotos pendientes de integrar. La implementación jugable de Carnevale
+queda fuera de esta entrega. No se ha consultado CI ni despliegue.
+
+## Corrección de Las máscaras de medianoche (30/10/2026)
+
+Añadidos los anversos de ¿Depredador o presa? (`01121a`) y Descubriendo la
+conspiración (`01123`), ausentes del inventario anterior. Sus párrafos narrativos
+en español se transcriben de la captura aportada por la persona usuaria; se omiten
+Desistir, la habilidad de pistas y el objetivo. Se mantienen la voz Baldo y los
+ajustes de La noche de la fanática. No se añade audio a sus reversos ni al Enemigo
+El cazador enmascarado (`01121b`).
+
+Generadas dos grabaciones (542 caracteres) y registradas sus huellas en
+`evidencias/zealot-cartas-narracion.json`: esta campaña suma 14 caras grabadas.
+El generador permite limitar códigos con `--codes=01121a,01123` junto a
+`--campaign=zealot`. La credencial se utiliza por entrada estándar sin guardarla.
+
+Verificadas las seis pruebas de `cardNarration.test.ts`, incluido el filtro de
+códigos, exclusión de reglas y reversos e integridad de grabaciones; formato,
+ESLint y tipos de la web correctos. Estos resultados corresponden a los textos,
+MP3, manifiesto y generador actuales; cambios en ellos requieren repetir los
+controles afectados. La escucha queda pendiente de la persona usuaria.
+Sin commit ni push; el pull inicial está bloqueado por cambios locales ajenos.
+
 Alcance: solo cartas de plan y acto, exclusivamente su texto narrativo.
 Cada campaña utiliza su voz de historia y sus ajustes existentes. La primera
 entrega fueron los planes y actos de Asesinato en el hotel Excelsior, en español,

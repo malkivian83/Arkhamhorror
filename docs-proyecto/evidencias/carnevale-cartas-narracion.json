@@ -1,0 +1,106 @@
+{
+  "voiceId": "hyKxCTlAqtnW188CgltM",
+  "language": "es",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.15,
+      "speed": 0.95,
+      "use_speaker_boost": true
+    }
+  },
+  "files": [
+    {
+      "code": "82002",
+      "side": "front",
+      "text": "Los pasajes de última hora en el trasatlántico de Boston a Italia te cuestan un ojo de la cara, pero tras un tenso viaje, llegas a Venecia. El Carnevale ya ha comenzado, y la ciudad está de celebración. Las calles se cubren con el colorido confeti que cae desde arriba. Hay muchos carnavaleros abarrotando la Plaza de San Marcos, frete a la basílica. El desfile va a empezar dentro de poco. Buscas al carabinero más cercano y le enseñas una copia del símbolo que copiaste de la máscara de Zanni. Se detiene un momento para decidir si eres de fiar, asiente y te escolta al interior de la basílica para que hables con la abadesa Allegria Di Biase.",
+      "file": "82002-front.mp3",
+      "inputHash": "80463fd7a2bbab6d3e6fb0c1c9f2757e01abd1b8e748b1e5680ede09b990ce4e",
+      "bytes": 732307,
+      "sha256": "fa1483341819ddcdc7446f540974cbcc187e66a50d200f2219e20b2a904b115a"
+    },
+    {
+      "code": "82003",
+      "side": "front",
+      "text": "El clamor y la celebración del Carnevale han ahogado en su mayor parte los terrores que has visto en la ciudad… Hasta ahora. El sol desaparece tras la luna, y la oscuridad llena el cielo. Se oye un grito solitario y el sonido de algo que cae al agua. En pocos instantes, empiezan a surgir alaridos por toda la ciudad. Y sin embargo, ves gente de carnaval que sigue festejando con amplias sonrisas dementes.",
+      "file": "82003-front.mp3",
+      "inputHash": "37a4232035459ec21f08051149681818abf64aa3d79ecd80dc44bbbb667b8e17",
+      "bytes": 494488,
+      "sha256": "b9842dbf800cc8e192f7508852d1104c0f7be5cf48f7eeecb666941b5be116bf"
+    },
+    {
+      "code": "82003",
+      "side": "back",
+      "text": "La sombra del eclipse es imparable. Un monótono cántico se sobrepone a los gritos y al caos por toda la ciudad, pronunciado en un idioma antiguo y macabro. Hay tentáculos surcando los canales del sur, pasando bajo los puentes y aferrando islas enteras.",
+      "file": "82003-back.mp3",
+      "inputHash": "4c537ea7cc2f87b17b30fcbe55e4e52c3cce9e61d59ef1f231943b5f560cba04",
+      "bytes": 297630,
+      "sha256": "e65545307782642e9208307e23ffb593ad3fcdcc047b146c0da917702fe5ae18"
+    },
+    {
+      "code": "82004",
+      "side": "front",
+      "text": "Un antiguo terror se agita en la laguna. Los tentáculos de la criatura se enroscan en torno a la ciudad. Como si respondiera a ese acto, el cántico que se escucha por toda la ciudad crece en intensidad.",
+      "file": "82004-front.mp3",
+      "inputHash": "3faf4810e71260234d53f5f35b311ce26da434e266b68c1161035b440ad78f65",
+      "bytes": 218217,
+      "sha256": "3159d42f24acd0f2f2cb76c936f5e8f0eee776e9e2d85b206821eb38b8f5ee0e"
+    },
+    {
+      "code": "82004",
+      "side": "back",
+      "text": "Grandes tentáculos cubiertos de una acre sustancia viscosa surgen de los canales y te atacan a ti y a cualquiera que tenga la desgracia de estar cerca.",
+      "file": "82004-back.mp3",
+      "inputHash": "c5997c1354b53b84130d795f22cfbf5bba1923e302ea7f377d3634a28952e204",
+      "bytes": 152598,
+      "sha256": "1a0fa3d831003977dad1990f7c91a2f2d0d9c5fba75549c4aed6a8238e56ff1e"
+    },
+    {
+      "code": "82005",
+      "side": "front",
+      "text": "La abadesa te recibe en privado: \"¿Así que sabes lo que se avecina? -Asientes-. Entonces sabrás lo que debe hacerse. Están empleando la celebración como sacrificio para su abyecto señor. Trae a tantos inocentes como puedas aquí, donde podré protegerlos. Pero cuidado, los sirvientes de la criatura tratarán de mezclarse entre la multitud con sus máscaras falsas.",
+      "file": "82005-front.mp3",
+      "inputHash": "bd1c45f6a87428d2f24f73fa201938c32c5dc7f6105c3994be9dfec0b2c316b0",
+      "bytes": 403791,
+      "sha256": "b55a0d358da96fae261c6abc260c604c0d36afa3f5c89842f85eaa9fee5c8833"
+    },
+    {
+      "code": "82005",
+      "side": "back",
+      "text": "Muchos de los asistentes al Carnevale están bajo el influjo un siniestro hechizo, y no ven el peligro que surge a su alrededor. Te abres paso entre las abarrotadas calles, reuniendo a los pocos cuerdos que logras encontrar y guiándolos a la relativa seguridad de la Basílica. Tras acompañar al último, el suelo tiembla violentamente, y una forma acuosa se alza sobre la isla del sur desde las profundidades de la laguna. Su ritual casi ha acabado, y los enmascarados de las calles comienzan a quitarse el disfraz…",
+      "file": "82005-back.mp3",
+      "inputHash": "83b96e8523aa6bc44dfafdcda9d4e7cab1a3a31f523fe1b40d2d5a36b3aa53e9",
+      "bytes": 585185,
+      "sha256": "a7d6787c4e31a12cff11409df05452cc20005e42d0ef8d921dd779c8d059320c"
+    },
+    {
+      "code": "82006",
+      "side": "front",
+      "text": "Los civiles de la Basílica están a salvo por ahora, pero Venecia estará perdida si no actúas rápidamente. La única forma de conseguir que los sacrificios no mueran es alejar de la ciudad a la criatura de la laguna. El sudor comienza a perlar tu frente cuando te das cuenta de que esta decisión podría ser la última que tomes. Con las piernas temblorosas, te diriges a las barcas atracadas en los canales.",
+      "file": "82006-front.mp3",
+      "inputHash": "28811fac2bc69163cfca06aa9b09ac14f1f89a416a057e437b3543a7b2dce6ed",
+      "bytes": 425943,
+      "sha256": "837787329c700599a6b93c8247137be164e506f2c69bbb1d2290cb8341399692"
+    },
+    {
+      "code": "82007",
+      "side": "front",
+      "text": "El alivio se torna en desesperación cuando la criatura fija su atención en tu góndola. Sólo tienes una oportunidad si quieres sobrevivir.",
+      "file": "82007-front.mp3",
+      "inputHash": "5ca2c40cdd78fa42293963988c3556fec623325de9fd3644cfa36ad15dcfa9eb",
+      "bytes": 148836,
+      "sha256": "72af26c35a5fa3338eabe41b80a64e8c46d6589ccf574b3aafce4e466fc11a69"
+    },
+    {
+      "code": "82007",
+      "side": "back",
+      "text": "La piel de tus manos se llena de ampollas tras quedar en carne viva por el remo, y tienes los brazos doloridos. La criatura se mueve lentamente, con el cuerpo cubierto de una acre sustancia viscosa, pero innumerables tentáculos te atacan desde las oscuras aguas, enroscándose en tu góndola, y tratando de arrancarte el remo de las manos. Con un chasquido desgarrador, el remo se parte en dos, y la parte inferior cae a la laguna. Tratas de impulsar la góndola hacia delante de forma desesperada, empleando cualquier medio posible, pero es un intento fútil. La bestia te gana terreno, y su imposible forma emplumada se alza sobre la barca, tratando de atraparte con sus tentáculos. Sobre ella, la negra silueta de la luna comienza a desplazarse. Una fina rendija de luz solar penetra la niebla al finalizar el eclipse, y los tentáculos de la criatura retroceden par rodear su cuerpo. Se hunde lentamente en la laguna mientras su cuerpo se funde a medida que el sol escapa de su prisión.",
+      "file": "82007-back.mp3",
+      "inputHash": "37856f0e4ef6223a901bcd85197cde428461a3f90ce4b897ed284ccd6bd91b86",
+      "bytes": 1154446,
+      "sha256": "1aa38692e4110e5be3082984fac2931f68e7b95702acf451be0e7716d6639495"
+    }
+  ]
+}

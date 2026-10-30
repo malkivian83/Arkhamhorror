@@ -116,6 +116,40 @@
     "flavor": "Debes ayudar a tu contacto y a sus asociados cueste lo que cueste.",
     "backFlavor": "Cuando sales tambaleante al frío aire nocturno, respiras hondo. La nieve cae con abundancia sobre el césped que, de estar inmaculado, ha pasado a teñirse de rojo por la sangre. En la mansión que tienes a tu espalda reina un silencio sepulcral. La Joya de Sarnath palpita con una luz sobrenatural en la palma de tu mano, y sientes por un instante una brisa templada y el aroma de otro lugar, que te resulta familiar e imaginado a la vez. ¿Merecía la gema toda esta devastación?"
   },
+  "82002": {
+    "group": "carnevale",
+    "typeCode": "agenda",
+    "flavor": "Los pasajes de última hora en el trasatlántico de Boston a Italia te cuestan un ojo de la cara, pero tras un tenso viaje, llegas a Venecia. El Carnevale ya ha comenzado, y la ciudad está de celebración. Las calles se cubren con el colorido confeti que cae desde arriba. Hay muchos carnavaleros abarrotando la Plaza de San Marcos, frete a la basílica. El desfile va a empezar dentro de poco. Buscas al carabinero más cercano y le enseñas una copia del símbolo que copiaste de la máscara de Zanni. Se detiene un momento para decidir si eres de fiar, asiente y te escolta al interior de la basílica para que hables con la abadesa Allegria Di Biase."
+  },
+  "82003": {
+    "group": "carnevale",
+    "typeCode": "agenda",
+    "flavor": "El clamor y la celebración del Carnevale han ahogado en su mayor parte los terrores que has visto en la ciudad… Hasta ahora. El sol desaparece tras la luna, y la oscuridad llena el cielo. Se oye un grito solitario y el sonido de algo que cae al agua. En pocos instantes, empiezan a surgir alaridos por toda la ciudad. Y sin embargo, ves gente de carnaval que sigue festejando con amplias sonrisas dementes.",
+    "backFlavor": "La sombra del eclipse es imparable. Un monótono cántico se sobrepone a los gritos y al caos por toda la ciudad, pronunciado en un idioma antiguo y macabro. Hay tentáculos surcando los canales del sur, pasando bajo los puentes y aferrando islas enteras."
+  },
+  "82004": {
+    "group": "carnevale",
+    "typeCode": "agenda",
+    "flavor": "Un antiguo terror se agita en la laguna. Los tentáculos de la criatura se enroscan en torno a la ciudad. Como si respondiera a ese acto, el cántico que se escucha por toda la ciudad crece en intensidad.",
+    "backFlavor": "Grandes tentáculos cubiertos de una acre sustancia viscosa surgen de los canales y te atacan a ti y a cualquiera que tenga la desgracia de estar cerca."
+  },
+  "82005": {
+    "group": "carnevale",
+    "typeCode": "act",
+    "flavor": "La abadesa te recibe en privado: \"¿Así que sabes lo que se avecina? -Asientes-. Entonces sabrás lo que debe hacerse. Están empleando la celebración como sacrificio para su abyecto señor. Trae a tantos inocentes como puedas aquí, donde podré protegerlos. Pero cuidado, los sirvientes de la criatura tratarán de mezclarse entre la multitud con sus máscaras falsas.",
+    "backFlavor": "Muchos de los asistentes al Carnevale están bajo el influjo un siniestro hechizo, y no ven el peligro que surge a su alrededor. Te abres paso entre las abarrotadas calles, reuniendo a los pocos cuerdos que logras encontrar y guiándolos a la relativa seguridad de la Basílica. Tras acompañar al último, el suelo tiembla violentamente, y una forma acuosa se alza sobre la isla del sur desde las profundidades de la laguna. Su ritual casi ha acabado, y los enmascarados de las calles comienzan a quitarse el disfraz…"
+  },
+  "82006": {
+    "group": "carnevale",
+    "typeCode": "act",
+    "flavor": "Los civiles de la Basílica están a salvo por ahora, pero Venecia estará perdida si no actúas rápidamente. La única forma de conseguir que los sacrificios no mueran es alejar de la ciudad a la criatura de la laguna. El sudor comienza a perlar tu frente cuando te das cuenta de que esta decisión podría ser la última que tomes. Con las piernas temblorosas, te diriges a las barcas atracadas en los canales."
+  },
+  "82007": {
+    "group": "carnevale",
+    "typeCode": "act",
+    "flavor": "El alivio se torna en desesperación cuando la criatura fija su atención en tu góndola. Sólo tienes una oportunidad si quieres sobrevivir.",
+    "backFlavor": "La piel de tus manos se llena de ampollas tras quedar en carne viva por el remo, y tienes los brazos doloridos. La criatura se mueve lentamente, con el cuerpo cubierto de una acre sustancia viscosa, pero innumerables tentáculos te atacan desde las oscuras aguas, enroscándose en tu góndola, y tratando de arrancarte el remo de las manos. Con un chasquido desgarrador, el remo se parte en dos, y la parte inferior cae a la laguna. Tratas de impulsar la góndola hacia delante de forma desesperada, empleando cualquier medio posible, pero es un intento fútil. La bestia te gana terreno, y su imposible forma emplumada se alza sobre la barca, tratando de atraparte con sus tentáculos. Sobre ella, la negra silueta de la luna comienza a desplazarse. Una fina rendija de luz solar penetra la niebla al finalizar el eclipse, y los tentáculos de la criatura retroceden par rodear su cuerpo. Se hunde lentamente en la laguna mientras su cuerpo se funde a medida que el sol escapa de su prisión."
+  },
   "88002": {
     "group": "fortune",
     "typeCode": "agenda",
@@ -513,5 +547,361 @@
     "typeCode": "act",
     "flavor": "…oí al Rey de Amarillo que me susurraba al aído: –¡Es terrible caer en las garras del Dios vivo!.\n – Robert W. Chambers, \"En la corte del dragón\", <u>El Rey de Amarillo</u>",
     "backFlavor": "Un coro de gritos resuena en tu mente. Los caóticos acordes de un órgano torturan tus oídos. Caes de rodillas mientras te sangran los ojos. El reino de Carcosa se rompe en millones de pedazos y se desvanece en el vacío del espacio.\nSe cierra el telón."
+  },
+  "01121a": {
+    "group": "zealot",
+    "typeCode": "agenda",
+    "flavor": "Lita parece convencida de que hay una conspiración en la ciudad de Arkham. Cree que una secta secreta sirve a los gules que habitan en las criptas que hay bajo la ciudad, y que varios de los miembros más prominentes de la secta están repartidos por todo Arkham. Cuando comenzáis a buscarlos, no lográis ignorar la sensación de que a vosotros también os están cazando."
+  },
+  "01123": {
+    "group": "zealot",
+    "typeCode": "act",
+    "flavor": "Tenéis una noche para encontrar a los miembros de esta secta y descubrir su plan. Cuantos más miembros de la secta podáis encontrar e interrogar antes de la medianoche, mejor."
+  },
+  "01122": {
+    "group": "zealot",
+    "typeCode": "agenda",
+    "flavor": "Los minutos pasan rápidamente mientras vuestra investigación continúa.",
+    "backFlavor": "Suenan doce campanadas por toda la ciudad. Es medianoche. No hay más tiempo para investigar la ciudad; debéis actuar en base a la información que habéis conseguido de los sectarios encontrados."
+  },
+  "01143": {
+    "group": "zealot",
+    "typeCode": "agenda",
+    "flavor": "Tras interrogar a los miembros de la conspiración en Arkham, habéis descubierto que están realizando un rito de venganza como respuesta a la destrucción de una de las guaridas de su señor. Os habéis adentrado en los bosques que hay a las afueras de Arkham para tratar de detenerlos. En el lugar hace un frío sobrenatural y reina un silencio sepulcral.",
+    "backFlavor": "Un penetrante grito resuena por todo el bosque. En algún lugar de su interior, un coro de terrible voces responde a la llamada, con un sonido inhumano como el ladrido de un sabueso, pero elocuente y que repite un sólo nombre:\n\"Umôrdhoth… Umôrdhoth… Umôrdhoth…\""
+  },
+  "01144": {
+    "group": "zealot",
+    "typeCode": "agenda",
+    "flavor": "\"Umôrdhoth… Umôrdhoth… Umôrdhoth…\"\nLos cánticos que resuenan en el frío aire nocturno aumentan de intensidad. Las escasas nubes del cielo convergen sobre el bosque de Arkham, tapando la tenue luz de las estrellas.",
+    "backFlavor": "Una presencia oscura se acerca, y os veis asaltados por una presión invisible que os hace caer de rodillas. Una terrible fuerza amenaza con invadir vuestras mentes y almas. Sentís cómo vuestra garganta se tensa y los ojos os lloran mientras algo os quema por dentro."
+  },
+  "01145": {
+    "group": "zealot",
+    "typeCode": "agenda",
+    "flavor": "El mundo comienza a moverse y cambiar a medida que el ritual va llegando a su conclusión. El aire se vuelve gélido, y todo el bosque queda cubierto de una capa de escarcha. Los árboles se inclina de forma antinatural, y sus sombras se alargan y adoptan extrañas figuras…"
+  },
+  "01146": {
+    "group": "zealot",
+    "typeCode": "act",
+    "flavor": "Las pruebas que habéis reunido os han llevado a los bosques que hay al sur de Arkham, donde creéis que va a tener lugar un ritual para invocar a un ser llamado “Umôrdhoth”. Os armáis de valor y os adentráis en el bosque, con la esperanza de encontrar el lugar de este ritual.",
+    "backFlavor": "Diseminados por todo el bosque, encontráis signos y símbolos arcanos en distintos lugares, grabados en la corteza de los árboles, tallados en las rocas y trazados con sangre sobre el suelo. Aunque no podéis descifrarlos, os dais cuenta de que la mayoría suelen estar orientados hacia el sur. Seguís estos signos y, tras muchas vueltas, llegáis a una cueva que se encuentra en la parte más oscura y fría del bosque.\nCuando avanzáis hacia ella, unas sombrías siluetas surgen de entre los árboles y os cierran el paso del único camino que lleva a la cueva."
+  },
+  "01147": {
+    "group": "zealot",
+    "typeCode": "act",
+    "flavor": "Los sectarios restantes os han seguido al bosque para tratar de deteneros, y ahora os cortan el paso hacia vuestro objetivo. Están parados de forma siniestra bajo las ramas colgantes de los árboles, como silenciosos centinelas nocturnos. Debéis derrotarlos o logar escabulliros si queréis acceder al lugar de su ritual.",
+    "backFlavor": "Cuando entráis en la cueva, el aire se vuelve frío, y el acre olor de la sangre y la descomposición asalta vuestras fosas nasales."
+  },
+  "01148": {
+    "group": "zealot",
+    "typeCode": "act",
+    "flavor": "El ritual de la secta se celebra en el interior de una gran caverna, en un oscuro rincón de los bosques. En el centro de la cámara hay un círculo iluminado por velas y marcado con rocas y runas arcanas.",
+    "backFlavor": "Afrontáis el frío sobrenatural y sorteáis los símbolos arcanos para cruzar el umbral del círculo. Borráis las marcas del suelo y las cubrís con tierra, desbaratando el cuidadoso diseño de rocas pulidas. Un estridente ruido os perfora los oídos, y el aire se vuelve más cálido de pronto, mientras que el mundo se distorsiona a vuestro alrededor hasta volver a la normalidad."
+  },
+  "02042": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Habéis llegado al campus de la Universidad Miskatonic en busca del profesor Warren Rice. Las clases han terminado, y un misterioso silencio reina en el ambiente del patio principal.",
+    "backFlavor": "En la universidad no se oye ni un alma. Las sombras se enroscan alrededor de vuestros pues al caminar, y juraríais que hay algo que os sigue a cada paso que dais. ¿Es sólo vuestra imaginación? ¿O realmente hau algo, o alguien, que os acecha?"
+  },
+  "02043": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "La desaparición del profesor Rice no es el único suceso extraño en la Universidad. No estáis seguros de qué está sucediendo exactamente, pero empezáis a creer que Armitage tenía razón en pedir vuestra ayuda.",
+    "backFlavor": "Un grito de miedo resuena por el campus, y varios estudiantes vienen huyendo desde el lado este de la universidad, donde se encuentra el edificio de Ciencias. ¿Estará relacionado este alboroto con la desaparición del profesor Rice?"
+  },
+  "02044": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Una especie de criatura salvaje anda suelta. Sea lo que sea, parece que se dirige hacia la residencia estudiantil de la universidad.",
+    "backFlavor": "Antes de que podáis actuar, oís gritos provenientes de la parte norte del campus. Comenzáis a dirigiros hacia los gritos, pero vuestra visión se va oscureciendo con cada paso que dais. En cuanto tenéis a la criatura a la vista, sentís cómo la oscuridad se apodera de vosotros, y una fuerza os arrebata la consciencia. Todo se vuelve negro, y os desmayáis."
+  },
+  "02045": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Uno de los alumnos de Armitage vio por última vez al profesor Rice hace varias horas en el edificio de Humanidades.",
+    "backFlavor": "No lográis encontrar al profesor Rice, pero uno de los estudiantes con los que habláis menciona a un hombre extraño que entró en el despacho de Rice. Por desgracia, la puerta que lleva a los despachos del profesorado está cerrada a esta hora. El estudiante os dice que el jefe de bedeles, “Jazz”, podía dejaros entrar si lográis encontrarlo."
+  },
+  "02046": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Preocupados por la seguridad del profesor Rice, buscáis al jefe de bedeles, que puede dejaros entrar en las secciones cerradas del campus.",
+    "backFlavor": "Convencéis a “Jazz” de que está ocurriendo algo extraño y el profesor Rice podría estar en peligro. No confía tanto en vosotros como para daros sus llaves, pero accede a acompañaros.\nDe pronto, oís un estruendo que proviene del edificio de Ciencias, y un estudiante viene corriendo hacia vosotos. —¡Ayuda! —grita—. ¡Hay una especie de animal suelto en los laboratorios de química! Apenos lo he entrevisto, pero… —se estremece—. ¡Creo que se dirige a la residencia estudiantil! ¡Tenéis que hacer algo!"
+  },
+  "02047": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Sólo tenéis unos instantes para reaccionar. Podéis advertir a los estudiantes de la residencia estudiantil y acompañarlos a un lugar seguro, o bien podéis continuar vuestra tarea de registrar los despachos del profesorado en busca del profesor Rice. O quizás podéis intentar matar a la bestia que amenaza el campus.",
+    "backFlavor": "La monstruosa criatura emite un terrible aullido cuando sucumbe a sus heridas y de desploma en el suelo. Un nauseabundo olor emana de su cadáver mientras su carne comienza a burbujear y espumar. Vuestro alivio se convierte en repulsión cuando el cuerpo empieza a encoger y desintegrarse. Minutos más tarde, el cuerpo se ha evaporado casi por completo dejando una masa pegajosa, y el terrible olor ha desaparecido. Dentro de los restos del cuerpo de la criatura no encontráis más que huesos: la estructura esquelética de un canino."
+  },
+  "02063": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Habéis entrado en el casino del Clover Club en busca del Dr. Morgan. El club está abarrotado a estas horas de la noche, repleto de clientes que quieren relajarse y beber o bien ganar a lo grande. No parece que estéis en peligro.",
+    "backFlavor": "Vuestras preguntas han atraído la atención de varios hombres con aspecto de matones a sueldo. —Francis no quiere que le molesten —dice uno de ellos—. Les sugerimos que abandonen el local antes de que debamos obligarles a marcharse."
+  },
+  "02064": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "La mayoría de los demás clientes parecen ajenos a los mafiosos y matones que empiezan a rodearos. Pero vosotros sois conscientes de lo que ocurre: están a punto de daros una paliza.",
+    "backFlavor": "Oís un estruendo que viene de fuera y gritos de dolor en el salón. Una terrible monstruosidad atraviesa la entrada del club, haciendo añicos la escalera y llevándose por delante tanto a clientes como a gánsteres."
+  },
+  "02065": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Las extrañas abominaciones atacan a todos los presentes en el club entre el caos y la confusión. Las salas se llenan de gritos cuando comienza a correr la sangre.",
+    "backFlavor": "Mientras las extrañas abominaciones siguen arrasando el club, los cimientos del edificio comienzan a sacudirse y temblar. Huis hacia la salida, pero quedáis atrapados por los escombros que caen cuando el club queda destruido."
+  },
+  "02066": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Debéis encontrar el Dr. Morgan. El club está abarrotado, y quizás alguien sepa dónde está.",
+    "backFlavor": "Tras hablar con varios de los jugadores y camareros, parece que el Dr. Morgan ha tenido una racha increíble últimamente. En lugar de cobrar sus ganancias, le convencieron para que se lo jugara a doble o nada. La última vez que lo vieron, estaba entrando en el pasillo vigilado por guardias que hay en la parte trasera de la sala de juego."
+  },
+  "02067": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "El Dr. Morgan está en alguna parte de la sección privada del club, donde sólo se permite entrar a los VIP y a los encargados del club. Si queréis encontrarlo, vais a tener que colaros o abriros paso peleando."
+  },
+  "02068": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Tenéis que salir de aquí, con el Dr. Morgan o sin él. Y rápido.",
+    "backFlavor": "Huis del club, tratando de pasar desapercibidos, cuando varios coches paran en la calle. De ellos salen hombres y mujeres de rostro adusto, que corren hacia la entrada del restaurante para controlar la situación. Uno se os queda mirando mientras aferra su arma del .38, pero, por suerte, vuelve dirigir su atención al resto de su grupo y los sigue al interior del club. Dais un suspiro de alivio…"
+  },
+  "02069": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "—¡Barra libre para quien me saque de esta locura! —exclama un hombre desde el bar.",
+    "backFlavor": "Os ponéis en marcha para salir a las calles de Arkham, mojadas por la lluvia."
+  },
+  "02119": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "El Dr. Armitage le ha dado la traducción al latín de la universidad del Necronomicón a su colega, Harold Walsted, el conservador del museo de la Universidad Miskatonic. Preocupados por que alguien pueda seguir tratando de hacerse con el libro, habéis ido al museo a recuperarlo.",
+    "backFlavor": "Entre las sombras de las salas del museo, una terrible criatura se desliza, larga y serpentina, y se impulsa con unas coriáceas alas negras."
+  },
+  "02120": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Las sombras del museo crecen y se vuelven más oscuras. A medida que se alargan y cambian, comienzan a sugerir el cuerpo correoso de una imposible criatura que se mueve a toda velocidad en los márgenes de vuestra precepción...",
+    "backFlavor": "La criatura no ceja, y os persigue por todo el museo."
+  },
+  "02121": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "La criatura del museo se vuelve mayor y más aterradora a cada momento que pasa. Su cuerpo repta de sombra a sombra, y cada rincón de cada sala es un escondite potencial para la terrible bestia.",
+    "backFlavor": "Al no tener forma de derrotar a la criatura, huis. Veis un cada sombra de cada corredor el reptante cuerpo del serpentino horror, y las salas del museo se vuelven más oscuras con la presencia de la criatura. Al llegar a la entrada, está bloqueando la puerta y os ataca con sus terribles colmillos. Apenas lográis escapar del edificio con vida, aunque los efectos del veneno de la criatura os marcarán para siempre."
+  },
+  "02122": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Por desgracia, la entrada del museo está cerrada a esta hora de la noche. Podéis ver a un guardia de seguridad por las ventanas delanteras del edificio, totalmente distraído. Quizá podáis encontrar la forma de atraer su atención y convencerle de que os deje entrar."
+  },
+  "02123": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Guardan el Necronomicón en una sala restringida, en alguna parte del museo. Adam apenas conoce el lugar, y se sobresalta con cada crujido del viejo edificio.\n—Empecé a trabajar aquí la semana pasada —os explica—. ¿Qué problema dicen que hay? —No tenéis el valor de contarle toda la historia.",
+    "backFlavor": "Cuando entráis en la sala restringida, encontráis al conservador del museo sobre un charco de sangre, con los intestinos desparramados formando una grotesca visión. Se os revuelve el estómago y tenéis que combatir las ganas de vomitar. Quien haya hecho esto sigue cerca..."
+  },
+  "02124": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Guardan el Necronomicón en una sala restringida, en alguna parte del museo.",
+    "backFlavor": "Cuando entráis en la sala restringida, encontráis al conservador del museo aferrando una ornamentada estatua como si fuera una porra, con el traje manchado de sangre y una expresión de pánico en el rostro. El guradia de seguridad que visteis antes yace sobre un charco de sangre, cerca de allí, con los intestinos desparramados formando una grotesca visión. Se os revuelve el estómago y tenéis que combatir las ganas de vomitar. —Intenté detenerlo, pero... —dice el conservador con voz queda y temblorosa. Quien haya hecho esto sigue cerca..."
+  },
+  "02125": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "En alguna parte de esta zona se encuentra la traducción al latín del Necronomicón de Olaus Wormius. ¡Debéis encontrarla y huir mientras podáis!",
+    "backFlavor": "Por fin, encontráis el estuche cerrado que contiene el Necronomicón.\nEl tomo, de más de ochocientas páginas de longitud, está repleto de todo tipo de imágenes macabras, fórmulas, hechizos, profecías y descripciones de criaturas de más allá del umbral del espacio.\nSin ninguna duda, es un libro peligroso... Pero sus secretos podrían ser muy útiles."
+  },
+  "02160": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Cuando el tren a Dunwich se detiene abruptamente, miráis por la ventana hacia atrás y veis una inmensa grieta en el cielo, como un desgarro en un trozo de tela. Varios de los vagones de retaguardia están siendo arrastrados hacia atrás, y se oye un terrible crujido metálico cuando se sueltan. Los vagones caen hacia arriba, en dirección de la grieta del cielo. Los pasajeros que tenéis cerca entran en pánico, otros están encogidos de miedo en sus asientos, y un hombre mayor se ha desmayado de terror.",
+    "backFlavor": "El último vagón se desengancha al ser arrastrado hacia atrás. Veis con horror como se eleva de las vías y es consumido por el portal que tenéis encima."
+  },
+  "02161": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "La grieta se hace mayor, y notáis como el último vagón del tren tiembla al ser arrastrado hacia atrás. La situación amenaza con desembocar en el caos a medida que más pasajeros se dan cuenta del peligro que corren. Algunos buscan sitios para ocultarse, mientras que otros corren por los compartimentos presa del pánico.",
+    "backFlavor": "El siguiente vagón es arrancado con una violenta fuerza. Un hombre de mediana edad cuelga por la punta de los dedos del vagón mientras éste vuela directamente hacia la grieta. En unos instantes, el vagón es consumido por completo, y el hombre se suelta antes de ser absorbido por el vacío. Comienza a caer, pero la fuerza de la grieta lo atrapa y es engullido de todas formas."
+  },
+  "02162": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "La atracción de la grieta del cielo parece hacerse más fuerte, y todo el tren comienza a rodar hacia atrás por las vías. Los últimos vagones del tren comienzan a traquetear, y la fuerza de la grieta amenaza con desengancharlos. ¡Debéis salir de estos vagones lo más rápido que podáis!",
+    "backFlavor": "Dos de los vagones más cercanos al portal quedan cercenados del resto del tren por una especie de cortina de vapor increíblemente caliente que atraviesa el metal como si fuera mantequilla. Los vagones son absorbidos hacia arriba y vuelan hacia el portal. Algo que hay por encima del tren emite un terrible chillido, aunque a vuestros oídos parece como el sonido de una tubería de vapor rota."
+  },
+  "02163": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "El portal chisporrotea de poder a medida que aumenta su fuerza. La tierra y las rocas del borde del puente que tenéis detrás están siendo arrancadas del suelo, y los árboles están siendo desarraigados al ser atraídos por el portal. Un joven pasajero rompe la ventana de vuestro vagón y grita: —iDebemos salir de aquí! —Salta por la ventana, pero antes de caer al río que hay debajo, es atrapado por las garras de una veloz criatura voladora y desaparece de vuestra vista. Al paso de la criatura sólo queda un rastro de vapor.",
+    "backFlavor": "Los dos vagones de la cola del tren comienzan a fundirse a medida que se llenan de vapor ultracaliente. El metal se dobla, y los pasajeros del interior gritan de agonía. Los vagones son arrancados de las vías del tren junto con tablones de los raíles y trozos del puente que tenéis detrás."
+  },
+  "02164": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "La grieta del cielo se retuerce y tiembla, completamente distorsionada. Ahora tiene un tamaño descomunal, y su forma no deja de cambiar, como si estuviera a punto de explotar.",
+    "backFlavor": "Todo el puente se resquebraja por la presión del portal y acaba partiéndose. En lugar de caer al río, los vagones restantes son atraídos hacia la grieta del cielo. Os agarráis como podéis y gritáis de terror al ser absorbidos por el portal. Después, todo se vuelve negro."
+  },
+  "02165": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "El tren se ha detenido sobre un puente que se eleva sobre el río Miskatonic; quizá podríais sobrevivir a la caída, pero no queréis tentar a la suerte. Lo mejor que podéis hacer es llegar a la locomotora tan rápido como podáis para volver a poner el tren en marcha.",
+    "backFlavor": "Un ténder lleno de carbón bloquea el paso hasta la cabina de la locomotora. Te tragas el miedo y sales por la ventana que tienes más cerca para trepar al techo del tren y cruzar el ténder. El incesante movimiento hacia atrás del tren te dificulta no perder el equilibrio. Al acercarte, una criatura alada desciende desde lo alto, con un cuerpo compuesto de hirviente vapor."
+  },
+  "02166": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Habéis logrado llegar a la locomotora, pero ¡ahora tenéis que volver a arrancar el motor para poder escapar de la fuerza absorbente del portal!",
+    "backFlavor": "El motor ruge y se pone en marcha. Echáis carbón a paletadas en la caldera del motor, y os alivia ver que el tren vuelve a moverse hacia delante por las vías."
+  },
+  "02196": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Vuestra bienvenida a Dunwich ha sido fría. Una serie de desapariciones tiene en vilo a los lugareños, ya de por sí distantes, La mayoría os miran con desconfianza, y unos pocos están dispuestos a ayudar en vuestra investigación. ¿Quién sabe qué pasará si no encontráis pronto a las personas desaparecidas...?",
+    "backFlavor": "Sobre los tejados abuhardillados de Dunwich se reúnen chotacabras que empiezan a chillar de júbilo. La gente de Dunwich cree que la presencia de los chotacabras presagia la muerte inminente de alguien. ¿Ansían vuestra muerte? ¿O será otro su víctima?"
+  },
+  "02197": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Cuando el sol se pone, los asustados lugareños se retiran a sus casas y cierran con llave las puertas. Tenéis claro que muchos de ellos saben más de lo que dicen. Una sensación repugnante os revuelve el estómago al ver la verdadera naturaleza de la aldea.",
+    "backFlavor": "Más chotacabras acuden a la aldea de Dunwich a medida que avanza la noche. Los demás lugareños, tremendamente supersticiosos, están aterrados por la presencia de los pájaros. Con todas las puertas que os rodean cerradas a cal y canto, os encontráis solos en las calles de Dunwich."
+  },
+  "02198": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "El rítmico chillido de los chotacabras llena la noche. Si las supersticiones de Dunwich son correctas, su canción augura una muerte inminente... Pero ¿de quién?",
+    "backFlavor": "Los chotacabras que llevan toda la noche graznando se dispersan al unísono, como si estuvieran satisfechos de algún modo con el resultado de los acontecimientos."
+  },
+  "02199": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Las desapariciones producidas en el pueblo pueden estar relacionadas con los acontecimientos de Arkham. Sospecháis que hay en marcha algo terrible. Debéis encontrar dónde retienen a los lugareños desaparecidos para descubrir esta conspiración.",
+    "backFlavor": "Lográis acceder a la cámara oculta en la que creéis que retienen a los desaparecidos, pero los horrores que os plantan cara allí crispan los límites de vuestra cordura. Encadenada en un apartado rincón de la sala se encuentra una terrible criatura con rostro de hombre. Jadea y pugna por liberarse al veros entrar. Las muchas bocas que cubren el cuerpo de la criatura están cubiertas de sangre y trozos de carne, como si se hubiera alimentado hace poco.\nCon un terrible graznido, la criatura habla con siete bocas: —¿Ss.. se... eth... ? —Después se tambalea hacia delante como si quisiera agarraros, y varias de sus cadenas se parten."
+  },
+  "02200": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "La lamentable bestia se lanza para cogeros con sus viscosos brazos, y sus muchas fauces chasquean de hambre. Matarla sería un acto piadoso. Pero quizás haya algo más que descubrir sobre esta criatura...",
+    "backFlavor": "A pesar del peligro, os enfrentáis a la aterradora presencia de la bestia y seguís investigando antes de matarla. Lo que encontráis confirma vuestras peores sospechas. Varias anotaciones de un diario escritas por un tal \"Seth Bishop\" describen el proceso de alimentación de la criatura con espeluznantes detalles; primero tomates, luego caza menor, después ganado, y por último, \"sacrificios humanos\". Pero la parte más perturbadora es que Seth llama a la criatura por su nombre: \"Silas\"."
+  },
+  "02237": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Las noticias de que unos entes aterradores están sembrando el caos en el campo han hecho que los ciudadanos de Dunwich entren en pánico. Y lo que es peor aún, las criaturas parecen ser invisibles a simple vista.",
+    "backFlavor": "Una vieja camioneta se para en los erosionados caminos de Dunwich. El conductor, Joe Osborn, os llama desde la ventanilla del conductor hecha añicos, con el motor aún en marcha:. –¡Está en la granaja de los Erick! –grita–. Ha hecho trizas el sitio. Pobres Henry y Martha…\nLe pedís a Osborn la ubicación de la finca de los Erick, y eso os confirma vuestro peor temor. Para que ese ataque haya ocurrido recientemente, debe de haber varios monstruos sueltos."
+  },
+  "02238": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "De vez en cuando, el viento que subía del fondo de la cañada de Cold Spring traía un hedor insoportable a la ya cargada atmósfera nocturna... Pero la tan esperada monstruosidad no se dejó ver en toda la noche. No cabía duda, lo que había en el fondo del barranco aguardaba el momento propicio, y Armitage dijo a sus compañeros que sería suicida intentar atacarlo en medio de la oscuridad nocturna.\n—H.P. Lovecraft, \"El Horror de Dunwich\""
+  },
+  "02239": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "No tenía nada de divertido seguir la pista de algo tan grande como una casa y no lograr verlo, si bien podía respirarse en el ambiente una maléfica presencial infernal.\n—H.P. Lovecraft, \"El Horror de Dunwich\"",
+    "backFlavor": "Hay un monstruoso estruendo que resuena por los campos, aunque es imposible determinar si su origen son las criaturas que buscáis o las propias montañas. Poco después, encontráis más rastros de las criaturas que llevan colina arriba: un sendero de diez metros de arbustos aplastados y árboles quebrados como ramas. Agotados por el combate, y con la noche a punto de llegar, decidís volver a un lugar seguro en vez de seguir estos rastros infernales."
+  },
+  "02240": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Los monstruos que están causando estragos en los campos de Dunwich son inmunes a las armas tradicionales. Sólo puede derrotarse a las criaturas recitando un ensalmo concreto. Primero debéis registrar las ruinas del hogar de Wilbur Whateley para encontrar los últimos fragmentos del sobrenatural texto."
+  },
+  "02241": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Con la fórmula en vuestro, por fin tenéis los medios para destruir a las criaturas que siembran el caos en Dunwich... pero sólo si lográis sobrevivir en el tiempo suficiente.",
+    "backFlavor": "Al completar el ensalmo, la siniestra criatura grita con una voz ronca e inhumana que trepida y se rompe, y las sílabas de su graznido no se parecen ni remotamente a vuestro idioma. Cuando su grito se desvanece, la criatura comienza a encogerse sobre sí misma, y sin previo aviso, desaparece. Todo lo que queda es un fétido hedor y una repulsiva marca que acaba con la vegetación allí donde estuvo la bestia."
+  },
+  "02275": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Al acercaros a Sentinel Hill, oís antiguos ritos en latín que resuenan en la noche. Ha llegado el momento de entrar en acción. Si no lográis detener a los hechiceros de Dunwich, ¿quién sabe qué terrores podrían desatar en el mundo?",
+    "backFlavor": "Al explorar los caminos que rodean Sentinel Hill, los cánticos de la cumbre llegan a un crescendo y adoptan una naturaleza sobrenatural, reverberando entre los árboles como si los llevasen unas corrientes invisibles.\nEl mundo comienza a cambiar. La hierba y los árboles se disuelven como azúcar en una taza de té. Un vasto cielo infinito atraviesa la realidad que veis ante vosotros y entre el terror y el asombro, notáis como sois atraídos hacia él. El arcano poder se distorsiona y se filtra a vuestro alrededor, creando extrañas alteraciones en la tierra."
+  },
+  "02276": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Los Primigenios fueron, los Primigenios son y los Primigenios serán. No en los espacios que conocemos, sino entre ellos. Caminan serenos, prístinos, sin dimensión e invisibles para nosotros. Yog-Sothoth conocel el portal, Yog-Sothoth es el portal, Yog-Sothoth es la llave y el guardián del portal. Pasado, presente y futuro, todo es uno en Yog-Sothoth. Sabe por dónde entraron los Primigenios antaño y dónde entrarán de nuevo. Sabe dónde han hollado los campos terrestres y dónde siguen hollándolos, y por qué nadie puede contemplarlos.",
+    "backFlavor": "El cántico llega a su clímac, y en la cumbre de Sentinel Hill se abre una grieta en el tejido del cielo que aparta las nubes y corta el mismo aire.\nObserváis cómo una entidad indescriptible -esferas, ojos, bocas, cieno- surge de la fisura. Los hechiceros pronuncian su nombre mientras su forma se filtra por el cielo y se extiende sobre la Tierra.\"¡Iä! ¡Iä! ¡Yog-Sothoth! ¡Iä! ¡Iä! ¡Yog-Sothoth!\"\nAntes de que puedan proseguir sus cantos de júbilo, son asfixiados por la masa creciente, y deja de oírseles.\nPara horror vuestro, la expansión de la masa no cesa."
+  },
+  "02277": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Una vibrante energía arcana llena el aire de un frío que se mete en los huesos. La energía baila por el destrozado sendero que tenéis delante, y se desliza por varios caminos más antes de desaparecer.",
+    "backFlavor": "Durante vuestra búsqueda por los boscosos senderos que rodean el pie de Sentinel Hill, os topáis con una sorprendente visión. Hay un rebaño de ovejas muertas en el suelo de un apartado claro, y sus sangrientos cadáveres están colocados formando un extraño pero cuidadoso diseño. Os tapáis la nariz ante el hedor de la muerte, y pasáis sobre las ovejas mutiladas para llegar al centro de la extraña forma.\nEn el centro de las ovejas se encuentra un cadáver de un hombre. Tiene una gema transparente que han presionado contra su frente hasta hundirla en la parte de delante de su cráneo. Tiene los ojos abiertos como platos, y el rostro retorcido en una mueca de terror, como si os suplicara piedad. Aunque sabéis que no es posible, comprobáis si tiene pulso. Al tocar la piel del hombre, la joya de su frente se disuelve, y el bosque que os rodea parece despejarse."
+  },
+  "02278": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Al subir por la colina, el entorno que os rodea se vuelve cada vez más extraño y sobrenatural. La energía arcana puede percibirse de forma más fuerte aquí, chisporroteando en el aire y recorriéndoos la piel.",
+    "backFlavor": "Al acercaros a la cumbre de Sentinel Hill, se os acercan varios ciudadanos de Dunwich. El hombre del centro de su círculo salmodia en latín mientras los demás inclinan la cabeza en señal de reverencia. -¿Seth Bishop? -preguntáis suponiendo la respuesta. El hombre del centro levanta la mirada como respuesta, lo que confirma vuestras sospechas. Le rogáis que detenga esta locura, pero no os responde. Sacáis el colgante de plata con la constelación que encontrasteis en el cuerpo de Silas y se lo entregáis a Seth. -Esto es todo lo que encontramos de tu hermano -gritáis para haceros oír sobre el aullante viento-. ¿Es éste el destino que queréis para vosotros? ¿Para todos nosotros? -Lanzáis el colgante contra el suelo, y estupefacto al verlo, se tambalea hacia atrás y se equivoca con el ensalmo mientras abre los ojos como platos. Al caer, el altar que tiene a su espalda se parte en dos, y un torrente de energía brota de la piedra, girando hasta formar un portal abierto que se traga al hombre. Apenas lográis clavar los talones en el suelo y agarraros a una roca cercana para resistir la atracción del portal."
+  },
+  "02279": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Al subir por la colina, el entorno que os rodea se vuelve cada vez más extraño y sobrenatural. La energía arcana puede percibirse de forma más fuerte aquí, chisporroteando en el aire y recorriéndoos la piel.",
+    "backFlavor": "Al acercaros a la cumbre de Sentinel Hill, se os acercan varios ciudadanos de Dunwich. El hombre del centro de su círculo emite una risa demente. Reconocéis al hombre, Seth Bishop, por su descripción que os dieron los lugareños. A su espalda, varios hombres y mujeres inclinan la cabeza en señal de reverencia mientras salmodian en latín. -¡Lo hemos logrado! -grita entre carcajadas-. ¡Hemos logrado lo que el viejo Whateley y los suyos no pudieron hacer! -Observáis con repulsión cómo sus ojos se le vuelven vidriosos y se mueven como si estuviese leyendo algo invisible-. Ahora puedo verlo... ¡Por fin lo veo! -Levanta los brazos hacia el cielo y la lápida del altar que tiene a su espalda se parte en dos. Un torrente de energía brota de la piedra, girando hasta formar un portal abierto. Seth se agarra a la piedra que tiene delante para evitar ser absorbido, pero varios de los demás se sorprenden y son tragados por el portal. Apenas lográis clavar los talones en el suelo y agarraros a una roca cercana para resistir la atracción del portal. Seth se pone de pie con una expresión de orgullo en el rostro."
+  },
+  "02280": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Al subir por la colina, el entorno que os rodea se vuelve cada vez más extraño y sobrenatural. La energía arcana puede percibirse de forma más fuerte aquí, chisporroteando en el aire y recorriéndoos la piel.",
+    "backFlavor": "Al acercaros a la cumbre de Sentinel Hill, se os acercan varios ciudadanos de Dunwich. El hombre que se encuentra en el centro de su círculo está intentando desesperadamente completar un ensalmo en latín. -¡No funciona, Seth! -grita uno de los otros hombres-. ¿Qué vamos a hacer? -El hombre del centro deja el ensalmo y saca un cuchillo de zapatero-. El padre exige un sacrificio de sangre -declara, y su rostro se contorsiona con una expresión demente. Antes de que podáis reaccionar, se abre la muñeca izquierda con el cuchillo y cae de rodillas por el dolor. La lápida del altar que tiene a su espalda se parte en dos. Un torrente de energía brota de la piedra, girando hasta formar un portal abierto. Seth se agarra a la piedra que tiene delante para evitar ser absorbido, pero varios de los demás se sorprenden y son tragados por el portal. Apenas lográis clavar los talones en el suelo y agarraros a una roca cercana para resistir la atracción del portal. Seth se levanta, herido pero vivo, con una expresión de orgullo en el dolorido rostro."
+  },
+  "02281": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "De las ruinas de la lápida del altar de la cumbre de la colina ha aparecido un portal de vibrante energía giratoria. Una fuerza como la de un huracán surge del oprtal, doblando los árboles y arrastrando escombros hacia él. El aullido del vendabal ahoga todos los demás sonidos. Debéis encontrar algún modo de cerrar el portal.",
+    "backFlavor": "No sabéis cómo cerrar el turbulento portal que tenéis delante, y a cada momento que pasa, la fuerza de su interior crece. Teméis que se acerque la entidad que hayan invocado los hechiceros desde el más allá. Sin tiempo que perder, os acercáis al tomo abierto que hay sobre el altar de piedra, buscando respuestas desesperadamente."
+  },
+  "02312": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Senderos de sonido y color se extienden durante una eternidad en todas direcciones, salpicados de arquitectura imposible y repletos de vida salvaje alienígena. Las líneas que hay entre los objetos son serradas y cambiantes, y notáis la piel como si la tuvierais del revés."
+  },
+  "02313": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "Al cruzar este reino, atisbáis destellos ocasionales de realidad: escenas de viejos recuerdos, visiones más recientes de los últimos días y, a veces, incluso eventos que no recordáis que hayan ocurrido nunca…"
+  },
+  "02314": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "A lo largo de toda esta distorsionada dimensión, da igual adónde viajéis, siempre hay una forma siniestra a lo lejos. Al principio, parece un disco, como una luna negra con muchos brazos que se retuercen. Pero a medida que pasa el tiempo, os dais cuenta de que va creciendo más y más…"
+  },
+  "02315": {
+    "group": "dunwich",
+    "typeCode": "agenda",
+    "flavor": "La silueta que hay a lo lejos atraviesa las barreras de esta dimensión, y sus numerosos brazos se extienden hasta tapar todo lo que veis. Su cuerpo es como un cieno, cubierto de ojos y bocas. Os sentís insignificantes, como insectos, ante la aterradora grandiosidad de la criatura.",
+    "backFlavor": "El horror extradimensional se revuelve mientras busca la grieta por la que entrasteis en esta dimensión, y al hacerlo aplasta reinos enteros que tiene aferrados."
+  },
+  "02316": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Debéis encontrar de algún modo el camino a través de este paisaje alienígena para encontrar el nexo que describía el tomo del viejo Whateley.",
+    "backFlavor": "Una luz brilla a lo lejos, y os dirigís hacia ella para investigarla. Similar a un fuego fatuo, la luz se aleja de vosotros, flotando por los extraños portales de este mundo, subiendo por escaleras serpenteantes y cruzando barreras que antes no os atrevisteis a cruzar. Ante las escasas posibilidades que tenéis de encontrar el nexo vosotros solos, seguís a la luz, con la esperanza de que os guíe en la dirección correcta."
+  },
+  "02317": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Continuáis siguiendo a la esquiva luz, pero el traicionero paisaje la convierte en una presa difícil de perseguir.",
+    "backFlavor": "Llegáis a un vacío negro como el carbón e imposiblemente denso, y os dais cuenta de que este lugar es donde acaba toda la realidad, toda la que es y toda la que será. En su centro, veis una grieta minúscula, suspendida fuera de vuestro alcance. Al mirar por ella, os sorprende ver la cumbre de Sentinel Hill. De algún modo, habéis llegado al otro lado de la grieta. Ahora debéis encontrar una forma de cerrarla para siempre."
+  },
+  "02318": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Las piedras sobrenaturales del suelo tienen grabado una especie de sello. Al acercaros a ellas, una voz entra en vuestra mente y habla en un idioma alienígena.",
+    "backFlavor": "Estáis absolutamente agotados, sin tener ni idea de qué se puede hacer para cerrar la grieta. Está demasiado lejos para tocarla, y nada de lo que hacéis tiene efecto alguno. Aquí no hay nada para guiaros aparte de las voces sobrenaturales que se filtran en vuestra mente. Entonces, oís una voz familiar dentro del coro de ecos, y os sentís compelidos a repetir lo que dice —Claude ostium… —susurráis en primer lugar, y las palabras se forman en la punta de vuestra lengua. Cerráis los ojos para concentraros, y el eco se vuelve más fuerte. Cuando acaba y abrís los ojos, no veis más que un abismo azabache, y la grieta se ha desvanecido."
+  },
+  "02319": {
+    "group": "dunwich",
+    "typeCode": "act",
+    "flavor": "Al no ver una salida clara de esta dimensión, buscáis otro camino.",
+    "backFlavor": "Descubrís un camino que os resulta familiar en cierto modo y lo seguís. Aunque vuestra tarea está completa, ahora entendéis que, al haber cerrado la grieta, puede que nunca volváis a casa. El miedo de quedar perdidos aquí para siempre os espolea a seguir, y cruzáis una arcada que da a un corredor cubierto de vegetación. Una húmeda puerta de madera os conduce a una zona de fina lluvia y cielos oscuros. El cemento se convierte en gravilla, y luego en mármol, después en acero, y más tarde en hierba. Cruzáis prados imposiblemente largos y atravesáis densos bosques antes de que la fatiga haga mella en vosotros. Estáis desprovistos de toda energía, y no podéis avanzar más. Vuestro cuerpo desfallece."
   }
 }

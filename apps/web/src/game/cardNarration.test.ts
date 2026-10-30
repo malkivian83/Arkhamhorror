@@ -45,13 +45,17 @@ it('connects campaign recordings to their exact narrative face and established v
     fortune: 'hyKxCTlAqtnW188CgltM',
     gala: '5egO01tkUjEzu7xSSE8M',
     ceniza: 'o0SveC0zgHFuCsEO3vHR',
+    carnevale: 'hyKxCTlAqtnW188CgltM',
+    dunwich: 'FXn3GKRRt9FCEyTbrkaL',
   }
   const counts: Record<string, number> = {
-    zealot: 12,
+    zealot: 27,
     carcosa: 101,
     fortune: 13,
     gala: 9,
     ceniza: 28,
+    carnevale: 10,
+    dunwich: 97,
   }
   const recordedFaces = new Set<string>()
   for (const [group, voiceId] of Object.entries(voices)) {
@@ -120,6 +124,51 @@ it('offers the pictured agenda on both sides, without substituting unrecorded ca
   expect(cardNarration('84001', true, 'es')).toBeNull()
   expect(cardNarration('84001', false, 'es')).toBeNull()
   expect(cardNarration('unknown', false, 'es')).toBeNull()
+})
+
+it('offers only the narrative fronts of the pictured Midnight Masks agenda and act', () => {
+  const root = fileURLToPath(new URL('../../../../', import.meta.url))
+  const listed = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [
+        'scripts/generate-campaign-card-audio.mjs',
+        '--list',
+        '--campaign=zealot',
+        '--codes=01121a,01123',
+      ],
+      { cwd: root, encoding: 'utf8' },
+    ),
+  ) as { entries: { code: string; side: string; text: string }[] }
+  expect(listed.entries.map(({ code, side }) => `${code}:${side}`)).toEqual([
+    '01121a:front',
+    '01123:front',
+  ])
+  for (const { code, text } of listed.entries) {
+    expect(text).toBe(cardNarratives.es[code]!.flavor)
+    expect(text).not.toMatch(/Desistir|Objetivo|\[action\]|2 pistas|6 Enemigos/)
+    expect(cardNarration(code, false, 'es')).toContain(`${code}-front.mp3`)
+    expect(cardNarration(code, true, 'es')).toBeNull()
+  }
+  expect(cardNarration('01121b', false, 'es')).toBeNull()
+})
+
+it('inventories all narrative faces of the completed campaigns and Dunwich', () => {
+  const root = fileURLToPath(new URL('../../../../', import.meta.url))
+  for (const [campaign, count] of Object.entries({ zealot: 27, carnevale: 10, dunwich: 97 })) {
+    const listed = JSON.parse(
+      execFileSync(
+        process.execPath,
+        ['scripts/generate-campaign-card-audio.mjs', '--list', `--campaign=${campaign}`],
+        { cwd: root, encoding: 'utf8' },
+      ),
+    ) as { entries: { code: string; side: string }[] }
+    expect(listed.entries).toHaveLength(count)
+    for (const entry of listed.entries)
+      expect(cardNarration(entry.code, entry.side === 'back', 'es')).not.toBeNull()
+  }
+  for (const code of ['82002b', '82006b', '01145b'])
+    expect(cardNarration(code, false, 'es')).toBeNull()
 })
 
 it('stops the previous narration and releases only the audio being closed', () => {

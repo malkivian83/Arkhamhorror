@@ -10,6 +10,8 @@ const groups = {
   fortune: 'fortuna-narracion.json',
   gala: null,
   ceniza: null,
+  carnevale: 'fortuna-narracion.json',
+  dunwich: 'dunwich-nico-narracion.json',
 }
 const hash = (value) => createHash('sha256').update(value).digest('hex')
 const clean = (text) =>
@@ -21,6 +23,10 @@ const clean = (text) =>
     .replace(/&quot;/g, '"')
     .trim()
 const selected = process.argv.find((arg) => arg.startsWith('--campaign='))?.split('=')[1]
+const codes = process.argv
+  .find((arg) => arg.startsWith('--codes='))
+  ?.slice('--codes='.length)
+  .split(',')
 if (selected && !(selected in groups)) throw new Error('Campaña desconocida')
 const manifestPath = 'apps/web/src/game/cardNarrationManifest.json'
 const root = 'apps/web/public/local-assets/cards/audio/es'
@@ -54,7 +60,12 @@ for (const [group, storyEvidence] of Object.entries(groups)) {
     : story.settings
   if (!voiceId || !settings) throw new Error(`Falta configuración de ${group}`)
   const entries = Object.entries(catalog)
-    .filter(([, card]) => card.group === group && ['agenda', 'act'].includes(card.typeCode))
+    .filter(
+      ([code, card]) =>
+        card.group === group &&
+        ['agenda', 'act'].includes(card.typeCode) &&
+        (!codes || codes.includes(code)),
+    )
     .flatMap(([code, card]) =>
       ['front', 'back'].flatMap((side) => {
         const flavor = card[side === 'back' ? 'backFlavor' : 'flavor']

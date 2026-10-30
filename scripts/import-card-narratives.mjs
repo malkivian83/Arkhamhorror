@@ -11,7 +11,10 @@ for (const locale of ['en', 'es']) {
   const source = JSON.parse(
     readFileSync(join(reference, `frontend/public/cards_${locale}.json`), 'utf8'),
   )
-  const narratives = {}
+  // Conservar campañas añadidas posteriormente y transcripciones revisadas.
+  const narratives = JSON.parse(
+    readFileSync(`packages/i18n/src/card-narratives.${locale}.json`, 'utf8'),
+  )
   for (const group of ['zealot', 'carcosa', 'fortune', 'gala']) {
     const catalog = JSON.parse(
       readFileSync(`packages/i18n/src/${group}-cards.${locale}.json`, 'utf8'),
