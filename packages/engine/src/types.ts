@@ -107,6 +107,8 @@ export interface Investigator {
   doom?: number
   /** Le queda la acción adicional que solo sirve para evitar (Trish Scarborough). */
   extraEvade?: boolean
+  /** Restricted continuous engage actions spent (or lost) in the actual turn. */
+  engageActionsUsed?: number
   /** The trait-restricted additional action was used this turn (Marie Lambeau). */
   traitActionUsed?: boolean
   /** Actions spent in the tagged round, including additional actions (Center Stage). */
@@ -117,6 +119,14 @@ export interface Investigator {
   roundTurnActions?: { round: number; amount: number }
   /** No chaos tokens for their next skill test during the turn started at this log index. */
   noTokensNextTest?: number
+  attackProtection?: { phase: Phase; round: number; nonElite: boolean }
+  /** Serialized effects lasting through the investigator's current actual turn. */
+  turnSkillEffect?: {
+    turn: number
+    noTokens?: boolean
+    bases?: Partial<Record<SkillType, number>>
+    bonuses?: { amount: number; code: CardCode; kinds?: SkillTestKind['type'][]; tags?: string[] }[]
+  }
   extraMove?: boolean
   osirisUsed?: boolean
   osirisProtected?: boolean
@@ -141,6 +151,7 @@ export interface Location {
   id: LocationId
   name: string
   shroud: number
+  turnShroudModifiers?: { turn: number; owner: InvestigatorId; amount: number }[]
   victory?: number
   position?: [number, number]
   symbol?: string
@@ -424,7 +435,7 @@ export interface AbilityUse {
 // ---------------------------------------------------------------------------
 
 export type AssetId = string
-export type SlotType = 'hand' | 'arcane' | 'accessory' | 'body' | 'ally' | 'head'
+export type SlotType = 'hand' | 'arcane' | 'accessory' | 'body' | 'ally' | 'head' | 'tarot'
 export type SkillIcon = SkillType | 'wild'
 
 /** Datos de una carta de jugador (sin texto). */
@@ -764,6 +775,7 @@ export type PhaseStep =
 
 /** Todo lo que puede ocurrir en la partida. */
 export type Message =
+  | { type: 'GameBegins' }
   | { type: 'AdjustPendingEnemyDamage'; enemy: EnemyId; amount: number }
   | { type: 'ReducePendingDamage'; investigator: InvestigatorId; damage: number; horror: number }
   | { type: 'GainFightActionsThisTurn'; investigator: InvestigatorId; amount: number }
@@ -991,6 +1003,7 @@ export type Message =
       type: 'PlayCard'
       discardedCost?: CardCode[]
       discardCostPaid?: boolean
+      additionalActionsPaid?: boolean
       investigator: InvestigatorId
       code: CardCode
       /** Play the revealed top card of this investigator's deck (Montmartre). */
@@ -1034,6 +1047,8 @@ export type Message =
       fromHand?: boolean
       /** Fichas con las que entra (al tomar el control de un apoyo colocado). */
       tokens?: Partial<Pick<Asset, 'damage' | 'horror' | 'doom' | 'uses' | 'exhausted'>>
+      /** Continue with the exact instance id under data.asset, even after entry reactions. */
+      onEntered?: Extract<Message, { type: 'PlayerCardEffect' }>
     }
   // ----- Cartas de Historia en juego y apoyos colocados -----
   | { type: 'PutStoryIntoPlay'; code: CardCode; name: string }
@@ -1081,6 +1096,12 @@ export type Message =
   | { type: 'DiscardAsset'; asset: AssetId; defeated?: boolean }
   /** Cambia el velo de una localización hasta el final de la ronda. */
   | { type: 'ModifyShroud'; location: LocationId; amount: number }
+  | {
+      type: 'TurnShroudModifier'
+      investigator: InvestigatorId
+      location?: LocationId
+      amount: number
+    }
   | { type: 'ExhaustAsset'; asset: AssetId }
   | { type: 'ReadyAsset'; asset: AssetId }
   | { type: 'SpendUses'; asset: AssetId; amount: number }
@@ -1266,7 +1287,7 @@ export type Message =
   | {
       type: 'LoseAdditionalAction'
       investigator: InvestigatorId
-      action: 'evade' | 'move' | 'trait'
+      action: 'evade' | 'move' | 'trait' | 'engage'
     }
   /** Additional actions this turn, only during that investigator's turn (André Patel). */
   | { type: 'GainActions'; investigator: InvestigatorId; amount: number }
@@ -1282,6 +1303,13 @@ export type Message =
   | { type: 'AutoSucceedSkillTest' }
   /** Will to Survive: no chaos tokens for their next skill test this turn. */
   | { type: 'SkipNextTestTokens'; investigator: InvestigatorId }
+  | {
+      type: 'TurnSkillEffect'
+      investigator: InvestigatorId
+      noTokens?: boolean
+      bases?: Partial<Record<SkillType, number>>
+      bonus?: { amount: number; code: CardCode; kinds?: SkillTestKind['type'][]; tags?: string[] }
+    }
   /** Place an enemy in play on top (or at the bottom) of the encounter deck (Dumb Luck). */
   | { type: 'PutEnemyOnEncounterDeck'; enemy: EnemyId; bottom?: boolean }
   /** Attempt the last ended skill test again, without paying its costs (Live and Learn). */
@@ -1290,6 +1318,7 @@ export type Message =
   | { type: 'ChooseEnemyToDamage'; investigator: InvestigatorId; amount: number }
   /** Cancela el ataque de este enemigo que se está resolviendo (Counterattack). */
   | { type: 'CancelEnemyAttack'; enemy: EnemyId }
+  | { type: 'ProtectFromAttacks'; investigator: InvestigatorId; nonElite: boolean }
   | { type: 'AttackFromEncounterDiscard'; index: number; investigator: InvestigatorId }
   | { type: 'AttackWithoutLocation'; card: EnemyCard; investigator: InvestigatorId }
   | { type: 'EndAttackWithoutLocation'; enemy: EnemyId }
@@ -1321,6 +1350,7 @@ export type Message =
   | { type: 'CheckEngagement'; location: LocationId; enemies?: EnemyId[] }
   | {
       type: 'EnemyAttack'
+      opportunity?: boolean
       enemy: EnemyId
       investigator: InvestigatorId
       exhaustAfter: boolean
@@ -1728,6 +1758,7 @@ export type ClueHolder =
 
 /** Momentos en los que se comprueban las habilidades forzadas. */
 export type Trigger =
+  | { type: 'gameBegins'; openingHands: Record<InvestigatorId, CardCode[]> }
   | {
       type: 'beforeEnemyDamage'
       enemy: EnemyId
@@ -1793,7 +1824,12 @@ export type Trigger =
       location?: LocationId
     }
   /** Un enemigo va a atacar (antes de resolver el ataque). */
-  | { type: 'whenEnemyAttacks'; enemy: EnemyId; investigator: InvestigatorId }
+  | {
+      type: 'whenEnemyAttacks'
+      enemy: EnemyId
+      investigator: InvestigatorId
+      opportunity?: boolean
+    }
   /**
    * `afterSkillTest`: ya se sabe si la prueba tiene éxito, antes de aplicar sus
    * resultados (paso 6: "después de tener éxito / fallar"). `skillTestEnded`: la

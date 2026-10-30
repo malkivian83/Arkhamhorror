@@ -4,18 +4,24 @@ export function approvedDefinition(card, approval) {
     throw new Error(`Card is not approved: ${card.code}`)
   const reviewedDualFaction =
     approval.adapter === 'reviewed-dual-faction-v1' &&
-    card.code === '08105' &&
-    card.factions.join(',') === 'seeker,survivor'
+    ((card.code === '08105' && card.factions.join(',') === 'seeker,survivor') ||
+      (card.code === '08083' && card.factions.join(',') === 'guardian,seeker'))
   const reviewedCustomizable =
     approval.adapter === 'reviewed-shotcaster-v1' && card.code === '09119'
+  const reviewedTarot =
+    approval.adapter === 'reviewed-tarot-v1' &&
+    ['05023', '05027', '05031', '05035', '05039', '54003', '54005'].includes(card.code) &&
+    card.slots.unknown.join(',') === 'Tarot' &&
+    card.slots.slots.length === 0
   if (
     card.modelIssues.some(
       (issue) =>
         !(reviewedDualFaction && issue === 'unsupported-factions') &&
-        !(reviewedCustomizable && issue === 'customization'),
+        !(reviewedCustomizable && issue === 'customization') &&
+        !(reviewedTarot && issue === 'unsupported-slots'),
     ) ||
     (!reviewedDualFaction && card.factions.length !== 1) ||
-    card.slots.unknown.length
+    (!reviewedTarot && card.slots.unknown.length)
   )
     throw new Error(`Unsupported card model: ${card.code}`)
   if (
@@ -70,7 +76,7 @@ export function approvedDefinition(card, approval) {
         .map((key) => [key, numeric(`skill_${key}`)])
         .filter(([, value]) => value !== undefined && value !== 0),
     ),
-    slots: card.slots.slots,
+    slots: reviewedTarot ? ['tarot'] : card.slots.slots,
     ...(health !== undefined ? { health } : {}),
     ...(sanity !== undefined ? { sanity } : {}),
     ...(approval.uses ? { uses: approval.uses } : {}),

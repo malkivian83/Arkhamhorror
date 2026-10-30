@@ -575,6 +575,7 @@ export interface PlayerCardBehavior {
    * when they depend on a condition (The Black Fan: 1 with 15 or more resources).
    */
   additionalTurnActions?: number | ((state: GameState, self: Asset) => number)
+  additionalEngageActions?: number
   /** Starting: after the opening hand and mulligan, it may be searched for and added to hand. */
   starting?: boolean
   /** Reactions of this card while committed to the current test (Contingency). */
@@ -708,6 +709,8 @@ export interface PlayerCardBehavior {
   xOptions?: (state: GameState, investigator: InvestigatorId) => number[]
   /** Event with the Parley designator: parley costs apply and `afterParley` follows. */
   parley?: boolean
+  /** Additional action costs of playing the card, including a play granted by an effect. */
+  additionalPlayActions?: number
   /** In play: additional resources its controller gains during the upkeep phase. */
   upkeepResources?: number
   /** Restricción adicional para jugarlo ("solo durante tu turno", "como primera acción"…). */
@@ -734,6 +737,12 @@ export interface PlayerCardBehavior {
     state: GameState,
     trigger: Trigger,
     investigator: InvestigatorId,
+  ) => ReactionOption[]
+  /** Printed opening-hand reactions can put cards into play without playing/paying for them. */
+  openingHandReactions?: (
+    state: GameState,
+    investigator: InvestigatorId,
+    openingHand: CardCode[],
   ) => ReactionOption[]
   /** Habilidades forzadas del apoyo en juego. */
   forced?: (state: GameState, trigger: Trigger, self: Asset) => Message[]

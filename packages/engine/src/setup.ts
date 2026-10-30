@@ -274,6 +274,7 @@ export function prepareGame({
     ...(players.some((i) => i.deck.some((code) => !!playerCardBehavior(code)?.revelation))
       ? [{ type: 'ResolveOpeningRevelations' } as Message]
       : []),
+    { type: 'GameBegins' },
     { type: 'Round' },
   ]
 

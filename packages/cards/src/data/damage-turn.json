@@ -1,0 +1,396 @@
+[
+  {
+    "code": "02261",
+    "name": "\"I've had worse…\"",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit"],
+    "cost": 0,
+    "xp": 4,
+    "icons": {
+      "willpower": 2,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "05315",
+    "name": "\"I've had worse…\"",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit"],
+    "cost": 0,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "09102",
+    "name": "Idol of Xanatos",
+    "subname": "Watcher Beyond Time",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Relic"],
+    "unique": true,
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["accessory"]
+  },
+  {
+    "code": "01085",
+    "name": "Will to Survive",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spirit"],
+    "cost": 4,
+    "xp": 3,
+    "icons": {
+      "combat": 1,
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "05281",
+    "name": "Trial by Fire",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spirit"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "54010",
+    "name": "Trial by Fire",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spirit"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "wild": 2
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60173",
+    "name": "On the Beat",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic", "Police"],
+    "cost": 2,
+    "xp": 1,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1,
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "05023",
+    "name": "Ace of Swords",
+    "subname": "Let Your Arrow Fly True",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Tarot"],
+    "cost": 3,
+    "xp": 1,
+    "icons": {},
+    "slots": ["tarot"]
+  },
+  {
+    "code": "05027",
+    "name": "Death • XIII",
+    "subname": "Free from the Past",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Tarot"],
+    "cost": 3,
+    "xp": 1,
+    "icons": {},
+    "slots": ["tarot"]
+  },
+  {
+    "code": "05031",
+    "name": "The Moon • XVIII",
+    "subname": "Message from Your Inner Self",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Tarot"],
+    "cost": 3,
+    "xp": 1,
+    "icons": {},
+    "slots": ["tarot"]
+  },
+  {
+    "code": "05035",
+    "name": "Four of Cups",
+    "subname": "Chalice of the Heart",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Tarot"],
+    "cost": 3,
+    "xp": 1,
+    "icons": {},
+    "slots": ["tarot"]
+  },
+  {
+    "code": "05039",
+    "name": "Five of Pentacles",
+    "subname": "From the Brink",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Tarot"],
+    "cost": 3,
+    "xp": 1,
+    "icons": {},
+    "slots": ["tarot"]
+  },
+  {
+    "code": "54003",
+    "name": "The World • XXI",
+    "subname": "The Journey is Complete",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Tarot"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {},
+    "slots": ["tarot"]
+  },
+  {
+    "code": "54005",
+    "name": "Knight of Swords",
+    "subname": "Charge Ever Onward",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Tarot"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {},
+    "slots": ["tarot"]
+  },
+  {
+    "code": "08083",
+    "name": "Medical Student",
+    "type": "asset",
+    "class": "guardian",
+    "classes": ["guardian", "seeker"],
+    "traits": ["Ally", "Miskatonic", "Science"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 1
+  },
+  {
+    "code": "60309",
+    "name": "Lonnie Ritter",
+    "subname": "Feisty Mechanic",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Ally"],
+    "unique": true,
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 3
+  },
+  {
+    "code": "60570",
+    "name": "Extra Rations",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Supply"],
+    "cost": 2,
+    "xp": 1,
+    "icons": {
+      "wild": 1
+    },
+    "slots": [],
+    "uses": {
+      "count": 4,
+      "type": "supplies"
+    }
+  },
+  {
+    "code": "60472",
+    "name": "Blood Ward",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "03314",
+    "name": "Infighting",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Trick"],
+    "cost": 1,
+    "xp": 3,
+    "icons": {
+      "intellect": 2,
+      "agility": 2
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "10069",
+    "name": "Bank Job",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Gambit", "Double", "Illicit"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "10048",
+    "name": "Thorough Inquiry",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight", "Double"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "03029",
+    "name": "Sleight of Hand",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "09066",
+    "name": "Hit and Run",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Tactic", "Trick"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "07108",
+    "name": "Riot Whistle",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Tool"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["accessory"]
+  },
+  {
+    "code": "07027",
+    "name": "Obfuscation",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Spell"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 3,
+      "type": "charges"
+    },
+    "fast": true
+  },
+  {
+    "code": "03266",
+    "name": "Arcane Insight",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 4,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 3,
+      "type": "charges"
+    }
+  },
+  {
+    "code": "10108",
+    "name": "Matchbox",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Tool"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": [],
+    "uses": {
+      "count": 3,
+      "type": "supplies"
+    }
+  }
+]

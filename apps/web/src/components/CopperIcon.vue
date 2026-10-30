@@ -106,6 +106,12 @@ const shapes = {
     engraving: 'M27 23h1M27 29h1M27 35h1',
     shine: 'M24 16v26M10 14l4 4M38 14l-4 4M18 32h3M28 32h3M18 42h13',
   },
+  tarot: {
+    body: 'M9 3h30v42H9Z',
+    inset: 'M12 6h24v36H12Z',
+    engraving: 'M15 10h18M15 38h18',
+    shine: 'm24 14 3 7 7 3-7 3-3 7-3-7-7-3 7-3Z',
+  },
   head: {
     body: 'M12 29 15 10q4-4 9 0 5-4 9 0l3 19c6 1 9 3 9 6 0 5-11 8-21 8S3 40 3 35c0-3 3-5 9-6Z',
     inset: 'm13 25-1 5q12 6 24 0l-1-5q-11 5-22 0Z',

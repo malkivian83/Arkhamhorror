@@ -67,6 +67,7 @@ describe('reviewed inventory conversion', () => {
     'grouped-import',
     'upgraded-variants',
     'reused-mechanics',
+    'damage-turn',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(
@@ -144,5 +145,22 @@ describe('reviewed inventory conversion', () => {
         adapter: 'reviewed-creation-permanent-v1',
       }),
     ).toThrow('dedicated adapter')
+  })
+  it('accepts only the reviewed Tarot slots and Medical Student dual faction', async () => {
+    const { cards } = await read(
+      '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
+    )
+    const approvals = await read('../../packages/cards/src/damage-turn/approvals.json')
+    for (const code of ['05023', '05027', '05031', '05035', '05039', '54003', '54005', '08083']) {
+      const card = cards.find((c) => c.code === code),
+        approval = approvals.cards.find((c) => c.code === code)
+      expect(() => approvedDefinition(card, { ...approval, adapter: undefined })).toThrow()
+      const def = approvedDefinition(card, approval)
+      if (code === '08083') expect(def.classes).toEqual(['guardian', 'seeker'])
+      else expect(def.slots).toEqual(['tarot'])
+      expect(() =>
+        approvedDefinition({ ...card, code: 'unreviewed' }, { ...approval, code: 'unreviewed' }),
+      ).toThrow()
+    }
   })
 })

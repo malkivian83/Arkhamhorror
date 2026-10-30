@@ -121,7 +121,7 @@ const contents = computed(() => {
       type,
       cards: unique.filter((c) => isStandard(c) && def(c)?.type === type),
       sections: (type === 'asset'
-        ? (['hand', 'accessory', 'body', 'ally', 'arcane', 'head', 'free'] as const)
+        ? (['hand', 'accessory', 'body', 'ally', 'arcane', 'head', 'tarot', 'free'] as const)
         : ([null] as const)
       )
         .map((slot) => ({

@@ -116,7 +116,7 @@ const tokens = computed((): { kind: TokenKind; value: number; label: string; tit
 })
 
 /** Orden de las ranuras en el tapete del jugador. */
-const SLOT_ORDER: SlotType[] = ['hand', 'body', 'ally', 'accessory', 'arcane', 'head']
+const SLOT_ORDER: SlotType[] = ['hand', 'body', 'ally', 'accessory', 'arcane', 'head', 'tarot']
 
 interface SlotBox {
   type: SlotType

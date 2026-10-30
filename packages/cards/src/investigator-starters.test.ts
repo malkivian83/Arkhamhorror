@@ -107,7 +107,12 @@ describe.each(packs)('$key: complete investigator starter pack', (pack) => {
     for (const code of [...pack.signatures, pack.foreignSignature])
       expect(codes).not.toContain(code)
     expect(
-      options.every((o) => [pack.class, 'neutral'].includes(playerCardDef(o.code)!.class)),
+      options.every((o) => {
+        const card = playerCardDef(o.code)!
+        return (card.classes ?? [card.class]).some((faction) =>
+          [pack.class, 'neutral'].includes(faction),
+        )
+      }),
     ).toBe(true)
   })
 })
