@@ -1,0 +1,692 @@
+[
+  {
+    "code": "07264",
+    "name": "Hyperawareness",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 4,
+    "icons": {
+      "intellect": 2,
+      "agility": 2
+    },
+    "slots": [],
+    "uses": {
+      "count": 2,
+      "type": "resources"
+    }
+  },
+  {
+    "code": "07266",
+    "name": "Hard Knocks",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 4,
+    "icons": {
+      "combat": 2,
+      "agility": 2
+    },
+    "slots": [],
+    "uses": {
+      "count": 2,
+      "type": "resources"
+    }
+  },
+  {
+    "code": "07270",
+    "name": "Dig Deep",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 4,
+    "icons": {
+      "willpower": 2,
+      "agility": 2
+    },
+    "slots": [],
+    "uses": {
+      "count": 2,
+      "type": "resources"
+    }
+  },
+  {
+    "code": "60428",
+    "name": "Arcane Studies",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 4,
+    "icons": {
+      "willpower": 2,
+      "intellect": 2
+    },
+    "slots": [],
+    "uses": {
+      "count": 2,
+      "type": "resources"
+    }
+  },
+  {
+    "code": "60178",
+    "name": "Endurance",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "combat": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60277",
+    "name": "Sharp Rhetoric",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60476",
+    "name": "Spiritual Intuition",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "combat": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60579",
+    "name": "Levelheaded",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "54006",
+    "name": "Well Connected",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Condition"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "03195",
+    "name": "Pickpocketing",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent", "Illicit"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "agility": 2
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "02262",
+    "name": "Strange Solution",
+    "subname": "Restorative Concoction",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Science"],
+    "cost": 1,
+    "xp": 4,
+    "icons": {
+      "willpower": 2
+    },
+    "slots": [],
+    "uses": {
+      "count": 4,
+      "type": "supplies"
+    }
+  },
+  {
+    "code": "02263",
+    "name": "Strange Solution",
+    "subname": "Acidic Ichor",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Science"],
+    "cost": 1,
+    "xp": 4,
+    "icons": {
+      "combat": 2
+    },
+    "slots": [],
+    "uses": {
+      "count": 3,
+      "type": "supplies"
+    }
+  },
+  {
+    "code": "02264",
+    "name": "Strange Solution",
+    "subname": "Freezing Variant",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Science"],
+    "cost": 1,
+    "xp": 4,
+    "icons": {
+      "agility": 2
+    },
+    "slots": [],
+    "uses": {
+      "count": 4,
+      "type": "supplies"
+    }
+  },
+  {
+    "code": "51004",
+    "name": "Strange Solution",
+    "subname": "Empowering Elixir",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Science"],
+    "cost": 1,
+    "xp": 4,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": [],
+    "uses": {
+      "count": 3,
+      "type": "supplies"
+    }
+  },
+  {
+    "code": "08038",
+    "name": "Medical Texts",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tome"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "intellect": 1,
+      "combat": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "06279",
+    "name": "Old Book of Lore",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tome"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 2,
+      "type": "secrets"
+    }
+  },
+  {
+    "code": "04267",
+    "name": "Feed the Mind",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Spell"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 3,
+      "type": "secrets"
+    }
+  },
+  {
+    "code": "05318",
+    "name": "Glimpse the Unthinkable",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 5,
+    "icons": {
+      "intellect": 3
+    },
+    "slots": []
+  },
+  {
+    "code": "06198",
+    "name": "Extensive Research",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 10,
+    "xp": 1,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "05232",
+    "name": "Esoteric Atlas",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tome"],
+    "cost": 3,
+    "xp": 1,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 4,
+      "type": "secrets"
+    }
+  },
+  {
+    "code": "51008",
+    "name": "Clarity of Mind",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "willpower": 2
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 4,
+      "type": "charges"
+    }
+  },
+  {
+    "code": "08068",
+    "name": "Healing Words",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "willpower": 2
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 4,
+      "type": "charges"
+    }
+  },
+  {
+    "code": "51007",
+    "name": "Rite of Seeking",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 4,
+    "xp": 2,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 3,
+      "type": "charges"
+    }
+  },
+  {
+    "code": "02233",
+    "name": "Rite of Seeking",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 5,
+    "xp": 4,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 3,
+      "type": "charges"
+    }
+  },
+  {
+    "code": "09093",
+    "name": "Moonlight Ritual",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Insight"],
+    "cost": 0,
+    "xp": 2,
+    "icons": {
+      "intellect": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60481",
+    "name": "Second Sight",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 4,
+    "xp": 5,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1,
+      "wild": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 4,
+      "type": "charges"
+    }
+  },
+  {
+    "code": "60477",
+    "name": "Blood Curse",
+    "type": "skill",
+    "class": "mystic",
+    "traits": ["Spell", "Cursed"],
+    "xp": 3,
+    "icons": {
+      "wild": 5
+    },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "03268",
+    "name": "Suggestion",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 4,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 3,
+      "type": "charges"
+    }
+  },
+  {
+    "code": "03234",
+    "name": ".41 Derringer",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Weapon", "Firearm", "Illicit"],
+    "cost": 3,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 3,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "09113",
+    "name": "Baseball Bat",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Weapon", "Melee"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "combat": 2
+    },
+    "slots": ["hand", "hand"]
+  },
+  {
+    "code": "51002",
+    "name": "Blackjack",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Melee"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "52010",
+    "name": "Gravedigger's Shovel",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Tool", "Weapon", "Melee"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "combat": 2
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "53002",
+    "name": "Survival Knife",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Melee"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "combat": 2
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "10120",
+    "name": "Fire Axe",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Weapon", "Melee"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "combat": 2
+    },
+    "slots": ["hand"],
+    "fast": true
+  },
+  {
+    "code": "60558",
+    "name": "Old Compass",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Tool"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "60326",
+    "name": "Lucky Cigarette Case",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Charm"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "willpower": 2
+    },
+    "slots": ["accessory"]
+  },
+  {
+    "code": "09122",
+    "name": "Flashlight",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Tool"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 4,
+      "type": "supplies"
+    }
+  },
+  {
+    "code": "60164",
+    "name": "Physical Fitness",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60174",
+    "name": "Physical Fitness",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60320",
+    "name": "Liquid Courage",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Illicit"],
+    "cost": 1,
+    "xp": 1,
+    "icons": {
+      "willpower": 2
+    },
+    "slots": [],
+    "uses": {
+      "count": 4,
+      "type": "supplies"
+    }
+  },
+  {
+    "code": "51006",
+    "name": "Think on Your Feet",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 0,
+    "xp": 2,
+    "icons": {
+      "intellect": 1,
+      "agility": 2
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "51009",
+    "name": "Oops!",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Fortune"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "combat": 2,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "51005",
+    "name": "Contraband",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Supply", "Illicit"],
+    "cost": 3,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "intellect": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "05282",
+    "name": "Bait and Switch",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Trick"],
+    "cost": 1,
+    "xp": 3,
+    "icons": {
+      "intellect": 1,
+      "agility": 2
+    },
+    "slots": []
+  }
+]

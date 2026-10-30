@@ -1,0 +1,406 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "sourceSnapshotSha256": "36bdf57ced256a33c3145b1562eea5f8ea6146d38e6a600cb04e27d43ef5749e",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "cards": [
+    {
+      "code": "07264",
+      "family": "hyperawareness-4",
+      "module": "card-07264",
+      "test": "talents.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 2,
+        "type": "resources"
+      }
+    },
+    {
+      "code": "07266",
+      "family": "hard-knocks-4",
+      "module": "card-07266",
+      "test": "talents.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 2,
+        "type": "resources"
+      }
+    },
+    {
+      "code": "07270",
+      "family": "dig-deep-4",
+      "module": "card-07270",
+      "test": "talents.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 2,
+        "type": "resources"
+      }
+    },
+    {
+      "code": "60428",
+      "family": "arcane-studies-4",
+      "module": "card-60428",
+      "test": "talents.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 2,
+        "type": "resources"
+      }
+    },
+    {
+      "code": "60178",
+      "family": "endurance-3",
+      "module": "card-60178",
+      "test": "talents.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60277",
+      "family": "sharp-rhetoric-3",
+      "module": "card-60277",
+      "test": "talents.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60476",
+      "family": "spiritual-intuition-3",
+      "module": "card-60476",
+      "test": "talents.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60579",
+      "family": "levelheaded-3",
+      "module": "card-60579",
+      "test": "talents.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "54006",
+      "family": "well-connected-3",
+      "module": "card-54006",
+      "test": "talents.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "03195",
+      "family": "pickpocketing-2",
+      "module": "card-03195",
+      "test": "talents.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "02262",
+      "family": "strange-solution-4",
+      "subname": "Restorative Concoction",
+      "module": "card-02262",
+      "test": "seeker.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "supplies"
+      }
+    },
+    {
+      "code": "02263",
+      "family": "strange-solution-4",
+      "subname": "Acidic Ichor",
+      "module": "card-02263",
+      "test": "seeker.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "supplies"
+      }
+    },
+    {
+      "code": "02264",
+      "family": "strange-solution-4",
+      "subname": "Freezing Variant",
+      "module": "card-02264",
+      "test": "seeker.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "supplies"
+      }
+    },
+    {
+      "code": "51004",
+      "family": "strange-solution-4",
+      "subname": "Empowering Elixir",
+      "module": "card-51004",
+      "test": "seeker.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "supplies"
+      }
+    },
+    {
+      "code": "08038",
+      "family": "medical-texts-2",
+      "module": "card-08038",
+      "test": "seeker.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "06279",
+      "family": "old-book-of-lore-3",
+      "module": "card-06279",
+      "test": "seeker.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 2,
+        "type": "secrets"
+      }
+    },
+    {
+      "code": "04267",
+      "family": "feed-the-mind-3",
+      "module": "card-04267",
+      "test": "seeker.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "secrets"
+      }
+    },
+    {
+      "code": "05318",
+      "family": "glimpse-the-unthinkable-5",
+      "module": "card-05318",
+      "test": "seeker.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "06198",
+      "family": "extensive-research-1",
+      "module": "card-06198",
+      "test": "seeker.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "05232",
+      "family": "esoteric-atlas-1",
+      "module": "card-05232",
+      "test": "seeker.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "secrets"
+      }
+    },
+    {
+      "code": "51008",
+      "family": "clarity-of-mind-3",
+      "module": "card-51008",
+      "test": "mystic.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "charges"
+      }
+    },
+    {
+      "code": "08068",
+      "family": "healing-words-3",
+      "module": "card-08068",
+      "test": "mystic.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "charges"
+      }
+    },
+    {
+      "code": "51007",
+      "family": "rite-of-seeking-2",
+      "module": "card-51007",
+      "test": "mystic.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "charges"
+      }
+    },
+    {
+      "code": "02233",
+      "family": "rite-of-seeking-4",
+      "module": "card-02233",
+      "test": "mystic.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "charges"
+      }
+    },
+    {
+      "code": "09093",
+      "family": "moonlight-ritual-2",
+      "module": "card-09093",
+      "test": "mystic.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60481",
+      "family": "second-sight-5",
+      "module": "card-60481",
+      "test": "mystic.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "charges"
+      }
+    },
+    {
+      "code": "60477",
+      "family": "blood-curse-3",
+      "module": "card-60477",
+      "test": "mystic.test.ts",
+      "status": "verified",
+      "commitLimit": 1
+    },
+    {
+      "code": "03268",
+      "family": "suggestion-4",
+      "module": "card-03268",
+      "test": "mystic.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "charges"
+      }
+    },
+    {
+      "code": "03234",
+      "family": "41-derringer-2",
+      "module": "card-03234",
+      "test": "weapons.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 3,
+        "type": "ammo"
+      }
+    },
+    {
+      "code": "09113",
+      "family": "baseball-bat-2",
+      "module": "card-09113",
+      "test": "weapons.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "51002",
+      "family": "blackjack-2",
+      "module": "card-51002",
+      "test": "weapons.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "52010",
+      "family": "gravedigger-s-shovel-2",
+      "module": "card-52010",
+      "test": "weapons.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "53002",
+      "family": "survival-knife-2",
+      "module": "card-53002",
+      "test": "weapons.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "10120",
+      "family": "fire-axe-2",
+      "module": "card-10120",
+      "test": "weapons.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "60558",
+      "family": "old-compass-0",
+      "module": "card-60558",
+      "test": "weapons.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60326",
+      "family": "lucky-cigarette-case-3",
+      "module": "card-60326",
+      "test": "weapons.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "09122",
+      "family": "flashlight-3",
+      "module": "card-09122",
+      "test": "weapons.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "supplies"
+      }
+    },
+    {
+      "code": "60164",
+      "family": "physical-fitness-0",
+      "module": "card-60164",
+      "test": "tactics.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60174",
+      "family": "physical-fitness-2",
+      "module": "card-60174",
+      "test": "tactics.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "60320",
+      "family": "liquid-courage-1",
+      "module": "card-60320",
+      "test": "tactics.test.ts",
+      "status": "verified",
+      "uses": {
+        "count": 4,
+        "type": "supplies"
+      }
+    },
+    {
+      "code": "51006",
+      "family": "think-on-your-feet-2",
+      "module": "card-51006",
+      "test": "tactics.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "51009",
+      "family": "oops-2",
+      "module": "card-51009",
+      "test": "tactics.test.ts",
+      "status": "verified",
+      "fast": true
+    },
+    {
+      "code": "51005",
+      "family": "contraband-2",
+      "module": "card-51005",
+      "test": "tactics.test.ts",
+      "status": "verified"
+    },
+    {
+      "code": "05282",
+      "family": "bait-and-switch-3",
+      "module": "card-05282",
+      "test": "tactics.test.ts",
+      "status": "verified"
+    }
+  ]
+}
