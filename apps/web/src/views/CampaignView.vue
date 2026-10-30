@@ -123,6 +123,12 @@ const options = computed(() =>
 const removable = computed(() =>
   campaign.value && shopping.value ? removableCards(campaign.value, shopping.value) : [],
 )
+/** Cartas personalizables que el investigador ya tiene o que puede comprar ahora. */
+const customizableFor = (deck: string[]) =>
+  allPlayerCardDefs()
+    .filter((c) => c.customizable)
+    .map((c) => c.code)
+    .filter((code) => deck.includes(code) || options.value.some((o) => o.code === code))
 function buy(o: PurchaseOption, remove?: string) {
   if (!shopping.value) return
   game.buy(shopping.value, o.code, { upgrade: !!o.replaces, ...(remove ? { remove } : {}) })
@@ -303,25 +309,36 @@ function abandon() {
           </div>
 
           <div v-if="shopping === i.id" class="shop">
-            <CustomizationSheet
-              v-for="card in allPlayerCardDefs().filter((c) => c.customizable)"
-              :key="card.code"
-              :code="card.code"
-              :sheet="i.customizations?.[card.code]"
-              :copies="i.deck.filter((c) => c === card.code).length"
-              :xp="campaign.log.investigators[i.id]?.xp ?? 0"
-              :removable="removable"
-              :disabled="!!game.state || !deckChangesAllowed"
-              @save="(sheet, options) => game.customizeCard(i.id, card.code, sheet, options)"
-            />
             <CampaignUpgradeShop
               :key="i.id"
               :options="options"
               :removable="removable"
+              :deck="i.deck"
               :xp="campaign.log.investigators[i.id]?.xp ?? 0"
               :disabled="!!game.state || !deckChangesAllowed"
               @buy="buy"
             />
+            <details
+              v-if="customizableFor(i.deck).length"
+              class="customizable"
+              :open="customizableFor(i.deck).some((code) => i.deck.includes(code))"
+            >
+              <summary>
+                <DisclosureIcon />
+                {{ t('campaign.customizable', { n: customizableFor(i.deck).length }) }}
+              </summary>
+              <CustomizationSheet
+                v-for="code in customizableFor(i.deck)"
+                :key="code"
+                :code="code"
+                :sheet="i.customizations?.[code]"
+                :copies="i.deck.filter((c) => c === code).length"
+                :xp="campaign.log.investigators[i.id]?.xp ?? 0"
+                :removable="removable"
+                :disabled="!!game.state || !deckChangesAllowed"
+                @save="(sheet, options) => game.customizeCard(i.id, code, sheet, options)"
+              />
+            </details>
             <p v-if="game.error" class="error">
               {{ game.error.startsWith('customization.') ? t(game.error) : game.error }}
             </p>
@@ -572,6 +589,29 @@ function abandon() {
   background: var(--site-bg);
   border: 1px solid var(--border);
   border-radius: 7px;
+}
+.customizable {
+  margin-top: 20px;
+  padding: 0 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--site-panel-sunken);
+}
+.customizable summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  list-style: none;
+  cursor: pointer;
+  font-weight: 700;
+}
+.customizable summary::-webkit-details-marker {
+  display: none;
+}
+.customizable summary .disclosure-icon {
+  width: 16px;
+  color: var(--accent);
 }
 .soon {
   font-family: var(--fell);

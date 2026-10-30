@@ -1,96 +1,131 @@
 <script setup lang="ts">
 import type { PurchaseOption } from '@lcg/cards'
 import { playerCardDef } from '@lcg/engine'
-import { computed, ref, useId, watch } from 'vue'
+import { computed, nextTick, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { cardName } from '../game/cards'
 import { localName } from '../game/localized'
-import CardDetails from './CardDetails.vue'
 import GameCard from './GameCard.vue'
+import UpgradeCardInfo from './UpgradeCardInfo.vue'
+import UpgradeExchange from './UpgradeExchange.vue'
 
+/**
+ * Gasto de experiencia: una lista legible de cartas que pueden entrar y un
+ * diálogo que compara, con su texto completo, la carta que sale y la que entra.
+ */
 const props = defineProps<{
   options: PurchaseOption[]
   removable: string[]
   xp: number
   disabled: boolean
+  /** Mazo actual, para indicar cuántas copias hay de cada carta. */
+  deck?: string[]
 }>()
 const emit = defineEmits<{ buy: [option: PurchaseOption, remove?: string] }>()
 const { t, locale } = useI18n()
-const titleId = useId()
+const uid = useId()
 const dialog = ref<HTMLDialogElement>()
+const heading = ref<HTMLElement>()
+const list = ref<HTMLElement>()
 const query = ref('')
+const show = ref<'all' | 'upgrades' | 'new'>('all')
 const kind = ref('all')
 const level = ref('all')
-const upgradesOnly = ref(false)
-const page = ref(1)
-const pageSize = 24
+const pageSize = 20
+const shown = ref(pageSize)
 const selectedKey = ref<string | null>(null)
-const removal = ref('')
+const announcement = ref('')
+const pending = ref<{ incoming: string; outgoing?: string } | null>(null)
 const name = (code: string) => localName(cardName(code))
+const levelOf = (code: string) => playerCardDef(code)?.xp ?? 0
+const copies = (code: string) => props.deck?.filter((c) => c === code).length ?? 0
 const key = (option: PurchaseOption) => `${option.code}:${option.replaces ?? 'new'}`
 const normalize = (value: string) =>
   value
     .normalize('NFD')
     .replace(/\p{Diacritic}/gu, '')
     .toLocaleLowerCase(locale.value)
+/** Las mejoras de cartas propias van primero: suelen ser la compra más buscada. */
+const sorted = computed(() =>
+  [...props.options].sort((a, b) => Number(!!b.replaces) - Number(!!a.replaces)),
+)
+const upgradeCount = computed(() => props.options.filter((o) => o.replaces).length)
 const filtered = computed(() =>
-  props.options.filter(
+  sorted.value.filter(
     (option) =>
       normalize(localName(option.name)).includes(normalize(query.value.trim())) &&
+      (show.value === 'all' || (show.value === 'upgrades') === !!option.replaces) &&
       (kind.value === 'all' || playerCardDef(option.code)?.type === kind.value) &&
-      (level.value === 'all' || option.level === Number(level.value)) &&
-      (!upgradesOnly.value || !!option.replaces),
+      (level.value === 'all' || option.level === Number(level.value)),
   ),
 )
-const pages = computed(() => Math.max(1, Math.ceil(filtered.value.length / pageSize)))
-const visible = computed(() =>
-  filtered.value.slice((page.value - 1) * pageSize, page.value * pageSize),
-)
+const visible = computed(() => filtered.value.slice(0, shown.value))
+const remaining = computed(() => filtered.value.length - visible.value.length)
 const selected = computed(() => props.options.find((option) => key(option) === selectedKey.value))
-const outgoing = computed(() => selected.value?.replaces ?? removal.value)
-const removals = computed(() => [...new Set(props.removable)])
-const canBuy = computed(
-  () =>
-    !!selected.value?.implemented &&
-    !props.disabled &&
-    selected.value.cost <= props.xp &&
-    (!selected.value.needsRemoval || props.removable.includes(removal.value)),
-)
-watch([query, kind, level, upgradesOnly], () => (page.value = 1))
-watch(pages, (count) => (page.value = Math.min(page.value, count)))
+watch([query, show, kind, level], () => (shown.value = pageSize))
 watch(selected, (option) => {
   if (!option) dialog.value?.close()
 })
-watch(removals, (cards) => {
-  if (!cards.includes(removal.value)) removal.value = ''
+// La compra se anuncia cuando el mazo o la experiencia cambian de verdad.
+watch([() => props.xp, () => props.deck], () => {
+  if (!pending.value) return
+  const { incoming, outgoing } = pending.value
+  announcement.value = outgoing
+    ? t('campaign.shop.doneSwap', { incoming, outgoing })
+    : t('campaign.shop.done', { incoming })
+  pending.value = null
 })
 
 function choose(option: PurchaseOption) {
   selectedKey.value = key(option)
-  removal.value = ''
+  announcement.value = ''
   dialog.value?.showModal()
 }
-function buy() {
-  if (!canBuy.value || !selected.value) return
-  emit('buy', selected.value, selected.value.needsRemoval ? removal.value : undefined)
+async function showMore() {
+  const first = shown.value
+  shown.value += pageSize
+  await nextTick()
+  list.value?.querySelectorAll<HTMLButtonElement>('.choose')[first]?.focus()
+}
+function buy(option: PurchaseOption, remove?: string) {
+  const out = option.replaces ?? remove
+  pending.value = { incoming: localName(option.name), ...(out ? { outgoing: name(out) } : {}) }
+  emit('buy', option, remove)
   dialog.value?.close()
+  // La fila elegida puede desaparecer de la lista: el foco vuelve al encabezado.
+  heading.value?.focus()
 }
 </script>
 
 <template>
-  <section class="upgrade-shop" :aria-label="t('campaign.upgradeDeck')">
+  <section class="upgrade-shop" :aria-labelledby="`${uid}-title`">
     <header class="shop-heading">
       <div>
-        <h3>{{ t('campaign.shop.title') }}</h3>
+        <h3 :id="`${uid}-title`" ref="heading" tabindex="-1">{{ t('campaign.shop.title') }}</h3>
         <p>{{ t('campaign.shop.help') }}</p>
       </div>
       <span class="xp-badge">{{ t('campaign.shop.availableXp', { xp }) }}</span>
     </header>
+    <p class="announcement" role="status">{{ announcement }}</p>
+
     <div class="filters">
       <label class="search">
         <span>{{ t('campaign.shop.search') }}</span>
         <input v-model="query" type="search" :placeholder="t('campaign.shop.searchPlaceholder')" />
       </label>
+      <fieldset class="segmented">
+        <legend>{{ t('campaign.shop.show') }}</legend>
+        <label v-for="value in ['all', 'upgrades', 'new'] as const" :key="value">
+          <input v-model="show" class="visually-hidden" type="radio" :value="value" />
+          <span>{{
+            value === 'all'
+              ? t('campaign.shop.allCards', { n: options.length })
+              : value === 'upgrades'
+                ? t('campaign.shop.upgradesOnly', { n: upgradeCount })
+                : t('campaign.shop.newOnly', { n: options.length - upgradeCount })
+          }}</span>
+        </label>
+      </fieldset>
       <label>
         <span>{{ t('campaign.shop.type') }}</span>
         <select v-model="kind">
@@ -109,109 +144,81 @@ function buy() {
           </option>
         </select>
       </label>
-      <label class="check"
-        ><input v-model="upgradesOnly" type="checkbox" />{{
-          t('campaign.shop.upgradesOnly')
-        }}</label
-      >
     </div>
     <p class="result-count" role="status">
       {{ t('campaign.shop.results', { n: filtered.length }) }}
     </p>
     <p v-if="!options.length" class="empty">{{ t('campaign.nothingToBuy') }}</p>
     <p v-else-if="!filtered.length" class="empty">{{ t('campaign.shop.noResults') }}</p>
-    <ul v-else class="card-grid">
-      <li v-for="option in visible" :key="key(option)">
-        <button type="button" class="card-option" :disabled="disabled" @click="choose(option)">
+    <ul v-else ref="list" class="option-list">
+      <li v-for="(option, n) in visible" :key="key(option)">
+        <article class="card-option" :aria-labelledby="`${uid}-option-${n}`">
           <GameCard
+            class="thumb"
             :code="option.code"
             :name="localName(option.name)"
-            :width="156"
+            :width="76"
             thumbnail
             no-zoom
           />
-          <strong>{{ localName(option.name) }}</strong>
-          <span class="card-meta"
-            >{{ t('campaign.level', { n: option.level })
-            }}<b>{{ t('campaign.shop.price', { xp: option.cost }) }}</b></span
-          >
-          <small>{{
-            option.replaces
-              ? t('campaign.upgradeOf', { card: name(option.replaces) })
-              : t('campaign.shop.newCard')
-          }}</small>
-          <span class="view-card"
-            >{{ t('campaign.shop.view') }} <span aria-hidden="true">→</span></span
-          >
-        </button>
+          <div class="option-body">
+            <div class="option-head">
+              <h4 :id="`${uid}-option-${n}`">{{ localName(option.name) }}</h4>
+              <span class="price">{{ t('campaign.shop.price', { xp: option.cost }) }}</span>
+            </div>
+            <p class="tag" :class="option.replaces ? 'upgrade' : 'new'">
+              <template v-if="option.replaces">
+                <span aria-hidden="true">↑</span>
+                {{
+                  t('campaign.shop.upgradeFrom', {
+                    card: name(option.replaces),
+                    from: levelOf(option.replaces),
+                    to: option.level,
+                  })
+                }}
+              </template>
+              <template v-else>
+                <span aria-hidden="true">+</span> {{ t('campaign.shop.newCard') }}
+                <template v-if="copies(option.code)">
+                  · {{ t('campaign.shop.owned', { n: copies(option.code) }) }}</template
+                >
+              </template>
+            </p>
+            <UpgradeCardInfo :code="option.code" compact />
+            <button
+              type="button"
+              class="choose"
+              :disabled="disabled"
+              :aria-describedby="`${uid}-option-${n}`"
+              @click="choose(option)"
+            >
+              {{ t('campaign.shop.review') }} <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </article>
       </li>
     </ul>
-    <nav v-if="pages > 1" class="pagination" :aria-label="t('campaign.shop.pages')">
-      <button type="button" :disabled="page === 1" @click="page--">
-        {{ t('campaign.shop.previous') }}
+    <div v-if="remaining > 0" class="more">
+      <span>{{
+        t('campaign.shop.showing', { shown: visible.length, total: filtered.length })
+      }}</span>
+      <button type="button" @click="showMore">
+        {{ t('campaign.shop.showMore', { n: Math.min(pageSize, remaining) }) }}
       </button>
-      <span aria-live="polite">{{ t('campaign.shop.page', { page, pages }) }}</span>
-      <button type="button" :disabled="page === pages" @click="page++">
-        {{ t('campaign.shop.next') }}
-      </button>
-    </nav>
-    <dialog ref="dialog" :aria-labelledby="titleId" @close="selectedKey = null">
-      <template v-if="selected">
-        <header class="dialog-heading">
-          <h3 :id="titleId">{{ localName(selected.name) }}</h3>
-          <button type="button" autofocus @click="dialog?.close()">
-            {{ t('campaign.closeShop') }}
-          </button>
-        </header>
-        <div class="purchase-detail">
-          <div class="incoming">
-            <p class="step-label">{{ t('campaign.shop.incoming') }}</p>
-            <CardDetails
-              :code="selected.code"
-              :name="localName(selected.name)"
-              :width="280"
-              no-zoom
-            />
-            <p>{{ t('campaign.level', { n: selected.level }) }}</p>
-          </div>
-          <div class="exchange">
-            <template v-if="selected.needsRemoval">
-              <h4>{{ t('campaign.shop.chooseRemoval') }}</h4>
-              <p>{{ t('campaign.shop.removalHelp') }}</p>
-              <div class="removal-grid" role="group" :aria-label="t('campaign.shop.chooseRemoval')">
-                <button
-                  v-for="code in removals"
-                  :key="code"
-                  type="button"
-                  :aria-pressed="removal === code"
-                  @click="removal = code"
-                >
-                  <GameCard :code="code" :name="name(code)" :width="86" thumbnail no-zoom />
-                  <span>{{ name(code) }}</span>
-                  <small>{{ t('campaign.level', { n: playerCardDef(code)?.xp ?? 0 }) }}</small>
-                </button>
-              </div>
-            </template>
-            <template v-if="outgoing">
-              <p class="step-label">{{ t('campaign.shop.outgoing') }}</p>
-              <div class="outgoing">
-                <CardDetails :code="outgoing" :name="name(outgoing)" :width="160" no-zoom />
-                <strong>{{ name(outgoing) }}</strong>
-              </div>
-            </template>
-            <p v-else-if="!selected.needsRemoval">{{ t('campaign.shop.noRemoval') }}</p>
-          </div>
-        </div>
-        <footer class="purchase-footer">
-          <div>
-            <strong>{{ t('campaign.shop.price', { xp: selected.cost }) }}</strong
-            ><span>{{ t('campaign.shop.remainingXp', { xp: xp - selected.cost }) }}</span>
-          </div>
-          <button type="button" :disabled="!canBuy" @click="buy">
-            {{ t('campaign.buy', { xp: selected.cost }) }}
-          </button>
-        </footer>
-      </template>
+    </div>
+
+    <dialog ref="dialog" :aria-label="t('campaign.shop.dialogTitle')" @close="selectedKey = null">
+      <UpgradeExchange
+        v-if="selected"
+        :key="selectedKey ?? ''"
+        :option="selected"
+        :removable="removable"
+        :xp="xp"
+        :disabled="disabled"
+        :deck="deck"
+        @buy="buy"
+        @close="dialog?.close()"
+      />
     </dialog>
   </section>
 </template>
@@ -220,9 +227,7 @@ function buy() {
 .upgrade-shop {
   min-width: 0;
 }
-.shop-heading,
-.dialog-heading,
-.purchase-footer {
+.shop-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -233,12 +238,13 @@ h4,
 p {
   margin: 0;
 }
-.shop-heading p,
-.exchange > p,
-.incoming > p:last-child {
+h3 {
+  font-family: var(--fell);
+}
+.shop-heading p {
   color: var(--muted);
   font-size: 0.875rem;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 .xp-badge {
   flex: none;
@@ -246,202 +252,209 @@ p {
   border: 1px solid var(--brass-dark);
   border-radius: 6px;
   color: var(--brass);
+  font-weight: 700;
+}
+.announcement:not(:empty) {
+  margin-top: 14px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--brass);
+  background: var(--site-panel-raised);
 }
 .filters {
   display: flex;
   flex-wrap: wrap;
   align-items: end;
   gap: 12px;
-  margin-top: 22px;
+  margin-top: 20px;
 }
-.filters label {
-  display: grid;
-  gap: 6px;
+.filters label,
+.segmented legend {
   color: var(--muted);
   font-size: 0.8125rem;
 }
-.filters input,
+.filters > label {
+  display: grid;
+  gap: 6px;
+  flex: 1 1 130px;
+}
+.filters input[type='search'],
 .filters select {
   min-height: 44px;
   min-width: 0;
   width: 100%;
 }
-.filters .search {
-  flex: 1 1 180px;
+.filters .search,
+.segmented {
+  flex: 1 1 100%;
 }
-.filters .check {
+.segmented {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.segmented legend {
+  padding: 0;
+  margin-bottom: 6px;
+}
+.segmented label {
+  display: flex;
+  flex: 1 1 auto;
+  cursor: pointer;
+}
+.segmented label span {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  width: 100%;
   min-height: 44px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  color: var(--site-ink);
+  background: var(--site-control);
+  text-align: center;
 }
-.check input {
-  width: 18px;
-  min-height: 18px;
+.segmented label:first-of-type span {
+  border-radius: 6px 0 0 6px;
+}
+.segmented label:last-of-type span {
+  border-radius: 0 6px 6px 0;
+}
+.segmented label + label span {
+  border-left: 0;
+}
+.segmented label:hover span {
+  background: var(--site-panel-hover);
+}
+.segmented input:checked + span {
+  background: var(--site-accent);
+  border-color: var(--site-accent);
+  color: var(--site-on-accent);
+  font-weight: 700;
+}
+.segmented input:focus-visible + span {
+  position: relative;
+  outline: 3px solid var(--brass);
+  outline-offset: 2px;
 }
 .result-count {
-  margin: 18px 0 12px;
+  margin: 16px 0 10px;
   color: var(--muted);
   font-size: 0.8125rem;
 }
-.card-grid {
+.option-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(166px, 1fr));
-  gap: 14px;
+  gap: 10px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .card-option {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 10px;
-  width: 100%;
-  height: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 14px;
   padding: 12px;
-  text-align: left;
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 9px;
   color: var(--ink);
 }
-.card-option :deep(.game-card) {
-  align-self: center;
-  max-width: 100%;
-  height: auto !important;
-  aspect-ratio: 5 / 7;
-}
-.card-option strong {
-  font-family: var(--fell);
-  overflow-wrap: anywhere;
-}
-.card-option small {
-  color: var(--muted);
-  font-size: 0.75rem;
-}
-.card-meta {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  font-size: 0.75rem;
-  color: var(--muted);
-}
-.card-meta b,
-.view-card {
-  color: var(--brass);
-}
-.view-card {
-  margin-top: auto;
-  padding-top: 8px;
-  font-size: 0.8125rem;
-}
-button:focus-visible,
-input:focus-visible,
-select:focus-visible {
-  outline: 3px solid var(--brass);
-  outline-offset: 3px;
-}
 .card-option:hover,
-.removal-grid button:hover {
+.card-option:focus-within {
   border-color: var(--brass);
   background: var(--site-panel-hover);
 }
-.pagination {
+.card-option .thumb {
+  align-self: start;
+}
+.option-body {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.option-head {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 22px;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.option-head h4 {
+  font-family: var(--fell);
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;
+}
+.price {
+  flex: none;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--site-panel-raised);
+  border: 1px solid var(--brass-dark);
+  color: var(--brass);
+  font-weight: 700;
   font-size: 0.875rem;
 }
+.tag {
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+.tag.upgrade {
+  color: var(--site-accent);
+}
+.tag.new {
+  color: var(--site-ink-soft);
+}
+.choose {
+  justify-self: start;
+  min-height: 44px;
+  margin-top: 4px;
+}
+/* Toda la fila responde al clic; el botón sigue siendo el único control enfocable. */
+.choose::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9px;
+}
+.choose:disabled::after {
+  cursor: not-allowed;
+}
+.more {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 16px;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.more button {
+  min-height: 44px;
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+h3:focus-visible {
+  outline: 3px solid var(--brass);
+  outline-offset: 3px;
+}
 dialog {
-  width: min(850px, calc(100vw - 32px));
+  width: min(980px, calc(100vw - 32px));
   max-height: calc(100dvh - 32px);
-  padding: 24px;
+  padding: 0;
   border: 1px solid var(--brass-dark);
   border-radius: 12px;
   background: var(--panel);
   color: var(--ink);
 }
-dialog::backdrop {
-  background: rgb(0 0 0 / 75%);
-}
-.dialog-heading {
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--border);
-}
-.dialog-heading h3 {
-  font-family: var(--fell);
-}
-.purchase-detail {
-  display: grid;
-  grid-template-columns: 280px minmax(0, 1fr);
-  gap: 28px;
-  margin: 20px 0;
-}
-.step-label {
-  margin: 0 0 12px !important;
-  color: var(--brass) !important;
-  font-size: 0.8125rem;
-}
-.exchange {
-  min-width: 0;
-}
-.removal-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 8px;
-  max-height: 320px;
-  overflow-y: auto;
-  padding: 4px;
-  margin: 12px 0 20px;
-}
-.removal-grid button {
+dialog[open] {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 6px;
-  color: var(--ink);
-  background: var(--site-bg);
-  border: 1px solid var(--border);
-  border-radius: 7px;
-  font-size: 0.75rem;
 }
-.removal-grid button[aria-pressed='true'] {
-  border: 2px solid var(--brass);
-  background: var(--site-panel-hover);
-}
-.removal-grid small {
-  color: var(--muted);
-}
-.outgoing {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.outgoing strong {
-  flex: 1;
-  font-family: var(--fell);
-}
-.purchase-footer {
-  padding-top: 18px;
-  border-top: 1px solid var(--border);
-}
-.purchase-footer > div {
-  display: grid;
-  gap: 4px;
-}
-.purchase-footer span {
-  font-size: 0.8125rem;
-  color: var(--muted);
-}
-.purchase-footer button {
-  min-height: 44px;
-  border-color: var(--brass);
+dialog::backdrop {
+  background: rgb(0 0 0 / 75%);
 }
 .empty {
   color: var(--muted);
@@ -452,38 +465,22 @@ dialog::backdrop {
     align-items: flex-start;
     flex-direction: column;
   }
-  .card-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-  }
   .card-option {
-    padding: 8px;
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px;
   }
-  .filters > label:not(.search) {
-    flex: 1 1 100px;
-  }
-  dialog {
-    padding: 16px;
-  }
-  .purchase-detail {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 20px;
-  }
-  .incoming {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .incoming :deep(.game-card) {
-    max-width: 100%;
+  .card-option .thumb {
+    width: 56px !important;
     height: auto !important;
     aspect-ratio: 5 / 7;
   }
-  .purchase-footer {
-    flex-wrap: wrap;
-  }
-  .purchase-footer button {
-    width: 100%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .card-option {
+    transition:
+      border-color 0.15s,
+      background-color 0.15s;
   }
 }
 </style>
