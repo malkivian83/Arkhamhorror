@@ -53,6 +53,11 @@ export function turnActionTiming(
   if (completed === 1 || (completed === 2 && pending === 0)) return 'middle'
   return 'late'
 }
+/** Temporary "as if" actions do not create or extend the actual turn. */
+export const currentTurnSkillEffect = (s: GameState, by: InvestigatorId) => {
+  const effect = getInvestigator(s, by).turnSkillEffect
+  return effect?.turn === turnStartedAt(s) && turnActionTiming(s, by) !== null ? effect : undefined
+}
 
 /** Their turn this round is in progress or has not begun yet (Stella Clark). */
 export function turnAheadThisRound(state: GameState, id: InvestigatorId): boolean {
@@ -143,7 +148,13 @@ export function shroudOf(state: GameState, id: LocationId): number {
     )
     .reduce((sum, t) => sum + (treacheryBehavior(t.code)?.shroudModifier ?? 0), 0)
   const scenario = scenarioBehavior(state.scenarioId)?.shroudModifier?.(state, location) ?? 0
-  return Math.max(0, location.shroud + (location.shroudModifier ?? 0) + attached + scenario)
+  const temporary = (location.turnShroudModifiers ?? [])
+    .filter((m) => m.turn === turnStartedAt(state) && turnActionTiming(state, m.owner) !== null)
+    .reduce((sum, m) => sum + m.amount, 0)
+  return Math.max(
+    0,
+    location.shroud + (location.shroudModifier ?? 0) + attached + scenario + temporary,
+  )
 }
 
 /**

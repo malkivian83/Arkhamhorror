@@ -1,0 +1,217 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "cards": [
+    {
+      "code": "02261",
+      "status": "verified",
+      "module": "card-02261",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "05315",
+      "status": "verified",
+      "module": "card-05315",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "09102",
+      "status": "verified",
+      "module": "card-09102",
+      "test": "rules.test.ts",
+      "subname": "Watcher Beyond Time"
+    },
+    {
+      "code": "01085",
+      "status": "verified",
+      "module": "card-01085",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "05281",
+      "status": "verified",
+      "module": "card-05281",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "54010",
+      "status": "verified",
+      "module": "card-54010",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "60173",
+      "status": "verified",
+      "module": "card-60173",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "05023",
+      "status": "verified",
+      "module": "card-05023",
+      "test": "windows.test.ts",
+      "subname": "Let Your Arrow Fly True",
+      "adapter": "reviewed-tarot-v1"
+    },
+    {
+      "code": "05027",
+      "status": "verified",
+      "module": "card-05027",
+      "test": "windows.test.ts",
+      "subname": "Free from the Past",
+      "adapter": "reviewed-tarot-v1"
+    },
+    {
+      "code": "05031",
+      "status": "verified",
+      "module": "card-05031",
+      "test": "windows.test.ts",
+      "subname": "Message from Your Inner Self",
+      "adapter": "reviewed-tarot-v1"
+    },
+    {
+      "code": "05035",
+      "status": "verified",
+      "module": "card-05035",
+      "test": "windows.test.ts",
+      "subname": "Chalice of the Heart",
+      "adapter": "reviewed-tarot-v1"
+    },
+    {
+      "code": "05039",
+      "status": "verified",
+      "module": "card-05039",
+      "test": "windows.test.ts",
+      "subname": "From the Brink",
+      "adapter": "reviewed-tarot-v1"
+    },
+    {
+      "code": "54003",
+      "status": "verified",
+      "module": "card-54003",
+      "test": "windows.test.ts",
+      "subname": "The Journey is Complete",
+      "adapter": "reviewed-tarot-v1"
+    },
+    {
+      "code": "54005",
+      "status": "verified",
+      "module": "card-54005",
+      "test": "windows.test.ts",
+      "subname": "Charge Ever Onward",
+      "adapter": "reviewed-tarot-v1"
+    },
+    {
+      "code": "08083",
+      "status": "verified",
+      "module": "card-08083",
+      "test": "windows.test.ts",
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "60309",
+      "status": "verified",
+      "module": "card-60309",
+      "test": "windows.test.ts",
+      "subname": "Feisty Mechanic"
+    },
+    {
+      "code": "60570",
+      "status": "verified",
+      "module": "card-60570",
+      "test": "windows.test.ts",
+      "uses": {
+        "count": 4,
+        "type": "supplies"
+      }
+    },
+    {
+      "code": "60472",
+      "status": "verified",
+      "module": "card-60472",
+      "test": "windows.test.ts",
+      "fast": true
+    },
+    {
+      "code": "03314",
+      "status": "verified",
+      "module": "card-03314",
+      "test": "windows.test.ts",
+      "fast": true
+    },
+    {
+      "code": "10069",
+      "status": "verified",
+      "module": "card-10069",
+      "test": "windows.test.ts"
+    },
+    {
+      "code": "10048",
+      "status": "verified",
+      "module": "card-10048",
+      "test": "windows.test.ts"
+    },
+    {
+      "code": "03029",
+      "status": "verified",
+      "module": "card-03029",
+      "test": "windows.test.ts",
+      "fast": true
+    },
+    {
+      "code": "09066",
+      "status": "verified",
+      "module": "card-09066",
+      "test": "windows.test.ts",
+      "fast": true
+    },
+    {
+      "code": "07108",
+      "status": "verified",
+      "module": "card-07108",
+      "test": "windows.test.ts"
+    },
+    {
+      "code": "07027",
+      "status": "verified",
+      "module": "card-07027",
+      "test": "windows.test.ts",
+      "fast": true,
+      "uses": {
+        "count": 3,
+        "type": "charges"
+      }
+    },
+    {
+      "code": "03266",
+      "status": "verified",
+      "module": "card-03266",
+      "test": "windows.test.ts",
+      "uses": {
+        "count": 3,
+        "type": "charges"
+      }
+    },
+    {
+      "code": "10108",
+      "status": "verified",
+      "module": "card-10108",
+      "test": "windows.test.ts",
+      "uses": {
+        "count": 3,
+        "type": "supplies"
+      }
+    }
+  ],
+  "sources": {
+    "en": "fe43f94967fe69fe4df50423fba4b1fc797b9759f2969edd88e5a0f9da863292",
+    "es": "3652e6fa5c7112901b232a3ecf6e48b69effac0a614297e7a35aa75d433e3ca6"
+  }
+}

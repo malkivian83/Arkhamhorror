@@ -28,6 +28,7 @@ import {
   placedLocation,
   playableHand,
   turnStartedAt,
+  turnActionTiming,
   usesAsResources,
 } from './state'
 import type {
@@ -90,10 +91,18 @@ export function canPlayByEffect(
   from: 'hand' | 'discard',
   noCost = false,
   discount = 0,
+  additionalActionsPaid = false,
 ): boolean {
   const i = getInvestigator(state, id)
   const def = playerCardDef(code)
   if (!def || i.eliminated || i.location === null || !i[from].includes(code)) return false
+  const extra = playerCardBehavior(code)?.additionalPlayActions ?? 0
+  if (
+    !additionalActionsPaid &&
+    extra > 0 &&
+    (state.activeTurn !== id || i.actionsRemaining < extra)
+  )
+    return false
   if (!['asset', 'event'].includes(def.type) || !cardAllowed(state, id, code)) return false
   if (
     def.type === 'asset' &&
@@ -204,6 +213,7 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
   if (
     investigator.actionsRemaining <= 0 &&
     !investigator.extraMove &&
+    engageActionsAvailable(state, id) === 0 &&
     !(investigator.fightActionsThisTurn && state.activeTurn === id)
   ) {
     const evades: Action[] = investigator.extraEvade
@@ -262,6 +272,7 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
       actionCost(state, id, a) <=
         investigator.actionsRemaining +
           (a.kind === 'move' && investigator.extraMove ? 1 : 0) +
+          (a.kind === 'engage' ? engageActionsAvailable(state, id) : 0) +
           (isFightAction(a) && state.activeTurn === id
             ? (investigator.fightActionsThisTurn ?? 0)
             : 0) +
@@ -288,6 +299,14 @@ export function fightAbility(messages: Message[]): boolean {
   return visit(messages)
 }
 
+/** RR Additional Actions: continuous engage actions remaining in the actual own turn. */
+export function engageActionsAvailable(state: GameState, id: InvestigatorId): number {
+  if (turnActionTiming(state, id) === null || assetsBlocked(state, id)) return 0
+  const provided = Object.values(state.assets)
+    .filter((a) => a.owner === id)
+    .reduce((sum, a) => sum + (assetBehavior(state, a)?.additionalEngageActions ?? 0), 0)
+  return Math.max(0, provided - (getInvestigator(state, id).engageActionsUsed ?? 0))
+}
 /**
  * RR Additional Actions: the trait the investigator's restricted additional action can be
  * used for right now (Marie Lambeau: Spell, while she has doom on cards she controls).
@@ -339,10 +358,12 @@ export function actionCost(state: GameState, id: InvestigatorId, action: Action)
   const here = getInvestigator(state, id).location
   if (here === null) return 1
   // Frozen in Fear: costes adicionales de las traiciones de su zona de amenaza.
-  const extra = threatAreaTreacheries(state, id).reduce(
-    (sum, t) => sum + (treacheryBehavior(t.code)?.actionCost?.(state, t, action) ?? 0),
-    0,
-  )
+  const extra =
+    (action.kind === 'play' ? (playerCardBehavior(action.card)?.additionalPlayActions ?? 0) : 0) +
+    threatAreaTreacheries(state, id).reduce(
+      (sum, t) => sum + (treacheryBehavior(t.code)?.actionCost?.(state, t, action) ?? 0),
+      0,
+    )
   if (
     action.kind === 'investigate' ||
     (action.kind === 'play' && playerCardBehavior(action.card)?.investigateAction)
@@ -389,7 +410,11 @@ export function describeAction(state: GameState, id: InvestigatorId, action: Act
         label: 'action.play',
         params: { card: playerCardDef(action.card)?.name ?? action.card },
         target,
-        display: { kind: 'play', action: 'play', actions: 1 },
+        display: {
+          kind: 'play',
+          action: 'play',
+          actions: 1 + (playerCardBehavior(action.card)?.additionalPlayActions ?? 0),
+        },
         then: [],
       }
     }
@@ -585,6 +610,7 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
       (a) =>
         a.actions <=
           investigator.actionsRemaining +
+            (a.actionKind === 'engage' ? engageActionsAvailable(state, id) : 0) +
             (a.actions > 0 &&
             (a.actionKind === 'fight' || fightAbility(a.then)) &&
             state.activeTurn === id

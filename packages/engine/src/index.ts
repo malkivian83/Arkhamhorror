@@ -2,6 +2,7 @@ export {
   attackBlocked,
   availableAbilities,
   availableActions,
+  engageActionsAvailable,
   playableCards,
   canPlayByEffect,
   limitTitleReached,
@@ -111,6 +112,7 @@ export {
   secondAgendaDoom,
   testEnemyHasKeyword,
   handSize,
+  cardsInHand,
 } from './handlers'
 export * from './rng'
 export {
@@ -133,6 +135,7 @@ export {
   enemyMaxHealth,
   engagedEnemies,
   getInvestigator,
+  findEnemy,
   getLocation,
   investigatorsAt,
   leadInvestigator,

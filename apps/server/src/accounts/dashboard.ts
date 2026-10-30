@@ -1,7 +1,7 @@
 import type { FastifyInstance } from 'fastify'
 import { canAdminister, type AdminOverview, type AdminUser, type AdminActivity } from '@lcg/shared'
 import type { Database } from './database'
-import type { authentication } from './auth'
+import type { authentication, User } from './auth'
 import type { AccountConfig } from './config'
 import { requireValue } from './security'
 
@@ -16,6 +16,41 @@ export function dashboard(
     admin.addHook('preHandler', async (req) => {
       requireValue(canAdminister(await auth.requireUser(req)), 'forbidden', 403)
     })
+    for (const action of ['activate', 'resend-verification'] as const) {
+      admin.post<{ Params: { id: string } }>(
+        `/api/admin/users/:id/${action}`,
+        {
+          config: { rateLimit: { max: 10, timeWindow: '10 minutes' } },
+          schema: {
+            params: {
+              type: 'object',
+              required: ['id'],
+              properties: { id: { type: 'string', format: 'uuid' } },
+            },
+          },
+        },
+        async (req) => {
+          if (action === 'activate') {
+            await db.transaction(async (tx) => {
+              const [user] = await tx.rows<User>('SELECT * FROM users WHERE id = ? FOR UPDATE', [
+                req.params.id,
+              ])
+              requireValue(user, 'not_found', 404)
+              await tx.exec('UPDATE users SET verified = TRUE WHERE id = ?', [user.id])
+              await tx.exec("DELETE FROM account_tokens WHERE user_id = ? AND purpose = 'verify'", [
+                user.id,
+              ])
+            })
+          } else {
+            const [user] = await db.rows<User>('SELECT * FROM users WHERE id = ?', [req.params.id])
+            requireValue(user, 'not_found', 404)
+            requireValue(!user.verified, 'already_verified', 409)
+            await auth.sendVerification(user)
+          }
+          return { ok: true }
+        },
+      )
+    }
     admin.get('/api/admin/overview', async (): Promise<AdminOverview> => {
       const [counts] = await db.rows<Omit<AdminOverview, 'smtp' | 'google'>>(
         `SELECT
