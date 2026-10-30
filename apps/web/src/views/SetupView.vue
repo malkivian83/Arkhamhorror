@@ -247,6 +247,7 @@ function start() {
 <template>
   <div class="setup-page">
     <header class="setup-hero">
+      <span class="beta-badge">{{ t('setup.betaVersion') }}</span>
       <img
         class="hero-art"
         src="/local-assets/home/cthulhu-rlyeh.webp"
@@ -780,13 +781,28 @@ function start() {
 }
 .hero-content {
   max-width: 1312px;
-  min-height: 300px;
+  min-height: 250px;
   margin: auto;
-  padding: 36px 64px;
+  padding: 48px 64px 24px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   gap: 48px;
+}
+.beta-badge {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  padding: 5px 10px;
+  border: 1px solid #e8ad8e80;
+  border-radius: 999px;
+  background: #19191de6;
+  color: #e8ad8e;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
 }
 .hero-copy {
   flex: 1;
@@ -1274,7 +1290,7 @@ h1 {
 @media (max-width: 700px) {
   .hero-content {
     min-height: 0;
-    padding: 36px 16px 24px;
+    padding: 48px 16px 24px;
   }
   .setup-hero::after {
     background: linear-gradient(0deg, #19191d 0%, #19191dcc 45%, #19191d55 100%);
