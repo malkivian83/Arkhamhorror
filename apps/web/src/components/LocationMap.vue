@@ -226,7 +226,6 @@ const treacheriesAt = (id: string) =>
             code="82017b"
             :name="t('table.maskedCarnevale')"
             :width="54"
-            no-zoom
           />
           <div
             v-else-if="p.faceDown"
