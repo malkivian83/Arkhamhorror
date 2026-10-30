@@ -90,6 +90,7 @@ vigente de pendientes.
 - [92 · Nathaniel Cho y Harvey Walters](92-nathaniel-cho-harvey-walters.md): dos mazos completos, investigadores y exclusivas, mejoras, reglas por fase y tamaño de mano, e Investigado.
 
 - [93 · Variantes de encuentros](93-variantes-conjuntos-encuentros.md): elección original/capítulo 2 en Dunwich, Carcosa y Fanática; preparación, excepciones y persistencia local/online.
+- [94 · La llamada del Portador de la Plaga](94-portador-de-la-plaga.md): campaña fanmade; inventario de cartas EN/ES, bolsa, reglas nuevas, registro, errata, diferencias entre guías y decisiones pendientes.
 
 ## Decisiones ya tomadas
 
