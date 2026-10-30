@@ -7,6 +7,7 @@ import { documents, flush, stopLibrary } from '../account/library'
 import type { AuthStatus } from '@lcg/shared'
 import SitePage from '../components/SitePage.vue'
 import SiteAction from '../components/SiteAction.vue'
+import GoogleAccountLink from '../components/GoogleAccountLink.vue'
 
 const { t, locale } = useI18n()
 const route = useRoute()
@@ -146,9 +147,9 @@ async function removeAccount() {
           <h2>{{ account.user.name }}</h2>
           <p>{{ account.user.email }}</p>
           <RouterLink class="link-button" to="/library">{{ t('account.library') }}</RouterLink>
-          <a v-if="account.google" class="link-button" href="/api/auth/google?link=1">{{
+          <GoogleAccountLink v-if="account.google" href="/api/auth/google?link=1">{{
             t('account.linkGoogle')
-          }}</a>
+          }}</GoogleAccountLink>
           <p class="hint">{{ t('account.passwordHelp') }}</p>
           <button type="button" :disabled="busy" @click="requestPasswordChange">
             {{ t('account.passwordLink') }}
@@ -214,11 +215,10 @@ async function removeAccount() {
               {{ busy ? t('account.working') : t(`account.actions.${mode}`) }}
             </SiteAction>
           </form>
-          <a
+          <GoogleAccountLink
             v-if="account.google && ['login', 'register'].includes(mode)"
-            class="link-button google"
             href="/api/auth/google"
-            >{{ t('account.google') }}</a
+            >{{ t('account.google') }}</GoogleAccountLink
           >
           <div class="secondary-actions">
             <button type="button" @click="mode = 'forgot'">{{ t('account.forgot') }}</button>

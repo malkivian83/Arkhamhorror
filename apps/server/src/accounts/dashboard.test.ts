@@ -28,6 +28,7 @@ async function fixture(user: User | null = owner) {
     { rows } as unknown as Database,
     {
       current: async () => user,
+      sendVerification: vi.fn(),
       requireUser: async () => {
         if (!user) throw new ApiError('unauthorized', 401)
         return user
@@ -55,6 +56,15 @@ describe('administration authorization and bounded reads', () => {
     try {
       for (const path of ['overview', 'users', 'access', 'mail'])
         expect((await app.inject(`/api/admin/${path}`)).statusCode).toBe(status)
+      for (const action of ['activate', 'resend-verification'])
+        expect(
+          (
+            await app.inject({
+              method: 'POST',
+              url: `/api/admin/users/12345678-1234-4234-8234-123456789abc/${action}`,
+            })
+          ).statusCode,
+        ).toBe(status)
       expect(rows).not.toHaveBeenCalled()
     } finally {
       await app.close()

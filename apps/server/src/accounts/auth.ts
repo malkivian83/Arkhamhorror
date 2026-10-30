@@ -460,5 +460,5 @@ export function authentication(
       return { ok: true }
     },
   )
-  return { requireUser, current }
+  return { requireUser, current, sendVerification: (user: User) => issue(user, 'verify') }
 }

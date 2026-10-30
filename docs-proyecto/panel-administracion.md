@@ -22,7 +22,15 @@ muestran el enlace únicamente para esa cuenta autorizada.
 
 Listados de 50 elementos con búsqueda y paginación. Las sesiones activas deben
 seguir vigentes y haberse utilizado en los últimos siete días. El contador de
-errores de correo cubre las últimas 24 horas. El panel es de consulta.
+errores de correo cubre las últimas 24 horas.
+
+En Usuarios, las cuentas pendientes permiten reenviar la verificación o activarlas
+manualmente, con confirmación que identifica el correo. Activar marca la cuenta
+como verificada y elimina sus tokens de verificación en una transacción, sin
+cambiar contraseña ni rol. El reenvío reutiliza el correo EN/ES y su registro de
+actividad; la aceptación por SMTP no garantiza entrega. Ambas acciones requieren
+los mismos permisos de administrador, origen y CSRF que el resto de la API y
+tienen un límite de diez solicitudes por diez minutos y ruta.
 
 ## Activación
 
@@ -48,3 +56,8 @@ verificadas, administradores con otro correo, límites de paginación y búsqued
 parametrizada. `accounts.mysql.test.ts` verifica migraciones, permisos con
 sesiones reales, revocación de rol, estadísticas, accesos y correos correctos
 y fallidos. Requiere `MYSQL_TEST_URL` hacia una base aislada terminada en `_test`.
+
+`dashboard-actions.test.ts` comprueba activación, retirada de tokens, reenvío
+localizado, fallos SMTP, cuentas inexistentes o verificadas y protección de origen
+y CSRF. La prueba MySQL de gestión administrativa comprueba además el acceso con
+la contraseña original tras activar la cuenta y la invalidación del enlace anterior.

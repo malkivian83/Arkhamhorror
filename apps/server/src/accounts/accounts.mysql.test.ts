@@ -217,6 +217,35 @@ describe.skipIf(!url)('cuentas y bibliotecas con MySQL real', () => {
     expect((await app.inject({ url: '/api/admin/overview', headers })).statusCode).toBe(403)
   })
 
+  it('permite reenviar y activar desde administración y acceder sin el enlace de correo', async () => {
+    await provisionAdmin(db.db, { email: 'malkivian@gmail.com', password })
+    const admin = await post('/auth/login', { email: 'malkivian@gmail.com', password })
+    const address = 'pending-admin@example.test'
+    expect(
+      (await post('/auth/register', { email: address, password, name: 'Pending' })).statusCode,
+    ).toBe(200)
+    const [pending] = await db.db.rows<{ id: string }>('SELECT id FROM users WHERE email = ?', [
+      address,
+    ])
+    expect((await post('/auth/login', { email: address, password })).statusCode).toBe(403)
+    const action = (name: string) =>
+      post(`/admin/users/${pending!.id}/${name}`, {}, cookieOf(admin), admin.json().csrf)
+    expect((await action('resend-verification')).statusCode).toBe(200)
+    expect(mails.filter((mail) => mail.to === address)).toHaveLength(2)
+    expect((await action('activate')).statusCode).toBe(200)
+    expect(
+      await db.db.rows(
+        "SELECT token_hash FROM account_tokens WHERE user_id = ? AND purpose = 'verify'",
+        [pending!.id],
+      ),
+    ).toEqual([])
+    const login = await post('/auth/login', { email: address, password })
+    expect(login.statusCode).toBe(200)
+    expect(login.json().user).toMatchObject({ verified: true, role: 'user' })
+    expect((await action('resend-verification')).statusCode).toBe(409)
+    expect((await post('/auth/verify-email', { token: tokenFrom(mails[0]!) })).statusCode).toBe(400)
+  })
+
   it('registra fallos de correo y retira el token que no pudo enviarse', async () => {
     const normal = await user()
     await app.close()

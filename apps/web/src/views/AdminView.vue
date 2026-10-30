@@ -22,7 +22,30 @@ const activity = ref<AdminActivity[]>([])
 const more = ref(false)
 const busy = ref(false)
 const error = ref('')
+const actionBusy = ref(false)
+const actionError = ref('')
+const notice = ref('')
 let request = 0
+async function manageUser(user: AdminUser, action: 'activate' | 'resend-verification') {
+  if (actionBusy.value) return
+  if (action === 'activate' && !window.confirm(t('admin.activateConfirm', { email: user.email })))
+    return
+  actionBusy.value = true
+  actionError.value = ''
+  notice.value = ''
+  try {
+    await api(`/admin/users/${encodeURIComponent(user.id)}/${action}`, 'POST')
+    await load()
+    notice.value = action === 'activate' ? 'activated' : 'verificationSent'
+  } catch (e) {
+    const code = e instanceof ApiError ? e.code : 'internal'
+    actionError.value = ['mail_unavailable', 'already_verified', 'not_found'].includes(code)
+      ? code
+      : 'actionFailed'
+  } finally {
+    actionBusy.value = false
+  }
+}
 function date(value: number | null) {
   return value ? new Date(Number(value)).toLocaleString(locale.value) : t('admin.unknown')
 }
@@ -81,6 +104,8 @@ watch(page, load)
       <template v-else>
         <p>{{ t('admin.description') }}</p>
         <p v-if="error" role="alert">{{ t(`admin.${error}`) }}</p>
+        <p v-if="actionError" role="alert">{{ t(`admin.${actionError}`) }}</p>
+        <p v-if="notice" role="status">{{ t(`admin.${notice}`) }}</p>
         <p v-if="busy" role="status">{{ t('admin.loading') }}</p>
         <div v-if="overview" class="admin-metrics">
           <article
@@ -140,6 +165,7 @@ watch(page, load)
                 <th>{{ t('admin.lastAccess') }}</th>
                 <th>{{ t('admin.sessions') }}</th>
                 <th>{{ t('admin.documents') }}</th>
+                <th>{{ t('admin.actions') }}</th>
               </tr>
             </thead>
             <tbody>
@@ -154,6 +180,19 @@ watch(page, load)
                 <td>{{ date(user.last_access) }}</td>
                 <td>{{ user.sessions }}</td>
                 <td>{{ user.documents }}</td>
+                <td>
+                  <div v-if="!user.verified" class="admin-user-actions">
+                    <button
+                      :disabled="busy || actionBusy"
+                      @click="manageUser(user, 'resend-verification')"
+                    >
+                      {{ t('admin.resendVerification') }}
+                    </button>
+                    <button :disabled="busy || actionBusy" @click="manageUser(user, 'activate')">
+                      {{ t('admin.activate') }}
+                    </button>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -263,6 +302,10 @@ button {
 }
 .admin-table {
   overflow-x: auto;
+}
+.admin-user-actions {
+  display: grid;
+  gap: 10px;
 }
 table {
   width: 100%;
