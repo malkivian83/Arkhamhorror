@@ -1,0 +1,307 @@
+[
+  {
+    "code": "03107",
+    "name": "Combat Training",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Talent", "Composure"],
+    "cost": 1,
+    "xp": 1,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "sanity": 1,
+    "fast": true
+  },
+  {
+    "code": "03109",
+    "name": "Scientific Theory",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Talent", "Composure"],
+    "cost": 1,
+    "xp": 1,
+    "icons": {
+      "intellect": 1,
+      "combat": 1
+    },
+    "slots": [],
+    "sanity": 1,
+    "fast": true
+  },
+  {
+    "code": "03111",
+    "name": "Moxie",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent", "Composure"],
+    "cost": 1,
+    "xp": 1,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "sanity": 1,
+    "fast": true
+  },
+  {
+    "code": "03113",
+    "name": "Grounded",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Talent", "Composure"],
+    "cost": 1,
+    "xp": 1,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": [],
+    "sanity": 1,
+    "fast": true
+  },
+  {
+    "code": "03115",
+    "name": "Plucky",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Talent", "Composure"],
+    "cost": 1,
+    "xp": 1,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": [],
+    "sanity": 1,
+    "fast": true
+  },
+  {
+    "code": "08027",
+    "name": "Combat Training",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Talent", "Composure"],
+    "cost": 0,
+    "xp": 3,
+    "icons": {
+      "combat": 2,
+      "agility": 2
+    },
+    "slots": [],
+    "health": 3,
+    "sanity": 1,
+    "fast": true
+  },
+  {
+    "code": "08040",
+    "name": "Scientific Theory",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Talent", "Composure"],
+    "cost": 0,
+    "xp": 3,
+    "icons": {
+      "intellect": 2,
+      "combat": 2
+    },
+    "slots": [],
+    "health": 1,
+    "sanity": 3,
+    "fast": true
+  },
+  {
+    "code": "08056",
+    "name": "Moxie",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Talent", "Composure"],
+    "cost": 0,
+    "xp": 3,
+    "icons": {
+      "willpower": 2,
+      "agility": 2
+    },
+    "slots": [],
+    "health": 3,
+    "sanity": 1,
+    "fast": true
+  },
+  {
+    "code": "08069",
+    "name": "Grounded",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Talent", "Composure"],
+    "cost": 0,
+    "xp": 3,
+    "icons": {
+      "wild": 2
+    },
+    "slots": [],
+    "health": 2,
+    "sanity": 2,
+    "fast": true
+  },
+  {
+    "code": "08081",
+    "name": "Plucky",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Talent", "Composure"],
+    "cost": 0,
+    "xp": 3,
+    "icons": {
+      "willpower": 2,
+      "intellect": 2
+    },
+    "slots": [],
+    "health": 1,
+    "sanity": 3,
+    "fast": true
+  },
+  {
+    "code": "01063",
+    "name": "Arcane Initiate",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Ally", "Sorcerer"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 2
+  },
+  {
+    "code": "03271",
+    "name": "Arcane Initiate",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Ally", "Sorcerer"],
+    "cost": 0,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 3
+  },
+  {
+    "code": "02272",
+    "name": "Fine Clothes",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Clothing"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["body"],
+    "health": 1,
+    "sanity": 1
+  },
+  {
+    "code": "01058",
+    "name": "Forbidden Knowledge",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Talent"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": [],
+    "uses": {
+      "count": 4,
+      "type": "secrets"
+    }
+  },
+  {
+    "code": "03035",
+    "name": "Spirit Athame",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Relic", "Weapon", "Melee"],
+    "cost": 3,
+    "xp": 1,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "02265",
+    "name": "Joey \"The Rat\" Vigil",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Ally", "Criminal"],
+    "unique": true,
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": ["ally"],
+    "health": 3,
+    "sanity": 2
+  },
+  {
+    "code": "02266",
+    "name": "Ace in the Hole",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 0,
+    "xp": 3,
+    "icons": {},
+    "slots": [],
+    "fast": true,
+    "exceptional": true,
+    "deckLimit": 1
+  },
+  {
+    "code": "03032",
+    "name": "Alchemical Transmutation",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 3,
+      "type": "charges"
+    }
+  },
+  {
+    "code": "52007",
+    "name": "Alchemical Transmutation",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 0,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": ["arcane"],
+    "uses": {
+      "count": 4,
+      "type": "charges"
+    }
+  }
+]

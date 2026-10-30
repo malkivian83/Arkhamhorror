@@ -1296,6 +1296,19 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     // ------------------------------------------------------------ Investigador
+    case 'MoveUsesToResources': {
+      const asset = state.assets[message.asset]
+      if (!asset) return state
+      const amount = Math.max(0, Math.min(message.amount, asset.uses))
+      return push(
+        updateInvestigator(state, message.investigator, (i) => ({
+          ...i,
+          resources: i.resources + amount,
+        })),
+        { type: 'SpendUses', asset: asset.id, amount },
+      )
+    }
+
     case 'GainResources': {
       if (scenarioBehavior(state.scenarioId)?.cannotGainResources?.(state, message.investigator))
         return state
@@ -2667,6 +2680,11 @@ export function handle(state: GameState, message: Message): GameState {
           )
         : []
       const options = mandatory.length ? mandatory : available
+      const beforeOwner = available.some(
+        (a) =>
+          a.owner === investigator &&
+          assetBehavior(state, a)?.beforeOwnerAssignment?.includes(kind),
+      )
       const placedOptions =
         mandatory.length || focused.length ? [] : placedSoakers(state, investigator, kind)
       const toInvestigator: Message = {
@@ -2703,7 +2721,7 @@ export function handle(state: GameState, message: Message): GameState {
           prompt: kind === 'damage' ? 'prompt.assignDamage' : 'prompt.assignHorror',
           ...(message.source ? { promptParams: { source: message.source } } : {}),
           choices: [
-            ...(mandatory.length || focused.length
+            ...(mandatory.length || focused.length || beforeOwner
               ? []
               : [
                   {

@@ -585,6 +585,8 @@ export interface PlayerCardBehavior {
   ) => ReactionOption[]
   /** Printed maximum of one asset with this trait per investigator. */
   limitTrait?: string
+  /** Assign non-direct damage/horror here before the controller's investigator. */
+  beforeOwnerAssignment?: ('damage' | 'horror')[]
   limitTitle?: boolean
   /** Opens the printed reaction window after moving, before enemy engagement. */
   reactsBeforeEngagement?: boolean
