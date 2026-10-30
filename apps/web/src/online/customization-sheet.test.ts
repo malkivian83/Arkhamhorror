@@ -31,3 +31,29 @@ it.each(['en', 'es'] as const)(
     expect(html).toMatch(/value="0" disabled/)
   },
 )
+
+const sheet = (props: Record<string, unknown>) =>
+  renderToString(
+    createSSRApp(CustomizationSheet, { code: '09119', xp: 2, removable: ['01030'], ...props }).use(
+      createI18n({ legacy: false, locale: 'es', messages }),
+    ),
+  )
+
+it('customizes an owned copy without buying another or removing a card', async () => {
+  const html = await sheet({ copies: 1, sheet: {}, full: true })
+  expect(html).toContain('Tienes 1 en el mazo')
+  // No new copy by default, so a full deck does not ask for a removal.
+  expect(html).toContain('Pagar mejoras (0 exp.)')
+  expect(html).not.toContain(messages.es.campaign.remove)
+  expect(html).toContain(messages.es.customization.markBox)
+  expect(html).toContain('aria-disabled="true"')
+})
+
+it('requires the card that leaves when a new copy enters a full deck', async () => {
+  const full = await sheet({ copies: 0, full: true })
+  expect(full).toContain(messages.es.customization.notOwned)
+  expect(full).toContain(messages.es.customization.chooseRemoval)
+  expect(full).not.toContain(messages.es.customization.noRemoval)
+  const room = await sheet({ copies: 0, full: false })
+  expect(room).toContain(messages.es.customization.noRemoval)
+})

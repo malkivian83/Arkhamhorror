@@ -335,6 +335,7 @@ function abandon() {
                 :copies="i.deck.filter((c) => c === code).length"
                 :xp="campaign.log.investigators[i.id]?.xp ?? 0"
                 :removable="removable"
+                :full="deckSize(i.deck) >= deckSizeOf(i.id, i.deck)"
                 :disabled="!!game.state || !deckChangesAllowed"
                 @save="(sheet, options) => game.customizeCard(i.id, code, sheet, options)"
               />

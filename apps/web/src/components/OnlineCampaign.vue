@@ -135,6 +135,9 @@ function buy() {
         :copies="campaign.own.deck.filter((c) => c === card.code).length"
         :xp="campaign.own.xp ?? 0"
         :removable="campaign.own.removable"
+        :full="
+          !!campaign.own.options.find((o) => o.code === card.code && !o.replaces)?.needsRemoval
+        "
         :disabled="disabled"
         @save="
           (sheet, options) =>
