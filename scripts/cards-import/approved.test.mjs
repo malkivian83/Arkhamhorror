@@ -68,6 +68,7 @@ describe('reviewed inventory conversion', () => {
     'upgraded-variants',
     'reused-mechanics',
     'damage-turn',
+    'tools-parley',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(
@@ -161,6 +162,20 @@ describe('reviewed inventory conversion', () => {
       expect(() =>
         approvedDefinition({ ...card, code: 'unreviewed' }, { ...approval, code: 'unreviewed' }),
       ).toThrow()
+    }
+  })
+  it('limits the new dual-faction adapter to five reviewed cards and their exact factions', async () => {
+    const { cards } = await read(
+      '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
+    )
+    const approvals = await read('../../packages/cards/src/tools-parley/approvals.json')
+    const selected = approvals.cards.filter((c) => c.adapter === 'reviewed-dual-faction-v1')
+    expect(selected).toHaveLength(5)
+    for (const a of selected) {
+      const c = cards.find((c) => c.code === a.code)
+      expect(approvedDefinition(c, a).classes).toEqual(c.factions)
+      expect(() => approvedDefinition(c, { ...a, adapter: undefined })).toThrow()
+      expect(() => approvedDefinition({ ...c, factions: ['mystic', 'seeker'] }, a)).toThrow()
     }
   })
 })

@@ -1241,7 +1241,7 @@ export type Message =
   // ----- Queen of Ash -----
   | { type: 'HealEnemy'; enemy: EnemyId; amount: number }
   | { type: 'ExhaustEnemy'; enemy: EnemyId }
-  | { type: 'PlaceDoomOnAsset'; asset: AssetId; amount: number }
+  | { type: 'PlaceDoomOnAsset'; asset: AssetId; amount: number; checkAgenda?: boolean }
   | { type: 'SetDoomBecomesDamage' }
   /** El enemigo no atacará a este investigador durante el resto de la ronda. */
   | { type: 'SpareInvestigator'; enemy: EnemyId; investigator: InvestigatorId }

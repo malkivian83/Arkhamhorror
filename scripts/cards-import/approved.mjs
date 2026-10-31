@@ -5,7 +5,10 @@ export function approvedDefinition(card, approval) {
   const reviewedDualFaction =
     approval.adapter === 'reviewed-dual-faction-v1' &&
     ((card.code === '08105' && card.factions.join(',') === 'seeker,survivor') ||
-      (card.code === '08083' && card.factions.join(',') === 'guardian,seeker'))
+      (['08083', '08086'].includes(card.code) && card.factions.join(',') === 'guardian,seeker') ||
+      (card.code === '05115' && card.factions.join(',') === 'guardian,rogue') ||
+      (['08094', '08096'].includes(card.code) && card.factions.join(',') === 'guardian,survivor') ||
+      (card.code === '05118' && card.factions.join(',') === 'mystic,guardian'))
   const reviewedCustomizable =
     approval.adapter === 'reviewed-shotcaster-v1' && card.code === '09119'
   const reviewedTarot =

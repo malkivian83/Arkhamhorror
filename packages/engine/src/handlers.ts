@@ -343,7 +343,7 @@ export function handle(state: GameState, message: Message): GameState {
             [asset.id]: { ...asset, doom: (asset.doom ?? 0) + message.amount },
           },
         },
-        { type: 'CheckAgenda' },
+        ...(message.checkAgenda === false ? [] : [{ type: 'CheckAgenda' as const }]),
       )
     }
 
