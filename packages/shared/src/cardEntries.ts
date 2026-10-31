@@ -12,6 +12,18 @@ export interface CardEntry {
   from?: 'masked' | 'encounter' | 'player'
 }
 
+/**
+ * Whether an entry stops the table with a modal. Encounter draws, cards turned from a hidden
+ * back (Carnevale masks, player backs), and enemies or treacheries that arrive need a read;
+ * the player's own assets, locations entering or revealed by moving, acts, agendas and
+ * stories are shown briefly without asking for a click.
+ */
+export function needsSpotlight(entry: CardEntry): boolean {
+  if (entry.reason === 'draw' || entry.from) return true
+  const target = entry.target ?? ''
+  return target.startsWith('enemy:') || target.startsWith('treachery:')
+}
+
 /** Collect intermediate entries as well as cards which remain in the final state. */
 export function createCardEntries() {
   const entries: CardEntry[] = []

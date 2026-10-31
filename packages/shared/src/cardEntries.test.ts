@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest'
 import { applyInput, registerPlayerCards, type GameState, type Message } from '@lcg/engine'
 import { newTestGame, throughSetup, ghoul, spawnAt } from '@lcg/engine/testing'
-import { createCardEntries } from './cardEntries'
+import { createCardEntries, needsSpotlight, type CardEntry } from './cardEntries'
 
 registerPlayerCards([
   {
@@ -175,4 +175,20 @@ it('shows revealing a location using the visible face and preserves unknown back
     reason: 'reveal',
     back: false,
   })
+})
+
+it('only draws, hidden backs and arriving enemies or treacheries stop the table', () => {
+  const entry = (patch: Partial<CardEntry>): CardEntry => ({
+    code: 'x',
+    name: 'X',
+    reason: 'enter',
+    ...patch,
+  })
+  expect(needsSpotlight(entry({ reason: 'draw', from: 'encounter' }))).toBe(true)
+  expect(needsSpotlight(entry({ reason: 'reveal', from: 'masked', target: 'placed:p' }))).toBe(true)
+  expect(needsSpotlight(entry({ target: 'enemy:e' }))).toBe(true)
+  expect(needsSpotlight(entry({ target: 'treachery:t' }))).toBe(true)
+  for (const target of ['asset:a', 'placed:p', 'location:L', 'act', 'agenda', 'story:s'])
+    expect(needsSpotlight(entry({ target }))).toBe(false)
+  expect(needsSpotlight(entry({ reason: 'reveal', target: 'location:L', back: true }))).toBe(false)
 })

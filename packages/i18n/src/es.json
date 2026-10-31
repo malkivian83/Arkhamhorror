@@ -1584,11 +1584,9 @@
     "autoSteps": {
       "eyebrow": "Lo que el juego resuelve automáticamente",
       "title": "Pasos automáticos",
-      "progress": "Paso {n} de {total}",
       "why": "Motivo:",
       "noChanges": "Sin cambios en la mesa.",
       "stops": "La secuencia se detiene aquí porque hace falta una decisión:",
-      "showAll": "Ver todos los pasos",
       "actions": "{name} dispone de 1 acción | {name} dispone de {n} acciones",
       "drew": "{name} roba 1 carta | {name} roba {n} cartas",
       "discarded": "{name} descarta 1 carta | {name} descarta {n} cartas",
@@ -1755,7 +1753,11 @@
     "showOdds": "Estimar probabilidades",
     "expand": "Ampliar prueba de habilidad",
     "minimize": "Minimizar prueba de habilidad",
-    "oddsHint": "Estimación para una sola ficha, sin fichas adicionales ni reacciones posteriores."
+    "oddsHint": "Estimación para una sola ficha, sin fichas adicionales ni reacciones posteriores.",
+    "autoReveal": "Nada que comprometer: se revela una ficha…",
+    "autoApply": "Aplicando el resultado…",
+    "wait": "Esperar",
+    "quickTests": "Revelar y aplicar solos cuando no haya nada más que elegir"
   },
   "undo": {
     "title": "Deshacer",

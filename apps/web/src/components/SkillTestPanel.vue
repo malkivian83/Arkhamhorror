@@ -6,10 +6,11 @@ import {
   successChance,
   type GameState,
 } from '@lcg/engine'
-import { computed, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { classColor } from '../game/cards'
 import { localName } from '../game/localized'
+import { automaticTestAnswer, quickTests } from '../game/quickTests'
 import { useLabels } from '../game/labels'
 import { useTableGame } from '../game/tableController'
 import ChaosTokenView from './ChaosTokenView.vue'
@@ -114,6 +115,36 @@ const bag = computed(() =>
     }),
 )
 const odds = computed(() => (game.stats ? game.stats.odds : successChance(props.state)))
+
+/**
+ * Revelar sin nada que comprometer o aplicar el resultado: la mesa responde sola tras
+ * una pausa, salvo que el jugador la detenga o haya otra ventana abierta (doc 100, D3).
+ */
+const automatic = computed(() => {
+  if (!quickTests.value || game.advanceReview.length || game.cardEntries.length || game.autoSteps)
+    return null
+  if (game.online && props.state.pending?.investigator !== game.ownInvestigator) return null
+  return automaticTestAnswer(props.state)
+})
+const paused = ref(false)
+watch(
+  () => props.state.pending,
+  () => (paused.value = false),
+)
+let automaticTimer: ReturnType<typeof setTimeout> | undefined
+watch(
+  [automatic, paused],
+  ([answer, stop]) => {
+    clearTimeout(automaticTimer)
+    if (!answer || stop) return
+    const pending = props.state.pending
+    automaticTimer = setTimeout(() => {
+      if (props.state.pending === pending) game.answer(answer.index)
+    }, answer.delay)
+  },
+  { immediate: true },
+)
+onBeforeUnmount(() => clearTimeout(automaticTimer))
 const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
 </script>
 
@@ -295,6 +326,12 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
           {{ label(choice.label, choice.params ?? {}) }}
         </button>
       </div>
+      <p v-if="automatic && !paused" class="auto-hint" aria-live="polite">
+        {{ t(automatic.kind === 'reveal' ? 'skillTest.autoReveal' : 'skillTest.autoApply') }}
+        <button type="button" class="wait" @click="paused = true">
+          {{ t('skillTest.wait') }}
+        </button>
+      </p>
       <p v-if="game.error" class="error" role="alert">{{ game.error }}</p>
       <p v-else-if="committing" class="hint">{{ t('skillTest.commitHint') }}</p>
 
@@ -326,6 +363,10 @@ const fmt = (n: number) => (n > 0 ? `+${n}` : `${n}`)
           </button>
         </div>
         <p v-if="showOdds && !resolved" class="odds-hint">{{ t('skillTest.oddsHint') }}</p>
+        <label class="quick-tests">
+          <input v-model="quickTests" type="checkbox" />
+          {{ t('skillTest.quickTests') }}
+        </label>
       </footer>
     </template>
   </section>
@@ -861,6 +902,33 @@ footer {
   color: #c3bbb4;
   font-size: 0.8125rem;
   margin-bottom: 0;
+}
+.auto-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 20px 12px;
+  color: #c3bbb4;
+  font-size: 0.8125rem;
+}
+.auto-hint .wait {
+  padding: 2px 10px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.quick-tests {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  color: #c3bbb4;
+  font-size: 0.8125rem;
 }
 .drawn-token {
   display: inline-block;

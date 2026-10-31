@@ -98,12 +98,14 @@ export const useGameStore = defineStore('game', () => {
 
   function persist() {
     try {
-      writeSession(
+      // The undo history comes from applying inputs here: no replay on every decision.
+      const raw = writeSession(
         accountStorage,
         session(latest, history.value, campaign.value, advanceReview.value),
+        { trustedHistory: true },
       )
       storageIssue.value = null
-      notifyLocalChange('game', exportSession())
+      notifyLocalChange('game', raw)
     } catch (e) {
       storageIssue.value = e instanceof SessionError ? e.reason : 'unavailable'
     }
@@ -302,6 +304,9 @@ export const useGameStore = defineStore('game', () => {
   function answer(index: number) {
     const current = latest
     if (advanceReview.value.length || !current?.pending) return
+    // During the movement transition the table still shows the previous question: an index
+    // chosen there (click or 1-9/D/R) would answer a different one. Ignore it until it lands.
+    if (state.value !== current) return
     const input = { investigator: current.pending.investigator, choice: index }
     try {
       const review = createAdvanceReview(current)

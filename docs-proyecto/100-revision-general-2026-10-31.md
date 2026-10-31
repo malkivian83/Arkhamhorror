@@ -29,7 +29,25 @@ regresión de E1, y la campaña Joe–Trish queda pendiente de volver a grabarse
 la del segundo equipo sigue verificándose completa. Con la política por defecto
 de `closure-explore.mjs` (semillas 1–400) no se encontró ninguna victoria nueva.
 
-La revisión visual de E3 queda pendiente. El resto de puntos sigue abierto.
+Bloque de fluidez, también con pruebas: **E4, E11, D1, D2 y D3**.
+
+- **E4:** la mesa guarda con `writeSession(..., { trustedHistory: true })`, que valida la
+  estructura sin rejugar el historial: de 60–92 ms a unos 2,5 ms por decisión en las
+  grabaciones de 99–118 decisiones. Cargar, importar y recibir guardados sigue
+  rejugándolo. La biblioteca reutiliza el texto guardado y cachea el canónico de su copia.
+- **E11:** `answer` ignora la entrada mientras la mesa visible va por detrás del estado
+  más reciente (animación de movimiento), sea un clic o un atajo.
+- **D1:** `needsSpotlight` deja el modal para robos de encuentro, reversos que se
+  descubren y enemigos o traiciones que llegan. Apoyos propios, Lugares, actos, planes e
+  historias se muestran en un aviso que se cierra solo en 1,5 s.
+- **D2:** el resumen de pasos automáticos se muestra completo, con un solo botón;
+  Escape también lo cierra.
+- **D3:** sin cambiar las preguntas del motor (las grabaciones las registran), la mesa
+  revela la ficha cuando no hay nada que comprometer (0,8 s) y aplica el resultado
+  (1,6 s). Se puede detener en cada prueba o desactivar desde el panel. La estimación de
+  probabilidades sigue a petición.
+
+Quedan pendientes las revisiones visuales de E3, D1, D2 y D3. El resto de puntos sigue abierto.
 
 ## Método y límites
 

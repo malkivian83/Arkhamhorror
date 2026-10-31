@@ -265,6 +265,22 @@ describe('guardado de campaña y mesa', () => {
     expect(storage.getItem(SESSION_KEY)).toBe(encode(data))
     expect(storage.getItem(BACKUP_KEY)).toBeNull()
   })
+  it('una escritura de la propia mesa no rejuega el historial; al leerla sí se comprueba', () => {
+    const storage = new MemoryStorage()
+    const data = initial()
+    // A table/history mismatch is only detectable by replaying: proof that it was skipped.
+    const diverged = JSON.parse(encode(data)) as Session
+    diverged.state!.doom++
+    const raw = writeSession(storage, diverged, { trustedHistory: true })
+    expect(raw).toBe(encode(diverged))
+    expect(storage.getItem(SESSION_KEY)).toBe(raw)
+    expect(() => decodeSession(raw)).toThrow('invalid')
+    // The structure is still validated before writing.
+    const partial = JSON.parse(encode(data)) as Session
+    partial.history!.inputs = [{ investigator: 'joe', choice: -1 }]
+    expect(() => writeSession(storage, partial, { trustedHistory: true })).toThrow('invalid')
+    expect(storage.getItem(SESSION_KEY)).toBe(raw)
+  })
   it('no reemplaza una copia legible con el principal corrupto', () => {
     const storage = new MemoryStorage()
     const data = initial()

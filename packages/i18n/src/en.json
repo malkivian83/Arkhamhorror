@@ -1584,11 +1584,9 @@
     "autoSteps": {
       "eyebrow": "What the game resolves automatically",
       "title": "Automatic steps",
-      "progress": "Step {n} of {total}",
       "why": "Why:",
       "noChanges": "No changes on the table.",
       "stops": "The sequence stops here because a decision is needed:",
-      "showAll": "Show all steps",
       "actions": "{name} has 1 action | {name} has {n} actions",
       "drew": "{name} draws 1 card | {name} draws {n} cards",
       "discarded": "{name} discards 1 card | {name} discards {n} cards",
@@ -1755,7 +1753,11 @@
     "showOdds": "Estimate odds",
     "expand": "Expand skill test",
     "minimize": "Minimize skill test",
-    "oddsHint": "Single-token estimate; excludes additional tokens and later reactions."
+    "oddsHint": "Single-token estimate; excludes additional tokens and later reactions.",
+    "autoReveal": "Nothing to commit: revealing a token…",
+    "autoApply": "Applying the result…",
+    "wait": "Wait",
+    "quickTests": "Reveal and apply on their own when there is nothing else to choose"
   },
   "undo": {
     "title": "Undo",

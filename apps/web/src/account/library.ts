@@ -152,11 +152,17 @@ interface TabAdventure {
 /** The open adventure has changes that are not in the library. */
 export const unsavedGame = shallowRef(false)
 const tabKey = () => `lcg:active-adventure:${account.value.user?.id}`
-function rememberAdventure(id: string | null, base: number, payload: unknown) {
+/** `raw`: the payload already serialized, to avoid stringifying a whole game again. */
+function rememberAdventure(id: string | null, base: number, payload: unknown, raw?: string) {
   const value: TabAdventure = { id, base, payload }
   tabStorage((storage) => {
     try {
-      storage.setItem(tabKey(), JSON.stringify(value))
+      storage.setItem(
+        tabKey(),
+        raw === undefined
+          ? JSON.stringify(value)
+          : `{"id":${JSON.stringify(id)},"base":${base},"payload":${raw}}`,
+      )
     } catch {
       // Full: the reload reopens the library copy, without the latest changes.
       storage.setItem(tabKey(), JSON.stringify({ id, base: -1, payload: null }))
@@ -172,6 +178,14 @@ export function newAdventure() {
 }
 const isEmpty = (value: { campaign?: unknown; state?: unknown }) => !value.campaign && !value.state
 /** Keep the open adventure in this tab; the library only changes with `saveGame`. */
+/** Canonical text of each library payload, computed once instead of on every decision. */
+const canonicalPayloads = new WeakMap<object, string>()
+function canonicalPayload(payload: unknown) {
+  if (typeof payload !== 'object' || payload === null) return canonical(payload)
+  let text = canonicalPayloads.get(payload)
+  if (text === undefined) canonicalPayloads.set(payload, (text = canonical(payload)))
+  return text
+}
 export function trackGame(raw: string) {
   const value = JSON.parse(raw)
   if (isEmpty(value)) {
@@ -180,8 +194,8 @@ export function trackGame(raw: string) {
   }
   const id = activeId()
   const record = id ? records.get(id) : undefined
-  unsavedGame.value = !record || canonical(record.payload) !== canonical(value)
-  rememberAdventure(id, record ? baseRevision(record) : -1, value)
+  unsavedGame.value = !record || canonicalPayload(record.payload) !== canonical(value)
+  rememberAdventure(id, record ? baseRevision(record) : -1, value, raw)
 }
 /** Save the open adventure to the library, as a new entry the first time. */
 export async function saveGame(raw: string) {

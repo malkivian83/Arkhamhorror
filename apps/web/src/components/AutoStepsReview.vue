@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, useId, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { showAutoSteps } from '../game/autoStepsPreference'
 import { useTableGame } from '../game/tableController'
@@ -8,9 +8,10 @@ import { zoomed } from '../game/zoom'
 
 /**
  * Lo que el juego ha resuelto solo tras la última decisión (fin de turno,
- * fases de enemigos, mantenimiento y mitos…), paso a paso y con su motivo,
- * para que nada parezca ocurrir sin explicación. Espera a que termine la
- * revisión de avance de acto o plan, que se muestra antes.
+ * fases de enemigos, mantenimiento y mitos…), con su motivo, para que nada
+ * parezca ocurrir sin explicación. Todos los pasos se ven a la vez y basta un
+ * clic (o Escape) para volver a la mesa. Espera a que termine la revisión de
+ * avance de acto o plan, que se muestra antes.
  */
 const game = useTableGame()
 const { t } = useI18n()
@@ -18,29 +19,14 @@ const label = useLabels()
 const title = useId()
 const dialog = ref<HTMLDialogElement>()
 const accept = ref<HTMLButtonElement>()
-const list = ref<HTMLOListElement>()
-/** Pasos ya mostrados: se descubren de uno en uno. */
-const revealed = ref(1)
 
 const review = computed(() =>
   game.advanceReview.length || game.cardEntries.length ? null : game.autoSteps,
 )
 const steps = computed(() => review.value?.steps ?? [])
-const visible = computed(() => steps.value.slice(0, revealed.value))
-const done = computed(() => revealed.value >= steps.value.length)
 
-function next() {
-  if (done.value) {
-    game.acceptAutoSteps()
-    return
-  }
-  revealed.value++
-  void nextTick(() =>
-    list.value?.lastElementChild?.scrollIntoView({ block: 'nearest', behavior: 'smooth' }),
-  )
-}
-function showAll() {
-  revealed.value = steps.value.length
+function close() {
+  if (game.autoSteps) game.acceptAutoSteps()
 }
 /** Desactiva el visor (se vuelve a activar desde el menú de la partida). */
 function disable() {
@@ -64,7 +50,6 @@ function syncDialog() {
     if (previousFocus?.isConnected) previousFocus.focus()
   }
 }
-watch(review, () => (revealed.value = 1))
 watch(review, syncDialog, { flush: 'post' })
 onMounted(syncDialog)
 onBeforeUnmount(() => dialog.value?.close())
@@ -76,7 +61,7 @@ onBeforeUnmount(() => dialog.value?.close())
       ref="dialog"
       class="auto-steps"
       :aria-labelledby="title"
-      @cancel.prevent="showAll"
+      @cancel.prevent="close"
       @close="syncDialog"
       @keydown.stop
     >
@@ -84,15 +69,12 @@ onBeforeUnmount(() => dialog.value?.close())
         <header>
           <p class="eyebrow">{{ t('table.autoSteps.eyebrow') }}</p>
           <h2 :id="title">{{ t('table.autoSteps.title') }}</h2>
-          <p class="progress">
-            {{ t('table.autoSteps.progress', { n: visible.length, total: steps.length }) }}
-          </p>
         </header>
-        <ol ref="list" class="steps" aria-live="polite">
+        <ol class="steps">
           <li
-            v-for="(step, n) in visible"
+            v-for="(step, n) in steps"
             :key="n"
-            :class="[step.kind, { current: n === visible.length - 1, quiet: !step.effects.length }]"
+            :class="[step.kind, { quiet: !step.effects.length }]"
           >
             <h3>{{ label(step.key, step.params ?? {}) }}</h3>
             <p v-if="step.reason" class="reason">
@@ -108,7 +90,7 @@ onBeforeUnmount(() => dialog.value?.close())
             </p>
           </li>
         </ol>
-        <section v-if="done && review.next" class="next">
+        <section v-if="review.next" class="next">
           <p>{{ t('table.autoSteps.stops') }}</p>
           <h3>{{ label(review.next.prompt, review.next.params ?? {}) }}</h3>
           <p>{{ t('game.waitingFor', { name: review.next.name }) }}</p>
@@ -117,11 +99,8 @@ onBeforeUnmount(() => dialog.value?.close())
           <button type="button" class="table-action disable" @click="disable">
             {{ t('table.autoSteps.disable') }}
           </button>
-          <button v-if="!done" type="button" class="table-action" @click="showAll">
-            {{ t('table.autoSteps.showAll') }}
-          </button>
-          <button ref="accept" type="button" class="table-action" autofocus @click="next">
-            {{ t(done ? 'table.advanceReview.return' : 'table.advanceReview.continue') }}
+          <button ref="accept" type="button" class="table-action" autofocus @click="close">
+            {{ t('table.advanceReview.return') }}
           </button>
         </footer>
       </template>
@@ -156,11 +135,6 @@ h2 {
   color: var(--accent);
   margin: 0;
 }
-.progress {
-  margin: 0;
-  opacity: 0.7;
-  font-size: 0.85rem;
-}
 .steps {
   margin: 16px 0;
   padding: 0;
@@ -176,10 +150,6 @@ h2 {
 }
 .steps > li.quiet {
   opacity: 0.7;
-}
-.steps > li.current {
-  opacity: 1;
-  background: rgb(255 255 255 / 9%);
 }
 .steps > li.round {
   border-left: none;

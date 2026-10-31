@@ -102,6 +102,8 @@ describe('recuperación de recompensas junto con la campaña', () => {
   })
 })
 
+const inputs = (game: ReturnType<typeof useGameStore>) =>
+  (JSON.parse(game.exportSession()) as { history: { inputs: unknown[] } }).history.inputs
 describe('pasos automáticos en la mesa', () => {
   it('queues a revealed Carnevale identity without persisting the preview, and clears it on undo', () => {
     const game = useGameStore()
@@ -144,6 +146,44 @@ describe('pasos automáticos en la mesa', () => {
     expect(game.cardEntries).not.toHaveLength(0)
     game.undo('step')
     expect(game.cardEntries).toEqual([])
+  })
+  it('durante la animación de movimiento no responde a la pregunta que aún se ve', () => {
+    vi.useFakeTimers()
+    try {
+      vi.stubGlobal('window', { matchMedia: () => ({ matches: false }) })
+      vi.stubGlobal('document', {
+        visibilityState: 'visible',
+        // The transition never completes on its own: only the 400 ms fallback lands it.
+        startViewTransition: () => ({ updateCallbackDone: new Promise(() => {}) }),
+      })
+      const game = useGameStore()
+      const state = throughSetup(
+        startScenario(newCampaign('the-midwinter-gala', ['joe'], 'standard'), 13),
+      )
+      const history = { base: state, inputs: [], marks: [markOf(state)] }
+      expect(game.importSession(JSON.stringify(session(state, history, null)))).toBe(true)
+      const start = game.state!.investigators[0]!.location
+      game.answerLabel('action.move')
+      // Moving may first ask for horror from the location: answer until the move lands.
+      while (game.state!.investigators[0]!.location === start && inputs(game).length < 5) {
+        const before = inputs(game).length
+        game.answer(0)
+        if (inputs(game).length === before) break
+      }
+      const shown = game.state
+      const count = inputs(game).length
+      expect(JSON.parse(game.exportSession()).state.investigators[0].location).not.toBe(start)
+      expect(shown!.investigators[0]!.location).toBe(start)
+      // An index chosen on the table that is still visible is not applied to the new question.
+      game.answer(0)
+      expect(inputs(game)).toHaveLength(count)
+      vi.advanceTimersByTime(400)
+      expect(game.state).not.toBe(shown)
+      game.answer(0)
+      expect(inputs(game)).toHaveLength(count + 1)
+    } finally {
+      vi.useRealTimers()
+    }
   })
   it('terminar el turno muestra los pasos resueltos solos, sin guardarlos', () => {
     const game = useGameStore()
