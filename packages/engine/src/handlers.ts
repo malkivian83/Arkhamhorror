@@ -3944,13 +3944,6 @@ export function handle(state: GameState, message: Message): GameState {
           Object.entries(next.assets).filter(([, a]) => a.owner !== investigator.id),
         ),
       }
-      next = log(next, investigator.resigned ? 'log.resigned' : 'log.eliminated', {
-        name: investigator.name,
-      })
-      next = updateInvestigator(next, investigator.id, (i) => ({
-        ...i,
-        eliminated: true,
-        clues: 0,
       // RR "Elimination": las cartas de su zona de amenaza se descartan y las que posee
       // (sus debilidades) abandonan la partida; su descarte se vacía a continuación.
       for (const t of Object.values(next.treacheries)) {
@@ -3960,6 +3953,13 @@ export function handle(state: GameState, message: Message): GameState {
         const owned = t.owner === investigator.id && t.placement.type !== 'limbo'
         if (threat || owned) next = discardTreachery(next, t.id)
       }
+      next = log(next, investigator.resigned ? 'log.resigned' : 'log.eliminated', {
+        name: investigator.name,
+      })
+      next = updateInvestigator(next, investigator.id, (i) => ({
+        ...i,
+        eliminated: true,
+        clues: 0,
         resources: 0,
         resourcesWhenEliminated: i.resources,
         actionsRemaining: 0,
