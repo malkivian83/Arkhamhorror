@@ -1446,6 +1446,7 @@
     "chaosBag": "Bolsa del caos",
     "victory": "Zona de victoria",
     "doom": "Perdición",
+    "doomBreakdown": "Perdición en juego: {agenda} en el plan y {other} en otras cartas",
     "clues": "Pistas",
     "resources": "Recursos",
     "actions": "Acciones",

@@ -108,6 +108,8 @@ describe('Spreading Flames: plan', () => {
     game = during(game, keep, { type: 'AdvanceAgenda' })
     expect(inv(game).eliminated).toBe(true)
     expect(game.outcome).toEqual({ type: 'noResolution' })
+    // Además de la derrota, cada investigador en juego sufre 1 trauma físico.
+    expect(game.campaignLog!.investigators.a!.physicalTrauma).toBe(1)
   })
 })
 
@@ -160,6 +162,34 @@ describe('Spreading Flames: actos', () => {
     expect(Object.values(game.assets).find((a) => a.code === DR_ARMITAGE)).toMatchObject({
       owner: 'a',
       noSlot: true,
+    })
+  })
+
+  it('Servant of Flame derrotado antes del acto 3 sale de la zona de victoria y reaparece', () => {
+    let game = during(
+      newGame(),
+      (s) => ({
+        ...at(CODES.miskatonicQuad)(s),
+        actIndex: 1,
+        victoryDisplay: [...s.victoryDisplay, CODES.servantOfFlame],
+        victoryPoints: (s.victoryPoints ?? 0) + 2,
+        setAside: s.setAside.filter((c) => c.code !== CODES.servantOfFlame),
+      }),
+      { type: 'PutLocationIntoPlay', location: CODES.dormitories },
+      { type: 'PutLocationIntoPlay', location: CODES.miskatonicQuad },
+      { type: 'AdvanceAct' },
+    )
+    expect(game.victoryDisplay).not.toContain(CODES.servantOfFlame)
+    expect(game.victoryPoints ?? 0).toBe(0)
+    expect(game.setAside.some((c) => c.code === CODES.servantOfFlame)).toBe(true)
+    game = during(game, at(CODES.orneLibrary, { clues: 3 }), { type: 'AdvanceAct' })
+    game = toActionMenu(game)
+    // El acto 4 no se completa solo: hay que volver a derrotarlo en Miskatonic Quad.
+    expect(game.outcome).toBeFalsy()
+    expect(game.actIndex).toBe(3)
+    expect(enemies(game).find((e) => e.code === CODES.servantOfFlame)).toMatchObject({
+      location: CODES.miskatonicQuad,
+      damageTaken: 0,
     })
   })
 

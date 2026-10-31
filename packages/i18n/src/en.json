@@ -1446,6 +1446,7 @@
     "chaosBag": "Chaos bag",
     "victory": "Victory display",
     "doom": "Doom",
+    "doomBreakdown": "Doom in play: {agenda} on the agenda and {other} on other cards",
     "clues": "Clues",
     "resources": "Resources",
     "actions": "Actions",

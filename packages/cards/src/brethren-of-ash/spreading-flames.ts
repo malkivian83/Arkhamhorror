@@ -820,12 +820,13 @@ registerAgenda({
       ? [{ type: 'DrawFromEncounterDiscard', investigator: lead.id, code: CODES.fire }]
       : []
   },
-  // Todos los que siguen en juego son derrotados (y sufrirán 1 trauma físico).
+  // Todos los que siguen en juego son derrotados y sufren 1 trauma físico. El trauma
+  // va antes: la última derrota termina el escenario y ya no se procesarían mensajes.
   onAdvance: (state) =>
-    activeInvestigators(state).map((i): Message => ({
-      type: 'DefeatInvestigator',
-      investigator: i.id,
-    })),
+    activeInvestigators(state).flatMap((i): Message[] => [
+      { type: 'SufferTrauma', investigator: i.id, physical: 1 },
+      { type: 'DefeatInvestigator', investigator: i.id },
+    ]),
 })
 
 // ---------------------------------------------------------------------------
@@ -859,7 +860,7 @@ registerAct({
     return active.length > 0 && active.every((i) => i.location === CODES.miskatonicQuad)
   },
   onAdvance: (state) => [
-    { type: 'SetAsideEnemy', code: CODES.servantOfFlame },
+    { type: 'SetAsideEnemy', code: CODES.servantOfFlame, card: servantOfFlame },
     ...discardEachEnemy(state).filter(
       (m) => m.type !== 'DiscardEnemy' || state.enemies[m.enemy]?.code !== CODES.servantOfFlame,
     ),

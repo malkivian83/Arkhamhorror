@@ -343,7 +343,7 @@ export function handle(state: GameState, message: Message): GameState {
             [asset.id]: { ...asset, doom: (asset.doom ?? 0) + message.amount },
           },
         },
-        ...(message.checkAgenda === false ? [] : [{ type: 'CheckAgenda' as const }]),
+        ...(message.checkAgenda ? [{ type: 'CheckAgenda' as const }] : []),
       )
     }
 
@@ -3951,6 +3951,15 @@ export function handle(state: GameState, message: Message): GameState {
         ...i,
         eliminated: true,
         clues: 0,
+      // RR "Elimination": las cartas de su zona de amenaza se descartan y las que posee
+      // (sus debilidades) abandonan la partida; su descarte se vacía a continuación.
+      for (const t of Object.values(next.treacheries)) {
+        const threat =
+          t.placement.type === 'threatArea' && t.placement.investigator === investigator.id
+        // Una revelación en curso (limbo) termina de resolverse por su cuenta.
+        const owned = t.owner === investigator.id && t.placement.type !== 'limbo'
+        if (threat || owned) next = discardTreachery(next, t.id)
+      }
         resources: 0,
         resourcesWhenEliminated: i.resources,
         actionsRemaining: 0,
@@ -5393,7 +5402,7 @@ export function handle(state: GameState, message: Message): GameState {
       if (state.doomBecomesDamage) return push(state, ...doomAsDamage(state, message.amount))
       return push(
         updateEnemy(state, message.enemy, (e) => ({ ...e, doom: (e.doom ?? 0) + message.amount })),
-        ...(message.checkAgenda === false ? [] : [{ type: 'CheckAgenda' } as Message]),
+        ...(message.checkAgenda ? [{ type: 'CheckAgenda' } as Message] : []),
       )
 
     case 'AddLead':
@@ -7006,11 +7015,20 @@ export function handle(state: GameState, message: Message): GameState {
       }
       const index = state.encounterDiscard.findIndex((c) => c.code === message.code)
       const card = state.encounterDiscard[index]
-      if (!card) return state
+      if (card)
+        return {
+          ...state,
+          encounterDiscard: state.encounterDiscard.filter((_, n) => n !== index),
+          setAside: [...state.setAside, card],
+        }
+      // Derrotado antes de tiempo: sale de la zona de victoria y deja de puntuar.
+      const won = state.victoryDisplay.lastIndexOf(message.code)
+      if (won < 0 || !message.card) return state
       return {
         ...state,
-        encounterDiscard: state.encounterDiscard.filter((_, n) => n !== index),
-        setAside: [...state.setAside, card],
+        victoryDisplay: state.victoryDisplay.filter((_, n) => n !== won),
+        victoryPoints: (state.victoryPoints ?? 0) - (message.card.victory ?? 0),
+        setAside: [...state.setAside, message.card],
       }
     }
 
@@ -7466,7 +7484,7 @@ export function handle(state: GameState, message: Message): GameState {
           ...i,
           doom: (i.doom ?? 0) + message.amount,
         })),
-        { type: 'CheckAgenda' },
+        ...(message.checkAgenda ? [{ type: 'CheckAgenda' } as Message] : []),
       )
 
     case 'HealAsset': {

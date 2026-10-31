@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { applyInput, createGame } from './engine'
 import { EngineError } from './errors'
 import { shuffle } from './rng'
-import { getInvestigator } from './state'
+import { getInvestigator, huntingSteps } from './state'
 import {
   choose,
   during,
@@ -262,6 +262,27 @@ describe('enemigos', () => {
     expect(moved?.engagedWith).toBe('a')
   })
 
+  it('cazador con presa (solo X): ignora a los demás y avanza hacia X', () => {
+    let game = choose(newTestGame({ players: ['a', 'b'] }), 'choice.investigator', { name: 'A' })
+    const stalker = {
+      ...ghoul,
+      keywords: ['hunter' as const],
+      prey: { type: 'only' as const, investigator: 'b' },
+    }
+    game = during(
+      game,
+      (s) => ({
+        ...s,
+        investigators: s.investigators.map((i) => (i.id === 'b' ? { ...i, location: 'C' } : i)),
+      }),
+      spawnAt('A', stalker),
+    )
+    const enemy = enemies(game).find((e) => e.code === stalker.code)!
+    // Comparte localización con a, pero no lo enfrenta y sigue hacia b.
+    expect(enemy.engagedWith).toBeNull()
+    expect(huntingSteps(game, enemy)).toEqual(['B'])
+  })
+
   it('aparece en su localización si tiene instrucciones de aparición', () => {
     let game = during(
       newTestGame({ scenario: { encounterDeck: [{ ...ghoul, spawnAt: 'C' }] } }),
@@ -304,6 +325,31 @@ describe('plan y acto', () => {
     // Rondas 2, 3 y 4 colocan perdición: 3 ≥ 3 → plan 2.
     expect(game.agendaIndex).toBe(1)
     expect(game.doom).toBe(0)
+  })
+
+  it('la perdición en otras cartas cuenta, pero el plan solo avanza en mitos', () => {
+    let game = during(newTestGame({ scenario: { encounterDeck: [] } }), keep, spawnAt('C'), {
+      type: 'PlaceDoomOnInvestigator',
+      investigator: 'a',
+      amount: 3,
+    })
+    const enemy = enemies(game)[0]!
+    game = during(game, keep, { type: 'PlaceDoomOnEnemy', enemy: enemy.id, amount: 1 })
+    expect(game.agendaIndex).toBe(0)
+    // En la siguiente fase de mitos, 1 en el plan + 4 en otras cartas ≥ 3.
+    game = choose(game, 'action.endTurn')
+    expect(game.agendaIndex).toBe(1)
+    expect(inv(game).doom ?? 0).toBe(0)
+  })
+
+  it('una carta que dice que puede hacer avanzar el plan lo comprueba al momento', () => {
+    const game = during(newTestGame(), keep, {
+      type: 'PlaceDoomOnInvestigator',
+      investigator: 'a',
+      amount: 3,
+      checkAgenda: true,
+    })
+    expect(game.agendaIndex).toBe(1)
   })
 
   it('si avanza el último plan, el escenario termina sin resolución', () => {

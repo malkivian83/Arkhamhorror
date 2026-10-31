@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { actBehavior, cluesToAdvanceAct, type GameState } from '@lcg/engine'
+import {
+  actBehavior,
+  agendaBehavior,
+  cluesToAdvanceAct,
+  secondAgendaDoom,
+  totalDoom,
+  type GameState,
+} from '@lcg/engine'
 import { THE_PATH_TO_CARCOSA } from '@lcg/cards'
 import { computed, inject, ref, useId } from 'vue'
 import { pendingCardTargets } from '../game/cardEntries'
@@ -29,6 +36,14 @@ const secondAgenda = computed(() => {
   const second = props.state.secondAgenda
   return second ? second.agendas[second.index] : undefined
 })
+/** La perdición que compara el motor con el umbral: la del plan y la de las demás cartas. */
+const agendaDoom = computed(
+  () => agendaBehavior(agenda.value?.code)?.thresholdDoom?.(props.state) ?? totalDoom(props.state),
+)
+const secondDoom = computed(() => secondAgendaDoom(props.state))
+function doomTitle(onAgenda: number, total: number) {
+  return t('table.doomBreakdown', { agenda: onAgenda, other: Math.max(0, total - onAgenda) })
+}
 const act = computed(() => props.state.acts[props.state.actIndex])
 const hideUnrevealed = computed(() =>
   THE_PATH_TO_CARCOSA.scenarios.some((id) => id === props.state.scenarioId),
@@ -96,9 +111,9 @@ const sortedBag = computed(() =>
           color="#7a2c2c"
         />
         <span class="group-metric">
-          <span class="metric-value"
+          <span class="metric-value" :title="doomTitle(state.doom, agendaDoom)"
             ><TokenBadge kind="doom" value="" :size="20" aria-hidden="true" /><strong
-              >{{ state.doom }}/{{ agenda.doomThreshold ?? '—' }}</strong
+              >{{ agendaDoom }}/{{ agenda.doomThreshold ?? '—' }}</strong
             ></span
           >
           <span class="stat-label">{{ t('table.doom') }}</span>
@@ -139,9 +154,9 @@ const sortedBag = computed(() =>
           color="#7a2c2c"
         />
         <span class="group-metric">
-          <span class="metric-value"
+          <span class="metric-value" :title="doomTitle(state.secondAgenda!.doom, secondDoom)"
             ><TokenBadge kind="doom" value="" :size="20" aria-hidden="true" /><strong
-              >{{ state.secondAgenda!.doom }}/{{ secondAgenda.doomThreshold ?? '—' }}</strong
+              >{{ secondDoom }}/{{ secondAgenda.doomThreshold ?? '—' }}</strong
             ></span
           >
           <span class="stat-label">{{ t('table.doom') }}</span>

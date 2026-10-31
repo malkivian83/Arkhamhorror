@@ -56,12 +56,10 @@ function play(r: Recording): GameState {
 const smoke = read('smoke-and-mirrors-433')
 const queenCombat = read('combate-queen-of-ash-807')
 const queenClues = read('queen-of-ash-955')
+// The Joe–Trish campaign (duo-normal-*) won Spreading Flames by skipping Blaze of Glory:
+// Servant of Flame stayed in the victory display (doc 100, E1). It is no longer evidence of
+// a legal campaign until it is recorded again; it is kept as a regression of that fix.
 const normal = [
-  [
-    'duo-normal-spreading-flames-286',
-    'duo-normal-smoke-and-mirrors-1',
-    'duo-normal-queen-of-ash-23',
-  ],
   [
     'equipo-normal-spreading-flames-278',
     'equipo-normal-smoke-and-mirrors-1',
@@ -116,4 +114,14 @@ describe('aceptación ampliada: objetivos completos, combate y equipos en normal
       expect(campaign.results.at(-1)!.outcome).toEqual({ type: 'resolution', resolution: 3 })
       expect(campaign.log.notes).toContain('campaignWon')
     })
+  it('Joe–Trish Spreading 286: Servant of Flame returns for Blaze of Glory instead of ending', () => {
+    const r = read('duo-normal-spreading-flames-286')
+    let state = startScenario(r.campaign, r.seed)
+    // Up to the decision where the old recording reached its resolution right away.
+    for (const input of r.inputs.slice(0, 182)) state = applyInput(state, input)
+    expect(state.outcome).toBeNull()
+    expect(state.acts[state.actIndex]?.name).toBe('Blaze of Glory')
+    expect(Object.values(state.enemies).map((e) => e.code)).toContain('12114')
+    expect(state.victoryDisplay).not.toContain('12114')
+  })
 })

@@ -158,6 +158,15 @@ describe('traiciones (RR "Treachery")', () => {
     expect(inv(game)).toMatchObject({ clues: 1, horror: 1 })
   })
 
+  it('al eliminar al investigador, su zona de amenaza se descarta y deja de tener efecto', () => {
+    let game = choose(newTestGame({ players: ['a', 'b'] }), 'choice.investigator', { name: 'A' })
+    game = during(game, withBag(0), reveal(treachery('t-haunt'), 'b'))
+    expect(Object.values(game.treacheries)).toHaveLength(1)
+    game = during(game, keep, { type: 'EliminateInvestigator', investigator: 'b' })
+    expect(Object.values(game.treacheries)).toHaveLength(0)
+    expect(game.encounterDiscard.map((c) => c.code)).toContain('t-haunt')
+  })
+
   it('las opciones con requisitos no cumplidos no se ofrecen (y una sola se resuelve sola)', () => {
     const game = during(newTestGame(), keep, reveal(treachery('t-choice')))
     expect(inv(game).horror).toBe(1)

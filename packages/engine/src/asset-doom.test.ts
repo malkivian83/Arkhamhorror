@@ -35,8 +35,9 @@ it.each([true, false, undefined])(
         ...(checkAgenda !== undefined ? { checkAgenda } : {}),
       },
     )
-    expect(s.agendaIndex).toBe(checkAgenda === false ? 0 : 1)
-    expect(s.assets.tome!.doom).toBe(checkAgenda === false ? 3 : 0)
+    // RR 1.3: without an explicit check the agenda waits for the mythos phase.
+    expect(s.agendaIndex).toBe(checkAgenda === true ? 1 : 0)
+    expect(s.assets.tome!.doom).toBe(checkAgenda === true ? 0 : 3)
   },
 )
 it('doom that becomes damage still follows the scenario replacement', () => {
