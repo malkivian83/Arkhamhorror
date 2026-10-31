@@ -4,7 +4,8 @@ import { tableStats, tableView } from './table'
 import {
   activeMembers,
   campaignLost,
-  canPlayNext,
+  campaignCanContinue,
+  deckIssues,
   currentScenario,
   pendingTransfers,
   purchaseOptions,
@@ -100,7 +101,13 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
           campaign: {
             canManage: lobby.owner === user,
             nextScenario: currentScenario(campaign),
-            canContinue: canPlayNext(campaign),
+            canContinue: campaignCanContinue(campaign),
+            // Decks that cannot start the next scenario yet; they can still be fixed.
+            deckIssues: deckIssues(campaign).map(({ investigator, problem }) => ({
+              investigator,
+              key: problem.key,
+              ...('params' in problem ? { params: problem.params } : {}),
+            })),
             ready: !!mine && ready(mine),
             allReady: active.length > 0 && active.every(ready),
             transfers: pendingTransfers(campaign),
@@ -128,7 +135,7 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
                   xp: campaign.log.investigators[own.id]?.xp ?? 0,
                   ...(own.customizations ? { customizations: own.customizations } : {}),
                   removable: removableCards(campaign, own.id),
-                  options: canPlayNext(campaign)
+                  options: campaignCanContinue(campaign)
                     ? purchaseOptions(campaign, own.id).map((o) => ({
                         code: o.code,
                         name: o.name,

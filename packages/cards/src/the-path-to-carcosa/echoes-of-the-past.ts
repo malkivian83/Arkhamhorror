@@ -687,13 +687,11 @@ registerScenario({
         // Ya revelada, solo recalcula las conexiones.
         return push({ type: 'RevealLocation', location: CODES.entryHall })
       case 'echoesCultist': {
-        // 1 perdición en el enemigo más cercano.
+        // 1 perdición en el enemigo más cercano. Como la carta no dice que pueda hacer
+        // avanzar el plan, el umbral se comprueba en la fase de Mitos (RR p. 17).
         if (investigator === null) return state
         const targets = nearestEnemies(state, investigator)
-        const doom = (e: Enemy): Message[] => [
-          { type: 'PlaceDoomOnEnemy', enemy: e.id, amount: 1 },
-          { type: 'CheckAgenda' },
-        ]
+        const doom = (e: Enemy): Message[] => [{ type: 'PlaceDoomOnEnemy', enemy: e.id, amount: 1 }]
         if (targets.length <= 1) return push(...(targets[0] ? doom(targets[0]) : []))
         return push({
           type: 'Ask',
@@ -736,10 +734,7 @@ registerScenario({
         // Los investigadores preparan al Juramentado poseído o le colocan 1 perdición.
         const oath = state.enemies[String(data.enemy)]
         if (!oath) return state
-        const doom: Message[] = [
-          { type: 'PlaceDoomOnEnemy', enemy: oath.id, amount: 1 },
-          { type: 'CheckAgenda' },
-        ]
+        const doom: Message[] = [{ type: 'PlaceDoomOnEnemy', enemy: oath.id, amount: 1 }]
         if (!oath.exhausted) return push(...doom)
         return push(
           ...leadChooses(state, 'prompt.echoes.oathspeaker', [
@@ -765,7 +760,6 @@ registerScenario({
                 amount: 1,
               }
             : { type: 'PlaceDoomOnEnemy', enemy: seeker.id, amount: 1 },
-          { type: 'CheckAgenda' },
         )
       }
       case 'echoesPeabody': {

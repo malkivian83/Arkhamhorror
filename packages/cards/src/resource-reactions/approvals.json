@@ -1,0 +1,268 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "cards": [
+    {
+      "code": "03024",
+      "status": "verified",
+      "module": "card-03024",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "05025",
+      "status": "verified",
+      "module": "card-05025",
+      "test": "effects.test.ts",
+      "fast": true
+    },
+    {
+      "code": "05110",
+      "status": "verified",
+      "module": "card-05110",
+      "test": "effects.test.ts",
+      "fast": true
+    },
+    {
+      "code": "01041",
+      "status": "verified",
+      "module": "card-01041",
+      "test": "rules.test.ts",
+      "subname": "Protective Amulet"
+    },
+    {
+      "code": "05236",
+      "status": "verified",
+      "module": "card-05236",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-exile-defeat-v1"
+    },
+    {
+      "code": "08126",
+      "status": "verified",
+      "module": "card-08126",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "05233",
+      "status": "verified",
+      "module": "card-05233",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 0,
+        "type": "supplies"
+      }
+    },
+    {
+      "code": "06162",
+      "status": "verified",
+      "module": "card-06162",
+      "test": "rules.test.ts",
+      "subname": "Muckraker",
+      "uses": {
+        "count": 9,
+        "type": "resources"
+      }
+    },
+    {
+      "code": "06244",
+      "status": "verified",
+      "module": "card-06244",
+      "test": "rules.test.ts",
+      "subname": "Lost in a Dream"
+    },
+    {
+      "code": "07111",
+      "status": "verified",
+      "module": "card-07111",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 3,
+        "type": "secrets"
+      }
+    },
+    {
+      "code": "08036",
+      "status": "verified",
+      "module": "card-08036",
+      "test": "effects.test.ts",
+      "fast": true
+    },
+    {
+      "code": "06205",
+      "status": "verified",
+      "module": "card-06205",
+      "test": "effects.test.ts"
+    },
+    {
+      "code": "06326",
+      "status": "verified",
+      "module": "card-06326",
+      "test": "effects.test.ts",
+      "subname": "Lookin' Out for #1"
+    },
+    {
+      "code": "10043",
+      "status": "verified",
+      "module": "card-10043",
+      "test": "rules.test.ts",
+      "subname": "The Meek Watcher",
+      "uses": {
+        "count": 2,
+        "type": "offerings"
+      }
+    },
+    {
+      "code": "10067",
+      "status": "verified",
+      "module": "card-10067",
+      "test": "rules.test.ts",
+      "subname": "The Wise Trickster",
+      "uses": {
+        "count": 2,
+        "type": "offerings"
+      }
+    },
+    {
+      "code": "10111",
+      "status": "verified",
+      "module": "card-10111",
+      "test": "rules.test.ts",
+      "subname": "The Wanderer's Companion",
+      "uses": {
+        "count": 2,
+        "type": "offerings"
+      }
+    },
+    {
+      "code": "04159",
+      "status": "verified",
+      "module": "card-04159",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 3,
+        "type": "tries"
+      }
+    },
+    {
+      "code": "02309",
+      "status": "verified",
+      "module": "card-02309",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "05324",
+      "status": "verified",
+      "module": "card-05324",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "01056",
+      "status": "verified",
+      "module": "card-01056",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "03192",
+      "status": "verified",
+      "module": "card-03192",
+      "test": "effects.test.ts",
+      "subname": "Guiding Stones",
+      "uses": {
+        "count": 3,
+        "type": "charges"
+      }
+    },
+    {
+      "code": "03193",
+      "status": "verified",
+      "module": "card-03193",
+      "test": "effects.test.ts",
+      "subname": "Prophecy Foretold",
+      "uses": {
+        "count": 3,
+        "type": "charges"
+      }
+    },
+    {
+      "code": "52004",
+      "status": "verified",
+      "module": "card-52004",
+      "test": "effects.test.ts",
+      "subname": "Markings of Isis",
+      "uses": {
+        "count": 3,
+        "type": "charges"
+      }
+    },
+    {
+      "code": "04022",
+      "status": "verified",
+      "module": "card-04022",
+      "test": "effects.test.ts",
+      "subname": "Unidentified"
+    },
+    {
+      "code": "04308",
+      "status": "verified",
+      "module": "card-04308",
+      "test": "effects.test.ts",
+      "adapter": "reviewed-borrowed-time-v1",
+      "uses": {
+        "count": 0,
+        "type": "clicks"
+      }
+    },
+    {
+      "code": "10122",
+      "status": "verified",
+      "module": "card-10122",
+      "test": "effects.test.ts"
+    },
+    {
+      "code": "07121",
+      "status": "verified",
+      "module": "card-07121",
+      "test": "effects.test.ts"
+    },
+    {
+      "code": "08095",
+      "status": "verified",
+      "module": "card-08095",
+      "test": "effects.test.ts",
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "08117",
+      "status": "verified",
+      "module": "card-08117",
+      "test": "effects.test.ts",
+      "uses": {
+        "count": 4,
+        "type": "charges"
+      },
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "08119",
+      "status": "verified",
+      "module": "card-08119",
+      "test": "effects.test.ts",
+      "uses": {
+        "count": 6,
+        "type": "charges"
+      },
+      "adapter": "reviewed-dual-faction-v1"
+    }
+  ],
+  "sources": {
+    "en": "396a57c98e55f3151bf0aaf33268c3f7ba548f2d00f6465784cac1a9c6a323b9",
+    "es": "0b823edcfdecfc85be9bf1edddfcf62160566825eaf675f11a70f6dc47ed1cb8"
+  },
+  "sourceFiles": {
+    "en": "approved-source-en.json",
+    "es": "approved-source-es.json"
+  }
+}

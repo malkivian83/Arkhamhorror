@@ -47,6 +47,7 @@ import {
   unseenWeaknessPool,
   unseenSpecific as specific,
 } from './unseen-helpers'
+import { FIXED_CLUE_LOCATIONS } from './fixed-clues'
 export { U, UN, UNDIMENSIONED_AND_UNSEEN } from './unseen-codes'
 export { UNSEEN_ENCOUNTERS } from './unseen-encounters'
 const entry = storyEntries('unseen')
@@ -78,7 +79,7 @@ const room = (
   name,
   shroud,
   clueValue: clues,
-  cluesPerInvestigator: true,
+  cluesPerInvestigator: !FIXED_CLUE_LOCATIONS.has(id),
   symbol,
   connectsTo,
   connections: [],

@@ -115,6 +115,7 @@ export interface Investigator {
   spentActions?: { round: number; count: number }
   /** Skill value bonus for their next skill test (The Red Clock: +4). */
   nextTestBonus?: number
+  nextPhaseTestBonus?: { amount: number; phase: Phase; round: number }
   /** Additional actions for their turn later in this round (Stella Clark). */
   roundTurnActions?: { round: number; amount: number }
   /** No chaos tokens for their next skill test during the turn started at this log index. */
@@ -696,9 +697,11 @@ export interface SkillTest {
     fromDiscard?: boolean
     /** Tras la prueba va al fondo del mazo de su dueño (Habitación 245). */
     toDeckBottom?: boolean
+    returnToHand?: boolean
   }[]
   /** Apoyo cuya habilidad inició la prueba. */
   source?: AssetId
+  sourceSnapshot?: Asset
   /** Event whose resolving effect initiated this test; independent of asset sources. */
   effectSource?: CardCode
   /** Etiquetas de la prueba: "parley", "spell", "scenario"… */
@@ -724,7 +727,7 @@ export interface SkillTest {
   /** RR Automatic Success from a resolved token; automatic failure still prevails. */
   autoSucceed?: boolean
   /** Token held during its "when revealed" window, and what it is treated as. */
-  revealing?: { token: ChaosToken; face: ChaosToken }
+  revealing?: { token: ChaosToken; face: ChaosToken; reverseModifierOf?: ChaosToken }
   /** Revealed tokens treated as another symbol; the physical token returns to the bag. */
   treatedAs?: { token: ChaosToken; face: ChaosToken }[]
   /** Solo se puede comprometer la carta superior de la pila de descartes (Habitación 245). */
@@ -1105,6 +1108,7 @@ export type Message =
   | { type: 'ExhaustAsset'; asset: AssetId }
   | { type: 'ReadyAsset'; asset: AssetId }
   | { type: 'SpendUses'; asset: AssetId; amount: number }
+  | { type: 'RemoveUses'; asset: AssetId; amount: number }
   | { type: 'SetAssetForm'; asset: AssetId; form: string }
   | { type: 'ReplaceSkillTestResults'; then: Message[] }
   | { type: 'NextAssetFast'; investigator: InvestigatorId }
@@ -1286,7 +1290,11 @@ export type Message =
     }
   | { type: 'LoseActions'; investigator: InvestigatorId; amount: number }
   /** +X skill value for the investigator's next skill test (The Red Clock). */
-  | { type: 'NextTestBonus'; investigator: InvestigatorId; amount: number }
+  | { type: 'NextTestBonus'; investigator: InvestigatorId; amount: number; thisPhase?: boolean }
+  | { type: 'TransferUses'; from: AssetId; to: AssetId; amount: number }
+  | { type: 'ReturnCommittedCard'; index: number }
+  | { type: 'MoveResourcesToPool'; investigator: InvestigatorId; amount: number }
+  | { type: 'ReverseRevealedTokenModifier' }
   /** One restricted additional action is lost (after the standard ones). */
   | {
       type: 'LoseAdditionalAction'
@@ -1632,6 +1640,7 @@ export type Message =
   | {
       type: 'SearchDeck'
       investigator: InvestigatorId
+      title?: string
       /** Restrict a trait search to a printed card type (Establish Motive). */
       cardType?: PlayerCardDef['type']
       top?: number
@@ -1896,6 +1905,7 @@ export type Trigger =
   /** Un investigador ha sido derrotado (no cuenta retirarse). */
   | { type: 'investigatorDefeated'; investigator: InvestigatorId; location?: LocationId }
   | { type: 'afterUsesAdded'; asset: AssetId; amount: number }
+  | { type: 'afterUsesSpent'; asset: Asset; amount: number }
   | { type: 'enemyPhaseBegins' }
   /** Un enemigo acaba de entrar en juego (tras enfrentarse, si le toca). */
   | { type: 'enemySpawned'; enemy: EnemyId; location: LocationId }
@@ -1917,6 +1927,7 @@ export type Trigger =
       investigator: InvestigatorId
       first: boolean
       from?: LocationId | null
+      fromHadEnemy?: boolean
       /** El movimiento fue una acción de movimiento. */
       moveAction?: boolean
       encounterEffect?: boolean

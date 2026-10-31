@@ -79,7 +79,7 @@ registerPlayerCard({
     token !== 'cultist'
       ? []
       : self.uses > 0
-        ? [{ type: 'SpendUses', asset: self.id, amount: 1 }]
+        ? [{ type: 'RemoveUses', asset: self.id, amount: 1 }]
         : [
             { type: 'TakeDamage', investigator: self.owner, damage: 0, horror: 1 },
             { type: 'DiscardAsset', asset: self.id },

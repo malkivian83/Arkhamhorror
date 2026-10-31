@@ -6,6 +6,7 @@ import {
   purchase,
   customize,
   activeMembers,
+  campaignCanContinue,
   canPlayNext,
   chooseTransferHeir,
   replaceInvestigator,
@@ -164,7 +165,7 @@ export class LobbyService {
         command.revision,
         command.action,
         command.action === 'purchase'
-          ? [command.card, command.upgrade, command.remove ?? null]
+          ? [command.card, command.upgrade, command.replaces ?? null, command.remove ?? null]
           : command.action === 'customize'
             ? [command.card, command.sheet, command.copies ?? null, command.removals ?? null]
             : command.action === 'heir'
@@ -214,7 +215,8 @@ export class LobbyService {
         lobby.campaignReady = (lobby.campaignReady ?? []).filter((member) => member !== user)
       } else {
         requireValue(lobby.intermission, 'not_intermission', 409)
-        requireValue(canPlayNext(lobby.campaign), 'campaign_cannot_continue', 409)
+        // Buying and readiness stay open while a deck is short or illegal, so it can be fixed.
+        requireValue(campaignCanContinue(lobby.campaign), 'campaign_cannot_continue', 409)
         const investigator = lobby.decks?.[user]?.investigator
         const active = activeMembers(lobby.campaign)
         if (command.action === 'next') {
@@ -230,6 +232,7 @@ export class LobbyService {
             'not_ready',
             409,
           )
+          requireValue(canPlayNext(lobby.campaign), 'invalid_deck', 409)
           lobby.game = startScenario(lobby.campaign, randomInt(1, 0x7fffffff), true)
           delete lobby.autoSteps
           delete lobby.cardEntries
@@ -254,6 +257,7 @@ export class LobbyService {
                     })
                   : purchase(lobby.campaign, investigator, command.card, {
                       upgrade: command.upgrade,
+                      ...(command.replaces ? { replaces: command.replaces } : {}),
                       ...(command.remove ? { remove: command.remove } : {}),
                     })
             } catch {
@@ -469,6 +473,7 @@ export function onlineLobbies(
             },
             card: { type: 'string', minLength: 1, maxLength: 30 },
             upgrade: { type: 'boolean' },
+            replaces: { type: 'string', minLength: 1, maxLength: 30 },
             sheet: {
               type: 'object',
               maxProperties: 30,

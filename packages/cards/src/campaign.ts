@@ -12,6 +12,7 @@ import './support-skills'
 import './damage-turn'
 import './tools-parley'
 import './charged-assets'
+import './resource-reactions'
 import './rex-murphy'
 import './grouped-import'
 import './immediate-action-events'
@@ -361,16 +362,23 @@ export function activeMembers(campaign: Campaign): CampaignInvestigator[] {
   })
 }
 
-/** El escenario que toca ya se puede jugar. */
-export function canPlayNext(campaign: Campaign): boolean {
+/**
+ * La campaña sigue y su siguiente escenario está disponible. Entre escenarios se puede
+ * comprar y reparar el mazo aunque todavía no sea válido (`canPlayNext` lo exige).
+ */
+export function campaignCanContinue(campaign: Campaign): boolean {
   return (
     !!scenarioEntry(campaign)?.build &&
     !campaign.log.notes.includes(CAMPAIGN_LOST) &&
     activeMembers(campaign).length > 0 &&
     !replaceableMembers(campaign).length &&
-    !pendingTransfers(campaign).length &&
-    !deckIssues(campaign).length
+    !pendingTransfers(campaign).length
   )
+}
+
+/** El escenario que toca ya se puede jugar: la campaña sigue y los mazos son válidos. */
+export function canPlayNext(campaign: Campaign): boolean {
+  return campaignCanContinue(campaign) && !deckIssues(campaign).length
 }
 
 /**
