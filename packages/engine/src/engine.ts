@@ -5,7 +5,7 @@ import { handle } from './handlers'
 import { prepareGame, type NewGameOptions } from './setup'
 import { releaseOrphanedSeals } from './seals'
 import { effectiveVitals, push } from './state'
-import { playerCardBehavior } from './content'
+import { playerCardBehavior, treacheryBehavior } from './content'
 import type { GameState, Message, PlayerInput } from './types'
 
 /** Límite de seguridad contra bucles infinitos de mensajes. */
@@ -99,11 +99,16 @@ function run(initial: GameState, observer?: EngineObserver): GameState {
       }
       if (discarded.length) state = push(state, ...discarded)
     }
-    // RR Defeat: health or sanity that drops without new damage can defeat (The Black Fan).
+    // RR Defeat: health or sanity that drops without new damage can defeat (The Black Fan,
+    // or a treachery entering the threat area such as Dreams of R'lyeh).
     const dynamic = (s: GameState) =>
       Object.values(s.assets).some(
         (a) => typeof playerCardBehavior(a.code)?.ownerVitals === 'function',
-      )
+      ) ||
+      Object.values(s.treacheries).some((t) => {
+        const behavior = treacheryBehavior(t.code)
+        return !!behavior?.healthModifier || !!behavior?.sanityModifier
+      })
     if (dynamic(before) || dynamic(state)) {
       const lowered = state.investigators.filter((i) => {
         const old = before.investigators.find((o) => o.id === i.id)

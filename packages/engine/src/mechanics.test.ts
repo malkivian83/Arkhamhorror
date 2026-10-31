@@ -50,6 +50,14 @@ registerTreachery({
   ],
 })
 registerTreachery({ code: 't-surge', revelation: () => [{ type: 'GainSurge' }] })
+// Como Dreams of R'lyeh: -1 de cordura mientras está en la zona de amenaza.
+registerTreachery({
+  code: 't-dreams',
+  sanityModifier: -1,
+  revelation: (_s, investigator, self) => [
+    { type: 'PlaceTreachery', treachery: self.id, placement: { type: 'threatArea', investigator } },
+  ],
+})
 registerTreachery({
   code: 't-haunt',
   revelation: (_s, investigator, self) => [
@@ -156,6 +164,24 @@ describe('traiciones (RR "Treachery")', () => {
     })
     game = choose(game, 'action.investigate')
     expect(inv(game)).toMatchObject({ clues: 1, horror: 1 })
+  })
+
+  it('una traición que reduce la cordura hasta el horror derrota al investigador', () => {
+    const start = choose(
+      newTestGame({ players: ['a', 'b'], investigator: { sanity: 3 } }),
+      'choice.investigator',
+      { name: 'A' },
+    )
+    const game = during(
+      start,
+      (s) => ({
+        ...s,
+        investigators: s.investigators.map((i) => (i.id === 'a' ? { ...i, horror: 2 } : i)),
+      }),
+      reveal(treachery('t-dreams'), 'a'),
+    )
+    expect(inv(game).eliminated).toBe(true)
+    expect(inv(game, 'b').eliminated).toBeFalsy()
   })
 
   it('al eliminar al investigador, su zona de amenaza se descarta y deja de tener efecto', () => {

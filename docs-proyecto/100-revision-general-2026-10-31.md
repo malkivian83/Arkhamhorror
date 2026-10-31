@@ -571,6 +571,23 @@ Comprobado como correcto, además:
 - **Pruebas automáticas (D3):** solo responden por el investigador propio y se
   cancelan al cambiar el estado.
 
+### Correcciones de la tercera revisión
+
+N1–N3 subidas en `e4104095`. Corregidos después, con pruebas:
+
+- **F1:** el bucle del motor comprueba la derrota cuando una traición con
+  `healthModifier`/`sanityModifier` cambia la vitalidad (prueba en `mechanics.test.ts`).
+- **F2:** *La casa siempre gana* aparta `HIDEOUS_ABOMINATIONS` (2 Conglomerados de esferas
+  y 1 Siervo del acechador) y Miedo paralizante; los Esclavos-bestia siguen en los
+  escenarios que los usan.
+- **F3:** `FIXED_CLUE_LOCATIONS` (16 Lugares según ArkhamDB) y el acto 1 del Museo usan
+  pistas fijas (`fixed-clues.test.ts`).
+- **F5:** la ficha de Sectario, el Juramentado poseído y el Buscador de Carcosa ya no
+  comprueban el plan. Led Astray se mantiene: su texto dice que el efecto puede hacer
+  avanzar el plan, y no está claro que excluya la opción de la pista.
+
+Siguen abiertos F4, F6, F7, F8 y N4.
+
 ### Orden sugerido
 
 1. **Subir N1–N3**, que corrigen mis propios cambios. N1 bloquea campañas online.

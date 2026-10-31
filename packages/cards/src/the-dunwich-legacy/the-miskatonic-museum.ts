@@ -44,6 +44,7 @@ import {
   MUSEUM_ENCOUNTERS,
   museumSpecific as specific,
 } from './museum-encounters'
+import { FIXED_CLUE_LOCATIONS } from './fixed-clues'
 export { M, MN, THE_MISKATONIC_MUSEUM } from './museum-codes'
 export { huntingHorror, MUSEUM_ENCOUNTERS } from './museum-encounters'
 const entry = storyEntries('museum')
@@ -61,7 +62,7 @@ const room = (
   name,
   shroud,
   clueValue: clues,
-  cluesPerInvestigator: true,
+  cluesPerInvestigator: !FIXED_CLUE_LOCATIONS.has(id),
   connections,
   position,
   ...(victory ? { victory } : {}),
@@ -139,8 +140,9 @@ export function theMiskatonicMuseum({
       {
         code: M.inside,
         name: 'Finding A Way Inside',
+        // Fixed 2 clues, not per investigator (ArkhamDB clues_fixed).
         clueThreshold: 2,
-        cluesPerInvestigator: true,
+        cluesPerInvestigator: false,
         advanceTiming: 'anytime',
       },
       {

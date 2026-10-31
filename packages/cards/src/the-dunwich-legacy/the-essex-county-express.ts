@@ -46,6 +46,7 @@ import { T, TN, THE_ESSEX_COUNTY_EXPRESS } from './essex-codes'
 import { M } from './museum-codes'
 import { EA, DUNWICH_NOTES as N } from './extracurricular-codes'
 import { H, HN } from './house-codes'
+import { FIXED_CLUE_LOCATIONS } from './fixed-clues'
 export { T, TN, THE_ESSEX_COUNTY_EXPRESS } from './essex-codes'
 export { ESSEX_ENCOUNTERS } from './essex-encounters'
 const entry = storyEntries('essex')
@@ -71,7 +72,7 @@ const room = (
   name,
   shroud,
   clueValue: clues,
-  cluesPerInvestigator: true,
+  cluesPerInvestigator: !FIXED_CLUE_LOCATIONS.has(id),
   connections: [],
   unrevealedName: engines.includes(id as typeof T.enginePlain) ? 'Engine Car' : 'Train Car',
   ...(victory ? { victory } : {}),

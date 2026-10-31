@@ -40,6 +40,11 @@ import { avianFight, HOUSE_SETS, huntedDownSpecific, thugBlocksResources } from 
 import { H, HN, THE_HOUSE_ALWAYS_WINS } from './house-codes'
 import { DUNWICH_NOTES as N } from './extracurricular-codes'
 import { armitageInterlude, storyReward } from './house-assets'
+import { conglomerationOfSpheres } from './conglomeration-of-spheres'
+import { servantOfTheLurker } from './servant-of-the-lurker'
+
+/** Guía p. 6: el conjunto Abominaciones espantosas se aparta (no los Esclavos-bestia). */
+export const HIDEOUS_ABOMINATIONS = [...copies(conglomerationOfSpheres, 2), servantOfTheLurker]
 export { H, HN, THE_HOUSE_ALWAYS_WINS } from './house-codes'
 export { HOUSE_SETS } from './house-encounters'
 const entry = storyEntries('house')
@@ -164,7 +169,7 @@ export function theHouseAlwaysWins({
         2,
       ),
     ],
-    setAside: [...HOUSE_SETS.abominations, ...ENCOUNTER_SETS.strikingFear],
+    setAside: [...HIDEOUS_ABOMINATIONS, ...ENCOUNTER_SETS.strikingFear],
     chaosBag: [...DUNWICH_CHAOS_BAGS[difficulty]],
     tokenValues: {},
     setup: [
@@ -326,9 +331,7 @@ registerScenario({
     if (key === 'hawChaos') {
       const cards = s.setAside.filter(
         (c) =>
-          Object.values(HOUSE_SETS)
-            .flat()
-            .some((a) => a.code === c.code) ||
+          HIDEOUS_ABOMINATIONS.some((a) => a.code === c.code) ||
           encounterSetForVariant(
             ENCOUNTER_SETS.strikingFear,
             s.scenarioMeta?.chapterTwoEncounters === 1 ? 'chapter-two' : undefined,

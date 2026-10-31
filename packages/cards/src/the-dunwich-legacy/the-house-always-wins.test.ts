@@ -91,7 +91,13 @@ describe('The House Always Wins', () => {
   it.each([1, 2, 3, 4])('sets up the original sets for %i players', (players) => {
     const s = game(players)
     expect(s.encounterDeck).toHaveLength(19)
-    expect(s.setAside).toHaveLength(13)
+    // Guide p. 6: Hideous Abominations (2 Conglomeration of Spheres, 1 Servant of the
+    // Lurker) and Striking Fear (7) are set aside.
+    expect(s.setAside).toHaveLength(10)
+    expect(
+      s.setAside.filter((c) => ['02103', '02104'].includes(c.code)).map((c) => c.code),
+    ).toEqual(['02103', '02103', '02104'])
+    expect(s.setAside.some((c) => ['02094', '02095', '02096'].includes(c.code))).toBe(false)
     expect(Object.keys(s.locations)).toHaveLength(4)
     expect(Object.keys(s.setAsideLocations)).toHaveLength(4)
     expect(boss(s).location).toBe(H.lounge)
@@ -183,7 +189,7 @@ describe('The House Always Wins', () => {
     expect(s.agendaIndex).toBe(2)
     expect(s.locations[H.bella]).toBeUndefined()
     expect(getInvestigator(s, 'a').location).toBe(H.lounge)
-    expect(s.encounterDeck.length + Object.keys(s.enemies).length).toBe(33)
+    expect(s.encounterDeck.length + Object.keys(s.enemies).length).toBe(30)
     expect(s.setAside).toHaveLength(0)
   })
   it('act 1 spends four clues per investigator and reveals a guarded hall', () => {

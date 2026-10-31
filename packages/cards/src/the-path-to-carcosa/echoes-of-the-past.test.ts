@@ -375,6 +375,15 @@ describe('Echoes of the Past: chaos tokens', () => {
     expect(hard).toMatchObject({ modifier: -4 })
     expect(hard.immediate).toHaveLength(1)
   })
+
+  it('cultist: the doom reaching the threshold waits for the Mythos phase (doc 100, F5)', () => {
+    let state = prep(game(), [], spawn(seekerOfCarcosa, CODES.quietHallsSecond))
+    const threshold = state.agendas[state.agendaIndex]!.doomThreshold!
+    state = { ...state, doom: threshold - 1 }
+    state = during(state, keep, ...behavior().tokenEffect!(state, 'cultist', 'a').onFail!)
+    expect(enemyOf(state, CODES.seekerOfCarcosa)!.doom).toBe(1)
+    expect(state.agendaIndex).toBe(0)
+  })
 })
 
 describe('Echoes of the Past: locations', () => {

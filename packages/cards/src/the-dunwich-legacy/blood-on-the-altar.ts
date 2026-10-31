@@ -38,6 +38,7 @@ import { B, BN, BLOOD_ON_THE_ALTAR } from './altar-codes'
 import { altarList, altarSpecific as specific } from './altar-helpers'
 import { ALTAR_ENCOUNTERS, DUNWICH_COUNTRY, NIGHTGAUNTS, altarTreachery } from './altar-encounters'
 import { silasBishop } from './silas-bishop'
+import { FIXED_CLUE_LOCATIONS } from './fixed-clues'
 export { B, BN, BLOOD_ON_THE_ALTAR } from './altar-codes'
 export { ALTAR_ENCOUNTERS, DUNWICH_COUNTRY, NIGHTGAUNTS } from './altar-encounters'
 const entry = storyEntries('altar')
@@ -71,7 +72,7 @@ const room = (
   name,
   shroud,
   clueValue: clues,
-  cluesPerInvestigator: true,
+  cluesPerInvestigator: !FIXED_CLUE_LOCATIONS.has(id),
   connections: [],
   symbol,
   connectsTo,
