@@ -104,9 +104,11 @@ describe('campaña: mejorar el mazo', () => {
     // Guardián hasta nivel 5 (Counterattack, nivel 1) y superviviente hasta nivel 2 (Slippery).
     expect(names).toContain('Counterattack')
     expect(names).toContain('Slippery')
-    // Nada de buscador (Joe) ni cartas que no pueda pagar (Sledgehammer, nivel 3).
+    // Nada de buscador (Joe) ni mejoras que no pueda pagar.
     expect(names).not.toContain('Deduction')
-    expect(names).not.toContain('Sledgehammer')
+    expect(options.some((o) => o.code === '08094')).toBe(true)
+    for (const code of ['08096', '12028']) expect(options.some((o) => o.code === code)).toBe(false)
+    expect(options.every((o) => o.cost <= 2)).toBe(true)
     // Ni exclusivas de otros investigadores.
     expect(options.some((o) => o.code === code(14))).toBe(false)
   })

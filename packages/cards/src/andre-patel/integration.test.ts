@@ -32,6 +32,15 @@ describe('André Patel: deckbuilding and campaign', () => {
     const options = purchaseOptions(c, ANDRE).map((o) => o.code)
     expect(options).not.toContain('60352')
     expect(options).toContain('60376')
-    expect(options.every((code) => playerCardDef(code)!.class !== 'guardian')).toBe(true)
+    expect(options).toContain('05115')
+    expect(options).not.toContain('12016')
+    expect(
+      options.every((code) => {
+        const card = playerCardDef(code)!
+        return (card.classes ?? [card.class]).some((faction) =>
+          ['rogue', 'neutral'].includes(faction),
+        )
+      }),
+    ).toBe(true)
   })
 })
