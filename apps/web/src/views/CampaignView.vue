@@ -7,6 +7,7 @@ import {
   canPlayNext,
   canAddCarnevale,
   currentScenario,
+  deckIssues,
   deckSize,
   deckSizeOf,
   onePrintingEach,
@@ -58,6 +59,16 @@ const deckChangesAllowed = computed(
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
 const next = computed(() => (campaign.value ? currentScenario(campaign.value) : null))
 const playable = computed(() => !!campaign.value && canPlayNext(campaign.value))
+/** Mazos que no pueden empezar el siguiente escenario, con el motivo. */
+const issues = computed(() => (campaign.value ? deckIssues(campaign.value) : []))
+/** Errores de campaña: claves de texto con sus datos o mensajes ya escritos. */
+const errorText = computed(() =>
+  !game.error
+    ? ''
+    : /^(customization|deck\.problem)\./.test(game.error)
+      ? t(game.error, game.errorParams)
+      : game.error,
+)
 /** Nadie puede seguir ni ser sustituido: la campaña se ha perdido. */
 const lost = computed(() => !!campaign.value && campaignLost(campaign.value))
 const nobodyActive = computed(() => !!campaign.value && !activeMembers(campaign.value).length)
@@ -132,12 +143,16 @@ const customizableFor = (deck: string[]) =>
     .filter((code) => deck.includes(code) || options.value.some((o) => o.code === code))
 function buy(o: PurchaseOption, remove?: string) {
   if (!shopping.value) return
-  game.buy(shopping.value, o.code, { upgrade: !!o.replaces, ...(remove ? { remove } : {}) })
+  game.buy(shopping.value, o.code, {
+    upgrade: !!o.replaces,
+    ...(o.replaces ? { replaces: o.replaces } : {}),
+    ...(remove ? { remove } : {}),
+  })
 }
 
 function playNext() {
   game.playNext()
-  void router.push('/game')
+  if (game.state) void router.push('/game')
 }
 
 function abandon() {
@@ -342,7 +357,7 @@ function abandon() {
               />
             </details>
             <p v-if="game.error" class="error">
-              {{ game.error.startsWith('customization.') ? t(game.error) : game.error }}
+              {{ errorText }}
             </p>
           </div>
         </article>
@@ -368,7 +383,7 @@ function abandon() {
       >
         {{ t('campaign.transfer.assign') }}
       </button>
-      <p v-if="game.error" class="error">{{ game.error }}</p>
+      <p v-if="game.error" class="error">{{ errorText }}</p>
     </section>
 
     <section
@@ -386,7 +401,7 @@ function abandon() {
       <button type="button" :disabled="!replacing[id] || !!game.state" @click="replace(id)">
         {{ t('campaign.replace.confirm') }}
       </button>
-      <p v-if="game.error" class="error">{{ game.error }}</p>
+      <p v-if="game.error" class="error">{{ errorText }}</p>
     </section>
 
     <footer class="actions">
@@ -400,6 +415,12 @@ function abandon() {
         </SiteAction>
         <span v-if="nobodyActive" class="soon">{{ t('campaign.replace.blocked') }}</span>
         <span v-else-if="transfers.length" class="soon">{{ t('campaign.transfer.blocked') }}</span>
+        <span v-else-if="issues.length" class="soon" role="status">
+          <template v-for="(issue, n) in issues" :key="n"
+            >{{ name(issue.investigator) }}:
+            {{ t(issue.problem.key, 'params' in issue.problem ? issue.problem.params : {}) }}
+          </template>
+        </span>
         <span v-else-if="!playable" class="soon">{{ t('campaign.comingSoon') }}</span>
       </template>
       <p v-else class="finished">{{ t('campaign.finished') }}</p>

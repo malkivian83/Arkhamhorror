@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, useId, watch } from 'vue'
+import { customizationPurchaseCost } from '@lcg/cards'
 import { customizationCost, playerCardDef } from '@lcg/engine'
 import { useI18n } from 'vue-i18n'
 import { localName } from '../game/localized'
@@ -39,13 +40,22 @@ watch(
 )
 const def = computed(() => playerCardDef(props.code))
 const total = computed(() => customizationCost(selectedSheet.value))
-const cost = computed(() => total.value - customizationCost(props.sheet))
+/** Casillas nuevas marcadas. */
+const boxes = computed(() => total.value - customizationCost(props.sheet))
+/** Las casillas y, a partir de la segunda copia nueva, el coste de la carta (FAQ). */
+const cost = computed(() =>
+  customizationPurchaseCost(
+    props.sheet ?? {},
+    selectedSheet.value,
+    props.draft ? 0 : addedCopies.value,
+  ),
+)
 const chosenRemovals = computed(() => removal.value.slice(0, addedCopies.value).filter(Boolean))
 /** Primer motivo que impide pagar, explicado junto al botón. */
 const blocker = computed(() => {
   if (total.value > 10) return t('customization.invalid')
   if (props.draft) return ''
-  if (cost.value <= 0) return t('customization.markBox')
+  if (boxes.value <= 0) return t('customization.markBox')
   if (cost.value > (props.xp ?? 0)) return t('customization.experience')
   if (props.full && chosenRemovals.value.length < addedCopies.value)
     return t('customization.needRemoval')

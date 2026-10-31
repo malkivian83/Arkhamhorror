@@ -32,9 +32,9 @@ no cartas que deban añadirse automáticamente al mazo inicial.
 Las hojas se guardan por investigador y código en el mazo, campaña y estado de partida.
 Cada casilla cuesta 1 PX; las opciones parciales no dan capacidades, pero cuentan para
 el nivel (mitad de casillas, redondeada hacia arriba), con un máximo de 10 casillas.
-Las compras son irreversibles y afectan a todas las copias. Se permite comprar copias nuevas
-junto con mejoras pagando únicamente las casillas; la compra posterior de otra copia
-utiliza el nivel actual. Perder la última copia de la campaña borra su hoja.
+Las compras son irreversibles y afectan a todas las copias. Al pagar casillas se puede añadir
+una copia nueva sin coste de carta; la segunda copia y las compras posteriores cuestan el
+nivel actual, con un mínimo de 1 (FAQ; corregido en el doc 100, C6). Perder la última copia de la campaña borra su hoja.
 
 Editor y tiendas local/online muestran una hoja EN/ES con las opciones y sus efectos.
 El servidor valida experiencia, composición del mazo, propietario y repetición de comandos.

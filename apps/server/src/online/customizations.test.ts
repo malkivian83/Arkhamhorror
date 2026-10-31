@@ -42,10 +42,11 @@ it('purchases shared upgrades server-side, persists them, and checks command rep
   })
   const result = await service.progress(saved.id, 'host', command)
   expect(result.campaign?.own?.customizations).toEqual({ '09119': { telescanner: 2 } })
-  expect(result.campaign?.own?.xp).toBe(6)
+  // 2 boxes, plus the second new copy at level 1 (FAQ: only one copy is free).
+  expect(result.campaign?.own?.xp).toBe(5)
   expect(saved.campaignReady).toEqual([])
   await service.progress(saved.id, 'host', command)
-  expect(saved.campaign!.log.investigators['60501']!.xp).toBe(6)
+  expect(saved.campaign!.log.investigators['60501']!.xp).toBe(5)
   await expect(
     service.progress(saved.id, 'host', { ...command, sheet: { railshooter: 2 } }),
   ).rejects.toMatchObject({ code: 'command_conflict' })

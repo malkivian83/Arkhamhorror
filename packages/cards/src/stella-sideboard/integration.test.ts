@@ -41,10 +41,11 @@ it('buys two copies with a single shared sheet, preserves upgrades into the scen
     { telescanner: 2, empoweredConfiguration: 4 },
     { copies: 2, remove: ['60505', '60505'] },
   )
-  expect(c.log.investigators[STELLA]!.xp).toBe(14)
+  // FAQ: the sheet adds one copy for free; the second costs its level, ceil(6 / 2) = 3.
+  expect(c.log.investigators[STELLA]!.xp).toBe(11)
   expect(c.investigators[0]!.deck.filter((c) => c === CODE)).toHaveLength(2)
   c = customize(c, STELLA, CODE, { telescanner: 2, empoweredConfiguration: 4, aethericLink: 1 })
-  expect(c.log.investigators[STELLA]!.xp).toBe(13)
+  expect(c.log.investigators[STELLA]!.xp).toBe(10)
   expect(customizedCard(playerCardDef(CODE)!, c.investigators[0]!.customizations).xp).toBe(4)
   const s = startScenario(c, 2, false)
   expect(s.investigators[0]!.customizations).toEqual(c.investigators[0]!.customizations)

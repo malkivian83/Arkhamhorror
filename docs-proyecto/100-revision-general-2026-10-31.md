@@ -47,7 +47,23 @@ Bloque de fluidez, también con pruebas: **E4, E11, D1, D2 y D3**.
   (1,6 s). Se puede detener en cada prueba o desactivar desde el panel. La estimación de
   probabilidades sigue a petición.
 
-Quedan pendientes las revisiones visuales de E3, D1, D2 y D3. El resto de puntos sigue abierto.
+Campaña y mazos, con pruebas en `campaign-purchases.test.ts`: **C1–C6** (ver la ampliación).
+
+- **C1:** la tienda descarta los rasgos excluidos y `purchase` rechaza con `DeckProblemError`
+  cualquier compra que añada un problema de construcción nuevo, antes de gastar XP.
+- **C2:** se ofrece la mejora desde cada versión inferior. Sin indicar cuál, se usa la de
+  menor diferencia, también online.
+- **C3:** `owedFills` cuenta los huecos que abren las mejoras a Permanente, y esos se
+  rellenan pagando. Solo existe mientras hay huecos, así que los guardados no cambian.
+- **C4:** `deckIssues` usa las mismas reglas que `startScenario`. `canPlayNext` no
+  deja continuar con un mazo inválido, la campaña muestra el motivo y `playNext` ya no
+  falla en silencio.
+- **C5:** al crear un mazo no se admiten apoyos de historia ni debilidades de campaña.
+- **C6:** la hoja de mejoras solo da gratis una copia nueva; la segunda cuesta su nivel,
+  con un mínimo de 1.
+
+Quedan pendientes las revisiones visuales de E3, D1, D2 y D3, además de C4 en la pantalla de
+campaña. El resto de puntos sigue abierto.
 
 ## Método y límites
 
@@ -374,3 +390,121 @@ abre una ventana.
    - Añadir el ciclo de vida de las salas (S4).
    - Validar las versiones de las salas (S3).
 5. **Resto de E8–E12, D4–D13 y prioridad 4,** agrupados por zona de código.
+
+## Ampliación · segunda revisión (31/10/2026)
+
+Se revisan áreas que la primera pasada no cubrió: construcción de mazos y
+progresión de campaña, carga de la web, rendimiento del motor, pruebas y
+repositorio. También son de solo lectura: reproducciones en scratchpad y
+mediciones con las grabaciones de `docs-proyecto/evidencias`.
+
+Los pasos 1 y 2 del orden anterior están hechos. S1 queda mitigado solo para
+quien entra con Google (`ebdb329c`); el registro con contraseña sigue expuesto.
+
+### Errores de campaña y mazos
+
+- **C1 · Alto · reproducido — La tienda no revalida el mazo.** Rex Murphy puede
+  comprar cartas con el rasgo Fortune, que tiene excluido (17 ofertas, p. ej.
+  Well-Funded), y Lola puede bajar del mínimo de su clase. La XP se gasta y
+  después `startScenario` lanza un error: con 0 XP la campaña queda bloqueada.
+  Reglamento p. 29. `packages/cards/src/campaign.ts:759-775` y `:835-866`.
+- **C2 · Alto · reproducido — Mejora desde la copia equivocada.** Siempre se usa
+  la primera copia de menor nivel. Con Shrivelling (0) y (3) en el mazo, la
+  versión (5) solo se ofrece desde (0), por 5 XP en lugar de 2; con 2–4 XP ni
+  aparece. Reglamento p. 22. `campaign.ts:785-795`.
+- **C3 · Medio · reproducido — Mejoras a una versión Permanente.** Higher
+  Education 3, Keen Eye, Streetwise, Blood Pact y Scrapper dejan el mazo en 29/30,
+  y la carta de nivel 0 para completarlo sale gratis. Ese relleno gratuito solo
+  vale tras retiradas forzosas (FAQ 1.18); el mínimo es 1 XP (FAQ 1.8).
+  `campaign.ts:757`, `:785-788` y `:803`.
+- **C4 · Medio · confirmado — «Jugar siguiente» falla en silencio.** Con un mazo
+  ilegal o corto, `canPlayNext` no lo valida y `playNext` no captura el error.
+  En Fortune and Folly, una carta exiliada sin cambios de mazo permitidos podría
+  bloquear la Parte II (plausible). `campaign.ts:360-368` y
+  `apps/web/src/stores/game.ts:230-234`.
+- **C5 · Medio · reproducido — Cartas de historia y debilidades sin validar.**
+  `validateDeck` acepta un mazo importado con tres copias de 02140 o con
+  12115/01117. Reglamento p. 21. `packages/cards/src/decks.ts:50-54` y `:219`.
+- **C6 · Medio · reproducido — Segunda copia gratis de una personalizable.** Se
+  pueden añadir dos copias pagando solo las casillas; la segunda debe costar al
+  menos 1 XP (FAQ p. 42). `campaign.ts:922-931` y `CustomizationSheet.vue:79-90`.
+- **C7 · Bajo · reproducido — Debilidad básica aleatoria.**
+  - Sale solo de las 8 de la caja de 2026: faltan Unaware, Atychiphobia,
+    Self-Destructive y Obsessive.
+  - Cada investigador sortea por separado: hubo debilidades repetidas en 30 de
+    199 semillas.
+  - `decks.ts:285-291` y `campaign.ts:238-241`.
+- **C8 · Bajo · confirmado — Collector y detalles menores.**
+  - El Relic/Charm adicional no se puede comprar ni mejorar entre escenarios, y
+    `validateDeck` cuenta ese hueco en el límite de 5 cartas de otras clases de
+    Dunwich.
+  - Además: las Permanentes se cuentan de forma distinta en compra y validación,
+    un sustituto se valida con recompensas distintas y la tienda ofrece cartas de
+    otras clases con el límite ya alcanzado.
+  - `campaign.ts:773`, `:860` y `decks.ts:181-188`.
+
+Comprobado como correcto: tamaño y cartas exclusivas, límite por título en
+todos los niveles, acceso por clase y nivel (incluidas las multiclase), costes
+de XP y Excepcionales, casillas de las personalizables, trauma, inicio con
+trauma, sustitutos, persistencia del registro y de la bolsa, y recompensas.
+
+### Rendimiento y carga
+
+- **O1 · Alto · medido — Carga inicial pesada.** La portada precarga un trozo de
+  3,2 MB (unos 850 KB comprimido con gzip y 590 KB con brotli) que incluye los
+  textos EN y ES de todas las campañas (22 JSON, unos 2 MB), el motor y las cartas.
+  `router.ts` importa de forma directa la mesa, la preparación, el editor de mazos
+  y la campaña. Propuesta:
+  - rutas diferidas;
+  - cargar solo el idioma activo (`setLocaleMessage`);
+  - separar los textos de cada campaña;
+  - cargar el motor solo al abrir la mesa.
+- **O2 · Medio — `/local-assets` sin caché.** Los 864 MB de imágenes y audio no
+  llevan `Cache-Control` en `.htaccess` (solo `/assets/`), así que el navegador
+  decide cuándo revalidarlos. Propuesta: `max-age` largo con revalidación, o
+  versionar sus rutas desde el manifiesto.
+- **O3 · Medio · medido — Deshacer y cargar rejuegan desde el principio.** El
+  motor es rápido (0,6–1 ms por decisión, pico de 18 ms), pero deshacer o cargar
+  245 decisiones cuesta unos 0,2 s y crece con la partida. Propuesta: guardar un
+  punto de control cada N decisiones y rejugar solo desde el último.
+- **O4 · Medio · medido — Suite de 451 s, el 72 % en importar módulos.** Cada
+  archivo de prueba vuelve a cargar el registro completo de cartas. Propuesta:
+  probar `isolate: false` o el pool de hilos en los proyectos `engine` y `cards`,
+  vigilando las cartas de prueba registradas con el mismo código en varios
+  archivos.
+- **O5 · Bajo — Bucle del motor.** `run` gasta más tiempo propio que `handle`:
+  copia la cola en cada mensaje y recorre investigadores, apoyos y descarte para
+  detectar cambios. Se puede optimizar con un índice sobre la cola y
+  comprobaciones guiadas por el tipo de mensaje. No es urgente.
+
+### Operación y repositorio
+
+- **R1 · Medio — Repositorio de 1,2 GB.** Hay unos 8.500 binarios (imágenes y
+  audio) en git, y la CI clona con `fetch-depth: 0`. Propuesta: Git LFS o un
+  almacén de recursos aparte; en la CI, `filter: blob:none` para el plan por diff;
+  `git gc` local (35 MB de objetos temporales).
+- **R2 · Decisión del propietario — Imágenes y narraciones oficiales en un sitio
+  público con registro abierto.** Contradice la pauta del doc 02. Mitigaciones
+  mínimas:
+  - `robots.txt` que excluya `/local-assets/`;
+  - mantener el aviso de no afiliación;
+  - tener preparado un procedimiento de retirada.
+
+### Juego
+
+- **J1 · Medio — Modo de corrección manual.** Con 943 cartas jugables, alguna
+  interacción fallará. Hoy la única salida es deshacer o abandonar. Un ajuste
+  manual de daño, horror, pistas, recursos, perdición y posición, registrado en el
+  historial, permitiría seguir jugando (F090 del doc 15, ausente).
+- **J2 · Medio — Volver a grabar la campaña Joe–Trish de Brethren of Ash en
+  normal,** invalidada por E1.
+
+### Orden sugerido para lo que queda
+
+1. **Campaña:** C1, C2, C4, C3, C5 y C6, con pruebas de compra y de inicio del
+   siguiente escenario.
+2. **Seguridad:** S1 para el registro con contraseña y los registros de errores
+   500.
+3. **Carga:** O1 y O2.
+4. **Online:** D7, D8 y D9, más S3 y S4.
+5. **Resto:** E8–E12, O3–O5, R1, J1 y los puntos restantes de D.

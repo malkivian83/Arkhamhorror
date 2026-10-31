@@ -9,6 +9,7 @@ import {
   customize,
   startScenario,
   addCarnevale,
+  DeckProblemError,
   STARTER_DECKS,
   type Campaign,
   type CampaignMember,
@@ -92,6 +93,13 @@ export const useGameStore = defineStore('game', () => {
   const cardEntries = shallowRef<(CardEntry & { reviewed?: boolean })[]>([])
   const storageIssue = shallowRef<SessionIssue | null>(loaded.issue ?? null)
   const error = shallowRef<string | null>(null)
+  /** Datos del error de campaña cuando `error` es una clave de texto (`deck.problem.*`). */
+  const errorParams = shallowRef<Record<string, string | number>>({})
+  function failed(e: unknown) {
+    error.value = e instanceof Error ? e.message : String(e)
+    errorParams.value =
+      e instanceof DeckProblemError && 'params' in e.problem ? e.problem.params : {}
+  }
   /** Campaña en curso: el escenario que se juega es uno de sus escenarios. */
   const campaign = shallowRef<Campaign | null>(loaded.data.campaign)
   if (campaign.value?.log.rewards?.length) useDecksStore().addRewards(campaign.value.log.rewards)
@@ -230,7 +238,12 @@ export const useGameStore = defineStore('game', () => {
   function playNext() {
     if (!campaign.value || latest) return
     error.value = null
-    play(startScenario(campaign.value, Math.floor(Math.random() * 2 ** 32)))
+    // A deck that cannot start (doc 100, C4) is reported instead of failing silently.
+    try {
+      play(startScenario(campaign.value, Math.floor(Math.random() * 2 ** 32)))
+    } catch (e) {
+      failed(e)
+    }
   }
 
   function insertCarnevale() {
@@ -250,14 +263,14 @@ export const useGameStore = defineStore('game', () => {
       setCampaign(customize(campaign.value, investigator, code, sheet, options))
       error.value = null
     } catch (e) {
-      error.value = e instanceof Error ? e.message : String(e)
+      failed(e)
     }
   }
 
   function buy(
     investigator: string,
     card: CardCode,
-    options: { remove?: CardCode; upgrade?: boolean } = {},
+    options: { remove?: CardCode; upgrade?: boolean; replaces?: CardCode } = {},
   ) {
     if (!campaign.value || latest) return
     try {
@@ -265,7 +278,7 @@ export const useGameStore = defineStore('game', () => {
       persist()
       error.value = null
     } catch (e) {
-      error.value = e instanceof Error ? e.message : String(e)
+      failed(e)
     }
   }
 
@@ -428,6 +441,7 @@ export const useGameStore = defineStore('game', () => {
   return {
     state,
     error,
+    errorParams,
     storageIssue,
     campaign,
     advanceReview,
