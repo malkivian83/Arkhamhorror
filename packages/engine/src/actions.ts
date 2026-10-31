@@ -76,6 +76,7 @@ export function playableCards(state: GameState, id: InvestigatorId, fast: boolea
     if (scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, id, code)) return false
     if (!cardAllowed(state, id, code)) return false
     const behavior = playerCardBehavior(code)
+    if (behavior?.onlyFromDiscard && !investigator.discard.includes(code)) return false
     if (def.type === 'event' && !behavior?.play) return false
     if (behavior?.parley && !parleyCosts(state, id)) return false
     if (cardCost(state, id, code) > spendableFor(state, id, code)) return false
@@ -96,6 +97,7 @@ export function canPlayByEffect(
   const i = getInvestigator(state, id)
   const def = playerCardDef(code)
   if (!def || i.eliminated || i.location === null || !i[from].includes(code)) return false
+  if (playerCardBehavior(code)?.onlyFromDiscard && from !== 'discard') return false
   const extra = playerCardBehavior(code)?.additionalPlayActions ?? 0
   if (
     !additionalActionsPaid &&
@@ -160,6 +162,8 @@ export function playRestriction(
   if (def.type !== 'asset' && def.type !== 'event') return { key: 'unplayable.notPlayable' }
   if (investigator.eliminated || investigator.location === null)
     return { key: 'unplayable.notInPlay' }
+  if (playerCardBehavior(code)?.onlyFromDiscard && !investigator.discard.includes(code))
+    return { key: 'unplayable.onlyDiscard' }
   const threats = threatAreaTreacheries(state, id)
   const by = (t: Treachery) => ({ card: t.name })
   if (def.type === 'asset') {

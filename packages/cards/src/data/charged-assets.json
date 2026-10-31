@@ -1,0 +1,459 @@
+[
+  {
+    "code": "08120",
+    "name": "Prophetic",
+    "type": "asset",
+    "class": "guardian",
+    "classes": ["guardian", "mystic", "survivor"],
+    "traits": ["Talent"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {
+      "willpower": 2
+    },
+    "slots": [],
+    "uses": {
+      "count": 2,
+      "type": "resources"
+    }
+  },
+  {
+    "code": "08121",
+    "name": "Sleuth",
+    "type": "asset",
+    "class": "guardian",
+    "classes": ["guardian", "seeker", "mystic"],
+    "traits": ["Talent"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": [],
+    "uses": {
+      "count": 2,
+      "type": "resources"
+    }
+  },
+  {
+    "code": "08122",
+    "name": "Bruiser",
+    "type": "asset",
+    "class": "guardian",
+    "classes": ["guardian", "rogue", "survivor"],
+    "traits": ["Talent"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {
+      "combat": 2
+    },
+    "slots": [],
+    "uses": {
+      "count": 2,
+      "type": "resources"
+    }
+  },
+  {
+    "code": "08123",
+    "name": "Crafty",
+    "type": "asset",
+    "class": "seeker",
+    "classes": ["seeker", "rogue", "survivor"],
+    "traits": ["Talent"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {
+      "agility": 2
+    },
+    "slots": [],
+    "uses": {
+      "count": 2,
+      "type": "resources"
+    }
+  },
+  {
+    "code": "08124",
+    "name": "Antiquary",
+    "type": "asset",
+    "class": "seeker",
+    "classes": ["seeker", "rogue", "mystic"],
+    "traits": ["Talent"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {
+      "wild": 1
+    },
+    "slots": [],
+    "uses": {
+      "count": 2,
+      "type": "resources"
+    }
+  },
+  {
+    "code": "09082",
+    "name": "Ceremonial Sickle",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Charm", "Weapon", "Melee"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "09096",
+    "name": "Ceremonial Sickle",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Charm", "Weapon", "Melee"],
+    "cost": 3,
+    "xp": 4,
+    "icons": {
+      "combat": 2
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "09083",
+    "name": "Dowsing Rod",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Charm"],
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "09097",
+    "name": "Dowsing Rod",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Charm"],
+    "cost": 4,
+    "xp": 4,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "09085",
+    "name": "Onyx Pentacle",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Charm"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "09098",
+    "name": "Onyx Pentacle",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Charm"],
+    "cost": 3,
+    "xp": 4,
+    "icons": {
+      "agility": 2
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "09084",
+    "name": "Hallowed Chalice",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Charm"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "09103",
+    "name": "Improvised Shield",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Armor", "Improvised"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {},
+    "slots": ["hand"],
+    "health": 3
+  },
+  {
+    "code": "11085",
+    "name": "Profane Idol",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Charm"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {},
+    "slots": ["accessory"],
+    "sanity": 3
+  },
+  {
+    "code": "10065",
+    "name": "British Bull Dog",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Weapon", "Firearm", "Illicit"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 3,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "10077",
+    "name": "British Bull Dog",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Weapon", "Firearm", "Illicit"],
+    "cost": 3,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 3,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "10066",
+    "name": "Fake Credentials",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Illicit"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 0,
+      "type": "suspicion"
+    }
+  },
+  {
+    "code": "10082",
+    "name": "Fake Credentials",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Illicit"],
+    "cost": 2,
+    "xp": 4,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 0,
+      "type": "suspicion"
+    }
+  },
+  {
+    "code": "10074",
+    "name": "Vamp",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "10081",
+    "name": "Vamp",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 1,
+    "xp": 3,
+    "icons": {
+      "wild": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "10021",
+    "name": "Katana",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Melee"],
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["hand", "hand"]
+  },
+  {
+    "code": "09104",
+    "name": "End of the Road",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Insight", "Spirit"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "04276",
+    "name": "Timeworn Brand",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item", "Relic", "Weapon", "Melee"],
+    "cost": 5,
+    "xp": 5,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "03025",
+    "name": "Archaic Glyphs",
+    "subname": "Untranslated",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Occult", "Tome"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 0,
+      "type": "secrets"
+    }
+  },
+  {
+    "code": "05154",
+    "name": "Hawk-Eye Folding Camera",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tool"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 0,
+      "type": "evidence"
+    }
+  },
+  {
+    "code": "02269",
+    "name": "Jewel of Aureolus",
+    "subname": "Gift of the Homunculi",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Relic"],
+    "unique": true,
+    "cost": 3,
+    "xp": 3,
+    "icons": {
+      "wild": 1
+    },
+    "slots": ["accessory"]
+  },
+  {
+    "code": "02153",
+    "name": "Hypnotic Gaze",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "04026",
+    "name": "Decorated Skull",
+    "subname": "Doom Begets Doom",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Relic", "Cursed"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "agility": 1
+    },
+    "slots": ["accessory"],
+    "uses": {
+      "count": 0,
+      "type": "charges"
+    }
+  },
+  {
+    "code": "53005",
+    "name": "Decorated Skull",
+    "subname": "Doom Begets Doom",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Item", "Relic", "Cursed"],
+    "cost": 0,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": ["accessory"],
+    "uses": {
+      "count": 0,
+      "type": "charges"
+    }
+  },
+  {
+    "code": "03034",
+    "name": "Astral Travel",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": []
+  }
+]

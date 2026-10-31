@@ -11,6 +11,7 @@ import './backup-events'
 import './support-skills'
 import './damage-turn'
 import './tools-parley'
+import './charged-assets'
 import './rex-murphy'
 import './grouped-import'
 import './immediate-action-events'
@@ -78,7 +79,7 @@ import {
   prepareEncounterVariant,
   type EncounterSetVariant,
 } from './encounter-variants'
-import { validateDeck, withRandomBasicWeakness } from './decks'
+import { validateDeck, withRandomBasicWeakness, type DeckProblem } from './decks'
 import {
   IN_THE_THICK_OF_IT,
   startingExperience,
@@ -145,6 +146,11 @@ export interface CampaignInvestigator {
   exiled?: CardCode[]
   /** Déjà Vu discounts already used since the last scenario. */
   dejaVuUsed?: number
+  /**
+   * Deck slots opened by upgrades to Permanent versions since the last scenario. FAQ 1.18
+   * only fills slots left by removed cards for free; these must be filled paying (FAQ 1.8).
+   */
+  owedFills?: number
 }
 
 export interface ScenarioResult {
@@ -362,7 +368,31 @@ export function canPlayNext(campaign: Campaign): boolean {
     !campaign.log.notes.includes(CAMPAIGN_LOST) &&
     activeMembers(campaign).length > 0 &&
     !replaceableMembers(campaign).length &&
-    !pendingTransfers(campaign).length
+    !pendingTransfers(campaign).length &&
+    !deckIssues(campaign).length
+  )
+}
+
+/**
+ * Las recompensas de mazos ya creados siguen siendo válidas; los guardados antiguos
+ * no anotaban en el registro las ganadas en campañas anteriores.
+ */
+function memberRewards(campaign: Campaign, member: CampaignInvestigator): CardCode[] {
+  return [...(campaign.log.rewards ?? []), ...member.deck.filter((c) => playerCardDef(c)?.reward)]
+}
+
+/**
+ * Motivos por los que un mazo activo no puede empezar el siguiente escenario, con las
+ * mismas reglas que `startScenario`, para avisar antes de intentarlo.
+ */
+export function deckIssues(
+  campaign: Campaign,
+): { investigator: InvestigatorId; problem: DeckProblem }[] {
+  return activeMembers(campaign).flatMap((member) =>
+    memberDeckProblems(member, false, memberRewards(campaign, member)).map((problem) => ({
+      investigator: member.id,
+      problem,
+    })),
   )
 }
 
@@ -376,15 +406,8 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
   if (campaign.log.notes.includes(CAMPAIGN_LOST)) throw new Error('La campaña ha terminado')
   if (replaceableMembers(campaign).length) throw new Error('Falta elegir un investigador sustituto')
   if (pendingTransfers(campaign).length) throw new Error('Falta elegir el nuevo portador')
-  for (const investigator of members) {
-    // Las recompensas de mazos ya creados siguen siendo válidas; los guardados
-    // antiguos no anotaban en el registro las ganadas en campañas anteriores.
-    const rewards = [
-      ...(campaign.log.rewards ?? []),
-      ...investigator.deck.filter((c) => playerCardDef(c)?.reward),
-    ]
-    assertDeck(investigator, false, rewards)
-  }
+  for (const investigator of members)
+    assertDeck(investigator, false, memberRewards(campaign, investigator))
   const scenario = prepareEncounterVariant(
     entry.build({
       ...(campaign.encounterSetVariant === 'chapter-two'
@@ -636,20 +659,22 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
   return {
     ...campaign,
     scenarioIndex: campaign.scenarioIndex + 1,
-    investigators: campaign.investigators.map(({ exiled: _last, dejaVuUsed: _used, ...i }) => {
-      // RR Exile: exiled copies leave the deck; they must be purchased again (FAQ 1.18).
-      const exiled = (game.exiled ?? []).filter((e) => e.investigator === i.id).map((e) => e.code)
-      const deck = i.deck.filter((code) => !log.removedCards?.includes(code))
-      for (const code of exiled) if (deck.includes(code)) deck.splice(deck.indexOf(code), 1)
-      return {
-        ...i,
-        deck,
-        ...(i.customizations
-          ? { customizations: retainedCustomizations(deck, i.customizations) }
-          : {}),
-        ...(exiled.length ? { exiled } : {}),
-      }
-    }),
+    investigators: campaign.investigators.map(
+      ({ exiled: _last, dejaVuUsed: _used, owedFills: _owed, ...i }) => {
+        // RR Exile: exiled copies leave the deck; they must be purchased again (FAQ 1.18).
+        const exiled = (game.exiled ?? []).filter((e) => e.investigator === i.id).map((e) => e.code)
+        const deck = i.deck.filter((code) => !log.removedCards?.includes(code))
+        for (const code of exiled) if (deck.includes(code)) deck.splice(deck.indexOf(code), 1)
+        return {
+          ...i,
+          deck,
+          ...(i.customizations
+            ? { customizations: retainedCustomizations(deck, i.customizations) }
+            : {}),
+          ...(exiled.length ? { exiled } : {}),
+        }
+      },
+    ),
     log,
     results: [
       ...campaign.results,
@@ -695,13 +720,12 @@ function assertAvailable(investigator: CardCode, cards: CardCode[]): void {
   if (pending.length) throw new Error(`Cartas no disponibles: ${[...new Set(pending)].join(', ')}`)
 }
 
-function assertDeck(
+function memberDeckProblems(
   member: CampaignInvestigator,
   campaignStart: boolean,
   rewards: CardCode[],
-): void {
-  assertAvailable(member.id, member.deck)
-  const { problems } = validateDeck(
+): DeckProblem[] {
+  return validateDeck(
     {
       id: member.id,
       name: member.id,
@@ -711,7 +735,16 @@ function assertDeck(
     },
     campaignStart,
     rewards,
-  )
+  ).problems
+}
+
+function assertDeck(
+  member: CampaignInvestigator,
+  campaignStart: boolean,
+  rewards: CardCode[],
+): void {
+  assertAvailable(member.id, member.deck)
+  const problems = memberDeckProblems(member, campaignStart, rewards)
   if (problems.length) throw new Error(problems[0]!.key)
 }
 
@@ -752,9 +785,10 @@ export function purchaseOptions(
   const xp = campaign.log.investigators[investigator]?.xp ?? 0
   const options = byCode(investigator)?.deckOptions ?? []
   const full = deckSize(deck) >= deckSizeOf(investigator, deck)
-  // FAQ 1.18: below the deck size after cards were removed, level 0 cards cost 0 experience.
-  const short = deckSize(deck) < deckSizeOf(investigator, deck)
   const self = member(campaign, investigator)
+  // FAQ 1.18: below the deck size after cards were removed, level 0 cards cost 0 experience.
+  const short = freeFillSlots(self) > 0
+  const excluded = byCode(investigator)?.excludedDeckTraits ?? []
   return allPlayerCardDefs()
     .map((card) => customizedCard(card, self.customizations))
     .filter(
@@ -767,6 +801,7 @@ export function purchaseOptions(
         ![IN_THE_THICK_OF_IT, '08071'].includes(card.code) &&
         isImplemented(card.code) &&
         !isSignature(card.code) &&
+        !card.traits.some((trait) => excluded.includes(trait)) &&
         (!playerCardBehavior(card.code)?.requiredResearch ||
           campaign.log.notes.includes(playerCardBehavior(card.code)!.requiredResearch!)) &&
         (options.some((o) => deckOptionAllows(o, card)) ||
@@ -780,18 +815,27 @@ export function purchaseOptions(
         implemented: isImplemented(card.code),
       }
       const copies = deck.filter((c) => byCode(c)?.name === card.name)
-      // Mejora: una copia de menor nivel del mismo título pasa a la nueva versión.
-      const lower = copies.find(
-        (c) =>
-          (customizedCard(byCode(c)!, self.customizations).xp ?? 0) < base.level && !isPermanent(c),
-      )
+      // Mejora: una copia de menor nivel del mismo título pasa a la nueva versión. Se
+      // ofrece desde cada versión inferior distinta, porque cuesta la diferencia (p. 22).
+      const lower = [
+        ...new Set(
+          copies.filter(
+            (c) =>
+              (customizedCard(byCode(c)!, self.customizations).xp ?? 0) < base.level &&
+              !isPermanent(c),
+          ),
+        ),
+      ]
       // RR Exceptional: twice the printed level in experience.
       const price = (code: CardCode) =>
         (customizedCard(byCode(code)!, self.customizations).xp ?? 0) *
         (byCode(code)?.exceptional ? 2 : 1)
-      const upgrade: PurchaseOption[] = lower
-        ? [{ ...base, cost: price(card.code) - price(lower), replaces: lower, needsRemoval: false }]
-        : []
+      const upgrade: PurchaseOption[] = lower.map((replaces) => ({
+        ...base,
+        cost: price(card.code) - price(replaces),
+        replaces,
+        needsRemoval: false,
+      }))
       // Carta nueva: como máximo 2 copias por título; cuesta al menos 1 experiencia.
       const add: PurchaseOption[] =
         !playerCardBehavior(card.code)?.requiredResearch && copies.length < (card.deckLimit ?? 2)
@@ -818,6 +862,18 @@ function dejaVu(member: CampaignInvestigator, deck: CardCode[], code: CardCode):
   return deck.includes(DEJA_VU) && (member.dejaVuUsed ?? 0) < 3 && exiled.includes(code) ? 1 : 0
 }
 
+/** Huecos del mazo que se rellenan gratis: los que dejaron cartas retiradas (FAQ 1.18). */
+function freeFillSlots(self: CampaignInvestigator, deck = self.deck): number {
+  return deckSizeOf(self.id, deck) - deckSize(deck) - (self.owedFills ?? 0)
+}
+
+/** El mazo resultante incumple una regla de construcción que antes cumplía. */
+export class DeckProblemError extends Error {
+  constructor(readonly problem: DeckProblem) {
+    super(problem.key)
+  }
+}
+
 /**
  * Cartas que se pueden quitar del mazo para hacer sitio: las que cuentan para su
  * tamaño (las permanentes no se pueden quitar una vez añadidas, FAQ).
@@ -835,11 +891,17 @@ export function purchase(
   campaign: Campaign,
   investigator: InvestigatorId,
   card: CardCode,
-  options: { remove?: CardCode; upgrade?: boolean } = {},
+  options: { remove?: CardCode; upgrade?: boolean; replaces?: CardCode } = {},
 ): Campaign {
-  const option = purchaseOptions(campaign, investigator).find(
-    (o) => o.code === card && !!o.replaces === !!options.upgrade,
-  )
+  // Sin indicar qué versión se mejora, la más barata (la de mayor nivel).
+  const [option] = purchaseOptions(campaign, investigator)
+    .filter(
+      (o) =>
+        o.code === card &&
+        !!o.replaces === !!options.upgrade &&
+        (!options.replaces || o.replaces === options.replaces),
+    )
+    .sort((a, b) => a.cost - b.cost)
   if (!option) throw new Error(`No se puede comprar ${card}`)
   if (!option.implemented) throw new Error(`${option.name} aún no está implementada`)
   const out = option.replaces ?? (option.needsRemoval ? options.remove : undefined)
@@ -865,28 +927,52 @@ export function purchase(
     throw new Error(`Máximo ${offClassLimit} cartas de otras clases`)
   const record = campaign.log.investigators[investigator]
   if (!record) throw new Error(`Sin registro de campaña: ${investigator}`)
-  // Déjà Vu: the discounted repurchase uses up one exiled copy.
   const self = member(campaign, investigator)
+  const customizations = self.customizations
+    ? retainedCustomizations(deck, self.customizations)
+    : undefined
+  // RR p. 29: every card bought must respect the deckbuilding options (excluded traits,
+  // class minimums…). A shorter deck is completed afterwards; earlier problems are kept.
+  const rewards = memberRewards(campaign, self)
+  const signature = (p: DeckProblem) => JSON.stringify(p)
+  const before = new Set(memberDeckProblems(self, false, rewards).map(signature))
+  const added = memberDeckProblems(
+    { ...self, deck, ...(customizations ? { customizations } : {}) },
+    false,
+    rewards,
+  ).find((p) => p.key !== 'deck.problem.size' && !before.has(signature(p)))
+  if (added) throw new DeckProblemError(added)
   const freeFill =
     (customizedCard(byCode(card)!, self.customizations).xp ?? 0) === 0 &&
-    deckSize(self.deck) < deckSizeOf(investigator, self.deck)
+    !isPermanent(card) &&
+    freeFillSlots(self) > 0
+  // An upgrade to a Permanent opens a slot that is filled paying, not for free.
+  const opened = option.replaces && countsForSize(option.replaces) && !countsForSize(card) ? 1 : 0
+  const paidFill = !out && countsForSize(card) && !freeFill ? 1 : 0
+  const owedFills = Math.max(
+    0,
+    Math.min(
+      deckSizeOf(investigator, deck) - deckSize(deck),
+      (self.owedFills ?? 0) + opened - paidFill,
+    ),
+  )
+  // Déjà Vu: the discounted repurchase uses up one exiled copy.
   const discounted = !option.replaces && !freeFill && dejaVu(self, self.deck, card) > 0
   const exiled = [...(self.exiled ?? [])]
   if (discounted) exiled.splice(exiled.indexOf(card), 1)
   return {
     ...campaign,
-    investigators: campaign.investigators.map((i) =>
-      i.id === investigator
-        ? {
-            ...i,
-            deck,
-            ...(i.customizations
-              ? { customizations: retainedCustomizations(deck, i.customizations) }
-              : {}),
-            ...(discounted ? { exiled, dejaVuUsed: (i.dejaVuUsed ?? 0) + 1 } : {}),
-          }
-        : i,
-    ),
+    investigators: campaign.investigators.map((i) => {
+      if (i.id !== investigator) return i
+      const { owedFills: _previous, ...rest } = i
+      return {
+        ...rest,
+        deck,
+        ...(customizations ? { customizations } : {}),
+        ...(discounted ? { exiled, dejaVuUsed: (i.dejaVuUsed ?? 0) + 1 } : {}),
+        ...(owedFills ? { owedFills } : {}),
+      }
+    }),
     log: {
       ...campaign.log,
       investigators: {
@@ -897,8 +983,26 @@ export function purchase(
   }
 }
 
+/**
+ * Experience for checking boxes and adding copies of a customizable card. FAQ: spending
+ * experience on the sheet adds one copy for free; any other copy costs the card's level
+ * (half the checked boxes, rounded up), at least 1.
+ */
+export function customizationPurchaseCost(
+  previous: Record<string, number>,
+  sheet: Record<string, number>,
+  copies: number,
+): number {
+  const level = Math.ceil(customizationCost(sheet) / 2)
+  return (
+    customizationCost(sheet) -
+    customizationCost(previous) +
+    Math.max(0, copies - 1) * Math.max(1, level)
+  )
+}
+
 /** RR Customizable: permanent checked boxes, one XP each, shared by all owned copies.
- * New copies may be bought together with upgrades without a separate card cost.
+ * One new copy may be added together with upgrades without a separate card cost.
  */
 export function customize(
   campaign: Campaign,
@@ -916,11 +1020,12 @@ export function customize(
   const previous = self.customizations?.[code] ?? {}
   if (Object.entries(previous).some(([key, n]) => (sheet[key] ?? 0) < n))
     throw new Error('customization.permanent')
-  const cost = customizationCost(sheet) - customizationCost(previous)
-  if (cost <= 0 || cost > record.xp) throw new Error('customization.experience')
   const copies = options.copies ?? (self.deck.includes(code) ? 0 : 1)
   if (!Number.isInteger(copies) || copies < 0 || copies > 2)
     throw new Error('customization.invalid')
+  const cost = customizationPurchaseCost(previous, sheet, copies)
+  if (customizationCost(sheet) <= customizationCost(previous) || cost > record.xp)
+    throw new Error('customization.experience')
   const deck = [...self.deck]
   for (const out of options.remove ?? []) {
     if (!removableCards(campaign, investigator).includes(out) || !deck.includes(out))

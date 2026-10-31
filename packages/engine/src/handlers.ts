@@ -2923,6 +2923,13 @@ export function handle(state: GameState, message: Message): GameState {
         )
       )
         return state
+      if (playerCardBehavior(message.code)?.onlyFromDiscard) {
+        if (message.from === 'hand') return state
+        if (!message.byEffect && message.from === undefined) {
+          if (!investigator.discard.includes(message.code)) return state
+          return handle(state, { ...message, from: 'discard' })
+        }
+      }
       const def = playerCardDef(message.code)
       const index = investigator.hand.indexOf(message.code)
       // Wendy's Amulet: the topmost event of the discard pile, as if it were in hand; Winging It:
@@ -3985,7 +3992,11 @@ export function handle(state: GameState, message: Message): GameState {
         : [
             {
               type: 'Forced',
-              trigger: { type: 'investigatorDefeated', investigator: investigator.id },
+              trigger: {
+                type: 'investigatorDefeated',
+                investigator: investigator.id,
+                ...(here === null ? {} : { location: here }),
+              },
             },
           ]
       return push(
@@ -5752,19 +5763,26 @@ export function handle(state: GameState, message: Message): GameState {
     case 'AddUses': {
       const asset = state.assets[message.asset]
       if (!asset) return state
-      return {
+      const uses = Math.min(
+        assetBehavior(state, asset)?.maxUses ?? Infinity,
+        asset.uses + message.amount,
+      )
+      const next: GameState = {
         ...state,
         assets: {
           ...state.assets,
           [asset.id]: {
             ...asset,
-            uses: Math.min(
-              assetBehavior(state, asset)?.maxUses ?? Infinity,
-              asset.uses + message.amount,
-            ),
+            uses,
           },
         },
       }
+      return uses > asset.uses
+        ? push(next, {
+            type: 'Forced',
+            trigger: { type: 'afterUsesAdded', asset: asset.id, amount: uses - asset.uses },
+          })
+        : next
     }
 
     case 'LoseActions': {
@@ -5828,6 +5846,13 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'RemoveFromDiscard': {
       const investigator = getInvestigator(state, message.investigator)
+      // Played events are provisionally at deck bottom with Wendy's Amulet.
+      // Remove that resolving copy, preserving earlier copies in the discard.
+      if (message.playedEvent && eventsToDeckBottom(state, investigator.id)) {
+        return investigator.deck.at(-1) === message.code
+          ? updateInvestigator(state, investigator.id, (i) => ({ ...i, deck: i.deck.slice(0, -1) }))
+          : state
+      }
       const at = investigator.discard.lastIndexOf(message.code)
       if (at < 0) return state
       return updateInvestigator(state, investigator.id, (i) => ({

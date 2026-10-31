@@ -210,6 +210,15 @@ export function validateDeck(
     }
     if (SIGNATURES.has(code) && !own.has(code)) {
       problems.push({ key: 'deck.problem.otherSignature', params: { card: card.name } })
+    } else if (
+      campaignStart &&
+      !card.reward &&
+      !own.has(code) &&
+      (card.story || (card.weakness && card.weakness !== 'basicweakness'))
+    ) {
+      // RR p. 21: story assets and campaign weaknesses enter a deck only when the campaign
+      // says so; a new deck list (or an import) cannot bring them.
+      problems.push({ key: 'deck.problem.notAllowed', params: { card: card.name } })
     } else if (card.traits.some((trait) => investigator.excludedDeckTraits?.includes(trait))) {
       problems.push({ key: 'deck.problem.notAllowed', params: { card: card.name } })
     } else if (card.reward) {
