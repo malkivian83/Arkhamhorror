@@ -448,8 +448,74 @@ describe.skipIf(!url)('cuentas y bibliotecas con MySQL real', () => {
       (await app.inject({ url: '/api/auth/me', headers: { cookie: auth.cookie } })).json().user,
     ).toBeNull()
   })
-  it('Google valida nonce y no une automáticamente cuentas por correo', async () => {
-    const auth = await user('google@gmail.com')
+  /** Google sign-in with the given claims; returns the final redirect and its cookies. */
+  async function googleSignIn(claims: Record<string, unknown>) {
+    vi.spyOn(OAuth2Client.prototype, 'getToken').mockResolvedValue({
+      tokens: { id_token: 'signed' },
+    } as never)
+    let nonce = ''
+    vi.spyOn(OAuth2Client.prototype, 'verifyIdToken').mockImplementation(
+      async () => ({ getPayload: () => ({ ...claims, nonce }) }) as never,
+    )
+    const begin = await app.inject({ url: '/api/auth/google' })
+    const location = new URL(String(begin.headers.location))
+    nonce = location.searchParams.get('nonce')!
+    const response = await app.inject({
+      url: `/api/auth/google/callback?code=code&state=${location.searchParams.get('state')}`,
+      headers: { cookie: begin.cookies.map((c) => `${c.name}=${c.value}`).join('; ') },
+    })
+    return { location: String(response.headers.location), cookie: cookieOf(response) }
+  }
+  it('Google entra en la cuenta existente con el mismo correo cuando Google lo garantiza', async () => {
+    const auth = await user('same@gmail.com')
+    const signIn = await googleSignIn({
+      sub: 'google-same',
+      email: 'same@gmail.com',
+      email_verified: true,
+      name: 'Google',
+    })
+    expect(signIn.location).toContain('google=ok')
+    const me = await app.inject({ url: '/api/auth/me', headers: { cookie: signIn.cookie } })
+    expect(me.json().user.id).toBe(auth.id)
+    expect((await db.db.rows('SELECT id FROM users')).length).toBe(1)
+    // The verified account keeps its password.
+    expect((await post('/auth/login', { email: 'same@gmail.com', password })).statusCode).toBe(200)
+  })
+  it('una cuenta sin verificar con ese correo pierde la contraseña al entrar con Google', async () => {
+    // Someone registered the address first without access to the mailbox.
+    await post('/auth/register', {
+      email: 'victim@gmail.com',
+      password,
+      name: 'Otra persona',
+      locale: 'es',
+    })
+    const signIn = await googleSignIn({
+      sub: 'google-victim',
+      email: 'victim@gmail.com',
+      email_verified: true,
+    })
+    expect(signIn.location).toContain('google=ok')
+    expect((await post('/auth/login', { email: 'victim@gmail.com', password })).statusCode).toBe(
+      401,
+    )
+    const [row] = await db.db.rows<{ verified: number }>(
+      'SELECT verified FROM users WHERE email = ?',
+      ['victim@gmail.com'],
+    )
+    expect(Number(row!.verified)).toBe(1)
+  })
+  it('sin garantía de Google sobre el correo no une la cuenta existente', async () => {
+    await user('owner@example.com')
+    for (const claims of [
+      { sub: 'google-unverified', email: 'owner@example.com', email_verified: false },
+      // Verified, but not Gmail nor a Workspace domain (no hd): Google does not own it.
+      { sub: 'google-foreign', email: 'owner@example.com', email_verified: true },
+    ])
+      expect((await googleSignIn(claims)).location).toContain('google_link_required')
+    expect((await db.db.rows('SELECT subject FROM auth_identities')).length).toBe(0)
+  })
+  it('Google valida nonce y permite vincular desde Mi cuenta', async () => {
+    const auth = await user('google@example.com')
     const getToken = vi
       .spyOn(OAuth2Client.prototype, 'getToken')
       .mockResolvedValue({ tokens: { id_token: 'signed' } } as never)
@@ -459,21 +525,13 @@ describe.skipIf(!url)('cuentas y bibliotecas con MySQL real', () => {
         ({
           getPayload: () => ({
             sub: 'google-identity',
-            email: 'google@gmail.com',
+            email: 'google@example.com',
             email_verified: true,
             nonce,
             name: 'Google',
           }),
         }) as never,
     )
-    const begin = await app.inject({ url: '/api/auth/google' })
-    const location = new URL(String(begin.headers.location))
-    nonce = location.searchParams.get('nonce')!
-    const oauthCookie = begin.cookies.map((c) => `${c.name}=${c.value}`).join('; ')
-    const callback = `/api/auth/google/callback?code=code&state=${location.searchParams.get('state')}`
-    expect(
-      (await app.inject({ url: callback, headers: { cookie: oauthCookie } })).headers.location,
-    ).toContain('google_link_required')
     const link = await app.inject({
       url: '/api/auth/google?link=1',
       headers: { cookie: auth.cookie },

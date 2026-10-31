@@ -97,7 +97,7 @@ https://DOMINIO/api/auth/google/callback
 
 Registrar también el retorno local de `APP_ORIGIN` si se prueba en desarrollo. Configurar consentimiento y usuarios de prueba mientras el cliente no esté publicado.
 
-El flujo utiliza código de autorización, PKCE, `state`, `nonce` y validación del ID token con la librería de Google. Se identifica al usuario por el sujeto de Google. Una coincidencia de correo no une bibliotecas: se exige entrar primero por el método existente y vincular desde el perfil. Si Google no es autoridad sobre el correo, se envía nuestra verificación.
+El flujo utiliza código de autorización, PKCE, `state`, `nonce` y validación del ID token con la librería de Google. Se identifica al usuario por el sujeto de Google. Si ya existe una cuenta con el mismo correo y Google es autoridad sobre él (correo verificado de Gmail o de un dominio de Workspace, `hd`), se vincula y se entra en esa cuenta. Si la cuenta no estaba verificada, se anulan su contraseña y sus sesiones, porque nadie había demostrado el control del buzón y podía tratarse de un registro previo por otra persona. Sin esa autoridad se mantiene `google_link_required`: hay que entrar por el método existente y vincular desde el perfil. Para una cuenta nueva sin esa autoridad, se envía nuestra verificación.
 
 Las cuentas creadas solo con Google no reciben una contraseña artificial. Pueden establecerla mediante el correo de recuperación y usarla para confirmar la eliminación de cuenta. No se incluye todavía desvinculación de Google desde el perfil.
 

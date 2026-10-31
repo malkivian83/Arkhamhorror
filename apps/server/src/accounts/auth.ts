@@ -406,8 +406,31 @@ export function authentication(
             return active
           }
           if (identity) return identity
-          const [existing] = await tx.rows<User>('SELECT id FROM users WHERE email = ?', [address])
-          requireValue(!existing, 'google_link_required', 409)
+          const [existing] = await tx.rows<User>('SELECT * FROM users WHERE email = ? FOR UPDATE', [
+            address,
+          ])
+          if (existing) {
+            // Google vouches for this address (verified Gmail or Workspace domain): the
+            // account with the same email is linked instead of asking to link it first.
+            requireValue(authoritative, 'google_link_required', 409)
+            if (!existing.verified) {
+              // Nobody proved this mailbox before: a password set at registration may belong
+              // to someone else (pre-registration takeover), so it and its sessions go.
+              await tx.exec('UPDATE users SET verified = TRUE, password_hash = NULL WHERE id = ?', [
+                existing.id,
+              ])
+              await tx.exec('DELETE FROM auth_sessions WHERE user_id = ?', [existing.id])
+            }
+            await tx.exec('INSERT INTO auth_identities (subject, user_id) VALUES (?, ?)', [
+              claims.sub,
+              existing.id,
+            ])
+            return {
+              ...existing,
+              verified: 1,
+              ...(existing.verified ? {} : { password_hash: null }),
+            }
+          }
           const created: User = {
             id: randomUUID(),
             email: address,
