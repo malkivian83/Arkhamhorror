@@ -690,6 +690,8 @@ export interface PlayerCardBehavior {
   ) => Message[]
   /** It may be played from its owner's discard pile, any copy (Winging It). */
   playableFromDiscard?: boolean
+  /** Printed restriction: normal play must use a copy in the discard pile. Putting into play is unaffected. */
+  onlyFromDiscard?: boolean
   /** Committed: if the test fails, cancel all effects of the failed test (Neither Rain nor Snow). */
   cancelsFailedTestEffects?: boolean
   /** In play: difficulty modifier of each skill test its controller initiates (Quick Learner). */

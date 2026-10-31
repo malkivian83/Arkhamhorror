@@ -267,6 +267,7 @@ import { BACKUP_RENDERED_CODES } from './backup-events'
 import { SUPPORT_SKILL_RENDERED_CODES } from './support-skills'
 import { DAMAGE_TURN_RENDERED_CODES } from './damage-turn'
 import { TOOLS_PARLEY_RENDERED_CODES } from './tools-parley'
+import { CHARGED_ASSET_RENDERED_CODES } from './charged-assets'
 import { REX_RENDERED_CODES } from './rex-murphy'
 import { GROUPED_RENDERED_CODES } from './grouped-import'
 import { IMMEDIATE_EVENT_RENDERED_CODES } from './immediate-action-events'
@@ -277,6 +278,7 @@ import { TARGETED_EVENT_RENDERED_CODES } from './targeted-events'
 import { EXCLUSIVE_SKILL_RENDERED_CODES } from './exclusive-skills'
 import { SKILL_UTILITY_RENDERED_CODES } from './skill-utilities'
 export const RENDERED_PLAYER_CARD_CODES = [
+  ...CHARGED_ASSET_RENDERED_CODES,
   ...TOOLS_PARLEY_RENDERED_CODES,
   ...DAMAGE_TURN_RENDERED_CODES,
   ...SUPPORT_SKILL_RENDERED_CODES,

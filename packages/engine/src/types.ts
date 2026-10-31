@@ -1521,7 +1521,12 @@ export type Message =
   /** Every card in the investigator's discard pile is removed from the game (Abandoned and Alone). */
   | { type: 'RemoveDiscardFromGame'; investigator: InvestigatorId }
   /** The card is removed from the game from its owner's discard pile (Mystifying Song). */
-  | { type: 'RemoveFromDiscard'; investigator: InvestigatorId; code: CardCode }
+  | {
+      type: 'RemoveFromDiscard'
+      investigator: InvestigatorId
+      code: CardCode
+      playedEvent?: boolean
+    }
   /** Until the end of the phase, the agenda cannot advance by its doom threshold (Mystifying Song). */
   | { type: 'HoldAgenda' }
   /** Descarta las primeras cartas del mazo de un investigador. */
@@ -1889,7 +1894,8 @@ export type Trigger =
       enemy?: EnemyId
     }
   /** Un investigador ha sido derrotado (no cuenta retirarse). */
-  | { type: 'investigatorDefeated'; investigator: InvestigatorId }
+  | { type: 'investigatorDefeated'; investigator: InvestigatorId; location?: LocationId }
+  | { type: 'afterUsesAdded'; asset: AssetId; amount: number }
   | { type: 'enemyPhaseBegins' }
   /** Un enemigo acaba de entrar en juego (tras enfrentarse, si le toca). */
   | { type: 'enemySpawned'; enemy: EnemyId; location: LocationId }

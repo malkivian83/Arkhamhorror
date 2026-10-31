@@ -5,6 +5,29 @@ import { approvedDefinition } from './approved.mjs'
 const read = async (relative) =>
   JSON.parse(await readFile(new URL(relative, import.meta.url), 'utf8'))
 describe('reviewed inventory conversion', () => {
+  it('restricts triple-faction talents to five exact reviewed identities', async () => {
+    const { cards } = await read(
+      '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
+    )
+    const approvals = await read('../../packages/cards/src/charged-assets/approvals.json')
+    const selected = approvals.cards.filter((c) => c.adapter === 'reviewed-talent-factions-v1')
+    expect(selected).toHaveLength(5)
+    for (const a of selected) {
+      const c = cards.find((c) => c.code === a.code)
+      expect(approvedDefinition(c, a).classes).toEqual(c.factions)
+      expect(() => approvedDefinition(c, { ...a, adapter: undefined })).toThrow()
+      expect(() =>
+        approvedDefinition({ ...c, factions: ['guardian', 'seeker', 'rogue'] }, a),
+      ).toThrow()
+    }
+    const other = cards.find((c) => c.code === '01093')
+    expect(() =>
+      approvedDefinition(
+        { ...other, factions: ['guardian', 'mystic', 'survivor'] },
+        { code: other.code, status: 'verified', adapter: 'reviewed-talent-factions-v1' },
+      ),
+    ).toThrow()
+  })
   it('rejects codes repeated between published batch data files', async () => {
     const dir = new URL('../../packages/cards/src/data/', import.meta.url)
     const codes = []
@@ -69,6 +92,7 @@ describe('reviewed inventory conversion', () => {
     'reused-mechanics',
     'damage-turn',
     'tools-parley',
+    'charged-assets',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(

@@ -11,6 +11,16 @@ export function approvedDefinition(card, approval) {
       (card.code === '05118' && card.factions.join(',') === 'mystic,guardian'))
   const reviewedCustomizable =
     approval.adapter === 'reviewed-shotcaster-v1' && card.code === '09119'
+  const talentFactions = {
+    '08120': 'guardian,mystic,survivor',
+    '08121': 'guardian,seeker,mystic',
+    '08122': 'guardian,rogue,survivor',
+    '08123': 'seeker,rogue,survivor',
+    '08124': 'seeker,rogue,mystic',
+  }
+  const reviewedTalent =
+    approval.adapter === 'reviewed-talent-factions-v1' &&
+    talentFactions[card.code] === card.factions.join(',')
   const reviewedTarot =
     approval.adapter === 'reviewed-tarot-v1' &&
     ['05023', '05027', '05031', '05035', '05039', '54003', '54005'].includes(card.code) &&
@@ -19,11 +29,11 @@ export function approvedDefinition(card, approval) {
   if (
     card.modelIssues.some(
       (issue) =>
-        !(reviewedDualFaction && issue === 'unsupported-factions') &&
+        !((reviewedDualFaction || reviewedTalent) && issue === 'unsupported-factions') &&
         !(reviewedCustomizable && issue === 'customization') &&
         !(reviewedTarot && issue === 'unsupported-slots'),
     ) ||
-    (!reviewedDualFaction && card.factions.length !== 1) ||
+    (!reviewedDualFaction && !reviewedTalent && card.factions.length !== 1) ||
     (!reviewedTarot && card.slots.unknown.length)
   )
     throw new Error(`Unsupported card model: ${card.code}`)
@@ -68,7 +78,7 @@ export function approvedDefinition(card, approval) {
     ...(approval.subname ? { subname: approval.subname } : {}),
     type: card.type,
     class: card.factions[0],
-    ...(reviewedDualFaction ? { classes: card.factions } : {}),
+    ...(reviewedDualFaction || reviewedTalent ? { classes: card.factions } : {}),
     ...(creationPermanent ? { deckLimit: 1 } : {}),
     traits: card.traits,
     ...(card.flags.is_unique ? { unique: true } : {}),

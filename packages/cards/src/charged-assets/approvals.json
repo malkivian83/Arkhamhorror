@@ -1,0 +1,254 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "cards": [
+    {
+      "code": "08120",
+      "status": "verified",
+      "module": "card-08120",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 2,
+        "type": "resources"
+      },
+      "adapter": "reviewed-talent-factions-v1"
+    },
+    {
+      "code": "08121",
+      "status": "verified",
+      "module": "card-08121",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 2,
+        "type": "resources"
+      },
+      "adapter": "reviewed-talent-factions-v1"
+    },
+    {
+      "code": "08122",
+      "status": "verified",
+      "module": "card-08122",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 2,
+        "type": "resources"
+      },
+      "adapter": "reviewed-talent-factions-v1"
+    },
+    {
+      "code": "08123",
+      "status": "verified",
+      "module": "card-08123",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 2,
+        "type": "resources"
+      },
+      "adapter": "reviewed-talent-factions-v1"
+    },
+    {
+      "code": "08124",
+      "status": "verified",
+      "module": "card-08124",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 2,
+        "type": "resources"
+      },
+      "adapter": "reviewed-talent-factions-v1"
+    },
+    {
+      "code": "09082",
+      "status": "verified",
+      "module": "card-09082",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09096",
+      "status": "verified",
+      "module": "card-09096",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09083",
+      "status": "verified",
+      "module": "card-09083",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09097",
+      "status": "verified",
+      "module": "card-09097",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09085",
+      "status": "verified",
+      "module": "card-09085",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09098",
+      "status": "verified",
+      "module": "card-09098",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09084",
+      "status": "verified",
+      "module": "card-09084",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09103",
+      "status": "verified",
+      "module": "card-09103",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11085",
+      "status": "verified",
+      "module": "card-11085",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10065",
+      "status": "verified",
+      "module": "card-10065",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 3,
+        "type": "ammo"
+      }
+    },
+    {
+      "code": "10077",
+      "status": "verified",
+      "module": "card-10077",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 3,
+        "type": "ammo"
+      }
+    },
+    {
+      "code": "10066",
+      "status": "verified",
+      "module": "card-10066",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 0,
+        "type": "suspicion"
+      }
+    },
+    {
+      "code": "10082",
+      "status": "verified",
+      "module": "card-10082",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 0,
+        "type": "suspicion"
+      }
+    },
+    {
+      "code": "10074",
+      "status": "verified",
+      "module": "card-10074",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10081",
+      "status": "verified",
+      "module": "card-10081",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10021",
+      "status": "verified",
+      "module": "card-10021",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09104",
+      "status": "verified",
+      "module": "card-09104",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "04276",
+      "status": "verified",
+      "module": "card-04276",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03025",
+      "status": "verified",
+      "module": "card-03025",
+      "test": "rules.test.ts",
+      "subname": "Untranslated",
+      "uses": {
+        "count": 0,
+        "type": "secrets"
+      }
+    },
+    {
+      "code": "05154",
+      "status": "verified",
+      "module": "card-05154",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 0,
+        "type": "evidence"
+      }
+    },
+    {
+      "code": "02269",
+      "status": "verified",
+      "module": "card-02269",
+      "test": "rules.test.ts",
+      "subname": "Gift of the Homunculi"
+    },
+    {
+      "code": "02153",
+      "status": "verified",
+      "module": "card-02153",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "04026",
+      "status": "verified",
+      "module": "card-04026",
+      "test": "rules.test.ts",
+      "subname": "Doom Begets Doom",
+      "uses": {
+        "count": 0,
+        "type": "charges"
+      }
+    },
+    {
+      "code": "53005",
+      "status": "verified",
+      "module": "card-53005",
+      "test": "rules.test.ts",
+      "subname": "Doom Begets Doom",
+      "uses": {
+        "count": 0,
+        "type": "charges"
+      }
+    },
+    {
+      "code": "03034",
+      "status": "verified",
+      "module": "card-03034",
+      "test": "rules.test.ts"
+    }
+  ],
+  "sources": {
+    "en": "49e643d746ee00901b4a9596e41aab1cd0d4224e07d723987b399eeb33325b32",
+    "es": "5c1c055d51dfa6422b07b7369ad0928c4ee6b62aec89c1a239b3018b59707658"
+  }
+}
