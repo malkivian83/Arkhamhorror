@@ -17,7 +17,7 @@ registerBasicAsset(
               {
                 type: 'IfTestResult',
                 below: 2,
-                then: [{ type: 'SpendUses', asset: self.id, amount: 1 }],
+                then: [{ type: 'RemoveUses', asset: self.id, amount: 1 }],
               },
             ]
           : [],

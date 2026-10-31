@@ -154,7 +154,7 @@ it.each(['08120', '08121', '08122', '08123', '08124'])(
   '%s restricts payment and boosts to its own matching card',
   (code) => {
     const matches: Record<string, string> = {
-      '08120': '02153',
+      '08120': '01060',
       '08121': '03025',
       '08122': '10065',
       '08123': '05154',
@@ -166,16 +166,19 @@ it.each(['08120', '08121', '08122', '08123', '08124'])(
     expect(b.usesAsResources!(s, a, 'a', matches[code]!)).toBe(true)
     expect(b.usesAsResources!(s, a, 'b', matches[code]!)).toBe(false)
     expect(b.usesAsResources!(s, a, 'a', '01093')).toBe(false)
-    const t = {
+    const initiated = dispatch(patch({ hand: ['01093'] })(clear(s)), {
+      type: 'BeginSkillTest',
       investigator: 'a',
       skill: 'combat',
+      difficulty: 3,
       source: matches[code]!,
       effectSource: '01093',
-      baseModifier: 0,
-    } as never
-    const boosts = b.testOptions!(s, t, a)
+      kind: { type: 'effect', source: 'test', onSuccess: [], onFail: [], onFailEach: [] },
+    })
+    const t = initiated.skillTest!
+    const boosts = b.testOptions!(initiated, t, a)
     expect(boosts).toHaveLength(1)
-    const next = run({ ...s, skillTest: t }, boosts[0]!.then)
+    const next = run(initiated, boosts[0]!.then)
     expect(next.assets[code]!.uses).toBe(1)
     expect(next.skillTest!.baseModifier).toBe(1)
   },

@@ -7,7 +7,9 @@ export function approvedDefinition(card, approval) {
     ((card.code === '08105' && card.factions.join(',') === 'seeker,survivor') ||
       (['08083', '08086'].includes(card.code) && card.factions.join(',') === 'guardian,seeker') ||
       (card.code === '05115' && card.factions.join(',') === 'guardian,rogue') ||
-      (['08094', '08096'].includes(card.code) && card.factions.join(',') === 'guardian,survivor') ||
+      (['08094', '08096', '08095'].includes(card.code) &&
+        card.factions.join(',') === 'guardian,survivor') ||
+      (['08117', '08119'].includes(card.code) && card.factions.join(',') === 'mystic,survivor') ||
       (card.code === '05118' && card.factions.join(',') === 'mystic,guardian'))
   const reviewedCustomizable =
     approval.adapter === 'reviewed-shotcaster-v1' && card.code === '09119'
@@ -57,9 +59,18 @@ export function approvedDefinition(card, approval) {
     approval.adapter === 'reviewed-talent-permanent-v1' &&
     ['02185', '02187', '02189', '02191', '02193'].includes(card.code) &&
     card.deckLimit === 2
+  const reviewedDefeatExile =
+    approval.adapter === 'reviewed-exile-defeat-v1' && card.code === '05236'
+  const reviewedBorrowedTime =
+    approval.adapter === 'reviewed-borrowed-time-v1' && card.code === '04308'
   if (
     (card.flags.permanent && !permanentReprint && !creationPermanent && !talentPermanent) ||
-    ['exceptional', 'myriad', 'exile'].some((key) => card.flags[key])
+    ['exceptional', 'myriad', 'exile'].some(
+      (key) =>
+        card.flags[key] &&
+        !(key === 'exile' && reviewedDefeatExile) &&
+        !(key === 'exceptional' && reviewedBorrowedTime),
+    )
   )
     throw new Error(`Keyword requires a dedicated adapter: ${card.code}`)
   const numeric = (key) => {
@@ -80,6 +91,7 @@ export function approvedDefinition(card, approval) {
     class: card.factions[0],
     ...(reviewedDualFaction || reviewedTalent ? { classes: card.factions } : {}),
     ...(creationPermanent ? { deckLimit: 1 } : {}),
+    ...(reviewedBorrowedTime ? { exceptional: true, deckLimit: 1 } : {}),
     traits: card.traits,
     ...(card.flags.is_unique ? { unique: true } : {}),
     ...(cost !== undefined ? { cost } : {}),

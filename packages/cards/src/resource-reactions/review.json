@@ -1,0 +1,190 @@
+{
+  "status": "pending-review",
+  "sourceBundle": "3c8ee4b5d8100766",
+  "sources": {
+    "en": "ec24a4ec9df3f2df4e894d0475c8848740f9fb1abaa7a09b85d77615a97efec8",
+    "es": "8fd2ef51fc1ab8f4dc101fe2784e078fb94dd3a7052b97773cd83db561cfb6c6"
+  },
+  "cards": [
+    {
+      "code": "03024",
+      "name": "Fieldwork",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "05025",
+      "name": "Connect the Dots",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "05110",
+      "name": "Crack the Case",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "05117",
+      "name": "Tennessee Sour Mash",
+      "status": "pending",
+      "modelIssues": ["unsupported-factions"]
+    },
+    {
+      "code": "05190",
+      "name": "Tennessee Sour Mash",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "05191",
+      "name": "Tennessee Sour Mash",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "05119",
+      "name": "Grisly Totem",
+      "status": "pending",
+      "modelIssues": ["unsupported-factions"]
+    },
+    {
+      "code": "05194",
+      "name": "Grisly Totem",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "05195",
+      "name": "Grisly Totem",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "05233",
+      "name": "Investments",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "06162",
+      "name": "Gregory Gry",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "06244",
+      "name": "Twila Katherine Price",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "07111",
+      "name": "Eldritch Sophist",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "07304",
+      "name": "Ariadne's Twine",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "08036",
+      "name": "Join the Caravan",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "08047",
+      "name": "Scout Ahead",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "10129",
+      "name": "Bide Your Time",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "06205",
+      "name": "Lucid Dreaming",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "06326",
+      "name": "Joey \"The Rat\" Vigil",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "06203",
+      "name": "Moonstone",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "10043",
+      "name": "Mouse Mask",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "10067",
+      "name": "Fox Mask",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "10084",
+      "name": "Cat Mask",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "10111",
+      "name": "Sparrow Mask",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "06239",
+      "name": "Haste",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "04159",
+      "name": "Try and Try Again",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "02309",
+      "name": "Try and Try Again",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "05324",
+      "name": "Eucatastrophe",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "01056",
+      "name": "Sure Gamble",
+      "status": "pending",
+      "modelIssues": []
+    },
+    {
+      "code": "04158",
+      "name": "Recall the Future",
+      "status": "pending",
+      "modelIssues": []
+    }
+  ]
+}

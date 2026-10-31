@@ -1352,11 +1352,20 @@ export function handle(state: GameState, message: Message): GameState {
       if (!asset) return state
       const amount = Math.max(0, Math.min(message.amount, asset.uses))
       return push(
-        updateInvestigator(state, message.investigator, (i) => ({
-          ...i,
-          resources: i.resources + amount,
-        })),
-        { type: 'SpendUses', asset: asset.id, amount },
+        updateInvestigator(
+          {
+            ...state,
+            assets: { ...state.assets, [asset.id]: { ...asset, uses: asset.uses - amount } },
+          },
+          message.investigator,
+          (i) => ({
+            ...i,
+            resources: i.resources + amount,
+          }),
+        ),
+        ...(asset.uses === amount && assetBehavior(state, asset)?.discardWhenEmpty
+          ? [{ type: 'DiscardAsset' as const, asset: asset.id }]
+          : []),
       )
     }
 
@@ -2256,6 +2265,9 @@ export function handle(state: GameState, message: Message): GameState {
             investigator: message.investigator,
             first,
             from: mover.location,
+            fromHadEnemy:
+              mover.location !== null &&
+              Object.values(state.enemies).some((e) => e.location === mover.location),
             ...(message.moveAction ? { moveAction: true } : {}),
             ...(message.encounterEffect ? { encounterEffect: true } : {}),
           },
@@ -3421,15 +3433,55 @@ export function handle(state: GameState, message: Message): GameState {
             discard: owner.discard.filter((_, n) => n !== at),
           }))
     }
-    case 'SpendUses': {
+    case 'SpendUses':
+    case 'RemoveUses': {
       const asset = state.assets[message.asset]
       if (!asset) return state
       const uses = Math.max(0, asset.uses - message.amount)
       const next = { ...state, assets: { ...state.assets, [asset.id]: { ...asset, uses } } }
       // "Si no le quedan usos, descártalo."
-      return uses === 0 && assetBehavior(state, asset)?.discardWhenEmpty
-        ? push(next, { type: 'DiscardAsset', asset: asset.id })
-        : next
+      return push(
+        next,
+        ...(uses === 0 && assetBehavior(state, asset)?.discardWhenEmpty
+          ? [{ type: 'DiscardAsset' as const, asset: asset.id }]
+          : []),
+        ...(message.type === 'SpendUses' && uses < asset.uses
+          ? [
+              {
+                type: 'Forced' as const,
+                trigger: { type: 'afterUsesSpent' as const, asset, amount: asset.uses - uses },
+              },
+            ]
+          : []),
+      )
+    }
+    case 'TransferUses': {
+      const from = state.assets[message.from],
+        to = state.assets[message.to]
+      if (!from || !to || from.id === to.id) return state
+      const amount = Math.max(
+        0,
+        Math.min(
+          message.amount,
+          from.uses,
+          (assetBehavior(state, to)?.maxUses ?? Infinity) - to.uses,
+        ),
+      )
+      if (!amount) return state
+      return push(
+        {
+          ...state,
+          assets: {
+            ...state.assets,
+            [from.id]: { ...from, uses: from.uses - amount },
+            [to.id]: { ...to, uses: to.uses + amount },
+          },
+        },
+        ...(from.uses === amount && assetBehavior(state, from)?.discardWhenEmpty
+          ? [{ type: 'DiscardAsset' as const, asset: from.id }]
+          : []),
+        { type: 'Forced', trigger: { type: 'afterUsesAdded', asset: to.id, amount } },
+      )
     }
 
     case 'PlaceCluesOnAsset': {
@@ -4091,7 +4143,12 @@ export function handle(state: GameState, message: Message): GameState {
           ...updateInvestigator(
             state,
             investigator.id,
-            ({ nextTestDifficulty: _used, nextTestBonus: _bonus, ...rest }) => {
+            ({
+              nextTestDifficulty: _used,
+              nextTestBonus: _bonus,
+              nextPhaseTestBonus: _phaseBonus,
+              ...rest
+            }) => {
               if (!noTokens) return rest
               const { noTokensNextTest: _skip, ...after } = rest
               return after
@@ -4114,8 +4171,17 @@ export function handle(state: GameState, message: Message): GameState {
             ...(reduction > 0 ? { difficultyReduction: reduction } : {}),
             kind: message.kind,
             // The Red Clock: +X skill value for the investigator's next skill test.
-            baseModifier: (message.modifier ?? 0) + (investigator.nextTestBonus ?? 0),
+            baseModifier:
+              (message.modifier ?? 0) +
+              (investigator.nextTestBonus ?? 0) +
+              (investigator.nextPhaseTestBonus?.phase === state.phase &&
+              investigator.nextPhaseTestBonus.round === state.round
+                ? investigator.nextPhaseTestBonus.amount
+                : 0),
             ...(message.source ? { source: message.source } : {}),
+            ...(message.source && state.assets[message.source]
+              ? { sourceSnapshot: state.assets[message.source] }
+              : {}),
             ...(message.effectSource ? { effectSource: message.effectSource } : {}),
             ...(message.commitRule ? { commitRule: message.commitRule } : {}),
             tags: message.tags ?? [],
@@ -4161,7 +4227,12 @@ export function handle(state: GameState, message: Message): GameState {
         const after = !message.afterWindow && afterRevealing(state, test.investigator, held.face)
         if (after) return after
         const { revealing: _held, ...rest } = test
-        return resolveRevealedToken({ ...state, skillTest: rest }, held.token, held.face)
+        return resolveRevealedToken(
+          { ...state, skillTest: rest },
+          held.token,
+          held.face,
+          held.reverseModifierOf === held.face,
+        )
       }
       // Premonition: se resuelve la ficha sellada en lugar de sacar una. Tokens sealed
       // on a card in play (The Codex of Ages, Serpents of Yig) stay sealed there.
@@ -4573,7 +4644,7 @@ export function handle(state: GameState, message: Message): GameState {
       if (!test || test.succeeded === null || getInvestigator(state, test.investigator).eliminated)
         return state
       if (!message.prepared && test.source) {
-        const asset = state.assets[test.source]
+        const asset = state.assets[test.source] ?? test.sourceSnapshot
         const before = asset
           ? (assetBehavior(state, asset)?.beforeResults?.(state, test, asset) ?? [])
           : []
@@ -4900,6 +4971,7 @@ export function handle(state: GameState, message: Message): GameState {
       }
       const reshuffle: Message[] = []
       for (const c of test?.committed ?? []) {
+        if (c.returnToHand) continue
         // Habitación 245: va al fondo del mazo de su dueño.
         if (c.toDeckBottom) {
           next = updateInvestigator(next, c.by, (i) =>
@@ -5828,10 +5900,53 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'NextTestBonus':
+      if (message.thisPhase)
+        return updateInvestigator(state, message.investigator, (i) => ({
+          ...i,
+          nextPhaseTestBonus: {
+            phase: state.phase,
+            round: state.round,
+            amount:
+              message.amount +
+              (i.nextPhaseTestBonus?.phase === state.phase &&
+              i.nextPhaseTestBonus.round === state.round
+                ? i.nextPhaseTestBonus.amount
+                : 0),
+          },
+        }))
       return updateInvestigator(state, message.investigator, (i) => ({
         ...i,
         nextTestBonus: (i.nextTestBonus ?? 0) + message.amount,
       }))
+
+    case 'MoveResourcesToPool':
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        resources: i.resources + Math.max(0, message.amount),
+      }))
+    case 'ReturnCommittedCard': {
+      const test = state.skillTest
+      const card = test?.committed[message.index]
+      if (!test || !card || card.returnToHand) return state
+      return {
+        ...updateInvestigator(state, card.by, (i) => ({ ...i, hand: [...i.hand, card.code] })),
+        skillTest: {
+          ...test,
+          committed: test.committed.map((c, index) =>
+            index === message.index ? { ...c, returnToHand: true } : c,
+          ),
+        },
+      }
+    }
+    case 'ReverseRevealedTokenModifier': {
+      const t = state.skillTest
+      return t?.revealing
+        ? {
+            ...state,
+            skillTest: { ...t, revealing: { ...t.revealing, reverseModifierOf: t.revealing.face } },
+          }
+        : state
+    }
 
     case 'LoseAdditionalAction':
       return updateInvestigator(state, message.investigator, (i) => ({
@@ -7605,6 +7720,7 @@ export function handle(state: GameState, message: Message): GameState {
       }
       const matches = [...new Set(searched)].filter((code) => {
         const def = playerCardDef(code)
+        if (message.title && def?.name !== message.title) return false
         if (message.cardType && def?.type !== message.cardType) return false
         if (message.anyCard) return !!def && (!def.weakness || !!message.includeWeaknesses)
         if (!def || (!message.anyType && def.type !== 'asset')) return false
@@ -8607,9 +8723,17 @@ function sourced(messages: Message[] | undefined, source: string): Message[] {
  * RR ST.4: resolve a revealed token. `face` is what it is treated as (Father Mateo: an
  * [auto_fail] treated as an [elder_sign]); the physical token returns to the bag at ST.8.
  */
-function resolveRevealedToken(state: GameState, token: ChaosToken, face: ChaosToken): GameState {
+function resolveRevealedToken(
+  state: GameState,
+  token: ChaosToken,
+  face: ChaosToken,
+  reverseModifier = false,
+): GameState {
   const test = state.skillTest!
-  const effect = withTokenSource(resolveToken(state, face, test.investigator), face)
+  const originalEffect = withTokenSource(resolveToken(state, face, test.investigator), face)
+  const effect = reverseModifier
+    ? { ...originalEffect, modifier: Math.abs(originalEffect.modifier) }
+    : originalEffect
   const source = test.source ? state.assets[test.source] : undefined
   const onReveal = source
     ? (playerCardBehavior(source.code)?.onTokenRevealed?.(state, face, source) ?? [])

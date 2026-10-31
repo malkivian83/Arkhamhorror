@@ -383,7 +383,7 @@ registerPlayerCard({
     token !== 'skull'
       ? []
       : self.uses > 0
-        ? [spendUse(self)]
+        ? [{ type: 'RemoveUses', asset: self.id, amount: 1 }]
         : [
             { type: 'TakeDamage', investigator: self.owner, damage: 1, horror: 0, direct: true },
             { type: 'DiscardAsset', asset: self.id },
