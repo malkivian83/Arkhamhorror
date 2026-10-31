@@ -41,7 +41,7 @@ export type OnlineProgressAction =
   | { action: 'finish' }
   | { action: 'next' }
   | { action: 'ready'; ready: boolean }
-  | { action: 'purchase'; card: string; upgrade: boolean; remove?: string }
+  | { action: 'purchase'; card: string; upgrade: boolean; replaces?: string; remove?: string }
   | {
       action: 'customize'
       card: string
@@ -57,6 +57,8 @@ export interface OnlineCampaignView {
   canManage: boolean
   nextScenario: string | null
   canContinue: boolean
+  /** Mazos que aún no pueden empezar el siguiente escenario (`deck.problem.*`). */
+  deckIssues?: { investigator: string; key: string; params?: Record<string, string | number> }[]
   ready: boolean
   allReady: boolean
   /** Cartas cuyo portador dejó la campaña: el anfitrión elige quién las recibe. */

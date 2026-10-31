@@ -62,6 +62,7 @@ function buy() {
     action: 'purchase',
     card: option.value.code,
     upgrade: !!option.value.replaces,
+    ...(option.value.replaces ? { replaces: option.value.replaces } : {}),
     ...(option.value.needsRemoval ? { remove: remove.value } : {}),
   })
 }
@@ -111,6 +112,11 @@ function buy() {
     </p>
     <p v-else-if="campaign.awaitingReplacement">{{ t('campaign.replace.blocked') }}</p>
     <p v-else>{{ t('online.campaignPlay.ended') }}</p>
+    <ul v-if="campaign.deckIssues?.length" class="deck-issues" role="status">
+      <li v-for="(issue, n) in campaign.deckIssues" :key="n">
+        {{ name(issue.investigator) }}: {{ t(issue.key, issue.params ?? {}) }}
+      </li>
+    </ul>
     <ul>
       <li v-for="member in campaign.members" :key="member.investigator">
         {{
@@ -192,7 +198,7 @@ function buy() {
     </template>
     <button
       v-if="campaign.canManage && campaign.canContinue"
-      :disabled="disabled || !campaign.allReady"
+      :disabled="disabled || !campaign.allReady || !!campaign.deckIssues?.length"
       @click="emit('action', { action: 'next' })"
     >
       {{ t('online.campaignPlay.start') }}

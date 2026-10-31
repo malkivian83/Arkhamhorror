@@ -3,6 +3,7 @@
 import { allPlayerCardDefs, playerCardDef } from '@lcg/engine'
 import { describe, expect, it } from 'vitest'
 import {
+  campaignCanContinue,
   canPlayNext,
   customize,
   deckIssues,
@@ -146,6 +147,8 @@ describe('tienda entre escenarios', () => {
       }),
     ])
     expect(canPlayNext(c)).toBe(false)
+    // The campaign itself goes on: the shop stays open to fix the deck (online too).
+    expect(campaignCanContinue(c)).toBe(true)
     expect(() => startScenario(c, 1)).toThrow('deck.problem.size')
   })
 

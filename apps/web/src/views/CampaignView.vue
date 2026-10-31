@@ -124,7 +124,8 @@ const shopping = ref<string | null>(null)
 const options = computed(() =>
   onePrintingEach(
     campaign.value && shopping.value ? purchaseOptions(campaign.value, shopping.value) : [],
-    (o) => (o.replaces ? 'upgrade' : 'new'),
+    // One entry per lower version replaced: each upgrade has its own cost (doc 100, C2).
+    (o) => (o.replaces ? `upgrade:${o.replaces}` : 'new'),
   ).sort(
     (a, b) =>
       Number(b.implemented) - Number(a.implemented) ||

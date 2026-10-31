@@ -508,3 +508,72 @@ trauma, sustitutos, persistencia del registro y de la bolsa, y recompensas.
 3. **Carga:** O1 y O2.
 4. **Online:** D7, D8 y D9, más S3 y S4.
 5. **Resto:** E8–E12, O3–O5, R1, J1 y los puntos restantes de D.
+
+## Tercera revisión · fallos (31/10/2026)
+
+Se han usado tres vías:
+
+- **Fuzzer:** partidas aleatorias con decisiones legales, equipos y dificultades al
+  azar, en los 27 escenarios.
+- **Revisión independiente** de los commits de hoy.
+- **Auditoría** de Night of the Zealot, Dunwich, Carcosa, Fortune and Folly y
+  Carnevale contra las guías y la referencia.
+
+### Fuzzer: 16.200 partidas sin excepciones ni bloqueos
+
+- **Alcance:** 600 semillas por escenario, de 1 a 4 investigadores y las cuatro
+  dificultades. En cada menú de acción se comprueban:
+  - valores negativos;
+  - enemigos o investigadores con daño letal que siguen en juego;
+  - preguntas para investigadores eliminados o sin opciones;
+  - partidas que se quedan sin pregunta ni final.
+- **Resultado:**
+  - Ninguna excepción del motor.
+  - Ninguna partida bloqueada.
+  - Una única incoherencia real (F1). Los demás avisos eran reglas especiales: el
+    organista no tiene salud, en Dim Carcosa el horror no derrota y algunas cartas
+    vinculadas suman salud.
+- **Límite:** el juego aleatorio casi nunca pasa del primer acto, así que no cubre
+  los actos finales. Conviene incorporar el fuzzer al repositorio con una política
+  por escenario (como `closure-explore.mjs`) para llegar a los clímax.
+
+### Regresiones en los cambios de hoy
+
+| #                          | Fallo                                                                                                                                                                                                                                                                                         | Estado                                                                                      |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| N1 · Crítico · reproducido | Partida online: el servidor exigía `canPlayNext` para comprar, personalizar y marcar «listo». Desde C4, ese requisito incluye mazos válidos, así que un mazo que queda corto tras una mejora a Permanente o una carta exiliada no se podía reparar y la campaña se bloqueaba (`lobbies.ts:217`, `game.ts:131`). | Corregido en local: `campaignCanContinue` para la tienda; `canPlayNext` solo para «Siguiente» (`invalid_deck`), y la vista online muestra los problemas del mazo. |
+| N2 · Medio · confirmado    | Online, el servidor ignoraba qué versión inferior se mejora: aplicaba siempre la más barata, aunque el jugador eligiera otra.                                                                                                                                                                | Corregido en local: la orden `purchase` lleva `replaces`.                                   |
+| N3 · Bajo · reproducido    | La tienda local agrupaba todas las mejoras de una carta en una sola entrada, así que la opción más barata de C2 no aparecía.                                                                                                                                                                | Corregido en local: una entrada por versión sustituida.                                     |
+| N4 · Bajo · plausible      | Un guardado de confianza (E4) pasa a ser la copia de seguridad sin rejugarse. Si algún día el historial no reprodujera el estado, se perderían el guardado principal y la copia. No se conoce ninguna causa.                                                                                   | Riesgo residual: una verificación completa periódica, en segundo plano, lo cubriría.        |
+
+### Fallos de reglas y escenarios
+
+| #                           | Fallo                                                                                                                                                                                                                                                                                       | Dónde                                                                                                                 |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| F1 · Alto · reproducido     | Una traición que reduce salud o cordura al entrar en la zona de amenaza no comprueba la derrota. Con Dreams of R'lyeh, Daniela quedó con 4 de horror y 4 de cordura sin ser derrotada. El motor solo hace esta comprobación si hay apoyos con vitalidad dinámica; The Gold Bug la fuerza a mano. | `packages/engine/src/engine.ts:102-118`, `night-of-the-zealot/classic-encounters.ts:19`                              |
+| F2 · Alto · reproducido     | La casa siempre gana aparta los Esclavos-bestia en lugar de Abominaciones espantosas (2 Conglomerados de esferas y 1 Siervo del acechador). El plan 2b hace aparecer el enemigo equivocado. Guía p. 6.                                                                                       | `the-dunwich-legacy/house-encounters.ts:62`, `the-house-always-wins.ts:167`                                           |
+| F3 · Alto · reproducido     | Dunwich trata como «por investigador» pistas que son fijas: acto 1 y Entrada del museo, Coche cama, Arroyo Bishop, Ruinas calcinadas, Escuela y los ocho Lugares de Invisibles y sin dimensión. Con 4 jugadores, el acto 1 del Museo exige 8 pistas en vez de 2 y la Aldea de Dunwich tiene 12 en vez de 3. | `the-miskatonic-museum.ts:70`, `:140`; `the-essex-county-express.ts:74`, `:85`; `blood-on-the-altar.ts:74`; `undimensioned-and-unseen.ts:81` |
+| F4 · Alto · reproducido     | El Fantasma de la Verdad, Sueño 10: si Convicción/Duda no cambia, vuelve a añadir cartas que ya estaban en el mazo (de 30 a 35). Guía p. 19.                                                                                                                                               | `the-path-to-carcosa/a-phantom-of-truth.ts:916-933`                                                                   |
+| F5 · Alto · reproducido     | Ecos del pasado comprueba el plan tras poner perdición en enemigos (ficha de sectario, Juramentado poseído, Buscador de Carcosa, Led Astray), aunque ninguna carta lo dice: el plan avanza en mitad de la ronda.                                                                            | `echoes-of-the-past.ts:694`, `:740`, `:767`, `~1003`                                                                   |
+| F6 · Medio · confirmado     | Más comprobaciones indebidas del plan en Carcosa: El último rey (calavera, Comedor), Agujas de Carcosa (2 perdiciones en un Lugar) y El Fantasma de la Verdad (Acechado por las sombras, Notre-Dame).                                                                                         | `the-last-king.ts:713`, `:830`; `encounter-sets.ts:497`; `a-phantom-of-truth.ts:1324`, `:1494`                        |
+| F7 · Medio · confirmado     | Fortune and Folly: omitir la Parte I no suma las 2 tareas de Recompensas adicionales (guía p. 31); se pierde experiencia y quizá Isamara o el Mazo de posibilidades.                                                                                                                         | `fortune-and-folly/part-two.ts:120`, `:851-856`                                                                       |
+| F8 · Bajo                   | - Siervo del acechador (02104) sin Victoria 1.<br>- El hombre de la máscara pálida derrotado en el acto 2 va a la pila de descartes y no se retira.<br>- Rice (Actividad extracurricular R1) no se puede dar a un investigador derrotado.<br>- Isamara se concede sin estar en juego al final (decisión pendiente; la prueba fija el comportamiento actual).<br>- La Vigilancia cuenta pistas de investigadores en juego (plausible). | `servant-of-the-lurker.ts`, `the-pallid-mask.ts:1064`, `extracurricular-activity.ts:217`, `part-two.ts:854`, `part-one.ts:388` |
+
+Comprobado como correcto, además:
+
+- **Night of the Zealot:** completo, salvo F1.
+- **Carnevale:** completo.
+- **Fortune and Folly:** umbrales y resoluciones correctos.
+- **Dunwich y Carcosa:** resoluciones y preparación según el registro.
+- **Cambio de la regla de perdición (E2):** ninguna carta que diga que puede hacer
+  avanzar el plan dependía del comportamiento anterior.
+- **Cambio de Google:** sin vía nueva de robo de cuenta.
+- **Pruebas automáticas (D3):** solo responden por el investigador propio y se
+  cancelan al cambiar el estado.
+
+### Orden sugerido
+
+1. **Subir N1–N3**, que corrigen mis propios cambios. N1 bloquea campañas online.
+2. **F1, F2, F3 y F5**, con pruebas por escenario.
+3. **F4, F6 y F7.**
+4. **F8 y N4.**
