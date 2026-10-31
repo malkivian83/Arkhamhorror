@@ -1,0 +1,478 @@
+[
+  {
+    "code": "05115",
+    "name": ".45 Thompson",
+    "type": "asset",
+    "class": "guardian",
+    "classes": ["guardian", "rogue"],
+    "traits": ["Item", "Weapon", "Firearm", "Illicit"],
+    "cost": 6,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["hand", "hand"],
+    "uses": {
+      "count": 5,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "08094",
+    "name": "Sledgehammer",
+    "type": "asset",
+    "class": "guardian",
+    "classes": ["guardian", "survivor"],
+    "traits": ["Item", "Tool", "Weapon", "Melee"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["hand", "hand"]
+  },
+  {
+    "code": "08096",
+    "name": "Sledgehammer",
+    "type": "asset",
+    "class": "guardian",
+    "classes": ["guardian", "survivor"],
+    "traits": ["Item", "Tool", "Weapon", "Melee"],
+    "cost": 3,
+    "xp": 4,
+    "icons": {
+      "combat": 3
+    },
+    "slots": ["hand", "hand"]
+  },
+  {
+    "code": "05118",
+    "name": "Enchanted Blade",
+    "type": "asset",
+    "class": "mystic",
+    "classes": ["mystic", "guardian"],
+    "traits": ["Item", "Relic", "Weapon", "Melee"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["hand", "arcane"],
+    "uses": {
+      "count": 3,
+      "type": "charges"
+    }
+  },
+  {
+    "code": "07021",
+    "name": "Cryptographic Cipher",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tool"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 3,
+      "type": "secrets"
+    }
+  },
+  {
+    "code": "07029",
+    "name": "Sword Cane",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Relic", "Weapon", "Melee"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "07159",
+    "name": "Abyssal Tome",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Tome"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "intellect": 1,
+      "combat": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "03112",
+    "name": "David Renfield",
+    "subname": "Esteemed Eschatologist",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Ally", "Patron"],
+    "unique": true,
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 1
+  },
+  {
+    "code": "08075",
+    "name": "Bangle of Jinxes",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Charm", "Cursed"],
+    "cost": 2,
+    "xp": 1,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["accessory"],
+    "uses": {
+      "count": 1,
+      "type": "charge"
+    }
+  },
+  {
+    "code": "04274",
+    "name": "Thermos",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Item"],
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": [],
+    "uses": {
+      "count": 3,
+      "type": "supplies"
+    }
+  },
+  {
+    "code": "08086",
+    "name": "Michael Leigh",
+    "subname": "Experienced Hunter",
+    "type": "asset",
+    "class": "guardian",
+    "classes": ["guardian", "seeker"],
+    "traits": ["Ally", "Detective"],
+    "unique": true,
+    "cost": 4,
+    "xp": 5,
+    "icons": {
+      "intellect": 1,
+      "combat": 1,
+      "wild": 1
+    },
+    "slots": ["ally"],
+    "health": 3,
+    "sanity": 3,
+    "uses": {
+      "count": 0,
+      "type": "evidence"
+    }
+  },
+  {
+    "code": "10041",
+    "name": "Dr. Charles West III",
+    "subname": "Knows His Purpose",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ally", "Science"],
+    "unique": true,
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "combat": 1
+    },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 2
+  },
+  {
+    "code": "03023",
+    "name": "Ever Vigilant",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 0,
+    "xp": 1,
+    "icons": {
+      "intellect": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "03033",
+    "name": "Uncage the Soul",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spirit"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "willpower": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "09095",
+    "name": "Uncage the Soul",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spirit"],
+    "cost": 0,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "06202",
+    "name": "Word of Command",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "03196",
+    "name": "Quantum Flux",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "06284",
+    "name": "Nothing Left to Lose",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spirit"],
+    "cost": 0,
+    "xp": 3,
+    "icons": {
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "10030",
+    "name": "Hand-Eye Coordination",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 1,
+    "icons": {
+      "intellect": 1,
+      "combat": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "10057",
+    "name": "Confound",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight", "Trick"],
+    "cost": 2,
+    "xp": 3,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "10094",
+    "name": "Drain Essence",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "10073",
+    "name": "Stir the Pot",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick", "Gambit"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "10083",
+    "name": "Stir the Pot",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick", "Gambit"],
+    "cost": 3,
+    "xp": 5,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "05020",
+    "name": "Interrogate",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic", "Insight"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "11056",
+    "name": "Intimidation",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Tactic"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "05159",
+    "name": "Drawing Thin",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Talent"],
+    "cost": 0,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "08032",
+    "name": "Jeremiah Kirby",
+    "subname": "Arctic Archaeologist",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ally", "Miskatonic", "Wayfarer"],
+    "unique": true,
+    "cost": 4,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 1
+  },
+  {
+    "code": "11074",
+    "name": "Sword Cane",
+    "subname": "Designed by the Council of Polls",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Relic", "Weapon", "Melee"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1
+    },
+    "slots": ["hand"],
+    "fast": true
+  },
+  {
+    "code": "11072",
+    "name": "Whispers of Doom",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Cursed"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "11037",
+    "name": "Mortar and Pestle",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tool", "Science"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": [],
+    "uses": {
+      "count": 0,
+      "type": "resources"
+    }
+  },
+  {
+    "code": "11033",
+    "name": "Alton O'Connell",
+    "subname": "Ghost Hunter",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ally", "Detective", "Reporter"],
+    "unique": true,
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 1,
+    "uses": {
+      "count": 0,
+      "type": "evidence"
+    }
+  }
+]

@@ -1212,6 +1212,10 @@ export type Message =
   /** Si el enemigo ya no está en juego (lo ha derrotado el ataque). */
   | { type: 'IfEnemyDefeated'; enemy: EnemyId; then: Message[] }
   // ----- Smoke and Mirrors -----
+  /**
+   * RR "Mythos phase" 1.3: the agenda only advances at the doom check unless the card says
+   * it can. `checkAgenda: true` is for those cards; the same applies to assets and investigators.
+   */
   | { type: 'PlaceDoomOnEnemy'; enemy: EnemyId; amount: number; checkAgenda?: boolean }
   /** Pistas (pruebas) sobre un enemigo: recursos de la reserva como "pistas" del códex. */
   | { type: 'AddLead'; enemy: EnemyId }
@@ -1241,7 +1245,7 @@ export type Message =
   // ----- Queen of Ash -----
   | { type: 'HealEnemy'; enemy: EnemyId; amount: number }
   | { type: 'ExhaustEnemy'; enemy: EnemyId }
-  | { type: 'PlaceDoomOnAsset'; asset: AssetId; amount: number }
+  | { type: 'PlaceDoomOnAsset'; asset: AssetId; amount: number; checkAgenda?: boolean }
   | { type: 'SetDoomBecomesDamage' }
   /** El enemigo no atacará a este investigador durante el resto de la ronda. */
   | { type: 'SpareInvestigator'; enemy: EnemyId; investigator: InvestigatorId }
@@ -1504,8 +1508,11 @@ export type Message =
     }
   | { type: 'PlaceCluesOnLocationFromPool'; location: LocationId; amount: number }
   | { type: 'SpawnSetAsideEnemy'; code: CardCode; location: LocationId }
-  /** Saca un enemigo del juego (curado) y lo vuelve a apartar. */
-  | { type: 'SetAsideEnemy'; code: CardCode }
+  /**
+   * Saca un enemigo del juego (curado) y lo vuelve a apartar. Con `card` también lo
+   * recupera de la zona de victoria, donde solo queda su código.
+   */
+  | { type: 'SetAsideEnemy'; code: CardCode; card?: EnemyCard }
   | { type: 'PlaceSetAsideTreachery'; code: CardCode; placement: TreacheryPlacement }
   /** Mueve copias apartadas al descarte de encuentros (todas, o `count`). */
   | { type: 'MoveSetAsideToEncounterDiscard'; code: CardCode; count?: number }
@@ -1583,7 +1590,12 @@ export type Message =
   /** Ventana tras revelar fichas para comprometer cartas que lo permiten. */
   | { type: 'AfterRevealWindow' }
   | { type: 'CancelRevelation'; treachery: TreacheryId }
-  | { type: 'PlaceDoomOnInvestigator'; investigator: InvestigatorId; amount: number }
+  | {
+      type: 'PlaceDoomOnInvestigator'
+      investigator: InvestigatorId
+      amount: number
+      checkAgenda?: boolean
+    }
   | { type: 'BeginAssetAbility'; asset: AssetId }
   | { type: 'EndAssetAbility'; asset: AssetId }
   | {

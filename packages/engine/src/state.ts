@@ -517,7 +517,11 @@ export function bestByPrey(
  */
 export function huntingSteps(state: GameState, enemy: Enemy): LocationId[] {
   const distances = distancesFrom(state, enemy.location, enemy)
-  const reachable = activeInvestigators(state).filter(
+  const prey = scenarioBehavior(state.scenarioId)?.enemyPrey?.(state, enemy) ?? enemy.prey
+  const active = activeInvestigators(state)
+  // "Presa (solo X)": se mueve como si X fuera el único investigador en juego.
+  const only = prey?.type === 'only' ? active.filter((i) => i.id === prey.investigator) : []
+  const reachable = (only.length ? only : active).filter(
     (i) => i.location !== null && distances.has(i.location),
   )
   if (reachable.length === 0) return []
@@ -525,7 +529,6 @@ export function huntingSteps(state: GameState, enemy: Enemy): LocationId[] {
   const nearest = Math.min(...reachable.map(distance))
   if (nearest === 0) return []
   const closest = reachable.filter((i) => distance(i) === nearest)
-  const prey = scenarioBehavior(state.scenarioId)?.enemyPrey?.(state, enemy) ?? enemy.prey
   const preferred = bestByPrey(closest, prey, state)
   const targets = new Set((preferred.length ? preferred : closest).map((i) => i.location))
   return enemyNeighbours(state, enemy.location, enemy).filter((step) => {

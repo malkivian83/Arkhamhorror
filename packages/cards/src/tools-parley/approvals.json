@@ -1,0 +1,242 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "cards": [
+    {
+      "code": "05115",
+      "status": "verified",
+      "module": "card-05115",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 5,
+        "type": "ammo"
+      },
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "08094",
+      "status": "verified",
+      "module": "card-08094",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "08096",
+      "status": "verified",
+      "module": "card-08096",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "05118",
+      "status": "verified",
+      "module": "card-05118",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 3,
+        "type": "charges"
+      },
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "07021",
+      "status": "verified",
+      "module": "card-07021",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 3,
+        "type": "secrets"
+      }
+    },
+    {
+      "code": "07029",
+      "status": "verified",
+      "module": "card-07029",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07159",
+      "status": "verified",
+      "module": "card-07159",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03112",
+      "status": "verified",
+      "module": "card-03112",
+      "test": "rules.test.ts",
+      "subname": "Esteemed Eschatologist"
+    },
+    {
+      "code": "08075",
+      "status": "verified",
+      "module": "card-08075",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 1,
+        "type": "charge"
+      }
+    },
+    {
+      "code": "04274",
+      "status": "verified",
+      "module": "card-04274",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 3,
+        "type": "supplies"
+      }
+    },
+    {
+      "code": "08086",
+      "status": "verified",
+      "module": "card-08086",
+      "test": "rules.test.ts",
+      "subname": "Experienced Hunter",
+      "uses": {
+        "count": 0,
+        "type": "evidence"
+      },
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "10041",
+      "status": "verified",
+      "module": "card-10041",
+      "test": "rules.test.ts",
+      "subname": "Knows His Purpose"
+    },
+    {
+      "code": "03023",
+      "status": "verified",
+      "module": "card-03023",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03033",
+      "status": "verified",
+      "module": "card-03033",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09095",
+      "status": "verified",
+      "module": "card-09095",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "06202",
+      "status": "verified",
+      "module": "card-06202",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03196",
+      "status": "verified",
+      "module": "card-03196",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "06284",
+      "status": "verified",
+      "module": "card-06284",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10030",
+      "status": "verified",
+      "module": "card-10030",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "10057",
+      "status": "verified",
+      "module": "card-10057",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10094",
+      "status": "verified",
+      "module": "card-10094",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10073",
+      "status": "verified",
+      "module": "card-10073",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10083",
+      "status": "verified",
+      "module": "card-10083",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "05020",
+      "status": "verified",
+      "module": "card-05020",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11056",
+      "status": "verified",
+      "module": "card-11056",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "05159",
+      "status": "verified",
+      "module": "card-05159",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08032",
+      "status": "verified",
+      "module": "card-08032",
+      "test": "rules.test.ts",
+      "subname": "Arctic Archaeologist"
+    },
+    {
+      "code": "11074",
+      "status": "verified",
+      "module": "card-11074",
+      "test": "rules.test.ts",
+      "subname": "Designed by the Council of Polls",
+      "fast": true
+    },
+    {
+      "code": "11072",
+      "status": "verified",
+      "module": "card-11072",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11037",
+      "status": "verified",
+      "module": "card-11037",
+      "test": "rules.test.ts",
+      "uses": {
+        "count": 0,
+        "type": "resources"
+      }
+    },
+    {
+      "code": "11033",
+      "status": "verified",
+      "module": "card-11033",
+      "test": "rules.test.ts",
+      "subname": "Ghost Hunter",
+      "uses": {
+        "count": 0,
+        "type": "evidence"
+      }
+    }
+  ],
+  "sources": {
+    "en": "51325f0ca36d081f1aecf912393015d0675c892833da9b0d6247f621ae8838c6",
+    "es": "ede66186a5e4b96c06cf861bc6ab5a9a5fb0419e7b204d2784d6b1ace009b85d"
+  }
+}

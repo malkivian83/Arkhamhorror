@@ -572,13 +572,23 @@ export function readSession(storage: StoragePort): { data: Session; issue?: Sess
   }
 }
 
-/** One atomic write for game + campaign + undo; only a readable previous save becomes backup. */
-export function writeSession(storage: StoragePort, data: Session): void {
+/**
+ * One atomic write for game + campaign + undo; only a readable previous save becomes backup.
+ * `trustedHistory`: the history was built in this tab by applying its own inputs, so its
+ * structure is checked without replaying it (the replay grows with every decision and ran
+ * on each click). Saves read, imported or received from elsewhere are always replayed.
+ * Returns the stored text.
+ */
+export function writeSession(
+  storage: StoragePort,
+  data: Session,
+  options: { trustedHistory?: boolean } = {},
+): string {
   const raw = JSON.stringify(data)
   if (raw.length > MAX_BYTES) fail()
   // Validate before any write, including the backup. Never replace a readable
   // campaign with a partial state or an undo history that cannot reproduce it.
-  decodeSession(raw)
+  decodeSession(raw, !options.trustedHistory)
   try {
     const previous = storage.getItem(SESSION_KEY)
     if (previous) {
@@ -598,6 +608,7 @@ export function writeSession(storage: StoragePort, data: Session): void {
     if (e instanceof SessionError) throw e
     fail('unavailable')
   }
+  return raw
 }
 
 /** Local incident package: decoding replays the complete successful history. */
