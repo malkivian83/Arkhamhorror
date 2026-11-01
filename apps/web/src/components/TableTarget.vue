@@ -18,7 +18,8 @@ import { pendingCardTargets } from '../game/cardEntries'
  * Envuelve un elemento de la mesa. Si la pregunta actual tiene opciones sobre
  * él, se resalta. Al pulsarlo se abre el menú de acciones; si solo hay una
  * opción que no es una acción con prueba (moverse, jugar una carta, elegir un
- * objetivo), se elige directamente.
+ * objetivo), se elige directamente, también con un solo toque en pantallas
+ * táctiles. Una pulsación larga abre la carta ampliada (doc 100, D6).
  */
 const props = defineProps<{
   target: string
@@ -83,15 +84,54 @@ provide(TABLE_CARD, (card) => {
   cards.push(card)
   return () => cards.splice(cards.indexOf(card), 1)
 })
+function inspect() {
+  if (!cards[0]) return
+  open.value = false
+  inspected.value = {
+    card: cards[0](),
+    target: props.target,
+    ...(options.value.length ? {} : { note: props.blocked ?? null }),
+  }
+}
+
+/** Touch: holding a card for half a second inspects it instead of acting (D6). */
+const LONG_PRESS_MS = 500
+let pressTimer: ReturnType<typeof setTimeout> | undefined
+let pressStart: { x: number; y: number } | null = null
+let longPressed = false
+function pressDown(event: PointerEvent) {
+  if (event.pointerType !== 'touch' || !cards[0]) return
+  longPressed = false
+  pressStart = { x: event.clientX, y: event.clientY }
+  clearTimeout(pressTimer)
+  pressTimer = setTimeout(() => {
+    longPressed = true
+    inspect()
+  }, LONG_PRESS_MS)
+}
+function pressMove(event: PointerEvent) {
+  // Dragging the board is not a long press.
+  if (pressStart && Math.hypot(event.clientX - pressStart.x, event.clientY - pressStart.y) > 10)
+    pressEnd()
+}
+function pressEnd() {
+  clearTimeout(pressTimer)
+  pressStart = null
+}
+/** The browser's own long-press menu would cover the inspected card. */
+function contextMenu(event: Event) {
+  if (longPressed || pressStart) event.preventDefault()
+}
+
 async function click() {
-  // Sin ratón: la carta se abre ampliada con sus opciones; elegir es un segundo toque.
-  if (noHover.value && cards[0]) {
-    open.value = false
-    inspected.value = {
-      card: cards[0](),
-      target: props.target,
-      ...(options.value.length ? {} : { note: props.blocked ?? null }),
-    }
+  if (longPressed) {
+    longPressed = false
+    return
+  }
+  // Sin ratón: una opción directa se elige con un toque; si no, la carta se abre
+  // ampliada con sus opciones y elegir es un segundo toque.
+  if (noHover.value && cards[0] && !direct.value) {
+    inspect()
     return
   }
   if (direct.value) return game.answer(direct.value.index)
@@ -131,6 +171,7 @@ document.addEventListener('keydown', escape)
 window.addEventListener('resize', reposition)
 window.addEventListener('scroll', reposition, true)
 onBeforeUnmount(() => {
+  clearTimeout(pressTimer)
   document.removeEventListener('click', outside)
   document.removeEventListener('keydown', escape)
   window.removeEventListener('resize', reposition)
@@ -151,6 +192,11 @@ onBeforeUnmount(() => {
     :aria-label="hint ?? undefined"
     :aria-expanded="options.length && !direct ? open : undefined"
     @click.stop="click"
+    @pointerdown="pressDown"
+    @pointermove="pressMove"
+    @pointerup="pressEnd"
+    @pointercancel="pressEnd"
+    @contextmenu="contextMenu"
     @keydown.enter.prevent.stop="click"
     @keydown.space.prevent.stop="click"
   >

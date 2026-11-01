@@ -3,6 +3,7 @@
 import { allPlayerCardDefs, playerCardDef } from '@lcg/engine'
 import { describe, expect, it } from 'vitest'
 import {
+  basicWeaknessPool,
   campaignCanContinue,
   canPlayNext,
   customize,
@@ -17,6 +18,7 @@ import {
   purchaseOptions,
   removableCards,
   startScenario,
+  starterDeck,
   validateDeck,
   type Campaign,
 } from './index'
@@ -180,5 +182,31 @@ describe('tienda entre escenarios', () => {
     // 1 box + the second copy at level ceil(1/2) = 1.
     expect(c.log.investigators[id]!.xp - two.log.investigators[id]!.xp).toBe(2)
     expect(two.investigators[0]!.deck.filter((code) => code === '09119')).toHaveLength(2)
+  })
+})
+
+describe('debilidad básica aleatoria (doc 100, C7)', () => {
+  it('sale de todas las debilidades básicas implementadas y nunca se repite en el grupo', () => {
+    const pool = basicWeaknessPool()
+    expect(pool.length).toBeGreaterThan(8)
+    expect(pool.some((code) => !code.startsWith('12'))).toBe(true)
+    const withoutWeakness = (key: string) =>
+      starterDeck(key).filter((code) => playerCardDef(code)?.weakness !== 'basicweakness')
+    for (let seed = 1; seed <= 50; seed++) {
+      const c = newCampaign(
+        'night-of-the-zealot',
+        [
+          { investigator: '02002', cards: withoutWeakness('rex') },
+          { investigator: '02003', cards: withoutWeakness('jenny') },
+        ],
+        'standard',
+        seed,
+      )
+      const drawn = c.investigators.map((i) =>
+        i.deck.find((code) => playerCardDef(code)?.weakness === 'basicweakness')!,
+      )
+      expect(drawn.every((code) => pool.includes(code))).toBe(true)
+      expect(new Set(drawn).size).toBe(2)
+    }
   })
 })

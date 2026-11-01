@@ -294,6 +294,32 @@ describe('enemigos', () => {
 })
 
 describe('daño, horror y eliminación (RR "Defeat", "Elimination")', () => {
+  it('un ataque reducido por debajo de 0 no cura horror ni daño (doc 100, E12)', () => {
+    let game = during(newTestGame(), (s) => ({
+      ...s,
+      investigators: s.investigators.map((i) => ({ ...i, horror: 1, damage: 1 })),
+    }))
+    game = during(game, keep, spawnAt('C'))
+    const enemy = enemies(game)[0]!
+    game = during(game, keep, {
+      type: 'ResolveEnemyAttack',
+      enemy: enemy.id,
+      investigator: 'a',
+      modifier: { damage: -5, horror: -5 },
+      exhaustAfter: false,
+    })
+    expect(inv(game)).toMatchObject({ horror: 1, damage: 1 })
+  })
+
+  it('moverse a un Lugar que ya no está en juego no detiene la partida (doc 100, E12)', () => {
+    const game = during(newTestGame(), keep, {
+      type: 'MoveTo',
+      investigator: 'a',
+      location: 'gone',
+    })
+    expect(inv(game).location).toBe('A')
+  })
+
   it('con daño igual a la salud el investigador queda eliminado y termina el escenario', () => {
     let game = during(
       newTestGame({ investigator: { health: 1 } }),

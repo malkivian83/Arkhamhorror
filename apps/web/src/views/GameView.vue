@@ -20,6 +20,7 @@ import SidePanel from '../components/SidePanel.vue'
 import SkillTestPanel from '../components/SkillTestPanel.vue'
 import StoryModal from '../components/StoryModal.vue'
 import TargetPrompt from '../components/TargetPrompt.vue'
+import QuickActions from '../components/QuickActions.vue'
 import { classColor } from '../game/cards'
 import { useShortcuts } from '../game/shortcuts'
 import { useEnemyArrival } from '../game/enemyArrival'
@@ -45,6 +46,15 @@ function closeCase() {
   showCase.value = false
   caseButton.value?.focus()
 }
+// On narrow screens the panel covers the map: once the question is answered, close it (D5).
+watch(
+  () => state.value?.pending,
+  (next, previous) => {
+    // Online, only after the player's own answer: others' turns leave the journal open.
+    const answered = !!previous && (!game.online || previous.investigator === game.ownInvestigator)
+    if (showCase.value && next !== previous && answered) showCase.value = false
+  },
+)
 watch(
   () => [game.ownInvestigator, state.value?.pending?.investigator] as const,
   ([mine, deciding]) => {
@@ -82,6 +92,7 @@ const shown = computed(
     <TargetPrompt :state="state" />
     <SkillTestPanel :state="state" />
     <div class="players">
+      <QuickActions :state="state" />
       <PlayerArea
         v-if="shown"
         :state="state"

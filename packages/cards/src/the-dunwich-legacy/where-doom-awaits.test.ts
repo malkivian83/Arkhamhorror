@@ -564,3 +564,7 @@ describe('Where Doom Awaits — campaign guide pp.19–20 and printed cards', ()
     expect(s.locations[location]?.clues).toBe(location === W.tear ? 2 : 0)
   })
 })
+
+it('Servant of the Lurker is worth Victory 1 (ArkhamDB 02104; doc 100, F8)', () => {
+  expect(servantOfTheLurker.victory).toBe(1)
+})

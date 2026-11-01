@@ -362,6 +362,23 @@ describe('Extracurricular Activity', () => {
     },
   )
 
+  it('R1: Rice can join a defeated investigator too ("any investigator"; doc 100, F8)', () => {
+    let s = during(
+      game(),
+      (g) => ({
+        ...g,
+        locations: {
+          ...g.locations,
+          [EA.library]: { ...g.locations[EA.library]!, revealed: true, clues: 0 },
+        },
+        investigators: g.investigators.map((i) => ({ ...i, eliminated: true })),
+      }),
+      { type: 'EndScenario', outcome: { type: 'resolution', resolution: 1 } },
+    )
+    s = stories(s)
+    expect(s.campaignLog?.investigators.a?.storyAssets).toContain(EA.rice)
+  })
+
   it.each(['easy', 'standard', 'hard', 'expert'] as const)(
     'resolves the exact %s reference symbols',
     (difficulty) => {

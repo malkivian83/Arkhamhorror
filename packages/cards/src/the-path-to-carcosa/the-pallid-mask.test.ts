@@ -330,6 +330,25 @@ describe('The Pallid Mask: the catacombs', () => {
     expect(carcosaCount(state.campaignLog, 'conviction')).toBe(2)
   })
 
+  it('act 2: The Man defeated into his bearer’s discard pile leaves the game (doc 100, F8)', () => {
+    let state = prep(
+      game(1, ['carcosaFoundNigelsHome']),
+      [
+        (s) => ({
+          ...s,
+          actIndex: 1,
+          investigators: s.investigators.map((i) => ({
+            ...i,
+            discard: [...i.discard, THE_MAN_IN_THE_PALLID_MASK],
+          })),
+        }),
+      ],
+      { type: 'SetScenarioMeta', key: 'carcosa:manDefeated', value: 1 },
+    )
+    state = readAll(prep(state, [], { type: 'AdvanceAct', paid: true }))
+    expect(state.investigators[0]!.discard).not.toContain(THE_MAN_IN_THE_PALLID_MASK)
+  })
+
   it('act 2 with clues: 2 Doubt and Leading the Way', () => {
     let state = prep(game(1, ['carcosaFoundNigelsHome']), [(s) => ({ ...s, actIndex: 1 })])
     state = readAll(prep(state, [], { type: 'AdvanceAct', paid: true }))

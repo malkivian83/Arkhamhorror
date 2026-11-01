@@ -11,7 +11,14 @@ import { describe, expect, it } from 'vitest'
 import { finishScenario, newCampaign, startScenario } from '../campaign'
 import { code, starterInvestigator } from '../core-2026/player-cards'
 import '../index'
-import { COLLECTOR, CODES, elokossFaintEmbers, queenOfAsh, servantSacrifice } from './queen-of-ash'
+import {
+  COLLECTOR,
+  CODES,
+  cultistEnemies,
+  elokossFaintEmbers,
+  queenOfAsh,
+  servantSacrifice,
+} from './queen-of-ash'
 import { CODES as SF } from './spreading-flames'
 
 const DANIELA = code(1)
@@ -72,6 +79,24 @@ describe('Queen of Ash: preparación y conexiones', () => {
     expect(game.locations[CODES.undergroundCistern]?.connections).not.toContain(
       CODES.overgrownTunnels,
     )
+  })
+
+  it('Stop the Rite: al final de la ronda también avanza un Sectario enfrentado (doc 100, E12)', () => {
+    const cultist = cultistEnemies().find((c) => c.code !== CODES.elokoss)!
+    let s = during(newGame(), (g) => ({ ...at(CODES.sewerCulvert)(g), actIndex: 1 }), {
+      type: 'SpawnEnemy',
+      card: cultist,
+      location: CODES.sewerCulvert,
+      engageWith: DANIELA,
+    })
+    expect(enemies(s).find((e) => e.code === cultist.code)?.engagedWith).toBe(DANIELA)
+    s = during(s, (g) => g, { type: 'Forced', trigger: { type: 'roundEnds' } })
+    // With several equal paths the lead picks one; any of them leaves the culvert.
+    for (let n = 0; n < 5 && s.pending?.question.prompt === 'prompt.chooseHunterPath'; n++)
+      s = applyInput(s, { investigator: s.pending.investigator, choice: 0 })
+    const moved = enemies(s).find((e) => e.code === cultist.code)!
+    expect(moved.location).not.toBe(CODES.sewerCulvert)
+    expect(moved.engagedWith).toBeNull()
   })
 
   it('entrar en la cisterna cuesta 3 pistas por investigador y avanza el acto', () => {
