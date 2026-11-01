@@ -152,6 +152,14 @@ describe('Evil Portents', () => {
     expect(state.treacheries[spires.id]).toBeUndefined()
   })
 
+  it('Spires of Carcosa reaching the threshold waits for the Mythos phase (doc 100, F6)', () => {
+    let state = game()
+    const threshold = state.agendas[state.agendaIndex]!.doomThreshold!
+    state = during({ ...state, doom: threshold - 2 }, keep, draw(SETS.spiresOfCarcosa))
+    expect(totalDoom(state)).toBe(threshold)
+    expect(state.agendaIndex).toBe(0)
+  })
+
   it('Spires of Carcosa is discarded when the agenda advances and removes the doom', () => {
     let state = during(game(), keep, draw(SETS.spiresOfCarcosa))
     state = during(state, keep, { type: 'PlaceDoom', amount: 4 }, { type: 'CheckAgenda' })

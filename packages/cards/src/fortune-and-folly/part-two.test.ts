@@ -414,6 +414,21 @@ describe('Fortune and Folly, Part II: resolutions', () => {
     expect(s.campaignLog?.notes).not.toContain('fofBadLuck')
   })
 
+  it('a skipped part I adds 2 tasks to the additional rewards (doc 100, F7)', () => {
+    let s = table()
+    s = during(s, (g) => ({
+      ...notes(...HEIST_TASKS.slice(0, 4), 'fofSkippedPartOne')(meta({ [BEARER]: 'a' })(g)),
+      actIndex: 1,
+    }))
+    s = choose(s, 'ability.resign')
+    s = settle(s)
+    expect(s.outcome).toEqual({ type: 'resolution', resolution: 1 })
+    // 4 tasks + 2 = 6: the Deck of Possibilities is earned.
+    expect(s.campaignLog?.notes).toContain('fofEarnedDeckOfPossibilities')
+    // The vault still needs 4 tasks actually completed in this scenario.
+    expect(tasksDone(s)).toBe(4)
+  })
+
   it('resigning without the Wellspring is Resolution 2 and binds bad luck', () => {
     let s = table()
     s = choose(s, 'ability.resign')
@@ -552,6 +567,7 @@ it('can skip the stakeout at Introduction 4 and proceed without part-I penalties
   expect(s.investigators[0]!.damage).toBe(0)
   expect(s.investigators[0]!.horror).toBe(0)
   expect(s.scenarioMeta?.skipped).toBe(1)
+  expect(s.campaignLog?.notes).toContain('fofSkippedPartOne')
   campaign = finishScenario(campaign, s)
   expect(campaign.results[0]!.skipped).toBe(true)
   const id = campaign.investigators[0]!.id

@@ -710,7 +710,8 @@ registerScenario({
           label: 'choice.enemy',
           params: { enemy: e.name },
           target: { type: 'enemy', id: e.id },
-          then: [{ type: 'PlaceDoomOnEnemy', enemy: e.id, amount: 1 }, { type: 'CheckAgenda' }],
+          // The token does not say it can advance the agenda: it waits for Mythos (RR p. 17).
+          then: [{ type: 'PlaceDoomOnEnemy', enemy: e.id, amount: 1 }],
         }))
         if (choices.length <= 1) return push(...(choices[0]?.then ?? []))
         return push({
@@ -827,7 +828,6 @@ registerScenario({
               ? ([
                   damage(investigator, 0, 1),
                   { type: 'PlaceLocationTokens', location: CODES.diningRoom, doom: 1 },
-                  { type: 'CheckAgenda' },
                 ] as Message[])
               : []),
             ...state.queue,

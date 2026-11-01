@@ -119,6 +119,11 @@ const VENT_OPEN = 'fofVentOpen'
 const noted = (state: GameState, note: string) => !!state.campaignLog?.notes.includes(note)
 export const tasksDone = (state: GameState) =>
   HEIST_TASKS.filter((task) => noted(state, task)).length
+/** Noted when part I is skipped at Introduction 4. */
+export const SKIPPED_PART_ONE = 'fofSkippedPartOne'
+/** Guide, Additional rewards: a skipped part I adds 2 to the tasks completed (only here). */
+const rewardTasks = (state: GameState) =>
+  tasksDone(state) + (noted(state, SKIPPED_PART_ONE) ? 2 : 0)
 
 const logValue = (log: CampaignLog | undefined, key: string) => log?.values[key]
 const logNoted = (log: CampaignLog | undefined, note: string) => !!log?.notes.includes(note)
@@ -848,7 +853,7 @@ function resolutionMessages(state: GameState, outcome: ScenarioOutcome): Message
         : state.investigators.some((i) => i.resigned)
           ? 2
           : 3
-  const tasks = tasksDone(state)
+  const tasks = rewardTasks(state)
   const bonus = Math.max(0, tasks - 4)
   const rewards = [
     ...(tasks >= 5 ? ['fofEarnedIsamara'] : []),

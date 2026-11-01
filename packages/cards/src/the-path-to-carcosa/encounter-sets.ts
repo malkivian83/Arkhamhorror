@@ -493,8 +493,8 @@ registerTreachery({
     if (here === null) return []
     return [
       ...attachHere(state, investigator, self.id),
+      // Doom on the location only; the agenda checks it in the Mythos phase (RR p. 17).
       { type: 'PlaceLocationTokens', location: here, doom: 2 },
-      { type: 'CheckAgenda' },
     ]
   },
   persistsWhile: (state, self) => {

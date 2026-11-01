@@ -216,6 +216,12 @@ describe('A Phantom of Truth: setup', () => {
     expect(twelve.acts[0]!.code).toBe(CODES.conspiracyV2)
     expect(twelve.encounterDeck.some((c) => c.code === CODES.twinSuns)).toBe(true)
     expect(twelve.encounterDeck.some((c) => c.code === SETS.falseLead)).toBe(false)
+    // The belief did not change (Conviction before and after): no card is added twice
+    // (guide p. 19; doc 100, F4).
+    const plain = game(1, 'standard', [], { carcosaConviction: '2' })
+    const cards = (s: typeof plain) =>
+      [...s.encounterDeck, ...s.encounterDiscard].map((c) => c.code).sort()
+    expect(cards(twelve)).toEqual(cards(plain))
   })
 })
 

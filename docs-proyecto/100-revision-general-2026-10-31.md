@@ -586,7 +586,17 @@ N1–N3 subidas en `e4104095`. Corregidos después, con pruebas:
   comprueban el plan. Led Astray se mantiene: su texto dice que el efecto puede hacer
   avanzar el plan, y no está claro que excluya la opción de la pista.
 
-Siguen abiertos F4, F6, F7, F8 y N4.
+Después, también con pruebas:
+
+- **F4:** el Sueño 10 solo devuelve las copias que faltan en el juego. Si la creencia no
+  cambia, el mazo queda igual que sin Sueño 10.
+- **F6:** quitadas las comprobaciones del plan en la calavera y el Comedor de El último
+  rey, en Agujas de Carcosa, en Acechado por las sombras y en Notre-Dame. La referencia
+  confirma que ninguna de ellas hace avanzar el plan.
+- **F7:** saltarse la Parte I anota `fofSkippedPartOne` y suma 2 tareas solo para las
+  Recompensas adicionales; la cámara acorazada sigue pidiendo 4 tareas reales.
+
+Siguen abiertos F8 y N4.
 
 ### Orden sugerido
 

@@ -193,6 +193,8 @@ function fofSpecific(
     case 'fofSkipVigilance':
       return push(
         { type: 'SetScenarioMeta', key: 'skipped', value: 1 },
+        // Part II adds 2 tasks for its additional rewards (guide).
+        { type: 'RecordNote', note: 'fofSkippedPartOne' },
         {
           type: 'EndScenario',
           outcome: { type: 'noResolution' },
