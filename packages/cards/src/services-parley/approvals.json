@@ -1,0 +1,54 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "ee4dbd6e7098dec9cc3afdd3c2cbf20e6821a04350edec4a7eb8c0bb09158cec",
+    "es": "ee9e2c1470b233200f57306a1c8f3fde0bece007384c0dde982e0a78dd2ec4ec"
+  },
+  "cards": [
+    {
+      "code": "05111",
+      "status": "verified",
+      "module": "card-05111",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "05234",
+      "status": "verified",
+      "module": "card-05234",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "05277",
+      "status": "verified",
+      "module": "card-05277",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04105",
+      "status": "verified",
+      "module": "card-04105",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "05113",
+      "status": "verified",
+      "module": "card-05113",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10114",
+      "status": "verified",
+      "module": "card-10114",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04153",
+      "status": "verified",
+      "module": "card-04153",
+      "test": "rules.test.ts"
+    }
+  ]
+}

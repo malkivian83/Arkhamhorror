@@ -13,6 +13,9 @@ import './damage-turn'
 import './tools-parley'
 import './charged-assets'
 import './resource-reactions'
+import './protection-tools'
+import './test-recovery'
+import './services-parley'
 import './rex-murphy'
 import './grouped-import'
 import './immediate-action-events'
@@ -653,9 +656,31 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
   // vuelve a la preparación; solo se conserva lo anotado (el trauma) y no se gana
   // experiencia ni se cuenta como resultado.
   if (game.scenarioMeta?.replay === 1) {
+    // Notes written by the resolution (doc 100, E9) are dropped with everything else.
+    const investigators = Object.fromEntries(
+      Object.entries(campaign.log.investigators).map(([id, before]) => {
+        const after = log.investigators[id]
+        return [
+          id,
+          after
+            ? {
+                ...before,
+                physicalTrauma: after.physicalTrauma,
+                mentalTrauma: after.mentalTrauma,
+                ...(after.killed ? { killed: true } : {}),
+                ...(after.insane ? { insane: true } : {}),
+              }
+            : before,
+        ]
+      }),
+    )
     return {
       ...campaign,
-      log: { ...log, values: { ...log.values, [`replayed:${game.scenarioId}`]: '1' } },
+      log: {
+        ...campaign.log,
+        investigators,
+        values: { ...campaign.log.values, [`replayed:${game.scenarioId}`]: '1' },
+      },
     }
   }
   const xp = Object.fromEntries(
@@ -822,7 +847,12 @@ export function purchaseOptions(
         level: card.xp ?? 0,
         implemented: isImplemented(card.code),
       }
-      const copies = deck.filter((c) => byCode(c)?.name === card.name)
+      const copies = deck.filter(
+        (c) =>
+          byCode(c)?.name === card.name &&
+          (!playerCardBehavior(card.code)?.deckLimitBySubtitle ||
+            byCode(c)?.subname === card.subname),
+      )
       // Mejora: una copia de menor nivel del mismo título pasa a la nueva versión. Se
       // ofrece desde cada versión inferior distinta, porque cuesta la diferencia (p. 22).
       const lower = [

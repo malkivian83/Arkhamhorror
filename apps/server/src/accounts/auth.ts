@@ -123,12 +123,19 @@ export function authentication(
     reply.setCookie(cookieName, raw, { ...cookieOptions, maxAge: 30 * 86400 })
     return { user: publicUser({ ...user, role: role?.role ?? 'user' }), csrf: csrfFor(raw) }
   }
-  async function issue(user: User, purpose: 'verify' | 'reset') {
+  /** `passwordHash`: the password chosen at registration, applied when the link is used. */
+  async function issue(user: User, purpose: 'verify' | 'reset', passwordHash?: string) {
     const raw = token()
     const hash = digest(raw)
     await db.exec(
-      'INSERT INTO account_tokens (token_hash, user_id, purpose, expires_at) VALUES (?, ?, ?, ?)',
-      [hash, user.id, purpose, Date.now() + (purpose === 'verify' ? DAY : 30 * 60000)],
+      'INSERT INTO account_tokens (token_hash, user_id, purpose, expires_at, password_hash) VALUES (?, ?, ?, ?, ?)',
+      [
+        hash,
+        user.id,
+        purpose,
+        Date.now() + (purpose === 'verify' ? DAY : 30 * 60000),
+        passwordHash ?? null,
+      ],
     )
     const link = new URL('/account', config.origin)
     // Fragment prevents tokens appearing in proxy request logs or Referer headers.
@@ -160,15 +167,19 @@ export function authentication(
   async function consume(
     raw: string,
     purpose: string,
-    change: (transaction: Database, userId: string) => Promise<unknown>,
+    change: (
+      transaction: Database,
+      userId: string,
+      passwordHash: string | null,
+    ) => Promise<unknown>,
   ) {
     await db.transaction(async (tx) => {
-      const [entry] = await tx.rows<{ user_id: string }>(
-        'SELECT user_id FROM account_tokens WHERE token_hash = ? AND purpose = ? AND expires_at > ? FOR UPDATE',
+      const [entry] = await tx.rows<{ user_id: string; password_hash: string | null }>(
+        'SELECT user_id, password_hash FROM account_tokens WHERE token_hash = ? AND purpose = ? AND expires_at > ? FOR UPDATE',
         [digest(raw), purpose, Date.now()],
       )
       requireValue(entry, 'invalid_token')
-      await change(tx, entry.user_id)
+      await change(tx, entry.user_id, entry.password_hash ?? null)
       await tx.exec('DELETE FROM account_tokens WHERE user_id = ? AND purpose = ?', [
         entry.user_id,
         purpose,
@@ -212,7 +223,9 @@ export function authentication(
         [id, email(body.email), body.name.trim(), password, body.locale ?? 'es', Date.now()],
       )
       const [user] = await db.rows<User>('SELECT * FROM users WHERE email = ?', [email(body.email)])
-      if (user && !user.verified) await issue(user, 'verify')
+      // An earlier unverified registration may belong to someone else: this link carries
+      // this registration's password, which replaces it when the mailbox is proved (S1).
+      if (user && !user.verified) await issue(user, 'verify', password)
       return { ok: true }
     },
   )
@@ -262,9 +275,19 @@ export function authentication(
     '/api/auth/verify-email',
     { config: limited, schema: { body: tokenSchema } },
     async (req) => {
-      await consume(req.body.token, 'verify', (tx, id) =>
-        tx.exec('UPDATE users SET verified = TRUE WHERE id = ?', [id]),
-      )
+      await consume(req.body.token, 'verify', async (tx, id, password) => {
+        if (!password) return tx.exec('UPDATE users SET verified = TRUE WHERE id = ?', [id])
+        // Several pending registrations chose passwords: nobody can tell whose is whose, so
+        // none is kept and the owner sets one through "forgot password" (doc 100, S1).
+        const [pending] = await tx.rows<{ n: number }>(
+          "SELECT COUNT(*) AS n FROM account_tokens WHERE user_id = ? AND purpose = 'verify' AND password_hash IS NOT NULL",
+          [id],
+        )
+        return tx.exec('UPDATE users SET verified = TRUE, password_hash = ? WHERE id = ?', [
+          Number(pending?.n ?? 0) > 1 ? null : password,
+          id,
+        ])
+      })
       return { ok: true }
     },
   )

@@ -5,6 +5,7 @@ import {
   type CardEntry,
 } from '@lcg/shared'
 import type { EngineObserver, GameState } from '@lcg/engine'
+import { createAdvanceReview, type AdvanceFrame } from '@lcg/saves/advanceReview'
 import { tableView } from './table'
 
 /** Observe only the player's public projection, never raw engine effects or messages. */
@@ -29,13 +30,22 @@ function visibleState(state: GameState, mine: string | undefined): GameState {
 export function createOnlineSteps(initial: GameState, players: Record<string, string | undefined>) {
   const collectors = Object.entries(players).map(([user, mine]) => {
     const visible = visibleState(initial, mine)
-    return { user, mine, visible, collector: createAutoSteps(visible), cards: createCardEntries() }
+    return {
+      user,
+      mine,
+      visible,
+      collector: createAutoSteps(visible),
+      cards: createCardEntries(),
+      // Act/agenda advance review, from the same public projection (doc 100, D9).
+      advance: createAdvanceReview(visible),
+    }
   })
   const observe: EngineObserver = (_before, message, after) => {
     for (const entry of collectors) {
       const visible = visibleState(after, entry.mine)
       entry.collector.observe(entry.visible, message, visible)
       entry.cards.observe(entry.visible, message, visible)
+      entry.advance.observe(entry.visible, message, visible)
       entry.visible = visible
     }
   }
@@ -54,5 +64,13 @@ export function createOnlineSteps(initial: GameState, players: Record<string, st
       ),
     )
   }
-  return { observe, finish, finishCards }
+  function finishAdvance(): Record<string, AdvanceFrame[]> {
+    return Object.fromEntries(
+      collectors.flatMap(({ user, visible, advance }) => {
+        const frames = advance.finish(visible)
+        return frames.length ? [[user, frames]] : []
+      }),
+    )
+  }
+  return { observe, finish, finishCards, finishAdvance }
 }

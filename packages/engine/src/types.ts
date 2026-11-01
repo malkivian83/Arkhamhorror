@@ -43,6 +43,7 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  drewTreacheryRound?: number
   nextAssetFast?: boolean
   fightActionsThisTurn?: number
   roundSkillAdditions?: { from: SkillType; skills: SkillType[]; code: CardCode; round: number }[]
@@ -201,6 +202,8 @@ export type Prey =
   | { type: 'lowestRemainingHealth' }
 
 export interface EnemyCard {
+  /** False for enemies without a regular encounter card back; they cannot enter that deck. */
+  encounterBack?: boolean
   /** En juego sin ocupar un Lugar; location es la cadena vacía, nunca un Lugar ficticio. */
   global?: boolean
   /** Printed fight, health and evade are dashes, not zero-valued statistics. */
@@ -549,6 +552,7 @@ export interface StoryCardInPlay {
 }
 
 export interface Asset {
+  enteredAtTurn?: number
   /** Current form of a transforming asset, reset when it leaves play. */
   form?: string
   /** Printed upgrades retain their owner's sheet when control changes. */
@@ -661,6 +665,7 @@ export interface TokenEffect {
 }
 
 export interface SkillTest {
+  nextCommitId?: number
   /** Replaces the normal outcome without changing the kind or success windows. */
   replacementResults?: Message[]
   /** The message that initiated it, to attempt the same test again (Live and Learn). */
@@ -692,6 +697,8 @@ export interface SkillTest {
   baseModifier: number
   /** Cartas comprometidas (desde la mano o, con Isabelle, desde la pila de descartes). */
   committed: {
+    id?: number
+    iconBonus?: Partial<Record<SkillIcon, number>>
     code: CardCode
     by: InvestigatorId
     fromDiscard?: boolean
@@ -778,6 +785,7 @@ export type PhaseStep =
 
 /** Todo lo que puede ocurrir en la partida. */
 export type Message =
+  | { type: 'AddCommittedIcon'; commitId: number; icon: SkillIcon }
   | { type: 'GameBegins' }
   | { type: 'AdjustPendingEnemyDamage'; enemy: EnemyId; amount: number }
   | { type: 'ReducePendingDamage'; investigator: InvestigatorId; damage: number; horror: number }
@@ -835,12 +843,20 @@ export type Message =
       after?: Message[]
       /** Resolved with the results if the test succeeds (High Roller). */
       onSuccess?: Message[]
+      /** Delayed consequences resolved in ST.7 if this test fails (Grisly Totem). */
+      onFail?: Message[]
       /** Investigar con éxito no descubre pistas (Pruebas incriminatorias). */
       replaceClue?: boolean
     }
   | { type: 'SpendAdditionalAction'; investigator: InvestigatorId; then: Message[] }
   | { type: 'EndCurrentTurn'; investigator: InvestigatorId }
-  | { type: 'TransferResources'; from: InvestigatorId; to: InvestigatorId; amount: number }
+  | {
+      type: 'TransferResources'
+      from: InvestigatorId
+      to: InvestigatorId
+      amount: number
+      connecting?: boolean
+    }
   /** Move uses into a resource pool; this is not gaining resources. */
   | { type: 'MoveUsesToResources'; asset: AssetId; investigator: InvestigatorId; amount: number }
   | { type: 'TransferAssets'; transfers: { asset: AssetId; to: InvestigatorId }[] }
@@ -1004,6 +1020,7 @@ export type Message =
    */
   | {
       type: 'PlayCard'
+      variant?: number
       discardedCost?: CardCode[]
       discardCostPaid?: boolean
       additionalActionsPaid?: boolean
@@ -1029,6 +1046,7 @@ export type Message =
     }
   | {
       type: 'ResolvePlayedCard'
+      variant?: number
       discardedCost?: number
       investigator: InvestigatorId
       code: CardCode
@@ -1186,7 +1204,7 @@ export type Message =
   /** La próxima ficha se revela de dos en dos y se elige una (Mask of Silenus). */
   | { type: 'RevealExtraToken'; investigator: InvestigatorId }
   /** La prueba en curso tiene éxito por 0 (Scrape By). */
-  | { type: 'ForceSkillTestSuccess' }
+  | { type: 'ForceSkillTestSuccess'; replaceFailure?: boolean }
   /** La prueba en curso fracasa automáticamente (El juramento inconfesable, [elder_thing]). */
   | { type: 'ForceSkillTestFailure' }
   /** El ataque en curso inflige `amount` daño más (o menos), o ninguno con `none`. */
@@ -1306,7 +1324,13 @@ export type Message =
   /** Additional actions during that investigator's turn this round, now or when it begins. */
   | { type: 'GainTurnActionsThisRound'; investigator: InvestigatorId; amount: number }
   /** Exile a player card: from play (`asset`) or, otherwise, from its owner's discard pile. */
-  | { type: 'ExileCard'; investigator: InvestigatorId; code: CardCode; asset?: AssetId }
+  | {
+      type: 'ExileCard'
+      investigator: InvestigatorId
+      code: CardCode
+      asset?: AssetId
+      playedEvent?: boolean
+    }
   /** The current investigation discovers more clues, or adds success effects (Shed a Light). */
   | { type: 'AddInvestigationResults'; extraClues?: number; onSuccess?: Message[] }
   /** Granny Orne: the current test fails by this much more (or less, if negative). */
@@ -1800,6 +1824,7 @@ export type Trigger =
       enemy?: EnemyId
     }
   | { type: 'afterCardsDrawn'; investigator: InvestigatorId; amount: number }
+  | { type: 'whenCardsDrawn'; investigator: InvestigatorId; amount: number }
   | {
       type: 'afterRevealLocation' | 'afterPutLocation'
       investigator?: InvestigatorId
@@ -1826,7 +1851,7 @@ export type Trigger =
       last?: boolean
     }
   /** Tras comprometer cartas a una prueba (`by` las compromete, `tester` hace la prueba). */
-  | { type: 'afterCommit'; by: InvestigatorId; tester: InvestigatorId }
+  | { type: 'afterCommit'; by: InvestigatorId; tester: InvestigatorId; commitId?: number }
   /** Tras ganar recursos por el efecto de una carta. */
   | { type: 'afterGainResources'; investigator: InvestigatorId; amount: number }
   | { type: 'investigationPhaseEnds' }

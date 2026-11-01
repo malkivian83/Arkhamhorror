@@ -91,10 +91,18 @@ export interface OnlineCampaignView {
     }[]
   } | null
 }
+/** Answer to a poll whose revision is still current: nothing to redraw (doc 100, D7). */
+export interface OnlineGameUnchanged {
+  unchanged: true
+  revision: number
+}
+
 export interface OnlineGame {
   cardEntries?: { revision: number; cards: import('./cardEntries').CardEntry[] }[]
   /** Per-player redacted automatic steps, ordered by authoritative revision. */
   autoSteps?: { revision: number; review: import('./autoSteps').AutoStepsReview }[]
+  /** Per-player act/agenda advance review frames (`AdvanceFrame` from @lcg/saves). */
+  advanceReviews?: { revision: number; frames: unknown[] }[]
   /** Redacted presentation only: never apply engine inputs or persist as a local game. */
   table?: OnlineTable
   tableStats?: OnlineTableStats

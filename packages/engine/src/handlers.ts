@@ -768,12 +768,22 @@ export function handle(state: GameState, message: Message): GameState {
         ? discardTreachery(state, message.treachery)
         : state
 
-    case 'Forced':
+    case 'Forced': {
+      const t = message.trigger
+      if (
+        t.type === 'whenTreacheryDrawn' ||
+        (t.type === 'afterDrawCard' && playerCardDef(t.card)?.type === 'treachery')
+      )
+        state = updateInvestigator(state, t.investigator, (i) => ({
+          ...i,
+          drewTreacheryRound: state.round,
+        }))
       // Primero lo obligatorio; después, las reacciones que quieran usar los jugadores.
       return push(state, ...forcedAbilities(state, message.trigger), {
         type: 'Reactions',
         trigger: message.trigger,
       })
+    }
 
     // ---------------------------------------------------------- Investigación
     case 'InvestigationPhase':
@@ -1424,6 +1434,14 @@ export function handle(state: GameState, message: Message): GameState {
         amount = message.drawnCount ?? 0,
         drawnCards = message.drawnCards ?? [],
       ): Message[] => [
+        ...(amount > 0
+          ? [
+              {
+                type: 'Forced' as const,
+                trigger: { type: 'whenCardsDrawn' as const, investigator: investigator.id, amount },
+              },
+            ]
+          : []),
         ...(weaknesses.length
           ? [
               {
@@ -3017,6 +3035,35 @@ export function handle(state: GameState, message: Message): GameState {
       if (def.type === 'asset' && uniqueAssetInPlay(state, message.code)) return state
       // Cabina de luces: el aumento del coste se suma también a X.
       const costIncrease = cardCost(state, investigator.id, message.code) - (def.cost ?? 0)
+      const variants = playerCardBehavior(message.code)?.playVariants?.(state, investigator.id)
+      if (variants && message.variant === undefined) {
+        const totalCost = (increase: number) =>
+          message.noCost
+            ? 0
+            : cardCost(state, investigator.id, message.code, message.discount ?? 0, increase)
+        const available =
+          investigator.resources +
+          usesAsResources(state, investigator.id, message.code).reduce((n, s) => n + s.uses, 0)
+        if (!variants.some((v) => totalCost(v.cost) <= available)) return state
+        return push(state, {
+          type: 'Ask',
+          investigator: investigator.id,
+          question: {
+            kind: 'chooseOne',
+            prompt: 'prompt.pilotTarget',
+            alwaysAsk: true,
+            choices: variants
+              .filter((v) => totalCost(v.cost) <= available)
+              .map((v) => ({
+                label: v.label,
+                params: { n: v.cost },
+                then: [{ ...message, variant: v.id }],
+              })),
+          },
+        })
+      }
+      const variant = variants?.find((v) => v.id === message.variant)
+      if (variants && !variant) return state
       // RR "X": the value is chosen while paying the cost, up to the resources available.
       const xOptions = playerCardBehavior(message.code)?.xOptions?.(state, investigator.id)
       if (
@@ -3062,7 +3109,13 @@ export function handle(state: GameState, message: Message): GameState {
         ? 0
         : message.x !== undefined
           ? message.x + Math.max(0, costIncrease)
-          : cardCost(state, investigator.id, message.code, message.discount ?? 0)
+          : cardCost(
+              state,
+              investigator.id,
+              message.code,
+              message.discount ?? 0,
+              variant?.cost ?? 0,
+            )
       // Schoffner's Catalogue: its uses may pay for this card as resources.
       const sources = usesAsResources(state, investigator.id, message.code)
       const fromUses = Object.values(message.usesPayment ?? {}).reduce((n, u) => n + u, 0)
@@ -3152,6 +3205,7 @@ export function handle(state: GameState, message: Message): GameState {
       return push(paid, ...spentUses, ...spent, played, ...(message.before ?? []), {
         type: 'ResolvePlayedCard',
         discardedCost: message.discardedCost?.length ?? 0,
+        ...(message.variant !== undefined ? { variant: message.variant } : {}),
         investigator: investigator.id,
         code: message.code,
         ...(message.originalOwner ? { originalOwner: message.originalOwner } : {}),
@@ -3195,6 +3249,7 @@ export function handle(state: GameState, message: Message): GameState {
           message.x,
           message.fromDiscard,
           message.discardedCost,
+          message.variant,
         ) ??
         []
       return push(state, ...playerSourceMessages(effect, message.code))
@@ -3266,6 +3321,9 @@ export function handle(state: GameState, message: Message): GameState {
             id,
             code: message.code,
             owner: message.investigator,
+            ...(playerCardBehavior(message.code)?.recordsEntryTurn
+              ? { enteredAtTurn: turnStartedAt(state) }
+              : {}),
             ...(message.originalOwner ? { originalOwner: message.originalOwner } : {}),
             exhausted: false,
             damage: 0,
@@ -3763,6 +3821,10 @@ export function handle(state: GameState, message: Message): GameState {
         return state
       if (!canCommitFrom(state, investigator.id, message.code, iconZone, message.byEffect))
         return state
+      const trackCopy = Object.values(state.assets).some(
+        (a) => a.owner === investigator.id && assetBehavior(state, a)?.observesCommitCopies,
+      )
+      const commitId = trackCopy ? (test.nextCommitId ?? 0) : undefined
       return push(
         {
           ...updateInvestigator(state, investigator.id, (i) => ({
@@ -3771,11 +3833,13 @@ export function handle(state: GameState, message: Message): GameState {
           })),
           skillTest: withCommittedDifficulty({
             ...test,
+            ...(commitId !== undefined ? { nextCommitId: commitId + 1 } : {}),
             committed: [
               ...test.committed,
               {
                 code: message.code,
                 by: investigator.id,
+                ...(commitId !== undefined ? { id: commitId } : {}),
                 ...(message.shuffleAfter ? { fromDiscard: true } : {}),
                 ...(message.toDeckBottom ? { toDeckBottom: true } : {}),
               },
@@ -3785,9 +3849,36 @@ export function handle(state: GameState, message: Message): GameState {
         ...(playerCardBehavior(message.code)?.onCommit?.(state, investigator.id) ?? []),
         {
           type: 'Forced',
-          trigger: { type: 'afterCommit', by: investigator.id, tester: test.investigator },
+          trigger: {
+            type: 'afterCommit',
+            by: investigator.id,
+            tester: test.investigator,
+            ...(commitId !== undefined ? { commitId } : {}),
+          },
         },
       )
+    }
+
+    case 'AddCommittedIcon': {
+      const test = state.skillTest
+      if (!test) return state
+      return {
+        ...state,
+        skillTest: {
+          ...test,
+          committed: test.committed.map((c) =>
+            c.id === message.commitId
+              ? {
+                  ...c,
+                  iconBonus: {
+                    ...c.iconBonus,
+                    [message.icon]: (c.iconBonus?.[message.icon] ?? 0) + 1,
+                  },
+                }
+              : c,
+          ),
+        },
+      }
     }
 
     case 'Log':
@@ -4643,11 +4734,16 @@ export function handle(state: GameState, message: Message): GameState {
       const test = state.skillTest
       if (!test || test.succeeded === null || getInvestigator(state, test.investigator).eliminated)
         return state
-      if (!message.prepared && test.source) {
-        const asset = state.assets[test.source] ?? test.sourceSnapshot
+      if (!message.prepared) {
+        const asset = test.source ? (state.assets[test.source] ?? test.sourceSnapshot) : undefined
         const before = asset
           ? (assetBehavior(state, asset)?.beforeResults?.(state, test, asset) ?? [])
           : []
+        before.push(
+          ...Object.values(state.assets).flatMap(
+            (a) => assetBehavior(state, a)?.beforeSkillTestResults?.(state, test, a) ?? [],
+          ),
+        )
         if (before.length)
           return push(state, ...before, { type: 'ApplySkillTestResults', prepared: true })
       }
@@ -4784,6 +4880,7 @@ export function handle(state: GameState, message: Message): GameState {
           ...(message.onSuccess
             ? { tokenOnSuccess: [...(test.tokenOnSuccess ?? []), ...message.onSuccess] }
             : {}),
+          ...(message.onFail ? { tokenOnFail: [...test.tokenOnFail, ...message.onFail] } : {}),
           ...(message.replaceClue && test.kind.type === 'investigate'
             ? { kind: { ...test.kind, replaceClue: true } }
             : {}),
@@ -4860,7 +4957,12 @@ export function handle(state: GameState, message: Message): GameState {
         from.eliminated ||
         to.eliminated ||
         from.location === null ||
-        from.location !== to.location ||
+        (from.location !== to.location &&
+          !(
+            message.connecting &&
+            to.location !== null &&
+            getLocation(state, to.location).connections.includes(from.location)
+          )) ||
         !Number.isInteger(message.amount) ||
         message.amount < 1 ||
         from.resources < message.amount
@@ -5219,7 +5321,14 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'ForceSkillTestSuccess':
       return state.skillTest
-        ? { ...state, skillTest: { ...state.skillTest, forcedSuccess: true } }
+        ? {
+            ...state,
+            skillTest: {
+              ...state.skillTest,
+              forcedSuccess: true,
+              ...(message.replaceFailure ? { autoFail: false } : {}),
+            },
+          }
         : state
 
     case 'AdjustAttackDamage': {
@@ -5336,12 +5445,21 @@ export function handle(state: GameState, message: Message): GameState {
         const { [asset.id]: _gone, ...assets } = state.assets
         next = { ...state, assets }
       } else {
-        const at = owner.discard.lastIndexOf(message.code)
-        if (at < 0) return state
-        next = updateInvestigator(state, owner.id, (i) => ({
-          ...i,
-          discard: i.discard.filter((_, n) => n !== at),
-        }))
+        if (message.playedEvent && eventsToDeckBottom(state, owner.id)) {
+          const at = owner.deck.lastIndexOf(message.code)
+          if (at < 0) return state
+          next = updateInvestigator(state, owner.id, (i) => ({
+            ...i,
+            deck: i.deck.filter((_, n) => n !== at),
+          }))
+        } else {
+          const at = owner.discard.lastIndexOf(message.code)
+          if (at < 0) return state
+          next = updateInvestigator(state, owner.id, (i) => ({
+            ...i,
+            discard: i.discard.filter((_, n) => n !== at),
+          }))
+        }
       }
       return log(
         {
@@ -7790,6 +7908,10 @@ export function handle(state: GameState, message: Message): GameState {
               taken,
               {
                 type: 'Forced',
+                trigger: { type: 'whenCardsDrawn', investigator: investigator.id, amount: 1 },
+              },
+              {
+                type: 'Forced',
                 trigger: {
                   type: 'afterDrawCard',
                   investigator: investigator.id,
@@ -8344,6 +8466,16 @@ function withoutCardDoom(state: GameState): GameState {
     locations: Object.fromEntries(
       Object.entries(state.locations).map(([id, l]) => [id, l.doom ? { ...l, doom: 0 } : l]),
     ),
+    ...(state.placedAssets
+      ? {
+          placedAssets: Object.fromEntries(
+            Object.entries(state.placedAssets).map(([id, a]) => [
+              id,
+              a.doom ? { ...a, doom: 0 } : a,
+            ]),
+          ),
+        }
+      : {}),
   }
 }
 
@@ -8352,7 +8484,9 @@ export function totalDoom(state: GameState): number {
   const onEnemies =
     Object.values(state.enemies).reduce((sum, e) => sum + (e.doom ?? 0), 0) +
     Object.values(state.assets).reduce((sum, a) => sum + (a.doom ?? 0), 0) +
-    Object.values(state.locations).reduce((sum, l) => sum + (l.doom ?? 0), 0)
+    Object.values(state.locations).reduce((sum, l) => sum + (l.doom ?? 0), 0) +
+    // Assets placed on cards or locations (Jewel of Sarnath at La Gala) are in play too.
+    Object.values(state.placedAssets ?? {}).reduce((sum, a) => sum + (a.doom ?? 0), 0)
   return state.investigators.reduce((sum, i) => sum + (i.doom ?? 0), state.doom + onEnemies)
 }
 
@@ -9570,6 +9704,7 @@ function commitIcons(
   code: string,
   by: string,
   zone: 'hand' | 'discard' | 'committed' = 'hand',
+  bonus?: Partial<Record<string, number>>,
 ): number {
   const doublers =
     zone === 'committed'
@@ -9581,6 +9716,7 @@ function commitIcons(
     Math.max(
       0,
       matchingIcons(playerCardDef(code)?.icons, test.skill) +
+        matchingIcons(bonus, test.skill) +
         matchingIcons(
           playerCardBehavior(code)?.additionalIcons?.(state, test, by, zone),
           test.skill,
@@ -9709,7 +9845,7 @@ export function skillTestValue(state: GameState): {
   const doubling = scenarioBehavior(state.scenarioId)?.skillDoubling?.(state, test) ?? {}
   const icons =
     activeCommitted(test).reduce(
-      (sum, c) => sum + commitIcons(state, test, c.code, c.by, 'committed'),
+      (sum, c) => sum + commitIcons(state, test, c.code, c.by, 'committed', c.iconBonus),
       0,
     ) * (doubling.icons ? 2 : 1)
   const passive = Object.values(state.assets)
