@@ -657,6 +657,11 @@ export interface PlayerCardBehavior {
   /** While committed, double the icons of each other committed card. */
   doublesOtherCommittedIcons?: boolean
 
+  /** Optional cost increases selected before paying (Favor events). Costs are additive. */
+  playVariants?: (
+    state: GameState,
+    investigator: InvestigatorId,
+  ) => { id: number; cost: number; label: string }[]
   /** Pure, serializable continuations for delayed decisions and effects. */
   effect?: (
     state: GameState,
@@ -693,6 +698,7 @@ export interface PlayerCardBehavior {
     x?: number,
     fromDiscard?: boolean,
     discardedCost?: number,
+    variant?: number,
   ) => Message[]
   /** It may be played from its owner's discard pile, any copy (Winging It). */
   playableFromDiscard?: boolean

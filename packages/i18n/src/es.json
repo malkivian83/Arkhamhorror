@@ -403,6 +403,13 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "serviceMode3": "Aumentar cantidad y alcance (+{n} recursos)",
+    "serviceMode2": "Alcance de hasta 2 conexiones (+{n} recursos)",
+    "serviceMode1": "Aumentar cantidad (+{n} recursos)",
+    "serviceMode0": "Efecto normal (+{n} recursos)",
+    "serviceDone": "Terminar",
+    "serviceMore": "Elegir otro enemigo",
+    "serviceEnemy": "Elegir {enemy}",
     "recoveryDamage": "Infligir {n} de daño a {enemy}",
     "recoveryCleanResources": "Ganar 2 recursos por {enemy}",
     "recoveryCleanDamage": "Infligir 2 de daño a {enemy}",
@@ -3208,6 +3215,13 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "10114": "Táctica. Truco.",
+      "05111": "Favor. Servicio.",
+      "05234": "Favor. Servicio.",
+      "05277": "Favor. Servicio.",
+      "04105": "Inspiración. Truco.",
+      "05113": "Hechizo.",
+      "04153": "Innato.",
       "10032": "Espíritu. Audaz.",
       "53003": "Inspiración.",
       "53004": "Objeto. Reliquia.",
@@ -3695,6 +3709,13 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "10114": "<b>Negociar.</b> Elige un Enemigo que esté en tu Lugar. Realiza una prueba de [willpower] (X), donde X es el valor de combate o evitar del Enemigo elegido, lo que sea menor. Si tienes éxito, agota el Enemigo elegido <i>(pero no dejes de estar enfrentado a él)</i>. Si no es [[Élite]], no se prepara durante la siguiente fase de Mantenimiento. Si fracasas, devuelve Ganar tiempo a tu mano.",
+      "05111": "Descubre 1 pista en tu Lugar.\n[reaction] Cuando juegues el Informe de inteligencia, aumenta su coste en 2: Cambia \"Descubre 1 pista\" por \"Descubre 2 pistas\".\n[reaction] Cuando juegues el Informe de inteligencia, aumenta su coste en 2: Cambia \"en tu Lugar\" por \"en un Lugar a un máximo de 2 conexiones de distancia.\"",
+      "05234": "<b>Evitar.</b> Evita automáticamente a un Enemigo que no sea [[Élite]] que esté en tu Lugar.\n[reaction] Cuando jueges el Señuelo, aumenta su coste en 2: Cambia \"un Enemigo que no sea [[Élite]]\" por \"hasta 2 Enemigos que no sean [[Élite]]\".\n[reaction] Cuando jueges el Señuelo, aumenta su coste en 2: Cambia \"en tu Lugar\" por \"en un Lugar a un máximo de 2 conexiones de distancia\".",
+      "05277": "Inflige 1 punto de daño a un Enemigo que no sea [[Élite]] que esté en tu Lugar.\n[reaction] Cuando juegues el Favorcillo, aumenta su coste en 2: Cambia \"Inflige 1 punto de daño\" por \"Inflige 2 puntos de daño\".\n[reaction] Cuando juegues el Favorcillo, aumenta su coste en 2: Cambia \"en tu Lugar\" por \"en un Lugar a un máximo de 2 conexiones de distancia.\"",
+      "04105": "<b>Negociar.</b> Elige un Enemigo [[Humanoide]] que no sea Debilidad y que esté en tu Lugar y realiza una prueba de [intellect] (3). Esta prueba recibe +X a su dificultad, donde X es el valor de horror de ese Enemigo. Si tienes éxito, devuelve el Enemigo elegido al mazo de Encuentros y baraja éste. Si el Enemigo elegido es [[Élite]], en lugar de eso evítalo automáticamente.",
+      "05113": "<b>Evitar</b>. Usa esta capacidad sólo contra un Enemigo que no sea [[Élite]]. Este intento de evitar usa [willpower] en lugar de [agility]. Si tienes éxito, mueve el Enemigo que acabas de evitar a cualquier Lugar en juego. Si tienes éxito y fue revelado un símbolo [skull], [cultist], [tablet] o [elder_thing] durante este intento de evitar, ese Enemigo no se prepara durante la siguiente fase de Mantenimiento.",
+      "04153": "Sólo puedes asignar esta carta a una prueba de habilidad de una capacidad impresa en una carta de Escenario.\nSi esta prueba de habilidad tiene éxito, descubre 1 pista en tu Lugar.",
       "10032": "Juega esta carta sólo como tu primera acción.\nCúrate 2 puntos de daño, o bien 3 puntos de daño si robaste una carta de Traición en esta ronda. Roba 1 carta.",
       "53003": "Coloca 2 secretos entre Apoyos controlados por investigadores que estén en tu Lugar, o bien 3 secretos si hay una pista en tu Lugar.",
       "53004": "Sólo puedes incluir este Apoyo en tu mazo si lo mejoras a partir de la Piedra antigua (Sin identificar), y sólo si en el registro de campaña aparece que “habéis identificado la piedra”.\nUsos (X secretos). X es el número que hay entre paréntesis junto a “habéis identificado la piedra”.\n[reaction] Cuando robes cualquier cantidad de cartas, gasta esa misma cantidad de secretos: Muévete esa misma cantidad de veces.",
@@ -4619,6 +4640,13 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "10114": "Ganar tiempo",
+      "05111": "Informe de inteligencia",
+      "05234": "Señuelo",
+      "05277": "Favorcillo",
+      "04105": "Persuasión",
+      "05113": "Desterrar",
+      "04153": "Comprensión verdadera",
       "10032": "Fuerzas renovadas",
       "53003": "Verdad y ficción",
       "53004": "Piedra antigua",

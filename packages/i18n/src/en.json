@@ -403,6 +403,13 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "serviceMode3": "Increase amount and range (+{n} resources)",
+    "serviceMode2": "Range up to 2 connections (+{n} resources)",
+    "serviceMode1": "Increase amount (+{n} resources)",
+    "serviceMode0": "Normal effect (+{n} resources)",
+    "serviceDone": "Done",
+    "serviceMore": "Choose another enemy",
+    "serviceEnemy": "Choose {enemy}",
     "recoveryCleanDraw": "Draw 1 card for {enemy}",
     "recoveryCleanClue": "Discover 1 clue for {enemy}",
     "recoveryCleanDamage": "Deal 2 damage to {enemy}",
@@ -3208,6 +3215,13 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "10114": "Tactic. Trick.",
+      "05111": "Favor. Service.",
+      "05234": "Favor. Service.",
+      "05277": "Favor. Service.",
+      "04105": "Insight. Trick.",
+      "05113": "Spell.",
+      "04153": "Innate.",
       "10032": "Spirit. Bold.",
       "53003": "Insight.",
       "53004": "Item. Relic.",
@@ -3695,6 +3709,13 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "10114": "<b>Parley.</b> Choose an enemy at your location. Test [willpower] (X), where X is the chosen enemy's fight or evade value, whichever is lower. If you succeed, exhaust the chosen enemy <i>(but do not disengage from it)</i>. If it is non-[[Elite]], it does not ready during the next upkeep phase. If you fail, return Stall for Time to your hand.",
+      "05111": "Discover 1 clue at your location.\n[reaction] When you play Intel Report, increase its cost by 2: Change \"Discover 1 clue\" to \"Discover 2 clues.\"\n[reaction] When you play Intel Report, increase its cost by 2: Change \"at your location\" to \"at a location up to 2 connections away.\"",
+      "05234": "<b>Evade.</b> Automatically evade a non-[[Elite]] enemy at your location.\n[reaction] When you play Decoy, increase its cost by 2: Change \"a non-[[Elite]] enemy\" to \"up to 2 non-[[Elite]] enemies.\"\n[reaction] When you play Decoy, increase its cost by 2: Change \"at your location\" to \"at a location up to 2 connections away.\"",
+      "05277": "Deal 1 damage to a non-[[Elite]] enemy at your location.\n[reaction] When you play Small Favor, increase its cost by 2: Change \"Deal 1 damage\" to \"Deal 2 damage.\"\n[reaction] When you play Small Favor, increase its cost by 2: Change \"at your location\" to \"at a location up to 2 connections away.\"",
+      "04105": "<b>Parley.</b> Choose a non-weakness [[Humanoid]] enemy at your location and test [intellect] (3). This test gets +X difficulty, where X is that enemy's horror value. If you succeed, shuffle the chosen enemy into the encounter deck. If the chosen enemy is [[Elite]], automatically evade it instead.",
+      "05113": "<b>Evade.</b> Use only on a non-[[Elite]] enemy. This evasion attempt uses [willpower] instead of [agility]. If you succeed, move the enemy just evaded to any location in play. If you succeed and a [skull], [cultist], [tablet], or [elder_thing] symbol was revealed during this evasion attempt, that enemy does not ready during the next upkeep phase.",
+      "04153": "Commit only to a skill test from an ability printed on a scenario card.<br/>If this skill test is successful, discover 1 clue at your location.",
       "10032": "Play only as your first action.\nHeal 2 damage (3 damage instead if you drew a treachery this round). Draw 1 card.",
       "53003": "Place 2 secrets among assets controlled by investigators at your location (3 secrets instead if there is a clue at your location).",
       "53004": "Researched. Uses (X secrets). X is the number in parentheses next to \"you have identified the stone.\"\n[reaction] When you draw any number of cards, spend that many secrets: Move that many times.",
@@ -4619,6 +4640,13 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "10114": "Stall for Time",
+      "05111": "Intel Report",
+      "05234": "Decoy",
+      "05277": "Small Favor",
+      "04105": "Persuasion",
+      "05113": "Banish",
+      "04153": "True Understanding",
       "10032": "Second Wind",
       "53003": "Truth from Fiction",
       "53004": "Ancient Stone",

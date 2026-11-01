@@ -79,7 +79,7 @@ export function playableCards(state: GameState, id: InvestigatorId, fast: boolea
     if (behavior?.onlyFromDiscard && !investigator.discard.includes(code)) return false
     if (def.type === 'event' && !behavior?.play) return false
     if (behavior?.parley && !parleyCosts(state, id)) return false
-    if (cardCost(state, id, code) > spendableFor(state, id, code)) return false
+    if (minimumPlayCost(state, id, code) > spendableFor(state, id, code)) return false
     return behavior?.canPlay?.(state, id) ?? true
   })
 }
@@ -118,7 +118,8 @@ export function canPlayByEffect(
     scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, id, code)
   )
     return false
-  if (!noCost && cardCost(state, id, code, discount) > spendableFor(state, id, code)) return false
+  if (minimumPlayCost(state, id, code, discount, noCost) > spendableFor(state, id, code))
+    return false
   return playerCardBehavior(code)?.canPlay?.(state, id) ?? true
 }
 
@@ -128,6 +129,22 @@ export function spendableFor(state: GameState, id: InvestigatorId, code: CardCod
     getInvestigator(state, id).resources +
     usesAsResources(state, id, code).reduce((n, s) => n + s.uses, 0)
   )
+}
+
+function minimumPlayCost(
+  state: GameState,
+  id: InvestigatorId,
+  code: CardCode,
+  discount = 0,
+  noCost = false,
+): number {
+  const variants = playerCardBehavior(code)?.playVariants?.(state, id)
+  if (variants?.length === 0) return Infinity
+  return noCost
+    ? 0
+    : variants
+      ? Math.min(...variants.map((v) => cardCost(state, id, code, discount, v.cost)))
+      : cardCost(state, id, code, discount)
 }
 
 /** "Limit 1 per investigator": they already control an asset with this title. */
@@ -193,7 +210,8 @@ export function playRestriction(
   if (!cardAllowed(state, id, code)) return { key: 'unplayable.role' }
   const behavior = playerCardBehavior(code)
   if (def.type === 'event' && !behavior?.play) return { key: 'unplayable.notImplemented' }
-  const cost = cardCost(state, id, code)
+  if (behavior?.playVariants?.(state, id).length === 0) return { key: 'unplayable.conditions' }
+  const cost = minimumPlayCost(state, id, code)
   if (cost > spendableFor(state, id, code))
     return {
       key: cost === (def.cost ?? 0) ? 'unplayable.cost' : 'unplayable.costModified',
@@ -766,6 +784,7 @@ export function cardCost(
   id: InvestigatorId,
   code: CardCode,
   discount = 0,
+  increase = 0,
 ): number {
   const printed = playerCardDef(code)?.cost ?? 0
   const change =
@@ -786,7 +805,7 @@ export function cardCost(
     cardOfRole(code, investigator.role)
       ? role.amount
       : 0
-  return Math.max(0, printed + change + fromHand - discount - improvised)
+  return Math.max(0, printed + change + fromHand + increase - discount - improvised)
 }
 
 /** Una debilidad en su zona de amenaza le impide jugar o usar apoyos (The Necronomicon). */

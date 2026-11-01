@@ -1,0 +1,78 @@
+[
+  {
+    "code": "05111",
+    "name": "Intel Report",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Favor", "Service"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "intellect": 2 },
+    "slots": []
+  },
+  {
+    "code": "05234",
+    "name": "Decoy",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Favor", "Service"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "agility": 2 },
+    "slots": []
+  },
+  {
+    "code": "05277",
+    "name": "Small Favor",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Favor", "Service"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "combat": 2 },
+    "slots": []
+  },
+  {
+    "code": "04105",
+    "name": "Persuasion",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight", "Trick"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "05113",
+    "name": "Banish",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 2,
+    "xp": 1,
+    "icons": { "willpower": 1, "agility": 1 },
+    "slots": []
+  },
+  {
+    "code": "10114",
+    "name": "Stall for Time",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Tactic", "Trick"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "04153",
+    "name": "True Understanding",
+    "type": "skill",
+    "class": "seeker",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": []
+  }
+]

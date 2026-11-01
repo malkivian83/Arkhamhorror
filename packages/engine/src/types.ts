@@ -202,6 +202,8 @@ export type Prey =
   | { type: 'lowestRemainingHealth' }
 
 export interface EnemyCard {
+  /** False for enemies without a regular encounter card back; they cannot enter that deck. */
+  encounterBack?: boolean
   /** En juego sin ocupar un Lugar; location es la cadena vacía, nunca un Lugar ficticio. */
   global?: boolean
   /** Printed fight, health and evade are dashes, not zero-valued statistics. */
@@ -1018,6 +1020,7 @@ export type Message =
    */
   | {
       type: 'PlayCard'
+      variant?: number
       discardedCost?: CardCode[]
       discardCostPaid?: boolean
       additionalActionsPaid?: boolean
@@ -1043,6 +1046,7 @@ export type Message =
     }
   | {
       type: 'ResolvePlayedCard'
+      variant?: number
       discardedCost?: number
       investigator: InvestigatorId
       code: CardCode

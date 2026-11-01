@@ -78,6 +78,7 @@ export {
   turnAheadThisRound,
   turnStartedAt,
   usesAsResources,
+  eventsToDeckBottom,
 } from './state'
 export {
   actionsThisRound,

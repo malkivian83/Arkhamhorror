@@ -3035,6 +3035,35 @@ export function handle(state: GameState, message: Message): GameState {
       if (def.type === 'asset' && uniqueAssetInPlay(state, message.code)) return state
       // Cabina de luces: el aumento del coste se suma también a X.
       const costIncrease = cardCost(state, investigator.id, message.code) - (def.cost ?? 0)
+      const variants = playerCardBehavior(message.code)?.playVariants?.(state, investigator.id)
+      if (variants && message.variant === undefined) {
+        const totalCost = (increase: number) =>
+          message.noCost
+            ? 0
+            : cardCost(state, investigator.id, message.code, message.discount ?? 0, increase)
+        const available =
+          investigator.resources +
+          usesAsResources(state, investigator.id, message.code).reduce((n, s) => n + s.uses, 0)
+        if (!variants.some((v) => totalCost(v.cost) <= available)) return state
+        return push(state, {
+          type: 'Ask',
+          investigator: investigator.id,
+          question: {
+            kind: 'chooseOne',
+            prompt: 'prompt.pilotTarget',
+            alwaysAsk: true,
+            choices: variants
+              .filter((v) => totalCost(v.cost) <= available)
+              .map((v) => ({
+                label: v.label,
+                params: { n: v.cost },
+                then: [{ ...message, variant: v.id }],
+              })),
+          },
+        })
+      }
+      const variant = variants?.find((v) => v.id === message.variant)
+      if (variants && !variant) return state
       // RR "X": the value is chosen while paying the cost, up to the resources available.
       const xOptions = playerCardBehavior(message.code)?.xOptions?.(state, investigator.id)
       if (
@@ -3080,7 +3109,13 @@ export function handle(state: GameState, message: Message): GameState {
         ? 0
         : message.x !== undefined
           ? message.x + Math.max(0, costIncrease)
-          : cardCost(state, investigator.id, message.code, message.discount ?? 0)
+          : cardCost(
+              state,
+              investigator.id,
+              message.code,
+              message.discount ?? 0,
+              variant?.cost ?? 0,
+            )
       // Schoffner's Catalogue: its uses may pay for this card as resources.
       const sources = usesAsResources(state, investigator.id, message.code)
       const fromUses = Object.values(message.usesPayment ?? {}).reduce((n, u) => n + u, 0)
@@ -3170,6 +3205,7 @@ export function handle(state: GameState, message: Message): GameState {
       return push(paid, ...spentUses, ...spent, played, ...(message.before ?? []), {
         type: 'ResolvePlayedCard',
         discardedCost: message.discardedCost?.length ?? 0,
+        ...(message.variant !== undefined ? { variant: message.variant } : {}),
         investigator: investigator.id,
         code: message.code,
         ...(message.originalOwner ? { originalOwner: message.originalOwner } : {}),
@@ -3213,6 +3249,7 @@ export function handle(state: GameState, message: Message): GameState {
           message.x,
           message.fromDiscard,
           message.discardedCost,
+          message.variant,
         ) ??
         []
       return push(state, ...playerSourceMessages(effect, message.code))
