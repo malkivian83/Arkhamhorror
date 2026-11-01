@@ -5,6 +5,25 @@ import { approvedDefinition } from './approved.mjs'
 const read = async (relative) =>
   JSON.parse(await readFile(new URL(relative, import.meta.url), 'utf8'))
 describe('reviewed inventory conversion', () => {
+  it('restricts protection exile and Ice Pick adapters to their reviewed cards', async () => {
+    const { cards } = await read(
+      '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
+    )
+    const approvals = await read('../../packages/cards/src/protection-tools/approvals.json')
+    for (const code of ['02114', '03156', '03157', '08080', '08107']) {
+      const c = cards.find((c) => c.code === code),
+        a = approvals.cards.find((c) => c.code === code)
+      expect(approvedDefinition(c, a).code).toBe(code)
+      expect(() => approvedDefinition(c, { ...a, adapter: undefined })).toThrow()
+    }
+    const other = cards.find((c) => c.code === '03156')
+    expect(() =>
+      approvedDefinition(
+        { ...other, code: '99999' },
+        { code: '99999', status: 'verified', adapter: 'reviewed-protection-exile-v1' },
+      ),
+    ).toThrow()
+  })
   it('limits the new exile, exceptional and dual-faction adapters to reviewed identities', async () => {
     const { cards } = await read(
       '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
@@ -114,6 +133,7 @@ describe('reviewed inventory conversion', () => {
     'tools-parley',
     'charged-assets',
     'resource-reactions',
+    'protection-tools',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(

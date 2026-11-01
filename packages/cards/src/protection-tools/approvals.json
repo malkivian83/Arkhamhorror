@@ -1,0 +1,148 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "cards": [
+    {
+      "code": "03156",
+      "status": "verified",
+      "module": "card-03156",
+      "test": "rules.test.ts",
+      "fast": true,
+      "adapter": "reviewed-protection-exile-v1"
+    },
+    {
+      "code": "03157",
+      "status": "verified",
+      "module": "card-03157",
+      "test": "rules.test.ts",
+      "fast": true,
+      "adapter": "reviewed-protection-exile-v1"
+    },
+    {
+      "code": "02114",
+      "status": "verified",
+      "module": "card-02114",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-protection-exile-v1"
+    },
+    {
+      "code": "08080",
+      "status": "verified",
+      "module": "card-08080",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-protection-exile-v1"
+    },
+    {
+      "code": "05274",
+      "status": "verified",
+      "module": "card-05274",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "06155",
+      "status": "verified",
+      "module": "card-06155",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09038",
+      "status": "verified",
+      "module": "card-09038",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08107",
+      "status": "verified",
+      "module": "card-08107",
+      "test": "rules.test.ts",
+      "fast": true,
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "09086",
+      "status": "verified",
+      "module": "card-09086",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10112",
+      "status": "verified",
+      "module": "card-10112",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11034",
+      "status": "verified",
+      "module": "card-11034",
+      "test": "rules.test.ts",
+      "uses": { "count": 1, "type": "inspiration" }
+    },
+    {
+      "code": "11035",
+      "status": "verified",
+      "module": "card-11035",
+      "test": "rules.test.ts",
+      "uses": { "count": 0, "type": "charges" }
+    },
+    {
+      "code": "10042",
+      "status": "verified",
+      "module": "card-10042",
+      "test": "rules.test.ts",
+      "uses": { "count": 0, "type": "evidence" }
+    },
+    {
+      "code": "10058",
+      "status": "verified",
+      "module": "card-10058",
+      "test": "rules.test.ts",
+      "uses": { "count": 0, "type": "evidence" }
+    },
+    {
+      "code": "09043",
+      "status": "verified",
+      "module": "card-09043",
+      "test": "rules.test.ts",
+      "uses": { "count": 0, "type": "evidence" }
+    },
+    {
+      "code": "03189",
+      "status": "verified",
+      "module": "card-03189",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09050",
+      "status": "verified",
+      "module": "card-09050",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04110",
+      "status": "verified",
+      "module": "card-04110",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "11054",
+      "status": "verified",
+      "module": "card-11054",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "11063",
+      "status": "verified",
+      "module": "card-11063",
+      "test": "rules.test.ts",
+      "fast": true
+    }
+  ],
+  "sources": {
+    "en": "f6c7ed7ce00a62460ecdc5486cabe27b08e726843c0b89556c1616210511ee70",
+    "es": "980135706d4c123d9af1a63c790b0ec1aff6742c45f5d33a707fa33788cba392"
+  },
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" }
+}

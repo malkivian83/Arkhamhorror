@@ -840,7 +840,13 @@ export type Message =
     }
   | { type: 'SpendAdditionalAction'; investigator: InvestigatorId; then: Message[] }
   | { type: 'EndCurrentTurn'; investigator: InvestigatorId }
-  | { type: 'TransferResources'; from: InvestigatorId; to: InvestigatorId; amount: number }
+  | {
+      type: 'TransferResources'
+      from: InvestigatorId
+      to: InvestigatorId
+      amount: number
+      connecting?: boolean
+    }
   /** Move uses into a resource pool; this is not gaining resources. */
   | { type: 'MoveUsesToResources'; asset: AssetId; investigator: InvestigatorId; amount: number }
   | { type: 'TransferAssets'; transfers: { asset: AssetId; to: InvestigatorId }[] }
@@ -1186,7 +1192,7 @@ export type Message =
   /** La próxima ficha se revela de dos en dos y se elige una (Mask of Silenus). */
   | { type: 'RevealExtraToken'; investigator: InvestigatorId }
   /** La prueba en curso tiene éxito por 0 (Scrape By). */
-  | { type: 'ForceSkillTestSuccess' }
+  | { type: 'ForceSkillTestSuccess'; replaceFailure?: boolean }
   /** La prueba en curso fracasa automáticamente (El juramento inconfesable, [elder_thing]). */
   | { type: 'ForceSkillTestFailure' }
   /** El ataque en curso inflige `amount` daño más (o menos), o ninguno con `none`. */
@@ -1306,7 +1312,13 @@ export type Message =
   /** Additional actions during that investigator's turn this round, now or when it begins. */
   | { type: 'GainTurnActionsThisRound'; investigator: InvestigatorId; amount: number }
   /** Exile a player card: from play (`asset`) or, otherwise, from its owner's discard pile. */
-  | { type: 'ExileCard'; investigator: InvestigatorId; code: CardCode; asset?: AssetId }
+  | {
+      type: 'ExileCard'
+      investigator: InvestigatorId
+      code: CardCode
+      asset?: AssetId
+      playedEvent?: boolean
+    }
   /** The current investigation discovers more clues, or adds success effects (Shed a Light). */
   | { type: 'AddInvestigationResults'; extraClues?: number; onSuccess?: Message[] }
   /** Granny Orne: the current test fails by this much more (or less, if negative). */

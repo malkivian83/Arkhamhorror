@@ -4643,11 +4643,16 @@ export function handle(state: GameState, message: Message): GameState {
       const test = state.skillTest
       if (!test || test.succeeded === null || getInvestigator(state, test.investigator).eliminated)
         return state
-      if (!message.prepared && test.source) {
-        const asset = state.assets[test.source] ?? test.sourceSnapshot
+      if (!message.prepared) {
+        const asset = test.source ? (state.assets[test.source] ?? test.sourceSnapshot) : undefined
         const before = asset
           ? (assetBehavior(state, asset)?.beforeResults?.(state, test, asset) ?? [])
           : []
+        before.push(
+          ...Object.values(state.assets).flatMap(
+            (a) => assetBehavior(state, a)?.beforeSkillTestResults?.(state, test, a) ?? [],
+          ),
+        )
         if (before.length)
           return push(state, ...before, { type: 'ApplySkillTestResults', prepared: true })
       }
@@ -4860,7 +4865,12 @@ export function handle(state: GameState, message: Message): GameState {
         from.eliminated ||
         to.eliminated ||
         from.location === null ||
-        from.location !== to.location ||
+        (from.location !== to.location &&
+          !(
+            message.connecting &&
+            to.location !== null &&
+            getLocation(state, to.location).connections.includes(from.location)
+          )) ||
         !Number.isInteger(message.amount) ||
         message.amount < 1 ||
         from.resources < message.amount
@@ -5219,7 +5229,14 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'ForceSkillTestSuccess':
       return state.skillTest
-        ? { ...state, skillTest: { ...state.skillTest, forcedSuccess: true } }
+        ? {
+            ...state,
+            skillTest: {
+              ...state.skillTest,
+              forcedSuccess: true,
+              ...(message.replaceFailure ? { autoFail: false } : {}),
+            },
+          }
         : state
 
     case 'AdjustAttackDamage': {
@@ -5336,12 +5353,21 @@ export function handle(state: GameState, message: Message): GameState {
         const { [asset.id]: _gone, ...assets } = state.assets
         next = { ...state, assets }
       } else {
-        const at = owner.discard.lastIndexOf(message.code)
-        if (at < 0) return state
-        next = updateInvestigator(state, owner.id, (i) => ({
-          ...i,
-          discard: i.discard.filter((_, n) => n !== at),
-        }))
+        if (message.playedEvent && eventsToDeckBottom(state, owner.id)) {
+          const at = owner.deck.lastIndexOf(message.code)
+          if (at < 0) return state
+          next = updateInvestigator(state, owner.id, (i) => ({
+            ...i,
+            deck: i.deck.filter((_, n) => n !== at),
+          }))
+        } else {
+          const at = owner.discard.lastIndexOf(message.code)
+          if (at < 0) return state
+          next = updateInvestigator(state, owner.id, (i) => ({
+            ...i,
+            discard: i.discard.filter((_, n) => n !== at),
+          }))
+        }
       }
       return log(
         {

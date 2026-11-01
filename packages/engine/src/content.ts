@@ -661,6 +661,8 @@ export interface PlayerCardBehavior {
     data: Record<string, string | number | boolean>,
   ) => Message[]
   beforeResults?: (state: GameState, test: SkillTest, self: Asset) => Message[]
+  /** ST.7: effects from other controlled assets that modify the pending results. */
+  beforeSkillTestResults?: (state: GameState, test: SkillTest, self: Asset) => Message[]
   /** Ranuras adicionales mientras está en juego (Carl Sanford: +1 arcana). */
   extraSlots?: Partial<Record<SlotType, number>>
   /** Additional slots that only assets with one of the traits may use (Bandolier: Weapon hand). */

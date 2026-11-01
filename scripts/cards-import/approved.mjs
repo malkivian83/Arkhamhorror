@@ -4,7 +4,7 @@ export function approvedDefinition(card, approval) {
     throw new Error(`Card is not approved: ${card.code}`)
   const reviewedDualFaction =
     approval.adapter === 'reviewed-dual-faction-v1' &&
-    ((card.code === '08105' && card.factions.join(',') === 'seeker,survivor') ||
+    ((['08105', '08107'].includes(card.code) && card.factions.join(',') === 'seeker,survivor') ||
       (['08083', '08086'].includes(card.code) && card.factions.join(',') === 'guardian,seeker') ||
       (card.code === '05115' && card.factions.join(',') === 'guardian,rogue') ||
       (['08094', '08096', '08095'].includes(card.code) &&
@@ -61,6 +61,9 @@ export function approvedDefinition(card, approval) {
     card.deckLimit === 2
   const reviewedDefeatExile =
     approval.adapter === 'reviewed-exile-defeat-v1' && card.code === '05236'
+  const reviewedProtectionExile =
+    approval.adapter === 'reviewed-protection-exile-v1' &&
+    ['02114', '03156', '03157', '08080'].includes(card.code)
   const reviewedBorrowedTime =
     approval.adapter === 'reviewed-borrowed-time-v1' && card.code === '04308'
   if (
@@ -68,7 +71,7 @@ export function approvedDefinition(card, approval) {
     ['exceptional', 'myriad', 'exile'].some(
       (key) =>
         card.flags[key] &&
-        !(key === 'exile' && reviewedDefeatExile) &&
+        !(key === 'exile' && (reviewedDefeatExile || reviewedProtectionExile)) &&
         !(key === 'exceptional' && reviewedBorrowedTime),
     )
   )
