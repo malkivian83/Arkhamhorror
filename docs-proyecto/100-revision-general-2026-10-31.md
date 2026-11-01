@@ -645,6 +645,55 @@ Siguen abiertos F8 y N4.
   cartas ajenas sin permiso. Dejar que el ayudante lo inicie cambia de quién son las
   preguntas del motor e invalidaría las grabaciones; requiere un cambio de motor propio.
 
+### Móvil (01/11/2026)
+
+- **D5 · corregido:** `QuickActions` muestra por debajo de 900 px las opciones sin objetivo
+  (Robar, Recurso, Fin de turno, Saltar…). Online, solo con la decisión propia. El panel
+  lateral se cierra al responder.
+- **D6 · corregido:** en táctil, una opción directa (moverse, jugar, elegir objetivo) se
+  ejecuta con un toque; una pulsación larga (500 ms, sin arrastrar) abre la carta ampliada.
+
+### Reglas y escenarios menores (01/11/2026)
+
+- **Corregidos con pruebas:**
+  - el horror de un ataque reducido ya no cura (E12);
+  - moverse a un Lugar retirado no detiene la partida (E12);
+  - Siervo del acechador con Victoria 1 (F8);
+  - Rice también para un investigador derrotado (F8);
+  - El hombre de la máscara pálida derrotado sale del juego también desde la pila de
+    descartes (F8);
+  - *Stop the Rite* mueve a todos los Sectarios, también los enfrentados (E12);
+  - la debilidad básica aleatoria sale de todas las implementadas y no se repite en el
+    grupo (C7).
+- **Preventivo:** un investigador eliminado en su turno deja de tener el turno activo.
+- **Sin cambiar, a propósito:**
+  - Orden de los ataques del enemigo masivo y de los forzados simultáneos, ventanas de
+    jugador que faltan y elección del Líder aliado en La Gala: añadirían preguntas al
+    motor e invalidarían las grabaciones.
+  - Presa por habilidad modificada: requiere simular una prueba, con riesgo de efectos
+    colaterales.
+  - Isamara: pendiente de tu decisión.
+
+### Rendimiento y operación (01/11/2026)
+
+- **O3 · corregido:** el almacén guarda en memoria un punto de control cada 25 decisiones,
+  también mientras rejuega al deshacer. Deshacer rejuega como mucho 25 decisiones en lugar
+  de toda la partida. La prueba compara el resultado con una rejugada completa sobre una
+  grabación de 151 decisiones.
+- **N4 · corregido:** los guardados rápidos ya no pasan a la copia de seguridad. Cada 20
+  decisiones, en tiempo libre del navegador, `refreshBackup` rejuega el guardado completo
+  y solo lo copia si lo reproduce.
+- **O4 · diagnosticado, sin aplicar:** sin aislamiento (`isolate: false`), el proyecto
+  `cards` pasa de la mayor parte de los 400 s de la suite a 87 s. Pero
+  `registerPlayerCard` sobrescribe el registro global y muchas pruebas registran cartas
+  propias, algunas con códigos reales: el estado se filtra entre archivos y fallan pruebas
+  según el orden. Antes hay que hacer que esas pruebas restauren lo que registran (o usen
+  códigos propios).
+- **O5 · corregido:** la comprobación de vitalidad dinámica se guarda en caché por mapa
+  inmutable de apoyos y traiciones: unos 10 % menos de tiempo de motor en las grabaciones.
+- **R1 · CI:** el clon completo usa `filter: blob:none`, y el historial de imágenes y
+  audio ya no se descarga. Pasar a Git LFS reescribiría el historial: decisión tuya.
+
 ### Orden sugerido
 
 1. **Subir N1–N3**, que corrigen mis propios cambios. N1 bloquea campañas online.

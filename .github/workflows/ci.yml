@@ -34,6 +34,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # The plan only needs commits and trees (merge-base, diff --name-only); old
+          # versions of images and audio are not downloaded (doc 100, R1).
+          filter: blob:none
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc

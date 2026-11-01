@@ -29,7 +29,7 @@ import { markOf, undoTarget, type UndoKind } from '../game/undo'
 import {
   decodeSession,
   readSession,
-  replay,
+  refreshBackup,
   session,
   SessionError,
   writeSession,
@@ -104,6 +104,15 @@ export const useGameStore = defineStore('game', () => {
   const campaign = shallowRef<Campaign | null>(loaded.data.campaign)
   if (campaign.value?.log.rewards?.length) useDecksStore().addRewards(campaign.value.log.rewards)
 
+  /** Trusted writes skip the replay: every few, a full check renews the backup (N4). */
+  const BACKUP_EVERY = 20
+  let trustedWrites = 0
+  function scheduleBackup() {
+    const run = () => void refreshBackup(accountStorage)
+    if (typeof requestIdleCallback === 'function') requestIdleCallback(run, { timeout: 5000 })
+    else setTimeout(run, 0)
+  }
+
   function persist() {
     try {
       // The undo history comes from applying inputs here: no replay on every decision.
@@ -114,6 +123,7 @@ export const useGameStore = defineStore('game', () => {
       )
       storageIssue.value = null
       notifyLocalChange('game', raw)
+      if (++trustedWrites % BACKUP_EVERY === 0) scheduleBackup()
     } catch (e) {
       storageIssue.value = e instanceof SessionError ? e.reason : 'unavailable'
     }
@@ -331,6 +341,7 @@ export const useGameStore = defineStore('game', () => {
         cards.observe(before, message, after)
       })
       const h = history.value
+      if (h) remember(h.base, h.inputs.length + 1, next)
       set(
         next,
         h && { base: h.base, inputs: [...h.inputs, input], marks: [...h.marks, markOf(next)] },
@@ -366,14 +377,45 @@ export const useGameStore = defineStore('game', () => {
   })
 
   /** Vuelve atrás repitiendo las decisiones desde el principio. */
+  /**
+   * States every `CHECKPOINT` decisions of the current history, kept in memory only, so
+   * undo replays from the nearest one instead of from the start (doc 100, O3).
+   */
+  const CHECKPOINT = 25
+  let checkpointBase: GameState | null = null
+  const checkpoints = new Map<number, GameState>()
+  function remember(base: GameState, inputs: number, state: GameState) {
+    if (base !== checkpointBase) {
+      checkpoints.clear()
+      checkpointBase = base
+    }
+    if (inputs % CHECKPOINT === 0) checkpoints.set(inputs, state)
+  }
+
+  /** Vuelve atrás repitiendo las decisiones desde el punto de control más cercano. */
   function undo(kind: UndoKind) {
     const h = history.value
     const target = undoTargets.value[kind]
     if (!h || target === null) return
-    const inputs = h.inputs.slice(0, target)
     try {
-      const restored = replay(h.base, inputs)
-      set(restored.state, restored.history)
+      if (h.base !== checkpointBase) {
+        checkpoints.clear()
+        checkpointBase = h.base
+      }
+      const from = Math.max(0, ...[...checkpoints.keys()].filter((n) => n <= target))
+      let state = from ? checkpoints.get(from)! : h.base
+      // Replaying also leaves checkpoints behind (loaded games start without any).
+      for (let n = from; n < target; n++) {
+        state = applyInput(state, h.inputs[n]!)
+        if ((n + 1) % CHECKPOINT === 0) checkpoints.set(n + 1, state)
+      }
+      for (const n of [...checkpoints.keys()]) if (n > target) checkpoints.delete(n)
+      // Replays are deterministic: the undo marks up to `target` are still valid.
+      set(state, {
+        base: h.base,
+        inputs: h.inputs.slice(0, target),
+        marks: h.marks.slice(0, target + 1),
+      })
       error.value = null
     } catch (e) {
       error.value = e instanceof Error ? e.message : String(e)

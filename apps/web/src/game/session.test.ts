@@ -9,6 +9,7 @@ import {
   replay,
   SESSION_KEY,
   session,
+  refreshBackup,
   writeSession,
   reproduceDiagnostic,
   type Session,
@@ -280,6 +281,26 @@ describe('guardado de campaña y mesa', () => {
     partial.history!.inputs = [{ investigator: 'joe', choice: -1 }]
     expect(() => writeSession(storage, partial, { trustedHistory: true })).toThrow('invalid')
     expect(storage.getItem(SESSION_KEY)).toBe(raw)
+  })
+  it('la copia de seguridad solo recibe sesiones verificadas al completo (doc 100, N4)', () => {
+    const storage = new MemoryStorage()
+    const data = initial()
+    writeSession(storage, data)
+    writeSession(storage, data)
+    const verified = storage.getItem(BACKUP_KEY)
+    expect(verified).toBe(encode(data))
+    // A trusted write that does not reproduce its state never reaches the backup...
+    const diverged = JSON.parse(encode(data)) as Session
+    diverged.state!.doom++
+    writeSession(storage, diverged, { trustedHistory: true })
+    writeSession(storage, diverged, { trustedHistory: true })
+    expect(storage.getItem(BACKUP_KEY)).toBe(verified)
+    expect(refreshBackup(storage)).toBe(false)
+    expect(storage.getItem(BACKUP_KEY)).toBe(verified)
+    // ...while a reproducible one becomes the backup after the full check.
+    writeSession(storage, data, { trustedHistory: true })
+    expect(refreshBackup(storage)).toBe(true)
+    expect(storage.getItem(BACKUP_KEY)).toBe(encode(data))
   })
   it('no reemplaza una copia legible con el principal corrupto', () => {
     const storage = new MemoryStorage()

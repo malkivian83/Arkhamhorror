@@ -5,7 +5,9 @@ import { throughSetup } from '@lcg/engine/testing'
 import { createPinia, setActivePinia } from 'pinia'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { showAutoSteps } from '../game/autoStepsPreference'
-import { session, SESSION_KEY } from '../game/session'
+import { canonical, replay, session, SESSION_KEY } from '../game/session'
+import lodge from '../../../../docs-proyecto/evidencias/gala-lodge-57.json'
+import type { PlayerInput } from '@lcg/engine'
 import { markOf } from '../game/undo'
 import { useDecksStore } from './decks'
 import { useGameStore } from './game'
@@ -213,6 +215,32 @@ describe('pasos automáticos en la mesa', () => {
       expect(game.autoSteps).toBeNull()
     } finally {
       showAutoSteps.value = true
+    }
+  })
+})
+
+describe('deshacer desde puntos de control (doc 100, O3)', () => {
+  it('en una partida grabada larga, deshacer deja el mismo estado que rejugar desde el principio', () => {
+    const recording = lodge as unknown as {
+      campaign: Parameters<typeof startScenario>[0]
+      seed: number
+      inputs: PlayerInput[]
+    }
+    const base = startScenario(recording.campaign, recording.seed)
+    const played = replay(base, recording.inputs)
+    expect(recording.inputs.length).toBeGreaterThan(100)
+    const game = useGameStore()
+    expect(game.importSession(JSON.stringify(session(played.state, played.history, null)))).toBe(
+      true,
+    )
+    const saved = () => JSON.parse(game.exportSession()) as ReturnType<typeof session>
+    for (const kind of ['step', 'round', 'step', 'round'] as const) {
+      game.undo(kind)
+      expect(game.error).toBeNull()
+      const data = saved()
+      const rebuilt = replay(data.history!.base, data.history!.inputs)
+      expect(canonical(data.state)).toBe(canonical(rebuilt.state))
+      expect(data.history!.marks).toEqual(rebuilt.history.marks)
     }
   })
 })
