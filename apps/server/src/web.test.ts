@@ -17,6 +17,10 @@ it('sirve las rutas de Vue y los recursos públicos sin exponer archivos privado
   await writeFile(join(directory, '.env'), 'PRIVATE_SECRET=not-public')
   await writeFile(join(webRoot, 'index.html'), '<html>Arkham test</html>')
   await writeFile(join(webRoot, 'style.css'), 'body {color: red}')
+  await mkdir(join(webRoot, 'assets'))
+  await writeFile(join(webRoot, 'assets', 'index-abc123.js'), 'console.log(1)')
+  await mkdir(join(webRoot, 'local-assets', 'cards'), { recursive: true })
+  await writeFile(join(webRoot, 'local-assets', 'cards', '01001.avif'), 'img')
   app = await buildApp({ webRoot })
   for (const path of [
     '/',
@@ -36,6 +40,13 @@ it('sirve las rutas de Vue y los recursos públicos sin exponer archivos privado
     expect(response.headers['cache-control']).toBe('no-cache')
   }
   expect((await app.inject('/style.css')).headers['content-type']).toContain('text/css')
+  // Hashed bundles are immutable; card art is fresh for a day, then revalidated (O2).
+  expect((await app.inject('/assets/index-abc123.js')).headers['cache-control']).toBe(
+    'public, max-age=31536000, immutable',
+  )
+  expect((await app.inject('/local-assets/cards/01001.avif')).headers['cache-control']).toBe(
+    'public, max-age=86400, stale-while-revalidate=604800',
+  )
   expect((await app.inject('/api/health')).json()).toMatchObject({ status: 'ok' })
   for (const path of [
     '/api/missing',

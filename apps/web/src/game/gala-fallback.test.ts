@@ -3,6 +3,13 @@ import { messages } from '@lcg/i18n'
 import { fallbackCards } from './fallbackCards'
 
 afterEach(() => vi.unstubAllGlobals())
+/** Fresh modules lose the downloaded languages: provide them again (doc 100, O1). */
+async function resetModules() {
+  vi.resetModules()
+  const { provideLocaleData } = await import('./localeData')
+  provideLocaleData('en', await import('@lcg/i18n/en'))
+  provideLocaleData('es', await import('@lcg/i18n/es'))
+}
 const codes = Array.from({ length: 62 }, (_, n) => String(71001 + n))
 const doubleFaced = [
   '71015',
@@ -63,7 +70,7 @@ describe('G18: respaldo completo de La Gala, EN/ES', () => {
     })
   }
   it('red caída, JSON inválido y recursos ausentes conservan el catálogo completo', async () => {
-    vi.resetModules()
+    await resetModules()
     const { useCardLocale, localizedCards, localName } = await import('./localized')
     vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('offline')))
     await useCardLocale('es')
@@ -84,7 +91,7 @@ describe('G18: respaldo completo de La Gala, EN/ES', () => {
     expect(localizedCards.value.get('71015b')!.text).toContain('Rival')
   })
   it('una respuesta parcial no borra las cifras ni el resumen del reverso local', async () => {
-    vi.resetModules()
+    await resetModules()
     vi.stubGlobal(
       'fetch',
       vi.fn().mockResolvedValue({
@@ -101,7 +108,7 @@ describe('G18: respaldo completo de La Gala, EN/ES', () => {
     expect(localizedCards.value.get('71045')!.back_text).toContain('Descomunal')
   })
   it('un cambio de idioma conserva las dos caras y una respuesta ES tardía no pisa EN', async () => {
-    vi.resetModules()
+    await resetModules()
     const { useCardLocale, localizedCards } = await import('./localized')
     const responses: ((response: unknown) => void)[] = []
     vi.stubGlobal(

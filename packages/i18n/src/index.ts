@@ -1,173 +1,62 @@
-import dunwichEn from './dunwich.en.json'
-import dunwichEs from './dunwich.es.json'
-import zealotEn from './zealot.en.json'
-import zealotEs from './zealot.es.json'
-import zealotCardsEn from './zealot-cards.en.json'
-import zealotCardsEs from './zealot-cards.es.json'
-import dunwichCardsEn from './dunwich-cards.en.json'
-import dunwichCardsEs from './dunwich-cards.es.json'
-import carcosaEn from './carcosa-cards.en.json'
-import carcosaEs from './carcosa-cards.es.json'
-import en from './en.json'
-import es from './es.json'
-import excelsiorEn from './excelsior-cards.en.json'
-import excelsiorEs from './excelsior-cards.es.json'
-import fortuneEn from './fortune-cards.en.json'
-import fortuneEs from './fortune-cards.es.json'
-import galaEn from './gala-cards.en.json'
-import galaEs from './gala-cards.es.json'
-import cardNarrativesEn from './card-narratives.en.json'
-import cardNarrativesEs from './card-narratives.es.json'
-import carnevaleEn from './carnevale-cards.en.json'
-import carnevaleEs from './carnevale-cards.es.json'
+import * as en from './en'
+import * as es from './es'
+import type { CardNarrative, CatalogCard } from './types'
+export type { CardNarrative, CatalogCard } from './types'
+
+/**
+ * Both languages at once, for tests, tools and the server. The web loads only the
+ * active one through `@lcg/i18n/en` or `@lcg/i18n/es` (doc 100, O1).
+ */
+type Both<T> = Record<'en' | 'es', T>
 
 /** Narración oficial de planes y actos de los catálogos implementados. */
-export const cardNarratives: Record<
-  'en' | 'es',
-  Record<string, Pick<CatalogCard, 'typeCode' | 'flavor' | 'backFlavor'> & { group: string }>
-> = {
-  en: cardNarrativesEn,
-  es: cardNarrativesEs,
+export const cardNarratives: Both<Record<string, CardNarrative>> = {
+  en: en.cardNarratives,
+  es: es.cardNarratives,
 }
 
 /** Textos de interfaz. Solo inglés y español. */
-export const messages = {
-  en: {
-    ...en,
-    galaCards: galaEn,
-    campaign: {
-      ...en.campaign,
-      names: { ...en.campaign.names, 'night-of-the-zealot': zealotEn.campaignName },
-      scenario: { ...en.campaign.scenario, ...zealotEn.scenarios },
-    },
-    setup: {
-      ...en.setup,
-      descriptions: {
-        ...en.setup.descriptions,
-        'night-of-the-zealot': zealotEn.description,
-        'the-dunwich-legacy': dunwichEn.description,
-      },
-    },
-    story: {
-      ...en.story,
-      ...dunwichEn.story,
-      zealot: zealotEn.zealot,
-      theGathering: zealotEn.theGathering,
-      midnightMasks: zealotEn.midnightMasks,
-      devourerBelow: zealotEn.devourerBelow,
-      note: { ...en.story.note, ...zealotEn.notes, ...dunwichEn.notes },
-    },
-    ability: {
-      ...en.ability,
-      zealot: zealotEn.abilities,
-      midnight: zealotEn.midnightAbilities,
-      devourer: zealotEn.devourerAbilities,
-      ...dunwichEn.abilities,
-    },
-    choice: {
-      ...en.choice,
-      zealot: zealotEn.choices,
-      midnight: zealotEn.midnightChoices,
-      devourer: zealotEn.devourerChoices,
-      ...dunwichEn.choices,
-    },
-    prompt: { ...en.prompt, zealot: zealotEn.prompts, ...dunwichEn.prompts },
-  },
-  es: {
-    ...es,
-    galaCards: galaEs,
-    campaign: {
-      ...es.campaign,
-      names: { ...es.campaign.names, 'night-of-the-zealot': zealotEs.campaignName },
-      scenario: { ...es.campaign.scenario, ...zealotEs.scenarios },
-    },
-    setup: {
-      ...es.setup,
-      descriptions: {
-        ...es.setup.descriptions,
-        'night-of-the-zealot': zealotEs.description,
-        'the-dunwich-legacy': dunwichEs.description,
-      },
-    },
-    story: {
-      ...es.story,
-      ...dunwichEs.story,
-      zealot: zealotEs.zealot,
-      theGathering: zealotEs.theGathering,
-      midnightMasks: zealotEs.midnightMasks,
-      devourerBelow: zealotEs.devourerBelow,
-      note: { ...es.story.note, ...zealotEs.notes, ...dunwichEs.notes },
-    },
-    ability: {
-      ...es.ability,
-      zealot: zealotEs.abilities,
-      midnight: zealotEs.midnightAbilities,
-      devourer: zealotEs.devourerAbilities,
-      ...dunwichEs.abilities,
-    },
-    choice: {
-      ...es.choice,
-      zealot: zealotEs.choices,
-      midnight: zealotEs.midnightChoices,
-      devourer: zealotEs.devourerChoices,
-      ...dunwichEs.choices,
-    },
-    prompt: { ...es.prompt, zealot: zealotEs.prompts, ...dunwichEs.prompts },
-  },
-} as const
+export const messages = { en: en.messages, es: es.messages } as const
 
-export type MessageSchema = typeof messages.en
+export type MessageSchema = typeof en.messages
 
-/** Textos oficiales de una carta en un catálogo sin conexión. */
-export interface CatalogCard {
-  name: string
-  typeCode?: string
-  subname?: string
-  traits?: string
-  text?: string
-  backName?: string
-  backText?: string
-  /** Icono de juego (palo y valor) de las cartas de Fortuna e insensatez: "♣Q". */
-  gameIcon?: string
-  /** Texto narrativo de cada cara (Fortuna e insensatez). */
-  flavor?: string
-  backFlavor?: string
-}
+/** Lo que la web necesita de un idioma: `@lcg/i18n/en` o `@lcg/i18n/es`. */
+export type LocaleBundle = typeof en
 
-export const carnevaleCards: Record<'en' | 'es', Record<string, CatalogCard>> = {
-  en: carnevaleEn,
-  es: carnevaleEs,
+export const carnevaleCards: Both<Record<string, CatalogCard>> = {
+  en: en.carnevaleCards,
+  es: es.carnevaleCards,
 }
 
 /**
  * Textos oficiales de las cartas de Asesinato en el hotel Excelsior (catálogo sin
  * conexión). Fuera de `messages`: llevan marcas de ArkhamDB que vue-i18n no debe leer.
  */
-export const excelsiorCards: Record<'en' | 'es', Record<string, CatalogCard>> = {
-  en: excelsiorEn,
-  es: excelsiorEs,
+export const excelsiorCards: Both<Record<string, CatalogCard>> = {
+  en: en.excelsiorCards,
+  es: es.excelsiorCards,
 }
 
 /** Textos oficiales de las cartas de encuentro de El camino a Carcosa ya implementadas. */
-export const carcosaCards: Record<'en' | 'es', Record<string, CatalogCard>> = {
-  en: carcosaEn,
-  es: carcosaEs,
+export const carcosaCards: Both<Record<string, CatalogCard>> = {
+  en: en.carcosaCards,
+  es: es.carcosaCards,
 }
 
 /** Textos oficiales e iconos de juego de las cartas de Fortuna e insensatez. */
-export const fortuneCards: Record<'en' | 'es', Record<string, CatalogCard>> = {
-  en: fortuneEn,
-  es: fortuneEs,
+export const fortuneCards: Both<Record<string, CatalogCard>> = {
+  en: en.fortuneCards,
+  es: es.fortuneCards,
 }
 
 /** Cartas clásicas de La noche de la fanática. */
-export const zealotCards: Record<'en' | 'es', Record<string, CatalogCard>> = {
-  en: zealotCardsEn,
-  es: zealotCardsEs,
+export const zealotCards: Both<Record<string, CatalogCard>> = {
+  en: en.zealotCards,
+  es: es.zealotCards,
 }
 
 /** Shared encounter cards implemented for The Dunwich Legacy. */
-export const dunwichCards: Record<'en' | 'es', Record<string, CatalogCard>> = {
-  en: dunwichCardsEn,
-  es: dunwichCardsEs,
+export const dunwichCards: Both<Record<string, CatalogCard>> = {
+  en: en.dunwichCards,
+  es: es.dunwichCards,
 }

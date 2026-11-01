@@ -1,11 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import CampaignView from './views/CampaignView.vue'
-import DecksView from './views/DecksView.vue'
-import DeckEditorView from './views/DeckEditorView.vue'
-import GameView from './views/GameView.vue'
 import SetupView from './views/SetupView.vue'
-import AccountView from './views/AccountView.vue'
-import LibraryView from './views/LibraryView.vue'
+
+// Only the landing view is part of the first load; the others are fetched when opened.
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -17,13 +13,17 @@ export const router = createRouter({
     },
     { path: '/online/:id?', name: 'online', component: () => import('./views/OnlineView.vue') },
     { path: '/admin', name: 'admin', component: () => import('./views/AdminView.vue') },
-    { path: '/account', name: 'account', component: AccountView },
-    { path: '/library', name: 'library', component: LibraryView },
+    { path: '/account', name: 'account', component: () => import('./views/AccountView.vue') },
+    { path: '/library', name: 'library', component: () => import('./views/LibraryView.vue') },
     { path: '/', name: 'setup', component: SetupView },
-    { path: '/game', name: 'game', component: GameView },
-    { path: '/campaign', name: 'campaign', component: CampaignView },
-    { path: '/decks', name: 'decks', component: DecksView },
-    { path: '/decks/:id', name: 'deck-editor', component: DeckEditorView },
+    { path: '/game', name: 'game', component: () => import('./views/GameView.vue') },
+    { path: '/campaign', name: 'campaign', component: () => import('./views/CampaignView.vue') },
+    { path: '/decks', name: 'decks', component: () => import('./views/DecksView.vue') },
+    {
+      path: '/decks/:id',
+      name: 'deck-editor',
+      component: () => import('./views/DeckEditorView.vue'),
+    },
   ],
   scrollBehavior(to, from, savedPosition) {
     const deckRoutes = ['decks', 'deck-editor']

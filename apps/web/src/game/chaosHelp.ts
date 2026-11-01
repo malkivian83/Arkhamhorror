@@ -1,13 +1,6 @@
 import type { ChaosToken, GameState } from '@lcg/engine'
-import {
-  carcosaCards,
-  carnevaleCards,
-  excelsiorCards,
-  fortuneCards,
-  zealotCards,
-  dunwichCards,
-  type CatalogCard,
-} from '@lcg/i18n'
+import type { CatalogCard } from '@lcg/i18n'
+import { localeData } from './localeData'
 
 type Translate = (key: string, params?: Record<string, string | number>) => string
 export function chaosHelp(
@@ -22,28 +15,28 @@ export function chaosHelp(
   const hard = state.difficulty === 'hard' || state.difficulty === 'expert'
   // Tarjetas de referencia con texto oficial en el catálogo local.
   const official: Record<string, CatalogCard | undefined> = {
-    'carnevale-of-horrors': carnevaleCards[locale === 'es' ? 'es' : 'en']['82001'],
-    'lost-in-time-and-space': dunwichCards[locale === 'es' ? 'es' : 'en']['02311'],
-    'where-doom-awaits': dunwichCards[locale === 'es' ? 'es' : 'en']['02274'],
-    'undimensioned-and-unseen': dunwichCards[locale === 'es' ? 'es' : 'en']['02236'],
-    'blood-on-the-altar': dunwichCards[locale === 'es' ? 'es' : 'en']['02195'],
-    'the-essex-county-express': dunwichCards[locale === 'es' ? 'es' : 'en']['02159'],
-    'the-miskatonic-museum': dunwichCards[locale === 'es' ? 'es' : 'en']['02118'],
-    'the-house-always-wins': dunwichCards[locale === 'es' ? 'es' : 'en']['02062'],
-    'extracurricular-activity': dunwichCards[locale === 'es' ? 'es' : 'en']['02041'],
-    'the-midnight-masks': zealotCards[locale === 'es' ? 'es' : 'en']['01120'],
-    'the-devourer-below': zealotCards[locale === 'es' ? 'es' : 'en']['01142'],
-    'the-gathering': zealotCards[locale === 'es' ? 'es' : 'en']['01104'],
-    'murder-at-the-excelsior-hotel': excelsiorCards[locale === 'es' ? 'es' : 'en']['84001'],
-    'curtain-call': carcosaCards[locale === 'es' ? 'es' : 'en']['03043'],
-    'the-last-king': carcosaCards[locale === 'es' ? 'es' : 'en']['03061'],
-    'echoes-of-the-past': carcosaCards[locale === 'es' ? 'es' : 'en']['03120'],
-    'the-unspeakable-oath': carcosaCards[locale === 'es' ? 'es' : 'en']['03159'],
-    'a-phantom-of-truth': carcosaCards[locale === 'es' ? 'es' : 'en']['03200'],
-    'the-pallid-mask': carcosaCards[locale === 'es' ? 'es' : 'en']['03240'],
-    'black-stars-rise': carcosaCards[locale === 'es' ? 'es' : 'en']['03274'],
-    'dim-carcosa': carcosaCards[locale === 'es' ? 'es' : 'en']['03316'],
-    'fortune-and-folly-part-1': fortuneCards[locale === 'es' ? 'es' : 'en']['88001'],
+    'carnevale-of-horrors': localeData(locale).carnevaleCards['82001'],
+    'lost-in-time-and-space': localeData(locale).dunwichCards['02311'],
+    'where-doom-awaits': localeData(locale).dunwichCards['02274'],
+    'undimensioned-and-unseen': localeData(locale).dunwichCards['02236'],
+    'blood-on-the-altar': localeData(locale).dunwichCards['02195'],
+    'the-essex-county-express': localeData(locale).dunwichCards['02159'],
+    'the-miskatonic-museum': localeData(locale).dunwichCards['02118'],
+    'the-house-always-wins': localeData(locale).dunwichCards['02062'],
+    'extracurricular-activity': localeData(locale).dunwichCards['02041'],
+    'the-midnight-masks': localeData(locale).zealotCards['01120'],
+    'the-devourer-below': localeData(locale).zealotCards['01142'],
+    'the-gathering': localeData(locale).zealotCards['01104'],
+    'murder-at-the-excelsior-hotel': localeData(locale).excelsiorCards['84001'],
+    'curtain-call': localeData(locale).carcosaCards['03043'],
+    'the-last-king': localeData(locale).carcosaCards['03061'],
+    'echoes-of-the-past': localeData(locale).carcosaCards['03120'],
+    'the-unspeakable-oath': localeData(locale).carcosaCards['03159'],
+    'a-phantom-of-truth': localeData(locale).carcosaCards['03200'],
+    'the-pallid-mask': localeData(locale).carcosaCards['03240'],
+    'black-stars-rise': localeData(locale).carcosaCards['03274'],
+    'dim-carcosa': localeData(locale).carcosaCards['03316'],
+    'fortune-and-folly-part-1': localeData(locale).fortuneCards['88001'],
   }
   const card = official[state.scenarioId]
   if (card) {

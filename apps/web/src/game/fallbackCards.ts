@@ -59,21 +59,14 @@ import {
   type EncounterCard,
   type LocationCard,
 } from '@lcg/engine'
-import {
-  cardNarratives,
-  carnevaleCards,
-  carcosaCards,
-  excelsiorCards,
-  fortuneCards,
-  zealotCards,
-  dunwichCards,
-  messages,
-} from '@lcg/i18n'
+import { englishCarnevaleCards, englishFortuneCards } from '@lcg/i18n/english-catalogs'
+import { localeData } from './localeData'
 import type { LocalizedCard } from './localized'
 
 /** Bundled mechanical data, official text where available and local summaries. */
 export function fallbackCards(locale: string): LocalizedCard[] {
-  const language = locale === 'es' ? messages.es : messages.en
+  const data = localeData(locale)
+  const language = data.messages
   const types = language.offlineCard.types
   const summaries = language.offlineCard.summary as Record<string, string>
   const names = language.offlineCard.names as Record<string, string>
@@ -82,7 +75,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   const backSummaries = language.offlineCard.backSummary as Record<string, string>
   const cards = new Map<string, LocalizedCard>()
   function put(draft: { [K in keyof LocalizedCard]: LocalizedCard[K] | undefined }) {
-    const narrative = cardNarratives[locale === 'es' ? 'es' : 'en'][draft.code ?? '']
+    const narrative = data.cardNarratives[draft.code ?? '']
     const card = Object.fromEntries(
       Object.entries(draft).filter(([, value]) => value !== undefined),
     ) as unknown as LocalizedCard
@@ -498,7 +491,12 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     FORTUNE_CODES.ifTheUniformFits,
     FORTUNE_CODES.wellspring,
   ])
-    put({ code, name: code, real_name: fortuneCards.en[code]?.name ?? code, type_code: 'story' })
+    put({
+      code,
+      name: code,
+      real_name: englishFortuneCards[code]?.name ?? code,
+      type_code: 'story',
+    })
   put({
     code: 'fof-dimensional-duplicate',
     real_name: 'Extradimensional Enemy',
@@ -512,14 +510,15 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     enemy_horror: 1,
   })
   // Caras traseras de Historia de la parte II (El golpe, Entrega de paquete, Desaprobaciones).
-  const fortune = fortuneCards[locale === 'es' ? 'es' : 'en']
+  const fortune = data.fortuneCards
   for (const front of ['88023', '88024', '88025', '88026', '88027']) {
     const text = fortune[front]
     if (text)
       put({
         code: `${front}b`,
         name: text.backName ?? text.name,
-        real_name: fortuneCards.en[front]?.backName ?? fortuneCards.en[front]?.name ?? front,
+        real_name:
+          englishFortuneCards[front]?.backName ?? englishFortuneCards[front]?.name ?? front,
         type_code: 'story',
         text: text.backText,
       })
@@ -537,18 +536,18 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     type_code: 'scenario',
   })
   put({ code: '01104', name: 'The Gathering', real_name: 'The Gathering', type_code: 'scenario' })
-  for (const [code, text] of Object.entries(carnevaleCards.en)) {
+  for (const [code, text] of Object.entries(englishCarnevaleCards)) {
     if (!cards.has(code))
       put({ code, name: text.name, real_name: text.name, type_code: text.typeCode ?? 'asset' })
   }
   const catalogues = [
-    carnevaleCards,
-    excelsiorCards,
-    carcosaCards,
-    fortuneCards,
-    zealotCards,
-    dunwichCards,
-  ].map((c) => c[locale === 'es' ? 'es' : 'en'])
+    data.carnevaleCards,
+    data.excelsiorCards,
+    data.carcosaCards,
+    data.fortuneCards,
+    data.zealotCards,
+    data.dunwichCards,
+  ]
   for (const [code, text] of catalogues.flatMap((c) => Object.entries(c))) {
     const card = cards.get(code)
     if (!card) continue

@@ -11,6 +11,7 @@ import { scanLocale } from './game/cards'
 import { useCardLocale } from './game/localized'
 import './game/playmats'
 import { useGameStore } from './stores/game'
+import { setAppLocale } from './i18n'
 import { account } from './account/api'
 
 const { t, locale } = useI18n()
@@ -44,12 +45,8 @@ watch(
 )
 
 function setLocale(value: Locale) {
-  locale.value = value
-  try {
-    localStorage.setItem('locale', value)
-  } catch {
-    // Sin almacenamiento: el idioma solo dura esta sesión.
-  }
+  // Downloads the language's texts first (doc 100, O1).
+  void setAppLocale(value)
 }
 </script>
 

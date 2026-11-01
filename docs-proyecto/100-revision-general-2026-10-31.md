@@ -615,6 +615,20 @@ Siguen abiertos F8 y N4.
   - La activación manual desde el panel sigue usando la contraseña del primer registro.
   - La prueba requiere MySQL; la ejecuta la CI.
 
+### Carga de la web (01/11/2026)
+
+- **O1 · corregido:**
+  - Las vistas distintas de la portada (`/`) se cargan al abrirlas.
+  - `@lcg/i18n` expone un módulo por idioma (`@lcg/i18n/en` y `@lcg/i18n/es`) y la
+    web solo descarga el activo: `localeData` y `setAppLocale`; `main.ts` espera al
+    idioma inicial.
+  - El índice del paquete sigue ofreciendo ambos idiomas a pruebas y herramientas.
+  - Medido en una compilación de producción: la primera carga baja de 994 KB a unos
+    675–710 KB comprimidos (EN/ES).
+- **O2 · corregido:** `/local-assets` se sirve con
+  `public, max-age=86400, stale-while-revalidate=604800` tanto en Apache (`.htaccess`)
+  como en Node, y los paquetes con hash con `immutable`.
+
 ### Orden sugerido
 
 1. **Subir N1–N3**, que corrigen mis propios cambios. N1 bloquea campañas online.

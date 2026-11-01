@@ -3,6 +3,7 @@ import { LOCALES, type Locale } from '@lcg/shared'
 import { useId } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { PLAYMATS, playmat } from '../game/playmats'
+import { setAppLocale } from '../i18n'
 
 /** Preferencias de la web: idioma y tapete, con una muestra de tela por tapete. */
 const { t, locale } = useI18n()
@@ -13,12 +14,8 @@ function pickPlaymat(value: string) {
 }
 
 function setLocale(value: Locale) {
-  locale.value = value
-  try {
-    localStorage.setItem('locale', value)
-  } catch {
-    // Sin almacenamiento: el idioma solo dura esta sesión.
-  }
+  // Downloads the language's texts first (doc 100, O1).
+  void setAppLocale(value)
 }
 </script>
 
