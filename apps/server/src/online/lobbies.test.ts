@@ -151,6 +151,14 @@ describe('private online lobbies', () => {
     const view = await service.game(lobby.id, 'host')
     expect(view.investigators).toHaveLength(1)
     expect(view.pending?.choices.length).toBeGreaterThan(0)
+    // A poll at the current revision gets no view (D7); an older one gets the table.
+    expect(await service.game(lobby.id, 'host', view.revision)).toEqual({
+      unchanged: true,
+      revision: view.revision,
+    })
+    expect(await service.game(lobby.id, 'host', view.revision - 1)).toMatchObject({
+      revision: view.revision,
+    })
   })
   async function active() {
     const { db, data } = memory(),

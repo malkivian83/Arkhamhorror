@@ -13,7 +13,14 @@ import {
   type Campaign,
 } from '@lcg/cards'
 import { applyInput, type GameState } from '@lcg/engine'
-import type { OnlineCommand, OnlineDeck, OnlineLobby, OnlineProgressCommand } from '@lcg/shared'
+import type {
+  OnlineCommand,
+  OnlineDeck,
+  OnlineGame,
+  OnlineGameUnchanged,
+  OnlineLobby,
+  OnlineProgressCommand,
+} from '@lcg/shared'
 import { gameView } from './game'
 import { createOnlineSteps } from './autoSteps'
 import type { FastifyInstance } from 'fastify'
@@ -38,6 +45,10 @@ export interface Lobby {
   intermission?: boolean
   campaignReady?: string[]
   autoSteps?: { revision: number; reviews: Record<string, import('@lcg/shared').AutoStepsReview> }[]
+  advanceReviews?: {
+    revision: number
+    frames: Record<string, import('@lcg/saves/advanceReview').AdvanceFrame[]>
+  }[]
   cardEntries?: { revision: number; cards: Record<string, import('@lcg/shared').CardEntry[]> }[]
 }
 export const lobbyView = (lobby: Lobby): OnlineLobby => ({
@@ -91,10 +102,14 @@ export class LobbyService {
     requireValue(lobby.members.includes(user), 'not_member', 403)
     return lobbyView(lobby)
   }
-  async game(id: string, user: string) {
+  /** `since`: the revision the client already shows; if still current, no view is built. */
+  async game(id: string, user: string): Promise<OnlineGame>
+  async game(id: string, user: string, since?: number): Promise<OnlineGame | OnlineGameUnchanged>
+  async game(id: string, user: string, since?: number): Promise<OnlineGame | OnlineGameUnchanged> {
     const lobby = await this.read(this.db, id)
     requireValue(lobby.members.includes(user), 'not_member', 403)
     requireValue(lobby.game, 'not_started', 409)
+    if (since === lobby.revision) return { unchanged: true as const, revision: lobby.revision }
     return gameView(lobby, user)
   }
   async decide(id: string, user: string, command: OnlineCommand) {
@@ -141,6 +156,12 @@ export class LobbyService {
       )
       const reviews = steps.finish()
       const cards = steps.finishCards()
+      const advance = steps.finishAdvance()
+      if (Object.keys(advance).length)
+        lobby.advanceReviews = [
+          ...(lobby.advanceReviews ?? []),
+          { revision: lobby.revision + 1, frames: advance },
+        ].slice(-32)
       if (Object.keys(cards).length)
         lobby.cardEntries = [
           ...(lobby.cardEntries ?? []),
@@ -235,6 +256,7 @@ export class LobbyService {
           requireValue(canPlayNext(lobby.campaign), 'invalid_deck', 409)
           lobby.game = startScenario(lobby.campaign, randomInt(1, 0x7fffffff), true)
           delete lobby.autoSteps
+          delete lobby.advanceReviews
           delete lobby.cardEntries
           lobby.intermission = false
           lobby.campaignReady = []
@@ -507,10 +529,19 @@ export function onlineLobbies(
     },
     async (req) => service.progress(req.params.id, (await auth.requireUser(req)).id, req.body),
   )
-  app.get<{ Params: { id: string } }>(
+  app.get<{ Params: { id: string }; Querystring: { since?: number } }>(
     '/api/online/lobbies/:id/game',
-    { schema: { params } },
-    async (req) => service.game(req.params.id, (await auth.requireUser(req)).id),
+    {
+      schema: {
+        params,
+        querystring: {
+          type: 'object',
+          additionalProperties: false,
+          properties: { since: { type: 'integer', minimum: 0 } },
+        },
+      },
+    },
+    async (req) => service.game(req.params.id, (await auth.requireUser(req)).id, req.query.since),
   )
   app.post<{ Params: { id: string }; Body: OnlineCommand }>(
     '/api/online/lobbies/:id/game/decisions',

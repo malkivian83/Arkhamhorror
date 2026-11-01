@@ -1,5 +1,6 @@
 import { computed, reactive, ref, watch } from 'vue'
 import type { AutoStepsReview, CardEntry } from '@lcg/shared'
+import type { AdvanceFrame } from '../game/advanceReview'
 import { showAutoSteps } from '../game/autoStepsPreference'
 import { targetKey, type IndexedChoice } from '../stores/game'
 import type { TableController } from '../game/tableController'
@@ -10,14 +11,22 @@ import type { GameState } from '@lcg/engine'
 export function onlineTable(client: ReturnType<typeof gameClient>): TableController {
   const reviews = ref<AutoStepsReview[]>([])
   const cardEntries = ref<CardEntry[]>([])
+  const advance = ref<AdvanceFrame[]>([])
   watch(
     () => client.state.value,
     (next, previous) => {
       if (!next || !previous || next.scenarioId !== previous.scenarioId) {
         reviews.value = []
         cardEntries.value = []
+        advance.value = []
         return
       }
+      // Act/agenda advances read step by step, as in the local table (doc 100, D9).
+      advance.value.push(
+        ...(next.advanceReviews ?? [])
+          .filter((entry) => entry.revision > previous.revision && entry.revision <= next.revision)
+          .flatMap((entry) => entry.frames as AdvanceFrame[]),
+      )
       cardEntries.value.push(
         ...(next.cardEntries ?? [])
           .filter((entry) => entry.revision > previous.revision && entry.revision <= next.revision)
@@ -42,8 +51,8 @@ export function onlineTable(client: ReturnType<typeof gameClient>): TableControl
   const state = computed<GameState | null>(() => {
     const view = client.state.value?.table
     if (!view) return null
-    // Remove stale click targets while a command is unresolved (including network retries).
-    const blocked = client.retry.value || client.error.value
+    // The question stays on screen while a command is unresolved, so panels do not blink
+    // on every click (doc 100, D7): `choose` already ignores input until it is answered.
     return {
       ...view,
       pending: view.pending
@@ -51,9 +60,7 @@ export function onlineTable(client: ReturnType<typeof gameClient>): TableControl
             ...view.pending,
             question: {
               ...view.pending.question,
-              choices: blocked
-                ? []
-                : view.pending.question.choices.map((c) => ({ ...c, then: [] })),
+              choices: view.pending.question.choices.map((c) => ({ ...c, then: [] })),
             },
           }
         : null,
@@ -91,8 +98,10 @@ export function onlineTable(client: ReturnType<typeof gameClient>): TableControl
       const index = state.value?.pending?.question.choices.findIndex((c) => c.label === label) ?? -1
       if (index >= 0) void client.choose(index)
     },
-    advanceReview: [],
-    acceptAdvance() {},
+    advanceReview: advance,
+    acceptAdvance() {
+      advance.value.shift()
+    },
     autoSteps: computed(() => reviews.value[0] ?? null),
     cardEntries,
     acceptCardEntry() {

@@ -174,7 +174,10 @@ it('maps normal board targets to revisioned server commands and blocks ambiguous
     'POST',
     { revision: 8, questionId: '8', choice: 0 },
   ])
-  expect(table.choicesByTarget.size).toBe(0)
+  // The question stays on screen (no blinking, D7), but nothing is sent until the retry.
+  expect(table.choicesByTarget.size).toBe(1)
+  table.answer(0)
+  expect(request).toHaveBeenCalledTimes(2)
   expect(table.state!.round).toBe(view.table!.round)
   const command = request.mock.calls[1]![2]
   await client.resend()
@@ -233,4 +236,42 @@ it('preserves local state, campaign, persistence and local controller when using
   expect([...values]).toEqual(stored)
   await renderToString(createSSRApp(probe).use(pinia))
   expect(selected).toBe(local)
+})
+it('polls with the revision on screen and keeps the table when it is unchanged (D7)', async () => {
+  const view = fixture()
+  const request = vi
+    .fn()
+    .mockResolvedValueOnce(view)
+    .mockResolvedValueOnce({ unchanged: true, revision: view.revision })
+  const client = gameClient('room', request as typeof api)
+  await client.refresh()
+  const first = client.state.value
+  await client.refresh()
+  expect(request.mock.calls[0]![0]).toBe('/online/lobbies/room/game')
+  expect(request.mock.calls[1]![0]).toBe(`/online/lobbies/room/game?since=${view.revision}`)
+  expect(client.state.value).toBe(first)
+})
+it('shows the act and agenda advance review of new revisions, one frame at a time (D9)', async () => {
+  const view = fixture()
+  const frame = { kind: 'agenda', card: { code: 'x' }, stage: 'reverse', cards: [], effects: [] }
+  const request = vi
+    .fn()
+    .mockResolvedValueOnce(view)
+    .mockResolvedValueOnce({
+      ...view,
+      revision: view.revision + 1,
+      advanceReviews: [
+        { revision: view.revision, frames: [{ ...frame, stage: 'payment' }] },
+        { revision: view.revision + 1, frames: [frame, { ...frame, stage: 'next' }] },
+      ],
+    })
+  const client = gameClient('room', request as typeof api)
+  const table = onlineTable(client)
+  await client.refresh()
+  expect(table.advanceReview).toEqual([])
+  await client.refresh()
+  // Only the frames of the new revision, in order.
+  expect(table.advanceReview.map((f) => f.stage)).toEqual(['reverse', 'next'])
+  table.acceptAdvance()
+  expect(table.advanceReview.map((f) => f.stage)).toEqual(['next'])
 })

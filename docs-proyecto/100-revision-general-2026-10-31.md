@@ -629,6 +629,22 @@ Siguen abiertos F8 y N4.
   `public, max-age=86400, stale-while-revalidate=604800` tanto en Apache (`.htaccess`)
   como en Node, y los paquetes con hash con `immutable`.
 
+### Partida online (01/11/2026)
+
+- **D7 · corregido:**
+  - El sondeo envía `?since=<revisión>`; si la sala no ha cambiado, el servidor responde
+    `{ unchanged: true }` sin construir la vista.
+  - Con la pestaña oculta se consulta cada 15 s, y si le toca al jugador el título de la
+    pestaña lo indica.
+  - La pregunta sigue en pantalla mientras se envía una orden: sin parpadeo, y `choose`
+    ignora los clics hasta la respuesta.
+- **D9 · corregido:** el servidor recoge por jugador, sobre su estado visible, la revisión
+  del avance de acto o plan (`advanceReviews`), y la mesa online la muestra como en local.
+- **D8 · pendiente por diseño:** el compromiso de cartas de un ayudante lo propone el
+  investigador activo y el ayudante lo confirma o lo rechaza, así que nadie compromete
+  cartas ajenas sin permiso. Dejar que el ayudante lo inicie cambia de quién son las
+  preguntas del motor e invalidaría las grabaciones; requiere un cambio de motor propio.
+
 ### Orden sugerido
 
 1. **Subir N1–N3**, que corrigen mis propios cambios. N1 bloquea campañas online.

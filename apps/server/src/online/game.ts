@@ -92,6 +92,9 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
     autoSteps: (lobby.autoSteps ?? []).flatMap(({ revision, reviews }) =>
       reviews[user] ? [{ revision, review: reviews[user]! }] : [],
     ),
+    advanceReviews: (lobby.advanceReviews ?? []).flatMap(({ revision, frames }) =>
+      frames[user]?.length ? [{ revision, frames: frames[user]! }] : [],
+    ),
     table: tableView(g, mine),
     tableStats: tableStats(g),
     ...(mine ? { ownInvestigator: mine } : {}),

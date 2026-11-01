@@ -149,3 +149,27 @@ it('redacts private logs, decisions, hidden treacheries and masked identities be
     params: { name: 'B', n: 1 },
   })
 })
+
+it('collects the act and agenda advance review for each player (doc 100, D9)', () => {
+  const initial = throughSetup(
+    startScenario(newCampaign('brethren-of-ash', ['joe', 'trish'], 'standard'), 7),
+  )
+  const [host, friend] = initial.investigators.map((i) => i.id)
+  initial.pending = {
+    investigator: host!,
+    question: {
+      kind: 'chooseOne',
+      prompt: 'test',
+      choices: [{ label: 'test', then: [{ type: 'AdvanceAgenda' }] }],
+    },
+  }
+  initial.queue = []
+  const collector = createOnlineSteps(initial, { host, friend })
+  // The reverse side asks for a skill test: the review stops at that decision.
+  applyInput(initial, { investigator: host!, choice: 0 }, collector.observe)
+  const frames = collector.finishAdvance()
+  for (const user of ['host', 'friend'])
+    expect(frames[user]).toEqual(
+      expect.arrayContaining([expect.objectContaining({ kind: 'agenda' })]),
+    )
+})

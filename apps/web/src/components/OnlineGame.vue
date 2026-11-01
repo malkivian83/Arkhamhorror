@@ -30,6 +30,18 @@ watch(() => state.value?.scenarioId, clearInspection)
 const yourTurn = ref<string | null>(null)
 let turnTimer: ReturnType<typeof setTimeout> | undefined
 const notice = turnNotice()
+/** Title of the tab before a "your turn" mark, restored when the player comes back. */
+let plainTitle: string | null = null
+function markTitle() {
+  if (plainTitle !== null) return
+  plainTitle = document.title
+  document.title = `● ${t('online.play.yourTurn')} · ${plainTitle}`
+}
+function clearTitle() {
+  if (plainTitle === null) return
+  document.title = plainTitle
+  plainTitle = null
+}
 watch(
   () => state.value?.table?.pending?.investigator,
   (decider) => {
@@ -38,16 +50,21 @@ watch(
     yourTurn.value = localName(cardName(own))
     clearTimeout(turnTimer)
     turnTimer = setTimeout(() => (yourTurn.value = null), 4000)
+    // In another tab the player would not see the table: say it in the tab title (D7).
+    if (document.visibilityState !== 'visible') markTitle()
   },
   { immediate: true },
 )
+/** Visible: every 2 s. Hidden: every 15 s, so the turn mark still arrives (D7). */
 async function poll() {
   if (!active) return
-  if (document.visibilityState === 'visible') await refresh()
-  if (active) timer = setTimeout(poll, 2000)
+  await refresh()
+  if (active) timer = setTimeout(poll, document.visibilityState === 'visible' ? 2000 : 15000)
 }
 function visible() {
-  if (document.visibilityState === 'visible') void refresh()
+  if (document.visibilityState !== 'visible') return
+  clearTitle()
+  void refresh()
 }
 onMounted(() => {
   void poll()
@@ -57,6 +74,7 @@ onBeforeUnmount(() => {
   active = false
   clearTimeout(timer)
   clearTimeout(turnTimer)
+  clearTitle()
   document.removeEventListener('visibilitychange', visible)
   clearInspection()
   reset()

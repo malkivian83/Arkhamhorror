@@ -2,6 +2,7 @@ import { ref } from 'vue'
 import type {
   OnlineCommand,
   OnlineGame,
+  OnlineGameUnchanged,
   OnlineProgressCommand,
   OnlineProgressAction,
 } from '@lcg/shared'
@@ -31,13 +32,16 @@ export function gameClient(room: string, request: typeof api = api) {
     if (command) busy.value = true
     else reading = true
     try {
-      const result = await request<OnlineGame>(
-        `/online/lobbies/${room}/game${command ? ('action' in command ? '/progress' : '/decisions') : ''}`,
+      // Polls send the revision on screen; an unchanged table answers without the view.
+      const since = !command && state.value ? `?since=${state.value.revision}` : ''
+      const result = await request<OnlineGame | OnlineGameUnchanged>(
+        `/online/lobbies/${room}/game${command ? ('action' in command ? '/progress' : '/decisions') : since}`,
         command ? 'POST' : 'GET',
         command,
       )
       if (epoch !== generation) return
-      if (!state.value || result.revision > state.value.revision) state.value = result
+      if (!('unchanged' in result) && (!state.value || result.revision > state.value.revision))
+        state.value = result
       if (command) retry.value = null
       if (sequence >= completed) {
         completed = sequence
