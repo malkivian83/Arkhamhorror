@@ -591,7 +591,9 @@ export function writeSession(
   decodeSession(raw, !options.trustedHistory)
   try {
     const previous = storage.getItem(SESSION_KEY)
-    if (previous) {
+    // A trusted write was never replayed: it does not rotate into the backup, which only
+    // receives fully verified sessions (here or in `refreshBackup`; doc 100, N4).
+    if (previous && !options.trustedHistory) {
       let valid = false
       try {
         if (verifiedWrites.get(storage) !== previous) decodeSession(previous)
@@ -603,12 +605,32 @@ export function writeSession(
       else if (!storage.getItem(RECOVERY_KEY)) storage.setItem(RECOVERY_KEY, previous)
     }
     storage.setItem(SESSION_KEY, raw)
-    verifiedWrites.set(storage, raw)
+    if (options.trustedHistory) verifiedWrites.delete(storage)
+    else verifiedWrites.set(storage, raw)
   } catch (e) {
     if (e instanceof SessionError) throw e
     fail('unavailable')
   }
   return raw
+}
+
+/**
+ * Replays the current session completely and, if it reproduces its state, makes it the
+ * backup. Called in idle time every few trusted writes, so a verified copy is never far
+ * behind (doc 100, N4). Returns whether the backup was refreshed.
+ */
+export function refreshBackup(storage: StoragePort): boolean {
+  try {
+    const raw = storage.getItem(SESSION_KEY)
+    if (!raw) return false
+    if (verifiedWrites.get(storage) !== raw) decodeSession(raw)
+    storage.setItem(BACKUP_KEY, raw)
+    verifiedWrites.set(storage, raw)
+    return true
+  } catch {
+    // Not reproducible or storage unavailable: the previous good backup stays.
+    return false
+  }
 }
 
 /** Local incident package: decoding replays the complete successful history. */

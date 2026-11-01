@@ -1066,9 +1066,21 @@ registerAct({
   onAdvance: (state) => {
     const defeated = state.scenarioMeta?.[MAN_DEFEATED] === 1
     const man = Object.values(state.enemies).find((e) => e.code === THE_MAN_IN_THE_PALLID_MASK)
+    // Defeated, he went to his owner's discard pile: he leaves the game from there too,
+    // so he cannot be drawn again (doc 100, F8).
+    const discarded = man
+      ? []
+      : state.investigators
+          .filter((i) => i.discard.includes(THE_MAN_IN_THE_PALLID_MASK))
+          .map((i): Message => ({
+            type: 'RemoveFromDiscard',
+            investigator: i.id,
+            code: THE_MAN_IN_THE_PALLID_MASK,
+          }))
     return [
       markCarcosa(defeated ? 'conviction' : 'doubt', 2),
       ...(man ? [{ type: 'RemoveEnemyFromGame', enemy: man.id } as Message] : []),
+      ...discarded,
       ...(defeated ? [] : [specific('pallidLeadingTheWay')]),
     ]
   },

@@ -293,13 +293,36 @@ export function validateDeck(
   }
 }
 
-/** Añade una debilidad básica al azar si el mazo no tiene ninguna (reglamento). */
-export function withRandomBasicWeakness(cards: CardCode[], seed: number): CardCode[] {
+/**
+ * RR p. 29: the random basic weaknesses come from every implemented basic weakness
+ * (the core set and the expansions), not only the 2026 core box (doc 100, C7).
+ */
+export function basicWeaknessPool(): CardCode[] {
+  return [
+    ...new Set(
+      allPlayerCardDefs()
+        .filter((c) => c.weakness === 'basicweakness' && isImplemented(c.code))
+        .map((c) => c.code),
+    ),
+  ]
+}
+
+/**
+ * Añade una debilidad básica al azar si el mazo no tiene ninguna (reglamento). `taken`:
+ * las que ya salieron para otros investigadores; se roban de una única reserva.
+ */
+export function withRandomBasicWeakness(
+  cards: CardCode[],
+  seed: number,
+  taken: CardCode[] = [],
+): CardCode[] {
   cards = cards.filter((code) => code !== RANDOM_BASIC_WEAKNESS)
   if (cards.some(isBasicWeakness)) return cards
-  const pool = playerCards.filter((c) => c.weakness === 'basicweakness')
+  const all = basicWeaknessPool()
+  const free = all.filter((code) => !taken.includes(code))
+  const pool = free.length ? free : all
   const [index] = nextInt(seedRng(seed), pool.length)
-  return [...cards, pool[index]!.code]
+  return [...cards, pool[index]!]
 }
 
 /** Mazo nuevo para un investigador: solo con sus cartas exclusivas. */

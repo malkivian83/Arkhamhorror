@@ -649,11 +649,12 @@ registerAct({
       },
     ]
   },
-  // Forzado al final de la ronda: cada Sectario se mueve una vez hacia la cisterna.
+  // Forzado al final de la ronda: cada Sectario se mueve una vez hacia la cisterna, también
+  // los enfrentados (se desenfrentan al moverse); los que ya están allí no se mueven.
   forced: (state, trigger) =>
     trigger.type === 'roundEnds'
       ? Object.values(state.enemies)
-          .filter((e) => (e.traits ?? []).includes('Cultist') && e.engagedWith === null)
+          .filter((e) => (e.traits ?? []).includes('Cultist'))
           .map((e): Message => ({
             type: 'HuntOnce',
             enemy: e.id,

@@ -83,19 +83,13 @@ import {
   prepareEncounterVariant,
   type EncounterSetVariant,
 } from './encounter-variants'
-import { validateDeck, withRandomBasicWeakness, type DeckProblem } from './decks'
+import { basicWeaknessPool, validateDeck, withRandomBasicWeakness, type DeckProblem } from './decks'
 import {
   IN_THE_THICK_OF_IT,
   startingExperience,
   startingExperienceSpent,
 } from './survivor-deck/card-08125'
-import {
-  code,
-  investigatorSetup,
-  playerCards,
-  starterDeck,
-  STARTER_DECKS,
-} from './core-2026/player-cards'
+import { code, investigatorSetup, starterDeck, STARTER_DECKS } from './core-2026/player-cards'
 // Campañas registradas.
 import './brethren-of-ash/definition'
 import './night-of-the-zealot/definition'
@@ -216,12 +210,16 @@ export function newCampaign(
   if (members.length < 1 || members.length > 4)
     throw new Error('La campaña necesita de 1 a 4 investigadores')
   const weaknessChoices: Record<string, CardCode[]> = {}
+  // One pool for the whole group: two investigators never get the same weakness (C7).
+  const taken: CardCode[] = []
   const investigators: CampaignInvestigator[] = members.map((member, n) => {
     if (typeof member !== 'string') {
       // Un mazo propio sin debilidad básica recibe una al azar (reglamento).
+      const deck = withRandomBasicWeakness(member.cards, seed + n, taken)
+      taken.push(...deck.filter((c) => playerCardDef(c)?.weakness === 'basicweakness'))
       return {
         id: member.investigator,
-        deck: withRandomBasicWeakness(member.cards, seed + n),
+        deck,
         ...(member.customizations
           ? {
               customizations: Object.fromEntries(
@@ -244,10 +242,7 @@ export function newCampaign(
       )
         continue
       i.deck = i.deck.filter((c) => playerCardDef(c)?.weakness !== 'basicweakness')
-      const [pool] = shuffle(
-        playerCards.filter((c) => c.weakness === 'basicweakness').map((c) => c.code),
-        seedRng(seed + n),
-      )
+      const [pool] = shuffle(basicWeaknessPool(), seedRng(seed + n))
       weaknessChoices[i.id] = pool.slice(0, 3)
     }
   }

@@ -40,6 +40,33 @@ export function dispatch(state: GameState, ...messages: Message[]): GameState {
   return run(push(state, ...messages))
 }
 
+/**
+ * Whether some card in play can lower health or sanity without damage (The Black Fan,
+ * Dreams of R'lyeh). Asset and treachery maps are immutable, so the answer is cached per
+ * map instead of being recomputed after every message (doc 100, O5).
+ */
+const assetVitals = new WeakMap<object, boolean>()
+const treacheryVitals = new WeakMap<object, boolean>()
+function dynamicVitals(state: GameState): boolean {
+  let assets = assetVitals.get(state.assets)
+  if (assets === undefined) {
+    assets = Object.values(state.assets).some(
+      (a) => typeof playerCardBehavior(a.code)?.ownerVitals === 'function',
+    )
+    assetVitals.set(state.assets, assets)
+  }
+  if (assets) return true
+  let treacheries = treacheryVitals.get(state.treacheries)
+  if (treacheries === undefined) {
+    treacheries = Object.values(state.treacheries).some((t) => {
+      const behavior = treacheryBehavior(t.code)
+      return !!behavior?.healthModifier || !!behavior?.sanityModifier
+    })
+    treacheryVitals.set(state.treacheries, treacheries)
+  }
+  return treacheries
+}
+
 /** Procesa la cola hasta vaciarla, hasta que haga falta una decisión o hasta el final. */
 function run(initial: GameState, observer?: EngineObserver): GameState {
   let state = initial
@@ -101,15 +128,7 @@ function run(initial: GameState, observer?: EngineObserver): GameState {
     }
     // RR Defeat: health or sanity that drops without new damage can defeat (The Black Fan,
     // or a treachery entering the threat area such as Dreams of R'lyeh).
-    const dynamic = (s: GameState) =>
-      Object.values(s.assets).some(
-        (a) => typeof playerCardBehavior(a.code)?.ownerVitals === 'function',
-      ) ||
-      Object.values(s.treacheries).some((t) => {
-        const behavior = treacheryBehavior(t.code)
-        return !!behavior?.healthModifier || !!behavior?.sanityModifier
-      })
-    if (dynamic(before) || dynamic(state)) {
+    if (dynamicVitals(before) || dynamicVitals(state)) {
       const lowered = state.investigators.filter((i) => {
         const old = before.investigators.find((o) => o.id === i.id)
         if (!old || i.eliminated) return false

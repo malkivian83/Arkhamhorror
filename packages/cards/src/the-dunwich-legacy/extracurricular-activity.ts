@@ -213,8 +213,13 @@ function resolutionStory(state: GameState, outcome: ScenarioOutcome): Message[] 
       type: 'Story',
       entry: entry('riceReward'),
       choices: [
+        // "Any investigator", defeated ones included; only the killed or driven insane
+        // leave the campaign (doc 100, F8).
         ...state.investigators
-          .filter((i) => !i.eliminated || i.resigned)
+          .filter((i) => {
+            const record = state.campaignLog?.investigators[i.id]
+            return !record?.killed && !record?.insane
+          })
           .map((i) => ({
             label: 'choice.investigator',
             params: { name: i.name },

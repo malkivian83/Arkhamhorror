@@ -968,6 +968,14 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'PlayerWindow': {
       const investigator = getInvestigator(state, message.investigator)
+      // Eliminated during their own turn: the turn ends with them, and their pending
+      // "end of your turn" effects go too (doc 100, E12).
+      if (investigator.eliminated && state.activeTurn === investigator.id)
+        return {
+          ...state,
+          activeTurn: null,
+          endOfTurn: (state.endOfTurn ?? []).filter((e) => e.investigator !== investigator.id),
+        }
       if (
         investigator.eliminated ||
         (state.activeTurn === null && investigator.actionsRemaining === 0)
@@ -2209,7 +2217,9 @@ export function handle(state: GameState, message: Message): GameState {
       // Whispers in Your Head (Dread): no puede moverse más de una vez por turno.
       if (!message.unpreventable && mover.location !== null && moveBlocked(state, mover.id))
         return state
-      getLocation(state, message.location)
+      // The destination left play while the move was queued: the move fizzles instead of
+      // stopping the game with an error (doc 100, E12).
+      if (!state.locations[message.location]) return state
       const scenario = scenarioBehavior(state.scenarioId)
       if (
         !message.unpreventable &&
@@ -6232,10 +6242,13 @@ export function handle(state: GameState, message: Message): GameState {
               (message.modifier?.damage ?? 0) +
               (scenarioBehavior(state.scenarioId)?.enemyDamageModifier?.(state, enemy) ?? 0),
           ),
-          horror:
+          // Like damage, horror never goes below 0: a reduced attack does not heal.
+          horror: Math.max(
+            0,
             enemy.horror +
-            (message.modifier?.horror ?? 0) +
-            (scenarioBehavior(state.scenarioId)?.enemyHorrorModifier?.(state, enemy) ?? 0),
+              (message.modifier?.horror ?? 0) +
+              (scenarioBehavior(state.scenarioId)?.enemyHorrorModifier?.(state, enemy) ?? 0),
+          ),
           ...(enemyBehavior(enemy.code)?.attackKills ? { killInstead: true } : {}),
           // The attacking enemy travels with the damage (Guard Dog, Dimensional Shambler).
           enemy: enemy.id,

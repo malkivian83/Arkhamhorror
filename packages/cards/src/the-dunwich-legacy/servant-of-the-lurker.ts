@@ -12,6 +12,8 @@ export const servantOfTheLurker = enemy({
   horror: 2,
   keywords: ['hunter'],
   prey: { type: 'lowestSkill', skill: 'agility' },
+  // Printed Victory 1 (ArkhamDB 02104; doc 100, F8).
+  victory: 1,
 })
 registerEnemy({
   code: W.lurker,
