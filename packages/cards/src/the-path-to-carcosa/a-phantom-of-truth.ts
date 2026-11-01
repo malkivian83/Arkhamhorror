@@ -926,10 +926,25 @@ registerScenario({
           ),
           ...phantomSet,
         ].filter((c) => restored.includes(c.code))
+        // Guide p. 19: only the copies that were out of the game come back. If the belief
+        // did not change they are all still there and nothing is added (doc 100, F4).
+        const present = new Map<string, number>()
+        for (const code of [
+          ...state.encounterDeck.map((c) => c.code),
+          ...state.encounterDiscard.map((c) => c.code),
+          ...Object.values(state.treacheries).map((t) => t.code),
+          ...Object.values(state.enemies).map((e) => e.code),
+        ])
+          present.set(code, (present.get(code) ?? 0) + 1)
+        const missing = all.filter((c) => {
+          const n = present.get(c.code) ?? 0
+          if (n > 0) present.set(c.code, n - 1)
+          return n === 0
+        })
         const [encounterDeck, rng] = shuffle(
           [
             ...state.encounterDeck.filter((c) => !removed.includes(c.code)),
-            ...all.map((c) => ({ ...c })),
+            ...missing.map((c) => ({ ...c })),
           ],
           state.rng,
         )
@@ -1321,7 +1336,8 @@ registerAct({
               choices: [
                 {
                   label: 'choice.phantom.agendaDoom',
-                  then: [{ type: 'PlaceDoom', amount: 1 }, { type: 'CheckAgenda' }],
+                  // Stalked by Shadows does not say the doom can advance the agenda.
+                  then: [{ type: 'PlaceDoom', amount: 1 }],
                 },
                 ...(organist
                   ? [
@@ -1491,7 +1507,8 @@ registerLocation({
                 choices: [
                   {
                     label: 'choice.phantom.agendaDoom',
-                    then: [{ type: 'PlaceDoom', amount: 1 }, { type: 'CheckAgenda' }],
+                    // Notre-Dame does not say the doom can advance the agenda.
+                    then: [{ type: 'PlaceDoom', amount: 1 }],
                   },
                   {
                     label: 'choice.phantom.removeAgendaDoom',
