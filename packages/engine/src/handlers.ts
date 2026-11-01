@@ -8344,6 +8344,16 @@ function withoutCardDoom(state: GameState): GameState {
     locations: Object.fromEntries(
       Object.entries(state.locations).map(([id, l]) => [id, l.doom ? { ...l, doom: 0 } : l]),
     ),
+    ...(state.placedAssets
+      ? {
+          placedAssets: Object.fromEntries(
+            Object.entries(state.placedAssets).map(([id, a]) => [
+              id,
+              a.doom ? { ...a, doom: 0 } : a,
+            ]),
+          ),
+        }
+      : {}),
   }
 }
 
@@ -8352,7 +8362,9 @@ export function totalDoom(state: GameState): number {
   const onEnemies =
     Object.values(state.enemies).reduce((sum, e) => sum + (e.doom ?? 0), 0) +
     Object.values(state.assets).reduce((sum, a) => sum + (a.doom ?? 0), 0) +
-    Object.values(state.locations).reduce((sum, l) => sum + (l.doom ?? 0), 0)
+    Object.values(state.locations).reduce((sum, l) => sum + (l.doom ?? 0), 0) +
+    // Assets placed on cards or locations (Jewel of Sarnath at La Gala) are in play too.
+    Object.values(state.placedAssets ?? {}).reduce((sum, a) => sum + (a.doom ?? 0), 0)
   return state.investigators.reduce((sum, i) => sum + (i.doom ?? 0), state.doom + onEnemies)
 }
 

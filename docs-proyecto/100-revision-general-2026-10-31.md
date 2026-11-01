@@ -598,6 +598,23 @@ Después, también con pruebas:
 
 Siguen abiertos F8 y N4.
 
+### Errores pendientes de la primera revisión (01/11/2026)
+
+- **E8 · descartado:** la referencia también baraja «¿Qué has hecho?» en el mazo de quien
+  usa la capacidad, que es lo que hace el juego.
+- **E9 · corregido:** al elegir «Volver a jugar», `finishScenario` parte del registro
+  anterior y solo traslada el trauma, las muertes y las locuras. Ya no conserva la nota de
+  «sin resolución».
+- **E10 · corregido:** `totalDoom` cuenta la perdición de los apoyos colocados (la Joya de
+  Sarnath), y avanzar el plan la descarta.
+- **S1 · corregido para contraseña:**
+  - La migración `005_verification_password.sql` añade la contraseña al enlace de
+    verificación, que se aplica al pulsarlo.
+  - Con varios registros pendientes no se conserva ninguna contraseña: su dueño la fija
+    con «olvidé mi contraseña».
+  - La activación manual desde el panel sigue usando la contraseña del primer registro.
+  - La prueba requiere MySQL; la ejecuta la CI.
+
 ### Orden sugerido
 
 1. **Subir N1–N3**, que corrigen mis propios cambios. N1 bloquea campañas online.

@@ -154,6 +154,42 @@ describe.skipIf(!url)('cuentas y bibliotecas con MySQL real', () => {
     expect(saved.statusCode).toBe(200)
   })
 
+  it('quien verifica el correo fija la contraseña, no quien se registró antes (doc 100, S1)', async () => {
+    const address = 'owner@example.test'
+    // Single registration: its own password is applied when the link is used.
+    await post('/auth/register', { email: address, password, name: 'Owner' })
+    expect((await post('/auth/verify-email', { token: tokenFrom(mails.at(-1)!) })).statusCode).toBe(
+      200,
+    )
+    expect((await post('/auth/login', { email: address, password })).statusCode).toBe(200)
+
+    // Someone without the mailbox registers first; the owner registers afterwards.
+    const target = 'target@example.test'
+    await post('/auth/register', { email: target, password: 'attacker long password', name: 'X' })
+    await post('/auth/register', { email: target, password, name: 'Owner' })
+    expect((await post('/auth/verify-email', { token: tokenFrom(mails.at(-1)!) })).statusCode).toBe(
+      200,
+    )
+    // Neither registration's password is trusted: the attacker cannot get in...
+    expect(
+      (await post('/auth/login', { email: target, password: 'attacker long password' })).statusCode,
+    ).toBe(401)
+    // ...and the owner sets the password through the mailbox.
+    await post('/auth/forgot-password', { email: target })
+    expect(
+      (
+        await post('/auth/reset-password', {
+          token: tokenFrom(mails.at(-1)!),
+          password: 'owner chosen long password',
+        })
+      ).statusCode,
+    ).toBe(200)
+    expect(
+      (await post('/auth/login', { email: target, password: 'owner chosen long password' }))
+        .statusCode,
+    ).toBe(200)
+  })
+
   it('el registro público no permite elegir un rol administrador', async () => {
     const response = await post('/auth/register', {
       email: 'normal@example.test',

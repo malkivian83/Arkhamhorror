@@ -6,6 +6,7 @@ import {
   scenarioBehavior,
   shroudOf,
   skillTestValue,
+  totalDoom,
   type EnemyCard,
   type GameState,
   type Message,
@@ -285,6 +286,20 @@ describe('Lugares: objetivos, pistas y curación', () => {
     )
     s = begin(s, 0, ['parley'])
     expect(skillTestValue(s).total).toBe(4)
+  })
+  it('la perdición de la Joya colocada cuenta para el plan y se descarta al avanzar (doc 100, E10)', () => {
+    const base = table('71013')
+    const before = totalDoom(base)
+    let s = during(base, (g) => g, {
+      type: 'ScenarioSpecific',
+      key: 'placeJewel',
+      data: { target: 'lantern', doom: 1 },
+    })
+    const jewel = Object.values(s.placedAssets ?? {}).find((a) => a.code === '71052')
+    expect(jewel?.doom).toBe(1)
+    expect(totalDoom(s)).toBe(before + 1)
+    s = during(s, (g) => g, { type: 'AdvanceAgenda' })
+    expect(Object.values(s.placedAssets ?? {}).find((a) => a.code === '71052')?.doom ?? 0).toBe(0)
   })
   it('71014 Salón reduce velo hasta uno y permite agotar un enemigo remoto con la Joya', () => {
     let s = during(

@@ -74,6 +74,21 @@ describe('Resoluciones', () => {
     expect(next.scenarioIndex).toBe(0)
     expect(next.results).toEqual([])
     expect(next.log.values[`replayed:${EXCELSIOR}`]).toBe('1')
+    // Sin resolución → R2 → volver a jugar: la nota de «sin resolución» no se conserva,
+    // solo el trauma (doc 100, E9).
+    let lost = actions(throughSetup(startScenario(campaign, 9)))
+    lost = read(
+      dispatch(
+        { ...lost, pending: null },
+        { type: 'SufferTrauma', investigator: lost.investigators[0]!.id, mental: 1 },
+        { type: 'EndScenario', outcome: { type: 'noResolution' } },
+      ),
+    )
+    lost = read(choose(lost, 'story.excelsior.playAgain'))
+    expect(lost.campaignLog?.notes).toContain('excelsiorClaimsAnotherVictim')
+    const replayed = finishScenario(campaign, lost)
+    expect(replayed.log.notes).not.toContain('excelsiorClaimsAnotherVictim')
+    expect(replayed.log.investigators[lost.investigators[0]!.id]!.mentalTrauma).toBe(1)
     // La segunda vez ya no se ofrece volver a jugar.
     let again = actions(throughSetup(startScenario(next, 10)))
     again = read(
