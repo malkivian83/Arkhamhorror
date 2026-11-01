@@ -14,6 +14,7 @@ import {
   nextInt,
   offClassAllowed,
   playerCardDef,
+  playerCardBehavior,
   seedRng,
   type CardCode,
   type ExtraDeckOption,
@@ -236,7 +237,9 @@ export function validateDeck(
   // versiones de distinto nivel.
   const perTitle = new Map<string, { n: number; limit: number }>()
   for (const code of deck.cards.filter(isStandard)) {
-    const title = name(code)
+    const title =
+      name(code) +
+      (playerCardBehavior(code)?.deckLimitBySubtitle ? ' · ' + byCode(code)?.subname : '')
     const limit = byCode(code)?.deckLimit ?? 2
     const seen = perTitle.get(title)
     perTitle.set(title, { n: (seen?.n ?? 0) + 1, limit: Math.min(seen?.limit ?? limit, limit) })

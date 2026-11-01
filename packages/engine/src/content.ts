@@ -550,6 +550,10 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Only printed per-subtitle deck limits use this grouping. */
+  deckLimitBySubtitle?: boolean
+  recordsEntryTurn?: boolean
+  observesCommitCopies?: boolean
   fightAction?: boolean
   additionalPlayDiscard?: { max: number }
   selfCostModifier?: (state: GameState, investigator: InvestigatorId) => number

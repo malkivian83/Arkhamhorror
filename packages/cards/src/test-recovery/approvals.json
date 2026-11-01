@@ -1,0 +1,226 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "cards": [
+    {
+      "code": "08090",
+      "status": "verified",
+      "module": "card-08090",
+      "test": "rules.test.ts",
+      "uses": { "count": 6, "type": "charges" },
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "08092",
+      "status": "verified",
+      "module": "card-08092",
+      "test": "rules.test.ts",
+      "uses": { "count": 9, "type": "charges" },
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "08101",
+      "status": "verified",
+      "module": "card-08101",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "charges" },
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "08103",
+      "status": "verified",
+      "module": "card-08103",
+      "test": "rules.test.ts",
+      "uses": { "count": 6, "type": "charges" },
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "08109",
+      "status": "verified",
+      "module": "card-08109",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "charges" },
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "08111",
+      "status": "verified",
+      "module": "card-08111",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "charges" },
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "05119",
+      "status": "verified",
+      "module": "card-05119",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "05194",
+      "status": "verified",
+      "module": "card-05194",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "05195",
+      "status": "verified",
+      "module": "card-05195",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04230",
+      "status": "verified",
+      "module": "card-04230",
+      "test": "rules.test.ts",
+      "subname": "Knowledge of the Elders",
+      "uses": { "count": 0, "type": "secrets" }
+    },
+    {
+      "code": "04231",
+      "status": "verified",
+      "module": "card-04231",
+      "test": "rules.test.ts",
+      "subname": "Minds in Harmony",
+      "uses": { "count": 0, "type": "secrets" }
+    },
+    {
+      "code": "05117",
+      "status": "verified",
+      "module": "card-05117",
+      "test": "rules.test.ts",
+      "uses": { "count": 2, "type": "supplies" },
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "05190",
+      "status": "verified",
+      "module": "card-05190",
+      "test": "rules.test.ts",
+      "fast": true,
+      "uses": { "count": 2, "type": "supplies" }
+    },
+    {
+      "code": "05191",
+      "status": "verified",
+      "module": "card-05191",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "supplies" }
+    },
+    {
+      "code": "04023",
+      "status": "verified",
+      "module": "card-04023",
+      "test": "rules.test.ts",
+      "subname": "Mortal Reminder"
+    },
+    {
+      "code": "04149",
+      "status": "verified",
+      "module": "card-04149",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10032",
+      "status": "verified",
+      "module": "card-10032",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03309",
+      "status": "verified",
+      "module": "card-03309",
+      "test": "rules.test.ts",
+      "uses": { "count": 2, "type": "ammo" }
+    },
+    {
+      "code": "08114",
+      "status": "verified",
+      "module": "card-08114",
+      "test": "rules.test.ts",
+      "subname": "From a Former Life",
+      "adapter": "reviewed-memento-v1"
+    },
+    {
+      "code": "08115",
+      "status": "verified",
+      "module": "card-08115",
+      "test": "rules.test.ts",
+      "subname": "From a Future Life",
+      "adapter": "reviewed-memento-v1"
+    },
+    {
+      "code": "03197",
+      "status": "verified",
+      "module": "card-03197",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60429",
+      "status": "verified",
+      "module": "card-60429",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "53003",
+      "status": "verified",
+      "module": "card-53003",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "53004",
+      "status": "verified",
+      "module": "card-53004",
+      "test": "rules.test.ts",
+      "subname": "Transient Thoughts",
+      "uses": { "count": 0, "type": "secrets" }
+    },
+    {
+      "code": "60423",
+      "status": "verified",
+      "module": "card-60423",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "01084",
+      "status": "verified",
+      "module": "card-01084",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "08026",
+      "status": "verified",
+      "module": "card-08026",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "03158",
+      "status": "verified",
+      "module": "card-03158",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "05275",
+      "status": "verified",
+      "module": "card-05275",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09078",
+      "status": "verified",
+      "module": "card-09078",
+      "test": "rules.test.ts",
+      "fast": true
+    }
+  ],
+  "sources": {
+    "en": "001026ab7a779e40f182ac1f64221efc64ab244c428523d7ef91d57a35ebd68a",
+    "es": "d98444b59330a93e6abb63d40cddaaed503544e952ecd80680223450b528cf78"
+  },
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" }
+}

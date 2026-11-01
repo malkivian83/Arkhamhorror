@@ -34,8 +34,13 @@ describe('Wendy Adams: deckbuilding and campaign', () => {
     expect(
       options.every((code) => {
         const def = playerCardDef(code)!
-        return def.class !== 'rogue' || (def.xp ?? 0) <= 2
+        const classes = def.classes ?? [def.class]
+        return (
+          ((classes.includes('survivor') || classes.includes('neutral')) && (def.xp ?? 0) <= 5) ||
+          (classes.includes('rogue') && (def.xp ?? 0) <= 2)
+        )
       }),
     ).toBe(true)
+    expect(options).toContain('08114') // Rogue/Survivor (4), allowed through Survivor.
   })
 })

@@ -43,6 +43,7 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  drewTreacheryRound?: number
   nextAssetFast?: boolean
   fightActionsThisTurn?: number
   roundSkillAdditions?: { from: SkillType; skills: SkillType[]; code: CardCode; round: number }[]
@@ -549,6 +550,7 @@ export interface StoryCardInPlay {
 }
 
 export interface Asset {
+  enteredAtTurn?: number
   /** Current form of a transforming asset, reset when it leaves play. */
   form?: string
   /** Printed upgrades retain their owner's sheet when control changes. */
@@ -661,6 +663,7 @@ export interface TokenEffect {
 }
 
 export interface SkillTest {
+  nextCommitId?: number
   /** Replaces the normal outcome without changing the kind or success windows. */
   replacementResults?: Message[]
   /** The message that initiated it, to attempt the same test again (Live and Learn). */
@@ -692,6 +695,8 @@ export interface SkillTest {
   baseModifier: number
   /** Cartas comprometidas (desde la mano o, con Isabelle, desde la pila de descartes). */
   committed: {
+    id?: number
+    iconBonus?: Partial<Record<SkillIcon, number>>
     code: CardCode
     by: InvestigatorId
     fromDiscard?: boolean
@@ -778,6 +783,7 @@ export type PhaseStep =
 
 /** Todo lo que puede ocurrir en la partida. */
 export type Message =
+  | { type: 'AddCommittedIcon'; commitId: number; icon: SkillIcon }
   | { type: 'GameBegins' }
   | { type: 'AdjustPendingEnemyDamage'; enemy: EnemyId; amount: number }
   | { type: 'ReducePendingDamage'; investigator: InvestigatorId; damage: number; horror: number }
@@ -835,6 +841,8 @@ export type Message =
       after?: Message[]
       /** Resolved with the results if the test succeeds (High Roller). */
       onSuccess?: Message[]
+      /** Delayed consequences resolved in ST.7 if this test fails (Grisly Totem). */
+      onFail?: Message[]
       /** Investigar con éxito no descubre pistas (Pruebas incriminatorias). */
       replaceClue?: boolean
     }
@@ -1812,6 +1820,7 @@ export type Trigger =
       enemy?: EnemyId
     }
   | { type: 'afterCardsDrawn'; investigator: InvestigatorId; amount: number }
+  | { type: 'whenCardsDrawn'; investigator: InvestigatorId; amount: number }
   | {
       type: 'afterRevealLocation' | 'afterPutLocation'
       investigator?: InvestigatorId
@@ -1838,7 +1847,7 @@ export type Trigger =
       last?: boolean
     }
   /** Tras comprometer cartas a una prueba (`by` las compromete, `tester` hace la prueba). */
-  | { type: 'afterCommit'; by: InvestigatorId; tester: InvestigatorId }
+  | { type: 'afterCommit'; by: InvestigatorId; tester: InvestigatorId; commitId?: number }
   /** Tras ganar recursos por el efecto de una carta. */
   | { type: 'afterGainResources'; investigator: InvestigatorId; amount: number }
   | { type: 'investigationPhaseEnds' }

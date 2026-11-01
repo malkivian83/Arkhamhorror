@@ -5,6 +5,23 @@ import { approvedDefinition } from './approved.mjs'
 const read = async (relative) =>
   JSON.parse(await readFile(new URL(relative, import.meta.url), 'utf8'))
 describe('reviewed inventory conversion', () => {
+  it('limits the new Memento and dual-faction adapters to exact reviewed identities', async () => {
+    const { cards } = await read(
+      '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
+    )
+    const approvals = await read('../../packages/cards/src/test-recovery/approvals.json')
+    for (const a of approvals.cards.filter((c) => c.adapter)) {
+      const c = cards.find((c) => c.code === a.code)
+      expect(approvedDefinition(c, a).code).toBe(c.code)
+      expect(() => approvedDefinition(c, { ...a, adapter: undefined })).toThrow()
+      if (a.adapter === 'reviewed-memento-v1')
+        expect(() => approvedDefinition(c, { ...a, subname: 'Other' })).toThrow()
+      if (a.adapter === 'reviewed-memento-v1')
+        expect(() =>
+          approvedDefinition({ ...c, code: '99999' }, { ...a, code: '99999', subname: undefined }),
+        ).toThrow()
+    }
+  })
   it('restricts protection exile and Ice Pick adapters to their reviewed cards', async () => {
     const { cards } = await read(
       '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
@@ -134,6 +151,7 @@ describe('reviewed inventory conversion', () => {
     'charged-assets',
     'resource-reactions',
     'protection-tools',
+    'test-recovery',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(

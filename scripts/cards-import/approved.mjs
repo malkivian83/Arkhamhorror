@@ -2,15 +2,27 @@
 export function approvedDefinition(card, approval) {
   if (approval.code !== card.code || approval.status !== 'verified')
     throw new Error(`Card is not approved: ${card.code}`)
+  const mementoSubtitles = { '08114': 'From a Former Life', '08115': 'From a Future Life' }
+  const reviewedMemento =
+    approval.adapter === 'reviewed-memento-v1' &&
+    Object.hasOwn(mementoSubtitles, card.code) &&
+    mementoSubtitles[card.code] === approval.subname &&
+    card.factions.join(',') === 'rogue,survivor'
   const reviewedDualFaction =
-    approval.adapter === 'reviewed-dual-faction-v1' &&
-    ((['08105', '08107'].includes(card.code) && card.factions.join(',') === 'seeker,survivor') ||
-      (['08083', '08086'].includes(card.code) && card.factions.join(',') === 'guardian,seeker') ||
-      (card.code === '05115' && card.factions.join(',') === 'guardian,rogue') ||
-      (['08094', '08096', '08095'].includes(card.code) &&
-        card.factions.join(',') === 'guardian,survivor') ||
-      (['08117', '08119'].includes(card.code) && card.factions.join(',') === 'mystic,survivor') ||
-      (card.code === '05118' && card.factions.join(',') === 'mystic,guardian'))
+    reviewedMemento ||
+    (approval.adapter === 'reviewed-dual-faction-v1' &&
+      ((['08105', '08107'].includes(card.code) && card.factions.join(',') === 'seeker,survivor') ||
+        (card.code === '05119' && card.factions.join(',') === 'survivor,seeker') ||
+        (card.code === '05117' && card.factions.join(',') === 'rogue,survivor') ||
+        (['08090', '08092'].includes(card.code) && card.factions.join(',') === 'guardian,mystic') ||
+        (['08101', '08103'].includes(card.code) && card.factions.join(',') === 'seeker,mystic') ||
+        (['08109', '08111'].includes(card.code) && card.factions.join(',') === 'rogue,mystic') ||
+        (['08083', '08086'].includes(card.code) && card.factions.join(',') === 'guardian,seeker') ||
+        (card.code === '05115' && card.factions.join(',') === 'guardian,rogue') ||
+        (['08094', '08096', '08095'].includes(card.code) &&
+          card.factions.join(',') === 'guardian,survivor') ||
+        (['08117', '08119'].includes(card.code) && card.factions.join(',') === 'mystic,survivor') ||
+        (card.code === '05118' && card.factions.join(',') === 'mystic,guardian')))
   const reviewedCustomizable =
     approval.adapter === 'reviewed-shotcaster-v1' && card.code === '09119'
   const talentFactions = {
@@ -95,6 +107,7 @@ export function approvedDefinition(card, approval) {
     ...(reviewedDualFaction || reviewedTalent ? { classes: card.factions } : {}),
     ...(creationPermanent ? { deckLimit: 1 } : {}),
     ...(reviewedBorrowedTime ? { exceptional: true, deckLimit: 1 } : {}),
+    ...(reviewedMemento ? { deckLimit: 1 } : {}),
     traits: card.traits,
     ...(card.flags.is_unique ? { unique: true } : {}),
     ...(cost !== undefined ? { cost } : {}),

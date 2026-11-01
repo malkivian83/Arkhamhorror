@@ -15,7 +15,9 @@ export function useLabels() {
         typeof v === 'string' ? localName(k === 'card' ? cardName(v) : v) : v,
       ]),
     )
-    if (typeof params.skill === 'string') translated.skill = t(`skill.${params.skill}`)
+    if (typeof params.skill === 'string')
+      translated.skill =
+        params.skill === 'wild' ? t('campaign.shop.wild') : t(`skill.${params.skill}`)
     if (typeof params.phase === 'string') translated.phase = t(`phase.${params.phase}`)
     if (typeof params.scenario === 'string')
       translated.scenario = t(`campaign.scenario.${params.scenario}`)

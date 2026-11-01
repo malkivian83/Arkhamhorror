@@ -768,12 +768,22 @@ export function handle(state: GameState, message: Message): GameState {
         ? discardTreachery(state, message.treachery)
         : state
 
-    case 'Forced':
+    case 'Forced': {
+      const t = message.trigger
+      if (
+        t.type === 'whenTreacheryDrawn' ||
+        (t.type === 'afterDrawCard' && playerCardDef(t.card)?.type === 'treachery')
+      )
+        state = updateInvestigator(state, t.investigator, (i) => ({
+          ...i,
+          drewTreacheryRound: state.round,
+        }))
       // Primero lo obligatorio; después, las reacciones que quieran usar los jugadores.
       return push(state, ...forcedAbilities(state, message.trigger), {
         type: 'Reactions',
         trigger: message.trigger,
       })
+    }
 
     // ---------------------------------------------------------- Investigación
     case 'InvestigationPhase':
@@ -1424,6 +1434,14 @@ export function handle(state: GameState, message: Message): GameState {
         amount = message.drawnCount ?? 0,
         drawnCards = message.drawnCards ?? [],
       ): Message[] => [
+        ...(amount > 0
+          ? [
+              {
+                type: 'Forced' as const,
+                trigger: { type: 'whenCardsDrawn' as const, investigator: investigator.id, amount },
+              },
+            ]
+          : []),
         ...(weaknesses.length
           ? [
               {
@@ -3266,6 +3284,9 @@ export function handle(state: GameState, message: Message): GameState {
             id,
             code: message.code,
             owner: message.investigator,
+            ...(playerCardBehavior(message.code)?.recordsEntryTurn
+              ? { enteredAtTurn: turnStartedAt(state) }
+              : {}),
             ...(message.originalOwner ? { originalOwner: message.originalOwner } : {}),
             exhausted: false,
             damage: 0,
@@ -3763,6 +3784,10 @@ export function handle(state: GameState, message: Message): GameState {
         return state
       if (!canCommitFrom(state, investigator.id, message.code, iconZone, message.byEffect))
         return state
+      const trackCopy = Object.values(state.assets).some(
+        (a) => a.owner === investigator.id && assetBehavior(state, a)?.observesCommitCopies,
+      )
+      const commitId = trackCopy ? (test.nextCommitId ?? 0) : undefined
       return push(
         {
           ...updateInvestigator(state, investigator.id, (i) => ({
@@ -3771,11 +3796,13 @@ export function handle(state: GameState, message: Message): GameState {
           })),
           skillTest: withCommittedDifficulty({
             ...test,
+            ...(commitId !== undefined ? { nextCommitId: commitId + 1 } : {}),
             committed: [
               ...test.committed,
               {
                 code: message.code,
                 by: investigator.id,
+                ...(commitId !== undefined ? { id: commitId } : {}),
                 ...(message.shuffleAfter ? { fromDiscard: true } : {}),
                 ...(message.toDeckBottom ? { toDeckBottom: true } : {}),
               },
@@ -3785,9 +3812,36 @@ export function handle(state: GameState, message: Message): GameState {
         ...(playerCardBehavior(message.code)?.onCommit?.(state, investigator.id) ?? []),
         {
           type: 'Forced',
-          trigger: { type: 'afterCommit', by: investigator.id, tester: test.investigator },
+          trigger: {
+            type: 'afterCommit',
+            by: investigator.id,
+            tester: test.investigator,
+            ...(commitId !== undefined ? { commitId } : {}),
+          },
         },
       )
+    }
+
+    case 'AddCommittedIcon': {
+      const test = state.skillTest
+      if (!test) return state
+      return {
+        ...state,
+        skillTest: {
+          ...test,
+          committed: test.committed.map((c) =>
+            c.id === message.commitId
+              ? {
+                  ...c,
+                  iconBonus: {
+                    ...c.iconBonus,
+                    [message.icon]: (c.iconBonus?.[message.icon] ?? 0) + 1,
+                  },
+                }
+              : c,
+          ),
+        },
+      }
     }
 
     case 'Log':
@@ -4789,6 +4843,7 @@ export function handle(state: GameState, message: Message): GameState {
           ...(message.onSuccess
             ? { tokenOnSuccess: [...(test.tokenOnSuccess ?? []), ...message.onSuccess] }
             : {}),
+          ...(message.onFail ? { tokenOnFail: [...test.tokenOnFail, ...message.onFail] } : {}),
           ...(message.replaceClue && test.kind.type === 'investigate'
             ? { kind: { ...test.kind, replaceClue: true } }
             : {}),
@@ -7816,6 +7871,10 @@ export function handle(state: GameState, message: Message): GameState {
               taken,
               {
                 type: 'Forced',
+                trigger: { type: 'whenCardsDrawn', investigator: investigator.id, amount: 1 },
+              },
+              {
+                type: 'Forced',
                 trigger: {
                   type: 'afterDrawCard',
                   investigator: investigator.id,
@@ -9608,6 +9667,7 @@ function commitIcons(
   code: string,
   by: string,
   zone: 'hand' | 'discard' | 'committed' = 'hand',
+  bonus?: Partial<Record<string, number>>,
 ): number {
   const doublers =
     zone === 'committed'
@@ -9619,6 +9679,7 @@ function commitIcons(
     Math.max(
       0,
       matchingIcons(playerCardDef(code)?.icons, test.skill) +
+        matchingIcons(bonus, test.skill) +
         matchingIcons(
           playerCardBehavior(code)?.additionalIcons?.(state, test, by, zone),
           test.skill,
@@ -9747,7 +9808,7 @@ export function skillTestValue(state: GameState): {
   const doubling = scenarioBehavior(state.scenarioId)?.skillDoubling?.(state, test) ?? {}
   const icons =
     activeCommitted(test).reduce(
-      (sum, c) => sum + commitIcons(state, test, c.code, c.by, 'committed'),
+      (sum, c) => sum + commitIcons(state, test, c.code, c.by, 'committed', c.iconBonus),
       0,
     ) * (doubling.icons ? 2 : 1)
   const passive = Object.values(state.assets)

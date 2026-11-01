@@ -14,6 +14,7 @@ import './tools-parley'
 import './charged-assets'
 import './resource-reactions'
 import './protection-tools'
+import './test-recovery'
 import './rex-murphy'
 import './grouped-import'
 import './immediate-action-events'
@@ -845,7 +846,12 @@ export function purchaseOptions(
         level: card.xp ?? 0,
         implemented: isImplemented(card.code),
       }
-      const copies = deck.filter((c) => byCode(c)?.name === card.name)
+      const copies = deck.filter(
+        (c) =>
+          byCode(c)?.name === card.name &&
+          (!playerCardBehavior(card.code)?.deckLimitBySubtitle ||
+            byCode(c)?.subname === card.subname),
+      )
       // Mejora: una copia de menor nivel del mismo título pasa a la nueva versión. Se
       // ofrece desde cada versión inferior distinta, porque cuesta la diferencia (p. 22).
       const lower = [
