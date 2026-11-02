@@ -102,6 +102,8 @@ it.each(['03156', '03157'])(
         ? { type: 'whenTreacheryDrawn', investigator: 'a', treachery: 't' }
         : hitTrigger()
     s = fire(s, handReaction(s, code, trigger)[0]!.then)
+    // The Amulet also offers the copy on top of the discard pile: play the one in hand.
+    s = choose(s, 'choice.playFromHand')
     if (code === '03157') s = choose(s, 'choice.windowCancel', { damage: 2, horror: 2 })
     expect(s.exiled).toContainEqual({ investigator: 'a', code })
     expect(me(s).deck).toEqual([code])

@@ -16,6 +16,8 @@ it('End of the Road is excluded from a reshuffle and overrides the Amulet provis
     let s = patch({ hand: ['09104'], deck: [], discard: ['01093', '09104'] })(start())
     if (amulet) s = withAsset(s, '01014')
     s = dispatch(s, { type: 'PlayCard', investigator: 'a', code: '09104' })
+    // The Amulet also offers the copy on top of the discard pile: play the one in hand.
+    if (amulet) s = choose(s, 'choice.playFromHand')
     const all = [...me(s).hand, ...me(s).deck, ...me(s).discard]
     expect(all.filter((c) => c === '09104')).toHaveLength(1)
   }
