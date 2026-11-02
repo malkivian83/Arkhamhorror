@@ -8089,6 +8089,33 @@ export function handle(state: GameState, message: Message): GameState {
       })
     }
 
+    case 'ReorderDeck': {
+      const reorder = <T>(deck: T[]): [T[], typeof state.rng] | undefined => {
+        const count = Math.min(Math.max(0, message.count), deck.length)
+        if (
+          !Number.isInteger(count) ||
+          message.order.length !== count ||
+          new Set(message.order).size !== count ||
+          message.order.some((n) => !Number.isInteger(n) || n < 0 || n >= count)
+        )
+          return undefined
+        const chosen = message.order.map((n) => deck[n]!),
+          rest = deck.slice(count)
+        if (message.to === 'shuffle') return shuffle(deck, state.rng)
+        return [message.to === 'bottom' ? [...rest, ...chosen] : [...chosen, ...rest], state.rng]
+      }
+      if (message.investigator !== undefined) {
+        const result = reorder(getInvestigator(state, message.investigator).deck)
+        return result
+          ? updateInvestigator({ ...state, rng: result[1] }, message.investigator, (i) => ({
+              ...i,
+              deck: result[0],
+            }))
+          : state
+      }
+      const result = reorder(state.encounterDeck)
+      return result ? { ...state, encounterDeck: result[0], rng: result[1] } : state
+    }
     case 'ShuffleDeck': {
       const investigator = getInvestigator(state, message.investigator)
       const [deck, rng] = shuffle(investigator.deck, state.rng)

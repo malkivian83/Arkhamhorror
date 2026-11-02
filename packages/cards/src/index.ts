@@ -275,6 +275,7 @@ import { TEST_RECOVERY_RENDERED_CODES } from './test-recovery'
 import { SERVICE_RENDERED_CODES } from './services-parley'
 import { TOKEN_SKILL_RENDERED_CODES } from './token-skills'
 import { CONDITIONAL_ASSET_RENDERED_CODES } from './conditional-assets'
+import { DIVINATION_RENDERED_CODES } from './deck-divination'
 import { REX_RENDERED_CODES } from './rex-murphy'
 import { GROUPED_RENDERED_CODES } from './grouped-import'
 import { IMMEDIATE_EVENT_RENDERED_CODES } from './immediate-action-events'
@@ -286,6 +287,7 @@ import { EXCLUSIVE_SKILL_RENDERED_CODES } from './exclusive-skills'
 import { SKILL_UTILITY_RENDERED_CODES } from './skill-utilities'
 export const RENDERED_PLAYER_CARD_CODES = [
   ...CONDITIONAL_ASSET_RENDERED_CODES,
+  ...DIVINATION_RENDERED_CODES,
   ...TOKEN_SKILL_RENDERED_CODES,
   ...SERVICE_RENDERED_CODES,
   ...TEST_RECOVERY_RENDERED_CODES,
