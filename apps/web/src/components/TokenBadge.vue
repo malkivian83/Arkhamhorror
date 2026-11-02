@@ -4,9 +4,16 @@ import { tokenImage, type TokenKind } from '../game/assets'
 
 /** Ficha de recursos, pistas, daño, horror o perdición con su valor encima. */
 const props = withDefaults(
-  defineProps<{ kind: TokenKind; value: number | string; size?: number }>(),
+  defineProps<{
+    kind: TokenKind
+    value: number | string
+    size?: number
+    /** Cantidad que se vigila cuando el número va fuera de la ficha (investigador). */
+    changes?: number | undefined
+  }>(),
   {
     size: 40,
+    changes: undefined,
   },
 )
 const image = computed(() => tokenImage(props.kind))
@@ -15,7 +22,7 @@ const image = computed(() => tokenImage(props.kind))
 const flash = ref(false)
 let timer: ReturnType<typeof setTimeout> | undefined
 watch(
-  () => props.value,
+  () => props.changes ?? props.value,
   (value, previous) => {
     if ((props.kind !== 'damage' && props.kind !== 'horror') || value === previous) return
     flash.value = false

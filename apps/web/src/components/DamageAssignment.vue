@@ -202,6 +202,28 @@ tbody tr + tr {
   font-weight: bold;
   font-variant-numeric: tabular-nums;
 }
+@media (max-width: 420px) {
+  .overlay {
+    padding: 10px;
+  }
+  .split {
+    padding: 14px 12px;
+  }
+  th,
+  td {
+    padding: 6px 2px;
+  }
+  tbody th {
+    overflow-wrap: anywhere;
+  }
+  .stepper {
+    gap: 2px;
+  }
+  .stepper button {
+    width: 28px;
+    height: 28px;
+  }
+}
 footer {
   display: flex;
   flex-wrap: wrap;

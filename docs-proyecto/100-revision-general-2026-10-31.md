@@ -733,6 +733,15 @@ Siguen abiertos F8 y N4.
   - La sala guarda solo los 100 últimos identificadores de orden.
   - Sin resolver: un jugador que abandona a mitad de partida deja su investigador sin
     nadie que decida por él.
+- **Revisión en el navegador (02/11/2026):**
+  - La preparación de la partida cabe sin desplazamiento a 1366×900 y a 1280×720.
+  - El reparto funcionaba, pero permitía planificar daño y horror sobre un apoyo que el daño
+    derrota: el motor asigna antes todo el daño y el horror previsto para el apoyo acababa en
+    el investigador. Ahora el panel no lo permite.
+  - Las fichas de daño y horror del investigador no destellaban, porque su cifra va fuera de
+    la ficha. Corregido.
+  - En móvil, el panel de reparto se salía 30 px por la derecha. Corregido.
+  - Las salas online quedan sin revisar en el navegador: hace falta el servidor con MySQL.
 - **Sin cambiar:** la derrota simultánea de E12 (cada punto sigue siendo un `TakeDamage`
   con su `CheckDefeat`). Corregirla exige cambiar la asignación del motor.
 

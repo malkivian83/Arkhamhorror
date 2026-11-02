@@ -61,6 +61,23 @@ describe('reparto de daño y horror de una vez (doc 100, D4)', () => {
     expect(plan.damage).toEqual({ 'investigator:a': 0, [key]: 2 })
   })
 
+  it('un apoyo derrotado por el daño ya no recibe horror, porque el motor asigna antes el daño', () => {
+    const s = hit()
+    const assignment = assignmentOf(s)!
+    const key = assignment.recipients[1]!.key
+    let plan = emptyPlan(assignment)
+    plan = movePoint(assignment, plan, key, 'damage', 1)
+    plan = movePoint(assignment, plan, key, 'damage', 1)
+    expect(movePoint(assignment, plan, key, 'horror', 1)).toBe(plan)
+    plan = movePoint(assignment, plan, key, 'damage', -1)
+    plan = movePoint(assignment, plan, key, 'horror', 1)
+    expect(movePoint(assignment, plan, key, 'damage', 1)).toBe(plan)
+    expect(plan).toEqual({
+      damage: { 'investigator:a': 1, [key]: 1 },
+      horror: { 'investigator:a': 1, [key]: 1 },
+    })
+  })
+
   it('el plan responde cada pregunta del motor y deja el reparto elegido', () => {
     let s = hit()
     const assignment = assignmentOf(s)!

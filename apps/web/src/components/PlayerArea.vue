@@ -193,12 +193,16 @@ const slots = computed(() => {
           <div class="stats">
             <!-- El número va en una pastilla oscura junto a la ficha: sobre la imagen no se leía. -->
             <ul class="tokens">
-              <li v-for="token in tokens" :key="token.kind" :title="token.title">
+              <!-- Con clave por investigador: al cambiar el que se muestra, sus fichas no destellan. -->
+              <li v-for="token in tokens" :key="`${i.id}:${token.kind}`" :title="token.title">
                 <span class="token-icon"
-                  ><TokenBadge :kind="token.kind" value="" :size="26" aria-hidden="true" /><strong
-                    class="token-count"
-                    >{{ token.value }}</strong
-                  ></span
+                  ><TokenBadge
+                    :kind="token.kind"
+                    value=""
+                    :changes="token.value"
+                    :size="26"
+                    aria-hidden="true"
+                  /><strong class="token-count">{{ token.value }}</strong></span
                 ><span class="token-label">{{ t(token.label) }}</span>
               </li>
             </ul>

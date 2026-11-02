@@ -102,8 +102,21 @@ export function movePoint(
   if (!recipient || key === self) return plan
   const on = plan[kind][key] ?? 0
   const left = plan[kind][self] ?? 0
-  if (delta > 0 ? left === 0 || on >= recipient.room[kind] : on === 0) return plan
+  if (delta > 0 ? left === 0 || on >= roomFor(recipient, plan, kind) : on === 0) return plan
   return { ...plan, [kind]: { ...plan[kind], [key]: on + delta, [self]: left - delta } }
+}
+
+/**
+ * The engine assigns all the damage first, point by point, and an asset that reaches its
+ * health is defeated at once (doc 100, E12): it can no longer take the horror. So an asset
+ * planned to be defeated by damage takes no horror, and one with horror planned keeps a
+ * point of health.
+ */
+function roomFor(recipient: Recipient, plan: DamagePlan, kind: DamageKind): number {
+  const { damage, horror } = recipient.room
+  if (kind === 'horror')
+    return damage > 0 && (plan.damage[recipient.key] ?? 0) >= damage ? 0 : horror
+  return horror > 0 && (plan.horror[recipient.key] ?? 0) > 0 ? damage - 1 : damage
 }
 
 /**
