@@ -26544,6 +26544,42 @@
       "sourceSha256": "6b5b373d290f6bd1841c48d55482d96fdff8ce9ded278601fb50353a26616298",
       "path": "/local-assets/cards/es/thumbs/60577.webp",
       "sha256": "b489dbe086d21597965888f48b26292b24663cf20b0a315a9483847c62ddf252"
+    },
+    {
+      "source": "/local-assets/cards/en/11092.avif",
+      "sourceSha256": "ac675ff9b8f57d28fda9b82f38cb628c06211eea5bc233112ee3af8c904944f1",
+      "path": "/local-assets/cards/en/thumbs/11092.webp",
+      "sha256": "a431292bd442def5ea64e91c961fece5012755eb2966b62f412df3d51389a847"
+    },
+    {
+      "source": "/local-assets/cards/en/04033.avif",
+      "sourceSha256": "ede7d4000cd93de66fdc7c63668276040405037e890f60512412b2ea255b2f71",
+      "path": "/local-assets/cards/en/thumbs/04033.webp",
+      "sha256": "4936ca571a5ffcaf1c9a63dc2dcee6cf36cf82a830578ff09f224705fe093c30"
+    },
+    {
+      "source": "/local-assets/cards/en/04312.avif",
+      "sourceSha256": "48e08b517c92e180c2ceea7f0b91b44d787f51f9fbef538214588aab2c485966",
+      "path": "/local-assets/cards/en/thumbs/04312.webp",
+      "sha256": "6c61bc59ee9d446207d95e4525f5ef06c867a2711929fa9f8a1787929d0d9312"
+    },
+    {
+      "source": "/local-assets/cards/es/11092.avif",
+      "sourceSha256": "a859c80470ee318e3e9118efdf6b1d473eeaa869f508a346fb037e0daa1bf458",
+      "path": "/local-assets/cards/es/thumbs/11092.webp",
+      "sha256": "f476fb3e963d8b2870188e0e1b2821e5fb58abd9794b1c363861b490372fdac1"
+    },
+    {
+      "source": "/local-assets/cards/es/04033.avif",
+      "sourceSha256": "c4d08c6201e8d99af264f65139fcb2d64d193dc2c077ee3fe57c0c6497d6daf1",
+      "path": "/local-assets/cards/es/thumbs/04033.webp",
+      "sha256": "085159d0ef3db3460c4b3a469895c286cb06d285dd045ab9e4ae80d054014c19"
+    },
+    {
+      "source": "/local-assets/cards/es/04312.avif",
+      "sourceSha256": "2c8eb4f6310145612b79ac1b301850426f19d10f977d169e91756d6b2629a71a",
+      "path": "/local-assets/cards/es/thumbs/04312.webp",
+      "sha256": "d3bc9fe7ed21a5919a64205abc9e2c42e82bb31e79cac1f105097857c2ff718d"
     }
   ]
 }

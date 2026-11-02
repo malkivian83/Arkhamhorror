@@ -35393,6 +35393,54 @@
       "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/60577.avif",
       "bytes": 88913,
       "sha256": "6b5b373d290f6bd1841c48d55482d96fdff8ce9ded278601fb50353a26616298"
+    },
+    {
+      "art": "04033",
+      "language": "en",
+      "path": "/local-assets/cards/en/04033.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/04033.avif",
+      "bytes": 41248,
+      "sha256": "ede7d4000cd93de66fdc7c63668276040405037e890f60512412b2ea255b2f71"
+    },
+    {
+      "art": "11092",
+      "language": "en",
+      "path": "/local-assets/cards/en/11092.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/11092.avif",
+      "bytes": 103939,
+      "sha256": "ac675ff9b8f57d28fda9b82f38cb628c06211eea5bc233112ee3af8c904944f1"
+    },
+    {
+      "art": "04312",
+      "language": "en",
+      "path": "/local-assets/cards/en/04312.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/04312.avif",
+      "bytes": 102721,
+      "sha256": "48e08b517c92e180c2ceea7f0b91b44d787f51f9fbef538214588aab2c485966"
+    },
+    {
+      "art": "04033",
+      "language": "es",
+      "path": "/local-assets/cards/es/04033.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/04033.avif",
+      "bytes": 74708,
+      "sha256": "c4d08c6201e8d99af264f65139fcb2d64d193dc2c077ee3fe57c0c6497d6daf1"
+    },
+    {
+      "art": "11092",
+      "language": "es",
+      "path": "/local-assets/cards/es/11092.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/11092.avif",
+      "bytes": 92483,
+      "sha256": "a859c80470ee318e3e9118efdf6b1d473eeaa869f508a346fb037e0daa1bf458"
+    },
+    {
+      "art": "04312",
+      "language": "es",
+      "path": "/local-assets/cards/es/04312.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/04312.avif",
+      "bytes": 71105,
+      "sha256": "2c8eb4f6310145612b79ac1b301850426f19d10f977d169e91756d6b2629a71a"
     }
   ],
   "missing": [

@@ -8233,6 +8233,23 @@ export function handle(state: GameState, message: Message): GameState {
       const result = reorder(state.encounterDeck)
       return result ? { ...state, encounterDeck: result[0], rng: result[1] } : state
     }
+    case 'ShufflePlayedEvent': {
+      const owner = getInvestigator(state, message.investigator)
+      if (owner.eliminated) return state
+      if (message.fromBottom) {
+        if (owner.deck.at(-1) !== message.code) return state
+      } else if (!owner.discard.includes(message.code)) return state
+      const at = owner.discard.lastIndexOf(message.code)
+      const [deck, rng] = shuffle(
+        message.fromBottom ? owner.deck : [...owner.deck, message.code],
+        state.rng,
+      )
+      return updateInvestigator({ ...state, rng }, owner.id, (i) => ({
+        ...i,
+        deck,
+        ...(!message.fromBottom ? { discard: i.discard.filter((_, n) => n !== at) } : {}),
+      }))
+    }
     case 'ShuffleDeck': {
       const investigator = getInvestigator(state, message.investigator)
       const [deck, rng] = shuffle(investigator.deck, state.rng)

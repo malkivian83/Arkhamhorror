@@ -403,6 +403,8 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "improvisedExtra": "Also evade {enemy}",
+    "improvisedEnemy": "Choose {enemy} for {card}",
     "therapyFinish": "Shuffle the selected cards and draw",
     "therapyRecover": "Recover {card}",
     "therapyCard": "Choose {card}",
@@ -3267,6 +3269,9 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "11092": "Tactic. Improvised.",
+      "04033": "Tactic. Improvised.",
+      "04312": "Tactic. Improvised.",
       "60264": "Insight. Science.",
       "60278": "Insight. Science.",
       "60577": "Spirit.",
@@ -3792,6 +3797,9 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "11092": "You may play Improvised Weapon from your discard pile. If you do, shuffle it into your deck after resolving its effects and draw 1 card.\n<b>Fight.</b> The attacked enemy gets -2 fight for this attack. (If you played Improvised Weapon from your discard pile, this attack deals +1 damage.)",
+      "04033": "You may play Improvised Weapon from your discard pile. If you do, shuffle it into your deck after resolving its effects.\n<b>Fight.</b> The attacked enemy gets -1 fight for this attack. (If you played Improvised Weapon from your discard pile, this attack deals +1 damage.)",
+      "04312": "You may play Impromptu Barrier from your discard pile. If you do, shuffle it into your deck after resolving its effects.\n<b>Evade.</b> The chosen enemy gets -1 evade for this evasion attempt. (If you played Impromptu Barrier from your discard pile, you may evade an additional enemy at the same location with evade X or lower. X is the amount you succeed by.)",
       "60264": "Choose an investigator at your location and reveal the top 3 cards of their deck. That investigator may choose to either draw 1 revealed card and shuffle the rest into their deck, or heal 2 horror and return the revealed cards to the top of their owner's deck in any order.",
       "60278": "One at a time, each investigator at your location reveals the top 3 cards of their deck, draws 1 of those cards, shuffles the remaining cards into their deck, and heals 2 horror.",
       "60577": "Play only if there are no enemies at your location.\nChoose up to 3 level 0 event and/or skill cards in your discard pile and shuffle them into your deck. Draw 1 card.",
@@ -4754,6 +4762,9 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "11092": "Improvised Weapon",
+      "04033": "Improvised Weapon",
+      "04312": "Impromptu Barrier",
       "60264": "Psychoanalysis",
       "60278": "Psychoanalysis",
       "60577": "Respite",
