@@ -1711,6 +1711,13 @@ export type Message =
       discount?: number
     }
   | { type: 'ShuffleDeck'; investigator: InvestigatorId }
+  /** Shuffle the resolving event only if its provisional copy is still present. */
+  | {
+      type: 'ShufflePlayedEvent'
+      investigator: InvestigatorId
+      code: CardCode
+      fromBottom: boolean
+    }
   /** Hold looked-at cards in the continuation's serializable data, without drawing/searching. */
   | {
       type: 'InspectDeck'

@@ -1,0 +1,35 @@
+[
+  {
+    "code": "04033",
+    "name": "Improvised Weapon",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Tactic", "Improvised"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "11092",
+    "name": "Improvised Weapon",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Tactic", "Improvised"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "04312",
+    "name": "Impromptu Barrier",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Tactic", "Improvised"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  }
+]
