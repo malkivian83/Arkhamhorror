@@ -1,0 +1,35 @@
+[
+  {
+    "code": "60264",
+    "name": "Psychoanalysis",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight", "Science"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "intellect": 1, "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "60278",
+    "name": "Psychoanalysis",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight", "Science"],
+    "cost": 2,
+    "xp": 3,
+    "icons": { "willpower": 1, "intellect": 1, "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "60577",
+    "name": "Respite",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spirit"],
+    "cost": 1,
+    "xp": 2,
+    "icons": { "wild": 2 },
+    "slots": []
+  }
+]

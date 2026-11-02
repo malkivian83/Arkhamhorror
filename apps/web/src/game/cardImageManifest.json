@@ -1,5 +1,8 @@
 {
   "en": {
+    "60264": "/local-assets/cards/en/60264.avif",
+    "60278": "/local-assets/cards/en/60278.avif",
+    "60577": "/local-assets/cards/en/60577.avif",
     "05116": "/local-assets/cards/en/05116.avif",
     "05188": "/local-assets/cards/en/05188.avif",
     "05189": "/local-assets/cards/en/05189.avif",
@@ -2381,6 +2384,9 @@
     "04110": "/local-assets/cards/en/04110.avif"
   },
   "es": {
+    "60264": "/local-assets/cards/es/60264.avif",
+    "60278": "/local-assets/cards/es/60278.avif",
+    "60577": "/local-assets/cards/es/60577.avif",
     "60415": "/local-assets/cards/es/60415.avif",
     "01061": "/local-assets/cards/es/01061.avif",
     "03236": "/local-assets/cards/es/03236.avif",

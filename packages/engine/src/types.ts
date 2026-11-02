@@ -1721,6 +1721,8 @@ export type Message =
     }
   | {
       type: 'MoveInspectedCard'
+      /** Draw the selected revealed card rather than merely adding it to hand. */
+      drawFound?: boolean
       investigator?: InvestigatorId
       card: CardCode | EncounterCard
       to: 'discard' | 'hand'

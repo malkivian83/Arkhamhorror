@@ -26508,6 +26508,42 @@
       "sourceSha256": "6f4b72633002976e7b920b8a20e5f9c3a61d729cb3fa4853d96c83b5814504dd",
       "path": "/local-assets/cards/en/thumbs/05189.webp",
       "sha256": "342578accd504f176964c1626a633e87ef943a9c98351e0afbc3169e09969aee"
+    },
+    {
+      "source": "/local-assets/cards/en/60264.avif",
+      "sourceSha256": "6ef89a5a4a5e99d48726df21ae7442aa5685859735660ce2ce9164b3db17f753",
+      "path": "/local-assets/cards/en/thumbs/60264.webp",
+      "sha256": "290f03a73889fd1dde491ad8b9ccb2a81c3e304fda82939da78050f940f5dfb5"
+    },
+    {
+      "source": "/local-assets/cards/en/60278.avif",
+      "sourceSha256": "5c8a6e8634b72df2c06c9cfef5218b5246a9efced14c5531e8b248aaf929d095",
+      "path": "/local-assets/cards/en/thumbs/60278.webp",
+      "sha256": "9c5df8de13027a61f657b55581d932f946348971972e719d00575464b7545ec9"
+    },
+    {
+      "source": "/local-assets/cards/en/60577.avif",
+      "sourceSha256": "47c88cd3153e5785fc8ab467c354718599bff2211bf8379073484632a195b10b",
+      "path": "/local-assets/cards/en/thumbs/60577.webp",
+      "sha256": "6576b82fd3265aad2219d101f20f8b2b962e9d7c818fb2fd5060f9a87ed80bbb"
+    },
+    {
+      "source": "/local-assets/cards/es/60264.avif",
+      "sourceSha256": "c2df3a3b0bfdd9f07b6af35ef329177dddcd9a4bada52bac79a372b15207061b",
+      "path": "/local-assets/cards/es/thumbs/60264.webp",
+      "sha256": "ffe240e97cd0630a42c2dedfeb45adbcf9507f18ba259eca1d076675123fb514"
+    },
+    {
+      "source": "/local-assets/cards/es/60278.avif",
+      "sourceSha256": "f9c41ecc35b5a58ff026da46d2f0065c3805cf88d5c80f7400bf5005a270d0cd",
+      "path": "/local-assets/cards/es/thumbs/60278.webp",
+      "sha256": "efa740583fb5735ce19e61cc565c397d1e2edff88c07ccfb13a4cec3c5a23aa7"
+    },
+    {
+      "source": "/local-assets/cards/es/60577.avif",
+      "sourceSha256": "6b5b373d290f6bd1841c48d55482d96fdff8ce9ded278601fb50353a26616298",
+      "path": "/local-assets/cards/es/thumbs/60577.webp",
+      "sha256": "b489dbe086d21597965888f48b26292b24663cf20b0a315a9483847c62ddf252"
     }
   ]
 }

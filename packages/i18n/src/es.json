@@ -403,6 +403,12 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "therapyFinish": "Barajar las cartas elegidas y robar",
+    "therapyRecover": "Recuperar {card}",
+    "therapyCard": "Elegir {card}",
+    "therapyHeal": "Curar 2 puntos de horror y ordenar las cartas",
+    "therapyDraw": "Robar una de las cartas reveladas",
+    "therapyTarget": "Resolver Psicoanálisis con {name}",
     "scrollEncounterBottom": "Mirar la parte inferior del mazo de Encuentros",
     "scrollEncounterTop": "Mirar la primera carta del mazo de Encuentros",
     "scrollLookBottom": "Mirar la última carta del mazo de {name}",
@@ -3261,6 +3267,9 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "60264": "Inspiración. Ciencia.",
+      "60278": "Inspiración. Ciencia.",
+      "60577": "Espíritu.",
       "05116": "Objeto. Tomo.",
       "05188": "Objeto. Tomo.",
       "05189": "Objeto. Tomo.",
@@ -3783,6 +3792,9 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "60264": "Elige un investigador que esté en tu Lugar y revela las 3 primeras cartas de su mazo. Ese investigador puede elegir entre robar 1 carta revelada, devolver el resto a su mazo y barajar éste o bien curarse 2 puntos de horror y devolver las cartas reveladas a la parte superior del mazo de su propietario en cualquier orden.",
+      "60278": "De uno en uno, cada investigador que esté en tu Lugar revela las 3 primeras cartas de su mazo, roba 1 de esas cartas, devuelve las cartas restantes a su mazo, lo baraja y se cura 2 puntos de horror.",
+      "60577": "Juega esta carta sólo si no hay Enemigos en tu Lugar.\nElige hasta 3 cartas de Evento y/o de Habilidad de nivel 0 de tu pila de descartes, añádelas a tu mazo y baraja éste. Roba 1 carta.",
       "05116": "Usos (3 secretos).\n[action] Agota el Pergamino de secretos y gasta 1 secreto: Mira la última carta del mazo de cualquier investigador o del mazo de Encuentros. A continuación, elige si descartas esa carta, la añades a la mano de su propietario, la colocas en la parte inferior de su mazo o bien la colocas en la parte superior de su mazo.",
       "05188": "Usos (3 secretos).\n[action] Agota el Pergamino de secretos y gasta 1 secreto: Mira las 3 últimas cartas del mazo de cualquier investigador o del mazo de Encuentros. Puedes descartar 1 de esas cartas. Puedes añadir 1 de esas cartas a la mano de su propietario. Coloca el resto de esas cartas en la parte superior o inferior de su mazo, en cualquier orden.",
       "05189": "Usos (4 secretos).\n[action] Agota el Pergamino de secretos y gasta 1 secreto: Mira la primera o última carta del mazo de cualquier investigador o del mazo de Encuentros. A continuación, elige si descartas esa carta, la añades a la mano de su propietario, la colocas en la parte inferior de su mazo o bien la colocas en la parte superior de su mazo.",
@@ -4742,6 +4754,9 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "60264": "Psicoanálisis",
+      "60278": "Psicoanálisis",
+      "60577": "Alivio",
       "05116": "Pergamino de secretos",
       "05188": "Pergamino de secretos",
       "05189": "Pergamino de secretos",

@@ -403,6 +403,12 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "therapyFinish": "Shuffle the selected cards and draw",
+    "therapyRecover": "Recover {card}",
+    "therapyCard": "Choose {card}",
+    "therapyHeal": "Heal 2 horror and order the cards",
+    "therapyDraw": "Draw one revealed card",
+    "therapyTarget": "Resolve Psychoanalysis with {name}",
     "scrollEncounterBottom": "Look at the bottom of the encounter deck",
     "scrollEncounterTop": "Look at the top encounter card",
     "scrollLookBottom": "Look at the bottom of {name}’s deck",
@@ -3261,6 +3267,9 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "60264": "Insight. Science.",
+      "60278": "Insight. Science.",
+      "60577": "Spirit.",
       "05116": "Item. Tome.",
       "05188": "Item. Tome.",
       "05189": "Item. Tome.",
@@ -3783,6 +3792,9 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "60264": "Choose an investigator at your location and reveal the top 3 cards of their deck. That investigator may choose to either draw 1 revealed card and shuffle the rest into their deck, or heal 2 horror and return the revealed cards to the top of their owner's deck in any order.",
+      "60278": "One at a time, each investigator at your location reveals the top 3 cards of their deck, draws 1 of those cards, shuffles the remaining cards into their deck, and heals 2 horror.",
+      "60577": "Play only if there are no enemies at your location.\nChoose up to 3 level 0 event and/or skill cards in your discard pile and shuffle them into your deck. Draw 1 card.",
       "05116": "Uses (3 secrets).\n[action] Exhaust Scroll of Secrets and spend 1 secret: Look at the bottom card of any investigator's deck or the encounter deck. Then, either discard that card, add it to its owner's hand, place it on the bottom of its deck, or place it on the top of its deck.",
       "05188": "Uses (3 secrets).\n[action] Exhaust Scroll of Secrets and spend 1 secret: Look at the bottom 3 cards of any investigator's deck or the encounter deck. You may discard 1 of those cards. You may add 1 of those cards to its owner's hand. Place the rest of those cards on either the top or bottom of their deck, in any order.",
       "05189": "Uses (4 secrets).\n[action] Exhaust Scroll of Secrets and spend 1 secret: Look at the top or bottom card of any investigator's deck or the encounter deck. Then, either discard that card, add it to its owner's hand, place it on the bottom of its deck, or place it on top of its deck.",
@@ -4742,6 +4754,9 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "60264": "Psychoanalysis",
+      "60278": "Psychoanalysis",
+      "60577": "Respite",
       "05116": "Scroll of Secrets",
       "05188": "Scroll of Secrets",
       "05189": "Scroll of Secrets",
