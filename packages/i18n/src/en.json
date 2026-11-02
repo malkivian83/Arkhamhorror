@@ -403,6 +403,7 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "relocationEnemy": "Choose {enemy}",
     "slotSearch": "Search with {card}",
     "improvisedExtra": "Also evade {enemy}",
     "improvisedEnemy": "Choose {enemy} for {card}",
@@ -3271,6 +3272,9 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "60466": "Spell. Trick.",
+      "08108": "Spell. Trick.",
+      "08110": "Spell. Trick.",
       "60181": "Item. Armor. Police.",
       "60260": "Ally. Miskatonic.",
       "05283": "Ally. Clairvoyant.",
@@ -3802,6 +3806,9 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "60466": "<b>Parley</b>. Choose a non-[[Elite]] enemy at your location or at a connecting location. Move that enemy to your location, engage it, and gain resources equal to its combined damage/horror values.",
+      "08108": "Choose a non-[[Elite]] enemy at a revealed location up to 2 connections away. Swap places with that enemy.",
+      "08110": "Choose a non-[[Elite]] enemy at any revealed location. Swap places with that enemy.",
       "60181": "You have 1 additional hand slot, which may only be used to hold a [[Firearm]] asset.\n[reaction] After you play Protective Vest: Search the top 9 cards of your deck for a [[Firearm]] or [[Upgrade]] card and add it to your hand. Shuffle your deck.",
       "60260": "You have 1 additional hand slot, which can only be used to hold a [[Tome]] asset.\n[reaction] After University Archivist enters play: Search the top 6 cards of your deck for a [[Tome]] asset and add it to your hand. Shuffle your deck.",
       "05283": "You have 2 additional tarot slots.\n[reaction] When the game begins, if Anna Kaslow is in your opening hand: Put her into play.\n[reaction] After Anna Kaslow enters play: Search your deck for a [[Tarot]] asset and put it into play.",
@@ -4770,6 +4777,9 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "60466": "Spiritual Charm",
+      "08108": "Ethereal Slip",
+      "08110": "Ethereal Slip",
       "60181": "Protective Vest",
       "60260": "University Archivist",
       "05283": "Anna Kaslow",

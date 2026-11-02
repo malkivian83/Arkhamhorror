@@ -1,0 +1,37 @@
+[
+  {
+    "code": "08108",
+    "name": "Ethereal Slip",
+    "type": "event",
+    "class": "rogue",
+    "classes": ["rogue", "mystic"],
+    "traits": ["Spell", "Trick"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "willpower": 1, "agility": 1 },
+    "slots": []
+  },
+  {
+    "code": "08110",
+    "name": "Ethereal Slip",
+    "type": "event",
+    "class": "rogue",
+    "classes": ["rogue", "mystic"],
+    "traits": ["Spell", "Trick"],
+    "cost": 1,
+    "xp": 2,
+    "icons": { "willpower": 1, "agility": 2 },
+    "slots": []
+  },
+  {
+    "code": "60466",
+    "name": "Spiritual Charm",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Trick"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "willpower": 1, "agility": 1 },
+    "slots": []
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "722f4406b78d8dcd77ed0cf6e005adcc8fd265b1dbe3eb33b2479c1137ed90be",
+    "es": "214c06cebe06019c426999def5a3640711ec15ea35fb252803fb6a0380484e24"
+  },
+  "cards": [
+    {
+      "code": "08108",
+      "status": "verified",
+      "module": "card-08108",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "08110",
+      "status": "verified",
+      "module": "card-08110",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "60466",
+      "status": "verified",
+      "module": "card-60466",
+      "test": "rules.test.ts"
+    }
+  ]
+}

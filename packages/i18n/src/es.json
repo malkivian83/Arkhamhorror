@@ -403,6 +403,7 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "relocationEnemy": "Elegir {enemy}",
     "slotSearch": "Buscar con {card}",
     "improvisedExtra": "Evadir también a {enemy}",
     "improvisedEnemy": "Elegir a {enemy} para {card}",
@@ -3271,6 +3272,9 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "60466": "Hechizo. Truco.",
+      "08108": "Hechizo. Truco.",
+      "08110": "Hechizo. Truco.",
       "60181": "Objeto. Protección. Policía.",
       "60260": "Aliado. Miskatonic.",
       "05283": "Aliado. Clarividente.",
@@ -3802,6 +3806,9 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "60466": "<b>Negociar</b>. Elige a un Enemigo que no sea [[Élite]] y que esté en tu Lugar o en un Lugar conectado. Mueve ese Enemigo a tu Lugar, enfréntate a él y obtén una cantidad de recursos igual a sus valores de daño/horror combinados.",
+      "08108": "Elige un Enemigo que no sea [[Élite]] y que esté en un Lugar revelado a un máximo de 2 conexiones de distancia. Intercambia lugares con ese Enemigo.",
+      "08110": "Elige un Enemigo que no sea [[Élite]] y que esté en cualquier Lugar revelado. Intercambia lugares con ese Enemigo.",
       "60181": "Tienes 1 espacio de mano adicional que sólo puede usarse para un Apoyo [[Arma de fuego]].\n[reaction] Después de que juegues el Chaleco protector: Busca entre las 9 primeras cartas de tu mazo una carta [[Arma de fuego]] o [[Mejora]] y añádela a tu mano. Baraja tu mazo.",
       "60260": "Tienes un espacio de mano adicional que sólo puede usarse para un Apoyo [[Tomo]].\n[reaction] Después de que la Archivera de la universidad entre en juego: Busca entre las 6 primeras cartas de tu mazo un Apoyo [[Tomo]] y añádelo a tu mano. Baraja tu mazo.",
       "05283": "Tienes 2 espacios de tarot adicionales.\n[reaction] Cuando comience la partida, si Anna Kaslow está en tu mano inicial: Ponla en juego.\n[reaction] Después de que Anna Kaslow entre en juego: Busca en tu mazo un Apoyo [[Tarot]] y ponlo en juego.",
@@ -4770,6 +4777,9 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "60466": "Encanto espiritual",
+      "08108": "Deslizamiento etéreo",
+      "08110": "Deslizamiento etéreo",
       "60181": "Chaleco protector",
       "60260": "Archivera de la universidad",
       "05283": "Anna Kaslow",

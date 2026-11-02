@@ -3,7 +3,6 @@ import {
   registerPlayerCard,
   eventsToDeckBottom,
   engagedEnemies,
-  skillTestValue,
   attachedStat,
   scenarioBehavior,
   type GameState,
@@ -68,7 +67,7 @@ export function registerImprovised(code: string): void {
       ),
     effect: (s, by, step, data) => {
       if (step !== 'extra' || !s.skillTest) return []
-      const margin = skillTestValue(s).total - s.skillTest.difficulty
+      const margin = (s.skillTest.modifiedSkill ?? 0) - s.skillTest.difficulty
       return ask(
         by,
         [

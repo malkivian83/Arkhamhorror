@@ -17,7 +17,8 @@ export function approvedDefinition(card, approval) {
         (card.code === '05117' && card.factions.join(',') === 'rogue,survivor') ||
         (['08090', '08092'].includes(card.code) && card.factions.join(',') === 'guardian,mystic') ||
         (['08101', '08103'].includes(card.code) && card.factions.join(',') === 'seeker,mystic') ||
-        (['08109', '08111'].includes(card.code) && card.factions.join(',') === 'rogue,mystic') ||
+        (['08108', '08110', '08109', '08111'].includes(card.code) &&
+          card.factions.join(',') === 'rogue,mystic') ||
         (['08083', '08086'].includes(card.code) && card.factions.join(',') === 'guardian,seeker') ||
         (card.code === '05115' && card.factions.join(',') === 'guardian,rogue') ||
         (['08094', '08096', '08095'].includes(card.code) &&

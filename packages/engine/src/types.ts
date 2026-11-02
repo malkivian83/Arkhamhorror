@@ -951,6 +951,8 @@ export type Message =
   /** `checked`: el escenario ya resolvió lo que ocurre al intentar moverse (Vestíbulo). */
   | {
       type: 'MoveTo'
+      /** Swap with this enemy atomically after checking movement restrictions and costs. */
+      swapEnemy?: EnemyId
       /** Forced relocation that cannot be cancelled (Another Dimension). */
       unpreventable?: boolean
       encounterEffect?: boolean

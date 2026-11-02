@@ -2206,6 +2206,12 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'MoveTo': {
       const mover = getInvestigator(state, message.investigator)
+      const swapped = message.swapEnemy ? findEnemy(state, message.swapEnemy) : undefined
+      if (
+        message.swapEnemy &&
+        (!swapped || swapped.global || !mover.location || swapped.location !== message.location)
+      )
+        return state
       if (
         mover.eliminated ||
         (!message.unpreventable && mover.location && leavingBlocked(state, mover.location)) ||
@@ -2259,6 +2265,14 @@ export function handle(state: GameState, message: Message): GameState {
         movedThisTurn: true,
         ...(state.activeTurn ? { lastMoveTurn: turnStartedAt(state) } : {}),
       }))
+      // Swapping is simultaneous: the chosen enemy cannot engage the mover at the old
+      // location and follow them back. Other engaged enemies still accompany the mover.
+      if (swapped)
+        next = updateEnemy(next, swapped.id, (e) => ({
+          ...e,
+          location: mover.location!,
+          engagedWith: null,
+        }))
       for (const enemy of engagedEnemies(next, message.investigator)) {
         if (enemy.keywords.includes('massive')) continue
         next = updateEnemy(next, enemy.id, (e) => ({ ...e, location: message.location }))
@@ -2281,6 +2295,39 @@ export function handle(state: GameState, message: Message): GameState {
             },
           ]
       const arrival: Message[] = [
+        ...(swapped
+          ? [
+              ...(swapped.engagedWith
+                ? [
+                    {
+                      type: 'Forced' as const,
+                      trigger: {
+                        type: 'enemyDisengaged' as const,
+                        enemy: swapped.id,
+                        investigator: swapped.engagedWith,
+                      },
+                    },
+                  ]
+                : []),
+              {
+                type: 'Forced' as const,
+                trigger: {
+                  type: 'enemyWouldEnterLocation' as const,
+                  enemy: swapped.id,
+                  location: mover.location!,
+                },
+              },
+              { type: 'CheckEngagement' as const, location: mover.location! },
+              {
+                type: 'Forced' as const,
+                trigger: {
+                  type: 'enemyEntersLocation' as const,
+                  enemy: swapped.id,
+                  location: mover.location!,
+                },
+              },
+            ]
+          : []),
         {
           type: 'Forced',
           trigger: { type: 'beforeMoveEngagement', investigator: message.investigator },
@@ -2307,7 +2354,14 @@ export function handle(state: GameState, message: Message): GameState {
       )
       return beforeEngagement
         ? push(next, entering, ...reveal, { type: 'AfterCurrentSkillTest', then: arrival })
-        : push(next, entering, ...reveal, ...arrival.slice(1))
+        : push(
+            next,
+            entering,
+            ...reveal,
+            ...arrival.filter(
+              (m) => !(m.type === 'Forced' && m.trigger.type === 'beforeMoveEngagement'),
+            ),
+          )
     }
 
     case 'RevealLocation': {

@@ -143,6 +143,13 @@ it('Barrier offers no extra evasion after a failed test and still shuffles', () 
   expect(s.enemies.other!.exhausted).toBe(false)
   expect(me(s).deck).toContain('04312')
 })
+it.each([-2, 1])('Barrier uses the resolved margin including the chaos token %s', (token) => {
+  const initial = foe(
+    foe(start('04312', true), 'other', { name: 'Other', evade: token === 1 ? 5 : 4 }),
+  )
+  const s = target(play({ ...initial, chaosBag: [token] }, '04312', true))
+  expect(s.pending!.question.choices.some((c) => c.params?.enemy === 'Other')).toBe(token === 1)
+})
 it.each(['04033', '11092', '04312'])(
   '%s requires a legal first target and is available from discard',
   (code) => {
