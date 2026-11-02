@@ -14,8 +14,18 @@ registerPlayerCard({ code: IN_THE_THICK_OF_IT, permanent: {} })
 export const startingExperience = (deck: CardCode[]) => (deck.includes(IN_THE_THICK_OF_IT) ? 3 : 0)
 
 export const startingExperienceSpent = (deck: CardCode[], sheets: Customizations = {}) =>
-  deck.reduce((spent, code) => {
+  deck.reduce((spent, code, index) => {
     const card = playerCardDef(code)
+    if (
+      card?.myriad &&
+      deck
+        .slice(0, index)
+        .some(
+          (other) =>
+            playerCardDef(other)?.name === card.name && playerCardDef(other)?.xp === card.xp,
+        )
+    )
+      return spent
     // RR Exceptional: twice the printed level.
     const cost = (card?.xp ?? 0) * (card?.exceptional ? 2 : 1)
     return spent + (card && !card.weakness && !card.story ? cost : 0)

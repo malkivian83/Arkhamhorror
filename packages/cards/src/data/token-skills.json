@@ -1,0 +1,136 @@
+[
+  {
+    "code": "02190",
+    "name": "Defiance",
+    "type": "skill",
+    "class": "mystic",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "04198",
+    "name": "Defiance",
+    "type": "skill",
+    "class": "mystic",
+    "traits": ["Innate", "Developed"],
+    "xp": 2,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "03235",
+    "name": "Torrent of Power",
+    "type": "skill",
+    "class": "mystic",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "60419",
+    "name": "Prescient",
+    "type": "skill",
+    "class": "mystic",
+    "traits": ["Practiced", "Augury"],
+    "xp": 0,
+    "icons": { "willpower": 1 },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "09049",
+    "name": "Analysis",
+    "type": "skill",
+    "class": "seeker",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "10031",
+    "name": "Strong-Armed",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Innate"],
+    "xp": 1,
+    "icons": { "combat": 1, "agility": 1 },
+    "slots": []
+  },
+  {
+    "code": "11097",
+    "name": "Confidence",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "60471",
+    "name": "Eldritch Whispers",
+    "type": "skill",
+    "class": "mystic",
+    "traits": ["Innate"],
+    "xp": 1,
+    "icons": { "willpower": 2 },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "11042",
+    "name": "Quick-Witted",
+    "type": "skill",
+    "class": "seeker",
+    "myriad": true,
+    "deckLimit": 3,
+    "traits": ["Innate"],
+    "xp": 1,
+    "icons": { "intellect": 1, "agility": 1 },
+    "slots": []
+  },
+  {
+    "code": "06199",
+    "name": "Three Aces",
+    "type": "skill",
+    "class": "rogue",
+    "myriad": true,
+    "deckLimit": 3,
+    "traits": ["Fortune", "Practiced"],
+    "xp": 1,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "06245",
+    "name": "A Glimmer of Hope",
+    "type": "event",
+    "class": "survivor",
+    "myriad": true,
+    "deckLimit": 3,
+    "traits": ["Blessed", "Fortune"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "06034",
+    "name": "Fortuitous Discovery",
+    "type": "event",
+    "class": "survivor",
+    "myriad": true,
+    "deckLimit": 3,
+    "traits": ["Fortune", "Insight"],
+    "cost": 0,
+    "printedCostX": true,
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  }
+]

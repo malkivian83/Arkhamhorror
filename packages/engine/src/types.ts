@@ -490,6 +490,8 @@ export interface PlayerCardDef {
   classes?: string[]
   traits: string[]
   cost?: number
+  /** Printed X with a value defined by the card rather than chosen by its controller. */
+  printedCostX?: boolean
   xp?: number
   icons?: Partial<Record<SkillIcon, number>>
   slots?: SlotType[]
@@ -510,6 +512,8 @@ export interface PlayerCardDef {
   deckLimit?: number
   /** Exceptional: costs twice its level in experience; one copy per deck (by title). */
   exceptional?: boolean
+  /** Myriad: three copies by title, with additional purchases at the same level free. */
+  myriad?: boolean
   /** Cartas de mazo adicionales (Collector: +5). */
   deckSizeBonus?: number
   extraDeckOption?: ExtraDeckOption
@@ -729,6 +733,9 @@ export interface SkillTest {
   chooseToken?: InvestigatorId
   /** Fichas sacadas pero ignoradas: vuelven a la bolsa al terminar la prueba. */
   ignoredTokens?: ChaosToken[]
+  /** Only recorded for cards that count canceled/ignored reveals (Confidence). */
+  revealCount?: number
+  ignoredTokenEffects?: ChaosToken[]
   /** La prueba tiene éxito por 0 pase lo que pase (Scrape By). */
   forcedSuccess?: boolean
   /** RR Automatic Success from a resolved token; automatic failure still prevails. */
@@ -1013,6 +1020,7 @@ export type Message =
       investigator: InvestigatorId
       cards: CardCode[]
       fromHand?: boolean
+      fromDiscard?: boolean
     }
   /**
    * Juega una carta de la mano pagando su coste (menos `discount`). `effect`
@@ -1165,6 +1173,8 @@ export type Message =
    */
   | {
       type: 'RevealChaosToken'
+      /** Already counted when first revealed (Athena). */
+      counted?: boolean
       token?: ChaosToken
       ignored?: ChaosToken
       pending?: boolean
@@ -1190,6 +1200,8 @@ export type Message =
     }
   /** Cancel the held token and return it to the bag (Wendy Adams), and reveal a new one. */
   | { type: 'CancelRevealedToken'; redraw?: boolean; use?: string }
+  | { type: 'IgnoreSkillTestTokens'; tokens: ChaosToken[] }
+  | { type: 'TrackSkillTestReveals' }
   /** Return resolved tokens and reveal afresh, retaining commitments and per-test usage. */
   | { type: 'RedrawSkillTestTokens'; use: string }
   /** Cancel the held token and treat it as another symbol (Father Mateo). */
@@ -1688,6 +1700,7 @@ export type Message =
     }
   | {
       type: 'TakeFromDeck'
+      fromBottom?: boolean
       investigator: InvestigatorId
       code: CardCode
       to: 'hand' | 'play'

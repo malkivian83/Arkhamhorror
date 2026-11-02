@@ -556,7 +556,11 @@ export interface PlayerCardBehavior {
   observesCommitCopies?: boolean
   fightAction?: boolean
   additionalPlayDiscard?: { max: number }
-  selfCostModifier?: (state: GameState, investigator: InvestigatorId) => number
+  selfCostModifier?: (
+    state: GameState,
+    investigator: InvestigatorId,
+    from?: 'hand' | 'discard',
+  ) => number
   requiredResearch?: string
   assignmentTraitLimit?: { trait: string; amount: number }
   /** Replace a controlled asset's departure; terminal removals mark leavingResolved. */
@@ -743,7 +747,13 @@ export interface PlayerCardBehavior {
     committedBy: InvestigatorId,
   ) => Message[]
   /** Carta comprometida: después del paso 8, con la prueba ya cerrada. */
-  afterCommittedTestEnds?: PlayerCardBehavior['afterCommittedTest']
+  afterCommittedTestEnds?: (
+    state: GameState,
+    test: SkillTest,
+    succeeded: boolean,
+    committedBy: InvestigatorId,
+    copy?: SkillTest['committed'][number],
+  ) => Message[]
   /** Reacciones del apoyo en juego (las decide su controlador). */
   reactions?: (state: GameState, trigger: Trigger, self: Asset) => ReactionOption[]
   /** Eventos que se juegan como reacción desde la mano ("Juégala después de…"). */
@@ -966,3 +976,29 @@ export const isPermanent = (code: CardCode) => !!playerBehaviors.get(code)?.perm
 /** Permanent assets, or assets that cannot leave play right now (Baron Samedi). */
 export const stuckInPlay = (state: GameState, asset: Asset) =>
   isPermanent(asset.code) || !!playerBehaviors.get(asset.code)?.cannotLeavePlay?.(state, asset)
+
+/**
+ * Test support: captures every behavior registry and returns a function that puts back the
+ * captured entries. Without per-file isolation, a test that overrides a real card must not
+ * leak into the next file. New entries stay: shared test helpers register their own codes
+ * once, when first imported.
+ */
+export function snapshotRegistries(): () => void {
+  const maps: Map<unknown, unknown>[] = [
+    scenarios,
+    stories,
+    treacheries,
+    enemies,
+    locations,
+    agendas,
+    acts,
+    investigatorBehaviors,
+    playerCards,
+    playerBehaviors,
+  ]
+  const saved = maps.map((map) => new Map(map))
+  return () =>
+    maps.forEach((map, i) => {
+      for (const [key, value] of saved[i]!) if (map.get(key) !== value) map.set(key, value)
+    })
+}

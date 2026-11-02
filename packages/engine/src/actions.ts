@@ -118,7 +118,7 @@ export function canPlayByEffect(
     scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, id, code)
   )
     return false
-  if (minimumPlayCost(state, id, code, discount, noCost) > spendableFor(state, id, code))
+  if (minimumPlayCost(state, id, code, discount, noCost, from) > spendableFor(state, id, code))
     return false
   return playerCardBehavior(code)?.canPlay?.(state, id) ?? true
 }
@@ -137,14 +137,29 @@ function minimumPlayCost(
   code: CardCode,
   discount = 0,
   noCost = false,
+  from?: 'hand' | 'discard',
 ): number {
-  const variants = playerCardBehavior(code)?.playVariants?.(state, id)
+  const behavior = playerCardBehavior(code)
+  const variants = behavior?.playVariants?.(state, id)
   if (variants?.length === 0) return Infinity
-  return noCost
-    ? 0
-    : variants
-      ? Math.min(...variants.map((v) => cardCost(state, id, code, discount, v.cost)))
-      : cardCost(state, id, code, discount)
+  const i = getInvestigator(state, id)
+  const zones: ('hand' | 'discard')[] = from
+    ? [from]
+    : i.hand.includes(code) && !behavior?.onlyFromDiscard
+      ? ['hand']
+      : ['discard']
+  const topEvent = i.discard.findLast((c) => playerCardDef(c)?.type === 'event')
+  const discardAllowed =
+    behavior?.playableFromDiscard ||
+    (topEvent === code &&
+      Object.values(state.assets).some(
+        (a) => a.owner === id && assetBehavior(state, a)?.playsTopDiscardEvent,
+      ))
+  if (!from && zones[0] === 'hand' && i.discard.includes(code) && discardAllowed)
+    zones.push('discard')
+  const price = (increase: number) =>
+    Math.min(...zones.map((zone) => cardCost(state, id, code, discount, increase, zone)))
+  return noCost ? 0 : variants ? Math.min(...variants.map((v) => price(v.cost))) : price(0)
 }
 
 /** "Limit 1 per investigator": they already control an asset with this title. */
@@ -785,11 +800,16 @@ export function cardCost(
   code: CardCode,
   discount = 0,
   increase = 0,
+  from?: 'hand' | 'discard',
 ): number {
   const printed = playerCardDef(code)?.cost ?? 0
   const change =
     (scenarioBehavior(state.scenarioId)?.cardCostModifier?.(state, id, code) ?? 0) +
-    (playerCardBehavior(code)?.selfCostModifier?.(state, id) ?? 0)
+    (playerCardBehavior(code)?.selfCostModifier?.(
+      state,
+      id,
+      from ?? (getInvestigator(state, id).hand.includes(code) ? 'hand' : 'discard'),
+    ) ?? 0)
   // Cartas de la mano que encarecen las demás (una copia de la propia carta no cuenta).
   const hand = [...(state.investigators.find((i) => i.id === id)?.hand ?? [])]
   const own = hand.indexOf(code)

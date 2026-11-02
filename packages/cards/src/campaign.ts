@@ -16,6 +16,7 @@ import './resource-reactions'
 import './protection-tools'
 import './test-recovery'
 import './services-parley'
+import './token-skills'
 import './rex-murphy'
 import './grouped-import'
 import './immediate-action-events'
@@ -144,6 +145,8 @@ export interface CampaignInvestigator {
   exiled?: CardCode[]
   /** Déjà Vu discounts already used since the last scenario. */
   dejaVuUsed?: number
+  /** Remaining same-level Myriad copies granted in this upgrade period. */
+  myriadCredits?: Record<CardCode, number>
   /**
    * Deck slots opened by upgrades to Permanent versions since the last scenario. FAQ 1.18
    * only fills slots left by removed cards for free; these must be filled paying (FAQ 1.8).
@@ -688,7 +691,7 @@ export function finishScenario(campaign: Campaign, game: GameState): Campaign {
     ...campaign,
     scenarioIndex: campaign.scenarioIndex + 1,
     investigators: campaign.investigators.map(
-      ({ exiled: _last, dejaVuUsed: _used, owedFills: _owed, ...i }) => {
+      ({ exiled: _last, dejaVuUsed: _used, owedFills: _owed, myriadCredits: _myriad, ...i }) => {
         // RR Exile: exiled copies leave the deck; they must be purchased again (FAQ 1.18).
         const exiled = (game.exiled ?? []).filter((e) => e.investigator === i.id).map((e) => e.code)
         const deck = i.deck.filter((code) => !log.removedCards?.includes(code))
@@ -876,7 +879,8 @@ export function purchaseOptions(
               {
                 ...base,
                 cost:
-                  short && base.level === 0 && !isPermanent(card.code)
+                  (card.myriad && (self.myriadCredits?.[card.code] ?? 0) > 0) ||
+                  (short && base.level === 0 && !isPermanent(card.code))
                     ? 0
                     : Math.max(0, Math.max(1, price(card.code)) - dejaVu(self, deck, card.code)),
                 needsRemoval: full && !isPermanent(card.code),
@@ -1003,6 +1007,14 @@ export function purchase(
         deck,
         ...(customizations ? { customizations } : {}),
         ...(discounted ? { exiled, dejaVuUsed: (i.dejaVuUsed ?? 0) + 1 } : {}),
+        ...(byCode(card)?.myriad && !option.replaces
+          ? {
+              myriadCredits: {
+                ...i.myriadCredits,
+                [card]: (i.myriadCredits?.[card] ?? 0) > 0 ? i.myriadCredits![card]! - 1 : 2,
+              },
+            }
+          : {}),
         ...(owedFills ? { owedFills } : {}),
       }
     }),

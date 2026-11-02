@@ -273,6 +273,7 @@ import { RESOURCE_REACTION_RENDERED_CODES } from './resource-reactions'
 import { PROTECTION_TOOL_RENDERED_CODES } from './protection-tools'
 import { TEST_RECOVERY_RENDERED_CODES } from './test-recovery'
 import { SERVICE_RENDERED_CODES } from './services-parley'
+import { TOKEN_SKILL_RENDERED_CODES } from './token-skills'
 import { REX_RENDERED_CODES } from './rex-murphy'
 import { GROUPED_RENDERED_CODES } from './grouped-import'
 import { IMMEDIATE_EVENT_RENDERED_CODES } from './immediate-action-events'
@@ -283,6 +284,7 @@ import { TARGETED_EVENT_RENDERED_CODES } from './targeted-events'
 import { EXCLUSIVE_SKILL_RENDERED_CODES } from './exclusive-skills'
 import { SKILL_UTILITY_RENDERED_CODES } from './skill-utilities'
 export const RENDERED_PLAYER_CARD_CODES = [
+  ...TOKEN_SKILL_RENDERED_CODES,
   ...SERVICE_RENDERED_CODES,
   ...TEST_RECOVERY_RENDERED_CODES,
   ...PROTECTION_TOOL_RENDERED_CODES,
