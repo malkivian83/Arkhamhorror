@@ -711,6 +711,10 @@ Siguen abiertos F8 y N4.
   del motor lleva ahora en `promptParams` el daño y el horror pendientes; las grabaciones
   no cambian. Localmente, el reparto entra en el historial como una respuesta por punto: el
   deshacer por paso retrocede un punto.
+- **D10 · corregido:** el acto muestra las pistas del grupo frente a las necesarias
+  («3/8»), resaltadas cuando ya bastan; el título da el detalle. Las fichas de daño y horror
+  destellan al cambiar de valor, en investigadores, apoyos y enemigos (sin animación con
+  movimiento reducido).
 - **Sin cambiar:** la derrota simultánea de E12 (cada punto sigue siendo un `TakeDamage`
   con su `CheckDefeat`). Corregirla exige cambiar la asignación del motor.
 

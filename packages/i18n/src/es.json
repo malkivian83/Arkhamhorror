@@ -1521,6 +1521,7 @@
     "victory": "Zona de victoria",
     "doom": "Perdición",
     "doomBreakdown": "Perdición en juego: {agenda} en el plan y {other} en otras cartas",
+    "groupClues": "El grupo tiene {have} de las {need} pistas que pide el acto",
     "clues": "Pistas",
     "resources": "Recursos",
     "actions": "Acciones",

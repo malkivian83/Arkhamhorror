@@ -49,6 +49,10 @@ const hideUnrevealed = computed(() =>
   THE_PATH_TO_CARCOSA.scenarios.some((id) => id === props.state.scenarioId),
 )
 const actClues = computed(() => cluesToAdvanceAct(props.state))
+/** Pistas que el grupo puede gastar ya en el acto (doc 100, D10). */
+const groupClues = computed(() =>
+  props.state.investigators.reduce((sum, i) => sum + (i.eliminated ? 0 : i.clues), 0),
+)
 /** Traiciones en juego junto al mazo de Plan (Un público difícil, Cieno e impurezas). */
 const besideAgenda = computed(() =>
   Object.values(props.state.treacheries).filter((tr) => tr.placement.type === 'agenda'),
@@ -183,10 +187,13 @@ const sortedBag = computed(() =>
           color="#2c5a7a"
         />
         <span v-if="actClues !== null" class="group-metric">
-          <span class="metric-value"
-            ><TokenBadge kind="clue" value="" :size="20" aria-hidden="true" /><strong>{{
-              actClues
-            }}</strong></span
+          <span
+            class="metric-value"
+            :class="{ ready: groupClues >= actClues }"
+            :title="t('table.groupClues', { have: groupClues, need: actClues })"
+            ><TokenBadge kind="clue" value="" :size="20" aria-hidden="true" /><strong
+              >{{ groupClues }}/{{ actClues }}</strong
+            ></span
           >
           <span class="stat-label">{{ t('table.clues') }}</span>
         </span>
@@ -440,6 +447,10 @@ const sortedBag = computed(() =>
   font-size: 0.95rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
+}
+/* El grupo ya tiene las pistas que pide el acto. */
+.metric-value.ready strong {
+  color: var(--accent);
 }
 .scenario-stat {
   flex: 0 0 auto;

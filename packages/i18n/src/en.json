@@ -1521,6 +1521,7 @@
     "victory": "Victory display",
     "doom": "Doom",
     "doomBreakdown": "Doom in play: {agenda} on the agenda and {other} on other cards",
+    "groupClues": "The group has {have} of the {need} clues the act requires",
     "clues": "Clues",
     "resources": "Resources",
     "actions": "Actions",
