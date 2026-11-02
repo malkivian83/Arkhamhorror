@@ -10,6 +10,7 @@ export type TableController = Pick<
   | 'untargetedChoices'
   | 'answer'
   | 'answerLabel'
+  | 'answerSequence'
   | 'advanceReview'
   | 'acceptAdvance'
   | 'autoSteps'

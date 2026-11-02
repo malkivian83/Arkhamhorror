@@ -700,6 +700,20 @@ Siguen abiertos F8 y N4.
 - **R2 · mitigado:** `robots.txt` excluye `/local-assets/` y se mantiene el aviso de no
   afiliación. Decisión del propietario: más adelante, la web pasará a requerir registro.
 
+### Reparto de daño (02/11/2026)
+
+- **D4 · corregido:** con 2 o más puntos que asignar, la mesa abre un panel con el
+  investigador y sus apoyos, con +/− para daño y horror a la vez. Todo empieza en el
+  investigador. Al confirmar, la mesa responde las preguntas del motor punto a punto,
+  primero los apoyos (`answerSequence` en el almacén local y en la partida online), así que
+  siguen aplicándose los límites por rasgo, «asignar primero» y demás reglas. Si aparece otra
+  pregunta o el plan deja de encajar, el resto se asigna en la mesa como antes. La pregunta
+  del motor lleva ahora en `promptParams` el daño y el horror pendientes; las grabaciones
+  no cambian. Localmente, el reparto entra en el historial como una respuesta por punto: el
+  deshacer por paso retrocede un punto.
+- **Sin cambiar:** la derrota simultánea de E12 (cada punto sigue siendo un `TakeDamage`
+  con su `CheckDefeat`). Corregirla exige cambiar la asignación del motor.
+
 ### Orden sugerido
 
 1. **Subir N1–N3**, que corrigen mis propios cambios. N1 bloquea campañas online.

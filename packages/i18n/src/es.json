@@ -1616,6 +1616,14 @@
       "leads": "Indicios",
       "catacombs": "Catacumbas"
     },
+    "damagePlan": {
+      "title": "Reparte el daño y el horror",
+      "remaining": "{damage} daño y {horror} horror",
+      "confirm": "Confirmar reparto",
+      "oneByOne": "Punto a punto en la mesa",
+      "less": "Uno menos a {name}",
+      "more": "Uno más a {name}"
+    },
     "advanceReview": {
       "setup": "Preparación de la partida",
       "setupEyebrow": "Empieza el escenario",

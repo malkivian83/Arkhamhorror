@@ -1616,6 +1616,14 @@
       "leads": "Leads",
       "catacombs": "Catacombs"
     },
+    "damagePlan": {
+      "title": "Split the damage and horror",
+      "remaining": "{damage} damage and {horror} horror",
+      "confirm": "Confirm split",
+      "oneByOne": "Point by point on the table",
+      "less": "One less to {name}",
+      "more": "One more to {name}"
+    },
     "advanceReview": {
       "setup": "Game setup",
       "setupEyebrow": "The scenario begins",

@@ -22,6 +22,7 @@ import {
   type Choice,
   type ChoiceTarget,
   type GameState,
+  type PlayerInput,
 } from '@lcg/engine'
 import { defineStore } from 'pinia'
 import { computed, nextTick, shallowRef } from 'vue'
@@ -325,26 +326,44 @@ export const useGameStore = defineStore('game', () => {
   }
 
   function answer(index: number) {
+    answerSequence((_, n) => (n === 0 ? index : null))
+  }
+
+  /**
+   * Answers several questions in a row as one table update: `pick` gets each new state and
+   * returns the choice to make, or null to stop and leave the question to the player
+   * (damage assignment, doc 100, D4).
+   */
+  function answerSequence(pick: (state: GameState, step: number) => number | null) {
     const current = latest
     if (advanceReview.value.length || !current?.pending) return
     // During the movement transition the table still shows the previous question: an index
     // chosen there (click or 1-9/D/R) would answer a different one. Ignore it until it lands.
     if (state.value !== current) return
-    const input = { investigator: current.pending.investigator, choice: index }
     try {
       const review = createAdvanceReview(current)
       const steps = createAutoSteps(current)
       const cards = createCardEntries()
-      const next = applyInput(current, input, (before, message, after) => {
-        review.observe(before, message, after)
-        steps.observe(before, message, after)
-        cards.observe(before, message, after)
-      })
       const h = history.value
-      if (h) remember(h.base, h.inputs.length + 1, next)
+      const inputs: PlayerInput[] = []
+      const marks: ReturnType<typeof markOf>[] = []
+      let next = current
+      for (let index = pick(next, 0); index !== null && next.pending;) {
+        const input = { investigator: next.pending.investigator, choice: index }
+        next = applyInput(next, input, (before, message, after) => {
+          review.observe(before, message, after)
+          steps.observe(before, message, after)
+          cards.observe(before, message, after)
+        })
+        inputs.push(input)
+        marks.push(markOf(next))
+        if (h) remember(h.base, h.inputs.length + inputs.length, next)
+        index = next.pending && !next.outcome ? pick(next, inputs.length) : null
+      }
+      if (!inputs.length) return
       set(
         next,
-        h && { base: h.base, inputs: [...h.inputs, input], marks: [...h.marks, markOf(next)] },
+        h && { base: h.base, inputs: [...h.inputs, ...inputs], marks: [...h.marks, ...marks] },
         review.finish(next),
         // Con el visor desactivado no se abre el resumen de pasos automáticos.
         showAutoSteps.value ? steps.finish(next) : null,
@@ -504,6 +523,7 @@ export const useGameStore = defineStore('game', () => {
     replaceMember,
     abandonCampaign,
     answer,
+    answerSequence,
     answerLabel,
     quit,
     undo,

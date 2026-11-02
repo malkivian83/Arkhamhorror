@@ -98,6 +98,17 @@ export function onlineTable(client: ReturnType<typeof gameClient>): TableControl
       const index = state.value?.pending?.question.choices.findIndex((c) => c.label === label) ?? -1
       if (index >= 0) void client.choose(index)
     },
+    /** One command per answer, each after the server has resolved the previous one. */
+    async answerSequence(pick: (state: GameState, step: number) => number | null) {
+      for (let step = 0; ; step++) {
+        const current = state.value
+        const revision = client.state.value?.revision
+        const index = current?.pending ? pick(current, step) : null
+        if (index === null || !current?.pending?.question.choices[index]) return
+        await client.choose(index)
+        if (client.error.value || client.state.value?.revision === revision) return
+      }
+    },
     advanceReview: advance,
     acceptAdvance() {
       advance.value.shift()

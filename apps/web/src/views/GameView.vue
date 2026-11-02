@@ -10,6 +10,7 @@ import CardInspector from '../components/CardInspector.vue'
 import CardZoom from '../components/CardZoom.vue'
 import CardPileModal from '../components/CardPileModal.vue'
 import ChoiceModal from '../components/ChoiceModal.vue'
+import DamageAssignment from '../components/DamageAssignment.vue'
 import DrawSpotlight from '../components/DrawSpotlight.vue'
 import LocationMap from '../components/LocationMap.vue'
 import MulliganNotice from '../components/MulliganNotice.vue'
@@ -156,6 +157,7 @@ const shown = computed(
       <CardZoom />
     </div>
     <ChoiceModal :state="state" />
+    <DamageAssignment :state="state" />
     <StoryModal :state="state" />
     <CardPileModal />
     <DrawSpotlight :state="state" @dismissed="finishDraw" />
