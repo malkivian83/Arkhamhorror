@@ -17,6 +17,7 @@ import './protection-tools'
 import './test-recovery'
 import './services-parley'
 import './token-skills'
+import './conditional-assets'
 import './rex-murphy'
 import './grouped-import'
 import './immediate-action-events'
@@ -868,7 +869,7 @@ export function purchaseOptions(
         (byCode(code)?.exceptional ? 2 : 1)
       const upgrade: PurchaseOption[] = lower.map((replaces) => ({
         ...base,
-        cost: price(card.code) - price(replaces),
+        cost: myriadCreditSource(self, card.code) ? 0 : price(card.code) - price(replaces),
         replaces,
         needsRemoval: false,
       }))
@@ -879,7 +880,7 @@ export function purchaseOptions(
               {
                 ...base,
                 cost:
-                  (card.myriad && (self.myriadCredits?.[card.code] ?? 0) > 0) ||
+                  myriadCreditSource(self, card.code) ||
                   (short && base.level === 0 && !isPermanent(card.code))
                     ? 0
                     : Math.max(0, Math.max(1, price(card.code)) - dejaVu(self, deck, card.code)),
@@ -892,6 +893,18 @@ export function purchaseOptions(
 }
 
 const DEJA_VU = '60531'
+/** Myriad copies share their title and level, including different print codes. */
+function myriadCreditSource(self: CampaignInvestigator, code: CardCode): CardCode | undefined {
+  const card = byCode(code)
+  if (!card?.myriad) return undefined
+  return Object.keys(self.myriadCredits ?? {}).find(
+    (source) =>
+      (self.myriadCredits?.[source] ?? 0) > 0 &&
+      byCode(source)?.myriad &&
+      byCode(source)?.name === card.name &&
+      (byCode(source)?.xp ?? 0) === (card.xp ?? 0),
+  )
+}
 
 /** Déjà Vu: 1 less to repurchase a card exiled during the last scenario (up to 3 cards). */
 function dejaVu(member: CampaignInvestigator, deck: CardCode[], code: CardCode): number {
@@ -997,6 +1010,7 @@ export function purchase(
   const discounted = !option.replaces && !freeFill && dejaVu(self, self.deck, card) > 0
   const exiled = [...(self.exiled ?? [])]
   if (discounted) exiled.splice(exiled.indexOf(card), 1)
+  const myriadSource = myriadCreditSource(self, card)
   return {
     ...campaign,
     investigators: campaign.investigators.map((i) => {
@@ -1007,11 +1021,11 @@ export function purchase(
         deck,
         ...(customizations ? { customizations } : {}),
         ...(discounted ? { exiled, dejaVuUsed: (i.dejaVuUsed ?? 0) + 1 } : {}),
-        ...(byCode(card)?.myriad && !option.replaces
+        ...(byCode(card)?.myriad
           ? {
               myriadCredits: {
                 ...i.myriadCredits,
-                [card]: (i.myriadCredits?.[card] ?? 0) > 0 ? i.myriadCredits![card]! - 1 : 2,
+                [myriadSource ?? card]: myriadSource ? i.myriadCredits![myriadSource]! - 1 : 2,
               },
             }
           : {}),

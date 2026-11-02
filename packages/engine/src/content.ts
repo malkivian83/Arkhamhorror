@@ -807,6 +807,12 @@ export interface PlayerCardBehavior {
   onCommit?: (state: GameState, by: InvestigatorId) => Message[]
   /** Aumenta el tamaño máximo de mano de su controlador. */
   handSize?: number
+  /** Only one copy by title counts toward the hand limit (Dream-Enhancing Serum). */
+  ignoresDuplicateHandCards?: boolean
+  /** Optional additional clue before a local discovery while its controller has none. */
+  extraClueWhenEmpty?: boolean
+  /** Open the post-resolution play window for events that chain another copy. */
+  afterEventPlayWindow?: boolean
   /** Puede recibir el daño de otros investigadores de su localización (Bodyguard). */
   soaksForOthers?: boolean
   /**

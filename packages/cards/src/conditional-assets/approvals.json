@@ -1,0 +1,65 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "7621b111573db488d97138b7732860d3a1fee656676e5d892ffc207a52fbdc21",
+    "es": "717624237c0fff96f1191c75faf8cc55ef6f77072c60473b289b69ded96763e5"
+  },
+  "cards": [
+    {
+      "code": "06026",
+      "status": "verified",
+      "module": "card-06026",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-myriad-v1"
+    },
+    {
+      "code": "11096",
+      "status": "verified",
+      "module": "card-11096",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-myriad-v1"
+    },
+    {
+      "code": "06323",
+      "status": "verified",
+      "module": "card-06323",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-myriad-v1"
+    },
+    {
+      "code": "11090",
+      "status": "verified",
+      "module": "card-11090",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-myriad-v1"
+    },
+    {
+      "code": "10127",
+      "status": "verified",
+      "module": "card-10127",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-dark-horse-v1"
+    },
+    {
+      "code": "03313",
+      "status": "verified",
+      "module": "card-03313",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "06159",
+      "status": "verified",
+      "module": "card-06159",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04158",
+      "status": "verified",
+      "module": "card-04158",
+      "test": "rules.test.ts"
+    }
+  ]
+}

@@ -2371,6 +2371,43 @@ export function handle(state: GameState, message: Message): GameState {
         )
       )
         return state
+      if (
+        investigator.clues === 0 &&
+        where === investigator.location &&
+        location.clues > amount &&
+        !assetsBlocked(state, investigator.id)
+      ) {
+        const source = Object.values(state.assets).find(
+          (a) =>
+            a.owner === investigator.id &&
+            cardAllowed(state, a.owner, a.code) &&
+            assetBehavior(state, a)?.extraClueWhenEmpty &&
+            !message.emptyClueChecked?.includes(a.id),
+        )
+        if (source) {
+          const next = {
+            ...message,
+            emptyClueChecked: [...(message.emptyClueChecked ?? []), source.id],
+          }
+          return push(state, {
+            type: 'Ask',
+            investigator: investigator.id,
+            question: {
+              kind: 'chooseOne',
+              alwaysAsk: true,
+              prompt: 'prompt.reaction',
+              choices: [
+                {
+                  label: 'choice.conditionalClue',
+                  params: { card: playerCardDef(source.code)?.name ?? source.code },
+                  then: [{ ...next, amount: message.amount + 1 }],
+                },
+                { label: 'choice.skip', then: [next] },
+              ],
+            },
+          })
+        }
+      }
       return push(
         updateInvestigator(
           updateLocation(state, location.id, (l) => ({ ...l, clues: l.clues - amount })),
@@ -3271,13 +3308,25 @@ export function handle(state: GameState, message: Message): GameState {
           ...(message.x !== undefined ? { tokens: { uses: message.x } } : {}),
         })
       }
+      const after: Message[] = playerCardBehavior(message.code)?.afterEventPlayWindow
+        ? [
+            {
+              type: 'Forced',
+              trigger: {
+                type: 'afterEventPlayed',
+                investigator: investigator.id,
+                code: message.code,
+              },
+            },
+          ]
+        : []
       // Ward of Preservation: el escenario puede cancelar los efectos del evento.
       const cancelled = scenarioBehavior(state.scenarioId)?.eventPlayed?.(
         state,
         investigator.id,
         message.code,
       )
-      if (cancelled) return push(state, ...cancelled)
+      if (cancelled) return push(state, ...cancelled, ...after)
       const effect =
         message.effect ??
         playerCardBehavior(message.code)?.play?.(
@@ -3289,7 +3338,7 @@ export function handle(state: GameState, message: Message): GameState {
           message.variant,
         ) ??
         []
-      return push(state, ...playerSourceMessages(effect, message.code))
+      return push(state, ...playerSourceMessages(effect, message.code), ...after)
     }
 
     case 'PutAssetIntoPlay': {
@@ -4530,6 +4579,19 @@ export function handle(state: GameState, message: Message): GameState {
             },
           }
         : state
+    case 'NameSkillTestToken': {
+      const test = state.skillTest,
+        asset = state.assets[message.asset]
+      return test && asset?.owner === test.investigator
+        ? {
+            ...state,
+            skillTest: {
+              ...test,
+              tokenPredictions: { ...test.tokenPredictions, [asset.id]: message.token },
+            },
+          }
+        : state
+    }
     case 'TrackSkillTestReveals':
       return state.skillTest
         ? {
@@ -8619,9 +8681,26 @@ export function cardsInHand(state: GameState, investigator: string): number {
   const hidden = Object.values(state.treacheries).filter(
     (t) =>
       t.hidden && t.placement.type === 'threatArea' && t.placement.investigator === investigator,
-  ).length
+  )
   const weight = scenarioBehavior(state.scenarioId)?.hiddenHandWeight?.(state, investigator) ?? 1
-  return getInvestigator(state, investigator).hand.length + hidden * weight
+  const hand = getInvestigator(state, investigator).hand
+  if (
+    Object.values(state.assets).some(
+      (a) => a.owner === investigator && assetBehavior(state, a)?.ignoresDuplicateHandCards,
+    )
+  ) {
+    const seen = new Set(hand.map((code) => playerCardDef(code)?.name ?? code))
+    let size = seen.size
+    for (const card of hidden) {
+      const title = playerCardDef(card.code)?.name ?? card.name
+      if (!seen.has(title)) {
+        seen.add(title)
+        size += weight
+      }
+    }
+    return size
+  }
+  return hand.length + hidden.length * weight
 }
 
 /** Tamaño máximo de mano: 8 más lo que den sus apoyos. */

@@ -733,6 +733,7 @@ export interface SkillTest {
   chooseToken?: InvestigatorId
   /** Fichas sacadas pero ignoradas: vuelven a la bolsa al terminar la prueba. */
   ignoredTokens?: ChaosToken[]
+  tokenPredictions?: Record<AssetId, ChaosToken>
   /** Only recorded for cards that count canceled/ignored reveals (Confidence). */
   revealCount?: number
   ignoredTokenEffects?: ChaosToken[]
@@ -966,6 +967,7 @@ export type Message =
   /** En su localización o en `location`. */
   | {
       type: 'DiscoverClues'
+      emptyClueChecked?: AssetId[]
       investigator: InvestigatorId
       amount: number
       location?: LocationId
@@ -1202,6 +1204,7 @@ export type Message =
   | { type: 'CancelRevealedToken'; redraw?: boolean; use?: string }
   | { type: 'IgnoreSkillTestTokens'; tokens: ChaosToken[] }
   | { type: 'TrackSkillTestReveals' }
+  | { type: 'NameSkillTestToken'; asset: AssetId; token: ChaosToken }
   /** Return resolved tokens and reveal afresh, retaining commitments and per-test usage. */
   | { type: 'RedrawSkillTestTokens'; use: string }
   /** Cancel the held token and treat it as another symbol (Father Mateo). */
@@ -1913,6 +1916,7 @@ export type Trigger =
   | { type: 'afterPlayAsset'; investigator: InvestigatorId; code: CardCode; asset?: AssetId }
   /** Se ha jugado una carta (pagado su coste), de cualquier tipo (Acordes tortuosos). */
   | { type: 'afterPlayCard'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'afterEventPlayed'; investigator: InvestigatorId; code: CardCode }
   | { type: 'afterActionAbility'; investigator: InvestigatorId; code: CardCode }
   | { type: 'afterAssetEntersPlay'; investigator: InvestigatorId; asset: AssetId }
   | { type: 'afterDrawCard'; investigator: InvestigatorId; card: CardCode }
