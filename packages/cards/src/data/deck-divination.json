@@ -1,0 +1,63 @@
+[
+  {
+    "code": "01061",
+    "name": "Scrying",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "intellect": 1 },
+    "slots": ["arcane"],
+    "uses": { "type": "charges", "count": 3 }
+  },
+  {
+    "code": "03236",
+    "name": "Scrying",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Spell"],
+    "cost": 1,
+    "xp": 3,
+    "icons": { "intellect": 2 },
+    "slots": ["arcane"],
+    "uses": { "type": "charges", "count": 3 }
+  },
+  {
+    "code": "02232",
+    "name": "Alyssa Graham",
+    "subname": "Speaker to the Dead",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Ally", "Sorcerer"],
+    "unique": true,
+    "cost": 4,
+    "xp": 0,
+    "icons": { "intellect": 1 },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 3
+  },
+  {
+    "code": "60415",
+    "name": "Parallel Fates",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Augury"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "08066",
+    "name": "Parallel Fates",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Augury"],
+    "cost": 0,
+    "xp": 2,
+    "icons": { "willpower": 1, "wild": 1 },
+    "slots": []
+  }
+]

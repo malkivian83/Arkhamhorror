@@ -403,6 +403,15 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "divinationDraw": "Draw 1 card",
+    "divinationOrder": "Order the cards on top of their deck",
+    "divinationShuffle": "Shuffle the cards into their deck",
+    "divinationBury": "Add 1 doom to {card}: place {seen} on the bottom",
+    "divinationSeen": "Looked-at cards: {cards}",
+    "divinationNext": "Place {card} in position {n}",
+    "divinationUse": "Use {card}",
+    "divinationEncounter": "Look at the encounter deck",
+    "divinationDeck": "Look at {name}’s deck",
     "conditionalToken": "Name {token}",
     "conditionalRecall": "Name a token with {card}",
     "conditionalReveal": "{name} reveals two copies of {card}",
@@ -3170,6 +3179,7 @@
   },
   "offlineCard": {
     "subnames": {
+      "02232": "Speaker to the Dead",
       "53004": "Transient Thoughts",
       "04230": "Knowledge of the Elders",
       "04231": "Minds in Harmony",
@@ -3243,6 +3253,11 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "60415": "Augury.",
+      "01061": "Spell.",
+      "03236": "Spell.",
+      "02232": "Ally. Sorcerer.",
+      "08066": "Augury.",
       "10127": "Condition.",
       "11090": "Blessed. Fortune.",
       "11096": "Spirit.",
@@ -3757,6 +3772,11 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "60415": "Look at the top 4 cards of the encounter deck. Reveal a random token from the chaos bag. If it has a [skull], [cultist], [tablet], [elder_thing], or [auto_fail] symbol, shuffle those cards into the encounter deck. Otherwise, return them to the top of the encounter deck in any order.",
+      "01061": "Uses (3 charges).\n[action] Exhaust Scrying and spend 1 charge: Look at the top 3 cards of any investigator's deck or the encounter deck. Return them to the top of that deck in any order.",
+      "03236": "Uses (3 charges).\n[fast] Exhaust Scrying and spend 1 charge: Look at the top 3 cards of any investigator's deck, or the encounter deck. Return them to the top of that deck, in any order. If a [[Terror]] or [[Omen]] card is among the looked-at cards, take 1 horror.",
+      "02232": "You get +1 [intellect].\n[fast] Exhaust Alyssa Graham: Look at the top card of either the encounter deck or any player deck. You may then add 1 doom to Alyssa Graham to place the looked-at card on the bottom of its deck.",
+      "08066": "Look at the top 6 cards of an investigator's deck or the encounter deck. You may either return them to the top of that deck in any order, or shuffle them into that deck. If you looked at an investigator's deck, that investigator may draw 1 card.",
       "10127": "Permanent. Limit 1 per deck.\nDuring the upkeep phase, you may choose to not gain resources.\nWhile you have no resources in your resource pool, you get +1 [willpower], +1 [intellect], +1 [combat], and +1 [agility].",
       "11090": "Myriad.\nA Glimmer of Hope can only be played from your discard pile.\nAdd all copies of A Glimmer of Hope in your discard pile to your hand <i>(including this copy)</i>.",
       "11096": "Myriad.\nHeal 1 damage or 1 horror from an investigator or [[Ally]] asset at your location.\n[reaction] After an investigator at your location plays Short Rest: Play another Short Rest from your hand <i>(paying its cost)</i>.",
@@ -4708,6 +4728,11 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "60415": "Parallel Fates",
+      "01061": "Scrying",
+      "03236": "Scrying",
+      "02232": "Alyssa Graham",
+      "08066": "Parallel Fates",
       "10127": "Dark Horse",
       "11090": "A Glimmer of Hope",
       "11096": "Short Rest",

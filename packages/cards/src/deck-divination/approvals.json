@@ -1,0 +1,45 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "0d661c5361511fe28215b741c9b220a7e63d6a24c2635040428a679bf682c8a3",
+    "es": "8ead0d84c2c1ecc91a2d33ac0e18845d8bfc372b4e99312b5c9e62a562b7d296"
+  },
+  "cards": [
+    {
+      "code": "01061",
+      "status": "verified",
+      "module": "card-01061",
+      "test": "rules.test.ts",
+      "uses": { "type": "charges", "count": 3 }
+    },
+    {
+      "code": "03236",
+      "status": "verified",
+      "module": "card-03236",
+      "test": "rules.test.ts",
+      "uses": { "type": "charges", "count": 3 }
+    },
+    {
+      "code": "02232",
+      "status": "verified",
+      "module": "card-02232",
+      "test": "rules.test.ts",
+      "subname": "Speaker to the Dead"
+    },
+    {
+      "code": "60415",
+      "status": "verified",
+      "module": "card-60415",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08066",
+      "status": "verified",
+      "module": "card-08066",
+      "test": "rules.test.ts"
+    }
+  ]
+}

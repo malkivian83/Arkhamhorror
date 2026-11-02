@@ -49,3 +49,13 @@
 - Validación: 25 pruebas de reglas, 17 de integración; adaptadores y consumidores afectados. Batería dirigida: 333 correctas y cuatro fallos de fixture corregidos; pasan sus casos y los nuevos de fin de prueba. Tipos cards/engine, lint/formato y build web del alcance. Reutilizar mientras no cambien reglas, contratos, registros, presentación, recursos o dependencias afectados.
 - Git: pull impedido por cambios conservados; fetch confirma main remoto idéntico antes de verificar. JSON preparados solo con adiciones propias sobre HEAD, conservando valores históricos y cambios ajenos. Pull final impedido por esos cambios; fetch confirmó igualdad con origin/main. Push correcto.
 - Siguiente grupo: buscar 30–50 cartas/niveles con mecánicas compartidas, sin rellenar con reediciones. Conservar bloqueos de 98/99/101/102/104/105: intercambio de movimientos, predicciones y cartas sin reglas revisadas.
+
+## Lote 107 · conditional-assets
+
+- Último lote: `conditional-assets`, documento [107](107-myriad-y-apoyos-condicionales.md), ocho códigos y ocho cartas/niveles nuevos; sin reediciones. Preparado sobre `3e265ea6`, un solo agente. Publicado en main como 248e36c2: «Añadir ocho cartas de Myriad y apoyos condicionales». Push correcto.
+- Alcance: cuatro Myriad, Dark Horse 5, Newspaper 2, Dream-Enhancing Serum y Recall the Future. Incluye créditos de mejora Myriad, recuperación de niveles distintos y resolución completa antes de encadenar eventos. Black Fan 08057 excluido por ser equivalente al jugable 60379.
+- Acumulado: 1080 jugables; 1002 históricos, 981 históricos pendientes, incluidos 590 estándar. Los pendientes incluyen impresiones. Ocho títulos/niveles nuevos y huellas EN/ES comprobados automáticamente.
+- Presentación: EN/ES, dieciséis escaneos y dieciséis miniaturas nuevos, revisados en hoja de contacto. Sin cambios de interfaz.
+- Validación: 103 pruebas nuevas/de conversión y 145 de consumidores afectados. Tipos cards/engine, formato/lint del alcance y build web. Reutilizar mientras no cambien reglas, contratos, registros, presentación, recursos o dependencias afectados; documentación y commit no invalidan resultados.
+- Git: pull inicial/final impedido por cambios conservados; fetch final confirma igualdad con origin/main. Preparadas únicamente adiciones propias de los JSON compartidos, conservando sus valores históricos y cambios ajenos.
+- Siguiente grupo: priorizar cartas/niveles nuevos por mecánicas compartidas, buscando 30–50 cuando sea viable. Conservar bloqueos de 98/99/101/102/104/105; Yaotl requiere revisar iconos, Empower Self sustitución/huecos compartidos, Prophesiae Profana discrepancia de edición y Pocket Telescope reglas de “como si”.

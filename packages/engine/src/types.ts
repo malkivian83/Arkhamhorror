@@ -1711,6 +1711,14 @@ export type Message =
       discount?: number
     }
   | { type: 'ShuffleDeck'; investigator: InvestigatorId }
+  /** Reorder the inspected top cards by physical position; never searches or draws them. */
+  | {
+      type: 'ReorderDeck'
+      investigator?: InvestigatorId
+      count: number
+      order: number[]
+      to?: 'top' | 'bottom' | 'shuffle'
+    }
   /** Busca en las primeras cartas del mazo de encuentros un enemigo no Élite y lo roba. */
   | { type: 'SearchEncounterForEnemy'; investigator: InvestigatorId; top: number }
   | { type: 'DisengageAll'; investigator: InvestigatorId }

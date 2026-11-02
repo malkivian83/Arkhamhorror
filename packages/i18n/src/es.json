@@ -403,6 +403,15 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "divinationDraw": "Robar 1 carta",
+    "divinationOrder": "Ordenar las cartas encima del mazo",
+    "divinationShuffle": "Barajar las cartas en su mazo",
+    "divinationBury": "Añadir 1 perdición a {card}: colocar {seen} debajo del mazo",
+    "divinationSeen": "Cartas miradas: {cards}",
+    "divinationNext": "Colocar {card} en la posición {n}",
+    "divinationUse": "Usar {card}",
+    "divinationEncounter": "Mirar el mazo de Encuentros",
+    "divinationDeck": "Mirar el mazo de {name}",
     "conditionalToken": "Nombrar {token}",
     "conditionalRecall": "Nombrar una ficha con {card}",
     "conditionalReveal": "{name} revela dos copias de {card}",
@@ -3170,6 +3179,7 @@
   },
   "offlineCard": {
     "subnames": {
+      "02232": "Oradora de los muertos",
       "53004": "Pensamientos pasajeros",
       "04230": "Conocimiento de los ancianos",
       "04231": "Mentes en armonía",
@@ -3243,6 +3253,11 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "60415": "Presagio.",
+      "01061": "Hechizo.",
+      "03236": "Hechizo.",
+      "02232": "Aliado. Hechicero.",
+      "08066": "Presagio.",
       "10127": "Estado.",
       "11090": "Bendecido. Fortuna.",
       "11096": "Espíritu.",
@@ -3757,6 +3772,11 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "60415": "Mira las 4 primeras cartas del mazo de Encuentros. Revela una ficha aleatoria de la bolsa de caos. Si tiene un símbolo [skull], [cultist], [tablet], [elder_thing] o [auto_fail], devuelve esas cartas al mazo de Encuentros y barájalo. Si no es así, devuélvelas a la parte superior del mazo de Encuentros en cualquier orden.",
+      "01061": "Usos (3 cargas).\n[action] Agota la Videncia y gasta 1 carga: Mira las 3 primeras cartas del mazo de cualquier investigador o del mazo de Encuentros. Devuélvelas a la parte superior de ese mazo en cualquier orden.",
+      "03236": "Usos (3 cargas).\n[free] Agota la Videncia y gasta 1 carga: Mira las 3 primeras cartas del mazo de cualquier investigador o del mazo de Encuentros. Devuélvelas a la parte superior de ese mazo en cualquier orden. Si hay una carta [[Terror]] o [[Augurio]] entre las cartas miradas, recibe 1 punto de horror.",
+      "02232": "Recibes +1 [intellect].\n[free] Agota a Alyssa Graham: Mira la primera carta del mazo de Encuentros o de cualquier mazo de Jugador. A continuación, puedes añadir 1 ficha de Perdición a Alyssa Graham para colocar la carta mirada en la parte inferior de su mazo.",
+      "08066": "Mira las 6 primeras cartas del mazo de un investigador o del mazo de Encuentros. Puedes devolverlas a la parte superior de ese mazo en cualquier orden o bien devolverlas a ese mazo y barajarlo. Si miraste el mazo de un investigador, ese investigador puede robar 1 carta.",
       "10127": "Permanente. Límite de 1 por mazo.\nDurante la fase de Mantenimiento, puedes elegir no obtener recursos.\nMientras no tengas recursos en tu reserva de recursos, recibes +1 [willpower], +1 [intellect], +1 [combat], y +1 [agility].",
       "11090": "Miríada.\nUn destello de esperanza sólo puede jugarse desde tu pila de descartes.\nAñade todas las copias de Un destello de esperanza de tu pila de descartes a tu mano <i>(incluida esta copia)</i>.",
       "11096": "Miríada.\nCura 1 punto de daño o 1 punto de horror de un investigador o de un Apoyo [[Aliado]] que esté en tu Lugar.\n[reaction] Después de que un investigador que esté en tu Lugar juegue el Descanso breve: Juega otro Descanso breve desde tu mano <i>(pagando su coste)</i>.",
@@ -4708,6 +4728,11 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "60415": "Destinos paralelos",
+      "01061": "Videncia",
+      "03236": "Videncia",
+      "02232": "Alyssa Graham",
+      "08066": "Destinos paralelos",
       "10127": "Hermético",
       "11090": "Un destello de esperanza",
       "11096": "Descanso breve",
