@@ -11,7 +11,7 @@ import { mailer, type SendMail } from './accounts/mail'
 import { ApiError } from './accounts/security'
 import { serveWeb } from './web'
 import { dashboard } from './accounts/dashboard'
-import { onlineLobbies } from './online/lobbies'
+import { LobbyService, onlineLobbies } from './online/lobbies'
 
 export const SERVER_VERSION = '0.0.0'
 
@@ -73,7 +73,10 @@ export async function buildApp(
     const connection = options.db ? null : database(config.databaseUrl)
     const db = options.db ?? connection!.db
     if (connection) app.addHook('onClose', () => connection.close())
-    const auth = authentication(app, db, config, options.sendMail ?? mailer(config))
+    const lobbies = new LobbyService(db)
+    const auth = authentication(app, db, config, options.sendMail ?? mailer(config), (user) =>
+      lobbies.handOver(user),
+    )
     library(app, db, auth)
     onlineLobbies(app, db, auth)
     dashboard(app, db, auth, config)

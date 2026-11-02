@@ -95,6 +95,14 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
     advanceReviews: (lobby.advanceReviews ?? []).flatMap(({ revision, frames }) =>
       frames[user]?.length ? [{ revision, frames: frames[user]! }] : [],
     ),
+    ...(lobby.rulesUpdate ? { rulesUpdate: lobby.rulesUpdate } : {}),
+    room: {
+      owner: lobby.owner === user,
+      members: lobby.members.map((member) => ({
+        user: member,
+        investigator: lobby.decks?.[member]?.investigator ?? null,
+      })),
+    },
     table: tableView(g, mine),
     tableStats: tableStats(g),
     ...(mine ? { ownInvestigator: mine } : {}),
