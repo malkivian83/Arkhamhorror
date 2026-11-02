@@ -1,0 +1,100 @@
+[
+  {
+    "code": "06026",
+    "name": "Easy Mark",
+    "type": "event",
+    "class": "rogue",
+    "myriad": true,
+    "deckLimit": 3,
+    "traits": ["Trick"],
+    "cost": 0,
+    "xp": 1,
+    "icons": { "intellect": 1, "agility": 1 },
+    "slots": []
+  },
+  {
+    "code": "11096",
+    "name": "Short Rest",
+    "type": "event",
+    "class": "neutral",
+    "myriad": true,
+    "deckLimit": 3,
+    "traits": ["Spirit"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "willpower": 1 },
+    "slots": []
+  },
+  {
+    "code": "06323",
+    "name": "Spiritual Resolve",
+    "type": "asset",
+    "class": "guardian",
+    "myriad": true,
+    "deckLimit": 3,
+    "traits": ["Ritual"],
+    "cost": 3,
+    "xp": 5,
+    "icons": { "willpower": 1 },
+    "slots": ["arcane"],
+    "health": 3,
+    "sanity": 3
+  },
+  {
+    "code": "11090",
+    "name": "A Glimmer of Hope",
+    "type": "event",
+    "class": "survivor",
+    "myriad": true,
+    "deckLimit": 3,
+    "traits": ["Blessed", "Fortune"],
+    "cost": 1,
+    "xp": 2,
+    "icons": { "willpower": 1, "agility": 1, "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "10127",
+    "name": "Dark Horse",
+    "type": "asset",
+    "class": "survivor",
+    "deckLimit": 1,
+    "traits": ["Condition"],
+    "xp": 5,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "03313",
+    "name": "Newspaper",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item"],
+    "cost": 1,
+    "xp": 2,
+    "icons": { "intellect": 2 },
+    "slots": ["hand"]
+  },
+  {
+    "code": "06159",
+    "name": "Dream-Enhancing Serum",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Science"],
+    "cost": 3,
+    "xp": 0,
+    "icons": { "willpower": 1 },
+    "slots": ["arcane"]
+  },
+  {
+    "code": "04158",
+    "name": "Recall the Future",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Augury", "Ritual"],
+    "cost": 2,
+    "xp": 2,
+    "icons": { "intellect": 1, "agility": 1 },
+    "slots": []
+  }
+]

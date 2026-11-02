@@ -87,11 +87,24 @@ export function approvedDefinition(card, approval) {
     ['02114', '03156', '03157', '08080'].includes(card.code)
   const reviewedBorrowedTime =
     approval.adapter === 'reviewed-borrowed-time-v1' && card.code === '04308'
+  const reviewedDarkHorse =
+    approval.adapter === 'reviewed-dark-horse-v1' &&
+    card.code === '10127' &&
+    card.flags.permanent &&
+    card.deckLimit === 1 &&
+    card.factions.join(',') === 'survivor' &&
+    card.type === 'asset' &&
+    card.numbers.xp?.kind === 'number' &&
+    card.numbers.xp.value === 5
   const myriadFactions = {
     11042: 'seeker',
     '06199': 'rogue',
     '06245': 'survivor',
     '06034': 'survivor',
+    '06026': 'rogue',
+    '06323': 'guardian',
+    11090: 'survivor',
+    11096: 'neutral',
   }
   const reviewedMyriad =
     approval.adapter === 'reviewed-myriad-v1' &&
@@ -100,7 +113,11 @@ export function approvedDefinition(card, approval) {
     card.deckLimit === 3 &&
     card.factions.join(',') === myriadFactions[card.code]
   if (
-    (card.flags.permanent && !permanentReprint && !creationPermanent && !talentPermanent) ||
+    (card.flags.permanent &&
+      !permanentReprint &&
+      !creationPermanent &&
+      !talentPermanent &&
+      !reviewedDarkHorse) ||
     ['exceptional', 'myriad', 'exile'].some(
       (key) =>
         card.flags[key] &&
@@ -129,6 +146,7 @@ export function approvedDefinition(card, approval) {
     ...(reviewedDualFaction || reviewedTalent ? { classes: card.factions } : {}),
     ...(creationPermanent ? { deckLimit: 1 } : {}),
     ...(reviewedBorrowedTime ? { exceptional: true, deckLimit: 1 } : {}),
+    ...(reviewedDarkHorse ? { deckLimit: 1 } : {}),
     ...(reviewedMemento ? { deckLimit: 1 } : {}),
     ...(reviewedMyriad ? { myriad: true, deckLimit: 3 } : {}),
     traits: card.traits,

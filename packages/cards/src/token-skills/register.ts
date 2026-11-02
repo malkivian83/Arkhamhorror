@@ -259,15 +259,15 @@ export function registerTokenSkill(code: string): void {
     })
     return
   }
-  if (code === '06245') {
+  if (['06245', '11090'].includes(code)) {
     registerPlayerCard({
       code,
       onlyFromDiscard: true,
       playableFromDiscard: true,
       play: (s, by) => [
-        ...Array(count(getInvestigator(s, by).discard, code))
-          .fill(null)
-          .map((): Message => ({ type: 'DiscardToHand', investigator: by, code })),
+        ...getInvestigator(s, by)
+          .discard.filter((c) => playerCardDef(c)?.name === playerCardDef(code)?.name)
+          .map((copy): Message => ({ type: 'DiscardToHand', investigator: by, code: copy })),
         ...(eventsToDeckBottom(s, by)
           ? [
               {

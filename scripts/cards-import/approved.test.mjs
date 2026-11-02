@@ -5,6 +5,29 @@ import { approvedDefinition } from './approved.mjs'
 const read = async (relative) =>
   JSON.parse(await readFile(new URL(relative, import.meta.url), 'utf8'))
 describe('reviewed inventory conversion', () => {
+  it('limits conditional-asset Myriad, Exceptional and Permanent adapters to exact identities', async () => {
+    const { cards } = await read(
+      '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
+    )
+    const approvals = await read('../../packages/cards/src/conditional-assets/approvals.json')
+    for (const a of approvals.cards.filter((a) => a.adapter)) {
+      const card = cards.find((c) => c.code === a.code)
+      expect(approvedDefinition(card, a).code).toBe(card.code)
+      expect(() => approvedDefinition(card, { ...a, adapter: undefined })).toThrow()
+      expect(() =>
+        approvedDefinition({ ...card, code: '99999' }, { ...a, code: '99999' }),
+      ).toThrow()
+      expect(() => approvedDefinition({ ...card, factions: ['invalid'] }, a)).toThrow()
+    }
+    const horse = cards.find((c) => c.code === '10127'),
+      a = approvals.cards.find((a) => a.code === '10127')
+    expect(() =>
+      approvedDefinition(
+        { ...horse, numbers: { ...horse.numbers, xp: { kind: 'number', value: 0 } } },
+        a,
+      ),
+    ).toThrow()
+  })
   it('limits Myriad and defined-X conversion to exact reviewed cards', async () => {
     const { cards } = await read(
       '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
@@ -176,6 +199,7 @@ describe('reviewed inventory conversion', () => {
     'test-recovery',
     'services-parley',
     'token-skills',
+    'conditional-assets',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(
