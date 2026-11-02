@@ -103,10 +103,17 @@ export interface OnlineGame {
   autoSteps?: { revision: number; review: import('./autoSteps').AutoStepsReview }[]
   /** Per-player act/agenda advance review frames (`AdvanceFrame` from @lcg/saves). */
   advanceReviews?: { revision: number; frames: unknown[] }[]
+  /**
+   * The rules changed after a deploy and the scenario was rebuilt from its decisions
+   * (doc 100, S3): `dropped` decisions no longer fit; null when there was no record to replay.
+   */
+  rulesUpdate?: { revision: number; dropped: number | null }
   /** Redacted presentation only: never apply engine inputs or persist as a local game. */
   table?: OnlineTable
   tableStats?: OnlineTableStats
   ownInvestigator?: string
+  /** Who owns the lobby and who sits where, to hand it over or close it (doc 100, S4). */
+  room?: { owner: boolean; members: { user: string; investigator: string | null }[] }
   canFinish?: boolean
   campaign?: OnlineCampaignView
   revision: number

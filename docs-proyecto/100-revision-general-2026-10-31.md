@@ -715,6 +715,24 @@ Siguen abiertos F8 y N4.
   («3/8»), resaltadas cuando ya bastan; el título da el detalle. Las fichas de daño y horror
   destellan al cambiar de valor, en investigadores, apoyos y enemigos (sin animación con
   movimiento reducido).
+- **S3 · corregido en las salas:** cada sala guarda la semilla y las decisiones del
+  escenario en curso. Si un despliegue cambia `ENGINE_VERSION` o el `rulesVersion` del
+  escenario, la primera lectura lo prepara de nuevo con la misma semilla y repite las
+  decisiones mientras encajen. Las demás se descartan y la mesa avisa a los jugadores de
+  cuántas se han deshecho. Las salas anteriores a este cambio, sin registro, empiezan el
+  escenario de nuevo. Una decisión enviada con las reglas viejas se rechaza por revisión
+  desfasada. Sigue sin cubrirse `CONTENT_VERSION` de las campañas, ni los guardados locales.
+- **S4 · corregido:**
+  - Antes de empezar, un jugador puede salir y el anfitrión puede expulsar.
+  - En cualquier momento, el anfitrión puede ceder la sala a otro miembro o cerrarla para
+    todos, con confirmación. Durante la partida lo hace desde el menú «Sala» de la mesa.
+  - Al borrar una cuenta, sus salas pasan al siguiente miembro en vez de borrarse en
+    cascada; si no queda nadie, se cierran.
+  - Cada jugador puede tener como máximo 10 salas propias.
+  - Las salas sin cambios en 90 días se borran al crear otra (migración 006: `updated_at`).
+  - La sala guarda solo los 100 últimos identificadores de orden.
+  - Sin resolver: un jugador que abandona a mitad de partida deja su investigador sin
+    nadie que decida por él.
 - **Sin cambiar:** la derrota simultánea de E12 (cada punto sigue siendo un `TakeDamage`
   con su `CheckDefeat`). Corregirla exige cambiar la asignación del motor.
 

@@ -12,7 +12,13 @@ import {
   replaceInvestigator,
   type Campaign,
 } from '@lcg/cards'
-import { applyInput, type GameState } from '@lcg/engine'
+import {
+  applyInput,
+  ENGINE_VERSION,
+  scenarioBehavior,
+  type GameState,
+  type PlayerInput,
+} from '@lcg/engine'
 import type {
   OnlineCommand,
   OnlineDeck,
@@ -50,6 +56,66 @@ export interface Lobby {
     frames: Record<string, import('@lcg/saves/advanceReview').AdvanceFrame[]>
   }[]
   cardEntries?: { revision: number; cards: Record<string, import('@lcg/shared').CardEntry[]> }[]
+  /** Seed and decisions of the current scenario, to rebuild it when the rules change (S3). */
+  history?: { seed: number; inputs: PlayerInput[] }
+  rulesUpdate?: { revision: number; dropped: number | null }
+}
+
+/** Command ids kept for idempotent retries; older ones are dropped (doc 100, S4). */
+const KEPT_COMMANDS = 100
+/** Lobbies a player may own at once. */
+const OWNED_LOBBIES = 10
+/** Lobbies with no change for this long are removed when someone creates a new one. */
+const ABANDONED_DAYS = 90
+
+function remember(lobby: Lobby, id: string, entry: { user: string; signature: string }) {
+  lobby.commands = Object.fromEntries(
+    [...Object.entries(lobby.commands ?? {}), [id, entry] as const].slice(-KEPT_COMMANDS),
+  )
+}
+
+/** Whether a stored scenario was built by the engine and scenario rules now deployed. */
+function currentRules(game: GameState) {
+  const rules = scenarioBehavior(game.scenarioId)?.rulesVersion
+  return (
+    game.engineVersion === ENGINE_VERSION &&
+    (rules === undefined || game.scenarioRulesVersion === rules)
+  )
+}
+
+/**
+ * A scenario saved under older rules is set up again with the same seed and its decisions
+ * are replayed while they still fit the questions; the rest are dropped and reported to the
+ * players. Without a record (lobbies from before S3) the scenario starts over.
+ */
+function upgradeRules(lobby: Lobby) {
+  if (!lobby.game || !lobby.campaign || lobby.intermission || currentRules(lobby.game)) return
+  const recorded = lobby.history
+  const seed = recorded?.seed ?? randomInt(1, 0x7fffffff)
+  const inputs = recorded?.inputs ?? []
+  let game = startScenario(lobby.campaign, seed, true)
+  let kept = 0
+  for (const input of inputs) {
+    const pending = game.pending
+    if (game.outcome || pending?.investigator !== input.investigator) break
+    if (!pending.question.choices[input.choice]) break
+    try {
+      game = applyInput(game, input)
+    } catch {
+      break
+    }
+    kept++
+  }
+  lobby.game = game
+  lobby.history = { seed, inputs: inputs.slice(0, kept) }
+  delete lobby.autoSteps
+  delete lobby.advanceReviews
+  delete lobby.cardEntries
+  lobby.revision++
+  lobby.rulesUpdate = {
+    revision: lobby.revision,
+    dropped: recorded ? inputs.length - kept : null,
+  }
 }
 export const lobbyView = (lobby: Lobby): OnlineLobby => ({
   id: lobby.id,
@@ -81,6 +147,14 @@ export const lobbyView = (lobby: Lobby): OnlineLobby => ({
 export class LobbyService {
   constructor(private db: Database) {}
   async create(user: string) {
+    await this.db.exec(
+      `DELETE FROM online_lobbies WHERE updated_at < NOW() - INTERVAL ${ABANDONED_DAYS} DAY`,
+    )
+    const [owned] = await this.db.rows<{ count: number }>(
+      'SELECT COUNT(*) AS count FROM online_lobbies WHERE owner_id = ?',
+      [user],
+    )
+    requireValue(Number(owned?.count ?? 0) < OWNED_LOBBIES, 'too_many_lobbies', 409)
     const lobby: Lobby = { id: randomUUID(), owner: user, members: [user], revision: 0 }
     await this.db.exec('INSERT INTO online_lobbies (id, owner_id, payload) VALUES (?, ?, ?)', [
       lobby.id,
@@ -109,6 +183,9 @@ export class LobbyService {
     const lobby = await this.read(this.db, id)
     requireValue(lobby.members.includes(user), 'not_member', 403)
     requireValue(lobby.game, 'not_started', 409)
+    // A deploy changed the rules: the first read rebuilds the scenario under a lock.
+    if (!lobby.intermission && !currentRules(lobby.game))
+      return this.change(id, (locked) => gameView(locked, user))
     if (since === lobby.revision) return { unchanged: true as const, revision: lobby.revision }
     return gameView(lobby, user)
   }
@@ -146,14 +223,9 @@ export class LobbyService {
           lobby.members.map((member) => [member, lobby.decks?.[member]?.investigator]),
         ),
       )
-      lobby.game = applyInput(
-        lobby.game,
-        {
-          investigator: pending.investigator,
-          choice: command.choice,
-        },
-        steps.observe,
-      )
+      const input = { investigator: pending.investigator, choice: command.choice }
+      lobby.game = applyInput(lobby.game, input, steps.observe)
+      if (lobby.history) lobby.history.inputs.push(input)
       const reviews = steps.finish()
       const cards = steps.finishCards()
       const advance = steps.finishAdvance()
@@ -172,7 +244,7 @@ export class LobbyService {
           ...(lobby.autoSteps ?? []),
           { revision: lobby.revision + 1, reviews },
         ].slice(-32)
-      lobby.commands = { ...lobby.commands, [command.commandId]: { user, signature } }
+      remember(lobby, command.commandId, { user, signature })
       lobby.revision++
       return gameView(lobby, user)
     })
@@ -254,7 +326,10 @@ export class LobbyService {
             409,
           )
           requireValue(canPlayNext(lobby.campaign), 'invalid_deck', 409)
-          lobby.game = startScenario(lobby.campaign, randomInt(1, 0x7fffffff), true)
+          const seed = randomInt(1, 0x7fffffff)
+          lobby.game = startScenario(lobby.campaign, seed, true)
+          lobby.history = { seed, inputs: [] }
+          delete lobby.rulesUpdate
           delete lobby.autoSteps
           delete lobby.advanceReviews
           delete lobby.cardEntries
@@ -289,7 +364,7 @@ export class LobbyService {
           }
         }
       }
-      lobby.commands = { ...lobby.commands, [command.commandId]: { user, signature } }
+      remember(lobby, command.commandId, { user, signature })
       lobby.revision++
       return gameView(lobby, user)
     })
@@ -297,13 +372,81 @@ export class LobbyService {
   private async change<T>(id: string, run: (lobby: Lobby) => T) {
     return this.db.transaction(async (tx) => {
       const lobby = await this.read(tx, id, true)
+      upgradeRules(lobby)
       const result = run(lobby)
-      await tx.exec('UPDATE online_lobbies SET payload = ? WHERE id = ?', [
+      // The owner column follows the payload, so a transfer also moves the account link.
+      await tx.exec('UPDATE online_lobbies SET payload = ?, owner_id = ? WHERE id = ?', [
         JSON.stringify(lobby),
+        lobby.owner,
         id,
       ])
       return result
     })
+  }
+  /** Before the game starts, a player leaves or the owner removes one (doc 100, S4). */
+  async leave(id: string, user: string, revision: number, target = user) {
+    return this.change(id, (lobby) => {
+      this.editable(lobby, user, revision)
+      requireValue(target === user || lobby.owner === user, 'not_owner', 403)
+      requireValue(target !== lobby.owner, 'owner_cannot_leave', 409)
+      requireValue(lobby.members.includes(target), 'not_member', 404)
+      lobby.members = lobby.members.filter((member) => member !== target)
+      if (lobby.decks) delete lobby.decks[target]
+      lobby.ready = []
+      lobby.revision++
+      return lobbyView(lobby)
+    })
+  }
+  /** The owner hands the lobby to another member, also during a game. */
+  async transfer(id: string, user: string, revision: number, target: string) {
+    return this.change(id, (lobby) => {
+      requireValue(lobby.owner === user, 'not_owner', 403)
+      requireValue(lobby.revision === revision, 'stale_revision', 409)
+      requireValue(target !== user && lobby.members.includes(target), 'not_member', 404)
+      lobby.owner = target
+      lobby.revision++
+      return lobbyView(lobby)
+    })
+  }
+  /** The owner closes the lobby for everyone, also during a game. */
+  async close(id: string, user: string) {
+    return this.db.transaction(async (tx) => {
+      const lobby = await this.read(tx, id, true)
+      requireValue(lobby.owner === user, 'not_owner', 403)
+      await tx.exec('DELETE FROM online_lobbies WHERE id = ?', [id])
+      return { closed: true }
+    })
+  }
+  /**
+   * Before an account is deleted, its lobbies pass to another member instead of being
+   * removed by the cascade; a lobby with nobody else is closed. In lobbies that have not
+   * started, the account also gives up its seat.
+   */
+  async handOver(user: string) {
+    const rows = await this.db.rows<{ id: string }>(
+      `SELECT id FROM online_lobbies
+       WHERE owner_id = ? OR JSON_CONTAINS(JSON_EXTRACT(payload, '$.members'), JSON_QUOTE(?))`,
+      [user, user],
+    )
+    for (const { id } of rows)
+      await this.db.transaction(async (tx) => {
+        const lobby = await this.read(tx, id, true)
+        const others = lobby.members.filter((member) => member !== user)
+        if (lobby.owner === user && !others.length)
+          return tx.exec('DELETE FROM online_lobbies WHERE id = ?', [id])
+        if (lobby.owner === user) lobby.owner = others[0]!
+        if (!lobby.game) {
+          lobby.members = others
+          if (lobby.decks) delete lobby.decks[user]
+          lobby.ready = []
+        }
+        lobby.revision++
+        return tx.exec('UPDATE online_lobbies SET payload = ?, owner_id = ? WHERE id = ?', [
+          JSON.stringify(lobby),
+          lobby.owner,
+          id,
+        ])
+      })
   }
   async invite(id: string, user: string) {
     return this.change(id, (lobby) => {
@@ -427,6 +570,7 @@ export class LobbyService {
         lobby.encounterSetVariant,
       )
       lobby.game = startScenario(campaign, seed, true)
+      lobby.history = { seed, inputs: [] }
       lobby.campaign = campaign
       delete lobby.invite
       lobby.revision++
@@ -628,6 +772,40 @@ export function onlineLobbies(
     { schema: { params, body: bodySchema({ revision }) } },
     async (req) =>
       service.start(req.params.id, (await auth.requireUser(req)).id, req.body.revision),
+  )
+  const member = { type: 'string', minLength: 1, maxLength: 36 }
+  app.post<{ Params: { id: string }; Body: { revision: number } }>(
+    '/api/online/lobbies/:id/leave',
+    { schema: { params, body: bodySchema({ revision }) } },
+    async (req) =>
+      service.leave(req.params.id, (await auth.requireUser(req)).id, req.body.revision),
+  )
+  app.post<{ Params: { id: string }; Body: { revision: number; user: string } }>(
+    '/api/online/lobbies/:id/kick',
+    { schema: { params, body: bodySchema({ revision, user: member }) } },
+    async (req) =>
+      service.leave(
+        req.params.id,
+        (await auth.requireUser(req)).id,
+        req.body.revision,
+        req.body.user,
+      ),
+  )
+  app.post<{ Params: { id: string }; Body: { revision: number; user: string } }>(
+    '/api/online/lobbies/:id/transfer',
+    { schema: { params, body: bodySchema({ revision, user: member }) } },
+    async (req) =>
+      service.transfer(
+        req.params.id,
+        (await auth.requireUser(req)).id,
+        req.body.revision,
+        req.body.user,
+      ),
+  )
+  app.delete<{ Params: { id: string } }>(
+    '/api/online/lobbies/:id',
+    { schema: { params } },
+    async (req) => service.close(req.params.id, (await auth.requireUser(req)).id),
   )
   app.post('/api/online/lobbies', {}, async (req) =>
     service.create((await auth.requireUser(req)).id),

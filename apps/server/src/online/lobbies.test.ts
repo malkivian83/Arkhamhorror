@@ -18,11 +18,19 @@ function memory() {
   const data = new Map<string, string>()
   let tail = Promise.resolve()
   const db = {
-    rows: async (_sql: string, args: string[]) =>
-      data.has(args[0]!) ? [{ payload: data.get(args[0]!) }] : [],
+    rows: async (sql: string, args: string[]) => {
+      const lobbies = [...data.values()].map((payload) => JSON.parse(payload) as Lobby)
+      if (sql.includes('COUNT(*)'))
+        return [{ count: lobbies.filter((l) => l.owner === args[0]).length }]
+      if (sql.includes('JSON_CONTAINS'))
+        return lobbies.filter((l) => l.owner === args[0] || l.members.includes(args[1]!))
+      return data.has(args[0]!) ? [{ payload: data.get(args[0]!) }] : []
+    },
     exec: async (sql: string, args: string[]) => {
       if (sql.startsWith('INSERT')) data.set(args[0]!, args[2]!)
-      else data.set(args[1]!, args[0]!)
+      else if (sql.includes('updated_at')) return
+      else if (sql.startsWith('DELETE')) data.delete(args[0]!)
+      else data.set(args.at(-1)!, args[0]!)
     },
     transaction: async <T>(run: (tx: Database) => Promise<T>) => {
       const previous = tail
@@ -985,5 +993,161 @@ describe('private online lobbies', () => {
     } finally {
       await app.close()
     }
+  })
+})
+
+describe('rules updates and lobby lifecycle (doc 100, S3 and S4)', () => {
+  async function playing() {
+    const { db, data } = memory(),
+      service = new LobbyService(db)
+    let lobby = await service.create('host')
+    const invite = await service.invite(lobby.id, 'host')
+    lobby = await service.join(lobby.id, 'friend', invite.token)
+    lobby = await service.select(lobby.id, 'host', lobby.revision, deck('joe'))
+    lobby = await service.select(lobby.id, 'friend', lobby.revision, deck('daniela'))
+    lobby = await service.ready(lobby.id, 'host', lobby.revision, true)
+    lobby = await service.ready(lobby.id, 'friend', lobby.revision, true)
+    await service.start(lobby.id, 'host', lobby.revision)
+    const stored = () => JSON.parse(data.get(lobby.id)!) as Lobby
+    const store = (value: Lobby) => data.set(lobby.id, JSON.stringify(value))
+    /** Whoever decides takes a resource (or the first choice). */
+    async function decideOnce() {
+      const current = stored()
+      const pending = current.game!.pending!
+      const user = pending.investigator === current.decks!.host!.investigator ? 'host' : 'friend'
+      const resource = pending.question.choices.findIndex((c) => c.label === 'action.resource')
+      await service.decide(lobby.id, user, {
+        commandId: randomUUID(),
+        revision: current.revision,
+        questionId: String(current.revision),
+        choice: Math.max(0, resource),
+      })
+    }
+    return { service, data, id: lobby.id, stored, store, decideOnce }
+  }
+  const oldRules = (lobby: Lobby): Lobby => ({
+    ...lobby,
+    game: { ...lobby.game!, engineVersion: lobby.game!.engineVersion - 1 },
+  })
+
+  it('rebuilds a scenario saved under older rules with every decision that still fits', async () => {
+    const { service, id, stored, store, decideOnce } = await playing()
+    await decideOnce()
+    await decideOnce()
+    const before = stored()
+    expect(before.history?.inputs).toHaveLength(2)
+    store(oldRules(before))
+    const view = await service.game(id, 'host')
+    expect(view.rulesUpdate).toEqual({ revision: before.revision + 1, dropped: 0 })
+    expect(stored().game).toEqual(before.game)
+    expect(stored().history).toEqual(before.history)
+  })
+
+  it('drops the decisions that no longer fit, and starts over without a record', async () => {
+    const { service, id, stored, store, decideOnce } = await playing()
+    await decideOnce()
+    const lobby = stored()
+    store(
+      oldRules({
+        ...lobby,
+        history: {
+          ...lobby.history!,
+          inputs: [...lobby.history!.inputs, { investigator: 'nobody', choice: 0 }],
+        },
+      }),
+    )
+    expect((await service.game(id, 'friend')).rulesUpdate?.dropped).toBe(1)
+    expect(stored().history?.inputs).toHaveLength(1)
+    const { history: _gone, ...unrecorded } = stored()
+    store(oldRules(unrecorded))
+    expect((await service.game(id, 'host')).rulesUpdate?.dropped).toBeNull()
+    expect(stored().history?.inputs).toEqual([])
+  })
+
+  it('a decision sent against the old rules is refused as stale, so the client reloads', async () => {
+    const { service, id, stored, store } = await playing()
+    const lobby = stored()
+    store(oldRules(lobby))
+    const user =
+      lobby.game!.pending!.investigator === lobby.decks!.host!.investigator ? 'host' : 'friend'
+    await expect(
+      service.decide(id, user, {
+        commandId: randomUUID(),
+        revision: lobby.revision,
+        questionId: String(lobby.revision),
+        choice: 0,
+      }),
+    ).rejects.toMatchObject({ code: 'stale_revision' })
+  })
+
+  it('keeps only the most recent command ids', async () => {
+    const { stored, store, decideOnce } = await playing()
+    store({
+      ...stored(),
+      commands: Object.fromEntries(
+        Array.from({ length: 100 }, (_, n) => [`old-${n}`, { user: 'host', signature: '' }]),
+      ),
+    })
+    await decideOnce()
+    const commands = Object.keys(stored().commands ?? {})
+    expect(commands).toHaveLength(100)
+    expect(commands).not.toContain('old-0')
+  })
+
+  it('lets a player leave and the owner remove one before the game starts', async () => {
+    const { db } = memory(),
+      service = new LobbyService(db)
+    let lobby = await service.create('host')
+    const invite = await service.invite(lobby.id, 'host')
+    lobby = await service.join(lobby.id, 'friend', invite.token)
+    lobby = await service.join(lobby.id, 'other', invite.token)
+    lobby = await service.select(lobby.id, 'friend', lobby.revision, deck('daniela'))
+    await expect(service.leave(lobby.id, 'host', lobby.revision)).rejects.toMatchObject({
+      code: 'owner_cannot_leave',
+    })
+    await expect(service.leave(lobby.id, 'other', lobby.revision, 'friend')).rejects.toMatchObject({
+      code: 'not_owner',
+    })
+    lobby = await service.leave(lobby.id, 'friend', lobby.revision)
+    expect(lobby.members).toEqual(['host', 'other'])
+    expect(lobby.seats.map((s) => s.investigator)).toEqual([null, null])
+    lobby = await service.leave(lobby.id, 'host', lobby.revision, 'other')
+    expect(lobby.members).toEqual(['host'])
+    await expect(service.get(lobby.id, 'other')).rejects.toMatchObject({ code: 'not_member' })
+  })
+
+  it('hands the lobby over during a game and lets only the new owner close it', async () => {
+    const { service, id, data, stored } = await playing()
+    const lobby = await service.transfer(id, 'host', stored().revision, 'friend')
+    expect(lobby.owner).toBe('friend')
+    expect((await service.game(id, 'friend')).room).toMatchObject({ owner: true })
+    await expect(service.close(id, 'host')).rejects.toMatchObject({ code: 'not_owner' })
+    await service.close(id, 'friend')
+    expect(data.has(id)).toBe(false)
+  })
+
+  it('passes the lobbies of a deleted account to another member', async () => {
+    const { db, data } = memory(),
+      service = new LobbyService(db)
+    const solo = await service.create('host')
+    let shared = await service.create('host')
+    const invite = await service.invite(shared.id, 'host')
+    shared = await service.join(shared.id, 'friend', invite.token)
+    let guest = await service.create('friend')
+    const guestInvite = await service.invite(guest.id, 'friend')
+    guest = await service.join(guest.id, 'host', guestInvite.token)
+    await service.handOver('host')
+    expect(data.has(solo.id)).toBe(false)
+    expect(await service.get(shared.id, 'friend')).toMatchObject({
+      owner: 'friend',
+      members: ['friend'],
+    })
+    expect((await service.get(guest.id, 'friend')).members).toEqual(['friend'])
+  })
+
+  it('limits the lobbies a player owns', async () => {
+    const service = new LobbyService(memory().db)
+    for (let n = 0; n < 10; n++) await service.create('host')
+    await expect(service.create('host')).rejects.toMatchObject({ code: 'too_many_lobbies' })
   })
 })

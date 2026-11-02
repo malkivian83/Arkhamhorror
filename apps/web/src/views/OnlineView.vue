@@ -117,6 +117,25 @@ async function mutate(action: string, body: object = {}) {
     error.value = 'stale_revision'
   }
 }
+/** Leave, remove a player, hand over or close the lobby (doc 100, S4). */
+async function leaveRoom() {
+  await mutate('leave')
+  if (!error.value) await router.push('/online')
+}
+async function transferRoom(user: string) {
+  if (confirm(t('online.room.transferConfirm'))) await mutate('transfer', { user })
+}
+async function closeRoom() {
+  if (!confirm(t('online.room.closeConfirm'))) return
+  try {
+    await api(`/online/lobbies/${id.value}`, 'DELETE')
+    await router.push('/online')
+  } catch {
+    error.value = 'generic'
+  }
+}
+const seatName = (seat: OnlineLobby['seats'][number], index: number) =>
+  seat.investigator ? localName(cardName(seat.investigator)) : t('online.player', { n: index + 1 })
 async function selectDeck() {
   const option = selectedOption.value
   if (!option) return
@@ -442,6 +461,32 @@ onBeforeUnmount(() => {
                   </div>
                 </fieldset>
               </section>
+
+              <section class="ui-panel block" aria-labelledby="room-title">
+                <h2 id="room-title">{{ t('online.room.title') }}</h2>
+                <fieldset :disabled="busy || inviting">
+                  <legend class="visually-hidden">{{ t('online.room.title') }}</legend>
+                  <ul v-if="owner" class="room-members">
+                    <template v-for="(seat, index) in lobby.seats" :key="seat.user">
+                      <li v-if="seat.user !== lobby.owner">
+                        <span>{{ seatName(seat, index) }}</span>
+                        <button class="quiet" @click="mutate('kick', { user: seat.user })">
+                          {{ t('online.room.kick') }}
+                        </button>
+                        <button class="quiet" @click="transferRoom(seat.user)">
+                          {{ t('online.room.transfer') }}
+                        </button>
+                      </li>
+                    </template>
+                  </ul>
+                  <div class="actions">
+                    <button v-if="!owner" @click="leaveRoom">{{ t('online.room.leave') }}</button>
+                    <button v-else class="quiet" @click="closeRoom">
+                      {{ t('online.room.close') }}
+                    </button>
+                  </div>
+                </fieldset>
+              </section>
             </aside>
           </div>
 
@@ -466,6 +511,22 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
+.room-members {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 10px;
+  padding: 0;
+  list-style: none;
+}
+.room-members li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.room-members li span {
+  flex: 1 1 auto;
+}
 .online {
   display: grid;
   gap: 24px;

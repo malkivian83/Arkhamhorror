@@ -5733,6 +5733,20 @@
     "morriganPrompt": "Elige la debilidad que quieres excluir"
   },
   "online": {
+    "room": {
+      "title": "Sala",
+      "leave": "Salir de la sala",
+      "kick": "Expulsar",
+      "transfer": "Ceder la sala",
+      "transferTo": "Ceder la sala a {name}",
+      "transferConfirm": "¿Ceder la sala? Dejarás de poder iniciar, avanzar o cerrar la partida.",
+      "close": "Cerrar la sala",
+      "closeConfirm": "¿Cerrar la sala para todos? La partida y la campaña se borrarán y no se pueden recuperar.",
+      "rulesDropped": "Las reglas del juego se han actualizado: el escenario se ha reconstruido y se han deshecho las últimas {n} decisiones.",
+      "rulesKept": "Las reglas del juego se han actualizado: el escenario se ha reconstruido con todas vuestras decisiones.",
+      "rulesRestarted": "Las reglas del juego se han actualizado y el escenario ha tenido que empezar de nuevo.",
+      "dismiss": "Entendido"
+    },
     "title": "Jugar con amigos",
     "subtitle": "Prepara una mesa privada y elige tu mazo.",
     "login": "Inicia sesión para jugar con amigos",
@@ -5793,6 +5807,8 @@
     "startedDetail": "El servidor ha preparado el escenario para {count} investigador. | El servidor ha preparado el escenario para {count} investigadores.",
     "nextStage": "La partida está guardada. Las decisiones y la mesa de juego online estarán disponibles en la siguiente entrega.",
     "errors": {
+      "too_many_lobbies": "Ya tienes 10 salas. Cierra alguna para crear otra.",
+      "owner_cannot_leave": "Quien crea la sala no puede salir: cédela o ciérrala.",
       "generic": "No se pudo completar la operación. Vuelve a intentarlo.",
       "network": "No se pudo conectar. Puedes volver a intentarlo.",
       "not_member": "No perteneces a esta mesa. Usa una invitación para unirte.",

@@ -5733,6 +5733,20 @@
     "morriganPrompt": "Choose the weakness to exclude"
   },
   "online": {
+    "room": {
+      "title": "Lobby",
+      "leave": "Leave the lobby",
+      "kick": "Remove",
+      "transfer": "Hand over the lobby",
+      "transferTo": "Hand the lobby to {name}",
+      "transferConfirm": "Hand over the lobby? You will no longer be able to start, advance or close the game.",
+      "close": "Close the lobby",
+      "closeConfirm": "Close the lobby for everyone? The game and the campaign will be deleted and cannot be recovered.",
+      "rulesDropped": "The game rules were updated: the scenario was rebuilt and the last {n} decisions were undone.",
+      "rulesKept": "The game rules were updated: the scenario was rebuilt with all your decisions.",
+      "rulesRestarted": "The game rules were updated and the scenario had to start over.",
+      "dismiss": "Got it"
+    },
     "title": "Play with friends",
     "subtitle": "Prepare a private table and choose your deck.",
     "login": "Sign in to play with friends",
@@ -5793,6 +5807,8 @@
     "startedDetail": "The server has prepared the scenario for {count} investigator. | The server has prepared the scenario for {count} investigators.",
     "nextStage": "The game is saved. Online game decisions and the game board will be available in the next release.",
     "errors": {
+      "too_many_lobbies": "You already have 10 lobbies. Close one to create another.",
+      "owner_cannot_leave": "The lobby owner cannot leave: hand it over or close it.",
       "generic": "The operation could not be completed. Please try again.",
       "network": "Could not connect. You can try again.",
       "not_member": "You are not a member of this table. Use an invitation to join.",

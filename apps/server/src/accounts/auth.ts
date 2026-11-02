@@ -56,6 +56,8 @@ export function authentication(
   db: Database,
   config: AccountConfig,
   sendMail: SendMail,
+  /** Runs before an account is deleted (online lobbies pass to another member). */
+  beforeDelete: (user: string) => Promise<void> = async () => {},
 ) {
   const cookieName = config.production ? '__Host-lcg-session' : 'lcg-session'
   const cookieOptions = {
@@ -501,6 +503,7 @@ export function authentication(
         'reauthenticate',
         403,
       )
+      await beforeDelete(user.id)
       await db.exec('DELETE FROM users WHERE id = ?', [user.id])
       reply.clearCookie(cookieName, cookieOptions)
       return { ok: true }

@@ -129,3 +129,41 @@ it.skipIf(!process.env.MYSQL_TEST_URL)(
     }
   },
 )
+
+it.skipIf(!process.env.MYSQL_TEST_URL)(
+  'keeps the owner column with the owner, hands lobbies over and removes abandoned ones in SQL',
+  async () => {
+    const [owner, friend] = [randomUUID(), randomUUID()]
+    const ownerOf = async (id: string) =>
+      (
+        await connection.db.rows<{ owner_id: string }>(
+          'SELECT owner_id FROM online_lobbies WHERE id = ?',
+          [id],
+        )
+      )[0]?.owner_id
+    try {
+      for (const user of [owner, friend])
+        await connection.db.exec(
+          'INSERT INTO users (id, email, name, verified, created_at) VALUES (?, ?, ?, ?, ?)',
+          [user, `${user}@example.test`, 'Lifecycle test', true, Date.now()],
+        )
+      const service = new LobbyService(connection.db)
+      let lobby = await service.create(owner)
+      const invite = await service.invite(lobby.id, owner)
+      lobby = await service.join(lobby.id, friend, invite.token)
+      lobby = await service.transfer(lobby.id, owner, lobby.revision, friend)
+      expect(await ownerOf(lobby.id)).toBe(friend)
+      await service.handOver(friend)
+      expect(await ownerOf(lobby.id)).toBe(owner)
+      expect((await service.get(lobby.id, owner)).members).toEqual([owner])
+      await connection.db.exec(
+        'UPDATE online_lobbies SET updated_at = NOW() - INTERVAL 100 DAY WHERE id = ?',
+        [lobby.id],
+      )
+      await service.create(owner)
+      expect(await ownerOf(lobby.id)).toBeUndefined()
+    } finally {
+      await connection.db.exec('DELETE FROM users WHERE id IN (?, ?)', [owner, friend])
+    }
+  },
+)

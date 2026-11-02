@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, provide, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, provide, ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
+import { api } from '../account/api'
 import { useI18n } from 'vue-i18n'
 import { cardName } from '../game/cards'
 import { localName } from '../game/localized'
@@ -17,6 +19,7 @@ const props = defineProps<{ room: string }>()
 const { t, te } = useI18n()
 const client = gameClient(props.room)
 const { state, busy, error, retry, refresh, progress, resend, reset } = client
+const router = useRouter()
 provide(tableControllerKey, onlineTable(client))
 let active = true
 let timer: ReturnType<typeof setTimeout> | undefined
@@ -55,6 +58,54 @@ watch(
   },
   { immediate: true },
 )
+// After a rules update the scenario was rebuilt (doc 100, S3): say so once per update.
+const seenKey = `lcg:rules-update:${props.room}`
+function seenRevision() {
+  try {
+    return Number(localStorage.getItem(seenKey) ?? -1)
+  } catch {
+    return -1
+  }
+}
+const seen = ref(seenRevision())
+const rulesUpdate = computed(() => {
+  const update = state.value?.rulesUpdate
+  return update && update.revision > seen.value ? update : null
+})
+function dismissRules() {
+  if (!rulesUpdate.value) return
+  seen.value = rulesUpdate.value.revision
+  try {
+    localStorage.setItem(seenKey, String(seen.value))
+  } catch {
+    // Without storage the notice only stays dismissed until the page is reloaded.
+  }
+}
+/** The owner can hand the lobby over or close it during the game too (doc 100, S4). */
+const others = computed(() =>
+  (state.value?.room?.members ?? []).filter((m) => m.investigator !== state.value?.ownInvestigator),
+)
+async function transferRoom(user: string) {
+  if (!state.value || !confirm(t('online.room.transferConfirm'))) return
+  try {
+    await api(`/online/lobbies/${props.room}/transfer`, 'POST', {
+      revision: state.value.revision,
+      user,
+    })
+  } catch {
+    error.value = 'generic'
+  }
+  await refresh()
+}
+async function closeRoom() {
+  if (!confirm(t('online.room.closeConfirm'))) return
+  try {
+    await api(`/online/lobbies/${props.room}`, 'DELETE')
+    await router.push('/online')
+  } catch {
+    error.value = 'generic'
+  }
+}
 /** Visible: every 2 s. Hidden: every 15 s, so the turn mark still arrives (D7). */
 async function poll() {
   if (!active) return
@@ -94,6 +145,35 @@ onBeforeUnmount(() => {
       <button :disabled="busy" @click="refresh">{{ t('online.refresh') }}</button>
       <button v-if="retry" :disabled="busy" @click="resend">{{ t('online.play.retry') }}</button>
     </div>
+    <div v-if="rulesUpdate" class="rules-update" role="status">
+      <span>{{
+        rulesUpdate.dropped === null
+          ? t('online.room.rulesRestarted')
+          : rulesUpdate.dropped
+            ? t('online.room.rulesDropped', { n: rulesUpdate.dropped })
+            : t('online.room.rulesKept')
+      }}</span>
+      <button type="button" @click="dismissRules">{{ t('online.room.dismiss') }}</button>
+    </div>
+    <details v-if="state?.room?.owner" class="room-menu">
+      <summary>{{ t('online.room.title') }}</summary>
+      <button
+        v-for="member in others"
+        :key="member.user"
+        type="button"
+        :disabled="busy"
+        @click="transferRoom(member.user)"
+      >
+        {{
+          t('online.room.transferTo', {
+            name: member.investigator ? localName(cardName(member.investigator)) : member.user,
+          })
+        }}
+      </button>
+      <button type="button" class="quiet" :disabled="busy" @click="closeRoom">
+        {{ t('online.room.close') }}
+      </button>
+    </details>
     <div class="turn-live" role="status" aria-live="polite">
       <Transition name="turn">
         <button
@@ -147,6 +227,46 @@ onBeforeUnmount(() => {
   right: 0;
   background: #42251c;
   padding: 8px;
+}
+.rules-update {
+  position: fixed;
+  z-index: 1450;
+  top: 48px;
+  left: 50%;
+  translate: -50% 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  width: min(560px, calc(100vw - 32px));
+  box-sizing: border-box;
+  padding: 10px 14px;
+  background: #2c2420;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+}
+.rules-update span {
+  flex: 1 1 260px;
+}
+.room-menu {
+  position: fixed;
+  z-index: 1300;
+  right: 8px;
+  bottom: 8px;
+  padding: 6px 10px;
+  background: rgb(17 13 20 / 92%);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.room-menu[open] {
+  display: grid;
+  gap: 6px;
+}
+/* Por encima de la barra de acciones del móvil. */
+@media (max-width: 900px) {
+  .room-menu {
+    bottom: 72px;
+  }
 }
 .your-turn {
   position: fixed;
