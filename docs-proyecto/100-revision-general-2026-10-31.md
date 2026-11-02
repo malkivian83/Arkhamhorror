@@ -745,9 +745,49 @@ Siguen abiertos F8 y N4.
 - **Sin cambiar:** la derrota simultánea de E12 (cada punto sigue siendo un `TakeDamage`
   con su `CheckDefeat`). Corregirla exige cambiar la asignación del motor.
 
-### Orden sugerido
+## Pendiente (02/11/2026)
 
-1. **Subir N1–N3**, que corrigen mis propios cambios. N1 bloquea campañas online.
-2. **F1, F2, F3 y F5**, con pruebas por escenario.
-3. **F4, F6 y F7.**
-4. **F8 y N4.**
+Sustituye a los órdenes sugeridos anteriores: lo demás está corregido en las secciones de arriba.
+
+### Recomendado, por orden
+
+1. **Investigador abandonado online.** Si un jugador sale a mitad de partida o borra su
+   cuenta, su investigador se queda sin nadie que decida y la partida se bloquea. Propuesta:
+   que el anfitrión pueda asignar ese investigador a otro miembro o decidir por él.
+2. **J1 · Corrección manual:** ajustar daño, horror, pistas, recursos, perdición y posición,
+   con registro en el historial, para seguir jugando cuando una carta falle.
+3. **Fuzzer en la CI:** incorporar al repositorio las partidas aleatorias de la tercera
+   revisión, para detectar bloqueos de los lotes nuevos de cartas.
+4. **D11 · Errores del motor traducidos:** códigos de error con textos EN/ES.
+
+### Revisión visual pendiente
+
+- **Salas online,** en el servidor desplegado y con dos cuentas:
+  - salir, expulsar, ceder y cerrar la sala;
+  - el menú «Sala» durante la partida, también en móvil;
+  - el aviso de reglas actualizadas.
+- **Partida online:** el reparto de daño (D4) y las pistas del grupo (D10).
+
+### Backlog menor
+
+- **Interfaz:** D12 y D13.
+- **Servidor:** S1 (resto: la activación manual usa la contraseña del primer registro), S2
+  (comprobar en producción), S5 (borrar cuentas solo de Google, registrar los errores 500
+  con mensaje y pila, purgar sesiones y tokens caducados).
+- **Salas:** S3 no cubre `CONTENT_VERSION` de las campañas ni los guardados locales.
+- **Campaña:** C8.
+- **Reglas:** los restos de E12 y F8, incluida la derrota simultánea de E12. D4 la evita en
+  el panel, pero el motor sigue asignando punto a punto.
+- **J2:** volver a grabar la campaña Joe–Trish de Brethren of Ash.
+- **Repositorio:** borrar los `tmp-*` de la raíz.
+
+### Sin cambiar, a propósito
+
+Cambian las preguntas del motor e invalidarían las partidas grabadas:
+
+- D8: compromisos de los demás jugadores online;
+- orden de los ataques del enemigo masivo y de los forzados simultáneos;
+- ventanas de jugador que faltan;
+- elección del Líder aliado en La Gala.
+
+Las decisiones del propietario (Isamara, Git LFS y web tras registro) están en sus apartados.
