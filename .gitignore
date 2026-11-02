@@ -13,3 +13,10 @@ coverage/
 
 # Escaneos propios de cartas (no se suben)
 apps/web/public/cards/
+
+# Salidas locales de compilaciones, comprobaciones y agentes (no se suben).
+dist-*/
+tmp/
+/tmp-*
+.codex-attachments/
+.codex-remote-attachments/

@@ -14,7 +14,11 @@ los documentos necesarios para la tarea; evita reconstruir todo el historial.
 - En trabajos por lotes, reutiliza un único resumen de continuación: último lote
   y commit, siguiente grupo y bloqueos. Incluye el estado de CI y despliegue solo
   si se ha consultado por petición expresa. Actualízalo al cerrar cada lote, sin
-  duplicar informes ni transcribir salidas correctas.
+  duplicar informes ni transcribir salidas correctas. Mantenlo corto: solo el estado
+  vigente y las últimas entradas, en líneas breves; lo anterior va a un archivo de
+  historial que no hace falta leer para continuar.
+- Escribe registros, trazas y salidas temporales en `tmp/` (ignorado por git y por las
+  búsquedas), no en la raíz del repositorio.
 - Si dos intentos de corrección no aportan avance sobre el mismo problema,
   registra la causa y continúa con trabajo independiente. Reinténtalo cuando
   cambie la causa o haya una hipótesis nueva; pide intervención si es imprescindible.

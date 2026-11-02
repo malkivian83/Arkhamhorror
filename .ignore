@@ -1,0 +1,6 @@
+# Búsquedas (ripgrep, editores y agentes): sin binarios ni datos generados grandes.
+# Git los sigue versionando; aquí solo se evita recorrerlos al buscar texto.
+apps/web/public/local-assets/
+apps/web/src/game/cardImageManifest.json
+docs-proyecto/evidencias/
+pnpm-lock.yaml

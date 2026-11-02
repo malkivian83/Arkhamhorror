@@ -83,14 +83,58 @@ vigente de pendientes.
 | 86 | [Lola Hayes](86-investigadora-lola-hayes.md) | Investigadora de Carcosa: papel que restringe las cartas, Improvisación, Crisis de identidad y construcción por clases. |
 | 87 | [Fortuna e insensatez](87-fortuna-e-insensatez.md) | Historia secundaria en dos partes: plan por entregas, mecánicas nuevas, datos, imágenes y narración. |
 
+Documentos posteriores, por número:
+
+- [46 · Eventos reactivos: Dodge y Lucky](46-eventos-reactivos-dodge-lucky.md)
+- [47 · Eventos de recursos, combate y descubrimiento](47-eventos-de-recursos-combate-y-descubrimiento.md)
+- [48 · Protective Vest: búsqueda por rasgo entre tipos](48-protective-vest-y-busqueda-de-mejoras.md)
+- [49 · Trusted y Reliable: eventos vinculados a apoyos](49-trusted-reliable-mejoras-vinculadas.md)
+- [50 · Lista de Pete: Unstoppable Survivor](50-lista-pete-superviviente.md)
+- [51 · Custom Ammunition y Extended Barrel: mejoras vinculadas a armas de fuego](51-municion-canon-vinculados-a-armas.md)
+- [52 · Iron Sights y Custom Grip: habilidades de mejoras vinculadas](52-mira-empunadora-habilidades-vinculadas.md)
+- [53 · Well-Maintained, Tinker y Fine Tuning: reacciones y ranuras de vinculadas](53-reacciones-y-ranuras-de-vinculadas.md)
+- [54 · Apoyos con acciones básicas: Combatir, Investigar y Evitar](54-apoyos-con-acciones-basicas.md)
+- [55 · Eventos con acciones básicas: Combatir, Investigar y Evitar](55-eventos-con-acciones-basicas.md)
+- [56 · Apoyos con capacidades sencillas: bonos, aliados y utilidades](56-apoyos-con-capacidades-sencillas.md)
+- [68 · Bonificaciones hasta el final de la ronda](68-bonificaciones-hasta-final-de-ronda.md)
+- [68 · Revisión de reglas y propuesta de partidas online con amigos](68-revision-reglas-y-online-amigos.md)
+- [69 · Correcciones de reglas e inicio de mesas online](69-inicio-online-amigos.md)
+- [69 · Sustitución opcional de la habilidad](69-sustitucion-de-habilidad.md)
+- [70 · Lobby, mazos e inicio compartido](70-lobby-mazos-inicio-compartido.md)
+- [71 · Habilidades de apoyo y búsqueda](71-habilidades-de-apoyo-y-busqueda.md)
+- [71 · Sincronización de decisiones online](71-sincronizacion-decisiones-online.md)
+- [72 · Última oportunidad](72-ultima-oportunidad.md)
+- [73 · Razonamiento lógico](73-razonamiento-logico.md)
+- [74 · Transición de escenarios y mejoras online](74-campanas-online-y-mejoras.md)
+- [75 · Sinergia y ventanas rápidas](75-sinergia-y-ventanas-rapidas.md)
+- [76 · Ataques de Sinergia](76-ataques-de-sinergia.md)
+- [77 · Ímpetu y la siguiente prueba](77-impetu-y-siguiente-prueba.md)
+- [78 · Historial de ataques](78-historial-de-ataques.md)
+- [79 · No va más y robo protegido](79-no-va-mas-y-robo-protegido.md)
+- [80 · Acciones completadas y Tomar la iniciativa](80-acciones-completadas-e-iniciativa.md)
+- [81 · Reacción rápida y acciones inmediatas](81-reaccion-rapida-y-acciones-inmediatas.md)
+- [82 · Reflejos rápidos](82-reflejos-rapidos.md)
+- [83 · Petición de apoyo](83-peticion-de-apoyo.md)
 - [88 · La noche de la fanática](88-noche-de-la-fanatica.md): El encuentro, reglas compartidas, Grimorio y continuación.
 - [89 · Wendy, Mateo, Marie y André](89-investigadores-wendy-mateo-marie-andre.md): cuatro investigadores y sus exclusivas; cancelar y sellar fichas, éxito automático, acción por rasgo y construcción por rasgos.
+- [89 · El legado de Dunwich](89-legado-de-dunwich.md)
 - [90 · Stella Clark](90-investigadora-stella-clark.md): su caja y las listas 25117 y 39832; exiliar, ventana de fracaso inminente, cancelar efectos de la prueba fracasada y pruebas sin fichas.
 - [91 · Banquillo de Stella](91-banquillo-stella-personalizables.md): cinco cartas y hojas de mejoras personalizables, con compra, persistencia y juego local/online.
 - [92 · Nathaniel Cho y Harvey Walters](92-nathaniel-cho-harvey-walters.md): dos mazos completos, investigadores y exclusivas, mejoras, reglas por fase y tamaño de mano, e Investigado.
-
+- [93 · Rex Murphy](93-rex-murphy.md): investigador original, exclusivas, Viejo libro de conocimiento y lista 21596 completa.
 - [93 · Variantes de encuentros](93-variantes-conjuntos-encuentros.md): elección original/capítulo 2 en Dunwich, Carcosa y Fanática; preparación, excepciones y persistencia local/online.
 - [94 · La llamada del Portador de la Plaga](94-portador-de-la-plaga.md): campaña fanmade; inventario de cartas EN/ES, bolsa, reglas nuevas, registro, errata, diferencias entre guías y decisiones pendientes.
+- [95 · Variantes mejoradas](95-variantes-mejoradas.md): 44 niveles de cartas con base jugable; talentos que se reponen, Solución extraña (4), Linterna (3) y reducción de dificultad en curso.
+- [96 · Mecánicas reutilizadas](96-mecanicas-reutilizadas.md): 36 cartas sobre mecánicas existentes (parlamento, ventanas de éxito, ataques remotos, búsquedas) y 15 bloqueadas por ventanas o efectos de turno pendientes en el motor.
+- [97 · Apoyos y pruebas](97-apoyos-y-pruebas.md): 19 cartas/niveles nuevos, Compostura, búsqueda, recursos y pruebas de Hechizo.
+- [98 · Ventanas de daño y turno](98-ventanas-de-dano-y-turno.md)
+- [99 · Herramientas y Parlamento](99-herramientas-y-parlamento.md)
+- [100 · Revisión general de la aplicación — 31/10/2026](100-revision-general-2026-10-31.md)
+- [101 · Cargas, perdición y Parlamento](101-cargas-perdicion-y-parlamento.md)
+- [102 · Recursos, reacciones y herramientas investigadas](102-recursos-y-reacciones.md)
+- [103 · Protección y herramientas](103-proteccion-y-herramientas.md)
+- [104 · Pruebas y recuperación](104-pruebas-y-recuperacion.md)
+- [105 · Servicios y Negociar](105-servicios-y-negociacion.md)
 
 ## Decisiones ya tomadas
 
@@ -99,9 +143,3 @@ vigente de pendientes.
   las [convenciones vigentes](06-convenciones.md).
   La aplicación sirve sus propias imágenes y usa su propia API, cuentas y base de datos.
 - Idiomas soportados: **solo inglés y español**.
-
-- [93 · Rex Murphy](93-rex-murphy.md): investigador original, exclusivas, Viejo libro de conocimiento y lista 21596 completa.
-- [95 · Variantes mejoradas](95-variantes-mejoradas.md): 44 niveles de cartas con base jugable; talentos que se reponen, Solución extraña (4), Linterna (3) y reducción de dificultad en curso.
-- [96 · Mecánicas reutilizadas](96-mecanicas-reutilizadas.md): 36 cartas sobre mecánicas existentes (parlamento, ventanas de éxito, ataques remotos, búsquedas) y 15 bloqueadas por ventanas o efectos de turno pendientes en el motor.
-
-- [97 · Apoyos y pruebas](97-apoyos-y-pruebas.md): 19 cartas/niveles nuevos, Compostura, búsqueda, recursos y pruebas de Hechizo.
