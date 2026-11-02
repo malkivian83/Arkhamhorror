@@ -8097,7 +8097,6 @@ export function handle(state: GameState, message: Message): GameState {
       if (owner?.eliminated || !Number.isInteger(message.count) || message.count <= 0) return state
       const deck = owner?.deck ?? state.encounterDeck
       const count = Math.min(deck.length, message.count)
-      if (!count) return state
       const cards = message.fromBottom ? deck.slice(-count) : deck.slice(0, count)
       const next = owner
         ? updateInvestigator(state, owner.id, (i) => ({
@@ -8127,6 +8126,15 @@ export function handle(state: GameState, message: Message): GameState {
       )
         return state
       const card = message.card
+      if (
+        message.to === 'hand' &&
+        message.drawFound &&
+        scenarioBehavior(state.scenarioId)?.cannotDrawCards?.(state, message.investigator)
+      )
+        return updateInvestigator(state, message.investigator, (i) => ({
+          ...i,
+          deck: [card, ...i.deck],
+        }))
       const next = updateInvestigator(state, message.investigator, (i) => ({
         ...i,
         [message.to === 'hand' ? 'hand' : 'discard']: [
@@ -8135,11 +8143,46 @@ export function handle(state: GameState, message: Message): GameState {
         ],
       }))
       return message.to === 'hand'
-        ? push(next, {
-            type: 'ResolveDrawnRevelations',
-            investigator: message.investigator,
-            cards: [card],
-          })
+        ? push(
+            next,
+            ...(message.drawFound
+              ? [
+                  {
+                    type: 'Forced' as const,
+                    trigger: {
+                      type: 'whenCardsDrawn' as const,
+                      investigator: message.investigator,
+                      amount: 1,
+                    },
+                  },
+                ]
+              : []),
+            {
+              type: 'ResolveDrawnRevelations',
+              investigator: message.investigator,
+              cards: [card],
+            },
+            ...(message.drawFound
+              ? [
+                  {
+                    type: 'Forced' as const,
+                    trigger: {
+                      type: 'afterDrawCard' as const,
+                      investigator: message.investigator,
+                      card,
+                    },
+                  },
+                  {
+                    type: 'Forced' as const,
+                    trigger: {
+                      type: 'afterCardsDrawn' as const,
+                      investigator: message.investigator,
+                      amount: 1,
+                    },
+                  },
+                ]
+              : []),
+          )
         : next
     }
     case 'ReturnInspectedCards': {
