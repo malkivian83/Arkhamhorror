@@ -9,6 +9,8 @@ import { choose, during, labels, withBag } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { CODES, spreadingFlames } from '../brethren-of-ash/spreading-flames'
 import { code, playerCards, STARTER_DECKS, starterInvestigator } from './player-cards'
+// La reacción de Daniela está siempre presente, como en una partida real.
+import './investigators'
 
 const DANIELA = code(1)
 const inv = (s: GameState) => getInvestigator(s, DANIELA)
@@ -125,6 +127,7 @@ describe('habilidades de apoyos', () => {
       engageWith: null,
     })
     game = choose(game, 'action.play', { card: 'Machete' })
+    game = choose(game, 'choice.skip') // Daniela no responde al ataque de oportunidad.
     // combate 5 + 1, ficha −3 → 3 contra combate 3 del enemigo: éxito, 2 daño.
     game = during(game, withBag(-3))
     game = choose(game, 'ability.fightWith', { card: 'Machete' })
@@ -151,6 +154,7 @@ describe('habilidades de apoyos', () => {
       engageWith: null,
     })
     game = choose(game, 'action.play', { card: 'M1911' })
+    game = choose(game, 'choice.skip') // Daniela no responde al ataque de oportunidad.
     game = choose(game, 'ability.fightWith', { card: 'M1911' })
     expect(assets(game)[0]?.uses).toBe(3)
     expect(Object.values(game.enemies)[0]?.damageTaken).toBe(2)
@@ -160,7 +164,12 @@ describe('habilidades de apoyos', () => {
 describe('comprometer cartas a pruebas', () => {
   it('Overpower suma sus iconos y roba 1 carta si la prueba tiene éxito', () => {
     // combate 5 + 2 (Overpower), ficha −4 → 3 contra 3: éxito.
-    let game = during(newGame(), (s) => withBag(-4)(withHand([92], 0)(s)), {
+    // Machete arriba del mazo: el robo no depende de que salga la debilidad de Daniela.
+    const topDeck = (s: GameState) => ({
+      ...s,
+      investigators: s.investigators.map((i) => ({ ...i, deck: [code(20), ...i.deck] })),
+    })
+    let game = during(newGame(), (s) => topDeck(withBag(-4)(withHand([92], 0)(s))), {
       type: 'SpawnEnemy',
       card: cultist,
       location: ROOM,
@@ -171,7 +180,7 @@ describe('comprometer cartas a pruebas', () => {
     game = choose(game, 'choice.commit', { card: 'Overpower' })
     // Máximo 1 comprometida: ya no se ofrece otra y se pasa a revelar ficha.
     expect(Object.values(game.enemies)[0]?.damageTaken).toBe(1)
-    expect(inv(game).hand).toHaveLength(1) // robó 1
+    expect(inv(game).hand).toEqual([code(20)]) // robó 1
     expect(inv(game).discard).toEqual([code(92)])
   })
 

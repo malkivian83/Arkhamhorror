@@ -4,6 +4,7 @@
  */
 import { applyInput, createGame, dispatch } from './engine'
 import { EngineError } from './errors'
+export { snapshotRegistries } from './content'
 import type { InvestigatorSetup, ScenarioDefinition } from './setup'
 import type { ChaosToken, EnemyCard, GameState, LabelParams, Message } from './types'
 

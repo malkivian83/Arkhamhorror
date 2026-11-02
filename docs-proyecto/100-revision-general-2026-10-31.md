@@ -684,12 +684,15 @@ Siguen abiertos F8 y N4.
 - **N4 · corregido:** los guardados rápidos ya no pasan a la copia de seguridad. Cada 20
   decisiones, en tiempo libre del navegador, `refreshBackup` rejuega el guardado completo
   y solo lo copia si lo reproduce.
-- **O4 · diagnosticado, sin aplicar:** sin aislamiento (`isolate: false`), el proyecto
-  `cards` pasa de la mayor parte de los 400 s de la suite a 87 s. Pero
-  `registerPlayerCard` sobrescribe el registro global y muchas pruebas registran cartas
-  propias, algunas con códigos reales: el estado se filtra entre archivos y fallan pruebas
-  según el orden. Antes hay que hacer que esas pruebas restauren lo que registran (o usen
-  códigos propios).
+- **O4 · corregido (02/11/2026):** el proyecto `cards` corre sin aislamiento
+  (`isolate: false`) y pasa de 379 s a 75–94 s en local. `src/test-setup.ts` carga todas
+  las cartas y, tras cada archivo, devuelve a su valor las entradas del registro que una
+  prueba haya sobrescrito (`snapshotRegistries`, en `@lcg/engine/testing`). Las entradas
+  nuevas se conservan, porque los auxiliares compartidos registran sus códigos de prueba
+  una sola vez. `player-cards.test` dependía de no cargar a Daniela ni su debilidad: ahora
+  carga su reacción y fija la carta que roba Overpower. El límite por prueba del proyecto
+  sube a 15 s porque las partidas al azar completas corren en paralelo. El proyecto
+  `engine` apenas gana (5 s → 4 s) y sigue aislado.
 - **O5 · corregido:** la comprobación de vitalidad dinámica se guarda en caché por mapa
   inmutable de apoyos y traiciones: unos 10 % menos de tiempo de motor en las grabaciones.
 - **R1 · CI:** el clon completo usa `filter: blob:none`, y el historial de imágenes y
