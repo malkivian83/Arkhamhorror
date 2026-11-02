@@ -26580,6 +26580,42 @@
       "sourceSha256": "2c8eb4f6310145612b79ac1b301850426f19d10f977d169e91756d6b2629a71a",
       "path": "/local-assets/cards/es/thumbs/04312.webp",
       "sha256": "d3bc9fe7ed21a5919a64205abc9e2c42e82bb31e79cac1f105097857c2ff718d"
+    },
+    {
+      "source": "/local-assets/cards/en/60181.avif",
+      "sourceSha256": "7a87636689675c093aeaf1f274fc29ece273bc34aed0daae567a864105a7fa66",
+      "path": "/local-assets/cards/en/thumbs/60181.webp",
+      "sha256": "247ded3199ff20ca42d00a81545cdf011ceecf8cd6f771b8eab91c28c4ec5497"
+    },
+    {
+      "source": "/local-assets/cards/en/60260.avif",
+      "sourceSha256": "98489feea250a4c618968a975a1cc2a19fb8c0efdc9fc80f30b7a4a7d9a67b8b",
+      "path": "/local-assets/cards/en/thumbs/60260.webp",
+      "sha256": "95fef69ee7d8f6eec3d94a3ca727aee563e85480017f9b9f5458c32fcd06082d"
+    },
+    {
+      "source": "/local-assets/cards/en/05283.avif",
+      "sourceSha256": "1e9da6e2bc570dcb6c2aea58b86c69cdf8d81ba92f2e862d1a0837096bc607e2",
+      "path": "/local-assets/cards/en/thumbs/05283.webp",
+      "sha256": "db50f058304789ab947f5fe23d00ebbcb7abbeaef4868df82d3a75da568b0a04"
+    },
+    {
+      "source": "/local-assets/cards/es/60181.avif",
+      "sourceSha256": "c8a6ea4fd3d18f86104db9810e50801a21b0f6cddb401a0666a2ea942142fb3b",
+      "path": "/local-assets/cards/es/thumbs/60181.webp",
+      "sha256": "d48fc76f0dd6862c45d487c92eef847c642426f0235f75f9bc2e1facafe3b525"
+    },
+    {
+      "source": "/local-assets/cards/es/60260.avif",
+      "sourceSha256": "eebdcb9cab0c90a1c05776d7348a92a0c7a8cb2ff804e603b93e71e737e50606",
+      "path": "/local-assets/cards/es/thumbs/60260.webp",
+      "sha256": "1d6f883847ec0d9c2277dc04f1034cfa9fd2605a0303ea35603edd488959a440"
+    },
+    {
+      "source": "/local-assets/cards/es/05283.avif",
+      "sourceSha256": "3ff420cbf8b806efa3e9983166737cbd1950362274fbd893f434639974d2a211",
+      "path": "/local-assets/cards/es/thumbs/05283.webp",
+      "sha256": "bb417f973fed0008c22462c29aa03653470f5e133a6d3183ac4dce2e9c586ada"
     }
   ]
 }

@@ -1,0 +1,31 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "2e29d35e1a2bc48e37190c570a67cfa42e47ff64f6e75c9b5ebf980908be4a84",
+    "es": "6a65e41f5478c9393c1bb31c237107ba6813d1206311e81d36977b48a8cc1852"
+  },
+  "cards": [
+    {
+      "code": "05283",
+      "status": "verified",
+      "module": "card-05283",
+      "test": "rules.test.ts",
+      "subname": "Mysterious Soothsayer"
+    },
+    {
+      "code": "60260",
+      "status": "verified",
+      "module": "card-60260",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60181",
+      "status": "verified",
+      "module": "card-60181",
+      "test": "rules.test.ts"
+    }
+  ]
+}

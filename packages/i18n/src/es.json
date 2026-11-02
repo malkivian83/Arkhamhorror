@@ -403,6 +403,7 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "slotSearch": "Buscar con {card}",
     "improvisedExtra": "Evadir también a {enemy}",
     "improvisedEnemy": "Elegir a {enemy} para {card}",
     "therapyFinish": "Barajar las cartas elegidas y robar",
@@ -3195,6 +3196,7 @@
   },
   "offlineCard": {
     "subnames": {
+      "05283": "Vidente misteriosa",
       "02232": "Oradora de los muertos",
       "53004": "Pensamientos pasajeros",
       "04230": "Conocimiento de los ancianos",
@@ -3269,6 +3271,9 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "60181": "Objeto. Protección. Policía.",
+      "60260": "Aliado. Miskatonic.",
+      "05283": "Aliado. Clarividente.",
       "11092": "Táctica. Improvisado.",
       "04033": "Táctica. Improvisado.",
       "04312": "Táctica. Improvisado.",
@@ -3797,6 +3802,9 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "60181": "Tienes 1 espacio de mano adicional que sólo puede usarse para un Apoyo [[Arma de fuego]].\n[reaction] Después de que juegues el Chaleco protector: Busca entre las 9 primeras cartas de tu mazo una carta [[Arma de fuego]] o [[Mejora]] y añádela a tu mano. Baraja tu mazo.",
+      "60260": "Tienes un espacio de mano adicional que sólo puede usarse para un Apoyo [[Tomo]].\n[reaction] Después de que la Archivera de la universidad entre en juego: Busca entre las 6 primeras cartas de tu mazo un Apoyo [[Tomo]] y añádelo a tu mano. Baraja tu mazo.",
+      "05283": "Tienes 2 espacios de tarot adicionales.\n[reaction] Cuando comience la partida, si Anna Kaslow está en tu mano inicial: Ponla en juego.\n[reaction] Después de que Anna Kaslow entre en juego: Busca en tu mazo un Apoyo [[Tarot]] y ponlo en juego.",
       "11092": "Puedes jugar el Arma improvisada desde tu pila de descartes. Si lo haces, añádela a tu mazo y baraja éste después de resolver sus efectos y roba 1 carta.\n<b>Combatir.</b> El Enemigo atacado recibe –2 a combate para este ataque. Si has jugado el Arma improvisada desde tu pila de descartes, este ataque inflige +1 de daño.",
       "04033": "Puedes jugar el Arma improvisada desde tu pila de descartes. Si lo haces, añádela a tu mazo y baraja éste después de resolver sus efectos.\n<b>Combatir.</b> El Enemigo atacado recibe -1 a combate para este ataque. Si has jugado el Arma improvisada desde tu pila de descartes, este ataque inflige +1 de daño.",
       "04312": "Puedes jugar la Barrera improvisada desde tu pila de descartes. Si lo haces, añádela a tu mazo y baraja éste después de resolver sus efectos.\n<b>Evitar.</b> El Enemigo evitado recibe -1 a evitar para este intento de evitar. Si jugaste la Barrera improvisada desde tu pila de descartes, puedes evitar a un Enemigo adicional que esté en el mismo Lugar y tenga un valor de evitar X o inferior. X es la cantidad de puntos por encima del valor mínimo de éxito.",
@@ -4762,6 +4770,9 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "60181": "Chaleco protector",
+      "60260": "Archivera de la universidad",
+      "05283": "Anna Kaslow",
       "11092": "Arma improvisada",
       "04033": "Arma improvisada",
       "04312": "Barrera improvisada",

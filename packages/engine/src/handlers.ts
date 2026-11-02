@@ -7998,6 +7998,8 @@ export function handle(state: GameState, message: Message): GameState {
           const cost = Math.max(0, (def.cost ?? 0) - (message.discount ?? 0))
           if (cost > investigator.resources || assetsBlocked(state, investigator.id)) return false
         }
+        if (message.to === 'put' && (def.type !== 'asset' || uniqueAssetInPlay(state, code)))
+          return false
         return true
       })
       if (matches.length === 0) {
@@ -8020,7 +8022,7 @@ export function handle(state: GameState, message: Message): GameState {
         investigator: investigator.id,
         question: {
           kind: 'chooseOne',
-          prompt: message.to === 'play' ? 'prompt.searchToPlay' : 'prompt.searchToHand',
+          prompt: message.to !== 'hand' ? 'prompt.searchToPlay' : 'prompt.searchToHand',
           choices: [
             ...matches.map((code): Choice => ({
               label: 'choice.takeCard',
@@ -8081,6 +8083,13 @@ export function handle(state: GameState, message: Message): GameState {
               },
             )
           : taken
+      if (message.to === 'put')
+        return push(taken, {
+          type: 'PutAssetIntoPlay',
+          investigator: investigator.id,
+          code: message.code,
+          fromHand: true,
+        })
       return push(taken, {
         type: 'PlayCard',
         investigator: investigator.id,

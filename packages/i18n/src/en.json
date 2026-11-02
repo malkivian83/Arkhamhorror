@@ -403,6 +403,7 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "slotSearch": "Search with {card}",
     "improvisedExtra": "Also evade {enemy}",
     "improvisedEnemy": "Choose {enemy} for {card}",
     "therapyFinish": "Shuffle the selected cards and draw",
@@ -3195,6 +3196,7 @@
   },
   "offlineCard": {
     "subnames": {
+      "05283": "Mysterious Soothsayer",
       "02232": "Speaker to the Dead",
       "53004": "Transient Thoughts",
       "04230": "Knowledge of the Elders",
@@ -3269,6 +3271,9 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "60181": "Item. Armor. Police.",
+      "60260": "Ally. Miskatonic.",
+      "05283": "Ally. Clairvoyant.",
       "11092": "Tactic. Improvised.",
       "04033": "Tactic. Improvised.",
       "04312": "Tactic. Improvised.",
@@ -3797,6 +3802,9 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "60181": "You have 1 additional hand slot, which may only be used to hold a [[Firearm]] asset.\n[reaction] After you play Protective Vest: Search the top 9 cards of your deck for a [[Firearm]] or [[Upgrade]] card and add it to your hand. Shuffle your deck.",
+      "60260": "You have 1 additional hand slot, which can only be used to hold a [[Tome]] asset.\n[reaction] After University Archivist enters play: Search the top 6 cards of your deck for a [[Tome]] asset and add it to your hand. Shuffle your deck.",
+      "05283": "You have 2 additional tarot slots.\n[reaction] When the game begins, if Anna Kaslow is in your opening hand: Put her into play.\n[reaction] After Anna Kaslow enters play: Search your deck for a [[Tarot]] asset and put it into play.",
       "11092": "You may play Improvised Weapon from your discard pile. If you do, shuffle it into your deck after resolving its effects and draw 1 card.\n<b>Fight.</b> The attacked enemy gets -2 fight for this attack. (If you played Improvised Weapon from your discard pile, this attack deals +1 damage.)",
       "04033": "You may play Improvised Weapon from your discard pile. If you do, shuffle it into your deck after resolving its effects.\n<b>Fight.</b> The attacked enemy gets -1 fight for this attack. (If you played Improvised Weapon from your discard pile, this attack deals +1 damage.)",
       "04312": "You may play Impromptu Barrier from your discard pile. If you do, shuffle it into your deck after resolving its effects.\n<b>Evade.</b> The chosen enemy gets -1 evade for this evasion attempt. (If you played Impromptu Barrier from your discard pile, you may evade an additional enemy at the same location with evade X or lower. X is the amount you succeed by.)",
@@ -4762,6 +4770,9 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "60181": "Protective Vest",
+      "60260": "University Archivist",
+      "05283": "Anna Kaslow",
       "11092": "Improvised Weapon",
       "04033": "Improvised Weapon",
       "04312": "Impromptu Barrier",
