@@ -2809,7 +2809,8 @@ export function handle(state: GameState, message: Message): GameState {
         question: {
           kind: 'chooseOne',
           prompt: kind === 'damage' ? 'prompt.assignDamage' : 'prompt.assignHorror',
-          ...(message.source ? { promptParams: { source: message.source } } : {}),
+          // What is still to assign, this point included: the table plans it all at once (D4).
+          promptParams: { ...(message.source ? { source: message.source } : {}), damage, horror },
           choices: [
             ...(mandatory.length || focused.length || beforeOwner
               ? []
