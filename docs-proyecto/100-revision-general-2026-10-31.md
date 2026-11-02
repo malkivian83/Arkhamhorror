@@ -557,7 +557,7 @@ Se han usado tres vías:
 | F5 · Alto · reproducido     | Ecos del pasado comprueba el plan tras poner perdición en enemigos (ficha de sectario, Juramentado poseído, Buscador de Carcosa, Led Astray), aunque ninguna carta lo dice: el plan avanza en mitad de la ronda.                                                                            | `echoes-of-the-past.ts:694`, `:740`, `:767`, `~1003`                                                                   |
 | F6 · Medio · confirmado     | Más comprobaciones indebidas del plan en Carcosa: El último rey (calavera, Comedor), Agujas de Carcosa (2 perdiciones en un Lugar) y El Fantasma de la Verdad (Acechado por las sombras, Notre-Dame).                                                                                         | `the-last-king.ts:713`, `:830`; `encounter-sets.ts:497`; `a-phantom-of-truth.ts:1324`, `:1494`                        |
 | F7 · Medio · confirmado     | Fortune and Folly: omitir la Parte I no suma las 2 tareas de Recompensas adicionales (guía p. 31); se pierde experiencia y quizá Isamara o el Mazo de posibilidades.                                                                                                                         | `fortune-and-folly/part-two.ts:120`, `:851-856`                                                                       |
-| F8 · Bajo                   | - Siervo del acechador (02104) sin Victoria 1.<br>- El hombre de la máscara pálida derrotado en el acto 2 va a la pila de descartes y no se retira.<br>- Rice (Actividad extracurricular R1) no se puede dar a un investigador derrotado.<br>- Isamara se concede sin estar en juego al final (decisión pendiente; la prueba fija el comportamiento actual).<br>- La Vigilancia cuenta pistas de investigadores en juego (plausible). | `servant-of-the-lurker.ts`, `the-pallid-mask.ts:1064`, `extracurricular-activity.ts:217`, `part-two.ts:854`, `part-one.ts:388` |
+| F8 · Bajo                   | - Siervo del acechador (02104) sin Victoria 1.<br>- El hombre de la máscara pálida derrotado en el acto 2 va a la pila de descartes y no se retira.<br>- Rice (Actividad extracurricular R1) no se puede dar a un investigador derrotado.<br>- Isamara se concede sin estar en juego al final (se mantiene por decisión del propietario; la prueba fija el comportamiento).<br>- La Vigilancia cuenta pistas de investigadores en juego (plausible). | `servant-of-the-lurker.ts`, `the-pallid-mask.ts:1064`, `extracurricular-activity.ts:217`, `part-two.ts:854`, `part-one.ts:388` |
 
 Comprobado como correcto, además:
 
@@ -672,7 +672,8 @@ Siguen abiertos F8 y N4.
     motor e invalidarían las grabaciones.
   - Presa por habilidad modificada: requiere simular una prueba, con riesgo de efectos
     colaterales.
-  - Isamara: pendiente de tu decisión.
+  - Isamara: se mantiene la concesión aunque no esté en juego al final (decisión del
+    propietario, 02/11/2026).
 
 ### Rendimiento y operación (01/11/2026)
 
@@ -692,7 +693,9 @@ Siguen abiertos F8 y N4.
 - **O5 · corregido:** la comprobación de vitalidad dinámica se guarda en caché por mapa
   inmutable de apoyos y traiciones: unos 10 % menos de tiempo de motor en las grabaciones.
 - **R1 · CI:** el clon completo usa `filter: blob:none`, y el historial de imágenes y
-  audio ya no se descarga. Pasar a Git LFS reescribiría el historial: decisión tuya.
+  audio ya no se descarga. Decisión del propietario (02/11/2026): no migrar a Git LFS.
+- **R2 · mitigado:** `robots.txt` excluye `/local-assets/` y se mantiene el aviso de no
+  afiliación. Decisión del propietario: más adelante, la web pasará a requerir registro.
 
 ### Orden sugerido
 
