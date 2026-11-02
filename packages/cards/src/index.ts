@@ -280,6 +280,7 @@ import { SCROLL_RENDERED_CODES } from './secret-scrolls'
 import { THERAPY_RENDERED_CODES } from './therapeutic-recovery'
 import { IMPROVISED_RENDERED_CODES } from './improvised-survival'
 import { SLOT_SEARCH_RENDERED_CODES } from './slot-search'
+import { ENEMY_RELOCATION_RENDERED_CODES } from './enemy-relocation'
 import { REX_RENDERED_CODES } from './rex-murphy'
 import { GROUPED_RENDERED_CODES } from './grouped-import'
 import { IMMEDIATE_EVENT_RENDERED_CODES } from './immediate-action-events'
@@ -296,6 +297,7 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...THERAPY_RENDERED_CODES,
   ...IMPROVISED_RENDERED_CODES,
   ...SLOT_SEARCH_RENDERED_CODES,
+  ...ENEMY_RELOCATION_RENDERED_CODES,
   ...TOKEN_SKILL_RENDERED_CODES,
   ...SERVICE_RENDERED_CODES,
   ...TEST_RECOVERY_RENDERED_CODES,
