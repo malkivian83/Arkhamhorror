@@ -1711,6 +1711,26 @@ export type Message =
       discount?: number
     }
   | { type: 'ShuffleDeck'; investigator: InvestigatorId }
+  /** Hold looked-at cards in the continuation's serializable data, without drawing/searching. */
+  | {
+      type: 'InspectDeck'
+      investigator?: InvestigatorId
+      count: number
+      fromBottom?: boolean
+      then: Extract<Message, { type: 'PlayerCardEffect' }>
+    }
+  | {
+      type: 'MoveInspectedCard'
+      investigator?: InvestigatorId
+      card: CardCode | EncounterCard
+      to: 'discard' | 'hand'
+    }
+  | {
+      type: 'ReturnInspectedCards'
+      investigator?: InvestigatorId
+      top: (CardCode | EncounterCard)[]
+      bottom: (CardCode | EncounterCard)[]
+    }
   /** Reorder the inspected top cards by physical position; never searches or draws them. */
   | {
       type: 'ReorderDeck'
