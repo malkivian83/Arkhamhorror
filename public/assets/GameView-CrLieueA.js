@@ -1,0 +1,1 @@
+export{t as default}from"./GameView-DQFWwl3k.js";

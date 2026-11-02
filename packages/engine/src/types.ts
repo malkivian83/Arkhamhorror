@@ -1684,7 +1684,7 @@ export type Message =
       cardType?: PlayerCardDef['type']
       top?: number
       traits: string[]
-      to: 'hand' | 'play'
+      to: 'hand' | 'play' | 'put'
       discount?: number
       /** Cualquier carta, no solo apoyos con esos rasgos (Mysterious Grimoire). */
       anyCard?: boolean
@@ -1706,7 +1706,7 @@ export type Message =
       fromBottom?: boolean
       investigator: InvestigatorId
       code: CardCode
-      to: 'hand' | 'play'
+      to: 'hand' | 'play' | 'put'
       drawFound?: boolean
       discount?: number
     }

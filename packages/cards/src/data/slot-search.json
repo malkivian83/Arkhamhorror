@@ -1,0 +1,42 @@
+[
+  {
+    "code": "05283",
+    "name": "Anna Kaslow",
+    "subname": "Mysterious Soothsayer",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Ally", "Clairvoyant"],
+    "unique": true,
+    "cost": 3,
+    "xp": 4,
+    "icons": { "wild": 1 },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 1
+  },
+  {
+    "code": "60260",
+    "name": "University Archivist",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ally", "Miskatonic"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "agility": 1 },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 1
+  },
+  {
+    "code": "60181",
+    "name": "Protective Vest",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Armor", "Police"],
+    "cost": 3,
+    "xp": 4,
+    "icons": { "willpower": 1, "combat": 1, "wild": 1 },
+    "slots": ["body"],
+    "health": 3
+  }
+]
