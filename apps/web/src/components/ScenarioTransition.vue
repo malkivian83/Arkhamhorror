@@ -126,7 +126,11 @@ onBeforeUnmount(() => dialog.value?.close())
           <figure
             v-for="(card, n) in current.cards"
             :key="n"
-            :style="{ '--card-ratio': card.landscape ? '1 / .715' : '1 / 1.4' }"
+            :style="{
+              '--card-ratio': card.landscape ? '1 / .715' : '1 / 1.4',
+              '--card-width': card.landscape ? '440px' : '260px',
+              '--card-tall': card.landscape ? '.715' : '1.4',
+            }"
           >
             <GameCard
               :code="card.code"
@@ -205,7 +209,7 @@ onBeforeUnmount(() => dialog.value?.close())
   max-height: calc(100dvh - 24px);
   box-sizing: border-box;
   overflow: auto;
-  padding: 20px;
+  padding: 14px 20px;
   color: var(--text);
   background: var(--bg);
   border: 1px solid var(--accent);
@@ -221,13 +225,14 @@ figcaption {
   text-align: center;
 }
 h2 {
-  margin: 8px 0;
+  margin: 2px 0;
 }
 .eyebrow {
   color: var(--accent);
   margin: 0;
 }
 .remaining {
+  margin: 0 0 10px;
   opacity: 0.7;
   font-size: 0.85rem;
 }
@@ -246,7 +251,7 @@ figure {
   max-width: 100%;
 }
 figcaption {
-  margin: 8px 0;
+  margin: 4px 0;
   font-weight: bold;
 }
 .origin {
@@ -265,7 +270,35 @@ figcaption {
 .cards figure {
   display: grid;
   justify-items: center;
+  gap: 4px;
+}
+/* Las cartas se ajustan a la altura de la ventana para que la pantalla quepa de un vistazo. */
+.cards :deep(.game-card) {
+  width: min(var(--card-width), calc(32dvh / var(--card-tall))) !important;
+  height: auto !important;
+  aspect-ratio: var(--card-ratio);
+}
+/* Narración en una sola línea: botón, barra y tiempo. */
+.cards :deep(.narration) {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 2px 0 0;
+  padding: 4px 10px;
   gap: 10px;
+}
+.cards :deep(.narration .play) {
+  width: 32px;
+  height: 32px;
+}
+.cards :deep(.narration .play svg) {
+  width: 18px;
+  height: 18px;
+}
+.cards :deep(.narration .caption) {
+  display: none;
+}
+.cards :deep(.narration .bar) {
+  margin-top: 0;
 }
 .faces :deep(.game-card),
 .cards :deep(.game-card) {
@@ -287,8 +320,7 @@ figcaption {
   width: 100%;
 }
 .deck-label {
-  display: block;
-  margin-bottom: 2px;
+  margin-right: 0.4em;
   color: var(--accent);
   font-size: 0.8rem;
   letter-spacing: 0.08em;
@@ -299,13 +331,13 @@ figcaption {
   box-sizing: border-box;
   width: fit-content;
   max-width: min(760px, 100%);
-  margin: 20px auto;
+  margin: 12px auto 4px;
   padding-left: 1.6em;
-  font-size: 1.15rem;
-  line-height: 1.5;
+  font-size: 1.05rem;
+  line-height: 1.4;
 }
 .effects li {
-  margin: 10px 0;
+  margin: 4px 0;
 }
 .decision {
   margin: 20px auto;
@@ -316,8 +348,8 @@ figcaption {
 }
 footer {
   position: sticky;
-  bottom: -20px;
-  padding: 12px;
+  bottom: -14px;
+  padding: 8px;
   text-align: center;
   background: var(--bg);
 }
