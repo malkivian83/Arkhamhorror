@@ -8089,6 +8089,80 @@ export function handle(state: GameState, message: Message): GameState {
       })
     }
 
+    case 'InspectDeck': {
+      const owner =
+        message.investigator === undefined
+          ? undefined
+          : getInvestigator(state, message.investigator)
+      if (owner?.eliminated || !Number.isInteger(message.count) || message.count <= 0) return state
+      const deck = owner?.deck ?? state.encounterDeck
+      const count = Math.min(deck.length, message.count)
+      if (!count) return state
+      const cards = message.fromBottom ? deck.slice(-count) : deck.slice(0, count)
+      const next = owner
+        ? updateInvestigator(state, owner.id, (i) => ({
+            ...i,
+            deck: message.fromBottom ? i.deck.slice(0, -count) : i.deck.slice(count),
+          }))
+        : {
+            ...state,
+            encounterDeck: message.fromBottom
+              ? state.encounterDeck.slice(0, -count)
+              : state.encounterDeck.slice(count),
+          }
+      return push(next, {
+        ...message.then,
+        data: { ...message.then.data, cards: JSON.stringify(cards), who: owner?.id ?? '' },
+      })
+    }
+    case 'MoveInspectedCard': {
+      if (message.investigator === undefined) {
+        return typeof message.card !== 'string' && message.to === 'discard'
+          ? { ...state, encounterDiscard: [...state.encounterDiscard, message.card] }
+          : state
+      }
+      if (
+        typeof message.card !== 'string' ||
+        getInvestigator(state, message.investigator).eliminated
+      )
+        return state
+      const card = message.card
+      const next = updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        [message.to === 'hand' ? 'hand' : 'discard']: [
+          ...i[message.to === 'hand' ? 'hand' : 'discard'],
+          card,
+        ],
+      }))
+      return message.to === 'hand'
+        ? push(next, {
+            type: 'ResolveDrawnRevelations',
+            investigator: message.investigator,
+            cards: [card],
+          })
+        : next
+    }
+    case 'ReturnInspectedCards': {
+      const cards = [...message.top, ...message.bottom]
+      if (message.investigator === undefined) {
+        if (cards.some((c) => typeof c === 'string')) return state
+        return {
+          ...state,
+          encounterDeck: [
+            ...(message.top as EncounterCard[]),
+            ...state.encounterDeck,
+            ...(message.bottom as EncounterCard[]),
+          ],
+        }
+      }
+      const owner = getInvestigator(state, message.investigator)
+      if (owner.eliminated || cards.some((c) => typeof c !== 'string')) return state
+      const deck = [...(message.top as string[]), ...owner.deck, ...(message.bottom as string[])]
+      const next = updateInvestigator(state, owner.id, (i) => ({ ...i, deck }))
+      return !deck.length
+        ? push(next, { type: 'Forced', trigger: { type: 'deckEmptied', investigator: owner.id } })
+        : next
+    }
     case 'ReorderDeck': {
       const reorder = <T>(deck: T[]): [T[], typeof state.rng] | undefined => {
         const count = Math.min(Math.max(0, message.count), deck.length)

@@ -403,6 +403,14 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "scrollEncounterBottom": "Look at the bottom of the encounter deck",
+    "scrollEncounterTop": "Look at the top encounter card",
+    "scrollLookBottom": "Look at the bottom of {name}’s deck",
+    "scrollLookTop": "Look at the top card of {name}’s deck",
+    "scrollHand": "Add {card} to {name}’s hand",
+    "scrollDiscard": "Discard {card}",
+    "scrollBottom": "Place {card} on the bottom of the deck",
+    "scrollTop": "Place {card} on top of the deck",
     "divinationDraw": "Draw 1 card",
     "divinationOrder": "Order the cards on top of their deck",
     "divinationShuffle": "Shuffle the cards into their deck",
@@ -3253,6 +3261,9 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "05116": "Item. Tome.",
+      "05188": "Item. Tome.",
+      "05189": "Item. Tome.",
       "60415": "Augury.",
       "01061": "Spell.",
       "03236": "Spell.",
@@ -3772,6 +3783,9 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "05116": "Uses (3 secrets).\n[action] Exhaust Scroll of Secrets and spend 1 secret: Look at the bottom card of any investigator's deck or the encounter deck. Then, either discard that card, add it to its owner's hand, place it on the bottom of its deck, or place it on the top of its deck.",
+      "05188": "Uses (3 secrets).\n[action] Exhaust Scroll of Secrets and spend 1 secret: Look at the bottom 3 cards of any investigator's deck or the encounter deck. You may discard 1 of those cards. You may add 1 of those cards to its owner's hand. Place the rest of those cards on either the top or bottom of their deck, in any order.",
+      "05189": "Uses (4 secrets).\n[action] Exhaust Scroll of Secrets and spend 1 secret: Look at the top or bottom card of any investigator's deck or the encounter deck. Then, either discard that card, add it to its owner's hand, place it on the bottom of its deck, or place it on top of its deck.",
       "60415": "Look at the top 4 cards of the encounter deck. Reveal a random token from the chaos bag. If it has a [skull], [cultist], [tablet], [elder_thing], or [auto_fail] symbol, shuffle those cards into the encounter deck. Otherwise, return them to the top of the encounter deck in any order.",
       "01061": "Uses (3 charges).\n[action] Exhaust Scrying and spend 1 charge: Look at the top 3 cards of any investigator's deck or the encounter deck. Return them to the top of that deck in any order.",
       "03236": "Uses (3 charges).\n[fast] Exhaust Scrying and spend 1 charge: Look at the top 3 cards of any investigator's deck, or the encounter deck. Return them to the top of that deck, in any order. If a [[Terror]] or [[Omen]] card is among the looked-at cards, take 1 horror.",
@@ -4728,6 +4742,9 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "05116": "Scroll of Secrets",
+      "05188": "Scroll of Secrets",
+      "05189": "Scroll of Secrets",
       "60415": "Parallel Fates",
       "01061": "Scrying",
       "03236": "Scrying",

@@ -403,6 +403,14 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "scrollEncounterBottom": "Mirar la parte inferior del mazo de Encuentros",
+    "scrollEncounterTop": "Mirar la primera carta del mazo de Encuentros",
+    "scrollLookBottom": "Mirar la última carta del mazo de {name}",
+    "scrollLookTop": "Mirar la primera carta del mazo de {name}",
+    "scrollHand": "Añadir {card} a la mano de {name}",
+    "scrollDiscard": "Descartar {card}",
+    "scrollBottom": "Colocar {card} debajo del mazo",
+    "scrollTop": "Colocar {card} encima del mazo",
     "divinationDraw": "Robar 1 carta",
     "divinationOrder": "Ordenar las cartas encima del mazo",
     "divinationShuffle": "Barajar las cartas en su mazo",
@@ -3253,6 +3261,9 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "05116": "Objeto. Tomo.",
+      "05188": "Objeto. Tomo.",
+      "05189": "Objeto. Tomo.",
       "60415": "Presagio.",
       "01061": "Hechizo.",
       "03236": "Hechizo.",
@@ -3772,6 +3783,9 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "05116": "Usos (3 secretos).\n[action] Agota el Pergamino de secretos y gasta 1 secreto: Mira la última carta del mazo de cualquier investigador o del mazo de Encuentros. A continuación, elige si descartas esa carta, la añades a la mano de su propietario, la colocas en la parte inferior de su mazo o bien la colocas en la parte superior de su mazo.",
+      "05188": "Usos (3 secretos).\n[action] Agota el Pergamino de secretos y gasta 1 secreto: Mira las 3 últimas cartas del mazo de cualquier investigador o del mazo de Encuentros. Puedes descartar 1 de esas cartas. Puedes añadir 1 de esas cartas a la mano de su propietario. Coloca el resto de esas cartas en la parte superior o inferior de su mazo, en cualquier orden.",
+      "05189": "Usos (4 secretos).\n[action] Agota el Pergamino de secretos y gasta 1 secreto: Mira la primera o última carta del mazo de cualquier investigador o del mazo de Encuentros. A continuación, elige si descartas esa carta, la añades a la mano de su propietario, la colocas en la parte inferior de su mazo o bien la colocas en la parte superior de su mazo.",
       "60415": "Mira las 4 primeras cartas del mazo de Encuentros. Revela una ficha aleatoria de la bolsa de caos. Si tiene un símbolo [skull], [cultist], [tablet], [elder_thing] o [auto_fail], devuelve esas cartas al mazo de Encuentros y barájalo. Si no es así, devuélvelas a la parte superior del mazo de Encuentros en cualquier orden.",
       "01061": "Usos (3 cargas).\n[action] Agota la Videncia y gasta 1 carga: Mira las 3 primeras cartas del mazo de cualquier investigador o del mazo de Encuentros. Devuélvelas a la parte superior de ese mazo en cualquier orden.",
       "03236": "Usos (3 cargas).\n[free] Agota la Videncia y gasta 1 carga: Mira las 3 primeras cartas del mazo de cualquier investigador o del mazo de Encuentros. Devuélvelas a la parte superior de ese mazo en cualquier orden. Si hay una carta [[Terror]] o [[Augurio]] entre las cartas miradas, recibe 1 punto de horror.",
@@ -4728,6 +4742,9 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "05116": "Pergamino de secretos",
+      "05188": "Pergamino de secretos",
+      "05189": "Pergamino de secretos",
       "60415": "Destinos paralelos",
       "01061": "Videncia",
       "03236": "Videncia",

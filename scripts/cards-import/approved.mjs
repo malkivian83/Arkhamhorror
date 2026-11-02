@@ -13,6 +13,7 @@ export function approvedDefinition(card, approval) {
     (approval.adapter === 'reviewed-dual-faction-v1' &&
       ((['08105', '08107'].includes(card.code) && card.factions.join(',') === 'seeker,survivor') ||
         (card.code === '05119' && card.factions.join(',') === 'survivor,seeker') ||
+        (card.code === '05116' && card.factions.join(',') === 'seeker,mystic') ||
         (card.code === '05117' && card.factions.join(',') === 'rogue,survivor') ||
         (['08090', '08092'].includes(card.code) && card.factions.join(',') === 'guardian,mystic') ||
         (['08101', '08103'].includes(card.code) && card.factions.join(',') === 'seeker,mystic') ||
