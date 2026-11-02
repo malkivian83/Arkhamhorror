@@ -832,7 +832,7 @@ export function handle(state: GameState, message: Message): GameState {
       const index = state.chaosBag.indexOf('autoFail')
       return push(
         { ...state, chaosBag: state.chaosBag.filter((_, n) => n !== index) },
-        { type: 'RevealChaosToken', token: 'autoFail' },
+        { type: 'RevealChaosToken', token: 'autoFail', counted: true },
       )
     }
     case 'BoonMorrigan':
@@ -3027,7 +3027,12 @@ export function handle(state: GameState, message: Message): GameState {
         index >= 0 &&
         discardAt >= 0 &&
         message.from === undefined &&
-        playerCardBehavior(message.code)?.playableFromDiscard
+        (playerCardBehavior(message.code)?.playableFromDiscard ||
+          (investigator.discard.findLast((c) => playerCardDef(c)?.type === 'event') ===
+            message.code &&
+            Object.values(state.assets).some(
+              (a) => a.owner === investigator.id && assetBehavior(state, a)?.playsTopDiscardEvent,
+            )))
       )
         return push(state, {
           type: 'Ask',
@@ -3036,21 +3041,41 @@ export function handle(state: GameState, message: Message): GameState {
             kind: 'chooseOne',
             prompt: 'prompt.playFrom',
             promptParams: { card: def.name },
-            choices: [
-              { label: 'choice.playFromHand', then: [{ ...message, from: 'hand' }] },
-              { label: 'choice.playFromDiscard', then: [{ ...message, from: 'discard' }] },
-            ],
+            choices: (['hand', 'discard'] as const)
+              .filter(
+                (from) =>
+                  message.noCost ||
+                  cardCost(state, investigator.id, message.code, message.discount ?? 0, 0, from) <=
+                    investigator.resources +
+                      usesAsResources(state, investigator.id, message.code).reduce(
+                        (sum, a) => sum + a.uses,
+                        0,
+                      ),
+              )
+              .map((from) => ({
+                label: from === 'hand' ? 'choice.playFromHand' : 'choice.playFromDiscard',
+                then: [{ ...message, from }],
+              })),
           },
         })
       if (def.type === 'asset' && uniqueAssetInPlay(state, message.code)) return state
       // Cabina de luces: el aumento del coste se suma también a X.
-      const costIncrease = cardCost(state, investigator.id, message.code) - (def.cost ?? 0)
+      const fromZone = fromDiscard ? 'discard' : 'hand'
+      const costIncrease =
+        cardCost(state, investigator.id, message.code, 0, 0, fromZone) - (def.cost ?? 0)
       const variants = playerCardBehavior(message.code)?.playVariants?.(state, investigator.id)
       if (variants && message.variant === undefined) {
         const totalCost = (increase: number) =>
           message.noCost
             ? 0
-            : cardCost(state, investigator.id, message.code, message.discount ?? 0, increase)
+            : cardCost(
+                state,
+                investigator.id,
+                message.code,
+                message.discount ?? 0,
+                increase,
+                fromZone,
+              )
         const available =
           investigator.resources +
           usesAsResources(state, investigator.id, message.code).reduce((n, s) => n + s.uses, 0)
@@ -3125,6 +3150,7 @@ export function handle(state: GameState, message: Message): GameState {
               message.code,
               message.discount ?? 0,
               variant?.cost ?? 0,
+              fromZone,
             )
       // Schoffner's Catalogue: its uses may pay for this card as resources.
       const sources = usesAsResources(state, investigator.id, message.code)
@@ -3788,19 +3814,23 @@ export function handle(state: GameState, message: Message): GameState {
       const i = getInvestigator(state, message.investigator)
       if (i.eliminated || message.cards.length === 0) return state
       const hand = [...i.hand]
-      const cards = message.fromHand
-        ? message.cards.filter((code) => {
-            const index = hand.indexOf(code)
-            if (index < 0) return false
-            hand.splice(index, 1)
-            return true
-          })
-        : message.cards
+      const discard = [...i.discard]
+      const origin = message.fromDiscard ? discard : hand
+      const cards =
+        message.fromHand || message.fromDiscard
+          ? message.cards.filter((code) => {
+              const index = origin.indexOf(code)
+              if (index < 0) return false
+              origin.splice(index, 1)
+              return true
+            })
+          : message.cards
       const [deck, rng] = shuffle([...i.deck, ...cards], state.rng)
       return updateInvestigator({ ...state, rng }, i.id, (current) => ({
         ...current,
         deck,
         ...(message.fromHand ? { hand } : {}),
+        ...(message.fromDiscard ? { discard } : {}),
       }))
     }
 
@@ -3831,9 +3861,11 @@ export function handle(state: GameState, message: Message): GameState {
         return state
       if (!canCommitFrom(state, investigator.id, message.code, iconZone, message.byEffect))
         return state
-      const trackCopy = Object.values(state.assets).some(
-        (a) => a.owner === investigator.id && assetBehavior(state, a)?.observesCommitCopies,
-      )
+      const trackCopy =
+        playerCardBehavior(message.code)?.observesCommitCopies ||
+        Object.values(state.assets).some(
+          (a) => a.owner === investigator.id && assetBehavior(state, a)?.observesCommitCopies,
+        )
       const commitId = trackCopy ? (test.nextCommitId ?? 0) : undefined
       return push(
         {
@@ -4315,7 +4347,7 @@ export function handle(state: GameState, message: Message): GameState {
     case 'RevealChaosToken': {
       // RR pasos 3 y 4: revelar ficha y resolver su símbolo. La ficha sale de la
       // bolsa hasta que termina la prueba (así "revela otra" no repite la misma).
-      const test = state.skillTest
+      let test = state.skillTest
       if (!test) throw new EngineError('No hay prueba de habilidad')
       // Will to Survive, or an automatic success before revealing (FAQ): skip steps 3 and 4.
       if (test.noTokens && !message.pending && message.token === undefined) return state
@@ -4400,6 +4432,16 @@ export function handle(state: GameState, message: Message): GameState {
       const [index, rng] =
         sealed || chosen ? [-1, state.rng] : nextInt(state.rng, state.chaosBag.length)
       const token = message.token ?? (sealed ? sealed.token : (state.chaosBag[index] as ChaosToken))
+      if (!message.counted && state.skillTest?.revealCount !== undefined) {
+        state = {
+          ...state,
+          skillTest: {
+            ...state.skillTest,
+            revealCount: state.skillTest.revealCount + 1 + (message.ignored !== undefined ? 1 : 0),
+          },
+        }
+        test = state.skillTest!
+      }
       if (
         token === 'autoFail' &&
         state.boons?.includes('athena') &&
@@ -4475,6 +4517,32 @@ export function handle(state: GameState, message: Message): GameState {
       )
     }
 
+    case 'IgnoreSkillTestTokens':
+      return state.skillTest
+        ? {
+            ...state,
+            skillTest: {
+              ...state.skillTest,
+              ignoredTokenEffects: [
+                ...new Set([...(state.skillTest.ignoredTokenEffects ?? []), ...message.tokens]),
+              ],
+            },
+          }
+        : state
+    case 'TrackSkillTestReveals':
+      return state.skillTest
+        ? {
+            ...state,
+            skillTest: {
+              ...state.skillTest,
+              revealCount:
+                state.skillTest.revealCount ??
+                state.skillTest.tokens.length +
+                  (state.skillTest.ignoredTokens?.length ?? 0) +
+                  (state.skillTest.revealing ? 1 : 0),
+            },
+          }
+        : state
     case 'CancelRevealedToken': {
       // Wendy Adams: the held token is canceled and goes back to the bag; then a new one is
       // revealed (in a test, or again for the same effect outside a test).
@@ -4599,6 +4667,11 @@ export function handle(state: GameState, message: Message): GameState {
         ? [state.chaosBag.length, state.rng]
         : nextInt(state.rng, state.chaosBag.length)
       const token = message.token ?? (state.chaosBag[index] as ChaosToken)
+      if (state.skillTest?.revealCount !== undefined)
+        state = {
+          ...state,
+          skillTest: { ...state.skillTest, revealCount: state.skillTest.revealCount + 1 },
+        }
       const when: Trigger = { type: 'whenRevealChaosToken', investigator, token }
       const holding: GameState = {
         ...state,
@@ -5120,6 +5193,7 @@ export function handle(state: GameState, message: Message): GameState {
               test,
               !!test.succeeded,
               c.by,
+              c,
             ) ?? [],
         ),
         ...(test.afterEnd ?? []),
@@ -7908,7 +7982,9 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'TakeFromDeck': {
       const investigator = getInvestigator(state, message.investigator)
-      const index = investigator.deck.indexOf(message.code)
+      const index = message.fromBottom
+        ? investigator.deck.lastIndexOf(message.code)
+        : investigator.deck.indexOf(message.code)
       if (index < 0) return state
       const taken = updateInvestigator(state, investigator.id, (i) => ({
         ...i,
@@ -9217,6 +9293,7 @@ function enemyCard(enemy: Enemy): EnemyCard {
 
 /** Valor y efectos de una ficha del caos (RR paso 4). */
 function resolveToken(state: GameState, token: ChaosToken, investigator: string): TokenEffect {
+  if (state.skillTest?.ignoredTokenEffects?.includes(token)) return { modifier: 0 }
   const effect = resolveBaseToken(state, token, investigator)
   const test = state.skillTest
   const target =

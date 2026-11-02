@@ -5,6 +5,28 @@ import { approvedDefinition } from './approved.mjs'
 const read = async (relative) =>
   JSON.parse(await readFile(new URL(relative, import.meta.url), 'utf8'))
 describe('reviewed inventory conversion', () => {
+  it('limits Myriad and defined-X conversion to exact reviewed cards', async () => {
+    const { cards } = await read(
+      '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
+    )
+    const approvals = await read('../../packages/cards/src/token-skills/approvals.json')
+    for (const a of approvals.cards.filter((c) => c.adapter)) {
+      const c = cards.find((c) => c.code === a.code)
+      expect(approvedDefinition(c, a)).toMatchObject({ myriad: true, deckLimit: 3 })
+      expect(() => approvedDefinition(c, { ...a, adapter: undefined })).toThrow()
+      expect(() => approvedDefinition({ ...c, code: '99999' }, { ...a, code: '99999' })).toThrow()
+      expect(() => approvedDefinition({ ...c, deckLimit: 2 }, a)).toThrow()
+    }
+    const c = cards.find((c) => c.code === '06034'),
+      a = approvals.cards.find((c) => c.code === '06034')
+    expect(approvedDefinition(c, a)).toMatchObject({ cost: 0, printedCostX: true })
+    expect(() =>
+      approvedDefinition(
+        { ...c, numbers: { ...c.numbers, cost: { kind: 'symbol', value: 'Y' } } },
+        a,
+      ),
+    ).toThrow()
+  })
   it('limits the new Memento and dual-faction adapters to exact reviewed identities', async () => {
     const { cards } = await read(
       '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
@@ -153,6 +175,7 @@ describe('reviewed inventory conversion', () => {
     'protection-tools',
     'test-recovery',
     'services-parley',
+    'token-skills',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(

@@ -1,0 +1,91 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "625cdfea90feee4be62f3e473b4f169e0a093e51659286e7cfebd6d8b6a05210",
+    "es": "1e798781f9864c9e9554245d1316cef9b6e91cf869bde737f144b2c54d57bc23"
+  },
+  "cards": [
+    {
+      "code": "02190",
+      "status": "verified",
+      "module": "card-02190",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04198",
+      "status": "verified",
+      "module": "card-04198",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03235",
+      "status": "verified",
+      "module": "card-03235",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60419",
+      "status": "verified",
+      "module": "card-60419",
+      "test": "rules.test.ts",
+      "commitLimit": 1
+    },
+    {
+      "code": "09049",
+      "status": "verified",
+      "module": "card-09049",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10031",
+      "status": "verified",
+      "module": "card-10031",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11097",
+      "status": "verified",
+      "module": "card-11097",
+      "test": "rules.test.ts",
+      "commitLimit": 1
+    },
+    {
+      "code": "60471",
+      "status": "verified",
+      "module": "card-60471",
+      "test": "rules.test.ts",
+      "commitLimit": 1
+    },
+    {
+      "code": "11042",
+      "status": "verified",
+      "module": "card-11042",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-myriad-v1"
+    },
+    {
+      "code": "06199",
+      "status": "verified",
+      "module": "card-06199",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-myriad-v1"
+    },
+    {
+      "code": "06245",
+      "status": "verified",
+      "module": "card-06245",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-myriad-v1"
+    },
+    {
+      "code": "06034",
+      "status": "verified",
+      "module": "card-06034",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-myriad-v1"
+    }
+  ]
+}

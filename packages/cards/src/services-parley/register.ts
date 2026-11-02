@@ -176,7 +176,7 @@ export function registerService(code: string) {
       effect: (s, by, step, data): Message[] => {
         if (step === 'return')
           return eventsToDeckBottom(s, by)
-            ? [{ type: 'TakeFromDeck', investigator: by, code, to: 'hand' }]
+            ? [{ type: 'TakeFromDeck', investigator: by, code, to: 'hand', fromBottom: true }]
             : [{ type: 'DiscardToHand', investigator: by, code }]
         const e = s.enemies[String(data.enemy)]
         if (step !== 'success' || !e) return []

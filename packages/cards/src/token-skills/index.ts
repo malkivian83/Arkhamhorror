@@ -1,0 +1,16 @@
+import { registerPlayerCards, type PlayerCardDef } from '@lcg/engine'
+import data from '../data/token-skills.json'
+import './card-02190'
+import './card-04198'
+import './card-03235'
+import './card-60419'
+import './card-09049'
+import './card-10031'
+import './card-11097'
+import './card-60471'
+import './card-11042'
+import './card-06199'
+import './card-06245'
+import './card-06034'
+registerPlayerCards(data as PlayerCardDef[])
+export const TOKEN_SKILL_RENDERED_CODES = data.map((c) => c.code)

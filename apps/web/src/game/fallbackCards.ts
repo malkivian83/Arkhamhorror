@@ -101,7 +101,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
       type_code: d.type,
       faction_code: d.class,
       // A printed X uses the ArkhamDB encoding (-2); RenderedCard shows it as X.
-      cost: d.cost ?? (playerCardBehavior(d.code)?.costX ? -2 : undefined),
+      cost: d.printedCostX ? -2 : (d.cost ?? (playerCardBehavior(d.code)?.costX ? -2 : undefined)),
       xp: d.xp,
       traits: traits[d.code] ?? d.traits.join('. '),
       health: d.health ?? playerCardBehavior(d.code)?.enemy?.health,

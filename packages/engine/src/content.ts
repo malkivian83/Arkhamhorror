@@ -556,7 +556,11 @@ export interface PlayerCardBehavior {
   observesCommitCopies?: boolean
   fightAction?: boolean
   additionalPlayDiscard?: { max: number }
-  selfCostModifier?: (state: GameState, investigator: InvestigatorId) => number
+  selfCostModifier?: (
+    state: GameState,
+    investigator: InvestigatorId,
+    from?: 'hand' | 'discard',
+  ) => number
   requiredResearch?: string
   assignmentTraitLimit?: { trait: string; amount: number }
   /** Replace a controlled asset's departure; terminal removals mark leavingResolved. */
@@ -743,7 +747,13 @@ export interface PlayerCardBehavior {
     committedBy: InvestigatorId,
   ) => Message[]
   /** Carta comprometida: después del paso 8, con la prueba ya cerrada. */
-  afterCommittedTestEnds?: PlayerCardBehavior['afterCommittedTest']
+  afterCommittedTestEnds?: (
+    state: GameState,
+    test: SkillTest,
+    succeeded: boolean,
+    committedBy: InvestigatorId,
+    copy?: SkillTest['committed'][number],
+  ) => Message[]
   /** Reacciones del apoyo en juego (las decide su controlador). */
   reactions?: (state: GameState, trigger: Trigger, self: Asset) => ReactionOption[]
   /** Eventos que se juegan como reacción desde la mano ("Juégala después de…"). */

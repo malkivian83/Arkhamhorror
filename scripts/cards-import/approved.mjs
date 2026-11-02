@@ -40,12 +40,21 @@ export function approvedDefinition(card, approval) {
     ['05023', '05027', '05031', '05035', '05039', '54003', '54005'].includes(card.code) &&
     card.slots.unknown.join(',') === 'Tarot' &&
     card.slots.slots.length === 0
+  const reviewedDiscovery =
+    approval.adapter === 'reviewed-myriad-v1' &&
+    card.code === '06034' &&
+    card.flags.myriad &&
+    card.deckLimit === 3 &&
+    card.factions.join(',') === 'survivor' &&
+    card.numbers.cost?.kind === 'symbol' &&
+    card.numbers.cost.value === 'X'
   if (
     card.modelIssues.some(
       (issue) =>
         !((reviewedDualFaction || reviewedTalent) && issue === 'unsupported-factions') &&
         !(reviewedCustomizable && issue === 'customization') &&
-        !(reviewedTarot && issue === 'unsupported-slots'),
+        !(reviewedTarot && issue === 'unsupported-slots') &&
+        !(reviewedDiscovery && issue === 'symbolic-number'),
     ) ||
     (!reviewedDualFaction && !reviewedTalent && card.factions.length !== 1) ||
     (!reviewedTarot && card.slots.unknown.length)
@@ -78,13 +87,26 @@ export function approvedDefinition(card, approval) {
     ['02114', '03156', '03157', '08080'].includes(card.code)
   const reviewedBorrowedTime =
     approval.adapter === 'reviewed-borrowed-time-v1' && card.code === '04308'
+  const myriadFactions = {
+    11042: 'seeker',
+    '06199': 'rogue',
+    '06245': 'survivor',
+    '06034': 'survivor',
+  }
+  const reviewedMyriad =
+    approval.adapter === 'reviewed-myriad-v1' &&
+    Object.hasOwn(myriadFactions, card.code) &&
+    card.flags.myriad &&
+    card.deckLimit === 3 &&
+    card.factions.join(',') === myriadFactions[card.code]
   if (
     (card.flags.permanent && !permanentReprint && !creationPermanent && !talentPermanent) ||
     ['exceptional', 'myriad', 'exile'].some(
       (key) =>
         card.flags[key] &&
         !(key === 'exile' && (reviewedDefeatExile || reviewedProtectionExile)) &&
-        !(key === 'exceptional' && reviewedBorrowedTime),
+        !(key === 'exceptional' && reviewedBorrowedTime) &&
+        !(key === 'myriad' && reviewedMyriad),
     )
   )
     throw new Error(`Keyword requires a dedicated adapter: ${card.code}`)
@@ -94,7 +116,7 @@ export function approvedDefinition(card, approval) {
     if (number.kind !== 'number') throw new Error(`Unsupported ${key}: ${card.code}`)
     return number.value
   }
-  const cost = numeric('cost'),
+  const cost = reviewedDiscovery ? 0 : numeric('cost'),
     health = numeric('health'),
     sanity = numeric('sanity')
   return {
@@ -108,9 +130,11 @@ export function approvedDefinition(card, approval) {
     ...(creationPermanent ? { deckLimit: 1 } : {}),
     ...(reviewedBorrowedTime ? { exceptional: true, deckLimit: 1 } : {}),
     ...(reviewedMemento ? { deckLimit: 1 } : {}),
+    ...(reviewedMyriad ? { myriad: true, deckLimit: 3 } : {}),
     traits: card.traits,
     ...(card.flags.is_unique ? { unique: true } : {}),
     ...(cost !== undefined ? { cost } : {}),
+    ...(reviewedDiscovery ? { printedCostX: true } : {}),
     xp: numeric('xp') ?? 0,
     icons: Object.fromEntries(
       ['willpower', 'intellect', 'combat', 'agility', 'wild']
