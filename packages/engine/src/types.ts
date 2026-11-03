@@ -2255,7 +2255,12 @@ export interface GameState {
   }[]
   dilemmasResolved?: { round: number; count: number }
   /** Ataques de enemigos (para "si este enemigo te ha atacado esta ronda"). */
-  enemyAttacks?: { enemy: EnemyId; investigator: InvestigatorId; round: number }[]
+  enemyAttacks?: {
+    enemy: EnemyId
+    investigator: InvestigatorId
+    round: number
+    location?: LocationId | null
+  }[]
   /** La perdición que se colocaría pasa a ser 1 daño directo a cada investigador. */
   doomBecomesDamage?: boolean
   /** A chaos token revealed outside a skill test, held during its "when revealed" window. */

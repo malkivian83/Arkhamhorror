@@ -6,6 +6,7 @@ import {
   assetSlots,
   slotCapacity,
   restrictedSlotCapacity,
+  engagedEnemies,
   type Message,
   type GameState,
   type Choice,
@@ -130,11 +131,11 @@ export function registerEvents(code: string): boolean {
       code,
       noAttacksOfOpportunity: true,
       play: (s, by) => [
-        ...Object.values(s.enemies)
-          .filter((e) => e.engagedWith === by && !e.traits?.includes('Elite'))
+        ...engagedEnemies(s, by)
+          .filter((e) => !e.traits?.includes('Elite'))
           .map((e): Message => ({ type: 'DefeatEnemy', enemy: e.id, by })),
-        { type: 'DefeatInvestigator', investigator: by },
         { type: 'SufferTrauma', investigator: by, physical: 1 },
+        { type: 'DefeatInvestigator', investigator: by },
       ],
     })
     return true

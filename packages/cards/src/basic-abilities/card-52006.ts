@@ -1,4 +1,4 @@
-import { getInvestigator } from '@lcg/engine'
+import { skillValueFor } from '@lcg/engine'
 import { registerBasicAsset } from './register'
 // Suggestion (1): add your willpower to the evasion; unless it succeeds by 2, remove a
 // charge. It is discarded without charges.
@@ -8,7 +8,8 @@ registerBasicAsset(
     {
       action: 'evade',
       cost: ['exhaust'],
-      modifier: ({ state, investigator }) => getInvestigator(state, investigator).skills.willpower,
+      modifier: ({ state, investigator }, enemy) =>
+        skillValueFor(state, investigator, 'willpower', { type: 'evade', enemy: enemy!.id }),
       available: ({ self }) => self.uses > 0,
       after: ({ self }) => [
         {

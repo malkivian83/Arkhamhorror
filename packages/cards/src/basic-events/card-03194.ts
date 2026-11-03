@@ -9,7 +9,8 @@ for (const [codes, evadeBy, returnBy] of [
   for (const code of codes)
     registerBasicEvent(code, {
       action: 'fight',
-      modifier: ({ state, investigator }) => skillValue(state, investigator, 'agility'),
+      modifier: ({ state, investigator }, enemy) =>
+        skillValue(state, investigator, 'agility', { type: 'fight', enemy: enemy!.id }),
       tags: ['trick'],
       onSuccess: ({ investigator }, enemy) => [
         {

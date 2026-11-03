@@ -147,33 +147,42 @@ export function registerAssets(code: string): boolean {
                 code,
                 ask(
                   a.owner,
-                  near(s, a.owner).flatMap((i) => [
-                    {
-                      label: 'choice.protectionSearch',
-                      params: { name: i.name },
-                      then: [
+                  near(s, a.owner).map((i) => ({
+                    label: 'choice.investigator',
+                    params: { name: i.name },
+                    target: { type: 'investigator' as const, id: i.id },
+                    then: ask(
+                      i.id,
+                      [
                         {
-                          type: 'SearchDeck' as const,
-                          investigator: i.id,
-                          top: 9,
-                          traits: ['Item'],
-                          to: 'hand' as const,
-                          optional: true,
+                          label: 'choice.protectionSearch',
+                          params: { name: i.name },
+                          then: [
+                            {
+                              type: 'SearchDeck' as const,
+                              investigator: i.id,
+                              top: 9,
+                              traits: ['Item'],
+                              to: 'hand' as const,
+                              optional: true,
+                            },
+                          ],
                         },
+                        ...[...new Set(i.discard)]
+                          .filter(
+                            (c) =>
+                              playerCardDef(c)?.type === 'asset' &&
+                              playerCardDef(c)?.traits.includes('Item'),
+                          )
+                          .map((c) => ({
+                            label: 'choice.protectionDiscard',
+                            params: { card: cardName(c) },
+                            then: [{ type: 'DiscardToHand' as const, investigator: i.id, code: c }],
+                          })),
                       ],
-                    },
-                    ...[...new Set(i.discard)]
-                      .filter(
-                        (c) =>
-                          playerCardDef(c)?.type === 'asset' &&
-                          playerCardDef(c)?.traits.includes('Item'),
-                      )
-                      .map((c) => ({
-                        label: 'choice.protectionDiscard',
-                        params: { card: cardName(c) },
-                        then: [{ type: 'DiscardToHand' as const, investigator: i.id, code: c }],
-                      })),
-                  ]),
+                      true,
+                    ),
+                  })),
                   true,
                 ),
               ),

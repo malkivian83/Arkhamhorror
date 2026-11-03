@@ -137,7 +137,10 @@ for (const [codes, paid] of [
           ? []
           : Object.values(state.assets)
               .filter(
-                (a) => a.owner === investigator && playerCardDef(a.code)?.traits.includes('Spell'),
+                (a) =>
+                  a.owner === investigator &&
+                  playerCardDef(a.code)?.traits.includes('Spell') &&
+                  ['charge', 'charges'].includes(playerCardDef(a.code)?.uses?.type ?? ''),
               )
               .map((a): AbilityOption => ({
                 key: `${self.id}:charge:${a.id}`,
@@ -187,6 +190,7 @@ registerPlayerCard({
       .connections.filter(
         (id) =>
           state.locations[id] &&
+          !Object.values(state.enemies).some((e) => e.location === id) &&
           !state.investigators.some((i) => !i.eliminated && i.location === id),
       )
       .map((id) =>

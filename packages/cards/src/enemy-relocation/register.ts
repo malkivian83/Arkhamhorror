@@ -55,7 +55,19 @@ export function registerEnemyRelocation(code: string): void {
                       },
                     ]),
                 { type: 'EngageEnemy' as const, enemy: e.id, investigator: by },
-                { type: 'GainResources' as const, investigator: by, amount: e.damage + e.horror },
+                {
+                  type: 'GainResources' as const,
+                  investigator: by,
+                  amount:
+                    Math.max(
+                      0,
+                      e.damage + (scenarioBehavior(s.scenarioId)?.enemyDamageModifier?.(s, e) ?? 0),
+                    ) +
+                    Math.max(
+                      0,
+                      e.horror + (scenarioBehavior(s.scenarioId)?.enemyHorrorModifier?.(s, e) ?? 0),
+                    ),
+                },
               ]
             : [
                 {

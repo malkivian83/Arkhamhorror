@@ -103,7 +103,11 @@ export function registerTools(code: string): boolean {
       ],
       () => ({
         testOptions: (_s, t, a) =>
-          t.investigator === a.owner && onTreachery(t) && !a.exhausted && a.uses > 0
+          t.investigator === a.owner &&
+          t.skill === 'willpower' &&
+          onTreachery(t) &&
+          !a.exhausted &&
+          a.uses > 0
             ? [
                 boost(
                   a,

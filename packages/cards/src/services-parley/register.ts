@@ -7,6 +7,7 @@ import {
   eventsToDeckBottom,
   attachedStat,
   scenarioBehavior,
+  engagedEnemies,
   type GameState,
   type Message,
   type Choice,
@@ -158,7 +159,12 @@ export function registerService(code: string) {
                 skill: code === '04105' ? 'intellect' : 'willpower',
                 difficulty:
                   code === '04105'
-                    ? 3 + e.horror
+                    ? 3 +
+                      Math.max(
+                        0,
+                        e.horror +
+                          (scenarioBehavior(s.scenarioId)?.enemyHorrorModifier?.(s, e) ?? 0),
+                      )
                     : Math.min(stat(s, e, 'fight', by), stat(s, e, 'evade', by)),
                 tags: ['parley'],
                 kind: {
@@ -203,12 +209,12 @@ export function registerService(code: string) {
       evadeAction: true,
       noAttacksOfOpportunity: true,
       canPlay: (s, by) =>
-        local(s, by).some((e) => !elite(e) && !e.cannotBeEvaded && e.engagedWith === by),
+        engagedEnemies(s, by).some((e) => !elite(e) && !e.cannotBeEvaded && !e.hasNoStats),
       play: (s, by) =>
         ask(
           by,
-          local(s, by)
-            .filter((e) => !elite(e) && !e.cannotBeEvaded && e.engagedWith === by)
+          engagedEnemies(s, by)
+            .filter((e) => !elite(e) && !e.cannotBeEvaded && !e.hasNoStats)
             .map((e) => ({
               label: 'choice.serviceEnemy',
               params: { enemy: e.name },

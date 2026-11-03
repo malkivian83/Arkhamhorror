@@ -1,4 +1,4 @@
-import { type Message } from '@lcg/engine'
+import { getInvestigator, type Message } from '@lcg/engine'
 import { registerBasicEvent, returnAtEndOfTurn, skillValue } from '../basic-events/register'
 import { chooseEnemyHere } from '../core-2026/investigators'
 // RR: Investigate; Evade (automatic); Attacks of Opportunity. Breaking and Entering (2): add
@@ -9,7 +9,11 @@ registerBasicEvent(
   code,
   {
     action: 'investigate',
-    modifier: ({ state, investigator }) => skillValue(state, investigator, 'agility'),
+    modifier: ({ state, investigator }) =>
+      skillValue(state, investigator, 'agility', {
+        type: 'investigate',
+        location: getInvestigator(state, investigator).location!,
+      }),
     tags: ['trick'],
     onSuccess: ({ state, investigator }) => [
       {

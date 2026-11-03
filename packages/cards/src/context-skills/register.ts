@@ -71,7 +71,11 @@ export function registerContextSkill(code: string): void {
             [...new Set(getInvestigator(s, by).discard)]
               .filter((c) => {
                 const d = playerCardDef(c)
-                return d?.class === 'survivor' && (d.type === 'asset' || d.type === 'event')
+                return (
+                  !!d &&
+                  (d.classes ?? [d.class]).includes('survivor') &&
+                  (d.type === 'asset' || d.type === 'event')
+                )
               })
               .map((c) => ({
                 label: 'choice.reactiveRecover',

@@ -1,4 +1,4 @@
-import { getInvestigator, playerCardDef } from '@lcg/engine'
+import { skillValueFor, playerCardDef } from '@lcg/engine'
 import { registerBasicAsset } from '../basic-abilities/register'
 
 // RR: Evade; Uses; Cancel; Enemy Attacks. Suggestion (4): add [willpower] to the evasion and
@@ -10,7 +10,8 @@ registerBasicAsset(
     {
       action: 'evade',
       cost: ['exhaust'],
-      modifier: ({ state, investigator }) => getInvestigator(state, investigator).skills.willpower,
+      modifier: ({ state, investigator }, enemy) =>
+        skillValueFor(state, investigator, 'willpower', { type: 'evade', enemy: enemy!.id }),
       after: ({ self }) =>
         self.uses > 0
           ? [

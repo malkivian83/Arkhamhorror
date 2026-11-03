@@ -1,9 +1,23 @@
-import { playerCardDef, registerPlayerCard, type Choice, type GameState } from '@lcg/engine'
+import {
+  playerCardDef,
+  registerPlayerCard,
+  stuckInPlay,
+  type Choice,
+  type GameState,
+} from '@lcg/engine'
 import { ask, continuation } from '../dunwich-pilot/effects'
 // Sacrifice (1): discard a Mystic asset you control; then draw 3 cards or gain 3 resources,
 // or any combination, chosen one at a time.
 const mystic = (s: GameState, by: string) =>
-  Object.values(s.assets).filter((a) => a.owner === by && playerCardDef(a.code)?.class === 'mystic')
+  Object.values(s.assets).filter((a) => {
+    const def = playerCardDef(a.code)
+    return (
+      a.owner === by &&
+      !stuckInPlay(s, a) &&
+      !!def &&
+      (def.classes ?? [def.class]).includes('mystic')
+    )
+  })
 registerPlayerCard({
   code: '04234',
   canPlay: (s, by) => mystic(s, by).length > 0,

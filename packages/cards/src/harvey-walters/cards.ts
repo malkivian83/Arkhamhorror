@@ -1,6 +1,7 @@
 // RR: Triggered Abilities, Maximum Hand Size, Search, Uses, Fast, Costs, Research.
 import {
   canPlayByEffect,
+  engagedEnemies,
   getInvestigator,
   playerCardBehavior,
   playerCardDef,
@@ -571,8 +572,8 @@ registerPlayerCard({
           }))
       : []),
     ...(a.uses >= 4
-      ? Object.values(s.enemies)
-          .filter((e) => e.engagedWith === a.owner && !e.hasNoStats)
+      ? engagedEnemies(s, a.owner)
+          .filter((e) => !e.hasNoStats)
           .map((e) => ({
             ...reaction(a, 'ability.necronomiconDamage', [
               ...use(a, 4),

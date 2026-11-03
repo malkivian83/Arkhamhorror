@@ -37,7 +37,7 @@ registerBasicAsset(
                 investigator: by,
                 skill: 'combat',
                 difficulty: enemy.fight,
-                modifier: skillValue(s, by, 'agility'),
+                modifier: skillValue(s, by, 'agility', { type: 'fight', enemy: enemy.id }),
                 source: self.id,
                 kind: { type: 'fight', enemy: enemy.id, extraDamage: 1 },
               },

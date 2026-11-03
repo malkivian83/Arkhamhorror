@@ -2,6 +2,7 @@ import {
   canPlayByEffect,
   canAffordEntry,
   enemiesAt,
+  engagedEnemies,
   getInvestigator,
   getLocation,
   investigationBlocked,
@@ -124,7 +125,7 @@ registerPlayerCard({
       const enemies =
         self.form === 'railshooter'
           ? attackable(s, by)
-          : enemiesAt(s, here).filter((e) => e.engagedWith === by)
+          : engagedEnemies(s, by).filter((e) => !e.cannotBeEvaded && !e.hasNoStats)
       choices = enemies.map((e) => ({
         label: 'choice.enemy',
         params: { enemy: e.name },

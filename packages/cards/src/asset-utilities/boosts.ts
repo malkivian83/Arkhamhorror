@@ -67,7 +67,8 @@ registerPlayerCard({
   code: '04160',
   testOptions: (state, test, self) => {
     const hand = getInvestigator(state, self.owner).hand
-    if (test.investigator !== self.owner || hand.length === 0) return []
+    if (test.investigator !== self.owner || !hand.some((code) => !playerCardDef(code)?.weakness))
+      return []
     if (test.abilityCounts?.[`${self.id}:cornered`]) return []
     return [
       boost(
