@@ -403,6 +403,8 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "fortuneDoom": "Remove 1 doom, take damage and horror, and remove this card",
+    "fortuneHeal": "Place 1 doom and heal the group",
     "chanceAlly": "Recover {card} from {name}’s discard pile",
     "relocationEnemy": "Choose {enemy}",
     "slotSearch": "Search with {card}",
@@ -3274,6 +3276,7 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "09118": "Dilemma. Fortune.",
       "11083": "Ally. Artist. Patron.",
       "11089": "Supply.",
       "10129": "Double.",
@@ -3817,6 +3820,7 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "09118": "Max 2 [[Dilemma]] per round.\n<b>Revelation</b> - You must decide (choose one):\n- Place 1 doom on the current agenda. Each investigator heals 3 damage and 3 horror.\n- Remove 1 doom from the current agenda. Each investigator takes 1 direct damage and 1 direct horror. Remove Fickle Fortune from the game.",
       "11083": "You get +1 [intellect].\n[reaction] After you discard 1 or more cards from your hand during your turn, exhaust Lawrence Carlisle: Gain 1 resource.",
       "11089": "Limit 1 per investigator. Uses (2 supplies).\n[reaction] After you discard 1 or more cards from hand, exhaust Ample Supplies: Place 1 supply on this card.\n[fast] Discard Ample Supplies: Move each supply on this card to your resource pool, as resources.",
       "10129": "As an additional cost to play Bide Your Time, spend an action.\nDuring your next turn, you may take two additional actions.",
@@ -4797,6 +4801,7 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "09118": "Fickle Fortune",
       "11083": "Lawrence Carlisle",
       "11089": "Ample Supplies",
       "10129": "Bide Your Time",

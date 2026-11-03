@@ -1,0 +1,12 @@
+[
+  {
+    "code": "09118",
+    "name": "Fickle Fortune",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Dilemma", "Fortune"],
+    "xp": 3,
+    "icons": {},
+    "slots": []
+  }
+]

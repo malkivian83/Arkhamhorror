@@ -1,0 +1,18 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "f721a163485f504e6e89012ccb3eea8d4874459e51ed74702ad4cedf7ef553c7",
+    "es": "77a0a1878ea946485ca9ac15fac92163b8401769f9e72a5af76eec32c487d565"
+  },
+  "cards": [
+    {
+      "code": "09118",
+      "status": "verified",
+      "module": "card-09118",
+      "test": "rules.test.ts"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "pack_code": "tskp",
+    "pack_name": "The Scarlet Keys Investigator Expansion",
+    "type_code": "event",
+    "type_name": "Event",
+    "faction_code": "survivor",
+    "faction_name": "Survivor",
+    "position": 118,
+    "exceptional": false,
+    "myriad": false,
+    "code": "09118",
+    "name": "Fickle Fortune",
+    "real_name": "Fickle Fortune",
+    "text": "Max 2 [[Dilemma]] per round.\n<b>Revelation</b> - You must decide (choose one):\n- Place 1 doom on the current agenda. Each investigator heals 3 damage and 3 horror.\n- Remove 1 doom from the current agenda. Each investigator takes 1 direct damage and 1 direct horror. Remove Fickle Fortune from the game.",
+    "real_text": "Max 2 [[Dilemma]] per round.\n<b>Revelation</b> - You must decide (choose one):\n- Place 1 doom on the current agenda. Each investigator heals 3 damage and 3 horror.\n- Remove 1 doom from the current agenda. Each investigator takes 1 direct damage and 1 direct horror. Remove Fickle Fortune from the game.",
+    "quantity": 2,
+    "xp": 3,
+    "health_per_investigator": false,
+    "deck_limit": 2,
+    "traits": "Dilemma. Fortune.",
+    "real_traits": "Dilemma. Fortune.",
+    "tags": "hd.hh.",
+    "illustrator": "Billy Norrby",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "d69d9c3b-be27-46ab-8ddf-3ae6e9c8fc36",
+    "url": "https://arkhamdb.com/card/09118",
+    "imagesrc": "/bundles/cards/09118.png"
+  }
+]

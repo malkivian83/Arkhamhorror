@@ -1625,6 +1625,16 @@ export function handle(state: GameState, message: Message): GameState {
         : push(next, ...effects)
     }
 
+    case 'RemoveResolvingRevelation': {
+      const at = state.queue.findIndex(
+        (m) =>
+          m.type === 'DiscardResolvedRevelation' &&
+          m.investigator === message.investigator &&
+          m.code === message.code,
+      )
+      return at < 0 ? state : { ...state, queue: state.queue.filter((_, n) => n !== at) }
+    }
+
     case 'DiscardResolvedRevelation':
       return toOwnerDiscard(state, message.investigator, message.code)
 

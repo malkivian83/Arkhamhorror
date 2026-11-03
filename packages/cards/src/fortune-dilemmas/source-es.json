@@ -1,0 +1,32 @@
+[
+  {
+    "pack_code": "tskp",
+    "pack_name": "Las llaves escarlata Expansión de investigadores",
+    "type_code": "event",
+    "type_name": "Evento",
+    "faction_code": "survivor",
+    "faction_name": "Superviviente",
+    "position": 118,
+    "exceptional": false,
+    "myriad": false,
+    "code": "09118",
+    "name": "Fortuna caprichosa",
+    "real_name": "Fickle Fortune",
+    "text": "Máximo 2 [[Dilema]] por ronda.\n<b>Revelación</b> - Debes decidir (elige una opción):\n- Coloca 1 ficha de Perdición sobre el plan en curso. Cada investigador se cura 3 puntos de daño y 3 puntos de horror.\n- Retira 1 ficha de Perdición del plan en curso. Cada investigador recibe 1 punto de daño directo y 1 punto de horror directo. Retira la Fortuna caprichosa de la partida.",
+    "real_text": "Max 2 [[Dilemma]] per round.\n<b>Revelation</b> - You must decide (choose one):\n- Place 1 doom on the current agenda. Each investigator heals 3 damage and 3 horror.\n- Remove 1 doom from the current agenda. Each investigator takes 1 direct damage and 1 direct horror. Remove Fickle Fortune from the game.",
+    "quantity": 2,
+    "xp": 3,
+    "health_per_investigator": false,
+    "deck_limit": 2,
+    "traits": "Dilema. Fortuna.",
+    "real_traits": "Dilemma. Fortune.",
+    "tags": "hd.hh.",
+    "illustrator": "Billy Norrby",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "d69d9c3b-be27-46ab-8ddf-3ae6e9c8fc36",
+    "url": "https://es.arkhamdb.com/card/09118",
+    "imagesrc": "/bundles/cards/09118.png"
+  }
+]

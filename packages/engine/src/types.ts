@@ -1806,6 +1806,7 @@ export type Message =
     }
   | { type: 'AtEndOfTurn'; investigator: InvestigatorId; then: Message[] }
   | { type: 'AtEndOfRound'; then: Message[] }
+  | { type: 'RemoveResolvingRevelation'; investigator: InvestigatorId; code: CardCode }
   /**
    * Premonition: sella una ficha al azar de la bolsa. With `token` and `holder`, search the bag
    * for that token and seal it on a card in play (The Codex of Ages, Serpents of Yig).
