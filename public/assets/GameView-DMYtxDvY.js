@@ -1,1 +1,0 @@
-export{t as default}from"./GameView-D3708k2H.js";

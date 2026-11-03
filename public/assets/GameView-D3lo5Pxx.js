@@ -1,0 +1,1 @@
+export{t as default}from"./GameView-C0lQahAg.js";

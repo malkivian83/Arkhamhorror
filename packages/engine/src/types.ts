@@ -965,8 +965,13 @@ export type Message =
   /** Roba tantas cartas como apartó y baraja las apartadas en el mazo. */
   /** `startingDone`: the Starting card search was offered. */
   | { type: 'FinishMulligan'; investigator: InvestigatorId; count: number; startingDone?: boolean }
-  | { type: 'DiscardFromHand'; investigator: InvestigatorId; card: CardCode }
-  | { type: 'CheckHandSize'; investigator: InvestigatorId }
+  | {
+      type: 'DiscardFromHand'
+      investigator: InvestigatorId
+      card: CardCode
+      deferHandReaction?: boolean
+    }
+  | { type: 'CheckHandSize'; investigator: InvestigatorId; discarded?: CardCode[] }
   /** `checked`: el escenario ya resolvió lo que ocurre al intentar moverse (Vestíbulo). */
   | {
       type: 'MoveTo'
@@ -1543,6 +1548,7 @@ export type Message =
       investigator: InvestigatorId
       amount: number
       nonWeaknessOnly?: boolean
+      discarded?: CardCode[]
     }
   | { type: 'LoseResources'; investigator: InvestigatorId; amount: number }
   /** El investigador deja pistas suyas en su localización. */
@@ -1619,7 +1625,12 @@ export type Message =
   /** Gastar pistas "como grupo" (de cualquier investigador). */
   | { type: 'SpendGroupClues'; amount: number }
   /** El investigador elige y descarta cartas de su mano. */
-  | { type: 'ChooseDiscardFromHand'; investigator: InvestigatorId; amount: number }
+  | {
+      type: 'ChooseDiscardFromHand'
+      investigator: InvestigatorId
+      amount: number
+      discarded?: CardCode[]
+    }
   /** Busca en el mazo y el descarte de encuentros y roba hasta `amount` copias. */
   /** `fromDiscard`: busca solo en la pila de descartes de encuentros. */
   | {
@@ -1795,6 +1806,7 @@ export type Message =
     }
   | { type: 'AtEndOfTurn'; investigator: InvestigatorId; then: Message[] }
   | { type: 'AtEndOfRound'; then: Message[] }
+  | { type: 'RemoveResolvingRevelation'; investigator: InvestigatorId; code: CardCode }
   /**
    * Premonition: sella una ficha al azar de la bolsa. With `token` and `holder`, search the bag
    * for that token and seal it on a card in play (The Codex of Ages, Serpents of Yig).
@@ -1989,6 +2001,7 @@ export type Trigger =
   | { type: 'afterActionAbility'; investigator: InvestigatorId; code: CardCode }
   | { type: 'afterAssetEntersPlay'; investigator: InvestigatorId; asset: AssetId }
   | { type: 'afterDrawCard'; investigator: InvestigatorId; card: CardCode }
+  | { type: 'afterHandDiscard'; investigator: InvestigatorId; cards: CardCode[] }
   /** The last card left the investigator's deck, before any later reshuffle. */
   | { type: 'deckEmptied'; investigator: InvestigatorId }
   | { type: 'enemyEntersLocation'; enemy: EnemyId; location: LocationId }

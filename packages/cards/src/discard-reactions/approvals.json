@@ -1,0 +1,26 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "337ff27be8a2a81c85639fa75b522d2ba15f1982d56f8902b0d5c79830eb66b5",
+    "es": "acd59bdec1fb1d4f3eb5243d859e306cbe6a15b76680c3fd7aa3caaa2aced9e9"
+  },
+  "cards": [
+    {
+      "code": "11083",
+      "status": "verified",
+      "module": "card-11083",
+      "test": "rules.test.ts",
+      "subname": "Sculpting His Dreams"
+    },
+    {
+      "code": "11089",
+      "status": "verified",
+      "module": "card-11089",
+      "test": "rules.test.ts",
+      "uses": { "count": 2, "type": "supply" }
+    }
+  ]
+}
