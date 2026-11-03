@@ -3273,6 +3273,8 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "04192": "Innate.",
+      "09106": "Dilemma. Tactic.",
       "02270": "Fortune.",
       "03238": "Fortune.",
       "05229": "Tactic. Trick.",
@@ -3810,6 +3812,8 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "04192": "If this skill test is successful, add Intrepid to your play area as an asset with the text:\n\"You get +1 [intellect], +1 [combat], and +1 [agility].\n<b>Forced</b> - At the end of the round: Discard Intrepid.\"",
+      "09106": "Max 2 [[Dilemma]] per round.\n<b>Revelation</b> - Choose two skills ([willpower], [intellect], [combat], or [agility]). Until the end of the investigation phase, each investigator gets +1 to each of the chosen skills, and -1 to each other skill.",
       "02270": "Choose an [[Ally]] asset in any player's discard pile. Put that asset into play under your control. At the end of the round, if that asset is still in play, discard it.",
       "03238": "Choose an [[Ally]] asset with printed resource cost X in any player's discard pile. Put that asset into play under your control.",
       "05229": "As an additional cost to play Warning Shot, spend 1 ammo from a [[Firearm]] asset you control.\nMove all non-[[Elite]] enemies at your location to a connecting location. This action does not provoke attacks of opportunity.",
@@ -4784,6 +4788,8 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "04192": "Intrepid",
+      "09106": "Making Preparations",
       "02270": "A Chance Encounter",
       "03238": "A Chance Encounter",
       "05229": "Warning Shot",

@@ -3273,6 +3273,8 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "04192": "Innato.",
+      "09106": "Dilema. Táctica.",
       "02270": "Fortuna.",
       "03238": "Fortuna.",
       "05229": "Táctica. Truco.",
@@ -3810,6 +3812,8 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "04192": "Si esta prueba de habilidad tiene éxito, añade Audaz a tu zona de juego como un Apoyo con el siguiente texto:\n\"Recibes +1 [intellect], +1 [combat] y +1 [agility].\n<b>Obligado</b> - Al final de la ronda: Descarta Audaz.\"",
+      "09106": "Máximo 2 [[Dilema]] por ronda.\n<b>Revelación</b> - Elige dos habilidades ([willpower], [intellect], [combat] o [agility]). Hasta el final de la fase de Investigación, cada investigador recibe +1 a cada una de las habilidades elegidas y -1 a cada una de las demás habilidades.",
       "02270": "Elige un Apoyo [[Aliado]] de la pila de descartes de cualquier jugador. Pon ese Apoyo en juego bajo tu control. Al final de la ronda, si ese Apoyo sigue en juego, descártalo.",
       "03238": "Elige un Apoyo [[Aliado]] con coste de recursos impreso de X y que esté en la pila de descartes de cualquier jugador. Pon ese Apoyo en juego bajo tu control.",
       "05229": "Como coste adicional para jugar el Disparo de aviso, gasta 1 munición de un Apoyo [[Arma de fuego]] que controles.\nMueve todos los Enemigos que no sean [[Élite]] de tu Lugar a un Lugar conectado. Esta acción no provoca ataques de oportunidad.",
@@ -4784,6 +4788,8 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "04192": "Audaz",
+      "09106": "Haciendo preparativos",
       "02270": "Un encuentro fortuito",
       "03238": "Un encuentro fortuito",
       "05229": "Disparo de aviso",

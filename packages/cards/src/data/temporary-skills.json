@@ -1,0 +1,22 @@
+[
+  {
+    "code": "04192",
+    "name": "Intrepid",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Innate"],
+    "xp": 0,
+    "icons": { "willpower": 1 },
+    "slots": []
+  },
+  {
+    "code": "09106",
+    "name": "Making Preparations",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Dilemma", "Tactic"],
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  }
+]
