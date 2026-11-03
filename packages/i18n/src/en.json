@@ -3273,6 +3273,8 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "10129": "Double.",
+      "09053": "Insight.",
       "04192": "Innate.",
       "09106": "Dilemma. Tactic.",
       "02270": "Fortune.",
@@ -3812,6 +3814,8 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "10129": "As an additional cost to play Bide Your Time, spend an action.\nDuring your next turn, you may take two additional actions.",
+      "09053": "Choose another investigator at your location who has yet to take their turn this round. During their turn this round, the chosen investigator gets +1 to each of their skills, and may take an additional action. Playing Guidance does not provoke attacks of opportunity.",
       "04192": "If this skill test is successful, add Intrepid to your play area as an asset with the text:\n\"You get +1 [intellect], +1 [combat], and +1 [agility].\n<b>Forced</b> - At the end of the round: Discard Intrepid.\"",
       "09106": "Max 2 [[Dilemma]] per round.\n<b>Revelation</b> - Choose two skills ([willpower], [intellect], [combat], or [agility]). Until the end of the investigation phase, each investigator gets +1 to each of the chosen skills, and -1 to each other skill.",
       "02270": "Choose an [[Ally]] asset in any player's discard pile. Put that asset into play under your control. At the end of the round, if that asset is still in play, discard it.",
@@ -4788,6 +4792,8 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "10129": "Bide Your Time",
+      "09053": "Guidance",
       "04192": "Intrepid",
       "09106": "Making Preparations",
       "02270": "A Chance Encounter",

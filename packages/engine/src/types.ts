@@ -43,6 +43,7 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  nextTurnBenefits?: { actions: number; code: CardCode; skillBonus?: number; round?: number }[]
   untilPhaseSkills?: {
     skill: SkillType
     amount: number
@@ -1360,6 +1361,14 @@ export type Message =
   | { type: 'GainActions'; investigator: InvestigatorId; amount: number }
   /** Additional actions during that investigator's turn this round, now or when it begins. */
   | { type: 'GainTurnActionsThisRound'; investigator: InvestigatorId; amount: number }
+  | {
+      type: 'NextTurnBenefits'
+      investigator: InvestigatorId
+      actions: number
+      code: CardCode
+      skillBonus?: number
+      round?: number
+    }
   /** Exile a player card: from play (`asset`) or, otherwise, from its owner's discard pile. */
   | {
       type: 'ExileCard'

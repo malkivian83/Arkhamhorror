@@ -3273,6 +3273,8 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "10129": "Doble.",
+      "09053": "Inspiración.",
       "04192": "Innato.",
       "09106": "Dilema. Táctica.",
       "02270": "Fortuna.",
@@ -3812,6 +3814,8 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "10129": "Como coste adicional para jugar Aguardar tu momento, gasta una acción. Durante tu próximo turno, puedes realizar 2 acciones adicionales.",
+      "09053": "Elige a otro investigador que esté en tu Lugar y que aún no haya jugado su turno en esta ronda. Durante su turno en esta ronda el investigador elegido recibe +1 a cada una de sus habilidades y puede realizar una acción adicional. Jugar Consejo no provoca ataques de oportunidad.",
       "04192": "Si esta prueba de habilidad tiene éxito, añade Audaz a tu zona de juego como un Apoyo con el siguiente texto:\n\"Recibes +1 [intellect], +1 [combat] y +1 [agility].\n<b>Obligado</b> - Al final de la ronda: Descarta Audaz.\"",
       "09106": "Máximo 2 [[Dilema]] por ronda.\n<b>Revelación</b> - Elige dos habilidades ([willpower], [intellect], [combat] o [agility]). Hasta el final de la fase de Investigación, cada investigador recibe +1 a cada una de las habilidades elegidas y -1 a cada una de las demás habilidades.",
       "02270": "Elige un Apoyo [[Aliado]] de la pila de descartes de cualquier jugador. Pon ese Apoyo en juego bajo tu control. Al final de la ronda, si ese Apoyo sigue en juego, descártalo.",
@@ -4788,6 +4792,8 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "10129": "Aguardar tu momento",
+      "09053": "Consejo",
       "04192": "Audaz",
       "09106": "Haciendo preparativos",
       "02270": "Un encuentro fortuito",
