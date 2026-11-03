@@ -35553,6 +35553,38 @@
       "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/05229.avif",
       "bytes": 76620,
       "sha256": "e33b8676ac39fdc613e875d472f2bc8eabb2a17cafd4c6c12cfa796fbac68498"
+    },
+    {
+      "art": "02270",
+      "language": "en",
+      "path": "/local-assets/cards/en/02270.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/02270.avif",
+      "bytes": 98064,
+      "sha256": "320b16b3816ae3685a5ef2b61374fe03441c2f64d69bb9d1473a021a0f48a63b"
+    },
+    {
+      "art": "03238",
+      "language": "en",
+      "path": "/local-assets/cards/en/03238.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/03238.avif",
+      "bytes": 94278,
+      "sha256": "381321beae0f127655c4436ba88717670a8afbd59f1eea1b3350d3b4c2192098"
+    },
+    {
+      "art": "02270",
+      "language": "es",
+      "path": "/local-assets/cards/es/02270.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/02270.avif",
+      "bytes": 53770,
+      "sha256": "eb64ae11fcbbfe1444f92bdf72695ffb9eb91000f5f72f7407e156b81da7410a"
+    },
+    {
+      "art": "03238",
+      "language": "es",
+      "path": "/local-assets/cards/es/03238.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/03238.avif",
+      "bytes": 33530,
+      "sha256": "faa8792f5d481ce6ef4f5b2661b32c08a483d2909ad9f04d688101c07bca3260"
     }
   ],
   "missing": [

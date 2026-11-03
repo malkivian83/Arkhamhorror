@@ -123,3 +123,13 @@
 - Anterior: `slot-search`, tres cartas, publicado en `d1963b52` ([112](112-busquedas-y-ranuras.md)). [Historial](historial-importacion.md), innecesario para continuar.
 - Revisión actual (02/11): 110 códigos contrastados y comprobaciones adicionales de Enorme; corregidos 17 códigos, ocho manifiestos en revisión 2. Detalle en [revisión general](100-revision-general-2026-10-31.md#revisión-de-cartas--02112026). Publicación conjunta autorizada el 03/11. Pasan 397 pruebas de 16 archivos, incluidas 25 regresiones nuevas, tipos cards, lint y formato. No repetir este alcance sin cambios en sus reglas o dependencias; quedan módulos anteriores por auditar. Recuentos de importación sin cambios.
 - Ampliación (03/11): otros 318 códigos contrastados en 28 módulos y comprobaciones de dependencias; 46 códigos corregidos con 47 regresiones nuevas. Pasan 1634 pruebas/235 archivos y tipos cards/engine/shared, lint y formato. Detalle y alcance pendiente en [revisión general](100-revision-general-2026-10-31.md#ampliación-de-la-revisión--03112026). Ambas revisiones se agrupan en un commit para main; publicación autorizada el 03/11. Ataques nuevos guardan su lugar; los guardados antiguos siguen admitidos con el cálculo previo. Siguiente revisión: damage-turn, resto de tools-parley, dunwich-pilot y módulos parcialmente revisados. Reutilizar validación salvo cambios en reglas, contratos o dependencias cubiertos.
+
+## Lote 114 · warning-shot · 3d4595a6
+
+- Lote 114: `warning-shot`, Disparo de aviso 0 (05229); un código/nivel nuevo, sin reediciones. Base: `d864197e`; publicación autorizada en main.
+- Acumulado: 1101 jugables; 1023 históricos, 960 históricos pendientes, incluidos 569 estándar (con impresiones).
+- Reglas: una munición de un Arma de fuego propio; todos los no Élite locales al mismo lugar conectado; sin ataques de oportunidad. Incluye Thompson Guardián. EN/ES originales y miniaturas revisados.
+- Revisión previa: ambas revisiones de reglas publicadas en `d864197e`; alcance y pendientes en [100](100-revision-general-2026-10-31.md).
+- Validación del lote: reglas, catálogo/conversión y presentación; tipos cards, lint/formato, recursos y build web. Reutilizar salvo cambios en reglas, registros, recursos o dependencias cubiertos.
+- Git: pull impedido por cambios ajenos conservados; comprobar remoto mediante fetch. Preparar solo adiciones propias a JSON compartidos. Sin seguimiento de CI/Deploy.
+- Siguiente: agrupar versiones y mecánicas compatibles, priorizando niveles nuevos; mantener bloqueos de 98/99/101/102/104/105/107. Rook exige escoger una debilidad; Bendición/Maldición requiere pool y resolución. No rellenar con reediciones ni repetir auditorías sin cambios.

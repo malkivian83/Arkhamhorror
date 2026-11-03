@@ -1,5 +1,7 @@
 {
   "en": {
+    "02270": "/local-assets/cards/en/02270.avif",
+    "03238": "/local-assets/cards/en/03238.avif",
     "05229": "/local-assets/cards/en/05229.avif",
     "60466": "/local-assets/cards/en/60466.avif",
     "08108": "/local-assets/cards/en/08108.avif",
@@ -2394,6 +2396,8 @@
     "04110": "/local-assets/cards/en/04110.avif"
   },
   "es": {
+    "02270": "/local-assets/cards/es/02270.avif",
+    "03238": "/local-assets/cards/es/03238.avif",
     "05229": "/local-assets/cards/es/05229.avif",
     "60466": "/local-assets/cards/es/60466.avif",
     "08108": "/local-assets/cards/es/08108.avif",

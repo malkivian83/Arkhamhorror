@@ -403,6 +403,7 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "chanceAlly": "Recover {card} from {name}’s discard pile",
     "relocationEnemy": "Choose {enemy}",
     "slotSearch": "Search with {card}",
     "improvisedExtra": "Also evade {enemy}",
@@ -3272,6 +3273,8 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "02270": "Fortune.",
+      "03238": "Fortune.",
       "05229": "Tactic. Trick.",
       "60466": "Spell. Trick.",
       "08108": "Spell. Trick.",
@@ -3807,6 +3810,8 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "02270": "Choose an [[Ally]] asset in any player's discard pile. Put that asset into play under your control. At the end of the round, if that asset is still in play, discard it.",
+      "03238": "Choose an [[Ally]] asset with printed resource cost X in any player's discard pile. Put that asset into play under your control.",
       "05229": "As an additional cost to play Warning Shot, spend 1 ammo from a [[Firearm]] asset you control.\nMove all non-[[Elite]] enemies at your location to a connecting location. This action does not provoke attacks of opportunity.",
       "60466": "<b>Parley</b>. Choose a non-[[Elite]] enemy at your location or at a connecting location. Move that enemy to your location, engage it, and gain resources equal to its combined damage/horror values.",
       "08108": "Choose a non-[[Elite]] enemy at a revealed location up to 2 connections away. Swap places with that enemy.",
@@ -4779,6 +4784,8 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "02270": "A Chance Encounter",
+      "03238": "A Chance Encounter",
       "05229": "Warning Shot",
       "60466": "Spiritual Charm",
       "08108": "Ethereal Slip",

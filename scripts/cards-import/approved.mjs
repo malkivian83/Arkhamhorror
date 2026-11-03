@@ -50,13 +50,20 @@ export function approvedDefinition(card, approval) {
     card.factions.join(',') === 'survivor' &&
     card.numbers.cost?.kind === 'symbol' &&
     card.numbers.cost.value === 'X'
+  const reviewedChance =
+    approval.adapter === 'reviewed-chance-x-v1' &&
+    card.code === '03238' &&
+    card.factions.join(',') === 'survivor' &&
+    card.numbers.cost?.kind === 'symbol' &&
+    card.numbers.cost.value === 'X'
+  const reviewedCostX = reviewedDiscovery || reviewedChance
   if (
     card.modelIssues.some(
       (issue) =>
         !((reviewedDualFaction || reviewedTalent) && issue === 'unsupported-factions') &&
         !(reviewedCustomizable && issue === 'customization') &&
         !(reviewedTarot && issue === 'unsupported-slots') &&
-        !(reviewedDiscovery && issue === 'symbolic-number'),
+        !(reviewedCostX && issue === 'symbolic-number'),
     ) ||
     (!reviewedDualFaction && !reviewedTalent && card.factions.length !== 1) ||
     (!reviewedTarot && card.slots.unknown.length)
@@ -135,7 +142,7 @@ export function approvedDefinition(card, approval) {
     if (number.kind !== 'number') throw new Error(`Unsupported ${key}: ${card.code}`)
     return number.value
   }
-  const cost = reviewedDiscovery ? 0 : numeric('cost'),
+  const cost = reviewedCostX ? 0 : numeric('cost'),
     health = numeric('health'),
     sanity = numeric('sanity')
   return {
@@ -154,7 +161,7 @@ export function approvedDefinition(card, approval) {
     traits: card.traits,
     ...(card.flags.is_unique ? { unique: true } : {}),
     ...(cost !== undefined ? { cost } : {}),
-    ...(reviewedDiscovery ? { printedCostX: true } : {}),
+    ...(reviewedCostX ? { printedCostX: true } : {}),
     xp: numeric('xp') ?? 0,
     icons: Object.fromEntries(
       ['willpower', 'intellect', 'combat', 'agility', 'wild']

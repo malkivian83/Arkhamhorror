@@ -5,6 +5,23 @@ import { approvedDefinition } from './approved.mjs'
 const read = async (relative) =>
   JSON.parse(await readFile(new URL(relative, import.meta.url), 'utf8'))
 describe('reviewed inventory conversion', () => {
+  it('accepts the reviewed cost X of A Chance Encounter only with its explicit adapter', async () => {
+    const { cards } = await read(
+      '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
+    )
+    const card = cards.find((c) => c.code === '03238')
+    const approval = { code: '03238', status: 'verified', adapter: 'reviewed-chance-x-v1' }
+    expect(approvedDefinition(card, approval)).toMatchObject({
+      code: '03238',
+      cost: 0,
+      printedCostX: true,
+      xp: 2,
+    })
+    expect(() => approvedDefinition(card, { ...approval, adapter: undefined })).toThrow()
+    expect(() =>
+      approvedDefinition({ ...card, code: '99999' }, { ...approval, code: '99999' }),
+    ).toThrow()
+  })
   it('limits conditional-asset Myriad, Exceptional and Permanent adapters to exact identities', async () => {
     const { cards } = await read(
       '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
@@ -207,6 +224,7 @@ describe('reviewed inventory conversion', () => {
     'slot-search',
     'enemy-relocation',
     'warning-shot',
+    'chance-encounter',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(

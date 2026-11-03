@@ -1,0 +1,25 @@
+[
+  {
+    "code": "02270",
+    "name": "A Chance Encounter",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Fortune"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "03238",
+    "name": "A Chance Encounter",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Fortune"],
+    "cost": 0,
+    "printedCostX": true,
+    "xp": 2,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": []
+  }
+]

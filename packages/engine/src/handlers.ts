@@ -3451,6 +3451,19 @@ export function handle(state: GameState, message: Message): GameState {
           },
         })
       }
+      if (message.fromDiscard) {
+        const owner = getInvestigator(state, message.fromDiscard)
+        const at = owner.discard.indexOf(message.code)
+        if (at < 0) return state
+        const { fromDiscard: _taken, ...rest } = message
+        return handle(
+          updateInvestigator(state, owner.id, (i) => ({
+            ...i,
+            discard: i.discard.filter((_, n) => n !== at),
+          })),
+          { ...rest, originalOwner: owner.id },
+        )
+      }
       const [id, next] = newId(state, 'asset-')
       const noSlot = message.noSlot ? { noSlot: true } : {}
       const placed: GameState = {
@@ -6988,7 +7001,12 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'EndOfRound': {
-      state = push(clearRoundModifiers(state), { type: 'Forced', trigger: { type: 'roundEnds' } })
+      const delayed = state.endOfRound ?? []
+      state = push(
+        { ...clearRoundModifiers(state), endOfRound: [] },
+        { type: 'Forced', trigger: { type: 'roundEnds' } },
+        ...delayed,
+      )
       const act = state.acts[state.actIndex]
       return act?.advanceTiming === 'endOfRound'
         ? push(state, { type: 'OfferActAdvance' })
@@ -8393,6 +8411,9 @@ export function handle(state: GameState, message: Message): GameState {
         },
       })
     }
+
+    case 'AtEndOfRound':
+      return { ...state, endOfRound: [...(state.endOfRound ?? []), ...message.then] }
 
     case 'AtEndOfTurn':
       return {

@@ -403,6 +403,7 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "chanceAlly": "Recuperar {card} del descarte de {name}",
     "relocationEnemy": "Elegir {enemy}",
     "slotSearch": "Buscar con {card}",
     "improvisedExtra": "Evadir también a {enemy}",
@@ -3272,6 +3273,8 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "02270": "Fortuna.",
+      "03238": "Fortuna.",
       "05229": "Táctica. Truco.",
       "60466": "Hechizo. Truco.",
       "08108": "Hechizo. Truco.",
@@ -3807,6 +3810,8 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "02270": "Elige un Apoyo [[Aliado]] de la pila de descartes de cualquier jugador. Pon ese Apoyo en juego bajo tu control. Al final de la ronda, si ese Apoyo sigue en juego, descártalo.",
+      "03238": "Elige un Apoyo [[Aliado]] con coste de recursos impreso de X y que esté en la pila de descartes de cualquier jugador. Pon ese Apoyo en juego bajo tu control.",
       "05229": "Como coste adicional para jugar el Disparo de aviso, gasta 1 munición de un Apoyo [[Arma de fuego]] que controles.\nMueve todos los Enemigos que no sean [[Élite]] de tu Lugar a un Lugar conectado. Esta acción no provoca ataques de oportunidad.",
       "60466": "<b>Negociar</b>. Elige a un Enemigo que no sea [[Élite]] y que esté en tu Lugar o en un Lugar conectado. Mueve ese Enemigo a tu Lugar, enfréntate a él y obtén una cantidad de recursos igual a sus valores de daño/horror combinados.",
       "08108": "Elige un Enemigo que no sea [[Élite]] y que esté en un Lugar revelado a un máximo de 2 conexiones de distancia. Intercambia lugares con ese Enemigo.",
@@ -4779,6 +4784,8 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "02270": "Un encuentro fortuito",
+      "03238": "Un encuentro fortuito",
       "05229": "Disparo de aviso",
       "60466": "Encanto espiritual",
       "08108": "Deslizamiento etéreo",
