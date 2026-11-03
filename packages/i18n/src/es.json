@@ -3272,6 +3272,7 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "05229": "Táctica. Truco.",
       "60466": "Hechizo. Truco.",
       "08108": "Hechizo. Truco.",
       "08110": "Hechizo. Truco.",
@@ -3806,6 +3807,7 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "05229": "Como coste adicional para jugar el Disparo de aviso, gasta 1 munición de un Apoyo [[Arma de fuego]] que controles.\nMueve todos los Enemigos que no sean [[Élite]] de tu Lugar a un Lugar conectado. Esta acción no provoca ataques de oportunidad.",
       "60466": "<b>Negociar</b>. Elige a un Enemigo que no sea [[Élite]] y que esté en tu Lugar o en un Lugar conectado. Mueve ese Enemigo a tu Lugar, enfréntate a él y obtén una cantidad de recursos igual a sus valores de daño/horror combinados.",
       "08108": "Elige un Enemigo que no sea [[Élite]] y que esté en un Lugar revelado a un máximo de 2 conexiones de distancia. Intercambia lugares con ese Enemigo.",
       "08110": "Elige un Enemigo que no sea [[Élite]] y que esté en cualquier Lugar revelado. Intercambia lugares con ese Enemigo.",
@@ -4777,6 +4779,7 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "05229": "Disparo de aviso",
       "60466": "Encanto espiritual",
       "08108": "Deslizamiento etéreo",
       "08110": "Deslizamiento etéreo",

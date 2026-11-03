@@ -3272,6 +3272,7 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "05229": "Tactic. Trick.",
       "60466": "Spell. Trick.",
       "08108": "Spell. Trick.",
       "08110": "Spell. Trick.",
@@ -3806,6 +3807,7 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "05229": "As an additional cost to play Warning Shot, spend 1 ammo from a [[Firearm]] asset you control.\nMove all non-[[Elite]] enemies at your location to a connecting location. This action does not provoke attacks of opportunity.",
       "60466": "<b>Parley</b>. Choose a non-[[Elite]] enemy at your location or at a connecting location. Move that enemy to your location, engage it, and gain resources equal to its combined damage/horror values.",
       "08108": "Choose a non-[[Elite]] enemy at a revealed location up to 2 connections away. Swap places with that enemy.",
       "08110": "Choose a non-[[Elite]] enemy at any revealed location. Swap places with that enemy.",
@@ -4777,6 +4779,7 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "05229": "Warning Shot",
       "60466": "Spiritual Charm",
       "08108": "Ethereal Slip",
       "08110": "Ethereal Slip",

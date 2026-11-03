@@ -206,6 +206,7 @@ describe('reviewed inventory conversion', () => {
     'improvised-survival',
     'slot-search',
     'enemy-relocation',
+    'warning-shot',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(
