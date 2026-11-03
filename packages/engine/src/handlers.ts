@@ -4965,8 +4965,13 @@ export function handle(state: GameState, message: Message): GameState {
         label: 'choice.card',
         params: { card: playerCardDef(c.code)?.name ?? c.code },
         then:
-          playerCardBehavior(c.code)?.afterCommittedTest?.(state, test, !!test.succeeded, c.by) ??
-          [],
+          playerCardBehavior(c.code)?.afterCommittedTest?.(
+            state,
+            test,
+            !!test.succeeded,
+            c.by,
+            c,
+          ) ?? [],
       }))
       const margin = testMargin(test)
       const tokens = test.succeeded
@@ -5286,7 +5291,7 @@ export function handle(state: GameState, message: Message): GameState {
       }
       const reshuffle: Message[] = []
       for (const c of test?.committed ?? []) {
-        if (c.returnToHand) continue
+        if (c.returnToHand || c.putIntoPlay) continue
         // Habitación 245: va al fondo del mazo de su dueño.
         if (c.toDeckBottom) {
           next = updateInvestigator(next, c.by, (i) =>
@@ -7843,6 +7848,47 @@ export function handle(state: GameState, message: Message): GameState {
         ],
       }))
 
+    case 'PutCommittedIntoPlay': {
+      const test = state.skillTest,
+        c = test?.committed[message.index]
+      if (
+        !test ||
+        !c ||
+        c.code !== message.code ||
+        c.by !== message.investigator ||
+        c.putIntoPlay ||
+        c.returnToHand
+      )
+        return state
+      return push(
+        {
+          ...state,
+          skillTest: {
+            ...test,
+            committed: test.committed.map((copy, index) =>
+              index === message.index ? { ...copy, putIntoPlay: true } : copy,
+            ),
+          },
+        },
+        { type: 'PutAssetIntoPlay', investigator: c.by, code: c.code },
+      )
+    }
+
+    case 'UntilPhaseSkillBonus':
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        untilPhaseSkills: [
+          ...(i.untilPhaseSkills ?? []).filter((b) => b.round >= state.round),
+          {
+            skill: message.skill,
+            amount: message.amount,
+            code: message.code,
+            phase: message.phase,
+            round: message.round,
+          },
+        ],
+      }))
+
     case 'PhaseSkillBonus':
       return updateInvestigator(state, message.investigator, (i) => ({
         ...i,
@@ -10113,9 +10159,10 @@ function slotOccupants(
 
 /** Cartas comprometidas que cuentan (sin las de habilidad canceladas por una ficha). */
 function activeCommitted(test: SkillTest): SkillTest['committed'] {
+  const committed = test.committed.filter((c) => !c.putIntoPlay)
   return test.skillCardsCanceled
-    ? test.committed.filter((c) => playerCardDef(c.code)?.type !== 'skill')
-    : test.committed
+    ? committed.filter((c) => playerCardDef(c.code)?.type !== 'skill')
+    : committed
 }
 
 function commitIcons(
@@ -10299,6 +10346,17 @@ export function skillTestValue(state: GameState): {
   const phaseSources = (investigator.phaseSkillBonuses ?? [])
     .filter((b) => b.phase === state.phase && b.round === state.round && b.skill === test.skill)
     .map((b) => ({ name: playerCardDef(b.code)?.name ?? b.code, amount: b.amount }))
+  const phases = ['setup', 'mythos', 'investigation', 'enemy', 'upkeep']
+  phaseSources.push(
+    ...(investigator.untilPhaseSkills ?? [])
+      .filter(
+        (b) =>
+          b.skill === test.skill &&
+          (state.round < b.round ||
+            (state.round === b.round && phases.indexOf(state.phase) <= phases.indexOf(b.phase))),
+      )
+      .map((b) => ({ name: playerCardDef(b.code)?.name ?? b.code, amount: b.amount })),
+  )
   const bonuses = lasting?.bonuses ?? []
   for (const bonus of bonuses)
     if (

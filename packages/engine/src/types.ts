@@ -43,6 +43,13 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  untilPhaseSkills?: {
+    skill: SkillType
+    amount: number
+    code: CardCode
+    phase: Phase
+    round: number
+  }[]
   drewTreacheryRound?: number
   nextAssetFast?: boolean
   fightActionsThisTurn?: number
@@ -709,6 +716,7 @@ export interface SkillTest {
     /** Tras la prueba va al fondo del mazo de su dueño (Habitación 245). */
     toDeckBottom?: boolean
     returnToHand?: boolean
+    putIntoPlay?: boolean
   }[]
   /** Apoyo cuya habilidad inició la prueba. */
   source?: AssetId
@@ -826,6 +834,16 @@ export type Message =
       amount: number
       code: CardCode
     }
+  | {
+      type: 'UntilPhaseSkillBonus'
+      investigator: InvestigatorId
+      skill: SkillType
+      amount: number
+      code: CardCode
+      phase: Phase
+      round: number
+    }
+  | { type: 'PutCommittedIntoPlay'; investigator: InvestigatorId; index: number; code: CardCode }
   | {
       type: 'PlayerCardEffect'
       code: CardCode

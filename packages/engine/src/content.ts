@@ -745,6 +745,7 @@ export interface PlayerCardBehavior {
     test: SkillTest,
     succeeded: boolean,
     committedBy: InvestigatorId,
+    copy?: SkillTest['committed'][number],
   ) => Message[]
   /** Carta comprometida: después del paso 8, con la prueba ya cerrada. */
   afterCommittedTestEnds?: (
