@@ -1,0 +1,24 @@
+[
+  {
+    "code": "09053",
+    "name": "Guidance",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 0,
+    "xp": 1,
+    "icons": { "willpower": 1, "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "10129",
+    "name": "Bide Your Time",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Double"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "wild": 1 },
+    "slots": []
+  }
+]

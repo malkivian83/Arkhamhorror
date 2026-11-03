@@ -913,6 +913,9 @@ export function handle(state: GameState, message: Message): GameState {
       }))
       // FAQ: a delayed loss larger than the standard actions also removes additional ones.
       const starting = getInvestigator(state, message.investigator)
+      const benefits = (starting.nextTurnBenefits ?? []).filter(
+        (b) => b.round === undefined || b.round === state.round,
+      )
       const standard =
         ACTIONS_PER_TURN +
         (scenarioBehavior(state.scenarioId)?.actionsModifier?.(state, starting.id) ?? 0)
@@ -921,7 +924,7 @@ export function handle(state: GameState, message: Message): GameState {
         updateInvestigator(
           { ...state, activeTurn: message.investigator },
           message.investigator,
-          ({ roundTurnActions: _pending, ...i }) => ({
+          ({ roundTurnActions: _pending, nextTurnBenefits: _benefits, ...i }) => ({
             ...i,
             turnTaken: true,
             ...(state.boons?.includes('hermes') ? { extraMove: true } : {}),
@@ -941,6 +944,11 @@ export function handle(state: GameState, message: Message): GameState {
           }),
         ),
         // Stella Clark: additional actions gained earlier this round for this turn.
+        ...benefits.map((b): Message => ({
+          type: 'GainActions',
+          investigator: starting.id,
+          amount: b.actions,
+        })),
         ...(starting.roundTurnActions?.round === state.round
           ? [
               {
@@ -960,6 +968,17 @@ export function handle(state: GameState, message: Message): GameState {
             ]
           : []),
         { type: 'Step', step: 'turnBegins', investigator: message.investigator },
+        ...benefits
+          .filter((b) => b.skillBonus)
+          .map((b): Message => ({
+            type: 'TurnSkillEffect',
+            investigator: starting.id,
+            bonus: {
+              amount: b.skillBonus!,
+              code: b.code,
+              kinds: ['fight', 'evade', 'investigate', 'effect'],
+            },
+          })),
         { type: 'Forced', trigger: { type: 'turnBegins', investigator: message.investigator } },
         { type: 'Step', step: 'takeActions', investigator: message.investigator },
         { type: 'PlayerWindow', investigator: message.investigator },
@@ -6348,6 +6367,20 @@ export function handle(state: GameState, message: Message): GameState {
         { name: investigator.name, n: message.amount },
       )
     }
+
+    case 'NextTurnBenefits':
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        nextTurnBenefits: [
+          ...(i.nextTurnBenefits ?? []),
+          {
+            actions: message.actions,
+            code: message.code,
+            ...(message.skillBonus !== undefined ? { skillBonus: message.skillBonus } : {}),
+            ...(message.round !== undefined ? { round: message.round } : {}),
+          },
+        ],
+      }))
 
     case 'GainTurnActionsThisRound': {
       // Stella Clark: during their turn this round; before it begins, kept until it begins.
