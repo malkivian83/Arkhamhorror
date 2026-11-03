@@ -1,0 +1,29 @@
+[
+  {
+    "code": "11083",
+    "name": "Lawrence Carlisle",
+    "subname": "Sculpting His Dreams",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Ally", "Artist", "Patron"],
+    "unique": true,
+    "cost": 3,
+    "xp": 0,
+    "icons": { "intellect": 1 },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 1
+  },
+  {
+    "code": "11089",
+    "name": "Ample Supplies",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Supply"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {},
+    "slots": [],
+    "uses": { "count": 2, "type": "supply" }
+  }
+]

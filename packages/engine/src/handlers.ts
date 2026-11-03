@@ -2184,8 +2184,9 @@ export function handle(state: GameState, message: Message): GameState {
       )
     }
 
-    case 'DiscardFromHand':
-      return updateInvestigator(state, message.investigator, (i) => {
+    case 'DiscardFromHand': {
+      if (!getInvestigator(state, message.investigator).hand.includes(message.card)) return state
+      const next = updateInvestigator(state, message.investigator, (i) => {
         const index = i.hand.indexOf(message.card)
         if (index < 0) return i
         return {
@@ -2194,6 +2195,10 @@ export function handle(state: GameState, message: Message): GameState {
           discard: [...i.discard, message.card],
         }
       })
+      return message.deferHandReaction
+        ? next
+        : afterHandDiscard(next, message.investigator, [message.card])
+    }
 
     case 'CheckHandSize': {
       const investigator = getInvestigator(state, message.investigator)
@@ -2203,7 +2208,7 @@ export function handle(state: GameState, message: Message): GameState {
         investigator.hand.length === 0 ||
         cardsInHand(state, investigator.id) <= handSize(state, investigator.id)
       ) {
-        return state
+        return afterHandDiscard(state, investigator.id, message.discarded ?? [])
       }
       return push(state, {
         type: 'Ask',
@@ -2215,8 +2220,17 @@ export function handle(state: GameState, message: Message): GameState {
             label: 'choice.discard',
             params: { card },
             then: [
-              { type: 'DiscardFromHand', investigator: investigator.id, card },
-              { type: 'CheckHandSize', investigator: investigator.id },
+              {
+                type: 'DiscardFromHand',
+                investigator: investigator.id,
+                card,
+                deferHandReaction: true,
+              },
+              {
+                type: 'CheckHandSize',
+                investigator: investigator.id,
+                discarded: [...(message.discarded ?? []), card],
+              },
             ],
           })),
         },
@@ -2526,11 +2540,13 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'DiscardRandomFromHand': {
       const investigator = getInvestigator(state, message.investigator)
-      if (message.amount <= 0 || investigator.hand.length === 0) return state
+      if (message.amount <= 0 || investigator.hand.length === 0)
+        return afterHandDiscard(state, investigator.id, message.discarded ?? [])
       const candidates = investigator.hand
         .map((card, index) => ({ card, index }))
         .filter((c) => !message.nonWeaknessOnly || !playerCardDef(c.card)?.weakness)
-      if (!candidates.length) return state
+      if (!candidates.length)
+        return afterHandDiscard(state, investigator.id, message.discarded ?? [])
       const [picked, rng] = nextInt(state.rng, candidates.length)
       const index = candidates[picked]!.index
       const card = investigator.hand[index] as string
@@ -2539,7 +2555,10 @@ export function handle(state: GameState, message: Message): GameState {
         hand: i.hand.filter((_, n) => n !== index),
         discard: [...i.discard, card],
       }))
-      return message.amount > 1 ? push(next, { ...message, amount: message.amount - 1 }) : next
+      const discarded = [...(message.discarded ?? []), card]
+      return message.amount > 1
+        ? push(next, { ...message, amount: message.amount - 1, discarded })
+        : afterHandDiscard(next, investigator.id, discarded)
     }
 
     case 'TakeDamage': {
@@ -6032,11 +6051,15 @@ export function handle(state: GameState, message: Message): GameState {
       })
       if (ofType.length === 0) return state
       if (message.all) {
-        return updateInvestigator(state, investigator.id, (i) => ({
-          ...i,
-          hand: i.hand.filter((c) => !ofType.includes(c)),
-          discard: [...i.discard, ...ofType],
-        }))
+        return afterHandDiscard(
+          updateInvestigator(state, investigator.id, (i) => ({
+            ...i,
+            hand: i.hand.filter((c) => !ofType.includes(c)),
+            discard: [...i.discard, ...ofType],
+          })),
+          investigator.id,
+          ofType,
+        )
       }
       return push(state, {
         type: 'Ask',
@@ -7695,7 +7718,8 @@ export function handle(state: GameState, message: Message): GameState {
       // RR Weakness: a weakness cannot be chosen for a hand discard.
       // Random discards and effects discarding the entire hand use other messages.
       const cards = investigator.hand.filter((card) => !playerCardDef(card)?.weakness)
-      if (message.amount <= 0 || cards.length === 0) return state
+      if (message.amount <= 0 || cards.length === 0)
+        return afterHandDiscard(state, investigator.id, message.discarded ?? [])
       return push(state, {
         type: 'Ask',
         investigator: investigator.id,
@@ -7706,8 +7730,17 @@ export function handle(state: GameState, message: Message): GameState {
             label: 'choice.discard',
             params: { card },
             then: [
-              { type: 'DiscardFromHand', investigator: investigator.id, card },
-              { ...message, amount: message.amount - 1 },
+              {
+                type: 'DiscardFromHand',
+                investigator: investigator.id,
+                card,
+                deferHandReaction: true,
+              },
+              {
+                ...message,
+                amount: message.amount - 1,
+                discarded: [...(message.discarded ?? []), card],
+              },
             ],
           })),
         },
@@ -9335,6 +9368,12 @@ function discardTreachery(state: GameState, id: string): GameState {
     ...card
   } = treachery
   return { ...state, treacheries, encounterDiscard: [...state.encounterDiscard, card] }
+}
+
+function afterHandDiscard(state: GameState, investigator: string, cards: string[]): GameState {
+  if (!cards.length) return state
+  const trigger: Trigger = { type: 'afterHandDiscard', investigator, cards }
+  return push(state, { type: 'Forced', trigger }, { type: 'Reactions', trigger })
 }
 
 function toOwnerDiscard(state: GameState, owner: string, code: string): GameState {

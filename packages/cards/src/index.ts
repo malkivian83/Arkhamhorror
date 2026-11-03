@@ -285,6 +285,7 @@ import { WARNING_SHOT_RENDERED_CODES } from './warning-shot'
 import { CHANCE_ENCOUNTER_RENDERED_CODES } from './chance-encounter'
 import { TEMPORARY_SKILLS_RENDERED_CODES } from './temporary-skills'
 import { NEXT_TURN_BENEFITS_RENDERED_CODES } from './next-turn-benefits'
+import { DISCARD_REACTIONS_RENDERED_CODES } from './discard-reactions'
 import { REX_RENDERED_CODES } from './rex-murphy'
 import { GROUPED_RENDERED_CODES } from './grouped-import'
 import { IMMEDIATE_EVENT_RENDERED_CODES } from './immediate-action-events'
@@ -306,6 +307,7 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...CHANCE_ENCOUNTER_RENDERED_CODES,
   ...TEMPORARY_SKILLS_RENDERED_CODES,
   ...NEXT_TURN_BENEFITS_RENDERED_CODES,
+  ...DISCARD_REACTIONS_RENDERED_CODES,
   ...TOKEN_SKILL_RENDERED_CODES,
   ...SERVICE_RENDERED_CODES,
   ...TEST_RECOVERY_RENDERED_CODES,

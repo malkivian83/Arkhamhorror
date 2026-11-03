@@ -3198,6 +3198,7 @@
   },
   "offlineCard": {
     "subnames": {
+      "11083": "Sculpting His Dreams",
       "05283": "Mysterious Soothsayer",
       "02232": "Speaker to the Dead",
       "53004": "Transient Thoughts",
@@ -3273,6 +3274,8 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "11083": "Ally. Artist. Patron.",
+      "11089": "Supply.",
       "10129": "Double.",
       "09053": "Insight.",
       "04192": "Innate.",
@@ -3814,6 +3817,8 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "11083": "You get +1 [intellect].\n[reaction] After you discard 1 or more cards from your hand during your turn, exhaust Lawrence Carlisle: Gain 1 resource.",
+      "11089": "Limit 1 per investigator. Uses (2 supplies).\n[reaction] After you discard 1 or more cards from hand, exhaust Ample Supplies: Place 1 supply on this card.\n[fast] Discard Ample Supplies: Move each supply on this card to your resource pool, as resources.",
       "10129": "As an additional cost to play Bide Your Time, spend an action.\nDuring your next turn, you may take two additional actions.",
       "09053": "Choose another investigator at your location who has yet to take their turn this round. During their turn this round, the chosen investigator gets +1 to each of their skills, and may take an additional action. Playing Guidance does not provoke attacks of opportunity.",
       "04192": "If this skill test is successful, add Intrepid to your play area as an asset with the text:\n\"You get +1 [intellect], +1 [combat], and +1 [agility].\n<b>Forced</b> - At the end of the round: Discard Intrepid.\"",
@@ -4792,6 +4797,8 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "11083": "Lawrence Carlisle",
+      "11089": "Ample Supplies",
       "10129": "Bide Your Time",
       "09053": "Guidance",
       "04192": "Intrepid",

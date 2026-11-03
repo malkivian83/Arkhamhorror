@@ -3198,6 +3198,7 @@
   },
   "offlineCard": {
     "subnames": {
+      "11083": "Esculpiendo sus sueños",
       "05283": "Vidente misteriosa",
       "02232": "Oradora de los muertos",
       "53004": "Pensamientos pasajeros",
@@ -3273,6 +3274,8 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "11083": "Aliado. Artista. Mecenas.",
+      "11089": "Suministros.",
       "10129": "Doble.",
       "09053": "Inspiración.",
       "04192": "Innato.",
@@ -3814,6 +3817,8 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "11083": "Recibes +1 [intellect].\n[reaction] Después de que descartes 1 o más cartas de tu mano durante tu turno, agota a Lawrence Carlisle: Obtén 1 recurso.",
+      "11089": "Límite de 1 por investigador. Usos (2 suministros).\n[reaction] Después de que descartes 1 o más cartas de la mano, agota los Suministros abundantes: Coloca 1 suministro en esta carta.\n[free] Descarta los Suministros abundantes: Mueve cada suministro de esta carta a tu reserva de recursos, como recursos.",
       "10129": "Como coste adicional para jugar Aguardar tu momento, gasta una acción. Durante tu próximo turno, puedes realizar 2 acciones adicionales.",
       "09053": "Elige a otro investigador que esté en tu Lugar y que aún no haya jugado su turno en esta ronda. Durante su turno en esta ronda el investigador elegido recibe +1 a cada una de sus habilidades y puede realizar una acción adicional. Jugar Consejo no provoca ataques de oportunidad.",
       "04192": "Si esta prueba de habilidad tiene éxito, añade Audaz a tu zona de juego como un Apoyo con el siguiente texto:\n\"Recibes +1 [intellect], +1 [combat] y +1 [agility].\n<b>Obligado</b> - Al final de la ronda: Descarta Audaz.\"",
@@ -4792,6 +4797,8 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "11083": "Lawrence Carlisle",
+      "11089": "Suministros abundantes",
       "10129": "Aguardar tu momento",
       "09053": "Consejo",
       "04192": "Audaz",
