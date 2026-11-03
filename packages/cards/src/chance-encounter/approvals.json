@@ -1,0 +1,25 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "807e8c7753c12558d31616e9c1f3af7a66afbd8bfe6f10a5c98d54b6564cc1f7",
+    "es": "7585fbb2923706c6287fd9672e0bc3f0525f3d2943bdad93098f5e9b59e0ac2d"
+  },
+  "cards": [
+    {
+      "code": "02270",
+      "status": "verified",
+      "module": "card-02270",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03238",
+      "status": "verified",
+      "module": "card-03238",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-chance-x-v1"
+    }
+  ]
+}

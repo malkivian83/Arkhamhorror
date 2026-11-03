@@ -1078,6 +1078,8 @@ export type Message =
       played?: boolean
       /** Take the card from its controller's hand first ("put into play from your hand"). */
       fromHand?: boolean
+      /** Take this exact code from the named investigator's discard after validating entry. */
+      fromDiscard?: InvestigatorId
       /** Fichas con las que entra (al tomar el control de un apoyo colocado). */
       tokens?: Partial<Pick<Asset, 'damage' | 'horror' | 'doom' | 'uses' | 'exhausted'>>
       /** Continue with the exact instance id under data.asset, even after entry reactions. */
@@ -1765,6 +1767,7 @@ export type Message =
       then?: Message[]
     }
   | { type: 'AtEndOfTurn'; investigator: InvestigatorId; then: Message[] }
+  | { type: 'AtEndOfRound'; then: Message[] }
   /**
    * Premonition: sella una ficha al azar de la bolsa. With `token` and `holder`, search the bag
    * for that token and seal it on a card in play (The Codex of Ages, Serpents of Yig).
@@ -2287,6 +2290,7 @@ export interface GameState {
   canceledAttack?: EnemyId | null
   /** Efectos pendientes "al final de tu turno". */
   endOfTurn?: { investigator: InvestigatorId; then: Message[] }[]
+  endOfRound?: Message[]
   /**
    * Fichas selladas sobre cartas. Without `holder` (Premonition) the next reveal resolves it;
    * with one, it stays on that card and returns to the bag when the card leaves play.
