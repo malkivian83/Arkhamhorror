@@ -3,6 +3,7 @@ import {
   getLocation,
   playerCardBehavior,
   registerPlayerCard,
+  engagedEnemies,
   type Message,
 } from '@lcg/engine'
 import { registerBasicAsset, type BasicAbility } from '../basic-abilities/register'
@@ -142,16 +143,14 @@ export function registerCombat(code: string): boolean {
             return ask(
               by,
               [
-                ...Object.values(s.enemies)
-                  .filter((e) => e.engagedWith === by)
-                  .map((e) => ({
-                    label: 'choice.toolDamage',
-                    params: { n: 1, enemy: e.name },
-                    then: [
-                      { type: 'DamageEnemy' as const, enemy: e.id, amount: 1, by },
-                      continuation(code, by, 'fight', data),
-                    ],
-                  })),
+                ...engagedEnemies(s, by).map((e) => ({
+                  label: 'choice.toolDamage',
+                  params: { n: 1, enemy: e.name },
+                  then: [
+                    { type: 'DamageEnemy' as const, enemy: e.id, amount: 1, by },
+                    continuation(code, by, 'fight', data),
+                  ],
+                })),
                 { label: 'choice.skip', then: [continuation(code, by, 'fight', data)] },
               ],
               true,

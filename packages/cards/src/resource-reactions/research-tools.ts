@@ -7,6 +7,7 @@ import {
   registerPlayerCard,
   uniqueAssetInPlay,
   limitTitleReached,
+  engagedEnemies,
   type GameState,
 } from '@lcg/engine'
 import { registerBasicAsset } from '../basic-abilities/register'
@@ -103,8 +104,8 @@ export function registerResearchTools(code: string): boolean {
             return ask(
               by,
               [
-                ...Object.values(s.enemies)
-                  .filter((e) => e.engagedWith === by && !e.cannotBeEvaded)
+                ...engagedEnemies(s, by)
+                  .filter((e) => !e.cannotBeEvaded && !e.hasNoStats)
                   .map((e) => ({
                     label: 'choice.chargedEnemy',
                     params: { enemy: e.name },

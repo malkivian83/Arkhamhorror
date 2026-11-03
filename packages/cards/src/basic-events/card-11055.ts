@@ -5,7 +5,8 @@ import { elite, registerBasicEvent, skillValue } from './register'
 registerBasicEvent('11055', {
   action: 'evade',
   tags: ['tactic', 'trick'],
-  modifier: ({ state, investigator }) => skillValue(state, investigator, 'combat'),
+  modifier: ({ state, investigator }, enemy) =>
+    skillValue(state, investigator, 'combat', { type: 'evade', enemy: enemy!.id }),
   onSuccess: ({ state, investigator }, enemy) => {
     const moves: Message[] = elite(enemy!)
       ? []

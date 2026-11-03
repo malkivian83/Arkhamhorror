@@ -1,16 +1,22 @@
-import { getInvestigator, registerPlayerCard, type Message, type SkillType } from '@lcg/engine'
+import {
+  getInvestigator,
+  registerPlayerCard,
+  skillValueFor,
+  type Message,
+  type SkillType,
+} from '@lcg/engine'
 
 const later = (then: Message[]): Message => ({ type: 'AfterCurrentSkillTest', then })
 const backToHand = (investigator: string, code: string): Message =>
   later([{ type: 'DiscardToHand', investigator, code }])
 
-/** Gains icons of each skill equal to your value in the other one (base skill values). */
+/** RR Modifiers: use current attributes, without committed icons or token modifiers. */
 export function registerSwapSkill(code: string, a: SkillType, b: SkillType): void {
   registerPlayerCard({
     code,
-    additionalIcons: (s, _t, by) => {
-      const skills = getInvestigator(s, by).skills
-      return { [a]: skills[b], [b]: skills[a] }
+    additionalIcons: (s, t, by, zone = 'hand') => {
+      if (zone !== 'hand' && zone !== 'committed') return {}
+      return { [a]: skillValueFor(s, by, b, t.kind), [b]: skillValueFor(s, by, a, t.kind) }
     },
   })
 }
@@ -22,7 +28,7 @@ export function registerSavant(code: string): void {
     additionalIcons: (s, t, by) => {
       const skills = getInvestigator(s, by).skills
       const others = (Object.keys(skills) as SkillType[]).filter((k) => k !== t.skill)
-      return { wild: Math.min(...others.map((k) => skills[k])) }
+      return { wild: Math.min(...others.map((k) => skillValueFor(s, by, k, t.kind))) }
     },
   })
 }
@@ -36,7 +42,9 @@ export function registerIndomitable(code: string): void {
       const attacked = (s.enemyAttacks ?? []).some(
         (a) =>
           a.round === s.round &&
-          s.investigators.some((i) => i.id === a.investigator && i.location === here),
+          (a.location !== undefined
+            ? a.location !== null && a.location === here
+            : s.investigators.some((i) => i.id === a.investigator && i.location === here)),
       )
       return attacked ? { wild: 3 } : {}
     },

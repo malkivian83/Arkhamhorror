@@ -3,7 +3,8 @@ import { registerBasicEvent, skillValue } from '../basic-events/register'
 registerBasicEvent('60378', {
   action: 'fight',
   skill: 'agility',
-  modifier: ({ state, investigator }) => skillValue(state, investigator, 'combat'),
+  modifier: ({ state, investigator }, enemy) =>
+    skillValue(state, investigator, 'combat', { type: 'fight', enemy: enemy!.id }),
   extraDamage: (_ctx, enemy) => (enemy.exhausted ? 2 : 0),
   tags: ['tactic', 'trick'],
 })

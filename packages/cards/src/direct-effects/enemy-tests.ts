@@ -1,5 +1,6 @@
 import {
   enemiesAt,
+  engagedEnemies,
   registerPlayerCard,
   type Choice,
   type Enemy,
@@ -15,12 +16,12 @@ import { here } from './register'
 export function registerEnemyTest(
   code: string,
   skill: SkillType,
-  eligible: (enemy: Enemy, by: string) => boolean,
+  eligible: (enemy: Enemy, by: string, state: GameState) => boolean,
   onSuccess: (enemy: Enemy, by: string, state: GameState) => Message[],
 ): void {
   const targets = (s: GameState, by: string) => {
     const location = here(s, by)
-    return location === null ? [] : enemiesAt(s, location).filter((e) => eligible(e, by))
+    return location === null ? [] : enemiesAt(s, location).filter((e) => eligible(e, by, s))
   }
   registerPlayerCard({
     code,
@@ -66,7 +67,10 @@ export const registerEavesdrop = () =>
   registerEnemyTest(
     '04027',
     'intellect',
-    (e) => e.engagedWith === null,
+    (e, _by, s) =>
+      !s.investigators.some(
+        (i) => !i.eliminated && engagedEnemies(s, i.id).some((x) => x.id === e.id),
+      ),
     (_e, by, s) => {
       const location = here(s, by)
       return location === null

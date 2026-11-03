@@ -1,4 +1,4 @@
-import { getInvestigator, shroudOf, type Message } from '@lcg/engine'
+import { type Message } from '@lcg/engine'
 import { registerBasicAsset } from './register'
 // Old Keyring (0, 3): -2 shroud; a success removes a key and it is discarded without keys.
 // Level 3 discovers 1 more clue if the test's difficulty was 0.
@@ -12,16 +12,23 @@ for (const [code, bonusClue] of [
       {
         action: 'investigate',
         shroud: -2,
-        onSuccess: ({ state, self, investigator }) => {
-          const here = getInvestigator(state, investigator).location!
+        onSuccess: ({ self, investigator }) => {
           return [
             { type: 'SpendUses', asset: self.id, amount: 1 },
-            ...(bonusClue && shroudOf(state, here) - 2 <= 0
-              ? [{ type: 'DiscoverClues', investigator, amount: 1, location: here } as Message]
+            ...(bonusClue
+              ? [{ type: 'PlayerCardEffect', investigator, code, step: 'bonus-clue' } as Message]
               : []),
           ]
         },
       },
     ],
-    () => ({ discardWhenEmpty: true }),
+    () => ({
+      discardWhenEmpty: true,
+      effect: (state, investigator, step) => {
+        const test = state.skillTest
+        return step === 'bonus-clue' && test?.kind.type === 'investigate' && test.difficulty === 0
+          ? [{ type: 'DiscoverClues', investigator, amount: 1, location: test.kind.location }]
+          : []
+      },
+    }),
   )

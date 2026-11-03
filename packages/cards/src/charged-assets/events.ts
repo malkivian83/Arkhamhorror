@@ -9,6 +9,7 @@ import {
   enemyBehavior,
   playerCardDef,
   stuckInPlay,
+  scenarioBehavior,
 } from '@lcg/engine'
 import { ask, cardName } from '../dunwich-pilot/effects'
 const symbols = ['skull', 'cultist', 'tablet', 'elderThing', 'autoFail']
@@ -70,7 +71,14 @@ export function registerEvents(code: string): boolean {
                       code,
                       investigator: by,
                       step: 'token',
-                      data: { enemy: e.id, damage: e.damage },
+                      data: {
+                        enemy: e.id,
+                        damage: Math.max(
+                          0,
+                          e.damage +
+                            (scenarioBehavior(s.scenarioId)?.enemyDamageModifier?.(s, e) ?? 0),
+                        ),
+                      },
                     },
                   },
                 ],

@@ -3,6 +3,7 @@ import {
   getInvestigator,
   registerPlayerCard,
   shroudOf,
+  skillValueFor,
   type Choice,
   type Enemy,
   type GameState,
@@ -156,6 +157,10 @@ export const returnAtEndOfTurn = (investigator: InvestigatorId, code: string): M
   investigator,
   then: [{ type: 'DiscardToHand', investigator, code }],
 })
-export const skillValue = (state: GameState, investigator: InvestigatorId, skill: SkillType) =>
-  getInvestigator(state, investigator).skills[skill]
+export const skillValue = (
+  state: GameState,
+  investigator: InvestigatorId,
+  skill: SkillType,
+  kind: SkillTestKind,
+) => skillValueFor(state, investigator, skill, kind)
 export const elite = (enemy: Enemy) => (enemy.traits ?? []).includes('Elite')

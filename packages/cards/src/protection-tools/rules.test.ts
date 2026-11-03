@@ -252,6 +252,7 @@ it('Tetsuo searches a chosen local discard or nine deck cards after his own defe
   const a = s.assets['06155']!
   const o = b('06155').reactions!(s, { type: 'assetDefeated', asset: a }, a)[0]!
   s = run(s, o.then)
+  s = choose(s, 'choice.investigator', { name: 'B' })
   s = choose(s, 'choice.protectionDiscard', { card: 'Flashlight' })
   expect(s.investigators[1]!.hand).toContain('01087')
   expect(s.investigators[1]!.discard).toEqual(['01093'])

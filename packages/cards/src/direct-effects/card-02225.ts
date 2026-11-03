@@ -1,11 +1,15 @@
-import { getInvestigator, playerCardDef, registerPlayerCard } from '@lcg/engine'
+import { getInvestigator, playerCardDef, registerPlayerCard, scenarioBehavior } from '@lcg/engine'
 // "If it bleeds...": after you defeat a Monster enemy, each investigator at your location
 // heals horror equal to that enemy's horror value.
 registerPlayerCard({
   code: '02225',
   handReactions: (s, t, by) => {
     if (t.type !== 'enemyDefeated' || t.by !== by) return []
-    if (!(t.enemy.traits ?? []).includes('Monster') || !t.enemy.horror) return []
+    const horror = Math.max(
+      0,
+      t.enemy.horror + (scenarioBehavior(s.scenarioId)?.enemyHorrorModifier?.(s, t.enemy) ?? 0),
+    )
+    if (!(t.enemy.traits ?? []).includes('Monster') || !horror) return []
     const location = getInvestigator(s, by).location
     return [
       {
@@ -25,7 +29,7 @@ registerPlayerCard({
                 type: 'Heal' as const,
                 investigator: i.id,
                 damage: 0,
-                horror: t.enemy.horror,
+                horror,
               })),
           },
         ],

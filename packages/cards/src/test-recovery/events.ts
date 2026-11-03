@@ -34,18 +34,22 @@ export function registerEvents(code: string): boolean {
   if (['04149', '10032'].includes(code)) {
     registerPlayerCard({
       code,
-      canPlay: (s, by) => ownTurn(s, by) && (getInvestigator(s, by).actionsTaken ?? 0) === 0,
-      play: (s, by) => [
-        {
-          type: 'Heal',
-          investigator: by,
-          damage:
-            (code === '10032' ? 2 : 1) +
-            (getInvestigator(s, by).drewTreacheryRound === s.round ? 1 : 0),
-          horror: 0,
-        },
-        { type: 'DrawCards', investigator: by, amount: 1 },
-      ],
+      canPlay: (s, by) =>
+        ownTurn(s, by) &&
+        (getInvestigator(s, by).actionsTaken ?? 0) === 0 &&
+        (code === '10032' || getInvestigator(s, by).damage > 0),
+      play: (s, by) => {
+        const investigator = getInvestigator(s, by),
+          amount =
+            (code === '10032' ? 2 : 1) + (investigator.drewTreacheryRound === s.round ? 1 : 0)
+        return [
+          { type: 'Heal', investigator: by, damage: amount, horror: 0 },
+          // RR Then: level 0 draws only after its healing resolves in full.
+          ...(code === '10032' || investigator.damage >= amount
+            ? [{ type: 'DrawCards' as const, investigator: by, amount: 1 }]
+            : []),
+        ]
+      },
     })
     return true
   }

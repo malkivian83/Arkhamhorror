@@ -1,5 +1,6 @@
 import {
   enemiesAt,
+  engagedEnemies,
   getInvestigator,
   playerCardDef,
   registerPlayerCard,
@@ -60,7 +61,9 @@ export function registerEquipment(code: string): void {
       return here === null
         ? []
         : enemiesAt(s, here).filter((e) =>
-            'upgraded' in entry && entry.upgraded ? e.engagedWith !== i : e.exhausted,
+            'upgraded' in entry && entry.upgraded
+              ? !engagedEnemies(s, i).some((engaged) => engaged.id === e.id)
+              : e.exhausted,
           )
     }
     registerPlayerCard({

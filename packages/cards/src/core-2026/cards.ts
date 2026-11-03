@@ -9,6 +9,7 @@ import {
   getInvestigator,
   getLocation,
   shroudOf,
+  skillValueFor,
   playerCardDef,
   registerPlayerCard,
   type AbilityOption,
@@ -722,7 +723,10 @@ registerPlayerCard({
         investigator,
         skill: 'intellect',
         difficulty: shroudOf(state, me.location),
-        modifier: me.skills.agility,
+        modifier: skillValueFor(state, investigator, 'agility', {
+          type: 'investigate',
+          location: me.location,
+        }),
         kind: {
           type: 'investigate',
           location: me.location,

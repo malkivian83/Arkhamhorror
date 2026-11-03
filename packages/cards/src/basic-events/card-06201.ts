@@ -25,7 +25,8 @@ for (const [code, comeBack] of [
   const spec: BasicEvent = {
     action: 'fight',
     tags: ['spell'],
-    modifier: ({ state, investigator }) => skillValue(state, investigator, 'willpower'),
+    modifier: ({ state, investigator }, enemy) =>
+      skillValue(state, investigator, 'willpower', { type: 'fight', enemy: enemy!.id }),
     extraDamage: (_ctx, enemy) => (elite(enemy) ? 1 : 2),
     ...(comeBack
       ? {

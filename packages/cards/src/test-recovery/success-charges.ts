@@ -30,7 +30,9 @@ export function registerCharges(code: string): boolean {
               ? ['intellect', 'willpower']
               : ['agility', 'willpower'],
         modifier: spec.high ? 2 : 1,
-        available: ({ self }) => self.uses > 0,
+        // Only Blur has an explicit prerequisite. Brand/Divination spend charges
+        // as part of their successful effects, not as an activation cost.
+        available: ({ self }) => spec.action !== 'evade' || self.uses > 0,
       },
     ],
     () => ({

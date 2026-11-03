@@ -791,3 +791,91 @@ Cambian las preguntas del motor e invalidarían las partidas grabadas:
 - elección del Líder aliado en La Gala.
 
 Las decisiones del propietario (Isamara, Git LFS y web tras registro) están en sus apartados.
+
+## Revisión de cartas · 02/11/2026
+
+Sobre `ce330ed6`, contrastados textos e implementación de 110 códigos de
+resource-reactions (30), protection-tools (20), test-recovery (30), token-skills (12),
+services-parley (7), conditional-assets (8) y enemy-relocation (3). Además, la búsqueda
+de enfrentamientos directos detectó tres casos anteriores afectados por Enorme.
+No se repite la revisión de los 17 códigos de los lotes 108–112 ni se certifica el
+catálogo completo de 1100 cartas jugables.
+
+Corregidos 17 códigos distintos:
+
+| Cartas | Corrección |
+| --- | --- |
+| 03189, ¡Nos veremos en el infierno! | Aplica el trauma antes de que la derrota del último investigador termine el escenario; incluye enemigos Enormes preparados. |
+| 05117/05190/05191, Whisky de mosto ácido | La bonificación exige una prueba de voluntad de una traición. |
+| 03193, Signos arcaicos; 05113, Desterrar; 11074, Bastón estoque; 60233, El Necronomicón; 09119, Lanzadisparos hiperfísico | Los objetivos enfrentados incluyen Enormes preparados; las evasiones respetan sus restricciones. |
+| 04105, Persuasión; 60466, Encanto espiritual | Incorporan los modificadores del escenario al horror y al daño, con mínimo cero. |
+| 06155, Tetsuo Mori | El controlador elige investigador; ese investigador decide entre su descarte y buscar en su mazo. |
+| 08090/08092, Marca de Cthugha; 08101/08103, Adivinación | Permiten activar con cero cargas y conservan los resultados adicionales de habilidades comprometidas. Distorsión sigue exigiendo cargas. |
+| 04149, Fuerzas renovadas | El robo después de curar exige resolver íntegramente la curación. La mejora 10032 mantiene su robo independiente. |
+
+Referencias: [reglas de Enorme, modificadores y «Then»](https://arkhamdb.com/rules),
+[FAQ de Adivinación y Marca de Cthugha con cero cargas](https://arkhamdb.com/card/08101)
+y [texto de Fuerzas renovadas](https://arkhamdb.com/card/04149).
+
+Los ocho manifiestos afectados pasan a `rulesRevision: 2`, sin cambiar huellas ni
+recuentos. Se añadieron 25 regresiones, reproduciendo primero los fallos. Pasan
+397 pruebas de los módulos revisados y consumidores seleccionados (16 archivos).
+También pasan tipos de cards, ESLint de los TypeScript editados, formato y `git diff --check`.
+La elección corregida de Tetsuo introduce una pregunta adicional en su resolución.
+Publicación conjunta con la ampliación del 03/11, autorizada por la persona usuaria. No se han consultado
+CI/Deploy ni ejecutado pruebas de navegador.
+
+## Ampliación de la revisión · 03/11/2026
+
+Contrastados textos y familias de implementación de otros **318 códigos** en
+28 módulos: distributed-results, sequenced-events, therapeutic-recovery,
+targeted-events, backup-events, round-effects, direct-events, reactive-events,
+movement-skills, result-skills, skill-tricks, conditional-commit, exclusive-skills,
+context-skills, skill-utilities, direct-effects, reactive-support, basic-events,
+basic-action-skills, immediate-action-events, immediate-action-skills,
+next-test-effects, asset-utilities, charged-assets, basic-abilities,
+classic-equipment, classic-foundations y simple-assets. Además se siguieron las
+dependencias de los fallos hasta versiones de core-2026, starter-actions,
+reused-mechanics, upgraded-variants y reprints-wave-1. Estos últimos módulos no se
+consideran auditados íntegramente.
+
+**46 códigos con fallos reproducidos y corregidos**, mediante 47 regresiones:
+
+| Códigos | Corrección |
+| --- | --- |
+| 08024/08037/08065/08078/08052 | Los iconos variables usan atributos modificados; los cuatro primeros no generan iconos desde el descarte. |
+| 03194/60312/60323/04232/60314/60324/06201/10102/08023/11055/12050/12070/09074/60376/60377/60378/52006/03268/08025/08030 | Al sumar un segundo atributo se incluyen sus modificadores, en ataques, evasiones e investigaciones. |
+| 01040/01540/60270/12034/01030/01530 | Lupa solo bonifica el intelecto durante investigaciones. |
+| 60568/04234 | Recuperación y Sacrificio aceptan cartas multiclase válidas. Sacrificio excluye apoyos permanentes o que no pueden abandonar el juego. |
+| 04027/51002/03152 | Escuchar a escondidas, Cachiporra y Ataque furtivo respetan los enfrentamientos de Enorme. |
+| 02225/02153 | La curación y el daño reflejado incluyen los modificadores del escenario sobre el enemigo. |
+| 01070/01570/03154 | Libro de las Sombras no convierte cargas en secretos sobre hechizos que usan secretos. |
+| 60557 | Solitario excluye lugares con enemigos, también agotados. |
+| 04160 | Acorralado exige una carta descartable; una debilidad sola no permite obtener el bono gratis. |
+| 08120 | Profético reconoce pruebas de eventos cuyo origen figura como código de carta. Se corrige el resolutor compartido por los cinco talentos de charged-assets. |
+| 09117 | Viejo llavero consulta la dificultad final; Impulso puede reducirla a cero y habilitar la pista adicional. |
+| 60180 | Indomable recuerda el lugar del ataque aunque después se mueva el investigador atacado. |
+
+Referencias: [reglas de modificadores, Enorme, lugares vacíos, usos y debilidades](https://arkhamdb.com/rules)
+y [FAQ oficial reproducida sobre los iconos de Postura defensiva y sus equivalentes](https://arkhamdb.com/card/08024).
+Los textos completos contrastados proceden de la instantánea EN de importación.
+
+El registro de ataques incorpora `location` opcional: los guardados antiguos se
+siguen leyendo con el cálculo anterior cuando falta ese dato. No se puede reconstruir
+con precisión el lugar histórico de un ataque que un guardado antiguo no registró.
+Trece manifiestos adicionales pasan a revisión 2, sin alterar las huellas de origen.
+No se añaden cartas: el catálogo sigue en 1100 jugables.
+
+**Validación:** 1634 pruebas correctas en 235 archivos, incluidas las 47 regresiones,
+los módulos afectados, consumidores del registro de ataques y módulos contrastados.
+Tipos de cards, engine y shared correctos; ESLint, Prettier y diff sin errores.
+No se ha compilado, usado navegador ni consultado CI/Deploy. Reutilizar estos resultados
+salvo cambios en las reglas, contratos o dependencias cubiertos. La revisión anterior
+permanece conservada y no se vuelve a auditar sin cambios.
+
+**Continuidad:** publicación conjunta de ambas revisiones autorizada el 03/11. El pull inicial volvió a
+quedar impedido por cambios sin confirmar; se conservan los cambios ajenos de imágenes
+y traducciones. No equivale a validar las 1100 cartas: quedan módulos anteriores,
+investigadores y escenarios fuera del contraste íntegro. Para continuar, priorizar
+damage-turn, tools-parley pendiente, dunwich-pilot y los módulos solo revisados
+parcialmente arriba; no repetir los 28 módulos sin cambios relevantes.

@@ -805,7 +805,8 @@ registerPlayerCard({
 // Magnifying Glass: +1 [intellect] al investigar.
 registerPlayerCard({
   code: code(34),
-  skillModifier: (_state, _self, test) => (test.kind.type === 'investigate' ? 1 : 0),
+  skillModifier: (_state, _self, test) =>
+    test.kind.type === 'investigate' && test.skill === 'intellect' ? 1 : 0,
 })
 
 // Thieves' Kit: gasta 1 suministro: Investigar con [agility] o [intellect]; si aciertas, +1 recurso.

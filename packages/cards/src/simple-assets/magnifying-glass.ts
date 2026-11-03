@@ -4,7 +4,8 @@ import { getInvestigator, playerCardDef, registerPlayerCard } from '@lcg/engine'
 export function registerMagnifyingGlass(code: string): void {
   registerPlayerCard({
     code,
-    skillModifier: (_s, _self, test) => (test.kind.type === 'investigate' ? 1 : 0),
+    skillModifier: (_s, _self, test) =>
+      test.kind.type === 'investigate' && test.skill === 'intellect' ? 1 : 0,
     fastOptions: (s, self) => {
       const here = getInvestigator(s, self.owner).location
       return here === null || (s.locations[here]?.clues ?? 0) > 0

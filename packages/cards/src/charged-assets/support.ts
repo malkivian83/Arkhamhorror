@@ -44,7 +44,8 @@ export function registerSupport(code: string): boolean {
           : [],
       usesAsResources: (_s, a, by, c) => by === a.owner && matches(c),
       testOptions: (s, t, a) => {
-        const source = t.source ? s.assets[t.source]?.code : t.effectSource
+        const source =
+          (t.source ? s.assets[t.source]?.code : undefined) ?? t.effectSource ?? t.source
         return t.investigator === a.owner && a.uses > 0 && source && matches(source)
           ? [
               {

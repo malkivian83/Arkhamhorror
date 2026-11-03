@@ -224,7 +224,7 @@ it.each(['05117', '05190', '05191'])(
     let s = withAsset(foe(start()), code)
     s = begin(s)
     expect(b(code).testOptions!(s, s.skillTest!, s.assets[code]!)).toEqual([])
-    s = { ...s, skillTest: { ...s.skillTest!, tags: ['treachery'] } }
+    s = { ...s, skillTest: { ...s.skillTest!, skill: 'willpower', tags: ['treachery'] } }
     const o = b(code).testOptions!(s, s.skillTest!, s.assets[code]!)[0]!
     const before = s.assets[code]!.uses
     s = run(s, o.then)

@@ -5478,7 +5478,12 @@ export function handle(state: GameState, message: Message): GameState {
         ...state,
         enemyAttacks: [
           ...(state.enemyAttacks ?? []).filter((a) => a.round === state.round),
-          { enemy: enemy.id, investigator: investigator.id, round: state.round },
+          {
+            enemy: enemy.id,
+            investigator: investigator.id,
+            round: state.round,
+            location: investigator.location,
+          },
         ],
       }
       const next = message.exhaustAfter
