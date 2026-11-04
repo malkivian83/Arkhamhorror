@@ -132,35 +132,37 @@ onBeforeUnmount(() => dialog.value?.close())
               '--card-tall': card.landscape ? '.715' : '1.4',
             }"
           >
-            <GameCard
-              :code="card.code"
-              :name="card.name"
-              :width="card.landscape ? 440 : 260"
-              :landscape="!!card.landscape"
-              :back="!!card.back"
-              no-zoom
-              @image-language="imageLanguages[`${card.code}:${!!card.back}`] = $event"
-            />
-            <figcaption>
-              <span v-if="card.deck" class="deck-label">{{ t(`table.${card.deck}`) }}</span>
-              {{
-                card.back && !card.landscape
-                  ? t('table.advanceReview.unrevealed')
-                  : localName(card.name)
-              }}
-            </figcaption>
-            <p v-if="card.location" class="placement">
-              {{ label('table.advanceReview.atLocation', { location: card.location }) }}
-            </p>
-            <p v-if="card.attachedTo" class="placement">
-              {{ label('table.advanceReview.attachedTo', { name: card.attachedTo }) }}
-            </p>
-            <p v-if="card.controlledBy" class="placement">
-              {{ label('table.advanceReview.controlledBy', { name: card.controlledBy }) }}
-            </p>
-            <p v-if="card.exhausted !== undefined" class="placement">
-              {{ t(`table.advanceReview.${card.exhausted ? 'exhausted' : 'ready'}`) }}
-            </p>
+            <div class="face">
+              <GameCard
+                :code="card.code"
+                :name="card.name"
+                :width="card.landscape ? 440 : 260"
+                :landscape="!!card.landscape"
+                :back="!!card.back"
+                no-zoom
+                @image-language="imageLanguages[`${card.code}:${!!card.back}`] = $event"
+              />
+              <figcaption>
+                <span v-if="card.deck" class="deck-label">{{ t(`table.${card.deck}`) }}</span>
+                {{
+                  card.back && !card.landscape
+                    ? t('table.advanceReview.unrevealed')
+                    : localName(card.name)
+                }}
+              </figcaption>
+              <p v-if="card.location" class="placement">
+                {{ label('table.advanceReview.atLocation', { location: card.location }) }}
+              </p>
+              <p v-if="card.attachedTo" class="placement">
+                {{ label('table.advanceReview.attachedTo', { name: card.attachedTo }) }}
+              </p>
+              <p v-if="card.controlledBy" class="placement">
+                {{ label('table.advanceReview.controlledBy', { name: card.controlledBy }) }}
+              </p>
+              <p v-if="card.exhausted !== undefined" class="placement">
+                {{ t(`table.advanceReview.${card.exhausted ? 'exhausted' : 'ready'}`) }}
+              </p>
+            </div>
             <CardTranslation
               v-if="current.cards.length <= 2 && !card.back"
               :code="card.code"
@@ -267,10 +269,32 @@ figcaption {
 .cards {
   animation: arrive 0.25s ease-out;
 }
-.cards figure {
+.cards figure,
+.face {
   display: grid;
   justify-items: center;
   gap: 4px;
+}
+/* Con traducción, la carta y su narración quedan a la izquierda y el texto a la derecha. */
+@media (min-width: 651px) {
+  /* CardTranslation tiene varias raíces y no hereda el ámbito: se seleccionan con :deep. */
+  .cards :deep(figure:has(> .translation)) {
+    grid-template-columns:
+      min(var(--card-width), calc(32dvh / var(--card-tall)))
+      minmax(0, 340px);
+    column-gap: 16px;
+    align-items: start;
+  }
+  .cards :deep(figure:has(> .translation) > .face) {
+    grid-area: 1 / 1;
+  }
+  .cards :deep(figure:has(> .translation) > .narration) {
+    grid-area: 2 / 1;
+  }
+  .cards :deep(figure:has(> .translation) > .translation) {
+    grid-area: 1 / 2 / 3 / 3;
+    align-self: center;
+  }
 }
 /* Las cartas se ajustan a la altura de la ventana para que la pantalla quepa de un vistazo. */
 .cards :deep(.game-card) {
