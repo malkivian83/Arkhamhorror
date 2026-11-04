@@ -17,6 +17,12 @@ certificado de cartas físicas: hay que revisar caras y variantes antes de usar
 las cantidades para preparar mazos. No se han incorporado a catálogo, tienda,
 registro de reglas ni selector de campañas.
 
+## Narración
+
+Voz de ElevenLabs elegida por la persona usuaria para esta campaña:
+`DdKbXdRlBmj7Ty7N0FVr`. Usarla al preparar las narraciones de Los confines de la
+Tierra. Preferencia anotada el 04/11/2026; todavía no se ha generado audio.
+
 ## Fuentes revisadas
 
 - Guía española añadida: `reglas/AHLCG_Los_confines_de_la_tierra.pdf`.
