@@ -550,6 +550,17 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Continuous health/sanity granted to controlled assets with that printed statistic. */
+  controlledAssetVitals?: { health?: number; sanity?: number }
+  /** This asset allows uses on another controlled asset to pay for a card. */
+  usesAsResourcesAura?: (
+    state: GameState,
+    self: Asset,
+    donor: Asset,
+    payer: InvestigatorId,
+    code: CardCode,
+  ) => boolean
+
   /** Reactions printed on the event whose resolving effect initiated this test. */
   effectReactions?: (
     state: GameState,

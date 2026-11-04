@@ -1,0 +1,16 @@
+import { registerPlayerCards, type PlayerCardDef } from '@lcg/engine'
+import data from '../data/combat-support.json'
+import './card-02304'
+import './card-60411'
+import './card-54001'
+import './card-54011'
+import './card-11119'
+import './card-11120'
+import './card-11115'
+import './card-11117'
+import './card-60276'
+import './card-60255'
+import './card-60331'
+import './card-10064'
+registerPlayerCards(data as PlayerCardDef[])
+export const COMBAT_SUPPORT_RENDERED_CODES = data.map((c) => c.code)

@@ -654,6 +654,40 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
   const noFast = fastAbilitiesBlocked(state, id)
   const trait = traitActionTrait(state, id)
   return options
+    .map((a) => {
+      const test = a.then.find(
+        (m): m is Extract<Message, { type: 'BeginSkillTest' }> => m.type === 'BeginSkillTest',
+      )
+      const named =
+        a.actionKind ??
+        (test && ['fight', 'evade', 'investigate'].includes(test.kind.type)
+          ? test.kind.type
+          : undefined)
+      const enemy =
+        a.target?.type === 'enemy'
+          ? a.target.id
+          : test && (test.kind.type === 'fight' || test.kind.type === 'evade')
+            ? test.kind.enemy
+            : undefined
+      const move = a.then.find(
+        (m): m is Extract<Message, { type: 'MoveTo' }> => m.type === 'MoveTo',
+      )
+      const action: Action | undefined =
+        named === 'fight' && enemy
+          ? { kind: 'fight', enemy }
+          : named === 'evade' && enemy
+            ? { kind: 'evade', enemy }
+            : named === 'investigate'
+              ? { kind: 'investigate' }
+              : named === 'move' && move
+                ? { kind: 'move', to: move.location }
+                : undefined
+      return {
+        ...a,
+        actions:
+          a.actions > 0 && action ? a.actions + actionCost(state, id, action) - 1 : a.actions,
+      }
+    })
     .filter(
       (a) =>
         a.actions <=
