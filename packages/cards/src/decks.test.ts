@@ -84,7 +84,8 @@ describe('mazos: validación', () => {
     expect(deductions.map((c) => c.code)).toEqual([code(39)])
     for (const investigator of investigatorCards()) {
       const titles = cardPool(investigator.code).map(
-        (c) => `${c.name}|${c.subname ?? ''}|${c.xp ?? 0}|${c.class}`,
+        // Exceptional On Your Own is a distinct permanent design at the same printed level.
+        (c) => `${c.name}|${c.subname ?? ''}|${c.xp ?? 0}|${c.class}|${!!c.exceptional}`,
       )
       expect(titles.filter((t, i) => titles.indexOf(t) !== i)).toEqual([])
     }

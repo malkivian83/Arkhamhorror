@@ -154,6 +154,7 @@
     "agility": "Agilidad"
   },
   "prompt": {
+    "playEconomyModifiers": "¿Modificar la carta que estás jugando?",
     "chooseHunterOrder": "El investigador jefe elige qué enemigo mueve primero.",
     "chooseAction": "Elige una acción",
     "chooseNextInvestigator": "¿Quién juega el siguiente turno?",
@@ -403,6 +404,9 @@
     "playFast": "Jugar {card} (rápida)"
   },
   "choice": {
+    "economyFastPlay": "Jugar {card} como Rápido con {asset} (descuento {discount}, habilidad +{bonus})",
+    "playEconomyContinue": "Continuar sin más modificadores",
+    "playEconomyModifier": "Usar {asset}: descuento {discount}, habilidad +{bonus}",
     "fieldAbility": "Usar {card}",
     "fieldDiscardMove": "Descartar {card}: moverse a {location}",
     "fielddraw": "Robar 2 cartas",
@@ -3208,6 +3212,8 @@
   },
   "offlineCard": {
     "subnames": {
+      "60332": "Conductor de O'Bannion",
+      "09072": "Conductor de O'Bannion",
       "10119": "¿Amigo o enemigo?",
       "11027": "Poli intrépida",
       "11049": "Reloj profético",
@@ -3294,6 +3300,15 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "53010": "Talento.",
+      "60332": "Aliado. Criminal.",
+      "60412": "Objeto. Ropa.",
+      "60422": "Objeto. Ropa.",
+      "60470": "Objeto. Ropa.",
+      "04108": "Contacto. Ilegal.",
+      "04236": "Talento.",
+      "09072": "Aliado. Criminal.",
+      "08128": "Objeto. Reliquia.",
       "10119": "Aliado. Criatura. Maldito.",
       "11024": "Espíritu. Audaz.",
       "11027": "Aliado. Detective. Policía.",
@@ -3869,6 +3884,15 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "53010": "Excepcional. Permanente.\nTu investigador obtiene: “<b>Restricciones de creación de mazos:</b> Sin Apoyos que ocupen un espacio de aliado.”.\n[reaction] Cuando jueges un Evento [survivor], agota Por tu cuenta: Reduce en 2 el coste de ese Evento.",
+      "60332": "[reaction] Cuando juegues un Evento [[Táctica]] o [[Truco]], agota a Chuck Fergus y elige dos opciones:\n- Ese Evento obtiene Rápido.\n- Ese Evento cuesta 2 recursos menos para jugarlo.\n- Recibes +2 a tu valor de habilidad al realizar una prueba de habilidad durante la resolución de ese Evento.",
+      "60412": "[reaction] Cuando juegues una carta [[Hechizo]], agota la Túnica de la noche eterna: Reduce el coste de esa carta en 1.",
+      "60422": "[reaction] Cuando juegues una carta [[Hechizo]], agota la Túnica de la noche eterna: Reduce el coste de esa carta en 1. Jugar esa carta no provoca ataques de oportunidad.",
+      "60470": "Reduce en 1 el coste de la primera carta [[Hechizo]] o [[Ritual]] que juegues en cada ronda.",
+      "04108": "[reaction] Cuando juegues una carta [[Ilegal]] durante tu turno, agota el Perista: La carta [[Ilegal]] obtiene Rápido. Si ya tenía Rápido, en lugar de eso reduce su coste en 1.",
+      "04236": "Límite de 1 por investigador.\nDescarta Por tu cuenta si controlas un Apoyo que ocupe un espacio de aliado.\n[reaction] Cuando juegues un Evento [survivor], agota Por tu cuenta: Reduce en 2 el coste de ese Evento.",
+      "09072": "[reaction] Cuando juegues un Evento [[Táctica]] o [[Truco]], agota a Chuck Fergus: Elige una opción -\n- Ese Evento obtiene Rápido.\n- Ese Evento cuesta 2 recursos menos para jugarlo.\n- Recibes +2 a tu valor de habilidad al realizar una prueba de habilidad durante la resolución de ese Evento.",
+      "08128": "Tienes 2 espacios de aliado adicionales que sólo pueden usarse para Apoyos [[Criatura]].\n[reaction] Cuando juegues un Apoyo [[Criatura]] durante tu turno: Reduce en 1 el coste de ese Apoyo.",
       "10119": "<b>Obligado</b> - Cuando comience tu turno: Mueve 1 punto de daño de tu investigador a \"Diablo\".\n<b>Obligado</b> - Cuando \"Diablo\" sea derrotado: inflige 2 puntos de daño a cada Enemigo e investigador que haya en tu Lugar.",
       "11024": "Juega esta carta sólo como tu primera acción.\nRoba 1 carta, o bien 2 cartas si robaste un Enemigo esta ronda. A continuación, cúrate 1 punto de horror. Esta acción no provoca ataques de oportunidad.",
       "11027": "Recibes +1 [intellect].\nLa primera acción de investigar que realices en cada turno no provoca ataques de oportunidad.\n[reaction] Después de que descubras una pista, agota a Alice Luxley: Inflige 1 punto de daño a un Enemigo que esté en tu Lugar.\n<b>Diseño de carta inspirado por El consejo en el exilio 2022.</b>",
@@ -4881,6 +4905,15 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "53010": "Por tu cuenta",
+      "60332": "Chuck Fergus",
+      "60412": "Túnica de la noche eterna",
+      "60422": "Túnica de la noche eterna",
+      "60470": "Túnica ceremonial",
+      "04108": "Perista",
+      "04236": "Por tu cuenta",
+      "09072": "Chuck Fergus",
+      "08128": "Vara de animalismo",
       "10119": "Diablo",
       "11024": "Preparado para lo que sea",
       "11027": "Alice Luxley",

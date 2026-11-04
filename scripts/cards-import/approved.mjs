@@ -121,6 +121,16 @@ export function approvedDefinition(card, approval) {
         !card.flags.permanent &&
         card.factions.join(',') === 'mystic' &&
         card.numbers.xp.value === 3))
+  const economyKeywords =
+    approval.adapter === 'reviewed-economy-keywords-v1' &&
+    card.type === 'asset' &&
+    card.flags.permanent &&
+    card.deckLimit === 1 &&
+    card.numbers.xp?.kind === 'number' &&
+    card.code === '53010' &&
+    card.factions.join(',') === 'survivor' &&
+    card.numbers.xp.value === 3 &&
+    card.flags.exceptional
   const myriadFactions = {
     11031: 'guardian',
     11042: 'seeker',
@@ -144,12 +154,13 @@ export function approvedDefinition(card, approval) {
       !creationPermanent &&
       !talentPermanent &&
       !reviewedDarkHorse &&
-      !fieldKeywords) ||
+      !fieldKeywords &&
+      !economyKeywords) ||
     ['exceptional', 'myriad', 'exile'].some(
       (key) =>
         card.flags[key] &&
         !(key === 'exile' && (reviewedDefeatExile || reviewedProtectionExile)) &&
-        !(key === 'exceptional' && (reviewedBorrowedTime || fieldKeywords)) &&
+        !(key === 'exceptional' && (reviewedBorrowedTime || fieldKeywords || economyKeywords)) &&
         !(key === 'myriad' && reviewedMyriad),
     )
   )
@@ -176,6 +187,9 @@ export function approvedDefinition(card, approval) {
     ...(reviewedDarkHorse ? { deckLimit: 1 } : {}),
     ...(fieldKeywords && card.flags.permanent ? { deckLimit: 1 } : {}),
     ...(fieldKeywords && card.flags.exceptional ? { exceptional: true, deckLimit: 1 } : {}),
+    ...(economyKeywords
+      ? { deckLimit: 1, ...(card.flags.exceptional ? { exceptional: true } : {}) }
+      : {}),
     ...(reviewedMemento ? { deckLimit: 1 } : {}),
     ...(reviewedMyriad ? { myriad: true, deckLimit: 3 } : {}),
     traits: card.traits,

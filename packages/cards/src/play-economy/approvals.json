@@ -1,0 +1,69 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "aa6f5e307a5c790e4e28536c635abfaae096f5fc4466c28917b19b05fcaf2f4c",
+    "es": "2142b42dbc17ded7860d431b54efb8cdea355af5b8826446a1bf3d288c822435"
+  },
+  "cards": [
+    {
+      "code": "04108",
+      "status": "verified",
+      "module": "card-04108",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04236",
+      "status": "verified",
+      "module": "card-04236",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "53010",
+      "status": "verified",
+      "module": "card-53010",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-economy-keywords-v1"
+    },
+    {
+      "code": "09072",
+      "status": "verified",
+      "module": "card-09072",
+      "test": "rules.test.ts",
+      "subname": "O'Bannion Driver"
+    },
+    {
+      "code": "60332",
+      "status": "verified",
+      "module": "card-60332",
+      "test": "rules.test.ts",
+      "subname": "O'Bannion Driver"
+    },
+    {
+      "code": "60412",
+      "status": "verified",
+      "module": "card-60412",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60422",
+      "status": "verified",
+      "module": "card-60422",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60470",
+      "status": "verified",
+      "module": "card-60470",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08128",
+      "status": "verified",
+      "module": "card-08128",
+      "test": "rules.test.ts"
+    }
+  ]
+}

@@ -154,6 +154,7 @@
     "agility": "Agility"
   },
   "prompt": {
+    "playEconomyModifiers": "Modify the card you are playing?",
     "chooseHunterOrder": "The lead investigator chooses which enemy moves first.",
     "chooseAction": "Choose an action",
     "chooseNextInvestigator": "Who takes the next turn?",
@@ -403,6 +404,9 @@
     "playFast": "Play {card} (fast)"
   },
   "choice": {
+    "economyFastPlay": "Play {card} fast with {asset} (discount {discount}, skill +{bonus})",
+    "playEconomyContinue": "Continue without further modifiers",
+    "playEconomyModifier": "Use {asset}: discount {discount}, skill +{bonus}",
     "fieldAbility": "Use {card}",
     "fieldDiscardMove": "Discard {card}: move to {location}",
     "fielddraw": "Draw 2 cards",
@@ -3208,6 +3212,8 @@
   },
   "offlineCard": {
     "subnames": {
+      "60332": "O'Bannion Driver",
+      "09072": "O'Bannion Driver",
       "10119": "Friend or Foe?",
       "11027": "Fearless Flatfoot",
       "11049": "Prophetic Timepiece",
@@ -3294,6 +3300,15 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "53010": "Talent.",
+      "60332": "Ally. Criminal.",
+      "60412": "Item. Clothing.",
+      "60422": "Item. Clothing.",
+      "60470": "Item. Clothing.",
+      "04108": "Connection. Illicit.",
+      "04236": "Talent.",
+      "09072": "Ally. Criminal.",
+      "08128": "Item. Relic.",
       "10119": "Ally. Creature. Cursed.",
       "11024": "Spirit. Bold.",
       "11027": "Ally. Detective. Police.",
@@ -3869,6 +3884,15 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "53010": "Exceptional. Permanent.\nYour investigator gains: \"<b>Deckbuilding Restrictions:</b> No assets that take up an ally slot.\"\n[reaction] When you play a [survivor] event, exhaust On Your Own: Reduce that event's cost by 2.",
+      "60332": "[reaction] When you play a [[Tactic]] or [[Trick]] event, exhaust Chuck Fergus: Choose two -\n- That event gains fast.\n- That event costs 2 fewer resources to play.\n- You get +2 skill value while performing a skill test during the resolution of that event.",
+      "60412": "[reaction] When you play a [[Spell]] card, exhaust Robes of Endless Night: Reduce the cost of that card by 1.",
+      "60422": "[reaction] When you play a [[Spell]] card, exhaust Robes of Endless Night: Reduce the cost of that card by 1. Playing that card does not provoke attacks of opportunity.",
+      "60470": "Reduce the cost of the first [[Spell]] or [[Ritual]] card you play each round by 1.",
+      "04108": "[reaction] When you play an [[Illicit]] card during your turn, exhaust Fence: The [[Illicit]] card gains fast. If it was already fast, reduce its cost by 1 instead.",
+      "04236": "Limit 1 per investigator.\nDiscard On Your Own if you control an asset that takes up an ally slot.\n[reaction] When you play a [survivor] event, exhaust On Your Own: Reduce that event's cost by 2.",
+      "09072": "[reaction] When you play a [[Tactic]] or [[Trick]] event, exhaust Chuck Fergus: Choose one -\n- That event gains fast.\n- That event costs 2 fewer resources to play.\n- You get +2 skill value while performing a skill test during the resolution of that event.",
+      "08128": "You have 2 additional ally slots, which can only be used to hold [[Creature]] assets.\n[reaction] When you play a [[Creature]] asset during your turn: Reduce that asset's cost by 1.",
       "10119": "<b>Forced</b> - When your turn begins: Move 1 damage from your investigator to \"Devil\".\n<b>Forced</b> - When \"Devil\" is defeated: Deal 2 damage to each enemy and investigator at your location.",
       "11024": "Play only as your first action.\nDraw 1 card (2 cards instead if you drew an enemy this round). Then, heal 1 horror. This action does not provoke attacks of opportunity.",
       "11027": "You get +1 [intellect].\nThe first investigate action you perform each turn does not provoke attacks of opportunity.\n[reaction] After you discover a clue, exhaust Alice Luxley: Deal 1 damage to an enemy at your location.\n<b>Card design inspired by the Council in Exile 2022.</b>",
@@ -4881,6 +4905,15 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "53010": "On Your Own",
+      "60332": "Chuck Fergus",
+      "60412": "Robes of Endless Night",
+      "60422": "Robes of Endless Night",
+      "60470": "Ceremonial Robes",
+      "04108": "Fence",
+      "04236": "On Your Own",
+      "09072": "Chuck Fergus",
+      "08128": "Rod of Animalism",
       "10119": "\"Devil\"",
       "11024": "Ready for Anything",
       "11027": "Alice Luxley",

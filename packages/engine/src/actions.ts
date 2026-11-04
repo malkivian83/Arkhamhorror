@@ -93,6 +93,8 @@ export function canPlayByEffect(
   noCost = false,
   discount = 0,
   additionalActionsPaid = false,
+  optionalModifiers = true,
+  asFast = false,
 ): boolean {
   const i = getInvestigator(state, id)
   const def = playerCardDef(code)
@@ -118,7 +120,10 @@ export function canPlayByEffect(
     scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, id, code)
   )
     return false
-  if (minimumPlayCost(state, id, code, discount, noCost, from) > spendableFor(state, id, code))
+  if (
+    minimumPlayCost(state, id, code, discount, noCost, from, optionalModifiers, asFast) >
+    spendableFor(state, id, code)
+  )
     return false
   return playerCardBehavior(code)?.canPlay?.(state, id) ?? true
 }
@@ -138,6 +143,8 @@ function minimumPlayCost(
   discount = 0,
   noCost = false,
   from?: 'hand' | 'discard',
+  optionalModifiers = true,
+  asFast = false,
 ): number {
   const behavior = playerCardBehavior(code)
   const variants = behavior?.playVariants?.(state, id)
@@ -158,7 +165,11 @@ function minimumPlayCost(
   if (!from && zones[0] === 'hand' && i.discard.includes(code) && discardAllowed)
     zones.push('discard')
   const price = (increase: number) =>
-    Math.min(...zones.map((zone) => cardCost(state, id, code, discount, increase, zone)))
+    Math.min(
+      ...zones.map((zone) =>
+        cardCost(state, id, code, discount, increase, zone, optionalModifiers, asFast),
+      ),
+    )
   return noCost ? 0 : variants ? Math.min(...variants.map((v) => price(v.cost))) : price(0)
 }
 
@@ -801,6 +812,8 @@ export function cardCost(
   discount = 0,
   increase = 0,
   from?: 'hand' | 'discard',
+  optionalModifiers = true,
+  asFast = false,
 ): number {
   const printed = playerCardDef(code)?.cost ?? 0
   const change =
@@ -825,7 +838,42 @@ export function cardCost(
     cardOfRole(code, investigator.role)
       ? role.amount
       : 0
-  return Math.max(0, printed + change + fromHand + increase - discount - improvised)
+  const controlled = Object.values(state.assets).filter((a) => a.owner === id)
+  const passive = controlled.reduce(
+    (n, a) => n + (assetBehavior(state, a)?.playedCardCostModifier?.(state, a, code) ?? 0),
+    0,
+  )
+  const options = optionalModifiers
+    ? playModifierOptions(state, id, code, asFast || !!playerCardDef(code)?.fast)
+    : []
+  const optional = optionalModifiers
+    ? controlled.reduce(
+        (n, a) =>
+          n + Math.max(0, ...options.filter((o) => o.asset === a.id).map((o) => o.discount ?? 0)),
+        0,
+      )
+    : 0
+  return Math.max(
+    0,
+    printed + change + passive + fromHand + increase - discount - improvised - optional,
+  )
+}
+
+export function playModifierOptions(
+  state: GameState,
+  id: InvestigatorId,
+  code: CardCode,
+  fast = !!playerCardDef(code)?.fast,
+) {
+  if (assetsBlocked(state, id)) return []
+  return Object.values(state.assets)
+    .filter((a) => a.owner === id && cardAllowed(state, id, a.code))
+    .flatMap((a) =>
+      (assetBehavior(state, a)?.playModifiers?.(state, a, code, fast) ?? []).map((o) => ({
+        ...o,
+        asset: a.id,
+      })),
+    )
 }
 
 /** Una debilidad en su zona de amenaza le impide jugar o usar apoyos (The Necronomicon). */

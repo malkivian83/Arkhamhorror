@@ -5,6 +5,26 @@ import { approvedDefinition } from './approved.mjs'
 const read = async (relative) =>
   JSON.parse(await readFile(new URL(relative, import.meta.url), 'utf8'))
 describe('reviewed inventory conversion', () => {
+  it('restricts the exceptional permanent adapter to On Your Own and its printed identity', async () => {
+    const { cards } = await read(
+      '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
+    )
+    const approvals = await read('../../packages/cards/src/play-economy/approvals.json')
+    const a = approvals.cards.find((a) => a.code === '53010'),
+      c = cards.find((c) => c.code === a.code)
+    expect(approvedDefinition(c, a)).toMatchObject({ deckLimit: 1, exceptional: true, xp: 3 })
+    for (const changed of [{ ...a, adapter: undefined }])
+      expect(() => approvedDefinition(c, changed)).toThrow()
+    for (const changed of [
+      { ...c, code: '99999' },
+      { ...c, factions: ['rogue'] },
+      { ...c, deckLimit: 2 },
+      { ...c, flags: { ...c.flags, permanent: false } },
+      { ...c, flags: { ...c.flags, exceptional: false } },
+      { ...c, numbers: { ...c.numbers, xp: { kind: 'number', value: 0 } } },
+    ])
+      expect(() => approvedDefinition(changed, { ...a, code: changed.code })).toThrow()
+  })
   it('restricts field-tool keywords to the reviewed identities, factions and levels', async () => {
     const { cards } = await read(
       '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
@@ -250,6 +270,7 @@ describe('reviewed inventory conversion', () => {
     'fortune-dilemmas',
     'quick-shot',
     'spell-field-tools',
+    'play-economy',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(
