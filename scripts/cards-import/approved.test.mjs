@@ -5,6 +5,25 @@ import { approvedDefinition } from './approved.mjs'
 const read = async (relative) =>
   JSON.parse(await readFile(new URL(relative, import.meta.url), 'utf8'))
 describe('reviewed inventory conversion', () => {
+  it('restricts field-tool keywords to the reviewed identities, factions and levels', async () => {
+    const { cards } = await read(
+      '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
+    )
+    const approvals = await read('../../packages/cards/src/spell-field-tools/approvals.json')
+    for (const a of approvals.cards.filter((a) => a.adapter)) {
+      const c = cards.find((c) => c.code === a.code)
+      expect(approvedDefinition(c, a).code).toBe(c.code)
+      expect(() => approvedDefinition(c, { ...a, adapter: undefined })).toThrow()
+      expect(() => approvedDefinition({ ...c, code: '99999' }, { ...a, code: '99999' })).toThrow()
+      expect(() => approvedDefinition({ ...c, factions: ['invalid'] }, a)).toThrow()
+      expect(() =>
+        approvedDefinition(
+          { ...c, numbers: { ...c.numbers, xp: { kind: 'number', value: 0 } } },
+          a,
+        ),
+      ).toThrow()
+    }
+  })
   it('accepts the reviewed cost X of A Chance Encounter only with its explicit adapter', async () => {
     const { cards } = await read(
       '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
@@ -230,6 +249,7 @@ describe('reviewed inventory conversion', () => {
     'discard-reactions',
     'fortune-dilemmas',
     'quick-shot',
+    'spell-field-tools',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(

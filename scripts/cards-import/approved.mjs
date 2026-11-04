@@ -105,6 +105,22 @@ export function approvedDefinition(card, approval) {
     card.type === 'asset' &&
     card.numbers.xp?.kind === 'number' &&
     card.numbers.xp.value === 5
+  const fieldKeywords =
+    approval.adapter === 'reviewed-field-keywords-v1' &&
+    card.type === 'asset' &&
+    card.numbers.xp?.kind === 'number' &&
+    ((['60478', '11030'].includes(card.code) &&
+      card.flags.permanent &&
+      !card.flags.exceptional &&
+      card.deckLimit === 1 &&
+      card.factions.join(',') === (card.code === '60478' ? 'mystic' : 'guardian') &&
+      card.numbers.xp.value === (card.code === '60478' ? 4 : 3)) ||
+      (card.code === '60474' &&
+        card.flags.exceptional &&
+        card.deckLimit === 1 &&
+        !card.flags.permanent &&
+        card.factions.join(',') === 'mystic' &&
+        card.numbers.xp.value === 3))
   const myriadFactions = {
     11031: 'guardian',
     11042: 'seeker',
@@ -127,12 +143,13 @@ export function approvedDefinition(card, approval) {
       !permanentReprint &&
       !creationPermanent &&
       !talentPermanent &&
-      !reviewedDarkHorse) ||
+      !reviewedDarkHorse &&
+      !fieldKeywords) ||
     ['exceptional', 'myriad', 'exile'].some(
       (key) =>
         card.flags[key] &&
         !(key === 'exile' && (reviewedDefeatExile || reviewedProtectionExile)) &&
-        !(key === 'exceptional' && reviewedBorrowedTime) &&
+        !(key === 'exceptional' && (reviewedBorrowedTime || fieldKeywords)) &&
         !(key === 'myriad' && reviewedMyriad),
     )
   )
@@ -157,6 +174,8 @@ export function approvedDefinition(card, approval) {
     ...(creationPermanent ? { deckLimit: 1 } : {}),
     ...(reviewedBorrowedTime ? { exceptional: true, deckLimit: 1 } : {}),
     ...(reviewedDarkHorse ? { deckLimit: 1 } : {}),
+    ...(fieldKeywords && card.flags.permanent ? { deckLimit: 1 } : {}),
+    ...(fieldKeywords && card.flags.exceptional ? { exceptional: true, deckLimit: 1 } : {}),
     ...(reviewedMemento ? { deckLimit: 1 } : {}),
     ...(reviewedMyriad ? { myriad: true, deckLimit: 3 } : {}),
     traits: card.traits,

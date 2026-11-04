@@ -77,6 +77,10 @@ const matchesExtra = (card: PlayerCardDef, option: ExtraDeckOption) =>
   card.traits.some((t) => option.traits.includes(t))
 
 /** Permitida por las opciones de clase y nivel del investigador. */
+export function investigatorTraitsAllow(investigator: CardCode, card: PlayerCardDef): boolean {
+  const required = playerCardBehavior(card.code)?.requiredInvestigatorTraits
+  return !required || required.some((trait) => byCode(investigator)?.traits.includes(trait))
+}
 function byClass(investigator: CardCode, card: PlayerCardDef): boolean {
   const def = byCode(investigator)
   return (
@@ -84,6 +88,7 @@ function byClass(investigator: CardCode, card: PlayerCardDef): boolean {
     isStandard(card.code) &&
     !card.reward &&
     !!def &&
+    investigatorTraitsAllow(investigator, card) &&
     !card.traits.some((trait) => def.excludedDeckTraits?.includes(trait)) &&
     ((def.deckOptions ?? []).some((o) => deckOptionAllows(o, card)) || offClassAllowed(def, card))
   )
@@ -104,6 +109,7 @@ export function cardPool(investigator: CardCode, extras: PoolExtras = {}): Playe
     all.filter(
       (card) =>
         isImplemented(card.code) &&
+        investigatorTraitsAllow(investigator, card) &&
         !card.traits.some((trait) => byCode(investigator)?.excludedDeckTraits?.includes(trait)) &&
         (byClass(investigator, card) ||
           (card.reward && rewards.has(card.code)) ||
@@ -220,7 +226,10 @@ export function validateDeck(
       // RR p. 21: story assets and campaign weaknesses enter a deck only when the campaign
       // says so; a new deck list (or an import) cannot bring them.
       problems.push({ key: 'deck.problem.notAllowed', params: { card: card.name } })
-    } else if (card.traits.some((trait) => investigator.excludedDeckTraits?.includes(trait))) {
+    } else if (
+      !investigatorTraitsAllow(deck.investigator, card) ||
+      card.traits.some((trait) => investigator.excludedDeckTraits?.includes(trait))
+    ) {
       problems.push({ key: 'deck.problem.notAllowed', params: { card: card.name } })
     } else if (card.reward) {
       if (!rewards.includes(code)) {
