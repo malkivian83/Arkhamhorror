@@ -7,6 +7,8 @@ import {
   attackBlocked,
   actionsThisRound,
   cardCost,
+  playModifierOptions,
+  spendableFor,
   commitBlocked,
   entryCost,
   fastAbilitiesBlocked,
@@ -3119,6 +3121,8 @@ export function handle(state: GameState, message: Message): GameState {
           message.noCost,
           message.discount,
           message.additionalActionsPaid,
+          !message.modifiersResolved,
+          message.asFast,
         )
       )
         return state
@@ -3139,6 +3143,67 @@ export function handle(state: GameState, message: Message): GameState {
         discardAt >= 0 &&
         (message.byEffect || playableHand(state, investigator.id).includes(message.code))
       if (!def || (index < 0 && !fromDiscard)) return state
+      if (!message.modifiersResolved) {
+        const options = playModifierOptions(
+          state,
+          investigator.id,
+          message.code,
+          message.asFast || def.fast || false,
+        ).filter((o) => !message.consideredModifiers?.includes(o.asset))
+        if (options.length) {
+          const actual = cardCost(
+            state,
+            investigator.id,
+            message.code,
+            message.discount ?? 0,
+            0,
+            fromDiscard ? 'discard' : 'hand',
+            false,
+          )
+          const meaningful = options.filter(
+            (o) => (!message.noCost && actual > 0) || o.skillBonus || o.noOpportunity,
+          )
+          if (!meaningful.length) return handle(state, { ...message, modifiersResolved: true })
+          return push(state, {
+            type: 'Ask',
+            investigator: investigator.id,
+            question: {
+              kind: 'chooseOne',
+              prompt: 'prompt.playEconomyModifiers',
+              alwaysAsk: true,
+              choices: [
+                ...(message.noCost || actual <= spendableFor(state, investigator.id, message.code)
+                  ? [
+                      {
+                        label: 'choice.playEconomyContinue',
+                        then: [{ ...message, modifiersResolved: true }],
+                      },
+                    ]
+                  : []),
+                ...meaningful.map((o) => ({
+                  label: 'choice.playEconomyModifier',
+                  params: {
+                    card: def.name,
+                    asset: playerCardDef(state.assets[o.asset]!.code)!.name,
+                    discount: o.discount ?? 0,
+                    bonus: o.skillBonus ?? 0,
+                  },
+                  then: [
+                    ...o.costs,
+                    {
+                      ...message,
+                      consideredModifiers: [...(message.consideredModifiers ?? []), o.asset],
+                      discount: (message.discount ?? 0) + (o.discount ?? 0),
+                      skillBonus: (message.skillBonus ?? 0) + (o.skillBonus ?? 0),
+                      noOpportunity: !!(message.noOpportunity || o.noOpportunity),
+                    },
+                  ],
+                })),
+              ],
+            },
+          })
+        }
+      }
       const extraActions = playerCardBehavior(message.code)?.additionalPlayActions ?? 0
       if (!message.additionalActionsPaid && extraActions > 0) {
         if (state.activeTurn !== investigator.id || investigator.actionsRemaining < extraActions)
@@ -3204,7 +3269,15 @@ export function handle(state: GameState, message: Message): GameState {
               .filter(
                 (from) =>
                   message.noCost ||
-                  cardCost(state, investigator.id, message.code, message.discount ?? 0, 0, from) <=
+                  cardCost(
+                    state,
+                    investigator.id,
+                    message.code,
+                    message.discount ?? 0,
+                    0,
+                    from,
+                    false,
+                  ) <=
                     investigator.resources +
                       usesAsResources(state, investigator.id, message.code).reduce(
                         (sum, a) => sum + a.uses,
@@ -3221,7 +3294,7 @@ export function handle(state: GameState, message: Message): GameState {
       // Cabina de luces: el aumento del coste se suma también a X.
       const fromZone = fromDiscard ? 'discard' : 'hand'
       const costIncrease =
-        cardCost(state, investigator.id, message.code, 0, 0, fromZone) - (def.cost ?? 0)
+        cardCost(state, investigator.id, message.code, 0, 0, fromZone, false) - (def.cost ?? 0)
       const variants = playerCardBehavior(message.code)?.playVariants?.(state, investigator.id)
       if (variants && message.variant === undefined) {
         const totalCost = (increase: number) =>
@@ -3234,6 +3307,7 @@ export function handle(state: GameState, message: Message): GameState {
                 message.discount ?? 0,
                 increase,
                 fromZone,
+                false,
               )
         const available =
           investigator.resources +
@@ -3310,6 +3384,7 @@ export function handle(state: GameState, message: Message): GameState {
               message.discount ?? 0,
               variant?.cost ?? 0,
               fromZone,
+              false,
             )
       // Schoffner's Catalogue: its uses may pay for this card as resources.
       const sources = usesAsResources(state, investigator.id, message.code)
@@ -3364,6 +3439,13 @@ export function handle(state: GameState, message: Message): GameState {
           ...i,
           ...(nextRoleDiscount && !usedDiscount ? { nextRoleDiscount } : {}),
           resources: i.resources - (cost - paidWithUses),
+          roundPlays: {
+            round: state.round,
+            codes: [
+              ...(i.roundPlays?.round === state.round ? i.roundPlays.codes : []),
+              message.code,
+            ],
+          },
           ...(nextAssetFast && def.type !== 'asset' ? { nextAssetFast } : {}),
           hand: fromDiscard ? i.hand : i.hand.filter((_, n) => n !== index),
           // Un evento va a la pila de descartes tras resolverse (Wendy's Amulet: al fondo
@@ -3405,10 +3487,11 @@ export function handle(state: GameState, message: Message): GameState {
         ...additionalCosts,
         ...spent,
         played,
-        ...(message.before ?? []),
+        ...(message.noOpportunity ? [] : (message.before ?? [])),
         {
           type: 'ResolvePlayedCard',
           discardedCost: message.discardedCost?.length ?? 0,
+          ...(message.skillBonus ? { skillBonus: message.skillBonus } : {}),
           ...(message.variant !== undefined ? { variant: message.variant } : {}),
           investigator: investigator.id,
           code: message.code,
@@ -3473,6 +3556,21 @@ export function handle(state: GameState, message: Message): GameState {
           message.variant,
         ) ??
         []
+      if (message.skillBonus) {
+        const [id, next] = newId(state, 'play-bonus-')
+        return push(
+          {
+            ...next,
+            playSkillBonuses: [
+              ...(state.playSkillBonuses ?? []),
+              { id, investigator: investigator.id, amount: message.skillBonus },
+            ],
+          },
+          ...playerSourceMessages(effect, message.code),
+          { type: 'EndPlaySkillBonus', id },
+          ...after,
+        )
+      }
       return push(state, ...playerSourceMessages(effect, message.code), ...after)
     }
 
@@ -4170,6 +4268,11 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     // ------------------------------------------------------------ Registro de campaña
+    case 'EndPlaySkillBonus':
+      return {
+        ...state,
+        playSkillBonuses: (state.playSkillBonuses ?? []).filter((b) => b.id !== message.id),
+      }
     case 'RecordNote':
       return updateCampaignLog(state, (c) => ({
         ...c,
@@ -5003,7 +5106,12 @@ export function handle(state: GameState, message: Message): GameState {
       const next = log(
         {
           ...state,
-          skillTest: { ...test, modifiedSkill, succeeded, ...(automatic ? { difficulty: 0 } : {}) },
+          skillTest: {
+            ...test,
+            modifiedSkill,
+            succeeded,
+            ...(automatic ? { difficulty: 0 } : {}),
+          },
         },
         succeeded ? 'log.testSuccess' : 'log.testFailure',
         {
@@ -10587,9 +10695,14 @@ export function skillTestValue(state: GameState): {
       }))
       return sum + skillValueFor(unchained, investigator.id, b.from, test.kind)
     }, 0)
-  const effectBonus = test.effectSource
-    ? (playerCardBehavior(test.effectSource)?.effectSkillModifier?.(state, test) ?? 0)
-    : 0
+  const playingBonus = (state.playSkillBonuses ?? [])
+    .filter((b) => b.investigator === investigator.id)
+    .reduce((n, b) => n + b.amount, 0)
+  const effectBonus =
+    playingBonus +
+    (test.effectSource
+      ? (playerCardBehavior(test.effectSource)?.effectSkillModifier?.(state, test) ?? 0)
+      : 0)
   const sources = [
     ...(test.effectSource
       ? [{ name: playerCardDef(test.effectSource)?.name ?? test.effectSource, amount: effectBonus }]

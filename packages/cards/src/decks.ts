@@ -81,6 +81,17 @@ export function investigatorTraitsAllow(investigator: CardCode, card: PlayerCard
   const required = playerCardBehavior(card.code)?.requiredInvestigatorTraits
   return !required || required.some((trait) => byCode(investigator)?.traits.includes(trait))
 }
+export function deckSlotsAllow(deck: CardCode[], card: PlayerCardDef): boolean {
+  const excludes = playerCardBehavior(card.code)?.excludesDeckSlots ?? []
+  return !deck.some((code) => {
+    const other = byCode(code)
+    return (
+      playerCardBehavior(code)?.excludesDeckSlots?.some((slot) => card.slots?.includes(slot)) ||
+      excludes.some((slot) => other?.slots?.includes(slot))
+    )
+  })
+}
+
 function byClass(investigator: CardCode, card: PlayerCardDef): boolean {
   const def = byCode(investigator)
   return (
@@ -110,6 +121,7 @@ export function cardPool(investigator: CardCode, extras: PoolExtras = {}): Playe
       (card) =>
         isImplemented(card.code) &&
         investigatorTraitsAllow(investigator, card) &&
+        deckSlotsAllow(extras.deck ?? [], card) &&
         !card.traits.some((trait) => byCode(investigator)?.excludedDeckTraits?.includes(trait)) &&
         (byClass(investigator, card) ||
           (card.reward && rewards.has(card.code)) ||
@@ -228,6 +240,7 @@ export function validateDeck(
       problems.push({ key: 'deck.problem.notAllowed', params: { card: card.name } })
     } else if (
       !investigatorTraitsAllow(deck.investigator, card) ||
+      !deckSlotsAllow(deck.cards, card) ||
       card.traits.some((trait) => investigator.excludedDeckTraits?.includes(trait))
     ) {
       problems.push({ key: 'deck.problem.notAllowed', params: { card: card.name } })

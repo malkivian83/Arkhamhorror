@@ -103,6 +103,7 @@ export interface Investigator {
   actionsRemaining: number
   lastInvestigateTurn?: number
   drewEnemyRound?: number
+  roundPlays?: { round: number; codes: CardCode[] }
   /** Delayed action loss during the next turn (At a Crossroads). */
   nextTurnActionLoss?: number
   turnTaken: boolean
@@ -1058,6 +1059,11 @@ export type Message =
    */
   | {
       type: 'PlayCard'
+      modifiersResolved?: boolean
+      consideredModifiers?: AssetId[]
+      asFast?: boolean
+      skillBonus?: number
+      noOpportunity?: boolean
       variant?: number
       discardedCost?: CardCode[]
       discardCostPaid?: boolean
@@ -1084,6 +1090,7 @@ export type Message =
     }
   | {
       type: 'ResolvePlayedCard'
+      skillBonus?: number
       variant?: number
       discardedCost?: number
       investigator: InvestigatorId
@@ -1659,6 +1666,7 @@ export type Message =
   | { type: 'Story'; entry: StoryEntry; choices?: Choice[] }
   // ----- Registro de campaña -----
   | { type: 'RecordNote'; note: string; value?: string }
+  | { type: 'EndPlaySkillBonus'; id: string }
   | { type: 'CrossOutNote'; note: string }
   /** Cada investigador (o solo uno) gana experiencia; con `victory`, más la zona de victoria. */
   | { type: 'EarnExperience'; amount: number; victory?: boolean; investigator?: InvestigatorId }
@@ -2222,6 +2230,7 @@ export interface TurnActionGrant {
 }
 
 export interface GameState {
+  playSkillBonuses?: { id: string; investigator: InvestigatorId; amount: number }[]
   defeatedEnemyHealthThisTurn?: Record<InvestigatorId, number>
   /** Versión del motor que creó la partida, para migraciones futuras. */
   boons?: Boon[]

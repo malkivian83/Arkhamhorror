@@ -32,7 +32,8 @@ import './discard-reactions'
 import './fortune-dilemmas'
 import './quick-shot'
 import './spell-field-tools'
-import { investigatorTraitsAllow } from './decks'
+import './play-economy'
+import { investigatorTraitsAllow, deckSlotsAllow } from './decks'
 import './rex-murphy'
 import './grouped-import'
 import './immediate-action-events'
@@ -848,6 +849,7 @@ export function purchaseOptions(
         ![IN_THE_THICK_OF_IT, '08071'].includes(card.code) &&
         isImplemented(card.code) &&
         investigatorTraitsAllow(investigator, card) &&
+        deckSlotsAllow(deck, card) &&
         !isSignature(card.code) &&
         !card.traits.some((trait) => excluded.includes(trait)) &&
         (!playerCardBehavior(card.code)?.requiredResearch ||
@@ -874,7 +876,8 @@ export function purchaseOptions(
         ...new Set(
           copies.filter(
             (c) =>
-              (customizedCard(byCode(c)!, self.customizations).xp ?? 0) < base.level &&
+              ((customizedCard(byCode(c)!, self.customizations).xp ?? 0) < base.level ||
+                (card.code === '53010' && c === '04236')) &&
               !isPermanent(c),
           ),
         ),

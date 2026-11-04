@@ -550,6 +550,21 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Optional modifiers of the card being played; one choice per source asset. */
+  playModifiers?: (
+    state: GameState,
+    self: Asset,
+    code: CardCode,
+    fast: boolean,
+  ) => {
+    discount?: number
+    skillBonus?: number
+    noOpportunity?: boolean
+    costs: Message[]
+  }[]
+  /** Continuous resource-cost change while controlled (Ceremonial Robes). */
+  playedCardCostModifier?: (state: GameState, self: Asset, code: CardCode) => number
+  excludesDeckSlots?: SlotType[]
   /** Printed investigator-trait restriction; applies even to off-class permissions. */
   requiredInvestigatorTraits?: string[]
   /** Extra initial uses granted to matching controlled assets (Locked and Loaded). */
