@@ -290,6 +290,7 @@ import { FORTUNE_DILEMMAS_RENDERED_CODES } from './fortune-dilemmas'
 import { QUICK_SHOT_RENDERED_CODES } from './quick-shot'
 import { SPELL_FIELD_TOOLS_RENDERED_CODES } from './spell-field-tools'
 import { PLAY_ECONOMY_RENDERED_CODES } from './play-economy'
+import { EVENT_ECONOMY_RENDERED_CODES } from './event-economy'
 import { REX_RENDERED_CODES } from './rex-murphy'
 import { GROUPED_RENDERED_CODES } from './grouped-import'
 import { IMMEDIATE_EVENT_RENDERED_CODES } from './immediate-action-events'
@@ -316,6 +317,7 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...QUICK_SHOT_RENDERED_CODES,
   ...SPELL_FIELD_TOOLS_RENDERED_CODES,
   ...PLAY_ECONOMY_RENDERED_CODES,
+  ...EVENT_ECONOMY_RENDERED_CODES,
   ...TOKEN_SKILL_RENDERED_CODES,
   ...SERVICE_RENDERED_CODES,
   ...TEST_RECOVERY_RENDERED_CODES,

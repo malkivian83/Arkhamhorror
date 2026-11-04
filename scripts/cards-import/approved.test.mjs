@@ -5,6 +5,24 @@ import { approvedDefinition } from './approved.mjs'
 const read = async (relative) =>
   JSON.parse(await readFile(new URL(relative, import.meta.url), 'utf8'))
 describe('reviewed inventory conversion', () => {
+  it('requires exact permanent, level and faction evidence for Geared Up', async () => {
+    const { cards } = await read(
+        '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
+      ),
+      manifest = await read('../../packages/cards/src/event-economy/approvals.json')
+    const c = cards.find((c) => c.code === '08019'),
+      a = manifest.cards.find((a) => a.code === c.code)
+    expect(approvedDefinition(c, a)).toMatchObject({ code: '08019', deckLimit: 1, xp: 0 })
+    expect(approvedDefinition(c, a).exceptional).toBeUndefined()
+    expect(() => approvedDefinition(c, { ...a, adapter: undefined })).toThrow()
+    for (const changed of [
+      { ...c, flags: { ...c.flags, exceptional: true } },
+      { ...c, factions: ['survivor'] },
+      { ...c, deckLimit: 2 },
+      { ...c, numbers: { ...c.numbers, xp: { kind: 'number', value: 1 } } },
+    ])
+      expect(() => approvedDefinition(changed, a)).toThrow()
+  })
   it('restricts the exceptional permanent adapter to On Your Own and its printed identity', async () => {
     const { cards } = await read(
       '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
@@ -271,6 +289,7 @@ describe('reviewed inventory conversion', () => {
     'quick-shot',
     'spell-field-tools',
     'play-economy',
+    'event-economy',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(

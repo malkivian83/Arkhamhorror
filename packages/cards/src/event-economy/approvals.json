@@ -1,0 +1,112 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "c95ff1a792bf53cfb1a9ebfd35bb77edbcfd4b23c223aea203e5a5d393082dfb",
+    "es": "7c153ae52f510c2202545222565b233ef0d1c122b2ddc6f780d6e34f14388c26"
+  },
+  "cards": [
+    {
+      "code": "09039",
+      "status": "verified",
+      "module": "card-09039",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10103",
+      "status": "verified",
+      "module": "card-10103",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11041",
+      "status": "verified",
+      "module": "card-11041",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11105",
+      "status": "verified",
+      "module": "card-11105",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60274",
+      "status": "verified",
+      "module": "card-60274",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60266",
+      "status": "verified",
+      "module": "card-60266",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60160",
+      "status": "verified",
+      "module": "card-60160",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60161",
+      "status": "verified",
+      "module": "card-60161",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "60177",
+      "status": "verified",
+      "module": "card-60177",
+      "test": "rules.test.ts",
+      "subname": "Eagle Eye"
+    },
+    {
+      "code": "09055",
+      "status": "verified",
+      "module": "card-09055",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11111",
+      "status": "verified",
+      "module": "card-11111",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10053",
+      "status": "verified",
+      "module": "card-10053",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11101",
+      "status": "verified",
+      "module": "card-11101",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11107",
+      "status": "verified",
+      "module": "card-11107",
+      "test": "rules.test.ts",
+      "commitLimit": 1
+    },
+    {
+      "code": "11040",
+      "status": "verified",
+      "module": "card-11040",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08019",
+      "status": "verified",
+      "module": "card-08019",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-economy-keywords-v1"
+    }
+  ]
+}

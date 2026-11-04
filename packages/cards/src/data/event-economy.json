@@ -1,0 +1,182 @@
+[
+  {
+    "code": "09039",
+    "name": "Ever Vigilant",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 0,
+    "xp": 4,
+    "icons": { "willpower": 1, "intellect": 2 },
+    "slots": []
+  },
+  {
+    "code": "10103",
+    "name": "Ethereal Weaving",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spirit", "Double"],
+    "cost": 1,
+    "xp": 3,
+    "icons": { "willpower": 1, "agility": 1, "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "11041",
+    "name": "Cosmic Revelation",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight", "Spell"],
+    "cost": 0,
+    "xp": 1,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "11105",
+    "name": "Name Your Price",
+    "type": "event",
+    "class": "neutral",
+    "traits": ["Favor"],
+    "cost": 20,
+    "xp": 2,
+    "icons": { "willpower": 1, "agility": 1 },
+    "slots": []
+  },
+  {
+    "code": "60274",
+    "name": "Hypnotize",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Science"],
+    "cost": 2,
+    "xp": 2,
+    "icons": { "willpower": 1, "intellect": 1, "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "60266",
+    "name": "Insidious Truths",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight", "Cursed"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "combat": 1, "agility": 1 },
+    "slots": []
+  },
+  {
+    "code": "60160",
+    "name": "\"Make 'em sing\"",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "intellect": 1, "combat": 1 },
+    "slots": []
+  },
+  {
+    "code": "60161",
+    "name": "Bounty",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Fortune"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "combat": 1 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60177",
+    "name": "Detective Sherman",
+    "subname": "Eagle Eye",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Ally", "Detective", "Police"],
+    "unique": true,
+    "cost": 4,
+    "xp": 3,
+    "icons": { "intellect": 1, "combat": 1, "wild": 1 },
+    "slots": ["ally"],
+    "health": 3,
+    "sanity": 2
+  },
+  {
+    "code": "09055",
+    "name": "Press Pass",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Charm"],
+    "cost": 4,
+    "xp": 2,
+    "icons": { "willpower": 1, "agility": 1 },
+    "slots": ["accessory"]
+  },
+  {
+    "code": "11111",
+    "name": "Nose to the Grindstone",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Talent"],
+    "cost": 2,
+    "xp": 3,
+    "icons": { "intellect": 2 },
+    "slots": []
+  },
+  {
+    "code": "10053",
+    "name": "Steady-Handed",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Talent", "Science"],
+    "cost": 2,
+    "xp": 1,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "11101",
+    "name": "Inquisitive",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Innate"],
+    "xp": 1,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "11107",
+    "name": "Double Down",
+    "type": "skill",
+    "class": "neutral",
+    "traits": ["Innate"],
+    "xp": 2,
+    "icons": { "wild": 1 },
+    "slots": [],
+    "commitLimit": 1
+  },
+  {
+    "code": "11040",
+    "name": "Correlate All Its Contents",
+    "type": "event",
+    "class": "seeker",
+    "traits": ["Insight"],
+    "cost": 1,
+    "xp": 0,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": []
+  },
+  {
+    "code": "08019",
+    "name": "Geared Up",
+    "type": "asset",
+    "class": "guardian",
+    "deckLimit": 1,
+    "traits": ["Talent"],
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  }
+]

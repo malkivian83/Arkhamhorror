@@ -127,10 +127,14 @@ export function approvedDefinition(card, approval) {
     card.flags.permanent &&
     card.deckLimit === 1 &&
     card.numbers.xp?.kind === 'number' &&
-    card.code === '53010' &&
-    card.factions.join(',') === 'survivor' &&
-    card.numbers.xp.value === 3 &&
-    card.flags.exceptional
+    ((card.code === '53010' &&
+      card.factions.join(',') === 'survivor' &&
+      card.numbers.xp.value === 3 &&
+      card.flags.exceptional) ||
+      (card.code === '08019' &&
+        card.factions.join(',') === 'guardian' &&
+        card.numbers.xp.value === 0 &&
+        !card.flags.exceptional))
   const myriadFactions = {
     11031: 'guardian',
     11042: 'seeker',
