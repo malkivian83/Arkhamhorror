@@ -1,4 +1,4 @@
-import { playerCardBehavior, playerCardDef } from './content'
+import { assetBehavior, playerCardBehavior, playerCardDef } from './content'
 import { eventsToDeckBottom } from './state'
 import type {
   Asset,
@@ -11,9 +11,14 @@ import type {
 } from './types'
 
 // RR: Attach To, Modifiers. A dash cannot gain a health/sanity value.
-export function assetVitals(asset: Asset): { health?: number; sanity?: number } {
+export function assetVitals(asset: Asset, state?: GameState): { health?: number; sanity?: number } {
   const def = playerCardDef(asset.code)
   const bonus = (stat: 'health' | 'sanity') =>
+    (state
+      ? Object.values(state.assets)
+          .filter((a) => a.owner === asset.owner)
+          .reduce((n, a) => n + (assetBehavior(state, a)?.controlledAssetVitals?.[stat] ?? 0), 0)
+      : 0) +
     (asset.upgrades ?? []).reduce(
       (n, u) => n + (playerCardBehavior(u.code)?.attachedVitals?.[stat] ?? 0),
       0,
@@ -110,6 +115,25 @@ export function discardOrphanedUpgrades(before: GameState, after: GameState): Ga
   for (const asset of Object.values(before.assets)) {
     const current = after.assets[asset.id]
     if (current) {
+      if (before.assets !== after.assets || before.treacheries !== after.treacheries) {
+        const old = assetVitals(asset, before),
+          now = assetVitals(current, after)
+        const defeated =
+          (now.health !== undefined &&
+            old.health !== undefined &&
+            now.health < old.health &&
+            current.damage >= now.health) ||
+          (now.sanity !== undefined &&
+            old.sanity !== undefined &&
+            now.sanity < old.sanity &&
+            current.horror >= now.sanity)
+        if (defeated)
+          asks.push(
+            { type: 'DiscardAsset', asset: current.id, defeated: true },
+            { type: 'Forced', trigger: { type: 'assetDefeated', asset: current } },
+          )
+      }
+
       // RR: Reactions. "After attached asset exhausts" (Fine Tuning).
       if (asset.exhausted || !current.exhausted) continue
       ;(current.upgrades ?? []).forEach((upgrade, index) => {

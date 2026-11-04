@@ -2742,7 +2742,7 @@ export function handle(state: GameState, message: Message): GameState {
         },
         ...soakers(state, investigator, 'horror').map((a) => ({
           key: `asset:${a.id}`,
-          capacity: assetVitals(a)!.sanity! - a.horror,
+          capacity: assetVitals(a, state)!.sanity! - a.horror,
           label: 'choice.assignToAsset',
           params: { card: playerCardDef(a.code)?.name ?? a.code },
           target: { type: 'asset' as const, id: a.id },
@@ -3026,7 +3026,7 @@ export function handle(state: GameState, message: Message): GameState {
     case 'DamageAsset': {
       const asset = state.assets[message.asset]
       if (!asset) return state
-      const def = assetVitals(asset)
+      const def = assetVitals(asset, state)
       const damaged = {
         ...asset,
         damage: asset.damage + message.damage,
@@ -3062,7 +3062,7 @@ export function handle(state: GameState, message: Message): GameState {
         const a = d.asset ? state.assets[d.asset] : undefined
         const p = d.placed ? state.placedAssets?.[d.placed] : undefined
         if (a) {
-          const def = assetVitals(a)
+          const def = assetVitals(a, state)
           const defeated =
             (def.health !== undefined && a.damage >= def.health) ||
             (def.sanity !== undefined && a.horror >= def.sanity)
@@ -7386,8 +7386,20 @@ export function handle(state: GameState, message: Message): GameState {
       return { ...state, assets: { ...state.assets, [asset.id]: rest } }
     }
     case 'BeginAssetAbility':
-      return { ...state, resolvingAssets: [...(state.resolvingAssets ?? []), message.asset] }
+      return {
+        ...state,
+        resolvingAssets: [...(state.resolvingAssets ?? []), message.asset],
+        resolvingAssetActions: [
+          ...(state.resolvingAssetActions ?? []),
+          { asset: message.asset, actions: message.actions ?? 0 },
+        ],
+      }
     case 'EndAssetAbility': {
+      const costs = [...(state.resolvingAssetActions ?? [])]
+      const costAt = costs.findLastIndex((c) => c.asset === message.asset)
+      if (costAt >= 0) costs.splice(costAt, 1)
+      const { resolvingAssetActions: _previousCosts, ...withoutCosts } = state
+      state = costs.length ? { ...state, resolvingAssetActions: costs } : withoutCosts
       const remaining = [...(state.resolvingAssets ?? [])]
       const index = remaining.lastIndexOf(message.asset)
       if (index >= 0) remaining.splice(index, 1)
@@ -7483,6 +7495,17 @@ export function handle(state: GameState, message: Message): GameState {
         message.actions
       )
         throw new EngineError('No quedan acciones')
+      const namedTest = message.then.find(
+        (m): m is Extract<Message, { type: 'BeginSkillTest' }> => m.type === 'BeginSkillTest',
+      )
+      const paidKind =
+        message.actionKind ??
+        (namedTest &&
+        (namedTest.kind.type === 'fight' ||
+          namedTest.kind.type === 'evade' ||
+          namedTest.kind.type === 'investigate')
+          ? namedTest.kind.type
+          : undefined)
       const paid = updateInvestigator(
         {
           ...state,
@@ -7505,6 +7528,14 @@ export function handle(state: GameState, message: Message): GameState {
           engageActionsUsed: (i.engageActionsUsed ?? 0) + useEngage,
           fightActionsThisTurn: (i.fightActionsThisTurn ?? 0) - useFight,
           ...(useTrait ? { traitActionUsed: true } : {}),
+          ...(message.actions > 0 && paidKind
+            ? {
+                roundActions: {
+                  round: state.round,
+                  kinds: [...actionsThisRound(state, i.id), paidKind],
+                },
+              }
+            : {}),
           actionsTaken: (i.actionsTaken ?? 0) + (message.actions > 0 ? 1 : 0),
           ...(message.actions > 0 &&
           (message.actionKind === 'investigate' ||
@@ -7551,7 +7582,9 @@ export function handle(state: GameState, message: Message): GameState {
         paid,
         ...(message.costs ?? []),
         ...attacks,
-        ...(host ? [{ type: 'BeginAssetAbility' as const, asset: host.id }] : []),
+        ...(host
+          ? [{ type: 'BeginAssetAbility' as const, asset: host.id, actions: message.actions }]
+          : []),
         ...message.then,
         ...(host ? [{ type: 'EndAssetAbility' as const, asset: host.id }] : []),
         // "After you parley" reactions (Salón de baile), for every parley ability.
@@ -8995,7 +9028,7 @@ export function handle(state: GameState, message: Message): GameState {
         )
       const target = { ...moved.assets[to.id]!, [message.kind]: to[message.kind] + 1 }
       moved = { ...moved, assets: { ...moved.assets, [to.id]: target } }
-      const vitals = assetVitals(target)
+      const vitals = assetVitals(target, moved)
       return (vitals.health !== undefined && target.damage >= vitals.health) ||
         (vitals.sanity !== undefined && target.horror >= vitals.sanity)
         ? push(
@@ -10580,7 +10613,7 @@ function soakers(state: GameState, investigator: string, kind: 'damage' | 'horro
         other.location === here
       if (!guards) return false
     }
-    const def = assetVitals(a)
+    const def = assetVitals(a, state)
     return kind === 'damage'
       ? def?.health !== undefined && a.damage < def.health
       : def?.sanity !== undefined && a.horror < def.sanity

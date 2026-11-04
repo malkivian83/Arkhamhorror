@@ -55,7 +55,7 @@ export function assignmentOf(state: GameState | null): Assignment | null {
   const roomOf = (id: string): Recipient['room'] => {
     const asset = state.assets[id]
     if (!asset) return { damage: 0, horror: 0 }
-    const vitals = assetVitals(asset)
+    const vitals = assetVitals(asset, state)
     return {
       damage: vitals.health === undefined ? 0 : Math.max(0, vitals.health - asset.damage),
       horror: vitals.sanity === undefined ? 0 : Math.max(0, vitals.sanity - asset.horror),

@@ -326,7 +326,12 @@ export function usesAsResources(
 ): { asset: string; uses: number }[] {
   return Object.values(state.assets)
     .filter(
-      (a) => a.uses > 0 && !!assetBehavior(state, a)?.usesAsResources?.(state, a, payer, code),
+      (a) =>
+        a.uses > 0 &&
+        (!!assetBehavior(state, a)?.usesAsResources?.(state, a, payer, code) ||
+          Object.values(state.assets).some((source) =>
+            assetBehavior(state, source)?.usesAsResourcesAura?.(state, source, a, payer, code),
+          )),
     )
     .map((a) => ({ asset: a.id, uses: a.uses }))
 }

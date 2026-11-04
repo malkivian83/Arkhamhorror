@@ -1,0 +1,95 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "4c261eb41dde3942520c10a6960cb52f37ae920f5c77648a8ede819bd79a2e76",
+    "es": "19020b334d31010a75ef6b96888edf687e6692eb5ee99b4a8b0ea43241e543ad"
+  },
+  "cards": [
+    {
+      "code": "02304",
+      "status": "verified",
+      "module": "card-02304",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "ammo" }
+    },
+    {
+      "code": "60411",
+      "status": "verified",
+      "module": "card-60411",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "54001",
+      "status": "verified",
+      "module": "card-54001",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-tarot-v1",
+      "subname": "You Have Been Chosen"
+    },
+    {
+      "code": "54011",
+      "status": "verified",
+      "module": "card-54011",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-tarot-v1",
+      "subname": "Unlimited Potential"
+    },
+    {
+      "code": "11119",
+      "status": "verified",
+      "module": "card-11119",
+      "test": "rules.test.ts",
+      "uses": { "count": 1, "type": "shell" }
+    },
+    {
+      "code": "11120",
+      "status": "verified",
+      "module": "card-11120",
+      "test": "rules.test.ts",
+      "uses": { "count": 5, "type": "lead" }
+    },
+    {
+      "code": "11115",
+      "status": "verified",
+      "module": "card-11115",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11117",
+      "status": "verified",
+      "module": "card-11117",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "secret" },
+      "subname": "Beleaguered Lecturer"
+    },
+    {
+      "code": "60276",
+      "status": "verified",
+      "module": "card-60276",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60255",
+      "status": "verified",
+      "module": "card-60255",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "secret" }
+    },
+    {
+      "code": "60331",
+      "status": "verified",
+      "module": "card-60331",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "ammo" }
+    },
+    {
+      "code": "10064",
+      "status": "verified",
+      "module": "card-10064",
+      "test": "rules.test.ts"
+    }
+  ]
+}

@@ -378,11 +378,15 @@ const slots = computed(() => {
               asset.upgrades!.length
             }})
           </button>
-          <span v-if="assetVitals(asset).health !== undefined" :title="t('table.health')"
-            >♥ {{ assetVitals(asset).health }}</span
+          <span
+            v-if="assetVitals(asset, props.state).health !== undefined"
+            :title="t('table.health')"
+            >♥ {{ assetVitals(asset, props.state).health }}</span
           >
-          <span v-if="assetVitals(asset).sanity !== undefined" :title="t('table.sanity')"
-            >✦ {{ assetVitals(asset).sanity }}</span
+          <span
+            v-if="assetVitals(asset, props.state).sanity !== undefined"
+            :title="t('table.sanity')"
+            >✦ {{ assetVitals(asset, props.state).sanity }}</span
           >
           <span v-if="asset.upgrades!.some((u) => u.exhausted)">{{
             t('table.exhaustedUpgrades', {

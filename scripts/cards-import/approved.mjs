@@ -39,7 +39,9 @@ export function approvedDefinition(card, approval) {
     talentFactions[card.code] === card.factions.join(',')
   const reviewedTarot =
     approval.adapter === 'reviewed-tarot-v1' &&
-    ['05023', '05027', '05031', '05035', '05039', '54003', '54005'].includes(card.code) &&
+    (['05023', '05027', '05031', '05035', '05039', '54003', '54005'].includes(card.code) ||
+      { 54001: 'guardian:3', 54011: 'neutral:3' }[card.code] ===
+        card.factions.join(',') + ':' + card.numbers.xp?.value) &&
     card.slots.unknown.join(',') === 'Tarot' &&
     card.slots.slots.length === 0
   const reviewedDiscovery =

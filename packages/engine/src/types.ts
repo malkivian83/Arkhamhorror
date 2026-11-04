@@ -1705,7 +1705,7 @@ export type Message =
       amount: number
       checkAgenda?: boolean
     }
-  | { type: 'BeginAssetAbility'; asset: AssetId }
+  | { type: 'BeginAssetAbility'; asset: AssetId; actions?: number }
   | { type: 'EndAssetAbility'; asset: AssetId }
   | {
       type: 'AttachEventToAsset'
@@ -2363,6 +2363,7 @@ export interface GameState {
   assets: Record<AssetId, Asset>
   /** Nested triggered abilities currently resolving, outermost first. */
   resolvingAssets?: AssetId[]
+  resolvingAssetActions?: { asset: AssetId; actions: number }[]
   /** Apoyos sin dueño (Invitados en localizaciones, reliquias vinculadas a enemigos). */
   placedAssets?: Record<PlacedAssetId, PlacedAsset>
   /** Cartas de Historia en juego, por código. */
