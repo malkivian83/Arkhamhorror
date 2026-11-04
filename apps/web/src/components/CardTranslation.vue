@@ -5,7 +5,13 @@ import { cardTextHtml } from '../game/cardText'
 import { localizedCards } from '../game/localized'
 import CardNarration from './CardNarration.vue'
 
-const props = defineProps<{ code: string; back?: boolean; imageLanguage?: string | undefined }>()
+const props = defineProps<{
+  code: string
+  back?: boolean
+  imageLanguage?: string | undefined
+  /** Sin reproductor: en la vista previa al pasar el ratón no se puede pulsar. */
+  noNarration?: boolean
+}>()
 const { t, locale } = useI18n()
 const card = computed(() => localizedCards.value.get(props.code))
 const name = computed(() =>
@@ -26,7 +32,7 @@ const sourceUrl = (source: string | undefined) =>
 </script>
 
 <template>
-  <CardNarration :code="code" :back="back" />
+  <CardNarration v-if="!noNarration" :code="code" :back="back" />
   <aside v-if="card && (transcribe || faqs.length)" class="translation">
     <template v-if="transcribe">
       <h3>{{ name }}</h3>

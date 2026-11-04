@@ -12,6 +12,7 @@ import CardDetails from './CardDetails.vue'
       :landscape="zoomed.landscape"
       :width="zoomed.landscape ? 420 : 300"
       no-zoom
+      no-narration
     />
   </div>
 </template>
