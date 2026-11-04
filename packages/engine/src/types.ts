@@ -680,6 +680,7 @@ export interface TokenEffect {
 }
 
 export interface SkillTest {
+  successMarginModifier?: number
   nextCommitId?: number
   /** Replaces the normal outcome without changing the kind or success windows. */
   replacementResults?: Message[]
@@ -1004,6 +1005,7 @@ export type Message =
     }
   | {
       type: 'BeginSkillTest'
+      trackReveals?: boolean
       autoSuccess?: boolean
       /** The investigator already chose whether to replace the tested skill. */
       skillSelected?: boolean
@@ -1409,7 +1411,7 @@ export type Message =
       bonus?: { amount: number; code: CardCode; kinds?: SkillTestKind['type'][]; tags?: string[] }
     }
   /** Place an enemy in play on top (or at the bottom) of the encounter deck (Dumb Luck). */
-  | { type: 'PutEnemyOnEncounterDeck'; enemy: EnemyId; bottom?: boolean }
+  | { type: 'PutEnemyOnEncounterDeck'; enemy: EnemyId; bottom?: boolean; shuffle?: boolean }
   /** Attempt the last ended skill test again, without paying its costs (Live and Learn). */
   | { type: 'RepeatSkillTest'; investigator: InvestigatorId; modifier: number }
   /** Elige un enemigo de tu localización al resolverse y le hace daño. */
@@ -1520,7 +1522,7 @@ export type Message =
   | { type: 'OfferActAdvance' }
   /** `paid`: las pistas ya se han pagado. */
   | { type: 'AdvanceAct'; paid?: boolean }
-  | { type: 'SpendClues'; investigator: InvestigatorId; amount: number }
+  | { type: 'SpendClues'; investigator: InvestigatorId; amount: number; notified?: boolean }
   | { type: 'MoveControlledClues'; investigator: InvestigatorId; to: ClueHolder; amount: number }
   /** `ifEnemy`: resolved first when the card actually drawn is an enemy (Unaware). */
   | { type: 'DrawEncounterCard'; investigator: InvestigatorId; ifEnemy?: Message[] }
@@ -1667,6 +1669,7 @@ export type Message =
   // ----- Registro de campaña -----
   | { type: 'RecordNote'; note: string; value?: string }
   | { type: 'EndPlaySkillBonus'; id: string }
+  | { type: 'AdjustSuccessMargin'; amount: number }
   | { type: 'CrossOutNote'; note: string }
   /** Cada investigador (o solo uno) gana experiencia; con `victory`, más la zona de victoria. */
   | { type: 'EarnExperience'; amount: number; victory?: boolean; investigator?: InvestigatorId }
@@ -1963,6 +1966,7 @@ export type Trigger =
   | { type: 'afterCommit'; by: InvestigatorId; tester: InvestigatorId; commitId?: number }
   /** Tras ganar recursos por el efecto de una carta. */
   | { type: 'afterGainResources'; investigator: InvestigatorId; amount: number }
+  | { type: 'afterCluesSpentOrPlaced'; investigator: InvestigatorId; amount: number }
   | { type: 'investigationPhaseEnds' }
   /** Al final de la fase de Mitos (Buscador de Carcosa, Mago de la Orden). */
   | { type: 'mythosPhaseEnds' }

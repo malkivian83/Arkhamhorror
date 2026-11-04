@@ -2556,10 +2556,16 @@ export function handle(state: GameState, message: Message): GameState {
         scenarioBehavior(state.scenarioId)?.cannotPlaceClues?.(state, investigator.location)
       )
         return state
-      return updateLocation(
-        updateInvestigator(state, investigator.id, (i) => ({ ...i, clues: i.clues - amount })),
-        investigator.location,
-        (l) => ({ ...l, clues: l.clues + amount }),
+      return push(
+        updateLocation(
+          updateInvestigator(state, investigator.id, (i) => ({ ...i, clues: i.clues - amount })),
+          investigator.location,
+          (l) => ({ ...l, clues: l.clues + amount }),
+        ),
+        {
+          type: 'Forced',
+          trigger: { type: 'afterCluesSpentOrPlaced', investigator: investigator.id, amount },
+        },
       )
     }
 
@@ -4268,6 +4274,16 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     // ------------------------------------------------------------ Registro de campaña
+    case 'AdjustSuccessMargin':
+      return state.skillTest
+        ? {
+            ...state,
+            skillTest: {
+              ...state.skillTest,
+              successMarginModifier: (state.skillTest.successMarginModifier ?? 0) + message.amount,
+            },
+          }
+        : state
     case 'EndPlaySkillBonus':
       return {
         ...state,
@@ -4627,6 +4643,7 @@ export function handle(state: GameState, message: Message): GameState {
             tags: message.tags ?? [],
             committed: [],
             tokens: [],
+            ...(message.trackReveals ? { revealCount: 0 } : {}),
             tokenModifier: 0,
             autoFail: false,
             tokenOnFail: [],
@@ -5108,7 +5125,12 @@ export function handle(state: GameState, message: Message): GameState {
           ...state,
           skillTest: {
             ...test,
-            modifiedSkill,
+            modifiedSkill: succeeded
+              ? Math.max(
+                  automatic ? 0 : test.difficulty,
+                  modifiedSkill + (test.successMarginModifier ?? 0),
+                )
+              : modifiedSkill,
             succeeded,
             ...(automatic ? { difficulty: 0 } : {}),
           },
@@ -5853,14 +5875,21 @@ export function handle(state: GameState, message: Message): GameState {
       if (!enemy) return state
       const card = enemyCard(enemy)
       const removed = removeEnemy(dropAttached(state, enemy), enemy.id)
+      const ordered = message.bottom
+        ? [...removed.encounterDeck, card]
+        : [card, ...removed.encounterDeck]
+      const [deck, rng] = message.shuffle ? shuffle(ordered, removed.rng) : [ordered, removed.rng]
       return log(
         {
           ...removed,
-          encounterDeck: message.bottom
-            ? [...removed.encounterDeck, card]
-            : [card, ...removed.encounterDeck],
+          encounterDeck: deck,
+          rng,
         },
-        message.bottom ? 'log.enemyToEncounterBottom' : 'log.enemyToEncounterTop',
+        message.shuffle
+          ? 'log.eventEnemyShuffled'
+          : message.bottom
+            ? 'log.enemyToEncounterBottom'
+            : 'log.enemyToEncounterTop',
         { enemy: enemy.name },
       )
     }
@@ -7796,6 +7825,26 @@ export function handle(state: GameState, message: Message): GameState {
       })
 
     case 'SpendClues':
+      if (
+        !message.notified &&
+        message.amount > 0 &&
+        !scenarioBehavior(state.scenarioId)?.cannotSpendClues?.(state, message.investigator)
+      ) {
+        const amount = Math.min(message.amount, spendableClues(state, message.investigator))
+        if (amount > 0)
+          return push(
+            state,
+            { ...message, notified: true },
+            {
+              type: 'Forced',
+              trigger: {
+                type: 'afterCluesSpentOrPlaced',
+                investigator: message.investigator,
+                amount,
+              },
+            },
+          )
+      }
       if (scenarioBehavior(state.scenarioId)?.cannotSpendClues?.(state, message.investigator))
         return state
       if (
@@ -9551,6 +9600,13 @@ function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
     .flatMap((c) => playerCardBehavior(c.code)?.committedReactions?.(state, trigger, c.by) ?? [])
     .filter((o, n, all) => all.findIndex((x) => x.key === o.key) === n)
   return [
+    ...(state.skillTest?.effectSource
+      ? (playerCardBehavior(state.skillTest.effectSource)?.effectReactions?.(
+          state,
+          trigger,
+          state.skillTest.investigator,
+        ) ?? [])
+      : []),
     ...fromCommitted,
     ...fromInvestigators,
     ...fromAssets,

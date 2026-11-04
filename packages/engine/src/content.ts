@@ -550,6 +550,13 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Reactions printed on the event whose resolving effect initiated this test. */
+  effectReactions?: (
+    state: GameState,
+    trigger: Trigger,
+    investigator: InvestigatorId,
+  ) => ReactionOption[]
+
   /** Optional modifiers of the card being played; one choice per source asset. */
   playModifiers?: (
     state: GameState,

@@ -33,6 +33,7 @@ import './fortune-dilemmas'
 import './quick-shot'
 import './spell-field-tools'
 import './play-economy'
+import './event-economy'
 import { investigatorTraitsAllow, deckSlotsAllow } from './decks'
 import './rex-murphy'
 import './grouped-import'
@@ -846,7 +847,7 @@ export function purchaseOptions(
         !card.reward &&
         !card.story &&
         !campaign.log.removedCards?.includes(card.code) &&
-        ![IN_THE_THICK_OF_IT, '08071'].includes(card.code) &&
+        ![IN_THE_THICK_OF_IT, '08071', '08019'].includes(card.code) &&
         isImplemented(card.code) &&
         investigatorTraitsAllow(investigator, card) &&
         deckSlotsAllow(deck, card) &&
