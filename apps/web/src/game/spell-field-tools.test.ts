@@ -15,6 +15,10 @@ import data from '../../../../packages/cards/src/data/spell-field-tools.json'
 import en from '../../../../packages/cards/src/spell-field-tools/source-en.json'
 import es from '../../../../packages/cards/src/spell-field-tools/source-es.json'
 
+it('keeps the incorrect Spanish Longbow scan out of the displayed images and thumbnails', () => {
+  expect(cardImages('60580', false, 'es')).toEqual(['/local-assets/cards/en/60580.avif'])
+})
+
 it.each(data)(
   '$code is unique, legal to purchase and presented with its official EN/ES resources',
   (card) => {

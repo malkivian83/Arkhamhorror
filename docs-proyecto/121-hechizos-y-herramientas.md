@@ -91,6 +91,9 @@ La imagen española descargada de Arco largo muestra coste 2, pero los datos
 EN/ES y ambas fichas de ArkhamDB indican 3. La aplicación mantiene coste 3 y usa
 su escaneo inglés también en español, conservando el texto español. El escaneo
 español original queda registrado como evidencia y no se selecciona para mostrarlo.
+El manifiesto identifica cada original en su idioma; la selección del escaneo
+inglés se aplica en `cardImages`. Así se conserva la correspondencia estricta
+entre manifiesto, inventario y miniaturas, comprobada por `verify-card-images.mjs`.
 
 Validación: reglas de las 30 cartas, costes y restricciones; compra, mejoras,
 registro único, comienzo de escenario y presentación; motor y consumidores
