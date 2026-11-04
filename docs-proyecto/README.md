@@ -136,6 +136,8 @@ Documentos posteriores, por número:
 - [104 · Pruebas y recuperación](104-pruebas-y-recuperacion.md)
 - [105 · Servicios y Negociar](105-servicios-y-negociacion.md)
 
+- [106 · Los confines de la Tierra](106-confines-de-la-tierra.md): preparación inicial, inventario EN/ES y entregas para Helada, compañeros, ¡Tekeli-li! y recorrido de campaña.
+
 ## Decisiones ya tomadas
 
 - Repositorio propio: `github.com/malkivian83/Arkhamhorror` (privado).

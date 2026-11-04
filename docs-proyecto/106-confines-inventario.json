@@ -1,0 +1,2681 @@
+{
+  "pack": "eoec",
+  "status": "inventory-only",
+  "sources": {
+    "en": {
+      "path": "frontend/public/cards_en.json",
+      "sha256": "07ce283c7046c181f9e8a65e3d96016c2678850e41081ca87be0c8715eae1a1a"
+    },
+    "es": {
+      "path": "frontend/public/cards_es.json",
+      "sha256": "5e6443dfd49515069f246b977527042f462002bddf8cc693087c10b15ad3675d"
+    }
+  },
+  "counts": {
+    "codes": 266,
+    "sourceCopies": 371,
+    "encounterSets": 24
+  },
+  "cards": [
+    {
+      "code": "08501",
+      "encounterSet": "ice_and_death",
+      "type": "scenario",
+      "quantity": 1,
+      "name": {
+        "en": "Ice and Death",
+        "es": "Hielo y muerte"
+      }
+    },
+    {
+      "code": "08502",
+      "encounterSet": "ice_and_death",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Crash Site",
+        "es": "Lugar del accidente"
+      }
+    },
+    {
+      "code": "08503",
+      "encounterSet": "ice_and_death",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Frozen Shores",
+        "es": "Costas heladas"
+      }
+    },
+    {
+      "code": "08504",
+      "encounterSet": "ice_and_death",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Treacherous Path",
+        "es": "Senda traicionera"
+      }
+    },
+    {
+      "code": "08505",
+      "encounterSet": "ice_and_death",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Precarious Ice Sheet",
+        "es": "Capa de hielo precaria"
+      }
+    },
+    {
+      "code": "08506",
+      "encounterSet": "ice_and_death",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Broad Snowdrifts",
+        "es": "Bancos de nieve anchos"
+      }
+    },
+    {
+      "code": "08507",
+      "encounterSet": "ice_and_death",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Icy Wastes",
+        "es": "Páramos gélidos"
+      }
+    },
+    {
+      "code": "08508",
+      "encounterSet": "ice_and_death",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Rocky Crags",
+        "es": "Peñascos rocosos"
+      }
+    },
+    {
+      "code": "08509",
+      "encounterSet": "ice_and_death",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Snow Graves",
+        "es": "Tumbas de nieve"
+      }
+    },
+    {
+      "code": "08510",
+      "encounterSet": "ice_and_death",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Icebreaker Landing",
+        "es": "Atracadero del rompehielos"
+      }
+    },
+    {
+      "code": "08511",
+      "encounterSet": "ice_and_death",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Frigid Cave",
+        "es": "Cueva glacial"
+      }
+    },
+    {
+      "code": "08512",
+      "encounterSet": "ice_and_death",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Barrier Camp",
+        "es": "Campamento de la barrera"
+      }
+    },
+    {
+      "code": "08513",
+      "encounterSet": "ice_and_death",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Remnants of Lake's Camp",
+        "es": "Restos del campamento de Lake"
+      }
+    },
+    {
+      "code": "08514",
+      "encounterSet": "ice_and_death",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Crystalline Cavern",
+        "es": "Caverna cristalina"
+      }
+    },
+    {
+      "code": "08515",
+      "encounterSet": "ice_and_death",
+      "type": "enemy",
+      "quantity": 3,
+      "name": {
+        "en": "Skittering Nonsense",
+        "es": "Incoherencia deslizante"
+      }
+    },
+    {
+      "code": "08516",
+      "encounterSet": "ice_and_death",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Apeirophobia",
+        "es": "Apeirofobia"
+      }
+    },
+    {
+      "code": "08517",
+      "encounterSet": "ice_and_death",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Zero Visibility",
+        "es": "Visibilidad cero"
+      }
+    },
+    {
+      "code": "08518",
+      "encounterSet": "the_crash",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "Cold Welcome",
+        "es": "Fría bienvenida"
+      }
+    },
+    {
+      "code": "08519",
+      "encounterSet": "the_crash",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "Into the White",
+        "es": "Hacia el blanco"
+      }
+    },
+    {
+      "code": "08520",
+      "encounterSet": "the_crash",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "Running Out of Time",
+        "es": "El tiempo se agota"
+      }
+    },
+    {
+      "code": "08521",
+      "encounterSet": "the_crash",
+      "type": "act",
+      "quantity": 1,
+      "name": {
+        "en": "Search for a Camp Site",
+        "es": "En busca de un campamento"
+      }
+    },
+    {
+      "code": "08522",
+      "encounterSet": "the_crash",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Terror of the Stars",
+        "es": "Terror de las estrellas"
+      }
+    },
+    {
+      "code": "08523",
+      "encounterSet": "lost_in_the_night",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "A Harsh Wind Blows",
+        "es": "Sopla un viento cruel"
+      }
+    },
+    {
+      "code": "08524",
+      "encounterSet": "lost_in_the_night",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "The Chill of Night",
+        "es": "El frío de la noche"
+      }
+    },
+    {
+      "code": "08525",
+      "encounterSet": "lost_in_the_night",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "Madness and Death",
+        "es": "Locura y muerte"
+      }
+    },
+    {
+      "code": "08526",
+      "encounterSet": "lost_in_the_night",
+      "type": "act",
+      "quantity": 1,
+      "name": {
+        "en": "The Lost Expedition",
+        "es": "La expedición perdida"
+      }
+    },
+    {
+      "code": "08527",
+      "encounterSet": "lost_in_the_night",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Dead End",
+        "es": "Callejón sin salida"
+      }
+    },
+    {
+      "code": "08528",
+      "encounterSet": "lost_in_the_night",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Cracks in the Ice",
+        "es": "Grietas en el hielo"
+      }
+    },
+    {
+      "code": "08529",
+      "encounterSet": "lost_in_the_night",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Somber Remains",
+        "es": "Restos sombríos"
+      }
+    },
+    {
+      "code": "08530",
+      "encounterSet": "lost_in_the_night",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Disappearing Footprints",
+        "es": "Pisadas que desaparecen"
+      }
+    },
+    {
+      "code": "08531",
+      "encounterSet": "lost_in_the_night",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Dissected Explorer",
+        "es": "Explorador diseccionado"
+      }
+    },
+    {
+      "code": "08532",
+      "encounterSet": "lost_in_the_night",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Evil Within",
+        "es": "El mal interior"
+      }
+    },
+    {
+      "code": "08533",
+      "encounterSet": "lost_in_the_night",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Bloody Evidence",
+        "es": "Prueba sangrienta"
+      }
+    },
+    {
+      "code": "08534",
+      "encounterSet": "lost_in_the_night",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Madness Inside",
+        "es": "Locura en el interior"
+      }
+    },
+    {
+      "code": "08535",
+      "encounterSet": "lost_in_the_night",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Professor William Dyer",
+        "es": "Profesor William Dyer"
+      }
+    },
+    {
+      "code": "08536",
+      "encounterSet": "lost_in_the_night",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Danforth",
+        "es": "Danforth"
+      }
+    },
+    {
+      "code": "08537",
+      "encounterSet": "lost_in_the_night",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Eliyah Ashevak",
+        "es": "Eliyah Ashevak"
+      }
+    },
+    {
+      "code": "08538",
+      "encounterSet": "lost_in_the_night",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Dr. Mala Sinha",
+        "es": "Dra. Mala Sinha"
+      }
+    },
+    {
+      "code": "08539",
+      "encounterSet": "lost_in_the_night",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Avery Claypool",
+        "es": "Avery Claypool"
+      }
+    },
+    {
+      "code": "08540",
+      "encounterSet": "lost_in_the_night",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "James \"Cookie\" Fredericks",
+        "es": "James \"Cookie\" Fredericks"
+      }
+    },
+    {
+      "code": "08541",
+      "encounterSet": "lost_in_the_night",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Dr. Amy Kensler",
+        "es": "Dra. Amy Kensler"
+      }
+    },
+    {
+      "code": "08542",
+      "encounterSet": "lost_in_the_night",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Roald Ellsworth",
+        "es": "Roald Ellsworth"
+      }
+    },
+    {
+      "code": "08543",
+      "encounterSet": "lost_in_the_night",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Takada Hiroko",
+        "es": "Takada Hiroko"
+      }
+    },
+    {
+      "code": "08544",
+      "encounterSet": "seeping_nightmares",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "Manifestations of Evil",
+        "es": "Manifestaciones del mal"
+      }
+    },
+    {
+      "code": "08545",
+      "encounterSet": "seeping_nightmares",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "Icy Depths",
+        "es": "Profundidades heladas"
+      }
+    },
+    {
+      "code": "08546",
+      "encounterSet": "seeping_nightmares",
+      "type": "act",
+      "quantity": 1,
+      "name": {
+        "en": "Under Attack!",
+        "es": "¡Bajo ataque!"
+      }
+    },
+    {
+      "code": "08547",
+      "encounterSet": "seeping_nightmares",
+      "type": "enemy",
+      "quantity": 4,
+      "name": {
+        "en": "Seeping Nightmare",
+        "es": "Pesadilla rezumante"
+      }
+    },
+    {
+      "code": "08548",
+      "encounterSet": "seeping_nightmares",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Phantasmagoria",
+        "es": "Fantasmagoria"
+      }
+    },
+    {
+      "code": "08549",
+      "encounterSet": "fatal_mirage",
+      "type": "scenario",
+      "quantity": 1,
+      "name": {
+        "en": "Fatal Mirage",
+        "es": "Espejismo letal"
+      }
+    },
+    {
+      "code": "08550",
+      "encounterSet": "fatal_mirage",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "Ethereal Tangle (v. I)",
+        "es": "Embrollo etéreo (v. I)"
+      }
+    },
+    {
+      "code": "08551",
+      "encounterSet": "fatal_mirage",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "Ethereal Tangle (v. II)",
+        "es": "Embrollo etéreo (v. II)"
+      }
+    },
+    {
+      "code": "08552",
+      "encounterSet": "fatal_mirage",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "Ethereal Tangle (v. III)",
+        "es": "Embrollo etéreo (v. III)"
+      }
+    },
+    {
+      "code": "08553",
+      "encounterSet": "fatal_mirage",
+      "type": "act",
+      "quantity": 1,
+      "name": {
+        "en": "Shadow of the Past (v. I)",
+        "es": "Sombras del pasado (v. I)"
+      }
+    },
+    {
+      "code": "08554",
+      "encounterSet": "fatal_mirage",
+      "type": "act",
+      "quantity": 1,
+      "name": {
+        "en": "Shadow of the Past (v. II)",
+        "es": "Sombras del pasado (v. II)"
+      }
+    },
+    {
+      "code": "08555",
+      "encounterSet": "fatal_mirage",
+      "type": "act",
+      "quantity": 1,
+      "name": {
+        "en": "Shadow of the Past (v. III)",
+        "es": "Sombras del pasado (v. II)"
+      }
+    },
+    {
+      "code": "08556",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Prison of Memories",
+        "es": "Prisión de recuerdos"
+      }
+    },
+    {
+      "code": "08556b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Prison of Memories",
+        "es": "Prisión de recuerdos"
+      }
+    },
+    {
+      "code": "08557",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Base Camp",
+        "es": "Campamento base"
+      }
+    },
+    {
+      "code": "08557b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Base Camp",
+        "es": "Campamento base"
+      }
+    },
+    {
+      "code": "08558",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Deck of the Theodosia",
+        "es": "Cubierta del Theodosia"
+      }
+    },
+    {
+      "code": "08558b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Deck of the Theodosia",
+        "es": "Cubierta del Theodosia"
+      }
+    },
+    {
+      "code": "08559",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "University Halls",
+        "es": "Salas de la universidad"
+      }
+    },
+    {
+      "code": "08559b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "University Halls",
+        "es": "Salas de la universidad"
+      }
+    },
+    {
+      "code": "08560",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Hedge Maze",
+        "es": "Laberinto de setos"
+      }
+    },
+    {
+      "code": "08560b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Hedge Maze",
+        "es": "Laberinto de setos"
+      }
+    },
+    {
+      "code": "08561",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Deserted Station",
+        "es": "Estación desierta"
+      }
+    },
+    {
+      "code": "08561b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Deserted Station",
+        "es": "Estación desierta"
+      }
+    },
+    {
+      "code": "08562",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Coastal Waters",
+        "es": "Aguas costeras"
+      }
+    },
+    {
+      "code": "08562b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Coastal Waters",
+        "es": "Aguas costeras"
+      }
+    },
+    {
+      "code": "08563",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Elder Chamber",
+        "es": "Cámara de los Antiguos"
+      }
+    },
+    {
+      "code": "08563b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Elder Chamber",
+        "es": "Cámara de los Antiguos"
+      }
+    },
+    {
+      "code": "08564",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Riverview Theatre",
+        "es": "Teatro Riverview"
+      }
+    },
+    {
+      "code": "08564b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Riverview Theatre",
+        "es": "Teatro Riverview"
+      }
+    },
+    {
+      "code": "08565",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Standing Stones",
+        "es": "Piedras verticales"
+      }
+    },
+    {
+      "code": "08565b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Standing Stones",
+        "es": "Piedras verticales"
+      }
+    },
+    {
+      "code": "08566",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Airfield",
+        "es": "Aeródromo"
+      }
+    },
+    {
+      "code": "08566b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Airfield",
+        "es": "Aeródromo"
+      }
+    },
+    {
+      "code": "08567",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Alaskan Wilds",
+        "es": "Naturaleza de Alaska"
+      }
+    },
+    {
+      "code": "08567b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Alaskan Wilds",
+        "es": "Naturaleza de Alaska"
+      }
+    },
+    {
+      "code": "08568",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Cluttered Dormitory",
+        "es": "Residencia desordenada"
+      }
+    },
+    {
+      "code": "08568b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Cluttered Dormitory",
+        "es": "Residencia desordenada"
+      }
+    },
+    {
+      "code": "08569",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Dyer's Classroom",
+        "es": "Aula de Dyer"
+      }
+    },
+    {
+      "code": "08569b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Dyer's Classroom",
+        "es": "Aula de Dyer"
+      }
+    },
+    {
+      "code": "08570",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Infirmary",
+        "es": "Dispensario"
+      }
+    },
+    {
+      "code": "08570b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Infirmary",
+        "es": "Dispensario"
+      }
+    },
+    {
+      "code": "08571",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Dr. Kensler's Office",
+        "es": "Despacho de la Dra. Kensler"
+      }
+    },
+    {
+      "code": "08571b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Dr. Kensler's Office",
+        "es": "Despacho de la Dra. Kensler"
+      }
+    },
+    {
+      "code": "08572",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Mo'ai Statues",
+        "es": "Moáis"
+      }
+    },
+    {
+      "code": "08572b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Mo'ai Statues",
+        "es": "Moáis"
+      }
+    },
+    {
+      "code": "08573",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Ottoman Front",
+        "es": "Frente otomano"
+      }
+    },
+    {
+      "code": "08573b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Ottoman Front",
+        "es": "Frente otomano"
+      }
+    },
+    {
+      "code": "08574",
+      "encounterSet": "fatal_mirage",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "The Black Stone",
+        "es": "La piedra negra"
+      }
+    },
+    {
+      "code": "08574b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "The Black Stone",
+        "es": "La piedra negra"
+      }
+    },
+    {
+      "code": "08575",
+      "encounterSet": "fatal_mirage",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of a Hunt Gone Awry",
+        "es": "Recuerdo de una cacería torcida"
+      }
+    },
+    {
+      "code": "08575b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of a Hunt Gone Awry",
+        "es": "Recuerdo de una cacería torcida"
+      }
+    },
+    {
+      "code": "08576",
+      "encounterSet": "fatal_mirage",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of a Lost Patient",
+        "es": "Recuerdo de un paciente perdido"
+      }
+    },
+    {
+      "code": "08576b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of a Lost Patient",
+        "es": "Recuerdo de un paciente perdido"
+      }
+    },
+    {
+      "code": "08577",
+      "encounterSet": "fatal_mirage",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of a Missing Father",
+        "es": "Recuerdo de un padre desaparecido"
+      }
+    },
+    {
+      "code": "08577b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of a Missing Father",
+        "es": "Recuerdo de un padre desaparecido"
+      }
+    },
+    {
+      "code": "08578",
+      "encounterSet": "fatal_mirage",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of a Ravaged Country",
+        "es": "Recuerdo de un país asolado"
+      }
+    },
+    {
+      "code": "08578b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of a Ravaged Country",
+        "es": "Recuerdo de un país asolado"
+      }
+    },
+    {
+      "code": "08579",
+      "encounterSet": "fatal_mirage",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of a Regretful Voyage",
+        "es": "Recuerdo de un viaje pesaroso"
+      }
+    },
+    {
+      "code": "08579b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of a Regretful Voyage",
+        "es": "Recuerdo de un viaje pesaroso"
+      }
+    },
+    {
+      "code": "08580",
+      "encounterSet": "fatal_mirage",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of an Unspeakable Evil",
+        "es": "Recuerdo de un mal innombrable"
+      }
+    },
+    {
+      "code": "08580b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of an Unspeakable Evil",
+        "es": "Recuerdo de un mal innombrable"
+      }
+    },
+    {
+      "code": "08581",
+      "encounterSet": "fatal_mirage",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of a Terrible Discovery",
+        "es": "Recuerdo de un descubrimiento terrible"
+      }
+    },
+    {
+      "code": "08581b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of a Terrible Discovery",
+        "es": "Recuerdo de un descubrimiento terrible"
+      }
+    },
+    {
+      "code": "08582",
+      "encounterSet": "fatal_mirage",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of an Alien Translation",
+        "es": "Recuerdo de una traducción alienígena"
+      }
+    },
+    {
+      "code": "08582b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of an Alien Translation",
+        "es": "Recuerdo de una traducción alienígena"
+      }
+    },
+    {
+      "code": "08583",
+      "encounterSet": "fatal_mirage",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of an Unrequited Love",
+        "es": "Recuerdo de un amor no correspondido"
+      }
+    },
+    {
+      "code": "08583b",
+      "encounterSet": "fatal_mirage",
+      "type": "story",
+      "quantity": 1,
+      "name": {
+        "en": "Memory of an Unrequited Love",
+        "es": "Recuerdo de un amor no correspondido"
+      }
+    },
+    {
+      "code": "08584",
+      "encounterSet": "fatal_mirage",
+      "type": "enemy",
+      "quantity": 3,
+      "name": {
+        "en": "Horrifying Shade",
+        "es": "Sombra horripilante"
+      }
+    },
+    {
+      "code": "08585",
+      "encounterSet": "fatal_mirage",
+      "type": "treachery",
+      "quantity": 3,
+      "name": {
+        "en": "Evanescent Mist",
+        "es": "Bruma evanescente"
+      }
+    },
+    {
+      "code": "08586",
+      "encounterSet": "fatal_mirage",
+      "type": "treachery",
+      "quantity": 3,
+      "name": {
+        "en": "Anamnesis",
+        "es": "Anamnesis"
+      }
+    },
+    {
+      "code": "08587",
+      "encounterSet": "fatal_mirage",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Professor William Dyer",
+        "es": "Profesor William Dyer"
+      }
+    },
+    {
+      "code": "08588",
+      "encounterSet": "fatal_mirage",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Danforth",
+        "es": "Danforth"
+      }
+    },
+    {
+      "code": "08589",
+      "encounterSet": "fatal_mirage",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Eliyah Ashevak",
+        "es": "Eliyah Ashevak"
+      }
+    },
+    {
+      "code": "08590",
+      "encounterSet": "fatal_mirage",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Dr. Mala Sinha",
+        "es": "Dra. Mala Sinha"
+      }
+    },
+    {
+      "code": "08591",
+      "encounterSet": "fatal_mirage",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Avery Claypool",
+        "es": "Avery Claypool"
+      }
+    },
+    {
+      "code": "08592",
+      "encounterSet": "fatal_mirage",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "James \"Cookie\" Fredericks",
+        "es": "James \"Cookie\" Fredericks"
+      }
+    },
+    {
+      "code": "08593",
+      "encounterSet": "fatal_mirage",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Dr. Amy Kensler",
+        "es": "Dra. Amy Kensler"
+      }
+    },
+    {
+      "code": "08594",
+      "encounterSet": "fatal_mirage",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Roald Ellsworth",
+        "es": "Roald Ellsworth"
+      }
+    },
+    {
+      "code": "08595",
+      "encounterSet": "fatal_mirage",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Takada Hiroko",
+        "es": "Takada Hiroko"
+      }
+    },
+    {
+      "code": "08596",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "scenario",
+      "quantity": 1,
+      "name": {
+        "en": "To the Forbidden Peaks",
+        "es": "Hacia los picos prohibidos"
+      }
+    },
+    {
+      "code": "08597",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "Forbidden Peaks",
+        "es": "Picos prohibidos"
+      }
+    },
+    {
+      "code": "08598",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "Terror Descends",
+        "es": "Llega el terror"
+      }
+    },
+    {
+      "code": "08599",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "act",
+      "quantity": 1,
+      "name": {
+        "en": "Ascend the Mountain",
+        "es": "Ascenso por la Montaña."
+      }
+    },
+    {
+      "code": "08600",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Deep Drifts",
+        "es": "Ventisqueros profundos"
+      }
+    },
+    {
+      "code": "08601",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "White Bluff",
+        "es": "Despeñadero blanco"
+      }
+    },
+    {
+      "code": "08602",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Steep Incline",
+        "es": "Talud pronunciado"
+      }
+    },
+    {
+      "code": "08603",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Narrow Ridge",
+        "es": "Cresta angosta"
+      }
+    },
+    {
+      "code": "08604",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Rocky Ledge",
+        "es": "Saliente rocoso"
+      }
+    },
+    {
+      "code": "08605",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Snow-Covered Crag",
+        "es": "Peñasco cubierto de nieve"
+      }
+    },
+    {
+      "code": "08606",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Windswept Path",
+        "es": "Sendero barrido por el viento"
+      }
+    },
+    {
+      "code": "08607",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "The Summit",
+        "es": "La cumbre"
+      }
+    },
+    {
+      "code": "08608",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Terror of the Stars",
+        "es": "Terror de las estrellas"
+      }
+    },
+    {
+      "code": "08609",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "enemy",
+      "quantity": 3,
+      "name": {
+        "en": "Constricting Elder Thing",
+        "es": "Antiguo constrictor"
+      }
+    },
+    {
+      "code": "08610",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "treachery",
+      "quantity": 3,
+      "name": {
+        "en": "Snowfall",
+        "es": "Nevasca"
+      }
+    },
+    {
+      "code": "08611",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Avalanche",
+        "es": "Avalancha"
+      }
+    },
+    {
+      "code": "08612",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "treachery",
+      "quantity": 3,
+      "name": {
+        "en": "Hanging on the Edge",
+        "es": "Al borde del abismo"
+      }
+    },
+    {
+      "code": "08613",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "treachery",
+      "quantity": 3,
+      "name": {
+        "en": "Hypothermia",
+        "es": "Hipotermia"
+      }
+    },
+    {
+      "code": "08614",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Green Soapstone",
+        "es": "Esteatita verde"
+      }
+    },
+    {
+      "code": "08615",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Wooden Sledge",
+        "es": "Trineo de madera"
+      }
+    },
+    {
+      "code": "08616",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Dynamite",
+        "es": "Dinamita"
+      }
+    },
+    {
+      "code": "08617",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Miasmic Crystal",
+        "es": "Cristal de miasma"
+      }
+    },
+    {
+      "code": "08618",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Mineral Specimen",
+        "es": "Epecimen mineral"
+      }
+    },
+    {
+      "code": "08619",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Small Radio",
+        "es": "Radio pequeña"
+      }
+    },
+    {
+      "code": "08620",
+      "encounterSet": "to_the_forbidden_peaks",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Spare Parts",
+        "es": "Piezas de repuesto"
+      }
+    },
+    {
+      "code": "08621",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "scenario",
+      "quantity": 1,
+      "name": {
+        "en": "City of the Elder Things",
+        "es": "Ciudad de los antiguos"
+      }
+    },
+    {
+      "code": "08622",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "Lurking Horrors",
+        "es": "Horrores al acecho"
+      }
+    },
+    {
+      "code": "08623",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "Doom from Below",
+        "es": "La perdición de las profundidades"
+      }
+    },
+    {
+      "code": "08624",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "act",
+      "quantity": 1,
+      "name": {
+        "en": "Sprawling City (v. I)",
+        "es": "Ciudad inmensa (v. I)"
+      }
+    },
+    {
+      "code": "08625",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "act",
+      "quantity": 1,
+      "name": {
+        "en": "Sprawling City (v. II)",
+        "es": "Ciudad inmensa (v. II)"
+      }
+    },
+    {
+      "code": "08626",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "act",
+      "quantity": 1,
+      "name": {
+        "en": "Sprawling City (v. III)",
+        "es": "Ciudad inmensa (v. III)"
+      }
+    },
+    {
+      "code": "08627",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "act",
+      "quantity": 1,
+      "name": {
+        "en": "Pursuit of the Unknown (v. I)",
+        "es": "Persiguiendo lo desconocido (v. I)"
+      }
+    },
+    {
+      "code": "08628",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "act",
+      "quantity": 1,
+      "name": {
+        "en": "Pursuit of the Unknown (v. II)",
+        "es": "Persiguiendo lo desconocido (v. II)"
+      }
+    },
+    {
+      "code": "08629",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "act",
+      "quantity": 1,
+      "name": {
+        "en": "Pursuit of the Unknown (v. III)",
+        "es": "Persiguiendo lo desconocido (v. III)"
+      }
+    },
+    {
+      "code": "08630",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Hidden Tunnel",
+        "es": "Túnel oculto"
+      }
+    },
+    {
+      "code": "08631",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Ancient Planetarium",
+        "es": "Plantetario antiguo"
+      }
+    },
+    {
+      "code": "08632",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "location",
+      "quantity": 3,
+      "name": {
+        "en": "Stone Bridge",
+        "es": "Puente de piedra"
+      }
+    },
+    {
+      "code": "08633",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Cylindrical Tower",
+        "es": "Torre cilíndrica"
+      }
+    },
+    {
+      "code": "08634",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "location",
+      "quantity": 2,
+      "name": {
+        "en": "Labyrinthine Chamber",
+        "es": "Cámara laberíntica"
+      }
+    },
+    {
+      "code": "08635",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Map Room",
+        "es": "Sala del mapa"
+      }
+    },
+    {
+      "code": "08636",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Roofless Rampart",
+        "es": "Adarve sin techo"
+      }
+    },
+    {
+      "code": "08637",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "location",
+      "quantity": 2,
+      "name": {
+        "en": "Ruinous Streets",
+        "es": "Calles ruinosas"
+      }
+    },
+    {
+      "code": "08638",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Cyclopean Spires",
+        "es": "Torres ciclópeas"
+      }
+    },
+    {
+      "code": "08639",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "location",
+      "quantity": 2,
+      "name": {
+        "en": "Submerged Passageway",
+        "es": "Pasadizo sumergido"
+      }
+    },
+    {
+      "code": "08640",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "location",
+      "quantity": 2,
+      "name": {
+        "en": "Temple of the Elder Things",
+        "es": "Templo de los Antiguos"
+      }
+    },
+    {
+      "code": "08641",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Terror of the Stars",
+        "es": "Terror de las estrellas"
+      }
+    },
+    {
+      "code": "08642",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "enemy",
+      "quantity": 3,
+      "name": {
+        "en": "Benign Elder Thing",
+        "es": "Antiguo benigno"
+      }
+    },
+    {
+      "code": "08643",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "enemy",
+      "quantity": 3,
+      "name": {
+        "en": "Reawakened Elder Thing",
+        "es": "Antiguo revivido"
+      }
+    },
+    {
+      "code": "08644",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "treachery",
+      "quantity": 3,
+      "name": {
+        "en": "Dawning of the Truth",
+        "es": "Comprensión de la verdad"
+      }
+    },
+    {
+      "code": "08645",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "treachery",
+      "quantity": 3,
+      "name": {
+        "en": "Crumbling Ruins",
+        "es": "Ruinas en mal estado"
+      }
+    },
+    {
+      "code": "08646",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "treachery",
+      "quantity": 4,
+      "name": {
+        "en": "Frostbitten",
+        "es": "Congelado"
+      }
+    },
+    {
+      "code": "08647",
+      "encounterSet": "city_of_the_elder_things",
+      "type": "treachery",
+      "quantity": 4,
+      "name": {
+        "en": "Possessed",
+        "es": "Poseído"
+      }
+    },
+    {
+      "code": "08648",
+      "encounterSet": "the_heart_of_madness",
+      "type": "scenario",
+      "quantity": 1,
+      "name": {
+        "en": "The Heart of Madness",
+        "es": "El corazón de la locura"
+      }
+    },
+    {
+      "code": "08649",
+      "encounterSet": "the_heart_of_madness",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "The Gate of Y'quaa",
+        "es": "La puerta de Y’quaa"
+      }
+    },
+    {
+      "code": "08650",
+      "encounterSet": "the_heart_of_madness",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Geothermal Vent",
+        "es": "Conducto geotérmico"
+      }
+    },
+    {
+      "code": "08651",
+      "encounterSet": "the_heart_of_madness",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Forsaken Temple",
+        "es": "Templo abandonado"
+      }
+    },
+    {
+      "code": "08652",
+      "encounterSet": "the_heart_of_madness",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Library of Kós",
+        "es": "Biblioteca de Kós"
+      }
+    },
+    {
+      "code": "08653",
+      "encounterSet": "the_heart_of_madness",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Protoplasmic Pool",
+        "es": "Estanque protoplásmico"
+      }
+    },
+    {
+      "code": "08654",
+      "encounterSet": "the_heart_of_madness",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Hall of the Sunless Sea",
+        "es": "Sala del mar sin sol"
+      }
+    },
+    {
+      "code": "08655",
+      "encounterSet": "the_heart_of_madness",
+      "type": "location",
+      "quantity": 2,
+      "name": {
+        "en": "Subnautical Sprawl",
+        "es": "Extensión subnáutica"
+      }
+    },
+    {
+      "code": "08656",
+      "encounterSet": "the_heart_of_madness",
+      "type": "location",
+      "quantity": 3,
+      "name": {
+        "en": "Vaulted Corridor",
+        "es": "Corredor abovedado"
+      }
+    },
+    {
+      "code": "08657",
+      "encounterSet": "the_heart_of_madness",
+      "type": "treachery",
+      "quantity": 3,
+      "name": {
+        "en": "Primeval Terror",
+        "es": "Terror primitivo"
+      }
+    },
+    {
+      "code": "08658",
+      "encounterSet": "the_heart_of_madness",
+      "type": "treachery",
+      "quantity": 3,
+      "name": {
+        "en": "Roots of the Earth",
+        "es": "Raíces de la tierra"
+      }
+    },
+    {
+      "code": "08659",
+      "encounterSet": "the_great_seal",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "The Beating Heart",
+        "es": "El corazón palpitante"
+      }
+    },
+    {
+      "code": "08660",
+      "encounterSet": "the_great_seal",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "The Miasma Beckons",
+        "es": "El Miasma te llama"
+      }
+    },
+    {
+      "code": "08661",
+      "encounterSet": "the_great_seal",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "Call of Madness",
+        "es": "La llamada de la locura"
+      }
+    },
+    {
+      "code": "08662",
+      "encounterSet": "the_great_seal",
+      "type": "act",
+      "quantity": 1,
+      "name": {
+        "en": "Dormancy",
+        "es": "Inactividad"
+      }
+    },
+    {
+      "code": "08663",
+      "encounterSet": "the_great_seal",
+      "type": "act",
+      "quantity": 1,
+      "name": {
+        "en": "The Great Seal",
+        "es": "El gran sello"
+      }
+    },
+    {
+      "code": "08664",
+      "encounterSet": "the_great_seal",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Glacial Grotto",
+        "es": "Gruta glacial"
+      }
+    },
+    {
+      "code": "08665",
+      "encounterSet": "the_great_seal",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Sculptured Crypt",
+        "es": "Cripta esculpida"
+      }
+    },
+    {
+      "code": "08666",
+      "encounterSet": "the_great_seal",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Undercity Altar",
+        "es": "Altar de la ciudad subterránea"
+      }
+    },
+    {
+      "code": "08667",
+      "encounterSet": "the_great_seal",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Ichor-Laden Tunnels",
+        "es": "Túneles cargados de icor"
+      }
+    },
+    {
+      "code": "08668",
+      "encounterSet": "the_great_seal",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Limestone Caverns",
+        "es": "Cavernas de piedra caliza"
+      }
+    },
+    {
+      "code": "08669",
+      "encounterSet": "the_great_seal",
+      "type": "enemy",
+      "quantity": 2,
+      "name": {
+        "en": "Protoplasmic Mass",
+        "es": "Masa protoplásmica"
+      }
+    },
+    {
+      "code": "08670",
+      "encounterSet": "the_great_seal",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Electrostatic Discharge",
+        "es": "Descarga electroestática"
+      }
+    },
+    {
+      "code": "08671",
+      "encounterSet": "stirring_in_the_deep",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "The Seal Weakens",
+        "es": "El sello se debilita"
+      }
+    },
+    {
+      "code": "08672",
+      "encounterSet": "stirring_in_the_deep",
+      "type": "agenda",
+      "quantity": 1,
+      "name": {
+        "en": "That Which Has No Name",
+        "es": "Lo que no tiene nombre"
+      }
+    },
+    {
+      "code": "08673",
+      "encounterSet": "stirring_in_the_deep",
+      "type": "act",
+      "quantity": 1,
+      "name": {
+        "en": "Collapse the Pylons",
+        "es": "Derrumbar los pilones"
+      }
+    },
+    {
+      "code": "08674",
+      "encounterSet": "stirring_in_the_deep",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Mist-Pylon",
+        "es": "Pilón de bruma"
+      }
+    },
+    {
+      "code": "08675",
+      "encounterSet": "stirring_in_the_deep",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Mist-Pylon",
+        "es": "Pilón de bruma"
+      }
+    },
+    {
+      "code": "08676",
+      "encounterSet": "stirring_in_the_deep",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Mist-Pylon",
+        "es": "Pilón de bruma"
+      }
+    },
+    {
+      "code": "08677",
+      "encounterSet": "stirring_in_the_deep",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Mist-Pylon",
+        "es": "Pilón de bruma"
+      }
+    },
+    {
+      "code": "08678",
+      "encounterSet": "stirring_in_the_deep",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Mist-Pylon",
+        "es": "Pilón de bruma"
+      }
+    },
+    {
+      "code": "08679",
+      "encounterSet": "stirring_in_the_deep",
+      "type": "enemy",
+      "quantity": 15,
+      "name": {
+        "en": "The Nameless Madness",
+        "es": "La locura sin nombre"
+      }
+    },
+    {
+      "code": "08680",
+      "encounterSet": "stirring_in_the_deep",
+      "type": "enemy",
+      "quantity": 2,
+      "name": {
+        "en": "Unsealed Phantasm",
+        "es": "Aparición liberada"
+      }
+    },
+    {
+      "code": "08681",
+      "encounterSet": "stirring_in_the_deep",
+      "type": "act",
+      "quantity": 1,
+      "name": {
+        "en": "The Final Mirage",
+        "es": "Ej espejismo final"
+      }
+    },
+    {
+      "code": "08682",
+      "encounterSet": "stirring_in_the_deep",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Titanic Ramp",
+        "es": "Rampa titánica"
+      }
+    },
+    {
+      "code": "08683",
+      "encounterSet": "stirring_in_the_deep",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Titanic Ramp",
+        "es": "Rampa titánica"
+      }
+    },
+    {
+      "code": "08684",
+      "encounterSet": "stirring_in_the_deep",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Titanic Ramp",
+        "es": "Rampa titánica"
+      }
+    },
+    {
+      "code": "08685",
+      "encounterSet": "stirring_in_the_deep",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Titanic Ramp",
+        "es": "Rampa titánica"
+      }
+    },
+    {
+      "code": "08686",
+      "encounterSet": "stirring_in_the_deep",
+      "type": "location",
+      "quantity": 1,
+      "name": {
+        "en": "Hidden Tunnel",
+        "es": "Túnel oculto"
+      }
+    },
+    {
+      "code": "08687",
+      "encounterSet": "agents_of_the_unknown",
+      "type": "enemy",
+      "quantity": 2,
+      "name": {
+        "en": "Primordial Evil",
+        "es": "Mal primordial"
+      }
+    },
+    {
+      "code": "08688",
+      "encounterSet": "agents_of_the_unknown",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "The Madness Within",
+        "es": "La locura interior"
+      }
+    },
+    {
+      "code": "08689",
+      "encounterSet": "creatures_in_the_ice",
+      "type": "enemy",
+      "quantity": 3,
+      "name": {
+        "en": "Manifestation of Madness",
+        "es": "Manifestación de la locura"
+      }
+    },
+    {
+      "code": "08690",
+      "encounterSet": "creatures_in_the_ice",
+      "type": "enemy",
+      "quantity": 2,
+      "name": {
+        "en": "Glacial Phantasm",
+        "es": "Aparición glacial"
+      }
+    },
+    {
+      "code": "08691",
+      "encounterSet": "creatures_in_the_ice",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Kindred Mist",
+        "es": "Bruma afín"
+      }
+    },
+    {
+      "code": "08692",
+      "encounterSet": "deadly_weather",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Antarctic Wind",
+        "es": "Viento antártico"
+      }
+    },
+    {
+      "code": "08693",
+      "encounterSet": "deadly_weather",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Whiteout",
+        "es": "Baja visibilidad"
+      }
+    },
+    {
+      "code": "08694",
+      "encounterSet": "deadly_weather",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Polar Vortex",
+        "es": "Vértice polar"
+      }
+    },
+    {
+      "code": "08695",
+      "encounterSet": "elder_things",
+      "type": "enemy",
+      "quantity": 2,
+      "name": {
+        "en": "Elder Thing Scavenger",
+        "es": "Antiguo buscador de restos"
+      }
+    },
+    {
+      "code": "08696",
+      "encounterSet": "elder_things",
+      "type": "enemy",
+      "quantity": 2,
+      "name": {
+        "en": "Guardian Elder Thing",
+        "es": "Antiguo guardián"
+      }
+    },
+    {
+      "code": "08697",
+      "encounterSet": "elder_things",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Rise of the Elder Things",
+        "es": "Ascenso de los Antiguos"
+      }
+    },
+    {
+      "code": "08698",
+      "encounterSet": "hazards_of_antarctica",
+      "type": "treachery",
+      "quantity": 3,
+      "name": {
+        "en": "Ice Shaft",
+        "es": "Pozo de hielo"
+      }
+    },
+    {
+      "code": "08699",
+      "encounterSet": "hazards_of_antarctica",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Through the Ice",
+        "es": "Atravesar el hielo"
+      }
+    },
+    {
+      "code": "08700",
+      "encounterSet": "left_behind",
+      "type": "enemy",
+      "quantity": 2,
+      "name": {
+        "en": "Lost Researcher",
+        "es": "Investigador perdido"
+      }
+    },
+    {
+      "code": "08701",
+      "encounterSet": "left_behind",
+      "type": "enemy",
+      "quantity": 2,
+      "name": {
+        "en": "Frenzied Explorer",
+        "es": "Explorador enajenado"
+      }
+    },
+    {
+      "code": "08702",
+      "encounterSet": "left_behind",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Abandoned to Madness",
+        "es": "Abandonado a la locura"
+      }
+    },
+    {
+      "code": "08703",
+      "encounterSet": "nameless_horrors",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Blasphemous Visions",
+        "es": "Visiones blasfemas"
+      }
+    },
+    {
+      "code": "08704",
+      "encounterSet": "nameless_horrors",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Glimpse the Unspeakable",
+        "es": "Entrever lo inconfesable"
+      }
+    },
+    {
+      "code": "08705",
+      "encounterSet": "nameless_horrors",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Nightmarish Vapors",
+        "es": "Vapores de pesadilla"
+      }
+    },
+    {
+      "code": "08706",
+      "encounterSet": "miasma",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Miasmatic Torment",
+        "es": "Tormento del miasma"
+      }
+    },
+    {
+      "code": "08707",
+      "encounterSet": "miasma",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Nebulous Miasma",
+        "es": "Miasma nebuloso"
+      }
+    },
+    {
+      "code": "08708",
+      "encounterSet": "penguins",
+      "type": "enemy",
+      "quantity": 2,
+      "name": {
+        "en": "Giant Albino Penguin",
+        "es": "Pingüino albino gigante"
+      }
+    },
+    {
+      "code": "08709",
+      "encounterSet": "penguins",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Wuk! Wuk! Wuk!",
+        "es": "Mec! Mec! Mec!"
+      }
+    },
+    {
+      "code": "08710",
+      "encounterSet": "shoggoths",
+      "type": "enemy",
+      "quantity": 2,
+      "name": {
+        "en": "Forgotten Shoggoth",
+        "es": "Shoggoth olvidado"
+      }
+    },
+    {
+      "code": "08711",
+      "encounterSet": "shoggoths",
+      "type": "enemy",
+      "quantity": 1,
+      "name": {
+        "en": "Rampaging Shoggoth",
+        "es": "Shoggoth desatado"
+      }
+    },
+    {
+      "code": "08712",
+      "encounterSet": "silence_and_mystery",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Polar Mirage",
+        "es": "Espejismo polar"
+      }
+    },
+    {
+      "code": "08713",
+      "encounterSet": "silence_and_mystery",
+      "type": "treachery",
+      "quantity": 3,
+      "name": {
+        "en": "Dark Aurora",
+        "es": "Aurora oscura"
+      }
+    },
+    {
+      "code": "08714",
+      "encounterSet": "expedition_team",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Professor William Dyer",
+        "es": "Profesor William Dyer"
+      }
+    },
+    {
+      "code": "08715",
+      "encounterSet": "expedition_team",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Danforth",
+        "es": "Danforth"
+      }
+    },
+    {
+      "code": "08716",
+      "encounterSet": "expedition_team",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Eliyah Ashevak",
+        "es": "Eliyah Ashevak"
+      }
+    },
+    {
+      "code": "08717",
+      "encounterSet": "expedition_team",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Dr. Mala Sinha",
+        "es": "Dra. Mala Sinha"
+      }
+    },
+    {
+      "code": "08718",
+      "encounterSet": "expedition_team",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Avery Claypool",
+        "es": "Avery Claypool"
+      }
+    },
+    {
+      "code": "08719",
+      "encounterSet": "expedition_team",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "James \"Cookie\" Fredericks",
+        "es": "James \"Cookie\" Fredericks"
+      }
+    },
+    {
+      "code": "08720",
+      "encounterSet": "expedition_team",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Dr. Amy Kensler",
+        "es": "Dra. Amy Kensler"
+      }
+    },
+    {
+      "code": "08721",
+      "encounterSet": "expedition_team",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Roald Ellsworth",
+        "es": "Roald Ellsworth"
+      }
+    },
+    {
+      "code": "08722",
+      "encounterSet": "expedition_team",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Takada Hiroko",
+        "es": "Takada Hiroko"
+      }
+    },
+    {
+      "code": "08723",
+      "encounterSet": "tekelili",
+      "type": "treachery",
+      "quantity": 3,
+      "name": {
+        "en": "Tekeli-li",
+        "es": "Tekeli-li"
+      }
+    },
+    {
+      "code": "08724",
+      "encounterSet": "tekelili",
+      "type": "treachery",
+      "quantity": 3,
+      "name": {
+        "en": "Tekeli-li",
+        "es": "Tekeli-li"
+      }
+    },
+    {
+      "code": "08725",
+      "encounterSet": "tekelili",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Tekeli-li",
+        "es": "Tekeli-li"
+      }
+    },
+    {
+      "code": "08726",
+      "encounterSet": "tekelili",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Tekeli-li",
+        "es": "Tekeli-li"
+      }
+    },
+    {
+      "code": "08727",
+      "encounterSet": "tekelili",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Tekeli-li",
+        "es": "Tekeli-li"
+      }
+    },
+    {
+      "code": "08728",
+      "encounterSet": "tekelili",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Tekeli-li",
+        "es": "Tekeli-li"
+      }
+    },
+    {
+      "code": "08729",
+      "encounterSet": "tekelili",
+      "type": "treachery",
+      "quantity": 2,
+      "name": {
+        "en": "Tekeli-li",
+        "es": "Tekeli-li"
+      }
+    },
+    {
+      "code": "08730",
+      "encounterSet": "memorials_of_the_lost",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Claypool's Furs",
+        "es": "Pieles de Claypool"
+      }
+    },
+    {
+      "code": "08731",
+      "encounterSet": "memorials_of_the_lost",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Collected Works of Poe",
+        "es": "Obras completas de Poe"
+      }
+    },
+    {
+      "code": "08732",
+      "encounterSet": "memorials_of_the_lost",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Cookie's Custom .32",
+        "es": "Colt del .32 personalizado"
+      }
+    },
+    {
+      "code": "08733",
+      "encounterSet": "memorials_of_the_lost",
+      "type": "event",
+      "quantity": 1,
+      "name": {
+        "en": "Dyer's Sketches",
+        "es": "Bocetos de Dyer"
+      }
+    },
+    {
+      "code": "08734",
+      "encounterSet": "memorials_of_the_lost",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Ellsworth's Boots",
+        "es": "Botas de Ellsworth"
+      }
+    },
+    {
+      "code": "08735",
+      "encounterSet": "memorials_of_the_lost",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Kensler's Log",
+        "es": "Diario de Kensler"
+      }
+    },
+    {
+      "code": "08736",
+      "encounterSet": "memorials_of_the_lost",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Sinha's Medical Kit",
+        "es": "Botiquín de Sinha"
+      }
+    },
+    {
+      "code": "08737",
+      "encounterSet": "memorials_of_the_lost",
+      "type": "event",
+      "quantity": 1,
+      "name": {
+        "en": "Takada's Cache",
+        "es": "Alijo de Takada"
+      }
+    },
+    {
+      "code": "08738",
+      "encounterSet": "memorials_of_the_lost",
+      "type": "asset",
+      "quantity": 1,
+      "name": {
+        "en": "Anyu",
+        "es": "Anyu"
+      }
+    }
+  ]
+}
