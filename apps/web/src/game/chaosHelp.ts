@@ -11,7 +11,8 @@ export function chaosHelp(
 ): string {
   if (typeof token === 'number')
     return t('chaosHelp.numeric', { value: token > 0 ? `+${token}` : token })
-  if (token === 'autoFail' || token === 'elderSign') return t(`chaosHelp.${token}`)
+  if (token === 'autoFail' || token === 'elderSign' || token === 'frost')
+    return t(`chaosHelp.${token}`)
   const hard = state.difficulty === 'hard' || state.difficulty === 'expert'
   // Tarjetas de referencia con texto oficial en el catálogo local.
   const official: Record<string, CatalogCard | undefined> = {

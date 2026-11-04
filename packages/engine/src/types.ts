@@ -28,14 +28,22 @@ export type Phase = 'setup' | 'mythos' | 'investigation' | 'enemy' | 'upkeep'
 // Bolsa del caos
 // ---------------------------------------------------------------------------
 
-export type ChaosSymbol = 'skull' | 'cultist' | 'tablet' | 'elderThing' | 'elderSign' | 'autoFail'
+export type ChaosSymbol =
+  | 'skull'
+  | 'cultist'
+  | 'tablet'
+  | 'elderThing'
+  | 'elderSign'
+  | 'autoFail'
+  /** Los confines de la Tierra: −1 y revela otra; la segunda en la misma prueba, fracaso automático. */
+  | 'frost'
 
 /** Un número (+1, 0, -1…) o un símbolo. */
 export type ChaosToken = number | ChaosSymbol
 
 /** Modificador de los símbolos de escenario (skull, cultist, tablet, elderThing). */
 export type ScenarioTokenValues = Partial<
-  Record<Exclude<ChaosSymbol, 'elderSign' | 'autoFail'>, number>
+  Record<Exclude<ChaosSymbol, 'elderSign' | 'autoFail' | 'frost'>, number>
 >
 
 // ---------------------------------------------------------------------------
@@ -663,6 +671,8 @@ export interface TokenEffect {
   autoFail?: boolean
   /** "Revela otra ficha." */
   revealAnother?: boolean
+  /** No se revelan más fichas en esta prueba (segunda Helada). */
+  stopRevealing?: boolean
   /** Mensajes adicionales si la prueba falla. */
   onFail?: Message[]
   /** Mensajes adicionales si la prueba falla por al menos `atLeast`. */
@@ -690,6 +700,8 @@ export interface SkillTest {
   failByModifier?: number
   /** No chaos tokens are revealed: steps 3 and 4 are skipped (Will to Survive, Shed a Light). */
   noTokens?: boolean
+  /** A second Frost token stopped further reveals during this test. */
+  stopRevealing?: boolean
   /** Complete deferred windows/effects, in order, after this test ends. */
   afterEnd?: Message[]
   /** Replacement base value before modifiers and committed icons. */

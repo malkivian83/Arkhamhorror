@@ -2,14 +2,60 @@
 
 ## Estado y continuación
 
-Preparación inicial del 04/11/2026; publicación junto con el PDF autorizada, sin
-activación jugable. Siguiente
-entrega: Helada en el motor, con pruebas de revelación encadenada y persistencia;
-después, registro de compañeros y mazo ¡Tekeli-li! antes de habilitar el escenario I.
-El pull inicial queda impedido por cambios previos en `en.json`, `es.json` y
-`cardImageManifest.json`; no se han apartado ni modificado.
-Antes de publicar se actualizó la referencia remota con `git fetch origin main`:
-`main` coincide con `origin/main`, sin cambios pendientes de integrar.
+Preparación inicial del 04/11/2026, sin activación jugable. Helada implementada
+en el motor el 04/11/2026 (paso 3), sin publicar. Siguiente: estado de expedición,
+compañeros y mazo ¡Tekeli-li! (pasos 4–5) antes de habilitar el escenario I.
+El pull queda impedido por cambios ajenos en `en.json`, `es.json` y
+`cardImageManifest.json` (solo reordenan claves); no se han apartado.
+
+## Hoja de ruta
+
+Pasos para tener la campaña completa en línea. `[x]` hecho, `[~]` en curso o
+sin publicar, `[ ]` pendiente.
+
+**Preparación**
+
+1. [x] Guía de campaña e inventario EN/ES reproducible del paquete eoec.
+2. [x] Revisión del PDF de la expansión de investigadores (no cambia la campaña).
+
+**Mecánicas comunes**
+
+3. [~] Helada: símbolo, −1 y otra revelación, segunda Helada con fracaso
+   automático y detención, ignorada sin efecto, máximo ocho, textos EN/ES y
+   ayuda de ficha. Pruebas en `packages/engine/src/frost.test.ts`. Verificado
+   el 04/11/2026: suite completa (6920 pruebas; tres timeouts por carga que pasan
+   al repetirlas aisladas), tipos de motor, cartas y web, lint y formato.
+   Interpretación pendiente de contrastar: una Helada ignorada cuenta para la
+   segunda.
+4. [ ] Estado de expedición en `CampaignLog`: compañeros (selección, daño/horror
+   persistentes, derrota, versiones de determinación), refugio y suministros,
+   compatible con guardados previos.
+5. [ ] Mazo ¡Tekeli-li!: 16 copias finitas compartidas, entrada en mazos de
+   jugador y devolución al resolverse.
+6. [ ] Puntos de control y recorrido no lineal: partes opcionales, omitidas,
+   reanudación sin repetir preparación ni recompensas, visitas a Espejismo letal.
+
+**Escenarios** (preparación, conjuntos de encuentros, cartas, resolución, pruebas)
+
+7. [ ] Prólogo: bolsas por dificultad, elecciones y muerte aleatoria reproducible.
+8. [ ] Hielo y muerte I (08501a), primera partida jugable de extremo a extremo.
+9. [ ] Hielo y muerte II y III (08501b/c) con sus puntos de control.
+10. [ ] Interludios y Espejismo letal (08549).
+11. [ ] Hacia los picos prohibidos (08596).
+12. [ ] Ciudad de los Antiguos (08621).
+13. [ ] El corazón de la locura I y II (08648a/b) y epílogo.
+
+**Presentación y publicación**
+
+14. [ ] Cartas de encuentro en catálogo EN/ES, imágenes y manifiesto.
+15. [ ] Ayuda de fichas de cada escenario (tarjeta de referencia oficial).
+16. [ ] Narraciones con la voz indicada abajo.
+17. [ ] Campaña en el selector, pruebas de sesión de campaña completa y
+    regresiones de campañas previas.
+18. [ ] Revisión visual por la persona usuaria y publicación.
+
+Las cartas de jugador de la expansión de investigadores siguen el flujo de
+importación (guía 59) y no bloquean la campaña.
 
 Inventario reproducible: 266 códigos EN/ES, 24 conjuntos, 371 copias según el
 catálogo fuente. Son entradas de datos, no 266 reglas implementadas ni un recuento
@@ -29,6 +75,10 @@ Tierra. Preferencia anotada el 04/11/2026; todavía no se ha generado audio.
   Revisión visual inicial de las páginas 2–3 y 7; el escaneo no proporciona
   texto extraíble. Falta revisar la preparación completa, resoluciones y puntos
   de control de cada escenario al implementarlos. Los renders están en `tmp/eote/`.
+- Reglas de la expansión de investigadores añadidas:
+  `reglas/AHLCG_Investigadores_Los_confines_de_la_tierra.pdf` (4 páginas, texto
+  extraíble). No contiene reglas de campaña; su efecto se resume en
+  [Expansión de investigadores](#expansión-de-investigadores).
 - Aplicación de referencia externa: `D:/referencia/ArkhamHorror-main`.
   Consultados `Campaign/Campaigns/EdgeOfTheEarth.hs`,
   `Campaigns/EdgeOfTheEarth/{CampaignSteps,Partner}.hs` y
@@ -47,7 +97,7 @@ su backend ni una sesión de navegador.
 
 | Necesidad | Situación local y trabajo necesario |
 | --- | --- |
-| Helada | `ChaosSymbol` aún no incluye Helada. Primera ficha: −1 y otra revelación; segunda en la misma prueba: detener revelaciones y fracaso automático. Máximo ocho entre bolsa y fichas selladas. Fuera de pruebas no tiene efecto por sí misma. Mantener las fichas reveladas fuera de la selección hasta terminar la prueba. |
+| Helada | `ChaosSymbol` aún no incluye Helada. Primera ficha: −1 y otra revelación; segunda en la misma prueba: detener revelaciones y fracaso automático. Máximo ocho entre bolsa y fichas selladas. Fuera de pruebas no tiene efecto ni valor (FAQ de investigadores: con 21 o nada no suma y se puede seguir revelando o plantarse). Mantener las fichas reveladas fuera de la selección hasta terminar la prueba. |
 | Compañero | No hay un modelo específico de expedición en `CampaignLog`. Nueve personajes, selección opcional sin compartir una misma copia, daño/horror persistentes y eliminación permanente. No entran en mazos de jugador ni abandonan juego salvo derrota; la derrota del investigador derrota al compañero. Desistir conserva su daño/horror sin eliminarlo. Hay versiones de determinación en el catálogo que deben vincularse con su personaje. |
 | ¡Tekeli-li! | Mazo especial de 16 debilidades: siete códigos con cantidades 3/3/2/2/2/2/2. Mantener un conjunto finito compartido, persistencia en los mazos de investigadores y devolución al mazo especial al resolverlas. No tratarlas como debilidades básicas comprables. |
 | Puntos de control | `CampaignScenario.allowDeckChangesAfter` ya permite bloquear compras, pero el progreso normal incrementa `scenarioIndex`. Hace falta representar decisiones, partes omitidas y reanudación sin repetir preparaciones o recompensas. |
@@ -56,6 +106,32 @@ su backend ni una sesión de navegador.
 
 La palabra clave Alerta ya existe en el proyecto; revisar sus pruebas y reutilizarla.
 No confundir apoyos Aliado ordinarios con la nueva palabra clave Compañero.
+
+## Expansión de investigadores
+
+El PDF de investigadores cubre cartas de jugador, no la campaña; no cambia
+escenarios, entregas ni el orden previsto. Contraste con el proyecto:
+
+- **Multiclase**: la carta pertenece a todas sus clases y no es neutral; entra si
+  el investigador accede a cualquiera de ellas, y no ocupa espacio limitado si
+  otra de sus clases tiene acceso ilimitado. Ya soportado por `classes` en
+  `PlayerCardDef`, `deckOptionAllows` y el recuento de `offClassLevelZeroLimit`
+  en `packages/cards/src/decks.ts`. Añadir una prueba con el ejemplo de
+  Monterrey Jack (Buscador/Superviviente frente a Buscador/Rebelde) al importar
+  la primera multiclase de este paquete.
+- **Investigado**: solo se obtiene mejorando la versión menor tras anotar la
+  tarea en el registro; después cualquier investigador de la campaña puede
+  mejorarla. Ya existe (Solución extraña, tomos de Harvey Walters); el Archivo de
+  conductos debe reutilizar ese mecanismo con su nota "los investigadores han
+  identificado el portal".
+- **FAQ para la importación** (guía 59): neutral no es clase para Sinergia;
+  El heraldo revelado encima del mazo impide cualquier manipulación del mazo;
+  Bob Jenkins puede jugar sus propios Apoyos Objeto con su acción adicional;
+  21 o nada se pasa por encima de 21; acción básica de Cerrar el círculo es la
+  no modificada por un indicador de acción en negrita; Usos de la Escopeta vieja
+  solo se refieren a la entrada en juego, salvo que un Evento aluda a Usos.
+  Ninguna de estas cartas está implementada todavía; no confundir El heraldo con
+  El heraldo de Elokoss (`brethren-of-ash`).
 
 ## Mapa de escenarios de la referencia
 

@@ -942,7 +942,8 @@
         "skull": "Calavera",
         "cultist": "Sectario",
         "tablet": "Tablilla",
-        "elderThing": "Primigenio"
+        "elderThing": "Primigenio",
+        "frost": "Helada"
       }
     },
     "redClockTake": "Coger sus {n} cargas como recursos",
@@ -6315,6 +6316,7 @@
     },
     "numeric": "Modifica tu valor de habilidad en {value}.",
     "autoFail": "Fracasa automáticamente en esta prueba.",
+    "frost": "-1. Revela otra ficha. Si revelas una segunda ficha de Helada en esta prueba, deja de revelar fichas: fracasas automáticamente. Fuera de una prueba de habilidad no tiene efecto.",
     "elderSign": "Resuelve el efecto de signo arcano del investigador que realiza la prueba.",
     "reference": "Consulta este símbolo en la carta de referencia del escenario.",
     "current": "Modificador en esta prueba: {value}.",
@@ -6353,7 +6355,8 @@
     "tablet": "la ficha de Tablilla",
     "elderThing": "la ficha de Primigenio",
     "elderSign": "la ficha de Signo arcano",
-    "autoFail": "la ficha de Tentáculo"
+    "autoFail": "la ficha de Tentáculo",
+    "frost": "la ficha de Helada"
   },
   "investigator": {
     "role": "Papel: {role}",

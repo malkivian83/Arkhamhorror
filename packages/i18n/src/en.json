@@ -942,7 +942,8 @@
         "skull": "Skull",
         "cultist": "Cultist",
         "tablet": "Tablet",
-        "elderThing": "Elder thing"
+        "elderThing": "Elder thing",
+        "frost": "Frost"
       }
     },
     "redClockTake": "Take its {n} charges as resources",
@@ -6315,6 +6316,7 @@
     },
     "numeric": "Modify your skill value by {value}.",
     "autoFail": "Automatically fail this test.",
+    "frost": "-1. Reveal another token. If you reveal a second Frost token during this test, stop revealing tokens: you automatically fail. Outside a skill test it has no effect.",
     "elderSign": "Resolve the elder sign effect of the investigator performing this test.",
     "reference": "Consult this symbol on the scenario reference card.",
     "current": "Modifier in this test: {value}.",
@@ -6353,7 +6355,8 @@
     "tablet": "the Tablet token",
     "elderThing": "the Elder Thing token",
     "elderSign": "the Elder Sign token",
-    "autoFail": "the Tentacle token"
+    "autoFail": "the Tentacle token",
+    "frost": "the Frost token"
   },
   "investigator": {
     "role": "Role: {role}",
