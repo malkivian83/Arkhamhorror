@@ -1,0 +1,16 @@
+[
+  {
+    "code": "11031",
+    "name": "Quick Shot",
+    "type": "event",
+    "class": "guardian",
+    "myriad": true,
+    "deckLimit": 3,
+    "traits": ["Spirit"],
+    "cost": 2,
+    "xp": 3,
+    "icons": { "combat": 1, "agility": 1 },
+    "slots": [],
+    "fast": true
+  }
+]

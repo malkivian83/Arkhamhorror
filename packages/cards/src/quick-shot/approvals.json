@@ -1,0 +1,20 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "33c74e6e3852ff5daee81669cb37659c11057f336b0738f3a5c5050e224d5f6b",
+    "es": "4de28257e8e6a79e118c8c8b28eeaa9e036eb49a7d261bfa83ef8b51aad55fbb"
+  },
+  "cards": [
+    {
+      "code": "11031",
+      "status": "verified",
+      "module": "card-11031",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-myriad-v1",
+      "fast": true
+    }
+  ]
+}

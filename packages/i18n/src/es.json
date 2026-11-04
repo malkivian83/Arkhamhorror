@@ -3276,6 +3276,7 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "11031": "Espíritu.",
       "09118": "Dilema. Fortuna.",
       "11083": "Aliado. Artista. Mecenas.",
       "11089": "Suministros.",
@@ -3820,6 +3821,7 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "11031": "Miríada. Rápido. Juega esta carta sólo durante tu turno.\nInflige 1 punto de daño a un Enemigo que esté en tu Lugar.\n[reaction] Después de que robes el Disparo rápido durante tu turno: Juégalo, reduciendo su coste de recursos en 2.",
       "09118": "Máximo 2 [[Dilema]] por ronda.\n<b>Revelación</b> - Debes decidir (elige una opción):\n- Coloca 1 ficha de Perdición sobre el plan en curso. Cada investigador se cura 3 puntos de daño y 3 puntos de horror.\n- Retira 1 ficha de Perdición del plan en curso. Cada investigador recibe 1 punto de daño directo y 1 punto de horror directo. Retira la Fortuna caprichosa de la partida.",
       "11083": "Recibes +1 [intellect].\n[reaction] Después de que descartes 1 o más cartas de tu mano durante tu turno, agota a Lawrence Carlisle: Obtén 1 recurso.",
       "11089": "Límite de 1 por investigador. Usos (2 suministros).\n[reaction] Después de que descartes 1 o más cartas de la mano, agota los Suministros abundantes: Coloca 1 suministro en esta carta.\n[free] Descarta los Suministros abundantes: Mueve cada suministro de esta carta a tu reserva de recursos, como recursos.",
@@ -4801,6 +4803,7 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "11031": "Disparo rápido",
       "09118": "Fortuna caprichosa",
       "11083": "Lawrence Carlisle",
       "11089": "Suministros abundantes",

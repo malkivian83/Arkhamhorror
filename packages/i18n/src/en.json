@@ -3276,6 +3276,7 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "11031": "Spirit.",
       "09118": "Dilemma. Fortune.",
       "11083": "Ally. Artist. Patron.",
       "11089": "Supply.",
@@ -3820,6 +3821,7 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "11031": "Myriad. Fast. Play only during your turn.\nDeal 1 damage to an enemy at your location.\n[reaction] After you draw Quick Shot during your turn: Play it, reducing its resource cost by 2.",
       "09118": "Max 2 [[Dilemma]] per round.\n<b>Revelation</b> - You must decide (choose one):\n- Place 1 doom on the current agenda. Each investigator heals 3 damage and 3 horror.\n- Remove 1 doom from the current agenda. Each investigator takes 1 direct damage and 1 direct horror. Remove Fickle Fortune from the game.",
       "11083": "You get +1 [intellect].\n[reaction] After you discard 1 or more cards from your hand during your turn, exhaust Lawrence Carlisle: Gain 1 resource.",
       "11089": "Limit 1 per investigator. Uses (2 supplies).\n[reaction] After you discard 1 or more cards from hand, exhaust Ample Supplies: Place 1 supply on this card.\n[fast] Discard Ample Supplies: Move each supply on this card to your resource pool, as resources.",
@@ -4801,6 +4803,7 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "11031": "Quick Shot",
       "09118": "Fickle Fortune",
       "11083": "Lawrence Carlisle",
       "11089": "Ample Supplies",

@@ -106,6 +106,7 @@ export function approvedDefinition(card, approval) {
     card.numbers.xp?.kind === 'number' &&
     card.numbers.xp.value === 5
   const myriadFactions = {
+    11031: 'guardian',
     11042: 'seeker',
     '06199': 'rogue',
     '06245': 'survivor',
