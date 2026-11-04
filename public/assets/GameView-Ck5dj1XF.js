@@ -1,0 +1,1 @@
+export{t as default}from"./GameView-CVxf6u02.js";

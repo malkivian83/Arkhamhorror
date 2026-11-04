@@ -9313,13 +9313,23 @@ function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
       // Languor (blockedTypes) aún no se aplica a los eventos jugados como reacción.
       const type = playerCardDef(code)?.type ?? ''
       if (
-        cardCost(state, i.id, code) > i.resources ||
         treacheryBlocksPlay(state, i.id, type) ||
         !cardAllowed(state, i.id, code) ||
         scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, i.id, code)
       )
         return []
-      return playerCardBehavior(code)?.handReactions?.(state, trigger, i.id) ?? []
+      return (playerCardBehavior(code)?.handReactions?.(state, trigger, i.id) ?? []).filter(
+        (option) => {
+          // A reaction can play its card with a discount (Quick Shot). Use the
+          // same effective cost as PlayCard, keeping the usual cost otherwise.
+          const play = option.then[0]
+          const discount =
+            play?.type === 'PlayCard' && play.investigator === i.id && play.code === code
+              ? (play.discount ?? 0)
+              : 0
+          return cardCost(state, i.id, code, discount) <= i.resources
+        },
+      )
     }),
   )
   const reactiveEnemies = Object.values(state.enemies)
