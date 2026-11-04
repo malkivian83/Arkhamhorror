@@ -44,7 +44,7 @@ import type {
 /** Tipo de acción: las básicas y `activate` (habilidades [action] de cartas). */
 export type ActionKind = Action['kind'] | 'activate'
 
-export type ScenarioSymbol = Exclude<ChaosSymbol, 'elderSign' | 'autoFail'>
+export type ScenarioSymbol = Exclude<ChaosSymbol, 'elderSign' | 'autoFail' | 'frost'>
 
 /** Habilidades que `investigator` puede activar en esta carta ahora mismo. */
 export type AbilitiesFn<Self> = (

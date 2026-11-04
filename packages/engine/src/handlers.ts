@@ -842,7 +842,7 @@ export function handle(state: GameState, message: Message): GameState {
       const index = state.chaosBag.indexOf('autoFail')
       return push(
         { ...state, chaosBag: state.chaosBag.filter((_, n) => n !== index) },
-        { type: 'RevealChaosToken', token: 'autoFail', counted: true },
+        { type: 'RevealChaosToken', token: 'autoFail', counted: true, drawn: true },
       )
     }
     case 'BoonMorrigan':
@@ -4360,15 +4360,16 @@ export function handle(state: GameState, message: Message): GameState {
       )
 
     case 'AddChaosTokens': {
+      const tokens = withinFrostLimit(state, message.tokens)
       const added = log(
-        { ...state, chaosBag: [...state.chaosBag, ...message.tokens] },
+        { ...state, chaosBag: [...state.chaosBag, ...tokens] },
         'log.chaosTokensAdded',
-        { n: message.tokens.length, scenario: state.scenarioId },
+        { n: tokens.length, scenario: state.scenarioId },
       )
       if (message.scenarioOnly) return added
       return updateCampaignLog(added, (c) => ({
         ...c,
-        chaosTokens: [...c.chaosTokens, ...message.tokens],
+        chaosTokens: [...c.chaosTokens, ...tokens],
       }))
     }
 
@@ -4675,6 +4676,8 @@ export function handle(state: GameState, message: Message): GameState {
       if (!test) throw new EngineError('No hay prueba de habilidad')
       // Will to Survive, or an automatic success before revealing (FAQ): skip steps 3 and 4.
       if (test.noTokens && !message.pending && message.token === undefined) return state
+      // A second Frost token: no further token is revealed during this test.
+      if (test.stopRevealing && !message.pending) return state
       // The token held during its "when revealed" window resolves now, unless a
       // reaction canceled it (Wendy Adams) or changed what it is treated as (Father Mateo).
       if (message.pending) {
@@ -4689,6 +4692,7 @@ export function handle(state: GameState, message: Message): GameState {
           held.token,
           held.face,
           held.reverseModifierOf === held.face,
+          held.fromBag,
         )
       }
       // Premonition: se resuelve la ficha sellada en lugar de sacar una. Tokens sealed
@@ -4726,7 +4730,7 @@ export function handle(state: GameState, message: Message): GameState {
           label: 'choice.resolveToken',
           params: { token: String(token) },
           then: [
-            { type: 'RevealChaosToken', token, ignored },
+            { type: 'RevealChaosToken', token, ignored, drawn: true },
             ...(typeof token === 'string'
               ? [{ type: 'TakeDamage', investigator: chooser, damage: 0, horror: 1 } as Message]
               : []),
@@ -4756,6 +4760,7 @@ export function handle(state: GameState, message: Message): GameState {
       const [index, rng] =
         sealed || chosen ? [-1, state.rng] : nextInt(state.rng, state.chaosBag.length)
       const token = message.token ?? (sealed ? sealed.token : (state.chaosBag[index] as ChaosToken))
+      const fromBag = !sealed && (!chosen || !!message.drawn)
       if (!message.counted && state.skillTest?.revealCount !== undefined) {
         state = {
           ...state,
@@ -4826,7 +4831,10 @@ export function handle(state: GameState, message: Message): GameState {
       const when: Trigger = { type: 'whenRevealChaosToken', investigator: test.investigator, token }
       const held: GameState = {
         ...taken,
-        skillTest: { ...taken.skillTest!, revealing: { token, face: token } },
+        skillTest: {
+          ...taken.skillTest!,
+          revealing: { token, face: token, ...(fromBag ? { fromBag } : {}) },
+        },
       }
       if (
         reactionOptions(held, when).some((o) => withinLimit(held, o.key, o.investigator, o.limit))
@@ -4837,7 +4845,8 @@ export function handle(state: GameState, message: Message): GameState {
           { type: 'RevealChaosToken', pending: true },
         )
       return (
-        afterRevealing(held, test.investigator, token) || resolveRevealedToken(taken, token, token)
+        afterRevealing(held, test.investigator, token) ||
+        resolveRevealedToken(taken, token, token, false, fromBag)
       )
     }
 
@@ -5058,6 +5067,8 @@ export function handle(state: GameState, message: Message): GameState {
             tokens: [],
             ignoredTokens: [],
             treatedAs: [],
+            frostFromBag: 0,
+            stopRevealing: false,
             tokenModifier: 0,
             tokenOnFail: [],
             tokenOnFailBy: [],
@@ -9711,7 +9722,14 @@ function resolveRevealedToken(
   token: ChaosToken,
   face: ChaosToken,
   reverseModifier = false,
+  fromBag = false,
 ): GameState {
+  // Frost counts only the tokens revealed from the bag (sealed or named ones do not).
+  if (fromBag && face === 'frost')
+    state = {
+      ...state,
+      skillTest: { ...state.skillTest!, frostFromBag: (state.skillTest!.frostFromBag ?? 0) + 1 },
+    }
   const test = state.skillTest!
   const originalEffect = withTokenSource(resolveToken(state, face, test.investigator), face)
   const effect = reverseModifier
@@ -9739,6 +9757,7 @@ function resolveRevealedToken(
         ? { tokenOnSuccessBelow: [...(test.tokenOnSuccessBelow ?? []), effect.onSuccessBelow] }
         : {}),
       tokenAfter: [...(test.tokenAfter ?? []), ...(effect.after ?? [])],
+      ...(effect.stopRevealing ? { stopRevealing: true } : {}),
     },
   }
   return push(
@@ -9749,8 +9768,23 @@ function resolveRevealedToken(
       type: 'Forced',
       trigger: { type: 'afterRevealChaosToken', investigator: test.investigator, token: face },
     },
-    ...(effect.revealAnother ? [{ type: 'RevealChaosToken' } as const] : []),
+    ...(effect.revealAnother && !effect.stopRevealing
+      ? [{ type: 'RevealChaosToken' } as const]
+      : []),
   )
+}
+
+/** Frost: at most 8 between the bag, sealed tokens and those revealed in the current test. */
+const MAX_FROST_TOKENS = 8
+
+function withinFrostLimit(state: GameState, tokens: ChaosToken[]): ChaosToken[] {
+  const test = state.skillTest
+  let frost = [
+    ...state.chaosBag,
+    ...(state.sealed ?? []).map((e) => e.token),
+    ...(test ? returnedTokens(test) : []),
+  ].filter((t) => t === 'frost').length
+  return tokens.filter((t) => t !== 'frost' || frost++ < MAX_FROST_TOKENS)
 }
 
 /** RR Seal: assets whose sealed token may be resolved instead of revealing one (Codex of Ages). */
@@ -10080,6 +10114,13 @@ function resolveBaseToken(state: GameState, token: ChaosToken, investigator: str
   switch (token) {
     case 'autoFail':
       return { modifier: 0 }
+    case 'frost':
+      // Outside a skill test Frost has no value (FAQ: 21 or Nothing). The second one
+      // revealed from the bag during the same test stops the reveals and fails it.
+      if (!state.skillTest) return { modifier: 0 }
+      return (state.skillTest.frostFromBag ?? 0) >= 2
+        ? { modifier: -1, autoFail: true, stopRevealing: true }
+        : { modifier: -1, revealAnother: true }
     case 'elderSign': {
       const self = getInvestigator(state, investigator)
       return (
