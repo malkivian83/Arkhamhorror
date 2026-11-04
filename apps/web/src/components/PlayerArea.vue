@@ -1028,11 +1028,33 @@ h3,
   align-items: start;
   gap: 12px;
   min-width: 0;
-  max-height: 116px;
+  max-height: 86px;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 6px 2px;
+  padding: 8px 2px;
   scrollbar-width: none;
+}
+/* Rótulos solo para lectores de pantalla: el reverso, la carta y los huecos ya se reconocen. */
+.piles .mat-label,
+.zone.play > h4 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.zone.play {
+  padding: 3px 6px;
+}
+.piles .pile {
+  padding: 0;
+  min-width: 0;
+}
+.player-back,
+.piles :deep(.game-card) {
+  width: 46px !important;
+  height: 64px !important;
 }
 .equipment-row::-webkit-scrollbar {
   display: none;
@@ -1064,10 +1086,12 @@ h3,
 }
 .slot {
   flex: none;
+  height: 60px;
+  gap: 3px;
 }
 .slot :deep(.slot-icon) {
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
 }
 .hand {
   min-width: 0;
@@ -1085,8 +1109,8 @@ h3,
 .view-hand {
   display: grid;
   place-items: center;
-  width: 32px;
-  min-height: 32px;
+  width: 28px;
+  min-height: 28px;
   padding: 0;
   color: var(--parch);
   background: #21190e;
@@ -1102,7 +1126,7 @@ h3,
   align-items: start;
   gap: 8px;
   overflow-x: auto;
-  padding: 8px 4px;
+  padding: 5px 4px;
 }
 .in-hand {
   flex: 0 0 80px;

@@ -27,8 +27,7 @@ const language = ref('unknown'),
       :title="t('table.scenarioReference')"
       @click="dialog?.showModal()"
     >
-      <GameCard :code="card.code" :name="card.name" :back="card.back" :width="48" no-zoom />
-      <span>{{ t('table.scenarioReference') }}</span>
+      <GameCard :code="card.code" :name="card.name" :back="card.back" :width="34" no-zoom />
     </button>
     <Teleport to="body">
       <dialog
@@ -79,12 +78,6 @@ const language = ref('unknown'),
   border-radius: 6px;
   cursor: pointer;
 }
-.reference-button span {
-  max-width: 85px;
-  font:
-    12px/1.3 'Source Sans 3',
-    sans-serif;
-}
 .reference-button:focus-visible {
   outline: 2px solid #e5aa8d;
   outline-offset: 2px;
@@ -134,10 +127,5 @@ header button {
   max-width: calc(100vw - 60px);
   height: auto !important;
   aspect-ratio: 1 / 1.4;
-}
-@media (max-width: 680px) {
-  .reference-button span {
-    display: none;
-  }
 }
 </style>

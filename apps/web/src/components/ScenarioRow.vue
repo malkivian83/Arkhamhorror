@@ -456,9 +456,9 @@ const sortedBag = computed(() =>
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 7px;
   min-height: 44px;
-  padding: 5px 10px;
+  padding: 5px 8px;
   border: 1px solid #62585b;
   border-radius: 3px;
   background: #25252b;
@@ -477,7 +477,7 @@ const sortedBag = computed(() =>
 }
 .stat-label {
   color: #d0c7c1;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   line-height: 1.2;
 }
 .stat-number {
@@ -591,13 +591,13 @@ const sortedBag = computed(() =>
   gap: 10px;
 }
 /* En escritorios estrechos, rótulos cortos para que la barra quepa en una línea. */
-@media (max-width: 1400px) {
+@media (max-width: 1600px) {
   .scenario-row {
     gap: 6px;
   }
   .scenario-stat {
     gap: 6px;
-    padding-inline: 8px;
+    padding-inline: 7px;
   }
   .full-label {
     display: none;
