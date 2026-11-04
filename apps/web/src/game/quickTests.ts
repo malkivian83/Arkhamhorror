@@ -5,15 +5,15 @@ const PREFERENCE_KEY = 'lcg:quickTests'
 
 /**
  * Preferencia del jugador: en una prueba de habilidad, revelar la ficha y aplicar el
- * resultado sin pulsar cuando es lo único que se puede hacer (activado por defecto).
+ * resultado sin pulsar cuando es lo único que se puede hacer (desactivado por defecto).
  */
 export const quickTests = ref(readPreference())
 
 function readPreference(): boolean {
   try {
-    return localStorage.getItem(PREFERENCE_KEY) !== 'off'
+    return localStorage.getItem(PREFERENCE_KEY) === 'on'
   } catch {
-    return true
+    return false
   }
 }
 
