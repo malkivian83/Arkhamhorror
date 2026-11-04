@@ -31,6 +31,8 @@ import './next-turn-benefits'
 import './discard-reactions'
 import './fortune-dilemmas'
 import './quick-shot'
+import './spell-field-tools'
+import { investigatorTraitsAllow } from './decks'
 import './rex-murphy'
 import './grouped-import'
 import './immediate-action-events'
@@ -845,6 +847,7 @@ export function purchaseOptions(
         !campaign.log.removedCards?.includes(card.code) &&
         ![IN_THE_THICK_OF_IT, '08071'].includes(card.code) &&
         isImplemented(card.code) &&
+        investigatorTraitsAllow(investigator, card) &&
         !isSignature(card.code) &&
         !card.traits.some((trait) => excluded.includes(trait)) &&
         (!playerCardBehavior(card.code)?.requiredResearch ||

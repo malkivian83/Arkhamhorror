@@ -1,0 +1,214 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "533e0e330efc86d5be11c2df16a5363c95aefb9442bf5793438ade0885b1315a",
+    "es": "3efef2dfbc314e4aa7015cb554b66eb5265a408bbe829ff42b2765ddd492350c"
+  },
+  "cards": [
+    {
+      "code": "60478",
+      "status": "verified",
+      "module": "card-60478",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-field-keywords-v1"
+    },
+    {
+      "code": "60479",
+      "status": "verified",
+      "module": "card-60479",
+      "test": "rules.test.ts",
+      "subname": "Haunted Musician"
+    },
+    {
+      "code": "60580",
+      "status": "verified",
+      "module": "card-60580",
+      "test": "rules.test.ts",
+      "uses": { "count": 1, "type": "arrow" }
+    },
+    {
+      "code": "60474",
+      "status": "verified",
+      "module": "card-60474",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-field-keywords-v1"
+    },
+    {
+      "code": "60475",
+      "status": "verified",
+      "module": "card-60475",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60463",
+      "status": "verified",
+      "module": "card-60463",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60465",
+      "status": "verified",
+      "module": "card-60465",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "60555",
+      "status": "verified",
+      "module": "card-60555",
+      "test": "rules.test.ts",
+      "subname": "Seasoned Hunter"
+    },
+    {
+      "code": "60556",
+      "status": "verified",
+      "module": "card-60556",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60561",
+      "status": "verified",
+      "module": "card-60561",
+      "test": "rules.test.ts",
+      "uses": { "count": 5, "type": "supplie" }
+    },
+    {
+      "code": "60461",
+      "status": "verified",
+      "module": "card-60461",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "charge" }
+    },
+    {
+      "code": "60482",
+      "status": "verified",
+      "module": "card-60482",
+      "test": "rules.test.ts",
+      "uses": { "count": 5, "type": "charge" }
+    },
+    {
+      "code": "60416",
+      "status": "verified",
+      "module": "card-60416",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60256",
+      "status": "verified",
+      "module": "card-60256",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "secret" }
+    },
+    {
+      "code": "60259",
+      "status": "verified",
+      "module": "card-60259",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "secret" },
+      "subname": "Untranslated"
+    },
+    {
+      "code": "10119",
+      "status": "verified",
+      "module": "card-10119",
+      "test": "rules.test.ts",
+      "subname": "Friend or Foe?"
+    },
+    {
+      "code": "60280",
+      "status": "verified",
+      "module": "card-60280",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "secret" },
+      "subname": "Words of Ra"
+    },
+    {
+      "code": "60281",
+      "status": "verified",
+      "module": "card-60281",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "secret" },
+      "subname": "Words of Set"
+    },
+    {
+      "code": "60282",
+      "status": "verified",
+      "module": "card-60282",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60175",
+      "status": "verified",
+      "module": "card-60175",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11024",
+      "status": "verified",
+      "module": "card-11024",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11027",
+      "status": "verified",
+      "module": "card-11027",
+      "test": "rules.test.ts",
+      "subname": "Fearless Flatfoot"
+    },
+    {
+      "code": "11030",
+      "status": "verified",
+      "module": "card-11030",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-field-keywords-v1"
+    },
+    {
+      "code": "11049",
+      "status": "verified",
+      "module": "card-11049",
+      "test": "rules.test.ts",
+      "subname": "Prophetic Timepiece"
+    },
+    {
+      "code": "11104",
+      "status": "verified",
+      "module": "card-11104",
+      "test": "rules.test.ts",
+      "subname": "Playing Both Sides"
+    },
+    {
+      "code": "11102",
+      "status": "verified",
+      "module": "card-11102",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11110",
+      "status": "verified",
+      "module": "card-11110",
+      "test": "rules.test.ts",
+      "subname": "On the Hunt"
+    },
+    {
+      "code": "11112",
+      "status": "verified",
+      "module": "card-11112",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11113",
+      "status": "verified",
+      "module": "card-11113",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11106",
+      "status": "verified",
+      "module": "card-11106",
+      "test": "rules.test.ts"
+    }
+  ]
+}

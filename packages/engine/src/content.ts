@@ -550,6 +550,12 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Printed investigator-trait restriction; applies even to off-class permissions. */
+  requiredInvestigatorTraits?: string[]
+  /** Extra initial uses granted to matching controlled assets (Locked and Loaded). */
+  initialUsesBonus?: (code: CardCode) => number
+  firstInvestigateSafe?: boolean
+  observesEventPlay?: boolean
   /** Only printed per-subtitle deck limits use this grouping. */
   deckLimitBySubtitle?: boolean
   recordsEntryTurn?: boolean
@@ -729,6 +735,8 @@ export interface PlayerCardBehavior {
   parley?: boolean
   /** Additional action costs of playing the card, including a play granted by an effect. */
   additionalPlayActions?: number
+  /** Additional printed costs, paid before reactions to playing and before its effects. */
+  additionalPlayCosts?: (state: GameState, investigator: InvestigatorId) => Message[]
   /** In play: additional resources its controller gains during the upkeep phase. */
   upkeepResources?: number
   /** Restricción adicional para jugarlo ("solo durante tu turno", "como primera acción"…). */

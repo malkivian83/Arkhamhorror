@@ -557,7 +557,10 @@ export function handle(state: GameState, message: Message): GameState {
           { type: 'AfterRevelation', treachery: id, investigator: investigator.id },
         )
       }
-      const next = state
+      const next = updateInvestigator(state, investigator.id, (i) => ({
+        ...i,
+        drewEnemyRound: state.round,
+      }))
       const behavior = enemyBehavior(card.code)
       const after: Message[] =
         card.keywords.includes('surge') || behavior?.surge?.(state)
@@ -770,6 +773,11 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'Forced': {
       const t = message.trigger
+      if (t.type === 'afterDrawCard' && playerCardDef(t.card)?.type === 'enemy')
+        state = updateInvestigator(state, t.investigator, (i) => ({
+          ...i,
+          drewEnemyRound: state.round,
+        }))
       if (
         t.type === 'whenTreacheryDrawn' ||
         (t.type === 'afterDrawCard' && playerCardDef(t.card)?.type === 'treachery')
@@ -1224,6 +1232,11 @@ export function handle(state: GameState, message: Message): GameState {
               ),
             }),
         actionsTaken: (i.actionsTaken ?? 0) + 1,
+        ...(message.action.kind === 'investigate' ||
+        (message.action.kind === 'play' &&
+          playerCardBehavior(message.action.card)?.investigateAction)
+          ? { lastInvestigateTurn: turnStartedAt(state) }
+          : {}),
         spentActions: spendActions(state, i, cost),
         roundActions: {
           round: state.round,
@@ -1239,7 +1252,13 @@ export function handle(state: GameState, message: Message): GameState {
         )
       const attacks =
         !quietEngage && provokesAttacksOfOpportunity(message.action)
-          ? opportunityAttacks(state, investigator)
+          ? opportunityAttacks(
+              state,
+              investigator,
+              message.action.kind === 'investigate' ||
+                (message.action.kind === 'play' &&
+                  !!playerCardBehavior(message.action.card)?.investigateAction),
+            )
           : []
       // RR, initiating abilities step 2 / attacks of opportunity: resource costs
       // are paid before enemies attack. Reactions cannot spend those resources twice.
@@ -3378,17 +3397,27 @@ export function handle(state: GameState, message: Message): GameState {
         type: 'Forced',
         trigger: { type: 'afterPlayCard', investigator: investigator.id, code: message.code },
       }
-      return push(paid, ...spentUses, ...spent, played, ...(message.before ?? []), {
-        type: 'ResolvePlayedCard',
-        discardedCost: message.discardedCost?.length ?? 0,
-        ...(message.variant !== undefined ? { variant: message.variant } : {}),
-        investigator: investigator.id,
-        code: message.code,
-        ...(message.originalOwner ? { originalOwner: message.originalOwner } : {}),
-        ...(message.effect ? { effect: message.effect } : {}),
-        ...(message.x !== undefined ? { x: message.x } : {}),
-        ...(fromDiscard ? { fromDiscard: true } : {}),
-      })
+      const additionalCosts =
+        playerCardBehavior(message.code)?.additionalPlayCosts?.(paid, investigator.id) ?? []
+      return push(
+        paid,
+        ...spentUses,
+        ...additionalCosts,
+        ...spent,
+        played,
+        ...(message.before ?? []),
+        {
+          type: 'ResolvePlayedCard',
+          discardedCost: message.discardedCost?.length ?? 0,
+          ...(message.variant !== undefined ? { variant: message.variant } : {}),
+          investigator: investigator.id,
+          code: message.code,
+          ...(message.originalOwner ? { originalOwner: message.originalOwner } : {}),
+          ...(message.effect ? { effect: message.effect } : {}),
+          ...(message.x !== undefined ? { x: message.x } : {}),
+          ...(fromDiscard ? { fromDiscard: true } : {}),
+        },
+      )
     }
 
     case 'ResolvePlayedCard': {
@@ -3410,18 +3439,22 @@ export function handle(state: GameState, message: Message): GameState {
           ...(message.x !== undefined ? { tokens: { uses: message.x } } : {}),
         })
       }
-      const after: Message[] = playerCardBehavior(message.code)?.afterEventPlayWindow
-        ? [
-            {
-              type: 'Forced',
-              trigger: {
-                type: 'afterEventPlayed',
-                investigator: investigator.id,
-                code: message.code,
+      const after: Message[] =
+        playerCardBehavior(message.code)?.afterEventPlayWindow ||
+        Object.values(state.assets).some(
+          (a) => a.owner === investigator.id && assetBehavior(state, a)?.observesEventPlay,
+        )
+          ? [
+              {
+                type: 'Forced',
+                trigger: {
+                  type: 'afterEventPlayed',
+                  investigator: investigator.id,
+                  code: message.code,
+                },
               },
-            },
-          ]
-        : []
+            ]
+          : []
       // Ward of Preservation: el escenario puede cancelar los efectos del evento.
       const cancelled = scenarioBehavior(state.scenarioId)?.eventPlayed?.(
         state,
@@ -3530,9 +3563,15 @@ export function handle(state: GameState, message: Message): GameState {
             damage: 0,
             horror: 0,
             uses:
-              playerCardBehavior(message.code)?.initialUses?.(state, message.investigator) ??
-              def.uses?.count ??
-              0,
+              (playerCardBehavior(message.code)?.initialUses?.(state, message.investigator) ??
+                def.uses?.count ??
+                0) +
+              Object.values(state.assets)
+                .filter((a) => a.owner === message.investigator)
+                .reduce(
+                  (n, a) => n + (assetBehavior(state, a)?.initialUsesBonus?.(message.code) ?? 0),
+                  0,
+                ),
             ...(getInvestigator(state, message.investigator).customizations?.[message.code]
               ? {
                   customization: {
@@ -4761,6 +4800,7 @@ export function handle(state: GameState, message: Message): GameState {
             type: 'RevealTokenOutsideTest',
             investigator: held.investigator,
             then: held.then,
+            ...(held.hold ? { hold: true } : {}),
             used: [...held.used, ...(message.use ? [message.use] : [])],
           })
         : next
@@ -4810,7 +4850,7 @@ export function handle(state: GameState, message: Message): GameState {
         if (!held) return state
         const { tokenReveal: _held, ...rest } = state
         return push(
-          { ...rest, chaosBag: withTokenAt(rest.chaosBag, held) },
+          { ...rest, chaosBag: held.hold ? rest.chaosBag : withTokenAt(rest.chaosBag, held) },
           revealedThen(held.then, held.token, held.face, held.index),
         )
       }
@@ -4856,6 +4896,7 @@ export function handle(state: GameState, message: Message): GameState {
         rng,
         chaosBag: chosen ? state.chaosBag : state.chaosBag.filter((_, n) => n !== index),
         tokenReveal: {
+          ...(message.hold ? { hold: true } : {}),
           investigator,
           token,
           face: token,
@@ -4872,7 +4913,15 @@ export function handle(state: GameState, message: Message): GameState {
         return push(holding, { type: 'Forced', trigger: when }, { ...message, pending: true })
       // Nobody can respond: the token is looked at and stays in (or goes back to) the bag.
       return push(
-        { ...state, rng, chaosBag: chosen ? [...state.chaosBag, token] : state.chaosBag },
+        {
+          ...state,
+          rng,
+          chaosBag: message.hold
+            ? holding.chaosBag
+            : chosen
+              ? [...state.chaosBag, token]
+              : state.chaosBag,
+        },
         revealedThen(message.then, token, token, index),
       )
     }
@@ -5549,6 +5598,7 @@ export function handle(state: GameState, message: Message): GameState {
             investigator: investigator.id,
             round: state.round,
             location: investigator.location,
+            ...(message.opportunity ? { opportunity: true } : {}),
           },
         ],
       }
@@ -5568,7 +5618,7 @@ export function handle(state: GameState, message: Message): GameState {
           ? [{ type: 'CancelEnemyAttack' as const, enemy: enemy.id }]
           : []),
         {
-          type: 'Reactions',
+          type: 'Forced',
           trigger: {
             type: 'whenEnemyAttacks',
             enemy: enemy.id,
@@ -7319,12 +7369,26 @@ export function handle(state: GameState, message: Message): GameState {
           fightActionsThisTurn: (i.fightActionsThisTurn ?? 0) - useFight,
           ...(useTrait ? { traitActionUsed: true } : {}),
           actionsTaken: (i.actionsTaken ?? 0) + (message.actions > 0 ? 1 : 0),
+          ...(message.actions > 0 &&
+          (message.actionKind === 'investigate' ||
+            message.then.some((m) => m.type === 'BeginSkillTest' && m.kind.type === 'investigate'))
+            ? { lastInvestigateTurn: turnStartedAt(state) }
+            : {}),
           ...(message.actions > 0 ? { spentActions: spendActions(state, i, message.actions) } : {}),
         }),
       )
       // Una habilidad de acción provoca ataques de oportunidad (una vez), salvo parlamento/retirarse.
       const attacks =
-        message.actions > 0 && message.provokes ? opportunityAttacks(state, investigator) : []
+        message.actions > 0 && message.provokes
+          ? opportunityAttacks(
+              state,
+              investigator,
+              message.actionKind === 'investigate' ||
+                message.then.some(
+                  (m) => m.type === 'BeginSkillTest' && m.kind.type === 'investigate',
+                ),
+            )
+          : []
       if (message.playFromDiscard)
         return push(
           paid,
@@ -8738,20 +8802,51 @@ export function handle(state: GameState, message: Message): GameState {
         )
       }
       if (message.from.type === 'enemy') return state
-      // Lucky Charm: mueve 1 daño u horror de una carta a otra.
-      const amount = {
-        damage: message.kind === 'damage' ? 1 : 0,
-        horror: message.kind === 'horror' ? 1 : 0,
-      }
-      const removeFrom: Message =
+      // RR Moving Damage/Horror: moving is neither healing nor dealing damage.
+      const from =
         message.from.type === 'asset'
-          ? { type: 'HealAsset', asset: message.from.id, ...amount }
-          : { type: 'Heal', investigator: message.from.id, ...amount }
-      const addTo: Message =
+          ? state.assets[message.from.id]
+          : getInvestigator(state, message.from.id)
+      const to =
         message.to.type === 'asset'
-          ? { type: 'DamageAsset', asset: message.to.id, ...amount }
-          : { type: 'TakeDamage', investigator: message.to.id, ...amount, direct: true }
-      return push(state, removeFrom, addTo)
+          ? state.assets[message.to.id]
+          : getInvestigator(state, message.to.id)
+      if (
+        !from ||
+        !to ||
+        from[message.kind] < 1 ||
+        (message.from.type === message.to.type && message.from.id === message.to.id)
+      )
+        return state
+      let moved =
+        message.from.type === 'asset'
+          ? {
+              ...state,
+              assets: {
+                ...state.assets,
+                [from.id]: { ...state.assets[from.id]!, [message.kind]: from[message.kind] - 1 },
+              },
+            }
+          : updateInvestigator(state, from.id, (i) => ({
+              ...i,
+              [message.kind]: i[message.kind] - 1,
+            }))
+      if (message.to.type === 'investigator')
+        return push(
+          updateInvestigator(moved, to.id, (i) => ({ ...i, [message.kind]: i[message.kind] + 1 })),
+          { type: 'CheckDefeat', investigator: to.id },
+        )
+      const target = { ...moved.assets[to.id]!, [message.kind]: to[message.kind] + 1 }
+      moved = { ...moved, assets: { ...moved.assets, [to.id]: target } }
+      const vitals = assetVitals(target)
+      return (vitals.health !== undefined && target.damage >= vitals.health) ||
+        (vitals.sanity !== undefined && target.horror >= vitals.sanity)
+        ? push(
+            moved,
+            { type: 'DiscardAsset', asset: target.id, defeated: true },
+            { type: 'Forced', trigger: { type: 'assetDefeated', asset: target } },
+          )
+        : moved
     }
 
     case 'ReturnAssetWithTrait': {
@@ -9646,7 +9741,10 @@ function forcedAbilities(state: GameState, trigger: Trigger): Message[] {
   const fromLocations = Object.values(state.locations).flatMap((l) =>
     sourced(locationBehavior(l.id)?.forced?.(state, trigger, l), l.name),
   )
-  const fromAssets = Object.values(state.assets).flatMap((a) =>
+  const assets = Object.values(state.assets)
+  if (trigger.type === 'assetDefeated' && !state.assets[trigger.asset.id])
+    assets.push(trigger.asset)
+  const fromAssets = assets.flatMap((a) =>
     sourced(
       assetBehavior(state, a)?.forced?.(state, trigger, a),
       playerCardDef(a.code)?.name ?? a.code,
@@ -10036,7 +10134,19 @@ function updateCampaignLog(state: GameState, update: (log: CampaignLog) => Campa
  * su localización) ataca al investigador. No hay ataques en la primera acción
  * del turno si controla un apoyo que lo evita (Dr. Henry Armitage).
  */
-function opportunityAttacks(state: GameState, investigator: Investigator): Message[] {
+function opportunityAttacks(
+  state: GameState,
+  investigator: Investigator,
+  investigate = false,
+): Message[] {
+  if (
+    investigate &&
+    investigator.lastInvestigateTurn !== turnStartedAt(state) &&
+    Object.values(state.assets).some(
+      (a) => a.owner === investigator.id && assetBehavior(state, a)?.firstInvestigateSafe,
+    )
+  )
+    return []
   const safe =
     (investigator.actionsTaken ?? 0) === 0 &&
     Object.values(state.assets).some(

@@ -101,6 +101,8 @@ export interface Investigator {
   clues: number
   location: LocationId | null
   actionsRemaining: number
+  lastInvestigateTurn?: number
+  drewEnemyRound?: number
   /** Delayed action loss during the next turn (At a Crossroads). */
   nextTurnActionLoss?: number
   turnTaken: boolean
@@ -1220,6 +1222,8 @@ export type Message =
    */
   | {
       type: 'RevealTokenOutsideTest'
+      /** Keep this token out until the effect returns the whole revealed group. */
+      hold?: boolean
       investigator: InvestigatorId
       then: Extract<Message, { type: 'ScenarioSpecific' | 'PlayerCardEffect' }>
       token?: ChaosToken
@@ -2299,6 +2303,7 @@ export interface GameState {
   dilemmasResolved?: { round: number; count: number }
   /** Ataques de enemigos (para "si este enemigo te ha atacado esta ronda"). */
   enemyAttacks?: {
+    opportunity?: boolean
     enemy: EnemyId
     investigator: InvestigatorId
     round: number
@@ -2308,6 +2313,7 @@ export interface GameState {
   doomBecomesDamage?: boolean
   /** A chaos token revealed outside a skill test, held during its "when revealed" window. */
   tokenReveal?: {
+    hold?: boolean
     investigator: InvestigatorId
     token: ChaosToken
     face: ChaosToken
