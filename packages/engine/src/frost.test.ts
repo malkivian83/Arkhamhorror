@@ -7,7 +7,9 @@ import type { ChaosToken, GameState, Message } from './types'
 // Los confines de la Tierra, Helada: −1 y revela otra ficha; la segunda Helada de la
 // misma prueba detiene las revelaciones y la prueba fracasa automáticamente.
 const inv = (s: GameState) => getInvestigator(s, 'a')
+// Una ficha nombrada no sale de la bolsa; `drawn` la trata como ya sacada de ella.
 const revealing = (token: ChaosToken): Message => ({ type: 'RevealChaosToken', token })
+const drawing = (token: ChaosToken): Message => ({ type: 'RevealChaosToken', token, drawn: true })
 
 // Escenario de prueba: la calavera resuelve, en orden, las fichas indicadas.
 let skullReveals: Message[] = []
@@ -51,11 +53,33 @@ describe('Helada', () => {
   })
 
   it('la segunda Helada detiene las revelaciones pendientes', () => {
-    skullReveals = [revealing('frost'), revealing('frost'), revealing('elderThing')]
+    skullReveals = [drawing('frost'), drawing('frost'), revealing('elderThing')]
     expect(inv(investigate(['skull'])).damage).toBe(0)
     // Sin segunda Helada, la revelación pendiente se resuelve.
-    skullReveals = [revealing('frost'), revealing('elderThing')]
+    skullReveals = [drawing('frost'), revealing('elderThing')]
     expect(inv(investigate(['skull'])).damage).toBe(1)
+  })
+
+  it('solo cuentan las Heladas reveladas de la bolsa, no las selladas o nombradas', () => {
+    // Velo 0: dos Heladas que no salen de la bolsa suman −2 sin fracaso automático.
+    skullReveals = [revealing('frost'), revealing('frost')]
+    expect(inv(investigate(['skull'], 0)).clues).toBe(1)
+    // Una Helada nombrada no cuenta como la primera: la de la bolsa no fracasa.
+    skullReveals = [revealing('frost'), drawing('frost')]
+    expect(inv(investigate(['skull'], 0)).clues).toBe(1)
+  })
+
+  it('una Helada sellada (Premonición) no cuenta para la segunda', () => {
+    const game = choose(
+      during(newTestGame(), (s) => ({
+        ...withBag('frost')(s),
+        locations: { ...s.locations, A: { ...s.locations.A!, shroud: 0 } },
+        sealed: [{ investigator: 'a', code: 'x', token: 'frost' }],
+      })),
+      'action.investigate',
+    )
+    // La sellada −1 revela la de la bolsa −1: 3 − 2 = 1 contra 0, sin fracaso automático.
+    expect(inv(game).clues).toBe(1)
   })
 
   it('una Helada ignorada no modifica ni revela otra ficha', () => {

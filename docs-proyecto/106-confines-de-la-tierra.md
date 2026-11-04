@@ -2,8 +2,8 @@
 
 ## Estado y continuación
 
-Preparación inicial del 04/11/2026, sin activación jugable. Helada implementada
-en el motor el 04/11/2026 (paso 3), sin publicar. Siguiente: estado de expedición,
+Preparación inicial del 04/11/2026, sin activación jugable. Helada completa en el
+motor (paso 3, 05/11/2026); se usará en partida al llegar el prólogo. Siguiente: estado de expedición,
 compañeros y mazo ¡Tekeli-li! (pasos 4–5) antes de habilitar el escenario I.
 El pull queda impedido por cambios ajenos en `en.json`, `es.json` y
 `cardImageManifest.json` (solo reordenan claves); no se han apartado.
@@ -20,13 +20,16 @@ sin publicar, `[ ]` pendiente.
 
 **Mecánicas comunes**
 
-3. [~] Helada: símbolo, −1 y otra revelación, segunda Helada con fracaso
-   automático y detención, ignorada sin efecto, máximo ocho, textos EN/ES y
-   ayuda de ficha. Pruebas en `packages/engine/src/frost.test.ts`. Verificado
-   el 04/11/2026: suite completa (6920 pruebas; tres timeouts por carga que pasan
-   al repetirlas aisladas), tipos de motor, cartas y web, lint y formato.
-   Interpretación pendiente de contrastar: una Helada ignorada cuenta para la
-   segunda.
+3. [x] Helada, contrastada con las páginas 2–3 de la guía: −1 y otra revelación;
+   la segunda revelada _de la bolsa_ en la misma prueba detiene las revelaciones
+   y es fracaso automático (las selladas o nombradas no cuentan; Máscara de Sileno
+   y Atenea marcan sus fichas como sacadas de la bolsa); sin efecto fuera de
+   pruebas; máximo ocho entre bolsa y selladas; persiste en la bolsa de campaña.
+   Textos EN/ES y ayuda de ficha. Pruebas en `packages/engine/src/frost.test.ts`.
+   Verificado: suite completa el 04/11/2026; tras el ajuste de la bolsa, suite del
+   motor, Máscara de Sileno, Gala de invierno, tipos de motor, cartas y web, y
+   lint. Interpretación propia, sin texto en la guía: una Helada de la bolsa
+   ignorada cuenta para la segunda. Revisión visual pendiente con el prólogo.
 4. [ ] Estado de expedición en `CampaignLog`: compañeros (selección, daño/horror
    persistentes, derrota, versiones de determinación), refugio y suministros,
    compatible con guardados previos.
@@ -97,7 +100,7 @@ su backend ni una sesión de navegador.
 
 | Necesidad | Situación local y trabajo necesario |
 | --- | --- |
-| Helada | `ChaosSymbol` aún no incluye Helada. Primera ficha: −1 y otra revelación; segunda en la misma prueba: detener revelaciones y fracaso automático. Máximo ocho entre bolsa y fichas selladas. Fuera de pruebas no tiene efecto ni valor (FAQ de investigadores: con 21 o nada no suma y se puede seguir revelando o plantarse). Mantener las fichas reveladas fuera de la selección hasta terminar la prueba. |
+| Helada | Implementada (paso 3). Primera ficha: −1 y otra revelación; segunda en la misma prueba: detener revelaciones y fracaso automático. Máximo ocho entre bolsa y fichas selladas. Fuera de pruebas no tiene efecto ni valor (FAQ de investigadores: con 21 o nada no suma y se puede seguir revelando o plantarse). Mantener las fichas reveladas fuera de la selección hasta terminar la prueba. |
 | Compañero | No hay un modelo específico de expedición en `CampaignLog`. Nueve personajes, selección opcional sin compartir una misma copia, daño/horror persistentes y eliminación permanente. No entran en mazos de jugador ni abandonan juego salvo derrota; la derrota del investigador derrota al compañero. Desistir conserva su daño/horror sin eliminarlo. Hay versiones de determinación en el catálogo que deben vincularse con su personaje. |
 | ¡Tekeli-li! | Mazo especial de 16 debilidades: siete códigos con cantidades 3/3/2/2/2/2/2. Mantener un conjunto finito compartido, persistencia en los mazos de investigadores y devolución al mazo especial al resolverlas. No tratarlas como debilidades básicas comprables. |
 | Puntos de control | `CampaignScenario.allowDeckChangesAfter` ya permite bloquear compras, pero el progreso normal incrementa `scenarioIndex`. Hace falta representar decisiones, partes omitidas y reanudación sin repetir preparaciones o recompensas. |

@@ -767,7 +767,15 @@ export interface SkillTest {
   /** RR Automatic Success from a resolved token; automatic failure still prevails. */
   autoSucceed?: boolean
   /** Token held during its "when revealed" window, and what it is treated as. */
-  revealing?: { token: ChaosToken; face: ChaosToken; reverseModifierOf?: ChaosToken }
+  revealing?: {
+    token: ChaosToken
+    face: ChaosToken
+    reverseModifierOf?: ChaosToken
+    /** Taken from the chaos bag, not a sealed or named token (Frost). */
+    fromBag?: boolean
+  }
+  /** Frost tokens revealed from the chaos bag and resolved during this test. */
+  frostFromBag?: number
   /** Revealed tokens treated as another symbol; the physical token returns to the bag. */
   treatedAs?: { token: ChaosToken; face: ChaosToken }[]
   /** Solo se puede comprometer la carta superior de la pila de descartes (Habitación 245). */
@@ -1234,6 +1242,8 @@ export type Message =
       /** The held token's "after revealing" window was offered (Contingency). */
       afterWindow?: boolean
       fromBag?: boolean
+      /** `token` was already taken from the bag (Mask of Silenus, Athena). */
+      drawn?: boolean
     }
   /**
    * RR: a chaos token revealed outside a skill test by `investigator` (scenario effects,
