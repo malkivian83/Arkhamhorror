@@ -6,7 +6,7 @@ import {
   playerCardBehavior,
   playerCardDef,
   scenarioBehavior,
-  treacheryBehavior,
+  activeTreacheryBehavior,
 } from './content'
 import { EngineError } from './errors'
 import type {
@@ -73,7 +73,7 @@ export const assetsCannotReady = (state: GameState, owner: InvestigatorId): bool
     (t) =>
       t.placement.type === 'threatArea' &&
       t.placement.investigator === owner &&
-      treacheryBehavior(t.code)?.blocksAssetReady,
+      activeTreacheryBehavior(state, t)?.blocksAssetReady,
   )
 
 /** Inserta mensajes delante de la cola (se procesan antes que lo ya encolado). */
@@ -124,13 +124,13 @@ export function effectiveVitals(
     health: Math.max(
       0,
       investigator.health +
-        attached.reduce((n, t) => n + (treacheryBehavior(t.code)?.healthModifier ?? 0), 0) +
+        attached.reduce((n, t) => n + (activeTreacheryBehavior(state, t)?.healthModifier ?? 0), 0) +
         fromAssets('health'),
     ),
     sanity: Math.max(
       0,
       investigator.sanity +
-        attached.reduce((n, t) => n + (treacheryBehavior(t.code)?.sanityModifier ?? 0), 0) +
+        attached.reduce((n, t) => n + (activeTreacheryBehavior(state, t)?.sanityModifier ?? 0), 0) +
         fromAssets('sanity'),
     ),
   }
@@ -146,7 +146,7 @@ export function shroudOf(state: GameState, id: LocationId): number {
         (t.placement.type === 'location' && t.placement.location === id) ||
         t.placement.type === 'agenda',
     )
-    .reduce((sum, t) => sum + (treacheryBehavior(t.code)?.shroudModifier ?? 0), 0)
+    .reduce((sum, t) => sum + (activeTreacheryBehavior(state, t)?.shroudModifier ?? 0), 0)
   const scenario = scenarioBehavior(state.scenarioId)?.shroudModifier?.(state, location) ?? 0
   const temporary = (location.turnShroudModifiers ?? [])
     .filter((m) => m.turn === turnStartedAt(state) && turnActionTiming(state, m.owner) !== null)
@@ -200,7 +200,7 @@ function attachedModifiers(state: GameState, enemy: EnemyId) {
   return Object.values(state.treacheries)
     .filter((t) => t.placement.type === 'enemy' && t.placement.enemy === enemy)
     .flatMap((t) => {
-      const modifiers = treacheryBehavior(t.code)?.attachedEnemy
+      const modifiers = activeTreacheryBehavior(state, t)?.attachedEnemy
       return modifiers ? [modifiers] : []
     })
 }

@@ -175,6 +175,9 @@ export interface ScenarioBehavior {
   enemyPrey?: (state: GameState, enemy: Enemy) => Prey | undefined
   /** Per-investigator engagement restrictions, without granting aloof. */
   canEnemyEngage?: (state: GameState, enemy: Enemy, investigator: InvestigatorId) => boolean
+  onAllInvestigatorsEliminated?: (state: GameState) => Message[]
+  blanksTreachery?: (state: GameState, treachery: Treachery) => boolean
+  drawTekeliliInstead?: (state: GameState, investigator: InvestigatorId) => boolean
   /** Sequential movement windows and lead-chosen ordering for this scenario's rules. */
   sequentialEnemyMovement?: boolean
   /** Habilidad con la que se investiga ese Lugar (Cripta de la lámpara sepulcral). */
@@ -523,6 +526,15 @@ export function registerAct(behavior: ActBehavior): void {
 
 export function scenarioBehavior(id: string): ScenarioBehavior | undefined {
   return scenarios.get(id)
+}
+
+export function activeTreacheryBehavior(
+  state: GameState,
+  card: Treachery,
+): TreacheryBehavior | undefined {
+  return scenarioBehavior(state.scenarioId)?.blanksTreachery?.(state, card)
+    ? undefined
+    : treacheryBehavior(card.code)
 }
 
 export function treacheryBehavior(code: CardCode): TreacheryBehavior | undefined {
@@ -1002,7 +1014,7 @@ export function assetBehavior(state: GameState, asset: Asset): PlayerCardBehavio
     (t) =>
       t.placement.type === 'threatArea' &&
       t.placement.investigator === asset.owner &&
-      traits.includes(treacheryBehavior(t.code)?.blanksAssetTrait ?? '\u0000'),
+      traits.includes(activeTreacheryBehavior(state, t)?.blanksAssetTrait ?? '\u0000'),
   )
   return blank ? undefined : playerCardBehavior(asset.code)
 }

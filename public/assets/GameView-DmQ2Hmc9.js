@@ -1,0 +1,1 @@
+export{t as default}from"./GameView-DGvB90s0.js";
