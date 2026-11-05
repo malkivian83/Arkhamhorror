@@ -1,9 +1,11 @@
+import cover from '../../../../docs-proyecto/evidencias/edge-of-the-earth-portada.json'
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { expect, it } from 'vitest'
 import texts from '../../../../packages/i18n/src/edge-of-the-earth.es.json'
 import recordings from './edgeOfTheEarthNarration.json'
 import { setAppLocale } from '../i18n'
+import { campaignCover } from './campaignProgress'
 import { storyNarration } from './narration'
 import { storyBody } from './story'
 
@@ -41,4 +43,13 @@ it('offers the recording in the story modal for the displayed Spanish summary', 
   })
   await setAppLocale('en', false)
   expect(storyBody(key).narration).toBeNull()
+})
+
+it('serves the campaign cover from the selector URL', () => {
+  const path = campaignCover('edge-of-the-earth')
+  expect(path).toBe(cover.path)
+  const image = readFileSync(new URL(`../../public${path}`, import.meta.url))
+  expect(image.subarray(0, 2)).toEqual(Buffer.from([0xff, 0xd8]))
+  expect(image.length).toBe(cover.bytes)
+  expect(hash(image)).toBe(cover.sha256)
 })
