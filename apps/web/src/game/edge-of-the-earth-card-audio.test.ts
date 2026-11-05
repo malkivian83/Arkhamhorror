@@ -13,6 +13,15 @@ it('offers Spanish narration on the opening act and agenda of each Ice and Death
 
 it('serves each recorded face with its own text and the campaign voice', () => {
   expect(evidence.voiceId).toBe('hyKxCTlAqtnW188CgltM')
+  const narrativeFaces = Object.entries(edgeOfTheEarthCards)
+    .filter(([, card]) => ['agenda', 'act'].includes(card.typeCode))
+    .flatMap(([code, card]) => [
+      ...(card.flavor?.trim() ? [`${code}:front`] : []),
+      ...(card.backFlavor?.trim() ? [`${code}:back`] : []),
+    ])
+  expect(evidence.files.map(({ code, side }) => `${code}:${side}`).sort()).toEqual(
+    narrativeFaces.sort(),
+  )
   for (const entry of evidence.files) {
     const back = entry.side === 'back'
     const card = edgeOfTheEarthCards[entry.code]!

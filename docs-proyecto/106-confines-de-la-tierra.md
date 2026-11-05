@@ -130,9 +130,8 @@ plan, las resoluciones, las salidas de ambos puntos de control y las historias d
 y actualiza el registro de reproducción al completar todas las grabaciones.
 
 La preparación ofrece narración en los planes y actos iniciales de las tres
-partes de Hielo y muerte. Hay 11 caras grabadas con Salva en el registro de
-cartas. La cuota dejó pendientes el anverso de Profundidades heladas y nueve
-reversos. Se generan con
+partes de Hielo y muerte. Las 21 caras de plan y acto con texto narrativo
+están grabadas con Salva y verificadas en el registro de cartas. Se generan con
 `node scripts/generate-campaign-card-audio.mjs --campaign=edge-of-the-earth --generate`.
 
 ## Fuentes revisadas

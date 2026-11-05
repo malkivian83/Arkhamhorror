@@ -104,6 +104,96 @@
       "inputHash": "7e6db8fbdc560f439097ee2893b0bbbda68c3b8c38cec63d409a9a4d077b7c85",
       "bytes": 215710,
       "sha256": "3e8d51451bb82b080b6cf999632286449afd5f2314a612eb3452e130383bdebe"
+    },
+    {
+      "code": "08518",
+      "side": "back",
+      "text": "-¡Un momento! ¿Vengan a ver esto! -grita uno de los demás miembros del equipo mientras avanzas a duras penas por la nieve. Regresas para examinar lo que ha encontrado: un segundo rastro de huellas, pero más pequeñas y deformes de modo casi imposible.\n-¿Qué demonios podría haber dejado estas huellas? -pregunta otro miembro del grupo. Estáis perplejos. En estos páramos helados apenas existe fauna, y estas huellas no se parecen a nada que hayas visto antes. Ni siquiera a nada que puedas imaginar.\nNo tenéis que preguntaros durante mucho tiempo qué ha podido dejar esas huellas. Una forma surge de la nieve, retorcida y deforme como una mancha de tinta derramada sobre el lienzo de la realidad. Emite un extraño grito cadi familiar que el aullante viento tapa parcialmente: \"¡-li! ¡-li!\" A continuación, se lanza hacia vosotros con una velocidad aterradora.",
+      "file": "08518-back.mp3",
+      "inputHash": "ca181b39f958ae385c921a525d28ea3ea9dc05b50cd870c4f90f3dc040adbcf5",
+      "bytes": 991442,
+      "sha256": "8834f3b581c3be8bc43d71909159b925b9a46f5085d74785ddbb98171a58746c"
+    },
+    {
+      "code": "08519",
+      "side": "back",
+      "text": "Estas cosas, estas manifestaciones, no son bestias ni criaturas alienígenas como las que encontraron Dyer y Danforth en su última expedición. Ni siquiera estás seguro de que sean entidades. No tienen forma y están formadas de una sustancia casi protoplásmica que vuelve a filtrarse en el hielo al recibir daño o cuando escapáis de sus garras. Visto lo persistentes que son estas entidades y las inclementes condiciones letales de la Antártida, sabéis que no sobreviviréis a la noche si no encontráis refugio.\nMientras consideráis vuestro curso de acción, el hielo retumba bajo vuestros pies con una fuerza tremenda, emitiendo un aterrador gruñido.\n-¿Un terremoto? -pregunta un miembro de vuestro grupo tratando de hacerse oír sobre el estruendo.\n-No, es imposible -contesta otro. Os miráis con miedo. ¿Podría ser una de esas… cosas?",
+      "file": "08519-back.mp3",
+      "inputHash": "b91b5eb80df4fca93b1fe10ec65476ff1f895e8d6b269c0568d1bb8f1785cf85",
+      "bytes": 920807,
+      "sha256": "b8fe5509a68007e7d08ea6519ff37385f746be52646e3cfbbfc4ddfc7bf67df3"
+    },
+    {
+      "code": "08520",
+      "side": "back",
+      "text": "No podéis seguir. No es una ubicación ideal, pero tendréis que apañaros con el refugio que habéis encontrado. Sólo esperáis que baste para evitar que el grupo se congele… o algo peor.",
+      "file": "08520-back.mp3",
+      "inputHash": "a966061f5c412bd8bd98545f132ce8001a0fe5ea62d5a93d128dac4a47d8ce8c",
+      "bytes": 201499,
+      "sha256": "1b504f338b7dbe840e105e52bbd8cd5b5bf98a43297a6e7cfed24753d4f817bc"
+    },
+    {
+      "code": "08523",
+      "side": "back",
+      "text": "Mientras afrontáis los vientos glaciares, encontráis un rastro de huellas en la nieve que se alejan del campamento. Os detenéis para examinarlas. ¿Son huellas que han dejado los miembros del equipo desaparecidos? ¿O pertenecen a algo más… monstruoso?",
+      "file": "08523-back.mp3",
+      "inputHash": "9f2611f124326cf09c068c2f141594c276ba80648c11a895afa8885ee91a45e2",
+      "bytes": 267118,
+      "sha256": "fc926ec68a8505fea5975c42495cab351d9a620d14793c8e9674a16f052f7f40"
+    },
+    {
+      "code": "08524",
+      "side": "back",
+      "text": "Mientras afrontáis los vientos glaciares, encontráis un rastro de huellas en la nieve que se alejan del campamento. Os detenéis para examinarlas. ¿Son huellas que han dejado los miembros del equipo desaparecidos? ¿O pertenecen a algo más… monstruoso?",
+      "file": "08524-back.mp3",
+      "inputHash": "9f2611f124326cf09c068c2f141594c276ba80648c11a895afa8885ee91a45e2",
+      "bytes": 267118,
+      "sha256": "fc926ec68a8505fea5975c42495cab351d9a620d14793c8e9674a16f052f7f40"
+    },
+    {
+      "code": "08525",
+      "side": "back",
+      "text": "Cuando acaba la noche, la tormenta llega con plena ferocidad. Los gélidos vientos y la densa nevada que arrecia hacen que tu tarea sea imposible. En estas condiciones no encontrarás nunca a los miembros del equipo restantes, y aunque lo hicieras…\nSientes un gran nudo de culpa y desesperación en la garganta. Es imposible que sobrevivan a esta tormenta sin provisiones y un refugio. Tener que elegir entre tu vida y la suya es una carga que pesará sobre ti durante lo que te quede de vida. Y tendrás suerte si dura más de un par de días.",
+      "file": "08525-back.mp3",
+      "inputHash": "1c05c91db918f17a7598e4d702f646f5a0fab5f064f923a6b618772057c1a0e8",
+      "bytes": 606501,
+      "sha256": "47334f113c9b0d62f89fa57c13622d78018c592605897bbcccf0db3d5d165ac7"
+    },
+    {
+      "code": "08526",
+      "side": "back",
+      "text": "La tormenta se acerca cada vez más rápido a medida que la noche toca a su fin. El tiempo no tardará en volverse demasiado letal como para proseguir la búsqueda. Si queda alguien fuera, dudas que vaya a sobrevivir, y tampoco lo harás tú si sigues mucho tiempo más sin refugio. Vuelves al campamento con el peso de la culpa en el corazón y la mente confusa por ese terrible ruido que supura en su interior.",
+      "file": "08526-back.mp3",
+      "inputHash": "e233b59a959b0b760bf9ae602661671f219d264dc0d03ead5c4ad7737bb37079",
+      "bytes": 441825,
+      "sha256": "f20705841bb7c3530a6074385687c7edae899a984b3e119d070da4f82c219a50"
+    },
+    {
+      "code": "08544",
+      "side": "back",
+      "text": "Este lugar no es lo que parece. Tienes la sensación de haberte colado en un sitio antiguo y terrible, y ahora su ira está brotando a tu alrededor.",
+      "file": "08544-back.mp3",
+      "inputHash": "d5663615438879c15ac25368bd9613d19a49eb6db10996ba068beded416af2fd",
+      "bytes": 158031,
+      "sha256": "6fd3eb1704b0df19418dfbf153af5ba25d387d09f3bf69d53de5da6be6b96809"
+    },
+    {
+      "code": "08545",
+      "side": "front",
+      "text": "Los violentos terremotos han alcanzado su punto culminante. Tienes la impresión de que todo el campo de hielo podría venirse abajo en cualquier momento, tirándote al gélido océano, o algo peor si tu teoría sobre el origen subterráneo de estas criaturas es correcta.",
+      "file": "08545-front.mp3",
+      "inputHash": "db7b7c51a4109b00ee9a9dab4119dbaeedaefab4cbe1f845651fb034efffa7f0",
+      "bytes": 287181,
+      "sha256": "65deaa9b2c4dbf2804a25795f99771606c16a530029827f5e728ad7650699691"
+    },
+    {
+      "code": "08545",
+      "side": "back",
+      "text": "La única advertencia es una fina telaraña de grietas que recorre el suelo bajo tus pies, y luego una repentina explosión de bruna y miasma como la tinta que se produce a tu alrededor. La fuerza te tira al suelo. Te arrastras desesperadamente por el frío hielo mientras el miasma trata de alcanzarte. Un sonido incomprensible, como el de un furioso remolino, te llena los oídos. Después se produce un atronador chasquido y caes… no, te deslizas… por el hielo hacia las gélidas aguas.\nEs un milagro que conserves la consciencia. Haces acopio de todas tus fuerzas y te aferras al hielo justo antes de precipitarte. Por fin logras volverte a encaramar al borde, mirando con pánico hacia el horizonte, pero no hay ni rastro de miasma ni de la bruma. La grieta en el campo de hielo se extiende cientos de metros frente a ti, separándote de tus perseguidores. De algún modo, has logrado escapar sin pretenderlo… aunque tardarás en olvidar esta experiencia cercana a la muerte.",
+      "file": "08545-back.mp3",
+      "inputHash": "bc0b9ec9bc3007206282955b2ecc7a99d908248dbf86bc4cb69e3bcaf36f4b2f",
+      "bytes": 1123099,
+      "sha256": "dd15b650c3cfce2c188b3f886b13380e5daac81323f23cc69abb0591a22f7ec7"
     }
   ]
 }
