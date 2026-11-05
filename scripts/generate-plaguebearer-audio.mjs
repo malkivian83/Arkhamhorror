@@ -9,6 +9,7 @@ const root = 'apps/web/public/local-assets/story/audio/es'
 const evidencePath = 'docs-proyecto/evidencias/plaguebearer-narracion.json'
 const sourcePath = 'packages/i18n/src/plaguebearer.es.json'
 const source = JSON.parse(readFileSync(sourcePath, 'utf8')).story
+const published = JSON.parse(readFileSync('apps/web/public/local-assets/story/es.json', 'utf8'))
 const settings = {
   model_id: 'eleven_multilingual_v2',
   voice_settings: {
@@ -31,6 +32,8 @@ const entries = [
   'resolution3',
 ].map((suffix) => {
   if (!source[suffix]) throw new Error(`Falta ${suffix}`)
+  if (published[`story.plaguebearer.${suffix}`] !== source[suffix])
+    throw new Error(`El relato ${suffix} no está publicado en el catálogo que habilita el audio`)
   const text = source[suffix]
     .split(/\n\s*\n/)
     .filter((p) => !/^[»•]/.test(p.trim()))

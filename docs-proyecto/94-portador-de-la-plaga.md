@@ -51,6 +51,9 @@ el PDF.
 - Corrección de CI #339: registrar la referencia del escenario, añadir sus 90
   miniaturas y completar los inventarios compartidos. Pasan las 151 pruebas de
   referencia/imágenes y la verificación de los 4718 originales y miniaturas.
+- Portada local extraída de la guía ES p. 1 y relatos publicados en el catálogo
+  oficial ES que habilita el reproductor. Probado el cuerpo real del modal para
+  los siete audios; el catálogo se revalida al recargar para evitar datos antiguos.
 - Siguiente: escenario II; revisar Defender y Arkham caído antes de habilitarlo.
   Integrar los cambios remotos con rebase antes de subir.
 

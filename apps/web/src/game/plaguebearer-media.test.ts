@@ -7,7 +7,18 @@ import { fallbackCards } from './fallbackCards'
 import { cardImages } from './cards'
 import { chaosHelp } from './chaosHelp'
 import { localeData } from './localeData'
+import { campaignCover } from './campaignProgress'
+import cover from '../../../../docs-proyecto/evidencias/plaguebearer-portada.json'
 import media from '../../../../packages/cards/src/call-of-the-plaguebearer/media.json'
+
+it('publica la portada original de la guía en la ruta del selector', () => {
+  expect(campaignCover('call-of-the-plaguebearer')).toBe(cover.path)
+  const bytes = readFileSync(fileURLToPath(new URL(`../../public${cover.path}`, import.meta.url)))
+  expect(bytes.subarray(0, 2)).toEqual(Buffer.from([255, 216]))
+  expect(bytes.length).toBe(cover.bytes)
+  expect(createHash('sha256').update(bytes).digest('hex')).toBe(cover.sha256)
+  expect([cover.width, cover.height]).toEqual([448, 560])
+})
 
 it('ofrece Trasnochadores y reserva los siguientes escenarios como pendientes', () => {
   const s = startScenario(newCampaign('call-of-the-plaguebearer', ['joe'], 'standard'), 42, true)

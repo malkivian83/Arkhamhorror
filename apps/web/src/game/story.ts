@@ -20,7 +20,8 @@ const official = ref<Record<string, Record<string, string>>>({})
 async function loadOfficial(locale: string) {
   if (official.value[locale]) return
   try {
-    const response = await fetch(`/local-assets/story/${locale}.json`)
+    // El catálogo cambia al publicar relatos; revalidarlo aunque los recursos locales se cacheen.
+    const response = await fetch(`/local-assets/story/${locale}.json`, { cache: 'no-cache' })
     const type = response.headers.get('content-type') ?? ''
     const texts = response.ok && type.includes('json') ? await response.json() : {}
     official.value = { ...official.value, [locale]: texts }

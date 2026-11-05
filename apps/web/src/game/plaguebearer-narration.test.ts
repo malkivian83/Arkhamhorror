@@ -1,12 +1,50 @@
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { expect, it } from 'vitest'
+import { afterEach, expect, it, vi } from 'vitest'
 import source from '../../../../packages/i18n/src/plaguebearer.es.json'
 import evidence from '../../../../docs-proyecto/evidencias/plaguebearer-narracion.json'
 import { storyNarration } from './narration'
+import { setAppLocale } from '../i18n'
+
+afterEach(() => vi.unstubAllGlobals())
 
 const hash = (value: string | Buffer) => createHash('sha256').update(value).digest('hex')
+
+it('el cuerpo real del modal reconoce los siete relatos oficiales y ofrece sus reproductores', async () => {
+  vi.stubGlobal(
+    'fetch',
+    vi.fn(async (url: string) => {
+      const locale = /^\/local-assets\/story\/(en|es)\.json$/.exec(url)?.[1]
+      if (!locale) throw new Error(`Petición inesperada: ${url}`)
+      const text = readFileSync(
+        fileURLToPath(new URL(`../../public/local-assets/story/${locale}.json`, import.meta.url)),
+        'utf8',
+      )
+      return new Response(text, { status: 200, headers: { 'content-type': 'application/json' } })
+    }),
+  )
+  const { storyBody } = await import('./story')
+  await setAppLocale('es', false)
+  await vi.waitFor(() =>
+    expect(storyBody('story.plaguebearer.prologue').narration).toBe(
+      storyNarration('story.plaguebearer.prologue', 'es'),
+    ),
+  )
+  for (const recording of evidence.files) {
+    const body = storyBody(recording.key)
+    expect(body.official, recording.key).toBe(true)
+    expect(body.officialLocale).toBeNull()
+    expect(body.narration).toBe(`/local-assets/story/audio/es/${recording.file}`)
+    const narrative = body.paragraphs
+      .filter((p) => p.kind === 'text')
+      .map((p) => p.spans.map((s) => s.text).join(''))
+      .join('\n\n')
+    expect(narrative).toBe(recording.text)
+  }
+  expect(storyBody('story.plaguebearer.setup').narration).toBeNull()
+  expect(fetch).toHaveBeenCalledWith('/local-assets/story/es.json', { cache: 'no-cache' })
+})
 
 /** Recorre todos los fotogramas MPEG-1 Layer III, independientemente del generador. */
 function duration(bytes: Buffer): number {
