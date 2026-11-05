@@ -64,6 +64,7 @@ export { demoInvestigators, demoScenario } from './demo'
 export { midwinterGala } from './midwinter-gala/gala'
 export { murderAtTheExcelsiorHotel } from './excelsior/excelsior'
 export { carnevaleOfHorrors } from './carnevale/scenario'
+export { lateRisers } from './call-of-the-plaguebearer/scenario'
 export { LOCATIONS as CARNEVALE_LOCATIONS } from './carnevale/setup'
 export { SERVITORS as CARNEVALE_SERVITORS } from './carnevale/servitors'
 export {

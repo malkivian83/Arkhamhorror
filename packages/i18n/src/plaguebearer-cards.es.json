@@ -1,0 +1,154 @@
+{
+  "78001": {
+    "name": "Trasnochadores",
+    "typeCode": "scenario",
+    "text": "[skull]: −X, la distancia al Laboratorio Omega\n[cultist]: −3; si tienes éxito puedes retirar una barricada de un Lugar conectado\n[tablet]: −2; si fracasas, muévete un Lugar hacia el Laboratorio Omega.",
+    "backText": "[skull]: −X, dos veces la distancia al Laboratorio Omega\n[cultist]: −6; si tienes éxito puedes retirar una barricada de un Lugar conectado\n[tablet]: −3; al terminar esta prueba muévete un Lugar hacia el Laboratorio Omega."
+  },
+  "78002": {
+    "name": "Atrapado",
+    "typeCode": "agenda",
+    "text": "Al final de la ronda, en Laboratorio Omega descarta cada Terror de tu zona de amenaza y recibe 1 horror por cada una.",
+    "backText": "Descarta todos los Esclavos mentales en juego. Si Laboratorio Omega está sin revelar, retira sus barricadas y revélalo. Baraja el descarte y los Solucionadores apartados en el mazo de encuentros. Cada investigador prueba voluntad (3); si fracasa se mueve al Laboratorio Omega."
+  },
+  "78003": {
+    "name": "Búsqueda frenética",
+    "typeCode": "agenda",
+    "text": "Al final de la ronda, en Laboratorio Omega descarta cada Terror de tu zona de amenaza y recibe 1 horror por cada una.",
+    "backText": "Descarta todos los Esclavos mentales en juego. Busca un Solucionador y un Esclavo mental en mazo y descarte y hazlos aparecer en El Túnel y Laboratorio Omega respectivamente. Cada investigador prueba voluntad (3); si fracasa se mueve al Laboratorio Omega."
+  },
+  "78004": {
+    "name": "No hay salida",
+    "typeCode": "agenda",
+    "text": "Al final de la ronda, en Laboratorio Omega descarta cada Terror de tu zona de amenaza y recibe 1 horror por cada una.",
+    "backText": "Cada investigador no derrotado sufre 1 trauma físico. Resuelve la resolución 1."
+  },
+  "78005": {
+    "name": "Sin buenas ideas",
+    "typeCode": "act",
+    "text": "No puedes entrar en Lugares con barricadas. [action]: gasta hasta 2 pistas entre los investigadores de tu Lugar para retirar tantas barricadas de un Lugar conectado. Objetivo: entrar en Laboratorio Omega.",
+    "backText": "Pon en juego Vestíbulo, Laboratorio Alfa, Laboratorio Delta y El Túnel con sus barricadas impresas. Baraja los Suplicantes retorcidos apartados en el mazo de encuentros."
+  },
+  "78006": {
+    "name": "Derribar la montaña",
+    "typeCode": "act",
+    "text": "No puedes entrar en Lugares con barricadas. [action]: gasta hasta 2 pistas entre los investigadores de tu Lugar para retirar tantas barricadas de un Lugar conectado. Objetivo: entrar en El Túnel.",
+    "backText": "Pon en juego Escalera estrecha. Haz aparecer Primero de muchos en la Morgue y Greyson en El Túnel. Si entraste desde Pasillo destartalado, Greyson entra agotada; de lo contrario anota que hiciste saltar las alarmas."
+  },
+  "78007": {
+    "name": "Escila y Caribdis",
+    "typeCode": "act",
+    "text": "No puedes entrar en Lugares con barricadas. [action]: gasta hasta 2 pistas entre los investigadores de tu Lugar para retirar tantas barricadas de un Lugar conectado. Objetivo: avanza cuando un enemigo Élite entre en la zona de victoria.",
+    "backText": "Si Greyson está en la zona de victoria, resuelve la resolución 2. De lo contrario resuelve la resolución 3."
+  },
+  "78008": {
+    "name": "Morgue",
+    "typeCode": "location"
+  },
+  "78009": {
+    "name": "Laboratorio Omega",
+    "typeCode": "location",
+    "text": "Miasma. Barricada (1 por investigador). Al comienzo de tu turno aquí, recibe 1 daño o descarta hasta una traición Terror y róbala. Victoria 1."
+  },
+  "78010": {
+    "name": "Vestíbulo",
+    "typeCode": "location",
+    "text": "Los enemigos aquí reciben −1 a combate y −1 a evitar, hasta un mínimo de 1."
+  },
+  "78011": {
+    "name": "Laboratorio Alfa",
+    "typeCode": "location",
+    "text": "Barricada (1 por investigador). [action][action]: Investigar con combate en lugar de intelecto. Si tienes éxito, busca un evento entre las 9 primeras cartas de tu mazo y róbalo; recuerda que has apagado un fuego. Límite de grupo una vez por partida. Victoria 1."
+  },
+  "78012": {
+    "name": "Laboratorio Delta",
+    "typeCode": "location",
+    "text": "Barricada (1 por investigador). Cuando investigues, puedes aumentar el velo en 4 para esta investigación. Si tienes éxito, los investigadores aquí pueden gastar 3 pistas por investigador para poner en juego Pasillo destartalado. Victoria 1."
+  },
+  "78013": {
+    "name": "El Túnel",
+    "typeCode": "location",
+    "text": "Seguro. Barricada (3 por investigador). Después de evitar un enemigo aquí, si no hay enemigos preparados aquí, puedes moverte inmediatamente a un Lugar conectado."
+  },
+  "78014": {
+    "name": "Escalera estrecha",
+    "typeCode": "location",
+    "text": "Si no hay pistas aquí, obtiene: [action][action], devuelve todas tus pistas a la reserva: Desistir. Victoria 2."
+  },
+  "78015": {
+    "name": "Pasillo destartalado",
+    "typeCode": "location",
+    "text": "[action], gasta 1 pista: Retira hasta 3 barricadas de El Túnel. [action][action]: Toma el control del Maletín sospechoso puesto aparte. Victoria 1."
+  },
+  "78016": {
+    "name": "Agente Greyson",
+    "typeCode": "enemy",
+    "text": "Alerta. Represalia. [action]: Negociar, prueba de intelecto (4); si tienes éxito evita automáticamente a Greyson. Mientras esté preparada, los investigadores y enemigos de su Lugar no pueden moverse ni ser movidos. Victoria 2."
+  },
+  "78017": {
+    "name": "Maletín sospechoso",
+    "typeCode": "asset",
+    "text": "[free], agota y revela una ficha del caos: Obtén 3 recursos. Si es calavera, sectario o tablilla, dale la vuelta y resuelve la historia. Obligado: exílialo si fuera a abandonar el juego o fueras derrotado.",
+    "backText": "Anota que este investigador se ha inyectado un reactivo puro. Aparta el maletín; otro investigador que no se haya inyectado un reactivo puede tomarlo y ponerlo en juego."
+  },
+  "78018": {
+    "name": "Primero de muchos",
+    "typeCode": "enemy",
+    "text": "Cazador. Descomunal. Presa: más traiciones Terror. Después de infligirle daño mientras estés en un Lugar Miasma, recibe 1 horror. Victoria 2."
+  },
+  "78250": {
+    "name": "Solucionador de la Agencia",
+    "typeCode": "enemy",
+    "text": "Cazador. Represalia. Después de que te ataque en la fase de enemigos, deja de enfrentarlo y muévete un Lugar alejándote del Lugar Seguro más cercano."
+  },
+  "78251": {
+    "name": "Destruyendo pruebas",
+    "typeCode": "treachery",
+    "text": "Vincula a tu Lugar. Antes de que un investigador salga, descarta esta carta e inflige 3 daños a cada investigador y enemigo aquí. [action]: Prueba de agilidad (3); si tienes éxito descarta esta carta. Tras revelar una ficha, puedes terminar tu turno para ignorarla y tener éxito automático."
+  },
+  "78252": {
+    "name": "Agente en pánico",
+    "typeCode": "enemy",
+    "text": "Alerta. Después de hacer un ataque de oportunidad, inflige 1 daño a cada investigador de su Lugar y evítalo automáticamente."
+  },
+  "78253": {
+    "name": "Fuego de supresión",
+    "typeCode": "treachery",
+    "text": "Revelación: Prueba de agilidad (4). Si fracasas, muévete un Lugar alejándote del Lugar Seguro más cercano. Si fracasas por 2 o más, recibe 2 daños."
+  },
+  "78256": {
+    "name": "Manos dormidas",
+    "typeCode": "treachery",
+    "text": "Pon esta carta en tu zona de amenaza. Durante tu turno, recibe 2 daños y descártala como habilidad rápida para obtener 1 acción. Al final de tu turno, recibe 1 horror."
+  },
+  "78257": {
+    "name": "Suplicante retorcido",
+    "typeCode": "enemy",
+    "text": "Cazador. Presa: más traiciones Terror. Sus ataques infligen +1 daño y +1 horror si tienes una traición Terror en tu zona de amenaza."
+  },
+  "78258": {
+    "name": "Bajo la piel",
+    "typeCode": "treachery",
+    "text": "Pon esta carta en tu zona de amenaza. Después de investigar o combatir con éxito, descarta 1 carta al azar de tu mano. [action][action]: Descarta esta carta."
+  },
+  "78284": {
+    "name": "Ansia viva",
+    "typeCode": "treachery",
+    "text": "Revelación: Prueba de voluntad (4). Si fracasas, muévete un Lugar hacia el Lugar Miasma más cercano. Si fracasas por 2 o más, recibe 2 horrores."
+  },
+  "78285": {
+    "name": "Otra persona",
+    "typeCode": "treachery",
+    "text": "Pon esta carta en tu zona de amenaza. Cada vez que te muevas, pierde 1 recurso. Al final del turno, prueba de voluntad (3); si tienes éxito descarta esta carta. En un Lugar Miasma puedes recibir 1 horror para tener éxito automático."
+  },
+  "78288": {
+    "name": "Esclavo mental",
+    "typeCode": "enemy",
+    "text": "Indiferente. Errante (Lugar Miasma más cercano). Al final de la fase de enemigos, si está en un Lugar Miasma, coloca 1 perdición sobre este enemigo."
+  },
+  "78289": {
+    "name": "Esclavo devoto",
+    "typeCode": "enemy",
+    "text": "Indiferente. Errante (Lugar Miasma más cercano). Después del paso de movimiento Cazador, si está en un Lugar Miasma, busca un Esclavo mental en el mazo y descarte de encuentros y hazlo aparecer aquí. Victoria 1."
+  }
+}

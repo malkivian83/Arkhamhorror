@@ -1,0 +1,82 @@
+{
+  "voiceId": "z3kTTwYbQrmL7ckdGcJi",
+  "voiceName": "Martin Osborne - Polished and Intense",
+  "language": "es",
+  "sourcePath": "packages/i18n/src/plaguebearer.es.json",
+  "format": "mp3_44100_128",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.15,
+      "speed": 0.95,
+      "use_speaker_boost": true
+    }
+  },
+  "files": [
+    {
+      "key": "story.plaguebearer.prologue",
+      "file": "plaguebearer-prologue-martin-osborne.mp3",
+      "text": "Retener las fuerzas de la oscuridad nunca ha sido tarea fácil ni segura. Tus últimos empeños te dejaron ingresado en el hospital de Santa María. No te arrepientes de tus atrevidas acciones, pero la hemorragia interna seguramente te hace desear haber tenido más cuidado.\n\nA medida que pasan las semanas en cuidados intensivos, tu mente se concentra enormemente en la muerte. A pesar de que el hospital está a la vanguardia de la medicina moderna, muchos pacientes experimentan finales repentinos y trágicos. Agradeces a tu estrella de la suerte que tus heridas se curen, como te dicen tus médicos.\n\nPero hacia el final de tu mes en el Santa María, te encuentras gravemente enfermo. Si bien la Dra. Maheswaran no te dirá exactamente qué va mal, la situación está clara como el agua: tu estado se ha convertido en una cuestión de vida o muerte. La doctora da rodeos cuando habla del tema, pero su enjuto colega de ojos vivos te trata como una causa perdida.\n\nLos momentos restantes son borrosos. Ser llevado a cirugía. Dos figuras con atuendo quirúrgico gritándose la una a la otra. Un dolor agudo y punzante. Un par de inquietantes ojos esmeralda...",
+      "characters": 1147,
+      "inputHash": "277a17367c673f52dc3e5ec903b4b7be451bd42aa63b657d438851bcc6480047",
+      "sha256": "3d051fb1df938660747d69d947aa4a84b64a196f9b58c19cf58232059a033860",
+      "bytes": 1429881
+    },
+    {
+      "key": "story.plaguebearer.intro",
+      "file": "plaguebearer-intro-martin-osborne.mp3",
+      "text": "3:40 p. m.\n\nEl tictac de un reloj en la pared. Tu mente descansa en el espacio que se extiende entre la consciencia y el letargo. Giras tu cabeza hacia un lado y pruebas a abrir un ojo.\n\nUn cadáver desfigurado reposa en una mesa delante de ti.\n\nTe incorporas de golpe y miras a tu alrededor. Una amplia habitación. Un olor acre. Unas pocas luces que cuelgan del techo. Cadáveres. Varios. Y un ruidoso reloj que no para de avanzar.\n\n3:42 p. m.\n\nTe das cuenta, no sin cierto desazón, de que estás en una morgue.\n\nTe bajas de una fría mesa de piedra y paras un instante para tomar aliento y asegurarte de que no sea una horrible pesadilla. Desgraciadamente, todo es muy real.\n\nColocadas junto a tu mesa están tus pertenencias, dispersas en bandejas etiquetadas con tu nombre y la fecha. Mientras te reconforta el vestirte, no puedes evitar mirar a las otras mesas.\n\nLos cadáveres están en un estado deplorable. El color de sus venas es de un verde esmeralda poco saludable y su carne está... retorcida. Extremidades en ángulos imposibles, rasgos aberrantes. Lo peor es una enorme y grotesca “cosa”, un ser con lo que parecen ser partes humanas y de ciervo mezcladas. Te estremeces al pensar qué podría haber hecho eso a un cuerpo humano.\n\nAntes de que puedas pararte a pensarlo más detenidamente, oyes un disparo en una estancia cercana. Miras alrededor y ves, para tu desgracia, que la puerta de salida tiene varios muebles apilados delante. Peor aún, un extraño gas se cuela lentamente por debajo de la puerta. Un gas del mismo verde insano que tienen las venas de tus “compañeros” de habitación.\n\nHoy va a ser uno de esos días.",
+      "characters": 1627,
+      "inputHash": "61c557fd58c0235665616593223c10ee0d42217c7e21f9bf633962e90c99161f",
+      "sha256": "a83d6761c9b413df33f17d6b0fe021b0a389670b995dd2830879eb7900b28aff",
+      "bytes": 2001231
+    },
+    {
+      "key": "story.plaguebearer.hidden",
+      "file": "plaguebearer-hidden-martin-osborne.mp3",
+      "text": "¿Puedes oírlo? La llamada es antigua.\n\nUn coro fúnebre, cantado por milenios es todo lo que vive y muere.\n\nEscucha la llamada. Sirve a mi causa.\n\nEs sólo cuestión de tiempo.",
+      "characters": 173,
+      "inputHash": "12642e2d2373b0680e0002efef2f67b322f0d0be0304ad806256d5bbb5c5093f",
+      "sha256": "121b1d4ad0b5d2e81d834c48f645e359000d31e6e48745a58105c6652e276305",
+      "bytes": 261685
+    },
+    {
+      "key": "story.plaguebearer.reagent",
+      "file": "plaguebearer-reagent-martin-osborne.mp3",
+      "text": "Mientras rebuscas en el interior tratando de encontrar algo de valor, te pinchas con una aguja suelta que había dentro. Apartas rápidamente la mano, pero ya es tarde y ves cómo un brillante líquido verde empieza a correr por tus venas. Tu cabeza comienza a dar vueltas y tu visión se desvanece por un momento. Cuando vuelves a ver con claridad, todo está teñido con un halo rojizo. Sientes un irrefrenable deseo de romper algo o a alguien. Sólo esperas que estas ansias se apacigüen con el tiempo.",
+      "characters": 497,
+      "inputHash": "3e1a23aef850cbc6600bf8a731842e19903304aaf01469be0476f65c9f4b23a7",
+      "sha256": "36c5ef65a7fb0fa8b993c3958c6abc71d997f92bc42e43712a1d43e0a2d5a78a",
+      "bytes": 614025
+    },
+    {
+      "key": "story.plaguebearer.resolution1",
+      "file": "plaguebearer-resolution1-martin-osborne.mp3",
+      "text": "Te saca de la inconsciencia un fuerte tirón del brazo.\n\n“¿Amigo? Amigo, ¿está bien?”.\n\nEl corpulento hombre que ves ante ti tiene una expresión de preocupación en su cara. Al verte despertar sonríe ampliamente. “Gracias a Dios, los clientes muertos no suelen ser buenos para los negocios”.\n\nSe echa un trapo por encima del hombro y te extiende una mano. “Soy Hibb. Parece que ha cometido algunos excesos, amigo”.\n\nTú protestas. La instalación. Los monstruos. Los Agentes. ¡El gas!\n\n“No sé de qué me hablas. Estás en mi local, el Motel Hibb, el mejor bar clandestino que puedas pagar. Probablemente bebiste demasiado. Te encontré desmayado en uno de los cuchitriles. Tan simple como eso”.\n\nInsistes. Si esto es un bar clandestino, ¿dónde están los clientes? “Tiene gracia, ese gas que mencionaste. Es lo único que ha salido de tu boca que tiene sentido. Pero antes de nada, será mejor que comas algo”.",
+      "characters": 900,
+      "inputHash": "7f5837efd75fe981e1e087fd00e49bfdfa96cc46e6660a4ae5a55d9e0e6b9ab6",
+      "sha256": "c53eefd55e8fbc072c9173290ddb55d146139c2c0beb9888929b3e73401540c4",
+      "bytes": 1158625
+    },
+    {
+      "key": "story.plaguebearer.resolution2",
+      "file": "plaguebearer-resolution2-martin-osborne.mp3",
+      "text": "Abres la trampilla y subes hasta dar con tus huesos en algún tipo de almacén. Te apresuras y abres una puerta que da a... un sucio bar. Sobresaltado miras fijamente el lugar; ¿podría realmente estar este lugar encima de la extraña instalación de la que acabas de salir?\n\nEscuchas a alguien aclarándose la garganta detrás de ti y al girarte acabas cara a cara con un hombre en delantal que te apunta con una escopeta. “No te reconozco, amigo. Y ellos me dijeron que debería despachar a cualquiera que no conociera”.\n\nTras un instante de tensión, el hombre baja el arma. “Cáspita, si ni siquiera está cargada, no soy ningún asesino. Nunca he tenido el valor. Sólo... si alguien de la Agencia pregunta... diles que traté de pararte, ¿ok?”.\n\nTe ofrece una fornida mano, que aceptas con reservas. “Me llamo Hibbert, llámame Hibb. Este es mi Motel”.\n\nPreguntas sobre la instalación que hay bajo tus pies. “Es la instalación Brook, donde los Sastres investigan los sucesos extraños locales. Ellos me pagan para que les proporcione una tapadera y no haga preguntas. Así que no puedo contarte más”.\n\nInsistes. ¡Los monstruos! ¡El gas! “Me parece que tengo malas noticias para ti, amigo. Eso no está ocurriendo sólo ahí abajo. Anda, ven y siéntate. Tienes cara de que te comerías un brazo”.",
+      "characters": 1280,
+      "inputHash": "9be4da623392659483383408f555a255e07f34446306fd4348c4140cb83206ed",
+      "sha256": "bc10575f38ed862abcfb89d033126e3505387ff84baf2f3e0c0663ea8451fbbf",
+      "bytes": 1548999
+    },
+    {
+      "key": "story.plaguebearer.resolution3",
+      "file": "plaguebearer-resolution3-martin-osborne.mp3",
+      "text": "Mientras asciendes por la escalera destartalada, Greyson te explica. “Trabajo para una Agencia llamada los Sastres. Nos ocupamos de las cosas que salen por la noche. Esta instalación es Brook, nuestra base de investigación. No sé cómo dio con sus huesos aquí, pero si usted no es uno de esos monstruos, entonces estamos en el mismo bando”.\n\n“Las cosas se están poniendo feas ahí fuera, en Arkham. Sea lo que sea esta niebla, se está diseminando. He estado haciendo limpieza abajo, pero nuestro portero y contacto local podrá contarte más de la situación”.\n\nGreyson abre la trampilla al final de las escaleras, revelando un mugriento bar. “¿Hibb? Tenemos visitantes. Te importaría prepararles algo de comer”. Un hombre corpulento sonríe, te ofrece un apretón de manos y se pone a trabajar.",
+      "characters": 788,
+      "inputHash": "cf0232f5df9035dab619ea34d33f1a782d2df6f0cf0ea6d3630d7a6cba5074aa",
+      "sha256": "033fa9bd0815cbe34aee3189b62a4669fc92eff0e6669113742a9e8c5de45061",
+      "bytes": 996039
+    }
+  ]
+}

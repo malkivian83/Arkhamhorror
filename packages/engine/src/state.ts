@@ -485,30 +485,37 @@ export function bestByPrey(
     return preferred.length ? preferred : candidates
   }
   const value = (i: Investigator) =>
-    prey.type === 'mostAssets'
-      ? Object.values(state?.assets ?? {}).filter((a) => a.owner === i.id && a.code === prey.code)
-          .length
-      : prey.type === 'fewestCards'
-        ? -i.hand.length -
-          Object.values(state?.treacheries ?? {}).filter(
-            (t) =>
-              t.hidden && t.placement.type === 'threatArea' && t.placement.investigator === i.id,
-          ).length
-        : prey.type === 'mostResources'
-          ? i.resources
-          : prey.type === 'mostClues'
-            ? i.clues
-            : prey.type === 'mostHorror'
-              ? i.horror
-              : prey.type === 'mostRemainingSanity'
-                ? i.sanity - i.horror
-                : prey.type === 'lowestRemainingSanity'
-                  ? i.horror - i.sanity
-                  : prey.type === 'lowestRemainingHealth'
-                    ? i.damage - i.health
-                    : prey.type === 'highestSkill'
-                      ? i.skills[prey.skill]
-                      : -i.skills[prey.skill]
+    prey.type === 'mostTreacheries'
+      ? Object.values(state?.treacheries ?? {}).filter(
+          (t) =>
+            t.placement.type === 'threatArea' &&
+            t.placement.investigator === i.id &&
+            t.traits?.includes(prey.trait),
+        ).length
+      : prey.type === 'mostAssets'
+        ? Object.values(state?.assets ?? {}).filter((a) => a.owner === i.id && a.code === prey.code)
+            .length
+        : prey.type === 'fewestCards'
+          ? -i.hand.length -
+            Object.values(state?.treacheries ?? {}).filter(
+              (t) =>
+                t.hidden && t.placement.type === 'threatArea' && t.placement.investigator === i.id,
+            ).length
+          : prey.type === 'mostResources'
+            ? i.resources
+            : prey.type === 'mostClues'
+              ? i.clues
+              : prey.type === 'mostHorror'
+                ? i.horror
+                : prey.type === 'mostRemainingSanity'
+                  ? i.sanity - i.horror
+                  : prey.type === 'lowestRemainingSanity'
+                    ? i.horror - i.sanity
+                    : prey.type === 'lowestRemainingHealth'
+                      ? i.damage - i.health
+                      : prey.type === 'highestSkill'
+                        ? i.skills[prey.skill]
+                        : -i.skills[prey.skill]
   const best = Math.max(...candidates.map(value))
   return candidates.filter((i) => value(i) === best)
 }

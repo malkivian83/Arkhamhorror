@@ -1,3 +1,5 @@
+import plaguebearer from './plaguebearer.es.json'
+import plaguebearerCardsData from './plaguebearer-cards.es.json'
 /**
  * Todo lo que necesita la web en español: textos de interfaz y catálogos de cartas.
  * Un módulo por idioma para que el navegador solo descargue el que se usa (doc 100, O1).
@@ -22,8 +24,12 @@ export const messages = {
   galaCards,
   campaign: {
     ...base.campaign,
-    names: { ...base.campaign.names, 'night-of-the-zealot': zealot.campaignName },
-    scenario: { ...base.campaign.scenario, ...zealot.scenarios },
+    names: {
+      ...base.campaign.names,
+      'night-of-the-zealot': zealot.campaignName,
+      'call-of-the-plaguebearer': plaguebearer.campaignName,
+    },
+    scenario: { ...base.campaign.scenario, ...zealot.scenarios, ...plaguebearer.scenarios },
   },
   setup: {
     ...base.setup,
@@ -31,20 +37,29 @@ export const messages = {
       ...base.setup.descriptions,
       'night-of-the-zealot': zealot.description,
       'the-dunwich-legacy': dunwich.description,
+      'call-of-the-plaguebearer': plaguebearer.description,
     },
   },
   story: {
     ...base.story,
+    plaguebearer: plaguebearer.story,
     ...dunwich.story,
     zealot: zealot.zealot,
     theGathering: zealot.theGathering,
     midnightMasks: zealot.midnightMasks,
     devourerBelow: zealot.devourerBelow,
     edgeOfTheEarth: edgeOfTheEarth.story,
-    note: { ...base.story.note, ...zealot.notes, ...dunwich.notes, ...edgeOfTheEarth.note },
+    note: {
+      ...base.story.note,
+      ...zealot.notes,
+      ...dunwich.notes,
+      ...edgeOfTheEarth.note,
+      ...plaguebearer.note,
+    },
   },
   ability: {
     ...base.ability,
+    plaguebearer: plaguebearer.ability,
     zealot: zealot.abilities,
     midnight: zealot.midnightAbilities,
     devourer: zealot.devourerAbilities,
@@ -53,6 +68,7 @@ export const messages = {
   },
   choice: {
     ...base.choice,
+    plaguebearer: plaguebearer.choice,
     zealot: zealot.choices,
     midnight: zealot.midnightChoices,
     devourer: zealot.devourerChoices,
@@ -61,6 +77,7 @@ export const messages = {
   },
   prompt: {
     ...base.prompt,
+    plaguebearer: plaguebearer.prompt,
     zealot: zealot.prompts,
     ...dunwich.prompts,
     edgeOfTheEarth: edgeOfTheEarth.prompt,
@@ -75,3 +92,5 @@ export const carcosaCards: Record<string, CatalogCard> = carcosaCardsData
 export const fortuneCards: Record<string, CatalogCard> = fortuneCardsData
 export const zealotCards: Record<string, CatalogCard> = zealotCardsData
 export const dunwichCards: Record<string, CatalogCard> = dunwichCardsData
+
+export const plaguebearerCards: Record<string, CatalogCard> = plaguebearerCardsData

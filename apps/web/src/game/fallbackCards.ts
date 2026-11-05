@@ -25,6 +25,7 @@ import {
   DUNWICH_LOCATION_CARDS,
   CURTAIN_CALL_STRANGERS,
   curtainCall,
+  lateRisers,
   theLastKing,
   THE_LAST_KING_VIPS,
   echoesOfThePast,
@@ -186,6 +187,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     midwinterGala({ players: 1 }),
     murderAtTheExcelsiorHotel({ players: 1 }),
     curtainCall({ difficulty: 'standard' }),
+    lateRisers(),
     theLastKing({ difficulty: 'standard' }),
     // Cada semilla deja fuera un Lugar por planta: con varias aparecen todos.
     ...Array.from({ length: 8 }, (_, seed) => echoesOfThePast({ difficulty: 'standard', seed })),
@@ -555,6 +557,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     data.carnevaleCards,
     data.excelsiorCards,
     data.carcosaCards,
+    data.plaguebearerCards,
     data.fortuneCards,
     data.zealotCards,
     data.dunwichCards,

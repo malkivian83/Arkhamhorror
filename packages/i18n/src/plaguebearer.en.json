@@ -1,0 +1,72 @@
+{
+  "campaignName": "Call of the Plaguebearer",
+  "scenarios": {
+    "late-risers": "Late Risers",
+    "night-on-the-town": "Night on the Town",
+    "dead-by-dawn": "Dead by Dawn",
+    "mourning-chorus": "Mourning Chorus",
+    "high-noon-descent": "High Noon Descent",
+    "the-afternoon-war": "The Afternoon War",
+    "death-at-sundown": "Death at Sundown",
+    "the-midnight-hour": "The Midnight Hour"
+  },
+  "description": "Fanmade campaign by Walker Graves. The first scenario, Late Risers, is playable; later scenarios are pending.",
+  "story": {
+    "introTitle": "Late Risers",
+    "intro": "After your stay in St. Mary’s Hospital, you awaken in a morgue beneath a mysterious facility. Green gas seeps under a barricaded door. Your possessions lie nearby. Find a way out.\nCampaign by Walker Graves (Dr Jack Science); Spanish translation by Los Archivos de Arkham.",
+    "setupTitle": "Preparing the facility",
+    "setup": "Start in the Morgue. Lab Omega is in play with 1 barricade (not per investigator). All other locations, Greyson, First Among Many, Suspicious Briefcase, 2 Agency Troubleshooters and 2 Twisted Supplicants are set aside.",
+    "hiddenTitle": "The call",
+    "hidden": "You hear a promise of life beyond death. Serve the voice, and time will bring its reward.",
+    "reagentTitle": "Fire in the veins",
+    "reagent": "A needle in the briefcase injects a glowing reagent into your hand. Remember that you imbibed a cardinal reagent. The briefcase may pass to another investigator who has not done so.",
+    "resolution1Title": "Resolution 1",
+    "resolution1": "You awaken in Hibbs’s Roadhouse. Hibbs dismisses your account of the facility as drunken confusion. The Tailors contained the problem. Gain victory experience; record whether you put out a fire.",
+    "resolution2Title": "Resolution 2",
+    "resolution2": "You escape into Hibbs’s Roadhouse and learn the facility’s secret. Gain victory experience. If Greyson is in the victory display, the First claimed the facility. Record whether you put out a fire; keep the briefcase if you escaped with it.",
+    "resolution3Title": "Resolution 3",
+    "resolution3": "Greyson escorts you to Hibbs’s Roadhouse and explains the Tailors’ work. You earned her respect and learned the roadhouse’s secret. Gain victory experience, record whether you put out a fire, and keep the briefcase if you escaped with it.",
+    "prologueTitle": "Prologue",
+    "prologue": "Your investigations left you gravely wounded in St. Mary’s Hospital. Weeks of treatment bring no recovery. As doctors prepare an urgent operation, you glimpse a pair of emerald eyes before everything fades."
+  },
+  "note": {
+    "plaguebearerContained": "The Tailors contained the problem",
+    "plaguebearerCollection": "The collection was saved",
+    "plaguebearerMotel": "The investigators learned the secret of the roadhouse",
+    "plaguebearerRespect": "You earned Greyson’s respect",
+    "plaguebearerFirstClaimed": "The First claimed the facility",
+    "plaguebearerAlarm": "You triggered the facility alarm",
+    "plaguebearerFire": "An investigator put out a fire",
+    "plaguebearerReagent": "Investigators imbibed a cardinal reagent"
+  },
+  "ability": {
+    "remove": "Spend {amount} clues here: remove {amount} barricades from {location}",
+    "fire": "Investigate with combat; put out the fire",
+    "resign": "Return all your clues: resign (2 actions)",
+    "hallway": "Spend 1 clue: remove up to 3 Tunnel barricades",
+    "briefcase": "Take the Suspicious Briefcase (2 actions)",
+    "greyson": "Parley: intellect (4), automatically evade Greyson",
+    "delta": "Increase shroud by 4 to look for another way out",
+    "tunnel": "Move to a connected location",
+    "hands": "Take 2 damage, discard Idle Hands: gain 1 action",
+    "skin": "Discard Under Your Skin (2 actions)",
+    "evidence": "Disarm the incendiary: agility (3)",
+    "evidenceAuto": "End your turn: ignore this token and automatically succeed",
+    "briefcaseResources": "Exhaust the briefcase, reveal a token: gain 3 resources"
+  },
+  "prompt": {
+    "omega": "Lab Omega: damage or Terror?",
+    "another": "Resist the Miasma",
+    "delta": "Open the hidden passage?",
+    "briefcase": "Who takes the briefcase?",
+    "hidden": "There is a hidden passage in the prologue. Do you choose to read it?"
+  },
+  "choice": {
+    "damage": "Take 1 damage",
+    "terror": "Discard until a Terror and draw it",
+    "horror": "Take 1 horror and automatically succeed",
+    "test": "Take the skill test",
+    "hallway": "Spend 3 clues per investigator here: reveal the hidden passage",
+    "read": "Read the hidden text (gain 2 resources)"
+  }
+}

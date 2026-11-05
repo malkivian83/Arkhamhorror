@@ -7,10 +7,49 @@ Science) y publicada en
 La traducción y maquetación al castellano (cartas y guía) es de Los Archivos de
 Arkham. Ninguna de las dos versiones indica número de versión ni fecha.
 
-Estado: **material completo en EN y ES; nada implementado.** Este documento
+Estado: **escenario I, Trasnochadores, jugable; escenarios II–VIII e interludios
+pendientes. Material completo en EN y ES.** Este documento
 recoge el inventario, las diferencias entre versiones y las decisiones
 pendientes. No sustituye a las guías: al implementar, contrasta cada paso con
 el PDF.
+
+### Continuación de implementación · 2026-11-05
+
+- Lote I: Trasnochadores y siete narraciones; base `8433ed45`, en `main`.
+  Commit y subida autorizados por la persona usuaria.
+- Módulo: `packages/cards/src/call-of-the-plaguebearer/`; campaña registrada,
+  con constructor solo para I. Preparación, texto oculto opcional, ocho lugares,
+  barricadas, tres actos, tres planes, encuentros y resoluciones R1–R3.
+- Prefijo `78`, basado en la colección ES; 29 códigos distintos: 18 del primer
+  conjunto y 11 compartidos. Incluyen un apoyo de historia; no se vende en tienda.
+  Se reutiliza Miedo impactante. Sin coincidencias en el catálogo congelado.
+- Contraste: guía ES pp. 3–4 y cartas I, Supervivientes de la Agencia, Dones,
+  Confusión y Esclavos. Delta ES ya incorpora la errata. El Pasillo es **Torn
+  Hallway** en los archivos EN, frente a «Ripped Hallway» en la guía.
+- Motor: Presa por cantidad de traiciones con un rasgo, bloqueo de movimiento
+  enemigo, ventana posterior al paso de Cazador/Errante y aparición agotada
+  antes de los enfrentamientos. Greyson entra sin enfrentarse por el pasadizo.
+- Presentación EN/ES y 90 caras AVIF en el manifiesto. `media.json` conserva
+  rutas originales, huellas de origen/salida y tamaños. EN: recorte 12 px lateral
+  y 32 px superior/inferior; ES: actos/planes girados; máximo 1048 px, calidad 76.
+  Revisadas imágenes representativas, sin abrir navegador.
+- Verificación: 109 pruebas entre escenario, regresión del motor y web; tipos de
+  engine/cards/i18n/web, formato, lint y compilación web correctos. La compilación
+  final reutiliza la copia de recursos de la primera, contrastada por huellas.
+  Cobertura: bolsas y mapa, efectos de cartas, preparación para 1–4 jugadores,
+  partidas completas en cuatro dificultades, finales favorables, recompensas,
+  registro, presentación y huellas. El arnés básico no sustituye estas pruebas
+  del escenario. Controles vigentes mientras no cambien módulo, motor o recursos.
+- Narración ES de I: siete MP3 (prólogo, introducción, texto oculto, reactivo y
+  R1–R3) con Martin Osborne; 6412 caracteres, voz elegida por la persona usuaria.
+  Relatos completos de guía ES pp. 3–4 y Maletín 017b, separados de las reglas.
+  `scripts/generate-plaguebearer-audio.mjs --generate` reanuda por huella;
+  `docs-proyecto/evidencias/plaguebearer-narracion.json` conserva texto y ajustes.
+  Verificados enlaces, huellas y todos los fotogramas MP3 de las siete grabaciones.
+- Pendiente de I: revisión visual de la app por la persona usuaria. El material
+  de los escenarios posteriores no está habilitado.
+- Siguiente: escenario II; revisar Defender y Arkham caído antes de habilitarlo.
+  Integrar los cambios remotos con rebase antes de subir.
 
 ## Fuentes
 
@@ -27,7 +66,8 @@ los números impresos «21» y «28» están duplicados y no existe la 27. No fa
 contenido.
 
 Narración: la voz de ElevenLabs elegida para esta campaña es
-`QtPMrakdgePQIUwOX7Ut`.
+**Martin Osborne - Polished and Intense**, `z3kTTwYbQrmL7ckdGcJi` (selección
+de la persona usuaria del 2026-11-05; sustituye a la elección anterior).
 
 ## Inventario de cartas
 
@@ -67,10 +107,15 @@ transcribirlos.
   (copias como `Bad News (2)`) y uno mal formado (`335- Driving Urge`).
 - **Tampoco por imagen:** la edición ES cambió muchas ilustraciones y el
   marco (Agente Greyson: Luisa Preissler en EN, David Vázquez en ES).
-- **Sí por el pie:** posición en el bloque y número de colección coinciden.
+- **Por el pie y el texto:** en el primer bloque coinciden posición y colección.
   Ejemplo comprobado: ES `097` «No puedes escapar» (44/53, nº 78) = EN
   `100 - Can_t Get Away!` (44/53, nº 78). Los lugares ES, sin posición en el
   pie, se emparejan por orden dentro del bloque y por nombre.
+- **Los conjuntos compartidos requieren una tabla explícita:** EN tiene dos
+  números de colección menos que ES en las cartas incorporadas para I (por
+  ejemplo, Jury-Rigged Incendiary, EN 249, corresponde a Destruyendo pruebas,
+  ES 251). No aplicar una igualdad universal de colección. `media.json` conserva
+  el emparejamiento revisado por posición, contenido e icono de conjunto.
 - Algunos nombres cambian en ES: Agent Crispin → Agente Martínez, EX.O.L →
   L.E.P.R.A., Saferoom → Guarida, Left/Right Artery → Aurícula
   izquierda/derecha, Intoxicating Vapors → Sediento.
@@ -362,6 +407,7 @@ Hay que comprobar si las cartas ES ya las incorporan; si no, aplicarlas:
 | Int. I, apartado 4        | Apartado normal con frases tachadas           | Recuadro oculto                                               |
 | Nombres de conjunto       | «Mourning Stroll» (IV) y «Agency Troubleshooters» (VII), erratas | Correctos                                  |
 | Ayudas                    | Sin índice, registro ni referencia rápida     | Con índice, Alerta/Errante, registro y referencia rápida      |
+| Destruyendo pruebas / Jury-Rigged Incendiary | Terminar el turno ignora la ficha revelada y da éxito automático | Omite la frase de ignorar la ficha; se aplica EN, también ante fallo automático |
 
 La errata que comentan los usuarios sobre «Intoxicating Vapors» no existe: es
 la traición del Motel Hibb. La de los Muelles es Worked to the Bone, que ES
@@ -412,4 +458,4 @@ implementar:
    [84 · Carcosa](84-camino-a-carcosa.md) como modelo de campaña de 8
    escenarios y [Carnevale](carnevale-implementacion.md) / Excelsior como
    modelo de datos escritos a mano.
-7. Generar la narración con la voz indicada arriba.
+7. Generar la narración con la voz indicada arriba (I completado; resto pendiente).

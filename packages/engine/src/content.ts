@@ -54,6 +54,8 @@ export type AbilitiesFn<Self> = (
 ) => AbilityOption[]
 
 export interface ScenarioBehavior {
+  /** A ready guard may prevent enemies from leaving its location. */
+  cannotMoveEnemy?: (state: GameState, enemy: Enemy) => boolean
   /** Reglas nuevas de asignación conjunta; opt-in para conservar grabaciones anteriores. */
   simultaneousAssetAssignment?: boolean
   /** Sustituye el robo superior antes de tocar el mazo (acto ¡Remad!). */

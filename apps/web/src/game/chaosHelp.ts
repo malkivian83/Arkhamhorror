@@ -29,6 +29,7 @@ export function chaosHelp(
     'the-devourer-below': localeData(locale).zealotCards['01142'],
     'the-gathering': localeData(locale).zealotCards['01104'],
     'murder-at-the-excelsior-hotel': localeData(locale).excelsiorCards['84001'],
+    'late-risers': localeData(locale).plaguebearerCards['78001'],
     'curtain-call': localeData(locale).carcosaCards['03043'],
     'the-last-king': localeData(locale).carcosaCards['03061'],
     'echoes-of-the-past': localeData(locale).carcosaCards['03120'],

@@ -655,7 +655,8 @@ export function handle(state: GameState, message: Message): GameState {
         )
       const [id, withId] = newId(state, 'enemy-')
       const { card } = message
-      const entersExhausted = !!enemyBehavior(card.code)?.entersExhausted
+      const entersExhausted =
+        !!message.entersExhausted || !!enemyBehavior(card.code)?.entersExhausted
       const engagedWith =
         entersExhausted ||
         card.keywords.includes('massive') ||
@@ -2305,7 +2306,11 @@ export function handle(state: GameState, message: Message): GameState {
       const swapped = message.swapEnemy ? findEnemy(state, message.swapEnemy) : undefined
       if (
         message.swapEnemy &&
-        (!swapped || swapped.global || !mover.location || swapped.location !== message.location)
+        (!swapped ||
+          swapped.global ||
+          !mover.location ||
+          swapped.location !== message.location ||
+          scenarioBehavior(state.scenarioId)?.cannotMoveEnemy?.(state, swapped))
       )
         return state
       if (
@@ -6328,7 +6333,12 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'HuntOnce': {
       const enemy = findEnemy(state, message.enemy)
-      if (!enemy || enemy.location === message.toward) return state
+      if (
+        !enemy ||
+        enemy.location === message.toward ||
+        scenarioBehavior(state.scenarioId)?.cannotMoveEnemy?.(state, enemy)
+      )
+        return state
       const distance = distancesFrom(state, enemy.location, enemy).get(message.toward)
       if (distance === undefined) return state
       const steps = enemyNeighbours(state, enemy.location, enemy).filter(
@@ -7164,6 +7174,7 @@ export function handle(state: GameState, message: Message): GameState {
         { type: 'Forced', trigger: { type: 'enemyPhaseBegins' } },
         { type: 'Step', step: 'huntersMove' },
         { type: 'HuntersMove' },
+        { type: 'Forced', trigger: { type: 'huntersMoveEnds' } },
         { type: 'Step', step: 'resolveAttacks' },
         { type: 'EnemiesAttack' },
         { type: 'Step', step: 'enemyEnds' },
@@ -7188,7 +7199,12 @@ export function handle(state: GameState, message: Message): GameState {
           const patrol = behavior?.patrol?.(state, enemy) ?? null
           const hunter =
             enemyHasKeyword(state, enemy, 'hunter') && !behavior?.losesHunter?.(state, enemy)
-          if (enemy.exhausted || enemy.engagedWith !== null) continue
+          if (
+            enemy.exhausted ||
+            enemy.engagedWith !== null ||
+            scenarioBehavior(state.scenarioId)?.cannotMoveEnemy?.(state, enemy)
+          )
+            continue
           if (!patrol && !hunter) continue
           const steps = patrol ? patrolSteps(state, enemy, patrol) : huntingSteps(state, enemy)
           const [step] = steps
@@ -7270,7 +7286,13 @@ export function handle(state: GameState, message: Message): GameState {
     case 'MoveHuntingEnemy': {
       // Resolve each enemy and its reaction window before examining the next enemy.
       const enemy = findEnemy(state, message.enemy)
-      if (!enemy || enemy.exhausted || enemy.engagedWith !== null) return state
+      if (
+        !enemy ||
+        enemy.exhausted ||
+        enemy.engagedWith !== null ||
+        scenarioBehavior(state.scenarioId)?.cannotMoveEnemy?.(state, enemy)
+      )
+        return state
       const behavior = enemyBehavior(enemy.code)
       const patrol = behavior?.patrol?.(state, enemy) ?? null
       const hunter =
@@ -7819,6 +7841,10 @@ export function handle(state: GameState, message: Message): GameState {
       if (
         !findEnemy(state, message.enemy) ||
         findEnemy(state, message.enemy)?.global ||
+        scenarioBehavior(state.scenarioId)?.cannotMoveEnemy?.(
+          state,
+          getEnemy(state, message.enemy),
+        ) ||
         !state.locations[message.location]
       )
         return state
@@ -7989,7 +8015,13 @@ export function handle(state: GameState, message: Message): GameState {
       if (!card || card.kind !== 'enemy' || !state.locations[message.location]) return state
       return push(
         { ...state, setAside: state.setAside.filter((_, n) => n !== index) },
-        { type: 'SpawnEnemy', card, location: message.location, engageWith: null },
+        {
+          type: 'SpawnEnemy',
+          card,
+          location: message.location,
+          engageWith: null,
+          ...(message.entersExhausted ? { entersExhausted: true } : {}),
+        },
       )
     }
 

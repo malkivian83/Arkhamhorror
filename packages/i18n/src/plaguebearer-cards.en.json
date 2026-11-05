@@ -1,0 +1,154 @@
+{
+  "78001": {
+    "name": "Late Risers",
+    "typeCode": "scenario",
+    "text": "[skull]: −X, your distance to Lab Omega\n[cultist]: −3; on success you may remove a barricade from a connected location\n[tablet]: −2; on failure move one location toward Lab Omega.",
+    "backText": "[skull]: −X, twice your distance to Lab Omega\n[cultist]: −6; on success you may remove a barricade from a connected location\n[tablet]: −3; after this test ends, move one location toward Lab Omega."
+  },
+  "78002": {
+    "name": "Blocked In",
+    "typeCode": "agenda",
+    "text": "At round end, at Lab Omega discard each Terror in your threat area and take 1 horror for each.",
+    "backText": "Discard all Mindless Thralls in play. If Lab Omega is unrevealed, remove its barricades and reveal it. Shuffle the encounter discard and set-aside Agency Troubleshooters into the encounter deck. Each investigator tests willpower (3); on failure move to Lab Omega."
+  },
+  "78003": {
+    "name": "Frantic Search",
+    "typeCode": "agenda",
+    "text": "At round end, at Lab Omega discard each Terror in your threat area and take 1 horror for each.",
+    "backText": "Discard all Mindless Thralls in play. Search the encounter deck and discard for an Agency Troubleshooter and a Mindless Thrall; spawn them at The Tunnel and Lab Omega respectively. Each investigator tests willpower (3); on failure move to Lab Omega."
+  },
+  "78004": {
+    "name": "There’s No Way Out",
+    "typeCode": "agenda",
+    "text": "At round end, at Lab Omega discard each Terror in your threat area and take 1 horror for each.",
+    "backText": "Each undefeated investigator suffers 1 physical trauma. Resolve resolution 1."
+  },
+  "78005": {
+    "name": "No Better Ideas",
+    "typeCode": "act",
+    "text": "You cannot enter locations with barricades. [action]: investigators here spend up to 2 clues to remove that many barricades from a connected location. Objective: enter Lab Omega.",
+    "backText": "Put Central Lobby, Lab Alpha, Lab Delta and The Tunnel into play with their printed barricades. Shuffle the set-aside Twisted Supplicants into the encounter deck."
+  },
+  "78006": {
+    "name": "Climb the Barricades",
+    "typeCode": "act",
+    "text": "You cannot enter locations with barricades. [action]: investigators here spend up to 2 clues to remove that many barricades from a connected location. Objective: enter The Tunnel.",
+    "backText": "Put Narrow Stair into play. Spawn First Among Many at the Morgue and Greyson at The Tunnel. If you entered from Torn Hallway, Greyson enters exhausted; otherwise record that you triggered the facility alarm."
+  },
+  "78007": {
+    "name": "Scylla and Charybdis",
+    "typeCode": "act",
+    "text": "You cannot enter locations with barricades. [action]: investigators here spend up to 2 clues to remove that many barricades from a connected location. Objective: advance when an Elite enemy enters the victory display.",
+    "backText": "If Greyson is in the victory display, resolve resolution 2. Otherwise resolve resolution 3."
+  },
+  "78008": {
+    "name": "Morgue",
+    "typeCode": "location"
+  },
+  "78009": {
+    "name": "Lab Omega",
+    "typeCode": "location",
+    "text": "Miasma. Barricade (1 per investigator). At the start of your turn here, take 1 damage or discard until a Terror treachery and draw it. Victory 1."
+  },
+  "78010": {
+    "name": "Central Lobby",
+    "typeCode": "location",
+    "text": "Enemies here get −1 fight and −1 evade, to a minimum of 1."
+  },
+  "78011": {
+    "name": "Lab Alpha",
+    "typeCode": "location",
+    "text": "Barricade (1 per investigator). [action][action]: Investigate with combat instead of intellect. On success search the top 9 cards of your deck for an event and draw it; remember that you put out a fire. Group limit once per game. Victory 1."
+  },
+  "78012": {
+    "name": "Lab Delta",
+    "typeCode": "location",
+    "text": "Barricade (1 per investigator). When you investigate, you may increase shroud by 4 for this investigation. On success, investigators here may spend 3 clues per investigator to put Torn Hallway into play. Victory 1."
+  },
+  "78013": {
+    "name": "The Tunnel",
+    "typeCode": "location",
+    "text": "Safe. Barricade (3 per investigator). After you evade an enemy here, if there are no ready enemies here, you may immediately move to a connected location."
+  },
+  "78014": {
+    "name": "Narrow Stair",
+    "typeCode": "location",
+    "text": "If there are no clues here, gain: [action][action], return all your clues to the pool: Resign. Victory 2."
+  },
+  "78015": {
+    "name": "Torn Hallway",
+    "typeCode": "location",
+    "text": "[action], spend 1 clue: Remove up to 3 barricades from The Tunnel. [action][action]: Take control of the set-aside Suspicious Briefcase. Victory 1."
+  },
+  "78016": {
+    "name": "Agent Greyson",
+    "typeCode": "enemy",
+    "text": "Alert. Retaliate. [action]: Parley, test intellect (4); on success automatically evade Greyson. While ready, investigators and enemies at her location cannot move or be moved. Victory 2."
+  },
+  "78017": {
+    "name": "Suspicious Briefcase",
+    "typeCode": "asset",
+    "text": "[free], exhaust and reveal a chaos token: Gain 3 resources. If skull, cultist or tablet, flip and resolve the story. Forced: exile this if it would leave play or you are defeated.",
+    "backText": "Record that this investigator imbibed a cardinal reagent. Set the briefcase aside; another investigator who has not imbibed a reagent may take it and put it into play."
+  },
+  "78018": {
+    "name": "First Among Many",
+    "typeCode": "enemy",
+    "text": "Hunter. Massive. Prey: most Terror treacheries. After you deal damage to this enemy while you are at a Miasma location, take 1 horror. Victory 2."
+  },
+  "78250": {
+    "name": "Agency Troubleshooter",
+    "typeCode": "enemy",
+    "text": "Hunter. Retaliate. After attacking during the enemy phase, disengage this enemy and move one location away from the nearest Safe location."
+  },
+  "78251": {
+    "name": "Jury-Rigged Incendiary",
+    "typeCode": "treachery",
+    "text": "Attach to your location. Before an investigator leaves, discard this and deal 3 damage to every investigator and enemy here. [action]: Test agility (3); on success discard this. After revealing a token, you may end your turn to ignore that token and automatically succeed."
+  },
+  "78252": {
+    "name": "Panicked Agent",
+    "typeCode": "enemy",
+    "text": "Alert. After making an attack of opportunity, deal 1 damage to every investigator at this location, then automatically evade this enemy."
+  },
+  "78253": {
+    "name": "Suppressing Fire",
+    "typeCode": "treachery",
+    "text": "Revelation: Test agility (4). On failure, move one location away from the nearest Safe location. If you fail by 2 or more, take 2 damage."
+  },
+  "78256": {
+    "name": "Idle Hands",
+    "typeCode": "treachery",
+    "text": "Put this in your threat area. During your turn, take 2 damage and discard this as a free ability to gain 1 action. At the end of your turn, take 1 horror."
+  },
+  "78257": {
+    "name": "Twisted Supplicant",
+    "typeCode": "enemy",
+    "text": "Hunter. Prey: most Terror treacheries. Attacks deal +1 damage and +1 horror if you have a Terror treachery in your threat area."
+  },
+  "78258": {
+    "name": "Under Your Skin",
+    "typeCode": "treachery",
+    "text": "Put this in your threat area. After you successfully investigate or fight, discard 1 random card from hand. [action][action]: Discard this."
+  },
+  "78284": {
+    "name": "Driving Urge",
+    "typeCode": "treachery",
+    "text": "Revelation: Test willpower (4). On failure, move one location toward the nearest Miasma location. If you fail by 2 or more, take 2 horror."
+  },
+  "78285": {
+    "name": "Not Yourself",
+    "typeCode": "treachery",
+    "text": "Put this in your threat area. Each time you move, lose 1 resource. At turn end, test willpower (3); on success discard this. At a Miasma location you may take 1 horror to automatically succeed."
+  },
+  "78288": {
+    "name": "Mindless Thrall",
+    "typeCode": "enemy",
+    "text": "Aloof. Patrol (nearest Miasma location). At the end of the enemy phase, if at a Miasma location, place 1 doom on this enemy."
+  },
+  "78289": {
+    "name": "Worshipful Thrall",
+    "typeCode": "enemy",
+    "text": "Aloof. Patrol (nearest Miasma location). After the hunter movement step, if at a Miasma location, search the encounter deck and discard for a Mindless Thrall and spawn it here. Victory 1."
+  }
+}

@@ -4,6 +4,13 @@
  * texto oficial, así que solo se ofrecen en el idioma de la grabación.
  */
 const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
+  'story.plaguebearer.prologue': { es: 'plaguebearer-prologue-martin-osborne.mp3' },
+  'story.plaguebearer.intro': { es: 'plaguebearer-intro-martin-osborne.mp3' },
+  'story.plaguebearer.hidden': { es: 'plaguebearer-hidden-martin-osborne.mp3' },
+  'story.plaguebearer.reagent': { es: 'plaguebearer-reagent-martin-osborne.mp3' },
+  'story.plaguebearer.resolution1': { es: 'plaguebearer-resolution1-martin-osborne.mp3' },
+  'story.plaguebearer.resolution2': { es: 'plaguebearer-resolution2-martin-osborne.mp3' },
+  'story.plaguebearer.resolution3': { es: 'plaguebearer-resolution3-martin-osborne.mp3' },
   'story.carnevale.intro': { es: 'carnevale-intro-salva.mp3' },
   'story.carnevale.noResolution': { es: 'carnevale-no-resolution-salva.mp3' },
   'story.carnevale.resolution1': { es: 'carnevale-resolution1-salva.mp3' },

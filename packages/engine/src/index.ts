@@ -149,6 +149,7 @@ export {
   shroudOf,
   updateInvestigator,
   distancesFrom,
+  bestByPrey,
   enemyNeighbours,
   recomputeConnections,
 } from './state'
