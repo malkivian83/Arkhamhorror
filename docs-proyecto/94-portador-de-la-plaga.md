@@ -53,7 +53,10 @@ el PDF.
   26 omitidas, combinando la ejecución global y la repetición de los archivos
   fallidos. Ajustada una aserción al nuevo origen del Tótem; SMTP local bloqueado
   y timeout bajo carga pasan aislados con acceso a conexiones locales. Tipos y
-  empaquetado web correctos. Pendiente consultar CI/Deploy de la corrección.
+  empaquetado web correctos. CI y Deploy de `bf43378d` correctos.
+- Mapa: la línea Vestíbulo–Túnel se desvía al pasar por la columna de Alfa,
+  evitando aparentar una conexión Alfa–Túnel. Solo cambia el trazado. 18 pruebas
+  de conexiones y recorrido del hilo correctas; revisión visual pendiente.
 
 ## Fuentes
 

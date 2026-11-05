@@ -4,6 +4,7 @@ import { printedCode, shroudOf, type GameState, type Location } from '@lcg/engin
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { cardBackImage } from '../game/assets'
+import { verticalThreadBlocked } from '../game/mapThreads'
 import GameCard from './GameCard.vue'
 import InvestigatorMini from './InvestigatorMini.vue'
 import TokenBadge from './TokenBadge.vue'
@@ -54,6 +55,13 @@ const pin = (id: string) => {
 function string(from: string, to: string) {
   const a = pin(from)
   const b = pin(to)
+  const origin = positions.value.get(from)
+  const target = positions.value.get(to)
+  // A vertical thread must not emerge from the bottom of an unrelated card.
+  if (origin && target && verticalThreadBlocked(positions.value, from, to)) {
+    const x = a.x + (origin[0] === size.value.left ? 150 : -150)
+    return `M${a.x} ${a.y}C${x} ${a.y} ${x} ${b.y} ${b.x} ${b.y}`
+  }
   const sag = Math.min(40, Math.hypot(b.x - a.x, b.y - a.y) / 6)
   return `M${a.x} ${a.y}Q${(a.x + b.x) / 2} ${(a.y + b.y) / 2 + sag} ${b.x} ${b.y}`
 }
