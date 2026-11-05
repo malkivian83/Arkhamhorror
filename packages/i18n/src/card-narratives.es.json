@@ -152,6 +152,24 @@
     "flavor": "Una asesina en tu camino y un monstruo pisándote los talones. ¿Con cuál te la jugarás?",
     "backFlavor": "Si la Agente Greyson está en la zona de victoria:\nLa líder de los agentes se tambalea y cae al suelo mientras grita una última orden: “¡Dispersaos!”. Los desmoralizados agentes asienten y abandonan la lucha. Con esos horrores aún acercándose, decides seguir su ejemplo. Subes por una destartalada escalera en espiral para acabar saliendo por una trampilla…\n\nDe lo contrario:\nTan pronto como la asquerosa criatura exhala su último aliento, la agente de la chaqueta se gira hacia ti: “Creo que le debo una copa, y tal vez también una disculpa. No parece ser uno de los terribles engendros contra los que hemos estado peleando. Al menos todavía no. Me llamo Greyson. Déjeme acompañarle hasta la superficie mientras mis hombres arreglan este desaguisado.”"
   },
+  "78020": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "Una extraña miasma se cierne sobre Arkham, y con ella, un miedo irrefrenable. La gente corre por las calles presa del pánico, y gritos sin dueño atraviesan la niebla.",
+    "backFlavor": "Surgen gritos de cada boca putrefacta, pero sólo el miasma escapa de sus pulmones hinchados."
+  },
+  "78021": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "Mientras estás dando el máximo para proteger la ciudad, un horrible ser surge de entre la extraña niebla, para extender más y más corrupción con cada protuberancia palpitante.",
+    "backFlavor": "Según el miasma se esparce, se va volviendo cada vez más densa. Acabas por encontrar auténticas dificultades para respirar. A medida que el vapor venenoso te abrasa los pulmones, buscas el refugio más cercano para reposar y planificar tus próximos movimientos."
+  },
+  "78022": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "La ciudad es un hervidero. Azuzado por Hibb, decides ayudar a tantas instituciones —y ciudadanos— como puedas.",
+    "backFlavor": "Lo has hecho lo mejor que has podido. Has salvado a todos los que has podido. No hay nada más que puedas hacer por esta gente para ayudarles a pasar la noche. Te refugias en una casa cercana y planificas cuáles serán tus próximos movimientos…"
+  },
   "82002": {
     "group": "carnevale",
     "typeCode": "agenda",

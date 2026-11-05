@@ -3029,6 +3029,10 @@
     "fofVentOpen": "The vent is open"
   },
   "keywords": {
+    "defend": {
+      "title": "Defend",
+      "body": "A Defend test uses the numeric value printed on the citizen, such as resources in your pool or cards in your hand, instead of an investigator skill. You cannot commit cards or increase that value using player cards unless the citizen explicitly allows it. Investigators at that location may place their clues there to reduce difficulty through the act."
+    },
     "title": "Keywords and concepts",
     "doomed": {
       "title": "Doomed",

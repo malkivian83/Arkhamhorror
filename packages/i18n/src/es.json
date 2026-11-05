@@ -3029,6 +3029,10 @@
     "fofVentOpen": "El conducto de ventilación está abierto"
   },
   "keywords": {
+    "defend": {
+      "title": "Defender",
+      "body": "Al Defender, usas el valor numérico indicado por el ciudadano (por ejemplo, recursos en tu reserva o cartas en tu mano) en lugar de una habilidad del investigador. No puedes asignar cartas ni usar efectos de cartas de jugador para aumentar ese valor, salvo que la carta lo permita expresamente. Los investigadores de ese Lugar pueden colocar sus pistas allí para reducir la dificultad mediante el acto."
+    },
     "title": "Palabras clave y conceptos",
     "doomed": {
       "title": "Condenado",

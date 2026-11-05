@@ -61,7 +61,7 @@
   "78011": {
     "name": "Laboratorio Alfa",
     "typeCode": "location",
-    "text": "Barricada (1 por investigador). [action][action]: Investigar con combate en lugar de intelecto. Si tienes éxito, busca un evento entre las 9 primeras cartas de tu mazo y róbalo; recuerda que has apagado un fuego. Límite de grupo una vez por partida. Victoria 1."
+    "text": "Barricada (1 por investigador). [action]: Investigar con combate en lugar de intelecto. Si tienes éxito, busca un evento entre las 9 primeras cartas de tu mazo y róbalo; recuerda que has apagado un fuego. Límite de grupo una vez por partida. Victoria 1."
   },
   "78012": {
     "name": "Laboratorio Delta",
@@ -76,7 +76,7 @@
   "78014": {
     "name": "Escalera estrecha",
     "typeCode": "location",
-    "text": "Si no hay pistas aquí, obtiene: [action][action], devuelve todas tus pistas a la reserva: Desistir. Victoria 2."
+    "text": "Si no hay pistas aquí, obtiene: [action], devuelve todas tus pistas a la reserva: Desistir. Victoria 2."
   },
   "78015": {
     "name": "Pasillo destartalado",
@@ -98,6 +98,166 @@
     "name": "Primero de muchos",
     "typeCode": "enemy",
     "text": "Cazador. Descomunal. Presa: más traiciones Terror. Después de infligirle daño mientras estés en un Lugar Miasma, recibe 1 horror. Victoria 2."
+  },
+  "78019": {
+    "name": "Noche en la ciudad",
+    "typeCode": "scenario",
+    "text": "[skull]: −X. X es el número de Lugares con Supervivientes.\n[cultist]: −4. Si tienes éxito, roba 1 carta y obtén 1 recurso.\n[tablet]: −3. Si fracasas, roba la primera traición Miasma de la pila de descartes de encuentros.",
+    "backText": "[skull]: −X. X es el número de Lugares con Ruinas o Supervivientes.\n[cultist]: −6. Si tienes éxito, roba 1 carta y obtén 1 recurso.\n[tablet]: −3. Roba la primera traición Miasma del descarte de encuentros."
+  },
+  "78020": {
+    "name": "Extendiendo la incertidumbre",
+    "typeCode": "agenda",
+    "text": "Al final de la ronda, en cada Lugar sin fichas revela el Lugar y resuelve la historia de su Humano como si lo girara el plan. Si tiene Propagación del miasma vinculada, mueve una pista del Lugar a esa carta.",
+    "backText": "Haz aparecer la Pústula abominable en el Colmado."
+  },
+  "78021": {
+    "name": "Extendiendo la corrupción",
+    "typeCode": "agenda",
+    "text": "Al final de la ronda, en cada Lugar sin fichas revela el Lugar y resuelve la historia de su Humano como si lo girara el plan. Si tiene Propagación del miasma vinculada, mueve una pista del Lugar a esa carta.",
+    "backText": "Cada investigador es derrotado y sufre 1 trauma físico."
+  },
+  "78022": {
+    "name": "Servicios a la comunidad",
+    "typeCode": "act",
+    "text": "Cuando un investigador inicie una prueba de Defender en tu Lugar, puedes colocar X de tus pistas en tu Lugar para reducir su dificultad en X. [action], si estás en un Lugar con Supervivientes: Desistir. Objetivo: al final de la ronda, si cada Lugar tiene Supervivientes o está en Ruinas, avanza.",
+    "backText": "Todos los investigadores desisten automáticamente."
+  },
+  "78023": {
+    "name": "Arkham Advertiser",
+    "typeCode": "location",
+    "text": "Al revelarse, coloca a Doyle Jeffries aquí. Después de jugar un evento aquí, puedes robar 1 carta y obtener 1 recurso. Límite una vez por ronda.",
+    "backText": ""
+  },
+  "78024": {
+    "name": "Banco de Arkham",
+    "typeCode": "location",
+    "text": "Al revelarse, coloca al Vicepresidente aquí. Después de investigar con éxito aquí, puedes obtener 2 recursos. Límite una vez por ronda.",
+    "backText": ""
+  },
+  "78025": {
+    "name": "Colmado",
+    "typeCode": "location",
+    "text": "Al revelarse, coloca a La Pareja de Enamorados aquí. [free], gasta X recursos: busca entre las 2X primeras cartas de tu mazo un Apoyo y ponlo en juego. Baraja. Límite una vez por ronda.",
+    "backText": ""
+  },
+  "78026": {
+    "name": "Motel Hibb",
+    "typeCode": "location",
+    "text": "Al revelarse, coloca a Hibb (Parlanchín) aquí. Después de tener éxito por 2 o más aquí, puedes curar 1 daño o 1 horror de un investigador aquí. Límite una vez por ronda.",
+    "backText": ""
+  },
+  "78027": {
+    "name": "Pensión de Ma",
+    "typeCode": "location",
+    "text": "Al revelarse, coloca a Ma Matheson aquí. [action]: busca un Aliado en tu mazo y añádelo a tu mano. Baraja. Límite una vez por ronda.",
+    "backText": ""
+  },
+  "78028": {
+    "name": "Biblioteca Orne",
+    "typeCode": "location",
+    "text": "Al revelarse, coloca a Henry Armitage aquí. Después de robar cartas en mantenimiento, si tienes 5 o más cartas en la mano, roba 1 carta.",
+    "backText": ""
+  },
+  "78029": {
+    "name": "Muelles",
+    "typeCode": "location",
+    "text": "Al revelarse, coloca a Abner Weems aquí. Al asignar una habilidad elegible aquí, esa carta gana: después de terminar esta prueba, puedes robar 1 carta. Límite una vez por ronda.",
+    "backText": ""
+  },
+  "78030": {
+    "name": "Vieja tienda de Magia",
+    "typeCode": "location",
+    "text": "Al revelarse, coloca a Miriam Beecher aquí. [action]: roba la primera carta del mazo de encuentros; después busca un Hechizo o Reliquia en tu mazo y ponlo en juego. Baraja. Límite una vez por ronda.",
+    "backText": ""
+  },
+  "78031": {
+    "name": "Abner Weems",
+    "typeCode": "asset",
+    "text": "[action] Defender: número de habilidades en tu descarte (1 + 2 por investigador).",
+    "backText": "Si lo defendiste, coloca Supervivientes en su Lugar y añade esta carta a la zona de victoria (Victoria 1). Si lo giró el plan, sustituye su Lugar por su versión en Ruinas, descarta sus cartas vinculadas y mueve allí los investigadores y enemigos."
+  },
+  "78032": {
+    "name": "Doyle Jeffries",
+    "typeCode": "asset",
+    "text": "[action] Defender: número de eventos en tu descarte (1 + 2 por investigador).",
+    "backText": "Si lo defendiste, coloca Supervivientes en su Lugar y añade esta carta a la zona de victoria (Victoria 1). Si lo giró el plan, sustituye su Lugar por su versión en Ruinas, descarta sus cartas vinculadas y mueve allí los investigadores y enemigos."
+  },
+  "78033": {
+    "name": "Henry Armitage",
+    "typeCode": "asset",
+    "text": "[action] Defender: número de cartas en tu mano (4 + 2 por investigador).",
+    "backText": "Si lo defendiste, coloca Supervivientes en su Lugar y añade esta carta a la zona de victoria (Victoria 1). Si lo giró el plan, sustituye su Lugar por su versión en Ruinas, descarta sus cartas vinculadas y mueve allí los investigadores y enemigos."
+  },
+  "78034": {
+    "name": "Hibb",
+    "typeCode": "asset",
+    "text": "[action] Defender: cualquier habilidad (4). Puedes asignar cartas y usar efectos que aumenten tu habilidad.",
+    "backText": "Si lo defendiste, coloca Supervivientes en su Lugar y añade esta carta a la zona de victoria (Victoria 1). Si lo giró el plan, sustituye su Lugar por su versión en Ruinas, descarta sus cartas vinculadas y mueve allí los investigadores y enemigos."
+  },
+  "78035": {
+    "name": "Ma Matheson",
+    "typeCode": "asset",
+    "text": "[action] Defender: coste más alto de un Aliado que controles (3 + 1 por investigador).",
+    "backText": "Si lo defendiste, coloca Supervivientes en su Lugar y añade esta carta a la zona de victoria (Victoria 1). Si lo giró el plan, sustituye su Lugar por su versión en Ruinas, descarta sus cartas vinculadas y mueve allí los investigadores y enemigos."
+  },
+  "78036": {
+    "name": "Miriam Beecher",
+    "typeCode": "asset",
+    "text": "[action] Defender: coste más alto de un Apoyo no Aliado que controles (3 + 1 por investigador).",
+    "backText": "Si lo defendiste, coloca Supervivientes en su Lugar y añade esta carta a la zona de victoria (Victoria 1). Si lo giró el plan, sustituye su Lugar por su versión en Ruinas, descarta sus cartas vinculadas y mueve allí los investigadores y enemigos."
+  },
+  "78037": {
+    "name": "La Pareja de Enamorados",
+    "typeCode": "asset",
+    "text": "[action] Defender: número de Apoyos que controles (4 + 1 por investigador).",
+    "backText": "Si lo defendiste, coloca Supervivientes en su Lugar y añade esta carta a la zona de victoria (Victoria 1). Si lo giró el plan, sustituye su Lugar por su versión en Ruinas, descarta sus cartas vinculadas y mueve allí los investigadores y enemigos."
+  },
+  "78038": {
+    "name": "El Vicepresidente",
+    "typeCode": "asset",
+    "text": "[action] Defender: número de recursos en tu reserva (8 + 2 por investigador).",
+    "backText": "Si lo defendiste, coloca Supervivientes en su Lugar y añade esta carta a la zona de victoria (Victoria 1). Si lo giró el plan, sustituye su Lugar por su versión en Ruinas, descarta sus cartas vinculadas y mueve allí los investigadores y enemigos."
+  },
+  "78039": {
+    "name": "Hibb",
+    "typeCode": "asset",
+    "text": "Recibes +1 a combate y +1 a agilidad. Cuando un investigador aquí vaya a recibir un ataque de oportunidad, puedes agotar a Hibb para cancelarlo."
+  },
+  "78040": {
+    "name": "Propagación del miasma (Cacareo)",
+    "typeCode": "treachery",
+    "text": "Vincula al Lugar más alejado con pistas y sin Propagación del miasma. Al comenzar tu turno allí, pierde o recibe 1 daño por cada pista sobre esta carta. [action]: prueba [[agility]] (3). Si tienes éxito, toma 1 de sus pistas o descarta esta carta."
+  },
+  "78041": {
+    "name": "Propagación del miasma (Eco)",
+    "typeCode": "treachery",
+    "text": "Vincula al Lugar más alejado con pistas y sin Propagación del miasma. Al comenzar tu turno allí, pierde o recibe 1 recurso por cada pista sobre esta carta. [action]: prueba [[willpower]] (3). Si tienes éxito, toma 1 de sus pistas o descarta esta carta."
+  },
+  "78042": {
+    "name": "Gul gaseoso",
+    "typeCode": "enemy",
+    "text": "Cazador. Represalia. Después de enfrentarse a ti o atacarte, mueve 1 de tus pistas a este enemigo. Después de derrotarlo, toma sus pistas."
+  },
+  "78043": {
+    "name": "Propagación del miasma (Silbido)",
+    "typeCode": "treachery",
+    "text": "Vincula al Lugar más alejado con pistas y sin Propagación del miasma. Al comenzar tu turno allí, pierde o recibe 1 carta de tu mano por cada pista sobre esta carta. [action]: prueba [[combat]] (3). Si tienes éxito, toma 1 de sus pistas o descarta esta carta."
+  },
+  "78044": {
+    "name": "Explosión infecciosa",
+    "typeCode": "treachery",
+    "text": "Si no hay pistas sobre ninguna Propagación del miasma, busca y roba una del mazo o descarte de encuentros y baraja el mazo. Si no, retira de la partida una pista de cada Propagación del miasma en juego."
+  },
+  "78045": {
+    "name": "Contagio andante",
+    "typeCode": "enemy",
+    "text": "Aparece en el Lugar más alejado sin Supervivientes ni Ruinas. Al final de la ronda, mueve una pista de su Lugar a este enemigo. Después de derrotarlo, toma sus pistas."
+  },
+  "78046": {
+    "name": "Propagación del miasma (Cántico)",
+    "typeCode": "treachery",
+    "text": "Vincula al Lugar más alejado con pistas y sin Propagación del miasma. Al comenzar tu turno allí, pierde o recibe 1 horror por cada pista sobre esta carta. [action]: prueba [[intellect]] (3). Si tienes éxito, toma 1 de sus pistas o descarta esta carta."
   },
   "78250": {
     "name": "Solucionador de la Agencia",
@@ -134,6 +294,59 @@
     "typeCode": "treachery",
     "text": "Pon esta carta en tu zona de amenaza. Después de investigar o combatir con éxito, descarta 1 carta al azar de tu mano. [action][action]: Descarta esta carta."
   },
+  "78275": {
+    "name": "Arkham Advertiser",
+    "typeCode": "location",
+    "text": "Al comenzar tu turno aquí, revela un evento de tu mano o descarte. Recibe X daños y/o horrores en total, siendo X su coste. Si cuesta 0, retíralo de la partida.",
+    "backText": ""
+  },
+  "78276": {
+    "name": "Banco de Arkham",
+    "typeCode": "location",
+    "text": "Al comenzar tu turno aquí, pierde la mitad de tus recursos redondeando hacia arriba.",
+    "backText": ""
+  },
+  "78277": {
+    "name": "Colmado",
+    "typeCode": "location",
+    "text": "Al comenzar tu turno aquí, descarta un Apoyo que controles; dos si controlas 5 o más.",
+    "backText": ""
+  },
+  "78278": {
+    "name": "Motel Hibb",
+    "typeCode": "location",
+    "text": "Al comenzar tu turno aquí, elige tu habilidad de mayor valor y redúcela a 1 durante el resto de la fase.",
+    "backText": ""
+  },
+  "78279": {
+    "name": "Pensión de Ma",
+    "typeCode": "location",
+    "text": "Al comenzar tu turno aquí, recibe daño u horror igual a la salud o cordura total del Aliado de mayor coste que controles. No puedes elegir un valor nulo.",
+    "backText": ""
+  },
+  "78280": {
+    "name": "Biblioteca Orne",
+    "typeCode": "location",
+    "text": "Al comenzar tu turno aquí, descarta cartas hasta tener 3 o menos en la mano.",
+    "backText": ""
+  },
+  "78281": {
+    "name": "Muelles",
+    "typeCode": "location",
+    "text": "Al comenzar tu turno aquí, revela una habilidad de tu mano. Descártala o recibe tanto horror como iconos tenga.",
+    "backText": ""
+  },
+  "78282": {
+    "name": "Vieja tienda de Magia",
+    "typeCode": "location",
+    "text": "Al comenzar tu turno aquí, roba un encuentro o descarta el Apoyo no Aliado de mayor coste que controles.",
+    "backText": ""
+  },
+  "78283": {
+    "name": "Víctima sonriente",
+    "typeCode": "enemy",
+    "text": "Cazador. Después de enfrentarse a ti, pierde una acción. Si no puedes, te ataca."
+  },
   "78284": {
     "name": "Ansia viva",
     "typeCode": "treachery",
@@ -153,5 +366,10 @@
     "name": "Esclavo devoto",
     "typeCode": "enemy",
     "text": "Indiferente. Errante (Lugar Miasma más cercano). Después del paso de movimiento Cazador, si está en un Lugar Miasma, busca un Esclavo mental en el mazo y descarte de encuentros y hazlo aparecer aquí. Victoria 1."
+  },
+  "78020b": {
+    "name": "Pústula abominable",
+    "typeCode": "enemy",
+    "text": "Descomunal. Cazador. Después de recibir 2 o más daños de una misma fuente, devuelve a la reserva 1 pista del Lugar más cercano sin Supervivientes ni Ruinas. Victoria 2."
   }
 }

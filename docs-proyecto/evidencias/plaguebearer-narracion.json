@@ -77,6 +77,33 @@
       "inputHash": "cf0232f5df9035dab619ea34d33f1a782d2df6f0cf0ea6d3630d7a6cba5074aa",
       "sha256": "033fa9bd0815cbe34aee3189b62a4669fc92eff0e6669113742a9e8c5de45061",
       "bytes": 996039
+    },
+    {
+      "key": "story.plaguebearer.night.intro",
+      "file": "plaguebearer-night-intro-martin-osborne.mp3",
+      "text": "7:21 p. m.\n\nHibb te observa mientras devoras un plato de su comida más grasienta. El fornido hombre se toma un momento y después te empieza a contar:\n\n“Comenzó hace unos tres días. Esas extrañas nieblas empezaron a aparecer por la ciudad. Siendo Arkham lo que es, la gente simplemente creyó que algo se había roto en la fábrica que hay río abajo y la gente continuó con su vida. Pero esa misma gente comenzó a enfermar. Les provocaba extraños sarpullidos, algún tipo de enfermedad en la piel. La preocupación aumentó un poco, pero hace falta algo más para asustar a un arkhamita.\n\nEntonces, ayer, el Dr. Pickman irrumpió en la Plaza Providence con una cabeza de ciervo unida a su cara. Ambas cabezas gritaban. Unos tipos del gobierno se presentaron para detenerlo, pero ya se había corrido la voz. Para cuando nos dimos cuenta de que el miasma se extendía a través de las personas gravemente infectadas, los hombres trajeados ya habían dejado a sus tropas acercarse demasiado. Ahora tenemos a un puñado de esas cosas deambulando por la ciudad. Atacando a la población. Y todavía más de esa asquerosa niebla.\n\nLas recomendaciones son refugiarse en algún lugar seguro esta noche. Muchos parroquianos prácticamente viven en mi Motel, así que he decidido mantenerlo abierto para que puedan refugiarse aquí. Aunque, honestamente, estoy preocupado por si seremos capaces de defender la plaza”. Hibb para un instante, pensativo.\n\n“Pareces un tipo duro, amigo. Si realmente estás preocupado por los monstruos, lo mejor que puedes hacer es ayudar a la gente a permanecer a salvo. Arkham está plagada de lugares donde los ciudadanos podrían cobijarse. Si pudieras reunir a la población y apuntalar algunos refugios hasta que sean seguros… sin duda mañana habrá mucha gente agradecida que te ayudará a resolver tu problema de memoria”.",
+      "characters": 1824,
+      "inputHash": "cd5e386fcb79042820a2435b48b78555e67db76278a2f7a3dbedc37b9bac7b68",
+      "sha256": "a6ffaaba32e87540f85a3241ae5de00aea185da7486e1fe97006a92c9b9b8557",
+      "bytes": 2173848
+    },
+    {
+      "key": "story.plaguebearer.night.resolution1",
+      "file": "plaguebearer-night-resolution1-martin-osborne.mp3",
+      "text": "Las cosas se están poniendo feas ahí fuera. Esperabas que tus vivencias en las instalaciones fueran algo excepcional, pero parece que todo Arkham va camino de terminar de la misma manera. Parece que da igual lo que hagas para mantener a la gente a salvo, no llegará a ser suficiente contra la creciente marea de corrupción que trae el miasma consigo.\n\nA no ser, por supuesto, que cortes de raíz con el origen de todo esto. Encontrar el lugar desde donde se extiende este mal y pararlo. El extraño monstruo lleno de pústulas enfermas que apareció en el colmado te hace pensar, tal vez haya algo por ahí que sirva como fuente de todo…",
+      "characters": 632,
+      "inputHash": "6557404b5dec7e945cb8f71f80edd8059a1ae1c682f26caba153d1763d3833ac",
+      "sha256": "835d30eab9f95abea468050419834e96566fe24883d151b3176e35770ddfc290",
+      "bytes": 769923
+    },
+    {
+      "key": "story.plaguebearer.night.resolution2",
+      "file": "plaguebearer-night-resolution2-martin-osborne.mp3",
+      "text": "Lo has conseguido, gracias a ti, incontables ciudadanos de Arkham sobrevivirán a la noche entrante. Esas criaturas, peligrosas como han demostrado ser, no tomarán esta ciudad. No esta noche.\n\nA pesar de tu victoria, no puedes evitar la horrible sensación de que no importa cuánta gente sobreviva, no será suficiente contra la creciente marea de corrupción que trae el miasma consigo.\n\nA no ser, por supuesto, que cortes de raíz con el origen de todo esto. Encontrar el lugar desde donde se extiende este mal y pararlo. El extraño monstruo lleno de pústulas enfermas que apareció en el colmado te hace pensar, tal vez haya algo por ahí que sirva como fuente de todo…",
+      "characters": 665,
+      "inputHash": "cf0d5bc79f1700038a4e88994ef7f8e6df75395b03411b32e2e743b95061088a",
+      "sha256": "74b284f2d10f139da9d9d2b04033e55c3c981f4df9da58791d6a9fcd1813f90b",
+      "bytes": 850172
     }
   ]
 }

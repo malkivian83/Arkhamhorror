@@ -161,6 +161,7 @@ describe('Trasnochadores: efectos de cartas y finales favorables', () => {
     })
     s = withBag(0)(patch(s, { skills: { willpower: 3, intellect: 0, combat: 8, agility: 3 } }))
     s = use(s, 'ability.plaguebearer.fire')
+    expect(me(s).actionsRemaining).toBe(2)
     expect(s.campaignLog?.notes).toContain('plaguebearerFire')
     expect(me(s).clues).toBe(1)
     expect(availableAbilities(s, 'a').some((a) => a.label === 'ability.plaguebearer.fire')).toBe(
@@ -217,7 +218,7 @@ describe('Trasnochadores: efectos de cartas y finales favorables', () => {
       { type: 'MoveTo', investigator: 'a', location: L.stairs },
     )
     s = { ...s, locations: { ...s.locations, [L.stairs]: { ...s.locations[L.stairs]!, clues: 0 } } }
-    s = use(patch(s, { actionsRemaining: 3, clues: 2 }), 'ability.plaguebearer.resign')
+    s = use(patch(s, { actionsRemaining: 1, clues: 2 }), 'ability.plaguebearer.resign')
     expect(me(s).resigned).toBe(true)
     expect(me(s).clues).toBe(0)
     expect(s.outcome).toEqual({ type: 'resolution', resolution: 2 })

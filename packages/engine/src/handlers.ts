@@ -2479,7 +2479,8 @@ export function handle(state: GameState, message: Message): GameState {
                   l.id,
                 )
                   ? 0
-                  : perInvestigator(state, l.clueValue, l.cluesPerInvestigator),
+                  : (scenarioBehavior(state.scenarioId)?.preserveCluesOnReveal ? l.clues : 0) +
+                    perInvestigator(state, l.clueValue, l.cluesPerInvestigator),
               },
         ),
       )
@@ -11016,8 +11017,10 @@ export function skillTestValue(state: GameState): {
         )
   const lasting = currentTurnSkillEffect(state, investigator.id)
   const base =
-    (test.baseSkill ?? lasting?.bases?.[test.skill] ?? investigator.skills[test.skill]) *
-    (doubling.base ? 2 : 1)
+    (scenarioBehavior(state.scenarioId)?.skillBase?.(state, test) ??
+      test.baseSkill ??
+      lasting?.bases?.[test.skill] ??
+      investigator.skills[test.skill]) * (doubling.base ? 2 : 1)
   const scenario =
     (scenarioBehavior(state.scenarioId)?.skillModifier?.(state, test) ?? 0) +
     Object.values(state.treacheries).reduce(

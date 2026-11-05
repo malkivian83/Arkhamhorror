@@ -27,7 +27,59 @@
     "resolution3Title": "Resolution 3",
     "resolution3": "Greyson escorts you to Hibbs’s Roadhouse and explains the Tailors’ work. You earned her respect and learned the roadhouse’s secret. Gain victory experience, record whether you put out a fire, and keep the briefcase if you escaped with it.",
     "prologueTitle": "Prologue",
-    "prologue": "Your investigations left you gravely wounded in St. Mary’s Hospital. Weeks of treatment bring no recovery. As doctors prepare an urgent operation, you glimpse a pair of emerald eyes before everything fades."
+    "prologue": "Your investigations left you gravely wounded in St. Mary’s Hospital. Weeks of treatment bring no recovery. As doctors prepare an urgent operation, you glimpse a pair of emerald eyes before everything fades.",
+    "night": {
+      "introTitle": "Night on the Town",
+      "intro": "7:21 PM\n\nHibbs stares as you wolf down a plate of greasy breakfast food. The burly man takes a moment, then speaks:\n\n“It started about three days back. These strange fogs started rolling through town. Arkham being what it is, most people just assumed something had gone wrong at a factory downriver and went about their business. But then folks started getting sick. Gave folks weird rashes, some sort of disgusting skin thing. Folks by then were starting to get a bit wary, but business kept up.\n\nThen, yesterday, Doc Pickman wandered into Providence Square with a deer’s head fused to his neck. Both heads were screaming. Government types showed up to put a stop to it, but the word was out. By the time we realized the mists were spreading from folks who were badly infected, the suits had already let a lot of troops get too close. Now there’s a bunch of those things wandering around town. Attacking people. And even more of that terrible miasma.\n\nThe word on the street is to hole up somewhere safe tonight. Lots of folks practically live here at my roadhouse, so I thought I’d open up and let ’em gather. Honestly, though, I’m worried how much we’ll be able to defend the place.” Hibbs quiets for a beat, thinking.\n\n“You seem like hardy people, friend. If you’re really concerned about the monsters, best thing you can do is help get folks safe. Arkham’s full of places where people might be holing up. If you could round people up and help to shore up some safe havens… well, tomorrow, I’m sure there’ll be plenty of folks happy to help you figure out your memory lapse.”",
+      "setupTitle": "Setup · Night on the Town",
+      "setup": "Gather Night on the Town, the eight Fallen Arkham locations and three Grinning Victims, Haze of Miasma, Ancient Evils and only three Hunting Shadows from The Midnight Masks. Set story assets aside. Put Hibbs Roadhouse, General Store, Orne Library and Bank of Arkham into play, plus one random location from Docks/Advertiser and one from Boarding House/Magick Shoppe (Spanish guide). Start at Hibbs Roadhouse and put four fixed clues on each of the six locations. One of the other two locations is infected at random.\n\nDefend uses the citizen’s numeric value without committed cards or player-card increases, except for Hibbs’s printed permission. Investigators at the testing investigator’s location may place their clues on that location to reduce the difficulty.",
+      "resolution1Title": "Resolution 1",
+      "resolution1": "Things are getting bad out there. You had hoped that your experiences in the facility were exceptional, but it seems as though all of Arkham is swiftly moving in the same direction. It’s possible that no matter what action you take to keep people safe, it won’t be enough against the spreading tide of miasmic corruption.\n\nUnless, of course, you can cut it off at the source. Find where this evil spreads from and stop it. The strange disease-ridden monster that appeared by the general store leaves you thinking — perhaps there’s something around there that serves as the source of it all…",
+      "resolution2Title": "Resolution 2",
+      "resolution2": "You’ve done it. Thanks to you, countless citizens of Arkham will survive the night to come. These creatures, dangerous as they may be, won’t defeat this city. Not tonight.\n\nDespite your victory, you can’t stop the sinking feeling that no matter how many people make it through, it won’t be enough against the spreading tide of miasmic corruption.\n\nUnless, of course, you can cut it off at the source. Find where this evil spreads from and stop it. The strange disease-ridden monster that appeared by the general store leaves you thinking — perhaps there’s something around there that serves as the source of it all…",
+      "npc": {
+        "78031": {
+          "title": "Día de paga",
+          "saved": "The citizens secure River Docks for the night.\n\n» Place Survivors at the location and put this citizen in the victory display (Victory 1).",
+          "lost": "The miasma overruns River Docks. The citizens are lost.\n\n» Replace the location with its Ruin and move investigators and enemies there."
+        },
+        "78032": {
+          "title": "Titulares del día",
+          "saved": "The citizens secure Arkham Advertiser for the night.\n\n» Place Survivors at the location and put this citizen in the victory display (Victory 1).",
+          "lost": "The miasma overruns Arkham Advertiser. The citizens are lost.\n\n» Replace the location with its Ruin and move investigators and enemies there."
+        },
+        "78033": {
+          "title": "La realidad supera a la ficción",
+          "saved": "The citizens secure Orne Library for the night.\n\n» Place Survivors at the location and put this citizen in the victory display (Victory 1).",
+          "lost": "The miasma overruns Orne Library. The citizens are lost.\n\n» Replace the location with its Ruin and move investigators and enemies there."
+        },
+        "78034": {
+          "title": "La última y nos vamos",
+          "saved": "The citizens secure Hibbs Roadhouse for the night.\n\n» Place Survivors at the location and put this citizen in the victory display (Victory 1).",
+          "lost": "The miasma overruns Hibbs Roadhouse. The citizens are lost.\n\n» Replace the location with its Ruin and move investigators and enemies there."
+        },
+        "78035": {
+          "title": "Hora de salida",
+          "saved": "The citizens secure Ma’s Boarding House for the night.\n\n» Place Survivors at the location and put this citizen in the victory display (Victory 1).",
+          "lost": "The miasma overruns Ma’s Boarding House. The citizens are lost.\n\n» Replace the location with its Ruin and move investigators and enemies there."
+        },
+        "78036": {
+          "title": "El poder de la Magia",
+          "saved": "The citizens secure Ye Olde Magick Shoppe for the night.\n\n» Place Survivors at the location and put this citizen in the victory display (Victory 1).",
+          "lost": "The miasma overruns Ye Olde Magick Shoppe. The citizens are lost.\n\n» Replace the location with its Ruin and move investigators and enemies there."
+        },
+        "78037": {
+          "title": "The Schoffners",
+          "saved": "The citizens secure General Store for the night.\n\n» Place Survivors at the location and put this citizen in the victory display (Victory 1).",
+          "lost": "The miasma overruns General Store. The citizens are lost.\n\n» Replace the location with its Ruin and move investigators and enemies there."
+        },
+        "78038": {
+          "title": "The Vice President",
+          "saved": "The citizens secure Bank of Arkham for the night.\n\n» Place Survivors at the location and put this citizen in the victory display (Victory 1).",
+          "lost": "The miasma overruns Bank of Arkham. The citizens are lost.\n\n» Replace the location with its Ruin and move investigators and enemies there."
+        }
+      }
+    }
   },
   "note": {
     "plaguebearerContained": "The Tailors contained the problem",
@@ -37,12 +89,38 @@
     "plaguebearerFirstClaimed": "The First claimed the facility",
     "plaguebearerAlarm": "You triggered the facility alarm",
     "plaguebearerFire": "An investigator put out a fire",
-    "plaguebearerReagent": "Investigators imbibed a cardinal reagent"
+    "plaguebearerReagent": "Investigators imbibed a cardinal reagent",
+    "plaguebearerArkhamTogether": "Arkham stands united",
+    "plaguebearerHibbsCovered": "Hibbs has your back",
+    "plaguebearerTown78023": "Arkham Advertiser",
+    "plaguebearerTown78024": "Bank of Arkham",
+    "plaguebearerTown78025": "General Store",
+    "plaguebearerTown78026": "Hibbs Roadhouse",
+    "plaguebearerTown78027": "Ma’s Boarding House",
+    "plaguebearerTown78028": "Orne Library",
+    "plaguebearerTown78029": "River Docks",
+    "plaguebearerTown78030": "Ye Olde Magick Shoppe",
+    "plaguebearerTown78023Defended": "Arkham Advertiser: Defended",
+    "plaguebearerTown78023Infected": "Arkham Advertiser: Infected",
+    "plaguebearerTown78024Defended": "Bank of Arkham: Defended",
+    "plaguebearerTown78024Infected": "Bank of Arkham: Infected",
+    "plaguebearerTown78025Defended": "General Store: Defended",
+    "plaguebearerTown78025Infected": "General Store: Infected",
+    "plaguebearerTown78026Defended": "Hibbs Roadhouse: Defended",
+    "plaguebearerTown78026Infected": "Hibbs Roadhouse: Infected",
+    "plaguebearerTown78027Defended": "Ma’s Boarding House: Defended",
+    "plaguebearerTown78027Infected": "Ma’s Boarding House: Infected",
+    "plaguebearerTown78028Defended": "Orne Library: Defended",
+    "plaguebearerTown78028Infected": "Orne Library: Infected",
+    "plaguebearerTown78029Defended": "River Docks: Defended",
+    "plaguebearerTown78029Infected": "River Docks: Infected",
+    "plaguebearerTown78030Defended": "Ye Olde Magick Shoppe: Defended",
+    "plaguebearerTown78030Infected": "Ye Olde Magick Shoppe: Infected"
   },
   "ability": {
     "remove": "Spend {amount} clues here: remove {amount} barricades from {location}",
     "fire": "Investigate with combat; put out the fire",
-    "resign": "Return all your clues: resign (2 actions)",
+    "resign": "Return all your clues: resign (1 action)",
     "hallway": "Spend 1 clue: remove up to 3 Tunnel barricades",
     "briefcase": "Take the Suspicious Briefcase (2 actions)",
     "greyson": "Parley: intellect (4), automatically evade Greyson",
@@ -52,7 +130,26 @@
     "skin": "Discard Under Your Skin (2 actions)",
     "evidence": "Disarm the incendiary: agility (3)",
     "evidenceAuto": "End your turn: ignore this token and automatically succeed",
-    "briefcaseResources": "Exhaust the briefcase, reveal a token: gain 3 resources"
+    "briefcaseResources": "Exhaust the briefcase, reveal a token: gain 3 resources",
+    "night": {
+      "defend": "Defend {name}",
+      "defendSkill": {
+        "willpower": "Defend Hibbs: willpower (4)",
+        "intellect": "Defend Hibbs: intellect (4)",
+        "combat": "Defend Hibbs: combat (4)",
+        "agility": "Defend Hibbs: agility (4)"
+      },
+      "help": "Place {amount} clues here: reduce difficulty by {amount}",
+      "resign": "Resign from a location with Survivors",
+      "clearMiasma": "Disperse the miasma: test (3)",
+      "benefit": "Use the location benefit",
+      "store": "Spend {amount} resources: search twice that many cards for an asset",
+      "boarding": "Search for an Ally and add it to hand",
+      "shop": "Draw an encounter; search for a Spell or Relic and put it into play",
+      "healDamage": "Heal 1 damage from {name}",
+      "healHorror": "Heal 1 horror from {name}",
+      "hibbs": "Exhaust Hibbs: cancel the attack of opportunity"
+    }
   },
   "prompt": {
     "omega": "Lab Omega: damage or Terror?",
@@ -67,6 +164,13 @@
     "horror": "Take 1 horror and automatically succeed",
     "test": "Take the skill test",
     "hallway": "Spend 3 clues per investigator here: reveal the hidden passage",
-    "read": "Read the hidden text (gain 2 resources)"
+    "read": "Read the hidden text (gain 2 resources)",
+    "night": {
+      "takeClue": "Take 1 clue from the miasma",
+      "discardMiasma": "Discard the miasma",
+      "encounter": "Draw an encounter card",
+      "damageSplit": "Take {damage} damage and {horror} horror",
+      "briefcase": "Start with Suspicious Briefcase in play"
+    }
   }
 }

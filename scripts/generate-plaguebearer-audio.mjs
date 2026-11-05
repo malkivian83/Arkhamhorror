@@ -30,11 +30,15 @@ const entries = [
   'resolution1',
   'resolution2',
   'resolution3',
+  'night.intro',
+  'night.resolution1',
+  'night.resolution2',
 ].map((suffix) => {
-  if (!source[suffix]) throw new Error(`Falta ${suffix}`)
-  if (published[`story.plaguebearer.${suffix}`] !== source[suffix])
+  const body = suffix.split('.').reduce((value, key) => value?.[key], source)
+  if (typeof body !== 'string' || !body) throw new Error(`Falta ${suffix}`)
+  if (published[`story.plaguebearer.${suffix}`] !== body)
     throw new Error(`El relato ${suffix} no está publicado en el catálogo que habilita el audio`)
-  const text = source[suffix]
+  const text = body
     .split(/\n\s*\n/)
     .filter((p) => !/^[»•]/.test(p.trim()))
     .map((p) => p.replace(/[_*]/g, '').trim())
@@ -42,7 +46,7 @@ const entries = [
   if (!text || /<[^>]+>|\{\w+\}/.test(text)) throw new Error(`Texto inválido: ${suffix}`)
   return {
     key: `story.plaguebearer.${suffix}`,
-    file: `plaguebearer-${suffix.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`)}-martin-osborne.mp3`,
+    file: `plaguebearer-${suffix.replaceAll('.', '-').replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`)}-martin-osborne.mp3`,
     text,
   }
 })

@@ -119,6 +119,60 @@
       "inputHash": "e521f1aeae86264f5503c7714f9d747ee28a66b77604916252fb0bf7c48dbe3e",
       "bytes": 913701,
       "sha256": "2a549a66cbd05a8407ea56b0e373106e83e513be0f9aa616ed80cbc95044a275"
+    },
+    {
+      "code": "78020",
+      "side": "front",
+      "text": "Una extraña miasma se cierne sobre Arkham, y con ella, un miedo irrefrenable. La gente corre por las calles presa del pánico, y gritos sin dueño atraviesan la niebla.",
+      "file": "78020-front.mp3",
+      "inputHash": "4e410bd8c0f4e0613e369208484e95fb6e2a274764d3240f5956262656ffb8eb",
+      "bytes": 283419,
+      "sha256": "1f452cdc8bf72949d5d07ccda66a2f3f0d0d1a342f2382880b72c1c461aa1265"
+    },
+    {
+      "code": "78020",
+      "side": "back",
+      "text": "Surgen gritos de cada boca putrefacta, pero sólo el miasma escapa de sus pulmones hinchados.",
+      "file": "78020-back.mp3",
+      "inputHash": "860f458b8d24bc07fdce9481ab6e4a66c3d8c35c4b7fa7687edaf8ef6f296676",
+      "bytes": 134207,
+      "sha256": "5f58e89aa775b28eca0f43c2f51d532fd8e882fffecee2735eb601ce7c3d0088"
+    },
+    {
+      "code": "78021",
+      "side": "front",
+      "text": "Mientras estás dando el máximo para proteger la ciudad, un horrible ser surge de entre la extraña niebla, para extender más y más corrupción con cada protuberancia palpitante.",
+      "file": "78021-front.mp3",
+      "inputHash": "ce267b303e27c3226de5fb2a545d984876a4b5e555b7d87429c653cf651886da",
+      "bytes": 224069,
+      "sha256": "fb27e5ccac0affc585daa2fe2f33c51912841388b055c3d1854c6c959d6719a0"
+    },
+    {
+      "code": "78021",
+      "side": "back",
+      "text": "Según el miasma se esparce, se va volviendo cada vez más densa. Acabas por encontrar auténticas dificultades para respirar. A medida que el vapor venenoso te abrasa los pulmones, buscas el refugio más cercano para reposar y planificar tus próximos movimientos.",
+      "file": "78021-back.mp3",
+      "inputHash": "4700545e10c0c55cd17a57f089f2d39a73acb928154daecf75e2a29f3dfe7d19",
+      "bytes": 379967,
+      "sha256": "1d921109c1e543ff9eeeae5da751aff175ce424026e3921276ffca3c2b7b9e7f"
+    },
+    {
+      "code": "78022",
+      "side": "front",
+      "text": "La ciudad es un hervidero. Azuzado por Hibb, decides ayudar a tantas instituciones —y ciudadanos— como puedas.",
+      "file": "78022-front.mp3",
+      "inputHash": "659451cf3dd82def3e79ac6a26eb5902e8a1eeb2c9556dacc2ea8ed6abfb602c",
+      "bytes": 163883,
+      "sha256": "68ce862f452f1447d8eb3642267c07a4e4682f4cf20279e44f96ebe531fa42a0"
+    },
+    {
+      "code": "78022",
+      "side": "back",
+      "text": "Lo has hecho lo mejor que has podido. Has salvado a todos los que has podido. No hay nada más que puedas hacer por esta gente para ayudarles a pasar la noche. Te refugias en una casa cercana y planificas cuáles serán tus próximos movimientos…",
+      "file": "78022-back.mp3",
+      "inputHash": "8a0bc3e1c72bfa038584a4bff43f5aaf49cb8a67f73443fa127bbcc11d586a02",
+      "bytes": 379967,
+      "sha256": "02a6796ad39b3f83a3f3ac727322cf63acad47aed76e1ed5ea2aea8de5ebc8b1"
     }
   ]
 }

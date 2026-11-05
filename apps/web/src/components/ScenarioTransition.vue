@@ -3,7 +3,7 @@ import { computed, onBeforeUnmount, onMounted, ref, useId, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useTableGame } from '../game/tableController'
 import { useLabels } from '../game/labels'
-import { localName } from '../game/localized'
+import { localName, localizedCards } from '../game/localized'
 import { zoomed } from '../game/zoom'
 import CardTranslation from './CardTranslation.vue'
 import CardNarration from './CardNarration.vue'
@@ -17,6 +17,11 @@ const imageLanguages = ref<Record<string, string>>({})
 const dialog = ref<HTMLDialogElement>()
 const accept = ref<HTMLButtonElement>()
 const current = computed(() => game.advanceReview[0])
+const reverseLandscape = computed(() => {
+  const code = current.value?.card.code
+  const type = code && localizedCards.value.get(`${code}b`)?.type_code
+  return !type || !['enemy', 'asset', 'location'].includes(type)
+})
 const stageTitle = computed(() => {
   const f = current.value
   if (!f) return ''
@@ -95,7 +100,7 @@ onBeforeUnmount(() => dialog.value?.close())
               :code="current.card.code"
               :name="current.card.name"
               :width="480"
-              landscape
+              :landscape="reverseLandscape"
               back
               no-zoom
               @image-language="imageLanguages[`${current.card.code}:back`] = $event"
@@ -113,7 +118,7 @@ onBeforeUnmount(() => dialog.value?.close())
             :code="current.card.code"
             :name="current.card.name"
             :width="160"
-            landscape
+            :landscape="current.stage === 'payment' || reverseLandscape"
             :back="current.stage !== 'payment'"
             no-zoom
           />

@@ -20,7 +20,7 @@ it('publica la portada original de la guía en la ruta del selector', () => {
   expect([cover.width, cover.height]).toEqual([448, 560])
 })
 
-it('ofrece Trasnochadores y reserva los siguientes escenarios como pendientes', () => {
+it('ofrece Trasnochadores al comenzar la campaña', () => {
   const s = startScenario(newCampaign('call-of-the-plaguebearer', ['joe'], 'standard'), 42, true)
   expect(s.scenarioId).toBe('late-risers')
   expect(s.pending?.question.story?.body).toBe('story.plaguebearer.prologue')
@@ -29,7 +29,7 @@ it('ofrece Trasnochadores y reserva los siguientes escenarios como pendientes', 
 })
 it.each(['en', 'es'])('publica cartas y fichas del caos con presentación %s', (locale) => {
   const cards = fallbackCards(locale).filter((c) => c.code.startsWith('78'))
-  expect(cards).toHaveLength(28)
+  expect(cards).toHaveLength(65)
   expect(new Set(cards.map((c) => c.code)).size).toBe(cards.length)
   const name = cards.find((c) => c.code === '78251')?.name
   expect(name).toBe(locale === 'es' ? 'Destruyendo pruebas' : 'Jury-Rigged Incendiary')
@@ -41,8 +41,8 @@ it.each(['en', 'es'])('publica cartas y fichas del caos con presentación %s', (
     chaosHelp({ scenarioId: 'late-risers', difficulty: 'hard' }, 'cultist', locale, t),
   ).toContain('−6')
 })
-it('conserva huellas de las 90 caras, sirve las rutas locales y orienta actos/planes en horizontal', () => {
-  expect(media).toHaveLength(90)
+it('conserva huellas de las 220 caras y sirve las rutas locales', () => {
+  expect(media).toHaveLength(220)
   expect(new Set(media.map((c) => `${c.language}:${c.code}`)).size).toBe(media.length)
   for (const card of media) {
     const back = card.code.endsWith('b'),

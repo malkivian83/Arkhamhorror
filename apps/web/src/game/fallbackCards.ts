@@ -26,6 +26,7 @@ import {
   CURTAIN_CALL_STRANGERS,
   curtainCall,
   lateRisers,
+  nightOnTheTown,
   theLastKing,
   THE_LAST_KING_VIPS,
   echoesOfThePast,
@@ -188,6 +189,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
     murderAtTheExcelsiorHotel({ players: 1 }),
     curtainCall({ difficulty: 'standard' }),
     lateRisers(),
+    nightOnTheTown(),
     theLastKing({ difficulty: 'standard' }),
     // Cada semilla deja fuera un Lugar por planta: con varias aparecen todos.
     ...Array.from({ length: 8 }, (_, seed) => echoesOfThePast({ difficulty: 'standard', seed })),
