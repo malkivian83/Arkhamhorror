@@ -118,3 +118,45 @@ describe('Hielo y muerte I en campaña', () => {
     expect(canPlayNext(next)).toBe(false)
   })
 })
+
+it('resolves defeat through the remaining shelter choice and records experience', () => {
+  const campaign = newCampaign('edge-of-the-earth', ['daniela'], 'standard')
+  const setup = throughSetup(startScenario(campaign, 44))
+  const game = throughSetup(choose(setup, 'choice.edgeOfTheEarth.noPartner'))
+  const investigator = game.investigators[0]!.id
+  const eliminated = dispatch(
+    { ...game, pending: null, queue: [] },
+    {
+      type: 'EliminateInvestigator',
+      investigator,
+    },
+  )
+  const shelter = throughSetup(eliminated)
+  const ended = choose(shelter, 'choice.edgeOfTheEarth.camp', { name: 'Crash Site' })
+  expect(ended.outcome).toEqual({ type: 'noResolution' })
+  expect(ended.campaignLog?.expedition?.camp).toEqual({ location: CRASH, shelter: 0 })
+  expect(ended.campaignLog?.investigators[investigator]?.xp).toBe(3)
+})
+
+it('draws a weakness immediately in Kindred Mist and puts it at the bottom of the player deck', () => {
+  const campaign = newCampaign('edge-of-the-earth', ['daniela'], 'standard')
+  const setup = throughSetup(startScenario(campaign, 44))
+  const game = throughSetup(choose(setup, 'choice.edgeOfTheEarth.noPartner'))
+  const investigator = game.investigators[0]!.id
+  const card = game.setAside.find((card) => card.code === '08691')!
+  const pool = game.tekeliliDeck!
+  const index = pool.indexOf('08726')
+  const resolved = dispatch(
+    {
+      ...game,
+      pending: null,
+      queue: [],
+      tekeliliDeck: ['08726', ...pool.filter((_, n) => n !== index)],
+    },
+    { type: 'ResolveEncounterCard', investigator, card },
+    { type: 'ShuffleTekeliliIntoDeck', investigator, amount: 1 },
+  )
+  expect(resolved.tekeliliDeck).toHaveLength(15)
+  expect(getInvestigator(resolved, investigator).deck.at(-1)).toBe('08726')
+  expect(resolved.campaignLog?.investigators[investigator]?.storyAssets).toEqual(['08726'])
+})
