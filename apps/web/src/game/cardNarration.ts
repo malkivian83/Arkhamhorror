@@ -7,7 +7,8 @@ const recordings: Record<string, { front?: string; back?: string }> = manifest
 export function cardNarration(code: string, back: boolean, locale: string): string | null {
   if (locale !== 'es') return null
   const data = localeData('es')
-  const card = data.excelsiorCards[code] ?? data.cardNarratives[code]
+  const card =
+    data.excelsiorCards[code] ?? data.cardNarratives[code] ?? data.edgeOfTheEarthCards[code]
   if (!['agenda', 'act'].includes(card?.typeCode ?? '')) return null
   const file = recordings[code]?.[back ? 'back' : 'front']
   return file ? `/local-assets/cards/audio/es/${file}` : null

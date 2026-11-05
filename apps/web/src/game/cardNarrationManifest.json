@@ -644,5 +644,36 @@
   "02319": {
     "front": "02319-front.mp3",
     "back": "02319-back.mp3"
+  },
+  "08518": {
+    "front": "08518-front.mp3"
+  },
+  "08521": {
+    "front": "08521-front.mp3",
+    "back": "08521-back.mp3"
+  },
+  "08523": {
+    "front": "08523-front.mp3"
+  },
+  "08526": {
+    "front": "08526-front.mp3"
+  },
+  "08544": {
+    "front": "08544-front.mp3"
+  },
+  "08546": {
+    "front": "08546-front.mp3"
+  },
+  "08519": {
+    "front": "08519-front.mp3"
+  },
+  "08520": {
+    "front": "08520-front.mp3"
+  },
+  "08524": {
+    "front": "08524-front.mp3"
+  },
+  "08525": {
+    "front": "08525-front.mp3"
   }
 }

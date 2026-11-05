@@ -1,0 +1,109 @@
+{
+  "voiceId": "hyKxCTlAqtnW188CgltM",
+  "language": "es",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "language_code": "es"
+  },
+  "files": [
+    {
+      "code": "08518",
+      "side": "front",
+      "text": "No es así precisamente como te imaginaste tu primera incursión en el territorio antártico. El frío helador y los cortantes vientos gélidos no harán más que empeorar.",
+      "file": "08518-front.mp3",
+      "inputHash": "ea8383017d2e922268661ea5f42462476de033923e4cdd397998e95ae5718e13",
+      "bytes": 175585,
+      "sha256": "9cd5747cbdbd9005a161c354227619ed3d93de228c41fa55142870166f4be827"
+    },
+    {
+      "code": "08521",
+      "side": "front",
+      "text": "Tenéis que encontrar el modo de volver al campamento a no mucho tardar… o tendréis que apañaros acampando en mitad de la nada.",
+      "file": "08521-front.mp3",
+      "inputHash": "2ba3abf7a91ab8ec98c663d101f84cfaa5c8d5d7764e5008878fb1565477e968",
+      "bytes": 117907,
+      "sha256": "29d06f91332d70e1c261b8da10aef98a00efe12bf763158958bfa4553a6b8274"
+    },
+    {
+      "code": "08521",
+      "side": "back",
+      "text": "Agotados y aterrados por vuestra odisea, decidís que este sitio es tan bueno como cualquier otro para acampar y pasar la noche. Tal vez mañana podáis sacar algún valor académico de este infernal viaje, pero ahora mismo esas cosas parecen triviales. Lo único que tenéis en mente es sobrevivir.",
+      "file": "08521-back.mp3",
+      "inputHash": "5763d2035cfb2029b587a6c4043ba2b5083eda37509d5e3d6e04eb5d2896b4df",
+      "bytes": 315184,
+      "sha256": "2efee1ebecd986e4e61ea0d181de3dc70a4f90ea894612ab3c6fc4c3e81d4df1"
+    },
+    {
+      "code": "08523",
+      "side": "front",
+      "text": "Varios miembros del grupo han desaparecido misteriosamente durante la noche. Al no haber señales de pelea, sólo puedes suponer que se fueron por voluntad propia pero… ¿por qué?",
+      "file": "08523-front.mp3",
+      "inputHash": "feca8e4b9ad0bca651066b724d5b1723d82fd3ab38540db70e39f45d35993ca9",
+      "bytes": 172660,
+      "sha256": "681903a56eaa2e31330eda9482b2440c84b8f5d7596cbc8efe80a9884322538f"
+    },
+    {
+      "code": "08526",
+      "side": "front",
+      "text": "Emprendes la búsqueda de los miembros del equipo desaparecidos, con la esperanza de encontralos antes de que despunte el día…",
+      "file": "08526-front.mp3",
+      "inputHash": "33e1d1b26b92e07022ffad9f93b097c5e52a09165a557cfd1e1e9c8badffa7d5",
+      "bytes": 116235,
+      "sha256": "760b89fd504cab73c317417aa33b299e6408715872b1719e28ed61a8c5a2c572"
+    },
+    {
+      "code": "08544",
+      "side": "front",
+      "text": "Algo se agita bajo el hielo. A través de las grietas burbujea un siniestro icor de olor rancio y acre.",
+      "file": "08544-front.mp3",
+      "inputHash": "187a2a35adbf050dd25c0125a3c0d1cb78fc78b20a9da8cc8d197b74c097d3b2",
+      "bytes": 115399,
+      "sha256": "8a6348389b6ef0341216387bb3dd1991d169ede3f847e3b82f49d451a2499016"
+    },
+    {
+      "code": "08546",
+      "side": "front",
+      "text": "Han descubierto vuestro campamento, y ahora los monstruos que acechan en la nieve y el hielo convergen hacia vuestra posición. Sólo hay dos formas de salir de esta pesadilla: combatir o huir.",
+      "file": "08546-front.mp3",
+      "inputHash": "12af3dee0f1f9fb8535631884b370237a4d501bee8826c88a117a1ecb398c699",
+      "bytes": 226158,
+      "sha256": "a1fceed42b1449487cf3bfa1fcc6aa4f471724822cc80221c951e4fcd21190d3"
+    },
+    {
+      "code": "08519",
+      "side": "front",
+      "text": "Algo habita bajo el hielo. Algo de lo que no has oído hablar y que tampoco has visto nunca, ni siquiera en el horrendo informe de William Dyer. Algo… irreal.",
+      "file": "08519-front.mp3",
+      "inputHash": "9a7c1ec33e11ed93ddc971a31b19ff973e7dc068f9e7bade92131775efd9caec",
+      "bytes": 193558,
+      "sha256": "91b2aee6c44cde29cf19064776bd781c2e2a0530f576a10d47df0a92304d45ac"
+    },
+    {
+      "code": "08520",
+      "side": "front",
+      "text": "El sol está a poca altura, pero nunca se pone. Tu grupo está agotado tras el largo y arduo día. Aunque el cielo nunca se tiñe con la oscuridad de la noche, sabes que es cuestión de tiempo que os veáis obligados a acampar.",
+      "file": "08520-front.mp3",
+      "inputHash": "34134fa1cd867afcc5b87b5983dcb9338c7e22fb2d0708d0e9f4166bcf83a4dd",
+      "bytes": 239533,
+      "sha256": "543ed70554553671381c00c8f15b2402e6eaf2d387a70519847d11807001f1f9"
+    },
+    {
+      "code": "08524",
+      "side": "front",
+      "text": "El sol a baja altura ilumina tenuemente la noche antártica. El cielo está cubierto por nubes grises que amenazan con una tormenta helada.",
+      "file": "08524-front.mp3",
+      "inputHash": "d63cadbc5fddac915f69044a67b4879ab02c467e091eb933f866f18a6117fb28",
+      "bytes": 148836,
+      "sha256": "7447d7c7ff251738373fba7c509e71e051ffc4e3f42645bc0195d293ba36c2c2"
+    },
+    {
+      "code": "08525",
+      "side": "front",
+      "text": "La tormenta está cada vez más cerca, y ese maldito sonido vuelve con ella. Te persigue con su presencia, introduciéndose en tu mente. ¿Es la causa de este enajenamiento? ¿De esta locura?",
+      "file": "08525-front.mp3",
+      "inputHash": "7e6db8fbdc560f439097ee2893b0bbbda68c3b8c38cec63d409a9a4d077b7c85",
+      "bytes": 215710,
+      "sha256": "3e8d51451bb82b080b6cf999632286449afd5f2314a612eb3452e130383bdebe"
+    }
+  ]
+}

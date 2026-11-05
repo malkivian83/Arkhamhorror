@@ -123,6 +123,12 @@ plan, las resoluciones, las salidas de ambos puntos de control y las historias d
 `node scripts/generate-edge-of-the-earth-audio.mjs --generate` genera los MP3
 y actualiza el registro de reproducción al completar todas las grabaciones.
 
+La preparación ofrece narración en los planes y actos iniciales de las tres
+partes de Hielo y muerte. Hay 11 caras grabadas con Salva en el registro de
+cartas. La cuota dejó pendientes el anverso de Profundidades heladas y nueve
+reversos. Se generan con
+`node scripts/generate-campaign-card-audio.mjs --campaign=edge-of-the-earth --generate`.
+
 ## Fuentes revisadas
 
 - Guía española añadida: `reglas/AHLCG_Los_confines_de_la_tierra.pdf`.

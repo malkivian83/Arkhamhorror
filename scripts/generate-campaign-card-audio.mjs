@@ -13,7 +13,12 @@ const groups = {
   carnevale: 'fortuna-narracion.json',
   dunwich: 'dunwich-nico-narracion.json',
   plaguebearer: 'plaguebearer-narracion.json',
+  'edge-of-the-earth': null,
 }
+const edgeCards = JSON.parse(
+  readFileSync('packages/i18n/src/edge-of-the-earth-cards.es.json', 'utf8'),
+)
+const edgeStory = JSON.parse(readFileSync('apps/web/src/game/edgeOfTheEarthNarration.json', 'utf8'))
 const hash = (value) => createHash('sha256').update(value).digest('hex')
 const clean = (text) =>
   text
@@ -28,6 +33,8 @@ const codes = process.argv
   .find((arg) => arg.startsWith('--codes='))
   ?.slice('--codes='.length)
   .split(',')
+const sideFilter = process.argv.find((arg) => arg.startsWith('--side='))?.split('=')[1]
+if (sideFilter && !['front', 'back'].includes(sideFilter)) throw new Error('Cara desconocida')
 if (selected && !(selected in groups)) throw new Error('Campaña desconocida')
 const manifestPath = 'apps/web/src/game/cardNarrationManifest.json'
 const root = 'apps/web/public/local-assets/cards/audio/es'
@@ -42,33 +49,41 @@ if (process.argv.includes('--generate')) {
 }
 for (const [group, storyEvidence] of Object.entries(groups)) {
   if (selected && selected !== group) continue
+  const isEdge = group === 'edge-of-the-earth'
   const story = JSON.parse(
     readFileSync(`docs-proyecto/evidencias/${storyEvidence ?? 'carcosa-narracion.json'}`, 'utf8'),
   )
-  const voiceId = group === 'ceniza' ? 'o0SveC0zgHFuCsEO3vHR' : story.voiceId
+  const voiceId = isEdge
+    ? edgeStory.voiceId
+    : group === 'ceniza'
+      ? 'o0SveC0zgHFuCsEO3vHR'
+      : story.voiceId
   // La Gala conserva los ajustes documentados para sus historias.
-  const settings = ['gala', 'ceniza'].includes(group)
-    ? {
-        model_id: 'eleven_multilingual_v2',
-        voice_settings: {
-          stability: 0.31,
-          similarity_boost: 0.86,
-          style: 0,
-          speed: 1,
-          use_speaker_boost: true,
-        },
-      }
-    : story.settings
+  const settings = isEdge
+    ? { model_id: edgeStory.model, language_code: 'es' }
+    : ['gala', 'ceniza'].includes(group)
+      ? {
+          model_id: 'eleven_multilingual_v2',
+          voice_settings: {
+            stability: 0.31,
+            similarity_boost: 0.86,
+            style: 0,
+            speed: 1,
+            use_speaker_boost: true,
+          },
+        }
+      : story.settings
   if (!voiceId || !settings) throw new Error(`Falta configuración de ${group}`)
-  const entries = Object.entries(catalog)
+  const entries = Object.entries(isEdge ? edgeCards : catalog)
     .filter(
       ([code, card]) =>
-        card.group === group &&
+        (isEdge || card.group === group) &&
         ['agenda', 'act'].includes(card.typeCode) &&
         (!codes || codes.includes(code)),
     )
     .flatMap(([code, card]) =>
       ['front', 'back'].flatMap((side) => {
+        if (sideFilter && sideFilter !== side) return []
         const flavor = card[side === 'back' ? 'backFlavor' : 'flavor']
         if (!flavor?.trim()) return []
         const text = clean(flavor)
