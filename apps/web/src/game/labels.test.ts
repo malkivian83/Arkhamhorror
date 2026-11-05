@@ -28,3 +28,17 @@ it('nombra el origen del daño: una carta o una ficha del caos', async () => {
     'Asigna 1 horror de Ghoul',
   )
 })
+
+it('explica también el motivo de otros efectos del registro', async () => {
+  expect(
+    await render('log.damage', {
+      name: 'Joe',
+      damage: 3,
+      horror: 0,
+      source: 'Destruyendo pruebas',
+    }),
+  ).toContain('de Destruyendo pruebas')
+  expect(await render('log.resources', { name: 'Joe', n: 2, source: 'Some card' })).toContain(
+    'Motivo: Some card',
+  )
+})

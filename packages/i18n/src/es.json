@@ -144,7 +144,7 @@
     "lastTest": "Última prueba: {skill} {value} contra {difficulty} (ficha {token}) — {result}",
     "success": "éxito",
     "failure": "fracaso",
-    "won": "Escenario ganado (resolución {n})",
+    "won": "Escenario terminado (resolución {n})",
     "lost": "Escenario perdido (sin resolución)"
   },
   "skill": {
@@ -1531,6 +1531,9 @@
     "lastKing": {
       "diningToken": "Comedor: se revela la ficha {token}"
     },
+    "deckExhausted": "agotamiento del mazo",
+    "effectTriggered": "Se resuelve un efecto",
+    "effectSource": " — Motivo: {source}",
     "damageFrom": "{name} recibe {damage} daño y {horror} horror de {source}",
     "phantom": {
       "revealed": "{name} revela {card} de la parte superior de su mazo."

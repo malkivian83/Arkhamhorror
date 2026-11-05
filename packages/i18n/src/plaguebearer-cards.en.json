@@ -127,49 +127,49 @@
     "name": "Arkham Advertiser",
     "typeCode": "location",
     "text": "When revealed, put Doyle Jeffries here. After playing an event here, you may draw 1 card and gain 1 resource. Limit once per round.",
-    "backText": ""
+    "backText": "Unrevealed location. Enter it to reveal its other side."
   },
   "78024": {
     "name": "Bank of Arkham",
     "typeCode": "location",
     "text": "When revealed, put The Vice President here. After successfully investigating here, you may gain 2 resources. Limit once per round.",
-    "backText": ""
+    "backText": "Unrevealed location. Enter it to reveal its other side."
   },
   "78025": {
     "name": "General Store",
     "typeCode": "location",
     "text": "When revealed, put The Loving Couple here. [free], spend X resources: search the top 2X cards of your deck for an asset and put it into play. Shuffle. Limit once per round.",
-    "backText": ""
+    "backText": "Unrevealed location. Enter it to reveal its other side."
   },
   "78026": {
     "name": "Hibbs Roadhouse",
     "typeCode": "location",
     "text": "When revealed, put Hibbs here. After succeeding by 2 or more here, you may heal 1 damage or 1 horror from an investigator here. Limit once per round.",
-    "backText": ""
+    "backText": "Unrevealed location. Enter it to reveal its other side."
   },
   "78027": {
     "name": "Ma’s Boarding House",
     "typeCode": "location",
     "text": "When revealed, put Ma Matheson here. [action]: search your deck for an Ally and add it to your hand. Shuffle. Limit once per round.",
-    "backText": ""
+    "backText": "Unrevealed location. Enter it to reveal its other side."
   },
   "78028": {
     "name": "Orne Library",
     "typeCode": "location",
     "text": "When revealed, put Henry Armitage here. After drawing cards during upkeep, if you have 5 or more cards in hand, draw 1 card.",
-    "backText": ""
+    "backText": "Unrevealed location. Enter it to reveal its other side."
   },
   "78029": {
     "name": "River Docks",
     "typeCode": "location",
     "text": "When revealed, put Abner Weems here. An eligible skill committed here gains: after this test ends, you may draw 1 card. Limit once per round.",
-    "backText": ""
+    "backText": "Unrevealed location. Enter it to reveal its other side."
   },
   "78030": {
     "name": "Ye Olde Magick Shoppe",
     "typeCode": "location",
     "text": "When revealed, put Miriam Beecher here. [action]: draw the top encounter card, then search your deck for a Spell or Relic and put it into play. Shuffle. Limit once per round.",
-    "backText": ""
+    "backText": "Unrevealed location. Enter it to reveal its other side."
   },
   "78031": {
     "name": "Abner Weems",
@@ -298,49 +298,49 @@
     "name": "Arkham Advertiser",
     "typeCode": "location",
     "text": "At the start of your turn here, reveal an event from your hand or discard. Take X damage and/or horror in total, where X is its cost. If it costs 0, remove it from the game.",
-    "backText": ""
+    "backText": "Unrevealed location. Enter it to reveal its other side."
   },
   "78276": {
     "name": "Bank of Arkham",
     "typeCode": "location",
     "text": "At the start of your turn here, lose half your resources, rounded up.",
-    "backText": ""
+    "backText": "Unrevealed location. Enter it to reveal its other side."
   },
   "78277": {
     "name": "General Store",
     "typeCode": "location",
     "text": "At the start of your turn here, discard an asset you control; two if you control 5 or more.",
-    "backText": ""
+    "backText": "Unrevealed location. Enter it to reveal its other side."
   },
   "78278": {
     "name": "Hibbs Roadhouse",
     "typeCode": "location",
     "text": "At the start of your turn here, choose your highest skill and reduce it to 1 for the rest of the phase.",
-    "backText": ""
+    "backText": "Unrevealed location. Enter it to reveal its other side."
   },
   "78279": {
     "name": "Ma’s Boarding House",
     "typeCode": "location",
     "text": "At the start of your turn here, take damage or horror equal to the total health or sanity of your highest-cost Ally. You cannot choose a zero value.",
-    "backText": ""
+    "backText": "Unrevealed location. Enter it to reveal its other side."
   },
   "78280": {
     "name": "Orne Library",
     "typeCode": "location",
     "text": "At the start of your turn here, discard down to 3 cards in hand.",
-    "backText": ""
+    "backText": "Unrevealed location. Enter it to reveal its other side."
   },
   "78281": {
     "name": "River Docks",
     "typeCode": "location",
     "text": "At the start of your turn here, reveal a skill from your hand. Discard it or take horror equal to its icons.",
-    "backText": ""
+    "backText": "Unrevealed location. Enter it to reveal its other side."
   },
   "78282": {
     "name": "Ye Olde Magick Shoppe",
     "typeCode": "location",
     "text": "At the start of your turn here, draw an encounter card or discard your highest-cost non-Ally asset.",
-    "backText": ""
+    "backText": "Unrevealed location. Enter it to reveal its other side."
   },
   "78283": {
     "name": "Grinning Victim",

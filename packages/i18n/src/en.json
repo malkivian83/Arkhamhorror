@@ -144,7 +144,7 @@
     "lastTest": "Last test: {skill} {value} vs {difficulty} (token {token}) — {result}",
     "success": "success",
     "failure": "failure",
-    "won": "Scenario won (resolution {n})",
+    "won": "Scenario ended (resolution {n})",
     "lost": "Scenario lost (no resolution)"
   },
   "skill": {
@@ -1531,6 +1531,9 @@
     "lastKing": {
       "diningToken": "Dining Room: the {token} token is revealed"
     },
+    "deckExhausted": "deck exhaustion",
+    "effectTriggered": "Resolving an effect",
+    "effectSource": " — Cause: {source}",
     "damageFrom": "{name} takes {damage} damage and {horror} horror from {source}",
     "phantom": {
       "revealed": "{name} reveals {card} from the top of their deck."

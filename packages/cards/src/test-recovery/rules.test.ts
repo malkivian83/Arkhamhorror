@@ -167,6 +167,7 @@ it.each(['05119', '05194', '05195'])(
         type: 'DrawCards',
         investigator: 'a',
         amount: 1,
+        effectSource: playerCardDef(code)!.name,
       })
     if (code === '05195') expect(s.skillTest!.tokenOnFail).toHaveLength(1)
   },

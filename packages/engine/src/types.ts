@@ -829,7 +829,8 @@ export type PhaseStep =
   | 'upkeepEnds'
 
 /** Todo lo que puede ocurrir en la partida. */
-export type Message =
+export type Message = MessageBody & { effectSource?: string }
+type MessageBody =
   | { type: 'AddCommittedIcon'; commitId: number; icon: SkillIcon }
   | { type: 'GameBegins' }
   | { type: 'AdjustPendingEnemyDamage'; enemy: EnemyId; amount: number }

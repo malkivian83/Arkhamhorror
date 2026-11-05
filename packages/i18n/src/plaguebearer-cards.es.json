@@ -127,49 +127,49 @@
     "name": "Arkham Advertiser",
     "typeCode": "location",
     "text": "Al revelarse, coloca a Doyle Jeffries aquí. Después de jugar un evento aquí, puedes robar 1 carta y obtener 1 recurso. Límite una vez por ronda.",
-    "backText": ""
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara."
   },
   "78024": {
     "name": "Banco de Arkham",
     "typeCode": "location",
     "text": "Al revelarse, coloca al Vicepresidente aquí. Después de investigar con éxito aquí, puedes obtener 2 recursos. Límite una vez por ronda.",
-    "backText": ""
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara."
   },
   "78025": {
     "name": "Colmado",
     "typeCode": "location",
     "text": "Al revelarse, coloca a La Pareja de Enamorados aquí. [free], gasta X recursos: busca entre las 2X primeras cartas de tu mazo un Apoyo y ponlo en juego. Baraja. Límite una vez por ronda.",
-    "backText": ""
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara."
   },
   "78026": {
     "name": "Motel Hibb",
     "typeCode": "location",
     "text": "Al revelarse, coloca a Hibb (Parlanchín) aquí. Después de tener éxito por 2 o más aquí, puedes curar 1 daño o 1 horror de un investigador aquí. Límite una vez por ronda.",
-    "backText": ""
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara."
   },
   "78027": {
     "name": "Pensión de Ma",
     "typeCode": "location",
     "text": "Al revelarse, coloca a Ma Matheson aquí. [action]: busca un Aliado en tu mazo y añádelo a tu mano. Baraja. Límite una vez por ronda.",
-    "backText": ""
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara."
   },
   "78028": {
     "name": "Biblioteca Orne",
     "typeCode": "location",
     "text": "Al revelarse, coloca a Henry Armitage aquí. Después de robar cartas en mantenimiento, si tienes 5 o más cartas en la mano, roba 1 carta.",
-    "backText": ""
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara."
   },
   "78029": {
     "name": "Muelles",
     "typeCode": "location",
     "text": "Al revelarse, coloca a Abner Weems aquí. Al asignar una habilidad elegible aquí, esa carta gana: después de terminar esta prueba, puedes robar 1 carta. Límite una vez por ronda.",
-    "backText": ""
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara."
   },
   "78030": {
     "name": "Vieja tienda de Magia",
     "typeCode": "location",
     "text": "Al revelarse, coloca a Miriam Beecher aquí. [action]: roba la primera carta del mazo de encuentros; después busca un Hechizo o Reliquia en tu mazo y ponlo en juego. Baraja. Límite una vez por ronda.",
-    "backText": ""
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara."
   },
   "78031": {
     "name": "Abner Weems",
@@ -298,49 +298,49 @@
     "name": "Arkham Advertiser",
     "typeCode": "location",
     "text": "Al comenzar tu turno aquí, revela un evento de tu mano o descarte. Recibe X daños y/o horrores en total, siendo X su coste. Si cuesta 0, retíralo de la partida.",
-    "backText": ""
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara."
   },
   "78276": {
     "name": "Banco de Arkham",
     "typeCode": "location",
     "text": "Al comenzar tu turno aquí, pierde la mitad de tus recursos redondeando hacia arriba.",
-    "backText": ""
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara."
   },
   "78277": {
     "name": "Colmado",
     "typeCode": "location",
     "text": "Al comenzar tu turno aquí, descarta un Apoyo que controles; dos si controlas 5 o más.",
-    "backText": ""
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara."
   },
   "78278": {
     "name": "Motel Hibb",
     "typeCode": "location",
     "text": "Al comenzar tu turno aquí, elige tu habilidad de mayor valor y redúcela a 1 durante el resto de la fase.",
-    "backText": ""
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara."
   },
   "78279": {
     "name": "Pensión de Ma",
     "typeCode": "location",
     "text": "Al comenzar tu turno aquí, recibe daño u horror igual a la salud o cordura total del Aliado de mayor coste que controles. No puedes elegir un valor nulo.",
-    "backText": ""
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara."
   },
   "78280": {
     "name": "Biblioteca Orne",
     "typeCode": "location",
     "text": "Al comenzar tu turno aquí, descarta cartas hasta tener 3 o menos en la mano.",
-    "backText": ""
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara."
   },
   "78281": {
     "name": "Muelles",
     "typeCode": "location",
     "text": "Al comenzar tu turno aquí, revela una habilidad de tu mano. Descártala o recibe tanto horror como iconos tenga.",
-    "backText": ""
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara."
   },
   "78282": {
     "name": "Vieja tienda de Magia",
     "typeCode": "location",
     "text": "Al comenzar tu turno aquí, roba un encuentro o descarta el Apoyo no Aliado de mayor coste que controles.",
-    "backText": ""
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara."
   },
   "78283": {
     "name": "Víctima sonriente",

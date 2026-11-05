@@ -1,4 +1,5 @@
 import { synchronizeTurnActions } from './turn-actions'
+import { messageSource, withEffectSource } from './effect-source'
 import { discardOrphanedUpgrades } from './asset-upgrades'
 import { EngineError } from './errors'
 import { handle } from './handlers'
@@ -81,6 +82,26 @@ function run(initial: GameState, observer?: EngineObserver): GameState {
       ),
       message,
     )
+    const source = messageSource(before, message)
+    if (source) {
+      const previous = new Set(rest)
+      state = {
+        ...state,
+        queue: state.queue.map((m) => (previous.has(m) ? m : withEffectSource(m, source))),
+        pending:
+          state.pending && state.pending !== before.pending
+            ? withEffectSource(state.pending, source)
+            : state.pending,
+        log: state.log.map((entry, n) =>
+          n < before.log.length
+            ? entry
+            : {
+                ...entry,
+                params: { source, ...entry.params },
+              },
+        ),
+      }
+    }
     // RR "Gain": clues gained from the pool or transferred also trigger forced abilities.
     const gainedClues = state.investigators.flatMap((i): Message[] => {
       const amount =

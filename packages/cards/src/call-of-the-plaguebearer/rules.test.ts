@@ -114,6 +114,9 @@ describe('Trasnochadores: efectos de cartas y finales favorables', () => {
       { type: 'MoveTo', investigator: 'a', location: L.omega },
     )
     expect(me(s).damage).toBe(3)
+    expect(s.log.findLast((e) => e.key === 'log.damage')?.params?.source).toBe(
+      'Jury-Rigged Incendiary',
+    )
     expect(Object.values(s.treacheries)).toHaveLength(0)
     expect(Object.values(s.enemies)).toHaveLength(0)
     expect(me(s).location).toBe(L.omega)

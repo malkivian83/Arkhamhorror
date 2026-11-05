@@ -41,6 +41,19 @@ el PDF.
   no cambien sus módulos, recursos, dependencias o configuración relevante.
 - Siguiente: interludio I y escenario III. No se habilita III sin ese trabajo.
   Revisión visual de la app pendiente de la persona usuaria; sin navegador.
+- Corrección del diario: el origen de efectos se conserva en elecciones, pruebas,
+  asignación de daño y guardados; activaciones y efectos registrados indican su
+  carta. Regresión de la explosión de Destruyendo pruebas y del daño elegido en
+  un Lugar. Una resolución se rotula «escenario terminado», sin asumir victoria.
+  247 pruebas de motor, guardados, campaña y etiquetas; tipos y lint correctos.
+- CI de `674b12bc`: dos fallos de presentación EN/ES por las caras sin revelar
+  de los 16 lugares de II. Añadidos resúmenes propios de esas caras; las 34
+  pruebas de catálogo sin red pasan. El Deploy de esa subida se omitió.
+- Verificación del registro ampliada a toda la suite: 7174 pruebas correctas y
+  26 omitidas, combinando la ejecución global y la repetición de los archivos
+  fallidos. Ajustada una aserción al nuevo origen del Tótem; SMTP local bloqueado
+  y timeout bajo carga pasan aislados con acceso a conexiones locales. Tipos y
+  empaquetado web correctos. Pendiente consultar CI/Deploy de la corrección.
 
 ## Fuentes
 

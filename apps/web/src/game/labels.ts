@@ -25,12 +25,20 @@ export function useLabels() {
       translated.kind = t(`damageKind.${params.kind}`)
     }
     // Origen del daño: una carta o una ficha del caos; el texto "…From" lo nombra.
+    let suffix = ''
     if (typeof params.source === 'string') {
       const token = params.source.startsWith('token:') ? params.source.slice(6) : null
-      translated.source = token ? t(`chaosTokenName.${token}`) : localName(cardName(params.source))
+      translated.source = token
+        ? t(`chaosTokenName.${token}`)
+        : params.source.startsWith('rule:')
+          ? t(`log.${params.source.slice(5)}`)
+          : localName(cardName(params.source))
       if (te(`${key}From`)) key = `${key}From`
+      else if (key.startsWith('log.')) suffix = t('log.effectSource', { source: translated.source })
     }
     // Con un número {n}, los textos con "singular | plural" eligen su forma.
-    return typeof params.n === 'number' ? t(key, translated, params.n) : t(key, translated)
+    return (
+      (typeof params.n === 'number' ? t(key, translated, params.n) : t(key, translated)) + suffix
+    )
   }
 }
