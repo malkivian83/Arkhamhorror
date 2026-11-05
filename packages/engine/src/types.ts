@@ -206,6 +206,7 @@ export type EnemyKeyword =
 
 /** Prey (presa): a quién prefiere enfrentarse el enemigo. */
 export type Prey =
+  | { type: 'mostTreacheries'; trait: string }
   | { type: 'mostAssets'; code: CardCode }
   | { type: 'fewestCards' }
   | { type: 'lowestSkill'; skill: SkillType }
@@ -1562,6 +1563,8 @@ export type Message =
   | { type: 'DrawFromEncounterDiscard'; investigator: InvestigatorId; code: CardCode }
   | {
       type: 'SpawnEnemy'
+      /** Enters exhausted, before engagement and spawn reaction windows. */
+      entersExhausted?: boolean
       initialDamage?: number
       card: EnemyCard
       location: LocationId
@@ -1631,7 +1634,7 @@ export type Message =
       shuffleIntoEncounter?: boolean
     }
   | { type: 'PlaceCluesOnLocationFromPool'; location: LocationId; amount: number }
-  | { type: 'SpawnSetAsideEnemy'; code: CardCode; location: LocationId }
+  | { type: 'SpawnSetAsideEnemy'; code: CardCode; location: LocationId; entersExhausted?: boolean }
   /**
    * Saca un enemigo del juego (curado) y lo vuelve a apartar. Con `card` también lo
    * recupera de la zona de victoria, donde solo queda su código.
@@ -2088,6 +2091,7 @@ export type Trigger =
   | { type: 'afterUsesAdded'; asset: AssetId; amount: number }
   | { type: 'afterUsesSpent'; asset: Asset; amount: number }
   | { type: 'enemyPhaseBegins' }
+  | { type: 'huntersMoveEnds' }
   /** Un enemigo acaba de entrar en juego (tras enfrentarse, si le toca). */
   | { type: 'enemySpawned'; enemy: EnemyId; location: LocationId }
   | { type: 'afterTakeControlOfPlaced'; investigator: InvestigatorId; code: CardCode }

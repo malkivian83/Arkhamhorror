@@ -117,6 +117,7 @@ import './midwinter-gala/definition'
 import './excelsior/definition'
 import './carnevale/definition'
 import './the-path-to-carcosa/definition'
+import './call-of-the-plaguebearer/definition'
 import './the-dunwich-legacy/definition'
 import './fortune-and-folly/definition'
 // Comportamiento de las cartas: hace falta para saber cuáles se pueden comprar.
