@@ -43,7 +43,10 @@
   },
   "78008": {
     "name": "Morgue",
-    "typeCode": "location"
+    "typeCode": "location",
+    "traits": "Agencia. Omega.",
+    "flavor": "El hedor de la neblina verde que se cuela por debajo de la puerta aturde tus sentidos más aún que el del formaldehído.",
+    "backFlavor": "No hay ninguna pista de cómo has llegado hasta aquí."
   },
   "78009": {
     "name": "Laboratorio Omega",

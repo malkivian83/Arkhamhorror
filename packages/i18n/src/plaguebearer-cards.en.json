@@ -43,7 +43,10 @@
   },
   "78008": {
     "name": "Morgue",
-    "typeCode": "location"
+    "typeCode": "location",
+    "traits": "Agency. Omega.",
+    "flavor": "The stench of the green mist rolling in from the door overwhelms your senses far more than the formaldehyde.",
+    "backFlavor": "There is little sign of how you got here."
   },
   "78009": {
     "name": "Lab Omega",

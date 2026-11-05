@@ -54,6 +54,13 @@ el PDF.
 - Portada local extraída de la guía ES p. 1 y relatos publicados en el catálogo
   oficial ES que habilita el reproductor. Probado el cuerpo real del modal para
   los siete audios; el catálogo se revalida al recargar para evitar datos antiguos.
+- Corrección de cartas ES: 45 caras reconvertidas desde los JPG con su perfil
+  CMYK a sRGB mediante ImageCms (también sus miniaturas). Los ocho lugares usan
+  `NNNb.jpg` como cara revelada y `NNNa.jpg` sin revelar. La Morgue incorpora
+  sus textos narrativos EN/ES. Regresión de perfiles ICC, caras e idioma activo:
+  47 pruebas dirigidas correctas; inventarios de originales y miniaturas válidos.
+  Lint, tipos web/i18n y empaquetado web correctos. Estos controles siguen vigentes
+  mientras no cambien los recursos, catálogos o su carga.
 - Siguiente: escenario II; revisar Defender y Arkham caído antes de habilitarlo.
   Integrar los cambios remotos con rebase antes de subir.
 

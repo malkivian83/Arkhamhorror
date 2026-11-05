@@ -22,7 +22,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\001a.jpg",
     "sourceSha256": "606d12b40a3f78c4b5f2997bfce166bec5aef17291128ecfedc71ffdfe5335c5",
-    "sha256": "751d123a43e3fae5e152f3ef9403828d07fae15bc3c79d0a25d1f3f85ab62320",
+    "sha256": "f4ce889567c8355c064476ef019247d5623c0400f30e5083ffdea230abce1520",
     "width": 714,
     "height": 1035
   },
@@ -31,7 +31,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\001b.jpg",
     "sourceSha256": "d3ea979ed3b02f0d9bfaf83ebfc53d3f58f2cb6a027cae3a42458f3dfae1fb31",
-    "sha256": "44d6f03b7b28e5cab04ad75e559985099687a5ceed11773e527b014fb7112484",
+    "sha256": "0ad91c5430a6fa1340f4013f03c3d3fd0ce0a7ae02fc10e40d496616c880c3c7",
     "width": 714,
     "height": 1035
   },
@@ -58,7 +58,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\002a.jpg",
     "sourceSha256": "c6cfe17fa1c6e484622a1928a47bf291a79afa3591fcd177ce81d2a2d6c5bfaa",
-    "sha256": "1e8d352e96374f693c6d5951d1f8883ed59c3d61edce8849216f0965689b3449",
+    "sha256": "cd390eaaa2e14e2438fa461d40e0d6e9b42bb377d37648aa08183e5c9eef7f47",
     "width": 1035,
     "height": 714
   },
@@ -67,7 +67,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\002b.jpg",
     "sourceSha256": "c026f157d9038c01fb218497ef8577afc701cad2e408d939d55e478d763bb994",
-    "sha256": "2919b35ae72ce69fc3556c87e92c0621f5a0d0aecb517940395e774f004e41db",
+    "sha256": "670b414939220db5570bfaaaf8de554813c04bf81e2c382e18fd0f8503aaefff",
     "width": 1035,
     "height": 714
   },
@@ -94,7 +94,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\003a.jpg",
     "sourceSha256": "32459a2d2730cc22555dec15c4f7d2426b7791964baf8ad42cc483a66a04ee73",
-    "sha256": "8e20446f1d39241c7f8a15d301d5f33dd5e6cce8cccef01402872bcddecc9db7",
+    "sha256": "5c6ddddb6a57bef6429064fcfa1fb803d00f706442a1f084101050315b5cd7aa",
     "width": 1035,
     "height": 714
   },
@@ -103,7 +103,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\003b.jpg",
     "sourceSha256": "b59273e743172cdbec31d2e91259fd1ccb5c00d1a8481fd66f341ccff26579d8",
-    "sha256": "1927491510a73f5119cfee5257e4436203a558b5500915985ab3223651a451dd",
+    "sha256": "cbe96c3b9653eee5327a77925fa65554cc537619d25c18e38beb6e1960ddcb70",
     "width": 1035,
     "height": 714
   },
@@ -130,7 +130,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\004a.jpg",
     "sourceSha256": "ab5d3e7beed78eab387a9238915123ec0e33045baa0f7d1a71aa853c2124a027",
-    "sha256": "b28e0db4bee7131458407d378ad652a129683c09956083f27bb372d2b3ea49d5",
+    "sha256": "77bb7b181feb9e7275f637e6396f2cf100205379f288cbae5c24ce07fec1bfb3",
     "width": 1035,
     "height": 714
   },
@@ -139,7 +139,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\004b.jpg",
     "sourceSha256": "5253304baf150b0936de11ba55ce8892d684bdde0ade28983eeb00ac915ddb77",
-    "sha256": "c0835399ba6003163dcdec9c77b2cd751592d8b4848bba4fd86a8909d626002c",
+    "sha256": "70f565928ee688793a2edccfc5bdc5e7a2634030bcb9b0ef7d897d9a4171aff0",
     "width": 1035,
     "height": 714
   },
@@ -166,7 +166,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\005a.jpg",
     "sourceSha256": "b4e80a8bb5c8ad79e9eba82135267524a9894cfa94105fd338e8aa44248d9f64",
-    "sha256": "32f4bc1ba69144813143105e1679063a02ee26579214b6fdfcae07ae86c54eea",
+    "sha256": "bc9991d481e0c3cf6d85587f31a9af9dbab4486e961745f99ddcb218a9d77e16",
     "width": 1035,
     "height": 714
   },
@@ -175,7 +175,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\005b.jpg",
     "sourceSha256": "c1ce699e7cae9884170ed1691d956e13a845862a97764ed51281f8420aab4e06",
-    "sha256": "7a4bdb87459634bb24155b5dd1b61bedbd3f85671cbf3007a23497a27fb360dc",
+    "sha256": "9ea794380a55de792e4d8c05b08f2ac9367581ffbf22b8e9ea69776daac50d5e",
     "width": 1035,
     "height": 714
   },
@@ -202,7 +202,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\006a.jpg",
     "sourceSha256": "eae4fc27436ad6c11eb6e7cc0715369137f3e7169a3ec72f9031aeace66dac34",
-    "sha256": "8772d9bb7dbd56063ee00167c18a1c11ce6aea2c42b4b5b550f88bd2c7ad9c51",
+    "sha256": "046df2e08481bd60673dbe2842a3e09c1d79f5dec166ac3fd31b3a3eeb8f045b",
     "width": 1035,
     "height": 714
   },
@@ -211,7 +211,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\006b.jpg",
     "sourceSha256": "13878d550b96b94dfa6ddaff70489b173de7f5e65deed35bbe852cb7a48d18aa",
-    "sha256": "3c2fdb52669338f4bdacba9cffcfea4bdc6e742f7f76fcc32578806fe495c270",
+    "sha256": "f9044dc7e057eaacb1c1ddbe74cea40d8904e469703b8b0864f394652fb321d4",
     "width": 1035,
     "height": 714
   },
@@ -238,7 +238,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\007a.jpg",
     "sourceSha256": "905b9f03a964bf614e1bb1a9549fa429f5203259494590d214ae26d7aa8c89b8",
-    "sha256": "553510b74480364107bbee456ee03d5f4a21a8d887d9c6ae18301ed3a28f55a8",
+    "sha256": "2e3c59ef3446f33e1d4f23c771cb697e380022819499340cbab3652ff06a67fb",
     "width": 1035,
     "height": 714
   },
@@ -247,7 +247,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\007b.jpg",
     "sourceSha256": "d94e2e467795ab4f68d079dfa18325225f2e22cb2e6f21616e04789ae28e12b4",
-    "sha256": "cd427d83697064133d1f9ba7eb50843b4ea89ca01ecfd733aa9fdbefc0beace9",
+    "sha256": "2afedb4954ef8d5b6fbefe6d4cfd9c1f96312abb9f53f70e1cf08a597d3b8dcc",
     "width": 1035,
     "height": 714
   },
@@ -272,18 +272,18 @@
   {
     "code": "78008",
     "language": "es",
-    "source": "E:\\Plaguero\\008a.jpg",
-    "sourceSha256": "1c3fce0aed37f5f5f1d266f0d714d5d2b1fe7d720bc80e712053f03e365c5daf",
-    "sha256": "f481582bd9ad9b4c74864567254bbe8a464814894e4d469c1e80e5b0b7d510c7",
+    "source": "E:\\Plaguero\\008b.jpg",
+    "sourceSha256": "8f5b56e0c404ed2e12309881755fd99af34d3e202d3179530d643fde33b9f6aa",
+    "sha256": "979d01fde1c2445f5c8da88fa97138fbc48108b5aaeacaaac9b792663f558ca4",
     "width": 714,
     "height": 1035
   },
   {
     "code": "78008b",
     "language": "es",
-    "source": "E:\\Plaguero\\008b.jpg",
-    "sourceSha256": "8f5b56e0c404ed2e12309881755fd99af34d3e202d3179530d643fde33b9f6aa",
-    "sha256": "3751413c371bc05c73e6bd3df4f6dbd73fbad07dcb41a32f50c690c152723b1e",
+    "source": "E:\\Plaguero\\008a.jpg",
+    "sourceSha256": "1c3fce0aed37f5f5f1d266f0d714d5d2b1fe7d720bc80e712053f03e365c5daf",
+    "sha256": "8bef306f8c4f33c2f0e417f055cbe6a6e38fb8846a23124cde32aea3a00de411",
     "width": 714,
     "height": 1035
   },
@@ -308,18 +308,18 @@
   {
     "code": "78009",
     "language": "es",
-    "source": "E:\\Plaguero\\009a.jpg",
-    "sourceSha256": "c58208f6a6fb59ebaf9269a9fe011762b51a7b7e7f739dea88d6b49581523cb7",
-    "sha256": "f6633cc887ec16b8fd3d490b84c2059510f6b949093883df927203368ba63a16",
+    "source": "E:\\Plaguero\\009b.jpg",
+    "sourceSha256": "a0fe142c927fb9bbda0547986029b30d0786f5ed4bd7450d0c69d54982bd2c05",
+    "sha256": "a8f6bb06f9ee29a8725b1b5fc59f1d5e3ed7d92881d91c2fe8e3277723276aa3",
     "width": 714,
     "height": 1035
   },
   {
     "code": "78009b",
     "language": "es",
-    "source": "E:\\Plaguero\\009b.jpg",
-    "sourceSha256": "a0fe142c927fb9bbda0547986029b30d0786f5ed4bd7450d0c69d54982bd2c05",
-    "sha256": "085613e4b3173601d04242f8de9c9632f7558cee38795cac4ec6e1dcccb4829e",
+    "source": "E:\\Plaguero\\009a.jpg",
+    "sourceSha256": "c58208f6a6fb59ebaf9269a9fe011762b51a7b7e7f739dea88d6b49581523cb7",
+    "sha256": "e6e111eb49d3feea62cacb38414ad4de2e65584e79e8207ac8a69dc26b575ce4",
     "width": 714,
     "height": 1035
   },
@@ -344,18 +344,18 @@
   {
     "code": "78010",
     "language": "es",
-    "source": "E:\\Plaguero\\010a.jpg",
-    "sourceSha256": "b5970110f4e774e7780af8a56bb9961d237ef8be7de7c392fa2698f4425cddbf",
-    "sha256": "37565e65499cac9624043b62497214d24fae3c4671a5296f6da993e1b144e18e",
+    "source": "E:\\Plaguero\\010b.jpg",
+    "sourceSha256": "8c0aa984b97a1c90ed51cf9ca9ce60238440865fe4a5961d3be12635f17f77aa",
+    "sha256": "d8527cd3cbc3bd02a5705cc4bce1def8498b1605bcd305c09f3ad5c9bef03961",
     "width": 714,
     "height": 1035
   },
   {
     "code": "78010b",
     "language": "es",
-    "source": "E:\\Plaguero\\010b.jpg",
-    "sourceSha256": "8c0aa984b97a1c90ed51cf9ca9ce60238440865fe4a5961d3be12635f17f77aa",
-    "sha256": "8f13be2a4bf52992b04681f24713dbc4305277c7c5e39285c46c8afca7c9400a",
+    "source": "E:\\Plaguero\\010a.jpg",
+    "sourceSha256": "b5970110f4e774e7780af8a56bb9961d237ef8be7de7c392fa2698f4425cddbf",
+    "sha256": "70e2dd3a287917c981591e2c4f991d11dd8dc40e915490fe0e96036debd096a8",
     "width": 714,
     "height": 1035
   },
@@ -380,18 +380,18 @@
   {
     "code": "78011",
     "language": "es",
-    "source": "E:\\Plaguero\\011a.jpg",
-    "sourceSha256": "3b73710d6a7758d40aa79dc7fc5afc5a5782e9a6f64af5348a4b885f76df0e04",
-    "sha256": "ff83232b41d5f8b52e5fae042e9b00fa1cbf8aca17006bd1e93f5b3c4a62b5c4",
+    "source": "E:\\Plaguero\\011b.jpg",
+    "sourceSha256": "6755bba72aed9a54184d934928eebfed38acdd3ae0dc77b6cda4a25eb82b9049",
+    "sha256": "e9ff4794f91a7b5ff24883b0d7b8c4866268437dedeb620acebaa8d3f96a5ffe",
     "width": 714,
     "height": 1035
   },
   {
     "code": "78011b",
     "language": "es",
-    "source": "E:\\Plaguero\\011b.jpg",
-    "sourceSha256": "6755bba72aed9a54184d934928eebfed38acdd3ae0dc77b6cda4a25eb82b9049",
-    "sha256": "68f466f4753844dba920dc1d73ad77f0b079f9e3d400a25bac5aeb288b3533a6",
+    "source": "E:\\Plaguero\\011a.jpg",
+    "sourceSha256": "3b73710d6a7758d40aa79dc7fc5afc5a5782e9a6f64af5348a4b885f76df0e04",
+    "sha256": "1e86373b0942515aa2060b4dca36a573176de8ec6f4f0059980449e4ffbe8044",
     "width": 714,
     "height": 1035
   },
@@ -416,18 +416,18 @@
   {
     "code": "78012",
     "language": "es",
-    "source": "E:\\Plaguero\\012a.jpg",
-    "sourceSha256": "bbb162a91817948871e2cf69eb9172dd41f65ae9483924a48af5dff1e02443db",
-    "sha256": "ef366fe2c0904c46fab5a2c7e8e1ef0d28efb34276589f86329b00fe62a24c38",
+    "source": "E:\\Plaguero\\012b.jpg",
+    "sourceSha256": "fe55dd0b812797ca9b1ebf1dcf0c281170033e96633a90322662bc8ab935f9e5",
+    "sha256": "c8870872aec78f5f7f13c6a88215c5414c1946560843b0380c2390674688cbc4",
     "width": 714,
     "height": 1035
   },
   {
     "code": "78012b",
     "language": "es",
-    "source": "E:\\Plaguero\\012b.jpg",
-    "sourceSha256": "fe55dd0b812797ca9b1ebf1dcf0c281170033e96633a90322662bc8ab935f9e5",
-    "sha256": "4c87b2a6f0207109b90f2d83a17d873208f5054a26037941ea4bc189ce28f212",
+    "source": "E:\\Plaguero\\012a.jpg",
+    "sourceSha256": "bbb162a91817948871e2cf69eb9172dd41f65ae9483924a48af5dff1e02443db",
+    "sha256": "b2a85c21baf32015d2fb5a29d101b48b4616737893e785c7080d8c612e5defcd",
     "width": 714,
     "height": 1035
   },
@@ -452,18 +452,18 @@
   {
     "code": "78013",
     "language": "es",
-    "source": "E:\\Plaguero\\013a.jpg",
-    "sourceSha256": "af328f1aec6cfd66cc5bb0bf0f346ae1cb1cdca0004022c445a3f1a7800852c1",
-    "sha256": "cdaf7cc41205e928a600079acf8a8b6a6201742a817bf373393a6cd43cf06e36",
+    "source": "E:\\Plaguero\\013b.jpg",
+    "sourceSha256": "2e57e8437e8760390511b88ee6ed99f378c20a62c1c17143c48a5f2caa3d7991",
+    "sha256": "e2418a45e21753b6ebf26c023dbfd00c0910b196a89edb124e350c119b39091d",
     "width": 714,
     "height": 1035
   },
   {
     "code": "78013b",
     "language": "es",
-    "source": "E:\\Plaguero\\013b.jpg",
-    "sourceSha256": "2e57e8437e8760390511b88ee6ed99f378c20a62c1c17143c48a5f2caa3d7991",
-    "sha256": "7ec6792de476637dd0df04e15af408ec567d6a6095ecc0430f53a68c5cd93a55",
+    "source": "E:\\Plaguero\\013a.jpg",
+    "sourceSha256": "af328f1aec6cfd66cc5bb0bf0f346ae1cb1cdca0004022c445a3f1a7800852c1",
+    "sha256": "fd43422d1ac48ab53e031e524198fc7a5059bea3d3c5b727e8adfe475f78a129",
     "width": 714,
     "height": 1035
   },
@@ -488,18 +488,18 @@
   {
     "code": "78014",
     "language": "es",
-    "source": "E:\\Plaguero\\014a.jpg",
-    "sourceSha256": "427bba30a0954351453b3898fc74a9c8cfd4d0b19446c97b8a668fe404f2fdc7",
-    "sha256": "d04f2094f157f66b027a96edadf5bd1bcca59aa6b334837271b9d00a39ecc470",
+    "source": "E:\\Plaguero\\014b.jpg",
+    "sourceSha256": "a62f58564621aaba92f8d0b31d885d4632b95b13ce76e32bd3b31067f64d4e11",
+    "sha256": "671b1c58e7e10e858fda656ae4e22320868221c80aa3a2fa24b7c3418108c656",
     "width": 714,
     "height": 1035
   },
   {
     "code": "78014b",
     "language": "es",
-    "source": "E:\\Plaguero\\014b.jpg",
-    "sourceSha256": "a62f58564621aaba92f8d0b31d885d4632b95b13ce76e32bd3b31067f64d4e11",
-    "sha256": "724a494b800a0da76ce01b15781a97bebcd80e63b908eed793d271d025f43182",
+    "source": "E:\\Plaguero\\014a.jpg",
+    "sourceSha256": "427bba30a0954351453b3898fc74a9c8cfd4d0b19446c97b8a668fe404f2fdc7",
+    "sha256": "41050e8a081ef1e70c8b8541bd581bbc492d392fa0eaaf2e2e216b083bcf08ff",
     "width": 714,
     "height": 1035
   },
@@ -524,18 +524,18 @@
   {
     "code": "78015",
     "language": "es",
-    "source": "E:\\Plaguero\\015a.jpg",
-    "sourceSha256": "1b95d7145b34fb98e8a880e5c6208cbf74e02a245db154fae9db3041769c092a",
-    "sha256": "87a7f90e4690ffa9764debe3e926e586f40d8dff0fd6bd3ad9d7515bc667f1fe",
+    "source": "E:\\Plaguero\\015b.jpg",
+    "sourceSha256": "aeb960a75fbaaf5975c23bd039ea64e0c1c91776f1c9d56f233a5429a4a883c8",
+    "sha256": "a597fa96b55694e32d5e4c94222313bee5343f3963a0896197793d2ab36b11d6",
     "width": 714,
     "height": 1035
   },
   {
     "code": "78015b",
     "language": "es",
-    "source": "E:\\Plaguero\\015b.jpg",
-    "sourceSha256": "aeb960a75fbaaf5975c23bd039ea64e0c1c91776f1c9d56f233a5429a4a883c8",
-    "sha256": "aeb13ae11bee45bced15f37bbaf49c38607106541662d4f8ca9c9fde0c97c6c8",
+    "source": "E:\\Plaguero\\015a.jpg",
+    "sourceSha256": "1b95d7145b34fb98e8a880e5c6208cbf74e02a245db154fae9db3041769c092a",
+    "sha256": "222efe6961fe54cea29ae9ad570e023171126c81a13e5b0a3911b55d0c4701ea",
     "width": 714,
     "height": 1035
   },
@@ -553,7 +553,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\016a.jpg",
     "sourceSha256": "303a9265c3a9118d89fbd6203e815c9e4ab1ce630d0d5829ff17ffc50d071b9c",
-    "sha256": "2c686f39e261edbcab0f98ffb3976dd2680bffb3548a18ad36f81da7da3fb186",
+    "sha256": "25b6edbee988c2521b9648efe48ae3abbe6b71e2db6f71410981d19ee64f3f93",
     "width": 714,
     "height": 1035
   },
@@ -580,7 +580,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\017a.jpg",
     "sourceSha256": "383b1b05b09ea82c1dc12a0624c7a6ac8aef682c901971f96391a5f38e1356af",
-    "sha256": "d082a0c6ffab478cfdbd0867642031be1d30a2810a47a60cc3b234775090232d",
+    "sha256": "923592c3c9f921b1c4d8c59bda58e4933cbe2a3290471de6437a13dbcb687db8",
     "width": 714,
     "height": 1035
   },
@@ -589,7 +589,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\017b.jpg",
     "sourceSha256": "c8974f6023ea8b7d74d018b666bb3cd0559aeaeacd9d9df9acceca9452ddd2b6",
-    "sha256": "1d6244e96500d0939c7df6527bfd3313db7cac71992adb65af359fbb887a2017",
+    "sha256": "50a36dc7c48045cb30938e9a6a1296dd10dfe7cefce08525f1ddc3d8956edbd9",
     "width": 714,
     "height": 1035
   },
@@ -607,7 +607,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\018a.jpg",
     "sourceSha256": "f21d05988df0eef564e0274dce2754bcd29bc7f523ad73505f7d44a1692ee4bc",
-    "sha256": "4e8627cc6e9553b140776d409dbcff2f2565895a8a2f5521311d35cc2200aa64",
+    "sha256": "701956ab46c48f55e5a6e4771a625827ab67b5480af92b2eeaf5639cc10fffd2",
     "width": 714,
     "height": 1035
   },
@@ -625,7 +625,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\310a.jpg",
     "sourceSha256": "4c84d11e622b6265d286c4ea16e96ac2ba0167297f71d3a722d08a7a72d5c6e3",
-    "sha256": "7b59f91fba62014ba2dac3d42cc432e11255ab6b18dea8828297326416bacfaa",
+    "sha256": "eb15c90f605f6d6ae2773cb36d6e89e683af1ba187b379b5d69316072c1510cc",
     "width": 714,
     "height": 1035
   },
@@ -643,7 +643,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\312a.jpg",
     "sourceSha256": "c14653b13be0f968fb4d7aff831fd49eb7ca565f1be927bac7013278584b3ebf",
-    "sha256": "7eb17cf0d05b85fb178ee0949e9ea491b82f3cfc0d60a2d4dec2c793e02eb5f0",
+    "sha256": "fee728607b7acefbbb7b5cb188cbe6450a9904312ad865e42be141cc81f8aa9e",
     "width": 714,
     "height": 1035
   },
@@ -661,7 +661,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\314a.jpg",
     "sourceSha256": "ed85c115fb7183846862c37d3db86ad37ed41ebcdcdcf29c4b8849aaf778ddfd",
-    "sha256": "52561bf871e3c8e8c026cb5dda4a1ccb4ef5f4c623c5afcb78ab395bc0afcb96",
+    "sha256": "d66b567a68d993834d74ba9c58d582babcc954e424aca718ea98aa88e6f7855c",
     "width": 714,
     "height": 1035
   },
@@ -679,7 +679,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\316a.jpg",
     "sourceSha256": "a0ea7563dc03cd2716dfcc9934ec5d5bd9432105de986de84f2d2410e5ea05a5",
-    "sha256": "153c8e3eda0d7b5ed90c4ff2c7a9c799599ed5a40d212938c35ff2d7e8b0ffb9",
+    "sha256": "ec4fa7324a3188ac75a0f99e75dd4e3bf4d47350aad16bc96c7b5954056c5640",
     "width": 714,
     "height": 1035
   },
@@ -697,7 +697,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\323a.jpg",
     "sourceSha256": "9bb4aeed3505223ee2f3d73b2a5ce8e431cc2accc8f68fd6334e9d89dc996b8b",
-    "sha256": "45335dcf4a3f02e4e0b7937f5339445014150b27e2dd670d1422b9e48c559fe1",
+    "sha256": "32f2682cef2f31afca2ca631212e7f8d2fdb23863862d8d558431e637368155c",
     "width": 714,
     "height": 1035
   },
@@ -715,7 +715,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\325a.jpg",
     "sourceSha256": "b9c33bf59b403cf6004ed43364949772995870381e658d57eb7e855d34a21572",
-    "sha256": "04013e28e60e0190bc8f2234a99c0364a70eb5b55cf1963ee5adbe7a24e960ac",
+    "sha256": "3b15b29f31239c40f7886dd9afab8ec15227a3ccc097eb4fda5a7e7e22b87e49",
     "width": 714,
     "height": 1035
   },
@@ -733,7 +733,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\327a.jpg",
     "sourceSha256": "1dd61f28d6d98473e8f415491a7ad7451f406dda0ffe7e1d2001984d7cf6cd0d",
-    "sha256": "be599f0d611b7119353d62f714feb7fc99640cbcae60c42848b8656365efe60b",
+    "sha256": "1bd3e9f0920f428bcccec076d675c02df8448c9d4b877b6a04344fb3ae7c4e99",
     "width": 714,
     "height": 1035
   },
@@ -751,7 +751,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\364a.jpg",
     "sourceSha256": "56db80ec395fe693569da9c9c857ec840e11973cebc20df5f627fbff06d70e2d",
-    "sha256": "3428de00e1f48ffdf45f4df91e2eff49952c94a6e781c49dfdb8092b06eef598",
+    "sha256": "df0223b87a3e57fa98643e6a88da215df32e5edfa8829e926ed198e7c555d5ff",
     "width": 714,
     "height": 1035
   },
@@ -769,7 +769,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\367a.jpg",
     "sourceSha256": "e66626cada322f9db8ae2e3fca30e256a0e83ff0fce456bdfd638798cc8e1e61",
-    "sha256": "db3a272eab491122232f4fd055f1646128fb5960b36c9f129843f283c44ad167",
+    "sha256": "4f94518c5d866cfa5cc506b2849b6ed13d7a77290b6bf9b370f992c417e9fcd6",
     "width": 714,
     "height": 1035
   },
@@ -787,7 +787,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\373a.jpg",
     "sourceSha256": "6bb2a6fa84524343bf4afa8aee9ae854ea3fdb9e54b12763b191b5ef9d24ad26",
-    "sha256": "32c6e87378328080131f06c8f8c576ed668a63364d23670b56a79c89f2efca25",
+    "sha256": "4878ce605dd6927b8ed78b3c82b7e819da1130cf958c2554cfb6cb73c1b02448",
     "width": 714,
     "height": 1035
   },
@@ -805,7 +805,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\376a.jpg",
     "sourceSha256": "0c637d0cd1b3829c033864a5d8d723dc9c8cf4bdb96333ef1f2af281d203f173",
-    "sha256": "a32145dc8369f607bd7dff14206f219742297931ed6ec553d11f4751ef639de2",
+    "sha256": "009a298cb0fcc9f5af38d1a69f4fdd4edb007656f3779518f091a69bede36359",
     "width": 714,
     "height": 1035
   }

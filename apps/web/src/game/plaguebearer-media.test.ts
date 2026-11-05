@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { expect, it } from 'vitest'
 import { newCampaign, startScenario } from '@lcg/cards'
 import { fallbackCards } from './fallbackCards'
-import { cardImages } from './cards'
+import { cardImages, scanLocale } from './cards'
 import { chaosHelp } from './chaosHelp'
 import { localeData } from './localeData'
 import { campaignCover } from './campaignProgress'
@@ -50,8 +50,51 @@ it('conserva huellas de las 90 caras, sirve las rutas locales y orienta actos/pl
     const path = `/local-assets/cards/${card.language}/${card.code}.avif`
     expect(cardImages(code, back, card.language)).toContain(path)
     const bytes = readFileSync(fileURLToPath(new URL(`../../public${path}`, import.meta.url)))
+    // AVIF RGB cannot carry the CMYK printing profile from the source JPEG:
+    // browsers reject that combination and GameCard falls back to English.
+    for (const profileType of ['prof', 'rICC']) {
+      const profile = bytes.indexOf(Buffer.from(`colr${profileType}`))
+      if (profile >= 0)
+        expect(bytes.subarray(profile + 24, profile + 28).toString(), path).toBe('RGB ')
+    }
     expect(createHash('sha256').update(bytes).digest('hex')).toBe(card.sha256)
     expect(card.sourceSha256).toMatch(/^[a-f0-9]{64}$/)
     if (/^7800[2-7]b?$/.test(card.code)) expect(card.width).toBeGreaterThan(card.height)
   }
+})
+
+it('empareja las caras españolas de los lugares con su estado revelado', () => {
+  for (let n = 8; n <= 15; n++) {
+    const code = `78${String(n).padStart(3, '0')}`
+    const original = String(n).padStart(3, '0')
+    expect(media.find((c) => c.language === 'es' && c.code === code)?.source).toMatch(
+      new RegExp(`${original}b\\.jpg$`),
+    )
+    expect(media.find((c) => c.language === 'es' && c.code === `${code}b`)?.source).toMatch(
+      new RegExp(`${original}a\\.jpg$`),
+    )
+    expect(cardImages(code, false, 'es')[0]).toBe(`/local-assets/cards/es/${code}.avif`)
+    expect(cardImages(code, true, 'es')[0]).toBe(`/local-assets/cards/es/${code}b.avif`)
+  }
+})
+
+it('prioriza los originales españoles al usar el idioma activo de la mesa', () => {
+  const previous = scanLocale.value
+  try {
+    scanLocale.value = 'es'
+    expect(cardImages('78008')[0]).toBe('/local-assets/cards/es/78008.avif')
+    expect(cardImages('78008', true)[0]).toBe('/local-assets/cards/es/78008b.avif')
+    scanLocale.value = 'en'
+    expect(cardImages('78008')[0]).toBe('/local-assets/cards/en/78008.avif')
+  } finally {
+    scanLocale.value = previous
+  }
+})
+
+it.each(['en', 'es'])('presenta el texto de ambas caras de la Morgue en %s', (locale) => {
+  const morgue = fallbackCards(locale).find((c) => c.code === '78008')!
+  expect(morgue.text).toBe('')
+  expect(morgue.back_text).toBe('')
+  expect(morgue.flavor).toContain(locale === 'es' ? 'formaldehído' : 'formaldehyde')
+  expect(morgue.back_flavor).toContain(locale === 'es' ? 'hasta aquí' : 'here')
 })
