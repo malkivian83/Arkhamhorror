@@ -30,6 +30,7 @@ const choices = computed(() => (mine.value ? game.untargetedChoices : []))
       :key="o.index"
       type="button"
       :data-choice-index="o.index"
+      :class="{ 'end-turn': o.choice.label === 'action.endTurn' }"
       @click="game.answer(o.index)"
     >
       {{ label(o.choice.label, o.choice.params ?? {}) }}
@@ -44,18 +45,39 @@ const choices = computed(() => (mine.value ? game.untargetedChoices : []))
 @media (max-width: 900px) {
   .quick-actions {
     display: flex;
-    gap: 6px;
+    gap: 4px;
     overflow-x: auto;
-    padding: 6px 8px;
-    background: var(--panel);
-    border-top: 1px solid var(--border);
+    padding: 3px 6px;
+    background: #191510;
+    border-top: 1px solid #60482b;
     scrollbar-width: thin;
   }
   .quick-actions button {
-    flex: none;
-    min-height: 40px;
-    padding: 6px 12px;
+    flex: 1 0 auto;
+    min-height: 34px;
+    padding: 4px 7px;
+    border: 1px solid #84663b;
+    border-radius: 6px;
+    background: linear-gradient(#433321, #2b2117);
+    color: #f6e7c8;
+    box-shadow:
+      inset 0 1px rgb(255 237 194 / 16%),
+      0 1px 2px rgb(0 0 0 / 45%);
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.2;
     white-space: nowrap;
+  }
+  .quick-actions .end-turn {
+    background: linear-gradient(#51332b, #34221d);
+    border-color: #a07863;
+  }
+  .quick-actions button:active {
+    box-shadow: inset 0 1px 3px rgb(0 0 0 / 65%);
+  }
+  .quick-actions button:focus-visible {
+    outline: 2px solid #f6ce88;
+    outline-offset: -3px;
   }
 }
 </style>

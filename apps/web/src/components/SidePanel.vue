@@ -77,7 +77,12 @@ watch(
       }}
     </div>
 
-    <div v-else-if="state.pending" class="question" aria-live="polite">
+    <div
+      v-else-if="state.pending"
+      class="question"
+      :class="{ 'turn-actions': state.pending.question.prompt === 'prompt.chooseAction' }"
+      aria-live="polite"
+    >
       <p class="prompt">
         {{ label(state.pending.question.prompt, state.pending.question.promptParams ?? {}) }}
       </p>
@@ -264,6 +269,26 @@ watch(
   text-align: left;
   font-family: var(--fell);
   font-size: 0.98rem;
+}
+@media (max-width: 900px) {
+  .turn-actions {
+    padding: 7px 8px;
+  }
+  .turn-actions .buttons {
+    flex-flow: row wrap;
+    gap: 4px;
+    margin-top: 5px;
+  }
+  .turn-actions .buttons button {
+    flex: 1 1 auto;
+    justify-content: center;
+    gap: 4px;
+    min-height: 34px;
+    padding: 3px 6px;
+    border-radius: 5px;
+    background: linear-gradient(#f4efd9, #ded7b9);
+    font-size: 0.82rem;
+  }
 }
 .all {
   margin-top: 8px;
