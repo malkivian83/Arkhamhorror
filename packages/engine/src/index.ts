@@ -53,7 +53,12 @@ export {
   type TreacheryBehavior,
 } from './content'
 export { applyInput, createGame, dispatch, type EngineObserver } from './engine'
-export { expeditionPartners, tekeliliCopies, type ExpeditionPartner } from './expedition'
+export {
+  expeditionChoiceCard,
+  expeditionPartners,
+  tekeliliCopies,
+  type ExpeditionPartner,
+} from './expedition'
 export {
   assetSlots,
   assetVitals,

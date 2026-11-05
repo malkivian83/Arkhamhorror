@@ -4,7 +4,13 @@ import CardTranslation from './CardTranslation.vue'
 import GameCard from './GameCard.vue'
 
 defineOptions({ inheritAttrs: false })
-defineProps<{ code: string; name: string; back?: boolean; noNarration?: boolean }>()
+defineProps<{
+  code: string
+  name: string
+  back?: boolean
+  noNarration?: boolean
+  showRules?: boolean
+}>()
 const language = ref('unknown')
 </script>
 
@@ -21,5 +27,6 @@ const language = ref('unknown')
     :back="back"
     :image-language="language"
     :no-narration="noNarration"
+    :show-rules="showRules"
   />
 </template>

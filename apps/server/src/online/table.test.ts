@@ -254,3 +254,21 @@ it('keeps hidden treacheries secret from other players, including the encounter 
     doom: 2,
   })
 })
+
+it('exposes the exact expedition companion printing only to the investigator choosing it', () => {
+  const g = startScenario(newCampaign('edge-of-the-earth', ['joe', 'daniela'], 'standard'), 44)
+  const [decider, other] = g.investigators
+  const choosing = dispatch(
+    { ...g, pending: null, queue: [] },
+    { type: 'InitializeExpedition' },
+    { type: 'SetExpeditionPartnerStatus', partner: '08720', status: 'resolute' },
+    { type: 'ChooseExpeditionPartner', investigator: decider!.id },
+  )
+  const choices = tableView(choosing, decider!.id).pending!.question.choices
+  expect(choices.find(({ previewCard }) => previewCard === '08593')).toMatchObject({
+    label: 'choice.card',
+  })
+  expect(choices.at(-1)).not.toHaveProperty('previewCard')
+  expect(choices.every((choice) => !('then' in choice))).toBe(true)
+  expect(tableView(choosing, other!.id).pending?.question.choices).toEqual([])
+})

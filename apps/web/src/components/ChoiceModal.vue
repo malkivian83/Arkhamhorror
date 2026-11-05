@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { GameState } from '@lcg/engine'
+import { expeditionChoiceCard, type GameState } from '@lcg/engine'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useLabels } from '../game/labels'
@@ -16,6 +16,7 @@ const game = useTableGame()
 const { t } = useI18n()
 const label = useLabels()
 const minimized = ref(false)
+const preview = ref<number | null>(null)
 
 const question = computed(() => props.state.pending?.question ?? null)
 const show = computed(
@@ -36,8 +37,19 @@ const resolving = computed(() =>
   Object.values(props.state.treacheries).filter((tr) => tr.placement.type === 'limbo'),
 )
 
+const options = computed(
+  () =>
+    question.value?.choices.map((choice) => ({
+      title: label(choice.label, choice.params ?? {}),
+      code: choice.previewCard ?? expeditionChoiceCard(choice, props.state.campaignLog),
+    })) ?? [],
+)
+
 // Cada pregunta nueva vuelve a abrirse.
-watch(question, () => (minimized.value = false))
+watch(question, () => {
+  minimized.value = false
+  preview.value = null
+})
 </script>
 
 <template>
@@ -59,16 +71,33 @@ watch(question, () => (minimized.value = false))
           </div>
         </div>
         <div class="options">
-          <button
-            v-for="(choice, i) in question.choices"
-            :key="i"
-            type="button"
-            :data-choice-index="i"
-            @click="game.answer(i)"
-          >
-            <kbd v-if="i < 9">{{ i + 1 }}</kbd>
-            {{ label(choice.label, choice.params ?? {}) }}
-          </button>
+          <div v-for="(option, i) in options" :key="i" class="option">
+            <div class="option-actions">
+              <button class="answer" type="button" :data-choice-index="i" @click="game.answer(i)">
+                <kbd v-if="i < 9">{{ i + 1 }}</kbd>
+                {{ option.title }}
+              </button>
+              <button
+                v-if="option.code"
+                type="button"
+                :aria-label="t('table.viewCardFrontNamed', { name: option.title })"
+                :aria-expanded="preview === i"
+                @click="preview = preview === i ? null : i"
+              >
+                {{ t('table.viewCardFront') }}
+              </button>
+            </div>
+            <div v-if="option.code && preview === i" class="card-details option-preview">
+              <CardDetails
+                :code="option.code"
+                :name="option.title"
+                :width="170"
+                no-zoom
+                no-narration
+                show-rules
+              />
+            </div>
+          </div>
         </div>
       </section>
     </div>
@@ -141,6 +170,16 @@ small {
     flex-direction: column;
     align-items: center;
   }
+}
+.option-actions {
+  display: flex;
+  gap: 6px;
+}
+.answer {
+  flex: 1;
+}
+.option-preview {
+  margin: 8px 0;
 }
 .options button {
   text-align: left;

@@ -1,4 +1,4 @@
-import type { Asset, CampaignLog, ExpeditionState } from './types'
+import type { Asset, CampaignLog, CardCode, Choice, ExpeditionState } from './types'
 
 // Base and Resolute versions share one expedition record.
 export const expeditionPartners = {
@@ -14,6 +14,16 @@ export const expeditionPartners = {
 } as const
 
 export type ExpeditionPartner = keyof typeof expeditionPartners
+
+/** Also resolves choices saved before the preview code was sent to online clients. */
+export function expeditionChoiceCard(choice: Choice, log?: CampaignLog): CardCode | undefined {
+  const selection = choice.then.find((message) => message.type === 'SelectExpeditionPartner')
+  if (!selection) return undefined
+  const { partner } = selection
+  return log?.expedition?.partners[partner]?.status === 'resolute'
+    ? expeditionPartners[partner]
+    : partner
+}
 
 export const tekeliliCopies = {
   '08723': 3,

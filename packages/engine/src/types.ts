@@ -2173,6 +2173,8 @@ export interface Choice {
   target?: ChoiceTarget
   /** Cómo dibujar la opción como botón de acción sobre la mesa. */
   display?: ChoiceDisplay
+  /** Carta visible que se puede consultar antes de elegir. */
+  previewCard?: CardCode
 }
 
 /** Acciones con nombre corto propio en los botones de la mesa. */

@@ -9,6 +9,7 @@ const props = defineProps<{
   code: string
   back?: boolean
   imageLanguage?: string | undefined
+  showRules?: boolean | undefined
   /** Sin reproductor: en la vista previa al pasar el ratón no se puede pulsar. */
   noNarration?: boolean
 }>()
@@ -21,7 +22,9 @@ const name = computed(() =>
 )
 const text = computed(() => cardTextHtml(props.back ? card.value?.back_text : card.value?.text))
 const flavor = computed(() => (props.back ? card.value?.back_flavor : card.value?.flavor) ?? '')
-const transcribe = computed(() => locale.value === 'es' && props.imageLanguage !== 'es')
+const transcribe = computed(
+  () => props.showRules || (locale.value === 'es' && props.imageLanguage !== 'es'),
+)
 const faqs = computed(() =>
   (Array.isArray(card.value?.faq) ? card.value.faq : []).filter(
     (entry) => entry && typeof entry.question === 'string' && typeof entry.answer === 'string',
