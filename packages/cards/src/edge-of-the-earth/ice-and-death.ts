@@ -14,6 +14,7 @@ import {
   type GameState,
   type Message,
   type ScenarioDefinition,
+  type ScenarioBehavior,
   type StoryEntry,
 } from '@lcg/engine'
 import type { ScenarioContext } from '../campaign-definition'
@@ -237,7 +238,7 @@ registerAgenda({
   ],
 })
 
-registerScenario({
+export const iceAndDeathRules: ScenarioBehavior = {
   id: ICE_AND_DEATH,
   onAllInvestigatorsEliminated: (state) =>
     state.investigators.some((player) => player.resigned)
@@ -469,7 +470,13 @@ registerScenario({
           log &&
           (log.chaosTokens.includes('frost')
             ? { ...log, chaosTokens: removed(log.chaosTokens) }
-            : { ...log, values: { ...log.values, [startingFrostRemoved]: '1' } })
+            : {
+                ...log,
+                values: {
+                  ...log.values,
+                  [startingFrostRemoved]: String(Number(log.values[startingFrostRemoved] ?? 0) + 1),
+                },
+              })
         return {
           ...state,
           chaosBag: removed(state.chaosBag),
@@ -546,4 +553,6 @@ registerScenario({
         return state
     }
   },
-})
+}
+
+registerScenario(iceAndDeathRules)

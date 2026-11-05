@@ -5,6 +5,8 @@ import {
   finishScenario,
   disappearance,
   resolveDisappearance,
+  expeditionAttack,
+  resolveExpeditionAttack,
   purchase,
   customize,
   activeMembers,
@@ -269,7 +271,7 @@ export class LobbyService {
                 ? command.deck
                 : command.action === 'ready'
                   ? command.ready
-                  : command.action === 'disappearance'
+                  : command.action === 'disappearance' || command.action === 'attack'
                     ? command.decision
                     : null,
       ])
@@ -295,6 +297,16 @@ export class LobbyService {
           409,
         )
         lobby.campaign = resolveDisappearance(lobby.campaign, command.decision)
+        lobby.campaignReady = []
+      } else if (command.action === 'attack') {
+        requireValue(lobby.intermission, 'not_intermission', 409)
+        requireValue(lobby.owner === user, 'not_owner', 403)
+        requireValue(
+          expeditionAttack(lobby.campaign)?.choices.includes(command.decision),
+          'campaign_cannot_continue',
+          409,
+        )
+        lobby.campaign = resolveExpeditionAttack(lobby.campaign, command.decision)
         lobby.campaignReady = []
       } else if (command.action === 'heir') {
         requireValue(lobby.intermission, 'not_intermission', 409)
@@ -658,6 +670,7 @@ export function onlineLobbies(
                 'heir',
                 'replace',
                 'disappearance',
+                'attack',
               ],
             },
             card: { type: 'string', minLength: 1, maxLength: 30 },
@@ -672,7 +685,7 @@ export function onlineLobbies(
             removals: { type: 'array', maxItems: 2, items: { type: 'string', maxLength: 30 } },
             remove: { type: 'string', minLength: 1, maxLength: 30 },
             ready: { type: 'boolean' },
-            decision: { type: 'string', enum: ['search', 'leave'] },
+            decision: { type: 'string', enum: ['search', 'leave', 'fight', 'flee'] },
             heir: { type: 'string', minLength: 1, maxLength: 30 },
             deck: deckSchema,
           },
@@ -687,7 +700,7 @@ export function onlineLobbies(
             },
             { if: { properties: { action: { const: 'ready' } } }, then: { required: ['ready'] } },
             {
-              if: { properties: { action: { const: 'disappearance' } } },
+              if: { properties: { action: { enum: ['disappearance', 'attack'] } } },
               then: { required: ['decision'] },
             },
             {

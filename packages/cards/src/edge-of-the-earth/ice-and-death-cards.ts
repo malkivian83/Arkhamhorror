@@ -5,6 +5,8 @@ import { ENCOUNTER_SETS } from '../the-path-to-carcosa/encounter-sets'
 export const ICE_AND_DEATH = 'ice-and-death-part-1'
 export const ICE_CHECKPOINT_ONE = 'ice-and-death-checkpoint-1'
 export const ICE_PART_TWO = 'ice-and-death-part-2'
+export const ICE_PART_THREE = 'ice-and-death-part-3'
+export const EOTE_RESTFUL_NIGHT = 'edge-of-the-earth-restful-night'
 export const ICE_CHECKPOINT_TWO = 'ice-and-death-checkpoint-2'
 export const CRASH = '08502'
 export const TERROR = '08522'
@@ -56,7 +58,7 @@ export const shelter = (location: string | null | undefined): number =>
   sites.find((site) => site.id === location)?.shelter ?? 0
 
 const eidolon = ['Monster', 'Eidolon']
-const skittering = enemy({
+export const skittering = enemy({
   code: SKITTERING,
   name: 'Skittering Nonsense',
   fight: 2,

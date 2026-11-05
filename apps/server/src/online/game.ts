@@ -8,6 +8,8 @@ import {
   deckIssues,
   disappearance,
   disappearanceResult,
+  expeditionAttack,
+  expeditionAttackResult,
   currentScenario,
   pendingTransfers,
   purchaseOptions,
@@ -26,6 +28,8 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
   const campaign = lobby.campaign
   const checkpoint = lobby.intermission && campaign ? disappearance(campaign) : null
   const checkpointResult = lobby.intermission && campaign ? disappearanceResult(campaign) : null
+  const attack = lobby.intermission && campaign ? expeditionAttack(campaign) : null
+  const attackResult = lobby.intermission && campaign ? expeditionAttackResult(campaign) : null
   const active = campaign ? activeMembers(campaign).map((i) => i.id) : []
   const ready = (investigator: string) =>
     lobby.members.some(
@@ -120,6 +124,7 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
               : checkpointResult
                 ? { disappearance: { story: checkpointResult } }
                 : {}),
+            ...(attack ? { attack } : attackResult ? { attack: { story: attackResult } } : {}),
             nextScenario: currentScenario(campaign),
             canContinue: campaignCanContinue(campaign),
             // Decks that cannot start the next scenario yet; they can still be fixed.

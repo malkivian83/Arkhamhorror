@@ -4,9 +4,13 @@ import {
   ICE_AND_DEATH,
   ICE_CHECKPOINT_ONE,
   ICE_CHECKPOINT_TWO,
+  ICE_PART_THREE,
+  EOTE_RESTFUL_NIGHT,
   ICE_PART_TWO,
 } from './ice-and-death-cards'
 import { iceAndDeathPartOne } from './ice-and-death'
+import { iceAndDeathPartTwo } from './part-two'
+import { iceAndDeathPartThree } from './part-three'
 import { edgeOfTheEarthChaosBags } from './opening'
 import { registerTekelili } from './tekelili'
 import './ice-and-death-encounters'
@@ -27,7 +31,19 @@ registerCampaign({
       keywords: ['frost', 'hunter', 'massive', 'parley'],
     },
     { id: ICE_CHECKPOINT_ONE, checkpoint: true, allowDeckChangesAfter: false },
-    { id: ICE_PART_TWO, allowDeckChangesAfter: false },
+    {
+      id: ICE_PART_TWO,
+      build: iceAndDeathPartTwo,
+      allowDeckChangesAfter: false,
+      keywords: ['frost', 'parley', 'retaliate'],
+    },
     { id: ICE_CHECKPOINT_TWO, checkpoint: true, allowDeckChangesAfter: false },
+    {
+      id: ICE_PART_THREE,
+      build: iceAndDeathPartThree,
+      allowDeckChangesAfter: false,
+      keywords: ['frost', 'hunter'],
+    },
+    { id: EOTE_RESTFUL_NIGHT, checkpoint: true },
   ],
 })

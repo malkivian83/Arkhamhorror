@@ -1,5 +1,6 @@
 import {
   previewToken,
+  expeditionChoiceCard,
   skillTestValue,
   successChance,
   shroudOf,
@@ -76,6 +77,7 @@ function publicLog(g: GameState, mine: string | undefined): GameState['log'] {
 }
 
 function choiceView(g: GameState, choice: Choice): OnlineChoice {
+  const previewCard = choice.previewCard ?? expeditionChoiceCard(choice, g.campaignLog)
   const ability = choice.then.find((m) => m.type === 'UseAbility')
   const asset =
     ability?.type === 'UseAbility'
@@ -83,6 +85,7 @@ function choiceView(g: GameState, choice: Choice): OnlineChoice {
       : undefined
   return {
     ...pick(choice, ['label', 'params', 'display', 'target']),
+    ...(previewCard ? { previewCard } : {}),
     ...(!choice.target && asset ? { target: { type: 'asset' as const, id: asset.id } } : {}),
     ...(!choice.display && ability ? { display: { kind: 'ability' as const, actions: 0 } } : {}),
   }

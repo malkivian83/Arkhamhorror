@@ -1,7 +1,13 @@
 import { expeditionPartners, shuffle, type ExpeditionPartner, type StoryEntry } from '@lcg/engine'
 import { activeMembers, campaignLost, currentScenario, type Campaign } from '../campaign'
 
-import { ICE_CHECKPOINT_ONE, ICE_CHECKPOINT_TWO, ICE_PART_TWO } from './ice-and-death-cards'
+import {
+  EOTE_RESTFUL_NIGHT,
+  ICE_CHECKPOINT_ONE,
+  ICE_CHECKPOINT_TWO,
+  ICE_PART_THREE,
+  ICE_PART_TWO,
+} from './ice-and-death-cards'
 
 const decisionNote = 'edgeOfTheEarthDisappearanceDecision'
 const codes = Object.keys(expeditionPartners) as ExpeditionPartner[]
@@ -90,5 +96,62 @@ export function disappearanceResult(campaign: Campaign): StoryEntry | null {
   const decision = campaign.log.values[decisionNote]
   if (next === ICE_PART_TWO && decision === 'search') return story('disappearanceSearch')
   if (next === ICE_CHECKPOINT_TWO && decision === 'leave') return story('disappearanceLeave')
+  return null
+}
+
+export type AttackDecision = 'fight' | 'flee'
+const attackNote = 'edgeOfTheEarthAttackDecision'
+export const fledToMountains = 'edgeOfTheEarthFledToMountains'
+
+const attackStory = (part: string): StoryEntry => ({
+  title: 'story.edgeOfTheEarth.attack.title',
+  body: `story.edgeOfTheEarth.${part}.body`,
+})
+
+export function expeditionAttack(campaign: Campaign) {
+  if (
+    campaign.id !== 'edge-of-the-earth' ||
+    campaignLost(campaign) ||
+    !activeMembers(campaign).length ||
+    currentScenario(campaign) !== ICE_CHECKPOINT_TWO ||
+    campaign.log.values[attackNote] !== undefined
+  )
+    return null
+  const choices: AttackDecision[] = ['fight', 'flee']
+  return { story: attackStory('attack'), choices }
+}
+
+export function resolveExpeditionAttack(campaign: Campaign, decision: AttackDecision): Campaign {
+  if (!expeditionAttack(campaign)?.choices.includes(decision))
+    throw new Error('The attack checkpoint choice is unavailable')
+  const flee = decision === 'flee'
+  return {
+    ...campaign,
+    scenarioIndex: campaign.scenarioIndex + (flee ? 2 : 1),
+    results: flee
+      ? [
+          ...campaign.results,
+          {
+            scenario: ICE_PART_THREE,
+            skipped: true,
+            outcome: { type: 'noResolution' },
+            xp: {},
+          },
+        ]
+      : campaign.results,
+    log: {
+      ...campaign.log,
+      notes: flee ? [...new Set([...campaign.log.notes, fledToMountains])] : campaign.log.notes,
+      values: { ...campaign.log.values, [attackNote]: decision },
+    },
+  }
+}
+
+export function expeditionAttackResult(campaign: Campaign): StoryEntry | null {
+  if (campaign.id !== 'edge-of-the-earth') return null
+  const next = currentScenario(campaign)
+  const decision = campaign.log.values[attackNote]
+  if (next === ICE_PART_THREE && decision === 'fight') return attackStory('attackFight')
+  if (next === EOTE_RESTFUL_NIGHT && decision === 'flee') return attackStory('attackFlee')
   return null
 }
