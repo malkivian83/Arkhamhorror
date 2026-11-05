@@ -37025,6 +37025,726 @@
       "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/08722.avif",
       "bytes": 105662,
       "sha256": "9bbb1181cc31af452bb23617a9788c4d5857a998fbf6c2c1510059a05278c89c"
+    },
+    {
+      "art": "78001",
+      "language": "en",
+      "path": "/local-assets/cards/en/78001.avif",
+      "source": "E:\\Plaguero\\en\\01 - Late Risers-1.png",
+      "bytes": 65780,
+      "sha256": "2f96d68b10e284fe99e4398b9a0ce4fbd9b614a4db6bdbf249c04e50e3f9efca"
+    },
+    {
+      "art": "78001b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78001b.avif",
+      "source": "E:\\Plaguero\\en\\01 - Late Risers-2.png",
+      "bytes": 67423,
+      "sha256": "a42d3664be5b94c476a054abd3a6dcc181a336fe1bea717815e1ac9c64301c6d"
+    },
+    {
+      "art": "78001",
+      "language": "es",
+      "path": "/local-assets/cards/es/78001.avif",
+      "source": "E:\\Plaguero\\001a.jpg",
+      "bytes": 731634,
+      "sha256": "751d123a43e3fae5e152f3ef9403828d07fae15bc3c79d0a25d1f3f85ab62320"
+    },
+    {
+      "art": "78001b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78001b.avif",
+      "source": "E:\\Plaguero\\001b.jpg",
+      "bytes": 738939,
+      "sha256": "44d6f03b7b28e5cab04ad75e559985099687a5ceed11773e527b014fb7112484"
+    },
+    {
+      "art": "78002",
+      "language": "en",
+      "path": "/local-assets/cards/en/78002.avif",
+      "source": "E:\\Plaguero\\en\\02 - Blocked In-1.png",
+      "bytes": 87184,
+      "sha256": "f08c0675ed9da32227d9c28710657b5a5c126de20b141d32ba13653d7508f031"
+    },
+    {
+      "art": "78002b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78002b.avif",
+      "source": "E:\\Plaguero\\en\\02 - Blocked In-2.png",
+      "bytes": 90459,
+      "sha256": "3f30640f0e2339e768c643d949514233fc74cc6a3fb9726629fec0f1a29aad48"
+    },
+    {
+      "art": "78002",
+      "language": "es",
+      "path": "/local-assets/cards/es/78002.avif",
+      "source": "E:\\Plaguero\\002a.jpg",
+      "bytes": 771296,
+      "sha256": "1e8d352e96374f693c6d5951d1f8883ed59c3d61edce8849216f0965689b3449"
+    },
+    {
+      "art": "78002b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78002b.avif",
+      "source": "E:\\Plaguero\\002b.jpg",
+      "bytes": 798547,
+      "sha256": "2919b35ae72ce69fc3556c87e92c0621f5a0d0aecb517940395e774f004e41db"
+    },
+    {
+      "art": "78003",
+      "language": "en",
+      "path": "/local-assets/cards/en/78003.avif",
+      "source": "E:\\Plaguero\\en\\03 - Frantic Search-1.png",
+      "bytes": 90303,
+      "sha256": "7983f57281172abfc6216c0fb4646a7ed7503bcbce664b3e7e4eda5cd7afcc8b"
+    },
+    {
+      "art": "78003b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78003b.avif",
+      "source": "E:\\Plaguero\\en\\03 - Frantic Search-2.png",
+      "bytes": 93566,
+      "sha256": "3e053583871433232c4ff0b6df33a2b2cb7aa83c4bfb021cb01387dfc65c97db"
+    },
+    {
+      "art": "78003",
+      "language": "es",
+      "path": "/local-assets/cards/es/78003.avif",
+      "source": "E:\\Plaguero\\003a.jpg",
+      "bytes": 778995,
+      "sha256": "8e20446f1d39241c7f8a15d301d5f33dd5e6cce8cccef01402872bcddecc9db7"
+    },
+    {
+      "art": "78003b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78003b.avif",
+      "source": "E:\\Plaguero\\003b.jpg",
+      "bytes": 798965,
+      "sha256": "1927491510a73f5119cfee5257e4436203a558b5500915985ab3223651a451dd"
+    },
+    {
+      "art": "78004",
+      "language": "en",
+      "path": "/local-assets/cards/en/78004.avif",
+      "source": "E:\\Plaguero\\en\\04 - There_s No Way Out-1.png",
+      "bytes": 87831,
+      "sha256": "ccc9cdc38950146eac41b5bbd2bc30ab944e871c501c77e44013f4f05dc120af"
+    },
+    {
+      "art": "78004b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78004b.avif",
+      "source": "E:\\Plaguero\\en\\04 - There_s No Way Out-2.png",
+      "bytes": 75396,
+      "sha256": "f872faa61cc9d4987a264f007a1ccef7ae3cfc9b49903ac3c4f99af26815d024"
+    },
+    {
+      "art": "78004",
+      "language": "es",
+      "path": "/local-assets/cards/es/78004.avif",
+      "source": "E:\\Plaguero\\004a.jpg",
+      "bytes": 771402,
+      "sha256": "b28e0db4bee7131458407d378ad652a129683c09956083f27bb372d2b3ea49d5"
+    },
+    {
+      "art": "78004b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78004b.avif",
+      "source": "E:\\Plaguero\\004b.jpg",
+      "bytes": 753963,
+      "sha256": "c0835399ba6003163dcdec9c77b2cd751592d8b4848bba4fd86a8909d626002c"
+    },
+    {
+      "art": "78005",
+      "language": "en",
+      "path": "/local-assets/cards/en/78005.avif",
+      "source": "E:\\Plaguero\\en\\05 - No Better Ideas-1.png",
+      "bytes": 82161,
+      "sha256": "e971793e4a6de891fffa0ebf9287651e2672b9c2605094a0e1c2467e7939f4b3"
+    },
+    {
+      "art": "78005b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78005b.avif",
+      "source": "E:\\Plaguero\\en\\05 - No Better Ideas-2.png",
+      "bytes": 115284,
+      "sha256": "b0998822453a073aaafbc7b8044eeeac804d8161f3d5a381c45e16ddd0e4227d"
+    },
+    {
+      "art": "78005",
+      "language": "es",
+      "path": "/local-assets/cards/es/78005.avif",
+      "source": "E:\\Plaguero\\005a.jpg",
+      "bytes": 773624,
+      "sha256": "32f4bc1ba69144813143105e1679063a02ee26579214b6fdfcae07ae86c54eea"
+    },
+    {
+      "art": "78005b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78005b.avif",
+      "source": "E:\\Plaguero\\005b.jpg",
+      "bytes": 798555,
+      "sha256": "7a4bdb87459634bb24155b5dd1b61bedbd3f85671cbf3007a23497a27fb360dc"
+    },
+    {
+      "art": "78006",
+      "language": "en",
+      "path": "/local-assets/cards/en/78006.avif",
+      "source": "E:\\Plaguero\\en\\06 - Climb the Barricades-1.png",
+      "bytes": 86389,
+      "sha256": "2ed1f0021c75a4dc800abdf397743b42bf5684b86bdf377bb0a972061dc0d7a5"
+    },
+    {
+      "art": "78006b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78006b.avif",
+      "source": "E:\\Plaguero\\en\\06 - Climb the Barricades-2.png",
+      "bytes": 122863,
+      "sha256": "2daa24734b15e3177cd25ee15098225b0b44b106bcbf7044ffc8cee1f7e0e069"
+    },
+    {
+      "art": "78006",
+      "language": "es",
+      "path": "/local-assets/cards/es/78006.avif",
+      "source": "E:\\Plaguero\\006a.jpg",
+      "bytes": 774635,
+      "sha256": "8772d9bb7dbd56063ee00167c18a1c11ce6aea2c42b4b5b550f88bd2c7ad9c51"
+    },
+    {
+      "art": "78006b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78006b.avif",
+      "source": "E:\\Plaguero\\006b.jpg",
+      "bytes": 817933,
+      "sha256": "3c2fdb52669338f4bdacba9cffcfea4bdc6e742f7f76fcc32578806fe495c270"
+    },
+    {
+      "art": "78007",
+      "language": "en",
+      "path": "/local-assets/cards/en/78007.avif",
+      "source": "E:\\Plaguero\\en\\07 - Scylla and Charybdis-1.png",
+      "bytes": 80667,
+      "sha256": "fecb137481ec53ae2c65a3c6a878850e2eb267c2c435145631a28f90f769b5a4"
+    },
+    {
+      "art": "78007b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78007b.avif",
+      "source": "E:\\Plaguero\\en\\07 - Scylla and Charybdis-2.png",
+      "bytes": 104125,
+      "sha256": "1a661b1d6a5dd5a8c3aece5909000f964e62fa10dd31f4d6e75c50d3896ffeb0"
+    },
+    {
+      "art": "78007",
+      "language": "es",
+      "path": "/local-assets/cards/es/78007.avif",
+      "source": "E:\\Plaguero\\007a.jpg",
+      "bytes": 769945,
+      "sha256": "553510b74480364107bbee456ee03d5f4a21a8d887d9c6ae18301ed3a28f55a8"
+    },
+    {
+      "art": "78007b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78007b.avif",
+      "source": "E:\\Plaguero\\007b.jpg",
+      "bytes": 791427,
+      "sha256": "cd427d83697064133d1f9ba7eb50843b4ea89ca01ecfd733aa9fdbefc0beace9"
+    },
+    {
+      "art": "78008",
+      "language": "en",
+      "path": "/local-assets/cards/en/78008.avif",
+      "source": "E:\\Plaguero\\en\\08 - Morgue-1.png",
+      "bytes": 98610,
+      "sha256": "0383da399282bbe0c34f3b55a72e7e8bd12b1cef7180e0995341d35db82ce6c2"
+    },
+    {
+      "art": "78008b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78008b.avif",
+      "source": "E:\\Plaguero\\en\\08 - Morgue-2.png",
+      "bytes": 97101,
+      "sha256": "504657e928f7c96de33b00a0e9100914553da281d4d516c83920a86e92c64572"
+    },
+    {
+      "art": "78008",
+      "language": "es",
+      "path": "/local-assets/cards/es/78008.avif",
+      "source": "E:\\Plaguero\\008a.jpg",
+      "bytes": 756905,
+      "sha256": "f481582bd9ad9b4c74864567254bbe8a464814894e4d469c1e80e5b0b7d510c7"
+    },
+    {
+      "art": "78008b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78008b.avif",
+      "source": "E:\\Plaguero\\008b.jpg",
+      "bytes": 760472,
+      "sha256": "3751413c371bc05c73e6bd3df4f6dbd73fbad07dcb41a32f50c690c152723b1e"
+    },
+    {
+      "art": "78009",
+      "language": "en",
+      "path": "/local-assets/cards/en/78009.avif",
+      "source": "E:\\Plaguero\\en\\09 - Lab Omega-1.png",
+      "bytes": 116393,
+      "sha256": "1beb4703998b65d089ae321ce61a290fb1c4ba705fd93db548feb55c1099c1b2"
+    },
+    {
+      "art": "78009b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78009b.avif",
+      "source": "E:\\Plaguero\\en\\09 - Lab Omega-2.png",
+      "bytes": 99268,
+      "sha256": "9c2ac19f8322a9719789d32a3838fd0f16f67203451bf911b965922a343a0fd8"
+    },
+    {
+      "art": "78009",
+      "language": "es",
+      "path": "/local-assets/cards/es/78009.avif",
+      "source": "E:\\Plaguero\\009a.jpg",
+      "bytes": 758197,
+      "sha256": "f6633cc887ec16b8fd3d490b84c2059510f6b949093883df927203368ba63a16"
+    },
+    {
+      "art": "78009b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78009b.avif",
+      "source": "E:\\Plaguero\\009b.jpg",
+      "bytes": 766671,
+      "sha256": "085613e4b3173601d04242f8de9c9632f7558cee38795cac4ec6e1dcccb4829e"
+    },
+    {
+      "art": "78010",
+      "language": "en",
+      "path": "/local-assets/cards/en/78010.avif",
+      "source": "E:\\Plaguero\\en\\10 - Central Lobby-1.png",
+      "bytes": 109879,
+      "sha256": "89e85454cfc63fb784ec40856dd85b70bdb0b48916ad91496341e0e1f09dab06"
+    },
+    {
+      "art": "78010b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78010b.avif",
+      "source": "E:\\Plaguero\\en\\10 - Central Lobby-2.png",
+      "bytes": 103847,
+      "sha256": "a6e5395d29561424168a6b64638a5c470c077a0bc712024cec429ac97e380b6d"
+    },
+    {
+      "art": "78010",
+      "language": "es",
+      "path": "/local-assets/cards/es/78010.avif",
+      "source": "E:\\Plaguero\\010a.jpg",
+      "bytes": 757112,
+      "sha256": "37565e65499cac9624043b62497214d24fae3c4671a5296f6da993e1b144e18e"
+    },
+    {
+      "art": "78010b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78010b.avif",
+      "source": "E:\\Plaguero\\010b.jpg",
+      "bytes": 757725,
+      "sha256": "8f13be2a4bf52992b04681f24713dbc4305277c7c5e39285c46c8afca7c9400a"
+    },
+    {
+      "art": "78011",
+      "language": "en",
+      "path": "/local-assets/cards/en/78011.avif",
+      "source": "E:\\Plaguero\\en\\11 - Lab Alpha-1.png",
+      "bytes": 142976,
+      "sha256": "cc58997361f527dc85c837f0f2bebcc17ea53b12a5bcc171297cd69072c157a7"
+    },
+    {
+      "art": "78011b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78011b.avif",
+      "source": "E:\\Plaguero\\en\\11 - Lab Alpha-2.png",
+      "bytes": 121699,
+      "sha256": "803e5a925753c94bd28f2e47fd2c58d7c99909c07339b3061600602a42dd8a63"
+    },
+    {
+      "art": "78011",
+      "language": "es",
+      "path": "/local-assets/cards/es/78011.avif",
+      "source": "E:\\Plaguero\\011a.jpg",
+      "bytes": 774359,
+      "sha256": "ff83232b41d5f8b52e5fae042e9b00fa1cbf8aca17006bd1e93f5b3c4a62b5c4"
+    },
+    {
+      "art": "78011b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78011b.avif",
+      "source": "E:\\Plaguero\\011b.jpg",
+      "bytes": 785335,
+      "sha256": "68f466f4753844dba920dc1d73ad77f0b079f9e3d400a25bac5aeb288b3533a6"
+    },
+    {
+      "art": "78012",
+      "language": "en",
+      "path": "/local-assets/cards/en/78012.avif",
+      "source": "E:\\Plaguero\\en\\12 - Lab Delta-1.png",
+      "bytes": 114318,
+      "sha256": "a20549e6dd229463777c7c2a900e02d2159a60f83a07374596288f6702d3b70f"
+    },
+    {
+      "art": "78012b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78012b.avif",
+      "source": "E:\\Plaguero\\en\\12 - Lab Delta-2.png",
+      "bytes": 106818,
+      "sha256": "71caa696a80cc3e717d3246a385818dad0d68ab2f0eb1781d093e96efdaac63f"
+    },
+    {
+      "art": "78012",
+      "language": "es",
+      "path": "/local-assets/cards/es/78012.avif",
+      "source": "E:\\Plaguero\\012a.jpg",
+      "bytes": 759445,
+      "sha256": "ef366fe2c0904c46fab5a2c7e8e1ef0d28efb34276589f86329b00fe62a24c38"
+    },
+    {
+      "art": "78012b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78012b.avif",
+      "source": "E:\\Plaguero\\012b.jpg",
+      "bytes": 766144,
+      "sha256": "4c87b2a6f0207109b90f2d83a17d873208f5054a26037941ea4bc189ce28f212"
+    },
+    {
+      "art": "78013",
+      "language": "en",
+      "path": "/local-assets/cards/en/78013.avif",
+      "source": "E:\\Plaguero\\en\\13 - The Tunnel-1.png",
+      "bytes": 112308,
+      "sha256": "466af111b198bc5a6f9d8a430d0342cf2aaf2813f854bbfc05cb243cbcd2ee21"
+    },
+    {
+      "art": "78013b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78013b.avif",
+      "source": "E:\\Plaguero\\en\\13 - The Tunnel-2.png",
+      "bytes": 98583,
+      "sha256": "1a8244414f6bdd4d9f3a64e904a5637e78246b2ea068539f59e0907901e701bd"
+    },
+    {
+      "art": "78013",
+      "language": "es",
+      "path": "/local-assets/cards/es/78013.avif",
+      "source": "E:\\Plaguero\\013a.jpg",
+      "bytes": 754398,
+      "sha256": "cdaf7cc41205e928a600079acf8a8b6a6201742a817bf373393a6cd43cf06e36"
+    },
+    {
+      "art": "78013b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78013b.avif",
+      "source": "E:\\Plaguero\\013b.jpg",
+      "bytes": 768594,
+      "sha256": "7ec6792de476637dd0df04e15af408ec567d6a6095ecc0430f53a68c5cd93a55"
+    },
+    {
+      "art": "78014",
+      "language": "en",
+      "path": "/local-assets/cards/en/78014.avif",
+      "source": "E:\\Plaguero\\en\\14 - Narrow Stair-1.png",
+      "bytes": 148012,
+      "sha256": "13ee8ee8481f8685c4fc923ba1550c19e35035e8ffcd5967008e97f433f73fb9"
+    },
+    {
+      "art": "78014b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78014b.avif",
+      "source": "E:\\Plaguero\\en\\14 - Narrow Stair-2.png",
+      "bytes": 129474,
+      "sha256": "69d03719e26cf643300e42f4aefda729ad831569e3d5800f1b881828db38e4bd"
+    },
+    {
+      "art": "78014",
+      "language": "es",
+      "path": "/local-assets/cards/es/78014.avif",
+      "source": "E:\\Plaguero\\014a.jpg",
+      "bytes": 758570,
+      "sha256": "d04f2094f157f66b027a96edadf5bd1bcca59aa6b334837271b9d00a39ecc470"
+    },
+    {
+      "art": "78014b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78014b.avif",
+      "source": "E:\\Plaguero\\014b.jpg",
+      "bytes": 769684,
+      "sha256": "724a494b800a0da76ce01b15781a97bebcd80e63b908eed793d271d025f43182"
+    },
+    {
+      "art": "78015",
+      "language": "en",
+      "path": "/local-assets/cards/en/78015.avif",
+      "source": "E:\\Plaguero\\en\\15 - Torn Hallway-1.png",
+      "bytes": 105367,
+      "sha256": "69955690626a1e7b45cb0c8f54c8eb0e0e43157972908ba354b8b66b3def91e9"
+    },
+    {
+      "art": "78015b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78015b.avif",
+      "source": "E:\\Plaguero\\en\\15 - Torn Hallway-2.png",
+      "bytes": 99948,
+      "sha256": "fe9b4774aea4107812c59832d843c71b29dbecabb2dea11d07f2a80b077f7f24"
+    },
+    {
+      "art": "78015",
+      "language": "es",
+      "path": "/local-assets/cards/es/78015.avif",
+      "source": "E:\\Plaguero\\015a.jpg",
+      "bytes": 760712,
+      "sha256": "87a7f90e4690ffa9764debe3e926e586f40d8dff0fd6bd3ad9d7515bc667f1fe"
+    },
+    {
+      "art": "78015b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78015b.avif",
+      "source": "E:\\Plaguero\\015b.jpg",
+      "bytes": 763480,
+      "sha256": "aeb13ae11bee45bced15f37bbaf49c38607106541662d4f8ca9c9fde0c97c6c8"
+    },
+    {
+      "art": "78016",
+      "language": "en",
+      "path": "/local-assets/cards/en/78016.avif",
+      "source": "E:\\Plaguero\\en\\16 - Agent Greyson-1.png",
+      "bytes": 104194,
+      "sha256": "6fedc8b75ddbc4ecf0f2465649183738b3db54a6fc1bf5b813be51d9b5346433"
+    },
+    {
+      "art": "78016",
+      "language": "es",
+      "path": "/local-assets/cards/es/78016.avif",
+      "source": "E:\\Plaguero\\016a.jpg",
+      "bytes": 753784,
+      "sha256": "2c686f39e261edbcab0f98ffb3976dd2680bffb3548a18ad36f81da7da3fb186"
+    },
+    {
+      "art": "78017",
+      "language": "en",
+      "path": "/local-assets/cards/en/78017.avif",
+      "source": "E:\\Plaguero\\en\\17 - Suspicious Briefcase-1.png",
+      "bytes": 136920,
+      "sha256": "66d484d8064f737fd74dbe2cc4466a0db23d47c4f4d2b230b52ac5cae9c333bf"
+    },
+    {
+      "art": "78017b",
+      "language": "en",
+      "path": "/local-assets/cards/en/78017b.avif",
+      "source": "E:\\Plaguero\\en\\17 - Suspicious Briefcase-2.png",
+      "bytes": 107807,
+      "sha256": "e97040125cf4c41be41e2442e66fde94b7eeb49128f88ee7d4ee18a0a17e8d7d"
+    },
+    {
+      "art": "78017",
+      "language": "es",
+      "path": "/local-assets/cards/es/78017.avif",
+      "source": "E:\\Plaguero\\017a.jpg",
+      "bytes": 768831,
+      "sha256": "d082a0c6ffab478cfdbd0867642031be1d30a2810a47a60cc3b234775090232d"
+    },
+    {
+      "art": "78017b",
+      "language": "es",
+      "path": "/local-assets/cards/es/78017b.avif",
+      "source": "E:\\Plaguero\\017b.jpg",
+      "bytes": 791734,
+      "sha256": "1d6244e96500d0939c7df6527bfd3313db7cac71992adb65af359fbb887a2017"
+    },
+    {
+      "art": "78018",
+      "language": "en",
+      "path": "/local-assets/cards/en/78018.avif",
+      "source": "E:\\Plaguero\\en\\18 - First Among Many-1.png",
+      "bytes": 119037,
+      "sha256": "5be09c9b953ae87e5e4994009429f9d609d21794cbd01ae3f3f7cf61f9dbf653"
+    },
+    {
+      "art": "78018",
+      "language": "es",
+      "path": "/local-assets/cards/es/78018.avif",
+      "source": "E:\\Plaguero\\018a.jpg",
+      "bytes": 759824,
+      "sha256": "4e8627cc6e9553b140776d409dbcff2f2565895a8a2f5521311d35cc2200aa64"
+    },
+    {
+      "art": "78250",
+      "language": "en",
+      "path": "/local-assets/cards/en/78250.avif",
+      "source": "E:\\Plaguero\\en\\304 - Agency Troubleshooter-1.png",
+      "bytes": 119783,
+      "sha256": "849f033e139f1234502f6c3581cb7ac1246a7f7f7154a69d18b7c0435a237bc2"
+    },
+    {
+      "art": "78250",
+      "language": "es",
+      "path": "/local-assets/cards/es/78250.avif",
+      "source": "E:\\Plaguero\\310a.jpg",
+      "bytes": 756244,
+      "sha256": "7b59f91fba62014ba2dac3d42cc432e11255ab6b18dea8828297326416bacfaa"
+    },
+    {
+      "art": "78251",
+      "language": "en",
+      "path": "/local-assets/cards/en/78251.avif",
+      "source": "E:\\Plaguero\\en\\306 - Jury-Rigged Incendiary-1.png",
+      "bytes": 117406,
+      "sha256": "9472dfbbd1eb7cec88d19bccb0537f1f86ce38aea0dea2ad2d8bc208c72c8258"
+    },
+    {
+      "art": "78251",
+      "language": "es",
+      "path": "/local-assets/cards/es/78251.avif",
+      "source": "E:\\Plaguero\\312a.jpg",
+      "bytes": 768618,
+      "sha256": "7eb17cf0d05b85fb178ee0949e9ea491b82f3cfc0d60a2d4dec2c793e02eb5f0"
+    },
+    {
+      "art": "78252",
+      "language": "en",
+      "path": "/local-assets/cards/en/78252.avif",
+      "source": "E:\\Plaguero\\en\\308 - Panicked Agent-1.png",
+      "bytes": 102531,
+      "sha256": "6a8bf2ea63dffafbabc198f2cfdfbd5a2eb2629261b3f31db4be0831c05fca67"
+    },
+    {
+      "art": "78252",
+      "language": "es",
+      "path": "/local-assets/cards/es/78252.avif",
+      "source": "E:\\Plaguero\\314a.jpg",
+      "bytes": 769840,
+      "sha256": "52561bf871e3c8e8c026cb5dda4a1ccb4ef5f4c623c5afcb78ab395bc0afcb96"
+    },
+    {
+      "art": "78253",
+      "language": "en",
+      "path": "/local-assets/cards/en/78253.avif",
+      "source": "E:\\Plaguero\\en\\310 - Suppressing Fire-1.png",
+      "bytes": 84951,
+      "sha256": "1876ba3d8aaf7f02efa84c86e6503474deae3d97589fe504cc1d8a9584e6bd82"
+    },
+    {
+      "art": "78253",
+      "language": "es",
+      "path": "/local-assets/cards/es/78253.avif",
+      "source": "E:\\Plaguero\\316a.jpg",
+      "bytes": 746749,
+      "sha256": "153c8e3eda0d7b5ed90c4ff2c7a9c799599ed5a40d212938c35ff2d7e8b0ffb9"
+    },
+    {
+      "art": "78256",
+      "language": "en",
+      "path": "/local-assets/cards/en/78256.avif",
+      "source": "E:\\Plaguero\\en\\317 - Idle Hands-1.png",
+      "bytes": 93636,
+      "sha256": "215f7cfdcc26bad179c71f799c96ccbbdece76e59dfde0a98e47e567afe64f47"
+    },
+    {
+      "art": "78256",
+      "language": "es",
+      "path": "/local-assets/cards/es/78256.avif",
+      "source": "E:\\Plaguero\\323a.jpg",
+      "bytes": 762634,
+      "sha256": "45335dcf4a3f02e4e0b7937f5339445014150b27e2dd670d1422b9e48c559fe1"
+    },
+    {
+      "art": "78257",
+      "language": "en",
+      "path": "/local-assets/cards/en/78257.avif",
+      "source": "E:\\Plaguero\\en\\319 - Twisted Supplicant-1.png",
+      "bytes": 109900,
+      "sha256": "195bc445c4c8dcc9b3ad497fc531a1f4b1f9328fb201c5f9d789e07a5307e38d"
+    },
+    {
+      "art": "78257",
+      "language": "es",
+      "path": "/local-assets/cards/es/78257.avif",
+      "source": "E:\\Plaguero\\325a.jpg",
+      "bytes": 758849,
+      "sha256": "04013e28e60e0190bc8f2234a99c0364a70eb5b55cf1963ee5adbe7a24e960ac"
+    },
+    {
+      "art": "78258",
+      "language": "en",
+      "path": "/local-assets/cards/en/78258.avif",
+      "source": "E:\\Plaguero\\en\\321 - Under Your Skin-1.png",
+      "bytes": 104796,
+      "sha256": "355bb9c852794d7382c32fcd8d099d78951218a8ac19b4acf1ffa6b27213cd7a"
+    },
+    {
+      "art": "78258",
+      "language": "es",
+      "path": "/local-assets/cards/es/78258.avif",
+      "source": "E:\\Plaguero\\327a.jpg",
+      "bytes": 756864,
+      "sha256": "be599f0d611b7119353d62f714feb7fc99640cbcae60c42848b8656365efe60b"
+    },
+    {
+      "art": "78284",
+      "language": "en",
+      "path": "/local-assets/cards/en/78284.avif",
+      "source": "E:\\Plaguero\\en\\334 - Driving Urge-1.png",
+      "bytes": 95941,
+      "sha256": "606594644298ebaabb6317f83e25538682988e80a2e609ea001d7219c00973fb"
+    },
+    {
+      "art": "78284",
+      "language": "es",
+      "path": "/local-assets/cards/es/78284.avif",
+      "source": "E:\\Plaguero\\364a.jpg",
+      "bytes": 752607,
+      "sha256": "3428de00e1f48ffdf45f4df91e2eff49952c94a6e781c49dfdb8092b06eef598"
+    },
+    {
+      "art": "78285",
+      "language": "en",
+      "path": "/local-assets/cards/en/78285.avif",
+      "source": "E:\\Plaguero\\en\\337 - Not Yourself-1.png",
+      "bytes": 112953,
+      "sha256": "faf95e987a34b7ee9674110141371c641df60688f7838f4d9de792831cfadda1"
+    },
+    {
+      "art": "78285",
+      "language": "es",
+      "path": "/local-assets/cards/es/78285.avif",
+      "source": "E:\\Plaguero\\367a.jpg",
+      "bytes": 767844,
+      "sha256": "db3a272eab491122232f4fd055f1646128fb5960b36c9f129843f283c44ad167"
+    },
+    {
+      "art": "78288",
+      "language": "en",
+      "path": "/local-assets/cards/en/78288.avif",
+      "source": "E:\\Plaguero\\en\\343 - Mindless Thrall-1.png",
+      "bytes": 96217,
+      "sha256": "216ddd5d1066304ce4e60de7a2417e350556c0ec4568ac1be9f77710fa84b912"
+    },
+    {
+      "art": "78288",
+      "language": "es",
+      "path": "/local-assets/cards/es/78288.avif",
+      "source": "E:\\Plaguero\\373a.jpg",
+      "bytes": 748994,
+      "sha256": "32c6e87378328080131f06c8f8c576ed668a63364d23670b56a79c89f2efca25"
+    },
+    {
+      "art": "78289",
+      "language": "en",
+      "path": "/local-assets/cards/en/78289.avif",
+      "source": "E:\\Plaguero\\en\\346 - Worshipful Thrall-1.png",
+      "bytes": 104727,
+      "sha256": "0c03d261d37c460ec75bbc2357d81e22beac6c976a4975988411aee8b0736c2a"
+    },
+    {
+      "art": "78289",
+      "language": "es",
+      "path": "/local-assets/cards/es/78289.avif",
+      "source": "E:\\Plaguero\\376a.jpg",
+      "bytes": 763586,
+      "sha256": "a32145dc8369f607bd7dff14206f219742297931ed6ec553d11f4751ef639de2"
     }
   ],
   "missing": [

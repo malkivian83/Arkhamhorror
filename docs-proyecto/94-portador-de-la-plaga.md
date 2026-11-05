@@ -48,6 +48,9 @@ el PDF.
   Verificados enlaces, huellas y todos los fotogramas MP3 de las siete grabaciones.
 - Pendiente de I: revisión visual de la app por la persona usuaria. El material
   de los escenarios posteriores no está habilitado.
+- Corrección de CI #339: registrar la referencia del escenario, añadir sus 90
+  miniaturas y completar los inventarios compartidos. Pasan las 151 pruebas de
+  referencia/imágenes y la verificación de los 4718 originales y miniaturas.
 - Siguiente: escenario II; revisar Defender y Arkham caído antes de habilitarlo.
   Integrar los cambios remotos con rebase antes de subir.
 
