@@ -90,6 +90,11 @@ el PDF.
   Comprobados por HTTP la portada, imágenes y relatos publicados (200); CI y
   Deploy de `982632b1` correctos al investigar la incidencia. 49 pruebas web,
   lint, tipos y empaquetado de la corrección de caché.
+- Cartas narradas de I: doce caras de planes/actos (3589 caracteres) con Martin
+  Osborne. Transcripción narrativa ES, sin efectos mecánicos; manifiesto y huellas
+  en `plaguebearer-cartas-narracion.json`. Reproductor existente en preparación,
+  avances e inspección. La comprobación de todo el catálogo de MP3 tiene 15 s
+  por su lectura real de cientos de archivos, sin reintentos.
 
 ## Fuentes
 

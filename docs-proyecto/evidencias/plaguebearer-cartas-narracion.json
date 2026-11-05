@@ -1,0 +1,124 @@
+{
+  "voiceId": "z3kTTwYbQrmL7ckdGcJi",
+  "language": "es",
+  "settings": {
+    "model_id": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.15,
+      "speed": 0.95,
+      "use_speaker_boost": true
+    }
+  },
+  "files": [
+    {
+      "code": "78002",
+      "side": "front",
+      "text": "Tras tu peculiar despertar, te encuentras en lo que parece ser una morgue. Una neblina verduzca se cuela por debajo de una puerta cerrada a cal y canto.",
+      "file": "78002-front.mp3",
+      "inputHash": "13fb20385b459ee561e4a8c4d2f212a4534a2d0bf8b8cab2b7c720289ece775a",
+      "bytes": 191886,
+      "sha256": "a2eb333575a6262bea572bb15f2e796d5ce35237dc676c4db49a6256756fed13"
+    },
+    {
+      "code": "78002",
+      "side": "back",
+      "text": "Una nube de gas verde brota súbitamente de la ventilación del techo, provocándote un violento ataque de tos. Te cuesta mantener la consciencia, y algo en tu cabeza no quiere que te muevas de la Morgue.",
+      "file": "78002-back.mp3",
+      "inputHash": "9faf2f755fe97154ad19f55a91d4a4058da9a4519007b303040ad24bc3accfda",
+      "bytes": 197319,
+      "sha256": "f64f6be49815acb01251ba4044a4d38b00cae1589fc8c1c49fdf6b7f7c5cc2b6"
+    },
+    {
+      "code": "78003",
+      "side": "front",
+      "text": "Tus indagaciones te muestran que estás en algún tipo de instalación científica secreta. Donde tal vez… ¿hayan experimentado contigo? Tal vez investigando este lugar puedas obtener respuestas.",
+      "file": "78003-front.mp3",
+      "inputHash": "beb36a5cfadbe018bf4be3d2cedeea9eef8659c5b9efc5ccd3a1488deb56bfb5",
+      "bytes": 310168,
+      "sha256": "aff30e42a01c6e9906b0965441c27b3aac6ba380a13e632157d428bc6fb64fd7"
+    },
+    {
+      "code": "78003",
+      "side": "back",
+      "text": "Buenas noticias: No estás solo en este horrible lugar. Malas noticias: Cada ser vivo en este lugar quiere verte muerto. Peores noticias: Un extraño impulso te impele a acercarte a los malditos vapores.",
+      "file": "78003-back.mp3",
+      "inputHash": "89395ea9fbefd4a27fd20a49aa7979f458403d953b0d1e3c1af8771373c8d814",
+      "bytes": 353218,
+      "sha256": "1aaba216c3fd53ce0d417000e32d87daf5d3e8521990d726d58694ca4c36d9e7"
+    },
+    {
+      "code": "78004",
+      "side": "front",
+      "text": "Los disparos atraviesan la instalación y nubes del extraño miasma verde brotan de la ventilación de cada cuarto.\n\nTe estás quedando sin tiempo.",
+      "file": "78004-front.mp3",
+      "inputHash": "a07cfa3396141ff27a0b223913c26c26b8f47e9d7562d9a233f27fb57f0fbb45",
+      "bytes": 193558,
+      "sha256": "a492b5c1fc0342905e5cf03ddce4409e37d5b2f0d8375ff39dddc95601c0c60c"
+    },
+    {
+      "code": "78004",
+      "side": "back",
+      "text": "La maldita niebla está por todas partes. Los agentes y los extraños seres se ahogan y desfallecen por igual. Te agarras el pecho y tratas desesperadamente de seguir moviéndote, aunque sea un solo paso. Entonces tus piernas fallan y todo se vuelve negro.",
+      "file": "78004-back.mp3",
+      "inputHash": "8e7d59a3b5587d85809bbef56f3c0b5a76ed07db958277543b53ba9d9c60e096",
+      "bytes": 348203,
+      "sha256": "418206df6b17080e714ae3082806df6b9d80dd7e9953ab831e2d1cead1856e06"
+    },
+    {
+      "code": "78005",
+      "side": "front",
+      "text": "Estés donde estés, debe de haber una manera de salir. A falta de una idea mejor y con la extraña neblina emponzoñando por momentos, empiezas a romper barricadas buscando una salida.",
+      "file": "78005-front.mp3",
+      "inputHash": "bbe27fc10b8ad12fa5fbbb58d1805d9b97ccc54fc61da0cb1220b4dfb9ad2467",
+      "bytes": 261685,
+      "sha256": "1e7c1638b9e44eb32755b29c0bdf682a11d876055eabfe52151f7649cf6020ac"
+    },
+    {
+      "code": "78005",
+      "side": "back",
+      "text": "Retiras las últimas sillas apiladas y con sumo cuidado te adentras en la habitación. Todo el suelo hasta tus rodillas está cubierto por un miasma verde, y el cuarto rezuma un olor agrio. Por el extraño equipamiento y los diagramas que ves, debes encontrarte en el laboratorio de los horrores. Y los extraños maniquíes no te ayudan a aliviar esa imagen. Pero… eso… eso no son maniquíes. Varias personas permanecen arrodilladas entre la neblina, completamente catatónicas. Debes escapar de aquí.",
+      "file": "78005-back.mp3",
+      "inputHash": "6087e3e4189c0c20b8612765ac731b2bdfd032a935870c5b133a7729c37664a6",
+      "bytes": 679644,
+      "sha256": "8647aedc6092bdcf7074fc530ccd33bd099ed2d19561e105905b9ba59aad3ce2"
+    },
+    {
+      "code": "78006",
+      "side": "front",
+      "text": "Estás en alguna especie de instalación científica, en mitad de un enorme desastre. Las barricadas improvisadas entorpecen tu exploración, y una auténtica montaña de obstáculos impide tu salida por el vestíbulo.",
+      "file": "78006-front.mp3",
+      "inputHash": "b4128bbeadf3e35e72043569e3f2c9d12f87a370dc9e5b29792db8c93b306f9c",
+      "bytes": 290942,
+      "sha256": "a46a99125dfcd2bcf62216f268b0b8902f4db9a0dfbe5a7470db3da2f4523b8f"
+    },
+    {
+      "code": "78006",
+      "side": "back",
+      "text": "Si entraste a El Túnel desde el Pasillo destartalado:\nConsigues evitar las intensas defensas a través de un pasillo lateral. Te internas en un túnel atestado de agentes, asustados y armados hasta los dientes. Antes de que se den cuenta de tu presencia, un aullido resuena por toda la instalación y su líder comienza a gritar órdenes.\n\nSi entraste a El Túnel desde el Vestíbulo:\nFinalmente consigues deshacerte de la última de las barricadas y empujas la puerta del vestíbulo para pasar. Una estridente alarma se activa justo al lado de tu oído. Mientras te repones una afilada voz grita: “¡Acribilladles!”. Antes de que el pequeño grupo de agentes pueda comenzar a disparar, un terrible aullido resuena por toda la instalación.",
+      "file": "78006-back.mp3",
+      "inputHash": "0c2de735675396bff91b4de31cf2a0a3a10b1ebca0085524f0026f633788e282",
+      "bytes": 932092,
+      "sha256": "876293935046de30946912b02a827077d8d0bb9d27f11f0965864f84feee4b28"
+    },
+    {
+      "code": "78007",
+      "side": "front",
+      "text": "Una asesina en tu camino y un monstruo pisándote los talones. ¿Con cuál te la jugarás?",
+      "file": "78007-front.mp3",
+      "inputHash": "b733e3b166bf1064448a0fa4780fc6379e0a2622eb779ee3d24c7a7acd171617",
+      "bytes": 104950,
+      "sha256": "f8708d6b6ac1e859b67818ff53acaf0a2cc6b91ab07d9fb40a240edea9d20c05"
+    },
+    {
+      "code": "78007",
+      "side": "back",
+      "text": "Si la Agente Greyson está en la zona de victoria:\nLa líder de los agentes se tambalea y cae al suelo mientras grita una última orden: “¡Dispersaos!”. Los desmoralizados agentes asienten y abandonan la lucha. Con esos horrores aún acercándose, decides seguir su ejemplo. Subes por una destartalada escalera en espiral para acabar saliendo por una trampilla…\n\nDe lo contrario:\nTan pronto como la asquerosa criatura exhala su último aliento, la agente de la chaqueta se gira hacia ti: “Creo que le debo una copa, y tal vez también una disculpa. No parece ser uno de los terribles engendros contra los que hemos estado peleando. Al menos todavía no. Me llamo Greyson. Déjeme acompañarle hasta la superficie mientras mis hombres arreglan este desaguisado.”",
+      "file": "78007-back.mp3",
+      "inputHash": "e521f1aeae86264f5503c7714f9d747ee28a66b77604916252fb0bf7c48dbe3e",
+      "bytes": 913701,
+      "sha256": "2a549a66cbd05a8407ea56b0e373106e83e513be0f9aa616ed80cbc95044a275"
+    }
+  ]
+}

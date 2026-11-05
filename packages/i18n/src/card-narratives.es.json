@@ -116,6 +116,42 @@
     "flavor": "Debes ayudar a tu contacto y a sus asociados cueste lo que cueste.",
     "backFlavor": "Cuando sales tambaleante al frío aire nocturno, respiras hondo. La nieve cae con abundancia sobre el césped que, de estar inmaculado, ha pasado a teñirse de rojo por la sangre. En la mansión que tienes a tu espalda reina un silencio sepulcral. La Joya de Sarnath palpita con una luz sobrenatural en la palma de tu mano, y sientes por un instante una brisa templada y el aroma de otro lugar, que te resulta familiar e imaginado a la vez. ¿Merecía la gema toda esta devastación?"
   },
+  "78002": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "Tras tu peculiar despertar, te encuentras en lo que parece ser una morgue. Una neblina verduzca se cuela por debajo de una puerta cerrada a cal y canto.",
+    "backFlavor": "Una nube de gas verde brota súbitamente de la ventilación del techo, provocándote un violento ataque de tos. Te cuesta mantener la consciencia, y algo en tu cabeza no quiere que te muevas de la Morgue."
+  },
+  "78003": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "Tus indagaciones te muestran que estás en algún tipo de instalación científica secreta. Donde tal vez… ¿hayan experimentado contigo? Tal vez investigando este lugar puedas obtener respuestas.",
+    "backFlavor": "Buenas noticias: No estás solo en este horrible lugar. Malas noticias: Cada ser vivo en este lugar quiere verte muerto. Peores noticias: Un extraño impulso te impele a acercarte a los malditos vapores."
+  },
+  "78004": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "Los disparos atraviesan la instalación y nubes del extraño miasma verde brotan de la ventilación de cada cuarto.\n\nTe estás quedando sin tiempo.",
+    "backFlavor": "La maldita niebla está por todas partes. Los agentes y los extraños seres se ahogan y desfallecen por igual. Te agarras el pecho y tratas desesperadamente de seguir moviéndote, aunque sea un solo paso. Entonces tus piernas fallan y todo se vuelve negro."
+  },
+  "78005": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Estés donde estés, debe de haber una manera de salir. A falta de una idea mejor y con la extraña neblina emponzoñando por momentos, empiezas a romper barricadas buscando una salida.",
+    "backFlavor": "Retiras las últimas sillas apiladas y con sumo cuidado te adentras en la habitación. Todo el suelo hasta tus rodillas está cubierto por un miasma verde, y el cuarto rezuma un olor agrio. Por el extraño equipamiento y los diagramas que ves, debes encontrarte en el laboratorio de los horrores. Y los extraños maniquíes no te ayudan a aliviar esa imagen. Pero… eso… eso no son maniquíes. Varias personas permanecen arrodilladas entre la neblina, completamente catatónicas. Debes escapar de aquí."
+  },
+  "78006": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Estás en alguna especie de instalación científica, en mitad de un enorme desastre. Las barricadas improvisadas entorpecen tu exploración, y una auténtica montaña de obstáculos impide tu salida por el vestíbulo.",
+    "backFlavor": "Si entraste a El Túnel desde el Pasillo destartalado:\nConsigues evitar las intensas defensas a través de un pasillo lateral. Te internas en un túnel atestado de agentes, asustados y armados hasta los dientes. Antes de que se den cuenta de tu presencia, un aullido resuena por toda la instalación y su líder comienza a gritar órdenes.\n\nSi entraste a El Túnel desde el Vestíbulo:\nFinalmente consigues deshacerte de la última de las barricadas y empujas la puerta del vestíbulo para pasar. Una estridente alarma se activa justo al lado de tu oído. Mientras te repones una afilada voz grita: “¡Acribilladles!”. Antes de que el pequeño grupo de agentes pueda comenzar a disparar, un terrible aullido resuena por toda la instalación."
+  },
+  "78007": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Una asesina en tu camino y un monstruo pisándote los talones. ¿Con cuál te la jugarás?",
+    "backFlavor": "Si la Agente Greyson está en la zona de victoria:\nLa líder de los agentes se tambalea y cae al suelo mientras grita una última orden: “¡Dispersaos!”. Los desmoralizados agentes asienten y abandonan la lucha. Con esos horrores aún acercándose, decides seguir su ejemplo. Subes por una destartalada escalera en espiral para acabar saliendo por una trampilla…\n\nDe lo contrario:\nTan pronto como la asquerosa criatura exhala su último aliento, la agente de la chaqueta se gira hacia ti: “Creo que le debo una copa, y tal vez también una disculpa. No parece ser uno de los terribles engendros contra los que hemos estado peleando. Al menos todavía no. Me llamo Greyson. Déjeme acompañarle hasta la superficie mientras mis hombres arreglan este desaguisado.”"
+  },
   "82002": {
     "group": "carnevale",
     "typeCode": "agenda",

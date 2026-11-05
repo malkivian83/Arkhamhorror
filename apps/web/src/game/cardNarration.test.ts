@@ -47,6 +47,7 @@ it('connects campaign recordings to their exact narrative face and established v
     ceniza: 'o0SveC0zgHFuCsEO3vHR',
     carnevale: 'hyKxCTlAqtnW188CgltM',
     dunwich: 'FXn3GKRRt9FCEyTbrkaL',
+    plaguebearer: 'z3kTTwYbQrmL7ckdGcJi',
   }
   const counts: Record<string, number> = {
     zealot: 27,
@@ -56,6 +57,7 @@ it('connects campaign recordings to their exact narrative face and established v
     ceniza: 28,
     carnevale: 10,
     dunwich: 97,
+    plaguebearer: 12,
   }
   const recordedFaces = new Set<string>()
   for (const [group, voiceId] of Object.entries(voices)) {
@@ -95,7 +97,7 @@ it('connects campaign recordings to their exact narrative face and established v
     .flatMap(([code, faces]) => Object.keys(faces).map((side) => `${code}:${side}`))
   expect(new Set(newFaces)).toEqual(recordedFaces)
   expect(cardNarration('12170', true, 'es')).toBeNull()
-})
+}, 15000)
 
 it('generates only narrative faces of agendas and acts, excluding other card types', () => {
   const root = fileURLToPath(new URL('../../../../', import.meta.url))

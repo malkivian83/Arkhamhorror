@@ -12,6 +12,7 @@ const groups = {
   ceniza: null,
   carnevale: 'fortuna-narracion.json',
   dunwich: 'dunwich-nico-narracion.json',
+  plaguebearer: 'plaguebearer-narracion.json',
 }
 const hash = (value) => createHash('sha256').update(value).digest('hex')
 const clean = (text) =>
