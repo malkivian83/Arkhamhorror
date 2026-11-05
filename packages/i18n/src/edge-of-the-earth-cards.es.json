@@ -166,6 +166,187 @@
     "traits": "Monstruo. Eidolón. Élite.",
     "text": "Cazador. Descomunal.\nEl Terror de las estrellas recibe +3 de salud [per_investigator].\nMientras el Terror de las estrellas esté preparado, los investigadores no pueden desistir en su LUgar ni descubrir pistas en su Lugar."
   },
+  "08523": {
+    "name": "Sopla un viento cruel",
+    "typeCode": "agenda",
+    "flavor": "Varios miembros del grupo han desaparecido misteriosamente durante la noche. Al no haber señales de pelea, sólo puedes suponer que se fueron por voluntad propia pero… ¿por qué?",
+    "backName": "Huellas en la nieve",
+    "backText": "Elige una carta de Encuentro que esté boca abajo bajo un Lugar. Mira el otro lado de esa carta <i>(sin resolver su texto)</i>. Luego devuélvela boca abajo bajo ese Lugar.",
+    "backFlavor": "Mientras afrontáis los vientos glaciares, encontráis un rastro de huellas en la nieve que se alejan del campamento. Os detenéis para examinarlas. ¿Son huellas que han dejado los miembros del equipo desaparecidos? ¿O pertenecen a algo más… monstruoso?"
+  },
+  "08524": {
+    "name": "El frío de la noche",
+    "typeCode": "agenda",
+    "flavor": "El sol a baja altura ilumina tenuemente la noche antártica. El cielo está cubierto por nubes grises que amenazan con una tormenta helada.",
+    "backName": "Huellas en la nieve",
+    "backText": "Elige una carta de Encuentro que esté boca abajo bajo un Lugar. Mira el otro lado de esa carta <i>(sin resolver su texto)</i>. Luego devuélvela boca abajo bajo ese Lugar.",
+    "backFlavor": "Mientras afrontáis los vientos glaciares, encontráis un rastro de huellas en la nieve que se alejan del campamento. Os detenéis para examinarlas. ¿Son huellas que han dejado los miembros del equipo desaparecidos? ¿O pertenecen a algo más… monstruoso?"
+  },
+  "08525": {
+    "name": "Locura y muerte",
+    "typeCode": "agenda",
+    "flavor": "La tormenta está cada vez más cerca, y ese maldito sonido vuelve con ella. Te persigue con su presencia, introduciéndose en tu mente. ¿Es la causa de este enajenamiento? ¿De esta locura?",
+    "backName": "Obligados a retirarse",
+    "backText": "Cada investigador restante queda derrotado y sufre 1 trauma mental.\n<b>(→R1)</b>",
+    "backFlavor": "Cuando acaba la noche, la tormenta llega con plena ferocidad. Los gélidos vientos y la densa nevada que arrecia hacen que tu tarea sea imposible. En estas condiciones no encontrarás nunca a los miembros del equipo restantes, y aunque lo hicieras…\nSientes un gran nudo de culpa y desesperación en la garganta. Es imposible que sobrevivan a esta tormenta sin provisiones y un refugio. Tener que elegir entre tu vida y la suya es una carga que pesará sobre ti durante lo que te quede de vida. Y tendrás suerte si dura más de un par de días."
+  },
+  "08526": {
+    "name": "La expedición perdida",
+    "typeCode": "act",
+    "text": "[fast] Los investigadores que estén en tu Lugar gastan, como grupo, 1 pista [per_investigator]: Roba la carta de Encuentro que haya bajo tu Lugar.\n[action] Si estás en el campamento: <b>Desistir.</b> Te vas a descansar.\n<b>Objetivo</b> – Encuentra tantos miembros desaparecidos de la expedición como puedas añadiéndolos a la zona de victoria y luego vuelve al campamento antes del amanecer. Si todos los investigadores no derrotados han desistido, haz avanzar el acto.",
+    "flavor": "Emprendes la búsqueda de los miembros del equipo desaparecidos, con la esperanza de encontralos antes de que despunte el día…",
+    "backName": "Hora de descansar",
+    "backText": "<b>(→R1)</b>",
+    "backFlavor": "La tormenta se acerca cada vez más rápido a medida que la noche toca a su fin. El tiempo no tardará en volverse demasiado letal como para proseguir la búsqueda. Si queda alguien fuera, dudas que vaya a sobrevivir, y tampoco lo harás tú si sigues mucho tiempo más sin refugio. Vuelves al campamento con el peso de la culpa en el corazón y la mente confusa por ese terrible ruido que supura en su interior."
+  },
+  "08527": {
+    "name": "Callejón sin salida",
+    "typeCode": "story",
+    "text": "Retira 1 ficha [frost] de la bolsa de caos.\nAñade esta carta de Historia a la zona de victoria.",
+    "flavor": "Aquí sólo hay hielo y nieve, pero ni rastro de los miembros del equipo desaparecidos. Te das media vuelta presa de la frustración. No vas a encontrar a nadie aquí."
+  },
+  "08528": {
+    "name": "Grietas en el hielo",
+    "typeCode": "story",
+    "text": "Busca una copia de Tekeli-li en tu mazo y colócala en la parte inferior del mazo Tekeli-li sin resolverla. Baraja tu mazo.\nAñade esta carta de Historia a la zona de victoria.",
+    "flavor": "Mientras recorres la llanura glacial, algo retumba y se agita bajo tus pies. ¿Es de donde provienen estas criaturas? ¿De las profundidades del hielo?\nUn lúgubre pensamiento te cruza la mente. Si tienes razón, estas entidades podrían ejercer su maligna influencia independientemente de dónde te encuentres. Puede que al final esto sí que tenga algo que ver con tus compañeros desaparecidos, aunque no hay ni rastro de ellos por aquí."
+  },
+  "08529": {
+    "name": "Restos sombríos",
+    "typeCode": "story",
+    "text": "Busca todas las copias de Tekeli-li que haya entra las 9 primeras cartas de tu mazo y coloca todas las que encuentres en la parte inferior del mazo Tekeli-li sin resolverlas. Baraja tu mazo.\nAñade esta carta de Historia a la zona de victoria.",
+    "flavor": "Encuentras indicios de uno de tus compañeros perdidos que están abandonados y medio enterrados en la nieve: trozos rotos de un pesado abrigo de pieles y unas gafas. Al exeminar éstas, realizas un terrible descubrimiento: una oscura y pegajosa sustancia que no logras identificar de ninguna manera."
+  },
+  "08530": {
+    "name": "Pisadas que desaparecen",
+    "typeCode": "story",
+    "text": "Retira 1 ficha [frost] de la bolsa de caos.\nAñade esta carta de Historia a la zona de victoria..",
+    "flavor": "El rastro continúa durante un tiempo antes de desaparecer en la nieve de forma incomprensible. No hay signos de pelea, ni tampoco algún otro rastro que pueda indicar adónde ha ido. ¿Habrá cubierto el viento las huellas? Y si es así, ¿por qué pudiste seguir el resto de las pisadas tan fácilmente?\nPero cuando te vuelves para examinar las huellas que habías venido siguiendo, también han desaparecido."
+  },
+  "08531": {
+    "name": "Explorador diseccionado",
+    "typeCode": "story",
+    "text": "Busca una copia de Tekeli-li en tu mazo y colócala en la parte inferior del mazo Tekeli-li sin resolverla. Baraja tu mazo.\nAñade esta carta de Historia a la zona de victoria.",
+    "flavor": "Sigues un rastro de huellas hasta una pequeña caverna metida en una pared glacial y el estómago se te revuelve por lo que ves ante ti. Uno de tus compañeros de equipo desaparecidos está tirado al final de la abertura con la ropa desgarrada. Una incisión vertical limpia ha cortado en dos su torso desde el esternón hasta la barriga, y han extraído sus entrañas meticulosamente. Te cuesta no vomitar. ¿Quién podría haber hecho algo semejante?"
+  },
+  "08532": {
+    "name": "El mal interior",
+    "typeCode": "story",
+    "text": "Descarta del juego un Enemigo [[Eidolón]] que no tenga el rasgo [[Élite]].\nAñade esta carta de Historia a la zona de victoria.",
+    "flavor": "Está huyendo de una criatura formada por cinco caleidoscópicos cuando de repente te detienes en seco al ver una telaraña de grietas que surca el hielo bajo tus botas. La respiración se te queda atenazada en la garganta. Otro paso más podría se tu perdición o salvarte la vida. A tu espalda, la entidad gana terreno, extendiendo unos brazos que no son ni sólidos ni líquidos. Te sientes con suerte y decides jugártela, por lo que golpeas el suelo que tienes detrás y huyes hacia un lado. Como esperabas, el hielo es lo bastante delgado como para abrirse, y la criatura se precipita por la grieta hacia las gélidas profundidades. Das un suspiro de alivio y agradeces no haber compartido su destino"
+  },
+  "08533": {
+    "name": "Prueba sangrienta",
+    "typeCode": "story",
+    "text": "Busca todas las copias de Tekeli-li que haya entra las 9 primeras cartas de tu mazo y coloca todas las que encuentres en la parte inferior del mazo Tekeli-li sin resolverlas. Baraja tu mazo.\nAñade esta carta de Historia a la zona de victoria.",
+    "flavor": "Sigues un rastro de pisadas por la nieve, con la esperanza de que te lleven hasta algún signo, el que sea, de tus compañeros perdidos. Por desgracia, la prueba que descubres no es la que esperabas encontrar. En el lugar donde acaban la huellas, encuentras un pico cubierto de sangre recién congelada. Eres presa del horror cuando ves un ojo humano allí cerca que mancha la nieve de rojo. Un escalofrío te recorre la espalda. ¿Qué podría haber llevado a alguien a hacer algo así?"
+  },
+  "08534": {
+    "name": "Locura en el interior",
+    "typeCode": "story",
+    "text": "Elige un Enemigo [[Poseído]] en juego que no tenga el rasgo [[Élite]]. Toma el control de todas las fichas de Perdición que haya sobre ese Enemigo, dándoles la vuelta a su lado de pista. Descarta el Enemigo elegido.\nAñade esta carta de Historia a la zona de victoria.",
+    "flavor": "Para alivio tuyo, encuentras a uno de los miembros del equipo desaparecidos, pero no está en sus cabales. Tiene los ojos vidriosos y una expresión confusa y perdida. Una turbia sustancia le gotea de la cara hacia el hielo del suelo. Cuando por fin logras hacerle entender, se limpia el extraño miasma oscuro de la cara, manchándose las mejillas de negro.\n-¿Qué… estaba haciendo? -pregunta."
+  },
+  "08535": {
+    "name": "Profesor William Dyer",
+    "subname": "Profesor de geología",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Poseído. Élite.",
+    "text": "[action] Elige y descarta hasta 2 cartas de tu mano: <b>Negociar.</b> Coloca esa misma cantidad de recursos sobre el Profesor William Dyer <i>(de la reserva de fichas)</i>. Si hay 3 recursos [per_investigator] sobre él, añádelo a la zona de victoria.\n<b>Obligado</b> – Si el Profesor William Dyer es derrotado: Tacha su nombre en el registro de campaña."
+  },
+  "08536": {
+    "name": "Danforth",
+    "subname": "Estudiante excelente",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Poseído. Élite.",
+    "text": "[action]: <b>Negociar.</b> Escuchas atentamente los desvaríos de Danforth. Roba hasta 2 cartas de la parte superior del mazo Tekeli-li. A continuación, coloca esa misma cantidad de recursos sobre Danforth <i>(de la reserva de fichas)</i>. Si hay 3 recursos [per_investigator] sobre él, añádelo a la zona de victoria.\n<b>Obligado</b> – Si Danforth es derrotado: Tacha su nombre en el registro de campaña."
+  },
+  "08537": {
+    "name": "Eliyah Ashevak",
+    "subname": "Adiestrador de perros",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Poseído. Élite.",
+    "text": "[action]: <b>Negociar.</b> Realiza una prueba de [agility] (2) para evitar a Anyu y hablar con Eliyah. Por cada punto que tenga por encima del valor mínimo de éxito, coloca 1 recurso sobre él <i>(de la reserva de fichas)</i>. Si fracasas, te ataca. Si hay 2 recursos [per_investigator] sobre él, añádelo a la zona de victoria.\n<b>Obligado</b> – Si Eliyah Ashevak es derrotado: Tacha su nombre en el registro de campaña."
+  },
+  "08538": {
+    "name": "Dra. Mala Sinha",
+    "subname": "Médico osada",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Poseído. Élite.",
+    "text": "[action]: <b>Negociar.</b> Realiza una prueba de [willpower] (2) para intentar calmar a la Dra. Sinha. Por cada punto que tenga por encima del valor mínimo de éxito, coloca 1 recurso sobre ella <i>(de la reserva de fichas)</i>. Si fracasas, te ataca. Si hay 2 recursos [per_investigator] sobre ella, añádelo a la zona de victoria.\n<b>Obligado</b> – Si Dr. Mala Sinha es derrotada: Tacha su nombre en el registro de campaña."
+  },
+  "08539": {
+    "name": "Avery Claypool",
+    "subname": "Guía de la Antártida",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Poseído. Élite.",
+    "text": "[action]: <b>Negociar.</b> Realiza una prueba de [willpower] o de [intellect] (5) para lograr que Claypool deje de balbucir disparates. Si tienes éxito, coloca 1 recurso sobre él <i>(de la reserva de fichas)</i>. Si fracasas, te ataca. Si hay 1 recursos [per_investigator] sobre él, añádelo a la zona de victoria.\n<b>Obligado</b> – Si Avery Claypool es derrotado: Tacha su nombre en el registro de campaña."
+  },
+  "08540": {
+    "name": "James \"Cookie\" Fredericks",
+    "subname": "Elección dudosa",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Poseído. Élite.",
+    "text": "Represalia.\n[action]: <b>Negociar.</b> Realiza una prueba de [combat] (2) para quitarle el arma a Cookie. Por cada punto que tenga por encima del valor mínimo de éxito, coloca 1 recurso sobre él <i>(de la reserva de fichas)</i>. Si fracasas, te ataca. Si hay 2 recursos [per_investigator] sobre él, añádelo a la zona de victoria.\n<b>Obligado</b> – Si James \"Cookie\" Fredericks es derrotado: Tacha su nombre en el registro de campaña."
+  },
+  "08541": {
+    "name": "Dra. Amy Kensler",
+    "subname": "Profesora de biología",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Poseído. Élite.",
+    "text": "[action]: <b>Negociar.</b> Realiza una prueba de [intellect] (2) para convencer a la Dra. Kensler de que te cuente lo que ha visto. Por cada punto que tenga por encima del valor mínimo de éxito, coloca 1 recurso sobre ella <i>(de la reserva de fichas)</i>. Si fracasas, te ataca. Si hay 2 recursos [per_investigator] sobre ella, añádelo a la zona de victoria.\n<b>Obligado</b> – Si Dra. Amy Kensler es derrotada: Tacha su nombre en el registro de campaña."
+  },
+  "08542": {
+    "name": "Roald Ellsworth",
+    "subname": "Explorador intrépido",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Poseído. Élite.",
+    "text": "[action]: <b>Negociar.</b> Realiza una prueba de [combat] o de [agility] (5)para lograr que Ellsworth suelte la extraña roca que tiene aferrada. Si tienes éxito, coloca 1 recurso sobre él <i>(de la reserva de fichas)</i>. Si fracasas, te ataca. Si hay 1 recursos [per_investigator] sobre él, añádelo a la zona de victoria.\n<b>Obligado</b> – Si Roald Ellsworth es derrotado: Tacha su nombre en el registro de campaña."
+  },
+  "08543": {
+    "name": "Takada Hiroko",
+    "subname": "Mecánica de aeroplanos",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Poseído. Élite.",
+    "text": "[action] Gasta hasta 3 recursos: <b>Negociar.</b> Coloca cada uno de estos recursos sobre Takada Hiroko. Si hay 5 [per_investigator] sobre ella, añádela a la zona de victoria.\\n<b>Obligado</b> – Si Takada Hiroko es derrotada: Tacha su nombre en el registro de campaña."
+  },
+  "08544": {
+    "name": "Manifestaciones del mal",
+    "typeCode": "agenda",
+    "text": "<b>Obligado</b> – Cuando este plan fuera a avanzar, si hay al menos 1 carta boca abajo bajo una Pesadilla rezumante: En lugar de hacer avanzar este plan, retira 2 fichas de Perdición del juego y busca la Pesadilla rezumante que tenga más cartas boca abajo bajo ella. Elige una de las cartas que hay bajo ella al azar y hazla aparecer en su Lugar.",
+    "flavor": "Algo se agita bajo el hielo. A través de las grietas burbujea un siniestro icor de olor rancio y acre.",
+    "backName": "Un aire siniestro",
+    "backText": "El investigador jefe debe decidir (elige una opción):\n- Añade 1 ficha [frost] a la bolsa de caos.\n- Siguiendo el orden de juego, cada investigador añade las 2 primeras cartas del mazo Tekeli-li a su mazo y baraja éste (cada investigador que no pueda recibe 1 punto de daño y 1 punto de horror en su lugar).",
+    "backFlavor": "Este lugar no es lo que parece. Tienes la sensación de haberte colado en un sitio antiguo y terrible, y ahora su ira está brotando a tu alrededor."
+  },
+  "08545": {
+    "name": "Profundidades heladas",
+    "typeCode": "agenda",
+    "flavor": "Los violentos terremotos han alcanzado su punto culminante. Tienes la impresión de que todo el campo de hielo podría venirse abajo en cualquier momento, tirándote al gélido océano, o algo peor si tu teoría sobre el origen subterráneo de estas criaturas es correcta.",
+    "backName": "Desplome del campo de hielo",
+    "backText": "Cada investigador restante queda derrotado y sufre 1 trauma físico.",
+    "backFlavor": "La única advertencia es una fina telaraña de grietas que recorre el suelo bajo tus pies, y luego una repentina explosión de bruna y miasma como la tinta que se produce a tu alrededor. La fuerza te tira al suelo. Te arrastras desesperadamente por el frío hielo mientras el miasma trata de alcanzarte. Un sonido incomprensible, como el de un furioso remolino, te llena los oídos. Después se produce un atronador chasquido y caes… no, te deslizas… por el hielo hacia las gélidas aguas.\nEs un milagro que conserves la consciencia. Haces acopio de todas tus fuerzas y te aferras al hielo justo antes de precipitarte. Por fin logras volverte a encaramar al borde, mirando con pánico hacia el horizonte, pero no hay ni rastro de miasma ni de la bruma. La grieta en el campo de hielo se extiende cientos de metros frente a ti, separándote de tus perseguidores. De algún modo, has logrado escapar sin pretenderlo… aunque tardarás en olvidar esta experiencia cercana a la muerte."
+  },
+  "08546": {
+    "name": "¡Bajo ataque!",
+    "typeCode": "act",
+    "text": "Cada Enemigo [[Eidolón]] obtiene <b>Victory 0.</b>\nEl campamento obtiene el siguiente texto: \"[action] Los investigadores que estén en tu Lugar gastan, como grupo, 4 pistas: <b>Desistir.</b>\"\n<b>Objetivo</b> – Si no hay Enemigos [[Eidolón]] en juego, haz avanzar el acto.\n<b>Objetivo</b> – Si todos los investigadores no derrotados han desistido, haz avanzar el acto.",
+    "flavor": "Han descubierto vuestro campamento, y ahora los monstruos que acechan en la nieve y el hielo convergen hacia vuestra posición. Sólo hay dos formas de salir de esta pesadilla: combatir o huir.",
+    "backName": "The Last Breath",
+    "backText": "<b>Si no hay Enemigos [[Eidolón]] en juego:</b>\n<blockquote><i>La última de las criaturas de pesadilla cae y su cuerpo de miasma se disuelve al instante en un oscuro líquido prismático y se disipa en volutas de bruma gris llenas de formas que gritan. Después se hace el silencio.</i></blockquote>\n<b>(→R1)</b>\n<b><hr>Sigues una senda improvisada por una abrupta hendidura en el campo de hielo, adentrándote cada vez más en el continente, en dirección a las montañas. No sabe si estas criaturas pueden seguir rastros humanos, o si acaso necesitan rastros para perseguiros, pero aun así te tomas un tiempo para borrarlos. Ojalá puedas ponerte a salvo con este atajo que has encontrado…</i></blockquote>\n<b>(→R2)</b>"
+  },
+  "08547": {
+    "name": "Pesadilla rezumante",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Eidolón. Élite.",
+    "text": "Mientras un Enemigo [[Eidolón]] que esté en el Lugar de la Pesadilla rezumante se mueva, su Lugar se considera conectado al campamento.\nMientras no haya cartas boca abajo de la Pesadilla rezumante, ésta obtiene Cazador.\n<b>Obligado</b> – Cuando la Pesadilla rezumante sea derrotada: Retira de la partida todas las cartas que haya bajo ella."
+  },
+  "08548": {
+    "name": "Fantasmagoria",
+    "typeCode": "treachery",
+    "traits": "Maldición.",
+    "text": "<b>Revelación</b> – Si no hay Pesadillas rezumantes en juego, Fantasmagoria obtiene Oleada. Si no es así, busca la Pesadilla rezumante más cercana a un investigador. Si hay 1 o más cartas bajo ella, elige 1 de ellas al azar y hazla aparecer en su Lugar. Si no hay cartas bajo ella, se mueve y ataca como si fuera la fase de Enemigos (sin agotarse)."
+  },
   "08587": {
     "name": "Profesor William Dyer",
     "subname": "Profesor de geología",
@@ -280,6 +461,24 @@
     "typeCode": "treachery",
     "traits": "Riesgo.",
     "text": "<b>Revelación</b> – Vincula esta carta al Lugar más cercano que no tenga una copia de Atravesar el hielo vinculada.\nComo coste adicional para que entres en el Lugar vinculado o lo abandones (excepto mediante el efecto de una carta de Escenario), realiza una prueba de [agility] (2). Si fracasas, cancela los efectos del movimiento, recibe 1 punto de daño y 1 punto de horror y descarta Atravesar el hielo."
+  },
+  "08700": {
+    "name": "Investigador perdido",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Poseído.",
+    "text": "<b>Aparición</b> – Cualquier Lugar (vacío si es posible).\nEl Investigador perdido entra en juego con 1 ficha de Perdición sobre él.\n<b>Obligado</b> – Cuando el Investigador perdido sea derrotado: Mueve a su Lugar toda la perdición que haya sobre él.\n[action]: <b>Negociar.</b> Realiza una prueba de [willpower] o de [intellect] (3). Si tienes éxito, toma el control de 1 ficha de Perdición que este sobre el Investigador perdido y dale la vuelta a su lado pista. A continuación, si no hay perdición sobre el Investigador perdido, descártalo."
+  },
+  "08701": {
+    "name": "Explorador enajenado",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Poseído.",
+    "text": "El Explorador enajenado entra en juego con 1 ficha de Perdición sobre él.\n<b>Obligado</b> – Cuando el Explorador enajenado sea derrotado: Mueve a su Lugar toda la perdición que haya sobre él.\n[reaction]: Después de que evites con éxito al Explorador enajenado por 2 o más: Toma el control de 1 ficha de Perdición que este sobre el Explorador enajenado y dale la vuelta a su lado pista. A continuación, si no hay perdición sobre el Explorador enajenado, descártalo."
+  },
+  "08702": {
+    "name": "Abandonado a la locura",
+    "typeCode": "treachery",
+    "traits": "Maldición.",
+    "text": "<b>Revelación</b> – Vincula esta carta al Enemigo [[Poseído]] más cercano y coloca 1 ficha de Perdición sobre ese Enemigo. Si no hay Enemigos [[Poseído]] en juego, busca en el mazo y la pila de descartes de Encuentros un Enemigo [[Poseído]], róbalo y vincúlale Abandonado a la locura (baraja el mazo de Encuentros).\nAumenta en 1 la dificultad para combatir, evadir, o negociar con el Enemigo vinculado."
   },
   "08712": {
     "name": "Espejismo polar",

@@ -10,6 +10,10 @@ import {
   deckIssues,
   disappearance,
   disappearanceResult,
+  expeditionAttack,
+  expeditionAttackResult,
+  type AttackDecision,
+  type DisappearanceDecision,
   deckSize,
   deckSizeOf,
   onePrintingEach,
@@ -61,10 +65,21 @@ const deckChangesAllowed = computed(
 /** Números romanos de los escenarios. */
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
 const next = computed(() => (campaign.value ? currentScenario(campaign.value) : null))
-const checkpoint = computed(() => campaign.value && disappearance(campaign.value))
+const disappearanceCheckpoint = computed(() => campaign.value && disappearance(campaign.value))
+const checkpoint = computed(() =>
+  campaign.value ? disappearanceCheckpoint.value || expeditionAttack(campaign.value) : null,
+)
+function decideCheckpoint(decision: AttackDecision | DisappearanceDecision) {
+  if (decision === 'fight' || decision === 'flee') game.chooseExpeditionAttack(decision)
+  else game.chooseDisappearance(decision)
+}
 const checkpointStory = computed(() => {
   if (!campaign.value) return null
-  return checkpoint.value?.story ?? disappearanceResult(campaign.value)
+  return (
+    checkpoint.value?.story ??
+    expeditionAttackResult(campaign.value) ??
+    disappearanceResult(campaign.value)
+  )
 })
 const resultByScenario = computed(() =>
   Object.fromEntries((campaign.value?.results ?? []).map((result) => [result.scenario, result])),
@@ -420,9 +435,9 @@ function abandon() {
       v-if="!game.state && checkpointStory"
       class="page transfer"
       :story="checkpointStory"
-      :missing="checkpoint ? checkpoint.missing : undefined"
+      :missing="disappearanceCheckpoint ? disappearanceCheckpoint.missing : undefined"
       :choices="checkpoint ? checkpoint.choices : undefined"
-      @decide="game.chooseDisappearance"
+      @decide="decideCheckpoint"
     />
 
     <footer class="actions">

@@ -103,6 +103,106 @@
     "disappearanceSearch": {
       "title": "Punto de control I: La desaparición",
       "body": "Recogéis el equipo y seguís las huellas en la oscuridad para buscar a los miembros desaparecidos de la expedición."
+    },
+    "partTwoIntro": {
+      "title": "La búsqueda",
+      "body": "La tormenta ha amainado lo suficiente para seguir las huellas. Salís del campamento antes de que el viento las borre. En algún punto de la llanura helada os esperan los desaparecidos."
+    },
+    "partTwoSetup": {
+      "title": "Preparación",
+      "body": "Comenzáis en el campamento que establecisteis en la parte uno. La expedición vuelve sobre sus pasos para registrar los lugares inexplorados."
+    },
+    "partTwoWind": {
+      "title": "Sopla un viento gélido",
+      "body": "El viento arrecia y empieza a cubrir las huellas. Os detenéis un momento para buscar señales de los desaparecidos."
+    },
+    "partTwoChill": {
+      "title": "El frío de la noche",
+      "body": "La luz se apaga y el frío se hace más intenso. Echáis un último vistazo a lo lejos antes de continuar."
+    },
+    "partTwoMadness": {
+      "title": "Locura y muerte",
+      "body": "El viento atraviesa la ropa y la oscuridad os rodea. La búsqueda se ha prolongado demasiado."
+    },
+    "partTwoNoResolution": {
+      "title": "Sin resolución",
+      "body": "El frío y el agotamiento ponen fin a la búsqueda. Quienes sigan ahí fuera tendrán que encontrar solos el camino de vuelta."
+    },
+    "partTwoResolution": {
+      "title": "Resolución 1",
+      "body": "De vuelta en el campamento, hacéis recuento de las personas que habéis logrado rescatar. Los demás siguen ahí fuera, más allá del círculo de luz."
+    },
+    "search08527": {
+      "title": "Callejón sin salida",
+      "body": "Las huellas llevan a una hondonada cubierta de nieve reciente. Dais media vuelta sin encontrar a nadie."
+    },
+    "search08528": {
+      "title": "Grietas en el hielo",
+      "body": "Algo se agita bajo vuestros pies. Os alejáis de las grietas preguntándoos hasta dónde llegan."
+    },
+    "search08529": {
+      "title": "Restos sombríos",
+      "body": "Un abrigo desgarrado y unas gafas sobresalen de la nieve. Una sustancia oscura mancha los cristales."
+    },
+    "search08530": {
+      "title": "Huellas que desaparecen",
+      "body": "Las huellas se pierden en plena llanura. Cuando miráis atrás, el rastro que os trajo hasta aquí también ha desaparecido."
+    },
+    "search08531": {
+      "title": "Explorador diseccionado",
+      "body": "Las huellas llevan a una cueva. Dentro yace uno de los exploradores desaparecidos, con una herida que alguien le infligió deliberadamente."
+    },
+    "search08532": {
+      "title": "El mal interior",
+      "body": "El hielo se quiebra bajo la criatura que os persigue. Se hunde en las profundidades y la nieve vuelve a cubrir la abertura."
+    },
+    "search08533": {
+      "title": "Pruebas sangrientas",
+      "body": "Al final del rastro encontráis un piolet cubierto de sangre helada. Retrocedéis apartándoos de las huellas."
+    },
+    "search08534": {
+      "title": "La locura interior",
+      "body": "El explorador os mira sin veros, con la cara surcada por una sustancia oscura. Cuando por fin reacciona, os pregunta qué estaba haciendo."
+    },
+    "attack": {
+      "title": "Punto de control II: El ataque",
+      "body": "Apenas habéis descansado cuando el hielo se quiebra bajo el campamento. Volvéis a oír aquel grito agudo. Las criaturas se acercan."
+    },
+    "attackFlee": {
+      "title": "Punto de control II: El ataque",
+      "body": "Cogéis lo que podéis y huis hacia las montañas. Cuando por fin os detenéis, la expedición está agotada."
+    },
+    "attackFight": {
+      "title": "Punto de control II: El ataque",
+      "body": "Tomáis posiciones alrededor del campamento y os preparáis para combatir a las criaturas que emergen del hielo."
+    },
+    "partThreeIntro": {
+      "title": "Hielo y muerte, parte III",
+      "body": "A través de los prismáticos veis cómo se abre el hielo. Surgen figuras de una grieta, luego de otra, y todas se dirigen al campamento."
+    },
+    "partThreeSetup": {
+      "title": "Preparación",
+      "body": "Comenzáis en el campamento, sin pistas sobre él. Colocad las Pesadillas rezumantes en los Lugares que correspondan a vuestro refugio."
+    },
+    "partThreeManifestations": {
+      "title": "Manifestaciones del mal",
+      "body": "La última figura emerge de la grieta. La tormenta arrecia y el equipo se prepara para lo que venga."
+    },
+    "partThreeDepths": {
+      "title": "Profundidades heladas",
+      "body": "El hielo cede bajo vuestros pies. El campamento y las criaturas desaparecen tras un muro de nieve."
+    },
+    "partThreeNoResolution": {
+      "title": "Sin resolución",
+      "body": "Escapáis entre remolinos de hielo y nieve, tan agotados que apenas podéis distinguir qué os persigue."
+    },
+    "partThreeVictory": {
+      "title": "Resolución 1",
+      "body": "La última criatura se disuelve en la niebla. Abandonáis el campamento y seguís andando hasta que dejáis de oír lo que queda atrás."
+    },
+    "partThreeEscape": {
+      "title": "Resolución 2",
+      "body": "Borráis vuestras huellas al dejar atrás el campo de hielo y os adentráis en las montañas."
     }
   },
   "choice": {
@@ -129,7 +229,13 @@
     "missing": "Miembros desaparecidos: {names}",
     "allSafe": "Todos los miembros supervivientes de la expedición están a salvo.",
     "search": "Ir en busca de los desaparecidos",
-    "leave": "Dejarlos atrás"
+    "leave": "Dejarlos atrás",
+    "lookBeneath": "Mirar debajo de {name}",
+    "rescueAmount": "Elegir {amount}",
+    "fight": "¡Resistamos y luchemos!",
+    "flee": "¡Huyamos!",
+    "nightmareWeaknesses": "Cada investigador baraja 2 debilidades ¡Tekeli-li!",
+    "nightmareRemoveDoom": "Retirar 1 perdición de {name}"
   },
   "prompt": {
     "claypool": "Avery Claypool: elige cómo cancelar la ficha de Helada",
@@ -140,7 +246,16 @@
     "apeirophobia": "Apeirofobia. Elige una consecuencia.",
     "ship": "Elige qué recuperar del barco atrapado",
     "kensler": "Elige qué mazo examina la Dra. Kensler",
-    "kenslerCard": "¿Conservas o descartas la carta?"
+    "kenslerCard": "¿Conservas o descartas la carta?",
+    "lookBeneath": "Elige un Lugar para mirar debajo",
+    "lookResult": "La carta que hay debajo del Lugar",
+    "chooseSearchEnemy": "Elige un Enemigo",
+    "rescueAmount": "Elige cuánto ofrecer",
+    "cleanseTekelili": "Elige una debilidad ¡Tekeli-li! para devolver al mazo especial",
+    "nightmareAgenda": "Elige cómo afrontar las manifestaciones",
+    "nightmareNearest": "Elige la Pesadilla rezumante más cercana",
+    "nightmareMost": "Elige una Pesadilla rezumante con el mayor número de cartas debajo",
+    "nightmareRemoveDoom": "Elige de dónde retirar la perdición"
   },
   "ability": {
     "claypool": "Avery Claypool: cancela la ficha de Helada",
@@ -163,19 +278,30 @@
     "kensler": "Dra. Amy Kensler. Investiga.",
     "ellsworth": "Roald Ellsworth. Deja en blanco {card}.",
     "ellsworthExhaust": "Agota a Roald Ellsworth para dejar en blanco {card}",
-    "ellsworthSpend": "Gasta 1 suministro para dejar en blanco {card}"
+    "ellsworthSpend": "Gasta 1 suministro para dejar en blanco {card}",
+    "searchSite": "Busca debajo de este Lugar",
+    "turnIn": "Desiste en el campamento",
+    "rescue": "Negocia con {name} ({progress}/{required})",
+    "comfort": "Calma a {name}",
+    "takeEnemyDoom": "Toma la perdición como pista",
+    "fleeCamp": "Gasta 4 pistas para desistir"
   },
   "note": {
     "edgeOfTheEarthConvincedDyer": "Los investigadores convencieron a Dyer de que permitiera la expedición.",
     "edgeOfTheEarthDoubtedDyer": "Los investigadores no se creyeron el informe de Dyer.",
     "edgeOfTheEarthCrash": "Un miembro de la expedición murió en el accidente de avión.",
     "edgeOfTheEarthShipSearched": "Los investigadores registraron el barco atrapado.",
-    "edgeOfTheEarthRevealedLocations": "La expedición exploró los alrededores."
+    "edgeOfTheEarthRevealedLocations": "La expedición exploró los alrededores.",
+    "edgeOfTheEarthFledToMountains": "El equipo huyó a las montañas.",
+    "edgeOfTheEarthBarelyEscaped": "El equipo logró escapar del campo de hielo a duras penas.",
+    "edgeOfTheEarthDefeatedCreatures": "El equipo derrotó a las criaturas cazadoras."
   },
   "campaignName": "Los confines de la Tierra",
   "scenarioName": "Hielo y muerte, parte I",
   "checkpointName": "Punto de control 1: La desaparición",
   "description": "Sobrevive al accidente y encuentra refugio antes de que arrecie la tormenta antártica.",
   "partTwoName": "Hielo y muerte, parte II",
-  "checkpointTwoName": "Punto de control II: El ataque"
+  "checkpointTwoName": "Punto de control II: El ataque",
+  "partThreeName": "Hielo y muerte, parte III",
+  "restfulNightName": "Interludio I: Noche reposada"
 }

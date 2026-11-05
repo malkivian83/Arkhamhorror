@@ -41,6 +41,7 @@ export type OnlineProgressAction =
   | { action: 'finish' }
   | { action: 'next' }
   | { action: 'disappearance'; decision: 'search' | 'leave' }
+  | { action: 'attack'; decision: 'fight' | 'flee' }
   | { action: 'ready'; ready: boolean }
   | { action: 'purchase'; card: string; upgrade: boolean; replaces?: string; remove?: string }
   | {
@@ -59,6 +60,10 @@ export interface OnlineCampaignView {
     story: { title: string; body: string }
     missing?: string[]
     choices?: ('search' | 'leave')[]
+  }
+  attack?: {
+    story: { title: string; body: string }
+    choices?: ('fight' | 'flee')[]
   }
   canManage: boolean
   nextScenario: string | null

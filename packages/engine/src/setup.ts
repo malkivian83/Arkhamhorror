@@ -41,6 +41,7 @@ export interface ScenarioDefinition {
   /** Localizaciones apartadas, para efectos del escenario. */
   setAsideLocations?: LocationCard[]
   startingLocation: LocationId
+  startingResources?: number
   /** El investigador jefe empieza aquí y los demás en `startingLocation` (Excelsior). */
   leadStartingLocation?: LocationId
   /** Investigadores que empiezan en otro Lugar (Lola Hayes en Bastidores). */
@@ -225,7 +226,10 @@ export function prepareGame({
       {
         type: 'GainResources',
         investigator: setup.id,
-        amount: 5 + bonus(setup, 'resources') + (boons.includes('hades') ? 2 : 0),
+        amount:
+          (scenario.startingResources ?? 5) +
+          bonus(setup, 'resources') +
+          (boons.includes('hades') ? 2 : 0),
       },
       {
         type: 'DrawOpeningHand',

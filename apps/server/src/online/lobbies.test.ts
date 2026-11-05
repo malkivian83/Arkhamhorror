@@ -271,6 +271,13 @@ describe('private online lobbies', () => {
     const saved = JSON.parse(data.get(id)!) as Lobby
     expect(saved.campaign?.results.filter(({ skipped }) => skipped)).toHaveLength(1)
     expect(saved.campaign?.log.expedition?.partners['08720']?.status).toBe('eliminated')
+    expect(result.campaign?.attack?.choices).toEqual(['fight', 'flee'])
+    const flee = progressCommand(result.revision, { action: 'attack', decision: 'flee' })
+    await expect(service.progress(id, 'friend', flee)).rejects.toMatchObject({ code: 'not_owner' })
+    const escaped = await service.progress(id, 'host', flee)
+    expect(escaped.campaign?.nextScenario).toBe('edge-of-the-earth-restful-night')
+    expect(escaped.campaign?.attack?.story.body).toContain('attackFlee')
+    expect(await new LobbyService(db).progress(id, 'host', flee)).toEqual(escaped)
   })
 
   it('records outcomes once, buys only the authenticated player deck and starts the next shared scenario', async () => {

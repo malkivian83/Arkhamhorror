@@ -4380,9 +4380,13 @@ export function handle(state: GameState, message: Message): GameState {
     case 'ChooseExpeditionPartners':
       return push(
         state,
-        ...activeInvestigators(state).map((i): Message => ({
+        ...activeInvestigators(state).map((i, index, players): Message => ({
           type: 'ChooseExpeditionPartner',
           investigator: i.id,
+          ...(message.required
+            ? { required: message.required, remaining: players.length - index }
+            : {}),
+          ...(message.extraUses ? { extraUses: message.extraUses } : {}),
         })),
       )
 
@@ -4392,10 +4396,16 @@ export function handle(state: GameState, message: Message): GameState {
         return state
       const inPlay = Object.values(state.assets).filter((asset) => asset.expeditionPartner)
       if (inPlay.some((asset) => asset.owner === message.investigator)) return state
+      const required =
+        message.required?.filter(
+          (partner) => !inPlay.some((asset) => asset.expeditionPartner === partner),
+        ) ?? []
+      const onlyRequired = required.length >= (message.remaining ?? 1)
       const choices: Choice[] = []
       for (const partner of Object.keys(
         expeditionPartners,
       ) as (keyof typeof expeditionPartners)[]) {
+        if (onlyRequired && !required.includes(partner)) continue
         const status = expedition.partners[partner]?.status
         if (status !== 'safe' && status !== 'resolute') continue
         if (inPlay.some((asset) => asset.expeditionPartner === partner)) continue
@@ -4405,7 +4415,14 @@ export function handle(state: GameState, message: Message): GameState {
         choices.push({
           label: 'choice.card',
           params: { card: card.name },
-          then: [{ type: 'SelectExpeditionPartner', investigator: message.investigator, partner }],
+          then: [
+            {
+              type: 'SelectExpeditionPartner',
+              investigator: message.investigator,
+              partner,
+              ...(message.extraUses?.includes(partner) ? { extraUses: 1 } : {}),
+            },
+          ],
         })
       }
       if (!choices.length) return state
@@ -4415,7 +4432,10 @@ export function handle(state: GameState, message: Message): GameState {
         question: {
           kind: 'chooseOne',
           prompt: 'prompt.edgeOfTheEarth.partner',
-          choices: [...choices, { label: 'choice.edgeOfTheEarth.noPartner', then: [] }],
+          choices:
+            required.length < (message.remaining ?? 1)
+              ? [...choices, { label: 'choice.edgeOfTheEarth.noPartner', then: [] }]
+              : choices,
         },
       })
     }
@@ -4433,13 +4453,21 @@ export function handle(state: GameState, message: Message): GameState {
         )
       )
         return state
+      const code =
+        record.status === 'resolute' ? expeditionPartners[message.partner] : message.partner
       return handle(state, {
         type: 'PutAssetIntoPlay',
         investigator: investigator.id,
-        code: record.status === 'resolute' ? expeditionPartners[message.partner] : message.partner,
+        code,
         expeditionPartner: message.partner,
         noSlot: true,
-        tokens: { damage: record.damage, horror: record.horror },
+        tokens: {
+          damage: record.damage,
+          horror: record.horror,
+          ...(message.extraUses
+            ? { uses: (playerCardDef(code)?.uses?.count ?? 0) + message.extraUses }
+            : {}),
+        },
       })
     }
 
@@ -4482,9 +4510,10 @@ export function handle(state: GameState, message: Message): GameState {
         return state
       const cards = pool.slice(0, Math.max(0, message.amount))
       if (!cards.length) return state
-      const draw =
+      const replaceShuffle =
         !investigator.eliminated &&
         scenarioBehavior(state.scenarioId)?.drawTekeliliInstead?.(state, investigator.id)
+      const draw = message.drawInstead || replaceShuffle
       const [deck, rng] = draw
         ? [investigator.deck, state.rng]
         : shuffle([...investigator.deck, ...cards], state.rng)
@@ -4500,7 +4529,7 @@ export function handle(state: GameState, message: Message): GameState {
             type: 'ResolveWeakness',
             investigator: investigator.id,
             code,
-            tekeliliToDeckBottom: true,
+            ...(replaceShuffle && !message.drawInstead ? { tekeliliToDeckBottom: true } : {}),
           })),
         )
       return updateInvestigator(added, investigator.id, (i) => ({ ...i, deck }))

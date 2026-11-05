@@ -14,6 +14,10 @@ import { useDecksStore } from '../stores/decks'
 const props = defineProps<{ campaign: OnlineCampaignView; disabled: boolean }>()
 const emit = defineEmits<{ action: [action: OnlineProgressAction] }>()
 const { t } = useI18n()
+function decideCheckpoint(decision: 'search' | 'leave' | 'fight' | 'flee') {
+  if (decision === 'fight' || decision === 'flee') emit('action', { action: 'attack', decision })
+  else emit('action', { action: 'disappearance', decision })
+}
 const name = (code: string) => localName(cardName(code))
 const selected = ref(''),
   remove = ref(''),
@@ -110,7 +114,14 @@ function buy() {
       :missing="campaign.disappearance.missing"
       :choices="campaign.canManage ? campaign.disappearance.choices : undefined"
       :disabled="disabled"
-      @decide="(decision) => emit('action', { action: 'disappearance', decision })"
+      @decide="decideCheckpoint"
+    />
+    <ExpeditionCheckpoint
+      v-if="campaign.attack"
+      :story="campaign.attack.story"
+      :choices="campaign.canManage ? campaign.attack.choices : undefined"
+      :disabled="disabled"
+      @decide="decideCheckpoint"
     />
     <p v-if="campaign.lost">{{ t('campaign.lost') }}</p>
     <p v-else-if="campaign.transfers.length">{{ t('campaign.transfer.blocked') }}</p>
@@ -120,7 +131,9 @@ function buy() {
       }}
     </p>
     <p v-else-if="campaign.awaitingReplacement">{{ t('campaign.replace.blocked') }}</p>
-    <p v-else-if="!campaign.disappearance">{{ t('online.campaignPlay.ended') }}</p>
+    <p v-else-if="!campaign.disappearance && !campaign.attack">
+      {{ t('online.campaignPlay.ended') }}
+    </p>
     <ul v-if="campaign.deckIssues?.length" class="deck-issues" role="status">
       <li v-for="(issue, n) in campaign.deckIssues" :key="n">
         {{ name(issue.investigator) }}: {{ t(issue.key, issue.params ?? {}) }}

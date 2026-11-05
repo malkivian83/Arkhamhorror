@@ -38,6 +38,8 @@ export const messages = {
       'ice-and-death-checkpoint-1': edgeOfTheEarth.checkpointName,
       'ice-and-death-part-2': edgeOfTheEarth.partTwoName,
       'ice-and-death-checkpoint-2': edgeOfTheEarth.checkpointTwoName,
+      'ice-and-death-part-3': edgeOfTheEarth.partThreeName,
+      'edge-of-the-earth-restful-night': edgeOfTheEarth.restfulNightName,
     },
   },
   setup: {

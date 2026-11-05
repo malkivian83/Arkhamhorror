@@ -8,7 +8,7 @@ const { story } = JSON.parse(readFileSync('packages/i18n/src/edge-of-the-earth.e
 const model = 'eleven_multilingual_v2'
 const hash = (value) => createHash('sha256').update(value).digest('hex')
 const entries = Object.entries(story)
-  .filter(([part]) => part !== 'setup')
+  .filter(([part]) => part !== 'setup' && part !== 'partTwoSetup' && part !== 'partThreeSetup')
   .map(([part, { body }]) => ({
     key: `story.edgeOfTheEarth.${part}.body`,
     file: `edge-of-the-earth-${part}-salva.mp3`,

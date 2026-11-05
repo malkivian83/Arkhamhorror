@@ -14,8 +14,16 @@ salas. El refugio determina cuántos compañeros quedan a salvo. La elección
 persiste al guardar y dirige la campaña a la parte II o al punto de control II.
 Las tres escenas del punto de control están narradas en español.
 
-Siguiente entrega: hacer jugable Hielo y muerte II y conectar el punto de
-control II y la parte III. Ambas rutas se conservan en el guardado.
+Hielo y muerte II está disponible en local desde la ruta de búsqueda. Recupera
+el campamento y los Lugares revelados, prepara las cartas ocultas y registra
+los rescates y las bajas al cerrar. Incluye cartas EN/ES y 14 locuciones de Salva.
+
+El ataque y Hielo y muerte III están disponibles en local. Huir omite la parte
+III y registra la huida. Combatir recupera el campamento y reparte los ocho
+Eidolones ocultos de forma equitativa. Las resoluciones registran victoria,
+huida o derrota con sus bonificaciones de experiencia.
+
+Siguiente entrega: interludio I, Noche reposada, y Espejismo letal.
 
 Claypool reutiliza la cancelación de fichas. La prueba puede terminar sin
 modificador si cancela la única ficha sin reemplazarla. Fredericks usa una
@@ -29,6 +37,12 @@ registro.
 
 Validación local de La desaparición: rutas y refugio, recarga de guardados,
 permisos y reintentos de sala, y correspondencia de las locuciones.
+
+Revisión de la guía oficial en español, pp. 13–17, y de las cartas EN/ES de ambos escenarios.
+Corregida la elección de la debilidad ¡Tekeli-li! al buscar en todo el mazo en
+la parte II. En la III se contrastaron aparición, reparto de cartas ocultas,
+avance del plan, desistimiento y experiencia. La transición digital usa el
+mismo guardado al continuar de inmediato o tras una pausa.
 
 ## Hoja de ruta
 
@@ -72,7 +86,7 @@ sin publicar, `[ ]` pendiente.
    de elegir compañero. Resúmenes EN/ES. Conectado al arranque de campaña local.
 8. [x] Hielo y muerte I (08501a), jugable desde el selector hasta la resolución.
    Su resolución enlaza con La desaparición.
-9. [ ] Hielo y muerte II y III (08501b/c) con sus puntos de control.
+9. [x] Hielo y muerte II y III (08501b/c) y sus puntos de control, jugables en local.
 10. [ ] Interludios y Espejismo letal (08549).
 11. [ ] Hacia los picos prohibidos (08596).
 12. [ ] Ciudad de los Antiguos (08621).
@@ -101,10 +115,10 @@ de ¡Tekeli-li! y dieciocho cartas de compañero.
 
 ## Narración
 
-La parte I y La desaparición tienen 25 locuciones en español generadas con la voz de ElevenLabs
+Hielo y muerte y sus dos puntos de control tienen 48 locuciones en español generadas con la voz de ElevenLabs
 elegida para la campaña, Salva (`hyKxCTlAqtnW188CgltM`). Leen los resúmenes que muestra
 la mesa, desde el prólogo y las variantes del accidente hasta los reversos de
-plan, las resoluciones y las dos salidas del punto de control. La ficha de preparación se muestra como texto.
+plan, las resoluciones, las salidas de ambos puntos de control y las historias de la búsqueda. La ficha de preparación se muestra como texto.
 
 `node scripts/generate-edge-of-the-earth-audio.mjs --generate` genera los MP3
 y actualiza el registro de reproducción al completar todas las grabaciones.

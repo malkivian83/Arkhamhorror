@@ -25,8 +25,8 @@ export const startingFrostRemoved = 'edgeOfTheEarthStartingFrostRemoved'
 
 export function edgeOfTheEarthStartingBag(context: ScenarioContext): ChaosToken[] {
   const bag = edgeOfTheEarthChaosBags[context.difficulty]
-  const removed = context.log.values[startingFrostRemoved] ? bag.indexOf('frost') : -1
-  return bag.filter((_, index) => index !== removed)
+  let removed = Number(context.log.values[startingFrostRemoved] ?? 0)
+  return bag.filter((token) => token !== 'frost' || removed-- <= 0)
 }
 
 const story = (part: string): StoryEntry => ({

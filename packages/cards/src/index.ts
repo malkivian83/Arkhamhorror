@@ -480,5 +480,9 @@ export {
   disappearance,
   disappearanceResult,
   resolveDisappearance,
+  expeditionAttack,
+  expeditionAttackResult,
+  resolveExpeditionAttack,
+  type AttackDecision,
   type DisappearanceDecision,
 } from './edge-of-the-earth/checkpoint'

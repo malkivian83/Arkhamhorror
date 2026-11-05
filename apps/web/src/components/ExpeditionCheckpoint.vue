@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { StoryEntry } from '@lcg/engine'
-import type { DisappearanceDecision } from '@lcg/cards'
+import type { AttackDecision, DisappearanceDecision } from '@lcg/cards'
 import { cardName } from '../game/cards'
 import { localName } from '../game/localized'
 import { storyNarration } from '../game/narration'
@@ -12,10 +12,10 @@ import SiteAction from './SiteAction.vue'
 const props = defineProps<{
   story: Pick<StoryEntry, 'title' | 'body'>
   missing?: string[] | undefined
-  choices?: DisappearanceDecision[] | undefined
+  choices?: (AttackDecision | DisappearanceDecision)[] | undefined
   disabled?: boolean
 }>()
-const emit = defineEmits<{ decide: [decision: DisappearanceDecision] }>()
+const emit = defineEmits<{ decide: [decision: AttackDecision | DisappearanceDecision] }>()
 const { t, locale } = useI18n()
 const narration = computed(() => storyNarration(props.story.body, locale.value))
 const names = computed(() => props.missing?.map((code) => localName(cardName(code))).join(', '))
@@ -38,7 +38,7 @@ const names = computed(() => props.missing?.map((code) => localName(cardName(cod
         :disabled="!!disabled"
         @click="emit('decide', decision)"
       >
-        {{ t(missing?.length ? 'choice.edgeOfTheEarth.' + decision : 'choice.continue') }}
+        {{ t(missing?.length === 0 ? 'choice.continue' : 'choice.edgeOfTheEarth.' + decision) }}
       </SiteAction>
     </div>
   </section>

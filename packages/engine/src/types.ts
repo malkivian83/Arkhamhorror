@@ -1721,9 +1721,24 @@ type MessageBody =
     }
   | { type: 'AddStoryAsset'; investigator: InvestigatorId; code: CardCode }
   | { type: 'InitializeExpedition' }
-  | { type: 'ChooseExpeditionPartners' }
-  | { type: 'ChooseExpeditionPartner'; investigator: InvestigatorId }
-  | { type: 'SelectExpeditionPartner'; investigator: InvestigatorId; partner: ExpeditionPartner }
+  | {
+      type: 'ChooseExpeditionPartners'
+      required?: ExpeditionPartner[]
+      extraUses?: ExpeditionPartner[]
+    }
+  | {
+      type: 'ChooseExpeditionPartner'
+      investigator: InvestigatorId
+      required?: ExpeditionPartner[]
+      extraUses?: ExpeditionPartner[]
+      remaining?: number
+    }
+  | {
+      type: 'SelectExpeditionPartner'
+      investigator: InvestigatorId
+      partner: ExpeditionPartner
+      extraUses?: number
+    }
   | {
       type: 'SetExpeditionPartnerStatus'
       partner: ExpeditionPartner
@@ -1737,6 +1752,7 @@ type MessageBody =
       investigator: InvestigatorId
       amount: number
       includeEliminated?: boolean
+      drawInstead?: boolean
     }
   | { type: 'ReturnTekelili'; treachery: TreacheryId }
   /** `scenarioOnly`: solo para este escenario, sin anotarlas en el registro de campaña. */

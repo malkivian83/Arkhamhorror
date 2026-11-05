@@ -5,6 +5,8 @@ import {
   replaceInvestigator,
   finishScenario,
   resolveDisappearance,
+  resolveExpeditionAttack,
+  type AttackDecision,
   type DisappearanceDecision,
   newCampaign,
   purchase,
@@ -262,6 +264,12 @@ export const useGameStore = defineStore('game', () => {
   function chooseDisappearance(decision: DisappearanceDecision) {
     if (!campaign.value || latest) return
     setCampaign(resolveDisappearance(campaign.value, decision))
+    persist()
+  }
+
+  function chooseExpeditionAttack(decision: AttackDecision) {
+    if (!campaign.value || latest) return
+    setCampaign(resolveExpeditionAttack(campaign.value, decision))
     persist()
   }
 
@@ -526,6 +534,7 @@ export const useGameStore = defineStore('game', () => {
     playNext,
     insertCarnevale,
     chooseDisappearance,
+    chooseExpeditionAttack,
     buy,
     customizeCard,
     chooseHeir,

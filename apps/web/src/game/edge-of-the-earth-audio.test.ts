@@ -12,7 +12,7 @@ const hash = (input: Buffer | string) => createHash('sha256').update(input).dige
 it('serves every Spanish narrative passage using a recording of the displayed text', () => {
   expect(recordings.voiceId).toBe('hyKxCTlAqtnW188CgltM')
   const expected = Object.entries(texts.story)
-    .filter(([part]) => part !== 'setup')
+    .filter(([part]) => part !== 'setup' && part !== 'partTwoSetup' && part !== 'partThreeSetup')
     .map(([part, { body }]) => [`story.edgeOfTheEarth.${part}.body`, hash(body)])
   expect(recordings.entries.map(({ key, textSha256 }) => [key, textSha256])).toEqual(expected)
   for (const { key, file, audioSha256 } of recordings.entries) {

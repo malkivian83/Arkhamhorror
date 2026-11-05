@@ -103,6 +103,106 @@
     "disappearanceSearch": {
       "title": "Checkpoint I: The Disappearance",
       "body": "You gather your equipment and follow the tracks into the darkness to search for the missing members of the expedition."
+    },
+    "partTwoIntro": {
+      "title": "The search",
+      "body": "The storm has quieted just enough to follow the tracks. You set out from camp before the wind can erase them. Somewhere in the white, the missing members of the expedition are waiting."
+    },
+    "partTwoSetup": {
+      "title": "Setup",
+      "body": "Begin at the camp established in part one. The expedition retraces its route and searches the unexplored sites."
+    },
+    "partTwoWind": {
+      "title": "A harsh wind blows",
+      "body": "The wind picks up and begins to bury the tracks. You stop for a moment to look for signs of the missing team."
+    },
+    "partTwoChill": {
+      "title": "The chill of night",
+      "body": "The light fades and the cold deepens. You take one last look into the distance before continuing."
+    },
+    "partTwoMadness": {
+      "title": "Madness and death",
+      "body": "The wind cuts through your clothing and the darkness closes in. The search has gone on too long."
+    },
+    "partTwoNoResolution": {
+      "title": "No resolution",
+      "body": "Cold and exhaustion bring the search to an end. Anyone still out on the ice will have to find their own way back."
+    },
+    "partTwoResolution": {
+      "title": "Resolution 1",
+      "body": "Back at camp, you count the people you managed to bring home. The rest are still out there, beyond the circle of light."
+    },
+    "search08527": {
+      "title": "Dead end",
+      "body": "The tracks lead to a hollow filled with fresh snow. You turn back without finding anyone."
+    },
+    "search08528": {
+      "title": "Cracks in the ice",
+      "body": "Something shifts beneath your feet. You hurry away from the cracks, wondering how deep they go."
+    },
+    "search08529": {
+      "title": "Somber remains",
+      "body": "A torn coat and a pair of goggles jut out of the snow. The lenses are smeared with a dark substance."
+    },
+    "search08530": {
+      "title": "Disappearing footprints",
+      "body": "The footprints vanish in the open snow. When you turn around, the trail behind you has vanished too."
+    },
+    "search08531": {
+      "title": "Dissected explorer",
+      "body": "The tracks lead to a small cave. Inside you find the body of one of the missing explorers, with a wound that could only have been made deliberately."
+    },
+    "search08532": {
+      "title": "Evil within",
+      "body": "The ice cracks beneath the creature chasing you. It drops into the depths, and the snow settles over the opening."
+    },
+    "search08533": {
+      "title": "Bloody evidence",
+      "body": "At the end of the trail, you find an ice pick stained with frozen blood. You back away from the tracks."
+    },
+    "search08534": {
+      "title": "Madness inside",
+      "body": "The explorer stares through you, their face streaked with a dark substance. When you finally reach them, they ask what they were doing."
+    },
+    "attack": {
+      "title": "Checkpoint II: The Attack",
+      "body": "You have barely rested when the ice cracks beneath the camp. The same piping cry rises again. The creatures are closing in."
+    },
+    "attackFlee": {
+      "title": "Checkpoint II: The Attack",
+      "body": "You grab what you can and flee toward the mountains. By the time you stop, the expedition is exhausted."
+    },
+    "attackFight": {
+      "title": "Checkpoint II: The Attack",
+      "body": "You take up positions around the camp and prepare to fight the creatures coming through the ice."
+    },
+    "partThreeIntro": {
+      "title": "Ice and Death, Part III",
+      "body": "Through the binoculars you see the ice split open. Shapes rise from one fissure, then another, and begin to converge on the camp."
+    },
+    "partThreeSetup": {
+      "title": "Setup",
+      "body": "Start at the camp with no clues on it. Place the Seeping Nightmares at the sites listed for your camp."
+    },
+    "partThreeManifestations": {
+      "title": "Manifestations of Evil",
+      "body": "The last shape rises from the fissure. The storm worsens, and the team braces itself for what comes next."
+    },
+    "partThreeDepths": {
+      "title": "Icy Depths",
+      "body": "The ice gives way beneath you. The camp and the creatures vanish behind a wall of snow."
+    },
+    "partThreeNoResolution": {
+      "title": "No resolution",
+      "body": "You escape through a whirl of ice and snow, exhausted and barely able to tell what is following you."
+    },
+    "partThreeVictory": {
+      "title": "Resolution 1",
+      "body": "The last creature dissolves into mist. You leave the camp and walk until you can no longer hear anything behind you."
+    },
+    "partThreeEscape": {
+      "title": "Resolution 2",
+      "body": "You cover your tracks as you leave the ice shelf and head deeper into the mountains."
     }
   },
   "choice": {
@@ -129,7 +229,13 @@
     "missing": "Missing expedition members: {names}",
     "allSafe": "All surviving expedition members are safe.",
     "search": "Go after the missing team members",
-    "leave": "Leave them behind"
+    "leave": "Leave them behind",
+    "lookBeneath": "Look beneath {name}",
+    "rescueAmount": "Choose {amount}",
+    "fight": "Stand and fight",
+    "flee": "Run for your lives",
+    "nightmareWeaknesses": "Each investigator shuffles 2 Tekeli-li weaknesses",
+    "nightmareRemoveDoom": "Remove 1 doom from {name}"
   },
   "prompt": {
     "claypool": "Avery Claypool: choose how to cancel the frost token",
@@ -140,7 +246,16 @@
     "apeirophobia": "Apeirophobia: choose a consequence",
     "ship": "Icebreaker Landing: choose your reward",
     "kensler": "Choose a deck for Dr. Kensler to inspect",
-    "kenslerCard": "Keep or discard the card?"
+    "kenslerCard": "Keep or discard the card?",
+    "lookBeneath": "Choose a location to look beneath",
+    "lookResult": "The card beneath the location",
+    "chooseSearchEnemy": "Choose an enemy",
+    "rescueAmount": "Choose how much to offer",
+    "cleanseTekelili": "Choose a Tekeli-li weakness to return to the special deck",
+    "nightmareAgenda": "Choose how to face the manifestations",
+    "nightmareNearest": "Choose the nearest Seeping Nightmare",
+    "nightmareMost": "Choose a Seeping Nightmare with the most cards beneath it",
+    "nightmareRemoveDoom": "Choose where to remove doom"
   },
   "ability": {
     "claypool": "Avery Claypool: cancel the frost token",
@@ -163,19 +278,30 @@
     "kensler": "Dr. Amy Kensler: investigate",
     "ellsworth": "Roald Ellsworth: blank {card}",
     "ellsworthExhaust": "Exhaust Roald Ellsworth to blank {card}",
-    "ellsworthSpend": "Spend 1 supply to blank {card}"
+    "ellsworthSpend": "Spend 1 supply to blank {card}",
+    "searchSite": "Search beneath this location",
+    "turnIn": "Resign at camp",
+    "rescue": "Parley with {name} ({progress}/{required})",
+    "comfort": "Calm {name}",
+    "takeEnemyDoom": "Take the doom as a clue",
+    "fleeCamp": "Spend 4 clues to resign"
   },
   "note": {
     "edgeOfTheEarthConvincedDyer": "The investigators convinced Dyer to allow the expedition.",
     "edgeOfTheEarthDoubtedDyer": "The investigators did not believe Dyer’s report.",
     "edgeOfTheEarthCrash": "A member of the expedition died in the plane crash.",
     "edgeOfTheEarthShipSearched": "The investigators searched the trapped ship.",
-    "edgeOfTheEarthRevealedLocations": "The expedition explored the surrounding area."
+    "edgeOfTheEarthRevealedLocations": "The expedition explored the surrounding area.",
+    "edgeOfTheEarthFledToMountains": "The team fled to the mountains.",
+    "edgeOfTheEarthBarelyEscaped": "The team barely escaped the ice shelf.",
+    "edgeOfTheEarthDefeatedCreatures": "The team defeated the hunting creatures."
   },
   "campaignName": "Edge of the Earth",
   "scenarioName": "Ice and Death, Part I",
   "checkpointName": "Checkpoint 1: The Disappearance",
   "description": "Survive the crash and find shelter before the Antarctic storm closes in.",
   "partTwoName": "Ice and Death, Part II",
-  "checkpointTwoName": "Checkpoint II: The Attack"
+  "checkpointTwoName": "Checkpoint II: The Attack",
+  "partThreeName": "Ice and Death, Part III",
+  "restfulNightName": "Interlude I: Restful Night"
 }

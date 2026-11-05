@@ -29,6 +29,8 @@ export function chaosHelp(
     'the-devourer-below': localeData(locale).zealotCards['01142'],
     'the-gathering': localeData(locale).zealotCards['01104'],
     'ice-and-death-part-1': localeData(locale).edgeOfTheEarthCards['08501'],
+    'ice-and-death-part-2': localeData(locale).edgeOfTheEarthCards['08501'],
+    'ice-and-death-part-3': localeData(locale).edgeOfTheEarthCards['08501'],
     'murder-at-the-excelsior-hotel': localeData(locale).excelsiorCards['84001'],
     'late-risers': localeData(locale).plaguebearerCards['78001'],
     'night-on-the-town': localeData(locale).plaguebearerCards['78019'],

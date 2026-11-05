@@ -166,6 +166,187 @@
     "traits": "Monster. Eidolon. Elite.",
     "text": "Hunter. Massive.\nTerror of the Stars gets +3 [per_investigator] health.\nWhile Terror of the Stars is ready, investigators cannot resign at its location or discover clues at its location."
   },
+  "08523": {
+    "name": "A Harsh Wind Blows",
+    "typeCode": "agenda",
+    "flavor": "Several of your party have mysteriously vanished in the night. Without a sign of any struggle, you can only assume they left of their own accord...but why?",
+    "backName": "Tracks in the Snow",
+    "backText": "Choose a facedown encounter card beneath a location. Look at the other side of that card <i>(without resolving its text)</i>. Then return it facedown beneath that location.",
+    "backFlavor": "As you journey through the glacial wilds, you stumble across a set of tracks in the snow leading farther from camp. You pause and investigate further. Were these tracks made by one of your missing team members? Or by something more...monstrous?"
+  },
+  "08524": {
+    "name": "The Chill of Night",
+    "typeCode": "agenda",
+    "flavor": "The low-hanging sun dimly illuminates the Antarctic night. Gray clouds cover the sky, threatening an icy storm.",
+    "backName": "Tracks in the Snow",
+    "backText": "Choose a facedown encounter card beneath a location. Look at the other side of that card <i>(without resolving its text)</i>. Then return it facedown beneath that location.",
+    "backFlavor": "As you journey through the glacial wilds, you stumble across a set of tracks in the snow leading farther from camp. You pause and investigate further. Were these tracks made by one of your missing team members? Or by something more...monstrous?"
+  },
+  "08525": {
+    "name": "Madness and Death",
+    "typeCode": "agenda",
+    "flavor": "The storm grows closer, and with it looming in the sky, that damnable sound returns. It haunts you with its presence, worming its way into your mind. Is it the cause of this folly? This madness?",
+    "backName": "Forced to Retreat",
+    "backText": "Each remaining investigator is defeated and suffers 1 mental trauma.\n<b>(→R1)</b>",
+    "backFlavor": "As the night ends, the storm arrives in its full ferocity. Raging, icy winds and dense snowfall make your task impossible. You'll never find the remaining team members in these conditions, and even if you did...\nA hard lump of guilt and despair forms in your throat. There's no way they would survive in this storm, not without supplies or shelter. That you are forced to choose between your life and theirs is a burden you will surely carry with you for the rest of your life. And you'll be lucky if that's more than a couple of days."
+  },
+  "08526": {
+    "name": "The Lost Expedition",
+    "typeCode": "act",
+    "text": "[fast] Investigators at your location spend 1 [per_investigator] clues, as a group: Draw the encounter card beneath your location.\n[action] If you are at camp: <b>Resign.</b> You turn in for the night.\n<b>Objective</b> - Find as many missing expedition members as you can by adding them to the victory display, then head back to camp before daybreak. If each undefeated investigator has resigned, advance.",
+    "flavor": "You set out to search for the missing team members, hoping to find them before daybreak...",
+    "backName": "Turning In",
+    "backText": "<b>(→R1)</b>",
+    "backFlavor": "With night coming to a close, the storm approaches faster and faster. Soon, the weather will be too deadly for your search to continue. If anyone is still out there, you doubt they'll survive - and neither will you if you remain unsheltered any longer. You return to your camp, your heart heavy with guilt and and your mind addled by that foul noise that festers within."
+  },
+  "08527": {
+    "name": "Dead End",
+    "typeCode": "story",
+    "text": "Remove 1 [frost] token from the chaos bag.\nAdd this story card to the victory display.",
+    "flavor": "There is nothing here but ice and snow, and no sign of any missing team members. Frustrated, you turn back. You won't find anyone here."
+  },
+  "08528": {
+    "name": "Cracks in the Ice",
+    "typeCode": "story",
+    "text": "Search your deck for a copy of Tekeli-li and place it on the bottom of the Tekeli-li deck without resolving it. Shuffle your deck.\nAdd this story card to the victory display.",
+    "flavor": "As you traverse the glacial wilds, something rumbles and churns beneath your feet. Is that where these creatures are coming from? In the depths of the ice?\nA somber thought crosses your mind. If you are right, such entities could exert their vile influence no matter where you stand. Perhaps this has something to do with your missing companions after all, though there are no signs of them here."
+  },
+  "08529": {
+    "name": "Somber Remains",
+    "typeCode": "story",
+    "text": "Search the top 9 cards of your deck for each copy of Tekeli-li and place each one you find on the bottom of the Tekeli-li deck without resolving it. Shuffle your deck.\nAdd this story card to the victory display.",
+    "flavor": "You come across evidence of one of your lost companions, abandoned and half-buried in snow - torn scraps from a heavy fur coat and a pair of goggles. Examining the goggles closely yields a terrifying discovery - a dark, sticky substance that you cannot, for the life of you, identify."
+  },
+  "08530": {
+    "name": "Disappearing Footprints",
+    "typeCode": "story",
+    "text": "Remove 1 [frost] token from the chaos bag.\nAdd this story card to the victory display.",
+    "flavor": "The tracks continue for some time before vanishing, bafflingly, into the snow. There's no sign of any struggle, nor are there any other tracks that might indicate where they could have gone. Could the winds have covered the tracks? And if so, why were you able to follow the rest of the footprints so easily?\nBut when you turn back to examine the prints you first followed, they too are gone."
+  },
+  "08531": {
+    "name": "Dissected Explorer",
+    "typeCode": "story",
+    "text": "Search your deck for a copy of Tekeli-li and place it on the bottom of the Tekeli-li deck without resolving it. Shuffle your deck.\nAdd this story card to the victory display.",
+    "flavor": "You follow a set of tracks into a small cavern carved into a glacial wall, and your stomach lurches at the sight before you. One of your missing team members lies in a crumpled heap at the end of the hollow, his clothing torn open. A clean vertical incision has bisected his torso open from his sternum to his belly, and his entrails have been carefully removed. You struggle not to retch. Who could have possibly done such a thing?"
+  },
+  "08532": {
+    "name": "Evil Within",
+    "typeCode": "story",
+    "text": "Discard an [[Eidolon]] enemy that does not have the [[Elite]] trait from play.\nAdd this story card to the victory display.",
+    "flavor": "You are fleeing from a creature made of kaleidoscopic ooze when you suddenly freeze in place, a web of cracks reaching out across the ice beneath your boots. Your breath catches in your throat. Another step could spell your doom or save your life. Behind you, the entity gains on you, reaching out with arms that are not quite solid or liquid. Feeling lucky, you decide to roll the dice, striking the ground behind you and fleeing to the side. Just as you hoped, the ice is thin enough to splinter open, and the creature tumbles down through the crack, into the icy depths. You breathe a sigh of relief, thankful you did not share a similar fate."
+  },
+  "08533": {
+    "name": "Bloody Evidence",
+    "typeCode": "story",
+    "text": "Search the top 9 cards of your deck for each copy of Tekeli-li and place each one you find on the bottom of the Tekeli-li deck without resolving it. Shuffle your deck.\nAdd this story card to the victory display.",
+    "flavor": "You follow a set of footprints through the snow, hoping they will lead you to a sign, any sign, of your lost companions. Sadly, the evidence you discover is not the kind you were hoping to find. Where the prints end, you find an ice pick covered in freshly frozen blood. To your horror, a human eye lies nearby, staining the snow red. A shudder creeps up your spine. What on Earth could compel somebody to do such a thing?"
+  },
+  "08534": {
+    "name": "Madness Inside",
+    "typeCode": "story",
+    "text": "Choose a [[Possessed]] enemy in play that does not have the [[Elite]] trait. Take control of each doom on that enemy, flipping them to their clue sides. Discard the chosen enemy.\nAdd this story card to the victory display.",
+    "flavor": "To your relief, you come across one of your missing team members - but they are not themself. Their eyes glazed over, their expression dazed and lost. A murky, slimy substance drips from their face and trickles onto the ice below. When you finally manage to get through to them, they wipe the strange, inky miasma from their face, staining their cheeks black. \"What...was I doing?\" they ask."
+  },
+  "08535": {
+    "name": "Professor William Dyer",
+    "subname": "Professor of Geology",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Possessed. Elite.",
+    "text": "[action] Choose and discard up to 2 cards from your hand: <b>Parley.</b> Place that many resources on Professor William Dyer <i>(from the token bank)</i>. If there are 3 [per_investigator] resources on him, add him to the victory display.\n<b>Forced</b> - If Professor William Dyer is defeated: Cross his name off in the Campaign Log."
+  },
+  "08536": {
+    "name": "Danforth",
+    "subname": "Brilliant Student",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Possessed. Elite.",
+    "text": "[action]: <b>Parley.</b> You listen closely to Danforth's rambling. Draw up to 2 cards from the top of the Tekeli-li deck. Then, place that many resources on Danforth <i>(from the token pool)</i>. If there are 3 [per_investigator] resources on him, add him to the victory display.\n<b>Forced</b> - If Danforth is defeated: Cross his name off in the Campaign Log."
+  },
+  "08537": {
+    "name": "Eliyah Ashevak",
+    "subname": "Dog Handler",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Possessed. Elite.",
+    "text": "[action]: <b>Parley.</b> Test [agility] (2) to sneak by Anyu and speak with Eliyah. For each point you succeed by, place 1 resource on him <i>(from the token pool)</i>. If you fail, he attacks you. If there are 2 [per_investigator] resources on him, add him to the victory display.\n<b>Forced</b> - If Eliyah Ashevak is defeated: Cross his name off in the Campaign Log."
+  },
+  "08538": {
+    "name": "Dr. Mala Sinha",
+    "subname": "Daring Physician",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Possessed. Elite.",
+    "text": "[action]: <b>Parley.</b> Test [willpower] (2) to attempt to calm Dr. Sinha down. For each point you succeed by, place 1 resource on her <i>(from the token pool)</i>. If you fail, she attacks you. If there are 2 [per_investigator] resources on her, add her to the victory display.\n<b>Forced</b> - If Dr. Mala Sinha is defeated: Cross her name off in the Campaign Log."
+  },
+  "08539": {
+    "name": "Avery Claypool",
+    "subname": "Antarctic Guide",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Possessed. Elite.",
+    "text": "[action]: <b>Parley.</b> Test [willpower] or [intellect] (5) to get Claypool to stop babbling nonsense. If you succeed, place 1 resource on him <i>(from the token pool)</i>. If you fail, he attacks you. If there are 1 [per_investigator] resources on him, add him to the victory display.\n<b>Forced</b> - If Avery Claypool is defeated: Cross his name off in the Campaign Log."
+  },
+  "08540": {
+    "name": "James \"Cookie\" Fredericks",
+    "subname": "Dubious Choice",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Possessed. Elite.",
+    "text": "Retaliate.\n[action]: <b>Parley.</b> Test [combat] (2) to wrestle the gun away from Cookie. For each point you succeed by, place 1 resource on him <i>(from the token pool)</i>. If you fail, he attacks you. If there are 2 [per_investigator] resources on him, add him to the victory display.\n<b>Forced</b> - If James \"Cookie\" Fredericks is defeated: Cross his name off in the Campaign Log."
+  },
+  "08541": {
+    "name": "Dr. Amy Kensler",
+    "subname": "Professor of Biology",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Possessed. Elite.",
+    "text": "[action]: <b>Parley.</b> Test [intellect] (2) to convince Dr. Kensler to tell you what she has seen. For each point you succeed by, place 1 resource on her <i>(from the token pool)</i>. If you fail, she attacks you. If there are 2 [per_investigator] resources on her, add her to the victory display.\n<b>Forced</b> - If Dr. Amy Kensler is defeated: Cross her name off in the Campaign Log."
+  },
+  "08542": {
+    "name": "Roald Ellsworth",
+    "subname": "Intrepid Explorer",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Possessed. Elite.",
+    "text": "[action]: <b>Parley.</b> Test [combat] or [agility] (5) to get Ellsworth to let go of the strange rock he is clutching. If you succeed, place 1 resource on him <i>(from the token pool)</i>. If you fail, he attacks you. If there are 1 [per_investigator] resources on him, add him to the victory display.\n<b>Forced</b> - If Roald Ellsworth is defeated: Cross his name off in the Campaign Log."
+  },
+  "08543": {
+    "name": "Takada Hiroko",
+    "subname": "Aeroplane Mechanic",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Possessed. Elite.",
+    "text": "[action] Spend up to 3 resources: <b>Parley.</b> Place each of these resources on Takada Hiroko. If there are 5 [per_investigator] resources on her, add her to the victory display.\n<b>Forced</b> - If Takada Hiroko is defeated: Cross her name off in the Campaign Log."
+  },
+  "08544": {
+    "name": "Manifestations of Evil",
+    "typeCode": "agenda",
+    "text": "<b>Forced</b> - When this agenda would advance, if there is at least 1 facedown card beneath a Seeping Nightmare: Instead of advancing this agenda, remove 2 doom from play and find the Seeping Nightmare with the most facedown cards beneath it. Choose one of the cards beneath it at random and spawn it at its location.",
+    "flavor": "Something stirs beneath the ice. Through the cracks, a vile ichor bubbles forth, its odor pungent and rancid.",
+    "backName": "A Foul Air",
+    "backText": "The lead investigator must decide (choose one):\n- Add 1 [frost] token to the chaos bag.\n- In player order, each investigator shuffles the top 2 cards of the Tekeli-li deck into their deck (each investigator who cannot takes 1 damage and 1 horror instead).",
+    "backFlavor": "This place is not what it seems. You feel as though you have trespassed somewhere ancient and terrible, and now its wrath is erupting all around you."
+  },
+  "08545": {
+    "name": "Icy Depths",
+    "typeCode": "agenda",
+    "flavor": "The violent quakes have risen to a crescendo. Any second now, you feel as though the entire ice shelf could collapse, spilling you into the frigid ocean - or worse, if your theory about the underground source of these creatures is correct.",
+    "backName": "Ice Shelf Collapse",
+    "backText": "Each remaining investigator is defeated and suffers 1 physical trauma.",
+    "backFlavor": "Your only warning is a thin web of cracks that tears through the ice before your feet, and then a sudden explosion of mist and ink-like miasma erupts around you. The force slams you to the ground. You crawl desperately along the freezing-cold ice as the miasma reaches for you. An incomprehensible sound, like the rushing of a furious whirlwind, fills your ears. Then a thunderous crack, and you are falling - no, sliding - down along the ice toward the freezing cold waters below.\nIt is a wonder you are even still conscious. You summon all of your strength and cling to the ice shelf just before you plummet below. You finally haul yourself back over the edge, casting a panicked glance at the horizon, but there is no sign of any miasma or mist. The crack in the ice shelf extends for hundreds of feet in front of you, separating you from your pursuers. Somehow, you've unwittingly escaped...although you won't be forgetting that near-death experience anytime soon."
+  },
+  "08546": {
+    "name": "Under Attack!",
+    "typeCode": "act",
+    "text": "Each [[Eidolon]] enemy gains <b>Victory 0.</b>\nThe camp gains: \"[action] Investigators at your location spend 4 clues, as a group: <b>Resign.</b>\"\n<b>Objective</b> - If there are no [[Eidolon]] enemies in play, advance.\n<b>Objective</b> - If each undefeated investigator has resigned, advance.",
+    "flavor": "Your camp has been discovered, and now the monsters prowling about the ice and snow are converging on your position. You have only two ways out of this nightmare: you must fight, or you must flee.",
+    "backName": "The Last Breath",
+    "backText": "<b>If there are no [[Eidolon]] enemies in play:</b>\n<blockquote><i>The last of the nightmarish creatures falls, its miasmatic body at once dissolving into inky, prismatic liquid and dissipating into wisps of gray mist filled with screaming shapes. Then, silence.</i></blockquote>\n<b>(→R1)</b>\n<b><hr>If the investigators advanced by resigning:</b>\n<blockquote><i>You follow a makeshift path through a jagged split in the ice shelf, making your way deeper into the mainland, toward the mountains. You don't know if these creatures can follow human tracks - or indeed if they need tracks at all in order to pursue you - but you take the time to cover them, regardless. Hopefully, with this shortcut you've found, you'll be safe...</i></blockquote>\n<b>(→R2)</b>"
+  },
+  "08547": {
+    "name": "Seeping Nightmare",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon. Elite.",
+    "text": "While an [[Eidolon]] enemy at Seeping Nightmare's location is moving, its location is considered connected to the camp.\nWhile there are no facedown cards beneath Seeping Nightmare, it gains hunter.\n<b>Forced</b> - When Seeping Nightmare is defeated: Remove each facedown card beneath it from the game."
+  },
+  "08548": {
+    "name": "Phantasmagoria",
+    "typeCode": "treachery",
+    "traits": "Curse.",
+    "text": "<b>Revelation</b> - If there are no Seeping Nightmares in play, Phantasmagoria gains surge. Otherwise, find the Seeping Nightmare nearest to an investigator. If there are 1 or more cards beneath it, choose one of them at random and spawn it at its location. If there are no cards beneath it, it moves and attacks as if it were the enemy phase (without exhausting)."
+  },
   "08587": {
     "name": "Professor William Dyer",
     "subname": "Professor of Geology",
@@ -280,6 +461,24 @@
     "typeCode": "treachery",
     "traits": "Hazard.",
     "text": "<b>Revelation</b> - Attach to the nearest location without a copy of Through the Ice attached.\nAs an additional cost for you to enter or leave attached location (except by a scenario card effect), test [agility] (2). If you fail, cancel the effects of the move, take 1 damage and 1 horror, and discard Through the Ice."
+  },
+  "08700": {
+    "name": "Lost Researcher",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Possessed.",
+    "text": "<b>Spawn</b> - Any location (empty, if able).\nLost Researcher enters play with 1 doom on it.\n<b>Forced</b> - When Lost Researcher is defeated: Move each doom on it to its location.\n[action]: <b>Parley.</b> Test [willpower] or [intellect] (3). If you succeed, take control of 1 doom on Lost Researcher and flip it to its clue side. Then, if there is no doom on Lost Researcher, discard it."
+  },
+  "08701": {
+    "name": "Frenzied Explorer",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Possessed.",
+    "text": "Frenzied Explorer enters play with 1 doom on it.\n<b>Forced</b> - When Frenzied Explorer is defeated: Move each doom on it to its location.\n[reaction] After you successfully evade Frenzied Explorer by 2 or more: Take control of 1 doom on Frenzied Explorer and flip it to its clue side. Then, if there is no doom on Frenzied Explorer, discard it."
+  },
+  "08702": {
+    "name": "Abandoned to Madness",
+    "typeCode": "treachery",
+    "traits": "Curse.",
+    "text": "<b>Revelation</b> - Attach to the nearest [[Possessed]] enemy and place 1 doom on that enemy. If there are no [[Possessed]] enemies in play, search the encounter deck and discard pile for a [[Possessed]] enemy, draw it, and attach Abandoned to Madness to it (shuffle the encounter deck).\nIncrease the difficulty to fight, evade, or parley with attached enemy by 1."
   },
   "08712": {
     "name": "Polar Mirage",
