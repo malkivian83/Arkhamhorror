@@ -37087,8 +37087,8 @@
       "language": "es",
       "path": "/local-assets/cards/es/78002b.avif",
       "source": "E:\\Plaguero\\002b.jpg",
-      "bytes": 136313,
-      "sha256": "670b414939220db5570bfaaaf8de554813c04bf81e2c382e18fd0f8503aaefff"
+      "bytes": 138288,
+      "sha256": "bf2638b716b8f90eac36e01905efb7dcb3498c7a045b27f820ccd134dfc4b8e6"
     },
     {
       "art": "78003",
@@ -37119,8 +37119,8 @@
       "language": "es",
       "path": "/local-assets/cards/es/78003b.avif",
       "source": "E:\\Plaguero\\003b.jpg",
-      "bytes": 136551,
-      "sha256": "cbe96c3b9653eee5327a77925fa65554cc537619d25c18e38beb6e1960ddcb70"
+      "bytes": 141145,
+      "sha256": "839ad31e8238b2b34d276129f3b545faac34beec8ccd514bc2d256712e117241"
     },
     {
       "art": "78004",
@@ -37151,8 +37151,8 @@
       "language": "es",
       "path": "/local-assets/cards/es/78004b.avif",
       "source": "E:\\Plaguero\\004b.jpg",
-      "bytes": 94840,
-      "sha256": "70f565928ee688793a2edccfc5bdc5e7a2634030bcb9b0ef7d897d9a4171aff0"
+      "bytes": 96214,
+      "sha256": "0ba3f69c1a7ded17a78507a478e8e3741eea0fdced274eff79c7b294ed048632"
     },
     {
       "art": "78005",
@@ -37175,8 +37175,8 @@
       "language": "es",
       "path": "/local-assets/cards/es/78005.avif",
       "source": "E:\\Plaguero\\005a.jpg",
-      "bytes": 113178,
-      "sha256": "bc9991d481e0c3cf6d85587f31a9af9dbab4486e961745f99ddcb218a9d77e16"
+      "bytes": 111887,
+      "sha256": "0fbb0dc7342ce3151660e75d5d861eb080a5217946dd85fe820fa65615cacaa1"
     },
     {
       "art": "78005b",
@@ -37207,8 +37207,8 @@
       "language": "es",
       "path": "/local-assets/cards/es/78006.avif",
       "source": "E:\\Plaguero\\006a.jpg",
-      "bytes": 114424,
-      "sha256": "046df2e08481bd60673dbe2842a3e09c1d79f5dec166ac3fd31b3a3eeb8f045b"
+      "bytes": 112021,
+      "sha256": "0b04351311665447aafe69f2b7ffe8d302b763b1451569d2663a861e14a2121c"
     },
     {
       "art": "78006b",
@@ -37239,8 +37239,8 @@
       "language": "es",
       "path": "/local-assets/cards/es/78007.avif",
       "source": "E:\\Plaguero\\007a.jpg",
-      "bytes": 109679,
-      "sha256": "2e3c59ef3446f33e1d4f23c771cb697e380022819499340cbab3652ff06a67fb"
+      "bytes": 108093,
+      "sha256": "cb199003bdbc076957a205a314e2324aa93df0acbcd0357f4573aee0ffc8d941"
     },
     {
       "art": "78007b",
@@ -37526,17 +37526,17 @@
       "art": "78017",
       "language": "en",
       "path": "/local-assets/cards/en/78017.avif",
-      "source": "E:\\Plaguero\\en\\17 - Suspicious Briefcase-1.png",
-      "bytes": 136920,
-      "sha256": "66d484d8064f737fd74dbe2cc4466a0db23d47c4f4d2b230b52ac5cae9c333bf"
+      "source": "E:\\Plaguero\\en\\17 - Suspicious Briefcase-2.png",
+      "bytes": 107807,
+      "sha256": "e97040125cf4c41be41e2442e66fde94b7eeb49128f88ee7d4ee18a0a17e8d7d"
     },
     {
       "art": "78017b",
       "language": "en",
       "path": "/local-assets/cards/en/78017b.avif",
-      "source": "E:\\Plaguero\\en\\17 - Suspicious Briefcase-2.png",
-      "bytes": 107807,
-      "sha256": "e97040125cf4c41be41e2442e66fde94b7eeb49128f88ee7d4ee18a0a17e8d7d"
+      "source": "E:\\Plaguero\\en\\17 - Suspicious Briefcase-1.png",
+      "bytes": 136920,
+      "sha256": "66d484d8064f737fd74dbe2cc4466a0db23d47c4f4d2b230b52ac5cae9c333bf"
     },
     {
       "art": "78017",

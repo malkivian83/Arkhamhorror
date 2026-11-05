@@ -64,6 +64,28 @@ el PDF.
 - Siguiente: escenario II; revisar Defender y Arkham caído antes de habilitarlo.
   Integrar los cambios remotos con rebase antes de subir.
 
+### Revisión de reglas · 2026-11-05
+
+- Alcance: preparación de campaña e I (guía ES pp. 3–4), 29 códigos de I y
+  encuentros compartidos, mapa, barricadas, fichas, avances y R1–R3. Los escenarios
+  II–VIII e interludios no tienen implementación que se pueda dar por validada.
+- Corregido Maletín: R1 no lo concede; habilidad rápida disponible en ventanas
+  ajenas; exilio también al devolverlo a la mano; el cambio de dueño de 017b se
+  anota inmediatamente y se limpia al volver a pasarlo o exiliarlo, sin duplicar
+  la recompensa de R2/R3. Desistir y ser derrotado siguen provocando su exilio.
+- Corregido Bajo la piel: otro investigador del mismo Lugar puede activar su
+  acción impresa. Manos dormidas conserva su restricción al propio investigador.
+- Presentación: seis caras ES de actos/planes orientadas correctamente y caras
+  EN de 017 intercambiadas para mostrar el apoyo antes que la historia.
+- Confirmado: Omega empieza con **una sola barricada**, excepción expresa de la
+  preparación; Alfa/Delta/Túnel sí escalan por número inicial de investigadores.
+- Validación: 122 pruebas dirigidas (reglas, escenario, 16 partidas simuladas,
+  fichas/mapa y recursos EN/ES); tipos de cards, lint y empaquetado web. Reutilizar
+  mientras no cambien módulo, recursos o dependencias relevantes. Revisión de
+  imágenes locales representativas; sin navegador ni seguimiento de CI/Deploy.
+- Pendiente: revisión visual de la mesa por la persona usuaria e implementación
+  posterior; no equivale a una validación jugable de los ocho escenarios.
+
 ## Fuentes
 
 | Material         | Ubicación                                | Notas                                                                    |
@@ -408,6 +430,8 @@ Hay que comprobar si las cartas ES ya las incorporan; si no, aplicarlas:
 
 | Punto                     | EN                                            | ES                                                            |
 | ------------------------- | --------------------------------------------- | ------------------------------------------------------------- |
+| Greyson, acto 2b (I)      | Desde Vestíbulo aparece preparada; desde Pasillo, agotada | Ambas ramas dicen agotada. Se aplica EN. |
+| Maletín, historia 017b (I) | Exilia el Maletín antes de ofrecerlo a otro investigador | Lo aparta fuera del juego. Se aplica ES; el nuevo dueño lo añade a su mazo inmediatamente. |
 | Mazo reanimado (III)      | Se aparta la carta superior                   | Se apartan las dos superiores                                 |
 | Lugares del II            | Se elige entre Muelles / Advertiser y entre Pensión / Tienda | Ambos al azar                                  |
 | Preparación del III       | Solo aparta West y Primero de muchos          | Aparta además las cuatro cartas de West y debilidades; suministra Apoyo de la Agencia |

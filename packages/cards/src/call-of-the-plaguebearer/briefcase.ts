@@ -1,5 +1,54 @@
-import { activeInvestigators, push, registerPlayerCard, registerPlayerCards } from '@lcg/engine'
+import {
+  activeInvestigators,
+  push,
+  registerPlayerCard,
+  registerPlayerCards,
+  type GameState,
+  type Message,
+} from '@lcg/engine'
 import { C, ask, on, specific } from './helpers'
+
+// El mismo objeto cambia de dueño; nunca debe quedar en dos mazos de campaña.
+const clearOwner = (s: GameState): GameState =>
+  !s.campaignLog
+    ? s
+    : {
+        ...s,
+        campaignLog: {
+          ...s.campaignLog,
+          investigators: Object.fromEntries(
+            Object.entries(s.campaignLog.investigators).map(([id, record]) => [
+              id,
+              {
+                ...record,
+                storyAssets: record.storyAssets.filter((code) => code !== C.briefcase),
+              },
+            ]),
+          ),
+        },
+      }
+on('plaguebearer.exileBriefcase', (s, d) =>
+  push(clearOwner(s), {
+    type: 'ExileCard',
+    investigator: String(d.investigator),
+    asset: String(d.asset),
+    code: C.briefcase,
+  }),
+)
+
+const resourceEffect = (by: string, asset: string): Message[] => [
+  {
+    type: 'RevealTokenOutsideTest',
+    investigator: by,
+    then: {
+      type: 'PlayerCardEffect',
+      code: C.briefcase,
+      investigator: by,
+      step: 'token',
+      data: { asset },
+    },
+  },
+]
 
 registerPlayerCards([
   {
@@ -16,8 +65,26 @@ registerPlayerCards([
 ])
 registerPlayerCard({
   code: C.briefcase,
-  abilities: (s, self, by) =>
-    self.owner === by && !self.exhausted && s.activeTurn === by
+  leavesPlay: (_s, asset) => [
+    specific('plaguebearer.exileBriefcase', { investigator: asset.owner, asset: asset.id }),
+  ],
+  fastOptions: (_s, self) =>
+    self.exhausted
+      ? []
+      : [
+          {
+            key: `${self.id}:resources`,
+            investigator: self.owner,
+            label: 'ability.plaguebearer.briefcaseResources',
+            target: { type: 'asset', id: self.id },
+            then: [
+              { type: 'ExhaustAsset', asset: self.id },
+              ...resourceEffect(self.owner, self.id),
+            ],
+          },
+        ],
+  abilities: (_s, self, by) =>
+    self.owner === by && !self.exhausted
       ? [
           {
             key: `${self.id}:resources`,
@@ -25,19 +92,7 @@ registerPlayerCard({
             actions: 0,
             provokes: false,
             costs: [{ type: 'ExhaustAsset', asset: self.id }],
-            then: [
-              {
-                type: 'RevealTokenOutsideTest',
-                investigator: by,
-                then: {
-                  type: 'PlayerCardEffect',
-                  code: C.briefcase,
-                  investigator: by,
-                  step: 'token',
-                  data: { asset: self.id },
-                },
-              },
-            ],
+            then: resourceEffect(by, self.id),
           },
         ]
       : [],
@@ -62,7 +117,7 @@ on('plaguebearer.briefcaseFlip', (s, d) => {
   const assets = { ...s.assets }
   delete assets[id]
   return push(
-    { ...s, assets },
+    { ...clearOwner(s), assets },
     {
       type: 'RecordNote',
       note: 'plaguebearerReagent',
@@ -88,7 +143,10 @@ on('plaguebearer.passBriefcase', (s, d) => {
       ...eligible.map((i) => ({
         label: 'choice.investigator',
         params: { name: i.name },
-        then: [{ type: 'PutAssetIntoPlay' as const, investigator: i.id, code: C.briefcase }],
+        then: [
+          { type: 'AddStoryAsset' as const, investigator: i.id, code: C.briefcase },
+          { type: 'PutAssetIntoPlay' as const, investigator: i.id, code: C.briefcase },
+        ],
       })),
       { label: 'choice.skip', then: [] },
     ],

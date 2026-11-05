@@ -230,6 +230,9 @@ describe('Trasnochadores: efectos de cartas y finales favorables', () => {
     expect(s.campaignLog?.notes).toContain('plaguebearerReagent')
     s = settle(choose(s, 'choice.investigator', { name: 'B' }))
     expect(Object.values(s.assets).find((a) => a.code === C.briefcase)?.owner).toBe('b')
+    expect(s.campaignLog?.investigators.b?.storyAssets).toEqual([C.briefcase])
+    s = emit(s, { type: 'EndScenario', outcome: { type: 'resolution', resolution: 2 } })
+    expect(s.campaignLog?.investigators.b?.storyAssets).toEqual([C.briefcase])
   })
   it('Laboratorio Delta abre el pasillo con la prueba de velo +4 y el pago de pistas local', () => {
     let s = open(game())
@@ -346,5 +349,81 @@ describe('Trasnochadores: efectos de cartas y finales favorables', () => {
     s = emit(s, { type: 'DiscardAsset', asset: asset.id })
     expect(s.exiled).toContainEqual({ investigator: 'a', code: C.briefcase })
     expect(Object.values(s.assets)).toHaveLength(0)
+  })
+  it.each([1, 2, 3])('R%i solo concede el maletín cuando lo indica la guía', (resolution) => {
+    let s = emit(game(), { type: 'PutAssetIntoPlay', investigator: 'a', code: C.briefcase })
+    s = emit(s, { type: 'EndScenario', outcome: { type: 'resolution', resolution } })
+    expect(s.campaignLog?.investigators.a?.storyAssets.includes(C.briefcase)).toBe(resolution !== 1)
+  })
+  it('el maletín se exilia en vez de volver a la mano', () => {
+    let s = emit(game(), { type: 'PutAssetIntoPlay', investigator: 'a', code: C.briefcase })
+    const asset = Object.values(s.assets).find((a) => a.code === C.briefcase)!
+    s = emit(s, { type: 'ReturnAssetToHand', asset: asset.id })
+    expect(s.exiled).toContainEqual({ investigator: 'a', code: C.briefcase })
+    expect(me(s).hand).not.toContain(C.briefcase)
+  })
+  it.each(['DefeatInvestigator', 'Resign'] as const)('el maletín se exilia al %s', (type) => {
+    let s = emit(game(2), { type: 'PutAssetIntoPlay', investigator: 'a', code: C.briefcase })
+    s = emit(s, { type, investigator: 'a' })
+    expect(s.exiled).toContainEqual({ investigator: 'a', code: C.briefcase })
+    expect(Object.values(s.assets).some((a) => a.code === C.briefcase)).toBe(false)
+  })
+  it('el maletín permite usar su habilidad rápida fuera del turno de su dueño', () => {
+    const s = emit(game(2), { type: 'PutAssetIntoPlay', investigator: 'a', code: C.briefcase })
+    expect(
+      availableAbilities({ ...s, activeTurn: 'b', phase: 'enemy' }, 'a').some(
+        (a) => a.label === 'ability.plaguebearer.briefcaseResources',
+      ),
+    ).toBe(true)
+  })
+  it('otro investigador del mismo Lugar puede descartar Bajo la piel con su acción impresa', () => {
+    const base = draw(game(2), C.skin)
+    const s = {
+      ...base,
+      activeTurn: 'b',
+      investigators: base.investigators.map((i) =>
+        i.id === 'b' ? { ...i, actionsRemaining: 3 } : i,
+      ),
+    }
+    expect(availableAbilities(s, 'b').some((a) => a.label === 'ability.plaguebearer.skin')).toBe(
+      true,
+    )
+  })
+  it('la ventana de una prueba ajena ofrece el maletín y paga su agotamiento', () => {
+    let s = emit(game(2), { type: 'PutAssetIntoPlay', investigator: 'a', code: C.briefcase })
+    s = dispatch(
+      { ...withBag(0)(s), pending: null, queue: [], activeTurn: 'b' },
+      {
+        type: 'BeginSkillTest',
+        investigator: 'b',
+        skill: 'willpower',
+        difficulty: 2,
+        kind: { type: 'effect', source: 'test', onSuccess: [], onFail: [], onFailEach: [] },
+      },
+    )
+    s = choose(s, 'ability.plaguebearer.briefcaseResources')
+    expect(me(s).resources).toBe(8)
+    expect(Object.values(s.assets).find((a) => a.code === C.briefcase)?.exhausted).toBe(true)
+    expect(s.skillTest?.investigator).toBe('b')
+    expect(
+      s.pending?.question.choices.some(
+        (c) => c.label === 'ability.plaguebearer.briefcaseResources',
+      ),
+    ).toBe(false)
+  })
+  it('pasar el maletín de nuevo retira la propiedad anterior; exiliarlo limpia el registro', () => {
+    let s = emit(game(3), { type: 'PutAssetIntoPlay', investigator: 'a', code: C.briefcase })
+    s = use(withBag('skull')(s), 'ability.plaguebearer.briefcaseResources')
+    s = settle(choose(s, 'choice.investigator', { name: 'B' }))
+    const ability = availableAbilities(s, 'b').find(
+      (a) => a.label === 'ability.plaguebearer.briefcaseResources',
+    )!
+    s = emit(withBag('skull')(s), { type: 'UseAbility', investigator: 'b', ...ability })
+    s = settle(choose(s, 'choice.investigator', { name: 'C' }))
+    expect(s.campaignLog?.investigators.b?.storyAssets).not.toContain(C.briefcase)
+    expect(s.campaignLog?.investigators.c?.storyAssets).toEqual([C.briefcase])
+    const asset = Object.values(s.assets).find((a) => a.code === C.briefcase)!
+    s = emit(s, { type: 'DiscardAsset', asset: asset.id })
+    expect(s.campaignLog?.investigators.c?.storyAssets).not.toContain(C.briefcase)
   })
 })

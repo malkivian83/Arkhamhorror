@@ -91,6 +91,11 @@ it('prioriza los originales españoles al usar el idioma activo de la mesa', () 
   }
 })
 
+it('muestra el apoyo del Maletín por delante y su historia por detrás en inglés', () => {
+  expect(media.find((c) => c.language === 'en' && c.code === '78017')?.source).toMatch(/-2\.png$/)
+  expect(media.find((c) => c.language === 'en' && c.code === '78017b')?.source).toMatch(/-1\.png$/)
+})
+
 it.each(['en', 'es'])('presenta el texto de ambas caras de la Morgue en %s', (locale) => {
   const morgue = fallbackCards(locale).find((c) => c.code === '78008')!
   expect(morgue.text).toBe('')

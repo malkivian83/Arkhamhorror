@@ -93,7 +93,12 @@ function resolution(
       ? [recordNote('plaguebearerCollection')]
       : []),
     ...Object.values(s.assets)
-      .filter((a) => a.code === C.briefcase)
+      .filter(
+        (a) =>
+          n !== 1 &&
+          a.code === C.briefcase &&
+          !s.campaignLog?.investigators[a.owner]?.storyAssets.includes(C.briefcase),
+      )
       .map((a) => ({ type: 'AddStoryAsset' as const, investigator: a.owner, code: C.briefcase })),
     endScenario({ type: 'resolution', resolution: n }),
   ]
@@ -113,10 +118,6 @@ registerScenario({
     e.location === L.lobby && s.locations[L.lobby]?.revealed
       ? -Math.min(1, Math.max(0, e[stat] - 1))
       : 0,
-  assetLeavesPlay: (_s, asset) =>
-    asset.code === C.briefcase
-      ? [{ type: 'ExileCard', investigator: asset.owner, asset: asset.id, code: C.briefcase }]
-      : null,
   reactions: (s, t) => [...locationReactions(s, t), ...encounterReactions(s, t)],
   forced: (s, t) => {
     if (

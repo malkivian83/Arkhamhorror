@@ -67,7 +67,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\002b.jpg",
     "sourceSha256": "c026f157d9038c01fb218497ef8577afc701cad2e408d939d55e478d763bb994",
-    "sha256": "670b414939220db5570bfaaaf8de554813c04bf81e2c382e18fd0f8503aaefff",
+    "sha256": "bf2638b716b8f90eac36e01905efb7dcb3498c7a045b27f820ccd134dfc4b8e6",
     "width": 1035,
     "height": 714
   },
@@ -103,7 +103,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\003b.jpg",
     "sourceSha256": "b59273e743172cdbec31d2e91259fd1ccb5c00d1a8481fd66f341ccff26579d8",
-    "sha256": "cbe96c3b9653eee5327a77925fa65554cc537619d25c18e38beb6e1960ddcb70",
+    "sha256": "839ad31e8238b2b34d276129f3b545faac34beec8ccd514bc2d256712e117241",
     "width": 1035,
     "height": 714
   },
@@ -139,7 +139,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\004b.jpg",
     "sourceSha256": "5253304baf150b0936de11ba55ce8892d684bdde0ade28983eeb00ac915ddb77",
-    "sha256": "70f565928ee688793a2edccfc5bdc5e7a2634030bcb9b0ef7d897d9a4171aff0",
+    "sha256": "0ba3f69c1a7ded17a78507a478e8e3741eea0fdced274eff79c7b294ed048632",
     "width": 1035,
     "height": 714
   },
@@ -166,7 +166,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\005a.jpg",
     "sourceSha256": "b4e80a8bb5c8ad79e9eba82135267524a9894cfa94105fd338e8aa44248d9f64",
-    "sha256": "bc9991d481e0c3cf6d85587f31a9af9dbab4486e961745f99ddcb218a9d77e16",
+    "sha256": "0fbb0dc7342ce3151660e75d5d861eb080a5217946dd85fe820fa65615cacaa1",
     "width": 1035,
     "height": 714
   },
@@ -202,7 +202,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\006a.jpg",
     "sourceSha256": "eae4fc27436ad6c11eb6e7cc0715369137f3e7169a3ec72f9031aeace66dac34",
-    "sha256": "046df2e08481bd60673dbe2842a3e09c1d79f5dec166ac3fd31b3a3eeb8f045b",
+    "sha256": "0b04351311665447aafe69f2b7ffe8d302b763b1451569d2663a861e14a2121c",
     "width": 1035,
     "height": 714
   },
@@ -238,7 +238,7 @@
     "language": "es",
     "source": "E:\\Plaguero\\007a.jpg",
     "sourceSha256": "905b9f03a964bf614e1bb1a9549fa429f5203259494590d214ae26d7aa8c89b8",
-    "sha256": "2e3c59ef3446f33e1d4f23c771cb697e380022819499340cbab3652ff06a67fb",
+    "sha256": "cb199003bdbc076957a205a314e2324aa93df0acbcd0357f4573aee0ffc8d941",
     "width": 1035,
     "height": 714
   },
@@ -560,18 +560,18 @@
   {
     "code": "78017",
     "language": "en",
-    "source": "E:\\Plaguero\\en\\17 - Suspicious Briefcase-1.png",
-    "sourceSha256": "e9579808731e4ca3fd5dbd4308cca860e8387c84c07efa3de1b8bf376acdced0",
-    "sha256": "66d484d8064f737fd74dbe2cc4466a0db23d47c4f4d2b230b52ac5cae9c333bf",
+    "source": "E:\\Plaguero\\en\\17 - Suspicious Briefcase-2.png",
+    "sourceSha256": "34951b7b33c9c4357da24b516f0a7a6020b4d83662ca9ba8e3c262befcd33562",
+    "sha256": "e97040125cf4c41be41e2442e66fde94b7eeb49128f88ee7d4ee18a0a17e8d7d",
     "width": 791,
     "height": 1048
   },
   {
     "code": "78017b",
     "language": "en",
-    "source": "E:\\Plaguero\\en\\17 - Suspicious Briefcase-2.png",
-    "sourceSha256": "34951b7b33c9c4357da24b516f0a7a6020b4d83662ca9ba8e3c262befcd33562",
-    "sha256": "e97040125cf4c41be41e2442e66fde94b7eeb49128f88ee7d4ee18a0a17e8d7d",
+    "source": "E:\\Plaguero\\en\\17 - Suspicious Briefcase-1.png",
+    "sourceSha256": "e9579808731e4ca3fd5dbd4308cca860e8387c84c07efa3de1b8bf376acdced0",
+    "sha256": "66d484d8064f737fd74dbe2cc4466a0db23d47c4f4d2b230b52ac5cae9c333bf",
     "width": 791,
     "height": 1048
   },

@@ -21,7 +21,8 @@ for (const code of [C.hands, C.skin, C.another])
       },
     ],
     abilities: (s, self, by) => {
-      if (self.placement.type !== 'threatArea' || self.placement.investigator !== by) return []
+      if (self.placement.type !== 'threatArea') return []
+      if (code === C.hands && self.placement.investigator !== by) return []
       if (code === C.another) return []
       if (code === C.hands && s.activeTurn !== by) return []
       return [
