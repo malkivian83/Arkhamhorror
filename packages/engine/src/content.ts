@@ -1023,7 +1023,9 @@ export const isPermanent = (code: CardCode) => !!playerBehaviors.get(code)?.perm
 
 /** Permanent assets, or assets that cannot leave play right now (Baron Samedi). */
 export const stuckInPlay = (state: GameState, asset: Asset) =>
-  isPermanent(asset.code) || !!playerBehaviors.get(asset.code)?.cannotLeavePlay?.(state, asset)
+  !!asset.expeditionPartner ||
+  isPermanent(asset.code) ||
+  !!playerBehaviors.get(asset.code)?.cannotLeavePlay?.(state, asset)
 
 /**
  * Test support: captures every behavior registry and returns a function that puts back the

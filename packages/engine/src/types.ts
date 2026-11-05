@@ -1,4 +1,5 @@
 import type { RngState } from './rng'
+import type { ExpeditionPartner } from './expedition'
 
 export const BOONS = [
   'ancients',
@@ -575,6 +576,8 @@ export interface StoryCardInPlay {
 }
 
 export interface Asset {
+  /** Identity in the expedition log, independent of the card's printed version. */
+  expeditionPartner?: ExpeditionPartner
   enteredAtTurn?: number
   /** Current form of a transforming asset, reset when it leaves play. */
   form?: string
@@ -1137,6 +1140,7 @@ export type Message =
       fromDiscard?: InvestigatorId
       /** Fichas con las que entra (al tomar el control de un apoyo colocado). */
       tokens?: Partial<Pick<Asset, 'damage' | 'horror' | 'doom' | 'uses' | 'exhausted'>>
+      expeditionPartner?: ExpeditionPartner
       /** Continue with the exact instance id under data.asset, even after entry reactions. */
       onEntered?: Extract<Message, { type: 'PlayerCardEffect' }>
     }
@@ -1388,6 +1392,7 @@ export type Message =
   /** +X skill value for the investigator's next skill test (The Red Clock). */
   | { type: 'NextTestBonus'; investigator: InvestigatorId; amount: number; thisPhase?: boolean }
   | { type: 'TransferUses'; from: AssetId; to: AssetId; amount: number }
+  | { type: 'MoveResourcesFromAsset'; asset: AssetId; investigator: InvestigatorId; amount: number }
   | { type: 'ReturnCommittedCard'; index: number }
   | { type: 'MoveResourcesToPool'; investigator: InvestigatorId; amount: number }
   | { type: 'ReverseRevealedTokenModifier' }
@@ -1703,6 +1708,20 @@ export type Message =
       investigator?: InvestigatorId
     }
   | { type: 'AddStoryAsset'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'InitializeExpedition' }
+  | { type: 'ChooseExpeditionPartners' }
+  | { type: 'ChooseExpeditionPartner'; investigator: InvestigatorId }
+  | { type: 'SelectExpeditionPartner'; investigator: InvestigatorId; partner: ExpeditionPartner }
+  | {
+      type: 'SetExpeditionPartnerStatus'
+      partner: ExpeditionPartner
+      status: ExpeditionPartnerStatus
+    }
+  | { type: 'RecordExpeditionCamp'; location: CardCode; shelter: number }
+  | { type: 'RecoverExpeditionSupply'; supply: ExpeditionSupply }
+  | { type: 'InitializeTekeliliDeck' }
+  | { type: 'ShuffleTekeliliIntoDeck'; investigator: InvestigatorId; amount: number }
+  | { type: 'ReturnTekelili'; treachery: TreacheryId }
   /** `scenarioOnly`: solo para este escenario, sin anotarlas en el registro de campaña. */
   | { type: 'AddChaosTokens'; tokens: ChaosToken[]; scenarioOnly?: boolean }
   /** Coloca (o retira, con valores negativos) horror y perdición en una localización. */
@@ -2216,7 +2235,21 @@ export interface InvestigatorRecord {
 }
 
 /** Registro de campaña (guía de campaña, página 15). */
+export type ExpeditionPartnerStatus =
+  'safe' | 'resolute' | 'missing' | 'eliminated' | 'victim' | 'unavailable' | 'entity'
+
+export type ExpeditionSupply = '08614' | '08615' | '08616' | '08617' | '08618' | '08619' | '08620'
+
+export interface ExpeditionState {
+  partners: Partial<
+    Record<ExpeditionPartner, { status: ExpeditionPartnerStatus; damage: number; horror: number }>
+  >
+  camp?: { location: CardCode; shelter: number }
+  supplies: ExpeditionSupply[]
+}
+
 export interface CampaignLog {
+  expedition?: ExpeditionState
   /** Cards permanently removed from every investigator's deck by campaign effects. */
   removedCards?: CardCode[]
   /** Notas de campaña, por clave ("universityBurned"…). */
@@ -2256,6 +2289,8 @@ export interface TurnActionGrant {
 }
 
 export interface GameState {
+  /** Scenario deck. Copies in investigator decks persist as campaign story cards. */
+  tekeliliDeck?: CardCode[]
   playSkillBonuses?: { id: string; investigator: InvestigatorId; amount: number }[]
   defeatedEnemyHealthThisTurn?: Record<InvestigatorId, number>
   /** Versión del motor que creó la partida, para migraciones futuras. */

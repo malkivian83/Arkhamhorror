@@ -100,6 +100,13 @@ import {
   updateLocation,
 } from './state'
 import { emptyCampaignLog } from './setup'
+import {
+  availableTekelili,
+  expeditionPartners,
+  newExpedition,
+  recordPartner,
+  tekeliliCopies,
+} from './expedition'
 import { sealHolderPresent } from './seals'
 import type {
   Action,
@@ -1471,6 +1478,31 @@ export function handle(state: GameState, message: Message): GameState {
       })
     }
 
+    case 'MoveResourcesFromAsset': {
+      // RR «Move»: moving resource tokens is not a gain-resources effect.
+      const asset = state.assets[message.asset]
+      if (
+        !asset ||
+        asset.owner !== message.investigator ||
+        playerCardDef(asset.code)?.uses?.type !== 'resource'
+      )
+        return state
+      const investigator = getInvestigator(state, message.investigator)
+      const amount = Math.min(asset.uses, Math.max(0, message.amount))
+      if (investigator.eliminated || !amount) return state
+      return updateInvestigator(
+        {
+          ...state,
+          assets: {
+            ...state.assets,
+            [asset.id]: { ...asset, uses: asset.uses - amount },
+          },
+        },
+        investigator.id,
+        (i) => ({ ...i, resources: i.resources + amount }),
+      )
+    }
+
     case 'DrawCards': {
       if (scenarioBehavior(state.scenarioId)?.cannotDrawCards?.(state, message.investigator))
         return state
@@ -2014,7 +2046,7 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'ReleaseAsset': {
       const asset = state.assets[message.asset]
-      if (!asset) return state
+      if (!asset || asset.expeditionPartner) return state
       const { [asset.id]: _gone, ...assets } = state.assets
       const [id, next] = newId({ ...state, assets }, 'placed-')
       const faceDown = !!message.faceDown
@@ -3659,6 +3691,7 @@ export function handle(state: GameState, message: Message): GameState {
             id,
             code: message.code,
             owner: message.investigator,
+            ...(message.expeditionPartner ? { expeditionPartner: message.expeditionPartner } : {}),
             ...(playerCardBehavior(message.code)?.recordsEntryTurn
               ? { enteredAtTurn: turnStartedAt(state) }
               : {}),
@@ -3736,6 +3769,11 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'DiscardAsset': {
       const asset = state.assets[message.asset]
+      if (asset?.expeditionPartner) {
+        if (!message.defeated) return state
+        const { [asset.id]: _gone, ...assets } = state.assets
+        return saveExpeditionPartner({ ...state, assets }, asset, true)
+      }
       // Reglamento, "Permanent": no puede abandonar el juego (ni Baron Samedi sin 3 perdición).
       if (!asset || stuckInPlay(state, asset)) return state
       // Cherished Keepsake: "when … is defeated" replaces its discard (it is exiled).
@@ -4305,6 +4343,146 @@ export function handle(state: GameState, message: Message): GameState {
           : [...c.crossedOut, message.note],
       }))
 
+    case 'InitializeExpedition':
+      return state.campaignLog?.expedition
+        ? state
+        : updateCampaignLog(state, (c) => ({ ...c, expedition: newExpedition() }))
+
+    case 'ChooseExpeditionPartners':
+      return push(
+        state,
+        ...activeInvestigators(state).map((i): Message => ({
+          type: 'ChooseExpeditionPartner',
+          investigator: i.id,
+        })),
+      )
+
+    case 'ChooseExpeditionPartner': {
+      const expedition = state.campaignLog?.expedition
+      if (!expedition || !activeInvestigators(state).some((i) => i.id === message.investigator))
+        return state
+      const inPlay = Object.values(state.assets).filter((asset) => asset.expeditionPartner)
+      if (inPlay.some((asset) => asset.owner === message.investigator)) return state
+      const choices: Choice[] = []
+      for (const partner of Object.keys(
+        expeditionPartners,
+      ) as (keyof typeof expeditionPartners)[]) {
+        const status = expedition.partners[partner]?.status
+        if (status !== 'safe' && status !== 'resolute') continue
+        if (inPlay.some((asset) => asset.expeditionPartner === partner)) continue
+        const code = status === 'resolute' ? expeditionPartners[partner] : partner
+        const card = playerCardDef(code)
+        if (!card) continue
+        choices.push({
+          label: 'choice.card',
+          params: { card: card.name },
+          then: [{ type: 'SelectExpeditionPartner', investigator: message.investigator, partner }],
+        })
+      }
+      if (!choices.length) return state
+      return push(state, {
+        type: 'Ask',
+        investigator: message.investigator,
+        question: {
+          kind: 'chooseOne',
+          prompt: 'prompt.edgeOfTheEarth.partner',
+          choices: [...choices, { label: 'choice.edgeOfTheEarth.noPartner', then: [] }],
+        },
+      })
+    }
+
+    case 'SelectExpeditionPartner': {
+      const record = state.campaignLog?.expedition?.partners[message.partner]
+      const investigator = state.investigators.find((i) => i.id === message.investigator)
+      if (!investigator || investigator.eliminated || !record) return state
+      if (record.status !== 'safe' && record.status !== 'resolute') return state
+      if (
+        Object.values(state.assets).some(
+          (a) =>
+            a.expeditionPartner &&
+            (a.owner === investigator.id || a.expeditionPartner === message.partner),
+        )
+      )
+        return state
+      return handle(state, {
+        type: 'PutAssetIntoPlay',
+        investigator: investigator.id,
+        code: record.status === 'resolute' ? expeditionPartners[message.partner] : message.partner,
+        expeditionPartner: message.partner,
+        noSlot: true,
+        tokens: { damage: record.damage, horror: record.horror },
+      })
+    }
+
+    case 'SetExpeditionPartnerStatus':
+      return updateExpedition(state, (expedition) => {
+        const record = expedition.partners[message.partner]
+        if (!record || record.status === 'eliminated') return expedition
+        return {
+          ...expedition,
+          partners: {
+            ...expedition.partners,
+            [message.partner]: { ...record, status: message.status },
+          },
+        }
+      })
+
+    case 'RecordExpeditionCamp':
+      return updateExpedition(state, (expedition) => ({
+        ...expedition,
+        camp: { location: message.location, shelter: message.shelter },
+      }))
+
+    case 'RecoverExpeditionSupply':
+      return updateExpedition(state, (expedition) =>
+        expedition.supplies.includes(message.supply)
+          ? expedition
+          : { ...expedition, supplies: [...expedition.supplies, message.supply] },
+      )
+
+    case 'InitializeTekeliliDeck': {
+      if (state.tekeliliDeck || !state.campaignLog) return state
+      const [tekeliliDeck, rng] = shuffle(availableTekelili(state.campaignLog), state.rng)
+      return { ...state, rng, tekeliliDeck }
+    }
+
+    case 'ShuffleTekeliliIntoDeck': {
+      const pool = state.tekeliliDeck
+      const investigator = state.investigators.find((i) => i.id === message.investigator)
+      if (!pool?.length || !investigator || investigator.eliminated) return state
+      const cards = pool.slice(0, Math.max(0, message.amount))
+      if (!cards.length) return state
+      const [deck, rng] = shuffle([...investigator.deck, ...cards], state.rng)
+      const added = updateRecords(
+        { ...state, rng, tekeliliDeck: pool.slice(cards.length) },
+        investigator.id,
+        (r) => ({ ...r, storyAssets: [...r.storyAssets, ...cards] }),
+      )
+      return updateInvestigator(added, investigator.id, (i) => ({ ...i, deck }))
+    }
+
+    case 'ReturnTekelili': {
+      const card = state.treacheries[message.treachery]
+      const pool = state.tekeliliDeck
+      if (
+        !pool ||
+        !card?.owner ||
+        card.canceled ||
+        card.placement.type !== 'limbo' ||
+        !Object.hasOwn(tekeliliCopies, card.code)
+      )
+        return state
+      const record = state.campaignLog?.investigators[card.owner]
+      const at = record?.storyAssets.indexOf(card.code) ?? -1
+      if (at < 0) return state
+      const { [card.id]: _resolved, ...treacheries } = state.treacheries
+      return updateRecords(
+        { ...state, treacheries, tekeliliDeck: [...pool, card.code] },
+        card.owner,
+        (r) => ({ ...r, storyAssets: r.storyAssets.filter((_, index) => index !== at) }),
+      )
+    }
+
     case 'EarnExperience': {
       const victory = message.victory ? victoryTotal(state) : 0
       const amount = message.amount + victory
@@ -4423,8 +4601,14 @@ export function handle(state: GameState, message: Message): GameState {
       if (!message.assetsDone) {
         const effects = Object.values(state.assets)
           .filter((asset) => asset.owner === investigator.id)
-          .flatMap(
-            (asset) =>
+          .flatMap((asset): Message[] => {
+            if (asset.expeditionPartner && !investigator.resigned) {
+              return [
+                { type: 'DiscardAsset', asset: asset.id, defeated: true },
+                { type: 'Forced', trigger: { type: 'assetDefeated', asset } },
+              ]
+            }
+            return (
               assetBehavior(state, asset)?.leavesPlay?.(
                 state,
                 asset,
@@ -4435,8 +4619,9 @@ export function handle(state: GameState, message: Message): GameState {
                 asset,
                 investigator.resigned ? 'resigned' : 'defeated',
               ) ??
-              [],
-          )
+              []
+            )
+          })
         if (effects.length) return push(state, ...effects, { ...message, assetsDone: true })
       }
       let next = state
@@ -4453,6 +4638,10 @@ export function handle(state: GameState, message: Message): GameState {
       }
       for (const enemy of engagedEnemies(next, investigator.id)) {
         next = updateEnemy(next, enemy.id, (e) => ({ ...e, engagedWith: null }))
+      }
+      for (const asset of Object.values(next.assets)) {
+        if (asset.owner === investigator.id && asset.expeditionPartner)
+          next = saveExpeditionPartner(next, asset, !investigator.resigned)
       }
       next = {
         ...next,
@@ -5911,7 +6100,7 @@ export function handle(state: GameState, message: Message): GameState {
       let next: GameState
       if (message.asset) {
         const asset = state.assets[message.asset]
-        if (!asset) return state
+        if (!asset || asset.expeditionPartner) return state
         const { [asset.id]: _gone, ...assets } = state.assets
         next = { ...state, assets }
       } else {
@@ -7344,6 +7533,7 @@ export function handle(state: GameState, message: Message): GameState {
     case 'RemoveAssetFromGame': {
       if (!state.assets[message.asset]) return state
       const asset = state.assets[message.asset]!
+      if (asset.expeditionPartner) return state
       const instead = !message.leavingResolved
         ? assetBehavior(state, asset)?.leavesPlay?.(state, asset, 'other')
         : null
@@ -8079,7 +8269,12 @@ export function handle(state: GameState, message: Message): GameState {
           })
         }
       }
-      return log({ ...state, outcome: message.outcome, queue: [], pending: null }, 'log.end', {
+      const saved = Object.values(state.assets).reduce(
+        (next, asset) =>
+          asset.expeditionPartner ? saveExpeditionPartner(next, asset, false) : next,
+        state,
+      )
+      return log({ ...saved, outcome: message.outcome, queue: [], pending: null }, 'log.end', {
         outcome: message.outcome.type === 'resolution' ? `R${message.outcome.resolution}` : '—',
       })
     }
@@ -10365,6 +10560,24 @@ export function victoryTotal(state: GameState): number {
 function updateCampaignLog(state: GameState, update: (log: CampaignLog) => CampaignLog): GameState {
   const current = state.campaignLog ?? emptyCampaignLog(state.investigators.map((i) => i.id))
   return { ...state, campaignLog: update(current) }
+}
+
+function updateExpedition(
+  state: GameState,
+  update: (
+    expedition: NonNullable<CampaignLog['expedition']>,
+  ) => NonNullable<CampaignLog['expedition']>,
+): GameState {
+  const campaignLog = state.campaignLog
+  if (!campaignLog?.expedition) return state
+  const expedition = update(campaignLog.expedition)
+  return expedition === campaignLog.expedition
+    ? state
+    : { ...state, campaignLog: { ...campaignLog, expedition } }
+}
+
+function saveExpeditionPartner(state: GameState, asset: Asset, defeated: boolean): GameState {
+  return updateExpedition(state, (expedition) => recordPartner(expedition, asset, defeated))
 }
 
 /**
