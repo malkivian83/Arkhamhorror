@@ -1,6 +1,7 @@
 import { registerCampaign } from '../campaign-definition'
 import { CALL_OF_THE_PLAGUEBEARER, PLAGUEBEARER_CHAOS_BAGS } from './campaign'
 import { LATE_RISERS, lateRisers } from './scenario'
+import { NIGHT_ON_THE_TOWN, nightOnTheTown } from './night-on-the-town'
 registerCampaign({
   id: CALL_OF_THE_PLAGUEBEARER.id,
   name: 'campaign.names.call-of-the-plaguebearer',
@@ -13,6 +14,12 @@ registerCampaign({
           build: ({ difficulty }) => lateRisers({ difficulty }),
           keywords: ['hunter', 'aloof', 'retaliate', 'alert', 'massive', 'prey'],
         }
-      : { id },
+      : id === NIGHT_ON_THE_TOWN
+        ? {
+            id,
+            build: ({ difficulty, seed }) => nightOnTheTown({ difficulty, seed }),
+            keywords: ['hunter', 'retaliate', 'massive', 'defend'],
+          }
+        : { id },
   ),
 })

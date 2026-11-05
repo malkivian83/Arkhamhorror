@@ -1,3 +1,4 @@
+import { withEffectSource } from './effect-source'
 import {
   isFightAction,
   engageActionsAvailable,
@@ -1562,6 +1563,7 @@ export function handle(state: GameState, message: Message): GameState {
         }))
         const horror: Message = {
           type: 'TakeDamage',
+          source: 'rule:deckExhausted',
           investigator: investigator.id,
           damage: 0,
           horror: 1,
@@ -2348,7 +2350,7 @@ export function handle(state: GameState, message: Message): GameState {
           ...message,
           checkedTreacheries: [...(message.checkedTreacheries ?? []), treachery.id],
         })
-        if (instead) return push(state, ...instead)
+        if (instead) return push(state, ...sourced(instead, treachery.name))
       }
       const costs =
         message.entryPaid || message.unpreventable
@@ -2479,7 +2481,8 @@ export function handle(state: GameState, message: Message): GameState {
                   l.id,
                 )
                   ? 0
-                  : perInvestigator(state, l.clueValue, l.cluesPerInvestigator),
+                  : (scenarioBehavior(state.scenarioId)?.preserveCluesOnReveal ? l.clues : 0) +
+                    perInvestigator(state, l.clueValue, l.cluesPerInvestigator),
               },
         ),
       )
@@ -2643,7 +2646,11 @@ export function handle(state: GameState, message: Message): GameState {
       }
       if (getInvestigator(state, message.investigator).osirisProtected && message.damage > 0)
         return push(state, { ...message, damage: 0 })
-      const source = message.source ?? damageSource(state, message.enemy)
+      const source =
+        message.source ??
+        (message.enemy
+          ? damageSource(state, message.enemy)
+          : (message.effectSource ?? damageSource(state)))
       if (
         !message.damageWindowResolved &&
         !message.assignmentPart &&
@@ -9935,9 +9942,11 @@ function toOwnerDiscard(state: GameState, owner: string, code: string): GameStat
 /** Habilidades forzadas de las cartas en juego que responden a `trigger`. */
 /** Da origen al daño que inflige directamente una carta (sin tocar el que ya lo tiene). */
 function sourced(messages: Message[] | undefined, source: string): Message[] {
-  return (messages ?? []).map((m) =>
-    m.type === 'TakeDamage' && !m.source && !m.enemy ? { ...m, source } : m,
-  )
+  if (!messages?.length) return []
+  return [
+    { type: 'Log', key: 'log.effectTriggered', params: { source } },
+    ...messages.map((m) => withEffectSource(m, source)),
+  ]
 }
 
 /**
@@ -11016,8 +11025,10 @@ export function skillTestValue(state: GameState): {
         )
   const lasting = currentTurnSkillEffect(state, investigator.id)
   const base =
-    (test.baseSkill ?? lasting?.bases?.[test.skill] ?? investigator.skills[test.skill]) *
-    (doubling.base ? 2 : 1)
+    (scenarioBehavior(state.scenarioId)?.skillBase?.(state, test) ??
+      test.baseSkill ??
+      lasting?.bases?.[test.skill] ??
+      investigator.skills[test.skill]) * (doubling.base ? 2 : 1)
   const scenario =
     (scenarioBehavior(state.scenarioId)?.skillModifier?.(state, test) ?? 0) +
     Object.values(state.treacheries).reduce(

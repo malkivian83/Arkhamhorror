@@ -107,6 +107,10 @@ export interface ScenarioBehavior {
   abilities?: AbilitiesFn<null>
   /** Modificador a la prueba en curso por efectos del escenario (traiciones, enemigos, lugares). */
   skillModifier?: (state: GameState, test: SkillTest) => number
+  /** A scenario test may use a current numeric quantity instead of an investigator skill. */
+  skillBase?: (state: GameState, test: SkillTest) => number | undefined
+  /** Keep scenario-placed clues when adding the revealed face's printed clues. */
+  preserveCluesOnReveal?: boolean
   /** El enemigo no puede recibir daño. */
   enemyImmune?: (state: GameState, enemy: Enemy) => boolean
   /**

@@ -35,7 +35,7 @@ registerLocation({
     {
       key: `${L.alpha}:fire`,
       label: 'ability.plaguebearer.fire',
-      actions: 2,
+      actions: 1,
       provokes: true,
       actionKind: 'investigate',
       limit: { per: 'game', group: true },
@@ -78,7 +78,7 @@ registerLocation({
           {
             key: `${L.stairs}:resign`,
             label: 'ability.plaguebearer.resign',
-            actions: 2,
+            actions: 1,
             provokes: false,
             costs: [{ type: 'SpendClues', investigator: by, amount: getInvestigator(s, by).clues }],
             then: [{ type: 'Resign', investigator: by }],

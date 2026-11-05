@@ -42,7 +42,7 @@ export const on = (key: string, handler: Handler) => {
 }
 export const run = (s: GameState, key: string, data: Record<string, string | number | boolean>) =>
   handlers.get(key)?.(s, data) ?? s
-export const miasma = (id: string | null) => id === L.omega
+export const miasma = (id: string | null) => id === L.omega || /^782(7[5-9]|8[0-2])$/.test(id ?? '')
 export const terrorCount = (s: GameState, by: string) =>
   Object.values(s.treacheries).filter(
     (t) =>
@@ -102,7 +102,7 @@ on('plaguebearer.moveRelative', (s, d) =>
   moveRelative(
     s,
     String(d.investigator),
-    [d.safe ? L.tunnel : L.omega].filter((id) => !!s.locations[id]),
+    d.safe ? [L.tunnel].filter((id) => !!s.locations[id]) : Object.keys(s.locations).filter(miasma),
     !!d.safe,
   ),
 )
