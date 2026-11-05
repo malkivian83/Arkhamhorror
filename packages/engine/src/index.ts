@@ -113,6 +113,8 @@ export {
   totalDoom,
   secondAgendaDoom,
   testEnemyHasKeyword,
+  testMargin,
+  withinFrostLimit,
   handSize,
   cardsInHand,
 } from './handlers'

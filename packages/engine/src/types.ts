@@ -180,6 +180,8 @@ export interface Location {
   connectsTo?: string[]
   unrevealed?: { symbol: string; connectsTo: string[] }
   enterCost?: number
+  /** Only investigators at the moving investigator's origin can pay this clue cost. */
+  enterCostAtOrigin?: boolean
   /** Coste adicional de entrar sin revelar: recibir este horror (Lantern Chamber). */
   enterHorror?: number
   /** Conexiones que no salen de los símbolos (colocadas por un efecto), en ambos sentidos. */
@@ -280,6 +282,7 @@ export interface Enemy extends EnemyCard {
   huntedRound?: number
   /** Ronda en cuya fase de enemigos no ataca (El organista, Byakhee veloz). */
   noAttackRound?: number
+  noAttackAnyPhaseRound?: number
 }
 
 /** `hidden`: Oculto (El camino a Carcosa), se añade en secreto a la mano. */
@@ -319,6 +322,7 @@ export interface Treachery extends TreacheryCard {
   owner?: InvestigatorId
   /** Su efecto de revelación se ha cancelado. */
   canceled?: boolean
+  tekeliliToDeckBottom?: boolean
   /** Fichas (de daño u otras) colocadas sobre la carta. */
   tokens?: number
   /** Pistas y horror sobre la carta (Cerebro extraído). */
@@ -374,6 +378,7 @@ export interface LocationCard {
   unrevealed?: { symbol: string; connectsTo: string[] }
   /** Mientras no está revelada, entrar cuesta estas pistas por investigador, en grupo. */
   enterCost?: number
+  enterCostAtOrigin?: boolean
   /** Acciones adicionales que cuesta investigar aquí (Waterfront District). */
   investigateExtraActions?: number
   /** Coste adicional de entrar sin revelar: recibir este horror (Lantern Chamber). */
@@ -704,6 +709,8 @@ export interface SkillTest {
   failByModifier?: number
   /** No chaos tokens are revealed: steps 3 and 4 are skipped (Will to Survive, Shed a Light). */
   noTokens?: boolean
+  /** A reveal was canceled. A test can finish without a resolved token. */
+  canceledReveal?: boolean
   /** A second Frost token stopped further reveals during this test. */
   stopRevealing?: boolean
   /** Complete deferred windows/effects, in order, after this test ends. */
@@ -964,6 +971,7 @@ type MessageBody =
       revelations?: CardCode[]
       /** All In: count weaknesses in the draw, then shuffle them back unresolved. */
       shuffleWeaknesses?: boolean
+      discardTekelili?: boolean
       drawnWeaknesses?: CardCode[]
     }
   | { type: 'ShuffleDrawnWeaknesses'; investigator: InvestigatorId; codes: CardCode[] }
@@ -1296,7 +1304,7 @@ type MessageBody =
   /** Cancela los efectos y los iconos de las cartas de habilidad comprometidas. */
   | { type: 'CancelCommittedSkills' }
   /** El enemigo no ataca en la fase de enemigos de esta ronda. */
-  | { type: 'EnemySkipsAttacks'; enemy: EnemyId }
+  | { type: 'EnemySkipsAttacks'; enemy: EnemyId; allPhases?: boolean }
   /** Las demás cartas comprometidas vuelven a la mano de sus dueños (On the Brink). */
   | { type: 'ReturnCommittedToHand'; except: CardCode }
   /** Si en la prueba en curso se ha revelado alguna ficha con símbolo. */
@@ -1724,7 +1732,12 @@ type MessageBody =
   | { type: 'RecordExpeditionCamp'; location: CardCode; shelter: number }
   | { type: 'RecoverExpeditionSupply'; supply: ExpeditionSupply }
   | { type: 'InitializeTekeliliDeck' }
-  | { type: 'ShuffleTekeliliIntoDeck'; investigator: InvestigatorId; amount: number }
+  | {
+      type: 'ShuffleTekeliliIntoDeck'
+      investigator: InvestigatorId
+      amount: number
+      includeEliminated?: boolean
+    }
   | { type: 'ReturnTekelili'; treachery: TreacheryId }
   /** `scenarioOnly`: solo para este escenario, sin anotarlas en el registro de campaña. */
   | { type: 'AddChaosTokens'; tokens: ChaosToken[]; scenarioOnly?: boolean }
@@ -1884,7 +1897,12 @@ type MessageBody =
   /** Saca una debilidad del juego y la baraja en el mazo de su dueño (o de `investigator`). */
   | { type: 'ShuffleTreacheryIntoDeck'; treachery: TreacheryId; investigator?: InvestigatorId }
   /** Una debilidad robada del mazo se resuelve. */
-  | { type: 'ResolveWeakness'; investigator: InvestigatorId; code: CardCode }
+  | {
+      type: 'ResolveWeakness'
+      investigator: InvestigatorId
+      code: CardCode
+      tekeliliToDeckBottom?: boolean
+    }
   /** El investigador coloca una a una las cartas miradas arriba o abajo de su mazo. */
   | { type: 'ArrangeCards'; investigator: InvestigatorId; cards: CardCode[] }
   | { type: 'PlaceOnDeck'; investigator: InvestigatorId; code: CardCode; where: 'top' | 'bottom' }
@@ -2097,6 +2115,8 @@ export type Trigger =
   | { type: 'enemySpawned'; enemy: EnemyId; location: LocationId }
   | { type: 'afterTakeControlOfPlaced'; investigator: InvestigatorId; code: CardCode }
   | { type: 'assetDefeated'; asset: Asset }
+  | { type: 'afterTekeliliResolved'; investigator: InvestigatorId }
+  | { type: 'treacheryAttached'; treachery: TreacheryId; location: LocationId }
   | { type: 'locationCluesRemoved'; location: LocationId }
   | { type: 'afterEngage'; investigator: InvestigatorId; enemy: EnemyId }
   | { type: 'beforeEngage'; investigator: InvestigatorId; enemy: EnemyId }

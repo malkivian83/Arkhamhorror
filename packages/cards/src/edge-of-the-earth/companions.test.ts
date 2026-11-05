@@ -77,6 +77,119 @@ function use(game: GameState, label: string): GameState {
 // Guide, p. 3, «Partner», and the ability printed on both versions of each card.
 describe('Expedition companion abilities', () => {
   it.each([
+    [false, undefined, 4],
+    [true, 'spendSupply', 2],
+    [true, 'redraw', 3],
+  ] as const)(
+    'cancels another local investigator’s Helada (resolute %s, option %s)',
+    (resolute, option, supplies) => {
+      const game = start('08718', resolute)
+      const revealing = dispatch(
+        { ...game, chaosBag: ['frost'] },
+        {
+          type: 'BeginSkillTest',
+          investigator: 'b',
+          skill: 'willpower',
+          difficulty: 1,
+          kind: { type: 'effect', source: 'Test', onSuccess: [], onFail: [], onFailEach: [] },
+        },
+      )
+      expect(revealing.pending?.investigator).toBe('a')
+      const reacted = choose(revealing, 'ability.edgeOfTheEarth.claypool')
+      const resolved = option ? choose(reacted, `choice.edgeOfTheEarth.${option}`) : reacted
+      expect(own(resolved)).toMatchObject({ exhausted: true, uses: supplies })
+      expect(resolved.chaosBag).toEqual(['frost'])
+      expect(resolved.log.some((entry) => entry.key === 'log.tokenCanceled')).toBe(true)
+    },
+  )
+
+  it('does not offer Claypool for a remote investigator or for a reveal outside a test', () => {
+    const game = start('08718', false)
+    const remote = {
+      ...game,
+      chaosBag: ['frost'] as const,
+      investigators: game.investigators.map((i) => (i.id === 'b' ? { ...i, location: 'B' } : i)),
+    }
+    const tested = dispatch(
+      { ...remote, chaosBag: [...remote.chaosBag] },
+      {
+        type: 'BeginSkillTest',
+        investigator: 'b',
+        skill: 'willpower',
+        difficulty: 1,
+        kind: { type: 'effect', source: 'Test', onSuccess: [], onFail: [], onFailEach: [] },
+      },
+    )
+    expect(tested.pending?.question.choices.map((choice) => choice.label) ?? []).not.toContain(
+      'ability.edgeOfTheEarth.claypool',
+    )
+    const outside = dispatch(
+      { ...game, chaosBag: ['frost'] },
+      {
+        type: 'RevealTokenOutsideTest',
+        investigator: 'a',
+        then: {
+          type: 'PlayerCardEffect',
+          code: 'test-partner-ally',
+          investigator: 'a',
+          step: 'noop',
+        },
+      },
+    )
+    expect(outside.pending?.question.choices.map((choice) => choice.label) ?? []).not.toContain(
+      'ability.edgeOfTheEarth.claypool',
+    )
+  })
+
+  it.each([
+    [false, false, true],
+    [true, false, true],
+    [true, true, false],
+  ] as const)(
+    'uses Fredericks to fight and suppresses attacks only for non-Elite enemies (resolute %s, elite %s)',
+    (resolute, elite, suppressed) => {
+      const game = start('08719', resolute)
+      const spawned = dispatch(game, {
+        type: 'SpawnEnemy',
+        location: 'A',
+        engageWith: 'a',
+        card: {
+          kind: 'enemy',
+          code: 'test-fredericks-enemy',
+          name: 'Test enemy',
+          fight: resolute ? 5 : 4,
+          evade: 2,
+          health: 3,
+          damage: 1,
+          horror: 0,
+          traits: elite ? ['Elite'] : [],
+          keywords: [],
+        },
+      })
+      if (resolute)
+        expect(
+          availableAbilities({ ...spawned, activeTurn: 'b' }, 'a').map((a) => a.label),
+        ).not.toContain('ability.edgeOfTheEarth.fredericks')
+      const fought = use({ ...spawned, chaosBag: [-1] }, 'fredericks')
+      const enemy = Object.values(fought.enemies)[0]!
+      expect(enemy.damageTaken).toBe(1)
+      expect(own(fought)).toMatchObject({ exhausted: true, uses: 2 })
+      expect(inv(fought).actionsRemaining).toBe(resolute ? 3 : 2)
+      const attack = {
+        type: 'EnemyAttack' as const,
+        enemy: enemy.id,
+        investigator: 'b',
+        exhaustAfter: false,
+      }
+      expect(dispatch(fought, attack).enemyAttacks?.length ?? 0).toBe(suppressed ? 0 : 1)
+      expect(dispatch({ ...fought, phase: 'enemy' }, attack).enemyAttacks?.length ?? 0).toBe(
+        suppressed ? 0 : 1,
+      )
+      expect(dispatch({ ...fought, round: fought.round + 1 }, attack).enemyAttacks).toHaveLength(1)
+    },
+  )
+
+  it.each([
     ['08714', false, 'horror'],
     ['08714', true, 'horror'],
     ['08717', false, 'damage'],

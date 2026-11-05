@@ -12,6 +12,7 @@ import {
   spendableFor,
   commitBlocked,
   entryCost,
+  entryCluePayers,
   fastAbilitiesBlocked,
   leavingBlocked,
   moveBlocked,
@@ -49,6 +50,7 @@ import {
   playerCardDef,
   scenarioBehavior,
   storyBehavior,
+  activeTreacheryBehavior,
   treacheryBehavior,
 } from './content'
 import {
@@ -724,7 +726,7 @@ export function handle(state: GameState, message: Message): GameState {
     case 'RevealTreachery': {
       const treachery = state.treacheries[message.treachery]
       if (!treachery || treachery.canceled) return state
-      const behavior = treacheryBehavior(treachery.code)
+      const behavior = activeTreacheryBehavior(state, treachery)
       return behavior
         ? push(state, ...behavior.revelation(state, message.investigator, treachery))
         : state
@@ -759,9 +761,9 @@ export function handle(state: GameState, message: Message): GameState {
     case 'GainSurge':
       return { ...state, surgePending: true }
 
-    case 'PlaceTreachery':
+    case 'PlaceTreachery': {
       if (!state.treacheries[message.treachery]) return state
-      return {
+      const next = {
         ...state,
         treacheries: {
           ...state.treacheries,
@@ -772,6 +774,17 @@ export function handle(state: GameState, message: Message): GameState {
           },
         },
       }
+      return message.placement.type === 'location'
+        ? push(next, {
+            type: 'Forced',
+            trigger: {
+              type: 'treacheryAttached',
+              treachery: message.treachery,
+              location: message.placement.location,
+            },
+          })
+        : next
+    }
 
     case 'DiscardTreachery':
       if (treacheryBehavior(state.treacheries[message.treachery]?.code ?? '')?.cannotDiscard)
@@ -1291,7 +1304,7 @@ export function handle(state: GameState, message: Message): GameState {
         )
       }
       if (message.action.kind === 'move') {
-        if (!canAffordEntry(state, message.action.to))
+        if (!canAffordEntry(state, message.action.to, investigator.id))
           throw new EngineError('No hay pistas suficientes para entrar')
         return push(
           paid,
@@ -1573,11 +1586,14 @@ export function handle(state: GameState, message: Message): GameState {
           : push(reshuffled, horror, message)
       }
       const [card, ...deck] = investigator.deck as [string, ...string[]]
+      const discardTekelili = message.discardTekelili && Object.hasOwn(tekeliliCopies, card)
       const unresolved = !!message.shuffleWeaknesses && !!playerCardDef(card)?.weakness
       const weaknesses = [...(message.drawnWeaknesses ?? []), ...(unresolved ? [card] : [])]
       const revelations = [
         ...(message.revelations ?? []),
-        ...(!unresolved && (playerCardBehavior(card)?.revelation || resolvesWhenDrawn(card))
+        ...(!discardTekelili &&
+        !unresolved &&
+        (playerCardBehavior(card)?.revelation || resolvesWhenDrawn(card))
           ? [card]
           : []),
       ]
@@ -1601,7 +1617,8 @@ export function handle(state: GameState, message: Message): GameState {
         updateInvestigator(state, investigator.id, (i) => ({
           ...i,
           deck,
-          hand: unresolved ? i.hand : [...i.hand, card],
+          hand: unresolved || discardTekelili ? i.hand : [...i.hand, card],
+          ...(discardTekelili ? { discard: [...i.discard, card] } : {}),
         })),
         ...more,
       )
@@ -2346,7 +2363,7 @@ export function handle(state: GameState, message: Message): GameState {
           message.checkedTreacheries?.includes(treachery.id)
         )
           continue
-        const instead = treacheryBehavior(treachery.code)?.beforeMove?.(state, treachery, {
+        const instead = activeTreacheryBehavior(state, treachery)?.beforeMove?.(state, treachery, {
           ...message,
           checkedTreacheries: [...(message.checkedTreacheries ?? []), treachery.id],
         })
@@ -2357,7 +2374,7 @@ export function handle(state: GameState, message: Message): GameState {
           ? []
           : entryCosts(state, message.investigator, message.location)
       if (costs.length > 0) {
-        if (!canAffordEntry(state, message.location)) return state
+        if (!canAffordEntry(state, message.location, mover.id)) return state
         return push(state, ...costs, { ...message, entryPaid: true })
       }
       // Los enemigos enfrentados acompañan al investigador.
@@ -2641,7 +2658,7 @@ export function handle(state: GameState, message: Message): GameState {
     case 'TakeDamage': {
       for (const t of Object.values(state.treacheries)) {
         if (t.placement.type === 'limbo') continue
-        const instead = treacheryBehavior(t.code)?.beforeDamage?.(state, t, message)
+        const instead = activeTreacheryBehavior(state, t)?.beforeDamage?.(state, t, message)
         if (instead) return push(state, ...instead)
       }
       if (getInvestigator(state, message.investigator).osirisProtected && message.damage > 0)
@@ -2674,7 +2691,7 @@ export function handle(state: GameState, message: Message): GameState {
       const canSoak =
         !message.direct &&
         !Object.values(state.treacheries).some(
-          (t) => t.placement.type !== 'limbo' && treacheryBehavior(t.code)?.allDamageDirect,
+          (t) => t.placement.type !== 'limbo' && activeTreacheryBehavior(state, t)?.allDamageDirect,
         ) &&
         soakers(state, message.investigator, 'damage').length +
           soakers(state, message.investigator, 'horror').length +
@@ -4461,15 +4478,31 @@ export function handle(state: GameState, message: Message): GameState {
     case 'ShuffleTekeliliIntoDeck': {
       const pool = state.tekeliliDeck
       const investigator = state.investigators.find((i) => i.id === message.investigator)
-      if (!pool?.length || !investigator || investigator.eliminated) return state
+      if (!pool?.length || !investigator || (investigator.eliminated && !message.includeEliminated))
+        return state
       const cards = pool.slice(0, Math.max(0, message.amount))
       if (!cards.length) return state
-      const [deck, rng] = shuffle([...investigator.deck, ...cards], state.rng)
+      const draw =
+        !investigator.eliminated &&
+        scenarioBehavior(state.scenarioId)?.drawTekeliliInstead?.(state, investigator.id)
+      const [deck, rng] = draw
+        ? [investigator.deck, state.rng]
+        : shuffle([...investigator.deck, ...cards], state.rng)
       const added = updateRecords(
         { ...state, rng, tekeliliDeck: pool.slice(cards.length) },
         investigator.id,
         (r) => ({ ...r, storyAssets: [...r.storyAssets, ...cards] }),
       )
+      if (draw)
+        return push(
+          added,
+          ...cards.map((code): Message => ({
+            type: 'ResolveWeakness',
+            investigator: investigator.id,
+            code,
+            tekeliliToDeckBottom: true,
+          })),
+        )
       return updateInvestigator(added, investigator.id, (i) => ({ ...i, deck }))
     }
 
@@ -4488,11 +4521,20 @@ export function handle(state: GameState, message: Message): GameState {
       const at = record?.storyAssets.indexOf(card.code) ?? -1
       if (at < 0) return state
       const { [card.id]: _resolved, ...treacheries } = state.treacheries
-      return updateRecords(
-        { ...state, treacheries, tekeliliDeck: [...pool, card.code] },
-        card.owner,
-        (r) => ({ ...r, storyAssets: r.storyAssets.filter((_, index) => index !== at) }),
-      )
+      const next = card.tekeliliToDeckBottom
+        ? updateInvestigator({ ...state, treacheries }, card.owner, (player) => ({
+            ...player,
+            deck: [...player.deck, card.code],
+          }))
+        : updateRecords(
+            { ...state, treacheries, tekeliliDeck: [...pool, card.code] },
+            card.owner,
+            (r) => ({ ...r, storyAssets: r.storyAssets.filter((_, index) => index !== at) }),
+          )
+      return push(next, {
+        type: 'Forced',
+        trigger: { type: 'afterTekeliliResolved', investigator: card.owner },
+      })
     }
 
     case 'EarnExperience': {
@@ -4686,6 +4728,8 @@ export function handle(state: GameState, message: Message): GameState {
         discard: [],
       }))
       if (activeInvestigators(next).length === 0) {
+        const ending = scenarioBehavior(next.scenarioId)?.onAllInvestigatorsEliminated?.(next)
+        if (ending) return push(next, ...ending)
         return push(next, { type: 'EndScenario', outcome: { type: 'noResolution' } })
       }
       // Grimorio: "Eliminación", "Investigador jefe". El grupo elige un nuevo
@@ -5103,12 +5147,13 @@ export function handle(state: GameState, message: Message): GameState {
             skillTest: message.use
               ? {
                   ...rest,
+                  canceledReveal: true,
                   abilityCounts: {
                     ...rest.abilityCounts,
                     [message.use]: (rest.abilityCounts?.[message.use] ?? 0) + 1,
                   },
                 }
-              : rest,
+              : { ...rest, canceledReveal: true },
           },
           'log.tokenCanceled',
           { token: String(revealing.face) },
@@ -5289,7 +5334,7 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'ResolveSkillTest': {
       const test = state.skillTest
-      if (!test || (test.tokens.length === 0 && !test.noTokens))
+      if (!test || (test.tokens.length === 0 && !test.noTokens && !test.canceledReveal))
         throw new EngineError('Prueba sin ficha revelada')
       const investigator = getInvestigator(state, test.investigator)
       // RR "Skills and Skill Tests": la ficha de fallo automático deja el valor en 0.
@@ -5918,7 +5963,11 @@ export function handle(state: GameState, message: Message): GameState {
       if (!enemy || (enemy.exhausted && !message.evenIfExhausted) || investigator.eliminated)
         return state
       // El organista: no ataca en esta fase de enemigos.
-      if (enemy.noAttackRound === state.round && state.phase === 'enemy') return state
+      if (
+        enemy.noAttackAnyPhaseRound === state.round ||
+        (enemy.noAttackRound === state.round && state.phase === 'enemy')
+      )
+        return state
       // Glotón del manicomio: no ataca en la fase de enemigos en la que se movió por Cazador.
       if (
         enemy.huntedRound === state.round &&
@@ -6010,7 +6059,12 @@ export function handle(state: GameState, message: Message): GameState {
         : state
 
     case 'EnemySkipsAttacks':
-      return updateEnemy(state, message.enemy, (e) => ({ ...e, noAttackRound: state.round }))
+      return updateEnemy(state, message.enemy, (e) => ({
+        ...e,
+        ...(message.allPhases
+          ? { noAttackAnyPhaseRound: state.round }
+          : { noAttackRound: state.round }),
+      }))
 
     case 'AddInvestigationResults': {
       const test = state.skillTest
@@ -9006,7 +9060,7 @@ export function handle(state: GameState, message: Message): GameState {
       const options = withinConnections(state, investigator.location, message.range ?? 1).filter(
         (to) =>
           state.locations[to] &&
-          canAffordEntry(state, to) &&
+          canAffordEntry(state, to, investigator.id) &&
           canEnter(state, investigator.id, to) &&
           (!message.revealedOnly || state.locations[to]?.revealed),
       )
@@ -9202,6 +9256,7 @@ export function handle(state: GameState, message: Message): GameState {
               traits: def?.traits ?? [],
               keywords: [],
               id,
+              ...(message.tekeliliToDeckBottom ? { tekeliliToDeckBottom: true } : {}),
               owner: investigator.id,
               placement: { type: 'limbo' },
             },
@@ -9571,7 +9626,7 @@ function resolvesWhenDrawn(code: string): boolean {
 function discardUnsupported(state: GameState): GameState {
   return Object.values(state.treacheries).reduce(
     (next, t) =>
-      next.treacheries[t.id] && treacheryBehavior(t.code)?.persistsWhile?.(next, t) === false
+      next.treacheries[t.id] && activeTreacheryBehavior(next, t)?.persistsWhile?.(next, t) === false
         ? discardTreachery(next, t.id)
         : next,
     state,
@@ -9807,7 +9862,7 @@ function testOptions(state: GameState, test: SkillTest): ReactionOption[] {
     )
     .flatMap((a) => assetBehavior(state, a)?.testOptions?.(state, test, a) ?? [])
   const treacheries = Object.values(state.treacheries).flatMap(
-    (t) => treacheryBehavior(t.code)?.testOptions?.(state, test, t) ?? [],
+    (t) => activeTreacheryBehavior(state, t)?.testOptions?.(state, test, t) ?? [],
   )
   return [...own, ...assets, ...treacheries, ...fastInvestigatorOptions(state)].filter((o) =>
     withinLimit(state, o.key, o.investigator, o.limit),
@@ -10013,7 +10068,7 @@ function resolveRevealedToken(
 /** Frost: at most 8 between the bag, sealed tokens and those revealed in the current test. */
 const MAX_FROST_TOKENS = 8
 
-function withinFrostLimit(state: GameState, tokens: ChaosToken[]): ChaosToken[] {
+export function withinFrostLimit(state: GameState, tokens: ChaosToken[]): ChaosToken[] {
   const test = state.skillTest
   let frost = [
     ...state.chaosBag,
@@ -10195,7 +10250,7 @@ function damageSource(state: GameState, enemy?: EnemyId): string | undefined {
 function forcedAbilities(state: GameState, trigger: Trigger): Message[] {
   const fromTreacheries = Object.values(state.treacheries)
     .filter((t) => t.placement.type !== 'limbo')
-    .flatMap((t) => sourced(treacheryBehavior(t.code)?.forced?.(state, trigger, t), t.name))
+    .flatMap((t) => sourced(activeTreacheryBehavior(state, t)?.forced?.(state, trigger, t), t.name))
   const enemies = trigger.type === 'enemyDefeated' ? [trigger.enemy] : Object.values(state.enemies)
   const fromEnemies = enemies.flatMap((e) =>
     sourced(enemyBehavior(e.code)?.forced?.(state, trigger, e), e.name),
@@ -10677,7 +10732,7 @@ function gameEndEffects(state: GameState, investigators: InvestigatorId[]): Mess
           ? t.placement.investigator === id
           : t.placement.type !== 'limbo' && t.owner === id,
       )
-      .flatMap((t) => treacheryBehavior(t.code)?.whenGameEnds?.(state, t) ?? []),
+      .flatMap((t) => activeTreacheryBehavior(state, t)?.whenGameEnds?.(state, t) ?? []),
     ...[...new Set(getInvestigator(state, id).hand)].flatMap(
       (code) => playerCardBehavior(code)?.whenGameEndsInHand?.(state, id) ?? [],
     ),
@@ -10763,7 +10818,7 @@ export function slotCapacity(
   // Camisa de fuerza: en la zona de amenaza ocupa ranuras como un apoyo.
   const occupied = Object.values(state.treacheries)
     .filter((t) => t.placement.type === 'threatArea' && t.placement.investigator === investigator)
-    .reduce((n, t) => n + (treacheryBehavior(t.code)?.occupiesSlots?.[slot] ?? 0), 0)
+    .reduce((n, t) => n + (activeTreacheryBehavior(state, t)?.occupiesSlots?.[slot] ?? 0), 0)
   return Object.values(state.assets)
     .filter((a) => a.owner === investigator)
     .reduce(
@@ -10946,7 +11001,15 @@ function entryCosts(
   const place = getLocation(state, location)
   const horror = place.revealed ? 0 : (place.enterHorror ?? 0)
   return [
-    ...(clues ? [{ type: 'SpendGroupClues' as const, amount: clues }] : []),
+    ...(clues
+      ? [
+          {
+            type: 'PayGroupClues' as const,
+            amount: clues,
+            from: entryCluePayers(state, location, investigator).map((i) => i.id),
+          },
+        ]
+      : []),
     ...(horror ? [{ type: 'TakeDamage' as const, investigator, damage: 0, horror }] : []),
   ]
 }
@@ -11032,7 +11095,7 @@ export function skillTestValue(state: GameState): {
   const scenario =
     (scenarioBehavior(state.scenarioId)?.skillModifier?.(state, test) ?? 0) +
     Object.values(state.treacheries).reduce(
-      (sum, t) => sum + (treacheryBehavior(t.code)?.skillModifier?.(state, t, test) ?? 0),
+      (sum, t) => sum + (activeTreacheryBehavior(state, t)?.skillModifier?.(state, t, test) ?? 0),
       0,
     )
   // "Tu habilidad no puede modificarse": solo cuenta su valor (sin iconos ni modificadores).

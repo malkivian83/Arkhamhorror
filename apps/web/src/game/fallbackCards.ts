@@ -553,6 +553,10 @@ export function fallbackCards(locale: string): LocalizedCard[] {
       subname: text.subname,
       traits: text.traits,
       text: text.text,
+      flavor: text.flavor,
+      back_name: text.backName,
+      back_text: text.backText,
+      back_flavor: text.backFlavor,
     })
   }
   const catalogues = [

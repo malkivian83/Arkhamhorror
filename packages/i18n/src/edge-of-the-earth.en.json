@@ -67,28 +67,97 @@
     "victim08722": {
       "title": "The expedition suffers a loss",
       "body": "Takada Hiroko died in the plane crash."
+    },
+    "setup": {
+      "title": "Setup",
+      "body": "Begin at the Crash Site. Explore the coast and the mountains to find shelter. The uncharted locations enter play as you approach them."
+    },
+    "coldWelcome": {
+      "title": "Under the Ice",
+      "body": "Someone calls you back to look at a trail of misshapen tracks. Before you can work out what left them, a twisted shape bursts from the snow and rushes toward you."
+    },
+    "intoTheWhite": {
+      "title": "Terror of the Stars",
+      "body": "The shape that brought down the planes returns. You see it through the snowfall, bearing down on the place you hoped would shelter you."
+    },
+    "runningOutOfTime": {
+      "title": "Running Out of Time",
+      "body": "The storm is getting worse. You have to give up the search and take shelter wherever you can."
+    },
+    "noResolution": {
+      "title": "No resolution",
+      "body": "The cold has overcome the expedition. With the search cut short, the team must make do with whatever shelter is close at hand."
+    },
+    "resolution1": {
+      "title": "Resolution 1",
+      "body": "At last, the expedition makes camp. You take stock of the supplies you recovered and prepare to face the night."
     }
   },
   "choice": {
+    "redraw": "Reveal a new chaos token",
+    "spendSupply": "Spend 1 supply instead",
     "healDamage": "Heal 2 damage from {name}",
     "healHorror": "Heal 2 horror from {name}",
     "takeResources": "Move {amount} resources to your pool",
     "believeDyer": "Believe Dyer and argue for investigating his findings",
     "doubtDyer": "Tell Dyer that the report is hard to believe",
-    "noPartner": "Do not take a partner"
+    "noPartner": "Do not take a partner",
+    "camp": "Camp at {name} (shelter {shelter})",
+    "spawnTerror": "Spawn the Terror at {name}",
+    "attach": "Attach to {name}",
+    "phantasm": "Move the Phantasm to {name}",
+    "damage": "Take 1 damage",
+    "horror": "Take 1 horror",
+    "takeHorror": "Take {amount} horror",
+    "placeClues": "Place 2 of your clues on your location",
+    "addFrost": "Add 1 frost token",
+    "removeFrost": "Remove 1 frost token",
+    "lookPlayer": "Look at the top of {name}'s deck",
+    "lookEncounter": "Look at the top of the encounter deck"
   },
   "prompt": {
-    "partner": "Choose a partner for this scenario"
+    "claypool": "Avery Claypool: choose how to cancel the frost token",
+    "partner": "Choose a partner for this scenario",
+    "camp": "Choose where to make camp",
+    "terror": "Where does Terror of the Stars spawn?",
+    "pathFrost": "Treacherous Path: choose damage or horror",
+    "apeirophobia": "Apeirophobia: choose a consequence",
+    "ship": "Icebreaker Landing: choose your reward",
+    "kensler": "Choose a deck for Dr. Kensler to inspect",
+    "kenslerCard": "Keep or discard the card?"
   },
   "ability": {
+    "claypool": "Avery Claypool: cancel the frost token",
+    "fredericks": "James Fredericks: fight",
     "damage": "{card}: heal 2 damage",
     "horror": "{card}: heal 2 horror",
     "evade": "{card}: evade",
-    "resources": "{card}: move resources"
+    "resources": "{card}: move resources",
+    "camp": "Search for a Camp Site: resign together",
+    "iceSheet": "Precarious Ice Sheet: add frost to cancel the treachery",
+    "snowdrifts": "Broad Snowdrifts: add frost to discover 3 additional clues",
+    "supply08614": "Recover Green Soapstone",
+    "supply08615": "Search for the Wooden Sledge",
+    "supply08616": "Ask the explorers for Dynamite",
+    "supply08617": "Climb to recover the Miasmic Crystal",
+    "supply08618": "Recover the Mineral Specimen",
+    "supply08619": "Recover the Small Radio",
+    "supply08620": "Scavenge for Spare Parts",
+    "danforth": "Danforth: draw cards after resolving Tekeli-li",
+    "kensler": "Dr. Amy Kensler: investigate",
+    "ellsworth": "Roald Ellsworth: blank {card}",
+    "ellsworthExhaust": "Exhaust Roald Ellsworth to blank {card}",
+    "ellsworthSpend": "Spend 1 supply to blank {card}"
   },
   "note": {
     "edgeOfTheEarthConvincedDyer": "The investigators convinced Dyer to allow the expedition.",
     "edgeOfTheEarthDoubtedDyer": "The investigators did not believe Dyer’s report.",
-    "edgeOfTheEarthCrash": "A member of the expedition died in the plane crash."
-  }
+    "edgeOfTheEarthCrash": "A member of the expedition died in the plane crash.",
+    "edgeOfTheEarthShipSearched": "The investigators searched the trapped ship.",
+    "edgeOfTheEarthRevealedLocations": "The expedition explored the surrounding area."
+  },
+  "campaignName": "Edge of the Earth",
+  "scenarioName": "Ice and Death, Part I",
+  "checkpointName": "Checkpoint 1: The Disappearance",
+  "description": "Survive the crash and find shelter before the Antarctic storm closes in."
 }

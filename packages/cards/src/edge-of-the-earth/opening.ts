@@ -21,6 +21,14 @@ export const edgeOfTheEarthChaosBags: Record<Difficulty, ChaosToken[]> = {
   expert: [0, -1, -2, -2, -3, -4, -4, -5, -7, 'frost', 'frost', 'frost', ...symbols],
 }
 
+export const startingFrostRemoved = 'edgeOfTheEarthStartingFrostRemoved'
+
+export function edgeOfTheEarthStartingBag(context: ScenarioContext): ChaosToken[] {
+  const bag = edgeOfTheEarthChaosBags[context.difficulty]
+  const removed = context.log.values[startingFrostRemoved] ? bag.indexOf('frost') : -1
+  return bag.filter((_, index) => index !== removed)
+}
+
 const story = (part: string): StoryEntry => ({
   title: `story.edgeOfTheEarth.${part}.title`,
   body: `story.edgeOfTheEarth.${part}.body`,
@@ -82,7 +90,7 @@ export function edgeOfTheEarthOpening(
   return {
     ...scenario,
     intro: [...intro, ...(scenario.intro ? [scenario.intro].flat() : [])],
-    chaosBag: [...edgeOfTheEarthChaosBags[context.difficulty]],
+    chaosBag: edgeOfTheEarthStartingBag(context),
     setup: [
       ...setup,
       { type: 'InitializeTekeliliDeck' },

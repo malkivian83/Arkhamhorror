@@ -28,8 +28,15 @@ export const messages = {
       ...base.campaign.names,
       'night-of-the-zealot': zealot.campaignName,
       'call-of-the-plaguebearer': plaguebearer.campaignName,
+      'edge-of-the-earth': edgeOfTheEarth.campaignName,
     },
-    scenario: { ...base.campaign.scenario, ...zealot.scenarios, ...plaguebearer.scenarios },
+    scenario: {
+      ...base.campaign.scenario,
+      ...zealot.scenarios,
+      ...plaguebearer.scenarios,
+      'ice-and-death-part-1': edgeOfTheEarth.scenarioName,
+      'ice-and-death-checkpoint-1': edgeOfTheEarth.checkpointName,
+    },
   },
   setup: {
     ...base.setup,
@@ -38,6 +45,7 @@ export const messages = {
       'night-of-the-zealot': zealot.description,
       'the-dunwich-legacy': dunwich.description,
       'call-of-the-plaguebearer': plaguebearer.description,
+      'edge-of-the-earth': edgeOfTheEarth.description,
     },
   },
   story: {

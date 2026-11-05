@@ -15,6 +15,7 @@ const references: Record<string, { code: string; name: string }> = {
   'extracurricular-activity': { code: '02041', name: 'Extracurricular Activity' },
   'the-midnight-masks': { code: '01120', name: 'The Midnight Masks' },
   'the-devourer-below': { code: '01142', name: 'The Devourer Below' },
+  'ice-and-death-part-1': { code: '08501', name: 'Ice and Death' },
   'the-gathering': { code: '01104', name: 'The Gathering' },
   'spreading-flames': { code: '12105', name: 'Spreading Flames' },
   'smoke-and-mirrors': { code: '12133', name: 'Smoke and Mirrors' },

@@ -120,6 +120,7 @@ import './the-path-to-carcosa/definition'
 import './call-of-the-plaguebearer/definition'
 import './the-dunwich-legacy/definition'
 import './fortune-and-folly/definition'
+import './edge-of-the-earth/definition'
 // Comportamiento de las cartas: hace falta para saber cuáles se pueden comprar.
 import './core-2026/cards'
 import './core-2026/investigators'

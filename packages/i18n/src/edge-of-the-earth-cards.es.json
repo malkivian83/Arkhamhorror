@@ -1,10 +1,185 @@
 {
+  "08501": {
+    "name": "Hielo y muerte",
+    "typeCode": "scenario",
+    "text": "<b>Fácil/Normal</b>\n[skull]: –X. X es la mitad del valor de refugio de tu Lugar (redondeado hacia arriba).\n[cultist]: –2. Si fracasas, añade, sin mirarla la primera carta el mazo Tekeli-li a tu mazo y baraja éste (sino puedes, recibe 1 punto de horror).\n[tablet]: –3. Por cada punto que te falte para tener éxito, descarta la primera carta de tu mazo. Roba cada Debilidad descartada por este efecto.",
+    "backText": "<b>Difícil/Experto</b>\n[skull]: –X. X es el valor de refugio de tu Lugar.\n[cultist]: –2. Por cada punto que te falte para tener éxito, añade, sin mirarla la primera carta el mazo Tekeli-li a tu mazo y baraja éste (por cada carta que no puedas añadir, recibe 1 punto de horror).\n[tablet]: –4. Por cada punto que te falte para tener éxito, descarta la primera carta de tu mazo. Roba cada Debilidad descartada por este efecto."
+  },
+  "08502": {
+    "name": "Lugar del accidente",
+    "typeCode": "location",
+    "text": "[action]: Realiza una prueba de [intellect] o de [agility] (3) para rebuscar entre los restos. Si tienes éxito, anota las Piezas de repuesto en la sección \"Suministros recuperados\" del registro de campaña. Máximo 1 éxito por campaña.\n<b>Refugio 0.</b>",
+    "backFlavor": "\"Era bastabte arriesgado volar sobre la Antártida en un solo avión y sin bases…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08503": {
+    "name": "Costas heladas",
+    "typeCode": "location",
+    "traits": "Continente.",
+    "text": "Las Costas heladas reciben +2 a velo si tienen una carta de Encuentro vinculada.\n<b>Refugio 2.</b>",
+    "flavor": "El sol nunca llega a ponerse tras el horizonte de la costa de hielo, pintado el cielo con un complejo tápiz de bellos colores.",
+    "backFlavor": "\"Al este se extendía la baja y blanca barrera de hielo…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08504": {
+    "name": "Senda traicionera",
+    "typeCode": "location",
+    "traits": "Montañas.",
+    "text": "<b>Obligado</b> – Después de que reveles 1 o más fichas [frost] durante una prueba de habilidad en la Senda traicionera: Recibe 1 punto de daño o de horror pocada ficha [frost] revelada.\n<b>Refugio 1.</b>",
+    "backFlavor": "\"…si quería examinar los estratos en que había decubierto aquellas curiosas huellas, tendría que hacer un largo viaje en trineo hacia las faldas mismas de las montañas.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08505": {
+    "name": "Capa de hielo precaria",
+    "typeCode": "location",
+    "traits": "Glaciar.",
+    "text": "[reaction] Cuando robes una Traición [[Riesgo]] mientras estés en la Capa de hielo precaria, añade 1 ficha [frost] a la bolsa de caos: Cancela los efectos de esa carta y descártala. Limite de una vez por ronda.\n<b>Refugio 2.</b>",
+    "backFlavor": "\"La capa de hielo era muy delgada, y dejaba ver la tierra en algunos lugares…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08506": {
+    "name": "Bancos de nieve anchos",
+    "typeCode": "location",
+    "traits": "Continente. Inexplorado.",
+    "text": "[reaction] Cuando investigues con éxito los Bancos de nieve anchos, añade 1 ficha [frost] a la bolsa de caos: Descubre 3 pistas adicionales en los Bancos de nieve anchos. Límite de grupo de una vez por partida.\n<b>Refugio 4.</b>",
+    "backText": "Como coste adicional para que entres en este Lugar, los investigadores que estén en tu Lugar, deben gastar, como grupo, 1 pista [per_investigator].",
+    "backFlavor": "\"…en la alta barrera de hielo del fondo, miríadas de grotescos pingüinos chillaban y agitaban sus aletas…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08507": {
+    "name": "Páramos gélidos",
+    "typeCode": "location",
+    "traits": "Glaciar. Inexplorado.",
+    "text": "Trata el modificador de la priemra ficha [frost] revelada durantes una prueba de hanilidad en los Páramos gélidos como -3 en lugar de -1.\n<b>Refugio 4.</b>",
+    "backText": "Como coste adicional para que entres en este Lugar, los investigadores que estén en tu Lugar, deben gastar, como grupo, 1 pista [per_investigator].",
+    "backFlavor": "\"…y diez kilómetros después llegamos a una llanura virtualmente desierta.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08508": {
+    "name": "Peñascos rocosos",
+    "typeCode": "location",
+    "traits": "Montañas. Inexplorado.",
+    "text": "<b>Obligado</b> – Cuando sea vinculada una Traición a los Peñascos rocosos: Esa Traición obtiene Oleada. Máximo de una vez por fase.\n<b>Refugio 3.</b>",
+    "backText": "Como coste adicional para que entres en este Lugar, los investigadores que estén en tu Lugar, deben gastar, como grupo, 1 pista [per_investigator].",
+    "backFlavor": "\"…se elevaba verticalmente hasta casi cien metros de altura y señalaba los límites de la navegación hacia el sur.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08509": {
+    "name": "Tumbas de nieve",
+    "typeCode": "location",
+    "traits": "Continente. Inexplorado.",
+    "text": "[reaction] Después de que descubras la última pista de las Tumbas de nieve, añade, sin mirarlas, las 3 primeras cartas del mazo Tekeli-li a tu mazo y baraja éste: Anota la Esteatita verde en la sección \"Suministros recuperados\" del registro de campaña. Límite de grupo de una vez por campaña.\n<b>Refugio 5.</b>",
+    "backText": "Como coste adicional para que entres en este Lugar, los investigadores que estén en tu Lugar, deben gastar, como grupo, 2 pistas [per_investigator].",
+    "backFlavor": "\"Encontrar seis monstruos cuidadosamente sepultados en la nieve, en unas tumbas de casi tres metros de profundidad, con túmulos en forma de estrella…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08510": {
+    "name": "Atracadero del rompehielos",
+    "typeCode": "location",
+    "traits": "Glaciar. Inexplorado.",
+    "text": "[action]: <b>Negociar.</b> Realiza una prueba de [intellect] (4) para registrar el barco atrapado en busca de suministros. Si tienes éxito, retira 1 ficha [frost] de la bolsa de caos o anota la Radio pequeña en la sección \"Suministros recuperados\" del registro de campaña. Máximo de 1 éxito por campaña.\n<b>Refugio 5.</b>",
+    "backText": "Como coste adicional para que entres en este Lugar, los investigadores que estén en tu Lugar, deben gastar, como grupo, 2 pistas [per_investigator].",
+    "backFlavor": "\"El 9 de noviembre, poco después de medianoche, desembarcamos con dificultades en la isla de Ross.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08511": {
+    "name": "Cueva glacial",
+    "typeCode": "location",
+    "traits": "Montañas. Inexplorado.",
+    "text": "[action] Añade 1 ficha [frost] a la bolsa de caos: Anota el Espécimen mineral en la sección \"Suministros recuperados\" del registro de campaña. Límite de grupo de una vezz por campaña.\n<b>Refugio 6.</b>",
+    "backText": "Como coste adicional para que entres en este Lugar, los investigadores que estén en tu Lugar, deben gastar, como grupo, 2 pistas [per_investigator].",
+    "backFlavor": "\"Desde cerca se advierten unas cuevas con entradas de forma curiosamente regular: cuadradas o semicirculares. Tienen que venir e investigar con nosostros.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08512": {
+    "name": "Campamento de la barrera",
+    "typeCode": "location",
+    "traits": "Glaciar. Inexplorado.",
+    "text": "[action]: <b>Negociar.</b> Realiza una prueba de [willpower] (4) para convencer algunos de los otros exploradores que hay aquí de que te den algo útil. Si tienes éxito, anota la Dinamita en la sección \"Suministros recuperados\" del registro de campaña. Máximo de 1 éxito por campaña.\n<b>Refugio 7.</b>",
+    "backText": "Como coste adicional para que entres en este Lugar, los investigadores que estén en tu Lugar, deben gastar, como grupo, 4 pistas [per_investigator].",
+    "backFlavor": "\"En la costa helada, al pie del monte Erebus, instalamos un campamento provisional; los cuarteles centrales seguirían a bordo del Arkham.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08513": {
+    "name": "Restos del campamento de Lake",
+    "typeCode": "location",
+    "traits": "Continente. Inexplorado.",
+    "text": "[action]: Realiza una prueba de [combat] (4) para excavar en la nieve en busca de suministros. Si tienes éxito, anota el Trineo de madera en la sección \"Suministros recuperados\" del registro de campaña. Máximo de 1 éxito por campaña.\n<b>Refugio 7.</b>",
+    "backText": "Como coste adicional para que entres en este Lugar, los investigadores que estén en tu Lugar, deben gastar, como grupo, 4 pistas [per_investigator].",
+    "backFlavor": "\"Vuelvo con gran repugnancia a evocar el campamento de Lake para hablar francamente de los que encontramos allí…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08514": {
+    "name": "Caverna cristalina",
+    "typeCode": "location",
+    "traits": "Montañas. Inexplorado.",
+    "text": "[action]: Realiza una prueba de [agility] (5) para trepar por una de las paredes cristralinas en busca de pruebas. Si tienes éxito, anota el Cristal de miasma en la sección \"Suministros recuperados\" del registro de campaña. Máximo de 1 éxito por campaña.\n<b>Refugio 8.</b>",
+    "backText": "Como coste adicional para que entres en este Lugar, los investigadores que estén en tu Lugar, deben gastar, como grupo, 4 pistas [per_investigator].",
+    "backFlavor": "\"Algunas partes, especialmente las superiores, son de rocas más claras que los estratos visibles de las pendientes; origen cristalino, es indudable.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08515": {
+    "name": "Incoherencia deslizante",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Eidolón.",
+    "text": "Cazador.\n<b>Obligado</b> – Cuando derrotes a la Incoherencia deslizante: Añade, sin mirarla, la primera carta del mazo Tekeli-li a tu mazo y baraja éste (si no puedes, la Incoherencia deslizante te ataca)."
+  },
+  "08516": {
+    "name": "Apeirofobia",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "<b>Revelación</b> – Realiza una prueba de [willpower] (X), donde X el valor de refugio de tu Lugar. Si fracasas, debes decidir (elige una opción):\n- Recibe 1 punto de horror por cada punto que te faltase para tener éxito.\n- Coloca 2 de tus pistas sobre tu Lugar.\n- Añade 1 ficha [frost] a la bolsa de caos."
+  },
+  "08517": {
+    "name": "Visibilidad cero",
+    "typeCode": "treachery",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> – Pon Visibilidad cero en juego en tu zona de amenaza.\nComo coste adicional para que abandones un Lugar que tenga una Traición vinculada, debes gastar 1 acción.\n<b>Obligado</b> – Al final de tu turno: Realiza una prueba de [agility] (2). Si tienes éxito, descarta Visibilidad cero."
+  },
+  "08518": {
+    "name": "Fría bienvenida",
+    "typeCode": "agenda",
+    "text": "<b>Obligado</b> - Después de la primera vez que un investigador entre en tu Lugar: Pon en juego cada uno de los Lugares puestos aparte conectados a ese Lugar <i>(usa el mapa de la guía de campaña como referencia)</i>.",
+    "flavor": "No es así precisamente como te imaginaste tu primera incursión en el territorio antártico. El frío helador y los cortantes vientos gélidos no harán más que empeorar.",
+    "backName": "Bajo el hielo",
+    "backText": "Haz aparecer una Incoherencia deslizante puesta aparte en el Lugar del investigador jefe. Añade los Enemigos Incoherencia deslizante restantes puestos a aparte y el conjunto de encuentros <i>Criaturas en el hielo</i> puesto aparte al mazo de Encuentros y baraja éste.",
+    "backFlavor": "-¡Un momento! ¿Vengan a ver esto! -grita uno de los demás miembros del equipo mientras avanzas a duras penas por la nieve. Regresas para examinar lo que ha encontrado: un segundo rastro de huellas, pero más pequeñas y deformes de modo casi imposible.\n-¿Qué demonios podría haber dejado estas huellas? -pregunta otro miembro del grupo. Estáis perplejos. En estos páramos helados apenas existe fauna, y estas huellas no se parecen a nada que hayas visto antes. Ni siquiera a nada que puedas imaginar.\nNo tenéis que preguntaros durante mucho tiempo qué ha podido dejar esas huellas. Una forma surge de la nieve, retorcida y deforme como una mancha de tinta derramada sobre el lienzo de la realidad. Emite un extraño grito cadi familiar que el aullante viento tapa parcialmente: \"¡-li! ¡-li!\" A continuación, se lanza hacia vosotros con una velocidad aterradora."
+  },
+  "08519": {
+    "name": "Hacia el blanco",
+    "typeCode": "agenda",
+    "text": "<b>Obligado</b> - Después de la primera vez que un investigador entre en tu Lugar: Pon en juego cada uno de los Lugares puestos aparte conectados a ese Lugar <i>(usa el mapa de la guía de campaña como referencia)</i>.",
+    "flavor": "Algo habita bajo el hielo. Algo de lo que no has oído hablar y que tampoco has visto nunca, ni siquiera en el horrendo informe de William Dyer. Algo… irreal.",
+    "backName": "Habita en el interior",
+    "backText": "Haz aparecer el Enemigo Terror de las estrellas puesto aparte en el Lugar revelado con el valor de refugio más alto.",
+    "backFlavor": "Estas cosas, estas manifestaciones, no son bestias ni criaturas alienígenas como las que encontraron Dyer y Danforth en su última expedición. Ni siquiera estás seguro de que sean entidades. No tienen forma y están formadas de una sustancia casi protoplásmica que vuelve a filtrarse en el hielo al recibir daño o cuando escapáis de sus garras. Visto lo persistentes que son estas entidades y las inclementes condiciones letales de la Antártida, sabéis que no sobreviviréis a la noche si no encontráis refugio.\nMientras consideráis vuestro curso de acción, el hielo retumba bajo vuestros pies con una fuerza tremenda, emitiendo un aterrador gruñido.\n-¿Un terremoto? -pregunta un miembro de vuestro grupo tratando de hacerse oír sobre el estruendo.\n-No, es imposible -contesta otro. Os miráis con miedo. ¿Podría ser una de esas… cosas?"
+  },
+  "08520": {
+    "name": "El tiempo se agota",
+    "typeCode": "agenda",
+    "text": "<b>Obligado</b> - Después de la primera vez que un investigador entre en tu Lugar: Pon en juego cada uno de los Lugares puestos aparte conectados a ese Lugar <i>(usa el mapa de la guía de campaña como referencia)</i>.",
+    "flavor": "El sol está a poca altura, pero nunca se pone. Tu grupo está agotado tras el largo y arduo día. Aunque el cielo nunca se tiñe con la oscuridad de la noche, sabes que es cuestión de tiempo que os veáis obligados a acampar.",
+    "backName": "Obligados a refugiarse",
+    "backText": "Cada investigador, incluidos los que hayan sido eliminados, añade la primera carta del mazo Tekeli-li a su mazo y baraja éste.\nElige un Lugar en juego que no tenga pistas. Cada investigador no derrotado se mueve a ese Lugar y desiste inmediatamente. Cuanto mayor sea el valor de refugio de ese Lugar, mejor. Si los investigadores no pueden elegir ningún Lugar así, deben moverse al Lugar del accidente y desistir inmediatamente, incluso si no pudieran hacerlo de otro modo. <i>(A continuación, resuelve el [[Objetivo]] del acto 1a.)</i>",
+    "backFlavor": "No podéis seguir. No es una ubicación ideal, pero tendréis que apañaros con el refugio que habéis encontrado. Sólo esperáis que baste para evitar que el grupo se congele… o algo peor."
+  },
+  "08521": {
+    "name": "En busca de un campamento",
+    "typeCode": "act",
+    "text": "[action] Si todos los investigadores están en el mismo Lugar y ese Lugar no tiene pistas: <b>Desistir.</b> Establecéis un campamento. Todos los investigadores desisten.\n<b>Objetivo</b> – Encontrad algún sitio seguro para acampar. Si todos los investigadores no derrotados han desistido, haz avanzar el acto. Cuanto mayor sea el valor de refugio del Lugar en el que desistieron, mejor. ",
+    "flavor": "Tenéis que encontrar el modo de volver al campamento a no mucho tardar… o tendréis que apañaros acampando en mitad de la nada.",
+    "backName": "Bajo las estrellas",
+    "backText": "<b>(→R1)</b>",
+    "backFlavor": "Agotados y aterrados por vuestra odisea, decidís que este sitio es tan bueno como cualquier otro para acampar y pasar la noche. Tal vez mañana podáis sacar algún valor académico de este infernal viaje, pero ahora mismo esas cosas parecen triviales. Lo único que tenéis en mente es sobrevivir."
+  },
+  "08522": {
+    "name": "Terror de las estrellas",
+    "subname": "Portador de hielo y muerte",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Eidolón. Élite.",
+    "text": "Cazador. Descomunal.\nEl Terror de las estrellas recibe +3 de salud [per_investigator].\nMientras el Terror de las estrellas esté preparado, los investigadores no pueden desistir en su LUgar ni descubrir pistas en su Lugar."
+  },
   "08587": {
     "name": "Profesor William Dyer",
     "subname": "Profesor de geología",
     "typeCode": "asset",
     "traits": "Aliado. Miskatonic. Decidido.",
     "text": "Compañero. Usos (3 secretos).\n[fast] Gasta 1 secreto y agota al Profesor William Dyer: Cura 2 puntos de horror de un investigador o de otro Apoyo [[Aliado]] que esté en tu Lugar."
+  },
+  "08588": {
+    "name": "Danforth",
+    "subname": "Estudiante excelente",
+    "typeCode": "asset",
+    "traits": "Aliado. Miskatonic. Decidido.",
+    "text": "Compañero. Usos (5 secretos).\n[reaction] Después de que un investigador que esté en tu Lugar resuelva una Debilidad Tekeli-li, agota a Danforth y gasta 1 secreto: Ese investigador roba 3 cartas. Descarta todas las Debilidades Tekeli-li robadas por este efecto sin resolver sus efectos.",
+    "flavor": "\"…el lugar cerrado…alas…ojos en las tinieblas…\""
   },
   "08589": {
     "name": "Eliyah Ashevak",
@@ -20,6 +195,36 @@
     "traits": "Aliado. Viajero. Decidido.",
     "text": "Compañero. Usos (3 suministros).\n[fast] Gasta 1 suministro y agota a la Dra. Mala Sinha: Cura 2 puntos de daño de un investigador o de otro Apoyo [[Aliado]] que esté en tu Lugar."
   },
+  "08591": {
+    "name": "Avery Claypool",
+    "subname": "Guía de la Antártida",
+    "typeCode": "asset",
+    "traits": "Aliado. Viajero. Decidido.",
+    "text": "Compañero. Usos (3 suministros).\n[reaction] Cuando un investigador que esté en tu Lugar revele una ficha [frost] durante una prueba de habilidad, agota a Avery Claypool: Cancela esa ficha. A continuación, debes revelar una nueva ficha de Caos o bien gastar 1 suministro."
+  },
+  "08592": {
+    "name": "James \"Cookie\" Fredericks",
+    "subname": "Elección dudosa",
+    "typeCode": "asset",
+    "traits": "Aliado. Veterano. Viajero. Decidido.",
+    "text": "Compañero. Usos (3 municiones).\n[fast] Durante tu turno, gasta 1 munición y agota a James \"Cookie\" Fredericks: <b>Combatir.</b> Combate con una habilidad [combat] básica de 6. Si tienes éxito y el Enemigo atacado no es [[Élite]], no puede atacar durante el resto de la ronda."
+  },
+  "08593": {
+    "name": "Dra. Amy Kensler",
+    "subname": "Profesora de biología",
+    "typeCode": "asset",
+    "traits": "Aliado. Miskatonic. Decidido.",
+    "text": "Compañero. Usos (3 secretos).\n[fast] Durante tu turno, gasta 1 secreto y agota a la Dra. Amy Kensler: <b>Investigar.</b> Investiga con una habilidad [intellect] básica de 6. Si tienes éxito, mira la primera carta del mazo de cualquier investigador o del mazo de Encuentros. Puedes descartar esa carta.",
+    "flavor": "\"Los seres que construyeron este lugar… ¿también crearon esto?\""
+  },
+  "08594": {
+    "name": "Roald Ellsworth",
+    "subname": "Explorador intrépido",
+    "typeCode": "asset",
+    "traits": "Aliado. Miskatonic. Viajero. Decidido.",
+    "text": "Compañero. Usos (3 suministros).\n[fast] Durante el turno de un investigador, agota a Roald Ellsworth o bien gasta 1 suministro: Elige una Traición que no sea Debilidad en juego. Considera el cuadro de texto de reglas de esa Traición como si estuviera en blanco hasta el final de este turno.",
+    "flavor": "\"Pensaba que conocía este lugar. De verdad que sí.\""
+  },
   "08595": {
     "name": "Takada Hiroko",
     "subname": "Mecánica de aeroplanos",
@@ -27,12 +232,82 @@
     "traits": "Aliado. Viajero. Decidido.",
     "text": "Compañero. Usos (9 recursos).\n[action] Agota a Takada Hiroko: Obtén 1 recurso. Mueve hasta 3 recursos de Takada Hiroko a tu reserva de recursos."
   },
+  "08689": {
+    "name": "Manifestación de la locura",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Eidolón.",
+    "text": "Cazador.\n<b>Obligado</b> – Cuando la Manifestación de la locura te ataque: Añade, sin mirarlas, las 2 primeras cartas del mazo Tekeli-li a tu mazo y baraja éste (por cada carta que no puedas añadir, la Manifestación de la locura inflige +1 de daño y +1 de horror para este ataque)."
+  },
+  "08690": {
+    "name": "Aparición glacial",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Eidolón.",
+    "text": "<b>Obligado</b> – Al final de la fase de Enemigos, si Aparición glacial está preparada: Muévela una vez hacia el Lugar con más investigadores. Siguiendo el orden de juego, cada investigador que esté en el Lugar de la Aparición glacial o en un Lugar conectado añade, sin mirarla, la primera carta del mazo Tekeli-li a su mazo y baraja éste (cada investigador que no pueda recibe 1 punto de horror)."
+  },
+  "08691": {
+    "name": "Bruma afín",
+    "typeCode": "treachery",
+    "traits": "Maldición.",
+    "text": "<b>Revelación</b> – Vincula esta carta al Lugar más cercano que no tenga una copia de la Bruma afín vinculada.\n<b>Obligado</b> – Cuando fuesen a añadirse a tu mazo 1 o más cartas del mazo Tekeli-li mientras estás en el Lugar vinculado: En vez de eso, róbalas, colocándolas en la parte inferior de tu mazo en lugar de en la parte inferior del mazo Tekeli-li. Descarta la Bruma afín al final de la ronda."
+  },
+  "08692": {
+    "name": "Viento antártico",
+    "typeCode": "treachery",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> – Vincula esta carta al Lugar más cercano que no tenga una copia del Viento antártico vinculada.\nLos investigadores que estén en el Lugar vinculado no pueden jugar cartas ni robar cartas de su mazo.\n<b>Obligado</b> – Al final de la ronda: Descarta el Viento antártico."
+  },
+  "08693": {
+    "name": "Baja visibilidad",
+    "typeCode": "treachery",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> – Vincula esta carta a tu Lugar.\nCada investigador que esté en el Lugar vinculado recibe –1 [willpower], –1 [intellect], –1 [combat], y –1 [agility].\n<b>Obligado</b> – Al final de la ronda: Descarta la Baja visibilidad."
+  },
+  "08694": {
+    "name": "Vértice polar",
+    "typeCode": "treachery",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> – Vincula esta carta a tu Lugar.\n<b>Obligado</b> – Cuando termines tu turno en el Lugar vinculado: Cada carta que controles que tenga salud <i>(incluido el investigador)</i> recibe 1 punto de daño directo..\n<b>Obligado</b> – Al final de la ronda: Descarta el Vértice polar."
+  },
+  "08698": {
+    "name": "Pozo de hielo",
+    "typeCode": "treachery",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> – Realiza una prueba de [agility] (3). Por cada ficha [frost] revelada durante esta prueba, recibe 1 punto de daño. Si fracasas, recibe 2 puntos de daño.",
+    "flavor": "Un paso en falso…"
+  },
+  "08699": {
+    "name": "Atravesar el hielo",
+    "typeCode": "treachery",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> – Vincula esta carta al Lugar más cercano que no tenga una copia de Atravesar el hielo vinculada.\nComo coste adicional para que entres en el Lugar vinculado o lo abandones (excepto mediante el efecto de una carta de Escenario), realiza una prueba de [agility] (2). Si fracasas, cancela los efectos del movimiento, recibe 1 punto de daño y 1 punto de horror y descarta Atravesar el hielo."
+  },
+  "08712": {
+    "name": "Espejismo polar",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "<b>Revelación</b> – Vincula esta carta al Lugar más cercano que tenga al menos 1 pista y que no tenga una copia del Espejismo polar vinculada.\n<b>Obligado</b> – Después de que descubras o tomes el control de 1 o más pistas en el Lugar vinculado: Descarta todas las cartas que no sean Debilidad de tu mano. Descarta el Espejismo polar."
+  },
+  "08713": {
+    "name": "Aurora oscura",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "<b>Revelación</b> – Realiza una prueba de [willpower] (3). Por cada ficha [frost] revelada durante esta prueba, recibe 1 punto de horror. Si fracasas, recibe 2 puntos de horror.",
+    "flavor": "\"Los organismos fosforescentes suplían por su parte con eficacia la falta de auroras boreales del mundo exterior.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
   "08714": {
     "name": "Profesor William Dyer",
     "subname": "Profesor de geología",
     "typeCode": "asset",
     "traits": "Aliado. Miskatonic.",
     "text": "Compañero. Usos (3 secretos).\n[action] Gasta 1 secreto y agota al Profesor William Dyer: Cura 2 puntos de horror de un investigador o de otro Apoyo [[Aliado]] que esté en tu Lugar."
+  },
+  "08715": {
+    "name": "Danforth",
+    "subname": "Estudiante excelente",
+    "typeCode": "asset",
+    "traits": "Aliado. Miskatonic.",
+    "text": "Compañero. Usos (5 secretos).\n[reaction] Después de que un investigador que esté en tu Lugar resuelva una Debilidad Tekeli-li, agota a Danforth y gasta 1 secreto: Ese investigador roba 2 cartas.",
+    "flavor": "\"Danforth era un gran lector de libros fantásticos...\"\n - H.P. Lovecraft, <i>En las Montañas de la Locura</i>"
   },
   "08716": {
     "name": "Eliyah Ashevak",
@@ -47,6 +322,36 @@
     "typeCode": "asset",
     "traits": "Aliado. Viajero.",
     "text": "Compañero. Usos (3 suministros).\n[action] Gasta 1 suministro y agota a la Dra. Mala Sinha: Cura 2 puntos de daño de un investigador o de otro Apoyo [[Aliado]] que esté en tu Lugar."
+  },
+  "08718": {
+    "name": "Avery Claypool",
+    "subname": "Guía de la Antártida",
+    "typeCode": "asset",
+    "traits": "Aliado. Viajero.",
+    "text": "Compañero. Usos (5 suministros).\n[reaction] Cuando un investigador que esté en tu Lugar revele una ficha [frost] durante una prueba de habilidad, agota a Avery Claypool y gasta 1 suministro: Cancela esa ficha y revela una nueva."
+  },
+  "08719": {
+    "name": "James \"Cookie\" Fredericks",
+    "subname": "Elección dudosa",
+    "typeCode": "asset",
+    "traits": "Aliado. Veterano. Viajero.",
+    "text": "Compañero. Usos (3 municiones).\n[action] Gasta 1 munición y agota a James \"Cookie\" Fredericks: <b>Combatir.</b> Combate con una habilidad [combat] básica de 5. Si tienes éxito y el Enemigo atacado no es [[Élite]], no puede atacar durante el resto de la ronda."
+  },
+  "08720": {
+    "name": "Dra. Amy Kensler",
+    "subname": "Profesora de biología",
+    "typeCode": "asset",
+    "traits": "Aliado. Miskatonic.",
+    "text": "Compañero. Usos (3 secretos).\n[action] Gasta 1 secreto y agota a la Dra. Amy Kensler: <b>Investigar.</b> Investiga con una habilidad [intellect] básica de 5. Si tienes éxito, mira la primera carta del mazo de cualquier investigador o del mazo de Encuentros. Puedes descartar esa carta.",
+    "flavor": "\"¡Todo esto es fascinante! ¿No le parece?\""
+  },
+  "08721": {
+    "name": "Roald Ellsworth",
+    "subname": "Explorador intrépido",
+    "typeCode": "asset",
+    "traits": "Aliado. Miskatonic. Viajero.",
+    "text": "Compañero. Usos (5 suministros).\n[fast] Durante el turno de un investigador, agota a Roald Ellsworth y gasta 1 suministro: Elige una Traición vinculada a cualquier Lugar. Considera el cuadro de texto de reglas de esa Traición como si estuviera en blanco hasta el final de este turno.",
+    "flavor": "\"He recorrido el mundo entero. Por favor, confíe en mí.\""
   },
   "08722": {
     "name": "Takada Hiroko",

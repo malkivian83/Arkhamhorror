@@ -1,10 +1,185 @@
 {
+  "08501": {
+    "name": "Ice and Death",
+    "typeCode": "scenario",
+    "text": "Easy / Standard\n[skull]: -X. X is half the shelter value of your location (rounded up).\n[cultist]: -2. If you fail, shuffle the top card of the Tekeli-li deck into your deck without looking at it (if you cannot, take 1 horror).\n[tablet]: -3. For each point you fail by, discard the top card of your deck. Draw each weakness discarded by this effect.",
+    "backText": "Hard / Expert\n[skull]: -X. X is the shelter value of your location.\n[cultist]: -2. For each point you fail by, shuffle the top card of the Tekeli-li deck into your deck without looking at it (for each card you cannot shuffle, take 1 horror).\n[tablet]: -4. For each point you fail by, discard the top card of your deck. Draw each weakness discarded by this effect."
+  },
+  "08502": {
+    "name": "Crash Site",
+    "typeCode": "location",
+    "text": "[action]: Test [intellect] or [agility] (3) to scavenge from the wreckage. If you succeed, in the \"Supplies Recovered\" section of the Campaign Log, record Spare Parts. (Max one success per campaign.)\n<b>Shelter 0.</b>",
+    "backFlavor": "\"It was risky business sailing over the antarctic in a single aëroplane without any line of bases...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08503": {
+    "name": "Frozen Shores",
+    "typeCode": "location",
+    "traits": "Mainland.",
+    "text": "Frozen Shores gets +2 shroud if an encounter card is attached to it.\n<b>Shelter 2.</b>",
+    "flavor": "The sun never quite sets over the horizon past the icy shoreline, painting the sky a myriad tapestry of beautiful colors.",
+    "backFlavor": "\"There now stretched off to the east the low, white line of the great ice barrier...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08504": {
+    "name": "Treacherous Path",
+    "typeCode": "location",
+    "traits": "Mountains.",
+    "text": "<b>Forced</b> - After you reveal 1 or more [frost] tokens during a skill test at Treacherous Path: Take 1 damage or horror for each [frost] token revealed.\n<b>Shelter 1.</b>",
+    "backFlavor": "\"...in order to recover the Archaean slate vein in which he had found the odd markings, he would have to make a long sledge trip from these foothills to the steep slopes of the gigantic mountains themselves.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08505": {
+    "name": "Precarious Ice Sheet",
+    "typeCode": "location",
+    "traits": "Glacier.",
+    "text": "[reaction] When you draw a [[Hazard]] treachery while at Precarious Ice Sheet, add 1 [frost] token to the chaos bag: Cancel that card's effects and discard it. (Group limit once per round.)\n<b>Shelter 2.</b>",
+    "backFlavor": "\"The ice-sheet was very thin, with dark ground here and there visible...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08506": {
+    "name": "Broad Snowdrifts",
+    "typeCode": "location",
+    "traits": "Mainland. Uncharted.",
+    "text": "[reaction] When you successfully investigate Broad Snowdrifts, add 1 [frost] token to the chaos bag: Discover 3 additional clues at Broad Snowdrifts. (Group limit once per game.)\n<b>Shelter 4.</b>",
+    "backText": "As an additional cost for you to enter this location, investigators at your location must spend 1 [per_investigator] clues, as a group.",
+    "backFlavor": "\"...on the lofty ice barrier in the background, myriads of grotesque penguins squawked and flapped their fins...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08507": {
+    "name": "Icy Wastes",
+    "typeCode": "location",
+    "traits": "Glacier. Uncharted.",
+    "text": "Treat the modifier of the first [frost] token revealed during each skill test at Icy Wastes as -3, instead of -1.\n<b>Shelter 4.</b>",
+    "backText": "As an additional cost for you to enter this location, investigators at your location must spend 1 [per_investigator] clues, as a group.",
+    "backFlavor": "\"...in ten more miles we came to an unbroken waste virtually without signs of sentient artifice.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08508": {
+    "name": "Rocky Crags",
+    "typeCode": "location",
+    "traits": "Mountains. Uncharted.",
+    "text": "<b>Forced</b> - When a treachery is attached to Rocky Crags: That treachery gains surge. (Max once per phase.)\n<b>Shelter 3.</b>",
+    "backText": "As an additional cost for you to enter this location, investigators at your location must spend 1 [per_investigator] clues, as a group.",
+    "backFlavor": "\"...rising perpendicularly to a height of 200 feet like the rocky cliffs of Quebec, and marking the end of southward navigation.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08509": {
+    "name": "Snow Graves",
+    "typeCode": "location",
+    "traits": "Mainland. Uncharted.",
+    "text": "[reaction] After you discover the last clue from Snow Graves, shuffle the top 3 cards of the Tekeli-li deck into your deck without looking at them: In the \"Supplies Recovered\" section of the Campaign Log, record Green Soapstone. (Group limit once per campaign.)\n<b>Shelter 5.</b>",
+    "backText": "As an additional cost for you to enter this location, investigators at your location must spend 2 [per_investigator] clues, as a group.",
+    "backFlavor": "\"...it surely looked like madness to find six imperfect monstrosities carefully buried upright in nine-foot snow graves under five-pointed mounds...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08510": {
+    "name": "Icebreaker Landing",
+    "typeCode": "location",
+    "traits": "Glacier. Uncharted.",
+    "text": "[action]: <b>Parley.</b> Test [intellect] (4) to search the trapped ship for supplies. If you succeed, either remove 1 [frost] token from the chaos bag or record Small Radio in the \"Supplies Recovered\" section of the Campaign Log. (Max one success per campaign.)\n<b>Shelter 5.</b>",
+    "backText": "As an additional cost for you to enter this location, investigators at your location must spend 2 [per_investigator] clues, as a group.",
+    "backFlavor": "\"...we effected a difficult landing on Ross Island shortly after midnight on the morning of the 9th...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08511": {
+    "name": "Frigid Cave",
+    "typeCode": "location",
+    "traits": "Mountains. Uncharted.",
+    "text": "[action] Add 1 [frost] token to the chaos bag: In the \"Supplies Recovered\" section of the Campaign Log, record Mineral Specimen. (Group limit once per campaign.)\n<b>Shelter 6.</b>",
+    "backText": "As an additional cost for you to enter this location, investigators at your location must spend 2 [per_investigator] clues, as a group.",
+    "backFlavor": "\"Close flying shews many cave-mouths, some unusually regular in outline, square or semicircular. You must come and investigate.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08512": {
+    "name": "Barrier Camp",
+    "typeCode": "location",
+    "traits": "Glacier. Uncharted.",
+    "text": "[action]: <b>Parley.</b> Test [willpower] (4) to convince some of the other explorers here to give you something useful. If you succeed, in the \"Supplies Recovered\" section of the Campaign Log, record Dynamite. (Max one success per campaign.)\n<b>Shelter 7.</b>",
+    "backText": "As an additional cost for you to enter this location, investigators at your location must spend 4 [per_investigator] clues, as a group.",
+    "backFlavor": "\"Our camp on the frozen shore below the volcano's slope was only a provisional one; headquarters being kept aboard the <i>Arkham</i>.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08513": {
+    "name": "Remnants of Lake's Camp",
+    "typeCode": "location",
+    "traits": "Mainland. Uncharted.",
+    "text": "[action]: Test [combat] (4) to dig through the snow in search of supplies. If you succeed, in the \"Supplies Recovered\" section of the Campaign Log, record Wooden Sledge. (Max one success per campaign.)\n<b>Shelter 7.</b>",
+    "backText": "As an additional cost for you to enter this location, investigators at your location must spend 4 [per_investigator] clues, as a group.",
+    "backFlavor": "\"It is only with vast hesitancy and repugnance that I let my mind go back to Lake's camp and what we really found there...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08514": {
+    "name": "Crystalline Cavern",
+    "typeCode": "location",
+    "traits": "Mountains. Uncharted.",
+    "text": "[action]: Test [agility] (5) to climb up one of the crystalline walls in search of evidence. If you succeed, in the \"Supplies Recovered\" section of the Campaign Log, record Miasmic Crystal. (Max one success per campaign.)\n<b>Shelter 8.</b>",
+    "backText": "As an additional cost for you to enter this location, investigators at your location must spend 4 [per_investigator] clues, as a group.",
+    "backFlavor": "\"Parts, especially upper parts, seem to be of lighter-coloured rock than any visible strata on slopes proper, hence an evidently crystalline origin.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08515": {
+    "name": "Skittering Nonsense",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon.",
+    "text": "Hunter.\n<b>Forced</b> - When you defeat Skittering Nonsense: Shuffle the top card of the Tekeli-li deck into your deck without looking at it (if you cannot, Skittering Nonsense attacks you)."
+  },
+  "08516": {
+    "name": "Apeirophobia",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Test [willpower] (X), where X is your location's shelter value. If you fail, you must decide (choose one):\n- Take 1 horror for each point you failed by.\n- Place 2 of your clues on your location.\n- Add 1 [frost] token to the chaos bag."
+  },
+  "08517": {
+    "name": "Zero Visibility",
+    "typeCode": "treachery",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Put Zero Visibility into play in your threat area.\nAs an additional cost for you to leave a location with a treachery attached to it, you must spend 1 action.\n<b>Forced</b> - At the end of your turn: Test [agility] (2). If you succeed, discard Zero Visibility."
+  },
+  "08518": {
+    "name": "Cold Welcome",
+    "typeCode": "agenda",
+    "text": "<b>Forced</b> - After a location is entered by an investigator for the first time: Put into play each set-aside location connected to that location. <i>(Use the map in the Campaign Guide for reference.)</i>",
+    "flavor": "This isn't exactly how you imagined your first foray into the Antarctic wilds. The stinging cold and lashing, frozen winds will only get worse over time.",
+    "backName": "Under the Ice",
+    "backText": "Spawn a set-aside Skittering Nonsense at the lead investigator's location. Shuffle the remainder of the set-aside Skittering Nonsense enemies and the set-aside <i>Creatures in the Ice</i> encounter set into the encounter deck.",
+    "backFlavor": "\"Hold on! Come see this!\" one of the other team members shouts as you trudge ahead through the snow. You turn back and examine what they have found - a second set of tracks in the snow, but smaller, misshapen. Almost impossibly so.\n\"What in the hell could have made these tracks?\" one of your party asks. You stand dumbfounded. Very little wildlife exists out here in the frozen wastes. And these tracks match nothing you've ever seen before. Nothing you can even imagine.\nYou don't have to question what could make such tracks for long. A shape emerges from the erupting snow, twisted and deformed, like a splotch of ink spilled upon the canvas of reality. It makes a strange, almost familiar cry that is eaten by the howling wind: \"-li! -li!\" Then, with terrifying speed, it rushes toward you."
+  },
+  "08519": {
+    "name": "Into the White",
+    "typeCode": "agenda",
+    "text": "<b>Forced</b> - After a location is entered by an investigator for the first time: Put into play each set-aside location connected to that location. <i>(Use the map in the Campaign Guide for reference.)</i>",
+    "flavor": "Something dwells beneath the ice. Something you've never seen or heard of before, not even in William Dyer's horrifying report. Something...unreal.",
+    "backName": "It Dwells Inside",
+    "backText": "Spawn the set-aside Terror of the Stars enemy at the revealed location with the highest shelter value.",
+    "backFlavor": "These things, these manifestations, they're not beasts or even alien creatures like those Dyer and Danforth encountered in their last expedition. You're not even sure they are entities at all. They have no shape, consisting of an almost proto-plasmic substance that seeps back into the ice when harmed or whenever you escape their clutches. Given the persistence of these entities and the inclement, deadly conditions of Antarctica, you know you won't survive the night without finding shelter.\nJust as you are pondering what your next move should be, the ice beneath you rumbles with tremendous force, letting out a terrifying groan. \"An earthquake?\" one of your party asks over the raucous noise.\n\"No, that's impossible,\" another replies. You share a dreadful glance. Could it be one of those...things?"
+  },
+  "08520": {
+    "name": "Running Out of Time",
+    "typeCode": "agenda",
+    "text": "<b>Forced</b> - After a location is entered by an investigator for the first time: Put into play each set-aside location connected to that location. <i>(Use the map in the Campaign Guide for reference.)</i>",
+    "flavor": "The sun hangs low in the sky, but never sets. Your party is exhausted from the long, arduous day. Though the sky is never plunged into the dark of night, you know it's only a matter of time before you are forced to make camp.",
+    "backName": "Forced into Shelter",
+    "backText": "Each investigator, including those who are eliminated, shuffles the top card of the Tekeli-li deck into their deck.\nChoose a location in play with no clues on it. Each undefeated investigator moves to that location and immediately resigns. The higher that location's shelter value, the better. If the investigators cannot choose such a location, they must move to the Crash Site and immediately resign, even if they otherwise could not. <i>(Then, resolve the [[Objective]] on act 1a.)</i>",
+    "backFlavor": "You can go on no longer. It's not ideal, but you'll have to make do with the shelter you've found. You only hope that it's enough to keep your party from freezing... or worse."
+  },
+  "08521": {
+    "name": "Search for a Camp Site",
+    "typeCode": "act",
+    "text": "[action] If each investigator is at the same location and that location has no clues on it: <b>Resign.</b> You set up camp. Each investigator resigns.\n<b>Objective</b> - Find somewhere safe to set up camp. If each undefeated investigator has resigned, advance. The higher the shelter value of the location they resigned at, the better.",
+    "flavor": "You're going to have to find a way back to camp, and soon...or you'll have to make due camping in the wilds.",
+    "backName": "Under the Stars",
+    "backText": "<b>(→R1)</b>",
+    "backFlavor": "Exhausted and terrified by your ordeal, you decide this is as good a place as any to make camp for the night. Perhaps tomorrow you can salvage some kind of academic value out of this hellish journey, but for now such things seem trivial. Survival is the only thing on your mind."
+  },
+  "08522": {
+    "name": "Terror of the Stars",
+    "subname": "Bringer of Ice and Death",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon. Elite.",
+    "text": "Hunter. Massive.\nTerror of the Stars gets +3 [per_investigator] health.\nWhile Terror of the Stars is ready, investigators cannot resign at its location or discover clues at its location."
+  },
   "08587": {
     "name": "Professor William Dyer",
     "subname": "Professor of Geology",
     "typeCode": "asset",
     "traits": "Ally. Miskatonic. Resolute.",
     "text": "Partner. Uses (3 secrets).\n[fast] Spend 1 secret and exhaust Professor William Dyer: Heal 2 horror from an investigator or another [[Ally]] asset at your location."
+  },
+  "08588": {
+    "name": "Danforth",
+    "subname": "Brilliant Student",
+    "typeCode": "asset",
+    "traits": "Ally. Miskatonic. Resolute.",
+    "text": "Partner. Uses (5 secrets).\n[reaction] After an investigator at your location resolves a Tekeli-li weakness, exhaust Danforth and spend 1 secret: That investigator draws 3 cards. Discard each Tekeli-li weakness drawn by this effect without resolving its effects.",
+    "flavor": "\"...the windowless place... wings... eyes in the darkness...\""
   },
   "08589": {
     "name": "Eliyah Ashevak",
@@ -20,6 +195,36 @@
     "traits": "Ally. Wayfarer. Resolute.",
     "text": "Partner. Uses (3 supplies).\n[fast] Spend 1 supply and exhaust Dr. Mala Sinha: Heal 2 damage from an investigator or another [[Ally]] asset at your location."
   },
+  "08591": {
+    "name": "Avery Claypool",
+    "subname": "Antarctic Guide",
+    "typeCode": "asset",
+    "traits": "Ally. Wayfarer. Resolute.",
+    "text": "Partner. Uses (3 supplies).\n[reaction] When an investigator at your location reveals a [frost] token during a skill test, exhaust Avery Claypool: Cancel that token. Then, you must either reveal a new chaos token, or spend 1 supply."
+  },
+  "08592": {
+    "name": "James \"Cookie\" Fredericks",
+    "subname": "Dubious Choice",
+    "typeCode": "asset",
+    "traits": "Ally. Veteran. Wayfarer. Resolute.",
+    "text": "Partner. Uses (3 ammo).\n[fast] During your turn, spend 1 ammo and exhaust James \"Cookie\" Fredericks: <b>Fight.</b> Fight with a base [combat] skill of 6. If you succeed and the attacked enemy is non-[[Elite]], it cannot attack for the remainder of the round."
+  },
+  "08593": {
+    "name": "Dr. Amy Kensler",
+    "subname": "Professor of Biology",
+    "typeCode": "asset",
+    "traits": "Ally. Miskatonic. Resolute.",
+    "text": "Partner. Uses (3 secrets).\n[fast] During your turn, spend 1 secret and exhaust Dr. Amy Kensler: <b>Investigate.</b> Investigate with a base [intellect] skill of 6. If you succeed, look at the top card of any investigator's deck or the encounter deck. You may discard that card.",
+    "flavor": "\"The beings that built this place... did they create this, too?\""
+  },
+  "08594": {
+    "name": "Roald Ellsworth",
+    "subname": "Intrepid Explorer",
+    "typeCode": "asset",
+    "traits": "Ally. Miskatonic. Wayfarer. Resolute.",
+    "text": "Partner. Uses (3 supplies).\n[fast] During an investigator's turn, either exhaust Roald Ellsworth or spend 1 supply: Choose a non-weakness treachery in play. Treat that treachery's text box as if it were blank until the end of this turn.",
+    "flavor": "\"I thought I knew this place. I really did.\""
+  },
   "08595": {
     "name": "Takada Hiroko",
     "subname": "Aeroplane Mechanic",
@@ -27,12 +232,82 @@
     "traits": "Ally. Wayfarer. Resolute.",
     "text": "Partner. Uses (9 resources).\n[action] Exhaust Takada Hiroko: Gain 1 resource. Move up to 3 resources from Takada Hiroko to your resource pool."
   },
+  "08689": {
+    "name": "Manifestation of Madness",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon.",
+    "text": "Hunter.\n<b>Forced</b> - When Manifestation of Madness attacks you: Shuffle the top 2 cards of the Tekeli-li deck into your deck without looking at them (for each card you cannot shuffle, Manifestation of Madness deals +1 damage and +1 horror for this attack)."
+  },
+  "08690": {
+    "name": "Glacial Phantasm",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon.",
+    "text": "<b>Forced</b> - At the end of the enemy phase, if Glacial Phantasm is ready: Move it once toward the location with the most investigators. In player order, each investigator at Glacial Phantasm's location or a connecting location shuffles the top card of the Tekeli-li deck into their deck without looking at it (each investigator who cannot takes 1 horror)."
+  },
+  "08691": {
+    "name": "Kindred Mist",
+    "typeCode": "treachery",
+    "traits": "Curse.",
+    "text": "<b>Revelation</b> - Attach to the nearest location without a copy of Kindred Mist attached.\n<b>Forced</b> - When 1 or more cards from the Tekeli-li deck would be shuffled into your deck while you are at attached location: Draw them instead, placing them on the bottom of your deck instead of the bottom of the Tekeli-li deck. Discard Kindred Mist at the end of this round."
+  },
+  "08692": {
+    "name": "Antarctic Wind",
+    "typeCode": "treachery",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Attach to the nearest location without a copy of Antarctic Wind attached.\nInvestigators at attached location cannot play cards or draw cards from their deck.\n<b>Forced</b> - At the end of the round: Discard Antarctic Wind."
+  },
+  "08693": {
+    "name": "Whiteout",
+    "typeCode": "treachery",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Attach to your location.\nEach investigator at attached location gets -1 [willpower], -1 [intellect], -1 [combat], and -1 [agility].\n<b>Forced</b> - At the end of the round: Discard Whiteout."
+  },
+  "08694": {
+    "name": "Polar Vortex",
+    "typeCode": "treachery",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Attach to your location.\n<b>Forced</b> - When you end your turn at attached location: Each card you control with health <i>(including your investigator)</i> takes 1 direct damage.\n<b>Forced</b> - At the end of the round: Discard Polar Vortex."
+  },
+  "08698": {
+    "name": "Ice Shaft",
+    "typeCode": "treachery",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Test [agility] (3). For each [frost] token revealed during this test, take 1 damage. If you fail, take 2 damage.",
+    "flavor": "One false step..."
+  },
+  "08699": {
+    "name": "Through the Ice",
+    "typeCode": "treachery",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Attach to the nearest location without a copy of Through the Ice attached.\nAs an additional cost for you to enter or leave attached location (except by a scenario card effect), test [agility] (2). If you fail, cancel the effects of the move, take 1 damage and 1 horror, and discard Through the Ice."
+  },
+  "08712": {
+    "name": "Polar Mirage",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Attach to the nearest location with at least 1 clue, and without a copy of Polar Mirage attached.\n<b>Forced</b> - After you discover or take control of 1 or more clues at attached location: Discard each non-weakness card in your hand. Discard Polar Mirage."
+  },
+  "08713": {
+    "name": "Dark Aurora",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Test [willpower] (3). For each [frost] token revealed during this test, take 1 horror. If you fail, take 2 horror.",
+    "flavor": "\"The phosphorescent organisms supplied light with vast effectiveness, and doubtless atoned for the loss of the familiar polar auroras of the outer-world night.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
   "08714": {
     "name": "Professor William Dyer",
     "subname": "Professor of Geology",
     "typeCode": "asset",
     "traits": "Ally. Miskatonic.",
     "text": "Partner. Uses (3 secrets).\n[action] Spend 1 secret and exhaust Professor William Dyer: Heal 2 horror from an investigator or another [[Ally]] asset at your location."
+  },
+  "08715": {
+    "name": "Danforth",
+    "subname": "Brilliant Student",
+    "typeCode": "asset",
+    "traits": "Ally. Miskatonic.",
+    "text": "Partner. Uses (5 secrets).\n[reaction] After an investigator at your location resolves a Tekeli-li weakness, exhaust Danforth and spend 1 secret: That investigator draws 2 cards.",
+    "flavor": "\"Danforth was a great reader of bizarre material...\"\n - H.P. Lovecraft, <i>At the Mountains of Madness</i>"
   },
   "08716": {
     "name": "Eliyah Ashevak",
@@ -47,6 +322,36 @@
     "typeCode": "asset",
     "traits": "Ally. Wayfarer.",
     "text": "Partner. Uses (3 supplies).\n[action] Spend 1 supply and exhaust Dr. Mala Sinha: Heal 2 damage from an investigator or another [[Ally]] asset at your location."
+  },
+  "08718": {
+    "name": "Avery Claypool",
+    "subname": "Antarctic Guide",
+    "typeCode": "asset",
+    "traits": "Ally. Wayfarer.",
+    "text": "Partner. Uses (5 supplies).\n[reaction] When an investigator at your location reveals a [frost] token during a skill test, exhaust Avery Claypool and spend 1 supply: Cancel that token and reveal a new one."
+  },
+  "08719": {
+    "name": "James \"Cookie\" Fredericks",
+    "subname": "Dubious Choice",
+    "typeCode": "asset",
+    "traits": "Ally. Veteran. Wayfarer.",
+    "text": "Partner. Uses (3 ammo).\n[action] Spend 1 ammo and exhaust James \"Cookie\" Fredericks: <b>Fight.</b> Fight with a base [combat] skill of 5. If you succeed and the attacked enemy is non-[[Elite]], it cannot attack for the remainder of the round."
+  },
+  "08720": {
+    "name": "Dr. Amy Kensler",
+    "subname": "Professor of Biology",
+    "typeCode": "asset",
+    "traits": "Ally. Miskatonic.",
+    "text": "Partner. Uses (3 secrets).\n[action] Spend 1 secret and exhaust Dr. Amy Kensler: <b>Investigate.</b> Investigate with a base [intellect] skill of 5. If you succeed, look at the top card of any investigator's deck or the encounter deck. You may discard that card.",
+    "flavor": "\"All of this is so fascinating! Do you not agree?\""
+  },
+  "08721": {
+    "name": "Roald Ellsworth",
+    "subname": "Intrepid Explorer",
+    "typeCode": "asset",
+    "traits": "Ally. Miskatonic. Wayfarer.",
+    "text": "Partner. Uses (5 supplies).\n[fast] During an investigator's turn, exhaust Roald Ellsworth and spend 1 supply: Choose a treachery attached to any location. Treat that treachery's text box as if it were blank until the end of this turn.",
+    "flavor": "\"I have been all over the world. Please, just trust me.\""
   },
   "08722": {
     "name": "Takada Hiroko",

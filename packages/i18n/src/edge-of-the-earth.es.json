@@ -67,28 +67,97 @@
     "victim08722": {
       "title": "El equipo sufre una pérdida",
       "body": "Takada Hiroko murió en el accidente de avión."
+    },
+    "setup": {
+      "title": "Preparación",
+      "body": "Comenzáis en el Lugar del accidente. Explorad la costa y las montañas para encontrar refugio. Los Lugares Inexplorados entran en juego a medida que os acercáis a ellos."
+    },
+    "coldWelcome": {
+      "title": "Bajo el hielo",
+      "body": "Alguien te llama para que veas un rastro de huellas deformes. Antes de que puedas averiguar qué las dejó, una figura retorcida irrumpe entre la nieve y se abalanza sobre ti."
+    },
+    "intoTheWhite": {
+      "title": "Terror de las estrellas",
+      "body": "La criatura que derribó los aviones ha vuelto. Entre los copos de nieve, ves cómo se dirige al lugar donde esperabais refugiaros."
+    },
+    "runningOutOfTime": {
+      "title": "Se acaba el tiempo",
+      "body": "La tormenta arrecia. Tenéis que abandonar la búsqueda y refugiaros donde podáis."
+    },
+    "noResolution": {
+      "title": "Sin resolución",
+      "body": "El frío ha vencido a la expedición. La búsqueda se interrumpe y el equipo tendrá que arreglárselas con el refugio que encuentre a mano."
+    },
+    "resolution1": {
+      "title": "Resolución 1",
+      "body": "Por fin, la expedición instala el campamento. Hacéis recuento de los suministros recuperados y os preparáis para pasar la noche."
     }
   },
   "choice": {
+    "redraw": "Revela una nueva ficha de caos",
+    "spendSupply": "Gasta 1 suministro en su lugar",
     "healDamage": "Cura 2 puntos de daño a {name}",
     "healHorror": "Cura 2 puntos de horror a {name}",
     "takeResources": "Mueve {amount} recursos a tu reserva",
     "believeDyer": "Creer a Dyer y defender que hay que investigar sus hallazgos",
     "doubtDyer": "Decirle a Dyer que cuesta creer su informe",
-    "noPartner": "No llevar compañero"
+    "noPartner": "No llevar compañero",
+    "camp": "Acampar en {name} (refugio {shelter})",
+    "spawnTerror": "Hacer aparecer al Terror en {name}",
+    "attach": "Vincular a {name}",
+    "phantasm": "Mover al fantasma a {name}",
+    "damage": "Recibir 1 punto de daño",
+    "horror": "Recibir 1 punto de horror",
+    "takeHorror": "Recibir {amount} puntos de horror",
+    "placeClues": "Colocar 2 de tus pistas en tu Lugar",
+    "addFrost": "Añadir 1 ficha de Helada",
+    "removeFrost": "Quitar 1 ficha de Helada",
+    "lookPlayer": "Mirar la primera carta del mazo de {name}",
+    "lookEncounter": "Mirar la primera carta del mazo de Encuentros"
   },
   "prompt": {
-    "partner": "Elige un compañero para este escenario"
+    "claypool": "Avery Claypool: elige cómo cancelar la ficha de Helada",
+    "partner": "Elige un compañero para este escenario",
+    "camp": "Elige dónde acampar",
+    "terror": "¿Dónde aparece el Terror de las estrellas?",
+    "pathFrost": "Senda traicionera. Elige daño u horror.",
+    "apeirophobia": "Apeirofobia. Elige una consecuencia.",
+    "ship": "Elige qué recuperar del barco atrapado",
+    "kensler": "Elige qué mazo examina la Dra. Kensler",
+    "kenslerCard": "¿Conservas o descartas la carta?"
   },
   "ability": {
+    "claypool": "Avery Claypool: cancela la ficha de Helada",
+    "fredericks": "James Fredericks: lucha",
     "damage": "{card}: cura 2 puntos de daño",
     "horror": "{card}: cura 2 puntos de horror",
     "evade": "{card}: evita",
-    "resources": "{card}: mueve recursos"
+    "resources": "{card}: mueve recursos",
+    "camp": "Buscar un campamento. Desistid juntos.",
+    "iceSheet": "Capa de hielo precaria. Añade Helada para cancelar la traición.",
+    "snowdrifts": "Ventisqueros extensos. Añade Helada para descubrir 3 pistas adicionales.",
+    "supply08614": "Recuperar la esteatita verde",
+    "supply08615": "Buscar el trineo de madera",
+    "supply08616": "Pedir dinamita a los exploradores",
+    "supply08617": "Trepar para recuperar el cristal miasmático",
+    "supply08618": "Recuperar la muestra mineral",
+    "supply08619": "Recuperar la radio pequeña",
+    "supply08620": "Buscar piezas de repuesto",
+    "danforth": "Danforth. Roba cartas tras resolver ¡Tekeli-li!",
+    "kensler": "Dra. Amy Kensler. Investiga.",
+    "ellsworth": "Roald Ellsworth. Deja en blanco {card}.",
+    "ellsworthExhaust": "Agota a Roald Ellsworth para dejar en blanco {card}",
+    "ellsworthSpend": "Gasta 1 suministro para dejar en blanco {card}"
   },
   "note": {
     "edgeOfTheEarthConvincedDyer": "Los investigadores convencieron a Dyer de que permitiera la expedición.",
     "edgeOfTheEarthDoubtedDyer": "Los investigadores no se creyeron el informe de Dyer.",
-    "edgeOfTheEarthCrash": "Un miembro de la expedición murió en el accidente de avión."
-  }
+    "edgeOfTheEarthCrash": "Un miembro de la expedición murió en el accidente de avión.",
+    "edgeOfTheEarthShipSearched": "Los investigadores registraron el barco atrapado.",
+    "edgeOfTheEarthRevealedLocations": "La expedición exploró los alrededores."
+  },
+  "campaignName": "Los confines de la Tierra",
+  "scenarioName": "Hielo y muerte, parte I",
+  "checkpointName": "Punto de control 1: La desaparición",
+  "description": "Sobrevive al accidente y encuentra refugio antes de que arrecie la tormenta antártica."
 }

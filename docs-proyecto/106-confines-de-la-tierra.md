@@ -2,20 +2,25 @@
 
 ## Estado y continuación
 
-Entrega del 05/11/2026 sobre `d447195a`. `45ad37e0` corrige la regresión de
-catálogo añadiendo los escaneos y miniaturas EN/ES de las siete cartas
-¡Tekeli-li!. Se han implementado y probado Dyer, Sinha, Eliyah y Takada en sus
-versiones base y con rasgo Decidido. El registro sigue aislado hasta conectarlo
-al escenario real.
+Hielo y muerte I está disponible desde el selector con los nueve compañeros,
+el mazo ¡Tekeli-li!, la referencia de caos y las cartas EN/ES. Las pruebas de
+campaña llegan a la resolución mediante el acto y mediante el plan final.
+Comprueban el campamento, la experiencia, la bolsa persistente y el coste de
+entrada que pagan solo los investigadores en el Lugar de origen. Retirar
+Helada del barco persiste aunque la ficha perteneciera a la bolsa inicial.
 
-Siguiente entrega: Danforth, Claypool, Fredericks, Kensler y Ellsworth, puntos
-de control y reglas de Hielo y muerte I. `pull --rebase` sigue impedido por tres
-JSON previos. `fetch` confirmó que no había cambios remotos por integrar.
+Siguiente entrega: punto de control 1 y partes II y III. Al finalizar la parte
+I, el registro conserva el resultado y muestra el punto de control pendiente.
 
-Verificación: 104 pruebas de compañeros, expedición, apertura, ¡Tekeli-li!,
-imágenes y catálogo. Tipos de paquetes afectados, lint y huellas de imágenes
-y miniaturas. Revisadas miniaturas representativas en ambos idiomas. Repetir
-los controles afectados si cambian reglas, textos, recursos o registro.
+Claypool reutiliza la cancelación de fichas. La prueba puede terminar sin
+modificador si cancela la única ficha sin reemplazarla. Fredericks usa una
+restricción de ataque para toda la ronda, distinta de la restricción de Carcosa
+que solo aplica durante la fase de enemigos.
+
+Verificación sobre `57dac2a4`: 522 pruebas de motor, escenarios y campaña,
+salas, selector, referencia y catálogo. Tipos, formato, lint y huellas de los
+escaneos y miniaturas. Repetir controles si cambian reglas, textos, recursos o
+registro.
 
 ## Hoja de ruta
 
@@ -44,12 +49,11 @@ sin publicar, `[ ]` pendiente.
    de cada compañero. La selección impide que dos investigadores lleven al mismo
    personaje. Desistir conserva al compañero y la derrota lo elimina. La pregunta
    de preparación ofrece los compañeros disponibles y la opción de ir solo.
-   Ocho cartas con habilidades probadas (Dyer, Sinha, Eliyah y Takada base y
-   Decidido). Faltan los otros cinco compañeros y el registro en el escenario.
+   Los nueve compañeros tienen cartas registradas en el escenario local.
 5. [~] Mazo ¡Tekeli-li! de 16 copias compartidas. Se reconstruye en cada escenario
    descontando las copias asignadas en el registro de campaña. Las siete revelaciones
-   tienen pruebas y texto EN/ES, y devuelven su copia al fondo. Falta conectar el
-   registro de reglas, la preparación y los efectos que entregan las debilidades.
+   tienen pruebas y texto EN/ES, y devuelven su copia al fondo. El escenario local
+   prepara el mazo especial y conecta los efectos que entregan las debilidades.
 6. [ ] Puntos de control y recorrido no lineal: partes opcionales, omitidas,
    reanudación sin repetir preparación ni recompensas, visitas a Espejismo letal.
 
@@ -57,8 +61,9 @@ sin publicar, `[ ]` pendiente.
 
 7. [~] Prólogo con bolsas impresas por dificultad, elección del investigador jefe
    con nota y ficha persistentes, variante de Winifred y muerte reproducible antes
-   de elegir compañero. Resúmenes EN/ES. Falta conectarlo al escenario real.
-8. [ ] Hielo y muerte I (08501a), primera partida jugable de extremo a extremo.
+   de elegir compañero. Resúmenes EN/ES. Conectado al arranque de campaña local.
+8. [x] Hielo y muerte I (08501a), jugable desde el selector hasta la resolución.
+   El punto de control 1 está indicado como siguiente paso pendiente.
 9. [ ] Hielo y muerte II y III (08501b/c) con sus puntos de control.
 10. [ ] Interludios y Espejismo letal (08549).
 11. [ ] Hacia los picos prohibidos (08596).
@@ -68,8 +73,8 @@ sin publicar, `[ ]` pendiente.
 **Presentación y publicación**
 
 14. [~] Cartas de encuentro en catálogo EN/ES, imágenes y manifiesto. El catálogo
-    local incluye ¡Tekeli-li! y los cuatro compañeros implementados, con escaneos
-    y miniaturas EN/ES. Completar los recursos por escenario.
+    local incluye ¡Tekeli-li! y los nueve compañeros, con escaneos y miniaturas
+    EN/ES. Completar los recursos de los escenarios siguientes.
 15. [ ] Ayuda de fichas de cada escenario (tarjeta de referencia oficial).
     Incluirla en la entrega de cada escenario.
 16. [ ] Narraciones con la voz indicada abajo.
@@ -84,13 +89,14 @@ Inventario reproducible: 266 códigos EN/ES, 24 conjuntos, 371 copias según el
 catálogo fuente. Son entradas de datos, no 266 reglas implementadas ni un recuento
 certificado de cartas físicas: hay que revisar caras y variantes antes de usar
 las cantidades para preparar mazos. El catálogo local incluye las siete entradas
-de ¡Tekeli-li! y las ocho cartas de compañero de esta entrega.
+de ¡Tekeli-li! y dieciocho cartas de compañero.
 
 ## Narración
 
 Voz de ElevenLabs elegida por la persona usuaria para esta campaña:
 `DdKbXdRlBmj7Ty7N0FVr`. Usarla al preparar las narraciones de Los confines de la
-Tierra. Preferencia anotada el 04/11/2026; todavía no se ha generado audio.
+Tierra. Preferencia anotada el 04/11/2026. La narración con la voz indicada
+sigue pendiente.
 
 ## Fuentes revisadas
 

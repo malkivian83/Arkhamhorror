@@ -9,7 +9,7 @@ import {
   playerCardDef,
   scenarioBehavior,
   storyBehavior,
-  treacheryBehavior,
+  activeTreacheryBehavior,
   type TreacheryBehavior,
 } from './content'
 import {
@@ -214,8 +214,8 @@ export function playRestriction(
       (t) =>
         t.placement.type === 'threatArea' &&
         t.placement.investigator === id &&
-        (!!treacheryBehavior(t.code)?.blocksAssets ||
-          def.traits.includes(treacheryBehavior(t.code)?.blocksPlayTrait ?? '\u0000')),
+        (!!activeTreacheryBehavior(state, t)?.blocksAssets ||
+          def.traits.includes(activeTreacheryBehavior(state, t)?.blocksPlayTrait ?? '\u0000')),
     )
     if (blocker) return { key: 'unplayable.blockedAsset', params: by(blocker) }
     if (uniqueAssetInPlay(state, code))
@@ -224,7 +224,7 @@ export function playRestriction(
   if (typeBlocked(investigator, def.type, state.round))
     return { key: `unplayable.${def.type}ThisRound` }
   const restriction = threats.find((t) =>
-    treacheryBehavior(t.code)?.restricts?.play?.some((type) => type === def.type),
+    activeTreacheryBehavior(state, t)?.restricts?.play?.some((type) => type === def.type),
   )
   if (restriction)
     return {
@@ -298,7 +298,9 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
       ? []
       : location.connections
     )
-      .filter((to) => state.locations[to] && canAffordEntry(state, to) && canEnter(state, id, to))
+      .filter(
+        (to) => state.locations[to] && canAffordEntry(state, to, id) && canEnter(state, id, to),
+      )
       .map((to): Action => ({ kind: 'move', to })),
     // Un enemigo distante (aloof) no enfrentado no puede ser atacado.
     ...fightEnemies(state, id)
@@ -393,11 +395,25 @@ export function entryCost(state: GameState, location: string): number {
 }
 
 /** El grupo tiene pistas suficientes para entrar. */
-export function canAffordEntry(state: GameState, location: string): boolean {
+export function entryCluePayers(state: GameState, location: string, investigator?: InvestigatorId) {
+  const active = activeInvestigators(state)
+  if (!state.locations[location]?.enterCostAtOrigin || !investigator) return active
+  const origin = getInvestigator(state, investigator).location
+  return active.filter((i) => origin !== null && i.location === origin)
+}
+
+export function canAffordEntry(
+  state: GameState,
+  location: string,
+  investigator?: InvestigatorId,
+): boolean {
   const cost = entryCost(state, location)
   return (
     cost === 0 ||
-    activeInvestigators(state).reduce((sum, i) => sum + spendableClues(state, i.id), 0) >= cost
+    entryCluePayers(state, location, investigator).reduce(
+      (sum, i) => sum + spendableClues(state, i.id),
+      0,
+    ) >= cost
   )
 }
 
@@ -409,7 +425,7 @@ export function actionCost(state: GameState, id: InvestigatorId, action: Action)
   const extra =
     (action.kind === 'play' ? (playerCardBehavior(action.card)?.additionalPlayActions ?? 0) : 0) +
     threatAreaTreacheries(state, id).reduce(
-      (sum, t) => sum + (treacheryBehavior(t.code)?.actionCost?.(state, t, action) ?? 0),
+      (sum, t) => sum + (activeTreacheryBehavior(state, t)?.actionCost?.(state, t, action) ?? 0),
       0,
     )
   if (
@@ -435,7 +451,7 @@ export function leavingBlocked(state: GameState, location: string): boolean {
     (t) =>
       t.placement.type === 'location' &&
       t.placement.location === location &&
-      treacheryBehavior(t.code)?.blocksLeaving,
+      activeTreacheryBehavior(state, t)?.blocksLeaving,
   )
 }
 
@@ -443,7 +459,7 @@ function moveCost(state: GameState, location: string): number {
   return Object.values(state.treacheries).reduce(
     (sum, t) =>
       t.placement.type === 'location' && t.placement.location === location
-        ? sum + (treacheryBehavior(t.code)?.moveCost ?? 0)
+        ? sum + (activeTreacheryBehavior(state, t)?.moveCost ?? 0)
         : sum,
     0,
   )
@@ -603,7 +619,7 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
       ? withTarget(actBehavior(act.code)?.abilities?.(state, act, id) ?? [], { type: 'act' })
       : []),
     ...treacheries.flatMap((t) =>
-      withTarget(treacheryBehavior(t.code)?.abilities?.(state, t, id) ?? [], {
+      withTarget(activeTreacheryBehavior(state, t)?.abilities?.(state, t, id) ?? [], {
         type: 'treachery',
         id: t.id,
       }),
@@ -724,7 +740,7 @@ export function investigationBlocked(state: GameState, location: LocationId): bo
     (t) =>
       t.placement.type === 'location' &&
       t.placement.location === location &&
-      !!treacheryBehavior(t.code)?.blocksInvestigation,
+      !!activeTreacheryBehavior(state, t)?.blocksInvestigation,
   )
 }
 
@@ -736,7 +752,7 @@ export function parleyCosts(state: GameState, id: InvestigatorId): Message[] | n
   const costs: Message[] = []
   for (const t of Object.values(state.treacheries)) {
     if (t.placement.type !== 'threatArea' || t.placement.investigator !== id) continue
-    const cost = treacheryBehavior(t.code)?.parleyCost
+    const cost = activeTreacheryBehavior(state, t)?.parleyCost
     if (!cost) continue
     const messages = cost(state, id)
     if (!messages) return null
@@ -775,7 +791,7 @@ function restricted(
   applies: (r: Restriction) => boolean | undefined,
 ): boolean {
   return threatAreaTreacheries(state, id).some((t) => {
-    const r = treacheryBehavior(t.code)?.restricts
+    const r = activeTreacheryBehavior(state, t)?.restricts
     return !!r && !!applies(r)
   })
 }
@@ -916,6 +932,6 @@ export function assetsBlocked(state: GameState, investigator: string): boolean {
     (t) =>
       t.placement.type === 'threatArea' &&
       t.placement.investigator === investigator &&
-      !!treacheryBehavior(t.code)?.blocksAssets,
+      !!activeTreacheryBehavior(state, t)?.blocksAssets,
   )
 }
