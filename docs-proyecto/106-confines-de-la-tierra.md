@@ -23,7 +23,13 @@ III y registra la huida. Combatir recupera el campamento y reparte los ocho
 Eidolones ocultos de forma equitativa. Las resoluciones registran victoria,
 huida o derrota con sus bonificaciones de experiencia.
 
-Siguiente entrega: interludio I, Noche reposada, y Espejismo letal.
+Noche reposada está disponible en el registro local. Conserva las visitas y
+sus efectos al recargar, y ofrece Espejismo letal si hay al menos tres bajas.
+Incluye tres locuciones de Salva. Los Memoriales se anotan en el registro y sus
+habilidades quedan pendientes para cuando puedan usarse en un escenario.
+
+Siguiente entrega: implementar los Memoriales, conectar el interludio a las
+salas y habilitar Espejismo letal y Hacia los picos prohibidos.
 
 Claypool reutiliza la cancelación de fichas. La prueba puede terminar sin
 modificador si cancela la única ficha sin reemplazarla. Fredericks usa una
@@ -115,7 +121,7 @@ de ¡Tekeli-li! y dieciocho cartas de compañero.
 
 ## Narración
 
-Hielo y muerte y sus dos puntos de control tienen 48 locuciones en español generadas con la voz de ElevenLabs
+Hielo y muerte, sus dos puntos de control y Noche reposada reúnen 51 locuciones en español generadas con la voz de ElevenLabs
 elegida para la campaña, Salva (`hyKxCTlAqtnW188CgltM`). Leen los resúmenes que muestra
 la mesa, desde el prólogo y las variantes del accidente hasta los reversos de
 plan, las resoluciones, las salidas de ambos puntos de control y las historias de la búsqueda. La ficha de preparación se muestra como texto.

@@ -12,6 +12,7 @@ import {
   disappearanceResult,
   expeditionAttack,
   expeditionAttackResult,
+  restfulNight,
   type AttackDecision,
   type DisappearanceDecision,
   deckSize,
@@ -27,7 +28,7 @@ import {
   type PurchaseOption,
 } from '@lcg/cards'
 import { computed, ref } from 'vue'
-import { allPlayerCardDefs } from '@lcg/engine'
+import { allPlayerCardDefs, tekeliliCopies } from '@lcg/engine'
 import CustomizationSheet from '../components/CustomizationSheet.vue'
 import CampaignUpgradeShop from '../components/CampaignUpgradeShop.vue'
 import { useI18n } from 'vue-i18n'
@@ -36,6 +37,7 @@ import ChaosTokenView from '../components/ChaosTokenView.vue'
 import DisclosureIcon from '../components/DisclosureIcon.vue'
 import GameCard from '../components/GameCard.vue'
 import ExpeditionCheckpoint from '../components/ExpeditionCheckpoint.vue'
+import RestfulNight from '../components/RestfulNight.vue'
 import SaveGame from '../components/SaveGame.vue'
 import SitePage from '../components/SitePage.vue'
 import SiteAction from '../components/SiteAction.vue'
@@ -83,6 +85,15 @@ const checkpointStory = computed(() => {
 })
 const resultByScenario = computed(() =>
   Object.fromEntries((campaign.value?.results ?? []).map((result) => [result.scenario, result])),
+)
+const interlude = computed(() => (campaign.value ? restfulNight(campaign.value) : null))
+const interludeWeaknesses = computed(() =>
+  Object.fromEntries(
+    Object.entries(campaign.value?.log.investigators ?? {}).map(([id, record]) => [
+      id,
+      record.storyAssets.filter((code) => Object.hasOwn(tekeliliCopies, code)),
+    ]),
+  ),
 )
 const playable = computed(() => !!campaign.value && canPlayNext(campaign.value))
 /** Mazos que no pueden empezar el siguiente escenario, con el motivo. */
@@ -431,8 +442,17 @@ function abandon() {
       <p v-if="game.error" class="error">{{ errorText }}</p>
     </section>
 
+    <RestfulNight
+      v-if="!game.state && interlude"
+      class="page transfer"
+      :interlude="interlude"
+      :owned-weaknesses="interludeWeaknesses"
+      @visit="game.visitRestfulNight"
+      @finish="game.closeRestfulNight"
+    />
+
     <ExpeditionCheckpoint
-      v-if="!game.state && checkpointStory"
+      v-if="!game.state && checkpointStory && !interlude"
       class="page transfer"
       :story="checkpointStory"
       :missing="disappearanceCheckpoint ? disappearanceCheckpoint.missing : undefined"
@@ -445,7 +465,7 @@ function abandon() {
         {{ t('campaign.resumeScenario') }}
       </SiteAction>
       <p v-else-if="lost" class="finished">{{ t('campaign.lost') }}</p>
-      <template v-else-if="next && !checkpoint">
+      <template v-else-if="next && !checkpoint && !interlude">
         <SiteAction icon="→" :disabled="!playable" @click="playNext">
           {{ t('campaign.play', { scenario: scenarioName(next) }) }}
         </SiteAction>
@@ -459,7 +479,7 @@ function abandon() {
         </span>
         <span v-else-if="!playable" class="soon">{{ t('campaign.comingSoon') }}</span>
       </template>
-      <p v-else-if="!checkpoint" class="finished">{{ t('campaign.finished') }}</p>
+      <p v-else-if="!checkpoint && !interlude" class="finished">{{ t('campaign.finished') }}</p>
       <SiteAction
         v-if="campaign && canAddCarnevale(campaign)"
         icon="+"

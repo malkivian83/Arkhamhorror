@@ -600,5 +600,60 @@
     "typeCode": "treachery",
     "traits": "Locura.",
     "text": "<b>Revelación</b> - Descarta un Apoyo que controles. Coloca Tekeli-li en la parte inferior del mazo Tekeli-li."
+  },
+  "08730": {
+    "name": "Pieles de Claypool",
+    "typeCode": "asset",
+    "traits": "Objeto. Ropa.",
+    "text": "Rápido.\n[reaction] Cuando reveles una ficha [frost] durante una prueba de habilidad que estés realizando, inflige 1 punto de daño a las Pieles de Claypool: Cancela esa ficha de Caos y devuélvela a la bolsa. Revela una nueva ficha de Caos."
+  },
+  "08731": {
+    "name": "Obras completas de Poe",
+    "typeCode": "asset",
+    "traits": "Objeto. Tomo.",
+    "text": "Usos (3 cargas).\n[action] Gasta 1 carga: Elige un investigador que esté en tu Lugar para que busque entre las 6 primeras cartas de su mazo todas las copias de Tekeli-li y coloque cada una de ellas en la parte inferior del mazo Tekeli-li. Baraja el mazo de ese investigador. Ese investigador roba 1 carta."
+  },
+  "08732": {
+    "name": "Colt del .32 personalizado",
+    "typeCode": "asset",
+    "traits": "Objeto. Arma. Arma de fuego.",
+    "text": "Rápido. Usos (2 municiones).\n[action] Gasta 1 munición: <b>Combatir.</b> Combate con una habilidad [combat] básica de 5 o bien recibe +2 [combat] para este ataque. Este ataque inflige +1 de daño."
+  },
+  "08733": {
+    "name": "Bocetos de Dyer",
+    "typeCode": "event",
+    "traits": "Inspiración.",
+    "text": "Rápido. Juega esta carta durante cualquier oportunidad [fast].\nRoba 3 cartas."
+  },
+  "08734": {
+    "name": "Botas de Ellsworth",
+    "typeCode": "asset",
+    "traits": "Objeto. Ropa. Calzado.",
+    "text": "Límite de 1 [[Calzado]] por investigador.\n[reaction] Después de que se descubra la última pista de tu Lugar, agota las Botas de Ellsworth: Muévete a un Lugar conectado o bien descarta las Botas de Ellsworth para moverte a cualquier Lugar revelado."
+  },
+  "08735": {
+    "name": "Diario de Kensler",
+    "typeCode": "asset",
+    "traits": "Objeto. Tomo.",
+    "text": "Rápido. Usos (2 secretos).\n[action] Gasta 1 secreto: <b>Investigar.</b> Investiga con una habilidad [intellect] básica de 5 o bien recibe +2 [intellect] para esta investigación. Si tienes éxito, descubre 1 pista adicional en tu Lugar."
+  },
+  "08736": {
+    "name": "Botiquín de Sinha",
+    "typeCode": "asset",
+    "traits": "Objeto. Ciencia.",
+    "text": "Usos (3 suministros).\n[fast] Agota el Botiquín de Sinha y gasta 1 suministro: Cura 1 punto de daño o 1 punto de horror a un investigador o Apoyo [[Aliado]] que esté en tu Lugar."
+  },
+  "08737": {
+    "name": "Alijo de Takada",
+    "typeCode": "event",
+    "traits": "Suministros.",
+    "text": "Rápido. Juega esta carta durante cualquier oportunidad [fast].\nObtén 3 recursos y roba 1 carta. Retira el Alijo de Takada de la partida."
+  },
+  "08738": {
+    "name": "Anyu",
+    "typeCode": "asset",
+    "subname": "Compañera fiel",
+    "traits": "Aliado. Criatura.",
+    "text": "[fast] Agota a Anyu: Elige una opción o bien descarta a Anyu para elegir hasta tres en cualquier orden -\n - Muévete a un Lugar conectado.\n - Recibe +2 a tu valor de habilidad para tu siguiente prueba de habilidad en esta ronda.\n - <b>Evitar.</b> Intenta evitar con una habilidad [agility] básica de 4."
   }
 }

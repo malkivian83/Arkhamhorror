@@ -1,5 +1,14 @@
 import { accountStorage } from '../account/storage'
-import { cardPool, finishScenario, newCampaign, starterDeckList, startScenario } from '@lcg/cards'
+import {
+  cardPool,
+  finishScenario,
+  newCampaign,
+  starterDeckList,
+  startScenario,
+  resolveDisappearance,
+  resolveExpeditionAttack,
+  restfulNight,
+} from '@lcg/cards'
 import { dispatch, isPermanent } from '@lcg/engine'
 import { throughSetup } from '@lcg/engine/testing'
 import { createPinia, setActivePinia } from 'pinia'
@@ -269,3 +278,29 @@ it.each(['search', 'leave'] as const)(
     expect(reloaded.storageIssue).toBeNull()
   },
 )
+
+it('restores Restful Night visits and their recorded memorial after reloading', () => {
+  const campaign = newCampaign('edge-of-the-earth', ['joe'], 'standard')
+  const started = startScenario(campaign, 44)
+  const completed = dispatch(
+    { ...started, pending: null, queue: [] },
+    { type: 'InitializeExpedition' },
+    { type: 'SetExpeditionPartnerStatus', partner: '08718', status: 'eliminated' },
+    { type: 'RecordExpeditionCamp', location: '08502', shelter: 0 },
+    { type: 'EndScenario', told: true, outcome: { type: 'resolution', resolution: 1 } },
+  )
+  const night = resolveExpeditionAttack(
+    resolveDisappearance(finishScenario(campaign, completed), 'leave'),
+    'flee',
+  )
+  const store = useGameStore()
+  expect(store.importSession(JSON.stringify(session(null, null, night)))).toBe(true)
+  const id = campaign.investigators[0]!.id
+  store.visitRestfulNight({ partner: '08718', target: { type: 'investigator', id } })
+  expect(store.storageIssue).toBeNull()
+  setActivePinia(createPinia())
+  const reloaded = useGameStore()
+  expect(restfulNight(reloaded.campaign!)?.remaining).toBe(3)
+  expect(reloaded.campaign?.log.investigators[id]?.storyAssets).toContain('08730')
+  expect(reloaded.storageIssue).toBeNull()
+})

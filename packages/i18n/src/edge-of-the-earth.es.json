@@ -203,6 +203,18 @@
     "partThreeEscape": {
       "title": "Resolución 2",
       "body": "Borráis vuestras huellas al dejar atrás el campo de hielo y os adentráis en las montañas."
+    },
+    "restfulNight": {
+      "title": "Noche reposada",
+      "body": "Por primera vez desde el accidente, el viento os da un respiro. Pasáis de tienda en tienda para hablar con los demás y ver qué podéis aprovechar para el viaje."
+    },
+    "restfulNightDawn": {
+      "title": "Al amanecer",
+      "body": "Recogéis el campamento y os volvéis hacia las montañas. Si queréis llegar al lugar que describió Dyer, tendréis que seguir a pie."
+    },
+    "restfulNightDoor": {
+      "title": "La puerta",
+      "body": "Al despertar encontráis una puerta en mitad de la nieve. Una bruma gris cruza el umbral. El campamento sigue a vuestro alrededor, pero algo al otro lado os resulta familiar."
     }
   },
   "choice": {
@@ -235,7 +247,22 @@
     "fight": "¡Resistamos y luchemos!",
     "flee": "¡Huyamos!",
     "nightmareWeaknesses": "Cada investigador baraja 2 debilidades ¡Tekeli-li!",
-    "nightmareRemoveDoom": "Retirar 1 perdición de {name}"
+    "nightmareRemoveDoom": "Retirar 1 perdición de {name}",
+    "night": {
+      "memorial": "Asigna {card} a un investigador como carta de historia.",
+      "removeWeaknesses": "Elige hasta 5 debilidades ¡Tekeli-li! del mazo de un investigador.",
+      "startingHand": "Elige quién comienza Hacia los picos prohibidos con dos cartas adicionales.",
+      "healHorror": "Cura 1 trauma mental o retira 1 horror de un compañero.",
+      "healDamage": "Cura 1 trauma físico o retira 1 daño de un compañero.",
+      "removeFrost": "Retira una ficha de Helada de la bolsa de caos.",
+      "experience": "Elige quién gana 1 punto de experiencia.",
+      "research": "Anota que la Dra. Kensler comparte su investigación.",
+      "scouting": "Anota que la expedición exploró el paso de montaña.",
+      "startingResources": "Elige quién comienza Hacia los picos prohibidos con tres recursos adicionales."
+    },
+    "nightConfirm": "Confirmar visita",
+    "nightMirage": "Adentrarse en el espejismo",
+    "nightPeaks": "Seguir hacia los picos prohibidos"
   },
   "prompt": {
     "claypool": "Avery Claypool: elige cómo cancelar la ficha de Helada",
@@ -255,7 +282,11 @@
     "nightmareAgenda": "Elige cómo afrontar las manifestaciones",
     "nightmareNearest": "Elige la Pesadilla rezumante más cercana",
     "nightmareMost": "Elige una Pesadilla rezumante con el mayor número de cartas debajo",
-    "nightmareRemoveDoom": "Elige de dónde retirar la perdición"
+    "nightmareRemoveDoom": "Elige de dónde retirar la perdición",
+    "nightVisits": "Visitas restantes: {remaining}",
+    "nightPartner": "Elige un miembro de la expedición",
+    "nightTarget": "Elige quién recibe el beneficio",
+    "nightWeaknesses": "Elige hasta cinco debilidades"
   },
   "ability": {
     "claypool": "Avery Claypool: cancela la ficha de Helada",
@@ -294,7 +325,9 @@
     "edgeOfTheEarthRevealedLocations": "La expedición exploró los alrededores.",
     "edgeOfTheEarthFledToMountains": "El equipo huyó a las montañas.",
     "edgeOfTheEarthBarelyEscaped": "El equipo logró escapar del campo de hielo a duras penas.",
-    "edgeOfTheEarthDefeatedCreatures": "El equipo derrotó a las criaturas cazadoras."
+    "edgeOfTheEarthDefeatedCreatures": "El equipo derrotó a las criaturas cazadoras.",
+    "edgeOfTheEarthKenslerResearch": "La Dra. Kensler comparte su investigación con los investigadores.",
+    "edgeOfTheEarthScoutedMountainPass": "Los investigadores exploraron el paso de montaña."
   },
   "campaignName": "Los confines de la Tierra",
   "scenarioName": "Hielo y muerte, parte I",
@@ -303,5 +336,7 @@
   "partTwoName": "Hielo y muerte, parte II",
   "checkpointTwoName": "Punto de control II: El ataque",
   "partThreeName": "Hielo y muerte, parte III",
-  "restfulNightName": "Interludio I: Noche reposada"
+  "restfulNightName": "Interludio I: Noche reposada",
+  "fatalMirageName": "Espejismo letal",
+  "forbiddenPeaksName": "Hacia los picos prohibidos"
 }

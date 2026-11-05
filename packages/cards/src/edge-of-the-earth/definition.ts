@@ -6,6 +6,8 @@ import {
   ICE_CHECKPOINT_TWO,
   ICE_PART_THREE,
   EOTE_RESTFUL_NIGHT,
+  EOTE_FATAL_MIRAGE,
+  EOTE_FORBIDDEN_PEAKS,
   ICE_PART_TWO,
 } from './ice-and-death-cards'
 import { iceAndDeathPartOne } from './ice-and-death'
@@ -45,5 +47,7 @@ registerCampaign({
       keywords: ['frost', 'hunter'],
     },
     { id: EOTE_RESTFUL_NIGHT, checkpoint: true },
+    { id: EOTE_FATAL_MIRAGE },
+    { id: EOTE_FORBIDDEN_PEAKS },
   ],
 })

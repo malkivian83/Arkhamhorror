@@ -486,3 +486,10 @@ export {
   type AttackDecision,
   type DisappearanceDecision,
 } from './edge-of-the-earth/checkpoint'
+
+export {
+  restfulNight,
+  applyRestfulNightVisit,
+  completeRestfulNight,
+  type RestfulNightChoice,
+} from './edge-of-the-earth/restful-night'

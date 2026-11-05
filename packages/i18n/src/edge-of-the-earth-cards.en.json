@@ -600,5 +600,60 @@
     "typeCode": "treachery",
     "traits": "Madness.",
     "text": "<b>Revelation</b> - Discard an asset you control. Place Tekeli-li on the bottom of the Tekeli-li deck."
+  },
+  "08730": {
+    "name": "Claypool's Furs",
+    "typeCode": "asset",
+    "traits": "Item. Clothing.",
+    "text": "Fast.\n[reaction] When you reveal a [frost] token during a skill test you are performing, deal 1 damage to Claypool's Furs: Cancel that chaos token and return it to the bag. Reveal a new chaos token."
+  },
+  "08731": {
+    "name": "Collected Works of Poe",
+    "typeCode": "asset",
+    "traits": "Item. Tome.",
+    "text": "Uses (3 charges).\n[action] Spend 1 charge: Choose an investigator at your location to search the top 6 cards of their deck for each copy of Tekeli-li and place each of them on the bottom of the Tekeli-li deck. Shuffle that investigator's deck. That investigator draws 1 card."
+  },
+  "08732": {
+    "name": "Cookie's Custom .32",
+    "typeCode": "asset",
+    "traits": "Item. Weapon. Firearm.",
+    "text": "Fast. Uses (2 ammo).\n[action] Spend 1 ammo: <b>Fight.</b> Either fight with a base [combat] skill of 5, or get +2 [combat] for this attack. This attack deals +1 damage."
+  },
+  "08733": {
+    "name": "Dyer's Sketches",
+    "typeCode": "event",
+    "traits": "Insight.",
+    "text": "Fast. Play during any [fast] window.\nDraw 3 cards."
+  },
+  "08734": {
+    "name": "Ellsworth's Boots",
+    "typeCode": "asset",
+    "traits": "Item. Clothing. Footwear.",
+    "text": "Limit 1 [[Footwear]] per investigator.\n[reaction] After the last clue is discovered from your location, exhaust Ellsworth's Boots: Move to a connecting location, or discard Ellsworth's Boots to move to any revealed location."
+  },
+  "08735": {
+    "name": "Kensler's Log",
+    "typeCode": "asset",
+    "traits": "Item. Tome.",
+    "text": "Fast. Uses (2 secrets).\n[action] Spend 1 secret: <b>Investigate.</b> Either investigate with a base [intellect] skill of 5, or get +2 [intellect] for this investigation. If you succeed, you discover 1 additional clue at your location."
+  },
+  "08736": {
+    "name": "Sinha's Medical Kit",
+    "typeCode": "asset",
+    "traits": "Item. Science.",
+    "text": "Uses (3 supplies).\n[fast] Exhaust Sinha's Medical Kit and spend 1 supply: Heal 1 damage or 1 horror from an investigator or [[Ally]] asset at your location."
+  },
+  "08737": {
+    "name": "Takada's Cache",
+    "typeCode": "event",
+    "traits": "Supply.",
+    "text": "Fast. Play during any [fast] window.\nGain 3 resources and draw 1 card. Remove Takada's Cache from the game."
+  },
+  "08738": {
+    "name": "Anyu",
+    "typeCode": "asset",
+    "subname": "Faithful Companion",
+    "traits": "Ally. Creature.",
+    "text": "[fast] Exhaust Anyu: Choose one, or discard Anyu to choose up to three, in any order -\n - Move to a connecting location.\n - You get +2 skill value for your next skill test this round.\n - <b>Evade.</b> Attempt to evade with a base [agility] skill of 4."
   }
 }

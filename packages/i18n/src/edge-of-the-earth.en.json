@@ -203,6 +203,18 @@
     "partThreeEscape": {
       "title": "Resolution 2",
       "body": "You cover your tracks as you leave the ice shelf and head deeper into the mountains."
+    },
+    "restfulNight": {
+      "title": "Restful Night",
+      "body": "For the first time since the crash, the wind gives you a moment to rest. You make your way between the tents to speak to the others and see what you can salvage for the journey."
+    },
+    "restfulNightDawn": {
+      "title": "At dawn",
+      "body": "You pack the camp and turn toward the mountains. If you are to reach the place Dyer described, you will have to go on foot."
+    },
+    "restfulNightDoor": {
+      "title": "The door",
+      "body": "You wake to find a door standing in the snow. A grey mist drifts through the frame. The camp is still around you, but something beyond the door seems familiar."
     }
   },
   "choice": {
@@ -235,7 +247,22 @@
     "fight": "Stand and fight",
     "flee": "Run for your lives",
     "nightmareWeaknesses": "Each investigator shuffles 2 Tekeli-li weaknesses",
-    "nightmareRemoveDoom": "Remove 1 doom from {name}"
+    "nightmareRemoveDoom": "Remove 1 doom from {name}",
+    "night": {
+      "memorial": "Assign {card} to an investigator as a story card.",
+      "removeWeaknesses": "Choose up to 5 Tekeli-li weaknesses from one investigator’s deck.",
+      "startingHand": "Choose who starts To the Forbidden Peaks with two extra cards.",
+      "healHorror": "Heal 1 mental trauma or remove 1 horror from a companion.",
+      "healDamage": "Heal 1 physical trauma or remove 1 damage from a companion.",
+      "removeFrost": "Remove one frost token from the chaos bag.",
+      "experience": "Choose who gains 1 experience.",
+      "research": "Record that Dr. Kensler is sharing her research.",
+      "scouting": "Record that the expedition scouted the mountain pass.",
+      "startingResources": "Choose who starts To the Forbidden Peaks with three extra resources."
+    },
+    "nightConfirm": "Confirm visit",
+    "nightMirage": "Enter the mirage",
+    "nightPeaks": "Continue to the forbidden peaks"
   },
   "prompt": {
     "claypool": "Avery Claypool: choose how to cancel the frost token",
@@ -255,7 +282,11 @@
     "nightmareAgenda": "Choose how to face the manifestations",
     "nightmareNearest": "Choose the nearest Seeping Nightmare",
     "nightmareMost": "Choose a Seeping Nightmare with the most cards beneath it",
-    "nightmareRemoveDoom": "Choose where to remove doom"
+    "nightmareRemoveDoom": "Choose where to remove doom",
+    "nightVisits": "Visits remaining: {remaining}",
+    "nightPartner": "Choose a member of the expedition",
+    "nightTarget": "Choose who receives the benefit",
+    "nightWeaknesses": "Choose up to five weaknesses"
   },
   "ability": {
     "claypool": "Avery Claypool: cancel the frost token",
@@ -294,7 +325,9 @@
     "edgeOfTheEarthRevealedLocations": "The expedition explored the surrounding area.",
     "edgeOfTheEarthFledToMountains": "The team fled to the mountains.",
     "edgeOfTheEarthBarelyEscaped": "The team barely escaped the ice shelf.",
-    "edgeOfTheEarthDefeatedCreatures": "The team defeated the hunting creatures."
+    "edgeOfTheEarthDefeatedCreatures": "The team defeated the hunting creatures.",
+    "edgeOfTheEarthKenslerResearch": "Dr. Kensler is sharing her research with the investigators.",
+    "edgeOfTheEarthScoutedMountainPass": "The investigators scouted the mountain pass."
   },
   "campaignName": "Edge of the Earth",
   "scenarioName": "Ice and Death, Part I",
@@ -303,5 +336,7 @@
   "partTwoName": "Ice and Death, Part II",
   "checkpointTwoName": "Checkpoint II: The Attack",
   "partThreeName": "Ice and Death, Part III",
-  "restfulNightName": "Interlude I: Restful Night"
+  "restfulNightName": "Interlude I: Restful Night",
+  "fatalMirageName": "Fatal Mirage",
+  "forbiddenPeaksName": "To the Forbidden Peaks"
 }

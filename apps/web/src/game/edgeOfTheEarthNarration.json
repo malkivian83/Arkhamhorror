@@ -289,6 +289,24 @@
       "file": "edge-of-the-earth-partThreeEscape-salva.mp3",
       "textSha256": "59f97c0356c843411d57b5108bef59d8acb52ec04edabff08b9078b1163ba63b",
       "audioSha256": "b4ad06094f7bf179bc5054f8398f794dd1df4b5a05d90777fbd2a43e93740460"
+    },
+    {
+      "key": "story.edgeOfTheEarth.restfulNight.body",
+      "file": "edge-of-the-earth-restfulNight-salva.mp3",
+      "textSha256": "8b0f6fc3ce51ca82e8b50b189a2644708c5dd16515b82fcb8f33b39aa9e1f7da",
+      "audioSha256": "b6944ed31878069dffc35de3df022f91d58324df5bf55da59f528d99eb7c26d5"
+    },
+    {
+      "key": "story.edgeOfTheEarth.restfulNightDawn.body",
+      "file": "edge-of-the-earth-restfulNightDawn-salva.mp3",
+      "textSha256": "a124acbc7e0d9ba6c2e3be3075553ce47dc40ceb141d3ed132ad43b692655d89",
+      "audioSha256": "844af80d779a48154ae8e6ca11a41c02acf61aa772874216192e727831108137"
+    },
+    {
+      "key": "story.edgeOfTheEarth.restfulNightDoor.body",
+      "file": "edge-of-the-earth-restfulNightDoor-salva.mp3",
+      "textSha256": "620a3008bb67f7a57dc9fa80e9c220b56d2542c2e6d52a2a266cb5b4fcccbb52",
+      "audioSha256": "6303802f276e929d0cb6baa8258295d51f862f2586f5d3aceb3430da4592d8ba"
     }
   ]
 }

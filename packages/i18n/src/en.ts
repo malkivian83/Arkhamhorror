@@ -40,6 +40,8 @@ export const messages = {
       'ice-and-death-checkpoint-2': edgeOfTheEarth.checkpointTwoName,
       'ice-and-death-part-3': edgeOfTheEarth.partThreeName,
       'edge-of-the-earth-restful-night': edgeOfTheEarth.restfulNightName,
+      'edge-of-the-earth-fatal-mirage': edgeOfTheEarth.fatalMirageName,
+      'edge-of-the-earth-forbidden-peaks': edgeOfTheEarth.forbiddenPeaksName,
     },
   },
   setup: {

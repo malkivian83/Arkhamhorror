@@ -4,6 +4,9 @@ import {
   chooseTransferHeir,
   replaceInvestigator,
   finishScenario,
+  applyRestfulNightVisit,
+  completeRestfulNight,
+  type RestfulNightChoice,
   resolveDisappearance,
   resolveExpeditionAttack,
   type AttackDecision,
@@ -273,6 +276,18 @@ export const useGameStore = defineStore('game', () => {
     persist()
   }
 
+  function visitRestfulNight(choice: RestfulNightChoice) {
+    if (!campaign.value || latest) return
+    setCampaign(applyRestfulNightVisit(campaign.value, choice))
+    persist()
+  }
+
+  function closeRestfulNight(route: 'mirage' | 'peaks') {
+    if (!campaign.value || latest) return
+    setCampaign(completeRestfulNight(campaign.value, route))
+    persist()
+  }
+
   function insertCarnevale() {
     if (!campaign.value || latest) return
     setCampaign(addCarnevale(campaign.value))
@@ -533,6 +548,8 @@ export const useGameStore = defineStore('game', () => {
     closeScenario,
     playNext,
     insertCarnevale,
+    visitRestfulNight,
+    closeRestfulNight,
     chooseDisappearance,
     chooseExpeditionAttack,
     buy,
