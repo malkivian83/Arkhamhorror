@@ -545,7 +545,8 @@ export function fallbackCards(locale: string): LocalizedCard[] {
       code,
       name: text.name,
       real_name: text.name,
-      type_code: 'treachery',
+      type_code: text.typeCode ?? 'treachery',
+      subname: text.subname,
       traits: text.traits,
       text: text.text,
     })

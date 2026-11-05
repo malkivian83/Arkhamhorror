@@ -1,4 +1,60 @@
 {
+  "08587": {
+    "name": "Professor William Dyer",
+    "subname": "Professor of Geology",
+    "typeCode": "asset",
+    "traits": "Ally. Miskatonic. Resolute.",
+    "text": "Partner. Uses (3 secrets).\n[fast] Spend 1 secret and exhaust Professor William Dyer: Heal 2 horror from an investigator or another [[Ally]] asset at your location."
+  },
+  "08589": {
+    "name": "Eliyah Ashevak",
+    "subname": "Dog Handler",
+    "typeCode": "asset",
+    "traits": "Ally. Wayfarer. Resolute.",
+    "text": "Partner. Uses (3 secrets).\n[fast] During your turn, spend 1 secret and exhaust Eliyah Ashevak: <b>Evade.</b> Attempt to evade with a base [agility] skill of 6. If you succeed, you may move to a connecting location."
+  },
+  "08590": {
+    "name": "Dr. Mala Sinha",
+    "subname": "Daring Physician",
+    "typeCode": "asset",
+    "traits": "Ally. Wayfarer. Resolute.",
+    "text": "Partner. Uses (3 supplies).\n[fast] Spend 1 supply and exhaust Dr. Mala Sinha: Heal 2 damage from an investigator or another [[Ally]] asset at your location."
+  },
+  "08595": {
+    "name": "Takada Hiroko",
+    "subname": "Aeroplane Mechanic",
+    "typeCode": "asset",
+    "traits": "Ally. Wayfarer. Resolute.",
+    "text": "Partner. Uses (9 resources).\n[action] Exhaust Takada Hiroko: Gain 1 resource. Move up to 3 resources from Takada Hiroko to your resource pool."
+  },
+  "08714": {
+    "name": "Professor William Dyer",
+    "subname": "Professor of Geology",
+    "typeCode": "asset",
+    "traits": "Ally. Miskatonic.",
+    "text": "Partner. Uses (3 secrets).\n[action] Spend 1 secret and exhaust Professor William Dyer: Heal 2 horror from an investigator or another [[Ally]] asset at your location."
+  },
+  "08716": {
+    "name": "Eliyah Ashevak",
+    "subname": "Dog Handler",
+    "typeCode": "asset",
+    "traits": "Ally. Wayfarer.",
+    "text": "Partner. Uses (3 secrets).\n[action] Spend 1 secret and exhaust Eliyah Ashevak: <b>Evade.</b> Attempt to evade with a base [agility] skill of 5. If you succeed, you may move to a connecting location."
+  },
+  "08717": {
+    "name": "Dr. Mala Sinha",
+    "subname": "Daring Physician",
+    "typeCode": "asset",
+    "traits": "Ally. Wayfarer.",
+    "text": "Partner. Uses (3 supplies).\n[action] Spend 1 supply and exhaust Dr. Mala Sinha: Heal 2 damage from an investigator or another [[Ally]] asset at your location."
+  },
+  "08722": {
+    "name": "Takada Hiroko",
+    "subname": "Aeroplane Mechanic",
+    "typeCode": "asset",
+    "traits": "Ally. Wayfarer.",
+    "text": "Partner. Uses (9 resources).\n[action] Exhaust Takada Hiroko: Move up to 3 resources from Takada Hiroko to your resource pool."
+  },
   "08723": {
     "name": "Tekeli-li",
     "typeCode": "treachery",

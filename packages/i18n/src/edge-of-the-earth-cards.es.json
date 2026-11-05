@@ -1,4 +1,60 @@
 {
+  "08587": {
+    "name": "Profesor William Dyer",
+    "subname": "Profesor de geología",
+    "typeCode": "asset",
+    "traits": "Aliado. Miskatonic. Decidido.",
+    "text": "Compañero. Usos (3 secretos).\n[fast] Gasta 1 secreto y agota al Profesor William Dyer: Cura 2 puntos de horror de un investigador o de otro Apoyo [[Aliado]] que esté en tu Lugar."
+  },
+  "08589": {
+    "name": "Eliyah Ashevak",
+    "subname": "Adiestrador de perros",
+    "typeCode": "asset",
+    "traits": "Aliado. Viajero. Decidido.",
+    "text": "Compañero. Usos (3 secretos).\n[fast] Durante tu turno, gasta 1 secreto y agota a Eliyah Ashevak: <b>Evitar.</b> Intenta evitar con una habilidad [agility] básica de 6. Si tienes éxito, puedes moverte a un Lugar conectado."
+  },
+  "08590": {
+    "name": "Dra. Mala Sinha",
+    "subname": "Médico osada",
+    "typeCode": "asset",
+    "traits": "Aliado. Viajero. Decidido.",
+    "text": "Compañero. Usos (3 suministros).\n[fast] Gasta 1 suministro y agota a la Dra. Mala Sinha: Cura 2 puntos de daño de un investigador o de otro Apoyo [[Aliado]] que esté en tu Lugar."
+  },
+  "08595": {
+    "name": "Takada Hiroko",
+    "subname": "Mecánica de aeroplanos",
+    "typeCode": "asset",
+    "traits": "Aliado. Viajero. Decidido.",
+    "text": "Compañero. Usos (9 recursos).\n[action] Agota a Takada Hiroko: Obtén 1 recurso. Mueve hasta 3 recursos de Takada Hiroko a tu reserva de recursos."
+  },
+  "08714": {
+    "name": "Profesor William Dyer",
+    "subname": "Profesor de geología",
+    "typeCode": "asset",
+    "traits": "Aliado. Miskatonic.",
+    "text": "Compañero. Usos (3 secretos).\n[action] Gasta 1 secreto y agota al Profesor William Dyer: Cura 2 puntos de horror de un investigador o de otro Apoyo [[Aliado]] que esté en tu Lugar."
+  },
+  "08716": {
+    "name": "Eliyah Ashevak",
+    "subname": "Adiestrador de perros",
+    "typeCode": "asset",
+    "traits": "Aliado. Viajero.",
+    "text": "Compañero. Usos (3 secretos).\n[action] Gasta 1 secreto y agota a Eliyah Ashevak: <b>Evitar.</b> Intenta evitar con una habilidad [agility] básica de 5. Si tienes éxito, puedes moverte a un Lugar conectado."
+  },
+  "08717": {
+    "name": "Dra. Mala Sinha",
+    "subname": "Médico osada",
+    "typeCode": "asset",
+    "traits": "Aliado. Viajero.",
+    "text": "Compañero. Usos (3 suministros).\n[action] Gasta 1 suministro y agota a la Dra. Mala Sinha: Cura 2 puntos de daño de un investigador o de otro Apoyo [[Aliado]] que esté en tu Lugar."
+  },
+  "08722": {
+    "name": "Takada Hiroko",
+    "subname": "Mecánica de aeroplanos",
+    "typeCode": "asset",
+    "traits": "Aliado. Viajero.",
+    "text": "Compañero. Usos (9 recursos).\n[action] Agota a Takada Hiroko: Mueve hasta 3 recursos de Takada Hiroko a tu reserva de recursos."
+  },
   "08723": {
     "name": "Tekeli-li",
     "typeCode": "treachery",

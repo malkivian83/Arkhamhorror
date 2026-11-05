@@ -70,12 +70,21 @@
     }
   },
   "choice": {
+    "healDamage": "Heal 2 damage from {name}",
+    "healHorror": "Heal 2 horror from {name}",
+    "takeResources": "Move {amount} resources to your pool",
     "believeDyer": "Believe Dyer and argue for investigating his findings",
     "doubtDyer": "Tell Dyer that the report is hard to believe",
     "noPartner": "Do not take a partner"
   },
   "prompt": {
     "partner": "Choose a partner for this scenario"
+  },
+  "ability": {
+    "damage": "{card}: heal 2 damage",
+    "horror": "{card}: heal 2 horror",
+    "evade": "{card}: evade",
+    "resources": "{card}: move resources"
   },
   "note": {
     "edgeOfTheEarthConvincedDyer": "The investigators convinced Dyer to allow the expedition.",

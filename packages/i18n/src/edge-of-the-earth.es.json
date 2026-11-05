@@ -70,12 +70,21 @@
     }
   },
   "choice": {
+    "healDamage": "Cura 2 puntos de daño a {name}",
+    "healHorror": "Cura 2 puntos de horror a {name}",
+    "takeResources": "Mueve {amount} recursos a tu reserva",
     "believeDyer": "Creer a Dyer y defender que hay que investigar sus hallazgos",
     "doubtDyer": "Decirle a Dyer que cuesta creer su informe",
     "noPartner": "No llevar compañero"
   },
   "prompt": {
     "partner": "Elige un compañero para este escenario"
+  },
+  "ability": {
+    "damage": "{card}: cura 2 puntos de daño",
+    "horror": "{card}: cura 2 puntos de horror",
+    "evade": "{card}: evita",
+    "resources": "{card}: mueve recursos"
   },
   "note": {
     "edgeOfTheEarthConvincedDyer": "Los investigadores convencieron a Dyer de que permitiera la expedición.",

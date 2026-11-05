@@ -2,19 +2,20 @@
 
 ## Estado y continuación
 
-Entrega del 05/11/2026 sobre `f0fab280`. Helada completa. Los pasos 4, 5 y 7
-tienen reglas de motor y preparación probadas. La preparación del primer
-escenario enlaza la elección del prólogo, la baja del accidente, el mazo
-¡Tekeli-li! y la elección de compañero. Falta aplicarla a la definición real
-de Hielo y muerte I.
-Siguiente entrega: cartas de compañero, puntos de control y reglas de Hielo y
-muerte I. `pull --rebase` sigue impedido por cambios previos de tres JSON.
-Se actualizó `origin/main` con `fetch` y no había cambios por integrar.
+Entrega del 05/11/2026 sobre `d447195a`. `45ad37e0` corrige la regresión de
+catálogo añadiendo los escaneos y miniaturas EN/ES de las siete cartas
+¡Tekeli-li!. Se han implementado y probado Dyer, Sinha, Eliyah y Takada en sus
+versiones base y con rasgo Decidido. El registro sigue aislado hasta conectarlo
+al escenario real.
 
-Verificación: 205 pruebas de motor, apertura, ¡Tekeli-li!, campaña, catálogo web
-y salas. Tipos de los paquetes afectados y lint de los archivos editados.
-Repetir los controles afectados si cambian las reglas, el registro de cartas,
-el arranque o los contratos de campaña.
+Siguiente entrega: Danforth, Claypool, Fredericks, Kensler y Ellsworth, puntos
+de control y reglas de Hielo y muerte I. `pull --rebase` sigue impedido por tres
+JSON previos. `fetch` confirmó que no había cambios remotos por integrar.
+
+Verificación: 104 pruebas de compañeros, expedición, apertura, ¡Tekeli-li!,
+imágenes y catálogo. Tipos de paquetes afectados, lint y huellas de imágenes
+y miniaturas. Revisadas miniaturas representativas en ambos idiomas. Repetir
+los controles afectados si cambian reglas, textos, recursos o registro.
 
 ## Hoja de ruta
 
@@ -43,7 +44,8 @@ sin publicar, `[ ]` pendiente.
    de cada compañero. La selección impide que dos investigadores lleven al mismo
    personaje. Desistir conserva al compañero y la derrota lo elimina. La pregunta
    de preparación ofrece los compañeros disponibles y la opción de ir solo.
-   Faltan las cartas de compañero con sus habilidades y el registro en el escenario.
+   Ocho cartas con habilidades probadas (Dyer, Sinha, Eliyah y Takada base y
+   Decidido). Faltan los otros cinco compañeros y el registro en el escenario.
 5. [~] Mazo ¡Tekeli-li! de 16 copias compartidas. Se reconstruye en cada escenario
    descontando las copias asignadas en el registro de campaña. Las siete revelaciones
    tienen pruebas y texto EN/ES, y devuelven su copia al fondo. Falta conectar el
@@ -65,8 +67,9 @@ sin publicar, `[ ]` pendiente.
 
 **Presentación y publicación**
 
-14. [~] Cartas de encuentro en catálogo EN/ES, imágenes y manifiesto. Los textos
-    de ¡Tekeli-li! ya están en el catálogo local. Completar los recursos por escenario.
+14. [~] Cartas de encuentro en catálogo EN/ES, imágenes y manifiesto. El catálogo
+    local incluye ¡Tekeli-li! y los cuatro compañeros implementados, con escaneos
+    y miniaturas EN/ES. Completar los recursos por escenario.
 15. [ ] Ayuda de fichas de cada escenario (tarjeta de referencia oficial).
     Incluirla en la entrega de cada escenario.
 16. [ ] Narraciones con la voz indicada abajo.
@@ -80,8 +83,8 @@ importación (guía 59) y no bloquean la campaña.
 Inventario reproducible: 266 códigos EN/ES, 24 conjuntos, 371 copias según el
 catálogo fuente. Son entradas de datos, no 266 reglas implementadas ni un recuento
 certificado de cartas físicas: hay que revisar caras y variantes antes de usar
-las cantidades para preparar mazos. El catálogo local ya incluye las siete
-entradas de ¡Tekeli-li!. El selector de campañas sigue pendiente.
+las cantidades para preparar mazos. El catálogo local incluye las siete entradas
+de ¡Tekeli-li! y las ocho cartas de compañero de esta entrega.
 
 ## Narración
 

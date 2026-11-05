@@ -1392,6 +1392,7 @@ export type Message =
   /** +X skill value for the investigator's next skill test (The Red Clock). */
   | { type: 'NextTestBonus'; investigator: InvestigatorId; amount: number; thisPhase?: boolean }
   | { type: 'TransferUses'; from: AssetId; to: AssetId; amount: number }
+  | { type: 'MoveResourcesFromAsset'; asset: AssetId; investigator: InvestigatorId; amount: number }
   | { type: 'ReturnCommittedCard'; index: number }
   | { type: 'MoveResourcesToPool'; investigator: InvestigatorId; amount: number }
   | { type: 'ReverseRevealedTokenModifier' }

@@ -49,6 +49,7 @@ export const messages = {
     midnight: zealot.midnightAbilities,
     devourer: zealot.devourerAbilities,
     ...dunwich.abilities,
+    edgeOfTheEarth: edgeOfTheEarth.ability,
   },
   choice: {
     ...base.choice,

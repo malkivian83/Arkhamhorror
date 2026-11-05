@@ -1478,6 +1478,31 @@ export function handle(state: GameState, message: Message): GameState {
       })
     }
 
+    case 'MoveResourcesFromAsset': {
+      // RR «Move»: moving resource tokens is not a gain-resources effect.
+      const asset = state.assets[message.asset]
+      if (
+        !asset ||
+        asset.owner !== message.investigator ||
+        playerCardDef(asset.code)?.uses?.type !== 'resource'
+      )
+        return state
+      const investigator = getInvestigator(state, message.investigator)
+      const amount = Math.min(asset.uses, Math.max(0, message.amount))
+      if (investigator.eliminated || !amount) return state
+      return updateInvestigator(
+        {
+          ...state,
+          assets: {
+            ...state.assets,
+            [asset.id]: { ...asset, uses: asset.uses - amount },
+          },
+        },
+        investigator.id,
+        (i) => ({ ...i, resources: i.resources + amount }),
+      )
+    }
+
     case 'DrawCards': {
       if (scenarioBehavior(state.scenarioId)?.cannotDrawCards?.(state, message.investigator))
         return state
