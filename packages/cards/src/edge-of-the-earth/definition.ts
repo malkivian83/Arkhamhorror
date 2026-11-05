@@ -1,6 +1,11 @@
 import { registerCampaign } from '../campaign-definition'
 import { registerExpeditionCompanions } from './companions'
-import { ICE_AND_DEATH } from './ice-and-death-cards'
+import {
+  ICE_AND_DEATH,
+  ICE_CHECKPOINT_ONE,
+  ICE_CHECKPOINT_TWO,
+  ICE_PART_TWO,
+} from './ice-and-death-cards'
 import { iceAndDeathPartOne } from './ice-and-death'
 import { edgeOfTheEarthChaosBags } from './opening'
 import { registerTekelili } from './tekelili'
@@ -21,6 +26,8 @@ registerCampaign({
       allowDeckChangesAfter: false,
       keywords: ['frost', 'hunter', 'massive', 'parley'],
     },
-    { id: 'ice-and-death-checkpoint-1' },
+    { id: ICE_CHECKPOINT_ONE, checkpoint: true, allowDeckChangesAfter: false },
+    { id: ICE_PART_TWO, allowDeckChangesAfter: false },
+    { id: ICE_CHECKPOINT_TWO, checkpoint: true, allowDeckChangesAfter: false },
   ],
 })

@@ -6,6 +6,8 @@ import {
   campaignLost,
   campaignCanContinue,
   deckIssues,
+  disappearance,
+  disappearanceResult,
   currentScenario,
   pendingTransfers,
   purchaseOptions,
@@ -22,6 +24,8 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
   const pending = g.pending
   const canDecide = pending?.investigator === mine
   const campaign = lobby.campaign
+  const checkpoint = lobby.intermission && campaign ? disappearance(campaign) : null
+  const checkpointResult = lobby.intermission && campaign ? disappearanceResult(campaign) : null
   const active = campaign ? activeMembers(campaign).map((i) => i.id) : []
   const ready = (investigator: string) =>
     lobby.members.some(
@@ -111,6 +115,11 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
       ? {
           campaign: {
             canManage: lobby.owner === user,
+            ...(checkpoint
+              ? { disappearance: checkpoint }
+              : checkpointResult
+                ? { disappearance: { story: checkpointResult } }
+                : {}),
             nextScenario: currentScenario(campaign),
             canContinue: campaignCanContinue(campaign),
             // Decks that cannot start the next scenario yet; they can still be fixed.

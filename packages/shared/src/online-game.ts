@@ -40,6 +40,7 @@ export interface OnlineCommand {
 export type OnlineProgressAction =
   | { action: 'finish' }
   | { action: 'next' }
+  | { action: 'disappearance'; decision: 'search' | 'leave' }
   | { action: 'ready'; ready: boolean }
   | { action: 'purchase'; card: string; upgrade: boolean; replaces?: string; remove?: string }
   | {
@@ -54,6 +55,11 @@ export type OnlineProgressAction =
   | { action: 'replace'; deck: OnlineDeck }
 export type OnlineProgressCommand = { commandId: string; revision: number } & OnlineProgressAction
 export interface OnlineCampaignView {
+  disappearance?: {
+    story: { title: string; body: string }
+    missing?: string[]
+    choices?: ('search' | 'leave')[]
+  }
   canManage: boolean
   nextScenario: string | null
   canContinue: boolean

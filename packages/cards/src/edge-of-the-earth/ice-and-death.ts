@@ -514,9 +514,21 @@ registerScenario({
         )
       }
       case 'finish': {
+        const log = state.campaignLog
+        const expedition = log?.expedition
+        const next =
+          log && expedition
+            ? {
+                ...state,
+                campaignLog: {
+                  ...log,
+                  expedition: { ...expedition, disappearanceSeed: state.rng },
+                },
+              }
+            : state
         const bonus = Math.max(3, state.campaignLog?.expedition?.camp?.shelter ?? 0)
         return push(
-          state,
+          next,
           ...(data.success ? [read('resolution1')] : []),
           {
             type: 'RecordNote',

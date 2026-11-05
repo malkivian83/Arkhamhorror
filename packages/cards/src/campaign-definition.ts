@@ -27,6 +27,8 @@ export interface ScenarioContext {
 
 export interface CampaignScenario {
   id: string
+  /** Narrative campaign step without a scenario result. */
+  checkpoint?: true
   /** Checkpoints may prohibit purchases or upgrades before the following scenario. */
   allowDeckChangesAfter?: boolean
   /** Prepara el escenario; sin `build`, el escenario aún no está implementado. */
