@@ -15,8 +15,8 @@ el PDF.
 
 ### Continuación de implementación · 2026-11-05
 
-- Lote I: Trasnochadores y siete narraciones; base `8433ed45`, en `main`.
-  Commit y subida autorizados por la persona usuaria.
+- Último lote: I · Trasnochadores y siete narraciones, commit `4b45eab1`, en `main`.
+  Base `8433ed45`; el pull previo a la subida no incorporó cambios.
 - Módulo: `packages/cards/src/call-of-the-plaguebearer/`; campaña registrada,
   con constructor solo para I. Preparación, texto oculto opcional, ocho lugares,
   barricadas, tres actos, tres planes, encuentros y resoluciones R1–R3.
