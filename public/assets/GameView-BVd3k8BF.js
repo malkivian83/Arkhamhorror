@@ -1,0 +1,1 @@
+export{t as default}from"./GameView-CF_l-oy0.js";
