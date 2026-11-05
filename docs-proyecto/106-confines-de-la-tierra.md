@@ -93,10 +93,13 @@ de ¡Tekeli-li! y dieciocho cartas de compañero.
 
 ## Narración
 
-Voz de ElevenLabs elegida por la persona usuaria para esta campaña:
-`DdKbXdRlBmj7Ty7N0FVr`. Usarla al preparar las narraciones de Los confines de la
-Tierra. Preferencia anotada el 04/11/2026. La narración con la voz indicada
-sigue pendiente.
+La parte I tiene 22 locuciones en español generadas con la voz de ElevenLabs
+elegida para la campaña, `DdKbXdRlBmj7Ty7N0FVr`. Leen los resúmenes que muestra
+la mesa, desde el prólogo y las variantes del accidente hasta los reversos de
+plan y las resoluciones. La ficha de preparación se muestra como texto.
+
+`node scripts/generate-edge-of-the-earth-audio.mjs --generate` genera los MP3
+y actualiza el registro de reproducción al completar todas las grabaciones.
 
 ## Fuentes revisadas
 

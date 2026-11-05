@@ -147,6 +147,8 @@ export function storyBody(key: string): StoryBody {
       .map(paragraph),
     official: text !== undefined,
     officialLocale: own === undefined && english !== undefined ? 'en' : null,
-    narration: own !== undefined ? storyNarration(key, current) : null,
+    narration: (key.startsWith('story.edgeOfTheEarth.') ? text === undefined : own !== undefined)
+      ? storyNarration(key, current)
+      : null,
   }
 }

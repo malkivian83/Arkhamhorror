@@ -1,9 +1,12 @@
+import edgeOfTheEarth from './edgeOfTheEarthNarration.json'
+
 /**
  * Narraciones grabadas de los textos de historia, en
- * public/local-assets/story/audio/{idioma}/, por clave i18n del cuerpo. Leen el
- * texto oficial, así que solo se ofrecen en el idioma de la grabación.
+ * public/local-assets/story/audio/{idioma}/, por clave i18n del cuerpo.
+ * Solo se ofrecen en el idioma de la grabación.
  */
 const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
+  ...Object.fromEntries(edgeOfTheEarth.entries.map(({ key, file }) => [key, { es: file }])),
   'story.plaguebearer.prologue': { es: 'plaguebearer-prologue-martin-osborne.mp3' },
   'story.plaguebearer.intro': { es: 'plaguebearer-intro-martin-osborne.mp3' },
   'story.plaguebearer.hidden': { es: 'plaguebearer-hidden-martin-osborne.mp3' },
