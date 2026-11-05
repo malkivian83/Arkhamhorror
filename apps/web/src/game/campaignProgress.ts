@@ -27,4 +27,5 @@ export function scenarioLabel(campaign: Campaign, scenarioId: string | null): st
 }
 
 /** Portada local de una campaña. */
-export const campaignCover = (id: string) => `/local-assets/setup/${id}.jpg`
+export const campaignCover = (id: string) =>
+  `/local-assets/setup/${id}.jpg${id === 'call-of-the-plaguebearer' ? '?v=2' : ''}`

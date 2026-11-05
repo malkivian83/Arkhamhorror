@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { expect, it } from 'vitest'
 import { newCampaign, startScenario } from '@lcg/cards'
 import { fallbackCards } from './fallbackCards'
-import { cardImages, scanLocale } from './cards'
+import { cardImages, cardThumbnail, scanLocale } from './cards'
 import { chaosHelp } from './chaosHelp'
 import { localeData } from './localeData'
 import { campaignCover } from './campaignProgress'
@@ -12,7 +12,7 @@ import cover from '../../../../docs-proyecto/evidencias/plaguebearer-portada.jso
 import media from '../../../../packages/cards/src/call-of-the-plaguebearer/media.json'
 
 it('publica la portada original de la guía en la ruta del selector', () => {
-  expect(campaignCover('call-of-the-plaguebearer')).toBe(cover.path)
+  expect(campaignCover('call-of-the-plaguebearer')).toBe(`${cover.path}?v=2`)
   const bytes = readFileSync(fileURLToPath(new URL(`../../public${cover.path}`, import.meta.url)))
   expect(bytes.subarray(0, 2)).toEqual(Buffer.from([255, 216]))
   expect(bytes.length).toBe(cover.bytes)
@@ -48,7 +48,7 @@ it('conserva huellas de las 90 caras, sirve las rutas locales y orienta actos/pl
     const back = card.code.endsWith('b'),
       code = back ? card.code.slice(0, -1) : card.code
     const path = `/local-assets/cards/${card.language}/${card.code}.avif`
-    expect(cardImages(code, back, card.language)).toContain(path)
+    expect(cardImages(code, back, card.language)).toContain(`${path}?v=2`)
     const bytes = readFileSync(fileURLToPath(new URL(`../../public${path}`, import.meta.url)))
     // AVIF RGB cannot carry the CMYK printing profile from the source JPEG:
     // browsers reject that combination and GameCard falls back to English.
@@ -73,8 +73,8 @@ it('empareja las caras españolas de los lugares con su estado revelado', () => 
     expect(media.find((c) => c.language === 'es' && c.code === `${code}b`)?.source).toMatch(
       new RegExp(`${original}a\\.jpg$`),
     )
-    expect(cardImages(code, false, 'es')[0]).toBe(`/local-assets/cards/es/${code}.avif`)
-    expect(cardImages(code, true, 'es')[0]).toBe(`/local-assets/cards/es/${code}b.avif`)
+    expect(cardImages(code, false, 'es')[0]).toBe(`/local-assets/cards/es/${code}.avif?v=2`)
+    expect(cardImages(code, true, 'es')[0]).toBe(`/local-assets/cards/es/${code}b.avif?v=2`)
   }
 })
 
@@ -82,13 +82,21 @@ it('prioriza los originales españoles al usar el idioma activo de la mesa', () 
   const previous = scanLocale.value
   try {
     scanLocale.value = 'es'
-    expect(cardImages('78008')[0]).toBe('/local-assets/cards/es/78008.avif')
-    expect(cardImages('78008', true)[0]).toBe('/local-assets/cards/es/78008b.avif')
+    expect(cardImages('78008')[0]).toBe('/local-assets/cards/es/78008.avif?v=2')
+    expect(cardImages('78008', true)[0]).toBe('/local-assets/cards/es/78008b.avif?v=2')
     scanLocale.value = 'en'
-    expect(cardImages('78008')[0]).toBe('/local-assets/cards/en/78008.avif')
+    expect(cardImages('78008')[0]).toBe('/local-assets/cards/en/78008.avif?v=2')
   } finally {
     scanLocale.value = previous
   }
+})
+
+it('renueva también la miniatura española al invalidar la caché de una carta', () => {
+  const original = cardImages('78002', false, 'es')[0]!
+  expect(cardThumbnail(original)).toBe('/local-assets/cards/es/thumbs/78002.webp?v=2')
+  expect(cardThumbnail(cardImages('78005', false, 'es')[0]!)).toBe(
+    '/local-assets/cards/es/thumbs/78005.webp?v=2',
+  )
 })
 
 it('muestra el apoyo del Maletín por delante y su historia por detrás en inglés', () => {

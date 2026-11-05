@@ -138,7 +138,13 @@ export function cardImages(code: string, back = false, locale = scanLocale.value
   }
   const localized = locale === 'es' ? pick(LOCAL_IMAGES.es) : undefined
   const english = pick(LOCAL_IMAGES.en)
-  const images = [localized, english].filter((path): path is string => Boolean(path))
+  const images = [localized, english]
+    .filter((path): path is string => Boolean(path))
+    // The first Plaguebearer export carried CMYK profiles in RGB files. A new
+    // URL also refreshes cached English fallbacks and the matching thumbnails.
+    .map((path) =>
+      /^\/local-assets\/cards\/(es|en)\/78\d{3}b?\./.test(path) ? `${path}?v=2` : path,
+    )
   if (images.length) return images
   // Una reimpresión sin imagen propia usa la de otra impresión de la misma carta.
   for (const printing of printingsOf(base)) {
@@ -155,8 +161,8 @@ export function cardImage(code: string, back = false): string | null {
 
 /** Locally generated 192px image for small cards; the zoom always uses the original. */
 export function cardThumbnail(original: string): string | null {
-  return /^\/local-assets\/cards\/(en|es)\/\d{5}[a-f]?b?\.(avif|jpg)$/.test(original)
-    ? original.replace(/\/(\d{5}[a-f]?b?)\.(avif|jpg)$/, '/thumbs/$1.webp')
+  return /^\/local-assets\/cards\/(en|es)\/\d{5}[a-f]?b?\.(avif|jpg)(\?[^#]*)?$/.test(original)
+    ? original.replace(/\/(\d{5}[a-f]?b?)\.(avif|jpg)(\?[^#]*)?$/, '/thumbs/$1.webp$3')
     : null
 }
 

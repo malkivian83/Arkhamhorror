@@ -85,6 +85,11 @@ el PDF.
   imágenes locales representativas; sin navegador ni seguimiento de CI/Deploy.
 - Pendiente: revisión visual de la mesa por la persona usuaria e implementación
   posterior; no equivale a una validación jugable de los ocho escenarios.
+- Caché de presentación: URLs de cartas/miniaturas `78` y portada versionadas
+  para sustituir imágenes CMYK y respuestas 404 conservadas por el navegador.
+  Comprobados por HTTP la portada, imágenes y relatos publicados (200); CI y
+  Deploy de `982632b1` correctos al investigar la incidencia. 49 pruebas web,
+  lint, tipos y empaquetado de la corrección de caché.
 
 ## Fuentes
 
