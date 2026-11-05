@@ -6,6 +6,7 @@ import { LobbyService, onlineLobbies, type Lobby } from './lobbies'
 import { randomUUID } from 'node:crypto'
 import { starterDeck, starterInvestigator } from '@lcg/cards'
 import type { OnlineProgressAction } from '@lcg/shared'
+import { dispatch } from '@lcg/engine'
 import { newTestGame, throughSetup } from '@lcg/engine/testing'
 
 const deck = (key: 'joe' | 'daniela') => ({
@@ -168,12 +169,14 @@ describe('private online lobbies', () => {
       revision: view.revision,
     })
   })
-  async function active() {
+  async function active(campaignId?: string) {
     const { db, data } = memory(),
       service = new LobbyService(db)
     let lobby = await service.create('host')
     const invite = await service.invite(lobby.id, 'host')
     lobby = await service.join(lobby.id, 'friend', invite.token)
+    if (campaignId)
+      lobby = await service.configure(lobby.id, 'host', lobby.revision, campaignId, 'standard')
     lobby = await service.select(lobby.id, 'host', lobby.revision, deck('joe'))
     lobby = await service.select(lobby.id, 'friend', lobby.revision, deck('daniela'))
     lobby = await service.ready(lobby.id, 'host', lobby.revision, true)
@@ -241,6 +244,35 @@ describe('private online lobbies', () => {
     fixture.data.set(fixture.id, JSON.stringify(lobby))
     return { ...fixture, revision: lobby.revision }
   }
+  it('saves the expedition checkpoint once and only accepts its decision from the host', async () => {
+    const { service, db, data, id } = await active('edge-of-the-earth')
+    const lobby = JSON.parse(data.get(id)!) as Lobby
+    lobby.game = dispatch(
+      { ...lobby.game!, pending: null, queue: [] },
+      { type: 'InitializeExpedition' },
+      { type: 'RecordExpeditionCamp', location: '08502', shelter: 0 },
+    )
+    lobby.game.outcome = { type: 'resolution', resolution: 1 }
+    data.set(id, JSON.stringify(lobby))
+    const first = await service.progress(
+      id,
+      'host',
+      progressCommand(lobby.revision, { action: 'finish' }),
+    )
+    expect(first.campaign?.disappearance?.missing).toHaveLength(9)
+    const choice = progressCommand(first.revision, { action: 'disappearance', decision: 'leave' })
+    await expect(service.progress(id, 'friend', choice)).rejects.toMatchObject({
+      code: 'not_owner',
+    })
+    const result = await service.progress(id, 'host', choice)
+    expect(result.campaign?.nextScenario).toBe('ice-and-death-checkpoint-2')
+    expect(result.campaign?.disappearance?.story.body).toContain('disappearanceLeave')
+    expect(await new LobbyService(db).progress(id, 'host', choice)).toEqual(result)
+    const saved = JSON.parse(data.get(id)!) as Lobby
+    expect(saved.campaign?.results.filter(({ skipped }) => skipped)).toHaveLength(1)
+    expect(saved.campaign?.log.expedition?.partners['08720']?.status).toBe('eliminated')
+  })
+
   it('records outcomes once, buys only the authenticated player deck and starts the next shared scenario', async () => {
     const { service, db, data, id, revision } = await ended()
     const finish = progressCommand(revision, { action: 'finish' })

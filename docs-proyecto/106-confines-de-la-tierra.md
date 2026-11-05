@@ -9,8 +9,13 @@ Comprueban el campamento, la experiencia, la bolsa persistente y el coste de
 entrada que pagan solo los investigadores en el Lugar de origen. Retirar
 Helada del barco persiste aunque la ficha perteneciera a la bolsa inicial.
 
-Siguiente entrega: punto de control 1 y partes II y III. Al finalizar la parte
-I, el registro conserva el resultado y muestra el punto de control pendiente.
+El punto de control I, La desaparición, funciona en el registro local y en las
+salas. El refugio determina cuántos compañeros quedan a salvo. La elección
+persiste al guardar y dirige la campaña a la parte II o al punto de control II.
+Las tres escenas del punto de control están narradas en español.
+
+Siguiente entrega: hacer jugable Hielo y muerte II y conectar el punto de
+control II y la parte III. Ambas rutas se conservan en el guardado.
 
 Claypool reutiliza la cancelación de fichas. La prueba puede terminar sin
 modificador si cancela la única ficha sin reemplazarla. Fredericks usa una
@@ -21,6 +26,9 @@ Verificación sobre `57dac2a4`: 522 pruebas de motor, escenarios y campaña,
 salas, selector, referencia y catálogo. Tipos, formato, lint y huellas de los
 escaneos y miniaturas. Repetir controles si cambian reglas, textos, recursos o
 registro.
+
+Validación local de La desaparición: rutas y refugio, recarga de guardados,
+permisos y reintentos de sala, y correspondencia de las locuciones.
 
 ## Hoja de ruta
 
@@ -54,8 +62,8 @@ sin publicar, `[ ]` pendiente.
    descontando las copias asignadas en el registro de campaña. Las siete revelaciones
    tienen pruebas y texto EN/ES, y devuelven su copia al fondo. El escenario local
    prepara el mazo especial y conecta los efectos que entregan las debilidades.
-6. [ ] Puntos de control y recorrido no lineal: partes opcionales, omitidas,
-   reanudación sin repetir preparación ni recompensas, visitas a Espejismo letal.
+6. [~] Punto de control I y salto de la parte II. Pendientes los demás puntos de control y el recorrido no lineal:
+   reanudación de escenarios y visitas a Espejismo letal.
 
 **Escenarios** (preparación, conjuntos de encuentros, cartas, resolución, pruebas)
 
@@ -63,7 +71,7 @@ sin publicar, `[ ]` pendiente.
    con nota y ficha persistentes, variante de Winifred y muerte reproducible antes
    de elegir compañero. Resúmenes EN/ES. Conectado al arranque de campaña local.
 8. [x] Hielo y muerte I (08501a), jugable desde el selector hasta la resolución.
-   El punto de control 1 está indicado como siguiente paso pendiente.
+   Su resolución enlaza con La desaparición.
 9. [ ] Hielo y muerte II y III (08501b/c) con sus puntos de control.
 10. [ ] Interludios y Espejismo letal (08549).
 11. [ ] Hacia los picos prohibidos (08596).
@@ -93,10 +101,10 @@ de ¡Tekeli-li! y dieciocho cartas de compañero.
 
 ## Narración
 
-La parte I tiene 22 locuciones en español generadas con la voz de ElevenLabs
-elegida para la campaña, `DdKbXdRlBmj7Ty7N0FVr`. Leen los resúmenes que muestra
+La parte I y La desaparición tienen 25 locuciones en español generadas con la voz de ElevenLabs
+elegida para la campaña, Salva (`hyKxCTlAqtnW188CgltM`). Leen los resúmenes que muestra
 la mesa, desde el prólogo y las variantes del accidente hasta los reversos de
-plan y las resoluciones. La ficha de preparación se muestra como texto.
+plan, las resoluciones y las dos salidas del punto de control. La ficha de preparación se muestra como texto.
 
 `node scripts/generate-edge-of-the-earth-audio.mjs --generate` genera los MP3
 y actualiza el registro de reproducción al completar todas las grabaciones.

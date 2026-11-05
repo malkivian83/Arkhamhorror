@@ -8,6 +8,8 @@ import {
   canAddCarnevale,
   currentScenario,
   deckIssues,
+  disappearance,
+  disappearanceResult,
   deckSize,
   deckSizeOf,
   onePrintingEach,
@@ -29,6 +31,7 @@ import { useRouter } from 'vue-router'
 import ChaosTokenView from '../components/ChaosTokenView.vue'
 import DisclosureIcon from '../components/DisclosureIcon.vue'
 import GameCard from '../components/GameCard.vue'
+import ExpeditionCheckpoint from '../components/ExpeditionCheckpoint.vue'
 import SaveGame from '../components/SaveGame.vue'
 import SitePage from '../components/SitePage.vue'
 import SiteAction from '../components/SiteAction.vue'
@@ -58,6 +61,14 @@ const deckChangesAllowed = computed(
 /** Números romanos de los escenarios. */
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
 const next = computed(() => (campaign.value ? currentScenario(campaign.value) : null))
+const checkpoint = computed(() => campaign.value && disappearance(campaign.value))
+const checkpointStory = computed(() => {
+  if (!campaign.value) return null
+  return checkpoint.value?.story ?? disappearanceResult(campaign.value)
+})
+const resultByScenario = computed(() =>
+  Object.fromEntries((campaign.value?.results ?? []).map((result) => [result.scenario, result])),
+)
 const playable = computed(() => !!campaign.value && canPlayNext(campaign.value))
 /** Mazos que no pueden empezar el siguiente escenario, con el motivo. */
 const issues = computed(() => (campaign.value ? deckIssues(campaign.value) : []))
@@ -212,21 +223,21 @@ function abandon() {
           >
             <span class="numeral">{{ ROMAN[n] }}</span>
             <span class="title">{{ scenarioName(id) }}</span>
-            <span v-if="campaign.results[n]" class="outcome">
+            <span v-if="resultByScenario[id]" class="outcome">
               {{
-                campaign.results[n]!.skipped
+                resultByScenario[id]!.skipped
                   ? t('table.scenarioSkipped')
-                  : campaign.results[n]!.outcome.type === 'resolution'
-                    ? t('table.resolutionN', { n: campaign.results[n]!.outcome.resolution })
+                  : resultByScenario[id]!.outcome.type === 'resolution'
+                    ? t('table.resolutionN', { n: resultByScenario[id]!.outcome.resolution })
                     : t('table.noResolution')
               }}
             </span>
-            <span v-if="campaign.results[n]?.score !== undefined" class="outcome">
-              {{ t('story.midwinterGala.score.total', { n: campaign.results[n]!.score }) }}
+            <span v-if="resultByScenario[id]?.score !== undefined" class="outcome">
+              {{ t('story.midwinterGala.score.total', { n: resultByScenario[id]!.score }) }}
             </span>
-            <details v-if="campaign.results[n]?.experience?.length" class="xp-details">
+            <details v-if="resultByScenario[id]?.experience?.length" class="xp-details">
               <summary>{{ t('campaign.xpBreakdown') }}</summary>
-              <p v-for="(gain, k) in campaign.results[n]!.experience" :key="k">
+              <p v-for="(gain, k) in resultByScenario[id]!.experience" :key="k">
                 {{
                   t('log.experience', {
                     name: name(gain.investigator),
@@ -405,12 +416,21 @@ function abandon() {
       <p v-if="game.error" class="error">{{ errorText }}</p>
     </section>
 
+    <ExpeditionCheckpoint
+      v-if="!game.state && checkpointStory"
+      class="page transfer"
+      :story="checkpointStory"
+      :missing="checkpoint ? checkpoint.missing : undefined"
+      :choices="checkpoint ? checkpoint.choices : undefined"
+      @decide="game.chooseDisappearance"
+    />
+
     <footer class="actions">
       <SiteAction v-if="game.state" icon="→" @click="router.push('/game')">
         {{ t('campaign.resumeScenario') }}
       </SiteAction>
       <p v-else-if="lost" class="finished">{{ t('campaign.lost') }}</p>
-      <template v-else-if="next">
+      <template v-else-if="next && !checkpoint">
         <SiteAction icon="→" :disabled="!playable" @click="playNext">
           {{ t('campaign.play', { scenario: scenarioName(next) }) }}
         </SiteAction>
@@ -424,7 +444,7 @@ function abandon() {
         </span>
         <span v-else-if="!playable" class="soon">{{ t('campaign.comingSoon') }}</span>
       </template>
-      <p v-else class="finished">{{ t('campaign.finished') }}</p>
+      <p v-else-if="!checkpoint" class="finished">{{ t('campaign.finished') }}</p>
       <SiteAction
         v-if="campaign && canAddCarnevale(campaign)"
         icon="+"

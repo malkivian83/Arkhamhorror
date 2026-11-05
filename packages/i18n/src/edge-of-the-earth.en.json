@@ -91,6 +91,18 @@
     "resolution1": {
       "title": "Resolution 1",
       "body": "At last, the expedition makes camp. You take stock of the supplies you recovered and prepare to face the night."
+    },
+    "disappearance": {
+      "title": "Checkpoint I: The Disappearance",
+      "body": "A cry wakes you in the night. You emerge to find the camp in disarray. Footprints lead away into the darkness, and some of the expedition may have disappeared."
+    },
+    "disappearanceLeave": {
+      "title": "Checkpoint I: The Disappearance",
+      "body": "The expedition rests and gathers its equipment for the next leg of the journey."
+    },
+    "disappearanceSearch": {
+      "title": "Checkpoint I: The Disappearance",
+      "body": "You gather your equipment and follow the tracks into the darkness to search for the missing members of the expedition."
     }
   },
   "choice": {
@@ -113,7 +125,11 @@
     "addFrost": "Add 1 frost token",
     "removeFrost": "Remove 1 frost token",
     "lookPlayer": "Look at the top of {name}'s deck",
-    "lookEncounter": "Look at the top of the encounter deck"
+    "lookEncounter": "Look at the top of the encounter deck",
+    "missing": "Missing expedition members: {names}",
+    "allSafe": "All surviving expedition members are safe.",
+    "search": "Go after the missing team members",
+    "leave": "Leave them behind"
   },
   "prompt": {
     "claypool": "Avery Claypool: choose how to cancel the frost token",
@@ -159,5 +175,7 @@
   "campaignName": "Edge of the Earth",
   "scenarioName": "Ice and Death, Part I",
   "checkpointName": "Checkpoint 1: The Disappearance",
-  "description": "Survive the crash and find shelter before the Antarctic storm closes in."
+  "description": "Survive the crash and find shelter before the Antarctic storm closes in.",
+  "partTwoName": "Ice and Death, Part II",
+  "checkpointTwoName": "Checkpoint II: The Attack"
 }

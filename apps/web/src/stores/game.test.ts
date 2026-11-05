@@ -1,6 +1,6 @@
 import { accountStorage } from '../account/storage'
-import { cardPool, newCampaign, starterDeckList, startScenario } from '@lcg/cards'
-import { isPermanent } from '@lcg/engine'
+import { cardPool, finishScenario, newCampaign, starterDeckList, startScenario } from '@lcg/cards'
+import { dispatch, isPermanent } from '@lcg/engine'
 import { throughSetup } from '@lcg/engine/testing'
 import { createPinia, setActivePinia } from 'pinia'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -244,3 +244,28 @@ describe('deshacer desde puntos de control (doc 100, O3)', () => {
     }
   })
 })
+
+it.each(['search', 'leave'] as const)(
+  'restores a saved expedition checkpoint and its %s decision',
+  (decision) => {
+    const campaign = newCampaign('edge-of-the-earth', ['joe'], 'standard')
+    const started = startScenario(campaign, 44)
+    const completed = dispatch(
+      { ...started, pending: null, queue: [] },
+      { type: 'InitializeExpedition' },
+      { type: 'RecordExpeditionCamp', location: '08502', shelter: 0 },
+      { type: 'EndScenario', told: true, outcome: { type: 'resolution', resolution: 1 } },
+    )
+    const atCheckpoint = finishScenario(campaign, completed)
+    const game = useGameStore()
+    expect(game.importSession(JSON.stringify(session(null, null, atCheckpoint)))).toBe(true)
+    game.chooseDisappearance(decision)
+    expect(game.storageIssue).toBeNull()
+    const result = game.campaign
+    setActivePinia(createPinia())
+    const reloaded = useGameStore()
+    expect(reloaded.campaign).toEqual(result)
+    expect(reloaded.campaign?.log.values.edgeOfTheEarthDisappearanceDecision).toBe(decision)
+    expect(reloaded.storageIssue).toBeNull()
+  },
+)

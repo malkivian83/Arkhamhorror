@@ -3,6 +3,8 @@ import {
   newCampaign,
   startScenario,
   finishScenario,
+  disappearance,
+  resolveDisappearance,
   purchase,
   customize,
   activeMembers,
@@ -267,7 +269,9 @@ export class LobbyService {
                 ? command.deck
                 : command.action === 'ready'
                   ? command.ready
-                  : null,
+                  : command.action === 'disappearance'
+                    ? command.decision
+                    : null,
       ])
       const prior = lobby.commands?.[command.commandId]
       if (prior) {
@@ -281,6 +285,16 @@ export class LobbyService {
         requireValue(!lobby.intermission, 'already_finished', 409)
         lobby.campaign = finishScenario(lobby.campaign, lobby.game)
         lobby.intermission = true
+        lobby.campaignReady = []
+      } else if (command.action === 'disappearance') {
+        requireValue(lobby.intermission, 'not_intermission', 409)
+        requireValue(lobby.owner === user, 'not_owner', 403)
+        requireValue(
+          disappearance(lobby.campaign)?.choices.includes(command.decision),
+          'campaign_cannot_continue',
+          409,
+        )
+        lobby.campaign = resolveDisappearance(lobby.campaign, command.decision)
         lobby.campaignReady = []
       } else if (command.action === 'heir') {
         requireValue(lobby.intermission, 'not_intermission', 409)
@@ -635,7 +649,16 @@ export function onlineLobbies(
             revision,
             action: {
               type: 'string',
-              enum: ['finish', 'purchase', 'customize', 'ready', 'next', 'heir', 'replace'],
+              enum: [
+                'finish',
+                'purchase',
+                'customize',
+                'ready',
+                'next',
+                'heir',
+                'replace',
+                'disappearance',
+              ],
             },
             card: { type: 'string', minLength: 1, maxLength: 30 },
             upgrade: { type: 'boolean' },
@@ -649,6 +672,7 @@ export function onlineLobbies(
             removals: { type: 'array', maxItems: 2, items: { type: 'string', maxLength: 30 } },
             remove: { type: 'string', minLength: 1, maxLength: 30 },
             ready: { type: 'boolean' },
+            decision: { type: 'string', enum: ['search', 'leave'] },
             heir: { type: 'string', minLength: 1, maxLength: 30 },
             deck: deckSchema,
           },
@@ -662,6 +686,10 @@ export function onlineLobbies(
               then: { required: ['card', 'upgrade'] },
             },
             { if: { properties: { action: { const: 'ready' } } }, then: { required: ['ready'] } },
+            {
+              if: { properties: { action: { const: 'disappearance' } } },
+              then: { required: ['decision'] },
+            },
             {
               if: { properties: { action: { const: 'heir' } } },
               then: { required: ['card', 'heir'] },

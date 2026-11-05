@@ -2266,6 +2266,7 @@ export type ExpeditionPartnerStatus =
 export type ExpeditionSupply = '08614' | '08615' | '08616' | '08617' | '08618' | '08619' | '08620'
 
 export interface ExpeditionState {
+  disappearanceSeed?: number
   partners: Partial<
     Record<ExpeditionPartner, { status: ExpeditionPartnerStatus; damage: number; horror: number }>
   >

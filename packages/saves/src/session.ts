@@ -378,10 +378,14 @@ function campaign(value: unknown): asserts value is Campaign {
     )
       fail()
   }
-  if (!Array.isArray(value.results) || value.results.length !== value.scenarioIndex) fail()
   const scenarios = campaignScenarios(value as unknown as Campaign)
+  const playedScenarios = scenarios
+    .slice(0, Number(value.scenarioIndex))
+    .filter((entry) => !entry.checkpoint)
+  if (!Array.isArray(value.results) || value.results.length !== playedScenarios.length) fail()
   value.results.forEach((r, n) => {
-    if (!object(r) || r.scenario !== scenarios[n]?.id || !object(r.outcome) || !object(r.xp)) fail()
+    if (!object(r) || r.scenario !== playedScenarios[n]?.id || !object(r.outcome) || !object(r.xp))
+      fail()
     if (r.score !== undefined && (!integer(r.score) || r.score < 0)) fail()
   })
   // Validate investigators and deck codes through the same content registry used by play.
@@ -391,7 +395,7 @@ function campaign(value: unknown): asserts value is Campaign {
     return !r.killed && !r.insane
   })
   if (active.length > 4) fail()
-  if (value.scenarioIndex < count && active.length) {
+  if (scenarios[Number(value.scenarioIndex)]?.build && active.length) {
     try {
       startScenario(value as unknown as Campaign, 1)
     } catch {

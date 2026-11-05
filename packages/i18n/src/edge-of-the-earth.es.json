@@ -91,6 +91,18 @@
     "resolution1": {
       "title": "Resolución 1",
       "body": "Por fin, la expedición instala el campamento. Hacéis recuento de los suministros recuperados y os preparáis para pasar la noche."
+    },
+    "disappearance": {
+      "title": "Punto de control I: La desaparición",
+      "body": "Un grito os despierta en mitad de la noche. Al salir, encontráis el campamento revuelto. Unas huellas se pierden en la oscuridad y puede que falten miembros de la expedición."
+    },
+    "disappearanceLeave": {
+      "title": "Punto de control I: La desaparición",
+      "body": "La expedición descansa y reúne el equipo para la siguiente etapa del viaje."
+    },
+    "disappearanceSearch": {
+      "title": "Punto de control I: La desaparición",
+      "body": "Recogéis el equipo y seguís las huellas en la oscuridad para buscar a los miembros desaparecidos de la expedición."
     }
   },
   "choice": {
@@ -113,7 +125,11 @@
     "addFrost": "Añadir 1 ficha de Helada",
     "removeFrost": "Quitar 1 ficha de Helada",
     "lookPlayer": "Mirar la primera carta del mazo de {name}",
-    "lookEncounter": "Mirar la primera carta del mazo de Encuentros"
+    "lookEncounter": "Mirar la primera carta del mazo de Encuentros",
+    "missing": "Miembros desaparecidos: {names}",
+    "allSafe": "Todos los miembros supervivientes de la expedición están a salvo.",
+    "search": "Ir en busca de los desaparecidos",
+    "leave": "Dejarlos atrás"
   },
   "prompt": {
     "claypool": "Avery Claypool: elige cómo cancelar la ficha de Helada",
@@ -159,5 +175,7 @@
   "campaignName": "Los confines de la Tierra",
   "scenarioName": "Hielo y muerte, parte I",
   "checkpointName": "Punto de control 1: La desaparición",
-  "description": "Sobrevive al accidente y encuentra refugio antes de que arrecie la tormenta antártica."
+  "description": "Sobrevive al accidente y encuentra refugio antes de que arrecie la tormenta antártica.",
+  "partTwoName": "Hielo y muerte, parte II",
+  "checkpointTwoName": "Punto de control II: El ataque"
 }

@@ -7,6 +7,7 @@ import { STARTER_DECKS, starterDeck, starterInvestigator, type DeckKey } from '@
 import type { OnlineCampaignView, OnlineDeck, OnlineProgressAction } from '@lcg/shared'
 import { cardName } from '../game/cards'
 import GameCard from './GameCard.vue'
+import ExpeditionCheckpoint from './ExpeditionCheckpoint.vue'
 import { localName } from '../game/localized'
 import { useDecksStore } from '../stores/decks'
 
@@ -103,6 +104,14 @@ function buy() {
         </button>
       </fieldset>
     </section>
+    <ExpeditionCheckpoint
+      v-if="campaign.disappearance"
+      :story="campaign.disappearance.story"
+      :missing="campaign.disappearance.missing"
+      :choices="campaign.canManage ? campaign.disappearance.choices : undefined"
+      :disabled="disabled"
+      @decide="(decision) => emit('action', { action: 'disappearance', decision })"
+    />
     <p v-if="campaign.lost">{{ t('campaign.lost') }}</p>
     <p v-else-if="campaign.transfers.length">{{ t('campaign.transfer.blocked') }}</p>
     <p v-else-if="campaign.canContinue">
@@ -111,7 +120,7 @@ function buy() {
       }}
     </p>
     <p v-else-if="campaign.awaitingReplacement">{{ t('campaign.replace.blocked') }}</p>
-    <p v-else>{{ t('online.campaignPlay.ended') }}</p>
+    <p v-else-if="!campaign.disappearance">{{ t('online.campaignPlay.ended') }}</p>
     <ul v-if="campaign.deckIssues?.length" class="deck-issues" role="status">
       <li v-for="(issue, n) in campaign.deckIssues" :key="n">
         {{ name(issue.investigator) }}: {{ t(issue.key, issue.params ?? {}) }}

@@ -10,7 +10,7 @@ import { storyBody } from './story'
 const hash = (input: Buffer | string) => createHash('sha256').update(input).digest('hex')
 
 it('serves every Spanish narrative passage using a recording of the displayed text', () => {
-  expect(recordings.voiceId).toBe('DdKbXdRlBmj7Ty7N0FVr')
+  expect(recordings.voiceId).toBe('hyKxCTlAqtnW188CgltM')
   const expected = Object.entries(texts.story)
     .filter(([part]) => part !== 'setup')
     .map(([part, { body }]) => [`story.edgeOfTheEarth.${part}.body`, hash(body)])
@@ -19,7 +19,7 @@ it('serves every Spanish narrative passage using a recording of the displayed te
     const path = storyNarration(key, 'es')
     expect(path).toBe(`/local-assets/story/audio/es/${file}`)
     const audio = readFileSync(new URL(`../../public${path}`, import.meta.url))
-    expect(file).toMatch(/\.mp3$/)
+    expect(file).toMatch(/-salva\.mp3$/)
     expect(audio.length).toBeGreaterThan(1000)
     expect(
       audio.subarray(0, 3).toString() === 'ID3' ||

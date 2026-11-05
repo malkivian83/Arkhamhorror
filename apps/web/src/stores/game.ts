@@ -4,6 +4,8 @@ import {
   chooseTransferHeir,
   replaceInvestigator,
   finishScenario,
+  resolveDisappearance,
+  type DisappearanceDecision,
   newCampaign,
   purchase,
   customize,
@@ -255,6 +257,12 @@ export const useGameStore = defineStore('game', () => {
     } catch (e) {
       failed(e)
     }
+  }
+
+  function chooseDisappearance(decision: DisappearanceDecision) {
+    if (!campaign.value || latest) return
+    setCampaign(resolveDisappearance(campaign.value, decision))
+    persist()
   }
 
   function insertCarnevale() {
@@ -517,6 +525,7 @@ export const useGameStore = defineStore('game', () => {
     closeScenario,
     playNext,
     insertCarnevale,
+    chooseDisappearance,
     buy,
     customizeCard,
     chooseHeir,

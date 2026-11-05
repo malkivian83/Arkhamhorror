@@ -475,3 +475,10 @@ export {
   assertEncounterSetVariant,
   type EncounterSetVariant,
 } from './encounter-variants'
+
+export {
+  disappearance,
+  disappearanceResult,
+  resolveDisappearance,
+  type DisappearanceDecision,
+} from './edge-of-the-earth/checkpoint'

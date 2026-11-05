@@ -36,6 +36,8 @@ export const messages = {
       ...plaguebearer.scenarios,
       'ice-and-death-part-1': edgeOfTheEarth.scenarioName,
       'ice-and-death-checkpoint-1': edgeOfTheEarth.checkpointName,
+      'ice-and-death-part-2': edgeOfTheEarth.partTwoName,
+      'ice-and-death-checkpoint-2': edgeOfTheEarth.checkpointTwoName,
     },
   },
   setup: {

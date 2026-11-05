@@ -74,3 +74,22 @@ it('offers unused investigators to the player whose investigator left the campai
   campaign.lost = true
   expect(await render(campaign)).toContain(messages.es.campaign.lost)
 })
+
+it('shows checkpoint narration in Spanish and reserves the decision for the host', async () => {
+  const campaign = view()
+  campaign.canContinue = false
+  campaign.disappearance = {
+    story: {
+      title: 'story.edgeOfTheEarth.disappearance.title',
+      body: 'story.edgeOfTheEarth.disappearance.body',
+    },
+    missing: ['08720'],
+    choices: ['search', 'leave'],
+  }
+  const host = await render(campaign)
+  expect(host).toContain('edge-of-the-earth-disappearance-salva.mp3')
+  expect(host).toContain(messages.es.choice.edgeOfTheEarth.search)
+  const guest = await render({ ...campaign, canManage: false })
+  expect(guest).toContain('edge-of-the-earth-disappearance-salva.mp3')
+  expect(guest).not.toContain(messages.es.choice.edgeOfTheEarth.search)
+})

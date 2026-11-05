@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 
-const voiceId = 'DdKbXdRlBmj7Ty7N0FVr'
+const voiceId = 'hyKxCTlAqtnW188CgltM'
 const output = 'apps/web/public/local-assets/story/audio/es'
 const evidencePath = 'apps/web/src/game/edgeOfTheEarthNarration.json'
 const { story } = JSON.parse(readFileSync('packages/i18n/src/edge-of-the-earth.es.json', 'utf8'))
@@ -11,7 +11,7 @@ const entries = Object.entries(story)
   .filter(([part]) => part !== 'setup')
   .map(([part, { body }]) => ({
     key: `story.edgeOfTheEarth.${part}.body`,
-    file: `edge-of-the-earth-${part}.mp3`,
+    file: `edge-of-the-earth-${part}-salva.mp3`,
     text: body,
   }))
 
@@ -22,7 +22,7 @@ if (!process.argv.includes('--generate')) {
   const apiKey = process.env.ELEVENLABS_API_KEY
   if (!apiKey) throw new Error('Falta ELEVENLABS_API_KEY')
   mkdirSync('tmp', { recursive: true })
-  const progressPath = 'tmp/edge-of-the-earth-elevenlabs.json'
+  const progressPath = 'tmp/edge-of-the-earth-salva.json'
   const previous = existsSync(progressPath)
     ? JSON.parse(readFileSync(progressPath, 'utf8'))
     : JSON.parse(readFileSync(evidencePath, 'utf8'))
