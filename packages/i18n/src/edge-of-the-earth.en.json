@@ -1,0 +1,85 @@
+{
+  "story": {
+    "dyer": {
+      "title": "Prologue — Dyer’s warning",
+      "body": "Professor William Dyer shows you the evidence he brought back from Antarctica. He wants you to help stop another expedition before it reaches the city he and Danforth found beyond the mountains."
+    },
+    "convinced": {
+      "title": "Prologue — Dyer agrees",
+      "body": "You argue that the expedition must understand what Dyer found. He agrees to accompany the team and asks you to tell Dr. Kensler."
+    },
+    "doubted": {
+      "title": "Prologue — Dyer joins the expedition",
+      "body": "You tell Dyer that you need to see the evidence for yourself. He decides to come with you."
+    },
+    "team": {
+      "title": "Prologue — The expedition team",
+      "body": "At the Boston docks, Dr. Amy Kensler leads the preparations aboard the Theodosia. Roald Ellsworth and James “Cookie” Fredericks handle the expedition gear, Takada Hiroko prepares the aircraft, Avery Claypool will guide the team, Dr. Mala Sinha oversees medical care, and Eliyah Ashevak looks after the dogs. Dyer and Danforth return to Antarctica with them."
+    },
+    "antarctica": {
+      "title": "Ice and Death, Part I",
+      "body": "The Theodosia reaches Antarctica. After establishing a base camp, the expedition sets out in two planes to photograph the city and look for a safe place to land."
+    },
+    "winifred": {
+      "title": "Introduction — Winifred takes the controls",
+      "body": "Winifred Habbamock leads the flight. A sudden storm buffets both planes, and an immense shape appears in the clouds as she fights for control."
+    },
+    "flight": {
+      "title": "Introduction — The flight inland",
+      "body": "From the passenger cabin, you watch the mountains through the mist. A sudden storm throws both planes off course, and an immense shape looms above you."
+    },
+    "crash": {
+      "title": "Introduction — The crash",
+      "body": "You regain consciousness in the burning wreckage. The expedition pulls you into the snow and searches for survivors."
+    },
+    "victim08714": {
+      "title": "The expedition suffers a loss",
+      "body": "William Dyer died in the plane crash."
+    },
+    "victim08715": {
+      "title": "The expedition suffers a loss",
+      "body": "Danforth died in the plane crash."
+    },
+    "victim08716": {
+      "title": "The expedition suffers a loss",
+      "body": "Eliyah Ashevak died in the plane crash."
+    },
+    "victim08717": {
+      "title": "The expedition suffers a loss",
+      "body": "Mala Sinha died in the plane crash."
+    },
+    "victim08718": {
+      "title": "The expedition suffers a loss",
+      "body": "Avery Claypool died in the plane crash."
+    },
+    "victim08719": {
+      "title": "The expedition suffers a loss",
+      "body": "James Fredericks died in the plane crash."
+    },
+    "victim08720": {
+      "title": "The expedition suffers a loss",
+      "body": "Amy Kensler died in the plane crash."
+    },
+    "victim08721": {
+      "title": "The expedition suffers a loss",
+      "body": "Roald Ellsworth died in the plane crash."
+    },
+    "victim08722": {
+      "title": "The expedition suffers a loss",
+      "body": "Takada Hiroko died in the plane crash."
+    }
+  },
+  "choice": {
+    "believeDyer": "Believe Dyer and argue for investigating his findings",
+    "doubtDyer": "Tell Dyer that the report is hard to believe",
+    "noPartner": "Do not take a partner"
+  },
+  "prompt": {
+    "partner": "Choose a partner for this scenario"
+  },
+  "note": {
+    "edgeOfTheEarthConvincedDyer": "The investigators convinced Dyer to allow the expedition.",
+    "edgeOfTheEarthDoubtedDyer": "The investigators did not believe Dyer’s report.",
+    "edgeOfTheEarthCrash": "A member of the expedition died in the plane crash."
+  }
+}

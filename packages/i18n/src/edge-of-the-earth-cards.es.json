@@ -1,0 +1,44 @@
+{
+  "08723": {
+    "name": "Tekeli-li",
+    "typeCode": "treachery",
+    "traits": "Locura.",
+    "text": "<b>Revelación</b> - Recibe 1 punto de horror. Coloca Tekeli-li en la parte inferior del mazo Tekeli-li."
+  },
+  "08724": {
+    "name": "Tekeli-li",
+    "typeCode": "treachery",
+    "traits": "Locura.",
+    "text": "<b>Revelación</b> - Recibe 1 punto de daño. Coloca Tekeli-li en la parte inferior del mazo Tekeli-li."
+  },
+  "08725": {
+    "name": "Tekeli-li",
+    "typeCode": "treachery",
+    "traits": "Locura.",
+    "text": "<b>Revelación</b> - Descarta 1 carta al azar de tu mano. Coloca Tekeli-li en la parte inferior del mazo Tekeli-li."
+  },
+  "08726": {
+    "name": "Tekeli-li",
+    "typeCode": "treachery",
+    "traits": "Locura.",
+    "text": "<b>Revelación</b> - Pierde 2 recursos. Coloca Tekeli-li en la parte inferior del mazo Tekeli-li."
+  },
+  "08727": {
+    "name": "Tekeli-li",
+    "typeCode": "treachery",
+    "traits": "Locura.",
+    "text": "<b>Revelación</b> - Si es tu turno, pierde 1 acción. Si no es así, pierde 1 acción durante tu próximo turno. Coloca Tekeli-li en la parte inferior del mazo Tekeli-li."
+  },
+  "08728": {
+    "name": "Tekeli-li",
+    "typeCode": "treachery",
+    "traits": "Locura.",
+    "text": "<b>Revelación</b> - Coloca 1 de tus pistas sobre tu Lugar. Coloca Tekeli-li en la parte inferior del mazo Tekeli-li."
+  },
+  "08729": {
+    "name": "Tekeli-li",
+    "typeCode": "treachery",
+    "traits": "Locura.",
+    "text": "<b>Revelación</b> - Descarta un Apoyo que controles. Coloca Tekeli-li en la parte inferior del mazo Tekeli-li."
+  }
+}

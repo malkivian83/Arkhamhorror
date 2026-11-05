@@ -2,11 +2,19 @@
 
 ## Estado y continuación
 
-Preparación inicial del 04/11/2026, sin activación jugable. Helada completa en el
-motor (paso 3, 05/11/2026); se usará en partida al llegar el prólogo. Siguiente: estado de expedición,
-compañeros y mazo ¡Tekeli-li! (pasos 4–5) antes de habilitar el escenario I.
-El pull queda impedido por cambios ajenos en `en.json`, `es.json` y
-`cardImageManifest.json` (solo reordenan claves); no se han apartado.
+Entrega del 05/11/2026 sobre `f0fab280`. Helada completa. Los pasos 4, 5 y 7
+tienen reglas de motor y preparación probadas. La preparación del primer
+escenario enlaza la elección del prólogo, la baja del accidente, el mazo
+¡Tekeli-li! y la elección de compañero. Falta aplicarla a la definición real
+de Hielo y muerte I.
+Siguiente entrega: cartas de compañero, puntos de control y reglas de Hielo y
+muerte I. `pull --rebase` sigue impedido por cambios previos de tres JSON.
+Se actualizó `origin/main` con `fetch` y no había cambios por integrar.
+
+Verificación: 205 pruebas de motor, apertura, ¡Tekeli-li!, campaña, catálogo web
+y salas. Tipos de los paquetes afectados y lint de los archivos editados.
+Repetir los controles afectados si cambian las reglas, el registro de cartas,
+el arranque o los contratos de campaña.
 
 ## Hoja de ruta
 
@@ -30,17 +38,24 @@ sin publicar, `[ ]` pendiente.
    motor, Máscara de Sileno, Gala de invierno, tipos de motor, cartas y web, y
    lint. Interpretación propia, sin texto en la guía: una Helada de la bolsa
    ignorada cuenta para la segunda. Revisión visual pendiente con el prólogo.
-4. [ ] Estado de expedición en `CampaignLog`: compañeros (selección, daño/horror
-   persistentes, derrota, versiones de determinación), refugio y suministros,
-   compatible con guardados previos.
-5. [ ] Mazo ¡Tekeli-li!: 16 copias finitas compartidas, entrada en mazos de
-   jugador y devolución al resolverse.
+4. [~] Estado de expedición opcional en `CampaignLog`. El motor permite registrar
+   el campamento y los suministros, y conserva identidad, estado, daño y horror
+   de cada compañero. La selección impide que dos investigadores lleven al mismo
+   personaje. Desistir conserva al compañero y la derrota lo elimina. La pregunta
+   de preparación ofrece los compañeros disponibles y la opción de ir solo.
+   Faltan las cartas de compañero con sus habilidades y el registro en el escenario.
+5. [~] Mazo ¡Tekeli-li! de 16 copias compartidas. Se reconstruye en cada escenario
+   descontando las copias asignadas en el registro de campaña. Las siete revelaciones
+   tienen pruebas y texto EN/ES, y devuelven su copia al fondo. Falta conectar el
+   registro de reglas, la preparación y los efectos que entregan las debilidades.
 6. [ ] Puntos de control y recorrido no lineal: partes opcionales, omitidas,
    reanudación sin repetir preparación ni recompensas, visitas a Espejismo letal.
 
 **Escenarios** (preparación, conjuntos de encuentros, cartas, resolución, pruebas)
 
-7. [ ] Prólogo: bolsas por dificultad, elecciones y muerte aleatoria reproducible.
+7. [~] Prólogo con bolsas impresas por dificultad, elección del investigador jefe
+   con nota y ficha persistentes, variante de Winifred y muerte reproducible antes
+   de elegir compañero. Resúmenes EN/ES. Falta conectarlo al escenario real.
 8. [ ] Hielo y muerte I (08501a), primera partida jugable de extremo a extremo.
 9. [ ] Hielo y muerte II y III (08501b/c) con sus puntos de control.
 10. [ ] Interludios y Espejismo letal (08549).
@@ -50,8 +65,10 @@ sin publicar, `[ ]` pendiente.
 
 **Presentación y publicación**
 
-14. [ ] Cartas de encuentro en catálogo EN/ES, imágenes y manifiesto.
+14. [~] Cartas de encuentro en catálogo EN/ES, imágenes y manifiesto. Los textos
+    de ¡Tekeli-li! ya están en el catálogo local. Completar los recursos por escenario.
 15. [ ] Ayuda de fichas de cada escenario (tarjeta de referencia oficial).
+    Incluirla en la entrega de cada escenario.
 16. [ ] Narraciones con la voz indicada abajo.
 17. [ ] Campaña en el selector, pruebas de sesión de campaña completa y
     regresiones de campañas previas.
@@ -63,8 +80,8 @@ importación (guía 59) y no bloquean la campaña.
 Inventario reproducible: 266 códigos EN/ES, 24 conjuntos, 371 copias según el
 catálogo fuente. Son entradas de datos, no 266 reglas implementadas ni un recuento
 certificado de cartas físicas: hay que revisar caras y variantes antes de usar
-las cantidades para preparar mazos. No se han incorporado a catálogo, tienda,
-registro de reglas ni selector de campañas.
+las cantidades para preparar mazos. El catálogo local ya incluye las siete
+entradas de ¡Tekeli-li!. El selector de campañas sigue pendiente.
 
 ## Narración
 
@@ -75,7 +92,7 @@ Tierra. Preferencia anotada el 04/11/2026; todavía no se ha generado audio.
 ## Fuentes revisadas
 
 - Guía española añadida: `reglas/AHLCG_Los_confines_de_la_tierra.pdf`.
-  Revisión visual inicial de las páginas 2–3 y 7; el escaneo no proporciona
+  Revisión visual de las páginas 2–5 y 7–8; el escaneo no proporciona
   texto extraíble. Falta revisar la preparación completa, resoluciones y puntos
   de control de cada escenario al implementarlos. Los renders están en `tmp/eote/`.
 - Reglas de la expansión de investigadores añadidas:
@@ -87,6 +104,9 @@ Tierra. Preferencia anotada el 04/11/2026; todavía no se ha generado audio.
   `Campaigns/EdgeOfTheEarth/{CampaignSteps,Partner}.hs` y
   `Scenario/Scenarios/EdgeOfTheEarth/IceAndDeathPart1.hs`, bajo
   `backend/arkham-api/library/Arkham/`.
+- Para los pasos 4–5 se contrastaron las correspondencias de compañeros,
+  `Campaigns/EdgeOfTheEarth/{Helpers,Supplies}.hs` y los siete módulos de
+  `Treachery/Cards/EdgeOfTheEarth/Tekelili/`, junto con los textos EN/ES.
 - Datos EN/ES de `frontend/public/cards_{en,es}.json`, paquete **eoec**.
   El paquete de investigadores es distinto; seleccionar por prefijo numérico
   perdería entradas de esta campaña. El inventario guarda las huellas de ambas
@@ -101,7 +121,7 @@ su backend ni una sesión de navegador.
 | Necesidad | Situación local y trabajo necesario |
 | --- | --- |
 | Helada | Implementada (paso 3). Primera ficha: −1 y otra revelación; segunda en la misma prueba: detener revelaciones y fracaso automático. Máximo ocho entre bolsa y fichas selladas. Fuera de pruebas no tiene efecto ni valor (FAQ de investigadores: con 21 o nada no suma y se puede seguir revelando o plantarse). Mantener las fichas reveladas fuera de la selección hasta terminar la prueba. |
-| Compañero | No hay un modelo específico de expedición en `CampaignLog`. Nueve personajes, selección opcional sin compartir una misma copia, daño/horror persistentes y eliminación permanente. No entran en mazos de jugador ni abandonan juego salvo derrota; la derrota del investigador derrota al compañero. Desistir conserva su daño/horror sin eliminarlo. Hay versiones de determinación en el catálogo que deben vincularse con su personaje. |
+| Compañero | El registro de expedición conserva los nueve personajes por código base, también al elegir su versión de determinación. Faltan las cartas y sus habilidades, y conectar la preparación y sus efectos a cada escenario. |
 | ¡Tekeli-li! | Mazo especial de 16 debilidades: siete códigos con cantidades 3/3/2/2/2/2/2. Mantener un conjunto finito compartido, persistencia en los mazos de investigadores y devolución al mazo especial al resolverlas. No tratarlas como debilidades básicas comprables. |
 | Puntos de control | `CampaignScenario.allowDeckChangesAfter` ya permite bloquear compras, pero el progreso normal incrementa `scenarioIndex`. Hace falta representar decisiones, partes omitidas y reanudación sin repetir preparaciones o recompensas. |
 | Espejismo letal | Puede reaparecer entre escenarios; no modelarlo como una única casilla obligatoria de un recorrido lineal. Conservar visitas y estado de personajes entre ellas. |
@@ -201,7 +221,5 @@ Salida: [inventario EN/ES](106-confines-inventario.json). El comando no modifica
 datos de juego. `--check` verifica además que el inventario coincide exactamente
 con las fuentes, incluidas sus huellas; un cambio de catálogo obliga a revisarlo.
 
-Verificación de esta preparación: generación y comprobación del inventario,
-formato y lint del script/documentación. No se han modificado reglas ejecutables
-del juego, por lo que no se ha ejecutado suite global ni build. Repetir la
-comprobación del inventario si cambian las fuentes o su generador.
+La preparación inicial verificó el inventario y el formato y lint del generador.
+Repetir la comprobación del inventario si cambian las fuentes o su generador.

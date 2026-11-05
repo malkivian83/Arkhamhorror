@@ -1,0 +1,44 @@
+{
+  "08723": {
+    "name": "Tekeli-li",
+    "typeCode": "treachery",
+    "traits": "Madness.",
+    "text": "<b>Revelation</b> - Take 1 horror. Place Tekeli-li on the bottom of the Tekeli-li deck."
+  },
+  "08724": {
+    "name": "Tekeli-li",
+    "typeCode": "treachery",
+    "traits": "Madness.",
+    "text": "<b>Revelation</b> - Take 1 damage. Place Tekeli-li on the bottom of the Tekeli-li deck."
+  },
+  "08725": {
+    "name": "Tekeli-li",
+    "typeCode": "treachery",
+    "traits": "Madness.",
+    "text": "<b>Revelation</b> - Discard 1 card at random from your hand. Place Tekeli-li on the bottom of the Tekeli-li deck."
+  },
+  "08726": {
+    "name": "Tekeli-li",
+    "typeCode": "treachery",
+    "traits": "Madness.",
+    "text": "<b>Revelation</b> - Lose 2 resources. Place Tekeli-li on the bottom of the Tekeli-li deck."
+  },
+  "08727": {
+    "name": "Tekeli-li",
+    "typeCode": "treachery",
+    "traits": "Madness.",
+    "text": "<b>Revelation</b> - If it is your turn, lose 1 action. Otherwise, lose 1 action during your next turn. Place Tekeli-li on the bottom of the Tekeli-li deck."
+  },
+  "08728": {
+    "name": "Tekeli-li",
+    "typeCode": "treachery",
+    "traits": "Madness.",
+    "text": "<b>Revelation</b> - Place 1 of your clues on your location. Place Tekeli-li on the bottom of the Tekeli-li deck."
+  },
+  "08729": {
+    "name": "Tekeli-li",
+    "typeCode": "treachery",
+    "traits": "Madness.",
+    "text": "<b>Revelation</b> - Discard an asset you control. Place Tekeli-li on the bottom of the Tekeli-li deck."
+  }
+}

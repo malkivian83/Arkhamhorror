@@ -1,0 +1,85 @@
+{
+  "story": {
+    "dyer": {
+      "title": "Prólogo — La advertencia de Dyer",
+      "body": "El profesor William Dyer te muestra las pruebas que trajo de la Antártida. Quiere que le ayudes a detener la nueva expedición antes de que llegue a la ciudad que él y Danforth encontraron al otro lado de las montañas."
+    },
+    "convinced": {
+      "title": "Prólogo — Dyer acepta",
+      "body": "Defiendes que la expedición debe investigar los hallazgos de Dyer. El profesor accede a acompañar al equipo y te pide que avises a la Dra. Kensler."
+    },
+    "doubted": {
+      "title": "Prólogo — Dyer se une a la expedición",
+      "body": "Le dices a Dyer que necesitas ver las pruebas con tus propios ojos. El profesor decide acompañaros."
+    },
+    "team": {
+      "title": "Prólogo — El equipo de la expedición",
+      "body": "En el puerto de Boston, la Dra. Amy Kensler dirige los preparativos a bordo del Theodosia. Roald Ellsworth y James «Cookie» Fredericks se ocupan del equipo, Takada Hiroko prepara los aviones, Avery Claypool hará de guía, la Dra. Mala Sinha se encarga de la atención médica y Eliyah Ashevak cuida de los perros. Dyer y Danforth regresan a la Antártida con ellos."
+    },
+    "antarctica": {
+      "title": "Hielo y muerte, parte I",
+      "body": "El Theodosia llega a la Antártida. Tras montar el campamento base, la expedición parte en dos aviones para fotografiar la ciudad y buscar un lugar seguro donde aterrizar."
+    },
+    "winifred": {
+      "title": "Introducción — Winifred toma los mandos",
+      "body": "Winifred Habbamock pilota el primer avión. Una tormenta repentina sacude los dos aparatos y una silueta inmensa aparece entre las nubes mientras ella trata de recuperar el control."
+    },
+    "flight": {
+      "title": "Introducción — El vuelo hacia el interior",
+      "body": "Desde la cabina observas las montañas entre la niebla. Una tormenta repentina desvía los dos aviones y una silueta inmensa se cierne sobre vosotros."
+    },
+    "crash": {
+      "title": "Introducción — El accidente",
+      "body": "Recobras el sentido entre los restos en llamas. El equipo te saca a la nieve y busca supervivientes."
+    },
+    "victim08714": {
+      "title": "El equipo sufre una pérdida",
+      "body": "William Dyer murió en el accidente de avión."
+    },
+    "victim08715": {
+      "title": "El equipo sufre una pérdida",
+      "body": "Danforth murió en el accidente de avión."
+    },
+    "victim08716": {
+      "title": "El equipo sufre una pérdida",
+      "body": "Eliyah Ashevak murió en el accidente de avión."
+    },
+    "victim08717": {
+      "title": "El equipo sufre una pérdida",
+      "body": "Mala Sinha murió en el accidente de avión."
+    },
+    "victim08718": {
+      "title": "El equipo sufre una pérdida",
+      "body": "Avery Claypool murió en el accidente de avión."
+    },
+    "victim08719": {
+      "title": "El equipo sufre una pérdida",
+      "body": "James Fredericks murió en el accidente de avión."
+    },
+    "victim08720": {
+      "title": "El equipo sufre una pérdida",
+      "body": "Amy Kensler murió en el accidente de avión."
+    },
+    "victim08721": {
+      "title": "El equipo sufre una pérdida",
+      "body": "Roald Ellsworth murió en el accidente de avión."
+    },
+    "victim08722": {
+      "title": "El equipo sufre una pérdida",
+      "body": "Takada Hiroko murió en el accidente de avión."
+    }
+  },
+  "choice": {
+    "believeDyer": "Creer a Dyer y defender que hay que investigar sus hallazgos",
+    "doubtDyer": "Decirle a Dyer que cuesta creer su informe",
+    "noPartner": "No llevar compañero"
+  },
+  "prompt": {
+    "partner": "Elige un compañero para este escenario"
+  },
+  "note": {
+    "edgeOfTheEarthConvincedDyer": "Los investigadores convencieron a Dyer de que permitiera la expedición.",
+    "edgeOfTheEarthDoubtedDyer": "Los investigadores no se creyeron el informe de Dyer.",
+    "edgeOfTheEarthCrash": "Un miembro de la expedición murió en el accidente de avión."
+  }
+}

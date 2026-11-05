@@ -13,6 +13,8 @@ import fortuneCardsData from './fortune-cards.en.json'
 import galaCards from './gala-cards.en.json'
 import cardNarrativesData from './card-narratives.en.json'
 import carnevaleCardsData from './carnevale-cards.en.json'
+import edgeOfTheEarthCardsData from './edge-of-the-earth-cards.en.json'
+import edgeOfTheEarth from './edge-of-the-earth.en.json'
 import type { CardNarrative, CatalogCard } from './types'
 
 export const messages = {
@@ -38,7 +40,8 @@ export const messages = {
     theGathering: zealot.theGathering,
     midnightMasks: zealot.midnightMasks,
     devourerBelow: zealot.devourerBelow,
-    note: { ...base.story.note, ...zealot.notes, ...dunwich.notes },
+    edgeOfTheEarth: edgeOfTheEarth.story,
+    note: { ...base.story.note, ...zealot.notes, ...dunwich.notes, ...edgeOfTheEarth.note },
   },
   ability: {
     ...base.ability,
@@ -53,12 +56,19 @@ export const messages = {
     midnight: zealot.midnightChoices,
     devourer: zealot.devourerChoices,
     ...dunwich.choices,
+    edgeOfTheEarth: edgeOfTheEarth.choice,
   },
-  prompt: { ...base.prompt, zealot: zealot.prompts, ...dunwich.prompts },
+  prompt: {
+    ...base.prompt,
+    zealot: zealot.prompts,
+    ...dunwich.prompts,
+    edgeOfTheEarth: edgeOfTheEarth.prompt,
+  },
 } as const
 
 export const cardNarratives: Record<string, CardNarrative> = cardNarrativesData
 export const carnevaleCards: Record<string, CatalogCard> = carnevaleCardsData
+export const edgeOfTheEarthCards: Record<string, CatalogCard> = edgeOfTheEarthCardsData
 export const excelsiorCards: Record<string, CatalogCard> = excelsiorCardsData
 export const carcosaCards: Record<string, CatalogCard> = carcosaCardsData
 export const fortuneCards: Record<string, CatalogCard> = fortuneCardsData
