@@ -29,6 +29,7 @@ import { C, ask, bloodInVeins, damage, lead, miasma, on, run, specific } from '.
 import { devoted, thrall, treacheries } from './data'
 import { TOWN, grinningVictim } from './night-data'
 import { townReactions } from './night-citizens'
+import { arkhamAllied } from './arkham-allied'
 import {
   E,
   FALLEN,
@@ -1308,7 +1309,8 @@ function chorusResolution(
       : [recordNote(`plaguebearerTown${site}Site`)]),
     ...rallied.map((id) => recordNote(`plaguebearerTown${id}Rallied`)),
     ...eliminated.map((code) => recordNote(`plaguebearerEliminated${code}`)),
-    endScenario({ type: 'resolution', resolution: n }),
+    // Interludio III: Arkham unido, antes de cerrar el escenario.
+    ...arkhamAllied(s, rallied, endScenario({ type: 'resolution', resolution: n })),
   ]
 }
 // Texto oculto de la introducción: cada investigador decide si lo lee (solo narrativo).

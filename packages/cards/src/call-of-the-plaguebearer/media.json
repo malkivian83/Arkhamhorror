@@ -3886,5 +3886,149 @@
     "sha256": "736fb7fe6e3e3ccef48dceae5b403b405a48280d06dfdcd0a430390d13fc8c14",
     "width": 791,
     "height": 1048
+  },
+  {
+    "code": "78096",
+    "language": "es",
+    "source": "E:\\Plaguero\\120a.jpg",
+    "sourceSha256": "31f352aacba766147e0bce928a4c3b35505d70c48050d5a12e666774102d5c4c",
+    "sha256": "0f93e84f909207bc9fcc289323f8d952c6fa7b765937f2a2b1b04fb8e668b6cb",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78096",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\121 - Excessive Spirits-1.png",
+    "sourceSha256": "845f68f277582e735fdc5676b2cdbb809644c25cb9b57f846304adbdd6c61851",
+    "sha256": "58ffff84de175cefb0cd439c6b59497a80b178f9783c083daa8cd1d6102eda88",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78097",
+    "language": "es",
+    "source": "E:\\Plaguero\\121a.jpg",
+    "sourceSha256": "ab5b6982cd4bb24ed316d8d04eaa007db00cd8d60fea06fcae11873c9f42e899",
+    "sha256": "95263bedabe16fffc8d8e78b143dc3ca1bff220aef7c97e178f1c0386fa05976",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78097",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\122 - Extended Loan-1.png",
+    "sourceSha256": "2e6dec9ce799dc4bcb5647a588fb23588ca260d9fb746aec386875239f1c3eb4",
+    "sha256": "1e7fd06e12dfed31e03bffce3efcb28fc0e945f1184f6b2bf037cc774dfb1de2",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78098",
+    "language": "es",
+    "source": "E:\\Plaguero\\122a.jpg",
+    "sourceSha256": "92312a805afd2a11fdc585b86d72dc50a8780da793cbaf28ef7385d969db6a05",
+    "sha256": "168e84ce61e35dfe5017bac2a33da61a2c040af806e7d0f0d6f20f7246f958c0",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78098",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\123 - Full Coverage-1.png",
+    "sourceSha256": "2f1fa3db05bb419202ffb025d929d755481650efaed5142f9ba1342238ce21c6",
+    "sha256": "f208a074d2b2324ac55251de6cdfbdf71a62b1f1d35d3554187c43c4cc3092cc",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78099",
+    "language": "es",
+    "source": "E:\\Plaguero\\123a.jpg",
+    "sourceSha256": "1a7b9992d4a648f9eb822e8038ec38c4644c58ee1c6dde680cd7cf4e8d6767f6",
+    "sha256": "48c272370f5224309082c8b8adbfa8f48b657450df2bef66ead060878959b446",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78099",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\124 - Handshake Deal-1.png",
+    "sourceSha256": "f55676d7806fe66651c10c90a2a6389b3e92418f9771e409a93f9c926b6114ca",
+    "sha256": "c2c96c5481aded0e434f38956c7fc0b46c5b08ac8a647e2fc2392a0178b36fa8",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78100",
+    "language": "es",
+    "source": "E:\\Plaguero\\124a.jpg",
+    "sourceSha256": "37d7285f5caae4028058d147c1deeefbe0aca818d278d67d98eb324f332b199e",
+    "sha256": "c106b5494d168bfc7cd0bb3523bd4702c0322f844096cf606574ffad73d42fbd",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78100",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\125 - Hard Work-1.png",
+    "sourceSha256": "afc11fa6b4a72d4427bfaeee7d5ed430670adba0557e389cd9d8448867d2b108",
+    "sha256": "82756b662d3fdb8f4eda61f6d3f4c7b60576e03be400453362b134b4944ddef8",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78101",
+    "language": "es",
+    "source": "E:\\Plaguero\\125a.jpg",
+    "sourceSha256": "662cac56ccac7822870c9e5f2c5b44a34fe0a5ce5478587bfc352e219bc6230a",
+    "sha256": "86c1c291dde76b05854ddc803fa93c4ac106ec9591c12fc17b17621dc4aadf93",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78101",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\126 - Ma_s Approval-1.png",
+    "sourceSha256": "023460d9384bccec6d6b17231d033918a17843bed73680574de97c147e487186",
+    "sha256": "4bfc8464112130ae91bec4111a26baf592bc7949d51537f21f789ba674cd4808",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78102",
+    "language": "es",
+    "source": "E:\\Plaguero\\126a.jpg",
+    "sourceSha256": "d425a83ebeb084c1e3d80da3ad1945ce01b88e0843bb60f6bbdfd0cd23ea5ecb",
+    "sha256": "72bc43811ba6abc041f90b2034fbcea434ac5d76c10ee54837175ba5d644f19a",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78102",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\127 - Reliquary Tome-1.png",
+    "sourceSha256": "ee922cf3a635b2298d244af3b55e29959700977b9bc9aabca5706ce75ab0bbb6",
+    "sha256": "780700643394681401d29f2335fa4f116f77be26e795f61bf404ab3d0edaf405",
+    "width": 791,
+    "height": 1048
+  },
+  {
+    "code": "78103",
+    "language": "es",
+    "source": "E:\\Plaguero\\127a.jpg",
+    "sourceSha256": "4510c2112247a265655d05e0c417b37faaa045ddb000de86095e5afbc312373f",
+    "sha256": "6bf69480c7e3519a7b30f5aac6b843651f9a5feab20bd48bc82eda0c7e2a2376",
+    "width": 714,
+    "height": 1035
+  },
+  {
+    "code": "78103",
+    "language": "en",
+    "source": "E:\\Plaguero\\en\\128 - Ritual of Yaztaroth-1.png",
+    "sourceSha256": "1e3092baf4f676b4e481039e2578e1abf554353dce37b9d5931704e379e304c5",
+    "sha256": "5f0ee609c53353bd4aa3647b472cc9631b74fc306e32c45fd7529a53a9fe1573",
+    "width": 791,
+    "height": 1048
   }
 ]
