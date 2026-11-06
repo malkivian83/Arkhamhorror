@@ -95,6 +95,29 @@
       "giftEffect": "Anota que recibiste un regalo envenenado.",
       "tabletEffect": "Añade 1 ficha de tablilla a la bolsa del caos durante el resto de la campaña.",
       "hiddenEffect": "Comienzas el siguiente escenario con 1 horror (además de tus traumas mentales) y una carta adicional en la mano."
+    },
+    "dawn": {
+      "introTitle": "Muerte al amanecer",
+      "intro1": "12:54 a. m.\n\nLlega la medianoche y avanza sin que hagas ningún progreso. Las silenciosas calles del barrio fluvial parecen no tener señales del origen de las monstruosidades contra las que has estado luchando. Justo cuando empiezas a considerar buscar un sitio para echar una cabezada, un sonido de ruedas derrapando contra un suelo de piedra sin pavimentar capta tu atención. Miras hacia un callejón cercano y consigues ver a un hombre con una bata de doctor que empuja una destartalada camilla a través de una puerta lateral. Un hombre cuyo rostro ya has visto antes.\n\nSólo te lleva un momento ubicarle, esa figura silenciosa no puede ser más que el Dr. West, uno de los médicos que te atendió en el Santa María. ¿Qué está haciendo aquí? ¿A estas horas de la noche? ¿Y con un cadáver?\n\nAntes de que puedas responder a esas preguntas, varios coches aparecen a toda velocidad bajando por la calle. Para el momento en el que el barullo ha pasado, ya no hay ni rastro del Dr. West.",
+      "intro2": "Miras calle abajo y ves un grupo de agentes armados saliendo atropelladamente de los coches. Para tu sorpresa la Agente Greyson sale del primer coche. Antes de que se gire para hablar a los agentes reunidos, te abalanzas sobre ella para avisarla.\n\n“Ciertamente no esperaba verles a todos ustedes aquí. No puede ser una coincidencia, ¿verdad? Estamos buscando al activo Delta-Dos. Es uno de nuestros expertos. Tal vez pueda ayudarnos a detener todo esto. Responde al nombre de Herbert West. Él…”.\n\nLa interrumpes, explicando de qué conoces al hombre y contándole lo que acabas de ver. Greyson te mira con incredulidad.\n\n¿Puede ser que esté usted lleno de sorpresas? Perfecto pues, si ya está al tanto de todo, entraremos a por él. ¿Qué me dice? ¿Quiere unirse a la caballería?",
+      "intro3": "Miras calle abajo y ves un grupo de agentes armados saliendo atropelladamente de los coches. Un hombre con aspecto cruel y que viste gabardina sale del primer coche, tira un cigarro al suelo y lo pisa con desdén. Después se gira para hablar a los agentes reunidos.\n\n“¡Atención, muchachos! Hemos rastreado al activo Delta-Dos hasta esta localización. ¿Queréis venganza por todos los buenos hombres que estos bichos raros han asesinado? ¿Por Greyson? Perfecto, porque el activo Delta-Dos sabe cómo conseguirlo. No va a venir por las buenas, así que está autorizado el uso de cualquier tipo de fuerza letal. Cualquier otra persona podría estar infectada, así que disparen a matar sin miramientos”. El hombre sonríe como un tiburón.\n\nO el activo Delta-Dos es West, o el doctor se encuentra en verdadero peligro. En cualquier caso, necesitas encontrarlo antes de que lo hagan los agentes, ¡seguro que él sabe cómo has acabado metido en todo esto!",
+      "intro4": "Miras calle abajo y ves un grupo de agentes armados saliendo atropelladamente de los coches. Para tu sorpresa la Agente Greyson sale del primer coche. Les observas desde un lugar cercano, mientras se dirige a los agentes reunidos.\n\n“Bueno, Sastres. Hemos rastreado al activo Delta-Dos hasta esta mansión de ladrillo. Creemos que el activo Delta-Dos tiene la clave para poner fin a todo esto. Sin embargo, debemos considerarle extremadamente peligroso por derecho propio y es poco probable que decida venir con nosotros voluntariamente. Hagan lo que deban para conseguirlo. Para terminar, cualquier otra persona que encuentren no está autorizada a conocer los experimentos del activo Delta-Dos. Eliminen cualquier civil que encuentren”.\n\nO el activo Delta-Dos es West, o el doctor se encuentra en verdadero peligro. En cualquier caso, necesitas encontrarlo antes de que lo hagan los agentes, ¡seguro que él sabe cómo has acabado metido en todo esto!",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "Mientras dos agentes sacan a rastras por la puerta a un furioso West, te encuentras de bruces con una mujer que te apunta directamente al pecho con el cañón de su pistola. “No es nada personal. Pero no está autorizado para saber nada de esto”.\n\nTu último momento de vida es el destello del disparo.",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "Atraviesas la puerta principal de la mansión, llevando al doctor contigo. “¿Qué significa todo esto? ¿Habéis traído esa monstruosidad hasta mí? ¿Ha sido Greyson? ¡Por Dios, cuánta incompetencia!”.\n\nProtestas. Tú no eres un agente. Eres uno de sus pacientes, y él tiene muchas cosas que explicar. West se detiene y te mira de arriba abajo, entrecerrando los ojos con la luz del amanecer. “Ah. Impresionante. ¿Uno de mis pacientes? Supongo que voy a tener que ponerle al día de todo lo que está ocurriendo”.",
+      "resolution3Title": "Resolución 3",
+      "resolution3": "Atraviesas la puerta principal de la mansión, desesperado por escapar de los horrores que la pueblan. Gritos y disparos que provienen del interior proporcionan una extraña banda sonora al amanecer. Observas cómo desde un callejón lateral varios agentes sacan a West de la mansión, atado, ensangrentado e inconsciente. “¿A dónde le llevamos?”.\n\n“De vuelta a la Instalación Brook. Todavía tiene mucho trabajo por delante y muchas preguntas que responder”.\n\nNecesitas respuestas. Ahora. Los agentes tienen a West, pero seguro que también tienen algo que ver con todo esto. Lo que significa que sólo hay un lugar al que puedas ir. De vuelta a la instalación.",
+      "resolution4Title": "Resolución 4",
+      "resolution4": "La terrorífica monstruosidad lanza un último aullido, después cae inerte al suelo. Miras alrededor y ves el arma reglamentaria de un agente. Vacías el cargador en las cabezas de la criatura, por si las moscas. West se acerca rápidamente para examinar el cuerpo, y le explicas que tú ya has visto muerta a esta “cosa” en las instalaciones de la Agencia.\n\n“Ah. Entonces es cosa de Pickman. Su trabajo ciertamente ha dado un extraño fruto. Pero estoy totalmente seguro de que los títeres del gobierno como usted ya lo saben todo”.\n\nProtestas. Tú no eres un agente. Eres uno de sus pacientes, y él tiene muchas cosas que explicar. West se detiene y te mira de arriba abajo, entrecerrando los ojos con la luz del amanecer. “Ah. Impresionante. ¿Uno de mis pacientes? Supongo que voy a tener que ponerle al día de todo lo que está ocurriendo”.",
+      "resolution5Title": "Resolución 5",
+      "resolution5": "Los primeros rayos del sol de la mañana recorren tu cadáver. Según notas la calidez en tu piel, te levantas con una sacudida. Estás tirado en el suelo de la mansión, rodeado de una carnicería allá donde miras, ¿cómo es posible que estés vivo?\n\nNecesitas respuestas. Ahora. Los agentes tienen a West, pero seguro que también tienen algo que ver con todo esto. Lo que significa que sólo hay un lugar al que puedas ir. De vuelta a la instalación.",
+      "resolution5Hidden": "Muerto.\nEso no me sirve.\nMi liberación necesita oposición.\nLa demencia del hechicero será la ruina de los de tu especie.\nHaz lo que te pidan.\nLevanta.\n\nAhora eres mío.\n\n¿Vivo? ¿Muerto? Eso no tiene importancia.\n\nTu alma y tu humanidad persisten por mi voluntad.",
+      "setupTitle": "Preparación",
+      "setup": "Reúne todas las cartas de los siguientes conjuntos de encuentros: Muerte al amanecer, Supervivientes de la Agencia, Dones del Portador de la Plaga, Alianzas frágiles y Frío helador.\n\nAl reunir las cartas del conjunto Dones del Portador de la Plaga, no incluyas las dos copias de Suplicante retorcido. Al reunir las cartas del conjunto Alianzas frágiles, incluye sólo las dos copias de Alianzas frágiles.\n\nDeja el Lugar Laboratorio de West aparte fuera del juego. Pon en juego los demás Lugares.\n\nBaraja todos los enemigos Reanimado de una cara juntos para formar el Mazo reanimado. Deja aparte sin mirar las dos cartas superiores del mazo.\n\nComprueba el registro de campaña. Si Hibb está aquí para ayudarte, busca en cada mazo de jugador y en las cartas puestas aparte el Apoyo de historia Hibb (Listo para ayudar). Si estaba en el mazo de un jugador, ponlo en juego bajo el control de ese investigador. Si no, ponlo en juego bajo el control de cualquier investigador y vincúlale una copia de Alianzas frágiles.\n\nDeja las siguientes cartas aparte fuera del juego: Herbert West, Primero de muchos (El horror creciente) y todas las copias de El abrazo de la muerte, La futilidad del hombre, La Fuerza de la Carne, Voluntad inquebrantable.\n\nAl formar el mazo de acto utiliza el Acto 1a “Ataque inesperado” y retira el Acto 1a “Portero simpático” de la partida. Haz aparecer el enemigo Virgil en la Entrada de servicio, con el lado Acechando en el umbral hacia arriba. Retira el enemigo Ichabod de la partida. Cada investigador comienza la partida en la Entrada de servicio.\n\nDeja aparte fuera de la partida las copias Alianzas frágiles que no se hayan usado. Baraja el resto de cartas de encuentro para formar el mazo de encuentros.",
+      "setupRespect": "Reúne todas las cartas de los siguientes conjuntos de encuentros: Muerte al amanecer, Supervivientes de la Agencia, Dones del Portador de la Plaga, Alianzas frágiles y Frío helador.\n\nAl reunir las cartas del conjunto Dones del Portador de la Plaga, no incluyas las dos copias de Suplicante retorcido. Al reunir las cartas del conjunto Alianzas frágiles, incluye sólo las dos copias de Alianzas frágiles.\n\nDeja el Lugar Laboratorio de West aparte fuera del juego. Pon en juego los demás Lugares.\n\nBaraja todos los enemigos Reanimado de una cara juntos para formar el Mazo reanimado. Deja aparte sin mirar las dos cartas superiores del mazo.\n\nComprueba el registro de campaña. Si Hibb está aquí para ayudarte, busca en cada mazo de jugador y en las cartas puestas aparte el Apoyo de historia Hibb (Listo para ayudar). Si estaba en el mazo de un jugador, ponlo en juego bajo el control de ese investigador. Si no, ponlo en juego bajo el control de cualquier investigador y vincúlale una copia de Alianzas frágiles.\n\nDeja las siguientes cartas aparte fuera del juego: Herbert West, Primero de muchos (El horror creciente) y todas las copias de El abrazo de la muerte, La futilidad del hombre, La Fuerza de la Carne, Voluntad inquebrantable.\n\nLos investigadores se ganaron el respeto de Greyson: al formar el mazo de acto utiliza el Acto 1a “Portero simpático” y retira el Acto 1a “Ataque inesperado” de la partida. Cuando reúnas las cartas del conjunto de encuentros Supervivientes de la Agencia, no incluyas las cartas Solucionador de la Agencia y Fuego de supresión. Haz aparecer el enemigo Ichabod en el Vestíbulo principal, con el lado Lacayo estúpido hacia arriba. Retira el enemigo Virgil de la partida. Busca en tu colección una copia de Apoyo de la Agencia (nivel 5); si no, te suministramos una en la campaña. Vincúlale una copia de Alianzas frágiles y ponla bajo el control de cualquier investigador. Cada investigador comienza la partida en el Vestíbulo principal.\n\nDeja aparte fuera de la partida las copias Alianzas frágiles que no se hayan usado. Baraja el resto de cartas de encuentro para formar el mazo de encuentros.",
+      "backForMoreTitle": "Vuelve a por más",
+      "backForMore": "Sustituye los mazos de Plan y Acto por Vuelve a por más. Haz aparecer el Primero de muchos puesto aparte en el Vestíbulo principal."
     }
   },
   "note": {
@@ -134,7 +157,12 @@
     "plaguebearerTown78030Infected": "Vieja tienda de Magia: Infectado",
     "plaguebearerHibbsHelping": "Hibb está aquí para ayudarte",
     "plaguebearerTwistedGift": "Recibiste un regalo envenenado",
-    "plaguebearerCuriosity": "Leyeron el texto oculto del Interludio I"
+    "plaguebearerCuriosity": "Leyeron el texto oculto del Interludio I",
+    "plaguebearerWestLeading": "Herbert West nos guía",
+    "plaguebearerWestTaken": "Herbert West fue llevado contra su voluntad",
+    "plaguebearerFirstDead": "Te aseguraste de que el Primero murió",
+    "plaguebearerBloodInVeins": "La sangre corre por tus venas",
+    "plaguebearerSkipDeadOrAlive": "Se salta el Interludio II: Vivo o muerto"
   },
   "ability": {
     "remove": "Gasta {amount} pistas aquí: retira {amount} barricadas de {location}",
@@ -168,6 +196,20 @@
       "healDamage": "Cura 1 daño a {name}",
       "healHorror": "Cura 1 horror a {name}",
       "hibbs": "Agota a Hibb: cancela el ataque de oportunidad"
+    },
+    "dawn": {
+      "servants": "Gastar {amount} pistas en grupo: coloca 1 recurso en este Lugar",
+      "apothecary": "Gastar {amount} pistas en grupo: coloca 1 recurso en este Lugar",
+      "tub": "Gastar {amount} pistas en grupo: coloca 1 recurso en este Lugar",
+      "basement": "Gastar {amount} pistas en grupo: 2 daños al Reanimado, evítalo y coloca 1 recurso",
+      "discover": "Descubre 1 pista (hay un Reanimado agotado)",
+      "resign": "Desistir. ¡Este no es mi tema!",
+      "corridor": "Combatir a {enemy} (añade tu intelecto, +1 daño)",
+      "bedroom": "Evitar a {enemy} (añade tu intelecto)",
+      "parley": "Negociar: coloca pistas sobre Herbert West",
+      "abandoned": "Obtén 1 pista de la reserva",
+      "study": "Maletín sospechoso: 2 daños a cada enemigo Reanimado",
+      "fear": "Descarta Teme a los muertos vivientes"
     }
   },
   "prompt": {
@@ -176,7 +218,16 @@
     "delta": "¿Abrir el pasadizo oculto?",
     "briefcase": "¿Quién toma el maletín?",
     "hidden": "El prólogo contiene un texto oculto. ¿Decides leerlo?",
-    "friendsHidden": "El interludio contiene un texto oculto. ¿Decides leerlo?"
+    "friendsHidden": "El interludio contiene un texto oculto. ¿Decides leerlo?",
+    "dawn": {
+      "hibbs": "¿Quién controla a Hibb?",
+      "backup": "¿Quién controla el Apoyo de la Agencia?",
+      "hunters": "Vuelve a por más: ¿qué cazadores se resuelven?",
+      "cantGetAway": "No puedes escapar: elige",
+      "legions": "Legiones de ultratumba: elige una opción",
+      "west": "¿Usas a Herbert West?",
+      "hidden": "La resolución contiene un texto oculto. ¿Decides leerlo?"
+    }
   },
   "choice": {
     "damage": "Recibir 1 daño",
@@ -196,6 +247,17 @@
       "hibbs": "{name} añade a Hibb a su mazo",
       "noHibbs": "Nadie añade a Hibb",
       "read": "Leer el texto oculto"
+    },
+    "dawn": {
+      "huntFirst": "Cazador del Primero de muchos",
+      "huntReanimated": "Cazador de cada enemigo Reanimado",
+      "horror": "Recibir {amount} horror",
+      "lure": "Preparar al Reanimado más alejado y traerlo a tu Lugar",
+      "legionsMove": "Mover cada Reanimado sin enfrentar un Lugar hacia ti",
+      "legionsHeal": "Preparar al Reanimado dañado más cercano y curarlo",
+      "west": "Agotar a Herbert West: {enemy} cura 2 daños y descubres 2 pistas",
+      "payPrice": "Esto no puede ser el final. Pagaré cualquier precio",
+      "dieSometime": "De algo hay que morir"
     }
   }
 }

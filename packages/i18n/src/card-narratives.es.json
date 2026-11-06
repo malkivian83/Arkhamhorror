@@ -170,6 +170,47 @@
     "flavor": "La ciudad es un hervidero. Azuzado por Hibb, decides ayudar a tantas instituciones —y ciudadanos— como puedas.",
     "backFlavor": "Lo has hecho lo mejor que has podido. Has salvado a todos los que has podido. No hay nada más que puedas hacer por esta gente para ayudarles a pasar la noche. Te refugias en una casa cercana y planificas cuáles serán tus próximos movimientos…"
   },
+  "78048": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "La vetusta mansión de ladrillo se encuentra en un estado lamentable, aunque parece claro que alguien ha estado viviendo allí por mucho tiempo. Más preocupante es la cantidad de lo que parecen ser cadáveres que se encuentran esparcidos por toda la casa...",
+    "backFlavor": "Oyes el sonido de un interruptor, y algunas máquinas empiezan a funcionar. Desde algún lugar de la mansión, un brillante, luminoso y verde líquido fluye por unas tuberías hasta un cuerpo inerte en una mesa. Un cuerpo que convulsiona, pero que después se levanta con algo similar a “vida”."
+  },
+  "78049": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "El operativo Delta-Dos parece haber estado experimentando con una manera de levantar a los muertos. Cualesquiera que sean sus motivaciones, los resultados son violentos, están desbocados y en tu camino.",
+    "backFlavor": "“¡Tengo un montón más de cadáveres en el lugar del que vino ese! ¡No me pongáis a prueba, mequetrefes!”\nWest activa otro interruptor, y otra de sus horribles criaturas cobra vida con estertores y gritos.\nLos Sastres responden con una lluvia de balas, y un terrible pensamiento te asedia. Los agentes, West o tú... Alguien va a morir esta noche."
+  },
+  "78050": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "Los cadáveres andantes asedian el edificio. No importa cuántas veces los reduzcáis a un amasijo de carne, se levantan y vuelven a la carga.",
+    "backFlavor": "Más líquido verde burbujea sobre vuestras cabezas a través de las tuberías camino de incontables camillas, cuyos ocupantes pronto comienzan a moverse."
+  },
+  "78051": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Mientras investigas tranquilamente la estancia en busca de pistas sobre West, la figura en la camilla en la que activó los pernos se mueve. En unos instantes, está frente a ti, gruñendo y chasqueando la mandíbula. Lo realmente aterrador viene cuando eres consciente de que a este centinela le falta la mayor parte de su cabeza.",
+    "backFlavor": "Según te deshaces del guardián moribundo, oyes a un agente llamando a gritos al Dr. West. Su voz proviene de algún lugar en el interior de la mansión: “¡No volveré! ¿Me oyen? Tú, mindundi de la Agencia, dile a Greyson que se busque a otro genio para arreglar su desaguisado.”\nDe pronto, un sonido macabro se oye a tus espaldas. Te giras para ver que el cuerpo que acabáis de acribillar está en pie frente a vosotros."
+  },
+  "78052": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Antes de que puedas empezar a buscar a West, un grito capta tu atención. Un agente es levantado en vilo por una enorme figura que desciende pesadamente por las escaleras.\nSegún ves cómo el pobre agente es desmembrado, caes en la cuenta de un detalle: el pesado defensor carece de cabeza.",
+    "backFlavor": "Según te deshaces del guardián moribundo, oyes una voz familiar que proviene de algún lugar en el interior de la mansión: “¡No volveré! ¿Me oyen? Tú, mindundi de la Agencia, dile a Greyson que se busque a otro genio para arreglar su desaguisado. ¡Ichabod, deshazte de esos niñatos!”\nDe pronto, un sonido macabro se oye a tus espaldas. Te giras para ver que el cuerpo que acabáis de acribillar está en pie frente a vosotros."
+  },
+  "78053": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "El activo Delta-Dos es el Dr. Herbert West, uno de los médicos que te atendió en el Hospital de Santa María. El doctor se ha encerrado tras una serie de complicados mecanismos mientras sus horribles lacayos hacen su trabajo.",
+    "backFlavor": "Tan pronto como el resto de mecanismos de la puerta fallan, embistes con tu cuerpo la tabla de roble. Se comba y finalmente cede, mandándote de bruces contra el suelo. Taladrándote con la mirada, notas unos intensos ojos azules. Unos ojos que recuerdas de tus últimos instantes en el Hospital de Santa María."
+  },
+  "78054": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Te encuentras cara a cara con la última persona que viste antes de despertar en aquella morgue. Si alguien tiene respuestas, ha de ser él."
+  },
   "82002": {
     "group": "carnevale",
     "typeCode": "agenda",

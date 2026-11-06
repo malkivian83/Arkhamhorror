@@ -173,6 +173,123 @@
       "inputHash": "8a0bc3e1c72bfa038584a4bff43f5aaf49cb8a67f73443fa127bbcc11d586a02",
       "bytes": 379967,
       "sha256": "02a6796ad39b3f83a3f3ac727322cf63acad47aed76e1ed5ea2aea8de5ebc8b1"
+    },
+    {
+      "code": "78048",
+      "side": "front",
+      "text": "La vetusta mansión de ladrillo se encuentra en un estado lamentable, aunque parece claro que alguien ha estado viviendo allí por mucho tiempo. Más preocupante es la cantidad de lo que parecen ser cadáveres que se encuentran esparcidos por toda la casa...",
+      "file": "78048-front.mp3",
+      "inputHash": "e080fc5aa22f4bac5460edac31974b6dd68634b67756727b10a35f5c23f51b42",
+      "bytes": 301809,
+      "sha256": "930285911a848c5a1ed64ab8d2dbabc68373248f6eb86458e8f13314d99446c3"
+    },
+    {
+      "code": "78048",
+      "side": "back",
+      "text": "Oyes el sonido de un interruptor, y algunas máquinas empiezan a funcionar. Desde algún lugar de la mansión, un brillante, luminoso y verde líquido fluye por unas tuberías hasta un cuerpo inerte en una mesa. Un cuerpo que convulsiona, pero que después se levanta con algo similar a “vida”.",
+      "file": "78048-back.mp3",
+      "inputHash": "ae6cd4b2388a4998cf34c76553cb6f6acab3d83f02642a5e363c52db113dad47",
+      "bytes": 379967,
+      "sha256": "d79041d8a67c3b88ea6307be575fc96d70ca4689804e347647d2baa606d37319"
+    },
+    {
+      "code": "78049",
+      "side": "front",
+      "text": "El operativo Delta-Dos parece haber estado experimentando con una manera de levantar a los muertos. Cualesquiera que sean sus motivaciones, los resultados son violentos, están desbocados y en tu camino.",
+      "file": "78049-front.mp3",
+      "inputHash": "b2fe24fc7d5a7a14cfa4195fe0d4eff4c8a194d66f14ad99ebde0a85c4e3b4fb",
+      "bytes": 282583,
+      "sha256": "66d1dc5e7698a07b02511fafbdd62d04f9ebf75715d047b57fda243eb226f5b9"
+    },
+    {
+      "code": "78049",
+      "side": "back",
+      "text": "“¡Tengo un montón más de cadáveres en el lugar del que vino ese! ¡No me pongáis a prueba, mequetrefes!”\nWest activa otro interruptor, y otra de sus horribles criaturas cobra vida con estertores y gritos.\nLos Sastres responden con una lluvia de balas, y un terrible pensamiento te asedia. Los agentes, West o tú... Alguien va a morir esta noche.",
+      "file": "78049-back.mp3",
+      "inputHash": "34c86aaf3a41627d05843e8ea4bfeee1d5dc694ce49de4c21bfd56f02be88a4d",
+      "bytes": 468575,
+      "sha256": "57ef241febbdc575ffdca948b4c7a974e9ec61bdaa7f952b4c0129017e4fa8af"
+    },
+    {
+      "code": "78050",
+      "side": "front",
+      "text": "Los cadáveres andantes asedian el edificio. No importa cuántas veces los reduzcáis a un amasijo de carne, se levantan y vuelven a la carga.",
+      "file": "78050-front.mp3",
+      "inputHash": "28865353b89aa403a5f5e6d8cbdc231b8f6472b8d2fe18214ba09aa8e76cbdc0",
+      "bytes": 165972,
+      "sha256": "58a3bc78379ad2771a4fc79e423797fa824aacd219aea181de9e4081e1174bb4"
+    },
+    {
+      "code": "78050",
+      "side": "back",
+      "text": "Más líquido verde burbujea sobre vuestras cabezas a través de las tuberías camino de incontables camillas, cuyos ocupantes pronto comienzan a moverse.",
+      "file": "78050-back.mp3",
+      "inputHash": "0532509e2eb030aa6856101cbdbf63c0ad834e5b5d4c8f132c98fe08467f6271",
+      "bytes": 224905,
+      "sha256": "5525338b1c75c7929394d2d9d92c3d0f36da119e7f173fdbde071e62703b9f9c"
+    },
+    {
+      "code": "78051",
+      "side": "front",
+      "text": "Mientras investigas tranquilamente la estancia en busca de pistas sobre West, la figura en la camilla en la que activó los pernos se mueve. En unos instantes, está frente a ti, gruñendo y chasqueando la mandíbula. Lo realmente aterrador viene cuando eres consciente de que a este centinela le falta la mayor parte de su cabeza.",
+      "file": "78051-front.mp3",
+      "inputHash": "3dfd1f7ad4ca557fea34484c9b4cc3110c1b27b1c852698ab79de49a50d86c36",
+      "bytes": 409643,
+      "sha256": "8b14188b7daaf7c4c14794695d4f0f3307d4a79afe45ade2b60d380abbf0873d"
+    },
+    {
+      "code": "78051",
+      "side": "back",
+      "text": "Según te deshaces del guardián moribundo, oyes a un agente llamando a gritos al Dr. West. Su voz proviene de algún lugar en el interior de la mansión: “¡No volveré! ¿Me oyen? Tú, mindundi de la Agencia, dile a Greyson que se busque a otro genio para arreglar su desaguisado.”\nDe pronto, un sonido macabro se oye a tus espaldas. Te giras para ver que el cuerpo que acabáis de acribillar está en pie frente a vosotros.",
+      "file": "78051-back.mp3",
+      "inputHash": "c538c567dac85e48112ad8a243ba7499c432e6af58f21226fbd47d22c5b8d6ea",
+      "bytes": 557600,
+      "sha256": "def6c40463d56d67e54a34723f977c5b11d6a77032a3adcd2a0142995f5b07ba"
+    },
+    {
+      "code": "78052",
+      "side": "front",
+      "text": "Antes de que puedas empezar a buscar a West, un grito capta tu atención. Un agente es levantado en vilo por una enorme figura que desciende pesadamente por las escaleras.\nSegún ves cómo el pobre agente es desmembrado, caes en la cuenta de un detalle: el pesado defensor carece de cabeza.",
+      "file": "78052-front.mp3",
+      "inputHash": "f26c5f92d706552f0afdcda7c179aae11c77bfbc6e774684fe160388f0302bd7",
+      "bytes": 379967,
+      "sha256": "ef419d58cfa2920bc66b9169e09de88485d8eae55c8adfde24fea3e5dfb9a640"
+    },
+    {
+      "code": "78052",
+      "side": "back",
+      "text": "Según te deshaces del guardián moribundo, oyes una voz familiar que proviene de algún lugar en el interior de la mansión: “¡No volveré! ¿Me oyen? Tú, mindundi de la Agencia, dile a Greyson que se busque a otro genio para arreglar su desaguisado. ¡Ichabod, deshazte de esos niñatos!”\nDe pronto, un sonido macabro se oye a tus espaldas. Te giras para ver que el cuerpo que acabáis de acribillar está en pie frente a vosotros.",
+      "file": "78052-back.mp3",
+      "inputHash": "419527984fa0fa1408aadc64fec7b7bbe4d77058526bb368326ec827bb81bfdf",
+      "bytes": 580588,
+      "sha256": "ff2a2ae80adbee56259e3694a276b5936a8c08f0ded7f217edda73e6b7b8e3bc"
+    },
+    {
+      "code": "78053",
+      "side": "front",
+      "text": "El activo Delta-Dos es el Dr. Herbert West, uno de los médicos que te atendió en el Hospital de Santa María. El doctor se ha encerrado tras una serie de complicados mecanismos mientras sus horribles lacayos hacen su trabajo.",
+      "file": "78053-front.mp3",
+      "inputHash": "ea0b2825eea611628ca6fc38a67bbae1e1d4a999560ace6a6835cde736444568",
+      "bytes": 277567,
+      "sha256": "f9b7b6ddc5e31f54269eee7a884046a86e7d1e645b718df6a91d1e160a08f580"
+    },
+    {
+      "code": "78053",
+      "side": "back",
+      "text": "Tan pronto como el resto de mecanismos de la puerta fallan, embistes con tu cuerpo la tabla de roble. Se comba y finalmente cede, mandándote de bruces contra el suelo. Taladrándote con la mirada, notas unos intensos ojos azules. Unos ojos que recuerdas de tus últimos instantes en el Hospital de Santa María.",
+      "file": "78053-back.mp3",
+      "inputHash": "3c0a25db613d47f8846bf53439e696f154cae4d3da5832b70fba6e90cdac5399",
+      "bytes": 379967,
+      "sha256": "4d4ff450cbbb6d28c1bf014cc3298f3a91fa1ae5a429e641bb6705e6cc07b1a8"
+    },
+    {
+      "code": "78054",
+      "side": "front",
+      "text": "Te encuentras cara a cara con la última persona que viste antes de despertar en aquella morgue. Si alguien tiene respuestas, ha de ser él.",
+      "file": "78054-front.mp3",
+      "inputHash": "178fa39b3db6ca3f0a73aac6aecafb09c5eff1013b8baff3b3a018fb5316501b",
+      "bytes": 161375,
+      "sha256": "6c961efd2dbd9a31c05e0f8b99731a562a56fb7af6480a9180f5cf3bd633d16d"
     }
   ]
 }

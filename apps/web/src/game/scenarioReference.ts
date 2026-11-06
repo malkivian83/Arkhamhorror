@@ -4,6 +4,7 @@ import type { GameState } from '@lcg/engine'
 const references: Record<string, { code: string; name: string }> = {
   'late-risers': { code: '78001', name: 'Late Risers' },
   'night-on-the-town': { code: '78019', name: 'Night on the Town' },
+  'dead-by-dawn': { code: '78047', name: 'Dead by Dawn' },
   'carnevale-of-horrors': { code: '82001', name: 'Carnevale of Horrors' },
   'lost-in-time-and-space': { code: '02311', name: 'Lost in Time and Space' },
   'where-doom-awaits': { code: '02274', name: 'Where Doom Awaits' },

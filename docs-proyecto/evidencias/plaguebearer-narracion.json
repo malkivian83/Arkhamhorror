@@ -104,6 +104,150 @@
       "inputHash": "cf0d5bc79f1700038a4e88994ef7f8e6df75395b03411b32e2e743b95061088a",
       "sha256": "74b284f2d10f139da9d9d2b04033e55c3c981f4df9da58791d6a9fcd1813f90b",
       "bytes": 850172
+    },
+    {
+      "key": "story.plaguebearer.friends.section1",
+      "file": "plaguebearer-friends-section1-martin-osborne.mp3",
+      "text": "El barrio fluvial está en calma. Con la mayoría de ciudadanos de Arkham a buen recaudo, la única compañía que encuentras en las calles son las titilantes luces de las farolas. Curiosamente, las criaturas también han desaparecido, junto con la mayoría de las nubes verdes.\n\nTras una hora explorando las cercanías del río, una mano te agarra con fuerza del hombro. Te das la vuelta presto para presentar pelea, pero ves a Hibb frente a ti con una sonrisa en la cara.\n\n“¡Tranquilo, amigo! Oí que estabas merodeando por aquí y pensé que te vendría bien que te echara una mano. Es lo mínimo que puedo hacer después de todo lo que has hecho por mí. Lamentablemente sólo puedo quedarme un rato, después…”.",
+      "characters": 698,
+      "inputHash": "740d02efde1b223f2b97344f37bda15a55d64f5ac7b61f2915248dafc2e25293",
+      "sha256": "715f2ff3a4545f93a3aecb698dfd1dcc93f2f899c20e9c3d71fdac4d831cfb05",
+      "bytes": 868144
+    },
+    {
+      "key": "story.plaguebearer.friends.section2",
+      "file": "plaguebearer-friends-section2-martin-osborne.mp3",
+      "text": "Hibb se detiene un instante, mirando fijamente al suelo. Cuadra los hombros y clava su mirada en ti. “En realidad no. Has tenido la astucia necesaria para deshacerte de los hombres trajeados y te has preocupado por la ciudad. Se ve que hay alguien al volante ahí arriba. La ciudad no necesita que me dedique a guardar los secretos de la agencia. La ciudad estará mejor si me quedo contigo y te ayudo a detener esta amenaza. Además, no vamos a fingir que no viste nada, ¿no? De ahora en adelante, estoy contigo”.",
+      "characters": 511,
+      "inputHash": "a2d65afa03a5a61b50f6413858eccfd82dc7425bbaa768e978dab93395881b22",
+      "sha256": "7bab48d9c6b111fcfdf0656e31ceeedffbe5c0a32ac37279e4f1878fda2b65a6",
+      "bytes": 634087
+    },
+    {
+      "key": "story.plaguebearer.friends.section3",
+      "file": "plaguebearer-friends-section3-martin-osborne.mp3",
+      "text": "Hibb se detiene un instante, mirando fijamente al suelo. Baja los hombros y te mira fijamente a los ojos. “En cuanto encontremos una pista, me volveré al Motel. Hay mucha gente a salvo en el Motel, pero nunca se sabe qué puede salir mal. Tiene que haber alguien allí para asegurarse de que nadie la lía. Así que démonos prisa que tengo que volver. Eso nos dejará encaminados”.",
+      "characters": 376,
+      "inputHash": "7d82664cde09696b9f1a920d1eb681ea4ab1996ab0454a17ddbbbd5413f0ec4a",
+      "sha256": "81b8173bfa0b9295fb0701f56c287e31ecbabe4cecaedd4065a0208a357cfc11",
+      "bytes": 519148
+    },
+    {
+      "key": "story.plaguebearer.friends.section4",
+      "file": "plaguebearer-friends-section4-martin-osborne.mp3",
+      "text": "El barrio fluvial está en calma. Con la mayoría de ciudadanos de Arkham a buen recaudo, la única compañía que encuentras en las calles son las titilantes luces de las farolas. Curiosamente, las criaturas también han desaparecido, junto con la mayoría de las nubes verdes.\n\nTras una hora explorando las cercanías del río, al girar una esquina te metes de lleno en una de esas nieblas brillantes. Tu visión se vuelve borrosa y por un momento ves por muchos ojos a la vez. Te ves a ti mismo tejiendo túnicas de carne y recitando retorcidos cánticos. Otro aúlla y se arrastra lentamente “brazada a brazada” desde un profundo túnel a un oscuro bosque. Otro observa un cadáver mientras maldice su destino.\n\nEl Portador de la Plaga observa a través de la oscuridad, con su mirada fija en una pequeña esfera azul, que cuelga bajo una palma roja en la que un estigma supura gotas de un icor verdoso.\n\nEl miasma retrocede y vuelves a tu ser.",
+      "characters": 931,
+      "inputHash": "4d47ae9a3c8cc1796f1d7589b1fbafc7351e455d9c80100d9a278164bb7322de",
+      "sha256": "446cb3035aac9a6725df614579cf314b6ccb7829d0afeba65eedc12c02a0bd0f",
+      "bytes": 1217558
+    },
+    {
+      "key": "story.plaguebearer.friends.hidden",
+      "file": "plaguebearer-friends-hidden-martin-osborne.mp3",
+      "text": "¿Cómo esperas detenerme si ni siquiera eres capaz de detener tu curiosidad?",
+      "characters": 75,
+      "inputHash": "5ee2e17fcd118defd5d7aece2a5af81dcc93f3ab44694885956f5d496f2eaf59",
+      "sha256": "625c20e2713b650fb8da46b9707c26a2b4e44815c85cfa0aed2aea13eaa7f7c9",
+      "bytes": 94083
+    },
+    {
+      "key": "story.plaguebearer.friends.hiddenGift",
+      "file": "plaguebearer-friends-hidden-gift-martin-osborne.mp3",
+      "text": "Mi regreso está próximo.\n\nTe entrego esto porque no puedes detenerme.\n\n¿Cómo esperas detenerme si ni siquiera eres capaz de detener tu curiosidad?",
+      "characters": 146,
+      "inputHash": "3bd213981fa12174e1e0aa00d5319f0c3fa37495790907abaa58a9004f93f128",
+      "sha256": "924d3e2ac1542017219706b87e03e1f412b5432dec068bf43b8ac137d769b261",
+      "bytes": 178093
+    },
+    {
+      "key": "story.plaguebearer.dawn.intro1",
+      "file": "plaguebearer-dawn-intro1-martin-osborne.mp3",
+      "text": "12:54 a. m.\n\nLlega la medianoche y avanza sin que hagas ningún progreso. Las silenciosas calles del barrio fluvial parecen no tener señales del origen de las monstruosidades contra las que has estado luchando. Justo cuando empiezas a considerar buscar un sitio para echar una cabezada, un sonido de ruedas derrapando contra un suelo de piedra sin pavimentar capta tu atención. Miras hacia un callejón cercano y consigues ver a un hombre con una bata de doctor que empuja una destartalada camilla a través de una puerta lateral. Un hombre cuyo rostro ya has visto antes.\n\nSólo te lleva un momento ubicarle, esa figura silenciosa no puede ser más que el Dr. West, uno de los médicos que te atendió en el Santa María. ¿Qué está haciendo aquí? ¿A estas horas de la noche? ¿Y con un cadáver?\n\nAntes de que puedas responder a esas preguntas, varios coches aparecen a toda velocidad bajando por la calle. Para el momento en el que el barullo ha pasado, ya no hay ni rastro del Dr. West.",
+      "characters": 979,
+      "inputHash": "26db275f1eacf7fcd70f28c2162efc94bafecc5da0c879037a344ca44ea2fa80",
+      "sha256": "07c2be9ef4c20d28dcc9bed7308dda18009b05f2b51c5bd397bc342e13cf6a41",
+      "bytes": 1227171
+    },
+    {
+      "key": "story.plaguebearer.dawn.intro2",
+      "file": "plaguebearer-dawn-intro2-martin-osborne.mp3",
+      "text": "Miras calle abajo y ves un grupo de agentes armados saliendo atropelladamente de los coches. Para tu sorpresa la Agente Greyson sale del primer coche. Antes de que se gire para hablar a los agentes reunidos, te abalanzas sobre ella para avisarla.\n\n“Ciertamente no esperaba verles a todos ustedes aquí. No puede ser una coincidencia, ¿verdad? Estamos buscando al activo Delta-Dos. Es uno de nuestros expertos. Tal vez pueda ayudarnos a detener todo esto. Responde al nombre de Herbert West. Él…”.\n\nLa interrumpes, explicando de qué conoces al hombre y contándole lo que acabas de ver. Greyson te mira con incredulidad.\n\n¿Puede ser que esté usted lleno de sorpresas? Perfecto pues, si ya está al tanto de todo, entraremos a por él. ¿Qué me dice? ¿Quiere unirse a la caballería?",
+      "characters": 775,
+      "inputHash": "50655c35335bef677c24ec1b1e07babd5d7339575fff964d46b88dc1a84d521d",
+      "sha256": "e0f1a515e4c7e16e56c92e6cd1c71efee414a1044c99e8c1cb76a11a688aad91",
+      "bytes": 963438
+    },
+    {
+      "key": "story.plaguebearer.dawn.intro3",
+      "file": "plaguebearer-dawn-intro3-martin-osborne.mp3",
+      "text": "Miras calle abajo y ves un grupo de agentes armados saliendo atropelladamente de los coches. Un hombre con aspecto cruel y que viste gabardina sale del primer coche, tira un cigarro al suelo y lo pisa con desdén. Después se gira para hablar a los agentes reunidos.\n\n“¡Atención, muchachos! Hemos rastreado al activo Delta-Dos hasta esta localización. ¿Queréis venganza por todos los buenos hombres que estos bichos raros han asesinado? ¿Por Greyson? Perfecto, porque el activo Delta-Dos sabe cómo conseguirlo. No va a venir por las buenas, así que está autorizado el uso de cualquier tipo de fuerza letal. Cualquier otra persona podría estar infectada, así que disparen a matar sin miramientos”. El hombre sonríe como un tiburón.\n\nO el activo Delta-Dos es West, o el doctor se encuentra en verdadero peligro. En cualquier caso, necesitas encontrarlo antes de que lo hagan los agentes, ¡seguro que él sabe cómo has acabado metido en todo esto!",
+      "characters": 941,
+      "inputHash": "dd1906b5e3a22d7c1c134b8710f431773f40ab3fbfa8290280df6df09848d950",
+      "sha256": "3a9e74910b09e24ad782234d604474cfd46bacacc85f634510e6f2e7f796e7ce",
+      "bytes": 1161133
+    },
+    {
+      "key": "story.plaguebearer.dawn.intro4",
+      "file": "plaguebearer-dawn-intro4-martin-osborne.mp3",
+      "text": "Miras calle abajo y ves un grupo de agentes armados saliendo atropelladamente de los coches. Para tu sorpresa la Agente Greyson sale del primer coche. Les observas desde un lugar cercano, mientras se dirige a los agentes reunidos.\n\n“Bueno, Sastres. Hemos rastreado al activo Delta-Dos hasta esta mansión de ladrillo. Creemos que el activo Delta-Dos tiene la clave para poner fin a todo esto. Sin embargo, debemos considerarle extremadamente peligroso por derecho propio y es poco probable que decida venir con nosotros voluntariamente. Hagan lo que deban para conseguirlo. Para terminar, cualquier otra persona que encuentren no está autorizada a conocer los experimentos del activo Delta-Dos. Eliminen cualquier civil que encuentren”.\n\nO el activo Delta-Dos es West, o el doctor se encuentra en verdadero peligro. En cualquier caso, necesitas encontrarlo antes de que lo hagan los agentes, ¡seguro que él sabe cómo has acabado metido en todo esto!",
+      "characters": 948,
+      "inputHash": "df5189bc25cf4bdd986afb42527d463660334c018964d5d3e33f98514342cc97",
+      "sha256": "623c5a501aa643ca33072f77c4809af6acb949aa7db646c1aca735d5fe8edf5f",
+      "bytes": 1062077
+    },
+    {
+      "key": "story.plaguebearer.dawn.resolution1",
+      "file": "plaguebearer-dawn-resolution1-martin-osborne.mp3",
+      "text": "Mientras dos agentes sacan a rastras por la puerta a un furioso West, te encuentras de bruces con una mujer que te apunta directamente al pecho con el cañón de su pistola. “No es nada personal. Pero no está autorizado para saber nada de esto”.\n\nTu último momento de vida es el destello del disparo.",
+      "characters": 298,
+      "inputHash": "945504670b7f33605b12032c06a66041c9b94522aa5226782c4669b0e2f187c8",
+      "sha256": "e1f7bda2595ba6f412f669c363f1e0cec6660083513a5597afb3a07e1b1bbda1",
+      "bytes": 359905
+    },
+    {
+      "key": "story.plaguebearer.dawn.resolution2",
+      "file": "plaguebearer-dawn-resolution2-martin-osborne.mp3",
+      "text": "Atraviesas la puerta principal de la mansión, llevando al doctor contigo. “¿Qué significa todo esto? ¿Habéis traído esa monstruosidad hasta mí? ¿Ha sido Greyson? ¡Por Dios, cuánta incompetencia!”.\n\nProtestas. Tú no eres un agente. Eres uno de sus pacientes, y él tiene muchas cosas que explicar. West se detiene y te mira de arriba abajo, entrecerrando los ojos con la luz del amanecer. “Ah. Impresionante. ¿Uno de mis pacientes? Supongo que voy a tener que ponerle al día de todo lo que está ocurriendo”.",
+      "characters": 505,
+      "inputHash": "af1ad5713453b6e382cbfdbd2a5d834c35caf180aa2d38b12228ade562bfadaa",
+      "sha256": "f02fe74a4290193d2e4287a3c3a3efee9b8b4ec527e68ead2bf08e939815bb7e",
+      "bytes": 667523
+    },
+    {
+      "key": "story.plaguebearer.dawn.resolution3",
+      "file": "plaguebearer-dawn-resolution3-martin-osborne.mp3",
+      "text": "Atraviesas la puerta principal de la mansión, desesperado por escapar de los horrores que la pueblan. Gritos y disparos que provienen del interior proporcionan una extraña banda sonora al amanecer. Observas cómo desde un callejón lateral varios agentes sacan a West de la mansión, atado, ensangrentado e inconsciente. “¿A dónde le llevamos?”.\n\n“De vuelta a la Instalación Brook. Todavía tiene mucho trabajo por delante y muchas preguntas que responder”.\n\nNecesitas respuestas. Ahora. Los agentes tienen a West, pero seguro que también tienen algo que ver con todo esto. Lo que significa que sólo hay un lugar al que puedas ir. De vuelta a la instalación.",
+      "characters": 654,
+      "inputHash": "5b8d8e356e186328b96a7ad427489129faaf8014ce6b5bb0a1f3b80f2b51c934",
+      "sha256": "2feabd432a98e0430ee8849d0853fd308962508bb90c65cdba112dcd80d317a6",
+      "bytes": 791657
+    },
+    {
+      "key": "story.plaguebearer.dawn.resolution4",
+      "file": "plaguebearer-dawn-resolution4-martin-osborne.mp3",
+      "text": "La terrorífica monstruosidad lanza un último aullido, después cae inerte al suelo. Miras alrededor y ves el arma reglamentaria de un agente. Vacías el cargador en las cabezas de la criatura, por si las moscas. West se acerca rápidamente para examinar el cuerpo, y le explicas que tú ya has visto muerta a esta “cosa” en las instalaciones de la Agencia.\n\n“Ah. Entonces es cosa de Pickman. Su trabajo ciertamente ha dado un extraño fruto. Pero estoy totalmente seguro de que los títeres del gobierno como usted ya lo saben todo”.\n\nProtestas. Tú no eres un agente. Eres uno de sus pacientes, y él tiene muchas cosas que explicar. West se detiene y te mira de arriba abajo, entrecerrando los ojos con la luz del amanecer. “Ah. Impresionante. ¿Uno de mis pacientes? Supongo que voy a tener que ponerle al día de todo lo que está ocurriendo”.",
+      "characters": 836,
+      "inputHash": "3f5b8ebc2f7a1d0b4b3935787f81f5dbc01931fe97d24abe048b16bc4d2c32ad",
+      "sha256": "27f790d35f3266e86caeecffe610b833284008df1bce65279e744a7d9075d259",
+      "bytes": 1076287
+    },
+    {
+      "key": "story.plaguebearer.dawn.resolution5",
+      "file": "plaguebearer-dawn-resolution5-martin-osborne.mp3",
+      "text": "Los primeros rayos del sol de la mañana recorren tu cadáver. Según notas la calidez en tu piel, te levantas con una sacudida. Estás tirado en el suelo de la mansión, rodeado de una carnicería allá donde miras, ¿cómo es posible que estés vivo?\n\nNecesitas respuestas. Ahora. Los agentes tienen a West, pero seguro que también tienen algo que ver con todo esto. Lo que significa que sólo hay un lugar al que puedas ir. De vuelta a la instalación.",
+      "characters": 443,
+      "inputHash": "1ff969c58a7665ff1f045bbdc1609e12d2f3002d58c704f49eddc150d765735a",
+      "sha256": "4c2be1eb40c54b2cacff1dabdbc7201d6a411391034fb019d1c18230bd3e718b",
+      "bytes": 553838
+    },
+    {
+      "key": "story.plaguebearer.dawn.resolution5Hidden",
+      "file": "plaguebearer-dawn-resolution5-hidden-martin-osborne.mp3",
+      "text": "Muerto.\nEso no me sirve.\nMi liberación necesita oposición.\nLa demencia del hechicero será la ruina de los de tu especie.\nHaz lo que te pidan.\nLevanta.\n\nAhora eres mío.\n\n¿Vivo? ¿Muerto? Eso no tiene importancia.\n\nTu alma y tu humanidad persisten por mi voluntad.",
+      "characters": 261,
+      "inputHash": "8965d3f5052fc760523a9beba3d292775be6d899445080214f2681f9ca8c34c6",
+      "sha256": "22633ff688919cd164efdd3888d2f0c081d03c99bf155b7de766276505ce6498",
+      "bytes": 379967
     }
   ]
 }

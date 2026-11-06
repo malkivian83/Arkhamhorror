@@ -259,6 +259,294 @@
     "typeCode": "treachery",
     "text": "Vincula al Lugar más alejado con pistas y sin Propagación del miasma. Al comenzar tu turno allí, pierde o recibe 1 horror por cada pista sobre esta carta. [action]: prueba [[intellect]] (3). Si tienes éxito, toma 1 de sus pistas o descarta esta carta."
   },
+  "78047": {
+    "name": "Muerte al amanecer",
+    "typeCode": "scenario",
+    "text": "[skull]: –X. X es el mayor número de daño en un enemigo Reanimado en juego (máximo 5).\n[cultist]: –3. Si tienes éxito, inflige 1 punto de daño a un enemigo Reanimado en juego.\n[tablet]: –2. Si fracasas, prepara el enemigo Reanimado más cercano.",
+    "backText": "[skull]: –X. X es 2 + el mayor número de daño en un enemigo Reanimado en juego (máximo 5).\n[cultist]: –5. Si tienes éxito, inflige 1 punto de daño a un enemigo Reanimado en juego.\n[tablet]: –3. Si fracasas, prepara el enemigo Reanimado más cercano."
+  },
+  "78048": {
+    "name": "Restos no mortales",
+    "typeCode": "agenda",
+    "text": "Obligado – Al final de la ronda: Cura 1 punto de daño de cada enemigo Reanimado.",
+    "flavor": "La vetusta mansión de ladrillo se encuentra en un estado lamentable, aunque parece claro que alguien ha estado viviendo allí por mucho tiempo. Más preocupante es la cantidad de lo que parecen ser cadáveres que se encuentran esparcidos por toda la casa...",
+    "backName": "Suero en carne y hueso",
+    "backText": "Pon en juego la primera carta del Mazo reanimado. (Si hay 3 o 4 jugadores, pon en juego al azar también uno de los dos enemigos Reanimado puestos aparte).",
+    "backFlavor": "Oyes el sonido de un interruptor, y algunas máquinas empiezan a funcionar. Desde algún lugar de la mansión, un brillante, luminoso y verde líquido fluye por unas tuberías hasta un cuerpo inerte en una mesa. Un cuerpo que convulsiona, pero que después se levanta con algo similar a “vida”."
+  },
+  "78049": {
+    "name": "Carne en mal estado",
+    "typeCode": "agenda",
+    "text": "Obligado – Al final de la ronda: Cura 1 punto de daño de cada enemigo Reanimado.",
+    "flavor": "El operativo Delta-Dos parece haber estado experimentando con una manera de levantar a los muertos. Cualesquiera que sean sus motivaciones, los resultados son violentos, están desbocados y en tu camino.",
+    "backName": "Espectáculo macabro",
+    "backText": "Pon en juego la primera carta del Mazo reanimado.",
+    "backFlavor": "“¡Tengo un montón más de cadáveres en el lugar del que vino ese! ¡No me pongáis a prueba, mequetrefes!”\nWest activa otro interruptor, y otra de sus horribles criaturas cobra vida con estertores y gritos.\nLos Sastres responden con una lluvia de balas, y un terrible pensamiento te asedia. Los agentes, West o tú... Alguien va a morir esta noche."
+  },
+  "78050": {
+    "name": "Ciencias “ocultas”",
+    "typeCode": "agenda",
+    "text": "Obligado – Al final de la ronda: Cura 1 punto de daño a cada enemigo Reanimado.\n(Pista - El escenario no acabará cuando avance este plan, pero nuevas amenazas surgirán...)",
+    "flavor": "Los cadáveres andantes asedian el edificio. No importa cuántas veces los reduzcáis a un amasijo de carne, se levantan y vuelven a la carga.",
+    "backName": "Maníaco de laboratorio",
+    "backText": "Si el Mazo reanimado está vacío, retira a Herber West de la partida y avanza al Acto 3b. Si no, pon en juego la carta superior del Mazo reanimado y dale la vuelta a esta carta.",
+    "backFlavor": "Más líquido verde burbujea sobre vuestras cabezas a través de las tuberías camino de incontables camillas, cuyos ocupantes pronto comienzan a moverse."
+  },
+  "78051": {
+    "name": "Ataque inesperado",
+    "typeCode": "act",
+    "text": "Los investigadores no pueden abandonar la Entrada de servicio.\nObjetivo – Cuando Virgil vaya a ser derrotado: Haz avanzar el Acto.",
+    "flavor": "Mientras investigas tranquilamente la estancia en busca de pistas sobre West, la figura en la camilla en la que activó los pernos se mueve. En unos instantes, está frente a ti, gruñendo y chasqueando la mandíbula. Lo realmente aterrador viene cuando eres consciente de que a este centinela le falta la mayor parte de su cabeza.",
+    "backName": "Reanimar",
+    "backText": "Dale la vuelta a Virgil (Acechando en el umbral) para mostrar su lado Virgil (No vais a ninguna parte), manteniendo todo el daño sobre él.\nPon en juego el Lugar Laboratorio de West puesto aparte.\nDurante el resto del escenario, aplica las siguientes reglas:\n◆ Mientras los enemigos Reanimado tengan un exceso de daño sobre ellos, no se preparan durante la fase de mantenimiento.\n◆ Cada enemigo Reanimado obtiene: Obligado – Cuando este enemigo reciba un exceso de daño: Agota este enemigo y deja de estar enfrentado a todos los investigadores.\nColoca esta carta junto al mazo de Acto, como recordatorio.",
+    "backFlavor": "Según te deshaces del guardián moribundo, oyes a un agente llamando a gritos al Dr. West. Su voz proviene de algún lugar en el interior de la mansión: “¡No volveré! ¿Me oyen? Tú, mindundi de la Agencia, dile a Greyson que se busque a otro genio para arreglar su desaguisado.”\nDe pronto, un sonido macabro se oye a tus espaldas. Te giras para ver que el cuerpo que acabáis de acribillar está en pie frente a vosotros."
+  },
+  "78052": {
+    "name": "Portero simpático",
+    "typeCode": "act",
+    "text": "Los investigadores no pueden abandonar el Vestíbulo principal.\nObjetivo – Cuando Ichabod vaya a ser derrotado: Haz avanzar el Acto.",
+    "flavor": "Antes de que puedas empezar a buscar a West, un grito capta tu atención. Un agente es levantado en vilo por una enorme figura que desciende pesadamente por las escaleras.\nSegún ves cómo el pobre agente es desmembrado, caes en la cuenta de un detalle: el pesado defensor carece de cabeza.",
+    "backName": "Amalgama con premio",
+    "backText": "Dale la vuelta a Ichabod (Lacayo estúpido) para mostrar su lado Ichabod (A la cabeza de la seguridad), manteniendo todo el daño sobre él.\nPon en juego el Lugar Laboratorio de West puesto aparte.\nDurante el resto del escenario, aplica las siguientes reglas:\n◆ Mientras los enemigos Reanimado tengan un exceso de daño sobre ellos, no se preparan durante la fase de mantenimiento.\n◆ Cada enemigo Reanimado obtiene: Obligado – Cuando este enemigo reciba un exceso de daño: Agota este enemigo y deja de estar enfrentado de todos los investigadores.\nColoca esta carta junto al mazo de Acto, como recordatorio.",
+    "backFlavor": "Según te deshaces del guardián moribundo, oyes una voz familiar que proviene de algún lugar en el interior de la mansión: “¡No volveré! ¿Me oyen? Tú, mindundi de la Agencia, dile a Greyson que se busque a otro genio para arreglar su desaguisado. ¡Ichabod, deshazte de esos niñatos!”\nDe pronto, un sonido macabro se oye a tus espaldas. Te giras para ver que el cuerpo que acabáis de acribillar está en pie frente a vosotros."
+  },
+  "78053": {
+    "name": "Maquinaria delicada",
+    "typeCode": "act",
+    "text": "Objetivo – Cuando un investigador entre en el Laboratorio de West: Haz avanzar el Acto.",
+    "flavor": "El activo Delta-Dos es el Dr. Herbert West, uno de los médicos que te atendió en el Hospital de Santa María. El doctor se ha encerrado tras una serie de complicados mecanismos mientras sus horribles lacayos hacen su trabajo.",
+    "backName": "Interrupción",
+    "backText": "Pon en juego el Apoyo Herbert West puesto aparte en el Laboratorio de West.",
+    "backFlavor": "Tan pronto como el resto de mecanismos de la puerta fallan, embistes con tu cuerpo la tabla de roble. Se comba y finalmente cede, mandándote de bruces contra el suelo. Taladrándote con la mirada, notas unos intensos ojos azules. Unos ojos que recuerdas de tus últimos instantes en el Hospital de Santa María."
+  },
+  "78054": {
+    "name": "Charlando con el Dr. West",
+    "typeCode": "act",
+    "text": "Objetivo – Cuando un investigador tome el control de Herbert West: Haz avanzar el Acto.\n(Cuidado - ¡Este no es el final de la partida!)",
+    "flavor": "Te encuentras cara a cara con la última persona que viste antes de despertar en aquella morgue. Si alguien tiene respuestas, ha de ser él.",
+    "backName": "Vuelve a por más",
+    "backText": "Revelación – Sustituye los mazos de Plan y Acto por Vuelve a por más. Haz aparecer el Primero de muchos puesto aparte en el Vestíbulo principal.\nObligado – Cuando sea colocada una ficha de perdición sobre cualquier carta: Resuelve la palabra clave cazador del Primero de muchos, o resuelve la palabra clave cazador de cada enemigo Reanimado en juego."
+  },
+  "78055": {
+    "name": "Estancia abandonada",
+    "typeCode": "location",
+    "traits": "Segundo piso",
+    "text": "[reaction] Después de que tengas éxito en una prueba de habilidad al evitar o combatir contra un enemigo Reanimado en este Lugar: Obtén 1 pista de la reserva de pistas. Límite de una vez por fase.\nVictoria 1.",
+    "flavor": "Con más espacio abierto, tienes una buena oportunidad de observar el comportamiento de los cadáveres reanimados.",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "Este cuarto está totalmente destruido. Una ráfaga de frío viento nocturno se cuela a través de las ventanas rotas."
+  },
+  "78056": {
+    "name": "Botica",
+    "typeCode": "location",
+    "traits": "Primer piso",
+    "text": "[action] Si no hay enemigos Reanimado preparados en este Lugar, los investigadores en este Lugar gastan 3 pistas [per_investigator] como grupo: Coloca 1 recurso en este Lugar. Límite de grupo de una vez por partida.",
+    "flavor": "Todo tipo de extrañas sustancias abarrotan los polvorientos estantes. Algunos tienen zonas limpias, donde seguro que hay algún mecanismo oculto.",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "Justo al lado de la habitación principal, pared con pared, hay un cuarto lleno de botellas y frascos."
+  },
+  "78057": {
+    "name": "Sótano",
+    "typeCode": "location",
+    "traits": "Sótano",
+    "text": "[action] Si hay un enemigo Reanimado preparado en este Lugar, los investigadores en este Lugar gastan 4 pistas [per_investigator] como grupo: Inflige 2 puntos de daño a ese enemigo, evítalo automáticamente y coloca 1 recurso en este Lugar. Límite de grupo de una vez por partida.",
+    "flavor": "West está tras esa puerta. Tratas de derribarla y recibes una descarga eléctrica. Tal vez se pueda desactivar de alguna forma.",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "Pese a que el sótano huele a viejo y cerrado, el cableado y la iluminación denotan que alguien se ha preocupado por mantenerlo al día de alguna manera."
+  },
+  "78058": {
+    "name": "Dormitorio",
+    "typeCode": "location",
+    "traits": "Segundo piso",
+    "text": "[action]: Evitar. Este efecto sólo puede tener como objetivo a un enemigo Reanimado en este Lugar o un Lugar conectado. Añade tu [intellect] a tu [agility] para esta prueba de habilidad. Si tienes éxito, ese enemigo no se puede preparar esta ronda. Si fracasas, cura 2 puntos de daño a ese enemigo.\nVictoria 1.",
+    "flavor": "Un extraño y pesado dispositivo, parecido al cayado de un pastor, está apoyado contra la pared.",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "Alguien ha estado durmiendo aquí durante mucho tiempo. Montones de notas dispersas y pilas de ropa sucia inundan la habitación."
+  },
+  "78059": {
+    "name": "Galería",
+    "typeCode": "location",
+    "traits": "Primer piso",
+    "text": "[action]: Combatir. Este efecto sólo puede tener como objetivo a un enemigo Reanimado en este Lugar o un Lugar conectado. Añade tu [intellect] a tu [combat] para este ataque. Si tienes éxito, este ataque inflige +1 de daño. Si fracasas, cura 2 puntos de daño a ese enemigo. Límite de una vez por ronda.",
+    "flavor": "El pasillo está lleno de peligrosos escombros. Podrías atraer a las criaturas hacia ellos para hacerlas tropezar.",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "El anteriormente deslumbrante corredor recorre todo el lado este de la mansión."
+  },
+  "78060": {
+    "name": "Vestíbulo principal",
+    "typeCode": "location",
+    "traits": "Primer piso",
+    "text": "[action] Si hay un enemigo Reanimado agotado en este Lugar: Descubre 1 pista en este Lugar. Límite de una vez por ronda.\n[action]: Desistir. ¡Este no es mi tema!\nVictoria 1.",
+    "flavor": "Una cámara impresionante, algo deslucida por las jaulas improvisadas que pueblan las paredes.",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "Los Sastres han tirado abajo la puerta y mandado una avanzadilla por delante de ti."
+  },
+  "78061": {
+    "name": "Entrada de servicio",
+    "typeCode": "location",
+    "traits": "Sótano",
+    "text": "[action] Si no hay enemigos Reanimado en este Lugar, los investigadores en este Lugar gastan 2 pistas [per_investigator] como grupo: Coloca 1 recurso en este Lugar. Límite de grupo de una vez por partida.",
+    "flavor": "Los escasos muebles de la estancia se encuentran en un estado deplorable. En un lejano rincón arde con fuerza una caldera.",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "Sea lo que sea lo que se esconde abajo, huele a rancio."
+  },
+  "78062": {
+    "name": "Estudio",
+    "typeCode": "location",
+    "traits": "Primer piso",
+    "text": "[reaction] Después de que se descubra la última pista en este Lugar, si un investigador en este Lugar controla el Maletín sospechoso: Inflige 2 puntos de daño a cada enemigo Reanimado en juego. Límite de grupo de una vez por partida.\nVictoria 1.",
+    "flavor": "Infestado de notas y fórmulas químicas relacionadas con algún tipo de reactivo. Tal vez haya algo de utilidad aquí.",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "Alguien se ha tomado muchas molestias en mantener este estudio en excelentes condiciones. El orden es casi enfermizo."
+  },
+  "78063": {
+    "name": "Baño",
+    "typeCode": "location",
+    "traits": "Segundo piso",
+    "text": "[action] Si no hay enemigos Reanimado preparados en este Lugar, los investigadores en este Lugar puedan gastar 3 pistas [per_investigator] como grupo: Coloca un recurso en este Lugar. Límite de grupo de una vez por partida.",
+    "flavor": "Justo detrás de la bañera hay a la vista una serie de tuberías expuestas con válvulas y agua fluyendo constantemente. O al menos esperas que sea agua.",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "Miembros humanos abarrotan este cuarto de los horrores. Un serrucho y jirones de tela sucia reposan en una camilla junto a la bañera."
+  },
+  "78064": {
+    "name": "Laboratorio de West",
+    "typeCode": "location",
+    "traits": "Seguro",
+    "text": "[action]: Negociar. Tratas de hacer entrar en razón a West. Coloca 1 pista de la reserva sobre Herbert West (3 pistas si hay un enemigo Reanimado agotado en el Laboratorio de West). Después, si hay al menos 3 pistas [per_investigator] sobre Herbert West, toma su control.\nVictoria 1.",
+    "backText": "Un peculiar sistema de seguridad se interpone en tu camino. No puedes acceder al laboratorio de West a no ser que haya tres o más Lugares con recursos sobre ellos.",
+    "backFlavor": "“¡No entraréis aquí, soldaduchos de tres al cuarto!” Parece que el doctor no recibirá visitas hoy."
+  },
+  "78065": {
+    "name": "Herbert West",
+    "typeCode": "asset",
+    "traits": "Aliado. Médico. Hechicero",
+    "text": "Recibes +1 [intellect].\n[reaction] Cuando un enemigo fuera a ser derrotado en tu Lugar, agota a Herbert West: En lugar de eso, cura 2 puntos de daño a ese enemigo. Después descubre 2 pistas en tu Lugar.",
+    "flavor": "“El nacimiento es siempre doloroso.”",
+    "subname": "Reanimador"
+  },
+  "78066": {
+    "name": "El abrazo de la muerte",
+    "typeCode": "treachery",
+    "traits": "Defecto. Geist",
+    "text": "Revelación – Recibe 2 puntos de horror directo. Este horror no puede ser prevenido o cancelado.",
+    "flavor": "Los muertos no sienten nada..."
+  },
+  "78067": {
+    "name": "La futilidad del Hombre",
+    "typeCode": "treachery",
+    "traits": "Defecto. Lesión",
+    "text": "Revelación – Recibe 2 puntos de daño directo. Este daño no puede ser prevenido o cancelado.",
+    "flavor": "...pero la carne es débil."
+  },
+  "78068": {
+    "name": "La Fuerza de la Carne",
+    "typeCode": "asset",
+    "traits": "Geist. Talento",
+    "text": "Permanente. No puede abandonar el juego.\n[reaction] Después de que tengas éxito en una prueba de habilidad donde sea revelada un símbolo [skull], agota La Fuerza de la Carne: Cura todo el daño de La Fuerza de la Carne.",
+    "flavor": "¡Los muertos no sienten nada!"
+  },
+  "78069": {
+    "name": "Voluntad inquebrantable",
+    "typeCode": "asset",
+    "traits": "Humano. Talento",
+    "text": "Permanente. No puede abandonar el juego.\n[reaction] Después de que tengas éxito en una prueba de habilidad donde sea revelado un símbolo [cultist], agota Voluntad inquebrantable: Cura todo el horror de Voluntad inquebrantable.",
+    "flavor": "Mi mente está preparada..."
+  },
+  "78070": {
+    "name": "Virgil",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Reanimado. Élite",
+    "text": "Presa – Investigador jefe.\nCazador.",
+    "flavor": "“Es difícil acostumbrarse al aspecto de los reanimados, pero con la experiencia uno se acaba acostumbrando a todo.”",
+    "backText": "Aparición – Entrada de servicio.\nCazador. No puede ser derrotado.",
+    "backFlavor": "“Da lo mismo lo destrozado que esté un sujeto cuando me lo traen. Que la muerte sea reciente es el factor clave en el éxito de la aplicación del reactivo.”",
+    "subname": "Acechando en el umbral"
+  },
+  "78071": {
+    "name": "Ichabod",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Reanimado. Élite",
+    "text": "Presa – Investigador jefe.\nCazador. Alerta. Represalia.",
+    "flavor": "“¡Sólo necesitas ser testigo una vez de los resultados de mi suero para entender los asombrosos efectos que podría tener en toda la humanidad!”",
+    "backText": "Aparición – Vestíbulo principal.\nCazador. Alerta. Represalia. No puede ser derrotado.\nObligado – Al final de la ronda: Cura 1 punto de daño a Ichabod.",
+    "backFlavor": "“Una vez motivados, los sujetos pueden ser guiados e incluso obedecer órdenes simples. Que la adecuada motivación requiera de la amputación de la cabeza es francamente un incordio.”",
+    "subname": "Lacayo estúpido"
+  },
+  "78072": {
+    "name": "Aristóteles",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Reanimado. Élite",
+    "text": "Aparición – Estudio.\nCazador. No puede ser derrotado.\nObligado – Cuando fueses a infligir daño a Aristóteles, si hay otro enemigo Reanimado preparado en su Lugar: Inflige ese daño al otro enemigo.",
+    "flavor": "“Este sujeto muestra una capacidad mental incrementada. Capacidad que utiliza principalmente para sobrevivir.”"
+  },
+  "78073": {
+    "name": "Banquo",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Reanimado. Élite",
+    "text": "Aparición – Vestíbulo principal.\nCazador. Indiferente. No puede ser derrotado.\nObligado – Al principio de la fase de enemigos, si Banquo está preparado y sin enfrentar: Ataca a cada investigador en su Lugar.",
+    "flavor": "“Puede ser difícil diferenciar un ensayo fallido de uno exitoso en un determinado momento. La precaución es la clave.”"
+  },
+  "78074": {
+    "name": "Brutus",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Reanimado. Élite",
+    "text": "Aparición – Dormitorio.\nCazador. Represalia. No puede ser derrotado.",
+    "flavor": "“Los impulsos violentos que manifiestan la mayoría de los sujetos son una consecuencia desagradable. Aunque a decir verdad, no puedo decir que no tenga sus usos...”"
+  },
+  "78075": {
+    "name": "Halsey",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Reanimado. Élite",
+    "text": "Aparición – Sótano.\nAlerta. No puede ser derrotado.",
+    "flavor": "“Hacerlo por partes... nunca lo había intentado, hasta Halsey. Los resultados demostraron que era una práctica fallida.”"
+  },
+  "78076": {
+    "name": "Homero",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Reanimado. Élite",
+    "text": "Aparición – Estancia abandonada.\nNo puede ser derrotado.",
+    "flavor": "“Las repetidas pruebas han demostrado que los efectos del suero, de hecho, revirtieron el intenso deterioro ocular. Ahora simplemente no parece tan interesado en moverse.”"
+  },
+  "78077": {
+    "name": "Ofelia",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Reanimado. Élite",
+    "text": "Aparición – Galería.\nPresa – Sólo menor cordura restante.\nCazador. No puede ser derrotado.",
+    "flavor": "“El suero parece haber incrementado la actividad ventromedial en gran medida. Lo que explicaría que esté continuamente riendo nerviosamente.”"
+  },
+  "78078": {
+    "name": "No puedes escapar",
+    "typeCode": "treachery",
+    "traits": "Equivocación",
+    "text": "Revelación – Realiza una prueba de [willpower] (4). Si fracasas, por cada punto que te falte para tener éxito, recibe1 punto de horror o bien prepara al enemigo Reanimado más alejado de ti y muévelo directamente a tu Lugar.",
+    "flavor": "¡Vienen a por ti!"
+  },
+  "78079": {
+    "name": "Teme a los muertos vivientes",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelación – Pon Teme a los muertos vivientes en tu zona de amenaza.\nObligado – Después de que entres en un Lugar con un enemigo Reanimado: Recibe 1 punto de horror.\n[free] Si hay un enemigo Reanimado en tu Lugar con al menos 4 puntos de daño sobre él: Descarta Teme a los muertos vivientes."
+  },
+  "78080": {
+    "name": "El poder de la carne",
+    "typeCode": "treachery",
+    "traits": "Maleficio",
+    "text": "Revelación – Vincula El poder de la carne al enemigo Reanimado más cercano.\nEl enemigo vinculado recibe +2 de salud, +1 de horror y obtiene “Obligado – Al final de la ronda: cura 1 punto de daño a este enemigo.”\nObligado – Después de que el enemigo vinculado ataque: Descarta El poder de la carne."
+  },
+  "78081": {
+    "name": "Legiones de ultratumba",
+    "typeCode": "treachery",
+    "traits": "Poder",
+    "text": "Peligro.\nRevelación – Debes (elige una opción):\n◆ Mover cada enemigo Reanimado sin enfrentar un Lugar hacia ti.\n◆ Preparar al enemigo Reanimado dañado más cercano y curarle todo el daño."
+  },
+  "78082": {
+    "name": "Primero de muchos",
+    "typeCode": "enemy",
+    "traits": "Infectado. Monstruo. Élite",
+    "text": "Cazador. Descomunal. Represalia.\nEl Primero de muchos recibe +1 a combate y +1 a evitar por cada enemigo bajo él.\nObligado – Al comienzo de la fase de enemigos, pon cualquier otro enemigo en el Lugar del Primero de muchos, debajo de él.\nObjetivo – Si el Primero de muchos es derrotado: (→R4)\nVictoria 2.",
+    "flavor": "Te susurra tus más profundos temores con la voz de tu padre.",
+    "subname": "El horror creciente"
+  },
   "78250": {
     "name": "Solucionador de la Agencia",
     "typeCode": "enemy",
@@ -367,9 +655,36 @@
     "typeCode": "enemy",
     "text": "Indiferente. Errante (Lugar Miasma más cercano). Después del paso de movimiento Cazador, si está en un Lugar Miasma, busca un Esclavo mental en el mazo y descarte de encuentros y hazlo aparecer aquí. Victoria 1."
   },
+  "78292": {
+    "name": "Alianzas frágiles",
+    "typeCode": "event",
+    "traits": "Pacto",
+    "text": "La carta vinculada no ocupa ningún espacio, y obtiene: “Obligado – Cuando termine la partida o esta carta fuera a abandonar el juego: Retira esta carta y Alianzas frágiles de la partida.”"
+  },
   "78020b": {
     "name": "Pústula abominable",
     "typeCode": "enemy",
     "text": "Descomunal. Cazador. Después de recibir 2 o más daños de una misma fuente, devuelve a la reserva 1 pista del Lugar más cercano sin Supervivientes ni Ruinas. Victoria 2."
+  },
+  "78054b": {
+    "name": "Vuelve a por más",
+    "typeCode": "act",
+    "text": "Revelación – Sustituye los mazos de Plan y Acto por Vuelve a por más. Haz aparecer el Primero de muchos puesto aparte en el Vestíbulo principal.\nObligado – Cuando sea colocada una ficha de perdición sobre cualquier carta: Resuelve la palabra clave cazador del Primero de muchos, o resuelve la palabra clave cazador de cada enemigo Reanimado en juego."
+  },
+  "78070b": {
+    "name": "Virgil",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Reanimado. Élite",
+    "text": "Aparición – Entrada de servicio.\nCazador. No puede ser derrotado.",
+    "flavor": "“Da lo mismo lo destrozado que esté un sujeto cuando me lo traen. Que la muerte sea reciente es el factor clave en el éxito de la aplicación del reactivo.”",
+    "subname": "No vais a ninguna parte"
+  },
+  "78071b": {
+    "name": "Ichabod",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Reanimado. Élite",
+    "text": "Aparición – Vestíbulo principal.\nCazador. Alerta. Represalia. No puede ser derrotado.\nObligado – Al final de la ronda: Cura 1 punto de daño a Ichabod.",
+    "flavor": "“Una vez motivados, los sujetos pueden ser guiados e incluso obedecer órdenes simples. Que la adecuada motivación requiera de la amputación de la cabeza es francamente un incordio.”",
+    "subname": "A la cabeza de la seguridad"
   }
 }

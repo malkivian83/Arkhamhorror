@@ -39,5 +39,12 @@ it('continúa una campaña real desde Trasnochadores a Noche en la ciudad con el
   town = emit(town, { type: 'EndScenario', outcome: { type: 'noResolution' } })
   const after = finishScenario(next, town)
   expect(currentScenario(after)).toBe('dead-by-dawn')
-  expect(canPlayNext(after)).toBe(false)
+  expect(canPlayNext(after)).toBe(true)
+  // Interludio I sin Hibb: regalo envenenado y una tablilla más en la bolsa.
+  expect(after.log.notes).toContain('plaguebearerTwistedGift')
+  expect(after.log.chaosTokens).toContain('tablet')
+  const dawn = finishSetup(startScenario(after, 44, true))
+  expect(dawn.scenarioId).toBe('dead-by-dawn')
+  expect(getInvestigator(dawn, owner).location).toBe('78061')
+  expect(dawn.chaosBag.filter((t) => t === 'tablet')).toHaveLength(3)
 })

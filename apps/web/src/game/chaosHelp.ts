@@ -34,6 +34,7 @@ export function chaosHelp(
     'murder-at-the-excelsior-hotel': localeData(locale).excelsiorCards['84001'],
     'late-risers': localeData(locale).plaguebearerCards['78001'],
     'night-on-the-town': localeData(locale).plaguebearerCards['78019'],
+    'dead-by-dawn': localeData(locale).plaguebearerCards['78047'],
     'curtain-call': localeData(locale).carcosaCards['03043'],
     'the-last-king': localeData(locale).carcosaCards['03061'],
     'echoes-of-the-past': localeData(locale).carcosaCards['03120'],

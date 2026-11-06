@@ -33,6 +33,21 @@ const entries = [
   'night.intro',
   'night.resolution1',
   'night.resolution2',
+  ...['section1', 'section2', 'section3', 'section4', 'hidden', 'hiddenGift'].map(
+    (k) => `friends.${k}`,
+  ),
+  ...[
+    'intro1',
+    'intro2',
+    'intro3',
+    'intro4',
+    'resolution1',
+    'resolution2',
+    'resolution3',
+    'resolution4',
+    'resolution5',
+    'resolution5Hidden',
+  ].map((k) => `dawn.${k}`),
 ].map((suffix) => {
   const body = suffix.split('.').reduce((value, key) => value?.[key], source)
   if (typeof body !== 'string' || !body) throw new Error(`Falta ${suffix}`)

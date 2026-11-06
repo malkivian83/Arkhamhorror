@@ -84,3 +84,48 @@ Estado vigente y fuentes en [94 · Portador de la Plaga](94-portador-de-la-plaga
   en `plaguebearer-cartas-narracion.json`. Reproductor existente en preparación,
   avances e inspección. La comprobación de todo el catálogo de MP3 tiene 15 s
   por su lectura real de cientos de archivos, sin reintentos.
+
+### Continuación de implementación · 2026-11-05
+
+- Último lote: II · Noche en la ciudad, commit `299403c3`, en `main`; base
+  `9f9ab46d` (narraciones de cartas de I). Pull final sin cambios en main.
+  Historial anterior en [el archivo](historial-portador-de-la-plaga.md).
+- II: preparación aleatoria ES para 1–4 investigadores, Defender con cantidades
+  actuales y ayuda del acto, ocho ciudadanos, ocho lugares sanos y sus Ruinas,
+  cuatro Miasmas, encuentros, dos planes y R1/R2. Objetivo solo al final de ronda;
+  registro de lugares Defendidos/Infectados y continuidad del Maletín desde I.
+- Contraste: guía ES p. 5 / EN pp. 4–5 y cartas de ambos idiomas. La mención
+  «Miasma creciente» del segundo plan ES se interpreta como Miasma en expansión.
+  Defender cuesta una acción; se corrigen también Alfa y desistir por Escaleras
+  en I, cuyos iconos representan una acción, con pruebas de regresión.
+- Recursos de II: 37 códigos nuevos, 130 caras AVIF EN/ES y miniaturas (220
+  caras en total I+II), perfiles sRGB y huellas conservadas. EN: ciudadanos con
+  apoyo por delante e historia detrás. El reverso enemigo del plan se presenta
+  en vertical. ES: relatos de ciudadanos transcritos; EN conserva sus imágenes
+  originales y resúmenes propios en los modales.
+- Narración ES con Martin Osborne: I tiene siete relatos de guía y doce caras
+  de planes/actos; II añade introducción, R1/R2 y seis caras de planes/actos.
+  Audios generados, registrados y contrastados con texto/voz/huellas. Los
+  ciudadanos y las demás cartas de encuentro no tienen grabación individual.
+- Verificación: 372 pruebas dirigidas correctas (reglas I/II, campaña, motor,
+  referencias, imágenes y narración); tipos engine/cards/i18n/web, formato/lint,
+  4848 originales y miniaturas y empaquetado web correctos. Reutilizar mientras
+  no cambien sus módulos, recursos, dependencias o configuración relevante.
+- Siguiente: interludio I y escenario III. No se habilita III sin ese trabajo.
+  Revisión visual de la app pendiente de la persona usuaria; sin navegador.
+- Corrección del diario: el origen de efectos se conserva en elecciones, pruebas,
+  asignación de daño y guardados; activaciones y efectos registrados indican su
+  carta. Regresión de la explosión de Destruyendo pruebas y del daño elegido en
+  un Lugar. Una resolución se rotula «escenario terminado», sin asumir victoria.
+  247 pruebas de motor, guardados, campaña y etiquetas; tipos y lint correctos.
+- CI de `674b12bc`: dos fallos de presentación EN/ES por las caras sin revelar
+  de los 16 lugares de II. Añadidos resúmenes propios de esas caras; las 34
+  pruebas de catálogo sin red pasan. El Deploy de esa subida se omitió.
+- Verificación del registro ampliada a toda la suite: 7174 pruebas correctas y
+  26 omitidas, combinando la ejecución global y la repetición de los archivos
+  fallidos. Ajustada una aserción al nuevo origen del Tótem; SMTP local bloqueado
+  y timeout bajo carga pasan aislados con acceso a conexiones locales. Tipos y
+  empaquetado web correctos. CI y Deploy de `bf43378d` correctos.
+- Mapa: la línea Vestíbulo–Túnel se desvía al pasar por la columna de Alfa,
+  evitando aparentar una conexión Alfa–Túnel. Solo cambia el trazado. 18 pruebas
+  de conexiones y recorrido del hilo correctas; revisión visual pendiente.

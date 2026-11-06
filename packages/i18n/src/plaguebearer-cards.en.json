@@ -259,6 +259,294 @@
     "typeCode": "treachery",
     "text": "Attach to the farthest location with clues and no attached Miasma. At the start of your turn there, lose or take 1 horror for each clue on this card. [action]: test [[intellect]] (3). On success take 1 of its clues or discard this card."
   },
+  "78047": {
+    "name": "Dead By Dawn",
+    "typeCode": "scenario",
+    "text": "[skull]: -X. X is the greatest damage on a Re-Animated enemy in play (max 5.)\n[cultist]: -3. If you succeed, deal 1 damage to any Re-Animated enemy in play.\n[tablet]: -2. If you fail, ready the nearest exhausted Re-Animated enemy.",
+    "backText": "[skull]: -X. X is 2 + the greatest damage on a Re-Animated enemy in play (max 5.)\n[cultist]: -5. If you succeed, deal 1 damage to any Re-Animated enemy in play.\n[tablet]: -3. If you fail, ready the nearest exhausted Re-Animated enemy."
+  },
+  "78048": {
+    "name": "Earthly Remains",
+    "typeCode": "agenda",
+    "text": "Forced – At the end of the round: Heal 1 damage from each Re-Animated enemy.",
+    "flavor": "The ancient brownstone manor is in disrepair, though someone has clearly been living here for some amount of time. More concerning is the variety of what appear to be corpses spread throughout the house…",
+    "backName": "Serum Visions",
+    "backText": "Spawn the top card of the Re-Animated deck.\n(If there are 3 or 4 players, also spawn one of the two set-aside Re-Animated enemies from the set-aside zone, at random)",
+    "backFlavor": "You hear a switch flip, and machines whir to life. From somewhere in the manor, a bright, luminescent green liquid flows through pipes into a body on a table.\nA body that first twitches, then springs to something resembling life."
+  },
+  "78049": {
+    "name": "Strange Flesh",
+    "typeCode": "agenda",
+    "text": "Forced – At the end of the round: Heal 1 damage from each Re-Animated enemy.",
+    "flavor": "Asset Delta-Two appears to be experimenting with a method of raising the dead. Whatever his motivations, the results are unruly, violent and in your way.",
+    "backName": "Grisly Spectacle",
+    "backText": "Spawn the top card of the Re-Animated deck.",
+    "backFlavor": "“I’ve got a lot more corpses where that came from! Don’t test me, you errand boys!”\nWest fires off another switch, and another of his horrible creatures jolts to life, twitching and screaming.\nThe Tailors respond with a hail of gunfire, and a terrible thought strikes you. Agents, West, or you… Someone is dying tonight."
+  },
+  "78050": {
+    "name": "Weird Science",
+    "typeCode": "agenda",
+    "text": "Forced – At the end of the round: Heal 1 damage from each Re-Animated enemy.\n(Hint - the game will not end when this agenda advances, but new threats will emerge…)",
+    "flavor": "The walking corpses menace the building. No matter how many times they’re put out of their misery, they get up swinging.",
+    "backName": "Laboratory Maniac",
+    "backText": "If the Re-Animated deck is empty, remove Herbert West from the game and advance to act 3b. Otherwise, spawn the top card of the Re-Animated deck and flip this agenda back over.",
+    "backFlavor": "Green liquid bubbles through overhead pipes into another of the countless gurneys. The corpse within quickly begins to stir."
+  },
+  "78051": {
+    "name": "Unexpected Attack",
+    "typeCode": "act",
+    "text": "Investigators may not leave the Servant’s Entrance.\nObjective – When Virgil would be defeated: Immediately advance.",
+    "flavor": "As you quietly examine the room for signs of West, the figure on the gurney he was pushing bolts upright. In moments, it is upon you, snarling and snapping it’s jaw. This is all the more frightening given that this sentry appears to be missing much of his head.",
+    "backName": "Reanimate",
+    "backText": "Flip Virgil (Lurker at the Threshold) to Virgil (Not Going Anywhere), keeping all damage on it.\nPut the set aside West’s Laboratory into play.\nFor the remainder of the scenario, the following rules apply:\n◆ While Re-Animated enemies have damage in excess of their health they do not ready during the upkeep.\n◆ Each Re-Animated enemy gains: “Forced – When this enemy takes damage in excess of its health: Exhaust that enemy and disengage it from all investigators.”\nPlace this card next to the act deck, as a reminder.",
+    "backFlavor": "As you dispatch the dying sentry, you hear an agent calling out for Dr. West. His voice rings back from somewhere deep in the manor: “I won’t go back! You hear me? You agency cattle tell Greyson she can get some other genius to solve her mess!”\nSuddenly, a gurgling noise comes from behind you. You turn to find the body that you most assuredly just killed rising to its feet."
+  },
+  "78052": {
+    "name": "Friendly Doorman",
+    "typeCode": "act",
+    "text": "Investigators may not leave the Grand Hall.\nObjective – When Ichabod would be defeated: Immediately advance.",
+    "flavor": "Before you can begin searching for West, a shout draws your intention. An agent is gripped overhead by a massive figure lumbering down the stairs. As the poor agent is torn apart, you see that the hulking defender lacks a head.",
+    "backName": "Prized Amalgam",
+    "backText": "Flip Ichabod (Mindless Drone) to Ichabod (Head of Security), keeping all damage on it.\nPut the set aside West’s Laboratory into play.\nFor the remainder of the scenario, the following rules apply:\n◆ While Re-Animated enemies have damage in excess of their health they do not ready during the upkeep.\n◆ Each Re-Animated enemy gains: “Forced – When this enemy takes damage in excess of its health: Exhaust that enemy and disengage it from all investigators.”\nPlace this card next to the act deck, as a reminder.",
+    "backFlavor": "As you dispatch the lumbering body, you hear a familiar voice shout from the back of the manor. “I won’t go back! You hear me? You agency cattle tell Greyson she can get some other genius to solve her mess! Ichabod, dispatch these children.”\nA wheezing noise comes from directly behind you. Turning, you find the figure that you most assuredly just killed rising to its feet."
+  },
+  "78053": {
+    "name": "Careful Contraptions",
+    "typeCode": "act",
+    "text": "Objective – When an investigator enters West’s Laboratory, advance.",
+    "flavor": "Asset Delta-Two is Dr. Herbert West, one of your attending physicians at St. Mary’s. The doctor has locked himself behind a variety of contraptions while his gruesome defenders do their work.",
+    "backName": "Barge In",
+    "backText": "Put the set aside Herbert West asset into play at West’s Laboratory.",
+    "backFlavor": "As the remaining mechanisms of the doors fail, you slam your body against the oaken frame. It buckles, then gives way, sending you sprawling onto the floor. Staring down at you, you notice a set of intense blue eyes. Eyes you recognize from your last moments in St Mary’s."
+  },
+  "78054": {
+    "name": "Paging Dr. West",
+    "typeCode": "act",
+    "text": "Objective – When an investigator takes control of Herbert West, advance.\n(Careful - this will not end the game!)",
+    "flavor": "You are face to face with the last person you saw before waking up in the morgue. If anyone has answers, it’s him.",
+    "backName": "Back for More",
+    "backText": "Revelation – Replace the act and agenda decks with Back for More. Spawn the set-aside First Among Many at the Grand Hall.\nForced – When doom is placed on any card: Either resolve the hunter keyword on First Among Many, or resolve the hunter keyword on each Re-Animated enemy in play."
+  },
+  "78055": {
+    "name": "Abandoned Room",
+    "typeCode": "location",
+    "traits": "Second Floor",
+    "text": "[reaction] After you succeed at a fight or evade test against a Re-Animated enemy at this location: Gain 1 clue from the token bank. (Limit once per phase.)\nVictory 1.",
+    "flavor": "With so much open space, there is ample opportunity to observe the behavior of the walking corpses.",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "This room is in extreme disrepair. A gust of chilly night air blows through shattered windows."
+  },
+  "78056": {
+    "name": "Apothecary Room",
+    "typeCode": "location",
+    "traits": "First Floor",
+    "text": "[action] If there are no ready Re-Animated enemies at this location, investigators in this location spend 3[per_investigator] clues, as a group: Place 1 resource token on this location. (Group limit once per game.)",
+    "flavor": "All manner of bizarre tinctures line the dusty shelves. You note the shelves have cleared spots - there must be some hidden mechanism here.",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "Just off the main chamber is a room lined wall to wall with bottles and jars."
+  },
+  "78057": {
+    "name": "Basement",
+    "typeCode": "location",
+    "traits": "Basement",
+    "text": "[action] If there is a ready Re-Animated enemy at this location, investigators at this location spend 4[per_investigator] clues, as a group: Deal 2 damage to that enemy, automatically evade it, and place 1 resource token on this location. (Group limit once per game.)",
+    "flavor": "West is just beyond the door. You try to shove it down, and receive a nasty electrical shock. Maybe there’s some way to short it out…",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "While this basement smells musty and ancient, the wiring and lighting implies that someone has been keeping it somewhat up to modern standards."
+  },
+  "78058": {
+    "name": "Bedroom",
+    "typeCode": "location",
+    "traits": "Second Floor",
+    "text": "[action]: Evade. This effect can only target a Re-Animated enemy at this location or an adjacent location. Add your [intellect] to your [agility] for this evade. If you succeed, that enemy cannot ready this round. If you fail, heal 2 damage from that enemy.\nVictory 1.",
+    "flavor": "A strange and heavy device, somewhat like a shepherd’s crook, is propped against the wall.",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "Someone has been sleeping here for a long time. Scattered notes and piles of laundry litter the room."
+  },
+  "78059": {
+    "name": "Corridor",
+    "typeCode": "location",
+    "traits": "First Floor",
+    "text": "[action]: Fight. This effect can only target a Re-Animated enemy at this location or a connecting location. Add your [intellect] to your [combat] for this attack. This attack deals +1 damage. If you fail, heal 2 damage from that enemy. (Limit once per round.)",
+    "flavor": "The hall is filled with dangerous debris that you could easily route the stumbling creatures into…",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "A once-ornate hall lines the entire east side of the manor."
+  },
+  "78060": {
+    "name": "Grand Hall",
+    "typeCode": "location",
+    "traits": "First Floor",
+    "text": "[action] If there is an exhausted Re-Animated enemy at this location: Discover 1 clue at this location. (Limit once per round.)\n[action]: Resign. This is the Tailors’ mess to clean up!\nVictory 1.",
+    "flavor": "An impressive chamber, somewhat lessened by the makeshift cages lining the walls.",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "The Tailors have busted down the door and sent some fodders in ahead of you."
+  },
+  "78061": {
+    "name": "Servant’s Entry",
+    "typeCode": "location",
+    "traits": "Basement",
+    "text": "[action] If there are no Re-Animated enemies at this location, investigators in this location spend 2[per_investigator] clues, as a group: Place 1 resource token on this location. (Group limit once per game.)",
+    "flavor": "Sparse furnishings poorly kept, in no better wear from the treatment of the resident physician. A large boiler burns in the far corner.",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "Whatever’s down there smells rancid…"
+  },
+  "78062": {
+    "name": "Study",
+    "typeCode": "location",
+    "traits": "First Floor",
+    "text": "[reaction] After the last clue is discovered from this location, if an investigator at this location controls the Suspicious Briefcase asset: Deal 2 damage to each Re-Animated enemy in play. (Group limit once per game.)\nVictory 1.",
+    "flavor": "Covered in notes and chemical formulas about some sort of reagent. Maybe there’s something of use here.",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "Someone has taken great pains to keep this study in excellent condition. It is almost clinical in its order."
+  },
+  "78063": {
+    "name": "Tub Room",
+    "typeCode": "location",
+    "traits": "Second Floor",
+    "text": "[action] If there are no ready Re-Animated enemies at this location, investigators in this location spend 3[per_investigator] clues, as a group: Place 1 resource token on this location. (Group limit once per game.)",
+    "flavor": "Just past the bathtub are a series of exposed pipes with valves and the sound of constantly flowing water.\nYou hope it is water.",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "Scattered body parts litter this bloody room. A bonesaw and various filthy rags lie on a table next to the tub."
+  },
+  "78064": {
+    "name": "West’s Laboratory",
+    "typeCode": "location",
+    "traits": "Stable",
+    "text": "[action]: Parley. You try to make West see reason. Place 1 clue from the token bank on Herbert West (3 clues instead if there is an exhausted Re-Animated enemy at West’s Laboratory). Then, if there are at least 3[per_investigator] clues on Herbert West, take control of him.\nVictory 1.",
+    "backText": "An esoteric security system bars your way. You cannot enter West’s Laboratory unless there are three or more locations with resource tokens on them.",
+    "backFlavor": "“You’ll not get in here, you overpaid tin soldiers!”\nIt appears the doctor is not taking visitors at this time."
+  },
+  "78065": {
+    "name": "Herbert West",
+    "typeCode": "asset",
+    "traits": "Ally. Medic. Sorcerer",
+    "text": "You get +1 [intellect].\n[reaction] When an enemy would be defeated at your location, exhaust Herbert West: Instead, heal 2 damage from that enemy. Then, discover 2 clues at your location.",
+    "flavor": "“Birth is always painful.”",
+    "subname": "Re-Animator"
+  },
+  "78066": {
+    "name": "Death’s Hold",
+    "typeCode": "treachery",
+    "traits": "Flaw. Geist",
+    "text": "Revelation – Take 2 direct horror. This horror cannot be prevented.",
+    "flavor": "The dead feel nothing…"
+  },
+  "78067": {
+    "name": "The Folly of Man",
+    "typeCode": "treachery",
+    "traits": "Flaw. Injury",
+    "text": "Revelation – Take 2 direct damage. This damage cannot be prevented.",
+    "flavor": "… but the flesh is weak."
+  },
+  "78068": {
+    "name": "Strength of Flesh",
+    "typeCode": "asset",
+    "traits": "Geist. Talent",
+    "text": "Permanent. Cannot leave play.\n[reaction] After you succeed at a skill test where a [skull] token was revealed, exhaust Strength of Flesh: Heal all damage from Strength of Flesh.",
+    "flavor": "The dead feel nothing!"
+  },
+  "78069": {
+    "name": "Unbreakable Will",
+    "typeCode": "asset",
+    "traits": "Human. Talent",
+    "text": "Permanent. Cannot leave play.\n[reaction] After you succeed at a skill test where a [cultist] token was revealed, exhaust Unbreakable Will: Heal all horror from Unbreakable Will.",
+    "flavor": "The mind is willing…"
+  },
+  "78070": {
+    "name": "Virgil",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Re-Animated. Elite",
+    "text": "Prey – Lead investigator.\nHunter.",
+    "flavor": "“The sight of the re-animated is difficult to adjust to, but one grows accustomed to many things with experience”",
+    "backText": "Spawn – Servant’s Entry.\nHunter. Cannot be defeated.",
+    "backFlavor": "“It does not matter how poor of condition a subject was in when retrieved. Recency of death is the sole defining factor in successful reagent application.”",
+    "subname": "Lurking at the Threshold"
+  },
+  "78071": {
+    "name": "Ichabod",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Re-Animated. Elite",
+    "text": "Prey – Lead Investigator.\nHunter. Alert. Retaliate.",
+    "flavor": "“One needs witness only a single result of my serum to understand the startling effects it will have on all of humanity!”",
+    "backText": "Spawn – Grand Hall.\nHunter. Alert. Retaliate. Cannot be defeated.\nForced – At the end of the round: Heal 1 damage from Ichabod.",
+    "backFlavor": "“Once properly motivated, subjects can be guided and even follow simple commands. That proper motivation requires removal of the head is admittedly a flaw.”",
+    "subname": "Mindless Drone"
+  },
+  "78072": {
+    "name": "Aristotle",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Re-Animated. Elite",
+    "text": "Spawn – Study.\nHunter. Cannot be defeated.\nForced – When you would damage Aristotle, if there is another ready Re-Animated enemy at its location: Deal that damage to that enemy, instead.",
+    "flavor": "“This test subject shows a heightened mental capacity. Utilized mainly as a sort of survival instinct.”"
+  },
+  "78073": {
+    "name": "Banquo",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Re-Animated. Elite",
+    "text": "Spawn – Grand Hall.\nHunter. Aloof. Cannot be defeated.\nForced – At the start of the enemy phase, if Banquo is ready and unengaged: It attacks each investigator at its location.",
+    "flavor": "“It can be difficult to differentiate failed trials from wholly successful ones at times. Caution is key.”"
+  },
+  "78074": {
+    "name": "Brutus",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Re-Animated. Elite",
+    "text": "Spawn – Bedroom.\nHunter. Retaliate. Cannot be defeated.",
+    "flavor": "“The violent urges exhibited by the majority of the subjects is undesirable. In truth, I have found it is not without its uses…”"
+  },
+  "78075": {
+    "name": "Halsey",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Re-Animated. Elite",
+    "text": "Spawn – Basement.\nAlert. Cannot be defeated.",
+    "flavor": "“Whole parts. I had never tried whole parts, before Halsey. The results proved it a misguided venture.”"
+  },
+  "78076": {
+    "name": "Homer",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Re-Animated. Elite",
+    "text": "Spawn – Abandoned Room.\nCannot be defeated.",
+    "flavor": "“Repeated testing has determined the serum’s effects did, in fact, reverse his intense ocular deterioration. He just doesn’t seem that keen on moving.”"
+  },
+  "78077": {
+    "name": "Ophelia",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Re-Animated. Elite",
+    "text": "Spawn – Corridor.\nPrey – Lowest remaining sanity only.\nHunter. Cannot be defeated.",
+    "flavor": "“The serum appears to have greatly increased her ventromedial cortex activity. Which would explain the almost continuous cackling.”"
+  },
+  "78078": {
+    "name": "Can’t Get Away!",
+    "typeCode": "treachery",
+    "traits": "Blunder",
+    "text": "Revelation – Test [willpower] (4). If you fail, you must either take 1 horror for each point you failed by, or ready the furthest Re-Animated enemy and move it directly to your location.",
+    "flavor": "They’re coming to get you!"
+  },
+  "78079": {
+    "name": "Fear the Walking Dead",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelation – Put Fear the Walking Dead into play in your threat area.\nForced – After you enter a location with a Re-Animated enemy: Take 1 horror.\n[free] If there is a Re-Animated enemy at your location with at least 4 damage on it: Discard Fear the Walking Dead."
+  },
+  "78080": {
+    "name": "Strength of Flesh",
+    "typeCode": "treachery",
+    "traits": "Hex",
+    "text": "Revelation – Attach to the nearest Re-Animated enemy.\nAttached enemy gets +2 health, deals +1 horror, and gains “Forced – At the end of the round: Remove 1 damage from this enemy.”\nForced – After the attached enemy attacks: Discard Strength of Flesh."
+  },
+  "78081": {
+    "name": "The Tomb-Legions",
+    "typeCode": "treachery",
+    "traits": "Power",
+    "text": "Peril.\nRevelation – You must either (choose one):\n◆ Move each unengaged Re-Animated enemy one location towards you.\n◆ Ready the nearest damaged Re-Animated enemy and heal all damage from it."
+  },
+  "78082": {
+    "name": "First Among Many",
+    "typeCode": "enemy",
+    "traits": "Monster. Infected. Elite",
+    "text": "Hunter. Massive. Retaliate.\nFirst Among Many gets +1 fight and +1 evade for each enemy beneath it.\nForced – At the start of the enemy phase: Place each other enemy at First Among Many’s location beneath it.\nObjective – If First Among Many is defeated: (→R4)\nVictory 2.",
+    "flavor": "It speaks your deepest fears in the tones of your father.",
+    "subname": "Growing Horror"
+  },
   "78250": {
     "name": "Agency Troubleshooter",
     "typeCode": "enemy",
@@ -367,9 +655,36 @@
     "typeCode": "enemy",
     "text": "Aloof. Patrol (nearest Miasma location). After the hunter movement step, if at a Miasma location, search the encounter deck and discard for a Mindless Thrall and spawn it here. Victory 1."
   },
+  "78292": {
+    "name": "Tenuous Allies",
+    "typeCode": "event",
+    "traits": "Pact",
+    "text": "Attached card does not take up any slots, and gains: “Forced – When the game ends or this card would leave play: Remove this card and Tenuous Allies from the game.”"
+  },
   "78020b": {
     "name": "Abhorrent Pustule",
     "typeCode": "enemy",
     "text": "Massive. Hunter. After taking 2 or more damage from one source, return a clue from the nearest location without Survivors or Ruins to the pool. Victory 2."
+  },
+  "78054b": {
+    "name": "Back for More",
+    "typeCode": "act",
+    "text": "Revelation – Replace the act and agenda decks with Back for More. Spawn the set-aside First Among Many at the Grand Hall.\nForced – When doom is placed on any card: Either resolve the hunter keyword on First Among Many, or resolve the hunter keyword on each Re-Animated enemy in play."
+  },
+  "78070b": {
+    "name": "Virgil",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Re-Animated. Elite",
+    "text": "Spawn – Servant’s Entry.\nHunter. Cannot be defeated.",
+    "flavor": "“It does not matter how poor of condition a subject was in when retrieved. Recency of death is the sole defining factor in successful reagent application.”",
+    "subname": "Not Going Anywhere"
+  },
+  "78071b": {
+    "name": "Ichabod",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Re-Animated. Elite",
+    "text": "Spawn – Grand Hall.\nHunter. Alert. Retaliate. Cannot be defeated.\nForced – At the end of the round: Heal 1 damage from Ichabod.",
+    "flavor": "“Once properly motivated, subjects can be guided and even follow simple commands. That proper motivation requires removal of the head is admittedly a flaw.”",
+    "subname": "Head of Security"
   }
 }

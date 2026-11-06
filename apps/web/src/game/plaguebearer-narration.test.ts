@@ -11,7 +11,7 @@ afterEach(() => vi.unstubAllGlobals())
 
 const hash = (value: string | Buffer) => createHash('sha256').update(value).digest('hex')
 
-it('el cuerpo real del modal reconoce los diez relatos oficiales y ofrece sus reproductores', async () => {
+it('el cuerpo real del modal reconoce los veintiséis relatos oficiales y ofrece sus reproductores', async () => {
   vi.stubGlobal(
     'fetch',
     vi.fn(async (url: string) => {
@@ -73,7 +73,7 @@ function duration(bytes: Buffer): number {
   return (frames * 1152) / 44100
 }
 
-it('conecta los diez relatos ES completos con la voz elegida, excluyendo reglas y créditos', () => {
+it('conecta los veintiséis relatos ES completos con la voz elegida, excluyendo reglas y créditos', () => {
   expect(evidence.voiceId).toBe('z3kTTwYbQrmL7ckdGcJi')
   expect(evidence.voiceName).toBe('Martin Osborne - Polished and Intense')
   expect(evidence.files.map((f) => f.key).sort()).toEqual(
@@ -88,15 +88,33 @@ it('conecta los diez relatos ES completos con la voz elegida, excluyendo reglas 
       'night.intro',
       'night.resolution1',
       'night.resolution2',
+      ...['section1', 'section2', 'section3', 'section4', 'hidden', 'hiddenGift'].map(
+        (k) => `friends.${k}`,
+      ),
+      ...[
+        'intro1',
+        'intro2',
+        'intro3',
+        'intro4',
+        'resolution1',
+        'resolution2',
+        'resolution3',
+        'resolution4',
+        'resolution5',
+        'resolution5Hidden',
+      ].map((k) => `dawn.${k}`),
     ]
       .map((s) => `story.plaguebearer.${s}`)
       .sort(),
   )
   for (const recording of evidence.files) {
     const suffix = recording.key.replace('story.plaguebearer.', '')
-    const body = suffix.startsWith('night.')
-      ? source.story.night[suffix.slice(6) as 'intro' | 'resolution1' | 'resolution2']
-      : (source.story[suffix as keyof typeof source.story] as string)
+    const body = suffix
+      .split('.')
+      .reduce<unknown>(
+        (value, key) => (value as Record<string, unknown>)[key],
+        source.story,
+      ) as string
     const text = body
       .split(/\n\s*\n/)
       .filter((p) => !p.trim().startsWith('»') && !p.trim().startsWith('•'))
