@@ -37,8 +37,17 @@ jugadores pueden escuchar la narración y ver el avance.
 Verificadas 62 pruebas dirigidas de salas, vista en línea, guardado local e
 interludio, incluidas la autorización y la repetición de peticiones.
 
-Siguiente entrega: habilitar Espejismo letal y Hacia los picos prohibidos
-para usar las recompensas al continuar la campaña.
+Espejismo letal está en preparación. El mapa de 19 Lugares conserva los
+símbolos impresos, los destinos y el coste de Espejismo. La preparación
+reutiliza los recuerdos descubiertos entre visitas. El registro distingue
+los recuerdos desterrados y calcula su experiencia una sola vez.
+Las pruebas del motor cubren el pago grupal de Espejismo en un Lugar
+revelado, la elección de un destino y su entrada con las pistas ajustadas.
+Anamnesis permite recibir 2 de horror o colocar perdición y comprobar
+inmediatamente el avance del plan.
+Queda integrar la preparación y el registro con la campaña, completar los
+reversos de Historia, los demás encuentros, los planes y los actos, y preparar
+la presentación y la narración antes de habilitarlo.
 
 Revisión del 06/11/2026, corregida y con pruebas:
 

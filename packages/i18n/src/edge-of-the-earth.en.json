@@ -323,6 +323,7 @@
     "ellsworthExhaust": "Exhaust Roald Ellsworth to blank {card}",
     "ellsworthSpend": "Spend 1 supply to blank {card}",
     "searchSite": "Search beneath this location",
+    "exploreMirage": "Resolve Mirage",
     "turnIn": "Resign at camp",
     "rescue": "Parley with {name} ({progress}/{required})",
     "comfort": "Calm {name}",

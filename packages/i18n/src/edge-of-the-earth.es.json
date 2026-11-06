@@ -323,6 +323,7 @@
     "ellsworthExhaust": "Agota a Roald Ellsworth para dejar en blanco {card}",
     "ellsworthSpend": "Gasta 1 suministro para dejar en blanco {card}",
     "searchSite": "Busca debajo de este Lugar",
+    "exploreMirage": "Resolver Espejismo",
     "turnIn": "Desiste en el campamento",
     "rescue": "Negocia con {name} ({progress}/{required})",
     "comfort": "Calma a {name}",
