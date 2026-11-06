@@ -154,6 +154,28 @@
       "resolution2Title": "Resolution 2",
       "resolution2": "As the horrid music fades from your ears, you watch the bloody viscera of the priest form a strange sigil in the sky. Twisting shapes of green and red, it shifts and pulses like the veins of a living being. You grab hold of the nearest infected, and shake them, demanding an explanation.\n\n“He is freed! He is reborn! You have heard the Call and killed us! Our undoing is his unbinding! The Bloody Unbinding!”\n\nYou have made a terrible mistake.",
       "hiddenEffect": "The first investigator to read this adds one Elder Thing token to the chaos bag for the remainder of the campaign."
+    },
+    "allied": {
+      "title": "Interlude III: Arkham Allied",
+      "intro": "As you ponder the meaning of the strange sigil emblazoned on the sky, you hear someone calling your name…",
+      "hibbs": "A group of patrons, half seas over, sing a drinking song with your name awkwardly inserted into it. You can’t help but feel a camaraderie with this motley crew.",
+      "store": "Davy, the shopkeep of the general store meekly calls you over, and hands you a ratty punchcard. “As far as I’m concerned, you get the best price I can give you on anything you need.” He eyes the sigil with fear. “I’m sure you’ll need it.”",
+      "bank": "Before you can react, the Vice President of the bank has shoved a case into your hands. You crack it open as he looks nervously at the sigil in the sky, and find it stuffed with cash. “An investment in Arkham’s future.”",
+      "library": "Professor Armitage produces a tome with gilded pages from a tote bag. “This is one of the most precious pieces in the forbidden collection. I only hope it will assist you in reversing whatever terrible fate these signs portend.”",
+      "boarding": "The elderly Ma Matheson says very little, but shakes your hand and gives you a tin filled with homemade pastries. Several onlookers eye you with surprise.",
+      "shop": "Miriam Beecher coughs, and gestures to the sigil in the sky. “This is far from over. I don’t know what you’ll need, but I know a being that may be of some help…”",
+      "advertiser": "A camera bulb flashes, and you find yourself surrounded by several reporters. “Soon as we’re in the clear, all of Arkham’s gonna want to shake your hand”",
+      "docks": "You’re lifted off your feet by a group of celebrating dock workers. After some pleading on your part, they drop you, but not before you’re made an honorary union member.",
+      "hidden": "Your time is nearly up. Even now, my prison fails. When the midnight hour arrives, prepare for your end.",
+      "hiddenEffect": "Each investigator reading this gains 2 experience and 1 mental trauma.",
+      "hibbsEffect": "Any player may add Excessive Spirits to their deck. This card does not count against their deck size.",
+      "storeEffect": "Any player may add Handshake Deal to their deck. This card does not count against their deck size.",
+      "bankEffect": "Any player may add Extended Loan to their deck. This card does not count against their deck size.",
+      "libraryEffect": "Any player may add Reliquary Tome to their deck. This card does not count against their deck size.",
+      "boardingEffect": "Any player may add Ma’s Approval to their deck. This card does not count against their deck size.",
+      "shopEffect": "Any player may add Ritual of Yaztaroth to their deck. This card does not count against their deck size.",
+      "advertiserEffect": "Any player may add Full Coverage to their deck. This card does not count against their deck size.",
+      "docksEffect": "Any player may add Hard Day’s Work to their deck. This card does not count against their deck size."
     }
   },
   "note": {
@@ -294,6 +316,13 @@
       "evade": "Remove 1 doom from the evaded enemy",
       "whispers": "Return the asset to your hand and discard Whispers of Power",
       "worked": "Discard Worked To The Bone"
+    },
+    "allied": {
+      "spirits": "Exhaust Excessive Spirits: one additional action",
+      "handshake": "Remove Handshake Deal: put an asset into play",
+      "tome": "Exhaust Reliquary Tome: draw 2 cards",
+      "ritual": "Exhaust Ritual of Yaztaroth: heal 1 horror instead",
+      "approval": "Attach the Ally to Ma’s Approval"
     }
   },
   "prompt": {
@@ -328,6 +357,10 @@
       "vicePresident": "The Vice President: how many resources do you spend to reduce its attack?",
       "worked": "Worked To The Bone: choose",
       "introHidden": "The introduction contains hidden text. Do you read it?"
+    },
+    "allied": {
+      "hidden": "The interlude contains hidden text. Do you read it?",
+      "deal": "Handshake Deal: choose the asset"
     }
   },
   "choice": {
@@ -381,6 +414,10 @@
       "sacrificeDamage": "{enemy}: take {amount} direct damage",
       "sacrificeDoom": "{enemy}: move {amount} doom to the agenda",
       "spend": "Spend {amount} resources"
+    },
+    "allied": {
+      "add": "{name} adds it to their deck",
+      "nobody": "Nobody adds it"
     }
   }
 }

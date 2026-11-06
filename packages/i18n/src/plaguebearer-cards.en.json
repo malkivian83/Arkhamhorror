@@ -669,6 +669,58 @@
     "backText": "Unrevealed location. Enter it to reveal its other side.",
     "backFlavor": "You see the venerable store, and realize just how many powerful relics might be at your disposal inside…"
   },
+  "78096": {
+    "name": "Excessive Spirits",
+    "typeCode": "asset",
+    "traits": "Boon",
+    "text": "[reaction] After you succeed by 3 or more at a skill test during an action on your turn, exhaust Excessive Spirits: You may take an additional action this turn, which can only be used on the same type of action used to trigger this effect.",
+    "flavor": "If it’s worth doing, it’s worth overdoing."
+  },
+  "78097": {
+    "name": "Extended Loan",
+    "typeCode": "asset",
+    "traits": "Boon",
+    "text": "Forced – When your turn begins: Place 2 resources (from the token pool) on this card. Resources on this card may be spent as if they were in your resource pool. Discard all resources from this card at the end of your turn.",
+    "flavor": "“And don’t worry about the interest.”"
+  },
+  "78098": {
+    "name": "Full Coverage",
+    "typeCode": "event",
+    "traits": "Trick. Boon",
+    "text": "Fast. Play only during your turn.\nFor the remainder of the round, each event you play gets –1 cost and gains “Draw 1 card.” Draw 1 card."
+  },
+  "78099": {
+    "name": "Handshake Deal",
+    "typeCode": "asset",
+    "traits": "Boon",
+    "text": "The first asset you play each round costs 1 fewer resource.\n[free] Remove Handshake Deal from the game: Play an asset from your hand or discard pile, ignoring its resource cost."
+  },
+  "78100": {
+    "name": "Hard Day’s Work",
+    "typeCode": "skill",
+    "traits": "Innate. Boon",
+    "text": "You may commit Hard Day’s Work as an exact copy of any skill in your discard pile or as an exact copy of another card committed to this skill test, and it gains Hard Day’s Work’s icons in addition to its own."
+  },
+  "78101": {
+    "name": "Ma’s Approval",
+    "typeCode": "asset",
+    "traits": "Boon",
+    "text": "[reaction] When you play an Ally asset: Discard any cards attached to Ma’s Approval and attach that asset to this card.\nAttached asset takes up no Ally slots and gets +1 health and +1 sanity.",
+    "flavor": "If you have Ma’s thumbs up, all of Arkham’s on your side."
+  },
+  "78102": {
+    "name": "Reliquary Tome",
+    "typeCode": "asset",
+    "traits": "Item. Tome. Boon",
+    "text": "Your maximum hand size is increased by 4.\n[free] Exhaust Reliquary Tome: Draw 2 cards.",
+    "flavor": "“Now, I am lending you this on a purely provisional basis, you understand.”"
+  },
+  "78103": {
+    "name": "Ritual of Yaztaroth",
+    "typeCode": "asset",
+    "traits": "Ritual. Boon",
+    "text": "Forced – After Ritual of Yaztaroth enters play: Place 1 horror on it.\n[reaction] When you would spend a charge or secret on an asset you control, exhaust Ritual of Yaztaroth: Heal 1 horror from Ritual of Yaztaroth instead."
+  },
   "78104": {
     "name": "Priest of Plagues",
     "typeCode": "enemy",

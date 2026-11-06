@@ -392,6 +392,96 @@
       "inputHash": "b413693bfce3414f010cd4b1337665734a730f8ede1c9482c9f4a403285a16e2",
       "sha256": "aa250cd0da262203ea60898d983dc7f264b76ddaba37694f43c41f3b1dcbef50",
       "bytes": 640774
+    },
+    {
+      "key": "story.plaguebearer.allied.intro",
+      "file": "plaguebearer-allied-intro-martin-osborne.mp3",
+      "text": "Mientras valoras el significado del extraño sello empotrado en el cielo, escuchas a alguien que te llama por tu nombre.",
+      "characters": 119,
+      "inputHash": "20e515cd2ee95d9158056c62e7b98e937f54c408f94050d16fd95b9e52191e40",
+      "sha256": "248d6163d0d18c1f2f355ae3f35c9b72679291019f03c60d5d3c8960be405eda",
+      "bytes": 131700
+    },
+    {
+      "key": "story.plaguebearer.allied.hibbs",
+      "file": "plaguebearer-allied-hibbs-martin-osborne.mp3",
+      "text": "Un grupo de parroquianos, que no han debido dejar ni el agua de los floreros, aparecen cantando una canción de borrachos con tu nombre incluido en un fragmento de la misma. No puedes más que sentir algún tipo de camaradería hacia esta variopinta panda de ebrios patanes.",
+      "characters": 270,
+      "inputHash": "5ffd19a22d3c9686a80dbbcabfd935c7b9fb7601c156b7a6359cbceb9f18033b",
+      "sha256": "63e16bb151f607c18269439f2149704cae61dde298615ace02eefb77f37d1958",
+      "bytes": 351128
+    },
+    {
+      "key": "story.plaguebearer.allied.store",
+      "file": "plaguebearer-allied-store-martin-osborne.mp3",
+      "text": "Davy, el encargado del almacén, te llama amablemente y te da un efusivo apretón de manos. “Por lo que a mí concierne, siempre conseguirá en mi tienda el mejor precio que pueda ofrecerle en cualquier cosa que necesite”. Sus ojos brillan con cierto miedo. “Y estoy seguro de que va a necesitar cosas”.",
+      "characters": 299,
+      "inputHash": "6d877d15b41cc4ce743bf3d597866f45d671c9cfe231ee76c2d6eb4fd48525d6",
+      "sha256": "a9495e8f813586609ae34978ebfe474cdc851dbff68c24d592a88c5dd5d15380",
+      "bytes": 384565
+    },
+    {
+      "key": "story.plaguebearer.allied.bank",
+      "file": "plaguebearer-allied-bank-martin-osborne.mp3",
+      "text": "Antes de que puedas reaccionar, el Vicepresidente del banco ha colocado un estuche en tus manos. Lo abres mientras él observa nerviosamente el sigilo del cielo, y encuentras que está lleno de dinero. “Una inversión en el futuro de Arkham”.",
+      "characters": 239,
+      "inputHash": "e8f72fb5cb7234b18c03c979c87f2cf90f1f107bd2cf22c2cc32d1b7e33bfe71",
+      "sha256": "6277f7bf5b23f13aebbb52cb10c649b42f9d10c0f76c1bab72c3412561b4f783",
+      "bytes": 346531
+    },
+    {
+      "key": "story.plaguebearer.allied.library",
+      "file": "plaguebearer-allied-library-martin-osborne.mp3",
+      "text": "El profesor Armitage saca un ajado tomo de doradas páginas de un bolso. “Esta es una de las piezas más preciadas de la colección prohibida. Sólo espero que le ayude a revertir el aciago destino que esos símbolos parecen presagiar”.",
+      "characters": 231,
+      "inputHash": "50c020041dec30e67ac3a440a6a4f9df21e87b60021f674d7793f7606e2102a0",
+      "sha256": "78fd3a2cc9633b8a7f1693f6b19ba7664ca8690997b718946fe24bb7a00226b8",
+      "bytes": 297630
+    },
+    {
+      "key": "story.plaguebearer.allied.boarding",
+      "file": "plaguebearer-allied-boarding-martin-osborne.mp3",
+      "text": "La anciana Ma Matheson no dice nada, pero estrecha tu mano y te entrega una lata con galletas caseras. Muchos de los allí presentes te miran con sorpresa.",
+      "characters": 154,
+      "inputHash": "1d1adac60947e3b5e46e19eb05a2445db11ff1d6026adfb6b6fc7fda9e26e8ae",
+      "sha256": "e15ac800b85ce4eeaed399cc32f21c58aa011eae79a1eeaabea809cd9c20d70a",
+      "bytes": 202335
+    },
+    {
+      "key": "story.plaguebearer.allied.shop",
+      "file": "plaguebearer-allied-shop-martin-osborne.mp3",
+      "text": "Miriam Beecher tose y te señala el sello en el cielo. “Esto está lejos de acabar. No sé qué vas a necesitar, pero conozco a un ser que tal vez te pueda ser de ayuda…”.",
+      "characters": 167,
+      "inputHash": "8a4e17151840ed7d968b89f0ffaac7728a70c00fda6b254677947445a41009a6",
+      "sha256": "c44dfe42147087f8019050e10c41953d901faf3c4655d24a4f5574530bf26a0d",
+      "bytes": 278821
+    },
+    {
+      "key": "story.plaguebearer.allied.advertiser",
+      "file": "plaguebearer-allied-advertiser-martin-osborne.mp3",
+      "text": "Un flash te deslumbra y de repente te ves rodeado de reporteros. “Tan pronto como termine esto, todo Arkham va a querer darte un apretón de manos”.",
+      "characters": 147,
+      "inputHash": "1e44af3cf1507091053cec4e9aad37619e41f355e2ef83ae9c0128e0e9459f94",
+      "sha256": "c39eab9e4dd52c94e74bb98fe3ee0ad152e0b8416bb505e5c6bc996b7675413c",
+      "bytes": 223233
+    },
+    {
+      "key": "story.plaguebearer.allied.docks",
+      "file": "plaguebearer-allied-docks-martin-osborne.mp3",
+      "text": "Tus pies se elevan del suelo levantados por un grupo de trabajadores que están festejando. Después de pedírselo varias veces, te bajan, pero no antes de convertirte en miembro honorario del sindicato.",
+      "characters": 200,
+      "inputHash": "8c4335c1c93e92eb21a6770fd693c49a4a18931ccef13dc1663775677a9ffc56",
+      "sha256": "550f028f8a07c701297aa9ffef8d9490ac401bf7a92e7c69399f914fef7a5ec2",
+      "bytes": 273806
+    },
+    {
+      "key": "story.plaguebearer.allied.hidden",
+      "file": "plaguebearer-allied-hidden-martin-osborne.mp3",
+      "text": "Se te acaba el tiempo. Incluso ahora, mi prisión se resquebraja. Cuando llegue la medianoche, prepárate para tu final.",
+      "characters": 118,
+      "inputHash": "91c04a8740c625a1711917e5069befdbc73b70ca4246fdaf6c7fc091283eea8f",
+      "sha256": "7d3f0051ef9f33f2d674bfcf4a50a7c872885b0dae5eae00bc75ba2c88b724b9",
+      "bytes": 167644
     }
   ]
 }

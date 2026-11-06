@@ -29,7 +29,7 @@ it('ofrece Trasnochadores al comenzar la campaña', () => {
 })
 it.each(['en', 'es'])('publica cartas y fichas del caos con presentación %s', (locale) => {
   const cards = fallbackCards(locale).filter((c) => c.code.startsWith('78'))
-  expect(cards).toHaveLength(70)
+  expect(cards).toHaveLength(78)
   expect(new Set(cards.map((c) => c.code)).size).toBe(cards.length)
   const name = cards.find((c) => c.code === '78251')?.name
   expect(name).toBe(locale === 'es' ? 'Destruyendo pruebas' : 'Jury-Rigged Incendiary')
@@ -45,8 +45,8 @@ it.each(['en', 'es'])('publica cartas y fichas del caos con presentación %s', (
   ).toContain(locale === 'es' ? '–5' : '-5')
   expect(cards.find((c) => c.code === '78065')?.name).toBe('Herbert West')
 })
-it('conserva huellas de las 432 caras y sirve las rutas locales', () => {
-  expect(media).toHaveLength(432)
+it('conserva huellas de las 448 caras y sirve las rutas locales', () => {
+  expect(media).toHaveLength(448)
   expect(new Set(media.map((c) => `${c.language}:${c.code}`)).size).toBe(media.length)
   for (const card of media) {
     const back = card.code.endsWith('b'),

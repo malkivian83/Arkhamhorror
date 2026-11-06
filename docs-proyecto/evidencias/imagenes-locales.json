@@ -42161,6 +42161,134 @@
       "source": "E:\\Plaguero\\en\\Henry Armitage-1.png",
       "bytes": 126834,
       "sha256": "736fb7fe6e3e3ccef48dceae5b403b405a48280d06dfdcd0a430390d13fc8c14"
+    },
+    {
+      "art": "78096",
+      "language": "es",
+      "path": "/local-assets/cards/es/78096.avif",
+      "source": "E:\\Plaguero\\120a.jpg",
+      "bytes": 112793,
+      "sha256": "0f93e84f909207bc9fcc289323f8d952c6fa7b765937f2a2b1b04fb8e668b6cb"
+    },
+    {
+      "art": "78096",
+      "language": "en",
+      "path": "/local-assets/cards/en/78096.avif",
+      "source": "E:\\Plaguero\\en\\121 - Excessive Spirits-1.png",
+      "bytes": 109842,
+      "sha256": "58ffff84de175cefb0cd439c6b59497a80b178f9783c083daa8cd1d6102eda88"
+    },
+    {
+      "art": "78097",
+      "language": "es",
+      "path": "/local-assets/cards/es/78097.avif",
+      "source": "E:\\Plaguero\\121a.jpg",
+      "bytes": 127608,
+      "sha256": "95263bedabe16fffc8d8e78b143dc3ca1bff220aef7c97e178f1c0386fa05976"
+    },
+    {
+      "art": "78097",
+      "language": "en",
+      "path": "/local-assets/cards/en/78097.avif",
+      "source": "E:\\Plaguero\\en\\122 - Extended Loan-1.png",
+      "bytes": 141793,
+      "sha256": "1e7fd06e12dfed31e03bffce3efcb28fc0e945f1184f6b2bf037cc774dfb1de2"
+    },
+    {
+      "art": "78098",
+      "language": "es",
+      "path": "/local-assets/cards/es/78098.avif",
+      "source": "E:\\Plaguero\\122a.jpg",
+      "bytes": 89805,
+      "sha256": "168e84ce61e35dfe5017bac2a33da61a2c040af806e7d0f0d6f20f7246f958c0"
+    },
+    {
+      "art": "78098",
+      "language": "en",
+      "path": "/local-assets/cards/en/78098.avif",
+      "source": "E:\\Plaguero\\en\\123 - Full Coverage-1.png",
+      "bytes": 99595,
+      "sha256": "f208a074d2b2324ac55251de6cdfbdf71a62b1f1d35d3554187c43c4cc3092cc"
+    },
+    {
+      "art": "78099",
+      "language": "es",
+      "path": "/local-assets/cards/es/78099.avif",
+      "source": "E:\\Plaguero\\123a.jpg",
+      "bytes": 121231,
+      "sha256": "48c272370f5224309082c8b8adbfa8f48b657450df2bef66ead060878959b446"
+    },
+    {
+      "art": "78099",
+      "language": "en",
+      "path": "/local-assets/cards/en/78099.avif",
+      "source": "E:\\Plaguero\\en\\124 - Handshake Deal-1.png",
+      "bytes": 130880,
+      "sha256": "c2c96c5481aded0e434f38956c7fc0b46c5b08ac8a647e2fc2392a0178b36fa8"
+    },
+    {
+      "art": "78100",
+      "language": "es",
+      "path": "/local-assets/cards/es/78100.avif",
+      "source": "E:\\Plaguero\\124a.jpg",
+      "bytes": 107385,
+      "sha256": "c106b5494d168bfc7cd0bb3523bd4702c0322f844096cf606574ffad73d42fbd"
+    },
+    {
+      "art": "78100",
+      "language": "en",
+      "path": "/local-assets/cards/en/78100.avif",
+      "source": "E:\\Plaguero\\en\\125 - Hard Work-1.png",
+      "bytes": 117522,
+      "sha256": "82756b662d3fdb8f4eda61f6d3f4c7b60576e03be400453362b134b4944ddef8"
+    },
+    {
+      "art": "78101",
+      "language": "es",
+      "path": "/local-assets/cards/es/78101.avif",
+      "source": "E:\\Plaguero\\125a.jpg",
+      "bytes": 100546,
+      "sha256": "86c1c291dde76b05854ddc803fa93c4ac106ec9591c12fc17b17621dc4aadf93"
+    },
+    {
+      "art": "78101",
+      "language": "en",
+      "path": "/local-assets/cards/en/78101.avif",
+      "source": "E:\\Plaguero\\en\\126 - Ma_s Approval-1.png",
+      "bytes": 128825,
+      "sha256": "4bfc8464112130ae91bec4111a26baf592bc7949d51537f21f789ba674cd4808"
+    },
+    {
+      "art": "78102",
+      "language": "es",
+      "path": "/local-assets/cards/es/78102.avif",
+      "source": "E:\\Plaguero\\126a.jpg",
+      "bytes": 103859,
+      "sha256": "72bc43811ba6abc041f90b2034fbcea434ac5d76c10ee54837175ba5d644f19a"
+    },
+    {
+      "art": "78102",
+      "language": "en",
+      "path": "/local-assets/cards/en/78102.avif",
+      "source": "E:\\Plaguero\\en\\127 - Reliquary Tome-1.png",
+      "bytes": 134224,
+      "sha256": "780700643394681401d29f2335fa4f116f77be26e795f61bf404ab3d0edaf405"
+    },
+    {
+      "art": "78103",
+      "language": "es",
+      "path": "/local-assets/cards/es/78103.avif",
+      "source": "E:\\Plaguero\\127a.jpg",
+      "bytes": 115671,
+      "sha256": "6bf69480c7e3519a7b30f5aac6b843651f9a5feab20bd48bc82eda0c7e2a2376"
+    },
+    {
+      "art": "78103",
+      "language": "en",
+      "path": "/local-assets/cards/en/78103.avif",
+      "source": "E:\\Plaguero\\en\\128 - Ritual of Yaztaroth-1.png",
+      "bytes": 117543,
+      "sha256": "5f0ee609c53353bd4aa3647b472cc9631b74fc306e32c45fd7529a53a9fe1573"
     }
   ],
   "missing": [

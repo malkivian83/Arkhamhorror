@@ -68,6 +68,18 @@ const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
   'story.plaguebearer.chorus.resolution2': {
     es: 'plaguebearer-chorus-resolution2-martin-osborne.mp3',
   },
+  'story.plaguebearer.allied.intro': { es: 'plaguebearer-allied-intro-martin-osborne.mp3' },
+  'story.plaguebearer.allied.hibbs': { es: 'plaguebearer-allied-hibbs-martin-osborne.mp3' },
+  'story.plaguebearer.allied.store': { es: 'plaguebearer-allied-store-martin-osborne.mp3' },
+  'story.plaguebearer.allied.bank': { es: 'plaguebearer-allied-bank-martin-osborne.mp3' },
+  'story.plaguebearer.allied.library': { es: 'plaguebearer-allied-library-martin-osborne.mp3' },
+  'story.plaguebearer.allied.boarding': { es: 'plaguebearer-allied-boarding-martin-osborne.mp3' },
+  'story.plaguebearer.allied.shop': { es: 'plaguebearer-allied-shop-martin-osborne.mp3' },
+  'story.plaguebearer.allied.advertiser': {
+    es: 'plaguebearer-allied-advertiser-martin-osborne.mp3',
+  },
+  'story.plaguebearer.allied.docks': { es: 'plaguebearer-allied-docks-martin-osborne.mp3' },
+  'story.plaguebearer.allied.hidden': { es: 'plaguebearer-allied-hidden-martin-osborne.mp3' },
   'story.carnevale.intro': { es: 'carnevale-intro-salva.mp3' },
   'story.carnevale.noResolution': { es: 'carnevale-no-resolution-salva.mp3' },
   'story.carnevale.resolution1': { es: 'carnevale-resolution1-salva.mp3' },

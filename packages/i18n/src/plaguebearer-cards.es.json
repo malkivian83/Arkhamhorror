@@ -669,6 +669,58 @@
     "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
     "backFlavor": "Observas la reputada tienda y eres consciente de cuántas poderosas reliquias puedes tener a tu disposición."
   },
+  "78096": {
+    "name": "Copas de más",
+    "typeCode": "asset",
+    "traits": "Don",
+    "text": "[reaction] Después de que tengas éxito por 3 o más en una prueba de habilidad durante tu turno, agota Copas de más: Puedes realizar una acción adicional este turno, que sólo puede usarse para el mismo tipo de acción que activó este efecto.",
+    "flavor": "Si merece la pena hacerlo, merece la pena hacerlo más."
+  },
+  "78097": {
+    "name": "Ampliación de préstamo",
+    "typeCode": "asset",
+    "traits": "Don",
+    "text": "Obligado – Al principio de tu turno: Coloca 2 recursos (de la reserva de fichas) sobre esta carta. Los recursos sobre esta carta pueden usarse como si estuvieran en tu reserva de recursos. Retira todos los recursos sobre esta carta al final de tu turno.",
+    "flavor": "“Y no se preocupe por los intereses.”"
+  },
+  "78098": {
+    "name": "Cobertura total",
+    "typeCode": "event",
+    "traits": "Truco. Don",
+    "text": "Rápido. Juégalo sólo durante tu turno.\nDurante el resto de la ronda, reduce en 1 el coste de cada evento que juegues y obtiene “Roba 1 carta”. Roba una carta."
+  },
+  "78099": {
+    "name": "Trato hecho",
+    "typeCode": "asset",
+    "traits": "Don",
+    "text": "El primer Apoyo que juegues cada ronda cuesta 1 recurso menos.\n[free] Retira Trato hecho de la partida: Pon en juego un Apoyo de tu mano o de tu pila de descartes."
+  },
+  "78100": {
+    "name": "Día duro de trabajo",
+    "typeCode": "skill",
+    "traits": "Innato. Don",
+    "text": "Puedes asignar Día duro de trabajo como una copia exacta de una carta de habilidad que haya en tu pila de descartes o como una copia exacta de otra carta de habilidad asignada a esta prueba de habilidad y gana los iconos de Día duro de trabajo además de los de la carta elegida."
+  },
+  "78101": {
+    "name": "Beneplácito de Ma",
+    "typeCode": "asset",
+    "traits": "Don",
+    "text": "[reaction] Cuando juegues un Apoyo Aliado: Descarta cualquier carta vinculada al Beneplácito de Ma y vincula el Apoyo a esta carta.\nEl Apoyo vinculado no ocupa espacio de aliado y recibe +1 de salud y +1 de cordura.",
+    "flavor": "Si Ma está de tu lado, todo Arkham está de tu lado."
+  },
+  "78102": {
+    "name": "Tomo sagrado",
+    "typeCode": "asset",
+    "traits": "Objeto. Tomo. Don",
+    "text": "Tu tamaño de mano máximo aumenta en 4.\n[free] Agota el Tomo sagrado: Roba 2 cartas.",
+    "flavor": "Veamos, le estoy prestando esto de una forma totalmente provisional, ¿lo entiende?"
+  },
+  "78103": {
+    "name": "Ritual de Yaztaroth",
+    "typeCode": "asset",
+    "traits": "Ritual. Don",
+    "text": "Obligado – Después de que el Ritual de Yaztaroth entre en juego: Coloca 1 ficha de horror sobre él.\n[reaction] Cuando fueras a gastar una carga o secreto de un Apoyo que controles, agota el Ritual de Yaztaroth: Cura 1 punto de horror al Ritual de Yaztaroth en su lugar."
+  },
   "78104": {
     "name": "Sacerdote de la Plaga",
     "typeCode": "enemy",

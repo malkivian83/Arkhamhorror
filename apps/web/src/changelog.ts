@@ -8,6 +8,7 @@ export const changelog = [
       'app.changelog.plaguebearer.dawn',
       'app.changelog.plaguebearer.chorus',
       'app.changelog.plaguebearer.interludes',
+      'app.changelog.plaguebearer.allied',
       'app.changelog.plaguebearer.fixes',
     ],
   },

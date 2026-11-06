@@ -154,6 +154,28 @@
       "resolution2Title": "Resolución 2",
       "resolution2": "Según la macabra melodía desaparece de tus oídos, observas cómo las sangrantes vísceras de los miembros de la procesión, se elevan para formar un extraño sigilo en el cielo. Con retorcidas formas rojas y verdes, late como si de las venas de un ser viviente se tratara. Agarras y sacudes al más cercano de los infectados, reclamando una explicación.\n\n“¡Ha sido liberado! ¡Ha renacido! ¡Han oído la Llamada y nos han sacrificado! ¡Nuestro perecer es su renacer! ¡La Liberación Sangrienta!”\n\nHas cometido un terrible error.",
       "hiddenEffect": "El primer investigador en leer esto añade una ficha de Antiguo a la bolsa del caos durante el resto de la campaña."
+    },
+    "allied": {
+      "title": "Interludio III: Arkham unido",
+      "intro": "Mientras valoras el significado del extraño sello empotrado en el cielo, escuchas a alguien que te llama por tu nombre.",
+      "hibbs": "Un grupo de parroquianos, que no han debido dejar ni el agua de los floreros, aparecen cantando una canción de borrachos con tu nombre incluido en un fragmento de la misma. No puedes más que sentir algún tipo de camaradería hacia esta variopinta panda de ebrios patanes.",
+      "store": "Davy, el encargado del almacén, te llama amablemente y te da un efusivo apretón de manos. “Por lo que a mí concierne, siempre conseguirá en mi tienda el mejor precio que pueda ofrecerle en cualquier cosa que necesite”. Sus ojos brillan con cierto miedo. “Y estoy seguro de que va a necesitar cosas”.",
+      "bank": "Antes de que puedas reaccionar, el Vicepresidente del banco ha colocado un estuche en tus manos. Lo abres mientras él observa nerviosamente el sigilo del cielo, y encuentras que está lleno de dinero. “Una inversión en el futuro de Arkham”.",
+      "library": "El profesor Armitage saca un ajado tomo de doradas páginas de un bolso. “Esta es una de las piezas más preciadas de la colección prohibida. Sólo espero que le ayude a revertir el aciago destino que esos símbolos parecen presagiar”.",
+      "boarding": "La anciana Ma Matheson no dice nada, pero estrecha tu mano y te entrega una lata con galletas caseras. Muchos de los allí presentes te miran con sorpresa.",
+      "shop": "Miriam Beecher tose y te señala el sello en el cielo. “Esto está lejos de acabar. No sé qué vas a necesitar, pero conozco a un ser que tal vez te pueda ser de ayuda…”.",
+      "advertiser": "Un flash te deslumbra y de repente te ves rodeado de reporteros. “Tan pronto como termine esto, todo Arkham va a querer darte un apretón de manos”.",
+      "docks": "Tus pies se elevan del suelo levantados por un grupo de trabajadores que están festejando. Después de pedírselo varias veces, te bajan, pero no antes de convertirte en miembro honorario del sindicato.",
+      "hidden": "Se te acaba el tiempo. Incluso ahora, mi prisión se resquebraja. Cuando llegue la medianoche, prepárate para tu final.",
+      "hiddenEffect": "Cada investigador que lea esto obtiene 2 puntos de experiencia y sufre 1 trauma mental.",
+      "hibbsEffect": "Un investigador cualquiera puede añadir Copas de más a su mazo. No cuenta para el tamaño de mazo.",
+      "storeEffect": "Un investigador cualquiera puede añadir Trato hecho a su mazo. No cuenta para el tamaño de mazo.",
+      "bankEffect": "Un investigador cualquiera puede añadir Ampliación de préstamo a su mazo. No cuenta para el tamaño de mazo.",
+      "libraryEffect": "Un investigador cualquiera puede añadir Tomo sagrado a su mazo. No cuenta para el tamaño de mazo.",
+      "boardingEffect": "Un investigador cualquiera puede añadir Beneplácito de Ma a su mazo. No cuenta para el tamaño de mazo.",
+      "shopEffect": "Un investigador cualquiera puede añadir el Ritual de Yaztaroth a su mazo. No cuenta para el tamaño de mazo.",
+      "advertiserEffect": "Un investigador cualquiera puede añadir Cobertura total a su mazo. No cuenta para el tamaño de mazo.",
+      "docksEffect": "Un investigador cualquiera puede añadir Día duro de trabajo a su mazo. No cuenta para el tamaño de mazo."
     }
   },
   "note": {
@@ -294,6 +316,13 @@
       "evade": "Retira 1 perdición del enemigo evitado",
       "whispers": "Devuelve el Apoyo a tu mano y descarta Susurros de poder",
       "worked": "Descarta Dejarse los huesos"
+    },
+    "allied": {
+      "spirits": "Agota Copas de más: una acción adicional",
+      "handshake": "Retira Trato hecho: pon en juego un Apoyo",
+      "tome": "Agota el Tomo sagrado: roba 2 cartas",
+      "ritual": "Agota el Ritual de Yaztaroth: cura 1 horror en su lugar",
+      "approval": "Vincula el Aliado al Beneplácito de Ma"
     }
   },
   "prompt": {
@@ -328,6 +357,10 @@
       "vicePresident": "El Vicepresidente: ¿cuántos recursos gastas para reducir su ataque?",
       "worked": "Dejarse los huesos: elige",
       "introHidden": "La introducción contiene un texto oculto. ¿Decides leerlo?"
+    },
+    "allied": {
+      "hidden": "El interludio contiene un texto oculto. ¿Decides leerlo?",
+      "deal": "Trato hecho: elige el Apoyo"
     }
   },
   "choice": {
@@ -381,6 +414,10 @@
       "sacrificeDamage": "{enemy}: recibe {amount} daños directos",
       "sacrificeDoom": "{enemy}: mueve {amount} perdición al plan",
       "spend": "Gastar {amount} recursos"
+    },
+    "allied": {
+      "add": "{name} la añade a su mazo",
+      "nobody": "Nadie la añade"
     }
   }
 }
