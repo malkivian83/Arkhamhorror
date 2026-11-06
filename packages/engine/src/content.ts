@@ -185,6 +185,7 @@ export interface ScenarioBehavior {
    * ficha para indicar que su Obligado se ha resuelto.
    */
   drawTekeliliInstead?: (state: GameState, investigator: InvestigatorId) => TreacheryId[]
+  assetCannotReady?: (state: GameState, asset: Asset) => boolean
   /** Sequential movement windows and lead-chosen ordering for this scenario's rules. */
   sequentialEnemyMovement?: boolean
   /** Habilidad con la que se investiga ese Lugar (Cripta de la lámpara sepulcral). */

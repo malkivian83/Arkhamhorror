@@ -1,6 +1,7 @@
 import {
   registerPlayerCards,
   registerTreachery,
+  scenarioBehavior,
   tekeliliCopies,
   type TreacheryBehavior,
 } from '@lcg/engine'
@@ -39,7 +40,20 @@ export function registerTekelili(): void {
     registerTreachery({
       code,
       revelation: (state, investigator, self) => [
-        ...revelations[code](state, investigator, self),
+        ...Array.from(
+          {
+            length:
+              1 +
+              Object.values(state.treacheries).filter(
+                (card) =>
+                  card.code === '08703' &&
+                  card.placement.type === 'threatArea' &&
+                  card.placement.investigator === investigator &&
+                  !scenarioBehavior(state.scenarioId)?.blanksTreachery?.(state, card),
+              ).length,
+          },
+          () => revelations[code](state, investigator, self),
+        ).flat(),
         { type: 'ReturnTekelili', treachery: self.id },
       ],
     })

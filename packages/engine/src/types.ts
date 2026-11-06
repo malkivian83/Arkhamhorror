@@ -1699,7 +1699,13 @@ type MessageBody =
       amount: number
       fromDiscard?: boolean
     }
-  | { type: 'Heal'; investigator: InvestigatorId; damage: number; horror: number }
+  | {
+      type: 'Heal'
+      investigator: InvestigatorId
+      damage: number
+      horror: number
+      healer?: InvestigatorId
+    }
   | { type: 'Resign'; investigator: InvestigatorId }
   | { type: 'DefeatInvestigator'; investigator: InvestigatorId }
   /** Fin del escenario. `told`: los textos de resolución ya se mostraron. */
@@ -1760,6 +1766,7 @@ type MessageBody =
       amount: number
       includeEliminated?: boolean
       drawInstead?: boolean
+      returnToDeck?: boolean
     }
   | { type: 'ReturnTekelili'; treachery: TreacheryId }
   | { type: 'ReturnTekeliliFromDeck'; investigator: InvestigatorId; code: CardCode; top: number }
@@ -1807,7 +1814,7 @@ type MessageBody =
   | { type: 'DiscardUpgrade'; asset: AssetId; index: number }
   | { type: 'PrimeNextFight'; asset: AssetId; amount: number }
   | { type: 'ClearNextFight'; asset: AssetId }
-  | { type: 'HealAsset'; asset: AssetId; damage: number; horror: number }
+  | { type: 'HealAsset'; asset: AssetId; damage: number; horror: number; healer?: InvestigatorId }
   | { type: 'ReturnAssetToHand'; asset: AssetId }
   /** De la pila de descartes a la mano. */
   | { type: 'DiscardToHand'; investigator: InvestigatorId; code: CardCode }
@@ -2049,10 +2056,18 @@ export type Trigger =
       /** No quedan pistas en la localización. */
       last?: boolean
     }
+  | {
+      type: 'afterTakeControlOfClues'
+      investigator: InvestigatorId
+      location: LocationId
+      amount: number
+    }
   /** Tras comprometer cartas a una prueba (`by` las compromete, `tester` hace la prueba). */
   | { type: 'afterCommit'; by: InvestigatorId; tester: InvestigatorId; commitId?: number }
   /** Tras ganar recursos por el efecto de una carta. */
   | { type: 'afterGainResources'; investigator: InvestigatorId; amount: number }
+  | { type: 'afterDamageHealed'; investigator: InvestigatorId; amount: number }
+  | { type: 'enemyExhausted'; enemy: EnemyId }
   | { type: 'afterCluesSpentOrPlaced'; investigator: InvestigatorId; amount: number }
   | { type: 'investigationPhaseEnds' }
   /** Al final de la fase de Mitos (Buscador de Carcosa, Mago de la Orden). */

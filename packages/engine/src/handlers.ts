@@ -3852,7 +3852,12 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'ReadyAsset': {
       const asset = state.assets[message.asset]
-      if (asset && assetsCannotReady(state, asset.owner)) return state
+      if (
+        asset &&
+        (assetsCannotReady(state, asset.owner) ||
+          scenarioBehavior(state.scenarioId)?.assetCannotReady?.(state, asset))
+      )
+        return state
       if (asset)
         return { ...state, assets: { ...state.assets, [asset.id]: { ...asset, exhausted: false } } }
       const placed = state.placedAssets?.[message.asset]
@@ -4537,7 +4542,9 @@ export function handle(state: GameState, message: Message): GameState {
             type: 'ResolveWeakness',
             investigator: investigator.id,
             code,
-            ...(replaceShuffle && !message.drawInstead ? { tekeliliToDeckBottom: true } : {}),
+            ...(message.returnToDeck || (replaceShuffle && !message.drawInstead)
+              ? { tekeliliToDeckBottom: true }
+              : {}),
           })),
         )
       return updateInvestigator(added, investigator.id, (i) => ({ ...i, deck }))
@@ -6487,9 +6494,17 @@ export function handle(state: GameState, message: Message): GameState {
         : state
     }
 
-    case 'ExhaustEnemy':
-      if (!findEnemy(state, message.enemy)) return state
-      return updateEnemy(state, message.enemy, (e) => ({ ...e, exhausted: true }))
+    case 'ExhaustEnemy': {
+      const enemy = findEnemy(state, message.enemy)
+      if (!enemy || enemy.exhausted) return state
+      return push(
+        updateEnemy(state, enemy.id, (e) => ({ ...e, exhausted: true })),
+        {
+          type: 'Forced',
+          trigger: { type: 'enemyExhausted', enemy: enemy.id },
+        },
+      )
+    }
 
     case 'ShuffleSetAsideIntoEncounter': {
       const moving = state.setAside.filter((c) => message.codes.includes(c.code))
@@ -7216,6 +7231,14 @@ export function handle(state: GameState, message: Message): GameState {
       }))
       return push(
         evaded,
+        ...(previous.exhausted
+          ? []
+          : [
+              {
+                type: 'Forced' as const,
+                trigger: { type: 'enemyExhausted' as const, enemy: previous.id },
+              },
+            ]),
         ...(previous.engagedWith
           ? [
               {
@@ -7557,7 +7580,8 @@ export function handle(state: GameState, message: Message): GameState {
       const assets = Object.fromEntries(
         Object.entries(state.assets).map(([id, a]) => [
           id,
-          assetsCannotReady(state, a.owner)
+          assetsCannotReady(state, a.owner) ||
+          scenarioBehavior(state.scenarioId)?.assetCannotReady?.(state, a)
             ? a
             : {
                 ...a,
@@ -8384,13 +8408,20 @@ export function handle(state: GameState, message: Message): GameState {
       )
     }
 
-    case 'Heal':
-      if (getInvestigator(state, message.investigator).eliminated) return state
-      return updateInvestigator(state, message.investigator, (i) => ({
+    case 'Heal': {
+      const target = getInvestigator(state, message.investigator)
+      if (target.eliminated) return state
+      const next = updateInvestigator(state, message.investigator, (i) => ({
         ...i,
         damage: Math.max(0, i.damage - message.damage),
         horror: Math.max(0, i.horror - message.horror),
       }))
+      return damageHealed(
+        next,
+        message.healer ?? target.id,
+        Math.min(target.damage, message.damage),
+      )
+    }
 
     // ------------------------------------------------------------ Varios
     case 'EndScenario': {
@@ -8715,7 +8746,7 @@ export function handle(state: GameState, message: Message): GameState {
           },
         }
       }
-      return {
+      const next = {
         ...state,
         assets: {
           ...state.assets,
@@ -8726,6 +8757,11 @@ export function handle(state: GameState, message: Message): GameState {
           },
         },
       }
+      return damageHealed(
+        next,
+        message.healer ?? asset.owner,
+        Math.min(asset.damage, message.damage),
+      )
     }
 
     case 'ReturnAssetToHand': {
@@ -9487,12 +9523,26 @@ export function handle(state: GameState, message: Message): GameState {
         message.to,
         cluesOn(state, message.to) + amount,
       )
-      return message.from.type === 'location'
-        ? push(next, {
-            type: 'Forced',
-            trigger: { type: 'locationCluesRemoved', location: message.from.id },
-          })
-        : next
+      if (message.from.type !== 'location') return next
+      const location = message.from.id
+      const removed: Message = {
+        type: 'Forced',
+        trigger: { type: 'locationCluesRemoved', location },
+      }
+      if (message.to.type !== 'investigator') return push(next, removed)
+      return push(
+        next,
+        {
+          type: 'Forced',
+          trigger: {
+            type: 'afterTakeControlOfClues',
+            investigator: message.to.id,
+            location,
+            amount,
+          },
+        },
+        removed,
+      )
     }
 
     case 'RemoveDoom': {
@@ -10751,6 +10801,15 @@ export function victoryTotal(state: GameState): number {
 function updateCampaignLog(state: GameState, update: (log: CampaignLog) => CampaignLog): GameState {
   const current = state.campaignLog ?? emptyCampaignLog(state.investigators.map((i) => i.id))
   return { ...state, campaignLog: update(current) }
+}
+
+function damageHealed(state: GameState, investigator: InvestigatorId, amount: number): GameState {
+  return amount > 0
+    ? push(state, {
+        type: 'Forced',
+        trigger: { type: 'afterDamageHealed', investigator, amount },
+      })
+    : state
 }
 
 function updateExpedition(
