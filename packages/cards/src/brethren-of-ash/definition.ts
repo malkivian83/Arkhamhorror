@@ -8,7 +8,8 @@ import { DR_ARMITAGE, spreadingFlames } from './spreading-flames'
 registerCampaign({
   id: BRETHREN_OF_ASH.id,
   name: 'campaign.names.brethren-of-ash',
-  fanmade: true,
+  // Capítulo 2: Hermanos de las cenizas, primera campaña tras las once del capítulo 1.
+  release: 12,
   chaosBags: CHAOS_BAGS,
   prologue: { title: 'story.brethrenOfAsh.prologueTitle', body: 'story.brethrenOfAsh.prologue' },
   scenarios: [
