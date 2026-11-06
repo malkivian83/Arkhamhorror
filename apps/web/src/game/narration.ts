@@ -1,4 +1,7 @@
 import edgeOfTheEarth from './edgeOfTheEarthNarration.json'
+import { cardNarration } from './cardNarration'
+
+const storyCardBacks: Record<string, string> = edgeOfTheEarth.cardBacks
 
 /**
  * Narraciones grabadas de los textos de historia, en
@@ -318,6 +321,8 @@ const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
 
 /** Ruta de la narración de un texto en un idioma, si está grabada. */
 export function storyNarration(key: string, locale: string): string | null {
+  const card = storyCardBacks[key]
+  if (card) return cardNarration(card, true, locale)
   const file = NARRATIONS[key]?.[locale]
   return file ? `/local-assets/story/audio/${locale}/${file}` : null
 }

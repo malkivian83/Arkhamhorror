@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { expect, it } from 'vitest'
 import texts from '../../../../packages/i18n/src/edge-of-the-earth.es.json'
+import { edgeOfTheEarthCards } from '@lcg/i18n/es'
 import recordings from './edgeOfTheEarthNarration.json'
 import { setAppLocale } from '../i18n'
 import { campaignCover } from './campaignProgress'
@@ -11,13 +12,18 @@ import { storyBody } from './story'
 
 const hash = (input: Buffer | string) => createHash('sha256').update(input).digest('hex')
 
-it('serves every Spanish narrative passage using a recording of the displayed text', () => {
+it('serves every Spanish narrative passage with a recording that matches the displayed text', () => {
   expect(recordings.voiceId).toBe('hyKxCTlAqtnW188CgltM')
-  const expected = Object.entries(texts.story)
-    .filter(([part]) => part !== 'setup' && part !== 'partTwoSetup' && part !== 'partThreeSetup')
-    .map(([part, { body }]) => [`story.edgeOfTheEarth.${part}.body`, hash(body)])
-  expect(recordings.entries.map(({ key, textSha256 }) => [key, textSha256])).toEqual(expected)
-  for (const { key, file, audioSha256 } of recordings.entries) {
+  const expected = new Map(
+    Object.entries(texts.story)
+      .filter(([part]) => !['setup', 'partTwoSetup', 'partThreeSetup'].includes(part))
+      .map(([part, { body }]) => [`story.edgeOfTheEarth.${part}.body`, hash(body)]),
+  )
+  expect(
+    [...recordings.entries.map(({ key }) => key), ...Object.keys(recordings.cardBacks)].sort(),
+  ).toEqual([...expected.keys()].sort())
+  for (const { key, file, textSha256, audioSha256 } of recordings.entries) {
+    expect(textSha256).toBe(expected.get(key))
     const path = storyNarration(key, 'es')
     expect(path).toBe(`/local-assets/story/audio/es/${file}`)
     const audio = readFileSync(new URL(`../../public${path}`, import.meta.url))
@@ -30,15 +36,22 @@ it('serves every Spanish narrative passage using a recording of the displayed te
     expect(hash(audio)).toBe(audioSha256)
     expect(storyNarration(key, 'en')).toBeNull()
   }
+  for (const [key, code] of Object.entries(recordings.cardBacks)) {
+    const body = edgeOfTheEarthCards[code]!.backFlavor!.trim().replace(/\\n|\n/g, '\n\n')
+    expect(hash(body)).toBe(expected.get(key))
+    expect(storyNarration(key, 'es')).toBe(`/local-assets/cards/audio/es/${code}-back.mp3`)
+    expect(storyNarration(key, 'en')).toBeNull()
+  }
   expect(storyNarration('story.edgeOfTheEarth.setup.body', 'es')).toBeNull()
+  expect(storyNarration('story.edgeOfTheEarth.restfulNight.body', 'es')).toBeTruthy()
 })
 
-it('offers the recording in the story modal for the displayed Spanish summary', async () => {
-  const key = 'story.edgeOfTheEarth.crash.body'
+it('offers the recording in the story modal for the displayed Spanish passage', async () => {
+  const key = 'story.edgeOfTheEarth.resolution1.body'
   await setAppLocale('es', false)
   expect(storyBody(key)).toMatchObject({
     official: false,
-    paragraphs: [{ kind: 'text', spans: [{ text: texts.story.crash.body }] }],
+    paragraphs: [{ kind: 'text', spans: [{ text: texts.story.resolution1.body }] }],
     narration: storyNarration(key, 'es'),
   })
   await setAppLocale('en', false)

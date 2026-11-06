@@ -88,10 +88,10 @@ it('shows checkpoint narration in Spanish and reserves the decision for the host
     choices: ['search', 'leave'],
   }
   const host = await render(campaign)
-  expect(host).toContain('edge-of-the-earth-disappearance-salva.mp3')
+  expect(host).toMatch(/edge-of-the-earth-disappearance-[a-f0-9]{12}-salva\.mp3/)
   expect(host).toContain(messages.es.choice.edgeOfTheEarth.search)
   const guest = await render({ ...campaign, canManage: false })
-  expect(guest).toContain('edge-of-the-earth-disappearance-salva.mp3')
+  expect(guest).toMatch(/edge-of-the-earth-disappearance-[a-f0-9]{12}-salva\.mp3/)
   expect(guest).not.toContain(messages.es.choice.edgeOfTheEarth.search)
 })
 
@@ -108,11 +108,15 @@ it('shares Restful Night narration while reserving visits and the route for the 
   }
   expect(await render(campaign)).toContain(messages.es.prompt.edgeOfTheEarth.nightPartner)
   const guest = await render({ ...campaign, canManage: false })
-  expect(guest).toContain('edge-of-the-earth-restfulNight-salva.mp3')
+  expect(guest).toMatch(/edge-of-the-earth-restfulNight-[a-f0-9]{12}-salva\.mp3/)
   expect(guest).toContain('Visitas restantes: 3')
   expect(guest).not.toContain(messages.es.prompt.edgeOfTheEarth.nightPartner)
   campaign.restfulNight.canContinue = true
-  expect(await render(campaign)).toContain(messages.es.choice.edgeOfTheEarth.nightMirage)
+  const ending = await render(campaign)
+  expect(ending).toMatch(
+    /edge-of-the-earth-restfulNightDawn-[a-f0-9]{12}-salva\.mp3[\s\S]*edge-of-the-earth-restfulNightDoor-[a-f0-9]{12}-salva\.mp3/,
+  )
+  expect(ending).toContain(messages.es.choice.edgeOfTheEarth.nightMirage)
   expect(await render({ ...campaign, canManage: false })).not.toContain(
     messages.es.choice.edgeOfTheEarth.nightMirage,
   )

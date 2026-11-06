@@ -2,71 +2,71 @@
   "story": {
     "dyer": {
       "title": "Prologue — Dyer’s warning",
-      "body": "Professor William Dyer shows you the evidence he brought back from Antarctica. He wants you to help stop another expedition before it reaches the city he and Danforth found beyond the mountains."
+      "body": "“You understand now, yes? Why this expedition must be stopped?” Professor William Dyer sits across from you at his office desk. A wealth of academic papers and scientific journals lies sprawled between you, including Dyer’s own lengthy account of his journey to the Antarctic. Up until the publication of this revised report—the alleged “truth”—the university’s last expedition to Antarctica yielded very little in the way of scientific discoveries.\n\nAt Dyer’s request, you’d read through this new report of what really happened beyond those “Mountains of Madness,” as he had dubbed them. You scarcely would have believed any of it were it not for the bevy of photographs and drawings that came along with it: evidence of mangled, dissected bodies; of perplexing five-pointed snow graves; of strange specimens found half-buried in the ice; and, finally, aerial shots of the jagged black peaks described in Dyer’s tale.\n\nDyer has called on you to help convince his colleagues to abandon their planned follow-up expedition. His student, Danforth—the only other member of the expedition to reach the alien stone-city described in Dyer’s report—paces back and forth by the entrance to Dyer’s office, muttering nonsensically to himself while you consider their strange tale.\n\nYou’re still unsure what to make of all this. On the one hand, Dyer’s concern seems genuine, and his account is filled with such detail and specificity that you find it difficult to doubt its authenticity. And yet, there’s no way it could all be true. An ancient city in the ice, built by primordial beings? So-called “Elder Things”? How could such things be real? Danforth mumbles something about a nameless black pit as you place Dyer’s report back on his desk. The professor gazes at you with sleepless, bloodshot eyes. “Well?” Dyer asks. “Will you help us stop this madness? Will you make them see reason?”"
     },
     "convinced": {
       "title": "Prologue — Dyer agrees",
-      "body": "You argue that the expedition must understand what Dyer found. He agrees to accompany the team and asks you to tell Dr. Kensler."
+      "body": "Dyer lets out an anxious breath and relents. “I suppose I might have said the same thing, once. But now, after what I’ve seen…” A shudder courses through the man’s aging body. “You are venturing somewhere humanity does not belong. I am starting to believe that scholars such as ourselves can only continue to probe the depths of science for so long before we are laid low by what we find.”\n\n“Or by what finds us,” Danforth chimes from behind.\n\nDyer glances at his student, studying his expression, then turns his attention back to you. “If you go on this journey with Dr. Kensler, the lot of you may not ever return. Will you not reconsider?”\n\nYou explain that while there is surely significant danger in your expedition, Dr. Amy Kensler—the scientist leading this new trek to Antarctica—has taken precautions to ensure it does not meet the same end as Dyer’s. More importantly, it is the only way to understand the threats they encountered, and the only way to prepare if such threats are unearthed by other, less cautious scientists.\n\n“Yes, I… I confess I had that same worry,” he replies. “We are unlikely to convince the greater scientific community, I’m afraid. Perhaps it would be better to… to return, and learn more about what we saw…”\n\nDanforth nods. “I agree. How do we know what we saw is anything more than the overactive imaginings of two explorers with a queer fascination for the bizarre and macabre? Of Arthur Gordon Pym’s ill-fated journeys?”\n\nDyer’s eyes narrow at his student. The knowledge reflected in his dark eyes chills you to your core. “You say such things, and yet, I daresay you did not see what I saw.”\n\nThe student scoffs. “You are not the one who glimpsed that mirage at the edge of the mountainside—”\n\n“I am not referring to the ‘mirage,’ Danforth; I am referring to what I saw in you,” Dyer retorts. “The things you said on that aeroplane, the look on your face…I’ll never forget.” Silence pervades the room as Danforth returns to his corner to languish in his own doubt.\n\nDyer pleads with you. “Whatever the case may be, is there nothing I can say to deter you?” You ponder for a brief moment, then shake your head. There is too much at stake—especially if Dyer’s account turns out to be the truth.\n\n“All right, then,” Dyer concludes with a sigh. “Since you lot have no clue what you are getting into, I suppose we have no choice but to come, too. You can tell Dr. Kensler that she wins. We will be ready to leave within the week.”\n\nYou shake his hand and make for the door. “I hope, for all our sakes, that Danforth is right,” he adds before you are out of earshot."
     },
     "doubted": {
       "title": "Prologue — Dyer joins the expedition",
-      "body": "You tell Dyer that you need to see the evidence for yourself. He decides to come with you."
+      "body": "Dyer’s jaw clenches and his cheeks redden. For a moment he looks as though he is about to slam his fist on the desk between the two of you, but after a moment of consideration, he takes a deep breath and shakes his head. “I suppose to any reasonable person it should seem that way. Perhaps my faith in the scientific community was misplaced. Of course Dr. Kensler would not believe me, not even with all this evidence.” He shoves several of the photographs on his desk aside in frustration.\n\nYou explain that Dr. Amy Kensler—the scientist leading this new trek to Antarctica—is motivated by genuine academic curiosity, rather than greed or glory.\n\n“It matters not,” Dyer remarks bitterly. “Even so, she seeks more evidence of my findings, despite my warnings. And so the cycle continues. Perhaps science itself is naught but folly. We are but silly little mice under glass, seeking escape for our own sake, with little understanding of what lies beyond our cage.”\n\nDanforth approaches, eyes fixed on the photographs scattered across Dyer’s desk. “Perhaps what we saw is nothing more than the overactive imaginings of two explorers with a queer fascination for the bizarre and macabre. Of Arthur Gordon Pym’s ill-fated journeys.”\n\nDyer’s eyes narrow at his student. The knowledge reflected in his dark eyes chills you to your core. “You say such things, and yet, I daresay you did not see what I saw.”\n\nThe student scoffs. “You are not the one who glimpsed that mirage at the edge of the mountainside—”\n\n“I am not referring to the ‘mirage,’ Danforth; I am referring to what I saw in you,” Dyer retorts. “The things you said on that aeroplane, the look on your face…I’ll never forget.” Silence pervades the room as Danforth returns to his corner to languish in his own doubt.\n\nDyer pleads with you. “Whatever the case may be, is there nothing I can say to deter you?” You explain that the only way you could possibly believe his story is if you saw it with your own two eyes.\n\n“Very well, then.” Dyer rises to his feet. “Since you lot have no clue what you’re getting into, I suppose we have no choice but to come, too. You can tell Dr. Kensler that she wins. We’ll be ready to leave within the week.”\n\nYou nod and make for the door. “I hope, for all our sakes, that Danforth is right,” he adds before you are out of earshot."
     },
     "team": {
       "title": "Prologue — The expedition team",
-      "body": "At the Boston docks, Dr. Amy Kensler leads the preparations aboard the Theodosia. Roald Ellsworth and James “Cookie” Fredericks handle the expedition gear, Takada Hiroko prepares the aircraft, Avery Claypool will guide the team, Dr. Mala Sinha oversees medical care, and Eliyah Ashevak looks after the dogs. Dyer and Danforth return to Antarctica with them."
+      "body": "You peer up at the overcast sky, hoping it does not forebode things to come. Only a sliver of sunlight peeks through the clouds. You shudder and pull your coat closed over your shoulders, then continue onward to the edge of the Boston Harbor dock.\n\nStanding in front of the plankway leading up to the deck of the Theodosia is Dr. Amy Kensler. A professor of Biology at Miskatonic University, the no-nonsense scientist has been a fixture of the university’s Sciences department for over a decade. Without so much as peering up from her clipboard, she crosses of your name as you approach. “Good of you to make it on time. Mr. Ellsworth here will take your luggage aboard.\n\n“Oh, I will, will I?” the man standing next to her replies with a chuckle. He offers you his hand in introduction, and you shake it. “Roald Ellsworth, at your service.”\n\nBy way of introduction, Dr. Kensler explains, “Mr. Ellsworth has been on over a dozen expeditions and comes highly recommended. I’m sure his expertise will be invaluable in the weeks to come.”\n\nEllsworth rolls his eyes. “His expertise, yes…and his willingness to be used as manual labor!” he adds with a chuckle as he hefts your luggage and takes it up the plankway.\n\n“Come on, Ellsworth!” shouts another voice from inside the ship. A gruff- looking man with a thick brown beard emerges, motioning for Ellsworth to hurry. “We got a ton ‘o work to get done before we embark!”\n\n“A little busy, Cookie,” Ellsworth shouts back in reply. Then he turns back to you and remarks over his shoulder: “Do not mind him. Cookie is a bit of an intense fellow, but he is all right.”\n\n“The name’s Fredericks,” the gruff man barks back. “James Fredericks. I swear, sometimes I think I’m the only one here who’s ready for this damned trip,” he mutters angrily. “An’ didn’t anyone ever tell yeh it’s bad luck to name a ship after someone who died at sea?”\n\nAnother voice calls down from the deck of the ship: “Cookie, if you could be so kind as to lower your voice, some of us are trying to work up here.” The man responds with a grunt and ducks back inside the ship, rolling his eyes. You crane your head upwards and see a young woman leaning over the railing of the ship’s deck, her long brown hair tied in a thick ponytail that dangles around her neck. “Hey! You made it,” she calls out to you. “Dr. Kensler was pretty excited that you’re coming along. Looking forward to working with you.”\n\nWithout looking up from her clipboard, Dr. Kensler mumbles. “Ms. Takada Hiroko is our aeroplane mechanic. As with the previous expedition, we will be constructing our planes onsite. No need to worry—she may be one of the youngest in her field, but she knows what she is doing.”\n\nMore of the crew begin to arrive, one by one. The first is a man in his 30s with a wispy blonde beard and bright green eyes. “Mr. Avery Claypool,” Dr. Kensler introduces you to the man, and the two of you shake hands. “Mr. Claypool is an…associate…of Mr. Ellsworth’s. He will be serving as our guide in the Antarctic.”\n\n“Weather permitting,” Claypool jokes. “Honestly, we will be lucky if we can even get off the ice shelf.”\n\n“I am confident with your skills we will make it as far as Dyer and Lake did.”\n\n“That is what I am afraid of,” Claypool mutters, walking briskly past Kensler and up the plankway. On his way up, he passes Ellsworth, and the two freeze, locking eyes. You could swear that the temperature lowers several degrees as the two brush by one another without a single word.\n\n“They are usually on…better terms,” Dr. Kensler says under her breath, “but recently fell into some issue or another. They had better learn to live with their differences. They will be unable to avoid one another for quite some time, after all.” You watch as Claypool’s gaze wanders back to Ellsworth for just a fraction of a second before he turns away angrily and enters the ship.\n\nThe next to arrive is a woman with warm brown skin and weary eyes. Along with her luggage, she carries a rather large, bright-red medical kit emblazoned with a white cross. She extends her hand, and you cannot help but notice the nervous tremble in Dr. Kensler’s hand as she shakes it. “Thank you for joining us on this voyage, Mala.”\n\n“Oh, Amy. Somebody has to keep you alive,” she replies. There is a moment of awkward silence as Dr. Kensler glances up at the woman, then down at her feet, her cheeks tinged red. “Right. Well, then,” she remarks, and continues up the walkway.\n\nDr. Kensler clears her throat once she is out of earshot. “Dr. Mala Sinha is our physician,” she explains. “It took some convincing to get her to join us, so try not to abuse her expertise with inconsequential problems. Frostbite will be a very real concern, as will gangrene and hypothermia. Try to stay on her good side.” You’re unsure if Dr. Kensler is joking.\n\nA man’s voice pierces the sudden silence, along with the clamor of a dog barking. “Anyu! Dammit, Anyu, don’t run off like that!” he shouts.\n\n“That will be Mr. Ashevak,” Dr. Kensler says, scratching off another name from her list. Moments later, you watch as a large gray-furred dog bounds toward you, its tongue hanging out of its mouth in excitement. You lean over and pet the dog, running your hand along her thick, long fur. The man finally catches up to the dog, huffing with effort. “Anyu… Come on, I thought I… trained you better than this,” he says, catching his breath.\n\n“Eliyah Ashevak is our dog handler,” Dr. Kensler interjects, “He is in charge of taking care of the 44 sledge dogs we are bringing along with us, not to mention their feeding and training.\n\n“Anyu here makes 45,” he corrects her before turning to shake your hand. “Also, we’ll be holed up in this ship for a while, so let’s drop the formalities. Just ‘Eliyah’ is fine.”\n\nAs the man and his enormous dog board the ship, you ask Dr. Kensler if she received the letter you sent regarding Professor Dyer’s concerns. “I am well aware of his report,” Dr. Kensler replies, “but as I have told him time and time again, I have no intention of ceasing or postponing this expedition—” Just then, footsteps approach behind you, interrupting your conversation. “—speak of the devil,” Dr. Kensler mutters, looking up from her clipboard. You turn to find none other than Professor William Dyer and his student Danforth, each toting several bags of luggage. “I’m glad you finally decided to join us, William.”\n\n“Amy,” he acknowledges. “I am not here because I believe in your mission statement. I am here to make sure you and your companions do not get themselves killed. You have no idea what you are walking into.”\n\n“Then you will have ample enough opportunity to educate us along the way.” She turns to address young Danforth, who is staring up at the tanker ship with a pained expression. “Danforth, I hope you understand that you are under no obligation to come along on this expedition. After everything you went through…” she trails off, her eyebrows raised in worry atypical of her usual cold demeanor.\n\n“I appreciate your concern, Dr. Kensler, but I am looking forward to the opportunity to return to Antarctica. I want…need…to be there again.”\n\nShe follows his gaze to the Theodosia, which bobs steadily up and down on the choppy Atlantic waters. “Very well. We are still working to get all of our equipment aboard. Mr. Ellsworth can help you find your rooms.” You nod and begin boarding, along with the remaining crew and the rest of the expedition team—mostly students of the university, along with several unaffiliated explorers and several researchers in a variety of fields. Once more you spy the scant sliver of sunlight above before it is smothered by gray clouds."
     },
     "antarctica": {
       "title": "Ice and Death, Part I",
-      "body": "The Theodosia reaches Antarctica. After establishing a base camp, the expedition sets out in two planes to photograph the city and look for a safe place to land."
+      "body": "After two weeks and many hours of hard work, the expedition is ready to make its first foray into the cold, dead continent of Antarctica. Ms. Takada, along with two other mechanics, have fully assembled three aeroplanes along the flat ice shelf—a perfect place for takeoffs and landings. Your team congregates by the aeroplanes, along with several days’ worth of camping equipment. The plan is to fly two of the planes over the vast, jagged peaks, taking aerial photographs of the stone city mentioned in Dyer’s account…that is, if such a thing really exists.\n\n“If we can find a safe landing zone, we will set up a temporary outpost,” Dr. Kensler explains. “Dyer, Danforth, Fredericks, and Claypool will stick around while the rest of us head back to base camp. We can use the sledges to ferry supplies to and from the camps. Otherwise, we’ll simply scout out the area and head back to base camp.” The team nods in agreement and begins boarding the planes."
     },
     "winifred": {
       "title": "Introduction — Winifred takes the controls",
-      "body": "Winifred Habbamock leads the flight. A sudden storm buffets both planes, and an immense shape appears in the clouds as she fights for control."
+      "body": "“Buckle up,” you tell the others as you spin the propeller and hop into the pilot’s seat. You motion to the pilot of the other plane, and both of you start your engines. One at a time, you take off from the ice shelf and soar into the opaque fog. You have never flown a plane of this size, but but it’s no match for your piloting skills. Within moments you have a handle on the beast’s clunky controls. The weather is another matter entirely. The rough Antarctic winds and harsh fog make for poor flying conditions. The deeper you head through the beautiful and deceptive polar mirages, the more you struggle to keep a handle on the aeroplane.\n\nDr. Kensler peers out a window as you pass a magnificent view of distant mountains like vibrant, enchanted castles floating above the clouds. “They’re beautiful,” she remarks quietly.\n\n“These are nothing,” Dyer begins, “Wait until you see—”\n\nAnd then the storm hits. The winter winds are so sudden and fierce that they almost force you out of your seat. Both planes shunt to and fro in the horrid winds, and you hear several of the passengers shouting behind you.\n\n“What in the hell?” Fredericks grunts.\n\n“We have to head back!” Claypool shouts. “These winds will force us down if we keep going!”\n\n“We’re so close!” Dr. Kensler growls bitterly.\n\n“We don’t have a choice!” he yells back, but it’s too late. The plane lurches toward the ground, and you struggle in vain to regain control. All of the passengers notice the dark shape in the sky at the same time you do. It is a massive shadow, like a curtain drawn across the mountains, or perhaps the tattered wings of an antediluvian behemoth. It scowls at you with dreadful, hollow eyes. Then it reaches out, and—"
     },
     "flight": {
       "title": "Introduction — The flight inland",
-      "body": "From the passenger cabin, you watch the mountains through the mist. A sudden storm throws both planes off course, and an immense shape looms above you."
+      "body": "“Buckle up,” your pilot says. You climb into your seat and get ready for the flight. One at a time, the two planes take off from the ice shelf and soar into the opaque fog. The rough Antarctic winds and low visibility make for poor flying conditions, but nonetheless you venture through the beautiful and deceptive polar mirages, over miles of icy wastes and barren snowdrifts.\n\nDr. Kensler peers out a window as you pass a magnificent view of distant mountains like vibrant, enchanted castles floating above the clouds. “They’re beautiful,” she remarks quietly.\n\n“These are nothing,” Dyer begins, “Wait until you see—”\n\nAnd then the storm hits. The winter winds are so sudden and fierce that they almost force you out of your seat. Both planes shunt to and fro in the horrid winds, and you hear several of the passengers shouting behind you.\n\n“What in the hell?” Fredericks grunts.\n\n“We have to head back!” Claypool shouts. “These winds will force us down if we keep going!”\n\n“We’re so close!” Dr. Kensler growls bitterly."
     },
     "crash": {
       "title": "Introduction — The crash",
-      "body": "You regain consciousness in the burning wreckage. The expedition pulls you into the snow and searches for survivors."
+      "body": "As you regain consciousness, intense pain sears through your blistering skin. Through the haze, you can barely hear muffled shouting outside the burning husk of the aeroplane. Somebody grips your arm, pulls you from the wreckage, and hurls you onto the soft snow. More shouts erupt all around you. “There’s another!” “Quickly!” “Grab my hand!”\n\nYou rise to your feet with a world of effort. Miraculously, you are only bruised and winded. Most of the other team members are similarly unharmed, except…"
     },
     "victim08714": {
       "title": "The expedition suffers a loss",
-      "body": "William Dyer died in the plane crash."
+      "body": "Danforth drops to his knees as he examines the elderly man’s mangled body. “I… I should have…” he begins, but the words aren’t there.\n\nDr. Kensler places a hand on his shoulder. “This is my fault, not yours,” she offers. “I shouldn’t have dismissed his concerns. That shape in the sky… it wasn’t natural.” But the horrible look in Danforth’s eyes doesn’t fade.\n\n“C’mon, kid,” Fredericks motions to Danforth. “I know it hurts. But we gotta get moving. Gonna be night sooner than yeh think. Then we’re all hosed.”\n\nDanforth nods slowly, but you have to physically pull him away from his mentor before his eyes snap away from Dyer’s."
     },
     "victim08715": {
       "title": "The expedition suffers a loss",
-      "body": "Danforth died in the plane crash."
+      "body": "“No… No…!” Professor Dyer tugs at Danforth’s lifeless arm with a single shaking hand. “Why did I allow him to come? Why was I so foolish? Why?” he berates himself.\n\nDr. Kensler places a hand on his shoulder. “I am the one who let him come, not you. The blame rests with me,” she offers.\n\nProfessor Dyer lowers his head in resignation. “Perhaps… perhaps now he will be able to truly rest. His troubles and his daemonic visions are finally at an end.” He reaches out to touch the student’s cold forehead, but is pulled away by Claypool and Fredericks.\n\n“Come on,” Claypool says. “We don’t have long before nightfall. We have to get a move on.”\n\nDyer nods grimly, but you see dark thoughts swirling behind the veil of his wide, horrified eyes."
     },
     "victim08716": {
       "title": "The expedition suffers a loss",
-      "body": "Eliyah Ashevak died in the plane crash."
+      "body": "Anyu lays by Eliyah’s side, nudging him over and over in a vain attempt to get him to stop playing dead. The dog’s whines are the only sound that any of you dare to make for some time.\n\nFinally, Takada sits down beside Anyu and begins to run her gloved fingers through the dog’s fur soothingly. “Come on, girl. We gotta get moving.”\n\n“Oh, just leave the damned dog,” Cookie says. The glares of the rest of the team quickly shut him up.\n\nIt’s several more minutes before Takada is able to coax Anyu from Eliyah’s body. Even as you trudge along the snow, the dog glances over her shoulder and whines, hoping that any second he’ll stop playing pretend and run to catch up with you. Only once the body has faded into the opaque fog does the realization of his death set in for all of you."
     },
     "victim08717": {
       "title": "The expedition suffers a loss",
-      "body": "Mala Sinha died in the plane crash."
+      "body": "Dr. Kensler kneels over Dr. Sinha’s body in complete silence. It’s only when you approach that you realize tears are streaming down her face. “Mala…I never told you…” she whispers in between sobs.\n\nClaypool kneels next to her and tugs on her shoulder. “Wipe your cheeks. Your tears will freeze—”\n\nDr. Kensler pushes Claypool aside and turns away as she composes herself. When she turns back, her face is stone-cold in more ways than one. “This is my fault. This is all my fault.”\n\n“She knew the risks,” Cookie mutters.\n\nDr. Kensler shoots him a glare that could freeze tears, too. She rises to her feet and trudges away. The remainder of the team follows in complete silence. Nobody dares speak for some time."
     },
     "victim08718": {
       "title": "The expedition suffers a loss",
-      "body": "Avery Claypool died in the plane crash."
+      "body": "Dr. Sinha looks up at the rest of the team and shakes her head, lowering Claypool’s arm back into the snow.\n\nEllsworth places a hand on Cookie’s shoulder, but the gruff man only shakes it off. He points an accusatory finger at Takada. “This is all your fault!” he shouts, trudging forward and pushing her onto the ground. “If you hadn’t built this damned plane like a deathtrap, Claypool would still be alive!”\n\nTakada glares up at him. “There was nothing wrong with the plane! You saw that thing in the sky, didn’t you?”\n\nEliyah and Ellsworth pull Cookie back by his elbows. Dr. Kensler helps Takada to her feet. “Ms. Takada is right,” the scientist says. “The plane did not malfunction. Something else forced it to the ground. And we are going to find out what.”\n\nAs the party begins to depart, you see Ellsworth’s gaze linger on Claypool’s corpse. “I…I’m sorry, Avery,” he says."
     },
     "victim08719": {
       "title": "The expedition suffers a loss",
-      "body": "James Fredericks died in the plane crash."
+      "body": "Claypool and Ellsworth kneel over Cookie’s mangled corpse.\n\n“He was a good man,” Claypool utters at last.\n\nEllsworth nods. “Despite his many attempts to fool us otherwise,” he adds.\n\nClaypool risks the slightest of smiles, though you can tell his lip is quivering.\n\nThe two stay silent for some time before Dr. Kensler interrupts their mourning. “I’m sorry, but we have to get moving.”\n\n“Let them grieve, would you?” Eliyah interjects, but despite the situation, both of the explorers stand and snap to attention.\n\n“No, she’s right,” Claypool says. “Cookie wouldn’t want us to dawdle. He’d be the first person telling everyone to keep moving.”"
     },
     "victim08720": {
       "title": "The expedition suffers a loss",
-      "body": "Amy Kensler died in the plane crash."
+      "body": "Dr. Sinha kneels in front of Dr. Kensler’s body, desperately attempting to resuscitate her. Minutes pass in complete silence as she performs her grim duty. It is clear no life is returning to her colleague, and yet she continues. The only thing you hear is her whispered pleas and quiet sobs in between each repetition.\n\nCookie is the first to break the silence. “Well, shit,” he says eloquently. “What the hell do we do now?”\n\n“She would want the expedition to continue,” Claypool replies.\n\n“To hell with the expedition!” Dr. Sinha cries.\n\nProfessor Dyer interjects, placing a hand on Dr. Sinha’s shoulder. “No, Claypool is right. If we stop here, she’ll have given her life for nothing.” Dr. Sinha relents, collapsing into Dyer’s arms in a fit of sobs. “We have to go on—for Amy’s sake.”"
     },
     "victim08721": {
       "title": "The expedition suffers a loss",
-      "body": "Roald Ellsworth died in the plane crash."
+      "body": "“Dammit,” Cookie grunts as they pull Ellsworth’s lifeless body out of the wreckage. “Dammit all to hell. Damn this damned expedition and all you damned people!” Dr. Kensler and Professor Dyer take the brunt of his rage, but they aren’t looking at Cookie—their eyes are fixed on Ellsworth’s corpse. You spot Claypool turning away, unable to even look upon his friend’s cold, dead eyes. “What in the hell was that damned thing in the sky? Do you even know? Of course yeh don’t know. Dammit!” Cookie continues swearing for some time before marching off into the snow by himself.\n\n“Mr. Fredericks, where are you going?” Dr. Kensler shouts over the raging wind.\n\n“Where do you think?” He yells back. “We gotta find camp for the night or we’ll all end up like Ellsworth, won’t we?”\n\nAfter a moment of thought, Dr. Kensler nods coldly. “He is right. Come on.”"
     },
     "victim08722": {
       "title": "The expedition suffers a loss",
-      "body": "Takada Hiroko died in the plane crash."
+      "body": "Like some kind of cruel, morbid joke, Takada lies contorted and dead in a contraption of her own making. The team is silent for some time as the realization sets in.\n\nEliyah looks the sky in confusion. “What the hell was that thing? That shadow? It was like nothing I have ever seen.”\n\nDanforth responds with a quiet mutter, only barely audible over the howling wind. “The wings. The eyes in darkness. A windowless solid with five dimensions…” He looks up when he realizes the rest of the team is staring blankly at him.\n\n“We have no time to mourn,” Dr. Kensler declares. “It will be nightfall soon enough.”\n\nEliyah shakes his head in protest. “Come on, Kensler. Takada is dead. Give us a half-second, would you?”\n\n“No, she is right,” Professor Dyer chimes in. “If we do not want to end up like her, we have to move.”"
     },
     "setup": {
       "title": "Setup",
@@ -74,39 +74,39 @@
     },
     "coldWelcome": {
       "title": "Under the Ice",
-      "body": "Someone calls you back to look at a trail of misshapen tracks. Before you can work out what left them, a twisted shape bursts from the snow and rushes toward you."
+      "body": "\"Hold on! Come see this!\" one of the other team members shouts as you trudge ahead through the snow. You turn back and examine what they have found - a second set of tracks in the snow, but smaller, misshapen. Almost impossibly so.\n\n\"What in the hell could have made these tracks?\" one of your party asks. You stand dumbfounded. Very little wildlife exists out here in the frozen wastes. And these tracks match nothing you've ever seen before. Nothing you can even imagine.\n\nYou don't have to question what could make such tracks for long. A shape emerges from the erupting snow, twisted and deformed, like a splotch of ink spilled upon the canvas of reality. It makes a strange, almost familiar cry that is eaten by the howling wind: \"-li! -li!\" Then, with terrifying speed, it rushes toward you."
     },
     "intoTheWhite": {
       "title": "Terror of the Stars",
-      "body": "The shape that brought down the planes returns. You see it through the snowfall, bearing down on the place you hoped would shelter you."
+      "body": "These things, these manifestations, they're not beasts or even alien creatures like those Dyer and Danforth encountered in their last expedition. You're not even sure they are entities at all. They have no shape, consisting of an almost proto-plasmic substance that seeps back into the ice when harmed or whenever you escape their clutches. Given the persistence of these entities and the inclement, deadly conditions of Antarctica, you know you won't survive the night without finding shelter.\n\nJust as you are pondering what your next move should be, the ice beneath you rumbles with tremendous force, letting out a terrifying groan. \"An earthquake?\" one of your party asks over the raucous noise.\n\n\"No, that's impossible,\" another replies. You share a dreadful glance. Could it be one of those...things?"
     },
     "runningOutOfTime": {
       "title": "Running Out of Time",
-      "body": "The storm is getting worse. You have to give up the search and take shelter wherever you can."
+      "body": "You can go on no longer. It's not ideal, but you'll have to make do with the shelter you've found. You only hope that it's enough to keep your party from freezing... or worse."
     },
     "noResolution": {
       "title": "No resolution",
-      "body": "The cold has overcome the expedition. With the search cut short, the team must make do with whatever shelter is close at hand."
+      "body": "No amount of preparation could have made your journey through the ice and cold any easier. Your months of training before the expedition kicked in the moment you became stranded, and you were even able to scavenge some supplies while you searched for a safe place to rest for the night…but your thoughts keep returning to the sight of the thing that made your plane crash, the horrifying abominations that pursued you through the snowy wastes, and the sound—that awful sound, that cry! You almost wish you could have been robbed of your senses altogether so as to spare you from the cry that now haunts your every waking moment. As exhaustion settles in and you drift off to sleep, still that sound echoes in your thoughts, over and over again: Tekeli-li! Tekeli-li!"
     },
     "resolution1": {
       "title": "Resolution 1",
-      "body": "At last, the expedition makes camp. You take stock of the supplies you recovered and prepare to face the night."
+      "body": "As you make camp, you are haunted by memories of the creatures you encountered in the icy wilds. Such entities should not exist. Not even Dyer’s report mentions anything of the kind. Grim silence settles over the expedition team as you set up shelter. No one speaks of what they saw in the frozen wilderness. No one speaks of the awful sounds those monsters made. You can only hope that this camp is secluded enough to avoid the attention of those things—whatever they may be…"
     },
     "disappearance": {
       "title": "Checkpoint I: The Disappearance",
-      "body": "A cry wakes you in the night. You emerge to find the camp in disarray. Footprints lead away into the darkness, and some of the expedition may have disappeared."
+      "body": "Your sleep is anything but pleasant. The maddening cold bites at your flesh and the ever-howling wind plays tricks on your mind, conjuring images of misshapen inky forms bursting out of the ground and rending your party whole.\n\nJust as you are finally beginning to leave such horrid thoughts behind, your rest is shattered by a startled cry. You awaken to find your camp in shambles, and several of your companions missing. To your dismay, footsteps lead away from the relative safety of your camp and into the frozen wilds beyond."
     },
     "disappearanceLeave": {
       "title": "Checkpoint I: The Disappearance",
-      "body": "The expedition rests and gathers its equipment for the next leg of the journey."
+      "body": "You spend the next day resting and preparing for the next leg of your journey…"
     },
     "disappearanceSearch": {
       "title": "Checkpoint I: The Disappearance",
-      "body": "You gather your equipment and follow the tracks into the darkness to search for the missing members of the expedition."
+      "body": "You’ve decided to go after your missing team members…"
     },
     "partTwoIntro": {
       "title": "The search",
-      "body": "The storm has quieted just enough to follow the tracks. You set out from camp before the wind can erase them. Somewhere in the white, the missing members of the expedition are waiting."
+      "body": "Your team scrambles in preparation to search for those who went missing in the night. You hate the idea of venturing back out into the freezing cold so soon after taking refuge, but you have no choice if you are to find your companions."
     },
     "partTwoSetup": {
       "title": "Setup",
@@ -114,71 +114,71 @@
     },
     "partTwoWind": {
       "title": "A harsh wind blows",
-      "body": "The wind picks up and begins to bury the tracks. You stop for a moment to look for signs of the missing team."
+      "body": "As you journey through the glacial wilds, you stumble across a set of tracks in the snow leading farther from camp. You pause and investigate further. Were these tracks made by one of your missing team members? Or by something more...monstrous?"
     },
     "partTwoChill": {
       "title": "The chill of night",
-      "body": "The light fades and the cold deepens. You take one last look into the distance before continuing."
+      "body": "As you journey through the glacial wilds, you stumble across a set of tracks in the snow leading farther from camp. You pause and investigate further. Were these tracks made by one of your missing team members? Or by something more...monstrous?"
     },
     "partTwoMadness": {
       "title": "Madness and death",
-      "body": "The wind cuts through your clothing and the darkness closes in. The search has gone on too long."
+      "body": "As the night ends, the storm arrives in its full ferocity. Raging, icy winds and dense snowfall make your task impossible. You'll never find the remaining team members in these conditions, and even if you did...\n\nA hard lump of guilt and despair forms in your throat. There's no way they would survive in this storm, not without supplies or shelter. That you are forced to choose between your life and theirs is a burden you will surely carry with you for the rest of your life. And you'll be lucky if that's more than a couple of days."
     },
     "partTwoNoResolution": {
       "title": "No resolution",
-      "body": "Cold and exhaustion bring the search to an end. Anyone still out on the ice will have to find their own way back."
+      "body": "As the night ends, the storm arrives in its full ferocity. Raging, icy winds and dense snowfall make your task impossible. You’ll never find the remaining team members in these conditions, and even if you did…\n\nA hard lump of guilt and despair forms in your throat. There’s no way they would survive in this storm, not without supplies or shelter. That you are forced to choose between your life and theirs is a burden you will surely carry with you for the rest of your life. And you’ll be lucky if that’s more than a couple of days."
     },
     "partTwoResolution": {
       "title": "Resolution 1",
-      "body": "Back at camp, you count the people you managed to bring home. The rest are still out there, beyond the circle of light."
+      "body": "It is clear that something compelled your teammates to venture away from the safety of your camp. Something alien and mysterious. Something that defies your understanding of Antarctica. None of those who wandered off remember why they did so or what they were doing. It is almost as if their memories were wiped clean. Or perhaps their consciousness was supplanted by another…\n\nIn any event, they seem to have recovered. You mourn those you’ve lost and prepare for the day ahead. Rest or no rest, you have only one chance if you are to survive."
     },
     "search08527": {
       "title": "Dead end",
-      "body": "The tracks lead to a hollow filled with fresh snow. You turn back without finding anyone."
+      "body": "There is nothing here but ice and snow, and no sign of any missing team members. Frustrated, you turn back. You won't find anyone here."
     },
     "search08528": {
       "title": "Cracks in the ice",
-      "body": "Something shifts beneath your feet. You hurry away from the cracks, wondering how deep they go."
+      "body": "As you traverse the glacial wilds, something rumbles and churns beneath your feet. Is that where these creatures are coming from? In the depths of the ice?\n\nA somber thought crosses your mind. If you are right, such entities could exert their vile influence no matter where you stand. Perhaps this has something to do with your missing companions after all, though there are no signs of them here."
     },
     "search08529": {
       "title": "Somber remains",
-      "body": "A torn coat and a pair of goggles jut out of the snow. The lenses are smeared with a dark substance."
+      "body": "You come across evidence of one of your lost companions, abandoned and half-buried in snow - torn scraps from a heavy fur coat and a pair of goggles. Examining the goggles closely yields a terrifying discovery - a dark, sticky substance that you cannot, for the life of you, identify."
     },
     "search08530": {
       "title": "Disappearing footprints",
-      "body": "The footprints vanish in the open snow. When you turn around, the trail behind you has vanished too."
+      "body": "The tracks continue for some time before vanishing, bafflingly, into the snow. There's no sign of any struggle, nor are there any other tracks that might indicate where they could have gone. Could the winds have covered the tracks? And if so, why were you able to follow the rest of the footprints so easily?\n\nBut when you turn back to examine the prints you first followed, they too are gone."
     },
     "search08531": {
       "title": "Dissected explorer",
-      "body": "The tracks lead to a small cave. Inside you find the body of one of the missing explorers, with a wound that could only have been made deliberately."
+      "body": "You follow a set of tracks into a small cavern carved into a glacial wall, and your stomach lurches at the sight before you. One of your missing team members lies in a crumpled heap at the end of the hollow, his clothing torn open. A clean vertical incision has bisected his torso open from his sternum to his belly, and his entrails have been carefully removed. You struggle not to retch. Who could have possibly done such a thing?"
     },
     "search08532": {
       "title": "Evil within",
-      "body": "The ice cracks beneath the creature chasing you. It drops into the depths, and the snow settles over the opening."
+      "body": "You are fleeing from a creature made of kaleidoscopic ooze when you suddenly freeze in place, a web of cracks reaching out across the ice beneath your boots. Your breath catches in your throat. Another step could spell your doom or save your life. Behind you, the entity gains on you, reaching out with arms that are not quite solid or liquid. Feeling lucky, you decide to roll the dice, striking the ground behind you and fleeing to the side. Just as you hoped, the ice is thin enough to splinter open, and the creature tumbles down through the crack, into the icy depths. You breathe a sigh of relief, thankful you did not share a similar fate."
     },
     "search08533": {
       "title": "Bloody evidence",
-      "body": "At the end of the trail, you find an ice pick stained with frozen blood. You back away from the tracks."
+      "body": "You follow a set of footprints through the snow, hoping they will lead you to a sign, any sign, of your lost companions. Sadly, the evidence you discover is not the kind you were hoping to find. Where the prints end, you find an ice pick covered in freshly frozen blood. To your horror, a human eye lies nearby, staining the snow red. A shudder creeps up your spine. What on Earth could compel somebody to do such a thing?"
     },
     "search08534": {
       "title": "Madness inside",
-      "body": "The explorer stares through you, their face streaked with a dark substance. When you finally reach them, they ask what they were doing."
+      "body": "To your relief, you come across one of your missing team members - but they are not themself. Their eyes glazed over, their expression dazed and lost. A murky, slimy substance drips from their face and trickles onto the ice below. When you finally manage to get through to them, they wipe the strange, inky miasma from their face, staining their cheeks black. \"What...was I doing?\" they ask."
     },
     "attack": {
       "title": "Checkpoint II: The Attack",
-      "body": "You have barely rested when the ice cracks beneath the camp. The same piping cry rises again. The creatures are closing in."
+      "body": "You barely have time to rest before the sound of something erupting out of the ground nearby shakes you to your core. Massive tremors follow, sending cracks through the ice all around you. Then, that noise—that insidious piping—Tekeli-li! Tekeli-li!\n\nWhatever those creatures you encountered earlier were, you are sure they came from under the ice, breaking or seeping through to reach the surface. They must somehow live deep under the glacial crust of Antarctica. These quakes can only mean one thing.\n\nYour imagination stirs with visions of these monsters bursting forth all around you, creeping into your eyes and mouth, controlling you. It is clear you aren’t safe here any longer."
     },
     "attackFlee": {
       "title": "Checkpoint II: The Attack",
-      "body": "You grab what you can and flee toward the mountains. By the time you stop, the expedition is exhausted."
+      "body": "You hastily grab what you can and flee the camp. You don’t stop running until you’ve put many miles between you and the pursuing creatures. By the time you’re able to set up camp again, it is past midday, and the team is utterly exhausted. Your new camp is makeshift and haphazard…but it will have to do."
     },
     "attackFight": {
       "title": "Checkpoint II: The Attack",
-      "body": "You take up positions around the camp and prepare to fight the creatures coming through the ice."
+      "body": "You’ve decided to fight off the attacking creatures…"
     },
     "partThreeIntro": {
       "title": "Ice and Death, Part III",
-      "body": "Through the binoculars you see the ice split open. Shapes rise from one fissure, then another, and begin to converge on the camp."
+      "body": "“There—see it?” one of the team members hands you their binoculars and points into the distance. You’ve ventured just outside camp to find a defensible position where you hope can see the creatures approaching…but what you find instead is even worse. Not only are they encroaching on the campsite as you expected, but more are emerging from the ice by the minute.\n\nYou watch the ice shelf split open, and a geyser of multicolored miasma seeps from the cracks. Your companion clutches your arm and points you in another direction, where you see another geyser spill forth. Then, another. “There has to be an end to them, right?”\n\nYou lower the binoculars and tell the rest of the team to prepare for a fight. You don’t know if you can hold off these strange creatures or not, but there’s only one way to find out."
     },
     "partThreeSetup": {
       "title": "Setup",
@@ -186,35 +186,35 @@
     },
     "partThreeManifestations": {
       "title": "Manifestations of Evil",
-      "body": "The last shape rises from the fissure. The storm worsens, and the team braces itself for what comes next."
+      "body": "This place is not what it seems. You feel as though you have trespassed somewhere ancient and terrible, and now its wrath is erupting all around you."
     },
     "partThreeDepths": {
       "title": "Icy Depths",
-      "body": "The ice gives way beneath you. The camp and the creatures vanish behind a wall of snow."
+      "body": "Your only warning is a thin web of cracks that tears through the ice before your feet, and then a sudden explosion of mist and ink-like miasma erupts around you. The force slams you to the ground. You crawl desperately along the freezing-cold ice as the miasma reaches for you. An incomprehensible sound, like the rushing of a furious whirlwind, fills your ears. Then a thunderous crack, and you are falling - no, sliding - down along the ice toward the freezing cold waters below.\n\nIt is a wonder you are even still conscious. You summon all of your strength and cling to the ice shelf just before you plummet below. You finally haul yourself back over the edge, casting a panicked glance at the horizon, but there is no sign of any miasma or mist. The crack in the ice shelf extends for hundreds of feet in front of you, separating you from your pursuers. Somehow, you've unwittingly escaped...although you won't be forgetting that near-death experience anytime soon."
     },
     "partThreeNoResolution": {
       "title": "No resolution",
-      "body": "You escape through a whirl of ice and snow, exhausted and barely able to tell what is following you."
+      "body": "Through a whirlwind of snow and ice, you barely manage to escape with your life. You traipse across the snowy plains for miles, exhausted, terrified, and unsure whether the phantasms hunting you are real or merely figments of your rattled imagination.\n\nIn cruel, bitter silence, you and your remaining companions trudge onward. The sun drifts to the horizon but never sets. You have seen no sign of danger for hours, and yet you dare not tarry. Dread compels you on.\n\nOnly when you are too tired to walk any longer do you finally stop to get your bearings and decide how to proceed. After all, is this even a research expedition any longer?"
     },
     "partThreeVictory": {
       "title": "Resolution 1",
-      "body": "The last creature dissolves into mist. You leave the camp and walk until you can no longer hear anything behind you."
+      "body": "In cruel, bitter silence, you and your remaining companions trudge onward. The sun drifts to the horizon but never sets. You have seen no sign of danger for hours, and yet you dare not tarry. Dread compels you on.\n\nOnly when you are too tired to walk any longer do you finally stop to get your bearings and decide how to proceed. After all, is this even a research expedition any longer?"
     },
     "partThreeEscape": {
       "title": "Resolution 2",
-      "body": "You cover your tracks as you leave the ice shelf and head deeper into the mountains."
+      "body": "In cruel, bitter silence, you and your remaining companions trudge onward. The sun drifts to the horizon but never sets. You have seen no sign of danger for hours, and yet you dare not tarry. Dread compels you on.\n\nOnly when you are too tired to walk any longer do you finally stop to get your bearings and decide how to proceed. After all, is this even a research expedition any longer?"
     },
     "restfulNight": {
       "title": "Restful Night",
-      "body": "For the first time since the crash, the wind gives you a moment to rest. You make your way between the tents to speak to the others and see what you can salvage for the journey."
+      "body": "Safe at last, you and the remaining members of the expedition take stock of your situation. You have lost several members of the team, but your numbers remain strong. Part of you knows that staying any longer would prove foolish or deadly. But a great many questions crowd your thoughts, demanding answers despite your worries. What were those uncanny, phantasmal creatures? What happened here after Dyer’s expedition left the icy wastes behind?\n\nYou and the others discuss the situation at length and consider various plans. Some believe in the total abandonment of the expedition. But to return empty-handed now would prove disastrous for the university, frustrate the scientific community, and possibly cost the remaining crew their careers. After all, very few believed Dyer’s outlandish claims—who would believe this?\n\nIn the end, you decide to press onward. Another flight is out of the question, of course. That thing in the sky must still be out there. It was a miracle you survived one aeroplane crash, let alone two. No, there’s only one way to reach the site described in Dyer’s report now: you must travel on foot.\n\nThe decision made, you retire to get what meager rest you can before the grueling trek ahead."
     },
     "restfulNightDawn": {
       "title": "At dawn",
-      "body": "You pack the camp and turn toward the mountains. If you are to reach the place Dyer described, you will have to go on foot."
+      "body": "Silence falls over the camp as, one by one, the team falls into deep slumber. You try your damnedest to get some rest yourself, but every time you close your eyes, the image of those phantasmal creatures comes seeping behind your eyelids, and you shoot awake. You wonder morbidly if death is the only way you will ever rest on this journey."
     },
     "restfulNightDoor": {
       "title": "The door",
-      "body": "You wake to find a door standing in the snow. A grey mist drifts through the frame. The camp is still around you, but something beyond the door seems familiar."
+      "body": "You awaken with a start and immediately reach for a weapon to defend yourself. The sound that pierced through your dreams and shook you back into reality was not one any earthly creature could make, and yet, when you awaken, nothing is out of place. In fact…\n\nYou rise to your feet, shocked, and examine your surroundings. Your makeshift camp was protected from the harsh elements, but still deep in the Antarctic wilderness. And yet, you find yourself indoors, in a hall you cannot place despite a strange familiarity. You brush aside some of the snow that still lingers on the ground around your sleeping bag, noting a tiled floor that wasn’t there before. A dream?\n\nAs you doubt the truth of this mysterious place, the walls and the tiled floor shimmer and fade. You are left back in the freezing cold of your camp, surrounded by your companions—except the door leading out of that hall still remains. Thick gray mist swirls around you, guiding you onward.\n\nThis is no natural refraction of light. Something supernatural is at work here. The thick miasma that churns around your camp is not unlike the substance that makes up the nightmarish creatures you encountered after your plane crashed. Do you really want to know what it wants you to see?"
     }
   },
   "choice": {

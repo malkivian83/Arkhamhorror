@@ -142,13 +142,19 @@ de ¡Tekeli-li! y dieciocho cartas de compañero.
 
 ## Narración
 
-Hielo y muerte, sus dos puntos de control y Noche reposada reúnen 51 locuciones en español generadas con la voz de ElevenLabs
-elegida para la campaña, Salva (`hyKxCTlAqtnW188CgltM`). Leen los resúmenes que muestra
-la mesa, desde el prólogo y las variantes del accidente hasta los reversos de
-plan, las resoluciones, las salidas de ambos puntos de control y las historias de la búsqueda. La ficha de preparación se muestra como texto.
+Los pasajes de historia ya implementados se muestran con el texto de la guía o
+de la carta correspondiente. La preparación conserva sus instrucciones. Noche
+reposada muestra el segundo pasaje al terminar las visitas y añade el tercero
+si aparece la puerta.
 
-`node scripts/generate-edge-of-the-earth-audio.mjs --generate` genera los MP3
-y actualiza el registro de reproducción al completar todas las grabaciones.
+Los 51 pasajes narrativos tienen locución de Salva (`hyKxCTlAqtnW188CgltM`).
+Ocho reversos de plan reutilizan las pistas de las cartas y las resoluciones
+III-1 y III-2 comparten pista porque el relato es idéntico.
+
+`node scripts/generate-edge-of-the-earth-audio.mjs --generate` completa las
+grabaciones pendientes. Se puede seleccionar una parte del trabajo con
+`--only=clave1,clave2`. Las huellas del registro permiten recuperar el avance
+y comprobar que cada grabación corresponde al texto mostrado.
 
 La preparación ofrece narración en los planes y actos iniciales de las tres
 partes de Hielo y muerte. Las 21 caras de plan y acto con texto narrativo

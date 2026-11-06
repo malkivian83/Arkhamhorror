@@ -18,6 +18,7 @@ const props = defineProps<{
 const emit = defineEmits<{ decide: [decision: AttackDecision | DisappearanceDecision] }>()
 const { t, locale } = useI18n()
 const narration = computed(() => storyNarration(props.story.body, locale.value))
+const paragraphs = computed(() => t(props.story.body).split('\n\n'))
 const names = computed(() => props.missing?.map((code) => localName(cardName(code))).join(', '))
 </script>
 
@@ -25,7 +26,7 @@ const names = computed(() => props.missing?.map((code) => localName(cardName(cod
   <section>
     <h2>{{ t(story.title) }}</h2>
     <StoryNarration v-if="narration" :key="narration" :src="narration" />
-    <p>{{ t(story.body) }}</p>
+    <p v-for="(paragraph, index) in paragraphs" :key="index">{{ paragraph }}</p>
     <template v-if="missing">
       <p v-if="names">{{ t('choice.edgeOfTheEarth.missing', { names }) }}</p>
       <p v-else>{{ t('choice.edgeOfTheEarth.allSafe') }}</p>

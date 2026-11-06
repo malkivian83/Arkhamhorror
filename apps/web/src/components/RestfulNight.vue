@@ -56,19 +56,19 @@ function confirm() {
   })
   partner.value = undefined
 }
-const story = computed(() => {
-  const part = props.interlude.canContinue
-    ? props.interlude.offersMirage
-      ? 'restfulNightDoor'
-      : 'restfulNightDawn'
-    : 'restfulNight'
-  return { title: `story.edgeOfTheEarth.${part}.title`, body: `story.edgeOfTheEarth.${part}.body` }
+const stories = computed(() => {
+  const parts = props.interlude.canContinue ? ['restfulNightDawn'] : ['restfulNight']
+  if (props.interlude.canContinue && props.interlude.offersMirage) parts.push('restfulNightDoor')
+  return parts.map((part) => ({
+    title: `story.edgeOfTheEarth.${part}.title`,
+    body: `story.edgeOfTheEarth.${part}.body`,
+  }))
 })
 </script>
 
 <template>
   <section class="night">
-    <ExpeditionCheckpoint :story="story" />
+    <ExpeditionCheckpoint v-for="story in stories" :key="story.body" :story="story" />
     <p v-if="!interlude.canContinue">
       {{ t('prompt.edgeOfTheEarth.nightVisits', { remaining: interlude.remaining }) }}
     </p>
