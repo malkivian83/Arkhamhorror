@@ -7,11 +7,25 @@ Science) y publicada en
 La traducción y maquetación al castellano (cartas y guía) es de Los Archivos de
 Arkham. Ninguna de las dos versiones indica número de versión ni fecha.
 
-Estado: **escenarios I (Trasnochadores) y II (Noche en la ciudad) jugables;
-interludios y escenarios III–VIII pendientes. Material completo en EN y ES.** Este documento
+Estado: **escenarios I (Trasnochadores) y II (Noche en la ciudad) jugables e
+Interludio I resuelto al cerrar el II; escenarios III–VIII y resto de interludios pendientes. Material completo en EN y ES.** Este documento
 recoge el inventario, las diferencias entre versiones y las decisiones
 pendientes. No sustituye a las guías: al implementar, contrasta cada paso con
 el PDF.
+
+### Continuación de implementación · 2026-11-06
+
+- Interludio I (guía ES/EN p. 6) al final de la resolución del II: rutas 1–4,
+  Hibb (Listo para ayudar) opcional al mazo de un investigador, ficha de
+  sectario/calavera/tablilla y texto oculto 5 por investigador; sus lectores se
+  anotan en `plaguebearerCuriosity` para aplicar 1 horror y 1 carta al preparar
+  el III (pendiente). Textos literales EN/ES, sin narración grabada aún.
+- Revisión de reglas: Hibb 78039 daba +1 combate; la carta dice +1 voluntad y
+  +1 agilidad, e iconos voluntad/intelecto/agilidad (había comodín). Corregido.
+  Resoluciones del II contrastadas con la guía: correctas.
+- Verificación: 139 pruebas de la campaña y tipos de cards correctos.
+- Bloqueo para el III: Python ya no está instalado (los scripts de imágenes usan
+  PIL). Las páginas de las guías se extraen con `tmp/plaguebearer/extract-jpegs.mjs`.
 
 ### Continuación de implementación · 2026-11-05
 
