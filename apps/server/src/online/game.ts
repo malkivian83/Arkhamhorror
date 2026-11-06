@@ -1,4 +1,5 @@
 import type { OnlineGame } from '@lcg/shared'
+import { tekeliliCopies } from '@lcg/engine'
 import type { Lobby } from './lobbies'
 import { tableStats, tableView } from './table'
 import {
@@ -10,6 +11,7 @@ import {
   disappearanceResult,
   expeditionAttack,
   expeditionAttackResult,
+  restfulNight,
   currentScenario,
   pendingTransfers,
   purchaseOptions,
@@ -30,6 +32,8 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
   const checkpointResult = lobby.intermission && campaign ? disappearanceResult(campaign) : null
   const attack = lobby.intermission && campaign ? expeditionAttack(campaign) : null
   const attackResult = lobby.intermission && campaign ? expeditionAttackResult(campaign) : null
+  const night = lobby.intermission && campaign ? restfulNight(campaign) : null
+  const canManage = lobby.owner === user
   const active = campaign ? activeMembers(campaign).map((i) => i.id) : []
   const ready = (investigator: string) =>
     lobby.members.some(
@@ -118,7 +122,28 @@ export function gameView(lobby: Lobby, user: string): OnlineGame {
     ...(lobby.intermission && campaign
       ? {
           campaign: {
-            canManage: lobby.owner === user,
+            canManage,
+            ...(night
+              ? {
+                  restfulNight: {
+                    ...night,
+                    options: canManage ? night.options : [],
+                    ownedWeaknesses: canManage
+                      ? Object.fromEntries(
+                          (
+                            night.options.find(({ effect }) => effect === 'removeWeaknesses')
+                              ?.targets ?? []
+                          ).map(({ id }) => [
+                            id,
+                            campaign.log.investigators[id]!.storyAssets.filter((code) =>
+                              Object.hasOwn(tekeliliCopies, code),
+                            ),
+                          ]),
+                        )
+                      : {},
+                  },
+                }
+              : {}),
             ...(checkpoint
               ? { disappearance: checkpoint }
               : checkpointResult

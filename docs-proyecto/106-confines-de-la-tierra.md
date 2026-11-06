@@ -23,13 +23,17 @@ III y registra la huida. Combatir recupera el campamento y reparte los ocho
 Eidolones ocultos de forma equitativa. Las resoluciones registran victoria,
 huida o derrota con sus bonificaciones de experiencia.
 
-Noche reposada está disponible en el registro local. Conserva las visitas y
+Noche reposada está disponible en el registro local y en salas. Conserva las visitas y
 sus efectos al recargar, y ofrece Espejismo letal si hay al menos tres bajas.
 Incluye tres locuciones de Salva. Los Memoriales se anotan en el registro y sus
 habilidades quedan pendientes para cuando puedan usarse en un escenario.
+En salas, el anfitrión registra las visitas y elige la ruta, y todos los
+jugadores pueden escuchar la narración y ver el avance.
+Verificadas 62 pruebas dirigidas de salas, vista en línea, guardado local e
+interludio, incluidas la autorización y la repetición de peticiones.
 
-Siguiente entrega: implementar los Memoriales, conectar el interludio a las
-salas y habilitar Espejismo letal y Hacia los picos prohibidos.
+Siguiente entrega: implementar los Memoriales y habilitar Espejismo letal y
+Hacia los picos prohibidos.
 
 Claypool reutiliza la cancelación de fichas. La prueba puede terminar sin
 modificador si cancela la única ficha sin reemplazarla. Fredericks usa una

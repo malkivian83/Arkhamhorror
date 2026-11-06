@@ -8,6 +8,7 @@ import type {
   TokenEffect,
   Choice,
   Question,
+  ExpeditionPartner,
 } from '@lcg/engine'
 
 export type OnlineChoice = Omit<Choice, 'then' | 'requires'>
@@ -37,11 +38,31 @@ export interface OnlineCommand {
   questionId: string
   choice: number
 }
+type RestfulNightTarget =
+  { type: 'investigator'; id: string } | { type: 'partner'; id: ExpeditionPartner }
+
+export interface OnlineRestfulNight {
+  remaining: number
+  canContinue: boolean
+  offersMirage: boolean
+  options: {
+    partner: ExpeditionPartner
+    effect: string
+    targets: RestfulNightTarget[]
+    card?: string
+  }[]
+}
+
 export type OnlineProgressAction =
   | { action: 'finish' }
   | { action: 'next' }
   | { action: 'disappearance'; decision: 'search' | 'leave' }
   | { action: 'attack'; decision: 'fight' | 'flee' }
+  | {
+      action: 'nightVisit'
+      choice: { partner: ExpeditionPartner; target?: RestfulNightTarget; weaknesses?: string[] }
+    }
+  | { action: 'nightFinish'; route: 'mirage' | 'peaks' }
   | { action: 'ready'; ready: boolean }
   | { action: 'purchase'; card: string; upgrade: boolean; replaces?: string; remove?: string }
   | {
@@ -56,6 +77,7 @@ export type OnlineProgressAction =
   | { action: 'replace'; deck: OnlineDeck }
 export type OnlineProgressCommand = { commandId: string; revision: number } & OnlineProgressAction
 export interface OnlineCampaignView {
+  restfulNight?: OnlineRestfulNight & { ownedWeaknesses: Record<string, string[]> }
   disappearance?: {
     story: { title: string; body: string }
     missing?: string[]

@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { restfulNight, RestfulNightChoice } from '@lcg/cards'
+import type { RestfulNightChoice } from '@lcg/cards'
+import type { OnlineRestfulNight } from '@lcg/shared'
 import { cardName } from '../game/cards'
 import { localizedCards, localName } from '../game/localized'
 import ExpeditionCheckpoint from './ExpeditionCheckpoint.vue'
 import SiteAction from './SiteAction.vue'
 
 const props = defineProps<{
-  interlude: NonNullable<ReturnType<typeof restfulNight>>
+  interlude: OnlineRestfulNight
   ownedWeaknesses: Record<string, string[]>
+  readOnly?: boolean
+  disabled?: boolean
 }>()
 const emit = defineEmits<{
   visit: [choice: RestfulNightChoice]
@@ -66,8 +69,10 @@ const story = computed(() => {
 <template>
   <section class="night">
     <ExpeditionCheckpoint :story="story" />
-    <template v-if="!interlude.canContinue">
-      <p>{{ t('prompt.edgeOfTheEarth.nightVisits', { remaining: interlude.remaining }) }}</p>
+    <p v-if="!interlude.canContinue">
+      {{ t('prompt.edgeOfTheEarth.nightVisits', { remaining: interlude.remaining }) }}
+    </p>
+    <template v-if="!readOnly && !interlude.canContinue">
       <select v-model="partner" :aria-label="t('prompt.edgeOfTheEarth.nightPartner')">
         <option :value="undefined" disabled>{{ t('prompt.edgeOfTheEarth.nightPartner') }}</option>
         <option v-for="visit in interlude.options" :key="visit.partner" :value="visit.partner">
@@ -78,7 +83,7 @@ const story = computed(() => {
         <p>
           {{
             t(`choice.edgeOfTheEarth.night.${option.effect}`, {
-              card: option.effect === 'memorial' ? name(option.card) : '',
+              card: option.card ? name(option.card) : '',
             })
           }}
         </p>
@@ -104,16 +109,20 @@ const story = computed(() => {
             {{ name(code) }}
           </label>
         </fieldset>
-        <SiteAction icon="✓" :disabled="!canVisit" @click="confirm">{{
+        <SiteAction icon="✓" :disabled="disabled || !canVisit" @click="confirm">{{
           t('choice.edgeOfTheEarth.nightConfirm')
         }}</SiteAction>
       </template>
     </template>
-    <div v-else class="night-actions">
-      <SiteAction v-if="interlude.offersMirage" icon="→" @click="emit('finish', 'mirage')">{{
-        t('choice.edgeOfTheEarth.nightMirage')
-      }}</SiteAction>
-      <SiteAction icon="→" @click="emit('finish', 'peaks')">{{
+    <div v-else-if="!readOnly && interlude.canContinue" class="night-actions">
+      <SiteAction
+        v-if="interlude.offersMirage"
+        icon="→"
+        :disabled="disabled"
+        @click="emit('finish', 'mirage')"
+        >{{ t('choice.edgeOfTheEarth.nightMirage') }}</SiteAction
+      >
+      <SiteAction icon="→" :disabled="disabled" @click="emit('finish', 'peaks')">{{
         t('choice.edgeOfTheEarth.nightPeaks')
       }}</SiteAction>
     </div>

@@ -56,6 +56,7 @@ it('hides host actions from guests and upgrades from eliminated players or compl
   campaign.own = null
   expect(await render(campaign)).not.toContain(messages.es.online.campaignPlay.buy)
   campaign.canContinue = false
+  campaign.nextScenario = null
   expect(await render(campaign, 'en')).toContain(messages.en.online.campaignPlay.ended)
 })
 it('offers unused investigators to the player whose investigator left the campaign', async () => {
@@ -92,4 +93,27 @@ it('shows checkpoint narration in Spanish and reserves the decision for the host
   const guest = await render({ ...campaign, canManage: false })
   expect(guest).toContain('edge-of-the-earth-disappearance-salva.mp3')
   expect(guest).not.toContain(messages.es.choice.edgeOfTheEarth.search)
+})
+
+it('shares Restful Night narration while reserving visits and the route for the host', async () => {
+  const campaign = view()
+  campaign.canContinue = false
+  campaign.nextScenario = 'edge-of-the-earth-restful-night'
+  campaign.restfulNight = {
+    remaining: 3,
+    canContinue: false,
+    offersMirage: true,
+    options: [{ partner: '08720', effect: 'research', targets: [] }],
+    ownedWeaknesses: {},
+  }
+  expect(await render(campaign)).toContain(messages.es.prompt.edgeOfTheEarth.nightPartner)
+  const guest = await render({ ...campaign, canManage: false })
+  expect(guest).toContain('edge-of-the-earth-restfulNight-salva.mp3')
+  expect(guest).toContain('Visitas restantes: 3')
+  expect(guest).not.toContain(messages.es.prompt.edgeOfTheEarth.nightPartner)
+  campaign.restfulNight.canContinue = true
+  expect(await render(campaign)).toContain(messages.es.choice.edgeOfTheEarth.nightMirage)
+  expect(await render({ ...campaign, canManage: false })).not.toContain(
+    messages.es.choice.edgeOfTheEarth.nightMirage,
+  )
 })

@@ -8,6 +8,7 @@ import type { OnlineCampaignView, OnlineDeck, OnlineProgressAction } from '@lcg/
 import { cardName } from '../game/cards'
 import GameCard from './GameCard.vue'
 import ExpeditionCheckpoint from './ExpeditionCheckpoint.vue'
+import RestfulNight from './RestfulNight.vue'
 import { localName } from '../game/localized'
 import { useDecksStore } from '../stores/decks'
 
@@ -123,6 +124,15 @@ function buy() {
       :disabled="disabled"
       @decide="decideCheckpoint"
     />
+    <RestfulNight
+      v-if="campaign.restfulNight"
+      :interlude="campaign.restfulNight"
+      :owned-weaknesses="campaign.restfulNight.ownedWeaknesses"
+      :read-only="!campaign.canManage"
+      :disabled="disabled"
+      @visit="emit('action', { action: 'nightVisit', choice: $event })"
+      @finish="emit('action', { action: 'nightFinish', route: $event })"
+    />
     <p v-if="campaign.lost">{{ t('campaign.lost') }}</p>
     <p v-else-if="campaign.transfers.length">{{ t('campaign.transfer.blocked') }}</p>
     <p v-else-if="campaign.canContinue">
@@ -131,7 +141,17 @@ function buy() {
       }}
     </p>
     <p v-else-if="campaign.awaitingReplacement">{{ t('campaign.replace.blocked') }}</p>
-    <p v-else-if="!campaign.disappearance && !campaign.attack">
+    <p
+      v-else-if="
+        campaign.nextScenario &&
+        !campaign.disappearance &&
+        !campaign.attack &&
+        !campaign.restfulNight
+      "
+    >
+      {{ t(`campaign.scenario.${campaign.nextScenario}`) }} · {{ t('campaign.comingSoon') }}
+    </p>
+    <p v-else-if="!campaign.disappearance && !campaign.attack && !campaign.restfulNight">
       {{ t('online.campaignPlay.ended') }}
     </p>
     <ul v-if="campaign.deckIssues?.length" class="deck-issues" role="status">

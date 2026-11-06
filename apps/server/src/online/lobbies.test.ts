@@ -278,6 +278,37 @@ describe('private online lobbies', () => {
     expect(escaped.campaign?.nextScenario).toBe('edge-of-the-earth-restful-night')
     expect(escaped.campaign?.attack?.story.body).toContain('attackFlee')
     expect(await new LobbyService(db).progress(id, 'host', flee)).toEqual(escaped)
+    const night = escaped.campaign!.restfulNight!
+    expect(night.remaining).toBe(4)
+    expect(night.offersMirage).toBe(true)
+    expect((await service.game(id, 'friend')).campaign?.restfulNight).toMatchObject({
+      remaining: 4,
+      options: [],
+      ownedWeaknesses: {},
+    })
+    const early = progressCommand(escaped.revision, { action: 'nightFinish', route: 'peaks' })
+    await expect(service.progress(id, 'host', early)).rejects.toMatchObject({
+      code: 'campaign_cannot_continue',
+    })
+    let current = escaped
+    for (const option of night.options.slice(0, 4)) {
+      const choice = { partner: option.partner, target: option.targets[0]! }
+      const visit = progressCommand(current.revision, { action: 'nightVisit', choice })
+      await expect(service.progress(id, 'friend', visit)).rejects.toMatchObject({
+        code: 'not_owner',
+      })
+      current = await service.progress(id, 'host', visit)
+      expect(await new LobbyService(db).progress(id, 'host', visit)).toEqual(current)
+      await expect(
+        service.progress(id, 'host', { ...visit, action: 'nightFinish', route: 'peaks' }),
+      ).rejects.toMatchObject({ code: 'command_conflict' })
+    }
+    expect(current.campaign?.restfulNight?.canContinue).toBe(true)
+    const finish = progressCommand(current.revision, { action: 'nightFinish', route: 'mirage' })
+    const finished = await service.progress(id, 'host', finish)
+    expect(finished.campaign?.restfulNight).toBeUndefined()
+    expect(finished.campaign?.nextScenario).toBe('edge-of-the-earth-fatal-mirage')
+    expect(await new LobbyService(db).progress(id, 'host', finish)).toEqual(finished)
   })
 
   it('records outcomes once, buys only the authenticated player deck and starts the next shared scenario', async () => {
