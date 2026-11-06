@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "fatalMirageRelease": {
+        "title": "Fatal Mirage is playable",
+        "route": "Enter Fatal Mirage from Restful Night when the expedition has lost at least three members. Explore its memories and carry the outcome into the campaign log.",
+        "audio": "Added 34 Spanish recordings by Salva for the location, Memory, act and agenda backs, alongside English and Spanish card scans."
+      },
       "fatalMirage": {
         "title": "Fatal Mirage preparation",
         "rules": "Added the Memory enemies and encounter deck for Fatal Mirage. The scenario is still in preparation.",

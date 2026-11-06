@@ -8,7 +8,20 @@ import {
   type ScenarioBehavior,
 } from '@lcg/engine'
 import { iceTreacheryBlank } from './companion-ellsworth'
-import { mirageConclusion } from './fatal-mirage-decks'
+import { mirageAgendaTwoPenalty, mirageConclusion } from './fatal-mirage-decks'
+import { iceAndDeathRules } from './ice-and-death'
+import {
+  affectedByOttomanFront,
+  flipUniversityHalls,
+  mirageActionAllowed,
+  mirageBeforeInvestigation,
+  mirageBeforeMove,
+  mirageCannotLeave,
+  mirageLocationReactions,
+  mirageShroud,
+  UNIVERSITY_HALLS,
+  UNIVERSITY_PAYMENT,
+} from './fatal-mirage-locations'
 import { EOTE_FATAL_MIRAGE } from './ice-and-death-cards'
 import {
   accountedFor,
@@ -20,9 +33,10 @@ import {
 import { evanescentMist } from './fatal-mirage-mist'
 import { isMirageMemory, revealMirageMemory, resolveMirageMemory } from './fatal-mirage-memories'
 import { horrifyingShade } from './fatal-mirage-shade'
+import { readMirageBack } from './fatal-mirage-story'
 import { mirageTokenEffect, resolveMirageToken } from './fatal-mirage-tokens'
 import { resolveMirageEncounter, tormentPreventsReady } from './mirage-shared-encounters'
-import { partTwoEncounterEffect } from './part-two-encounters'
+import { madnessDifficulty, partTwoEncounterEffect } from './part-two-encounters'
 
 function setAsideDestinations(state: GameState, origin: string) {
   return mirageDestinations(origin, accountedFor(state)).filter(
@@ -47,12 +61,26 @@ export const fatalMirageExploration: ScenarioBehavior = {
   id: EOTE_FATAL_MIRAGE,
   tokenEffect: mirageTokenEffect,
   assetCannotReady: tormentPreventsReady,
+  shroudModifier: mirageShroud,
+  cannotLeave: mirageCannotLeave,
+  beforeMove: mirageBeforeMove,
+  actionAllowed: mirageActionAllowed,
+  beforeInvestigation: mirageBeforeInvestigation,
+  reactions: mirageLocationReactions,
+  forced: (state, trigger) =>
+    trigger.type === 'afterRevealChaosToken'
+      ? (iceAndDeathRules.forced?.(state, trigger) ?? [])
+      : [],
+  enemyStat: (state, enemy, stat) =>
+    madnessDifficulty(state, enemy.id) +
+    (stat === 'fight' && affectedByOttomanFront(enemy) ? 2 : 0),
   onAllInvestigatorsEliminated: (state) => mirageConclusion(state, false),
   enemyKeyword: (state, enemy, keyword) =>
-    enemy.code === horrifyingShade.code &&
-    keyword === 'aloof' &&
-    enemy.location &&
-    clearedOfMirages(state, enemy.location)
+    (keyword === 'retaliate' && affectedByOttomanFront(enemy)) ||
+    (enemy.code === horrifyingShade.code &&
+      keyword === 'aloof' &&
+      enemy.location &&
+      clearedOfMirages(state, enemy.location))
       ? false
       : null,
   blanksTreachery: (state, card) => iceTreacheryBlank(state, card.id),
@@ -78,7 +106,14 @@ export const fatalMirageExploration: ScenarioBehavior = {
         actions: 1,
         provokes: true,
         target: { type: 'location', id: origin },
-        costs: [{ type: 'PayGroupClues', amount, from: payers.map(({ id }) => id) }],
+        costs: [
+          {
+            type: 'PayGroupClues',
+            amount,
+            from: payers.map(({ id }) => id),
+            ...(origin === UNIVERSITY_HALLS ? { recordPayment: UNIVERSITY_PAYMENT } : {}),
+          },
+        ],
         then: [
           explore(
             investigator,
@@ -96,6 +131,8 @@ export const fatalMirageExploration: ScenarioBehavior = {
     ]
   },
   specific: (state, key, data) => {
+    if (key === 'mirageAgendaTwoPenalty')
+      return push(state, ...mirageAgendaTwoPenalty(state, String(data.investigator)))
     if (key === 'mirageRestoreVictory')
       return {
         ...state,
@@ -139,7 +176,17 @@ export const fatalMirageExploration: ScenarioBehavior = {
                 ? [
                     {
                       label: 'choice.edgeOfTheEarth.mistClues',
-                      then: [{ type: 'PayGroupClues' as const, amount: 2, from: payers }, next],
+                      then: [
+                        {
+                          type: 'PayGroupClues' as const,
+                          amount: 2,
+                          from: payers,
+                          ...(origin === UNIVERSITY_HALLS
+                            ? { recordPayment: UNIVERSITY_PAYMENT }
+                            : {}),
+                        },
+                        next,
+                      ],
                     },
                   ]
                 : []),
@@ -159,6 +206,17 @@ export const fatalMirageExploration: ScenarioBehavior = {
             ],
           },
         })
+      }
+      if (!data.storyShown)
+        return push(state, readMirageBack(origin), {
+          type: 'ScenarioSpecific',
+          key,
+          data: { ...data, storyShown: true },
+        })
+      if (origin === UNIVERSITY_HALLS) {
+        const [flipped, revelations] = flipUniversityHalls(state)
+        if (flipped.investigators.some((player, index) => player !== state.investigators[index]))
+          return push(flipped, ...revelations, { type: 'ScenarioSpecific', key, data })
       }
       if (destinations.length === 1)
         return push(state, discover(investigator, origin, destinations[0]!))

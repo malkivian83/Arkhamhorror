@@ -22,7 +22,7 @@ function atMemory(location: string): GameState {
       ...prepareMirageMap(2, new Set([location]), new Set()),
       ...mirageDecks(2),
       id: fatalMirageExploration.id,
-      startingLocation: location,
+      startingLocation: PRISON_OF_MEMORIES,
     },
   })
   return dispatch(
@@ -31,7 +31,16 @@ function atMemory(location: string): GameState {
       queue: [],
       pending: null,
       activeTurn: 'a',
-      investigators: state.investigators.map((i) => ({ ...i, clues: 2, actionsRemaining: 3 })),
+      locations: {
+        ...state.locations,
+        [location]: { ...state.locations[location]!, revealed: true },
+      },
+      investigators: state.investigators.map((i) => ({
+        ...i,
+        location,
+        clues: 2,
+        actionsRemaining: 3,
+      })),
     },
     { type: 'InitializeExpedition' },
   )

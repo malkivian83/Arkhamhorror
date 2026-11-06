@@ -1,6 +1,6 @@
-import { dispatch } from '@lcg/engine'
+import { applyInput, dispatch } from '@lcg/engine'
 import { describe, expect, it } from 'vitest'
-import { currentScenario, newCampaign, startScenario } from '../campaign'
+import { currentScenario, finishScenario, newCampaign, startScenario } from '../campaign'
 import { applyRestfulNightVisit, completeRestfulNight, restfulNight } from './restful-night'
 import { fledToMountains } from './checkpoint'
 import { startingFrostRemoved } from './opening'
@@ -122,9 +122,27 @@ it('unlocks the next route only after the visits, with the mirage requiring thre
     offersMirage: true,
     canContinue: true,
   })
-  expect(currentScenario(completeRestfulNight(visited, 'mirage'))).toBe(
-    'edge-of-the-earth-fatal-mirage',
+  const mirage = completeRestfulNight(visited, 'mirage')
+  expect(currentScenario(mirage)).toBe('edge-of-the-earth-fatal-mirage')
+  const interactive = startScenario(mirage, 77)
+  expect(interactive.pending?.question.prompt).toBe('prompt.chooseLead')
+  const intro = applyInput(interactive, {
+    investigator: interactive.pending!.investigator,
+    choice: 0,
+  })
+  expect(intro.pending?.question.story?.body).toBe('story.edgeOfTheEarth.mirageIntro1.body')
+  const game = startScenario(JSON.parse(JSON.stringify(mirage)), 77, false)
+  expect(game.scenarioId).toBe('edge-of-the-earth-fatal-mirage')
+  expect(game.agendas[0]?.code).toBe('08550')
+  expect(game.encounterDeck).toHaveLength(38)
+  const result = dispatch(
+    { ...game, pending: null, queue: [], victoryDisplay: ['08577b'] },
+    { type: 'AdvanceAct' },
   )
+  const after = finishScenario(mirage, result)
+  expect(currentScenario(after)).toBe('edge-of-the-earth-forbidden-peaks')
+  expect(after.log.values.edgeOfTheEarthMirageVisits).toBe('1')
+  expect(after.log.values.edgeOfTheEarthBanishedMemories).toBe('08577b')
   const peaks = completeRestfulNight(visited, 'peaks')
   expect(currentScenario(peaks)).toBe('edge-of-the-earth-forbidden-peaks')
   expect(peaks.results.at(-1)).toMatchObject({ skipped: true, xp: {} })

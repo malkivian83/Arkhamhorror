@@ -347,11 +347,121 @@
     "traits": "Maldición.",
     "text": "<b>Revelación</b> – Si no hay Pesadillas rezumantes en juego, Fantasmagoria obtiene Oleada. Si no es así, busca la Pesadilla rezumante más cercana a un investigador. Si hay 1 o más cartas bajo ella, elige 1 de ellas al azar y hazla aparecer en su Lugar. Si no hay cartas bajo ella, se mueve y ataca como si fuera la fase de Enemigos (sin agotarse)."
   },
+  "08549": {
+    "name": "Espejismo letal",
+    "typeCode": "scenario",
+    "text": "Fácil / Normal\n[skull]: -X. X es la cantidad de cartas de Historia que hay en la zona de victoria.\n[cultist]: -2. Si fracasas, coloca 1 de tus pistas en tu Lugar.\n[tablet]: -3. Si fracasas, debes moverte a la Prisión de recuerdos o barajar la primera carta del mazo Tekeli-li en tu mazo sin mirarla.\n[elder_thing]: -4. Si fracasas, coloca 1 ficha de Perdición en un Enemigo [[Eidolón]] que esté en juego.",
+    "backText": "Difícil / Experto\n[skull]: -X. X es el número del plan en curso más la cantidad de cartas de Historia que hay en la zona de victoria.\n[cultist]: -2. Si no tienes éxito por al menos 2, coloca 1 de tus pistas en tu Lugar.\n[tablet]: -4. Si fracasas, debes moverte a la Prisión de recuerdos o barajar la primera carta del mazo Tekeli-li en tu mazo sin mirarla. Si fracasas por 2 o más, haz ambas cosas.\n[elder_thing]: -5. Si fracasas, coloca 1 ficha de Perdición en un Enemigo [[Eidolón]] que esté en juego."
+  },
+  "08550": {
+    "name": "Embrollo etéreo (v. I)",
+    "typeCode": "agenda"
+  },
+  "08551": {
+    "name": "Embrollo etéreo (v. II)",
+    "typeCode": "agenda"
+  },
+  "08552": {
+    "name": "Embrollo etéreo (v. III)",
+    "typeCode": "agenda"
+  },
+  "08553": {
+    "name": "Sombras del pasado (v. I)",
+    "typeCode": "act"
+  },
+  "08554": {
+    "name": "Sombras del pasado (v. II)",
+    "typeCode": "act"
+  },
+  "08555": {
+    "name": "Sombras del pasado (v. II)",
+    "typeCode": "act"
+  },
+  "08556": {
+    "name": "Prisión de recuerdos",
+    "typeCode": "location"
+  },
+  "08557": {
+    "name": "Campamento base",
+    "typeCode": "location"
+  },
+  "08558": {
+    "name": "Cubierta del Theodosia",
+    "typeCode": "location"
+  },
+  "08559": {
+    "name": "Salas de la universidad",
+    "typeCode": "location"
+  },
+  "08560": {
+    "name": "Laberinto de setos",
+    "typeCode": "location"
+  },
+  "08561": {
+    "name": "Estación desierta",
+    "typeCode": "location"
+  },
+  "08562": {
+    "name": "Aguas costeras",
+    "typeCode": "location"
+  },
+  "08563": {
+    "name": "Cámara de los Antiguos",
+    "typeCode": "location"
+  },
+  "08564": {
+    "name": "Teatro Riverview",
+    "typeCode": "location"
+  },
+  "08565": {
+    "name": "Piedras verticales",
+    "typeCode": "location"
+  },
+  "08566": {
+    "name": "Aeródromo",
+    "typeCode": "location"
+  },
+  "08567": {
+    "name": "Naturaleza de Alaska",
+    "typeCode": "location"
+  },
+  "08568": {
+    "name": "Residencia desordenada",
+    "typeCode": "location"
+  },
+  "08569": {
+    "name": "Aula de Dyer",
+    "typeCode": "location"
+  },
+  "08570": {
+    "name": "Dispensario",
+    "typeCode": "location"
+  },
+  "08571": {
+    "name": "Despacho de la Dra. Kensler",
+    "typeCode": "location"
+  },
+  "08572": {
+    "name": "Moáis",
+    "typeCode": "location"
+  },
+  "08573": {
+    "name": "Frente otomano",
+    "typeCode": "location"
+  },
+  "08574": {
+    "name": "La piedra negra",
+    "typeCode": "location"
+  },
   "08575": {
     "name": "Recuerdo de una cacería torcida",
     "typeCode": "enemy",
     "traits": "Monstruo. Eidolón. Élite.",
     "text": "Alerta. Represalia.\n<b>Presa</b> – Investigador que tenga a Eliyah Ashevak.\n[reaction] Después de que evites a este Enemigo con éxito por 3 o más: Inflígele 3 puntos de daño.\n<b>Obligado</b> – Cuando sea derrotado, dale la vuelta y resuelve su Historia."
+  },
+  "08576": {
+    "name": "Recuerdo de un paciente perdido",
+    "typeCode": "enemy"
   },
   "08577": {
     "name": "Recuerdo de un padre desaparecido",
@@ -364,6 +474,22 @@
     "typeCode": "enemy",
     "traits": "Monstruo. Eidolón. Élite.",
     "text": "Represalia.\n<b>Presa</b> – Investigador que tenga a James «Cookie» Fredericks.\n[reaction] Después de que este Enemigo te ataque: Inflígele 1 punto de daño.\n<b>Obligado</b> – Cuando sea derrotado, dale la vuelta y resuelve su Historia."
+  },
+  "08579": {
+    "name": "Recuerdo de un viaje pesaroso",
+    "typeCode": "enemy"
+  },
+  "08580": {
+    "name": "Recuerdo de un mal innombrable",
+    "typeCode": "enemy"
+  },
+  "08581": {
+    "name": "Recuerdo de un descubrimiento terrible",
+    "typeCode": "enemy"
+  },
+  "08582": {
+    "name": "Recuerdo de una traducción alienígena",
+    "typeCode": "enemy"
   },
   "08583": {
     "name": "Recuerdo de un amor no correspondido",
@@ -382,6 +508,10 @@
     "typeCode": "treachery",
     "traits": "Maldición. Peligro.",
     "text": "<b>Revelación</b> – Vincula la Bruma evanescente al Lugar más cercano que no esté despejado de espejismos. Coloca 2 pistas en el Lugar vinculado.\nPara darle la vuelta al Lugar vinculado, los investigadores que estén allí deben gastar 2 pistas adicionales en grupo o recibir 2 puntos de daño cada uno.\n<b>Obligado</b> – Si el Lugar vinculado está despejado de espejismos: Descarta la Bruma evanescente."
+  },
+  "08586": {
+    "name": "Anamnesis",
+    "typeCode": "treachery"
   },
   "08587": {
     "name": "Profesor William Dyer",
@@ -449,6 +579,14 @@
     "traits": "Aliado. Viajero. Decidido.",
     "text": "Compañero. Usos (9 recursos).\n[action] Agota a Takada Hiroko: Obtén 1 recurso. Mueve hasta 3 recursos de Takada Hiroko a tu reserva de recursos."
   },
+  "08687": {
+    "name": "Mal primordial",
+    "typeCode": "enemy"
+  },
+  "08688": {
+    "name": "La locura interior",
+    "typeCode": "treachery"
+  },
   "08689": {
     "name": "Manifestación de la locura",
     "typeCode": "enemy",
@@ -515,6 +653,26 @@
     "typeCode": "treachery",
     "traits": "Maldición.",
     "text": "<b>Revelación</b> – Vincula esta carta al Enemigo [[Poseído]] más cercano y coloca 1 ficha de Perdición sobre ese Enemigo. Si no hay Enemigos [[Poseído]] en juego, busca en el mazo y la pila de descartes de Encuentros un Enemigo [[Poseído]], róbalo y vincúlale Abandonado a la locura (baraja el mazo de Encuentros).\nAumenta en 1 la dificultad para combatir, evadir, o negociar con el Enemigo vinculado."
+  },
+  "08703": {
+    "name": "Visiones blasfemas",
+    "typeCode": "treachery"
+  },
+  "08704": {
+    "name": "Entrever lo inconfesable",
+    "typeCode": "treachery"
+  },
+  "08705": {
+    "name": "Vapores de pesadilla",
+    "typeCode": "treachery"
+  },
+  "08706": {
+    "name": "Tormento del miasma",
+    "typeCode": "treachery"
+  },
+  "08707": {
+    "name": "Miasma nebuloso",
+    "typeCode": "treachery"
   },
   "08712": {
     "name": "Espejismo polar",

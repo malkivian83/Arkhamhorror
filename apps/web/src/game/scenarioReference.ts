@@ -20,6 +20,7 @@ const references: Record<string, { code: string; name: string }> = {
   'ice-and-death-part-1': { code: '08501', name: 'Ice and Death' },
   'ice-and-death-part-2': { code: '08501', name: 'Ice and Death' },
   'ice-and-death-part-3': { code: '08501', name: 'Ice and Death' },
+  'edge-of-the-earth-fatal-mirage': { code: '08549', name: 'Fatal Mirage' },
   'the-gathering': { code: '01104', name: 'The Gathering' },
   'spreading-flames': { code: '12105', name: 'Spreading Flames' },
   'smoke-and-mirrors': { code: '12133', name: 'Smoke and Mirrors' },

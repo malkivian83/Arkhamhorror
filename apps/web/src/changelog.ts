@@ -1,6 +1,12 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'fatal-mirage-playable',
+    date: '2026-11-06',
+    title: 'app.changelog.fatalMirageRelease.title',
+    items: ['app.changelog.fatalMirageRelease.route', 'app.changelog.fatalMirageRelease.audio'],
+  },
+  {
     id: 'fatal-mirage-preparation',
     date: '2026-11-06',
     title: 'app.changelog.fatalMirage.title',

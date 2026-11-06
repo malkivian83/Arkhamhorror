@@ -75,7 +75,7 @@ function toCampaign() {
           </li>
         </ul>
       </section>
-      <p class="note">
+      <p v-if="!body.official || body.officialLocale" class="note">
         <template v-if="!body.official">{{ t('table.storySummary') }}</template>
         <button v-if="body.officialLocale" type="button" class="toggle" @click="toggleOfficial">
           {{ body.official ? t('table.summaryText') : t('table.officialText') }}

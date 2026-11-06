@@ -347,11 +347,173 @@
     "traits": "Curse.",
     "text": "<b>Revelation</b> - If there are no Seeping Nightmares in play, Phantasmagoria gains surge. Otherwise, find the Seeping Nightmare nearest to an investigator. If there are 1 or more cards beneath it, choose one of them at random and spawn it at its location. If there are no cards beneath it, it moves and attacks as if it were the enemy phase (without exhausting)."
   },
+  "08549": {
+    "name": "Fatal Mirage",
+    "typeCode": "scenario",
+    "text": "Easy / Standard\n[skull]: -X. X is the number of story cards in the victory display.\n[cultist]: -2. If you fail, place 1 of your clues on your location.\n[tablet]: -3. If you fail, you must either move to the Prison of Memories, or shuffle the top card of the Tekeli-li deck into your deck without looking at it.\n[elder_thing]: -4. If you fail, place 1 doom on an [[Eidolon]] enemy in play.",
+    "backText": "Hard / Expert\n[skull]: -X. X is the current agenda number plus the number of story cards in the victory display.\n[cultist]: -2. If you do not succeed by at least 2, place 1 of your clues on your location.\n[tablet]: -4. If you fail, you must either move to the Prison of Memories, or shuffle the top card of the Tekeli-li deck into your deck without looking at it. (If you fail by 2 or more, do both instead.)\n[elder_thing]: -5. If you fail, place 1 doom on an [[Eidolon]] enemy in play."
+  },
+  "08550": {
+    "name": "Ethereal Tangle (v. I)",
+    "typeCode": "agenda",
+    "text": "[fast] Take 1 horror: Move to the Prison of Memories.",
+    "backText": "Each remaining investigator is defeated and must shuffle the top card of the Tekeli-li deck into their deck."
+  },
+  "08551": {
+    "name": "Ethereal Tangle (v. II)",
+    "typeCode": "agenda",
+    "text": "[fast] Take 1 horror: Move to the Prison of Memories.",
+    "backText": "Each remaining investigator is defeated and must either suffer 1 mental trauma or shuffle the top 2 cards of the Tekeli-li deck into their deck."
+  },
+  "08552": {
+    "name": "Ethereal Tangle (v. III)",
+    "typeCode": "agenda",
+    "text": "[fast] Take 1 horror: Move to the Prison of Memories.",
+    "backText": "Each remaining investigator is defeated and suffers 1 mental trauma."
+  },
+  "08553": {
+    "name": "Shadow of the Past (v. I)",
+    "typeCode": "act",
+    "text": "<b>Objective</b> - Confront your demons to strengthen your resolve. <i>(Hint: You may have more than one opportunity to advance this act. Until then, you are trapped. If you are running out of time and are given the chance to advance, consider taking it...)</i>",
+    "backText": "<b>(→R1)</b>"
+  },
+  "08554": {
+    "name": "Shadow of the Past (v. II)",
+    "typeCode": "act",
+    "text": "<b>Objective</b> - Confront your demons to strengthen your resolve. <i>(Hint: You may have more than one opportunity to advance this act. Until then, you are trapped. If you are running out of time and are given the chance to advance, consider taking it...)</i>",
+    "backText": "<b>(→R1)</b>"
+  },
+  "08555": {
+    "name": "Shadow of the Past (v. III)",
+    "typeCode": "act",
+    "text": "<b>Objective</b> - Confront your demons to strengthen your resolve. <i>(Hint: You may have more than one opportunity to advance this act. Until then, you are trapped. If you are running out of time and are given the chance to advance, consider taking it...)</i>",
+    "backText": "<b>(→R1)</b>"
+  },
+  "08556": {
+    "name": "Prison of Memories",
+    "typeCode": "location",
+    "traits": "Otherworld. Mirage.",
+    "text": "Mirage 1 [per_investigator] (Base Camp, Deck of the Theodosia, University Halls).\nX is the current agenda number."
+  },
+  "08557": {
+    "name": "Base Camp",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 1 [per_investigator] (Coastal Waters, Deserted Station, Riverview Theatre).\n[reaction] When you would you fail a skill test by exactly 1 while investigating Base Camp, take 1 horror: You get +1 skill value for this test."
+  },
+  "08558": {
+    "name": "Deck of the Theodosia",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 1 [per_investigator] (Coastal Waters, Hedge Maze, Standing Stones).\n<b>Forced</b> - When you investigate Deck of the Theodosia: You must either give it +2 shroud for this investigation, or spend 1 additional action to investigate it."
+  },
+  "08559": {
+    "name": "University Halls",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 1 [per_investigator] (Elder Chamber, Riverview Theatre, Standing Stones).\n<b>Forced</b> - When University Halls is flipped over: Each investigator discards the top 3 cards of their deck for each clue they spent. Each investigator draws each Tekeli-li weakness they discarded in this way. Shuffle each other weakness discarded in this way back into its owner's deck."
+  },
+  "08560": {
+    "name": "Hedge Maze",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 2 [per_investigator] (Mo'ai Statues).\n<b>Forced</b> - After you investigate Hedge Maze during your turn: Increase its shroud value by 1 until the end of your turn. You cannot leave Hedge Maze this turn."
+  },
+  "08561": {
+    "name": "Deserted Station",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 2 [per_investigator] (Alaskan Wilds).\nDeserted Station gets +3 shroud while there is at least one treachery attached to it."
+  },
+  "08562": {
+    "name": "Coastal Waters",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 2 [per_investigator] (Airfield, Ottoman Front).\n<b>Forced</b> - After you reveal a [frost] token while investigating Coastal Waters: Take 1 horror. If this investigation is successful, discover 1 additional clue at Coastal Waters. (Limit once per test.)"
+  },
+  "08563": {
+    "name": "Elder Chamber",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 2 [per_investigator] (Cluttered Dormitory).\n<b>Forced</b> - After you discover 2 or more clues from Elder Chamber during a single investigation or card effect: Shuffle the top card of the Tekeli-li deck into your deck."
+  },
+  "08564": {
+    "name": "Riverview Theatre",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 2 [per_investigator] (Dr. Kensler's Office, Infirmary).\n<b>Forced</b> - When you draw a Tekeli-li card while at Riverview Theatre: Resolve its effects an additional time. Then, discover 1 clue at Riverview Theatre."
+  },
+  "08565": {
+    "name": "Standing Stones",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 2 [per_investigator] (The Black Stone, Dyer's Classroom).\n<b>Forced</b> - After you reveal a [frost] token while investigating Standing Stones: Take 1 damage. If this investigation is successful, discover 1 additional clue at Standing Stones. (Limit once per test.)"
+  },
+  "08566": {
+    "name": "Airfield",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 2 [per_investigator] (Memory of a Missing Father).\nWhile Takada Hiroko is at this location, it gets -2 shroud.\nAs an additional cost for you to investigate Airfield, you must spend 1 resource."
+  },
+  "08567": {
+    "name": "Alaskan Wilds",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 2 [per_investigator] (Memory of a Hunt Gone Awry).\nWhile Eliyah Ashevak is at this location, it gets -2 shroud.\nAs an additional cost for you to enter Alaskan Wilds, you must either shuffle the top card of the Tekeli-li deck into your deck, or spend 1 action."
+  },
+  "08568": {
+    "name": "Cluttered Dormitory",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 2 [per_investigator] (Memory of an Unspeakable Evil).\nWhile Danforth is at this location, it gets -2 shroud.\n<b>Forced</b> - When you resolve the revelation ability on a Tekeli-li card while at Cluttered Dormitory: Shuffle it back into your deck instead of placing it on the bottom of the Tekeli-li deck."
+  },
+  "08569": {
+    "name": "Dyer's Classroom",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 2 [per_investigator] (Memory of a Regretful Voyage).\nWhile Professor William Dyer is at this location, it gets -2 shroud.\n[action] Shuffle the top card of the Tekeli-li deck into your deck: Heal 1 horror from an investigator or [[Ally]] asset at this location."
+  },
+  "08570": {
+    "name": "Infirmary",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 2 [per_investigator] (Memory of a Lost Patient).\nWhile Dr. Mala Sinha is at this location, it gets -2 shroud.\n<b>Forced</b> - After you enter Infirmary for the first time this game, if you have more than 6 remaining health: Take damage until you have exactly 6 remaining health. Otherwise, take 1 damage."
+  },
+  "08571": {
+    "name": "Dr. Kensler's Office",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 2 [per_investigator] (Memory of an Unrequited Love).\nWhile Dr. Amy Kensler is at this location, it gets -2 shroud.\n<b>Forced</b> - After you successfully investigate Dr. Kensler's Office: You must either take 1 horror, or remove 1 secret from an asset you control."
+  },
+  "08572": {
+    "name": "Mo'ai Statues",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 2 [per_investigator] (Memory of an Alien Translation).\nWhile Roald Ellsworth is at this location, it gets -2 shroud.\n<b>Forced</b> - When the revelation effect of a treachery attaches it to Mo'ai Statues: That treachery gains surge. (Limit once per phase.)"
+  },
+  "08573": {
+    "name": "Ottoman Front",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 2 [per_investigator] (Memory of a Ravaged Country).\nWhile James \"Cookie\" Fredericks is at this location, it gets -2 shroud.\nEach non-[[Elite]] enemy at Ottoman Front gets +2 fight and loses retaliate."
+  },
+  "08574": {
+    "name": "The Black Stone",
+    "typeCode": "location",
+    "traits": "Mirage.",
+    "text": "Mirage 2 [per_investigator] (Memory of a Terrible Discovery).\nWhile Avery Claypool is at this location, it gets -2 shroud.\n[fast] Add 1 [frost] token to the chaos bag: Discover 2 clues at The Black Stone. (Group limit once per game.)"
+  },
   "08575": {
     "name": "Memory of a Hunt Gone Awry",
     "typeCode": "enemy",
     "traits": "Monster. Eidolon. Elite.",
     "text": "Alert. Retaliate.\n<b>Prey</b> - Investigator with Eliyah Ashevak.\n[reaction] After you successfully evade this enemy by 3 or more: Deal it 3 damage.\n<b>Forced</b> - When this enemy is defeated: Flip it over and resolve the text on its other side."
+  },
+  "08576": {
+    "name": "Memory of a Lost Patient",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon. Elite.",
+    "text": "Retaliate.\n<b>Prey</b> - Investigator with Dr. Mala Sinha.\n[reaction] After you heal 1 or more damage while this enemy is exhausted: Deal that much damage to this enemy.\n<b>Forced</b> - When this enemy is defeated: Flip it over and resolve the text on its other side."
   },
   "08577": {
     "name": "Memory of a Missing Father",
@@ -364,6 +526,30 @@
     "typeCode": "enemy",
     "traits": "Monster. Eidolon. Elite.",
     "text": "Retaliate.\n<b>Prey</b> - Investigator with James \"Cookie\" Fredericks.\n[reaction] After this enemy attacks you: Deal it 1 damage.\n<b>Forced</b> - When this enemy is defeated: Flip it over and resolve the text on its other side."
+  },
+  "08579": {
+    "name": "Memory of a Regretful Voyage",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon. Elite.",
+    "text": "Retaliate.\n<b>Prey</b> - Investigator with Dr. William Dyer.\n[reaction] After you draw 1 or more cards while this enemy is exhausted: Deal that much damage to this enemy.\n<b>Forced</b> - When this enemy is defeated: Flip it over and resolve the text on its other side."
+  },
+  "08580": {
+    "name": "Memory of an Unspeakable Evil",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon. Elite.",
+    "text": "Alert. Retaliate.\n<b>Prey</b> - Investigator with Danforth.\n[action][action] Shuffle the top 3 cards of the Tekeli-li deck into your deck: <b>Parley.</b> Deal 3 damage to this enemy.\n<b>Forced</b> - When this enemy is defeated: Flip it over and resolve the text on its other side."
+  },
+  "08581": {
+    "name": "Memory of a Terrible Discovery",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon. Elite.",
+    "text": "Alert.\n<b>Prey</b> - Investigator with Avery Claypool.\n[action] Add 1 [frost] token to the chaos bag: <b>Parley.</b> Deal 4 damage to this enemy.\n<b>Forced</b> - When this enemy is defeated: Flip it over and resolve the text on its other side."
+  },
+  "08582": {
+    "name": "Memory of an Alien Translation",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon. Elite.",
+    "text": "Alert.\n<b>Prey</b> - Investigator with Roald Ellsworth.\n[reaction] After this enemy is exhausted, if there is an attachment on its location: Deal 4 damage to this enemy.\n<b>Forced</b> - When this enemy is defeated: Flip it over and resolve the text on its other side."
   },
   "08583": {
     "name": "Memory of an Unrequited Love",
@@ -382,6 +568,12 @@
     "typeCode": "treachery",
     "traits": "Curse. Hazard.",
     "text": "<b>Revelation</b> - Attach Evanescent Mist to the nearest location that is not cleared of mirages. Place 2 clues on attached location.\nIn order to flip attached location over, investigators at attached location must either spend 2 additional clues as a group, or each take 2 damage.\n<b>Forced</b> - If attached location is cleared of mirages: Discard Evanescent Mist."
+  },
+  "08586": {
+    "name": "Anamnesis",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "Peril.\n<b>Revelation</b> - You must either (choose one):\n- Take 2 horror.\n- Place 1 doom on the current agenda. This effect can cause the current agenda to advance."
   },
   "08587": {
     "name": "Professor William Dyer",
@@ -449,6 +641,18 @@
     "traits": "Ally. Wayfarer. Resolute.",
     "text": "Partner. Uses (9 resources).\n[action] Exhaust Takada Hiroko: Gain 1 resource. Move up to 3 resources from Takada Hiroko to your resource pool."
   },
+  "08687": {
+    "name": "Primordial Evil",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon.",
+    "text": "Hunter. Retaliate.\n<b>Forced</b> - When you deal any amount of damage to Primordial Evil: Shuffle the top card of the Tekeli-li deck into your deck without looking at it (if you cannot, Primordial Evil attacks you)."
+  },
+  "08688": {
+    "name": "The Madness Within",
+    "typeCode": "treachery",
+    "traits": "Curse.",
+    "text": "<b>Revelation</b> - Test [willpower] (4). For each point you fail by, shuffle the top card of the Tekeli-li deck into your deck without looking at it (for each card you cannot shuffle, take 1 horror)."
+  },
   "08689": {
     "name": "Manifestation of Madness",
     "typeCode": "enemy",
@@ -515,6 +719,36 @@
     "typeCode": "treachery",
     "traits": "Curse.",
     "text": "<b>Revelation</b> - Attach to the nearest [[Possessed]] enemy and place 1 doom on that enemy. If there are no [[Possessed]] enemies in play, search the encounter deck and discard pile for a [[Possessed]] enemy, draw it, and attach Abandoned to Madness to it (shuffle the encounter deck).\nIncrease the difficulty to fight, evade, or parley with attached enemy by 1."
+  },
+  "08703": {
+    "name": "Blasphemous Visions",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Shuffle the top card of the Tekeli-li deck into your deck without looking at it. Then, put Blasphemous Visions into play in your threat area.\nResolve the effects of each Tekeli-li weakness you draw an additional time.\n[action]: Test [willpower] (3). If you succeed, discard Blasphemous Visions."
+  },
+  "08704": {
+    "name": "Glimpse the Unspeakable",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "Peril.\n<b>Revelation</b> - Draw the top card of the Tekeli-li deck <i>(and resolve its effects)</i>. Shuffle it into any investigator's deck instead of placing it on the bottom of the Tekeli-li deck. If no Tekeli-li weakness is drawn by this effect, Glimpse the Unspeakable gains surge."
+  },
+  "08705": {
+    "name": "Nightmarish Vapors",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "Peril.\n<b>Revelation</b> - You must either (choose one):\n- Lose 2 actions.\n- Shuffle the top 2 cards of the Tekeli-li deck into your deck without looking at them."
+  },
+  "08706": {
+    "name": "Miasmatic Torment",
+    "typeCode": "treachery",
+    "traits": "Curse.",
+    "text": "<b>Revelation</b> - If you control a partner asset, exhaust them and attach Miasmatic Torment to them. Otherwise, Miasmatic Torment gains surge.\nAttached asset cannot ready.\n<b>Forced</b> - At the end of your turn: Attached asset takes 1 damage or 1 horror.\n[action]: Test [willpower] or [intellect] (3). If you succeed, discard Miasmatic Torment."
+  },
+  "08707": {
+    "name": "Nebulous Miasma",
+    "typeCode": "treachery",
+    "traits": "Curse. Hazard.",
+    "text": "<b>Revelation</b> - Attach to your location.\n<b>Forced</b> - When you end your turn at attached location: Each card you control with sanity <i>(including your investigator)</i> takes 1 direct horror.\n<b>Forced</b> - At the end of the round: Discard Nebulous Miasma."
   },
   "08712": {
     "name": "Polar Mirage",

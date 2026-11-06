@@ -47,13 +47,22 @@ describe('Fatal Mirage plans and acts', () => {
       expect(state.agendas).toHaveLength(1)
       expect(state.agendas[0]?.doomThreshold).toBe(doom)
       expect(state.acts).toHaveLength(1)
-      const finished = dispatch({ ...state, doom }, { type: 'CheckAgenda' })
+      const advanced = dispatch({ ...state, doom }, { type: 'CheckAgenda' })
+      const finished =
+        visit === 2 ? choose(advanced, 'choice.edgeOfTheEarth.mirageTwoTekelili') : advanced
       expect(finished.investigators[0]?.eliminated).toBe(true)
       expect(finished.outcome).toEqual({ type: 'noResolution' })
       expect(finished.campaignLog?.investigators.a?.storyAssets).toHaveLength(weaknesses)
       expect(finished.campaignLog?.investigators.a?.mentalTrauma).toBe(trauma)
     },
   )
+
+  it('lets an investigator choose mental trauma instead of two weaknesses on the second visit', () => {
+    const advanced = dispatch({ ...duringMirage(2), doom: 13 }, { type: 'CheckAgenda' })
+    const finished = choose(advanced, 'choice.edgeOfTheEarth.mirageMentalTrauma')
+    expect(finished.campaignLog?.investigators.a?.mentalTrauma).toBe(1)
+    expect(finished.tekeliliDeck).toHaveLength(2)
+  })
 
   it('pays one horror to return to the Prison without spending an action', () => {
     // RR: "Costs" and "Free Triggered Abilities".

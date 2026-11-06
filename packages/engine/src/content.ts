@@ -190,6 +190,10 @@ export interface ScenarioBehavior {
   sequentialEnemyMovement?: boolean
   /** Habilidad con la que se investiga ese Lugar (Cripta de la lámpara sepulcral). */
   investigateSkill?: (state: GameState, location: LocationId) => SkillType | null
+  beforeInvestigation?: (
+    state: GameState,
+    test: Extract<Message, { type: 'BeginSkillTest' }>,
+  ) => Message[] | null
   /**
    * Ranuras de más o de menos para un investigador (Caverna llena de huesos: 1 de mano
    * menos mientras la investigas). Se comprueban al empezar cada prueba de habilidad.

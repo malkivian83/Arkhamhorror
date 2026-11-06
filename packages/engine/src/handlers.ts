@@ -781,6 +781,9 @@ export function handle(state: GameState, message: Message): GameState {
               type: 'treacheryAttached',
               treachery: message.treachery,
               location: message.placement.location,
+              ...(state.treacheries[message.treachery]?.placement.type === 'limbo'
+                ? { fromRevelation: true }
+                : {}),
             },
           })
         : next
@@ -4565,16 +4568,20 @@ export function handle(state: GameState, message: Message): GameState {
       const at = record?.storyAssets.indexOf(card.code) ?? -1
       if (at < 0) return state
       const { [card.id]: _resolved, ...treacheries } = state.treacheries
-      const next = card.tekeliliToDeckBottom
-        ? updateInvestigator({ ...state, treacheries }, card.owner, (player) => ({
-            ...player,
-            deck: [...player.deck, card.code],
-          }))
-        : updateRecords(
-            { ...state, treacheries, tekeliliDeck: [...pool, card.code] },
-            card.owner,
-            (r) => ({ ...r, storyAssets: r.storyAssets.filter((_, index) => index !== at) }),
-          )
+      const [deck, rng] = message.shuffleIntoDeck
+        ? shuffle([...getInvestigator(state, card.owner).deck, card.code], state.rng)
+        : [undefined, state.rng]
+      const next =
+        card.tekeliliToDeckBottom || deck
+          ? updateInvestigator({ ...state, rng, treacheries }, card.owner, (player) => ({
+              ...player,
+              deck: deck ?? [...player.deck, card.code],
+            }))
+          : updateRecords(
+              { ...state, treacheries, tekeliliDeck: [...pool, card.code] },
+              card.owner,
+              (r) => ({ ...r, storyAssets: r.storyAssets.filter((_, index) => index !== at) }),
+            )
       return push(next, {
         type: 'Forced',
         trigger: { type: 'afterTekeliliResolved', investigator: card.owner },
@@ -4837,6 +4844,10 @@ export function handle(state: GameState, message: Message): GameState {
         const queue = [...state.queue]
         queue.splice(end + 1, 0, message)
         return { ...state, queue }
+      }
+      if (message.kind.type === 'investigate' && !message.investigationCostsPaid) {
+        const costs = scenarioBehavior(state.scenarioId)?.beforeInvestigation?.(state, message)
+        if (costs) return push(state, ...costs)
       }
       const investigator = getInvestigator(state, message.investigator)
       const pendingReduction = investigator.nextTestDifficulty
@@ -8316,14 +8327,28 @@ export function handle(state: GameState, message: Message): GameState {
       const total = payers.reduce((sum, i) => sum + spendableClues(state, i.id), 0)
       const [first] = payers
       if (!first) return state
+      const payment = (investigator: InvestigatorId, amount: number): Message[] => {
+        const key = message.recordPayment ? `${message.recordPayment}:${investigator}` : undefined
+        return [
+          { type: 'SpendClues', investigator, amount },
+          ...(key
+            ? [
+                {
+                  type: 'SetScenarioMeta' as const,
+                  key,
+                  value: Number(state.scenarioMeta?.[key] ?? 0) + amount,
+                },
+              ]
+            : []),
+        ]
+      }
       if (total <= message.amount || payers.length === 1 || !state.interactive) {
         // Todos pagan todo lo que tienen, o paga el único (o el primero) que puede.
         const spent = Math.min(spendableClues(state, first.id), message.amount)
-        return push(
-          state,
-          { type: 'SpendClues', investigator: first.id, amount: spent },
-          { ...message, amount: message.amount - spent },
-        )
+        return push(state, ...payment(first.id, spent), {
+          ...message,
+          amount: message.amount - spent,
+        })
       }
       const lead = leadInvestigator(state) ?? first
       return push(state, {
@@ -8337,10 +8362,7 @@ export function handle(state: GameState, message: Message): GameState {
             label: 'choice.investigatorPaysClue',
             params: { name: i.name, clues: spendableClues(state, i.id) },
             target: { type: 'investigator', id: i.id },
-            then: [
-              { type: 'SpendClues', investigator: i.id, amount: 1 },
-              { ...message, amount: message.amount - 1 },
-            ],
+            then: [...payment(i.id, 1), { ...message, amount: message.amount - 1 }],
           })),
         },
       })

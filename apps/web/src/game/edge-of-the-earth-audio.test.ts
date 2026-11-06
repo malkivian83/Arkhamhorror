@@ -50,12 +50,13 @@ it('offers the recording in the story modal for the displayed Spanish passage', 
   const key = 'story.edgeOfTheEarth.resolution1.body'
   await setAppLocale('es', false)
   expect(storyBody(key)).toMatchObject({
-    official: false,
+    official: true,
+    officialLocale: null,
     paragraphs: [{ kind: 'text', spans: [{ text: texts.story.resolution1.body }] }],
     narration: storyNarration(key, 'es'),
   })
   await setAppLocale('en', false)
-  expect(storyBody(key).narration).toBeNull()
+  expect(storyBody(key)).toMatchObject({ official: true, officialLocale: null, narration: null })
 })
 
 it('serves the campaign cover from the selector URL', () => {

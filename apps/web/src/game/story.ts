@@ -2,6 +2,7 @@ import { ref, watch, type Ref } from 'vue'
 import { i18n } from '../i18n'
 import { iconParts } from './cardText'
 import { storyNarration } from './narration'
+import edgeOfTheEarth from './edgeOfTheEarthNarration.json'
 
 /**
  * Textos de historia. Por defecto la mesa muestra un resumen propio (en los
@@ -16,6 +17,10 @@ import { storyNarration } from './narration'
  * punto de una lista, *negrita* y _cursiva_.
  */
 const official = ref<Record<string, Record<string, string>>>({})
+const bundledOfficial = new Set([
+  ...edgeOfTheEarth.entries.map(({ key }) => key),
+  ...Object.keys(edgeOfTheEarth.cardBacks),
+])
 
 async function loadOfficial(locale: string) {
   if (official.value[locale]) return
@@ -137,7 +142,8 @@ export function storyBody(key: string): StoryBody {
   const current = locale.value
   const own = official.value[current]?.[key]
   const english = current !== 'en' ? official.value.en?.[key] : undefined
-  const text = own ?? (preferOfficial.value ? english : undefined)
+  const bundled = bundledOfficial.has(key)
+  const text = own ?? (!bundled && preferOfficial.value ? english : undefined)
   const body = text ?? i18n.global.t(key)
   return {
     paragraphs: body
@@ -145,8 +151,8 @@ export function storyBody(key: string): StoryBody {
       .map((p) => p.trim())
       .filter(Boolean)
       .map(paragraph),
-    official: text !== undefined,
-    officialLocale: own === undefined && english !== undefined ? 'en' : null,
+    official: bundled || text !== undefined,
+    officialLocale: !bundled && own === undefined && english !== undefined ? 'en' : null,
     narration: (key.startsWith('story.edgeOfTheEarth.') ? text === undefined : own !== undefined)
       ? storyNarration(key, current)
       : null,

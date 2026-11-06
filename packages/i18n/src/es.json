@@ -84,6 +84,11 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "fatalMirageRelease": {
+        "title": "Espejismo letal ya se puede jugar",
+        "route": "Entra en Espejismo letal desde Noche reposada si la expedición ha perdido al menos tres miembros. Explora sus recuerdos y conserva el desenlace en el registro de campaña.",
+        "audio": "Se añaden 34 locuciones de Salva para los reversos de Lugar, Recuerdo, Acto y Plan, e imágenes de las cartas en inglés y español."
+      },
       "fatalMirage": {
         "title": "Preparación de Espejismo letal",
         "rules": "Se incorporan los enemigos Recuerdo y el mazo de Encuentros de Espejismo letal. El escenario sigue en preparación.",

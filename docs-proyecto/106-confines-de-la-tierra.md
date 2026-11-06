@@ -37,7 +37,7 @@ jugadores pueden escuchar la narración y ver el avance.
 Verificadas 62 pruebas dirigidas de salas, vista en línea, guardado local e
 interludio, incluidas la autorización y la repetición de peticiones.
 
-Espejismo letal está en preparación. El mapa de 19 Lugares conserva los
+Espejismo letal está habilitado desde Noche reposada. El mapa de 19 Lugares conserva los
 símbolos impresos, los destinos y el coste de Espejismo. La preparación
 reutiliza los recuerdos descubiertos entre visitas. El registro distingue
 los recuerdos desterrados y calcula su experiencia una sola vez.
@@ -62,9 +62,11 @@ Los nueve Recuerdos están conectados a sus Lugares terminales. Sus reacciones
 o acciones de Negociar, la mejora a Decidido y el destierro del Lugar si el
 Compañero murió están cubiertos en el motor. El constructor prepara las tres
 visitas, sus 38 cartas de Encuentro y la restauración de recuerdos previos.
-Queda conectar las visitas con la campaña, completar las reglas impresas de
-los Lugares y presentar los reversos de Historia con sus textos y locuciones
-antes de habilitar el escenario.
+Se aplican los efectos impresos de los Lugares, incluida la aportación individual
+de pistas en las Salas de la universidad. Los 34 reversos narrativos tienen
+texto EN/ES y locución de Salva. La resolución devuelve la campaña a Hacia los
+picos prohibidos. La preparación de las visitas segunda y tercera reutiliza el
+registro de campaña y queda disponible para las rutas de los escenarios siguientes.
 
 Revisión del 06/11/2026, corregida y con pruebas:
 
@@ -145,7 +147,7 @@ sin publicar, `[ ]` pendiente.
 8. [x] Hielo y muerte I (08501a), jugable desde el selector hasta la resolución.
    Su resolución enlaza con La desaparición.
 9. [x] Hielo y muerte II y III (08501b/c) y sus puntos de control, jugables en local.
-10. [ ] Interludios y Espejismo letal (08549).
+10. [x] Noche reposada y Espejismo letal (08549).
 11. [ ] Hacia los picos prohibidos (08596).
 12. [ ] Ciudad de los Antiguos (08621).
 13. [ ] El corazón de la locura I y II (08648a/b) y epílogo.
