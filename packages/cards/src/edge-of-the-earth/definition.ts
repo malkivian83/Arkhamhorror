@@ -17,6 +17,7 @@ import { edgeOfTheEarthChaosBags } from './opening'
 import { registerTekelili } from './tekelili'
 import './ice-and-death-encounters'
 import './ice-and-death-locations'
+import './memorials'
 
 registerExpeditionCompanions()
 registerTekelili()

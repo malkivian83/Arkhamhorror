@@ -136,6 +136,7 @@ export interface Investigator {
   spentActions?: { round: number; count: number }
   /** Skill value bonus for their next skill test (The Red Clock: +4). */
   nextTestBonus?: number
+  nextRoundTestBonus?: { amount: number; round: number }
   nextPhaseTestBonus?: { amount: number; phase: Phase; round: number }
   /** Additional actions for their turn later in this round (Stella Clark). */
   roundTurnActions?: { round: number; amount: number }
@@ -1400,7 +1401,13 @@ type MessageBody =
     }
   | { type: 'LoseActions'; investigator: InvestigatorId; amount: number }
   /** +X skill value for the investigator's next skill test (The Red Clock). */
-  | { type: 'NextTestBonus'; investigator: InvestigatorId; amount: number; thisPhase?: boolean }
+  | {
+      type: 'NextTestBonus'
+      investigator: InvestigatorId
+      amount: number
+      thisPhase?: boolean
+      thisRound?: boolean
+    }
   | { type: 'TransferUses'; from: AssetId; to: AssetId; amount: number }
   | { type: 'MoveResourcesFromAsset'; asset: AssetId; investigator: InvestigatorId; amount: number }
   | { type: 'ReturnCommittedCard'; index: number }
@@ -1755,6 +1762,7 @@ type MessageBody =
       drawInstead?: boolean
     }
   | { type: 'ReturnTekelili'; treachery: TreacheryId }
+  | { type: 'ReturnTekeliliFromDeck'; investigator: InvestigatorId; code: CardCode; top: number }
   /** `scenarioOnly`: solo para este escenario, sin anotarlas en el registro de campaña. */
   | { type: 'AddChaosTokens'; tokens: ChaosToken[]; scenarioOnly?: boolean }
   /** Coloca (o retira, con valores negativos) horror y perdición en una localización. */
@@ -1815,7 +1823,7 @@ type MessageBody =
       cardType?: PlayerCardDef['type']
       top?: number
       traits: string[]
-      to: 'hand' | 'play' | 'put'
+      to: 'hand' | 'play' | 'put' | 'tekelili'
       discount?: number
       /** Cualquier carta, no solo apoyos con esos rasgos (Mysterious Grimoire). */
       anyCard?: boolean
