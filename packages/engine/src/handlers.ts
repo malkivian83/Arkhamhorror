@@ -3499,8 +3499,8 @@ export function handle(state: GameState, message: Message): GameState {
       // La siguiente carta de su papel consume el descuento de Improvisación.
       const usedDiscount =
         !!investigator.nextRoleDiscount && cardOfRole(message.code, investigator.role)
-      const event = def.type === 'event'
-      const toBottom = event && eventsToDeckBottom(state, investigator.id)
+      const storeEvent = def.type === 'event' && !playerCardBehavior(message.code)?.removeAfterPlay
+      const toBottom = storeEvent && eventsToDeckBottom(state, investigator.id)
       const paid = log(
         updateInvestigator(state, investigator.id, ({ nextRoleDiscount, nextAssetFast, ...i }) => ({
           ...i,
@@ -3519,7 +3519,7 @@ export function handle(state: GameState, message: Message): GameState {
           // del mazo).
           discard: [
             ...(fromDiscard ? i.discard.filter((_, n) => n !== discardAt) : i.discard),
-            ...(event && !toBottom ? [message.code] : []),
+            ...(storeEvent && !toBottom ? [message.code] : []),
           ],
           ...(toBottom ? { deck: [...i.deck, message.code] } : {}),
         })),
@@ -4885,6 +4885,7 @@ export function handle(state: GameState, message: Message): GameState {
             ({
               nextTestDifficulty: _used,
               nextTestBonus: _bonus,
+              nextRoundTestBonus: _roundBonus,
               nextPhaseTestBonus: _phaseBonus,
               ...rest
             }) => {
@@ -4913,6 +4914,9 @@ export function handle(state: GameState, message: Message): GameState {
             baseModifier:
               (message.modifier ?? 0) +
               (investigator.nextTestBonus ?? 0) +
+              (investigator.nextRoundTestBonus?.round === state.round
+                ? investigator.nextRoundTestBonus.amount
+                : 0) +
               (investigator.nextPhaseTestBonus?.phase === state.phase &&
               investigator.nextPhaseTestBonus.round === state.round
                 ? investigator.nextPhaseTestBonus.amount
@@ -6789,6 +6793,16 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'NextTestBonus':
+      if (message.thisRound)
+        return updateInvestigator(state, message.investigator, (i) => ({
+          ...i,
+          nextRoundTestBonus: {
+            round: state.round,
+            amount:
+              message.amount +
+              (i.nextRoundTestBonus?.round === state.round ? i.nextRoundTestBonus.amount : 0),
+          },
+        }))
       if (message.thisPhase)
         return updateInvestigator(state, message.investigator, (i) => ({
           ...i,
@@ -8759,6 +8773,31 @@ export function handle(state: GameState, message: Message): GameState {
           shuffleDeck,
         )
       }
+      if (message.to === 'tekelili') {
+        const choices = [...new Set(searched.filter((code) => Object.hasOwn(tekeliliCopies, code)))]
+        if (!choices.length) return push(state, shuffleDeck)
+        return push(state, {
+          type: 'Ask',
+          investigator: investigator.id,
+          question: {
+            kind: 'chooseOne',
+            prompt: 'prompt.edgeOfTheEarth.cleanseTekelili',
+            choices: choices.map((code) => ({
+              label: 'choice.card',
+              params: { card: code },
+              then: [
+                {
+                  type: 'ReturnTekeliliFromDeck',
+                  investigator: investigator.id,
+                  code,
+                  top: searched.length,
+                },
+              ],
+            })),
+          },
+        })
+      }
+      const { to } = message
       // Mysterious Grimoire: las debilidades entre las cartas buscadas también se roban.
       const weaknesses = message.drawWeaknesses
         ? searched.filter((code) => playerCardDef(code)?.weakness)
@@ -8811,7 +8850,7 @@ export function handle(state: GameState, message: Message): GameState {
         investigator: investigator.id,
         question: {
           kind: 'chooseOne',
-          prompt: message.to !== 'hand' ? 'prompt.searchToPlay' : 'prompt.searchToHand',
+          prompt: to !== 'hand' ? 'prompt.searchToPlay' : 'prompt.searchToHand',
           choices: [
             ...matches.map((code): Choice => ({
               label: 'choice.takeCard',
@@ -8821,7 +8860,7 @@ export function handle(state: GameState, message: Message): GameState {
                   type: 'TakeFromDeck',
                   investigator: investigator.id,
                   code,
-                  to: message.to,
+                  to,
                   ...(message.drawFound ? { drawFound: true } : {}),
                   ...(message.discount ? { discount: message.discount } : {}),
                 },
@@ -9047,6 +9086,25 @@ export function handle(state: GameState, message: Message): GameState {
         deck,
         ...(!message.fromBottom ? { discard: i.discard.filter((_, n) => n !== at) } : {}),
       }))
+    }
+    case 'ReturnTekeliliFromDeck': {
+      const investigator = getInvestigator(state, message.investigator)
+      const index = investigator.deck.slice(0, message.top).indexOf(message.code)
+      if (index < 0 || !Object.hasOwn(tekeliliCopies, message.code)) return state
+      return push(
+        updateInvestigator(
+          { ...state, tekeliliDeck: [...(state.tekeliliDeck ?? []), message.code] },
+          investigator.id,
+          (i) => ({ ...i, deck: i.deck.filter((_, n) => n !== index) }),
+        ),
+        {
+          type: 'SearchDeck',
+          investigator: investigator.id,
+          top: message.top - 1,
+          traits: [],
+          to: 'tekelili',
+        },
+      )
     }
     case 'ShuffleDeck': {
       const investigator = getInvestigator(state, message.investigator)

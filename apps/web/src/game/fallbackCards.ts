@@ -546,6 +546,7 @@ export function fallbackCards(locale: string): LocalizedCard[] {
   }
   for (const [code, text] of Object.entries(data.edgeOfTheEarthCards)) {
     put({
+      ...cards.get(code),
       code,
       name: text.name,
       real_name: text.name,

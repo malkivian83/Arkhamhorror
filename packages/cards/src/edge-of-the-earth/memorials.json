@@ -1,0 +1,129 @@
+[
+  {
+    "code": "08730",
+    "name": "Claypool's Furs",
+    "type": "asset",
+    "cost": 2,
+    "fast": true,
+    "traits": ["Item", "Clothing"],
+    "slots": ["body"],
+    "health": 3,
+    "icons": {
+      "combat": 1,
+      "wild": 1
+    }
+  },
+  {
+    "code": "08731",
+    "name": "Collected Works of Poe",
+    "type": "asset",
+    "cost": 1,
+    "traits": ["Item", "Tome"],
+    "slots": ["hand"],
+    "uses": {
+      "type": "charge",
+      "count": 3
+    },
+    "icons": {
+      "willpower": 1,
+      "wild": 1
+    }
+  },
+  {
+    "code": "08732",
+    "name": "Cookie's Custom .32",
+    "type": "asset",
+    "cost": 2,
+    "fast": true,
+    "traits": ["Item", "Weapon", "Firearm"],
+    "slots": ["hand"],
+    "uses": {
+      "type": "ammo",
+      "count": 2
+    },
+    "icons": {
+      "combat": 1,
+      "wild": 1
+    }
+  },
+  {
+    "code": "08733",
+    "name": "Dyer's Sketches",
+    "type": "event",
+    "cost": 2,
+    "fast": true,
+    "traits": ["Insight"],
+    "icons": {
+      "intellect": 2
+    }
+  },
+  {
+    "code": "08734",
+    "name": "Ellsworth's Boots",
+    "type": "asset",
+    "cost": 2,
+    "traits": ["Item", "Clothing", "Footwear"],
+    "icons": {
+      "agility": 1,
+      "wild": 1
+    }
+  },
+  {
+    "code": "08735",
+    "name": "Kensler's Log",
+    "type": "asset",
+    "cost": 2,
+    "fast": true,
+    "traits": ["Item", "Tome"],
+    "slots": ["hand"],
+    "uses": {
+      "type": "secret",
+      "count": 2
+    },
+    "icons": {
+      "intellect": 1,
+      "wild": 1
+    }
+  },
+  {
+    "code": "08736",
+    "name": "Sinha's Medical Kit",
+    "type": "asset",
+    "cost": 1,
+    "traits": ["Item", "Science"],
+    "uses": {
+      "type": "supply",
+      "count": 3
+    },
+    "icons": {
+      "willpower": 1,
+      "wild": 1
+    }
+  },
+  {
+    "code": "08737",
+    "name": "Takada's Cache",
+    "type": "event",
+    "cost": 0,
+    "fast": true,
+    "traits": ["Supply"],
+    "icons": {
+      "wild": 1
+    }
+  },
+  {
+    "code": "08738",
+    "name": "Anyu",
+    "type": "asset",
+    "cost": 3,
+    "unique": true,
+    "traits": ["Ally", "Creature"],
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2,
+    "icons": {
+      "agility": 1,
+      "wild": 1
+    }
+  }
+]

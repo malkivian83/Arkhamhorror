@@ -25,15 +25,20 @@ huida o derrota con sus bonificaciones de experiencia.
 
 Noche reposada está disponible en el registro local y en salas. Conserva las visitas y
 sus efectos al recargar, y ofrece Espejismo letal si hay al menos tres bajas.
-Incluye tres locuciones de Salva. Los Memoriales se anotan en el registro y sus
-habilidades quedan pendientes para cuando puedan usarse en un escenario.
+Incluye tres locuciones de Salva. Los Memoriales se anotan en el registro.
+El motor reconoce los nueve Memoriales como recompensas de historia con sus
+habilidades impresas. Obras completas de Poe devuelve los ¡Tekeli-li! de las
+seis primeras cartas del investigador elegido. El Alijo de Takada sale de la
+partida al jugarse y Anyu permite resolver sus opciones en el orden elegido.
+Verificados los efectos de los nueve Memoriales, la continuidad del interludio,
+el catálogo EN/ES y las regresiones de búsqueda, eventos y bonificaciones de prueba.
 En salas, el anfitrión registra las visitas y elige la ruta, y todos los
 jugadores pueden escuchar la narración y ver el avance.
 Verificadas 62 pruebas dirigidas de salas, vista en línea, guardado local e
 interludio, incluidas la autorización y la repetición de peticiones.
 
-Siguiente entrega: implementar los Memoriales y habilitar Espejismo letal y
-Hacia los picos prohibidos.
+Siguiente entrega: habilitar Espejismo letal y Hacia los picos prohibidos
+para usar las recompensas al continuar la campaña.
 
 Revisión del 06/11/2026, corregida y con pruebas:
 

@@ -7,12 +7,19 @@ import {
 } from '@lcg/engine'
 import { ask } from '../dunwich-pilot/effects'
 
-export function companionHealing(kind: 'damage' | 'horror', fast: boolean): AbilitiesFn<Asset> {
+export function companionHealing(
+  kind: 'damage' | 'horror',
+  fast: boolean,
+  points = 2,
+): AbilitiesFn<Asset> {
   return (state, self, investigator) => {
     const here = getInvestigator(state, investigator).location
     if (self.exhausted || self.uses < 1 || here === null) return []
     const nearby = state.investigators.filter((i) => !i.eliminated && i.location === here)
-    const amount = { damage: kind === 'damage' ? 2 : 0, horror: kind === 'horror' ? 2 : 0 }
+    const amount = {
+      damage: kind === 'damage' ? points : 0,
+      horror: kind === 'horror' ? points : 0,
+    }
     const label =
       kind === 'damage' ? 'choice.edgeOfTheEarth.healDamage' : 'choice.edgeOfTheEarth.healHorror'
     const choices: Choice[] = [
@@ -46,7 +53,7 @@ export function companionHealing(kind: 'damage' | 'horror', fast: boolean): Abil
     return choices.length
       ? [
           {
-            key: `${self.id}:heal`,
+            key: points === 2 ? `${self.id}:heal` : `${self.id}:heal:${kind}`,
             label: `ability.edgeOfTheEarth.${kind}`,
             params: { card: playerCardDef(self.code)?.name ?? self.code },
             actions: fast ? 0 : 1,

@@ -768,6 +768,8 @@ export interface PlayerCardBehavior {
   ) => Message[]
   /** It may be played from its owner's discard pile, any copy (Winging It). */
   playableFromDiscard?: boolean
+  /** The event leaves play without entering the discard pile or deck. */
+  removeAfterPlay?: boolean
   /** Printed restriction: normal play must use a copy in the discard pile. Putting into play is unaffected. */
   onlyFromDiscard?: boolean
   /** Committed: if the test fails, cancel all effects of the failed test (Neither Rain nor Snow). */

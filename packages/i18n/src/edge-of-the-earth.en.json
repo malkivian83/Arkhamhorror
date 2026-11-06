@@ -261,6 +261,14 @@
       "startingResources": "Choose who starts To the Forbidden Peaks with three extra resources."
     },
     "nightConfirm": "Confirm visit",
+    "memorialAnyuMove": "Move to a connecting location",
+    "memorialAnyuBoost": "Get +2 skill value for your next test this round",
+    "memorialAnyuEvade": "Evade with a base agility of 4",
+    "memorialAnyuDiscard": "Discard Anyu to choose up to three options",
+    "memorialAnyuDone": "Finish choosing",
+    "memorialBase": "Use a base skill of 5",
+    "memorialBoost": "Get +2 skill value",
+    "memorialBootsDiscard": "Discard the boots to move to {location}",
     "nightMirage": "Enter the mirage",
     "nightPeaks": "Continue to the forbidden peaks"
   },
@@ -289,6 +297,10 @@
     "nightWeaknesses": "Choose up to five weaknesses"
   },
   "ability": {
+    "memorialPoe": "{card}: spend 1 charge to search for Tekeli-li",
+    "memorialAnyu": "Anyu: exhaust to choose an option",
+    "memorialFurs": "Claypool's Furs: take 1 damage to cancel frost and reveal another token",
+    "memorialBoots": "Ellsworth's Boots: exhaust to move",
     "claypool": "Avery Claypool: cancel the frost token",
     "fredericks": "James Fredericks: fight",
     "damage": "{card}: heal 2 damage",

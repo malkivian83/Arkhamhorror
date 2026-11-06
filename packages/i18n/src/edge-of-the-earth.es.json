@@ -261,6 +261,14 @@
       "startingResources": "Elige quién comienza Hacia los picos prohibidos con tres recursos adicionales."
     },
     "nightConfirm": "Confirmar visita",
+    "memorialAnyuMove": "Muévete a un Lugar conectado",
+    "memorialAnyuBoost": "Recibe +2 a tu valor de habilidad para tu próxima prueba de esta ronda",
+    "memorialAnyuEvade": "Evita con una agilidad básica de 4",
+    "memorialAnyuDiscard": "Descarta a Anyu para elegir hasta tres opciones",
+    "memorialAnyuDone": "Terminar de elegir",
+    "memorialBase": "Usar un valor de habilidad base de 5",
+    "memorialBoost": "Recibir +2 al valor de habilidad",
+    "memorialBootsDiscard": "Descartar las botas para moverte a {location}",
     "nightMirage": "Adentrarse en el espejismo",
     "nightPeaks": "Seguir hacia los picos prohibidos"
   },
@@ -289,6 +297,10 @@
     "nightWeaknesses": "Elige hasta cinco debilidades"
   },
   "ability": {
+    "memorialPoe": "{card}: gasta 1 carga para buscar ¡Tekeli-li!",
+    "memorialAnyu": "Anyu: agótalo para elegir una opción",
+    "memorialFurs": "Pieles de Claypool: inflige 1 punto de daño a las pieles para cancelar la Helada y revelar otra ficha",
+    "memorialBoots": "Botas de Ellsworth: agótalas para moverte",
     "claypool": "Avery Claypool: cancela la ficha de Helada",
     "fredericks": "James Fredericks: lucha",
     "damage": "{card}: cura 2 puntos de daño",
