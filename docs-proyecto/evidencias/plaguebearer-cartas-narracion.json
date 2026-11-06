@@ -290,6 +290,78 @@
       "inputHash": "178fa39b3db6ca3f0a73aac6aecafb09c5eff1013b8baff3b3a018fb5316501b",
       "bytes": 161375,
       "sha256": "6c961efd2dbd9a31c05e0f8b99731a562a56fb7af6480a9180f5cf3bd633d16d"
+    },
+    {
+      "code": "78084",
+      "side": "front",
+      "text": "Una procesión de infectados va detrás de una bizarra abominación a través de la aterrorizada ciudad.",
+      "file": "78084-front.mp3",
+      "inputHash": "25265ce2588168da062ba3a723a7d41f53fab5e656b3973cc7a43351b41259ce",
+      "bytes": 131700,
+      "sha256": "f5fe9a89635306e37a5f0531f6ad6099d60957a72923f00c7861162af0fbae1f"
+    },
+    {
+      "code": "78084",
+      "side": "back",
+      "text": "Uno de los integrantes de la procesión se detiene entre terribles convulsiones. La procesión se detiene un instante rodeando al pobre ser. Observas con terror abyecto como la carne se le desprende de los huesos, mientras su voz no pasa de cantar la letanía.\nAntes de que la horripilante visión pueda afectar a la muchedumbre infectada y apagar su celebración, otra figura ocupa su lugar.",
+      "file": "78084-back.mp3",
+      "inputHash": "45e960f5b3cb42e42c197d75797086878835518c1919376e8cad62b4866cb659",
+      "bytes": 515804,
+      "sha256": "6f59632342dd724408e6dc8ed24fa63fd20fcf6987b54b73e5e6f4f140dcefed"
+    },
+    {
+      "code": "78085",
+      "side": "front",
+      "text": "El horrible coro está alcanzando una cadencia febril. Tu tiempo se agota.",
+      "file": "78085-front.mp3",
+      "inputHash": "079a5806f8e03aaad0c68d698138c76a0b3edcaaf22211d16c0ab95e37377edf",
+      "bytes": 116235,
+      "sha256": "79f4e5ce2fffae6255a4e75fcc6c763bb9aa079bb81a4bea5aefcb39bd545756"
+    },
+    {
+      "code": "78085",
+      "side": "back",
+      "text": "Los cánticos resuenan ensordecedores. Caes de rodillas, incapaz siquiera de moverte. En ese momento, por encima del éxtasis coral, oyes una voz que grita “¡Fuego!”\nUna gigantesca explosión sacude la ciudad. Después otra. Y otra. La procesión al completo, al igual que varios edificios de las inmediaciones del sacerdote, son destruidos por una intensa lluvia de fuego de mortero.",
+      "file": "78085-back.mp3",
+      "inputHash": "dd9f7a7373dd0b63a2aa1bb18c0c85c70cbfffa099cc4c80a3d63a85b0fd0015",
+      "bytes": 472336,
+      "sha256": "ca6f1964c0e05f828b28f328888c6328ebdf5678563b9d9c100b200decac9a34"
+    },
+    {
+      "code": "78086",
+      "side": "front",
+      "text": "Observas a una agente mientras dispara al horrible sacerdote. El fuego del arma parece no tener ningún efecto sobre él, y con un chasquido de su brillante cola, la agente se une al siniestro coro. Debe de haber alguna otra forma de derrotarlo...",
+      "file": "78086-front.mp3",
+      "inputHash": "00e3951551353529aeab5dc1468b3a20a30fc9e44fb776aba19d8ba1c475e465",
+      "bytes": 316856,
+      "sha256": "81919bf460449cde00bceea97f104b22f1e973d6121196913fd55c6ad27866f1"
+    },
+    {
+      "code": "78086",
+      "side": "back",
+      "text": "Justo cuando empiezas a perder la esperanza en que alguna de tus habilidades sirva de alguna utilidad, observas como un ciudadano iracundo conduce un camión directamente contra el Sacerdote. Mientras que el impacto inicial y la explosión no parecen dañar lo más mínimo a la bestia, la criatura no cambia su trayectoria para evitar el accidente. Con horribles gritos desgarradores, el grotesco monstruo se arrastra directamente hacia las llamas del accidente. Según aparece por el otro lado, ves que ha comenzado a sangrar.",
+      "file": "78086-back.mp3",
+      "inputHash": "125825fe00b0da5fe24ae2a95e7b3e97878950015ef3b498b35c8506e19339e7",
+      "bytes": 633251,
+      "sha256": "a09c7830448a6ee811623f45e6263911b08b6eb8a23ae838eb7487e14fb18912"
+    },
+    {
+      "code": "78087",
+      "side": "front",
+      "text": "Por fin das con la solución. ¡Si puedes construir grandes barricadas en el camino del Sacerdote, se hará polvo tratando de atravesarlas!",
+      "file": "78087-front.mp3",
+      "inputHash": "65d81b6257d7618049f9ae1496eb13852cf0eaba885906325981472372d5b8de",
+      "bytes": 192722,
+      "sha256": "043e05e42d934fd48ad12ef82fb7807263960a2925a67b6360fbfad5c3af9cc8"
+    },
+    {
+      "code": "78087",
+      "side": "back",
+      "text": "Con un grito terrorífico, la cabeza del sacerdote es arrancada de su retorcido cuerpo. Un cuerpo que comienza a expulsar humo para acabar explotando en un sangriento desastre. Las visceras comienzan a ascender hacia el cielo...\nLos fieles entonan una última estrofa para después caer al suelo entre convulsiones.",
+      "file": "78087-back.mp3",
+      "inputHash": "e812ff5ee848037219b3b171f028877225c9d43366ad8fca85121b0c8e73a66e",
+      "bytes": 405881,
+      "sha256": "9e247b9875b5969420994a97e0cdedb2f98f538463eff0604004fa2d8cac32fd"
     }
   ]
 }

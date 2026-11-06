@@ -7,6 +7,18 @@ export const changelog = [
     items: ['app.changelog.fatalMirage.rules', 'app.changelog.fatalMirage.audio'],
   },
   {
+    id: 'plaguebearer-dawn-and-chorus',
+    date: '2026-11-06',
+    title: 'app.changelog.plaguebearer.title',
+    items: [
+      'app.changelog.plaguebearer.dawn',
+      'app.changelog.plaguebearer.chorus',
+      'app.changelog.plaguebearer.interludes',
+      'app.changelog.plaguebearer.allied',
+      'app.changelog.plaguebearer.fixes',
+    ],
+  },
+  {
     id: 'carnevale-playable',
     date: '2026-10-30',
     title: 'app.changelog.carnevale.title',

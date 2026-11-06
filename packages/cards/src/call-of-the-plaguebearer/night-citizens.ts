@@ -154,8 +154,12 @@ export const townReactions: NonNullable<ScenarioBehavior['reactions']> = (s, t) 
   const by = t.investigator,
     here = getInvestigator(s, by).location
   if (!here || !s.locations[here]?.revealed) return []
-  const row = TOWN.find((r) => r.id === here)
+  const row = TOWN.find((r) => r.id === here || r.stable === here)
   if (!row) return []
+  const key = row.id
+  // Versión Segura del IV: cada uso avisa al acto 2a.
+  const used = (then: Message[]): Message[] =>
+    here === row.stable ? [...then, specific('chorus.stableUsed', { location: here })] : then
   const out: ReactionOption[] = []
   const reaction = (then: Message[]) =>
     out.push({
@@ -163,17 +167,20 @@ export const townReactions: NonNullable<ScenarioBehavior['reactions']> = (s, t) 
       investigator: by,
       label: 'ability.plaguebearer.night.benefit',
       limit: { per: 'round' },
-      then,
+      then: used(then),
     })
-  if (here === '78023' && t.type === 'afterPlayCard' && playerCardDef(t.code)?.type === 'event')
+  if (key === '78023' && t.type === 'afterPlayCard' && playerCardDef(t.code)?.type === 'event')
     reaction([
       { type: 'DrawCards', investigator: by, amount: 1 },
       { type: 'GainResources', investigator: by, amount: 1 },
     ])
-  if (here === '78024' && t.type === 'afterSkillTest' && t.kind === 'investigate' && t.succeeded)
+  if (key === '78024' && t.type === 'afterSkillTest' && t.kind === 'investigate' && t.succeeded)
     reaction([{ type: 'GainResources', investigator: by, amount: 2 }])
-  if (here === '78026' && t.type === 'afterSkillTest' && t.succeeded && t.margin >= 2)
-    for (const i of activeInvestigators(s).filter((i) => i.location === here)) {
+  if (key === '78026' && t.type === 'afterSkillTest' && t.succeeded && t.margin >= 2)
+    // IV: «una carta que controles» (el propio investigador); II: cualquier investigador aquí.
+    for (const i of activeInvestigators(s).filter(
+      (i) => i.location === here && (here !== row.stable || i.id === by),
+    )) {
       if (i.damage > 0)
         out.push({
           key: `${here}:benefit`,
@@ -181,7 +188,7 @@ export const townReactions: NonNullable<ScenarioBehavior['reactions']> = (s, t) 
           label: 'ability.plaguebearer.night.healDamage',
           params: { name: i.name },
           limit: { per: 'round' },
-          then: [{ type: 'Heal', investigator: i.id, damage: 1, horror: 0 }],
+          then: used([{ type: 'Heal', investigator: i.id, damage: 1, horror: 0 }]),
         })
       if (i.horror > 0)
         out.push({
@@ -190,7 +197,7 @@ export const townReactions: NonNullable<ScenarioBehavior['reactions']> = (s, t) 
           label: 'ability.plaguebearer.night.healHorror',
           params: { name: i.name },
           limit: { per: 'round' },
-          then: [{ type: 'Heal', investigator: i.id, damage: 0, horror: 1 }],
+          then: used([{ type: 'Heal', investigator: i.id, damage: 0, horror: 1 }]),
         })
     }
   return out

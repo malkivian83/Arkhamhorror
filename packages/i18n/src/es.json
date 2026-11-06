@@ -89,6 +89,14 @@
         "rules": "Se incorporan los enemigos Recuerdo y el mazo de Encuentros de Espejismo letal. El escenario sigue en preparación.",
         "audio": "Se incorporan 28 locuciones en español con Salva para Espejismo letal y las introducciones de escenarios posteriores."
       },
+      "plaguebearer": {
+        "title": "La llamada del Portador de la Plaga avanza hasta Cantos fúnebres",
+        "dawn": "Muerte al amanecer: busca al Dr. West en una mansión llena de Reanimados que no pueden morir, con dos aperturas según el respeto de Greyson y cinco resoluciones.",
+        "chorus": "Cantos fúnebres: detén la Procesión del Sacerdote de la Plaga a través de los ocho lugares de Arkham, que conservan su estado Defendido o Infectado de la Noche en la ciudad.",
+        "interludes": "Interludios Amigos en los bajos fondos y Vivo o muerto, con sus textos ocultos y la elección entre Reanimado y Humanidad.",
+        "allied": "Arkham unido: cada lugar Protegido en Cantos fúnebres entrega su recompensa, como el Tomo sagrado, Trato hecho o el Ritual de Yaztaroth.",
+        "fixes": "Textos completos en español e inglés y narraciones de Martin Osborne; Hibb (Listo para ayudar) da ahora +1 a voluntad, como indica la carta."
+      },
       "link": "Novedades",
       "title": "Últimas novedades",
       "description": "Los últimos añadidos y mejoras de Arkham Online.",

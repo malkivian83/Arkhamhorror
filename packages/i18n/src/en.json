@@ -89,6 +89,14 @@
         "rules": "Added the Memory enemies and encounter deck for Fatal Mirage. The scenario is still in preparation.",
         "audio": "Added 28 Spanish recordings by Salva for Fatal Mirage and introductions to later scenarios."
       },
+      "plaguebearer": {
+        "title": "Call of the Plaguebearer continues through Mourning Chorus",
+        "dawn": "Dead by Dawn: hunt for Dr. West in a manor full of Re-Animated that cannot die, with two openings depending on Greyson’s respect and five resolutions.",
+        "chorus": "Mourning Chorus: stop the Priest of Plagues’ Procession across Arkham’s eight locations, which keep their Defended or Infected status from Night on the Town.",
+        "interludes": "Interludes Friends in Low Places and Dead or Alive, with their hidden texts and the choice between Re-Animated and Humanity.",
+        "allied": "Arkham Allied: each location Rallied in Mourning Chorus grants its reward, such as Reliquary Tome, Handshake Deal or Ritual of Yaztaroth.",
+        "fixes": "Full English and Spanish texts and Spanish narration by Martin Osborne; Hibbs (Here to Help) now gives +1 willpower, as printed."
+      },
       "link": "What’s new",
       "title": "Latest updates",
       "description": "The latest additions and improvements to Arkham Online.",

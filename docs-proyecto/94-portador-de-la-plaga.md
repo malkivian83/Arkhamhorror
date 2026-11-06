@@ -7,8 +7,8 @@ Science) y publicada en
 La traducción y maquetación al castellano (cartas y guía) es de Los Archivos de
 Arkham. Ninguna de las dos versiones indica número de versión ni fecha.
 
-Estado: **escenarios I–III jugables; Interludios I y II resueltos al cerrar el
-II y el III; interludios III–V y escenarios IV–VIII pendientes. Material completo en EN y ES.** Este documento
+Estado: **escenarios I–IV jugables; Interludios I–III resueltos al cerrar el
+II, el III y el IV; interludios IV–V y escenarios V–VIII pendientes. Material completo en EN y ES.** Este documento
 recoge el inventario, las diferencias entre versiones y las decisiones
 pendientes. No sustituye a las guías: al implementar, contrasta cada paso con
 el PDF.
@@ -49,8 +49,32 @@ el PDF.
   escondido, y elección individual Reanimado/Humanidad (obligatoria con reactivo
   puro) con La Fuerza de la Carne o Voluntad inquebrantable permanentes. Diez
   relatos narrados. 167 pruebas dirigidas, tipos cards/web y lint correctos.
-- Siguiente: escenario IV (Cantos fúnebres): anillo de 8 lugares, Procesión,
-  estado de Arkham y conjunto Arkham caído.
+- IV · Cantos fúnebres (`mourning-chorus.ts`, `chorus-data.ts`): estado de Arkham
+  (sin marca → el valor menos repetido, empate al azar; con 6–7 Infectados el jefe
+  cura 1–2), Lugares Seguros que reutilizan las capacidades del II (Colmado como
+  acción, Muelles +1 por el [wild], Motel solo para quien reacciona) o Ruinas de
+  Arkham caído, Procesión (crecer, moverse, Mazo y descarte propios, sin Cazador),
+  recursos del plan en vez de perdición, Barricadas (acto 1b) como único daño al
+  Sacerdote, Protegidos del acto 2a, 8 Élite y 13 traiciones, R1/R2 con Cráter o
+  Lugar de la Liberación, Protegidos, Eliminados y «ha escuchado la llamada».
+- Aproximaciones del IV: las traiciones «vinculadas a un Apoyo» se guardan en la
+  zona de amenaza del dueño con el Apoyo anotado (motor sin esa vinculación;
+  Confianza rota deja en blanco ese Apoyo con un gancho nuevo); la perdición de
+  Miasma coral se guarda en su Lugar; «Orador profano» aplica el daño/horror del
+  enemigo revelado. Motor: ganchos `enemyHealthModifier` y `blanksAsset`.
+- La R5 del III (`plaguebearerBloodInVeins`) ya convierte el sectario en fallo
+  automático en el IV (`bloodInVeins` para los siguientes escenarios).
+- Verificación IV: 336 pruebas dirigidas (campaña, web, narración, traducciones),
+  suite de engine+cards 6092 correctas, tipos engine/cards/web y lint correctos.
+  Changelog actualizado. Revisión visual pendiente de la persona usuaria.
+- Interludio III (guía ES p. 12 / EN p. 14) al cerrar el IV: una sección y una
+  recompensa por Lugar Protegido (8 cartas de jugador 78096–78103, textos
+  literales) y texto oculto (2 PX y 1 trauma mental por lector). La frase final EN
+  («You note agents swarming…») no está en ES y no se usa. Aproximaciones: Copas
+  de más da una acción sin restringir el tipo; Beneplácito de Ma da un espacio de
+  aliado más (sin el +1/+1); Día duro de trabajo solo aporta sus iconos; Cobertura
+  total necesita `alliedCostModifier`/`alliedForced` en los escenarios V–VIII.
+- Siguiente: escenario V (Descenso al mediodía).
 
 ## Fuentes
 
