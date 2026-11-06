@@ -30240,6 +30240,114 @@
       "sourceSha256": "bf49b8c2ca6e6e5a8363d6ea8fb9a1b66e9e75430d65d6c28f00f75769bec464",
       "path": "/local-assets/cards/es/thumbs/08548.webp",
       "sha256": "ba4b929a33b02371a3b10847893f3f98bc02f669b02712bd8e647f33a3a90bd7"
+    },
+    {
+      "source": "/local-assets/cards/en/08730.avif",
+      "sourceSha256": "1127631ff2e44bd9415286ec61289d82fdca255135d68f81ceec3b14dedaa305",
+      "path": "/local-assets/cards/en/thumbs/08730.webp",
+      "sha256": "c60be0bc8b20edd899b89eac68cf8a12826b58edd13cb97f77fe027b2604e487"
+    },
+    {
+      "source": "/local-assets/cards/en/08731.avif",
+      "sourceSha256": "a0a6a6b1f77a708c9020b66393eac85e8a1153ff5e30cd7cfdf98361f4d928c7",
+      "path": "/local-assets/cards/en/thumbs/08731.webp",
+      "sha256": "d96004e0789a2a6c0b34c788b4fbb151c9d768a9f34339f26943a95948be0fe7"
+    },
+    {
+      "source": "/local-assets/cards/en/08732.avif",
+      "sourceSha256": "b421fe0c1ecd39b1d892d8f55b7373ea2d0af4b124ac08cea034020ee09fbce7",
+      "path": "/local-assets/cards/en/thumbs/08732.webp",
+      "sha256": "62c4a90e6e6d84c3656f2c1299741e75ed72acaeed7099fa05f2da260d5a1b3b"
+    },
+    {
+      "source": "/local-assets/cards/en/08733.avif",
+      "sourceSha256": "df7e1c620b7b28ca2d658c73546818760909d4e0af89ec73369f2d8e72be6731",
+      "path": "/local-assets/cards/en/thumbs/08733.webp",
+      "sha256": "7528c69525bdfb86999f3e6aef3478d3810aa2bed54c9b74fd0e48a206dab3bd"
+    },
+    {
+      "source": "/local-assets/cards/en/08734.avif",
+      "sourceSha256": "15a06883b5db6d04ea2a1f1d48ce7f54af4422f9235c60c84e707492c324e42f",
+      "path": "/local-assets/cards/en/thumbs/08734.webp",
+      "sha256": "1676f362bf48e30fe39c02f18856a152d027ce3f32f42eb24a95b4464a40c428"
+    },
+    {
+      "source": "/local-assets/cards/en/08735.avif",
+      "sourceSha256": "60e5d9bcb74c788b6b1857fc1bd7982420fe2d825d86b72320a867eeedaf5225",
+      "path": "/local-assets/cards/en/thumbs/08735.webp",
+      "sha256": "2ef535fd95384ec59fc75bf12eee2f15debe4d264c4a2237cb3271b1422a4e65"
+    },
+    {
+      "source": "/local-assets/cards/en/08736.avif",
+      "sourceSha256": "804d0c7cc374134a1e13db983e5d44099543aad58983a4189fc576696c16fc98",
+      "path": "/local-assets/cards/en/thumbs/08736.webp",
+      "sha256": "0150b896b49b78f1ec9dab5691a9de0ec5eddce57a153abf0bff5e1fda4b5d7d"
+    },
+    {
+      "source": "/local-assets/cards/en/08737.avif",
+      "sourceSha256": "6234060893ccf3960d37d2a4a0dd4f16b487dbd48fe5a463d838a343e8046672",
+      "path": "/local-assets/cards/en/thumbs/08737.webp",
+      "sha256": "ac0e53e7605dbf752aa0ee9b6f7bcd74002b5b7ae57306b21ea12b6204f75f71"
+    },
+    {
+      "source": "/local-assets/cards/en/08738.avif",
+      "sourceSha256": "541b6506783a439fb16e019264fe0b20223d005b39084abd412b163c1c59bc33",
+      "path": "/local-assets/cards/en/thumbs/08738.webp",
+      "sha256": "637987cf1cad4f6a62b564c7e5a727964a7c561dab67cea2cca64f7ddb289af8"
+    },
+    {
+      "source": "/local-assets/cards/es/08730.avif",
+      "sourceSha256": "b9c2e456382d37aa7023f7bab9f88e115abe9f931fdfa237f7b8accfecc74314",
+      "path": "/local-assets/cards/es/thumbs/08730.webp",
+      "sha256": "0a6149d96ed7959da84ffbad746fe87700382d3aa3c7558017213f55ad78d09b"
+    },
+    {
+      "source": "/local-assets/cards/es/08731.avif",
+      "sourceSha256": "c360b8f3a9a2168c306e1a3d0b4ece90243e2f0a57c4b81fd941397008d73efb",
+      "path": "/local-assets/cards/es/thumbs/08731.webp",
+      "sha256": "a93fa9a334abdb2610de27a45475088a374b29b9a10bd5f6be5b4cff46500f4a"
+    },
+    {
+      "source": "/local-assets/cards/es/08732.avif",
+      "sourceSha256": "a9f7f576db4745e2f6a761ee09669275f19cfd445f10f4bc81a386de940ff43d",
+      "path": "/local-assets/cards/es/thumbs/08732.webp",
+      "sha256": "3787c4b2ddafb083dccc2bd70ca5a0d388c6edd34506fe357617a5422aabc004"
+    },
+    {
+      "source": "/local-assets/cards/es/08733.avif",
+      "sourceSha256": "2556c630d891c6e70d04ac2656a54b540511e3ae4c5bd6a0cab85cf9d7015702",
+      "path": "/local-assets/cards/es/thumbs/08733.webp",
+      "sha256": "38d867139d9f1ea5122701bffafb67405d3038d412606d840f97473e7891c623"
+    },
+    {
+      "source": "/local-assets/cards/es/08734.avif",
+      "sourceSha256": "d07cadd3bcbe0c5b42243370e25d464a921c0fd4c3d0c8625cb137fd1f60a32a",
+      "path": "/local-assets/cards/es/thumbs/08734.webp",
+      "sha256": "d483e00bf23a54d7c79b3e944e43f6d5e4ea667afdb441e55ad8cccde2916f02"
+    },
+    {
+      "source": "/local-assets/cards/es/08735.avif",
+      "sourceSha256": "1deec8276e880b8f2e8b89b751cf4868d202051ca4ce78bf2c7142fd6f89ede4",
+      "path": "/local-assets/cards/es/thumbs/08735.webp",
+      "sha256": "1f074ab955599a198903c9e5f0d4e4650d123632a6100f49695060703ec39a61"
+    },
+    {
+      "source": "/local-assets/cards/es/08736.avif",
+      "sourceSha256": "aab8d8121be989d2a896dc76f5def477cbe689765ea85326ddd2293a9468e2fb",
+      "path": "/local-assets/cards/es/thumbs/08736.webp",
+      "sha256": "a9ce7baab344e8ff4588fce5cc07aa627061745aaa459b4c8df96d763cb272a9"
+    },
+    {
+      "source": "/local-assets/cards/es/08737.avif",
+      "sourceSha256": "bbe384b70a671ead56efa614595bc86b4bd2cb0299b5eee7eeb9341f0026a420",
+      "path": "/local-assets/cards/es/thumbs/08737.webp",
+      "sha256": "1fff8220c0e8c98c20b9344e3cfc5083613fc25e30bf167fcc29d61721c35c65"
+    },
+    {
+      "source": "/local-assets/cards/es/08738.avif",
+      "sourceSha256": "fb30577ceb419c9b89d6b767eca59dbfd585f1edb94dcc534685ce9476721f72",
+      "path": "/local-assets/cards/es/thumbs/08738.webp",
+      "sha256": "0df564cb0bd2346ad212e024fd32a4561bed1b4bfaa6a27169ebeb4a21101479"
     }
   ]
 }
