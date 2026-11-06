@@ -21,6 +21,7 @@ import { defendValue, fixedDefend, townSettled } from './night-helpers'
 import { defendReactions, townReactions } from './night-citizens'
 import './night-locations'
 import './night-encounters'
+import { friendsInLowPlaces } from './friends-in-low-places'
 
 export const NIGHT_ON_THE_TOWN = 'night-on-the-town'
 export function nightOnTheTown({
@@ -214,7 +215,8 @@ registerScenario({
   },
   resolution: (s) => {
     const defended = Object.values(s.locations).filter((l) => (l.resources ?? 0) > 0),
-      n = defended.length >= 6 ? 2 : 1
+      n = defended.length >= 6 ? 2 : 1,
+      covered = n === 2 || (defended.length >= 3 && defended.some((l) => l.id === HIBBS))
     return [
       {
         type: 'Story',
@@ -239,10 +241,11 @@ registerScenario({
       ),
       ...(n === 2
         ? [recordNote('plaguebearerArkhamTogether')]
-        : defended.length >= 3 && defended.some((l) => l.id === HIBBS)
+        : covered
           ? [recordNote('plaguebearerHibbsCovered')]
           : []),
-      endScenario({ type: 'resolution', resolution: n }),
+      // Interludio I: se resuelve antes de cerrar el escenario.
+      ...friendsInLowPlaces(s, covered, endScenario({ type: 'resolution', resolution: n })),
     ]
   },
 })

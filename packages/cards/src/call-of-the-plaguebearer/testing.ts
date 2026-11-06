@@ -32,7 +32,8 @@ export function game(
 export function settle(s: GameState): GameState {
   for (let n = 0; n < 100 && s.pending; n++) {
     const p = s.pending.question.prompt
-    if (p === 'prompt.reaction') s = choose(s, 'choice.skip')
+    if (p === 'prompt.reaction' || p === 'prompt.plaguebearer.friendsHidden')
+      s = choose(s, 'choice.skip')
     else if (p === 'prompt.commitCards') s = choose(s, 'choice.revealToken')
     else if (p === 'prompt.skillTestSucceeded' || p === 'prompt.skillTestFailed')
       s = choose(s, 'choice.applyResults')

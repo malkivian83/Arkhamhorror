@@ -40,7 +40,7 @@ registerPlayerCards([
     slots: ['ally'],
     health: 2,
     sanity: 2,
-    icons: { willpower: 1, wild: 1, agility: 1 },
+    icons: { willpower: 1, intellect: 1, agility: 1 },
   },
 ])
 for (const npc of NPCS)
@@ -84,7 +84,7 @@ for (const npc of NPCS)
 registerPlayerCard({
   code: N.hibbs,
   skillModifier: (_s, a, t) =>
-    t.investigator === a.owner && (t.skill === 'combat' || t.skill === 'agility') ? 1 : 0,
+    t.investigator === a.owner && (t.skill === 'willpower' || t.skill === 'agility') ? 1 : 0,
   reactions: (s, t, a) =>
     t.type === 'whenEnemyAttacks' &&
     !a.exhausted &&
