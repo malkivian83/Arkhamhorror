@@ -34,6 +34,7 @@ import { C, ask, damage, lead, on, run, specific } from './helpers'
 import { panicked, troubleshooter, treacheries } from './data'
 import { N } from './night-data'
 import { CURIOSITY } from './friends-in-low-places'
+import { deadOrAlive } from './dead-or-alive'
 import {
   D,
   P,
@@ -1105,7 +1106,8 @@ function resolution(
     { type: 'Story', entry: story(n) },
     { type: 'EarnExperience', amount: 0, victory: true },
     recordNote(note),
-    endScenario({ type: 'resolution', resolution: n }),
+    // Interludio II: Vivo o muerto, antes de cerrar el escenario.
+    ...deadOrAlive(s, n === 3, endScenario({ type: 'resolution', resolution: n })),
   ]
 }
 function resolutionFive(s: GameState): Message[] {
