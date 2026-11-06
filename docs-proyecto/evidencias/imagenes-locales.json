@@ -42289,6 +42289,102 @@
       "source": "E:\\Plaguero\\en\\128 - Ritual of Yaztaroth-1.png",
       "bytes": 117543,
       "sha256": "5f0ee609c53353bd4aa3647b472cc9631b74fc306e32c45fd7529a53a9fe1573"
+    },
+    {
+      "art": "08575",
+      "language": "en",
+      "path": "/local-assets/cards/en/08575.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/08575.avif",
+      "bytes": 74432,
+      "sha256": "eff3c5f10402470c0e4a8fe5fa2d0bb2d70f2be5f4932a5c257257eb2a267b65"
+    },
+    {
+      "art": "08577",
+      "language": "en",
+      "path": "/local-assets/cards/en/08577.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/08577.avif",
+      "bytes": 69776,
+      "sha256": "3fb58128e058b27bd078830aa10736d4851db03b13aedd406fff995dce01167e"
+    },
+    {
+      "art": "08578",
+      "language": "en",
+      "path": "/local-assets/cards/en/08578.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/08578.avif",
+      "bytes": 72788,
+      "sha256": "fb1d4172d8a90653dfc5135b2bace1ab5308ffe7b0ca40104fa3aa7794db8a2d"
+    },
+    {
+      "art": "08583",
+      "language": "en",
+      "path": "/local-assets/cards/en/08583.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/08583.avif",
+      "bytes": 71417,
+      "sha256": "84bb90c7bb3575f174b16b3e51768e11907b6a0b2b80486628f934b742ed402a"
+    },
+    {
+      "art": "08584",
+      "language": "en",
+      "path": "/local-assets/cards/en/08584.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/08584.avif",
+      "bytes": 69610,
+      "sha256": "986955a10a1585d9d26548c6d481634e95c6fa8465161ae294104394d27e5438"
+    },
+    {
+      "art": "08585",
+      "language": "en",
+      "path": "/local-assets/cards/en/08585.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/cards/08585.avif",
+      "bytes": 62182,
+      "sha256": "2344573db7c893671b37b712bed24c2e76819660b4043051a0c9c9a52b55fe10"
+    },
+    {
+      "art": "08575",
+      "language": "es",
+      "path": "/local-assets/cards/es/08575.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/08575.avif",
+      "bytes": 107129,
+      "sha256": "fe2b516d19c8313ed460f3578b73d83c20bb3825cd4f1a53d88f5181141e59fc"
+    },
+    {
+      "art": "08577",
+      "language": "es",
+      "path": "/local-assets/cards/es/08577.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/08577.avif",
+      "bytes": 105544,
+      "sha256": "ac6cf25d0c1cd21517ead3d4d751f7bfa9071b43720665297e7caae25f43b4f6"
+    },
+    {
+      "art": "08578",
+      "language": "es",
+      "path": "/local-assets/cards/es/08578.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/08578.avif",
+      "bytes": 97958,
+      "sha256": "044dcb0582ae0b6f3c6485524e03bcb7641bc0a0b95a8886a2e830606cdeb0e9"
+    },
+    {
+      "art": "08583",
+      "language": "es",
+      "path": "/local-assets/cards/es/08583.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/08583.avif",
+      "bytes": 99361,
+      "sha256": "cba4a6ae59b0d63921156809b3ad843ee27228c2db893fbcce5b449568130515"
+    },
+    {
+      "art": "08584",
+      "language": "es",
+      "path": "/local-assets/cards/es/08584.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/08584.avif",
+      "bytes": 104590,
+      "sha256": "0cbb2f11c8b612774d0bef71abc32073f71a2b75fe2002a6f879d9ef62ef6b34"
+    },
+    {
+      "art": "08585",
+      "language": "es",
+      "path": "/local-assets/cards/es/08585.avif",
+      "source": "https://assets.arkhamhorror.app/img/arkham/es/cards/08585.avif",
+      "bytes": 93514,
+      "sha256": "7ec2147a8c32d052dbc02d6654ed8f5c6294e4b5bca059664bac0fa3d3a60cde"
     }
   ],
   "missing": [
