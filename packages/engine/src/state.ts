@@ -236,6 +236,7 @@ export function enemyMaxHealth(state: GameState, enemy: Enemy): number {
   return (
     enemy.maxHealth +
     (enemyBehavior(enemy.code)?.healthModifier?.(state, enemy) ?? 0) +
+    (scenarioBehavior(state.scenarioId)?.enemyHealthModifier?.(state, enemy) ?? 0) +
     attachedModifiers(state, enemy.id).reduce((n, m) => n + (m.health ?? 0), 0)
   )
 }

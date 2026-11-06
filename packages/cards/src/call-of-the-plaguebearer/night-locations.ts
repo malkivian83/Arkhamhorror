@@ -6,91 +6,109 @@ import {
   registerLocation,
   skillValueFor,
   type GameState,
+  type Message,
   type SkillType,
 } from '@lcg/engine'
 import { ask, damage, on, specific } from './helpers'
 import { TOWN } from './night-data'
 import { search } from './night-citizens'
 
+/**
+ * Lugares sanos del II y su versión Segura de Cantos fúnebres (IV): mismas capacidades,
+ * sin colocar al ciudadano. En el IV el Colmado es una acción y cada uso de una capacidad
+ * avisa al acto 2a (`chorus.stableUsed`).
+ */
 for (const row of TOWN)
-  registerLocation({
-    code: row.id,
-    onReveal: () => [
-      {
-        type: 'PlaceAsset',
-        code: row.npc,
-        name: playerCardDef(row.npc)!.name,
-        placement: { type: 'location', location: row.id },
-      },
-    ],
-    abilities: (s, _self, by) => {
-      const limit = { per: 'round' as const }
-      if (row.id === '78025')
-        return Array.from({ length: getInvestigator(s, by).resources }, (_, n) => ({
-          key: '78025:search',
-          label: 'ability.plaguebearer.night.store',
-          params: { amount: n + 1 },
-          actions: 0,
-          provokes: false,
-          limit,
-          costs: [{ type: 'SpendResources' as const, investigator: by, amount: n + 1 }],
-          then: [specific('night.storeSearch', { investigator: by, amount: n + 1 })],
-        }))
-      if (row.id === '78027')
-        return [
-          {
-            key: '78027:search',
-            label: 'ability.plaguebearer.night.boarding',
-            actions: 1,
-            provokes: true,
-            limit,
-            then: [search(by, ['Ally'], 'hand')],
-          },
-        ]
-      if (row.id === '78030')
-        return [
-          {
-            key: '78030:search',
-            label: 'ability.plaguebearer.night.shop',
-            actions: 1,
-            provokes: true,
-            limit,
-            then: [
-              { type: 'DrawEncounterCard', investigator: by },
-              search(by, ['Spell', 'Relic'], 'put'),
+  for (const code of [row.id, row.stable]) {
+    const stable = code !== row.id
+    const used = (then: Message[]): Message[] =>
+      stable ? [...then, specific('chorus.stableUsed', { location: code })] : then
+    registerLocation({
+      code,
+      onReveal: () =>
+        stable
+          ? []
+          : [
+              {
+                type: 'PlaceAsset',
+                code: row.npc,
+                name: playerCardDef(row.npc)!.name,
+                placement: { type: 'location', location: row.id },
+              },
             ],
-          },
-        ]
-      return []
-    },
-    forced: (s, t, self) => {
-      if (
-        row.id === '78028' &&
-        self.revealed &&
-        t.type === 'afterCardsDrawn' &&
-        s.phase === 'upkeep' &&
-        getInvestigator(s, t.investigator).location === self.id &&
-        getInvestigator(s, t.investigator).hand.length >= 5 &&
-        s.scenarioMeta?.[`night:library:${t.investigator}`] !== s.round
-      )
-        return [
-          { type: 'SetScenarioMeta', key: `night:library:${t.investigator}`, value: s.round },
-          { type: 'DrawCards', investigator: t.investigator, amount: 1 },
-        ]
-      if (
-        row.id === '78029' &&
-        self.revealed &&
-        t.type === 'afterCommit' &&
-        getInvestigator(s, t.by).location === self.id
-      ) {
-        const card =
-          s.skillTest?.committed.find((c) => c.id === t.commitId) ?? s.skillTest?.committed.at(-1)
-        if (card && playerCardDef(card.code)?.type === 'skill')
-          return [specific('night.docks', { investigator: t.by })]
-      }
-      return []
-    },
-  })
+      abilities: (s, _self, by) => {
+        const limit = { per: 'round' as const }
+        if (row.id === '78025')
+          return Array.from({ length: getInvestigator(s, by).resources }, (_, n) => ({
+            key: '78025:search',
+            label: 'ability.plaguebearer.night.store',
+            params: { amount: n + 1 },
+            actions: stable ? 1 : 0,
+            provokes: stable,
+            limit,
+            costs: [{ type: 'SpendResources' as const, investigator: by, amount: n + 1 }],
+            then: used([specific('night.storeSearch', { investigator: by, amount: n + 1 })]),
+          }))
+        if (row.id === '78027')
+          return [
+            {
+              key: '78027:search',
+              label: 'ability.plaguebearer.night.boarding',
+              actions: 1,
+              provokes: true,
+              limit,
+              then: used([search(by, ['Ally'], 'hand')]),
+            },
+          ]
+        if (row.id === '78030')
+          return [
+            {
+              key: '78030:search',
+              label: 'ability.plaguebearer.night.shop',
+              actions: 1,
+              provokes: true,
+              limit,
+              then: used([
+                { type: 'DrawEncounterCard', investigator: by },
+                search(by, ['Spell', 'Relic'], 'put'),
+              ]),
+            },
+          ]
+        return []
+      },
+      forced: (s, t, self) => {
+        if (
+          row.id === '78028' &&
+          self.revealed &&
+          t.type === 'afterCardsDrawn' &&
+          s.phase === 'upkeep' &&
+          getInvestigator(s, t.investigator).location === self.id &&
+          getInvestigator(s, t.investigator).hand.length >= 5 &&
+          s.scenarioMeta?.[`night:library:${t.investigator}`] !== s.round
+        )
+          return used([
+            { type: 'SetScenarioMeta', key: `night:library:${t.investigator}`, value: s.round },
+            { type: 'DrawCards', investigator: t.investigator, amount: 1 },
+          ])
+        if (
+          row.id === '78029' &&
+          self.revealed &&
+          t.type === 'afterCommit' &&
+          getInvestigator(s, t.by).location === self.id
+        ) {
+          const card =
+            s.skillTest?.committed.find((c) => c.id === t.commitId) ?? s.skillTest?.committed.at(-1)
+          if (card && playerCardDef(card.code)?.type === 'skill')
+            return used([
+              specific('night.docks', { investigator: t.by }),
+              // IV: la carta asignada gana además [wild] (+1 a la prueba).
+              ...(stable ? [{ type: 'BoostSkillTest' as const, amount: 1 }] : []),
+            ])
+        }
+        return []
+      },
+    })
+  }
 on('night.docks', (s, d) =>
   s.skillTest
     ? {

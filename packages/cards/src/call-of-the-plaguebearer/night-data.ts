@@ -20,6 +20,8 @@ export const N = {
 export const TOWN = [
   {
     id: '78023',
+    /** Versión Segura de Cantos fúnebres (IV), con las mismas capacidades. */
+    stable: '78088',
     ruin: '78275',
     npc: '78032',
     name: 'Arkham Advertiser',
@@ -30,6 +32,8 @@ export const TOWN = [
   },
   {
     id: '78024',
+    /** Versión Segura de Cantos fúnebres (IV), con las mismas capacidades. */
+    stable: '78089',
     ruin: '78276',
     npc: '78038',
     name: 'Bank of Arkham',
@@ -40,6 +44,8 @@ export const TOWN = [
   },
   {
     id: '78025',
+    /** Versión Segura de Cantos fúnebres (IV), con las mismas capacidades. */
+    stable: '78090',
     ruin: '78277',
     npc: '78037',
     name: 'General Store',
@@ -50,6 +56,8 @@ export const TOWN = [
   },
   {
     id: '78026',
+    /** Versión Segura de Cantos fúnebres (IV), con las mismas capacidades. */
+    stable: '78091',
     ruin: '78278',
     npc: '78034',
     name: 'Hibbs Roadhouse',
@@ -60,6 +68,8 @@ export const TOWN = [
   },
   {
     id: '78027',
+    /** Versión Segura de Cantos fúnebres (IV), con las mismas capacidades. */
+    stable: '78092',
     ruin: '78279',
     npc: '78035',
     name: 'Ma’s Boarding House',
@@ -70,6 +80,8 @@ export const TOWN = [
   },
   {
     id: '78028',
+    /** Versión Segura de Cantos fúnebres (IV), con las mismas capacidades. */
+    stable: '78093',
     ruin: '78280',
     npc: '78033',
     name: 'Orne Library',
@@ -80,6 +92,8 @@ export const TOWN = [
   },
   {
     id: '78029',
+    /** Versión Segura de Cantos fúnebres (IV), con las mismas capacidades. */
+    stable: '78094',
     ruin: '78281',
     npc: '78031',
     name: 'River Docks',
@@ -90,6 +104,8 @@ export const TOWN = [
   },
   {
     id: '78030',
+    /** Versión Segura de Cantos fúnebres (IV), con las mismas capacidades. */
+    stable: '78095',
     ruin: '78282',
     npc: '78036',
     name: 'Ye Olde Magick Shoppe',

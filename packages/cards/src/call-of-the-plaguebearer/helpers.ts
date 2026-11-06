@@ -200,3 +200,9 @@ on('plaguebearer.hidden', (s, d) => {
     'prompt.plaguebearer.hidden',
   )
 })
+/**
+ * Muerte al amanecer, R5 («La sangre corre por tus venas»): durante el resto de la campaña,
+ * cada ficha de sectario cuenta como una ficha de fallo automático adicional.
+ */
+export const bloodInVeins = (s: GameState) =>
+  !!s.campaignLog?.notes.includes('plaguebearerBloodInVeins')
