@@ -13,6 +13,7 @@ import { extracurricularActivity, EXTRACURRICULAR_ACTIVITY } from './extracurric
 registerCampaign({
   id: THE_DUNWICH_LEGACY.id,
   name: 'campaign.names.the-dunwich-legacy',
+  release: 2,
   chaosBags: DUNWICH_CHAOS_BAGS,
   openingScenarios: ['extracurricular-activity', 'the-house-always-wins'],
   prologue: { title: 'story.dunwich.prologueTitle', body: 'story.dunwich.prologue' },

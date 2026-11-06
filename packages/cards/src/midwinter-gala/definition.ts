@@ -9,6 +9,7 @@ import './stories'
 registerCampaign({
   id: MIDWINTER_GALA,
   name: 'campaign.names.the-midwinter-gala',
+  release: 11,
   standalone: true,
   chaosBags: CHAOS_BAGS,
   scenarios: [

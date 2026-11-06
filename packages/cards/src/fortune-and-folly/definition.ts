@@ -10,6 +10,7 @@ import './roles'
 registerCampaign({
   id: FORTUNE_AND_FOLLY,
   name: 'campaign.names.fortune-and-folly',
+  release: 10,
   standalone: true,
   chaosBags: CHAOS_BAGS,
   scenarios: [

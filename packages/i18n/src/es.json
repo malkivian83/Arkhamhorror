@@ -1881,6 +1881,7 @@
     "typeAll": "Todas",
     "typeCampaigns": "Campañas",
     "typeStandalone": "Independientes",
+    "typeFanmade": "Fanmade",
     "noStories": "Ninguna historia coincide con la búsqueda.",
     "railPrevious": "Ver las anteriores",
     "railNext": "Ver más",
@@ -1895,6 +1896,7 @@
     "emptySlot": "Hueco libre",
     "removeInvestigator": "Quitar a {name} del equipo",
     "standaloneTag": "Independiente",
+    "fanmadeTag": "Fanmade",
     "openingScenario": "¿A quién buscáis primero?"
   },
   "skillTest": {

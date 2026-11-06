@@ -5,6 +5,7 @@ import { NIGHT_ON_THE_TOWN, nightOnTheTown } from './night-on-the-town'
 registerCampaign({
   id: CALL_OF_THE_PLAGUEBEARER.id,
   name: 'campaign.names.call-of-the-plaguebearer',
+  fanmade: true,
   prologue: { title: 'story.plaguebearer.prologueTitle', body: 'story.plaguebearer.prologue' },
   chaosBags: PLAGUEBEARER_CHAOS_BAGS,
   scenarios: CALL_OF_THE_PLAGUEBEARER.scenarios.map((id) =>

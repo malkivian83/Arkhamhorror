@@ -8,6 +8,7 @@ import { DR_ARMITAGE, spreadingFlames } from './spreading-flames'
 registerCampaign({
   id: BRETHREN_OF_ASH.id,
   name: 'campaign.names.brethren-of-ash',
+  fanmade: true,
   chaosBags: CHAOS_BAGS,
   prologue: { title: 'story.brethrenOfAsh.prologueTitle', body: 'story.brethrenOfAsh.prologue' },
   scenarios: [

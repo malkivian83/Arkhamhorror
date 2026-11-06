@@ -10,6 +10,7 @@ import './plot'
 registerCampaign({
   id: EXCELSIOR,
   name: 'campaign.names.murder-at-the-excelsior-hotel',
+  release: 4,
   standalone: true,
   chaosBags: CHAOS_BAGS,
   scenarios: [

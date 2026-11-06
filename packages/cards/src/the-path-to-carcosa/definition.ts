@@ -14,6 +14,7 @@ import { THE_UNSPEAKABLE_OATH, theUnspeakableOath } from './the-unspeakable-oath
 registerCampaign({
   id: THE_PATH_TO_CARCOSA.id,
   name: 'campaign.names.the-path-to-carcosa',
+  release: 3,
   chaosBags: CARCOSA_CHAOS_BAGS,
   // Guía ES pp. 5–6: si el afectado abandona la campaña, otro investigador pasa a serlo.
   // Guía ES p. 15 (Resolución 1): igual con el Broche de ónice negro.

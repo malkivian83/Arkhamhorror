@@ -5,6 +5,7 @@ import { CARNEVALE, CHAOS_BAGS } from './setup'
 registerCampaign({
   id: CARNEVALE,
   name: `campaign.names.${CARNEVALE}`,
+  release: 2,
   standalone: true,
   chaosBags: CHAOS_BAGS,
   scenarios: [

@@ -45,6 +45,13 @@ export interface CampaignDefinition {
   name: string
   /** Escenario independiente (una sola partida, sin campaña). */
   standalone?: boolean
+  /** Contenido de aficionados, no publicado por Fantasy Flight Games. */
+  fanmade?: boolean
+  /**
+   * Orden de publicación dentro de su grupo (campañas oficiales o escenarios
+   * independientes), según el catálogo oficial: 1 = La noche de la fanática.
+   */
+  release?: number
   /** Prólogo que se lee al empezar la campaña (antes del primer escenario). */
   prologue?: StoryEntry
   /** Opening scenarios that may be played in either order. */
@@ -69,6 +76,32 @@ export function campaignDefinition(id: string): CampaignDefinition {
   const found = campaigns.get(id)
   if (!found) throw new Error(`Campaña desconocida: ${id}`)
   return found
+}
+
+/** Grupo de una historia en el selector. */
+export type StoryGroup = 'campaign' | 'standalone' | 'fanmade'
+
+export function storyGroup(definition: CampaignDefinition): StoryGroup {
+  return definition.fanmade ? 'fanmade' : definition.standalone ? 'standalone' : 'campaign'
+}
+
+const GROUP_ORDER: StoryGroup[] = ['campaign', 'standalone', 'fanmade']
+
+/**
+ * Orden del selector: campañas oficiales y escenarios independientes por fecha de
+ * publicación; después, el contenido de aficionados por nombre (`name` ya traducido).
+ */
+export function compareStories(
+  a: CampaignDefinition,
+  b: CampaignDefinition,
+  name: (definition: CampaignDefinition) => string,
+  locale?: string,
+): number {
+  const group = GROUP_ORDER.indexOf(storyGroup(a)) - GROUP_ORDER.indexOf(storyGroup(b))
+  if (group) return group
+  const release = (a.release ?? Infinity) - (b.release ?? Infinity)
+  if (release && !Number.isNaN(release)) return release
+  return name(a).localeCompare(name(b), locale, { sensitivity: 'base' })
 }
 
 export function allCampaigns(): CampaignDefinition[] {

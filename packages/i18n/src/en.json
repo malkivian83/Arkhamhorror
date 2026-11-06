@@ -1881,6 +1881,7 @@
     "typeAll": "All",
     "typeCampaigns": "Campaigns",
     "typeStandalone": "Standalone",
+    "typeFanmade": "Fan-made",
     "noStories": "No story matches your search.",
     "railPrevious": "Show previous",
     "railNext": "Show more",
@@ -1895,6 +1896,7 @@
     "emptySlot": "Empty slot",
     "removeInvestigator": "Remove {name} from the team",
     "standaloneTag": "Standalone",
+    "fanmadeTag": "Fan-made",
     "openingScenario": "Whom will you look for first?"
   },
   "skillTest": {

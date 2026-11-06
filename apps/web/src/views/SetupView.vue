@@ -2,10 +2,13 @@
 import {
   allCampaigns,
   campaignDefinition,
+  compareStories,
   STARTER_DECKS,
   starterInvestigator,
+  storyGroup,
   supportsChapterTwoEncounters,
   type EncounterSetVariant,
+  type StoryGroup,
   type CampaignMember,
   type Difficulty,
 } from '@lcg/cards'
@@ -134,24 +137,26 @@ const resume = computed(() => {
 })
 
 /* Historias: búsqueda por nombre o descripción y filtro por tipo. */
-type StoryType = 'all' | 'campaign' | 'standalone'
+type StoryType = 'all' | StoryGroup
 const storyQuery = ref('')
 const storyType = ref<StoryType>('all')
 const storyTypes: { value: StoryType; label: string }[] = [
   { value: 'all', label: 'setup.typeAll' },
   { value: 'campaign', label: 'setup.typeCampaigns' },
   { value: 'standalone', label: 'setup.typeStandalone' },
+  { value: 'fanmade', label: 'setup.typeFanmade' },
 ]
 const normalize = (text: string) => text.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+/* Oficiales por fecha de publicación (campañas y luego independientes); al final, fanmade. */
 const visibleCampaigns = computed(() => {
   const query = normalize(storyQuery.value.trim())
   return campaigns
     .filter(
       (c) =>
-        (storyType.value === 'all' || (storyType.value === 'standalone') === !!c.standalone) &&
+        (storyType.value === 'all' || storyGroup(c) === storyType.value) &&
         (!query || normalize(`${t(c.name)} ${t(`setup.descriptions.${c.id}`)}`).includes(query)),
     )
-    .sort((a, b) => t(a.name).localeCompare(t(b.name), locale.value, { sensitivity: 'base' }))
+    .sort((a, b) => compareStories(a, b, (c) => t(c.name), locale.value))
 })
 const availableCampaigns = computed(() =>
   visibleCampaigns.value.filter((c) => c.scenarios[0]?.build),
@@ -327,7 +332,11 @@ function start() {
                   <span class="ui-cover">
                     <img :src="campaignCover(c.id)" alt="" width="448" height="560" />
                     <span class="ui-cover-tag">{{
-                      c.standalone ? t('setup.standaloneTag') : t('setup.campaignLabel')
+                      c.fanmade
+                        ? t('setup.fanmadeTag')
+                        : c.standalone
+                          ? t('setup.standaloneTag')
+                          : t('setup.campaignLabel')
                     }}</span>
                     <span v-if="campaignId === c.id" class="ui-badge" aria-hidden="true">
                       <svg width="16" height="16" viewBox="0 0 16 16">
