@@ -29,7 +29,7 @@ export function companionHealing(
           label,
           params: { name: i.name },
           target: { type: 'investigator', id: i.id },
-          then: [{ type: 'Heal', investigator: i.id, ...amount }],
+          then: [{ type: 'Heal', investigator: i.id, healer: investigator, ...amount }],
         })),
       ...Object.values(state.assets).flatMap((asset): Choice[] => {
         const def = playerCardDef(asset.code)
@@ -45,7 +45,7 @@ export function companionHealing(
             label,
             params: { name: def.name },
             target: { type: 'asset', id: asset.id },
-            then: [{ type: 'HealAsset', asset: asset.id, ...amount }],
+            then: [{ type: 'HealAsset', asset: asset.id, healer: investigator, ...amount }],
           },
         ]
       }),

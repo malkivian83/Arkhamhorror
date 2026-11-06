@@ -347,6 +347,42 @@
     "traits": "Maldición.",
     "text": "<b>Revelación</b> – Si no hay Pesadillas rezumantes en juego, Fantasmagoria obtiene Oleada. Si no es así, busca la Pesadilla rezumante más cercana a un investigador. Si hay 1 o más cartas bajo ella, elige 1 de ellas al azar y hazla aparecer en su Lugar. Si no hay cartas bajo ella, se mueve y ataca como si fuera la fase de Enemigos (sin agotarse)."
   },
+  "08575": {
+    "name": "Recuerdo de una cacería torcida",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Eidolón. Élite.",
+    "text": "Alerta. Represalia.\n<b>Presa</b> – Investigador que tenga a Eliyah Ashevak.\n[reaction] Después de que evites a este Enemigo con éxito por 3 o más: Inflígele 3 puntos de daño.\n<b>Obligado</b> – Cuando sea derrotado, dale la vuelta y resuelve su Historia."
+  },
+  "08577": {
+    "name": "Recuerdo de un padre desaparecido",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Eidolón. Élite.",
+    "text": "Represalia.\n<b>Presa</b> – Investigador que tenga a Takada Hiroko.\n[reaction] Después de que obtengas recursos mientras este Enemigo está agotado en tu Lugar: Inflígele 1 punto de daño.\n<b>Obligado</b> – Cuando sea derrotado, dale la vuelta y resuelve su Historia."
+  },
+  "08578": {
+    "name": "Recuerdo de un país asolado",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Eidolón. Élite.",
+    "text": "Represalia.\n<b>Presa</b> – Investigador que tenga a James «Cookie» Fredericks.\n[reaction] Después de que este Enemigo te ataque: Inflígele 1 punto de daño.\n<b>Obligado</b> – Cuando sea derrotado, dale la vuelta y resuelve su Historia."
+  },
+  "08583": {
+    "name": "Recuerdo de un amor no correspondido",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Eidolón. Élite.",
+    "text": "Alerta.\n<b>Presa</b> – Investigador que tenga a la Dra. Amy Kensler.\n[reaction] Después de que descubras pistas en el Lugar de este Enemigo: Inflígele esa misma cantidad de daño.\n<b>Obligado</b> – Cuando sea derrotado, dale la vuelta y resuelve su Historia."
+  },
+  "08584": {
+    "name": "Sombra horripilante",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Eidolón.",
+    "text": "Indiferente. Cazador.\nMientras la Sombra horripilante esté en un Lugar despejado de espejismos, pierde Indiferente.\n<b>Obligado</b> – Después de que descubras o tomes el control de 1 o más pistas en el Lugar de la Sombra horripilante: Coloca la misma cantidad de perdición sobre la Sombra horripilante."
+  },
+  "08585": {
+    "name": "Bruma evanescente",
+    "typeCode": "treachery",
+    "traits": "Maldición. Peligro.",
+    "text": "<b>Revelación</b> – Vincula la Bruma evanescente al Lugar más cercano que no esté despejado de espejismos. Coloca 2 pistas en el Lugar vinculado.\nPara darle la vuelta al Lugar vinculado, los investigadores que estén allí deben gastar 2 pistas adicionales en grupo o recibir 2 puntos de daño cada uno.\n<b>Obligado</b> – Si el Lugar vinculado está despejado de espejismos: Descarta la Bruma evanescente."
+  },
   "08587": {
     "name": "Profesor William Dyer",
     "subname": "Profesor de geología",

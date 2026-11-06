@@ -347,6 +347,42 @@
     "traits": "Curse.",
     "text": "<b>Revelation</b> - If there are no Seeping Nightmares in play, Phantasmagoria gains surge. Otherwise, find the Seeping Nightmare nearest to an investigator. If there are 1 or more cards beneath it, choose one of them at random and spawn it at its location. If there are no cards beneath it, it moves and attacks as if it were the enemy phase (without exhausting)."
   },
+  "08575": {
+    "name": "Memory of a Hunt Gone Awry",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon. Elite.",
+    "text": "Alert. Retaliate.\n<b>Prey</b> - Investigator with Eliyah Ashevak.\n[reaction] After you successfully evade this enemy by 3 or more: Deal it 3 damage.\n<b>Forced</b> - When this enemy is defeated: Flip it over and resolve the text on its other side."
+  },
+  "08577": {
+    "name": "Memory of a Missing Father",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon. Elite.",
+    "text": "Retaliate.\n<b>Prey</b> - Investigator with Takada Hiroko.\n[reaction] After you gain 1 or more resources while this enemy is exhausted: Deal 1 damage to this enemy.\n<b>Forced</b> - When this enemy is defeated: Flip it over and resolve the text on its other side."
+  },
+  "08578": {
+    "name": "Memory of a Ravaged Country",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon. Elite.",
+    "text": "Retaliate.\n<b>Prey</b> - Investigator with James \"Cookie\" Fredericks.\n[reaction] After this enemy attacks you: Deal it 1 damage.\n<b>Forced</b> - When this enemy is defeated: Flip it over and resolve the text on its other side."
+  },
+  "08583": {
+    "name": "Memory of an Unrequited Love",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon. Elite.",
+    "text": "Alert.\n<b>Prey</b> - Investigator with Dr. Amy Kensler.\n[reaction] After you discover 1 or more clues at this enemy's location: Deal that much damage to this enemy.\n<b>Forced</b> - When this enemy is defeated: Flip it over and resolve the text on its other side."
+  },
+  "08584": {
+    "name": "Horrifying Shade",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon.",
+    "text": "Aloof. Hunter.\nWhile Horrifying Shade is at a location that is cleared of mirages, it loses aloof.\n<b>Forced</b> - After you discover or take control of 1 or more clues at Horrifying Shade's location: Place an equal amount of doom on Horrifying Shade."
+  },
+  "08585": {
+    "name": "Evanescent Mist",
+    "typeCode": "treachery",
+    "traits": "Curse. Hazard.",
+    "text": "<b>Revelation</b> - Attach Evanescent Mist to the nearest location that is not cleared of mirages. Place 2 clues on attached location.\nIn order to flip attached location over, investigators at attached location must either spend 2 additional clues as a group, or each take 2 damage.\n<b>Forced</b> - If attached location is cleared of mirages: Discard Evanescent Mist."
+  },
   "08587": {
     "name": "Professor William Dyer",
     "subname": "Professor of Geology",

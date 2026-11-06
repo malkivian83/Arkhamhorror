@@ -45,9 +45,26 @@ Las pruebas del motor cubren el pago grupal de Espejismo en un Lugar
 revelado, la elección de un destino y su entrada con las pistas ajustadas.
 Anamnesis permite recibir 2 de horror o colocar perdición y comprobar
 inmediatamente el avance del plan.
-Queda integrar la preparación y el registro con la campaña, completar los
-reversos de Historia, los demás encuentros, los planes y los actos, y preparar
-la presentación y la narración antes de habilitarlo.
+Sombra horripilante acumula perdición cuando un investigador descubre o toma
+el control de pistas de su Lugar y pierde Indiferente cuando se agotan los
+destinos de Espejismo de ese Lugar.
+Bruma evanescente se vincula al Lugar más cercano con destinos pendientes,
+añade pistas, encarece su exploración y se descarta al despejarlo.
+Resolver Espejismo cuesta una acción. Los planes de las tres visitas permiten
+volver a la Prisión de recuerdos pagando horror y aplican su penalización al
+avanzar. La resolución registra las Historias desterradas y sus puntos de
+experiencia sin duplicarlos.
+La referencia de caos resuelve las cuatro fichas de símbolo según la dificultad.
+Hay 28 locuciones de Salva incorporadas para pasajes de Espejismo y las
+introducciones de los escenarios siguientes. Los textos están en EN/ES y el
+manifiesto verifica las huellas de los textos en español y de los MP3.
+Los nueve Recuerdos están conectados a sus Lugares terminales. Sus reacciones
+o acciones de Negociar, la mejora a Decidido y el destierro del Lugar si el
+Compañero murió están cubiertos en el motor. El constructor prepara las tres
+visitas, sus 38 cartas de Encuentro y la restauración de recuerdos previos.
+Queda conectar las visitas con la campaña, completar las reglas impresas de
+los Lugares y presentar los reversos de Historia con sus textos y locuciones
+antes de habilitar el escenario.
 
 Revisión del 06/11/2026, corregida y con pruebas:
 

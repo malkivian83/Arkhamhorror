@@ -269,6 +269,174 @@
       "file": "edge-of-the-earth-restfulNightDoor-10e3664ddc54-salva.mp3",
       "textSha256": "10e3664ddc547905e6078850ae24b4ddbea46b3a214cc65e5c18b4511c6fa25b",
       "audioSha256": "940647d4bf797aab6f9994414fd916b40f53e832aede382092424f07613e6a10"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageIntro1.body",
+      "file": "edge-of-the-earth-mirageIntro1-9d07789e9560-salva.mp3",
+      "textSha256": "9d07789e95605e7d96868f04e2f818929a6df7985e5d1ce1e8d1810719f15ce9",
+      "audioSha256": "33b40659ba4ccb8941583e61eb44e17dca23a9345b458822e71a9095c0f57584"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageIntro2.body",
+      "file": "edge-of-the-earth-mirageIntro2-ee3ef2f195a2-salva.mp3",
+      "textSha256": "ee3ef2f195a2d3d1da0a85dc78c7f065a5474d6da2fb791bce25956e5d971864",
+      "audioSha256": "ccbf3b0e1f4b0322ee92b16a3fb58deaa64a16997f0bee62d0af26ee5a759c79"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageCrashDyer.body",
+      "file": "edge-of-the-earth-mirageCrashDyer-3c9eb2b59635-salva.mp3",
+      "textSha256": "3c9eb2b59635dbf75f1aec6621ff7e97b4200b047e1a3fbc5f3a47a421b1ba28",
+      "audioSha256": "d60b3b1b3c985bf710197aa059dd5f34ccf5037fd42605a75bdaa51571e0a3e2"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageCrashDanforth.body",
+      "file": "edge-of-the-earth-mirageCrashDanforth-cdac5352b194-salva.mp3",
+      "textSha256": "cdac5352b194dd5cf9cb096fd39bd257c051d23ab3e5f574c24f3c46757d8d85",
+      "audioSha256": "210f5cff09ecbeb6157ab05f218cbf1549ba29b72ce279297f10b3b69b23b15c"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageCrashKensler.body",
+      "file": "edge-of-the-earth-mirageCrashKensler-9d55686d6fee-salva.mp3",
+      "textSha256": "9d55686d6feea5b67a4e34fbb0ff7fcdcad74cdb57c2d4f4c923436c5ea30e4e",
+      "audioSha256": "afb743d4165167f141ce70fe1a2d1cec0fb32a9da933333df64c955d105c14c9"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageCrashEllsworth.body",
+      "file": "edge-of-the-earth-mirageCrashEllsworth-fe5f5eeedf8e-salva.mp3",
+      "textSha256": "fe5f5eeedf8eba7469b792d3b500cb5dfae8a7b63dec7f75e7ccdf158ab6aa49",
+      "audioSha256": "7ac97839ed43371e27d1ff6f64de85b852640bc24b2da1b93dbcb00d8769f622"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageCrashCookie.body",
+      "file": "edge-of-the-earth-mirageCrashCookie-b36a4dee1dda-salva.mp3",
+      "textSha256": "b36a4dee1dda40e396d71ab7ecafe0b6941fbd07c4b3010191f4eaee65782e77",
+      "audioSha256": "fadf45454e42e9a25789b4223389bdbe954f14e57cc4056fa29cf4e049f911bc"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageCrashTakada.body",
+      "file": "edge-of-the-earth-mirageCrashTakada-8118f4281af1-salva.mp3",
+      "textSha256": "8118f4281af174e21f7c919381793f3b7a9194125574c8f5d2648686b0313762",
+      "audioSha256": "e0404542bcf154138fe60d2b79d7611f798cc2aeae288fc879bccd699733bfa2"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageCrashClaypool.body",
+      "file": "edge-of-the-earth-mirageCrashClaypool-373f25780aaf-salva.mp3",
+      "textSha256": "373f25780aaf18b0fd98714cfd4cfd99f3f70060dc825586040e1146bd27925a",
+      "audioSha256": "cfb7e167b3207fb96c7060351f26f50ac1e42970c597f6917b05e000a01fb474"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageCrashSinha.body",
+      "file": "edge-of-the-earth-mirageCrashSinha-6c6d53588852-salva.mp3",
+      "textSha256": "6c6d535888520cc4eb84a9d8be6c478b3ba09f99e73ed53d14ae71cf915b09dc",
+      "audioSha256": "a55720729e9e5afc02b3ae739ee6278971e4caddf2e906719c61acc791881d6f"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageCrashAshevak.body",
+      "file": "edge-of-the-earth-mirageCrashAshevak-58140e8dea55-salva.mp3",
+      "textSha256": "58140e8dea5577205a4bdd14b7623f77e0ce0d3002b72d5be58b09d446358e3f",
+      "audioSha256": "7220cd482e3cef95fdf0d48da8ff4f245fde463e2432e4e9e3ad6dfc3afe066c"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageNoResolution.body",
+      "file": "edge-of-the-earth-mirageNoResolution-f2eb6b23cf7f-salva.mp3",
+      "textSha256": "f2eb6b23cf7fe9ea256a9f1ca949a49ddaa0a2ad11775fa93a1ba524634d894e",
+      "audioSha256": "ba8227e5f69622cd3e85e13ce1613db4a8d7ec9ded6a6a508a632975b72d8b87"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageResolution1.body",
+      "file": "edge-of-the-earth-mirageResolution1-45bff7e4748d-salva.mp3",
+      "textSha256": "45bff7e4748d0c8fccc60d87d4f831e2321be8ed8b531b1cfa25270a08140855",
+      "audioSha256": "723724c01459231a58d32636bb19fc3aded91b8d8cfa2e760d6b0b1f4cbcad4d"
+    },
+    {
+      "key": "story.edgeOfTheEarth.peaksIntro1.body",
+      "file": "edge-of-the-earth-peaksIntro1-e8caf81a1d64-salva.mp3",
+      "textSha256": "e8caf81a1d64365abe3040542e90a3ed752e90b6841aa61f78b57cd5bf5f9c21",
+      "audioSha256": "974cfca4a66b7098e56f616b90bc9be03651013955a645b2ee89ccb4ce475a51"
+    },
+    {
+      "key": "story.edgeOfTheEarth.peaksIntro2.body",
+      "file": "edge-of-the-earth-peaksIntro2-a39fa9a2956c-salva.mp3",
+      "textSha256": "a39fa9a2956c2327da33126566b54aea5cd176391500c91e96e90e0e6f80bad4",
+      "audioSha256": "700307113f9f8544b823891acf29acec22539e1c8e8719c6fed3dee71afabc18"
+    },
+    {
+      "key": "story.edgeOfTheEarth.peaksEliyah.body",
+      "file": "edge-of-the-earth-peaksEliyah-8234d2563e42-salva.mp3",
+      "textSha256": "8234d2563e42c5a91fb10970cd13c6ad0a21e1916ee5ffb7a1cd8191c1613462",
+      "audioSha256": "1c48a6844dcf212cd089e41c7aae37753a3c69af81fb42f886916ae0b809979c"
+    },
+    {
+      "key": "story.edgeOfTheEarth.peaksNoSledge.body",
+      "file": "edge-of-the-earth-peaksNoSledge-d8323d6d0d6d-salva.mp3",
+      "textSha256": "d8323d6d0d6df758c8a4908b1697fc56bcc4ecd94d785ed7e16361e26a8d83e8",
+      "audioSha256": "1b0b554fda0b71a7a3392ed1396d4602e8aee2791120daa6792cb43568282b06"
+    },
+    {
+      "key": "story.edgeOfTheEarth.peaksClaypool.body",
+      "file": "edge-of-the-earth-peaksClaypool-f8e16d812889-salva.mp3",
+      "textSha256": "f8e16d8128895341d9402d2f0223a742fdf4079946a9fb6e82cb221bc0a2bff1",
+      "audioSha256": "44a1ba6db83ef333b09996644d52e5fc06f8b9e81322c2123dccd9494f109651"
+    },
+    {
+      "key": "story.edgeOfTheEarth.peaksNoClaypool.body",
+      "file": "edge-of-the-earth-peaksNoClaypool-6cb7718fd4d5-salva.mp3",
+      "textSha256": "6cb7718fd4d5ad03c58d58e1fd38ef84672e6e7c9180331b2feaf48639d49cb2",
+      "audioSha256": "f8cf399fea8380d94bd234eae902db3ba8e1fa0ae63312b2e13ea735c5ef6679"
+    },
+    {
+      "key": "story.edgeOfTheEarth.peaksScouted.body",
+      "file": "edge-of-the-earth-peaksScouted-efc1cee37f00-salva.mp3",
+      "textSha256": "efc1cee37f00308a532ece1adb4b2b9bc609e6196dc0027ba0e29c1fb7c6c647",
+      "audioSha256": "d0160acb27e1501414eb3b0db46d58647c451d23b196b95e6ccc7551e3628e27"
+    },
+    {
+      "key": "story.edgeOfTheEarth.peaksNotScouted.body",
+      "file": "edge-of-the-earth-peaksNotScouted-e0d3c6cc1342-salva.mp3",
+      "textSha256": "e0d3c6cc1342a1c3fdf37a099dcf75aa3ab356977244ce7e504575adaf56cf9f",
+      "audioSha256": "550d613b777ceec2f59bc069774d38f8f7a2b829a0e868d4d7d3963f04c63349"
+    },
+    {
+      "key": "story.edgeOfTheEarth.peaksTakada.body",
+      "file": "edge-of-the-earth-peaksTakada-16dedccc8b44-salva.mp3",
+      "textSha256": "16dedccc8b445e516efa0d3c7bd21275123ac45e16ca4b632778076baca8b0c1",
+      "audioSha256": "9efcd619f9dbfed8a2c3222d377423d0371b1496349386223066264f4e701c4e"
+    },
+    {
+      "key": "story.edgeOfTheEarth.peaksNoTakada.body",
+      "file": "edge-of-the-earth-peaksNoTakada-b47c334c11de-salva.mp3",
+      "textSha256": "b47c334c11de957d041260c72a5e848ae2179a558c4f52f6241cfc92edc38025",
+      "audioSha256": "0d70c7cb80a678e98b546ab58ab3c1f4bdb9651bf52c9c0b071e7673e31f69ce"
+    },
+    {
+      "key": "story.edgeOfTheEarth.cityIntro.body",
+      "file": "edge-of-the-earth-cityIntro-7a536927ce7b-salva.mp3",
+      "textSha256": "7a536927ce7bfcbd57f812408a627b5b2096e93fdce402bff0d606e19b9cdbf2",
+      "audioSha256": "4736161e72d57bf03559d5552714f403254aaddc10113cf13ebc3b1b896ab187"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartIntro.body",
+      "file": "edge-of-the-earth-heartIntro-76a44b03a393-salva.mp3",
+      "textSha256": "76a44b03a393444530ea69009c991db0d9d4f26d60d4396263af9cec819c158f",
+      "audioSha256": "405c160814ef4d60f731366fe7baa28c5880a30e63246f0af089c5993c7502c0"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartPartTwoIntro1.body",
+      "file": "edge-of-the-earth-heartPartTwoIntro1-b22c75cf0a73-salva.mp3",
+      "textSha256": "b22c75cf0a73d98889b8a159d219636301437d6a9e9e1785ebba769cadabe929",
+      "audioSha256": "ef689114b7fe7b32da7c92c7ec56ff1b53faecb74bcb817ce4c7b7ed1a82a37a"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartPartTwoIntro2.body",
+      "file": "edge-of-the-earth-heartPartTwoIntro2-5d63073d1c8d-salva.mp3",
+      "textSha256": "5d63073d1c8d875fd32750367f3302382a0691a7ef4ae594ced3b9852da0d239",
+      "audioSha256": "826fe5a7cd7158cf3157a14c8e204da8b119965938b0ed6e50853c17b30464e0"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartPartTwoIntro3.body",
+      "file": "edge-of-the-earth-heartPartTwoIntro3-0bca493497cb-salva.mp3",
+      "textSha256": "0bca493497cb44b89a525902b2ffbd157a9ce8e6213dbdad0c91f8d8b6c9fecc",
+      "audioSha256": "c92d975770e6626d43f8bb82e284ebf62519717dcfc95aa9273bb1bb43968b88"
     }
   ]
 }

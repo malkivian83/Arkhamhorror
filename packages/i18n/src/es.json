@@ -84,6 +84,11 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "fatalMirage": {
+        "title": "Preparación de Espejismo letal",
+        "rules": "Se incorporan los enemigos Recuerdo y el mazo de Encuentros de Espejismo letal. El escenario sigue en preparación.",
+        "audio": "Se incorporan 28 locuciones en español con Salva para Espejismo letal y las introducciones de escenarios posteriores."
+      },
       "link": "Novedades",
       "title": "Últimas novedades",
       "description": "Los últimos añadidos y mejoras de Arkham Online.",

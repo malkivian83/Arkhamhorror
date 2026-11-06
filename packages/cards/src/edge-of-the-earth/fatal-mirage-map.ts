@@ -1,4 +1,4 @@
-import type { CampaignLog, LocationCard } from '@lcg/engine'
+import type { CampaignLog, GameState, LocationCard } from '@lcg/engine'
 
 export const PRISON_OF_MEMORIES = '08556'
 const DISCOVERED = 'edgeOfTheEarthDiscoveredMemories'
@@ -9,6 +9,8 @@ const storyExperience = new Map<string, number>([
   ...Array.from({ length: 9 }, (_, index): [string, number] => ['085' + (66 + index) + 'b', 2]),
   ...Array.from({ length: 9 }, (_, index): [string, number] => ['085' + (75 + index) + 'b', 1]),
 ])
+
+export const isMirageStory = (code: string): boolean => storyExperience.has(code)
 
 // Printed location symbols, clue values and Mirage destinations (campaign guide, p. 25).
 const places = [
@@ -63,6 +65,20 @@ export function mirageDestinations(location: string, present: ReadonlySet<string
   return place?.[6].filter((code) => !present.has(code)) ?? []
 }
 
+export function accountedFor(state: GameState): Set<string> {
+  const banished = state.campaignLog ? readMirageMemories(state.campaignLog).banished : []
+  return new Set([
+    ...Object.keys(state.locations),
+    ...Object.values(state.enemies).map(({ code }) => code),
+    ...Array.from(banished, (code) => code.replace(/b$/, '')),
+    ...state.victoryDisplay.map((code) => code.replace(/b$/, '')),
+  ])
+}
+
+export function clearedOfMirages(state: GameState, location: string): boolean {
+  return !mirageDestinations(location, accountedFor(state)).length
+}
+
 export function mirageClueValue(location: string, present: ReadonlySet<string>): number {
   const destinations = mirageDestinations(location, present).length
   return destinations * (mirageClueCost(location, 1, present) ?? 0)
@@ -89,7 +105,7 @@ export function mirageLocation(
   }
 }
 
-/** The fast ability costs clues per investigator, paid by investigators at this location. */
+/** The action costs clues per investigator, paid by investigators at this location. */
 export function mirageClueCost(
   location: string,
   investigators: number,
@@ -144,8 +160,12 @@ export function recordMirageMemories(
     banished.add(code)
     storyXp += xp
   }
-  for (const [code] of places) {
-    if (banished.has(code + 'b')) discovered.delete(code)
+  for (const [code, , , , , , destinations] of places) {
+    const memoryBanished = destinations.some(
+      (destination) =>
+        storyExperience.get(destination + 'b') === 1 && banished.has(destination + 'b'),
+    )
+    if (banished.has(code + 'b') || memoryBanished) discovered.delete(code)
     else if (code !== PRISON_OF_MEMORIES && locationsInPlay.includes(code)) discovered.add(code)
   }
   return {

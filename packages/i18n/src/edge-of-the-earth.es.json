@@ -215,6 +215,118 @@
     "restfulNightDoor": {
       "title": "La puerta",
       "body": "Te despiertas con un sobresalto y enseguida buscas un arma para defenderte. El sonido que atravesó tus sueños y te devolvió a la realidad no podía haberlo emitido ninguna criatura terrestre; y sin embargo, cuando despiertas, no hay nada fuera de lugar. De hecho...\n\nTe pones en pie, conmocionado, y examinas los alrededores. El campamento improvisado estaba protegido de la dureza de los elementos, pero no deja de estar en lo más profundo de la Antártida. Pese a ello, te encuentras dentro de un edificio, en una sala que no reconoces aunque te produce una extraña familiaridad. Quitas parte de la nieve que sigue habiendo en el suelo, en torno a tu saco de dormir, y ves un suelo de baldosas que antes no estaba ahí. ¿Es un sueño?\n\nCuando dudas de la verdad de este misterioso lugar, las paredes y el suelo de baldosas brillan y se desvanecen. Vuelves a estar en el frío helador de tu campamento, rodeado por tus compañeros, pero la puerta de salida de la sala permanece. Una densa bruma gris se arremolina a tu alrededor, como guiándote.\n\nNo hay refracción natural de la luz. Se está produciendo algo sobrenatural. El espeso miasma que gira en torno al campamento es parecido a la sustancia que compone las criaturas de pesadilla que encontrasteis tras el accidente de avión. ¿De verdad quieres saber lo que quiere que veas?"
+    },
+    "mirageIntro1": {
+      "title": "Espejismo letal",
+      "body": "Al entrar por la puerta, te encuentras en una red de túneles helados, bañados del mismo miasma y rezumando de icor prismático. Tu reflejo te devuelve la mirada desde multitud de ángulos extraños. Tu voz resuena a lo largo de esta sala de espejos infinita. Te das la vuelta para descubrir que la entrada ha desaparecido a tu espalda. A continuación, ves por el rabillo del ojo a una silueta familiar que atraviesa las mismas brumas; pero no, no es posible, ¿verdad?"
+    },
+    "mirageIntro2": {
+      "title": "Espejismo letal",
+      "body": "Vuelves a encontrarte en una red de túneles helados e impregnados de bruma y miasma. La entrada se desvanece a tu espalda. Tu reflejo, que resplandece con un leve matiz de incorporeidad, te devuelve la mirada desde muchos ángulos a la vez."
+    },
+    "mirageCrashDyer": {
+      "title": "Espejismo letal",
+      "body": "El profesor Dyer está muerto. Es imposible que pueda ser él. Y aun así...\n\nLo ves dando vueltas de un lado a otro frente a uno de los reflejos mientras murmura para sí: –Hay que detenerlo. No pueden hacer esto –Se calla, como si conversara con otra persona a la que no oyes–. Me da igual. ¡Tiene que acabar de inmediato!\n\nPobre Dyer. Recuerdas que intentó avisarte. Y sin embargo, aquí estás.\n\nEl espejismo se desvanece tan rápido como apareció. ¿Qué demonios es este sitio? ¿Y cómo es posible que se desarrollen ante tus ojos unos acontecimientos que no has vivido ni conocido?"
+    },
+    "mirageCrashDanforth": {
+      "title": "Espejismo letal",
+      "body": "Danforth está muerto. Es imposible que pueda ser él. Y aun así...\n\nEl estudiante está sentado en una mesa de la Biblioteca Orne, murmurando para sí mientras lee: –Lo vi. Sé que lo hice. Lo vi –Empieza a dar cabezadas, pero se despierta rápidamente con un estremecimiento. Las oscuras ojeras que ves en su rostro te dicen que lleva muchos días sin dormir–. Lo vi... Era real...\n\nEl espejismo se desvanece tan rápido como apareció. ¿Qué demonios es este sitio? ¿Y cómo es posible que se desarrollen ante tus ojos unos acontecimientos que no has vivido ni conocido?"
+    },
+    "mirageCrashKensler": {
+      "title": "Espejismo letal",
+      "body": "La Dra. Kensler está muerta. Es imposible que pueda ser ella. Y aun así...\n\nLa profesora escribe en un pequeño diario encuadernado en cuero a la luz de las velas que iluminan tenuemente su despacho. Te preguntas qué tipo de diagrama anatómico estará bosquejando, pero antes de poder echar un vistazo, arranca la página, la arruga y la tira a la papelera con un suspiro.\n\nEl espejismo se desvanece tan rápido como apareció. ¿Qué demonios es este sitio? ¿Y cómo es posible que se desarrollen ante tus ojos unos acontecimientos que no has vivido ni conocido?"
+    },
+    "mirageCrashEllsworth": {
+      "title": "Espejismo letal",
+      "body": "Ellsworth está muerto. Es imposible que pueda ser él. Y aun así...\n\nLo ves dentro de una cabina telefónica, discutiendo acaloradamente con alguien que está al otro lado: –Sé que es peligroso, pero debo ir –explica–. Confía en mí, esto es demasiado importante como para dejarlo pasar.\n\nEl espejismo se desvanece tan rápido como apareció. ¿Qué demonios es este sitio? ¿Y cómo es posible que se desarrollen ante tus ojos unos acontecimientos que no has vivido ni conocido?"
+    },
+    "mirageCrashCookie": {
+      "title": "Espejismo letal",
+      "body": "Cookie está muerto. Es imposible que pueda ser él. Y aun así...\n\nEstá apoyado contra uno de los espejos cristalinos, recargando su fusil con manos temblorosas. Tiene la cara cubierta de tierra y hollín que también manchan su uniforme. Parece más joven, pero igual de demacrado. Una voz le hace salir de su trance: –Sargento Fredericks. Los alemanes rompieron la línea anoche. Nos están rodeando. ¡Debemos salir de aquí!\n\nEl espejismo se desvanece tan rápido como apareció. ¿Qué demonios es este sitio? ¿Y cómo es posible que se desarrollen ante tus ojos unos acontecimientos que no has vivido ni conocido?"
+    },
+    "mirageCrashTakada": {
+      "title": "Espejismo letal",
+      "body": "Takada está muerta. Es imposible que pueda ser ella. Y aun así...\n\nLa reconoces pese a su juventud. Saluda a un avión que está despegando de una pista entre la lluvia. La mano de alguien le agarra el hombro para darle ánimos.\n\n–Volverá pronto –le dice una voz. Pero Takada no parece convencida.\n\nEl espejismo se desvanece tan rápido como apareció. ¿Qué demonios es este sitio? ¿Y cómo es posible que se desarrollen ante tus ojos unos acontecimientos que no has vivido ni conocido?"
+    },
+    "mirageCrashClaypool": {
+      "title": "Espejismo letal",
+      "body": "Claypool está muerto. Es imposible que pueda ser él. Y aun así...\n\nVes cómo estudia un mapa de la Antártida, cuyas regiones interiores sólo están documentadas de forma parcial.\n\n–Tendría que ser aquí –dice mientras señala un punto dentro de un círculo dibujado a lápiz de forma apresurada–. Dentro de estas cadenas montañosas. Pero... –titubea y echa la vista atrás para mirar a alguien a quien no puedes ver–. No puede ser así, ¿no?\n\nEl espejismo se desvanece tan rápido como apareció. ¿Qué demonios es este sitio? ¿Y cómo es posible que se desarrollen ante tus ojos unos acontecimientos que no has vivido ni conocido?"
+    },
+    "mirageCrashSinha": {
+      "title": "Espejismo letal",
+      "body": "La Dra. Sinha está muerta. Es imposible que pueda ser ella. Y aun así...\n\nLa doctora examina lo que supones que es un cadáver, un cuerpo flácido y sin vida.\n\n–Hora de la muerte: 14:23. Anótalo –dice con voz compuesta y tranquila. Pero en el nebuloso reflejo ves que le tiembla el labio ligeramente por efecto del precio que se cobra en ella su labor.\n\nEl espejismo se desvanece tan rápido como apareció. ¿Qué demonios es este sitio? ¿Y cómo es posible que se desarrollen ante tus ojos unos acontecimientos que no has vivido ni conocido?"
+    },
+    "mirageCrashAshevak": {
+      "title": "Espejismo letal",
+      "body": "Eliyah está muerto. Es imposible que pueda ser él. Y aun así...\n\nEliyah se arrastra por la nieve, dejando un rastro de sangre: –¿Me estás llevando a un lugar seguro? –le pregunta con voz queda a una gran perra gris. Reconoces la familiar silueta de Anyu, puede que varios años más joven, pero igual de enorme.\n\nEl espejismo se desvanece tan rápido como apareció. ¿Qué demonios es este sitio? ¿Y cómo es posible que se desarrollen ante tus ojos unos acontecimientos que no has vivido ni conocido?"
+    },
+    "mirageNoResolution": {
+      "title": "Espejismo letal — Sin resolución",
+      "body": "Te pones en pie tambaleante. ¿Ha sido un sueño? Te agarras las sienes porque te duele la mente. Es como si te hubieran aplicado un taladro neumático en el interior del cráneo. Si dormir en este lugar infernal es así, no quieres volver a hacerlo.\n\nPero no tienes ni voz ni voto en ello."
+    },
+    "mirageResolution1": {
+      "title": "Espejismo letal — Resolución 1",
+      "body": "Caes por la puerta sobre tu esterilla, agitándote entre las cálidas mantas. A tu espalda no se cierra ninguna puerta. ¿Te lo has imaginado todo? ¿O fue real?\n\n¿Acaso hay alguna diferencia?"
+    },
+    "peaksIntro1": {
+      "title": "Hacia los picos prohibidos",
+      "body": "El viento aúlla mientras tu grupo se prepara para el largo viaje que os espera. Apenas hay conversaciones. Incluso si pudierais oíros las voces amortiguadas por las orejeras y bufandas, ¿qué ibais a decir? El silencio de vuestro terror compartido ya es lo bastante elocuente.\n\nVuestro destino está a muchos kilómetros de aquí. Los escarpados picos se alzan en el horizonte a lo lejos, como retándoos. Haces un repaso mental de la situación..."
+    },
+    "peaksIntro2": {
+      "title": "Hacia los picos prohibidos",
+      "body": "Atravesáis el hielo y la nieve durante muchas horas extenuantes. Por suerte, no encontráis a más criaturas como las de los dos días anteriores, lo que te hace plantearte si no fue todo un cruel espejismo. Pero cuando os acercáis al pie de las escarpadas montañas cubiertas de nieve, encontráis un tipo de criatura muy distinto.\n\nEstá congelada y medio enterrada en la nieve, como un macabro hito que os marcase el camino. Su cuerpo tiene forma de tambor y cuenta con una gruesa piel y un par de alas coriáceas desgarradas. Un apéndice con forma de estrella de mar sobresale de la nieve desde su torso, adornado con cinco ojos muertos y un conjunto de cilios prismáticos. Veis cinco tentáculos congelados en el hielo. La visión de esa cosa te hiela más de lo que podría hacerlo el clima Antártico.\n\nNo puede haber duda alguna: se trata de uno de los “Antiguos” que encontraron el profesor Dyer y Danforth la última vez que se aventuraron en el corazón de la Antártida. Pero ¿qué lo mató? No puede haber sido sólo el frío."
+    },
+    "peaksEliyah": {
+      "title": "Hacia los picos prohibidos",
+      "body": "–No es lo bastante grande o resistente como para llevarnos a todos – explica Eliyah mientras acarrea la última caja de suministros sobre el viejo trineo–, pero al menos debería poder transportar nuestras provisiones y equipo.\n\nSe asegura de que las cuerdas estén tensas y que todos los arneses de los perros estén bien abrochados antes de rascar detrás de las orejas a Anyu, la líder de la manada.\n\n–No tengo ninguna gana de tener que arrastrar esta cosa montaña arriba, pero... ya cruzaremos ese puente cuando toque. Muy bien, chica, ¿estás lista? –Anyu ladra una vez–. Sí, ya sé que lo estás."
+    },
+    "peaksNoSledge": {
+      "title": "Hacia los picos prohibidos",
+      "body": "Sueltas un gruñido al echarte a la espalda una enorme y pesada mochila llena de equipo. No tienes ninguna gana de tener que atravesar la nieve con casi veinte kilos más, pero no hay nada que hacer. No tienes ni idea de cuánto tiempo estarás allí adonde vas, así que necesitarás todo lo que hay en la mochila si quieres sobrevivir."
+    },
+    "peaksClaypool": {
+      "title": "Hacia los picos prohibidos",
+      "body": "–Aunque el tiempo parezca despejado ahora –explica Claypool–, podría cambiar de improviso. Estaremos sobre el hielo durante la mayor parte del viaje, así que todo el mundo atento a posibles grietas. Necesitamos un hielo de unos 60 centímetros de grosor para poder caminar sobre él, así que todo el mundo debe ir detrás de mí en todo momento, y yo usaré este barreno para cerciorarme de que es seguro –añade mientras muestra un dispositivo de perforación con punta en espiral antes de ponerse a la cabeza del grupo."
+    },
+    "peaksNoClaypool": {
+      "title": "Hacia los picos prohibidos",
+      "body": "Partís cuando el cielo parece despejado, pero en poco más de una hora, el tiempo empeora de repente. La intensa nevada ya es lo bastante mala, pero lo que de verdad os ralentiza es el hielo. Sin Claypool para guiaros con seguridad, tenéis que avanzar lenta y cautelosamente para cercioraros de llegar a las montañas con vida."
+    },
+    "peaksScouted": {
+      "title": "Hacia los picos prohibidos",
+      "body": "Buscas el paso seguro que Ellsworth y tú oteasteis la noche anterior y guías al resto del equipo por él. Los acantilados os flanquean al acercaros a las laderas y bloquean el gélido viento. El atajo os permite pasar rápidamente mientras empezáis la ascensión hacia los picos..."
+    },
+    "peaksNotScouted": {
+      "title": "Hacia los picos prohibidos",
+      "body": "La tundra helada que lleva a las laderas de las escarpadas montañas es un terreno duro. Incluso pertrechados con raquetas de nieve y ropa de abrigo para combatir el frío, la marcha es lenta y fatigosa. El viento pugna con vosotros a cada paso, con ráfagas lo bastante fuertes como para derribaros. Pero seguís adelante con decisión."
+    },
+    "peaksTakada": {
+      "title": "Hacia los picos prohibidos",
+      "body": "Cuando emprendéis la marcha, oyes que Takada está cantando algo en voz baja, lo bastante como para que no puedas distinguir de qué se trata. Sin embargo, uno de los demás parece reconocer lo que canta.\n\n–Otra vez esa canción –dice–. Te oí cantarla en el Theodosia durante la travesía hacia aquí.\n\nTakada suspira y responde: –Es una canción que me enseñó mi padre. Me ayuda a pasar el rato.\n\nLe preguntas si le gustaría enseñártela y ella te dedica la primera sonrisa que ves en su rostro desde que empezó el viaje.\n\n–Sí. Claro que sí.\n\nPasáis el resto del camino cantando y conociéndoos para que el tiempo pase más rápido."
+    },
+    "peaksNoTakada": {
+      "title": "Hacia los picos prohibidos",
+      "body": "El grupo soporta el frío en medio de un silencio insoportable. Cada pisada resulta tan solitaria como desgarradora."
+    },
+    "cityIntro": {
+      "title": "Ciudad de los Antiguos",
+      "body": "Incluso con el conocimiento que te otorga el informe de Dyer, te encuentras abismalmente falto de preparación para la terrible inmensidad de la blasfema ciudad del corazón de la Antártida y su inescrutabilidad alienígena. Enormes torres, templos, puentes y pirámides salpican el amplio paisaje. Bajo la ineludible luz del alba, el laberinto sin nombre de las descomunales estructuras y bloques angulares se extiende a lo largo de kilómetros en todas direcciones, inconfundiblemente real y aun así imposible de creer. Es una verdadera maravilla del mundo.\n\nMientras descendéis por los picos que rodean la ciudad, atravesando furtivamente sus muros, las pendientes dan paso a unas laderas gradualmente menos escarpadas que están salpicadas de estructuras de piedra negra primordial. Torres o tal vez atalayas que unen las murallas naturales del exterior de la ciudad con sus afueras.\n\n–Deberíamos registrar una de esas torres de guardia –sugiere un miembro del equipo mientras señala la estructura más cercana. Asientes. Al fin y al cabo, el informe de Dyer recogía mucha información tallada en las paredes de varias estructuras del interior de la ciudad. Puede que deis con algún mapa o diagrama de la ciudad que os ayude en la exploración."
+    },
+    "heartIntro": {
+      "title": "El corazón de la locura",
+      "body": "Al día siguiente, os adentráis más en las cavernas y fosos que hay bajo la corteza helada de la Antártida. Pasáis bajo grandes arcadas de obsidiana y pizarra primordial, a través de corredores tallados de forma ornamental y por enormes salas de múltiples columnas, hacia las profundidades incognoscibles e insondables."
+    },
+    "heartPartTwoIntro1": {
+      "title": "El corazón de la locura, parte II",
+      "body": "La instalación es todavía más antigua y extraña más allá del umbral del antiguo portal. ¿Quién sabe cuántos eones lleva este sitio durmiendo mientras la Tierra cambiaba y se desarrollaba al otro lado? Tal vez habría permanecido así para siempre si nadie hubiera perturbado este lugar. Pero es demasiado tarde para cambiar el pasado. Lo único que puedes hacer ahora es actuar para evitar un terrible futuro.\n\nUna tenue luminiscencia llena las lúgubres salas, alimentada por una especie de energía avanzada similar a la electricidad. A tu espalda, una caleidoscópica pared de miasma se regenera para tapar tu huida. Estás atrapado aquí, puede que para siempre. Desde el portal se extiende una red de enormes salas, talladas de piedra lisa y cubiertas de antiguos murales y jeroglíficos alienígenas. El aire parece enrarecido. La luz se curva y oscila, distorsionando tu visión como si se tratara de una ilusión óptica. ¿Se trata de la realidad... o de un espejismo?\n\nTu grupo se pasa muchas horas estudiando los murales de las paredes. Cuentan una historia antigua y desconocida. Una historia alternativa de la Tierra. Una historia muy distinta de la que cualquiera podríais haber imaginado."
+    },
+    "heartPartTwoIntro2": {
+      "title": "El corazón de la locura, parte II",
+      "body": "La Dra. Kensler lo explica todo mientras estudia los antiguos murales.\n\n–Los Antiguos eran viajeros. Colonizadores. Llegaron a la Tierra hace más de mil millones de años –dice, citando las notas del profesor Dyer–. Pero no fueron los primeros en establecerse aquí. Este sitio, todo esto... ya era antiguo incluso entonces –Pasa las manos por los murales mientras explica lo que ha descubierto–. Pero lo que está atrapado dentro no es una entidad.\n\nLe preguntas qué quiere decir, porque te alarma esta nueva revelación. Se vuelve para mirarte y ves que en sus ojos prende la llama de la inspiración.\n\n–He estado estudiando su fisiología, intentando entender cómo podían existir del modo que lo hacen, sin forma, materia o estado. Pero lo estaba enfocando de manera equivocada. No se puede estudiar la biología de algo inorgánico. El caso es que no es una criatura, al menos no verdaderamente. Es algo más parecido a... –duda mientras trata de buscar las palabras adecuadas–. Es una dimensión alternativa. Otra realidad superpuesta a la nuestra. Un microcosmos consciente de todo lo que existe. No compuesto por vida orgánica, sino una farsa de ella.\n\nEsta nueva comprensión de los espectros que habéis encontrado y de los espejismos que habéis visto le da contexto a todo. No estabais matando monstruos, sino que eran fragmentos de una realidad falsa. Una que aún podría suceder. Le preguntas a la Dra. Kensler si hay alguna esperanza de evitar que escape una fuerza semejante.\n\n–No es algo vivo. No se puede matar, sólo contener. La instalación de los Antiguos contenía cinco pilones que empleaban su esencia para dar energía a su civilización; sin embargo, después de tanto tiempo, no me parece plausible que sigan funcionando. Pero tal vez... –Se interrumpe mientras formula un plan. Al final, abre los ojos como platos al darse cuenta de algo–. Sé lo que hay que hacer. Sé cómo detenerlo. Debes encontrar estos pilones y destruirlos, porque hacerlo provocará que todo el complejo se venga abajo. Entretanto... –Se quita la mochila de los hombros y la suelta en el suelo–. Yo... debo irme. No hay tiempo que perder.\n\nPones reparos ante su repentina partida, pero está decidida. Se aleja y mira por última vez a sus compañeros antes de salir corriendo. Esperas que sepa lo que está haciendo... por el bien de todos."
+    },
+    "heartPartTwoIntro3": {
+      "title": "El corazón de la locura, parte II",
+      "body": "Apenas puedes discernir una fracción de la verdad que se esconde en estos antiguos murales, pero lo que descubres resulta casi imposible de creer. Cuando los Ancianos llegaron a la Tierra hace más de mil millones de años, no sólo colonizaron la Antártida, sino todo el planeta. Y cuando lo hicieron, este lugar y la entidad que mora en su interior ya estaban aquí. Construyeron este complejo en torno a él, para estudiar el ser primordial de su interior, para entenderlo mejor; el problema es que, al hacerlo, atrajeron fuerzas que escapaban incluso a su comprensión. El portal y sus sellos se construyeron para contenerlo, pero siglo tras siglo de abandono lo han dejado débil y falto de eficacia. Sospechas que lo que agitó a la entidad del interior fue la presencia de vida inteligente en la Antártida, los humanos que empezaron a explorar sus llanuras heladas y picos muertos desde hace mucho tiempo.\n\nLos murales hablan de la estructura de la instalación, de cinco pilones creados no sólo para contener la esencia de la criatura, sino para dar energía a toda la civilización de los Antiguos. Imaginas que destruir estos pilones reduciría a escombros todo el complejo, y puede que toda la montaña bajo la que está construido. No sabes si puedes destruir o contener realmente a este horror sin nombre, pero no tienes más elección que intentarlo.\n\nSi sigue escapando, reescribirá a su antojo el mismo concepto de la realidad. No quedará nada más que el espejismo. Nada más que una retorcida y horrenda imaginación. Una pesadilla de la que no se puede despertar."
     }
   },
   "choice": {
@@ -233,6 +345,19 @@
     "damage": "Recibir 1 punto de daño",
     "horror": "Recibir 1 punto de horror",
     "takeHorror": "Recibir {amount} puntos de horror",
+    "mistClues": "Gastar 2 pistas adicionales en grupo",
+    "mistDamage": "Cada investigador en este Lugar recibe 2 puntos de daño",
+    "mirageMoveToPrison": "Moverte a la Prisión de recuerdos",
+    "mirageShuffleTekelili": "Barajar la primera carta Tekeli-li en tu mazo",
+    "mirageDoom": "Colocar 1 ficha de Perdición sobre {name}",
+    "mirageAdvance": "Avanzar el acto actual",
+    "mirageContinue": "Seguir jugando",
+    "mirageMemoryDamage": "Infligir {amount} puntos de daño a {name}",
+    "mirageLoseActions": "Perder 2 acciones",
+    "mirageTwoTekelili": "Barajar 2 cartas Tekeli-li en tu mazo",
+    "mirageGlimpseRecipient": "Barajar la debilidad en el mazo de {name}",
+    "miragePartnerDamage": "Infligir 1 punto de daño al Compañero",
+    "miragePartnerHorror": "Infligir 1 punto de horror al Compañero",
     "placeClues": "Colocar 2 de tus pistas en tu Lugar",
     "addFrost": "Añadir 1 ficha de Helada",
     "removeFrost": "Quitar 1 ficha de Helada",
@@ -324,6 +449,11 @@
     "ellsworthSpend": "Gasta 1 suministro para dejar en blanco {card}",
     "searchSite": "Busca debajo de este Lugar",
     "exploreMirage": "Resolver Espejismo",
+    "returnToPrison": "Recibir 1 punto de horror para moverte a la Prisión de recuerdos",
+    "mirageParleyTekelili": "Negociar: Barajar 3 cartas Tekeli-li en tu mazo para infligir 3 puntos de daño",
+    "mirageParleyFrost": "Negociar: Añadir 1 ficha de Helada para infligir 4 puntos de daño",
+    "mirageDiscardVisions": "Hacer una prueba de voluntad (3) para descartar Visiones blasfemas",
+    "mirageDiscardTorment": "Hacer una prueba de voluntad o intelecto (3) para descartar Tormento miasmático",
     "turnIn": "Desiste en el campamento",
     "rescue": "Negocia con {name} ({progress}/{required})",
     "comfort": "Calma a {name}",

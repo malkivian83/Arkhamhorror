@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "fatalMirage": {
+        "title": "Fatal Mirage preparation",
+        "rules": "Added the Memory enemies and encounter deck for Fatal Mirage. The scenario is still in preparation.",
+        "audio": "Added 28 Spanish recordings by Salva for Fatal Mirage and introductions to later scenarios."
+      },
       "link": "What’s new",
       "title": "Latest updates",
       "description": "The latest additions and improvements to Arkham Online.",
