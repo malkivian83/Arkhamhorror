@@ -24,8 +24,9 @@ el PDF.
   +1 agilidad, e iconos voluntad/intelecto/agilidad (había comodín). Corregido.
   Resoluciones del II contrastadas con la guía: correctas.
 - Verificación: 139 pruebas de la campaña y tipos de cards correctos.
-- Bloqueo para el III: Python ya no está instalado (los scripts de imágenes usan
-  PIL). Las páginas de las guías se extraen con `tmp/plaguebearer/extract-jpegs.mjs`.
+- Python 3.12 + Pillow 11.3 instalados (`%LOCALAPPDATA%/Programs/Python/Python312/python.exe`,
+  usar `-I`). Las JPG ES son CMYK: convertir con su ICC a sRGB antes de guardar AVIF,
+  como `tmp/plaguebearer/fix-spanish-images.py`. Guías: `tmp/plaguebearer/extract-jpegs.mjs`.
 
 ### Continuación de implementación · 2026-11-05
 
