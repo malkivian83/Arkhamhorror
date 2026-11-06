@@ -37,6 +37,7 @@ import type {
   SkillType,
   TokenEffect,
   Treachery,
+  TreacheryId,
   Trigger,
   SlotType,
 } from './types'
@@ -177,7 +178,11 @@ export interface ScenarioBehavior {
   canEnemyEngage?: (state: GameState, enemy: Enemy, investigator: InvestigatorId) => boolean
   onAllInvestigatorsEliminated?: (state: GameState) => Message[]
   blanksTreachery?: (state: GameState, treachery: Treachery) => boolean
-  drawTekeliliInstead?: (state: GameState, investigator: InvestigatorId) => boolean
+  /**
+   * Cartas que sustituyen barajar ¡Tekeli-li! por robarlas (Bruma afín). Se les pone una
+   * ficha para indicar que su Obligado se ha resuelto.
+   */
+  drawTekeliliInstead?: (state: GameState, investigator: InvestigatorId) => TreacheryId[]
   /** Sequential movement windows and lead-chosen ordering for this scenario's rules. */
   sequentialEnemyMovement?: boolean
   /** Habilidad con la que se investiga ese Lugar (Cripta de la lámpara sepulcral). */

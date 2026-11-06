@@ -254,15 +254,20 @@ registerTreachery({
   revelation: (state, investigator) => {
     const enemies = nightmares(state)
     if (!enemies.length) return [{ type: 'GainSurge' }]
-    const here = getInvestigator(state, investigator).location
-    if (!here) return []
-    const distance = distancesFrom(state, here)
-    const nearest = Math.min(...enemies.map(({ location }) => distance.get(location) ?? Infinity))
+    // «La más cercana a un investigador»: a cualquiera de ellos, no solo a quien la roba.
+    const maps = activeInvestigators(state)
+      .map(({ location }) => location)
+      .filter((location): location is string => !!location)
+      .map((location) => distancesFrom(state, location))
+    if (!maps.length) return []
+    const distanceTo = (location: string) =>
+      Math.min(...maps.map((distance) => distance.get(location) ?? Infinity))
+    const nearest = Math.min(...enemies.map(({ location }) => distanceTo(location)))
     return ask(
       investigator,
       'nightmareNearest',
       enemies
-        .filter(({ location }) => (distance.get(location) ?? Infinity) === nearest)
+        .filter(({ location }) => distanceTo(location) === nearest)
         .map((enemy) => ({
           label: 'choice.enemy',
           params: { enemy: enemy.name },

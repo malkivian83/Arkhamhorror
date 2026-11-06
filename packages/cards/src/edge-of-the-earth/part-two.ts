@@ -184,8 +184,13 @@ function finish(state: GameState): Message[] {
   const missing = Object.entries(partnerForEnemy).filter(
     ([, partner]) => state.campaignLog?.expedition?.partners[partner]?.status === 'missing',
   )
+  // El reverso de Locura y muerte lleva directamente a R1, sin «Sin resolución».
+  const madness = state.queue.some(
+    (message) => message.type === 'AgendaAdvanced' && message.from === '08525',
+  )
+  const resigned = state.investigators.some((player) => player.resigned)
   return [
-    ...(state.investigators.some((player) => player.resigned) ? [] : [read('partTwoNoResolution')]),
+    ...(resigned || madness ? [] : [read('partTwoNoResolution')]),
     read('partTwoResolution'),
     ...missing.map(([code, partner]): Message => ({
       type: 'SetExpeditionPartnerStatus',

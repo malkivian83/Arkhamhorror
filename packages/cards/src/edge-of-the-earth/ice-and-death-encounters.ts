@@ -99,7 +99,12 @@ registerTreachery({
         ]
       : [],
 })
-registerTreachery({ code: '08691', revelation: nearby, forced: expires })
+// Bruma afín: solo se descarta al final de la ronda en que su Obligado se resolvió (ficha).
+registerTreachery({
+  code: '08691',
+  revelation: nearby,
+  forced: (state, trigger, self) => (self.tokens ? expires(state, trigger, self) : []),
+})
 registerTreachery({ code: '08692', revelation: nearby, forced: expires })
 registerTreachery({
   code: '08693',

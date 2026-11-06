@@ -4510,9 +4510,10 @@ export function handle(state: GameState, message: Message): GameState {
         return state
       const cards = pool.slice(0, Math.max(0, message.amount))
       if (!cards.length) return state
-      const replaceShuffle =
-        !investigator.eliminated &&
-        scenarioBehavior(state.scenarioId)?.drawTekeliliInstead?.(state, investigator.id)
+      const replacers = investigator.eliminated
+        ? []
+        : (scenarioBehavior(state.scenarioId)?.drawTekeliliInstead?.(state, investigator.id) ?? [])
+      const replaceShuffle = replacers.length > 0
       const draw = message.drawInstead || replaceShuffle
       const [deck, rng] = draw
         ? [investigator.deck, state.rng]
@@ -4525,6 +4526,13 @@ export function handle(state: GameState, message: Message): GameState {
       if (draw)
         return push(
           added,
+          ...(message.drawInstead
+            ? []
+            : replacers.map((treachery): Message => ({
+                type: 'AddTreacheryTokens',
+                treachery,
+                amount: 1,
+              }))),
           ...cards.map((code): Message => ({
             type: 'ResolveWeakness',
             investigator: investigator.id,
