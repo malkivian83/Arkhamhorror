@@ -60,6 +60,9 @@ const entries = [
     'perks',
     'good',
   ].map((k) => `alive.${k}`),
+  ...['intro', 'introHidden', 'defeated', 'defeatedHidden', 'resolution1', 'resolution2'].map(
+    (k) => `chorus.${k}`,
+  ),
 ].map((suffix) => {
   const body = suffix.split('.').reduce((value, key) => value?.[key], source)
   if (typeof body !== 'string' || !body) throw new Error(`Falta ${suffix}`)

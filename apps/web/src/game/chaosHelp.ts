@@ -35,6 +35,7 @@ export function chaosHelp(
     'late-risers': localeData(locale).plaguebearerCards['78001'],
     'night-on-the-town': localeData(locale).plaguebearerCards['78019'],
     'dead-by-dawn': localeData(locale).plaguebearerCards['78047'],
+    'mourning-chorus': localeData(locale).plaguebearerCards['78083'],
     'curtain-call': localeData(locale).carcosaCards['03043'],
     'the-last-king': localeData(locale).carcosaCards['03061'],
     'echoes-of-the-past': localeData(locale).carcosaCards['03120'],

@@ -54,6 +54,20 @@ const NARRATIONS: Record<string, Partial<Record<string, string>>> = {
   'story.plaguebearer.alive.section8': { es: 'plaguebearer-alive-section8-martin-osborne.mp3' },
   'story.plaguebearer.alive.perks': { es: 'plaguebearer-alive-perks-martin-osborne.mp3' },
   'story.plaguebearer.alive.good': { es: 'plaguebearer-alive-good-martin-osborne.mp3' },
+  'story.plaguebearer.chorus.intro': { es: 'plaguebearer-chorus-intro-martin-osborne.mp3' },
+  'story.plaguebearer.chorus.introHidden': {
+    es: 'plaguebearer-chorus-intro-hidden-martin-osborne.mp3',
+  },
+  'story.plaguebearer.chorus.defeated': { es: 'plaguebearer-chorus-defeated-martin-osborne.mp3' },
+  'story.plaguebearer.chorus.defeatedHidden': {
+    es: 'plaguebearer-chorus-defeated-hidden-martin-osborne.mp3',
+  },
+  'story.plaguebearer.chorus.resolution1': {
+    es: 'plaguebearer-chorus-resolution1-martin-osborne.mp3',
+  },
+  'story.plaguebearer.chorus.resolution2': {
+    es: 'plaguebearer-chorus-resolution2-martin-osborne.mp3',
+  },
   'story.carnevale.intro': { es: 'carnevale-intro-salva.mp3' },
   'story.carnevale.noResolution': { es: 'carnevale-no-resolution-salva.mp3' },
   'story.carnevale.resolution1': { es: 'carnevale-resolution1-salva.mp3' },

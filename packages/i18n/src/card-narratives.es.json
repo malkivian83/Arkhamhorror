@@ -211,6 +211,30 @@
     "typeCode": "act",
     "flavor": "Te encuentras cara a cara con la última persona que viste antes de despertar en aquella morgue. Si alguien tiene respuestas, ha de ser él."
   },
+  "78084": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "Una procesión de infectados va detrás de una bizarra abominación a través de la aterrorizada ciudad.",
+    "backFlavor": "Uno de los integrantes de la procesión se detiene entre terribles convulsiones. La procesión se detiene un instante rodeando al pobre ser. Observas con terror abyecto como la carne se le desprende de los huesos, mientras su voz no pasa de cantar la letanía.\nAntes de que la horripilante visión pueda afectar a la muchedumbre infectada y apagar su celebración, otra figura ocupa su lugar."
+  },
+  "78085": {
+    "group": "plaguebearer",
+    "typeCode": "agenda",
+    "flavor": "El horrible coro está alcanzando una cadencia febril. Tu tiempo se agota.",
+    "backFlavor": "Los cánticos resuenan ensordecedores. Caes de rodillas, incapaz siquiera de moverte. En ese momento, por encima del éxtasis coral, oyes una voz que grita “¡Fuego!”\nUna gigantesca explosión sacude la ciudad. Después otra. Y otra. La procesión al completo, al igual que varios edificios de las inmediaciones del sacerdote, son destruidos por una intensa lluvia de fuego de mortero."
+  },
+  "78086": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Observas a una agente mientras dispara al horrible sacerdote. El fuego del arma parece no tener ningún efecto sobre él, y con un chasquido de su brillante cola, la agente se une al siniestro coro. Debe de haber alguna otra forma de derrotarlo...",
+    "backFlavor": "Justo cuando empiezas a perder la esperanza en que alguna de tus habilidades sirva de alguna utilidad, observas como un ciudadano iracundo conduce un camión directamente contra el Sacerdote. Mientras que el impacto inicial y la explosión no parecen dañar lo más mínimo a la bestia, la criatura no cambia su trayectoria para evitar el accidente. Con horribles gritos desgarradores, el grotesco monstruo se arrastra directamente hacia las llamas del accidente. Según aparece por el otro lado, ves que ha comenzado a sangrar."
+  },
+  "78087": {
+    "group": "plaguebearer",
+    "typeCode": "act",
+    "flavor": "Por fin das con la solución. ¡Si puedes construir grandes barricadas en el camino del Sacerdote, se hará polvo tratando de atravesarlas!",
+    "backFlavor": "Con un grito terrorífico, la cabeza del sacerdote es arrancada de su retorcido cuerpo. Un cuerpo que comienza a expulsar humo para acabar explotando en un sangriento desastre. Las visceras comienzan a ascender hacia el cielo...\nLos fieles entonan una última estrofa para después caer al suelo entre convulsiones."
+  },
   "82002": {
     "group": "carnevale",
     "typeCode": "agenda",

@@ -547,6 +547,176 @@
     "flavor": "Te susurra tus más profundos temores con la voz de tu padre.",
     "subname": "El horror creciente"
   },
+  "78083": {
+    "name": "Cantos fúnebres",
+    "typeCode": "scenario",
+    "text": "[skull]: –X. X es el mayor número de perdición sobre un enemigo en juego (máximo –4).\n[cultist]: –3 (–5 si estás en un Lugar Miasma). Si tienes éxito, coloca 1 recurso en tu Lugar (de la reserva).\n[tablet]: –3. Si fracasas, coloca 1 recurso sobre el plan en curso (de la reserva). Este efecto puede hacer que la Procesión se mueva.",
+    "backText": "[skull]: –X. X es 1 más el mayor número de perdición sobre un enemigo en juego (máximo –6).\n[cultist]: –4 (–6 si estás en un Lugar Miasma). Si tienes éxito, coloca 1 recurso en tu Lugar (de la reserva).\n[tablet]: –3. Coloca 1 recurso sobre el plan en curso (de la reserva). Este efecto puede hacer que la Procesión se mueva."
+  },
+  "78084": {
+    "name": "Procesión sobrenatural",
+    "typeCode": "agenda",
+    "text": "* Este plan tiene +2 [per_investigator] de umbral de perdición.\nCada enemigo recibe +X de salud, donde X es la cantidad de perdición sobre ese enemigo.\nObligado – Cuando fueses a resolver el paso ‘Coloca 1 ficha de Perdición en el plan en curso.’ de la fase de mitos: En lugar de eso, coloca 1 recurso [per_investigator] sobre el plan en curso.\nObligado – Si este plan tiene 2 o más recursos sobre él: Retira 2 recursos y mueve la Procesión.",
+    "flavor": "Una procesión de infectados va detrás de una bizarra abominación a través de la aterrorizada ciudad.",
+    "backName": "Un Ritual ominoso",
+    "backText": "Devuelve todos los recursos que haya en este plan a la reserva de fichas.\nColoca 1 ficha de perdición sobre el Sacerdote de la Plaga.\nDescarta cualquier enemigo que no sea Élite de la Procesión, haz aparecer el enemigo Esclavo devoto (En el Lugar de un enemigo descartado si es posible) como parte de la Procesión. No coloques perdición sobre este enemigo.",
+    "backFlavor": "Uno de los integrantes de la procesión se detiene entre terribles convulsiones. La procesión se detiene un instante rodeando al pobre ser. Observas con terror abyecto como la carne se le desprende de los huesos, mientras su voz no pasa de cantar la letanía.\nAntes de que la horripilante visión pueda afectar a la muchedumbre infectada y apagar su celebración, otra figura ocupa su lugar."
+  },
+  "78085": {
+    "name": "Letanía del sacrificio",
+    "typeCode": "agenda",
+    "text": "* Este plan tiene +2 [per_investigator] de umbral de perdición.\nCada enemigo recibe +X de salud, donde X es la cantidad de perdición sobre ese enemigo.\nObligado – Cuando fueses a resolver el paso ‘Coloca 1 ficha de Perdición en el plan en curso.’ de la fase de mitos: En lugar de eso, coloca 1 recurso [per_investigator] sobre el plan en curso.\nObligado – Si este plan tiene 2 o más recursos sobre él: Retira 2 recursos y mueve la Procesión.",
+    "flavor": "El horrible coro está alcanzando una cadencia febril. Tu tiempo se agota.",
+    "backName": "Órdenes contundentes",
+    "backText": "Recuerda que el Lugar actual del Sacerdote de la Plaga es “el lugar de la Liberación”.\n(→R1)",
+    "backFlavor": "Los cánticos resuenan ensordecedores. Caes de rodillas, incapaz siquiera de moverte. En ese momento, por encima del éxtasis coral, oyes una voz que grita “¡Fuego!”\nUna gigantesca explosión sacude la ciudad. Después otra. Y otra. La procesión al completo, al igual que varios edificios de las inmediaciones del sacerdote, son destruidos por una intensa lluvia de fuego de mortero."
+  },
+  "78086": {
+    "name": "Una fuerza imparable",
+    "typeCode": "act",
+    "text": "[reaction] Después de que evites a un enemigo: Retira 1 ficha de perdición de ese enemigo. Límite de una vez por ronda.",
+    "flavor": "Observas a una agente mientras dispara al horrible sacerdote. El fuego del arma parece no tener ningún efecto sobre él, y con un chasquido de su brillante cola, la agente se une al siniestro coro. Debe de haber alguna otra forma de derrotarlo...",
+    "backName": "Pegar y correr",
+    "backText": "Baraja 1 enemigo Élite del conjunto Arkham caído puesto aparte y la pila de descartes del Mazo de procesión, en el mazo de Procesión.\nHasta el final de la partida, cada enemigo Infectado obtiene: “Obligado – Después de que este enemigo entre en un Lugar con Barricadas: Retira tantas barricadas como sea posible, hasta llegar a su salud restante. Inflige tanto daño como barricadas has retirado a este enemigo.”\nColoca esta carta junto al mazo de acto como recordatorio y avanza al Acto 2a.",
+    "backFlavor": "Justo cuando empiezas a perder la esperanza en que alguna de tus habilidades sirva de alguna utilidad, observas como un ciudadano iracundo conduce un camión directamente contra el Sacerdote. Mientras que el impacto inicial y la explosión no parecen dañar lo más mínimo a la bestia, la criatura no cambia su trayectoria para evitar el accidente. Con horribles gritos desgarradores, el grotesco monstruo se arrastra directamente hacia las llamas del accidente. Según aparece por el otro lado, ves que ha comenzado a sangrar."
+  },
+  "78087": {
+    "name": "Objetos inamovibles",
+    "typeCode": "act",
+    "text": "[reaction] Después de que resuelvas una capacidad de un Lugar Seguro: Coloca 1 recurso en ese Lugar como una Barricada. Después, si hay 3 recursos [per_investigator] en ese Lugar y has “Protegido” menos de dos Lugares, recuerda que has “Protegido” ese Lugar.\n[action] Gasta hasta 2 pistas como grupo: Coloca tantas Barricadas en tu Lugar como pistas hayas gastado.\nObjetivo – Cuando el Sacerdote de la Plaga sea derrotado, haz avanzar el Acto.",
+    "flavor": "Por fin das con la solución. ¡Si puedes construir grandes barricadas en el camino del Sacerdote, se hará polvo tratando de atravesarlas!",
+    "backName": "Himno final",
+    "backText": "Recuerda que el Lugar actual del Sacerdote de la Plaga es “el lugar de la Liberación”.\n(→R2)",
+    "backFlavor": "Con un grito terrorífico, la cabeza del sacerdote es arrancada de su retorcido cuerpo. Un cuerpo que comienza a expulsar humo para acabar explotando en un sangriento desastre. Las visceras comienzan a ascender hacia el cielo...\nLos fieles entonan una última estrofa para después caer al suelo entre convulsiones."
+  },
+  "78088": {
+    "name": "Arkham Advertiser",
+    "typeCode": "location",
+    "subname": "Rotativas a punto",
+    "traits": "Seguro",
+    "text": "[reaction] Después de que juegues un evento en este Lugar: Roba 1 carta y obtén 1 recurso. Límite de una vez por ronda.",
+    "flavor": "Los redactores del Advertiser transcriben rápidamente cada movimiento que haces, incluso te entregan un incentivo por ser especialmente noticiable..",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "Elevándose por encima del gruñir de las imprentas, Doyle Jeffries aprovecha años lanzando gritos en el trabajo, para advertir a los supervivientes de Arkham."
+  },
+  "78089": {
+    "name": "Banco de Arkham",
+    "typeCode": "location",
+    "subname": "Mercado al alza",
+    "traits": "Seguro",
+    "text": "[reaction] Después de que investigues con éxito en este Lugar: Obtén 2 recursos. Límite de una vez por ronda.",
+    "flavor": "Negociar una retirada de fondos con los cajeros lleva su tiempo, pero ambos sabéis que las cámaras del banco tardan una eternidad en vaciarse.",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "La institución de las élites de Arkham se ha convertido en un baluarte defendiendo a los ciudadanos de Arkham."
+  },
+  "78090": {
+    "name": "Colmado",
+    "typeCode": "location",
+    "subname": "Abierto",
+    "traits": "Seguro",
+    "text": "[action] Gasta cualquier cantidad de recursos: Busca entre las X primeras cartas de tu mazo un Apoyo y ponlo en juego. X es dos veces el número de recursos que gastaste. Baraja tu mazo. Límite de una vez por ronda.",
+    "flavor": "La encargada del establecimiento te ayuda a examinar las mercancias que quedan, buscando algo que pueda serte de utilidad.",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "Por el humo que sale de la chimenea, dirías que el almacén ha sobrevivido una noche más."
+  },
+  "78091": {
+    "name": "Motel Hibb",
+    "typeCode": "location",
+    "subname": "La suerte del contrabandista",
+    "traits": "Seguro",
+    "text": "[reaction] Después de que tengas éxito por 2 o más durante una prueba de habilidad en este Lugar: Cura 1 punto de daño o 1 punto de horror de una carta que controles. Límite de una vez por ronda.",
+    "flavor": "Los parroquianos del Motel apuestan cada vez que haces algo y te animan después de cada victoria.",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "Un parroquiano aparta un poco una cortina y te observa. Sonríe, asiente y haces un gesto de disparar con un dedo."
+  },
+  "78092": {
+    "name": "Pensión de Ma",
+    "typeCode": "location",
+    "subname": "Viejos amigos",
+    "traits": "Seguro",
+    "text": "[action]: Busca en tu mazo un Apoyo Aliado y añádelo a tu mano. Baraja tu mazo. Límite de una vez por ronda.",
+    "flavor": "La pensión está abarrotada de gente de todo tipo, simplemente felices de mantenerse unidos contra la oscuridad.",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "¡Siempre hay sitio para uno más en casa de Ma!"
+  },
+  "78093": {
+    "name": "Biblioteca Orne",
+    "typeCode": "location",
+    "subname": "Bastión del conocimiento",
+    "traits": "Seguro",
+    "text": "[reaction] Después del paso de robar cartas de la fase de mantenimiento, si tienes 5 o más cartas en la mano: Roba 1 carta.",
+    "flavor": "El ambiente calmado de la biblioteca te da una oportunidad para centrarte y el Profesor Armitage siempre está listo con un buen consejo.",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "¡Qué útil puede ser una biblioteca!"
+  },
+  "78094": {
+    "name": "Muelles",
+    "typeCode": "location",
+    "subname": "Compañerismo en persona",
+    "traits": "Seguro",
+    "text": "[reaction] Cuando asignes una carta de habilidad elegible a una prueba de habilidad en este Lugar: Gana [wild] y el texto: “Después de que termine esta prueba de habilidad, puedes robar 1 carta.” Límite de una vez por ronda.",
+    "flavor": "Hay multitud de manos nudosas lista para ayudarte con cualquier cosa con la que quieras lidiar.",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "Felizmente pondrías tu suerte a prueba con los trabajadores de los muelles, los cuales parecen tener bien vigilados sus almacenes."
+  },
+  "78095": {
+    "name": "Vieja tienda de Magia",
+    "typeCode": "location",
+    "subname": "Reliquias peligrosas",
+    "traits": "Seguro",
+    "text": "[action]: Roba la carta superior del mazo de encuentros. Después, busca en tu mazo un Apoyo Hechizo o Reliquia y ponlo en juego. Baraja tu mazo. Límite de una vez por ronda.",
+    "flavor": "Este poder no se da gratis, pero ¿qué es un pequeño riesgo cuando tu mundo está en el filo de la navaja?",
+    "backText": "Lugar sin revelar. Entra en él para revelar su otra cara.",
+    "backFlavor": "Observas la reputada tienda y eres consciente de cuántas poderosas reliquias puedes tener a tu disposición."
+  },
+  "78104": {
+    "name": "Sacerdote de la Plaga",
+    "typeCode": "enemy",
+    "subname": "Acólito favorito de la Enfermedad",
+    "traits": "Monstruo. Infectado. Élite",
+    "text": "Descomunal.\nNo puede ser dañado por cartas o efectos de jugador.\nObligado – Después de que el Sacerdote de la Plaga se mueva: Coloca una pista en su Lugar. Después, si se movió a un Lugar Miasma, coloca 2 fichas de perdición sobre el último enemigo de la Procesión. Si no se movió a un Lugar Miasma aumenta la Procesión.\nVictoria 2.",
+    "flavor": "Entona cantos de muerte y sufres por unirte al coro."
+  },
+  "78105": {
+    "name": "Ministro de la Enfermedad",
+    "typeCode": "enemy",
+    "traits": "Humanoide. Infectado",
+    "text": "Obligado – Después de que el Ministro de la enfermedad entre en juego: Mueve 1 ficha de perdición de otro enemigo al plan actual.",
+    "flavor": "“¡Regocijaos! ¡Cantad por el Liberado Sangriento!”"
+  },
+  "78106": {
+    "name": "Llamada del Liberado",
+    "typeCode": "treachery",
+    "traits": "Maleficio",
+    "text": "Revelación – Pon Llamada del Liberado en juego en tu zona de amenaza.\nObligado – Después de que derrotes a un enemigo: Roba la carta superior del mazo de encuentros.\n[action] Gasta 2 pistas: Descarta Llamada del Liberado.",
+    "flavor": "¡Escuchad la Llamada!"
+  },
+  "78107": {
+    "name": "Miasma coral",
+    "typeCode": "treachery",
+    "traits": "Miasma. Maleficio",
+    "text": "Revelación – Vincula Miasma coral al Lugar con más pistas sin una Miasma coral vinculada.\nObligado – Cuando un enemigo entre en el Lugar vinculado, si no hay perdición sobre Miasma coral: Mueve toda la perdición de ese enemigo a Miasma coral.\nObligado – Si no hay pistas en el Lugar vinculado: Descarta Miasma coral."
+  },
+  "78108": {
+    "name": "Marcha de los infectados",
+    "typeCode": "treachery",
+    "traits": "Augurio. Riesgo",
+    "text": "Revelación – Realiza una prueba de [agility] (6). Esta prueba recibe –1 a su dificultad por cada enemigo en juego. Por cada punto que te falte para tener éxito, debes añadir 1 recurso al plan en curso o recibir 1 punto de daño.",
+    "flavor": "¿Cómo pueden moverse tan rápido?"
+  },
+  "78109": {
+    "name": "Orador profano",
+    "typeCode": "treachery",
+    "traits": "Augurio",
+    "text": "Peligro.\nRevelación – Debes decidir (elige una):\n- Aumentar la Procesión.\n- Revela la carta superior del Mazo de procesión. El enemigo revelado te ataca inmediatamente como si estuviera en tu Lugar. Barájalo de nuevo en el Mazo de procesión."
+  },
+  "78110": {
+    "name": "Sacrificio del profano",
+    "typeCode": "treachery",
+    "traits": "Maquinación. Augurio",
+    "text": "Revelación – Realiza una prueba de [agility] (3). Si fracasas, elige el enemigo más cercano con perdición sobre él. Recibe tanto daño directo como fichas de perdición haya sobre el enemigo elegido, o mueve toda la perdición del enemigo al plan en curso.",
+    "flavor": "La vida es un pequeño precio a pagar para los devotos."
+  },
   "78250": {
     "name": "Solucionador de la Agencia",
     "typeCode": "enemy",
@@ -581,6 +751,122 @@
     "name": "Bajo la piel",
     "typeCode": "treachery",
     "text": "Pon esta carta en tu zona de amenaza. Después de investigar o combatir con éxito, descarta 1 carta al azar de tu mano. [action][action]: Descarta esta carta."
+  },
+  "78259": {
+    "name": "Malas noticias",
+    "typeCode": "treachery",
+    "traits": "Maleficio",
+    "text": "Revelación – Realiza una prueba de [willpower] (3). Si fracasas, descarta todos los eventos que no sean debilidad de tu mano. Si fracasaste y no se descartaron eventos por este efecto, Malas noticias obtiene Oleada.",
+    "flavor": "Sólo leer los titulares ya te provoca náuseas."
+  },
+  "78260": {
+    "name": "Doyle Jeffries",
+    "typeCode": "enemy",
+    "subname": "Voz sanguinaria",
+    "traits": "Élite. Humanoide. Infectado",
+    "text": "Cazador. Alerta.\nObligado – Cuando un investigador en el Lugar de Doyle Jeffries o en un Lugar conectado juegue un evento: Prepara a Doyle Jeffries. Si está enfrentado con un investigador, realiza un ataque inmediatamente.\nVictoria 1.",
+    "flavor": "Si manda, sangra."
+  },
+  "78261": {
+    "name": "Bancarrota",
+    "typeCode": "treachery",
+    "traits": "Maleficio",
+    "text": "Revelación – Gasta cualquier cantidad de recursos. Realiza una prueba de [agility] (X), donde X es 1 más que el número de recursos en tu reserva. Reduce la dificultad de esta prueba en 1 por cada recurso que gastaste. Por cada punto que te falte para tener éxito, recibe 1 punto de daño.",
+    "flavor": "Da hasta que pare de doler."
+  },
+  "78262": {
+    "name": "El Vicepresidente",
+    "typeCode": "enemy",
+    "subname": "Prestamista buscando presa",
+    "traits": "Élite. Humanoide. Infectado",
+    "text": "Cazador.\nEl Vicepresidente recibe +1 de daño [per_investigator] y +1 de horror [per_investigator].\nObligado – Cuando El Vicepresidente ataque: Cada investigador en su Lugar puede gastar cualquier cantidad de recursos. Reduce el daño y horror infligido por este ataque en 1 por cada recurso gastado.\nVictoria 1.",
+    "flavor": "Ha venido a recaudar."
+  },
+  "78263": {
+    "name": "Dejarse los huesos",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelación – Realiza una prueba de [willpower] (3). Si fracasas, pon Dejarse los huesos en juego en tu zona de amenaza.\nObligado – Después de que asignes 1 o más cartas de habilidad a una prueba de habilidad: Recibe 1 punto de daño o descarta una carta al azar de tu mano.\n[free] Si no tienes cartas de habilidad en tu mano: Descarta Dejarse los huesos."
+  },
+  "78264": {
+    "name": "La Cosa del agua",
+    "typeCode": "enemy",
+    "subname": "Pestilencia en el río",
+    "traits": "Élite. Monstruo. Infectado",
+    "text": "Descomunal. Cazador.\nComo coste adicional para combatir o evitar a La Cosa del agua, debes asignar todas las cartas de habilidad elegibles de tu mano.\nVictoria 1.",
+    "flavor": "Engordada a base del músculo de los habilidosos."
+  },
+  "78265": {
+    "name": "Mercancía defectuosa",
+    "typeCode": "treachery",
+    "traits": "Maleficio. Equivocación",
+    "text": "Revelación – Vincula Mercancía defectuosa a un Apoyo que no sea Permanente que controles. Si no se vinculó a ningún Apoyo, obtiene Oleada.\n[action]: Recibe 2 puntos de daño y descarta Mercancía defectuosa.\nObligado – Después de que juegues un Apoyo: Descarta el Apoyo vinculado. Vincula Mercancía defectuosa al Apoyo recién jugado."
+  },
+  "78266": {
+    "name": "La Pareja de enamorados",
+    "typeCode": "enemy",
+    "subname": "Abrazo eterno",
+    "traits": "Élite. Humanoide. Infectado",
+    "text": "Cazador.\nLa Pareja de enamorados recibe +1 de salud por cada Apoyo que no sea Permanente controlado por un investigador en su Lugar.\nVictoria 1.",
+    "flavor": "Su amor trasciende la materia y la moral."
+  },
+  "78267": {
+    "name": "Sediento",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelación – Pon Sediento en juego en tu zona de amenaza con 3 recursos sobre él.\nObligado – Cuando vayas a tener éxito por 2 o más en una prueba de habilidad: Recibe 1 punto de daño o fracasa por 1. Retira 1 recurso de Sediento.\nObligado – Si no hay recursos sobre Sediento, descártalo."
+  },
+  "78268": {
+    "name": "Hibb",
+    "typeCode": "enemy",
+    "subname": "Se le salieron las tripas",
+    "traits": "Élite. Humanoide. Infectado",
+    "text": "Cazador. Represalia. Alerta.\nObligado – Después de ataques o evites a Hibb con éxito por 2 o más: Coloca 1 ficha de perdición sobre Hibb o te ataca inmediatamente.\nVictoria 1.",
+    "flavor": "Debería haberlo visto venir, pero tú dejaste que ocurriera."
+  },
+  "78269": {
+    "name": "Confianza rota",
+    "typeCode": "treachery",
+    "traits": "Defecto",
+    "text": "Revelación – Vincula Confianza rota a un Apoyo Aliado que controles. Si no controlas ningún Apoyo Aliado, Confianza rota obtiene Oleada.\nConsidera el cuadro de texto impreso del Apoyo vinculado como si estuviera en blanco.\n[action] Gasta 1 recurso, más 1 recurso adicional por cada punto de daño y de horror sobre el Apoyo vinculado: Descarta Confianza rota.",
+    "flavor": "¿Cómo pudiste?"
+  },
+  "78270": {
+    "name": "Ma Matheson",
+    "typeCode": "enemy",
+    "subname": "Verdadera creyente",
+    "traits": "Élite. Humanoide. Infectado",
+    "text": "Cazador.\nObligado – Después de que Ma Matheson ataque, si cualquier cantidad de daño u horror fue asignada a un Apoyo Aliado: Exilia ese Apoyo.\nVictoria 1.",
+    "flavor": "Te preparará de desayuno."
+  },
+  "78271": {
+    "name": "Susurros de poder",
+    "typeCode": "treachery",
+    "traits": "Maleficio",
+    "text": "Revelación – Vincula Susurros de poder al Apoyo que no sea Aliado de mayor coste que controles.\nComo coste adicional para activar cualquier capacidad del Apoyo vinculado, recibe 1 punto de horror.\nEl Apoyo vinculado obtiene ”[action]: Devuelve este Apoyo a tu mano y descarta todas las copias de Susurros de poder vinculadas a él."
+  },
+  "78272": {
+    "name": "Miriam Beecher",
+    "typeCode": "enemy",
+    "subname": "Hechicera de la Enfermedad",
+    "traits": "Élite. Humanoide. Infectado",
+    "text": "Cazador.\nMiriam Beecher inflige una cantidad total de X puntos de daño y/u horror, distribuidos de la forma más equitativa posible, donde X es el coste del Apoyo que no sea Aliado de mayor coste que controle un investigador en su Lugar.\nVictoria 1.",
+    "flavor": "Se ha vuelto más peligrosa que nada de lo que tuviera en su colección."
+  },
+  "78273": {
+    "name": "Sabes demasiado",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelación – Pon Sabes demasiado en juego en tu zona de amenaza.\nObligado – Al final de tu turno: Recibe X puntos de horror, donde X es 4 menos que el número de cartas en tu mano. Después, descarta Sabes demasiado.",
+    "flavor": "Tu mente no es sólo tuya."
+  },
+  "78274": {
+    "name": "Henry Armitage",
+    "typeCode": "enemy",
+    "subname": "Maestro de lo prohibido",
+    "traits": "Élite. Humanoide. Infectado",
+    "text": "Indiferente. Cazador.\nHenry Armitage recibe +1 de daño y +1 de horror mientras esté enfrentado a un investigador con 5 o más cartas en la mano.\nObligado – Después de que un investigador en el Lugar de Henry Armitage robe una carta: Henry Armitage se enfrenta y ataca a ese investigador.\nVictoria 1.",
+    "flavor": "Incluso las voluntades más fuertes sucumben ante el Portador de la Plaga."
   },
   "78275": {
     "name": "Arkham Advertiser",

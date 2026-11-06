@@ -1,6 +1,17 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'plaguebearer-dawn-and-chorus',
+    date: '2026-11-06',
+    title: 'app.changelog.plaguebearer.title',
+    items: [
+      'app.changelog.plaguebearer.dawn',
+      'app.changelog.plaguebearer.chorus',
+      'app.changelog.plaguebearer.interludes',
+      'app.changelog.plaguebearer.fixes',
+    ],
+  },
+  {
     id: 'carnevale-playable',
     date: '2026-10-30',
     title: 'app.changelog.carnevale.title',

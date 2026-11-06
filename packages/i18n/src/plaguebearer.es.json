@@ -137,6 +137,23 @@
       "hideEffect": "Anota que escondisteis el maletín.",
       "perksEffect": "Añade el Apoyo de historia La Fuerza de la Carne y la debilidad El abrazo de la muerte a tu mazo durante el resto de la campaña. No cuentan para el tamaño de mazo.",
       "goodEffect": "Añade el Apoyo de historia Voluntad inquebrantable y la debilidad La futilidad del hombre a tu mazo durante el resto de la campaña. No cuentan para el tamaño de mazo."
+    },
+    "chorus": {
+      "introTitle": "Cantos fúnebres",
+      "intro": "6:11 a. m.\n\nRecorres el camino a través de la ciudad tan rápido como puedes. Los primeros rayos del sol de la mañana iluminan una urbe apiñada en una calma tensa. Inquietantemente silenciosa. No hay madrugadores saliendo de sus casas. Ni tan siquiera el piar de los pájaros perturba la quietud. Por primera vez en mucho tiempo miras a tu interior y te relajas un instante.\n\nEntonces la primera nota infernal rompe el aire.\n\nEn algún lugar, por aquí cerca, una voz entona una oscura e irresistible melodía. Una canción de odio y tristeza que resuena por las calles vacías. Una melodía a la que rápidamente acompaña una segunda voz, después una tercera. En algún tipo de macabro orden, la canción se repite a través de todo Arkham.\n\nPero no importa cómo te coloques, siempre eres capaz de escuchar esa primera voz por encima del estruendo, liderando el coro en sus blasfemas invocaciones.\n\nSientes un pinchazo en la base del cráneo y tu mente se turba por un instante.\n\n¡Regocijaos!\n¡Renaced!\n¡Todos nosotros\noiremos la llamada!\n¡De la Liberación Sangrienta!\n¡Libertad!\n¡Justicia!\n¡Aunque muera\nse levantará!\n¡Con la Liberación Sangrienta!\n\n“La Liberación Sangrienta”. No sabes qué significa. Pero debes detenerlo.",
+      "introHidden": "Regocijaos\nEnfermad\nSe están reuniendo\nÚnete a ellos\nRomperán el sello\nLibertad\nVenganza\nMe traicionó\nMe falló\nRomperán el sello",
+      "setupTitle": "Preparación",
+      "setup": "Reúne todas las cartas de los siguientes conjuntos de encuentros: Cantos fúnebres, Arkham caído, Confusión del miasma, Esclavos del miasma y Puertas cerradas.\n\nAl reunir las cartas del conjunto Arkham caído, deja todas las cartas que no sean Víctima sonriente aparte.\n\nPon los siguientes Lugares en juego en el siguiente orden siguiendo las agujas del reloj, comenzando por la Biblioteca Orne: Biblioteca Orne, Vieja tienda de Magia, Colmado, Arkham Advertiser, Banco de Arkham, Muelles, Motel Hibb y Pensión de Ma.\n\nComprueba el registro de campaña. En orden aleatorio, marca cada Lugar que no aparezca como “Defendido” o “Infectado” con el valor que aparezca menos.\n\nComprueba el registro de campaña. Si hay 6 o más Lugares “Infectado”, elimina el valor “Infectado” de un Lugar a elección del investigador jefe y márcalo como “Defendido” (haz esto 2 veces si hay 7 Lugares “Infectado” en total).\n\nComprueba el registro de campaña. Por cada Lugar anotado bajo “Lugares defendidos” retira de la partida las siguientes cartas:\n• Arkham Advertiser: Malas noticias, Doyle Jeffries.\n• Banco de Arkham: Bancarrota, El Vicepresidente.\n• Colmado: Mercancía defectuosa, La Pareja de Enamorados.\n• Motel Hibb: Sediento, Hibb (Se le salieron las tripas).\n• Pensión de Ma: Confianza rota, Ma Matheson.\n• Biblioteca Orne: Sabes demasiado, Henry Armitage.\n• Muelles: Dejarse los huesos, La Cosa del agua.\n• Vieja tienda de Magia: Susurros de Poder, Miriam Beecher.\n\nAñade cada carta Traición no retirada de la partida de esta manera a las cartas de encuentro reunidas.\n\nComprueba el registro de campaña. Por cada Lugar en juego que esté “Infectado”, reemplaza el Lugar por el Lugar del mismo nombre del conjunto de encuentros Arkham caído.\n\nColoca al Sacerdote de la Plaga en un Lugar Miasma aleatorio y un Ministro de la Enfermedad (ignorando su capacidad Obligado) con 1 ficha de perdición sobre él en el siguiente Lugar en el sentido de las agujas del reloj. Estos enemigos forman la Procesión inicial.\n\nLos investigadores comienzan en el Lugar Seguro que elijan.\n\nDeja el Esclavo devoto aparte, fuera del juego.\n\nElige al azar uno de los enemigos Élite del conjunto Arkham caído (deja aparte, fuera del juego, los restantes) y barájalo con cada enemigo Infectado para formar el Mazo de procesión.\n\nBaraja el resto de cartas de encuentro para formar el mazo de Encuentros.",
+      "processionTitle": "Procesión",
+      "procession": "La procesión oscura que avanza a través de Arkham modifica el comportamiento de sus enemigos integrantes.\n\nCuando “aumentes la Procesión”:\n• Roba el enemigo superior del Mazo de procesión.\n• Hazlo aparecer en el siguiente Lugar en el sentido de las agujas del reloj del último enemigo en la Procesión.\n• Coloca 1 ficha de perdición sobre ese enemigo.\n\nIgnora las palabras clave Cazador y Errante de los enemigos en la Procesión.\n\nCuando la Procesión se mueva:\n• Mueve el Sacerdote de la Plaga un Lugar en el sentido contrario a las agujas del reloj.\n• En el sentido de las agujas del reloj, cada otro enemigo en la Procesión deja de estar enfrentado a cualquier investigador y se mueve al siguiente Lugar más cercano al Sacerdote de la Plaga sin ningún otro enemigo de la Procesión en él, en el sentido de las agujas del reloj, “siguiendo” al Sacerdote. Esto puede ocasionar que adelanten a enemigos agotados.\n\nUn enemigo agotado, salvo el Sacerdote de la Plaga, no se mueve con la Procesión.\n\nCuando un enemigo de la Procesión fuera a ser descartado del juego, es descartado a una pila de descartes propia del Mazo de procesión. Cuando vayas a robar y no queden enemigos en el Mazo de procesión, baraja la pila de descartes del Mazo de procesión para formar un nuevo Mazo de procesión y roba la carta superior.",
+      "defeatedTitle": "Investigador derrotado",
+      "defeated": "No estás seguro de en qué momento te uniste a la procesión. Tampoco de cómo. Pero has deambulado por las calles de la ciudad aturdido, cantando himnos aprendidos antes de nacer. Ha sido precioso.",
+      "defeatedHidden": "Regocijaos en el miedo. Estoy vivo de nuevo.\nSólo es cuestión de tiempo.",
+      "resolution1Title": "Resolución 1",
+      "resolution1": "Tan rápido como cesa el fuego de mortero, observas cómo las sangrantes vísceras de los miembros de la procesión se elevan para formar un extraño sigilo en el cielo. Con retorcidas formas rojas y verdes, late como si de las venas de un ser viviente se tratara. Agarras y sacudes al más cercano de los infectados, reclamando una explicación.\n\n“¡Ha sido liberado! ¡Ha renacido! ¡Han oído la Llamada y nos han sacrificado! ¡Nuestro perecer es su renacer! ¡La Liberación Sangrienta!”.\n\nSe ha cometido un terrible error.",
+      "resolution2Title": "Resolución 2",
+      "resolution2": "Según la macabra melodía desaparece de tus oídos, observas cómo las sangrantes vísceras de los miembros de la procesión, se elevan para formar un extraño sigilo en el cielo. Con retorcidas formas rojas y verdes, late como si de las venas de un ser viviente se tratara. Agarras y sacudes al más cercano de los infectados, reclamando una explicación.\n\n“¡Ha sido liberado! ¡Ha renacido! ¡Han oído la Llamada y nos han sacrificado! ¡Nuestro perecer es su renacer! ¡La Liberación Sangrienta!”\n\nHas cometido un terrible error.",
+      "hiddenEffect": "El primer investigador en leer esto añade una ficha de Antiguo a la bolsa del caos durante el resto de la campaña."
     }
   },
   "note": {
@@ -183,7 +200,40 @@
     "plaguebearerBloodInVeins": "La sangre corre por tus venas",
     "plaguebearerSkipDeadOrAlive": "Se salta el Interludio II: Vivo o muerto",
     "plaguebearerWestReagent": "West recuperó el reactivo",
-    "plaguebearerHidBriefcase": "Escondisteis el maletín"
+    "plaguebearerHidBriefcase": "Escondisteis el maletín",
+    "plaguebearerHeeded": "Han escuchado la llamada",
+    "plaguebearerTown78023Crater": "Arkham Advertiser: Cráter de la Liberación",
+    "plaguebearerTown78023Site": "Arkham Advertiser: Lugar de la Liberación",
+    "plaguebearerTown78023Rallied": "Arkham Advertiser: Protegido",
+    "plaguebearerTown78024Crater": "Banco de Arkham: Cráter de la Liberación",
+    "plaguebearerTown78024Site": "Banco de Arkham: Lugar de la Liberación",
+    "plaguebearerTown78024Rallied": "Banco de Arkham: Protegido",
+    "plaguebearerTown78025Crater": "Colmado: Cráter de la Liberación",
+    "plaguebearerTown78025Site": "Colmado: Lugar de la Liberación",
+    "plaguebearerTown78025Rallied": "Colmado: Protegido",
+    "plaguebearerTown78026Crater": "Motel Hibb: Cráter de la Liberación",
+    "plaguebearerTown78026Site": "Motel Hibb: Lugar de la Liberación",
+    "plaguebearerTown78026Rallied": "Motel Hibb: Protegido",
+    "plaguebearerTown78027Crater": "Pensión de Ma: Cráter de la Liberación",
+    "plaguebearerTown78027Site": "Pensión de Ma: Lugar de la Liberación",
+    "plaguebearerTown78027Rallied": "Pensión de Ma: Protegido",
+    "plaguebearerTown78028Crater": "Biblioteca Orne: Cráter de la Liberación",
+    "plaguebearerTown78028Site": "Biblioteca Orne: Lugar de la Liberación",
+    "plaguebearerTown78028Rallied": "Biblioteca Orne: Protegido",
+    "plaguebearerTown78029Crater": "Muelles: Cráter de la Liberación",
+    "plaguebearerTown78029Site": "Muelles: Lugar de la Liberación",
+    "plaguebearerTown78029Rallied": "Muelles: Protegido",
+    "plaguebearerTown78030Crater": "Vieja tienda de Magia: Cráter de la Liberación",
+    "plaguebearerTown78030Site": "Vieja tienda de Magia: Lugar de la Liberación",
+    "plaguebearerTown78030Rallied": "Vieja tienda de Magia: Protegido",
+    "plaguebearerEliminated78260": "Doyle Jeffries: eliminado",
+    "plaguebearerEliminated78262": "El Vicepresidente: eliminado",
+    "plaguebearerEliminated78264": "La Cosa del agua: eliminado",
+    "plaguebearerEliminated78266": "La Pareja de enamorados: eliminado",
+    "plaguebearerEliminated78268": "Hibb: eliminado",
+    "plaguebearerEliminated78270": "Ma Matheson: eliminado",
+    "plaguebearerEliminated78272": "Miriam Beecher: eliminado",
+    "plaguebearerEliminated78274": "Henry Armitage: eliminado"
   },
   "ability": {
     "remove": "Gasta {amount} pistas aquí: retira {amount} barricadas de {location}",
@@ -235,6 +285,15 @@
     "alive": {
       "damage": "Agota La Fuerza de la Carne: cura todo su daño",
       "horror": "Agota Voluntad inquebrantable: cura todo su horror"
+    },
+    "chorus": {
+      "barricade": "Gastar {amount} pistas en grupo: coloca {amount} Barricadas en tu Lugar",
+      "brokenTrust": "Gasta {amount} recursos: descarta Confianza rota",
+      "call": "Gasta 2 pistas: descarta Llamada del Liberado",
+      "damaged": "Recibe 2 daños y descarta Mercancía defectuosa",
+      "evade": "Retira 1 perdición del enemigo evitado",
+      "whispers": "Devuelve el Apoyo a tu mano y descarta Susurros de poder",
+      "worked": "Descarta Dejarse los huesos"
     }
   },
   "prompt": {
@@ -256,6 +315,19 @@
     "alive": {
       "path": "{name}: decide individualmente",
       "west": "¿Quién añade a Herbert West a su mazo?"
+    },
+    "chorus": {
+      "bankrupture": "Bancarrota: ¿cuántos recursos gastas?",
+      "boneDry": "Sediento: elige",
+      "hibbs": "Hibb: elige",
+      "hidden": "La resolución contiene un texto oculto. ¿Decides leerlo?",
+      "march": "Marcha de los infectados: reparte los puntos",
+      "prayer": "Orador profano: elige una opción",
+      "rally": "Elige un Lugar Infectado para marcarlo como Defendido",
+      "sacrifice": "Sacrificio del profano: elige",
+      "vicePresident": "El Vicepresidente: ¿cuántos recursos gastas para reducir su ataque?",
+      "worked": "Dejarse los huesos: elige",
+      "introHidden": "La introducción contiene un texto oculto. ¿Decides leerlo?"
     }
   },
   "choice": {
@@ -296,6 +368,19 @@
       "perks": "Aceptas el horror de tu condición. Sólo puede hacerte más fuerte",
       "good7": "West está equivocado. Tienes claro que aún eres humano, a pesar del daño",
       "good8": "Todo es pura coincidencia. Tienes claro que aún eres humano, a pesar del daño"
+    },
+    "chorus": {
+      "damage": "Recibir 1 daño",
+      "failByOne": "Fracasar por 1",
+      "grow": "Aumentar la Procesión",
+      "hibbsAttack": "Hibb te ataca",
+      "hibbsDoom": "Colocar 1 perdición sobre Hibb",
+      "march": "{resources} recursos al plan y {damage} daños",
+      "randomDiscard": "Descartar una carta al azar",
+      "reveal": "Revelar la carta superior del Mazo de procesión: te ataca",
+      "sacrificeDamage": "{enemy}: recibe {amount} daños directos",
+      "sacrificeDoom": "{enemy}: mueve {amount} perdición al plan",
+      "spend": "Gastar {amount} recursos"
     }
   }
 }

@@ -338,6 +338,60 @@
       "inputHash": "8a60b5a86d11c91b48ed79bb8a81c928e46d26ff6919814c8efa230c249d8887",
       "sha256": "e2f74978be1d42270bc3c94462966da813d3f192b9d42759b7d9e3661fd7a345",
       "bytes": 356980
+    },
+    {
+      "key": "story.plaguebearer.chorus.intro",
+      "file": "plaguebearer-chorus-intro-martin-osborne.mp3",
+      "text": "6:11 a. m.\n\nRecorres el camino a través de la ciudad tan rápido como puedes. Los primeros rayos del sol de la mañana iluminan una urbe apiñada en una calma tensa. Inquietantemente silenciosa. No hay madrugadores saliendo de sus casas. Ni tan siquiera el piar de los pájaros perturba la quietud. Por primera vez en mucho tiempo miras a tu interior y te relajas un instante.\n\nEntonces la primera nota infernal rompe el aire.\n\nEn algún lugar, por aquí cerca, una voz entona una oscura e irresistible melodía. Una canción de odio y tristeza que resuena por las calles vacías. Una melodía a la que rápidamente acompaña una segunda voz, después una tercera. En algún tipo de macabro orden, la canción se repite a través de todo Arkham.\n\nPero no importa cómo te coloques, siempre eres capaz de escuchar esa primera voz por encima del estruendo, liderando el coro en sus blasfemas invocaciones.\n\nSientes un pinchazo en la base del cráneo y tu mente se turba por un instante.\n\n¡Regocijaos!\n¡Renaced!\n¡Todos nosotros\noiremos la llamada!\n¡De la Liberación Sangrienta!\n¡Libertad!\n¡Justicia!\n¡Aunque muera\nse levantará!\n¡Con la Liberación Sangrienta!\n\n“La Liberación Sangrienta”. No sabes qué significa. Pero debes detenerlo.",
+      "characters": 1212,
+      "inputHash": "ffec361be4f3f62d8350bb4fce9638e4c8c6692d64b2c85850f12c2d435944b0",
+      "sha256": "139e0c6dc0bd8862bfebf718547d25d18dc49868d8dc79aca6ec51038c51c15a",
+      "bytes": 1514727
+    },
+    {
+      "key": "story.plaguebearer.chorus.introHidden",
+      "file": "plaguebearer-chorus-intro-hidden-martin-osborne.mp3",
+      "text": "Regocijaos\nEnfermad\nSe están reuniendo\nÚnete a ellos\nRomperán el sello\nLibertad\nVenganza\nMe traicionó\nMe falló\nRomperán el sello",
+      "characters": 128,
+      "inputHash": "7908f6fbc950e5a5d856602f52472a096c53297935f595d574a7afb96f2aa016",
+      "sha256": "6ca8cb5615fd785615e2cf2bd981c2303cbeffe635355ad3f61a0226bbc3c4bf",
+      "bytes": 323543
+    },
+    {
+      "key": "story.plaguebearer.chorus.defeated",
+      "file": "plaguebearer-chorus-defeated-martin-osborne.mp3",
+      "text": "No estás seguro de en qué momento te uniste a la procesión. Tampoco de cómo. Pero has deambulado por las calles de la ciudad aturdido, cantando himnos aprendidos antes de nacer. Ha sido precioso.",
+      "characters": 195,
+      "inputHash": "d37a14165adbfa7d920814d46c44cda1ff4a726ad2795c67ef73c3c7ea0e8ffe",
+      "sha256": "ae30001c8d1e86624a6c828641291154bfc6817c9329fd851ad673c91fe0edc5",
+      "bytes": 297630
+    },
+    {
+      "key": "story.plaguebearer.chorus.defeatedHidden",
+      "file": "plaguebearer-chorus-defeated-hidden-martin-osborne.mp3",
+      "text": "Regocijaos en el miedo. Estoy vivo de nuevo.\nSólo es cuestión de tiempo.",
+      "characters": 72,
+      "inputHash": "7725b8be24ec3babc3c04850a846f40df1732f3150dd1f8c4e9cd42660c5e770",
+      "sha256": "55516e7fa753dee0f0bbdf4ac1f17c8af69213fa9679a046eb7a6a7fc2ab089b",
+      "bytes": 142149
+    },
+    {
+      "key": "story.plaguebearer.chorus.resolution1",
+      "file": "plaguebearer-chorus-resolution1-martin-osborne.mp3",
+      "text": "Tan rápido como cesa el fuego de mortero, observas cómo las sangrantes vísceras de los miembros de la procesión se elevan para formar un extraño sigilo en el cielo. Con retorcidas formas rojas y verdes, late como si de las venas de un ser viviente se tratara. Agarras y sacudes al más cercano de los infectados, reclamando una explicación.\n\n“¡Ha sido liberado! ¡Ha renacido! ¡Han oído la Llamada y nos han sacrificado! ¡Nuestro perecer es su renacer! ¡La Liberación Sangrienta!”.\n\nSe ha cometido un terrible error.",
+      "characters": 514,
+      "inputHash": "3352194244d7e6cae07226ef7201705bf6efab803857df6f157da138f1ed9782",
+      "sha256": "9bb79f2ef025c05f6ac10f201d31009278850d637929e7ee3c6e6a32917fc9b2",
+      "bytes": 636176
+    },
+    {
+      "key": "story.plaguebearer.chorus.resolution2",
+      "file": "plaguebearer-chorus-resolution2-martin-osborne.mp3",
+      "text": "Según la macabra melodía desaparece de tus oídos, observas cómo las sangrantes vísceras de los miembros de la procesión, se elevan para formar un extraño sigilo en el cielo. Con retorcidas formas rojas y verdes, late como si de las venas de un ser viviente se tratara. Agarras y sacudes al más cercano de los infectados, reclamando una explicación.\n\n“¡Ha sido liberado! ¡Ha renacido! ¡Han oído la Llamada y nos han sacrificado! ¡Nuestro perecer es su renacer! ¡La Liberación Sangrienta!”\n\nHas cometido un terrible error.",
+      "characters": 520,
+      "inputHash": "b413693bfce3414f010cd4b1337665734a730f8ede1c9482c9f4a403285a16e2",
+      "sha256": "aa250cd0da262203ea60898d983dc7f264b76ddaba37694f43c41f3b1dcbef50",
+      "bytes": 640774
     }
   ]
 }

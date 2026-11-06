@@ -131,6 +131,8 @@ export interface ScenarioBehavior {
   ) => TokenEffect | null
   /** Modificador al horror que inflige el ataque de un enemigo (Pasillos del manicomio). */
   enemyHorrorModifier?: (state: GameState, enemy: Enemy) => number
+  /** Salud adicional de cada enemigo (Cantos fúnebres: +1 por perdición sobre él). */
+  enemyHealthModifier?: (state: GameState, enemy: Enemy) => number
   /** Modificador al daño que inflige el ataque de un enemigo (Daga de la fortuna). */
   enemyDamageModifier?: (state: GameState, enemy: Enemy) => number
   /**
@@ -236,6 +238,8 @@ export interface StoryBehavior {
 
 export interface TreacheryBehavior {
   blanksAssetTrait?: string
+  /** Deja en blanco el texto de un apoyo concreto (Confianza rota, vinculada a un Aliado). */
+  blanksAsset?: (state: GameState, self: Treachery, asset: Asset) => boolean
   blocksPlayTrait?: string
   beforeDamage?: (
     state: GameState,

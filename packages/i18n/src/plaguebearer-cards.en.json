@@ -547,6 +547,176 @@
     "flavor": "It speaks your deepest fears in the tones of your father.",
     "subname": "Growing Horror"
   },
+  "78083": {
+    "name": "Mourning Chorus",
+    "typeCode": "scenario",
+    "text": "[skull]: –X. X is the highest number of doom on an enemy in play (max 4).\n[cultist]: –3 (–5 if you are at a Miasma location). If you succeed, place 1 resource on your location (*from the token pool*).\n[tablet]: –3. If you fail, place 1 resource on the current agenda (*from the token pool*). This effect may cause the Procession to move.",
+    "backText": "[skull]: –X. X is 1 greater than the highest number of doom on an enemy in play (max –6).\n[cultist]: –4 (–6 if you are at a Miasma location). If you succeed, place 1 resource on your location (*from the token pool*).\n[tablet]: –3. Place 1 resource on the current agenda (*from the token pool*). This effect may cause the Procession to move."
+  },
+  "78084": {
+    "name": "Eldritch Procession",
+    "typeCode": "agenda",
+    "text": "*This agenda has +2[per_investigator] doom threshold.\nEach enemy gets +X health, where X is the number of doom on that enemy.\nForced – When you would resolve the ‘Place 1 doom on the current agenda’ step of the mythos phase: Instead, place 1[per_investigator] resources on the current agenda.\nForced – If this agenda has 2 or more resources on it: Remove 2 resources and move the Procession.",
+    "flavor": "A procession of infected follow a bizarre abomination through the terrified city.",
+    "backName": "Ominous Ritual",
+    "backText": "Return all resources that were on this agenda to the token bank.\nPlace 1 doom on the Priest of Plagues.\nDiscard any non-Elite enemy from the procession, and spawn the set-aside Worshipful Thrall into play (at the discarded enemy’s location, if able) as part of the Procession. Do not place 1 doom on this enemy.",
+    "backFlavor": "One of the procession’s number is overcome by rapturous emotions. The procession halts for a moment, circling around the unfortunate soul. You watch in abject terror as the poor man’s flesh falls from his bones, his voice still singing all the while.\nBefore this terrible sight can shake the infected townsfolk from their revelry, another figure steps in to take the place."
+  },
+  "78085": {
+    "name": "Song of Sacrifice",
+    "typeCode": "agenda",
+    "text": "*This agenda has +2[per_investigator] doom threshold.\nEach enemy gets +X health, where X is the number of doom on that enemy.\nForced – When you would resolve the ‘Place 1 doom on the current agenda’ step of the mythos phase: Instead, place 1[per_investigator] resources on the current agenda.\nForced – If this agenda has 2 or more resources on it: Remove 2 resources and move the Procession.",
+    "flavor": "The horrible chorus is reaching a fever pitch. Your time is running short.",
+    "backName": "Heavy Ordinance",
+    "backText": "Remember that the Priest of Plagues’ current location is “the site of unbinding”.\n(→R1)",
+    "backFlavor": "The chorus is deafening. You fall to your knees, unable to even move. Just above the rapturous terror, you hear a voice yell “Fire!”\nA massive explosion rocks the city. And another. And another. The entire procession, as well as several city blocks around the priest, are destroyed in a hail of mortar fire.\nThe sky goes red with bloody mist."
+  },
+  "78086": {
+    "name": "Unstoppable Force",
+    "typeCode": "act",
+    "text": "[reaction] After you evade an enemy: Remove 1 doom from that enemy. (Limit once per round.)",
+    "flavor": "You watch as an agent fires on the horrible priest. The gunfire has no effect, and with a flick of its glowing tail the agent has joined the chorus. There must be some other way to fight it off…",
+    "backName": "Hit And Run",
+    "backText": "Shuffle 1 set-aside *Fallen Arkham* Elite enemy and the Procession discard pile into the Procession deck.\nUntil the end of the game, each Infected enemy gains: “Forced – After this enemy enters a location with any Barricades: Remove as many Barricades as possible, up to this enemy’s remaining health. Deal that much damage to this enemy.”\nKeep this card next to the act deck as a reminder, and advance to act 2a.",
+    "backFlavor": "As you begin to lose hope that any of your talents will be of any use, you watch a raging citizen drive a truck directly up against the Priest. While the initial impact and explosion do nothing to harm the beast, the creature does not change its path to avoid the accident. With horrible tearing noises, the grotesque monster drags itself directly through the flaming wreckage. By the time it reaches the opposite side, it has begun to bleed…"
+  },
+  "78087": {
+    "name": "Immovable Objects",
+    "typeCode": "act",
+    "text": "[reaction] After you resolve an ability on a Stable location: Place 1 resource on that location, as a Barricade. Then, if there are 3[per_investigator] resources on that location and you have “rallied” fewer than two locations, remember that you have “rallied” that location.\n[action] Spend up to 2 clues, as a group: Place that many Barricades on your location.\nObjective – When the Priest of Plagues is defeated, advance.",
+    "flavor": "You have the solution. If you can build up giant barricades in the path of the Priest, it will tear itself to pieces breaking through them!",
+    "backName": "Final Hymn",
+    "backText": "Remember that the Priest of Plagues’ current location is “the site of unbinding”.\n(→R2)",
+    "backFlavor": "With a hideous cry, the head of the priest is sheared from its writhing body. A body that begins smoking, and then detonates in a bloody mess. The viscera begins raising into the sky…\nThe worshippers sing a final bar, and then fall to the earth, convulsing."
+  },
+  "78088": {
+    "name": "Arkham Advertiser",
+    "typeCode": "location",
+    "subname": "Fit to Print",
+    "traits": "Stable",
+    "text": "[reaction] After you play an event at this location: Draw 1 card and gain 1 resource. (Limit once per round.)",
+    "flavor": "The writers of the advertiser are quick to detail every move you make and hand you a stipend for being particularly newsworthy.",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "Rising above the din of the running presses, Doyle Jeffries utilizes years of practice throwing screaming fits to warn the survivors of Arkham."
+  },
+  "78089": {
+    "name": "Bank of Arkham",
+    "typeCode": "location",
+    "subname": "Bull Market",
+    "traits": "Stable",
+    "text": "[reaction] After you successfully investigate this location: Gain 2 resources. (Limit once per round.)",
+    "flavor": "Negotiating with the tellers for funds takes time, but you both know the Bank’s vaults would take an eternity to empty.",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "The institution of Arkham’s elite has become a fortress protecting all of Arkham’s citizens."
+  },
+  "78090": {
+    "name": "General Store",
+    "typeCode": "location",
+    "subname": "Open for Business",
+    "traits": "Stable",
+    "text": "[action] Spend any number of resources: Search the top X cards of your deck for an asset and put it into play, where X is twice the number of resources you spent. Shuffle your deck. (Limit once per round.)",
+    "flavor": "The matron of the establishment helps you sift through the remaining stock, looking for anything you might use.",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "From the smoke coming from the chimney, you can tell the store survived the night."
+  },
+  "78091": {
+    "name": "Hibb’s Roadhouse",
+    "typeCode": "location",
+    "subname": "Bootlegger’s Luck",
+    "traits": "Stable",
+    "text": "[reaction] After you succeed at a skill test by 2 or more at this location: Heal 1 damage or 1 horror from a card you control.(Limit once per round.)",
+    "flavor": "The patrons of the roadhouse gamble on your actions and cheer you on with every victory.",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "A patron pulls a curtain to the side and spots you. He smiles, nods, and makes a shooting gesture."
+  },
+  "78092": {
+    "name": "Ma’s Boarding House",
+    "typeCode": "location",
+    "subname": "Old Friends",
+    "traits": "Stable",
+    "text": "[action]: Search your deck for an Ally asset and add it to your hand. Shuffle your deck. (Limit once per round.)",
+    "flavor": "The boarding house is filled with all sorts, just happy to stand together against the darkness.",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "There’s always room for one more at Ma’s!"
+  },
+  "78093": {
+    "name": "Orne Library",
+    "typeCode": "location",
+    "subname": "Safe in the Knowledge",
+    "traits": "Stable",
+    "text": "[reaction] After the draw cards step of upkeep, if you have 5 or more cards in hand: Draw 1 card.",
+    "flavor": "The calm demeanor of the library gives you a chance to focus, and Professor Armitage is always ready with helpful advice.",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "How useful one library can be!"
+  },
+  "78094": {
+    "name": "River Docks",
+    "typeCode": "location",
+    "subname": "Fellowship of Man",
+    "traits": "Stable",
+    "text": "[reaction] When you commit an eligible skill card to a skill test at this location: It gains [wild] and the text: “After this test ends, you may draw 1 card.” (Limit once per round.)",
+    "flavor": "There’s plenty of dockhands ready to help with anything you might struggle with.",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "You’ll happily throw your lot in with the dockworkers, who seem to have their warehouses well under watch."
+  },
+  "78095": {
+    "name": "Ye Olde Magick Shoppe",
+    "typeCode": "location",
+    "subname": "Dangerous Relics",
+    "traits": "Stable",
+    "text": "[action]: Draw the top card of the encounter deck. Then, search your deck for a Spell or Relic asset and put it into play. Shuffle your deck. (Limit once per round.)",
+    "flavor": "This power is not free, but what’s a little risk when your world’s on the line?",
+    "backText": "Unrevealed location. Enter it to reveal its other side.",
+    "backFlavor": "You see the venerable store, and realize just how many powerful relics might be at your disposal inside…"
+  },
+  "78104": {
+    "name": "Priest of Plagues",
+    "typeCode": "enemy",
+    "subname": "Favored Acolyte of Disease",
+    "traits": "Elite. Monster. Infected",
+    "text": "Massive.\nCannot be damaged by player cards or player effects.\nForced – After Priest of Plagues moves: Place 1 clue on its location. Then, if it entered a Miasma location, place 2 doom on the last enemy in the Procession. Otherwise, Grow the Procession.\nVictory 2.",
+    "flavor": "It sings songs of death, and you ache to join the chorus."
+  },
+  "78105": {
+    "name": "Minister of Sickness",
+    "typeCode": "enemy",
+    "traits": "Humanoid. Infected",
+    "text": "Forced – After Minister of Sickness enters play: Move 1 doom from another enemy to the current agenda.",
+    "flavor": "“Rejoice! Sing for the Bloody Unbinding!”"
+  },
+  "78106": {
+    "name": "Call of Unbinding",
+    "typeCode": "treachery",
+    "traits": "Hex",
+    "text": "Revelation – Put Call of Unbinding into play in your threat area.\nForced – After you defeat an enemy: Draw the top card of the encounter deck.\n[action] Spend 2 clues: Discard Call of Unbinding.",
+    "flavor": "“Heed the Call!”"
+  },
+  "78107": {
+    "name": "Choral Miasma",
+    "typeCode": "treachery",
+    "traits": "Miasma. Hex",
+    "text": "Revelation – Attach to the location with the most clues without a Choral Miasma attached.\nForced – When an enemy enters Choral Miasma’s location, if there is no doom on Choral Miasma: Move that enemy’s doom to Choral Miasma.\nForced – If there are no clues on attached location: Discard Choral Miasma."
+  },
+  "78108": {
+    "name": "March of the Infected",
+    "typeCode": "treachery",
+    "traits": "Omen. Hazard",
+    "text": "Revelation – Test [agility] (6). This test gets –1 difficulty for each enemy in play. For each point you fail by, you must either add 1 resource to the current agenda or take 1 damage.",
+    "flavor": "How can they move that fast!?"
+  },
+  "78109": {
+    "name": "Profane Prayer",
+    "typeCode": "treachery",
+    "traits": "Omen",
+    "text": "Peril.\nRevelation – You must decide (choose one):\n• Grow the Procession.\n• Reveal the top card of the procession deck. It attacks you as if it were at your location. Shuffle that card back into the procession deck."
+  },
+  "78110": {
+    "name": "Sacrifice of the Profane",
+    "typeCode": "treachery",
+    "traits": "Scheme. Omen",
+    "text": "Revelation – Test [agility] (3). If you fail, choose the nearest enemy with doom on it. You must either take direct damage equal to the amount of doom that enemy, or move all doom on that enemy to the current agenda.",
+    "flavor": "Life is a small price to pay for the devoted."
+  },
   "78250": {
     "name": "Agency Troubleshooter",
     "typeCode": "enemy",
@@ -581,6 +751,122 @@
     "name": "Under Your Skin",
     "typeCode": "treachery",
     "text": "Put this in your threat area. After you successfully investigate or fight, discard 1 random card from hand. [action][action]: Discard this."
+  },
+  "78259": {
+    "name": "Bad News",
+    "typeCode": "treachery",
+    "traits": "Hex",
+    "text": "Revelation – Test [willpower] (3). If you fail, discard each non-weakness event in your hand. If you failed and no events were discarded this way, Bad News gains surge.",
+    "flavor": "The headlines alone are enough to make you retch."
+  },
+  "78260": {
+    "name": "Doyle Jeffries",
+    "typeCode": "enemy",
+    "subname": "Vox Sanguineus",
+    "traits": "Elite. Humanoid. Infected",
+    "text": "Hunter. Alert.\nForced – When an investigator at Doyle Jeffries’ location or a connecting location plays an event: Ready Doyle Jeffries. If he is engaged with an investigator, he makes an immediate attack.\nVictory 1.",
+    "flavor": "If it leads, it bleeds."
+  },
+  "78261": {
+    "name": "Bankrupture",
+    "typeCode": "treachery",
+    "traits": "Hex",
+    "text": "Revelation – You may spend any number of resources. Test [agility] (X), where X is 1 greater than the number of resources in your pool. Reduce the difficulty of this test by the number of resources you spent. For each point you fail by, take 1 damage.",
+    "flavor": "Give till it stops hurting."
+  },
+  "78262": {
+    "name": "The Vice President",
+    "typeCode": "enemy",
+    "subname": "Predatory Lender",
+    "traits": "Elite. Humanoid. Infected",
+    "text": "Hunter.\nThe Vice President gets + 1[per_investigator] damage and + 1[per_investigator] horror.\nForced – When The Vice President attacks: each investigator at its location may spend any number of resources. Reduce the damage and/or horror of this attack by the number of resources spent.\nVictory 1.",
+    "flavor": "He’s come to collect."
+  },
+  "78263": {
+    "name": "Worked To The Bone",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelation – Test [willpower] (3). If you fail, put Worked To The Bone into play in your threat area.\nForced – After you commit 1 or more skill cards to a skill test: You must either take 1 damage or discard a card at random.\n[free] If you have no skill cards in hand: Discard Worked To The Bone."
+  },
+  "78264": {
+    "name": "The Thing in the Water",
+    "typeCode": "enemy",
+    "subname": "Sickness in the River",
+    "traits": "Elite. Monster. Infected",
+    "text": "Massive. Hunter.\nAs an additional cost to fight or evade The Thing in the Water, you must commit all eligible skill cards from your hand.\nVictory 1.",
+    "flavor": "It has grown fat on the muscle of the skilled."
+  },
+  "78265": {
+    "name": "Damaged Goods",
+    "typeCode": "treachery",
+    "traits": "Hex. Blunder",
+    "text": "Revelation – Attach to a non-permanent asset you control. If you control no non-permanent assets, this card gains surge.\n[action]: Take 2 damage and discard Damaged Goods.\nForced – After you play an asset: Discard attached asset. Attach Damaged Goods to the played asset."
+  },
+  "78266": {
+    "name": "The Loving Couple",
+    "typeCode": "enemy",
+    "subname": "Eternal Embrace",
+    "traits": "Elite. Humanoid. Infected",
+    "text": "Hunter.\nThe Loving Couple gets +1 health for each non-permanent asset controlled by an investigator at its location.\nVictory 1.",
+    "flavor": "Their love transcends the material and the moral."
+  },
+  "78267": {
+    "name": "Bone Dry",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelation – Put Bone Dry into play in your threat area with 3 resources on it. If there are no resources on Bone Dry, discard it.\nForced – When you would succeed by 2 or more at a skill test: You must either take 1 damage or fail by 1 instead. Remove 1 resource from Bone Dry."
+  },
+  "78268": {
+    "name": "Hibbs",
+    "typeCode": "enemy",
+    "subname": "He’s Just Gutted",
+    "traits": "Elite. Humanoid. Infected",
+    "text": "Hunter. Retaliate. Alert.\nForced – After you successfully fight or evade Hibbs by 2 or more: You must either place 1 doom on Hibbs or it attacks you.\nVictory 1.",
+    "flavor": "He may have had it coming, but you let this happen."
+  },
+  "78269": {
+    "name": "Broken Trust",
+    "typeCode": "treachery",
+    "traits": "Flaw",
+    "text": "Revelation – Attach to an Ally asset you control. If you control no Ally assets, Broken Trust gains surge.\nTreat attached asset’s text box as if it were blank.\n[action] Spend 1 resource, plus 1 additional resource for each damage and/or horror on attached asset: Discard Broken Trust.",
+    "flavor": "“How could you?”"
+  },
+  "78270": {
+    "name": "Ma Matheson",
+    "typeCode": "enemy",
+    "subname": "true Believer",
+    "traits": "Elite. Humanoid. Infected",
+    "text": "Hunter.\nForced – After Ma Matheson attacks, if any amount of damage and/or horror was assigned to an Ally asset: Exile that asset.\nVictory 1.",
+    "flavor": "She’ll make you breakfast."
+  },
+  "78271": {
+    "name": "Whispers of Power",
+    "typeCode": "treachery",
+    "traits": "Hex",
+    "text": "Revelation – Attach to the highest cost non-Ally asset you control.\nAs an additional cost to trigger an ability on the attached card, take 1 horror.\nAttached card gains “[action]: Return this asset to your hand and discard all attached copies of Whispers of Power.”"
+  },
+  "78272": {
+    "name": "Miriam Beecher",
+    "typeCode": "enemy",
+    "subname": "Sorceress of Sickness",
+    "traits": "Elite. Humanoid. Infected",
+    "text": "Hunter.\nMiriam Beecher deals X total damage and/or horror divided as evenly as possible, where X is the cost of the highest cost non-Ally asset controlled by an investigator at her location.\nVictory 1.",
+    "flavor": "She has become more dangerous than anything she collected."
+  },
+  "78273": {
+    "name": "You Know Too Much",
+    "typeCode": "treachery",
+    "traits": "Terror",
+    "text": "Revelation – Put this card into play in your threat area.\nForced – At the end of your turn: Take X horror, where X is 4 fewer than the number of cards in your hand. Then, discard You Know Too Much.",
+    "flavor": "Your mind is not your own."
+  },
+  "78274": {
+    "name": "Henry Armitage",
+    "typeCode": "enemy",
+    "subname": "Professor of the Forbidden",
+    "traits": "Elite. Humanoid. Infected",
+    "text": "Aloof. Hunter.\nHenry Armitage gets +1 damage and +1 horror while engaged with an investigator with 5 or more cards in their hand.\nForced – After an investigator at Henry Armitage’s location draws a card: Henry Armitage engages and attacks that investigator.\nVictory 1.",
+    "flavor": "Even the strongest wills bow to the Bearer of Plagues."
   },
   "78275": {
     "name": "Arkham Advertiser",
