@@ -1,4 +1,5 @@
 import { registerCampaign } from '../campaign-definition'
+import { fatalMirage } from './fatal-mirage'
 import { registerExpeditionCompanions } from './companions'
 import {
   ICE_AND_DEATH,
@@ -49,7 +50,7 @@ registerCampaign({
       keywords: ['frost', 'hunter'],
     },
     { id: EOTE_RESTFUL_NIGHT, checkpoint: true },
-    { id: EOTE_FATAL_MIRAGE },
+    { id: EOTE_FATAL_MIRAGE, build: fatalMirage, keywords: ['frost', 'aloof', 'parley'] },
     { id: EOTE_FORBIDDEN_PEAKS },
   ],
 })

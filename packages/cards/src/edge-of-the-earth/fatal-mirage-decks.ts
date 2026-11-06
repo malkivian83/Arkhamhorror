@@ -3,12 +3,14 @@ import {
   getInvestigator,
   registerAct,
   registerAgenda,
+  type Choice,
   type GameState,
   type Message,
   type ScenarioDefinition,
 } from '@lcg/engine'
 import { endScenario, resolution } from '../scenario-helpers'
 import { PRISON_OF_MEMORIES, recordMirageMemories } from './fatal-mirage-map'
+import { readMirageBack } from './fatal-mirage-story'
 
 const versions = ['I', 'II', 'III'] as const
 const thresholds = [15, 13, 11] as const
@@ -94,13 +96,50 @@ for (const visit of [1, 2, 3] as const) {
         },
       ]
     },
-    onAdvance: (state) =>
-      activeInvestigators(state).flatMap(({ id }): Message[] => [
-        visit === 3
-          ? { type: 'SufferTrauma', investigator: id, mental: 1 }
-          : { type: 'ShuffleTekeliliIntoDeck', investigator: id, amount: visit },
-        { type: 'DefeatInvestigator', investigator: id },
-      ]),
+    onAdvance: (state) => [
+      readMirageBack(code),
+      ...activeInvestigators(state).flatMap(({ id }): Message[] =>
+        visit === 2
+          ? [
+              {
+                type: 'ScenarioSpecific',
+                key: 'mirageAgendaTwoPenalty',
+                data: { investigator: id },
+              },
+            ]
+          : [
+              visit === 3
+                ? { type: 'SufferTrauma', investigator: id, mental: 1 }
+                : { type: 'ShuffleTekeliliIntoDeck', investigator: id, amount: 1 },
+              { type: 'DefeatInvestigator', investigator: id },
+            ],
+      ),
+    ],
   })
-  registerAct({ code: acts[0]!.code, onAdvance: (state) => mirageConclusion(state, true) })
+  registerAct({
+    code: acts[0]!.code,
+    onAdvance: (state) => [readMirageBack(acts[0]!.code), ...mirageConclusion(state, true)],
+  })
+}
+
+export function mirageAgendaTwoPenalty(state: GameState, investigator: string): Message[] {
+  const defeated: Message = { type: 'DefeatInvestigator', investigator }
+  const choices: Choice[] = [
+    {
+      label: 'choice.edgeOfTheEarth.mirageMentalTrauma',
+      then: [{ type: 'SufferTrauma', investigator, mental: 1 }, defeated],
+    },
+  ]
+  if ((state.tekeliliDeck?.length ?? 0) >= 2)
+    choices.push({
+      label: 'choice.edgeOfTheEarth.mirageTwoTekelili',
+      then: [{ type: 'ShuffleTekeliliIntoDeck', investigator, amount: 2 }, defeated],
+    })
+  return [
+    {
+      type: 'Ask',
+      investigator,
+      question: { kind: 'chooseOne', prompt: 'prompt.chooseEffect', choices },
+    },
+  ]
 }

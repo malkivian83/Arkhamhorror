@@ -1045,6 +1045,7 @@ type MessageBody =
       skillSelected?: boolean
       baseSkill?: number
       basicAction?: boolean
+      investigationCostsPaid?: boolean
       investigator: InvestigatorId
       skill: SkillType
       difficulty: number
@@ -1503,7 +1504,7 @@ type MessageBody =
   /** Fase de enemigos: el investigador elige en qué orden le atacan los que quedan. */
   | { type: 'AttacksAgainst'; investigator: InvestigatorId; enemies: EnemyId[] }
   /** El jefe elige quién gasta la siguiente pista hasta reunir `amount` (acto, grupo). */
-  | { type: 'PayGroupClues'; amount: number; from: InvestigatorId[] }
+  | { type: 'PayGroupClues'; amount: number; from: InvestigatorId[]; recordPayment?: string }
   | {
       type: 'DamageEnemy'
       checked?: boolean
@@ -1768,7 +1769,7 @@ type MessageBody =
       drawInstead?: boolean
       returnToDeck?: boolean
     }
-  | { type: 'ReturnTekelili'; treachery: TreacheryId }
+  | { type: 'ReturnTekelili'; treachery: TreacheryId; shuffleIntoDeck?: boolean }
   | { type: 'ReturnTekeliliFromDeck'; investigator: InvestigatorId; code: CardCode; top: number }
   /** `scenarioOnly`: solo para este escenario, sin anotarlas en el registro de campaña. */
   | { type: 'AddChaosTokens'; tokens: ChaosToken[]; scenarioOnly?: boolean }
@@ -2155,7 +2156,12 @@ export type Trigger =
   | { type: 'afterTakeControlOfPlaced'; investigator: InvestigatorId; code: CardCode }
   | { type: 'assetDefeated'; asset: Asset }
   | { type: 'afterTekeliliResolved'; investigator: InvestigatorId }
-  | { type: 'treacheryAttached'; treachery: TreacheryId; location: LocationId }
+  | {
+      type: 'treacheryAttached'
+      treachery: TreacheryId
+      location: LocationId
+      fromRevelation?: boolean
+    }
   | { type: 'locationCluesRemoved'; location: LocationId }
   | { type: 'afterEngage'; investigator: InvestigatorId; enemy: EnemyId }
   | { type: 'beforeEngage'; investigator: InvestigatorId; enemy: EnemyId }

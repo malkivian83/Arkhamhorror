@@ -13,6 +13,7 @@ import {
 } from '@lcg/engine'
 import { enemy } from '../scenario-helpers'
 import { PRISON_OF_MEMORIES } from './fatal-mirage-map'
+import { readMirageBack } from './fatal-mirage-story'
 import { iceCanAddFrost } from './ice-and-death-locations'
 
 const memories = [
@@ -234,6 +235,7 @@ export function resolveMirageMemory(state: GameState, code: string): GameState {
       assets,
       victoryDisplay: state.victoryDisplay.map((entry) => (entry === code ? code + 'b' : entry)),
     },
+    readMirageBack(code),
     { type: 'RecordNote', note: memory.note },
     { type: 'SetExpeditionPartnerStatus', partner, status: 'resolute' },
     ...advanceChoice(state),

@@ -1,9 +1,11 @@
 import {
+  getInvestigator,
   registerPlayerCards,
   registerTreachery,
   scenarioBehavior,
   tekeliliCopies,
   type TreacheryBehavior,
+  type Message,
 } from '@lcg/engine'
 import { horror } from './card-08723'
 import { damage } from './card-08724'
@@ -39,22 +41,34 @@ export function registerTekelili(): void {
   for (const code of codes)
     registerTreachery({
       code,
-      revelation: (state, investigator, self) => [
-        ...Array.from(
+      revelation: (state, investigator, self) => {
+        const location = getInvestigator(state, investigator).location
+        const theatre = location === '08564'
+        return [
+          ...Array.from(
+            {
+              length:
+                1 +
+                (theatre ? 1 : 0) +
+                Object.values(state.treacheries).filter(
+                  (card) =>
+                    card.code === '08703' &&
+                    card.placement.type === 'threatArea' &&
+                    card.placement.investigator === investigator &&
+                    !scenarioBehavior(state.scenarioId)?.blanksTreachery?.(state, card),
+                ).length,
+            },
+            () => revelations[code](state, investigator, self),
+          ).flat(),
           {
-            length:
-              1 +
-              Object.values(state.treacheries).filter(
-                (card) =>
-                  card.code === '08703' &&
-                  card.placement.type === 'threatArea' &&
-                  card.placement.investigator === investigator &&
-                  !scenarioBehavior(state.scenarioId)?.blanksTreachery?.(state, card),
-              ).length,
+            type: 'ReturnTekelili',
+            treachery: self.id,
+            ...(location === '08568' ? { shuffleIntoDeck: true } : {}),
           },
-          () => revelations[code](state, investigator, self),
-        ).flat(),
-        { type: 'ReturnTekelili', treachery: self.id },
-      ],
+          ...(theatre
+            ? [{ type: 'DiscoverClues', investigator, location, amount: 1 } satisfies Message]
+            : []),
+        ]
+      },
     })
 }
