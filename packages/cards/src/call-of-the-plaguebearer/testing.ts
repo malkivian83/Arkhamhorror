@@ -41,6 +41,8 @@ export function settle(s: GameState): GameState {
       p === 'prompt.assignDamage' ||
       p === 'prompt.assignHorror' ||
       p === 'prompt.story' ||
+      p === 'prompt.plaguebearer.alive.path' ||
+      p === 'prompt.plaguebearer.alive.west' ||
       p === 'prompt.chooseNextInvestigator'
     )
       s = applyInput(s, { investigator: s.pending.investigator, choice: 0 })

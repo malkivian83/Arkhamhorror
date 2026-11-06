@@ -29,7 +29,7 @@ it('ofrece Trasnochadores al comenzar la campaña', () => {
 })
 it.each(['en', 'es'])('publica cartas y fichas del caos con presentación %s', (locale) => {
   const cards = fallbackCards(locale).filter((c) => c.code.startsWith('78'))
-  expect(cards).toHaveLength(68)
+  expect(cards).toHaveLength(70)
   expect(new Set(cards.map((c) => c.code)).size).toBe(cards.length)
   const name = cards.find((c) => c.code === '78251')?.name
   expect(name).toBe(locale === 'es' ? 'Destruyendo pruebas' : 'Jury-Rigged Incendiary')

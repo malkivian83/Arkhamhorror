@@ -11,7 +11,7 @@ afterEach(() => vi.unstubAllGlobals())
 
 const hash = (value: string | Buffer) => createHash('sha256').update(value).digest('hex')
 
-it('el cuerpo real del modal reconoce los veintiséis relatos oficiales y ofrece sus reproductores', async () => {
+it('el cuerpo real del modal reconoce los treinta y seis relatos oficiales y ofrece sus reproductores', async () => {
   vi.stubGlobal(
     'fetch',
     vi.fn(async (url: string) => {
@@ -73,7 +73,7 @@ function duration(bytes: Buffer): number {
   return (frames * 1152) / 44100
 }
 
-it('conecta los veintiséis relatos ES completos con la voz elegida, excluyendo reglas y créditos', () => {
+it('conecta los treinta y seis relatos ES completos con la voz elegida, excluyendo reglas y créditos', () => {
   expect(evidence.voiceId).toBe('z3kTTwYbQrmL7ckdGcJi')
   expect(evidence.voiceName).toBe('Martin Osborne - Polished and Intense')
   expect(evidence.files.map((f) => f.key).sort()).toEqual(
@@ -103,6 +103,18 @@ it('conecta los veintiséis relatos ES completos con la voz elegida, excluyendo 
         'resolution5',
         'resolution5Hidden',
       ].map((k) => `dawn.${k}`),
+      ...[
+        'section1',
+        'section2',
+        'section3',
+        'section4',
+        'section5',
+        'section6',
+        'section7',
+        'section8',
+        'perks',
+        'good',
+      ].map((k) => `alive.${k}`),
     ]
       .map((s) => `story.plaguebearer.${s}`)
       .sort(),

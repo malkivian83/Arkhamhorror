@@ -7,8 +7,8 @@ Science) y publicada en
 La traducción y maquetación al castellano (cartas y guía) es de Los Archivos de
 Arkham. Ninguna de las dos versiones indica número de versión ni fecha.
 
-Estado: **escenarios I–III jugables e Interludio I resuelto al cerrar el II;
-interludios II–V y escenarios IV–VIII pendientes. Material completo en EN y ES.** Este documento
+Estado: **escenarios I–III jugables; Interludios I y II resueltos al cerrar el
+II y el III; interludios III–V y escenarios IV–VIII pendientes. Material completo en EN y ES.** Este documento
 recoge el inventario, las diferencias entre versiones y las decisiones
 pendientes. No sustituye a las guías: al implementar, contrasta cada paso con
 el PDF.
@@ -44,7 +44,13 @@ el PDF.
 - Entorno: Python 3.12 + Pillow 11.3 (`%LOCALAPPDATA%/Programs/Python/Python312`,
   usar `-I`); JPG ES CMYK → sRGB con su ICC antes de AVIF. Guías extraídas con
   `tmp/plaguebearer/extract-jpegs.mjs`.
-- Siguiente: Interludio II (Vivo o muerto) y escenario IV.
+- Interludio II (guía ES p. 9 / EN pp. 10–11) tras las R2–R4 del III: secciones
+  según respeto y West llevado a la fuerza, maletín entregado (West al mazo) o
+  escondido, y elección individual Reanimado/Humanidad (obligatoria con reactivo
+  puro) con La Fuerza de la Carne o Voluntad inquebrantable permanentes. Diez
+  relatos narrados. 167 pruebas dirigidas, tipos cards/web y lint correctos.
+- Siguiente: escenario IV (Cantos fúnebres): anillo de 8 lugares, Procesión,
+  estado de Arkham y conjunto Arkham caído.
 
 ## Fuentes
 

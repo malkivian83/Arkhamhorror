@@ -248,6 +248,96 @@
       "inputHash": "8965d3f5052fc760523a9beba3d292775be6d899445080214f2681f9ca8c34c6",
       "sha256": "22633ff688919cd164efdd3888d2f0c081d03c99bf155b7de766276505ce6498",
       "bytes": 379967
+    },
+    {
+      "key": "story.plaguebearer.alive.section1",
+      "file": "plaguebearer-alive-section1-martin-osborne.mp3",
+      "text": "Según estás abandonando la mansión, Greyson te llama con gestos de urgencia. “Nos volvemos a las instalaciones atravesando la ciudad. Vamos, suban, les acercaré”.",
+      "characters": 162,
+      "inputHash": "465fae6fcc704b3fb01cf2e6b85744765a6daed7d55b2362feb28abdff973b4a",
+      "sha256": "a6b789ba4aca4f48a1103b9d80b3b20732be66c8f41fe3513232668d0f59643d",
+      "bytes": 254580
+    },
+    {
+      "key": "story.plaguebearer.alive.section2",
+      "file": "plaguebearer-alive-section2-martin-osborne.mp3",
+      "text": "Observas cómo los agentes se meten en sus coches y aceleran a toda velocidad por la ciudad de vuelta a su instalación para lamerse las heridas y planear su siguiente movimiento.",
+      "characters": 177,
+      "inputHash": "704d2006aba813aabe412d2ed75f2735a3ae154e081eb1d74fd1bf031a184324",
+      "sha256": "f978a7ae1e4029f5d7584e05652b877e6b3ac21dd0e961c0ed92107391b9703f",
+      "bytes": 185198
+    },
+    {
+      "key": "story.plaguebearer.alive.section3",
+      "file": "plaguebearer-alive-section3-martin-osborne.mp3",
+      "text": "Te colocas en el asiento de atrás, donde está West maniatado, mientras Greyson agarra el volante. Te presentas a West, el cual parece tremendamente falto de interés en nada que puedas decirle hasta que mencionas las circunstancias en las que le conociste…",
+      "characters": 255,
+      "inputHash": "0c24ee25a467ac8e925b9cdddaf18b05944b6e3305f03e462e1acef0e49203dd",
+      "sha256": "759c0aa206efa19220ca3143fc339e57b0e4ba3afc7084f101f0f1cb2454b6d1",
+      "bytes": 313930
+    },
+    {
+      "key": "story.plaguebearer.alive.section4",
+      "file": "plaguebearer-alive-section4-martin-osborne.mp3",
+      "text": "Te colocas en el asiento de atrás, donde está West, que no para de mirar fijamente a Greyson mientras ella agarra el volante. Se gira hacia ti con una sonrisa de autosuficiencia y comienza a hablarte…",
+      "characters": 200,
+      "inputHash": "31314d57088fd7694f86979cb62a641f5aa333af005f455c19380b7bdf95ff26",
+      "sha256": "e4ace9ac8839c3bcb3df4d35fe4184385afb726fe117aaafabc79987c55af956",
+      "bytes": 244967
+    },
+    {
+      "key": "story.plaguebearer.alive.section5",
+      "file": "plaguebearer-alive-section5-martin-osborne.mp3",
+      "text": "“Desgraciadamente, nos dirigimos hacia el mismo lugar. La Instalación Brook, oculta bajo la ciudad. Es alarmante, lo sé”.\n\nExplicas que ya habéis estado allí y West te mira fijamente, perplejo.\n\n“¿Y les dejaron salir sin llenarles antes de agujeros? Bien hecho. Aún tenemos un largo camino mientras atravesamos la ciudad, y supongo que estarán deseando obtener algunas respuestas”.",
+      "characters": 381,
+      "inputHash": "35c16b9c68dfc242f70fcbc66a38814858b78f75fd761a33b3cc8f19969fb8fe",
+      "sha256": "af5b436013c3819c92a6c0919ccd460f0f9f43a36f6c318405c9ecf4fc8abfc2",
+      "bytes": 443079
+    },
+    {
+      "key": "story.plaguebearer.alive.section6",
+      "file": "plaguebearer-alive-section6-martin-osborne.mp3",
+      "text": "“Déjenme comenzar por el principio. Ustedes me conocen como el Dr. West. El mundo me acabará conociendo como el hombre que curó la muerte. He pasado toda mi vida persiguiendo un proceso que revierta la futilidad de la muerte. Hace algún tiempo me contactó un consorcio privado de investigación para que trasladara mi trabajo a su instalación subterránea. De esta manera legitimaría mis estudios y les liberaría de sus exiguos comienzos. Por supuesto, cogí ese tren.\n\nDesafortunadamente, hará como una semana, algunos de mis compañeros con menos escrúpulos se volvieron locos de celos ante mis deslumbrantes avances. El Dr. Pickman en particular habló con los imbéciles del consorcio para que se apropiaran de mi suero y él lo pudiera utilizar para sus… rituales ocultos. Ya han visto de primera mano lo duros que pueden volverse los sujetos revividos con mi reactivo. Él y el Dr. Robison fueron demasiado lejos mezclando su trabajo y el mío, y acabaron creando un monstruo. Logró escapar después de múltiples intentonas y ha conseguido infectar a una buena parte de la población con esa substancia que emana. De ahí vienen las múltiples mutaciones que se extienden por todo Arkham. Yo abandoné la instalación debido a desacuerdos irreconciliables en relación a los usos de mi suero y traté de irme con mis reactivos puros restantes y mis notas. Debo admitir que esos reactivos no llegaron a abandonar la instalación conmigo. Espero que se encuentren en algún lugar a salvo, seguro que nos serían de utilidad”.",
+      "characters": 1509,
+      "inputHash": "4c497807bbc3218ada31b23e327321f4bc55621d1cba548d889ebd772651ab2f",
+      "sha256": "fde3e873876c590b4d5023c405406f4e6c84fd554bc60d8fee2b10a6ad096678",
+      "bytes": 1769682
+    },
+    {
+      "key": "story.plaguebearer.alive.section7",
+      "file": "plaguebearer-alive-section7-martin-osborne.mp3",
+      "text": "“Lo que me lleva a dónde encajan ustedes en todo esto. Mi investigación requería de un suministro constante de sujetos cercanos a la muerte. He ‘trabajado’ en cuidados intensivos del Hospital de Santa María para este propósito. Y debo decir que ustedes han demostrado ser unos especímenes idóneos”.\n\nPreguntas furiosamente a West qué está tratando de insinuar.\n\n“Su estado de salud fue empeorando hasta requerir una complicada intervención quirúrgica. Cuando las cosas se pusieron feas no dudé en aplicarles el reactivo. Es curioso que sus cadáveres no reaccionaran al principio, pese a ello, requerí que almacenaran sus cuerpos en la instalación por si sonaba la flauta. No quiero lanzar las campanas al vuelo demasiado rápido, pero ¡puede que ustedes sean mis experimentos más coherentes hasta la fecha!”.\n\nEso es ridículo. Le indicas a West que seguramente estuvierais en coma.\n\n“Entiendo. Además estoy seguro de que no ha experimentado ninguno de los comportamientos habituales en los reanimados. ¿Curiosidad compulsiva? ¿Aguante extraordinario? Digamos… ¿como para sobrevivir a disparos? Y seguro que tampoco una incipiente propensión a la violencia…”.",
+      "characters": 1157,
+      "inputHash": "1b30ec230569975cbbe41a984fbb3d8af4868944c38d374c7ad891b382b516b4",
+      "sha256": "b56c4b8a31b49d5dc7e1d581bedacd704a4b7dc2f174a9cb68c4ae4cf6baaa88",
+      "bytes": 1475438
+    },
+    {
+      "key": "story.plaguebearer.alive.section8",
+      "file": "plaguebearer-alive-section8-martin-osborne.mp3",
+      "text": "Tu mente se centra en los eventos de ayer, y en tus recuerdos antes de despertar en la morgue. West fue tu cirujano en el hospital. Recuerdas haber visto un extraño vial verde en la mesa durante la intervención, el mismo líquido que fluía por las creaciones de West.\n\nY de repente despiertas en una morgue. En una bolsa para cadáveres. Sin nada más. ¿Estuviste… estás… muerto?",
+      "characters": 376,
+      "inputHash": "2cb203c3d2b17ad9824f26d0bfd5ef4e6d022746e111f01805d0a5e913bb3e41",
+      "sha256": "fbf0dea4c970887b21de39c11158e1afc6a6766a16c8d767e533e2589e5e9b48",
+      "bytes": 477352
+    },
+    {
+      "key": "story.plaguebearer.alive.perks",
+      "file": "plaguebearer-alive-perks-martin-osborne.mp3",
+      "text": "Lo sabes. Lo llevas sabiendo un tiempo. Lo que has visto en la mansión de West no ha hecho sino confirmar tus sospechas. Pero sólo porque hayas muerto no significa que no seas capaz de poner fin a esta locura. De hecho, con todo lo que está ocurriendo, estar muerto puede ser una ventaja.",
+      "characters": 288,
+      "inputHash": "afe03f56e7f7b4d57f49d4c436b097a59817a97ba105d47b0f289784674b3876",
+      "sha256": "4dc70ad7d4c9f123ba2cb9ba94456eea605e737ec0da52a21a5c259a14e26265",
+      "bytes": 379967
+    },
+    {
+      "key": "story.plaguebearer.alive.good",
+      "file": "plaguebearer-alive-good-martin-osborne.mp3",
+      "text": "No importa lo que parezca. Estás vivo. Tal vez tu cuerpo no esté en su mejor momento, pero aún te queda tu mente, que es más de lo que pueden decir los monstruos de la mansión de West. Y es esa mente la que va a llegar hasta el fondo de los horrores que infestan la ciudad.",
+      "characters": 273,
+      "inputHash": "8a60b5a86d11c91b48ed79bb8a81c928e46d26ff6919814c8efa230c249d8887",
+      "sha256": "e2f74978be1d42270bc3c94462966da813d3f192b9d42759b7d9e3661fd7a345",
+      "bytes": 356980
     }
   ]
 }
