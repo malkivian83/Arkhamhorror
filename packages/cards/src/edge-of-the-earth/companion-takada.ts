@@ -2,7 +2,8 @@ import { playerCardDef, type AbilitiesFn, type Asset, type Message } from '@lcg/
 
 export function takada(resolute: boolean): AbilitiesFn<Asset> {
   return (_state, self, investigator) => {
-    if (self.exhausted || self.uses < 1) return []
+    // La versión de determinación siempre obtiene 1 recurso aunque no le queden.
+    if (self.exhausted || (!resolute && self.uses < 1)) return []
     return [
       {
         key: `${self.id}:resources`,

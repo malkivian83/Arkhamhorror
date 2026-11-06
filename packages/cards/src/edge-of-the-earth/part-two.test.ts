@@ -1,4 +1,10 @@
-import { availableAbilities, dispatch, getInvestigator, type GameState } from '@lcg/engine'
+import {
+  applyInput,
+  availableAbilities,
+  dispatch,
+  getInvestigator,
+  type GameState,
+} from '@lcg/engine'
 import { choose, throughSetup } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import {
@@ -124,6 +130,25 @@ describe('Ice and Death, part II', () => {
     )
     expect(finished.outcome).toEqual({ type: 'resolution', resolution: 1 })
     expect(finished.campaignLog?.investigators[investigator]?.mentalTrauma).toBe(1)
+  })
+
+  // Reverso de Locura y muerte: «(→R1)», sin pasar por «Sin resolución».
+  it.each([
+    ['the final agenda', true],
+    ['a defeat by damage', false],
+  ] as const)('reads No resolution only after %s is not the cause', (_case, madness) => {
+    const { state, investigator } = prepared()
+    let game = dispatch(
+      { ...clear(state), interactive: true, agendaIndex: madness ? 2 : 0 },
+      madness ? { type: 'AdvanceAgenda' } : { type: 'DefeatInvestigator', investigator },
+    )
+    const stories: string[] = []
+    while (game.pending?.question.prompt === 'prompt.story') {
+      stories.push(JSON.stringify(game.pending.question.story))
+      game = applyInput(game, { investigator: game.pending.investigator, choice: 0 })
+    }
+    expect(stories.some((entry) => entry.includes('partTwoNoResolution'))).toBe(!madness)
+    expect(stories.some((entry) => entry.includes('partTwoResolution'))).toBe(true)
   })
 })
 

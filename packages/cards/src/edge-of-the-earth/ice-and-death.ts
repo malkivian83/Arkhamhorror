@@ -246,7 +246,10 @@ export const iceAndDeathRules: ScenarioBehavior = {
       : [read('noResolution'), ...chooseCamp(state, false)],
   cannotDiscoverClues: (state, _investigator, location) => terrorHere(state, location),
   blanksTreachery: (state, card) => iceTreacheryBlank(state, card.id),
-  drawTekeliliInstead: (state, investigator) => underTreachery(state, investigator, '08691'),
+  drawTekeliliInstead: (state, investigator) =>
+    attached(state, getInvestigator(state, investigator).location, '08691')
+      .filter(({ id }) => !iceTreacheryBlank(state, id))
+      .map(({ id }) => id),
   cannotDrawCards: (state, investigator) => underTreachery(state, investigator, '08692'),
   cannotPlay: (state, investigator) => underTreachery(state, investigator, '08692'),
   shroudModifier: (state, location) =>

@@ -35,6 +35,23 @@ interludio, incluidas la autorización y la repetición de peticiones.
 Siguiente entrega: implementar los Memoriales y habilitar Espejismo letal y
 Hacia los picos prohibidos.
 
+Revisión del 06/11/2026, corregida y con pruebas:
+
+- **Bruma afín:** solo se descarta tras resolver su Obligado.
+- **Kensler y Takada de determinación:** Kensler, al ser rápida, no provoca ataques. Takada obtiene 1 recurso aunque esté vacía.
+- **Locura y muerte:** lleva a R1 sin leer «Sin resolución».
+- **Fantasmagoría:** elige la Pesadilla más cercana a cualquier investigador.
+- **Huida en local:** su narración se muestra antes de Noche reposada, como en salas.
+
+Pendiente de contrastar con la guía escaneada:
+
+- Reparto 3/3/2 de Eidolones con tres investigadores (la referencia aparta dos).
+- ¡Tekeli-li! descartadas por Danforth de determinación.
+- Desistir fuera del acto con el Terror de las estrellas.
+- Memorial opcional y Espejismo omitido en Noche reposada.
+
+Verificado sobre este cambio: pruebas de la carpeta de la campaña, Helada, selector y tipos de motor, cartas y web.
+
 Claypool reutiliza la cancelación de fichas. La prueba puede terminar sin
 modificador si cancela la única ficha sin reemplazarla. Fredericks usa una
 restricción de ataque para toda la ronda, distinta de la restricción de Carcosa

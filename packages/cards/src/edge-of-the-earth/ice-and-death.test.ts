@@ -159,4 +159,17 @@ it('draws a weakness immediately in Kindred Mist and puts it at the bottom of th
   expect(resolved.tekeliliDeck).toHaveLength(15)
   expect(getInvestigator(resolved, investigator).deck.at(-1)).toBe('08726')
   expect(resolved.campaignLog?.investigators[investigator]?.storyAssets).toEqual(['08726'])
+  const mist = () => Object.values(resolved.treacheries).find((t) => t.code === '08691')
+  expect(mist()?.tokens).toBe(1)
+  const roundEnds = { type: 'Forced', trigger: { type: 'roundEnds' } } as const
+  expect(
+    Object.values(dispatch(resolved, roundEnds).treacheries).some((t) => t.code === '08691'),
+  ).toBe(false)
+  // Sin haberse resuelto su Obligado, la Bruma afín sigue vinculada al final de la ronda.
+  const idle = dispatch(
+    { ...game, pending: null, queue: [] },
+    { type: 'ResolveEncounterCard', investigator, card },
+    roundEnds,
+  )
+  expect(Object.values(idle.treacheries).some((t) => t.code === '08691')).toBe(true)
 })

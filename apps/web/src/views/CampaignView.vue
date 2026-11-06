@@ -442,6 +442,16 @@ function abandon() {
       <p v-if="game.error" class="error">{{ errorText }}</p>
     </section>
 
+    <!-- Antes de Noche reposada se muestra la huida del ataque, como en las salas. -->
+    <ExpeditionCheckpoint
+      v-if="!game.state && checkpointStory"
+      class="page transfer"
+      :story="checkpointStory"
+      :missing="disappearanceCheckpoint ? disappearanceCheckpoint.missing : undefined"
+      :choices="checkpoint ? checkpoint.choices : undefined"
+      @decide="decideCheckpoint"
+    />
+
     <RestfulNight
       v-if="!game.state && interlude"
       class="page transfer"
@@ -449,15 +459,6 @@ function abandon() {
       :owned-weaknesses="interludeWeaknesses"
       @visit="game.visitRestfulNight"
       @finish="game.closeRestfulNight"
-    />
-
-    <ExpeditionCheckpoint
-      v-if="!game.state && checkpointStory && !interlude"
-      class="page transfer"
-      :story="checkpointStory"
-      :missing="disappearanceCheckpoint ? disappearanceCheckpoint.missing : undefined"
-      :choices="checkpoint ? checkpoint.choices : undefined"
-      @decide="decideCheckpoint"
     />
 
     <footer class="actions">

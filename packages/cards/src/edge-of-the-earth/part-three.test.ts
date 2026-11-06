@@ -1,4 +1,10 @@
-import { availableAbilities, dispatch, getInvestigator, type GameState } from '@lcg/engine'
+import {
+  availableAbilities,
+  dispatch,
+  distancesFrom,
+  getInvestigator,
+  type GameState,
+} from '@lcg/engine'
 import { choose, throughSetup } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import {
@@ -153,4 +159,39 @@ it('Phantasmagoria moves and attacks with an empty nightmare without exhausting 
   )
   expect(released.enemies[portal.id]).toMatchObject({ location: '08503', exhausted: false })
   expect(getInvestigator(released, investigator)).toMatchObject({ damage: 2, horror: 2 })
+})
+
+// Carta 08548: la Pesadilla más cercana a un investigador cualquiera, no solo a quien la roba.
+it('Phantasmagoria picks the nightmare nearest to any investigator', () => {
+  const { game } = started(2)
+  const [first, second] = nightmares(game)
+  const [drawer, other] = game.investigators
+  // Quien roba queda más cerca de la primera; el otro investigador, junto a la segunda.
+  const toFirst = distancesFrom(game, first!.location)
+  const toSecond = distancesFrom(game, second!.location)
+  const far = Object.keys(game.locations).find(
+    (id) => (toFirst.get(id) ?? Infinity) > 0 && (toFirst.get(id) ?? 0) < (toSecond.get(id) ?? 0),
+  )!
+  expect(far).toBeDefined()
+  const placed = {
+    ...game,
+    investigators: game.investigators.map((player) =>
+      player.id === drawer!.id
+        ? { ...player, location: far }
+        : player.id === other!.id
+          ? { ...player, location: second!.location }
+          : player,
+    ),
+  }
+  const draw = game.encounterDeck.find((card) => card.code === '08548')!
+  const asked = dispatch(placed, {
+    type: 'ResolveEncounterCard',
+    investigator: drawer!.id,
+    card: draw,
+  })
+  // Se libera una carta de la segunda (a distancia 0 de un investigador), no de la primera.
+  const pile = (state: GameState, id: string) => state.scenarioDecks?.[id]?.length ?? 0
+  expect(pile(game, second!.id)).toBeGreaterThan(0)
+  expect(pile(asked, first!.id)).toBe(pile(game, first!.id))
+  expect(pile(asked, second!.id)).toBe(pile(game, second!.id) - 1)
 })

@@ -30,7 +30,8 @@ export function kensler(code: string, resolute: boolean): PlayerCardBehavior {
           label: 'ability.edgeOfTheEarth.kensler',
           actions: resolute ? 0 : 1,
           actionKind: 'investigate',
-          provokes: true,
+          // La versión de determinación es [rápida]: no provoca ataques de oportunidad.
+          provokes: !resolute,
           costs: [
             { type: 'SpendUses', asset: self.id, amount: 1 },
             { type: 'ExhaustAsset', asset: self.id },

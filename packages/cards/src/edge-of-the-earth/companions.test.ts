@@ -287,4 +287,33 @@ describe('Expedition companion abilities', () => {
       expect(inv(moved)).toMatchObject({ resources, actionsRemaining: 2 })
     },
   )
+
+  it.each([false, true])(
+    'offers Takada with no resources left only on the resolute version (resolute %s)',
+    (resolute) => {
+      const game = start('08722', resolute)
+      const empty = {
+        ...game,
+        assets: { ...game.assets, [own(game).id]: { ...own(game), uses: 0 } },
+      }
+      const labels = availableAbilities(empty, 'a').map((a) => a.label)
+      if (!resolute) {
+        expect(labels).not.toContain('ability.edgeOfTheEarth.resources')
+        return
+      }
+      const done = use(empty, 'resources')
+      expect(own(done)).toMatchObject({ exhausted: true, uses: 0 })
+      expect(inv(done).resources).toBe(6)
+    },
+  )
+
+  it.each([false, true])(
+    'only provokes attacks of opportunity with the action version of Kensler (resolute %s)',
+    (resolute) => {
+      const ability = availableAbilities(start('08720', resolute), 'a').find(
+        (a) => a.label === 'ability.edgeOfTheEarth.kensler',
+      )
+      expect(ability).toMatchObject({ actions: resolute ? 0 : 1, provokes: !resolute })
+    },
+  )
 })
