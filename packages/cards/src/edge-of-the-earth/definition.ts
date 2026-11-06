@@ -25,6 +25,7 @@ registerTekelili()
 registerCampaign({
   id: 'edge-of-the-earth',
   name: 'campaign.names.edge-of-the-earth',
+  release: 8,
   chaosBags: edgeOfTheEarthChaosBags,
   scenarios: [
     {

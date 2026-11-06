@@ -7,6 +7,7 @@ import { THE_GATHERING, theGathering } from './the-gathering'
 registerCampaign({
   id: NIGHT_OF_THE_ZEALOT.id,
   name: 'campaign.names.night-of-the-zealot',
+  release: 1,
   chaosBags: ZEALOT_CHAOS_BAGS,
   prologue: { title: 'story.zealot.prologueTitle', body: 'story.zealot.prologue' },
   scenarios: [

@@ -153,9 +153,12 @@ export {
 export {
   allCampaigns,
   campaignDefinition,
+  compareStories,
   scenarioKeywords,
   registerCampaign,
+  storyGroup,
   type CampaignDefinition,
+  type StoryGroup,
   type CampaignScenario,
   type ScenarioContext,
 } from './campaign-definition'
