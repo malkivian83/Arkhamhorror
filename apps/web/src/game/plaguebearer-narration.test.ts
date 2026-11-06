@@ -96,7 +96,7 @@ it('conecta los diez relatos ES completos con la voz elegida, excluyendo reglas 
     const suffix = recording.key.replace('story.plaguebearer.', '')
     const body = suffix.startsWith('night.')
       ? source.story.night[suffix.slice(6) as 'intro' | 'resolution1' | 'resolution2']
-      : source.story[suffix as Exclude<keyof typeof source.story, 'night'>]
+      : (source.story[suffix as keyof typeof source.story] as string)
     const text = body
       .split(/\n\s*\n/)
       .filter((p) => !p.trim().startsWith('»') && !p.trim().startsWith('•'))
