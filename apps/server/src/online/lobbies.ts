@@ -7,6 +7,8 @@ import {
   resolveDisappearance,
   expeditionAttack,
   resolveExpeditionAttack,
+  applyRestfulNightVisit,
+  completeRestfulNight,
   purchase,
   customize,
   activeMembers,
@@ -273,7 +275,16 @@ export class LobbyService {
                   ? command.ready
                   : command.action === 'disappearance' || command.action === 'attack'
                     ? command.decision
-                    : null,
+                    : command.action === 'nightVisit'
+                      ? [
+                          command.choice.partner,
+                          command.choice.target?.type,
+                          command.choice.target?.id,
+                          command.choice.weaknesses,
+                        ]
+                      : command.action === 'nightFinish'
+                        ? command.route
+                        : null,
       ])
       const prior = lobby.commands?.[command.commandId]
       if (prior) {
@@ -307,6 +318,18 @@ export class LobbyService {
           409,
         )
         lobby.campaign = resolveExpeditionAttack(lobby.campaign, command.decision)
+        lobby.campaignReady = []
+      } else if (command.action === 'nightVisit' || command.action === 'nightFinish') {
+        requireValue(lobby.intermission, 'not_intermission', 409)
+        requireValue(lobby.owner === user, 'not_owner', 403)
+        try {
+          lobby.campaign =
+            command.action === 'nightVisit'
+              ? applyRestfulNightVisit(lobby.campaign, command.choice)
+              : completeRestfulNight(lobby.campaign, command.route)
+        } catch {
+          requireValue(false, 'campaign_cannot_continue', 409)
+        }
         lobby.campaignReady = []
       } else if (command.action === 'heir') {
         requireValue(lobby.intermission, 'not_intermission', 409)
@@ -671,6 +694,8 @@ export function onlineLobbies(
                 'replace',
                 'disappearance',
                 'attack',
+                'nightVisit',
+                'nightFinish',
               ],
             },
             card: { type: 'string', minLength: 1, maxLength: 30 },
@@ -686,6 +711,29 @@ export function onlineLobbies(
             remove: { type: 'string', minLength: 1, maxLength: 30 },
             ready: { type: 'boolean' },
             decision: { type: 'string', enum: ['search', 'leave', 'fight', 'flee'] },
+            route: { type: 'string', enum: ['mirage', 'peaks'] },
+            choice: {
+              type: 'object',
+              additionalProperties: false,
+              required: ['partner'],
+              properties: {
+                partner: { type: 'string', pattern: '^087(1[4-9]|2[0-2])$' },
+                target: {
+                  type: 'object',
+                  additionalProperties: false,
+                  required: ['type', 'id'],
+                  properties: {
+                    type: { type: 'string', enum: ['investigator', 'partner'] },
+                    id: { type: 'string', minLength: 1, maxLength: 30 },
+                  },
+                },
+                weaknesses: {
+                  type: 'array',
+                  maxItems: 5,
+                  items: { type: 'string', maxLength: 30 },
+                },
+              },
+            },
             heir: { type: 'string', minLength: 1, maxLength: 30 },
             deck: deckSchema,
           },
@@ -702,6 +750,14 @@ export function onlineLobbies(
             {
               if: { properties: { action: { enum: ['disappearance', 'attack'] } } },
               then: { required: ['decision'] },
+            },
+            {
+              if: { properties: { action: { const: 'nightVisit' } } },
+              then: { required: ['choice'] },
+            },
+            {
+              if: { properties: { action: { const: 'nightFinish' } } },
+              then: { required: ['route'] },
             },
             {
               if: { properties: { action: { const: 'heir' } } },
