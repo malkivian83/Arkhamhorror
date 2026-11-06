@@ -13,11 +13,11 @@ describe('orden del selector de historias', () => {
       'the-dunwich-legacy',
       'the-path-to-carcosa',
       'edge-of-the-earth',
+      'brethren-of-ash',
       'carnevale-of-horrors',
       'murder-at-the-excelsior-hotel',
       'fortune-and-folly',
       'the-midwinter-gala',
-      'brethren-of-ash',
       'call-of-the-plaguebearer',
     ])
   })
