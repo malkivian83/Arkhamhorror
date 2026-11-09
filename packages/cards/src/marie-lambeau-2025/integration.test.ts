@@ -55,6 +55,12 @@ describe('Marie Lambeau (60451): starter deck and campaign', () => {
     expect(options).toContain('60480')
   })
 
+  it('cannot share a group with the other Marie Lambeau edition (05006)', () => {
+    expect(() => newCampaign('brethren-of-ash', ['marie', 'marie2025'], 'standard')).toThrow(
+      'Un investigador no puede repetirse',
+    )
+  })
+
   it('a deck without its basic weakness draws a real one and starts a scenario', () => {
     const cards = starter().cards.filter((c) => c !== HEMOPHOBIA)
     expect(validateDeck({ ...starter(), cards })).toMatchObject({ needsBasicWeakness: true })

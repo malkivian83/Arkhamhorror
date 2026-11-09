@@ -16,6 +16,7 @@ import {
   canPlayNext,
   chooseTransferHeir,
   replaceInvestigator,
+  sameInvestigatorTitle,
   type Campaign,
 } from '@lcg/cards'
 import {
@@ -569,7 +570,9 @@ export class LobbyService {
       this.editable(lobby, user, revision)
       requireValue(
         !Object.entries(lobby.decks ?? {}).some(
-          ([owner, other]) => owner !== user && other.investigator === deck.investigator,
+          // Each investigator in the group has a different title (RR), not just a different code.
+          ([owner, other]) =>
+            owner !== user && sameInvestigatorTitle(other.investigator, deck.investigator),
         ),
         'investigator_taken',
         409,

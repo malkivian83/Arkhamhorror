@@ -67,9 +67,15 @@ Todas son aditivas y no cambian el comportamiento previo si no se usan:
   sin acciones normales solo ofrece Eventos. Signo arcano: +1 y, opcionalmente, recupera una
   carta Truco o Trampa de la pila de descartes.
 - **Morral de Miguel**: «Cuando juegues un Evento» se resuelve en la ventana posterior al pago y
-  anterior a la resolución. La legalidad de jugar el evento se comprueba en el Lugar real (la
-  reacción se activa al jugarlo). Una Trampa es jugable en un Lugar que ya tiene una Trampa solo
-  si el Morral está preparado, para poder vincularla a un Lugar conectado.
+  anterior a la resolución, como en la aplicación de referencia. Con el Morral preparado, un
+  Evento es jugable si es legal en el Lugar real o en algún Lugar conectado, comprobado «como si»
+  Miguel estuviera allí (`PlayerCardBehavior.playEventsAtConnecting`, `eventLegalAt`,
+  `connectingPlayLocations`): combatir o evitar a enemigos de un Lugar conectado, objetivos «en tu
+  Lugar» y límites por Lugar como el de las Trampas. Si solo es legal en un Lugar conectado, el
+  Morral se agota de forma obligada y el evento se resuelve en uno de esos Lugares, sin la opción de
+  robar; si es legal en el Lugar real, la reacción es opcional y ofrece los Lugares conectados
+  válidos o robar 1 carta. Revisado el 09/11/2026 con las FAQ (sin resolución) y la referencia
+  (`MiguelsKnapsack.hs`).
 - **Trampas**: «Límite de 1 Trampa por Lugar» cuenta las Trampas de cualquier propietario.
   Señuelo, Esperar al acecho y Cuerda no pueden elegir a un enemigo inmune; Otear con
   prismáticos no afecta al enemigo, así que un enemigo inmune también la activa, igual que la

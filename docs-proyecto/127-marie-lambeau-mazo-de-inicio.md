@@ -103,7 +103,9 @@ El reverso en español nombra «Llamada de Guinea», como la API; la carta se ll
 Las dos Marie Lambeau comparten nombre y subtítulo («La intérprete»): la portada y el selector
 de mazos muestran su edición (`investigator.editions`: El círculo roto / Mazo de inicio de
 investigador). Según el reglamento, un equipo no puede incluir dos investigadores con el mismo
-nombre: la portada lo impide con un aviso (`setup.sameInvestigator`). El paquete `mar` se añade
+nombre: la portada lo impide con un aviso (`setup.sameInvestigator`); `newCampaign` y
+`replaceInvestigator` comparan el título (`sameInvestigatorTitle`) y la sala en línea rechaza un mazo
+cuyo investigador comparte título con el de otro jugador (`investigator_taken`). El paquete `mar` se añade
 a `INVESTIGATOR_PACKS` (toda la caja), sin renovar la caché. No se han descargado imágenes:
 escaneos, miniaturas y retrato quedan pendientes.
 

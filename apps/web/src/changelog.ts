@@ -8,6 +8,7 @@ export const changelog = [
       'app.changelog.starterDecks2.investigators',
       'app.changelog.starterDecks2.decks',
       'app.changelog.starterDecks2.rules',
+      'app.changelog.starterDecks2.fixes',
     ],
   },
   {

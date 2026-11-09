@@ -88,7 +88,8 @@
         "title": "Cuatro mazos de inicio nuevos",
         "investigators": "Ya se puede jugar con Tommy Muldoon, Carolyn Fern, Miguel de la Cruz y la Marie Lambeau del mazo de inicio, con sus cartas exclusivas y debilidades.",
         "decks": "Sus mazos de inicio oficiales aparecen como mazos predefinidos al crear una partida, y las mejoras de cada caja se pueden comprar con experiencia.",
-        "rules": "Nuevas reglas: Trampas vinculadas a lugares, curación de horror con sus reacciones, munición adicional al jugar Armas de fuego y usos compartidos con Tomos."
+        "rules": "Nuevas reglas: Trampas vinculadas a lugares, curación de horror con sus reacciones, munición adicional al jugar Armas de fuego y usos compartidos con Tomos.",
+        "fixes": "La zona de amenaza muestra las fichas de las traiciones (como el horror de Telaraña irrompible), no se pueden juntar dos versiones del mismo investigador, tampoco en partidas en línea, y el Morral de Miguel permite jugar eventos que solo son legales en un lugar conectado."
       },
       "fatalMirageRelease": {
         "title": "Espejismo letal ya se puede jugar",
@@ -1876,7 +1877,8 @@
     "alarmHelp": "Nivel de alarma (1–10). Con 6 o más, los enemigos Casino de tu Lugar pierden Indiferente.",
     "scenarioDeckRevealedHelp": "Solo se muestran las cartas reveladas. El reverso de la carta actual y las cartas siguientes permanecen ocultos hasta que el escenario los revele.",
     "globalEnemies": "Enemigos fuera de los Lugares",
-    "maskedCarnevale": "Carnavalero enmascarado"
+    "maskedCarnevale": "Carnavalero enmascarado",
+    "treacheryTokens": "Fichas sobre la carta"
   },
   "difficulty": {
     "easy": "Fácil",
@@ -6424,7 +6426,7 @@
       "invalid_invite": "La invitación es incorrecta, ha caducado o ha sido revocada.",
       "stale_revision": "La mesa ha cambiado. Revisa los datos actualizados antes de repetir la acción.",
       "invalid_deck": "El mazo no cumple los requisitos para iniciar esta campaña.",
-      "investigator_taken": "Otro jugador ya ha elegido ese investigador.",
+      "investigator_taken": "Otro jugador ya ha elegido ese investigador u otra versión suya.",
       "not_ready": "Deben estar listos al menos dos jugadores con sus mazos.",
       "already_started": "La partida ya ha comenzado.",
       "not_owner": "Solo el anfitrión puede realizar esta acción.",

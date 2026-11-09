@@ -9,7 +9,7 @@ import type { OnlineProgressAction } from '@lcg/shared'
 import { dispatch } from '@lcg/engine'
 import { newTestGame, throughSetup } from '@lcg/engine/testing'
 
-const deck = (key: 'joe' | 'daniela') => ({
+const deck = (key: 'joe' | 'daniela' | 'marie' | 'marie2025') => ({
   investigator: starterInvestigator(key).id,
   cards: starterDeck(key),
 })
@@ -177,6 +177,12 @@ describe('private online lobbies', () => {
     lobby = await service.join(lobby.id, 'friend', invite.token)
     if (campaignId)
       lobby = await service.configure(lobby.id, 'host', lobby.revision, campaignId, 'standard')
+    lobby = await service.select(lobby.id, 'host', lobby.revision, deck('joe'))
+    // Two versions of one investigator share a title and cannot play together (RR).
+    lobby = await service.select(lobby.id, 'host', lobby.revision, deck('marie'))
+    await expect(
+      service.select(lobby.id, 'friend', lobby.revision, deck('marie2025')),
+    ).rejects.toMatchObject({ code: 'investigator_taken' })
     lobby = await service.select(lobby.id, 'host', lobby.revision, deck('joe'))
     lobby = await service.select(lobby.id, 'friend', lobby.revision, deck('daniela'))
     lobby = await service.ready(lobby.id, 'host', lobby.revision, true)

@@ -88,7 +88,8 @@
         "title": "Four new starter decks",
         "investigators": "Tommy Muldoon, Carolyn Fern, Miguel de la Cruz and the starter deck Marie Lambeau are now playable, with their signature cards and weaknesses.",
         "decks": "Their official starter decks are available as predefined decks when you start a game, and the upgrades in each pack can be bought with experience.",
-        "rules": "New rules: Traps attached to locations, horror healing and its reactions, extra ammo when playing Firearms and uses shared with Tomes."
+        "rules": "New rules: Traps attached to locations, horror healing and its reactions, extra ammo when playing Firearms and uses shared with Tomes.",
+        "fixes": "The threat area shows tokens on treacheries (such as the horror on Unbroken Web), two versions of the same investigator cannot join one group, online games included, and Miguel's Knapsack lets him play events that are only legal at a connecting location."
       },
       "fatalMirageRelease": {
         "title": "Fatal Mirage is playable",
@@ -1876,7 +1877,8 @@
     "alarmHelp": "Alarm level (1–10). At 6 or higher, Casino enemies at your location lose aloof.",
     "scenarioDeckRevealedHelp": "Only revealed cards are shown. The back of the current card and upcoming cards remain hidden until the scenario reveals them.",
     "globalEnemies": "Enemies outside locations",
-    "maskedCarnevale": "Masked Carnevale-Goer"
+    "maskedCarnevale": "Masked Carnevale-Goer",
+    "treacheryTokens": "Tokens on this card"
   },
   "difficulty": {
     "easy": "Easy",
@@ -6424,7 +6426,7 @@
       "invalid_invite": "The invitation is invalid, expired or revoked.",
       "stale_revision": "The table has changed. Review the updated details before trying again.",
       "invalid_deck": "This deck does not meet the requirements to start this campaign.",
-      "investigator_taken": "Another player has chosen this investigator.",
+      "investigator_taken": "Another player has chosen this investigator or another version of them.",
       "not_ready": "At least two players must be ready with their decks.",
       "already_started": "The game has already started.",
       "not_owner": "Only the host can perform this action.",

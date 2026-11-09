@@ -73,8 +73,10 @@ Buscador y neutrales 0–5. El pack `car` se añade a los paquetes en línea con
 `scripts/present-carolyn-fern.mjs` escribe nombres, subtítulos, rasgos, textos y reverso EN/ES de
 los 7 códigos y las etiquetas nuevas (`ability.*`, `choice.pharaohsDiscard`,
 `choice.spendUsesFrom`, `prompt.spendUsesFrom`); es idempotente. No se descargan escaneos ni
-miniaturas en este lote, y el horror sobre la Telaraña aún no se muestra en la zona de amenaza: la
-revisión visual queda pendiente para la persona usuaria.
+miniaturas en este lote (se añadieron al integrarlo). El horror sobre la Telaraña se muestra en la
+zona de amenaza: las traiciones indican qué representan sus fichas (`TreacheryBehavior.tokenKind`)
+y la mesa pinta fichas, horror y pistas sobre ellas. La revisión visual queda pendiente para la
+persona usuaria.
 
 Fuentes: API de ArkhamDB [`car` EN](https://arkhamdb.com/api/public/cards/car.json) y
 [`car` ES](https://es.arkhamdb.com/api/public/cards/car.json) y las páginas de cada carta (sin FAQ

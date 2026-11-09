@@ -80,8 +80,54 @@ export function playableCards(state: GameState, id: InvestigatorId, fast: boolea
     if (def.type === 'event' && !behavior?.play) return false
     if (behavior?.parley && !parleyCosts(state, id)) return false
     if (minimumPlayCost(state, id, code) > spendableFor(state, id, code)) return false
-    return behavior?.canPlay?.(state, id) ?? true
+    return playConditionsMet(state, id, code)
   })
+}
+
+/** The card's own play conditions hold at the investigator's real location. */
+export function eventLegalAt(
+  state: GameState,
+  id: InvestigatorId,
+  code: CardCode,
+  location: LocationId,
+): boolean {
+  const canPlay = playerCardBehavior(code)?.canPlay
+  if (!canPlay) return true
+  const investigator = getInvestigator(state, id)
+  if (investigator.location === location) return canPlay(state, id)
+  // RR "As if...": only the investigator's location changes for the check.
+  return canPlay(
+    {
+      ...state,
+      investigators: state.investigators.map((i) => (i.id === id ? { ...i, location } : i)),
+    },
+    id,
+  )
+}
+
+/** Connecting locations where an event could be played as if there (Miguel's Knapsack). */
+export function connectingPlayLocations(
+  state: GameState,
+  id: InvestigatorId,
+  code: CardCode,
+): LocationId[] {
+  const investigator = getInvestigator(state, id)
+  const here = investigator.location
+  if (here === null || playerCardDef(code)?.type !== 'event') return []
+  const enabled = Object.values(state.assets).some(
+    (a) => a.owner === id && !a.exhausted && !!playerCardBehavior(a.code)?.playEventsAtConnecting,
+  )
+  if (!enabled) return []
+  return getLocation(state, here)
+    .connections.filter((l) => !!state.locations[l])
+    .filter((l) => eventLegalAt(state, id, code, l))
+}
+
+/** Play conditions at the real location or, for events, at a reachable "as if" location. */
+export function playConditionsMet(state: GameState, id: InvestigatorId, code: CardCode): boolean {
+  const here = getInvestigator(state, id).location
+  if (here !== null && eventLegalAt(state, id, code, here)) return true
+  return connectingPlayLocations(state, id, code).length > 0
 }
 
 /** Check permission and costs when a resolving effect grants a card play. */
@@ -125,7 +171,7 @@ export function canPlayByEffect(
     spendableFor(state, id, code)
   )
     return false
-  return playerCardBehavior(code)?.canPlay?.(state, id) ?? true
+  return playConditionsMet(state, id, code)
 }
 
 /** Resources available to pay for `code`, plus uses that may pay as resources (Schoffner's). */
@@ -243,7 +289,7 @@ export function playRestriction(
       key: cost === (def.cost ?? 0) ? 'unplayable.cost' : 'unplayable.costModified',
       params: { cost, printed: def.cost ?? 0, resources: investigator.resources },
     }
-  if (behavior?.canPlay && !behavior.canPlay(state, id)) return { key: 'unplayable.conditions' }
+  if (!playConditionsMet(state, id, code)) return { key: 'unplayable.conditions' }
   return null
 }
 

@@ -1,5 +1,11 @@
 // RR: Triggered Abilities ("When you play"), "As if...", Attach To, Exhaust.
-import { dispatch, playableCards, type GameState } from '@lcg/engine'
+import {
+  connectingPlayLocations,
+  dispatch,
+  eventLegalAt,
+  playableCards,
+  type GameState,
+} from '@lcg/engine'
 import { choose, labels } from '@lcg/engine/testing'
 import { expect, it } from 'vitest'
 import { withAsset } from '../dunwich-pilot/testing'
@@ -48,7 +54,10 @@ it('a ready Knapsack lets him play a second Trap where his location already has 
   let s = setup([GLASSING], (s) => attach(s, DECOY_TRAP, 'A', MIGUEL))
   expect(playableCards(s, MIGUEL, true)).toContain(GLASSING)
   s = choose(s, 'action.playFast', { card: name(GLASSING) })
-  s = choose(s, 'ability.miguelsKnapsack', { card: name(GLASSING) })
+  // Only legal at a connecting location: the Knapsack must resolve it there, without drawing.
+  expect(s.assets[KNAPSACK]!.exhausted).toBe(true)
+  expect(labels(s)).not.toContain('choice.knapsackDraw')
+  expect(labels(s)).not.toContain('ability.miguelsKnapsack')
   s = choose(s, 'choice.knapsackPlayAt', { card: name(GLASSING), location: 'Room B' })
   expect(attachmentsAt(s, 'B').map((a) => a.code)).toEqual([GLASSING])
   // Exhausted, it no longer allows it.
@@ -58,6 +67,21 @@ it('a ready Knapsack lets him play a second Trap where his location already has 
     assets: { ...t.assets, [KNAPSACK]: { ...t.assets[KNAPSACK]!, exhausted: true } },
   }
   expect(playableCards(exhausted, MIGUEL, true)).not.toContain(GLASSING)
+})
+
+it('makes an event legal through a connecting location only while it is ready', () => {
+  // Glassing needs a location without a Trap: none here, but Room B has room for it.
+  const s = setup([GLASSING], (s) => attach(s, DECOY_TRAP, 'A', MIGUEL))
+  expect(eventLegalAt(s, MIGUEL, GLASSING, 'A')).toBe(false)
+  expect(eventLegalAt(s, MIGUEL, GLASSING, 'B')).toBe(true)
+  expect(connectingPlayLocations(s, MIGUEL, GLASSING)).toEqual(['B'])
+  // Without the Knapsack the event is not playable at all.
+  const bare = {
+    ...s,
+    assets: Object.fromEntries(Object.entries(s.assets).filter(([id]) => id !== KNAPSACK)),
+  }
+  expect(connectingPlayLocations(bare, MIGUEL, GLASSING)).toEqual([])
+  expect(playableCards(bare, MIGUEL, true)).not.toContain(GLASSING)
 })
 
 it('only reacts to events its owner plays', () => {

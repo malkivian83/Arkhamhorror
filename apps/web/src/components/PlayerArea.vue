@@ -5,6 +5,7 @@ import {
   effectiveVitals,
   slotCapacity,
   assetSlots,
+  treacheryBehavior,
   type Asset,
   type GameState,
   type Investigator,
@@ -361,6 +362,30 @@ const slots = computed(() => {
               <span v-if="tr.hidden" class="hidden-mark" :title="t('table.hiddenHelp')">{{
                 t('table.hidden')
               }}</span>
+              <!-- Fichas sobre la carta (horror de Telaraña irrompible, pistas, contadores). -->
+              <TokenBadge
+                v-if="!tr.hidden && tr.tokens"
+                class="corner tr"
+                :kind="treacheryBehavior(tr.code)?.tokenKind ?? 'resource'"
+                :value="tr.tokens"
+                :size="26"
+                :title="t('table.treacheryTokens')"
+              />
+              <TokenBadge
+                v-if="!tr.hidden && tr.horror"
+                class="corner br"
+                kind="horror"
+                :value="tr.horror"
+                :size="26"
+              />
+              <TokenBadge
+                v-if="!tr.hidden && tr.clues"
+                class="corner bl"
+                kind="clue"
+                :value="tr.clues"
+                :size="26"
+                :title="t('table.clues')"
+              />
             </GameCard>
           </TableTarget>
         </div>

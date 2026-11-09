@@ -2,6 +2,7 @@
 // Additional Actions, Elusive, Hunter, Prey, Retaliate, Weakness.
 import {
   attackBlocked,
+  eventLegalAt,
   distancesFrom,
   enemiesAt,
   enemyHasKeyword,
@@ -15,6 +16,7 @@ import {
   registerInvestigator,
   registerPlayerCard,
   shroudOf,
+  type Asset,
   type Choice,
   type Enemy,
   type GameState,
@@ -24,6 +26,7 @@ import {
   type PlayerCardBehavior,
   type ReactionOption,
   type SkillType,
+  type Trigger,
 } from '@lcg/engine'
 import { mayChoose } from '../core-2026/player-cards'
 import { ask, cardName, continuation } from '../dunwich-pilot/effects'
@@ -58,16 +61,31 @@ function canAttach(s: GameState, code: string, location: string): boolean {
     : !here.some((a) => playerCardDef(a.code)?.traits.includes('Trap'))
 }
 
-/** A ready Knapsack may still resolve the attachment at a connecting location. */
-const knapsackReady = (s: GameState, by: InvestigatorId) =>
-  Object.values(s.assets).some((a) => a.owner === by && a.code === KNAPSACK && !a.exhausted)
+/** The Knapsack's owner just played an event that has not resolved yet. */
+const knapsackTrigger = (
+  s: GameState,
+  t: Trigger,
+  a: Asset,
+): t is Extract<Trigger, { type: 'afterPlayCard' }> =>
+  t.type === 'afterPlayCard' &&
+  t.investigator === a.owner &&
+  !a.exhausted &&
+  playerCardDef(t.code)?.type === 'event' &&
+  s.queue.some(
+    (m) => m.type === 'ResolvePlayedCard' && m.investigator === a.owner && m.code === t.code,
+  )
+
+const legalHere = (s: GameState, by: InvestigatorId, event: string) => {
+  const here = getInvestigator(s, by).location
+  return here !== null && eventLegalAt(s, by, event, here)
+}
 
 /** "Attach to your location." Played normally; the event leaves the discard pile when attached. */
 function attachBehavior(code: string): Pick<PlayerCardBehavior, 'canPlay' | 'play'> {
   return {
     canPlay: (s, by) => {
       const here = getInvestigator(s, by).location
-      return here !== null && (canAttach(s, code, here) || knapsackReady(s, by))
+      return here !== null && canAttach(s, code, here)
     },
     play: (s, by) => {
       const here = getInvestigator(s, by).location
@@ -193,14 +211,18 @@ export function registerMiguelCard(code: string): void {
   if (code === KNAPSACK) {
     registerPlayerCard({
       code,
+      // The engine lets a ready Knapsack's owner play events legal only at a connecting location.
+      playEventsAtConnecting: true,
+      // An event that is only legal at a connecting location must be resolved there.
+      forced: (s, t, a) =>
+        knapsackTrigger(s, t, a) && !legalHere(s, a.owner, t.code)
+          ? [
+              { type: 'ExhaustAsset', asset: a.id },
+              continuation(code, a.owner, 'forced', { event: t.code }),
+            ]
+          : [],
       reactions: (s, t, a) =>
-        t.type === 'afterPlayCard' &&
-        t.investigator === a.owner &&
-        !a.exhausted &&
-        playerCardDef(t.code)?.type === 'event' &&
-        s.queue.some(
-          (m) => m.type === 'ResolvePlayedCard' && m.investigator === a.owner && m.code === t.code,
-        )
+        knapsackTrigger(s, t, a) && legalHere(s, a.owner, t.code)
           ? [
               {
                 key: a.id + ':knapsack',
@@ -215,11 +237,17 @@ export function registerMiguelCard(code: string): void {
             ]
           : [],
       effect: (s, by, step, data) => {
-        if (step !== 'choice') return []
+        if (step !== 'choice' && step !== 'forced') return []
         const event = String(data.event)
+        // Only connecting locations where the event would be legal (RR "As if...").
         const here = getInvestigator(s, by).location
+        // The Knapsack is already exhausted as its cost, so legality is checked directly.
         const connecting =
-          here === null ? [] : getLocation(s, here).connections.filter((l) => s.locations[l])
+          here === null
+            ? []
+            : getLocation(s, here)
+                .connections.filter((l) => !!s.locations[l])
+                .filter((l) => eventLegalAt(s, by, event, l))
         return ask(
           by,
           [
@@ -229,10 +257,14 @@ export function registerMiguelCard(code: string): void {
               target: { type: 'location', id: location },
               then: [{ type: 'PlayEventAt', investigator: by, code: event, location }],
             })),
-            {
-              label: 'choice.knapsackDraw',
-              then: [{ type: 'DrawCards', investigator: by, amount: 1 }],
-            },
+            ...(step === 'forced'
+              ? []
+              : [
+                  {
+                    label: 'choice.knapsackDraw',
+                    then: [{ type: 'DrawCards', investigator: by, amount: 1 } as Message],
+                  },
+                ]),
           ],
           true,
         )
