@@ -56,7 +56,11 @@ Todas son aditivas y no cambian el comportamiento previo si no se usan:
 - **Inmune a efectos de cartas de Jugador** (`EnemyBehavior.immuneToPlayerCards`,
   `immuneToPlayerCards`): `attackBlocked` impide elegirlo como objetivo de un ataque iniciado por
   una carta de Jugador (evento o capacidad de apoyo) y `DamageEnemy` ignora el daño cuyo origen
-  es una carta de Jugador (`log.enemyImmunePlayerCards`).
+  es una carta de Jugador (`log.enemyImmunePlayerCards`). `EvadeEnemy`, `ExhaustEnemy`,
+  `DisengageEnemy` y `MoveEnemy` ignoran los efectos cuyo origen (`effectSource`) es una carta de
+  Jugador distinta del propio enemigo (`ignoresPlayerCardEffect`), y `attackDamage` no suma el
+  daño de habilidades comprometidas ni de mejoras vinculadas contra él. Sus propias palabras clave
+  (Escurridizo) sí lo mueven y agotan.
 - **`SearchTopEncounterForEnemy`**: busca un Enemigo elegido entre las N primeras cartas del mazo
   de Encuentros, lo roba y baraja el mazo.
 - Interfaz: `LocationMap` muestra los eventos vinculados de cada Lugar (agotados o no).
@@ -124,10 +128,6 @@ No se han descargado escaneos ni miniaturas: la prueba de imágenes locales de l
 
 ## Limitaciones conocidas
 
-- La inmunidad a efectos de cartas de Jugador se aplica a los objetivos de ataques, al daño con
-  origen en una carta y a los efectos de este lote; otros eventos antiguos de evitar o mover
-  enemigos no la consultan, ni el daño adicional de cartas de habilidad comprometidas a un
-  ataque básico.
 - Los vinculados de un investigador eliminado permanecen en juego sin poder activarse.
 
 ## Validación

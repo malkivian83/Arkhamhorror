@@ -1,6 +1,7 @@
 // RR: Weakness, Immune, Elusive, Hunter, Prey, Retaliate, Forced Abilities.
 import {
   attackBlocked,
+  attackDamage,
   availableActions,
   dispatch,
   enemyBehavior,
@@ -8,9 +9,12 @@ import {
   playerCardBehavior,
   type EnemyCard,
   type GameState,
+  type Message,
+  type SkillTest,
 } from '@lcg/engine'
 import { choose, during, spawnAt } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
+import { code } from '../core-2026/player-cards'
 import { game, me } from '../dunwich-pilot/testing'
 import { BLOOD_DRINKER, FELINE_HYBRID, MIGUEL, makeGame, withMiguel } from './testing'
 
@@ -51,6 +55,55 @@ describe('60553: Feline Hybrid', () => {
     })
     expect(only(s).damageTaken).toBe(0)
     expect(s.log.some((l) => l.key === 'log.enemyImmunePlayerCards')).toBe(true)
+  })
+
+  it('ignores evading, exhausting, disengaging and moving effects from player cards', () => {
+    let s = dispatch({ ...makeGame(), pending: null }, spawnAt('A', card(FELINE_HYBRID), MIGUEL), {
+      type: 'PlayerWindow',
+      investigator: MIGUEL,
+    })
+    const e = only(s)
+    const fromCard = { effectSource: '60565' }
+    s = during(s, (x) => x, { type: 'EvadeEnemy', enemy: e.id, ...fromCard } as Message)
+    s = during(s, (x) => x, { type: 'ExhaustEnemy', enemy: e.id, ...fromCard } as Message)
+    s = during(s, (x) => x, { type: 'DisengageEnemy', enemy: e.id, ...fromCard } as Message)
+    s = during(s, (x) => x, {
+      type: 'MoveEnemy',
+      enemy: e.id,
+      location: 'B',
+      ...fromCard,
+    } as Message)
+    expect(only(s)).toMatchObject({ location: 'A', exhausted: false, engagedWith: MIGUEL })
+    // The same effects without a player card source still apply.
+    s = during(s, (x) => x, { type: 'EvadeEnemy', enemy: e.id } as Message)
+    expect(only(s)).toMatchObject({ exhausted: true, engagedWith: null })
+  })
+
+  it('a committed skill adds no damage to a basic attack against it', () => {
+    const s = dispatch(
+      { ...makeGame(), pending: null },
+      spawnAt('A', card(FELINE_HYBRID), MIGUEL),
+      {
+        type: 'PlayerWindow',
+        investigator: MIGUEL,
+      },
+    )
+    const e = only(s)
+    const brutal = code(25)
+    expect(playerCardBehavior(brutal)?.committedAttackDamage).toBeDefined()
+    const test = {
+      investigator: MIGUEL,
+      kind: { type: 'fight', enemy: e.id },
+      difficulty: 3,
+      modifiedSkill: 5,
+      succeeded: true,
+      tokens: [],
+      committed: [{ code: brutal, by: MIGUEL }],
+    } as unknown as SkillTest
+    expect(attackDamage(s, test)).toBe(1)
+    // Control: the same commit adds its damage against an enemy without that immunity.
+    const plain = { ...s, enemies: { [e.id]: { ...e, code: BLOOD_DRINKER } } }
+    expect(attackDamage(plain, test)).toBe(2)
   })
 
   it('a successful basic attack damages it and it retreats (Elusive)', () => {
