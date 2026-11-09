@@ -151,6 +151,7 @@ export function registerCarolynCard(code: string): void {
   if (code === UNBROKEN_WEB) {
     registerTreachery({
       code,
+      tokenKind: 'horror',
       revelation: (_s, by, t) => [
         {
           type: 'PlaceTreachery',

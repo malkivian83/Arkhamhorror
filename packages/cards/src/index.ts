@@ -192,6 +192,8 @@ export {
   removableCards,
   replaceableMembers,
   replaceInvestigator,
+  investigatorTitle,
+  sameInvestigatorTitle,
   replacementOptions,
   startScenario,
   type Campaign,

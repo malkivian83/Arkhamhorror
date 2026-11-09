@@ -272,7 +272,9 @@ export function newCampaign(
       weaknessChoices[i.id] = pool.slice(0, 3)
     }
   }
-  if (new Set(investigators.map((i) => i.id)).size !== investigators.length)
+  // RR "Choose Investigators": each investigator in the group has a different title, so two
+  // versions of the same investigator (Marie Lambeau 05006 and 60451) cannot play together.
+  if (new Set(investigators.map((i) => investigatorTitle(i.id))).size !== investigators.length)
     throw new Error('Un investigador no puede repetirse')
   if (
     investigators.some((i) => !playerCardDef(i.id) || i.deck.some((code) => !playerCardDef(code)))
@@ -379,6 +381,15 @@ export function currentScenario(campaign: Campaign): string | null {
 }
 
 /** Investigadores que siguen en la campaña (ni muertos ni enloquecidos). */
+/** Printed title of an investigator; different versions of one investigator share it. */
+export function investigatorTitle(code: CardCode): string {
+  return playerCardDef(code)?.name ?? code
+}
+
+export function sameInvestigatorTitle(a: CardCode, b: CardCode): boolean {
+  return investigatorTitle(a) === investigatorTitle(b)
+}
+
 export function activeMembers(campaign: Campaign): CampaignInvestigator[] {
   return campaign.investigators.filter((i) => {
     const record = campaign.log.investigators[i.id]
@@ -634,7 +645,11 @@ export function replaceInvestigator(
     campaign.log.rewards ?? [],
   )
   const joining = fresh.investigators[0]!
-  if (campaign.log.investigators[joining.id]) throw new Error('Un investigador no puede repetirse')
+  if (
+    campaign.log.investigators[joining.id] ||
+    activeMembers(campaign).some((i) => i.id !== leaving && sameInvestigatorTitle(i.id, joining.id))
+  )
+    throw new Error('Un investigador no puede repetirse')
   const next: Campaign = {
     ...campaign,
     investigators: [...campaign.investigators, joining],

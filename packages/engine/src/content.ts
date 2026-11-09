@@ -245,6 +245,8 @@ export interface StoryBehavior {
 export interface TreacheryBehavior {
   /** Printed [reaction] abilities of a treachery in play (Unbroken Web). */
   reactions?: (state: GameState, trigger: Trigger, self: Treachery) => ReactionOption[]
+  /** What the generic `tokens` on this treachery represent, for display (Unbroken Web: horror). */
+  tokenKind?: 'resource' | 'clue' | 'damage' | 'horror' | 'doom'
   blanksAssetTrait?: string
   /** Deja en blanco el texto de un apoyo concreto (Confianza rota, vinculada a un Aliado). */
   blanksAsset?: (state: GameState, self: Treachery, asset: Asset) => boolean
@@ -877,6 +879,11 @@ export interface PlayerCardBehavior {
   ) => ReactionOption[]
   /** Habilidades forzadas del apoyo en juego. */
   forced?: (state: GameState, trigger: Trigger, self: Asset) => Message[]
+  /**
+   * While this asset is ready, its controller may play events as if at a connecting location
+   * (Miguel's Knapsack): an event is playable if it would be legal there.
+   */
+  playEventsAtConnecting?: boolean
   /** Habilidades rápidas durante una prueba de su controlador, antes de revelar fichas. */
   testOptions?: (state: GameState, test: SkillTest, self: Asset) => ReactionOption[]
   /**

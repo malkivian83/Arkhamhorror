@@ -6704,6 +6704,8 @@ export function handle(state: GameState, message: Message): GameState {
     case 'ExhaustEnemy': {
       const enemy = findEnemy(state, message.enemy)
       if (!enemy || enemy.exhausted) return state
+      if (ignoresPlayerCardEffect(enemy, message.effectSource))
+        return log(state, 'log.enemyImmunePlayerCards', { enemy: enemy.name })
       return push(
         updateEnemy(state, enemy.id, (e) => ({ ...e, exhausted: true })),
         {
@@ -7436,6 +7438,8 @@ export function handle(state: GameState, message: Message): GameState {
     case 'EvadeEnemy': {
       const previous = findEnemy(state, message.enemy)
       if (!previous || previous.hasNoStats || previous.cannotBeEvaded) return state
+      if (ignoresPlayerCardEffect(previous, message.effectSource))
+        return log(state, 'log.enemyImmunePlayerCards', { enemy: previous.name })
       const evaded = updateEnemy(state, message.enemy, (e) => ({
         ...e,
         engagedWith: null,
@@ -7481,6 +7485,8 @@ export function handle(state: GameState, message: Message): GameState {
     case 'DisengageEnemy': {
       const enemy = findEnemy(state, message.enemy)
       if (!enemy?.engagedWith) return state
+      if (ignoresPlayerCardEffect(enemy, message.effectSource))
+        return log(state, 'log.enemyImmunePlayerCards', { enemy: enemy.name })
       return push(
         updateEnemy(state, enemy.id, (e) => ({ ...e, engagedWith: null })),
         {
@@ -8288,6 +8294,10 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'MoveEnemy':
+      if (ignoresPlayerCardEffect(findEnemy(state, message.enemy), message.effectSource))
+        return log(state, 'log.enemyImmunePlayerCards', {
+          enemy: getEnemy(state, message.enemy).name,
+        })
       if (
         !findEnemy(state, message.enemy) ||
         findEnemy(state, message.enemy)?.global ||
@@ -10489,6 +10499,20 @@ function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
     ...fromScenario,
     ...fromTreacheries,
   ].filter((o) => !getInvestigator(state, o.investigator).eliminated)
+}
+
+/**
+ * RR Immune: an effect from a player card (other than the enemy's own card, such as a weakness
+ * enemy's keywords) does not affect an enemy immune to player card effects (Feline Hybrid).
+ */
+function ignoresPlayerCardEffect(enemy: Enemy | undefined, source: string | undefined): boolean {
+  return (
+    !!enemy &&
+    !!source &&
+    source !== enemy.code &&
+    !!playerCardDef(source) &&
+    immuneToPlayerCards(enemy)
+  )
 }
 
 function meetsRequirement(state: GameState, requirement: Requirement): boolean {
