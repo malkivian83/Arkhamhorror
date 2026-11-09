@@ -46,7 +46,10 @@ import type {
 /** Tipo de acción: las básicas y `activate` (habilidades [action] de cartas). */
 export type ActionKind = Action['kind'] | 'activate'
 
-export type ScenarioSymbol = Exclude<ChaosSymbol, 'elderSign' | 'autoFail' | 'frost'>
+export type ScenarioSymbol = Exclude<
+  ChaosSymbol,
+  'elderSign' | 'autoFail' | 'frost' | 'bless' | 'curse'
+>
 
 /** Habilidades que `investigator` puede activar en esta carta ahora mismo. */
 export type AbilitiesFn<Self> = (
@@ -729,6 +732,8 @@ export interface PlayerCardBehavior {
     index: number,
     investigator: InvestigatorId,
   ) => AbilityOption[]
+  /** While committed, treat the modifier of these tokens as this value (Skeptic, Accursed). */
+  committedTokenModifiers?: Partial<Record<'bless' | 'curse', number>>
   /** Additive difficulty modifier while this card is committed. */
   committedDifficulty?: number
   /** Printed permission to commit without matching icons (e.g. Take Heart). */

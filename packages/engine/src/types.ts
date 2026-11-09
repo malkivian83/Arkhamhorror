@@ -38,13 +38,16 @@ export type ChaosSymbol =
   | 'autoFail'
   /** Los confines de la Tierra: −1 y revela otra; la segunda en la misma prueba, fracaso automático. */
   | 'frost'
+  /** RR Bless/Curse: +2 / -2 and reveal another; returned to the token pool after the test. */
+  | 'bless'
+  | 'curse'
 
 /** Un número (+1, 0, -1…) o un símbolo. */
 export type ChaosToken = number | ChaosSymbol
 
 /** Modificador de los símbolos de escenario (skull, cultist, tablet, elderThing). */
 export type ScenarioTokenValues = Partial<
-  Record<Exclude<ChaosSymbol, 'elderSign' | 'autoFail' | 'frost'>, number>
+  Record<Exclude<ChaosSymbol, 'elderSign' | 'autoFail' | 'frost' | 'bless' | 'curse'>, number>
 >
 
 // ---------------------------------------------------------------------------
@@ -1860,6 +1863,8 @@ type MessageBody =
   | { type: 'ReturnTekeliliFromDeck'; investigator: InvestigatorId; code: CardCode; top: number }
   /** `scenarioOnly`: solo para este escenario, sin anotarlas en el registro de campaña. */
   | { type: 'AddChaosTokens'; tokens: ChaosToken[]; scenarioOnly?: boolean }
+  /** Return these tokens from the chaos bag to the token pool (those present). */
+  | { type: 'RemoveChaosTokens'; tokens: ChaosToken[] }
   /** Coloca (o retira, con valores negativos) horror y perdición en una localización. */
   | { type: 'PlaceLocationTokens'; location: LocationId; horror?: number; doom?: number }
   | { type: 'EarnReward'; code: CardCode }
@@ -2209,6 +2214,8 @@ export type Trigger =
   | { type: 'investigationPhaseEnds' }
   /** Al final de la fase de Mitos (Buscador de Carcosa, Mago de la Orden). */
   | { type: 'mythosPhaseEnds' }
+  /** At the end of the upkeep phase, after checking hand size (Priest of Two Faiths). */
+  | { type: 'upkeepPhaseEnds' }
   | { type: 'enemyDefeated'; enemy: Enemy; by?: InvestigatorId }
   | { type: 'afterEnemyPhaseAttack'; enemy: EnemyId; investigator: InvestigatorId }
   | { type: 'afterDoomPlaced'; agenda?: AgendaDeck }
@@ -2245,6 +2252,8 @@ export type Trigger =
       succeeded: boolean
       /** Valor final menos dificultad (negativo si falla). */
       margin: number
+      /** Faces of the chaos tokens resolved during the test. */
+      tokens?: ChaosToken[]
       enemy?: EnemyId
       location?: LocationId
       source?: AssetId

@@ -2,7 +2,7 @@ import { registerPlayerCard, type ChaosToken, type GameState } from '@lcg/engine
 import { continuation } from '../dunwich-pilot/effects'
 import { UNRELENTING } from './codes'
 
-const DRAWS: ChaosToken[] = [1, 0, 'elderSign']
+const DRAWS: ChaosToken[] = [1, 0, 'bless', 'elderSign']
 const sealedHere = (state: GameState, by: string) =>
   (state.sealed ?? []).filter(
     (e) => e.holder?.type === 'committed' && e.holder.code === UNRELENTING && e.holder.by === by,
@@ -11,7 +11,7 @@ const sealedHere = (state: GameState, by: string) =>
 // RR: Seal, Max 1 committed per test. Unrelenting (1): after you commit it, search the chaos
 // bag for up to 3 non-[auto_fail] tokens of your choice and seal them on it. If all 3 sealed
 // tokens are "+1", "0", [bless] and/or [elder_sign], draw 2 cards. Release them after this test
-// ends (the engine has no [bless] tokens yet).
+// ends.
 registerPlayerCard({
   code: UNRELENTING,
   onCommit: (_state, by) => [continuation(UNRELENTING, by, 'seal', { left: 3 })],
