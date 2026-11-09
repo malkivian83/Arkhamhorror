@@ -1,19 +1,47 @@
 import { playerCardDef } from './content'
 import type { GameState, Message } from './types'
 
-/** Preserve provenance through choices, skill-test results and scenario callbacks. */
-export function withEffectSource<T>(value: T, source: string): T {
-  if (Array.isArray(value)) return value.map((v) => withEffectSource(v, source)) as T
+/**
+ * Preserve provenance through choices, skill-test results and scenario callbacks. The
+ * optional `controller` is the investigator who controls the resolving effect ("you").
+ */
+export function withEffectSource<T>(value: T, source: string, controller?: string): T {
+  if (Array.isArray(value)) return value.map((v) => withEffectSource(v, source, controller)) as T
   if (!value || typeof value !== 'object') return value
   const obj = value as Record<string, unknown>
   const own = typeof obj.effectSource === 'string' ? obj.effectSource : source
+  const ownController = typeof obj.effectController === 'string' ? obj.effectController : controller
   // An activated ability establishes its own source when it is processed.
   if (obj.type === 'UseAbility') return { ...obj, effectSource: own } as T
   const result = Object.fromEntries(
-    Object.entries(obj).map(([k, v]) => [k, withEffectSource(v, own)]),
+    Object.entries(obj).map(([k, v]) => [k, withEffectSource(v, own, ownController)]),
   )
-  if (typeof obj.type === 'string' && /^[A-Z]/.test(obj.type)) result.effectSource = own
+  if (typeof obj.type === 'string' && /^[A-Z]/.test(obj.type)) {
+    result.effectSource = own
+    if (ownController !== undefined) result.effectController = ownController
+  }
   return result as T
+}
+
+/**
+ * Investigator controlling the effect that `m` resolves: who plays the card or uses the
+ * ability. Forced abilities and reaction windows belong to their own cards, so they do not
+ * inherit the controller of the event that triggered them.
+ */
+export function messageController(m: Message): string | undefined {
+  switch (m.type) {
+    case 'PlayCard':
+    case 'ResolvePlayedCard':
+    case 'PlayerCardEffect':
+    case 'ResolvePlayerRevelation':
+    case 'UseAbility':
+      return m.investigator
+    case 'Forced':
+    case 'Reactions':
+      return undefined
+    default:
+      return m.effectController
+  }
 }
 
 export function messageSource(s: GameState, m: Message): string | undefined {

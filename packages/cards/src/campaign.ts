@@ -154,6 +154,8 @@ import './stella-clark'
 import './stella-sideboard'
 import './nathaniel-cho'
 import './harvey-walters'
+import './tommy-muldoon'
+import './miguel-de-la-cruz'
 
 export type DeckKey = keyof typeof STARTER_DECKS
 

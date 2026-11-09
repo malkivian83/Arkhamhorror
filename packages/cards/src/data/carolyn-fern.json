@@ -1,0 +1,120 @@
+[
+  {
+    "subname": "The Psychologist",
+    "code": "60251",
+    "name": "Carolyn Fern",
+    "type": "investigator",
+    "class": "seeker",
+    "traits": ["Medic", "Scholar"],
+    "deckLimit": 1,
+    "unique": true,
+    "health": 6,
+    "sanity": 9,
+    "skills": {
+      "willpower": 3,
+      "intellect": 5,
+      "combat": 1,
+      "agility": 3
+    },
+    "deckSize": 30,
+    "deckOptions": [
+      {
+        "classes": ["seeker", "neutral"],
+        "maxLevel": 5
+      }
+    ],
+    "signatures": ["60252", "60253"]
+  },
+  {
+    "subname": "From Mind to Behavior",
+    "code": "60252",
+    "name": "Experimental Psychology",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tome", "Science"],
+    "deckLimit": 1,
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1,
+      "wild": 1
+    },
+    "slots": ["hand"]
+  },
+  {
+    "code": "60253",
+    "name": "Unbroken Web",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Terror", "Dreamlands"],
+    "deckLimit": 1,
+    "weakness": "weakness",
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "60254",
+    "name": "Lethal Curiosity",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Flaw"],
+    "deckLimit": 1,
+    "weakness": "basicweakness",
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "60257",
+    "name": "Private Practice",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Profession"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60272",
+    "name": "Typewriter",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Tool"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "willpower": 1,
+      "intellect": 1
+    },
+    "slots": [],
+    "uses": {
+      "count": 3,
+      "type": "secrets"
+    }
+  },
+  {
+    "subname": "Words of Bast",
+    "code": "60279",
+    "name": "Scroll of the Pharaohs",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Item", "Relic", "Tome"],
+    "unique": true,
+    "cost": 3,
+    "xp": 4,
+    "icons": {
+      "willpower": 1,
+      "wild": 2
+    },
+    "slots": ["hand"],
+    "uses": {
+      "count": 4,
+      "type": "secrets"
+    }
+  }
+]

@@ -245,9 +245,13 @@ import { STELLA_RENDERED_CODES } from './stella-clark'
 import { STELLA_SIDEBOARD_CODES } from './stella-sideboard'
 import { NATHANIEL_RENDERED_CODES } from './nathaniel-cho'
 import { HARVEY_RENDERED_CODES } from './harvey-walters'
+import { TOMMY_RENDERED_CODES } from './tommy-muldoon'
+import { CAROLYN_RENDERED_CODES } from './carolyn-fern'
+import { MIGUEL_RENDERED_CODES } from './miguel-de-la-cruz'
 import { WENDY_RENDERED_CODES } from './wendy-adams'
 import { MATEO_RENDERED_CODES } from './father-mateo'
 import { MARIE_RENDERED_CODES } from './marie-lambeau'
+import { MARIE_2025_RENDERED_CODES } from './marie-lambeau-2025'
 import { SURVIVOR_DECK_RENDERED_CODES } from './survivor-deck'
 import { BASIC_ABILITY_RENDERED_CODES } from './basic-abilities'
 import { BASIC_EVENT_RENDERED_CODES } from './basic-events'
@@ -385,9 +389,13 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...STELLA_SIDEBOARD_CODES,
   ...NATHANIEL_RENDERED_CODES,
   ...HARVEY_RENDERED_CODES,
+  ...TOMMY_RENDERED_CODES,
+  ...CAROLYN_RENDERED_CODES,
+  ...MIGUEL_RENDERED_CODES,
   ...WENDY_RENDERED_CODES,
   ...MATEO_RENDERED_CODES,
   ...MARIE_RENDERED_CODES,
+  ...MARIE_2025_RENDERED_CODES,
   ...SURVIVOR_DECK_RENDERED_CODES,
   ...MOVEMENT_SKILL_RENDERED_CODES,
   ...REACTIVE_EVENT_RENDERED_CODES,

@@ -46,7 +46,8 @@ export function registerTokenSkill(code: string): void {
     })
     return
   }
-  if (code === '03235') {
+  // Torrent of Power and its identical reprint in Marie Lambeau's starter deck (60469).
+  if (code === '03235' || code === '60469') {
     registerPlayerCard({
       code,
       observesCommitCopies: true,

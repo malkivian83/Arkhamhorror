@@ -570,6 +570,15 @@ export interface PlacedAsset {
   clues?: number
 }
 
+/** Player event attached to a location (Traps); its owner keeps control (RR Attach To). */
+export interface LocationAttachment {
+  id: string
+  code: CardCode
+  owner: InvestigatorId
+  location: LocationId
+  exhausted: boolean
+}
+
 /** Carta de Historia en juego junto al acto (facción aliada, rival…). */
 export interface StoryCardInPlay {
   code: CardCode
@@ -837,7 +846,8 @@ export type PhaseStep =
   | 'upkeepEnds'
 
 /** Todo lo que puede ocurrir en la partida. */
-export type Message = MessageBody & { effectSource?: string }
+/** `effectController`: investigator controlling the effect that produced it ("you"). */
+export type Message = MessageBody & { effectSource?: string; effectController?: InvestigatorId }
 type MessageBody =
   | { type: 'AddCommittedIcon'; commitId: number; icon: SkillIcon }
   | { type: 'GameBegins' }
@@ -1032,6 +1042,8 @@ type MessageBody =
   | {
       type: 'DiscoverClues'
       emptyClueChecked?: AssetId[]
+      /** The "when would discover clues" replacement window has already been offered. */
+      replacementChecked?: boolean
       investigator: InvestigatorId
       amount: number
       location?: LocationId
@@ -1124,6 +1136,8 @@ type MessageBody =
       byEffect?: boolean
       /** Play without paying the resource cost (including cost modifiers). */
       noCost?: boolean
+      /** An asset played this way enters play with these additional uses (Tommy Muldoon). */
+      entryUses?: number
     }
   | {
       type: 'ResolvePlayedCard'
@@ -1137,6 +1151,9 @@ type MessageBody =
       x?: number
       /** It was played from the discard pile (Winging It). */
       fromDiscard?: boolean
+      entryUses?: number
+      /** Resolved as if its player were at this location (Miguel's Knapsack). */
+      at?: LocationId
     }
   | {
       type: 'PutAssetIntoPlay'
@@ -1155,6 +1172,19 @@ type MessageBody =
       expeditionPartner?: ExpeditionPartner
       /** Continue with the exact instance id under data.asset, even after entry reactions. */
       onEntered?: Extract<Message, { type: 'PlayerCardEffect' }>
+      /** Additional uses it enters play with, on top of its printed uses (Tommy Muldoon). */
+      entryUses?: number
+    }
+  /**
+   * Move the latest copy of a resolving event from its owner's discard pile and attach it
+   * to an enemy, as an owned treachery-like attachment (Restrained). It returns to its
+   * owner's discard pile when discarded or when the enemy leaves play.
+   */
+  | {
+      type: 'AttachPlayerCardToEnemy'
+      investigator: InvestigatorId
+      code: CardCode
+      enemy: EnemyId
     }
   // ----- Cartas de Historia en juego y apoyos colocados -----
   | { type: 'PutStoryIntoPlay'; code: CardCode; name: string }
@@ -1210,7 +1240,8 @@ type MessageBody =
     }
   | { type: 'ExhaustAsset'; asset: AssetId }
   | { type: 'ReadyAsset'; asset: AssetId }
-  | { type: 'SpendUses'; asset: AssetId; amount: number }
+  /** `own`: the source of the uses is settled (no uses lent by other assets, Typewriter). */
+  | { type: 'SpendUses'; asset: AssetId; amount: number; own?: boolean }
   | { type: 'RemoveUses'; asset: AssetId; amount: number }
   | { type: 'SetAssetForm'; asset: AssetId; form: string }
   | { type: 'ReplaceSkillTestResults'; then: Message[] }
@@ -1281,6 +1312,11 @@ type MessageBody =
     }
   /** Cancel the held token and return it to the bag (Wendy Adams), and reveal a new one. */
   | { type: 'CancelRevealedToken'; redraw?: boolean; use?: string }
+  /**
+   * Cancel the held token, then reveal tokens until a symbol token: it resolves and the
+   * others are ignored (Sacrificial Doll). All of them return to the bag when the test ends.
+   */
+  | { type: 'RevealUntilSymbolToken' }
   | { type: 'IgnoreSkillTestTokens'; tokens: ChaosToken[] }
   | { type: 'TrackSkillTestReveals' }
   | { type: 'NameSkillTestToken'; asset: AssetId; token: ChaosToken }
@@ -1473,6 +1509,18 @@ type MessageBody =
       enemy: EnemyId
       investigator: InvestigatorId
       exhaustAfter: boolean
+      /** Another investigator takes all damage and horror from this attack (Retribution). */
+      damageTo?: InvestigatorId
+    }
+  /**
+   * The pending attack of this enemy deals its damage and horror to `investigator`
+   * instead; `then` resolves right after that attack (Retribution).
+   */
+  | {
+      type: 'RedirectEnemyAttackDamage'
+      enemy: EnemyId
+      investigator: InvestigatorId
+      then?: Message[]
     }
   /** Mira las `top` primeras de tu mazo, roba `picks` y el resto va al fondo (Unbridled Knowledge). */
   | {
@@ -1808,6 +1856,26 @@ type MessageBody =
       /** Limit 1 copy of this title per asset. */
       limitPerAsset?: boolean
     }
+  /**
+   * Attach the played event (already in its owner's discard pile) to a location. With
+   * `limitTrait`, it fails if a card with that trait is already attached there; with
+   * `limitTitle`, if a copy of this title is (RR Attach To: then it stays discarded).
+   */
+  | {
+      type: 'AttachEventToLocation'
+      investigator: InvestigatorId
+      code: CardCode
+      location: LocationId
+      limitTrait?: string
+      limitTitle?: boolean
+    }
+  | { type: 'ExhaustLocationAttachment'; attachment: string }
+  /** The attached event goes to its owner's discard pile. */
+  | { type: 'DiscardLocationAttachment'; attachment: string }
+  /** The queued resolution of this played event happens as if its player were at `location`. */
+  | { type: 'PlayEventAt'; investigator: InvestigatorId; code: CardCode; location: LocationId }
+  /** Ends an "as if you were at" resolution; `location` is where the investigator really is. */
+  | { type: 'EndPlayAt'; investigator: InvestigatorId; location: LocationId; at: LocationId }
   /** The asset leaves play without going to a discard pile. */
   | { type: 'RemoveAssetFromGame'; asset: AssetId; leavingResolved?: boolean }
   | { type: 'ExhaustUpgrade'; asset: AssetId; index: number }
@@ -1897,6 +1965,16 @@ type MessageBody =
     }
   /** Busca en las primeras cartas del mazo de encuentros un enemigo no Élite y lo roba. */
   | { type: 'SearchEncounterForEnemy'; investigator: InvestigatorId; top: number }
+  /**
+   * Search the top `top` cards of the encounter deck for an enemy of the investigator's choice,
+   * draw it and shuffle the encounter deck (Stalk Prey). `index`: the chosen card.
+   */
+  | {
+      type: 'SearchTopEncounterForEnemy'
+      investigator: InvestigatorId
+      top: number
+      index?: number
+    }
   | { type: 'DisengageAll'; investigator: InvestigatorId }
   /** El investigador elige una localización conectada a la que moverse. */
   /** `then`: resolved after moving, not when skipping (The Red Clock: move up to 3 times). */
@@ -2068,6 +2146,25 @@ export type Trigger =
   /** Tras ganar recursos por el efecto de una carta. */
   | { type: 'afterGainResources'; investigator: InvestigatorId; amount: number }
   | { type: 'afterDamageHealed'; investigator: InvestigatorId; amount: number }
+  /** After `healer` heals horror from an investigator or an asset (from every healing source). */
+  | {
+      type: 'afterHorrorHealed'
+      healer: InvestigatorId
+      amount: number
+      target:
+        | { type: 'investigator'; id: InvestigatorId }
+        | { type: 'asset'; id: AssetId; code: CardCode }
+    }
+  /**
+   * An investigator would discover clues. Reactions to it replace the discovery ("instead",
+   * Unbroken Web); skipping the window discovers them normally.
+   */
+  | {
+      type: 'whenWouldDiscoverClues'
+      investigator: InvestigatorId
+      location: LocationId
+      amount: number
+    }
   | { type: 'enemyExhausted'; enemy: EnemyId }
   | { type: 'afterCluesSpentOrPlaced'; investigator: InvestigatorId; amount: number }
   | { type: 'investigationPhaseEnds' }
@@ -2477,6 +2574,14 @@ export interface GameState {
   agendaHeld?: { phase: Phase; round: number }
   /** Ataque cancelado que aún no se ha resuelto. */
   canceledAttack?: EnemyId | null
+  /** Totals dealt by the latest enemy attack's assignment, numbered to tell them apart. */
+  lastAttackDamage?: {
+    seq: number
+    investigator: InvestigatorId
+    enemy: EnemyId
+    damage: number
+    horror: number
+  }
   /** Efectos pendientes "al final de tu turno". */
   endOfTurn?: { investigator: InvestigatorId; then: Message[] }[]
   endOfRound?: Message[]
@@ -2496,6 +2601,8 @@ export interface GameState {
   resolvingAssetActions?: { asset: AssetId; actions: number }[]
   /** Apoyos sin dueño (Invitados en localizaciones, reliquias vinculadas a enemigos). */
   placedAssets?: Record<PlacedAssetId, PlacedAsset>
+  /** Player events attached to locations, by attachment id. */
+  locationAttachments?: Record<string, LocationAttachment>
   /** Cartas de Historia en juego, por código. */
   stories?: Record<CardCode, StoryCardInPlay>
   /** Mazos propios del escenario (p. ej. el mazo de Invitados), por nombre. */

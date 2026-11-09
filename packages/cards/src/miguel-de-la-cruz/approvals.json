@@ -1,0 +1,100 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "sets": ["https://arkhamdb.com/set/mig"],
+  "cards": [
+    {
+      "code": "60551",
+      "status": "verified",
+      "module": "card-60551",
+      "test": "investigator.test.ts"
+    },
+    {
+      "code": "60552",
+      "status": "verified",
+      "module": "card-60552",
+      "test": "knapsack.test.ts"
+    },
+    {
+      "code": "60553",
+      "status": "verified",
+      "module": "card-60553",
+      "test": "weaknesses.test.ts"
+    },
+    {
+      "code": "60554",
+      "status": "verified",
+      "module": "card-60554",
+      "test": "weaknesses.test.ts"
+    },
+    {
+      "code": "60560",
+      "status": "verified",
+      "module": "card-60560",
+      "test": "reprint.test.ts",
+      "behaviorSource": "01075",
+      "equivalenceSha256": "a3e3a6075f390c3b8a716f9e0a7113182f17d3b87c835ed2dbe0cb91c9fa8f5e"
+    },
+    {
+      "code": "60562",
+      "status": "verified",
+      "module": "card-60562",
+      "test": "traps.test.ts"
+    },
+    {
+      "code": "60563",
+      "status": "verified",
+      "module": "card-60563",
+      "test": "traps.test.ts"
+    },
+    {
+      "code": "60565",
+      "status": "verified",
+      "module": "card-60565",
+      "test": "traps.test.ts"
+    },
+    {
+      "code": "60566",
+      "status": "verified",
+      "module": "card-60566",
+      "test": "traps.test.ts"
+    },
+    {
+      "code": "60567",
+      "status": "verified",
+      "module": "card-60567",
+      "test": "events.test.ts"
+    },
+    {
+      "code": "60576",
+      "status": "verified",
+      "module": "card-60576",
+      "test": "events.test.ts"
+    },
+    {
+      "code": "60578",
+      "status": "verified",
+      "module": "card-60578",
+      "test": "traps.test.ts"
+    },
+    {
+      "code": "60581",
+      "status": "verified",
+      "module": "card-60581",
+      "test": "traps.test.ts"
+    }
+  ],
+  "sources": [
+    {
+      "language": "en",
+      "url": "https://arkhamdb.com/api/public/cards/mig.json",
+      "sha256": "038368dbce38d59bf33b61cc02b792257b0d2cd805c794e0aac525f6a92a415d"
+    },
+    {
+      "language": "es",
+      "url": "https://es.arkhamdb.com/api/public/cards/mig.json",
+      "sha256": "ed2ca014872b1ba52b8b795e0dd556300ebf5e421749856be4b660c5a1a649b6"
+    }
+  ]
+}

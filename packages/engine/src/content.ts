@@ -28,6 +28,7 @@ import type {
   LocationId,
   Message,
   PlacedAsset,
+  LocationAttachment,
   PlayerCardDef,
   Prey,
   StoryCardInPlay,
@@ -242,6 +243,8 @@ export interface StoryBehavior {
 }
 
 export interface TreacheryBehavior {
+  /** Printed [reaction] abilities of a treachery in play (Unbroken Web). */
+  reactions?: (state: GameState, trigger: Trigger, self: Treachery) => ReactionOption[]
   blanksAssetTrait?: string
   /** Deja en blanco el texto de un apoyo concreto (Confianza rota, vinculada a un Aliado). */
   blanksAsset?: (state: GameState, self: Treachery, asset: Asset) => boolean
@@ -306,6 +309,8 @@ export interface TreacheryBehavior {
     attackTrait?: string
     /** No puede activar habilidades [action] de Lugares (Regalo de la locura: Miseria). */
     locationActionAbilities?: boolean
+    /** Its investigator cannot heal damage (Called to Guinée). */
+    damageHealing?: boolean
   }
   /** Se descarta en cuanto deja de cumplirse (Spires of Carcosa: su Lugar sin perdición). */
   persistsWhile?: (state: GameState, self: Treachery) => boolean
@@ -313,11 +318,18 @@ export interface TreacheryBehavior {
   actionCost?: (state: GameState, self: Treachery, action: Action) => number
   /** Vinculada a un enemigo: cambia sus valores y le quita palabras clave (Llevado a la locura). */
   attachedEnemy?: { fight?: number; evade?: number; health?: number; loses?: EnemyKeyword[] }
+  /** Attached to an enemy: that enemy cannot ready (Restrained). */
+  attachedEnemyCannotReady?: boolean
 }
 
 export interface EnemyBehavior {
   /** Permiso de combate remoto; no lo coloca allí ni permite enfrentarlo/evadirlo. */
   fightFromAnywhere?: boolean
+  /**
+   * RR Immune: "immune to player card effects" (Feline Hybrid). Player card effects can neither
+   * choose it as a target (attacks from player cards) nor damage it.
+   */
+  immuneToPlayerCards?: boolean
   /** An investigator defeated by this attack is killed instead. */
   attackKills?: boolean
   canBeAttacked?: (
@@ -582,6 +594,11 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /**
+   * Uses on this asset may be spent as if they were on other assets its controller
+   * controls with one of these traits and the same use type (Typewriter: Tome secrets).
+   */
+  lendsUses?: { traits: string[] }
   /** Continuous health/sanity granted to controlled assets with that printed statistic. */
   controlledAssetVitals?: { health?: number; sanity?: number }
   /** This asset allows uses on another controlled asset to pay for a card. */
@@ -751,6 +768,8 @@ export interface PlayerCardBehavior {
   extraSlots?: Partial<Record<SlotType, number>>
   /** Additional slots that only assets with one of the traits may use (Bandolier: Weapon hand). */
   restrictedSlots?: { slot: SlotType; count: number; trait: string | string[] }[]
+  /** While true for its controller, it does not take up its slots (Sacrificial Doll). */
+  slotFree?: (state: GameState, investigator: InvestigatorId) => boolean
   /** Damage or horror printed as already on the asset when it enters play (Jessica Hyde). */
   entersPlayWith?: { damage?: number; horror?: number }
   /** Initial uses can depend on the owner's purchased customizations. */
@@ -762,6 +781,18 @@ export interface PlayerCardBehavior {
   /** Sin dueño (colocado en una localización o enemigo): habilidades para quien esté allí. */
   placedAbilities?: AbilitiesFn<PlacedAsset>
   placedForced?: (state: GameState, trigger: Trigger, self: PlacedAsset) => Message[]
+  /** Event attached to a location: reactions its owner may trigger from any location. */
+  locationAttachmentReactions?: (
+    state: GameState,
+    trigger: Trigger,
+    self: LocationAttachment,
+  ) => ReactionOption[]
+  /** Event attached to a location: its forced abilities. */
+  locationAttachmentForced?: (
+    state: GameState,
+    trigger: Trigger,
+    self: LocationAttachment,
+  ) => Message[]
   code: CardCode
   /**
    * Evento: su efecto al jugarlo (`x`: el valor elegido para un coste X; `fromDiscard`: se jugó
@@ -939,13 +970,21 @@ export interface InvestigatorBehavior {
    * An additional action each turn, only to play cards with `trait` or activate [action]
    * abilities on them, available while `active` holds (Marie Lambeau: Spell, with doom).
    */
-  traitAction?: { trait: string; active: (state: GameState, self: Investigator) => boolean }
+  traitAction?: {
+    /** Cards with this trait (and [action] abilities on controlled assets with it). */
+    trait?: string
+    /** Only to play cards of this type (Miguel de la Cruz: events). */
+    cardType?: PlayerCardDef['type']
+    active: (state: GameState, self: Investigator) => boolean
+  }
   /** Additional resources collected in the upkeep phase (Jenny Barnes). */
   upkeepResources?: number
   /** Después de robar la mano inicial (tras el mulligan): Lola Hayes elige su papel. */
   afterOpeningHand?: (state: GameState, self: Investigator) => Message[]
   /** Puede jugar, comprometer o activar capacidades de esta carta (Lola Hayes). */
   canUseCard?: (state: GameState, self: Investigator, code: CardCode) => boolean
+  /** Abilities printed on the investigator card itself (Tommy Muldoon's [action]). */
+  abilities?: AbilitiesFn<Investigator>
 }
 
 const investigatorBehaviors = new Map<CardCode, InvestigatorBehavior>()
@@ -1032,7 +1071,38 @@ export function assetBehavior(state: GameState, asset: Asset): PlayerCardBehavio
       t.placement.investigator === asset.owner &&
       traits.includes(activeTreacheryBehavior(state, t)?.blanksAssetTrait ?? '\u0000'),
   )
-  return blank ? undefined : playerCardBehavior(asset.code)
+  const behavior = blank ? undefined : playerCardBehavior(asset.code)
+  if (!behavior || !playerCardDef(asset.code)?.uses) return behavior
+  const lent = usesLenders(state, asset).reduce((n, l) => n + l.uses, 0)
+  if (!lent) return behavior
+  // Its own abilities see the lent uses as available; SpendUses chooses the provider.
+  const lending = (a: Asset): Asset => (a.id === asset.id ? { ...a, uses: a.uses + lent } : a)
+  const { abilities, fastOptions, reactions, testOptions } = behavior
+  return {
+    ...behavior,
+    ...(abilities ? { abilities: (s, a, by) => abilities(s, lending(a), by) } : {}),
+    ...(fastOptions ? { fastOptions: (s, a) => fastOptions(s, lending(a)) } : {}),
+    ...(reactions ? { reactions: (s, t, a) => reactions(s, t, lending(a)) } : {}),
+    ...(testOptions ? { testOptions: (s, t, a) => testOptions(s, t, lending(a)) } : {}),
+  }
+}
+
+/** Data spells use types in singular or plural ("secret", "secrets"). */
+const useKind = (type: string | undefined) => type?.replace(/s$/, '')
+
+/** Other assets of its controller whose uses may be spent as if they were on `asset`. */
+export function usesLenders(state: GameState, asset: Asset): Asset[] {
+  const def = playerCardDef(asset.code)
+  if (!def?.uses) return []
+  return Object.values(state.assets).filter((lender) => {
+    if (lender.id === asset.id || lender.owner !== asset.owner) return false
+    const lends = playerCardBehavior(lender.code)?.lendsUses
+    return (
+      !!lends &&
+      useKind(playerCardDef(lender.code)?.uses?.type) === useKind(def.uses!.type) &&
+      def.traits.some((t) => lends.traits.includes(t))
+    )
+  })
 }
 
 /** RR Deckbuilding: the class, trait and level option allows this card. */
