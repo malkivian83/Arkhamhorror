@@ -1,5 +1,5 @@
 import { synchronizeTurnActions } from './turn-actions'
-import { messageSource, withEffectSource } from './effect-source'
+import { messageController, messageSource, withEffectSource } from './effect-source'
 import { discardOrphanedUpgrades } from './asset-upgrades'
 import { EngineError } from './errors'
 import { handle } from './handlers'
@@ -84,13 +84,16 @@ function run(initial: GameState, observer?: EngineObserver): GameState {
     )
     const source = messageSource(before, message)
     if (source) {
+      const controller = messageController(message)
       const previous = new Set(rest)
       state = {
         ...state,
-        queue: state.queue.map((m) => (previous.has(m) ? m : withEffectSource(m, source))),
+        queue: state.queue.map((m) =>
+          previous.has(m) ? m : withEffectSource(m, source, controller),
+        ),
         pending:
           state.pending && state.pending !== before.pending
-            ? withEffectSource(state.pending, source)
+            ? withEffectSource(state.pending, source, controller)
             : state.pending,
         log: state.log.map((entry, n) =>
           n < before.log.length

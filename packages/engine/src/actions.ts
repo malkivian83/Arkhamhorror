@@ -255,7 +255,7 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
   const location = getLocation(state, here)
   const enemiesHere = enemiesAt(state, here)
 
-  const trait = traitActionTrait(state, id)
+  const trait = traitActionAvailable(state, id)
   // Sin acciones normales, solo las adicionales: evitar (Trish Scarborough) o jugar cartas
   // de un rasgo (Marie Lambeau: Hechizos).
   if (
@@ -278,7 +278,7 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
       ? playableCards(state, id, false)
           .filter(
             (card) =>
-              hasTrait(card, trait) &&
+              traitActionCard(state, id, card) &&
               !evades.some((a) => a.kind === 'play' && a.card === card) &&
               actionCost(state, id, { kind: 'play', card }) <= 1,
           )
@@ -326,7 +326,7 @@ export function availableActions(state: GameState, id: InvestigatorId): Action[]
           (isFightAction(a) && state.activeTurn === id
             ? (investigator.fightActionsThisTurn ?? 0)
             : 0) +
-          (trait && a.kind === 'play' && hasTrait(a.card, trait) ? 1 : 0),
+          (trait && a.kind === 'play' && traitActionCard(state, id, a.card) ? 1 : 0),
   )
 }
 
@@ -362,11 +362,40 @@ export function engageActionsAvailable(state: GameState, id: InvestigatorId): nu
  * used for right now (Marie Lambeau: Spell, while she has doom on cards she controls).
  */
 export function traitActionTrait(state: GameState, id: InvestigatorId): string | null {
+  return traitActionAvailable(state, id)
+    ? (investigatorBehavior(id)?.traitAction?.trait ?? null)
+    : null
+}
+
+/** RR Additional Actions: the investigator's restricted additional action is unused and active. */
+export function traitActionAvailable(state: GameState, id: InvestigatorId): boolean {
   const investigator = getInvestigator(state, id)
   const extra = investigatorBehavior(id)?.traitAction
-  if (!extra || investigator.traitActionUsed || investigator.eliminated || state.activeTurn !== id)
-    return null
-  return extra.active(state, investigator) ? extra.trait : null
+  return (
+    !!extra &&
+    !investigator.traitActionUsed &&
+    !investigator.eliminated &&
+    state.activeTurn === id &&
+    extra.active(state, investigator)
+  )
+}
+
+/** The restricted additional action may pay for playing this card (Marie: Spell; Miguel: event). */
+export function traitActionCard(state: GameState, id: InvestigatorId, code: CardCode): boolean {
+  const extra = investigatorBehavior(id)?.traitAction
+  const def = playerCardDef(code)
+  return (
+    !!extra &&
+    !!def &&
+    traitActionAvailable(state, id) &&
+    (!extra.trait || def.traits.includes(extra.trait)) &&
+    (!extra.cardType || def.type === extra.cardType)
+  )
+}
+
+/** RR Immune: the enemy is immune to player card effects (Feline Hybrid). */
+export function immuneToPlayerCards(enemy: Enemy): boolean {
+  return !!enemyBehavior(enemy.code)?.immuneToPlayerCards
 }
 
 /** The [action] ability is printed on a controlled asset with the trait (key sset:…). */
@@ -666,6 +695,11 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
         }),
       ),
     ...(scenarioBehavior(state.scenarioId)?.abilities?.(state, null, id) ?? []),
+    // Abilities printed on the investigator card (Tommy Muldoon).
+    ...withTarget(investigatorBehavior(id)?.abilities?.(state, investigator, id) ?? [], {
+      type: 'investigator',
+      id,
+    }),
   ]
   const noFast = fastAbilitiesBlocked(state, id)
   const trait = traitActionTrait(state, id)
@@ -826,6 +860,7 @@ export function attackBlocked(
   return (
     !!enemy.hasNoStats ||
     enemyBehavior(enemy.code)?.canBeAttacked?.(state, enemy, id, source) === false ||
+    (source !== undefined && !!playerCardDef(source) && immuneToPlayerCards(enemy)) ||
     restricted(state, id, (r) => !!r.attackTrait && (enemy.traits ?? []).includes(r.attackTrait))
   )
 }
@@ -839,6 +874,10 @@ function attacksBlockedEnemy(state: GameState, id: InvestigatorId, a: AbilityOpt
     return !!e && attackBlocked(state, id, e, source)
   })
 }
+
+/** Cannot heal damage (Called to Guinée). */
+export const damageHealingBlocked = (state: GameState, id: InvestigatorId): boolean =>
+  restricted(state, id, (r) => r.damageHealing)
 
 /** No puede activar habilidades [fast] (Whispers in Your Head: Anxiety). */
 export const fastAbilitiesBlocked = (state: GameState, id: InvestigatorId): boolean =>

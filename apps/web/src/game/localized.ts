@@ -62,6 +62,14 @@ const INVESTIGATOR_PACKS: Record<string, string[]> = {
   // Nathaniel Cho and Harvey Walters: their complete investigator starter packs.
   nat: Array.from({ length: 32 }, (_, n) => String(60101 + n)),
   har: Array.from({ length: 33 }, (_, n) => String(60201 + n)),
+  // Tommy Muldoon: his complete investigator starter pack.
+  tom: Array.from({ length: 32 }, (_, n) => String(60151 + n)),
+  // Carolyn Fern: her complete investigator starter pack (60251–60282).
+  car: Array.from({ length: 32 }, (_, n) => String(60251 + n)),
+  // Miguel de la Cruz: his complete investigator starter pack (60551–60582).
+  mig: Array.from({ length: 32 }, (_, n) => String(60551 + n)),
+  // Marie Lambeau (60451): her complete investigator starter pack.
+  mar: Array.from({ length: 33 }, (_, n) => String(60451 + n)),
 }
 const packUrls = (host: string) =>
   Object.keys(INVESTIGATOR_PACKS).map((pack) => `https://${host}/api/public/cards/${pack}.json`)
@@ -80,7 +88,8 @@ const SOURCES: Record<string, string[]> = {
   ],
 }
 // v11: Nathaniel Cho and Harvey Walters in EN/ES.
-const CACHE_PREFIX = 'lcg:cards:v12:'
+// v13: Tommy Muldoon, Carolyn Fern, Marie Lambeau (starter) and Miguel de la Cruz.
+const CACHE_PREFIX = 'lcg:cards:v13:'
 const CACHE_HOURS = 24
 
 /** Bundled alternatives plus any available translated card data. */

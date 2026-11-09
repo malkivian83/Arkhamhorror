@@ -121,6 +121,7 @@ Documentos posteriores, por número:
 - [90 · Stella Clark](90-investigadora-stella-clark.md): su caja y las listas 25117 y 39832; exiliar, ventana de fracaso inminente, cancelar efectos de la prueba fracasada y pruebas sin fichas.
 - [91 · Banquillo de Stella](91-banquillo-stella-personalizables.md): cinco cartas y hojas de mejoras personalizables, con compra, persistencia y juego local/online.
 - [92 · Nathaniel Cho y Harvey Walters](92-nathaniel-cho-harvey-walters.md): dos mazos completos, investigadores y exclusivas, mejoras, reglas por fase y tamaño de mano, e Investigado.
+- [128 · Miguel de la Cruz](128-miguel-de-la-cruz.md): mazo completo, Trampas vinculadas a Lugares, jugar Eventos «como si» estuvieras en un Lugar conectado e inmunidad a efectos de cartas de Jugador.
 - [93 · Rex Murphy](93-rex-murphy.md): investigador original, exclusivas, Viejo libro de conocimiento y lista 21596 completa.
 - [93 · Variantes de encuentros](93-variantes-conjuntos-encuentros.md): elección original/capítulo 2 en Dunwich, Carcosa y Fanática; preparación, excepciones y persistencia local/online.
 - [94 · La llamada del Portador de la Plaga](94-portador-de-la-plaga.md): campaña fanmade; inventario de cartas EN/ES, bolsa, reglas nuevas, registro, errata, diferencias entre guías y decisiones pendientes.
@@ -137,6 +138,9 @@ Documentos posteriores, por número:
 - [105 · Servicios y Negociar](105-servicios-y-negociacion.md)
 
 - [106 · Los confines de la Tierra](106-confines-de-la-tierra.md): preparación inicial, inventario EN/ES y entregas para Helada, compañeros, ¡Tekeli-li! y recorrido de campaña.
+- [125 · Tommy Muldoon](125-tommy-muldoon.md): mazo inicial completo, investigador y exclusivas, Becky, Retenido, Subfusil Thompson y reedición de Golpe brutal (2).
+- [126 · Carolyn Fern](126-carolyn-fern.md): caja completa y mazo inicial; curación de horror atribuida a quien controla el efecto, ventana de «cuando fueses a descubrir pistas», usos prestados (Máquina de escribir) y Palabras de Bast.
+- [127 · Marie Lambeau (mazo de inicio)](127-marie-lambeau-mazo-de-inicio.md): investigadora 60451, distinta de 05006; su caja completa, Desquite, Sacrificio definitivo y Muñeca sacrificial.
 
 ## Decisiones ya tomadas
 

@@ -1,0 +1,200 @@
+[
+  {
+    "subname": "The Rancher",
+    "code": "60551",
+    "name": "Miguel de la Cruz",
+    "type": "investigator",
+    "class": "survivor",
+    "traits": ["Hunter", "Warden"],
+    "deckLimit": 1,
+    "unique": true,
+    "health": 8,
+    "sanity": 8,
+    "skills": {
+      "willpower": 3,
+      "intellect": 2,
+      "combat": 3,
+      "agility": 4
+    },
+    "deckSize": 30,
+    "deckOptions": [
+      {
+        "classes": ["survivor", "neutral"],
+        "maxLevel": 5
+      }
+    ],
+    "signatures": ["60552", "60553"]
+  },
+  {
+    "code": "60552",
+    "name": "Miguel's Knapsack",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item"],
+    "deckLimit": 1,
+    "unique": true,
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "wild": 2
+    },
+    "slots": ["body"],
+    "health": 2
+  },
+  {
+    "code": "60553",
+    "name": "Feline Hybrid",
+    "type": "enemy",
+    "class": "neutral",
+    "traits": ["Creature", "Mutated"],
+    "deckLimit": 1,
+    "weakness": "weakness",
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "health": 2
+  },
+  {
+    "code": "60554",
+    "name": "Blood Drinker",
+    "type": "enemy",
+    "class": "neutral",
+    "traits": ["Humanoid", "Monster"],
+    "deckLimit": 1,
+    "weakness": "basicweakness",
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "health": 3
+  },
+  {
+    "code": "60560",
+    "name": "Rabbit's Foot",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Item", "Charm"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": ["accessory"]
+  },
+  {
+    "code": "60562",
+    "name": "Decoy Trap",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Trap", "Trick"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "combat": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60563",
+    "name": "Glassing",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Insight", "Trap"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60565",
+    "name": "Hidden Shelter",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Supply", "Trick"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "60566",
+    "name": "Lie in Wait",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Tactic", "Trap"],
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "combat": 1,
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60567",
+    "name": "Stalk Prey",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Tactic"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "intellect": 1,
+      "agility": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60576",
+    "name": "Guerrilla Tactics",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Tactic"],
+    "cost": 1,
+    "xp": 2,
+    "icons": {
+      "combat": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60578",
+    "name": "Rope Trap",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Trap", "Trick"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "intellect": 1,
+      "combat": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60581",
+    "name": "Makeshift Bomb",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Trap"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {
+      "combat": 1,
+      "agility": 1,
+      "wild": 1
+    },
+    "slots": []
+  }
+]

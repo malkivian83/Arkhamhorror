@@ -1,0 +1,62 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "sets": ["https://arkhamdb.com/set/car"],
+  "cards": [
+    {
+      "code": "60251",
+      "status": "verified",
+      "module": "card-60251",
+      "test": "investigator.test.ts"
+    },
+    {
+      "code": "60252",
+      "status": "verified",
+      "module": "card-60252",
+      "test": "signatures.test.ts"
+    },
+    {
+      "code": "60253",
+      "status": "verified",
+      "module": "card-60253",
+      "test": "signatures.test.ts"
+    },
+    {
+      "code": "60254",
+      "status": "verified",
+      "module": "card-60254",
+      "test": "signatures.test.ts"
+    },
+    {
+      "code": "60257",
+      "status": "verified",
+      "module": "card-60257",
+      "test": "healing.test.ts"
+    },
+    {
+      "code": "60272",
+      "status": "verified",
+      "module": "card-60272",
+      "test": "typewriter.test.ts"
+    },
+    {
+      "code": "60279",
+      "status": "verified",
+      "module": "card-60279",
+      "test": "words-of-bast.test.ts"
+    }
+  ],
+  "sources": [
+    {
+      "language": "en",
+      "url": "https://arkhamdb.com/api/public/cards/car.json",
+      "sha256": "fbce8b19bc304b881cb02131ef0677ec74120d58da538c415c84b3c00cf76dfc"
+    },
+    {
+      "language": "es",
+      "url": "https://es.arkhamdb.com/api/public/cards/car.json",
+      "sha256": "48c3db39b7c4bb6364c22b78ebb67b1c11f2d9eabe25b959662d4a7475c217de"
+    }
+  ]
+}

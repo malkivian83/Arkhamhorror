@@ -37,6 +37,10 @@ import marie from '../data/marie-lambeau.json'
 import stella from '../data/stella-clark.json'
 import nathaniel from '../data/nathaniel-cho.json'
 import harvey from '../data/harvey-walters.json'
+import tommy from '../data/tommy-muldoon.json'
+import carolyn from '../data/carolyn-fern.json'
+import miguel from '../data/miguel-de-la-cruz.json'
+import marie2025 from '../data/marie-lambeau-2025.json'
 import jennyDecklist from '../jenny-barnes/decklist-1179.json'
 
 /**
@@ -77,6 +81,10 @@ registerPlayerCards([
   ...(stella as PlayerCardDef[]),
   ...(nathaniel as PlayerCardDef[]),
   ...(harvey as PlayerCardDef[]),
+  ...(tommy as PlayerCardDef[]),
+  ...(carolyn as PlayerCardDef[]),
+  ...(miguel as PlayerCardDef[]),
+  ...(marie2025 as PlayerCardDef[]),
 ])
 
 /** Código de carta a partir del número de colección de la caja (p. ej. 20 → "12020"). */
@@ -125,6 +133,54 @@ export const STARTER_DECKS: Record<string, DeckList> = {
       '60203',
       '60204',
       ...Array.from({ length: 15 }, (_, n) => String(60205 + n)).flatMap((c) => [c, c]),
+    ],
+  },
+  tommy: {
+    investigator: 1,
+    investigatorCode: '60151',
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      '60152',
+      '60153',
+      '60154',
+      ...Array.from({ length: 15 }, (_, n) => String(60155 + n)).flatMap((c) => [c, c]),
+    ],
+  },
+  carolyn: {
+    investigator: 4,
+    investigatorCode: '60251',
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      '60252',
+      '60253',
+      '60254',
+      ...Array.from({ length: 15 }, (_, n) => String(60255 + n)).flatMap((c) => [c, c]),
+    ],
+  },
+  // Miguel de la Cruz: his official starter deck, signatures and basic weakness, Blood Drinker.
+  miguel: {
+    investigator: 13,
+    investigatorCode: '60551',
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      '60552',
+      '60553',
+      '60554',
+      ...Array.from({ length: 15 }, (_, n) => String(60555 + n)).flatMap((c) => [c, c]),
+    ],
+  },
+  // Marie Lambeau (60451): her official Investigator Starter Deck, distinct from 05006.
+  marie2025: {
+    investigator: 10,
+    investigatorCode: '60451',
+    cards: [],
+    weaknesses: [],
+    cardCodes: [
+      ...['60452', '60453', '60454'],
+      ...Array.from({ length: 15 }, (_, n) => String(60455 + n)).flatMap((c) => [c, c]),
     ],
   },
   // ArkhamDB decklist 1179 with its exact codes; 01000 becomes a real basic weakness.

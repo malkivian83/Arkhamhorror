@@ -1,0 +1,118 @@
+[
+  {
+    "subname": "The Officer",
+    "code": "60151",
+    "name": "Tommy Muldoon",
+    "type": "investigator",
+    "class": "guardian",
+    "traits": ["Police"],
+    "deckLimit": 1,
+    "unique": true,
+    "health": 9,
+    "sanity": 6,
+    "skills": {
+      "willpower": 3,
+      "intellect": 3,
+      "combat": 4,
+      "agility": 2
+    },
+    "deckSize": 30,
+    "deckOptions": [
+      {
+        "classes": ["guardian", "neutral"],
+        "maxLevel": 5
+      }
+    ],
+    "signatures": ["60152", "60153"]
+  },
+  {
+    "subname": "Custom Marlin Model 1894",
+    "code": "60152",
+    "name": "Becky",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Firearm"],
+    "deckLimit": 1,
+    "unique": true,
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "combat": 1,
+      "wild": 1
+    },
+    "slots": ["hand", "hand"],
+    "uses": {
+      "count": 2,
+      "type": "ammo"
+    }
+  },
+  {
+    "code": "60153",
+    "name": "Loose Cannon",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Flaw"],
+    "deckLimit": 1,
+    "weakness": "weakness",
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "60154",
+    "name": "Overconfident",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Flaw"],
+    "deckLimit": 1,
+    "weakness": "basicweakness",
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "60165",
+    "name": "Restrained",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "agility": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60176",
+    "name": "Vicious Blow",
+    "type": "skill",
+    "class": "guardian",
+    "traits": ["Practiced", "Expert"],
+    "xp": 2,
+    "icons": {
+      "combat": 2
+    },
+    "slots": []
+  },
+  {
+    "code": "60182",
+    "name": "Thompson Submachine Gun",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Weapon", "Firearm"],
+    "cost": 6,
+    "xp": 5,
+    "icons": {
+      "combat": 2
+    },
+    "slots": ["hand", "hand"],
+    "uses": {
+      "count": 6,
+      "type": "ammo"
+    }
+  }
+]

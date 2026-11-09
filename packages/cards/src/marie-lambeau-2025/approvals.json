@@ -1,0 +1,84 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "sets": ["https://arkhamdb.com/set/mar"],
+  "sources": [
+    {
+      "language": "en",
+      "url": "https://arkhamdb.com/api/public/cards/mar.json",
+      "sha256": "d57e23c877ccb03db7f4aee81c7c9e3acee94f6507a69c758e2053b353297ee1"
+    },
+    {
+      "language": "es",
+      "url": "https://es.arkhamdb.com/api/public/cards/mar.json",
+      "sha256": "d66d979d30d5d85923a7b52aaf85cc945f5bdd7d4df0befd18ed92e75971a348"
+    }
+  ],
+  "cards": [
+    {
+      "code": "60451",
+      "status": "verified",
+      "module": "card-60451",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60452",
+      "status": "verified",
+      "module": "signatures",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60453",
+      "status": "verified",
+      "module": "signatures",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60454",
+      "status": "verified",
+      "module": "card-60454",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60455",
+      "status": "verified",
+      "module": "reprints",
+      "test": "integration.test.ts",
+      "behaviorSource": "01063",
+      "equivalenceSha256": "0f527a4425e2185eea125ff2fbd56cf5280f57dba792b634e19f795ead35a4a3"
+    },
+    {
+      "code": "60458",
+      "status": "verified",
+      "module": "card-60458",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60469",
+      "status": "verified",
+      "module": "reprints",
+      "test": "integration.test.ts",
+      "behaviorSource": "03235",
+      "equivalenceSha256": "65c53796e910e82457b0564bcb131a876cca46f02932f10c4f29b9e2c9bb5034"
+    },
+    {
+      "code": "60473",
+      "status": "verified",
+      "module": "card-60473",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60480",
+      "status": "verified",
+      "module": "card-60480",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60483",
+      "status": "verified",
+      "module": "card-60483",
+      "test": "rules.test.ts"
+    }
+  ]
+}

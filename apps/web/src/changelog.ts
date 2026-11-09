@@ -1,6 +1,16 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'starter-decks-tommy-carolyn-marie-miguel',
+    date: '2026-11-09',
+    title: 'app.changelog.starterDecks2.title',
+    items: [
+      'app.changelog.starterDecks2.investigators',
+      'app.changelog.starterDecks2.decks',
+      'app.changelog.starterDecks2.rules',
+    ],
+  },
+  {
     id: 'fatal-mirage-playable',
     date: '2026-11-06',
     title: 'app.changelog.fatalMirageRelease.title',

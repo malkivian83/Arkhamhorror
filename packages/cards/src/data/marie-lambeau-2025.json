@@ -1,0 +1,153 @@
+[
+  {
+    "subname": "The Entertainer",
+    "code": "60451",
+    "name": "Marie Lambeau",
+    "type": "investigator",
+    "class": "mystic",
+    "traits": ["Performer", "Witch"],
+    "deckLimit": 1,
+    "unique": true,
+    "health": 8,
+    "sanity": 7,
+    "skills": {
+      "willpower": 4,
+      "intellect": 4,
+      "combat": 1,
+      "agility": 3
+    },
+    "deckSize": 30,
+    "deckOptions": [
+      {
+        "classes": ["mystic", "neutral"],
+        "maxLevel": 5
+      }
+    ],
+    "signatures": ["60452", "60453"]
+  },
+  {
+    "code": "60452",
+    "name": "Grand-Mère's Charm",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Charm", "Occult", "Blessed"],
+    "deckLimit": 1,
+    "unique": true,
+    "cost": 2,
+    "xp": 0,
+    "icons": {
+      "willpower": 2,
+      "wild": 1
+    },
+    "slots": ["accessory"],
+    "health": 3
+  },
+  {
+    "code": "60453",
+    "name": "Called to Guinée",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Curse", "Pact"],
+    "deckLimit": 1,
+    "weakness": "weakness",
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "60454",
+    "name": "Hemophobia",
+    "type": "treachery",
+    "class": "neutral",
+    "traits": ["Terror"],
+    "deckLimit": 1,
+    "weakness": "basicweakness",
+    "xp": 0,
+    "icons": {},
+    "slots": []
+  },
+  {
+    "code": "60455",
+    "name": "Arcane Initiate",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Ally", "Sorcerer"],
+    "cost": 1,
+    "xp": 0,
+    "icons": {
+      "willpower": 1
+    },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 2
+  },
+  {
+    "code": "60458",
+    "name": "Sacrificial Doll",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Charm", "Occult"],
+    "cost": 3,
+    "xp": 0,
+    "icons": {
+      "willpower": 1,
+      "combat": 1
+    },
+    "slots": ["hand"],
+    "health": 1
+  },
+  {
+    "code": "60469",
+    "name": "Torrent of Power",
+    "type": "skill",
+    "class": "mystic",
+    "traits": ["Practiced"],
+    "xp": 0,
+    "icons": {
+      "wild": 1
+    },
+    "slots": []
+  },
+  {
+    "code": "60473",
+    "name": "Retribution",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Spirit"],
+    "cost": 2,
+    "xp": 2,
+    "icons": {
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60480",
+    "name": "Ultimate Sacrifice",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Spirit"],
+    "cost": 0,
+    "xp": 4,
+    "icons": {
+      "wild": 1
+    },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "60483",
+    "name": "Bend Blood",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Cursed"],
+    "cost": 2,
+    "xp": 5,
+    "icons": {
+      "willpower": 2,
+      "combat": 2
+    },
+    "slots": []
+  }
+]

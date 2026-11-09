@@ -17,10 +17,15 @@ import { cardName } from '../game/cards'
 import { localName } from '../game/localized'
 import { newDeckId, useDecksStore } from '../stores/decks'
 
-const { t } = useI18n()
+const { t, te } = useI18n()
 const router = useRouter()
 const store = useDecksStore()
 const name = (code: string) => localName(cardName(code))
+/** Investigators sharing a name (Marie Lambeau 05006 and 60451) show their edition. */
+const investigatorLabel = (code: string) =>
+  te('investigator.editions.' + code)
+    ? `${name(code)} · ${t('investigator.editions.' + code)}`
+    : name(code)
 const investigators = investigatorCards()
 const newInvestigator = ref(investigators[0]?.code ?? '')
 const fromStarter = ref(true)
@@ -82,7 +87,7 @@ async function importDeck() {
             {{ t('table.investigator') }}
             <select v-model="newInvestigator">
               <option v-for="i in investigators" :key="i.code" :value="i.code">
-                {{ name(i.code) }}
+                {{ investigatorLabel(i.code) }}
               </option>
             </select>
           </label>

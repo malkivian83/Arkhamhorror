@@ -8,8 +8,8 @@ export function buildStarterDefinitions(inventory, source, approvals) {
     if (!raw || !card || card.modelIssues.length)
       throw new Error('Unsupported starter card: ' + approval.code)
     const numeric = (key) => card.numbers[key]?.value
+    const uses = raw.text?.match(/Uses \((\d+) (\w+)\)/)
     if (card.classification === 'standard-candidate' && !raw.permanent) {
-      const uses = raw.text?.match(/Uses \((\d+) (\w+)\)/)
       return {
         ...(raw.subname ? { subname: raw.subname } : {}),
         ...approvedDefinition(card, {
@@ -56,6 +56,8 @@ export function buildStarterDefinitions(inventory, source, approvals) {
       slots: card.slots.slots,
       ...(numeric('health') !== undefined ? { health: numeric('health') } : {}),
       ...(numeric('sanity') !== undefined ? { sanity: numeric('sanity') } : {}),
+      // Signature assets keep their printed uses (Becky).
+      ...(uses ? { uses: { count: Number(uses[1]), type: uses[2] } } : {}),
     }
   })
 }

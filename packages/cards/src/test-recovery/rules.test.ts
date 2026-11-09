@@ -168,6 +168,7 @@ it.each(['05119', '05194', '05195'])(
         investigator: 'a',
         amount: 1,
         effectSource: playerCardDef(code)!.name,
+        effectController: 'a',
       })
     if (code === '05195') expect(s.skillTest!.tokenOnFail).toHaveLength(1)
   },

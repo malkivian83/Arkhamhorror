@@ -1,0 +1,69 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "rulesRevision": 1,
+  "presentation": "rendered",
+  "sets": ["https://arkhamdb.com/set/tom"],
+  "cards": [
+    {
+      "code": "60151",
+      "status": "verified",
+      "module": "card-60151",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60152",
+      "status": "verified",
+      "module": "card-60152",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60153",
+      "status": "verified",
+      "module": "card-60153",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60154",
+      "status": "verified",
+      "module": "card-60154",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60165",
+      "status": "verified",
+      "module": "card-60165",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60176",
+      "status": "verified",
+      "module": "card-60176",
+      "test": "rules.test.ts",
+      "behaviorSource": "02299",
+      "equivalenceSha256": "f3622c3cd7ca77781f2b8f63e968a2026e4d2908709a90355c660515e0116e15"
+    },
+    {
+      "code": "60182",
+      "status": "verified",
+      "module": "card-60182",
+      "test": "rules.test.ts"
+    }
+  ],
+  "sources": [
+    {
+      "language": "en",
+      "url": "https://arkhamdb.com/api/public/cards/tom.json",
+      "sha256": "c568a358f342f4781dd70bd8231510413a365f8a8c50ff044a41177dfd7988fd"
+    },
+    {
+      "language": "es",
+      "url": "https://es.arkhamdb.com/api/public/cards/tom.json",
+      "sha256": "d9f973bf8e8daa946bb33d544d074e6164196c58f86efba39eb0a546619f5e92"
+    },
+    {
+      "language": "en",
+      "url": "https://arkhamdb.com/api/public/card/02299",
+      "sha256": "9e269de9b26ecdde309a2a2f6dc374337f0266c318e317251ce747a9f02e7afb"
+    }
+  ]
+}

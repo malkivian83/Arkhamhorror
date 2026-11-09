@@ -33,7 +33,10 @@ import { localName } from '../game/localized'
  * rejilla de retratos con búsqueda y filtros por clase, y una barra fija al pie
  * con el expediente (campaña, equipo, dificultad) y el botón para empezar.
  */
-const { t, locale } = useI18n()
+const { t, te, locale } = useI18n()
+/** Edition that tells apart investigators sharing a name (Marie Lambeau 05006 and 60451). */
+const edition = (code: string) =>
+  te('investigator.editions.' + code) ? t('investigator.editions.' + code) : ''
 const router = useRouter()
 const game = useGameStore()
 const deckStore = useDecksStore()
@@ -217,6 +220,9 @@ const classColor = (faction: string) => `var(--class-${faction})`
 function toggle(key: DeckKey) {
   teamNotice.value = ''
   if (chosen.value.includes(key)) chosen.value = chosen.value.filter((k) => k !== key)
+  // RR "Choose Investigators": each investigator in the group has a different title.
+  else if (chosen.value.some((k) => starterInvestigator(k).name === starterInvestigator(key).name))
+    teamNotice.value = t('setup.sameInvestigator')
   else if (chosen.value.length < 4) chosen.value = [...chosen.value, key]
   else teamNotice.value = t('setup.teamLimit')
 }
@@ -537,6 +543,7 @@ function start() {
                 }}</span>
               </span>
               <span class="ui-portrait-name">{{ localName(inv.name) }}</span>
+              <span v-if="edition(inv.id)" class="ui-portrait-meta">{{ edition(inv.id) }}</span>
               <span class="ui-portrait-meta"
                 ><span class="ui-dot" :style="{ '--dot': classColor(inv.faction) }" />{{
                   t(`class.${inv.faction}`)

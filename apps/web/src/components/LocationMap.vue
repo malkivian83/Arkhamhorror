@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useTableGame } from '../game/tableController'
-import { printedCode, shroudOf, type GameState, type Location } from '@lcg/engine'
+import { playerCardDef, printedCode, shroudOf, type GameState, type Location } from '@lcg/engine'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { cardBackImage } from '../game/assets'
@@ -100,6 +100,9 @@ const treacheriesOn = (enemy: string) =>
   Object.values(props.state.treacheries).filter(
     (tr) => tr.placement.type === 'enemy' && tr.placement.enemy === enemy,
   )
+/** Player events attached to the location (Miguel de la Cruz's Traps). */
+const eventsAt = (id: string) =>
+  Object.values(props.state.locationAttachments ?? {}).filter((a) => a.location === id)
 const treacheriesAt = (id: string) =>
   Object.values(props.state.treacheries).filter(
     (tr) => tr.placement.type === 'location' && tr.placement.location === id,
@@ -295,6 +298,15 @@ const treacheriesAt = (id: string) =>
             />
           </GameCard>
         </TableTarget>
+        <GameCard
+          v-for="a in eventsAt(l.id)"
+          :key="a.id"
+          :code="a.code"
+          :name="playerCardDef(a.code)?.name ?? a.code"
+          :width="54"
+          :exhausted="a.exhausted"
+          color="#3f6b4a"
+        />
         <TableTarget
           v-for="e in enemiesAt(l.id).filter((x) => !x.engagedWith)"
           :key="e.id"
