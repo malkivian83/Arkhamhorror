@@ -677,6 +677,20 @@ export type SkillTestKind =
       onSuccessEach?: Message[]
     }
 
+/**
+ * "Reveal N chaos tokens instead of 1. Choose 1 of those tokens to resolve, and ignore the
+ * rest" (Grotesque Statue), optionally preferring some faces (Dark Prophecy), or "reveal
+ * tokens until a symbol is revealed" (Katarina Sojka).
+ */
+export interface TokenRevealReplacement {
+  investigator: InvestigatorId
+  reveal: number
+  prefer?: ChaosToken[]
+  untilSymbol?: boolean
+  /** Card whose effect made the choice (Breath of the Sleeper checks its own choice). */
+  source?: string
+}
+
 /** Card a chaos token is sealed on; a committed skill card holds it until the test ends. */
 export type SealHolder =
   | { type: 'asset'; id: AssetId }
@@ -777,6 +791,8 @@ export interface SkillTest {
   succeeded: boolean | null
   /** Al revelar, se sacan 2 fichas y este investigador elige cuál resolver (Mask of Silenus). */
   chooseToken?: InvestigatorId
+  /** The last "reveal several, resolve one" choice of this test (Eyes of the Dreamer). */
+  tokenChoice?: { chosen: ChaosToken; ignored: ChaosToken[]; source?: string }
   /** Fichas sacadas pero ignoradas: vuelven a la bolsa al terminar la prueba. */
   ignoredTokens?: ChaosToken[]
   tokenPredictions?: Record<AssetId, ChaosToken>
@@ -1309,6 +1325,10 @@ type MessageBody =
       fromBag?: boolean
       /** Once-per-ability reactions already used on this reveal (Wendy Adams). */
       used?: string[]
+      /** The "when you would reveal" window was already offered for this reveal. */
+      offered?: boolean
+      /** Tokens revealed with the chosen one and ignored (Grotesque Statue). */
+      ignored?: ChaosToken[]
     }
   /** Cancel the held token and return it to the bag (Wendy Adams), and reveal a new one. */
   | { type: 'CancelRevealedToken'; redraw?: boolean; use?: string }
@@ -1333,6 +1353,25 @@ type MessageBody =
     }
   /** La próxima ficha se revela de dos en dos y se elige una (Mask of Silenus). */
   | { type: 'RevealExtraToken'; investigator: InvestigatorId }
+  /** Replaces the next chaos token reveal of the declaring investigator. */
+  | { type: 'ReplaceNextTokenReveal'; replacement: TokenRevealReplacement }
+  /** Tokens drawn by a replacement: the chooser resolves one and the others are ignored. */
+  | {
+      type: 'ChooseRevealedToken'
+      investigator: InvestigatorId
+      tokens: ChaosToken[]
+      prefer?: ChaosToken[]
+      source?: string
+      /** Outside a skill test, the reveal it replaces. */
+      outside?: Extract<Message, { type: 'RevealTokenOutsideTest' }>
+    }
+  | {
+      type: 'ResolveChosenToken'
+      token: ChaosToken
+      ignored: ChaosToken[]
+      source?: string
+      outside?: Extract<Message, { type: 'RevealTokenOutsideTest' }>
+    }
   /** La prueba en curso tiene éxito por 0 (Scrape By). */
   | { type: 'ForceSkillTestSuccess'; replaceFailure?: boolean }
   /** La prueba en curso fracasa automáticamente (El juramento inconfesable, [elder_thing]). */
@@ -2551,9 +2590,15 @@ export interface GameState {
   }[]
   /** La perdición que se colocaría pasa a ser 1 daño directo a cada investigador. */
   doomBecomesDamage?: boolean
+  /** Declared replacement for the next chaos token reveal (Grotesque Statue, Dark Prophecy). */
+  nextTokenReplacement?: TokenRevealReplacement
+  /** Open "when you would reveal a chaos token" window outside a skill test. */
+  wouldReveal?: { investigator: InvestigatorId }
   /** A chaos token revealed outside a skill test, held during its "when revealed" window. */
   tokenReveal?: {
     hold?: boolean
+    /** Tokens revealed with it and ignored; they leave the bag together (Grotesque Statue). */
+    ignored?: ChaosToken[]
     investigator: InvestigatorId
     token: ChaosToken
     face: ChaosToken

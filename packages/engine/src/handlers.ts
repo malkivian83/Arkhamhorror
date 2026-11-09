@@ -5136,6 +5136,27 @@ export function handle(state: GameState, message: Message): GameState {
       const sealed =
         message.token === undefined ? (state.sealed ?? []).find((e) => !e.holder) : undefined
       const stillSealed = (state.sealed ?? []).filter((e) => e !== sealed)
+      // RR Triggered Abilities: a declared "when you would reveal" replacement (Grotesque
+      // Statue, Katarina Sojka) applies to this reveal only.
+      const replacement = state.nextTokenReplacement
+      if (replacement && message.token === undefined) {
+        const { nextTokenReplacement: _used, ...cleared } = state
+        if (!sealed && state.chaosBag.length) {
+          if (replacement.untilSymbol) return push(cleared, { type: 'RevealUntilSymbolToken' })
+          const [drawn, chaosBag, rng] = drawTokens(state, replacement.reveal)
+          return push(
+            { ...cleared, rng, chaosBag },
+            {
+              type: 'ChooseRevealedToken',
+              investigator: replacement.investigator,
+              tokens: drawn,
+              ...(replacement.prefer ? { prefer: replacement.prefer } : {}),
+              ...(replacement.source ? { source: replacement.source } : {}),
+            },
+          )
+        }
+        return push(cleared, message)
+      }
       // RR Seal: "when you would reveal a chaos token from the chaos bag", an asset may
       // resolve its sealed token instead (The Codex of Ages).
       const instead = sealedInstead(state, test.investigator)
@@ -5402,7 +5423,7 @@ export function handle(state: GameState, message: Message): GameState {
       if (!held) return state
       const { tokenReveal: _held, ...rest } = state
       const next = log(
-        { ...rest, chaosBag: withTokenAt(rest.chaosBag, held) },
+        { ...rest, chaosBag: [...withTokenAt(rest.chaosBag, held), ...(held.ignored ?? [])] },
         'log.tokenCanceled',
         {
           token: String(held.face),
@@ -5463,8 +5484,19 @@ export function handle(state: GameState, message: Message): GameState {
         if (!held) return state
         const { tokenReveal: _held, ...rest } = state
         return push(
-          { ...rest, chaosBag: held.hold ? rest.chaosBag : withTokenAt(rest.chaosBag, held) },
-          revealedThen(held.then, held.token, held.face, held.index),
+          {
+            ...rest,
+            chaosBag: held.hold
+              ? rest.chaosBag
+              : [...withTokenAt(rest.chaosBag, held), ...(held.ignored ?? [])],
+          },
+          revealedThen(
+            held.then,
+            held.token,
+            held.face,
+            held.index,
+            held.hold ? held.ignored : undefined,
+          ),
         )
       }
       if (message.token === undefined) {
@@ -5492,6 +5524,61 @@ export function handle(state: GameState, message: Message): GameState {
             ),
           )
       }
+      if (message.token === undefined) {
+        if (!message.offered) {
+          const open: GameState = { ...state, wouldReveal: { investigator } }
+          const options = wouldRevealWindow(open, investigator)
+          if (options.length)
+            return push(
+              open,
+              {
+                type: 'Ask',
+                investigator,
+                question: {
+                  kind: 'chooseOne',
+                  alwaysAsk: true,
+                  prompt: 'prompt.wouldRevealToken',
+                  choices: [
+                    ...options.map((o): Choice => ({
+                      label: o.label,
+                      ...(o.params ? { params: o.params } : {}),
+                      then: [
+                        {
+                          type: 'UseAbility',
+                          investigator: o.investigator,
+                          key: o.key,
+                          actions: 0,
+                          provokes: false,
+                          ...(o.limit ? { limit: o.limit } : {}),
+                          then: o.then,
+                        },
+                      ],
+                    })),
+                    { label: 'choice.revealToken', then: [] },
+                  ],
+                },
+              },
+              { ...message, offered: true },
+            )
+        }
+        const replacement = state.nextTokenReplacement
+        const { wouldReveal: _open, nextTokenReplacement: _used, ...closed } = state
+        state = closed
+        if (replacement && !replacement.untilSymbol && state.chaosBag.length) {
+          const [drawn, chaosBag, rng] = drawTokens(state, replacement.reveal)
+          return push(
+            { ...state, rng, chaosBag },
+            {
+              type: 'ChooseRevealedToken',
+              investigator: replacement.investigator,
+              tokens: drawn,
+              ...(replacement.prefer ? { prefer: replacement.prefer } : {}),
+              ...(replacement.source ? { source: replacement.source } : {}),
+              outside: { ...message, offered: true },
+            },
+          )
+        }
+      }
       const chosen = message.token !== undefined
       if (!chosen && state.chaosBag.length === 0) return state
       const [index, rng] = chosen
@@ -5516,6 +5603,7 @@ export function handle(state: GameState, message: Message): GameState {
           index,
           then: message.then,
           used: message.used ?? [],
+          ...(message.ignored?.length ? { ignored: message.ignored } : {}),
         },
       }
       if (
@@ -5532,10 +5620,10 @@ export function handle(state: GameState, message: Message): GameState {
           chaosBag: message.hold
             ? holding.chaosBag
             : chosen
-              ? [...state.chaosBag, token]
+              ? [...state.chaosBag, token, ...(message.ignored ?? [])]
               : state.chaosBag,
         },
-        revealedThen(message.then, token, token, index),
+        revealedThen(message.then, token, token, index, message.hold ? message.ignored : undefined),
       )
     }
 
@@ -5980,8 +6068,9 @@ export function handle(state: GameState, message: Message): GameState {
       // Las cartas comprometidas van a la pila de descartes de su dueño.
       const test = state.skillTest
       const tokens = test ? returnedTokens(test) : []
+      const { nextTokenReplacement: _unused, ...withoutReplacement } = state
       let next: GameState = {
-        ...state,
+        ...withoutReplacement,
         skillTest: null,
         chaosBag: [...state.chaosBag, ...tokens],
         ...(test?.origin && test.succeeded !== null
@@ -6265,6 +6354,67 @@ export function handle(state: GameState, message: Message): GameState {
       )
     }
 
+    case 'ReplaceNextTokenReveal':
+      return { ...state, nextTokenReplacement: message.replacement }
+    case 'ChooseRevealedToken': {
+      const { tokens, prefer } = message
+      const preferred = prefer ? tokens.filter((t) => prefer.includes(t)) : []
+      const faces = [...new Set(preferred.length ? preferred : tokens)]
+      if (!faces.length) return message.outside ? push(state, message.outside) : state
+      const without = (token: ChaosToken) => {
+        const at = tokens.indexOf(token)
+        return tokens.filter((_, n) => n !== at)
+      }
+      return push(
+        log(state, 'log.tokensRevealedChoice', { tokens: tokens.map(String).join(' ') }),
+        {
+          type: 'Ask',
+          investigator: message.investigator,
+          question: {
+            kind: 'chooseOne',
+            alwaysAsk: faces.length > 1,
+            prompt: 'prompt.chooseRevealedToken',
+            choices: faces.map((token): Choice => ({
+              label: 'choice.resolveToken',
+              params: { token: String(token) },
+              then: [
+                {
+                  type: 'ResolveChosenToken',
+                  token,
+                  ignored: without(token),
+                  ...(message.source ? { source: message.source } : {}),
+                  ...(message.outside ? { outside: message.outside } : {}),
+                },
+              ],
+            })),
+          },
+        },
+      )
+    }
+    case 'ResolveChosenToken': {
+      const { token, ignored } = message
+      if (message.outside) return push(state, { ...message.outside, token, ignored })
+      const test = state.skillTest
+      if (!test) return { ...state, chaosBag: [...state.chaosBag, token, ...ignored] }
+      return push(
+        {
+          ...state,
+          skillTest: {
+            ...test,
+            ignoredTokens: [...(test.ignoredTokens ?? []), ...ignored],
+            tokenChoice: {
+              chosen: token,
+              ignored,
+              ...(message.source ? { source: message.source } : {}),
+            },
+            ...(test.revealCount !== undefined
+              ? { revealCount: test.revealCount + ignored.length }
+              : {}),
+          },
+        },
+        { type: 'RevealChaosToken', token, drawn: true },
+      )
+    }
     case 'RevealExtraToken':
       return state.skillTest
         ? { ...state, skillTest: { ...state.skillTest, chooseToken: message.investigator } }
@@ -10407,9 +10557,13 @@ function testOptions(state: GameState, test: SkillTest): ReactionOption[] {
   const treacheries = Object.values(state.treacheries).flatMap(
     (t) => activeTreacheryBehavior(state, t)?.testOptions?.(state, test, t) ?? [],
   )
-  return [...own, ...assets, ...treacheries, ...fastInvestigatorOptions(state)].filter((o) =>
-    withinLimit(state, o.key, o.investigator, o.limit),
-  )
+  return [
+    ...own,
+    ...assets,
+    ...wouldRevealAssetOptions(state, test.investigator),
+    ...treacheries,
+    ...fastInvestigatorOptions(state),
+  ].filter((o) => withinLimit(state, o.key, o.investigator, o.limit))
 }
 
 /**
@@ -10711,8 +10865,90 @@ function revealedThen(
   token: ChaosToken,
   face: ChaosToken,
   index: number,
+  /** Held ignored tokens, returned by the effect with its revealed group (JSON list). */
+  ignored?: ChaosToken[],
 ): Message {
-  return { ...then, data: { ...then.data, token: face, physical: token, index } }
+  return {
+    ...then,
+    data: {
+      ...then.data,
+      token: face,
+      physical: token,
+      index,
+      ...(ignored?.length ? { ignored: JSON.stringify(ignored) } : {}),
+    },
+  }
+}
+
+/** Draws up to `count` random tokens from the chaos bag. */
+function drawTokens(
+  state: GameState,
+  count: number,
+): [ChaosToken[], ChaosToken[], GameState['rng']] {
+  let bag = [...state.chaosBag],
+    rng = state.rng
+  const drawn: ChaosToken[] = []
+  while (drawn.length < count && bag.length) {
+    const [index, next] = nextInt(rng, bag.length)
+    drawn.push(bag[index] as ChaosToken)
+    bag = bag.filter((_, n) => n !== index)
+    rng = next
+  }
+  return [drawn, bag, rng]
+}
+
+/**
+ * RR Triggered Abilities: a "when you would reveal a chaos token" window is open for
+ * `investigator` (before revealing in its skill test, or outside a test) and no replacement
+ * has been declared for that reveal yet. Only one replacement applies to each reveal.
+ */
+export function wouldRevealFor(state: GameState, investigator: InvestigatorId): boolean {
+  if (state.nextTokenReplacement) return false
+  if (state.wouldReveal) return state.wouldReveal.investigator === investigator
+  const test = state.skillTest
+  return (
+    !!test &&
+    test.investigator === investigator &&
+    test.succeeded === null &&
+    test.tokens.length === 0 &&
+    !test.revealing &&
+    !test.chooseToken &&
+    !test.noTokens &&
+    !getInvestigator(state, investigator).eliminated
+  )
+}
+
+/** "When you would reveal" reactions on the assets the revealing investigator controls. */
+function wouldRevealAssetOptions(state: GameState, investigator: InvestigatorId): ReactionOption[] {
+  if (!wouldRevealFor(state, investigator)) return []
+  return Object.values(state.assets)
+    .filter(
+      (a) =>
+        a.owner === investigator &&
+        !assetsBlocked(state, a.owner) &&
+        cardAllowed(state, a.owner, a.code),
+    )
+    .flatMap((a) => assetBehavior(state, a)?.wouldRevealOptions?.(state, a) ?? [])
+}
+
+/** Outside a test: those reactions plus fast events played "when you would reveal". */
+function wouldRevealWindow(state: GameState, investigator: InvestigatorId): ReactionOption[] {
+  if (!wouldRevealFor(state, investigator)) return []
+  const i = getInvestigator(state, investigator)
+  const events = fastAbilitiesBlocked(state, investigator)
+    ? []
+    : playableCards(state, investigator, true)
+        .filter((code) => playerCardBehavior(code)?.playWhenWouldReveal)
+        .map((code): ReactionOption => ({
+          key: `hand-reveal:${investigator}:${code}`,
+          investigator,
+          label: 'ability.playFastFor',
+          params: { name: i.name, card: playerCardDef(code)!.name },
+          then: [{ type: 'PlayCard', investigator, code }],
+        }))
+  return [...wouldRevealAssetOptions(state, investigator), ...events].filter((o) =>
+    withinLimit(state, o.key, o.investigator, o.limit),
+  )
 }
 
 /** Actions spent this round, including additional ones (Center Stage). */

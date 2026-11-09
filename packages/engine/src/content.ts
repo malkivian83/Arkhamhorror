@@ -887,6 +887,13 @@ export interface PlayerCardBehavior {
   /** Habilidades rápidas durante una prueba de su controlador, antes de revelar fichas. */
   testOptions?: (state: GameState, test: SkillTest, self: Asset) => ReactionOption[]
   /**
+   * "When you would reveal a chaos token" reactions of its controller, in and outside skill
+   * tests; they end with ReplaceNextTokenReveal (Grotesque Statue). See wouldRevealFor.
+   */
+  wouldRevealOptions?: (state: GameState, self: Asset) => ReactionOption[]
+  /** Fast event played from hand "when you would reveal a chaos token" (Dark Prophecy). */
+  playWhenWouldReveal?: boolean
+  /**
    * "When you would reveal a chaos token from the chaos bag", its controller may discard
    * it to resolve the token sealed on it instead (The Codex of Ages).
    */
@@ -1084,13 +1091,16 @@ export function assetBehavior(state: GameState, asset: Asset): PlayerCardBehavio
   if (!lent) return behavior
   // Its own abilities see the lent uses as available; SpendUses chooses the provider.
   const lending = (a: Asset): Asset => (a.id === asset.id ? { ...a, uses: a.uses + lent } : a)
-  const { abilities, fastOptions, reactions, testOptions } = behavior
+  const { abilities, fastOptions, reactions, testOptions, wouldRevealOptions } = behavior
   return {
     ...behavior,
     ...(abilities ? { abilities: (s, a, by) => abilities(s, lending(a), by) } : {}),
     ...(fastOptions ? { fastOptions: (s, a) => fastOptions(s, lending(a)) } : {}),
     ...(reactions ? { reactions: (s, t, a) => reactions(s, t, lending(a)) } : {}),
     ...(testOptions ? { testOptions: (s, t, a) => testOptions(s, t, lending(a)) } : {}),
+    ...(wouldRevealOptions
+      ? { wouldRevealOptions: (s, a) => wouldRevealOptions(s, lending(a)) }
+      : {}),
   }
 }
 

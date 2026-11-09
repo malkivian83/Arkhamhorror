@@ -293,8 +293,8 @@ registerPlayerCard({
 // revela una más y elige cuál resolver; si resuelves una con símbolo, 1 horror.
 registerPlayerCard({
   code: code(68),
-  testOptions: (_state, test, self) =>
-    self.uses > 0 && test.tokens.length === 0 && !test.chooseToken
+  testOptions: (state, test, self) =>
+    self.uses > 0 && test.tokens.length === 0 && !test.chooseToken && !state.nextTokenReplacement
       ? [
           {
             key: `${self.id}:mask`,

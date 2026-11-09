@@ -128,6 +128,7 @@ export {
   testEnemyHasKeyword,
   testMargin,
   withinFrostLimit,
+  wouldRevealFor,
   handSize,
   cardsInHand,
 } from './handlers'

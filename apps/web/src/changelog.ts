@@ -1,6 +1,12 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'chaos-token-reveals',
+    date: '2026-11-09',
+    title: 'app.changelog.tokenReveals.title',
+    items: ['app.changelog.tokenReveals.cards', 'app.changelog.tokenReveals.rules'],
+  },
+  {
     id: 'starter-decks-tommy-carolyn-marie-miguel',
     date: '2026-11-09',
     title: 'app.changelog.starterDecks2.title',
