@@ -4774,8 +4774,29 @@ export function handle(state: GameState, message: Message): GameState {
           : { ...c, rewards: [...(c.rewards ?? []), message.code] },
       )
 
+    case 'RemoveChaosTokens': {
+      const bag = withoutEach(state.chaosBag, message.tokens)
+      const n = state.chaosBag.length - bag.length
+      return n ? log({ ...state, chaosBag: bag }, 'log.chaosTokensRemovedFromBag', { n }) : state
+    }
+
     case 'AddChaosTokens': {
-      const tokens = withinFrostLimit(state, message.tokens)
+      const tokens = withinPoolLimit(state, withinFrostLimit(state, message.tokens))
+      // Bless/curse tokens come from the token pool: never recorded in the campaign bag.
+      if (tokens.some(isPoolToken))
+        return log(
+          {
+            ...(message.scenarioOnly || tokens.every(isPoolToken)
+              ? state
+              : updateCampaignLog(state, (c) => ({
+                  ...c,
+                  chaosTokens: [...c.chaosTokens, ...tokens.filter((t) => !isPoolToken(t))],
+                }))),
+            chaosBag: [...state.chaosBag, ...tokens],
+          },
+          'log.chaosTokensAddedToBag',
+          { n: tokens.length },
+        )
       const added = log(
         { ...state, chaosBag: [...state.chaosBag, ...tokens] },
         'log.chaosTokensAdded',
@@ -6066,8 +6087,9 @@ export function handle(state: GameState, message: Message): GameState {
     case 'EndSkillTest': {
       // RR paso 8: las fichas reveladas vuelven a la bolsa.
       // Las cartas comprometidas van a la pila de descartes de su dueño.
+      // Resolved bless/curse tokens return to the token pool instead.
       const test = state.skillTest
-      const tokens = test ? returnedTokens(test) : []
+      const tokens = test ? withoutEach(returnedTokens(test), pooledTokens(test)) : []
       const { nextTokenReplacement: _unused, ...withoutReplacement } = state
       let next: GameState = {
         ...withoutReplacement,
@@ -7933,6 +7955,7 @@ export function handle(state: GameState, message: Message): GameState {
           type: 'CheckHandSize',
           investigator: i.id,
         })),
+        { type: 'Forced', trigger: { type: 'upkeepPhaseEnds' } },
         { type: 'Step', step: 'upkeepEnds' },
       )
 
@@ -10794,6 +10817,52 @@ function resolveRevealedToken(
   )
 }
 
+/** Bless and curse tokens belong to the token pool (RR: 10 of each). */
+export const isPoolToken = (t: ChaosToken): t is 'bless' | 'curse' => t === 'bless' || t === 'curse'
+const MAX_POOL_TOKENS = 10
+
+/** Bless/curse tokens in play: in the bag, sealed, or revealed in the current test. */
+export function poolTokensInPlay(state: GameState, token: 'bless' | 'curse'): number {
+  const test = state.skillTest
+  return [
+    ...state.chaosBag,
+    ...(state.sealed ?? []).map((e) => e.token),
+    ...(test ? returnedTokens(test) : []),
+  ].filter((t) => t === token).length
+}
+
+/** Bless/curse tokens that can still be added: the pool holds at most 10 of each. */
+export function poolTokensAvailable(state: GameState, token: 'bless' | 'curse'): number {
+  return Math.max(0, MAX_POOL_TOKENS - poolTokensInPlay(state, token))
+}
+
+function withinPoolLimit(state: GameState, tokens: ChaosToken[]): ChaosToken[] {
+  const left = {
+    bless: poolTokensAvailable(state, 'bless'),
+    curse: poolTokensAvailable(state, 'curse'),
+  }
+  return tokens.filter((t) => !isPoolToken(t) || left[t]-- > 0)
+}
+
+/** Resolved physical bless/curse tokens of a test (ignored ones go back to the bag). */
+function pooledTokens(test: SkillTest): ChaosToken[] {
+  const tokens = [...test.tokens]
+  for (const { token, face } of test.treatedAs ?? []) {
+    const at = tokens.indexOf(face)
+    if (at >= 0) tokens[at] = token
+  }
+  return tokens.filter(isPoolToken)
+}
+
+function withoutEach(tokens: ChaosToken[], removed: ChaosToken[]): ChaosToken[] {
+  const rest = [...tokens]
+  for (const t of removed) {
+    const at = rest.indexOf(t)
+    if (at >= 0) rest.splice(at, 1)
+  }
+  return rest
+}
+
 /** Frost: at most 8 between the bag, sealed tokens and those revealed in the current test. */
 const MAX_FROST_TOKENS = 8
 
@@ -11197,6 +11266,18 @@ function enemyCard(enemy: Enemy): EnemyCard {
   return card
 }
 
+/** Modifier of a bless/curse token, as changed by cards committed to the current test. */
+function blessCurseModifier(state: GameState, token: 'bless' | 'curse'): number {
+  let modifier = token === 'bless' ? 2 : -2
+  const test = state.skillTest
+  if (!test || test.skillCardsCanceled) return modifier
+  for (const c of activeCommitted(test)) {
+    const value = playerCardBehavior(c.code)?.committedTokenModifiers?.[token]
+    if (value !== undefined) modifier = value
+  }
+  return modifier
+}
+
 /** Valor y efectos de una ficha del caos (RR paso 4). */
 function resolveToken(state: GameState, token: ChaosToken, investigator: string): TokenEffect {
   if (state.skillTest?.ignoredTokenEffects?.includes(token)) return { modifier: 0 }
@@ -11230,6 +11311,11 @@ function resolveBaseToken(state: GameState, token: ChaosToken, investigator: str
       return (state.skillTest.frostFromBag ?? 0) >= 2
         ? { modifier: -1, autoFail: true, stopRevealing: true }
         : { modifier: -1, revealAnother: true }
+    case 'bless':
+    case 'curse':
+      // RR Bless/Curse: +2 / -2, reveal another token. Committed cards may treat the
+      // modifier as another value during their test (Skeptic, Accursed).
+      return { modifier: blessCurseModifier(state, token), revealAnother: true }
     case 'elderSign': {
       const self = getInvestigator(state, investigator)
       return (
@@ -11592,6 +11678,7 @@ function skillTestTrigger(
     kind: test.kind.type,
     succeeded: !!test.succeeded,
     margin: testMargin(test),
+    tokens: test.tokens,
     ...(test.kind.type === 'fight' || test.kind.type === 'evade' ? { enemy: test.kind.enemy } : {}),
     ...(test.kind.type === 'investigate' ? { location: test.kind.location } : {}),
     ...(test.source ? { source: test.source } : {}),

@@ -1,0 +1,185 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "1b328ff09a0a9be35ab48e95efb51c374cfd61220fce6f90b6c7ed7369fb60ad",
+    "es": "c3ce4dba4b840c01a7c72ae6d31f65698a9327085124f9995ce5fad0098919c7"
+  },
+  "cards": [
+    {
+      "code": "07034",
+      "status": "verified",
+      "module": "card-07034",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "10124",
+      "status": "verified",
+      "module": "card-10124",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "07037",
+      "status": "verified",
+      "module": "card-07037",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "07023",
+      "status": "verified",
+      "module": "card-07023",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07028",
+      "status": "verified",
+      "module": "card-07028",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07112",
+      "status": "verified",
+      "module": "card-07112",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07230",
+      "status": "verified",
+      "module": "card-07230",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07263",
+      "status": "verified",
+      "module": "card-07263",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "10046",
+      "status": "verified",
+      "module": "card-10046",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "07020",
+      "status": "verified",
+      "module": "card-07020",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "07017",
+      "status": "verified",
+      "module": "card-07017",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "secret" }
+    },
+    {
+      "code": "07229",
+      "status": "verified",
+      "module": "card-07229",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10052",
+      "status": "verified",
+      "module": "card-10052",
+      "test": "rules.test.ts",
+      "subname": "Trusted Confidante"
+    },
+    {
+      "code": "10068",
+      "status": "verified",
+      "module": "card-10068",
+      "test": "rules.test.ts",
+      "subname": "From Distant Shores"
+    },
+    {
+      "code": "07156",
+      "status": "verified",
+      "module": "card-07156",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10019",
+      "status": "verified",
+      "module": "card-10019",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07033",
+      "status": "verified",
+      "module": "card-07033",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07032",
+      "status": "verified",
+      "module": "card-07032",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07035",
+      "status": "verified",
+      "module": "card-07035",
+      "test": "rules.test.ts",
+      "commitLimit": 1
+    },
+    {
+      "code": "07197",
+      "status": "verified",
+      "module": "card-07197",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07306",
+      "status": "verified",
+      "module": "card-07306",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10029",
+      "status": "verified",
+      "module": "card-10029",
+      "test": "rules.test.ts",
+      "commitLimit": 1
+    },
+    {
+      "code": "10055",
+      "status": "verified",
+      "module": "card-10055",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10095",
+      "status": "verified",
+      "module": "card-10095",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07115",
+      "status": "verified",
+      "module": "card-07115",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07222",
+      "status": "verified",
+      "module": "card-07222",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10125",
+      "status": "verified",
+      "module": "card-10125",
+      "test": "rules.test.ts"
+    }
+  ]
+}

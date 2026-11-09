@@ -142,6 +142,7 @@ Documentos posteriores, por número:
 - [126 · Carolyn Fern](126-carolyn-fern.md): caja completa y mazo inicial; curación de horror atribuida a quien controla el efecto, ventana de «cuando fueses a descubrir pistas», usos prestados (Máquina de escribir) y Palabras de Bast.
 - [127 · Marie Lambeau (mazo de inicio)](127-marie-lambeau-mazo-de-inicio.md): investigadora 60451, distinta de 05006; su caja completa, Desquite, Sacrificio definitivo y Muñeca sacrificial.
 - [129 · Revelaciones de fichas y ataques de área](129-revelaciones-de-fichas.md): 16 códigos (14 cartas/niveles nuevos, 2 reediciones); sustitución «cuando fueses a revelar una ficha de Caos» dentro y fuera de pruebas, revelar hasta parar, Estatua grotesca, Profecía oscura, Tormenta de espíritus, Granadas Mk 1, Viejo fusil de caza y Lanzallamas.
+- [130 · Bendiciones y maldiciones](130-bendiciones-y-maldiciones.md): 27 códigos (27 cartas/niveles nuevos, 0 reediciones); fichas de Bendición y Maldición en el motor (reserva de 10, vuelta a la reserva tras la prueba, modificadores de cartas comprometidas), eventos, apoyos y habilidades que las añaden, retiran o aprovechan.
 
 ## Decisiones ya tomadas
 
