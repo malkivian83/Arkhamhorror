@@ -89,7 +89,7 @@
         "investigators": "Tommy Muldoon, Carolyn Fern, Miguel de la Cruz and the starter deck Marie Lambeau are now playable, with their signature cards and weaknesses.",
         "decks": "Their official starter decks are available as predefined decks when you start a game, and the upgrades in each pack can be bought with experience.",
         "rules": "New rules: Traps attached to locations, horror healing and its reactions, extra ammo when playing Firearms and uses shared with Tomes.",
-        "fixes": "The threat area shows tokens on treacheries (such as the horror on Unbroken Web), two versions of the same investigator cannot join one group, online games included, and Miguel's Knapsack lets him play events that are only legal at a connecting location."
+        "fixes": "The threat area shows tokens on treacheries (such as the horror on Unbroken Web), two versions of the same investigator cannot join one group, online games included, Miguel's Knapsack lets him play events that are only legal at a connecting location, and Feline Hybrid ignores every player card effect."
       },
       "fatalMirageRelease": {
         "title": "Fatal Mirage is playable",
