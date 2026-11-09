@@ -1,0 +1,121 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "563861d8edcb1156bdd204d2f220193eae03fc6d549027aa83187f691529d001",
+    "es": "7830792924ec0dd12a7b50ae875ea88240c3a48beffe061ab5d5312c95b5b503"
+  },
+  "cards": [
+    {
+      "code": "01071",
+      "status": "verified",
+      "module": "card-01071",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "charge" }
+    },
+    {
+      "code": "01571",
+      "status": "verified",
+      "module": "card-01571",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "charge" }
+    },
+    {
+      "code": "60421",
+      "status": "verified",
+      "module": "card-60421",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "charge" }
+    },
+    {
+      "code": "04032",
+      "status": "verified",
+      "module": "card-04032",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "60417",
+      "status": "verified",
+      "module": "card-60417",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "04202",
+      "status": "verified",
+      "module": "card-04202",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "11066",
+      "status": "verified",
+      "module": "card-11066",
+      "test": "rules.test.ts",
+      "uses": { "count": 9, "type": "charge" }
+    },
+    {
+      "code": "11067",
+      "status": "verified",
+      "module": "card-11067",
+      "test": "rules.test.ts",
+      "uses": { "count": 9, "type": "charge" }
+    },
+    {
+      "code": "11069",
+      "status": "verified",
+      "module": "card-11069",
+      "test": "rules.test.ts",
+      "subname": "Emissary from Ulthar"
+    },
+    {
+      "code": "05155",
+      "status": "verified",
+      "module": "card-05155",
+      "test": "rules.test.ts",
+      "subname": "Aspiring Actor"
+    },
+    {
+      "code": "08048",
+      "status": "verified",
+      "module": "card-08048",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03153",
+      "status": "verified",
+      "module": "card-03153",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "52008",
+      "status": "verified",
+      "module": "card-52008",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "05273",
+      "status": "verified",
+      "module": "card-05273",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "supply" }
+    },
+    {
+      "code": "04273",
+      "status": "verified",
+      "module": "card-04273",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "ammo" }
+    },
+    {
+      "code": "04305",
+      "status": "verified",
+      "module": "card-04305",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "ammo" }
+    }
+  ]
+}

@@ -148,23 +148,30 @@ export function registerFieldEvent(code: string): boolean {
       play: (_s, by) => [gain(by), continuation(code, by, 'next', { held: '[]', hits: 0 })],
       effect: (s, by, step, data) => {
         const held = JSON.parse(String(data.held ?? '[]')) as ChaosToken[]
+        // Tokens ignored by a reveal replacement (Grotesque Statue) stay out with the group.
+        const extra = JSON.parse(String(data.extra ?? '[]')) as ChaosToken[]
         let hits = Number(data.hits ?? 0)
         if (step === 'token') {
           held.push(data.physical as ChaosToken)
+          extra.push(...(JSON.parse(String(data.ignored ?? '[]')) as ChaosToken[]))
           if (['skull', 'cultist', 'tablet', 'elderThing', 'autoFail'].includes(String(data.token)))
             hits++
         }
         if (held.length >= 3 || s.chaosBag.length === 0)
-          return [{ type: 'AddChaosTokens', tokens: held, scenarioOnly: true }, gain(by, hits * 2)]
+          return [
+            { type: 'AddChaosTokens', tokens: [...held, ...extra], scenarioOnly: true },
+            gain(by, hits * 2),
+          ]
         return [
           {
             type: 'RevealTokenOutsideTest',
             investigator: by,
             hold: true,
-            then: continuation(code, by, 'token', { held: JSON.stringify(held), hits }) as Extract<
-              Message,
-              { type: 'PlayerCardEffect' }
-            >,
+            then: continuation(code, by, 'token', {
+              held: JSON.stringify(held),
+              extra: JSON.stringify(extra),
+              hits,
+            }) as Extract<Message, { type: 'PlayerCardEffect' }>,
           },
         ]
       },
