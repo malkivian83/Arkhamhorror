@@ -223,6 +223,7 @@ import { FOLLOWUP_RENDERED_CODES } from './dunwich-followup'
 import { SUPPORT_RENDERED_CODES } from './dunwich-support'
 import { REPRINT_RENDERED_CODES } from './reprints-wave-1'
 import { SECOND_REPRINT_RENDERED_CODES } from './reprints-wave-2'
+import { THIRD_REPRINT_RENDERED_CODES } from './reprints-wave-3'
 import { CLASSIC_RENDERED_CODES } from './classic-foundations'
 import { EQUIPMENT_RENDERED_CODES } from './classic-equipment'
 import { REACTIVE_RENDERED_CODES } from './reactive-support'
@@ -306,6 +307,7 @@ import { COMBAT_SUPPORT_RENDERED_CODES } from './combat-support'
 import { TOKEN_REVEALS_RENDERED_CODES } from './token-reveals'
 import { BLESS_CURSE_RENDERED_CODES } from './bless-curse'
 import { SEALED_TOKENS_RENDERED_CODES } from './sealed-tokens'
+import { REUSED_CAPABILITIES_RENDERED_CODES } from './reused-capabilities'
 import { REX_RENDERED_CODES } from './rex-murphy'
 import { GROUPED_RENDERED_CODES } from './grouped-import'
 import { IMMEDIATE_EVENT_RENDERED_CODES } from './immediate-action-events'
@@ -337,6 +339,7 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...TOKEN_REVEALS_RENDERED_CODES,
   ...BLESS_CURSE_RENDERED_CODES,
   ...SEALED_TOKENS_RENDERED_CODES,
+  ...REUSED_CAPABILITIES_RENDERED_CODES,
   ...TOKEN_SKILL_RENDERED_CODES,
   ...SERVICE_RENDERED_CODES,
   ...TEST_RECOVERY_RENDERED_CODES,
@@ -378,6 +381,7 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...SUPPORT_RENDERED_CODES,
   ...REPRINT_RENDERED_CODES,
   ...SECOND_REPRINT_RENDERED_CODES,
+  ...THIRD_REPRINT_RENDERED_CODES,
   ...CLASSIC_RENDERED_CODES,
   ...EQUIPMENT_RENDERED_CODES,
   ...REACTIVE_RENDERED_CODES,

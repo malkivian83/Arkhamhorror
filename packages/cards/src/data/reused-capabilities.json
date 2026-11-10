@@ -1,0 +1,93 @@
+[
+  {
+    "code": "07308",
+    "name": "Rite of Equilibrium",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Blessed", "Cursed"],
+    "cost": 0,
+    "xp": 5,
+    "icons": { "wild": 1 },
+    "slots": []
+  },
+  {
+    "code": "10072",
+    "name": "\"I'll Pay You Back!\"",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Gambit", "Trick"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "willpower": 1, "agility": 1 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "10104",
+    "name": "The Key of Solomon",
+    "subname": "Secrets of the Unknown",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Tome", "Blessed", "Cursed"],
+    "unique": true,
+    "cost": 2,
+    "xp": 4,
+    "icons": { "willpower": 1, "intellect": 1, "wild": 2 },
+    "slots": ["hand"]
+  },
+  {
+    "code": "11078",
+    "name": "Lost Arcana",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Tome", "Occult"],
+    "cost": 3,
+    "xp": 3,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": ["hand"],
+    "uses": { "count": 2, "type": "charge" }
+  },
+  {
+    "code": "08053",
+    "name": "The Red Clock",
+    "subname": "Broken but Reliable",
+    "type": "asset",
+    "class": "rogue",
+    "exceptional": true,
+    "deckLimit": 1,
+    "traits": ["Item", "Relic"],
+    "unique": true,
+    "cost": 2,
+    "xp": 2,
+    "icons": { "wild": 1 },
+    "slots": ["accessory"],
+    "uses": { "count": 0, "type": "charge" }
+  },
+  {
+    "code": "04035",
+    "name": "Yaotl",
+    "subname": "Lost Son of Eztli",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Ally", "Wayfarer"],
+    "unique": true,
+    "cost": 3,
+    "xp": 1,
+    "icons": { "willpower": 1 },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "08093",
+    "name": "Cyclopean Hammer",
+    "type": "asset",
+    "class": "guardian",
+    "classes": ["guardian", "mystic"],
+    "traits": ["Item", "Relic", "Weapon", "Melee"],
+    "cost": 5,
+    "xp": 5,
+    "icons": { "willpower": 2, "combat": 2 },
+    "slots": ["hand", "hand"]
+  }
+]

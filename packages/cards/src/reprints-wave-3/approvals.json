@@ -1,0 +1,329 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": {
+    "en": "source-en.json",
+    "es": "source-es.json",
+    "originals-en": "originals-en.json",
+    "originals-es": "originals-es.json"
+  },
+  "equivalence": {
+    "method": "canonical-mechanical-fields-v1",
+    "spanish": "name-text-traits"
+  },
+  "sources": {
+    "en": "cef2e90b935d58d60432f15e533a0dbe9d2cafcb4d7f18844155131b9563b358",
+    "originals-en": "9754fb0fde923d27b06d244707d7997491edb5fc1383885d66f527e5cca3fd52",
+    "es": "c16260026caa033c893fe96155bdf0d01084fc81e7051f8fdf43dff22ff8df10",
+    "originals-es": "f31fb74b762989c255baba9116603aa992f8da5630b1d1521e5693bb1e02e84d"
+  },
+  "cards": [
+    {
+      "code": "01523",
+      "status": "verified",
+      "module": "card-01523",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01023",
+      "equivalenceSha256": "4ab52b0d6a3651ac6b69613673921cb245b2dc13c33ed4fac82daa1762409d4d",
+      "fast": true
+    },
+    {
+      "code": "01524",
+      "status": "verified",
+      "module": "card-01524",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01024",
+      "equivalenceSha256": "13c97b02a1075c38102ce6e9e1e00987f13b171528433533953ff19ef76a4d6c"
+    },
+    {
+      "code": "01527",
+      "status": "verified",
+      "module": "card-01527",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01027",
+      "equivalenceSha256": "eb6c2396609e37aaa6687fb6df2be121c8675de92586f342d2432b6a22bb3f69"
+    },
+    {
+      "code": "01531",
+      "status": "verified",
+      "module": "card-01531",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01031",
+      "equivalenceSha256": "603faf5c6f2ab6576433d7d685ee702f08d7225e63c46b60e9df497afbe033f5"
+    },
+    {
+      "code": "01533",
+      "status": "verified",
+      "module": "card-01533",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01033",
+      "equivalenceSha256": "eb993c91ead9d7c0cb691af42b8b570c454f267432d2004f24b7a22eea4f1a65",
+      "subname": "Professor of Entomology"
+    },
+    {
+      "code": "01536",
+      "status": "verified",
+      "module": "card-01536",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01036",
+      "equivalenceSha256": "8d9a46cbfd7d92209ca82d318e906d45799bcaca456a8c739ace8511b9352340",
+      "fast": true
+    },
+    {
+      "code": "01541",
+      "status": "verified",
+      "module": "card-01541",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01041",
+      "equivalenceSha256": "0e1e9295acc0fcdc0fc39815a521ba02ec06a3948fa1f3bdbb53f477a9b2b7c8",
+      "subname": "Protective Amulet"
+    },
+    {
+      "code": "01542",
+      "status": "verified",
+      "module": "card-01542",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01042",
+      "equivalenceSha256": "5ad22443f438865ac3decac9af9e5c2045c8603142371bb4cb1417c6ab896c0a"
+    },
+    {
+      "code": "01546",
+      "status": "verified",
+      "module": "card-01546",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01046",
+      "equivalenceSha256": "57acd2c05cefdc8232ed74f45db7842b916fc89d076cb0bb4093aa4e38e3fc9c"
+    },
+    {
+      "code": "01548",
+      "status": "verified",
+      "module": "card-01548",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01048",
+      "equivalenceSha256": "d12d8ef56be73b89189c7ee5fe854239b10eacc6742f303974ce5e1b97f8eefe",
+      "subname": "The Louisiana Lion"
+    },
+    {
+      "code": "01550",
+      "status": "verified",
+      "module": "card-01550",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01050",
+      "equivalenceSha256": "ee74a9801f2debe1ebbc8f37df1fdaa7d974da98486cd542da3411089d866dee",
+      "fast": true
+    },
+    {
+      "code": "01556",
+      "status": "verified",
+      "module": "card-01556",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01056",
+      "equivalenceSha256": "216c66237a9fca0828e9dcea897fe9389c4d6ea11430b96dd1f4c2435f68c658",
+      "fast": true
+    },
+    {
+      "code": "01558",
+      "status": "verified",
+      "module": "card-01558",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01058",
+      "equivalenceSha256": "063548ff3a6261cbc05b0155c7dc01aa19b3677544dffcf29871ff6fd5c76a74",
+      "uses": { "count": 4, "type": "secrets" }
+    },
+    {
+      "code": "01561",
+      "status": "verified",
+      "module": "card-01561",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01061",
+      "equivalenceSha256": "6b2eeb76ca9e69ff8e88d3be2fef76a1255a196c7273e25aea20520bdc8aa71e",
+      "uses": { "type": "charges", "count": 3 }
+    },
+    {
+      "code": "01563",
+      "status": "verified",
+      "module": "card-01563",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01063",
+      "equivalenceSha256": "0f527a4425e2185eea125ff2fbd56cf5280f57dba792b634e19f795ead35a4a3"
+    },
+    {
+      "code": "01564",
+      "status": "verified",
+      "module": "card-01564",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01064",
+      "equivalenceSha256": "7e0f3adc61a3394a9fad8f117edce8ac9d62329597a2f7565c9512747d674a38"
+    },
+    {
+      "code": "01573",
+      "status": "verified",
+      "module": "card-01573",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01073",
+      "equivalenceSha256": "9f9a409e9071736333d3e6b6b8ee497fe09afb410ade40423128b94507e31f00"
+    },
+    {
+      "code": "01575",
+      "status": "verified",
+      "module": "card-01575",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01075",
+      "equivalenceSha256": "a3e3a6075f390c3b8a716f9e0a7113182f17d3b87c835ed2dbe0cb91c9fa8f5e"
+    },
+    {
+      "code": "01580",
+      "status": "verified",
+      "module": "card-01580",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01080",
+      "equivalenceSha256": "843cf1857ea5f4130edeb6ba705c08f5975d21c1ccde6009ae75d9017cd345b8",
+      "fast": true
+    },
+    {
+      "code": "01581",
+      "status": "verified",
+      "module": "card-01581",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01081",
+      "equivalenceSha256": "e0c3aeac4edfecce362466935a3833e1565d267d328203002bbdafcf4ea8dd88"
+    },
+    {
+      "code": "01583",
+      "status": "verified",
+      "module": "card-01583",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01083",
+      "equivalenceSha256": "a2293c77e2554d0361c055c9a13513224b4ee488d8189c6f73101233187353ee",
+      "fast": true
+    },
+    {
+      "code": "01584",
+      "status": "verified",
+      "module": "card-01584",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01084",
+      "equivalenceSha256": "1d6f51b060edc06e243aab0c13574971b6d4f7df1474a3006e024f286a8e4ea8",
+      "fast": true
+    },
+    {
+      "code": "01585",
+      "status": "verified",
+      "module": "card-01585",
+      "test": "reprints.test.ts",
+      "behaviorSource": "01085",
+      "equivalenceSha256": "0aec34ea498222fd5408e81a3fca0b157ca0780bd1bff20be7908cf3ea224fad",
+      "fast": true
+    },
+    {
+      "code": "01684",
+      "status": "verified",
+      "module": "card-01684",
+      "test": "reprints.test.ts",
+      "behaviorSource": "02261",
+      "equivalenceSha256": "ffe578ad39f40af39d758c7711d80c93a91b1ab025739e2ddd4b57481fee78a5",
+      "fast": true
+    },
+    {
+      "code": "01686",
+      "status": "verified",
+      "module": "card-01686",
+      "test": "reprints.test.ts",
+      "behaviorSource": "06279",
+      "equivalenceSha256": "0237d2402862f4b85cf207d9a654934f53ec60a9939cf8f4110948d3bd42a8fc",
+      "uses": { "count": 2, "type": "secrets" }
+    },
+    {
+      "code": "01688",
+      "status": "verified",
+      "module": "card-01688",
+      "test": "reprints.test.ts",
+      "behaviorSource": "03234",
+      "equivalenceSha256": "ed978c2dc4c5e12facbb25230a72aa16c140220a87c4b9b1952c4a1af7e24f8c",
+      "uses": { "count": 3, "type": "ammo" }
+    },
+    {
+      "code": "01689",
+      "status": "verified",
+      "module": "card-01689",
+      "test": "reprints.test.ts",
+      "behaviorSource": "51007",
+      "equivalenceSha256": "9dca87128eef0f954b813124634e01f0d86bad0dac3731880d96bc9278be2d2c",
+      "uses": { "count": 3, "type": "charges" }
+    },
+    {
+      "code": "01690",
+      "status": "verified",
+      "module": "card-01690",
+      "test": "reprints.test.ts",
+      "behaviorSource": "03236",
+      "equivalenceSha256": "c7465427505eefa3f7c74fd12751d31c9849a07605f00e867118a7a97bd9b3b1",
+      "uses": { "type": "charges", "count": 3 }
+    },
+    {
+      "code": "01692",
+      "status": "verified",
+      "module": "card-01692",
+      "test": "reprints.test.ts",
+      "behaviorSource": "05324",
+      "equivalenceSha256": "85aec493a576adef6405ce5af775641d7556e130e562f4905599c1c00dcf9935",
+      "fast": true
+    },
+    {
+      "code": "08057",
+      "status": "verified",
+      "module": "card-08057",
+      "test": "reprints.test.ts",
+      "behaviorSource": "60379",
+      "equivalenceSha256": "317e242f0fc976db0ed2b39137fde39f0a8bb50a66f53ddfa3076205bda04090",
+      "subname": "Symbol of Power",
+      "adapter": "reviewed-exceptional-v1"
+    },
+    {
+      "code": "08058",
+      "status": "verified",
+      "module": "card-08058",
+      "test": "reprints.test.ts",
+      "behaviorSource": "60384",
+      "equivalenceSha256": "c8b450f7f2363381f4535c85a89780b8ad779851e493a83840dcc72152f00e4a",
+      "uses": { "count": 0, "type": "charges" },
+      "subname": "Broken but Reliable",
+      "adapter": "reviewed-exceptional-v1"
+    },
+    {
+      "code": "60313",
+      "status": "verified",
+      "module": "card-60313",
+      "test": "reprints.test.ts",
+      "behaviorSource": "03030",
+      "equivalenceSha256": "6aed119a81de4328340edfc674d1ebf20804ef00779da903893975a798723fd2",
+      "fast": true
+    },
+    {
+      "code": "60413",
+      "status": "verified",
+      "module": "card-60413",
+      "test": "reprints.test.ts",
+      "behaviorSource": "03034",
+      "equivalenceSha256": "2da751fb2b766e088f4c16b2604470240e660bea28342a496d06c419f63bd376"
+    },
+    {
+      "code": "60414",
+      "status": "verified",
+      "module": "card-60414",
+      "test": "reprints.test.ts",
+      "behaviorSource": "02153",
+      "equivalenceSha256": "47647e40b6c709af3209df862e4c5f4d97674abd9bb243138077a9a566fe08fe",
+      "fast": true
+    },
+    {
+      "code": "60418",
+      "status": "verified",
+      "module": "card-60418",
+      "test": "reprints.test.ts",
+      "behaviorSource": "02190",
+      "equivalenceSha256": "d2179fca8b381abe72d432e0fd4f0754bd6c0d5008267040d3f9fcedc77b0bca"
+    }
+  ]
+}

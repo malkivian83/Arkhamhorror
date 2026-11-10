@@ -37,6 +37,8 @@ const view = (s: GameState, by: string, who: string, count: number): Message => 
   key: 'choice.divinationSeen',
   params: { cards: Array.from({ length: count }, (_, i) => nameAt(s, who, i)).join(', ') },
 })
+// Scrying (0) and its identical reprint (01561, lot 133) use an [action] ability.
+const ACTION_SCRYING = ['01061', '01561']
 function ability(s: GameState, a: Asset): AbilityOption[] {
   if (a.exhausted || (a.code !== '02232' && a.uses < 1) || !targets(s).length) return []
   return [
@@ -44,8 +46,8 @@ function ability(s: GameState, a: Asset): AbilityOption[] {
       key: a.id + ':inspect',
       label: 'choice.divinationUse',
       params: { card: cardName(a.code) },
-      actions: a.code === '01061' ? 1 : 0,
-      provokes: a.code === '01061',
+      actions: ACTION_SCRYING.includes(a.code) ? 1 : 0,
+      provokes: ACTION_SCRYING.includes(a.code),
       costs: [
         { type: 'ExhaustAsset', asset: a.id },
         ...(a.code === '02232' ? [] : [{ type: 'SpendUses' as const, asset: a.id, amount: 1 }]),

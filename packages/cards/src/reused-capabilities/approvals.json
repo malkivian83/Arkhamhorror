@@ -1,0 +1,62 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "1ab9a5b6f4b623e6ac657f4bc830a532fa02ea243b19dd2b01af520a050fa516",
+    "es": "c1bfe0b7857100416572e78d1bf581908af9440d5c66a3d56389db2ff5c32f44"
+  },
+  "cards": [
+    {
+      "code": "07308",
+      "status": "verified",
+      "module": "card-07308",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10072",
+      "status": "verified",
+      "module": "card-10072",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "10104",
+      "status": "verified",
+      "module": "card-10104",
+      "test": "rules.test.ts",
+      "subname": "Secrets of the Unknown"
+    },
+    {
+      "code": "11078",
+      "status": "verified",
+      "module": "card-11078",
+      "test": "rules.test.ts",
+      "uses": { "count": 2, "type": "charge" }
+    },
+    {
+      "code": "08053",
+      "status": "verified",
+      "module": "card-08053",
+      "test": "rules.test.ts",
+      "uses": { "count": 0, "type": "charge" },
+      "subname": "Broken but Reliable",
+      "adapter": "reviewed-exceptional-v1"
+    },
+    {
+      "code": "04035",
+      "status": "verified",
+      "module": "card-04035",
+      "test": "rules.test.ts",
+      "subname": "Lost Son of Eztli"
+    },
+    {
+      "code": "08093",
+      "status": "verified",
+      "module": "card-08093",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-dual-faction-v1"
+    }
+  ]
+}
