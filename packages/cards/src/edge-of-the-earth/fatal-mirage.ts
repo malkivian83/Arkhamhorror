@@ -26,10 +26,10 @@ const crashStories: Record<string, string> = {
   '08715': 'Danforth',
   '08716': 'Ashevak',
   '08717': 'Sinha',
-  '08718': 'Ellsworth',
-  '08719': 'Claypool',
+  '08718': 'Claypool',
+  '08719': 'Cookie',
   '08720': 'Kensler',
-  '08721': 'Cookie',
+  '08721': 'Ellsworth',
   '08722': 'Takada',
 }
 const story = (key: string) => ({

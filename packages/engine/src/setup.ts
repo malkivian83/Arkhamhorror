@@ -40,7 +40,8 @@ export interface ScenarioDefinition {
   locations: LocationCard[]
   /** Localizaciones apartadas, para efectos del escenario. */
   setAsideLocations?: LocationCard[]
-  startingLocation: LocationId
+  /** Con null, los mensajes de preparación del escenario colocan a los investigadores. */
+  startingLocation: LocationId | null
   startingResources?: number
   /** El investigador jefe empieza aquí y los demás en `startingLocation` (Excelsior). */
   leadStartingLocation?: LocationId
@@ -58,7 +59,7 @@ export interface ScenarioDefinition {
   chaosBag: ChaosToken[]
   /** Valores fijos de los símbolos (si el escenario no registra `tokenEffect`). */
   tokenValues: ScenarioTokenValues
-  /** Pasos de preparación tras colocar a los investigadores (perdición inicial, apoyos…). */
+  /** Pasos de preparación del escenario (perdición inicial, apoyos…). */
   setup?: Message[]
 }
 
@@ -127,7 +128,8 @@ export function prepareGame({
   if (new Set(investigators.map((i) => i.id)).size !== investigators.length) {
     throw new EngineError('Cada jugador debe usar un investigador distinto')
   }
-  if (!scenario.locations.some((l) => l.id === scenario.startingLocation)) {
+  const { startingLocation } = scenario
+  if (startingLocation !== null && !scenario.locations.some((l) => l.id === startingLocation)) {
     throw new EngineError('El Lugar inicial no está en juego')
   }
   // Con dos mazos de Plan puede no haber mazo de Acto al empezar.
@@ -243,37 +245,39 @@ export function prepareGame({
     ]),
     { type: 'InvestigatorsMulligan' },
     ...story(scenario.setupInstructions),
-    ...(scenario.leadStartingLocation
-      ? [
-          {
-            type: 'PlaceAtStart',
-            lead: scenario.leadStartingLocation,
-            others: scenario.startingLocation,
-          } as Message,
-        ]
-      : scenario.startingLocationChoices
-        ? players.map((p): Message => ({
-            type: 'Ask',
-            investigator: p.id,
-            question: {
-              kind: 'chooseOne',
-              prompt: 'prompt.chooseStartingLocation',
-              choices: scenario.startingLocationChoices!.map((id) => {
-                const card = scenario.locations.find((l) => l.id === id)
-                return {
-                  label: 'choice.location',
-                  params: { location: card?.name ?? id },
-                  target: { type: 'location' as const, id },
-                  then: [{ type: 'MoveTo', investigator: p.id, location: id } as Message],
-                }
-              }),
-            },
-          }))
-        : players.map((p): Message => ({
-            type: 'MoveTo',
-            investigator: p.id,
-            location: scenario.investigatorStartingLocations?.[p.id] ?? scenario.startingLocation,
-          }))),
+    ...(startingLocation === null
+      ? []
+      : scenario.leadStartingLocation
+        ? [
+            {
+              type: 'PlaceAtStart',
+              lead: scenario.leadStartingLocation,
+              others: startingLocation,
+            } as Message,
+          ]
+        : scenario.startingLocationChoices
+          ? players.map((p): Message => ({
+              type: 'Ask',
+              investigator: p.id,
+              question: {
+                kind: 'chooseOne',
+                prompt: 'prompt.chooseStartingLocation',
+                choices: scenario.startingLocationChoices!.map((id) => {
+                  const card = scenario.locations.find((l) => l.id === id)
+                  return {
+                    label: 'choice.location',
+                    params: { location: card?.name ?? id },
+                    target: { type: 'location' as const, id },
+                    then: [{ type: 'MoveTo', investigator: p.id, location: id } as Message],
+                  }
+                }),
+              },
+            }))
+          : players.map((p): Message => ({
+              type: 'MoveTo',
+              investigator: p.id,
+              location: scenario.investigatorStartingLocations?.[p.id] ?? startingLocation,
+            }))),
     ...(scenario.setup ?? []),
     ...(players.some((i) => i.deck.some((code) => !!playerCardBehavior(code)?.revelation))
       ? [{ type: 'ResolveOpeningRevelations' } as Message]
