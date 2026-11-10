@@ -3,6 +3,7 @@ import {
   getInvestigator,
   getLocation,
   registerPlayerCard,
+  enemyHasKeyword,
   fightEnemies,
   engagedEnemies,
   canEnter,
@@ -147,7 +148,7 @@ export function registerDoom(code: string): boolean {
         }
         const enemies = sickles.includes(code)
           ? fightEnemies(s, by).filter(
-              (e) => e.engagedWith !== null || !e.keywords.includes('aloof'),
+              (e) => e.engagedWith !== null || !enemyHasKeyword(s, e, 'aloof'),
             )
           : power
             ? Object.values(s.enemies).filter(

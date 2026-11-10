@@ -15,6 +15,18 @@ import { cardImages } from './cards'
 import data from '../../../../packages/cards/src/data/token-reveals.json'
 import en from '../../../../packages/cards/src/token-reveals/source-en.json'
 import es from '../../../../packages/cards/src/token-reveals/source-es.json'
+// Preserve the imported source snapshot and expect the errata in the displayed text.
+function spanishErrata(code: string, text: string) {
+  if (code === '11069')
+    return text.replace(
+      'Cuando reveles fichas de Caos',
+      'Cuando fueras a revelar una ficha de Caos',
+    )
+  if (['03153', '52008', '05273'].includes(code))
+    return text.replaceAll('en tu Lugar', 'en el Lugar del Enemigo atacado')
+  return text
+}
+
 it.each(data)(
   '$code is unique, has legal deckbuilding/purchase behavior and official EN/ES presentation',
   (card) => {
@@ -58,7 +70,7 @@ it.each(data)(
       expect(shown).toHaveLength(1)
       expect(shown[0]).toMatchObject({
         name: source.name,
-        text: source.text,
+        text: lang === 'es' ? spanishErrata(card.code, source.text) : source.text,
         traits: source.traits,
       })
       // 01571 (Return to the Night of the Zealot) has no Spanish scan: English is shown.

@@ -3,6 +3,7 @@
 import { expect, it } from 'vitest'
 import {
   availableAbilities,
+  dispatch,
   playerCardBehavior,
   type Asset,
   type ChaosToken,
@@ -16,6 +17,7 @@ import { setup, name } from '../basic-abilities/testing'
 import data from '../data/sealed-tokens.json'
 import { sealedOn } from './cards'
 import './index'
+import '../token-triggers/index'
 
 const test = (difficulty = 2): Message => ({
   type: 'BeginSkillTest',
@@ -311,33 +313,33 @@ it('Blessed Blade (4) adds 2 bless and returns revealed bless tokens to the bag'
   let s = setup('10034')
   s = choose(s, 'ability.blessedBladeBless', { card: name('10034'), n: 2 })
   expect(count(s, 'bless')).toBe(2)
-  const t = setup('10034')
-  expect(
-    playerCardBehavior('10034')!.forced!(
-      t,
-      {
-        type: 'skillTestEnded',
-        investigator: 'a',
-        kind: 'fight',
-        succeeded: true,
-        margin: 1,
-        tokens: ['bless', 0, 'bless'],
-        source: '10034',
-      } as Trigger,
-      asset(t, '10034'),
-    ),
-  ).toEqual([{ type: 'AddChaosTokens', tokens: ['bless', 'bless'], scenarioOnly: true }])
+  let t = setup('10034')
+  t = choose(t, 'ability.fightWith', { card: name('10034') })
+  t = apply(reveal({ ...t, chaosBag: ['bless'] }))
+  expect(count(t, 'bless')).toBe(1)
+})
+
+it('Blessed Blade (4) and Beloved return the same physical bless token only once', () => {
+  let s = withHand(setup('10034'), ['07036'])
+  s = choose(s, 'ability.fightWith', { card: name('10034') })
+  s = choose(s, 'choice.commit', { card: name('07036') })
+  s = reveal({ ...s, chaosBag: ['bless'] })
+  s = choose(s, 'ability.tokenTrigger.07036', { card: name('07036') })
+  expect(count(apply(s), 'bless')).toBe(1)
 })
 
 it('Hallow returns 10 bless tokens from the bag and sealed cards and removes 1 doom', () => {
   const nine = Array<ChaosToken>(9).fill('bless')
   const short = withHand(during(base(), bag(...nine)), ['07301'])
   expect(playerCardBehavior('07301')!.canPlay!(short, 'a')).toBe(false)
-  let s = withAsset(withHand(during(base(), bag(...nine, 0)), ['07301']), '07272')
-  s = during(s, (x) => ({ ...sealedWith('07272', 'bless', 'bless')(x), doom: 2 }))
+  let s = withAsset(withHand(during(base(), bag(...nine, 0)), ['07301']), '07221')
+  s = during(s, (x) => ({ ...sealedWith('07221', 'bless')(x), doom: 2 }))
   s = play(s, '07301')
+  expect(labels(s)).toContain('choice.hallowBlessFromBag')
+  s = choose(s, 'choice.hallowBlessFromCard', { card: name('07221') })
   expect(count(s, 'bless')).toBe(0)
-  expect(sealedOn(s, '07272')).toHaveLength(1)
+  expect(s.assets['07221']).toBeUndefined()
+  expect(me(s).discard).toContain('07221')
   expect(s.doom).toBe(1)
 })
 
@@ -349,6 +351,14 @@ it('Tides of Fate turns curse into bless tokens until the end of the round', () 
     { type: 'RemoveChaosTokens', tokens: ['bless', 'bless'] },
     { type: 'AddChaosTokens', tokens: ['curse', 'curse'], scenarioOnly: true },
   ])
+})
+
+it('Tides of Fate can be played at the start of a round before the Mythos phase', () => {
+  const ready = withHand(during(base(), bag('curse', 0)), ['07030'])
+  const round = dispatch({ ...ready, pending: null, queue: [], round: 1 }, { type: 'Round' })
+  expect(round.queue.some((message) => message.type === 'MythosPhase')).toBe(true)
+  const played = choose(round, 'ability.playCard', { card: name('07030') })
+  expect([count(played, 'curse'), count(played, 'bless')]).toEqual([0, 1])
 })
 
 it('Ríastrad adds up to 3 curse tokens for +1 combat and +1 damage each', () => {

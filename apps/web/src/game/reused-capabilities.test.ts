@@ -58,9 +58,15 @@ it.each(data)(
       const source = (lang === 'en' ? en : es).find((c) => c.code === card.code)!,
         shown = fallbackCards(lang).filter((c) => c.code === card.code)
       expect(shown).toHaveLength(1)
+      const key = lang === 'es' && card.code === '10104'
+      const yaotl = lang === 'es' && card.code === '04035'
       expect(shown[0]).toMatchObject({
-        name: source.name,
-        text: source.text,
+        name: key ? 'La llave de Salomón' : source.name,
+        text: key
+          ? source.text.replaceAll('La clave de Salomón', 'La llave de Salomón')
+          : yaotl
+            ? source.text.replace('Límite de una vez por turno.', 'Límite de una vez por fase.')
+            : source.text,
         traits: source.traits,
       })
 

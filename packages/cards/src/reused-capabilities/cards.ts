@@ -146,11 +146,16 @@ export function registerReusedCapability(code: string): boolean {
   // Rite of Equilibrium (5): add X curse to add X bless, or remove X of each to heal X horror.
   if (code === '07308') {
     const adds = (s: GameState) =>
-      Math.min(poolTokensAvailable(s, 'curse'), poolTokensAvailable(s, 'bless'))
-    const removes = (s: GameState) => Math.min(inBag(s, 'curse'), inBag(s, 'bless'))
+      poolTokensAvailable(s, 'bless') > 0 ? poolTokensAvailable(s, 'curse') : 0
+    const removes = (s: GameState, by: InvestigatorId) => {
+      const { people, assets } = woundedHere(s, by, false)
+      return [...people, ...assets].some((card) => card.horror > 0)
+        ? Math.min(inBag(s, 'curse'), inBag(s, 'bless'))
+        : 0
+    }
     registerPlayerCard({
       code,
-      canPlay: (s) => adds(s) > 0 || removes(s) > 0,
+      canPlay: (s, by) => adds(s) > 0 || removes(s, by) > 0,
       play: (s, by) =>
         ask(
           by,
@@ -166,7 +171,7 @@ export function registerReusedCapability(code: string): boolean {
                 ],
               }
             }),
-            ...Array.from({ length: removes(s) }, (_, i): Choice => {
+            ...Array.from({ length: removes(s, by) }, (_, i): Choice => {
               const n = i + 1
               return {
                 label: 'choice.equilibriumHeal',

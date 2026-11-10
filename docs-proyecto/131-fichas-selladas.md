@@ -47,14 +47,16 @@ sobre `2b847487`. Fuentes EN/ES de ArkhamDB y SHA-256 en
   Favores se descartan al quedar sin fichas (también si se sellan 0).
 - Baluarte y Finta: «resolver de nuevo» es una reacción opcional por cada vez que se cumple la
   condición y solo si hay una ficha válida en la bolsa (FAQ de The Drowned City, 2025).
-- Mareas del destino retira todas las Maldiciones y añade tantas Bendiciones como permita la
+- Mareas del destino puede jugarse al comienzo de la ronda, antes de la fase de Mitos, o en una
+  ventana rápida. Retira todas las Maldiciones y añade tantas Bendiciones como permita la
   reserva; al final de la ronda hace lo inverso (FAQ de octubre de 2023).
 - Ensalmo protector: límite de grupo 2 en juego; sella cualquier ficha salvo fallo automático.
   Baluarte y Finta: límite 1 por investigador.
 - Sello del séptimo signo se retira del juego sin cargas o al dejar el juego; su fallo
   automático vuelve a la bolsa.
-- Consagrar devuelve primero las Bendiciones de la bolsa y después las selladas en cartas, en
-  orden; retira 1 perdición del plan, de un Enemigo, de un apoyo o de un investigador (no de
+- Consagrar permite elegir de dónde devuelve cada Bendición, entre la bolsa y las cartas con
+  fichas selladas. Los apoyos que se descartan sin fichas selladas lo hacen al perder la última.
+  Consagrar retira 1 perdición del plan, de un Enemigo, de un apoyo o de un investigador (no de
   Lugares ni traiciones, que `RemoveDoom` aún no admite).
 - Lanza sagrada, Hoja bendecida, Ríastrad y Guiado por la fe: la opción «antes de revelar» /
   «al iniciar» se elige al activar la habilidad o jugar el evento (no hay ventana intermedia

@@ -3,6 +3,7 @@ import {
   attackBlocked,
   canPlayByEffect,
   engagedEnemies,
+  enemyHasKeyword,
   fightEnemies,
   getInvestigator,
   getLocation,
@@ -582,7 +583,7 @@ export function registerNathanielCard(code: string): void {
         fightEnemies(s, by).some(
           (e) =>
             !attackBlocked(s, by, e, code) &&
-            (e.engagedWith !== null || !e.keywords.includes('aloof')),
+            (e.engagedWith !== null || !enemyHasKeyword(s, e, 'aloof')),
         ),
       play: (s, by) =>
         ask(
@@ -591,7 +592,7 @@ export function registerNathanielCard(code: string): void {
             .filter(
               (e) =>
                 !attackBlocked(s, by, e, code) &&
-                (e.engagedWith !== null || !e.keywords.includes('aloof')),
+                (e.engagedWith !== null || !enemyHasKeyword(s, e, 'aloof')),
             )
             .map((e) => ({
               label: 'choice.enemy',
@@ -626,7 +627,7 @@ export function registerNathanielCard(code: string): void {
                         !attackBlocked(s, by, e, code) &&
                         (e.id === data.first ||
                           e.engagedWith !== null ||
-                          !e.keywords.includes('aloof')),
+                          !enemyHasKeyword(s, e, 'aloof')),
                     )
                     .map((e) => ({
                       label: 'choice.enemy',

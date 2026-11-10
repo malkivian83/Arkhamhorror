@@ -5,8 +5,11 @@ import {
   getInvestigator,
   poolTokensAvailable,
   registerPlayerCard,
+  scenarioBehavior,
+  shroudOf,
   skillTestValue,
   testMargin,
+  type ReactionOption,
   type ChaosToken,
   type Choice,
   type GameState,
@@ -80,7 +83,12 @@ function purify(code: string, s: GameState, by: InvestigatorId, left: number): M
 function registerEvent(code: string): boolean {
   // Keep Faith (0, 2): fast, any [fast] window. Add 4 [bless] tokens.
   if (code === '07034' || code === '10124') {
-    registerPlayerCard({ code, playInAnyFastWindow: true, play: () => add('bless', 4) })
+    registerPlayerCard({
+      code,
+      playInAnyFastWindow: true,
+      canPlay: (s) => canAdd(s, 'bless', 1),
+      play: () => add('bless', 4),
+    })
     return true
   }
   // Tempt Fate: add 3 [curse], then add 3 [bless] and draw 1 card.
@@ -88,10 +96,12 @@ function registerEvent(code: string): boolean {
     registerPlayerCard({
       code,
       playInAnyFastWindow: true,
-      play: (_s, by) => [
+      canPlay: (s) => canAdd(s, 'curse', 1),
+      play: (s, by) => [
         ...add('curse', 3),
-        ...add('bless', 3),
-        { type: 'DrawCards', investigator: by, amount: 1 },
+        ...(canAdd(s, 'curse', 3)
+          ? [...add('bless', 3), { type: 'DrawCards' as const, investigator: by, amount: 1 }]
+          : []),
       ],
     })
     return true
@@ -115,7 +125,7 @@ function registerEvent(code: string): boolean {
   if (code === '07112') {
     const shroud = (s: GameState, by: string) => {
       const at = here(s, by)
-      return at === null ? 0 : Math.max(0, s.locations[at]?.shroud ?? 0)
+      return at === null ? 0 : shroudOf(s, at)
     }
     registerPlayerCard({
       code,
@@ -135,6 +145,7 @@ function registerEvent(code: string): boolean {
   if (code === '07230') {
     registerPlayerCard({
       code,
+      canPlay: (s) => inBag(s, 'bless') > 0 && inBag(s, 'curse') > 0,
       play: (s, by) => {
         const n = Math.min(inBag(s, 'bless'), inBag(s, 'curse'))
         return n
@@ -203,6 +214,9 @@ function registerEvent(code: string): boolean {
         const at = here(s, by)
         if (!e || enemyBehavior(e.code)?.attacksCannotBeCanceled) return []
         if (at === null || here(s, t.investigator) !== at) return []
+        const scenario = scenarioBehavior(s.scenarioId)
+        const damage = Math.max(0, e.damage + (scenario?.enemyDamageModifier?.(s, e) ?? 0))
+        const horror = Math.max(0, e.horror + (scenario?.enemyHorrorModifier?.(s, e) ?? 0))
         return [
           {
             key: code + ':cancel',
@@ -217,7 +231,7 @@ function registerEvent(code: string): boolean {
                 code,
                 effect: [
                   { type: 'CancelEnemyAttack', enemy: e.id },
-                  ...add('bless', Math.max(0, e.damage) + Math.max(0, e.horror)),
+                  ...add('bless', damage + horror),
                 ],
               },
             ],
@@ -281,17 +295,21 @@ function registerAsset(code: string): boolean {
         a.exhausted
           ? []
           : [
-              {
-                key: a.id + ':bless',
-                investigator: a.owner,
-                label: 'ability.spiritBless',
-                params: { card: cardName(code) },
-                then: [
-                  { type: 'ExhaustAsset', asset: a.id },
-                  { type: 'TakeDamage', investigator: a.owner, damage: 1, horror: 1 },
-                  ...add('bless', 2),
-                ],
-              },
+              ...(canAdd(s, 'bless', 1)
+                ? [
+                    {
+                      key: a.id + ':bless',
+                      investigator: a.owner,
+                      label: 'ability.spiritBless',
+                      params: { card: cardName(code) },
+                      then: [
+                        { type: 'ExhaustAsset', asset: a.id },
+                        { type: 'TakeDamage', investigator: a.owner, damage: 1, horror: 1 },
+                        ...add('bless', 2),
+                      ],
+                    } satisfies ReactionOption,
+                  ]
+                : []),
               ...(canAdd(s, 'curse', 2)
                 ? [
                     {
@@ -503,7 +521,7 @@ function registerSkill(code: string): boolean {
       code,
       commitWithoutIcons: true,
       afterCommittedTest: (_s, test, succeeded, by) =>
-        succeeded
+        succeeded && by === test.investigator
           ? [continuation(code, by, 'purify', { left: Math.min(5, Math.max(0, testMargin(test))) })]
           : [],
       effect: (s, by, step, data) =>

@@ -100,6 +100,7 @@ function sealBehavior(code: string, spec: SealSpec) {
     ...(spec.one && spec.one !== 'anyButAutoFail'
       ? { canPlay: (s: GameState) => options(s, spec.one).length > 0 }
       : {}),
+    ...(spec.discardWhenEmpty ? { discardWhenUnsealed: true } : {}),
     forced: (s: GameState, t: Trigger, self: Asset): Message[] =>
       t.type === 'afterAssetEntersPlay' && t.asset === self.id
         ? sealOnEnter(code, spec, s, self)
@@ -205,7 +206,7 @@ function registerAsset(code: string): boolean {
     registerPlayerCard({
       code,
       ...sealBehavior(code, spec),
-      reactions: (s, t, a) => cancelAttack(s, t, a, () => [empty(code, a)]),
+      reactions: (s, t, a) => cancelAttack(s, t, a, () => []),
       effect: emptyEffect(code),
     })
     return true
@@ -486,10 +487,11 @@ function registerAsset(code: string): boolean {
       },
       ...(high
         ? {
-            forced: (_s: GameState, t: Trigger, a: Asset): Message[] =>
-              t.type === 'skillTestEnded' && t.source === a.id
-                ? add('bless', (t.tokens ?? []).filter((x) => x === 'bless').length)
-                : [],
+            beforeResults: (_s, test): Message[] => {
+              const physical = test.resolvedTokens?.map(({ token }) => token) ?? test.tokens
+              const bless = physical.filter((token) => token === 'bless')
+              return bless.length ? [{ type: 'ReturnTokensToBagAfterTest', tokens: bless }] : []
+            },
           }
         : {}),
     })
@@ -498,27 +500,38 @@ function registerAsset(code: string): boolean {
   return false
 }
 
-/** Return `n` [bless] tokens to the pool from the bag first, then from sealed cards. */
-function returnBless(s: GameState, n: number): Message[] {
-  const fromBag = Math.min(n, inBag(s, 'bless'))
-  let left = n - fromBag
-  const sealed: Message[] = []
-  for (const e of s.sealed ?? []) {
-    if (left <= 0) break
-    if (e.token !== 'bless' || !e.holder) continue
-    left--
-    sealed.push({
-      type: 'ReleaseSealedTokens',
-      holder: e.holder,
-      token: 'bless',
-      count: 1,
-      toPool: true,
+function sealedBless(s: GameState) {
+  return (s.sealed ?? []).filter(
+    (entry) =>
+      entry.token === 'bless' &&
+      ((entry.holder?.type === 'asset' && s.assets[entry.holder.id]) ||
+        (entry.holder?.type === 'enemy' && s.enemies[entry.holder.id])),
+  )
+}
+
+/** Pay Hallow's cost one token at a time, choosing between the bag and each sealed card. */
+function returnBless(s: GameState, by: InvestigatorId, code: string, left: number): Message[] {
+  if (left <= 0) return []
+  const next = continuation(code, by, 'returnBless', { left: left - 1 })
+  const choices: Choice[] = inBag(s, 'bless')
+    ? [{ label: 'choice.hallowBlessFromBag', then: [...remove('bless', 1), next] }]
+    : []
+  const seen = new Set<string>()
+  for (const entry of sealedBless(s)) {
+    const holder = entry.holder
+    if (!holder || holder.type === 'committed') continue
+    const key = `${holder.type}:${holder.id}`
+    if (seen.has(key)) continue
+    seen.add(key)
+    choices.push({
+      label: 'choice.hallowBlessFromCard',
+      params: { card: holder.type === 'enemy' ? s.enemies[holder.id]!.name : cardName(entry.code) },
+      target: holder,
+      then: [{ type: 'ReleaseSealedTokens', holder, token: 'bless', count: 1, toPool: true }, next],
     })
   }
-  return [...remove('bless', fromBag), ...sealed]
+  return ask(by, choices)
 }
-const blessInPlay = (s: GameState) =>
-  inBag(s, 'bless') + (s.sealed ?? []).filter((e) => e.token === 'bless' && e.holder).length
 
 function doomChoices(s: GameState): Choice[] {
   const one = (target: Extract<Message, { type: 'RemoveDoom' }>['target']): Message[] => [
@@ -561,9 +574,11 @@ function registerEvent(code: string): boolean {
   if (code === '07301') {
     registerPlayerCard({
       code,
-      canPlay: (s) => blessInPlay(s) >= 10,
-      additionalPlayCosts: (s) => returnBless(s, 10),
+      canPlay: (s) => inBag(s, 'bless') + sealedBless(s).length >= 10 && doomChoices(s).length > 0,
+      additionalPlayCosts: (s, by) => returnBless(s, by, code, 10),
       play: (s, by) => ask(by, doomChoices(s)),
+      effect: (s, by, step, data) =>
+        step === 'returnBless' ? returnBless(s, by, code, Number(data.left)) : [],
     })
     return true
   }
@@ -577,6 +592,19 @@ function registerEvent(code: string): boolean {
     registerPlayerCard({
       code,
       playInAnyFastWindow: true,
+      handReactions: (_s, trigger, by) =>
+        trigger.type === 'roundBegins'
+          ? [
+              {
+                key: 'hand:' + code,
+                investigator: by,
+                label: 'ability.playCard',
+                params: { card: cardName(code) },
+                target: { type: 'hand', code },
+                then: [{ type: 'PlayCard', investigator: by, code }],
+              },
+            ]
+          : [],
       play: (s, by) => [
         ...swap(s, 'curse', 'bless'),
         { type: 'AtEndOfRound', then: [continuation(code, by, 'reverse')] },

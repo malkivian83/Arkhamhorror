@@ -62,7 +62,8 @@ duración». Fuentes EN/ES de ArkhamDB y SHA-256 en
 - Ajar y Sexto sentido se aplican al revelarse el símbolo (`onTokenRevealed`), así que cambian la
   dificultad de la propia prueba; Sexto sentido no enfrenta a los Enemigos del Lugar elegido (FAQ).
 - Exponer la debilidad usa el combate actual del Enemigo; el siguiente ataque contra él, tenga
-  éxito o no, consume el efecto. El nivel 1 no hace nada si se supera por 0.
+  éxito o no, consume el efecto. El nivel 1 no hace nada si se supera por 0. El nivel 3 roba una
+  carta aunque falle su prueba de intelecto.
 - Barricada no impide aparecer (FAQ de 2017); el Enemigo enfrentado que acompañaría al
   investigador se desenfrenta y se queda. Se descarta cuando un investigador sale del Lugar.
 - Trampa de lazo actúa después del enfrentamiento automático (FAQ): agota, desenfrenta y se vincula;

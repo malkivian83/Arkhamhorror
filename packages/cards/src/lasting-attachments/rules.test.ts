@@ -13,9 +13,10 @@ import {
   type Message,
 } from '@lcg/engine'
 import { choose, during, ghoul, labels, spawnAt } from '@lcg/engine/testing'
-import { game, patch } from '../dunwich-pilot/testing'
+import { game, patch, withAsset } from '../dunwich-pilot/testing'
 import { setup, name, enemy, fight, investigate, sturdy } from '../basic-abilities/testing'
 import data from '../data/lasting-attachments.json'
+import { attackable } from '../dunwich-pilot/effects'
 import './index'
 
 const me = (s: GameState) => s.investigators.find((i) => i.id === 'a')!
@@ -98,6 +99,12 @@ it('Expose Weakness (3): fight treated as 0 for the next attack; draws 1 card', 
   expect(me(s).hand).toHaveLength(1)
 })
 
+it('Expose Weakness (3) draws even on a failed test', () => {
+  const s = resolve(play(plain(), '04195'), ['autoFail'])
+  expect(attachedStat(s, enemy(s).id, 'fight')).toBe(0)
+  expect(me(s).hand).toHaveLength(1)
+})
+
 it.each([
   ['05157', false],
   ['05321', true],
@@ -123,6 +130,22 @@ it('Wither: to a minimum of 1', () => {
   s = resolve(fight(s, '05157', 'willpower'), ['skull'])
   expect(attachedStat(s, enemy(s).id, 'fight')).toBe(0)
   expect(attachedStat(s, enemy(s).id, 'evade')).toBe(0)
+})
+
+it('Wither cannot raise an enemy stat already below its minimum', () => {
+  let s = play(setup('05157'), '03108')
+  s = reveal({ ...fight(s, '05157', 'willpower'), chaosBag: ['skull'] })
+  expect(s.skillTest?.difficulty).toBe(0)
+  expect(attachedStat(s, enemy(s).id, 'fight')).toBe(-2)
+})
+
+it('Wither (4) defeats an enemy whose damage reaches its reduced health', () => {
+  const s = setup('05321', { enemy: { ...sturdy, health: 3, fight: 9 } })
+  const id = enemy(s).id
+  const wounded = { ...s, enemies: { ...s.enemies, [id]: { ...enemy(s), damageTaken: 2 } } }
+  const result = resolve(fight(wounded, '05321', 'willpower'), ['skull'])
+  expect(result.lastSkillTest?.succeeded).toBe(false)
+  expect(result.enemies[id]).toBeUndefined()
 })
 
 it('Sixth Sense: a symbol lets you investigate a revealed connecting location', () => {
@@ -153,6 +176,22 @@ it('Ofuda: the enemy loses its keywords this round; first bless at your location
   expect(enemyHasKeyword({ ...s, round: s.round + 1 }, enemy(s), 'retaliate')).toBe(true)
 })
 
+it('Ofuda prevents an Elusive enemy from moving or exhausting after an attack', () => {
+  let s = setup('10022', { enemy: { ...sturdy, keywords: ['elusive'] } })
+  s = choose(s, 'ability.ofuda', { card: name('10022'), enemy: enemy(s).name })
+  s = resolve(
+    run(s, {
+      type: 'BeginSkillTest',
+      investigator: 'a',
+      skill: 'combat',
+      difficulty: 0,
+      kind: { type: 'fight', enemy: enemy(s).id },
+    }),
+  )
+  expect(enemy(s).location).toBe('A')
+  expect(enemy(s).exhausted).toBe(false)
+})
+
 it('Bolas: combat evasion attaches it to a non-Elite enemy (-1 evade, exhausted after moving)', () => {
   let s = play(plain(), '09025')
   expect(s.skillTest?.skill).toBe('combat')
@@ -170,6 +209,19 @@ it('Bolas: combat evasion attaches it to a non-Elite enemy (-1 evade, exhausted 
   )
   expect(enemy(s).exhausted).toBe(true)
   expect(onEnemy(resolve(play(plain(eliteGhoul), '09025')))).toEqual([])
+})
+
+it('Bolas exhausts an enemy that follows an investigator into a location', () => {
+  let s = resolve(play(plain(), '09025'))
+  const id = enemy(s).id
+  s = run(
+    s,
+    { type: 'ReadyEnemy', enemy: id },
+    { type: 'EngageEnemy', enemy: id, investigator: 'a' },
+  )
+  s = run(s, { type: 'MoveTo', investigator: 'a', location: 'B' })
+  expect(enemy(s).location).toBe('B')
+  expect(enemy(s).exhausted).toBe(true)
 })
 
 it('Fend Off: the spawning enemy attacks, is evaded and cannot ready', () => {
@@ -199,6 +251,25 @@ it("Hunter's Mark: +1 combat against the enemy; discard for 1 additional damage"
   expect(enemy(s).damageTaken).toBe(2)
   expect(onEnemy(s)).toEqual([])
   expect(me(s).discard).toContain('11026')
+})
+
+it("Hunter's Mark does not add combat to an attack using willpower", () => {
+  const s = play(plain(), '11026')
+  const fighting = run(s, {
+    type: 'BeginSkillTest',
+    investigator: 'a',
+    skill: 'willpower',
+    difficulty: 2,
+    kind: { type: 'fight', enemy: enemy(s).id },
+  })
+  expect(fighting.skillTest?.baseModifier).toBe(0)
+})
+
+it("Hunter's Mark can increase damage without a source investigator", () => {
+  let s = play(plain(), '11026')
+  s = run(s, { type: 'DamageEnemy', enemy: enemy(s).id, amount: 1 })
+  s = choose(s, 'ability.huntersMark', { card: name('11026'), enemy: enemy(s).name })
+  expect(enemy(s).damageTaken).toBe(2)
 })
 
 it('Grievous Wound: after a successful Melee attack; 1 damage at the end of each round', () => {
@@ -276,6 +347,37 @@ it('Under Surveillance: evades an entering enemy, discovers a clue; it stays exh
   expect(enemy(s).exhausted).toBe(true)
 })
 
+it.each(['03199', '07157'])('%s triggers when an engaged enemy follows an investigator', (code) => {
+  let s = during(plain(), patch({ discard: [code] }))
+  s = run(s, { type: 'AttachEventToLocation', investigator: 'a', code, location: 'B' })
+  s = run(s, { type: 'MoveTo', investigator: 'a', location: 'B' })
+  expect(enemy(s).location).toBe('B')
+  expect(enemy(s).exhausted).toBe(true)
+  expect(enemy(s).engagedWith).toBeNull()
+  expect(attachedCodes(s, 'B')).toEqual([])
+})
+
+it.each(['ReadyEnemy', 'ReadyAll'] as const)(
+  'Snare Trap stays attached if %s cannot ready the enemy',
+  (type) => {
+    let s = during(plain(), patch({ discard: ['03199', '08082'] }))
+    const id = enemy(s).id
+    s = run(
+      s,
+      { type: 'ExhaustEnemy', enemy: id },
+      ...['03199', '08082'].map((code): Message => ({
+        type: 'AttachPlayerCardToEnemy',
+        investigator: 'a',
+        code,
+        enemy: id,
+      })),
+    )
+    s = run(s, type === 'ReadyEnemy' ? { type, enemy: id } : { type })
+    expect(enemy(s).exhausted).toBe(true)
+    expect(onEnemy(s)).toEqual(['03199', '08082'])
+  },
+)
+
 it('Hiding Spot: non-Elite enemies there are aloof; discarded with a ready enemy there', () => {
   let s = play(plain(null), '03038')
   s = choose(s, 'choice.attachTo', { location: 'Room B' })
@@ -283,6 +385,16 @@ it('Hiding Spot: non-Elite enemies there are aloof; discarded with a ready enemy
   expect(enemyHasKeyword(s, enemy(s), 'aloof')).toBe(true)
   s = run(s, { type: 'Forced', trigger: { type: 'enemyPhaseEnds' } })
   expect(attachedCodes(s, 'B')).toEqual([])
+})
+
+it('Shared attack targets account for Aloof gained from Hiding Spot and lost to Ofuda', () => {
+  let s = play(withAsset(plain(null), '10022'), '03038')
+  s = choose(s, 'choice.attachTo', { location: 'Room A' })
+  s = run(s, spawnAt('A', sturdy, null))
+  expect(enemy(s).engagedWith).toBeNull()
+  expect(attackable(s, 'a')).toEqual([])
+  s = choose(s, 'ability.ofuda', { card: name('10022'), enemy: enemy(s).name })
+  expect(attackable(s, 'a')).toEqual([enemy(s)])
 })
 
 it.each(['02156', '05323'])('Lure %s: enemies move toward it; discarded at round end', (code) => {
@@ -296,9 +408,9 @@ it.each(['02156', '05323'])('Lure %s: enemies move toward it; discarded at round
 })
 
 it('Map the Area: attached instead of discovering clues; tests there get -1 difficulty', () => {
-  let s = play(plain(null), '09048')
+  let s = play(withAsset(plain(null), '01059'), '09048')
   s = choose(s, 'choice.mapTheArea', { skill: 'willpower' })
-  expect(s.skillTest?.baseModifier).toBe(me(s).skills.willpower)
+  expect(s.skillTest?.baseModifier).toBe(me(s).skills.willpower + 1)
   s = resolve(s)
   expect(me(s).clues).toBe(0)
   expect(attachedCodes(s, 'A')).toEqual(['09048'])

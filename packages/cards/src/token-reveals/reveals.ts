@@ -31,7 +31,10 @@ function extraTokens(
   state: GameState,
   code: string,
 ): ReactionOption[] {
-  if (test.source !== self.id || !wouldRevealFor(state, self.owner)) return []
+  const replacement = state.nextTokenReplacement
+  const mayAddToKatarina = replacement?.untilSymbol && replacement.reveal === 0
+  if (test.source !== self.id || (!mayAddToKatarina && !wouldRevealFor(state, self.owner)))
+    return []
   return Array.from({ length: Math.min(3, self.uses) }, (_, n) => ({
     key: `${self.id}:extra:${n + 1}`,
     investigator: self.owner,
@@ -39,15 +42,20 @@ function extraTokens(
     params: { card: cardName(code), n: n + 1 },
     then: [
       spend(self, n + 1),
-      replace({ investigator: self.owner, reveal: n + 2, source: self.id }),
+      replace({
+        investigator: self.owner,
+        reveal: n + 2,
+        source: self.id,
+        ...(mayAddToKatarina ? { untilSymbol: true } : {}),
+      }),
     ],
   }))
 }
-/** The resolved token of this card's choice equals one of the tokens it ignored. */
-const matched = (test: SkillTest, self: Asset) =>
+/** FAQ 2.5: a token ignored by another ability can match the chosen token. */
+const matched = (test: SkillTest) =>
   !!test.succeeded &&
-  test.tokenChoice?.source === self.id &&
-  test.tokenChoice.ignored.includes(test.tokenChoice.chosen)
+  test.tokenChoice !== undefined &&
+  (test.ignoredTokens ?? []).includes(test.tokenChoice.chosen)
 
 export function registerRevealReplacement(code: string): boolean {
   // Grotesque Statue (4, 2): when you would reveal a chaos token, spend 1 charge: reveal 2
@@ -106,8 +114,8 @@ export function registerRevealReplacement(code: string): boolean {
       [{ action: fight ? 'fight' : 'investigate', skills: ['willpower'] }],
       () => ({
         testOptions: (s, test, self) => extraTokens(self, test, s, code),
-        beforeResults: (s, test, self) => {
-          if (!matched(test, self)) return []
+        beforeResults: (s, test) => {
+          if (!matched(test)) return []
           if (fight)
             return test.kind.type === 'fight' ? [{ type: 'ModifySkillTest', extraDamage: 2 }] : []
           const here = getInvestigator(s, test.investigator).location
@@ -134,23 +142,34 @@ export function registerRevealReplacement(code: string): boolean {
   // Katarina Sojka (errata): when you would reveal a chaos token during a skill test you are
   // performing, exhaust her: reveal until a symbol token, resolve it and ignore the rest.
   if (code === '11069') {
+    const revealUntilSymbol = (
+      self: Asset,
+      replacement?: TokenRevealReplacement,
+    ): ReactionOption[] => [
+      {
+        key: `${self.id}:katarina`,
+        investigator: self.owner,
+        label: 'ability.tokenRevealUntilSymbol',
+        params: { card: cardName(code) },
+        then: [
+          { type: 'ExhaustAsset', asset: self.id },
+          replace({ investigator: self.owner, reveal: 0, ...replacement, untilSymbol: true }),
+        ],
+      },
+    ]
     registerPlayerCard({
       code,
       wouldRevealOptions: (s, self) =>
-        self.exhausted || !ownTest(s, self)
-          ? []
-          : [
-              {
-                key: `${self.id}:katarina`,
-                investigator: self.owner,
-                label: 'ability.tokenRevealUntilSymbol',
-                params: { card: cardName(code) },
-                then: [
-                  { type: 'ExhaustAsset', asset: self.id },
-                  replace({ investigator: self.owner, reveal: 0, untilSymbol: true }),
-                ],
-              },
-            ],
+        self.exhausted || !ownTest(s, self) ? [] : revealUntilSymbol(self),
+      testOptions: (s, test, self) => {
+        const replacement = s.nextTokenReplacement
+        return !self.exhausted &&
+          test.investigator === self.owner &&
+          replacement?.source &&
+          !replacement.untilSymbol
+          ? revealUntilSymbol(self, replacement)
+          : []
+      },
     })
     return true
   }

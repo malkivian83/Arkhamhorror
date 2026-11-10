@@ -61,8 +61,9 @@ Se apoya en la ventana «al revelar» con la ficha retenida (`skillTest.revealin
   una [curse] e inflige el daño al momento, uno por cada modificador ignorado.
 - Golpe de suerte: se puede exiliar aunque haya salido [auto_fail]; la prueba falla igualmente (FAQ).
 - Bendición de Isis / Maldición de los eones reaccionan solo a la segunda ficha de su tipo resuelta
-  en la prueba. La opción de Maldición de los eones (retirar ambas o devolverlas a la bolsa) se elige
-  al usarla.
+  en la prueba. Maldición de los eones ofrece retirar las fichas al terminar la prueba.
+  Si se declina, la primera Maldición sigue la regla normal y la segunda, cancelada, vuelve a la
+  bolsa.
 - Acuerdo blasfemo cambia solo el modificador: la [curse] sigue revelando otra ficha y vuelve a la
   bolsa. Acuerdo antiguo anula únicamente el «revela otra» de esa [bless].
 - Penique «de la suerte» (obligatorio) solo en tus pruebas; robar 1 si una [bless] se trata como
@@ -73,9 +74,9 @@ Se apoya en la ventana «al revelar» con la ficha retenida (`skillTest.revealin
 - Símbolo religioso cuenta las [curse] y [auto_fail] resueltas; la repetición reutiliza la prueba
   original (como Vive y aprende). Su límite «una vez por prueba» se cubre con el agotamiento; no se
   impide que otra copia repita la misma prueba.
-- Anteojos prismáticos: la pista adicional se descubre al revelarse la [curse], por analogía con la
-  FAQ de Ojo del caos.
-- Nkosi Mabati: el sigilo (cualquier ficha con símbolo salvo [elder_sign]) se guarda en el apoyo y se
+- Anteojos prismáticos: se decide si se agotan al revelarse la [curse]. La pista adicional forma
+  parte del resultado de la investigación si tiene éxito.
+- Nkosi Mabati: nombrar el sigilo al entrar en juego es opcional. El sigilo (cualquier ficha con símbolo salvo [elder_sign]) se guarda en el apoyo y se
   pierde al salir de juego; su reacción solo se ofrece en pruebas de habilidad y si el sigilo está en
   la bolsa. El sigilo se anota en el registro, no en la carta.
 

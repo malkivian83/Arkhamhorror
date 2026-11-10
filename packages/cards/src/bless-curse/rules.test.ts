@@ -4,6 +4,7 @@ import { expect, it } from 'vitest'
 import {
   availableAbilities,
   playerCardBehavior,
+  registerScenario,
   type ChaosToken,
   type GameState,
   type Message,
@@ -60,6 +61,23 @@ it('Tempt Fate adds 3 curse, then 3 bless and draws 1 card', () => {
   expect(me(s).hand).toContain('01088')
 })
 
+it('Tempt Fate skips everything after then if fewer than three curses can be added', () => {
+  let s = withHand(base(), ['07037'])
+  s = during(s, patch({ deck: ['01088'] }))
+  s = startTest(during(s, bag(...Array<ChaosToken>(8).fill('curse'))))
+  s = playFast(s, '07037')
+  expect(count(s, 'curse')).toBe(10)
+  expect(count(s, 'bless')).toBe(0)
+  expect(me(s).hand).not.toContain('01088')
+})
+
+it('Keep Faith is unavailable when all ten bless tokens are in play', () => {
+  const s = startTest(
+    withHand(during(base(), bag(...Array<ChaosToken>(10).fill('bless'))), ['07034']),
+  )
+  expect(labels(s)).not.toContain('ability.playFastFor')
+})
+
 it('Deep Knowledge costs 2 curse tokens and splits 3 draws among investigators here', () => {
   let s = withHand(base(['a', 'b']), ['07023'])
   s = during(s, (x) => ({
@@ -91,7 +109,7 @@ it('Stirring Up Trouble adds curse tokens equal to the shroud and discovers 2 cl
   let s = withHand(base(), ['07112'])
   s = during(s, (x) => ({
     ...x,
-    locations: { ...x.locations, A: { ...x.locations.A!, shroud: 3, clues: 3 } },
+    locations: { ...x.locations, A: { ...x.locations.A!, shroud: 1, shroudModifier: 2, clues: 3 } },
   }))
   s = choose(s, 'action.play', { card: name('07112') })
   expect(count(s, 'curse')).toBe(3)
@@ -104,6 +122,11 @@ it('Harmony Restored returns curse tokens up to the number of bless tokens and p
   expect(count(s, 'curse')).toBe(1)
   expect(count(s, 'bless')).toBe(2)
   expect(me(s).resources).toBe(10 - 3 + 2)
+})
+
+it('Harmony Restored is unavailable without both kinds of token in the bag', () => {
+  const s = withHand(during(base(), bag('bless', 0)), ['07230'])
+  expect(labels(s)).not.toContain('action.play')
 })
 
 it('The Stygian Eye costs 1 less per curse token and gives +3 to each skill this round', () => {
@@ -126,8 +149,13 @@ it('Control Variable discovers a clue after a curse token is revealed in a test 
   expect(me(s).clues).toBe(1)
 })
 
-it('Hand of Fate cancels an attack and adds bless tokens equal to damage plus horror', () => {
-  let s = during(base(), (x) => x, {
+it('Hand of Fate adds bless tokens equal to the enemy’s modified damage plus horror', () => {
+  registerScenario({
+    id: 'hand-of-fate-test',
+    enemyDamageModifier: () => 2,
+    enemyHorrorModifier: () => -1,
+  })
+  let s = during(base(), (x) => ({ ...x, scenarioId: 'hand-of-fate-test' }), {
     type: 'SpawnEnemy',
     card: ghoul,
     location: 'A',
@@ -138,7 +166,7 @@ it('Hand of Fate cancels an attack and adds bless tokens equal to damage plus ho
   while (s.pending && !labels(s).includes('ability.playCard')) s = choose(s, labels(s)[0]!)
   s = choose(s, 'ability.playCard', { card: name('07020') })
   expect(me(s).damage + me(s).horror).toBe(0)
-  expect(count(s, 'bless')).toBeGreaterThan(0)
+  expect(count(s, 'bless')).toBe(3)
 })
 
 it('Book of Psalms spends a secret, heals 1 horror here and adds 2 bless tokens', () => {
@@ -162,6 +190,13 @@ it('Spirit of Humanity trades damage and horror for bless, or curse for healing'
   t = choose(t, 'ability.spiritCurse', { card: name('07229') })
   expect(count(t, 'curse')).toBe(2)
   expect([me(t).damage, me(t).horror]).toEqual([0, 0])
+})
+
+it('Spirit of Humanity cannot pay damage and horror to add no bless tokens', () => {
+  const s = startTest(
+    during(setup('07229', { enemy: null }), bag(...Array<ChaosToken>(10).fill('bless'))),
+  )
+  expect(labels(s)).not.toContain('ability.spiritBless')
 })
 
 it('Gabriel Carillo gives +1 intellect and draws a card for a curse token at turn start', () => {
@@ -303,6 +338,17 @@ it('Purified adds bless or removes curse per point succeeded by, up to 5', () =>
   s = choose(s, 'choice.removeCurse', { n: 1 })
   s = choose(s, 'choice.addBless', { n: 1 })
   expect([count(s, 'bless'), count(s, 'curse')]).toEqual([1, 0])
+})
+
+// Rules Forum (September 2024): "you" is the investigator who committed Purified.
+it('Purified gives no effect when committed to another investigator’s test', () => {
+  let s = during(base(['a', 'b']), patch({ hand: ['10029'], location: 'A' }, 'b'))
+  s = startTest(s, 1)
+  s = choose(s, 'choice.commitFrom', { card: name('10029') })
+  s = commit(s, '10029')
+  s = apply(reveal({ ...s, chaosBag: [0] }))
+  expect(labels(s)).not.toContain('choice.addBless')
+  expect(count(s, 'bless')).toBe(0)
 })
 
 it('Esoteric Method adds a curse per point succeeded or failed by after the test', () => {

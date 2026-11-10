@@ -80,6 +80,14 @@ describe('Rite of Equilibrium (5)', () => {
     s = choose(s, 'choice.equilibriumAdd', { n: 2 })
     expect([count(s, 'curse'), count(s, 'bless')]).toEqual([2, 2])
   })
+  it('may pay more curses than the number of bless tokens available for its effect', () => {
+    let s = play(
+      during(base(), (s) => ({ ...s, chaosBag: Array<ChaosToken>(8).fill('bless') })),
+      '07308',
+    )
+    s = choose(s, 'choice.equilibriumAdd', { n: 3 })
+    expect([count(s, 'curse'), count(s, 'bless')]).toEqual([3, 10])
+  })
   it('removes X of each to heal X horror from cards at your location', () => {
     let s = during(
       base(['a', 'b']),

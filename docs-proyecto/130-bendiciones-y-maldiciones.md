@@ -66,8 +66,11 @@ fichas (ayuda, nombre y registro). Aditiva: sin estas fichas no cambia ningún f
   y fallos automáticos resueltos en la prueba terminada.
 - La mano del destino cancela el ataque y añade daño + horror del atacante en Bendiciones.
 
-FAQ v2.5A y ArkhamDB: sin aclaraciones ni erratas para estas cartas (ArkhamDB no respondió
-para 17 de ellas en la consulta; se revisaron las 9 accesibles).
+La aclaración del Rules Forum de septiembre de 2024, recogida en la
+[ficha de Purificado](https://arkhamdb.com/card/10029), limita su efecto a las pruebas del
+investigador que la compromete. Se puede comprometer a la prueba de otro investigador.
+Tentar al destino añade las Bendiciones y roba solo si ha añadido las tres Maldiciones.
+Incitando problemas usa el velo actual para calcular el coste adicional.
 
 ## Bloqueadas o pendientes
 

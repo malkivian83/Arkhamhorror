@@ -9,7 +9,7 @@ import {
   type Message,
 } from '@lcg/engine'
 import { choose, during, ghoul, labels } from '@lcg/engine/testing'
-import { game, patch } from '../dunwich-pilot/testing'
+import { game, patch, withAsset } from '../dunwich-pilot/testing'
 import { setup, name, enemy, fight, investigate, evade } from '../basic-abilities/testing'
 import { investigatorCards, validateDeck } from '../decks'
 import data from '../data/token-triggers.json'
@@ -102,18 +102,22 @@ it.each([
   s = revealWith(s, [token, token], 10)
   expect(labels(s)).toContain('ability.tokenTrigger.' + code)
   s = use(s, code)
-  if (code === '07195') s = choose(s, 'choice.aeonsKeep')
   expect(s.skillTest?.tokens).toEqual([token, face])
   expect(s.assets[code]!.exhausted).toBe(true)
   s = apply(s)
-  // Both tokens return to the chaos bag instead of the token pool.
-  expect(count(s, token)).toBe(2)
+  if (code === '07195') {
+    expect(s.skillTest).toBeNull()
+    s = choose(s, 'choice.aeonsKeep')
+  }
+  expect(count(s, token)).toBe(code === '07190' ? 2 : 1)
 })
 
 it('Curse of Aeons may remove both curse tokens from the bag after the test', () => {
   let s = revealWith(setup('07195', { enemy: null }), ['curse', 'curse'], 10)
-  s = choose(use(s, '07195'), 'choice.aeonsRemove')
-  expect(count(apply(s), 'curse')).toBe(0)
+  s = use(s, '07195')
+  expect(labels(s)).not.toContain('choice.aeonsRemove')
+  s = choose(apply(s), 'choice.aeonsRemove')
+  expect(count(s, 'curse')).toBe(0)
 })
 
 it('Blessing of Isis does not react to the first bless token', () => {
@@ -155,6 +159,19 @@ it('Sacred Covenant returns revealed bless tokens to the bag after the reveal st
   expect(s.skillTest?.tokens).toEqual([])
   expect(s.skillTest?.tokenModifier).toBe(0)
   expect(count(s, 'bless')).toBe(2)
+})
+
+it('Sacred Covenant returns the physical curse that Lucky Penny treated as a bless', () => {
+  const s = during(setup('07110', { enemy: null }), (s) => withAsset(s, '07224'))
+  let revealed: GameState | undefined
+  for (let rng = 1; rng < 60 && !revealed; rng++) {
+    const candidate = revealWith({ ...s, rng }, ['curse'])
+    if (labels(candidate).includes('ability.tokenTrigger.07110')) revealed = candidate
+  }
+  expect(revealed?.skillTest?.tokens).toEqual(['bless'])
+  const returned = choose(use(revealed!, '07110'), 'choice.sacredReturn', { n: 1 })
+  expect(returned.chaosBag).toEqual(['curse'])
+  expect(apply(returned).chaosBag).toEqual(['curse'])
 })
 
 it('Paradoxical Covenant makes the test succeed when bless and curse were revealed', () => {
@@ -268,6 +285,14 @@ it('Dawn Star ignores revealed curse modifiers and deals 1 damage for each', () 
   expect(me(s).resources).toBe(2)
 })
 
+it('Dawn Star ignores the actual +1 from Blasphemous Covenant', () => {
+  let s = during(setup('07113'), patch({ hand: ['10131'], resources: 3 }))
+  s = use(revealWith(s, ['curse']), '07113')
+  expect(s.skillTest?.tokenModifier).toBe(1)
+  s = choose(s, 'ability.playCard', { card: name('10131') })
+  expect(s.skillTest?.tokenModifier).toBe(0)
+})
+
 it('Dawn Star is not offered without revealed curse tokens', () => {
   const s = revealWith(during(setup('07122'), patch({ hand: ['10131'] })), [0])
   expect(labels(s)).not.toContain('ability.playCard')
@@ -292,7 +317,28 @@ it('Prismatic Spectacles adds a curse to investigate and may discover an extra c
   s = reveal(s)
   s = choose(s, 'choice.spectaclesClue', { card: name('10056') })
   expect(s.assets['10056']!.exhausted).toBe(true)
-  expect(me(s).clues).toBe(1)
+  expect(me(s).clues).toBe(0)
+  expect(me(apply(s)).clues).toBe(2)
+})
+
+it('Prismatic Spectacles cannot discover an additional clue on failure', () => {
+  const ready = during(setup('10056', { enemy: null }), (s) => location(s, 'A', { shroud: 9 }))
+  let s = investigate(ready, '10056')
+  expect(s.skillTest?.difficulty).toBe(9)
+  s = reveal({ ...s, chaosBag: ['curse'] })
+  s = choose(s, 'choice.spectaclesClue', { card: name('10056') })
+  s = apply(s)
+  expect(s.lastSkillTest?.succeeded).toBe(false)
+  expect(me(s).clues).toBe(0)
+})
+
+it('Nkosi Mabati may enter play without naming a sigil', () => {
+  const s = during({ ...game(), interactive: true }, patch({ hand: ['08091'], resources: 10 }))
+  const played = choose(s, 'action.play', { card: name('08091') })
+  const skipped = choose(played, 'choice.skip')
+  const nkosi = Object.values(skipped.assets).find((a) => a.code === '08091')
+  expect(nkosi).toBeDefined()
+  expect(nkosi?.form).toBeUndefined()
 })
 
 it('Nkosi Mabati names a sigil and reveals it instead of a symbol at your location', () => {

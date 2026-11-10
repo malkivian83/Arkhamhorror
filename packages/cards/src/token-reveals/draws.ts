@@ -75,25 +75,28 @@ export function registerRevealDraws(code: string): boolean {
             ],
       effect: (s: GameState, by, step, data) => {
         if (step === 'stop') {
-          const held = list(data!.held),
-            n = list(data!.faces).length
           return [
-            ...returnAll(held),
-            ...ask(
-              by,
-              Array.from({ length: n + 1 }, (_, draw) => ({
-                label: 'choice.henryWanSplit',
-                params: { draw, gain: n - draw },
-                then: [
-                  ...(draw ? [{ type: 'DrawCards' as const, investigator: by, amount: draw }] : []),
-                  ...(n - draw
-                    ? [{ type: 'GainResources' as const, investigator: by, amount: n - draw }]
-                    : []),
-                ],
-              })),
-              true,
-            ),
+            ...returnAll(list(data!.held)),
+            continuation(code, by, 'reward', { left: list(data!.faces).length }),
           ]
+        }
+        if (step === 'reward') {
+          const left = Number(data?.left ?? 0)
+          if (left <= 0) return []
+          const next = continuation(code, by, 'reward', { left: left - 1 })
+          return ask(by, [
+            {
+              label: 'choice.henryWanSplit',
+              params: { draw: 1, gain: 0 },
+              then: [{ type: 'DrawCards', investigator: by, amount: 1 }, next],
+            },
+            {
+              label: 'choice.henryWanSplit',
+              params: { draw: 0, gain: 1 },
+              then: [{ type: 'GainResources', investigator: by, amount: 1 }, next],
+            },
+            { label: 'choice.skip', then: [] },
+          ])
         }
         const { held, faces, face } = collect(data)
         if (SYMBOLS.includes(face)) return returnAll(held)

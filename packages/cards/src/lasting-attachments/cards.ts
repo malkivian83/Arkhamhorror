@@ -2,6 +2,7 @@
 // movement), Upkeep (readying), Skill Tests (ST.3 reveal), Evade, Fight, Investigate, Shroud,
 // Keywords (aloof, alert, elusive, retaliate), Limit X per location/enemy, Exhaust, Uses.
 import {
+  activeInvestigators,
   attachedStat,
   attachmentsAt,
   effectiveVitals,
@@ -14,6 +15,7 @@ import {
   registerPlayerCard,
   registerTreachery,
   shroudOf,
+  skillValueFor,
   testMargin,
   type AbilityOption,
   type Asset,
@@ -140,8 +142,9 @@ function registerExposeWeakness(code: string, upgraded: boolean) {
     code,
     playInAnyFastWindow: true,
     canPlay: (s, by) => enemiesHere(s, by).length > 0,
-    play: (s, by) =>
-      ask(
+    play: (s, by) => {
+      const draw: Message[] = upgraded ? [{ type: 'DrawCards', investigator: by, amount: 1 }] : []
+      return ask(
         by,
         enemyChoices(enemiesHere(s, by), (e) => [
           {
@@ -153,14 +156,15 @@ function registerExposeWeakness(code: string, upgraded: boolean) {
             kind: {
               type: 'effect',
               source: code,
-              onSuccess: [continuation(code, by, 'expose', { enemy: e.id })],
-              onFail: [],
+              onSuccess: [continuation(code, by, 'expose', { enemy: e.id }), ...draw],
+              onFail: draw,
               onFailEach: [],
             },
           },
         ]),
-      ),
-    effect: (s, by, step, data) => {
+      )
+    },
+    effect: (s, _by, step, data) => {
       const enemy = String(data.enemy)
       if (step !== 'expose' || !s.enemies[enemy] || !s.skillTest) return []
       const margin = testMargin(s.skillTest)
@@ -173,7 +177,6 @@ function registerExposeWeakness(code: string, upgraded: boolean) {
             ? { source: code, until: 'nextAttack', fightSetTo: 0 }
             : { source: code, until: 'nextAttack', fight: -margin },
         },
-        ...(upgraded ? [{ type: 'DrawCards' as const, investigator: by, amount: 1 }] : []),
       ]
     },
   })
@@ -210,6 +213,9 @@ function registerWither(code: string, upgraded: boolean) {
             enemy,
             before: attachedStat(s, enemy, 'fight'),
           }),
+          ...(upgraded && !s.enemies[enemy]?.hasNoStats
+            ? [{ type: 'CheckEnemyDefeat' as const, enemy, by: test.investigator }]
+            : []),
         ]
       },
       effect: (s, _by, step, data) => {
@@ -440,13 +446,11 @@ function registerHuntersMark(code: string) {
     code,
     revelation: () => [],
     attachedFightSkillBonus: 1,
-    // "When damage is dealt to attached enemy": the window before the damage is applied, which
-    // the engine opens for damage dealt by an investigator.
+    // "When damage is dealt to attached enemy": any investigator can use this window.
     reactions: (s, t, self): ReactionOption[] => {
       const e = attachedEnemy(s, self)
       if (!e || t.type !== 'beforeEnemyDamage' || t.enemy !== e.id) return []
-      const who = [...new Set([t.investigator, ...(self.owner ? [self.owner] : [])])]
-      return who.map((investigator) => ({
+      return activeInvestigators(s).map(({ id: investigator }) => ({
         key: self.id + ':mark',
         investigator,
         label: 'ability.huntersMark',
@@ -639,7 +643,11 @@ function registerLure(code: string, connecting: boolean) {
 function registerMapTheArea(code: string) {
   const spec = (skill: 'willpower' | 'agility'): BasicEvent => ({
     action: 'investigate',
-    modifier: (ctx) => getInvestigator(ctx.state, ctx.investigator).skills[skill],
+    modifier: (ctx) =>
+      skillValueFor(ctx.state, ctx.investigator, skill, {
+        type: 'investigate',
+        location: here(ctx.state, ctx.investigator)!,
+      }),
     replaceClue: true,
     onSuccess: (ctx) => [continuation(code, ctx.investigator, 'map')],
   })

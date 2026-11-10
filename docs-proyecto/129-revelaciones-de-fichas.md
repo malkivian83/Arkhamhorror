@@ -46,12 +46,13 @@ Es aditiva: sin sustitución declarada no cambia ningún flujo.
 - Contra viento y marea: en tu prueba, si la dificultad supera el valor básico de tu
   habilidad; revela X adicionales (X = diferencia).
 - Aliento del durmiente y Ojos del soñador: combate o investigación con [willpower]; antes de
-  revelar, hasta 3 cargas añaden fichas. Si la elegida es igual que una ignorada en su propia
-  elección, +2 daño o 1 pista adicional en tu Lugar.
+  revelar, hasta 3 cargas añaden fichas. Si la elegida es igual que una ignorada, incluso por otra carta
+  (FAQ v2.5), +2 daño o 1 pista adicional en tu Lugar.
 - Katarina Sojka (errata): solo en tus pruebas; agotar, revelar hasta un símbolo, resolverlo
   e ignorar el resto.
 - Henry Wan y 21 o nada: revelan de una en una, retienen las fichas y las devuelven al final.
-  Henry Wan da carta o recurso por ficha al parar y nada si sale un símbolo. 21 o nada: símbolos
+  Henry Wan permite elegir carta o recurso por ficha al parar, o renunciar a las recompensas
+  restantes. Si sale un símbolo, no hay recompensa. 21 o nada: símbolos
   5, fallo automático 10, signo arcano 1 u 11, números sin signo; FAQ (Confines): Helada,
   bendición y maldición valen 0. 18 o menos 4 recursos, 19 5, 20 6, 21 9, más de 21 nada.
 - Tormenta de espíritus y Granadas Mk 1: en lugar del daño normal, daño a cada Enemigo del
@@ -63,9 +64,10 @@ Es aditiva: sin sustitución declarada no cambia ningún flujo.
 - Lanzallamas: objetivo forzoso, el Enemigo enfrentado con mayor combate (empates a elegir);
   +4 y reparto opcional de hasta 4 daños más el adicional entre Enemigos enfrentados.
 
-Limitaciones documentadas: cada revelación admite una sola sustitución (las FAQ permiten
-encadenar Olive McBride y la Estatua declarando el orden); dentro de una prueba la ventana se
-ofrece antes de la primera ficha, como Mask of Silenus.
+Aliento del durmiente y Ojos del soñador pueden combinar sus fichas adicionales con Katarina:
+ella sustituye una extracción y las fichas que ignora pueden dar la coincidencia.
+Las demás sustituciones se aplican de una en una. Dentro de una prueba, la ventana se ofrece
+antes de la primera ficha, como Mask of Silenus.
 
 Referencias: [Estatua grotesca y FAQ](https://arkhamdb.com/card/01071),
 [Tormenta de espíritus](https://arkhamdb.com/card/03153),

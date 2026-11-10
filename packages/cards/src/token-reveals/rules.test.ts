@@ -171,14 +171,14 @@ it.each([
   },
 )
 
-it('Breath of the Sleeper ignores a match made by another card replacement', () => {
+it('Breath of the Sleeper counts a match made by another card replacement', () => {
   let s = setup('11066')
   s = during(s, (x) => withAsset(x, '01071'))
   s = fight(s, '11066', 'willpower')
   s = choose(s, 'ability.tokenRevealReplace', { card: name('01071'), n: 2 })
   expect(labels(s)).not.toContain('ability.tokenRevealExtra')
   s = apply(reveal(bag(s, 0, 0)))
-  expect(Object.values(s.enemies)[0]!.damageTaken).toBe(1)
+  expect(Object.values(s.enemies)[0]!.damageTaken).toBe(3)
 })
 
 it('Eyes of the Dreamer discovers 1 additional clue when the chosen token matches', () => {
@@ -191,6 +191,26 @@ it('Eyes of the Dreamer discovers 1 additional clue when the chosen token matche
   t = choose(t, 'ability.tokenRevealExtra', { card: name('11067'), n: 1 })
   t = apply(pick(reveal(bag(t, 1, 0)), 1))
   expect(me(t).clues).toBe(1)
+})
+
+it('Eyes of the Dreamer counts a token ignored by Katarina Sojka while spending a charge', () => {
+  let s = during(setup('11067', { enemy: null }), (s) => withAsset(s, '11069'))
+  s = investigate(s, '11067', 'willpower')
+  s = choose(s, 'ability.tokenRevealExtra', { card: name('11067'), n: 1 })
+  s = choose(s, 'ability.tokenRevealUntilSymbol', { card: name('11069') })
+  let matching: GameState | undefined
+  for (let rng = 1; rng < 60 && !matching; rng++) {
+    const drawn = reveal(bag({ ...s, rng }, 1, 'skull', 1))
+    if (
+      drawn.skillTest?.ignoredTokens?.includes(1) &&
+      labels(drawn).includes('choice.resolveToken')
+    )
+      matching = drawn
+  }
+  expect(matching?.skillTest?.ignoredTokens).toEqual([1])
+  const chosen = pick(matching!, 1)
+  expect(chosen.skillTest?.tokenChoice?.ignored).toEqual(['skull'])
+  expect(me(apply(chosen)).clues).toBe(2)
 })
 
 it('Katarina Sojka reveals until a symbol, resolves it and ignores the others', () => {
@@ -218,9 +238,10 @@ it('Henry Wan: stopping gives a card or a resource for each revealed token', () 
   expect(s.assets['05155']!.exhausted).toBe(true)
   s = choose(s, 'choice.revealAnother')
   s = choose(s, 'choice.henryWanStop', { n: 2 })
-  s = choose(s, 'choice.henryWanSplit', { draw: 1, gain: 1 })
+  s = choose(s, 'choice.henryWanSplit', { draw: 1, gain: 0 })
+  s = choose(s, 'choice.skip')
   expect(me(s).hand.length).toBe(hand + 1)
-  expect(me(s).resources).toBe(6)
+  expect(me(s).resources).toBe(5)
   expect(sorted(s.chaosBag)).toEqual(sorted([-1, -1]))
 })
 
