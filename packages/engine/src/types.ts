@@ -813,7 +813,15 @@ export interface SkillTest {
     reverseModifierOf?: ChaosToken
     /** Taken from the chaos bag, not a sealed or named token (Frost). */
     fromBag?: boolean
+    /** Replacement effects, modifier or no further reveal (ReplaceRevealedTokenEffect). */
+    effect?: TokenEffect
+    modifier?: number
+    noRevealAnother?: boolean
   }
+  /** Revealed bless/curse tokens that return to the chaos bag instead of the token pool. */
+  keepInBag?: ChaosToken[]
+  /** Resolved tokens whose modifiers were ignored afterwards (Dawn Star). */
+  ignoredModifiers?: ChaosToken[]
   /** Frost tokens revealed from the chaos bag and resolved during this test. */
   frostFromBag?: number
   /** Revealed tokens treated as another symbol; the physical token returns to the bag. */
@@ -1310,6 +1318,8 @@ type MessageBody =
       fromBag?: boolean
       /** `token` was already taken from the bag (Mask of Silenus, Athena). */
       drawn?: boolean
+      /** Search the chaos bag for `token` and reveal it (Nkosi Mabati). */
+      search?: boolean
     }
   /**
    * RR: a chaos token revealed outside a skill test by `investigator` (scenario effects,
@@ -1334,7 +1344,35 @@ type MessageBody =
       ignored?: ChaosToken[]
     }
   /** Cancel the held token and return it to the bag (Wendy Adams), and reveal a new one. */
-  | { type: 'CancelRevealedToken'; redraw?: boolean; use?: string }
+  /** With `toPool`, a canceled bless/curse token returns to the token pool (False Covenant). */
+  | { type: 'CancelRevealedToken'; redraw?: boolean; use?: string; toPool?: boolean }
+  /**
+   * Change how the held token resolves: `effect` replaces its effects (The Black Cat,
+   * Beloved), `modifier` replaces only its modifier (Blasphemous Covenant) and
+   * `noRevealAnother` stops its "reveal another token" (Ancient Covenant).
+   */
+  | {
+      type: 'ReplaceRevealedTokenEffect'
+      effect?: TokenEffect
+      modifier?: number
+      noRevealAnother?: boolean
+    }
+  /** These bless/curse tokens revealed in this test return to the chaos bag at ST.8. */
+  | { type: 'ReturnTokensToBagAfterTest'; tokens: ChaosToken[] }
+  /**
+   * Ignore the modifiers of up to `count` resolved tokens of this face (Dawn Star); with
+   * `returnToBag`, they also leave the test and return to the chaos bag (Sacred Covenant).
+   */
+  | {
+      type: 'IgnoreRevealedTokenModifiers'
+      token: ChaosToken
+      count?: number
+      returnToBag?: boolean
+    }
+  /** A card committed to the current test leaves it: removed from the game or exiled. */
+  | { type: 'RemoveCommittedCard'; investigator: InvestigatorId; code: CardCode; exile?: boolean }
+  /** Flip a coin (Lucky Penny): heads or tails, at random. */
+  | { type: 'FlipCoin'; investigator: InvestigatorId; heads: Message[]; tails: Message[] }
   /**
    * Cancel the held token, then reveal tokens until a symbol token: it resolves and the
    * others are ignored (Sacrificial Doll). All of them return to the bag when the test ends.
@@ -1879,7 +1917,8 @@ type MessageBody =
   | { type: 'ReduceSkillTestDifficulty'; amount: number }
   | { type: 'CommitFromDiscard'; investigator: InvestigatorId; code: CardCode }
   /** Ventana tras revelar fichas para comprometer cartas que lo permiten. */
-  | { type: 'AfterRevealWindow' }
+  /** `reacted`: the "after the reveal chaos token step" reactions were offered. */
+  | { type: 'AfterRevealWindow'; reacted?: boolean }
   | { type: 'CancelRevelation'; treachery: TreacheryId }
   | {
       type: 'PlaceDoomOnInvestigator'
@@ -2183,6 +2222,8 @@ export type Trigger =
   | { type: 'whenRevealChaosToken'; investigator: InvestigatorId; token: ChaosToken }
   /** ST.3 ends: "after revealing chaos tokens", the token still held (Contingency). */
   | { type: 'afterRevealingChaosToken'; investigator: InvestigatorId; token: ChaosToken }
+  /** After the whole "reveal chaos token" step (ST.3) of a test (Covenants, Dawn Star). */
+  | { type: 'afterRevealStep'; investigator: InvestigatorId }
   | {
       type: 'afterDiscoverClues'
       investigator: InvestigatorId

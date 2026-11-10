@@ -40,6 +40,14 @@ son jugables según la capacidad del motor que les falta, para ordenar el trabaj
   motor no tiene; la causa de cada una está en el documento 134 y deben reclasificarse en la tabla de capacidades.
 - **Pendientes estándar con impresión:** 367 (antes 409); 1375 jugables.
 
+## Estado tras el lote 135
+
+- **`TOKEN_TRIGGERS` (resuelta en parte).** 21 de sus 41 códigos son jugables desde el
+  [lote 135](135-reacciones-a-fichas-reveladas.md). Siguen 20: 7 que necesitaban solo esta capacidad
+  (Sello del símbolo arcano, Inspiración esotérica 0/1, Espejo de videncia, Espécimen imposible,
+  Apuntado preciso y Diadema rota) por carencias más concretas, y las 13 que combinan otra capacidad.
+- **Pendientes estándar con impresión:** 346; 1396 jugables.
+
 ## Capacidades por número de cartas
 
 «Cartas» = códigos que la necesitan (entre paréntesis, cartas o niveles distintos); «Solo esta» =

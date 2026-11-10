@@ -5151,6 +5151,7 @@ export function handle(state: GameState, message: Message): GameState {
           held.face,
           held.reverseModifierOf === held.face,
           held.fromBag,
+          held,
         )
       }
       // Premonition: se resuelve la ficha sellada en lugar de sacar una. Tokens sealed
@@ -5239,7 +5240,7 @@ export function handle(state: GameState, message: Message): GameState {
       const [index, rng] =
         sealed || chosen ? [-1, state.rng] : nextInt(state.rng, state.chaosBag.length)
       const token = message.token ?? (sealed ? sealed.token : (state.chaosBag[index] as ChaosToken))
-      const fromBag = !sealed && (!chosen || !!message.drawn)
+      const fromBag = !sealed && (!chosen || !!message.drawn || !!message.search)
       if (!message.counted && state.skillTest?.revealCount !== undefined) {
         state = {
           ...state,
@@ -5297,7 +5298,12 @@ export function handle(state: GameState, message: Message): GameState {
       const taken: GameState = {
         ...unsealed,
         rng,
-        chaosBag: sealed || chosen ? state.chaosBag : state.chaosBag.filter((_, n) => n !== index),
+        chaosBag:
+          sealed || chosen
+            ? message.search
+              ? withoutEach(state.chaosBag, [token])
+              : state.chaosBag
+            : state.chaosBag.filter((_, n) => n !== index),
         skillTest: {
           ...test,
           ...(message.ignored !== undefined
@@ -5316,7 +5322,10 @@ export function handle(state: GameState, message: Message): GameState {
         },
       }
       if (
-        reactionOptions(held, when).some((o) => withinLimit(held, o.key, o.investigator, o.limit))
+        reactionOptions(held, when).some((o) =>
+          withinLimit(held, o.key, o.investigator, o.limit),
+        ) ||
+        forcedAbilities(held, when).length > 0
       )
         return push(
           held,
@@ -5424,7 +5433,10 @@ export function handle(state: GameState, message: Message): GameState {
         const next = log(
           {
             ...state,
-            chaosBag: [...state.chaosBag, revealing.token],
+            chaosBag:
+              message.toPool && isPoolToken(revealing.token)
+                ? state.chaosBag
+                : [...state.chaosBag, revealing.token],
             skillTest: message.use
               ? {
                   ...rest,
@@ -5460,6 +5472,99 @@ export function handle(state: GameState, message: Message): GameState {
             used: [...held.used, ...(message.use ? [message.use] : [])],
           })
         : next
+    }
+
+    case 'ReplaceRevealedTokenEffect': {
+      // Replace the held token's effects or modifier (The Black Cat, Blasphemous Covenant).
+      const test = state.skillTest
+      if (!test?.revealing) return state
+      const { type: _type, ...change } = message
+      return log(
+        { ...state, skillTest: { ...test, revealing: { ...test.revealing, ...change } } },
+        'log.tokenEffectReplaced',
+        { token: String(test.revealing.face) },
+      )
+    }
+
+    case 'ReturnTokensToBagAfterTest':
+      return state.skillTest
+        ? {
+            ...state,
+            skillTest: {
+              ...state.skillTest,
+              keepInBag: [...(state.skillTest.keepInBag ?? []), ...message.tokens],
+            },
+          }
+        : state
+
+    case 'IgnoreRevealedTokenModifiers': {
+      // Dawn Star, Sacred Covenant: resolved tokens of this face lose their modifiers.
+      const test = state.skillTest
+      if (!test) return state
+      const same = (list: ChaosToken[] | undefined) =>
+        (list ?? []).filter((t) => t === message.token).length
+      const n = Math.min(same(test.tokens) - same(test.ignoredModifiers), message.count ?? Infinity)
+      if (n <= 0) return state
+      const each = resolveToken(state, message.token, test.investigator).modifier
+      const ignored: ChaosToken[] = Array(n).fill(message.token)
+      return log(
+        message.returnToBag
+          ? {
+              ...state,
+              chaosBag: [...state.chaosBag, ...ignored],
+              skillTest: {
+                ...test,
+                tokens: withoutEach(test.tokens, ignored),
+                tokenModifier: test.tokenModifier - n * each,
+                // Every revealed token may leave: the test then resolves without one.
+                ...(test.tokens.length === n ? { canceledReveal: true } : {}),
+              },
+            }
+          : {
+              ...state,
+              skillTest: {
+                ...test,
+                tokenModifier: test.tokenModifier - n * each,
+                ignoredModifiers: [...(test.ignoredModifiers ?? []), ...ignored],
+              },
+            },
+        'log.tokenModifiersIgnored',
+        { token: String(message.token), n },
+      )
+    }
+
+    case 'RemoveCommittedCard': {
+      // Stroke of Luck (exiled), Beloved (removed from the game): it leaves the test now.
+      const test = state.skillTest
+      const at =
+        test?.committed.findIndex(
+          (c) => c.code === message.code && c.by === message.investigator,
+        ) ?? -1
+      if (!test || at < 0) return state
+      const next: GameState = {
+        ...state,
+        skillTest: { ...test, committed: test.committed.filter((_, n) => n !== at) },
+        ...(message.exile
+          ? {
+              exiled: [
+                ...(state.exiled ?? []),
+                { investigator: message.investigator, code: message.code },
+              ],
+            }
+          : {}),
+      }
+      return log(next, message.exile ? 'log.committedExiled' : 'log.committedRemoved', {
+        card: playerCardDef(message.code)?.name ?? message.code,
+      })
+    }
+
+    case 'FlipCoin': {
+      // Lucky Penny: heads or tails, at random.
+      const [n, rng] = nextInt(state.rng, 2)
+      return push(
+        log({ ...state, rng }, n === 0 ? 'log.coinHeads' : 'log.coinTails', {}),
+        ...(n === 0 ? message.heads : message.tails),
+      )
     }
 
     case 'TreatRevealedTokenAs': {
@@ -5673,6 +5778,8 @@ export function handle(state: GameState, message: Message): GameState {
             tokens: [],
             ignoredTokens: [],
             treatedAs: [],
+            keepInBag: [],
+            ignoredModifiers: [],
             frostFromBag: 0,
             stopRevealing: false,
             tokenModifier: 0,
@@ -6102,7 +6209,9 @@ export function handle(state: GameState, message: Message): GameState {
       // Las cartas comprometidas van a la pila de descartes de su dueño.
       // Resolved bless/curse tokens return to the token pool instead.
       const test = state.skillTest
-      const tokens = test ? withoutEach(returnedTokens(test), pooledTokens(test)) : []
+      const tokens = test
+        ? withoutEach(returnedTokens(test), withoutEach(pooledTokens(test), test.keepInBag ?? []))
+        : []
       const { nextTokenReplacement: _unused, ...withoutReplacement } = state
       let next: GameState = {
         ...withoutReplacement,
@@ -9197,6 +9306,20 @@ export function handle(state: GameState, message: Message): GameState {
       // Cartas que pueden comprometerse después de revelar las fichas.
       const test = state.skillTest
       if (!test) return state
+      // RR: "after the reveal chaos token step" reactions (Covenants, Dawn Star).
+      if (!message.reacted && test.tokens.length) {
+        const trigger: Trigger = { type: 'afterRevealStep', investigator: test.investigator }
+        if (
+          reactionOptions(state, trigger).some((o) =>
+            withinLimit(state, o.key, o.investigator, o.limit),
+          )
+        )
+          return push(
+            state,
+            { type: 'Forced', trigger },
+            { type: 'AfterRevealWindow', reacted: true },
+          )
+      }
       const investigator = getInvestigator(state, test.investigator)
       const late = test.commitRule
         ? []
@@ -9244,7 +9367,7 @@ export function handle(state: GameState, message: Message): GameState {
               target: { type: 'hand', code },
               then: [
                 { type: 'PlayCard', investigator: investigator.id, code },
-                { type: 'AfterRevealWindow' },
+                { type: 'AfterRevealWindow', reacted: true },
               ],
             })),
             { label: 'choice.skip', then: [] },
@@ -10811,6 +10934,7 @@ function resolveRevealedToken(
   face: ChaosToken,
   reverseModifier = false,
   fromBag = false,
+  replaced?: { effect?: TokenEffect; modifier?: number; noRevealAnother?: boolean },
 ): GameState {
   // Frost counts only the tokens revealed from the bag (sealed or named ones do not).
   if (fromBag && face === 'frost')
@@ -10819,7 +10943,12 @@ function resolveRevealedToken(
       skillTest: { ...state.skillTest!, frostFromBag: (state.skillTest!.frostFromBag ?? 0) + 1 },
     }
   const test = state.skillTest!
-  const originalEffect = withTokenSource(resolveToken(state, face, test.investigator), face)
+  // ReplaceRevealedTokenEffect: replacement effects (The Black Cat) or modifier (Covenants).
+  const resolved = replaced?.effect ?? resolveToken(state, face, test.investigator)
+  const originalEffect = withTokenSource(
+    replaced?.modifier !== undefined ? { ...resolved, modifier: replaced.modifier } : resolved,
+    face,
+  )
   const effect = reverseModifier
     ? { ...originalEffect, modifier: Math.abs(originalEffect.modifier) }
     : originalEffect
@@ -10856,7 +10985,7 @@ function resolveRevealedToken(
       type: 'Forced',
       trigger: { type: 'afterRevealChaosToken', investigator: test.investigator, token: face },
     },
-    ...(effect.revealAnother && !effect.stopRevealing
+    ...(effect.revealAnother && !effect.stopRevealing && !replaced?.noRevealAnother
       ? [{ type: 'RevealChaosToken' } as const]
       : []),
   )

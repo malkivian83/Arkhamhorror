@@ -15,7 +15,7 @@ export function approvedDefinition(card, approval) {
         (card.code === '05119' && card.factions.join(',') === 'survivor,seeker') ||
         (card.code === '05116' && card.factions.join(',') === 'seeker,mystic') ||
         (card.code === '05117' && card.factions.join(',') === 'rogue,survivor') ||
-        (['08090', '08092', '08093'].includes(card.code) &&
+        (['08090', '08091', '08092', '08093'].includes(card.code) &&
           card.factions.join(',') === 'guardian,mystic') ||
         (['08101', '08103'].includes(card.code) && card.factions.join(',') === 'seeker,mystic') ||
         (['08108', '08110', '08109', '08111'].includes(card.code) &&
@@ -97,12 +97,21 @@ export function approvedDefinition(card, approval) {
   const reviewedProtectionExile =
     approval.adapter === 'reviewed-protection-exile-v1' &&
     ['02114', '03156', '03157', '08080'].includes(card.code)
+  // Stroke of Luck: exiled as the cost of its reaction (lot 135).
+  const reviewedTokenExile = approval.adapter === 'reviewed-token-exile-v1' && card.code === '02271'
+  // Covenants: Permanent, deck limit 1, at most 1 Covenant per deck (lot 135).
+  const reviewedCovenant =
+    approval.adapter === 'reviewed-covenant-permanent-v1' &&
+    ['07110', '07113', '07116', '07120', '07122'].includes(card.code) &&
+    card.flags.permanent &&
+    card.deckLimit === 1 &&
+    card.traits.includes('Covenant')
   const reviewedBorrowedTime =
     approval.adapter === 'reviewed-borrowed-time-v1' && card.code === '04308'
   // Reviewed Exceptional assets (The Black Fan, The Red Clock): deck limit 1.
   const reviewedExceptional =
     approval.adapter === 'reviewed-exceptional-v1' &&
-    ['08057', '08058', '08053'].includes(card.code) &&
+    ['08057', '08058', '08053', '07224'].includes(card.code) &&
     card.flags.exceptional &&
     card.deckLimit === 1 &&
     card.factions.join(',') === 'rogue'
@@ -170,11 +179,15 @@ export function approvedDefinition(card, approval) {
       !talentPermanent &&
       !reviewedDarkHorse &&
       !fieldKeywords &&
-      !economyKeywords) ||
+      !economyKeywords &&
+      !reviewedCovenant) ||
     ['exceptional', 'myriad', 'exile'].some(
       (key) =>
         card.flags[key] &&
-        !(key === 'exile' && (reviewedDefeatExile || reviewedProtectionExile)) &&
+        !(
+          key === 'exile' &&
+          (reviewedDefeatExile || reviewedProtectionExile || reviewedTokenExile)
+        ) &&
         !(
           key === 'exceptional' &&
           (reviewedBorrowedTime || fieldKeywords || economyKeywords || reviewedExceptional)
@@ -202,7 +215,7 @@ export function approvedDefinition(card, approval) {
     ...(reviewedDualFaction || reviewedTalent ? { classes: card.factions } : {}),
     ...(creationPermanent ? { deckLimit: 1 } : {}),
     ...(reviewedBorrowedTime || reviewedExceptional ? { exceptional: true, deckLimit: 1 } : {}),
-    ...(reviewedDarkHorse ? { deckLimit: 1 } : {}),
+    ...(reviewedDarkHorse || reviewedCovenant ? { deckLimit: 1 } : {}),
     ...(fieldKeywords && card.flags.permanent ? { deckLimit: 1 } : {}),
     ...(fieldKeywords && card.flags.exceptional ? { exceptional: true, deckLimit: 1 } : {}),
     ...(economyKeywords

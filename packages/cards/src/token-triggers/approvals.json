@@ -1,0 +1,157 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "41e62bea9d3a215d701a890da9899691535895c446c4f1c61aeb709d0c9c722b",
+    "es": "4bd1f5613dd0924427d57544c5f561ccc88f2b3cd2b9ae1bae15cf6032d1a8cf"
+  },
+  "cards": [
+    {
+      "code": "10131",
+      "status": "verified",
+      "module": "card-10131",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "02271",
+      "status": "verified",
+      "module": "card-02271",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-token-exile-v1"
+    },
+    {
+      "code": "07036",
+      "status": "verified",
+      "module": "card-07036",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07117",
+      "status": "verified",
+      "module": "card-07117",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "charge" }
+    },
+    {
+      "code": "07226",
+      "status": "verified",
+      "module": "card-07226",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "charge" }
+    },
+    {
+      "code": "07118",
+      "status": "verified",
+      "module": "card-07118",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "charge" }
+    },
+    {
+      "code": "07227",
+      "status": "verified",
+      "module": "card-07227",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "charge" }
+    },
+    {
+      "code": "07119",
+      "status": "verified",
+      "module": "card-07119",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "charge" }
+    },
+    {
+      "code": "07228",
+      "status": "verified",
+      "module": "card-07228",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "charge" }
+    },
+    {
+      "code": "07190",
+      "status": "verified",
+      "module": "card-07190",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07195",
+      "status": "verified",
+      "module": "card-07195",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07110",
+      "status": "verified",
+      "module": "card-07110",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-covenant-permanent-v1"
+    },
+    {
+      "code": "07113",
+      "status": "verified",
+      "module": "card-07113",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-covenant-permanent-v1"
+    },
+    {
+      "code": "07116",
+      "status": "verified",
+      "module": "card-07116",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-covenant-permanent-v1"
+    },
+    {
+      "code": "07120",
+      "status": "verified",
+      "module": "card-07120",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-covenant-permanent-v1"
+    },
+    {
+      "code": "07122",
+      "status": "verified",
+      "module": "card-07122",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-covenant-permanent-v1"
+    },
+    {
+      "code": "07224",
+      "status": "verified",
+      "module": "card-07224",
+      "test": "rules.test.ts",
+      "subname": "Omen of Misfortune",
+      "adapter": "reviewed-exceptional-v1"
+    },
+    {
+      "code": "06285",
+      "status": "verified",
+      "module": "card-06285",
+      "test": "rules.test.ts",
+      "subname": "A Liar, or a Prophet, or Both"
+    },
+    {
+      "code": "10126",
+      "status": "verified",
+      "module": "card-10126",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10056",
+      "status": "verified",
+      "module": "card-10056",
+      "test": "rules.test.ts",
+      "subname": "Lens to the Otherworld"
+    },
+    {
+      "code": "08091",
+      "status": "verified",
+      "module": "card-08091",
+      "test": "rules.test.ts",
+      "subname": "Enigmatic Warlock",
+      "adapter": "reviewed-dual-faction-v1"
+    }
+  ]
+}

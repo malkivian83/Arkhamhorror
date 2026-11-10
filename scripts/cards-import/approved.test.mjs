@@ -313,6 +313,7 @@ describe('reviewed inventory conversion', () => {
     'token-reveals',
     'bless-curse',
     'sealed-tokens',
+    'token-triggers',
     'reprints-wave-3',
     'reused-capabilities',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
