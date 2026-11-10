@@ -84,6 +84,14 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "damageReactions": {
+        "title": "Cuatro cartas nuevas de daño y derrota",
+        "cards": "Ya se pueden jugar Aquinnah (1 y 3), Llave de san Huberto y Armadura de Ardenas."
+      },
+      "encounterDraws": {
+        "title": "Cinco cartas nuevas que reaccionan al robo de Encuentros",
+        "cards": "Ya se pueden jugar el Dr. William T. Maleson (0), Barrera de protección (5), «¡Yo me encargo de esto!», «¡Ocúpate tú de esto!» y Nueve de bastos."
+      },
       "lastingAttachments": {
         "title": "Efectos con duración y cartas vinculadas a Enemigos y Lugares, con 23 cartas nuevas",
         "cards": "Ya se pueden jugar: Diagramas anatómicos, Exponer la debilidad (1 y 3), Ajar (0 y 4), Ofuda, Boleadora, Repeler, Herida severa, Marca del cazador, Esposas (0 y 2), Barricada (también su reedición del Núcleo revisado), Emboscada, Trampa de lazo, Bajo vigilancia, Escondite, Cebo (1 y 2), Cartografiar la zona, Echar la puerta abajo, Buena perspectiva y Sexto sentido.",
@@ -1123,6 +1131,11 @@
     "upkeep": "Fase de Mantenimiento"
   },
   "ability": {
+    "malesonRedraw": "{card}: coloca aquí 1 pista y sustituye el robo de Encuentro",
+    "nineOfRodsRedraw": "Agota {card} para volver a barajar esta carta de Encuentro y robar otra",
+    "aquinnahRedirect": "{card}: inflige 1 horror a este apoyo y redirige el daño del ataque a {enemy}",
+    "hubertKey": "Descarta {card} para curar 2 puntos de horror",
+    "ardennesArmor": "Agota {card} para cancelar 1 punto de daño asignado",
     "ofuda": "Gastar 1 carga de {card}: {enemy} pierde Alerta, Indiferente, Escurridizo y Represalia esta ronda",
     "huntersMark": "Descartar {card}: infligir 1 punto de daño adicional a {enemy}",
     "tokenTrigger": {
@@ -3447,6 +3460,11 @@
   },
   "offlineCard": {
     "subnames": {
+      "03269": "Fuego purificador",
+      "02308": "La hija olvidada",
+      "01082": "La hija olvidada",
+      "54009": "Cada prueba es una lección",
+      "02302": "Trabajando en algo grande",
       "08091": "Brujo enigmático",
       "10056": "Lentes a lo sobrenatural",
       "06285": "Mentiroso, profeta o ambas cosas",
@@ -3566,6 +3584,15 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "03305": "Objeto. Protección. Reliquia.",
+      "03269": "Objeto. Amuleto.",
+      "02308": "Aliado.",
+      "01082": "Aliado.",
+      "54009": "Tarot.",
+      "04028": "Truco.",
+      "03022": "Espíritu.",
+      "02307": "Hechizo. Espíritu.",
+      "02302": "Aliado. Miskatonic.",
       "05158": "Hechizo.",
       "04306": "Inspiración.",
       "09026": "Inspiración. Táctica. Policía",
@@ -4373,6 +4400,15 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "03305": "[reaction] Cuando se asigne daño a la Armadura de Ardenas, agota la Armadura de Ardenas: Cancela 1 punto de ese daño.",
+      "03269": "Recibe +1 [willpower], +1 [intellect] y -2 de cordura.\n[reaction] Cuando fueses a ser derrotado por horror, descarta la Llave de san Huberto: Cúrate 2 puntos de horror inmediatamente.",
+      "02308": "[reaction] Cuando un Enemigo te ataque, inflígele 1 punto de horror a Aquinnah y agótala: En lugar de recibir tú el daño, inflige el daño de ese Enemigo a cualquier Enemigo que esté en tu Lugar. Sigues recibiendo el horror infligido por el ataque.",
+      "01082": "[reaction] Cuando un Enemigo te ataque, inflígele 1 punto de horror a Aquinnah y agótala: En lugar de recibir tú el daño, inflige el daño de ese Enemigo a otro Enemigo que esté en tu Lugar. Sigues recibiendo el horror infligido por el ataque.",
+      "54009": "[reaction] Cuando robes una carta de Encuentro que no sea Debilidad, agota el Nueve de bastos: Cancela todos los efectos de esa carta, añádela al mazo de Encuentros y baraja este. A continuación, roba otra carta de la parte superior del mazo de Encuentros.\n[reaction] Cuando comience la partida, si el Nueve de bastos está en tu mano inicial: Ponlo en juego.",
+      "04028": "Rápido. Juega esta carta después de que robes una carta de Encuentro que no tenga Peligro, pero antes de resolver los efectos de dicha carta.\nElige a otro investigador. Se considera que ese investigador ha robado esa carta de Encuentro en tu lugar. Obtén 1 recurso.",
+      "03022": "Rápido. Juega esta carta después de que otro investigador robe una carta de Encuentro que no tenga Peligro, pero antes de resolver los efectos de dicha carta.\nSe considera como si hubieses robado esa carta de Encuentro en lugar del otro investigador. Recibes +2 a cada una de tus habilidades al resolver el efecto \"Revelación\" de esa carta.",
+      "02307": "Rápido. Juega esta carta cuando robes una carta de Encuentro que no sea de Debilidad.\nCancela todos los efectos de esa carta y descártala. A continuación, recibe 1 punto de horror.",
+      "02302": "[reaction] Cuando robes una carta del mazo de Encuentros, agota al Dr. William T. Maleson y coloca 1 de tus pistas en tu Lugar: Cancela el robo de esa carta, devuélvela al mazo de Encuentros y barájalo. A continuación, roba una nueva carta de la parte superior del mazo de Encuentros.",
       "05158": "[action]: <b>Investigar.</b> Investiga usando [willpower] en lugar de [intellect]. Si se revela un símbolo [skull], [cultist], [tablet] o [elder_thing] durante esta prueba, puedes elegir un Lugar revelado conectado a tu Lugar; ahora estás investigando como si estuvieras en el Lugar elegido en vez de en tu Lugar (puedes usar cualquiera de los valores de velo).",
       "04306": "Rápido. Juega esta carta después de que un Lugar entre en juego o sea revelado durante el turno de un investigador.\nHasta el final del turno del investigador activo, ese Lugar recibe -1 a velo. Puedes mover 1 pista a ese Lugar desde cualquier otro Lugar.",
       "09026": "Realiza una prueba de [combat] (1). Si tienes éxito, vincula Echar la puerta abajo a tu Lugar con 1 recurso encima por cada punto que tuvieras por encima del valor mínimo de éxito, como indicios.\nReduce en 1 el valor de velo del Lugar vinculado por cada indicio que haya sobre Echar la puerta abajo.",
@@ -5612,6 +5648,15 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "03305": "Armadura de Ardenas",
+      "03269": "Llave de san Huberto",
+      "02308": "Aquinnah",
+      "01082": "Aquinnah",
+      "54009": "Nueve de bastos",
+      "04028": "\"¡Ocúpate tú de esto!\"",
+      "03022": "\"¡Yo me encargo de esto!\"",
+      "02307": "Barrera de protección",
+      "02302": "Dr. William T. Maleson",
       "05158": "Sexto sentido",
       "04306": "Buena perspectiva",
       "09026": "Echar la puerta abajo",

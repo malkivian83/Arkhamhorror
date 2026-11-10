@@ -1341,6 +1341,16 @@ type MessageBody =
       /** Carta elegida que debe llenarse antes que otra (Bestia de Aldebarán). */
       focus?: AssetId | 'investigator'
     }
+  | {
+      type: 'ResolveAssetDamageAssignment'
+      asset: AssetId
+      then: Message
+      ifCanceled: Message
+      deferDefeat: boolean
+      windowResolved?: true
+      canceled?: true
+    }
+  | { type: 'CancelAssignedAssetDamage'; asset: AssetId }
   | { type: 'DamageAsset'; asset: AssetId; damage: number; horror: number; deferDefeat?: boolean }
   | {
       type: 'AssignHorrorEvenly'
@@ -1639,6 +1649,14 @@ type MessageBody =
       exhaustAfter: boolean
       /** Another investigator takes all damage and horror from this attack (Retribution). */
       damageTo?: InvestigatorId
+      redirectDamage?: { target: EnemyId; investigator: InvestigatorId; card: CardCode }
+    }
+  | {
+      type: 'RedirectAttackDamageToEnemy'
+      attacker: EnemyId
+      target: EnemyId
+      investigator: InvestigatorId
+      card: CardCode
     }
   /**
    * The pending attack of this enemy deals its damage and horror to `investigator`
@@ -1722,7 +1740,12 @@ type MessageBody =
       assignmentPart?: boolean
       assignmentAssets?: Asset[]
     }
-  | { type: 'CheckDefeat'; investigator: InvestigatorId; killInstead?: boolean }
+  | {
+      type: 'CheckDefeat'
+      investigator: InvestigatorId
+      killInstead?: boolean
+      windowResolved?: true
+    }
   | {
       type: 'EliminateInvestigator'
       investigator: InvestigatorId
@@ -1752,6 +1775,23 @@ type MessageBody =
       investigator: InvestigatorId
       card: EncounterCard
       exhaustAfterDraw?: boolean
+      fromEncounterDeck?: boolean
+      /** Set when only the encounter resolution rules apply, without a draw. */
+      withoutDraw?: boolean
+      draw?: { id: string; stage: 'after' | 'resolve'; skillBonus?: number }
+    }
+  | {
+      type: 'CancelEncounterDraw'
+      draw: string
+      destination: 'discard' | 'shuffle'
+      /** Maleson cancels the draw itself. Ward and Nine of Rods cancel its effects. */
+      replacesDraw?: true
+    }
+  | {
+      type: 'RedirectEncounterDraw'
+      draw: string
+      investigator: InvestigatorId
+      skillBonus?: number
     }
   | { type: 'DrawFromEncounterDiscard'; investigator: InvestigatorId; code: CardCode }
   | {
@@ -1767,7 +1807,12 @@ type MessageBody =
       windowResolved?: boolean
       after?: Message[]
     }
-  | { type: 'RevealTreachery'; treachery: TreacheryId; investigator: InvestigatorId }
+  | {
+      type: 'RevealTreachery'
+      treachery: TreacheryId
+      investigator: InvestigatorId
+      skillBonus?: number
+    }
   | { type: 'AfterRevelation'; treachery: TreacheryId; investigator: InvestigatorId }
   | { type: 'GainSurge' }
   | {
@@ -2372,6 +2417,7 @@ export type Trigger =
   /** The last card left the investigator's deck, before any later reshuffle. */
   | { type: 'deckEmptied'; investigator: InvestigatorId }
   | { type: 'enemyEntersLocation'; enemy: EnemyId; location: LocationId }
+  | { type: 'whenEncounterDrawn' | 'afterEncounterDrawn'; draw: string }
   | { type: 'whenTreacheryDrawn'; investigator: InvestigatorId; treachery: TreacheryId }
   | { type: 'afterCancelRevelation'; card: CardCode; weakness: boolean }
   | { type: 'afterEvade'; investigator: InvestigatorId; enemy: EnemyId }
@@ -2382,6 +2428,13 @@ export type Trigger =
       horror: number
       /** Enemigo cuyo ataque lo ha infligido. */
       enemy?: EnemyId
+    }
+  | { type: 'whenDamageAssignedToAsset'; asset: AssetId }
+  | {
+      type: 'whenWouldBeDefeated'
+      investigator: InvestigatorId
+      byDamage: boolean
+      byHorror: boolean
     }
   | { type: 'afterAssetDamaged'; asset: AssetId; damage: number; horror: number }
   /** Al terminar de asignar daño y horror: lo que ha recibido cada apoyo (con o sin dueño). */

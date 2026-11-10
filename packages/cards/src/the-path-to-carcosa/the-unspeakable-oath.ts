@@ -868,7 +868,12 @@ registerScenario({
             encounterDeck: state.encounterDeck.slice(index + 1),
             encounterDiscard: [...state.encounterDiscard, ...state.encounterDeck.slice(0, index)],
           },
-          { type: 'ResolveEncounterCard', investigator, card: state.encounterDeck[index]! },
+          {
+            type: 'ResolveEncounterCard',
+            investigator,
+            card: state.encounterDeck[index]!,
+            fromEncounterDeck: true,
+          },
         )
       }
       case 'oathDaniel':

@@ -522,6 +522,7 @@ export function handle(state: GameState, message: Message): GameState {
         type: 'ResolveEncounterCard',
         investigator: investigator.id,
         card,
+        fromEncounterDeck: true,
       })
     }
 
@@ -536,19 +537,77 @@ export function handle(state: GameState, message: Message): GameState {
       )
     }
 
+    case 'CancelEncounterDraw':
+    case 'RedirectEncounterDraw': {
+      const at = state.queue.findIndex(
+        (m) => m.type === 'ResolveEncounterCard' && m.draw?.id === message.draw,
+      )
+      const pending = state.queue[at]
+      if (pending?.type !== 'ResolveEncounterCard' || !pending.draw) return state
+      const queue = state.queue.slice()
+      if (message.type === 'RedirectEncounterDraw') {
+        queue[at] = {
+          ...pending,
+          investigator: message.investigator,
+          draw: {
+            id: pending.draw.id,
+            stage: pending.draw.stage,
+            ...(message.skillBonus ? { skillBonus: message.skillBonus } : {}),
+          },
+        }
+        return { ...state, queue }
+      }
+      queue.splice(at, 1)
+      const next =
+        message.replacesDraw || pending.card.kind === 'location'
+          ? state
+          : updateInvestigator(state, pending.investigator, (i) => ({
+              ...i,
+              ...(pending.card.kind === 'enemy'
+                ? { drewEnemyRound: state.round }
+                : { drewTreacheryRound: state.round }),
+            }))
+      if (message.destination === 'discard')
+        return { ...next, queue, encounterDiscard: [...next.encounterDiscard, pending.card] }
+      const [encounterDeck, rng] = shuffle([...next.encounterDeck, pending.card], next.rng)
+      return { ...next, queue, encounterDeck, rng }
+    }
+
     case 'ResolveEncounterCard': {
       const investigator = getInvestigator(state, message.investigator)
       const { card } = message
       if (investigator.eliminated || investigator.location === null) {
         return { ...state, encounterDiscard: [...state.encounterDiscard, card] }
       }
-      state = log(state, 'log.encounter', {
-        name: investigator.name,
-        card: card.name,
-        code: card.code,
-        // Oculto: en línea, solo quien la roba ve qué carta es.
-        ...(card.kind === 'treachery' && card.keywords.includes('hidden') ? { hidden: 1 } : {}),
-      })
+      if (!message.draw)
+        state = log(state, 'log.encounter', {
+          name: investigator.name,
+          card: card.name,
+          code: card.code,
+          // Oculto: en línea, solo quien la roba ve qué carta es.
+          ...(card.kind === 'treachery' && card.keywords.includes('hidden') ? { hidden: 1 } : {}),
+        })
+      if (!message.withoutDraw) {
+        if (!message.draw) {
+          // Only pending draws on the stack need distinct ids. A draw window does not
+          // consume a game entity id, so unrelated scenarios and save replays keep their ids.
+          const depth = state.queue.filter(
+            (m) => m.type === 'ResolveEncounterCard' && m.draw,
+          ).length
+          const id = 'encounter-draw-' + depth
+          return push(
+            state,
+            { type: 'Forced', trigger: { type: 'whenEncounterDrawn', draw: id } },
+            { ...message, draw: { id, stage: 'after' } },
+          )
+        }
+        if (message.draw.stage === 'after')
+          return push(
+            state,
+            { type: 'Forced', trigger: { type: 'afterEncounterDrawn', draw: message.draw.id } },
+            { ...message, draw: { ...message.draw, stage: 'resolve' } },
+          )
+      }
       if (card.kind === 'location')
         return push(state, {
           type: 'PutEncounterLocation',
@@ -575,7 +634,12 @@ export function handle(state: GameState, message: Message): GameState {
             type: 'Forced',
             trigger: { type: 'whenTreacheryDrawn', investigator: investigator.id, treachery: id },
           },
-          { type: 'RevealTreachery', treachery: id, investigator: investigator.id },
+          {
+            type: 'RevealTreachery',
+            treachery: id,
+            investigator: investigator.id,
+            ...(message.draw?.skillBonus ? { skillBonus: message.draw.skillBonus } : {}),
+          },
           { type: 'AfterRevelation', treachery: id, investigator: investigator.id },
         )
       }
@@ -744,9 +808,20 @@ export function handle(state: GameState, message: Message): GameState {
       const treachery = state.treacheries[message.treachery]
       if (!treachery || treachery.canceled) return state
       const behavior = activeTreacheryBehavior(state, treachery)
-      return behavior
-        ? push(state, ...behavior.revelation(state, message.investigator, treachery))
-        : state
+      const effects = behavior?.revelation(state, message.investigator, treachery) ?? []
+      if (!message.skillBonus || !effects.length) return push(state, ...effects)
+      const [id, next] = newId(state, 'revelation-bonus-')
+      return push(
+        {
+          ...next,
+          playSkillBonuses: [
+            ...(state.playSkillBonuses ?? []),
+            { id, investigator: message.investigator, amount: message.skillBonus },
+          ],
+        },
+        ...effects,
+        { type: 'EndPlaySkillBonus', id },
+      )
     }
 
     case 'AfterRevelation': {
@@ -3080,18 +3155,23 @@ export function handle(state: GameState, message: Message): GameState {
       const concentrated =
         !!message.enemy &&
         !!enemyBehavior(findEnemy(state, message.enemy)?.code ?? '')?.concentratedAssignment
-      const rest = (recipient: Omit<DamageDealt, 'damage' | 'horror'> | null): Message => {
+      const rest = (
+        recipient: Omit<DamageDealt, 'damage' | 'horror'> | null,
+        canceled = false,
+      ): Message => {
         const to = recipient ?? { investigator }
         const point = { damage: kind === 'damage' ? 1 : 0, horror: kind === 'horror' ? 1 : 0 }
         const same = (d: DamageDealt) =>
           d.asset === to.asset && d.placed === to.placed && d.investigator === to.investigator
-        const merged = dealt.some(same)
-          ? dealt.map((d) =>
-              same(d)
-                ? { ...d, damage: d.damage + point.damage, horror: d.horror + point.horror }
-                : d,
-            )
-          : [...dealt, { ...to, ...point }]
+        const merged = canceled
+          ? dealt
+          : dealt.some(same)
+            ? dealt.map((d) =>
+                same(d)
+                  ? { ...d, damage: d.damage + point.damage, horror: d.horror + point.horror }
+                  : d,
+              )
+            : [...dealt, { ...to, ...point }]
         return {
           type: 'AssignDamage',
           investigator,
@@ -3210,16 +3290,29 @@ export function handle(state: GameState, message: Message): GameState {
               label: 'choice.assignToAsset',
               params: { card: playerCardDef(a.code)?.name ?? a.code },
               target: { type: 'asset', id: a.id },
-              then: [
-                {
-                  type: 'DamageAsset',
-                  asset: a.id,
-                  deferDefeat: !!scenarioBehavior(state.scenarioId)?.simultaneousAssetAssignment,
-                  damage: kind === 'damage' ? 1 : 0,
-                  horror: kind === 'horror' ? 1 : 0,
-                },
-                rest({ asset: a.id }),
-              ],
+              then:
+                kind === 'damage'
+                  ? [
+                      {
+                        type: 'ResolveAssetDamageAssignment',
+                        asset: a.id,
+                        deferDefeat: !!scenarioBehavior(state.scenarioId)
+                          ?.simultaneousAssetAssignment,
+                        then: rest({ asset: a.id }),
+                        ifCanceled: rest({ asset: a.id }, true),
+                      },
+                    ]
+                  : [
+                      {
+                        type: 'DamageAsset',
+                        asset: a.id,
+                        deferDefeat: !!scenarioBehavior(state.scenarioId)
+                          ?.simultaneousAssetAssignment,
+                        damage: 0,
+                        horror: 1,
+                      },
+                      rest({ asset: a.id }),
+                    ],
             })),
             ...placedOptions.map((p): Choice => ({
               label: 'choice.assignToAsset',
@@ -3239,6 +3332,38 @@ export function handle(state: GameState, message: Message): GameState {
           ],
         },
       })
+    }
+
+    case 'ResolveAssetDamageAssignment': {
+      if (message.canceled) return push(state, message.ifCanceled)
+      if (!message.windowResolved)
+        return push(
+          state,
+          { type: 'Forced', trigger: { type: 'whenDamageAssignedToAsset', asset: message.asset } },
+          { ...message, windowResolved: true },
+        )
+      return push(
+        state,
+        {
+          type: 'DamageAsset',
+          asset: message.asset,
+          damage: 1,
+          horror: 0,
+          deferDefeat: message.deferDefeat,
+        },
+        message.then,
+      )
+    }
+
+    case 'CancelAssignedAssetDamage': {
+      const at = state.queue.findIndex(
+        (m) => m.type === 'ResolveAssetDamageAssignment' && m.asset === message.asset,
+      )
+      const assignment = state.queue[at]
+      if (assignment?.type !== 'ResolveAssetDamageAssignment') return state
+      const queue = state.queue.slice()
+      queue[at] = { ...assignment, canceled: true }
+      return { ...state, queue }
     }
 
     case 'DamageAsset': {
@@ -4514,6 +4639,20 @@ export function handle(state: GameState, message: Message): GameState {
       const byHorror =
         investigator.horror >= vitals.sanity && !scenarioBehavior(state.scenarioId)?.noHorrorDefeat
       if (!byDamage && !byHorror) return state
+      if (!message.windowResolved)
+        return push(
+          state,
+          {
+            type: 'Forced',
+            trigger: {
+              type: 'whenWouldBeDefeated',
+              investigator: investigator.id,
+              byDamage,
+              byHorror,
+            },
+          },
+          { ...message, windowResolved: true },
+        )
       const eliminate: Message = { type: 'DefeatInvestigator', investigator: investigator.id }
       if (message.killInstead)
         return push(state, { type: 'KillInvestigators', investigator: investigator.id }, eliminate)
@@ -7271,7 +7410,12 @@ export function handle(state: GameState, message: Message): GameState {
           encounterDeck: state.encounterDeck.slice(index + 1),
           encounterDiscard: [...state.encounterDiscard, ...state.encounterDeck.slice(0, index)],
         },
-        { type: 'ResolveEncounterCard', investigator: message.investigator, card },
+        {
+          type: 'ResolveEncounterCard',
+          investigator: message.investigator,
+          card,
+          fromEncounterDeck: true,
+        },
       )
     }
 
@@ -7295,7 +7439,12 @@ export function handle(state: GameState, message: Message): GameState {
             rng,
             encounterDiscard: selected.zone === 'discard' ? rest : state.encounterDiscard,
           },
-          { type: 'ResolveEncounterCard', investigator: message.investigator, card },
+          {
+            type: 'ResolveEncounterCard',
+            investigator: message.investigator,
+            card,
+            fromEncounterDeck: selected.zone === 'deck',
+          },
         )
       }
       const choices: Choice[] = (['deck', 'discard'] as const).flatMap((zone) =>
@@ -7643,6 +7792,24 @@ export function handle(state: GameState, message: Message): GameState {
       }
     }
 
+    case 'RedirectAttackDamageToEnemy': {
+      const at = state.queue.findIndex(
+        (m) => m.type === 'ResolveEnemyAttack' && m.enemy === message.attacker,
+      )
+      const attack = state.queue[at]
+      if (attack?.type !== 'ResolveEnemyAttack' || attack.redirectDamage) return state
+      const queue = state.queue.slice()
+      queue[at] = {
+        ...attack,
+        redirectDamage: {
+          target: message.target,
+          investigator: message.investigator,
+          card: message.card,
+        },
+      }
+      return { ...state, queue }
+    }
+
     case 'ResolveEnemyAttack': {
       if (state.canceledAttack === message.enemy) return { ...state, canceledAttack: null }
       const enemy =
@@ -7654,17 +7821,31 @@ export function handle(state: GameState, message: Message): GameState {
         state.enemies[enemy.id] && enemyHasKeyword(state, enemy, 'elusive')
           ? [{ type: 'ElusiveRetreat', enemy: enemy.id }]
           : []
+      const damage = Math.max(
+        0,
+        enemy.damage +
+          (message.modifier?.damage ?? 0) +
+          (scenarioBehavior(state.scenarioId)?.enemyDamageModifier?.(state, enemy) ?? 0),
+      )
+      const redirect = message.redirectDamage
+      const redirected = redirect && findEnemy(state, redirect.target)
       return push(
         state,
+        ...(redirect && redirected && damage > 0
+          ? [
+              {
+                type: 'DamageEnemy' as const,
+                enemy: redirected.id,
+                amount: damage,
+                by: redirect.investigator,
+                source: { code: redirect.card },
+              },
+            ]
+          : []),
         {
           type: 'TakeDamage',
           investigator: target,
-          damage: Math.max(
-            0,
-            enemy.damage +
-              (message.modifier?.damage ?? 0) +
-              (scenarioBehavior(state.scenarioId)?.enemyDamageModifier?.(state, enemy) ?? 0),
-          ),
+          damage: redirected ? 0 : damage,
           // Like damage, horror never goes below 0: a reduced attack does not heal.
           horror: Math.max(
             0,
@@ -9170,27 +9351,27 @@ export function handle(state: GameState, message: Message): GameState {
     case 'SearchAndDrawEncounter': {
       let deck = state.encounterDeck
       let discard = state.encounterDiscard
-      const found: EncounterCard[] = []
+      const found: { card: EncounterCard; fromEncounterDeck: boolean }[] = []
       for (let n = 0; n < message.amount; n++) {
         const fromDeck = message.fromDiscard ? -1 : deck.findIndex((c) => c.code === message.code)
         if (fromDeck >= 0) {
-          found.push(deck[fromDeck] as EncounterCard)
+          found.push({ card: deck[fromDeck]!, fromEncounterDeck: true })
           deck = deck.filter((_, i) => i !== fromDeck)
           continue
         }
         const fromDiscard = discard.findIndex((c) => c.code === message.code)
         if (fromDiscard < 0) break
-        found.push(discard[fromDiscard] as EncounterCard)
+        found.push({ card: discard[fromDiscard]!, fromEncounterDeck: false })
         discard = discard.filter((_, i) => i !== fromDiscard)
       }
       // Se baraja el mazo de encuentros si se ha buscado en él.
       const [shuffled, rng] = message.fromDiscard ? [deck, state.rng] : shuffle(deck, state.rng)
       return push(
         { ...state, rng, encounterDeck: shuffled, encounterDiscard: discard },
-        ...found.map((card): Message => ({
+        ...found.map((drawn): Message => ({
           type: 'ResolveEncounterCard',
           investigator: message.investigator,
-          card,
+          ...drawn,
         })),
       )
     }
@@ -9986,7 +10167,12 @@ export function handle(state: GameState, message: Message): GameState {
       return push(
         next,
         { type: 'GainResources', investigator: message.investigator, amount: card.health },
-        { type: 'ResolveEncounterCard', investigator: message.investigator, card },
+        {
+          type: 'ResolveEncounterCard',
+          investigator: message.investigator,
+          card,
+          fromEncounterDeck: true,
+        },
       )
     }
 
@@ -10019,7 +10205,12 @@ export function handle(state: GameState, message: Message): GameState {
       )
       const next = { ...state, encounterDeck, rng }
       return card
-        ? push(next, { type: 'ResolveEncounterCard', investigator: message.investigator, card })
+        ? push(next, {
+            type: 'ResolveEncounterCard',
+            investigator: message.investigator,
+            card,
+            fromEncounterDeck: true,
+          })
         : next
     }
 

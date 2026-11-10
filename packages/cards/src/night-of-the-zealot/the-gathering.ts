@@ -344,7 +344,12 @@ registerScenario({
       }
       const lead = leadInvestigator(state)
       return card && lead
-        ? push(next, { type: 'ResolveEncounterCard', investigator: lead.id, card })
+        ? push(next, {
+            type: 'ResolveEncounterCard',
+            investigator: lead.id,
+            card,
+            fromEncounterDeck: true,
+          })
         : next
     }
     // Retain the legacy continuation for already saved pre-zone-search queues.
@@ -367,7 +372,12 @@ registerScenario({
               ? state.encounterDiscard
               : state.encounterDiscard.filter((_, n) => n !== discardIndex),
         },
-        { type: 'ResolveEncounterCard', investigator: String(data.investigator), card },
+        {
+          type: 'ResolveEncounterCard',
+          investigator: String(data.investigator),
+          card,
+          fromEncounterDeck: index >= 0,
+        },
       )
     }
     return state

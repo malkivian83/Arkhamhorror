@@ -550,7 +550,7 @@ function findAndDraw(
     )
     return push(
       { ...state, encounterDeck, rng },
-      { type: 'ResolveEncounterCard', investigator, card: found },
+      { type: 'ResolveEncounterCard', investigator, card: found, fromEncounterDeck: true },
     )
   }
   return drawFromDiscard(state, investigator, matches)

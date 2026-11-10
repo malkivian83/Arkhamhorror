@@ -151,6 +151,6 @@ onSpecific('carnevaleReleaseReveler', (s) => {
     ? s
     : push(
         { ...s, setAside: s.setAside.filter((_, i) => i !== index) },
-        { type: 'ResolveEncounterCard', investigator: by, card: balefulReveler },
+        { type: 'ResolveEncounterCard', investigator: by, card: balefulReveler, withoutDraw: true },
       )
 })

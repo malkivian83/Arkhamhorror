@@ -1,0 +1,65 @@
+[
+  {
+    "code": "02302",
+    "name": "Dr. William T. Maleson",
+    "subname": "Working on Something Big",
+    "type": "asset",
+    "class": "seeker",
+    "traits": ["Ally", "Miskatonic"],
+    "unique": true,
+    "cost": 1,
+    "xp": 0,
+    "icons": { "willpower": 1 },
+    "slots": ["ally"],
+    "health": 2,
+    "sanity": 2
+  },
+  {
+    "code": "02307",
+    "name": "Ward of Protection",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Spirit"],
+    "cost": 1,
+    "xp": 5,
+    "icons": { "willpower": 1, "wild": 1 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "03022",
+    "name": "\"Let me handle this!\"",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Spirit"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "willpower": 1, "combat": 1 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "04028",
+    "name": "\"You handle this one!\"",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Trick"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "intellect": 1, "agility": 1 },
+    "slots": [],
+    "fast": true
+  },
+  {
+    "code": "54009",
+    "name": "Nine of Rods",
+    "subname": "Every Trial a Lesson",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Tarot"],
+    "cost": 3,
+    "xp": 3,
+    "icons": {},
+    "slots": ["tarot"]
+  }
+]

@@ -247,5 +247,6 @@
 
 - Lotes 133–134: `reprints-wave-3` (35 reediciones) y `reused-capabilities` (7 cartas nuevas). Detalles en [133](133-reimpresiones-de-cartas-jugables.md) y [134](134-candidatas-sin-motor-nuevo.md).
 - Lote 135: `token-triggers`, 21 códigos, 21 cartas/niveles nuevos. Detalles en [135](135-reacciones-a-fichas-reveladas.md).
+- Lote 136: `lasting-attachments`, publicado como `a5bf5f45`. 24 códigos, 23 cartas/niveles nuevos y 1 reedición. Detalles en [136](136-adjuntos-con-duracion.md).
 - Acumulado tras 135: 1396 jugables; 721 históricos pendientes, incluidos 346 estándar con impresión.
 - Verificación 135: engine+cards (611 archivos, 6608 casos), card-import+i18n (14, 156), web del lote y registros, tipos, lint/formato y 5742 imágenes/miniaturas.

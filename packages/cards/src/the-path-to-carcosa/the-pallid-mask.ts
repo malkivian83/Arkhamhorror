@@ -856,7 +856,7 @@ registerScenario({
           )
           return push(
             { ...state, encounterDeck, rng },
-            { type: 'ResolveEncounterCard', investigator, card: found },
+            { type: 'ResolveEncounterCard', investigator, card: found, fromEncounterDeck: true },
           )
         }
         const inDiscard = state.encounterDiscard.findIndex(matches)

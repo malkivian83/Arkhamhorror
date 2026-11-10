@@ -1,7 +1,7 @@
 import type { GameState } from './types'
 import { describe, expect, it } from 'vitest'
 import { availableActions } from './actions'
-import { applyInput, createGame } from './engine'
+import { applyInput, createGame, dispatch } from './engine'
 import { handle } from './handlers'
 import { prepareGame } from './setup'
 import { newTestGame, testInvestigator, testScenario, throughSetup } from './testing'
@@ -47,14 +47,13 @@ describe('boons', () => {
   it('Osiris heals once and protects only until the next turn', () => {
     let s: GameState = { ...base(), boons: ['osiris'] }
     s.investigators[0]!.damage = 8
-    s = handle(s, { type: 'CheckDefeat', investigator: 'a' }) as typeof s
-    expect(s.queue[0]?.type).toBe('SufferTrauma')
-    s = handle(s, s.queue[0]!) as typeof s
+    s = dispatch(s, { type: 'CheckDefeat', investigator: 'a' })
     expect(s.campaignLog!.investigators.a!.physicalTrauma).toBe(1)
-    s = handle(s, { type: 'DefeatInvestigator', investigator: 'a' }) as typeof s
-    expect(s.queue[0]?.type).toBe('BoonOsiris')
-    s = handle(s, { type: 'BoonOsiris', investigator: 'a' }) as typeof s
-    expect(s.investigators[0]!.damage).toBe(0)
+    expect(s.investigators[0]).toMatchObject({
+      damage: 0,
+      eliminated: false,
+      osirisProtected: true,
+    })
     s = handle(s, {
       type: 'TakeDamage',
       investigator: 'a',

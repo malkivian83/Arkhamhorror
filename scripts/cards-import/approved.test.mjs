@@ -24,6 +24,30 @@ describe('reviewed inventory conversion', () => {
       ).toThrow()
     }
   })
+  it('accepts Nine of Rods as level 3 Survivor Tarot only with its reviewed adapter', async () => {
+    const { cards } = await read(
+      '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
+    )
+    const manifest = await read('../../packages/cards/src/encounter-draws/approvals.json')
+    const card = cards.find((c) => c.code === '54009')
+    const approval = manifest.cards.find((a) => a.code === '54009')
+    expect(approvedDefinition(card, approval)).toMatchObject({
+      xp: 3,
+      class: 'survivor',
+      slots: ['tarot'],
+    })
+    expect(() => approvedDefinition(card, { ...approval, adapter: undefined })).toThrow()
+    expect(() => approvedDefinition({ ...card, factions: ['guardian'] }, approval)).toThrow()
+    expect(() =>
+      approvedDefinition(
+        {
+          ...card,
+          numbers: { ...card.numbers, xp: { kind: 'number', value: 0 } },
+        },
+        approval,
+      ),
+    ).toThrow()
+  })
   it('requires exact permanent, level and faction evidence for Geared Up', async () => {
     const { cards } = await read(
         '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',

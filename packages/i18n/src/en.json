@@ -84,6 +84,14 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "damageReactions": {
+        "title": "Four new cards for damage and defeat",
+        "cards": "Now playable: Aquinnah (1 and 3), St. Hubert’s Key and Armor of Ardennes."
+      },
+      "encounterDraws": {
+        "title": "Five new reactions to encounter draws",
+        "cards": "Now playable: Dr. William T. Maleson (0), Ward of Protection (5), “Let me handle this!”, “You handle this one!” and Nine of Rods."
+      },
       "lastingAttachments": {
         "title": "Lasting effects and attachments on enemies and locations, with 23 new cards",
         "cards": "Now playable: Anatomical Diagrams, Expose Weakness (1 and 3), Wither (0 and 4), Ofuda, Bolas, Fend Off, Grievous Wound, Hunter’s Mark, Handcuffs (0 and 2), Barricade (also its Revised Core Set reprint), Ambush, Snare Trap, Under Surveillance, Hiding Spot, Lure (1 and 2), Map the Area, Breach the Door, Vantage Point and Sixth Sense.",
@@ -1123,6 +1131,11 @@
     "upkeep": "Upkeep phase"
   },
   "ability": {
+    "malesonRedraw": "{card}: place 1 clue here and replace the encounter draw",
+    "nineOfRodsRedraw": "Exhaust {card} to shuffle this encounter card back and draw again",
+    "aquinnahRedirect": "{card}: take 1 horror on this asset and redirect the attack damage to {enemy}",
+    "hubertKey": "Discard {card} to heal 2 horror",
+    "ardennesArmor": "Exhaust {card} to cancel 1 assigned damage",
     "ofuda": "Spend 1 charge from {card}: {enemy} loses alert, aloof, elusive and retaliate this round",
     "huntersMark": "Discard {card}: deal 1 additional damage to {enemy}",
     "tokenTrigger": {
@@ -3447,6 +3460,11 @@
   },
   "offlineCard": {
     "subnames": {
+      "03269": "Cleansing Fire",
+      "02308": "The Forgotten Daughter",
+      "01082": "The Forgotten Daughter",
+      "54009": "Every Trial a Lesson",
+      "02302": "Working on Something Big",
       "08091": "Enigmatic Warlock",
       "10056": "Lens to the Otherworld",
       "06285": "A Liar, or a Prophet, or Both",
@@ -3566,6 +3584,15 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "03305": "Item. Armor. Relic.",
+      "03269": "Item. Charm.",
+      "02308": "Ally.",
+      "01082": "Ally.",
+      "54009": "Tarot.",
+      "04028": "Trick.",
+      "03022": "Spirit.",
+      "02307": "Spell. Spirit.",
+      "02302": "Ally. Miskatonic.",
       "05158": "Spell.",
       "04306": "Insight.",
       "09026": "Insight. Tactic. Police.",
@@ -4373,6 +4400,15 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "03305": "[reaction] When damage is assigned to Armor of Ardennes, exhaust Armor of Ardennes: Cancel 1 of that damage.",
+      "03269": "You get +1 [willpower], +1 [intellect], and -2 sanity.\n[reaction] When you would be defeated by horror, discard St. Hubert's Key: Immediately heal 2 horror.",
+      "02308": "[reaction] When an enemy attacks you, exhaust Aquinnah and deal 1 horror to her: Deal that enemy's damage to any enemy at your location, instead. (You still take horror dealt by the attack.)",
+      "01082": "[reaction] When an enemy attacks you, exhaust Aquinnah and deal 1 horror to her: Deal that enemy's damage to another enemy at your location, instead. (You still take horror dealt by the attack.)",
+      "54009": "[reaction] When you draw a non-weakness encounter card, exhaust Nine of Rods: Cancel all of that card's effects and shuffle it into the encounter deck. Then, draw another card from the top of the encounter deck.\n[reaction] When the game begins, if Nine of Rods is in your opening hand: Put it into play.",
+      "04028": "Fast. Play after you draw a non-peril encounter card, but before resolving that card's effects.\nChoose another investigator. That investigator is considered to have drawn that encounter card instead. Gain 1 resource.",
+      "03022": "Fast. Play after another investigator draws a non-peril encounter card, but before resolving that card's effects.\nYou are considered to have drawn that encounter card, instead. You get +2 to each of your skills while resolving that card's revelation effect.",
+      "02307": "Fast. Play when you draw a non-weakness encounter card. \nCancel all of that card's effects and discard it. Then, take 1 horror.",
+      "02302": "[reaction] When you draw an encounter card from the encounter deck, exhaust Dr. William T. Maleson and place 1 of your clues on your location: Cancel the drawing of that card and shuffle it back into the encounter deck. Then, draw a new card from the top of the encounter deck.",
       "05158": "[action]: <b>Investigate.</b> Investigate using [willpower] instead of [intellect]. If a [skull], [cultist], [tablet], or [elder_thing] symbol is revealed during this test, you may choose a revealed location connected to your location; you are now investigating as if you were at the chosen location instead of your location (you may use either shroud value).",
       "04306": "Fast. Play after a location enters play or is revealed during an investigator's turn.\nUntil the end of the active investigator's turn, that location gets -1 shroud. You may move 1 clue to that location from any other location.",
       "09026": "Test [combat] (1). If you succeed, attach Breach the Door to your location with 1 resource on it for each point you succeeded by, as leads.\nReduce attached location's shroud by 1 for each lead on Breach the Door.",
@@ -5612,6 +5648,15 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "03305": "Armor of Ardennes",
+      "03269": "St. Hubert's Key",
+      "02308": "Aquinnah",
+      "01082": "Aquinnah",
+      "54009": "Nine of Rods",
+      "04028": "\"You handle this one!\"",
+      "03022": "\"Let me handle this!\"",
+      "02307": "Ward of Protection",
+      "02302": "Dr. William T. Maleson",
       "05158": "Sixth Sense",
       "04306": "Vantage Point",
       "09026": "Breach the Door",

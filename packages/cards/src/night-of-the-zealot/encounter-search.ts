@@ -55,7 +55,7 @@ export function classicSearch(
     const [encounterDeck, rng] = shuffle(inDeck ? rest : s.encounterDeck, s.rng)
     return push(
       { ...s, rng, encounterDeck, encounterDiscard: inDeck ? s.encounterDiscard : rest },
-      { type: 'ResolveEncounterCard', investigator, card },
+      { type: 'ResolveEncounterCard', investigator, card, fromEncounterDeck: inDeck },
     )
   }
   return null

@@ -190,7 +190,7 @@ function specific(state: GameState, key: string, data: Data): GameState {
       return push(
         { ...state, encounterDeck: rest },
         { type: 'Log', key: 'log.gala.missed', params: { card: top.name } },
-        { type: 'ResolveEncounterCard', investigator, card: top },
+        { type: 'ResolveEncounterCard', investigator, card: top, fromEncounterDeck: true },
       )
     }
     // Dar la vuelta a una carta hechizada (queda preparada).
