@@ -103,7 +103,11 @@ import {
   type ScenarioOutcome,
   type ExperienceGain,
 } from '@lcg/engine'
-import { campaignDefinition, type CampaignScenario } from './campaign-definition'
+import {
+  campaignDefinition,
+  type CampaignScenario,
+  type ScenarioContext,
+} from './campaign-definition'
 import {
   assertEncounterSetVariant,
   prepareEncounterVariant,
@@ -360,6 +364,7 @@ export function canAddCarnevale(campaign: Campaign): boolean {
     campaign.carnevaleAt === undefined &&
     campaign.scenarioIndex > 0 &&
     canPlayNext(campaign) &&
+    scenarioEntry(campaign)?.allowSideStoryBefore !== false &&
     campaignScenarios(campaign)[campaign.scenarioIndex - 1]?.allowDeckChangesAfter !== false &&
     activeMembers(campaign).every((i) => (campaign.log.investigators[i.id]?.xp ?? 0) >= 3)
   )
@@ -458,16 +463,17 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
   if (pendingTransfers(campaign).length) throw new Error('Falta elegir el nuevo portador')
   for (const investigator of members)
     assertDeck(investigator, false, memberRewards(campaign, investigator))
+  const context: ScenarioContext = {
+    ...(campaign.encounterSetVariant === 'chapter-two'
+      ? { encounterSetVariant: campaign.encounterSetVariant }
+      : {}),
+    difficulty: campaign.difficulty,
+    log: campaign.log,
+    seed,
+    investigators: members.map((i) => i.id),
+  }
   const scenario = prepareEncounterVariant(
-    entry.build({
-      ...(campaign.encounterSetVariant === 'chapter-two'
-        ? { encounterSetVariant: campaign.encounterSetVariant }
-        : {}),
-      difficulty: campaign.difficulty,
-      log: campaign.log,
-      seed,
-      investigators: members.map((i) => i.id),
-    }),
+    entry.build(context),
     campaign.id,
     campaign.encounterSetVariant,
   )
@@ -490,7 +496,7 @@ export function startScenario(campaign: Campaign, seed: number, interactive = tr
       // Reglamento: en campaña, la bolsa del caos sigue como acabó el escenario anterior.
       chaosBag: [
         ...(entry.id === 'carnevale-of-horrors' && !definition.standalone
-          ? definition.chaosBags[campaign.difficulty]
+          ? (definition.sideStoryChaosBag?.(context) ?? definition.chaosBags[campaign.difficulty])
           : scenario.chaosBag),
         ...campaign.log.chaosTokens,
       ],

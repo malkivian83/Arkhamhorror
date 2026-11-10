@@ -14,7 +14,7 @@ import {
 import { iceAndDeathPartOne } from './ice-and-death'
 import { iceAndDeathPartTwo } from './part-two'
 import { iceAndDeathPartThree } from './part-three'
-import { edgeOfTheEarthChaosBags } from './opening'
+import { edgeOfTheEarthChaosBags, edgeOfTheEarthStartingBag } from './opening'
 import { registerTekelili } from './tekelili'
 import './ice-and-death-encounters'
 import './ice-and-death-locations'
@@ -28,25 +28,25 @@ registerCampaign({
   name: 'campaign.names.edge-of-the-earth',
   release: 8,
   chaosBags: edgeOfTheEarthChaosBags,
+  sideStoryChaosBag: edgeOfTheEarthStartingBag,
   scenarios: [
     {
       id: ICE_AND_DEATH,
       build: iceAndDeathPartOne,
-      allowDeckChangesAfter: false,
       keywords: ['frost', 'hunter', 'massive', 'parley'],
     },
-    { id: ICE_CHECKPOINT_ONE, checkpoint: true, allowDeckChangesAfter: false },
+    { id: ICE_CHECKPOINT_ONE, checkpoint: true },
     {
       id: ICE_PART_TWO,
       build: iceAndDeathPartTwo,
-      allowDeckChangesAfter: false,
+      allowSideStoryBefore: false,
       keywords: ['frost', 'parley', 'retaliate'],
     },
-    { id: ICE_CHECKPOINT_TWO, checkpoint: true, allowDeckChangesAfter: false },
+    { id: ICE_CHECKPOINT_TWO, checkpoint: true },
     {
       id: ICE_PART_THREE,
       build: iceAndDeathPartThree,
-      allowDeckChangesAfter: false,
+      allowSideStoryBefore: false,
       keywords: ['frost', 'hunter'],
     },
     { id: EOTE_RESTFUL_NIGHT, checkpoint: true },

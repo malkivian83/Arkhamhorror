@@ -1,6 +1,12 @@
 import { applyInput, dispatch } from '@lcg/engine'
 import { describe, expect, it } from 'vitest'
-import { currentScenario, finishScenario, newCampaign, startScenario } from '../campaign'
+import {
+  addCarnevale,
+  currentScenario,
+  finishScenario,
+  newCampaign,
+  startScenario,
+} from '../campaign'
 import { applyRestfulNightVisit, completeRestfulNight, restfulNight } from './restful-night'
 import { fledToMountains } from './checkpoint'
 import { startingFrostRemoved } from './opening'
@@ -97,6 +103,24 @@ describe('Restful Night campaign rules', () => {
     expect(briefed.log.chaosTokens).toEqual(['cultist'])
     expect(briefed.log.values[startingFrostRemoved]).toBeUndefined()
     expect(briefed.log.notes).toContain('edgeOfTheEarthKenslerResearch')
+  })
+
+  // Carnevale, Side-story (Campaign Mode): keep the campaign's current chaos bag.
+  it('keeps the frost removed from the starting bag when inserting Carnevale', () => {
+    const { campaign } = setup()
+    for (const record of Object.values(campaign.log.investigators)) record.xp = 3
+    for (const code of ['08714', '08716', '08717'] as const)
+      campaign.log.expedition!.partners[code]!.status = 'eliminated'
+    const rested = (['08718', '08720', '08721'] as const).reduce(
+      (current, partner) => applyRestfulNightVisit(current, { partner }),
+      campaign,
+    )
+    const next = completeRestfulNight(rested, 'mirage')
+    next.log.chaosTokens.push('cultist')
+    const mirage = startScenario(next, 44)
+    const carnevale = startScenario(addCarnevale(next), 44)
+    expect(mirage.chaosBag).not.toContain('frost')
+    expect(carnevale.chaosBag).toEqual(mirage.chaosBag)
   })
 
   it('records the selected investigators for the next scenario’s separate bonuses', () => {

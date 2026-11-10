@@ -9,7 +9,7 @@ import {
 } from '@lcg/engine'
 import { choose, testInvestigator, throughSetup } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
-import { K, RING } from './chorus-data'
+import { FALLEN, K, RING } from './chorus-data'
 import { arkhamStatus, mourningChorus } from './mourning-chorus'
 import { TOWN } from './night-data'
 import { emit, settle } from './testing'
@@ -34,23 +34,31 @@ const base: Record<string, 'Defended' | 'Infected'> = {
   '78029': 'Defended',
   '78030': 'Defended',
 }
-function chorusGame(values = base, players = 1, seed = 3): GameState {
+function chorusSetup(values = base, players = 1, seed = 3): GameState {
   const log = logWith(values)
   const ids = ['a', 'b', 'c', 'd'].slice(0, players)
-  let s = throughSetup(
-    createGame({
-      seed,
-      difficulty: 'standard',
-      interactive: true,
-      campaignLog: { ...log, investigators: emptyCampaignLog(ids).investigators },
-      scenario: mourningChorus({ log, seed, investigators: players }),
-      investigators: ids.map((id) => testInvestigator(id)),
-    }),
-  )
-  for (let n = 0; n < 40 && s.pending && s.pending.question.prompt !== 'prompt.chooseAction'; n++)
+  return createGame({
+    seed,
+    difficulty: 'standard',
+    interactive: true,
+    campaignLog: { ...log, investigators: emptyCampaignLog(ids).investigators },
+    scenario: mourningChorus({ log, seed, investigators: players }),
+    investigators: ids.map((id) => testInvestigator(id)),
+  })
+}
+function advanceTo(state: GameState, prompt: string): GameState {
+  let s = state
+  for (let n = 0; n < 40 && s.pending && s.pending.question.prompt !== prompt; n++)
     s = applyInput(s, { investigator: s.pending.investigator, choice: 0 })
+  expect(s.pending?.question.prompt).toBe(prompt)
   return s
 }
+function chorusGame(values = base, players = 1, seed = 3): GameState {
+  return advanceTo(throughSetup(chorusSetup(values, players, seed)), 'prompt.chooseAction')
+}
+const sixInfected = Object.fromEntries(
+  TOWN.map(({ id }, n) => [id, n < 6 ? 'Infected' : 'Defended']),
+) as typeof base
 const procession = (s: GameState) => s.scenarioDecks!.chorusProcession!.map((id) => s.enemies[id]!)
 const ring = (location: string) =>
   RING.findIndex((id) => {
@@ -90,14 +98,38 @@ describe('Cantos fúnebres', () => {
       s.scenarioDecks!.chorusDeck!.find((c) => c === '78260' || c === '78262'),
     )
   })
-  it('con 6 Lugares Infectados el jefe marca uno como Defendido', () => {
-    const values = Object.fromEntries(
-      Object.keys(base).map((id, n) => [id, n < 6 ? 'Infected' : 'Defended']),
-    ) as typeof base
-    const s = chorusGame(values)
-    const ruins = TOWN.filter((r) => s.locations[r.ruin]).length
-    expect(ruins).toBe(5)
+  // Guide EN p. 12: defend first, then choose among the remaining ruins and Elites.
+  it.each(TOWN.slice(0, 6))('forma la Procesión después de defender $name', (defended) => {
+    const choosing = advanceTo(chorusSetup(sixInfected), 'prompt.plaguebearer.chorus.rally')
+    const defendedState = choose(choosing, 'choice.location', { location: defended.name })
+    const s = advanceTo(defendedState, 'prompt.chooseAction')
+    const ruins = TOWN.filter((r) => s.locations[r.ruin])
+    expect(ruins).toHaveLength(5)
     expect(Object.values(s.campaignLog!.values).filter((v) => v === 'Defended')).toHaveLength(3)
+    const [p, m] = procession(s)
+    expect(p?.code).toBe(K.priest)
+    expect(ruins.map(({ ruin }) => ruin)).toContain(p?.location)
+    expect(m).toMatchObject({ code: K.minister, doom: 1 })
+    expect(ring(m!.location)).toBe((ring(p!.location) + 1) % 8)
+    const eliteCodes = Object.values(FALLEN).map(({ elite }) => elite)
+    const inDeck = s.scenarioDecks!.chorusDeck!.filter((code) => eliteCodes.includes(code))
+    expect(inDeck).toHaveLength(1)
+    expect(ruins.map(({ id }) => FALLEN[id]!.elite)).toContain(inDeck[0])
+  })
+
+  it('elige un único Lugar Seguro para el grupo, incluido el recién defendido', () => {
+    const defended = TOWN[0]!
+    const choosing = advanceTo(chorusSetup(sixInfected, 2), 'prompt.plaguebearer.chorus.rally')
+    expect(choosing.investigators.map(({ location }) => location)).toEqual([null, null])
+    const ready = choose(choosing, 'choice.location', { location: defended.name })
+    expect(ready.pending?.question.prompt).toBe('prompt.chooseStartingLocation')
+    expect(ready.pending?.question.choices).toHaveLength(3)
+    const started = choose(ready, 'choice.location', { location: defended.name })
+    expect(started.pending?.question.prompt).not.toBe('prompt.chooseStartingLocation')
+    expect(started.investigators.map(({ location }) => location)).toEqual([
+      defended.stable,
+      defended.stable,
+    ])
   })
   it('la perdición de un enemigo aumenta su salud', () => {
     const s = chorusGame()

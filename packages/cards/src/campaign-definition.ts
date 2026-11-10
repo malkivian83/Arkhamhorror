@@ -31,6 +31,8 @@ export interface CampaignScenario {
   checkpoint?: true
   /** Checkpoints may prohibit purchases or upgrades before the following scenario. */
   allowDeckChangesAfter?: boolean
+  /** Una parte de un escenario no admite intercalar una historia secundaria. */
+  allowSideStoryBefore?: false
   /** Prepara el escenario; sin `build`, el escenario aún no está implementado. */
   build?: (context: ScenarioContext) => ScenarioDefinition
   /** Apoyos de historia que el escenario pone en juego en vez de barajarlos en el mazo. */
@@ -59,6 +61,8 @@ export interface CampaignDefinition {
   scenarios: CampaignScenario[]
   /** Bolsa del caos inicial por dificultad (guía de campaña). */
   chaosBags: Record<Difficulty, ChaosToken[]>
+  /** Bolsa base para historias secundarias cuando la campaña modifica su composición inicial. */
+  sideStoryChaosBag?: (context: ScenarioContext) => ChaosToken[]
   /**
    * Cartas de historia que pasan a otro investigador cuando su portador abandona la
    * campaña (muerto o enloquecido): El hombre de la máscara pálida en Carcosa.

@@ -9,6 +9,7 @@ import {
 import { choose, newTestGame } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { effectTest } from '../scenario-helpers'
+import { fatalMirage } from './fatal-mirage'
 import { mirageDecks } from './fatal-mirage-decks'
 import { fatalMirageExploration } from './fatal-mirage-exploration'
 import { prepareMirageMap, PRISON_OF_MEMORIES, readMirageMemories } from './fatal-mirage-map'
@@ -35,6 +36,23 @@ function duringMirage(visit: 1 | 2 | 3) {
 }
 
 describe('Fatal Mirage plans and acts', () => {
+  // Guide, p. 23, Intro 1: read the passage for the expedition member lost in the crash.
+  it.each([
+    ['08718', 'Claypool'],
+    ['08719', 'Cookie'],
+    ['08721', 'Ellsworth'],
+  ])('reads the first-visit memory for crash victim %s', (victim, story) => {
+    const log = emptyCampaignLog(['a'])
+    log.values.edgeOfTheEarthCrash = victim
+    const scenario = fatalMirage({ difficulty: 'standard', seed: 6, investigators: ['a'], log })
+    expect(scenario.setup).toContainEqual(
+      expect.objectContaining({
+        type: 'Story',
+        entry: expect.objectContaining({ body: `story.edgeOfTheEarth.mirageCrash${story}.body` }),
+      }),
+    )
+  })
+
   it.each([
     { visit: 1 as const, doom: 15, weaknesses: 1, trauma: 0 },
     { visit: 2 as const, doom: 13, weaknesses: 2, trauma: 0 },

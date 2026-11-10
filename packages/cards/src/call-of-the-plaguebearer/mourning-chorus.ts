@@ -115,6 +115,7 @@ export function mourningChorus({
       : stable.find((l) => l.id === row.stable)!,
   )
   const defended = TOWN.filter((r) => town[r.id] === 'Defended').map((r) => r.id)
+  const rallyCount = inPlay.length - defended.length - 5
   const threshold = 5 + 2 * investigators
   return {
     id: MOURNING_CHORUS,
@@ -128,8 +129,7 @@ export function mourningChorus({
     },
     locations: inPlay,
     setAsideLocations: [...stable, ...ruins].filter((l) => !inPlay.includes(l)),
-    startingLocation: inPlay.find((l) => stable.includes(l))?.id ?? inPlay[0]!.id,
-    startingLocationChoices: inPlay.filter((l) => stable.includes(l)).map((l) => l.id),
+    startingLocation: null,
     agendas: [
       { code: K.agendas[0], name: 'Eldritch Procession', doomThreshold: threshold },
       { code: K.agendas[1], name: 'Song of Sacrifice', doomThreshold: threshold },
@@ -176,12 +176,9 @@ export function mourningChorus({
         recordNote(`plaguebearerTown${r.id}${town[r.id]}`),
       ]),
       specific('chorus.introHidden', { index: 0 }),
-      specific('chorus.setup', {
-        elites: elites
-          .filter((e) => !defended.some((id) => FALLEN[id]!.elite === e.code))
-          .map((e) => e.code)
-          .join(','),
-      }),
+      ...(rallyCount > 0 ? [specific('chorus.rally', { times: rallyCount })] : []),
+      specific('chorus.setup'),
+      specific('chorus.chooseStart'),
     ],
   }
 }
@@ -191,7 +188,11 @@ export function mourningChorus({
 // ---------------------------------------------------------------------------
 
 on('chorus.setup', (s, d) => {
-  const pool = String(d.elites).split(',').filter(Boolean)
+  // Las partidas ya guardadas calculaban la Procesión antes de la defensa.
+  const legacyPool = typeof d.elites === 'string' ? d.elites.split(',').filter(Boolean) : undefined
+  const pool =
+    legacyPool ??
+    elites.map((e) => e.code).filter((code) => s.setAside.some((c) => c.code === code))
   const [index, rng1] = nextInt(s.rng, Math.max(1, pool.length))
   const first = pool[index]
   const rest = pool.filter((_, n) => n !== index)
@@ -222,7 +223,9 @@ on('chorus.setup', (s, d) => {
       },
       scenarioMeta: { ...s.scenarioMeta, chorusSetup: 1 },
     },
-    ...(infected.length >= 6 ? [specific('chorus.rally', { times: infected.length - 5 })] : []),
+    ...(legacyPool && infected.length >= 6
+      ? [specific('chorus.rally', { times: infected.length - 5 })]
+      : []),
     { type: 'SpawnSetAsideEnemy', code: K.priest, location: start },
     specific('chorus.join', { code: K.priest, location: start, doom: 0 }),
     { type: 'SpawnSetAsideEnemy', code: K.minister, location: next },
@@ -230,6 +233,19 @@ on('chorus.setup', (s, d) => {
     { type: 'SetScenarioMeta', key: 'chorusSetup', value: 0 },
   )
 })
+on('chorus.chooseStart', (s) =>
+  ask(
+    s,
+    lead(s),
+    TOWN.filter((row) => s.locations[row.stable]).map((row) => ({
+      label: 'choice.location',
+      params: { location: row.name },
+      target: { type: 'location', id: row.stable },
+      then: [{ type: 'PlaceAtStart', lead: row.stable, others: row.stable }],
+    })),
+    'prompt.chooseStartingLocation',
+  ),
+)
 // Con 6 o más Lugares Infectados, el jefe elige uno (dos con 7) para marcarlo Defendido.
 on('chorus.rally', (s, d) => {
   const times = Number(d.times)
