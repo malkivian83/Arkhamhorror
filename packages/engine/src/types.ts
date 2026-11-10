@@ -825,6 +825,13 @@ export interface SkillTest {
   tokenChoice?: { chosen: ChaosToken; ignored: ChaosToken[]; source?: string }
   /** Fichas sacadas pero ignoradas: vuelven a la bolsa al terminar la prueba. */
   ignoredTokens?: ChaosToken[]
+  /** Physical identity and applied modifier of each resolved token, in reveal order. */
+  resolvedTokens?: {
+    token: ChaosToken
+    face: ChaosToken
+    modifier: number
+    modifierIgnored?: boolean
+  }[]
   tokenPredictions?: Record<AssetId, ChaosToken>
   /** Only recorded for cards that count canceled/ignored reveals (Confidence). */
   revealCount?: number
@@ -1418,7 +1425,7 @@ type MessageBody =
    * Cancel the held token, then reveal tokens until a symbol token: it resolves and the
    * others are ignored (Sacrificial Doll). All of them return to the bag when the test ends.
    */
-  | { type: 'RevealUntilSymbolToken' }
+  | { type: 'RevealUntilSymbolToken'; additional?: number; source?: string }
   | { type: 'IgnoreSkillTestTokens'; tokens: ChaosToken[] }
   | { type: 'TrackSkillTestReveals' }
   | { type: 'NameSkillTestToken'; asset: AssetId; token: ChaosToken }
@@ -2235,7 +2242,7 @@ export type Trigger =
   | {
       type: 'beforeEnemyDamage'
       enemy: EnemyId
-      investigator: InvestigatorId
+      investigator?: InvestigatorId
       amount: number
       source?: DamageSource
     }

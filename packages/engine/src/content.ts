@@ -970,6 +970,8 @@ export interface PlayerCardBehavior {
   placedReactions?: (state: GameState, trigger: Trigger, self: PlacedAsset) => ReactionOption[]
   /** Se descarta al quedarse sin usos. */
   discardWhenEmpty?: boolean
+  /** Discard this asset after its last sealed token leaves. */
+  discardWhenUnsealed?: boolean
   /** Absolute upper bound on uses, including uses added by other cards. */
   maxUses?: number
   /** Su acción es de evitar (cuenta como tal) o no provoca ataques de oportunidad. */

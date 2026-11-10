@@ -251,22 +251,37 @@ function registerSecondToken(code: '07190' | '07195') {
         h = held(s, t)
       if (!test || !h || a.exhausted || h.effect || h.face !== token) return []
       if (count(test.tokens, token) !== 1 || !atLocationOf(s, test, a.owner)) return []
-      const both: Message = { type: 'ReturnTokensToBagAfterTest', tokens: [token, token] }
+      const isis = code === '07190'
+      const returned = isis || test.keepInBag?.includes('curse') ? 2 : 1
       return [
         option(a, code, [
           exhaust(a),
           { type: 'TreatRevealedTokenAs', token: face },
-          // Isis returns both to the bag; Aeons may remove both (they return to the pool).
-          ...(code === '07190'
-            ? [both]
-            : ask(
-                a.owner,
-                [
-                  { label: 'choice.aeonsRemove', then: [] },
-                  { label: 'choice.aeonsKeep', then: [both] },
-                ],
-                true,
-              )),
+          // Isis returns both. Aeons returns the canceled second curse unless removed at ST.8.
+          { type: 'ReturnTokensToBagAfterTest', tokens: isis ? [token, token] : [token] },
+          ...(isis
+            ? []
+            : [
+                {
+                  type: 'AfterCurrentSkillTest' as const,
+                  then: ask(
+                    a.owner,
+                    [
+                      {
+                        label: 'choice.aeonsRemove',
+                        then: [
+                          {
+                            type: 'RemoveChaosTokens',
+                            tokens: Array<ChaosToken>(returned).fill(token),
+                          },
+                        ],
+                      },
+                      { label: 'choice.aeonsKeep', then: [] },
+                    ],
+                    true,
+                  ),
+                },
+              ]),
         ]),
       ]
     },
@@ -448,10 +463,7 @@ function registerAsset(code: string): boolean {
                   {
                     label: 'choice.spectaclesClue',
                     params: { card: cardName(code) },
-                    then: [
-                      exhaust(self),
-                      { type: 'DiscoverClues', investigator: self.owner, amount: 1 },
-                    ],
+                    then: [exhaust(self), { type: 'AddInvestigationResults', extraClues: 1 }],
                   },
                   skip,
                 ],
@@ -472,14 +484,17 @@ function registerAsset(code: string): boolean {
         t.type === 'afterAssetEntersPlay' && t.asset === a.id
           ? ask(
               a.owner,
-              SIGILS.map((token): Choice => ({
-                label: 'choice.nameSigil',
-                params: { token: String(token) },
-                then: [
-                  { type: 'SetAssetForm', asset: a.id, form: String(token) },
-                  { type: 'Log', key: 'log.sigilNamed', params: { token: String(token) } },
-                ],
-              })),
+              [
+                ...SIGILS.map((token): Choice => ({
+                  label: 'choice.nameSigil',
+                  params: { token: String(token) },
+                  then: [
+                    { type: 'SetAssetForm', asset: a.id, form: String(token) },
+                    { type: 'Log', key: 'log.sigilNamed', params: { token: String(token) } },
+                  ],
+                })),
+                skip,
+              ],
               true,
             )
           : [],

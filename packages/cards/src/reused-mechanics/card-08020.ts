@@ -1,5 +1,6 @@
 import {
   attackBlocked,
+  enemyHasKeyword,
   fightEnemies,
   registerPlayerCard,
   type Enemy,
@@ -15,7 +16,7 @@ const code = '08020'
 const targets = (s: GameState, by: string): Enemy[] =>
   fightEnemies(s, by).filter(
     (e) =>
-      !attackBlocked(s, by, e, code) && (e.engagedWith !== null || !e.keywords.includes('aloof')),
+      !attackBlocked(s, by, e, code) && (e.engagedWith !== null || !enemyHasKeyword(s, e, 'aloof')),
   )
 registerPlayerCard({
   code,

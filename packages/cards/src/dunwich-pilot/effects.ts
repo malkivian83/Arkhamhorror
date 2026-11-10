@@ -1,5 +1,6 @@
 import {
   canAffordEntry,
+  enemyHasKeyword,
   fightEnemies,
   getInvestigator,
   getLocation,
@@ -53,7 +54,7 @@ export const attackable = (state: GameState, investigator: string) => {
   return here === null
     ? []
     : fightEnemies(state, investigator).filter(
-        (enemy) => enemy.engagedWith !== null || !enemy.keywords.includes('aloof'),
+        (enemy) => enemy.engagedWith !== null || !enemyHasKeyword(state, enemy, 'aloof'),
       )
 }
 export function fightOptions(

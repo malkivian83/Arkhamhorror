@@ -279,18 +279,23 @@ export function attachedStat(state: GameState, enemy: EnemyId, stat: 'fight' | '
   // Expose Weakness 3: "treat that enemy's fight value as if it were 0".
   const setTo = stat === 'fight' ? temporary.find((m) => m.fightSetTo !== undefined) : undefined
   if (setTo) return setTo.fightSetTo! - base
-  return floored(
-    base,
-    attachedModifiers(state, enemy).reduce((n, m) => n + (m[stat] ?? 0), 0),
-    temporary,
-  )
+  return enemyStatDelta(base, attachedModifiers(state, enemy), stat)
 }
 
 /** Wither: "to a minimum of 1"; a reduction cannot lower a value already below it. */
-function floored(base: number, delta: number, temporary: EnemyModifier[]): number {
-  const minimum = temporary.find((m) => m.minimum !== undefined)?.minimum
-  if (minimum === undefined || delta >= 0) return delta
-  return Math.max(delta, Math.min(0, minimum - base))
+function enemyStatDelta(
+  base: number,
+  modifiers: ReturnType<typeof attachedModifiers>,
+  stat: 'fight' | 'evade' | 'health',
+): number {
+  let delta = 0
+  for (const modifier of modifiers)
+    if (!('minimum' in modifier) || typeof modifier.minimum !== 'number')
+      delta += modifier[stat] ?? 0
+  for (const modifier of modifiers)
+    if ('minimum' in modifier && typeof modifier.minimum === 'number')
+      delta += Math.max(modifier[stat] ?? 0, Math.min(0, modifier.minimum - base - delta))
+  return delta
 }
 
 /** Salud máxima del enemigo con sus vinculadas. */
@@ -299,14 +304,7 @@ export function enemyMaxHealth(state: GameState, enemy: Enemy): number {
     enemy.maxHealth +
     (enemyBehavior(enemy.code)?.healthModifier?.(state, enemy) ?? 0) +
     (scenarioBehavior(state.scenarioId)?.enemyHealthModifier?.(state, enemy) ?? 0)
-  return (
-    base +
-    floored(
-      base,
-      attachedModifiers(state, enemy.id).reduce((n, m) => n + (m.health ?? 0), 0),
-      activeEnemyModifiers(state, enemy.id),
-    )
-  )
+  return base + enemyStatDelta(base, attachedModifiers(state, enemy.id), 'health')
 }
 
 export function getEnemy(state: GameState, id: EnemyId): Enemy {
