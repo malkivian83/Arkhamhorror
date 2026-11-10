@@ -15,7 +15,8 @@ export function approvedDefinition(card, approval) {
         (card.code === '05119' && card.factions.join(',') === 'survivor,seeker') ||
         (card.code === '05116' && card.factions.join(',') === 'seeker,mystic') ||
         (card.code === '05117' && card.factions.join(',') === 'rogue,survivor') ||
-        (['08090', '08092'].includes(card.code) && card.factions.join(',') === 'guardian,mystic') ||
+        (['08090', '08092', '08093'].includes(card.code) &&
+          card.factions.join(',') === 'guardian,mystic') ||
         (['08101', '08103'].includes(card.code) && card.factions.join(',') === 'seeker,mystic') ||
         (['08108', '08110', '08109', '08111'].includes(card.code) &&
           card.factions.join(',') === 'rogue,mystic') ||
@@ -98,6 +99,13 @@ export function approvedDefinition(card, approval) {
     ['02114', '03156', '03157', '08080'].includes(card.code)
   const reviewedBorrowedTime =
     approval.adapter === 'reviewed-borrowed-time-v1' && card.code === '04308'
+  // Reviewed Exceptional assets (The Black Fan, The Red Clock): deck limit 1.
+  const reviewedExceptional =
+    approval.adapter === 'reviewed-exceptional-v1' &&
+    ['08057', '08058', '08053'].includes(card.code) &&
+    card.flags.exceptional &&
+    card.deckLimit === 1 &&
+    card.factions.join(',') === 'rogue'
   const reviewedDarkHorse =
     approval.adapter === 'reviewed-dark-horse-v1' &&
     card.code === '10127' &&
@@ -167,7 +175,10 @@ export function approvedDefinition(card, approval) {
       (key) =>
         card.flags[key] &&
         !(key === 'exile' && (reviewedDefeatExile || reviewedProtectionExile)) &&
-        !(key === 'exceptional' && (reviewedBorrowedTime || fieldKeywords || economyKeywords)) &&
+        !(
+          key === 'exceptional' &&
+          (reviewedBorrowedTime || fieldKeywords || economyKeywords || reviewedExceptional)
+        ) &&
         !(key === 'myriad' && reviewedMyriad),
     )
   )
@@ -190,7 +201,7 @@ export function approvedDefinition(card, approval) {
     class: card.factions[0],
     ...(reviewedDualFaction || reviewedTalent ? { classes: card.factions } : {}),
     ...(creationPermanent ? { deckLimit: 1 } : {}),
-    ...(reviewedBorrowedTime ? { exceptional: true, deckLimit: 1 } : {}),
+    ...(reviewedBorrowedTime || reviewedExceptional ? { exceptional: true, deckLimit: 1 } : {}),
     ...(reviewedDarkHorse ? { deckLimit: 1 } : {}),
     ...(fieldKeywords && card.flags.permanent ? { deckLimit: 1 } : {}),
     ...(fieldKeywords && card.flags.exceptional ? { exceptional: true, deckLimit: 1 } : {}),

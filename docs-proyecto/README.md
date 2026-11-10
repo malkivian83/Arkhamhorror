@@ -144,6 +144,9 @@ Documentos posteriores, por número:
 - [129 · Revelaciones de fichas y ataques de área](129-revelaciones-de-fichas.md): 16 códigos (14 cartas/niveles nuevos, 2 reediciones); sustitución «cuando fueses a revelar una ficha de Caos» dentro y fuera de pruebas, revelar hasta parar, Estatua grotesca, Profecía oscura, Tormenta de espíritus, Granadas Mk 1, Viejo fusil de caza y Lanzallamas.
 - [130 · Bendiciones y maldiciones](130-bendiciones-y-maldiciones.md): 27 códigos (27 cartas/niveles nuevos, 0 reediciones); fichas de Bendición y Maldición en el motor (reserva de 10, vuelta a la reserva tras la prueba, modificadores de cartas comprometidas), eventos, apoyos y habilidades que las añaden, retiran o aprovechan.
 - [131 · Fichas del caos selladas](131-fichas-selladas.md): 19 códigos (19 cartas/niveles nuevos, 0 reediciones); liberar fichas selladas a la bolsa o a la reserva, resolver una ficha sellada agotando la carta, palabra clave Sellar (fija o «hasta N» Bendiciones/Maldiciones), cancelación de ataques, Consagrar y Mareas del destino.
+- [132 · Inventario de bloqueos del motor](132-inventario-bloqueos-motor.md): análisis de las 409 estándar pendientes con impresión por capacidad del motor que les falta (36 reimpresiones, 40 candidatas sin motor nuevo, 76 con varias capacidades) y orden recomendado.
+- [133 · Reimpresiones de cartas jugables](133-reimpresiones-de-cartas-jugables.md): 35 códigos (0 cartas/niveles nuevos, 35 reediciones); equivalencia EN/ES con huella y comportamiento del original enlazado a su código (`reprints-wave-3`).
+- [134 · Candidatas sin motor nuevo](134-candidatas-sin-motor-nuevo.md): 7 códigos (7 cartas/niveles nuevos, 0 reediciones); La llave de Salomon, Rito de equilibrio, «¡Te lo devolveré!», Reliquia arcana perdida, El reloj rojo (2), Yaotl y Martillo ciclópeo; 33 candidatas del inventario 132 quedan bloqueadas con su causa.
 
 ## Decisiones ya tomadas
 

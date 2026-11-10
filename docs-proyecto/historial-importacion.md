@@ -1,5 +1,8 @@
 # Historial de la importación
 
+- Lote 130 (09/11): `bless-curse`, 27 códigos (27 nuevos, 0 reediciones); publicado. Ver [130](130-bendiciones-y-maldiciones.md).
+- Lote 131 (10/11): `sealed-tokens`, 19 códigos (19 nuevos, 0 reediciones); publicado como `5cc146c9`. Ver [131](131-fichas-selladas.md).
+
 - Lote 129 (09/11): `token-reveals`, 16 códigos (14 nuevos, 2 reediciones); publicado. Ver [129](129-revelaciones-de-fichas.md).
 
 - Lotes 125–128 (09/11): mazos de inicio de Tommy, Carolyn, Marie (60451) y Miguel; 37 códigos, 33 cartas/niveles nuevos, 4 reediciones. Base `91c7430e`.

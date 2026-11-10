@@ -1,6 +1,12 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'reprints-and-reused-capabilities',
+    date: '2026-11-10',
+    title: 'app.changelog.reprintsReuse.title',
+    items: ['app.changelog.reprintsReuse.reprints', 'app.changelog.reprintsReuse.cards'],
+  },
+  {
     id: 'sealed-chaos-tokens',
     date: '2026-11-10',
     title: 'app.changelog.sealedTokens.title',
