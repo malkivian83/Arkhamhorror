@@ -148,6 +148,7 @@ Documentos posteriores, por número:
 - [133 · Reimpresiones de cartas jugables](133-reimpresiones-de-cartas-jugables.md): 35 códigos (0 cartas/niveles nuevos, 35 reediciones); equivalencia EN/ES con huella y comportamiento del original enlazado a su código (`reprints-wave-3`).
 - [134 · Candidatas sin motor nuevo](134-candidatas-sin-motor-nuevo.md): 7 códigos (7 cartas/niveles nuevos, 0 reediciones); La llave de Salomon, Rito de equilibrio, «¡Te lo devolveré!», Reliquia arcana perdida, El reloj rojo (2), Yaotl y Martillo ciclópeo; 33 candidatas del inventario 132 quedan bloqueadas con su causa.
 - [135 · Reacciones a fichas reveladas](135-reacciones-a-fichas-reveladas.md): 21 códigos (21 cartas/niveles nuevos, 0 reediciones); sustituir efectos o modificador de la ficha revelada, cancelarla hacia la reserva, ignorar modificadores tras ST.3, mantener Bendiciones/Maldiciones en la bolsa, buscar una ficha, moneda y Acuerdos (1 por mazo); 20 de la capacidad quedan bloqueadas con su causa.
+- [136 · Adjuntos y modificadores con duración](136-adjuntos-con-duracion.md): 24 códigos (23 cartas/niveles nuevos, 1 reedición); modificadores de Enemigo hasta el final del turno, fase o ronda o para el siguiente ataque, cartas de jugador vinculadas a Enemigos (desde la mano, la zona de juego o un Lugar) y adjuntos de Lugar con velo, dificultad, palabras clave, veto y Cebo; 38 códigos de `ENEMY_MODS`/`LOC_ATTACH` quedan bloqueados con su causa.
 
 ## Decisiones ya tomadas
 

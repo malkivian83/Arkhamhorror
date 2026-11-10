@@ -1,0 +1,166 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "1c95c4bed2bc9a0746c4ccb08992df7c5613e2c99e8afcb65e77d761f1ea8df3",
+    "es": "4a2c86d4d8d647f7048a08f842f454d874abf83c1154cd01adead48fe3d9bac2"
+  },
+  "cards": [
+    {
+      "code": "03108",
+      "status": "verified",
+      "module": "card-03108",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "02228",
+      "status": "verified",
+      "module": "card-02228",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "04195",
+      "status": "verified",
+      "module": "card-04195",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "05157",
+      "status": "verified",
+      "module": "card-05157",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "05321",
+      "status": "verified",
+      "module": "card-05321",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10022",
+      "status": "verified",
+      "module": "card-10022",
+      "test": "rules.test.ts",
+      "uses": { "count": 1, "type": "charge" }
+    },
+    {
+      "code": "09025",
+      "status": "verified",
+      "module": "card-09025",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08082",
+      "status": "verified",
+      "module": "card-08082",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "09027",
+      "status": "verified",
+      "module": "card-09027",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "11026",
+      "status": "verified",
+      "module": "card-11026",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "04265",
+      "status": "verified",
+      "module": "card-04265",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09035",
+      "status": "verified",
+      "module": "card-09035",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "01038",
+      "status": "verified",
+      "module": "card-01038",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "01538",
+      "status": "verified",
+      "module": "card-01538",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03148",
+      "status": "verified",
+      "module": "card-03148",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03199",
+      "status": "verified",
+      "module": "card-03199",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07157",
+      "status": "verified",
+      "module": "card-07157",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03038",
+      "status": "verified",
+      "module": "card-03038",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "02156",
+      "status": "verified",
+      "module": "card-02156",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "05323",
+      "status": "verified",
+      "module": "card-05323",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09048",
+      "status": "verified",
+      "module": "card-09048",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09026",
+      "status": "verified",
+      "module": "card-09026",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04306",
+      "status": "verified",
+      "module": "card-04306",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "05158",
+      "status": "verified",
+      "module": "card-05158",
+      "test": "rules.test.ts"
+    }
+  ]
+}

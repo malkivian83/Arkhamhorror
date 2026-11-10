@@ -171,5 +171,9 @@ export {
   bestByPrey,
   enemyNeighbours,
   recomputeConnections,
+  activeEnemyModifiers,
+  attachmentsAt,
+  enemyBarredFrom,
+  enemyModifierActive,
 } from './state'
 export type * from './types'

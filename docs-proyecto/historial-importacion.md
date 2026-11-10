@@ -242,3 +242,10 @@
 - Verificación: reglas, compra/presentación, conversión y regresión de 564 casos, más controles dirigidos tras correcciones; tipos cards/engine, lint/formato, 4598 imágenes/miniaturas y build web. Reutilizar salvo cambios en reglas, contratos, registros, recursos o configuración cubiertos.
 - Git: pull bloqueado por cambios ajenos conservados en tres JSON; fetch confirma igualdad con origin/main. Preparar solo adiciones propias a JSON.
 - Siguiente: acciones especiales y apoyos restantes; As de bastos necesita acción reservable y pérdida correcta de acciones. Mantener bloqueos 98/99/101/102/104/105/107 y elección de debilidad de Rook. Un solo agente.
+
+## Cierre de los lotes 133–135 · 040b733e, 2538961c
+
+- Lotes 133–134: `reprints-wave-3` (35 reediciones) y `reused-capabilities` (7 cartas nuevas). Detalles en [133](133-reimpresiones-de-cartas-jugables.md) y [134](134-candidatas-sin-motor-nuevo.md).
+- Lote 135: `token-triggers`, 21 códigos, 21 cartas/niveles nuevos. Detalles en [135](135-reacciones-a-fichas-reveladas.md).
+- Acumulado tras 135: 1396 jugables; 721 históricos pendientes, incluidos 346 estándar con impresión.
+- Verificación 135: engine+cards (611 archivos, 6608 casos), card-import+i18n (14, 156), web del lote y registros, tipos, lint/formato y 5742 imágenes/miniaturas.

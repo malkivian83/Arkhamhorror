@@ -48,6 +48,16 @@ son jugables según la capacidad del motor que les falta, para ordenar el trabaj
   Apuntado preciso y Diadema rota) por carencias más concretas, y las 13 que combinan otra capacidad.
 - **Pendientes estándar con impresión:** 346; 1396 jugables.
 
+## Estado tras el lote 136
+
+- **`ENEMY_MODS` y `LOC_ATTACH` (resueltas en parte).** 24 de sus 62 códigos son jugables desde el
+  [lote 136](136-adjuntos-con-duracion.md), con modificadores de Enemigo con duración y adjuntos a
+  Enemigos y Lugares; incluye Ajar 0/4, Ofuda y Sexto sentido 0 del lote 135. Siguen 38: texto en
+  blanco (Borrado mental ×3, Teoría órfica), Atar monstruo, Transmogrificar, Sigilo ×2, Forma
+  etérea ×2, movimiento y conexiones de investigadores (Abrir portal, Atajo, Sobre la pista ×2…),
+  Sexto sentido 4, Barricada 3 y las que combinan otra capacidad; causas en el documento 136.
+- **Pendientes estándar con impresión:** 322; 1420 jugables.
+
 ## Capacidades por número de cartas
 
 «Cartas» = códigos que la necesitan (entre paréntesis, cartas o niveles distintos); «Solo esta» =

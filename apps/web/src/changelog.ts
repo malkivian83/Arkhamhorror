@@ -1,6 +1,12 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'lasting-attachments',
+    date: '2026-11-10',
+    title: 'app.changelog.lastingAttachments.title',
+    items: ['app.changelog.lastingAttachments.cards', 'app.changelog.lastingAttachments.rules'],
+  },
+  {
     id: 'chaos-token-reactions',
     date: '2026-11-10',
     title: 'app.changelog.tokenTriggers.title',
