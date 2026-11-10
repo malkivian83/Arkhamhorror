@@ -1,0 +1,57 @@
+[
+  {
+    "code": "01082",
+    "name": "Aquinnah",
+    "subname": "The Forgotten Daughter",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Ally"],
+    "unique": true,
+    "cost": 5,
+    "xp": 1,
+    "icons": { "willpower": 1 },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 4
+  },
+  {
+    "code": "02308",
+    "name": "Aquinnah",
+    "subname": "The Forgotten Daughter",
+    "type": "asset",
+    "class": "survivor",
+    "traits": ["Ally"],
+    "unique": true,
+    "cost": 4,
+    "xp": 3,
+    "icons": { "willpower": 1, "agility": 1 },
+    "slots": ["ally"],
+    "health": 1,
+    "sanity": 4
+  },
+  {
+    "code": "03269",
+    "name": "St. Hubert's Key",
+    "subname": "Cleansing Fire",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Charm"],
+    "unique": true,
+    "cost": 4,
+    "xp": 0,
+    "icons": { "willpower": 1 },
+    "slots": ["accessory"]
+  },
+  {
+    "code": "03305",
+    "name": "Armor of Ardennes",
+    "type": "asset",
+    "class": "guardian",
+    "traits": ["Item", "Armor", "Relic"],
+    "cost": 4,
+    "xp": 5,
+    "icons": { "willpower": 2, "combat": 2 },
+    "slots": ["body"],
+    "health": 4
+  }
+]

@@ -187,7 +187,12 @@ on('night.drawSpreading', (s, d) => {
     encounterDiscard: s.encounterDiscard.filter((_, n) => at >= 0 || n !== discardAt),
   }
   return card
-    ? push(next, { type: 'ResolveEncounterCard', investigator: String(d.investigator), card })
+    ? push(next, {
+        type: 'ResolveEncounterCard',
+        investigator: String(d.investigator),
+        card,
+        fromEncounterDeck: at >= 0,
+      })
     : next
 })
 for (const code of [N.ghoul, N.contagion])

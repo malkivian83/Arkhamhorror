@@ -1303,7 +1303,16 @@ export function findCultist(state: GameState, investigator: InvestigatorId): Gam
         ? state.encounterDiscard
         : state.encounterDiscard.filter((_, n) => n !== inDiscard),
     queue: [
-      ...(card ? [{ type: 'ResolveEncounterCard', investigator, card } as Message] : []),
+      ...(card
+        ? [
+            {
+              type: 'ResolveEncounterCard',
+              investigator,
+              card,
+              fromEncounterDeck: inDeck >= 0,
+            } as Message,
+          ]
+        : []),
       ...state.queue,
     ],
   }
@@ -1545,7 +1554,7 @@ export function drawRevealed(
     rng,
     queue: [
       ...(omen ? [damage(investigator, 0, 1)] : []),
-      { type: 'ResolveEncounterCard', investigator, card } as Message,
+      { type: 'ResolveEncounterCard', investigator, card, fromEncounterDeck: true } as Message,
       ...state.queue,
     ],
   }

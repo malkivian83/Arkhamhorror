@@ -1,0 +1,39 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "c47f06ff353ec00c537d59ff5ab94f7eabd7b1550f0de282a2d4864eb76b2210",
+    "es": "76b1656c44ab2274d875c08938736e4a641f437d4a96225edc2262f338a13ce3"
+  },
+  "cards": [
+    {
+      "code": "01082",
+      "status": "verified",
+      "module": "card-01082",
+      "test": "rules.test.ts",
+      "subname": "The Forgotten Daughter"
+    },
+    {
+      "code": "02308",
+      "status": "verified",
+      "module": "card-02308",
+      "test": "rules.test.ts",
+      "subname": "The Forgotten Daughter"
+    },
+    {
+      "code": "03269",
+      "status": "verified",
+      "module": "card-03269",
+      "test": "rules.test.ts",
+      "subname": "Cleansing Fire"
+    },
+    {
+      "code": "03305",
+      "status": "verified",
+      "module": "card-03305",
+      "test": "rules.test.ts"
+    }
+  ]
+}

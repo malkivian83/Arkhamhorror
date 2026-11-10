@@ -1,0 +1,48 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "27de82534dfda2b8609ef1721a0d47dacf4408158326db11fe8cb41e4d53fe47",
+    "es": "b1714c2d55528f762d27d41aceb98fcede249823bde1c8167768d5a1bcaf3bc3"
+  },
+  "cards": [
+    {
+      "code": "02302",
+      "status": "verified",
+      "module": "card-02302",
+      "test": "rules.test.ts",
+      "subname": "Working on Something Big"
+    },
+    {
+      "code": "02307",
+      "status": "verified",
+      "module": "card-02307",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "03022",
+      "status": "verified",
+      "module": "card-03022",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "04028",
+      "status": "verified",
+      "module": "card-04028",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "54009",
+      "status": "verified",
+      "module": "card-54009",
+      "test": "rules.test.ts",
+      "subname": "Every Trial a Lesson",
+      "adapter": "reviewed-tarot-v1"
+    }
+  ]
+}

@@ -924,7 +924,13 @@ function specific(state: GameState, key: string, data: Data): GameState {
       return push(
         { ...state, encounterDeck: state.encounterDeck.filter((_, n) => n !== index) },
         { type: 'ScenarioSpecific', key: 'shuffleEncounter' },
-        { type: 'ResolveEncounterCard', investigator, card, exhaustAfterDraw: true },
+        {
+          type: 'ResolveEncounterCard',
+          investigator,
+          card,
+          exhaustAfterDraw: true,
+          fromEncounterDeck: true,
+        },
         { type: 'GainResources', investigator, amount: 3 },
       )
     }
