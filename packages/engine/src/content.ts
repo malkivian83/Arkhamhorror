@@ -900,9 +900,11 @@ export interface PlayerCardBehavior {
   playWhenWouldReveal?: boolean
   /**
    * "When you would reveal a chaos token from the chaos bag", its controller may discard
-   * it to resolve the token sealed on it instead (The Codex of Ages).
+   * it to resolve the token sealed on it instead (The Codex of Ages). With `exhaust`, it is
+   * exhausted instead of discarded and `then` resolves afterwards (Favor of the Sun/Moon).
    */
-  resolveSealedInstead?: boolean
+  resolveSealedInstead?:
+    boolean | { exhaust: true; then?: (state: GameState, self: Asset) => Message[] }
   /**
    * Forced: when damage is placed on `investigator`, this much additional damage is placed
    * with it, before checking defeat (Baron Samedi: investigators at his location).

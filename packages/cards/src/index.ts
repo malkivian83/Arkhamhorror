@@ -305,6 +305,7 @@ import { EVENT_ECONOMY_RENDERED_CODES } from './event-economy'
 import { COMBAT_SUPPORT_RENDERED_CODES } from './combat-support'
 import { TOKEN_REVEALS_RENDERED_CODES } from './token-reveals'
 import { BLESS_CURSE_RENDERED_CODES } from './bless-curse'
+import { SEALED_TOKENS_RENDERED_CODES } from './sealed-tokens'
 import { REX_RENDERED_CODES } from './rex-murphy'
 import { GROUPED_RENDERED_CODES } from './grouped-import'
 import { IMMEDIATE_EVENT_RENDERED_CODES } from './immediate-action-events'
@@ -335,6 +336,7 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...COMBAT_SUPPORT_RENDERED_CODES,
   ...TOKEN_REVEALS_RENDERED_CODES,
   ...BLESS_CURSE_RENDERED_CODES,
+  ...SEALED_TOKENS_RENDERED_CODES,
   ...TOKEN_SKILL_RENDERED_CODES,
   ...SERVICE_RENDERED_CODES,
   ...TEST_RECOVERY_RENDERED_CODES,

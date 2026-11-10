@@ -119,6 +119,7 @@ import { sealHolderPresent } from './seals'
 import type {
   Action,
   Asset,
+  SealHolder,
   CampaignLog,
   CardCode,
   ChaosToken,
@@ -5488,8 +5489,20 @@ export function handle(state: GameState, message: Message): GameState {
         ? { ...message.outside, fromBag: true }
         : { type: 'RevealChaosToken', fromBag: true }
       if (!asset || !entry || (!message.outside && !state.skillTest)) return push(state, reveal)
+      const instead = assetBehavior(state, asset)?.resolveSealedInstead
+      const unsealedState = { ...state, sealed: (state.sealed ?? []).filter((e) => e !== entry) }
+      // Favor of the Sun/Moon: exhaust instead of discarding; "then" resolves afterwards.
+      if (typeof instead === 'object')
+        return push(
+          unsealedState,
+          { type: 'ExhaustAsset', asset: asset.id },
+          message.outside
+            ? { ...message.outside, token: entry.token }
+            : { type: 'RevealChaosToken', token: entry.token },
+          ...(instead.then?.(unsealedState, asset) ?? []),
+        )
       return push(
-        { ...state, sealed: (state.sealed ?? []).filter((e) => e !== entry) },
+        unsealedState,
         { type: 'DiscardAsset', asset: asset.id },
         message.outside
           ? { ...message.outside, token: entry.token }
@@ -9845,6 +9858,38 @@ export function handle(state: GameState, message: Message): GameState {
       })
     }
 
+    case 'ReleaseSealedTokens': {
+      // RR Seal: released tokens return to the chaos bag; tokens returned "to the token pool"
+      // leave play (bless/curse only).
+      const { holder } = message
+      const same = (h?: SealHolder) =>
+        !!h &&
+        h.type === holder.type &&
+        (h.type === 'committed'
+          ? holder.type === 'committed' && h.code === holder.code && h.by === holder.by
+          : h.id === (holder as { id: string }).id)
+      let left = message.count ?? Infinity
+      const released: ChaosToken[] = []
+      const sealed = (state.sealed ?? []).filter((e) => {
+        if (
+          left <= 0 ||
+          !same(e.holder) ||
+          (message.token !== undefined && e.token !== message.token)
+        )
+          return true
+        left--
+        released.push(e.token)
+        return false
+      })
+      if (!released.length) return state
+      const toBag = message.toPool ? released.filter((t) => !isPoolToken(t)) : released
+      return log(
+        { ...state, sealed, chaosBag: [...state.chaosBag, ...toBag] },
+        'log.sealedReleased',
+        { n: released.length },
+      )
+    }
+
     case 'AddTreacheryTokens': {
       const treachery = state.treacheries[message.treachery]
       if (!treachery) return state
@@ -10880,7 +10925,7 @@ export function withinFrostLimit(state: GameState, tokens: ChaosToken[]): ChaosT
 function sealedInstead(
   state: GameState,
   investigator: InvestigatorId,
-): { asset: Asset; token: ChaosToken }[] {
+): { asset: Asset; token: ChaosToken; exhaust?: boolean }[] {
   return Object.values(state.assets).flatMap((asset) => {
     const entry = (state.sealed ?? []).find(
       (e) => e.holder?.type === 'asset' && e.holder.id === asset.id,
@@ -10888,16 +10933,25 @@ function sealedInstead(
     return entry &&
       asset.owner === investigator &&
       assetBehavior(state, asset)?.resolveSealedInstead &&
+      !(typeof assetBehavior(state, asset)?.resolveSealedInstead === 'object' && asset.exhausted) &&
       !assetsBlocked(state, asset.owner) &&
       cardAllowed(state, asset.owner, asset.code)
-      ? [{ asset, token: entry.token }]
+      ? [
+          {
+            asset,
+            token: entry.token,
+            ...(typeof assetBehavior(state, asset)?.resolveSealedInstead === 'object'
+              ? { exhaust: true }
+              : {}),
+          },
+        ]
       : []
   })
 }
 
 function askSealedInstead(
   investigator: InvestigatorId,
-  options: { asset: Asset; token: ChaosToken }[],
+  options: { asset: Asset; token: ChaosToken; exhaust?: boolean }[],
   resolve: (asset: Asset['id']) => Message,
   reveal: Message,
 ): Message {
@@ -10909,8 +10963,8 @@ function askSealedInstead(
       alwaysAsk: true,
       prompt: 'prompt.reaction',
       choices: [
-        ...options.map(({ asset, token }): Choice => ({
-          label: 'ability.resolveSealed',
+        ...options.map(({ asset, token, exhaust }): Choice => ({
+          label: exhaust ? 'ability.resolveSealedExhaust' : 'ability.resolveSealed',
           params: { card: playerCardDef(asset.code)?.name ?? asset.code, token: String(token) },
           target: { type: 'asset', id: asset.id },
           then: [resolve(asset.id)],
