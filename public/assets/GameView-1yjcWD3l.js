@@ -1,0 +1,1 @@
+export{t as default}from"./GameView-BTNb4nXl.js";

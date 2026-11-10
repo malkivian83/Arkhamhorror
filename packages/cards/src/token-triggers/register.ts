@@ -1,0 +1,1 @@
+export { registerTokenTrigger } from './cards'

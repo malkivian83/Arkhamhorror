@@ -145,6 +145,7 @@ export type DeckProblem =
   | { key: 'deck.problem.offClassLimit'; params: { n: number } }
   | { key: 'deck.problem.classMinimum'; params: { count: number; min: number } }
   | { key: 'deck.problem.tooManyCopies'; params: { card: string; n: number } }
+  | { key: 'deck.problem.covenantLimit'; params: { n: number } }
   | { key: 'deck.problem.missingSignature'; params: { card: string } }
   | { key: 'deck.problem.otherSignature'; params: { card: string } }
   | { key: 'deck.problem.levelAtStart'; params: { card: string } }
@@ -269,6 +270,12 @@ export function validateDeck(
   for (const [title, { n, limit }] of perTitle) {
     if (n > limit) problems.push({ key: 'deck.problem.tooManyCopies', params: { card: title, n } })
   }
+
+  // "Limit 1 [[Covenant]] per deck" (Sacred, Blasphemous, False, Paradoxical, Ancient Covenant).
+  const covenants = deck.cards.filter(
+    (code) => isStandard(code) && byCode(code)?.traits.includes('Covenant'),
+  ).length
+  if (covenants > 1) problems.push({ key: 'deck.problem.covenantLimit', params: { n: covenants } })
 
   // Lola Hayes: al menos `min` cartas de cada una de `count` clases distintas.
   const minimum = investigator.classMinimum
