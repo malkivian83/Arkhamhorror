@@ -15,6 +15,8 @@ import type {
   Enemy,
   EnemyId,
   EnemyKeyword,
+  EnemyModifier,
+  LocationAttachment,
   GameState,
   Investigator,
   InvestigatorId,
@@ -148,12 +150,21 @@ export function shroudOf(state: GameState, id: LocationId): number {
     )
     .reduce((sum, t) => sum + (activeTreacheryBehavior(state, t)?.shroudModifier ?? 0), 0)
   const scenario = scenarioBehavior(state.scenarioId)?.shroudModifier?.(state, location) ?? 0
+  const fromAttachments = attachmentsAt(state, id).reduce(
+    (sum, a) => sum + (playerCardBehavior(a.code)?.locationAttachmentShroud?.(state, a) ?? 0),
+    0,
+  )
   const temporary = (location.turnShroudModifiers ?? [])
     .filter((m) => m.turn === turnStartedAt(state) && turnActionTiming(state, m.owner) !== null)
     .reduce((sum, m) => sum + m.amount, 0)
   return Math.max(
     0,
-    location.shroud + (location.shroudModifier ?? 0) + attached + scenario + temporary,
+    location.shroud +
+      (location.shroudModifier ?? 0) +
+      attached +
+      scenario +
+      temporary +
+      fromAttachments,
   )
 }
 
@@ -195,14 +206,46 @@ export function placedLocation(state: GameState, placed: PlacedAsset): LocationI
   return state.enemies[placed.placement.enemy]?.location ?? null
 }
 
+/** RR Lasting effects: whether an enemy modifier is still in effect (lot 136). */
+export function enemyModifierActive(state: GameState, m: EnemyModifier): boolean {
+  if (m.round !== state.round) return false
+  if (m.until === 'round') return true
+  if (m.until === 'turn')
+    return m.turn === turnStartedAt(state) && turnActionTiming(state, m.investigator) !== null
+  return m.phase === state.phase
+}
+
+/** The enemy's temporary modifiers still in effect. */
+export function activeEnemyModifiers(state: GameState, enemy: EnemyId): EnemyModifier[] {
+  return (state.enemies[enemy]?.modifiers ?? []).filter((m) => enemyModifierActive(state, m))
+}
+
+/** Player events attached to a location (Miguel de la Cruz's Traps, Barricade…). */
+export function attachmentsAt(state: GameState, location: LocationId): LocationAttachment[] {
+  return Object.values(state.locationAttachments ?? {}).filter((a) => a.location === location)
+}
+
 /** Modificadores de las traiciones vinculadas a un enemigo (Llevado a la locura). */
 function attachedModifiers(state: GameState, enemy: EnemyId) {
-  return Object.values(state.treacheries)
-    .filter((t) => t.placement.type === 'enemy' && t.placement.enemy === enemy)
-    .flatMap((t) => {
-      const modifiers = activeTreacheryBehavior(state, t)?.attachedEnemy
-      return modifiers ? [modifiers] : []
-    })
+  const elite = (state.enemies[enemy]?.traits ?? []).includes('Elite')
+  return [
+    ...Object.values(state.treacheries)
+      .filter((t) => t.placement.type === 'enemy' && t.placement.enemy === enemy)
+      .flatMap((t) => {
+        const behavior = activeTreacheryBehavior(state, t)
+        const modifiers = behavior?.attachedEnemy
+        return modifiers && !(elite && behavior?.attachedNonEliteOnly) ? [modifiers] : []
+      }),
+    ...activeEnemyModifiers(state, enemy),
+  ]
+}
+
+/** Keywords gained from attachments on the enemy or on its location (Hiding Spot). */
+function gainedKeywords(state: GameState, enemy: Enemy): EnemyKeyword[] {
+  if ((enemy.traits ?? []).includes('Elite')) return []
+  return attachmentsAt(state, enemy.location).flatMap(
+    (a) => playerCardBehavior(a.code)?.locationAttachmentEnemyKeywords ?? [],
+  )
 }
 
 /** Palabras clave que tiene ahora el enemigo (sin las que le quitan sus vinculadas). */
@@ -221,23 +264,48 @@ export function enemyHasKeyword(state: GameState, enemy: Enemy, keyword: EnemyKe
     (k) => k.keyword === keyword && k.round === state.round,
   )
   return (
-    (enemy.keywords.includes(keyword) || !!added || gained) &&
+    (enemy.keywords.includes(keyword) ||
+      !!added ||
+      gained ||
+      gainedKeywords(state, enemy).includes(keyword)) &&
     !attachedModifiers(state, enemy.id).some((m) => m.loses?.includes(keyword))
   )
 }
 
 /** Combate o evasión del enemigo con sus vinculadas (sin los modificadores de escenario). */
 export function attachedStat(state: GameState, enemy: EnemyId, stat: 'fight' | 'evade'): number {
-  return attachedModifiers(state, enemy).reduce((n, m) => n + (m[stat] ?? 0), 0)
+  const base = state.enemies[enemy]?.[stat] ?? 0
+  const temporary = activeEnemyModifiers(state, enemy)
+  // Expose Weakness 3: "treat that enemy's fight value as if it were 0".
+  const setTo = stat === 'fight' ? temporary.find((m) => m.fightSetTo !== undefined) : undefined
+  if (setTo) return setTo.fightSetTo! - base
+  return floored(
+    base,
+    attachedModifiers(state, enemy).reduce((n, m) => n + (m[stat] ?? 0), 0),
+    temporary,
+  )
+}
+
+/** Wither: "to a minimum of 1"; a reduction cannot lower a value already below it. */
+function floored(base: number, delta: number, temporary: EnemyModifier[]): number {
+  const minimum = temporary.find((m) => m.minimum !== undefined)?.minimum
+  if (minimum === undefined || delta >= 0) return delta
+  return Math.max(delta, Math.min(0, minimum - base))
 }
 
 /** Salud máxima del enemigo con sus vinculadas. */
 export function enemyMaxHealth(state: GameState, enemy: Enemy): number {
-  return (
+  const base =
     enemy.maxHealth +
     (enemyBehavior(enemy.code)?.healthModifier?.(state, enemy) ?? 0) +
-    (scenarioBehavior(state.scenarioId)?.enemyHealthModifier?.(state, enemy) ?? 0) +
-    attachedModifiers(state, enemy.id).reduce((n, m) => n + (m.health ?? 0), 0)
+    (scenarioBehavior(state.scenarioId)?.enemyHealthModifier?.(state, enemy) ?? 0)
+  return (
+    base +
+    floored(
+      base,
+      attachedModifiers(state, enemy.id).reduce((n, m) => n + (m.health ?? 0), 0),
+      activeEnemyModifiers(state, enemy.id),
+    )
   )
 }
 
@@ -443,7 +511,18 @@ export function enemyNeighbours(
   mover?: Enemy,
 ): LocationId[] {
   const extra = scenarioBehavior(state.scenarioId)?.enemyConnections?.(state, location, mover) ?? []
-  return [...new Set([...(state.locations[location]?.connections ?? []), ...extra])]
+  const all = [...new Set([...(state.locations[location]?.connections ?? []), ...extra])]
+  return mover ? all.filter((to) => !enemyBarredFrom(state, mover, to)) : all
+}
+
+/** Barricade: non-[[Elite]] enemies cannot move into the attached location. */
+export function enemyBarredFrom(state: GameState, enemy: Enemy, location: LocationId): boolean {
+  return (
+    !(enemy.traits ?? []).includes('Elite') &&
+    attachmentsAt(state, location).some(
+      (a) => playerCardBehavior(a.code)?.locationAttachmentBarsEnemies,
+    )
+  )
 }
 
 export function distancesFrom(

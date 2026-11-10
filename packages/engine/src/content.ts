@@ -325,6 +325,14 @@ export interface TreacheryBehavior {
   attachedEnemy?: { fight?: number; evade?: number; health?: number; loses?: EnemyKeyword[] }
   /** Attached to an enemy: that enemy cannot ready (Restrained). */
   attachedEnemyCannotReady?: boolean
+  /** Attached to an enemy: when it would ready, this card is discarded instead (Snare Trap). */
+  attachedDiscardInsteadOfReady?: boolean
+  /** Attached to an enemy: doom cannot be placed on it (Handcuffs). */
+  attachedEnemyNoDoom?: boolean
+  /** Attached to an enemy: skill value bonus while fighting it (Hunter's Mark). */
+  attachedFightSkillBonus?: number
+  /** Only while the attached enemy is non-[[Elite]] (Handcuffs). */
+  attachedNonEliteOnly?: boolean
 }
 
 export interface EnemyBehavior {
@@ -794,6 +802,16 @@ export interface PlayerCardBehavior {
     trigger: Trigger,
     self: LocationAttachment,
   ) => ReactionOption[]
+  /** Event attached to a location: modifier to its shroud (Breach the Door). */
+  locationAttachmentShroud?: (state: GameState, self: LocationAttachment) => number
+  /** Event attached to a location: modifier to the difficulty of skill tests there (Map the Area). */
+  locationAttachmentTestDifficulty?: number
+  /** Event attached to a location: keywords each non-[[Elite]] enemy there gains (Hiding Spot). */
+  locationAttachmentEnemyKeywords?: EnemyKeyword[]
+  /** Event attached to a location: non-[[Elite]] enemies cannot move into it (Barricade). */
+  locationAttachmentBarsEnemies?: boolean
+  /** Event attached to a location: enemies moving in the enemy phase go toward it (Lure). */
+  locationAttachmentLure?: boolean
   /** Event attached to a location: its forced abilities. */
   locationAttachmentForced?: (
     state: GameState,

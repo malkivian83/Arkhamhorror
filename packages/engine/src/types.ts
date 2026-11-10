@@ -287,6 +287,31 @@ export interface Enemy extends EnemyCard {
   /** Ronda en cuya fase de enemigos no ataca (El organista, Byakhee veloz). */
   noAttackRound?: number
   noAttackAnyPhaseRound?: number
+  /** Temporary modifiers from player cards (lot 136), each with its duration. */
+  modifiers?: EnemyModifier[]
+}
+
+/**
+ * RR Lasting effects on an enemy (Anatomical Diagrams, Expose Weakness, Wither, Ofuda). The
+ * duration is stamped when it is created: until the end of the round, the phase, the active
+ * investigator's turn, or the next attack performed against the enemy this phase.
+ */
+export interface EnemyModifier {
+  source: CardCode
+  until: 'round' | 'phase' | 'turn' | 'nextAttack'
+  round: number
+  phase?: Phase
+  /** Turn number (turnStartedAt) and investigator, for `turn`. */
+  turn?: number
+  investigator?: InvestigatorId
+  fight?: number
+  evade?: number
+  health?: number
+  /** Treat the fight value as this (Expose Weakness 3). */
+  fightSetTo?: number
+  /** These reductions cannot lower the value below this (Wither: 1). */
+  minimum?: number
+  loses?: EnemyKeyword[]
 }
 
 /** `hidden`: Oculto (El camino a Carcosa), se añade en secreto a la mano. */
@@ -580,6 +605,8 @@ export interface LocationAttachment {
   owner: InvestigatorId
   location: LocationId
   exhausted: boolean
+  /** Resources on it, as leads (Breach the Door). */
+  resources?: number
 }
 
 /** Carta de Historia en juego junto al acto (facción aliada, rival…). */
@@ -948,6 +975,10 @@ type MessageBody =
       onFail?: Message[]
       /** Investigar con éxito no descubre pistas (Pruebas incriminatorias). */
       replaceClue?: boolean
+      /** Investigate this location instead (Sixth Sense). */
+      investigateLocation?: LocationId
+      /** Change the test's base difficulty by this much (Sixth Sense, Wither). */
+      difficultyDelta?: number
     }
   | { type: 'SpendAdditionalAction'; investigator: InvestigatorId; then: Message[] }
   | { type: 'EndCurrentTurn'; investigator: InvestigatorId }
@@ -1212,6 +1243,16 @@ type MessageBody =
       investigator: InvestigatorId
       code: CardCode
       enemy: EnemyId
+      /** Attach this asset from its controller's play area instead (Handcuffs). */
+      fromAsset?: AssetId
+      /** Move this location attachment onto the enemy instead (Snare Trap). */
+      fromLocationAttachment?: string
+    }
+  /** A lasting modifier on an enemy (lot 136); the handler stamps round, phase and turn. */
+  | {
+      type: 'AddEnemyModifier'
+      enemy: EnemyId
+      modifier: Omit<EnemyModifier, 'round' | 'phase' | 'turn'>
     }
   // ----- Cartas de Historia en juego y apoyos colocados -----
   | { type: 'PutStoryIntoPlay'; code: CardCode; name: string }
@@ -1951,6 +1992,8 @@ type MessageBody =
       location: LocationId
       limitTrait?: string
       limitTitle?: boolean
+      /** Resources placed on it as it attaches, as leads (Breach the Door). */
+      resources?: number
     }
   | { type: 'ExhaustLocationAttachment'; attachment: string }
   /** The attached event goes to its owner's discard pile. */

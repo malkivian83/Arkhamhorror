@@ -77,6 +77,9 @@ import {
   bestByPrey,
   distancesFrom,
   enemyNeighbours,
+  enemyBarredFrom,
+  enemyModifierActive,
+  attachmentsAt,
   enemiesAt,
   engagedEnemies,
   findEnemy,
@@ -145,6 +148,7 @@ import type {
   Requirement,
   SkillTest,
   SkillTestKind,
+  EnemyModifier,
   SkillType,
   TokenEffect,
   Treachery,
@@ -638,7 +642,14 @@ export function handle(state: GameState, message: Message): GameState {
           ...(message.exhaustAfterDraw ? [] : after),
         )
       }
-      const engageWith = card.keywords.includes('aloof') ? null : investigator.id
+      // Hiding Spot: a non-Elite enemy spawning at its location gains aloof.
+      const hidden =
+        investigator.location !== null &&
+        !(card.traits ?? []).includes('Elite') &&
+        attachmentsAt(state, investigator.location).some((a) =>
+          playerCardBehavior(a.code)?.locationAttachmentEnemyKeywords?.includes('aloof'),
+        )
+      const engageWith = card.keywords.includes('aloof') || hidden ? null : investigator.id
       return push(
         next,
         {
@@ -1733,15 +1744,31 @@ export function handle(state: GameState, message: Message): GameState {
     case 'AttachPlayerCardToEnemy': {
       const owner = getInvestigator(state, message.investigator)
       const at = owner.discard.lastIndexOf(message.code)
-      if (at < 0 || !state.enemies[message.enemy]) return state
-      const def = playerCardDef(message.code)
-      const [id, next] = newId(
-        updateInvestigator(state, owner.id, (i) => ({
+      const asset = message.fromAsset ? state.assets[message.fromAsset] : undefined
+      const attachment = message.fromLocationAttachment
+        ? state.locationAttachments?.[message.fromLocationAttachment]
+        : undefined
+      if (!state.enemies[message.enemy]) return state
+      let source: GameState
+      if (message.fromAsset) {
+        // Handcuffs: the asset leaves its controller's play area and attaches to the enemy.
+        if (!asset || asset.code !== message.code) return state
+        const { [asset.id]: _attached, ...assets } = state.assets
+        source = { ...state, assets }
+      } else if (message.fromLocationAttachment) {
+        // Snare Trap: the attachment moves from its location onto the enemy.
+        if (!attachment || attachment.code !== message.code) return state
+        const { [attachment.id]: _moved, ...rest } = state.locationAttachments!
+        source = { ...state, locationAttachments: rest }
+      } else {
+        if (at < 0) return state
+        source = updateInvestigator(state, owner.id, (i) => ({
           ...i,
           discard: i.discard.filter((_, n) => n !== at),
-        })),
-        'treachery-',
-      )
+        }))
+      }
+      const def = playerCardDef(message.code)
+      const [id, next] = newId(source, 'treachery-')
       return {
         ...next,
         treacheries: {
@@ -1758,6 +1785,28 @@ export function handle(state: GameState, message: Message): GameState {
           },
         },
       }
+    }
+
+    case 'AddEnemyModifier': {
+      const enemy = findEnemy(state, message.enemy)
+      if (!enemy) return state
+      const modifier: EnemyModifier = {
+        ...message.modifier,
+        round: state.round,
+        phase: state.phase,
+        ...(message.modifier.until === 'turn'
+          ? {
+              turn: turnStartedAt(state),
+              ...(activeInvestigatorId(state)
+                ? { investigator: activeInvestigatorId(state)! }
+                : {}),
+            }
+          : {}),
+      }
+      return updateEnemy(state, enemy.id, (e) => ({
+        ...e,
+        modifiers: [...(e.modifiers ?? []).filter((m) => enemyModifierActive(state, m)), modifier],
+      }))
     }
 
     case 'AfterCurrentSkillTest': {
@@ -2444,6 +2493,11 @@ export function handle(state: GameState, message: Message): GameState {
         }))
       for (const enemy of engagedEnemies(next, message.investigator)) {
         if (enemy.keywords.includes('massive')) continue
+        // Barricade (FAQ): an engaged non-Elite enemy disengages and stays behind.
+        if (enemyBarredFrom(next, enemy, message.location)) {
+          next = updateEnemy(next, enemy.id, (e) => ({ ...e, engagedWith: null }))
+          continue
+        }
         next = updateEnemy(next, enemy.id, (e) => ({ ...e, location: message.location }))
       }
       const entering: Message = {
@@ -5078,13 +5132,15 @@ export function handle(state: GameState, message: Message): GameState {
               0,
               message.difficulty +
                 enemyStatBonus(state, message.kind, message.source, message.investigator) +
-                ownerTestDifficulty(state, message.investigator),
+                ownerTestDifficulty(state, message.investigator) +
+                locationTestDifficulty(state, message.investigator),
             ),
             ...(reduction > 0 ? { difficultyReduction: reduction } : {}),
             kind: message.kind,
             // The Red Clock: +X skill value for the investigator's next skill test.
             baseModifier:
               (message.modifier ?? 0) +
+              attachedFightBonus(state, message.kind) +
               (investigator.nextTestBonus ?? 0) +
               (investigator.nextRoundTestBonus?.round === state.round
                 ? investigator.nextRoundTestBonus.amount
@@ -6019,6 +6075,17 @@ export function handle(state: GameState, message: Message): GameState {
               }
             : {}),
           difficultyFactor: (test.difficultyFactor ?? 1) * (message.difficultyFactor ?? 1),
+          ...(message.investigateLocation && test.kind.type === 'investigate'
+            ? { kind: { ...test.kind, location: message.investigateLocation } }
+            : {}),
+          ...(message.difficultyDelta
+            ? {
+                baseDifficulty: Math.max(
+                  0,
+                  (test.baseDifficulty ?? test.difficulty) + message.difficultyDelta,
+                ),
+              }
+            : {}),
           ...(message.ignoredEnemyKeywords
             ? {
                 ignoredEnemyKeywords: [
@@ -6229,6 +6296,13 @@ export function handle(state: GameState, message: Message): GameState {
       }
       // RR Skill Tests ST.8: one attack, even if its results resolved twice.
       // Record after completion so a committed Hardboiled cannot count itself.
+      if (test?.kind.type === 'fight' && next.enemies[test.kind.enemy]?.modifiers) {
+        const enemy = test.kind.enemy
+        next = updateEnemy(next, enemy, (e) => ({
+          ...e,
+          modifiers: (e.modifiers ?? []).filter((m) => m.until !== 'nextAttack'),
+        }))
+      }
       if (test?.kind.type === 'fight' && test.succeeded)
         next = updateInvestigator(next, test.investigator, (i) => ({
           ...i,
@@ -6875,6 +6949,7 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'PlaceDoomOnEnemy':
       if (state.doomBecomesDamage) return push(state, ...doomAsDamage(state, message.amount))
+      if (enemyRefusesDoom(state, message.enemy)) return state
       return push(
         updateEnemy(state, message.enemy, (e) => ({ ...e, doom: (e.doom ?? 0) + message.amount })),
         ...(message.checkAgenda ? [{ type: 'CheckAgenda' } as Message] : []),
@@ -7811,6 +7886,8 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'ReadyEnemy':
+      if (findEnemy(state, message.enemy) && readyReplacement(state, message.enemy))
+        return discardTreachery(state, readyReplacement(state, message.enemy)!)
       if (!findEnemy(state, message.enemy) || enemyCannotReady(state, message.enemy)) return state
       return updateEnemy(state, message.enemy, (e) => ({ ...e, exhausted: false }))
 
@@ -7853,7 +7930,9 @@ export function handle(state: GameState, message: Message): GameState {
           )
             continue
           if (!patrol && !hunter) continue
-          const steps = patrol ? patrolSteps(state, enemy, patrol) : huntingSteps(state, enemy)
+          const steps =
+            lureSteps(state, enemy) ??
+            (patrol ? patrolSteps(state, enemy, patrol) : huntingSteps(state, enemy))
           const [step] = steps
           if (step === undefined) continue
           if (steps.length > 1 && state.interactive && lead) {
@@ -7951,7 +8030,9 @@ export function handle(state: GameState, message: Message): GameState {
           { type: 'Forced', trigger: { type: 'enemyWouldPatrol', enemy: enemy.id } },
           { ...message, windowResolved: true },
         )
-      const steps = patrol ? patrolSteps(state, enemy, patrol) : huntingSteps(state, enemy)
+      const steps =
+        lureSteps(state, enemy) ??
+        (patrol ? patrolSteps(state, enemy, patrol) : huntingSteps(state, enemy))
       const [step] = steps
       if (step === undefined) return state
       const next = updateEnemy(state, enemy.id, (e) => ({ ...e, huntedRound: state.round }))
@@ -8082,6 +8163,29 @@ export function handle(state: GameState, message: Message): GameState {
       )
 
     case 'ReadyAll': {
+      // Snare Trap: "when attached enemy would ready: instead, discard Snare Trap".
+      const replaced = Object.values(state.enemies).flatMap((e) => {
+        const trap = e.exhausted && !e.stayExhausted ? readyReplacement(state, e.id) : null
+        return trap ? [trap] : []
+      })
+      if (replaced.length) {
+        let next = replaced.reduce((s, id) => discardTreachery(s, id), state)
+        const kept = new Set(
+          Object.values(state.enemies)
+            .filter((e) => replaced.includes(readyReplacement(state, e.id) ?? ''))
+            .map((e) => e.id),
+        )
+        next = handle(next, message)
+        return {
+          ...next,
+          enemies: Object.fromEntries(
+            Object.entries(next.enemies).map(([id, e]) => [
+              id,
+              kept.has(id) ? { ...e, exhausted: true } : e,
+            ]),
+          ),
+        }
+      }
       // Slippery: el enemigo marcado no se prepara esta vez.
       const enemies = Object.fromEntries(
         Object.entries(state.enemies).map(([id, e]) => {
@@ -8319,6 +8423,7 @@ export function handle(state: GameState, message: Message): GameState {
               owner: owner.id,
               location: message.location,
               exhausted: false,
+              ...(message.resources ? { resources: message.resources } : {}),
             },
           },
         },
@@ -8600,7 +8705,8 @@ export function handle(state: GameState, message: Message): GameState {
           state,
           getEnemy(state, message.enemy),
         ) ||
-        !state.locations[message.location]
+        !state.locations[message.location] ||
+        enemyBarredFrom(state, getEnemy(state, message.enemy), message.location)
       )
         return state
       return push(
@@ -10898,14 +11004,71 @@ function afterHandDiscard(state: GameState, investigator: string, cards: string[
   return push(state, { type: 'Forced', trigger }, { type: 'Reactions', trigger })
 }
 
-/** An attachment prevents this enemy from readying (Restrained). */
+/** An attachment prevents this enemy from readying (Restrained, Handcuffs). */
 function enemyCannotReady(state: GameState, enemy: string): boolean {
-  return Object.values(state.treacheries).some(
+  return attachedTo(state, enemy).some(
+    (t) => !!activeTreacheryBehavior(state, t)?.attachedEnemyCannotReady,
+  )
+}
+
+/** Effective attachments on the enemy (those limited to non-[[Elite]] enemies excluded). */
+function attachedTo(state: GameState, enemy: string): Treachery[] {
+  const elite = (state.enemies[enemy]?.traits ?? []).includes('Elite')
+  return Object.values(state.treacheries).filter(
     (t) =>
       t.placement.type === 'enemy' &&
       t.placement.enemy === enemy &&
-      !!activeTreacheryBehavior(state, t)?.attachedEnemyCannotReady,
+      !(elite && activeTreacheryBehavior(state, t)?.attachedNonEliteOnly),
   )
+}
+
+/** Snare Trap: the attachment discarded instead of the enemy readying. */
+function readyReplacement(state: GameState, enemy: string): string | null {
+  return (
+    attachedTo(state, enemy).find(
+      (t) => !!activeTreacheryBehavior(state, t)?.attachedDiscardInsteadOfReady,
+    )?.id ?? null
+  )
+}
+
+/** Handcuffs: doom cannot be placed on the attached enemy. */
+function enemyRefusesDoom(state: GameState, enemy: string): boolean {
+  return attachedTo(state, enemy).some(
+    (t) => !!activeTreacheryBehavior(state, t)?.attachedEnemyNoDoom,
+  )
+}
+
+/** Hunter's Mark: skill value bonus while fighting the enemy. */
+function attachedFightBonus(state: GameState, kind: SkillTestKind): number {
+  if (kind.type !== 'fight') return 0
+  return attachedTo(state, kind.enemy).reduce(
+    (n, t) => n + (activeTreacheryBehavior(state, t)?.attachedFightSkillBonus ?? 0),
+    0,
+  )
+}
+
+/** Map the Area: modifier to the difficulty of skill tests at the investigator's location. */
+function locationTestDifficulty(state: GameState, investigator: InvestigatorId): number {
+  const at = state.investigators.find((i) => i.id === investigator)?.location
+  if (!at) return 0
+  return attachmentsAt(state, at).reduce(
+    (n, a) => n + (playerCardBehavior(a.code)?.locationAttachmentTestDifficulty ?? 0),
+    0,
+  )
+}
+
+/** The investigator whose turn it is (the enclosing turn during an immediate action). */
+function activeInvestigatorId(state: GameState): InvestigatorId | null {
+  return state.immediateActions?.[0]?.activeTurn ?? state.activeTurn ?? null
+}
+
+/** Lure: during the enemy phase, each enemy that moves goes toward the attached location. */
+function lureSteps(state: GameState, enemy: Enemy): LocationId[] | null {
+  if (state.phase !== 'enemy') return null
+  const lures = Object.values(state.locationAttachments ?? {})
+    .filter((a) => playerCardBehavior(a.code)?.locationAttachmentLure)
+    .map((a) => a.location)
+  return lures.length ? patrolSteps(state, enemy, lures) : null
 }
 
 function toOwnerDiscard(state: GameState, owner: string, code: string): GameState {

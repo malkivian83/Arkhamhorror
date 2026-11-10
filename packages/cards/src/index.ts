@@ -308,6 +308,7 @@ import { TOKEN_REVEALS_RENDERED_CODES } from './token-reveals'
 import { BLESS_CURSE_RENDERED_CODES } from './bless-curse'
 import { SEALED_TOKENS_RENDERED_CODES } from './sealed-tokens'
 import { TOKEN_TRIGGERS_RENDERED_CODES } from './token-triggers'
+import { LASTING_ATTACHMENTS_RENDERED_CODES } from './lasting-attachments'
 import { REUSED_CAPABILITIES_RENDERED_CODES } from './reused-capabilities'
 import { REX_RENDERED_CODES } from './rex-murphy'
 import { GROUPED_RENDERED_CODES } from './grouped-import'
@@ -341,6 +342,7 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...BLESS_CURSE_RENDERED_CODES,
   ...SEALED_TOKENS_RENDERED_CODES,
   ...TOKEN_TRIGGERS_RENDERED_CODES,
+  ...LASTING_ATTACHMENTS_RENDERED_CODES,
   ...REUSED_CAPABILITIES_RENDERED_CODES,
   ...TOKEN_SKILL_RENDERED_CODES,
   ...SERVICE_RENDERED_CODES,

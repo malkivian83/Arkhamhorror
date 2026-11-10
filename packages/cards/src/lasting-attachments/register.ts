@@ -1,0 +1,1 @@
+export { registerLastingAttachment } from './cards'
