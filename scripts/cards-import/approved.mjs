@@ -147,6 +147,7 @@ export function approvedDefinition(card, approval) {
     '06323': 'guardian',
     11090: 'survivor',
     11096: 'neutral',
+    11070: 'mystic',
   }
   const reviewedMyriad =
     approval.adapter === 'reviewed-myriad-v1' &&

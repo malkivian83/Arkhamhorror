@@ -1,0 +1,137 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "98f8f60c44d22999ec4a69079ef26f7680734d99be8b99d16bc33bbe66cba18e",
+    "es": "9bd42e25491b814ecb02f52a4c72cf8b053479c45e76424822ace7e368db046e"
+  },
+  "cards": [
+    {
+      "code": "07301",
+      "status": "verified",
+      "module": "card-07301",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07030",
+      "status": "verified",
+      "module": "card-07030",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "07193",
+      "status": "verified",
+      "module": "card-07193",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10025",
+      "status": "verified",
+      "module": "card-10025",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07221",
+      "status": "verified",
+      "module": "card-07221",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07026",
+      "status": "verified",
+      "module": "card-07026",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07271",
+      "status": "verified",
+      "module": "card-07271",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "07272",
+      "status": "verified",
+      "module": "card-07272",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "07302",
+      "status": "verified",
+      "module": "card-07302",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04030",
+      "status": "verified",
+      "module": "card-04030",
+      "test": "rules.test.ts",
+      "subname": "Stygian Waymark"
+    },
+    {
+      "code": "53008",
+      "status": "verified",
+      "module": "card-53008",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "charge" },
+      "subname": "Stygian Waymark"
+    },
+    {
+      "code": "04031",
+      "status": "verified",
+      "module": "card-04031",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04235",
+      "status": "verified",
+      "module": "card-04235",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "04311",
+      "status": "verified",
+      "module": "card-04311",
+      "test": "rules.test.ts",
+      "uses": { "count": 7, "type": "charge" },
+      "subname": "Over the Threshold and Beyond"
+    },
+    {
+      "code": "11028",
+      "status": "verified",
+      "module": "card-11028",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11043",
+      "status": "verified",
+      "module": "card-11043",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11070",
+      "status": "verified",
+      "module": "card-11070",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "charge" },
+      "subname": "Symbol of Protection",
+      "adapter": "reviewed-myriad-v1"
+    },
+    {
+      "code": "07018",
+      "status": "verified",
+      "module": "card-07018",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10034",
+      "status": "verified",
+      "module": "card-10034",
+      "test": "rules.test.ts"
+    }
+  ]
+}

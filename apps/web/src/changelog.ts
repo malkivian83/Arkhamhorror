@@ -1,6 +1,12 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'sealed-chaos-tokens',
+    date: '2026-11-10',
+    title: 'app.changelog.sealedTokens.title',
+    items: ['app.changelog.sealedTokens.cards', 'app.changelog.sealedTokens.rules'],
+  },
+  {
     id: 'bless-curse-tokens',
     date: '2026-11-09',
     title: 'app.changelog.blessCurse.title',

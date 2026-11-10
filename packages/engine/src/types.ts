@@ -2047,6 +2047,18 @@ type MessageBody =
       index?: number
       holder?: SealHolder
     }
+  /**
+   * RR Seal: release tokens sealed on `holder` (all, or up to `count`, optionally only those
+   * matching `token`) to the chaos bag; with `toPool`, bless/curse tokens return to the token
+   * pool instead (Shield of Faith, Hallow).
+   */
+  | {
+      type: 'ReleaseSealedTokens'
+      holder: SealHolder
+      token?: ChaosToken
+      count?: number
+      toPool?: boolean
+    }
   | { type: 'AddTreacheryTokens'; treachery: TreacheryId; amount: number; discardAt?: number }
   /** Saca una debilidad del juego y la baraja en el mazo de su dueño (o de `investigator`). */
   | { type: 'ShuffleTreacheryIntoDeck'; treachery: TreacheryId; investigator?: InvestigatorId }
