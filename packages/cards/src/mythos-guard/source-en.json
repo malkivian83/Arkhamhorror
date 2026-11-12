@@ -1,0 +1,33 @@
+[
+  {
+    "pack_code": "lod",
+    "pack_name": "The Lair of Dagon",
+    "type_code": "event",
+    "type_name": "Event",
+    "faction_code": "survivor",
+    "faction_name": "Survivor",
+    "position": 269,
+    "exceptional": false,
+    "myriad": false,
+    "code": "07269",
+    "name": "A Watchful Peace",
+    "real_name": "A Watchful Peace",
+    "cost": 1,
+    "text": "As an additional cost to play A Watchful Peace, search the chaos bag and/or cards in play for a total of 5 [bless] tokens and return them to the token pool.\nFast. Play when the \"draw encounter cards\" step of the mythos phase would begin.\nSkip this step of the mythos phase.",
+    "real_text": "As an additional cost to play A Watchful Peace, search the chaos bag and/or cards in play for a total of 5 [bless] tokens and return them to the token pool.\nFast. Play when the \"draw encounter cards\" step of the mythos phase would begin.\nSkip this step of the mythos phase.",
+    "quantity": 2,
+    "skill_willpower": 2,
+    "xp": 3,
+    "health_per_investigator": false,
+    "deck_limit": 2,
+    "traits": "Spirit. Blessed.",
+    "real_traits": "Spirit. Blessed.",
+    "illustrator": "Romana Kendelic",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "4543ebb4-35da-489f-bf9f-820e1078352c",
+    "url": "https://arkhamdb.com/card/07269",
+    "imagesrc": "/bundles/cards/07269.png"
+  }
+]

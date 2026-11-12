@@ -250,3 +250,8 @@
 - Lote 136: `lasting-attachments`, publicado como `a5bf5f45`. 24 códigos, 23 cartas/niveles nuevos y 1 reedición. Detalles en [136](136-adjuntos-con-duracion.md).
 - Acumulado tras 135: 1396 jugables; 721 históricos pendientes, incluidos 346 estándar con impresión.
 - Verificación 135: engine+cards (611 archivos, 6608 casos), card-import+i18n (14, 156), web del lote y registros, tipos, lint/formato y 5742 imágenes/miniaturas.
+
+## Cierre de los lotes 137–138 · cc6b2172
+
+- Encuentros: 5 códigos nuevos; daño y derrota: 4. Acumulado: 1429 jugables, 688 históricos pendientes, 313 estándar con impresión.
+- Verificación heredada: 6848 casos en 634 archivos y 143 casos finales de reglas/registro/presentación/visibilidad; 5807 imágenes y miniaturas. Detalles en 137 y 138.

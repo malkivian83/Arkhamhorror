@@ -3584,6 +3584,7 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "07269": "Spirit. Blessed.",
       "03305": "Item. Armor. Relic.",
       "03269": "Item. Charm.",
       "02308": "Ally.",
@@ -4400,6 +4401,7 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "07269": "As an additional cost to play A Watchful Peace, search the chaos bag and/or cards in play for a total of 5 [bless] tokens and return them to the token pool.\nFast. Play when the \"draw encounter cards\" step of the mythos phase would begin.\nSkip this step of the mythos phase.",
       "03305": "[reaction] When damage is assigned to Armor of Ardennes, exhaust Armor of Ardennes: Cancel 1 of that damage.",
       "03269": "You get +1 [willpower], +1 [intellect], and -2 sanity.\n[reaction] When you would be defeated by horror, discard St. Hubert's Key: Immediately heal 2 horror.",
       "02308": "[reaction] When an enemy attacks you, exhaust Aquinnah and deal 1 horror to her: Deal that enemy's damage to any enemy at your location, instead. (You still take horror dealt by the attack.)",
@@ -5648,6 +5650,7 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "07269": "A Watchful Peace",
       "03305": "Armor of Ardennes",
       "03269": "St. Hubert's Key",
       "02308": "Aquinnah",

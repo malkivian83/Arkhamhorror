@@ -500,7 +500,7 @@ function registerAsset(code: string): boolean {
   return false
 }
 
-function sealedBless(s: GameState) {
+export function sealedBless(s: GameState) {
   return (s.sealed ?? []).filter(
     (entry) =>
       entry.token === 'bless' &&
@@ -509,8 +509,13 @@ function sealedBless(s: GameState) {
   )
 }
 
-/** Pay Hallow's cost one token at a time, choosing between the bag and each sealed card. */
-function returnBless(s: GameState, by: InvestigatorId, code: string, left: number): Message[] {
+/** Return a fixed number of blessings to the pool, choosing the bag or cards in play. */
+export function returnBless(
+  s: GameState,
+  by: InvestigatorId,
+  code: string,
+  left: number,
+): Message[] {
   if (left <= 0) return []
   const next = continuation(code, by, 'returnBless', { left: left - 1 })
   const choices: Choice[] = inBag(s, 'bless')

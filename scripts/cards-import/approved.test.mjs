@@ -340,6 +340,7 @@ describe('reviewed inventory conversion', () => {
     'token-triggers',
     'reprints-wave-3',
     'reused-capabilities',
+    'mythos-guard',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(

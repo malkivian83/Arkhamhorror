@@ -1,0 +1,33 @@
+[
+  {
+    "pack_code": "lod",
+    "pack_name": "La guarida de Dagón",
+    "type_code": "event",
+    "type_name": "Evento",
+    "faction_code": "survivor",
+    "faction_name": "Superviviente",
+    "position": 269,
+    "exceptional": false,
+    "myriad": false,
+    "code": "07269",
+    "name": "Paz vigilante",
+    "real_name": "A Watchful Peace",
+    "cost": 1,
+    "text": "Como coste adicional para jugar Paz vigilante, busca en la bolsa de caos y/o en cartas en juego un total de 5 fichas [bless] y devuélvelas a la reserva de fichas.\nRápido. Juega esta carta cuando fuese a comenzar el paso de «robar cartas de Encuentro» de la fase de Mitos.\nSáltate este paso de la fase de Mitos.",
+    "real_text": "As an additional cost to play A Watchful Peace, search the chaos bag and/or cards in play for a total of 5 [bless] tokens and return them to the token pool.\nFast. Play when the \"draw encounter cards\" step of the mythos phase would begin.\nSkip this step of the mythos phase.",
+    "quantity": 2,
+    "skill_willpower": 2,
+    "xp": 3,
+    "health_per_investigator": false,
+    "deck_limit": 2,
+    "traits": "Espíritu. Bendecido.",
+    "real_traits": "Spirit. Blessed.",
+    "illustrator": "Romana Kendelic",
+    "is_unique": false,
+    "permanent": false,
+    "double_sided": false,
+    "octgn_id": "4543ebb4-35da-489f-bf9f-820e1078352c",
+    "url": "https://es.arkhamdb.com/card/07269",
+    "imagesrc": "/bundles/cards/07269.png"
+  }
+]

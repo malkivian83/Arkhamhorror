@@ -3584,6 +3584,7 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "07269": "Espíritu. Bendecido.",
       "03305": "Objeto. Protección. Reliquia.",
       "03269": "Objeto. Amuleto.",
       "02308": "Aliado.",
@@ -4400,6 +4401,7 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "07269": "Como coste adicional para jugar Paz vigilante, busca en la bolsa de caos y/o en cartas en juego un total de 5 fichas [bless] y devuélvelas a la reserva de fichas.\nRápido. Juega esta carta cuando fuese a comenzar el paso de «robar cartas de Encuentro» de la fase de Mitos.\nSáltate este paso de la fase de Mitos.",
       "03305": "[reaction] Cuando se asigne daño a la Armadura de Ardenas, agota la Armadura de Ardenas: Cancela 1 punto de ese daño.",
       "03269": "Recibe +1 [willpower], +1 [intellect] y -2 de cordura.\n[reaction] Cuando fueses a ser derrotado por horror, descarta la Llave de san Huberto: Cúrate 2 puntos de horror inmediatamente.",
       "02308": "[reaction] Cuando un Enemigo te ataque, inflígele 1 punto de horror a Aquinnah y agótala: En lugar de recibir tú el daño, inflige el daño de ese Enemigo a cualquier Enemigo que esté en tu Lugar. Sigues recibiendo el horror infligido por el ataque.",
@@ -5648,6 +5650,7 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "07269": "Paz vigilante",
       "03305": "Armadura de Ardenas",
       "03269": "Llave de san Huberto",
       "02308": "Aquinnah",
