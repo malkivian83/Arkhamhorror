@@ -55,6 +55,8 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  /** RR Keys (City of the Elder Things): chaos tokens kept as keys on this investigator. */
+  keys?: ChaosToken[]
   nextTurnBenefits?: { actions: number; code: CardCode; skillBonus?: number; round?: number }[]
   untilPhaseSkills?: {
     skill: SkillType
@@ -172,6 +174,8 @@ export interface Investigator {
 }
 
 export interface Location {
+  /** Keys on this location: chaos tokens that never enter the chaos bag. */
+  keys?: ChaosToken[]
   /** Recursos colocados en el Lugar (Góndola). */
   resources?: number
   /** Physical single-sided encounter card currently represented by this location. */
@@ -264,6 +268,8 @@ export interface EnemyCard {
 }
 
 export interface Enemy extends EnemyCard {
+  /** Keys placed on this enemy (Reawakened Elder Thing). */
+  keys?: ChaosToken[]
   /** Investigadores a los que no atacará esta ronda. */
   spares?: { investigator: InvestigatorId; round: number }[]
   /** Keywords gained until the end of the tagged round (Pay Your Dues: aloof). */
@@ -2038,6 +2044,10 @@ type MessageBody =
     }
   | { type: 'RecordExpeditionCamp'; location: CardCode; shelter: number }
   | { type: 'RecoverExpeditionSupply'; supply: ExpeditionSupply }
+  /** Move one key to `on`, from `from` (or from the token pool when omitted). */
+  | { type: 'PlaceKey'; key: ChaosToken; on: KeyHolder; from?: KeyHolder }
+  /** Spend keys an investigator controls: they leave play and count for experience. */
+  | { type: 'SpendKeys'; investigator: InvestigatorId; keys: ChaosToken[] }
   | { type: 'InitializeTekeliliDeck' }
   | {
       type: 'ShuffleTekeliliIntoDeck'
@@ -2535,6 +2545,8 @@ export type Trigger =
   | { type: 'turnBegins'; investigator: InvestigatorId }
   | { type: 'turnEnds'; investigator: InvestigatorId }
   | { type: 'roundEnds' }
+  /** An investigator took control of a key at their location. */
+  | { type: 'afterTakeKey'; investigator: InvestigatorId; key: ChaosToken }
   | { type: 'enemyPhaseEnds' }
   | { type: 'afterSpendResources'; investigator: InvestigatorId; amount: number }
   | {
@@ -2674,6 +2686,11 @@ export interface InvestigatorRecord {
 export type ExpeditionPartnerStatus =
   'safe' | 'resolute' | 'missing' | 'eliminated' | 'victim' | 'unavailable' | 'entity'
 
+export type KeyHolder =
+  | { type: 'location'; id: LocationId }
+  | { type: 'investigator'; id: InvestigatorId }
+  | { type: 'enemy'; id: EnemyId }
+
 export type ExpeditionSupply = '08614' | '08615' | '08616' | '08617' | '08618' | '08619' | '08620'
 
 export interface ExpeditionState {
@@ -2726,6 +2743,8 @@ export interface TurnActionGrant {
 }
 
 export interface GameState {
+  /** Keys spent during this scenario (experience for each pair). */
+  keysSpent?: ChaosToken[]
   /** Scenario deck. Copies in investigator decks persist as campaign story cards. */
   tekeliliDeck?: CardCode[]
   playSkillBonuses?: { id: string; investigator: InvestigatorId; amount: number }[]
