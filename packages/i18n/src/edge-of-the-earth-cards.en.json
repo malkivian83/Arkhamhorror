@@ -804,6 +804,148 @@
     "traits": "Item. Expedition.",
     "text": "Uses (3 supplies).\n[fast] Spend 1 supply and exhaust Spare Parts: Add 1 supply to another asset at your location, or choose an investigator at your location to gain 1 resource."
   },
+  "08621": {
+    "name": "City of the Elder Things",
+    "typeCode": "scenario",
+    "text": "Easy / Standard\n[skull]: -X. X is the number of keys you control.\n[cultist]: -2. If you fail, place a key you control on your location.\n[tablet]: -3. If a [frost] token was revealed during this test, you automatically fail, instead.\n[elder_thing]: -4. If you fail, the nearest enemy moves once toward you. If it is engaged with you, it attacks.",
+    "backText": "Hard / Expert\n[skull]: -X. X is 2 plus the number of keys you control.\n[cultist]: -2. Place a key you control on your location.\n[tablet]: -4. If a [frost] token was revealed during this test, take 1 damage and you automatically fail, instead.\n[elder_thing]: -5. If you fail, the nearest enemy moves once toward you. If it is engaged with you, it attacks."
+  },
+  "08630": {
+    "name": "Hidden Tunnel",
+    "subname": "Entrance to the Depths",
+    "typeCode": "location",
+    "traits": "City.",
+    "text": "Clues on Hidden Tunnel cannot be discovered or moved to other locations.\n[action]: Test a skill of your choice (4). You may spend a [skull] key to get +5 skill value for this test. If you succeed, return 1 clue on Hidden Tunnel to the token pool (2 clues instead if you spent a [skull] key).",
+    "backText": "The passageway into the undercity is hidden. You cannot enter the Hidden Tunnel.",
+    "backFlavor": "\"...our study of the decadent sculptures brought about a change in our immediate objective. This of course had to do with the chiselled avenues to the black inner world, of whose existence we had not known before....\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08631": {
+    "name": "Ancient Planetarium",
+    "typeCode": "location",
+    "traits": "City.",
+    "text": "[action] Spend two \"0\" keys: Add one of the spent \"0\" keys to the chaos bag <i>(as a chaos token)</i> for the remainder of the campaign. Record in the Campaign Log <i>the team photographed the astronomical charts.</i>",
+    "backName": "City Landscape",
+    "backFlavor": "\"Yet now the sway of reason seemed irrefutably shaken, for this Cyclopean maze of squared, curved, and angled blocks had features which cut off all comfortable refuge. It was, very clearly, the blasphemous city of the mirage in stark, objective, and ineluctable reality.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08632": {
+    "name": "Stone Bridge",
+    "typeCode": "location",
+    "traits": "City.",
+    "text": "[action]: Test [combat] (4) or [agility] (4). If you succeed, discover 1 clue from Stone Bridge.\n[action]: Move to another Stone Bridge location.",
+    "flavor": "\"All of these febrile structures seemed knit together by tubular bridges crossing from one to the other at various dizzy heights...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>",
+    "backName": "City Landscape",
+    "backFlavor": "\"Yet now the sway of reason seemed irrefutably shaken, for this Cyclopean maze of squared, curved, and angled blocks had features which cut off all comfortable refuge. It was, very clearly, the blasphemous city of the mirage in stark, objective, and ineluctable reality.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08633": {
+    "name": "Cylindrical Tower",
+    "typeCode": "location",
+    "traits": "City.",
+    "text": "[action] Spend two \"-2\" keys: Draw 2 cards, gain 2 resources, and remove 2 [frost] tokens from the chaos bag. Record in the Campaign Log <i>the team studied the mural carvings.</i>",
+    "backName": "City Landscape",
+    "backFlavor": "\"Yet now the sway of reason seemed irrefutably shaken, for this Cyclopean maze of squared, curved, and angled blocks had features which cut off all comfortable refuge. It was, very clearly, the blasphemous city of the mirage in stark, objective, and ineluctable reality.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08634": {
+    "name": "Labyrinthine Chamber",
+    "typeCode": "location",
+    "traits": "City.",
+    "text": "Each time a chaos token is revealed during a skill test at this location, double its modifier if a key matching that chaos token is on this location or under the control of an investigator at this location.",
+    "backName": "City Landscape",
+    "backFlavor": "\"Yet now the sway of reason seemed irrefutably shaken, for this Cyclopean maze of squared, curved, and angled blocks had features which cut off all comfortable refuge. It was, very clearly, the blasphemous city of the mirage in stark, objective, and ineluctable reality.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08635": {
+    "name": "Map Room",
+    "typeCode": "location",
+    "traits": "City.",
+    "text": "[action] Spend two \"-3\" keys: Choose 3 locations other than Hidden Tunnel and reveal them. Discover 1 clue from each of these locations. Record in the Campaign Log <i>the team read the map.</i>",
+    "backName": "City Landscape",
+    "backFlavor": "\"Yet now the sway of reason seemed irrefutably shaken, for this Cyclopean maze of squared, curved, and angled blocks had features which cut off all comfortable refuge. It was, very clearly, the blasphemous city of the mirage in stark, objective, and ineluctable reality.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08636": {
+    "name": "Roofless Rampart",
+    "typeCode": "location",
+    "traits": "City.",
+    "text": "[action] Spend two \"-1\" keys: Either remove 1 doom from the agenda, or choose and discard from play 1 non-[[Elite]] enemy or treachery. Record in the Campaign Log <i>the team discovered an ancient vault.</i>",
+    "flavor": "\"...farther on there was a huge roofless rampart still complete in its gigantic five-pointed outline...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>",
+    "backName": "City Landscape",
+    "backFlavor": "\"Yet now the sway of reason seemed irrefutably shaken, for this Cyclopean maze of squared, curved, and angled blocks had features which cut off all comfortable refuge. It was, very clearly, the blasphemous city of the mirage in stark, objective, and ineluctable reality.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08637": {
+    "name": "Ruinous Streets",
+    "typeCode": "location",
+    "traits": "City.",
+    "text": "<b>Forced</b> - After you reveal 1 or more [frost] tokens during a skill test at Ruinous Streets: Take 1 damage.\n[reaction] After you discover the last clue from Ruinous Streets: Discover 1 clue on a connecting location.",
+    "backName": "City Landscape",
+    "backFlavor": "\"Yet now the sway of reason seemed irrefutably shaken, for this Cyclopean maze of squared, curved, and angled blocks had features which cut off all comfortable refuge. It was, very clearly, the blasphemous city of the mirage in stark, objective, and ineluctable reality.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08638": {
+    "name": "Cyclopean Spires",
+    "typeCode": "location",
+    "traits": "City.",
+    "text": "[action]: Move 1 key on another location in this row to Cyclopean Spires. (Group limit once per game.)",
+    "flavor": "\"There were composite cones and pyramids either alone or surmounting cylinders or cubes or flatter truncated cones and pyramids, and occasional needle-like spires in curious clusters...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>",
+    "backName": "City Landscape",
+    "backFlavor": "\"Yet now the sway of reason seemed irrefutably shaken, for this Cyclopean maze of squared, curved, and angled blocks had features which cut off all comfortable refuge. It was, very clearly, the blasphemous city of the mirage in stark, objective, and ineluctable reality.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08639": {
+    "name": "Submerged Passageway",
+    "typeCode": "location",
+    "traits": "City.",
+    "text": "[action]: Move 1 clue from this location to an unrevealed location in this column or row.",
+    "flavor": "\"Had the coming of the ice been foreseen, and had a nameless population left en masse to seek a less doomed abode?\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>",
+    "backName": "City Landscape",
+    "backFlavor": "\"Yet now the sway of reason seemed irrefutably shaken, for this Cyclopean maze of squared, curved, and angled blocks had features which cut off all comfortable refuge. It was, very clearly, the blasphemous city of the mirage in stark, objective, and ineluctable reality.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08640": {
+    "name": "Temple of the Elder Things",
+    "typeCode": "location",
+    "traits": "City.",
+    "text": "<b>Forced</b> - After you reveal 1 or more [frost] tokens during a skill test at this location: Take 1 horror.\n[action] If there are no clues on Temple of the Elder Things: Choose 2 locations with keys on them. Swap each key on those locations. (Group limit once per game.)",
+    "backName": "City Landscape",
+    "backFlavor": "\"Yet now the sway of reason seemed irrefutably shaken, for this Cyclopean maze of squared, curved, and angled blocks had features which cut off all comfortable refuge. It was, very clearly, the blasphemous city of the mirage in stark, objective, and ineluctable reality.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08641": {
+    "name": "Terror of the Stars",
+    "subname": "Bane of the Elder Things",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon. Elite.",
+    "text": "Hunter. Massive.\nTerror of the Stars gets +3 [per_investigator] health.\nWhile Terror of the Stars is ready, investigators at its location cannot spend or take control of keys."
+  },
+  "08642": {
+    "name": "Benign Elder Thing",
+    "typeCode": "enemy",
+    "traits": "Monster. Elder Thing.",
+    "text": "<b>Spawn</b> - Any empty location.\nBenign Elder Thing enters play with 1 doom on it.\n<b>Forced</b> - When Benign Elder Thing is defeated: Place 1 doom on the agenda.\n[action]: <b>Parley.</b> Test [willpower] (3). If you succeed, remove Benign Elder Thing from the game."
+  },
+  "08643": {
+    "name": "Reawakened Elder Thing",
+    "typeCode": "enemy",
+    "traits": "Monster. Elder Thing.",
+    "text": "Hunter.\n<b>Forced</b> - When this enemy engages you: Place a key you control on it. When it leaves play, place that key on its location.\n<b>Forced</b> - When an investigator at this enemy's location takes control of a key: This enemy readies, engages, and attacks them."
+  },
+  "08644": {
+    "name": "Dawning of the Truth",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Test [willpower] (2). Increase the difficulty of this test by 1 for each key on your location or under your control. If you fail, take 2 horror (3 horror instead if you fail by 3 or more)."
+  },
+  "08645": {
+    "name": "Crumbling Ruins",
+    "typeCode": "treachery",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Test [agility] (3). During this test, if you reveal a chaos token that matches a key on your location or under the control of an investigator at your location, you automatically fail. For each point you fail by, take 1 damage."
+  },
+  "08646": {
+    "name": "Frostbitten",
+    "typeCode": "treachery",
+    "traits": "Injury.",
+    "text": "<b>Revelation</b> - Put Frostbitten into play in your threat area.\nFrostbitten can be healed as if it were a single point of damage on you <i>(if it is healed, discard it)</i>.\n<b>Forced</b> - When you reveal a [frost] token during a skill test: You must either take 1 damage or you automatically fail this test. (Limit once per test.)"
+  },
+  "08647": {
+    "name": "Possessed",
+    "typeCode": "treachery",
+    "traits": "Madness.",
+    "text": "<b>Revelation</b> - Put Possessed into play in your threat area.\nPossessed can be healed as if it were a single point of horror on you <i>(if it is healed, discard it)</i>.\n<b>Forced</b> - When you reveal a [frost] token during a skill test: You must either take 1 horror or you automatically fail this test. (Limit once per test.)"
+  },
   "08687": {
     "name": "Primordial Evil",
     "typeCode": "enemy",
@@ -931,6 +1073,32 @@
     "typeCode": "treachery",
     "traits": "Curse. Hazard.",
     "text": "<b>Revelation</b> - Attach to your location.\n<b>Forced</b> - When you end your turn at attached location: Each card you control with sanity <i>(including your investigator)</i> takes 1 direct horror.\n<b>Forced</b> - At the end of the round: Discard Nebulous Miasma."
+  },
+  "08708": {
+    "name": "Giant Albino Penguin",
+    "typeCode": "enemy",
+    "traits": "Creature.",
+    "text": "Aloof.\nAs an additional cost for you to enter or leave this enemy's location, you must spend 1 action.",
+    "flavor": "\"...it was only a penguin - albeit of a huge, unknown species larger than the greatest of the known king penguins, and monstrous in its combined albinism and virtual eyelessness.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08709": {
+    "name": "Wuk! Wuk! Wuk!",
+    "typeCode": "treachery",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Find the Giant Albino Penguin enemy farthest from you. You must either move it to your location or place 1 doom on it. If there are no Giant Albino Penguins in play, search the encounter deck and discard pile for a Giant Albino Penguin, draw it, and shuffle the encounter deck."
+  },
+  "08710": {
+    "name": "Forgotten Shoggoth",
+    "typeCode": "enemy",
+    "traits": "Monster. Shoggoth.",
+    "text": "Hunter.\n<b>Forced</b> - After Forgotten Shoggoth engages you: Draw the top card of the Tekeli-li deck (if you cannot, Forgotten Shoggoth attacks you).",
+    "flavor": "\"...shoggoths and their work ought not to be seen by human beings or portrayed by any beings.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08711": {
+    "name": "Rampaging Shoggoth",
+    "typeCode": "enemy",
+    "traits": "Monster. Shoggoth. Elite.",
+    "text": "Hunter. Massive.\nRampaging Shoggoth gets +2 [per_investigator] health.\n<b>Forced</b> - At the end of the enemy phase: Deal 2 damage to each investigator and non-[[Shoggoth]] enemy at Rampaging Shoggoth's location. Each of those investigators draws the top card of the Tekeli-li deck."
   },
   "08712": {
     "name": "Polar Mirage",

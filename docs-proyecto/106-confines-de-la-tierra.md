@@ -182,8 +182,16 @@ sin publicar, `[ ]` pendiente.
        tomar la llave de un Lugar sin pistas y darla en el mismo Lugar como
        habilidades libres; al ser eliminado, las llaves quedan en su Lugar. Se ven
        en Lugares, enemigos y zona del jugador. Pruebas en `keys.test.ts`.
-    2. [ ] 16 Paisajes urbanos con caras ocultas al azar, mapas de las tres
-       versiones, Túnel oculto, llaves al azar, actos y planes por versión.
+    2. [x] `city.ts`, `city-cards.ts`, `city-encounters.ts`: la versión sigue a la
+       columna con más compañeros vivos (empate: `edgeOfTheEarthCityVersion` del
+       registro; falta su pantalla de elección); 16 Paisajes urbanos con cara al azar
+       y una llave al azar cada uno, mapas de las pp. 39–41 conectados por lados,
+       inicio elegido por el jefe (v. I) o fijo; Túnel oculto cerrado hasta el acto 1
+       y con su prueba; actos y planes por versión con el gasto de llaves, recuerdos,
+       búsqueda en columna o fila, mazo de Encuentros por versión y conjuntos
+       apartados; capacidades de los diez Paisajes; fichas con llaves y Cámara
+       laberíntica. Pruebas en `city.test.ts` (8). Cartas EN/ES en catálogo, salvo
+       planes y actos (08622–08629), que esperan locución.
     3. [ ] Encuentros: Antiguos benigno y revivido, Terror de las estrellas,
        Comprensión de la verdad, Ruinas en mal estado, Congelado y Poseído,
        Pingüinos y Shoggoths.

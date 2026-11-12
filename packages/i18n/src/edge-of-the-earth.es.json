@@ -552,7 +552,15 @@
     "peaksCrystalUse": "Cancelarlo y robar 1 carta",
     "peaksCrystalKeep": "Resolverlo",
     "nightCity": "Seguir hacia la Ciudad de los Antiguos",
-    "nightMirageFrost": "Adentrarse otra vez en el espejismo (añade 1 ficha de Helada)"
+    "nightMirageFrost": "Adentrarse otra vez en el espejismo (añade 1 ficha de Helada)",
+    "cityLandscape": "{name} (fila {row}, columna {column})",
+    "cityTunnelSkull": "Probar {skill} gastando la llave de Calavera (+5)",
+    "cityLooked": "{name}",
+    "cityHealPhysical": "Curar 1 daño, 1 horror y 1 trauma físico",
+    "cityHealMental": "Curar 1 daño, 1 horror y 1 trauma mental",
+    "cityHealWounds": "Curar 1 daño y 1 horror",
+    "cityKey": "{key}",
+    "cityRemoveDoom": "Retirar 1 perdición del plan"
   },
   "prompt": {
     "claypool": "Avery Claypool: elige cómo cancelar la ficha de Helada",
@@ -585,7 +593,19 @@
     "peaksSpareParts": "Elige para qué se usan las piezas de repuesto",
     "peaksSledgeSearcher": "¿Quién busca en su mazo cartas para el trineo?",
     "peaksSledgeCard": "Elige una carta para vincularla boca abajo al trineo",
-    "peaksCrystal": "¿Usas el Cristal de miasma para cancelar este Tekeli-li?"
+    "peaksCrystal": "¿Usas el Cristal de miasma para cancelar este Tekeli-li?",
+    "cityStart": "Elige por dónde entra la expedición en la ciudad",
+    "cityLook": "Elige el Paisaje urbano que quieres mirar",
+    "cityLooked": "Su cara revelada es",
+    "cityTravel": "Elige adónde moverte",
+    "cityTunnel": "Elige la habilidad para la prueba del Túnel oculto",
+    "cityBridge": "Elige la habilidad para cruzar el puente",
+    "cityHeal": "Elige qué curar",
+    "cityDropKey": "Elige la llave que colocas en tu Lugar",
+    "cityMapRoom": "Elige un Lugar para revelarlo",
+    "cityRampart": "Elige qué retira la cámara antigua",
+    "cityTemple": "Elige un Lugar cuyas llaves se intercambian",
+    "cityStreets": "Elige el Lugar conectado"
   },
   "ability": {
     "memorialPoe": "{card}: gasta 1 carga para buscar ¡Tekeli-li!",
@@ -634,7 +654,28 @@
     "peaksSpareParts": "Piezas de repuesto: añade 1 suministro o da 1 recurso",
     "peaksSledgeLoad": "Trineo de madera: carga hasta 3 cartas Objeto o Suministro",
     "peaksSledgePlay": "Jugar {card} desde el Trineo de madera",
-    "peaksRadio": "Radio pequeña – {partner}"
+    "peaksRadio": "Radio pequeña – {partner}",
+    "city": {
+      "cityHistory": "Gasta dos llaves de Primigenio: estudiar la historia de los Antiguos",
+      "cityShoggoths": "Gasta dos llaves de Tablilla: discernir el origen de los Shoggoths",
+      "cityPower": "Gasta dos llaves de Sectario: descubrir un poder oculto",
+      "pursuitHeal": "Gasta dos llaves de Sectario: cada investigador puede curarse",
+      "pursuitTekelili": "Gasta dos llaves de Tablilla: devolver cada Tekeli-li a su mazo",
+      "pursuitElderThings": "Gasta dos llaves de Primigenio: retirar cada ficha de Primigenio",
+      "look": "Gasta 1 pista: mira un Paisaje urbano de tu columna o fila",
+      "travel": "Gasta 3 pistas: muévete por tu columna o fila",
+      "tunnel": "Túnel oculto: prueba una habilidad (4)",
+      "planetarium": "Gasta dos llaves «0»: fotografiar las cartas astronómicas",
+      "bridgeTest": "Puente de piedra: prueba de combate o agilidad (4)",
+      "bridgeMove": "Moverse al Puente de piedra de la fila {row}, columna {column}",
+      "tower": "Gasta dos llaves «-2»: estudiar los relieves murales",
+      "mapRoom": "Gasta dos llaves «-3»: leer el mapa",
+      "rampart": "Gasta dos llaves «-1»: descubrir una cámara antigua",
+      "spires": "Traer aquí la llave {key} de la fila {row}, columna {column}",
+      "passage": "Mover 1 pista al Lugar de la fila {row}, columna {column}",
+      "temple": "Intercambiar las llaves de dos Lugares",
+      "streets": "Calles ruinosas: descubre 1 pista en un Lugar conectado"
+    }
   },
   "note": {
     "edgeOfTheEarthConvincedDyer": "Los investigadores convencieron a Dyer de que permitiera la expedición.",
@@ -650,7 +691,13 @@
     "edgeOfTheEarthClimbedSummit": "El equipo escaló hasta la cima.",
     "edgeOfTheEarthFoundAnotherWay": "El equipo encontró otro modo de atravesar las montañas.",
     "edgeOfTheEarthKenslerUnderstanding": "La Dra. Kensler está a punto de entenderlo.",
-    "edgeOfTheEarthScoutedCityOutskirts": "Los investigadores exploraron las afueras de la ciudad."
+    "edgeOfTheEarthScoutedCityOutskirts": "Los investigadores exploraron las afueras de la ciudad.",
+    "edgeOfTheEarthAstronomicalCharts": "El equipo fotografió las cartas astronómicas.",
+    "edgeOfTheEarthMuralCarvings": "El equipo estudió los relieves murales.",
+    "edgeOfTheEarthReadTheMap": "El equipo leyó el mapa.",
+    "edgeOfTheEarthAncientVault": "El equipo descubrió una cámara antigua.",
+    "edgeOfTheEarthFoundHiddenTunnel": "El equipo encontró el túnel oculto.",
+    "edgeOfTheEarthGuidedToTunnel": "El equipo fue guiado hacia el túnel oculto."
   },
   "campaignName": "Los confines de la Tierra",
   "scenarioName": "Hielo y muerte, parte I",

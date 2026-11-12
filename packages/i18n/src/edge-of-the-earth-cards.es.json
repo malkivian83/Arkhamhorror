@@ -742,6 +742,148 @@
     "traits": "Objeto. Expedición.",
     "text": "Usos (3 suministros).\n[fast] Gasta 1 suministro y agota las Piezas de repuesto: Añade 1 suministro a otro Apoyo que esté en tu Lugar o elige a un investigador que esté en tu Lugar para que obtenga 1 recurso."
   },
+  "08621": {
+    "name": "Ciudad de los Antiguos",
+    "typeCode": "scenario",
+    "text": "<b>Fácil/Normal</b>\n[skull]: –X. X es el número de llaves que controlas.\n[cultist]: –2. Si fracasas, coloca una llave que controles en tu Lugar.\n[tablet]: –3. O bien fracasas automáticamente si fue revelada una ficha [frost] durante esta prueba.\n[elder_thing]: –4. Si fracasas, el Enemigo más cercano se mueve una vez hacia ti. Si está enfrentado a ti, te ataca.",
+    "backText": "<b>Difícil/Experto</b>\n[skull]: –X. X es el número de llaves que controlas más 2.\n[cultist]: –2. Coloca una llave que controles en tu Lugar.\n[tablet]: –4. O bien recibe 1 punto de daño y fracasas automáticamente si fue revelada una ficha [frost] durante esta prueba.\n[elder_thing]: –5. Si fracasas, el Enemigo más cercano se mueve una vez hacia ti. Si está enfrentado a ti, te ataca."
+  },
+  "08630": {
+    "name": "Túnel oculto",
+    "subname": "Entrada hacia las profundidades",
+    "typeCode": "location",
+    "traits": "Ciudad.",
+    "text": "Las pistas que hay sobre el Túnel oculto no se pueden descubrir ni mover a otros lugares.\n[action]: Realiza una prueba de habilidad de tu elección (4). Puedes gastar una llave [skull] para recibir +5 a tu valor de habilidad para esta prueba. Si tienes éxito, devuelve a la reserva de fichas 1 pista que haya sobre el Túnel oculto, o bien 2 pistas si gastaste una llave [skull].",
+    "backText": "El pasadizo hacia la ciudad subterránea está oculto. No puedes entrar en el Túnel oculto.",
+    "backFlavor": "\"…el examen de aquellas esculturas decadentes nos obligó a alterar nuestros planes. Se trataba, por supuesto, de las vías de acceso al sombrío mundo interior, de cuya existencia nada habíamos sabido hasta entonces….\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08631": {
+    "name": "Plantetario antiguo",
+    "typeCode": "location",
+    "traits": "Ciudad.",
+    "text": "[action] Gasta 2 llaves \"0\": Añade 1 de las llaves \"0\" gastadas a la bolsa de caos <i>(como ficha de caos)</i> durante el resto de campaña. Anota en el registro de campaña que <i>el equipo fotografió los atlas estelares.</i>",
+    "backName": "Paisaje urbano",
+    "backFlavor": "\"Pero ahora algo irrefutable nos sacudía la razón, pues estas masas ciclópeas de bloques cuadrados, curvos y angulares tenían ciertas características que impedían todo engaño consolador. Se trataba, muy claramente, de la ciudad que se nos había aparecido en aquel espejismo, pero dotada ahora de una realidad objetiva e ineluctable.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08632": {
+    "name": "Puente de piedra",
+    "typeCode": "location",
+    "traits": "Ciudad.",
+    "text": "[action]: Realiza una prueba de [combat] (4) o de [agility] (4). Si tienes éxito, descubre una 1 pista del Puente de piedra.\n[action]: Muévete a otro Lugar Puente de piedra.",
+    "flavor": "\"Todas estas estructuras parecían estar unidas entre sí con puentes tubulares que se alzaban a enormes alturas.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Paisaje urbano",
+    "backFlavor": "\"Pero ahora algo irrefutable nos sacudía la razón, pues estas masas ciclópeas de bloques cuadrados, curvos y angulares tenían ciertas características que impedían todo engaño consolador. Se trataba, muy claramente, de la ciudad que se nos había aparecido en aquel espejismo, pero dotada ahora de una realidad objetiva e ineluctable.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08633": {
+    "name": "Torre cilíndrica",
+    "typeCode": "location",
+    "traits": "Ciudad.",
+    "text": "[action] Gasta 2 llaves \"–2\": Roba 2 cartas, obtén 2 recursos y retira 2 fichas [frost] de la bolsa de caos. Anota en el registro de campaña que <i>el equipo estudió los murales tallados.</i>",
+    "backName": "Paisaje urbano",
+    "backFlavor": "\"Pero ahora algo irrefutable nos sacudía la razón, pues estas masas ciclópeas de bloques cuadrados, curvos y angulares tenían ciertas características que impedían todo engaño consolador. Se trataba, muy claramente, de la ciudad que se nos había aparecido en aquel espejismo, pero dotada ahora de una realidad objetiva e ineluctable.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08634": {
+    "name": "Cámara laberíntica",
+    "typeCode": "location",
+    "traits": "Ciudad.",
+    "text": "Cada vez que sea revelada una ficha de Caos durante una prueba de habilidad en este Lugar, dobla su modificador si hay una llave que coincida con esa ficha de Caos sobre este Lugar o bajo el control de un investigador que esté en este Lugar",
+    "backName": "Paisaje urbano",
+    "backFlavor": "\"Pero ahora algo irrefutable nos sacudía la razón, pues estas masas ciclópeas de bloques cuadrados, curvos y angulares tenían ciertas características que impedían todo engaño consolador. Se trataba, muy claramente, de la ciudad que se nos había aparecido en aquel espejismo, pero dotada ahora de una realidad objetiva e ineluctable.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08635": {
+    "name": "Sala del mapa",
+    "typeCode": "location",
+    "traits": "Ciudad.",
+    "text": "[action] Gasta 3 llaves \"–3\": Elige 3 Lugares y revélalos. Descubre 1 pista de cada uno de estos Lugares. Anota en el registro de campaña que <i>el equipo leyó el mapa.</i>",
+    "backName": "Paisaje urbano",
+    "backFlavor": "\"Pero ahora algo irrefutable nos sacudía la razón, pues estas masas ciclópeas de bloques cuadrados, curvos y angulares tenían ciertas características que impedían todo engaño consolador. Se trataba, muy claramente, de la ciudad que se nos había aparecido en aquel espejismo, pero dotada ahora de una realidad objetiva e ineluctable.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08636": {
+    "name": "Adarve sin techo",
+    "typeCode": "location",
+    "traits": "Ciudad.",
+    "text": "[action] Gasta 2 llaves \"–1\": Retira 1 ficha de Perdición del plan o bien elige y descarta del juego 1 Enemigo que no sea [Élite] o una Traición. Anota en el registro de campaña que <i>el equipo descubrió una antigua cámara.</i>",
+    "flavor": "\"…más allá se alzaba un edificio amurallado en forma de estrella de unos tres metros de alto…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Paisaje urbano",
+    "backFlavor": "\"Pero ahora algo irrefutable nos sacudía la razón, pues estas masas ciclópeas de bloques cuadrados, curvos y angulares tenían ciertas características que impedían todo engaño consolador. Se trataba, muy claramente, de la ciudad que se nos había aparecido en aquel espejismo, pero dotada ahora de una realidad objetiva e ineluctable.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08637": {
+    "name": "Calles ruinosas",
+    "typeCode": "location",
+    "traits": "Ciudad.",
+    "text": "<b>Obligado</b> - Después de que reveles 1 o más fichas [frost] durante una prueba de habilidad en las Calles ruinosas: Recibe 1 punto de daño.\n[reaction] Después de que descubras la última pista de las Calles ruinosas: Descubre 1 pista en un Lugar conectado.",
+    "backName": "Paisaje urbano",
+    "backFlavor": "\"Pero ahora algo irrefutable nos sacudía la razón, pues estas masas ciclópeas de bloques cuadrados, curvos y angulares tenían ciertas características que impedían todo engaño consolador. Se trataba, muy claramente, de la ciudad que se nos había aparecido en aquel espejismo, pero dotada ahora de una realidad objetiva e ineluctable.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08638": {
+    "name": "Torres ciclópeas",
+    "typeCode": "location",
+    "traits": "Ciudad.",
+    "text": "[action]: Mueve 1 llave de otro Lugar de esta fila a las Torres ciclópeas. Límite de grupo de 1 vez por partida.",
+    "flavor": "\"En otros casos se unían las formas del cono y la pirámide, ya solos o sobre cilindros, o cubos, u otras pirámides y conos truncados. Algunas veces unas finas agujas formaban curiosos grupos de cinco.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Paisaje urbano",
+    "backFlavor": "\"Pero ahora algo irrefutable nos sacudía la razón, pues estas masas ciclópeas de bloques cuadrados, curvos y angulares tenían ciertas características que impedían todo engaño consolador. Se trataba, muy claramente, de la ciudad que se nos había aparecido en aquel espejismo, pero dotada ahora de una realidad objetiva e ineluctable.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08639": {
+    "name": "Pasadizo sumergido",
+    "typeCode": "location",
+    "traits": "Ciudad.",
+    "text": "[action]: Mueve 1 pista de este Lugar a un Lugar sin revelar de esta fila o columna.",
+    "flavor": "\"¿Se había previsto la llegada del hielo, y la población se había retirado en busca de un refugio más apropiado?\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Paisaje urbano",
+    "backFlavor": "\"Pero ahora algo irrefutable nos sacudía la razón, pues estas masas ciclópeas de bloques cuadrados, curvos y angulares tenían ciertas características que impedían todo engaño consolador. Se trataba, muy claramente, de la ciudad que se nos había aparecido en aquel espejismo, pero dotada ahora de una realidad objetiva e ineluctable.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08640": {
+    "name": "Templo de los Antiguos",
+    "typeCode": "location",
+    "traits": "Ciudad.",
+    "text": "<b>Obligado</b> - Después de que reveles 1 o más fichas [frost] durante una prueba de habilidad en este Lugar: Recibe 1 punto de horror.\n[action] Si no hay pistas en el Templo de los Antiguos: Elige 2 Lugares que tengan llaves. Intercambia cada una de las llaves de esos Lugares. Límite de grupo de una vez por partida.",
+    "backName": "Paisaje urbano",
+    "backFlavor": "\"Pero ahora algo irrefutable nos sacudía la razón, pues estas masas ciclópeas de bloques cuadrados, curvos y angulares tenían ciertas características que impedían todo engaño consolador. Se trataba, muy claramente, de la ciudad que se nos había aparecido en aquel espejismo, pero dotada ahora de una realidad objetiva e ineluctable.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08641": {
+    "name": "Terror de las estrellas",
+    "subname": "Perdición de los Antiguos",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Eidolón. Élite.",
+    "text": "Cazador. Descomunal.\nEl Terror de las estrellas recibe +3 de salud [per_investigator].\nMientras el Terror de las estrellas esté preparado, los investigadores que estén en su Lugar no pueden gastar ni tomar el control de llaves."
+  },
+  "08642": {
+    "name": "Antiguo benigno",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Antiguo.",
+    "text": "<b>Aparición</b> – Cualquier Lugar vacío.\nEl Antiguo benigno entra en juego con una ficha de Perdición sobre él.\n<b>Obligado</b> – Cuando el Antiguo benigno sea derrotado: Coloca 1 ficha de Perdición sobre el plan.\n[action]: <b>Negociar.</b> Realiza una prueba de [willpower] (3). Si tienes éxito, retira el Antiguo benigno de la partida."
+  },
+  "08643": {
+    "name": "Antiguo revivido",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Antiguo.",
+    "text": "Cazador.\n<b>Obligado</b> – Cuando este Enemigo se enfrente a ti: Coloca sobre él una llave que controles. Cuando abandone el juego, coloca esa llave en su Lugar.\n<b>Obligado</b> – Cuando un investigador que esté en el Lugar de este Enemigo tome el control de una llave: Este enemigo se prepara, se enfrenta a ese investigador y lo ataca."
+  },
+  "08644": {
+    "name": "Comprensión de la verdad",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "<b>Revelación</b> – Realiza una prueba de [willpower] (2). Aumenta la dificultad de esta prueba en 1 por cada llave que haya en tu Lugar o que esté bajo tu control. Si fracasas, recibe 2 puntos de horror, o bien 3 puntos de horror si fracasas por 3 o más."
+  },
+  "08645": {
+    "name": "Ruinas en mal estado",
+    "typeCode": "treachery",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> – Realiza una prueba de [agility] (3). Durante esta prueba, si revelas una ficha de Caos que coincida con una llave que esté en tu Lugar o que esté bajo el control de un investigador que esté en tu Lugar, fracasas automáticamente. Recibe 1 punto de daño por cada punto que te falte para tener éxito."
+  },
+  "08646": {
+    "name": "Congelado",
+    "typeCode": "treachery",
+    "traits": "Lesión.",
+    "text": "<b>Revelación</b> - Pon Congelado en juego en tu zona de amenaza.\nCongelado se puede curar como si fuera un único punto de daño que tuvieras <i>(si se cura, descártalo)</i>.\n<b>Obligado</b> - Cuando reveles una ficha [frost] durante una prueba de habilidad: Debes recibir 1 punto de daño o bien fracasar automáticamente esta prueba. Límite de una vez por prueba."
+  },
+  "08647": {
+    "name": "Poseído",
+    "typeCode": "treachery",
+    "traits": "Locura.",
+    "text": "<b>Revelación</b> - Pon Poseído en juego en tu zona de amenaza.\nPoseído se puede curar como si fuera un único punto de daño que tuvieras <i>(si se cura, descártalo).\n<b>Obligado</b> - Cuando reveles una ficha [frost] durante una prueba de habilidad: Debes recibir 1 punto de horror o bien fracasar automáticamente esta prueba. Límite de una vez por prueba."
+  },
   "08687": {
     "name": "Mal primordial",
     "typeCode": "enemy"
@@ -855,6 +997,32 @@
   "08707": {
     "name": "Miasma nebuloso",
     "typeCode": "treachery"
+  },
+  "08708": {
+    "name": "Pingüino albino gigante",
+    "typeCode": "enemy",
+    "traits": "Criatura.",
+    "text": "Indiferente.\nComo coste adicional para que entres en el Lugar de este Enemigo o lo abandones, debes gastar 1 acción.",
+    "flavor": "\"Pues se trataba sólo de un pingüino, aunque de una especie desconocida, mayor que los pingüinos llamados reales.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08709": {
+    "name": "Mec! Mec! Mec!",
+    "typeCode": "treachery",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> – Busca el Enemigo Pingüino albino gigante más alejado de ti. Debes moverlo a tu Lugar o bien colocar 1 ficha de Perdición sobre él. Si no hay Pingüinos albinos gigantes en juego, busca un Pingüino albino gigante en el mazo y la pila de descartes de Encuentros, róbalo y baraja el mazo de Encuentros."
+  },
+  "08710": {
+    "name": "Shoggoth olvidado",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Shoggoth.",
+    "text": "Cazador.\n<b>Obligado</b> – Después de que el Shoggoth olvidado se enfrente a ti: Roba la primera carta del mazo Tekeli-li (Si no puedes, el Shoggoth olvidado te ataca).",
+    "flavor": "\"…los shoggoths y sus obras no son algo que puedan contemplar los ojos de los hombres.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08711": {
+    "name": "Shoggoth desatado",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Shoggoth. Élite.",
+    "text": "Cazador. Descomunal.\nEl Shoggoth desatado recibe +2 de salud [per_investigator].\n<b>Obligado</b> – Al final de la fase de Enemigos: Inflige 2 puntos de daño a cada investigador y a cada Enemigo que no sea [[Shoggoth]] que esté en el Lugar del Shoggoth desatado. Cada uno de esos investigadores roba la primera carta del mazo Tekeli-li."
   },
   "08712": {
     "name": "Espejismo polar",

@@ -552,7 +552,15 @@
     "peaksCrystalUse": "Cancel it and draw 1 card",
     "peaksCrystalKeep": "Resolve it",
     "nightCity": "Continue to the City of the Elder Things",
-    "nightMirageFrost": "Enter the mirage once more (add 1 frost token)"
+    "nightMirageFrost": "Enter the mirage once more (add 1 frost token)",
+    "cityLandscape": "{name} (row {row}, column {column})",
+    "cityTunnelSkull": "Test {skill} spending the Skull key (+5)",
+    "cityLooked": "{name}",
+    "cityHealPhysical": "Heal 1 damage, 1 horror and 1 physical trauma",
+    "cityHealMental": "Heal 1 damage, 1 horror and 1 mental trauma",
+    "cityHealWounds": "Heal 1 damage and 1 horror",
+    "cityKey": "{key}",
+    "cityRemoveDoom": "Remove 1 doom from the agenda"
   },
   "prompt": {
     "claypool": "Avery Claypool: choose how to cancel the frost token",
@@ -585,7 +593,19 @@
     "peaksSpareParts": "Choose what the spare parts are used for",
     "peaksSledgeSearcher": "Who searches their deck for the sledge?",
     "peaksSledgeCard": "Choose a card to attach facedown to the sledge",
-    "peaksCrystal": "Use the Miasmic Crystal to cancel this Tekeli-li?"
+    "peaksCrystal": "Use the Miasmic Crystal to cancel this Tekeli-li?",
+    "cityStart": "Choose where the expedition enters the city",
+    "cityLook": "Choose the City Landscape to look at",
+    "cityLooked": "Its revealed side is",
+    "cityTravel": "Choose where to move",
+    "cityTunnel": "Choose the skill for the Hidden Tunnel test",
+    "cityBridge": "Choose the skill to cross the bridge",
+    "cityHeal": "Choose what to heal",
+    "cityDropKey": "Choose the key you place on your location",
+    "cityMapRoom": "Choose a location to reveal",
+    "cityRampart": "Choose what the ancient vault removes",
+    "cityTemple": "Choose a location whose keys are swapped",
+    "cityStreets": "Choose the connecting location"
   },
   "ability": {
     "memorialPoe": "{card}: spend 1 charge to search for Tekeli-li",
@@ -634,7 +654,28 @@
     "peaksSpareParts": "Spare Parts: add 1 supply or give 1 resource",
     "peaksSledgeLoad": "Wooden Sledge: load up to 3 Item or Supply cards",
     "peaksSledgePlay": "Play {card} from the Wooden Sledge",
-    "peaksRadio": "Small Radio – {partner}"
+    "peaksRadio": "Small Radio – {partner}",
+    "city": {
+      "cityHistory": "Spend two Elder Thing keys: study the history of the Elder Things",
+      "cityShoggoths": "Spend two Tablet keys: discern the origin of the Shoggoths",
+      "cityPower": "Spend two Cultist keys: discover a hidden power",
+      "pursuitHeal": "Spend two Cultist keys: each investigator may heal",
+      "pursuitTekelili": "Spend two Tablet keys: return every Tekeli-li to its deck",
+      "pursuitElderThings": "Spend two Elder Thing keys: remove each Elder Thing token",
+      "look": "Spend 1 clue: look at a City Landscape in your column or row",
+      "travel": "Spend 3 clues: move along your column or row",
+      "tunnel": "Hidden Tunnel: test a skill (4)",
+      "planetarium": "Spend two \"0\" keys: photograph the astronomical charts",
+      "bridgeTest": "Stone Bridge: test combat or agility (4)",
+      "bridgeMove": "Move to the Stone Bridge at row {row}, column {column}",
+      "tower": "Spend two \"-2\" keys: study the mural carvings",
+      "mapRoom": "Spend two \"-3\" keys: read the map",
+      "rampart": "Spend two \"-1\" keys: discover an ancient vault",
+      "spires": "Move the {key} key from row {row}, column {column} here",
+      "passage": "Move 1 clue to the location at row {row}, column {column}",
+      "temple": "Swap the keys of two locations",
+      "streets": "Ruinous Streets: discover 1 clue on a connecting location"
+    }
   },
   "note": {
     "edgeOfTheEarthConvincedDyer": "The investigators convinced Dyer to allow the expedition.",
@@ -650,7 +691,13 @@
     "edgeOfTheEarthClimbedSummit": "The team climbed to the summit.",
     "edgeOfTheEarthFoundAnotherWay": "The team found another way through the mountains.",
     "edgeOfTheEarthKenslerUnderstanding": "Dr. Kensler is close to understanding it.",
-    "edgeOfTheEarthScoutedCityOutskirts": "The investigators scouted the city outskirts."
+    "edgeOfTheEarthScoutedCityOutskirts": "The investigators scouted the city outskirts.",
+    "edgeOfTheEarthAstronomicalCharts": "The team photographed the astronomical charts.",
+    "edgeOfTheEarthMuralCarvings": "The team studied the mural carvings.",
+    "edgeOfTheEarthReadTheMap": "The team read the map.",
+    "edgeOfTheEarthAncientVault": "The team discovered an ancient vault.",
+    "edgeOfTheEarthFoundHiddenTunnel": "The team found the hidden tunnel.",
+    "edgeOfTheEarthGuidedToTunnel": "The team was guided to the hidden tunnel."
   },
   "campaignName": "Edge of the Earth",
   "scenarioName": "Ice and Death, Part I",
