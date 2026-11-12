@@ -1,0 +1,159 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "c8b3642f618fcfa35064e058103b135363af62c38686bd18f9e34d2c8801de0b",
+    "es": "5c0ce25d4e96d56d8f6b6be0f21dcc567147c469838b28ad7ab06d95d348c829"
+  },
+  "cards": [
+    {
+      "code": "02310",
+      "status": "verified",
+      "module": "card-02310",
+      "test": "rules.test.ts",
+      "fast": true,
+      "subname": "He Was Never There"
+    },
+    {
+      "code": "07225",
+      "status": "verified",
+      "module": "card-07225",
+      "test": "rules.test.ts",
+      "subname": "Vessel of Good and Evil",
+      "adapter": "reviewed-exceptional-v1"
+    },
+    {
+      "code": "04307",
+      "status": "verified",
+      "module": "card-04307",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "secret" },
+      "subname": "Mind-Expanding Ideas"
+    },
+    {
+      "code": "07220",
+      "status": "verified",
+      "module": "card-07220",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "03312",
+      "status": "verified",
+      "module": "card-03312",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "60406",
+      "status": "verified",
+      "module": "card-60406",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "secret" }
+    },
+    {
+      "code": "02230",
+      "status": "verified",
+      "module": "card-02230",
+      "test": "rules.test.ts",
+      "subname": "...Or Are They?",
+      "adapter": "reviewed-exceptional-v1"
+    },
+    {
+      "code": "07307",
+      "status": "verified",
+      "module": "card-07307",
+      "test": "rules.test.ts",
+      "subname": "...Or Are They?",
+      "adapter": "reviewed-exceptional-v1"
+    },
+    {
+      "code": "07161",
+      "status": "verified",
+      "module": "card-07161",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "08112",
+      "status": "verified",
+      "module": "card-08112",
+      "test": "rules.test.ts",
+      "fast": true,
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "03304",
+      "status": "verified",
+      "module": "card-03304",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "52002",
+      "status": "verified",
+      "module": "card-52002",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "11039",
+      "status": "verified",
+      "module": "card-11039",
+      "test": "rules.test.ts",
+      "fast": true,
+      "adapter": "reviewed-myriad-v1"
+    },
+    {
+      "code": "11038",
+      "status": "verified",
+      "module": "card-11038",
+      "test": "rules.test.ts",
+      "uses": { "count": 0, "type": "evidence" }
+    },
+    {
+      "code": "11103",
+      "status": "verified",
+      "module": "card-11103",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "06241",
+      "status": "verified",
+      "module": "card-06241",
+      "test": "rules.test.ts",
+      "subname": "Stamina",
+      "adapter": "reviewed-myriad-v1"
+    },
+    {
+      "code": "06242",
+      "status": "verified",
+      "module": "card-06242",
+      "test": "rules.test.ts",
+      "subname": "Alacrity",
+      "adapter": "reviewed-myriad-v1"
+    },
+    {
+      "code": "06243",
+      "status": "verified",
+      "module": "card-06243",
+      "test": "rules.test.ts",
+      "subname": "Acuity",
+      "adapter": "reviewed-myriad-v1"
+    },
+    {
+      "code": "10020",
+      "status": "verified",
+      "module": "card-10020",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "supply" }
+    },
+    {
+      "code": "10033",
+      "status": "verified",
+      "module": "card-10033",
+      "test": "rules.test.ts",
+      "uses": { "count": 4, "type": "supply" }
+    }
+  ]
+}

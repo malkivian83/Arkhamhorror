@@ -312,6 +312,8 @@ import { LASTING_ATTACHMENTS_RENDERED_CODES } from './lasting-attachments'
 import { DAMAGE_REACTIONS_RENDERED_CODES } from './damage-reactions'
 import { ENCOUNTER_DRAWS_RENDERED_CODES } from './encounter-draws'
 import { MYTHOS_GUARD_RENDERED_CODES } from './mythos-guard'
+import { NARROW_ESCAPE_RENDERED_CODES } from './narrow-escape'
+import { ADVANCED_TESTS_RENDERED_CODES } from './advanced-tests'
 import { REUSED_CAPABILITIES_RENDERED_CODES } from './reused-capabilities'
 import { REX_RENDERED_CODES } from './rex-murphy'
 import { GROUPED_RENDERED_CODES } from './grouped-import'
@@ -349,6 +351,8 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...DAMAGE_REACTIONS_RENDERED_CODES,
   ...ENCOUNTER_DRAWS_RENDERED_CODES,
   ...MYTHOS_GUARD_RENDERED_CODES,
+  ...NARROW_ESCAPE_RENDERED_CODES,
+  ...ADVANCED_TESTS_RENDERED_CODES,
   ...REUSED_CAPABILITIES_RENDERED_CODES,
   ...TOKEN_SKILL_RENDERED_CODES,
   ...SERVICE_RENDERED_CODES,

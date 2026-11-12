@@ -44,7 +44,7 @@ export function registerTekelili(): void {
       revelation: (state, investigator, self) => {
         const location = getInvestigator(state, investigator).location
         const theatre = location === '08564'
-        return [
+        const resolved: Message[] = [
           ...Array.from(
             {
               length:
@@ -68,6 +68,36 @@ export function registerTekelili(): void {
           ...(theatre
             ? [{ type: 'DiscoverClues', investigator, location, amount: 1 } satisfies Message]
             : []),
+        ]
+        // Miasmic Crystal: an investigator at this location may cancel it (bottom of the deck).
+        const crystal = Object.values(state.assets).find(
+          (asset) =>
+            asset.code === '08617' &&
+            asset.uses > 0 &&
+            location !== null &&
+            getInvestigator(state, asset.owner).location === location,
+        )
+        if (!crystal) return resolved
+        return [
+          {
+            type: 'Ask',
+            investigator: crystal.owner,
+            question: {
+              kind: 'chooseOne',
+              prompt: 'prompt.edgeOfTheEarth.peaksCrystal',
+              choices: [
+                {
+                  label: 'choice.edgeOfTheEarth.peaksCrystalUse',
+                  then: [
+                    { type: 'SpendUses', asset: crystal.id, amount: 1 },
+                    { type: 'ReturnTekelili', treachery: self.id },
+                    { type: 'DrawCards', investigator, amount: 1 },
+                  ],
+                },
+                { label: 'choice.edgeOfTheEarth.peaksCrystalKeep', then: resolved },
+              ],
+            },
+          },
         ]
       },
     })
