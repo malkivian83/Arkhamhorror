@@ -362,6 +362,7 @@ describe('reviewed inventory conversion', () => {
     'mythos-guard',
     'narrow-escape',
     'advanced-tests',
+    'action-support',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(

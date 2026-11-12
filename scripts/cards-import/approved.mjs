@@ -11,7 +11,8 @@ export function approvedDefinition(card, approval) {
   const reviewedDualFaction =
     reviewedMemento ||
     (approval.adapter === 'reviewed-dual-faction-v1' &&
-      ((['08105', '08107'].includes(card.code) && card.factions.join(',') === 'seeker,survivor') ||
+      ((['08104', '08106', '08105', '08107'].includes(card.code) &&
+        card.factions.join(',') === 'seeker,survivor') ||
         (card.code === '05119' && card.factions.join(',') === 'survivor,seeker') ||
         (card.code === '05116' && card.factions.join(',') === 'seeker,mystic') ||
         (card.code === '05117' && card.factions.join(',') === 'rogue,survivor') ||
@@ -21,7 +22,8 @@ export function approvedDefinition(card, approval) {
         (['08108', '08110', '08109', '08111'].includes(card.code) &&
           card.factions.join(',') === 'rogue,mystic') ||
         (['08083', '08086'].includes(card.code) && card.factions.join(',') === 'guardian,seeker') ||
-        (card.code === '05115' && card.factions.join(',') === 'guardian,rogue') ||
+        (['05115', '08087', '08088'].includes(card.code) &&
+          card.factions.join(',') === 'guardian,rogue') ||
         (['08094', '08096', '08095'].includes(card.code) &&
           card.factions.join(',') === 'guardian,survivor') ||
         (['08117', '08119'].includes(card.code) && card.factions.join(',') === 'mystic,survivor') ||
@@ -78,6 +80,14 @@ export function approvedDefinition(card, approval) {
     !['asset', 'event', 'skill'].includes(card.type)
   )
     throw new Error(`Unsupported pool eligibility: ${card.code}`)
+  const reviewedSinEater =
+    approval.adapter === 'reviewed-sin-eater-v1' &&
+    card.code === '09094' &&
+    card.flags.permanent &&
+    card.flags.exceptional &&
+    card.deckLimit === 1 &&
+    card.factions.join(',') === 'mystic' &&
+    card.numbers.xp?.value === 3
   const creationPermanent =
     card.flags.permanent &&
     approval.adapter === 'reviewed-creation-permanent-v1' &&
@@ -193,7 +203,8 @@ export function approvedDefinition(card, approval) {
       !reviewedDarkHorse &&
       !fieldKeywords &&
       !economyKeywords &&
-      !reviewedCovenant) ||
+      !reviewedCovenant &&
+      !reviewedSinEater) ||
     ['exceptional', 'myriad', 'exile'].some(
       (key) =>
         card.flags[key] &&
@@ -203,7 +214,11 @@ export function approvedDefinition(card, approval) {
         ) &&
         !(
           key === 'exceptional' &&
-          (reviewedBorrowedTime || fieldKeywords || economyKeywords || reviewedExceptional)
+          (reviewedBorrowedTime ||
+            fieldKeywords ||
+            economyKeywords ||
+            reviewedExceptional ||
+            reviewedSinEater)
         ) &&
         !(key === 'myriad' && reviewedMyriad),
     )
@@ -227,7 +242,9 @@ export function approvedDefinition(card, approval) {
     class: card.factions[0],
     ...(reviewedDualFaction || reviewedTalent ? { classes: card.factions } : {}),
     ...(creationPermanent ? { deckLimit: 1 } : {}),
-    ...(reviewedBorrowedTime || reviewedExceptional ? { exceptional: true, deckLimit: 1 } : {}),
+    ...(reviewedBorrowedTime || reviewedExceptional || reviewedSinEater
+      ? { exceptional: true, deckLimit: 1 }
+      : {}),
     ...(reviewedDarkHorse || reviewedCovenant ? { deckLimit: 1 } : {}),
     ...(fieldKeywords && card.flags.permanent ? { deckLimit: 1 } : {}),
     ...(fieldKeywords && card.flags.exceptional ? { exceptional: true, deckLimit: 1 } : {}),

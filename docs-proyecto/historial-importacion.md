@@ -265,3 +265,8 @@
 
 - Escape por los pelos: 1 código/carta/nivel nuevo, 0 reediciones. 1431 jugables; 686 históricos pendientes (311 estándar con impresión).
 - 10 casos específicos y 219 de regresión/registro/presentación/conversión; tipos, lint/formato, build web y recursos. La regresión de efectos por turno detectada después se corrige en 141.
+
+## Cierre del lote 141 · 907c2e90
+
+- Pruebas avanzadas y apoyos: 20 diseños/niveles nuevos, cero reediciones. 1451 jugables; 666 históricos pendientes (291 estándar). Ver [141](141-pruebas-y-apoyos.md).
+- 6972 casos amplios, 129 dirigidos finales y 35 web; tipos, lint/formato y build. La corrección de imágenes de Picos prohibidos se subió en `1103b0b6`; CI y Deploy comprobados a petición expresa, ambos correctos.

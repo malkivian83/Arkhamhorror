@@ -24,12 +24,15 @@ import mythosEs from '../../../../packages/cards/src/mythos-guard/source-es.json
 import escape from '../../../../packages/cards/src/data/narrow-escape.json'
 import escapeEn from '../../../../packages/cards/src/narrow-escape/source-en.json'
 import escapeEs from '../../../../packages/cards/src/narrow-escape/source-es.json'
+import actionSupport from '../../../../packages/cards/src/data/action-support.json'
+import actionSupportEn from '../../../../packages/cards/src/action-support/source-en.json'
+import actionSupportEs from '../../../../packages/cards/src/action-support/source-es.json'
 import advanced from '../../../../packages/cards/src/data/advanced-tests.json'
 import advancedEn from '../../../../packages/cards/src/advanced-tests/source-en.json'
 import advancedEs from '../../../../packages/cards/src/advanced-tests/source-es.json'
 import { messages } from '@lcg/i18n'
 
-it.each([...encounter, ...damage, ...mythos, ...escape, ...advanced])(
+it.each([...encounter, ...damage, ...mythos, ...escape, ...advanced, ...actionSupport])(
   '$code is unique, has legal deckbuilding/purchase behavior and official EN/ES presentation',
   (card) => {
     expect(allPlayerCardDefs().filter((c) => c.code === card.code)).toHaveLength(1)
@@ -56,6 +59,9 @@ it.each([...encounter, ...damage, ...mythos, ...escape, ...advanced])(
     campaign.log.investigators[id]!.xp = 40
     const offer = purchaseOptions(campaign, id).find((o) => o.code === offered && !o.replaces)!
     expect(offer).toBeDefined()
+    expect(
+      purchaseOptions(campaign, id).filter((o) => o.code === offered && !o.replaces),
+    ).toHaveLength(1)
     const xp = card.xp * ('exceptional' in card && card.exceptional ? 2 : 1)
     expect(offer.cost).toBe(card.xp === 0 ? (offer.needsRemoval ? 1 : 0) : xp)
     campaign = purchase(campaign, id, offered, {
@@ -69,8 +75,22 @@ it.each([...encounter, ...damage, ...mythos, ...escape, ...advanced])(
     for (const lang of ['en', 'es'] as const) {
       const source = (
         lang === 'en'
-          ? [...encounterEn, ...damageEn, ...mythosEn, ...escapeEn, ...advancedEn]
-          : [...encounterEs, ...damageEs, ...mythosEs, ...escapeEs, ...advancedEs]
+          ? [
+              ...encounterEn,
+              ...damageEn,
+              ...mythosEn,
+              ...escapeEn,
+              ...advancedEn,
+              ...actionSupportEn,
+            ]
+          : [
+              ...encounterEs,
+              ...damageEs,
+              ...mythosEs,
+              ...escapeEs,
+              ...advancedEs,
+              ...actionSupportEs,
+            ]
       ).find((c) => c.code === card.code)!
       const shown = fallbackCards(lang).filter((c) => c.code === card.code)
       const text =

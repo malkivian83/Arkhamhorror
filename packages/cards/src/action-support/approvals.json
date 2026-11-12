@@ -1,0 +1,147 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "5bbb0bcab41dd226d6efcb21a1c927a59aedbc824f9872c47f8363aca7f127a9",
+    "es": "2d8703a9aaa80547324e42028d929a8dd3e0ff12d0402a83df06782e7773b590"
+  },
+  "cards": [
+    {
+      "code": "03028",
+      "status": "verified",
+      "module": "card-03028",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "52005",
+      "status": "verified",
+      "module": "card-52005",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07309",
+      "status": "verified",
+      "module": "card-07309",
+      "test": "rules.test.ts",
+      "subname": "Coast Guard Captain"
+    },
+    {
+      "code": "07304",
+      "status": "verified",
+      "module": "card-07304",
+      "test": "rules.test.ts",
+      "uses": { "count": 0, "type": "secret" }
+    },
+    {
+      "code": "04155",
+      "status": "verified",
+      "module": "card-04155",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "09090",
+      "status": "verified",
+      "module": "card-09090",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "10118",
+      "status": "verified",
+      "module": "card-10118",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11052",
+      "status": "verified",
+      "module": "card-11052",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07022",
+      "status": "verified",
+      "module": "card-07022",
+      "test": "rules.test.ts",
+      "subname": "Untranslated"
+    },
+    {
+      "code": "05192",
+      "status": "verified",
+      "module": "card-05192",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "charge" }
+    },
+    {
+      "code": "08104",
+      "status": "verified",
+      "module": "card-08104",
+      "test": "rules.test.ts",
+      "subname": "Finder of Hidden Connections",
+      "uses": { "count": 3, "type": "secret" },
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "08106",
+      "status": "verified",
+      "module": "card-08106",
+      "test": "rules.test.ts",
+      "subname": "Finder of Hidden Connections",
+      "uses": { "count": 3, "type": "secret" },
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "11081",
+      "status": "verified",
+      "module": "card-11081",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11082",
+      "status": "verified",
+      "module": "card-11082",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "11084",
+      "status": "verified",
+      "module": "card-11084",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "08087",
+      "status": "verified",
+      "module": "card-08087",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "08088",
+      "status": "verified",
+      "module": "card-08088",
+      "test": "rules.test.ts",
+      "uses": { "count": 0, "type": "ammo" },
+      "adapter": "reviewed-dual-faction-v1"
+    },
+    {
+      "code": "04304",
+      "status": "verified",
+      "module": "card-04304",
+      "test": "rules.test.ts",
+      "uses": { "count": 3, "type": "supply" }
+    },
+    {
+      "code": "09094",
+      "status": "verified",
+      "module": "card-09094",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-sin-eater-v1"
+    },
+    {
+      "code": "07273",
+      "status": "verified",
+      "module": "card-07273",
+      "test": "rules.test.ts"
+    }
+  ]
+}
