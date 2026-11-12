@@ -609,11 +609,17 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Printed activated abilities usable while this card is in hand. */
+  handAbilities?: (state: GameState, investigator: InvestigatorId) => AbilityOption[]
+  /** Printed permission to commit this card from its owner's discard pile. */
+  commitFromDiscard?: boolean
+  /** Its printed restriction applies only to readying in upkeep. */
+  noUpkeepReady?: boolean
   /**
    * Uses on this asset may be spent as if they were on other assets its controller
    * controls with one of these traits and the same use type (Typewriter: Tome secrets).
    */
-  lendsUses?: { traits: string[]; types?: string[] }
+  lendsUses?: { traits: string[]; types?: string[]; atLocation?: boolean }
   /** Continuous health/sanity granted to controlled assets with that printed statistic. */
   controlledAssetVitals?: { health?: number; sanity?: number }
   /** This asset allows uses on another controlled asset to pay for a card. */
@@ -1144,8 +1150,13 @@ export function usesLenders(state: GameState, asset: Asset): Asset[] {
   const def = playerCardDef(asset.code)
   if (!def?.uses) return []
   return Object.values(state.assets).filter((lender) => {
-    if (lender.id === asset.id || lender.owner !== asset.owner) return false
     const lends = playerCardBehavior(lender.code)?.lendsUses
+    if (lender.id === asset.id) return false
+    if (lends?.atLocation) {
+      const here = state.investigators.find((i) => i.id === lender.owner)?.location
+      if (!here || here !== state.investigators.find((i) => i.id === asset.owner)?.location)
+        return false
+    } else if (lender.owner !== asset.owner) return false
     return (
       !!lends &&
       (lends.types

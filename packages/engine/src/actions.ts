@@ -677,6 +677,15 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
   const withTarget = (options: AbilityOption[], target: ChoiceTarget) =>
     options.map((o) => ({ target, ...o }))
   const options = [
+    ...[...new Set(investigator.hand)].flatMap((code) =>
+      cardAllowed(state, id, code) &&
+      !(assetsBlocked(state, id) && playerCardDef(code)?.type === 'asset')
+        ? withTarget(playerCardBehavior(code)?.handAbilities?.(state, id) ?? [], {
+            type: 'hand',
+            code,
+          })
+        : [],
+    ),
     ...(location.revealed
       ? withTarget(
           // Regalo de la locura (Miseria): sin habilidades [action] de Lugares.

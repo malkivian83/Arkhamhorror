@@ -22,6 +22,7 @@ import './ice-and-death-encounters'
 import './ice-and-death-locations'
 import './memorials'
 import './forbidden-peaks'
+import './city'
 
 registerExpeditionCompanions()
 registerTekelili()

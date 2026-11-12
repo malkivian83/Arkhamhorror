@@ -55,6 +55,7 @@ export type ScenarioTokenValues = Partial<
 // ---------------------------------------------------------------------------
 
 export interface Investigator {
+  nextFightTokenConversion?: { turn: number; code: CardCode }
   /** RR Keys (City of the Elder Things): chaos tokens kept as keys on this investigator. */
   keys?: ChaosToken[]
   nextTurnBenefits?: { actions: number; code: CardCode; skillBonus?: number; round?: number }[]
@@ -305,6 +306,8 @@ export interface Enemy extends EnemyCard {
  * investigator's turn, or the next attack performed against the enemy this phase.
  */
 export interface EnemyModifier {
+  cannotEngage?: InvestigatorId
+  nextDamage?: number
   source: CardCode
   until: 'round' | 'phase' | 'turn' | 'nextAttack'
   round: number
@@ -701,7 +704,14 @@ export type SkillTestKind =
       /** Extra damage if any of these tokens was revealed during the attack. */
       damageIfTokens?: { tokens: ChaosToken[]; amount: number }
     }
-  | { type: 'evade'; enemy: EnemyId; onSuccess?: Message[]; onFail?: Message[] }
+  | {
+      type: 'evade'
+      enemy: EnemyId
+      onSuccess?: Message[]
+      onFail?: Message[]
+      doNotExhaust?: boolean
+      doNotDisengage?: boolean
+    }
   | {
       /** Prueba exigida por un efecto (traición, plan…). */
       type: 'effect'
@@ -772,6 +782,7 @@ export interface TokenEffect {
 }
 
 export interface SkillTest {
+  symbolsAsZero?: boolean
   virtualToken?: ChaosToken
   earlyReveal?: boolean
   earlyRevealDone?: boolean
@@ -941,6 +952,9 @@ export type PhaseStep =
 /** `effectController`: investigator controlling the effect that produced it ("you"). */
 export type Message = MessageBody & { effectSource?: string; effectController?: InvestigatorId }
 type MessageBody =
+  | { type: 'MoveResourcesToUses'; investigator: InvestigatorId; asset: AssetId; amount: number }
+  | { type: 'PrimeFightTokenConversion'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'EndEventResolution'; code: CardCode }
   | { type: 'AddCommittedIcon'; commitId: number; icon: SkillIcon }
   | { type: 'GameBegins' }
   | { type: 'AdjustPendingEnemyDamage'; enemy: EnemyId; amount: number }
@@ -999,6 +1013,9 @@ type MessageBody =
     }
   | {
       type: 'ModifySkillTest'
+      doNotDisengage?: boolean
+      doNotExhaust?: boolean
+      onDefeat?: Message[]
       baseSkill?: number
       preserveModifier?: boolean
       noTokens?: boolean
@@ -1017,6 +1034,7 @@ type MessageBody =
       onSuccess?: Message[]
       /** Delayed consequences resolved in ST.7 if this test fails (Grisly Totem). */
       onFail?: Message[]
+      baseClues?: number
       /** Investigar con éxito no descubre pistas (Pruebas incriminatorias). */
       replaceClue?: boolean
       /** Investigate this location instead (Sixth Sense). */
@@ -1156,6 +1174,7 @@ type MessageBody =
     }
   | {
       type: 'BeginSkillTest'
+      sourceSnapshot?: Asset
       trackReveals?: boolean
       autoSuccess?: boolean
       /** The investigator already chose whether to replace the tested skill. */
@@ -1775,7 +1794,13 @@ type MessageBody =
     }
   | { type: 'DefeatEnemy'; enemy: EnemyId; by?: InvestigatorId; withoutWindows?: boolean }
   | { type: 'DefeatAllEnemiesWithoutWindows'; by: InvestigatorId }
-  | { type: 'EvadeEnemy'; enemy: EnemyId; by?: InvestigatorId }
+  | {
+      type: 'EvadeEnemy'
+      enemy: EnemyId
+      by?: InvestigatorId
+      doNotExhaust?: boolean
+      doNotDisengage?: boolean
+    }
   | { type: 'ReadyEnemy'; enemy: EnemyId }
   /** Con `enemies`, solo esos enemigos resuelven Cazador y Errante (Sr. Trombly). */
   | { type: 'HuntersMove'; enemies?: EnemyId[] }
@@ -2743,6 +2768,9 @@ export interface TurnActionGrant {
 }
 
 export interface GameState {
+  /** Nested player events whose effects are still resolving. */
+  eventResolutions?: CardCode[]
+  enemyDefeats?: { round: number; location: LocationId }[]
   /** Keys spent during this scenario (experience for each pair). */
   keysSpent?: ChaosToken[]
   /** Scenario deck. Copies in investigator decks persist as campaign story cards. */
