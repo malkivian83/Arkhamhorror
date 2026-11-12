@@ -255,3 +255,8 @@
 
 - Encuentros: 5 códigos nuevos; daño y derrota: 4. Acumulado: 1429 jugables, 688 históricos pendientes, 313 estándar con impresión.
 - Verificación heredada: 6848 casos en 634 archivos y 143 casos finales de reglas/registro/presentación/visibilidad; 5807 imágenes y miniaturas. Detalles en 137 y 138.
+
+## Cierre del lote 139 · ff3806ca
+
+- Paz vigilante: 1 código/carta/nivel nuevo, 0 reediciones. 1430 jugables y 687 históricos pendientes (312 estándar con impresión).
+- 175 casos dirigidos, 65 de regresión y conversión; tipos cards/engine, lint/formato, build web y 5809 imágenes/miniaturas. Detalles en 139.

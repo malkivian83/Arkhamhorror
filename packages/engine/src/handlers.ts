@@ -105,6 +105,7 @@ import {
   usesAsResources,
   turnAheadThisRound,
   turnStartedAt,
+  turnActionTiming,
   currentTurnSkillEffect,
   updateEnemy,
   updateInvestigator,
@@ -5279,6 +5280,7 @@ export function handle(state: GameState, message: Message): GameState {
               nextTestBonus: _bonus,
               nextRoundTestBonus: _roundBonus,
               nextPhaseTestBonus: _phaseBonus,
+              nextTurnTestBonus: _turnBonus,
               ...rest
             }) => {
               if (!noTokens) return rest
@@ -5308,6 +5310,10 @@ export function handle(state: GameState, message: Message): GameState {
               (message.modifier ?? 0) +
               (message.skill === 'combat' ? attachedFightBonus(state, message.kind) : 0) +
               (investigator.nextTestBonus ?? 0) +
+              (turnActionTiming(state) !== null &&
+              investigator.nextTurnTestBonus?.turn === turnStartedAt(state)
+                ? investigator.nextTurnTestBonus.amount
+                : 0) +
               (investigator.nextRoundTestBonus?.round === state.round
                 ? investigator.nextRoundTestBonus.amount
                 : 0) +
@@ -7591,6 +7597,20 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'NextTestBonus':
+      if (message.thisTurn)
+        return turnActionTiming(state) === null
+          ? state
+          : updateInvestigator(state, message.investigator, (i) => ({
+              ...i,
+              nextTurnTestBonus: {
+                turn: turnStartedAt(state),
+                amount:
+                  message.amount +
+                  (i.nextTurnTestBonus?.turn === turnStartedAt(state)
+                    ? i.nextTurnTestBonus.amount
+                    : 0),
+              },
+            }))
       if (message.thisRound)
         return updateInvestigator(state, message.investigator, (i) => ({
           ...i,

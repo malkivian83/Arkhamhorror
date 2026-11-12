@@ -141,6 +141,7 @@ export interface Investigator {
   nextTestBonus?: number
   nextRoundTestBonus?: { amount: number; round: number }
   nextPhaseTestBonus?: { amount: number; phase: Phase; round: number }
+  nextTurnTestBonus?: { amount: number; turn: number }
   /** Additional actions for their turn later in this round (Stella Clark). */
   roundTurnActions?: { round: number; amount: number }
   /** No chaos tokens for their next skill test during the turn started at this log index. */
@@ -1583,6 +1584,7 @@ type MessageBody =
       type: 'NextTestBonus'
       investigator: InvestigatorId
       amount: number
+      thisTurn?: boolean
       thisPhase?: boolean
       thisRound?: boolean
     }

@@ -3584,6 +3584,7 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "03267": "Fortuna.",
       "07269": "Espíritu. Bendecido.",
       "03305": "Objeto. Protección. Reliquia.",
       "03269": "Objeto. Amuleto.",
@@ -4401,6 +4402,7 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "03267": "Rápido. Juega esta carta cuando un Enemigo realice un ataque de oportunidad contra ti.\nCancela ese ataque. Recibe +2 a tu valor de habilidad para la siguiente prueba de habilidad que realices en este turno.",
       "07269": "Como coste adicional para jugar Paz vigilante, busca en la bolsa de caos y/o en cartas en juego un total de 5 fichas [bless] y devuélvelas a la reserva de fichas.\nRápido. Juega esta carta cuando fuese a comenzar el paso de «robar cartas de Encuentro» de la fase de Mitos.\nSáltate este paso de la fase de Mitos.",
       "03305": "[reaction] Cuando se asigne daño a la Armadura de Ardenas, agota la Armadura de Ardenas: Cancela 1 punto de ese daño.",
       "03269": "Recibe +1 [willpower], +1 [intellect] y -2 de cordura.\n[reaction] Cuando fueses a ser derrotado por horror, descarta la Llave de san Huberto: Cúrate 2 puntos de horror inmediatamente.",
@@ -5650,6 +5652,7 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "03267": "Escape por los pelos",
       "07269": "Paz vigilante",
       "03305": "Armadura de Ardenas",
       "03269": "Llave de san Huberto",

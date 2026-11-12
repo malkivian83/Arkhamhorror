@@ -21,8 +21,11 @@ import damageEs from '../../../../packages/cards/src/damage-reactions/source-es.
 import mythos from '../../../../packages/cards/src/data/mythos-guard.json'
 import mythosEn from '../../../../packages/cards/src/mythos-guard/source-en.json'
 import mythosEs from '../../../../packages/cards/src/mythos-guard/source-es.json'
+import escape from '../../../../packages/cards/src/data/narrow-escape.json'
+import escapeEn from '../../../../packages/cards/src/narrow-escape/source-en.json'
+import escapeEs from '../../../../packages/cards/src/narrow-escape/source-es.json'
 
-it.each([...encounter, ...damage, ...mythos])(
+it.each([...encounter, ...damage, ...mythos, ...escape])(
   '$code is unique, has legal deckbuilding/purchase behavior and official EN/ES presentation',
   (card) => {
     expect(allPlayerCardDefs().filter((c) => c.code === card.code)).toHaveLength(1)
@@ -62,8 +65,8 @@ it.each([...encounter, ...damage, ...mythos])(
     for (const lang of ['en', 'es'] as const) {
       const source = (
         lang === 'en'
-          ? [...encounterEn, ...damageEn, ...mythosEn]
-          : [...encounterEs, ...damageEs, ...mythosEs]
+          ? [...encounterEn, ...damageEn, ...mythosEn, ...escapeEn]
+          : [...encounterEs, ...damageEs, ...mythosEs, ...escapeEs]
       ).find((c) => c.code === card.code)!
       const shown = fallbackCards(lang).filter((c) => c.code === card.code)
       const text =

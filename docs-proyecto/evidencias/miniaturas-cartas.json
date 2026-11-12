@@ -34854,6 +34854,18 @@
       "sourceSha256": "d111c64d3961ad4b3b2d1f909543e06a1c0908d5748db734e568f49efbdfc087",
       "path": "/local-assets/cards/es/thumbs/07269.webp",
       "sha256": "5bdd1b06829c4a8c85299d132ef838017f83ebd0575f7fb5a0a2b8090ea22d61"
+    },
+    {
+      "source": "/local-assets/cards/en/03267.avif",
+      "sourceSha256": "b8cd2f119bbf7f06ba2c6aa67d035350e3e9b4912170d56d89af4b0023269f08",
+      "path": "/local-assets/cards/en/thumbs/03267.webp",
+      "sha256": "e76bee683a801c2a035b0e9d7b80f0115559853be2352095767f035f313b6cd4"
+    },
+    {
+      "source": "/local-assets/cards/es/03267.avif",
+      "sourceSha256": "f29f24caec8d30a32e5ed39c12db153be62c8299ad9ccba951283c7e972491ac",
+      "path": "/local-assets/cards/es/thumbs/03267.webp",
+      "sha256": "d405af347481c5c0c73c4d5ff6b556de837879950184f865160b0d8eaf87a93e"
     }
   ]
 }

@@ -1,0 +1,14 @@
+[
+  {
+    "code": "03267",
+    "name": "Narrow Escape",
+    "type": "event",
+    "class": "rogue",
+    "traits": ["Fortune"],
+    "cost": 0,
+    "xp": 0,
+    "icons": { "agility": 2 },
+    "slots": [],
+    "fast": true
+  }
+]
