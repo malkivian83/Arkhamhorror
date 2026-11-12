@@ -176,7 +176,20 @@ sin publicar, `[ ]` pendiente.
     de los cuatro pasajes de Noche infinita (cuota de ElevenLabs agotada el
     12/11/2026), cuyos textos esperan en `tmp/peaks-pending/`; después, activar
     Picos en el selector.
-12. [ ] Ciudad de los Antiguos (08621).
+12. [~] Ciudad de los Antiguos (08621), guía pp. 36–43. Lotes previstos:
+    1. [x] Llaves en el motor (`keys` en Lugares, investigadores y enemigos,
+       `PlaceKey`, `SpendKeys`, `keysSpent`, `afterTakeKey`, gancho `keysBlocked`):
+       tomar la llave de un Lugar sin pistas y darla en el mismo Lugar como
+       habilidades libres; al ser eliminado, las llaves quedan en su Lugar. Se ven
+       en Lugares, enemigos y zona del jugador. Pruebas en `keys.test.ts`.
+    2. [ ] 16 Paisajes urbanos con caras ocultas al azar, mapas de las tres
+       versiones, Túnel oculto, llaves al azar, actos y planes por versión.
+    3. [ ] Encuentros: Antiguos benigno y revivido, Terror de las estrellas,
+       Comprensión de la verdad, Ruinas en mal estado, Congelado y Poseído,
+       Pingüinos y Shoggoths.
+    4. [ ] Introducción con elección de grupo, interludio Contemplar la locura,
+       resoluciones (experiencia por cada par de llaves gastadas), textos EN/ES
+       y locuciones.
 13. [ ] El corazón de la locura I y II (08648a/b) y epílogo.
 
 **Presentación y publicación**
