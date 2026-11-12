@@ -10062,6 +10062,36 @@ export function handle(state: GameState, message: Message): GameState {
     case 'Heal': {
       const target = getInvestigator(state, message.investigator)
       if (target.eliminated) return state
+      // Treacheries healed as a single point of damage or horror on you (Frostbitten, Possessed).
+      if (!message.treacheriesHealed) {
+        const healable = (kind: 'damage' | 'horror', amount: number) =>
+          Object.values(state.treacheries)
+            .filter(
+              (t) =>
+                t.placement.type === 'threatArea' &&
+                t.placement.investigator === target.id &&
+                treacheryBehavior(t.code)?.healsAs === kind,
+            )
+            .slice(0, Math.max(0, amount))
+        const damage = damageHealingBlocked(state, target.id)
+          ? []
+          : healable('damage', message.damage)
+        const horror = healable('horror', message.horror)
+        if (damage.length || horror.length)
+          return push(
+            state,
+            ...[...damage, ...horror].map((t): Message => ({
+              type: 'DiscardTreachery',
+              treachery: t.id,
+            })),
+            {
+              ...message,
+              damage: message.damage - damage.length,
+              horror: message.horror - horror.length,
+              treacheriesHealed: true,
+            },
+          )
+      }
       // Called to Guinée: the investigator cannot heal damage (horror still heals).
       const healed = damageHealingBlocked(state, target.id)
         ? 0

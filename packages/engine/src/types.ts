@@ -2015,6 +2015,8 @@ type MessageBody =
       damage: number
       horror: number
       healer?: InvestigatorId
+      /** Treacheries healed as points of damage or horror were already discarded. */
+      treacheriesHealed?: boolean
     }
   | { type: 'Resign'; investigator: InvestigatorId }
   | { type: 'DefeatInvestigator'; investigator: InvestigatorId }

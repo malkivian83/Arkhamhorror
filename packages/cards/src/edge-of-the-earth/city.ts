@@ -32,6 +32,7 @@ import {
   sameLine,
   type CityVersion,
 } from './city-cards'
+import { cityEncounterStep, dropEnemyKeys, keysAround } from './city-encounter-rules'
 import { cityEncounters } from './city-encounters'
 import { interludeBonuses } from './forbidden-peaks'
 import { sledgeAbilities, supplyStep } from './forbidden-peaks-supplies'
@@ -602,6 +603,13 @@ export const cityRules: ScenarioBehavior = {
     const test = state.skillTest
     const investigator = trigger.investigator
     const messages: Message[] = []
+    // Crumbling Ruins: a token matching a key here (or held here) fails the test automatically.
+    if (
+      test.kind.type === 'effect' &&
+      test.kind.source === '08645' &&
+      keysAround(state, investigator).includes(trigger.token)
+    )
+      messages.push({ type: 'ForceSkillTestFailure' })
     // Tablet: a [frost] revealed during this test makes it fail (hard: also 1 damage).
     const tokens = test.tokens
     const earlier = tokens.slice(0, -1)
@@ -660,6 +668,7 @@ export const cityRules: ScenarioBehavior = {
   abilities: (state, _self, investigator) => sledgeAbilities(state, investigator),
   specific: (state, key, data) =>
     cityStep(state, key, data) ??
+    cityEncounterStep(state, key, data) ??
     supplyStep(state, key, data) ??
     iceAndDeathRules.specific?.(state, key, data) ??
     state,
@@ -922,7 +931,7 @@ function cityStep(state: GameState, key: string, data: Record<string, unknown>):
               label: 'choice.enemy',
               params: { enemy: enemy.name },
               target: { type: 'enemy' as const, id: enemy.id },
-              then: [{ type: 'DiscardEnemy', enemy: enemy.id } as Message],
+              then: [...dropEnemyKeys(enemy), { type: 'DiscardEnemy', enemy: enemy.id } as Message],
             })),
           ...Object.values(state.treacheries)
             .filter(
