@@ -27,11 +27,13 @@ export function attackDamage(state: GameState, test: SkillTest): number {
       ? kind.damageIfTokens.amount
       : 0) +
     (test.succeeded && !immune
-      ? test.committed.reduce(
-          (sum, c) =>
-            sum + (playerCardBehavior(c.code)?.committedAttackDamage?.(state, test, c.by) ?? 0),
-          0,
-        )
+      ? test.committed
+          .filter((c) => !c.returnToHand && !c.putIntoPlay)
+          .reduce(
+            (sum, c) =>
+              sum + (playerCardBehavior(c.code)?.committedAttackDamage?.(state, test, c.by) ?? 0),
+            0,
+          )
       : 0) +
     (test.succeeded && kind.damageIfSuccessBy && margin >= kind.damageIfSuccessBy.atLeast
       ? kind.damageIfSuccessBy.amount
