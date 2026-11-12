@@ -247,13 +247,30 @@ export function handle(state: GameState, message: Message): GameState {
         { type: 'Step', step: 'checkDoom' },
         { type: 'CheckAgenda' },
         { type: 'Step', step: 'drawEncounter' },
+        { type: 'BeginMythosEncounterStep' },
+        { type: 'Forced', trigger: { type: 'mythosPhaseEnds' } },
+        { type: 'Step', step: 'mythosEnds' },
+      )
+
+    // RR 1.4: replacement effects interrupt the entire draw step, after the agenda check.
+    case 'BeginMythosEncounterStep':
+      return push(
+        state,
+        { type: 'Forced', trigger: { type: 'whenMythosEncounterStepBegins' } },
+        { type: 'MythosEncounterStep' },
+      )
+    case 'MythosEncounterStep':
+      return push(
+        state,
         ...activeInvestigators(state).map((i): Message => ({
           type: 'DrawEncounterCard',
           investigator: i.id,
         })),
-        { type: 'Forced', trigger: { type: 'mythosPhaseEnds' } },
-        { type: 'Step', step: 'mythosEnds' },
       )
+    case 'SkipMythosEncounterStep': {
+      const index = state.queue.findIndex((m) => m.type === 'MythosEncounterStep')
+      return index < 0 ? state : { ...state, queue: state.queue.filter((_, n) => n !== index) }
+    }
 
     case 'Step': {
       const next = log({ ...state, phaseStep: message.step }, `log.step.${message.step}`, {

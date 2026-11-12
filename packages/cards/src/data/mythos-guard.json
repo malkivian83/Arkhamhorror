@@ -1,0 +1,14 @@
+[
+  {
+    "code": "07269",
+    "name": "A Watchful Peace",
+    "type": "event",
+    "class": "survivor",
+    "traits": ["Spirit", "Blessed"],
+    "cost": 1,
+    "xp": 3,
+    "icons": { "willpower": 2 },
+    "slots": [],
+    "fast": true
+  }
+]

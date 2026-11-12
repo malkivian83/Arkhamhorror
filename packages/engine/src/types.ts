@@ -1008,6 +1008,9 @@ type MessageBody =
   | { type: 'BoonOsiris'; investigator: InvestigatorId }
   | { type: 'Round' }
   | { type: 'MythosPhase' }
+  | { type: 'BeginMythosEncounterStep' }
+  | { type: 'MythosEncounterStep' }
+  | { type: 'SkipMythosEncounterStep' }
   /** Empieza un paso de fase: la mesa lo resalta y queda en el registro. */
   | { type: 'Step'; step: PhaseStep; investigator?: InvestigatorId }
   | { type: 'InvestigationPhase' }
@@ -2307,6 +2310,7 @@ export type Trigger =
     }
   | { type: 'roundBegins' }
   | { type: 'mythosPhaseBegins' }
+  | { type: 'whenMythosEncounterStepBegins' }
   | { type: 'afterHunterMove'; enemy: EnemyId }
   | { type: 'agendaAdvances'; code?: CardCode }
   | { type: 'afterGainClues'; investigator: InvestigatorId; amount: number }
