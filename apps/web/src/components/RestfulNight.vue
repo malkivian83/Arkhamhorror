@@ -56,9 +56,13 @@ function confirm() {
   })
   partner.value = undefined
 }
+// Interlude I: Restful Night, or Interlude II: Endless Night (Night 3 returns to the mirage).
+const endless = computed(() => props.interlude.night === 'endless')
 const stories = computed(() => {
-  const parts = props.interlude.canContinue ? ['restfulNightDawn'] : ['restfulNight']
-  if (props.interlude.canContinue && props.interlude.offersMirage) parts.push('restfulNightDoor')
+  const night = endless.value ? 'endlessNight' : 'restfulNight'
+  const parts = props.interlude.canContinue ? [`${night}Dawn`] : [night]
+  if (props.interlude.canContinue && props.interlude.offersMirage)
+    parts.push(props.interlude.mirageFrost ? 'endlessNightReturn' : `${night}Door`)
   return parts.map((part) => ({
     title: `story.edgeOfTheEarth.${part}.title`,
     body: `story.edgeOfTheEarth.${part}.body`,
@@ -120,10 +124,16 @@ const stories = computed(() => {
         icon="→"
         :disabled="disabled"
         @click="emit('finish', 'mirage')"
-        >{{ t('choice.edgeOfTheEarth.nightMirage') }}</SiteAction
+        >{{
+          t(
+            interlude.mirageFrost
+              ? 'choice.edgeOfTheEarth.nightMirageFrost'
+              : 'choice.edgeOfTheEarth.nightMirage',
+          )
+        }}</SiteAction
       >
       <SiteAction icon="→" :disabled="disabled" @click="emit('finish', 'peaks')">{{
-        t('choice.edgeOfTheEarth.nightPeaks')
+        t(endless ? 'choice.edgeOfTheEarth.nightCity' : 'choice.edgeOfTheEarth.nightPeaks')
       }}</SiteAction>
     </div>
   </section>

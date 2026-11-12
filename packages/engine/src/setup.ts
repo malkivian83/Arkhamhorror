@@ -43,6 +43,8 @@ export interface ScenarioDefinition {
   /** Con null, los mensajes de preparación del escenario colocan a los investigadores. */
   startingLocation: LocationId | null
   startingResources?: number
+  /** Cartas iniciales y recursos adicionales de algunos investigadores (Los confines de la Tierra). */
+  startingBonuses?: Record<InvestigatorId, { openingHand?: number; resources?: number }>
   /** El investigador jefe empieza aquí y los demás en `startingLocation` (Excelsior). */
   leadStartingLocation?: LocationId
   /** Investigadores que empiezan en otro Lugar (Lola Hayes en Bastidores). */
@@ -142,7 +144,10 @@ export function prepareGame({
   const permanents = (setup: InvestigatorSetup) =>
     setup.deck.filter((code) => playerCardBehavior(code)?.permanent)
   const bonus = (setup: InvestigatorSetup, key: 'openingHand' | 'resources') =>
-    permanents(setup).reduce((n, code) => n + (playerCardBehavior(code)?.permanent?.[key] ?? 0), 0)
+    permanents(setup).reduce(
+      (n, code) => n + (playerCardBehavior(code)?.permanent?.[key] ?? 0),
+      scenario.startingBonuses?.[setup.id]?.[key] ?? 0,
+    )
   const players: Investigator[] = investigators.map((setup) => {
     let deck: CardCode[]
     ;[deck, rng] = shuffle(

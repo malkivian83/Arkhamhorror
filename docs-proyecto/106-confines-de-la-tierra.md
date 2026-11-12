@@ -163,11 +163,19 @@ sin publicar, `[ ]` pendiente.
     necesitan el propio apoyo (Takada base); el Cristal de miasma se ofrece al
     revelar ¡Tekeli-li!; el Espécimen ignora la Helada en su prueba. Los escenarios
     posteriores deben reutilizar `sledgeAbilities` y `supplyStep`.
-    Pruebas en `forbidden-peaks.test.ts` (23).
-    Pendiente: locuciones de los seis pasajes nuevos y de las caras 08597–08599
-    (cuota de ElevenLabs agotada el 12/11/2026), cuyos textos esperan en
-    `tmp/peaks-pending/`; referencia de fichas; enlace con Noche infinita;
-    activación en el selector.
+    Referencia de fichas con la carta 08596. Las bonificaciones de Danforth y Takada
+    de Noche reposada se aplican al empezar (`startingBonuses` del escenario).
+    Pruebas en `forbidden-peaks.test.ts` (24).
+    Interludio II: Noche infinita (pp. 31–35) reutiliza `restful-night.ts` con
+    `night: 'endless'`: visitas propias (cuatro si se encontró otro camino), Kensler
+    solo si compartió su investigación, notas de las afueras y de Kensler, cartas o
+    recursos extra para la Ciudad, Memoriales, y puerta del Espejismo si ya se visitó
+    (añade 1 Helada) o hay tres bajas. El recorrido sigue a una segunda entrada de
+    Espejismo letal y a la Ciudad. Pruebas en `endless-night.test.ts`.
+    Pendiente: locuciones de los seis pasajes de Picos, de las caras 08597–08599 y
+    de los cuatro pasajes de Noche infinita (cuota de ElevenLabs agotada el
+    12/11/2026), cuyos textos esperan en `tmp/peaks-pending/`; después, activar
+    Picos en el selector.
 12. [ ] Ciudad de los Antiguos (08621).
 13. [ ] El corazón de la locura I y II (08648a/b) y epílogo.
 

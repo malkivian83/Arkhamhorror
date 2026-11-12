@@ -88,6 +88,7 @@ export function forbiddenPeaks(context: ScenarioContext): ScenarioDefinition {
   const doom = context.difficulty === 'expert' ? 2 : context.difficulty === 'hard' ? 1 : 0
   const recovered = context.log.expedition?.supplies ?? []
   return {
+    startingBonuses: interludeBonuses(context, 'edgeOfTheEarthPeaks'),
     id: EOTE_FORBIDDEN_PEAKS,
     intro: story('peaksIntro1'),
     setupInstructions: story('peaksSetup'),
@@ -132,6 +133,23 @@ export function forbiddenPeaks(context: ScenarioContext): ScenarioDefinition {
       { type: 'ChooseExpeditionPartners' },
     ],
   }
+}
+
+/**
+ * Restful Night (Danforth, Takada) and Endless Night: the chosen investigator begins the
+ * next scenario with 2 additional cards in their opening hand, or 3 additional resources.
+ */
+export function interludeBonuses(
+  context: ScenarioContext,
+  prefix: string,
+): NonNullable<ScenarioDefinition['startingBonuses']> {
+  const bonuses: NonNullable<ScenarioDefinition['startingBonuses']> = {}
+  const hand = context.log.values[`${prefix}:startingHand`]
+  const resources = context.log.values[`${prefix}:startingResources`]
+  if (hand && context.investigators.includes(hand)) bonuses[hand] = { openingHand: 2 }
+  if (resources && context.investigators.includes(resources))
+    bonuses[resources] = { ...bonuses[resources], resources: 3 }
+  return bonuses
 }
 
 function ask(investigator: InvestigatorId, prompt: string, choices: Choice[]): Message[] {

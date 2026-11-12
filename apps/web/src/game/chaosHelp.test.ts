@@ -25,6 +25,16 @@ describe('chaos token help', () => {
       expect(text).toContain('-4')
       expect(text).toMatch(/automáticamente|automatically/)
     })
+    it(`${locale}: reads both faces of the To the Forbidden Peaks reference`, () => {
+      const state = {
+        scenarioId: 'edge-of-the-earth-forbidden-peaks',
+        difficulty: 'standard' as const,
+      }
+      expect(chaosHelp(state, 'tablet', locale, t)).toMatch(/^[–-]3\./)
+      expect(chaosHelp({ ...state, difficulty: 'expert' }, 'elderThing', locale, t)).toMatch(
+        /^[–-]5\./,
+      )
+    })
     it(`${locale}: uses the correct official Excelsior reference face`, () => {
       const state = { scenarioId: 'murder-at-the-excelsior-hotel', difficulty: 'standard' as const }
       expect(chaosHelp(state, 'tablet', locale, t)).toContain('-3')

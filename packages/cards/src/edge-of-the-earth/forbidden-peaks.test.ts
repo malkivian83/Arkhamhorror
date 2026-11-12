@@ -131,6 +131,29 @@ describe('To the Forbidden Peaks', () => {
     expect(scouted.locations['08600']?.clues).toBe(3)
   })
 
+  it('applies the Restful Night bonuses of Danforth and Takada to the chosen investigators', () => {
+    const plain = start(campaignAt([], 'standard', 2))
+    const [joe, daniela] = plain.investigators.map(({ id }) => id) as [string, string]
+    const game = start(
+      campaignAt(
+        [
+          { type: 'RecordNote', note: 'edgeOfTheEarthPeaks:startingHand', value: joe },
+          { type: 'RecordNote', note: 'edgeOfTheEarthPeaks:startingResources', value: daniela },
+        ],
+        'standard',
+        2,
+      ),
+    )
+    const size = (state: GameState, id: string) => {
+      const player = getInvestigator(state, id)
+      return player.hand.length + player.discard.length
+    }
+    expect(size(game, joe) - size(plain, joe)).toBe(2)
+    expect(
+      getInvestigator(game, daniela).resources - getInvestigator(plain, daniela).resources,
+    ).toBe(3)
+  })
+
   it('puts the recovered supplies into play at level 0 and adds doom on Hard', () => {
     const game = start(
       campaignAt(

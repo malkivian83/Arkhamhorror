@@ -9,6 +9,8 @@ import {
   EOTE_RESTFUL_NIGHT,
   EOTE_FATAL_MIRAGE,
   EOTE_FORBIDDEN_PEAKS,
+  EOTE_ENDLESS_NIGHT,
+  EOTE_CITY,
   ICE_PART_TWO,
 } from './ice-and-death-cards'
 import { iceAndDeathPartOne } from './ice-and-death'
@@ -53,5 +55,9 @@ registerCampaign({
     { id: EOTE_RESTFUL_NIGHT, checkpoint: true },
     { id: EOTE_FATAL_MIRAGE, build: fatalMirage, keywords: ['frost', 'aloof', 'parley'] },
     { id: EOTE_FORBIDDEN_PEAKS },
+    { id: EOTE_ENDLESS_NIGHT, checkpoint: true },
+    // Endless Night may send the expedition into the mirage once more before the city.
+    { id: EOTE_FATAL_MIRAGE, build: fatalMirage, keywords: ['frost', 'aloof', 'parley'] },
+    { id: EOTE_CITY },
   ],
 })

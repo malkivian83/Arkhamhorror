@@ -38,6 +38,7 @@ export function chaosHelp(
     'ice-and-death-part-2': localeData(locale).edgeOfTheEarthCards['08501'],
     'ice-and-death-part-3': localeData(locale).edgeOfTheEarthCards['08501'],
     'edge-of-the-earth-fatal-mirage': localeData(locale).edgeOfTheEarthCards['08549'],
+    'edge-of-the-earth-forbidden-peaks': localeData(locale).edgeOfTheEarthCards['08596'],
     'murder-at-the-excelsior-hotel': localeData(locale).excelsiorCards['84001'],
     'late-risers': localeData(locale).plaguebearerCards['78001'],
     'night-on-the-town': localeData(locale).plaguebearerCards['78019'],

@@ -524,7 +524,11 @@
       "experience": "Choose who gains 1 experience.",
       "research": "Record that Dr. Kensler is sharing her research.",
       "scouting": "Record that the expedition scouted the mountain pass.",
-      "startingResources": "Choose who starts To the Forbidden Peaks with three extra resources."
+      "startingResources": "Choose who starts To the Forbidden Peaks with three extra resources.",
+      "understanding": "Record that Dr. Kensler is close to understanding it.",
+      "scoutingCity": "Record that the investigators scouted the city outskirts.",
+      "cityStartingHand": "Choose who begins City of the Elder Things with two additional cards in their opening hand.",
+      "cityStartingResources": "Choose who begins City of the Elder Things with three additional resources."
     },
     "nightConfirm": "Confirm visit",
     "memorialAnyuMove": "Move to a connecting location",
@@ -546,7 +550,9 @@
     "peaksGainResource": "{name} gains 1 resource",
     "peaksSledgeDone": "Stop searching",
     "peaksCrystalUse": "Cancel it and draw 1 card",
-    "peaksCrystalKeep": "Resolve it"
+    "peaksCrystalKeep": "Resolve it",
+    "nightCity": "Continue to the City of the Elder Things",
+    "nightMirageFrost": "Enter the mirage once more (add 1 frost token)"
   },
   "prompt": {
     "claypool": "Avery Claypool: choose how to cancel the frost token",
@@ -642,7 +648,9 @@
     "edgeOfTheEarthKenslerResearch": "Dr. Kensler is sharing her research with the investigators.",
     "edgeOfTheEarthScoutedMountainPass": "The investigators scouted the mountain pass.",
     "edgeOfTheEarthClimbedSummit": "The team climbed to the summit.",
-    "edgeOfTheEarthFoundAnotherWay": "The team found another way through the mountains."
+    "edgeOfTheEarthFoundAnotherWay": "The team found another way through the mountains.",
+    "edgeOfTheEarthKenslerUnderstanding": "Dr. Kensler is close to understanding it.",
+    "edgeOfTheEarthScoutedCityOutskirts": "The investigators scouted the city outskirts."
   },
   "campaignName": "Edge of the Earth",
   "scenarioName": "Ice and Death, Part I",
@@ -653,5 +661,7 @@
   "partThreeName": "Ice and Death, Part III",
   "restfulNightName": "Interlude I: Restful Night",
   "fatalMirageName": "Fatal Mirage",
-  "forbiddenPeaksName": "To the Forbidden Peaks"
+  "forbiddenPeaksName": "To the Forbidden Peaks",
+  "endlessNightName": "Interlude II: Endless Night",
+  "cityName": "City of the Elder Things"
 }

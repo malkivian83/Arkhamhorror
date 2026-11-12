@@ -524,7 +524,11 @@
       "experience": "Elige quién gana 1 punto de experiencia.",
       "research": "Anota que la Dra. Kensler comparte su investigación.",
       "scouting": "Anota que la expedición exploró el paso de montaña.",
-      "startingResources": "Elige quién comienza Hacia los picos prohibidos con tres recursos adicionales."
+      "startingResources": "Elige quién comienza Hacia los picos prohibidos con tres recursos adicionales.",
+      "understanding": "Anota que la Dra. Kensler está a punto de entenderlo.",
+      "scoutingCity": "Anota que los investigadores exploraron las afueras de la ciudad.",
+      "cityStartingHand": "Elige quién comienza Ciudad de los Antiguos con dos cartas adicionales en su mano inicial.",
+      "cityStartingResources": "Elige quién comienza Ciudad de los Antiguos con tres recursos adicionales."
     },
     "nightConfirm": "Confirmar visita",
     "memorialAnyuMove": "Muévete a un Lugar conectado",
@@ -546,7 +550,9 @@
     "peaksGainResource": "{name} obtiene 1 recurso",
     "peaksSledgeDone": "Dejar de buscar",
     "peaksCrystalUse": "Cancelarlo y robar 1 carta",
-    "peaksCrystalKeep": "Resolverlo"
+    "peaksCrystalKeep": "Resolverlo",
+    "nightCity": "Seguir hacia la Ciudad de los Antiguos",
+    "nightMirageFrost": "Adentrarse otra vez en el espejismo (añade 1 ficha de Helada)"
   },
   "prompt": {
     "claypool": "Avery Claypool: elige cómo cancelar la ficha de Helada",
@@ -642,7 +648,9 @@
     "edgeOfTheEarthKenslerResearch": "La Dra. Kensler comparte su investigación con los investigadores.",
     "edgeOfTheEarthScoutedMountainPass": "Los investigadores exploraron el paso de montaña.",
     "edgeOfTheEarthClimbedSummit": "El equipo escaló hasta la cima.",
-    "edgeOfTheEarthFoundAnotherWay": "El equipo encontró otro modo de atravesar las montañas."
+    "edgeOfTheEarthFoundAnotherWay": "El equipo encontró otro modo de atravesar las montañas.",
+    "edgeOfTheEarthKenslerUnderstanding": "La Dra. Kensler está a punto de entenderlo.",
+    "edgeOfTheEarthScoutedCityOutskirts": "Los investigadores exploraron las afueras de la ciudad."
   },
   "campaignName": "Los confines de la Tierra",
   "scenarioName": "Hielo y muerte, parte I",
@@ -653,5 +661,7 @@
   "partThreeName": "Hielo y muerte, parte III",
   "restfulNightName": "Interludio I: Noche reposada",
   "fatalMirageName": "Espejismo letal",
-  "forbiddenPeaksName": "Hacia los picos prohibidos"
+  "forbiddenPeaksName": "Hacia los picos prohibidos",
+  "endlessNightName": "Interludio II: Noche infinita",
+  "cityName": "Ciudad de los Antiguos"
 }

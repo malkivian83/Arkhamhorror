@@ -42,6 +42,8 @@ export const messages = {
       'edge-of-the-earth-restful-night': edgeOfTheEarth.restfulNightName,
       'edge-of-the-earth-fatal-mirage': edgeOfTheEarth.fatalMirageName,
       'edge-of-the-earth-forbidden-peaks': edgeOfTheEarth.forbiddenPeaksName,
+      'edge-of-the-earth-endless-night': edgeOfTheEarth.endlessNightName,
+      'edge-of-the-earth-city-of-the-elder-things': edgeOfTheEarth.cityName,
     },
   },
   setup: {
