@@ -2,6 +2,8 @@ import {
   availableAbilities,
   dispatch,
   enemyMaxHealth,
+  playerCardBehavior,
+  playerCardDef,
   getInvestigator,
   type GameState,
   type Message,
@@ -324,6 +326,171 @@ describe('To the Forbidden Peaks encounter cards', () => {
     expect(terror.health).toBe(6)
     game = dispatch(game, { type: 'Forced', trigger: { type: 'roundEnds' } })
     expect(getInvestigator(game, me(game)).location).toBe(at(game, 1))
+  })
+})
+
+describe('Expedition supplies', () => {
+  /** Joe at level 0 controlling the recovered supply; the location clues are cleared. */
+  function holding(code: string, extra: Message[] = []): GameState {
+    let game = ready(
+      start(campaignAt([{ type: 'RecoverExpeditionSupply', supply: code as never }, ...extra])),
+    )
+    const placed = Object.values(game.placedAssets ?? {})[0]!
+    game = dispatch(game, {
+      type: 'TakeControlOfPlaced',
+      placed: placed.id,
+      investigator: me(game),
+    })
+    return {
+      ...game,
+      interactive: false,
+      investigators: game.investigators.map((player) => ({ ...player, hand: [] as string[] })),
+    }
+  }
+  /** Single choices resolve on their own. */
+  const pick = (game: GameState, label: string, params = {}) =>
+    game.pending ? choose(game, label, params) : game
+  const asset = (game: GameState, code: string) =>
+    Object.values(game.assets).find((entry) => entry.code === code)!
+  const use = (game: GameState, key: string) => {
+    const ability = availableAbilities(game, me(game)).find((entry) => entry.key.includes(key))!
+    return dispatch(game, {
+      type: 'UseAbility',
+      investigator: me(game),
+      key: ability.key,
+      actions: ability.actions,
+      provokes: ability.provokes,
+      ...(ability.costs ? { costs: ability.costs } : {}),
+      then: ability.then,
+    })
+  }
+
+  it('Green Soapstone adds 1 damage to a successful attack', () => {
+    const game = holding('08614')
+    const soapstone = asset(game, '08614')
+    const [reaction] = playerCardBehavior('08614')!.reactions!(
+      game,
+      {
+        type: 'beforeEnemyDamage',
+        enemy: 'e1',
+        investigator: me(game),
+        amount: 1,
+        source: { attack: true },
+      },
+      soapstone,
+    )
+    expect(reaction?.then).toContainEqual({
+      type: 'AdjustPendingEnemyDamage',
+      enemy: 'e1',
+      amount: 1,
+    })
+    expect(
+      playerCardBehavior('08614')!.reactions!(
+        game,
+        { type: 'beforeEnemyDamage', enemy: 'e1', investigator: me(game), amount: 1 },
+        soapstone,
+      ),
+    ).toEqual([])
+  })
+
+  it('Dynamite deals 3 damage to each enemy and investigator at the chosen location', () => {
+    let game = holding('08616')
+    game = dispatch(game, {
+      type: 'SpawnEnemy',
+      card: scavenger,
+      location: at(game, 0),
+      engageWith: null,
+    })
+    game = use(game, ':blast')
+    game = pick(game, 'choice.location', { location: game.locations[at(game, 0)]!.name })
+    expect(Object.values(game.enemies)).toHaveLength(0)
+    // The engaged enemy also makes its attack of opportunity (1 damage).
+    expect(game.log.at(-1)).toMatchObject({
+      key: 'log.damage',
+      params: { source: 'Dynamite', damage: 3 },
+    })
+    expect(asset(game, '08616')).toMatchObject({ uses: 1, exhausted: true })
+  })
+
+  it('Mineral Specimen investigates with base intellect 5, cancelling frost', () => {
+    let game: GameState = { ...holding('08618'), chaosBag: ['frost'] }
+    const location = at(game, 0)
+    game = {
+      ...game,
+      locations: {
+        ...game.locations,
+        [location]: { ...game.locations[location]!, shroud: 5, clues: 3 },
+      },
+    }
+    game = pick(use(game, ':investigate'), 'choice.skip')
+    expect(getInvestigator(game, me(game)).clues).toBe(2)
+    expect(asset(game, '08618').uses).toBe(2)
+  })
+
+  it('Spare Parts gives an investigator at your location 1 resource', () => {
+    let game = holding('08620')
+    const before = getInvestigator(game, me(game)).resources
+    game = use(game, ':parts')
+    game = pick(game, 'choice.edgeOfTheEarth.peaksGainResource')
+    expect(getInvestigator(game, me(game)).resources).toBe(before + 1)
+  })
+
+  it('Wooden Sledge carries Item cards that can be played from it', () => {
+    expect(playerCardDef('01087')?.traits).toContain('Item')
+    let game = holding('08615')
+    game = {
+      ...game,
+      investigators: game.investigators.map((player) => ({
+        ...player,
+        deck: ['01087', ...player.deck.filter((code) => code !== '01087')],
+        resources: 5,
+      })),
+    }
+    game = use(game, ':load')
+    game = choose(game, 'choice.card', { card: playerCardDef('01087')!.name })
+    game = choose(game, 'choice.edgeOfTheEarth.peaksSledgeDone')
+    expect(game.scenarioDecks?.peaksSledge).toEqual([`${me(game)}|01087`])
+    expect(getInvestigator(game, me(game)).deck).not.toContain('01087')
+    const play = availableAbilities(game, me(game)).find(({ key }) => key.startsWith('sledge:'))!
+    game = dispatch(game, {
+      type: 'UseAbility',
+      investigator: me(game),
+      key: play.key,
+      actions: play.actions,
+      provokes: play.provokes,
+      then: play.then,
+    })
+    expect(Object.values(game.assets).some(({ code }) => code === '01087')).toBe(true)
+    expect(game.scenarioDecks?.peaksSledge).toEqual([])
+  })
+
+  it('Small Radio uses the abilities of absent partners for its own costs', () => {
+    const game = holding('08619')
+    const radio = availableAbilities(game, me(game)).filter(({ key }) => key.includes(':radio:'))
+    expect(radio.length).toBeGreaterThan(0)
+    for (const ability of radio) {
+      expect(ability.costs?.slice(0, 2)).toEqual([
+        { type: 'ExhaustAsset', asset: asset(game, '08619').id },
+        { type: 'SpendUses', asset: asset(game, '08619').id, amount: 1 },
+      ])
+      expect(JSON.stringify([ability.costs, ability.then])).not.toContain('~')
+    }
+  })
+
+  it('Miasmic Crystal cancels a Tekeli-li drawn at its location', () => {
+    let game = holding('08617')
+    game = { ...game, interactive: true }
+    game = dispatch(game, {
+      type: 'ShuffleTekeliliIntoDeck',
+      investigator: me(game),
+      amount: 1,
+      drawInstead: true,
+    })
+    expect(game.pending?.question.prompt).toBe('prompt.edgeOfTheEarth.peaksCrystal')
+    const deck = game.tekeliliDeck?.length ?? 0
+    game = choose(game, 'choice.edgeOfTheEarth.peaksCrystalUse')
+    expect(asset(game, '08617').uses).toBe(2)
+    expect(game.tekeliliDeck?.length).toBe(deck + 1)
   })
 })
 

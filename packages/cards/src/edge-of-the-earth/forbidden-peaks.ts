@@ -37,6 +37,7 @@ import {
   terrorOfTheStars,
 } from './forbidden-peaks-cards'
 import { peaksEncounterStep } from './forbidden-peaks-encounters'
+import { sledgeAbilities, supplyStep } from './forbidden-peaks-supplies'
 import { attached } from './ice-and-death'
 import { EOTE_FORBIDDEN_PEAKS, encounters } from './ice-and-death-cards'
 import { iceCanAddFrost } from './ice-and-death-locations'
@@ -424,6 +425,7 @@ export const forbiddenPeaksRules: ScenarioBehavior = {
       )
     )
   },
+  abilities: (state, _self, investigator) => sledgeAbilities(state, investigator),
   cannotDiscoverClues: (_state, _investigator, location, investigating) =>
     location === SUMMIT && !investigating,
   blanksTreachery: (state, card) => iceTreacheryBlank(state, card.id),
@@ -586,7 +588,7 @@ export const forbiddenPeaksRules: ScenarioBehavior = {
           : state
       }
       default:
-        return peaksEncounterStep(state, key, data) ?? state
+        return peaksEncounterStep(state, key, data) ?? supplyStep(state, key, data) ?? state
     }
   },
 }

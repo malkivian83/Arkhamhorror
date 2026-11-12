@@ -541,7 +541,12 @@
     "mentalTrauma": "Cada investigador sufre 1 trauma mental",
     "asset": "{name}",
     "peaksAddSupply": "{name} añade {card} (+1 de experiencia)",
-    "peaksSkipSupply": "Nadie lo añade"
+    "peaksSkipSupply": "Nadie lo añade",
+    "peaksAddSupplyTo": "Añadir 1 suministro a {card}",
+    "peaksGainResource": "{name} obtiene 1 recurso",
+    "peaksSledgeDone": "Dejar de buscar",
+    "peaksCrystalUse": "Cancelarlo y robar 1 carta",
+    "peaksCrystalKeep": "Resolverlo"
   },
   "prompt": {
     "claypool": "Avery Claypool: elige cómo cancelar la ficha de Helada",
@@ -569,7 +574,12 @@
     "peaksHardship": "Elige cómo soporta la expedición la penuria",
     "peaksLoseExpedition": "Elige el Apoyo Expedición del que pierdes el control",
     "peaksExpeditionDeck": "¿Quién añade este Apoyo Expedición a su mazo?",
-    "peaksHypothermia": "Hipotermia: elige su consecuencia"
+    "peaksHypothermia": "Hipotermia: elige su consecuencia",
+    "peaksDynamite": "Elige dónde estalla la dinamita",
+    "peaksSpareParts": "Elige para qué se usan las piezas de repuesto",
+    "peaksSledgeSearcher": "¿Quién busca en su mazo cartas para el trineo?",
+    "peaksSledgeCard": "Elige una carta para vincularla boca abajo al trineo",
+    "peaksCrystal": "¿Usas el Cristal de miasma para cancelar este Tekeli-li?"
   },
   "ability": {
     "memorialPoe": "{card}: gasta 1 carga para buscar ¡Tekeli-li!",
@@ -611,7 +621,14 @@
     "comfort": "Calma a {name}",
     "takeEnemyDoom": "Toma la perdición como pista",
     "fleeCamp": "Gasta 4 pistas para desistir",
-    "peaksTakeSupply": "Tomar el control de {card}"
+    "peaksTakeSupply": "Tomar el control de {card}",
+    "peaksSoapstone": "Esteatita verde: inflige +1 de daño en este ataque",
+    "peaksDynamite": "Dinamita: 3 de daño en tu Lugar o en uno conectado",
+    "peaksSpecimen": "Espécimen mineral: investiga con intelecto básico 5",
+    "peaksSpareParts": "Piezas de repuesto: añade 1 suministro o da 1 recurso",
+    "peaksSledgeLoad": "Trineo de madera: carga hasta 3 cartas Objeto o Suministro",
+    "peaksSledgePlay": "Jugar {card} desde el Trineo de madera",
+    "peaksRadio": "Radio pequeña – {partner}"
   },
   "note": {
     "edgeOfTheEarthConvincedDyer": "Los investigadores convencieron a Dyer de que permitiera la expedición.",

@@ -155,12 +155,19 @@ sin publicar, `[ ]` pendiente.
     fichas según el nivel, forzados al subir, planes que devuelven las pistas,
     Terror de las estrellas con el interludio Golpea la tragedia, desistir en La
     cumbre, R1/R2 con suministros tachados y Apoyos añadidos al mazo, y las cartas
-    de Encuentro del escenario y de Antiguos. Pruebas en `forbidden-peaks.test.ts`.
-    Pendiente: Trineo de madera y Radio pequeña (jugar cartas adjuntas y usar
-    compañeros fuera de juego) y los otros cinco suministros; locuciones de los
-    seis pasajes nuevos y de las caras 08597–08599 (cuota de ElevenLabs agotada el
-    12/11/2026), cuyos textos esperan en `tmp/peaks-pending/`; referencia de
-    fichas; enlace con Noche infinita; activación en el selector.
+    de Encuentro del escenario y de Antiguos. Los siete suministros de Expedición
+    (`forbidden-peaks-supplies.ts`): el Trineo guarda las cartas en
+    `scenarioDecks.peaksSledge` y ofrece jugarlas como habilidad del escenario a
+    quien esté en su Lugar; la Radio reutiliza habilidades y reacciones de los
+    compañeros vivos fuera de juego sobre un apoyo virtual y descarta las que
+    necesitan el propio apoyo (Takada base); el Cristal de miasma se ofrece al
+    revelar ¡Tekeli-li!; el Espécimen ignora la Helada en su prueba. Los escenarios
+    posteriores deben reutilizar `sledgeAbilities` y `supplyStep`.
+    Pruebas en `forbidden-peaks.test.ts` (23).
+    Pendiente: locuciones de los seis pasajes nuevos y de las caras 08597–08599
+    (cuota de ElevenLabs agotada el 12/11/2026), cuyos textos esperan en
+    `tmp/peaks-pending/`; referencia de fichas; enlace con Noche infinita;
+    activación en el selector.
 12. [ ] Ciudad de los Antiguos (08621).
 13. [ ] El corazón de la locura I y II (08648a/b) y epílogo.
 

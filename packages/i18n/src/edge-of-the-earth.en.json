@@ -541,7 +541,12 @@
     "mentalTrauma": "Each investigator suffers 1 mental trauma",
     "asset": "{name}",
     "peaksAddSupply": "{name} adds {card} (+1 experience)",
-    "peaksSkipSupply": "Nobody adds it"
+    "peaksSkipSupply": "Nobody adds it",
+    "peaksAddSupplyTo": "Add 1 supply to {card}",
+    "peaksGainResource": "{name} gains 1 resource",
+    "peaksSledgeDone": "Stop searching",
+    "peaksCrystalUse": "Cancel it and draw 1 card",
+    "peaksCrystalKeep": "Resolve it"
   },
   "prompt": {
     "claypool": "Avery Claypool: choose how to cancel the frost token",
@@ -569,7 +574,12 @@
     "peaksHardship": "Choose how the expedition endures the hardship",
     "peaksLoseExpedition": "Choose the Expedition asset you lose control of",
     "peaksExpeditionDeck": "Who adds this Expedition asset to their deck?",
-    "peaksHypothermia": "Hypothermia: choose its consequence"
+    "peaksHypothermia": "Hypothermia: choose its consequence",
+    "peaksDynamite": "Choose where the dynamite explodes",
+    "peaksSpareParts": "Choose what the spare parts are used for",
+    "peaksSledgeSearcher": "Who searches their deck for the sledge?",
+    "peaksSledgeCard": "Choose a card to attach facedown to the sledge",
+    "peaksCrystal": "Use the Miasmic Crystal to cancel this Tekeli-li?"
   },
   "ability": {
     "memorialPoe": "{card}: spend 1 charge to search for Tekeli-li",
@@ -611,7 +621,14 @@
     "comfort": "Calm {name}",
     "takeEnemyDoom": "Take the doom as a clue",
     "fleeCamp": "Spend 4 clues to resign",
-    "peaksTakeSupply": "Take control of {card}"
+    "peaksTakeSupply": "Take control of {card}",
+    "peaksSoapstone": "Green Soapstone: deal +1 damage for this attack",
+    "peaksDynamite": "Dynamite: 3 damage at your location or a connecting one",
+    "peaksSpecimen": "Mineral Specimen: investigate with base intellect 5",
+    "peaksSpareParts": "Spare Parts: add 1 supply or give 1 resource",
+    "peaksSledgeLoad": "Wooden Sledge: load up to 3 Item or Supply cards",
+    "peaksSledgePlay": "Play {card} from the Wooden Sledge",
+    "peaksRadio": "Small Radio – {partner}"
   },
   "note": {
     "edgeOfTheEarthConvincedDyer": "The investigators convinced Dyer to allow the expedition.",
