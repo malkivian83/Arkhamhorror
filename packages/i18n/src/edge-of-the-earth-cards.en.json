@@ -641,6 +641,169 @@
     "traits": "Ally. Wayfarer. Resolute.",
     "text": "Partner. Uses (9 resources).\n[action] Exhaust Takada Hiroko: Gain 1 resource. Move up to 3 resources from Takada Hiroko to your resource pool."
   },
+  "08596": {
+    "name": "To the Forbidden Peaks",
+    "typeCode": "scenario",
+    "text": "Easy / Standard\n[skull]: -X. X is the level of your location.\n[cultist]: -1. If you fail, after this test ends move to the location directly below you.\n[tablet]: -3. If you fail, lose control of an [[Expedition]] asset and place it at your location.\n[elder_thing]: -4. If you fail, the nearest [[Elder Thing]] enemy moves once toward you. If it is engaged with you, it attacks.",
+    "backText": "Hard / Expert\n[skull]: -X. X is 2 plus the level of your location.\n[cultist]: -1. After this test ends move to the location directly below you.\n[tablet]: -4. If you fail, lose control of an [[Expedition]] asset and place it at your location.\n[elder_thing]: -5. If you fail, the nearest [[Elder Thing]] enemy moves once toward you. If it is engaged with you, it attacks."
+  },
+  "08600": {
+    "name": "Deep Drifts",
+    "typeCode": "location",
+    "traits": "Mountain.",
+    "text": "<b>Forced</b> - After you move to Deep Drifts from a location below it: Discard the top 3 cards of your deck. Draw each weakness discarded this way.",
+    "backName": "Mountainside",
+    "backText": "You cannot enter this location unless all of the clues on the location directly below it have been discovered.",
+    "backFlavor": "\"The touch of evil mystery in these barrier mountains, and in the beckoning sea of opalescent sky glimpsed betwixt their summits, was a highly subtle and attenuated matter...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08601": {
+    "name": "White Bluff",
+    "typeCode": "location",
+    "traits": "Mountain.",
+    "text": "<b>Forced</b> - After you move to White Bluff from a location below it: Test [agility] (X). X is 1 plus this location's level. If you fail, lose control of an [[Expedition]] asset and place it at White Bluff.",
+    "backName": "Mountainside",
+    "backText": "You cannot enter this location unless all of the clues on the location directly below it have been discovered.",
+    "backFlavor": "\"The touch of evil mystery in these barrier mountains, and in the beckoning sea of opalescent sky glimpsed betwixt their summits, was a highly subtle and attenuated matter...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08602": {
+    "name": "Steep Incline",
+    "typeCode": "location",
+    "traits": "Mountain.",
+    "text": "<b>Forced</b> - After you move to Steep Incline from a location below it: Take 1 damage.",
+    "flavor": "\"The last stage of our descent to the town was unusually steep and abrupt....\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>",
+    "backName": "Mountainside",
+    "backText": "You cannot enter this location unless all of the clues on the location directly below it have been discovered.",
+    "backFlavor": "\"The touch of evil mystery in these barrier mountains, and in the beckoning sea of opalescent sky glimpsed betwixt their summits, was a highly subtle and attenuated matter...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08603": {
+    "name": "Narrow Ridge",
+    "typeCode": "location",
+    "traits": "Mountain.",
+    "text": "<b>Forced</b> - After you move to Narrow Ridge from a location below it: Take 1 horror.",
+    "flavor": "\"...before noon we all felt a thrill of excitement at beholding a vast, lofty, and snow-clad mountain chain which opened out and covered the whole vista ahead.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>",
+    "backName": "Mountainside",
+    "backText": "You cannot enter this location unless all of the clues on the location directly below it have been discovered.",
+    "backFlavor": "\"The touch of evil mystery in these barrier mountains, and in the beckoning sea of opalescent sky glimpsed betwixt their summits, was a highly subtle and attenuated matter...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08604": {
+    "name": "Rocky Ledge",
+    "typeCode": "location",
+    "traits": "Mountain.",
+    "text": "<b>Forced</b> - After you move to Rocky Ledge from a location below it: Shuffle the top card of the Tekeli-li deck into your deck without looking at it.",
+    "flavor": "\"They had crossed the icy peaks on whose templed slopes they had once worshipped and roamed among the tree-ferns.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>",
+    "backName": "Mountainside",
+    "backText": "You cannot enter this location unless all of the clues on the location directly below it have been discovered.",
+    "backFlavor": "\"The touch of evil mystery in these barrier mountains, and in the beckoning sea of opalescent sky glimpsed betwixt their summits, was a highly subtle and attenuated matter...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08605": {
+    "name": "Snow-Covered Crag",
+    "typeCode": "location",
+    "traits": "Mountain.",
+    "text": "<b>Forced</b> - After you move to Snow-Covered Crag from a location below it: Exhaust each asset you control.",
+    "flavor": "\"The distribution of cryptical cave-mouths on the black snow-denuded summits seemed roughly even....\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>",
+    "backName": "Mountainside",
+    "backText": "You cannot enter this location unless all of the clues on the location directly below it have been discovered.",
+    "backFlavor": "\"The touch of evil mystery in these barrier mountains, and in the beckoning sea of opalescent sky glimpsed betwixt their summits, was a highly subtle and attenuated matter...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08606": {
+    "name": "Windswept Path",
+    "typeCode": "location",
+    "traits": "Mountain.",
+    "text": "<b>Forced</b> - After Windswept Path is revealed: If it is at level 0, place 1 [per_investigator] clues on it <i>(from the token pool)</i>.\n<b>Forced</b> - After you move to Windswept Path from a location below it: Place 1 clue on it <i>(from the token pool)</i>.",
+    "backName": "Mountainside",
+    "backText": "You cannot enter this location unless all of the clues on the location directly below it have been discovered.",
+    "backFlavor": "\"The touch of evil mystery in these barrier mountains, and in the beckoning sea of opalescent sky glimpsed betwixt their summits, was a highly subtle and attenuated matter...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08607": {
+    "name": "The Summit",
+    "typeCode": "location",
+    "traits": "Mountain.",
+    "text": "Clues on The Summit can only be discovered by investigating.\n<b>Forced</b> - When The Summit is revealed: Add 1 [frost] token to the chaos bag.\n[action]: <b>Resign.</b> Add each [[Expedition]] asset you control to the victory display. Return all of your clues to the token pool.",
+    "backText": "You cannot enter this location unless all of the clues on the location directly below it have been discovered.",
+    "backFlavor": "\"As we drew near the forbidding peaks, dark and sinister above the line of crevasse-riven snow and interstitial glaciers, we noticed more and more the curiously regular formations...\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08608": {
+    "name": "Terror of the Stars",
+    "subname": "Guardian of Forbidden Peaks",
+    "typeCode": "enemy",
+    "traits": "Monster. Eidolon. Elite.",
+    "text": "Hunter. Massive.\nTerror of the Stars gets +3 [per_investigator] health.\nX is the level of your location (to a minimum of 1).\n<b>Forced</b> - At the end of the round: Move all investigators at Terror of the Stars's location to the location directly below it."
+  },
+  "08609": {
+    "name": "Constricting Elder Thing",
+    "typeCode": "enemy",
+    "traits": "Monster. Elder Thing.",
+    "text": "Hunter.\nX is the level of your location (to a minimum of 1).\nWhile Constricting Elder Thing is engaged with you, you cannot move to locations above your location."
+  },
+  "08610": {
+    "name": "Snowfall",
+    "typeCode": "treachery",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Place 2 clues on your location <i>(from the token pool)</i>.",
+    "flavor": "\"...the still lower horizon-grazing southern sun of midnight poured its hazy reddish rays over the white snow, bluish ice and water lanes, and black bits of exposed granite slope.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08611": {
+    "name": "Avalanche",
+    "typeCode": "treachery",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - If the level of your location is 1-4, move to the location directly below you. Then test [willpower] (X). X is the level of your location. If you fail, repeat this process. If you did not move by this effect, Avalanche gains surge."
+  },
+  "08612": {
+    "name": "Hanging on the Edge",
+    "typeCode": "treachery",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Test [agility] (3). If you fail, take 2 damage, lose control of each [[Expedition]] asset you control (placing it at your location), and move to the location directly below you."
+  },
+  "08613": {
+    "name": "Hypothermia",
+    "typeCode": "treachery",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Test [willpower] (3). If the level of your location is 4 or 5, reveal 1 additional chaos token for this skill test. If you fail, either add 1 [frost] token to the chaos bag, or take 1 horror for each point you failed by."
+  },
+  "08614": {
+    "name": "Green Soapstone",
+    "subname": "Jinxed Idol",
+    "typeCode": "asset",
+    "traits": "Item. Expedition.",
+    "text": "Uses (4 charges).\n[reaction] When you perform a successful attack, spend 1 charge and exhaust Green Soapstone: Deal +1 damage for that attack."
+  },
+  "08615": {
+    "name": "Wooden Sledge",
+    "typeCode": "asset",
+    "traits": "Item. Expedition.",
+    "text": "[action] Exhaust Wooden Sledge: An investigator at this location searches the top 6 cards of their deck for up to 3 non-weakness [[Item]] or [[Supply]] cards and attaches them facedown to Wooden Sledge. Shuffle their deck.\nWhile Wooden Sledge is under an investigator's control, facedown cards attached to it may be played as if they were in the hand of any investigator at its location."
+  },
+  "08616": {
+    "name": "Dynamite",
+    "typeCode": "asset",
+    "traits": "Item. Expedition.",
+    "text": "Uses (2 supplies).\n[action] Spend 1 supply and exhaust Dynamite: Choose either your location or a connecting location. Deal 3 damage to each enemy and investigator at the chosen location."
+  },
+  "08617": {
+    "name": "Miasmic Crystal",
+    "subname": "Strange Evidence",
+    "typeCode": "asset",
+    "traits": "Item. Relic. Expedition.",
+    "text": "Uses (3 charges).\n[reaction] When an investigator at your location draws a Tekeli-li weakness, spend 1 charge: That investigator cancels the effects of that weakness, places it on the bottom of the Tekeli-li deck, and draws 1 card."
+  },
+  "08618": {
+    "name": "Mineral Specimen",
+    "typeCode": "asset",
+    "traits": "Item. Relic. Expedition.",
+    "text": "Uses (3 charges).\n[action] Spend 1 charge: <b>Investigate.</b> Investigate with a base [intellect] skill of 5. Cancel each [frost] token revealed during this test. If you succeed, discover 1 additional clue at your location."
+  },
+  "08619": {
+    "name": "Small Radio",
+    "typeCode": "asset",
+    "traits": "Item. Expedition.",
+    "text": "Uses (3 supplies).\nYou may trigger abilities on assets from the <i>Expedition Team</i> encounter set that are not in play, but whose names are not crossed off in the Campaign Log. Instead of paying that ability's non-[action] costs, exhaust Small Radio and spend 1 supply."
+  },
+  "08620": {
+    "name": "Spare Parts",
+    "typeCode": "asset",
+    "traits": "Item. Expedition.",
+    "text": "Uses (3 supplies).\n[fast] Spend 1 supply and exhaust Spare Parts: Add 1 supply to another asset at your location, or choose an investigator at your location to gain 1 resource."
+  },
   "08687": {
     "name": "Primordial Evil",
     "typeCode": "enemy",
@@ -688,6 +851,25 @@
     "typeCode": "treachery",
     "traits": "Hazard.",
     "text": "<b>Revelation</b> - Attach to your location.\n<b>Forced</b> - When you end your turn at attached location: Each card you control with health <i>(including your investigator)</i> takes 1 direct damage.\n<b>Forced</b> - At the end of the round: Discard Polar Vortex."
+  },
+  "08695": {
+    "name": "Elder Thing Scavenger",
+    "typeCode": "enemy",
+    "traits": "Monster. Elder Thing.",
+    "text": "Hunter.\n<b>Forced</b> - After Elder Thing Scavenger attacks you: Discard the top 3 cards of your deck. Draw each weakness discarded this way.",
+    "flavor": "\"Of the life of the Old Ones, both under the sea and after part of them migrated to land, volumes could be written.\"\n - H. P. Lovecraft, <i>At the Mountains of Madness</i>"
+  },
+  "08696": {
+    "name": "Guardian Elder Thing",
+    "typeCode": "enemy",
+    "traits": "Monster. Elder Thing.",
+    "text": "Hunter.\n<b>Forced</b> - When you deal damage to Guardian Elder Thing: For each point of damage dealt, discard the top card of your deck. Draw each weakness discarded this way."
+  },
+  "08697": {
+    "name": "Rise of the Elder Things",
+    "typeCode": "treachery",
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Find the topmost [[Elder Thing]] enemy in the encounter discard pile and spawn it engaged with you. Each [[Elder Thing]] enemy currently engaged with you gets +1 fight and +1 evade until the end of the round. If Rise of the Elder Things put no enemies into play, it gains surge."
   },
   "08698": {
     "name": "Ice Shaft",

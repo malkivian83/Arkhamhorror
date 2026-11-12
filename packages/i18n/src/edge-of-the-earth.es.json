@@ -536,7 +536,12 @@
     "memorialBoost": "Recibir +2 al valor de habilidad",
     "memorialBootsDiscard": "Descartar las botas para moverte a {location}",
     "nightMirage": "Adentrarse en el espejismo",
-    "nightPeaks": "Seguir hacia los picos prohibidos"
+    "nightPeaks": "Seguir hacia los picos prohibidos",
+    "physicalTrauma": "Cada investigador sufre 1 trauma físico",
+    "mentalTrauma": "Cada investigador sufre 1 trauma mental",
+    "asset": "{name}",
+    "peaksAddSupply": "{name} añade {card} (+1 de experiencia)",
+    "peaksSkipSupply": "Nadie lo añade"
   },
   "prompt": {
     "claypool": "Avery Claypool: elige cómo cancelar la ficha de Helada",
@@ -560,7 +565,11 @@
     "nightVisits": "Visitas restantes: {remaining}",
     "nightPartner": "Elige un miembro de la expedición",
     "nightTarget": "Elige quién recibe el beneficio",
-    "nightWeaknesses": "Elige hasta cinco debilidades"
+    "nightWeaknesses": "Elige hasta cinco debilidades",
+    "peaksHardship": "Elige cómo soporta la expedición la penuria",
+    "peaksLoseExpedition": "Elige el Apoyo Expedición del que pierdes el control",
+    "peaksExpeditionDeck": "¿Quién añade este Apoyo Expedición a su mazo?",
+    "peaksHypothermia": "Hipotermia: elige su consecuencia"
   },
   "ability": {
     "memorialPoe": "{card}: gasta 1 carga para buscar ¡Tekeli-li!",
@@ -601,7 +610,8 @@
     "rescue": "Negocia con {name} ({progress}/{required})",
     "comfort": "Calma a {name}",
     "takeEnemyDoom": "Toma la perdición como pista",
-    "fleeCamp": "Gasta 4 pistas para desistir"
+    "fleeCamp": "Gasta 4 pistas para desistir",
+    "peaksTakeSupply": "Tomar el control de {card}"
   },
   "note": {
     "edgeOfTheEarthConvincedDyer": "Los investigadores convencieron a Dyer de que permitiera la expedición.",
@@ -613,7 +623,9 @@
     "edgeOfTheEarthBarelyEscaped": "El equipo logró escapar del campo de hielo a duras penas.",
     "edgeOfTheEarthDefeatedCreatures": "El equipo derrotó a las criaturas cazadoras.",
     "edgeOfTheEarthKenslerResearch": "La Dra. Kensler comparte su investigación con los investigadores.",
-    "edgeOfTheEarthScoutedMountainPass": "Los investigadores exploraron el paso de montaña."
+    "edgeOfTheEarthScoutedMountainPass": "Los investigadores exploraron el paso de montaña.",
+    "edgeOfTheEarthClimbedSummit": "El equipo escaló hasta la cima.",
+    "edgeOfTheEarthFoundAnotherWay": "El equipo encontró otro modo de atravesar las montañas."
   },
   "campaignName": "Los confines de la Tierra",
   "scenarioName": "Hielo y muerte, parte I",

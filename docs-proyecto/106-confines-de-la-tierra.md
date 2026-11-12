@@ -148,7 +148,19 @@ sin publicar, `[ ]` pendiente.
    Su resolución enlaza con La desaparición.
 9. [x] Hielo y muerte II y III (08501b/c) y sus puntos de control, jugables en local.
 10. [x] Noche reposada y Espejismo letal (08549).
-11. [ ] Hacia los picos prohibidos (08596).
+11. [~] Hacia los picos prohibidos (08596), preparado sin habilitar (guía pp. 27–30).
+    Hecho: diagonal de 5 Laderas al azar y La cumbre con niveles 0–5, entrada
+    bloqueada si quedan pistas abajo, pasajes de la introducción con Helada o
+    trauma, mitad de pistas iniciales si se oteó el paso, suministros en el nivel 0,
+    fichas según el nivel, forzados al subir, planes que devuelven las pistas,
+    Terror de las estrellas con el interludio Golpea la tragedia, desistir en La
+    cumbre, R1/R2 con suministros tachados y Apoyos añadidos al mazo, y las cartas
+    de Encuentro del escenario y de Antiguos. Pruebas en `forbidden-peaks.test.ts`.
+    Pendiente: Trineo de madera y Radio pequeña (jugar cartas adjuntas y usar
+    compañeros fuera de juego) y los otros cinco suministros; locuciones de los
+    seis pasajes nuevos y de las caras 08597–08599 (cuota de ElevenLabs agotada el
+    12/11/2026), cuyos textos esperan en `tmp/peaks-pending/`; referencia de
+    fichas; enlace con Noche infinita; activación en el selector.
 12. [ ] Ciudad de los Antiguos (08621).
 13. [ ] El corazón de la locura I y II (08648a/b) y epílogo.
 

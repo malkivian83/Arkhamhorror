@@ -536,7 +536,12 @@
     "memorialBoost": "Get +2 skill value",
     "memorialBootsDiscard": "Discard the boots to move to {location}",
     "nightMirage": "Enter the mirage",
-    "nightPeaks": "Continue to the forbidden peaks"
+    "nightPeaks": "Continue to the forbidden peaks",
+    "physicalTrauma": "Each investigator suffers 1 physical trauma",
+    "mentalTrauma": "Each investigator suffers 1 mental trauma",
+    "asset": "{name}",
+    "peaksAddSupply": "{name} adds {card} (+1 experience)",
+    "peaksSkipSupply": "Nobody adds it"
   },
   "prompt": {
     "claypool": "Avery Claypool: choose how to cancel the frost token",
@@ -560,7 +565,11 @@
     "nightVisits": "Visits remaining: {remaining}",
     "nightPartner": "Choose a member of the expedition",
     "nightTarget": "Choose who receives the benefit",
-    "nightWeaknesses": "Choose up to five weaknesses"
+    "nightWeaknesses": "Choose up to five weaknesses",
+    "peaksHardship": "Choose how the expedition endures the hardship",
+    "peaksLoseExpedition": "Choose the Expedition asset you lose control of",
+    "peaksExpeditionDeck": "Who adds this Expedition asset to their deck?",
+    "peaksHypothermia": "Hypothermia: choose its consequence"
   },
   "ability": {
     "memorialPoe": "{card}: spend 1 charge to search for Tekeli-li",
@@ -601,7 +610,8 @@
     "rescue": "Parley with {name} ({progress}/{required})",
     "comfort": "Calm {name}",
     "takeEnemyDoom": "Take the doom as a clue",
-    "fleeCamp": "Spend 4 clues to resign"
+    "fleeCamp": "Spend 4 clues to resign",
+    "peaksTakeSupply": "Take control of {card}"
   },
   "note": {
     "edgeOfTheEarthConvincedDyer": "The investigators convinced Dyer to allow the expedition.",
@@ -613,7 +623,9 @@
     "edgeOfTheEarthBarelyEscaped": "The team barely escaped the ice shelf.",
     "edgeOfTheEarthDefeatedCreatures": "The team defeated the hunting creatures.",
     "edgeOfTheEarthKenslerResearch": "Dr. Kensler is sharing her research with the investigators.",
-    "edgeOfTheEarthScoutedMountainPass": "The investigators scouted the mountain pass."
+    "edgeOfTheEarthScoutedMountainPass": "The investigators scouted the mountain pass.",
+    "edgeOfTheEarthClimbedSummit": "The team climbed to the summit.",
+    "edgeOfTheEarthFoundAnotherWay": "The team found another way through the mountains."
   },
   "campaignName": "Edge of the Earth",
   "scenarioName": "Ice and Death, Part I",

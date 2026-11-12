@@ -579,6 +579,169 @@
     "traits": "Aliado. Viajero. Decidido.",
     "text": "Compañero. Usos (9 recursos).\n[action] Agota a Takada Hiroko: Obtén 1 recurso. Mueve hasta 3 recursos de Takada Hiroko a tu reserva de recursos."
   },
+  "08596": {
+    "name": "Hacia los picos prohibidos",
+    "typeCode": "scenario",
+    "text": "<b>Fácil/Normal</b>\n[skull]: –X. X es el nivel de tu Lugar.\n[cultist]: –1. Si fracasas, muévete al Lugar inmediatamente debajo de ti.\n[tablet]: –3. Si fracasas, pierdes el control de un Apoyo [[Expedición]] y lo colocas en tu Lugar.\n[elder_thing]: –4. Si fracasas, el Enemigo [[Antiguo]] más cercano se mueve una vez hacia ti. Si está enfrentado a ti, ataca.",
+    "backText": "<b>Difícil/Experto</b>\n[skull]: –X. X es el nivel de tu Lugar más 2.\n[cultist]: –1. Muévete al Lugar inmediatamente debajo de ti.\n[tablet]: –4. Si fracasas, pierdes el control de un Apoyo [[Expedición]] y lo colocas en tu Lugar.\n[elder_thing]: –5. Si fracasas, el Enemigo [[Antiguo]] más cercano se mueve una vez hacia ti. Si está enfrentado a ti, ataca."
+  },
+  "08600": {
+    "name": "Ventisqueros profundos",
+    "typeCode": "location",
+    "traits": "Montaña.",
+    "text": "<b>Obligado</b> – Después de que te muevas a los Ventisqueros profundos desde un Lugar que esté por debajo de ellos: Descarta las 3 primeras cartas de tu mazo. Roba cada Debilidad descartada de este modo.",
+    "backName": "Ladera de montaña",
+    "backText": "No puedes entrar en este Lugar a menos que todas las pistas del Lugar inmediatamente por debajo de éste hayan sido descubiertas.",
+    "backFlavor": "\"La atmósfera de misterio maléfico que envolvía las montañas y el cielo opalescente visible entre las cimas era algo demasiado sutil…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08601": {
+    "name": "Despeñadero blanco",
+    "typeCode": "location",
+    "traits": "Montaña.",
+    "text": "<b>Obligado</b> – Después de que te muevas al Despeñadero blanco desde un Lugar que esté por debajo de él: Realiza una prueba de [agility] (X). X es el nivel de este Lugar más 1. Si fracasas, pierde el control de un Apoyo [[Expedición]] y colócalo en el Despeñadero blanco.",
+    "backName": "Ladera de montaña",
+    "backText": "No puedes entrar en este Lugar a menos que todas las pistas del Lugar inmediatamente por debajo de éste hayan sido descubiertas.",
+    "backFlavor": "\"La atmósfera de misterio maléfico que envolvía las montañas y el cielo opalescente visible entre las cimas era algo demasiado sutil…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08602": {
+    "name": "Talud pronunciado",
+    "typeCode": "location",
+    "traits": "Montaña.",
+    "text": "<b>Obligado</b> – Después de que te muevas al Talud pronunciado desde un Lugar que esté por debajo de él: Recibe 1 punto de daño.",
+    "flavor": "\"…antes del mediodía nos sentimos todos excitados a la vista de una inmensa y nevada cadena montañosa que cubría el horizonte.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Ladera de montaña",
+    "backText": "No puedes entrar en este Lugar a menos que todas las pistas del Lugar inmediatamente por debajo de éste hayan sido descubiertas.",
+    "backFlavor": "\"La atmósfera de misterio maléfico que envolvía las montañas y el cielo opalescente visible entre las cimas era algo demasiado sutil…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08603": {
+    "name": "Cresta angosta",
+    "typeCode": "location",
+    "traits": "Montaña.",
+    "text": "<b>Obligado</b> – Después de que te muevas a la Cresta angosta desde un Lugar que esté por debajo de ella: Recibe 1 punto de horror.",
+    "flavor": "\"Un poco antes de llegar a la ciudad, la pendiente se hizo más abrupta…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Ladera de montaña",
+    "backText": "No puedes entrar en este Lugar a menos que todas las pistas del Lugar inmediatamente por debajo de éste hayan sido descubiertas.",
+    "backFlavor": "\"La atmósfera de misterio maléfico que envolvía las montañas y el cielo opalescente visible entre las cimas era algo demasiado sutil…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08604": {
+    "name": "Saliente rocoso",
+    "typeCode": "location",
+    "traits": "Montaña.",
+    "text": "<b>Obligado</b> – Después de que te muevas al Saliente rocoso desde un Lugar que esté por debajo de él: Añade, sin mirarla la primera carta de mazo de Tekeli-li a tu mazo y baraja éste.",
+    "flavor": "\"Habían cruzado aquellas cimas por cuyas pendientes habían vagado en otro tiempo entre helechos arbóreos.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Ladera de montaña",
+    "backText": "No puedes entrar en este Lugar a menos que todas las pistas del Lugar inmediatamente por debajo de éste hayan sido descubiertas.",
+    "backFlavor": "\"La atmósfera de misterio maléfico que envolvía las montañas y el cielo opalescente visible entre las cimas era algo demasiado sutil…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08605": {
+    "name": "Peñasco cubierto de nieve",
+    "typeCode": "location",
+    "traits": "Montaña.",
+    "text": "<b>Obligado</b> – Después de que te muevas al Peñasco cubierto de nieve desde un Lugar que esté por debajo de él: Agota cada Apoyo que controles.",
+    "flavor": "\"La distribución de las crípticas entradas de las cavernas en las cimas desprovistas de nieve parecía llegar, de un modo irregular, hasta donde alcanzaba la vista.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Ladera de montaña",
+    "backText": "No puedes entrar en este Lugar a menos que todas las pistas del Lugar inmediatamente por debajo de éste hayan sido descubiertas.",
+    "backFlavor": "\"La atmósfera de misterio maléfico que envolvía las montañas y el cielo opalescente visible entre las cimas era algo demasiado sutil…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08606": {
+    "name": "Sendero barrido por el viento",
+    "typeCode": "location",
+    "traits": "Montaña.",
+    "text": "<b>Obligado</b> – Después de que el Sendero barrido por el viento sea revelado: Si está en el nivel 0, coloca 1 pista [per_investigator] sobre él <i>(de la reserva de fichas)</i>.\n<b>Obligado</b> – Después de que te muevas al Sendero barrido por el viento desde un Lugar que esté por debajo de él: Coloca 1 pista sobre él <i>(de la reserva de fichas)</i>.",
+    "backName": "Ladera de montaña",
+    "backText": "No puedes entrar en este Lugar a menos que todas las pistas del Lugar inmediatamente por debajo de éste hayan sido descubiertas.",
+    "backFlavor": "\"La atmósfera de misterio maléfico que envolvía las montañas y el cielo opalescente visible entre las cimas era algo demasiado sutil…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08607": {
+    "name": "La cumbre",
+    "typeCode": "location",
+    "traits": "Montaña.",
+    "text": "Las pistas de La cumbre sólo se pueden descubrir investigando.\n<b>Obligado</b> – Cuando La cumbre sea revelada: Añade 1 ficha [frost] a la bolsa de caos.\n[action]: <b>Desistir.</b> Añade cada Apoyo [[Expedición]] que controles a la zona de victoria. Devuelve todas tus pistas a la reserva de fichas.",
+    "backText": "No puedes entrar en este Lugar a menos que todas las pistas del Lugar inmediatamente por debajo de éste hayan sido descubiertas.",
+    "backFlavor": "\"A medida que nos acercábamos a los picos oscuros y siniestros que se alzaban sobre una línea de glaciares y hendiduras cubiertas de nieve, advertíamos más y más las formaciones curiosamente regulares…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08608": {
+    "name": "Terror de las estrellas",
+    "subname": "Guardián de los picos prohibidos",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Eidolón. Élite.",
+    "text": "Cazador. Descomunal.\nEl Terror de las estrellas recibe +3 de salud [per_investigator].\nX es el nivel del Lugar (hasta un mínimo de 1).\n<b>Obligado</b> – Al final de la ronda: Mueve todos los investigadores que estén en el Lugar del Terror de las estrellas al Lugar inmediatamente por debajo de éste."
+  },
+  "08609": {
+    "name": "Antiguo constrictor",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Antiguo.",
+    "text": "Cazador.\nX es el nivel del Lugar (hasta un mínimo de 1).\nMientras Antiguo constrictor esté enfrentado a ti, no puedes moverte a Lugares que estén por encima de tu Lugar."
+  },
+  "08610": {
+    "name": "Nevasca",
+    "typeCode": "treachery",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> – Coloca 2 pistas sobre tu Lugar <i>(de la reserva de fichas)</i>.",
+    "flavor": "\"…el bajo sol septentrional de mediodía y el más bajo aún de medianoche lanzaban sus nublados rayos rojizos sobre la nieve blanca, los hielos azules y las rocas granito negro.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08611": {
+    "name": "Avalancha",
+    "typeCode": "treachery",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> –Si el nivel de tu Lugar es 1–4, muévete al Lugar inmediatamente por debajo del tuyo. A continuación, realiza una prueba de [willpower] (X). X es el nivel de tu Lugar. Si fracasas, repite este proceso. Si no te has movido por este efecto, Avalancha obtiene Oleada."
+  },
+  "08612": {
+    "name": "Al borde del abismo",
+    "typeCode": "treachery",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> – Realiza una prueba de [agility] (3). Si fracasas, recibe 2 puntos de daño, pierde el control de todos los Apoyos [[Expedición]] que controles (colocándolos en tu Lugar), y muévete al Lugar inmediatamente por debajo del tuyo."
+  },
+  "08613": {
+    "name": "Hipotermia",
+    "typeCode": "treachery",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> – Realiza una prueba de [willpower] (3). Si el nivel de tu Lugar es 4 o 5, revela 1 ficha de Caos adicional para esta prueba de habilidad. Si fracasas, añade 1 ficha [frost] a la bolsa de caos o bien recibe 1 punto de horror por cada punto que te faltara para tener éxito."
+  },
+  "08614": {
+    "name": "Esteatita verde",
+    "subname": "Ídolo maldecido",
+    "typeCode": "asset",
+    "traits": "Objeto. Expedición.",
+    "text": "Usos (4 cargas).\n[reaction] Cuando realices un ataque con éxito, gasta 1 carga y agota la Esteatita verde: Inflige +1 de daño para ese ataque."
+  },
+  "08615": {
+    "name": "Trineo de madera",
+    "typeCode": "asset",
+    "traits": "Objeto. Expedición.",
+    "text": "[action] Agota el Trineo de madera: Un investigador que esté en este Lugar busca entre las 6 primeras cartas de su mazo hasta 3 cartas [[Objeto]] o [[Suministros]] que no sean Debilidad y las vincula boca abajo al Trineo de madera. Baraja su mazo.\nMientras el Trineo de madera esté bajo el control de un investigador, las cartas boca abajo vinculadas a él pueden jugarse como si estuvieran en la mano de cualquier investigador de su Lugar."
+  },
+  "08616": {
+    "name": "Dinamita",
+    "typeCode": "asset",
+    "traits": "Objeto. Expedición.",
+    "text": "Usos (2 suministros).\n[action] Gasta 1 suministro y agota la Dinamita: Elige tu Lugar o un Lugar conectado. Inflige 3 puntos de daño a cada Enemigo e investigador que esté en el Lugar elegido."
+  },
+  "08617": {
+    "name": "Cristal de miasma",
+    "subname": "Prueba extraña",
+    "typeCode": "asset",
+    "traits": "Objeto. Reliquia. Expedición.",
+    "text": "Usos (3 cargas).\n[reaction] Cuando un investigador que esté en tu Lugar robe una Debilidad Tekeli-li, gasta 1 carga: Ese investigador cancela los efectos de esa Debilidad, la coloca en la parte inferior del mazo Tekeli-li y roba 1 carta."
+  },
+  "08618": {
+    "name": "Espécimen mineral",
+    "typeCode": "asset",
+    "traits": "Objeto. Reliquia. Expedición.",
+    "text": "Usos (3 cargas).\n[action] Gasta 1 carga: <b>Investigar.</b> Investiga con una habilidad [intellect] básica de 5. Cancela cada ficha [frost] revelada durante esta prueba. Si tienes éxito, descubre 1 pista adicional en tu Lugar."
+  },
+  "08619": {
+    "name": "Radio pequeña",
+    "typeCode": "asset",
+    "traits": "Objeto. Expedición.",
+    "text": "Usos (3 suministros).\nPuedes activar capacidades de Apoyo del conjunto de encuentros <i>Equipo de expedición</i> que no estén en juego, pero cuyos nombres no estén tachados del registro de campaña. En lugar de pagar los costes que no sean [action] de esa capacidad, agota la Radio pequeña y gasta 1 suministro."
+  },
+  "08620": {
+    "name": "Piezas de repuesto",
+    "typeCode": "asset",
+    "traits": "Objeto. Expedición.",
+    "text": "Usos (3 suministros).\n[fast] Gasta 1 suministro y agota las Piezas de repuesto: Añade 1 suministro a otro Apoyo que esté en tu Lugar o elige a un investigador que esté en tu Lugar para que obtenga 1 recurso."
+  },
   "08687": {
     "name": "Mal primordial",
     "typeCode": "enemy"
@@ -622,6 +785,25 @@
     "typeCode": "treachery",
     "traits": "Riesgo.",
     "text": "<b>Revelación</b> – Vincula esta carta a tu Lugar.\n<b>Obligado</b> – Cuando termines tu turno en el Lugar vinculado: Cada carta que controles que tenga salud <i>(incluido el investigador)</i> recibe 1 punto de daño directo..\n<b>Obligado</b> – Al final de la ronda: Descarta el Vértice polar."
+  },
+  "08695": {
+    "name": "Antiguo buscador de restos",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Antiguo.",
+    "text": "Cazador.\n<b>Obligado</b> – Después de que el Antiguo buscador de restos te ataque: Descarta las 3 primeras cartas de tu mazo. Roba cada Debilidad descartada de este modo.",
+    "flavor": "\"De la vida de los Antiguos, tanto en el mar como en la tierra, podrían escribirse volúmenes.\"\n– H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08696": {
+    "name": "Antiguo guardián",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Antiguo.",
+    "text": "Cazador.\n<b>Obligado</b> – Cuando inflijas daño al Antiguo guardián: Por cada punto de daño infligido, descarta la primera carta de tu mazo. Roba cada Debilidad descartada de este modo."
+  },
+  "08697": {
+    "name": "Ascenso de los Antiguos",
+    "typeCode": "treachery",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> – Busca el primer Enemigo [[Antiguo]] de la pila de descartes de Encuentros y haz que aparezca enfrentado a ti. Cada Enemigo [[Antiguo]] que esté enfrentado a ti en este momento recibe +1 a combate y +1 a evitar hasta el final de la ronda. Si el Ascenso de los Antiguos no pone ningún Enemigo en juego, obtiene Oleada."
   },
   "08698": {
     "name": "Pozo de hielo",
