@@ -1135,6 +1135,26 @@
     "upkeep": "Upkeep phase"
   },
   "ability": {
+    "takeKey": {
+      "number": "Take the {value} key",
+      "skull": "Take the Skull key",
+      "cultist": "Take the Cultist key",
+      "tablet": "Take the Tablet key",
+      "elderThing": "Take the Elder Thing key",
+      "elderSign": "Take the Elder Sign key",
+      "autoFail": "Take the Tentacle key",
+      "frost": "Take the Frost key"
+    },
+    "giveKey": {
+      "number": "Give the {value} key to {name}",
+      "skull": "Give the Skull key to {name}",
+      "cultist": "Give the Cultist key to {name}",
+      "tablet": "Give the Tablet key to {name}",
+      "elderThing": "Give the Elder Thing key to {name}",
+      "elderSign": "Give the Elder Sign key to {name}",
+      "autoFail": "Give the Tentacle key to {name}",
+      "frost": "Give the Frost key to {name}"
+    },
     "advancedTest": "{card}: use ability",
     "testRetry": "Cancel this token and reveal a new one",
     "advancedHorror": "{card}: take {n} horror to reveal {n} additional tokens",
@@ -1794,6 +1814,7 @@
     "tokensRevealedChoice": "Tokens revealed to choose from: {tokens}."
   },
   "table": {
+    "keys": "Keys",
     "scenarioSkipped": "Scenario skipped",
     "investigators": "Investigators",
     "scenarioReference": "Symbol reference",

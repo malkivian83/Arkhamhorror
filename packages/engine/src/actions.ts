@@ -34,6 +34,7 @@ import {
 import type {
   AbilityLimit,
   AbilityOption,
+  ChaosToken,
   Enemy,
   Action,
   CardCode,
@@ -741,6 +742,7 @@ export function availableAbilities(state: GameState, id: InvestigatorId): Abilit
         }),
       ),
     ...(scenarioBehavior(state.scenarioId)?.abilities?.(state, null, id) ?? []),
+    ...keyAbilities(state, id),
     // Abilities printed on the investigator card (Tommy Muldoon).
     ...withTarget(investigatorBehavior(id)?.abilities?.(state, investigator, id) ?? [], {
       type: 'investigator',
@@ -1019,4 +1021,66 @@ export function assetsBlocked(state: GameState, investigator: string): boolean {
       t.placement.investigator === investigator &&
       !!activeTreacheryBehavior(state, t)?.blocksAssets,
   )
+}
+
+/** Label for a key ability: one per symbol, or the numeric value. */
+const keyLabel = (action: 'take' | 'give', key: ChaosToken) =>
+  typeof key === 'number'
+    ? { label: `ability.${action}Key.number`, value: key > 0 ? `+${key}` : String(key) }
+    : { label: `ability.${action}Key.${key}`, value: '' }
+
+/**
+ * RR Keys (City of the Elder Things): take control of a key on a location with no clues, and
+ * give any of your keys to an investigator at your location. Both are [free] abilities.
+ */
+function keyAbilities(state: GameState, id: InvestigatorId): AbilityOption[] {
+  const investigator = getInvestigator(state, id)
+  const here = investigator.location
+  if (!here || scenarioBehavior(state.scenarioId)?.keysBlocked?.(state, id)) return []
+  const location = state.locations[here]
+  const take: AbilityOption[] =
+    location && location.clues === 0
+      ? [...new Set(location.keys ?? [])].map((key) => {
+          const { label, value } = keyLabel('take', key)
+          return {
+            key: `key:take:${String(key)}`,
+            label,
+            params: { value },
+            actions: 0,
+            provokes: false,
+            then: [
+              {
+                type: 'PlaceKey',
+                key,
+                from: { type: 'location', id: here },
+                on: { type: 'investigator', id },
+              },
+            ],
+          }
+        })
+      : []
+  const others = state.investigators.filter(
+    (other) => other.id !== id && !other.eliminated && other.location === here,
+  )
+  const give = [...new Set(investigator.keys ?? [])].flatMap((key) =>
+    others.map((other): AbilityOption => {
+      const { label, value } = keyLabel('give', key)
+      return {
+        key: `key:give:${String(key)}:${other.id}`,
+        label,
+        params: { value, name: other.name },
+        actions: 0,
+        provokes: false,
+        then: [
+          {
+            type: 'PlaceKey',
+            key,
+            from: { type: 'investigator', id },
+            on: { type: 'investigator', id: other.id },
+          },
+        ],
+      }
+    }),
+  )
+  return [...take, ...give]
 }

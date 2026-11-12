@@ -21,6 +21,7 @@ import { useTableGame } from '../game/tableController'
 import GameCard from './GameCard.vue'
 import SkillIcon from './SkillIcon.vue'
 import SlotIcon from './SlotIcon.vue'
+import ChaosTokenView from './ChaosTokenView.vue'
 import TokenBadge from './TokenBadge.vue'
 
 const SKILLS = ['willpower', 'intellect', 'combat', 'agility'] as const
@@ -207,6 +208,9 @@ const slots = computed(() => {
                 ><span class="token-label">{{ t(token.label) }}</span>
               </li>
             </ul>
+            <div v-if="i.keys?.length" class="keys" :title="t('table.keys')">
+              <ChaosTokenView v-for="(key, n) in i.keys" :key="n" :token="key" :size="24" />
+            </div>
             <div class="meta">
               <span :title="t('table.actions')"
                 ><i class="ahi">{{ ICON_GLYPHS.action }}</i
@@ -1278,5 +1282,10 @@ h3,
     height: 56px;
     overflow: hidden;
   }
+}
+.keys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
 }
 </style>

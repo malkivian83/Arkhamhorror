@@ -1135,6 +1135,26 @@
     "upkeep": "Fase de Mantenimiento"
   },
   "ability": {
+    "takeKey": {
+      "number": "Tomar la llave {value}",
+      "skull": "Tomar la llave de Calavera",
+      "cultist": "Tomar la llave de Sectario",
+      "tablet": "Tomar la llave de Tablilla",
+      "elderThing": "Tomar la llave de Primigenio",
+      "elderSign": "Tomar la llave de Signo arcano",
+      "autoFail": "Tomar la llave de Tentáculo",
+      "frost": "Tomar la llave de Helada"
+    },
+    "giveKey": {
+      "number": "Dar la llave {value} a {name}",
+      "skull": "Dar la llave de Calavera a {name}",
+      "cultist": "Dar la llave de Sectario a {name}",
+      "tablet": "Dar la llave de Tablilla a {name}",
+      "elderThing": "Dar la llave de Primigenio a {name}",
+      "elderSign": "Dar la llave de Signo arcano a {name}",
+      "autoFail": "Dar la llave de Tentáculo a {name}",
+      "frost": "Dar la llave de Helada a {name}"
+    },
     "advancedTest": "{card}: usar capacidad",
     "testRetry": "Cancela esta ficha y revela una nueva",
     "advancedHorror": "{card}: recibe {n} de horror para revelar {n} fichas adicionales",
@@ -1794,6 +1814,7 @@
     "tokensRevealedChoice": "Fichas reveladas para elegir: {tokens}."
   },
   "table": {
+    "keys": "Llaves",
     "scenarioSkipped": "Escenario omitido",
     "investigators": "Investigadores",
     "scenarioReference": "Referencia de símbolos",

@@ -13,6 +13,7 @@ const SYMBOLS: Record<string, string> = {
   elderThing: '✷',
   elderSign: '✪',
   autoFail: '⊗',
+  frost: '❄',
 }
 const label = computed(() =>
   typeof props.token === 'number'

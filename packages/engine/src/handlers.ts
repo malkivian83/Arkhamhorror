@@ -136,6 +136,7 @@ import type {
   CampaignLog,
   CardCode,
   ChaosToken,
+  KeyHolder,
   Choice,
   ClueHolder,
   DamageDealt,
@@ -4928,6 +4929,56 @@ export function handle(state: GameState, message: Message): GameState {
         camp: { location: message.location, shelter: message.shelter },
       }))
 
+    case 'PlaceKey': {
+      const take =
+        (holder: KeyHolder, update: (keys: ChaosToken[]) => ChaosToken[]) =>
+        (current: GameState): GameState =>
+          holder.type === 'location'
+            ? current.locations[holder.id]
+              ? updateLocation(current, holder.id, (l) => ({ ...l, keys: update(l.keys ?? []) }))
+              : current
+            : holder.type === 'enemy'
+              ? current.enemies[holder.id]
+                ? updateEnemy(current, holder.id, (e) => ({ ...e, keys: update(e.keys ?? []) }))
+                : current
+              : updateInvestigator(current, holder.id, (i) => ({
+                  ...i,
+                  keys: update(i.keys ?? []),
+                }))
+      const keysOf = (holder: KeyHolder) =>
+        (holder.type === 'location'
+          ? state.locations[holder.id]?.keys
+          : holder.type === 'enemy'
+            ? state.enemies[holder.id]?.keys
+            : getInvestigator(state, holder.id).keys) ?? []
+      if (message.from && !keysOf(message.from).includes(message.key)) return state
+      const removed = message.from
+        ? take(message.from, (keys) => keys.filter((_, n) => n !== keys.indexOf(message.key)))(
+            state,
+          )
+        : state
+      const placed = take(message.on, (keys) => [...keys, message.key])(removed)
+      return message.on.type === 'investigator' && message.from?.type !== 'investigator'
+        ? push(placed, {
+            type: 'Forced',
+            trigger: { type: 'afterTakeKey', investigator: message.on.id, key: message.key },
+          })
+        : placed
+    }
+
+    case 'SpendKeys': {
+      const keys = [...(getInvestigator(state, message.investigator).keys ?? [])]
+      for (const key of message.keys) {
+        const index = keys.indexOf(key)
+        if (index < 0) return state
+        keys.splice(index, 1)
+      }
+      return {
+        ...updateInvestigator(state, message.investigator, (i) => ({ ...i, keys })),
+        keysSpent: [...(state.keysSpent ?? []), ...message.keys],
+      }
+    }
+
     case 'RecoverExpeditionSupply':
       return updateExpedition(state, (expedition) =>
         expedition.supplies.includes(message.supply)
@@ -5191,6 +5242,12 @@ export function handle(state: GameState, message: Message): GameState {
         !scenarioBehavior(state.scenarioId)?.cannotPlaceClues?.(state, here)
       ) {
         next = updateLocation(next, here, (l) => ({ ...l, clues: l.clues + investigator.clues }))
+      }
+      // RR Keys: the keys of an eliminated investigator are placed on their location.
+      if (here !== null && investigator.keys?.length) {
+        const keys = investigator.keys
+        next = updateLocation(next, here, (l) => ({ ...l, keys: [...(l.keys ?? []), ...keys] }))
+        next = updateInvestigator(next, investigator.id, (i) => ({ ...i, keys: [] }))
       }
       for (const enemy of engagedEnemies(next, investigator.id)) {
         next = updateEnemy(next, enemy.id, (e) => ({ ...e, engagedWith: null }))

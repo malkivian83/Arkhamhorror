@@ -222,6 +222,8 @@ export interface ScenarioBehavior {
   forced?: (state: GameState, trigger: Trigger) => Message[]
   /** Reacciones de las cartas del escenario (localizaciones, plan, acto) para los investigadores. */
   reactions?: (state: GameState, trigger: Trigger) => ReactionOption[]
+  /** RR Keys: the investigator cannot take control of or spend keys (Terror of the Stars). */
+  keysBlocked?: (state: GameState, investigator: InvestigatorId) => boolean
   /** El investigador puede entrar en `to` desde `from` (Habitación 212 cerrada con llave). */
   canEnter?: (
     state: GameState,

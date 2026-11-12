@@ -6,6 +6,7 @@ import { useI18n } from 'vue-i18n'
 import { cardBackImage } from '../game/assets'
 import { verticalThreadBlocked } from '../game/mapThreads'
 import GameCard from './GameCard.vue'
+import ChaosTokenView from './ChaosTokenView.vue'
 import InvestigatorMini from './InvestigatorMini.vue'
 import TokenBadge from './TokenBadge.vue'
 import TableTarget from './TableTarget.vue'
@@ -206,6 +207,10 @@ const treacheriesAt = (id: string) =>
             :size="30"
             :title="t('table.doom')"
           />
+          <!-- Llaves sobre el Lugar (Ciudad de los Antiguos). -->
+          <span v-if="l.keys?.length" class="keys loc-keys" :title="t('table.keys')">
+            <ChaosTokenView v-for="(key, n) in l.keys" :key="n" :token="key" :size="22" />
+          </span>
           <!-- Velo cambiado hasta el final de la ronda (p. ej. Hand-Crank Flashlight). -->
           <span
             v-if="l.shroudModifier"
@@ -327,6 +332,9 @@ const treacheriesAt = (id: string) =>
               :size="24"
             />
             <TokenBadge v-if="e.doom" class="placed-doom" kind="doom" :value="e.doom" :size="22" />
+            <span v-if="e.keys?.length" class="keys enemy-keys" :title="t('table.keys')">
+              <ChaosTokenView v-for="(key, n) in e.keys" :key="n" :token="key" :size="18" />
+            </span>
             <TokenBadge
               v-if="e.clues"
               class="placed-horror"
@@ -540,6 +548,22 @@ const treacheriesAt = (id: string) =>
 }
 .loc-doom {
   top: 42px;
+}
+.keys {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+.loc-keys {
+  bottom: 6px;
+  left: 6px;
+  right: 6px;
+}
+.enemy-keys {
+  bottom: -6px;
+  left: -6px;
 }
 .enemy-damage {
   position: absolute;
