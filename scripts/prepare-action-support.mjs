@@ -42,7 +42,7 @@ const catalog = (await read('packages/cards/src/catalog/imports/3c8ee4b5d8100766
 const approvals = {
   sourceBundle: '3c8ee4b5d8100766',
   presentation: 'rendered',
-  rulesRevision: 1,
+  rulesRevision: 2,
   sourceFiles: { en: 'source-en.json', es: 'source-es.json' },
   sources: {},
   cards: [],

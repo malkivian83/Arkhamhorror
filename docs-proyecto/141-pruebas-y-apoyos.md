@@ -4,28 +4,28 @@ Lote `advanced-tests`, sobre `ea7cf287`: **20 códigos, 20 diseños o niveles nu
 0 reediciones**. Comparte infraestructura de pruebas, fichas y costes; no incluye
 impresiones adicionales para completar el tamaño.
 
-| Código | Carta | Nivel |
-| --- | --- | ---: |
-| 02310 | El hombre de los guantes rojos | 5 |
-| 07225 | Ojo del djinn | 2 |
-| 04307 | Manuscritos pnakóticos | 5 |
-| 07220 | Rosario sagrado | 2 |
-| 03312 | Sello del símbolo arcano | 5 |
-| 60406 | Espejo de videncia | 0 |
-| 02230 | Dados de la suerte | 2 |
-| 07307 | Dados de la suerte | 3 |
-| 07161 | A la tercera va la vencida | 2 |
-| 08112 | «¡Una más!» | 0 |
-| 03304 | «¡Traga plomo!» | 2 |
-| 52002 | «¡Traga plomo!» | 0 |
-| 11039 | Espécimen imposible | 0 |
-| 11038 | Oculus mortuum | 0 |
-| 11103 | Sutra prohibido | 2 |
-| 06241 | Llenarse de poder: Resistencia | 2 |
-| 06242 | Llenarse de poder: Presteza | 2 |
-| 06243 | Llenarse de poder: Agudeza | 2 |
-| 10020 | Kit de limpieza | 0 |
-| 10033 | Kit de limpieza | 3 |
+| Código | Carta                          | Nivel |
+| ------ | ------------------------------ | ----: |
+| 02310  | El hombre de los guantes rojos |     5 |
+| 07225  | Ojo del djinn                  |     2 |
+| 04307  | Manuscritos pnakóticos         |     5 |
+| 07220  | Rosario sagrado                |     2 |
+| 03312  | Sello del símbolo arcano       |     5 |
+| 60406  | Espejo de videncia             |     0 |
+| 02230  | Dados de la suerte             |     2 |
+| 07307  | Dados de la suerte             |     3 |
+| 07161  | A la tercera va la vencida     |     2 |
+| 08112  | «¡Una más!»                    |     0 |
+| 03304  | «¡Traga plomo!»                |     2 |
+| 52002  | «¡Traga plomo!»                |     0 |
+| 11039  | Espécimen imposible            |     0 |
+| 11038  | Oculus mortuum                 |     0 |
+| 11103  | Sutra prohibido                |     2 |
+| 06241  | Llenarse de poder: Resistencia |     2 |
+| 06242  | Llenarse de poder: Presteza    |     2 |
+| 06243  | Llenarse de poder: Agudeza     |     2 |
+| 10020  | Kit de limpieza                |     0 |
+| 10033  | Kit de limpieza                |     3 |
 
 ## Reglas y diferencias
 
@@ -113,3 +113,7 @@ Olive McBride sigue pendiente de resolver dos fichas de un grupo y de sus
 combinaciones con otras sustituciones; el árbol de este lote resuelve una.
 Quedan también las capacidades pendientes del inventario 132, incluidos
 reparto privado de Encuentros, habilidades desde la mano y cartas vinculadas.
+
+## Revisión posterior de reglas
+
+La revisión 2 distingue las bases del investigador de una sustitución específica de la base de una prueba: el Ojo del djinn fija esa prueba en cinco aunque el Hombre de los guantes rojos haya elevado la habilidad propia a seis. Véase la revisión de [142](142-acciones-y-apoyos.md). Las fuentes oficiales y sus huellas no cambian.

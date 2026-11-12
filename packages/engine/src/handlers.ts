@@ -5411,7 +5411,14 @@ export function handle(state: GameState, message: Message): GameState {
         // Una prueba que empieza durante otra (p. ej. un plan que avanza a mitad de una
         // prueba) espera a que la actual termine.
         const end = state.queue.findIndex((m) => m.type === 'EndSkillTest')
-        if (end < 0) throw new EngineError('Ya hay una prueba de habilidad en curso')
+        if (end < 0)
+          return {
+            ...state,
+            skillTest: {
+              ...state.skillTest,
+              afterEnd: [...(state.skillTest.afterEnd ?? []), message],
+            },
+          }
         const queue = [...state.queue]
         queue.splice(end + 1, 0, message)
         return { ...state, queue }
@@ -7038,6 +7045,20 @@ export function handle(state: GameState, message: Message): GameState {
       }
       const reshuffle: Message[] = []
       for (const c of test?.committed ?? []) {
+        // Persistence's shuffle is established by committing from discard, even if returned.
+        if (c.returnToHand && c.fromDiscard && playerCardBehavior(c.code)?.commitFromDiscard) {
+          const owner = getInvestigator(next, c.by)
+          const at = owner.hand.lastIndexOf(c.code)
+          if (at >= 0 && !owner.eliminated) {
+            next = updateInvestigator(next, c.by, (i) => ({
+              ...i,
+              hand: i.hand.filter((_, n) => n !== at),
+              deck: [...i.deck, c.code],
+            }))
+            reshuffle.push({ type: 'ShuffleDeck', investigator: c.by })
+          }
+          continue
+        }
         if (playerCardBehavior(c.code)?.removeAtTestEnd) {
           next = log(next, 'log.committedRemoved', { card: playerCardDef(c.code)?.name ?? c.code })
           continue
@@ -11595,7 +11616,7 @@ function ownerTestDifficulty(state: GameState, investigator: InvestigatorId): nu
 function withCommittedDifficulty(test: SkillTest): SkillTest {
   if (test.succeeded !== null) return test
   const base = test.baseDifficulty ?? test.difficulty
-  const offset = test.committed.reduce(
+  const offset = activeCommitted(test).reduce(
     (sum, c) => sum + (playerCardBehavior(c.code)?.committedDifficulty ?? 0),
     0,
   )
@@ -12726,7 +12747,7 @@ function skillTestResults(state: GameState, succeeded: boolean, failBy: number):
                     amount:
                       (kind.baseClues ?? 1) +
                       (kind.extraClues ?? 0) +
-                      test.committed.reduce(
+                      activeCommitted(test).reduce(
                         (sum, c) =>
                           sum +
                           (playerCardBehavior(c.code)?.committedInvestigationClues?.(
@@ -13220,7 +13241,7 @@ function slotOccupants(
 
 /** Cartas comprometidas que cuentan (sin las de habilidad canceladas por una ficha). */
 function activeCommitted(test: SkillTest): SkillTest['committed'] {
-  const committed = test.committed.filter((c) => !c.putIntoPlay)
+  const committed = test.committed.filter((c) => !c.putIntoPlay && !c.returnToHand)
   return test.skillCardsCanceled
     ? committed.filter((c) => playerCardDef(c.code)?.type !== 'skill')
     : committed
@@ -13236,7 +13257,7 @@ function commitIcons(
 ): number {
   const doublers =
     zone === 'committed'
-      ? test.committed.filter(
+      ? activeCommitted(test).filter(
           (c) => c.code !== code && playerCardBehavior(c.code)?.doublesOtherCommittedIcons,
         ).length
       : 0
@@ -13406,13 +13427,10 @@ export function skillTestValue(state: GameState): {
       .map((a) => assetBehavior(state, a)?.minimumSkillBase?.(state, a, test) ?? 0),
   )
   const base =
-    Math.max(
-      minimumBase,
-      scenarioBehavior(state.scenarioId)?.skillBase?.(state, test) ??
-        test.baseSkill ??
-        lasting?.bases?.[test.skill] ??
-        investigator.skills[test.skill],
-    ) * (doubling.base ? 2 : 1)
+    (scenarioBehavior(state.scenarioId)?.skillBase?.(state, test) ??
+      test.baseSkill ??
+      Math.max(minimumBase, lasting?.bases?.[test.skill] ?? investigator.skills[test.skill])) *
+    (doubling.base ? 2 : 1)
   const scenario =
     (scenarioBehavior(state.scenarioId)?.skillModifier?.(state, test) ?? 0) +
     Object.values(state.treacheries).reduce(

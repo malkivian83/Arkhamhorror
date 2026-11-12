@@ -197,41 +197,20 @@ export function registerActionSupport(code: string): void {
     return
   }
   if (code === '07273') {
-    const options = (_s: GameState, a: Asset): AbilityOption[] =>
-      !_s.encounterDeck.length && !_s.encounterDiscard.length
-        ? []
-        : [
-            fast(a, [
-              { type: 'DrawEncounterCard', investigator: a.owner },
-              ...ask(
-                a.owner,
-                [
-                  {
-                    label: 'choice.actionSupportRestore',
-                    params: { card: cardName(code) },
-                    then: [
-                      {
-                        type: 'Heal',
-                        investigator: a.owner,
-                        damage: 1,
-                        horror: 1,
-                        healer: a.owner,
-                      },
-                    ],
-                  },
-                  ...(a.uses > 0
-                    ? [
-                        {
-                          label: 'choice.actionSupportCorruption',
-                          then: [{ type: 'RemoveUses' as const, asset: a.id, amount: 1 }],
-                        },
-                      ]
-                    : []),
-                ],
-                true,
-              ),
-            ]),
-          ]
+    const options = (s: GameState, a: Asset): AbilityOption[] => {
+      const i = getInvestigator(s, a.owner)
+      if (
+        (!s.encounterDeck.length && !s.encounterDiscard.length) ||
+        (!i.damage && !i.horror && !a.uses)
+      )
+        return []
+      return [
+        fast(a, [
+          { type: 'DrawEncounterCard', investigator: a.owner },
+          continuation(code, a.owner, 'afterEncounter', { asset: a.id }),
+        ]),
+      ]
+    }
     registerPlayerCard({
       code,
       abilities: options,
@@ -256,10 +235,29 @@ export function registerActionSupport(code: string): void {
               ]),
             ]
           : [],
-      effect: (s, _by, _step, d) =>
-        (s.assets[String(d.asset)]?.uses ?? 0) >= 3
-          ? [{ type: 'RemoveAssetFromGame', asset: String(d.asset) }]
-          : [],
+      effect: (s, by, step, d) => {
+        const a = s.assets[String(d.asset)]
+        if (step === 'afterEncounter')
+          return ask(
+            by,
+            [
+              {
+                label: 'choice.actionSupportRestore',
+                then: [{ type: 'Heal', investigator: by, damage: 1, horror: 1, healer: by }],
+              },
+              ...(a && a.uses > 0
+                ? [
+                    {
+                      label: 'choice.actionSupportCorruption',
+                      then: [{ type: 'RemoveUses' as const, asset: a.id, amount: 1 }],
+                    },
+                  ]
+                : []),
+            ],
+            true,
+          )
+        return a && a.uses >= 3 ? [{ type: 'RemoveAssetFromGame', asset: a.id }] : []
+      },
     })
     return
   }
@@ -294,7 +292,7 @@ export function registerActionSupport(code: string): void {
       code,
       evadeAction: true,
       fastOptions: (s, a) =>
-        code === '52005' && !s.skillTest && turnActionTiming(s, a.owner) !== null
+        code === '52005' && turnActionTiming(s, a.owner) !== null
           ? (playerCardBehavior(code)?.abilities?.(s, a, a.owner) ?? []).map((o) => ({
               ...o,
               investigator: a.owner,
@@ -320,7 +318,7 @@ export function registerActionSupport(code: string): void {
                     investigator: a.owner,
                     source: a.id,
                     skill: 'agility',
-                    difficulty: Math.max(0, e.evade - 2),
+                    difficulty: e.evade - 2,
                     kind: {
                       type: 'evade',
                       enemy: e.id,
@@ -442,12 +440,7 @@ export function registerActionSupport(code: string): void {
                   },
                   {
                     label: 'choice.actionSupportReplenishLater',
-                    then: [
-                      {
-                        type: 'ModifySkillTest',
-                        onSuccess: [continuation(code, by, 'recover', { asset: a.id })],
-                      },
-                    ],
+                    then: [],
                   },
                 ],
                 true,
@@ -455,6 +448,10 @@ export function registerActionSupport(code: string): void {
         }
         return []
       },
+      afterCommittedTest: (_s, t, success, by, copy) =>
+        success && t.source && !copy?.returnToHand && !copy?.iconBonus?.wild
+          ? [continuation(code, by, 'recover', { asset: t.source })]
+          : [],
     })
     return
   }
@@ -480,21 +477,23 @@ export function registerActionSupport(code: string): void {
         ? []
         : [
             ...(getInvestigator(s, a.owner).resources > 0
-              ? [
-                  fast(
-                    a,
-                    [
-                      exhaust(a),
-                      {
-                        type: 'MoveResourcesToUses',
-                        investigator: a.owner,
-                        asset: a.id,
-                        amount: 1,
-                      },
-                    ],
-                    ':deposit',
-                  ),
-                ]
+              ? own(s, a.owner)
+                  .filter((d) => playerCardDef(d.code)?.uses?.type === 'secret')
+                  .map((d) =>
+                    fast(
+                      a,
+                      [
+                        exhaust(a),
+                        {
+                          type: 'MoveResourcesToUses',
+                          investigator: a.owner,
+                          asset: d.id,
+                          amount: 1,
+                        },
+                      ],
+                      ':deposit:' + d.id,
+                    ),
+                  )
               : []),
             ...own(s, a.owner)
               .filter((d) => d.uses > 0 && playerCardDef(d.code)?.uses?.type === 'secret')
@@ -573,7 +572,7 @@ export function registerActionSupport(code: string): void {
         const items = [...new Set(getInvestigator(s, by).discard)].filter((c) =>
           playerCardDef(c)?.traits.includes('Item'),
         )
-        const mayReplace = !!here && t.kind.location === here && getLocation(s, here).clues > 0
+        const mayReplace = !!here && t.kind.location === here
         if (code === '08104' && !mayReplace) return []
         const locations =
           mayReplace && here

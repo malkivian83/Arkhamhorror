@@ -48,6 +48,12 @@ const reveal = (s: GameState, token: ChaosToken = 0) =>
   choose({ ...s, chaosBag: [token] }, 'choice.revealToken')
 const apply = (s: GameState) => choose(s, 'choice.applyResults')
 const behavior = (c: string) => playerCardBehavior(c)!
+it('a replacement base for the test overrides the investigator base raised by Red-Gloved Man', () => {
+  const s = withAsset(own('07225'), '02310', { form: 'willpower' })
+  expect(skillTestValue(begin(s)).base).toBe(6)
+  const changed = react(begin(s), '07225')
+  expect(skillTestValue(changed).base).toBe(5)
+})
 const reactions = (s: GameState, code: string, t: Trigger) =>
   behavior(code).reactions!(s, t, s.assets[code]!)
 it.each(data)('$code registers its reviewed behavior once', (c) =>

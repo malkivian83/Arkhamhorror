@@ -126,6 +126,39 @@ it('Persistence commits from discard and shuffles back, including a failed test'
   expect(me(s).discard).not.toContain('10118')
 })
 
+// RR: Delayed Effects; Persistence establishes the shuffle when committed from discard.
+it('Persistence still shuffles its returned copy from hand when the test ends', () => {
+  let s = patch({ discard: ['10118'] })(base())
+  s = begin(
+    s,
+    { type: 'effect', source: 'test', onSuccess: [], onFail: [], onFailEach: [] },
+    undefined,
+    'combat',
+  )
+  s = choose(s, 'choice.commitFromDiscard', { card: cardName('10118') })
+  s = dispatch(
+    { ...s, pending: null },
+    { type: 'ReturnCommittedCard', index: 0 },
+    { type: 'CommitWindow' },
+  )
+  expect(me(s).hand).toContain('10118')
+  s = apply(reveal(s))
+  expect(me(s).hand).not.toContain('10118')
+  expect(me(s).deck).toContain('10118')
+})
+
+// RR: Nested Skill Tests: the new test waits until the current test finishes.
+it('Stealth (3) can initiate an evasion during a test, resolving the new test afterwards', () => {
+  let s = enemy(own('52005'))
+  s = begin(s, { type: 'effect', source: 'outer', onSuccess: [], onFail: [], onFailEach: [] })
+  const options = behavior('52005').fastOptions!(s, s.assets['52005']!)
+  expect(options).toHaveLength(1)
+  s = dispatch({ ...s, pending: null }, ...options[0]!.then, { type: 'CommitWindow' })
+  expect(s.skillTest!.kind).toMatchObject({ type: 'effect', source: 'outer' })
+  s = apply(reveal(s))
+  expect(s.skillTest!.kind).toMatchObject({ type: 'evade', enemy: target(s) })
+})
+
 it.each(['11081', '11082', '11084'])(
   '%s can activate from hand by discarding itself instead of exhausting',
   (code) => {
@@ -340,7 +373,8 @@ it('Ghastly Possession adds two wild icons with doom, or replenishes up to the p
   expect(skillTestValue(s).icons).toBe(3)
 })
 
-it('Ghastly Possession keeps its chosen delayed effect after the committed card returns to hand', () => {
+// Official rules response, Ghastly Possession: returning the skill removes its second effect.
+it('Ghastly Possession loses its successful-test effect after returning to hand', () => {
   let s = withAsset(patch({ hand: ['09090'] })(base()), '01060', { uses: 3 })
   s = begin(
     s,
@@ -356,9 +390,68 @@ it('Ghastly Possession keeps its chosen delayed effect after the committed card 
     { type: 'CommitWindow' },
   )
   expect(me(s).hand).toContain('09090')
+  expect(skillTestValue(s).icons).toBe(0)
+  s = apply(reveal(s))
+  expect(labels(s)).not.toContain('choice.actionSupportReplenish')
+  expect(s.assets['01060']!.uses).toBe(3)
+})
+
+it('Ghastly Possession replenishes on success while the skill remains committed, capped at its uses value', () => {
+  let s = withAsset(patch({ hand: ['09090'] })(base()), '01060', { uses: 3 })
+  s = begin(
+    s,
+    { type: 'effect', source: 'asset-test', onSuccess: [], onFail: [], onFailEach: [] },
+    '01060',
+    'intellect',
+  )
+  s = choose(s, 'choice.commit', { card: cardName('09090') })
+  s = choose(s, 'choice.actionSupportReplenishLater')
   s = apply(reveal(s))
   s = choose(s, 'choice.actionSupportReplenish')
-  expect(s.assets['01060']!.uses).toBe(playerCardDef('01060')!.uses!.count)
+  expect(s.assets['01060']!.uses).toBe(4)
+})
+
+it('Webb can recover an Item after successfully investigating a location with no clues', () => {
+  let s = patch({ discard: ['01016'] })(own('08104'))
+  s = { ...s, locations: { ...s.locations, A: { ...s.locations.A!, clues: 0 } } }
+  s = reveal(begin(s, { type: 'investigate', location: 'A' }, undefined, 'intellect'))
+  s = react(s, '08104')
+  s = choose(s, 'choice.card', { card: cardName('01016') })
+  s = apply(s)
+  expect(me(s).hand).toContain('01016')
+  expect(me(s).clues).toBe(0)
+})
+
+it('Ariadne can move a resource to a different controlled asset as a secret', () => {
+  let s = withAsset(own('07304'), '01060', { uses: 0 })
+  // Shrivelling uses charges, so it must not receive secrets.
+  expect(
+    behavior('07304').abilities!(s, s.assets['07304']!, 'a').some(
+      (o) => o.key === '07304:advanced:deposit:01060',
+    ),
+  ).toBe(false)
+  s = withAsset(s, '04307', { uses: 0 })
+  const deposit = behavior('07304').abilities!(s, s.assets['07304']!, 'a').find((o) =>
+    o.key.endsWith(':deposit:04307'),
+  )
+  expect(deposit).toBeDefined()
+  s = dispatch(clear(s), ...deposit!.then)
+  expect(s.assets['04307']!.uses).toBe(1)
+  expect(s.assets['07304']!.uses).toBe(0)
+  expect(me(s).resources).toBe(9)
+})
+
+it('Stealth applies the zero minimum after combining all enemy evade modifiers', () => {
+  let s = enemy(own('03028'))
+  const id = target(s)
+  s = { ...s, enemies: { ...s.enemies, [id]: { ...s.enemies[id]!, evade: 1 } } }
+  s = dispatch(s, {
+    type: 'AddEnemyModifier',
+    enemy: id,
+    modifier: { source: 'test', until: 'round', evade: 2 },
+  })
+  s = activate(s, '03028')
+  expect(s.skillTest!.difficulty).toBe(1)
 })
 
 it.each(['08104', '08106'])('%s can redirect a basic clue to a connecting location', (code) => {
@@ -424,6 +517,20 @@ it('Purifying Corruption cancels a real revelation and retains its paid corrupti
   expect(me(s)).toMatchObject({ damage: 1, horror: 1 })
   expect(s.assets['07273']!.uses).toBe(1)
   expect(s.encounterDiscard.some((c) => c.code === code)).toBe(true)
+})
+
+it('Purifying Corruption chooses its effect after resolving the encounter drawn as its cost', () => {
+  const code = 'purify-cost-test'
+  registerTreachery({ code, revelation: () => [] })
+  let s = patch({ damage: 1 })(own('07273'))
+  s = { ...s, encounterDeck: [{ kind: 'treachery', code, name: 'Cost treachery', keywords: [] }] }
+  const ability = behavior('07273').abilities!(s, s.assets['07273']!, 'a')[0]!
+  s = dispatch(s, ...ability.then)
+  s = react(s, '07273')
+  expect(s.assets['07273']!.uses).toBe(1)
+  expect(labels(s)).toContain('choice.actionSupportCorruption')
+  s = choose(s, 'choice.actionSupportCorruption')
+  expect(s.assets['07273']!.uses).toBe(0)
 })
 
 it('Kerosene observes an actual enemy defeat and its final supply discards the asset before healing', () => {

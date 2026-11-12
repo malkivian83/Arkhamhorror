@@ -49,15 +49,15 @@ Se conserva el inventario histórico y sus huellas; solo se activa el grupo revi
   sustituir además la pista. No se sustituye una pista de una investigación remota
   como si fuese de la localización propia.
 - Jacob no se prepara en mantenimiento; puede prepararse por una Bendición
-  revelada en su prueba y agotarse para modificar un fallo. El hilo de Ariadna
-  presta secretos a apoyos de cualquier investigador en su misma localización;
+  revelada en su prueba y agotarse para modificar un fallo. El hilo de Ariadna permite mover recursos a cualquier apoyo propio con
+  secretos y presta secretos a apoyos de cualquier investigador en su misma localización;
   mover un secreto a recursos no es ganar recursos y no dispara esa reacción.
 - Persistencia puede comprometerse desde el descarte, también como ayuda con
   confirmación de su dueño y restricciones de Peligro. Solo esa copia vuelve
   barajada al mazo al terminar la prueba. Posesión abominable elige su efecto al
   comprometerse sobre un apoyo: perdición y dos comodines, o un efecto diferido
-  de reposición/retirada de perdición si hay éxito. Este último persiste si la
-  habilidad vuelve a la mano. Reponer respeta el valor de usos del apoyo;
+  de reposición/retirada de perdición si hay éxito. Este último solo se resuelve mientras la habilidad siga comprometida; si
+  vuelve a la mano deja de aplicarse, conforme a la respuesta oficial. Reponer respeta el valor de usos del apoyo;
   [aclaración de la carta](https://arkhamdb.com/card/09090).
 - Queroseno requiere una derrota en ese Lugar durante esa ronda. Cura hasta dos
   horrores repartidos entre investigadores y Aliados; su último suministro lo
@@ -99,3 +99,9 @@ Siguen pendientes grupos que requieren otras conexiones: elecciones múltiples d
 Olive, cartas vinculadas y acceso a cartas adjuntas; Sigilo y los nuevos apoyos no
 suplen esos requisitos. Primera guardia y Liberación mantienen sus bloqueos de
 reparto privado/control del Mito.
+
+## Revisión de reglas posterior a `100df892`
+
+- Contraste de los 40 textos de los lotes 141–142, RR/Grimorio y respuestas oficiales. Se corrigen Posesión abominable al volver a mano, Webb en Lugares sin pistas, los destinos de El hilo de Ariadna, el mínimo final de Evasión con Sigilo, sus ventanas y pruebas anidadas, la devolución de Persistencia y los iconos de cartas devueltas, y las decisiones de Purificar la corrupción después de pagar el coste.
+- Posesión: [respuesta oficial reproducida en ArkhamDB](https://arkhamdb.com/card/09090). Costes, pruebas anidadas, efectos diferidos y valores base: [RR actualizado](https://arkhamdb.com/rules). Una base específica de prueba prevalece sobre la base propia elevada por El hombre de los guantes rojos.
+- Revisión 2 en ambos manifiestos, fuentes e inventarios históricos sin cambios. 107 casos de los dos lotes y 6901 casos amplios en 624 archivos correctos. Las regresiones se reprodujeron antes de corregirlas; también se conserva el caso positivo de reposición y su máximo.

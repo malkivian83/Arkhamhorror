@@ -1,7 +1,7 @@
 {
   "sourceBundle": "3c8ee4b5d8100766",
   "presentation": "rendered",
-  "rulesRevision": 1,
+  "rulesRevision": 2,
   "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
   "sources": {
     "en": "c8b3642f618fcfa35064e058103b135363af62c38686bd18f9e34d2c8801de0b",
