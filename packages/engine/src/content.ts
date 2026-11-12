@@ -611,7 +611,7 @@ export interface PlayerCardBehavior {
    * Uses on this asset may be spent as if they were on other assets its controller
    * controls with one of these traits and the same use type (Typewriter: Tome secrets).
    */
-  lendsUses?: { traits: string[] }
+  lendsUses?: { traits: string[]; types?: string[] }
   /** Continuous health/sanity granted to controlled assets with that printed statistic. */
   controlledAssetVitals?: { health?: number; sanity?: number }
   /** This asset allows uses on another controlled asset to pay for a card. */
@@ -868,6 +868,8 @@ export interface PlayerCardBehavior {
   abilities?: AbilitiesFn<Asset>
   /** Modificador constante a las pruebas de su controlador. */
   skillModifier?: (state: GameState, self: Asset, test: SkillTest) => number
+  minimumSkillBase?: (state: GameState, self: Asset, test: SkillTest) => number
+  sharedSlot?: { key: string; size: number }
   /** Aura de un apoyo controlado: se evalúa para pruebas de cualquier investigador. */
   skillAura?: (state: GameState, self: Asset, test: SkillTest) => number
   /** Carta comprometida: efecto según el resultado de la prueba. */
@@ -951,6 +953,7 @@ export interface PlayerCardBehavior {
   }
   /** Coste adicional al comprometerla. */
   onCommit?: (state: GameState, by: InvestigatorId) => Message[]
+  removeAtTestEnd?: boolean
   /** Aumenta el tamaño máximo de mano de su controlador. */
   handSize?: number
   /** Only one copy by title counts toward the hand limit (Dream-Enhancing Serum). */
@@ -1143,8 +1146,10 @@ export function usesLenders(state: GameState, asset: Asset): Asset[] {
     const lends = playerCardBehavior(lender.code)?.lendsUses
     return (
       !!lends &&
-      useKind(playerCardDef(lender.code)?.uses?.type) === useKind(def.uses!.type) &&
-      def.traits.some((t) => lends.traits.includes(t))
+      (lends.types
+        ? lends.types.includes(useKind(def.uses!.type) ?? '')
+        : useKind(playerCardDef(lender.code)?.uses?.type) === useKind(def.uses!.type)) &&
+      (lends.traits.length === 0 || def.traits.some((t) => lends.traits.includes(t)))
     )
   })
 }

@@ -25,7 +25,8 @@ export function approvedDefinition(card, approval) {
         (['08094', '08096', '08095'].includes(card.code) &&
           card.factions.join(',') === 'guardian,survivor') ||
         (['08117', '08119'].includes(card.code) && card.factions.join(',') === 'mystic,survivor') ||
-        (card.code === '05118' && card.factions.join(',') === 'mystic,guardian')))
+        (card.code === '05118' && card.factions.join(',') === 'mystic,guardian') ||
+        (card.code === '08112' && card.factions.join(',') === 'rogue,survivor')))
   const reviewedCustomizable =
     approval.adapter === 'reviewed-shotcaster-v1' && card.code === '09119'
   const talentFactions = {
@@ -111,9 +112,11 @@ export function approvedDefinition(card, approval) {
   // Reviewed Exceptional assets (The Black Fan, The Red Clock): deck limit 1.
   const reviewedExceptional =
     approval.adapter === 'reviewed-exceptional-v1' &&
-    ['08057', '08058', '08053', '07224'].includes(card.code) &&
+    ['08057', '08058', '08053', '07224', '02230', '07307', '07225'].includes(card.code) &&
     card.flags.exceptional &&
     card.deckLimit === 1 &&
+    (!['02230', '07307', '07225'].includes(card.code) ||
+      card.numbers.xp?.value === { '02230': 2, '07307': 3, '07225': 2 }[card.code]) &&
     card.factions.join(',') === 'rogue'
   const reviewedDarkHorse =
     approval.adapter === 'reviewed-dark-horse-v1' &&
@@ -155,6 +158,10 @@ export function approvedDefinition(card, approval) {
         card.numbers.xp.value === 0 &&
         !card.flags.exceptional))
   const myriadFactions = {
+    11039: 'seeker',
+    '06241': 'mystic',
+    '06242': 'mystic',
+    '06243': 'mystic',
     11031: 'guardian',
     11042: 'seeker',
     '06199': 'rogue',
@@ -170,7 +177,13 @@ export function approvedDefinition(card, approval) {
     approval.adapter === 'reviewed-myriad-v1' &&
     Object.hasOwn(myriadFactions, card.code) &&
     card.flags.myriad &&
-    card.deckLimit === 3 &&
+    card.deckLimit === (['06241', '06242', '06243'].includes(card.code) ? 1 : 3) &&
+    (!['06241', '06242', '06243', '11039'].includes(card.code) ||
+      (card.numbers.xp?.value === (card.code === '11039' ? 0 : 2) &&
+        card.slots.slots.join(',') === 'arcane' &&
+        (card.code === '11039' ||
+          approval.subname ===
+            { '06241': 'Stamina', '06242': 'Alacrity', '06243': 'Acuity' }[card.code]))) &&
     card.factions.join(',') === myriadFactions[card.code]
   if (
     (card.flags.permanent &&
@@ -222,7 +235,7 @@ export function approvedDefinition(card, approval) {
       ? { deckLimit: 1, ...(card.flags.exceptional ? { exceptional: true } : {}) }
       : {}),
     ...(reviewedMemento ? { deckLimit: 1 } : {}),
-    ...(reviewedMyriad ? { myriad: true, deckLimit: 3 } : {}),
+    ...(reviewedMyriad ? { myriad: true, deckLimit: card.deckLimit } : {}),
     traits: card.traits,
     ...(card.flags.is_unique ? { unique: true } : {}),
     ...(cost !== undefined ? { cost } : {}),

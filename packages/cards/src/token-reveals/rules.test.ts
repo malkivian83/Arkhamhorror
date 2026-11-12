@@ -52,8 +52,8 @@ it.each([
     expect(s.assets[code]!.uses).toBe(charges)
     s = choose(s, 'ability.tokenRevealReplace', { card: name(code), n: 2 })
     expect(s.assets[code]!.uses).toBe(charges - 1)
-    // Only one replacement applies to each reveal.
-    expect(labels(s)).not.toContain('ability.tokenRevealReplace')
+    // FAQ: another replacement may be declared on one of the future reveals.
+    expect(labels(s)).toContain('ability.tokenRevealReplace')
     s = reveal(bag(s, -1, 'skull'))
     expect(s.pending!.question.prompt).toBe('prompt.chooseRevealedToken')
     s = pick(s, -1)
@@ -104,8 +104,8 @@ it.each(['04032', '60417'])(
     s = choose(s, 'ability.playCard', { card: name(code) })
     expect(me(s).resources).toBe(9)
     expect(me(s).discard).toContain(code)
-    // The Statue cannot add a second replacement to the same reveal.
-    expect(labels(s)).not.toContain('ability.tokenRevealReplace')
+    // The Statue may replace one predeclared reveal; declining preserves the original five.
+    expect(labels(s)).toContain('ability.tokenRevealReplace')
     // The only symbol token is resolved without a choice.
     s = reveal(bag(s, 1, 0, -1, 'cultist', 'elderSign', -2))
     expect(s.skillTest!.tokens).toEqual(['cultist'])

@@ -260,3 +260,8 @@
 
 - Paz vigilante: 1 código/carta/nivel nuevo, 0 reediciones. 1430 jugables y 687 históricos pendientes (312 estándar con impresión).
 - 175 casos dirigidos, 65 de regresión y conversión; tipos cards/engine, lint/formato, build web y 5809 imágenes/miniaturas. Detalles en 139.
+
+## Cierre del lote 140 · b6a85fe6
+
+- Escape por los pelos: 1 código/carta/nivel nuevo, 0 reediciones. 1431 jugables; 686 históricos pendientes (311 estándar con impresión).
+- 10 casos específicos y 219 de regresión/registro/presentación/conversión; tipos, lint/formato, build web y recursos. La regresión de efectos por turno detectada después se corrige en 141.

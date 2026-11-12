@@ -146,6 +146,7 @@ export interface Investigator {
   roundTurnActions?: { round: number; amount: number }
   /** No chaos tokens for their next skill test during the turn started at this log index. */
   noTokensNextTest?: number
+  noTokensNextRoundTest?: number
   attackProtection?: { phase: Phase; round: number; nonElite: boolean }
   /** Serialized effects lasting through the investigator's current actual turn. */
   turnSkillEffect?: {
@@ -720,7 +721,18 @@ export interface TokenRevealReplacement {
   untilSymbol?: boolean
   /** Card whose effect made the choice (Breath of the Sleeper checks its own choice). */
   source?: string
+  nested?: Record<number, TokenRevealReplacement>
 }
+
+/** A predeclared tree of reveal-one replacements; choices are made after all leaves are drawn. */
+export type TokenRevealTree =
+  | { token: ChaosToken }
+  | {
+      children: TokenRevealTree[]
+      prefer?: ChaosToken[]
+      selected?: number
+      ignored: ChaosToken[]
+    }
 
 /** Card a chaos token is sealed on; a committed skill card holds it until the test ends. */
 export type SealHolder =
@@ -754,6 +766,16 @@ export interface TokenEffect {
 }
 
 export interface SkillTest {
+  virtualToken?: ChaosToken
+  earlyReveal?: boolean
+  earlyRevealDone?: boolean
+  revealingEarly?: boolean
+  earlyTokens?: NonNullable<SkillTest['revealing']>[]
+  revelation?: TreacheryId
+  onTreachery?: TreacheryId
+  tokenRetries?: number
+  afterHeldReveals?: { reverse?: boolean; failOn?: ChaosToken }[]
+  tokenConditions?: { key: string; token: ChaosToken; then: Message[] }[]
   successMarginModifier?: number
   nextCommitId?: number
   /** Replaces the normal outcome without changing the kind or success windows. */
@@ -828,6 +850,7 @@ export interface SkillTest {
   ignoredTokens?: ChaosToken[]
   /** Physical identity and applied modifier of each resolved token, in reveal order. */
   resolvedTokens?: {
+    virtual?: boolean
     token: ChaosToken
     face: ChaosToken
     modifier: number
@@ -843,6 +866,7 @@ export interface SkillTest {
   autoSucceed?: boolean
   /** Token held during its "when revealed" window, and what it is treated as. */
   revealing?: {
+    virtual?: boolean
     token: ChaosToken
     face: ChaosToken
     reverseModifierOf?: ChaosToken
@@ -969,6 +993,12 @@ type MessageBody =
     }
   | {
       type: 'ModifySkillTest'
+      baseSkill?: number
+      preserveModifier?: boolean
+      noTokens?: boolean
+      virtualToken?: ChaosToken
+      earlyReveal?: boolean
+      tokenRetries?: number
       skill?: SkillType
       ignoredEnemyKeywords?: EnemyKeyword[]
       addedEnemyKeywords?: EnemyKeyword[]
@@ -1320,7 +1350,8 @@ type MessageBody =
   | { type: 'ExhaustAsset'; asset: AssetId }
   | { type: 'ReadyAsset'; asset: AssetId }
   /** `own`: the source of the uses is settled (no uses lent by other assets, Typewriter). */
-  | { type: 'SpendUses'; asset: AssetId; amount: number; own?: boolean }
+  | { type: 'SpendUses'; asset: AssetId; amount: number; own?: boolean; forAsset?: AssetId }
+  | { type: 'BoostTestFromAsset'; asset: AssetId; amount: number }
   | { type: 'RemoveUses'; asset: AssetId; amount: number }
   | { type: 'SetAssetForm'; asset: AssetId; form: string }
   | { type: 'ReplaceSkillTestResults'; then: Message[] }
@@ -1370,6 +1401,9 @@ type MessageBody =
    */
   | {
       type: 'RevealChaosToken'
+      virtual?: boolean
+      reverse?: boolean
+      failOn?: ChaosToken
       /** Already counted when first revealed (Athena). */
       counted?: boolean
       token?: ChaosToken
@@ -1458,6 +1492,14 @@ type MessageBody =
   | { type: 'RevealExtraToken'; investigator: InvestigatorId }
   /** Replaces the next chaos token reveal of the declaring investigator. */
   | { type: 'ReplaceNextTokenReveal'; replacement: TokenRevealReplacement }
+  | { type: 'AttachTokenRevealReplacement'; replacement: TokenRevealReplacement; path: number[] }
+  | {
+      type: 'ChooseTokenRevealTree'
+      tree: TokenRevealTree
+      investigator: InvestigatorId
+      source?: string
+      outside?: Extract<Message, { type: 'RevealTokenOutsideTest' }>
+    }
   /** Tokens drawn by a replacement: the chooser resolves one and the others are ignored. */
   | {
       type: 'ChooseRevealedToken'
@@ -1475,6 +1517,16 @@ type MessageBody =
       source?: string
       outside?: Extract<Message, { type: 'RevealTokenOutsideTest' }>
     }
+  | { type: 'FinishEarlyReveal' }
+  | { type: 'ResolveEarlyTestToken'; held: NonNullable<SkillTest['revealing']> }
+  | { type: 'RevelationContext'; treachery: TreacheryId; end?: boolean }
+  | { type: 'SkipNextRoundTestTokens'; investigator: InvestigatorId }
+  | {
+      type: 'IgnoreHeldToken'
+      penalty?: { asset: AssetId; tokens: ChaosToken[]; returnToHand?: boolean }
+    }
+  | { type: 'AddExtraTestToken'; reverse?: boolean; failOn?: ChaosToken }
+  | { type: 'WatchTestToken'; key: string; token: ChaosToken; then: Message[] }
   /** La prueba en curso tiene éxito por 0 (Scrape By). */
   | { type: 'ForceSkillTestSuccess'; replaceFailure?: boolean }
   /** La prueba en curso fracasa automáticamente (El juramento inconfesable, [elder_thing]). */
@@ -2288,6 +2340,11 @@ export type ClueHolder =
 
 /** Momentos en los que se comprueban las habilidades forzadas. */
 export type Trigger =
+  | {
+      type: 'afterTokenManipulated'
+      investigator: InvestigatorId
+      operation: 'seal' | 'cancel' | 'ignore'
+    }
   | { type: 'gameBegins'; openingHands: Record<InvestigatorId, CardCode[]> }
   | {
       type: 'beforeEnemyDamage'
@@ -2455,7 +2512,7 @@ export type Trigger =
   /** Un investigador ha sido derrotado (no cuenta retirarse). */
   | { type: 'investigatorDefeated'; investigator: InvestigatorId; location?: LocationId }
   | { type: 'afterUsesAdded'; asset: AssetId; amount: number }
-  | { type: 'afterUsesSpent'; asset: Asset; amount: number }
+  | { type: 'afterUsesSpent'; asset: Asset; amount: number; forAsset?: AssetId }
   | { type: 'enemyPhaseBegins' }
   | { type: 'huntersMoveEnds' }
   /** Un enemigo acaba de entrar en juego (tras enfrentarse, si le toca). */
@@ -2829,6 +2886,8 @@ export interface GameState {
   actClues?: number
   log: LogEntry[]
   skillTest: SkillTest | null
+  revelationContexts?: TreacheryId[]
+  nextTokenPenalty?: { asset: AssetId; tokens: ChaosToken[]; returnToHand?: boolean }
   /** Pila de mensajes pendientes: el primero es el siguiente en procesarse. */
   queue: Message[]
   pending: PendingQuestion | null

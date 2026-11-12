@@ -5,6 +5,25 @@ import { approvedDefinition } from './approved.mjs'
 const read = async (relative) =>
   JSON.parse(await readFile(new URL(relative, import.meta.url), 'utf8'))
 describe('reviewed inventory conversion', () => {
+  it('restricts the new Myriad variants and Exceptional assets to their reviewed models', async () => {
+    const { cards } = await read(
+      '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
+    )
+    const manifest = await read('../../packages/cards/src/advanced-tests/approvals.json')
+    for (const code of ['06241', '06242', '06243', '11039', '02230', '07307', '07225']) {
+      const card = cards.find((c) => c.code === code)
+      const approval = manifest.cards.find((a) => a.code === code)
+      expect(() => approvedDefinition(card, approval)).not.toThrow()
+      expect(() => approvedDefinition(card, { ...approval, adapter: undefined })).toThrow()
+      expect(() =>
+        approvedDefinition(
+          { ...card, numbers: { ...card.numbers, xp: { kind: 'number', value: 9 } } },
+          approval,
+        ),
+      ).toThrow()
+      expect(() => approvedDefinition({ ...card, deckLimit: 2 }, approval)).toThrow()
+    }
+  })
   it('restricts the two support Tarot approvals to their printed faction and level', async () => {
     const { cards } = await read(
         '../../packages/cards/src/catalog/imports/3c8ee4b5d8100766/catalog.json',
@@ -342,6 +361,7 @@ describe('reviewed inventory conversion', () => {
     'reused-capabilities',
     'mythos-guard',
     'narrow-escape',
+    'advanced-tests',
   ])('reproduces approved data and module/test evidence for %s', async (batch) => {
     const approvals = await read(`../../packages/cards/src/${batch}/approvals.json`)
     const inventory = await read(
