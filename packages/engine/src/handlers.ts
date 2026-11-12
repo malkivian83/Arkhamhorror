@@ -5021,7 +5021,8 @@ export function handle(state: GameState, message: Message): GameState {
           )
         : state
       const placed = take(message.on, (keys) => [...keys, message.key])(removed)
-      return message.on.type === 'investigator' && message.from?.type !== 'investigator'
+      // Receiving a key from another investigator is also taking control of it.
+      return message.on.type === 'investigator'
         ? push(placed, {
             type: 'Forced',
             trigger: { type: 'afterTakeKey', investigator: message.on.id, key: message.key },

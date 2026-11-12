@@ -22,11 +22,17 @@ export const edgeOfTheEarthChaosBags: Record<Difficulty, ChaosToken[]> = {
 }
 
 export const startingFrostRemoved = 'edgeOfTheEarthStartingFrostRemoved'
+/** City of the Elder Things (v. III): Elder Thing tokens of the printed bag removed for good. */
+export const startingElderThingRemoved = 'edgeOfTheEarthStartingElderThingRemoved'
 
 export function edgeOfTheEarthStartingBag(context: ScenarioContext): ChaosToken[] {
   const bag = edgeOfTheEarthChaosBags[context.difficulty]
   let removed = Number(context.log.values[startingFrostRemoved] ?? 0)
-  return bag.filter((token) => token !== 'frost' || removed-- <= 0)
+  let elderThings = Number(context.log.values[startingElderThingRemoved] ?? 0)
+  return bag.filter(
+    (token) =>
+      (token !== 'frost' || removed-- <= 0) && (token !== 'elderThing' || elderThings-- <= 0),
+  )
 }
 
 const story = (part: string): StoryEntry => ({

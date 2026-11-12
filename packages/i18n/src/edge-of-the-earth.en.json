@@ -605,7 +605,8 @@
     "cityMapRoom": "Choose a location to reveal",
     "cityRampart": "Choose what the ancient vault removes",
     "cityTemple": "Choose a location whose keys are swapped",
-    "cityStreets": "Choose the connecting location"
+    "cityStreets": "Choose the connecting location",
+    "nearestEnemy": "Choose the nearest enemy that moves toward you"
   },
   "ability": {
     "memorialPoe": "{card}: spend 1 charge to search for Tekeli-li",

@@ -605,7 +605,8 @@
     "cityMapRoom": "Elige un Lugar para revelarlo",
     "cityRampart": "Elige qué retira la cámara antigua",
     "cityTemple": "Elige un Lugar cuyas llaves se intercambian",
-    "cityStreets": "Elige el Lugar conectado"
+    "cityStreets": "Elige el Lugar conectado",
+    "nearestEnemy": "Elige el enemigo más cercano que se mueve hacia ti"
   },
   "ability": {
     "memorialPoe": "{card}: gasta 1 carga para buscar ¡Tekeli-li!",

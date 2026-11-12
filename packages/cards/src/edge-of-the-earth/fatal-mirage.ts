@@ -6,6 +6,7 @@ import { mirageDecks } from './fatal-mirage-decks'
 import { anamnesis } from './fatal-mirage-encounters'
 import { fatalMirageExploration } from './fatal-mirage-exploration'
 import { prepareMirageMap, PRISON_OF_MEMORIES, readMirageMemories } from './fatal-mirage-map'
+import { sledgeAbilities, supplyStep } from './forbidden-peaks-supplies'
 import { evanescentMist } from './fatal-mirage-mist'
 import { horrifyingShade } from './fatal-mirage-shade'
 import { EOTE_FATAL_MIRAGE, encounters } from './ice-and-death-cards'
@@ -86,4 +87,13 @@ export function fatalMirage(context: ScenarioContext): ScenarioDefinition {
   }
 }
 
-registerScenario(fatalMirageExploration)
+// Expedition supplies (Wooden Sledge) may be in decks on a visit after the peaks.
+registerScenario({
+  ...fatalMirageExploration,
+  abilities: (state, self, investigator) => [
+    ...(fatalMirageExploration.abilities?.(state, self, investigator) ?? []),
+    ...sledgeAbilities(state, investigator),
+  ],
+  specific: (state, key, data) =>
+    supplyStep(state, key, data) ?? fatalMirageExploration.specific?.(state, key, data) ?? state,
+})

@@ -19,6 +19,7 @@ import {
 } from './city'
 import { TUNNEL, cityKeys, cityMaps, outermost } from './city-cards'
 import { EOTE_CITY } from './ice-and-death-cards'
+import { edgeOfTheEarthStartingBag } from './opening'
 
 // The scenario is not in the campaign selector yet: connect its builder for these tests only.
 const definition = campaignDefinition('edge-of-the-earth')
@@ -166,5 +167,80 @@ describe('City of the Elder Things', () => {
       { code: '08641', location: TUNNEL, exhausted: true },
     ])
     expect(game.encounterDeck.filter(({ code }) => code === '08710')).toHaveLength(2)
+  })
+
+  it('carries the Wooden Sledge rules into the city', () => {
+    let game = ready(start(campaignAt(versionOf(1))))
+    game = {
+      ...game,
+      investigators: game.investigators.map((player) => ({
+        ...player,
+        deck: ['01087', ...player.deck],
+      })),
+    }
+    game = dispatch(game, {
+      type: 'ScenarioSpecific',
+      key: 'sledgeAttach',
+      data: { investigator: me(game), code: '01087', window: 6, picked: 0 },
+    })
+    expect(game.scenarioDecks?.peaksSledge).toEqual([`${me(game)}|01087`])
+  })
+
+  it('returns one recorded Tekeli-li copy per card shuffled back (v. II)', () => {
+    let game = ready(start(campaignAt(versionOf(2))))
+    const id = me(game)
+    game = {
+      ...game,
+      investigators: game.investigators.map((player) => ({
+        ...player,
+        deck: ['08723', ...player.deck],
+        hand: ['08723'],
+      })),
+      campaignLog: {
+        ...game.campaignLog!,
+        investigators: {
+          ...game.campaignLog!.investigators,
+          [id]: { ...game.campaignLog!.investigators[id]!, storyAssets: ['08723', '08723'] },
+        },
+      },
+    }
+    const pool = game.tekeliliDeck?.length ?? 0
+    game = dispatch(game, { type: 'ScenarioSpecific', key: 'pursuitTekelili', data: {} })
+    expect(game.campaignLog?.investigators[id]?.storyAssets).toEqual(['08723'])
+    expect(game.tekeliliDeck).toHaveLength(pool + 1)
+  })
+
+  it('only offers to move to revealed Stone Bridges', () => {
+    const game = ready(start(campaignAt(versionOf(1))))
+    const bridges = Object.keys(game.locations).filter((id) => id.startsWith('08632'))
+    const placed = {
+      ...game,
+      investigators: game.investigators.map((player) => ({ ...player, location: bridges[0]! })),
+      locations: {
+        ...game.locations,
+        [bridges[0]!]: { ...game.locations[bridges[0]!]!, revealed: true },
+      },
+    }
+    const moves = availableAbilities(placed, me(game)).filter(({ key }) => key.includes(':bridge:'))
+    expect(moves).toEqual([])
+  })
+
+  it('removes the Elder Thing tokens for the rest of the campaign (v. III)', () => {
+    let game = ready(start(campaignAt(versionOf(3))))
+    game = {
+      ...game,
+      campaignLog: { ...game.campaignLog!, chaosTokens: ['elderThing', 'frost'] },
+      chaosBag: [...game.chaosBag, 'elderThing'],
+    }
+    game = dispatch(game, { type: 'ScenarioSpecific', key: 'removeElderThings', data: {} })
+    expect(game.chaosBag).not.toContain('elderThing')
+    expect(game.campaignLog?.chaosTokens).toEqual(['frost'])
+    const bag = edgeOfTheEarthStartingBag({
+      difficulty: 'hard',
+      log: { ...game.campaignLog!, values: { ...game.campaignLog!.values } },
+      seed: 1,
+      investigators: [],
+    })
+    expect(bag).not.toContain('elderThing')
   })
 })
