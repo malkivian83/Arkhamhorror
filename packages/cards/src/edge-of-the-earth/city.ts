@@ -34,9 +34,14 @@ import {
 } from './city-cards'
 import { cityEncounters } from './city-encounters'
 import { interludeBonuses } from './forbidden-peaks'
+import { sledgeAbilities, supplyStep } from './forbidden-peaks-supplies'
 import { EOTE_CITY } from './ice-and-death-cards'
 import { iceAndDeathRules } from './ice-and-death'
-import { edgeOfTheEarthStartingBag } from './opening'
+import {
+  edgeOfTheEarthChaosBags,
+  edgeOfTheEarthStartingBag,
+  startingElderThingRemoved,
+} from './opening'
 
 const cityMessage = (key: string, data: Record<string, string | number> = {}): Message => ({
   type: 'ScenarioSpecific',
@@ -418,7 +423,9 @@ landscape('08632', (state, id, investigator) => [
     ),
   },
   ...Object.keys(state.locations)
-    .filter((other) => other !== id && other.startsWith('08632'))
+    .filter(
+      (other) => other !== id && other.startsWith('08632') && state.locations[other]?.revealed,
+    )
     .map((other) => ({
       key: `${id}:bridge:${other}`,
       label: 'ability.edgeOfTheEarth.city.bridgeMove',
@@ -649,8 +656,13 @@ export const cityRules: ScenarioBehavior = {
         ),
       }))
   },
+  // Expedition supplies added to decks after To the Forbidden Peaks (Wooden Sledge).
+  abilities: (state, _self, investigator) => sledgeAbilities(state, investigator),
   specific: (state, key, data) =>
-    cityStep(state, key, data) ?? iceAndDeathRules.specific?.(state, key, data) ?? state,
+    cityStep(state, key, data) ??
+    supplyStep(state, key, data) ??
+    iceAndDeathRules.specific?.(state, key, data) ??
+    state,
 }
 
 function cityStep(state: GameState, key: string, data: Record<string, unknown>): GameState | null {
@@ -769,8 +781,9 @@ function cityStep(state: GameState, key: string, data: Record<string, unknown>):
                     ...current.campaignLog.investigators,
                     [id]: {
                       ...current.campaignLog.investigators[id]!,
-                      storyAssets: current.campaignLog.investigators[id]!.storyAssets.filter(
-                        (code) => !tekelili.includes(code),
+                      storyAssets: withoutCopies(
+                        current.campaignLog.investigators[id]!.storyAssets,
+                        tekelili,
                       ),
                     },
                   },
@@ -779,8 +792,25 @@ function cityStep(state: GameState, key: string, data: Record<string, unknown>):
             : {}),
         }
       }, state)
-    case 'removeElderThings':
-      return { ...state, chaosBag: state.chaosBag.filter((token) => token !== 'elderThing') }
+    case 'removeElderThings': {
+      const log = state.campaignLog
+      const starting = (edgeOfTheEarthChaosBags[state.difficulty] ?? []).filter(
+        (token) => token === 'elderThing',
+      ).length
+      return {
+        ...state,
+        chaosBag: state.chaosBag.filter((token) => token !== 'elderThing'),
+        ...(log
+          ? {
+              campaignLog: {
+                ...log,
+                chaosTokens: log.chaosTokens.filter((token) => token !== 'elderThing'),
+                values: { ...log.values, [startingElderThingRemoved]: String(starting) },
+              },
+            }
+          : {}),
+      }
+    }
     case 'removeFrost':
       return iceAndDeathRules.specific?.(state, 'removeFrost', {}) ?? state
     case 'dropKey': {
@@ -816,7 +846,23 @@ function cityStep(state: GameState, key: string, data: Record<string, unknown>):
       const enemies = Object.values(state.enemies).filter(({ location }) => distance.has(location))
       if (!enemies.length) return state
       const nearest = Math.min(...enemies.map(({ location }) => distance.get(location)!))
-      const enemy = enemies.find(({ location }) => distance.get(location) === nearest)!
+      const tied = enemies.filter(({ location }) => distance.get(location) === nearest)
+      // Ties: the investigator chooses which of the nearest enemies moves.
+      if (tied.length > 1 && !data.enemy)
+        return push(
+          state,
+          ...ask(
+            investigator,
+            'nearestEnemy',
+            tied.map((enemy) => ({
+              label: 'choice.enemy',
+              params: { enemy: enemy.name },
+              target: { type: 'enemy', id: enemy.id },
+              then: [cityMessage('nearestEnemy', { investigator, enemy: enemy.id })],
+            })),
+          ),
+        )
+      const enemy = tied.find(({ id }) => id === data.enemy) ?? tied[0]!
       const step = nextStepToward(state, enemy.location, (location) => location === here)
       return push(
         state,
@@ -930,6 +976,16 @@ function cityStep(state: GameState, key: string, data: Record<string, unknown>):
     default:
       return null
   }
+}
+
+/** Remove one copy of each listed card. */
+function withoutCopies(cards: string[], removed: string[]): string[] {
+  const rest = [...cards]
+  for (const code of removed) {
+    const index = rest.indexOf(code)
+    if (index >= 0) rest.splice(index, 1)
+  }
+  return rest
 }
 
 function shuffleIntoEncounter(state: GameState, codes: string[]): GameState {

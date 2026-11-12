@@ -276,11 +276,11 @@ function tragedy(state: GameState, terror: string): GameState {
   )
 }
 
-function conclusion(state: GameState, summit: boolean): Message[] {
+function conclusion(state: GameState, summit: boolean, defeated = false): Message[] {
   const lead = leadInvestigator(state)?.id ?? state.investigators[0]!.id
   const kept = summit ? state.victoryDisplay.filter(isExpedition) : []
   return [
-    ...(state.investigators.some(({ resigned }) => resigned) ? [] : [read('peaksNoResolution')]),
+    ...(defeated ? [read('peaksNoResolution')] : []),
     read(summit ? 'peaksResolution1' : 'peaksResolution2'),
     { type: 'RecordNote', note: summit ? climbedSummit : foundAnotherWay },
     { type: 'EarnExperience', amount: 0, victory: true },
@@ -390,7 +390,9 @@ for (const [code, effect] of Object.entries(climb))
                   {
                     type: 'PlaceCluesOnLocationFromPool',
                     location: self.id,
-                    amount: activeInvestigators(state).length,
+                    amount: state.campaignLog?.notes.includes(scouted)
+                      ? Math.ceil(activeInvestigators(state).length / 2)
+                      : activeInvestigators(state).length,
                   },
                 ]
               : [],
@@ -424,11 +426,10 @@ function nearestElderThing(state: GameState, investigator: InvestigatorId) {
 
 export const forbiddenPeaksRules: ScenarioBehavior = {
   id: EOTE_FORBIDDEN_PEAKS,
-  onAllInvestigatorsEliminated: (state) =>
-    conclusion(
-      state,
-      state.investigators.some(({ resigned }) => resigned),
-    ),
+  onAllInvestigatorsEliminated: (state) => {
+    const resigned = state.investigators.some(({ resigned }) => resigned)
+    return conclusion(state, resigned, !resigned)
+  },
   canEnter: (state, investigator, from, to) => {
     const target = state.locations[to]
     if (!target) return true
@@ -529,7 +530,22 @@ export const forbiddenPeaksRules: ScenarioBehavior = {
           ? updateInvestigator(state, investigator, (player) => ({ ...player, clues: 0 }))
           : state
       case 'elderThingToken': {
-        const [enemy] = nearestElderThing(state, investigator)
+        const tied = nearestElderThing(state, investigator)
+        if (tied.length > 1 && !data.enemy)
+          return push(
+            state,
+            ...ask(
+              investigator,
+              'nearestEnemy',
+              tied.map((enemy) => ({
+                label: 'choice.enemy',
+                params: { enemy: enemy.name },
+                target: { type: 'enemy', id: enemy.id },
+                then: [peaksMessage('elderThingToken', { investigator, enemy: enemy.id })],
+              })),
+            ),
+          )
+        const enemy = tied.find(({ id }) => id === data.enemy) ?? tied[0]
         if (!enemy) return state
         const here = getInvestigator(state, investigator).location
         const from = levelOf(state, enemy.location)
