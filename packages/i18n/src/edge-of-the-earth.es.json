@@ -560,7 +560,12 @@
     "cityHealMental": "Curar 1 daño, 1 horror y 1 trauma mental",
     "cityHealWounds": "Curar 1 daño y 1 horror",
     "cityKey": "{key}",
-    "cityRemoveDoom": "Retirar 1 perdición del plan"
+    "cityRemoveDoom": "Retirar 1 perdición del plan",
+    "cityTakeDamage": "Recibir 1 daño",
+    "cityTakeHorror": "Recibir 1 horror",
+    "cityAutoFail": "Fracasar automáticamente en la prueba",
+    "cityWukMove": "Mover {enemy} a tu Lugar",
+    "cityWukDoom": "Colocar 1 perdición sobre {enemy}"
   },
   "prompt": {
     "claypool": "Avery Claypool: elige cómo cancelar la ficha de Helada",
@@ -606,7 +611,10 @@
     "cityRampart": "Elige qué retira la cámara antigua",
     "cityTemple": "Elige un Lugar cuyas llaves se intercambian",
     "cityStreets": "Elige el Lugar conectado",
-    "nearestEnemy": "Elige el enemigo más cercano que se mueve hacia ti"
+    "nearestEnemy": "Elige el enemigo más cercano que se mueve hacia ti",
+    "cityFrostbitten": "Congelado: recibe 1 daño o fracasa en la prueba",
+    "cityPossessed": "Poseído: recibe 1 horror o fracasa en la prueba",
+    "cityWuk": "¡Mec! ¡Mec! ¡Mec!: elige el pingüino"
   },
   "ability": {
     "memorialPoe": "{card}: gasta 1 carga para buscar ¡Tekeli-li!",
@@ -675,7 +683,8 @@
       "spires": "Traer aquí la llave {key} de la fila {row}, columna {column}",
       "passage": "Mover 1 pista al Lugar de la fila {row}, columna {column}",
       "temple": "Intercambiar las llaves de dos Lugares",
-      "streets": "Calles ruinosas: descubre 1 pista en un Lugar conectado"
+      "streets": "Calles ruinosas: descubre 1 pista en un Lugar conectado",
+      "parleyBenign": "Parlamentar: prueba de voluntad (3) para retirarlo de la partida"
     }
   },
   "note": {

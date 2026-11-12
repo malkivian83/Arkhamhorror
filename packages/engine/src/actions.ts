@@ -532,12 +532,19 @@ export function leavingBlocked(state: GameState, location: string): boolean {
 }
 
 function moveCost(state: GameState, location: string): number {
-  return Object.values(state.treacheries).reduce(
-    (sum, t) =>
-      t.placement.type === 'location' && t.placement.location === location
-        ? sum + (activeTreacheryBehavior(state, t)?.moveCost ?? 0)
-        : sum,
-    0,
+  return (
+    Object.values(state.treacheries).reduce(
+      (sum, t) =>
+        t.placement.type === 'location' && t.placement.location === location
+          ? sum + (activeTreacheryBehavior(state, t)?.moveCost ?? 0)
+          : sum,
+      0,
+    ) +
+    // Enemies that make entering or leaving their location cost more (Giant Albino Penguin).
+    Object.values(state.enemies).reduce(
+      (sum, e) => (e.location === location ? sum + (enemyBehavior(e.code)?.moveCost ?? 0) : sum),
+      0,
+    )
   )
 }
 

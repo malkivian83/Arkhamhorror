@@ -192,9 +192,23 @@ sin publicar, `[ ]` pendiente.
        apartados; capacidades de los diez Paisajes; fichas con llaves y Cámara
        laberíntica. Pruebas en `city.test.ts` (8). Cartas EN/ES en catálogo, salvo
        planes y actos (08622–08629), que esperan locución.
-    3. [ ] Encuentros: Antiguos benigno y revivido, Terror de las estrellas,
-       Comprensión de la verdad, Ruinas en mal estado, Congelado y Poseído,
-       Pingüinos y Shoggoths.
+    3. [x] `city-encounter-rules.ts`: Antiguo benigno (aparece en un Lugar vacío
+       con perdición, parlamentar, perdición al plan al ser derrotado), Antiguo
+       revivido (toma una llave al enfrentarse, la suelta al dejar el juego, ataca a
+       quien toma una llave en su Lugar), Comprensión de la verdad, Ruinas en mal
+       estado, Congelado y Poseído (en la zona de amenaza; el motor los cura como 1
+       daño/horror con `healsAs`), Pingüino albino gigante (`moveCost` de enemigo),
+       ¡Mec! ¡Mec! ¡Mec! y los dos Shoggoths. El Terror de la Ciudad solo bloquea las
+       llaves. Pruebas en `city-encounters.test.ts` (9).
+
+    Revisión del 13/11/2026 de Picos, Noche infinita, llaves y Ciudad (lotes 1–2):
+    ocho correcciones con pruebas. Trineo también en la Ciudad y en la segunda visita
+    al Espejismo; Persiguiendo lo desconocido (v. II) devuelve una copia de
+    ¡Tekeli-li! por carta; el Puente solo mueve a Puentes revelados; retirar las
+    fichas de Antiguo persiste (`edgeOfTheEarthStartingElderThingRemoved`); recibir
+    una llave dispara `afterTakeKey`; «Sin resolución» de Picos solo si todos caen;
+    el Sendero barrido por el viento también se reduce a la mitad; en empates del
+    enemigo más cercano elige el investigador.
     4. [ ] Introducción con elección de grupo, interludio Contemplar la locura,
        resoluciones (experiencia por cada par de llaves gastadas), textos EN/ES
        y locuciones.

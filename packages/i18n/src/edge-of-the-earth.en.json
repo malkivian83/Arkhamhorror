@@ -560,7 +560,12 @@
     "cityHealMental": "Heal 1 damage, 1 horror and 1 mental trauma",
     "cityHealWounds": "Heal 1 damage and 1 horror",
     "cityKey": "{key}",
-    "cityRemoveDoom": "Remove 1 doom from the agenda"
+    "cityRemoveDoom": "Remove 1 doom from the agenda",
+    "cityTakeDamage": "Take 1 damage",
+    "cityTakeHorror": "Take 1 horror",
+    "cityAutoFail": "Automatically fail the test",
+    "cityWukMove": "Move {enemy} to your location",
+    "cityWukDoom": "Place 1 doom on {enemy}"
   },
   "prompt": {
     "claypool": "Avery Claypool: choose how to cancel the frost token",
@@ -606,7 +611,10 @@
     "cityRampart": "Choose what the ancient vault removes",
     "cityTemple": "Choose a location whose keys are swapped",
     "cityStreets": "Choose the connecting location",
-    "nearestEnemy": "Choose the nearest enemy that moves toward you"
+    "nearestEnemy": "Choose the nearest enemy that moves toward you",
+    "cityFrostbitten": "Frostbitten: take 1 damage or fail the test",
+    "cityPossessed": "Possessed: take 1 horror or fail the test",
+    "cityWuk": "Wuk! Wuk! Wuk!: choose the penguin"
   },
   "ability": {
     "memorialPoe": "{card}: spend 1 charge to search for Tekeli-li",
@@ -675,7 +683,8 @@
       "spires": "Move the {key} key from row {row}, column {column} here",
       "passage": "Move 1 clue to the location at row {row}, column {column}",
       "temple": "Swap the keys of two locations",
-      "streets": "Ruinous Streets: discover 1 clue on a connecting location"
+      "streets": "Ruinous Streets: discover 1 clue on a connecting location",
+      "parleyBenign": "Parley: test willpower (3) to remove it from the game"
     }
   },
   "note": {

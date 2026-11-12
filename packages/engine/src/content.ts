@@ -290,6 +290,8 @@ export interface TreacheryBehavior {
   abilities?: AbilitiesFn<Treachery>
   /** En la zona de amenaza: su dueño no puede jugar apoyos ni usar los de sus apoyos (The Necronomicon). */
   blocksAssets?: boolean
+  /** Healed as if it were a single point of damage or horror on you, then discarded (Frostbitten). */
+  healsAs?: 'damage' | 'horror'
   blocksAssetReady?: boolean
   healthModifier?: number
   sanityModifier?: number
@@ -404,6 +406,8 @@ export interface EnemyBehavior {
   ) => { amount: number; then?: Message[] }
   /** Los investigadores de su Lugar no pueden descubrir ni tomar el control de pistas. */
   blocksCluesHere?: boolean
+  /** Additional actions to enter or leave its location (Giant Albino Penguin). */
+  moveCost?: number
   /** Sus ataques no pueden cancelarse (Sebastien Moreau). */
   attacksCannotBeCanceled?: boolean
   /** No ataca en la misma fase en la que se movió por Cazador (Glotón del manicomio). */
