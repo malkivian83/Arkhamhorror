@@ -42,6 +42,10 @@ type RestfulNightTarget =
   { type: 'investigator'; id: string } | { type: 'partner'; id: ExpeditionPartner }
 
 export interface OnlineRestfulNight {
+  /** Interlude I (Restful Night) or Interlude II (Endless Night). */
+  night?: 'restful' | 'endless'
+  /** Endless Night 3: entering the mirage again adds 1 frost token. */
+  mirageFrost?: boolean
   remaining: number
   canContinue: boolean
   offersMirage: boolean
