@@ -195,6 +195,44 @@ describe('private online lobbies', () => {
     revision,
     commandId: randomUUID(),
   })
+  it('persists a declined Memorial and distinguishes its retry from granting the card', async () => {
+    const { service, db, data, id } = await active('edge-of-the-earth')
+    const lobby = JSON.parse(data.get(id)!) as Lobby
+    lobby.game = dispatch(
+      { ...lobby.game!, pending: null, queue: [] },
+      { type: 'InitializeExpedition' },
+    )
+    lobby.game.outcome = { type: 'resolution', resolution: 1 }
+    lobby.campaign!.log = lobby.game.campaignLog!
+    lobby.campaign!.scenarioIndex = 5
+    lobby.campaign!.log.expedition!.partners['08714']!.status = 'eliminated'
+    lobby.intermission = true
+    data.set(id, JSON.stringify(lobby))
+    const decline = progressCommand(lobby.revision, {
+      action: 'nightVisit',
+      choice: { partner: '08714', decline: true },
+    })
+    await expect(service.progress(id, 'friend', decline)).rejects.toMatchObject({
+      code: 'not_owner',
+    })
+    const result = await service.progress(id, 'host', decline)
+    expect(result.campaign?.restfulNight?.remaining).toBe(2)
+    expect(await new LobbyService(db).progress(id, 'host', decline)).toEqual(result)
+    await expect(
+      service.progress(id, 'host', {
+        ...decline,
+        action: 'nightVisit',
+        choice: {
+          partner: '08714',
+          decline: false,
+        },
+      }),
+    ).rejects.toMatchObject({ code: 'command_conflict' })
+    const saved = JSON.parse(data.get(id)!) as Lobby
+    expect(saved.campaign!.log.investigators[deck('joe').investigator]!.storyAssets).not.toContain(
+      '08733',
+    )
+  })
   it('persists automatic summaries once per command and delivers each member their own summary after polling or restart', async () => {
     const { service, db, data, id } = await active()
     const stored = JSON.parse(data.get(id)!) as Lobby
@@ -304,6 +342,14 @@ describe('private online lobbies', () => {
         code: 'not_owner',
       })
       current = await service.progress(id, 'host', visit)
+      expect((JSON.parse(data.get(id)!) as Lobby).commands?.[visit.commandId]?.signature).toBe(
+        JSON.stringify([
+          'progress',
+          visit.revision,
+          'nightVisit',
+          [choice.partner, choice.target?.type, choice.target?.id, null],
+        ]),
+      )
       expect(await new LobbyService(db).progress(id, 'host', visit)).toEqual(current)
       await expect(
         service.progress(id, 'host', { ...visit, action: 'nightFinish', route: 'peaks' }),
@@ -533,6 +579,16 @@ describe('private online lobbies', () => {
         payload,
       })
     try {
+      expect(
+        (
+          await post('outsider', {
+            ...progressCommand(revision, {
+              action: 'nightVisit',
+              choice: { partner: '08714', decline: true },
+            }),
+          })
+        ).statusCode,
+      ).toBe(403)
       expect(
         (await post('host', { commandId: randomUUID(), revision, action: 'purchase' })).statusCode,
       ).toBe(400)

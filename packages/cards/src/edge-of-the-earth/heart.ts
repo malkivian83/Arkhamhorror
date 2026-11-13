@@ -160,9 +160,16 @@ function firstConclusion(s: GameState, outcome: number): GameState {
           read(outcome === 1 ? 'heartOneResolution1' : 'heartOneResolution2'),
           { type: 'EarnExperience', amount: activated, victory: true },
           read('heartCheckpoint1'),
-          // Persist and reprepare via "The Other Side 3" (rest), including a fresh setup.
-          read('heartCheckpoint3'),
-          endScenario(resolution(outcome === 1 ? 1 : 2)),
+          ...heartAsk(lead(s), 'heartCheckpoint', [
+            {
+              label: 'choice.edgeOfTheEarth.heartContinue',
+              then: [m('checkpoint', { immediate: true, outcome: outcome === 1 ? 1 : 2 })],
+            },
+            {
+              label: 'choice.edgeOfTheEarth.heartRest',
+              then: [m('checkpoint', { immediate: false, outcome: outcome === 1 ? 1 : 2 })],
+            },
+          ]),
         ]
   return push(s, ...effects)
 }
@@ -586,6 +593,21 @@ function step(s: GameState, key: string, d: Record<string, string | number | boo
   const by = String(d.investigator ?? lead(s)),
     seal = String(d.seal) as Seal
   switch (key) {
+    case 'checkpoint':
+      return push(
+        {
+          ...s,
+          campaignLog: {
+            ...s.campaignLog!,
+            values: {
+              ...s.campaignLog!.values,
+              edgeOfTheEarthHeartCheckpoint: d.immediate ? 'immediate' : 'rest',
+            },
+          },
+        },
+        read(d.immediate ? 'heartCheckpoint2' : 'heartCheckpoint3'),
+        endScenario(resolution(Number(d.outcome))),
+      )
     case 'introduction': {
       const readParts = [
         s.campaignLog?.notes.includes('edgeOfTheEarthScoutedForkedPassage')
@@ -676,7 +698,7 @@ function step(s: GameState, key: string, d: Record<string, string | number | boo
     case 'setup': {
       const part = Number(d.part),
         inner = String(d.inner).split(',')
-      const next = s
+      let next = s
       const chooseSeals: Message[] = []
       if (part === 2)
         for (const t of SEALS) {
@@ -685,26 +707,35 @@ function step(s: GameState, key: string, d: Record<string, string | number | boo
             chooseSeals.push(
               ...heartAsk(
                 lead(s),
-                'heartAllocateSeal',
+                'heartAllocateActiveSeal',
                 activeInvestigators(s).map((i) => ({
                   label: 'choice.investigator',
                   params: { name: i.name },
                   then: [m('putSeal', { seal: t, holder: 'i:' + i.id, active: true })],
                 })),
+                { seal: t.toUpperCase() },
               ),
             )
           else if (saved?.startsWith('recovered:')) {
+            const owner = saved.slice('recovered:'.length)
+            if (s.campaignLog?.values.edgeOfTheEarthHeartCheckpoint === 'immediate') {
+              // Guide pp. 2, 55, 57: a new game, but inactive seals keep their owners.
+              if (activeInvestigators(s).some((i) => i.id === owner))
+                next = putSeal(next, t, 'i:' + owner)
+              continue
+            }
             // A fresh setup follows checkpoint III's rest route: allocate each recovered
             // seal again, rather than forcing its previous controller to keep it.
             chooseSeals.push(
               ...heartAsk(
                 lead(s),
-                'heartAllocateSeal',
+                'heartAllocateDormantSeal',
                 activeInvestigators(s).map((i) => ({
                   label: 'choice.investigator',
                   params: { name: i.name },
                   then: [m('putSeal', { seal: t, holder: 'i:' + i.id })],
                 })),
+                { seal: t.toUpperCase() },
               ),
             )
           }

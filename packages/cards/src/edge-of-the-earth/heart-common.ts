@@ -30,7 +30,12 @@ export const heartStory = (part: string): Message => ({
   type: 'Story',
   entry: { title: `story.edgeOfTheEarth.${part}.title`, body: `story.edgeOfTheEarth.${part}.body` },
 })
-export const heartAsk = (by: string, prompt: string, choices: Choice[]): Message[] =>
+export const heartAsk = (
+  by: string,
+  prompt: string,
+  choices: Choice[],
+  params?: Record<string, string | number>,
+): Message[] =>
   choices.length
     ? [
         {
@@ -40,6 +45,7 @@ export const heartAsk = (by: string, prompt: string, choices: Choice[]): Message
             kind: 'chooseOne',
             alwaysAsk: true,
             prompt: 'prompt.edgeOfTheEarth.' + prompt,
+            ...(params ? { promptParams: params } : {}),
             choices,
           },
         },

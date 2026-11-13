@@ -17,7 +17,13 @@ import {
 import { choose, throughSetup } from '@lcg/engine/testing'
 import { describe, expect, it } from 'vitest'
 import { campaignDefinition } from '../campaign-definition'
-import { canPlayNext, finishScenario, newCampaign, startScenario } from '../campaign'
+import {
+  canPlayNext,
+  finishScenario,
+  newCampaign,
+  purchaseOptions,
+  startScenario,
+} from '../campaign'
 import { withAsset } from '../dunwich-pilot/testing'
 import { EOTE_HEART_ONE, EOTE_HEART_TWO } from './ice-and-death-cards'
 import { GATE, heartMap, meta, ownedSeals, putSeal, SEALS, seals, setMeta } from './heart-common'
@@ -65,7 +71,10 @@ function start(part: 1 | 2 = 1, players = ['joe']) {
   return s
 }
 function finishStories(s: GameState) {
-  return throughSetup(s)
+  s = throughSetup(s)
+  return s.pending?.question.prompt === 'prompt.edgeOfTheEarth.heartCheckpoint'
+    ? throughSetup(choose(s, 'choice.edgeOfTheEarth.heartRest'))
+    : s
 }
 function move(s: GameState, id: string, who = me(s)) {
   return dispatch(clean(s), {
@@ -77,6 +86,76 @@ function move(s: GameState, id: string, who = me(s)) {
 }
 
 describe('The Heart of Madness', () => {
+  it.each(['immediate', 'rest'] as const)(
+    'checkpoint III resumes %s with a new game and the printed seal allocation',
+    (mode) => {
+      const c = campaign(1, ['joe', 'daniela'])
+      let s = start(1, ['joe', 'daniela'])
+      const [oldOwner, other] = s.investigators.map((i) => i.id) as [string, string]
+      s = putSeal(putSeal(s, 'a', 'l:' + GATE, true), 'b', 'i:' + oldOwner, true)
+      s = {
+        ...s,
+        investigators: s.investigators.map((i) => ({
+          ...i,
+          resources: 1,
+          hand: [],
+          damage: 2,
+          horror: 2,
+        })),
+      }
+      s = throughSetup(step(s, 'firstConclusion', { outcome: 2 }))
+      expect(s.pending?.question.prompt).toBe('prompt.edgeOfTheEarth.heartCheckpoint')
+      expect(s.outcome).toBeNull()
+      s = throughSetup(
+        choose(
+          s,
+          'choice.edgeOfTheEarth.' + (mode === 'immediate' ? 'heartContinue' : 'heartRest'),
+        ),
+      )
+      expect(s.outcome).toEqual({ type: 'resolution', resolution: 2 })
+      const next = JSON.parse(JSON.stringify(finishScenario(c, s))) as typeof c
+      expect(next.log.values.edgeOfTheEarthHeartCheckpoint).toBe(mode)
+      expect(next.results.at(-1)?.xp[oldOwner]).toBe(2)
+      expect(purchaseOptions(next, oldOwner).length).toBeGreaterThan(0)
+      let second = throughSetup(startScenario(next, 101))
+      expect(second.pending?.question.prompt).toBe('prompt.edgeOfTheEarth.heartStart')
+      second = throughSetup(
+        choose(
+          second,
+          second.pending!.question.choices[0]!.label,
+          second.pending!.question.choices[0]!.params,
+        ),
+      )
+      expect(second.pending?.question.prompt).toBe('prompt.edgeOfTheEarth.heartAllocateActiveSeal')
+      expect(second.pending?.question.promptParams).toEqual({ seal: 'A' })
+      second = throughSetup(
+        choose(second, 'choice.investigator', { name: getInvestigator(second, other).name }),
+      )
+      if (mode === 'rest') {
+        expect(second.pending?.question.prompt).toBe(
+          'prompt.edgeOfTheEarth.heartAllocateDormantSeal',
+        )
+        expect(second.pending?.question.promptParams).toEqual({ seal: 'B' })
+        second = throughSetup(
+          choose(second, 'choice.investigator', { name: getInvestigator(second, other).name }),
+        )
+      }
+      expect(seals(second)).toEqual([
+        { seal: 'a', holder: 'i:' + other, active: true },
+        { seal: 'b', holder: 'i:' + (mode === 'immediate' ? oldOwner : other), active: false },
+      ])
+      for (const i of second.investigators) {
+        expect(i.resources).toBe(5)
+        expect(i.damage).toBe(0)
+        expect(i.horror).toBe(0)
+        expect(i.hand).toHaveLength(5)
+        expect(i.eliminated).toBe(false)
+        expect(i.resigned).toBe(false)
+      }
+      expect(second.doom).toBe(0)
+      expect(second.encounterDiscard).toHaveLength(0)
+    },
+  )
   it.each([false, true])(
     'moves a Phantasm one step toward a revealed pylon only while ready (exhausted: %s)',
     (exhausted) => {
@@ -122,7 +201,7 @@ describe('The Heart of Madness', () => {
     ).toBe(true)
     let s = start()
     s = putSeal(s, 'a', 'l:' + GATE, true)
-    s = throughSetup(step(s, 'firstConclusion', { outcome: 2 }))
+    s = finishStories(step(s, 'firstConclusion', { outcome: 2 }))
     const next = finishScenario(campaign(), s)
     expect(canPlayNext(next)).toBe(true)
     const restored = JSON.parse(JSON.stringify(next)) as typeof next
@@ -204,7 +283,9 @@ describe('The Heart of Madness', () => {
     )
     const owner = s.investigators[1]!
     for (let n = 0; n < 2; n++) {
-      expect(s.pending?.question.prompt).toBe('prompt.edgeOfTheEarth.heartAllocateSeal')
+      expect(s.pending?.question.prompt).toBe(
+        `prompt.edgeOfTheEarth.${n === 0 ? 'heartAllocateActiveSeal' : 'heartAllocateDormantSeal'}`,
+      )
       s = throughSetup(choose(s, 'choice.investigator', { name: owner.name }))
     }
     expect(ownedSeals(s, owner.id)).toEqual([
@@ -320,7 +401,7 @@ describe('The Heart of Madness', () => {
       s = putSeal(s, seal, 'i:' + me(s), true)
       s = step(s, 'placeSeal', { investigator: me(s), seal })
       s = dispatch(clean(s), { type: 'PlayerWindow', investigator: me(s) })
-      s = throughSetup(s)
+      s = finishStories(s)
     }
     expect(s.outcome).toEqual({ type: 'resolution', resolution: 1 })
     for (const seal of SEALS) expect(s.campaignLog!.values['heartSeal:' + seal]).toBe('placed')

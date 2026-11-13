@@ -76,6 +76,36 @@ function use(game: GameState, label: string): GameState {
 
 // Guide, p. 3, «Partner», and the ability printed on both versions of each card.
 describe('Expedition companion abilities', () => {
+  it('Resolute Danforth discards drawn Tekeli-li without resolving or replacing them', () => {
+    // 08588: discarded copies remain in their bearer's deck, unlike resolved copies.
+    let s = start('08715', true)
+    s = {
+      ...s,
+      investigators: s.investigators.map((i) =>
+        i.id === 'b' ? { ...i, deck: ['01000', '08724', '01000'], hand: [], discard: [] } : i,
+      ),
+      campaignLog: {
+        ...s.campaignLog!,
+        investigators: {
+          ...s.campaignLog!.investigators,
+          b: { ...s.campaignLog!.investigators.b!, storyAssets: ['08724'] },
+        },
+      },
+    }
+    s = dispatch(s, { type: 'InitializeTekeliliDeck' })
+    const pool = s.tekeliliDeck!.length
+    s = dispatch(s, {
+      type: 'Reactions',
+      trigger: { type: 'afterTekeliliResolved', investigator: 'b' },
+    })
+    s = choose(s, 'ability.edgeOfTheEarth.danforth')
+    expect(getInvestigator(s, 'b').hand).toEqual(['01000', '01000'])
+    expect(getInvestigator(s, 'b').discard).toEqual(['08724'])
+    expect(getInvestigator(s, 'b').damage).toBe(0)
+    expect(s.tekeliliDeck).toHaveLength(pool)
+    expect(s.campaignLog!.investigators.b!.storyAssets).toContain('08724')
+    expect(own(s)).toMatchObject({ exhausted: true, uses: 4 })
+  })
   it.each([
     [false, undefined, 4],
     [true, 'spendSupply', 2],

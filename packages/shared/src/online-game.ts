@@ -65,7 +65,12 @@ export type OnlineProgressAction =
   | { action: 'attack'; decision: 'fight' | 'flee' }
   | {
       action: 'nightVisit'
-      choice: { partner: ExpeditionPartner; target?: RestfulNightTarget; weaknesses?: string[] }
+      choice: {
+        partner: ExpeditionPartner
+        target?: RestfulNightTarget
+        weaknesses?: string[]
+        decline?: boolean
+      }
     }
   | { action: 'nightFinish'; route: 'mirage' | 'peaks' }
   | { action: 'ready'; ready: boolean }

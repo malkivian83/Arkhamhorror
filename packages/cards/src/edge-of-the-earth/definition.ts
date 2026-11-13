@@ -69,7 +69,6 @@ registerCampaign({
     {
       id: EOTE_HEART_ONE,
       build: heartOfMadnessOne,
-      allowDeckChangesAfter: false,
       keywords: ['frost', 'hunter', 'massive'],
     },
     {

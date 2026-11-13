@@ -26,6 +26,26 @@ function setup(fled = false) {
 }
 
 describe('Restful Night campaign rules', () => {
+  it('shows the additional Claypool conversation only when Ellsworth is alive', () => {
+    const { campaign } = setup()
+    expect(restfulNight(campaign)!.options.find((o) => o.partner === '08718')?.stories).toEqual([
+      'restfulVisit08718alive',
+      'restfulVisitClaypoolEllsworth',
+    ])
+    campaign.log.expedition!.partners['08721']!.status = 'eliminated'
+    expect(restfulNight(campaign)!.options.find((o) => o.partner === '08718')?.stories).toEqual([
+      'restfulVisit08718alive',
+    ])
+  })
+  it('allows declining an optional Memorial, counts its section and cannot grant it again that night', () => {
+    const { campaign, id } = setup()
+    campaign.log.expedition!.partners['08714']!.status = 'eliminated'
+    const next = applyRestfulNightVisit(campaign, { partner: '08714', decline: true })
+    expect(next.log.investigators[id]!.storyAssets).not.toContain('08733')
+    expect(restfulNight(next)!.remaining).toBe(2)
+    expect(() => applyRestfulNightVisit(next, { partner: '08714', decline: true })).toThrow()
+    expect(() => applyRestfulNightVisit(campaign, { partner: '08719', decline: true })).toThrow()
+  })
   it.each([false, true])('persists the allowance without repeating a visit (fled: %s)', (fled) => {
     const { campaign, target } = setup(fled)
     expect(restfulNight(campaign)?.remaining).toBe(fled ? 4 : 3)

@@ -56,6 +56,11 @@ function confirm() {
   })
   partner.value = undefined
 }
+function declineMemorial() {
+  if (!option.value || option.value.effect !== 'memorial') return
+  emit('visit', { partner: option.value.partner, decline: true })
+  partner.value = undefined
+}
 // Interlude I: Restful Night, or Interlude II: Endless Night (Night 3 returns to the mirage).
 const endless = computed(() => props.interlude.night === 'endless')
 const stories = computed(() => {
@@ -138,6 +143,14 @@ const stories = computed(() => {
         <SiteAction icon="✓" :disabled="disabled || !canVisit" @click="confirm">{{
           t('choice.edgeOfTheEarth.nightConfirm')
         }}</SiteAction>
+        <SiteAction
+          v-if="option.effect === 'memorial'"
+          icon="→"
+          :disabled="disabled"
+          @click="declineMemorial"
+        >
+          {{ t('choice.edgeOfTheEarth.nightDeclineMemorial') }}
+        </SiteAction>
       </template>
     </template>
     <div v-else-if="!readOnly && interlude.canContinue" class="night-actions">

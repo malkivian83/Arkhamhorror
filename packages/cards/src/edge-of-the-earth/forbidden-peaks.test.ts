@@ -81,6 +81,20 @@ const clear = (game: GameState, location: string): GameState => ({
 })
 
 describe('To the Forbidden Peaks', () => {
+  it('an outside resign effect with the Terror in play reaches R1 without awarding unsecured supplies', () => {
+    // 08598b checks whether an investigator resigned, not where or how.
+    let s = ready(start(campaignAt()))
+    s = dispatch(s, {
+      type: 'SpawnEnemy',
+      card: terrorOfTheStars(1),
+      location: at(s, 3),
+      engageWith: null,
+    })
+    s = proceed(dispatch(ready(s), { type: 'Resign', investigator: me(s) }))
+    expect(s.outcome).toEqual({ type: 'resolution', resolution: 1 })
+    expect(s.campaignLog!.notes).toContain('edgeOfTheEarthClimbedSummit')
+    expect(s.campaignLog!.expedition!.supplies).toHaveLength(0)
+  })
   it('places five Mountainsides and The Summit in a diagonal from level 0 to level 5', () => {
     const game = start(campaignAt())
     const line = [0, 1, 2, 3, 4, 5].map((level) => at(game, level))

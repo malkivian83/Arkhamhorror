@@ -103,6 +103,8 @@ const aliveEffects = {
 type Target = { type: 'investigator'; id: string } | { type: 'partner'; id: ExpeditionPartner }
 export type RestfulNightChoice = {
   partner: ExpeditionPartner
+  /** A Memorial is optional even when a deck could receive it. The section is still read. */
+  decline?: boolean
   target?: Target
   weaknesses?: string[]
 }
@@ -238,18 +240,21 @@ export function restfulNight(campaign: Campaign) {
             ? [
                 {
                   ...option,
-                  stories:
-                    night === 'restful'
-                      ? []
-                      : [
-                          `${night}Visit${partner}${option.effect === 'memorial' ? 'memorial' : 'alive'}`,
-                          ...(night === 'endless' &&
-                          partner === '08721' &&
-                          option.effect !== 'memorial' &&
-                          alive(campaign, '08718')
-                            ? ['endlessVisitEllsworthClaypool']
-                            : []),
-                        ],
+                  stories: [
+                    `${night}Visit${partner}${option.effect === 'memorial' ? 'memorial' : 'alive'}`,
+                    ...(night === 'endless' &&
+                    partner === '08721' &&
+                    option.effect !== 'memorial' &&
+                    alive(campaign, '08718')
+                      ? [`${night}VisitEllsworthClaypool`]
+                      : []),
+                    ...(night === 'restful' &&
+                    partner === '08718' &&
+                    option.effect !== 'memorial' &&
+                    alive(campaign, '08721')
+                      ? ['restfulVisitClaypoolEllsworth']
+                      : []),
+                  ],
                 },
               ]
             : []
@@ -278,11 +283,16 @@ export function applyRestfulNightVisit(campaign: Campaign, choice: RestfulNightC
   const option = restfulNight(campaign)?.options.find(({ partner }) => partner === choice.partner)
   if (
     !option ||
-    (option.targets.length
-      ? !option.targets.some(
-          (target) => target.id === choice.target?.id && target.type === choice.target.type,
-        )
-      : choice.target !== undefined)
+    (choice.decline &&
+      (option.effect !== 'memorial' ||
+        choice.target !== undefined ||
+        choice.weaknesses !== undefined)) ||
+    (!choice.decline &&
+      (option.targets.length
+        ? !option.targets.some(
+            (target) => target.id === choice.target?.id && target.type === choice.target.type,
+          )
+        : choice.target !== undefined))
   )
     throw new Error('The Restful Night visit is unavailable')
 
@@ -296,7 +306,7 @@ export function applyRestfulNightVisit(campaign: Campaign, choice: RestfulNightC
   let log = campaign.log
   switch (option.effect) {
     case 'memorial': {
-      log = update({ storyAssets: [...record!.storyAssets, option.card] })
+      if (!choice.decline) log = update({ storyAssets: [...record!.storyAssets, option.card] })
       break
     }
     case 'removeWeaknesses': {
