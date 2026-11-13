@@ -308,6 +308,20 @@ it('Token of Faith adds bless tokens after a test with curse tokens and offers a
   expect(s.skillTest?.difficulty).toBe(10)
 })
 
+it.each(['a', 'b'])('Token of Faith shares its maximum with another copy owned by %s', (owner) => {
+  // RR: Limits and Maximums — a maximum applies across all copies.
+  let s = withAsset(withAsset({ ...game(['a', 'b']), interactive: true }, '10126'), '10126', {
+    id: 'second',
+    owner,
+  })
+  s = apply(revealWith(s, ['curse'], 10))
+  s = use(s, '10126', { n: 1 })
+  s = choose(s, 'choice.skip')
+  expect(labels(s)).not.toContain('ability.tokenTrigger.10126')
+  expect(count(s, 'bless')).toBe(1)
+  expect(s.assets.second!.exhausted).toBe(false)
+})
+
 it('Prismatic Spectacles adds a curse to investigate and may discover an extra clue', () => {
   let s = setup('10056', { enemy: null })
   s = { ...s, chaosBag: [] }

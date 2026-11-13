@@ -72,8 +72,8 @@ Se apoya en la ventana «al revelar» con la ficha retenida (`skillTest.revealin
 - Amada sustituye los efectos de la [bless] por un éxito automático, sin revelar otra, y la ficha
   vuelve a la bolsa.
 - Símbolo religioso cuenta las [curse] y [auto_fail] resueltas; la repetición reutiliza la prueba
-  original (como Vive y aprende). Su límite «una vez por prueba» se cubre con el agotamiento; no se
-  impide que otra copia repita la misma prueba.
+  original (como Vive y aprende). Su máximo «una vez por prueba» se comparte entre todas las
+  copias, incluso las controladas por otros investigadores, mediante la clave de la ventana de reacción.
 - Anteojos prismáticos: se decide si se agotan al revelarse la [curse]. La pista adicional forma
   parte del resultado de la investigación si tiene éxito.
 - Nkosi Mabati: nombrar el sigilo al entrar en juego es opcional. El sigilo (cualquier ficha con símbolo salvo [elder_sign]) se guarda en el apoyo y se

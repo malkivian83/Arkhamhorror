@@ -1,5 +1,7 @@
 # Continuación de la importación
 
+- Revisión de lotes 135–142 sobre `e7e421f3`: corregido el máximo compartido de Símbolo religioso (3). Dos regresiones reproducen el fallo entre copias propias y ajenas; pasan los 82 casos de reglas, motor y presentación de `token-triggers`. Tipos de cards y ESLint correctos. Commit «Corrige el máximo compartido de Símbolo religioso». Los resultados previos del resto de lotes siguen vigentes; cambios en reacciones o sus claves invalidan esta comprobación.
+
 - Lote 142: `action-support`, commit «Habilita veinte cartas y completa las imágenes pendientes», sobre `c7c89a93`. 20 códigos/diseños/niveles nuevos, cero reediciones; [detalle](142-acciones-y-apoyos.md). Subidas sucesivas autorizadas; un solo agente. Buscar grupos amplios, sin reediciones de relleno.
 - Acumulado: 1471 jugables; 646 históricos pendientes, incluidos 271 estándar con impresión. Inventario histórico y huellas conservados.
 - Verificación: 624 archivos y 6897 casos amplios; 266 dirigidos finales (51 del lote) de reglas, consumidores, fuentes, compra y presentación EN/ES. Tipos engine/cards y lint correctos; 6039 escaneos y miniaturas verificados. Build de producción web correcto, incluidos sus tipos. Sin navegador. Reutilizar mientras no cambien reglas, contratos, registro o recursos cubiertos.
