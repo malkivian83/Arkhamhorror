@@ -84,6 +84,10 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "rulesReviewTokens": {
+        "title": "Más correcciones tras la revisión de reglas",
+        "rules": "Símbolo religioso y Espíritu feérico cuentan las fichas reveladas aunque luego se ignoren, Símbolo ancestral usa la salud por investigador, las cartas que sellan no entran en juego por ningún medio sin ficha que sellar, Hoja bendecida añade sus Bendiciones antes de revelar y los Enemigos que ganan Distante o Escurridizo actúan en consecuencia."
+      },
       "rulesReviewFixes": {
         "title": "Correcciones tras la revisión de reglas",
         "rules": "Bestia alterada ya no inflige horror dos veces al moverte con su Enemigo enfrentado, y el Martillo ciclópeo no mueve a Enemigos inmunes a cartas de Jugador."
@@ -1204,7 +1208,7 @@
     "sealReplenish": "Descarta una copia de {card} de tu mano: repone sus cargas",
     "holySpearRelease": "Combatir a {enemy} con {card}, liberando una ficha de Bendición sellada",
     "holySpearSeal": "Sella 2 fichas de Bendición en {card}: combate a {enemy} (+4, +2 daño)",
-    "blessedBladeBless": "Combatir a {enemy} con {card}, agotándola para añadir {n} ficha(s) de Bendición",
+    "blessedBladeBless": "Agotar {card} para añadir {n} ficha(s) de Bendición antes de revelar",
     "bookOfPsalms": "{card}: gasta 1 secreto, cura 1 de horror y añade 2 fichas de Bendición",
     "spiritBless": "{card}: recibe 1 de daño y 1 de horror para añadir 2 fichas de Bendición",
     "spiritCurse": "{card}: añade 2 fichas de Maldición para curar 1 de daño y 1 de horror",

@@ -27,9 +27,13 @@ equilibrio, «¡Te lo devolveré!», Reliquia arcana perdida, El reloj rojo y Ya
   bolsa; retirar la ficha y agotar son costes. La curación solo se ofrece si hay un investigador o
   Aliado herido en tu Lugar (no se inicia una habilidad sin efecto posible); se elige el reparto de
   hasta 2 entre daño y horror de un único objetivo.
-- Rito de equilibrio: X va de 1 al máximo posible (fichas libres en la reserva para añadir, pares en
-  la bolsa para retirar). La curación se reparte de 1 en 1 entre investigadores y apoyos con horror
-  en tu Lugar; X puede superar el horror curable.
+- Rito de equilibrio: para añadir, X va de 1 a las Maldiciones libres en la reserva (añadirlas es
+  el coste); las Bendiciones se añaden hasta donde permita la reserva, con al menos una libre. Para
+  retirar, X va de 1 a los pares en la bolsa y solo si hay horror que curar en tu Lugar. La curación
+  se reparte de 1 en 1 entre investigadores y apoyos con horror en tu Lugar; X puede superar el
+  horror curable.
+- Textos ES: Yaotl (una vez por fase) y La llave de Salomón (título y texto) se presentan con la
+  errata vigente (revisión en [143](143-revision-reglas-lotes-129-136.md)).
 - «¡Te lo devolveré!»: solo en tu turno y con otro investigador en tu Lugar. Mover recursos no es
   ganarlos (no dispara reacciones a ganar recursos). Al final de la ronda se mueven todos los que
   tengas en ese momento, si el otro investigador sigue en la partida.

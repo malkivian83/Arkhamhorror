@@ -707,6 +707,11 @@ export interface PlayerCardBehavior {
   ) => ReactionOption[]
   /** Printed maximum of one asset with this trait per investigator. */
   limitTrait?: string
+  /**
+   * The card cannot enter play by any means right now (RR Seal: the token to seal is not in
+   * the chaos bag). Checked when it would be put into play, not only when it is played.
+   */
+  cannotEnterPlay?: (state: GameState, investigator: InvestigatorId) => boolean
   /** Assign non-direct damage/horror here before the controller's investigator. */
   beforeOwnerAssignment?: ('damage' | 'horror')[]
   limitTitle?: boolean

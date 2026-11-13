@@ -60,10 +60,12 @@ fichas (ayuda, nombre y registro). Aditiva: sin estas fichas no cambia ningún f
   (como Esperanza en la FAQ: no se revelan fichas).
 - Señal de la cruz: solo tu prueba con dificultad mayor que tu valor básico; X Bendiciones.
 - Réprobo y Escéptico: tratan el modificador de la Maldición como 0 o de ambas como +1.
-- Espíritu feérico vuelve a la mano desde el descarte al terminar la prueba si salió Maldición.
+- Espíritu feérico vuelve a la mano desde el descarte al terminar la prueba si se reveló una
+  Maldición, aunque luego se ignorase o cancelase.
 - Sacerdote de dos cultos: si no puedes añadir la Maldición, se descarta.
-- Símbolo ancestral: salud impresa del Enemigo, máximo 5. Símbolo religioso cuenta Maldiciones
-  y fallos automáticos resueltos en la prueba terminada.
+- Símbolo ancestral: salud impresa del Enemigo, máximo 5; si es «por investigador», su valor
+  resultante. Símbolo religioso cuenta Maldiciones y fallos automáticos revelados en la prueba
+  terminada, también los ignorados o cancelados.
 - La mano del destino cancela el ataque y añade daño + horror del atacante en Bendiciones.
 
 La aclaración del Rules Forum de septiembre de 2024, recogida en la

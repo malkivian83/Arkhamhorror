@@ -2502,6 +2502,8 @@ export type Trigger =
       margin: number
       /** Faces of the chaos tokens resolved during the test. */
       tokens?: ChaosToken[]
+      /** Physical tokens revealed, including those ignored or canceled afterwards. */
+      revealedTokens?: ChaosToken[]
       enemy?: EnemyId
       location?: LocationId
       source?: AssetId

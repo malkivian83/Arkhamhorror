@@ -175,6 +175,20 @@ it.each(['04030', '53008'])('The Chthonian Stone %s needs a symbol token to seal
   expect(sealedOn(s, assetOf(s, code)!.id, 'skull')).toHaveLength(1)
 })
 
+// RR Seal: "If the specified token is not in the chaos bag, the card cannot enter play" (FAQ:
+// by any means, not only when played).
+it.each([
+  ['04030', bag(0, -1, 'autoFail')],
+  ['53008', bag(0, -1, 'autoFail')],
+  ['04311', bag(0, 'skull')],
+  ['11070', bag(0, -1, 'autoFail')],
+] as const)('%s cannot be put into play without a token to seal', (code, tokens) => {
+  const put: Message = { type: 'PutAssetIntoPlay', investigator: 'a', code, fromHand: true }
+  const s = during(withHand(during(base(), tokens), [code]), (x) => x, put)
+  expect(Object.values(s.assets).some((a) => a.code === code)).toBe(false)
+  expect(me(s).hand).toContain(code)
+})
+
 it('The Chthonian Stone returns to hand after you reveal an auto-fail in a test', () => {
   const s = startTest(setup('04030', { enemy: null }))
   expect(
@@ -295,11 +309,19 @@ it('Sign of Xelotaph spends a charge each turn and a copy in hand replenishes it
   ])
 })
 
-it('Blessed Blade (0) may exhaust to add a bless token and needs to be ready', () => {
+// RR ST.3: "Before revealing chaos token(s) for this attack" is decided after committing cards,
+// not when the ability is activated.
+const bladeBless = (s: GameState, code: string, n: number) =>
+  choose(s, 'ability.blessedBladeBless', { card: name(code), n })
+
+it('Blessed Blade (0) may exhaust before revealing to add a bless token and needs to be ready', () => {
   let s = setup('07018')
-  s = choose(s, 'ability.blessedBladeBless', { card: name('07018'), n: 1 })
+  expect(labels(s)).not.toContain('ability.blessedBladeBless')
+  s = choose(s, 'ability.fightWith', { card: name('07018') })
+  s = bladeBless(s, '07018', 1)
   expect(asset(s, '07018').exhausted).toBe(true)
   expect(s.chaosBag).toContain('bless')
+  expect(labels(s)).not.toContain('ability.blessedBladeBless')
   const kind = s.skillTest?.kind
   expect(kind?.type === 'fight' && kind.damageIfTokens).toEqual({
     tokens: ['bless', 'elderSign'],
@@ -309,9 +331,11 @@ it('Blessed Blade (0) may exhaust to add a bless token and needs to be ready', (
   expect(availableAbilities(tired, 'a').some((o) => o.params?.card === name('07018'))).toBe(false)
 })
 
-it('Blessed Blade (4) adds 2 bless and returns revealed bless tokens to the bag', () => {
-  let s = setup('10034')
-  s = choose(s, 'ability.blessedBladeBless', { card: name('10034'), n: 2 })
+it('Blessed Blade (4) adds 2 bless before revealing and returns revealed bless tokens', () => {
+  let s = withHand(setup('10034'), ['07036'])
+  s = choose(s, 'ability.fightWith', { card: name('10034') })
+  s = choose(s, 'choice.commit', { card: name('07036') })
+  s = bladeBless(s, '10034', 2)
   expect(count(s, 'bless')).toBe(2)
   let t = setup('10034')
   t = choose(t, 'ability.fightWith', { card: name('10034') })

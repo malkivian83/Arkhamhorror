@@ -43,7 +43,8 @@ sobre `2b847487`. Fuentes EN/ES de ArkhamDB y SHA-256 en
 ## Reglas
 
 - Sellar es un coste adicional al entrar en juego (FAQ de La piedra Chthonian): con símbolos
-  fijos, sin ficha disponible no se puede jugar; «hasta N» permite sellar 0. Escudo de fe y los
+  fijos, sin ficha disponible no se puede jugar ni entrar en juego por ningún otro medio
+  (`cannotEnterPlay`); «hasta N» permite sellar 0. Escudo de fe y los
   Favores se descartan al quedar sin fichas (también si se sellan 0).
 - Baluarte y Finta: «resolver de nuevo» es una reacción opcional por cada vez que se cumple la
   condición y solo si hay una ficha válida en la bolsa (FAQ de The Drowned City, 2025).
@@ -58,9 +59,11 @@ sobre `2b847487`. Fuentes EN/ES de ArkhamDB y SHA-256 en
   fichas selladas. Los apoyos que se descartan sin fichas selladas lo hacen al perder la última.
   Consagrar retira 1 perdición del plan, de un Enemigo, de un apoyo o de un investigador (no de
   Lugares ni traiciones, que `RemoveDoom` aún no admite).
-- Lanza sagrada, Hoja bendecida, Ríastrad y Guiado por la fe: la opción «antes de revelar» /
-  «al iniciar» se elige al activar la habilidad o jugar el evento (no hay ventana intermedia
-  relevante). Hoja bendecida (4) devuelve a la bolsa las Bendiciones reveladas al terminar la
+- Hoja bendecida (0 y 4): agotarla para añadir Bendiciones se decide en la ventana previa a
+  revelar, después de comprometer cartas. Lanza sagrada y Ríastrad actúan al iniciar el ataque,
+  como dice su texto. Guiado por la fe añade sus Bendiciones al jugarse, antes de comprometer (limitación:
+  no hay paso obligatorio «antes de revelar» para eventos; ver
+  [143](143-revision-reglas-lotes-129-136.md)). Hoja bendecida (4) devuelve a la bolsa las Bendiciones reveladas al terminar la
   prueba. Guiado por la fe descubre la pista adicional solo si la investigación tiene éxito.
 - Baluarte prepara otro apoyo propio agotado (si lo hay). Finta permite al investigador atacado
   moverse a un Lugar conectado o no hacerlo.

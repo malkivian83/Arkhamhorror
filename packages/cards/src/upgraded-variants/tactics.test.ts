@@ -116,6 +116,26 @@ describe('51009: Oops! (2)', () => {
     expect(s.investigators[1]!.damage).toBe(0)
     expect(me(s).damage).toBe(1)
   })
+  // RR: Elusive, gained by a card effect, still applies to the kept failed results.
+  it('keeps Elusive gained until the end of the round', () => {
+    let s = during(
+      hand(game(['a', 'b']), '51009'),
+      patch({ skills: { ...weak, combat: 1 } }),
+      spawnAt('A', { ...ghoul, name: 'Target', health: 8 }, 'b'),
+    )
+    s = during(s, (s) => ({
+      ...s,
+      enemies: Object.fromEntries(
+        Object.entries(s.enemies).map(([id, e]) => [
+          id,
+          { ...e, roundKeywords: [{ keyword: 'elusive' as const, round: s.round }] },
+        ]),
+      ),
+    }))
+    s = playCard(fight(s, 'Target'), '51009')
+    expect(enemy(s, 'Target').engagedWith).toBeNull()
+    expect(enemy(s, 'Target').location).not.toBe('A')
+  })
   it('allows failing by 3 but not by 4', () => {
     const offered = (fightValue: number) => {
       const s = fight(

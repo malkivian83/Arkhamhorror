@@ -278,6 +278,17 @@ it('Ancestral Token adds bless equal to the defeated enemy printed health, max 5
   ).toEqual([])
 })
 
+it('Ancestral Token uses the per-investigator printed health as its resulting value', () => {
+  const s = { ...setup('10019', { enemy: null }), startingInvestigatorCount: 2 }
+  const self = s.assets['10019']!
+  const options = playerCardBehavior('10019')!.reactions!(
+    s,
+    { type: 'enemyDefeated', enemy: { health: 2, healthPerInvestigator: true } as never, by: 'a' },
+    self,
+  )
+  expect(options[0]!.params).toMatchObject({ n: 4 })
+})
+
 it('Token of Faith adds a bless per curse or auto-fail token revealed in the ended test', () => {
   let s = startTest(setup('07033', { enemy: null }))
   s = apply(reveal({ ...s, chaosBag: ['curse'] }))
@@ -287,6 +298,18 @@ it('Token of Faith adds a bless per curse or auto-fail token revealed in the end
   t = apply(reveal({ ...t, chaosBag: ['autoFail'] }))
   expect(labels(t)).toContain('ability.addBless')
   expect(s.assets['07033']!.exhausted).toBe(true)
+})
+
+// FAQ: "revealed" counts tokens revealed and then ignored or canceled (RR Chaos Tokens).
+const revealIgnoring = (s: GameState, kept: ChaosToken, ignored: ChaosToken) => {
+  const x = { ...s, chaosBag: [kept, ignored], skillTest: { ...s.skillTest!, chooseToken: 'a' } }
+  return apply(choose(reveal(x), 'choice.resolveToken', { token: String(kept) }))
+}
+
+it('Token of Faith counts a curse token revealed and then ignored', () => {
+  const s = revealIgnoring(startTest(setup('07033', { enemy: null })), 0, 'curse')
+  const t = choose(s, 'ability.addBless', { card: name('07033'), n: 1 })
+  expect(count(t, 'bless')).toBe(1)
 })
 
 it('Promise of Power adds a curse token, or 2 horror when none is left', () => {
@@ -386,6 +409,13 @@ it('Fey may return to hand when a curse token was revealed in its test', () => {
   let t = startTest(withHand(base(), ['07222']), 1)
   t = apply(reveal({ ...commit(t, '07222'), chaosBag: [0] }))
   expect(me(t).discard).toContain('07222')
+})
+
+it('Fey may return to hand when a curse token was revealed and then ignored', () => {
+  let s = startTest(withHand(base(), ['07222']), 1)
+  s = revealIgnoring(commit(s, '07222'), 0, 'curse')
+  s = choose(s, 'choice.returnToHand', { card: name('07222') })
+  expect(me(s).hand).toContain('07222')
 })
 
 it('Providential adds bless equal to the lower of your damage and horror on success', () => {

@@ -77,6 +77,9 @@ duración». Fuentes EN/ES de ArkhamDB y SHA-256 en
   registro aunque la carga ya esté).
 - Emboscada se descarta en cuanto no queda ningún investigador en su Lugar.
 - Escondite puede ir a cualquier Lugar en juego; Cebo (2) a tu Lugar o a uno conectado.
+- Las palabras clave ganadas o perdidas (Escondite, Ofuda, reglas de escenario) se consultan con
+  `enemyHasKeyword`, también al aparecer desde un encuentro: un Enemigo que gana Distante no se
+  enfrenta al aparecer (revisión en [143](143-revision-reglas-lotes-129-136.md)).
 - Buena perspectiva: -1 al velo hasta el final del turno del investigador activo; mover la pista es
   opcional.
 

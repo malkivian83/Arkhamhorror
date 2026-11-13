@@ -84,6 +84,10 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "rulesReviewTokens": {
+        "title": "More fixes after the rules review",
+        "rules": "Token of Faith and Fey count chaos tokens revealed and then ignored, Ancestral Token uses per-investigator health, sealing cards without a token to seal cannot enter play by any means, Blessed Blade adds its Bless tokens before revealing, and enemies that gain Aloof or Elusive behave accordingly."
+      },
       "rulesReviewFixes": {
         "title": "Fixes after the rules review",
         "rules": "Altered Beast no longer deals horror twice when you move with its engaged enemy, and Cyclopean Hammer does not move enemies immune to player card effects."
@@ -1204,7 +1208,7 @@
     "sealReplenish": "Discard a copy of {card} from your hand: replenish its charges",
     "holySpearRelease": "Fight {enemy} with {card}, releasing a sealed Bless token",
     "holySpearSeal": "Seal 2 Bless tokens on {card}: fight {enemy} (+4, +2 damage)",
-    "blessedBladeBless": "Fight {enemy} with {card}, exhausting it to add {n} Bless token(s)",
+    "blessedBladeBless": "Exhaust {card} to add {n} Bless token(s) before revealing",
     "bookOfPsalms": "{card}: spend 1 secret, heal 1 horror and add 2 Bless tokens",
     "spiritBless": "{card}: take 1 damage and 1 horror to add 2 Bless tokens",
     "spiritCurse": "{card}: add 2 Curse tokens to heal 1 damage and 1 horror",

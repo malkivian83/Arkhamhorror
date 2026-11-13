@@ -97,8 +97,14 @@ const empty = (code: string, a: Asset): Message =>
 
 function sealBehavior(code: string, spec: SealSpec) {
   return {
-    ...(spec.one && spec.one !== 'anyButAutoFail'
-      ? { canPlay: (s: GameState) => options(s, spec.one).length > 0 }
+    ...(spec.one
+      ? {
+          // RR Seal: without the token in the bag it cannot enter play by any means.
+          cannotEnterPlay: (s: GameState) => options(s, spec.one).length === 0,
+          ...(spec.one !== 'anyButAutoFail'
+            ? { canPlay: (s: GameState) => options(s, spec.one).length > 0 }
+            : {}),
+        }
       : {}),
     ...(spec.discardWhenEmpty ? { discardWhenUnsealed: true } : {}),
     forced: (s: GameState, t: Trigger, self: Asset): Message[] =>
@@ -313,6 +319,7 @@ function registerAsset(code: string): boolean {
       canPlay: (s) =>
         options(s, 'anyButAutoFail').length > 0 &&
         Object.values(s.assets).filter((a) => a.code === code).length < 2,
+      cannotEnterPlay: (s) => options(s, 'anyButAutoFail').length === 0,
       forced: (s, t, a) =>
         t.type === 'afterAssetEntersPlay' && t.asset === a.id
           ? sealOnEnter(code, spec, s, a)
@@ -366,6 +373,7 @@ function registerAsset(code: string): boolean {
     registerPlayerCard({
       code,
       canPlay: (s, by) => limitOnePerInvestigator(code)(s, by) && options(s, one).length > 0,
+      cannotEnterPlay: (s) => options(s, one).length === 0,
       forced: (s, t, a) =>
         t.type === 'afterAssetEntersPlay' && t.asset === a.id
           ? sealOnEnter(code, { one }, s, a)
@@ -401,6 +409,7 @@ function registerAsset(code: string): boolean {
     registerPlayerCard({
       code,
       canPlay: (s, by) => limitOnePerInvestigator(code)(s, by) && options(s, one).length > 0,
+      cannotEnterPlay: (s) => options(s, one).length === 0,
       forced: (s, t, a) =>
         t.type === 'afterAssetEntersPlay' && t.asset === a.id
           ? sealOnEnter(code, { one }, s, a)
@@ -454,7 +463,8 @@ function registerAsset(code: string): boolean {
     return true
   }
   // Blessed Blade (0): [action] if ready: Fight, +1 [combat]; +1 damage if a [bless] or
-  // [elder_sign] is revealed. Before revealing, you may exhaust it to add 1 [bless].
+  // [elder_sign] is revealed. Before revealing (after commits), you may exhaust it to add 1
+  // [bless].
   // Blessed Blade (4): [action] Fight, +2 [combat], +1 damage if successful; each [bless]
   // revealed returns to the bag. Before revealing, you may exhaust it to add 2 [bless].
   if (code === '07018' || code === '10034') {
@@ -472,18 +482,28 @@ function registerAsset(code: string): boolean {
             ? { extraDamage: 1 }
             : { damageIfTokens: { tokens: ['bless', 'elderSign'], amount: 1 } },
         )
+        return basic
+      },
+      // RR ST.3: "before revealing chaos token(s) for this attack", once cards are committed.
+      testOptions: (s, t, a) => {
         const n = high ? 2 : 1
-        const blessed =
-          !a.exhausted && poolTokensAvailable(s, 'bless') > 0
-            ? basic.map((o): AbilityOption => ({
-                ...o,
-                key: o.key + ':bless',
+        return t.source === a.id &&
+          t.kind.type === 'fight' &&
+          t.investigator === a.owner &&
+          !a.exhausted &&
+          !t.tokens.length &&
+          !t.revealing &&
+          poolTokensAvailable(s, 'bless') > 0
+          ? [
+              {
+                key: a.id + ':bless',
+                investigator: a.owner,
                 label: 'ability.blessedBladeBless',
-                params: { ...o.params, n },
-                then: [{ type: 'ExhaustAsset', asset: a.id }, ...add('bless', n), ...o.then],
-              }))
-            : []
-        return [...basic, ...blessed]
+                params: { card: cardName(code), n },
+                then: [{ type: 'ExhaustAsset', asset: a.id }, ...add('bless', n)],
+              },
+            ]
+          : []
       },
       ...(high
         ? {
