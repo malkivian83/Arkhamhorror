@@ -384,7 +384,7 @@ export function registerReusedCapability(code: string): boolean {
               label: 'choice.moveEnemyTo',
               params: { enemy: enemy.name, location: s.locations[location]!.name },
               target: { type: 'location', id: location },
-              then: [{ type: 'MoveEnemy', enemy: enemy.id, location }],
+              then: [{ type: 'MoveEnemy', enemy: enemy.id, location, effectSource: code }],
             })),
           ],
           true,

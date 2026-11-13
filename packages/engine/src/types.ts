@@ -2582,6 +2582,8 @@ export type Trigger =
       first: boolean
       from?: LocationId | null
       fromHadEnemy?: boolean
+      /** Enemigos enfrentados que se movieron con el investigador. */
+      following?: EnemyId[]
       /** El movimiento fue una acción de movimiento. */
       moveAction?: boolean
       encounterEffect?: boolean

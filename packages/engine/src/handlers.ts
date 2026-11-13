@@ -2701,6 +2701,7 @@ export function handle(state: GameState, message: Message): GameState {
             investigator: message.investigator,
             first,
             from: mover.location,
+            ...(following.length ? { following } : {}),
             fromHadEnemy:
               mover.location !== null &&
               Object.values(state.enemies).some((e) => e.location === mover.location),
