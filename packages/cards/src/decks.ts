@@ -52,7 +52,9 @@ export const isStandard = (code: CardCode) =>
   code !== RANDOM_BASIC_WEAKNESS &&
   !isWeakness(code) &&
   !SIGNATURES.has(code) &&
-  !byCode(code)?.story
+  !byCode(code)?.story &&
+  // RR Bonded: bonded cards are set aside at setup and are never part of a deck.
+  !byCode(code)?.bondedCard
 /** Cuentan para el tamaño del mazo: las elegidas que no son permanentes. */
 const countsForSize = (code: CardCode) => isStandard(code) && !isPermanent(code)
 
@@ -120,6 +122,7 @@ export function cardPool(investigator: CardCode, extras: PoolExtras = {}): Playe
     all.filter(
       (card) =>
         isImplemented(card.code) &&
+        !card.bondedCard &&
         investigatorTraitsAllow(investigator, card) &&
         deckSlotsAllow(extras.deck ?? [], card) &&
         !card.traits.some((trait) => byCode(investigator)?.excludedDeckTraits?.includes(trait)) &&
@@ -228,7 +231,9 @@ export function validateDeck(
     if (!isImplemented(code)) {
       problems.push({ key: 'deck.problem.unimplemented', params: { card: card.name } })
     }
-    if (SIGNATURES.has(code) && !own.has(code)) {
+    if (card.bondedCard) {
+      problems.push({ key: 'deck.problem.notAllowed', params: { card: card.name } })
+    } else if (SIGNATURES.has(code) && !own.has(code)) {
       problems.push({ key: 'deck.problem.otherSignature', params: { card: card.name } })
     } else if (
       campaignStart &&

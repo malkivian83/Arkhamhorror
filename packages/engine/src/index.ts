@@ -61,6 +61,7 @@ export {
   type TreacheryBehavior,
 } from './content'
 export { applyInput, createGame, dispatch, type EngineObserver } from './engine'
+export { bondedCardsFor, setAsideCards } from './bonded'
 export {
   expeditionChoiceCard,
   expeditionPartners,

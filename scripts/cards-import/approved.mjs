@@ -63,20 +63,46 @@ export function approvedDefinition(card, approval) {
     card.numbers.cost?.kind === 'symbol' &&
     card.numbers.cost.value === 'X'
   const reviewedCostX = reviewedDiscovery || reviewedChance
+  // Lot 144: bonded summoners and their bonded cards (RR Bonded), reviewed by code.
+  const bondedSummoners = {
+    '05313': '05314:3',
+    54002: '05314:3',
+    '05316': '05317:3',
+    54004: '05317:3',
+    '06112': '06113:1',
+    '06236': '06113:1',
+    '06237': '06113:1',
+    '06238': '06113:1',
+    10044: '10045:1',
+    '06021': '06022:1',
+    '06276': '06277:1',
+  }
+  const bondedCards = ['05314', '05317', '06113', '10045', '06022', '06277']
+  const reviewedBonded =
+    approval.bondedAdapter === 'reviewed-bonded-v1' &&
+    ((card.classification === 'standard-candidate' &&
+      bondedSummoners[card.code] ===
+        card.relations.bondedCards.map((b) => b.code + ':' + b.count).join(',')) ||
+      (card.classification === 'bonded' &&
+        bondedCards.includes(card.code) &&
+        card.deckLimit === 0 &&
+        card.relations.bondedCards.length === 0))
   if (
     card.modelIssues.some(
       (issue) =>
         !((reviewedDualFaction || reviewedTalent) && issue === 'unsupported-factions') &&
         !(reviewedCustomizable && issue === 'customization') &&
         !(reviewedTarot && issue === 'unsupported-slots') &&
-        !(reviewedCostX && issue === 'symbolic-number'),
+        !(reviewedCostX && issue === 'symbolic-number') &&
+        !(reviewedBonded && issue === 'bonded'),
     ) ||
     (!reviewedDualFaction && !reviewedTalent && card.factions.length !== 1) ||
     (!reviewedTarot && card.slots.unknown.length)
   )
     throw new Error(`Unsupported card model: ${card.code}`)
   if (
-    card.classification !== 'standard-candidate' ||
+    (card.classification !== 'standard-candidate' &&
+      !(reviewedBonded && card.classification === 'bonded')) ||
     !['asset', 'event', 'skill'].includes(card.type)
   )
     throw new Error(`Unsupported pool eligibility: ${card.code}`)
@@ -177,6 +203,7 @@ export function approvedDefinition(card, approval) {
     '06199': 'rogue',
     '06245': 'survivor',
     '06034': 'survivor',
+    '06021': 'seeker',
     '06026': 'rogue',
     '06323': 'guardian',
     11090: 'survivor',
@@ -269,5 +296,12 @@ export function approvedDefinition(card, approval) {
     ...(approval.uses ? { uses: approval.uses } : {}),
     ...(approval.fast ? { fast: true } : {}),
     ...(approval.commitLimit ? { commitLimit: approval.commitLimit } : {}),
+    ...(reviewedBonded && card.classification === 'bonded' ? { bondedCard: true } : {}),
+    ...(reviewedBonded && card.classification !== 'bonded'
+      ? {
+          bonded: card.relations.bondedCards.map((b) => ({ code: b.code, count: b.count })),
+          ...(card.deckLimit === 1 ? { deckLimit: 1 } : {}),
+        }
+      : {}),
   }
 }

@@ -1,6 +1,12 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'bonded-cards',
+    date: '2026-11-13',
+    title: 'app.changelog.bondedCards.title',
+    items: ['app.changelog.bondedCards.cards', 'app.changelog.bondedCards.rules'],
+  },
+  {
     id: 'rules-review-tokens',
     date: '2026-11-13',
     title: 'app.changelog.rulesReviewTokens.title',

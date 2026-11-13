@@ -58,6 +58,17 @@ son jugables según la capacidad del motor que les falta, para ordenar el trabaj
   Sexto sentido 4, Barricada 3 y las que combinan otra capacidad; causas en el documento 136.
 - **Pendientes estándar con impresión:** 322; 1420 jugables.
 
+## Estado tras el lote 144
+
+- **`BONDED` (resuelta en parte).** El motor aparta las cartas vinculadas al preparar la partida
+  y permite buscarlas, barajarlas, ponerlas en juego, intercambiarlas y volver a apartarlas
+  ([lote 144](144-cartas-vinculadas.md)). Son jugables 11 códigos del inventario (10 de
+  `BONDED` y Diario onírico 0, `BONDED`+`CAMPAIGN`, cuya nota de campaña ya existe) y sus 6
+  vinculadas. Siguen 5 que solo necesitaban esta capacidad por carencias concretas (La hoja
+  ávida, Señorita Doyle, Sabueso invocado, Baratija pesadillesca y Deseo milagroso), Ojos de
+  Valusia (`ENEMY_MODS`) y las que combinan otra capacidad; causas en el documento 144.
+- **Pendientes estándar con impresión:** 260; 1496 cartas con comportamiento registradas.
+
 ## Capacidades por número de cartas
 
 «Cartas» = códigos que la necesitan (entre paréntesis, cartas o niveles distintos); «Solo esta» =

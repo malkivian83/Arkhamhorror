@@ -988,6 +988,10 @@ export interface PlayerCardBehavior {
   soaksAtLocation?: boolean
   /** Sin dueño: reacciones para los investigadores (las decide quien las active). */
   placedReactions?: (state: GameState, trigger: Trigger, self: PlacedAsset) => ReactionOption[]
+  /** RR Bonded: when it leaves play, its bonded cards are set aside, out of play. */
+  setsAsideBondedOnLeave?: boolean
+  /** It is set aside, out of play, instead of entering its owner's discard or deck. */
+  setAsideInsteadOfDiscard?: boolean
   /** Se descarta al quedarse sin usos. */
   discardWhenEmpty?: boolean
   /** Discard this asset after its last sealed token leaves. */

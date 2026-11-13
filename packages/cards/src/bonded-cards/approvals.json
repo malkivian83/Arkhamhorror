@@ -1,0 +1,143 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "6e289416497147a11199726bb2abe4adce347710a3b77b74c12a3aba8b4c2e12",
+    "es": "ca37f3f7ba5a86135d1b5b4df7e658eec17001defbb0ec548cc53cee6c51fba7"
+  },
+  "cards": [
+    {
+      "code": "05313",
+      "status": "verified",
+      "module": "card-05313",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1"
+    },
+    {
+      "code": "54002",
+      "status": "verified",
+      "module": "card-54002",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1"
+    },
+    {
+      "code": "05316",
+      "status": "verified",
+      "module": "card-05316",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1"
+    },
+    {
+      "code": "54004",
+      "status": "verified",
+      "module": "card-54004",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1"
+    },
+    {
+      "code": "06112",
+      "status": "verified",
+      "module": "card-06112",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "subname": "Untranslated"
+    },
+    {
+      "code": "06236",
+      "status": "verified",
+      "module": "card-06236",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "subname": "Dreams of an Explorer"
+    },
+    {
+      "code": "06237",
+      "status": "verified",
+      "module": "card-06237",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "subname": "Dreams of a Madman"
+    },
+    {
+      "code": "06238",
+      "status": "verified",
+      "module": "card-06238",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "subname": "Dreams of a Child"
+    },
+    {
+      "code": "10044",
+      "status": "verified",
+      "module": "card-10044",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "subname": "Unidentified"
+    },
+    {
+      "code": "06021",
+      "status": "verified",
+      "module": "card-06021",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "adapter": "reviewed-myriad-v1",
+      "fast": true
+    },
+    {
+      "code": "06276",
+      "status": "verified",
+      "module": "card-06276",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "subname": "Abandoned by the Gods",
+      "uses": { "count": 0, "type": "charge" }
+    },
+    {
+      "code": "05314",
+      "status": "verified",
+      "module": "card-05314",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1"
+    },
+    {
+      "code": "05317",
+      "status": "verified",
+      "module": "card-05317",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1"
+    },
+    {
+      "code": "06113",
+      "status": "verified",
+      "module": "card-06113",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1"
+    },
+    {
+      "code": "10045",
+      "status": "verified",
+      "module": "card-10045",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1"
+    },
+    {
+      "code": "06022",
+      "status": "verified",
+      "module": "card-06022",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "subname": "Of Nothing at All",
+      "uses": { "count": 3, "type": "charge" }
+    },
+    {
+      "code": "06277",
+      "status": "verified",
+      "module": "card-06277",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "subname": "Jewel of the Gods"
+    }
+  ]
+}

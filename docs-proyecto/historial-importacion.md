@@ -270,3 +270,12 @@
 
 - Pruebas avanzadas y apoyos: 20 diseños/niveles nuevos, cero reediciones. 1451 jugables; 666 históricos pendientes (291 estándar). Ver [141](141-pruebas-y-apoyos.md).
 - 6972 casos amplios, 129 dirigidos finales y 35 web; tipos, lint/formato y build. La corrección de imágenes de Picos prohibidos se subió en `1103b0b6`; CI y Deploy comprobados a petición expresa, ambos correctos.
+
+## Estado de continuación tras el lote 142 (archivado en el lote 144)
+
+- Lote 142 `action-support` sobre `c7c89a93`: 20 códigos/diseños/niveles nuevos, cero reediciones; 1471 jugables, 646 históricos pendientes (271 estándar). 624 archivos y 6897 casos amplios; 266 dirigidos; 6039 escaneos y miniaturas; build web correcto.
+- Revisión de lotes 135–142 sobre `e7e421f3`: máximo compartido de Símbolo religioso corregido; revisión de 141–142 en «Corrige las reglas revisadas de los lotes 141 y 142» (107 casos específicos y 6901 amplios).
+
+## Cierre del lote 144 · sin commit
+
+- Cartas vinculadas: 11 cartas/niveles nuevos y 6 vinculadas, 0 reediciones. 1496 cartas con comportamiento; 260 estándar con impresión pendientes. Ver [144](144-cartas-vinculadas.md).

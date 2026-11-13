@@ -172,6 +172,8 @@ export interface Investigator {
    * cambian en el mulligan. Vuelven al mazo al terminar el mulligan.
    */
   setAsideOpening?: CardCode[]
+  /** RR Bonded / Set aside: player cards out of play (bonded cards and those set aside by player effects). */
+  outOfPlay?: CardCode[]
 }
 
 export interface Location {
@@ -583,6 +585,10 @@ export interface PlayerCardDef {
   /** Cartas de mazo adicionales (Collector: +5). */
   deckSizeBonus?: number
   extraDeckOption?: ExtraDeckOption
+  /** RR Bonded: product copies set aside out of play when the deck includes this card. */
+  bonded?: { code: CardCode; count: number }[]
+  /** Bonded card: never part of a deck; it starts the game set aside, out of play. */
+  bondedCard?: boolean
 }
 
 /** Dónde está un apoyo sin dueño. */
@@ -2150,6 +2156,24 @@ type MessageBody =
   | { type: 'EndPlayAt'; investigator: InvestigatorId; location: LocationId; at: LocationId }
   /** The asset leaves play without going to a discard pile. */
   | { type: 'RemoveAssetFromGame'; asset: AssetId; leavingResolved?: boolean }
+  /** RR Bonded: take set-aside copies (`bonded`: only bonded cards) to hand, deck (shuffled) or play. */
+  | {
+      type: 'TakeSetAside'
+      investigator: InvestigatorId
+      code: CardCode
+      count: number
+      to: 'hand' | 'deck' | 'play'
+      bonded?: boolean
+    }
+  /** Set aside, out of play, every copy of `codes` in hand, deck and discard, plus `assets`. */
+  | {
+      type: 'SetAsidePlayerCards'
+      investigator: InvestigatorId
+      codes: CardCode[]
+      assets?: AssetId[]
+    }
+  /** RR Bonded "swap": a set-aside bonded asset replaces this asset, which is set aside. */
+  | { type: 'SwapSetAsideAsset'; asset: AssetId; code: CardCode; moveUses: boolean }
   | { type: 'ExhaustUpgrade'; asset: AssetId; index: number }
   /** The attached event goes to its owner's discard pile. */
   | { type: 'DiscardUpgrade'; asset: AssetId; index: number }

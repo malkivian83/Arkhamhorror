@@ -8,6 +8,7 @@ import {
   treeTokens,
 } from './token-replacements'
 import { withEffectSource } from './effect-source'
+import { handleSetAside } from './bonded'
 import {
   isFightAction,
   engageActionsAvailable,
@@ -9230,6 +9231,10 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     // ------------------------------------------------------- Habilidades
+    case 'TakeSetAside':
+    case 'SetAsidePlayerCards':
+    case 'SwapSetAsideAsset':
+      return handleSetAside(state, message)
     case 'RemoveAssetFromGame': {
       if (!state.assets[message.asset]) return state
       const asset = state.assets[message.asset]!
