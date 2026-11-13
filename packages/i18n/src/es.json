@@ -84,6 +84,10 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "rulesReviewFixes": {
+        "title": "Correcciones tras la revisión de reglas",
+        "rules": "Bestia alterada ya no inflige horror dos veces al moverte con su Enemigo enfrentado, y el Martillo ciclópeo no mueve a Enemigos inmunes a cartas de Jugador."
+      },
       "damageReactions": {
         "title": "Cuatro cartas nuevas de daño y derrota",
         "cards": "Ya se pueden jugar Aquinnah (1 y 3), Llave de san Huberto y Armadura de Ardenas."

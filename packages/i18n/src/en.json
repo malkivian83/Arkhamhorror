@@ -84,6 +84,10 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "rulesReviewFixes": {
+        "title": "Fixes after the rules review",
+        "rules": "Altered Beast no longer deals horror twice when you move with its engaged enemy, and Cyclopean Hammer does not move enemies immune to player card effects."
+      },
       "damageReactions": {
         "title": "Four new cards for damage and defeat",
         "cards": "Now playable: Aquinnah (1 and 3), St. Hubert’s Key and Armor of Ardennes."

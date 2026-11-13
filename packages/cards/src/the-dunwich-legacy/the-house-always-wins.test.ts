@@ -452,6 +452,11 @@ describe('Clover Club encounters and story allies', () => {
     ).toBe(true)
     s = settle(during(s, keep, { type: 'MoveTo', investigator: 'a', location: H.bar }))
     expect(getInvestigator(s, 'a').horror).toBe(1)
+    // Moving with the engaged Abomination is a single entry, not two.
+    s = { ...s, enemies: { ...s.enemies, [e.id]: { ...s.enemies[e.id]!, engagedWith: 'a' } } }
+    s = settle(during(s, keep, { type: 'MoveTo', investigator: 'a', location: H.lounge }))
+    expect(s.enemies[e.id]!.location).toBe(H.lounge)
+    expect(getInvestigator(s, 'a').horror).toBe(2)
   })
   it('Mobster loses one resource after its attack and Hunted Down moves unengaged criminals', () => {
     let s = during(

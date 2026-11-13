@@ -160,7 +160,10 @@ registerTreachery({
     if (self.placement?.type !== 'enemy') return []
     const e = s.enemies[self.placement.enemy]
     if (!e) return []
-    return t.type === 'afterMove' && getInvestigator(s, t.investigator).location === e.location
+    // An engaged enemy that moved with the investigator already triggers on entering.
+    return t.type === 'afterMove' &&
+      !t.following?.includes(e.id) &&
+      getInvestigator(s, t.investigator).location === e.location
       ? [damage(t.investigator, 0, 1)]
       : t.type === 'enemyEntersLocation' && t.enemy === e.id
         ? s.investigators
