@@ -2,13 +2,13 @@
 
 ## Estado y continuación
 
-Revisión local sobre `57b10846` (implementación publicada: `8abfbf69`). Punto de control III completo: elección inmediata/descanso, sellos colocados activos y sellos recuperados inactivos; solo la continuación inmediata conserva sus portadores. Cada parte reinicia la partida según la guía, permite gastar experiencia y conserva las decisiones al guardar. El reparto identifica cada sello y su estado.
+Última implementación: `612cc41e` en `main`, con subida autorizada; revisión sobre `57b10846`. Punto de control III completo: elección inmediata/descanso, sellos colocados activos y sellos recuperados inactivos; solo la continuación inmediata conserva sus portadores. Cada parte reinicia la partida según la guía, permite gastar experiencia y conserva las decisiones al guardar. El reparto identifica cada sello y su estado.
 
 Revisión de toda la campaña por consola: cuatro recorridos hasta el epílogo con 1–4 investigadores, las cuatro dificultades, rutas opcionales, cero o tres visitas a Espejismo, guardado en cada transición y conservación de las 16 copias de ¡Tekeli-li!. Contrastes cerrados: Eidolones 3/3/2 (guía p. 16), descarte de Danforth de determinación y desistimiento externo con el Terror. Los Memoriales pueden rechazarse sin añadir cartas; los reintentos de sala mantienen sus firmas anteriores. Noche reposada incorpora sus 19 relatos íntegros EN/ES.
 
 Validación vigente: 73 casos de Corazón, recorridos de integración, regresiones de campaña, guardados, salas, presentación y narración; tipos de cartas/web/servidor, formato/lint y build web. Verificadas 670 caras EN/ES de la campaña con huella y miniatura. Invalidan estos resultados los cambios en las reglas, contratos, recursos o configuración afectados. Sin navegador; revisión visual manual pendiente.
 
-CI #404 falló en referencias de Picos/Ciudad/Corazón y escaneos ausentes. Corregidas ambas causas y superadas sus pruebas locales; la ejecución remota no se ha repetido. Cambios actuales sin commit ni subida. Audios aplazados por petición expresa: 127 pasajes y 17 caras con textos completos preparados, sin llamadas a la API. Siguiente paso: subida cuando se autorice; locuciones cuando se facilite una API con créditos. El detalle anterior está en historial/106-confines-de-la-tierra.md.
+CI #404 falló en referencias de Picos/Ciudad/Corazón y escaneos ausentes. Corregidas ambas causas y superadas sus pruebas locales. Audios aplazados por petición expresa: 127 pasajes y 17 caras con textos completos preparados, sin llamadas a la API. Siguiente paso: revisión visual manual; locuciones cuando se facilite una API con créditos. El detalle anterior está en historial/106-confines-de-la-tierra.md.
 
 ## Hoja de ruta vigente
 
@@ -18,7 +18,7 @@ CI #404 falló en referencias de Picos/Ciudad/Corazón y escaneos ausentes. Corr
 - [x] Picos, Ciudad, Corazón I/II, punto de control III y epílogo.
 - [x] Textos completos EN/ES, referencias de caos, escaneos y miniaturas.
 - [x] Selector, guardados y recorridos de integración hasta el final.
-- [ ] Revisión visual manual y publicación de esta revisión.
+- [ ] Revisión visual manual.
 - [ ] Locuciones pendientes, aplazadas hasta disponer de créditos.
 
 Las cartas de jugador de la expansión de investigadores siguen el flujo de
