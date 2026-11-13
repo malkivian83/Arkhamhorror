@@ -120,7 +120,9 @@ describe('imágenes españolas de referencia y alternativas', () => {
             isPermanent(code) ||
             playerCardBehavior(code)?.dilemma ||
             // Debilidades de apoyo sin coste impreso (Barón Samedi).
-            (playerCardDef(code)?.weakness && playerCardDef(code)?.cost === undefined)
+            (playerCardDef(code)?.weakness && playerCardDef(code)?.cost === undefined) ||
+            // Vinculadas sin coste impreso que solo entran por intercambio (Colgante de la reina).
+            (playerCardDef(code)?.bondedCard && playerCardDef(code)?.cost === undefined)
           )
             expect(card.cost, code).toBeUndefined()
           else expect(card.cost, code).toBeTypeOf('number')
