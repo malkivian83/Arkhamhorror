@@ -63,7 +63,9 @@ export function registerTekelili(): void {
           {
             type: 'ReturnTekelili',
             treachery: self.id,
-            ...(location === '08568' ? { shuffleIntoDeck: true } : {}),
+            ...(location === '08568' || state.scenarioMeta?.['heart:resolveExisting'] === 1
+              ? { shuffleIntoDeck: true }
+              : {}),
           },
           ...(theatre
             ? [{ type: 'DiscoverClues', investigator, location, amount: 1 } satisfies Message]

@@ -1,0 +1,389 @@
+[
+  {
+    "code": "08648",
+    "name": "The Heart of Madness",
+    "type_code": "scenario",
+    "quantity": 1,
+    "text": "Easy / Standard\n[skull]: -1 (-3 instead if there is an [[Ancient One]] enemy at your location).\n[cultist]: -1. If there is a seal at your location, or if your location is a Mist-Pylon, treat this token as a [frost] token, instead.\n[tablet]: -3. If you fail, draw the top card of the Tekeli-li deck.\n[elder_thing]: -4. If you fail by 3 or more, place 1 doom on the current agenda. This can cause the current agenda to advance."
+  },
+  {
+    "code": "08649",
+    "name": "The Gate of Y'quaa",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 1,
+    "clues": 1,
+    "traits": "Ruins.",
+    "text": "[action]: Place an activated seal you control on The Gate of Y'quaa.\n[action]: <b>Resign.</b> You retreat, hoping you've done enough to seal away whatever lies beyond the gate. (If you control 1 or more seals, you retain control of them.)"
+  },
+  {
+    "code": "08650",
+    "name": "Geothermal Vent",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 4,
+    "clues": 1,
+    "traits": "Ruins.",
+    "text": "[action] If you control the [seal_a] seal: Test [combat] (3). If you succeed, investigators at Geothermal Vent spend 1 [per_investigator] clues, as a group, to activate the [seal_a] seal. Then, remove 1 [frost] token from the chaos bag."
+  },
+  {
+    "code": "08651",
+    "name": "Forsaken Temple",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 3,
+    "clues": 1,
+    "traits": "Ruins.",
+    "text": "[action] If you control the [seal_c] seal: Test [willpower] (3). If you succeed, investigators at Forsaken Temple spend 1 [per_investigator] clues, as a group, to activate the [seal_c] seal. Then, look at the revealed side of each unrevealed location on the same spoke as Forsaken Temple."
+  },
+  {
+    "code": "08652",
+    "name": "Library of Kós",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 5,
+    "clues": 1,
+    "traits": "Ruins.",
+    "text": "[action] If you control the [seal_b] seal: Test [intellect] (3). If you succeed, investigators at Library of Kós spend 1 [per_investigator] clues, as a group, to activate the [seal_b] seal. Then, look at the revealed side of each unrevealed location on the same ring as Library of Kós."
+  },
+  {
+    "code": "08653",
+    "name": "Protoplasmic Pool",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 4,
+    "clues": 1,
+    "traits": "Ruins.",
+    "text": "[action] If you control the [seal_d] seal: Test [agility] (3). If you succeed, investigators at Protoplasmic Pool spend 1 [per_investigator] clues, as a group, to activate the [seal_d] seal. Then, deal 2 damage to each enemy in play."
+  },
+  {
+    "code": "08654",
+    "name": "Hall of the Sunless Sea",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 3,
+    "clues": 1,
+    "traits": "Ruins.",
+    "text": "[action] If you control the [seal_e] seal, investigators at Hall of the Sunless Sea spend 1 [per_investigator] clues and discard 2 [per_investigator] cards from their hands, as a group: Activate the [seal_e] seal."
+  },
+  {
+    "code": "08655",
+    "name": "Subnautical Sprawl",
+    "type_code": "location",
+    "quantity": 2,
+    "shroud": 2,
+    "clues": 2,
+    "traits": "Ruins.",
+    "text": "Treat the modifier of the first [frost] token revealed during each skill test at Subnautical Sprawl as -3 instead of -1. (Limit once per round.)"
+  },
+  {
+    "code": "08656",
+    "name": "Vaulted Corridor",
+    "type_code": "location",
+    "quantity": 3,
+    "shroud": 3,
+    "clues": 1,
+    "traits": "Ruins.",
+    "text": "[fast]: Choose another Vaulted Corridor and test [agility] (X). X is the number of locations away that Vaulted Corridor is from this one. If you succeed, move there. (Limit once per round.)"
+  },
+  {
+    "code": "08657",
+    "name": "Primeval Terror",
+    "type_code": "treachery",
+    "quantity": 3,
+    "traits": "Terror.",
+    "text": "<b>Revelation</b> - Test [willpower] (2). This test gets +1 difficulty for each location away from The Gate of Y'quaa you are. If you fail, take 2 horror."
+  },
+  {
+    "code": "08658",
+    "name": "Roots of the Earth",
+    "type_code": "treachery",
+    "quantity": 3,
+    "traits": "Hazard.",
+    "text": "<b>Revelation</b> - Test [agility] (2). This test gets +1 difficulty for each location away from The Gate of Y'quaa you are. If you fail, take 2 damage."
+  },
+  {
+    "code": "08659",
+    "name": "The Beating Heart",
+    "type_code": "agenda",
+    "quantity": 1,
+    "doom": 5,
+    "text": "<b>Forced</b> - If two or more activated seals are controlled by investigators at the same location: The latent energy stored within the seals fuses together, and the ensuing chain reaction sets off an electrostatic detonation that destroys all life on Earth. <b>(→R3)</b>"
+  },
+  {
+    "code": "08660",
+    "name": "The Miasma Beckons",
+    "type_code": "agenda",
+    "quantity": 1,
+    "doom": 6,
+    "text": "<b>Forced</b> - If two or more activated seals are controlled by investigators at the same location: The latent energy stored within the seals fuses together, and the ensuing chain reaction sets off an electrostatic detonation that destroys all life on Earth. <b>(→R3)</b>"
+  },
+  {
+    "code": "08661",
+    "name": "Call of Madness",
+    "type_code": "agenda",
+    "quantity": 1,
+    "doom": 6,
+    "text": "<b>Forced</b> - If two or more activated seals are controlled by investigators at the same location: The latent energy stored within the seals fuses together, and the ensuing chain reaction sets off an electrostatic detonation that destroys all life on Earth. <b>(→R3)</b>"
+  },
+  {
+    "code": "08662",
+    "name": "Dormancy",
+    "type_code": "act",
+    "quantity": 1,
+    "text": "<b>Objective</b> - If an activated seal is placed on The Gate of Y'quaa, advance."
+  },
+  {
+    "code": "08663",
+    "name": "The Great Seal",
+    "type_code": "act",
+    "quantity": 1,
+    "text": "<b>Objective</b> - Place as many activated seals as you can on The Gate of Y'quaa before whatever is inside escapes. If all five seals have been placed, advance."
+  },
+  {
+    "code": "08664",
+    "name": "Glacial Grotto",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 3,
+    "clues": 0,
+    "traits": "Ruins.",
+    "text": "<b>Forced</b> - After Glacial Grotto is revealed: Place the dormant [seal_a] seal on it.\n[action]: Test [combat] (2) to shatter the ice. If you succeed, investigators at Glacial Grotto may spend 1 [per_investigator] clues, as a group, for you to take control of the seal on it."
+  },
+  {
+    "code": "08665",
+    "name": "Sculptured Crypt",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 4,
+    "clues": 0,
+    "traits": "Ruins.",
+    "text": "<b>Forced</b> - After Sculptured Crypt is revealed: Place the dormant [seal_b] seal on it.\n[action]: Test [intellect] (2) to decipher the alien script. If you succeed, investigators at Sculptured Crypt may spend 1 [per_investigator] clues, as a group, for you to take control of the seal on it."
+  },
+  {
+    "code": "08666",
+    "name": "Undercity Altar",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 3,
+    "clues": 0,
+    "traits": "Ruins.",
+    "text": "<b>Forced</b> - After Undercity Altar is revealed: Place the dormant [seal_c] seal on it.\n[action]: Test [willpower] (2) to break the ancient ward. If you succeed, investigators at Undercity Altar may spend 1 [per_investigator] clues, as a group, for you to take control of the seal on it."
+  },
+  {
+    "code": "08667",
+    "name": "Ichor-Laden Tunnels",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 3,
+    "clues": 0,
+    "traits": "Ruins.",
+    "text": "<b>Forced</b> - After Ichor-Laden Tunnels is revealed: Place the dormant [seal_d] seal on it.\n[action]: Test [agility] (2) to traverse the ichor. If you succeed, investigators at Ichor-Laden Tunnels may spend 1 [per_investigator] clues, as a group, for you to take control of the seal on it."
+  },
+  {
+    "code": "08668",
+    "name": "Limestone Caverns",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 2,
+    "clues": 0,
+    "traits": "Ruins.",
+    "text": "<b>Forced</b> - After Limestone Caverns is revealed: Place the dormant [seal_e] seal on it.\n[action] Investigators at Limestone Caverns spend 1 [per_investigator] clues and 3 [per_investigator] resources, as a group: Take control of the seal on Limestone Caverns."
+  },
+  {
+    "code": "08669",
+    "name": "Protoplasmic Mass",
+    "type_code": "enemy",
+    "quantity": 2,
+    "enemy_fight": 6,
+    "enemy_evade": 3,
+    "health": 4,
+    "enemy_damage": 1,
+    "enemy_horror": 1,
+    "traits": "Monster. Shoggoth.",
+    "text": "Hunter.\n<b>Spawn</b> - Location farthest from you on the outer ring.\n<b>Prey</b> - Nearest investigator with a seal only.\n<b>Forced</b> - When the enemy phase ends, if an investigator controls an activated seal: Protoplasmic Mass readies and resolves the enemy phase again <i>(it resolves its hunter keyword and attacks a second time)</i>. (Limit once per phase.)"
+  },
+  {
+    "code": "08670",
+    "name": "Electrostatic Discharge",
+    "type_code": "treachery",
+    "quantity": 2,
+    "traits": "Hazard.",
+    "text": "Surge.\n<b>Revelation</b> - Each investigator at the same location as a seal takes 1 horror, and 1 damage if that seal is activated"
+  },
+  {
+    "code": "08671",
+    "name": "The Seal Weakens",
+    "type_code": "agenda",
+    "quantity": 1,
+    "doom": 3
+  },
+  {
+    "code": "08672",
+    "name": "That Which Has No Name",
+    "type_code": "agenda",
+    "quantity": 1,
+    "text": "<b>Forced</b> - When 1 or more doom would be put into play, if there are any copies of The Nameless Madness still set aside: Instead, spawn 1 set-aside copy of The Nameless Madness at the location nearest to an investigator without a copy of that enemy that is connected to a location with a copy of that enemy.\n<b>Objective</b> - At the end of the round, if all 15 copies of The Nameless Madness are in play and not every Mist-Pylon is collapsed, advance this agenda."
+  },
+  {
+    "code": "08673",
+    "name": "Collapse the Pylons",
+    "type_code": "act",
+    "quantity": 1,
+    "text": "Each revealed Mist-Pylon can be attacked as if it were an enemy. Its fight value is equal to its shroud value and its health is equal to its clue value. While it has no health remaining, it is collapsed <i>(it remains in play)</i>.\n[reaction] When you discover 1 or more clues at a Mist-Pylon, spend those clues: Deal that much damage to that Mist-Pylon.\n<b>Objective</b> - At the end of the round, if each Mist-Pylon is collapsed, advance this act."
+  },
+  {
+    "code": "08674",
+    "name": "Mist-Pylon",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 1,
+    "clues": 4,
+    "traits": "Ruins.",
+    "text": "[fast] If you control the [seal_a] seal, and it is activated: You unleash the seal's power. Place the [seal_a] seal on this Mist-Pylon. For the remainder of the game, each time you deal damage to a Mist-Pylon, deal 1 additional damage."
+  },
+  {
+    "code": "08675",
+    "name": "Mist-Pylon",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 5,
+    "clues": 1,
+    "traits": "Ruins.",
+    "text": "[fast] If you control the [seal_b] seal, and it is activated: You unleash the seal's power. Place the [seal_b] seal on this Mist-Pylon. For the remainder of the game, reduce the shroud value of each Mist-Pylon by 2."
+  },
+  {
+    "code": "08676",
+    "name": "Mist-Pylon",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 4,
+    "clues": 2,
+    "traits": "Ruins.",
+    "text": "[fast] If you control the [seal_c] seal, and it is activated: You unleash the seal's power. Place the [seal_c] seal on this Mist-Pylon. For the remainder of the game, each investigator gets +1 to each of their skills while they are at a Mist-Pylon."
+  },
+  {
+    "code": "08677",
+    "name": "Mist-Pylon",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 3,
+    "clues": 2,
+    "traits": "Ruins.",
+    "text": "[fast] If you control the [seal_d] seal, and it is activated: You unleash the seal's power. Place the [seal_d] seal on this Mist-Pylon. For the remainder of the game, whenever an investigator at a Mist-Pylon would be dealt 1 or more damage and/or horror, cancel 1 of that damage or horror."
+  },
+  {
+    "code": "08678",
+    "name": "Mist-Pylon",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 2,
+    "clues": 3,
+    "traits": "Ruins.",
+    "text": "[fast] If you control the [seal_e] seal, and it is activated: You unleash the seal's power. Place the [seal_e] seal on this Mist-Pylon. For the remainder of the game, each enemy gets -2 fight and -2 evade while it is at a Mist-Pylon."
+  },
+  {
+    "code": "08679",
+    "name": "The Nameless Madness",
+    "type_code": "enemy",
+    "quantity": 15,
+    "enemy_fight": 1,
+    "enemy_evade": 1,
+    "enemy_damage": 1,
+    "enemy_horror": 1,
+    "traits": "Ancient One. Eidolon. Elite.",
+    "text": "Alert. Massive. Retaliate.\nThe Nameless Madness cannot take damage.\n<b>Forced</b> - After you successfully evade or attack The Nameless Madness: For each point you succeeded by, exhaust the nearest ready copy of The Nameless Madness."
+  },
+  {
+    "code": "08680",
+    "name": "Unsealed Phantasm",
+    "type_code": "enemy",
+    "quantity": 2,
+    "enemy_fight": 5,
+    "enemy_evade": 4,
+    "health": 5,
+    "enemy_damage": 2,
+    "enemy_horror": 2,
+    "victory": 1,
+    "traits": "Monster. Eidolon. Shoggoth.",
+    "text": "<b>Spawn</b> - The nearest Mist-Pylon that is not collapsed (or your location, if there are none in play).\nWhile Unsealed Phantasm is ready and at a Mist-Pylon, damage cannot be dealt to that Mist-Pylon.\n<b>Forced</b> - At the end of the enemy phase, if Unsealed Phantasm is ready: Move it once toward the Mist-Pylon nearest to it that is not collapsed."
+  },
+  {
+    "code": "08681",
+    "name": "The Final Mirage",
+    "type_code": "act",
+    "quantity": 1,
+    "text": "The Nameless Madness gains hunter.\n<b>Forced</b> - When 1 or more doom would be put into play: Instead, spawn 1 set-aside copy of The Nameless Madness at the leftmost investigator's location.\n<b>Objective</b> - Run."
+  },
+  {
+    "code": "08682",
+    "name": "Titanic Ramp",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 1,
+    "clues": 1,
+    "traits": "Ruins.",
+    "text": "Titanic Ramp is connected to the locations to its left and right.\nAs an additional cost for you to leave Titanic Ramp, test [agility] (4). If you fail, cancel the effects of the move. Any investigator at your location or a connecting location may spend 1 clue to have you automatically succeed at this test."
+  },
+  {
+    "code": "08683",
+    "name": "Titanic Ramp",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 2,
+    "clues": 1,
+    "traits": "Ruins.",
+    "text": "Titanic Ramp is connected to the locations to its left and right.\nAs an additional cost for you to leave Titanic Ramp, test [agility] (3). If you fail, cancel the effects of the move. Any investigator at your location or a connecting location may spend 1 clue to have you automatically succeed at this test."
+  },
+  {
+    "code": "08684",
+    "name": "Titanic Ramp",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 3,
+    "clues": 1,
+    "traits": "Ruins.",
+    "text": "Titanic Ramp is connected to the locations to its left and right.\nAs an additional cost for you to leave Titanic Ramp, test [agility] (2). If you fail, cancel the effects of the move. Any investigator at your location or a connecting location may spend 1 clue to have you automatically succeed at this test."
+  },
+  {
+    "code": "08685",
+    "name": "Titanic Ramp",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 4,
+    "clues": 1,
+    "traits": "Ruins.",
+    "text": "Titanic Ramp is connected to the locations to its left and right.\nAs an additional cost for you to leave Titanic Ramp, test [agility] (1). If you fail, cancel the effects of the move. Any investigator at your location or a connecting location may spend 1 clue to have you automatically succeed at this test."
+  },
+  {
+    "code": "08686",
+    "name": "Hidden Tunnel",
+    "type_code": "location",
+    "quantity": 1,
+    "shroud": 5,
+    "clues": 0,
+    "traits": "Ruins.",
+    "text": "Hidden Tunnel is connected to the location to its left.\n<b>Objective</b> - If each undefeated investigator is at the Hidden Tunnel, advance the act."
+  },
+  {
+    "code": "08687",
+    "name": "Primordial Evil",
+    "type_code": "enemy",
+    "quantity": 2,
+    "enemy_fight": 3,
+    "enemy_evade": 1,
+    "health": 5,
+    "enemy_damage": 2,
+    "enemy_horror": 1,
+    "traits": "Monster. Eidolon.",
+    "text": "Hunter. Retaliate.\n<b>Forced</b> - When you deal any amount of damage to Primordial Evil: Shuffle the top card of the Tekeli-li deck into your deck without looking at it (if you cannot, Primordial Evil attacks you)."
+  },
+  {
+    "code": "08688",
+    "name": "The Madness Within",
+    "type_code": "treachery",
+    "quantity": 2,
+    "traits": "Curse.",
+    "text": "<b>Revelation</b> - Test [willpower] (4). For each point you fail by, shuffle the top card of the Tekeli-li deck into your deck without looking at it (for each card you cannot shuffle, take 1 horror)."
+  }
+]

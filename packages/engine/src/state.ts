@@ -308,13 +308,18 @@ export function enemyMaxHealth(state: GameState, enemy: Enemy): number {
 }
 
 export function getEnemy(state: GameState, id: EnemyId): Enemy {
-  const enemy = state.enemies[id]
+  const enemy = findEnemy(state, id)
   if (!enemy) throw new EngineError(`Enemigo desconocido: ${id}`)
   return enemy
 }
 
 export function findEnemy(state: GameState, id: EnemyId): Enemy | undefined {
-  return state.enemies[id]
+  return (
+    state.enemies[id] ??
+    scenarioBehavior(state.scenarioId)
+      ?.attackableLocations?.(state)
+      .find((e) => e.id === id)
+  )
 }
 
 export function updateInvestigator(
@@ -443,9 +448,10 @@ export function enemiesAt(state: GameState, location: LocationId): Enemy[] {
 export function fightEnemies(state: GameState, investigator: InvestigatorId): Enemy[] {
   const here = getInvestigator(state, investigator).location
   if (here === null) return []
-  return Object.values(state.enemies).filter(
-    (e) => (!e.global && e.location === here) || enemyBehavior(e.code)?.fightFromAnywhere,
-  )
+  return [
+    ...Object.values(state.enemies),
+    ...(scenarioBehavior(state.scenarioId)?.attackableLocations?.(state) ?? []),
+  ].filter((e) => (!e.global && e.location === here) || enemyBehavior(e.code)?.fightFromAnywhere)
 }
 
 export function engagedEnemies(state: GameState, investigator: InvestigatorId): Enemy[] {
@@ -557,6 +563,8 @@ export function bestByPrey(
   state?: GameState,
 ): Investigator[] {
   if (!prey || candidates.length === 0) return candidates
+  if (prey.type === 'onlyInvestigators')
+    return candidates.filter((i) => prey.investigators.includes(i.id))
   if (prey.type === 'only') return candidates.filter((i) => i.id === prey.investigator)
   if (prey.type === 'investigator') {
     const preferred = candidates.filter((i) => i.id === prey.investigator)
@@ -610,10 +618,15 @@ export function huntingSteps(state: GameState, enemy: Enemy): LocationId[] {
   const prey = scenarioBehavior(state.scenarioId)?.enemyPrey?.(state, enemy) ?? enemy.prey
   const active = activeInvestigators(state)
   // "Presa (solo X)": se mueve como si X fuera el único investigador en juego.
-  const only = prey?.type === 'only' ? active.filter((i) => i.id === prey.investigator) : []
-  const reachable = (only.length ? only : active).filter(
-    (i) => i.location !== null && distances.has(i.location),
-  )
+  const only =
+    prey?.type === 'only'
+      ? active.filter((i) => i.id === prey.investigator)
+      : prey?.type === 'onlyInvestigators'
+        ? active.filter((i) => prey.investigators.includes(i.id))
+        : []
+  const reachable = (
+    prey?.type === 'onlyInvestigators' ? only : only.length ? only : active
+  ).filter((i) => i.location !== null && distances.has(i.location))
   if (reachable.length === 0) return []
   const distance = (i: Investigator) => distances.get(i.location as LocationId) ?? 0
   const nearest = Math.min(...reachable.map(distance))

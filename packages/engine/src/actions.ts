@@ -20,6 +20,7 @@ import {
   activeInvestigators,
   enemiesAt,
   fightEnemies,
+  findEnemy,
   enemyHasKeyword,
   engagedEnemies,
   getInvestigator,
@@ -593,7 +594,8 @@ export function describeAction(state: GameState, id: InvestigatorId, action: Act
     case 'fight':
     case 'evade':
     case 'engage': {
-      const enemy = state.enemies[action.enemy]
+      const enemy =
+        action.kind === 'fight' ? findEnemy(state, action.enemy) : state.enemies[action.enemy]
       return {
         label: `action.${action.kind}`,
         params: { enemy: enemy?.name ?? '?' },
@@ -933,7 +935,7 @@ export function attackBlocked(
 function attacksBlockedEnemy(state: GameState, id: InvestigatorId, a: AbilityOption): boolean {
   return a.then.some((m) => {
     if (m.type !== 'BeginSkillTest' || m.kind.type !== 'fight') return false
-    const e = state.enemies[m.kind.enemy],
+    const e = findEnemy(state, m.kind.enemy),
       source = m.source ? state.assets[m.source]?.code : m.effectSource
     return !!e && attackBlocked(state, id, e, source)
   })

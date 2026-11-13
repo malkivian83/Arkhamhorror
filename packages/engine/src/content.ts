@@ -59,6 +59,20 @@ export type AbilitiesFn<Self> = (
 ) => AbilityOption[]
 
 export interface ScenarioBehavior {
+  /** Locations that can be attacked as enemies, but are not enemies for other effects. */
+  attackableLocations?: (state: GameState) => Enemy[]
+  /** Recognizes these targets even after they collapse or leave play. They cannot be defeated. */
+  isAttackableLocation?: (state: GameState, id: string) => boolean
+  damageAttackableLocation?: (
+    state: GameState,
+    damage: Extract<Message, { type: 'DamageEnemy' }>,
+  ) => GameState
+  /** Replacement of doom entering play, irrespective of its destination. */
+  replaceDoom?: (state: GameState, message: Message) => Message[] | null
+  beforeDamage?: (
+    state: GameState,
+    message: Extract<Message, { type: 'TakeDamage' }>,
+  ) => Message[] | null
   /** A ready guard may prevent enemies from leaving its location. */
   cannotMoveEnemy?: (state: GameState, enemy: Enemy) => boolean
   /** Reglas nuevas de asignación conjunta; opt-in para conservar grabaciones anteriores. */

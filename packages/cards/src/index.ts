@@ -534,3 +534,7 @@ export {
   completeRestfulNight,
   type RestfulNightChoice,
 } from './edge-of-the-earth/restful-night'
+export {
+  seals as heartSeals,
+  type SealState as HeartSealState,
+} from './edge-of-the-earth/heart-common'

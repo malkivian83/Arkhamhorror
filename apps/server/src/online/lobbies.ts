@@ -282,6 +282,8 @@ export class LobbyService {
                           command.choice.target?.type,
                           command.choice.target?.id,
                           command.choice.weaknesses,
+                          // Preserve the signature of pre-existing requests without this option.
+                          ...(command.choice.decline ? [true] : []),
                         ]
                       : command.action === 'nightFinish'
                         ? command.route
@@ -721,6 +723,7 @@ export function onlineLobbies(
               required: ['partner'],
               properties: {
                 partner: { type: 'string', pattern: '^087(1[4-9]|2[0-2])$' },
+                decline: { type: 'boolean' },
                 target: {
                   type: 'object',
                   additionalProperties: false,

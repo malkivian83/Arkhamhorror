@@ -7,7 +7,12 @@ import {
 import { activeMembers, campaignLost, currentScenario, type Campaign } from '../campaign'
 import { fledToMountains } from './checkpoint'
 import { foundAnotherWay } from './forbidden-peaks'
-import { EOTE_ENDLESS_NIGHT, EOTE_FATAL_MIRAGE, EOTE_RESTFUL_NIGHT } from './ice-and-death-cards'
+import {
+  EOTE_ENDLESS_NIGHT,
+  EOTE_FINAL_NIGHT,
+  EOTE_FATAL_MIRAGE,
+  EOTE_RESTFUL_NIGHT,
+} from './ice-and-death-cards'
 import { edgeOfTheEarthChaosBags, startingFrostRemoved } from './opening'
 
 const research = 'edgeOfTheEarthKenslerResearch'
@@ -32,6 +37,12 @@ const nights = {
     extraVisit: foundAnotherWay,
     bonuses: 'edgeOfTheEarthCity',
   },
+  final: {
+    id: EOTE_FINAL_NIGHT,
+    visits: 'edgeOfTheEarthFinalNightVisits',
+    extraVisit: 'edgeOfTheEarthGuidedToTunnel',
+    bonuses: 'edgeOfTheEarthHeart',
+  },
 } as const
 export type ExpeditionNight = keyof typeof nights
 const nightOf = (campaign: Campaign): ExpeditionNight | null =>
@@ -39,7 +50,9 @@ const nightOf = (campaign: Campaign): ExpeditionNight | null =>
     ? 'restful'
     : currentScenario(campaign) === EOTE_ENDLESS_NIGHT
       ? 'endless'
-      : null
+      : currentScenario(campaign) === EOTE_FINAL_NIGHT
+        ? 'final'
+        : null
 const mirageVisited = (campaign: Campaign) =>
   Number(campaign.log.values.edgeOfTheEarthMirageVisits ?? 0) > 0
 const partners = Object.keys(expeditionPartners) as ExpeditionPartner[]
@@ -70,6 +83,10 @@ type AliveEffect =
   | 'scoutingCity'
   | 'cityStartingHand'
   | 'cityStartingResources'
+  | 'trueNature'
+  | 'scoutingPassage'
+  | 'heartStartingHand'
+  | 'heartStartingResources'
 
 const aliveEffects = {
   '08714': 'removeWeaknesses',
@@ -86,6 +103,8 @@ const aliveEffects = {
 type Target = { type: 'investigator'; id: string } | { type: 'partner'; id: ExpeditionPartner }
 export type RestfulNightChoice = {
   partner: ExpeditionPartner
+  /** A Memorial is optional even when a deck could receive it. The section is still read. */
+  decline?: boolean
   target?: Target
   weaknesses?: string[]
 }
@@ -151,6 +170,8 @@ function visitOptions(campaign: Campaign, partner: ExpeditionPartner, night: Exp
     case 'scouting':
     case 'understanding':
     case 'scoutingCity':
+    case 'trueNature':
+    case 'scoutingPassage':
       return { partner, effect, targets: [] }
     default:
       return { partner, effect, targets: investigators }
@@ -163,6 +184,20 @@ function endlessEffect(
   night: ExpeditionNight,
 ): AliveEffect | null {
   if (night === 'restful') return effect
+  if (night === 'final') {
+    switch (effect) {
+      case 'research':
+        return campaign.log.notes.includes(understanding) ? 'trueNature' : null
+      case 'scouting':
+        return 'scoutingPassage'
+      case 'startingHand':
+        return 'heartStartingHand'
+      case 'startingResources':
+        return 'heartStartingResources'
+      default:
+        return effect
+    }
+  }
   switch (effect) {
     // Endless Night: Kensler only receives you if she shares her research.
     case 'research':
@@ -201,20 +236,41 @@ export function restfulNight(campaign: Campaign) {
         .filter((partner) => !visited.includes(partner))
         .flatMap((partner) => {
           const option = visitOptions(campaign, partner, night)
-          return option ? [option] : []
+          return option
+            ? [
+                {
+                  ...option,
+                  stories: [
+                    `${night}Visit${partner}${option.effect === 'memorial' ? 'memorial' : 'alive'}`,
+                    ...(night === 'endless' &&
+                    partner === '08721' &&
+                    option.effect !== 'memorial' &&
+                    alive(campaign, '08718')
+                      ? [`${night}VisitEllsworthClaypool`]
+                      : []),
+                    ...(night === 'restful' &&
+                    partner === '08718' &&
+                    option.effect !== 'memorial' &&
+                    alive(campaign, '08721')
+                      ? ['restfulVisitClaypoolEllsworth']
+                      : []),
+                  ],
+                },
+              ]
+            : []
         })
     : []
   const losses = partners.filter(
     (partner) => campaign.log.expedition?.partners[partner]?.status === 'eliminated',
   ).length
   // Endless Night 2: after a previous visit, the door returns and costs 1 frost token.
-  const returning = night === 'endless' && mirageVisited(campaign)
+  const returning = night !== 'restful' && mirageVisited(campaign)
   return {
     night,
     remaining,
     options,
     canContinue: options.length === 0,
-    offersMirage: returning || losses >= 3,
+    offersMirage: night === 'final' || returning || losses >= 3,
     mirageFrost: returning,
   }
 }
@@ -227,11 +283,16 @@ export function applyRestfulNightVisit(campaign: Campaign, choice: RestfulNightC
   const option = restfulNight(campaign)?.options.find(({ partner }) => partner === choice.partner)
   if (
     !option ||
-    (option.targets.length
-      ? !option.targets.some(
-          (target) => target.id === choice.target?.id && target.type === choice.target.type,
-        )
-      : choice.target !== undefined)
+    (choice.decline &&
+      (option.effect !== 'memorial' ||
+        choice.target !== undefined ||
+        choice.weaknesses !== undefined)) ||
+    (!choice.decline &&
+      (option.targets.length
+        ? !option.targets.some(
+            (target) => target.id === choice.target?.id && target.type === choice.target.type,
+          )
+        : choice.target !== undefined))
   )
     throw new Error('The Restful Night visit is unavailable')
 
@@ -245,7 +306,7 @@ export function applyRestfulNightVisit(campaign: Campaign, choice: RestfulNightC
   let log = campaign.log
   switch (option.effect) {
     case 'memorial': {
-      log = update({ storyAssets: [...record!.storyAssets, option.card] })
+      if (!choice.decline) log = update({ storyAssets: [...record!.storyAssets, option.card] })
       break
     }
     case 'removeWeaknesses': {
@@ -312,10 +373,18 @@ export function applyRestfulNightVisit(campaign: Campaign, choice: RestfulNightC
     case 'scoutingCity':
       log = recordNote(log, outskirts)
       break
+    case 'trueNature':
+      log = recordNote(log, 'edgeOfTheEarthKenslerTrueNature')
+      break
+    case 'scoutingPassage':
+      log = recordNote(log, 'edgeOfTheEarthScoutedForkedPassage')
+      break
     case 'startingHand':
     case 'startingResources':
     case 'cityStartingHand':
-    case 'cityStartingResources': {
+    case 'cityStartingResources':
+    case 'heartStartingHand':
+    case 'heartStartingResources': {
       const bonus = option.effect.endsWith('Hand') ? 'startingHand' : 'startingResources'
       log = { ...log, values: { ...log.values, [`${nights[night].bonuses}:${bonus}`]: id! } }
       break

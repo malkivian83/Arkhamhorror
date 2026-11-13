@@ -11,6 +11,9 @@ import {
   EOTE_FORBIDDEN_PEAKS,
   EOTE_ENDLESS_NIGHT,
   EOTE_CITY,
+  EOTE_FINAL_NIGHT,
+  EOTE_HEART_ONE,
+  EOTE_HEART_TWO,
   ICE_PART_TWO,
 } from './ice-and-death-cards'
 import { iceAndDeathPartOne } from './ice-and-death'
@@ -21,8 +24,9 @@ import { registerTekelili } from './tekelili'
 import './ice-and-death-encounters'
 import './ice-and-death-locations'
 import './memorials'
-import './forbidden-peaks'
-import './city'
+import { forbiddenPeaks } from './forbidden-peaks'
+import { cityOfTheElderThings } from './city'
+import { heartOfMadnessOne, heartOfMadnessTwo } from './heart'
 
 registerExpeditionCompanions()
 registerTekelili()
@@ -55,10 +59,23 @@ registerCampaign({
     },
     { id: EOTE_RESTFUL_NIGHT, checkpoint: true },
     { id: EOTE_FATAL_MIRAGE, build: fatalMirage, keywords: ['frost', 'aloof', 'parley'] },
-    { id: EOTE_FORBIDDEN_PEAKS },
+    { id: EOTE_FORBIDDEN_PEAKS, build: forbiddenPeaks, keywords: ['frost', 'hunter', 'massive'] },
     { id: EOTE_ENDLESS_NIGHT, checkpoint: true },
     // Endless Night may send the expedition into the mirage once more before the city.
     { id: EOTE_FATAL_MIRAGE, build: fatalMirage, keywords: ['frost', 'aloof', 'parley'] },
-    { id: EOTE_CITY },
+    { id: EOTE_CITY, build: cityOfTheElderThings, keywords: ['frost', 'hunter', 'massive'] },
+    { id: EOTE_FINAL_NIGHT, checkpoint: true },
+    { id: EOTE_FATAL_MIRAGE, build: fatalMirage, keywords: ['frost', 'aloof', 'parley'] },
+    {
+      id: EOTE_HEART_ONE,
+      build: heartOfMadnessOne,
+      keywords: ['frost', 'hunter', 'massive'],
+    },
+    {
+      id: EOTE_HEART_TWO,
+      build: heartOfMadnessTwo,
+      allowSideStoryBefore: false,
+      keywords: ['frost', 'hunter', 'massive', 'alert', 'retaliate'],
+    },
   ],
 })

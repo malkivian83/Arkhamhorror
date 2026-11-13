@@ -10,6 +10,7 @@ import {
   shuffle,
   distancesFrom,
   nextStepToward,
+  nextInt,
   type AbilityOption,
   type ChaosToken,
   type Choice,
@@ -86,7 +87,7 @@ const acts: Record<CityVersion, [string, string]> = {
   3: ['08626', '08629'],
 }
 
-export function cityOfTheElderThings(context: ScenarioContext): ScenarioDefinition {
+function cityMaterial(context: ScenarioContext): ScenarioDefinition {
   const version = cityVersion(context.log)
   const { locations, keyed, idAt } = cityLocations(version, context.seed)
   const start = cityStart[version]
@@ -136,6 +137,15 @@ export function cityOfTheElderThings(context: ScenarioContext): ScenarioDefiniti
       { type: 'InitializeTekeliliDeck' },
       { type: 'ChooseExpeditionPartners', extraUses: cityGroups[version] },
     ],
+  }
+}
+
+export function cityOfTheElderThings(context: ScenarioContext): ScenarioDefinition {
+  return {
+    ...cityMaterial(context),
+    // No investigator enters the provisional map before the expedition votes.
+    startingLocation: null,
+    setup: [cityMessage('cityIntroduction', { seed: context.seed })],
   }
 }
 
@@ -678,6 +688,151 @@ function cityStep(state: GameState, key: string, data: Record<string, unknown>):
   const investigator = String(data.investigator ?? '')
   const lead = leadInvestigator(state)?.id ?? state.investigators[0]!.id
   switch (key) {
+    case 'cityIntroduction': {
+      const alive = (partner: ExpeditionPartner) =>
+        ['safe', 'resolute'].includes(
+          state.campaignLog?.expedition?.partners[partner]?.status ?? '',
+        )
+      const read = (part: string): Message => ({ type: 'Story', entry: story(part) })
+      const weakness = (code: string): Message[] =>
+        activeInvestigators(state).flatMap(({ id }) => [
+          { type: 'AddStoryAsset', investigator: id, code },
+          { type: 'ShuffleCardsIntoDeck', investigator: id, cards: [code] },
+        ])
+      const dynamite = alive('08719') && state.campaignLog?.expedition?.supplies.includes('08616')
+      const choices = cityVersionChoices(state.campaignLog!)
+      const recorded = Number(state.campaignLog?.values[cityVersionKey]) as CityVersion
+      const choose = (version: CityVersion) =>
+        cityMessage('cityConfigure', { version, seed: Number(data.seed) })
+      return push(
+        state,
+        ...(state.campaignLog?.notes.includes('edgeOfTheEarthScoutedCityOutskirts')
+          ? [read('cityOutskirts')]
+          : []),
+        read(alive('08714') ? 'cityDyer' : 'cityNoDyer'),
+        ...(alive('08714') ? [] : weakness('08647')),
+        read(alive('08717') ? 'citySinha' : 'cityNoSinha'),
+        ...(alive('08717') ? [] : weakness('08646')),
+        read('cityTower'),
+        read(dynamite ? 'cityCookie' : 'cityNoCookie'),
+        ...(dynamite ? [] : [{ type: 'AddChaosTokens' as const, tokens: ['frost' as const] }]),
+        read('cityVote'),
+        ...(choices.length === 1 || choices.includes(recorded)
+          ? [choose(choices.includes(recorded) ? recorded : choices[0]!)]
+          : ask(
+              lead,
+              'cityGroup',
+              choices.map((version) => ({
+                label: 'choice.edgeOfTheEarth.cityGroup',
+                params: { n: version },
+                then: [choose(version)],
+              })),
+            )),
+      )
+    }
+    case 'cityConfigure': {
+      const version = Number(data.version) as CityVersion
+      if (
+        state.phase !== 'setup' ||
+        !state.campaignLog ||
+        !cityVersionChoices(state.campaignLog).includes(version)
+      )
+        return state
+      const log = {
+        ...state.campaignLog,
+        values: { ...state.campaignLog.values, [cityVersionKey]: String(version) },
+      }
+      const material = cityMaterial({
+        log,
+        difficulty: state.difficulty,
+        seed: Number(data.seed),
+        investigators: state.investigators.map((i) => i.id),
+      })
+      const [deck, rng] = shuffle(material.encounterDeck, state.rng)
+      const next = {
+        ...state,
+        rng,
+        campaignLog: log,
+        acts: material.acts,
+        encounterDeck: deck,
+        setAside: material.setAside ?? [],
+        locations: Object.fromEntries(
+          material.locations.map((l) => [
+            l.id,
+            { ...l, connections: [...l.connections], revealed: false, clues: 0 },
+          ]),
+        ),
+      }
+      return push(
+        next,
+        ...(material.startingLocation
+          ? [
+              {
+                type: 'PlaceAtStart' as const,
+                lead: material.startingLocation,
+                others: material.startingLocation,
+              },
+            ]
+          : []),
+        ...(material.setup ?? []),
+        cityMessage('cityScoutedClues'),
+      )
+    }
+    case 'cityScoutedClues': {
+      if (!state.campaignLog?.notes.includes('edgeOfTheEarthScoutedCityOutskirts')) return state
+      const location = hereOf(state, lead)
+      if (!location) return state
+      const amount = Math.ceil((state.locations[location]?.clues ?? 0) / 2)
+      return amount
+        ? push(state, { type: 'DiscoverClues', investigator: lead, location, amount })
+        : state
+    }
+    case 'gazeIntoMadness': {
+      // Campaign guide p. 42: checked (resolute) partners are not eligible.
+      const partners = Object.entries(state.campaignLog?.expedition?.partners ?? {})
+        .filter(([, record]) => record.status === 'safe')
+        .map(([partner]) => partner as ExpeditionPartner)
+      if (!partners.length) return state
+      const [index, rng] = nextInt(state.rng, partners.length)
+      const victim = partners[index]!
+      const asset = Object.values(state.assets).find((a) => a.expeditionPartner === victim)
+      const read = (part: string): Message => ({ type: 'Story', entry: story(part) })
+      return push(
+        { ...state, rng },
+        read('cityMadness'),
+        ...(victim === '08715' ? [read('cityMadnessDanforth')] : []),
+        read('cityMadnessEnd'),
+        ...(asset ? [{ type: 'DiscardAsset' as const, asset: asset.id, defeated: true }] : []),
+        { type: 'SetExpeditionPartnerStatus', partner: victim, status: 'eliminated' },
+        ...(victim === '08715'
+          ? [cityMessage('madnessClue', { investigator: asset?.owner ?? lead })]
+          : []),
+      )
+    }
+    case 'madnessClue': {
+      const here = hereOf(state, investigator)
+      if (!here) return state
+      const distances = distancesFrom(state, here)
+      const locations = Object.values(state.locations).filter(
+        (l) => l.clues > 0 && distances.has(l.id),
+      )
+      if (!locations.length) return state
+      const nearest = Math.min(...locations.map((l) => distances.get(l.id)!))
+      const choices = locations
+        .filter((l) => distances.get(l.id) === nearest)
+        .map((l): Choice => ({
+          label: 'choice.edgeOfTheEarth.cityLandscape',
+          params: positionParams(state, l.id),
+          target: { type: 'location', id: l.id },
+          then: [{ type: 'DiscoverClues', investigator, location: l.id, amount: 1 }],
+        }))
+      return push(
+        state,
+        ...(choices.length === 1
+          ? choices[0]!.then
+          : ask(investigator, 'cityMadnessClue', choices)),
+      )
+    }
     case 'chooseStart':
       return push(
         state,

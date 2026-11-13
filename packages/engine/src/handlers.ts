@@ -176,6 +176,31 @@ export const MAX_HAND_SIZE = 8
  * reglamento (docs-proyecto/reglas).
  */
 export function handle(state: GameState, message: Message): GameState {
+  // An attackable location is not an enemy for engagement, evasion, defeat or other
+  // enemy-only effects that a weapon may append to its attack.
+  if (
+    'enemy' in message &&
+    typeof message.enemy === 'string' &&
+    message.type !== 'DamageEnemy' &&
+    message.type !== 'IfEnemyDefeated' &&
+    scenarioBehavior(state.scenarioId)?.isAttackableLocation?.(state, message.enemy)
+  )
+    return state
+  if (message.type === 'PlaceLocationTokens' && (message.doom ?? 0) > 0) {
+    const replacement = scenarioBehavior(state.scenarioId)?.replaceDoom?.(state, message)
+    if (replacement)
+      return push(state, ...replacement, ...(message.horror ? [{ ...message, doom: 0 }] : []))
+  }
+  if (
+    (message.type === 'PlaceDoom' ||
+      message.type === 'PlaceDoomOnEnemy' ||
+      message.type === 'PlaceDoomOnAsset' ||
+      message.type === 'PlaceDoomOnInvestigator') &&
+    message.amount > 0
+  ) {
+    const replacement = scenarioBehavior(state.scenarioId)?.replaceDoom?.(state, message)
+    if (replacement) return push(state, ...replacement)
+  }
   switch (message.type) {
     case 'GameBegins':
       return push(state, {
@@ -2947,6 +2972,10 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'TakeDamage': {
+      if (!message.scenarioChecked && !message.assignmentPart) {
+        const replacement = scenarioBehavior(state.scenarioId)?.beforeDamage?.(state, message)
+        if (replacement) return push(state, ...replacement)
+      }
       for (const t of Object.values(state.treacheries)) {
         if (t.placement.type === 'limbo') continue
         const instead = activeTreacheryBehavior(state, t)?.beforeDamage?.(state, t, message)
@@ -5399,7 +5428,7 @@ export function handle(state: GameState, message: Message): GameState {
       if (message.kind.type === 'evade' && state.enemies[message.kind.enemy]?.cannotBeEvaded)
         return state
       if (message.kind.type === 'fight') {
-        const enemy = state.enemies[message.kind.enemy],
+        const enemy = findEnemy(state, message.kind.enemy),
           source = message.source ? state.assets[message.source]?.code : message.effectSource
         if (enemy && attackBlocked(state, message.investigator, enemy, source)) return state
       }
@@ -7699,7 +7728,10 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'IfEnemyDefeated':
-      return state.enemies[message.enemy] ? state : push(state, ...message.then)
+      return state.enemies[message.enemy] ||
+        scenarioBehavior(state.scenarioId)?.isAttackableLocation?.(state, message.enemy)
+        ? state
+        : push(state, ...message.then)
 
     case 'ChooseFromTop': {
       const investigator = getInvestigator(state, message.investigator)
@@ -8556,6 +8588,13 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'DamageEnemy': {
+      if (!state.enemies[message.enemy] && findEnemy(state, message.enemy)) {
+        // "Attack as if an enemy" does not permit non-attack damage to that location.
+        return message.source?.attack
+          ? (scenarioBehavior(state.scenarioId)?.damageAttackableLocation?.(state, message) ??
+              state)
+          : state
+      }
       const enemy = findEnemy(state, message.enemy)
       if (!enemy || enemy.hasNoStats) return state
       const agenda = state.agendas[state.agendaIndex]
@@ -12645,7 +12684,7 @@ function enemyStatBonus(
   investigator?: string,
 ): number {
   if (kind.type !== 'fight' && kind.type !== 'evade') return 0
-  const enemy = state.enemies[kind.enemy]
+  const enemy = findEnemy(state, kind.enemy)
   if (!enemy) return 0
   return (
     attachedStat(state, enemy.id, kind.type) +
