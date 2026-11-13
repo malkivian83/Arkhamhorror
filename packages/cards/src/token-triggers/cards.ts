@@ -417,25 +417,29 @@ function registerAsset(code: string): boolean {
               )
             : []
         return [
-          option(
-            a,
-            code,
-            [
-              exhaust(a),
-              ...(bless
-                ? [
-                    {
-                      type: 'AddChaosTokens',
-                      tokens: Array(bless).fill('bless'),
-                      scenarioOnly: true,
-                    } as Message,
-                  ]
-                : []),
-              ...retry,
-            ],
-            undefined,
-            { n },
-          ),
+          {
+            ...option(
+              a,
+              code,
+              [
+                exhaust(a),
+                ...(bless
+                  ? [
+                      {
+                        type: 'AddChaosTokens',
+                        tokens: Array(bless).fill('bless'),
+                        scenarioOnly: true,
+                      } as Message,
+                    ]
+                  : []),
+                ...retry,
+              ],
+              undefined,
+              { n },
+            ),
+            // RR: Maximums apply across copies, including other investigators' assets.
+            key: 'maximum:' + code,
+          },
         ]
       },
     })
