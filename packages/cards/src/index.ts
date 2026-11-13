@@ -315,6 +315,7 @@ import { MYTHOS_GUARD_RENDERED_CODES } from './mythos-guard'
 import { NARROW_ESCAPE_RENDERED_CODES } from './narrow-escape'
 import { ADVANCED_TESTS_RENDERED_CODES } from './advanced-tests'
 import { ACTION_SUPPORT_RENDERED_CODES } from './action-support'
+import { BONDED_RENDERED_CODES } from './bonded-cards'
 import { REUSED_CAPABILITIES_RENDERED_CODES } from './reused-capabilities'
 import { REX_RENDERED_CODES } from './rex-murphy'
 import { GROUPED_RENDERED_CODES } from './grouped-import'
@@ -355,6 +356,7 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...NARROW_ESCAPE_RENDERED_CODES,
   ...ADVANCED_TESTS_RENDERED_CODES,
   ...ACTION_SUPPORT_RENDERED_CODES,
+  ...BONDED_RENDERED_CODES,
   ...REUSED_CAPABILITIES_RENDERED_CODES,
   ...TOKEN_SKILL_RENDERED_CODES,
   ...SERVICE_RENDERED_CODES,

@@ -1,4 +1,10 @@
-import { investigatorBehavior, playerCardBehavior, scenarioBehavior } from './content'
+import { bondedCardsFor } from './bonded'
+import {
+  investigatorBehavior,
+  playerCardBehavior,
+  playerCardDef,
+  scenarioBehavior,
+} from './content'
 import { EngineError } from './errors'
 import { recomputeConnections } from './state'
 import { shuffle, seedRng } from './rng'
@@ -149,10 +155,12 @@ export function prepareGame({
       scenario.startingBonuses?.[setup.id]?.[key] ?? 0,
     )
   const players: Investigator[] = investigators.map((setup) => {
+    const bonded = bondedCardsFor(setup.deck)
     let deck: CardCode[]
     ;[deck, rng] = shuffle(
       setup.deck.filter(
         (code) =>
+          !playerCardDef(code)?.bondedCard &&
           !playerCardBehavior(code)?.permanent &&
           !investigatorBehavior(setup.id)?.startingAssets?.includes(code),
       ),
@@ -184,6 +192,8 @@ export function prepareGame({
       deck,
       hand: [],
       discard: [],
+      // RR Bonded: bonded cards begin the game set aside, out of play.
+      ...(bonded.length ? { outOfPlay: bonded } : {}),
     }
   })
 

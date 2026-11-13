@@ -881,6 +881,8 @@ export function purchaseOptions(
         !card.weakness &&
         !card.reward &&
         !card.story &&
+        // RR Bonded: bonded cards are never purchased into a deck.
+        !card.bondedCard &&
         !campaign.log.removedCards?.includes(card.code) &&
         ![IN_THE_THICK_OF_IT, '08071', '08019'].includes(card.code) &&
         isImplemented(card.code) &&

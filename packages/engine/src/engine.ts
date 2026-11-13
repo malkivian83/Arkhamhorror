@@ -1,6 +1,7 @@
 import { synchronizeTurnActions } from './turn-actions'
 import { messageController, messageSource, withEffectSource } from './effect-source'
 import { discardOrphanedUpgrades } from './asset-upgrades'
+import { settleSetAside } from './bonded'
 import { EngineError } from './errors'
 import { handle } from './handlers'
 import { prepareGame, type NewGameOptions } from './setup'
@@ -77,8 +78,11 @@ function run(initial: GameState, observer?: EngineObserver): GameState {
     const before = state
     state = synchronizeTurnActions(
       before,
-      releaseOrphanedSeals(
-        discardOrphanedUpgrades(before, handle({ ...state, queue: rest }, message)),
+      settleSetAside(
+        before,
+        releaseOrphanedSeals(
+          discardOrphanedUpgrades(before, handle({ ...state, queue: rest }, message)),
+        ),
       ),
       message,
     )
