@@ -735,14 +735,18 @@ export function handle(state: GameState, message: Message): GameState {
           ...(message.exhaustAfterDraw ? [] : after),
         )
       }
-      // Hiding Spot: a non-Elite enemy spawning at its location gains aloof.
-      const hidden =
-        investigator.location !== null &&
-        !(card.traits ?? []).includes('Elite') &&
-        attachmentsAt(state, investigator.location).some((a) =>
-          playerCardBehavior(a.code)?.locationAttachmentEnemyKeywords?.includes('aloof'),
-        )
-      const engageWith = card.keywords.includes('aloof') || hidden ? null : investigator.id
+      // Aloof as it would be once in play: printed, gained from the scenario or from an
+      // attachment at the spawn location (Hiding Spot), or lost.
+      const spawning: Enemy = {
+        ...card,
+        id: '',
+        maxHealth: card.health,
+        damageTaken: 0,
+        location: investigator.location,
+        engagedWith: null,
+        exhausted: false,
+      }
+      const engageWith = enemyHasKeyword(state, spawning, 'aloof') ? null : investigator.id
       return push(
         next,
         {
@@ -3998,6 +4002,9 @@ export function handle(state: GameState, message: Message): GameState {
       // RR "Equipment Slots": si no hay ranura libre, se descarta un apoyo que la ocupe.
       const def = playerCardDef(message.code)
       if (!def) return state
+      // Checked before taking it from hand or discard, so the card stays where it was.
+      if (playerCardBehavior(message.code)?.cannotEnterPlay?.(state, message.investigator))
+        return state
       if (message.fromHand) {
         // "Put into play from your hand" is not playing it: no cost, no play windows.
         const owner = getInvestigator(state, message.investigator)
@@ -10582,7 +10589,12 @@ export function handle(state: GameState, message: Message): GameState {
           const cost = Math.max(0, (def.cost ?? 0) - (message.discount ?? 0))
           if (cost > investigator.resources || assetsBlocked(state, investigator.id)) return false
         }
-        if (message.to === 'put' && (def.type !== 'asset' || uniqueAssetInPlay(state, code)))
+        if (
+          message.to === 'put' &&
+          (def.type !== 'asset' ||
+            uniqueAssetInPlay(state, code) ||
+            playerCardBehavior(code)?.cannotEnterPlay?.(state, investigator.id))
+        )
           return false
         return true
       })
@@ -12500,6 +12512,14 @@ function afterRevealing(
     : null
 }
 
+/**
+ * Physical chaos tokens revealed during a test, including those revealed and then ignored or
+ * canceled (FAQ: they were still revealed). Token of Faith, Fey.
+ */
+export function revealedTestTokens(test: SkillTest): ChaosToken[] {
+  return returnedTokens(test)
+}
+
 /** Tokens that go back to the bag at ST.8: the physical ones, not what they were treated as. */
 function returnedTokens(test: SkillTest): ChaosToken[] {
   return [
@@ -13101,6 +13121,7 @@ function skillTestTrigger(
     succeeded: !!test.succeeded,
     margin: testMargin(test),
     tokens: test.tokens,
+    revealedTokens: revealedTestTokens(test),
     ...(test.kind.type === 'fight' || test.kind.type === 'evade' ? { enemy: test.kind.enemy } : {}),
     ...(test.kind.type === 'investigate' ? { location: test.kind.location } : {}),
     ...(test.source ? { source: test.source } : {}),

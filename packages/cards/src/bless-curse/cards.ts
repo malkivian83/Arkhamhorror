@@ -5,6 +5,7 @@ import {
   getInvestigator,
   poolTokensAvailable,
   registerPlayerCard,
+  revealedTestTokens,
   scenarioBehavior,
   shroudOf,
   skillTestValue,
@@ -31,8 +32,9 @@ const canAdd = (s: GameState, token: PoolToken, n: number) => poolTokensAvailabl
 const here = (s: GameState, by: InvestigatorId) => getInvestigator(s, by).location
 const atLocation = (s: GameState, by: InvestigatorId) =>
   s.investigators.filter((i) => !i.eliminated && i.location !== null && i.location === here(s, by))
-const revealed = (test: { tokens?: ChaosToken[] }, ...faces: ChaosToken[]) =>
-  (test.tokens ?? []).filter((t) => faces.includes(t)).length
+/** FAQ: tokens revealed and then ignored or canceled still count as revealed. */
+const revealed = (tokens: ChaosToken[] | undefined, ...faces: ChaosToken[]) =>
+  (tokens ?? []).filter((t) => faces.includes(t)).length
 const SKILLS = ['willpower', 'intellect', 'combat', 'agility'] as const
 
 /** "Investigators at your location draw/gain a combined total of N": one unit at a time. */
@@ -415,21 +417,23 @@ function registerAsset(code: string): boolean {
   if (code === '10019') {
     registerPlayerCard({
       code,
-      reactions: (_s, t, a) =>
-        t.type === 'enemyDefeated' && t.by === a.owner && !a.exhausted
-          ? [
-              {
-                key: a.id + ':ancestral',
-                investigator: a.owner,
-                label: 'ability.addBless',
-                params: { card: cardName(code), n: Math.min(5, Math.max(0, t.enemy.health)) },
-                then: [
-                  { type: 'ExhaustAsset', asset: a.id },
-                  ...add('bless', Math.min(5, Math.max(0, t.enemy.health))),
-                ],
-              },
-            ]
-          : [],
+      reactions: (s, t, a) => {
+        if (t.type !== 'enemyDefeated' || t.by !== a.owner || a.exhausted) return []
+        // Printed health "N per investigator" counts as its resulting value.
+        const printed = t.enemy.healthPerInvestigator
+          ? t.enemy.health * s.startingInvestigatorCount
+          : t.enemy.health
+        const n = Math.min(5, Math.max(0, printed))
+        return [
+          {
+            key: a.id + ':ancestral',
+            investigator: a.owner,
+            label: 'ability.addBless',
+            params: { card: cardName(code), n },
+            then: [{ type: 'ExhaustAsset', asset: a.id }, ...add('bless', n)],
+          },
+        ]
+      },
     })
     return true
   }
@@ -440,7 +444,7 @@ function registerAsset(code: string): boolean {
       code,
       reactions: (_s, t, a) => {
         if (t.type !== 'skillTestEnded' || a.exhausted) return []
-        const n = revealed(t, 'curse', 'autoFail')
+        const n = revealed(t.revealedTokens ?? t.tokens, 'curse', 'autoFail')
         return n
           ? [
               {
@@ -564,7 +568,7 @@ function registerSkill(code: string): boolean {
     registerPlayerCard({
       code,
       afterCommittedTestEnds: (s, test, _ok, by) =>
-        revealed(test, 'curse') && getInvestigator(s, by).discard.includes(code)
+        revealed(revealedTestTokens(test), 'curse') && getInvestigator(s, by).discard.includes(code)
           ? ask(
               by,
               [

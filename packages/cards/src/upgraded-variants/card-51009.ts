@@ -31,7 +31,7 @@ function resultsWithoutFriendlyDamage(state: GameState, test: SkillTest): Messag
           },
         ]
       : []),
-    ...(enemy.keywords.includes('elusive') && !enemy.exhausted
+    ...(testEnemyHasKeyword(state, test, enemy, 'elusive') && !enemy.exhausted
       ? [{ type: 'ElusiveRetreat' as const, enemy: enemy.id }]
       : []),
   ]

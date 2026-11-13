@@ -127,6 +127,7 @@ export {
   secondAgendaDoom,
   testEnemyHasKeyword,
   testMargin,
+  revealedTestTokens,
   withinFrostLimit,
   isPoolToken,
   poolTokensInPlay,
