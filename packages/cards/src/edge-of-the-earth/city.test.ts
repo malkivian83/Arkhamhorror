@@ -20,6 +20,7 @@ import {
 import { TUNNEL, cityKeys, cityMaps, outermost } from './city-cards'
 import { EOTE_CITY } from './ice-and-death-cards'
 import { edgeOfTheEarthStartingBag } from './opening'
+import { withAsset } from '../dunwich-pilot/testing'
 
 // The scenario is not in the campaign selector yet: connect its builder for these tests only.
 const definition = campaignDefinition('edge-of-the-earth')
@@ -55,7 +56,10 @@ function start(campaign: Campaign, seed = 75): GameState {
     const prompt = game.pending.question.prompt
     if (prompt === 'prompt.edgeOfTheEarth.partner')
       game = throughSetup(choose(game, 'choice.edgeOfTheEarth.noPartner'))
-    else if (prompt === 'prompt.edgeOfTheEarth.cityStart')
+    else if (
+      prompt === 'prompt.edgeOfTheEarth.cityStart' ||
+      prompt === 'prompt.edgeOfTheEarth.cityGroup'
+    )
       game = throughSetup(
         choose(
           game,
@@ -72,6 +76,128 @@ const me = (game: GameState) => game.investigators[0]!.id
 const sorted = (keys: ChaosToken[]) => keys.map(String).sort()
 
 describe('City of the Elder Things', () => {
+  it.each([1, 2, 3])(
+    'the lead can break a tie in favor of group %i before placement',
+    (version) => {
+      // Campaign guide p. 37: only tied columns are offered; their setup must follow the choice.
+      let game = throughSetup(startScenario(campaignAt(), 75))
+      expect(game.pending?.question.prompt).toBe('prompt.edgeOfTheEarth.cityGroup')
+      expect(game.investigators.every((i) => i.location === null)).toBe(true)
+      game = throughSetup(choose(game, 'choice.edgeOfTheEarth.cityGroup', { n: version }))
+      expect(game.campaignLog?.values[cityVersionKey]).toBe(String(version))
+      expect(game.acts[0]?.code).toBe({ 1: '08624', 2: '08625', 3: '08626' }[version])
+      const restored = JSON.parse(JSON.stringify(game)) as GameState
+      expect(restored.campaignLog?.values[cityVersionKey]).toBe(String(version))
+    },
+  )
+
+  it('adds both missing specialists’ weaknesses to each deck and campaign log', () => {
+    const game = start(campaignAt(versionOf(1)))
+    const player = getInvestigator(game, me(game))
+    expect(player.deck).toContain('08647')
+    expect(game.campaignLog?.investigators[player.id]?.storyAssets).toContain('08647')
+    expect(player.deck).not.toContain('08646')
+  })
+
+  it.each(['08715', '08720'] as const)(
+    'Gaze into Madness eliminates the only eligible partner %s',
+    (victim) => {
+      // Campaign guide p. 42: resolute partners survive; a controlled victim is defeated.
+      let game = ready(start(campaignAt(versionOf(1))))
+      const owner = me(game)
+      const expedition = game.campaignLog!.expedition!
+      game = {
+        ...game,
+        campaignLog: {
+          ...game.campaignLog!,
+          expedition: {
+            ...expedition,
+            partners: Object.fromEntries(
+              Object.entries(expedition.partners).map(([id, record]) => [
+                id,
+                { ...record, status: id === victim ? 'safe' : 'resolute' },
+              ]),
+            ),
+          },
+        },
+        locations: Object.fromEntries(
+          Object.entries(game.locations).map(([id, location]) => [
+            id,
+            { ...location, clues: id === getInvestigator(game, owner).location ? 1 : 0 },
+          ]),
+        ),
+      } as GameState
+      game = withAsset(game, victim, { owner, expeditionPartner: victim })
+      const before = getInvestigator(game, owner).clues
+      game = throughSetup(
+        dispatch(game, { type: 'ScenarioSpecific', key: 'gazeIntoMadness', data: {} }),
+      )
+      expect(game.campaignLog!.expedition!.partners[victim]!.status).toBe('eliminated')
+      expect(game.assets[victim]).toBeUndefined()
+      expect(getInvestigator(game, owner).clues).toBe(before + (victim === '08715' ? 1 : 0))
+      expect(
+        Object.entries(game.campaignLog!.expedition!.partners)
+          .filter(([id]) => id !== victim)
+          .every(([, record]) => record.status === 'resolute'),
+      ).toBe(true)
+    },
+  )
+
+  it('skips Gaze into Madness when no unchecked survivor remains', () => {
+    const game = ready(start(campaignAt(versionOf(1))))
+    const expedition = game.campaignLog!.expedition!
+    const state = {
+      ...game,
+      campaignLog: {
+        ...game.campaignLog!,
+        expedition: {
+          ...expedition,
+          partners: Object.fromEntries(
+            Object.entries(expedition.partners).map(([id, record]) => [
+              id,
+              { ...record, status: 'resolute' },
+            ]),
+          ),
+        },
+      },
+    } as GameState
+    const next = dispatch(state, { type: 'ScenarioSpecific', key: 'gazeIntoMadness', data: {} })
+    expect(next.rng).toBe(state.rng)
+    expect(next.campaignLog).toEqual(state.campaignLog)
+  })
+
+  it.each([0, 1, 2, 5])(
+    'resolves defeat with victory XP and one bonus per pair of %i spent keys',
+    (spent) => {
+      // Campaign guide p. 43: no resolution proceeds to R2; count complete pairs only.
+      const game = {
+        ...ready(start(campaignAt(versionOf(1)))),
+        keysSpent: Array<ChaosToken>(spent).fill('skull'),
+      }
+      const messages = cityRules.onAllInvestigatorsEliminated!(game)
+      expect(messages).toEqual(
+        expect.arrayContaining([
+          {
+            type: 'Story',
+            entry: {
+              title: 'story.edgeOfTheEarth.cityNoResolution.title',
+              body: 'story.edgeOfTheEarth.cityNoResolution.body',
+            },
+          },
+          {
+            type: 'Story',
+            entry: {
+              title: 'story.edgeOfTheEarth.cityResolution2.title',
+              body: 'story.edgeOfTheEarth.cityResolution2.body',
+            },
+          },
+          { type: 'EarnExperience', amount: Math.floor(spent / 2), victory: true },
+          { type: 'RecordNote', note: 'edgeOfTheEarthGuidedToTunnel' },
+        ]),
+      )
+    },
+  )
+
   it('follows the column with more living members, and the lead breaks ties', () => {
     const all = campaignAt()
     expect(cityVersionChoices(all.log)).toEqual([1, 2, 3])

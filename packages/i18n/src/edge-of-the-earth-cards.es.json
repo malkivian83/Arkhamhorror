@@ -886,11 +886,15 @@
   },
   "08687": {
     "name": "Mal primordial",
-    "typeCode": "enemy"
+    "typeCode": "enemy",
+    "traits": "Monstruo. Eidolón.",
+    "text": "Cazador. Represalia.\n<b>Obligado</b> – Cuando inflijas cualquier cantidad de daño al Mal primordial: Añade, sin mirarla, la primera carta del mazo Tekeli-li a tu mazo y baraja éste (si no puedes, el Mal primordial te ataca)."
   },
   "08688": {
     "name": "La locura interior",
-    "typeCode": "treachery"
+    "typeCode": "treachery",
+    "traits": "Maldición.",
+    "text": "<b>Revelación</b> - Realiza una prueba de [willpower] (4). Por cada punto que te falte para tener éxito, añade, sin mirarla, la primera carta del mazo Tekeli-li a tu mazo y baraja éste (por cada carta que no puedas añadir, recibe 1 punto de horror)."
   },
   "08689": {
     "name": "Manifestación de la locura",
@@ -1199,5 +1203,412 @@
     "subname": "Compañera fiel",
     "traits": "Aliado. Criatura.",
     "text": "[fast] Agota a Anyu: Elige una opción o bien descarta a Anyu para elegir hasta tres en cualquier orden -\n - Muévete a un Lugar conectado.\n - Recibe +2 a tu valor de habilidad para tu siguiente prueba de habilidad en esta ronda.\n - <b>Evitar.</b> Intenta evitar con una habilidad [agility] básica de 4."
+  },
+  "08597": {
+    "name": "Picos prohibidos",
+    "typeCode": "agenda",
+    "text": "<b>Obligado</b> - Después de que te muevas a un Lugar: Devuelve todas tus pistas a la reserva de fichas.",
+    "flavor": "Llegas a la ladera de la amenazadora montaña. Las extrañas cuevas y formaciones que hay en la cumbre están pidiendo que las exploren",
+    "backName": "Resurgimiento",
+    "backText": "Pon el Enemigo Terror de las estrellas puesto aparte en juego en el Lugar de nivel más alto que tenga uno o más investigadores. Cada investigador que esté en ese Lugar pierde el control de todos los Apoyos [[Expedición]] y los coloca en su Lugar.\nLee el <b>Interludio del escenario: Golpea la tragedia</b> en la guía de campaña.",
+    "backFlavor": "La ladera de la montaña se abre y produce una erupción de nieve. Una tormenta de afiladas esquirlas de hielo brota del vientre de la montaña. Tras ella aparece la bestia: un remolino de bruma; espectrales formas alienígenas; espantosos efluvios. Fija su terrible mirada en tu grupo y os busca con un tentáculo de miasma."
+  },
+  "08598": {
+    "name": "Llega el terror",
+    "typeCode": "agenda",
+    "text": "<b>Obligado</b> - Después de que te muevas a un Lugar: Devuelve todas tus pistas a la reserva de fichas.",
+    "flavor": "La nevisca se ha convertido en una tempestad de viento con una fuerte nevada. Si no logras cruzar los picos pronto, te verás obligado a buscar refugio… o pasarás el resto de la eternidad como un cadáver congelado en la montaña.",
+    "backName": "El terror vence",
+    "backText": "Si uno o más investigadores han desistido, pasa a<b>(→R1)</b>.\nSi no es así, pasa a <b>(→R2)</b>.",
+    "backFlavor": "La nevada es tan densa que ya ni siquiera puedes ver tu destino, ni tampoco puedes oír los gritos de tus compañeros por el viento aullante. Cada paso que das te deja sin aliento. El aire es tan escaso aquí que te parece un milagro que hasta puedas respirar. Levantas la vista hacia la extensa sábana blanca que parece interminable. Quizás nunca estuviste cerca de la cima y no fue más que una ilusión visual, como todo lo que hay en este condenado lugar."
+  },
+  "08599": {
+    "name": "Ascenso por la Montaña.",
+    "typeCode": "act",
+    "text": "[action]: Toma el control de un Apoyo [[Expedición]] que esté en tu Lugar.\n<b>Objetivo</b> – Llega a lo alto de la montaña. Si todos los investigadores no derrotados han desistido, haz avanzar el acto.",
+    "flavor": "Llevando tanto equipo de expedición como puedas, debes escalar la imponente ladera de la montaña para acceder a los secretos que se encuentran al otro lado.",
+    "backName": "Una ciudad asombrosa",
+    "backText": "<b>(→R1)</b>",
+    "backFlavor": "Después de un largo y arduo viaje montaña arriba, has llegado a los picos prohibidos. Esperas haber dejado atrás el dolor y el horror sufridos por el camino, pero temes que persistan… y que sean implacables."
+  },
+  "08622": {
+    "name": "Horrores al acecho",
+    "typeCode": "agenda",
+    "text": "[fast] Durante tu turno, gasta 1 pista: Mira el lado revelado de un Paisaje urbano de tu fila o columna. Límite de una vez por ronda\n[fast] Durante tu turno, gasta 3 pistas: Muévete a cualquier Lugar de tu fila o columna. Límite de una vez por ronda.",
+    "flavor": "La ciudad alienígena oculta se alza ante ti, antigua y enigmática. ¿Qué secretos y terrores aguardan en su interior?",
+    "backName": "Monstruosidades despiertas",
+    "backText": "Lee el <b>Interludio el escenario: Contemplar la locura</b> en la guía de campaña.",
+    "backFlavor": "Los muros de la ciudad te llaman con susurros clandestinos, cantos etéreos indescifrables para oídos humanos y aún así familiares de algún modo. Intentas ignorarlos como puedes y pensar que no es más que tu imaginación, pero no todos tus compañeros tienen el mismo éxito…"
+  },
+  "08623": {
+    "name": "La perdición de las profundidades",
+    "typeCode": "agenda",
+    "text": "[fast] Durante tu turno, gasta 1 pista: Mira el lado revelado de un Paisaje urbano de tu fila o columna. Límite de una vez por ronda\n[fast] Durante tu turno, gasta 3 pistas: Muévete a cualquier Lugar de tu fila o columna. Límite de una vez por ronda.",
+    "flavor": "Bajo el oscuro hielo hay atrapadas más zonas de la ciudad, envueltas y congeladas en el tiempo. Esto no es más que la punta del iceberg…",
+    "backName": "Adentrarse demasiado",
+    "backText": "<b>(→R2)</b>",
+    "backFlavor": "Tus pensamientos se vuelven enrevesados, como una maraña de miedo, preocupaciones y dudas. El peligro acecha tras cada esquina de este abominable lugar, pero lo más peligroso de todo es la creciente sensación de que no deberías estar aquí, de que deberías huir de este lugar para no volver nunca.\nCuando el tiempo empeora en el exterior, te cobijas en la relativa seguridad que ofrece una de las enormes estructuras de la ciudad. Es demasiado tarde para volver al campamento. Tu única esperanza es refugiarte dentro de la ciudad alienígena y esperar que tu presencia pase desapercibida a los moradores que siguen deambulando por sus calles y por sus antiguas salas."
+  },
+  "08624": {
+    "name": "Ciudad inmensa (v. I)",
+    "typeCode": "act",
+    "text": "[action] Gasta 2 llaves [elder_thing]: Recuerda que el equipo \"estudió la historia de los Antiguos\".\n[action] Gasta 2 llaves [tablet]: Recuerda que el equipo \"vislumbró el origen de los Shoggoths\".\n<b>Objetivo</b> – Si el equipo \"estudió la historia de los Antiguos\" y \"vislumbró el origen de los Shoggoths\", haz avanzar el acto.",
+    "flavor": "Éste es el descubrimiento del siglo. El informe de Dyer era cierto por completo. Debes explorar esta civilización alienígena para obtener más información…",
+    "backName": "Historias de eones",
+    "backText": "Añade la pila de descartes de Encuentros y el conjunto de encuentros <i>Shoggoths</i> puesto aparte al mazo de Encuentros y baraja éste.\nConoces la ruta hacia la ciudad subterránea. Revela el Túnel oculto.\nPon en juego el Enemigo Terror de las estrellas puesto aparte en el Túnel oculto, agotado.",
+    "backFlavor": "Lo que has descubierto es una locura casi imposible de creer. Según los murales y registros que hay dentro de la ciudad, los \"Antiguos\" eran viajeros de las estrellas. Colonizaron la Tierra mucho antes de la era humana, estableciéndose a lo ancho y largo del mundo. Y en las profundidades de la ciudad subterránea bajo la montaña más alta, crearon criaturas monstruosas, \"Shoggoths\", para que fueran sus sirvientes. Pero los Shoggoths se rebelaron contra ellos y su civilización no tardó en derrumbarse…\nDe pronto, un ruido lejano hace que los demás exploradores y tú os detengáis en seco: un grave y estruendoso rugido que parece provenir de algún lugar a mucha profundidad. No te atreves a plantearte qué tipo de monstruosidad podría emitir un sonido tan espantoso."
+  },
+  "08625": {
+    "name": "Ciudad inmensa (v. II)",
+    "typeCode": "act",
+    "text": "[action] Gasta 2 llaves [elder_thing]: Recuerda que el equipo \"estudió la historia de los Antiguos\".\n[action] Gasta 2 llaves [cultist]: Recuerda que el equipo \"descubrió un poder oculto\".\n<b>Objetivo</b> – Si el equipo \"estudió la historia de los Antiguos\" y \"descubrió un poder oculto\", haz avanzar el acto.",
+    "flavor": "Éste es el descubrimiento del siglo. El informe de Dyer era cierto por completo. Debes explorar esta civilización alienígena para obtener más información…",
+    "backName": "Historia de eones",
+    "backText": "Añade la pila de descartes de Encuentros y el conjunto de encuentros <i>Criaturas en el hielo</i> puesto aparte al mazo de Encuentros y baraja éste.\nConoces la ruta hacia la ciudad subterránea. Revela el Túnel oculto.\nAñade 1 ficha [frost] a la bolsa de caos.",
+    "backFlavor": "Lo que has descubierto es una locura casi imposible de creer. Según los murales y registros que hay dentro de la ciudad, los \"Antiguos\" eran viajeros de las estrellas. Colonizaron la Tierra mucho antes de la era humana, estableciéndose a lo ancho y largo del mundo. Y en las profundiades de la ciudad subterránea bajo la montaña más alta, encontraron un poder primordial inactivo; algo tan aterrador que construyeron una puerta para dejarlo encerrado. Pero acabó por empezar a escapar, y su civilización no tardo en derrumbarse…\nTiene que haber más secretos ilógicos enterrados a gran profundidad. Debéis descubrir la verdad de este antiguo poder y, para hacerlo, habrá que encontrar el pasadizo secreto que os llevará hacia el corazón de la montaña."
+  },
+  "08626": {
+    "name": "Ciudad inmensa (v. III)",
+    "typeCode": "act",
+    "text": "[action] Gasta 2 llaves [tablet]: Recuerda que el equipo \"vislumbró el origen de los Shoggoths\".\n[action] Gasta 2 llaves [cultist]: Recuerda que el equipo \"descubrió un poder oculto\".\n<b>Objetivo</b> – Si el equipo \"vislumbró el origen de los Shoggoths\" y \"descubrió un poder oculto\", haz avanzar el acto.",
+    "flavor": "Éste es el descubrimiento del siglo. El informe de Dyer era cierto por completo. Debes explorar esta civilización alienígena para obtener más información…",
+    "backName": "Historia de eones",
+    "backText": "Añade la pila de descartes de Encuentros y el conjunto de encuentros <i>Criaturas en el hielo</i> puesto aparte al mazo de Encuentros y baraja éste.\nConoces la ruta hacia la ciudad subterránea. Revela el Túnel oculto.\nAñade 1 ficha [frost] a la bolsa de caos.",
+    "backFlavor": "Lo que has descubierto es una locura casi imposible de creer. Según los murales y registros que hay dentro de la ciudad, una raza de criaturas monstruosas conocidas como \"Shoggoths\" fue creada para servir a los señores de esta ciudad. Los Shoggoths fueron enviados a las profundiades de la ciudad subterránea bajo la montaña más alta, donde debían erigir una puerta para encerrar un poder primordial inactivo; algo tan aterrador que hasta los amos de los Shoggoths lo temían. Pero los Shoggoths se rebelaron contra ellos y dejaron que el sello se deteriorara, llevando al derrumbe de esta antigua civilización…\nDe pronto, un ruido lejano hace que los demás exploradores y tú os detengáis en seco; un grave y estruendoso rugido que parece provenir de algún lugar a mucha profundidad. No te atreves a plantearte qué tipo de monstruosidad podría emitir un sonido tan espantoso."
+  },
+  "08627": {
+    "name": "Persiguiendo lo desconocido (v. I)",
+    "typeCode": "act",
+    "text": "[action] Gasta 2 llaves [tablet]: Cada investigador busca en su mazo todas las Debilidades Tekeli-li, las añade al mazo Tekeli-li y baraja éste. A continuación baraja su mazo.\n<b>Objetivo</b> – Si todos los investigadores no derrotados están en el Túnel oculto y éste no tiene pistas, haz avanzar el acto.",
+    "flavor": "En alguna parte de esta inmensa red de calles heladas y estructuras descomunales hay un antiguo portal que lleva a la ciudad subterránea que hay bajo la gran montaña. Tendrás que encontrarlo si quieres más información…",
+    "backName": "Hacia la ciudad subterránea",
+    "backText": "<b>(→R1)</b>",
+    "backFlavor": "El camino, ahora despejado, lleva a un laberinto de oscuros túneles traicioneros. Para bien o para mal, el exigente viaje está tocando a su fin. Respiras hondo y haces acopio de valor antes de adentrarte en las profundidades de la Montaña."
+  },
+  "08628": {
+    "name": "Persiguiendo lo desconocido (v. II)",
+    "typeCode": "act",
+    "text": "[action] Gasta 2 llaves [cultist]: Cada investigador puede curarse 1 punto de daño, 1 punto de horror, y 1 trauma.\n<b>Objetivo</b> – Si todos los investigadores no derrotados están en el Túnel oculto y éste no tiene pistas, haz avanzar el acto.",
+    "flavor": "En alguna parte de esta inmensa red de calles heladas y estructuras descomunales hay un antiguo portal que lleva a la ciudad subterránea que hay bajo la gran montaña. Tendrás que encontrarlo si quieres más información…",
+    "backName": "Hacia la ciudad subterránea",
+    "backText": "<b>(→R1)</b>",
+    "backFlavor": "El camino, ahora despejado, lleva a un laberinto de oscuros túneles traicioneros. Para bien o para mal, el exigente viaje está tocando a su fin. Respiras hondo y haces acopio de valor antes de adentrarte en las profundidades de la Montaña."
+  },
+  "08629": {
+    "name": "Persiguiendo lo desconocido (v. III)",
+    "typeCode": "act",
+    "text": "<b>Obligado</b> – Cuando un Enemigo [[Shoggoth]] o [[Élite]] entre en tu Lugar: Derrota a todos los Enemigos [[Antiguo]] de ese Lugar.\n[action] Gasta 2 llaves [elder_thing]: Retira todas las fichas [elder_thing] de la bolsa de caos.\n<b>Objetivo</b> – Si todos los investigadores no derrotados están en el Túnel oculto y éste no tiene pistas, haz avanzar el acto.",
+    "flavor": "En alguna parte de esta inmensa red de calles heladas y estructuras descomunales hay un antiguo portal que lleva a la ciudad subterránea que hay bajo la gran montaña. Tendrás que encontrarlo si quieres más información…",
+    "backName": "Hacia la ciudad subterránea",
+    "backText": "<b>(→R1)</b>",
+    "backFlavor": "El camino, ahora despejado, lleva a un laberinto de oscuros túneles traicioneros. Para bien o para mal, el exigente viaje está tocando a su fin. Respiras hondo y haces acopio de valor antes de adentrarte en las profundidades de la Montaña."
+  },
+  "08648": {
+    "name": "El corazón de la locura",
+    "typeCode": "scenario",
+    "text": "<b>Fácil/Normal</b>\n[skull]: –1, o bien -3 si hay un Enemigo [[Antiguo]] en tu Lugar.\n[cultist]: –1. Si hay un sello en tu Lugar, o si tu Lugar es un Pilón de bruma, considera esta ficha como una ficha [frost] en su lugar.\n[tablet]: –3. Si fracasas, roba la primera carta del mazo Tekeli-li.\n[elder_thing]: –4. Si fracasas por 3 o más, coloca 1 ficha de Perdición sobre el plan en curso. Esto puede hacer que el plan en curso avance.",
+    "backText": "<b>Difícil/Experto</b>\n[skull]: –2, o bien -4 si hay un Enemigo [[Antiguo]] en tu Lugar.\n[cultist]: –1. Si hay un sello en tu Lugar, o si tu Lugar es un Pilón de bruma, considera esta ficha como una ficha [frost] además de su modificador.\n[tablet]: –3. Roba la primera carta del mazo Tekeli-li.\n[elder_thing]: –5. Si fracasas por 3 o más, coloca 1 ficha de Perdición sobre el plan en curso. Esto puede hacer que el plan en curso avance."
+  },
+  "08649": {
+    "name": "La puerta de Y’quaa",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "[action]: Coloca un sello activado que controles sobre La puerta de Y’quaa.\n[action]: <b>Desistir.</b> Te retiras esperando haber hecho lo suficiente como  para mantener encerrado a lo que hay al otro lado de la puerta (si controlas 1 o más sellos, conservas su control).",
+    "backText": "Un muro de miasma agitado bloquea el antiguo portal. Los investigadores y los Enemigos no pueden entrar en La puerta de Y’quaa. La puerta de Y’quaa no puede tener cartas vinculadas.",
+    "backFlavor": "-El abismo negro -la orilla del mundo -los protoshoggoths -los sólidos cerrados de cinco dimensiones -el cilindro sin nombre -el antiguo Pharos -la jalea protoplásmica original -los ojos de las tinieblas -la escalera de la Luna -el original -el eterno -el inmortal -"
+  },
+  "08650": {
+    "name": "Conducto geotérmico",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "[action] Si controlas el sello [seal_a]: Realiza una prueba de [combat] (3). Si tienes éxito, los investigadores que estén en el Conducto geotérmico gastan, como grupo, 1 pista [per_investigator] para activar el sello [seal_a]. A continuación, retira 1 ficha [frost] de la bolsa de caos.",
+    "backFlavor": "\"Los otros orificios formaban parte sin duda de sistemas de iluminación y ventilación acerca de los cuales las esculturas nos habían dado una vaga idea. Los cielos rasos eran comúnmente lisos, pero en algunos había habido unas losas de esteatita verde ahora en el suelo.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Instalación antigua"
+  },
+  "08651": {
+    "name": "Templo abandonado",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "[action] Si controlas el sello [seal_c]: Realiza una prueba de [willpower] (3). Si tienes éxito, los investigadores que estén en el Templo abandonado gastan, como grupo, 1 pista [per_investigator] para activar el sello [seal_c]. A continuación, mira el lado revelado de cada Lugar sin revelar que esté en el mismo radio que el Templo abandonado.",
+    "backFlavor": "\"Los otros orificios formaban parte sin duda de sistemas de iluminación y ventilación acerca de los cuales las esculturas nos habían dado una vaga idea. Los cielos rasos eran comúnmente lisos, pero en algunos había habido unas losas de esteatita verde ahora en el suelo.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Instalación antigua"
+  },
+  "08652": {
+    "name": "Biblioteca de Kós",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "[action] Si controlas el sello [seal_b]: Realiza una prueba de [intellect] (3). Si tienes éxito, los investigadores que estén en la Biblioteca de Kós gastan, como grupo, 1 pista [per_investigator] para activar el sello [seal_b]. A continuación, mira el lado revelado de cada Lugar sin revelar que esté en el mismo anillo que la Biblioteca de Kós.",
+    "backFlavor": "\"Los otros orificios formaban parte sin duda de sistemas de iluminación y ventilación acerca de los cuales las esculturas nos habían dado una vaga idea. Los cielos rasos eran comúnmente lisos, pero en algunos había habido unas losas de esteatita verde ahora en el suelo.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Instalación antigua"
+  },
+  "08653": {
+    "name": "Estanque protoplásmico",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "[action] Si controlas el sello [seal_d]: Realiza una prueba de [agility] (3). Si tienes éxito, los investigadores que estén en el Estanque protoplásmico gastan, como grupo, 1 pista [per_investigator] para activar el sello [seal_d]. A continuación, inflige 2 puntos de daño a cada Enemigo en juego.",
+    "backFlavor": "\"Los otros orificios formaban parte sin duda de sistemas de iluminación y ventilación acerca de los cuales las esculturas nos habían dado una vaga idea. Los cielos rasos eran comúnmente lisos, pero en algunos había habido unas losas de esteatita verde ahora en el suelo.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Instalación antigua"
+  },
+  "08654": {
+    "name": "Sala del mar sin sol",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "[action] Si controlas el sello [seal_e], los investigadores que estén en la Sala del mar sin sol gastan, como grupo, 1 pista [per_investigator] y descartan, como grupo, 2 cartas [per_investigator] de sus manos: Activa el sello [seal_e].",
+    "backFlavor": "\"Los otros orificios formaban parte sin duda de sistemas de iluminación y ventilación acerca de los cuales las esculturas nos habían dado una vaga idea. Los cielos rasos eran comúnmente lisos, pero en algunos había habido unas losas de esteatita verde ahora en el suelo.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Instalación antigua"
+  },
+  "08655": {
+    "name": "Extensión subnáutica",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "Trata el modificador de la primera ficha [frost] revelada durante cada prueba de habilidad en la Extensión subnáutica como -3 en lugar de -1. Límite de una vez por ronda.",
+    "backFlavor": "\"Los otros orificios formaban parte sin duda de sistemas de iluminación y ventilación acerca de los cuales las esculturas nos habían dado una vaga idea. Los cielos rasos eran comúnmente lisos, pero en algunos había habido unas losas de esteatita verde ahora en el suelo.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Instalación antigua"
+  },
+  "08656": {
+    "name": "Corredor abovedado",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "[fast]: Elige otro Corredor abovedado y realiza una prueba de [agility] (X). X es la cantidad de Lugares de distancia a la que se encuentra ese Corredor abovedado desde éste. Si tienes éxito, muévete allí. Límite de una vez por ronda.",
+    "backFlavor": "\"Los otros orificios formaban parte sin duda de sistemas de iluminación y ventilación acerca de los cuales las esculturas nos habían dado una vaga idea. Los cielos rasos eran comúnmente lisos, pero en algunos había habido unas losas de esteatita verde ahora en el suelo.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Instalación antigua"
+  },
+  "08657": {
+    "name": "Terror primitivo",
+    "typeCode": "treachery",
+    "traits": "Terror.",
+    "text": "<b>Revelación</b> – Realiza una prueba de [willpower] (2). Esta prueba recibe +1 a su dificultad por cada Lugar de distancia entre aquel en el que te encuentras y La puerta de Y’quaa. Si fracasas, recibe 2 puntos de horror.",
+    "flavor": "\"La antigüedad aterradora y la mortal desolación del lugar hubiesen abrumado a cualquier persona sensitiva…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08658": {
+    "name": "Raíces de la tierra",
+    "typeCode": "treachery",
+    "traits": "Riesgo.",
+    "text": "<b>Revelación</b> – Realiza una prueba de [agility] (2). Esta prueba recibe +1 a su dificultad por cada Lugar de distancia entre aquel en el que te encuentras y La puerta de Y’quaa. Si fracasas, recibe 2 puntos de daño.",
+    "flavor": "\"Las criaturas que habían habitado y construido esta terrible ciudad en la edad de los dinosaurios no eran ciertamente dinosaurios, sino algo peor.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08659": {
+    "name": "El corazón palpitante",
+    "typeCode": "agenda",
+    "text": "<b>Obligado</b> – Si hay 2 o más sellos activados controlados por investigadores que estén en el mismo Lugar: La energía latente almacenada en el interior de los sellos se fusiona. La reacción en cadena resultante provoca una detonación electroestática que destruye toda la vida en la Tierra. <b>(→R3)</b>",
+    "backText": "Lee el <b>Interludio del escenario: La gota que colma el vaso</b> en la guía de campaña.",
+    "flavor": "De la puerta salen cinco oscuros caminos que atraviesan cavernas heladas y corredores abovedados de piedra negra pulida. Un silencioso temor llena la antigua estructura inactiva.",
+    "backFlavor": "Una oscura energía primordial brota de los muros, el mismo miasma que te ha perseguido a cada paso en este viaje condenado. Te detienes al instante y empiezas a recular. Ya has visto el tipo de espantosas formas que puede adoptar. El tipo de recuerdos que evoca, tanto terribles como agradables. Pero no todo el mundo ve el espejismo como lo que es de verdad…",
+    "backName": "Fin inescrutable"
+  },
+  "08660": {
+    "name": "El Miasma te llama",
+    "typeCode": "agenda",
+    "text": "<b>Obligado</b> – Si hay 2 o más sellos activados controlados por investigadores que estén en el mismo Lugar: La energía latente almacenada en el interior de los sellos se fusiona. La reacción en cadena resultante provoca una detonación electroestática que destruye toda la vida en la Tierra. <b>(→R3)</b>",
+    "backText": "Comprueba los sellos controlados por cada investigador (si un sello no está controlado por un investigador, omítelo).\nEl investigador que controla el sello [seal_a] recibe 1 punto de daño, o bien 2 puntos de daño si el sello está activado.\nEl investigador que controla el sello [seal_b] descarta 2 cartas aleatorias de tu mano, o bien 4 cartas si el sello está activado.\nEl investigador que controla el sello [seal_c] recibe 1 punto de horror, o bien 2 puntos de horror si el sello está activado.\nEl investigador que controla el sello [seal_d] pierde 1 acción, o bien 2 acciones si el sello está activado.\nEl investigador que controla el sello [seal_e] pierde 3 recursos, o bien 6 recursos si el sello está activado.",
+    "flavor": "Susurros arcanos y el goteo del oscuro miasma rompen el silencio que reinaba en las ruinas. Algo trata de alcanzarte desde el interior de sus muros. Algo te llama.",
+    "backFlavor": "Los sellos palpitan con una peligrosa energía electroestática y llenan las gélidas salas de una brillante luz azul. Te cuesta contener el poder de cada sello mientras te apresuras por colocarlos en su lugar correcto.",
+    "backName": "Poder incontrolable"
+  },
+  "08661": {
+    "name": "La llamada de la locura",
+    "typeCode": "agenda",
+    "text": "<b>Obligado</b> – Si hay 2 o más sellos activados controlados por investigadores que estén en el mismo Lugar: La energía latente almacenada en el interior de los sellos se fusiona. La reacción en cadena resultante provoca una detonación electroestática que destruye toda la vida en la Tierra. <b>(→R3)</b>",
+    "backText": "Cada investigador restante es derrotado y debe sufrir 1 trauma mental o bien añadir las 3 primeras cartas del mazo Tekeli-li a su mazo y barajar éste.",
+    "flavor": "El portal se agita. Sea lo que sea lo que te llama desde estos muros, oye cada palabra y cada pisada. Conoce tu presencia, tus esperanzas y tus miedos. Y ansía ser libre.",
+    "backFlavor": "Antes de que puedas encontrar y colocar los cinco sellos, un ruido tremendo llena las salas cavernosas de la instalación, y un oscuro miasma prismático empieza a filtrarse por cada centímetro de las paredes y el techo. Olas de insidioso icor de bruma negra bloquean todas las rutas excepto aquella por la que viniste. Huyes de vuelta al portal para escapar o encontrar otro camino, pero para cuando llegas a la enorme puerta, es demasiado tarde.",
+    "backName": "Expansión impura"
+  },
+  "08662": {
+    "name": "Inactividad",
+    "typeCode": "act",
+    "text": "<b>Objetivo</b> – Si se coloca un sello activado sobre La puerta de Y’quaa, haz avanzar el acto.",
+    "backText": "Comprueba qué sello se acaba de colocar <i>(no lo retires)</i>.\nSi fue el sello [seal_a], el investigador que lo colocó se cura 1 punto de daño.\nSi fue el sello [seal_b]], el investigador que lo colocó roba 2 cartas.\nSi fue el sello [seal_c]], el investigador que lo colocó se cura 1 punto horror.\nSi fue el sello [seal_d]], el investigador que lo colocó puede realizar una acción adicional en este turno.\nSi fue el sello [seal_e]], el investigador que lo colocó obtiene 3 recursos.",
+    "flavor": "Has decidido explorar el resto de este complejo antediluviano para encontrar los dispositivos que encajan en esta extraña puerta.",
+    "backFlavor": "En cuanto pones el sello en su sitio, oyes un clic y queda encajado. La energía almacenada en el sello brota de él y recorre los canales y muescas de la puerta, iluminando toda la cámara con un resplandor espectral. Tal vez puedas detener esta locura si logras activar y colocar los cuatro sellos restantes.",
+    "backName": "El primero de los cinco"
+  },
+  "08663": {
+    "name": "El gran sello",
+    "typeCode": "act",
+    "text": "<b>Objetivo</b> – Coloca tantos sellos activados como puedas sobre La puerta de Y’quaa antes de que escape lo que haya en su interior. Si se han colocado los 5 sellos, haz avanzar el acto.",
+    "backText": "<b>(→R1)</b>",
+    "flavor": "La colocación del primero de los cinco sellos ha despertado un extraño poder dentro de la instalación. Crees que si puedes encontrar y activar los sellos restantes, ayudarán a contener la cosa que habita al otro lado de esta puerta…",
+    "backFlavor": "El último sello encaja en su sitio y la energía fluye por la instalación con un zumbido. Unos pequeños orbes que hay incrustados en el techo empiezan a iluminarse uno a uno. Te das cuenta de que este santuario es mucho más avanzado de los que podrías haber imaginado jamás.",
+    "backName": "El último sello"
+  },
+  "08664": {
+    "name": "Gruta glacial",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "<b>Obligado</b> – Después de que la Gruta glacial sea revelada: Coloca el sello [seal_a] inactivo sobre ella.\n[action]: Realiza una prueba de [combat] (2) para resquebrajar el hielo. Si tienes éxito, los investigadores que estén en la Gruta glacial pueden gastar, como grupo, 1 pista [per_investigator] para que tomes el control del sello que hay sobre ella.",
+    "backFlavor": "\"Los otros orificios formaban parte sin duda de sistemas de iluminación y ventilación acerca de los cuales las esculturas nos habían dado una vaga idea. Los cielos rasos eran comúnmente lisos, pero en algunos había habido unas losas de esteatita verde ahora en el suelo.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Instalación antigua"
+  },
+  "08665": {
+    "name": "Cripta esculpida",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "<b>Obligado</b> – Después de que la Cripta esculpida sea revelada: Coloca el sello [seal_b] inactivo sobre ella.\n[action]: Realiza una prueba de [intellect] (2) para descifrar la escritura alienígena. Si tienes éxito, los investigadores que estén en la Cripta esculpida pueden gastar, como grupo, 1 pista [per_investigator] para que tomes el control del sello que hay sobre ella.",
+    "backFlavor": "\"Los otros orificios formaban parte sin duda de sistemas de iluminación y ventilación acerca de los cuales las esculturas nos habían dado una vaga idea. Los cielos rasos eran comúnmente lisos, pero en algunos había habido unas losas de esteatita verde ahora en el suelo.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Instalación antigua"
+  },
+  "08666": {
+    "name": "Altar de la ciudad subterránea",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "<b>Obligado</b> – Después de que el Altar de la ciudad subterránea sea revelada: Coloca el sello [seal_c] inactivo sobre él.\n[action]: Realiza una prueba de [willpower] (2) para romper la antigua barrera. Si tienes éxito, los investigadores que estén en el Altar de la ciudad subterránea pueden gastar, como grupo, 1 pista [per_investigator] para que tomes el control del sello que hay sobre él.",
+    "backFlavor": "\"Los otros orificios formaban parte sin duda de sistemas de iluminación y ventilación acerca de los cuales las esculturas nos habían dado una vaga idea. Los cielos rasos eran comúnmente lisos, pero en algunos había habido unas losas de esteatita verde ahora en el suelo.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Instalación antigua"
+  },
+  "08667": {
+    "name": "Túneles cargados de icor",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "<b>Obligado</b> – Después de que los Túneles cargados de icor sean revelados: Coloca el sello [seal_d] inactivo sobre ellos.\n[action]: Realiza una prueba de [agility] (2) para atravesar el icor. Si tienes éxito, los investigadores que estén en los Túneles cargados de icor pueden gastar, como grupo, 1 pista [per_investigator] para que tomes el control del sello que hay sobre ellos.",
+    "backFlavor": "\"Los otros orificios formaban parte sin duda de sistemas de iluminación y ventilación acerca de los cuales las esculturas nos habían dado una vaga idea. Los cielos rasos eran comúnmente lisos, pero en algunos había habido unas losas de esteatita verde ahora en el suelo.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Instalación antigua"
+  },
+  "08668": {
+    "name": "Cavernas de piedra caliza",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "<b>Obligado</b> – Después de que las Cavernas de piedra caliza sean reveladas: Coloca el sello [seal_e] inactivo sobre ella.\n[action] Los investigadores que estén en la Cripta esculpida gastan, como grupo, 1 pista [per_investigator] y 3 recursos [per_investigator]: Toma el control del sello que hay sobre las Cavernas de piedra caliza.",
+    "backFlavor": "\"Los otros orificios formaban parte sin duda de sistemas de iluminación y ventilación acerca de los cuales las esculturas nos habían dado una vaga idea. Los cielos rasos eran comúnmente lisos, pero en algunos había habido unas losas de esteatita verde ahora en el suelo.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backName": "Instalación antigua"
+  },
+  "08669": {
+    "name": "Masa protoplásmica",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Shoggoth.",
+    "text": "Cazador.\n<b>Aparición</b> – Lugar más alejado de ti en el anillo exterior.\n<b>Presa</b> – Sólo el investigador más cercano que tenga un sello.\n<b>Obligado</b> – Cuando acabe la fase de Enemigos, si un investigador controla un sello activado: la Masa protoplásmica resuelve la fase de Enemigos de nuevo <i>(resuelve su palabra clave Cazador y ataca una segunda vez)</i>. Límite de una vez por fase."
+  },
+  "08670": {
+    "name": "Descarga electroestática",
+    "typeCode": "treachery",
+    "traits": "Riesgo.",
+    "text": "Oleada.\n<b>Revelación</b> – Cada investigador que esté en el mismo Lugar que un sello recibe 1 punto de horror, y también 1 punto de daño si ese sello está activado."
+  },
+  "08671": {
+    "name": "El sello se debilita",
+    "typeCode": "agenda",
+    "backText": "<n>Haz aparecer 1 copia del Enemigo La locura sin nombre puesta aparte en el Pilón de bruma más cercano a un investigador.\n<hr><b>Comprueba el registro de campaña.</n> Si los investigadores se les escapa la verdad del espejismo:</b>\n<blockquote>Te quedas mirando la espantosa fantasmagoría completamente sobrecogido. El aire resplandece como en un sueño en torno a su execrable forma, una trama infinita de pesadillas y recuerdos entrelazados. Su mera visión te hace caer de rodillas. Es la verdad definitiva. La realidad era el espejismo.</blockquote>\nCada investigador busca en su mazo todas las copias de ¡Tekeli-li! y las roba de una en una en orden aleatorio, sin colocarlas en la parte inferior del mazo Tekeli-li. Después de resolverlas todas, devuélvelas a los mazos de sus respectivos afectados y barájalos.",
+    "flavor": "El miasma ha consumido por completo esta zona de la instalación. Del suelo y las paredes gotea un cieno policromático, una bruma polar recorre las salas y el aire resplandece con la apariencia insustancial de un espejismo. ¿Qué tipo de poder es éste? ¿Y cómo puedes tener alguna esperanza de destruirlo?",
+    "backFlavor": "Desde las profundidades sin nombre el mismísimo núcleo terrestre emerge la verdadera forma del miasma. Es una cosa informe, una criatura de bruma arremolinada e icor putrefaco que grita, susurra, repta y vuela. Se filtra por las paredes y sube por el hielo; está en todas partes; lo es todo.",
+    "backName": "Emerge…"
+  },
+  "08672": {
+    "name": "Lo que no tiene nombre",
+    "typeCode": "agenda",
+    "text": "<b>Obligado</b> – Cuando fuesen a ponerse en juego 1 o más fichas de Perdición, si aún hay alguna copia de La locura sin nombre puesta aparte: En lugar de eso, haz aparecer 1 copia de La locura sin nombre puesta aparte en el Lugar más cercano a un investigador que no tenga una copia de ese Enemigo y que esté conectado a un Lugar que tenga una copia de ese Enemigo.\n<b>Objetivo</b> – Al final de la ronda, si las 15 copias de La locura sin nombre están en juego y no se han derrumbado todos los Pilones de bruma, haz avanzar este plan.",
+    "backText": "Por cada Pilón de bruma derrumbado, pon aparte 3 copias de La locura sin nombre.\nCada investigador pierde todas sus pistas.\nRetira de la partida todos los Lugares excepto La puerta de Y’quaa. Los investigadores y las copias de La locura sin nombre no son derrotados por este efecto. Todas las demás cartas que estén en esos Lugares se descartan.\nPon en juego los 4 Lugares Rampa titánica puestos aparte formando una línea recta a la derecha de La puerta de Y’quaa. Pon en juego el Lugar Túnel oculto puesto aparte a la derecha de la Rampa titánica situada más a la derecha. Coloca todos los investigadores y todas las copias restantes de La locura sin nombre en juego en la Rampa titánica situada más a la izquierda.\nRetira el mazo de Acto de la partida y haz avanzar el plan a El espejismo final puesto aparte, que se convierte tanto en el acto en curso como en el plan en curso.",
+    "flavor": "Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li!",
+    "backFlavor": "Es demasiado tarde. No podéis contener a la criatura que mora bajo la montaña. Sólo os queda esperar que podáis escapar con vida.",
+    "backName": "La montaña cae"
+  },
+  "08673": {
+    "name": "Derrumbar los pilones",
+    "typeCode": "act",
+    "text": "Cada pilón de bruma revelado puede ser atacado como si fuera un Enemigo. Su valor de combate es igual a su valor de velo y su salud es igual a su valor de pista. Mientras no le quede salud, se ha derrumbado <i>(permanece en juego)</i>.\n[reaction] Cuando descubras 1 o más pistas en un Pilón de bruma, gasta esas pistas: Inflige esa misma cantidad de daño a ese Pilón de bruma.\n<b>Objetivo</b> – Al final de la ronda, si todos los Pilones de bruma se han derrumbado, haz avanzar el acto.",
+    "backText": "Pon aparte todas las copias de La locura sin nombre excepto 3.\nCada investigador pierde todas sus pistas.\nRetira de la partida todos los Lugares excepto La puerta de Y’quaa. Los investigadores y las copias de La locura sin nombre no son derrotados por este efecto. Todas las demás cartas que estén en esos Lugares se descartan.\nPon en juego los 4 Lugares Rampa titánica puestos aparte formando una línea recta a la derecha de La puerta de Y’quaa. Pon en juego el Lugar Túnel oculto puesto aparte a la derecha de la Rampa titánica situada más a la derecha. Coloca todos los investigadores y todas las copias restantes de La locura sin nombre e juego en la Rampa titánica situada más a la izquierda.\nRetira el mazo de Plan de la partida y haz avanzar el acto a El espejismo final puesto aparte, que se convierte tanto en el acto en curso como en el plan en curso.",
+    "flavor": "Hay cinco pilones que sostienen esta instalación. Tu única esperanza es destruirlos, y destruir así todo lo demás.",
+    "backFlavor": "La instalación tiembla de arriba abajo. Sin los pilones de bruma para alimentar la estructura, la entidad sin nombre que reside en su interior está libre, pero tiene los días contados, igual que tú. La montaña gruñe y se estremece, amenazando con derrumbarse a tu alrededor.",
+    "backName": "Autodestrucción"
+  },
+  "08674": {
+    "name": "Pilón de bruma",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "[fast] Si controlas el sello [seal_a] y está activado: Liberas el poder del sello. Coloca el sello [seal_a] sobre este Pilón de bruma. Durante el resto de la partida, cada vez que inflijas daño a un Pilón de bruma, inflige un daño adicional.",
+    "backText": "Como coste adicional para que entres en el Pilón de bruma, los investigadores que estén en tu Lugar deben gastar, como grupo, 1 pista [per_investigator].",
+    "backFlavor": "\"Toda la escena parecía sugerir una secreta revelación en potencia. Se diría que esos picos de pesadilla eran los pilones de una puerta…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08675": {
+    "name": "Pilón de bruma",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "[fast] Si controlas el sello [seal_d] y está activado: Liberas el poder del sello. Coloca el sello [seal_d] sobre este Pilón de bruma. Durante el resto de la partida, reduce en 2 el valor de velo de cada Pilón de bruma.",
+    "backText": "Como coste adicional para que entres en el Pilón de bruma, los investigadores que estén en tu Lugar deben gastar, como grupo, 1 pista [per_investigator].",
+    "backFlavor": "\"Toda la escena parecía sugerir una secreta revelación en potencia. Se diría que esos picos de pesadilla eran los pilones de una puerta…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08676": {
+    "name": "Pilón de bruma",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "[fast] Si controlas el sello [seal_c] y está activado: Liberas el poder del sello. Coloca el sello [seal_c] sobre este Pilón de bruma. Durante el resto de la partida, cada investigador recibe +1 a cada una de sus habilidades mientras esté en un Pilón de bruma.",
+    "backText": "Como coste adicional para que entres en el Pilón de bruma, los investigadores que estén en tu Lugar deben gastar, como grupo, 1 pista [per_investigator].",
+    "backFlavor": "\"Toda la escena parecía sugerir una secreta revelación en potencia. Se diría que esos picos de pesadilla eran los pilones de una puerta…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08677": {
+    "name": "Pilón de bruma",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "[fast] Si controlas el sello [seal_e] y está activado: Liberas el poder del sello. Coloca el sello [seal_e] sobre este Pilón de bruma. Durante el resto de la partida, siempre que un investigador que esté en un Pilón de bruma se le fuese a infligir 1 o más puntos de daño y/o de horror, cancela 1 punto de ese daño u horror.",
+    "backText": "Como coste adicional para que entres en el Pilón de bruma, los investigadores que estén en tu Lugar deben gastar, como grupo, 1 pista [per_investigator].",
+    "backFlavor": "\"Toda la escena parecía sugerir una secreta revelación en potencia. Se diría que esos picos de pesadilla eran los pilones de una puerta…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08678": {
+    "name": "Pilón de bruma",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "[fast] Si controlas el sello [seal_b] y está activado: Liberas el poder del sello. Coloca el sello [seal_b] sobre este Pilón de bruma. Durante el resto de la partida, cada Enemigo recibe -2 a combate y -2 a evitar mientras esté en un Pilón de bruma.",
+    "backText": "Como coste adicional para que entres en el Pilón de bruma, los investigadores que estén en tu Lugar deben gastar, como grupo, 1 pista [per_investigator].",
+    "backFlavor": "\"Toda la escena parecía sugerir una secreta revelación en potencia. Se diría que esos picos de pesadilla eran los pilones de una puerta…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08679": {
+    "name": "La locura sin nombre",
+    "typeCode": "enemy",
+    "traits": "Antiguo. Eidolón. Élite.",
+    "text": "Alerta. Descomunal. Represalia.\nLa locura sin nombre no puede recibir daño.\n<b>Obligado</b> – Después de que evites o ataques con éxito a La locura sin nombre: Por cada punto que tuvieras por encima del valor mínimo de éxito, agota la copia preparada más cercana de La locura sin nombre."
+  },
+  "08680": {
+    "name": "Aparición liberada",
+    "typeCode": "enemy",
+    "traits": "Monstruo. Eidolón. Shoggoth.",
+    "text": "<b>Aparición</b> – El Pilón de bruma más cercano que no se haya derrumbado (o tu Lugar si no hay ninguno en juego).\nMientras Aparición liberada esté preparada y en un Pilón de bruma, no se puede infligir daño a ese Pilón de bruma.\n<b>Obligado</b> – Al final de la fase Enemigos, si la Aparición liberada está preparada: Muévela una vez hacia el Pilón de bruma más cercano que no se haya derrumbado."
+  },
+  "08681": {
+    "name": "Ej espejismo final",
+    "typeCode": "act",
+    "text": "La locura sin nombre obtiene Cazador.\n<b>Obligado</b> –Cuando fuesen a ponerse en juego 1 o más fichas de Perdición: En lugar de eso, haz aparecer 1 copia de La locura sin nombre puesta aparte en el Lugar del investigador que esté más a la izquierda.\n<b>Objetivo</b> – Corre.",
+    "backText": "Comprueba el registro de campaña.\n- Si los 5 Pilones de bruma se han derrumbado y <i>la Dra. Kensler tiene un plan</i>, pasa a <b>(→R1)</b>.\n- Si los 5 Pilones de bruma se han derrumbado y <i>a los investigadores se les escapa la verdad del espejismo</i>, pasa a <b>(→R2)</b>.\n- Si no es así, pasa a <b>(→R3)</b>.",
+    "backFlavor": "Sales del túnel y la luz del día te ciega, pues el sol asoma desde detrás de las escarpadas cumbres que hay a lo lejos. A tu espalda, la entidad se apresura a ganar la salida. Te preparas para el final, pues el muro de bruma, miasma y locura parece un tren desbocado.",
+    "backName": "Juicio sin nombre"
+  },
+  "08682": {
+    "name": "Rampa titánica",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "La Rampa titánica está conectada a los Lugares de su izquierda y de su derecha.\nComo coste adicional para que abandones la Rampa titánica, realiza una prueba de [agility] (4). Si fracasas, cancela los efectos de movimiento. Cualquier investigador que esté en tu Lugar o en un Lugar conectado puede gastar 1 pista para hacer que tengas éxito automáticamente en esta prueba.",
+    "backText": "La Rampa titánica está conectada a los Lugares de su izquierda y de su derecha.",
+    "backFlavor": "\"…nos hizo correr locamente a lo largo de los megalíticos túneles, llegar a la torre circular y subir rápida y automáticamente por la rampa hasta encontrar al fin el aire y la luz del día.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08683": {
+    "name": "Rampa titánica",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "La Rampa titánica está conectada a los Lugares de su izquierda y de su derecha.\nComo coste adicional para que abandones la Rampa titánica, realiza una prueba de [agility] (3). Si fracasas, cancela los efectos de movimiento. Cualquier investigador que esté en tu Lugar o en un Lugar conectado puede gastar 1 pista para hacer que tengas éxito automáticamente en esta prueba.",
+    "backText": "La Rampa titánica está conectada a los Lugares de su izquierda y de su derecha.",
+    "backFlavor": "\"…nos hizo correr locamente a lo largo de los megalíticos túneles, llegar a la torre circular y subir rápida y automáticamente por la rampa hasta encontrar al fin el aire y la luz del día.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08684": {
+    "name": "Rampa titánica",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "La Rampa titánica está conectada a los Lugares de su izquierda y de su derecha.\nComo coste adicional para que abandones la Rampa titánica, realiza una prueba de [agility] (2). Si fracasas, cancela los efectos de movimiento. Cualquier investigador que esté en tu Lugar o en un Lugar conectado puede gastar 1 pista para hacer que tengas éxito automáticamente en esta prueba.",
+    "backText": "La Rampa titánica está conectada a los Lugares de su izquierda y de su derecha.",
+    "backFlavor": "\"…nos hizo correr locamente a lo largo de los megalíticos túneles, llegar a la torre circular y subir rápida y automáticamente por la rampa hasta encontrar al fin el aire y la luz del día.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08685": {
+    "name": "Rampa titánica",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "La Rampa titánica está conectada a los Lugares de su izquierda y de su derecha.\nComo coste adicional para que abandones la Rampa titánica, realiza una prueba de [agility] (1). Si fracasas, cancela los efectos de movimiento. Cualquier investigador que esté en tu Lugar o en un Lugar conectado puede gastar 1 pista para hacer que tengas éxito automáticamente en esta prueba.",
+    "backText": "La Rampa titánica está conectada a los Lugares de su izquierda y de su derecha.",
+    "backFlavor": "\"…nos hizo correr locamente a lo largo de los megalíticos túneles, llegar a la torre circular y subir rápida y automáticamente por la rampa hasta encontrar al fin el aire y la luz del día.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
+  },
+  "08686": {
+    "name": "Túnel oculto",
+    "typeCode": "location",
+    "traits": "Ruinas.",
+    "text": "El Túnel oculto está conectado al Lugar de su izquierda.\n<b>Objetivo</b> – Si todos los investigadores no derrotados están en el Túnel oculto, haz avanzar el acto.",
+    "backText": "El Túnel oculto está conectado al Lugar de su izquierda.",
+    "flavor": "\"…no nos detuvimos hasta llegar al universo normal.\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>",
+    "backFlavor": "\"Por suerte no nos detuvimos. Las volutas de niebla habían vuelto a espesarse, y se adelantaban ahora con una velocidad cada vez mayor. Mientras tanto, los pingüinos corrían y chillaban…\"\n – H. P. Lovecraft, <u>En las Montañas de la Locura</u>"
   }
 }

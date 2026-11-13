@@ -415,12 +415,6 @@
       "audioSha256": "4736161e72d57bf03559d5552714f403254aaddc10113cf13ebc3b1b896ab187"
     },
     {
-      "key": "story.edgeOfTheEarth.heartIntro.body",
-      "file": "edge-of-the-earth-heartIntro-76a44b03a393-salva.mp3",
-      "textSha256": "76a44b03a393444530ea69009c991db0d9d4f26d60d4396263af9cec819c158f",
-      "audioSha256": "405c160814ef4d60f731366fe7baa28c5880a30e63246f0af089c5993c7502c0"
-    },
-    {
       "key": "story.edgeOfTheEarth.heartPartTwoIntro1.body",
       "file": "edge-of-the-earth-heartPartTwoIntro1-b22c75cf0a73-salva.mp3",
       "textSha256": "b22c75cf0a73d98889b8a159d219636301437d6a9e9e1785ebba769cadabe929",
@@ -437,6 +431,42 @@
       "file": "edge-of-the-earth-heartPartTwoIntro3-0bca493497cb-salva.mp3",
       "textSha256": "0bca493497cb44b89a525902b2ffbd157a9ce8e6213dbdad0c91f8d8b6c9fecc",
       "audioSha256": "c92d975770e6626d43f8bb82e284ebf62519717dcfc95aa9273bb1bb43968b88"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageBack08550.body",
+      "file": "edge-of-the-earth-mirageBack08550-bbe325965ff9-salva.mp3",
+      "textSha256": "bbe325965ff997be043c4bfeca4d065baa72bd501794e31116d1d536aa7c65e1",
+      "audioSha256": "3d82e4b4d570bf07a8ba7bfc9240638f05d1acb710d3afd88cfa510b6edc38d7"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageBack08551.body",
+      "file": "edge-of-the-earth-mirageBack08551-62722287baaa-salva.mp3",
+      "textSha256": "62722287baaaf996085310823befb467f1fbe583a6c85dec6ea1e7f37ce79fbf",
+      "audioSha256": "76f6055fa9976c997e3cbe3f9650a24599cdb09c5996f0915c4e8010faa8cf48"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageBack08552.body",
+      "file": "edge-of-the-earth-mirageBack08552-e4317d3eda96-salva.mp3",
+      "textSha256": "e4317d3eda96869d79ff835dcea02e2957ce28d731da1437d2ff5b3ca5f6cb71",
+      "audioSha256": "74998a330349325a5aacfd63c1095ed7a6b00cc697c3204697416d734c44b28a"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageBack08553.body",
+      "file": "edge-of-the-earth-mirageBack08553-eec43204e89a-salva.mp3",
+      "textSha256": "eec43204e89a0069b739c1dbde537b0936a45652206823cf2b932ec40719e6c1",
+      "audioSha256": "bde8bc79a78b72bc6d7a1da49f3b64f61c9b697f2cbda31f9eda6bc589eeb756"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageBack08554.body",
+      "file": "edge-of-the-earth-mirageBack08554-09a52a58e6ac-salva.mp3",
+      "textSha256": "09a52a58e6aca6c8e757251078ed498e6c4bf6291d242ef48a25e85edacf86a1",
+      "audioSha256": "8ea6916e5b7be5b9e3681400454b85f2b20ae64fca4ac49070edcda1fa007bc5"
+    },
+    {
+      "key": "story.edgeOfTheEarth.mirageBack08555.body",
+      "file": "edge-of-the-earth-mirageBack08555-a725e1405e93-salva.mp3",
+      "textSha256": "a725e1405e93b15fba091132eaac90db6c3e22fbac57c1a46587e3d9b92c372e",
+      "audioSha256": "684c3f911e54899551fef935bca8d54715715f186fdc4b2eeb641375f28ada3d"
     },
     {
       "key": "story.edgeOfTheEarth.mirageBack08556.body",
@@ -607,40 +637,774 @@
       "audioSha256": "e4bcf2d341bcf1a9bce7e4151ddd3082a2de7bb660c9d1644368541c6daffd81"
     },
     {
-      "key": "story.edgeOfTheEarth.mirageBack08550.body",
-      "file": "edge-of-the-earth-mirageBack08550-bbe325965ff9-salva.mp3",
-      "textSha256": "bbe325965ff997be043c4bfeca4d065baa72bd501794e31116d1d536aa7c65e1",
-      "audioSha256": "3d82e4b4d570bf07a8ba7bfc9240638f05d1acb710d3afd88cfa510b6edc38d7"
+      "key": "story.edgeOfTheEarth.cityNoResolution.body",
+      "file": "edge-of-the-earth-cityNoResolution-0a884b396912-salva.mp3",
+      "textSha256": "0a884b3969120df4b73d567a907b5b133be1d0640d2818e1d944746a02c24983",
+      "audioSha256": "991cc2388cab34e9787930efe109e198b00e51c9d6c726c371fb42d8f95d622e"
     },
     {
-      "key": "story.edgeOfTheEarth.mirageBack08551.body",
-      "file": "edge-of-the-earth-mirageBack08551-62722287baaa-salva.mp3",
-      "textSha256": "62722287baaaf996085310823befb467f1fbe583a6c85dec6ea1e7f37ce79fbf",
-      "audioSha256": "76f6055fa9976c997e3cbe3f9650a24599cdb09c5996f0915c4e8010faa8cf48"
+      "key": "story.edgeOfTheEarth.cityResolution1.body",
+      "file": "edge-of-the-earth-cityResolution1-a86c99efd4c8-salva.mp3",
+      "textSha256": "a86c99efd4c85b1094b5b8c1376b6b9ae433c3369110a70d93671c413129e124",
+      "audioSha256": "8baaa75431f6195a9a372e5471636dff8a85b1ee8b02870b0ee1866bd5073304"
     },
     {
-      "key": "story.edgeOfTheEarth.mirageBack08552.body",
-      "file": "edge-of-the-earth-mirageBack08552-e4317d3eda96-salva.mp3",
-      "textSha256": "e4317d3eda96869d79ff835dcea02e2957ce28d731da1437d2ff5b3ca5f6cb71",
-      "audioSha256": "74998a330349325a5aacfd63c1095ed7a6b00cc697c3204697416d734c44b28a"
+      "key": "story.edgeOfTheEarth.cityResolution2.body",
+      "file": "edge-of-the-earth-cityResolution2-366e84f58a53-salva.mp3",
+      "textSha256": "366e84f58a530262ab1b82570b7841a162ef5e9d383d57a078706915fcaa5b79",
+      "audioSha256": "2d42e62ef0cc65d2877f4cacdba8605cef78843d9b013960538ec901e16fd202"
     },
     {
-      "key": "story.edgeOfTheEarth.mirageBack08553.body",
-      "file": "edge-of-the-earth-mirageBack08553-eec43204e89a-salva.mp3",
-      "textSha256": "eec43204e89a0069b739c1dbde537b0936a45652206823cf2b932ec40719e6c1",
-      "audioSha256": "bde8bc79a78b72bc6d7a1da49f3b64f61c9b697f2cbda31f9eda6bc589eeb756"
+      "key": "story.edgeOfTheEarth.cityMadness.body",
+      "file": "edge-of-the-earth-cityMadness-2bc12c252a8b-salva.mp3",
+      "textSha256": "2bc12c252a8b579e0da0602ef3e498ef4140b9db681d96aeda7069df41585cf7",
+      "audioSha256": "210989bcba8272162288cf1cb2d26f5c7f80a43edd992ccdd3d06e822eb186b6"
     },
     {
-      "key": "story.edgeOfTheEarth.mirageBack08554.body",
-      "file": "edge-of-the-earth-mirageBack08554-09a52a58e6ac-salva.mp3",
-      "textSha256": "09a52a58e6aca6c8e757251078ed498e6c4bf6291d242ef48a25e85edacf86a1",
-      "audioSha256": "8ea6916e5b7be5b9e3681400454b85f2b20ae64fca4ac49070edcda1fa007bc5"
+      "key": "story.edgeOfTheEarth.cityMadnessEnd.body",
+      "file": "edge-of-the-earth-cityMadnessEnd-483d0d75097a-salva.mp3",
+      "textSha256": "483d0d75097aa56f925dea4e92c6483756f7e9c693752a1888b7d212308f969c",
+      "audioSha256": "5135564fb20aec2c48795e5467b5622f883d663883d10f15cc784cd15f31acee"
     },
     {
-      "key": "story.edgeOfTheEarth.mirageBack08555.body",
-      "file": "edge-of-the-earth-mirageBack08555-a725e1405e93-salva.mp3",
-      "textSha256": "a725e1405e93b15fba091132eaac90db6c3e22fbac57c1a46587e3d9b92c372e",
-      "audioSha256": "684c3f911e54899551fef935bca8d54715715f186fdc4b2eeb641375f28ada3d"
+      "key": "story.edgeOfTheEarth.cityMadnessDanforth.body",
+      "file": "edge-of-the-earth-cityMadnessDanforth-1297a98752d3-salva.mp3",
+      "textSha256": "1297a98752d3b2ebcc74e9e4f2b24bc0f7a792906a3f9da424b60319e768a457",
+      "audioSha256": "57314e6a54135ece983d4129aa937a3630fbbbb9d86c434d4ab25530e74219e4"
+    },
+    {
+      "key": "story.edgeOfTheEarth.cityOutskirts.body",
+      "file": "edge-of-the-earth-cityOutskirts-f2f119dd96a7-salva.mp3",
+      "textSha256": "f2f119dd96a73d46530d85c48a853f97977de2dbf259b195ead7f019b448dd55",
+      "audioSha256": "dd7471c5ed7f0699e2b3b70edcc7e0d38321347cdc6789e75be939093d13a83e"
+    },
+    {
+      "key": "story.edgeOfTheEarth.cityDyer.body",
+      "file": "edge-of-the-earth-cityDyer-7e914ba7b3a6-salva.mp3",
+      "textSha256": "7e914ba7b3a67946462c44a4a64d99f4f90dd170f5d16eae4063eba2172e2716",
+      "audioSha256": "79b8120b8b74166547a70841ffb5b77201bf7faaf3d596c07cee96fc9e8ad101"
+    },
+    {
+      "key": "story.edgeOfTheEarth.cityNoDyer.body",
+      "file": "edge-of-the-earth-cityNoDyer-eb614a2055d6-salva.mp3",
+      "textSha256": "eb614a2055d6278242adc9112a19a585a08900e330fa379114a6ddaf472d32c3",
+      "audioSha256": "2aef070f624aec43a618a214735167c5ff702e19f395af1471e8b8e788b1b504"
+    },
+    {
+      "key": "story.edgeOfTheEarth.citySinha.body",
+      "file": "edge-of-the-earth-citySinha-3e94619a6e48-salva.mp3",
+      "textSha256": "3e94619a6e48bd1a7657115a1230afb78796c99d8cff3504247b05061c1a6c76",
+      "audioSha256": "5717602fa0b2644a6f63e96ffd27254993d389071c2854da3f63088a01b09b0e"
+    },
+    {
+      "key": "story.edgeOfTheEarth.cityNoSinha.body",
+      "file": "edge-of-the-earth-cityNoSinha-c51a2c067226-salva.mp3",
+      "textSha256": "c51a2c06722669f2ec0a0655bf19b580ecb7fc660fee77fb3062bf908e769eae",
+      "audioSha256": "3d5cf0eba00cc1c3b390b7ae6ffe778a9f68de448f3e2eb91d518ee44924e9e5"
+    },
+    {
+      "key": "story.edgeOfTheEarth.cityTower.body",
+      "file": "edge-of-the-earth-cityTower-39b6733587b9-salva.mp3",
+      "textSha256": "39b6733587b93fbfc233d7e4df8b19b6f5726cba812eab06bd5b69677bc5e169",
+      "audioSha256": "b0c14f9a632b26773ab9a9ab6552848f8e93d0fc01e6334f893a698abb2bf31f"
+    },
+    {
+      "key": "story.edgeOfTheEarth.cityCookie.body",
+      "file": "edge-of-the-earth-cityCookie-cb5b17f7314d-salva.mp3",
+      "textSha256": "cb5b17f7314d019591bb3cd0c5dd79ae7a6566ced3bf26e9738ba10230bbb571",
+      "audioSha256": "148d852f4f4cbf2833a793ada9fb76c368efa80cdd1edeec623b273312616827"
+    },
+    {
+      "key": "story.edgeOfTheEarth.cityNoCookie.body",
+      "file": "edge-of-the-earth-cityNoCookie-0120d8b615dc-salva.mp3",
+      "textSha256": "0120d8b615dca94642b6a1b94532cf5610ed145f31a30d378e7d8328f888bbc3",
+      "audioSha256": "7247b333e6e5c48fd4fc76088f42ddf781caca2822ec6468856605cc494747cf"
+    },
+    {
+      "key": "story.edgeOfTheEarth.cityVote.body",
+      "file": "edge-of-the-earth-cityVote-efee6ee04891-salva.mp3",
+      "textSha256": "efee6ee048912f61bcd927cc65e8e5b46d3cec3916c19b17c04adc08396befd8",
+      "audioSha256": "f9b593dd1bded0e95da95dced9bc5c899e3ee977f97d0b12c0c3a8c58aba1565"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalNight.body",
+      "file": "edge-of-the-earth-finalNight-ff6057ee3013-salva.mp3",
+      "textSha256": "ff6057ee3013600c7f99aa10c388a3991330a4de3765c73def869b1ff71bc8d6",
+      "audioSha256": "508f1deee36daa6713288277d311f8679fea7d1189db44633bf17fce14cbc47b"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalNightDawn.body",
+      "file": "edge-of-the-earth-finalNightDawn-94eb8c7ca80e-salva.mp3",
+      "textSha256": "94eb8c7ca80e402e4152d95d7f9275cd0e04f361153542ca893e25c2350accd5",
+      "audioSha256": "fcaf32f14640495e8fdd05d43f11f887d3e773d0368f1e1dcdbb6ef50a115a2f"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalNightReturn.body",
+      "file": "edge-of-the-earth-finalNightReturn-45afeb3d2f59-salva.mp3",
+      "textSha256": "45afeb3d2f59d14542ba7ecc8c1a9e30664966be47b31f3e8fc2eda7e1ce37a4",
+      "audioSha256": "d78bbe1ac8b343dffd0292da85d6325a65d9894fba2cd33510317dd05543825c"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessNightDawn.body",
+      "file": "edge-of-the-earth-finalNightDawn-94eb8c7ca80e-salva.mp3",
+      "textSha256": "94eb8c7ca80e402e4152d95d7f9275cd0e04f361153542ca893e25c2350accd5",
+      "audioSha256": "fcaf32f14640495e8fdd05d43f11f887d3e773d0368f1e1dcdbb6ef50a115a2f"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessNightReturn.body",
+      "file": "edge-of-the-earth-finalNightReturn-45afeb3d2f59-salva.mp3",
+      "textSha256": "45afeb3d2f59d14542ba7ecc8c1a9e30664966be47b31f3e8fc2eda7e1ce37a4",
+      "audioSha256": "d78bbe1ac8b343dffd0292da85d6325a65d9894fba2cd33510317dd05543825c"
+    }
+  ],
+  "pending": [
+    {
+      "key": "story.edgeOfTheEarth.heartIntro.body",
+      "file": "edge-of-the-earth-heartIntro-f58dcf7dc24e-salva.mp3",
+      "text": "Al día siguiente, os adentráis más en las cavernas y fosos que hay bajo la corteza helada de la Antártida. Pasáis bajo grandes arcadas de obsidiana y pizarra primordial, a través de corredores tallados de forma ornamental y por enormes salas de múltiples columnas, hacia las profundidades incognoscibles e insondables. Pasan las horas. Al final, el pasadizo parece abrirse hacia un corredor más grande hecho de piedra tallada en el que hay una última arcada que marca el final de la descomunal rampa por la que habéis descendido. Cinco símbolos desconocidos adornan la arcada, pero su significado os resulta incomprensible. El camino que hay al otro lado parece más un enorme túnel de metro que una formación cavernosa natural, pues todas las piedras, lisas y angulares, están moteadas de marcas alienígenas y cubiertas levemente de un pútrido icor multicolor. ",
+      "textSha256": "f58dcf7dc24e7334372a85ef60f547699c64be6166be4e30af399583e58ba475"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalNightDoor.body",
+      "file": "edge-of-the-earth-finalNightDoor-a24969ae0abe-salva.mp3",
+      "text": "Cuando estás empezando a conciliar el sueño, una vaga amenaza que percibes al límite de tu percepción te sobresalta. De forma instintiva, buscas un arma para defenderte, pero cuando miras en torno a ti, no hay nada extraño. De hecho... Te pones en pie, conmocionado, y examinas los alrededores. El campamento improvisado estaba protegido de la dureza de los elementos, pero no deja de estar en lo más profundo de la Antártida. Pese a ello, te encuentras dentro de un edificio, en una sala que no reconoces aunque te produce una extraña familiaridad. Quitas parte de la nieve que sigue habiendo en el suelo, en torno a tu saco de dormir, y ves un suelo de baldosas que antes no estaba ahí. ¿Es un sueño? Cuando dudas de la verdad de este misterioso lugar, las paredes y el suelo de baldosas brillan y se desvanecen. Vuelves a estar en el frío helador de tu campamento, rodeado por tus compañeros, pero la puerta de salida de la sala permanece. Una densa bruma gris se arremolina a tu alrededor, como guiándote. No hay refracción natural de la luz. Se está produciendo algo sobrenatural. El espeso miasma que gira en torno al campamento es parecido a la sustancia que compone las criaturas de pesadilla que encontrasteis tras el accidente de avión. ¿De verdad quieres saber lo que quiere que veas?",
+      "textSha256": "a24969ae0abe20fd0482f2471334118f0f2987e002093f890703896bcac0f78a"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08714alive.body",
+      "file": "edge-of-the-earth-finalVisit08714alive-4463ea4fa8b4-salva.mp3",
+      "text": "El profesor, que al principio era muy reticente a unirse a la expedición, parece haber cambiado de actitud por completo... aunque esta nueva cara suya te preocupa todavía más. –Ahora entiendo por qué quería regresar Danforth –explica–. Nos está llamando. ¿Es que no lo sientes? ¿No lo oyes? Quiere que sigamos. Le preguntas a quién se refiere y él hace unos gestos vagos en torno a ambos. –No lo sé. Estas apariciones no actúan como criaturas independientes, ¿no te parece? Tal vez las controle una fuerza mayor. O... –Se queda pensando cuidadosamente sus siguientes palabras–. Tal vez todo sea parte de lo mismo. Extensiones de una locura sin nombre. Me pregunto... ¿Qué habríamos descubierto Danforth y yo si no hubiéramos huido? Tal vez podríamos haber evitado todo este sufrimiento...",
+      "textSha256": "4463ea4fa8b40895454e604b42466976a4af9b29d6111e87fc714542fc19a998"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08714memorial.body",
+      "file": "edge-of-the-earth-finalVisit08714memorial-1310a93ccb01-salva.mp3",
+      "text": "Dedicas un momento a revisar algunos de los viejos bocetos del profesor, que había traído consigo por si podían resultar útiles. Como sospechabas, ninguna de las criaturas que esbozó se parecen lo más mínimo a las cosas que viste. Pero cuando estás a punto de rendirte, encuentras varios bocetos de la ciudad que afirma haber encontrado al otro lado de las oscuras y escarpadas montañas. Muestran una enorme arcada decorada con cinco símbolos rodeados de una estrella de cinco puntas. Bajo la arcada, o puede que detrás de ella, se alza algo grotesco. Las líneas del boceto se desintegran en una maraña de trazos ligeros y manchas de tinta que apenas puedes describir. Hay varias criaturas con cuerpo de barril y cabeza de estrella de mar, los “Antiguos” alienígenas que Dyer describió en su informe, flanqueando la arcada, con actitud reverente y los apéndices similares a alas extendidos también con reverencia. Desearías poder preguntarle a Dyer lo que significa esto, pero por desgracia, es demasiado tarde para eso. Coges sus bocetos para llevártelos, esperando que puedan resultar útiles más adelante.",
+      "textSha256": "1310a93ccb01a16d8cc73a481de4bce312eaa75b77003ec9838147cfdb099242"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08715alive.body",
+      "file": "edge-of-the-earth-finalVisit08715alive-e56edf6ea11f-salva.mp3",
+      "text": "No hablas con Danforth esa noche. El que habla es él, pero no sabes con qué entidad lo está haciendo. Al principio crees que está murmurando para sí como suele hacer, pero pronto te das cuenta de que se trata de un diálogo que sólo oyes de forma parcial. –Estamos cerca –declara en voz baja–. He seguido como me lo mostraste. Un poco más y volveré a verte. Podemos estar juntos de nuevo. Podemos estar... enteros. Decides que has oído suficiente y agarras a Danforth por el hombro, sorprendiéndolo. Jurarías haber visto un levísimo rastro de algo brumoso que brota de sus ojos cuando se da la vuelta, pero luego se pasa la manga por ellos y no ves nada. –Ah, es usted –comenta–. M-muy bien. Deberíamos descansar, ¿no? Nos espera un día largo.",
+      "textSha256": "e56edf6ea11f7b5e82108855e31b9c0dcb793a6feb60377563a54896dd289f3e"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08715memorial.body",
+      "file": "edge-of-the-earth-finalVisit08715memorial-46ccdf81740b-salva.mp3",
+      "text": "Decides buscar información en las pertenencias de Danforth, con la esperanza de que llevara un diario o tuviera pruebas de su anterior expedición con Dyer. Lo que encuentras en su lugar es todo un tesoro de ficción tanto macabra como especulativa, incluyendo un sobado ejemplar de las obras de Edgar Allan Poe. Sus páginas están repletas de marcas improvisadas, y los márgenes, llenos de numerosas notas y apuntes, algunos relevantes y otros cuyo verdadero significado se te escapa. No sabes bien el motivo que tuvo Danforth para traer semejante colección de relatos, especialmente uno al que parecía tener tanto aprecio. Lo abres por una de las páginas marcadas y lees: “No pudimos convencerle para que la tocara o se acercase a ella, pues se ponía a temblar cuando intentábamos obligarle, gritando: ‘¡Tekeli-li!’”. En el margen, Danforth ha garabateado: “¿Qué podría hacer que alguien saliera de un paroxismo tal? ¿Cómo puedo dejar atrás esta terrible sensación?”.",
+      "textSha256": "46ccdf81740bda1024574a4a20893328e636b5f253fb84ad5d50892b2c3b1198"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08720alive.body",
+      "file": "edge-of-the-earth-finalVisit08720alive-5561b3b4c440-salva.mp3",
+      "text": "La Dra. Kensler se encuentra en un estado de pánico absoluto cuando entras en su tienda. Levanta la vista para mirarte un instante antes de seguir rebuscando entre sus materiales. –Está aquí, en alguna parte, lo sé... –murmura. Nunca habías visto a la Dra. Kensler tan desorganizada–. ¡Ah! ¡Aquí! El libro que ha encontrado no es uno de sus tratados de biología ni un libro de texto lleno de diagramas anatómicos. Se trata de un viejo tomo mohoso sin relación alguna con las ciencias y escrito en francés. –Sé que lo vi por aquí... –murmura mientras pasa las páginas del tomo en busca de un pasaje concreto. Te sientas en silencio, casi demasiado asustado como para preguntar nada. La Dra. Kensler está completamente cambiada respecto a su habitual actitud fría y estoica–. ¡Aquí! – Marca la página y vuelve la atención hacia ti–. ¿Puedo fiarme de usted? Asientes. Sea lo que sea lo que ha encontrado la Dra. Kensler, tienes la sensación de que sólo te lo enseña porque has compartido sus descubrimientos hasta ahora. Abre el tomo por una representación de una jerarquía cósmica desconocida; el tipo de teoría dogmática absurda que desdeñaría cualquier científico respetable. –Henry Armitage era la única persona de la universidad que tampoco quería que se realizara esta expedición. Fue él quien me mostró esto después de que Dyer entregara su informe. Señala la sección del diagrama que ilustra la Tierra, y ves un patrón de líneas que se cruzan en el borde. –El Polo Sur –dice–. Al borde de la Tierra, donde se unen las líneas. El culmen de las fuerzas arcanas, me dijo. Yo pensé que eran supersticiones estúpidas, pero mi investigación demuestra lo contrario. Estas criaturas... Estos espejismos espectrales y eidolones de mentes rotas no llegaron aquí. Siempre estuvieron aquí. Desde el principio de todo. ¿Lo entiende? Agarra con fuerza la muestra de miasma y añade: –Y nosotros... nosotros no fuimos los primeros en toparnos con ellos.",
+      "textSha256": "5561b3b4c440f7bc3d8b5d98f37644b08bf5d222bd172276a9937e0c70c7c937"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08720memorial.body",
+      "file": "edge-of-the-earth-finalVisit08720memorial-5fb31785c28d-salva.mp3",
+      "text": "Revisas las notas de investigación que dejó la jefa de esta expedición condenada. Seguro que si alguien podría encontrarle algún sentido a lo que habéis visto hasta ahora, ésa sería la Dra. Kensler. Puede que supiera más sobre las criaturas de lo que decía. Registras su tienda y sus pertenencias hasta encontrar un grueso diario lleno de meticulosas notas sobre el viaje a la Antártida y los primeros días que pasasteis descargando suministros y estableciendo el campamento. A partir de ahí, las notas se vuelven menos detalladas y más confusas. Su relato de los días anteriores al accidente de avión tiene más de desvarío delirante que de diario ordenado. Escribió sobre paredes en las que rezumaba un miasma negro, sobre un vacío infinito bajo el hielo, sobre algo maligno y alienígena que moraba en el núcleo que hay al otro lado del portal... y luego, sobre nada. La Dra. Kensler no era alguien que se dedicara a contar sueños o a escribir obras de ficción. Algo la había descompuesto. Algo había hecho que viera las cosas sobre las que escribía. Pero ¿cómo? ¿Y cuándo? Te sientas a continuar su registro con tu propio relato de los hechos, con la siniestra esperanza de que, si no sales con vida de este continente, alguien lo lea y sepa lo que sucedió aquí...",
+      "textSha256": "5fb31785c28d03123c506ed8a9a5a35ac740b319fa256b356cdef61489a4e53e"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08717alive.body",
+      "file": "edge-of-the-earth-finalVisit08717alive-26f3f548c069-salva.mp3",
+      "text": "Por primera vez desde la partida de la expedición, la Dra. Sinha va a buscarte en persona para preguntar por tus heridas. Le muestras tus lesiones y asiente, ahorrándose sus habituales comentarios mordaces. Trata tus heridas en silencio hasta que por fin habla: –He perdido a tantos pacientes que ya ni siquiera puedo seguir llevando la cuenta –te confiesa–. La mayor parte del tiempo, habría sido imposible que acabara de otra forma. Supongo que es la naturaleza de las cosas. Al fin y al cabo, somos criaturas frágiles. Si nos doblas un poco, solemos rompernos. Te venda un brazo con precisión fruto de la práctica, pero ves que le tiemblan sutilmente las manos. –Decidí dedicarme a esta profesión porque no podía soportar ver el dolor de la gente. Echando la vista atrás, fue una decisión bastante estúpida. Al fin y al cabo, en esta profesión lo único que veo es el dolor de la gente. Le preguntas si no le da satisfacción ver cómo la gente recupera la salud cuando los trata. –Claro que sí –contesta tras un largo suspiro–. Pero esta vez... Aparta la mirada de la tuya y baja el volumen de la voz hasta que apenas es un susurro. –No creo que vaya a tener esa satisfacción, ¿no le parece?",
+      "textSha256": "26f3f548c069b3812eefdef641b2e19b9573d8cc8206b4f9386c7197cb3a0a6b"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08717memorial.body",
+      "file": "edge-of-the-earth-finalVisit08717memorial-cde5e2bc87d8-salva.mp3",
+      "text": "No sabes muy bien qué es lo que te ha impulsado a acudir a la tienda de la Dra. Sinha, pero ahora que estás aquí, sabes que no encontrarás respuestas entre sus pertenencias. Aun así, tal vez puedas aprovechar sus botiquines y equipo para el frío. Mientras metes sus suministros médicos en una de sus mochilas, un escalofrío te recorre la espalda. Te dices que lo haces por necesidad, pero adueñarte de las posesiones de los muertos te pesa mucho en la consciencia. Te echas a los hombros las correas de la mochila y te vuelves para salir de la tienda de la Dra. Sinha, con la esperanza de sacar de tu mente este macabro asunto. Del bolsillo delantero de la mochila cae algo que hace un leve ruido en el suelo que te llama la atención. Buscas el objeto en torno a tus pies y encuentras una carterita de cuero que sólo contiene una horquilla, una foto de la Dra. Sinha con lo que supones que será su familia y el resguardo de una entrada para un espectáculo en el Teatro Riverview. Si fue lo bastante importante como para que lo conservara, debe de tener algún valor sentimental.",
+      "textSha256": "cde5e2bc87d81e3024f23bce4ec95b654f11809cd801c8a5ac67c796eed28639"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08719alive.body",
+      "file": "edge-of-the-earth-finalVisit08719alive-76e0026445f8-salva.mp3",
+      "text": "Cookie desenfunda su Colt cuando te acercas. Sus ojos inyectados en sangre y su mano temblorosa te dicen que hace bastante tiempo que no descansa. En cuanto se da cuenta de que eres tú, se disculpa y baja el arma. –Pensé que era uno de... Bueno, ya sabe –te explica con desgana. Comentas que tienes suerte de que, pese a la situación, no se haya vuelto de gatillo fácil. –De gatillo fácil... –se burla. Un largo silencio se hace entre los dos–. Venga. Ayúdeme con el fuego. Sin decir nada, el curtido veterano y tú colocáis la leña que os queda en el centro del campamento e intentáis hacer que arda. Debido al frío y a la humedad reinantes, tenéis que esforzaros durante casi media hora antes de encender el fuego. Éste consume ávidamente el material y arroja sombras danzantes sobre las paredes heladas de la caverna. Cookie acaba por romper el silencio: –Esto... –afirma con decisión–. Recuerdo esto. No te molestas en preguntar, porque sólo tienes que ver su mirada perdida a lo lejos para saber que se refiere a la sensación de muerte inminente que impregna el campamento. –Un consejo –te dice–, cuando llegue el momento, no puede dudar. Da igual cuántos quedemos. Da igual la terrible perdición a la que se esté enfrentando. Si titubea, muere. Asientes. Tienes la sensación de que Cookie no ha titubeado jamás en su vida.",
+      "textSha256": "76e0026445f8d05eb65919abb616a140c553619f0cd61fd3b9362d7567dd5ee5"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08719memorial.body",
+      "file": "edge-of-the-earth-finalVisit08719memorial-015f44fe4884-salva.mp3",
+      "text": "Mientras establecéis el campamento, otro de los miembros del equipo se acerca con una bolsa que contiene las pertenencias de Cookie. –He pensado que usted es la mejor persona para quedarse con todo esto –dice el joven con pena mientras te la entrega. Te sientas junto a la hoguera y examinas los objetos de la bolsa uno a uno. Dentro hay varios efectos personales de Cookie: un reloj de bolsillo con la esfera agrietada, una caja de cerillas con el logotipo del hotel Excelsior y, por supuesto, su fiel revólver Colt del .32. Lo conservaba excepcionalmente bien, con el cañón limpio y pulido y la empuñadura de madera inmaculada. Conociendo a Cookie, no sería por el cariño que sintiera por el arma, sino porque le costaba desprenderse de las viejas costumbres. Sacas el tambor y ves que sólo quedan unas pocas balas. Lo haces girar distraídamente y realizas una silenciosa promesa dedicada a Cookie: No te preocupes. Les daré un buen uso a estas balas.",
+      "textSha256": "015f44fe4884ae009a8bbec7ac686f6630d5982df5fdbd31064a9ba7c4856436"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08718alive.body",
+      "file": "edge-of-the-earth-finalVisit08718alive-33d2ea00d309-salva.mp3",
+      "text": "Claypool examina las paredes heladas mientras te acercas, con el ceño fruncido de preocupación. –La temperatura de este lugar debería de ser más alta –afirma–, pero incluso sin tener en cuenta la sensación térmica, la temperatura es casi 10 grados más fría. En ese momento, algo se mueve dentro del hielo; tal vez sólo una sombra o algo que se reflejó en la superficie. Claypool y tú os apartáis de forma instintiva mientras la oscuridad fugaz se arremolina y desaparece. Ninguna luz proveniente de atrás podría haber creado esa sombra. –Este... este hielo no es normal –susurra Claypool–. Este frío es antinatural. El informe de Dyer describía estas estructuras interiores como cálidas y habitables, pero esto es... Os miráis sin que haga falta terminar la frase. –Debemos estar preparados. Para cualquier cosa.",
+      "textSha256": "33d2ea00d309f2bb8abe81d6be2bb16e8c036fcea9425720b1540cb4410dc85b"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08718memorial.body",
+      "file": "edge-of-the-earth-finalVisit08718memorial-74ac1ffefca7-salva.mp3",
+      "text": "Las pertenencias de Claypool están tiradas por la tienda principal del campamento, incluido un mapa de la barrera de hielo de Ross que ha marcado con diversas anotaciones que no entiendes del todo. Un frío viento abre las solapas de la tienda y la llena de un aire gélido. Te abrazas el pecho para mantener el calor. Sin Claypool, estáis indefensos frente al peligroso tiempo. Quedarse atrapados en una tormenta polar sería letal, y era el único con los conocimientos suficientes como para predecirlas con precisión. Suspiras y te dispones a marcharte, pero te detienes un momento para mirar el pesado abrigo de pieles donde han metido el resto de cosas de Claypool. Luego miras el tuyo: andrajoso y roto por el complicado viaje. Coges el de Claypool y dejas el tuyo. Tal vez no te haya dejado tan indefenso frente a la climatología después de todo.",
+      "textSha256": "74ac1ffefca73a5a4bf840db3e7a1f9d956e0df17af827c853f8d8df0620837f"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08721alive.body",
+      "file": "edge-of-the-earth-finalVisit08721alive-4fbb98cb6a99-salva.mp3",
+      "text": "Ya sabes lo que tiene en mente Ellsworth cuando se acerca a ti con un farol en una mano y un pico en la otra. –¿Le apetece una excursioncita? Te entrega el farol y os marcháis juntos del campamento. Mantenéis una cauta conversación en voz baja mientras exploráis las profundidades heladas, recorriendo más terreno entre los dos de lo que podríais hacer con el resto del equipo y los suministros que os quedan. –Se pensará que soy un loco o un necio –aventura tras una hora de viaje a buen paso–. Siempre me estoy marchando solo y metiéndome en peligros como éste. En lugares donde no deberíamos acabar. Te encoges de hombros y señalas que tú también estás aquí con él. –Es cierto. Así que dudo que su opinión de mí sea imparcial –bromea. Una ráfaga de aire gélido y pútrido recorre la cueva como la exhalación de una bestia monstruosa que os tuviera en su garganta. –Bueno, si sirve de algo, diré que me alegra que esté aquí –admite el explorador con un deje de duda en la voz–. Mire –añade mientras señala una bifurcación en el túnel. La terrible racha de aire se disipa a vuestro alrededor, pero está claro que procedía del camino izquierdo–. Por ahí hay algo que hace circular el aire. Eso tiene que significar algo, ¿verdad? Asientes, pero no te gusta lo más mínimo cómo huele...",
+      "textSha256": "4fbb98cb6a99a3bbc097625c403237888b3debbe1e9efa40b5c9153a4d653e1b"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08721memorial.body",
+      "file": "edge-of-the-earth-finalVisit08721memorial-5f2f479b7b75-salva.mp3",
+      "text": "Si no supieras que no es así, tendrías que suponer que Ellsworth se había estado preparando para el apocalipsis. Pese a su reputación como explorador de carga ligera y mochilero experto, un simple vistazo a las pertenencias que ha dejado muestra una gran cantidad de provisiones, suministros y equipo para el hielo. Mientras el equipo se reparte tristemente sus cosas para darles buen uso, ves un par extra de botas resistentes al agua que debió de traer como repuesto. No sabes si alguno de vosotros podría seguir sus pasos de verdad, pero al menos con éstas podrías intentarlo.",
+      "textSha256": "5f2f479b7b75601ca8a1ee9a0844ee0798d036a12786fbdb35f7c9cb0317c837"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08722alive.body",
+      "file": "edge-of-the-earth-finalVisit08722alive-128ab2b7e164-salva.mp3",
+      "text": "Acudes a Takada no para que te ayude, sino para acusarla. Se ha estado preparando en secreto; lo sabes por las provisiones que guarda sin que lo sepa el resto del grupo y por las piezas de aeroplano con las que trastea en su tiempo libre. –Tiene razón –suspira como respuesta a tu alegación–. Pensaba volverme. Marcharme en secreto para regresar al campo de hielo y alejarme tanto como pudiera de este lugar maldito. Pero... Mira de reojo hacia el resto del equipo, cuyo ánimo está cargado de esperanza pese a la siniestra sensación que hay en el ambiente. –Jamás lograría volver sola. No se preocupe, que no me iré a ninguna parte. Venga, quédese lo que hay en esa mochila. Eliges fiarte de ella, aunque no puedes evitar preocuparte. Su tono monótono habitual está lleno de cinismo y hastío, pero ahora es distinto. Parece como si se hubiera rendido. –¿Por qué sigue aquí? –pregunta después de un rato–. Ya tiene aquello para lo que vino. Niegas con la cabeza y le dices que estás aquí para ella. Un esbozo de sonrisa se asoma a sus labios. –Es una terrible necedad por su parte. Pero... gracias.",
+      "textSha256": "128ab2b7e164556a6204f308bdfe00a1b299ae0d7051930d6d63dab03b98b890"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08722memorial.body",
+      "file": "edge-of-the-earth-finalVisit08722memorial-d13e0e56a147-salva.mp3",
+      "text": "Para alguien que supuestamente se enorgullecía de sus habilidades de organización, los suministros mecánicos de Takada son un completo desastre. Si no supieras que no es así, pensarías que la forma en la que ha almacenado sus cosas no tiene ni pies ni cabeza; pero conociendo a Takada, sospechas que tenía algún sistema. Pasas varios minutos revisando sus pertenencias en busca de algo que pudiera serles útil a los miembros restantes de la expedición. Sin Takada, no podréis lograr que vuele el último aeroplano. De hecho, crees que tendréis que dejar atrás la mayoría de sus cosas cuando mañana salgáis hacia las montañas. Aun así, crees que podrás aprovechar algunos de los suministros que tenía guardados.",
+      "textSha256": "d13e0e56a1474a0f3e3ce2c869c5a551d88d1d525fb08cbed9fa07a40e011c4a"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08716alive.body",
+      "file": "edge-of-the-earth-finalVisit08716alive-9201e99e0416-salva.mp3",
+      "text": "No es difícil encontrar a Eliyah. Los insistentes ladridos de Anyu delatan su ubicación de manera muy obvia. –¡Para ya, chica! –ordena mientras trata de tranquilizarla. La perra está en el límite del campamento, ladrando a la oscuridad como si hubiera algo acechando donde no podéis verlo. Puede que lo haya. Algo que sólo puede ver ella. –¡En serio, Anyu! ¡Para! ¡Estás haciendo demasiado ruido! –grita Eliyah. Cuando ve que te acercas, te hace un gesto para que lo ayudes a tirar de ella–. ¿Puede agarrarla del collar? Tenemos que hacer que vuelva a las tiendas. Tras un forcejeo, por fin lográis apartar a la perra y llevarla de vuelta al campamento. Se pasa todo el camino gimoteando y moviendo el hocico de forma lastimera. –Ha captado el olor de algo –dice Eliyah cuando el animal se calma–. Nunca antes la había visto actuar de este modo. Sea lo que sea lo que hay ahí, no puede ser bueno. Y tampoco normal. Se pasa la mano por el pelo y hace un encogimiento de hombros: – Pero ¿qué lo es en este condenado sitio?",
+      "textSha256": "9201e99e041634938a3bdbf6774f8625e3d34b57e2d7d102e51deaeef99f279e"
+    },
+    {
+      "key": "story.edgeOfTheEarth.finalVisit08716memorial.body",
+      "file": "edge-of-the-earth-finalVisit08716memorial-22b360e5bd74-salva.mp3",
+      "text": "Cuando te sientas en la periferia del campamento y te preguntas qué te deparará el destino en los próximos días, un leve golpecito te saca de tus pensamientos. Te giras con sorpresa, esperando ver otra de las horrendas criaturas surgiendo del hielo, pero no es más que Anyu, la fiel compañera de Eliyah. La gran perra gris te mira con ojos suplicantes. Sacudes la cabeza y te pones en pie pesadamente. Ya basta de lamentarse por esta noche. Mientras vuelves hacia el campamento, unas suaves pisadas recorren la nieve detrás de ti. Te paras y miras de reojo a Anyu, que vuelve a levantar la mirada hacia ti. ¿Está buscando consuelo o un propósito? Te arrodillas y le pasas los dedos enguantados por el denso pelaje, hablándole dulcemente como si quisieras tranquilizaros a ambos. Sí, Eliyah ya no está. No, no sé si estamos a salvo. ¿Quieres quedarte conmigo? Anyu mueve el rabo. Pues decidido queda.",
+      "textSha256": "22b360e5bd74e3745d330841a3f62b992a4236060bc3d97ce64410ff1dd1c28a"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartForkScouted.body",
+      "file": "edge-of-the-earth-heartForkScouted-08d31af63610-salva.mp3",
+      "text": "Acabáis por llegar a una bifurcación familiar en la caverna, el mismo pasadizo que explorasteis Ellsworth y tú la noche anterior. Les explicas a los demás que notasteis aire que circulaba por el pasadizo izquierdo, y que por tanto es poco probable que se trate de un callejón sin salida. Los otros asienten y os aventuráis juntos por el pasadizo que creéis que es el correcto.",
+      "textSha256": "08d31af636102f988cdf7ffc849615cd993c9bc693714cfd7e1d1b36c0337475"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartForkUnknown.body",
+      "file": "edge-of-the-earth-heartForkUnknown-2769c78648c9-salva.mp3",
+      "text": "Acabáis por llegar a una bifurcación en la caverna. A vuestra izquierda, el túnel se convierte en un sendero helado más pequeño con una pendiente más inclinada y peligrosa. A vuestra derecha, la rampa continúa hacia delante sin apenas cambios. Sin más información en la que basaros, elegís el mayor de los dos caminos. Se sigue bifurcando a lo largo del camino, llevándoos por una ruta más larga y enrevesada. Llegáis a mayor profundidad de las cavernas, pero ya no estáis seguros de cómo volver...",
+      "textSha256": "2769c78648c95557f8569ea06f06db6141e2bc506d072250ec3f6b94262b813c"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartDanforth.body",
+      "file": "edge-of-the-earth-heartDanforth-ad605629a42c-salva.mp3",
+      "text": "–Las criaturas crearon este lugar –afirma Danforth mientras pasáis bajo la última arcada–. Es justo como sospechaba la última vez que estuve aquí. No se trata de un sitio natural de la Antártida. Todo está conectado. Éste es el verdadero corazón de su civilización. Le preguntas a Danforth que a qué se refiere; ¿acaso lo que explorasteis ayer no era su ciudad? –No era más que la punta del iceberg, si me permite la expresión – responde–. Como el piso más alto de un rascacielos. Pero la nieve y el hielo enterraron el resto. No podíamos saberlo. Le preguntas a cuánta profundidad cree que desciende la ciudad. –¿A partir de lo que vimos de su historia? –Te mira a los ojos con la frente perlada de sudor y responde con total seriedad–. Hasta el mismísimo fondo del océano.",
+      "textSha256": "ad605629a42c6b2c39c79fff11cacb91fd3b59dbe98a84b61603796a405260d9"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartNoDanforth.body",
+      "file": "edge-of-the-earth-heartNoDanforth-29202236485e-salva.mp3",
+      "text": "Al cruzar bajo la última arcada, empiezas a cuestionarte la verdad de este lugar. Al principio pensabas que se trataba de una caverna natural, pero ahora está claro que los Antiguos, o alguna otra fuerza alienígena primigenia, contribuyeron a su diseño. ¿O te equivocas por completo? Puede que no sean refugiados expulsados de un lugar lejano, intrusos en vuestro hogar. Tal vez la Antártida, e incluso la Tierra, no era para vosotros ni para nadie de vuestra especie. La verdad de la insignificancia de la humanidad hace que te estremezcas en lo más hondo.",
+      "textSha256": "29202236485eeddea7a130ed289181be2e8ea19432306e0642a8a356a764d1b7"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartKensler.body",
+      "file": "edge-of-the-earth-heartKensler-0e5b47de6cc7-salva.mp3",
+      "text": "La líder del equipo reúne al grupo para una última ronda de ánimos antes de dejar atrás la seguridad relativa de la superficie. –Muy bien. Sé que estas condiciones no son... ideales –empieza a decir la Dra. Kensler–. Pero estamos cerca. Muy, muy cerca de obtener respuestas. De hacer que todo este esfuerzo y toda esta locura valgan para algo. Un poco más y descubriremos la verdad –Suspira–. Esto ha sido duro para todos. Pero por favor, aguantad conmigo sólo un poco más. Os prometo que merecerá la pena. Pese a los ánimos sombríos, hay un murmullo de consenso entre los supervivientes. No vais a echaros atrás ahora.",
+      "textSha256": "0e5b47de6cc748477cbe6fb7836e84b66df993886d74c3653ee91c8e7989872d"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartNoKensler.body",
+      "file": "edge-of-the-earth-heartNoKensler-7802bff09cab-salva.mp3",
+      "text": "Paso a paso, los supervivientes y tú descendéis por la pendiente. Los ánimos del grupo son sombríos y desesperanzados. Tenéis la sensación de que es imposible volver de este lugar. Probablemente encontraréis vuestro fin aquí. La carga de esta pesada convicción hace que cada paso os cueste aún más.",
+      "textSha256": "7802bff09cabc07bd5058a28de3b5761dde0b446b9e2234a5c53f91191a3cb24"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartCrystal.body",
+      "file": "edge-of-the-earth-heartCrystal-bfaf82af83ea-salva.mp3",
+      "text": "Tu mochila empieza a brillar cuando entras en esta región de piedra tallada. Presa del pánico, te quitas la mochila de los hombros y te alejas de ella. Cuando ha transcurrido un minuto sin que se produzca cambio alguno, te acercas y la abres con cuidado para revelar el extraño cristal sobrenatural que descubriste poco después del accidente de avión. Parece responder a este sitio, pues de su interior brota un brillante resplandor y un monótono zumbido. No parece ser peligroso, así que te atas el cristal a la muñeca y empleas su luz para guiaros en vuestro avance.",
+      "textSha256": "bfaf82af83eab47d8744d8aa578d1ad6eccac69c3ad2e5316371eaa48d3a2e2b"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartNoCrystal.body",
+      "file": "edge-of-the-earth-heartNoCrystal-5a8489eaadfe-salva.mp3",
+      "text": "La oscuridad que hay más allá es como el abismo del fondo del océano. Vuestras antorchas y faroles sólo alcanzan a pocos metros de vosotros antes de que la negrura se trague su luz. Esto, añadido a la intensa presión y al frío polar, te hace sentir como si tuvieras que soportar todo el peso del mundo. Es un viaje de un pavor sin igual.",
+      "textSha256": "5a8489eaadfebf08a0d52863d9855f6c2954c9fda97d507cdea426fe0acc0ae8"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartPortal.body",
+      "file": "edge-of-the-earth-heartPortal-49c38ad1fc9a-salva.mp3",
+      "text": "A final de esta enorme cámara,acabáis llegando a un nexo en el interior de la estructura inactiva: un portal sellado de un tamaño inmenso y adornado con los mismos cinco símbolos, junto con una serie de mecanismos entrelazados. Hay unos canales y muescas que trazan un camino desde la superficie de la puerta hasta cada uno de los cinco símbolos. Al otro lado del portal, se oyen unos ruidos familiares: el burbujeo y los espumarajos del miasma y el siseo de la detestable neblina. –Está al otro lado de esta puerta –dice uno de los miembros del grupo, y no puedes evitar estar de acuerdo. Notas su presencia, o más bien la has notado todo el tiempo, desde que pusiste un pie en la Antártida, sólo que ahora es imposible de ignorar. Te susurra débilmente. En la superficie de tu mente se reproducen visiones. Tus sueños más salvajes y tus momentos más alegres. Tus deseos más oscuros y tus peleas más duras. Es un espejismo. El espejismo. Encerrado tras esta puerta, posiblemente desde hace eones, vigilado o tal vez incluso utilizado por aquellos que llegaron antes que vosotros. Pero está escapando poco a poco. Las criaturas que habéis encontrado y combatido son prueba suficiente de ello. Los Ancianos también saben que se está liberando. Ellos construyeron este lugar, y ahora está abandonado...",
+      "textSha256": "49c38ad1fc9afc63c2f5644da2f014565c421aacefd5c9596eeddfc7615d0379"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartOneIntro.body",
+      "file": "edge-of-the-earth-heartOneIntro-2672e521b197-salva.mp3",
+      "text": "Decidís estudiar el portal y los muchos caminos que salen de este vasto túnel, con la esperanza de poder descubrir un modo de evitar que la entidad que hay al otro lado escape. Crees que la tecnología empleada para cerrar esta puerta tiene alguna relación con estos cinco símbolos. Tal vez si exploras los alrededores logres encontrar las piezas que faltan.",
+      "textSha256": "2672e521b19734b146243c4950b6545db0dbbf7d72701914d833afcc45a101c6"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartFinalStraw.body",
+      "file": "edge-of-the-earth-heartFinalStraw-fab7022590b0-salva.mp3",
+      "text": "Actúas de forma instintiva para defenderte de la criatura que sabes que se encuentra al otro lado de la ilusión, pero tus compañeros no parecen entenderlo. Están boquiabiertos de asombro y sus vidriosos ojos sólo reflejan la verdad que el miasma quiere que vean.",
+      "textSha256": "fab7022590b0387d78377c58e4f3331dedbd63291d2c4f3c05a725c889c2103e"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartOneNoResolution.body",
+      "file": "edge-of-the-earth-heartOneNoResolution-6425fd21d8a8-salva.mp3",
+      "text": "Por mucho que lo intentes, no logras encontrar y colocar los cinco sellos. Estas oscuras salas inactivas albergan mucho más que simples pingüinos gigantes. Las criaturas que moran en su interior son las mismas que describieron Dyer y Danforth en su viaje: monstruosidades informes compuesta de una gelatina viscosa y burbujeante cubierta de ojos sin párpados. Huyes de vuelta al portal para descansar y lamerte las heridas, pero antes de poder decidir qué hacer a continuación, algo golpea la antigua y enorme puerta, dándote un susto de muerte. El ruido reverbera por toda la instalación. Luego se produce otro, y otro. Intentas huir, pero es demasiado tarde.",
+      "textSha256": "6425fd21d8a84caa39f297346a1032ec9f6b1d8886229a6afd13550a8ae5c515"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartOneResolution1.body",
+      "file": "edge-of-the-earth-heartOneResolution1-7104181e9496-salva.mp3",
+      "text": "La enorme puerta resplandece y zumba con una especie de electricidad alienígena y haces fuerzas contra ella para abrir el camino. En alguna parte del interior de este lugar se encuentran las respuestas a todas tus preguntas. El motivo por el que viniste aquí. Sigues adelante no por el bien de tu prestigio, sino por el bien de tu cordura. Debes saber la verdad, aunque te destruya.",
+      "textSha256": "7104181e949600a131883f7fc167febdc92debba1541f286968df4763ba8ff1f"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartOneResolution2.body",
+      "file": "edge-of-the-earth-heartOneResolution2-247ee8b3bb02-salva.mp3",
+      "text": "Con un último silbido de aire y un chirrido primordial, la inmensa puerta se abre de golpe. Unos tentáculos de color prismático surgen de ella, deslizándose por el suelo y las paredes. El caos termina en apenas segundos. El miasma te agarra con una fuerza imposible, aferrando y tirando de tus extremidades. Unas formas terribles, visiones familiares y pesadillas indecibles aparecen en la superficie de la entidad mientras te hace pasar gritando por el portal hacia el otro lado.",
+      "textSha256": "247ee8b3bb0234f7db31b0367482d987ea4047b8f7c13d5b2f9ec864ae7f4060"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartOneResolution3.body",
+      "file": "edge-of-the-earth-heartOneResolution3-1da99cfdc5a9-salva.mp3",
+      "text": "El pulso de energía provocado por tu catastrófico error aniquila toda la vida orgánica de la faz de la Tierra.",
+      "textSha256": "1da99cfdc5a995fdfd951267cfbc7d4aacac2a80caf02dbe48c78059b1446edc"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartCheckpoint1.body",
+      "file": "edge-of-the-earth-heartCheckpoint1-f31a52bc5a90-salva.mp3",
+      "text": "Despiertas presa de la confusión al otro lado. No tienes la menor idea de cuánto tiempo ha pasado desde que cruzaste el umbral del portal.",
+      "textSha256": "f31a52bc5a9041cd0b0d3419d64c53b9b3cd34132f5ad98465278e9ae3cac2bb"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartCheckpoint2.body",
+      "file": "edge-of-the-earth-heartCheckpoint2-4f2f0123da76-salva.mp3",
+      "text": "Es hora de acabar con esto de una vez por todas.",
+      "textSha256": "4f2f0123da763feceabddd4ce1044d761dae3249de87099dd9ad97192ad694b7"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartTwoIntro1.body",
+      "file": "edge-of-the-earth-heartTwoIntro1-ea2f3269cf18-salva.mp3",
+      "text": "La instalación es todavía más antigua y extraña más allá del umbral del antiguo portal. ¿Quién sabe cuántos eones lleva este sitio durmiendo mientras la Tierra cambiaba y se desarrollaba al otro lado? Tal vez habría permanecido así para siempre si nadie hubiera perturbado este lugar. Pero es demasiado tarde para cambiar el pasado. Lo único que puedes hacer ahora es actuar para evitar un terrible futuro. Una tenue luminiscencia llena las lúgubres salas, alimentada por una especie de energía avanzada similar a la electricidad. A tu espalda, una caleidoscópica pared de miasma se regenera para tapar tu huida. Estás atrapado aquí, puede que para siempre. Desde el portal se extiende una red de enormes salas, talladas de piedra lisa y cubiertas de antiguos murales y jeroglíficos alienígenas. El aire parece enrarecido. La luz se curva y oscila, distorsionando tu visión como si se tratara de una ilusión óptica. ¿Se trata de la realidad... o de un espejismo? Tu grupo se pasa muchas horas estudiando los murales de las paredes. Cuentan una historia antigua y desconocida. Una historia alternativa de la Tierra. Una historia muy distinta de la que cualquiera podríais haber imaginado.",
+      "textSha256": "ea2f3269cf18cbd4ad17e42b1262f7759a8cb938e8347fee13f8a5a904da463d"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartTwoIntro2.body",
+      "file": "edge-of-the-earth-heartTwoIntro2-c1537224a55a-salva.mp3",
+      "text": "La Dra. Kensler lo explica todo mientras estudia los antiguos murales. –Los Antiguos eran viajeros. Colonizadores. Llegaron a la Tierra hace más de mil millones de años –dice, citando las notas del profesor Dyer–. Pero no fueron los primeros en establecerse aquí. Este sitio, todo esto... ya era antiguo incluso entonces –Pasa las manos por los murales mientras explica lo que ha descubierto–. Pero lo que está atrapado dentro no es una entidad. Le preguntas qué quiere decir, porque te alarma esta nueva revelación. Se vuelve para mirarte y ves que en sus ojos prende la llama de la inspiración. –He estado estudiando su fisiología, intentando entender cómo podían existir del modo que lo hacen, sin forma, materia o estado. Pero lo estaba enfocando de manera equivocada. No se puede estudiar la biología de algo inorgánico. El caso es que no es una criatura, al menos no verdaderamente. Es algo más parecido a... –duda mientras trata de buscar las palabras adecuadas–. Es una dimensión alternativa. Otra realidad superpuesta a la nuestra. Un microcosmos consciente de todo lo que existe. No compuesto por vida orgánica, sino una farsa de ella. Esta nueva comprensión de los espectros que habéis encontrado y de los espejismos que habéis visto le da contexto a todo. No estabais matando monstruos, sino que eran fragmentos de una realidad falsa. Una que aún podría suceder. Le preguntas a la Dra. Kensler si hay alguna esperanza de evitar que escape una fuerza semejante. –No es algo vivo. No se puede matar, sólo contener. La instalación de los Antiguos contenía cinco pilones que empleaban su esencia para dar energía a su civilización; sin embargo, después de tanto tiempo, no me parece plausible que sigan funcionando. Pero tal vez... –Se interrumpe mientras formula un plan. Al final, abre los ojos como platos al darse cuenta de algo–. Sé lo que hay que hacer. Sé cómo detenerlo. Debes encontrar estos pilones y destruirlos, porque hacerlo provocará que todo el complejo se venga abajo. Entretanto... –Se quita la mochila de los hombros y la suelta en el suelo–. Yo... debo irme. No hay tiempo que perder. Pones reparos ante su repentina partida, pero está decidida. Se aleja y mira por última vez a sus compañeros antes de salir corriendo. Esperas que sepa lo que está haciendo... por el bien de todos.",
+      "textSha256": "c1537224a55af8e4086db717ab81015f3b6d9338e754b48e2c9fbe07961364a4"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartTwoIntro3.body",
+      "file": "edge-of-the-earth-heartTwoIntro3-3cbde8e22feb-salva.mp3",
+      "text": "Apenas puedes discernir una fracción de la verdad que se esconde en estos antiguos murales, pero lo que descubres resulta casi imposible de creer. Cuando los Ancianos llegaron a la Tierra hace más de mil millones de años, no sólo colonizaron la Antártida, sino todo el planeta. Y cuando lo hicieron, este lugar y la entidad que mora en su interior ya estaban aquí. Construyeron este complejo en torno a él, para estudiar el ser primordial de su interior, para entenderlo mejor; el problema es que, al hacerlo, atrajeron fuerzas que escapaban incluso a su comprensión. El portal y sus sellos se construyeron para contenerlo, pero siglo tras siglo de abandono lo han dejado débil y falto de eficacia. Sospechas que lo que agitó a la entidad del interior fue la presencia de vida inteligente en la Antártida, los humanos que empezaron a explorar sus llanuras heladas y picos muertos desde hace mucho tiempo. Los murales hablan de la estructura de la instalación, de cinco pilones creados no sólo para contener la esencia de la criatura, sino para dar energía a toda la civilización de los Antiguos. Imaginas que destruir estos pilones reduciría a escombros todo el complejo, y puede que toda la montaña bajo la que está construido. No sabes si puedes destruir o contener realmente a este horror sin nombre, pero no tienes más elección que intentarlo. Si sigue escapando, reescribirá a su antojo el mismo concepto de la realidad. No quedará nada más que el espejismo. Nada más que una retorcida y horrenda imaginación. Una pesadilla de la que no se puede despertar.",
+      "textSha256": "3cbde8e22feb29c19e117e86e238a9d8d43ed79faab99223d4a99cbc5c732af9"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartTwoNoResolution.body",
+      "file": "edge-of-the-earth-heartTwoNoResolution-edee6b6c5fab-salva.mp3",
+      "text": "Cuando despiertas, la instalación vuelve a estar a oscuras y en silencio. Ayudas a tus compañeros a ponerse en pie y os retiráis de vuelta hacia la superficie, preguntándoos si es demasiado tarde para evitar que escape la entidad del otro lado de la puerta. Reinan la paz y el silencio. No hay ni rastro de espectros gélidos, espejismos siniestros o entidades alienígenas. Al volver a la ciudad metida entre las montañas, tomáis notas, hacéis fotografías y realizáis calcos. El viaje de retorno al campo de hielo es rápido y sencillo. Ni siquiera el frío clima os combate mientras regresáis al campamento de la barrera. Es como si todo el continente de la Antártida se hubiera entregado a vosotros. Te planteas aprovechar para seguir estudiando el entorno, pero al final decides volver con todos los hallazgos que habéis realizado. El cielo está despejado y precioso cuando el barco zarpa del campo de hielo en dirección norte. Pese a todo, estás inquieto. La entidad que estaba encerrada al otro lado de la puerta de los Antiguos ha desaparecido. Apenas había rastros suyos cuando os fuisteis, lo cual sólo puede significar que ha escapado y que podría estar en cualquier parte. O en todas partes. El temor llena tu mente. Recuerdas los extraños y vívidos espejismos que parecía controlar la criatura. Las alucinaciones reales como la vida misma. Te miras las palmas de las manos y te preguntas si tienen la misma forma que han tenido siempre o si son un facsímil muy parecido. El aire resplandece a tu alrededor. ¿Es real algo de esto?",
+      "textSha256": "edee6b6c5fab6d3c8233075446972e4f1c6947479d57651c58b89f1cc47abde9"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartTwoResolution1.body",
+      "file": "edge-of-the-earth-heartTwoResolution1-0cd3b4c8cb59-salva.mp3",
+      "text": "De pronto se produce una ráfaga de aire cálido y un ruido similar a una tremenda exhalación. El aire resplandece con la distorsión de un espejismo y observas con asombro cómo el miasma que se aproximaba retrocede repentinamente. Se colapsa sobre sí mismo y vuelve hacia la ladera de la montaña justo cuando comienza la avalancha. Unas grietas de un brillante color azul se propagan rápidamente por las paredes. Sin los pilones, no sólo falla la integridad de la instalación del interior de la montaña, sino la de toda la ciudad. El suelo helado se resquebraja. La descomunal arquitectura de la ciudad alienígena comienza a hundirse en la nieve. En ese momento oyes el estruendo del motor de un aeroplano en el cielo. El último de los tres aviones de Takada sobrevuela la ciudad y se escuchan gritos que resuenan por las antiguas calles ruinosas: –¡Están ahí! ¡Junto a ese túnel! ¡Rápido! Aparecen dos trineos tirados por los perros que dejó Eliyah en el campamento de la barrera y conducidos por varios miembros de la tripulación del Theodosia. No puedes contener la sorpresa ni la alegría al verlos. Os hacen gestos de forma frenética para que vayáis hacia ellos, mientras miran fijamente la montaña que se desploma. En el último segundo, oís otra voz que sale del túnel: –¡Esperen! –grita la Dra. Kensler mientras surge de la oscuridad moviendo los brazos–. ¡Espérenme! Se sube al trineo de un salto y os marcháis mientras la ciudad se derrumba en el hielo a vuestra espalda. Uno de los tripulantes explica que arreglaron el último aeroplano y decidieron usarlo para buscaros pese a que conocían los riesgos. –Cuando les vimos entrar en esa enorme caverna sin la mayor parte del equipo, pensamos que podría hacer falta un rescate, pero no esperábamos que fuera tan literal –os dice. Le respondes que no podría haber llegado en un momento más oportuno. En cuanto volvéis al campo de hielo, la Dra. Kensler ordena a la tripulación que se preparen para zarpar. Apenas levantáis el campamento de la barrera. Ya da igual. Lo único que importa es salir de este lugar sanos y salvos, y con todas las pruebas que habéis encontrado, claro está. Pero sigues teniendo preguntas. Una vez a bordo del Theodosia , buscas a la Dra. Kensler y le preguntas por lo que hizo en la instalación. La entidad os perseguía y, de repente... –Ya le dije que no era una criatura viviente –explica–. Por lo tanto, no se la puede matar. Al menos no como lo concebimos nosotros. Pero sí que tiene una especie de consciencia, ¿verdad? Conoce nuestros deseos, nuestras esperanzas y nuestros miedos. Le señalas que está empleando el presente y ella aprieta la mandíbula. Una leve distorsión fluctúa en el aire que la rodea. –Yo... hice un trato –susurra–. Era la única forma.",
+      "textSha256": "0cd3b4c8cb598d889cf5d9662c2e348ffb9bd1f136ade26591bccdf9ff559deb"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartTwoResolution2.body",
+      "file": "edge-of-the-earth-heartTwoResolution2-a23ff7346d24-salva.mp3",
+      "text": "De pronto, un zumbido surge del túnel, y la esperanza vuelve a llenar tu corazón. Sales huyendo de debajo de la arcada mientras unas grietas de un brillante color azul se propagan rápidamente por las paredes. Sin los pilones, no sólo falla la integridad de la instalación del interior de la montaña, sino la de toda la ciudad. El suelo helado se resquebraja. La descomunal arquitectura de la ciudad alienígena comienza a hundirse en la nieve. Ésta podría ser vuestra tumba, pero al menos os llevaréis con vosotros a esta entidad y el resto de esta condenada ciudad. En ese momento oyes el estruendo del motor de un aeroplano en el cielo. El último de los tres aviones de Takada sobrevuela la ciudad y se escuchan gritos que resuenan por las antiguas calles ruinosas: –¡Están ahí! ¡Junto a ese túnel! ¡Rápido! Aparecen dos trineos tirados por los perros que dejó Eliyah en el campamento de la barrera y conducidos por varios miembros de la tripulación del Theodosia. No puedes contener la sorpresa ni la alegría al verlos. Os hacen gestos de forma frenética para que vayáis hacia ellos, mientras miran fijamente la montaña que se desploma. Uno de los tripulantes explica que arreglaron el último aeroplano y decidieron usarlo para buscaros pese a que conocían los riesgos. –Cuando les vimos entrar en esa enorme caverna sin la mayor parte del equipo, pensamos que podría hacer falta un rescate, pero no esperábamos que fuera tan literal –os dice. Le respondes que no podría haber llegado en un momento más oportuno. Todos juntos, os marcháis mientras la ciudad se derrumba en el hielo a vuestra espalda. En cuanto volvéis al campo de hielo, ordenas a la tripulación que se preparen para zarpar. Apenas levantáis el campamento de la barrera. Ya da igual. Lo único que importa es salir de este lugar sanos y salvos, y con todas las pruebas que habéis encontrado, claro está. La travesía hacia casa es tranquila y pacífica, cosa que no son tus pensamientos en absoluto. Hasta el día de hoy, te preguntas cuál sería la verdadera naturaleza de la entidad que encontrasteis en la instalación de los Antiguos. No tienes ni idea de lo que vas a contarle a la comunidad académica a tu regreso. Vuestras acciones han hecho que nadie pueda volver a estudiar o explorar nunca esa ciudad de pesadilla. Pero ¿qué hay de los Antiguos? ¿Se ocultarán los que han sobrevivido? ¿O elegirán hacer como tú y aprender más sobre esta nueva era en la que se encuentran? Sólo el tiempo lo dirá. Hasta entonces, puedes descansar sabiendo que la criatura que habitaba bajo el hielo no puede haber sobrevivido. El aire resplandece en torno a la mano con la que sujetas la pluma mientras das los últimos retoques a tus notas sobre la expedición. Sí, por fin se ha acabado. ¿Verdad?",
+      "textSha256": "a23ff7346d24bd20c0a284c9f87ed8dd34d7a40625967d7b48aecfba39767220"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartTwoResolution3.body",
+      "file": "edge-of-the-earth-heartTwoResolution3-c5d47aa36831-salva.mp3",
+      "text": "Sales huyendo de debajo de la arcada mientras la montaña empieza a quejarse y retumbar. Habéis logrado destruir suficientes pilones como para poner en riesgo la integridad estructural de la instalación de las profundidades de la ciudad, pero no es bastante. Vas a morir aquí, y lo peor es que sólo has contribuido a la huida de la entidad. En ese momento oyes el estruendo del motor de un aeroplano en el cielo. El último de los tres aviones de Takada sobrevuela la ciudad y se escuchan gritos que resuenan por las antiguas calles ruinosas: –¡Están ahí! ¡Junto a ese túnel! ¡Rápido! Aparecen dos trineos tirados por los perros que dejó Eliyah en el campamento de la barrera y conducidos por varios miembros de la tripulación del Theodosia . No puedes contener tu alivio al verlos. Os hacen gestos de forma frenética para que vayáis hacia ellos, mientras miran fijamente el horrendo miasma. –¿Qué demonios es esa cosa? –grita uno de ellos. Pero no hay tiempo para explicaciones. En cuanto te montas en uno de los trineos, das instrucciones de emprender la huida. La fuga de la ciudad es como un borrón frenético. Tienes un vago recuerdo de haber atravesado las antiguas calles cubiertas de nieve, esquivando la siniestra bruma en torno a edificios de lisa pizarra gris; de haber evitado por poco una avalancha de cieno caleidoscópico mientras atravesabais las montañas. Cuando perdéis de vista a la criatura, uno de los tripulantes explica que arreglaron el último aeroplano y decidieron usarlo para buscaros pese a que conocían los riesgos. –Cuando les vimos entrar en esa enorme caverna sin la mayor parte del equipo, pensamos que podría hacer falta un rescate, pero no esperábamos que fuera tan literal –os dice. Te alivia ver que el piloto ha hecho aterrizar el último aeroplano justo al otro lado de la cadena montañosa. Os subís al avión a toda prisa en cuanto llegáis a él, junto con los perros restantes. Veis aparecer la entidad a lo lejos, trepando por los escarpados picos y elevándose hacia el cielo. Abandonáis los trineos y todos los suministros. El motor arranca con un rugido y dejáis atrás las montañas de la locura. No te atreves a volver la cabeza y atisbar lo que ha perseguido a Danforth durante tantos meses, pero incluso a día de hoy lo sigues oyendo: alaridos que resuenan y gritos incomprensibles, vientos demasiado agudos y penetrantes como para ser naturales y susurros que te piden que regreses. Han pasado años desde ese fatídico día. No le contaste nada sobre vuestro viaje a la comunidad científica. Y aun así, sigue sin haber rastro de la entidad que escapó. ¿Se limita su alcance a ese enigmático continente helado? ¿Está esperando su momento? ¿O ya está aquí, en el mismo aire que respiras? ¿Dentro de tu mente? ¿Mostrándote una realidad falsa? ¿Un espejismo?",
+      "textSha256": "c5d47aa36831fd2cd414b7d5da7421df5e41b97e0236f2377308bbf952076cf6"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08720.body",
+      "file": "edge-of-the-earth-heartVictim08720-7f3b60285c19-salva.mp3",
+      "text": "–¿Qué? Sí... sí, cómo no... –dice la Dra. Kensler mientras se le dibuja una sonrisa en los labios–. Me encantaría volver a verte, Mala. ¿E-este viernes? Qué pronto... Se coloca detrás de la oreja un mechón de pelo suelto y un tentáculo de miasma con forma de mano se dirige hacia ella...",
+      "textSha256": "7f3b60285c1917aad41d991750cb004f17df05015d31f8b6fcac64a24abc869a"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08720Saved.body",
+      "file": "edge-of-the-earth-heartVictim08720Saved-f449d495b815-salva.mp3",
+      "text": "–¡No! La Dra. Sinha logra agarrar a la Dra. Kensler antes que el miasma y la hace girar hasta acabar en sus brazos. Pone las manos en las mejillas de la Dra. Kensler con firmeza y la obliga a mirarle a los ojos, y sólo a sus ojos. –Estoy aquí, Amy. Estoy aquí mismo . A la Dra. Kensler le tiemblan los brazos cuando dice: –¡Mala! Eras... Yo... Yo casi... –Sacude la cabeza y se desploma en brazos de la sanitaria mientras llora en silencio. La entidad se retira al ver su plan frustrado.",
+      "textSha256": "f449d495b81582a1852597807a763baa9ba6043a87c94b753b7131bc456d290d"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08720Lost.body",
+      "file": "edge-of-the-earth-heartVictim08720Lost-5e4689956df8-salva.mp3",
+      "text": "La Dra. Kensler estira el brazo y toma la mano. La entidad la mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verla.",
+      "textSha256": "5e4689956df8dac130c75f551bd9ae693be48a993af668dec014f8a3c711bb1e"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08714.body",
+      "file": "edge-of-the-earth-heartVictim08714-b1853ab996ad-salva.mp3",
+      "text": "–¿Profesor Lake? –dice Dyer al reconocer la figura que hay dentro del miasma–. Sí, he leído su propuesta.",
+      "textSha256": "b1853ab996adfed60157d26ac1f1b754210f5194ccfc70cd1e44dec6feb56814"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08714Saved.body",
+      "file": "edge-of-the-earth-heartVictim08714Saved-fb472654284d-salva.mp3",
+      "text": "–Lake está muerto –dice la Dra. Kensler mientras le pone la mano en el hombro al profesor–. Estuvimos juntos en su funeral. ¿ Te acuerdas? En Santa María. El velo lechoso de los ojos de Dyer empieza a desvanecerse a medida que se da cuenta de la verdad. –Sí –dice por fin–. Sí, lo... lo recuerdo. Fue... –Respira hondo y cierra los ojos para contener el doloroso recuerdo–. Fue un funeral muy bonito. La entidad se retira al ver su plan frustrado.",
+      "textSha256": "fb472654284d37675eb731f48d4652ea8e7f196b4b15b6ba04d65b7228397ed1"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08714Lost.body",
+      "file": "edge-of-the-earth-heartVictim08714Lost-8924040dac5b-salva.mp3",
+      "text": "El profesor Dyer estira el brazo y toma la mano. La entidad lo mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verlo.",
+      "textSha256": "8924040dac5bec4db0976821b53057319b75434eda7135da643040cebe816747"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08715.body",
+      "file": "edge-of-the-earth-heartVictim08715-ce1842e93168-salva.mp3",
+      "text": "–Te veo –afirma el joven mientras le hace un gesto al espejismo como si fuera un viejo amigo–. Sí. Sí, te veo. ¡Puedo verte! – exclama con alegría con una amplia sonrisa en el rostro. Un tentáculo de miasma con forma de mano se dirige hacia él...",
+      "textSha256": "ce1842e93168bed1ef0088deae0672e3cd191c6d933e928a8675d3613fc886e8"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08715Saved.body",
+      "file": "edge-of-the-earth-heartVictim08715Saved-f3ca4d0be615-salva.mp3",
+      "text": "–¡Danforth, no! –El anciano se planta delante de su alumno, tapándole la vista–. ¡No debes seguir mirando ese terrible espejismo! –Pero señor –lloriquea Danforth con agitación–, no lo entiende. Ha... ha estado aquí todo este tiempo –Se señala la sien–. Todo este tiempo aquí. Esperándome. Esperando. Y yo... yo... –¡Mírame! –grita Dyer con firmeza. El estudiante aparta la mirada de la cosa que hay tras su mentor. Luego pone los ojos en blanco y se desmaya en brazos de Dyer. La entidad se retira al ver su plan frustrado.",
+      "textSha256": "f3ca4d0be61519295cb0290fd9230a00c0858317ab1c3a7e22df900b5fa55699"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08715Lost.body",
+      "file": "edge-of-the-earth-heartVictim08715Lost-996de2ffd331-salva.mp3",
+      "text": "Danforth estira el brazo y toma la mano. La entidad lo mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verlo.",
+      "textSha256": "996de2ffd331d8501a741576e6a3c469a2702011027e94bd48c54a382baf2233"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08718.body",
+      "file": "edge-of-the-earth-heartVictim08718-0b9df203012f-salva.mp3",
+      "text": "–Es precioso –murmura Claypool, en cuyos ojos se refleja una colorida aurora moteada de blanco por una débil nevada–. Como... un mundo secreto. Escondido, sólo para nosotros. Un tesoro oculto. Da un paso adelante y un tentáculo de miasma con forma de mano se dirige hacia él...",
+      "textSha256": "0b9df203012f5938f13ee68c7783c4601d2db9a6a895fd1d15a0ae64c6954753"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08718Saved.body",
+      "file": "edge-of-the-earth-heartVictim08718Saved-520d3db68056-salva.mp3",
+      "text": "Ellsworth sólo tiene que poner suavemente su mano en el hombro de Claypool para que la atención de éste deje de centrarse en el espejismo. –En este mundo también hay tesoros para ti, Avery –susurra–. Quédate, por favor. Los ojos azules de Claypool resplandecen y luego vuelven a la normalidad. Mantiene la mirada de Ellsworth durante un instante antes de apoyar la frente en la de su compañero. –Lo siento. Tienes razón. La entidad se retira al ver su plan frustrado.",
+      "textSha256": "520d3db680568c0ee6c3e61939d42d87586cc42ad76dbba3e5d1dc0692dd60f8"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08718Lost.body",
+      "file": "edge-of-the-earth-heartVictim08718Lost-72432bd5428c-salva.mp3",
+      "text": "Claypool estira el brazo y toma la mano. La entidad lo mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verlo.",
+      "textSha256": "72432bd5428c35dfe2f135733ec5a00c5120f263b52859fc4ab120bc779f2e65"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08722.body",
+      "file": "edge-of-the-earth-heartVictim08722-767812d93d6a-salva.mp3",
+      "text": "–¿Papá...? –dice Takada. Los ojos abiertos como platos se le llenan de lágrimas a la vez que deja caer su pico en el suelo de piedra–. ¿Eres tú de verdad? Pero dijeron... me dijeron que estabas... –Se le quiebra la voz y un tentáculo de miasma con forma de mano se dirige hacia ella...",
+      "textSha256": "767812d93d6a28d6ade737fd8775dba09098a7b884f4478487946da255800bf5"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08722Saved.body",
+      "file": "edge-of-the-earth-heartVictim08722Saved-6c80d27cc1bb-salva.mp3",
+      "text": "Un ladrido repentino rompe la ilusión, y Anyu se lanza de golpe sobre el pecho de Takada, tirándola al suelo. La mujer forcejea un instante con la perra antes de darse cuenta de lo que ha sucedido. –¿Anyu? No, espera... –Buena chica –dice Eliyah mientras hace que la perra vuelva a su lado con un silbido. Le rasca detrás de las orejas como recompensa. Takada se pone en pie lentamente. En sus ojos hay dolor, vergüenza y tristeza. No dice nada, pero hace un leve asentimiento en dirección a Eliyah, que la responde del mismo modo. La entidad se retira al ver su plan frustrado.",
+      "textSha256": "6c80d27cc1bb14c72b05bc416d7776c2ae2c7122929ae9730133f5e263618fed"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08722Lost.body",
+      "file": "edge-of-the-earth-heartVictim08722Lost-bf65ef306ab0-salva.mp3",
+      "text": "Takada estira el brazo y toma la mano. La entidad la mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verla.",
+      "textSha256": "bf65ef306ab03a1d8bf4ede0bf0ca756e4e3e06776bd0fbabce3fc69e4880dca"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08721.body",
+      "file": "edge-of-the-earth-heartVictim08721-3dcb106bdf42-salva.mp3",
+      "text": "Ellsworth apenas vacila en dar un paso adelante. –¿Adónde lleva? –dice para sí mientras busca su linterna–. ¿Se adentra más en la instalación? ¿Es una especie de caverna natural? ¡Podría ser el descubrimiento del milenio! Avanza y un tentáculo de miasma con forma de mano se dirige hacia él...",
+      "textSha256": "3dcb106bdf42a106d82a473afa47b7787e99e52eef5f55dba27c0c5b3e77235e"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08721Saved.body",
+      "file": "edge-of-the-earth-heartVictim08721Saved-4fa515ad9558-salva.mp3",
+      "text": "Cookie se aproxima a Ellsworth en cuestión de segundos e interrumpe sus desvaríos dándole un raudo y fuerte bofetón en la cara. El sonido resuena por toda la caverna. Ellsworth se lleva la mano enguantada a la mejilla. –Sabes por qué lo he hecho –gruñe Cookie. –Y una mierda que lo sé –contesta Ellsworth mientras se coloca la mandíbula. Cookie sonríe y luego Ellsworth hace lo mismo. La entidad se retira al ver su plan frustrado.",
+      "textSha256": "4fa515ad9558032ea649353ae5d150d5f1edf1515a0bcd4ce8c933aa66a7eb92"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08721Lost.body",
+      "file": "edge-of-the-earth-heartVictim08721Lost-30232b25e583-salva.mp3",
+      "text": "Ellsworth estira el brazo y toma la mano. La entidad lo mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verlo.",
+      "textSha256": "30232b25e583e6c533824a21ec02cd49bd3c33f54981f21e122110dc577694c3"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08716.body",
+      "file": "edge-of-the-earth-heartVictim08716-56b383e28902-salva.mp3",
+      "text": "–¡Mira, Anyu! –exclama Eliyah mientras señala el turbio espejismo, viendo algo que los demás no veis–. Son ellos... Están todos aquí... ¡Están vivos...! Anyu intenta alejarlo, mordiendo la mochila y tirando en dirección contraria, pero su amo no parece enterarse. Un tentáculo de miasma con forma de mano se dirige hacia él...",
+      "textSha256": "56b383e28902c8b8a65c15a03a64f86768a04f5042d5dcdea4ae72509af3a3ea"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08716Saved.body",
+      "file": "edge-of-the-earth-heartVictim08716Saved-a6d795ba51d4-salva.mp3",
+      "text": "Claypool agarra el brazo de Eliyah en el preciso instante en que Anyu le arranca la mochila al romper una de las correas. –¡Para, Eliyah! –grita–. ¡Para! ¡Los demás están muertos, Eliyah! ¡Están muertos! ¡Y la única que queda te necesita más que nunca! Se hace el silencio en la caverna. Eliyah parpadea y sale de su estupor. Baja la mirada hacia Anyu y aprieta la mandíbula. –L-lo siento, chica –dice. La entidad se retira al ver su plan frustrado.",
+      "textSha256": "a6d795ba51d49c2f2443cb9217a0e7c4d028a12d615bf0dc6b31de8ca7217314"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08716Lost.body",
+      "file": "edge-of-the-earth-heartVictim08716Lost-9268fdfac814-salva.mp3",
+      "text": "Eliyah estira el brazo y toma la mano. La entidad lo mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verlo.",
+      "textSha256": "9268fdfac8141e12c32bede49c1df4137fcdcbe371d03802d6628879edb4f839"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08717.body",
+      "file": "edge-of-the-earth-heartVictim08717-7b9c21031706-salva.mp3",
+      "text": "–Un mundo sin muerte –afirma la Dra. Sinha mientras mira fijamente el espejismo–. Un mundo sin dolor. Sin sufrimiento... Da un paso adelante y un tentáculo de miasma con forma de mano se dirige hacia ella...",
+      "textSha256": "7b9c21031706798b2a11f49fb2892912ee36d1d727523d0503697e8a6bbba605"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08717Saved.body",
+      "file": "edge-of-the-earth-heartVictim08717Saved-8bbb157c43da-salva.mp3",
+      "text": "–“Los límites que separan la vida de la muerte son, en el mejor de los casos, borrosos e indefinidos” –recita Danforth de manera enigmática–. “¿Quién podría decir dónde termina uno y dónde empieza el otro?” Mala sale de su trance y fulmina al joven con la mirada: –¿Otra vez Poe? –La certeza de la muerte encierra sabiduría –responde éste con un asentimiento. –Es posible –admite ella mientras le da la espalda a la visión–. Es posible. La entidad se retira al ver su plan frustrado.",
+      "textSha256": "8bbb157c43dad4ad531be04ce9f8dfddebab1557dd11b8a43169eed8b903a5d1"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08717Lost.body",
+      "file": "edge-of-the-earth-heartVictim08717Lost-7d1e811c1abe-salva.mp3",
+      "text": "La Dra. Sinha estira el brazo y toma la mano. La entidad la mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verla.",
+      "textSha256": "7d1e811c1abe6d9c21e61afd5bc2385e0b91021b04ca7fd6544bcae34192ff5f"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08719.body",
+      "file": "edge-of-the-earth-heartVictim08719-c167366f1838-salva.mp3",
+      "text": "–Teniente... ¡Está vivo! –jadea Cookie, a punto de caer de rodillas–. ¿Y el resto del batallón también? Pero pensaba que... El rugido del motor de un avión interrumpe sus sorprendidas palabras. –¡Claro, cómo no! Sabía que si aguantábamos suficiente tiempo... Un tentáculo de miasma con forma de mano se dirige hacia él...",
+      "textSha256": "c167366f183876ef66f5580dc04af82391ffd106dd224847f7feeac38cea4f12"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08719Saved.body",
+      "file": "edge-of-the-earth-heartVictim08719Saved-0c898c7651c1-salva.mp3",
+      "text": "Takada actúa con rapidez y decisión, cogiendo el Colt de Cookie de su funda y disparando dos veces contra la bruma. El tremendo sonido de los disparos resuena por las cavernosas salas. Cookie se lleva una mano a la oreja que sigue pitándole y dedica una serie de improperios a Takada mientras ésta le devuelve el arma. –¿Está intentando dejarme sordo, soldado? –Espabila, Cookie. Estás aquí atrapado con todos nosotros –contesta ella. Cookie mira a su alrededor, confuso, antes de darse cuenta de la terrible verdad. La entidad se retira al ver su plan frustrado.",
+      "textSha256": "0c898c7651c1e68088b7d49aad9d3840cfdb1388f67956a2a157ef2160aedba8"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartVictim08719Lost.body",
+      "file": "edge-of-the-earth-heartVictim08719Lost-a570b87d9612-salva.mp3",
+      "text": "Cookie estira el brazo y toma la mano. La entidad lo mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verlo.",
+      "textSha256": "a570b87d9612943e19b75fe59bc13a27f6eea2e23a2d3a4da0452706da98a65f"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartEpilogueKenslerSinha.body",
+      "file": "edge-of-the-earth-heartEpilogueKenslerSinha-5b7756798fc6-salva.mp3",
+      "text": "Has visto a la Dra. Kensler enfrentarse a criaturas imposibles y entornos de pesadilla, pero esta última prueba es la que parece costarle más. Da vueltas de un lado para otro de forma nerviosa y recita frases en voz baja hasta que por fin llega la Dra. Sinha. Te gustaría dejarlas solas, pero te ha pedido que te quedes. –Mala –dice con tono seco a pesar de tanta práctica–, me preguntaba si... o sea... me gustaría... –Se aclara la garganta y vuelve a intentarlo–. ¿Te gustaría cenar otra vez algún día? ¿Y tal vez ir a ver otro espectáculo? –logra decir por fin. La Dra. Sinha hace una mueca para esconder su sonrisa y responde: –Pues claro, idiota. La Dra. Kensler parpadea, sorprendida. Tienes la sensación de que nunca le habían llamado algo así. –Amy, eres una persona muy astuta y leída y un verdadero prodigio en tu campo. Pero en lo tocante a esto... –La Dra. Sinha hace unos gestos para indicar algo en el aire entre las dos–, eres bastante zoquete. Para sorpresa tuya, Amy suelta una risilla y sonríe: –Sí. Sí, supongo que sí.",
+      "textSha256": "5b7756798fc6f11317fa4c855e354d8f396c20afcaab357f0622f14b338329a9"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartEpilogueEllsworthClaypool.body",
+      "file": "edge-of-the-earth-heartEpilogueEllsworthClaypool-786fa8f46f9e-salva.mp3",
+      "text": "Encuentras a Ellsworth y a Claypool en la cubierta de popa del Theodosia, disfrutando de una majestuosa vista del Atlántico. Han pasado varios días desde vuestra huida, y el ambiente general es una mezcla de alivio, pesar y culpa. Ambos hombres te saludan cuando te acercas y te dejan sitio para que tú también puedas disfrutar de la vista. Tras unos instantes de contemplación, preguntas a los exploradores por sus planes de futuro. Los dos comparten una mirada de complicidad antes de responder. –Creo que unas vacaciones –dice Ellsworth–. Unas vacaciones muy, muy largas. –Sólo cielo azul y aire cálido –sugiere Claypool. –Claro. A poder ser, que sea un sitio que salga en los mapas –añade Ellsworth con una sonrisa amable. –¿En serio? Yo estaba pensando en un lugar bonito y apartado. Sólo para los dos –insinúa Claypool. Te ríes y les dejas haciendo sus planes de vacaciones. Puede que al final haya esperanza para todos vosotros.",
+      "textSha256": "786fa8f46f9e4b9eb109e57441db1e5254b1518f2449a017988bc01a12ece2ed"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartEpilogueTakadaCookie.body",
+      "file": "edge-of-the-earth-heartEpilogueTakadaCookie-406de644b3c0-salva.mp3",
+      "text": "Para tu sorpresa, ves a Takada y a Cookie en el taller que hay bajo cubierta. Cookie ha desmontado su revólver y está limpiando cada pieza de manera individual, mientras que Takada está revisando las partes de aeroplano que la tripulación logró desmontar durante vuestra apresurada huida. Observas en secreto durante un rato mientras conversan. –Pásame ese trapo, ¿quieres? –No estoy a tu servicio, Cookie. –Venga, Roko, que lo tienes ahí mismo. Cógelo y me lo tiras. –Sí, señor, ¿quiere que le traiga también un poco de té? –Muy graciosa... ¿Por qué demonios lo has tirado tan lejos? –Me has dicho que lo tirara. –Que me lo tiraras, maldita... ¡Que me lo tiraras a mí! Sonríes mientras la conversación continúa. La extraña pareja parece encontrarse más cómoda estando juntos que con nadie más del equipo. Al final, un silencio en la conversación te da la oportunidad de hacer notar tu presencia. Hacen unos leves asentimientos cuando entras antes de reanudar su trabajo. Les preguntas qué quieren hacer cuando vuelvan a Arkham. –Roko quiere... Cuéntaselo –dice Cookie. Takada suspira y se incorpora mientras se limpia el sudor de la frente con el dorso de su mano enguantada. –Yo... quiero intentar buscar a mi padre. Le he pedido al Sr. Fredericks que me acompañe –Ambos comparten una mirada cómplice–. Sé que es una posibilidad remota. Probablemente se estrellara en el océano hace muchos años. Pero aun así, quiero... necesito saberlo. Tengo sus diarios. Deberíamos de poder encontrar pruebas. Algo. –Y si no –añade Cookie–, siempre es mejor que quedarse sin hacer nada, esperando a que te manden a otra locura como ésta. Asientes y te despides. Crees que ambos estarán bien mientras se tengan el uno al otro.",
+      "textSha256": "406de644b3c0d1328dc1d99f53410dd0027a38de4f8bc99c8d0fcc88fc003704"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartEpilogueDyerDanforth.body",
+      "file": "edge-of-the-earth-heartEpilogueDyerDanforth-5b6df1778d97-salva.mp3",
+      "text": "Semanas más tarde, entras en el despacho del profesor Dyer, donde Danforth y él estudian todo un despliegue de antiguos tomos mohosos. En la pizarra del profesor hay una especie de diagrama esotérico repleto de extraños símbolos. –Podría ser éste –dice Dyer mientras señala un diagrama distinto en uno de los tomos. Reconoces el libro de las pertenencias de la Dra. Kensler, y varios de los demás tomos de la colección restringida de la Biblioteca Orne. Danforth cierra los ojos y responde: –No, no, no... –Se acerca a la pizarra y empieza a borrar–. Es distinto. Distinto, distinto... No es hasta ese momento cuando por fin te ven en la entrada del despacho. Les preguntas qué están estudiando esta vez. –No es de ninguna manera una suposición irracional que, en una existencia futura, consideraremos lo que creemos de nuestra existencia actual como un sueño –recita Danforth una vez más, citando a Poe a modo de explicación.",
+      "textSha256": "5b6df1778d975fcf09ad98fe7b1e8cc3321a0ebfc688ccc4de63c7d4ed372d6b"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartEpilogueEliyah.body",
+      "file": "edge-of-the-earth-heartEpilogueEliyah-343ff81663d8-salva.mp3",
+      "text": "Eliyah está sentado junto a la barandilla de la proa del barco, con la mirada perdida y teñida de preocupación. A su lado, tumbada sobre la cubierta y con la cabeza sobre su regazo, se encuentra Anyu. Es la primera que te ve acercarte, pero ninguno te saluda. No dices nada y te sientas cerca, mirando el horizonte en silencio. –Ha vuelto a suceder, Anyu –murmura por fin con la voz grave–. Todo el mundo ha muerto. Todos menos nosotros. ¿Por qué? ¿Por qué siempre nosotros? Le dices a Eliyah que es porque ambos son supervivientes, como tú. Demasiado tercos para morir. Pero él sacude la cabeza. –No. Es una maldición. Una carga –acaricia suavemente a Anyu. La perra levanta la cabeza y te mira con expresión suplicante–. Debería estar muerto. Dos veces ya. Insistes que no es cierto. Y además, ha mantenido a Anyu a salvo todo este tiempo, ¿acaso no es razón suficiente para vivir? –No, es al revés –dice con una sonrisa a punto de asomarle en los labios–. Fue ella la que me salvó ese día. Es ella quien me salva cada día.",
+      "textSha256": "343ff81663d84e5c6a488de17d515e35c24059e36244de2661a0ee5773f12208"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartTwoMirageTruth.body",
+      "file": "edge-of-the-earth-heartTwoMirageTruth-3a6cbfb03e0a-salva.mp3",
+      "text": "Te quedas mirando la espantosa fantasmagoría completamente sobrecogido. El aire resplandece como en un sueño en torno a su execrable forma, una trama infinita de pesadillas y recuerdos entrelazados. Su mera visión te hace caer de rodillas. Es la verdad definitiva. La realidad era el espejismo.",
+      "textSha256": "3a6cbfb03e0a026e5eed878e5adc9418cf2fe31375bba85dd550fead465349cc"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartPylonsFailed.body",
+      "file": "edge-of-the-earth-heartPylonsFailed-bb0928a3f983-salva.mp3",
+      "text": "Es demasiado tarde. No podéis contener a la criatura que mora bajo la montaña. Sólo os queda esperar que podáis escapar con vida.",
+      "textSha256": "bb0928a3f983443885ef1e27f5ce09efa772861e661e4d53c20d46456e00fc34"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartPylonsCollapsed.body",
+      "file": "edge-of-the-earth-heartPylonsCollapsed-4d114ea1dd7b-salva.mp3",
+      "text": "La instalación tiembla de arriba abajo. Sin los pilones de bruma para alimentar la estructura, la entidad sin nombre que reside en su interior está libre, pero tiene los días contados, igual que tú. La montaña gruñe y se estremece, amenazando con derrumbarse a tu alrededor.",
+      "textSha256": "4d114ea1dd7bfcf58aa3e050753f37b0cbb26285bd78007c43d25e8279266705"
+    },
+    {
+      "key": "story.edgeOfTheEarth.peaksTragedy.body",
+      "file": "edge-of-the-earth-peaksTragedy-136b1aefc532-salva.mp3",
+      "text": "Todo sucede en un abrir y cerrar de ojos. Sólo tienes tiempo de gritar el nombre de la persona antes de que lo atrapen. Su cuerpo se ve rodeado por sus muchas formas cambiantes. La persona intenta escapar, pero es en vano.",
+      "textSha256": "136b1aefc5321006e8aee72d6178e99c326f304c0b2b361d6e08caabfc7d9a9a"
+    },
+    {
+      "key": "story.edgeOfTheEarth.peaksTragedyEnd.body",
+      "file": "edge-of-the-earth-peaksTragedyEnd-e394daf02562-salva.mp3",
+      "text": "A continuación, sin un instante de duda, clava sus tentáculos en el cuerpo de su víctima y la parte de un tirón como si fuera un trozo de carne cruda. Una rociada de sangre tiñe la nieve de un color carmesí. Tira en el suelo sin miramientos los restos de la persona y vuelve su atención hacia los demás.",
+      "textSha256": "e394daf025625e3ce14f4459f5a21ff750674531583b5a57d9a51e28e11c3754"
+    },
+    {
+      "key": "story.edgeOfTheEarth.peaksTragedyCookie.body",
+      "file": "edge-of-the-earth-peaksTragedyCookie-239bb9b1016b-salva.mp3",
+      "text": "El curtido veterano suelta una palabrota y logra sacar el brazo derecho del agarre de la criatura, lo suficiente como para poder realizar un disparo con su colt. La detonación resuena por toda la montaña y desgarra la grotesca masa informe de la cosa.",
+      "textSha256": "239bb9b1016b6fe881af74a56eb895abefd623732386507638efb13545909a88"
+    },
+    {
+      "key": "story.edgeOfTheEarth.peaksNoResolution.body",
+      "file": "edge-of-the-earth-peaksNoResolution-c59b65487d65-salva.mp3",
+      "text": "El resto de vuestro trayecto por los picos es un remolino de nieve y miedo. Subís cada vez más alto, forzándoos hasta extremos que jamás habríais pensado posibles. Pero la cumbre se mantiene fuera de vuestro alcance. Cuando cae la noche y las condiciones climatológicas se vuelven más letales aún, la desesperación os obliga a buscar algún lugar donde poder sobrevivir.",
+      "textSha256": "c59b65487d65a9849475ad85cf37391f7f75f372962a17b05ba39a656699e50d"
+    },
+    {
+      "key": "story.edgeOfTheEarth.peaksResolution1.body",
+      "file": "edge-of-the-earth-peaksResolution1-7ea64e086099-salva.mp3",
+      "text": "La vista desde la cumbre es espectacular, pero no estás de humor para disfrutar de ella. Ante ti, al otro lado de estos picos malditos, se extiende la ciudad descrita en el informe de Dyer. Su inquietante faz es inconfundible. Docenas de edificios cónicos y piramidales de pizarra oscura y arenisca se distribuyen en forma de panal por toda la zona, como un laberinto de formas geométricas perfectas. Aunque desgastada por los siglos, la ciudad permanece en pie, oculta por los escarpados picos y las intensas nevadas. Te quedas en silencio durante un rato, admirando la impresionante vista. Si no fuera por las muchas tribulaciones vividas hasta llegar aquí, sería un momento de triunfo. Pero después de todos los sacrificios realizados, la victoria tiene un regusto amargo. Un gélido viento sopla entre los picos. El aire es demasiado escaso aquí arriba como para quedarse mucho tiempo. Tras descansar un momento, empezáis el largo camino de descenso hacia la ciudad alienígena. Tendréis que acampar antes de llegar abajo. Con suerte, estaréis ocultos frente a las terribles criaturas que moran allí...",
+      "textSha256": "7ea64e086099de92e422fbc89958e9f21f82f3201bda9ed3f4e0f94453382f65"
+    },
+    {
+      "key": "story.edgeOfTheEarth.peaksResolution2.body",
+      "file": "edge-of-the-earth-peaksResolution2-d1b8d14a2151-salva.mp3",
+      "text": "Cuando estás empezando a perder la esperanza, encuentras una oscura cueva metida en la ladera de la montaña. El viento aúlla fuera de la entrada de la cueva, trayendo un repentino alud de nieve. No sabes qué sería peor: una muerte lenta atrapados en una caverna helada o una muerte igual de lenta al fracasar en el intento de llegar a la cumbre. Pero cuando uno de los miembros del equipo enciende su linterna, veis que podría haber una tercera opción. Las paredes de este angosto túnel están repletas de extraños jeroglíficos, distintos a nada que hayas visto nunca. Supones que es la antigua escritura de un idioma alienígena. Puede que incluso sea el de los Antiguos que habitaban en este lugar. Lo más importante es que la caverna se adentra cada vez más en la montaña, más lejos de adonde llega la luz. Votáis sobre lo que hacer y decidís seguir adelante, con la lejana esperanza de que el túnel pueda llevaros a otra salida. Para vuestra sorpresa, el camino es sencillo, aunque la omnipresente oscuridad, los aterradores ecos de gruñidos imposibles y las voces amortiguadas de algo que hay en las profundidades hacen mella en vuestra cordura. Camináis durante horas, hasta que afortunadamente acabáis por ver luz a lo lejos. Volvéis a salir a la ladera de la montaña, pero esta vez tenéis delante una espectacular vista. Ante t, se extiende la ciudad descrita en el informe de Dyer. Su inquietante faz es inconfundible. Docenas de edificios cónicos y piramidales de pizarra oscura y arenisca se distribuyen en forma de panal por toda la zona, como un laberinto de formas geométricas perfectas. Aunque desgastada por los siglos, la ciudad permanece en pie, oculta por los escarpados picos y las intensas nevadas. Te quedas en silencio durante un rato, admirando la impresionante vista. Habéis logrado encontrar la forma de atravesar la montaña de algún modo. Si no fuera por las muchas tribulaciones vividas hasta llegar aquí, sería un momento de triunfo. Pero después de todos los sacrificios realizados, la victoria tiene un regusto amargo. Tras descansar un momento, empezáis el largo camino de descenso hacia la ciudad alienígena. Tendréis que acampar antes de llegar abajo. Con suerte, estaréis ocultos frente a las terribles criaturas que moran allí...",
+      "textSha256": "d1b8d14a215161bc19669e1fb13e300a6f236097adf720f539b64c3744a7baab"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessNight.body",
+      "file": "edge-of-the-earth-endlessNight-13f19e1c34bd-salva.mp3",
+      "text": "Ahora que volvéis a estar a salvo, tus compañeros y tú establecéis un campamento en silencio. Te maravilla la quietud de esta noche en comparación con las anteriores, ya sea porque sois menos o por el lúgubre ánimo que reina en el campamento. Pero la quietud no tiene nada de tranquila. A medida que pasan las horas, no logras descansar, así que decides ir a ver a algunos de tus compañeros...",
+      "textSha256": "13f19e1c34bdd312386a15f274990495dd5287ad3ecbd7823549ef684a6ccdd7"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessNightDoor.body",
+      "file": "edge-of-the-earth-endlessNightDoor-a24969ae0abe-salva.mp3",
+      "text": "Cuando estás empezando a conciliar el sueño, una vaga amenaza que percibes al límite de tu percepción te sobresalta. De forma instintiva, buscas un arma para defenderte, pero cuando miras en torno a ti, no hay nada extraño. De hecho... Te pones en pie, conmocionado, y examinas los alrededores. El campamento improvisado estaba protegido de la dureza de los elementos, pero no deja de estar en lo más profundo de la Antártida. Pese a ello, te encuentras dentro de un edificio, en una sala que no reconoces aunque te produce una extraña familiaridad. Quitas parte de la nieve que sigue habiendo en el suelo, en torno a tu saco de dormir, y ves un suelo de baldosas que antes no estaba ahí. ¿Es un sueño? Cuando dudas de la verdad de este misterioso lugar, las paredes y el suelo de baldosas brillan y se desvanecen. Vuelves a estar en el frío helador de tu campamento, rodeado por tus compañeros, pero la puerta de salida de la sala permanece. Una densa bruma gris se arremolina a tu alrededor, como guiándote. No hay refracción natural de la luz. Se está produciendo algo sobrenatural. El espeso miasma que gira en torno al campamento es parecido a la sustancia que compone las criaturas de pesadilla que encontrasteis tras el accidente de avión. ¿De verdad quieres saber lo que quiere que veas?",
+      "textSha256": "a24969ae0abe20fd0482f2471334118f0f2987e002093f890703896bcac0f78a"
+    },
+    {
+      "key": "story.edgeOfTheEarth.peaksSetup.body",
+      "file": "edge-of-the-earth-peaksSetup-2c8c3a8d357e-salva.mp3",
+      "text": "Æ Reúne todas las cartas de los siguientes conjuntos de encuentros: Hacia los picos prohibidos, Tiempo letal, Antiguos, Peligros de la Antártida, Horrores sin nombre y Tekeli-li . Estos conjuntos vienen indicados por los siguientes iconos: Æ Baraja los 7 Lugares Ladera de montaña y pon 5 en juego formando una diagonal. Pon aparte los 2 Lugares restantes, fuera del juego. Pon el Lugar La cumbre en juego en la parte superior de la diagonal. La posición de cada Lugar tiene su propio nivel de 0 a 5, empezando por el Lugar en la parte inferior con el nivel 0 y subiendo hasta llegar a La cumbre en el nivel 5 (consulta la colocación de Lugares abajo). = Revela el Lugar del nivel 0. Cada investigador comienza la partida en ese Lugar. Æ Añade 1 ficha [elderThing] a la bolsa de caos. Æ Consulta la sección “Suministros recuperados” del registro de campaña y pon en juego en el Lugar del nivel 0 todos los Apoyos de historia Expedición que estén anotados en ella. Retira todos los demás Apoyos de historia Expedición de la partida. Æ Pon aparte el Enemigo Terror de las estrellas, fuera del juego. Æ Comprueba el nivel de dificultad: = Si juegas en dificultad Difícil, añade 1 ficha de Perdición al plan 1a. = Si juegas en dificultad Experto, añade 2 fichas de Perdición al plan 1a. Æ Baraja todas las cartas de Debilidad ¡Tekeli-li! que no sean parte del mazo de un investigador para formar el mazo Tekeli-li. Coloca este mazo junto al mazo de Plan. Æ Baraja el resto de cartas de Encuentro para formar el mazo de Encuentros. Æ Los investigadores ya están listos para comenzar. Adyacencia de Lugares en Hacia los picos prohibidos Durante este escenario, los Lugares están colocados formando una diagonal, con cada Lugar situado por encima o por debajo de los Lugares que tiene al lado. Æ Durante este escenario, cada Lugar está conectado con el Lugar que tenga por debajo y con el Lugar que tenga por encima.",
+      "textSha256": "2c8c3a8d357ea4069ed60d788edd725ce7e94959be64ae29d4a730b51c3a9e50"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08714alive.body",
+      "file": "edge-of-the-earth-endlessVisit08714alive-914ce8fb888e-salva.mp3",
+      "text": "El profesor está yendo de un lado a otro mientras se pasa los dedos por el cabello cano. –Están conectados. Tienen que estar conectados –murmura para sí mientras te acercas–. Los Antiguos y estas manifestaciones, estos “espejismos” –prosigue como si respondiese a la pregunta que no has hecho–. La última vez que estuvimos aquí, vi imágenes de los Antiguos en conflicto con otras especies, otros... seres alienígenas. Pero ¿y si el verdadero origen de su miedo se encuentra aquí, en la Tierra? – Su mirada se encuentra con la tuya–. ¿Y si éste no era su verdadero hogar? ¿Y si... y si estaban protegiendo algo?",
+      "textSha256": "914ce8fb888ef886eed1971c81539c456436d47a5f56d3096a0bcd580591d514"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08714memorial.body",
+      "file": "edge-of-the-earth-endlessVisit08714memorial-1310a93ccb01-salva.mp3",
+      "text": "Dedicas un momento a revisar algunos de los viejos bocetos del profesor, que había traído consigo por si podían resultar útiles. Como sospechabas, ninguna de las criaturas que esbozó se parecen lo más mínimo a las cosas que viste. Pero cuando estás a punto de rendirte, encuentras varios bocetos de la ciudad que afirma haber encontrado al otro lado de las oscuras y escarpadas montañas. Muestran una enorme arcada decorada con cinco símbolos rodeados de una estrella de cinco puntas. Bajo la arcada, o puede que detrás de ella, se alza algo grotesco. Las líneas del boceto se desintegran en una maraña de trazos ligeros y manchas de tinta que apenas puedes describir. Hay varias criaturas con cuerpo de barril y cabeza de estrella de mar, los “Antiguos” alienígenas que Dyer describió en su informe, flanqueando la arcada, con actitud reverente y los apéndices similares a alas extendidos también con reverencia. Desearías poder preguntarle a Dyer lo que significa esto, pero por desgracia, es demasiado tarde para eso. Coges sus bocetos para llevártelos, esperando que puedan resultar útiles más adelante.",
+      "textSha256": "1310a93ccb01a16d8cc73a481de4bce312eaa75b77003ec9838147cfdb099242"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08715alive.body",
+      "file": "edge-of-the-earth-endlessVisit08715alive-fa1fed3e35fc-salva.mp3",
+      "text": "Nadie más parece entender los desvaríos de Danforth, pero crees que tú empiezas a hacerlo. O al menos eres la única persona que lo intenta. Después de todo, sea lo que sea lo que vio durante su último viaje aquí, es algo nuclear en todo este asunto. –Era... era... –se detiene, pues se le corta la voz cuando intenta explicarlo–. Era como las criaturas que hemos visto. Tinta, bruma y color. O al menos creo que es la única forma que tienen nuestros ojos humanos de interpretar su verdadera forma. Los ojos de Danforth tienen la mirada perdida a lo lejos, empañados por el horror mientras rememora el espejismo. –Sigue aquí. Atado y encadenado. Pero temo que no por mucho tiempo. No por mucho tiempo.",
+      "textSha256": "fa1fed3e35fc25617783528810aa38bfac0e3f04bc21df3742bdcdf1deaa0d29"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08715memorial.body",
+      "file": "edge-of-the-earth-endlessVisit08715memorial-46ccdf81740b-salva.mp3",
+      "text": "Decides buscar información en las pertenencias de Danforth, con la esperanza de que llevara un diario o tuviera pruebas de su anterior expedición con Dyer. Lo que encuentras en su lugar es todo un tesoro de ficción tanto macabra como especulativa, incluyendo un sobado ejemplar de las obras de Edgar Allan Poe. Sus páginas están repletas de marcas improvisadas, y los márgenes, llenos de numerosas notas y apuntes, algunos relevantes y otros cuyo verdadero significado se te escapa. No sabes bien el motivo que tuvo Danforth para traer semejante colección de relatos, especialmente uno al que parecía tener tanto aprecio. Lo abres por una de las páginas marcadas y lees: “No pudimos convencerle para que la tocara o se acercase a ella, pues se ponía a temblar cuando intentábamos obligarle, gritando: ‘¡Tekeli-li!’”. En el margen, Danforth ha garabateado: “¿Qué podría hacer que alguien saliera de un paroxismo tal? ¿Cómo puedo dejar atrás esta terrible sensación?”.",
+      "textSha256": "46ccdf81740bda1024574a4a20893328e636b5f253fb84ad5d50892b2c3b1198"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08720alive.body",
+      "file": "edge-of-the-earth-endlessVisit08720alive-fd15816e3866-salva.mp3",
+      "text": "La Dra. Kensler no se sorprende al verte entrar en su tienda. Levanta la vista de su mesa y se baja las gafas para mirarte directamente. –¿Ha venido a interesarse por lo que he averiguado? –te pregunta, y tú asientes–. Muy bien. Te das cuenta de su actitud inusualmente cálida y te acercas y miras por encima de su hombro. Frente a ella, ves un trozo de uno de los apéndices de un Antiguo diseccionado con precisión experta. Un líquido verde oscuro mancha su carne escamosa y la superficie que hay bajo él. La doctora vuelve a levantarse las gafas y se vuelve para mirar de nuevo la muestra anatómica. –No es muy distinto a nosotros –dice–, tal y como sugirió Dyer en su relato. Y aun así, de algún modo es capaz de sobrevivir a una presión y un frío increíbles. Puede que incluso al vacío del espacio. Lo que no entiendo es... –Respira hondo y prosigue–. El informe de Dyer cuenta que sólo despertaron de su hibernación unas pocas de estas criaturas. ¿Entonces por qué hay tantas activas?",
+      "textSha256": "fd15816e3866fe3a2568e79bbc7145b0a682f62518b3926dd87de2b4ec214bd1"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08720memorial.body",
+      "file": "edge-of-the-earth-endlessVisit08720memorial-5fb31785c28d-salva.mp3",
+      "text": "Revisas las notas de investigación que dejó la jefa de esta expedición condenada. Seguro que si alguien podría encontrarle algún sentido a lo que habéis visto hasta ahora, ésa sería la Dra. Kensler. Puede que supiera más sobre las criaturas de lo que decía. Registras su tienda y sus pertenencias hasta encontrar un grueso diario lleno de meticulosas notas sobre el viaje a la Antártida y los primeros días que pasasteis descargando suministros y estableciendo el campamento. A partir de ahí, las notas se vuelven menos detalladas y más confusas. Su relato de los días anteriores al accidente de avión tiene más de desvarío delirante que de diario ordenado. Escribió sobre paredes en las que rezumaba un miasma negro, sobre un vacío infinito bajo el hielo, sobre algo maligno y alienígena que moraba en el núcleo que hay al otro lado del portal... y luego, sobre nada. La Dra. Kensler no era alguien que se dedicara a contar sueños o a escribir obras de ficción. Algo la había descompuesto. Algo había hecho que viera las cosas sobre las que escribía. Pero ¿cómo? ¿Y cuándo? Te sientas a continuar su registro con tu propio relato de los hechos, con la siniestra esperanza de que, si no sales con vida de este continente, alguien lo lea y sepa lo que sucedió aquí...",
+      "textSha256": "5fb31785c28d03123c506ed8a9a5a35ac740b319fa256b356cdef61489a4e53e"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08717alive.body",
+      "file": "edge-of-the-earth-endlessVisit08717alive-fff16ab9ef5a-salva.mp3",
+      "text": "–¿Cómo se encuentra? Te quedas parpadeando en silencio durante un instante, pues la sincera preocupación de la doctora te ha sorprendido. Habías acudido a ella esperando que hiciera una mueca y te regañara. –Venga, ¿acaso no puedo preocuparme? Después de todo lo que hemos visto y por lo que hemos pasado, creo que debería inquietarme. Ante su insistencia, le permites que te examine en busca de heridas o signos tempranos de hipotermia. –Tenemos suerte de seguir con vida, ¿sabe? –dice en voz baja mientras abre su botiquín–. O tal vez... –Hace sonar los dientes y sacude la cabeza–. ... tal vez los afortunados sean los otros.",
+      "textSha256": "fff16ab9ef5afca8c0afe2ea43152bf8660a6ea83fd437bced76783dfa4ceb39"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08717memorial.body",
+      "file": "edge-of-the-earth-endlessVisit08717memorial-cde5e2bc87d8-salva.mp3",
+      "text": "No sabes muy bien qué es lo que te ha impulsado a acudir a la tienda de la Dra. Sinha, pero ahora que estás aquí, sabes que no encontrarás respuestas entre sus pertenencias. Aun así, tal vez puedas aprovechar sus botiquines y equipo para el frío. Mientras metes sus suministros médicos en una de sus mochilas, un escalofrío te recorre la espalda. Te dices que lo haces por necesidad, pero adueñarte de las posesiones de los muertos te pesa mucho en la consciencia. Te echas a los hombros las correas de la mochila y te vuelves para salir de la tienda de la Dra. Sinha, con la esperanza de sacar de tu mente este macabro asunto. Del bolsillo delantero de la mochila cae algo que hace un leve ruido en el suelo que te llama la atención. Buscas el objeto en torno a tus pies y encuentras una carterita de cuero que sólo contiene una horquilla, una foto de la Dra. Sinha con lo que supones que será su familia y el resguardo de una entrada para un espectáculo en el Teatro Riverview. Si fue lo bastante importante como para que lo conservara, debe de tener algún valor sentimental.",
+      "textSha256": "cde5e2bc87d81e3024f23bce4ec95b654f11809cd801c8a5ac67c796eed28639"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08719alive.body",
+      "file": "edge-of-the-earth-endlessVisit08719alive-6526da318c38-salva.mp3",
+      "text": "Acudes a Cookie tarde de madrugada, cuando todo el mundo debería de estar dormido. Los restos de la hoguera arden silenciosamente entre ambos, y su tenue luz arroja una sombra danzante tras su silueta encogida. –Espero que no haya venido en busca de consejo –murmura después de un rato. Niegas con la cabeza y le informas de que sólo has venido en busca de compañía–. Claro, claro. Será más bien que no puede dormir –dice acusador, y no respondes nada. No puedes rebatir la verdad. Respira profundamente y prosigue–. Cuando estábamos en las trincheras, no dormíamos casi nunca. Costaba mucho en esas condiciones, en la tierra y el barro, cubiertos de moscas. Y cada vez que los intentábamos, los alemanes nos despertaban con fuego de mortero. El agotamiento era insoportable. Su mirada se clava en el fuego. –Incluso una hora o dos era un regalo divino. Pero superé ese infierno de algún modo, pese a todo lo que intentaba matarme. Le preguntas cómo puedes hacer lo mismo. Los labios de Cookie se curvan hacia abajo, pero la pregunta no lo disuade. –Muy bien, escuche.",
+      "textSha256": "6526da318c38f233459eb18bf56c9ff93f9e4d913f5cf392ce6a89ff2e2922b4"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08719memorial.body",
+      "file": "edge-of-the-earth-endlessVisit08719memorial-015f44fe4884-salva.mp3",
+      "text": "Mientras establecéis el campamento, otro de los miembros del equipo se acerca con una bolsa que contiene las pertenencias de Cookie. –He pensado que usted es la mejor persona para quedarse con todo esto –dice el joven con pena mientras te la entrega. Te sientas junto a la hoguera y examinas los objetos de la bolsa uno a uno. Dentro hay varios efectos personales de Cookie: un reloj de bolsillo con la esfera agrietada, una caja de cerillas con el logotipo del hotel Excelsior y, por supuesto, su fiel revólver Colt del .32. Lo conservaba excepcionalmente bien, con el cañón limpio y pulido y la empuñadura de madera inmaculada. Conociendo a Cookie, no sería por el cariño que sintiera por el arma, sino porque le costaba desprenderse de las viejas costumbres. Sacas el tambor y ves que sólo quedan unas pocas balas. Lo haces girar distraídamente y realizas una silenciosa promesa dedicada a Cookie: No te preocupes. Les daré un buen uso a estas balas.",
+      "textSha256": "015f44fe4884ae009a8bbec7ac686f6630d5982df5fdbd31064a9ba7c4856436"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08718alive.body",
+      "file": "edge-of-the-earth-endlessVisit08718alive-83880d886449-salva.mp3",
+      "text": "Encuentras a Claypool al borde del campamento, contemplando la ciudad alienígena. –Impresionante, ¿verdad? –Asientes y mencionas que la arquitectura no se parece a nada que hayas visto antes–. No, no me refiero a eso. A ver, eso también, pero mire... –responde mientras señala los enormes picos que se alzan en torno a la ciudad en todas direcciones, como una frontera–. Está construida para bloquear y canalizar el viento. Eligieron con precisión el lugar más apropiado para construir su ciudad. Y el modo en el que están construidas estas calles y estructuras hace que estén protegidas en su mayor parte del exceso de nieve. Te mira de reojo con entusiasmo antes de proseguir su discurso. –Estas criaturas escogieron el lugar más inhóspito de la Tierra para establecer su hogar y prosperaron pese a todo. Te preguntas si es posible que esto signifique que las inclemencias del tiempo sufridas hasta ahora serán menores durante el próximo tramo de vuestro viaje. –Es poco probable –contesta–. Muchas de las protecciones naturales que incorporaron a su ciudad se han desgastado. Y probablemente haya mucho más hielo del que habría en su época. Pero me aseguraré de que evitemos lo peor.",
+      "textSha256": "83880d88644906dc8f70325ea6fce94ac4d2afcc0d637a7cb5273d6586b09d85"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08718memorial.body",
+      "file": "edge-of-the-earth-endlessVisit08718memorial-74ac1ffefca7-salva.mp3",
+      "text": "Las pertenencias de Claypool están tiradas por la tienda principal del campamento, incluido un mapa de la barrera de hielo de Ross que ha marcado con diversas anotaciones que no entiendes del todo. Un frío viento abre las solapas de la tienda y la llena de un aire gélido. Te abrazas el pecho para mantener el calor. Sin Claypool, estáis indefensos frente al peligroso tiempo. Quedarse atrapados en una tormenta polar sería letal, y era el único con los conocimientos suficientes como para predecirlas con precisión. Suspiras y te dispones a marcharte, pero te detienes un momento para mirar el pesado abrigo de pieles donde han metido el resto de cosas de Claypool. Luego miras el tuyo: andrajoso y roto por el complicado viaje. Coges el de Claypool y dejas el tuyo. Tal vez no te haya dejado tan indefenso frente a la climatología después de todo.",
+      "textSha256": "74ac1ffefca73a5a4bf840db3e7a1f9d956e0df17af827c853f8d8df0620837f"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08721alive.body",
+      "file": "edge-of-the-earth-endlessVisit08721alive-416241af8853-salva.mp3",
+      "text": "Ellsworth te da una palmadita en el hombro cuando te acercas y te entrega un paquetito de víveres. –Venga –dice mientras hace un gesto hacia la ciudad–. Vamos a hacer una excursioncita. Atravesáis juntos la nieve y el hielo y avanzáis en profunda oscuridad pendiente abajo por la ladera de la montaña, hasta que por fin alcanzáis los tejados angulares de una de las estructuras de basalto de la ciudad. –Aquí... justo como pensaba –señala una entrada del edificio, una ventana medio tapada por la nieve que se encuentra al lado de la pendiente–. Podemos entrar al edificio por aquí y bajar hasta el nivel de la calle. Será mucho más fácil que fatigarse por la nieve, ¿no le parece? Venga, lo marcaré en nuestro mapa. Volvamos al campamento antes de que nos perdamos.",
+      "textSha256": "416241af885362edce619e657b2074323958f00fef6cd845e0e0f646662d18da"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08721memorial.body",
+      "file": "edge-of-the-earth-endlessVisit08721memorial-5f2f479b7b75-salva.mp3",
+      "text": "Si no supieras que no es así, tendrías que suponer que Ellsworth se había estado preparando para el apocalipsis. Pese a su reputación como explorador de carga ligera y mochilero experto, un simple vistazo a las pertenencias que ha dejado muestra una gran cantidad de provisiones, suministros y equipo para el hielo. Mientras el equipo se reparte tristemente sus cosas para darles buen uso, ves un par extra de botas resistentes al agua que debió de traer como repuesto. No sabes si alguno de vosotros podría seguir sus pasos de verdad, pero al menos con éstas podrías intentarlo.",
+      "textSha256": "5f2f479b7b75601ca8a1ee9a0844ee0798d036a12786fbdb35f7c9cb0317c837"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08722alive.body",
+      "file": "edge-of-the-earth-endlessVisit08722alive-fa03cf8d6ada-salva.mp3",
+      "text": "La intendente provisional del equipo está contando algo cuando la abordas. Suelta un improperio al perder la cuenta. –¿Tiene la menor idea de cuánto tiempo llevo...? –se detiene y hace una mueca. Su siguiente pregunta va acompañada de una exasperación monótona–. ¿Qué quiere? Informas a Takada de que te gustaría coger algunos suministros para el viaje de mañana hacia la ciudad alienígena. –Ah, le gustaría, ¿verdad? –Suspira–. Vale, muy bien. Pero no coja nada de esa mochila –añade con un gesto hacia una mochila que está a reventar de provisiones y repuestos de aeroplano–. Es... una larga historia –dice a modo de respuesta de la pregunta que no has hecho, y ahí acaba la discusión.",
+      "textSha256": "fa03cf8d6ada27ae5834a71510f7441fb23c604cfe63d94350edb222a4ad28a1"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08722memorial.body",
+      "file": "edge-of-the-earth-endlessVisit08722memorial-d13e0e56a147-salva.mp3",
+      "text": "Para alguien que supuestamente se enorgullecía de sus habilidades de organización, los suministros mecánicos de Takada son un completo desastre. Si no supieras que no es así, pensarías que la forma en la que ha almacenado sus cosas no tiene ni pies ni cabeza; pero conociendo a Takada, sospechas que tenía algún sistema. Pasas varios minutos revisando sus pertenencias en busca de algo que pudiera serles útil a los miembros restantes de la expedición. Sin Takada, no podréis lograr que vuele el último aeroplano. De hecho, crees que tendréis que dejar atrás la mayoría de sus cosas cuando mañana salgáis hacia las montañas. Aun así, crees que podrás aprovechar algunos de los suministros que tenía guardados.",
+      "textSha256": "d13e0e56a1474a0f3e3ce2c869c5a551d88d1d525fb08cbed9fa07a40e011c4a"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08716alive.body",
+      "file": "edge-of-the-earth-endlessVisit08716alive-5c2edb63a5fc-salva.mp3",
+      "text": "No encuentras a Eliyah, pero Anyu te encuentra a ti. La enorme perra se lanza contra tu regazo cuando menos te lo esperas y empieza a golpearte la cara cariñosamente con el morro. Te ríes y no puedes evitar sonreír mientras intentas en vano quitártela de encima. Las babas son una cosa, pero las babas congeladas son otra muy distinta. –Anyu, ¡abajo! –oyes que grita Eliyah, que se sienta junto a la perra y la rasca tras las orejas. Sacudes la cabeza y le dices que es agradable tener un motivo para sonreír de vez en cuando, incluso cuando las cosas están tan mal como parecen. Él asiente ante tus palabras. –Es cierto. Anyu me ha ayudado a superar muchas situaciones como... Bueno, supongo que nunca he estado en una situación que fuera como ésta . Pero siempre ha estado ahí para mí. Y parece que usted también le ha caído en gracia. Como si entendiera las palabras de Eliyah, la perra te mira con calidez. Sonríes de nuevo y le dices que sientes lo mismo por ella. Anyu mueve el rabo.",
+      "textSha256": "5c2edb63a5fcc6bf5e0fe8ba9f580efe7001c84d18e3de4d9cfd8835db423392"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisit08716memorial.body",
+      "file": "edge-of-the-earth-endlessVisit08716memorial-22b360e5bd74-salva.mp3",
+      "text": "Cuando te sientas en la periferia del campamento y te preguntas qué te deparará el destino en los próximos días, un leve golpecito te saca de tus pensamientos. Te giras con sorpresa, esperando ver otra de las horrendas criaturas surgiendo del hielo, pero no es más que Anyu, la fiel compañera de Eliyah. La gran perra gris te mira con ojos suplicantes. Sacudes la cabeza y te pones en pie pesadamente. Ya basta de lamentarse por esta noche. Mientras vuelves hacia el campamento, unas suaves pisadas recorren la nieve detrás de ti. Te paras y miras de reojo a Anyu, que vuelve a levantar la mirada hacia ti. ¿Está buscando consuelo o un propósito? Te arrodillas y le pasas los dedos enguantados por el denso pelaje, hablándole dulcemente como si quisieras tranquilizaros a ambos. Sí, Eliyah ya no está. No, no sé si estamos a salvo. ¿Quieres quedarte conmigo? Anyu mueve el rabo. Pues decidido queda.",
+      "textSha256": "22b360e5bd74e3745d330841a3f62b992a4236060bc3d97ce64410ff1dd1c28a"
+    },
+    {
+      "key": "story.edgeOfTheEarth.endlessVisitEllsworthClaypool.body",
+      "file": "edge-of-the-earth-endlessVisitEllsworthClaypool-13dec63aa1bf-salva.mp3",
+      "text": "Cuando volvéis al campamento, Claypool se acerca asustado, acarreando una mochila llena de equipo. –¡Roald! Yo... pensaba que... –deja la frase en el aire, aliviado. –Avery, ¿estabas...? –Ellsworth se arriesga a esbozar una sonrisa–. ¿Estabas preocupado por mí? Claypool suelta la mochila y hace una mueca burlona antes de responder: –No lo tengo prohibido, ¿no? Te ríes para tus adentros y te marchas mientras ellos dos retoman el contacto.",
+      "textSha256": "13dec63aa1bfe23b4a05b6a3b36b5330144a8451c5a2665f86a4de30262cc95c"
+    },
+    {
+      "key": "story.edgeOfTheEarth.heartCheckpoint3.body",
+      "file": "edge-of-the-earth-heartCheckpoint3-b7cc7afa97f5-salva.mp3",
+      "text": "Descansas para recuperar fuerzas. Pronto acabarás con esto de una vez por todas.",
+      "textSha256": "b7cc7afa97f5153b7e4c74baeade6c720212d9a09d1290a1f1a292c486a206a0"
     }
   ]
 }

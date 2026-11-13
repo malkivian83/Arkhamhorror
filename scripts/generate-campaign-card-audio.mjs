@@ -92,7 +92,7 @@ for (const [group, storyEvidence] of Object.entries(groups)) {
         return [{ code, side, text, file: `${code}-${side}.mp3` }]
       }),
     )
-  if (!process.argv.includes('--generate')) {
+  if (!process.argv.includes('--generate') && !process.argv.includes('--refresh')) {
     console.log(
       JSON.stringify({
         group,
@@ -102,6 +102,27 @@ for (const [group, storyEvidence] of Object.entries(groups)) {
         characters: entries.reduce((n, e) => n + e.text.length, 0),
         entries,
       }),
+    )
+    continue
+  }
+  if (process.argv.includes('--refresh') && !process.argv.includes('--generate')) {
+    const evidencePath = `docs-proyecto/evidencias/${group}-cartas-narracion.json`
+    const evidence = existsSync(evidencePath)
+      ? JSON.parse(readFileSync(evidencePath, 'utf8'))
+      : { voiceId, language: 'es', settings, files: [] }
+    const pending = []
+    for (const entry of entries) {
+      const inputHash = hash(JSON.stringify({ text: entry.text, voiceId, ...settings }))
+      const previous = evidence.files.find((f) => f.file === entry.file)
+      const path = join(root, entry.file)
+      if (existsSync(path)) {
+        if (previous?.inputHash !== inputHash || previous.sha256 !== hash(readFileSync(path)))
+          throw new Error(`Huella distinta: ${entry.file}`)
+      } else pending.push({ ...entry, inputHash })
+    }
+    writeFileSync(evidencePath, JSON.stringify({ ...evidence, pending }, null, 2) + '\n')
+    console.log(
+      `${group}: ${evidence.files.length} caras grabadas; ${pending.length} pendientes con texto completo`,
     )
     continue
   }
@@ -170,4 +191,6 @@ for (const [group, storyEvidence] of Object.entries(groups)) {
     writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n')
     console.log(`Verificado ${group}/${entry.file}`)
   }
+  evidence.pending = entries.filter((entry) => !evidence.files.some((f) => f.file === entry.file))
+  writeFileSync(evidencePath, JSON.stringify(evidence, null, 2) + '\n')
 }

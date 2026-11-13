@@ -9,7 +9,13 @@ const { story } = JSON.parse(readFileSync('packages/i18n/src/edge-of-the-earth.e
 const model = 'eleven_multilingual_v2'
 const hash = (value) => createHash('sha256').update(value).digest('hex')
 const entries = Object.entries(story)
-  .filter(([part]) => part !== 'setup' && part !== 'partTwoSetup' && part !== 'partThreeSetup')
+  .filter(
+    ([part]) =>
+      part !== 'setup' &&
+      part !== 'partTwoSetup' &&
+      part !== 'partThreeSetup' &&
+      !part.startsWith('heartCard'),
+  )
   .map(([part, { body }]) => ({
     key: `story.edgeOfTheEarth.${part}.body`,
     file: `edge-of-the-earth-${part}-${hash(body).slice(0, 12)}-salva.mp3`,
@@ -17,12 +23,25 @@ const entries = Object.entries(story)
   }))
   .filter(({ key }) => !Object.hasOwn(cardBacks, key))
 
-if (!process.argv.includes('--generate')) {
+const generate = process.argv.includes('--generate')
+if (!generate && !process.argv.includes('--refresh')) {
   console.log(JSON.stringify({ voiceId, model, entries }, null, 2))
 } else {
-  if (existsSync('.env')) process.loadEnvFile()
+  if (generate && !process.env.ELEVENLABS_API_KEY && existsSync('.env')) process.loadEnvFile()
   const apiKey = process.env.ELEVENLABS_API_KEY
-  if (!apiKey) throw new Error('Falta ELEVENLABS_API_KEY')
+  if (generate && !apiKey) throw new Error('Falta ELEVENLABS_API_KEY')
+  let remaining = 0
+  if (generate) {
+    const response = await fetch('https://api.elevenlabs.io/v1/user/subscription', {
+      headers: { 'xi-api-key': apiKey },
+      signal: AbortSignal.timeout(30000),
+    })
+    if (!response.ok) throw new Error(`Consulta de cuota: HTTP ${response.status}`)
+    const quota = await response.json()
+    remaining = quota.character_limit - quota.character_count
+    if (!Number.isFinite(remaining)) throw new Error('Cuota desconocida')
+    console.log(`${remaining} créditos disponibles`)
+  }
   mkdirSync('tmp', { recursive: true })
   const progressPath = 'tmp/edge-of-the-earth-salva.json'
   const previous = existsSync(progressPath)
@@ -48,7 +67,8 @@ if (!process.argv.includes('--generate')) {
       evidence.entries.push({ ...existing, key })
       continue
     }
-    if (selected && !selected.includes(key.split('.')[2])) continue
+    if (!generate || (selected && !selected.includes(key.split('.')[2])) || text.length > remaining)
+      continue
     const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
       method: 'POST',
       headers: { 'xi-api-key': apiKey, 'Content-Type': 'application/json' },
@@ -61,6 +81,8 @@ if (!process.argv.includes('--generate')) {
       )
     }
     const audio = Buffer.from(await response.arrayBuffer())
+    if (audio.length < 1000) throw new Error(`Audio incompleto: ${key}`)
+    remaining -= text.length
     writeFileSync(path, audio)
     evidence.entries.push({ key, file, textSha256, audioSha256: hash(audio) })
     const pending =
@@ -77,5 +99,9 @@ if (!process.argv.includes('--generate')) {
     )
     console.log(file)
   }
-  writeFileSync(evidencePath, JSON.stringify(evidence, null, 2) + '\n')
+  const pending = entries
+    .filter(({ key }) => !evidence.entries.some((e) => e.key === key))
+    .map(({ key, text, file }) => ({ key, file, text, textSha256: hash(text) }))
+  writeFileSync(evidencePath, JSON.stringify({ ...evidence, pending }, null, 2) + '\n')
+  console.log(`${evidence.entries.length} pasajes grabados; ${pending.length} pendientes`)
 }

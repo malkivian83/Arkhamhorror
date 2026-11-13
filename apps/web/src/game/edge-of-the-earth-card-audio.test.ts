@@ -19,9 +19,21 @@ it('serves each recorded face with its own text and the campaign voice', () => {
       ...(card.flavor?.trim() ? [`${code}:front`] : []),
       ...(card.backFlavor?.trim() ? [`${code}:back`] : []),
     ])
-  expect(evidence.files.map(({ code, side }) => `${code}:${side}`).sort()).toEqual(
-    narrativeFaces.sort(),
-  )
+  expect(
+    [...evidence.files, ...evidence.pending].map(({ code, side }) => `${code}:${side}`).sort(),
+  ).toEqual(narrativeFaces.sort())
+  for (const entry of evidence.pending) {
+    const card = edgeOfTheEarthCards[entry.code]!
+    expect(entry.text).toBe(card[entry.side === 'back' ? 'backFlavor' : 'flavor'])
+    expect(cardNarration(entry.code, entry.side === 'back', 'es')).toBeNull()
+    expect(entry.inputHash).toBe(
+      createHash('sha256')
+        .update(
+          JSON.stringify({ text: entry.text, voiceId: evidence.voiceId, ...evidence.settings }),
+        )
+        .digest('hex'),
+    )
+  }
   for (const entry of evidence.files) {
     const back = entry.side === 'back'
     const card = edgeOfTheEarthCards[entry.code]!

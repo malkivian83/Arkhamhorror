@@ -314,7 +314,7 @@
     },
     "heartIntro": {
       "title": "El corazón de la locura",
-      "body": "Al día siguiente, os adentráis más en las cavernas y fosos que hay bajo la corteza helada de la Antártida. Pasáis bajo grandes arcadas de obsidiana y pizarra primordial, a través de corredores tallados de forma ornamental y por enormes salas de múltiples columnas, hacia las profundidades incognoscibles e insondables."
+      "body": "Al día siguiente, os adentráis más en las cavernas y fosos que hay bajo la corteza helada de la Antártida. Pasáis bajo grandes arcadas de obsidiana y pizarra primordial, a través de corredores tallados de forma ornamental y por enormes salas de múltiples columnas, hacia las profundidades incognoscibles e insondables. Pasan las horas. Al final, el pasadizo parece abrirse hacia un corredor más grande hecho de piedra tallada en el que hay una última arcada que marca el final de la descomunal rampa por la que habéis descendido. Cinco símbolos desconocidos adornan la arcada, pero su significado os resulta incomprensible. El camino que hay al otro lado parece más un enorme túnel de metro que una formación cavernosa natural, pues todas las piedras, lisas y angulares, están moteadas de marcas alienígenas y cubiertas levemente de un pútrido icor multicolor. "
     },
     "heartPartTwoIntro1": {
       "title": "El corazón de la locura, parte II",
@@ -463,6 +463,606 @@
     "mirageBack08583": {
       "title": "Recuerdo de un amor no correspondido",
       "body": "La Dra. Kensler, la de verdad, te mira con frialdad.\n\n–Ése recuerdo no es para usted –te advierte–. Aunque supongo que tiene el mismo control que yo sobre esto.\n\nNo puedes evitar sentir algo de curiosidad sobre qué clase de labor académica podría afectar a alguien como ella, así que le preguntas.\n\n–No era de naturaleza académica –confiesa mientras pasa la mano distraídamente por la visión de la mesa de su despacho, antes de sacar la foto de dentro del diario y examinarla sin mostrártela–. Nunca he sido demasiado hábil a la hora de expresarme en... asuntos del corazón –te dice, y la fotografía se desvanece en sus manos junto con el resto del espejismo–. Venga. No quiero quedarme aquí más tiempo –afirma."
+    },
+    "cityNoResolution": {
+      "title": "Ciudad de los Antiguos — Sin resolución",
+      "body": "Herido y agotado, te cobijas en la relativa seguridad que ofrece una de las enormes estructuras de la ciudad. Tu única esperanza es refugiarte dentro de la ciudad alienígena y esperar que tu presencia pase desapercibida a los moradores que siguen deambulando por sus calles y por sus antiguas salas."
+    },
+    "cityResolution1": {
+      "title": "Ciudad de los Antiguos — Resolución 1",
+      "body": "Un silencio sobrenatural recibe a tu grupo cuando os adentráis en el pasadizo secreto. Esperabais furia y sonido, pero este tétrico silencio es casi peor. No pronunciáis una sola palabra mientras os adentráis cada vez más por el túnel secreto, pero sí os llaman la atención la peculiar tersura de las paredes, las extrañas marcas del suelo y el amortiguado goteo del agua a lo lejos. Seguís durante horas en la profunda oscuridad, cuestionando vuestro juicio con cada paso que dais. ¿Qué tipo de gente se mete voluntariamente en las fauces de un horror semejante? Empezasteis por arriesgar vuestra reputación al emprender esta expedición. Luego arriesgasteis vuestras vidas por no dar media vuelta cuando las cosas se pusieron feas. Y ahora arriesgáis vuestra cordura al descubrir secretos que ningún humano debería encontrar. ¿Es valentía? ¿O es el último error de un rebaño de necios demasiado tercos como para ver que al final de este camino esperan sus propias muertes? No importa. Habéis llegado demasiado lejos como para volveros. De un modo u otro, conseguiréis las respuestas que buscáis. La única duda es si viviréis para contarle al mundo lo que habéis encontrado."
+    },
+    "cityResolution2": {
+      "title": "Ciudad de los Antiguos — Resolución 2",
+      "body": "Pasan las horas. No te atreves a aventurarte en el exterior, pero exploras cada rincón de tu refugio con la esperanza de encontrar algo que haga que esta empresa haya merecido la pena. Lo que encuentras en su lugar es incluso más difícil de creer. En el helado nivel subterráneo de la estructura, una cámara sagrada alberga un agitado estanque de un miasma caleidoscópico. Una bruma gris gira y se evapora en su superficie, y en su interior se materializan y desvanecen formas familiares y alucinaciones extrañas. Como si notara que te acercas, el estanque deja de girar y se eleva solo, casi como a modo de saludo. Luego se funde en un brillante pegote de color prismático que avanza por el suelo, deteniéndose cuando te detienes y siguiendo cuando sigues. Parece decirte que te acerques, como si te guiara. Los miembros del equipo y tú os miráis con inquietud. ¿Está intentando mostraros algo? ¿Llevaros a alguna parte? Y si es así... ¿Sería buena idea seguirlo? Al final, llegáis a un acuerdo. No sirve de nada seguir perdiendo el tiempo aquí, y el tiempo empeora con cada minuto que pasa. Decidís seguirlo con precaución, esperando que tal vez os lleve hasta alguna respuesta. Seguís durante horas en la profunda oscuridad, cuestionando vuestro juicio con cada paso que dais. La antigua estructura da paso a túneles helados, con paredes lisas y resbaladizas con un icor oscuro y el suelo cubierto de extrañas marcas de origen inescrutable. Por fin, el pegote de miasma se filtra por las paredes y desaparece, dejándoos a solas con vuestras dudas y miedos en el túnel imposiblemente largo que atraviesa el gélido corazón de la Antártida y continúa hacia las profundidades que hay más allá..."
+    },
+    "cityMadness": {
+      "title": "Contemplar la locura",
+      "body": "No eres consciente del efecto que están teniendo los susurros en tu grupo hasta que es demasiado tarde. Uno de los miembros de la expedición no sólo está estudiando la pared, sino apoyado contra ella, con la oreja pegada y los ojos vidriosos, presa de un vehemente estupor. Cuando llega a la puerta, no ve, o elige ignorar directamente, el horrendo miasma que se filtra como una baba entre sus rendijas, ni la densa bruma gris que amenaza con tragárselo entero. Gritas una advertencia cuando la puerta se abre, y tienes el buen juicio de apartar la mirada en el momento en el que el miasma se extiende hacia la persona. Nunca sabrás de verdad qué es lo que habrá visto. Sólo llegas a atisbar la innombrable miseria insondable que mora al otro lado."
+    },
+    "cityMadnessEnd": {
+      "title": "Contemplar la locura",
+      "body": "Tu compañero se encuentra petrificado en el umbral, aunque no sabrías decir si es por puro terror o porque lo controla una fuerza desconocida. Tanto tú como los demás os acercáis a la puerta, apartando la mirada para aseguraros de no sufrir la misma suerte. Cerráis la puerta de piedra con un fuerte golpe, atrapando en el interior el resto del agitado miasma. En cuanto ese horror queda bloqueado, los ojos de tu compañero vuelven a su ser, y se desploma en el suelo. Su corazón sigue latiendo... pero sus ojos no vuelven a abrirse nunca más."
+    },
+    "cityMadnessDanforth": {
+      "title": "Contemplar la locura",
+      "body": "El estudiante abre los ojos como platos para contemplar hasta el último centímetro de la visión de pesadilla. Cada susurro insidioso. Cada jirón de locura. El pico que lleva en la mano cae al suelo. –Es... precioso –proclama–. El pozo negro... La cresta tallada... La escalera lunar... –Sus palabras se vuelven cada vez más febriles–. El original... El eterno... ¡El inmortal! Una terrible sonrisa se dibuja en sus labios."
+    },
+    "cityOutskirts": {
+      "title": "Ciudad de los Antiguos",
+      "body": "En lugar de dirigirte a la torre, dices a los demás que te sigan. Recuerdas la ruta que explorasteis Ellsworth y tú la noche anterior, así que llevas al grupo hacia la estructura medio enterrada que visteis. Se tarda un poco más en llegar a ella que a la torre, pero proporciona un sencillo atajo hacia la ciudad."
+    },
+    "cityDyer": {
+      "title": "Ciudad de los Antiguos",
+      "body": "–Tengan cuidado –advierte el profesor. Consiguió toda la información que conoce del modo más difícil, así que es buena idea hacerle caso–. Los símbolos que hay inscritos aquí muestran gran parte de la historia de este sitio. Es antiguo. Mucho más antiguo que nada que haya construido nuestra especie. –¿Y qué quiere decir con eso? –pregunta alguien. –¿Conoce una expresión que dice que “las paredes oyen y las puertas ven”? –contesta Dyer–. No tenemos ni idea de lo que podría ocultarse en estas paredes. De lo que mora bajo el hielo y la piedra. Estén alerta... y no dejen que en su cráneo suene ninguna voz que no sean las nuestras. ¿Lo entienden? Todos asienten, y te tragas una sensación de náusea. No puedes evitar tomarte de forma literal la frase que ha pronunciado Dyer."
+    },
+    "cityNoDyer": {
+      "title": "Ciudad de los Antiguos",
+      "body": "Cuando entráis en la torre, el frío disminuye, pero crece la sensación de inquietud que sentías observando la ciudad desde lejos. Sin los conocimientos de Dyer para guiaros por este sitio, te sientes totalmente carente de preparación. Cada gota de agua, cada guijarro suelto y cada respiración ahogada hacen que notes un nudo en la garganta y que se te acelere el corazón. No pasa mucho tiempo antes de que oigas susurros en las paredes, voces que no son ni tuyas ni de ningún miembro de tu grupo. Cuanto más intentas negarlas, más fuertes se vuelven las voces. Son como un coro en tu mente. ¿Una advertencia?"
+    },
+    "citySinha": {
+      "title": "Ciudad de los Antiguos",
+      "body": "–Recuerden permanecer tapados en todo momento. Allí donde nos dirigimos, el viento puede congelar la piel casi al instante. Y manténgase hidratados –os recuerda la Dra. Sinha–. Aquí el aire es más seco de lo que piensan. El resto del grupo asiente. Ninguno habéis llegado tan lejos para acabar con hipotermia... pero es casi tan probable como morir por cualquier otra causa en este condenado lugar."
+    },
+    "cityNoSinha": {
+      "title": "Ciudad de los Antiguos",
+      "body": "Os instruyeron muchas veces sobre los peligros del entorno antártico, pero sin la Dra. Sinha, tenéis una desventaja a la hora de afrontar el duro clima. Lo que le faltaba de amabilidad en el trato lo compensaba con experiencia. Ojalá hubieras podido salvarla, pero sólo queda apretar los dientes y avanzar como sea, observando a tus compañeros ante cualquier signo de hipotermia."
+    },
+    "cityTower": {
+      "title": "Ciudad de los Antiguos",
+      "body": "La entrada abierta hacia la estructura de obsidiana os recibe como las fauces de un feroz depredador. Cuando la vista se te acostumbra a la oscuridad, tu curiosidad da paso a un profundo temor. La angular sala principal de la estructura alberga una masacre absoluta. El suelo está cubierto de cadáveres mutilados de Antiguos, montones de coriácea carne gris y pegajosos órganos deformes, recubiertos de un espeso fluido verde oscuro. Vacilas ante el horrible hedor de la muerte. Estos cadáveres no son antiguos. La matanza se ha producido recientemente. –¿Qué podría haber hecho esto? –dice alguien de tu grupo, rompiendo el inmenso silencio. Te llaman la atención unos murales de la pared que ilustran lo que conoces como la raza de los Antiguos librando una batalla con un antiguo y aterrador enemigo; no, uno no. Muchos. Tu grupo no se atreve a quedarse mucho tiempo en este matadero. Os tapáis la nariz para evitar el terrible hedor y os marcháis."
+    },
+    "cityCookie": {
+      "title": "Ciudad de los Antiguos",
+      "body": "Por desgracia, cuando intentáis marcharos de la estructura, descubrís que el paso está bloqueado por hielo y escombros. Te planteas proponer que excavéis para atravesar el bloqueo, pero Cookie se acerca con unos cartuchos de dinamita atados. –Por el amor del cielo, apártese –gruñe mientras coloca los cartuchos y enciende la mecha sin más aviso. Los demás y tú echáis a correr hasta doblar la esquina, tapándoos las orejas y maldiciendo entre dientes. Unos segundos más tarde, una tremenda explosión hace temblar el edificio hasta sus cimientos. Cuando el polvo se posa, veis que Cookie ha creado una fácil salida para el grupo. –Cookie, te juro que a veces... –afirma alguien."
+    },
+    "cityNoCookie": {
+      "title": "Ciudad de los Antiguos",
+      "body": "Por desgracia, cuando intentáis marcharos de la estructura, descubrís que el paso está bloqueado por hielo y escombros . Encontrar otra salida os lleva mucho más tiempo de lo que esperabas, y cuando por fin escapáis, ya habéis estado un tiempo expuestos a los elementos."
+    },
+    "cityVote": {
+      "title": "Ciudad de los Antiguos",
+      "body": "El rastro de mórbida sangre verde lleva hacia abajo por un liso sendero esculpido en la ladera de la montaña como si hubieran empleado una sustancia ácida. En dirección opuesta, la cresta montañosa prosigue a lo largo del perímetro de la ciudad. A lo lejos, puedes distinguir apenas una sección de la ciudad oscurecida y medio enterrada; la disposición de sus estructuras te resulta completamente extraña, incluso tras haber consultado a conciencia las notas de Dyer. Por último, en el corazón de la ciudad hay diseminados una gran pirámide y muchos templos prominentes, que alcanzan alturas increíbles pese al desgaste de muchas eras. El equipo de la expedición vota para decidir en qué dirección quieren ir. Compara estas tres columnas para ver cuál de ellas tiene más miembros del equipo aún con vida."
+    },
+    "finalNight": {
+      "title": "Noche final",
+      "body": "Te costaría considerar el pozo oscuro donde os encontráis como “seguro” en modo alguno, pero tienes la sensación de que es un lugar tan bueno como cualquier otro para descansar. Si ya era difícil calcular el paso del tiempo con el sol omnipresente en el cielo antártico, ahora que estáis bajo tierra sin el menor rayo de luz solar, es imposible hacerlo. Cuando uno de tus compañeros consulta su reloj de bolsillo e informa al equipo de que han pasado catorce horas desde que os adentrasteis bajo tierra, la respuesta es de incredulidad absoluta. No recordáis haber viajado durante tanto tiempo, pero el agotamiento de vuestros cuerpos lo demuestra. En lúgubre silencio, volvéis a establecer un campamento. Vuestro grupo se ha reducido hasta estar formado únicamente por ti y por los pocos expertos que quedan de los que te presentó la Dra. Kensler al inicio. Los demás estudiantes e investigadores están en el campamento de la barrera donde desembarcasteis del Theodosia o... ya no están entre vosotros. La caverna es lo bastante grande como para acoger los pocos que quedáis, y el suelo helado resulta lo bastante frágil como para poder clavar las tiendas. Aun así, no proporciona una sensación de seguridad. Te preguntas si alguna vez volverás a sentirte seguro. "
+    },
+    "finalNightDawn": {
+      "title": "Noche final",
+      "body": "Intentas dormir en vano, pero la noche parece alargarse eternamente, y tus pensamientos vagan sin fin por un laberinto de preocupaciones y dudas."
+    },
+    "finalNightReturn": {
+      "title": "Noche final",
+      "body": "Cuando estás empezando a conciliar el sueño, la puerta aparece de nuevo. Brilla durante un momento, y unas volutas de bruma gris surgen de las grietas del marco. Vuelves a poder decidir. Pero ¿te arriesgas a aventurarte una vez más en la gélida ilusión?"
+    },
+    "finalNightDoor": {
+      "title": "Noche final",
+      "body": "Cuando estás empezando a conciliar el sueño, una vaga amenaza que percibes al límite de tu percepción te sobresalta. De forma instintiva, buscas un arma para defenderte, pero cuando miras en torno a ti, no hay nada extraño. De hecho... Te pones en pie, conmocionado, y examinas los alrededores. El campamento improvisado estaba protegido de la dureza de los elementos, pero no deja de estar en lo más profundo de la Antártida. Pese a ello, te encuentras dentro de un edificio, en una sala que no reconoces aunque te produce una extraña familiaridad. Quitas parte de la nieve que sigue habiendo en el suelo, en torno a tu saco de dormir, y ves un suelo de baldosas que antes no estaba ahí. ¿Es un sueño? Cuando dudas de la verdad de este misterioso lugar, las paredes y el suelo de baldosas brillan y se desvanecen. Vuelves a estar en el frío helador de tu campamento, rodeado por tus compañeros, pero la puerta de salida de la sala permanece. Una densa bruma gris se arremolina a tu alrededor, como guiándote. No hay refracción natural de la luz. Se está produciendo algo sobrenatural. El espeso miasma que gira en torno al campamento es parecido a la sustancia que compone las criaturas de pesadilla que encontrasteis tras el accidente de avión. ¿De verdad quieres saber lo que quiere que veas?"
+    },
+    "finalVisit08714alive": {
+      "title": "Noche final",
+      "body": "El profesor, que al principio era muy reticente a unirse a la expedición, parece haber cambiado de actitud por completo... aunque esta nueva cara suya te preocupa todavía más. –Ahora entiendo por qué quería regresar Danforth –explica–. Nos está llamando. ¿Es que no lo sientes? ¿No lo oyes? Quiere que sigamos. Le preguntas a quién se refiere y él hace unos gestos vagos en torno a ambos. –No lo sé. Estas apariciones no actúan como criaturas independientes, ¿no te parece? Tal vez las controle una fuerza mayor. O... –Se queda pensando cuidadosamente sus siguientes palabras–. Tal vez todo sea parte de lo mismo. Extensiones de una locura sin nombre. Me pregunto... ¿Qué habríamos descubierto Danforth y yo si no hubiéramos huido? Tal vez podríamos haber evitado todo este sufrimiento..."
+    },
+    "finalVisit08714memorial": {
+      "title": "Noche final",
+      "body": "Dedicas un momento a revisar algunos de los viejos bocetos del profesor, que había traído consigo por si podían resultar útiles. Como sospechabas, ninguna de las criaturas que esbozó se parecen lo más mínimo a las cosas que viste. Pero cuando estás a punto de rendirte, encuentras varios bocetos de la ciudad que afirma haber encontrado al otro lado de las oscuras y escarpadas montañas. Muestran una enorme arcada decorada con cinco símbolos rodeados de una estrella de cinco puntas. Bajo la arcada, o puede que detrás de ella, se alza algo grotesco. Las líneas del boceto se desintegran en una maraña de trazos ligeros y manchas de tinta que apenas puedes describir. Hay varias criaturas con cuerpo de barril y cabeza de estrella de mar, los “Antiguos” alienígenas que Dyer describió en su informe, flanqueando la arcada, con actitud reverente y los apéndices similares a alas extendidos también con reverencia. Desearías poder preguntarle a Dyer lo que significa esto, pero por desgracia, es demasiado tarde para eso. Coges sus bocetos para llevártelos, esperando que puedan resultar útiles más adelante."
+    },
+    "finalVisit08715alive": {
+      "title": "Noche final",
+      "body": "No hablas con Danforth esa noche. El que habla es él, pero no sabes con qué entidad lo está haciendo. Al principio crees que está murmurando para sí como suele hacer, pero pronto te das cuenta de que se trata de un diálogo que sólo oyes de forma parcial. –Estamos cerca –declara en voz baja–. He seguido como me lo mostraste. Un poco más y volveré a verte. Podemos estar juntos de nuevo. Podemos estar... enteros. Decides que has oído suficiente y agarras a Danforth por el hombro, sorprendiéndolo. Jurarías haber visto un levísimo rastro de algo brumoso que brota de sus ojos cuando se da la vuelta, pero luego se pasa la manga por ellos y no ves nada. –Ah, es usted –comenta–. M-muy bien. Deberíamos descansar, ¿no? Nos espera un día largo."
+    },
+    "finalVisit08715memorial": {
+      "title": "Noche final",
+      "body": "Decides buscar información en las pertenencias de Danforth, con la esperanza de que llevara un diario o tuviera pruebas de su anterior expedición con Dyer. Lo que encuentras en su lugar es todo un tesoro de ficción tanto macabra como especulativa, incluyendo un sobado ejemplar de las obras de Edgar Allan Poe. Sus páginas están repletas de marcas improvisadas, y los márgenes, llenos de numerosas notas y apuntes, algunos relevantes y otros cuyo verdadero significado se te escapa. No sabes bien el motivo que tuvo Danforth para traer semejante colección de relatos, especialmente uno al que parecía tener tanto aprecio. Lo abres por una de las páginas marcadas y lees: “No pudimos convencerle para que la tocara o se acercase a ella, pues se ponía a temblar cuando intentábamos obligarle, gritando: ‘¡Tekeli-li!’”. En el margen, Danforth ha garabateado: “¿Qué podría hacer que alguien saliera de un paroxismo tal? ¿Cómo puedo dejar atrás esta terrible sensación?”."
+    },
+    "finalVisit08720alive": {
+      "title": "Noche final",
+      "body": "La Dra. Kensler se encuentra en un estado de pánico absoluto cuando entras en su tienda. Levanta la vista para mirarte un instante antes de seguir rebuscando entre sus materiales. –Está aquí, en alguna parte, lo sé... –murmura. Nunca habías visto a la Dra. Kensler tan desorganizada–. ¡Ah! ¡Aquí! El libro que ha encontrado no es uno de sus tratados de biología ni un libro de texto lleno de diagramas anatómicos. Se trata de un viejo tomo mohoso sin relación alguna con las ciencias y escrito en francés. –Sé que lo vi por aquí... –murmura mientras pasa las páginas del tomo en busca de un pasaje concreto. Te sientas en silencio, casi demasiado asustado como para preguntar nada. La Dra. Kensler está completamente cambiada respecto a su habitual actitud fría y estoica–. ¡Aquí! – Marca la página y vuelve la atención hacia ti–. ¿Puedo fiarme de usted? Asientes. Sea lo que sea lo que ha encontrado la Dra. Kensler, tienes la sensación de que sólo te lo enseña porque has compartido sus descubrimientos hasta ahora. Abre el tomo por una representación de una jerarquía cósmica desconocida; el tipo de teoría dogmática absurda que desdeñaría cualquier científico respetable. –Henry Armitage era la única persona de la universidad que tampoco quería que se realizara esta expedición. Fue él quien me mostró esto después de que Dyer entregara su informe. Señala la sección del diagrama que ilustra la Tierra, y ves un patrón de líneas que se cruzan en el borde. –El Polo Sur –dice–. Al borde de la Tierra, donde se unen las líneas. El culmen de las fuerzas arcanas, me dijo. Yo pensé que eran supersticiones estúpidas, pero mi investigación demuestra lo contrario. Estas criaturas... Estos espejismos espectrales y eidolones de mentes rotas no llegaron aquí. Siempre estuvieron aquí. Desde el principio de todo. ¿Lo entiende? Agarra con fuerza la muestra de miasma y añade: –Y nosotros... nosotros no fuimos los primeros en toparnos con ellos."
+    },
+    "finalVisit08720memorial": {
+      "title": "Noche final",
+      "body": "Revisas las notas de investigación que dejó la jefa de esta expedición condenada. Seguro que si alguien podría encontrarle algún sentido a lo que habéis visto hasta ahora, ésa sería la Dra. Kensler. Puede que supiera más sobre las criaturas de lo que decía. Registras su tienda y sus pertenencias hasta encontrar un grueso diario lleno de meticulosas notas sobre el viaje a la Antártida y los primeros días que pasasteis descargando suministros y estableciendo el campamento. A partir de ahí, las notas se vuelven menos detalladas y más confusas. Su relato de los días anteriores al accidente de avión tiene más de desvarío delirante que de diario ordenado. Escribió sobre paredes en las que rezumaba un miasma negro, sobre un vacío infinito bajo el hielo, sobre algo maligno y alienígena que moraba en el núcleo que hay al otro lado del portal... y luego, sobre nada. La Dra. Kensler no era alguien que se dedicara a contar sueños o a escribir obras de ficción. Algo la había descompuesto. Algo había hecho que viera las cosas sobre las que escribía. Pero ¿cómo? ¿Y cuándo? Te sientas a continuar su registro con tu propio relato de los hechos, con la siniestra esperanza de que, si no sales con vida de este continente, alguien lo lea y sepa lo que sucedió aquí..."
+    },
+    "finalVisit08717alive": {
+      "title": "Noche final",
+      "body": "Por primera vez desde la partida de la expedición, la Dra. Sinha va a buscarte en persona para preguntar por tus heridas. Le muestras tus lesiones y asiente, ahorrándose sus habituales comentarios mordaces. Trata tus heridas en silencio hasta que por fin habla: –He perdido a tantos pacientes que ya ni siquiera puedo seguir llevando la cuenta –te confiesa–. La mayor parte del tiempo, habría sido imposible que acabara de otra forma. Supongo que es la naturaleza de las cosas. Al fin y al cabo, somos criaturas frágiles. Si nos doblas un poco, solemos rompernos. Te venda un brazo con precisión fruto de la práctica, pero ves que le tiemblan sutilmente las manos. –Decidí dedicarme a esta profesión porque no podía soportar ver el dolor de la gente. Echando la vista atrás, fue una decisión bastante estúpida. Al fin y al cabo, en esta profesión lo único que veo es el dolor de la gente. Le preguntas si no le da satisfacción ver cómo la gente recupera la salud cuando los trata. –Claro que sí –contesta tras un largo suspiro–. Pero esta vez... Aparta la mirada de la tuya y baja el volumen de la voz hasta que apenas es un susurro. –No creo que vaya a tener esa satisfacción, ¿no le parece?"
+    },
+    "finalVisit08717memorial": {
+      "title": "Noche final",
+      "body": "No sabes muy bien qué es lo que te ha impulsado a acudir a la tienda de la Dra. Sinha, pero ahora que estás aquí, sabes que no encontrarás respuestas entre sus pertenencias. Aun así, tal vez puedas aprovechar sus botiquines y equipo para el frío. Mientras metes sus suministros médicos en una de sus mochilas, un escalofrío te recorre la espalda. Te dices que lo haces por necesidad, pero adueñarte de las posesiones de los muertos te pesa mucho en la consciencia. Te echas a los hombros las correas de la mochila y te vuelves para salir de la tienda de la Dra. Sinha, con la esperanza de sacar de tu mente este macabro asunto. Del bolsillo delantero de la mochila cae algo que hace un leve ruido en el suelo que te llama la atención. Buscas el objeto en torno a tus pies y encuentras una carterita de cuero que sólo contiene una horquilla, una foto de la Dra. Sinha con lo que supones que será su familia y el resguardo de una entrada para un espectáculo en el Teatro Riverview. Si fue lo bastante importante como para que lo conservara, debe de tener algún valor sentimental."
+    },
+    "finalVisit08719alive": {
+      "title": "Noche final",
+      "body": "Cookie desenfunda su Colt cuando te acercas. Sus ojos inyectados en sangre y su mano temblorosa te dicen que hace bastante tiempo que no descansa. En cuanto se da cuenta de que eres tú, se disculpa y baja el arma. –Pensé que era uno de... Bueno, ya sabe –te explica con desgana. Comentas que tienes suerte de que, pese a la situación, no se haya vuelto de gatillo fácil. –De gatillo fácil... –se burla. Un largo silencio se hace entre los dos–. Venga. Ayúdeme con el fuego. Sin decir nada, el curtido veterano y tú colocáis la leña que os queda en el centro del campamento e intentáis hacer que arda. Debido al frío y a la humedad reinantes, tenéis que esforzaros durante casi media hora antes de encender el fuego. Éste consume ávidamente el material y arroja sombras danzantes sobre las paredes heladas de la caverna. Cookie acaba por romper el silencio: –Esto... –afirma con decisión–. Recuerdo esto. No te molestas en preguntar, porque sólo tienes que ver su mirada perdida a lo lejos para saber que se refiere a la sensación de muerte inminente que impregna el campamento. –Un consejo –te dice–, cuando llegue el momento, no puede dudar. Da igual cuántos quedemos. Da igual la terrible perdición a la que se esté enfrentando. Si titubea, muere. Asientes. Tienes la sensación de que Cookie no ha titubeado jamás en su vida."
+    },
+    "finalVisit08719memorial": {
+      "title": "Noche final",
+      "body": "Mientras establecéis el campamento, otro de los miembros del equipo se acerca con una bolsa que contiene las pertenencias de Cookie. –He pensado que usted es la mejor persona para quedarse con todo esto –dice el joven con pena mientras te la entrega. Te sientas junto a la hoguera y examinas los objetos de la bolsa uno a uno. Dentro hay varios efectos personales de Cookie: un reloj de bolsillo con la esfera agrietada, una caja de cerillas con el logotipo del hotel Excelsior y, por supuesto, su fiel revólver Colt del .32. Lo conservaba excepcionalmente bien, con el cañón limpio y pulido y la empuñadura de madera inmaculada. Conociendo a Cookie, no sería por el cariño que sintiera por el arma, sino porque le costaba desprenderse de las viejas costumbres. Sacas el tambor y ves que sólo quedan unas pocas balas. Lo haces girar distraídamente y realizas una silenciosa promesa dedicada a Cookie: No te preocupes. Les daré un buen uso a estas balas."
+    },
+    "finalVisit08718alive": {
+      "title": "Noche final",
+      "body": "Claypool examina las paredes heladas mientras te acercas, con el ceño fruncido de preocupación. –La temperatura de este lugar debería de ser más alta –afirma–, pero incluso sin tener en cuenta la sensación térmica, la temperatura es casi 10 grados más fría. En ese momento, algo se mueve dentro del hielo; tal vez sólo una sombra o algo que se reflejó en la superficie. Claypool y tú os apartáis de forma instintiva mientras la oscuridad fugaz se arremolina y desaparece. Ninguna luz proveniente de atrás podría haber creado esa sombra. –Este... este hielo no es normal –susurra Claypool–. Este frío es antinatural. El informe de Dyer describía estas estructuras interiores como cálidas y habitables, pero esto es... Os miráis sin que haga falta terminar la frase. –Debemos estar preparados. Para cualquier cosa."
+    },
+    "finalVisit08718memorial": {
+      "title": "Noche final",
+      "body": "Las pertenencias de Claypool están tiradas por la tienda principal del campamento, incluido un mapa de la barrera de hielo de Ross que ha marcado con diversas anotaciones que no entiendes del todo. Un frío viento abre las solapas de la tienda y la llena de un aire gélido. Te abrazas el pecho para mantener el calor. Sin Claypool, estáis indefensos frente al peligroso tiempo. Quedarse atrapados en una tormenta polar sería letal, y era el único con los conocimientos suficientes como para predecirlas con precisión. Suspiras y te dispones a marcharte, pero te detienes un momento para mirar el pesado abrigo de pieles donde han metido el resto de cosas de Claypool. Luego miras el tuyo: andrajoso y roto por el complicado viaje. Coges el de Claypool y dejas el tuyo. Tal vez no te haya dejado tan indefenso frente a la climatología después de todo."
+    },
+    "finalVisit08721alive": {
+      "title": "Noche final",
+      "body": "Ya sabes lo que tiene en mente Ellsworth cuando se acerca a ti con un farol en una mano y un pico en la otra. –¿Le apetece una excursioncita? Te entrega el farol y os marcháis juntos del campamento. Mantenéis una cauta conversación en voz baja mientras exploráis las profundidades heladas, recorriendo más terreno entre los dos de lo que podríais hacer con el resto del equipo y los suministros que os quedan. –Se pensará que soy un loco o un necio –aventura tras una hora de viaje a buen paso–. Siempre me estoy marchando solo y metiéndome en peligros como éste. En lugares donde no deberíamos acabar. Te encoges de hombros y señalas que tú también estás aquí con él. –Es cierto. Así que dudo que su opinión de mí sea imparcial –bromea. Una ráfaga de aire gélido y pútrido recorre la cueva como la exhalación de una bestia monstruosa que os tuviera en su garganta. –Bueno, si sirve de algo, diré que me alegra que esté aquí –admite el explorador con un deje de duda en la voz–. Mire –añade mientras señala una bifurcación en el túnel. La terrible racha de aire se disipa a vuestro alrededor, pero está claro que procedía del camino izquierdo–. Por ahí hay algo que hace circular el aire. Eso tiene que significar algo, ¿verdad? Asientes, pero no te gusta lo más mínimo cómo huele..."
+    },
+    "finalVisit08721memorial": {
+      "title": "Noche final",
+      "body": "Si no supieras que no es así, tendrías que suponer que Ellsworth se había estado preparando para el apocalipsis. Pese a su reputación como explorador de carga ligera y mochilero experto, un simple vistazo a las pertenencias que ha dejado muestra una gran cantidad de provisiones, suministros y equipo para el hielo. Mientras el equipo se reparte tristemente sus cosas para darles buen uso, ves un par extra de botas resistentes al agua que debió de traer como repuesto. No sabes si alguno de vosotros podría seguir sus pasos de verdad, pero al menos con éstas podrías intentarlo."
+    },
+    "finalVisit08722alive": {
+      "title": "Noche final",
+      "body": "Acudes a Takada no para que te ayude, sino para acusarla. Se ha estado preparando en secreto; lo sabes por las provisiones que guarda sin que lo sepa el resto del grupo y por las piezas de aeroplano con las que trastea en su tiempo libre. –Tiene razón –suspira como respuesta a tu alegación–. Pensaba volverme. Marcharme en secreto para regresar al campo de hielo y alejarme tanto como pudiera de este lugar maldito. Pero... Mira de reojo hacia el resto del equipo, cuyo ánimo está cargado de esperanza pese a la siniestra sensación que hay en el ambiente. –Jamás lograría volver sola. No se preocupe, que no me iré a ninguna parte. Venga, quédese lo que hay en esa mochila. Eliges fiarte de ella, aunque no puedes evitar preocuparte. Su tono monótono habitual está lleno de cinismo y hastío, pero ahora es distinto. Parece como si se hubiera rendido. –¿Por qué sigue aquí? –pregunta después de un rato–. Ya tiene aquello para lo que vino. Niegas con la cabeza y le dices que estás aquí para ella. Un esbozo de sonrisa se asoma a sus labios. –Es una terrible necedad por su parte. Pero... gracias."
+    },
+    "finalVisit08722memorial": {
+      "title": "Noche final",
+      "body": "Para alguien que supuestamente se enorgullecía de sus habilidades de organización, los suministros mecánicos de Takada son un completo desastre. Si no supieras que no es así, pensarías que la forma en la que ha almacenado sus cosas no tiene ni pies ni cabeza; pero conociendo a Takada, sospechas que tenía algún sistema. Pasas varios minutos revisando sus pertenencias en busca de algo que pudiera serles útil a los miembros restantes de la expedición. Sin Takada, no podréis lograr que vuele el último aeroplano. De hecho, crees que tendréis que dejar atrás la mayoría de sus cosas cuando mañana salgáis hacia las montañas. Aun así, crees que podrás aprovechar algunos de los suministros que tenía guardados."
+    },
+    "finalVisit08716alive": {
+      "title": "Noche final",
+      "body": "No es difícil encontrar a Eliyah. Los insistentes ladridos de Anyu delatan su ubicación de manera muy obvia. –¡Para ya, chica! –ordena mientras trata de tranquilizarla. La perra está en el límite del campamento, ladrando a la oscuridad como si hubiera algo acechando donde no podéis verlo. Puede que lo haya. Algo que sólo puede ver ella. –¡En serio, Anyu! ¡Para! ¡Estás haciendo demasiado ruido! –grita Eliyah. Cuando ve que te acercas, te hace un gesto para que lo ayudes a tirar de ella–. ¿Puede agarrarla del collar? Tenemos que hacer que vuelva a las tiendas. Tras un forcejeo, por fin lográis apartar a la perra y llevarla de vuelta al campamento. Se pasa todo el camino gimoteando y moviendo el hocico de forma lastimera. –Ha captado el olor de algo –dice Eliyah cuando el animal se calma–. Nunca antes la había visto actuar de este modo. Sea lo que sea lo que hay ahí, no puede ser bueno. Y tampoco normal. Se pasa la mano por el pelo y hace un encogimiento de hombros: – Pero ¿qué lo es en este condenado sitio?"
+    },
+    "finalVisit08716memorial": {
+      "title": "Noche final",
+      "body": "Cuando te sientas en la periferia del campamento y te preguntas qué te deparará el destino en los próximos días, un leve golpecito te saca de tus pensamientos. Te giras con sorpresa, esperando ver otra de las horrendas criaturas surgiendo del hielo, pero no es más que Anyu, la fiel compañera de Eliyah. La gran perra gris te mira con ojos suplicantes. Sacudes la cabeza y te pones en pie pesadamente. Ya basta de lamentarse por esta noche. Mientras vuelves hacia el campamento, unas suaves pisadas recorren la nieve detrás de ti. Te paras y miras de reojo a Anyu, que vuelve a levantar la mirada hacia ti. ¿Está buscando consuelo o un propósito? Te arrodillas y le pasas los dedos enguantados por el denso pelaje, hablándole dulcemente como si quisieras tranquilizaros a ambos. Sí, Eliyah ya no está. No, no sé si estamos a salvo. ¿Quieres quedarte conmigo? Anyu mueve el rabo. Pues decidido queda."
+    },
+    "heartForkScouted": {
+      "title": "El corazón de la locura",
+      "body": "Acabáis por llegar a una bifurcación familiar en la caverna, el mismo pasadizo que explorasteis Ellsworth y tú la noche anterior. Les explicas a los demás que notasteis aire que circulaba por el pasadizo izquierdo, y que por tanto es poco probable que se trate de un callejón sin salida. Los otros asienten y os aventuráis juntos por el pasadizo que creéis que es el correcto."
+    },
+    "heartForkUnknown": {
+      "title": "El corazón de la locura",
+      "body": "Acabáis por llegar a una bifurcación en la caverna. A vuestra izquierda, el túnel se convierte en un sendero helado más pequeño con una pendiente más inclinada y peligrosa. A vuestra derecha, la rampa continúa hacia delante sin apenas cambios. Sin más información en la que basaros, elegís el mayor de los dos caminos. Se sigue bifurcando a lo largo del camino, llevándoos por una ruta más larga y enrevesada. Llegáis a mayor profundidad de las cavernas, pero ya no estáis seguros de cómo volver..."
+    },
+    "heartDanforth": {
+      "title": "El corazón de la locura",
+      "body": "–Las criaturas crearon este lugar –afirma Danforth mientras pasáis bajo la última arcada–. Es justo como sospechaba la última vez que estuve aquí. No se trata de un sitio natural de la Antártida. Todo está conectado. Éste es el verdadero corazón de su civilización. Le preguntas a Danforth que a qué se refiere; ¿acaso lo que explorasteis ayer no era su ciudad? –No era más que la punta del iceberg, si me permite la expresión – responde–. Como el piso más alto de un rascacielos. Pero la nieve y el hielo enterraron el resto. No podíamos saberlo. Le preguntas a cuánta profundidad cree que desciende la ciudad. –¿A partir de lo que vimos de su historia? –Te mira a los ojos con la frente perlada de sudor y responde con total seriedad–. Hasta el mismísimo fondo del océano."
+    },
+    "heartNoDanforth": {
+      "title": "El corazón de la locura",
+      "body": "Al cruzar bajo la última arcada, empiezas a cuestionarte la verdad de este lugar. Al principio pensabas que se trataba de una caverna natural, pero ahora está claro que los Antiguos, o alguna otra fuerza alienígena primigenia, contribuyeron a su diseño. ¿O te equivocas por completo? Puede que no sean refugiados expulsados de un lugar lejano, intrusos en vuestro hogar. Tal vez la Antártida, e incluso la Tierra, no era para vosotros ni para nadie de vuestra especie. La verdad de la insignificancia de la humanidad hace que te estremezcas en lo más hondo."
+    },
+    "heartKensler": {
+      "title": "El corazón de la locura",
+      "body": "La líder del equipo reúne al grupo para una última ronda de ánimos antes de dejar atrás la seguridad relativa de la superficie. –Muy bien. Sé que estas condiciones no son... ideales –empieza a decir la Dra. Kensler–. Pero estamos cerca. Muy, muy cerca de obtener respuestas. De hacer que todo este esfuerzo y toda esta locura valgan para algo. Un poco más y descubriremos la verdad –Suspira–. Esto ha sido duro para todos. Pero por favor, aguantad conmigo sólo un poco más. Os prometo que merecerá la pena. Pese a los ánimos sombríos, hay un murmullo de consenso entre los supervivientes. No vais a echaros atrás ahora."
+    },
+    "heartNoKensler": {
+      "title": "El corazón de la locura",
+      "body": "Paso a paso, los supervivientes y tú descendéis por la pendiente. Los ánimos del grupo son sombríos y desesperanzados. Tenéis la sensación de que es imposible volver de este lugar. Probablemente encontraréis vuestro fin aquí. La carga de esta pesada convicción hace que cada paso os cueste aún más."
+    },
+    "heartCrystal": {
+      "title": "El corazón de la locura",
+      "body": "Tu mochila empieza a brillar cuando entras en esta región de piedra tallada. Presa del pánico, te quitas la mochila de los hombros y te alejas de ella. Cuando ha transcurrido un minuto sin que se produzca cambio alguno, te acercas y la abres con cuidado para revelar el extraño cristal sobrenatural que descubriste poco después del accidente de avión. Parece responder a este sitio, pues de su interior brota un brillante resplandor y un monótono zumbido. No parece ser peligroso, así que te atas el cristal a la muñeca y empleas su luz para guiaros en vuestro avance."
+    },
+    "heartNoCrystal": {
+      "title": "El corazón de la locura",
+      "body": "La oscuridad que hay más allá es como el abismo del fondo del océano. Vuestras antorchas y faroles sólo alcanzan a pocos metros de vosotros antes de que la negrura se trague su luz. Esto, añadido a la intensa presión y al frío polar, te hace sentir como si tuvieras que soportar todo el peso del mundo. Es un viaje de un pavor sin igual."
+    },
+    "heartPortal": {
+      "title": "El corazón de la locura",
+      "body": "A final de esta enorme cámara,acabáis llegando a un nexo en el interior de la estructura inactiva: un portal sellado de un tamaño inmenso y adornado con los mismos cinco símbolos, junto con una serie de mecanismos entrelazados. Hay unos canales y muescas que trazan un camino desde la superficie de la puerta hasta cada uno de los cinco símbolos. Al otro lado del portal, se oyen unos ruidos familiares: el burbujeo y los espumarajos del miasma y el siseo de la detestable neblina. –Está al otro lado de esta puerta –dice uno de los miembros del grupo, y no puedes evitar estar de acuerdo. Notas su presencia, o más bien la has notado todo el tiempo, desde que pusiste un pie en la Antártida, sólo que ahora es imposible de ignorar. Te susurra débilmente. En la superficie de tu mente se reproducen visiones. Tus sueños más salvajes y tus momentos más alegres. Tus deseos más oscuros y tus peleas más duras. Es un espejismo. El espejismo. Encerrado tras esta puerta, posiblemente desde hace eones, vigilado o tal vez incluso utilizado por aquellos que llegaron antes que vosotros. Pero está escapando poco a poco. Las criaturas que habéis encontrado y combatido son prueba suficiente de ello. Los Ancianos también saben que se está liberando. Ellos construyeron este lugar, y ahora está abandonado..."
+    },
+    "heartOneIntro": {
+      "title": "El corazón de la locura",
+      "body": "Decidís estudiar el portal y los muchos caminos que salen de este vasto túnel, con la esperanza de poder descubrir un modo de evitar que la entidad que hay al otro lado escape. Crees que la tecnología empleada para cerrar esta puerta tiene alguna relación con estos cinco símbolos. Tal vez si exploras los alrededores logres encontrar las piezas que faltan."
+    },
+    "heartFinalStraw": {
+      "title": "El corazón de la locura",
+      "body": "Actúas de forma instintiva para defenderte de la criatura que sabes que se encuentra al otro lado de la ilusión, pero tus compañeros no parecen entenderlo. Están boquiabiertos de asombro y sus vidriosos ojos sólo reflejan la verdad que el miasma quiere que vean."
+    },
+    "heartOneNoResolution": {
+      "title": "El corazón de la locura",
+      "body": "Por mucho que lo intentes, no logras encontrar y colocar los cinco sellos. Estas oscuras salas inactivas albergan mucho más que simples pingüinos gigantes. Las criaturas que moran en su interior son las mismas que describieron Dyer y Danforth en su viaje: monstruosidades informes compuesta de una gelatina viscosa y burbujeante cubierta de ojos sin párpados. Huyes de vuelta al portal para descansar y lamerte las heridas, pero antes de poder decidir qué hacer a continuación, algo golpea la antigua y enorme puerta, dándote un susto de muerte. El ruido reverbera por toda la instalación. Luego se produce otro, y otro. Intentas huir, pero es demasiado tarde."
+    },
+    "heartOneResolution1": {
+      "title": "El corazón de la locura",
+      "body": "La enorme puerta resplandece y zumba con una especie de electricidad alienígena y haces fuerzas contra ella para abrir el camino. En alguna parte del interior de este lugar se encuentran las respuestas a todas tus preguntas. El motivo por el que viniste aquí. Sigues adelante no por el bien de tu prestigio, sino por el bien de tu cordura. Debes saber la verdad, aunque te destruya."
+    },
+    "heartOneResolution2": {
+      "title": "El corazón de la locura",
+      "body": "Con un último silbido de aire y un chirrido primordial, la inmensa puerta se abre de golpe. Unos tentáculos de color prismático surgen de ella, deslizándose por el suelo y las paredes. El caos termina en apenas segundos. El miasma te agarra con una fuerza imposible, aferrando y tirando de tus extremidades. Unas formas terribles, visiones familiares y pesadillas indecibles aparecen en la superficie de la entidad mientras te hace pasar gritando por el portal hacia el otro lado."
+    },
+    "heartOneResolution3": {
+      "title": "El corazón de la locura",
+      "body": "El pulso de energía provocado por tu catastrófico error aniquila toda la vida orgánica de la faz de la Tierra."
+    },
+    "heartCheckpoint1": {
+      "title": "El corazón de la locura",
+      "body": "Despiertas presa de la confusión al otro lado. No tienes la menor idea de cuánto tiempo ha pasado desde que cruzaste el umbral del portal."
+    },
+    "heartCheckpoint2": {
+      "title": "El corazón de la locura",
+      "body": "Es hora de acabar con esto de una vez por todas."
+    },
+    "heartTwoIntro1": {
+      "title": "El corazón de la locura",
+      "body": "La instalación es todavía más antigua y extraña más allá del umbral del antiguo portal. ¿Quién sabe cuántos eones lleva este sitio durmiendo mientras la Tierra cambiaba y se desarrollaba al otro lado? Tal vez habría permanecido así para siempre si nadie hubiera perturbado este lugar. Pero es demasiado tarde para cambiar el pasado. Lo único que puedes hacer ahora es actuar para evitar un terrible futuro. Una tenue luminiscencia llena las lúgubres salas, alimentada por una especie de energía avanzada similar a la electricidad. A tu espalda, una caleidoscópica pared de miasma se regenera para tapar tu huida. Estás atrapado aquí, puede que para siempre. Desde el portal se extiende una red de enormes salas, talladas de piedra lisa y cubiertas de antiguos murales y jeroglíficos alienígenas. El aire parece enrarecido. La luz se curva y oscila, distorsionando tu visión como si se tratara de una ilusión óptica. ¿Se trata de la realidad... o de un espejismo? Tu grupo se pasa muchas horas estudiando los murales de las paredes. Cuentan una historia antigua y desconocida. Una historia alternativa de la Tierra. Una historia muy distinta de la que cualquiera podríais haber imaginado."
+    },
+    "heartTwoIntro2": {
+      "title": "El corazón de la locura",
+      "body": "La Dra. Kensler lo explica todo mientras estudia los antiguos murales. –Los Antiguos eran viajeros. Colonizadores. Llegaron a la Tierra hace más de mil millones de años –dice, citando las notas del profesor Dyer–. Pero no fueron los primeros en establecerse aquí. Este sitio, todo esto... ya era antiguo incluso entonces –Pasa las manos por los murales mientras explica lo que ha descubierto–. Pero lo que está atrapado dentro no es una entidad. Le preguntas qué quiere decir, porque te alarma esta nueva revelación. Se vuelve para mirarte y ves que en sus ojos prende la llama de la inspiración. –He estado estudiando su fisiología, intentando entender cómo podían existir del modo que lo hacen, sin forma, materia o estado. Pero lo estaba enfocando de manera equivocada. No se puede estudiar la biología de algo inorgánico. El caso es que no es una criatura, al menos no verdaderamente. Es algo más parecido a... –duda mientras trata de buscar las palabras adecuadas–. Es una dimensión alternativa. Otra realidad superpuesta a la nuestra. Un microcosmos consciente de todo lo que existe. No compuesto por vida orgánica, sino una farsa de ella. Esta nueva comprensión de los espectros que habéis encontrado y de los espejismos que habéis visto le da contexto a todo. No estabais matando monstruos, sino que eran fragmentos de una realidad falsa. Una que aún podría suceder. Le preguntas a la Dra. Kensler si hay alguna esperanza de evitar que escape una fuerza semejante. –No es algo vivo. No se puede matar, sólo contener. La instalación de los Antiguos contenía cinco pilones que empleaban su esencia para dar energía a su civilización; sin embargo, después de tanto tiempo, no me parece plausible que sigan funcionando. Pero tal vez... –Se interrumpe mientras formula un plan. Al final, abre los ojos como platos al darse cuenta de algo–. Sé lo que hay que hacer. Sé cómo detenerlo. Debes encontrar estos pilones y destruirlos, porque hacerlo provocará que todo el complejo se venga abajo. Entretanto... –Se quita la mochila de los hombros y la suelta en el suelo–. Yo... debo irme. No hay tiempo que perder. Pones reparos ante su repentina partida, pero está decidida. Se aleja y mira por última vez a sus compañeros antes de salir corriendo. Esperas que sepa lo que está haciendo... por el bien de todos."
+    },
+    "heartTwoIntro3": {
+      "title": "El corazón de la locura",
+      "body": "Apenas puedes discernir una fracción de la verdad que se esconde en estos antiguos murales, pero lo que descubres resulta casi imposible de creer. Cuando los Ancianos llegaron a la Tierra hace más de mil millones de años, no sólo colonizaron la Antártida, sino todo el planeta. Y cuando lo hicieron, este lugar y la entidad que mora en su interior ya estaban aquí. Construyeron este complejo en torno a él, para estudiar el ser primordial de su interior, para entenderlo mejor; el problema es que, al hacerlo, atrajeron fuerzas que escapaban incluso a su comprensión. El portal y sus sellos se construyeron para contenerlo, pero siglo tras siglo de abandono lo han dejado débil y falto de eficacia. Sospechas que lo que agitó a la entidad del interior fue la presencia de vida inteligente en la Antártida, los humanos que empezaron a explorar sus llanuras heladas y picos muertos desde hace mucho tiempo. Los murales hablan de la estructura de la instalación, de cinco pilones creados no sólo para contener la esencia de la criatura, sino para dar energía a toda la civilización de los Antiguos. Imaginas que destruir estos pilones reduciría a escombros todo el complejo, y puede que toda la montaña bajo la que está construido. No sabes si puedes destruir o contener realmente a este horror sin nombre, pero no tienes más elección que intentarlo. Si sigue escapando, reescribirá a su antojo el mismo concepto de la realidad. No quedará nada más que el espejismo. Nada más que una retorcida y horrenda imaginación. Una pesadilla de la que no se puede despertar."
+    },
+    "heartTwoNoResolution": {
+      "title": "El corazón de la locura",
+      "body": "Cuando despiertas, la instalación vuelve a estar a oscuras y en silencio. Ayudas a tus compañeros a ponerse en pie y os retiráis de vuelta hacia la superficie, preguntándoos si es demasiado tarde para evitar que escape la entidad del otro lado de la puerta. Reinan la paz y el silencio. No hay ni rastro de espectros gélidos, espejismos siniestros o entidades alienígenas. Al volver a la ciudad metida entre las montañas, tomáis notas, hacéis fotografías y realizáis calcos. El viaje de retorno al campo de hielo es rápido y sencillo. Ni siquiera el frío clima os combate mientras regresáis al campamento de la barrera. Es como si todo el continente de la Antártida se hubiera entregado a vosotros. Te planteas aprovechar para seguir estudiando el entorno, pero al final decides volver con todos los hallazgos que habéis realizado. El cielo está despejado y precioso cuando el barco zarpa del campo de hielo en dirección norte. Pese a todo, estás inquieto. La entidad que estaba encerrada al otro lado de la puerta de los Antiguos ha desaparecido. Apenas había rastros suyos cuando os fuisteis, lo cual sólo puede significar que ha escapado y que podría estar en cualquier parte. O en todas partes. El temor llena tu mente. Recuerdas los extraños y vívidos espejismos que parecía controlar la criatura. Las alucinaciones reales como la vida misma. Te miras las palmas de las manos y te preguntas si tienen la misma forma que han tenido siempre o si son un facsímil muy parecido. El aire resplandece a tu alrededor. ¿Es real algo de esto?"
+    },
+    "heartTwoResolution1": {
+      "title": "El corazón de la locura",
+      "body": "De pronto se produce una ráfaga de aire cálido y un ruido similar a una tremenda exhalación. El aire resplandece con la distorsión de un espejismo y observas con asombro cómo el miasma que se aproximaba retrocede repentinamente. Se colapsa sobre sí mismo y vuelve hacia la ladera de la montaña justo cuando comienza la avalancha. Unas grietas de un brillante color azul se propagan rápidamente por las paredes. Sin los pilones, no sólo falla la integridad de la instalación del interior de la montaña, sino la de toda la ciudad. El suelo helado se resquebraja. La descomunal arquitectura de la ciudad alienígena comienza a hundirse en la nieve. En ese momento oyes el estruendo del motor de un aeroplano en el cielo. El último de los tres aviones de Takada sobrevuela la ciudad y se escuchan gritos que resuenan por las antiguas calles ruinosas: –¡Están ahí! ¡Junto a ese túnel! ¡Rápido! Aparecen dos trineos tirados por los perros que dejó Eliyah en el campamento de la barrera y conducidos por varios miembros de la tripulación del Theodosia. No puedes contener la sorpresa ni la alegría al verlos. Os hacen gestos de forma frenética para que vayáis hacia ellos, mientras miran fijamente la montaña que se desploma. En el último segundo, oís otra voz que sale del túnel: –¡Esperen! –grita la Dra. Kensler mientras surge de la oscuridad moviendo los brazos–. ¡Espérenme! Se sube al trineo de un salto y os marcháis mientras la ciudad se derrumba en el hielo a vuestra espalda. Uno de los tripulantes explica que arreglaron el último aeroplano y decidieron usarlo para buscaros pese a que conocían los riesgos. –Cuando les vimos entrar en esa enorme caverna sin la mayor parte del equipo, pensamos que podría hacer falta un rescate, pero no esperábamos que fuera tan literal –os dice. Le respondes que no podría haber llegado en un momento más oportuno. En cuanto volvéis al campo de hielo, la Dra. Kensler ordena a la tripulación que se preparen para zarpar. Apenas levantáis el campamento de la barrera. Ya da igual. Lo único que importa es salir de este lugar sanos y salvos, y con todas las pruebas que habéis encontrado, claro está. Pero sigues teniendo preguntas. Una vez a bordo del Theodosia , buscas a la Dra. Kensler y le preguntas por lo que hizo en la instalación. La entidad os perseguía y, de repente... –Ya le dije que no era una criatura viviente –explica–. Por lo tanto, no se la puede matar. Al menos no como lo concebimos nosotros. Pero sí que tiene una especie de consciencia, ¿verdad? Conoce nuestros deseos, nuestras esperanzas y nuestros miedos. Le señalas que está empleando el presente y ella aprieta la mandíbula. Una leve distorsión fluctúa en el aire que la rodea. –Yo... hice un trato –susurra–. Era la única forma."
+    },
+    "heartTwoResolution2": {
+      "title": "El corazón de la locura",
+      "body": "De pronto, un zumbido surge del túnel, y la esperanza vuelve a llenar tu corazón. Sales huyendo de debajo de la arcada mientras unas grietas de un brillante color azul se propagan rápidamente por las paredes. Sin los pilones, no sólo falla la integridad de la instalación del interior de la montaña, sino la de toda la ciudad. El suelo helado se resquebraja. La descomunal arquitectura de la ciudad alienígena comienza a hundirse en la nieve. Ésta podría ser vuestra tumba, pero al menos os llevaréis con vosotros a esta entidad y el resto de esta condenada ciudad. En ese momento oyes el estruendo del motor de un aeroplano en el cielo. El último de los tres aviones de Takada sobrevuela la ciudad y se escuchan gritos que resuenan por las antiguas calles ruinosas: –¡Están ahí! ¡Junto a ese túnel! ¡Rápido! Aparecen dos trineos tirados por los perros que dejó Eliyah en el campamento de la barrera y conducidos por varios miembros de la tripulación del Theodosia. No puedes contener la sorpresa ni la alegría al verlos. Os hacen gestos de forma frenética para que vayáis hacia ellos, mientras miran fijamente la montaña que se desploma. Uno de los tripulantes explica que arreglaron el último aeroplano y decidieron usarlo para buscaros pese a que conocían los riesgos. –Cuando les vimos entrar en esa enorme caverna sin la mayor parte del equipo, pensamos que podría hacer falta un rescate, pero no esperábamos que fuera tan literal –os dice. Le respondes que no podría haber llegado en un momento más oportuno. Todos juntos, os marcháis mientras la ciudad se derrumba en el hielo a vuestra espalda. En cuanto volvéis al campo de hielo, ordenas a la tripulación que se preparen para zarpar. Apenas levantáis el campamento de la barrera. Ya da igual. Lo único que importa es salir de este lugar sanos y salvos, y con todas las pruebas que habéis encontrado, claro está. La travesía hacia casa es tranquila y pacífica, cosa que no son tus pensamientos en absoluto. Hasta el día de hoy, te preguntas cuál sería la verdadera naturaleza de la entidad que encontrasteis en la instalación de los Antiguos. No tienes ni idea de lo que vas a contarle a la comunidad académica a tu regreso. Vuestras acciones han hecho que nadie pueda volver a estudiar o explorar nunca esa ciudad de pesadilla. Pero ¿qué hay de los Antiguos? ¿Se ocultarán los que han sobrevivido? ¿O elegirán hacer como tú y aprender más sobre esta nueva era en la que se encuentran? Sólo el tiempo lo dirá. Hasta entonces, puedes descansar sabiendo que la criatura que habitaba bajo el hielo no puede haber sobrevivido. El aire resplandece en torno a la mano con la que sujetas la pluma mientras das los últimos retoques a tus notas sobre la expedición. Sí, por fin se ha acabado. ¿Verdad?"
+    },
+    "heartTwoResolution3": {
+      "title": "El corazón de la locura",
+      "body": "Sales huyendo de debajo de la arcada mientras la montaña empieza a quejarse y retumbar. Habéis logrado destruir suficientes pilones como para poner en riesgo la integridad estructural de la instalación de las profundidades de la ciudad, pero no es bastante. Vas a morir aquí, y lo peor es que sólo has contribuido a la huida de la entidad. En ese momento oyes el estruendo del motor de un aeroplano en el cielo. El último de los tres aviones de Takada sobrevuela la ciudad y se escuchan gritos que resuenan por las antiguas calles ruinosas: –¡Están ahí! ¡Junto a ese túnel! ¡Rápido! Aparecen dos trineos tirados por los perros que dejó Eliyah en el campamento de la barrera y conducidos por varios miembros de la tripulación del Theodosia . No puedes contener tu alivio al verlos. Os hacen gestos de forma frenética para que vayáis hacia ellos, mientras miran fijamente el horrendo miasma. –¿Qué demonios es esa cosa? –grita uno de ellos. Pero no hay tiempo para explicaciones. En cuanto te montas en uno de los trineos, das instrucciones de emprender la huida. La fuga de la ciudad es como un borrón frenético. Tienes un vago recuerdo de haber atravesado las antiguas calles cubiertas de nieve, esquivando la siniestra bruma en torno a edificios de lisa pizarra gris; de haber evitado por poco una avalancha de cieno caleidoscópico mientras atravesabais las montañas. Cuando perdéis de vista a la criatura, uno de los tripulantes explica que arreglaron el último aeroplano y decidieron usarlo para buscaros pese a que conocían los riesgos. –Cuando les vimos entrar en esa enorme caverna sin la mayor parte del equipo, pensamos que podría hacer falta un rescate, pero no esperábamos que fuera tan literal –os dice. Te alivia ver que el piloto ha hecho aterrizar el último aeroplano justo al otro lado de la cadena montañosa. Os subís al avión a toda prisa en cuanto llegáis a él, junto con los perros restantes. Veis aparecer la entidad a lo lejos, trepando por los escarpados picos y elevándose hacia el cielo. Abandonáis los trineos y todos los suministros. El motor arranca con un rugido y dejáis atrás las montañas de la locura. No te atreves a volver la cabeza y atisbar lo que ha perseguido a Danforth durante tantos meses, pero incluso a día de hoy lo sigues oyendo: alaridos que resuenan y gritos incomprensibles, vientos demasiado agudos y penetrantes como para ser naturales y susurros que te piden que regreses. Han pasado años desde ese fatídico día. No le contaste nada sobre vuestro viaje a la comunidad científica. Y aun así, sigue sin haber rastro de la entidad que escapó. ¿Se limita su alcance a ese enigmático continente helado? ¿Está esperando su momento? ¿O ya está aquí, en el mismo aire que respiras? ¿Dentro de tu mente? ¿Mostrándote una realidad falsa? ¿Un espejismo?"
+    },
+    "heartVictim08720": {
+      "title": "El corazón de la locura",
+      "body": "–¿Qué? Sí... sí, cómo no... –dice la Dra. Kensler mientras se le dibuja una sonrisa en los labios–. Me encantaría volver a verte, Mala. ¿E-este viernes? Qué pronto... Se coloca detrás de la oreja un mechón de pelo suelto y un tentáculo de miasma con forma de mano se dirige hacia ella..."
+    },
+    "heartVictim08720Saved": {
+      "title": "El corazón de la locura",
+      "body": "–¡No! La Dra. Sinha logra agarrar a la Dra. Kensler antes que el miasma y la hace girar hasta acabar en sus brazos. Pone las manos en las mejillas de la Dra. Kensler con firmeza y la obliga a mirarle a los ojos, y sólo a sus ojos. –Estoy aquí, Amy. Estoy aquí mismo . A la Dra. Kensler le tiemblan los brazos cuando dice: –¡Mala! Eras... Yo... Yo casi... –Sacude la cabeza y se desploma en brazos de la sanitaria mientras llora en silencio. La entidad se retira al ver su plan frustrado."
+    },
+    "heartVictim08720Lost": {
+      "title": "El corazón de la locura",
+      "body": "La Dra. Kensler estira el brazo y toma la mano. La entidad la mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verla."
+    },
+    "heartVictim08714": {
+      "title": "El corazón de la locura",
+      "body": "–¿Profesor Lake? –dice Dyer al reconocer la figura que hay dentro del miasma–. Sí, he leído su propuesta."
+    },
+    "heartVictim08714Saved": {
+      "title": "El corazón de la locura",
+      "body": "–Lake está muerto –dice la Dra. Kensler mientras le pone la mano en el hombro al profesor–. Estuvimos juntos en su funeral. ¿ Te acuerdas? En Santa María. El velo lechoso de los ojos de Dyer empieza a desvanecerse a medida que se da cuenta de la verdad. –Sí –dice por fin–. Sí, lo... lo recuerdo. Fue... –Respira hondo y cierra los ojos para contener el doloroso recuerdo–. Fue un funeral muy bonito. La entidad se retira al ver su plan frustrado."
+    },
+    "heartVictim08714Lost": {
+      "title": "El corazón de la locura",
+      "body": "El profesor Dyer estira el brazo y toma la mano. La entidad lo mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verlo."
+    },
+    "heartVictim08715": {
+      "title": "El corazón de la locura",
+      "body": "–Te veo –afirma el joven mientras le hace un gesto al espejismo como si fuera un viejo amigo–. Sí. Sí, te veo. ¡Puedo verte! – exclama con alegría con una amplia sonrisa en el rostro. Un tentáculo de miasma con forma de mano se dirige hacia él..."
+    },
+    "heartVictim08715Saved": {
+      "title": "El corazón de la locura",
+      "body": "–¡Danforth, no! –El anciano se planta delante de su alumno, tapándole la vista–. ¡No debes seguir mirando ese terrible espejismo! –Pero señor –lloriquea Danforth con agitación–, no lo entiende. Ha... ha estado aquí todo este tiempo –Se señala la sien–. Todo este tiempo aquí. Esperándome. Esperando. Y yo... yo... –¡Mírame! –grita Dyer con firmeza. El estudiante aparta la mirada de la cosa que hay tras su mentor. Luego pone los ojos en blanco y se desmaya en brazos de Dyer. La entidad se retira al ver su plan frustrado."
+    },
+    "heartVictim08715Lost": {
+      "title": "El corazón de la locura",
+      "body": "Danforth estira el brazo y toma la mano. La entidad lo mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verlo."
+    },
+    "heartVictim08718": {
+      "title": "El corazón de la locura",
+      "body": "–Es precioso –murmura Claypool, en cuyos ojos se refleja una colorida aurora moteada de blanco por una débil nevada–. Como... un mundo secreto. Escondido, sólo para nosotros. Un tesoro oculto. Da un paso adelante y un tentáculo de miasma con forma de mano se dirige hacia él..."
+    },
+    "heartVictim08718Saved": {
+      "title": "El corazón de la locura",
+      "body": "Ellsworth sólo tiene que poner suavemente su mano en el hombro de Claypool para que la atención de éste deje de centrarse en el espejismo. –En este mundo también hay tesoros para ti, Avery –susurra–. Quédate, por favor. Los ojos azules de Claypool resplandecen y luego vuelven a la normalidad. Mantiene la mirada de Ellsworth durante un instante antes de apoyar la frente en la de su compañero. –Lo siento. Tienes razón. La entidad se retira al ver su plan frustrado."
+    },
+    "heartVictim08718Lost": {
+      "title": "El corazón de la locura",
+      "body": "Claypool estira el brazo y toma la mano. La entidad lo mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verlo."
+    },
+    "heartVictim08722": {
+      "title": "El corazón de la locura",
+      "body": "–¿Papá...? –dice Takada. Los ojos abiertos como platos se le llenan de lágrimas a la vez que deja caer su pico en el suelo de piedra–. ¿Eres tú de verdad? Pero dijeron... me dijeron que estabas... –Se le quiebra la voz y un tentáculo de miasma con forma de mano se dirige hacia ella..."
+    },
+    "heartVictim08722Saved": {
+      "title": "El corazón de la locura",
+      "body": "Un ladrido repentino rompe la ilusión, y Anyu se lanza de golpe sobre el pecho de Takada, tirándola al suelo. La mujer forcejea un instante con la perra antes de darse cuenta de lo que ha sucedido. –¿Anyu? No, espera... –Buena chica –dice Eliyah mientras hace que la perra vuelva a su lado con un silbido. Le rasca detrás de las orejas como recompensa. Takada se pone en pie lentamente. En sus ojos hay dolor, vergüenza y tristeza. No dice nada, pero hace un leve asentimiento en dirección a Eliyah, que la responde del mismo modo. La entidad se retira al ver su plan frustrado."
+    },
+    "heartVictim08722Lost": {
+      "title": "El corazón de la locura",
+      "body": "Takada estira el brazo y toma la mano. La entidad la mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verla."
+    },
+    "heartVictim08721": {
+      "title": "El corazón de la locura",
+      "body": "Ellsworth apenas vacila en dar un paso adelante. –¿Adónde lleva? –dice para sí mientras busca su linterna–. ¿Se adentra más en la instalación? ¿Es una especie de caverna natural? ¡Podría ser el descubrimiento del milenio! Avanza y un tentáculo de miasma con forma de mano se dirige hacia él..."
+    },
+    "heartVictim08721Saved": {
+      "title": "El corazón de la locura",
+      "body": "Cookie se aproxima a Ellsworth en cuestión de segundos e interrumpe sus desvaríos dándole un raudo y fuerte bofetón en la cara. El sonido resuena por toda la caverna. Ellsworth se lleva la mano enguantada a la mejilla. –Sabes por qué lo he hecho –gruñe Cookie. –Y una mierda que lo sé –contesta Ellsworth mientras se coloca la mandíbula. Cookie sonríe y luego Ellsworth hace lo mismo. La entidad se retira al ver su plan frustrado."
+    },
+    "heartVictim08721Lost": {
+      "title": "El corazón de la locura",
+      "body": "Ellsworth estira el brazo y toma la mano. La entidad lo mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verlo."
+    },
+    "heartVictim08716": {
+      "title": "El corazón de la locura",
+      "body": "–¡Mira, Anyu! –exclama Eliyah mientras señala el turbio espejismo, viendo algo que los demás no veis–. Son ellos... Están todos aquí... ¡Están vivos...! Anyu intenta alejarlo, mordiendo la mochila y tirando en dirección contraria, pero su amo no parece enterarse. Un tentáculo de miasma con forma de mano se dirige hacia él..."
+    },
+    "heartVictim08716Saved": {
+      "title": "El corazón de la locura",
+      "body": "Claypool agarra el brazo de Eliyah en el preciso instante en que Anyu le arranca la mochila al romper una de las correas. –¡Para, Eliyah! –grita–. ¡Para! ¡Los demás están muertos, Eliyah! ¡Están muertos! ¡Y la única que queda te necesita más que nunca! Se hace el silencio en la caverna. Eliyah parpadea y sale de su estupor. Baja la mirada hacia Anyu y aprieta la mandíbula. –L-lo siento, chica –dice. La entidad se retira al ver su plan frustrado."
+    },
+    "heartVictim08716Lost": {
+      "title": "El corazón de la locura",
+      "body": "Eliyah estira el brazo y toma la mano. La entidad lo mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verlo."
+    },
+    "heartVictim08717": {
+      "title": "El corazón de la locura",
+      "body": "–Un mundo sin muerte –afirma la Dra. Sinha mientras mira fijamente el espejismo–. Un mundo sin dolor. Sin sufrimiento... Da un paso adelante y un tentáculo de miasma con forma de mano se dirige hacia ella..."
+    },
+    "heartVictim08717Saved": {
+      "title": "El corazón de la locura",
+      "body": "–“Los límites que separan la vida de la muerte son, en el mejor de los casos, borrosos e indefinidos” –recita Danforth de manera enigmática–. “¿Quién podría decir dónde termina uno y dónde empieza el otro?” Mala sale de su trance y fulmina al joven con la mirada: –¿Otra vez Poe? –La certeza de la muerte encierra sabiduría –responde éste con un asentimiento. –Es posible –admite ella mientras le da la espalda a la visión–. Es posible. La entidad se retira al ver su plan frustrado."
+    },
+    "heartVictim08717Lost": {
+      "title": "El corazón de la locura",
+      "body": "La Dra. Sinha estira el brazo y toma la mano. La entidad la mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verla."
+    },
+    "heartVictim08719": {
+      "title": "El corazón de la locura",
+      "body": "–Teniente... ¡Está vivo! –jadea Cookie, a punto de caer de rodillas–. ¿Y el resto del batallón también? Pero pensaba que... El rugido del motor de un avión interrumpe sus sorprendidas palabras. –¡Claro, cómo no! Sabía que si aguantábamos suficiente tiempo... Un tentáculo de miasma con forma de mano se dirige hacia él..."
+    },
+    "heartVictim08719Saved": {
+      "title": "El corazón de la locura",
+      "body": "Takada actúa con rapidez y decisión, cogiendo el Colt de Cookie de su funda y disparando dos veces contra la bruma. El tremendo sonido de los disparos resuena por las cavernosas salas. Cookie se lleva una mano a la oreja que sigue pitándole y dedica una serie de improperios a Takada mientras ésta le devuelve el arma. –¿Está intentando dejarme sordo, soldado? –Espabila, Cookie. Estás aquí atrapado con todos nosotros –contesta ella. Cookie mira a su alrededor, confuso, antes de darse cuenta de la terrible verdad. La entidad se retira al ver su plan frustrado."
+    },
+    "heartVictim08719Lost": {
+      "title": "El corazón de la locura",
+      "body": "Cookie estira el brazo y toma la mano. La entidad lo mete en el espejismo, en un mundo de dicha falsificada, y nunca volvéis a verlo."
+    },
+    "heartEpilogueKenslerSinha": {
+      "title": "El corazón de la locura",
+      "body": "Has visto a la Dra. Kensler enfrentarse a criaturas imposibles y entornos de pesadilla, pero esta última prueba es la que parece costarle más. Da vueltas de un lado para otro de forma nerviosa y recita frases en voz baja hasta que por fin llega la Dra. Sinha. Te gustaría dejarlas solas, pero te ha pedido que te quedes. –Mala –dice con tono seco a pesar de tanta práctica–, me preguntaba si... o sea... me gustaría... –Se aclara la garganta y vuelve a intentarlo–. ¿Te gustaría cenar otra vez algún día? ¿Y tal vez ir a ver otro espectáculo? –logra decir por fin. La Dra. Sinha hace una mueca para esconder su sonrisa y responde: –Pues claro, idiota. La Dra. Kensler parpadea, sorprendida. Tienes la sensación de que nunca le habían llamado algo así. –Amy, eres una persona muy astuta y leída y un verdadero prodigio en tu campo. Pero en lo tocante a esto... –La Dra. Sinha hace unos gestos para indicar algo en el aire entre las dos–, eres bastante zoquete. Para sorpresa tuya, Amy suelta una risilla y sonríe: –Sí. Sí, supongo que sí."
+    },
+    "heartEpilogueEllsworthClaypool": {
+      "title": "El corazón de la locura",
+      "body": "Encuentras a Ellsworth y a Claypool en la cubierta de popa del Theodosia, disfrutando de una majestuosa vista del Atlántico. Han pasado varios días desde vuestra huida, y el ambiente general es una mezcla de alivio, pesar y culpa. Ambos hombres te saludan cuando te acercas y te dejan sitio para que tú también puedas disfrutar de la vista. Tras unos instantes de contemplación, preguntas a los exploradores por sus planes de futuro. Los dos comparten una mirada de complicidad antes de responder. –Creo que unas vacaciones –dice Ellsworth–. Unas vacaciones muy, muy largas. –Sólo cielo azul y aire cálido –sugiere Claypool. –Claro. A poder ser, que sea un sitio que salga en los mapas –añade Ellsworth con una sonrisa amable. –¿En serio? Yo estaba pensando en un lugar bonito y apartado. Sólo para los dos –insinúa Claypool. Te ríes y les dejas haciendo sus planes de vacaciones. Puede que al final haya esperanza para todos vosotros."
+    },
+    "heartEpilogueTakadaCookie": {
+      "title": "El corazón de la locura",
+      "body": "Para tu sorpresa, ves a Takada y a Cookie en el taller que hay bajo cubierta. Cookie ha desmontado su revólver y está limpiando cada pieza de manera individual, mientras que Takada está revisando las partes de aeroplano que la tripulación logró desmontar durante vuestra apresurada huida. Observas en secreto durante un rato mientras conversan. –Pásame ese trapo, ¿quieres? –No estoy a tu servicio, Cookie. –Venga, Roko, que lo tienes ahí mismo. Cógelo y me lo tiras. –Sí, señor, ¿quiere que le traiga también un poco de té? –Muy graciosa... ¿Por qué demonios lo has tirado tan lejos? –Me has dicho que lo tirara. –Que me lo tiraras, maldita... ¡Que me lo tiraras a mí! Sonríes mientras la conversación continúa. La extraña pareja parece encontrarse más cómoda estando juntos que con nadie más del equipo. Al final, un silencio en la conversación te da la oportunidad de hacer notar tu presencia. Hacen unos leves asentimientos cuando entras antes de reanudar su trabajo. Les preguntas qué quieren hacer cuando vuelvan a Arkham. –Roko quiere... Cuéntaselo –dice Cookie. Takada suspira y se incorpora mientras se limpia el sudor de la frente con el dorso de su mano enguantada. –Yo... quiero intentar buscar a mi padre. Le he pedido al Sr. Fredericks que me acompañe –Ambos comparten una mirada cómplice–. Sé que es una posibilidad remota. Probablemente se estrellara en el océano hace muchos años. Pero aun así, quiero... necesito saberlo. Tengo sus diarios. Deberíamos de poder encontrar pruebas. Algo. –Y si no –añade Cookie–, siempre es mejor que quedarse sin hacer nada, esperando a que te manden a otra locura como ésta. Asientes y te despides. Crees que ambos estarán bien mientras se tengan el uno al otro."
+    },
+    "heartEpilogueDyerDanforth": {
+      "title": "El corazón de la locura",
+      "body": "Semanas más tarde, entras en el despacho del profesor Dyer, donde Danforth y él estudian todo un despliegue de antiguos tomos mohosos. En la pizarra del profesor hay una especie de diagrama esotérico repleto de extraños símbolos. –Podría ser éste –dice Dyer mientras señala un diagrama distinto en uno de los tomos. Reconoces el libro de las pertenencias de la Dra. Kensler, y varios de los demás tomos de la colección restringida de la Biblioteca Orne. Danforth cierra los ojos y responde: –No, no, no... –Se acerca a la pizarra y empieza a borrar–. Es distinto. Distinto, distinto... No es hasta ese momento cuando por fin te ven en la entrada del despacho. Les preguntas qué están estudiando esta vez. –No es de ninguna manera una suposición irracional que, en una existencia futura, consideraremos lo que creemos de nuestra existencia actual como un sueño –recita Danforth una vez más, citando a Poe a modo de explicación."
+    },
+    "heartEpilogueEliyah": {
+      "title": "El corazón de la locura",
+      "body": "Eliyah está sentado junto a la barandilla de la proa del barco, con la mirada perdida y teñida de preocupación. A su lado, tumbada sobre la cubierta y con la cabeza sobre su regazo, se encuentra Anyu. Es la primera que te ve acercarte, pero ninguno te saluda. No dices nada y te sientas cerca, mirando el horizonte en silencio. –Ha vuelto a suceder, Anyu –murmura por fin con la voz grave–. Todo el mundo ha muerto. Todos menos nosotros. ¿Por qué? ¿Por qué siempre nosotros? Le dices a Eliyah que es porque ambos son supervivientes, como tú. Demasiado tercos para morir. Pero él sacude la cabeza. –No. Es una maldición. Una carga –acaricia suavemente a Anyu. La perra levanta la cabeza y te mira con expresión suplicante–. Debería estar muerto. Dos veces ya. Insistes que no es cierto. Y además, ha mantenido a Anyu a salvo todo este tiempo, ¿acaso no es razón suficiente para vivir? –No, es al revés –dice con una sonrisa a punto de asomarle en los labios–. Fue ella la que me salvó ese día. Es ella quien me salva cada día."
+    },
+    "heartCard08649": {
+      "title": "El corazón de la locura",
+      "body": "[action]: Coloca un sello activado que controles sobre La puerta de Y’quaa.\n[action]: Desistir. Te retiras esperando haber hecho lo suficiente como  para mantener encerrado a lo que hay al otro lado de la puerta (si controlas 1 o más sellos, conservas su control)."
+    },
+    "heartCard08650": {
+      "title": "El corazón de la locura",
+      "body": "[action] Si controlas el sello [seal_a]: Realiza una prueba de [combat] (3). Si tienes éxito, los investigadores que estén en el Conducto geotérmico gastan, como grupo, 1 pista por investigador para activar el sello [seal_a]. A continuación, retira 1 ficha [frost] de la bolsa de caos."
+    },
+    "heartCard08651": {
+      "title": "El corazón de la locura",
+      "body": "[action] Si controlas el sello [seal_c]: Realiza una prueba de [willpower] (3). Si tienes éxito, los investigadores que estén en el Templo abandonado gastan, como grupo, 1 pista por investigador para activar el sello [seal_c]. A continuación, mira el lado revelado de cada Lugar sin revelar que esté en el mismo radio que el Templo abandonado."
+    },
+    "heartCard08652": {
+      "title": "El corazón de la locura",
+      "body": "[action] Si controlas el sello [seal_b]: Realiza una prueba de [intellect] (3). Si tienes éxito, los investigadores que estén en la Biblioteca de Kós gastan, como grupo, 1 pista por investigador para activar el sello [seal_b]. A continuación, mira el lado revelado de cada Lugar sin revelar que esté en el mismo anillo que la Biblioteca de Kós."
+    },
+    "heartCard08653": {
+      "title": "El corazón de la locura",
+      "body": "[action] Si controlas el sello [seal_d]: Realiza una prueba de [agility] (3). Si tienes éxito, los investigadores que estén en el Estanque protoplásmico gastan, como grupo, 1 pista por investigador para activar el sello [seal_d]. A continuación, inflige 2 puntos de daño a cada Enemigo en juego."
+    },
+    "heartCard08654": {
+      "title": "El corazón de la locura",
+      "body": "[action] Si controlas el sello [seal_e], los investigadores que estén en la Sala del mar sin sol gastan, como grupo, 1 pista por investigador y descartan, como grupo, 2 cartas por investigador de sus manos: Activa el sello [seal_e]."
+    },
+    "heartCard08655": {
+      "title": "El corazón de la locura",
+      "body": "Trata el modificador de la primera ficha [frost] revelada durante cada prueba de habilidad en la Extensión subnáutica como -3 en lugar de -1. Límite de una vez por ronda."
+    },
+    "heartCard08656": {
+      "title": "El corazón de la locura",
+      "body": "[fast]: Elige otro Corredor abovedado y realiza una prueba de [agility] (X). X es la cantidad de Lugares de distancia a la que se encuentra ese Corredor abovedado desde éste. Si tienes éxito, muévete allí. Límite de una vez por ronda."
+    },
+    "heartCard08664": {
+      "title": "El corazón de la locura",
+      "body": "Obligado – Después de que la Gruta glacial sea revelada: Coloca el sello [seal_a] inactivo sobre ella.\n[action]: Realiza una prueba de [combat] (2) para resquebrajar el hielo. Si tienes éxito, los investigadores que estén en la Gruta glacial pueden gastar, como grupo, 1 pista por investigador para que tomes el control del sello que hay sobre ella."
+    },
+    "heartCard08665": {
+      "title": "El corazón de la locura",
+      "body": "Obligado – Después de que la Cripta esculpida sea revelada: Coloca el sello [seal_b] inactivo sobre ella.\n[action]: Realiza una prueba de [intellect] (2) para descifrar la escritura alienígena. Si tienes éxito, los investigadores que estén en la Cripta esculpida pueden gastar, como grupo, 1 pista por investigador para que tomes el control del sello que hay sobre ella."
+    },
+    "heartCard08666": {
+      "title": "El corazón de la locura",
+      "body": "Obligado – Después de que el Altar de la ciudad subterránea sea revelada: Coloca el sello [seal_c] inactivo sobre él.\n[action]: Realiza una prueba de [willpower] (2) para romper la antigua barrera. Si tienes éxito, los investigadores que estén en el Altar de la ciudad subterránea pueden gastar, como grupo, 1 pista por investigador para que tomes el control del sello que hay sobre él."
+    },
+    "heartCard08667": {
+      "title": "El corazón de la locura",
+      "body": "Obligado – Después de que los Túneles cargados de icor sean revelados: Coloca el sello [seal_d] inactivo sobre ellos.\n[action]: Realiza una prueba de [agility] (2) para atravesar el icor. Si tienes éxito, los investigadores que estén en los Túneles cargados de icor pueden gastar, como grupo, 1 pista por investigador para que tomes el control del sello que hay sobre ellos."
+    },
+    "heartCard08668": {
+      "title": "El corazón de la locura",
+      "body": "Obligado – Después de que las Cavernas de piedra caliza sean reveladas: Coloca el sello [seal_e] inactivo sobre ella.\n[action] Los investigadores que estén en la Cripta esculpida gastan, como grupo, 1 pista por investigador y 3 recursos por investigador: Toma el control del sello que hay sobre las Cavernas de piedra caliza."
+    },
+    "heartCard08674": {
+      "title": "El corazón de la locura",
+      "body": "[fast] Si controlas el sello [seal_a] y está activado: Liberas el poder del sello. Coloca el sello [seal_a] sobre este Pilón de bruma. Durante el resto de la partida, cada vez que inflijas daño a un Pilón de bruma, inflige un daño adicional."
+    },
+    "heartCard08675": {
+      "title": "El corazón de la locura",
+      "body": "[fast] Si controlas el sello [seal_d] y está activado: Liberas el poder del sello. Coloca el sello [seal_d] sobre este Pilón de bruma. Durante el resto de la partida, reduce en 2 el valor de velo de cada Pilón de bruma."
+    },
+    "heartCard08676": {
+      "title": "El corazón de la locura",
+      "body": "[fast] Si controlas el sello [seal_c] y está activado: Liberas el poder del sello. Coloca el sello [seal_c] sobre este Pilón de bruma. Durante el resto de la partida, cada investigador recibe +1 a cada una de sus habilidades mientras esté en un Pilón de bruma."
+    },
+    "heartCard08677": {
+      "title": "El corazón de la locura",
+      "body": "[fast] Si controlas el sello [seal_e] y está activado: Liberas el poder del sello. Coloca el sello [seal_e] sobre este Pilón de bruma. Durante el resto de la partida, siempre que un investigador que esté en un Pilón de bruma se le fuese a infligir 1 o más puntos de daño y/o de horror, cancela 1 punto de ese daño u horror."
+    },
+    "heartCard08678": {
+      "title": "El corazón de la locura",
+      "body": "[fast] Si controlas el sello [seal_b] y está activado: Liberas el poder del sello. Coloca el sello [seal_b] sobre este Pilón de bruma. Durante el resto de la partida, cada Enemigo recibe -2 a combate y -2 a evitar mientras esté en un Pilón de bruma."
+    },
+    "heartCard08682": {
+      "title": "El corazón de la locura",
+      "body": "La Rampa titánica está conectada a los Lugares de su izquierda y de su derecha.\nComo coste adicional para que abandones la Rampa titánica, realiza una prueba de [agility] (4). Si fracasas, cancela los efectos de movimiento. Cualquier investigador que esté en tu Lugar o en un Lugar conectado puede gastar 1 pista para hacer que tengas éxito automáticamente en esta prueba."
+    },
+    "heartCard08683": {
+      "title": "El corazón de la locura",
+      "body": "La Rampa titánica está conectada a los Lugares de su izquierda y de su derecha.\nComo coste adicional para que abandones la Rampa titánica, realiza una prueba de [agility] (3). Si fracasas, cancela los efectos de movimiento. Cualquier investigador que esté en tu Lugar o en un Lugar conectado puede gastar 1 pista para hacer que tengas éxito automáticamente en esta prueba."
+    },
+    "heartCard08684": {
+      "title": "El corazón de la locura",
+      "body": "La Rampa titánica está conectada a los Lugares de su izquierda y de su derecha.\nComo coste adicional para que abandones la Rampa titánica, realiza una prueba de [agility] (2). Si fracasas, cancela los efectos de movimiento. Cualquier investigador que esté en tu Lugar o en un Lugar conectado puede gastar 1 pista para hacer que tengas éxito automáticamente en esta prueba."
+    },
+    "heartCard08685": {
+      "title": "El corazón de la locura",
+      "body": "La Rampa titánica está conectada a los Lugares de su izquierda y de su derecha.\nComo coste adicional para que abandones la Rampa titánica, realiza una prueba de [agility] (1). Si fracasas, cancela los efectos de movimiento. Cualquier investigador que esté en tu Lugar o en un Lugar conectado puede gastar 1 pista para hacer que tengas éxito automáticamente en esta prueba."
+    },
+    "heartCard08686": {
+      "title": "El corazón de la locura",
+      "body": "El Túnel oculto está conectado al Lugar de su izquierda.\nObjetivo – Si todos los investigadores no derrotados están en el Túnel oculto, haz avanzar el acto."
+    },
+    "heartTwoMirageTruth": {
+      "title": "El corazón de la locura",
+      "body": "Te quedas mirando la espantosa fantasmagoría completamente sobrecogido. El aire resplandece como en un sueño en torno a su execrable forma, una trama infinita de pesadillas y recuerdos entrelazados. Su mera visión te hace caer de rodillas. Es la verdad definitiva. La realidad era el espejismo."
+    },
+    "heartPylonsFailed": {
+      "title": "El corazón de la locura",
+      "body": "Es demasiado tarde. No podéis contener a la criatura que mora bajo la montaña. Sólo os queda esperar que podáis escapar con vida."
+    },
+    "heartPylonsCollapsed": {
+      "title": "El corazón de la locura",
+      "body": "La instalación tiembla de arriba abajo. Sin los pilones de bruma para alimentar la estructura, la entidad sin nombre que reside en su interior está libre, pero tiene los días contados, igual que tú. La montaña gruñe y se estremece, amenazando con derrumbarse a tu alrededor."
+    },
+    "peaksTragedy": {
+      "title": "Hacia los picos prohibidos",
+      "body": "Todo sucede en un abrir y cerrar de ojos. Sólo tienes tiempo de gritar el nombre de la persona antes de que lo atrapen. Su cuerpo se ve rodeado por sus muchas formas cambiantes. La persona intenta escapar, pero es en vano."
+    },
+    "peaksTragedyEnd": {
+      "title": "Hacia los picos prohibidos",
+      "body": "A continuación, sin un instante de duda, clava sus tentáculos en el cuerpo de su víctima y la parte de un tirón como si fuera un trozo de carne cruda. Una rociada de sangre tiñe la nieve de un color carmesí. Tira en el suelo sin miramientos los restos de la persona y vuelve su atención hacia los demás."
+    },
+    "peaksTragedyCookie": {
+      "title": "Hacia los picos prohibidos",
+      "body": "El curtido veterano suelta una palabrota y logra sacar el brazo derecho del agarre de la criatura, lo suficiente como para poder realizar un disparo con su colt. La detonación resuena por toda la montaña y desgarra la grotesca masa informe de la cosa."
+    },
+    "peaksNoResolution": {
+      "title": "Hacia los picos prohibidos",
+      "body": "El resto de vuestro trayecto por los picos es un remolino de nieve y miedo. Subís cada vez más alto, forzándoos hasta extremos que jamás habríais pensado posibles. Pero la cumbre se mantiene fuera de vuestro alcance. Cuando cae la noche y las condiciones climatológicas se vuelven más letales aún, la desesperación os obliga a buscar algún lugar donde poder sobrevivir."
+    },
+    "peaksResolution1": {
+      "title": "Hacia los picos prohibidos",
+      "body": "La vista desde la cumbre es espectacular, pero no estás de humor para disfrutar de ella. Ante ti, al otro lado de estos picos malditos, se extiende la ciudad descrita en el informe de Dyer. Su inquietante faz es inconfundible. Docenas de edificios cónicos y piramidales de pizarra oscura y arenisca se distribuyen en forma de panal por toda la zona, como un laberinto de formas geométricas perfectas. Aunque desgastada por los siglos, la ciudad permanece en pie, oculta por los escarpados picos y las intensas nevadas. Te quedas en silencio durante un rato, admirando la impresionante vista. Si no fuera por las muchas tribulaciones vividas hasta llegar aquí, sería un momento de triunfo. Pero después de todos los sacrificios realizados, la victoria tiene un regusto amargo. Un gélido viento sopla entre los picos. El aire es demasiado escaso aquí arriba como para quedarse mucho tiempo. Tras descansar un momento, empezáis el largo camino de descenso hacia la ciudad alienígena. Tendréis que acampar antes de llegar abajo. Con suerte, estaréis ocultos frente a las terribles criaturas que moran allí..."
+    },
+    "peaksResolution2": {
+      "title": "Hacia los picos prohibidos",
+      "body": "Cuando estás empezando a perder la esperanza, encuentras una oscura cueva metida en la ladera de la montaña. El viento aúlla fuera de la entrada de la cueva, trayendo un repentino alud de nieve. No sabes qué sería peor: una muerte lenta atrapados en una caverna helada o una muerte igual de lenta al fracasar en el intento de llegar a la cumbre. Pero cuando uno de los miembros del equipo enciende su linterna, veis que podría haber una tercera opción. Las paredes de este angosto túnel están repletas de extraños jeroglíficos, distintos a nada que hayas visto nunca. Supones que es la antigua escritura de un idioma alienígena. Puede que incluso sea el de los Antiguos que habitaban en este lugar. Lo más importante es que la caverna se adentra cada vez más en la montaña, más lejos de adonde llega la luz. Votáis sobre lo que hacer y decidís seguir adelante, con la lejana esperanza de que el túnel pueda llevaros a otra salida. Para vuestra sorpresa, el camino es sencillo, aunque la omnipresente oscuridad, los aterradores ecos de gruñidos imposibles y las voces amortiguadas de algo que hay en las profundidades hacen mella en vuestra cordura. Camináis durante horas, hasta que afortunadamente acabáis por ver luz a lo lejos. Volvéis a salir a la ladera de la montaña, pero esta vez tenéis delante una espectacular vista. Ante t, se extiende la ciudad descrita en el informe de Dyer. Su inquietante faz es inconfundible. Docenas de edificios cónicos y piramidales de pizarra oscura y arenisca se distribuyen en forma de panal por toda la zona, como un laberinto de formas geométricas perfectas. Aunque desgastada por los siglos, la ciudad permanece en pie, oculta por los escarpados picos y las intensas nevadas. Te quedas en silencio durante un rato, admirando la impresionante vista. Habéis logrado encontrar la forma de atravesar la montaña de algún modo. Si no fuera por las muchas tribulaciones vividas hasta llegar aquí, sería un momento de triunfo. Pero después de todos los sacrificios realizados, la victoria tiene un regusto amargo. Tras descansar un momento, empezáis el largo camino de descenso hacia la ciudad alienígena. Tendréis que acampar antes de llegar abajo. Con suerte, estaréis ocultos frente a las terribles criaturas que moran allí..."
+    },
+    "endlessNight": {
+      "title": "Noche infinita",
+      "body": "Ahora que volvéis a estar a salvo, tus compañeros y tú establecéis un campamento en silencio. Te maravilla la quietud de esta noche en comparación con las anteriores, ya sea porque sois menos o por el lúgubre ánimo que reina en el campamento. Pero la quietud no tiene nada de tranquila. A medida que pasan las horas, no logras descansar, así que decides ir a ver a algunos de tus compañeros..."
+    },
+    "endlessNightDawn": {
+      "title": "Noche infinita",
+      "body": "Intentas dormir en vano, pero la noche parece alargarse eternamente, y tus pensamientos vagan sin fin por un laberinto de preocupaciones y dudas."
+    },
+    "endlessNightReturn": {
+      "title": "Noche infinita",
+      "body": "Cuando estás empezando a conciliar el sueño, la puerta aparece de nuevo. Brilla durante un momento, y unas volutas de bruma gris surgen de las grietas del marco. Vuelves a poder decidir. Pero ¿te arriesgas a aventurarte una vez más en la gélida ilusión?"
+    },
+    "endlessNightDoor": {
+      "title": "Noche infinita",
+      "body": "Cuando estás empezando a conciliar el sueño, una vaga amenaza que percibes al límite de tu percepción te sobresalta. De forma instintiva, buscas un arma para defenderte, pero cuando miras en torno a ti, no hay nada extraño. De hecho... Te pones en pie, conmocionado, y examinas los alrededores. El campamento improvisado estaba protegido de la dureza de los elementos, pero no deja de estar en lo más profundo de la Antártida. Pese a ello, te encuentras dentro de un edificio, en una sala que no reconoces aunque te produce una extraña familiaridad. Quitas parte de la nieve que sigue habiendo en el suelo, en torno a tu saco de dormir, y ves un suelo de baldosas que antes no estaba ahí. ¿Es un sueño? Cuando dudas de la verdad de este misterioso lugar, las paredes y el suelo de baldosas brillan y se desvanecen. Vuelves a estar en el frío helador de tu campamento, rodeado por tus compañeros, pero la puerta de salida de la sala permanece. Una densa bruma gris se arremolina a tu alrededor, como guiándote. No hay refracción natural de la luz. Se está produciendo algo sobrenatural. El espeso miasma que gira en torno al campamento es parecido a la sustancia que compone las criaturas de pesadilla que encontrasteis tras el accidente de avión. ¿De verdad quieres saber lo que quiere que veas?"
+    },
+    "peaksSetup": {
+      "title": "Hacia los picos prohibidos",
+      "body": "Æ Reúne todas las cartas de los siguientes conjuntos de encuentros: Hacia los picos prohibidos, Tiempo letal, Antiguos, Peligros de la Antártida, Horrores sin nombre y Tekeli-li . Estos conjuntos vienen indicados por los siguientes iconos: Æ Baraja los 7 Lugares Ladera de montaña y pon 5 en juego formando una diagonal. Pon aparte los 2 Lugares restantes, fuera del juego. Pon el Lugar La cumbre en juego en la parte superior de la diagonal. La posición de cada Lugar tiene su propio nivel de 0 a 5, empezando por el Lugar en la parte inferior con el nivel 0 y subiendo hasta llegar a La cumbre en el nivel 5 (consulta la colocación de Lugares abajo). = Revela el Lugar del nivel 0. Cada investigador comienza la partida en ese Lugar. Æ Añade 1 ficha [elderThing] a la bolsa de caos. Æ Consulta la sección “Suministros recuperados” del registro de campaña y pon en juego en el Lugar del nivel 0 todos los Apoyos de historia Expedición que estén anotados en ella. Retira todos los demás Apoyos de historia Expedición de la partida. Æ Pon aparte el Enemigo Terror de las estrellas, fuera del juego. Æ Comprueba el nivel de dificultad: = Si juegas en dificultad Difícil, añade 1 ficha de Perdición al plan 1a. = Si juegas en dificultad Experto, añade 2 fichas de Perdición al plan 1a. Æ Baraja todas las cartas de Debilidad ¡Tekeli-li! que no sean parte del mazo de un investigador para formar el mazo Tekeli-li. Coloca este mazo junto al mazo de Plan. Æ Baraja el resto de cartas de Encuentro para formar el mazo de Encuentros. Æ Los investigadores ya están listos para comenzar. Adyacencia de Lugares en Hacia los picos prohibidos Durante este escenario, los Lugares están colocados formando una diagonal, con cada Lugar situado por encima o por debajo de los Lugares que tiene al lado. Æ Durante este escenario, cada Lugar está conectado con el Lugar que tenga por debajo y con el Lugar que tenga por encima."
+    },
+    "endlessVisit08714alive": {
+      "title": "Noche infinita",
+      "body": "El profesor está yendo de un lado a otro mientras se pasa los dedos por el cabello cano. –Están conectados. Tienen que estar conectados –murmura para sí mientras te acercas–. Los Antiguos y estas manifestaciones, estos “espejismos” –prosigue como si respondiese a la pregunta que no has hecho–. La última vez que estuvimos aquí, vi imágenes de los Antiguos en conflicto con otras especies, otros... seres alienígenas. Pero ¿y si el verdadero origen de su miedo se encuentra aquí, en la Tierra? – Su mirada se encuentra con la tuya–. ¿Y si éste no era su verdadero hogar? ¿Y si... y si estaban protegiendo algo?"
+    },
+    "endlessVisit08714memorial": {
+      "title": "Noche infinita",
+      "body": "Dedicas un momento a revisar algunos de los viejos bocetos del profesor, que había traído consigo por si podían resultar útiles. Como sospechabas, ninguna de las criaturas que esbozó se parecen lo más mínimo a las cosas que viste. Pero cuando estás a punto de rendirte, encuentras varios bocetos de la ciudad que afirma haber encontrado al otro lado de las oscuras y escarpadas montañas. Muestran una enorme arcada decorada con cinco símbolos rodeados de una estrella de cinco puntas. Bajo la arcada, o puede que detrás de ella, se alza algo grotesco. Las líneas del boceto se desintegran en una maraña de trazos ligeros y manchas de tinta que apenas puedes describir. Hay varias criaturas con cuerpo de barril y cabeza de estrella de mar, los “Antiguos” alienígenas que Dyer describió en su informe, flanqueando la arcada, con actitud reverente y los apéndices similares a alas extendidos también con reverencia. Desearías poder preguntarle a Dyer lo que significa esto, pero por desgracia, es demasiado tarde para eso. Coges sus bocetos para llevártelos, esperando que puedan resultar útiles más adelante."
+    },
+    "endlessVisit08715alive": {
+      "title": "Noche infinita",
+      "body": "Nadie más parece entender los desvaríos de Danforth, pero crees que tú empiezas a hacerlo. O al menos eres la única persona que lo intenta. Después de todo, sea lo que sea lo que vio durante su último viaje aquí, es algo nuclear en todo este asunto. –Era... era... –se detiene, pues se le corta la voz cuando intenta explicarlo–. Era como las criaturas que hemos visto. Tinta, bruma y color. O al menos creo que es la única forma que tienen nuestros ojos humanos de interpretar su verdadera forma. Los ojos de Danforth tienen la mirada perdida a lo lejos, empañados por el horror mientras rememora el espejismo. –Sigue aquí. Atado y encadenado. Pero temo que no por mucho tiempo. No por mucho tiempo."
+    },
+    "endlessVisit08715memorial": {
+      "title": "Noche infinita",
+      "body": "Decides buscar información en las pertenencias de Danforth, con la esperanza de que llevara un diario o tuviera pruebas de su anterior expedición con Dyer. Lo que encuentras en su lugar es todo un tesoro de ficción tanto macabra como especulativa, incluyendo un sobado ejemplar de las obras de Edgar Allan Poe. Sus páginas están repletas de marcas improvisadas, y los márgenes, llenos de numerosas notas y apuntes, algunos relevantes y otros cuyo verdadero significado se te escapa. No sabes bien el motivo que tuvo Danforth para traer semejante colección de relatos, especialmente uno al que parecía tener tanto aprecio. Lo abres por una de las páginas marcadas y lees: “No pudimos convencerle para que la tocara o se acercase a ella, pues se ponía a temblar cuando intentábamos obligarle, gritando: ‘¡Tekeli-li!’”. En el margen, Danforth ha garabateado: “¿Qué podría hacer que alguien saliera de un paroxismo tal? ¿Cómo puedo dejar atrás esta terrible sensación?”."
+    },
+    "endlessVisit08720alive": {
+      "title": "Noche infinita",
+      "body": "La Dra. Kensler no se sorprende al verte entrar en su tienda. Levanta la vista de su mesa y se baja las gafas para mirarte directamente. –¿Ha venido a interesarse por lo que he averiguado? –te pregunta, y tú asientes–. Muy bien. Te das cuenta de su actitud inusualmente cálida y te acercas y miras por encima de su hombro. Frente a ella, ves un trozo de uno de los apéndices de un Antiguo diseccionado con precisión experta. Un líquido verde oscuro mancha su carne escamosa y la superficie que hay bajo él. La doctora vuelve a levantarse las gafas y se vuelve para mirar de nuevo la muestra anatómica. –No es muy distinto a nosotros –dice–, tal y como sugirió Dyer en su relato. Y aun así, de algún modo es capaz de sobrevivir a una presión y un frío increíbles. Puede que incluso al vacío del espacio. Lo que no entiendo es... –Respira hondo y prosigue–. El informe de Dyer cuenta que sólo despertaron de su hibernación unas pocas de estas criaturas. ¿Entonces por qué hay tantas activas?"
+    },
+    "endlessVisit08720memorial": {
+      "title": "Noche infinita",
+      "body": "Revisas las notas de investigación que dejó la jefa de esta expedición condenada. Seguro que si alguien podría encontrarle algún sentido a lo que habéis visto hasta ahora, ésa sería la Dra. Kensler. Puede que supiera más sobre las criaturas de lo que decía. Registras su tienda y sus pertenencias hasta encontrar un grueso diario lleno de meticulosas notas sobre el viaje a la Antártida y los primeros días que pasasteis descargando suministros y estableciendo el campamento. A partir de ahí, las notas se vuelven menos detalladas y más confusas. Su relato de los días anteriores al accidente de avión tiene más de desvarío delirante que de diario ordenado. Escribió sobre paredes en las que rezumaba un miasma negro, sobre un vacío infinito bajo el hielo, sobre algo maligno y alienígena que moraba en el núcleo que hay al otro lado del portal... y luego, sobre nada. La Dra. Kensler no era alguien que se dedicara a contar sueños o a escribir obras de ficción. Algo la había descompuesto. Algo había hecho que viera las cosas sobre las que escribía. Pero ¿cómo? ¿Y cuándo? Te sientas a continuar su registro con tu propio relato de los hechos, con la siniestra esperanza de que, si no sales con vida de este continente, alguien lo lea y sepa lo que sucedió aquí..."
+    },
+    "endlessVisit08717alive": {
+      "title": "Noche infinita",
+      "body": "–¿Cómo se encuentra? Te quedas parpadeando en silencio durante un instante, pues la sincera preocupación de la doctora te ha sorprendido. Habías acudido a ella esperando que hiciera una mueca y te regañara. –Venga, ¿acaso no puedo preocuparme? Después de todo lo que hemos visto y por lo que hemos pasado, creo que debería inquietarme. Ante su insistencia, le permites que te examine en busca de heridas o signos tempranos de hipotermia. –Tenemos suerte de seguir con vida, ¿sabe? –dice en voz baja mientras abre su botiquín–. O tal vez... –Hace sonar los dientes y sacude la cabeza–. ... tal vez los afortunados sean los otros."
+    },
+    "endlessVisit08717memorial": {
+      "title": "Noche infinita",
+      "body": "No sabes muy bien qué es lo que te ha impulsado a acudir a la tienda de la Dra. Sinha, pero ahora que estás aquí, sabes que no encontrarás respuestas entre sus pertenencias. Aun así, tal vez puedas aprovechar sus botiquines y equipo para el frío. Mientras metes sus suministros médicos en una de sus mochilas, un escalofrío te recorre la espalda. Te dices que lo haces por necesidad, pero adueñarte de las posesiones de los muertos te pesa mucho en la consciencia. Te echas a los hombros las correas de la mochila y te vuelves para salir de la tienda de la Dra. Sinha, con la esperanza de sacar de tu mente este macabro asunto. Del bolsillo delantero de la mochila cae algo que hace un leve ruido en el suelo que te llama la atención. Buscas el objeto en torno a tus pies y encuentras una carterita de cuero que sólo contiene una horquilla, una foto de la Dra. Sinha con lo que supones que será su familia y el resguardo de una entrada para un espectáculo en el Teatro Riverview. Si fue lo bastante importante como para que lo conservara, debe de tener algún valor sentimental."
+    },
+    "endlessVisit08719alive": {
+      "title": "Noche infinita",
+      "body": "Acudes a Cookie tarde de madrugada, cuando todo el mundo debería de estar dormido. Los restos de la hoguera arden silenciosamente entre ambos, y su tenue luz arroja una sombra danzante tras su silueta encogida. –Espero que no haya venido en busca de consejo –murmura después de un rato. Niegas con la cabeza y le informas de que sólo has venido en busca de compañía–. Claro, claro. Será más bien que no puede dormir –dice acusador, y no respondes nada. No puedes rebatir la verdad. Respira profundamente y prosigue–. Cuando estábamos en las trincheras, no dormíamos casi nunca. Costaba mucho en esas condiciones, en la tierra y el barro, cubiertos de moscas. Y cada vez que los intentábamos, los alemanes nos despertaban con fuego de mortero. El agotamiento era insoportable. Su mirada se clava en el fuego. –Incluso una hora o dos era un regalo divino. Pero superé ese infierno de algún modo, pese a todo lo que intentaba matarme. Le preguntas cómo puedes hacer lo mismo. Los labios de Cookie se curvan hacia abajo, pero la pregunta no lo disuade. –Muy bien, escuche."
+    },
+    "endlessVisit08719memorial": {
+      "title": "Noche infinita",
+      "body": "Mientras establecéis el campamento, otro de los miembros del equipo se acerca con una bolsa que contiene las pertenencias de Cookie. –He pensado que usted es la mejor persona para quedarse con todo esto –dice el joven con pena mientras te la entrega. Te sientas junto a la hoguera y examinas los objetos de la bolsa uno a uno. Dentro hay varios efectos personales de Cookie: un reloj de bolsillo con la esfera agrietada, una caja de cerillas con el logotipo del hotel Excelsior y, por supuesto, su fiel revólver Colt del .32. Lo conservaba excepcionalmente bien, con el cañón limpio y pulido y la empuñadura de madera inmaculada. Conociendo a Cookie, no sería por el cariño que sintiera por el arma, sino porque le costaba desprenderse de las viejas costumbres. Sacas el tambor y ves que sólo quedan unas pocas balas. Lo haces girar distraídamente y realizas una silenciosa promesa dedicada a Cookie: No te preocupes. Les daré un buen uso a estas balas."
+    },
+    "endlessVisit08718alive": {
+      "title": "Noche infinita",
+      "body": "Encuentras a Claypool al borde del campamento, contemplando la ciudad alienígena. –Impresionante, ¿verdad? –Asientes y mencionas que la arquitectura no se parece a nada que hayas visto antes–. No, no me refiero a eso. A ver, eso también, pero mire... –responde mientras señala los enormes picos que se alzan en torno a la ciudad en todas direcciones, como una frontera–. Está construida para bloquear y canalizar el viento. Eligieron con precisión el lugar más apropiado para construir su ciudad. Y el modo en el que están construidas estas calles y estructuras hace que estén protegidas en su mayor parte del exceso de nieve. Te mira de reojo con entusiasmo antes de proseguir su discurso. –Estas criaturas escogieron el lugar más inhóspito de la Tierra para establecer su hogar y prosperaron pese a todo. Te preguntas si es posible que esto signifique que las inclemencias del tiempo sufridas hasta ahora serán menores durante el próximo tramo de vuestro viaje. –Es poco probable –contesta–. Muchas de las protecciones naturales que incorporaron a su ciudad se han desgastado. Y probablemente haya mucho más hielo del que habría en su época. Pero me aseguraré de que evitemos lo peor."
+    },
+    "endlessVisit08718memorial": {
+      "title": "Noche infinita",
+      "body": "Las pertenencias de Claypool están tiradas por la tienda principal del campamento, incluido un mapa de la barrera de hielo de Ross que ha marcado con diversas anotaciones que no entiendes del todo. Un frío viento abre las solapas de la tienda y la llena de un aire gélido. Te abrazas el pecho para mantener el calor. Sin Claypool, estáis indefensos frente al peligroso tiempo. Quedarse atrapados en una tormenta polar sería letal, y era el único con los conocimientos suficientes como para predecirlas con precisión. Suspiras y te dispones a marcharte, pero te detienes un momento para mirar el pesado abrigo de pieles donde han metido el resto de cosas de Claypool. Luego miras el tuyo: andrajoso y roto por el complicado viaje. Coges el de Claypool y dejas el tuyo. Tal vez no te haya dejado tan indefenso frente a la climatología después de todo."
+    },
+    "endlessVisit08721alive": {
+      "title": "Noche infinita",
+      "body": "Ellsworth te da una palmadita en el hombro cuando te acercas y te entrega un paquetito de víveres. –Venga –dice mientras hace un gesto hacia la ciudad–. Vamos a hacer una excursioncita. Atravesáis juntos la nieve y el hielo y avanzáis en profunda oscuridad pendiente abajo por la ladera de la montaña, hasta que por fin alcanzáis los tejados angulares de una de las estructuras de basalto de la ciudad. –Aquí... justo como pensaba –señala una entrada del edificio, una ventana medio tapada por la nieve que se encuentra al lado de la pendiente–. Podemos entrar al edificio por aquí y bajar hasta el nivel de la calle. Será mucho más fácil que fatigarse por la nieve, ¿no le parece? Venga, lo marcaré en nuestro mapa. Volvamos al campamento antes de que nos perdamos."
+    },
+    "endlessVisit08721memorial": {
+      "title": "Noche infinita",
+      "body": "Si no supieras que no es así, tendrías que suponer que Ellsworth se había estado preparando para el apocalipsis. Pese a su reputación como explorador de carga ligera y mochilero experto, un simple vistazo a las pertenencias que ha dejado muestra una gran cantidad de provisiones, suministros y equipo para el hielo. Mientras el equipo se reparte tristemente sus cosas para darles buen uso, ves un par extra de botas resistentes al agua que debió de traer como repuesto. No sabes si alguno de vosotros podría seguir sus pasos de verdad, pero al menos con éstas podrías intentarlo."
+    },
+    "endlessVisit08722alive": {
+      "title": "Noche infinita",
+      "body": "La intendente provisional del equipo está contando algo cuando la abordas. Suelta un improperio al perder la cuenta. –¿Tiene la menor idea de cuánto tiempo llevo...? –se detiene y hace una mueca. Su siguiente pregunta va acompañada de una exasperación monótona–. ¿Qué quiere? Informas a Takada de que te gustaría coger algunos suministros para el viaje de mañana hacia la ciudad alienígena. –Ah, le gustaría, ¿verdad? –Suspira–. Vale, muy bien. Pero no coja nada de esa mochila –añade con un gesto hacia una mochila que está a reventar de provisiones y repuestos de aeroplano–. Es... una larga historia –dice a modo de respuesta de la pregunta que no has hecho, y ahí acaba la discusión."
+    },
+    "endlessVisit08722memorial": {
+      "title": "Noche infinita",
+      "body": "Para alguien que supuestamente se enorgullecía de sus habilidades de organización, los suministros mecánicos de Takada son un completo desastre. Si no supieras que no es así, pensarías que la forma en la que ha almacenado sus cosas no tiene ni pies ni cabeza; pero conociendo a Takada, sospechas que tenía algún sistema. Pasas varios minutos revisando sus pertenencias en busca de algo que pudiera serles útil a los miembros restantes de la expedición. Sin Takada, no podréis lograr que vuele el último aeroplano. De hecho, crees que tendréis que dejar atrás la mayoría de sus cosas cuando mañana salgáis hacia las montañas. Aun así, crees que podrás aprovechar algunos de los suministros que tenía guardados."
+    },
+    "endlessVisit08716alive": {
+      "title": "Noche infinita",
+      "body": "No encuentras a Eliyah, pero Anyu te encuentra a ti. La enorme perra se lanza contra tu regazo cuando menos te lo esperas y empieza a golpearte la cara cariñosamente con el morro. Te ríes y no puedes evitar sonreír mientras intentas en vano quitártela de encima. Las babas son una cosa, pero las babas congeladas son otra muy distinta. –Anyu, ¡abajo! –oyes que grita Eliyah, que se sienta junto a la perra y la rasca tras las orejas. Sacudes la cabeza y le dices que es agradable tener un motivo para sonreír de vez en cuando, incluso cuando las cosas están tan mal como parecen. Él asiente ante tus palabras. –Es cierto. Anyu me ha ayudado a superar muchas situaciones como... Bueno, supongo que nunca he estado en una situación que fuera como ésta . Pero siempre ha estado ahí para mí. Y parece que usted también le ha caído en gracia. Como si entendiera las palabras de Eliyah, la perra te mira con calidez. Sonríes de nuevo y le dices que sientes lo mismo por ella. Anyu mueve el rabo."
+    },
+    "endlessVisit08716memorial": {
+      "title": "Noche infinita",
+      "body": "Cuando te sientas en la periferia del campamento y te preguntas qué te deparará el destino en los próximos días, un leve golpecito te saca de tus pensamientos. Te giras con sorpresa, esperando ver otra de las horrendas criaturas surgiendo del hielo, pero no es más que Anyu, la fiel compañera de Eliyah. La gran perra gris te mira con ojos suplicantes. Sacudes la cabeza y te pones en pie pesadamente. Ya basta de lamentarse por esta noche. Mientras vuelves hacia el campamento, unas suaves pisadas recorren la nieve detrás de ti. Te paras y miras de reojo a Anyu, que vuelve a levantar la mirada hacia ti. ¿Está buscando consuelo o un propósito? Te arrodillas y le pasas los dedos enguantados por el denso pelaje, hablándole dulcemente como si quisieras tranquilizaros a ambos. Sí, Eliyah ya no está. No, no sé si estamos a salvo. ¿Quieres quedarte conmigo? Anyu mueve el rabo. Pues decidido queda."
+    },
+    "endlessVisitEllsworthClaypool": {
+      "title": "Noche infinita",
+      "body": "Cuando volvéis al campamento, Claypool se acerca asustado, acarreando una mochila llena de equipo. –¡Roald! Yo... pensaba que... –deja la frase en el aire, aliviado. –Avery, ¿estabas...? –Ellsworth se arriesga a esbozar una sonrisa–. ¿Estabas preocupado por mí? Claypool suelta la mochila y hace una mueca burlona antes de responder: –No lo tengo prohibido, ¿no? Te ríes para tus adentros y te marchas mientras ellos dos retoman el contacto."
+    },
+    "heartCheckpoint3": {
+      "title": "El corazón de la locura",
+      "body": "Descansas para recuperar fuerzas. Pronto acabarás con esto de una vez por todas."
     }
   },
   "choice": {
@@ -528,7 +1128,11 @@
       "understanding": "Anota que la Dra. Kensler está a punto de entenderlo.",
       "scoutingCity": "Anota que los investigadores exploraron las afueras de la ciudad.",
       "cityStartingHand": "Elige quién comienza Ciudad de los Antiguos con dos cartas adicionales en su mano inicial.",
-      "cityStartingResources": "Elige quién comienza Ciudad de los Antiguos con tres recursos adicionales."
+      "cityStartingResources": "Elige quién comienza Ciudad de los Antiguos con tres recursos adicionales.",
+      "trueNature": "Anota que la Dra. Kensler entiende la verdadera naturaleza del miasma.",
+      "scoutingPassage": "Anota que los investigadores exploraron el pasadizo bifurcado.",
+      "heartStartingHand": "Elige quién comienza El corazón de la locura con 2 cartas adicionales en su mano inicial.",
+      "heartStartingResources": "Elige quién comienza El corazón de la locura con 3 recursos adicionales."
     },
     "nightConfirm": "Confirmar visita",
     "memorialAnyuMove": "Muévete a un Lugar conectado",
@@ -565,7 +1169,19 @@
     "cityTakeHorror": "Recibir 1 horror",
     "cityAutoFail": "Fracasar automáticamente en la prueba",
     "cityWukMove": "Mover {enemy} a tu Lugar",
-    "cityWukDoom": "Colocar 1 perdición sobre {enemy}"
+    "cityWukDoom": "Colocar 1 perdición sobre {enemy}",
+    "cityGroup": "Grupo {n}",
+    "nightHeart": "Continuar hacia El corazón de la locura",
+    "heartYes": "Sí, pagar el coste",
+    "heartStudy": "Quedarse aquí y estudiar la gran puerta para recabar más información",
+    "heartSkip": "¡No hay tiempo que perder! ¡Es necesario atravesar el portal!",
+    "heartCancelDamage": "Cancelar 1 daño",
+    "heartCancelHorror": "Cancelar 1 horror",
+    "heartTestRamp": "Realizar la prueba de agilidad para salir",
+    "heartTrauma": "Sufrir 1 trauma mental",
+    "heartTekelili": "Barajar las 3 primeras cartas del mazo Tekeli-li en tu mazo",
+    "heartSealActive": "Sello {seal}: activo",
+    "heartSealDormant": "Sello {seal}: inactivo"
   },
   "prompt": {
     "claypool": "Avery Claypool: elige cómo cancelar la ficha de Helada",
@@ -614,7 +1230,22 @@
     "nearestEnemy": "Elige el enemigo más cercano que se mueve hacia ti",
     "cityFrostbitten": "Congelado: recibe 1 daño o fracasa en la prueba",
     "cityPossessed": "Poseído: recibe 1 horror o fracasa en la prueba",
-    "cityWuk": "¡Mec! ¡Mec! ¡Mec!: elige el pingüino"
+    "cityWuk": "¡Mec! ¡Mec! ¡Mec!: elige el pingüino",
+    "cityMadnessClue": "Elige el Lugar más cercano del que descubrir una pista",
+    "cityGroup": "El investigador jefe elige entre los grupos empatados",
+    "heartPay": "Elige quién paga el siguiente coste en este Lugar",
+    "heartTakeSeal": "¿Gastar las pistas para recuperar el Sello?",
+    "heartActivateSeal": "¿Gastar las pistas para activar el Sello?",
+    "heartChoosePart": "Decide si estudiarás el portal o lo atravesarás directamente",
+    "heartStart": "El investigador jefe elige el Lugar inicial del anillo interior",
+    "heartAllocateSeal": "Elige quién controla el Sello al comenzar esta parte",
+    "heartLook": "Puedes mirar hasta dos Instalaciones antiguas distintas",
+    "heartSpawn": "El investigador jefe elige entre los Lugares empatados para la aparición",
+    "heartCancel": "Cancela un punto de daño o de horror de este efecto",
+    "heartRamp": "Resuelve el coste adicional para salir de la Rampa titánica",
+    "heartLastAgenda": "Elige la consecuencia de la derrota",
+    "heartExhaust": "Elige la copia preparada más cercana de La locura sin nombre",
+    "heartMovePhantasm": "Elige el destino más cercano o un camino empatado"
   },
   "ability": {
     "memorialPoe": "{card}: gasta 1 carga para buscar ¡Tekeli-li!",
@@ -685,6 +1316,15 @@
       "temple": "Intercambiar las llaves de dos Lugares",
       "streets": "Calles ruinosas: descubre 1 pista en un Lugar conectado",
       "parleyBenign": "Parlamentar: prueba de voluntad (3) para retirarlo de la partida"
+    },
+    "heart": {
+      "transfer": "Transferir el Sello {seal} con {name}",
+      "takeSeal": "Recuperar el Sello {seal}",
+      "activateSeal": "Activar el Sello {seal}",
+      "placeSeal": "Colocar el Sello activo {seal} en La puerta de Y’quaa",
+      "corridor": "Pasar a otro Corredor abovedado: {location}",
+      "unleash": "Desatar el poder del Sello {seal}",
+      "spendPylonClues": "Gastar las {n} pistas descubiertas para dañar el Pilón"
     }
   },
   "note": {
@@ -707,7 +1347,18 @@
     "edgeOfTheEarthReadTheMap": "El equipo leyó el mapa.",
     "edgeOfTheEarthAncientVault": "El equipo descubrió una cámara antigua.",
     "edgeOfTheEarthFoundHiddenTunnel": "El equipo encontró el túnel oculto.",
-    "edgeOfTheEarthGuidedToTunnel": "El equipo fue guiado hacia el túnel oculto."
+    "edgeOfTheEarthGuidedToTunnel": "El equipo fue guiado hacia el túnel oculto.",
+    "edgeOfTheEarthKenslerTrueNature": "La Dra. Kensler entiende la verdadera naturaleza del miasma.",
+    "edgeOfTheEarthScoutedForkedPassage": "Los investigadores exploraron el pasadizo bifurcado.",
+    "edgeOfTheEarthKenslerPlan": "La Dra. Kensler tiene un plan.",
+    "edgeOfTheEarthTruthEludes": "A los investigadores se les escapa la verdad del espejismo.",
+    "edgeOfTheEarthSealUsedIncorrectly": "El sello se usó... de forma incorrecta.",
+    "edgeOfTheEarthNamelessMadnessEscaped": "La locura sin nombre escapó.",
+    "edgeOfTheEarthKenslerEntity": "La entidad sustituye a la Dra. Amy Kensler en el equipo.",
+    "edgeOfTheEarthMadnessContained": "La locura sin nombre está contenida de forma segura dentro de su anfitriona... por ahora.",
+    "edgeOfTheEarthFacilityDestroyed": "La instalación fue destruida.",
+    "edgeOfTheEarthFledFacility": "El equipo huyó de la instalación.",
+    "edgeOfTheEarthSurvivors": "Los supervivientes de la expedición fueron..."
   },
   "campaignName": "Los confines de la Tierra",
   "scenarioName": "Hielo y muerte, parte I",
@@ -720,5 +1371,8 @@
   "fatalMirageName": "Espejismo letal",
   "forbiddenPeaksName": "Hacia los picos prohibidos",
   "endlessNightName": "Interludio II: Noche infinita",
-  "cityName": "Ciudad de los Antiguos"
+  "cityName": "Ciudad de los Antiguos",
+  "finalNightName": "Interludio III: Noche final",
+  "heartOneName": "El corazón de la locura, parte I",
+  "heartTwoName": "El corazón de la locura, parte II"
 }

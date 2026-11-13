@@ -194,6 +194,325 @@
       "inputHash": "bc0b9ec9bc3007206282955b2ecc7a99d908248dbf86bc4cb69e3bcaf36f4b2f",
       "bytes": 1123099,
       "sha256": "dd15b650c3cfce2c188b3f886b13380e5daac81323f23cc69abb0591a22f7ec7"
+    },
+    {
+      "code": "08597",
+      "side": "front",
+      "text": "Llegas a la ladera de la amenazadora montaña. Las extrañas cuevas y formaciones que hay en la cumbre están pidiendo que las exploren",
+      "file": "08597-front.mp3",
+      "inputHash": "5a224f3261468666f4346531c1fa9ec624d154490174e9cdd9b3405ab94a22c6",
+      "bytes": 136297,
+      "sha256": "b69719f169ea362e4cba65ff59ed21e2f199679b7bb3a405fb4ea0fde86976b2"
+    },
+    {
+      "code": "08597",
+      "side": "back",
+      "text": "La ladera de la montaña se abre y produce una erupción de nieve. Una tormenta de afiladas esquirlas de hielo brota del vientre de la montaña. Tras ella aparece la bestia: un remolino de bruma; espectrales formas alienígenas; espantosos efluvios. Fija su terrible mirada en tu grupo y os busca con un tentáculo de miasma.",
+      "file": "08597-back.mp3",
+      "inputHash": "08e55d73be2c37c7a7f64082fb6d3b020028697dd02c218f36c7fd973b78e3cd",
+      "bytes": 388745,
+      "sha256": "1f40413b298d3b5b52f44667362d8a2768ba92482e99215e4c3a017ba405c838"
+    },
+    {
+      "code": "08598",
+      "side": "front",
+      "text": "La nevisca se ha convertido en una tempestad de viento con una fuerte nevada. Si no logras cruzar los picos pronto, te verás obligado a buscar refugio… o pasarás el resto de la eternidad como un cadáver congelado en la montaña.",
+      "file": "08598-front.mp3",
+      "inputHash": "73cbf58c5403dfa4732dec3c5e7c943a23ed30292152ad1ace74aa3221560841",
+      "bytes": 249146,
+      "sha256": "a7ff45292b6c5cfdeabbb84eefef6c22622ca4f21c6abbac5fc170e8f3004646"
+    },
+    {
+      "code": "08598",
+      "side": "back",
+      "text": "La nevada es tan densa que ya ni siquiera puedes ver tu destino, ni tampoco puedes oír los gritos de tus compañeros por el viento aullante. Cada paso que das te deja sin aliento. El aire es tan escaso aquí que te parece un milagro que hasta puedas respirar. Levantas la vista hacia la extensa sábana blanca que parece interminable. Quizás nunca estuviste cerca de la cima y no fue más que una ilusión visual, como todo lo que hay en este condenado lugar.",
+      "file": "08598-back.mp3",
+      "inputHash": "618cda5023a311e46f8973e32b1817d105380708fb89b1a1c203ffe60a2004fb",
+      "bytes": 500340,
+      "sha256": "eb013364efea8b0e547fcba54330ebdd985469f3f269c7ff39eaab7ac65a181c"
+    },
+    {
+      "code": "08599",
+      "side": "front",
+      "text": "Llevando tanto equipo de expedición como puedas, debes escalar la imponente ladera de la montaña para acceder a los secretos que se encuentran al otro lado.",
+      "file": "08599-front.mp3",
+      "inputHash": "d51a3a36d18afcf5b50605aede441bb8907f31ff62636585447531cdcdc0b3ed",
+      "bytes": 148836,
+      "sha256": "7aa0ffa7c9f169b7c9a838c1b5caf2b54bdfba152f5c45f863020b03ef44a551"
+    },
+    {
+      "code": "08599",
+      "side": "back",
+      "text": "Después de un largo y arduo viaje montaña arriba, has llegado a los picos prohibidos. Esperas haber dejado atrás el dolor y el horror sufridos por el camino, pero temes que persistan… y que sean implacables.",
+      "file": "08599-back.mp3",
+      "inputHash": "d402ba4f24df7a88003bbdab9227b06e8c04cf5e0d5553d0a943cc34fea11a0b",
+      "bytes": 243295,
+      "sha256": "e93ad54d4bb9b6ad35d22726d9aa56676eac2d819bd78c00aa1fb1a972397c68"
+    },
+    {
+      "code": "08622",
+      "side": "front",
+      "text": "La ciudad alienígena oculta se alza ante ti, antigua y enigmática. ¿Qué secretos y terrores aguardan en su interior?",
+      "file": "08622-front.mp3",
+      "inputHash": "43cf0d09c33bbed15236feec28c95b93780599e00bf01fdcafbcf64bac65e45a",
+      "bytes": 127520,
+      "sha256": "28d9c13ccf06b04f9a96141852535591549e604deb18a2349f83140c829baa92"
+    },
+    {
+      "code": "08622",
+      "side": "back",
+      "text": "Los muros de la ciudad te llaman con susurros clandestinos, cantos etéreos indescifrables para oídos humanos y aún así familiares de algún modo. Intentas ignorarlos como puedes y pensar que no es más que tu imaginación, pero no todos tus compañeros tienen el mismo éxito…",
+      "file": "08622-back.mp3",
+      "inputHash": "80c4593c79f65717cfd93c5f925a0171ff8b3d227c16f4fd020657cf94b9928b",
+      "bytes": 300555,
+      "sha256": "2e83c2c6256d1fc4d9e52e8d0eaa340890077eb7ab0083947e9e8259d1fd9ca3"
+    },
+    {
+      "code": "08623",
+      "side": "front",
+      "text": "Bajo el oscuro hielo hay atrapadas más zonas de la ciudad, envueltas y congeladas en el tiempo. Esto no es más que la punta del iceberg…",
+      "file": "08623-front.mp3",
+      "inputHash": "adf031a06de8839159261daa1ef556dda84045bead9c841e0a87388f30e8d6e4",
+      "bytes": 161375,
+      "sha256": "02024005cc426bcd270cae3a5fba2462ffdd61364920bb862a3702be3b538753"
+    },
+    {
+      "code": "08623",
+      "side": "back",
+      "text": "Tus pensamientos se vuelven enrevesados, como una maraña de miedo, preocupaciones y dudas. El peligro acecha tras cada esquina de este abominable lugar, pero lo más peligroso de todo es la creciente sensación de que no deberías estar aquí, de que deberías huir de este lugar para no volver nunca.\nCuando el tiempo empeora en el exterior, te cobijas en la relativa seguridad que ofrece una de las enormes estructuras de la ciudad. Es demasiado tarde para volver al campamento. Tu única esperanza es refugiarte dentro de la ciudad alienígena y esperar que tu presencia pase desapercibida a los moradores que siguen deambulando por sus calles y por sus antiguas salas.",
+      "file": "08623-back.mp3",
+      "inputHash": "1987d581037ecaa3a50d0268044c5fec4d18e8359855e0bda63df93b026e61cc",
+      "bytes": 702632,
+      "sha256": "4e7782203fdb3225ee019947c3e0bef69c205d478facce8b5003a4531f4e2e7e"
+    },
+    {
+      "code": "08624",
+      "side": "front",
+      "text": "Éste es el descubrimiento del siglo. El informe de Dyer era cierto por completo. Debes explorar esta civilización alienígena para obtener más información…",
+      "file": "08624-front.mp3",
+      "inputHash": "2fbea9f8580b7a12bfafa276bcb11910b915d9d97542a4b7b8119c858888a2ac",
+      "bytes": 162211,
+      "sha256": "d88a58ed7394526667abd44df17df1f83fabe4c1b62e522f31ad386551978f4a"
+    },
+    {
+      "code": "08624",
+      "side": "back",
+      "text": "Lo que has descubierto es una locura casi imposible de creer. Según los murales y registros que hay dentro de la ciudad, los \"Antiguos\" eran viajeros de las estrellas. Colonizaron la Tierra mucho antes de la era humana, estableciéndose a lo ancho y largo del mundo. Y en las profundidades de la ciudad subterránea bajo la montaña más alta, crearon criaturas monstruosas, \"Shoggoths\", para que fueran sus sirvientes. Pero los Shoggoths se rebelaron contra ellos y su civilización no tardó en derrumbarse…\nDe pronto, un ruido lejano hace que los demás exploradores y tú os detengáis en seco: un grave y estruendoso rugido que parece provenir de algún lugar a mucha profundidad. No te atreves a plantearte qué tipo de monstruosidad podría emitir un sonido tan espantoso.",
+      "file": "08624-back.mp3",
+      "inputHash": "3155639201f5fd32d41aa69e1c877c8345d87e8c9494cc34500d6e521cb5a5e6",
+      "bytes": 893639,
+      "sha256": "39ccc68101717fc9191443be487e6db4fb276e288a9d84bca7fbbeb8c12a0518"
+    },
+    {
+      "code": "08625",
+      "side": "front",
+      "text": "Éste es el descubrimiento del siglo. El informe de Dyer era cierto por completo. Debes explorar esta civilización alienígena para obtener más información…",
+      "file": "08625-front.mp3",
+      "inputHash": "2fbea9f8580b7a12bfafa276bcb11910b915d9d97542a4b7b8119c858888a2ac",
+      "bytes": 162211,
+      "sha256": "d88a58ed7394526667abd44df17df1f83fabe4c1b62e522f31ad386551978f4a"
+    },
+    {
+      "code": "08625",
+      "side": "back",
+      "text": "Lo que has descubierto es una locura casi imposible de creer. Según los murales y registros que hay dentro de la ciudad, los \"Antiguos\" eran viajeros de las estrellas. Colonizaron la Tierra mucho antes de la era humana, estableciéndose a lo ancho y largo del mundo. Y en las profundiades de la ciudad subterránea bajo la montaña más alta, encontraron un poder primordial inactivo; algo tan aterrador que construyeron una puerta para dejarlo encerrado. Pero acabó por empezar a escapar, y su civilización no tardo en derrumbarse…\nTiene que haber más secretos ilógicos enterrados a gran profundidad. Debéis descubrir la verdad de este antiguo poder y, para hacerlo, habrá que encontrar el pasadizo secreto que os llevará hacia el corazón de la montaña.",
+      "file": "08625-back.mp3",
+      "inputHash": "68b8857104d6fde1edc718a7a83c8d493c0461b3c30c2dbf63132954f6c0ed6a",
+      "bytes": 807122,
+      "sha256": "167086cccd13d3059befd8ad04672365c2fb37f30cfb8e8978ce39fc414234b5"
+    },
+    {
+      "code": "08626",
+      "side": "front",
+      "text": "Éste es el descubrimiento del siglo. El informe de Dyer era cierto por completo. Debes explorar esta civilización alienígena para obtener más información…",
+      "file": "08626-front.mp3",
+      "inputHash": "2fbea9f8580b7a12bfafa276bcb11910b915d9d97542a4b7b8119c858888a2ac",
+      "bytes": 162211,
+      "sha256": "d88a58ed7394526667abd44df17df1f83fabe4c1b62e522f31ad386551978f4a"
+    },
+    {
+      "code": "08626",
+      "side": "back",
+      "text": "Lo que has descubierto es una locura casi imposible de creer. Según los murales y registros que hay dentro de la ciudad, una raza de criaturas monstruosas conocidas como \"Shoggoths\" fue creada para servir a los señores de esta ciudad. Los Shoggoths fueron enviados a las profundiades de la ciudad subterránea bajo la montaña más alta, donde debían erigir una puerta para encerrar un poder primordial inactivo; algo tan aterrador que hasta los amos de los Shoggoths lo temían. Pero los Shoggoths se rebelaron contra ellos y dejaron que el sello se deteriorara, llevando al derrumbe de esta antigua civilización…\nDe pronto, un ruido lejano hace que los demás exploradores y tú os detengáis en seco; un grave y estruendoso rugido que parece provenir de algún lugar a mucha profundidad. No te atreves a plantearte qué tipo de monstruosidad podría emitir un sonido tan espantoso.",
+      "file": "08626-back.mp3",
+      "inputHash": "e55d8da8d67dbca7c00702e48d967172457204990ee068a1cb71002c6d999533",
+      "bytes": 961767,
+      "sha256": "1b773b07779da7e97857b47f2536b49162836646c2611c92791ab4d08a5a098e"
+    },
+    {
+      "code": "08627",
+      "side": "front",
+      "text": "En alguna parte de esta inmensa red de calles heladas y estructuras descomunales hay un antiguo portal que lleva a la ciudad subterránea que hay bajo la gran montaña. Tendrás que encontrarlo si quieres más información…",
+      "file": "08627-front.mp3",
+      "inputHash": "0f7a986cc0ba7807d1c532ed5189471062156401dadb38a0b564cd4f7297253b",
+      "bytes": 220307,
+      "sha256": "1304bd3a50ec59f8f075915935faf2601ed901f2e4f6c94aaa27f7af10f88979"
+    },
+    {
+      "code": "08627",
+      "side": "back",
+      "text": "El camino, ahora despejado, lleva a un laberinto de oscuros túneles traicioneros. Para bien o para mal, el exigente viaje está tocando a su fin. Respiras hondo y haces acopio de valor antes de adentrarte en las profundidades de la Montaña.",
+      "file": "08627-back.mp3",
+      "inputHash": "5b20adce7c22fed88d931f4f92c04daf32fbbcfe4f2d879049231e44a60957f3",
+      "bytes": 285091,
+      "sha256": "ca1f534c204a4875c76587bc958091f0e3c0c5a5c3ed95335624dfd04a351079"
+    },
+    {
+      "code": "08628",
+      "side": "front",
+      "text": "En alguna parte de esta inmensa red de calles heladas y estructuras descomunales hay un antiguo portal que lleva a la ciudad subterránea que hay bajo la gran montaña. Tendrás que encontrarlo si quieres más información…",
+      "file": "08628-front.mp3",
+      "inputHash": "0f7a986cc0ba7807d1c532ed5189471062156401dadb38a0b564cd4f7297253b",
+      "bytes": 220307,
+      "sha256": "1304bd3a50ec59f8f075915935faf2601ed901f2e4f6c94aaa27f7af10f88979"
+    },
+    {
+      "code": "08628",
+      "side": "back",
+      "text": "El camino, ahora despejado, lleva a un laberinto de oscuros túneles traicioneros. Para bien o para mal, el exigente viaje está tocando a su fin. Respiras hondo y haces acopio de valor antes de adentrarte en las profundidades de la Montaña.",
+      "file": "08628-back.mp3",
+      "inputHash": "5b20adce7c22fed88d931f4f92c04daf32fbbcfe4f2d879049231e44a60957f3",
+      "bytes": 285091,
+      "sha256": "ca1f534c204a4875c76587bc958091f0e3c0c5a5c3ed95335624dfd04a351079"
+    },
+    {
+      "code": "08629",
+      "side": "front",
+      "text": "En alguna parte de esta inmensa red de calles heladas y estructuras descomunales hay un antiguo portal que lleva a la ciudad subterránea que hay bajo la gran montaña. Tendrás que encontrarlo si quieres más información…",
+      "file": "08629-front.mp3",
+      "inputHash": "0f7a986cc0ba7807d1c532ed5189471062156401dadb38a0b564cd4f7297253b",
+      "bytes": 220307,
+      "sha256": "1304bd3a50ec59f8f075915935faf2601ed901f2e4f6c94aaa27f7af10f88979"
+    },
+    {
+      "code": "08629",
+      "side": "back",
+      "text": "El camino, ahora despejado, lleva a un laberinto de oscuros túneles traicioneros. Para bien o para mal, el exigente viaje está tocando a su fin. Respiras hondo y haces acopio de valor antes de adentrarte en las profundidades de la Montaña.",
+      "file": "08629-back.mp3",
+      "inputHash": "5b20adce7c22fed88d931f4f92c04daf32fbbcfe4f2d879049231e44a60957f3",
+      "bytes": 285091,
+      "sha256": "ca1f534c204a4875c76587bc958091f0e3c0c5a5c3ed95335624dfd04a351079"
+    }
+  ],
+  "pending": [
+    {
+      "code": "08659",
+      "side": "front",
+      "text": "De la puerta salen cinco oscuros caminos que atraviesan cavernas heladas y corredores abovedados de piedra negra pulida. Un silencioso temor llena la antigua estructura inactiva.",
+      "file": "08659-front.mp3",
+      "inputHash": "3323f8537ca1f0da58101b23a1dbf87dc93d8d9cfdcbf79d0948bc95d153659a"
+    },
+    {
+      "code": "08659",
+      "side": "back",
+      "text": "Una oscura energía primordial brota de los muros, el mismo miasma que te ha perseguido a cada paso en este viaje condenado. Te detienes al instante y empiezas a recular. Ya has visto el tipo de espantosas formas que puede adoptar. El tipo de recuerdos que evoca, tanto terribles como agradables. Pero no todo el mundo ve el espejismo como lo que es de verdad…",
+      "file": "08659-back.mp3",
+      "inputHash": "03861f46589ce35d3bcd49d551ba014dc439c63fe0c399ca715cb4eeae189b27"
+    },
+    {
+      "code": "08660",
+      "side": "front",
+      "text": "Susurros arcanos y el goteo del oscuro miasma rompen el silencio que reinaba en las ruinas. Algo trata de alcanzarte desde el interior de sus muros. Algo te llama.",
+      "file": "08660-front.mp3",
+      "inputHash": "a37659d94bd976c66fa35a394f05808cd5003b7e150c6c810de921209f6641f4"
+    },
+    {
+      "code": "08660",
+      "side": "back",
+      "text": "Los sellos palpitan con una peligrosa energía electroestática y llenan las gélidas salas de una brillante luz azul. Te cuesta contener el poder de cada sello mientras te apresuras por colocarlos en su lugar correcto.",
+      "file": "08660-back.mp3",
+      "inputHash": "1d7694c1b02fcecf47dc7879dbe8e40bf869d40f6041ef91a59a72b0e9437064"
+    },
+    {
+      "code": "08661",
+      "side": "front",
+      "text": "El portal se agita. Sea lo que sea lo que te llama desde estos muros, oye cada palabra y cada pisada. Conoce tu presencia, tus esperanzas y tus miedos. Y ansía ser libre.",
+      "file": "08661-front.mp3",
+      "inputHash": "d19601963ba905254a4494c385e537cb0cca43724ea0cf4fd24b4c0bf47ef3cd"
+    },
+    {
+      "code": "08661",
+      "side": "back",
+      "text": "Antes de que puedas encontrar y colocar los cinco sellos, un ruido tremendo llena las salas cavernosas de la instalación, y un oscuro miasma prismático empieza a filtrarse por cada centímetro de las paredes y el techo. Olas de insidioso icor de bruma negra bloquean todas las rutas excepto aquella por la que viniste. Huyes de vuelta al portal para escapar o encontrar otro camino, pero para cuando llegas a la enorme puerta, es demasiado tarde.",
+      "file": "08661-back.mp3",
+      "inputHash": "5234d2580227298a26af622195920c8e5892015f07dd1e1717c1a5302f91f6dd"
+    },
+    {
+      "code": "08662",
+      "side": "front",
+      "text": "Has decidido explorar el resto de este complejo antediluviano para encontrar los dispositivos que encajan en esta extraña puerta.",
+      "file": "08662-front.mp3",
+      "inputHash": "88eecdc9cfc4cdeead455085f7a0bc8ebb24c4bd12c68ccdf6c788e824d0ea1f"
+    },
+    {
+      "code": "08662",
+      "side": "back",
+      "text": "En cuanto pones el sello en su sitio, oyes un clic y queda encajado. La energía almacenada en el sello brota de él y recorre los canales y muescas de la puerta, iluminando toda la cámara con un resplandor espectral. Tal vez puedas detener esta locura si logras activar y colocar los cuatro sellos restantes.",
+      "file": "08662-back.mp3",
+      "inputHash": "ae7c182d77f821064a1a3e9d0c60724dfdbe099437c7438fb8c084eac432a129"
+    },
+    {
+      "code": "08663",
+      "side": "front",
+      "text": "La colocación del primero de los cinco sellos ha despertado un extraño poder dentro de la instalación. Crees que si puedes encontrar y activar los sellos restantes, ayudarán a contener la cosa que habita al otro lado de esta puerta…",
+      "file": "08663-front.mp3",
+      "inputHash": "bf33b467e1993c583a76ffa5641c83252957e4ce2f908e7a1a463b4ee44c38b9"
+    },
+    {
+      "code": "08663",
+      "side": "back",
+      "text": "El último sello encaja en su sitio y la energía fluye por la instalación con un zumbido. Unos pequeños orbes que hay incrustados en el techo empiezan a iluminarse uno a uno. Te das cuenta de que este santuario es mucho más avanzado de los que podrías haber imaginado jamás.",
+      "file": "08663-back.mp3",
+      "inputHash": "5c8e7a10a19e78b10383936d619e1e557b2686ba6c7ac62d116ab77034a03e2d"
+    },
+    {
+      "code": "08671",
+      "side": "front",
+      "text": "El miasma ha consumido por completo esta zona de la instalación. Del suelo y las paredes gotea un cieno policromático, una bruma polar recorre las salas y el aire resplandece con la apariencia insustancial de un espejismo. ¿Qué tipo de poder es éste? ¿Y cómo puedes tener alguna esperanza de destruirlo?",
+      "file": "08671-front.mp3",
+      "inputHash": "f1bcd62bb0bb2f5ab379feebe65f1390d10aa9bdc34fc7b2cb2699563f294630"
+    },
+    {
+      "code": "08671",
+      "side": "back",
+      "text": "Desde las profundidades sin nombre el mismísimo núcleo terrestre emerge la verdadera forma del miasma. Es una cosa informe, una criatura de bruma arremolinada e icor putrefaco que grita, susurra, repta y vuela. Se filtra por las paredes y sube por el hielo; está en todas partes; lo es todo.",
+      "file": "08671-back.mp3",
+      "inputHash": "1185320629481d3cf45e258e48b7f21978ad564773523a19911113be9385308b"
+    },
+    {
+      "code": "08672",
+      "side": "front",
+      "text": "Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li! Tekeli-li!",
+      "file": "08672-front.mp3",
+      "inputHash": "42cc450396fa3392ac41b25dbe6fd711fc35ef58dd920eb88864bebdb722336b"
+    },
+    {
+      "code": "08672",
+      "side": "back",
+      "text": "Es demasiado tarde. No podéis contener a la criatura que mora bajo la montaña. Sólo os queda esperar que podáis escapar con vida.",
+      "file": "08672-back.mp3",
+      "inputHash": "34ee6d5b76d512ac64d8b865f09017d1bd522701362aca39aca58ee4f70185fd"
+    },
+    {
+      "code": "08673",
+      "side": "front",
+      "text": "Hay cinco pilones que sostienen esta instalación. Tu única esperanza es destruirlos, y destruir así todo lo demás.",
+      "file": "08673-front.mp3",
+      "inputHash": "49fd9288a0d3e63039e9cf19ff3815fe3843016295c5b9870426a964dd816bb9"
+    },
+    {
+      "code": "08673",
+      "side": "back",
+      "text": "La instalación tiembla de arriba abajo. Sin los pilones de bruma para alimentar la estructura, la entidad sin nombre que reside en su interior está libre, pero tiene los días contados, igual que tú. La montaña gruñe y se estremece, amenazando con derrumbarse a tu alrededor.",
+      "file": "08673-back.mp3",
+      "inputHash": "5698d37c5fa30810fc219ab73552a9ef8e5c0d5bdd6ba6d50183869e1073b0f0"
+    },
+    {
+      "code": "08681",
+      "side": "back",
+      "text": "Sales del túnel y la luz del día te ciega, pues el sol asoma desde detrás de las escarpadas cumbres que hay a lo lejos. A tu espalda, la entidad se apresura a ganar la salida. Te preparas para el final, pues el muro de bruma, miasma y locura parece un tren desbocado.",
+      "file": "08681-back.mp3",
+      "inputHash": "7c0c6e7ea1e0eb722f3b0b474e3fc5867ec82e5928e6c7c06ad5ce4456cc8c0b"
     }
   ]
 }

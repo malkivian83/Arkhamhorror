@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { campaignNoteValue } from '../game/campaignProgress'
 import {
   activeMembers,
   campaignDefinition,
@@ -285,7 +286,9 @@ function abandon() {
             :class="{ crossed: campaign.log.crossedOut.includes(note) }"
           >
             {{ t(`story.note.${note}`) }}
-            <template v-if="campaign.log.values[note]">: {{ campaign.log.values[note] }}</template>
+            <template v-if="campaign.log.values[note]"
+              >: {{ campaignNoteValue(note, campaign.log.values[note]) }}</template
+            >
           </li>
         </ul>
         <p v-else class="empty">{{ t('campaign.noNotes') }}</p>

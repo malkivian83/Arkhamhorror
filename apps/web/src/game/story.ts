@@ -19,6 +19,7 @@ import edgeOfTheEarth from './edgeOfTheEarthNarration.json'
 const official = ref<Record<string, Record<string, string>>>({})
 const bundledOfficial = new Set([
   ...edgeOfTheEarth.entries.map(({ key }) => key),
+  ...edgeOfTheEarth.pending.map(({ key }) => key),
   ...Object.keys(edgeOfTheEarth.cardBacks),
 ])
 
@@ -142,8 +143,8 @@ export function storyBody(key: string): StoryBody {
   const current = locale.value
   const own = official.value[current]?.[key]
   const english = current !== 'en' ? official.value.en?.[key] : undefined
-  const bundled = bundledOfficial.has(key)
-  const text = own ?? (!bundled && preferOfficial.value ? english : undefined)
+  const bundled = bundledOfficial.has(key) || key.startsWith('story.edgeOfTheEarth.heartCard')
+  const text = bundled ? undefined : (own ?? (preferOfficial.value ? english : undefined))
   const body = text ?? i18n.global.t(key)
   return {
     paragraphs: body

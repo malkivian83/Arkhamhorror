@@ -43,7 +43,7 @@ type RestfulNightTarget =
 
 export interface OnlineRestfulNight {
   /** Interlude I (Restful Night) or Interlude II (Endless Night). */
-  night?: 'restful' | 'endless'
+  night?: 'restful' | 'endless' | 'final'
   /** Endless Night 3: entering the mirage again adds 1 frost token. */
   mirageFrost?: boolean
   remaining: number
@@ -54,6 +54,7 @@ export interface OnlineRestfulNight {
     effect: string
     targets: RestfulNightTarget[]
     card?: string
+    stories?: string[]
   }[]
 }
 

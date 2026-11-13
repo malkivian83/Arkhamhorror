@@ -10,6 +10,7 @@ import ChaosTokenView from './ChaosTokenView.vue'
 import InvestigatorMini from './InvestigatorMini.vue'
 import TokenBadge from './TokenBadge.vue'
 import TableTarget from './TableTarget.vue'
+import HeartSealTokens from './HeartSealTokens.vue'
 
 const props = defineProps<{ state: GameState }>()
 const game = useTableGame()
@@ -211,6 +212,13 @@ const treacheriesAt = (id: string) =>
           <span v-if="l.keys?.length" class="keys loc-keys" :title="t('table.keys')">
             <ChaosTokenView v-for="(key, n) in l.keys" :key="n" :token="key" :size="22" />
           </span>
+          <HeartSealTokens :state="state" :holder="`l:${l.id}`" />
+          <TokenBadge
+            v-if="state.scenarioMeta?.[`heart:damage:${l.id}`]"
+            kind="damage"
+            :value="state.scenarioMeta[`heart:damage:${l.id}`]!"
+            :size="28"
+          />
           <!-- Velo cambiado hasta el final de la ronda (p. ej. Hand-Crank Flashlight). -->
           <span
             v-if="l.shroudModifier"
@@ -231,6 +239,7 @@ const treacheriesAt = (id: string) =>
           :target="`investigator:${i.id}`"
         >
           <InvestigatorMini :code="i.id" :name="i.name" :width="MINI_W" />
+          <HeartSealTokens :state="state" :holder="`i:${i.id}`" />
         </TableTarget>
       </div>
 

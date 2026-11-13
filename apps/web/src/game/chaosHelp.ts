@@ -40,6 +40,8 @@ export function chaosHelp(
     'edge-of-the-earth-fatal-mirage': localeData(locale).edgeOfTheEarthCards['08549'],
     'edge-of-the-earth-forbidden-peaks': localeData(locale).edgeOfTheEarthCards['08596'],
     'edge-of-the-earth-city-of-the-elder-things': localeData(locale).edgeOfTheEarthCards['08621'],
+    'edge-of-the-earth-heart-of-madness-part-1': localeData(locale).edgeOfTheEarthCards['08648'],
+    'edge-of-the-earth-heart-of-madness-part-2': localeData(locale).edgeOfTheEarthCards['08648'],
     'murder-at-the-excelsior-hotel': localeData(locale).excelsiorCards['84001'],
     'late-risers': localeData(locale).plaguebearerCards['78001'],
     'night-on-the-town': localeData(locale).plaguebearerCards['78019'],

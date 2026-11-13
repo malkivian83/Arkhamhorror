@@ -2,6 +2,7 @@
 import type { GameState } from '@lcg/engine'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { campaignNoteValue } from '../game/campaignProgress'
 
 /**
  * Registro de campaña durante la partida: lo que el escenario pide recordar
@@ -47,7 +48,9 @@ const total = computed(() => remembered.value.length + (log.value?.notes.length 
             :class="{ crossed: log.crossedOut.includes(note) }"
           >
             {{ t(`story.note.${note}`) }}
-            <template v-if="log.values[note]">: {{ log.values[note] }}</template>
+            <template v-if="log.values[note]"
+              >: {{ campaignNoteValue(note, log.values[note]) }}</template
+            >
           </li>
         </ul>
         <p v-else class="empty">{{ t('campaign.noNotes') }}</p>

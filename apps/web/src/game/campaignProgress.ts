@@ -1,5 +1,19 @@
 import { campaignDefinition, type Campaign } from '@lcg/cards'
 import { i18n } from '../i18n'
+import { fallbackCards } from './fallbackCards'
+import { localizedCards } from './localized'
+
+export function campaignNoteValue(note: string, value: string): string {
+  if (note !== 'edgeOfTheEarthSurvivors') return value
+  const catalog = fallbackCards(i18n.global.locale)
+  return value
+    .split(',')
+    .map(
+      (code) =>
+        localizedCards.value.get(code)?.name ?? catalog.find((c) => c.code === code)?.name ?? code,
+    )
+    .join(', ')
+}
 
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
 

@@ -6,6 +6,18 @@ import { chaosHelp } from './chaosHelp'
 describe('chaos token help', () => {
   for (const locale of ['es', 'en'] as const) {
     const { t } = createI18n({ legacy: false, locale, messages }).global
+    it(`${locale}: explains both Heart of Madness reference faces`, () => {
+      for (const part of [1, 2]) {
+        const state = {
+          scenarioId: `edge-of-the-earth-heart-of-madness-part-${part}`,
+          difficulty: 'standard' as const,
+        }
+        expect(chaosHelp(state, 'skull', locale, t)).toMatch(/^[–-]1/)
+        expect(chaosHelp({ ...state, difficulty: 'hard' }, 'skull', locale, t)).toMatch(/^[–-]2/)
+        expect(chaosHelp(state, 'cultist', locale, t)).toMatch(/^[–-]1/)
+        expect(chaosHelp(state, 'elderThing', locale, t)).toMatch(/^[–-]4/)
+      }
+    })
     it(`${locale}: differentiates failure thresholds and difficulty faces`, () => {
       const state = { scenarioId: 'spreading-flames', difficulty: 'standard' as const }
       const standard = chaosHelp(state, 'elderThing', locale, t)

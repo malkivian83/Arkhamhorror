@@ -12,16 +12,29 @@ import { storyBody } from './story'
 
 const hash = (input: Buffer | string) => createHash('sha256').update(input).digest('hex')
 
-it('serves every Spanish narrative passage with a recording that matches the displayed text', () => {
+it('accounts for every full passage with matching audio or an explicit pending recording', () => {
   expect(recordings.voiceId).toBe('hyKxCTlAqtnW188CgltM')
   const expected = new Map(
     Object.entries(texts.story)
-      .filter(([part]) => !['setup', 'partTwoSetup', 'partThreeSetup'].includes(part))
+      .filter(
+        ([part]) =>
+          !['setup', 'partTwoSetup', 'partThreeSetup'].includes(part) &&
+          !part.startsWith('heartCard'),
+      )
       .map(([part, { body }]) => [`story.edgeOfTheEarth.${part}.body`, hash(body)]),
   )
   expect(
-    [...recordings.entries.map(({ key }) => key), ...Object.keys(recordings.cardBacks)].sort(),
+    [
+      ...recordings.entries.map(({ key }) => key),
+      ...Object.keys(recordings.cardBacks),
+      ...recordings.pending.map(({ key }) => key),
+    ].sort(),
   ).toEqual([...expected.keys()].sort())
+  for (const { key, text, textSha256 } of recordings.pending) {
+    expect(textSha256).toBe(expected.get(key))
+    expect(hash(text)).toBe(textSha256)
+    expect(storyNarration(key, 'es')).toBeNull()
+  }
   for (const { key, file, textSha256, audioSha256 } of recordings.entries) {
     expect(textSha256).toBe(expected.get(key))
     const path = storyNarration(key, 'es')

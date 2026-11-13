@@ -59,10 +59,21 @@ function confirm() {
 // Interlude I: Restful Night, or Interlude II: Endless Night (Night 3 returns to the mirage).
 const endless = computed(() => props.interlude.night === 'endless')
 const stories = computed(() => {
-  const night = endless.value ? 'endlessNight' : 'restfulNight'
+  const night =
+    props.interlude.night === 'final'
+      ? 'finalNight'
+      : endless.value
+        ? 'endlessNight'
+        : 'restfulNight'
   const parts = props.interlude.canContinue ? [`${night}Dawn`] : [night]
   if (props.interlude.canContinue && props.interlude.offersMirage)
-    parts.push(props.interlude.mirageFrost ? 'endlessNightReturn' : `${night}Door`)
+    parts.push(
+      props.interlude.mirageFrost
+        ? props.interlude.night === 'final'
+          ? 'finalNightReturn'
+          : 'endlessNightReturn'
+        : `${night}Door`,
+    )
   return parts.map((part) => ({
     title: `story.edgeOfTheEarth.${part}.title`,
     body: `story.edgeOfTheEarth.${part}.body`,
@@ -84,6 +95,17 @@ const stories = computed(() => {
         </option>
       </select>
       <template v-if="option">
+        <ExpeditionCheckpoint
+          v-for="part in option.stories ??
+          (interlude.night === 'final'
+            ? [`finalVisit${option.partner}${option.effect === 'memorial' ? 'memorial' : 'alive'}`]
+            : [])"
+          :key="part"
+          :story="{
+            title: `story.edgeOfTheEarth.${part}.title`,
+            body: `story.edgeOfTheEarth.${part}.body`,
+          }"
+        />
         <p>
           {{
             t(`choice.edgeOfTheEarth.night.${option.effect}`, {
@@ -133,7 +155,13 @@ const stories = computed(() => {
         }}</SiteAction
       >
       <SiteAction icon="→" :disabled="disabled" @click="emit('finish', 'peaks')">{{
-        t(endless ? 'choice.edgeOfTheEarth.nightCity' : 'choice.edgeOfTheEarth.nightPeaks')
+        t(
+          interlude.night === 'final'
+            ? 'choice.edgeOfTheEarth.nightHeart'
+            : endless
+              ? 'choice.edgeOfTheEarth.nightCity'
+              : 'choice.edgeOfTheEarth.nightPeaks',
+        )
       }}</SiteAction>
     </div>
   </section>

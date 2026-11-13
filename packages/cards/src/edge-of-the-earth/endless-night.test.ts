@@ -24,6 +24,17 @@ function setup(found = false) {
 }
 
 describe('Endless Night', () => {
+  it('selects the full visit text and includes Claypool only while he survives', () => {
+    const { campaign } = setup()
+    expect(restfulNight(campaign)!.options.find((o) => o.partner === '08721')?.stories).toEqual([
+      'endlessVisit08721alive',
+      'endlessVisitEllsworthClaypool',
+    ])
+    campaign.log.expedition!.partners['08718']!.status = 'eliminated'
+    expect(restfulNight(campaign)!.options.find((o) => o.partner === '08721')?.stories).toEqual([
+      'endlessVisit08721alive',
+    ])
+  })
   it.each([false, true])('allows three visits, or four after another way (found: %s)', (found) => {
     const { campaign } = setup(found)
     expect(restfulNight(campaign)).toMatchObject({

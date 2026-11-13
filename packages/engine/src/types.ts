@@ -221,6 +221,7 @@ export type EnemyKeyword =
 
 /** Prey (presa): a quién prefiere enfrentarse el enemigo. */
 export type Prey =
+  | { type: 'onlyInvestigators'; investigators: InvestigatorId[] }
   | { type: 'mostTreacheries'; trait: string }
   | { type: 'mostAssets'; code: CardCode }
   | { type: 'fewestCards' }
@@ -1816,6 +1817,7 @@ type MessageBody =
   /** `direct`: solo puede asignarse a la carta de investigador. */
   | {
       type: 'TakeDamage'
+      scenarioChecked?: boolean
       damageWindowResolved?: boolean
       killInstead?: boolean
       investigator: InvestigatorId

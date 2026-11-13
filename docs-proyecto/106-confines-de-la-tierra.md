@@ -2,6 +2,14 @@
 
 ## Estado y continuación
 
+Corazón I/II y epílogo implementados y habilitados: sellos, mapa de radios/anillos, pilones atacables, mazos, referencia de caos, enemigos, huida, resoluciones y escenas condicionales completas EN/ES. El punto de control III conserva los sellos y reanuda mediante la ruta de descanso («El otro lado 3»), con preparación nueva. Corregidos los efectos de armas sobre pilones, el reparto de sellos y la perdición inicial exclusiva de la parte I.
+
+Picos y Ciudad ya enlazan sus constructores; el recorrido puede llegar al final. Incorporados los pasajes pendientes de Picos y Noche infinita, incluidas sus visitas y la escena adicional de Ellsworth/Claypool. Los nombres de los supervivientes aparecen traducidos en el registro. Las 148 caras de cartas EN/ES de Corazón y sus miniaturas están presentes.
+
+Verificación: 71 casos de Corazón y regresiones dirigidas de campaña, armas, motor, vistas y narración; formato/lint, tipos de cartas/web/servidor y empaquetado web. Invalidan estos resultados los cambios en esas reglas, contratos, recursos o configuración; las comprobaciones visuales quedan para la persona usuaria. Guía oficial: tmp/pdfs/AHLCG_Los_confines_de_la_tierra.pdf, pp. 49–60 para Corazón.
+
+Audios preparados sin llamadas a ElevenLabs: 108 pasajes y 17 caras pendientes, con texto completo, destino y huella en los manifiestos. Conservados 124 pasajes y 43 caras ya grabados. Usar los generadores existentes con una futura API con créditos; --refresh sólo actualiza el inventario local. Cambios locales en main, base 1e5edd00, sin commit ni subida; pull bloqueado por el árbol modificado, que se conserva. Siguiente paso: generación de las locuciones cuando se facilite la API. El estado anterior queda en historial/106-confines-de-la-tierra.md.
+
 Hielo y muerte I está disponible desde el selector con los nueve compañeros,
 el mazo ¡Tekeli-li!, la referencia de caos y las cartas EN/ES. Las pruebas de
 campaña llegan a la resolución mediante el acto y mediante el plan final.
@@ -172,7 +180,7 @@ sin publicar, `[ ]` pendiente.
     recursos extra para la Ciudad, Memoriales, y puerta del Espejismo si ya se visitó
     (añade 1 Helada) o hay tres bajas. El recorrido sigue a una segunda entrada de
     Espejismo letal y a la Ciudad. Pruebas en `endless-night.test.ts`.
-    Pendiente: locuciones de los seis pasajes de Picos, de las caras 08597–08599 y
+    Pendiente: locuciones de los seis pasajes de Picos y
     de los cuatro pasajes de Noche infinita (cuota de ElevenLabs agotada el
     12/11/2026), cuyos textos esperan en `tmp/peaks-pending/`; después, activar
     Picos en el selector.
@@ -184,14 +192,14 @@ sin publicar, `[ ]` pendiente.
        en Lugares, enemigos y zona del jugador. Pruebas en `keys.test.ts`.
     2. [x] `city.ts`, `city-cards.ts`, `city-encounters.ts`: la versión sigue a la
        columna con más compañeros vivos (empate: `edgeOfTheEarthCityVersion` del
-       registro; falta su pantalla de elección); 16 Paisajes urbanos con cara al azar
+       registro; elección del jefe integrada en la preparación); 16 Paisajes urbanos con cara al azar
        y una llave al azar cada uno, mapas de las pp. 39–41 conectados por lados,
        inicio elegido por el jefe (v. I) o fijo; Túnel oculto cerrado hasta el acto 1
        y con su prueba; actos y planes por versión con el gasto de llaves, recuerdos,
        búsqueda en columna o fila, mazo de Encuentros por versión y conjuntos
        apartados; capacidades de los diez Paisajes; fichas con llaves y Cámara
-       laberíntica. Pruebas en `city.test.ts` (8). Cartas EN/ES en catálogo, salvo
-       planes y actos (08622–08629), que esperan locución.
+       laberíntica. Pruebas en `city.test.ts`. Cartas EN/ES y locuciones de
+       planes y actos (08622–08629) incorporadas.
     3. [x] `city-encounter-rules.ts`: Antiguo benigno (aparece en un Lugar vacío
        con perdición, parlamentar, perdición al plan al ser derrotado), Antiguo
        revivido (toma una llave al enfrentarse, la suelta al dejar el juego, ataca a
@@ -209,9 +217,10 @@ sin publicar, `[ ]` pendiente.
     una llave dispara `afterTakeKey`; «Sin resolución» de Picos solo si todos caen;
     el Sendero barrido por el viento también se reduce a la mitad; en empates del
     enemigo más cercano elige el investigador.
-    4. [ ] Introducción con elección de grupo, interludio Contemplar la locura,
-       resoluciones (experiencia por cada par de llaves gastadas), textos EN/ES
-       y locuciones.
+    4. [x] Contemplar la locura, introducción condicional con elección de grupo y
+       resoluciones (experiencia por cada par de llaves gastadas), textos íntegros EN/ES
+       y locuciones. Noche final implementada con relatos completos; 19 pasajes
+       de ese interludio aún sin audio, identificados por huella en el manifiesto.
 13. [ ] El corazón de la locura I y II (08648a/b) y epílogo.
 
 **Presentación y publicación**

@@ -25,6 +25,11 @@ const FALLBACK: Record<string, [cls: string, text: string]> = {
   bless: ['tok', '✚'],
   curse: ['tok', '✖'],
   frost: ['tok', '❄'],
+  seal_a: ['tok seal', 'A'],
+  seal_b: ['tok seal', 'B'],
+  seal_c: ['tok seal', 'C'],
+  seal_d: ['tok seal', 'D'],
+  seal_e: ['tok seal', 'E'],
   per_investigator: ['per', '/inv'],
 }
 
