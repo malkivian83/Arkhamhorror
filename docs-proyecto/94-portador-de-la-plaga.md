@@ -109,8 +109,16 @@ el PDF.
 - Verificación V: 19 pruebas del escenario, carpeta del Portador, medios y
   narración (205 + 2), tipos de cards (salvo un error ajeno en
   `extra-actions/rules.test.ts`) y lint correctos.
-- Pendiente del V: imágenes AVIF/miniaturas EN/ES (el equipo ya no tiene Python con
-  Pillow ni sharp), narración y revisión visual de la persona usuaria.
+- Criterio (persona usuaria, 14/11/2026): mandan las cartas EN; las diferencias del
+  ES se tratan como erratas. Única excepción en el V: el símbolo de la Aurícula
+  izquierda, porque la «T» del EN no conecta con el resto de cartas EN.
+- Imágenes del V: 146 caras AVIF (calidad 70) y miniaturas WebP de 192 px, hechas con
+  sharp 0.34.3 instalado aparte en `tmp/imgtool` (sin Python). ES desde
+  `D:\plaguero\NNN{a,b}.jpg` (CMYK → sRGB; planes y actos girados 90°/270°); EN desde
+  `D:\plaguero\en`, archivos distintos de los de `E:\Plaguero` (750×1050, tamaño
+  nativo). Registradas en `media.json` (594), manifiesto e inventarios;
+  `verify-card-images.mjs` correcto (6503).
+- Pendiente del V: narración y revisión visual de la persona usuaria.
 
 ## Fuentes
 

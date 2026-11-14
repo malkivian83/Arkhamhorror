@@ -45,8 +45,8 @@ it.each(['en', 'es'])('publica cartas y fichas del caos con presentación %s', (
   ).toContain(locale === 'es' ? '–5' : '-5')
   expect(cards.find((c) => c.code === '78065')?.name).toBe('Herbert West')
 })
-it('conserva huellas de las 448 caras y sirve las rutas locales', () => {
-  expect(media).toHaveLength(448)
+it('conserva huellas de las 594 caras y sirve las rutas locales', () => {
+  expect(media).toHaveLength(594)
   expect(new Set(media.map((c) => `${c.language}:${c.code}`)).size).toBe(media.length)
   for (const card of media) {
     const back = card.code.endsWith('b'),
@@ -63,7 +63,7 @@ it('conserva huellas de las 448 caras y sirve las rutas locales', () => {
     }
     expect(createHash('sha256').update(bytes).digest('hex')).toBe(card.sha256)
     expect(card.sourceSha256).toMatch(/^[a-f0-9]{64}$/)
-    if (/^780(0[2-7]|4[89]|5[0-4]|8[4-7])b?$/.test(card.code))
+    if (/^78(0(0[2-7]|4[89]|5[0-4]|8[4-7])|11[2-8])b?$/.test(card.code))
       expect(card.width, card.code).toBeGreaterThan(card.height)
   }
 })
