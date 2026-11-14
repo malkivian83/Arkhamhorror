@@ -176,6 +176,17 @@
       "shopEffect": "Any player may add Ritual of Yaztaroth to their deck. This card does not count against their deck size.",
       "advertiserEffect": "Any player may add Full Coverage to their deck. This card does not count against their deck size.",
       "docksEffect": "Any player may add Hard Day’s Work to their deck. This card does not count against their deck size."
+    },
+    "history": {
+      "title": "Interlude IV: History Lesson",
+      "lesson1": "Robison walks you along a twisting path, and begins to elaborate. “Let me start with a history lesson. Reality is far more complicated than you or I ever believed. There are beings and species of such magnitude and power that humanity pales in comparison. But, all life shares the same propensity for conflict. Aeons ago, there was a being - a Great Old One known as Baalshandor. Think of him as a twisted god of life. While many of the Old Ones created beings in their image, Baalshandor found his niche in evolutionary chaos. Germs, viruses, bacteria - they were all his children.\n\nThe diseases were as much tools as children. Any lesser being infected, will find themselves serving the whims of the Plaguebearer in their idle moments. Many Old Ones abhorred these creations. A being known as Cthugha, obsessed with purity, was particularly offended - Offended enough to war against Baalshandor.\n\nThey were evenly matched. Baalshandor could corrupt almost anything, and the fire of Cthugha could burn away any impurity. So clever Cthugha sought aid. An ancient deal was struck, with an entity whose name I dare not speak- I will call him The King. Cthugha would see his ancient enemy destroyed, and the King would gain control over the pestilence of Baalshandor. Together, Cthugha and the King destroyed Baalshandor’s armies.\n\nBut Baalshandor could not be destroyed. So a prison was crafted, beyond all known dimensions. It would bind Baalshandor outside of reality - even in all his power, only shades of his virulence were able to seep through. To unbind Baalshandor, he would need a mass sacrifice of followers. As his creations could be culled before this occurred, the Old Ones believed this prison unbreakable.\n\nBut I am afraid that to aid my colleague’s search for knowledge, I passed along dangerous rituals to draw upon Baalshandor’s power. Trust me when I say I truly regret it. Not only did it corrupt him, it somehow brought him back from his destruction by Cthugha’s kin. He became a walking extension of Baalshandor, and the bacteria that he spawned spread to the city. It is small comfort that that city is about to burn.\n\nThroughout the ages, whenever Baalshandor’s blood has flowed into our reality, The King and the Flame have been there to destroy all that it tainted. Even now, they prepare a last attack to destroy Arkham and prevent his unbinding. The city will fall, but it will not stop him.\n\nIn the hours to come, Baalshandor will emerge from the ashes of Arkham. His children will be endless. In a matter of hours, the earth will be his. And only you can stop it.”\n\nYou lose yourself in thought for a moment, then stagger back in shock, terrified of what you see. You stand on a stone ring surrounding a terrifying mass of spheres and eyes.\n\n“An aspect of my master. As a gesture of apology from me, you may ask of him any one question. He may choose to answer more, but beware- few of his offers come without a cost.”",
+      "portals": "Yog-Sothoth is the key and guardian of the gate. He knows where the Old Ones broke through of old, and where They shall break through again.",
+      "portalsEffect": "Record in your campaign log that you saw a vision of the portals.",
+      "first": "There was a formula for evoking such a shade, and another for putting it down; and it had now been so perfected that it could be taught successfully.",
+      "firstEffect": "Record in your campaign log that you learned the killing words.",
+      "baalshandor": "That is not dead which can eternal lie. And in strange aeons, even death may die.",
+      "baalshandorEffect": "Record in your campaign log that you received a cryptic riddle.",
+      "lesson2": "“I hope you have the answers you seek. Your time here draws short - unless you would prefer to abandon this folly and dwell with me amongst the endless for eternity?”\n\nYou shake your head. Arkham’s in more danger than ever. Only you have the knowledge to stop what’s coming.\n\nRobison speaks a few words, and the stars fade from the sky, followed by the rest of the light in this realm."
     }
   },
   "note": {
@@ -255,7 +266,10 @@
     "plaguebearerEliminated78268": "Hibbs: Eliminated",
     "plaguebearerEliminated78270": "Ma Matheson: Eliminated",
     "plaguebearerEliminated78272": "Miriam Beecher: Eliminated",
-    "plaguebearerEliminated78274": "Henry Armitage: Eliminated"
+    "plaguebearerEliminated78274": "Henry Armitage: Eliminated",
+    "plaguebearerVisionOfPortals": "You saw a vision of the portals",
+    "plaguebearerKillingWords": "You learned the killing words",
+    "plaguebearerCrypticRiddle": "You received a cryptic riddle"
   },
   "ability": {
     "remove": "Spend {amount} clues here: remove {amount} barricades from {location}",
@@ -361,6 +375,10 @@
     "allied": {
       "hidden": "The interlude contains hidden text. Do you read it?",
       "deal": "Handshake Deal: choose the asset"
+    },
+    "history": {
+      "ask": "Ask the Lurker at the Threshold a question",
+      "more": "Ask another question? Each investigator will add a random basic Madness or Pact weakness to their deck"
     }
   },
   "choice": {
@@ -418,6 +436,12 @@
     "allied": {
       "add": "{name} adds it to their deck",
       "nobody": "Nobody adds it"
+    },
+    "history": {
+      "portals": "What chance do we stand against the Flame and the King?",
+      "first": "How do we kill the First for good?",
+      "baalshandor": "How do we stop Baalshandor?",
+      "enough": "Ask no more questions"
     }
   }
 }

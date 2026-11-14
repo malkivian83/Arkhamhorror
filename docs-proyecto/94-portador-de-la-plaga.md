@@ -8,7 +8,8 @@ La traducción y maquetación al castellano (cartas y guía) es de Los Archivos 
 Arkham. Ninguna de las dos versiones indica número de versión ni fecha.
 
 Estado: **escenarios I–IV jugables; Interludios I–III resueltos al cerrar el
-II, el III y el IV; interludios IV–V y escenarios V–VIII pendientes. Material completo en EN y ES.** Este documento
+II, el III y el IV; Interludio IV preparado para el cierre del V; Interludio V y
+escenarios V–VIII pendientes. Material completo en EN y ES.** Este documento
 recoge el inventario, las diferencias entre versiones y las decisiones
 pendientes. No sustituye a las guías: al implementar, contrasta cada paso con
 el PDF.
@@ -74,7 +75,18 @@ el PDF.
   de más da una acción sin restringir el tipo; Beneplácito de Ma da un espacio de
   aliado más (sin el +1/+1); Día duro de trabajo solo aporta sus iconos; Cobertura
   total necesita `alliedCostModifier`/`alliedForced` en los escenarios V–VIII.
-- Siguiente: escenario V (Descenso al mediodía).
+- Interludio IV · Lección de historia (guía ES p. 15 / EN p. 18 del PDF), en
+  `history-lesson.ts`: `historyLesson(end)` devuelve sus mensajes para encadenarlos
+  tras las R1 y R2 del V (ambas pasan al interludio). El jefe elige una pregunta
+  (obligatoria) y puede seguir; cada caja anota su frase y cada caja tras la primera
+  añade a cada investigador una debilidad básica Locura o Pacto aleatoria
+  permanente (`AddStoryAsset`, sin repetir dentro del interludio). Relatos literales
+  EN/ES en `plaguebearer.{es,en}.json` y en `story/{es,en}.json`; sin locución.
+  Notas `plaguebearerVisionOfPortals`, `plaguebearerKillingWords` y
+  `plaguebearerCrypticRiddle`. Pruebas en `history-lesson.test.ts`.
+- Bloqueo del 14/11/2026: el V necesita transcribir sus 47 cartas (78111–78150) desde
+  `E:\Plaguero`, unidad no conectada; sin ella no hay textos ni imágenes del V.
+- Siguiente: escenario V (Descenso al mediodía) cuando esté disponible `E:\Plaguero`.
 
 ## Fuentes
 
