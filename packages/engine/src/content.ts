@@ -627,6 +627,21 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  moveAction?: boolean
+  engageAction?: boolean
+  /** Choose an event target before resource payment and attacks of opportunity. */
+  playEnemyChoices?: (
+    state: GameState,
+    investigator: InvestigatorId,
+  ) => { enemy: string; effect: Message[]; quiet?: boolean }[]
+  /** Abilities printed on a location attachment, usable by investigators there. */
+  locationAttachmentAbilities?: (
+    state: GameState,
+    self: LocationAttachment,
+    investigator: InvestigatorId,
+  ) => AbilityOption[]
+  /** Connections used only for investigator movement, never for enemy movement. */
+  movementConnections?: (state: GameState, self: LocationAttachment) => LocationId[]
   /** Printed activated abilities usable while this card is in hand. */
   handAbilities?: (state: GameState, investigator: InvestigatorId) => AbilityOption[]
   /** Printed permission to commit this card from its owner's discard pile. */

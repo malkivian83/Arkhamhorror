@@ -11,6 +11,7 @@ import { withEffectSource } from './effect-source'
 import { handleSetAside } from './bonded'
 import {
   isFightAction,
+  actionKinds,
   engageActionsAvailable,
   fightAbility,
   actContributors,
@@ -90,6 +91,7 @@ import {
   enemyBarredFrom,
   enemyModifierActive,
   activeEnemyModifiers,
+  physicalLocation,
   attachmentsAt,
   enemiesAt,
   engagedEnemies,
@@ -1370,15 +1372,14 @@ export function handle(state: GameState, message: Message): GameState {
         kind: message.action.kind,
       }
       // La acción adicional de evitar (Trish) se gasta antes que las normales.
-      const useMove = !!investigator.extraMove && message.action.kind === 'move'
+      const useMove = !!investigator.extraMove && actionKinds(message.action).includes('move')
       const useExtra = !!investigator.extraEvade && isEvadeAction(message.action)
-      const useEngage =
-        message.action.kind === 'engage'
-          ? Math.min(
-              engageActionsAvailable(state, investigator.id),
-              actionCost(state, investigator.id, message.action),
-            )
-          : 0
+      const useEngage = actionKinds(message.action).includes('engage')
+        ? Math.min(
+            engageActionsAvailable(state, investigator.id),
+            actionCost(state, investigator.id, message.action),
+          )
+        : 0
       const useFight =
         !useExtra &&
         !useMove &&
@@ -1447,7 +1448,7 @@ export function handle(state: GameState, message: Message): GameState {
         spentActions: spendActions(state, i, cost),
         roundActions: {
           round: state.round,
-          kinds: [...actionsThisRound(state, i.id), message.action.kind],
+          kinds: [...actionsThisRound(state, i.id), ...actionKinds(message.action)],
         },
       }))
       // RR "Attack of Opportunity": tras pagar el coste y antes de resolver la acción.
@@ -2577,6 +2578,22 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'MoveTo': {
+      const virtual = state.asIfLocations?.findLast((f) => f.investigator === message.investigator)
+      if (virtual && !message.physicalChecked) {
+        let physical = updateInvestigator(state, message.investigator, (i) => ({
+          ...i,
+          location: virtual.physical,
+        }))
+        for (const e of engagedEnemies(physical, message.investigator).filter(
+          (e) => !e.keywords.includes('massive'),
+        ))
+          physical = updateEnemy(physical, e.id, (e) => ({ ...e, location: virtual.physical }))
+        return push(
+          physical,
+          { ...message, physicalChecked: true },
+          { type: 'ResumeAsIfAt', investigator: message.investigator },
+        )
+      }
       const mover = getInvestigator(state, message.investigator)
       const swapped = message.swapEnemy ? findEnemy(state, message.swapEnemy) : undefined
       if (
@@ -2641,6 +2658,13 @@ export function handle(state: GameState, message: Message): GameState {
         movedThisTurn: true,
         ...(state.activeTurn ? { lastMoveTurn: turnStartedAt(state) } : {}),
       }))
+      if (next.asIfLocations?.length)
+        next = {
+          ...next,
+          asIfLocations: next.asIfLocations.map((f) =>
+            f.investigator === message.investigator ? { ...f, physical: message.location } : f,
+          ),
+        }
       // Swapping is simultaneous: the chosen enemy cannot engage the mover at the old
       // location and follow them back. Other engaged enemies still accompany the mover.
       if (swapped)
@@ -2740,6 +2764,7 @@ export function handle(state: GameState, message: Message): GameState {
           },
         },
       ]
+      arrival.push(...(message.afterMove ?? []))
       const beforeEngagement = Object.values(next.assets).some(
         (a) =>
           a.owner === mover.id && assetBehavior(state, a)?.reactsBeforeEngagement && !a.exhausted,
@@ -3563,6 +3588,37 @@ export function handle(state: GameState, message: Message): GameState {
         )
       )
         return state
+      const targets = playerCardBehavior(message.code)?.playEnemyChoices?.(state, investigator.id)
+      if (targets && !message.effect)
+        return push(state, {
+          type: 'Ask',
+          investigator: investigator.id,
+          question: {
+            kind: 'chooseOne',
+            prompt: 'prompt.pilotTarget',
+            alwaysAsk: true,
+            choices: targets.map((t) => ({
+              label: 'choice.enemy',
+              params: { enemy: state.enemies[t.enemy]?.name ?? t.enemy },
+              target: { type: 'enemy' as const, id: t.enemy },
+              then: [
+                {
+                  ...message,
+                  effect: t.effect,
+                  before: (message.before ?? []).filter(
+                    (m) =>
+                      !(
+                        t.quiet &&
+                        m.type === 'EnemyAttack' &&
+                        m.opportunity &&
+                        m.enemy === t.enemy
+                      ),
+                  ),
+                },
+              ],
+            })),
+          },
+        })
       if (playerCardBehavior(message.code)?.onlyFromDiscard) {
         if (message.from === 'hand') return state
         if (!message.byEffect && message.from === undefined) {
@@ -3952,11 +4008,12 @@ export function handle(state: GameState, message: Message): GameState {
         const here = investigator.location
         if (here === null || at === here || !state.locations[at] || investigator.eliminated)
           return handle(state, resolve)
-        return push(
-          updateInvestigator(state, investigator.id, (i) => ({ ...i, location: at })),
-          resolve,
-          { type: 'EndPlayAt', investigator: investigator.id, location: here, at },
-        )
+        return push(state, {
+          type: 'AsIfAt',
+          investigator: investigator.id,
+          location: at,
+          then: [resolve],
+        })
       }
       if (investigator.eliminated) {
         return def.type === 'asset'
@@ -5545,6 +5602,9 @@ export function handle(state: GameState, message: Message): GameState {
           ),
           skillTest: withCommittedDifficulty({
             origin: message,
+            ...(message.ignoredEnemyKeywords
+              ? { ignoredEnemyKeywords: message.ignoredEnemyKeywords }
+              : {}),
             ...(state.revelationContexts?.length
               ? { revelation: state.revelationContexts.at(-1)! }
               : {}),
@@ -6881,6 +6941,109 @@ export function handle(state: GameState, message: Message): GameState {
         assets: { ...state.assets, [a.id]: { ...a, uses: a.uses + message.amount } },
       }
     }
+    case 'SuppressEngagement':
+      return updateInvestigator(state, message.investigator, (i) => ({
+        ...i,
+        engagementSuppression: Math.max(
+          0,
+          (i.engagementSuppression ?? 0) + (message.active ? 1 : -1),
+        ),
+      }))
+    case 'BecomeEthereal': {
+      const enemies = engagedEnemies(state, message.investigator)
+      return push(
+        updateInvestigator(state, message.investigator, (i) => ({
+          ...i,
+          etherealRound: state.round,
+        })),
+        ...enemies.map((e) => ({ type: 'DisengageEnemy' as const, enemy: e.id })),
+      )
+    }
+    case 'AsIfAt': {
+      if (state.skillTest && message.then.some((m) => m.type === 'BeginSkillTest'))
+        return {
+          ...state,
+          skillTest: {
+            ...state.skillTest,
+            afterEnd: [...(state.skillTest.afterEnd ?? []), message],
+          },
+        }
+      const i = getInvestigator(state, message.investigator),
+        physical = physicalLocation(state, message.investigator)
+      if (!physical || i.eliminated || !state.locations[message.location]) return state
+      let next = updateInvestigator(
+        {
+          ...state,
+          asIfLocations: [
+            ...(state.asIfLocations ?? []),
+            { investigator: i.id, at: message.location, physical },
+          ],
+        },
+        i.id,
+        (i) => ({ ...i, location: message.location }),
+      )
+      for (const e of engagedEnemies(state, i.id).filter((e) => !e.keywords.includes('massive')))
+        next = updateEnemy(next, e.id, (e) => ({ ...e, location: message.location }))
+      return push(next, ...message.then, { type: 'EndAsIfAt', investigator: i.id })
+    }
+    case 'ResumeAsIfAt':
+    case 'EndAsIfAt': {
+      const frames = [...(state.asIfLocations ?? [])],
+        at = frames.findLastIndex((f) => f.investigator === message.investigator),
+        frame = frames[at]
+      if (!frame) return state
+      if (message.type === 'EndAsIfAt') frames.splice(at, 1)
+      const location =
+        frames.findLast((f) => f.investigator === message.investigator)?.at ?? frame.physical
+      const { asIfLocations: _old, ...without } = state
+      let next = frames.length ? { ...without, asIfLocations: frames } : without
+      if (getInvestigator(state, message.investigator).eliminated) return next
+      next = updateInvestigator(next, message.investigator, (i) => ({ ...i, location }))
+      for (const e of engagedEnemies(next, message.investigator).filter(
+        (e) => !e.keywords.includes('massive'),
+      ))
+        next = updateEnemy(next, e.id, (e) => ({ ...e, location }))
+      return next
+    }
+    case 'RedirectPendingAttack': {
+      const at = state.queue.findIndex(
+        (m) => m.type === 'ResolveEnemyAttack' && m.enemy === message.enemy,
+      )
+      if (at < 0) return state
+      const attack = state.queue[at] as Extract<Message, { type: 'ResolveEnemyAttack' }>
+      const enemy = findEnemy(state, message.enemy)
+      const modifier = enemyBehavior(enemy?.code ?? '')?.attackModifier?.(
+        state,
+        enemy!,
+        message.investigator,
+      )
+      const { modifier: _oldModifier, ...redirected } = attack
+      const recorded = state.enemyAttacks?.findLastIndex(
+        (a) => a.enemy === message.enemy && a.round === state.round,
+      )
+      return {
+        ...state,
+        ...(recorded !== undefined && recorded >= 0
+          ? {
+              enemyAttacks: state.enemyAttacks!.map((a, n) =>
+                n === recorded
+                  ? {
+                      ...a,
+                      investigator: message.investigator,
+                      location: getInvestigator(state, message.investigator).location,
+                    }
+                  : a,
+              ),
+            }
+          : {}),
+        queue: [
+          ...state.queue.slice(0, at),
+          { ...redirected, investigator: message.investigator, ...(modifier ? { modifier } : {}) },
+          ...message.then,
+          ...state.queue.slice(at + 1),
+        ],
+      }
+    }
     case 'PrimeFightTokenConversion':
       return updateInvestigator(state, message.investigator, (i) => ({
         ...i,
@@ -7158,6 +7321,8 @@ export function handle(state: GameState, message: Message): GameState {
       )
         return state
       if (
+        investigator.etherealRound === state.round ||
+        (investigator.engagementSuppression ?? 0) > 0 ||
         activeEnemyModifiers(state, enemy.id).some((m) => m.cannotEngage === investigator.id) ||
         scenarioBehavior(state.scenarioId)?.canEnemyEngage?.(state, enemy, investigator.id) ===
           false
@@ -7218,6 +7383,8 @@ export function handle(state: GameState, message: Message): GameState {
       }
       const permitted = candidates.filter(
         (i) =>
+          i.etherealRound !== state.round &&
+          !(i.engagementSuppression ?? 0) &&
           !activeEnemyModifiers(state, enemy.id).some((m) => m.cannotEngage === i.id) &&
           scenarioBehavior(state.scenarioId)?.canEnemyEngage?.(state, enemy, i.id) !== false,
       )
@@ -8597,6 +8764,13 @@ export function handle(state: GameState, message: Message): GameState {
       }
       const enemy = findEnemy(state, message.enemy)
       if (!enemy || enemy.hasNoStats) return state
+      const preventedBy = message.by ?? message.effectController
+      if (
+        preventedBy &&
+        (getInvestigator(state, preventedBy).etherealRound === state.round ||
+          activeEnemyModifiers(state, enemy.id).some((m) => m.cannotDamageBy === preventedBy))
+      )
+        return state
       const agenda = state.agendas[state.agendaIndex]
       if (
         (agenda && agendaBehavior(agenda.code)?.enemyImmune?.(state, enemy)) ||
@@ -11810,6 +11984,16 @@ function fastInvestigatorOptions(state: GameState, skipHandOf?: InvestigatorId):
   ]
   const active = activeInvestigators(state)
   return [
+    ...active.flatMap((i) =>
+      !i.location ||
+      (state.skillTest?.tags?.includes('peril') && state.skillTest.investigator !== i.id)
+        ? []
+        : attachmentsAt(state, i.location).flatMap((a) =>
+            (playerCardBehavior(a.code)?.locationAttachmentAbilities?.(state, a, i.id) ?? [])
+              .filter((o) => o.actions === 0)
+              .map((o) => ({ ...o, investigator: i.id })),
+          ),
+    ),
     ...active
       .filter(
         (i) =>

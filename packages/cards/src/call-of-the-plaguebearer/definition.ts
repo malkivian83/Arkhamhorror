@@ -4,6 +4,7 @@ import { LATE_RISERS, lateRisers } from './scenario'
 import { NIGHT_ON_THE_TOWN, nightOnTheTown } from './night-on-the-town'
 import { DEAD_BY_DAWN, deadByDawn } from './dead-by-dawn'
 import { MOURNING_CHORUS, mourningChorus } from './mourning-chorus'
+import './history-lesson'
 registerCampaign({
   id: CALL_OF_THE_PLAGUEBEARER.id,
   name: 'campaign.names.call-of-the-plaguebearer',

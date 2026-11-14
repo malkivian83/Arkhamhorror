@@ -8,6 +8,7 @@
  */
 import {
   actionsThisRound,
+  actionKinds,
   activeInvestigators,
   distancesFrom,
   effectiveVitals,
@@ -750,7 +751,11 @@ for (const code of [SETS.frozenInFear, '03226'])
     revelation: (_state, investigator, self) => [toThreatArea(investigator, self.id)],
     // La primera vez que te mueves, atacas o evitas cada ronda cuesta 1 acción adicional.
     actionCost: (state, self, action) => {
-      if (self.placement.type !== 'threatArea' || !ROUND_FIRST.includes(action.kind)) return 0
+      if (
+        self.placement.type !== 'threatArea' ||
+        !actionKinds(action).some((kind) => ROUND_FIRST.includes(kind))
+      )
+        return 0
       const done = actionsThisRound(state, self.placement.investigator)
       return done.some((kind) => ROUND_FIRST.includes(kind)) ? 0 : 1
     },

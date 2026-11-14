@@ -7,6 +7,7 @@ import {
   playerCardBehavior,
   poolTokensAvailable,
   turnActionTiming,
+  shroudOf,
   type AbilityOption,
   type Asset,
   type Choice,
@@ -90,10 +91,7 @@ function nautical(s: GameState, a: Asset, fromHand: boolean): AbilityOption[] {
         ...common,
         actionKind: 'investigate',
         provokes: true,
-        then: [
-          pay,
-          begin('intellect', getLocation(s, here).shroud, { type: 'investigate', location: here }),
-        ],
+        then: [pay, begin('intellect', shroudOf(s, here), { type: 'investigate', location: here })],
       },
     ]
   const evade = a.code === '11081'
