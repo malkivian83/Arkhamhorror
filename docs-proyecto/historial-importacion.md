@@ -285,3 +285,7 @@
 ## Continuación archivada al cerrar el lote 146
 
 - Lote 145 `movement-support`, commit `4a24af0e`: 18 cartas/niveles nuevos, 0 reediciones; 1514 comportamientos y 242 estándar pendientes. Reglas, integración y presentación EN/ES verificadas; detalle en el documento 145.
+
+## Continuación archivada al cerrar el lote 147
+
+- Lote 146 `chaos-allies`, commit `433d7b26`: 14 cartas/niveles estándar nuevos y 6 vinculadas, 0 reediciones. 1534 comportamientos, 591 históricos y 228 estándar pendientes; 6327 escaneos y miniaturas. Revisión posterior de reglas en `fc3cd756`.

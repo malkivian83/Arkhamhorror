@@ -1992,6 +1992,13 @@ export function handle(state: GameState, message: Message): GameState {
         if (!attachment || attachment.code !== message.code) return state
         const { [attachment.id]: _moved, ...rest } = state.locationAttachments!
         source = { ...state, locationAttachments: rest }
+      } else if (message.fromSetAside) {
+        const aside = (owner.outOfPlay ?? []).indexOf(message.code)
+        if (aside < 0 || !playerCardDef(message.code)?.bondedCard) return state
+        source = updateInvestigator(state, owner.id, (i) => ({
+          ...i,
+          outOfPlay: (i.outOfPlay ?? []).filter((_, n) => n !== aside),
+        }))
       } else {
         if (at < 0) return state
         source = updateInvestigator(state, owner.id, (i) => ({
@@ -2675,6 +2682,7 @@ export function handle(state: GameState, message: Message): GameState {
           swapped.global ||
           !mover.location ||
           swapped.location !== message.location ||
+          attachedEnemyRestriction(state, swapped.id, 'attachedEnemyCannotMove') ||
           scenarioBehavior(state.scenarioId)?.cannotMoveEnemy?.(state, swapped))
       )
         return state
@@ -2750,7 +2758,10 @@ export function handle(state: GameState, message: Message): GameState {
       for (const enemy of engagedEnemies(next, message.investigator)) {
         if (enemy.keywords.includes('massive') || enemy.location === message.location) continue
         // Barricade (FAQ): an engaged non-Elite enemy disengages and stays behind.
-        if (enemyBarredFrom(next, enemy, message.location)) {
+        if (
+          attachedEnemyRestriction(next, enemy.id, 'attachedEnemyCannotMove') ||
+          enemyBarredFrom(next, enemy, message.location)
+        ) {
           next = updateEnemy(next, enemy.id, (e) => ({ ...e, engagedWith: null }))
           continue
         }
@@ -6275,7 +6286,15 @@ export function handle(state: GameState, message: Message): GameState {
       if (!held) return state
       const { tokenReveal: _held, ...rest } = state
       const next = log(
-        { ...rest, chaosBag: [...withTokenAt(rest.chaosBag, held), ...(held.ignored ?? [])] },
+        {
+          ...recordSupplemental(rest, held.then, held.token, held.ignored),
+          chaosBag: [
+            ...(message.toPool && isPoolToken(held.token)
+              ? rest.chaosBag
+              : withTokenAt(rest.chaosBag, held)),
+            ...(held.ignored ?? []),
+          ],
+        },
         'log.tokenCanceled',
         {
           token: String(held.face),
@@ -6297,7 +6316,9 @@ export function handle(state: GameState, message: Message): GameState {
             ...(held.hold ? { hold: true } : {}),
             used: [...held.used, ...(message.use ? [message.use] : [])],
           })
-        : notified
+        : isSupplementalReveal(held.then)
+          ? push(notified, { ...held.then, data: { ...held.then.data, canceled: true } })
+          : notified
     }
 
     case 'ResolveEarlyTestToken':
@@ -6332,6 +6353,8 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'ReturnTokensToBagAfterTest':
+      // Supplemental tokens return through their own group, never through ST.8.
+      if (state.tokenReveal && isSupplementalReveal(state.tokenReveal.then)) return state
       return state.skillTest
         ? {
             ...state,
@@ -6492,11 +6515,12 @@ export function handle(state: GameState, message: Message): GameState {
         const { tokenReveal: _held, ...rest } = state
         return push(
           {
-            ...rest,
+            ...recordSupplemental(rest, held.then, held.token, held.ignored, held.face),
             chaosBag: held.hold
               ? rest.chaosBag
               : [...withTokenAt(rest.chaosBag, held), ...(held.ignored ?? [])],
           },
+          ...supplementalMessages(state, held.then, investigator, held.face),
           revealedThen(
             held.then,
             held.token,
@@ -6644,13 +6668,14 @@ export function handle(state: GameState, message: Message): GameState {
       if (
         reactionOptions(holding, when).some((o) =>
           withinLimit(holding, o.key, o.investigator, o.limit),
-        )
+        ) ||
+        forcedAbilities(holding, when).length > 0
       )
         return push(holding, { type: 'Forced', trigger: when }, { ...message, pending: true })
       // Nobody can respond: the token is looked at and stays in (or goes back to) the bag.
       return push(
         {
-          ...state,
+          ...recordSupplemental(state, message.then, token, message.ignored, token),
           rng,
           chaosBag: message.hold
             ? holding.chaosBag
@@ -6658,6 +6683,7 @@ export function handle(state: GameState, message: Message): GameState {
               ? [...state.chaosBag, token, ...(message.ignored ?? [])]
               : state.chaosBag,
         },
+        ...supplementalMessages(state, message.then, investigator, token),
         revealedThen(message.then, token, token, index, message.hold ? message.ignored : undefined),
       )
     }
@@ -7535,7 +7561,12 @@ export function handle(state: GameState, message: Message): GameState {
       const enemy =
         findEnemy(state, message.enemy) ?? state.attackSourcesWithoutLocation?.[message.enemy]
       const investigator = getInvestigator(state, message.investigator)
-      if (!enemy || (enemy.exhausted && !message.evenIfExhausted) || investigator.eliminated)
+      if (
+        !enemy ||
+        attachedEnemyRestriction(state, enemy.id, 'attachedEnemyCannotAttack') ||
+        (enemy.exhausted && !message.evenIfExhausted) ||
+        investigator.eliminated
+      )
         return state
       // El organista: no ataca en esta fase de enemigos.
       if (
@@ -8132,6 +8163,7 @@ export function handle(state: GameState, message: Message): GameState {
       if (
         !enemy ||
         enemy.location === message.toward ||
+        attachedEnemyRestriction(state, enemy.id, 'attachedEnemyCannotMove') ||
         scenarioBehavior(state.scenarioId)?.cannotMoveEnemy?.(state, enemy)
       )
         return state
@@ -8758,6 +8790,7 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'ResolveEnemyAttack': {
+      if (attachedEnemyRestriction(state, message.enemy, 'attachedEnemyCannotAttack')) return state
       if (state.canceledAttack === message.enemy) return { ...state, canceledAttack: null }
       const enemy =
         findEnemy(state, message.enemy) ?? state.attackSourcesWithoutLocation?.[message.enemy]
@@ -8969,6 +9002,10 @@ export function handle(state: GameState, message: Message): GameState {
           },
         }
       // Derrotado, pero en lugar de descartarse sigue en juego (El Extranjero, acto 2).
+      const attachedDefeat = attachedTo(state, enemy.id).flatMap(
+        (t) =>
+          activeTreacheryBehavior(state, t)?.whenAttachedEnemyDefeated?.(state, t, enemy) ?? [],
+      )
       const notDiscarded = enemyBehavior(enemy.code)?.insteadOfDiscard?.(state, enemy) ?? null
       const removed = log(
         notDiscarded ? state : removeEnemy(dropAttached(state, enemy), enemy.id),
@@ -8998,7 +9035,7 @@ export function handle(state: GameState, message: Message): GameState {
         enemy,
         ...(message.by ? { by: message.by } : {}),
       }
-      return push(next, { type: 'Forced', trigger }, ...doomed, {
+      return push(next, ...attachedDefeat, { type: 'Forced', trigger }, ...doomed, {
         type: 'CheckActObjective',
       })
     }
@@ -9128,6 +9165,7 @@ export function handle(state: GameState, message: Message): GameState {
           if (
             enemy.exhausted ||
             enemy.engagedWith !== null ||
+            attachedEnemyRestriction(state, enemy.id, 'attachedEnemyCannotMove') ||
             scenarioBehavior(state.scenarioId)?.cannotMoveEnemy?.(state, enemy)
           )
             continue
@@ -9218,6 +9256,7 @@ export function handle(state: GameState, message: Message): GameState {
         !enemy ||
         enemy.exhausted ||
         enemy.engagedWith !== null ||
+        attachedEnemyRestriction(state, enemy.id, 'attachedEnemyCannotMove') ||
         scenarioBehavior(state.scenarioId)?.cannotMoveEnemy?.(state, enemy)
       )
         return state
@@ -9915,6 +9954,7 @@ export function handle(state: GameState, message: Message): GameState {
       if (
         !findEnemy(state, message.enemy) ||
         findEnemy(state, message.enemy)?.global ||
+        attachedEnemyRestriction(state, message.enemy, 'attachedEnemyCannotMove') ||
         scenarioBehavior(state.scenarioId)?.cannotMoveEnemy?.(
           state,
           getEnemy(state, message.enemy),
@@ -12168,7 +12208,86 @@ function testOptions(state: GameState, test: SkillTest): ReactionOption[] {
  * Reacciones posibles a `trigger`: de los investigadores, de sus apoyos en juego
  * y de los eventos de su mano que se juegan "después de…" (si pueden pagarlos).
  */
+function isSupplementalReveal(
+  then: Extract<Message, { type: 'ScenarioSpecific' | 'PlayerCardEffect' }>,
+): boolean {
+  return then.type === 'PlayerCardEffect' && then.data?.countsDuringTest === true
+}
+function recordSupplemental(
+  state: GameState,
+  then: Extract<Message, { type: 'ScenarioSpecific' | 'PlayerCardEffect' }>,
+  token: ChaosToken,
+  ignored: ChaosToken[] = [],
+  face?: ChaosToken,
+): GameState {
+  if (!isSupplementalReveal(then)) return state
+  const group = String(then.data?.group)
+  if (face !== undefined && state.heldChaosTokens?.[group])
+    state = {
+      ...state,
+      heldChaosTokens: {
+        ...state.heldChaosTokens,
+        [group]: [...state.heldChaosTokens[group], token, ...ignored],
+      },
+    }
+  return state.skillTest
+    ? {
+        ...state,
+        skillTest: {
+          ...state.skillTest,
+          supplementalTokens: [...(state.skillTest.supplementalTokens ?? []), token, ...ignored],
+          ...(face !== undefined
+            ? {
+                supplementalFaces: [...(state.skillTest.supplementalFaces ?? []), face],
+                tokenConditions: (state.skillTest.tokenConditions ?? []).filter(
+                  (c) => c.token !== face,
+                ),
+              }
+            : {}),
+        },
+      }
+    : state
+}
+function supplementalMessages(
+  state: GameState,
+  then: Extract<Message, { type: 'ScenarioSpecific' | 'PlayerCardEffect' }>,
+  investigator: string,
+  face: ChaosToken,
+): Message[] {
+  const test = state.skillTest
+  if (!test || !isSupplementalReveal(then)) return []
+  const source = test.source ? state.assets[test.source] : undefined
+  const prior: GameState = {
+    ...state,
+    skillTest: { ...test, tokens: [...test.tokens, ...(test.supplementalFaces ?? [])] },
+  }
+  return [
+    ...(source
+      ? (playerCardBehavior(source.code)?.onTokenRevealed?.(prior, face, source) ?? [])
+      : []),
+    ...(test.tokenConditions ?? []).filter((c) => c.token === face).flatMap((c) => c.then),
+    { type: 'Forced', trigger: { type: 'afterRevealChaosToken', investigator, token: face } },
+  ]
+}
+function supplementalWindowState(state: GameState, trigger: Trigger): GameState {
+  const held = state.tokenReveal
+  return trigger.type === 'whenRevealChaosToken' &&
+    held &&
+    state.skillTest &&
+    isSupplementalReveal(held.then)
+    ? {
+        ...state,
+        skillTest: {
+          ...state.skillTest,
+          // The physical token is already counted by tokenReveal in supply queries.
+          revealing: { token: held.token, face: held.face, fromBag: true, virtual: true },
+          tokens: [...state.skillTest.tokens, ...(state.skillTest.supplementalFaces ?? [])],
+        },
+      }
+    : state
+}
 function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
+  state = supplementalWindowState(state, trigger)
   const active = activeInvestigators(state)
   const fromInvestigators = active.flatMap(
     (i) => investigatorBehavior(i.id)?.reactions?.(state, trigger, i) ?? [],
@@ -12243,6 +12362,7 @@ function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
   const retry: ReactionOption[] =
     trigger.type === 'whenRevealChaosToken' &&
     state.skillTest?.revealing &&
+    !state.tokenReveal &&
     (state.skillTest.tokenRetries ?? 0) > 0
       ? [
           {
@@ -12329,6 +12449,19 @@ function afterHandDiscard(state: GameState, investigator: string, cards: string[
   return push(state, { type: 'Forced', trigger }, { type: 'Reactions', trigger })
 }
 
+/** Continuous attack and movement prohibitions on an attached enemy. */
+function attachedEnemyRestriction(
+  state: GameState,
+  enemy: string,
+  key: 'attachedEnemyCannotAttack' | 'attachedEnemyCannotMove',
+): boolean {
+  return Object.values(state.treacheries).some(
+    (t) =>
+      t.placement.type === 'enemy' &&
+      t.placement.enemy === enemy &&
+      !!activeTreacheryBehavior(state, t)?.[key],
+  )
+}
 /** An attachment prevents this enemy from readying (Restrained, Handcuffs). */
 function enemyCannotReady(state: GameState, enemy: string): boolean {
   return attachedTo(state, enemy).some(
@@ -12840,7 +12973,7 @@ function afterRevealing(
  * canceled (FAQ: they were still revealed). Token of Faith, Fey.
  */
 export function revealedTestTokens(test: SkillTest): ChaosToken[] {
-  return returnedTokens(test)
+  return [...returnedTokens(test), ...(test.supplementalTokens ?? [])]
 }
 
 /** Tokens that go back to the bag at ST.8: the physical ones, not what they were treated as. */
@@ -12887,6 +13020,7 @@ function damageSource(state: GameState, enemy?: EnemyId): string | undefined {
 }
 
 function forcedAbilities(state: GameState, trigger: Trigger): Message[] {
+  state = supplementalWindowState(state, trigger)
   const fromTreacheries = Object.values(state.treacheries)
     .filter((t) => t.placement.type !== 'limbo')
     .flatMap((t) => sourced(activeTreacheryBehavior(state, t)?.forced?.(state, trigger, t), t.name))
@@ -12983,8 +13117,15 @@ function enemyStatBonus(
  */
 function dropAttached(state: GameState, enemy: Enemy): GameState {
   for (const t of Object.values(state.treacheries)) {
-    if (t.placement.type === 'enemy' && t.placement.enemy === enemy.id)
-      state = discardTreachery(state, t.id)
+    if (t.placement.type !== 'enemy' || t.placement.enemy !== enemy.id) continue
+    const behavior = activeTreacheryBehavior(state, t)
+    if (behavior?.setAsideWhenEnemyLeaves && t.owner) {
+      const { [t.id]: _gone, ...treacheries } = state.treacheries
+      state = updateInvestigator({ ...state, treacheries }, t.owner, (i) => ({
+        ...i,
+        outOfPlay: [...(i.outOfPlay ?? []), t.code],
+      }))
+    } else state = discardTreachery(state, t.id)
   }
   const placed = Object.values(state.placedAssets ?? {}).filter(
     (p) => p.placement.type === 'enemy' && p.placement.enemy === enemy.id,

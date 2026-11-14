@@ -317,6 +317,7 @@ import { ADVANCED_TESTS_RENDERED_CODES } from './advanced-tests'
 import { ACTION_SUPPORT_RENDERED_CODES } from './action-support'
 import { MOVEMENT_SUPPORT_RENDERED_CODES } from './movement-support'
 import { CHAOS_ALLIES_RENDERED_CODES } from './chaos-allies'
+import { CARNAMAGOS_RENDERED_CODES } from './carnamagos'
 import { BONDED_RENDERED_CODES } from './bonded-cards'
 import { REUSED_CAPABILITIES_RENDERED_CODES } from './reused-capabilities'
 import { REX_RENDERED_CODES } from './rex-murphy'
@@ -360,6 +361,7 @@ export const RENDERED_PLAYER_CARD_CODES = [
   ...ACTION_SUPPORT_RENDERED_CODES,
   ...MOVEMENT_SUPPORT_RENDERED_CODES,
   ...CHAOS_ALLIES_RENDERED_CODES,
+  ...CARNAMAGOS_RENDERED_CODES,
   ...BONDED_RENDERED_CODES,
   ...REUSED_CAPABILITIES_RENDERED_CODES,
   ...TOKEN_SKILL_RENDERED_CODES,

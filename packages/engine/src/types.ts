@@ -874,6 +874,9 @@ export interface SkillTest {
   chooseToken?: InvestigatorId
   /** The last "reveal several, resolve one" choice of this test (Eyes of the Dreamer). */
   tokenChoice?: { chosen: ChaosToken; ignored: ChaosToken[]; source?: string }
+  /** Revealed by another ability during this test; returned by that ability, outside ST.8. */
+  supplementalTokens?: ChaosToken[]
+  supplementalFaces?: ChaosToken[]
   /** Fichas sacadas pero ignoradas: vuelven a la bolsa al terminar la prueba. */
   ignoredTokens?: ChaosToken[]
   /** Physical identity and applied modifier of each resolved token, in reveal order. */
@@ -1340,6 +1343,8 @@ type MessageBody =
       fromAsset?: AssetId
       /** Move this location attachment onto the enemy instead (Snare Trap). */
       fromLocationAttachment?: string
+      /** Attach a bonded copy directly from its owner's set-aside cards. */
+      fromSetAside?: boolean
     }
   /** A lasting modifier on an enemy (lot 136); the handler stamps round, phase and turn. */
   | {

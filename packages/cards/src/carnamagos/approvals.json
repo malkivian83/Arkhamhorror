@@ -1,0 +1,63 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "0886ad65213775b9742b099a2d1769dfcef98484d49d8a083cabd8bf6ddf594d",
+    "es": "28c5b97866a5a65a575c2ccea87022c9348dcfc4f97339e5897b81e5fbc7c547"
+  },
+  "cards": [
+    {
+      "code": "10085",
+      "status": "verified",
+      "module": "card-10085",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "subname": "Scepter of the Mad Seer"
+    },
+    {
+      "code": "10098",
+      "status": "verified",
+      "module": "card-10098",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "subname": "Scepter of the Mad Seer"
+    },
+    {
+      "code": "10086",
+      "status": "verified",
+      "module": "card-10086",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1"
+    },
+    {
+      "code": "10087",
+      "status": "verified",
+      "module": "card-10087",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1"
+    },
+    {
+      "code": "10088",
+      "status": "verified",
+      "module": "card-10088",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1"
+    },
+    {
+      "code": "10089",
+      "status": "verified",
+      "module": "card-10089",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1"
+    },
+    {
+      "code": "10090",
+      "status": "verified",
+      "module": "card-10090",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1"
+    }
+  ]
+}

@@ -84,6 +84,11 @@
     "preferences": "Preferences",
     "privacySettings": "Privacy · Analytics",
     "changelog": {
+      "carnamagos": {
+        "title": "Rod of Carnamagos and its Rots",
+        "cards": "Both levels of Rod of Carnamagos and its five bonded Rot events are now playable.",
+        "rules": "Includes random or chosen Rots, enemy restrictions and reveals during skill tests."
+      },
       "chaosAllies": {
         "title": "Fourteen new cards and levels, plus six bonded cards",
         "cards": "Miss Doyle and her three cats, Seal of the Elders and its two summons, Broken Diadem and Twilight Diadem, Cat Mask, Wicked Athame, Radiant Smite, Ward of Radiance, Gaze of Ouraxsh, Manipulate Destiny, Tristan Botley, Mind’s Eye, both level 4 Cryptic Grimoires and Diabolical Luck are now playable.",
@@ -1244,6 +1249,7 @@
       "autoFail": "Give the Tentacle key to {name}",
       "frost": "Give the Frost key to {name}"
     },
+    "carnamagos": "Exhaust {card}: reveal 5 tokens for {enemy}",
     "advancedTest": "{card}: use ability",
     "bonded": {
       "search": "{card}: search your bonded cards",
@@ -3587,6 +3593,8 @@
   },
   "offlineCard": {
     "subnames": {
+      "10098": "Scepter of the Mad Seer",
+      "10085": "Scepter of the Mad Seer",
       "07262": "Huntress of Bast",
       "07192": "Text of the Elder Guardian",
       "07191": "Text of the Elder Herald",
@@ -3745,6 +3753,13 @@
       "scenario": "Scenario"
     },
     "traits": {
+      "10090": "Spell. Rot. Cursed.",
+      "10089": "Spell. Rot. Cursed.",
+      "10088": "Spell. Rot. Cursed.",
+      "10087": "Spell. Rot. Cursed.",
+      "10086": "Spell. Rot. Cursed.",
+      "10098": "Item. Relic. Occult. Cursed.",
+      "10085": "Item. Relic. Occult. Cursed.",
       "10075": "Fortune. Cursed.",
       "07262": "Ally. Blessed.",
       "07192": "Item. Tome. Blessed.",
@@ -4659,6 +4674,13 @@
       "02151": "Trick. Spirit."
     },
     "summary": {
+      "10090": "Bonded (Rod of Carnamagos).\nAttached enemy cannot move.\n<b>Forced</b> - When attached enemy leaves play: Set Virescent Rot aside, out of play.",
+      "10089": "Bonded (Rod of Carnamagos).\n<b>Forced</b> - At the end of the round: Attached enemy takes 1 damage.\n<b>Forced</b> - When attached enemy leaves play: Set Scarlet Rot aside, out of play.",
+      "10088": "Bonded (Rod of Carnamagos).\nAttached enemy gets -1 fight and -1 evade.\n<b>Forced</b> - When attached enemy leaves play: Set Putrescent Rot aside, out of play.",
+      "10087": "Bonded (Rod of Carnamagos).\n<b>Forced</b> - When attached enemy is defeated: Gain resources equal to its printed health (to a maximum of 5).\n<b>Forced</b> - When attached enemy leaves play: Set Aember Rot aside, out of play.",
+      "10086": "Bonded (Rod of Carnamagos).\nAttached enemy cannot attack.\n<b>Forced</b> - When attached enemy leaves play: Set Abyssal Rot aside, out of play.",
+      "10098": "[fast] Choose a non-[[Elite]] enemy at any location and exhaust Rod of Carnamagos: Reveal 5 random chaos tokens from the chaos bag. For each [curse] token revealed, you may search your bonded cards for a [[Rot]] event and attach it to that enemy.",
+      "10085": "Limit 1 per deck.\n[fast] Choose a non-[[Elite]] enemy at any location and exhaust Rod of Carnamagos: Reveal 5 random chaos tokens from the chaos bag. If a [curse] token is revealed, search your bonded cards for a random [[Rot]] event and attach it to that enemy.",
       "10075": "When you reveal a [curse] token during a skill test you are performing, you may commit Diabolical Luck to that skill test from your hand. If you do, Diabolical Luck gains [wild][wild][wild].",
       "07262": "You get +1 [willpower].\n[reaction] When 1 or more [bless] tokens would be removed from the chaos bag during a skill test: Seal them on Nephthys, instead.\n[fast] Exhaust Nephthys: Either release 3 [bless] tokens sealed on her, or return 3 [bless] tokens sealed on her to the token pool to deal 2 damage to an enemy at your location.",
       "07192": "Researched.\n[reaction] After you resolve 1 or more [curse] tokens during a skill test: Place that many secrets on Cryptic Grimoire.\n[reaction] When you would draw the top card of the encounter deck, spend 5 secrets: Draw a card from your deck instead.",
@@ -6005,6 +6027,13 @@
     },
     "victory": "Victory {n}",
     "names": {
+      "10090": "Virescent Rot",
+      "10089": "Scarlet Rot",
+      "10088": "Putrescent Rot",
+      "10087": "Aember Rot",
+      "10086": "Abyssal Rot",
+      "10098": "Rod of Carnamagos",
+      "10085": "Rod of Carnamagos",
       "10075": "Diabolical Luck",
       "07262": "Nephthys",
       "07192": "Cryptic Grimoire",

@@ -1,0 +1,98 @@
+[
+  {
+    "code": "10085",
+    "name": "Rod of Carnamagos",
+    "subname": "Scepter of the Mad Seer",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Relic", "Occult", "Cursed"],
+    "unique": true,
+    "cost": 2,
+    "xp": 0,
+    "icons": { "willpower": 1 },
+    "slots": ["hand"],
+    "bonded": [
+      { "code": "10086", "count": 1 },
+      { "code": "10087", "count": 1 },
+      { "code": "10088", "count": 1 },
+      { "code": "10089", "count": 1 },
+      { "code": "10090", "count": 1 }
+    ],
+    "deckLimit": 1
+  },
+  {
+    "code": "10098",
+    "name": "Rod of Carnamagos",
+    "subname": "Scepter of the Mad Seer",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Item", "Relic", "Occult", "Cursed"],
+    "unique": true,
+    "cost": 2,
+    "xp": 2,
+    "icons": { "willpower": 1 },
+    "slots": ["hand"],
+    "bonded": [
+      { "code": "10086", "count": 1 },
+      { "code": "10087", "count": 1 },
+      { "code": "10088", "count": 1 },
+      { "code": "10089", "count": 1 },
+      { "code": "10090", "count": 1 }
+    ]
+  },
+  {
+    "code": "10086",
+    "name": "Abyssal Rot",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Rot", "Cursed"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "bondedCard": true
+  },
+  {
+    "code": "10087",
+    "name": "Aember Rot",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Rot", "Cursed"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "bondedCard": true
+  },
+  {
+    "code": "10088",
+    "name": "Putrescent Rot",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Rot", "Cursed"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "bondedCard": true
+  },
+  {
+    "code": "10089",
+    "name": "Scarlet Rot",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Rot", "Cursed"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "bondedCard": true
+  },
+  {
+    "code": "10090",
+    "name": "Virescent Rot",
+    "type": "event",
+    "class": "mystic",
+    "traits": ["Spell", "Rot", "Cursed"],
+    "xp": 0,
+    "icons": {},
+    "slots": [],
+    "bondedCard": true
+  }
+]

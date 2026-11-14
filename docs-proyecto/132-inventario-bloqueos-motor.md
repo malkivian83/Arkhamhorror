@@ -91,6 +91,16 @@ parcial: faltan adjuntos y Enemigos/traiciones del mazo del jugador. Olive neces
 elegir dos fichas; Nephthys exige sustituir costes sin darlos por pagados.
 Ver diferencias y bloqueos en [el lote 146](146-aliados-y-fichas-de-caos.md).
 
+## Estado tras el lote 147
+
+El lote `carnamagos` incorpora los dos niveles de Vara de Carnamagos y sus cinco
+Putrefacciones vinculadas: 1541 comportamientos, 226 estándar pendientes. Los
+adjuntos vuelven a apartarse al salir su Enemigo; impiden ataques o movimiento,
+modifican Combate/Evasión o reaccionan a daño/derrota. Las fichas reveladas por
+otra habilidad durante una prueba cuentan para sus disparadores, sin aplicar
+sus efectos ni regresar dos veces a la bolsa. Olive mantiene pendiente la
+selección de dos fichas. [Diferencias y controles](147-vara-de-carnamagos.md).
+
 ## Capacidades por número de cartas
 
 «Cartas» = códigos que la necesitan (entre paréntesis, cartas o niveles distintos); «Solo esta» =

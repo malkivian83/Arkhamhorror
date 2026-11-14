@@ -1,6 +1,12 @@
 /** Newest first. Add translated copy under app.changelog when publishing an update. */
 export const changelog = [
   {
+    id: 'carnamagos',
+    date: '2026-11-14',
+    title: 'app.changelog.carnamagos.title',
+    items: ['app.changelog.carnamagos.cards', 'app.changelog.carnamagos.rules'],
+  },
+  {
     id: 'chaos-allies',
     date: '2026-11-14',
     title: 'app.changelog.chaosAllies.title',

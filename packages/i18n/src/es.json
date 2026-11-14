@@ -84,6 +84,11 @@
     "preferences": "Preferencias",
     "privacySettings": "Privacidad · Analytics",
     "changelog": {
+      "carnamagos": {
+        "title": "Vara de Carnamagos y sus Putrefacciones",
+        "cards": "Ya se pueden jugar los dos niveles de Vara de Carnamagos y sus cinco eventos vinculados de Putrefacción.",
+        "rules": "Incluye elección aleatoria o voluntaria, restricciones de Enemigos y revelaciones durante pruebas."
+      },
       "chaosAllies": {
         "title": "Catorce cartas y niveles nuevos, más seis vinculadas",
         "cards": "Ya se pueden jugar la Señorita Doyle y sus tres gatos, Sello de los arquetípicos y sus dos invocaciones, Diadema rota y Diadema del crepúsculo, Máscara de gato, Athame siniestro, Destrucción radiante, Salvaguarda radiante, Mirada de Ouraxsh, Manipular el destino, Tristan Botley, Percepción mental, los dos Grimorios crípticos de nivel 4 y Suerte Diabólica.",
@@ -1244,6 +1249,7 @@
       "autoFail": "Dar la llave de Tentáculo a {name}",
       "frost": "Dar la llave de Helada a {name}"
     },
+    "carnamagos": "Agota {card}: revela 5 fichas para {enemy}",
     "advancedTest": "{card}: usar capacidad",
     "bonded": {
       "search": "{card}: buscar entre tus cartas enlazadas",
@@ -3587,6 +3593,8 @@
   },
   "offlineCard": {
     "subnames": {
+      "10098": "Cetro del vidente loco",
+      "10085": "Cetro del vidente loco",
       "07262": "Cazadora de Bast",
       "07192": "Texto del guardián antiguo",
       "07191": "Texto del heraldo antiguo",
@@ -3745,6 +3753,13 @@
       "scenario": "Escenario"
     },
     "traits": {
+      "10090": "Hechizo. Putrefacción. Maldito.",
+      "10089": "Hechizo. Putrefacción. Maldito.",
+      "10088": "Hechizo. Putrefacción. Maldito.",
+      "10087": "Hechizo. Putrefacción. Maldito.",
+      "10086": "Hechizo. Putrefacción. Maldito.",
+      "10098": "Objeto. Reliquia. Ocultismo. Maldito.",
+      "10085": "Objeto. Reliquia. Ocultismo. Maldito.",
       "10075": "Fortuna. Maldito.",
       "07262": "Aliado. Bendecido.",
       "07192": "Objeto. Tomo. Bendecido.",
@@ -4659,6 +4674,13 @@
       "02151": "Truco. Espíritu."
     },
     "summary": {
+      "10090": "Enlazada (Vara de Carnamagos)\nEl Enemigo vinculado no se puede mover.\n<b>Obligado</b> - Cuando el enemigo vinculado abandone el juego: Pon aparte la Putrefacción verdosa, fuera del juego.",
+      "10089": "Enlazada (Vara de Carnamagos)\n<b>Obligado</b> - Al final de la ronda: El Enemigo vinculado recibe 1 punto de daño.\n<b>Obligado</b> - Cuando el enemigo vinculado abandone el juego: Pon aparte la Putrefacción escarlata, fuera del juego.",
+      "10088": "Enlazada (Vara de Carnamagos)\nEl enemigo vinculado recibe -1 a combate y -1 a evitar.\n<b>Obligado</b> - Cuando el enemigo vinculado abandone el juego: Pon aparte la Putrefacción pútrida, fuera del juego.",
+      "10087": "Enlazada (Vara de Carnamagos)\n<b>Obligado</b> - Cuando el Enemigo vinculado es derrotado: Obtén una cantidad de recursos igual a su salud impresa (hasta un máximo de 5).\n<b>obligado</b> - Cuando el Enemigo vinculado abandone el juego: Pon aparte la Putrefacción de Aembar fuera del juego.",
+      "10086": "Enlazada (Vara de Carnamagos)\nEl Enemigo vinculado no puede atacar.\n<b>Obligado</b> - Cuando el Enemigo vinculado abandone el juego: Pon aparte la Putrefacción abisal, fuera de juego.",
+      "10098": "[fast] Elige un Enemigo que no sea [[Élite]] en cualquier Lugar y agota la Vara de Carnamagos: revela 5 fichas de caos aleatorias de la bolsa de caos. Por cada ficha [curse] revelada, puedes buscar entre tus cartas enlazadas un Evento [[Putrefacción]] y vinculárselo a ese Enemigo.",
+      "10085": "Límite de 1 por mazo.\n[fast] Elige un Enemigo que no sea [[Élite]] en cualquier Lugar y agota la Vara de Carnamagos: Revela 5 fichas de caos aleatorias de la bolsa de caos. Si es revelada una ficha [curse], busca entre tus cartas enlazadas un Evento [[Putrefacción]] aleatorio y vincúlaselo a ese Enemigo.",
       "10075": "Cuando reveles una ficha [curse] durante una prueba de habilidad que estés realizando, puedes asignar la Suerte diabólica a esa prueba desde tu mano. Si lo haces, la Suerte diabólica obtiene [wild][wild][wild].",
       "07262": "Recibes +1 [willpower].\n[reaction] Cuando fuesen a ser retiradas 1 o más fichas [bless] de la bolsa de caos durante una prueba de habilidad: En lugar de eso, séllalas sobre Nephthys.\n[free] Agota a Nephthys: Libera 3 fichas [bless] selladas sobre ella o bien devuelve 3 fichas [bless] selladas sobre ella a la reserva de fichas para infligir 2 puntos de daño a un Enemigo que esté en tu Lugar.",
       "07192": "Investigado.\n[reaction] Después de que resuelvas 1 o más fichas [curse] durante una prueba de habilidad: Coloca esa misma cantidad de secretos sobre el Grimorio críptico.\n[reaction] Cuando fueses a robar la primera carta del mazo de Encuentro, gasta 5 secretos: En lugar de eso, roba una carta de tu mazo.",
@@ -6005,6 +6027,13 @@
     },
     "victory": "Victoria {n}",
     "names": {
+      "10090": "putrefacción verdosa",
+      "10089": "Putrefacción escarlata",
+      "10088": "Putrefacción pútrida",
+      "10087": "Putrefacción de Aembar",
+      "10086": "Putrefacción abisal",
+      "10098": "Vara de Carnamagos",
+      "10085": "Vara de Carnamagos",
       "10075": "Suerte Diabólica",
       "07262": "Nephthys",
       "07192": "Grimorio críptico",

@@ -68,6 +68,8 @@ export function approvedDefinition(card, approval) {
   const reviewedCostX = reviewedDiscovery || reviewedChance
   // Lot 144: bonded summoners and their bonded cards (RR Bonded), reviewed by code.
   const bondedSummoners = {
+    10085: '10086:1,10087:1,10088:1,10089:1,10090:1',
+    10098: '10086:1,10087:1,10088:1,10089:1,10090:1',
     '06030': '06031:1,06032:1,06033:1',
     10105: '10106:1,10107:1',
     10133: '10134:1',
@@ -84,6 +86,11 @@ export function approvedDefinition(card, approval) {
     '06276': '06277:1',
   }
   const bondedCards = [
+    '10086',
+    '10087',
+    '10088',
+    '10089',
+    '10090',
     '05314',
     '05317',
     '06113',
