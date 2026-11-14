@@ -441,7 +441,8 @@
       "portals": "¿Qué opciones tenemos frente a la Llama y el Rey?",
       "first": "¿Cómo demonios se derrota al Primero?",
       "baalshandor": "¿Cómo podemos derrotar a Baalshandor?",
-      "enough": "No hacer más preguntas"
+      "enough": "No hacer más preguntas",
+      "none": "No hacer ninguna pregunta"
     }
   }
 }

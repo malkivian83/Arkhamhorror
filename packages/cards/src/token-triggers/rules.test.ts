@@ -308,6 +308,19 @@ it('Token of Faith adds bless tokens after a test with curse tokens and offers a
   expect(s.skillTest?.difficulty).toBe(10)
 })
 
+it('Token of Faith counts a curse token revealed and then ignored', () => {
+  // FAQ: "revealed" counts tokens revealed and then ignored or canceled (RR Chaos Tokens).
+  const started = startTest(setup('10126', { enemy: null }), 10)
+  let s = reveal({
+    ...started,
+    chaosBag: [0, 'curse'],
+    skillTest: { ...started.skillTest!, chooseToken: 'a' },
+  })
+  s = apply(choose(s, 'choice.resolveToken', { token: '0' }))
+  s = use(s, '10126', { n: 1 })
+  expect(count(s, 'bless')).toBe(1)
+})
+
 it.each(['a', 'b'])('Token of Faith shares its maximum with another copy owned by %s', (owner) => {
   // RR: Limits and Maximums — a maximum applies across all copies.
   let s = withAsset(withAsset({ ...game(['a', 'b']), interactive: true }, '10126'), '10126', {

@@ -89,7 +89,7 @@ registerEnemy({
     if (!here) return []
     const d = distancesFrom(s, here),
       places = Object.values(s.locations).filter(
-        (l) => isPylon(l.id) && l.revealed && !collapsed(s, l.id) && d.has(l.id),
+        (l) => isPylon(l.id) && !collapsed(s, l.id) && d.has(l.id),
       )
     if (!places.length) return [here]
     const near = Math.min(...places.map((l) => d.get(l.id)!))

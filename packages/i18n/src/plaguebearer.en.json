@@ -441,7 +441,8 @@
       "portals": "What chance do we stand against the Flame and the King?",
       "first": "How do we kill the First for good?",
       "baalshandor": "How do we stop Baalshandor?",
-      "enough": "Ask no more questions"
+      "enough": "Ask no more questions",
+      "none": "Ask no question"
     }
   }
 }

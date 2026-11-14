@@ -57,8 +57,13 @@ on('history.ask', (s) => {
           specific('history.ask'),
         ],
       })),
-      // "You may ask of him any one question": a single box is free, so stopping is optional.
-      ...(done.length ? [{ label: 'choice.plaguebearer.history.enough', then: [] }] : []),
+      // "You may read any of the following boxes": reading none is allowed too.
+      {
+        label: done.length
+          ? 'choice.plaguebearer.history.enough'
+          : 'choice.plaguebearer.history.none',
+        then: [],
+      },
     ],
     done.length ? 'prompt.plaguebearer.history.more' : 'prompt.plaguebearer.history.ask',
   )

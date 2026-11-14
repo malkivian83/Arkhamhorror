@@ -170,6 +170,33 @@ it('On the Trail (3) finishes moving before discovering a clue at each entered l
   expect(me(s).location).toBe('C')
 })
 
+it('On the Trail (3) keeps the clue of an entered location when the next move is cancelled', () => {
+  // Through the Ice (08699) cancels the move into C after a failed agility test.
+  let s = enemy(base(), 'C')
+  s = {
+    ...s,
+    chaosBag: [-8],
+    treacheries: {
+      ...s.treacheries,
+      ice: {
+        id: 'ice',
+        kind: 'treachery',
+        code: '08699',
+        name: 'Through the Ice',
+        keywords: [],
+        placement: { type: 'location', location: 'C' },
+      },
+    },
+  }
+  s = play(s, '08085')
+  s = choose(s, 'choice.enemy', { enemy: s.enemies[enemyId(s)]!.name })
+  s = move(s, 'B')
+  s = move(s, 'C')
+  for (let n = 0; n < 6 && s.pending; n++) s = choose(s, s.pending.question.choices[0]!.label)
+  expect(me(s).location).toBe('B')
+  expect(me(s).clues).toBe(1)
+})
+
 it('Fang of Tyr’thrha can attack at a revealed remote location without moving and adds agility plus three damage', () => {
   let s = enemy(base(), 'C')
   s = play(s, '08029')

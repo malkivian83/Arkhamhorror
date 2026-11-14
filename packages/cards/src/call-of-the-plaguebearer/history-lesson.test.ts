@@ -22,7 +22,11 @@ function lesson(players: number, questions: (keyof typeof HISTORY_QUESTIONS)[]) 
       const next = pending.shift()
       s = choose(
         s,
-        next ? `choice.plaguebearer.history.${next}` : 'choice.plaguebearer.history.enough',
+        next
+          ? `choice.plaguebearer.history.${next}`
+          : prompts.length > 1
+            ? 'choice.plaguebearer.history.enough'
+            : 'choice.plaguebearer.history.none',
       )
     } else s = choose(s, q.choices[0]!.label)
   }
@@ -36,7 +40,7 @@ const weaknesses = (s: GameState, id: string) =>
 describe('Interludio IV · Lección de historia', () => {
   it('a single question is free: one note, no weaknesses, then History Lesson 2', () => {
     const { s, bodies, prompts } = lesson(2, ['first'])
-    expect(prompts[0]).not.toContain('choice.plaguebearer.history.enough')
+    expect(prompts[0]).toContain('choice.plaguebearer.history.none')
     expect(prompts[1]).toContain('choice.plaguebearer.history.enough')
     expect(bodies).toEqual([
       'story.plaguebearer.history.lesson1',
@@ -59,5 +63,15 @@ describe('Interludio IV · Lección de historia', () => {
         expect(playerCardDef(code)!.traits.some((t) => t === 'Madness' || t === 'Pact')).toBe(true)
     }
     expect(s.campaignLog!.notes.at(-1)).toBe(END)
+  })
+
+  it('reading no box is allowed: no notes and no weaknesses', () => {
+    const { s, bodies } = lesson(1, [])
+    expect(bodies).toEqual([
+      'story.plaguebearer.history.lesson1',
+      'story.plaguebearer.history.lesson2',
+    ])
+    expect(s.campaignLog!.notes.filter((note) => note.startsWith('plaguebearerVision'))).toEqual([])
+    expect(weaknesses(s, 'a')).toEqual([])
   })
 })

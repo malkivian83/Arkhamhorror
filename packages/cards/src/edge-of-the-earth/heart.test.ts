@@ -26,7 +26,17 @@ import {
 } from '../campaign'
 import { withAsset } from '../dunwich-pilot/testing'
 import { EOTE_HEART_ONE, EOTE_HEART_TWO } from './ice-and-death-cards'
-import { GATE, heartMap, meta, ownedSeals, putSeal, SEALS, seals, setMeta } from './heart-common'
+import {
+  GATE,
+  heartMap,
+  isPylon,
+  meta,
+  ownedSeals,
+  putSeal,
+  SEALS,
+  seals,
+  setMeta,
+} from './heart-common'
 import { heartDeck, namelessMadness, protoplasmicMass, unsealedPhantasm } from './heart-encounters'
 import './heart'
 
@@ -183,16 +193,40 @@ describe('The Heart of Madness', () => {
     },
   )
   it.each([false, true])(
-    'the first Madness spawn can only identify a revealed Mist-Pylon (%s)',
+    'the first Madness spawns at the nearest Mist-Pylon, revealed or not (%s)',
     (revealed) => {
+      // The unrevealed side of a Mist-Pylon is also titled "Mist-Pylon" (agenda 08671).
       let s = start(2)
       if (revealed) s = move(s, '08674')
-      s = throughSetup(dispatch(clean(s), { type: 'AdvanceAgenda' }))
+      s = dispatch(clean(s), { type: 'AdvanceAgenda' })
+      for (let n = 0; n < 10 && s.pending; n++)
+        s = throughSetup(
+          choose(s, s.pending.question.choices[0]!.label, s.pending.question.choices[0]!.params),
+        )
       const spawned = Object.values(s.enemies).filter((e) => e.code === '08679')
-      expect(spawned).toHaveLength(revealed ? 1 : 0)
+      expect(spawned).toHaveLength(1)
+      expect(isPylon(spawned[0]!.location)).toBe(true)
       if (revealed) expect(spawned[0]!.location).toBe('08674')
     },
   )
+  it('applies the Interlude III bonuses to the next game only (part I)', () => {
+    // Guide pp. 44 and 47: Danforth and Takada affect starting Scenario IV, the next game.
+    for (const part of [1, 2] as const) {
+      const c = campaign(part)
+      const id = c.investigators[0]!.id
+      c.log = {
+        ...c.log,
+        values: { ...c.log.values, 'edgeOfTheEarthHeart:startingResources': id },
+      }
+      const scenario = campaignDefinition(c.id).scenarios[c.scenarioIndex]!.build!({
+        difficulty: 'standard',
+        log: c.log,
+        seed: 1,
+        investigators: [id],
+      })
+      expect(scenario.startingBonuses?.[id]?.resources).toBe(part === 1 ? 3 : undefined)
+    }
+  })
   it('connects every campaign step and can start part II after completing part I', () => {
     expect(
       campaignDefinition('edge-of-the-earth').scenarios.every(
