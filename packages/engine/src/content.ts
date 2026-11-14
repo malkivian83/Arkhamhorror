@@ -341,6 +341,13 @@ export interface TreacheryBehavior {
   actionCost?: (state: GameState, self: Treachery, action: Action) => number
   /** Vinculada a un enemigo: cambia sus valores y le quita palabras clave (Llevado a la locura). */
   attachedEnemy?: { fight?: number; evade?: number; health?: number; loses?: EnemyKeyword[] }
+  /** Attached to an enemy: that enemy cannot attack (Abyssal Rot). */
+  attachedEnemyCannotAttack?: boolean
+  /** Attached to an enemy: that enemy cannot move (Virescent Rot). */
+  attachedEnemyCannotMove?: boolean
+  /** A bonded attachment returns to its owner when its host leaves play. */
+  setAsideWhenEnemyLeaves?: boolean
+  whenAttachedEnemyDefeated?: (state: GameState, self: Treachery, enemy: Enemy) => Message[]
   /** Attached to an enemy: that enemy cannot ready (Restrained). */
   attachedEnemyCannotReady?: boolean
   /** Attached to an enemy: when it would ready, this card is discarded instead (Snare Trap). */

@@ -12,7 +12,7 @@ import {
 import { cardName } from '../dunwich-pilot/effects'
 export { ask, cardName, continuation } from '../dunwich-pilot/effects'
 /** RR Peril: only the drawer may play cards, trigger abilities or commit during its revelation. */
-function mayParticipate(s: GameState, by: string, test = s.skillTest): boolean {
+export function mayParticipate(s: GameState, by: string, test = s.skillTest): boolean {
   for (const source of [...(s.revelationContexts ?? [])].reverse()) {
     if (!s.treacheries[source]?.keywords.includes('peril')) continue
     const draw = s.queue.find((m) => m.type === 'AfterRevelation' && m.treachery === source)
