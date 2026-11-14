@@ -86,7 +86,8 @@ function material(context: ScenarioContext, part: 1 | 2): ScenarioDefinition {
     startingLocation: null,
     chaosBag: edgeOfTheEarthStartingBag(context),
     tokenValues: {},
-    startingBonuses: interludeBonuses(context, 'edgeOfTheEarthHeart'),
+    // Danforth and Takada (Interlude III) only affect the next game: part I.
+    ...(part === 1 ? { startingBonuses: interludeBonuses(context, 'edgeOfTheEarthHeart') } : {}),
     agendas: (part === 1 ? ['08659', '08660', '08661'] : ['08671', '08672']).map((code) => ({
       code,
       name: heartCard(code).name,
@@ -390,7 +391,7 @@ function spawnMadness(s: GameState, first = false): Message[] {
       (l) =>
         l.id !== GATE &&
         (first
-          ? l.revealed && isPylon(l.id)
+          ? isPylon(l.id)
           : !occupied.has(l.id) && l.connections.some((id) => occupied.has(id))),
     )
     const distances = activeInvestigators(s).flatMap((i) =>
@@ -438,7 +439,8 @@ const common: Omit<ScenarioBehavior, 'id'> = {
     damagePylon(s, d.enemy.slice('heart-pylon:'.length), d.amount),
   shroudModifier: (s, l) => (isPylon(l.id) && meta(s, 'unleashed:b') ? -2 : 0),
   skillModifier: (s, t) => (isPylon(at(s, t.investigator) ?? '') && meta(s, 'unleashed:c') ? 1 : 0),
-  enemyStat: (s, e) => (isPylon(e.location) && meta(s, 'unleashed:e') ? -2 : 0),
+  enemyStat: (s, e) =>
+    !e.id.startsWith('heart-pylon:') && isPylon(e.location) && meta(s, 'unleashed:e') ? -2 : 0,
   replaceDoom: (s) =>
     !one(s) &&
     (s.agendas[s.agendaIndex]?.code === '08672' || meta(s, 'escape')) &&
@@ -766,7 +768,7 @@ function step(s: GameState, key: string, d: Record<string, string | number | boo
           : []),
         { type: 'InitializeTekeliliDeck' },
         partners,
-        m('scoutedLook', { left: 2 }),
+        ...(part === 1 ? [m('scoutedLook', { left: 2 })] : []),
         m('collision'),
       )
     }
@@ -1027,7 +1029,7 @@ function step(s: GameState, key: string, d: Record<string, string | number | boo
           if (e.code === '08680' && !e.exhausted) {
             const distances = distancesFrom(s, e.location, e),
               places = Object.values(s.locations).filter(
-                (l) => l.revealed && isPylon(l.id) && !collapsed(s, l.id) && distances.has(l.id),
+                (l) => isPylon(l.id) && !collapsed(s, l.id) && distances.has(l.id),
               )
             const nearest = Math.min(...places.map((l) => distances.get(l.id)!))
             return heartAsk(
@@ -1237,10 +1239,10 @@ function epilogue(s: GameState): GameState {
   const parts = [
     ...(
       [
-        ['08720', '08717', 'KenslerSinha'],
         ['08721', '08718', 'EllsworthClaypool'],
-        ['08722', '08719', 'TakadaCookie'],
+        ['08720', '08717', 'KenslerSinha'],
         ['08714', '08715', 'DyerDanforth'],
+        ['08722', '08719', 'TakadaCookie'],
       ] as const
     )
       .filter(([a, b]) => survivors.includes(a) && survivors.includes(b))

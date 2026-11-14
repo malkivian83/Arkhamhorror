@@ -136,7 +136,8 @@ export function heartMap(part: 1 | 2, seed: number) {
     return {
       id: id(n),
       name: c.name,
-      unrevealedName: 'Ancient Facility',
+      // Mist-Pylons show the same title on their unrevealed side.
+      unrevealedName: isPylon(code) ? c.name : 'Ancient Facility',
       shroud: c.shroud!,
       clueValue: c.clues!,
       cluesPerInvestigator: true,

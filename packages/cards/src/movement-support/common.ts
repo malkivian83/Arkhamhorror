@@ -72,6 +72,9 @@ export function walk(
       : (JSON.parse(String(data.visited ?? '[]')) as string[])
           .filter((location) => !!s.locations[location])
           .map((location) => ({ type: 'DiscoverClues', investigator: by, location, amount: 1 }))
+  // A move that was cancelled (e.g. Through the Ice) still discovers the clues of the
+  // locations already entered: the guard runs after the move and finds you where you were.
+  if (data.guard !== undefined) return at === data.guard ? finish() : []
   if (!left || !at || getInvestigator(s, by).eliminated) return finish()
   const target = String(data.target ?? '')
   const dist = target ? distance(s, at, target) : 0
@@ -103,6 +106,7 @@ export function walk(
             location: to,
             afterMove: [...(data.stopOnReveal && reveal ? [] : [more])],
           },
+          ...(data.clues ? [continuation(code, by, 'walk', { ...data, guard: at })] : []),
         ],
       }
     })

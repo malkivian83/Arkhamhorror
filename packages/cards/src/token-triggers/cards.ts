@@ -398,7 +398,9 @@ function registerAsset(code: string): boolean {
       code,
       reactions: (s, t, a) => {
         if (t.type !== 'skillTestEnded' || a.exhausted) return []
-        const n = count(t.tokens, 'curse') + count(t.tokens, 'autoFail')
+        // FAQ: ignored or canceled tokens were still revealed.
+        const revealed = t.revealedTokens ?? t.tokens
+        const n = count(revealed, 'curse') + count(revealed, 'autoFail')
         if (n <= 0) return []
         const bless = Math.min(n, poolTokensAvailable(s, 'bless'))
         const retry =
