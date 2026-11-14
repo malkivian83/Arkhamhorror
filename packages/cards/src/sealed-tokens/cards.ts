@@ -525,7 +525,8 @@ export function sealedBless(s: GameState) {
     (entry) =>
       entry.token === 'bless' &&
       ((entry.holder?.type === 'asset' && s.assets[entry.holder.id]) ||
-        (entry.holder?.type === 'enemy' && s.enemies[entry.holder.id])),
+        (entry.holder?.type === 'enemy' && s.enemies[entry.holder.id]) ||
+        (entry.holder?.type === 'event' && s.eventResolutions?.includes(entry.holder.code))),
   )
 }
 
@@ -545,13 +546,14 @@ export function returnBless(
   for (const entry of sealedBless(s)) {
     const holder = entry.holder
     if (!holder || holder.type === 'committed') continue
-    const key = `${holder.type}:${holder.id}`
+    const key =
+      holder.type === 'event' ? `event:${holder.by}:${holder.code}` : `${holder.type}:${holder.id}`
     if (seen.has(key)) continue
     seen.add(key)
     choices.push({
       label: 'choice.hallowBlessFromCard',
       params: { card: holder.type === 'enemy' ? s.enemies[holder.id]!.name : cardName(entry.code) },
-      target: holder,
+      ...(holder.type === 'event' ? { previewCard: holder.code } : { target: holder }),
       then: [{ type: 'ReleaseSealedTokens', holder, token: 'bless', count: 1, toPool: true }, next],
     })
   }

@@ -8,7 +8,7 @@ import {
   treeTokens,
 } from './token-replacements'
 import { withEffectSource } from './effect-source'
-import { handleSetAside } from './bonded'
+import { handleSetAside, recordRemovedBonded } from './bonded'
 import {
   isFightAction,
   actionKinds,
@@ -178,6 +178,67 @@ export const MAX_HAND_SIZE = 8
  * reglamento (docs-proyecto/reglas).
  */
 export function handle(state: GameState, message: Message): GameState {
+  if (message.type === 'StartTokenGroup') {
+    const [id, next] = newId(state, 'reveal-group')
+    return push(
+      { ...next, heldChaosTokens: { ...next.heldChaosTokens, [id]: [] } },
+      {
+        ...message.then,
+        data: { ...message.then.data, group: id },
+      },
+    )
+  }
+  if (message.type === 'StoreHeldChaosTokens')
+    return {
+      ...state,
+      heldChaosTokens: {
+        ...state.heldChaosTokens,
+        [message.group]: [...(state.heldChaosTokens?.[message.group] ?? []), ...message.tokens],
+      },
+    }
+  if (message.type === 'ReturnHeldChaosTokens') {
+    const { [message.group]: held = [], ...groups } = state.heldChaosTokens ?? {}
+    return { ...state, heldChaosTokens: groups, chaosBag: [...state.chaosBag, ...held] }
+  }
+  if (message.type === 'RandomChoice') {
+    if (!message.choices.length) return state
+    const [at, rng] = nextInt(state.rng, message.choices.length)
+    return push({ ...state, rng }, ...message.choices[at]!)
+  }
+  if (message.type === 'CycleBondedCat') {
+    const owner = getInvestigator(state, message.investigator)
+    const cards = [...owner.discard]
+    const first = cards.indexOf(message.shuffled)
+    if (first < 0) return state
+    cards.splice(first, 1)
+    const second = cards.indexOf(message.played)
+    if (second < 0) return state
+    const [deck, rng] = shuffle([...owner.deck, message.shuffled], state.rng)
+    return push(
+      updateInvestigator({ ...state, rng }, owner.id, (i) => ({ ...i, discard: cards, deck })),
+      {
+        type: 'PutAssetIntoPlay',
+        investigator: owner.id,
+        code: message.played,
+        fromDiscard: owner.id,
+      },
+    )
+  }
+  if (message.type === 'ReplaceEncounterDrawWithPlayerCard') {
+    const at = state.queue.findIndex(
+      (m) =>
+        m.type === 'DrawEncounterCard' &&
+        m.investigator === message.investigator &&
+        m.windowResolved,
+    )
+    if (at < 0) return state
+    return {
+      ...state,
+      queue: state.queue.map((m, n) =>
+        n === at ? { type: 'DrawCards', investigator: message.investigator, amount: 1 } : m,
+      ),
+    }
+  }
   // An attackable location is not an enemy for engagement, evasion, defeat or other
   // enemy-only effects that a weapon may append to its attack.
   if (
@@ -564,6 +625,18 @@ export function handle(state: GameState, message: Message): GameState {
         investigator.id,
       )
       if (instead) return push(state, ...onScenarioCard(instead))
+      if (
+        !message.windowResolved &&
+        Object.values(state.assets).some((a) => playerCardBehavior(a.code)?.observesEncounterDraw)
+      )
+        return push(
+          state,
+          {
+            type: 'Forced',
+            trigger: { type: 'wouldDrawTopEncounter', investigator: investigator.id },
+          },
+          { ...message, windowResolved: true },
+        )
       let deck = state.encounterDeck
       let discard = state.encounterDiscard
       let rng = state.rng
@@ -4350,7 +4423,7 @@ export function handle(state: GameState, message: Message): GameState {
       const at = i.discard.indexOf(message.code)
       return at < 0
         ? state
-        : updateInvestigator(state, i.id, (owner) => ({
+        : updateInvestigator(recordRemovedBonded(state, i.id, message.code), i.id, (owner) => ({
             ...owner,
             discard: owner.discard.filter((_, n) => n !== at),
           }))
@@ -5602,6 +5675,7 @@ export function handle(state: GameState, message: Message): GameState {
           ),
           skillTest: withCommittedDifficulty({
             origin: message,
+            ...(message.afterEnd ? { afterEnd: message.afterEnd } : {}),
             ...(message.ignoredEnemyKeywords
               ? { ignoredEnemyKeywords: message.ignoredEnemyKeywords }
               : {}),
@@ -6334,9 +6408,13 @@ export function handle(state: GameState, message: Message): GameState {
             }
           : {}),
       }
-      return log(next, message.exile ? 'log.committedExiled' : 'log.committedRemoved', {
-        card: playerCardDef(message.code)?.name ?? message.code,
-      })
+      return log(
+        message.exile ? next : recordRemovedBonded(next, message.investigator, message.code),
+        message.exile ? 'log.committedExiled' : 'log.committedRemoved',
+        {
+          card: playerCardDef(message.code)?.name ?? message.code,
+        },
+      )
     }
 
     case 'FlipCoin': {
@@ -6826,10 +6904,11 @@ export function handle(state: GameState, message: Message): GameState {
     case 'ModifySkillTest': {
       const test = state.skillTest
       if (!test) return state
+      const { baseSkill: _oldBase, ...withoutBase } = test
       return {
         ...state,
         skillTest: withCommittedDifficulty({
-          ...test,
+          ...(message.skill ? withoutBase : test),
           ...(message.doNotDisengage !== undefined && test.kind.type === 'evade'
             ? { kind: { ...test.kind, doNotDisengage: message.doNotDisengage } }
             : {}),
@@ -6853,7 +6932,6 @@ export function handle(state: GameState, message: Message): GameState {
           ...(message.skill
             ? {
                 skill: message.skill,
-                baseSkill: getInvestigator(state, test.investigator).skills[message.skill],
                 baseModifier: message.preserveModifier
                   ? test.baseModifier
                   : test.baseModifier - (test.origin?.modifier ?? 0),
@@ -9457,7 +9535,11 @@ export function handle(state: GameState, message: Message): GameState {
         : null
       if (instead) return push(state, ...instead)
       const { [message.asset]: _removed, ...assets } = state.assets
-      return { ...state, assets }
+      return recordRemovedBonded(
+        { ...state, assets },
+        asset.originalOwner ?? asset.owner,
+        asset.code,
+      )
     }
     case 'ExhaustUpgrade':
     case 'DiscardUpgrade': {
@@ -11284,8 +11366,10 @@ export function handle(state: GameState, message: Message): GameState {
       const same = (h?: SealHolder) =>
         !!h &&
         h.type === holder.type &&
-        (h.type === 'committed'
-          ? holder.type === 'committed' && h.code === holder.code && h.by === holder.by
+        (h.type === 'committed' || h.type === 'event'
+          ? (holder.type === 'committed' || holder.type === 'event') &&
+            h.code === holder.code &&
+            h.by === holder.by
           : h.id === (holder as { id: string }).id)
       let left = message.count ?? Infinity
       const released: ChaosToken[] = []
@@ -12109,9 +12193,9 @@ function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
       // Languor (blockedTypes) aún no se aplica a los eventos jugados como reacción.
       const type = playerCardDef(code)?.type ?? ''
       if (
-        treacheryBlocksPlay(state, i.id, type) ||
+        (type !== 'skill' && treacheryBlocksPlay(state, i.id, type)) ||
         !cardAllowed(state, i.id, code) ||
-        scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, i.id, code)
+        (type !== 'skill' && scenarioBehavior(state.scenarioId)?.cannotPlay?.(state, i.id, code))
       )
         return []
       return (playerCardBehavior(code)?.handReactions?.(state, trigger, i.id) ?? []).filter(
@@ -12119,6 +12203,13 @@ function reactionOptions(state: GameState, trigger: Trigger): ReactionOption[] {
           // A reaction can play its card with a discount (Quick Shot). Use the
           // same effective cost as PlayCard, keeping the usual cost otherwise.
           const play = option.then[0]
+          if (
+            play?.type === 'PlayCard' &&
+            play.investigator === i.id &&
+            play.code === code &&
+            play.noCost
+          )
+            return true
           const discount =
             play?.type === 'PlayCard' && play.investigator === i.id && play.code === code
               ? (play.discount ?? 0)
@@ -12447,6 +12538,8 @@ export function poolTokensInPlay(state: GameState, token: 'bless' | 'curse'): nu
   return [
     ...state.chaosBag,
     ...(state.sealed ?? []).map((e) => e.token),
+    ...Object.values(state.heldChaosTokens ?? {}).flat(),
+    ...(state.tokenReveal ? [state.tokenReveal.token, ...(state.tokenReveal.ignored ?? [])] : []),
     ...(test ? returnedTokens(test) : []),
   ].filter((t) => t === token).length
 }
@@ -12521,6 +12614,8 @@ export function withinFrostLimit(state: GameState, tokens: ChaosToken[]): ChaosT
   let frost = [
     ...state.chaosBag,
     ...(state.sealed ?? []).map((e) => e.token),
+    ...Object.values(state.heldChaosTokens ?? {}).flat(),
+    ...(state.tokenReveal ? [state.tokenReveal.token, ...(state.tokenReveal.ignored ?? [])] : []),
     ...(test ? returnedTokens(test) : []),
   ].filter((t) => t === 'frost').length
   return tokens.filter((t) => t !== 'frost' || frost++ < MAX_FROST_TOKENS)

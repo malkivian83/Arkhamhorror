@@ -765,6 +765,7 @@ export type SealHolder =
   | { type: 'asset'; id: AssetId }
   | { type: 'enemy'; id: EnemyId }
   | { type: 'committed'; code: CardCode; by: InvestigatorId }
+  | { type: 'event'; code: CardCode; by: InvestigatorId }
 
 /** Lo que aporta una ficha del caos revelada. */
 export interface TokenEffect {
@@ -962,6 +963,12 @@ export type PhaseStep =
 /** `effectController`: investigator controlling the effect that produced it ("you"). */
 export type Message = MessageBody & { effectSource?: string; effectController?: InvestigatorId }
 type MessageBody =
+  | { type: 'StartTokenGroup'; then: Extract<Message, { type: 'PlayerCardEffect' }> }
+  | { type: 'StoreHeldChaosTokens'; group: string; tokens: ChaosToken[] }
+  | { type: 'ReturnHeldChaosTokens'; group: string }
+  | { type: 'RandomChoice'; choices: Message[][] }
+  | { type: 'CycleBondedCat'; investigator: InvestigatorId; shuffled: CardCode; played: CardCode }
+  | { type: 'ReplaceEncounterDrawWithPlayerCard'; investigator: InvestigatorId }
   | { type: 'SuppressEngagement'; investigator: InvestigatorId; active: boolean }
   | { type: 'BecomeEthereal'; investigator: InvestigatorId }
   | { type: 'AsIfAt'; investigator: InvestigatorId; location: LocationId; then: Message[] }
@@ -1192,6 +1199,7 @@ type MessageBody =
     }
   | {
       type: 'BeginSkillTest'
+      afterEnd?: Message[]
       ignoredEnemyKeywords?: EnemyKeyword[]
       sourceSnapshot?: Asset
       trackReveals?: boolean
@@ -1877,7 +1885,12 @@ type MessageBody =
   | { type: 'SpendClues'; investigator: InvestigatorId; amount: number; notified?: boolean }
   | { type: 'MoveControlledClues'; investigator: InvestigatorId; to: ClueHolder; amount: number }
   /** `ifEnemy`: resolved first when the card actually drawn is an enemy (Unaware). */
-  | { type: 'DrawEncounterCard'; investigator: InvestigatorId; ifEnemy?: Message[] }
+  | {
+      type: 'DrawEncounterCard'
+      investigator: InvestigatorId
+      ifEnemy?: Message[]
+      windowResolved?: boolean
+    }
   | {
       type: 'ResolveEncounterCard'
       investigator: InvestigatorId
@@ -2505,6 +2518,8 @@ export type Trigger =
   | { type: 'enemyDefeated'; enemy: Enemy; by?: InvestigatorId }
   | { type: 'afterEnemyPhaseAttack'; enemy: EnemyId; investigator: InvestigatorId }
   | { type: 'afterDoomPlaced'; agenda?: AgendaDeck }
+  | { type: 'afterDoomOnEmptyCard' }
+  | { type: 'wouldDrawTopEncounter'; investigator: InvestigatorId }
   /** ST.6: the investigator would succeed at the current skill test (Extravagant Ring). */
   | { type: 'whenWouldSucceed'; investigator: InvestigatorId }
   /** ST.1: after an investigator initiates a skill test (Called by the Mists). */
@@ -2812,6 +2827,10 @@ export interface TurnActionGrant {
 }
 
 export interface GameState {
+  /** Actual removed bonded copies, retrievable by "find ... even if out of play". */
+  removedBondedCards?: { code: CardCode; owner: InvestigatorId }[]
+  /** Tokens held out of the bag by an unfinished non-test reveal (still in play). */
+  heldChaosTokens?: Record<string, ChaosToken[]>
   /** Virtual locations never move the investigator's physical mini-card. */
   asIfLocations?: { investigator: InvestigatorId; at: LocationId; physical: LocationId }[]
   /** Nested player events whose effects are still resolving. */

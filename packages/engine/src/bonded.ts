@@ -9,6 +9,16 @@ type SetAsideMessage = Extract<
   { type: 'TakeSetAside' | 'SetAsidePlayerCards' | 'SwapSetAsideAsset' }
 >
 
+export function recordRemovedBonded(
+  state: GameState,
+  owner: InvestigatorId,
+  code: CardCode,
+): GameState {
+  return playerCardDef(code)?.bondedCard
+    ? { ...state, removedBondedCards: [...(state.removedBondedCards ?? []), { owner, code }] }
+    : state
+}
+
 /**
  * RR Bonded (FAQ v1.7): the product copies of each bonded card are set aside at the start of
  * each game when the deck includes a card bonded to them. Duplicate or upgraded summoners do
@@ -90,9 +100,36 @@ export function handleSetAside(state: GameState, message: SetAsideMessage): Game
         ...moved(owner.deck),
         ...moved(owner.discard),
         ...assets.map((a) => a.code),
+        ...(state.removedBondedCards ?? [])
+          .filter((c) => c.owner === owner.id && codes.has(c.code))
+          .map((c) => c.code),
+        ...(state.skillTest?.committed
+          .filter((c) => c.by === owner.id && codes.has(c.code))
+          .map((c) => c.code) ?? []),
       ]
+      const withoutCommitted = state.skillTest
+        ? {
+            ...state,
+            skillTest: {
+              ...state.skillTest,
+              committed: state.skillTest.committed.filter(
+                (c) => c.by !== owner.id || !codes.has(c.code),
+              ),
+            },
+          }
+        : state
+      const foundRemoved = {
+        ...withoutCommitted,
+        ...(state.removedBondedCards
+          ? {
+              removedBondedCards: state.removedBondedCards.filter(
+                (c) => c.owner !== owner.id || !codes.has(c.code),
+              ),
+            }
+          : {}),
+      }
       const next = updateInvestigator(
-        assets.length ? { ...state, assets: kept } : state,
+        assets.length ? { ...foundRemoved, assets: kept } : foundRemoved,
         owner.id,
         (i): Investigator => ({
           ...i,
@@ -156,6 +193,13 @@ export function settleSetAside(before: GameState, after: GameState): GameState {
           type: 'SetAsidePlayerCards',
           investigator: a.originalOwner ?? a.owner,
           codes,
+          assets: Object.values(state.assets)
+            .filter(
+              (x) =>
+                codes.includes(x.code) &&
+                (x.originalOwner ?? x.owner) === (a.originalOwner ?? a.owner),
+            )
+            .map((x) => x.id),
         })
     }
   return state

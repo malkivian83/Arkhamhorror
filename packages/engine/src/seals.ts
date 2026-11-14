@@ -9,6 +9,8 @@ export function sealHolderPresent(state: GameState, holder: SealHolder): boolean
       return !!state.enemies[holder.id]
     case 'committed':
       return !!state.skillTest?.committed.some((c) => c.code === holder.code && c.by === holder.by)
+    case 'event':
+      return !!state.eventResolutions?.includes(holder.code)
   }
 }
 
