@@ -627,6 +627,10 @@ export function actBehavior(code: CardCode | undefined): ActBehavior | undefined
 // ---------------------------------------------------------------------------
 
 export interface PlayerCardBehavior {
+  /** Subscribe to doom placed on a previously doom-free card. */
+  observesDoomPlacement?: boolean
+  /** A replacement reaction before drawing the top encounter card. */
+  observesEncounterDraw?: boolean
   moveAction?: boolean
   engageAction?: boolean
   /** Choose an event target before resource payment and attacks of opportunity. */

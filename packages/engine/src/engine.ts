@@ -2,6 +2,7 @@ import { synchronizeTurnActions } from './turn-actions'
 import { messageController, messageSource, withEffectSource } from './effect-source'
 import { discardOrphanedUpgrades } from './asset-upgrades'
 import { settleSetAside } from './bonded'
+import { observeDoom } from './doom-observation'
 import { EngineError } from './errors'
 import { handle } from './handlers'
 import { prepareGame, type NewGameOptions } from './setup'
@@ -86,6 +87,7 @@ function run(initial: GameState, observer?: EngineObserver): GameState {
       ),
       message,
     )
+    state = observeDoom(before, state)
     const source = messageSource(before, message)
     if (source) {
       const controller = messageController(message)

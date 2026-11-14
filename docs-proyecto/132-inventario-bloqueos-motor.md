@@ -81,6 +81,16 @@ son jugables según la capacidad del motor que les falta, para ordenar el trabaj
   Las tablas originales siguen siendo el inventario histórico; no implican que
   todas las cartas que compartían estas capacidades estén ya revisadas.
 
+## Estado tras el lote 146
+
+El lote `chaos-allies` incorpora 14 cartas/niveles estándar y 6 vinculadas, sin
+reediciones: 1534 comportamientos y 228 estándar con impresión pendientes.
+Resuelve Señorita Doyle y sus gatos, sellado sobre eventos, grupos de fichas fuera
+de pruebas, sustitución del robo de Encuentro y compromiso reactivo. BONDED sigue
+parcial: faltan adjuntos y Enemigos/traiciones del mazo del jugador. Olive necesita
+elegir dos fichas; Nephthys exige sustituir costes sin darlos por pagados.
+Ver diferencias y bloqueos en [el lote 146](146-aliados-y-fichas-de-caos.md).
+
 ## Capacidades por número de cartas
 
 «Cartas» = códigos que la necesitan (entre paréntesis, cartas o niveles distintos); «Solo esta» =

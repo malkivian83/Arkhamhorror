@@ -68,6 +68,9 @@ export function approvedDefinition(card, approval) {
   const reviewedCostX = reviewedDiscovery || reviewedChance
   // Lot 144: bonded summoners and their bonded cards (RR Bonded), reviewed by code.
   const bondedSummoners = {
+    '06030': '06031:1,06032:1,06033:1',
+    10105: '10106:1,10107:1',
+    10133: '10134:1',
     '05313': '05314:3',
     54002: '05314:3',
     '05316': '05317:3',
@@ -80,7 +83,20 @@ export function approvedDefinition(card, approval) {
     '06021': '06022:1',
     '06276': '06277:1',
   }
-  const bondedCards = ['05314', '05317', '06113', '10045', '06022', '06277']
+  const bondedCards = [
+    '05314',
+    '05317',
+    '06113',
+    '10045',
+    '06022',
+    '06277',
+    '06031',
+    '06032',
+    '06033',
+    '10106',
+    '10107',
+    '10134',
+  ]
   const reviewedBonded =
     approval.bondedAdapter === 'reviewed-bonded-v1' &&
     ((card.classification === 'standard-candidate' &&
@@ -88,7 +104,7 @@ export function approvedDefinition(card, approval) {
         card.relations.bondedCards.map((b) => b.code + ':' + b.count).join(',')) ||
       (card.classification === 'bonded' &&
         bondedCards.includes(card.code) &&
-        card.deckLimit === 0 &&
+        card.deckLimit === (card.code === '10134' ? 1 : 0) &&
         card.relations.bondedCards.length === 0))
   if (
     card.modelIssues.some(
@@ -197,6 +213,7 @@ export function approvedDefinition(card, approval) {
         card.numbers.xp.value === 0 &&
         !card.flags.exceptional))
   const myriadFactions = {
+    '06328': 'mystic',
     '06029': 'mystic',
     11039: 'seeker',
     '06241': 'mystic',
@@ -219,6 +236,8 @@ export function approvedDefinition(card, approval) {
     Object.hasOwn(myriadFactions, card.code) &&
     card.flags.myriad &&
     card.deckLimit === (['06241', '06242', '06243'].includes(card.code) ? 1 : 3) &&
+    (card.code !== '06328' ||
+      (card.numbers.xp?.value === 2 && card.slots.slots.join(',') === 'arcane,arcane')) &&
     (!['06241', '06242', '06243', '11039'].includes(card.code) ||
       (card.numbers.xp?.value === (card.code === '11039' ? 0 : 2) &&
         card.slots.slots.join(',') === 'arcane' &&

@@ -281,3 +281,7 @@
 
 - Lote 144 publicado en `42ff1eee`, con ajuste de intercambio de vinculadas en `1e5edd00`; sustituye el estado «sin commit» anterior.
 - Próximas vinculadas: La hoja ávida y Sabueso invocado requieren traición/Enemigo del mazo del jugador; Señorita Doyle, Baratija pesadillesca y Deseo milagroso conservan sus diferencias pendientes. Ver las causas del documento 144.
+
+## Continuación archivada al cerrar el lote 146
+
+- Lote 145 `movement-support`, commit `4a24af0e`: 18 cartas/niveles nuevos, 0 reediciones; 1514 comportamientos y 242 estándar pendientes. Reglas, integración y presentación EN/ES verificadas; detalle en el documento 145.

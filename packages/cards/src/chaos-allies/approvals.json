@@ -1,0 +1,163 @@
+{
+  "sourceBundle": "3c8ee4b5d8100766",
+  "presentation": "rendered",
+  "rulesRevision": 1,
+  "sourceFiles": { "en": "source-en.json", "es": "source-es.json" },
+  "sources": {
+    "en": "a7ea4be5853b20f9f7ca282d61cc383b3f81759826083ad474f7ccec534b1e85",
+    "es": "b78397d1b8f11b1fab60df409323fedd2f19d7702e7f0c451b315ef9f9cbb58f"
+  },
+  "cards": [
+    {
+      "code": "06030",
+      "status": "verified",
+      "module": "card-06030",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "subname": "Cat General of Ulthar"
+    },
+    {
+      "code": "06031",
+      "status": "verified",
+      "module": "card-06031",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "fast": true
+    },
+    {
+      "code": "06032",
+      "status": "verified",
+      "module": "card-06032",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "fast": true
+    },
+    {
+      "code": "06033",
+      "status": "verified",
+      "module": "card-06033",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "fast": true
+    },
+    {
+      "code": "10105",
+      "status": "verified",
+      "module": "card-10105",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "fast": true
+    },
+    {
+      "code": "10106",
+      "status": "verified",
+      "module": "card-10106",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "subname": "Celestial Ward"
+    },
+    {
+      "code": "10107",
+      "status": "verified",
+      "module": "card-10107",
+      "test": "rules.test.ts",
+      "bondedAdapter": "reviewed-bonded-v1",
+      "subname": "Daemonaic Vassal"
+    },
+    {
+      "code": "10133",
+      "status": "verified",
+      "module": "card-10133",
+      "test": "rules.test.ts",
+      "uses": { "count": 0, "type": "offering" },
+      "bondedAdapter": "reviewed-bonded-v1",
+      "subname": "Crown of Dying Light"
+    },
+    {
+      "code": "10134",
+      "status": "verified",
+      "module": "card-10134",
+      "test": "rules.test.ts",
+      "uses": { "count": 0, "type": "offering" },
+      "bondedAdapter": "reviewed-bonded-v1",
+      "subname": "Crown of Dying Light"
+    },
+    {
+      "code": "10084",
+      "status": "verified",
+      "module": "card-10084",
+      "test": "rules.test.ts",
+      "subname": "The Capricious Meddler",
+      "uses": { "count": 2, "type": "offering" }
+    },
+    {
+      "code": "10092",
+      "status": "verified",
+      "module": "card-10092",
+      "test": "rules.test.ts",
+      "subname": "Cursed Blade"
+    },
+    {
+      "code": "07153",
+      "status": "verified",
+      "module": "card-07153",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07031",
+      "status": "verified",
+      "module": "card-07031",
+      "test": "rules.test.ts",
+      "fast": true
+    },
+    {
+      "code": "07155",
+      "status": "verified",
+      "module": "card-07155",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07162",
+      "status": "verified",
+      "module": "card-07162",
+      "test": "rules.test.ts"
+    },
+    {
+      "code": "07194",
+      "status": "verified",
+      "module": "card-07194",
+      "test": "rules.test.ts",
+      "subname": "Fixer for Hire"
+    },
+    {
+      "code": "06328",
+      "status": "verified",
+      "module": "card-06328",
+      "test": "rules.test.ts",
+      "adapter": "reviewed-myriad-v1",
+      "uses": { "count": 3, "type": "secret" }
+    },
+    {
+      "code": "07191",
+      "status": "verified",
+      "module": "card-07191",
+      "test": "rules.test.ts",
+      "uses": { "count": 0, "type": "secret" },
+      "subname": "Text of the Elder Herald"
+    },
+    {
+      "code": "07192",
+      "status": "verified",
+      "module": "card-07192",
+      "test": "rules.test.ts",
+      "uses": { "count": 0, "type": "secret" },
+      "subname": "Text of the Elder Guardian"
+    },
+    {
+      "code": "10075",
+      "status": "verified",
+      "module": "card-10075",
+      "test": "rules.test.ts"
+    }
+  ]
+}
