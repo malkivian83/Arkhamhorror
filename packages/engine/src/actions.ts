@@ -1136,3 +1136,18 @@ function keyAbilities(state: GameState, id: InvestigatorId): AbilityOption[] {
   )
   return [...take, ...give]
 }
+
+/** RR Action Designators: an activation may also be a fight/investigation/parley, etc. */
+export function abilityActionKinds(ability: {
+  actionKind?: string
+  parley?: boolean
+  then: Message[]
+}): string[] {
+  const test = ability.then.find((m) => m.type === 'BeginSkillTest')
+  const kind =
+    ability.actionKind ??
+    (test?.type === 'BeginSkillTest' && ['fight', 'evade', 'investigate'].includes(test.kind.type)
+      ? test.kind.type
+      : undefined)
+  return [...new Set(['activate', ...(kind ? [kind] : []), ...(ability.parley ? ['parley'] : [])])]
+}

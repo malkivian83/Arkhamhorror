@@ -1,6 +1,9 @@
+export { cluesBlocked } from './handlers'
+export { filterImmediateActions, filterImmediateAbilities } from './immediate-options'
 export {
   attackBlocked,
   actionKinds,
+  abilityActionKinds,
   availableAbilities,
   availableActions,
   engageActionsAvailable,

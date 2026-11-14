@@ -926,6 +926,16 @@ export interface SkillTest {
 // Acciones, mensajes y preguntas
 // ---------------------------------------------------------------------------
 
+/** Restrictions on an action explicitly granted by a card, not on ordinary turn actions. */
+export interface ImmediateActionRule {
+  types?: string[]
+  basic?: boolean
+  asset?: AssetId
+  traits?: string[]
+  skillBonus?: number
+  willpower?: boolean
+}
+
 export type Action =
   | { kind: 'play'; card: CardCode }
   | { kind: 'draw' }
@@ -1111,6 +1121,8 @@ type MessageBody =
       round: number
       /** Tipo de acción completada (para `afterAction` del escenario). */
       kind?: Action['kind'] | 'activate'
+      kinds?: string[]
+      previous?: string[]
     }
   | { type: 'PerformAction'; investigator: InvestigatorId; action: Action; entryPaid?: boolean }
   /** `basic`: la acción de recurso o el mantenimiento (no es el efecto de una carta). */
@@ -1140,7 +1152,9 @@ type MessageBody =
   | { type: 'DiscardResolvedRevelation'; investigator: InvestigatorId; code: CardCode }
   | { type: 'ResolveOpeningRevelations' }
   | { type: 'AfterCurrentSkillTest'; then: Message[] }
-  | { type: 'TakeImmediateAction'; investigator: InvestigatorId }
+  | { type: 'TakeImmediateAction'; investigator: InvestigatorId; rule?: ImmediateActionRule }
+  | { type: 'GrantBonusAction'; investigator: InvestigatorId; bonus: number; code: CardCode }
+  | { type: 'UseBonusAction'; investigator: InvestigatorId; id: string }
   | { type: 'ImmediateActionWindow'; investigator: InvestigatorId }
   | { type: 'RestoreImmediateAction' }
   | { type: 'LoseNextTurnActions'; investigator: InvestigatorId; amount: number }
@@ -1963,6 +1977,8 @@ type MessageBody =
   | { type: 'Forced'; trigger: Trigger }
   | {
       type: 'UseAbility'
+      /** Original action symbols when a card resolves the ability without taking an action. */
+      printedActions?: number
       actionKind?: ActionName
       investigator: InvestigatorId
       key: string
@@ -2570,7 +2586,13 @@ export type Trigger =
   /** Se ha jugado una carta (pagado su coste), de cualquier tipo (Acordes tortuosos). */
   | { type: 'afterPlayCard'; investigator: InvestigatorId; code: CardCode }
   | { type: 'afterEventPlayed'; investigator: InvestigatorId; code: CardCode }
-  | { type: 'afterActionAbility'; investigator: InvestigatorId; code: CardCode }
+  | { type: 'afterActionAbility'; investigator: InvestigatorId; code: CardCode; asset?: AssetId }
+  | {
+      type: 'afterCompletedAction'
+      investigator: InvestigatorId
+      kinds: string[]
+      previous: string[]
+    }
   | { type: 'afterAssetEntersPlay'; investigator: InvestigatorId; asset: AssetId }
   | { type: 'afterDrawCard'; investigator: InvestigatorId; card: CardCode }
   | { type: 'afterHandDiscard'; investigator: InvestigatorId; cards: CardCode[] }
@@ -2909,8 +2931,19 @@ export interface GameState {
   activeTurn?: InvestigatorId | null
   /** Remaining continuous bonus actions, tracked by physical asset instance. */
   turnActionGrants?: TurnActionGrant[]
+  /** Optional actions banked until the end of their investigator's current turn. */
+  bonusActionGrants?: {
+    id: string
+    investigator: InvestigatorId
+    turn: number
+    bonus: number
+    code: CardCode
+  }[]
+  /** Latest initiated action types; completion messages capture the preceding types. */
+  lastActionTypes?: Record<InvestigatorId, string[]>
   /** Saved turn context while taking an action as if it were another investigator's turn. */
   immediateActions?: {
+    rule?: ImmediateActionRule
     investigator: InvestigatorId
     activeTurn: InvestigatorId | null
     /** The action is inside this investigator's actual turn, not a temporary context. */

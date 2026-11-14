@@ -1,0 +1,97 @@
+[
+  {
+    "code": "05040",
+    "name": "Ace of Rods",
+    "subname": "The Fateful Step",
+    "type": "asset",
+    "class": "neutral",
+    "traits": ["Tarot"],
+    "cost": 3,
+    "xp": 1,
+    "icons": {},
+    "slots": ["tarot"]
+  },
+  {
+    "code": "06239",
+    "name": "Haste",
+    "type": "asset",
+    "class": "rogue",
+    "traits": ["Ritual"],
+    "cost": 3,
+    "xp": 2,
+    "icons": { "agility": 1 },
+    "slots": ["arcane"]
+  },
+  {
+    "code": "08062",
+    "name": "Close the Circle",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Ritual", "Synergy"],
+    "cost": 2,
+    "xp": 1,
+    "icons": { "combat": 1, "agility": 1 },
+    "slots": ["arcane"],
+    "uses": { "count": 0, "type": "charge" }
+  },
+  {
+    "code": "08098",
+    "name": "Eon Chart",
+    "type": "asset",
+    "class": "seeker",
+    "classes": ["seeker", "rogue"],
+    "traits": ["Item", "Relic"],
+    "cost": 2,
+    "xp": 1,
+    "icons": { "intellect": 1, "agility": 1 },
+    "slots": ["accessory"],
+    "uses": { "count": 3, "type": "secret" }
+  },
+  {
+    "code": "08100",
+    "name": "Eon Chart",
+    "type": "asset",
+    "class": "seeker",
+    "classes": ["seeker", "rogue"],
+    "traits": ["Item", "Relic"],
+    "cost": 2,
+    "xp": 4,
+    "icons": { "intellect": 1, "agility": 1, "wild": 1 },
+    "slots": ["accessory"],
+    "uses": { "count": 3, "type": "secret" }
+  },
+  {
+    "code": "54008",
+    "name": "Sign Magick",
+    "type": "asset",
+    "class": "mystic",
+    "traits": ["Ritual", "Talent"],
+    "cost": 3,
+    "xp": 3,
+    "icons": { "willpower": 1, "intellect": 1 },
+    "slots": ["hand"],
+    "fast": true
+  },
+  {
+    "code": "10027",
+    "name": "Task Force",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic", "Double"],
+    "cost": 2,
+    "xp": 0,
+    "icons": { "intellect": 1, "combat": 1, "agility": 1 },
+    "slots": []
+  },
+  {
+    "code": "10037",
+    "name": "Flurry of Blows",
+    "type": "event",
+    "class": "guardian",
+    "traits": ["Tactic", "Double", "Fated"],
+    "cost": 2,
+    "xp": 5,
+    "icons": { "combat": 1, "agility": 1, "wild": 1 },
+    "slots": []
+  }
+]

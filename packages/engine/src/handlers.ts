@@ -1,3 +1,5 @@
+import { abilityActionKinds } from './actions'
+import { filterImmediateActions, filterImmediateAbilities } from './immediate-options'
 import {
   replacementLeaves,
   attachReplacement,
@@ -1325,6 +1327,13 @@ export function handle(state: GameState, message: Message): GameState {
         then: [{ type: 'PlayCard', investigator: id, code }, again],
       }))
       const abilities: Choice[] = [
+        ...(state.bonusActionGrants ?? [])
+          .filter((g) => g.investigator === id && g.turn === turnStartedAt(state))
+          .map((g): Choice => ({
+            label: 'ability.extraActionGift',
+            params: { card: playerCardDef(g.code)?.name ?? g.code },
+            then: [{ type: 'UseBonusAction', investigator: id, id: g.id }, again],
+          })),
         ...fastInvestigatorOptions(state, id).map((o): Choice => ({
           label: o.label,
           ...(o.params ? { params: o.params } : {}),
@@ -1391,6 +1400,13 @@ export function handle(state: GameState, message: Message): GameState {
     }
 
     case 'EndTurn': {
+      if (state.bonusActionGrants?.some((g) => g.investigator === message.investigator))
+        state = {
+          ...state,
+          bonusActionGrants: state.bonusActionGrants.filter(
+            (g) => g.investigator !== message.investigator,
+          ),
+        }
       state = {
         ...state,
         defeatedEnemyHealthThisTurn: {},
@@ -1443,6 +1459,13 @@ export function handle(state: GameState, message: Message): GameState {
         phase: state.phase,
         round: state.round,
         kind: message.action.kind,
+        previous: state.lastActionTypes?.[investigator.id] ?? [],
+        kinds: [
+          ...actionKinds(message.action),
+          ...(message.action.kind === 'play' && playerCardBehavior(message.action.card)?.parley
+            ? ['parley']
+            : []),
+        ],
       }
       // La acción adicional de evitar (Trish) se gasta antes que las normales.
       const useMove = !!investigator.extraMove && actionKinds(message.action).includes('move')
@@ -1493,37 +1516,44 @@ export function handle(state: GameState, message: Message): GameState {
             useEngage
       )
         throw new EngineError('No hay acciones suficientes para jugar la carta')
-      const paid = updateInvestigator(state, investigator.id, (i) => ({
-        ...(useExtra
-          ? { ...i, extraEvade: false }
-          : {
-              ...i,
-              fightActionsThisTurn: (i.fightActionsThisTurn ?? 0) - useFight,
-              engageActionsUsed: (i.engageActionsUsed ?? 0) + useEngage,
-              ...(useMove ? { extraMove: false } : {}),
-              ...(useTrait ? { traitActionUsed: true } : {}),
-              actionsRemaining: Math.max(
-                0,
-                i.actionsRemaining -
-                  cost +
-                  (useMove ? 1 : 0) +
-                  (useTrait ? 1 : 0) +
-                  useFight +
-                  useEngage,
-              ),
-            }),
-        actionsTaken: (i.actionsTaken ?? 0) + 1,
-        ...(message.action.kind === 'investigate' ||
-        (message.action.kind === 'play' &&
-          playerCardBehavior(message.action.card)?.investigateAction)
-          ? { lastInvestigateTurn: turnStartedAt(state) }
-          : {}),
-        spentActions: spendActions(state, i, cost),
-        roundActions: {
-          round: state.round,
-          kinds: [...actionsThisRound(state, i.id), ...actionKinds(message.action)],
+      const paid = updateInvestigator(
+        {
+          ...state,
+          lastActionTypes: { ...state.lastActionTypes, [investigator.id]: complete.kinds ?? [] },
         },
-      }))
+        investigator.id,
+        (i) => ({
+          ...(useExtra
+            ? { ...i, extraEvade: false }
+            : {
+                ...i,
+                fightActionsThisTurn: (i.fightActionsThisTurn ?? 0) - useFight,
+                engageActionsUsed: (i.engageActionsUsed ?? 0) + useEngage,
+                ...(useMove ? { extraMove: false } : {}),
+                ...(useTrait ? { traitActionUsed: true } : {}),
+                actionsRemaining: Math.max(
+                  0,
+                  i.actionsRemaining -
+                    cost +
+                    (useMove ? 1 : 0) +
+                    (useTrait ? 1 : 0) +
+                    useFight +
+                    useEngage,
+                ),
+              }),
+          actionsTaken: (i.actionsTaken ?? 0) + 1,
+          ...(message.action.kind === 'investigate' ||
+          (message.action.kind === 'play' &&
+            playerCardBehavior(message.action.card)?.investigateAction)
+            ? { lastInvestigateTurn: turnStartedAt(state) }
+            : {}),
+          spentActions: spendActions(state, i, cost),
+          roundActions: {
+            round: state.round,
+            kinds: [...actionsThisRound(state, i.id), ...actionKinds(message.action)],
+          },
+        }),
+      )
       // RR "Attack of Opportunity": tras pagar el coste y antes de resolver la acción.
       // Trench Knife: engage actions of its controller do not provoke.
       const quietEngage =
@@ -1590,7 +1620,7 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'CompleteAction': {
       if (message.phase !== state.phase || message.round !== state.round) return state
-      const completed = updateInvestigator(state, message.investigator, (i) => ({
+      let completed = updateInvestigator(state, message.investigator, (i) => ({
         ...i,
         completedActions: {
           phase: message.phase,
@@ -1602,6 +1632,20 @@ export function handle(state: GameState, message: Message): GameState {
               : 0) + 1,
         },
       }))
+      const kinds = message.kinds ?? (message.kind ? [message.kind] : [])
+      if (
+        kinds.length &&
+        Object.values(state.assets).some((a) => assetBehavior(state, a)?.observesCompletedActions)
+      )
+        completed = push(completed, {
+          type: 'Forced',
+          trigger: {
+            type: 'afterCompletedAction',
+            investigator: message.investigator,
+            kinds,
+            previous: message.previous ?? [],
+          },
+        })
       // Fortuna e insensatez: el escenario observa el tipo de cada acción completada.
       const observed = message.kind
         ? scenarioBehavior(state.scenarioId)?.afterAction?.(
@@ -2065,6 +2109,44 @@ export function handle(state: GameState, message: Message): GameState {
         nextTurnActionLoss: (i.nextTurnActionLoss ?? 0) + message.amount,
       }))
 
+    case 'GrantBonusAction': {
+      if (
+        state.activeTurn !== message.investigator ||
+        getInvestigator(state, message.investigator).eliminated
+      )
+        return state
+      const [id, next] = newId(state, 'bonus-action-')
+      return {
+        ...next,
+        bonusActionGrants: [
+          ...(next.bonusActionGrants ?? []),
+          {
+            id,
+            investigator: message.investigator,
+            turn: turnStartedAt(state),
+            bonus: message.bonus,
+            code: message.code,
+          },
+        ],
+      }
+    }
+    case 'UseBonusAction': {
+      const grant = state.bonusActionGrants?.find(
+        (g) =>
+          g.id === message.id &&
+          g.investigator === message.investigator &&
+          g.turn === turnStartedAt(state),
+      )
+      if (!grant || state.activeTurn !== message.investigator) return state
+      return push(
+        { ...state, bonusActionGrants: state.bonusActionGrants!.filter((g) => g.id !== grant.id) },
+        {
+          type: 'TakeImmediateAction',
+          investigator: message.investigator,
+          rule: { skillBonus: grant.bonus },
+        },
+      )
+    }
     case 'TakeImmediateAction': {
       const i = getInvestigator(state, message.investigator)
       if (i.eliminated) return state
@@ -2078,6 +2160,7 @@ export function handle(state: GameState, message: Message): GameState {
             ...(state.immediateActions ?? []),
             {
               investigator: i.id,
+              ...(message.rule ? { rule: message.rule } : {}),
               activeTurn: state.activeTurn ?? null,
               ownTurn,
               actionsRemaining: i.actionsRemaining,
@@ -2108,33 +2191,32 @@ export function handle(state: GameState, message: Message): GameState {
 
     case 'ImmediateActionWindow': {
       const id = message.investigator
+      const rule = state.immediateActions?.at(-1)?.rule
       const choices: Choice[] = [
-        ...availableActions(state, id).map((action): Choice => ({
+        ...filterImmediateActions(state, id, rule).map((action): Choice => ({
           ...describeAction(state, id, action),
           then: [{ type: 'TakeAction', investigator: id, action }],
         })),
-        ...availableAbilities(state, id)
-          .filter((a) => a.actions > 0)
-          .map((a): Choice => ({
-            label: a.label,
-            ...(a.params ? { params: a.params } : {}),
-            ...(a.target ? { target: a.target } : {}),
-            then: [
-              {
-                type: 'UseAbility',
-                investigator: id,
-                key: a.key,
-                actions: a.actions,
-                ...(a.actionKind ? { actionKind: a.actionKind } : {}),
-                provokes: a.provokes,
-                ...(a.limit ? { limit: a.limit } : {}),
-                ...(a.costs ? { costs: a.costs } : {}),
-                ...(a.playFromDiscard ? { playFromDiscard: a.playFromDiscard } : {}),
-                ...(a.parley ? { parley: true } : {}),
-                then: a.then,
-              },
-            ],
-          })),
+        ...filterImmediateAbilities(state, id, rule).map((a): Choice => ({
+          label: a.label,
+          ...(a.params ? { params: a.params } : {}),
+          ...(a.target ? { target: a.target } : {}),
+          then: [
+            {
+              type: 'UseAbility',
+              investigator: id,
+              key: a.key,
+              actions: a.actions,
+              ...(a.actionKind ? { actionKind: a.actionKind } : {}),
+              provokes: a.provokes,
+              ...(a.limit ? { limit: a.limit } : {}),
+              ...(a.costs ? { costs: a.costs } : {}),
+              ...(a.playFromDiscard ? { playFromDiscard: a.playFromDiscard } : {}),
+              ...(a.parley ? { parley: true } : {}),
+              then: a.then,
+            },
+          ],
+        })),
       ]
       return choices.length
         ? push(state, {
@@ -2159,6 +2241,7 @@ export function handle(state: GameState, message: Message): GameState {
         activeTurn,
         turnActionGrants,
         ownTurn: savedOwnTurn,
+        rule: _rule,
         endedTurn: _ended,
         ...turn
       } = frame
@@ -5617,7 +5700,15 @@ export function handle(state: GameState, message: Message): GameState {
         const replacements = (investigator.roundSkillReplacements ?? []).filter(
           (r) => r.round === state.round && r.from === message.skill,
         )
-        const skills = [...new Set([message.skill, ...replacements.map((r) => r.to)])]
+        const immediate = state.immediateActions?.at(-1)
+        const useWill = immediate?.investigator === investigator.id && immediate.rule?.willpower
+        const skills = [
+          ...new Set([
+            message.skill,
+            ...replacements.map((r) => r.to),
+            ...(useWill ? ['willpower' as const] : []),
+          ]),
+        ]
         if (skills.length > 1)
           return push(state, {
             type: 'Ask',
@@ -5629,7 +5720,7 @@ export function handle(state: GameState, message: Message): GameState {
                 const next = { ...message, skill, skillSelected: true }
                 if (skill !== message.skill) {
                   delete next.baseSkill
-                  delete next.modifier
+                  if (!useWill) delete next.modifier
                 }
                 return {
                   label: `choice.test.${skill}`,
@@ -9783,6 +9874,8 @@ export function handle(state: GameState, message: Message): GameState {
                 phase: state.phase,
                 round: state.round,
                 kind: message.actionKind ?? 'activate',
+                kinds: abilityActionKinds(message),
+                previous: state.lastActionTypes?.[investigator.id] ?? [],
               },
             ]
           : []
@@ -9790,7 +9883,7 @@ export function handle(state: GameState, message: Message): GameState {
         (a) => a.owner === investigator.id && assetBehavior(state, a)?.observesActionAbilities,
       )
       const source =
-        message.actions > 0 && watching
+        (message.printedActions ?? message.actions) > 0 && watching
           ? Object.values(state.assets).find(
               (a) => a.owner === investigator.id && message.key.startsWith(`${a.id}:`),
             )
@@ -9803,6 +9896,7 @@ export function handle(state: GameState, message: Message): GameState {
                 type: 'afterActionAbility',
                 investigator: investigator.id,
                 code: source.code,
+                asset: source.id,
               },
             },
           ]
@@ -9841,6 +9935,14 @@ export function handle(state: GameState, message: Message): GameState {
       const paid = updateInvestigator(
         {
           ...state,
+          ...(message.actions > 0
+            ? {
+                lastActionTypes: {
+                  ...state.lastActionTypes,
+                  [investigator.id]: abilityActionKinds(message),
+                },
+              }
+            : {}),
           abilityUses: [
             ...state.abilityUses,
             {
@@ -13352,7 +13454,7 @@ function skillTestResults(state: GameState, succeeded: boolean, failBy: number):
 
 /** Pistas sobre una carta (la reserva tiene tantas como haga falta). */
 /** Un enemigo de su Lugar le impide descubrir o tomar el control de pistas (Dianne Devine). */
-function cluesBlocked(state: GameState, investigator: InvestigatorId): boolean {
+export function cluesBlocked(state: GameState, investigator: InvestigatorId): boolean {
   const here = state.investigators.find((i) => i.id === investigator)?.location
   if (here == null) return false
   return Object.values(state.enemies).some(
@@ -14000,11 +14102,15 @@ export function skillTestValue(state: GameState): {
       }))
       return sum + skillValueFor(unchained, investigator.id, b.from, test.kind)
     }, 0)
+  const immediateBonus = (state.immediateActions ?? [])
+    .filter((f) => f.investigator === investigator.id)
+    .reduce((n, f) => n + (f.rule?.skillBonus ?? 0), 0)
   const playingBonus = (state.playSkillBonuses ?? [])
     .filter((b) => b.investigator === investigator.id)
     .reduce((n, b) => n + b.amount, 0)
   const effectBonus =
     playingBonus +
+    immediateBonus +
     (test.effectSource
       ? (playerCardBehavior(test.effectSource)?.effectSkillModifier?.(state, test) ?? 0)
       : 0)
